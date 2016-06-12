@@ -16108,7 +16108,7 @@ planet Amazon
 planet Antipode
 	attributes core mining frontier
 	landscape land/snow5
-	description `Antipode is a world of creeping glaciers and year-round snow, orbiting far enough from a dim star that even when the sun breaks through the clouds, it brings little warmth. The few settlements that exist here are built near surface deposits of rare Earth metals that were discovered recently, and that are mined for use in electronics and equipment throughout this sector.`
+	description `Antipode is a world of creeping glaciers and year-round snow, orbiting far enough from a dim star that even when the sun breaks through the clouds, it brings little warmth. The few settlements that exist here are built near surface deposits of rare earth metals that were discovered recently, and that are mined for use in electronics and equipment throughout this sector.`
 	description `	The inhabitants of Antipode are among the best downhill skiers in the galaxy, and they have made some attempts to draw off-world tourists to the ski resorts here, but the weather is so hostile that they have had very little success.`
 	spaceport `The spaceport consists of a single enormous warehouse. The air inside is cold, but you are glad to get out of the howling wind. In one corner is a counter advertising skiing adventures, but no one is staffing it; they must be out to lunch or taking the day off. As with many of these small spaceports, it seems that the only option for food is a pub, but the smells coming from it are enticing; for once, you may have found a spaceport bar whose chef actually knows how to cook.`
 	security 0.1
@@ -16373,7 +16373,7 @@ planet Clark
 planet Clink
 	attributes mining moon
 	landscape land/desert3
-	description `About a decade ago, a mining corporation from Zug planted a colony on Clink for harvesting some rare Earth minerals that are present in this moon's crust due to its unusually high rate of asteroid impacts. The atmosphere here is too thin to breathe without a respirator, and because of the low gravity, the dust raised by the mining operations hangs perpetually in the air.`
+	description `About a decade ago, a mining corporation from Zug planted a colony on Clink for harvesting some rare earth minerals that are present in this moon's crust due to its unusually high rate of asteroid impacts. The atmosphere here is too thin to breathe without a respirator, and because of the low gravity, the dust raised by the mining operations hangs perpetually in the air.`
 	description `	The miners who work here are a tight-knit group, since most of them were part of the original colonization team. They are not particularly open to outsiders, and the facilities here are so rudimentary that they do not even stock fuel for visiting ships.`
 	tribute 200
 		threshold 1500
@@ -17708,7 +17708,7 @@ planet "New Tibet"
 planet "New Wales"
 	attributes "dirt belt" mining
 	landscape land/mountain7
-	description `New Wales is home to a few mining outposts which extract and refine rare Earth minerals and heavy metals. It is dangerous work: the mines are deep underground and prone to noxious gases and cave-ins, and the refineries work with molten radioactive materials and caustic chemicals. Due to the somewhat dim light of the star Algorel, and the cloudiness of the atmosphere, this is not a good world for farming, and the population remains quite small.`
+	description `New Wales is home to a few mining outposts which extract and refine rare earth minerals and heavy metals. It is dangerous work: the mines are deep underground and prone to noxious gases and cave-ins, and the refineries work with molten radioactive materials and caustic chemicals. Due to the somewhat dim light of the star Algorel, and the cloudiness of the atmosphere, this is not a good world for farming, and the population remains quite small.`
 	spaceport `The warehouses at the spaceport are kept under continuous guard due to the high value of the refined metals they contain. There are several missile silos and laser turrets as well; New Wales has survived several pirate attacks in the last decade. Within the spaceport cafeteria, however, the locals are quite friendly and excited to connect with visitors and hear news of the outside world. The cafeteria is cooking lamb stew, and the smell of it pervades the whole building.`
 	outfitter "Ammo South"
 	outfitter "Basic Outfits"
