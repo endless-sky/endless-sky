@@ -2025,7 +2025,7 @@ const CargoHold &Ship::Cargo() const
 
 
 // Display box effects from jettisoning this much cargo.
-void Ship::Jettison(const std::string &commodity, int tons)
+void Ship::Jettison(const string &commodity, int tons)
 {
 	cargo.Transfer(commodity, tons);
 	
@@ -2396,7 +2396,7 @@ void Ship::CreateExplosion(list<Effect> &effects, bool spread)
 
 
 // Place a "spark" effect, like ionization or disruption.
-void Ship::CreateSparks(std::list<Effect> &effects, const string &name, double amount)
+void Ship::CreateSparks(list<Effect> &effects, const string &name, double amount)
 {
 	if(forget)
 		return;

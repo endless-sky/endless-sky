@@ -72,7 +72,7 @@ string Phrase::Get() const
 
 
 
-bool Phrase::ReferencesPhrase(const std::string& name) const
+bool Phrase::ReferencesPhrase(const string &name) const
 {
 	if(name == this->name)
 		return true;

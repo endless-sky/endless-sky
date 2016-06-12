@@ -94,6 +94,8 @@ namespace {
 	
 	StarField background;
 	
+	map<string, string> tooltips;
+	
 	SpriteQueue spriteQueue;
 	
 	vector<string> sources;
@@ -592,6 +594,15 @@ const StarField &GameData::Background()
 
 
 
+const string &GameData::Tooltip(const string &label)
+{
+	static const string EMPTY;
+	auto it = tooltips.find(label);
+	return (it == tooltips.end() ? EMPTY : it->second);
+}
+
+
+
 void GameData::LoadSources()
 {
 	sources.clear();
@@ -670,6 +681,17 @@ void GameData::LoadFile(const string &path, bool debugMode)
 			systems.Get(node.Token(1))->Load(node, planets);
 		else if(key == "trade")
 			trade.Load(node);
+		else if(key == "tip" && node.Size() >= 2)
+		{
+			string &text = tooltips[node.Token(1)];
+			text.clear();
+			for(const DataNode &child : node)
+			{
+				if(!text.empty())
+					text += "\n\t";
+				text += child.Token(0);
+			}
+		}
 		else
 			node.PrintTrace("Skipping unrecognized root object:");
 	}

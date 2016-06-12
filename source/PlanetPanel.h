@@ -45,6 +45,10 @@ protected:
 	
 	
 private:
+	void TakeOff();
+	
+	
+private:
 	PlayerInfo &player;
 	std::function<void()> callback = nullptr;
 	

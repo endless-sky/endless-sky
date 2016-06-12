@@ -73,6 +73,7 @@ void ShipInfoDisplay::DrawAttributes(const Point &topLeft) const
 	table.AddColumn(10, Table::LEFT);
 	table.AddColumn(WIDTH - 90, Table::RIGHT);
 	table.AddColumn(WIDTH - 10, Table::RIGHT);
+	table.SetHighlight(0, WIDTH);
 	table.DrawAt(point);
 	table.DrawGap(10.);
 	
@@ -82,6 +83,7 @@ void ShipInfoDisplay::DrawAttributes(const Point &topLeft) const
 	
 	for(unsigned i = 0; i < tableLabels.size(); ++i)
 	{
+		CheckHover(table, tableLabels[i]);
 		table.Draw(tableLabels[i], labelColor);
 		table.Draw(energyTable[i], valueColor);
 		table.Draw(heatTable[i], valueColor);

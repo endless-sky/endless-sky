@@ -65,6 +65,9 @@ void ShopPanel::Draw() const
 	DrawButtons();
 	DrawMain();
 	
+	shipInfo.DrawTooltips();
+	outfitInfo.DrawTooltips();
+	
 	if(dragShip)
 	{
 		static const Color selected(.8, 1.);
@@ -124,38 +127,37 @@ void ShopPanel::DrawSidebar() const
 	int shipsHere = 0;
 	for(shared_ptr<Ship> ship : player.Ships())
 		shipsHere += !(ship->GetSystem() != player.GetSystem() || ship->IsDisabled());
+	if(shipsHere < 4)
+		point.X() += .5 * ICON_TILE * (4 - shipsHere);
 	
-	if(shipsHere > 1)
+	static const Color selected(.8, 1.);
+	static const Color unselected(.4, 1.);
+	for(shared_ptr<Ship> ship : player.Ships())
 	{
-		static const Color selected(.8, 1.);
-		static const Color unselected(.4, 1.);
-		for(shared_ptr<Ship> ship : player.Ships())
+		// Skip any ships that are "absent" for whatever reason.
+		if(ship->GetSystem() != player.GetSystem() || ship->IsDisabled())
+			continue;
+	
+		if(point.X() > Screen::Right())
 		{
-			// Skip any ships that are "absent" for whatever reason.
-			if(ship->GetSystem() != player.GetSystem() || ship->IsDisabled())
-				continue;
-		
-			if(point.X() > Screen::Right())
-			{
-				point.X() -= ICON_TILE * ICON_COLS;
-				point.Y() += ICON_TILE;
-			}
-			
-			bool isSelected = playerShips.count(ship.get());
-			const Sprite *background = SpriteSet::Get(isSelected ? "ui/icon selected" : "ui/icon unselected");
-			SpriteShader::Draw(background, point);
-			
-			const Sprite *sprite = ship->GetSprite().GetSprite();
-			double scale = ICON_SIZE / max(sprite->Width(), sprite->Height());
-			Point size(sprite->Width() * scale, sprite->Height() * scale);
-			OutlineShader::Draw(sprite, point, size, isSelected ? selected : unselected);
-			
-			zones.emplace_back(point, Point(ICON_TILE, ICON_TILE), ship.get());
-			
-			point.X() += ICON_TILE;
+			point.X() -= ICON_TILE * ICON_COLS;
+			point.Y() += ICON_TILE;
 		}
-		point.Y() += ICON_TILE;
+		
+		bool isSelected = playerShips.count(ship.get());
+		const Sprite *background = SpriteSet::Get(isSelected ? "ui/icon selected" : "ui/icon unselected");
+		SpriteShader::Draw(background, point);
+		
+		const Sprite *sprite = ship->GetSprite().GetSprite();
+		double scale = ICON_SIZE / max(sprite->Width(), sprite->Height());
+		Point size(sprite->Width() * scale, sprite->Height() * scale);
+		OutlineShader::Draw(sprite, point, size, isSelected ? selected : unselected);
+		
+		zones.emplace_back(point, Point(ICON_TILE, ICON_TILE), ship.get());
+		
+		point.X() += ICON_TILE;
 	}
+	point.Y() += ICON_TILE;
 	
 	if(playerShip)
 	{
@@ -173,7 +175,7 @@ void ShopPanel::DrawSidebar() const
 		font.Draw("cargo space:", point, medium);
 		
 		string space = Format::Number(player.Cargo().Free()) + " / " + Format::Number(player.Cargo().Size());
-		Point right(Screen::Right() - font.Width(space), point.Y());
+		Point right(Screen::Right() - font.Width(space) - 10, point.Y());
 		font.Draw(space, right, bright);
 		point.Y() += 20.;
 	}
@@ -577,6 +579,10 @@ bool ShopPanel::Click(int x, int y)
 
 bool ShopPanel::Hover(int x, int y)
 {
+	Point point(x, y);
+	shipInfo.Hover(point);
+	outfitInfo.Hover(point);
+	
 	dragMain = (x < Screen::Right() - SIDE_WIDTH);
 	return true;
 }
