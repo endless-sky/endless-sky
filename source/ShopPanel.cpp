@@ -122,9 +122,7 @@ void ShopPanel::DrawSidebars() const
 	for(shared_ptr<Ship> ship : player.Ships())
 		shipsHere += ShipIsHere(ship);
 	
-	static const Color selected(.8, 1.);
-	static const Color unselected(.4, 1.);
-	for(shared_ptr<Ship> ship : player.Ships())
+	if (true) // Always show the ship outlines, so that storage and cargo will be available.
 	{
 		static const Color selected(.8, 1.);
 		static const Color unselected(.6, 1.);
@@ -223,7 +221,6 @@ void ShopPanel::DrawSidebars() const
 		}
 		point.Y() += ICON_TILE/2;
 	}
-	point.Y() += ICON_TILE;
 	
 
 	// If player ship details are in their own panel, draw a background and scroll buttons for it.  
