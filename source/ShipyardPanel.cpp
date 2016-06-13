@@ -182,7 +182,8 @@ int ShipyardPanel::DrawDetails(const Point &center) const
 	}
 	else
 	{
-		Point drawPoint = Point(Screen::Right() - SideWidth() - PlayerShipWidth() - shipInfo.PanelWidth(), Screen::Top() + 10. - detailsScroll);
+		Point startPoint = Point(Screen::Right() - SideWidth() - PlayerShipWidth() - shipInfo.PanelWidth(), Screen::Top() + 10. - detailsScroll);
+		Point drawPoint = startPoint;
 		
 		const Font &font = FontSet::Get(14);
 		Color bright = *GameData::Colors().Get("bright");
@@ -199,14 +200,14 @@ int ShipyardPanel::DrawDetails(const Point &center) const
 		FillShader::Fill(drawPoint + Point(DETAILS_WIDTH/2,0), Point(DETAILS_WIDTH, 1), COLOR_DIVIDERS);		
 		
 		shipInfo.DrawOutfits(drawPoint);
-		drawPoint += Point(0, shipInfo.OutfitsHeight() + 10);
+		drawPoint.Y() += shipInfo.OutfitsHeight() + 10;
 		
 		FillShader::Fill(drawPoint + Point(DETAILS_WIDTH/2,0), Point(DETAILS_WIDTH, 1), COLOR_DIVIDERS);
 		
 		shipInfo.DrawDescription(drawPoint);
-		drawPoint += Point(0, shipInfo.DescriptionHeight() + 10);
+		drawPoint.Y() += shipInfo.DescriptionHeight() + 10;
 		
-		maxDetailsScroll = max(0, TileSize() + shipInfo.AttributesHeight() + shipInfo.OutfitsHeight() + shipInfo.DescriptionHeight() + 30 - Screen::Height());
+		maxDetailsScroll = max(0, (int)drawPoint.Y() - (int)startPoint.Y() - Screen::Height());
 	}
 	
 	return detailsInWithMain ? shipInfo.MaximumHeight() : 0;
