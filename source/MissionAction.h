@@ -57,6 +57,10 @@ public:
 	// destination, payment, cargo, etc.
 	MissionAction Instantiate(std::map<std::string, std::string> &subs, int jumps, int payload) const;
 	
+	void MissionDebt(const std::string &bleh, double bloo) const;
+	void MissionDebt(const std::string &bleh, double bloo, double bah) const;
+	
+		
 	
 private:
 	std::string trigger;
