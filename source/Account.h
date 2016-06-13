@@ -48,6 +48,7 @@ public:
 	void AddMortgage(int64_t principal);
 	void AddFine(int64_t amount);
 	void AddBonus(int64_t bonus);
+	void AddMissionDebt(int64_t principal, double interest, int term);
 	int64_t Prequalify() const;
 	// Assets:
 	int64_t NetWorth() const;

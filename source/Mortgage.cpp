@@ -49,6 +49,17 @@ Mortgage::Mortgage(int64_t principal, int creditScore, int term)
 {
 }
 
+// This lets you specify the type of mortgage so prefer to make a function to
+// use this instead of using it directly. e.g. Account::AddMissionDebt
+Mortgage::Mortgage(int64_t principal, double interest, int term, const string &type)
+	: type(type),
+	principal(principal),
+	interest(interest),
+	interestString("0." + to_string(static_cast<int>(interest * 100000)) + "%"),
+	term(term)
+{
+}
+
 
 
 // Load or save mortgage data.

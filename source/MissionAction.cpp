@@ -25,7 +25,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "UI.h"
 
 #include <vector>
-#include <iostream>
 
 using namespace std;
 
@@ -151,13 +150,12 @@ void MissionAction::Load(const DataNode &node, const string &missionName)
 		}
 		else if(child.Token(0) == "debt")
 		{
-			std::cout << "Poo" << std::endl;
-			if(child.Size() == 2)
-				MissionDebt("Mission Debt", child.Value(1));
+			if(child.Size() >= 2)
+				debt = child.Value(1);
 			if(child.Size() >= 3)
-				MissionDebt("Mission Debt", child.Value(1), child.Value(2));
+				interest = child.Value(2);
 			if(child.Size() >= 4)
-				MissionDebt(child.Token(3), child.Value(1), child.Value(2));
+				term = child.Value(3);
 		}
 		else if(child.Token(0) == "event" && child.Size() >= 2)
 		{
@@ -170,10 +168,6 @@ void MissionAction::Load(const DataNode &node, const string &missionName)
 			conditions.Add(child);
 	}
 }
-
-void MissionAction::MissionDebt(const string &bleh, double bloo) const {};
-void MissionAction::MissionDebt(const string &bleh, double bloo, double bah) const {};
-
 
 
 
@@ -214,6 +208,8 @@ void MissionAction::Save(DataWriter &out) const
 			out.Write("outfit", it.first->Name(), it.second);
 		if(payment)
 			out.Write("payment", payment);
+		if(debt)
+			out.Write("debt", debt, interest, term);
 		for(const auto &it : events)
 			out.Write("event", it.first, it.second);
 		for(const auto &name : fail)
@@ -239,7 +235,7 @@ bool MissionAction::CanBeDone(const PlayerInfo &player) const
 {
 	if(player.Accounts().Credits() < -payment)
 		return false;
-
+	
 	const Ship *flagship = player.Flagship();
 	for(const auto &it : gifts)
 	{
@@ -301,6 +297,12 @@ void MissionAction::Do(PlayerInfo &player, UI *ui, const System *destination) co
 	
 	if(payment)
 		player.Accounts().AddCredits(payment);
+
+	if(debt)
+	{
+		player.Accounts().AddMissionDebt(debt, interest, term);
+		Messages::Add("Fees for a mission have been charged to your Bank.");
+	}
 	
 	for(const auto &it : events)
 		player.AddEvent(*GameData::Events().Get(it.first), player.GetDate() + it.second);
@@ -336,6 +338,9 @@ MissionAction MissionAction::Instantiate(map<string, string> &subs, int jumps, i
 	result.events = events;
 	result.gifts = gifts;
 	result.payment = payment + (jumps + 1) * payload * paymentMultiplier;
+	result.debt = debt;
+	result.interest = interest;
+	result.term = term;
 	// Fill in the payment amount if this is the "complete" action (which comes
 	// before all the others in the list).
 	if(trigger == "complete" || result.payment)
