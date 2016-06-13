@@ -22,7 +22,7 @@ using namespace std;
 
 
 
-SavedGame::SavedGame(const std::string &path)
+SavedGame::SavedGame(const string &path)
 {
 	Load(path);
 }

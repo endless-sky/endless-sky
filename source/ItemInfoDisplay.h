@@ -13,12 +13,13 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef INFO_DISPLAY_H_
 #define INFO_DISPLAY_H_
 
+#include "Point.h"
 #include "WrappedText.h"
 
 #include <vector>
 #include <string>
 
-class Point;
+class Table;
 
 
 
@@ -27,6 +28,8 @@ class Point;
 // different depending on what kind of item it is (a ship or an outfit).
 class ItemInfoDisplay {
 public:
+	ItemInfoDisplay();
+	
 	// Get the panel width.
 	static int PanelWidth();
 	// Get the height of each of the panels.
@@ -37,11 +40,16 @@ public:
 	// Draw each of the panels.
 	void DrawDescription(const Point &topLeft) const;
 	virtual void DrawAttributes(const Point &topLeft) const;
+	void DrawTooltips() const;
+	
+	// Update the location where the mouse is hovering.
+	void Hover(const Point &point);
 	
 	
 protected:
 	void UpdateDescription(const std::string &text);
-	static Point Draw(Point point, const std::vector<std::string> &labels, const std::vector<std::string> &values);
+	Point Draw(Point point, const std::vector<std::string> &labels, const std::vector<std::string> &values) const;
+	void CheckHover(const Table &table, const std::string &label) const;
 	
 	
 protected:
@@ -55,6 +63,12 @@ protected:
 	int attributesHeight = 0;
 	
 	int maximumHeight = 0;
+	
+	// For tooltips:
+	Point hoverPoint;
+	mutable std::string hover;
+	mutable int hoverCount = 0;
+	mutable WrappedText hoverText;
 };
 
 

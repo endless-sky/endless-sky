@@ -388,6 +388,7 @@ bool InfoPanel::Hover(double x, double y)
 
 bool InfoPanel::Hover(int x, int y)
 {
+	info.Hover(Point(x, y));
 	return Hover(static_cast<double>(x), static_cast<double>(y));
 }
 
@@ -630,6 +631,18 @@ void InfoPanel::DrawShip() const
 	pos = Point(260., -280.);
 	static const Point size(230., 20.);
 	DrawCargoHold(cargo, pos, size, 230., this);
+	
+	info.DrawTooltips();
+
+	// Re-positioning weapons.
+	if(selected >= 0)
+	{
+		const Outfit *outfit = ship.Weapons()[selected].GetOutfit();
+		string name = outfit ? outfit->Name() : "[empty]";
+		Point pos(hoverPoint.X() - .5 * font.Width(name), hoverPoint.Y());
+		font.Draw(name, pos + Point(1., 1.), Color(0., 1.));
+		font.Draw(name, pos, bright);
+	}
 	
 	// Weapon positions.
 	const Sprite *sprite = ship.GetSprite().GetSprite();
@@ -899,10 +912,15 @@ void InfoPanel::Dump()
 
 void InfoPanel::DumpPlunder(int count)
 {
+	int64_t loss = 0;
 	count = min(count, (*shipIt)->Cargo().GetOutfitCount(selectedPlunder));
 	if(count > 0)
 	{
+		loss += count * selectedPlunder->Cost();
 		(*shipIt)->Jettison(selectedPlunder, count);
 		info.Update(**shipIt);
+		
+		if(loss)
+			Messages::Add("You jettisoned " + Format::Number(loss) + " credits worth of cargo.");
 	}
 }

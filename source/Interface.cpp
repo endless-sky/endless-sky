@@ -98,7 +98,7 @@ void Interface::Load(const DataNode &node)
 			for(const DataNode &grand : child)
 			{
 				if(grand.Token(0) == "color" && grand.Size() >= 2)
-					vec.back().color = *GameData::Colors().Get(grand.Token(1));
+					vec.back().color = GameData::Colors().Get(grand.Token(1));
 				else if(grand.Token(0) == "align" && grand.Size() >= 2)
 					vec.back().align =
 						(grand.Token(1) == "center") ? .5 :
@@ -122,7 +122,7 @@ void Interface::Load(const DataNode &node)
 			for(const DataNode &grand : child)
 			{
 				if(grand.Token(0) == "color" && grand.Size() >= 2)
-					vec.back().color = *GameData::Colors().Get(grand.Token(1));
+					vec.back().color = GameData::Colors().Get(grand.Token(1));
 				else if(grand.Token(0) == "size" && grand.Size() >= 3)
 					vec.back().size = Point(
 						grand.Value(1), grand.Value(2));
@@ -219,7 +219,7 @@ void Interface::Draw(const Information &info, const Point &offset) const
 	double defaultAlign = position.X() + .5;
 	for(const StringSpec &spec : labels)
 	{
-		if(!info.HasCondition(spec.condition))
+		if(!info.HasCondition(spec.condition) || !spec.color)
 			continue;
 		
 		const string &str = spec.str;
@@ -227,11 +227,11 @@ void Interface::Draw(const Information &info, const Point &offset) const
 		const Font &font = FontSet::Get(spec.size);
 		double a = (spec.align >= 0.) ? spec.align : defaultAlign;
 		Point align(font.Width(str) * a, 0.);
-		font.Draw(str, corner - align + spec.position, spec.color);
+		font.Draw(str, corner - align + spec.position, *spec.color);
 	}
 	for(const StringSpec &spec : strings)
 	{
-		if(!info.HasCondition(spec.condition))
+		if(!info.HasCondition(spec.condition) || !spec.color)
 			continue;
 		
 		const string &str = info.GetString(spec.str);
@@ -239,12 +239,12 @@ void Interface::Draw(const Information &info, const Point &offset) const
 		const Font &font = FontSet::Get(spec.size);
 		double a = (spec.align >= 0.) ? spec.align : defaultAlign;
 		Point align(font.Width(str) * a, 0.);
-		font.Draw(str, corner - align + spec.position, spec.color);
+		font.Draw(str, corner - align + spec.position, *spec.color);
 	}
 	
 	for(const BarSpec &spec : bars)
 	{
-		if(!info.HasCondition(spec.condition))
+		if(!info.HasCondition(spec.condition) || !spec.color)
 			continue;
 		
 		double length = spec.size.Length();
@@ -269,12 +269,12 @@ void Interface::Draw(const Information &info, const Point &offset) const
 			Point to = start + min(v, value) * spec.size;
 			v += empty;
 			
-			LineShader::Draw(from, to, spec.width, spec.color);
+			LineShader::Draw(from, to, spec.width, *spec.color);
 		}
 	}
 	for(const BarSpec &spec : rings)
 	{
-		if(!info.HasCondition(spec.condition))
+		if(!info.HasCondition(spec.condition) || !spec.color)
 			continue;
 		
 		if(!spec.size.X() || !spec.size.Y() || !spec.width)
@@ -288,7 +288,7 @@ void Interface::Draw(const Information &info, const Point &offset) const
 			segments = 0.;
 		
 		Point center = spec.position + corner - spec.size * position;
-		RingShader::Draw(center, .5 * spec.size.X(), spec.width, value, spec.color, segments);
+		RingShader::Draw(center, .5 * spec.size.X(), spec.width, value, *spec.color, segments);
 	}
 }
 

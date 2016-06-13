@@ -23,14 +23,12 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "GameData.h"
 #include "InfoPanel.h"
 #include "Outfit.h"
-#include "OutfitInfoDisplay.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
 #include "Point.h"
 #include "Preferences.h"
 #include "Screen.h"
 #include "Ship.h"
-#include "ShipInfoDisplay.h"
 #include "SpriteSet.h"
 #include "SpriteShader.h"
 #include "UI.h"
@@ -97,20 +95,20 @@ int OutfitterPanel::TileSize() const
 int OutfitterPanel::DrawPlayerShipInfo(const Point &point) const
 {
 	Point drawPoint = point;
-	ShipInfoDisplay info(*playerShip);
+	shipInfo.Update(*playerShip);
 	
-	info.DrawAttributes(drawPoint);
-	drawPoint.Y() += info.AttributesHeight();
+	shipInfo.DrawAttributes(drawPoint);
+	drawPoint.Y() += shipInfo.AttributesHeight();
 	
 	FillShader::Fill(drawPoint + Point(DETAILS_WIDTH/2,0), Point(DETAILS_WIDTH, 1), COLOR_DIVIDERS);	
 	
-	info.DrawDescription(drawPoint);
-	drawPoint.Y() += info.DescriptionHeight();
+	shipInfo.DrawDescription(drawPoint);
+	drawPoint.Y() += shipInfo.DescriptionHeight();
 
 	FillShader::Fill(drawPoint + Point(DETAILS_WIDTH/2,0), Point(DETAILS_WIDTH, 1), COLOR_DIVIDERS);	
 
-	info.DrawOutfits(drawPoint);
-	drawPoint.Y() += info.OutfitsHeight();	
+	shipInfo.DrawOutfits(drawPoint);
+	drawPoint.Y() += shipInfo.OutfitsHeight();	
 	
 	return drawPoint.Y() - point.Y();
 }
@@ -128,7 +126,7 @@ int OutfitterPanel::DrawCargoHoldInfo(const Point &point) const
 
 
 
-bool OutfitterPanel::HasItem(const std::string &name) const
+bool OutfitterPanel::HasItem(const string &name) const
 {
 	const Outfit *outfit = GameData::Outfits().Get(name);
 	if(outfitter.Has(outfit) || available.Find(outfit) || player.Cargo().GetOutfitCount(outfit))
@@ -280,7 +278,7 @@ int OutfitterPanel::DividerOffset() const
 
 int OutfitterPanel::DetailWidth() const
 {
-	return 3 * OutfitInfoDisplay::PanelWidth();
+	return 3 * outfitInfo.PanelWidth();
 }
 
 
@@ -299,35 +297,35 @@ int OutfitterPanel::DrawDetails(const Point &center) const
 			minSellWear = min(minSellWear, shipMinWear);
 	}
 		
-	OutfitInfoDisplay info(*selectedOutfit, maxAvailableWear, minSellWear);
+	outfitInfo.Update(*selectedOutfit, maxAvailableWear, minSellWear);
 
 	if (detailsInWithMain)
 	{
-		Point offset(info.PanelWidth(), 0.);
-		info.DrawDescription(center - offset * 1.5 - Point(0., 10.));
-		info.DrawRequirements(center - offset * .5 - Point(0., 10.));
-		info.DrawAttributes(center + offset * .5 - Point(0., 10.));
+		Point offset(outfitInfo.PanelWidth(), 0.);
+		outfitInfo.DrawDescription(center - offset * 1.5 - Point(0., 10.));
+		outfitInfo.DrawRequirements(center - offset * .5 - Point(0., 10.));
+		outfitInfo.DrawAttributes(center + offset * .5 - Point(0., 10.));
 	}
 	else 
 	{
-		Point drawPoint = Point(Screen::Right() - SideWidth() - PlayerShipWidth() - info.PanelWidth(), Screen::Top() + 10. - detailsScroll);
+		Point drawPoint = Point(Screen::Right() - SideWidth() - PlayerShipWidth() - outfitInfo.PanelWidth(), Screen::Top() + 10. - detailsScroll);
 		
 		DrawOutfit(*selectedOutfit, drawPoint + Point(DetailsWidth()/2, TileSize()/2), true, false);
 		drawPoint += Point(0, TileSize());
 		
-		info.DrawRequirements(drawPoint);
-		drawPoint += Point(0, info.RequirementsHeight() + 10);
+		outfitInfo.DrawRequirements(drawPoint);
+		drawPoint += Point(0, outfitInfo.RequirementsHeight() + 10);
 		
-		info.DrawAttributes(drawPoint);
-		drawPoint += Point(0, info.AttributesHeight() + 10);
+		outfitInfo.DrawAttributes(drawPoint);
+		drawPoint += Point(0, outfitInfo.AttributesHeight() + 10);
 
-		info.DrawDescription(drawPoint);
-		drawPoint += Point(0, info.DescriptionHeight() + 10);
+		outfitInfo.DrawDescription(drawPoint);
+		drawPoint += Point(0, outfitInfo.DescriptionHeight() + 10);
 
-		maxDetailsScroll = max(0, TileSize() + info.RequirementsHeight() + info.AttributesHeight() + info.DescriptionHeight() + 30 - Screen::Height());
+		maxDetailsScroll = max(0, TileSize() + outfitInfo.RequirementsHeight() + outfitInfo.AttributesHeight() + outfitInfo.DescriptionHeight() + 30 - Screen::Height());
 	}
 	
-	return detailsInWithMain ? info.MaximumHeight() : 0;
+	return detailsInWithMain ? outfitInfo.MaximumHeight() : 0;
 }
 
 
@@ -815,8 +813,8 @@ void OutfitterPanel::CheckRefill()
 		return;
 	checkedRefill = true;
 	
-	int64_t cost = 0;
 	int count = 0;
+	map<const Outfit *, int> needed;
 	for(const auto &ship : player.Ships())
 	{
 		if(!ShipIsHere(ship))
@@ -830,19 +828,27 @@ void OutfitterPanel::CheckRefill()
 		
 		for(const Outfit *outfit : toRefill)
 		{
-			int needed = ship->Attributes().CanAdd(*outfit, 1000000);
-			if(!outfitter.Has(outfit))
-				needed = min(needed, player.Cargo().GetOutfitCount(outfit) + available.GetTotalCount(selectedOutfit));
-			cost += needed * outfit->Cost();
+			int amount = ship->Attributes().CanAdd(*outfit, 1000000);
+			if(amount)
+				needed[outfit] += amount;
 		}
 	}
 	
-	if(cost && cost < player.Accounts().Credits())
+	int64_t cost = 0;
+	for(auto &it : needed)
 	{
-		string message = (count == 1) ?
-			"Do you want to reload all the ammunition for your ship? It will cost " :
-			"Do you want to reload all the ammunition for your ships? It will cost ";
-		message += Format::Number(cost) + " credits.";
+		// Don't count cost of anything installed from cargo.
+		it.second = max(0, it.second - player.Cargo().GetOutfitCount(it.first));
+		if(!outfitter.Has(it.first))
+			it.second = min(it.second, available.GetTotalCount(it.first));
+		cost += it.second * it.first->Cost();
+	}
+	if(!needed.empty() && cost < player.Accounts().Credits())
+	{
+		string message = "Do you want to reload all the ammunition for your ship";
+		message += (count == 1) ? "?" : "s?";
+		if(cost)
+			message += " It will cost " + Format::Number(cost) + " credits.";
 		GetUI()->Push(new Dialog(this, &OutfitterPanel::Refill, message));
 	}
 }

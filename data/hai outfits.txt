@@ -84,6 +84,7 @@ outfit "Hai Tracker"
 	category "Ammunition"
 	cost 1000
 	thumbnail "outfit/hai tracker"
+	"mass" .3
 	"tracker capacity" -1
 	description "This is ammunition for a Tracker Pod."
 
@@ -91,7 +92,7 @@ outfit "Hai Tracker Pod"
 	category "Secondary Weapons"
 	cost 150000
 	thumbnail "outfit/hai tracker pod"
-	"mass" 19
+	"mass" 15
 	"outfit space" -19
 	"weapon capacity" -19
 	"gun ports" -1

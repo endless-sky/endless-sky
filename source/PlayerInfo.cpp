@@ -1176,7 +1176,6 @@ bool PlayerInfo::TakeOff(UI *ui)
 	int64_t sold = cargo.Used();
 	income = 0;
 	int64_t commodityIncome = 0;
-	int64_t outfitIncome = 0;
 	int64_t totalBasis = 0;
 	if(sold)
 	{

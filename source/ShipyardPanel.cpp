@@ -25,7 +25,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Point.h"
 #include "Screen.h"
 #include "Ship.h"
-#include "ShipInfoDisplay.h"
 #include "System.h"
 #include "UI.h"
 
@@ -36,7 +35,7 @@ namespace {
 }
 
 ShipyardPanel::ShipyardPanel(PlayerInfo &player)
-	: ShopPanel(player, Ship::CATEGORIES), used(player.UsedShips()), junkyard(player.JunkyardShips()), modifier(0)
+	: ShopPanel(player, Ship::CATEGORIES), modifier(0), used(player.UsedShips()), junkyard(player.JunkyardShips()) 
 {	
 	for(const auto &it : GameData::Ships())
 		catalog[it.second.Attributes().Category()].insert(it.first);
@@ -62,21 +61,21 @@ int ShipyardPanel::TileSize() const
 int ShipyardPanel::DrawPlayerShipInfo(const Point &point) const
 {
 	Point drawPoint = point;
-	ShipInfoDisplay info(*playerShip);
+	shipInfo.Update(*playerShip);
 
 	// This should look good in a side-by-side comparison with a ship from the shipyard.
-	info.DrawAttributes(drawPoint);
-	drawPoint.Y() += info.AttributesHeight();
+	shipInfo.DrawAttributes(drawPoint);
+	drawPoint.Y() += shipInfo.AttributesHeight();
 	
 	FillShader::Fill(drawPoint + Point(DETAILS_WIDTH/2,0), Point(DETAILS_WIDTH, 1), COLOR_DIVIDERS);
 	
-	info.DrawOutfits(drawPoint);
-	drawPoint.Y() += info.OutfitsHeight();
+	shipInfo.DrawOutfits(drawPoint);
+	drawPoint.Y() += shipInfo.OutfitsHeight();
 
 	FillShader::Fill(drawPoint + Point(DETAILS_WIDTH/2,0), Point(DETAILS_WIDTH, 1), COLOR_DIVIDERS);
 	
-	info.DrawDescription(drawPoint);
-	drawPoint.Y() += info.DescriptionHeight();
+	shipInfo.DrawDescription(drawPoint);
+	drawPoint.Y() += shipInfo.DescriptionHeight();
 	
 	return drawPoint.Y() - point.Y();
 }
@@ -170,20 +169,20 @@ int ShipyardPanel::DetailWidth() const
 
 int ShipyardPanel::DrawDetails(const Point &center) const
 {
-	ShipInfoDisplay info(*selectedShip);
+	shipInfo.Update(*selectedShip);
 	
-	Point offset(info.PanelWidth(), 0.);
+	Point offset(shipInfo.PanelWidth(), 0.);
 
 	if (detailsInWithMain)
 	{
-		Point offset(info.PanelWidth(), 0.);
-		info.DrawDescription(center - offset * 1.5);
-		info.DrawAttributes(center - offset * .5);
-		info.DrawOutfits(center + offset * .5);
+		Point offset(shipInfo.PanelWidth(), 0.);
+		shipInfo.DrawDescription(center - offset * 1.5);
+		shipInfo.DrawAttributes(center - offset * .5);
+		shipInfo.DrawOutfits(center + offset * .5);
 	}
 	else
 	{
-		Point drawPoint = Point(Screen::Right() - SideWidth() - PlayerShipWidth() - info.PanelWidth(), Screen::Top() + 10. - detailsScroll);
+		Point drawPoint = Point(Screen::Right() - SideWidth() - PlayerShipWidth() - shipInfo.PanelWidth(), Screen::Top() + 10. - detailsScroll);
 		
 		const Font &font = FontSet::Get(14);
 		Color bright = *GameData::Colors().Get("bright");
@@ -194,23 +193,23 @@ int ShipyardPanel::DrawDetails(const Point &center) const
 		DrawShip(*selectedShip, drawPoint + Point(DetailsWidth()/2, TileSize()/2), true);
 		drawPoint.Y() += TileSize();
 		
-		info.DrawAttributes(drawPoint);
-		drawPoint.Y() += info.AttributesHeight() + 10;
+		shipInfo.DrawAttributes(drawPoint);
+		drawPoint.Y() += shipInfo.AttributesHeight() + 10;
 		
 		FillShader::Fill(drawPoint + Point(DETAILS_WIDTH/2,0), Point(DETAILS_WIDTH, 1), COLOR_DIVIDERS);		
 		
-		info.DrawOutfits(drawPoint);
-		drawPoint += Point(0, info.OutfitsHeight() + 10);
+		shipInfo.DrawOutfits(drawPoint);
+		drawPoint += Point(0, shipInfo.OutfitsHeight() + 10);
 		
 		FillShader::Fill(drawPoint + Point(DETAILS_WIDTH/2,0), Point(DETAILS_WIDTH, 1), COLOR_DIVIDERS);
 		
-		info.DrawDescription(drawPoint);
-		drawPoint += Point(0, info.DescriptionHeight() + 10);
+		shipInfo.DrawDescription(drawPoint);
+		drawPoint += Point(0, shipInfo.DescriptionHeight() + 10);
 		
-		maxDetailsScroll = max(0, TileSize() + info.AttributesHeight() + info.OutfitsHeight() + info.DescriptionHeight() + 30 - Screen::Height());
+		maxDetailsScroll = max(0, TileSize() + shipInfo.AttributesHeight() + shipInfo.OutfitsHeight() + shipInfo.DescriptionHeight() + 30 - Screen::Height());
 	}
 	
-	return detailsInWithMain ? info.MaximumHeight() : 0;
+	return detailsInWithMain ? shipInfo.MaximumHeight() : 0;
 }
 
 

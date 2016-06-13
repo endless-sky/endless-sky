@@ -436,7 +436,7 @@ void MapSalesPanel::Draw(Point &corner, const Sprite *sprite, bool isForSale, bo
 
 
 
-void MapSalesPanel::DoFind(const std::string &text)
+void MapSalesPanel::DoFind(const string &text)
 {
 	int index = FindItem(text);
 	if(index >= 0 && index < static_cast<int>(zones.size()))

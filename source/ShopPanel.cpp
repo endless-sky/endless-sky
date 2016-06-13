@@ -61,6 +61,9 @@ void ShopPanel::Draw() const
 	DrawMain();
 	DrawButtons();
 	
+	shipInfo.DrawTooltips();
+	outfitInfo.DrawTooltips();
+	
 	if(dragShip)
 	{
 		static const Color selected(.8, 1.);
@@ -726,6 +729,11 @@ bool ShopPanel::Click(int x, int y)
 
 bool ShopPanel::Hover(int x, int y)
 {
+	// Info panel hover functions.
+	Point point(x, y);
+	shipInfo.Hover(point);
+	outfitInfo.Hover(point);
+	
 	// Figure out which panel the point (x,y) is in.
 	int cutoff = Screen::Right() - SideWidth() - PlayerShipWidth() - DetailsWidth();
 	dragMain = (x < cutoff);

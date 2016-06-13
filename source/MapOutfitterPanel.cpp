@@ -115,7 +115,7 @@ bool MapOutfitterPanel::HasThis(const Planet *planet) const
 
 
 
-int MapOutfitterPanel::FindItem(const std::string &text) const
+int MapOutfitterPanel::FindItem(const string &text) const
 {
 	int bestIndex = 9999;
 	int bestItem = -1;

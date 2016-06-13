@@ -114,7 +114,7 @@ bool MapShipyardPanel::HasThis(const Planet *planet) const
 
 
 
-int MapShipyardPanel::FindItem(const std::string &text) const
+int MapShipyardPanel::FindItem(const string &text) const
 {
 	int bestIndex = 9999;
 	int bestItem = -1;
