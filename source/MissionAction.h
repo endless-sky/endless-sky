@@ -57,10 +57,6 @@ public:
 	// destination, payment, cargo, etc.
 	MissionAction Instantiate(std::map<std::string, std::string> &subs, int jumps, int payload) const;
 	
-	void MissionDebt(const std::string &bleh, double bloo) const;
-	void MissionDebt(const std::string &bleh, double bloo, double bah) const;
-	
-		
 	
 private:
 	std::string trigger;
@@ -75,6 +71,9 @@ private:
 	std::map<const Outfit *, int> gifts;
 	int payment = 0;
 	int paymentMultiplier = 0;
+	int debt = 0;
+	double interest = 0.4;
+	int term = 365;
 	
 	// When this action is performed, the missions with these names fail.
 	std::set<std::string> fail;

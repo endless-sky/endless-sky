@@ -243,6 +243,11 @@ void Account::AddBonus(int64_t bonus)
 	mortgages.emplace_back(bonus, 1000, 60);
 }
 
+void Account::AddMissionDebt(int64_t principal, double interest, int term)
+{
+	mortgages.emplace_back(principal, interest, term, "Mission");
+}
+
 
 
 int64_t Account::Prequalify() const

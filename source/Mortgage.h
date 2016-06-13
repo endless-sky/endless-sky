@@ -37,6 +37,8 @@ public:
 	// credit score to zero for a higher interest rate.
 	Mortgage(int64_t principal, int creditScore, int term = 365);
 	
+	Mortgage(int64_t principal, double interest, int term, const std::string &type);
+
 	// Load or save mortgage data.
 	void Load(const DataNode &node);
 	void Save(DataWriter &out) const;
