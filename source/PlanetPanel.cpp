@@ -311,6 +311,9 @@ bool PlanetPanel::ShowOutfitter() const
 		}
 
 	return hasShip && planet.HasOutfitter() && planet.CanUseServices();
+}
+
+
 
 void PlanetPanel::TakeOff()
 {
