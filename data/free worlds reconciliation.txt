@@ -941,7 +941,7 @@ mission "FW Pug 1 Return"
 mission "FW Pug 2"
 	landing
 	name "Meet with Parliament"
-	description "Travel with Alondo to Earth to meet with Parliament. They are now much more willing to meet with you given how real Syndicate the threat seems."
+	description "Travel with Alondo to Earth to meet with Parliament. They are now much more willing to meet with you given how real the Syndicate threat seems."
 	autosave
 	source "New Tibet"
 	destination "Earth"
