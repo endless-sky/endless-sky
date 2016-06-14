@@ -941,7 +941,7 @@ mission "FW Pug 1 Return"
 mission "FW Pug 2"
 	landing
 	name "Meet with Parliament"
-	description "Travel with Alondo to Earth to meet with Parliament. They are now much more willing to meet with you given how real the threat seems."
+	description "Travel with Alondo to Earth to meet with Parliament. They are now much more willing to meet with you given how real Syndicate the threat seems."
 	autosave
 	source "New Tibet"
 	destination "Earth"
@@ -1748,49 +1748,16 @@ mission "FW Pug 2 Know A"
 		conversation
 			`A palpable sense of fear and near-panic hangs over the spaceport on Earth. At any minute, this system that serves as the very hub of human government could disappear into the same unknown abyss that has swallowed up its neighbors.`
 			`	Parliament is eager now to meet with you and to receive whatever assistance you may be able to offer. As Alondo stands in front of the chamber telling the members of Parliament what you already know and asking questions about the disappearance of the Syndicate fleet, they answer him with respect and deference, far different from how you have been treated here in the past. You learn that although one link remains open to Syndicate space, no one has dared to travel through it. Given the pace at which the other links were cut, they had feared that the one remaining link will disappear at any time.`
-
-			branch quarg
-				never
-
 			`	Inevitably the conversation swings round to how you got into the cut off systems and Alondo is forced to allow Parliament to question you directly. One of the members of Parliament, you think he's from one of the paradise worlds, asks "You say you used a "Jump Drive" to enter the Zeta Aquilae system but Jump Drives are only used by the Quarg. So where did you get your Jump Drive?"`
 			choice
 				`	"I am not telling you where I got my Jump Drive."`
-					goto "refuse 2"
+					goto "refuse"
 				`	"An alien species called the Korath."`
 					goto true
 				`	"A species to the north of Syndicate space called the Korath."`
 					goto true
 
-			label quarg
-			`	Inevitably the conversation swings round to how you got into the cut off systems and Alondo is forced to allow Parliament to question you directly. One of the members of Parliament, you think he's from one of the paradise worlds, asks "You say you used a "Jump Drive" to enter the Zeta Aquilae system yet Jump Drives are only used by the Quarg. So where did you get your Jump Drive?"`
-			choice
-				`	"I am not telling you where I got my Jump Drive."`
-					goto refuse
-				`	"An alien species called the Korath."`
-					goto true
-				`	"A species to the north of Syndicate space called the Korath."`
-					goto true
-				`	"The Quarg."`
-					goto "quarg drive"
-
-			label refuse
-			`	Alondo says, quietly "Captain <last>, if we are to get anywhere we need them to believe us, and if you refuse to tell them where you got your Jump Drive we won't get anywhere."`
-			choice
-				`	"An alien species called the Korath."`
-					goto true
-				`	"A species to the north-east of Syndicate space called the Korath."`
-					goto true
-				`	"The Quarg."`
-					goto "quarg drive"
-
-			label "quarg drive"
-			`	Instantly uproar brakes out. The speaker spends several moments shouting at everyone to be quite before they can continue.`
-			`	One of the Dirt Belt representative gets up, "We had heard rumours but we never believed that it could be done."`
-			`	A representative from Shangri-La stands saying "Another species with Jump Drives, called the Korath, has been raiding our planet, maybe Captain <last> has got Korath tech instead."`
-			`	Now a Paradise planet representative, "Implying that you have defeated the Quarg is just an attempt to scare us into compliance!" This raises a "Hear, Hear." from the other Paradise planet reps.`
-				goto last
-
-			label "refuse 2"
+			label "refuse"
 			`	Alondo says, quietly "Captain <last>, if we are to get anywhere we need them to believe us, and if you refuse to tell them where you got your Jump Drive we won't get anywhere."`
 			choice
 				`	"An alien species called the Korath."`
