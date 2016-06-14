@@ -519,7 +519,7 @@ mission "Language: Wanderer 1B"
 					goto remind
 
 			label hit
-			`	"Forgot everything" he says, rushing out and knocking you over again as he goes past.`
+			`	"Forgot everything," he says, rushing out and knocking you over again as he goes past.`
 				goto return
 
 			label forgot
@@ -894,7 +894,7 @@ mission "Language: Wanderer end"
 		has "event: language: Wanderer direct"
 	on offer
 		conversation
-			`You've received a message from Eruk, "<first>, I've done it. If you load up the attached file onto your speaking machine it will update it to be able to directly translate into the Wanderer language." Unfortunately he appears to have forgotten to attach the file.`
+			`You've received a message from Eruk, "<first>, I've done it. If you load up the attached file onto your speaking machine it will update it to be able to directly translate into the Wanderer language." Unfortunately, he appears to have forgotten to attach the file.`
 			`A short while later you receive a second message from Eruk, "<first>, sorry, I appear to have forgotten to attach the file. I've attached it to this message instead." He still hasn't remembered to attach the file.`
 			`A third message from Eruk comes with a single attached file and no actual message. Loading this up onto your speaking machine you find that it does update it to handle the Wanderer language.`
 				decline
