@@ -156,6 +156,7 @@ mission "FW Wolf Pack 1"
 	description "Travel to <planet> in the Deep, where Free Worlds sympathizers will share details of a new ramscoop technology. (You may have to bribe planets along the way to get permission to refuel.)"
 	destination Memory
 	clearance
+	minor
 	to offer
 		has "event: catalytic ramscoop available"
 		random < 30
@@ -537,6 +538,7 @@ mission "FW Stack Core 1B"
 
 mission "FW Stack Core 1C"
 	landing
+	minor
 	to offer
 		has "event: stack core for sale"
 	

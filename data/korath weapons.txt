@@ -217,6 +217,7 @@ outfit "Korath Piercer"
 	category "Ammunition"
 	cost 3500
 	thumbnail "outfit/piercer"
+	"mass" .3
 	"piercer capacity" -1
 	description "This missile is fired from a Korath Piercer Launcher."
 
@@ -224,7 +225,7 @@ outfit "Korath Piercer Launcher"
 	category "Secondary Weapons"
 	cost 593000
 	thumbnail "outfit/piercer launcher"
-	"mass" 27
+	"mass" 18
 	"outfit space" -27
 	"weapon capacity" -27
 	"energy capacity" 50
@@ -358,6 +359,7 @@ outfit "Korath Mine"
 	category "Ammunition"
 	cost 3500
 	thumbnail "outfit/korath mine"
+	"mass" .7
 	"minelayer capacity" -1
 	description "This is ammunition for a Korath Minelayer. Each mine splits into eleven submunitions after it is deployed."
 
@@ -365,7 +367,7 @@ outfit "Korath Minelayer"
 	category "Secondary Weapons"
 	cost 1073000
 	thumbnail "outfit/korath minelayer"
-	"mass" 48
+	"mass" 36
 	"outfit space" -48
 	"weapon capacity" -48
 	"energy capacity" 50
@@ -408,7 +410,8 @@ outfit "Korath Mine Submunition"
 		"hit effect" "big explosion"
 		"die effect" "tiny explosion"
 		"inaccuracy" 360
-		"lifetime" 1800
+		"lifetime" 1000
+		"random lifetime" 60
 		"acceleration" .00001
 		"velocity" 2
 		"random velocity" 5

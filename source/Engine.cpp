@@ -260,12 +260,18 @@ void Engine::Step(bool isActive)
 			doEnter = false;
 			events.emplace_back(flagship, flagship, ShipEvent::JUMP);
 		}
-		if(flagship->IsEnteringHyperspace() || flagship->Commands().Has(Command::WAIT))
+		if(flagship->IsEnteringHyperspace()
+				|| (flagship->Commands().Has(Command::WAIT) && !flagship->IsHyperspacing()))
 		{
 			if(jumpCount < 100)
 				++jumpCount;
-			jumpInProgress[0] = flagship->GetSystem();
-			jumpInProgress[1] = flagship->GetTargetSystem();
+			const System *from = flagship->GetSystem();
+			const System *to = flagship->GetTargetSystem();
+			if(from && to && from != to)
+			{
+				jumpInProgress[0] = from;
+				jumpInProgress[1] = to;
+			}
 		}
 		else if(jumpCount > 0)
 			--jumpCount;
@@ -350,7 +356,7 @@ void Engine::Step(bool isActive)
 	
 	// Create the planet labels.
 	labels.clear();
-	if(currentSystem)
+	if(currentSystem && Preferences::Has("Show planet labels"))
 	{
 		for(const StellarObject &object : currentSystem->Objects())
 		{
@@ -592,7 +598,7 @@ void Engine::Draw() const
 			PointerShader::Draw(center, targetAngle, 10., 10., radius, Color(1.));
 		}
 	}
-	if(jumpCount)
+	if(jumpCount && Preferences::Has("Show mini-map"))
 		MapPanel::DrawMiniMap(player, .5 * min(1., jumpCount / 30.), jumpInProgress, step);
 	
 	// Draw ammo status.
@@ -785,7 +791,10 @@ void Engine::CalculateStep()
 		// Note that engine flares are handled separately, so that they will be
 		// drawn immediately under the ship.
 		if(!(*it)->Move(effects, flotsam))
+		{
+			eventQueue.emplace_back(nullptr, *it, ShipEvent::DESTROY);
 			it = ships.erase(it);
+		}
 		else
 		{
 			if(&**it != flagship)
@@ -826,7 +835,7 @@ void Engine::CalculateStep()
 						it.GetPlanet()->WormholeDestination(player.GetSystem()) == flagship->GetSystem())
 					player.Visit(it.GetPlanet());
 		
-		doFlash = true;
+		doFlash = Preferences::Has("Show hyperspace flash");
 		player.SetSystem(flagship->GetSystem());
 		EnterSystem();
 	}
@@ -1083,7 +1092,8 @@ void Engine::CalculateStep()
 		--alarmTime;
 	else if(hasHostiles && !hadHostiles)
 	{
-		Audio::Play(Audio::Get("alarm"));
+		if(Preferences::Has("Warning siren"))
+			Audio::Play(Audio::Get("alarm"));
 		alarmTime = 180;
 		hadHostiles = true;
 	}
@@ -1249,7 +1259,7 @@ void Engine::CalculateStep()
 				if(sum < 0)
 				{
 					shared_ptr<Ship> ship = person.GetShip();
-					ship->Recharge(true);
+					ship->Recharge();
 					ship->SetName(it.first);
 					ship->SetGovernment(person.GetGovernment());
 					ship->SetPersonality(person.GetPersonality());

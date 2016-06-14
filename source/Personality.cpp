@@ -72,7 +72,8 @@ namespace {
 
 // Default settings for player's ships.
 Personality::Personality()
-	: flags(DISABLES), confusionMultiplier(DEFAULT_CONFUSION), confusionAngle(Angle::Random())
+	: flags(DISABLES), confusionMultiplier(DEFAULT_CONFUSION), aimMultiplier(1.),
+	confusionAngle(Angle::Random())
 {
 }
 
@@ -261,10 +262,13 @@ const Point &Personality::Confusion() const
 
 
 
-void Personality::UpdateConfusion()
+void Personality::UpdateConfusion(bool isFiring)
 {
-	confusionAngle += Angle::Random(10) - Angle::Random(10);
-	confusion += (.1 * confusionMultiplier) * confusionAngle.Unit();
+	double aim = (isFiring ? .25 : 1.);
+	aimMultiplier = .99 * aimMultiplier + .01 * aim;
+	
+	confusionAngle += Angle::Random(20) - Angle::Random(20);
+	confusion += (.1 * confusionMultiplier * aimMultiplier) * confusionAngle.Unit();
 	confusion *= .9;
 }
 

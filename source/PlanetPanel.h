@@ -45,7 +45,6 @@ protected:
 	
 	
 private:
-	
 	// Shared condition checks used in Draw, KeyDown/Click.
 	bool ShowDepart() const;
 	bool ShowTrading() const;
@@ -56,7 +55,9 @@ private:
 	bool ShowShipyard() const;
 	bool ShowOutfitter() const;
 	
+	void TakeOff();
 	
+private:
 	PlayerInfo &player;
 	std::function<void()> callback = nullptr;
 	

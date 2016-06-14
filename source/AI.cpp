@@ -80,7 +80,7 @@ void AI::UpdateKeys(PlayerInfo &player, Command &clickCommands, bool isActive)
 	
 	Command oldHeld = keyHeld;
 	keyHeld.ReadKeyboard();
-	keyHeld |= clickCommands;
+	keyStuck |= clickCommands;
 	clickCommands.Clear();
 	keyDown = keyHeld.AndNot(oldHeld);
 	if(keyHeld.Has(AutopilotCancelKeys()))
@@ -152,9 +152,11 @@ void AI::UpdateKeys(PlayerInfo &player, Command &clickCommands, bool isActive)
 		Messages::Add(moveToMe ? "Your fleet is gathering around your flagship."
 			: "Your fleet is no longer gathering around your flagship.");
 	}
-	if(sharedTarget.lock() && sharedTarget.lock()->IsDisabled())
-		if(!killDisabledSharedTarget || sharedTarget.lock()->IsDestroyed())
-			sharedTarget.reset();
+	target = sharedTarget.lock();
+	if(target && target->IsDisabled() && (!killDisabledSharedTarget || target->IsDestroyed()))
+		sharedTarget.reset();
+	if(target && (target->GetSystem() != flagship->GetSystem() || !target->IsTargetable()))
+		sharedTarget.reset();
 }
 
 
@@ -383,7 +385,7 @@ void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &player)
 			continue;
 		}
 		
-		if(parent && personality.IsCoward() && it->Shields() + it->Hull() < 1.)
+		if(parent && personality.IsCoward() && .5 * it->Shields() + it->Hull() < 1.)
 		{
 			parent.reset();
 			it->SetParent(parent);
@@ -393,14 +395,14 @@ void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &player)
 		// the current system can fire.
 		if(isPresent)
 		{
-			command |= AutoFire(*it, ships);
-			
 			// Each ship only switches targets twice a second, so that it can
 			// focus on damaging one particular ship.
 			targetTurn = (targetTurn + 1) & 31;
-			if(targetTurn == step || !target || !target->IsTargetable()
+			if(targetTurn == step || !target || !target->IsTargetable() || target->IsDestroyed()
 					|| (target->IsDisabled() && personality.Disables()))
 				it->SetTargetShip(FindTarget(*it, ships));
+			
+			command |= AutoFire(*it, ships);
 		}
 		
 		double targetDistance = numeric_limits<double>::infinity();
@@ -458,7 +460,8 @@ void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &player)
 			it->SetTargetShip(shipToAssist);
 			if(shipToAssist->IsDestroyed() || shipToAssist->GetSystem() != it->GetSystem()
 					|| shipToAssist->IsLanding() || shipToAssist->IsHyperspacing()
-					|| (!shipToAssist->IsDisabled() && shipToAssist->JumpsRemaining()))
+					|| (!shipToAssist->IsDisabled() && shipToAssist->JumpsRemaining())
+					|| shipToAssist->GetGovernment()->IsEnemy(gov))
 				it->SetShipToAssist(shared_ptr<Ship>());
 			else if(!it->IsBoarding())
 			{
@@ -670,7 +673,7 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship, const list<shared_ptr<Ship>> &
 	
 	// Run away if your target is not disabled and you are badly damaged.
 	if(!isDisabled && target && (person.IsFleeing() || 
-			(ship.Shields() + ship.Hull() < 1. && !person.IsHeroic() && !parentIsEnemy)))
+			(.5 * ship.Shields() + ship.Hull() < 1. && !person.IsHeroic() && !parentIsEnemy)))
 	{
 		// Make sure the ship has somewhere to flee to.
 		const System *system = ship.GetSystem();
@@ -842,7 +845,7 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 
 
 
-void AI::MoveEscort(Ship &ship, Command &command)
+void AI::MoveEscort(Ship &ship, Command &command) const
 {
 	const Ship &parent = *ship.GetParent();
 	bool hasFuelCapacity = ship.Attributes().Get("fuel capacity");
@@ -856,18 +859,17 @@ void AI::MoveEscort(Ship &ship, Command &command)
 		DistanceMap distance(ship, parent.GetSystem());
 		const System *from = ship.GetSystem();
 		const System *to = distance.Route(from);
-		if(!distance.Cost(from))
-		{
-			for(const StellarObject &object : from->Objects())
-				if(object.GetPlanet() && object.GetPlanet()->WormholeDestination(from) == to)
-				{
-					ship.SetTargetPlanet(&object);
-					MoveToPlanet(ship, command);
-					command |= Command::LAND;
-					break;
-				}
-		}
-		else
+		bool hasWormhole = false;
+		for(const StellarObject &object : from->Objects())
+			if(object.GetPlanet() && object.GetPlanet()->WormholeDestination(from) == to)
+			{
+				ship.SetTargetPlanet(&object);
+				MoveToPlanet(ship, command);
+				command |= Command::LAND;
+				hasWormhole = true;
+				break;
+			}
+		if(!hasWormhole)
 		{
 			ship.SetTargetSystem(to);
 			if(!to || (from->HasFuelFor(ship) && !to->HasFuelFor(ship) && ship.JumpsRemaining() == 1))
@@ -902,6 +904,8 @@ void AI::MoveEscort(Ship &ship, Command &command)
 				command |= Command::JUMP;
 		}
 	}
+	else if(ship.IsYours() && moveToMe)
+		CircleAround(ship, command, parent);
 	else
 		KeepStation(ship, command, parent);
 }
@@ -1854,25 +1858,28 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, const list<shared_ptr<
 			double closest = numeric_limits<double>::infinity();
 			int count = 0;
 			set<string> types;
-			for(const StellarObject &object : ship.GetSystem()->Objects())
-				if(object.GetPlanet())
-				{
-					++count;
-					types.insert(object.GetPlanet()->Noun());
-					double distance = ship.Position().Distance(object.Position());
-					const Planet *planet = object.GetPlanet();
-					if(planet == ship.GetDestination())
-						distance = 0.;
-					else if(!planet->HasSpaceport() && !planet->IsWormhole())
-						distance += 10000.;
-					
-					if(distance < closest)
+			if(!target)
+			{
+				for(const StellarObject &object : ship.GetSystem()->Objects())
+					if(object.GetPlanet())
 					{
-						ship.SetTargetPlanet(&object);
-						closest = distance;
+						++count;
+						types.insert(object.GetPlanet()->Noun());
+						double distance = ship.Position().Distance(object.Position());
+						const Planet *planet = object.GetPlanet();
+						if(planet == ship.GetDestination())
+							distance = 0.;
+						else if((!planet->CanLand() || !planet->HasSpaceport()) && !planet->IsWormhole())
+							distance += 10000.;
+					
+						if(distance < closest)
+						{
+							ship.SetTargetPlanet(&object);
+							closest = distance;
+						}
 					}
-				}
-			const StellarObject *target = ship.GetTargetPlanet();
+				target = ship.GetTargetPlanet();
+			}
 			if(!target)
 			{
 				message = "There are no planets in this system that you can land on.";
@@ -1900,6 +1907,8 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, const list<shared_ptr<
 				}
 				message += " in this system. Landing on " + target->Name() + ".";
 			}
+			else
+				message = "Landing on " + target->Name() + ".";
 		}
 		if(!message.empty())
 			Messages::Add(message);

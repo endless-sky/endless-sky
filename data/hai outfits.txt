@@ -84,6 +84,7 @@ outfit "Hai Tracker"
 	category "Ammunition"
 	cost 1000
 	thumbnail "outfit/hai tracker"
+	"mass" .3
 	"tracker capacity" -1
 	description "This is ammunition for a Tracker Pod."
 
@@ -91,7 +92,7 @@ outfit "Hai Tracker Pod"
 	category "Secondary Weapons"
 	cost 150000
 	thumbnail "outfit/hai tracker pod"
-	"mass" 19
+	"mass" 15
 	"outfit space" -19
 	"weapon capacity" -19
 	"gun ports" -1
@@ -123,42 +124,43 @@ outfit "Hai Tracker Pod"
 		"missile strength" 16
 	description "Trackers are a fast, powerful, and accurate homing weapon. Their only weakness is their large turning radius: if a Tracker misses its target, it takes a long time to turn around."
 
-outfit "Bullfrog Anti-Missile Turret"
+outfit "Bullfrog Anti-Missile"
 	category "Turrets"
-	cost 80000
+	cost 55000
 	thumbnail "outfit/anti-missile hai"
-	"mass" 18
-	"outfit space" -18
-	"weapon capacity" -18
+	"mass" 10
+	"outfit space" -10
+	"weapon capacity" -10
 	"turret mounts" -1
 	weapon
 		"hit effect" "small anti-missile"
-		"anti-missile" 7
+		"anti-missile" 12
 		"velocity" 150
 		"lifetime" 1
-		"reload" 6
-		"firing energy" 6
-		"firing heat" 4
+		"reload" 20
+		"firing energy" 12
+		"firing heat" 5
 		"stream"
-	description "Centuries ago, the Hai fought with more rudimentary versions of the Tracker, and this was the primary defence against them. In spite of the dated design, it is still occasionally effective against their latest Missile weapons."
+	description "Centuries ago, the Hai fought with more rudimentary versions of the Tracker, and this was the primary defence against them. In spite of the dated design, it is still effective against small numbers of their latest Missile weapons."
 
-outfit "Chameleon Anti-Missile Turret"
+outfit "Chameleon Anti-Missile"
 	category "Turrets"
-	cost 150000
+	cost 140000
 	thumbnail "outfit/heavy anti-missile hai"
-	"mass" 32
-	"outfit space" -28
-	"weapon capacity" -28
+	"mass" 22
+	"outfit space" -22
+	"weapon capacity" -22
 	"turret mounts" -1
 	weapon
 		"hit effect" "large anti-missile"
-		"anti-missile" 10
+		"anti-missile" 16
 		"velocity" 200
 		"lifetime" 1
-		"reload" 5
-		"firing energy" 11
-		"firing heat" 5.2
-	description "The Chameleon Anti-Missile turret has a longer range, higher power, and shorter reload time than the Bullfrog. The system is less vulnerable to large clusters of incoming missiles, especially when many turrets are installed."
+		"reload" 15
+		"firing energy" 23
+		"firing heat" 6
+		"stream"
+	description "The Chameleon Anti-Missile turret has a longer range, higher power, and shorter reload time than the Bullfrog."
 
 outfit "Hai Corundum Regenerator"
 	category "Systems"
@@ -195,38 +197,38 @@ outfit "Hai Williwaw Cooling"
 
 outfit "Hai Chasm Batteries"
 	category "Power"
-	cost 8000
+	cost 18000
 	thumbnail "outfit/tiny battery hai"
 	"mass" 5
 	"outfit space" -5
-	"energy capacity" 550
+	"energy capacity" 491
 	description "Power storage technology is thousands of years old. This is the smallest Hai battery pack."
 
 outfit "Hai Fissure Batteries"
 	category "Power"
-	cost 25000
+	cost 22000
 	thumbnail "outfit/small battery hai"
 	"mass" 15
 	"outfit space" -15
-	"energy capacity" 1800
+	"energy capacity" 1709
 	description "This battery pack has more than three times the energy capacity of the the Hai Chasm Batteries, allowing their ships to engage in combat for longer periods of time before running out of energy."
 
 outfit "Hai Gorge Batteries"
 	category "Power"
-	cost 52000
+	cost 55000
 	thumbnail "outfit/medium battery hai"
 	"mass" 30
 	"outfit space" -30
-	"energy capacity" 3750
+	"energy capacity" 3761
 	description "This medium-sized battery pack is ideal for most of the Hai power needs, allowing for medium length combat engagements, but could also be used keep a ship's heat footprint low with a small power generator and oversized engines."
 
 outfit "Hai Ravine Batteries"
 	category "Power"
-	cost 120000
+	cost 124000
 	thumbnail "outfit/large battery hai"
 	"mass" 60
 	"outfit space" -60
-	"energy capacity" 8250
+	"energy capacity" 8205
 	description "This large battery pack boasts higher energy density than smaller models, and helps keep ships fighting in spite of sustaining several Ion Cannon impacts."
 
 outfit "Hai Valley Batteries"
@@ -235,7 +237,7 @@ outfit "Hai Valley Batteries"
 	thumbnail "outfit/huge battery hai"
 	"mass" 120
 	"outfit space" -120
-	"energy capacity" 20000
+	"energy capacity" 17777
 	description "While most Hai ships do not employ their largest battery model, a few very powerful warships are occasionally equipped with one, keeping their heat footprint low, and allowing them to survive longer in a fight against opponents carrying Ion Cannons."
 
 outfit "Pebble Core"
@@ -405,3 +407,43 @@ outfit `"Bufaer" Atomic Steering`
 	"turning energy" 5.2
 	"turning heat" 13.3
 	description "Nine out of every ten human captains interviewed in Hai space as to whose atomic engines they prefer say that they would choose Hai atomic engines over those of Deep Sky any day; that is if they could afford such expensive engines."
+
+#deprecated for 0.9.2 due to long outfit name
+outfit "Bullfrog Anti-Missile Turret"
+	category "Turrets"
+	cost 55000
+	thumbnail "outfit/anti-missile hai"
+	"mass" 10
+	"outfit space" -10
+	"weapon capacity" -10
+	"turret mounts" -1
+	weapon
+		"hit effect" "small anti-missile"
+		"anti-missile" 12
+		"velocity" 150
+		"lifetime" 1
+		"reload" 20
+		"firing energy" 12
+		"firing heat" 5
+		"stream"
+	description "Centuries ago, the Hai fought with more rudimentary versions of the Tracker, and this was the primary defence against them. In spite of the dated design, it is still effective against small numbers of their latest Missile weapons."
+
+outfit "Chameleon Anti-Missile Turret"
+	category "Turrets"
+	cost 140000
+	thumbnail "outfit/heavy anti-missile hai"
+	"mass" 22
+	"outfit space" -22
+	"weapon capacity" -22
+	"turret mounts" -1
+	weapon
+		"hit effect" "large anti-missile"
+		"anti-missile" 16
+		"velocity" 200
+		"lifetime" 1
+		"reload" 15
+		"firing energy" 23
+		"firing heat" 6
+		"stream"
+	description "The Chameleon Anti-Missile turret has a longer range, higher power, and shorter reload time than the Bullfrog."
+

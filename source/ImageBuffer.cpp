@@ -93,6 +93,31 @@ uint32_t *ImageBuffer::Begin(int y)
 
 
 
+void ImageBuffer::ShrinkToHalfSize()
+{
+	ImageBuffer result(width / 2, height / 2);
+	
+	unsigned char *begin = reinterpret_cast<unsigned char *>(pixels);
+	unsigned char *out = reinterpret_cast<unsigned char *>(result.pixels);
+	for(int y = 0; y < result.height; ++y)
+	{
+		unsigned char *aIt = begin + (4 * width) * (2 * y);
+		unsigned char *aEnd = aIt + 4 * 2 * result.width;
+		unsigned char *bIt = begin + (4 * width) * (2 * y + 1);
+		for( ; aIt != aEnd; aIt += 4, bIt += 4)
+		{
+			for(int channel = 0; channel < 4; ++channel, ++aIt, ++bIt, ++out)
+				*out = (static_cast<unsigned>(aIt[0]) + static_cast<unsigned>(bIt[0])
+					+ static_cast<unsigned>(aIt[4]) + static_cast<unsigned>(bIt[4]) + 2) / 4;
+		}
+	}
+	swap(width, result.width);
+	swap(height, result.height);
+	swap(pixels, result.pixels);
+}
+
+
+
 ImageBuffer *ImageBuffer::Read(const string &path)
 {
 	// First, make sure this is a JPG or PNG file.

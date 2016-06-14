@@ -22,14 +22,12 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Format.h"
 #include "GameData.h"
 #include "Outfit.h"
-#include "OutfitInfoDisplay.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
 #include "Point.h"
 #include "Preferences.h"
 #include "Screen.h"
 #include "Ship.h"
-#include "ShipInfoDisplay.h"
 #include "SpriteSet.h"
 #include "SpriteShader.h"
 #include "UI.h"
@@ -95,15 +93,15 @@ int OutfitterPanel::TileSize() const
 
 int OutfitterPanel::DrawPlayerShipInfo(const Point &point) const
 {
-	ShipInfoDisplay info(*playerShip);
-	info.DrawAttributes(point);
+	shipInfo.Update(*playerShip);
+	shipInfo.DrawAttributes(point);
 	
-	return info.AttributesHeight();
+	return shipInfo.AttributesHeight();
 }
 
 
 
-bool OutfitterPanel::HasItem(const std::string &name) const
+bool OutfitterPanel::HasItem(const string &name) const
 {
 	const Outfit *outfit = GameData::Outfits().Get(name);
 	if(outfitter.Has(outfit) || available[outfit] || player.Cargo().Get(outfit))
@@ -193,21 +191,21 @@ int OutfitterPanel::DividerOffset() const
 
 int OutfitterPanel::DetailWidth() const
 {
-	return 3 * OutfitInfoDisplay::PanelWidth();
+	return 3 * outfitInfo.PanelWidth();
 }
 
 
 
 int OutfitterPanel::DrawDetails(const Point &center) const
 {
-	OutfitInfoDisplay info(*selectedOutfit);
-	Point offset(info.PanelWidth(), 0.);
+	outfitInfo.Update(*selectedOutfit);
+	Point offset(outfitInfo.PanelWidth(), 0.);
 	
-	info.DrawDescription(center - offset * 1.5 - Point(0., 10.));
-	info.DrawRequirements(center - offset * .5 - Point(0., 10.));
-	info.DrawAttributes(center + offset * .5 - Point(0., 10.));
+	outfitInfo.DrawDescription(center - offset * 1.5 - Point(0., 10.));
+	outfitInfo.DrawRequirements(center - offset * .5 - Point(0., 10.));
+	outfitInfo.DrawAttributes(center + offset * .5 - Point(0., 10.));
 	
-	return info.MaximumHeight();
+	return outfitInfo.MaximumHeight();
 }
 
 
@@ -233,7 +231,7 @@ bool OutfitterPanel::CanBuy() const
 		return false;
 	
 	if(!playerShip)
-		return true;
+		return (player.Cargo().Free() >= selectedOutfit->Get("mass"));
 	
 	for(const Ship *ship : playerShips)
 		if(ShipCanBuy(ship, selectedOutfit))
@@ -320,7 +318,7 @@ void OutfitterPanel::Buy()
 			int required = selectedOutfit->Get("required crew");
 			if(required && ship->Crew() + required <= static_cast<int>(ship->Attributes().Get("bunks")))
 				ship->AddCrew(required);
-			ship->Recharge(true);
+			ship->Recharge();
 		}
 	}
 }
@@ -495,7 +493,7 @@ void OutfitterPanel::Sell()
 			ship->AddOutfit(selectedOutfit, -1);
 			if(selectedOutfit->Get("required crew"))
 				ship->AddCrew(-selectedOutfit->Get("required crew"));
-			ship->Recharge(true);
+			ship->Recharge();
 			player.Accounts().AddCredits(selectedOutfit->Cost());
 			++available[selectedOutfit];
 			
@@ -708,8 +706,8 @@ void OutfitterPanel::CheckRefill()
 		return;
 	checkedRefill = true;
 	
-	int64_t cost = 0;
 	int count = 0;
+	map<const Outfit *, int> needed;
 	for(const auto &ship : player.Ships())
 	{
 		if(ship->GetSystem() != player.GetSystem() || ship->IsDisabled())
@@ -723,19 +721,27 @@ void OutfitterPanel::CheckRefill()
 		
 		for(const Outfit *outfit : toRefill)
 		{
-			int needed = ship->Attributes().CanAdd(*outfit, 1000000);
-			if(!outfitter.Has(outfit))
-				needed = min(needed, player.Cargo().Get(outfit) + available[selectedOutfit]);
-			cost += needed * outfit->Cost();
+			int amount = ship->Attributes().CanAdd(*outfit, 1000000);
+			if(amount)
+				needed[outfit] += amount;
 		}
 	}
 	
-	if(cost && cost < player.Accounts().Credits())
+	int64_t cost = 0;
+	for(auto &it : needed)
 	{
-		string message = (count == 1) ?
-			"Do you want to reload all the ammunition for your ship? It will cost " :
-			"Do you want to reload all the ammunition for your ships? It will cost ";
-		message += Format::Number(cost) + " credits.";
+		// Don't count cost of anything installed from cargo.
+		it.second = max(0, it.second - player.Cargo().Get(it.first));
+		if(!outfitter.Has(it.first))
+			it.second = min(it.second, available[it.first]);
+		cost += it.second * it.first->Cost();
+	}
+	if(!needed.empty() && cost < player.Accounts().Credits())
+	{
+		string message = "Do you want to reload all the ammunition for your ship";
+		message += (count == 1) ? "?" : "s?";
+		if(cost)
+			message += " It will cost " + Format::Number(cost) + " credits.";
 		GetUI()->Push(new Dialog(this, &OutfitterPanel::Refill, message));
 	}
 }
