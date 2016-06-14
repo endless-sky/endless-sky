@@ -862,7 +862,7 @@ mission "Language: Wanderer 2B"
 	on complete
 		payment 1000000
 		conversation
-			`Eruk seems to be a bit rattled from the attacks you had on your way here. "I can't think who would want me dead for the work I've been doing. Hopefully they won't be able to find me, now you've got me safely here." He looks very worried. "I should have this software sorted in a couple of months, so when I do I'll send a message telling you how to update. Also, here's a bit of a bonus for keeping me alive." he hands you a 1 million credit chip. "If I ever need you again, I'll give you a call." and with that, he walks off.'`
+			`Eruk seems to be a bit rattled from the attacks you had on your way here. "I can't think who would want me dead for the work I've been doing. Hopefully, they won't be able to find me, now you've got me safely here." He looks very worried. "I should have this software sorted in a couple of months, so when I do, I'll send a message telling you how to update. Also, here's a bit of a bonus for keeping me alive." he hands you a 1 million credit chip. "If I ever need you again, I'll give you a call." and with that, he walks off.'`
 		event "language: Wanderer direct" 60
 
 
