@@ -578,7 +578,7 @@ mission "Language: Wanderer break"
 			`	"Eruk had an idea, he wants to improve his speaking machine to handle your language." Eruk stops you and starts explaining himself.`
 
 			label explain
-			`	He tells the Wanderers everything he told you and more. It seems he has thought of everything from data sets to time frames and processing power to memory space. When he finishes, the wanderers start to talk among themselves in their own chirping, clicking language getting louder and faster all the time.`
+			`	He tells the Wanderers everything he told you and more. It seems he has thought of everything from data sets to time frames and processing power to memory space. When he finishes, the Wanderers start to talk among themselves in their own chirping, clicking language getting louder and faster all the time.`
 			`	Ret moves towards you, Sayari and Eruk. "They can't [decide, agree] what to do, some think we should [stop, decline] his request and send him back to Hai space and others think we should [support?, care?, help?] him outright, the rest have every view inbetween."`
 			choice
 				`	(Wait it out)`
