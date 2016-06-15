@@ -125,7 +125,7 @@ void ShopPanel::DrawSidebars() const
 	for(shared_ptr<Ship> ship : player.Ships())
 		shipsHere += ShipIsHere(ship);
 	
-	if (true) // Always show the ship outlines, so that storage and cargo will be available.
+	if(true) // Always show the ship outlines, so that storage and cargo will be available.
 	{
 		static const Color selected(.8, 1.);
 		static const Color unselected(.6, 1.);
@@ -205,7 +205,7 @@ void ShopPanel::DrawSidebars() const
 		}
 		point.Y() += ICON_TILE/2;
 		
-		static const string str = "park/unpark ships with 'P'";
+		string str = (shipsHere > 1) ? "park/unpark ships with 'P'" : "ctrl-click icon to select cargo hold";
 		font.Draw(str, Point(Screen::Right() - SideWidth()/2 - font.Width(str)/2, point.Y()), parked);
 		point.Y() += 20;
 
