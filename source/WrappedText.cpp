@@ -286,7 +286,7 @@ void WrappedText::Wrap()
 	}
 	AdjustLine(lineBegin, lineWidth, true);
 	
-	height = word.y - paragraphBreak;
+	height = word.y;
 }
 
 

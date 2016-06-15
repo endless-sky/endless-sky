@@ -93,7 +93,7 @@ void ItemInfoDisplay::DrawTooltips() const
 	if(!hoverCount || hoverCount-- < HOVER_TIME || !hoverText.Height())
 		return;
 	
-	Point textSize(hoverText.WrapWidth(), hoverText.Height());
+	Point textSize(hoverText.WrapWidth(), hoverText.Height() - hoverText.ParagraphBreak());
 	Point boxSize = textSize + Point(20., 20.);
 	
 	Point topLeft = hoverPoint;
