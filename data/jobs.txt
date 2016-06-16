@@ -2091,7 +2091,7 @@ mission "hired mercenaries (very small)"
 	source
 		government Syndicate Republic "Free Worlds" Independent Neutral
 	to offer
-		random < 90
+		random < 85
 	on accept
 		payment -75000
 	npc kill
@@ -2112,7 +2112,7 @@ mission "hired mercenaries (small syndicate)"
 	source
 		government Syndicate
 	to offer
-		random < 50
+		random < 30
 	on accept
 		payment -200000
 	npc kill
@@ -2133,7 +2133,7 @@ mission "hired mercenaries (medium syndicate)"
 	source
 		government Syndicate
 	to offer
-		random < 30
+		random < 10
 	on accept
 		payment -350000
 	npc kill
@@ -2147,40 +2147,19 @@ mission "hired mercenaries (medium syndicate)"
 
 mission "hired mercenaries (large syndicate)"
 	name "Hired Mercenaries"
-	description "For a fee of 500000 credits, a Syndicate fleet containing several large ships are willing to escort you until <date>"
+	description "For a fee of 500000 credits, a Syndicate fleet containing several large ships will escort you until <date>"
 	deadline 7
 	job
 	repeat
 	source
-		government Syndicate
+		planet Foundry Hephaestus Sunracer
 	to offer
-		random < 5
+		random < 50
 	on accept
 		payment -500000
 	npc kill
 		personality vindictive heroic
 		fleet "Large Mercenary Syndicate"
-		dialog
-			`Unfortunately the mercenaries have been wiped out. Well, they did sign up for it.`
-				fail
-
-
-
-mission "hired mercenaries (swarm syndicate)"
-	name "Hired Mercenaries"
-	description "For a fee of 500000 credits, a large fleet of Syndicate interceptors are willing to escort you until <date>"
-	deadline 7
-	job
-	repeat
-	source
-		government Syndicate
-	to offer
-		random < 5
-	on accept
-		payment -500000
-	npc kill
-		personality vindictive heroic
-		fleet "Swarm Mercenary Syndicate"
 		dialog
 			`Unfortunately the mercenaries have been wiped out. Well, they did sign up for it.`
 				fail
@@ -2196,7 +2175,7 @@ mission "hired mercenaries (small north)"
 	source
 		attributes north paradise deep
 	to offer
-		random < 50
+		random < 30
 	on accept
 		payment -100000
 	npc kill
@@ -2217,7 +2196,7 @@ mission "hired mercenaries (medium north)"
 	source
 		attributes north paradise deep
 	to offer
-		random < 30
+		random < 10
 	on accept
 		payment -250000
 	npc kill
@@ -2231,14 +2210,14 @@ mission "hired mercenaries (medium north)"
 
 mission "hired mercenaries (large north)"
 	name "Hired Mercenaries"
-	description "For a fee of 500000 credits, a mercenary company owning several large warships are willing to give you an escort until <date>"
+	description "For a fee of 500000 credits, the <planet> Security Group owns several large warships and are willing to give you an escort until <date>"
 	deadline 7
 	job
 	repeat
 	source
-		attributes north paradise deep
+		planet Prime Valhalla
 	to offer
-		random < 10
+		random < 50
 	on accept
 		payment -500000
 	npc kill
@@ -2259,7 +2238,7 @@ mission "hired mercenaries (small south)"
 	source
 		attributes south rim "dirt belt"
 	to offer
-		random < 50
+		random < 30
 	on accept
 		payment -200000
 	npc kill
@@ -2280,7 +2259,7 @@ mission "hired mercenaries (medium south)"
 	source
 		attributes south rim "dirt belt"
 	to offer
-		random < 30
+		random < 10
 	on accept
 		payment -400000
 	npc kill
@@ -2294,40 +2273,19 @@ mission "hired mercenaries (medium south)"
 
 mission "hired mercenaries (large south)"
 	name "Hired Mercenaries"
-	description "For a fee of 500000 credits, a mercenary fleet with several large ships are willing to provide you with an escort until <date>"
+	description "For a fee of 500000 credits, the <planet> Private Defence company owns several large ships and are willing to provide you with an escort until <date>"
 	deadline 7
 	job
 	repeat
 	source
-		attributes south rim "dirt belt"
+		planet Zug Wayfarer
 	to offer
-		random < 5
+		random < 50
 	on accept
 		payment -500000
 	npc kill
 		personality vindictive heroic
 		fleet "Large Mercenary South"
-		dialog
-			`Unfortunately the mercenaries have been wiped out. Well, they did sign up for it.`
-				fail
-
-
-
-mission "hired mercenaries (swarm south)"
-	name "Hired Mercenaries"
-	description "For a fee of 500000 credits, a mercenary fleet owning a huge number interceptors are willing to escort you until <date>"
-	deadline 7
-	job
-	repeat
-	source
-		attributes south rim "dirt belt"
-	to offer
-		random < 5
-	on accept
-		payment -500000
-	npc kill
-		personality vindictive heroic
-		fleet "Swarm Mercenary South"
 		dialog
 			`Unfortunately the mercenaries have been wiped out. Well, they did sign up for it.`
 				fail
