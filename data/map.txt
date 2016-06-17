@@ -3448,7 +3448,7 @@ system Chikatip
 	asteroids "small metal" 18 2.5415
 	asteroids "medium metal" 89 2.6979
 	asteroids "large metal" 22 4.0664
-	fleet Quarg 2000
+	fleet "Large Quarg" 2000
 	object
 		sprite star/k5
 		period 10
@@ -3593,7 +3593,7 @@ system Chornifath
 	asteroids "small metal" 5 6.0368
 	asteroids "medium metal" 2 9.4864
 	asteroids "large metal" 4 5.0176
-	fleet Quarg 1000
+	fleet "Large Quarg" 1000
 	object
 		sprite star/k0
 		period 10
@@ -4320,7 +4320,8 @@ system Dokdobaru
 	trade Medical 750
 	trade Metal 385
 	trade Plastic 379
-	fleet Quarg 500
+	fleet Quarg 600
+	fleet "Large Quarg" 800
 	fleet "Kor Efret Home" 1500
 	object
 		sprite star/g5
@@ -5480,7 +5481,7 @@ system Farbutero
 	asteroids "small metal" 2 4.4689
 	asteroids "medium metal" 1 6.7367
 	asteroids "large metal" 1 6.8701
-	fleet Quarg 2000
+	fleet "Large Quarg" 2000
 	fleet "Small Kor Mereti" 9400
 	fleet "Large Kor Mereti" 5000
 	object
@@ -5621,7 +5622,7 @@ system Feroteri
 	asteroids "small metal" 3 3.081
 	asteroids "medium metal" 12 5.265
 	asteroids "large metal" 11 4.758
-	fleet Quarg 3000
+	fleet "Large Quarg" 3000
 	fleet "Small Kor Mereti" 12000
 	fleet "Large Kor Mereti" 6400
 	object
@@ -5842,7 +5843,7 @@ system Fornarep
 	asteroids "small metal" 7 2.8224
 	asteroids "medium metal" 11 3.2928
 	asteroids "large metal" 13 4.5024
-	fleet Quarg 2000
+	fleet "Large Quarg" 2000
 	fleet "Small Kor Mereti" 9000
 	fleet "Large Kor Mereti" 5800
 	object
@@ -5889,7 +5890,7 @@ system Furmeliki
 	link Kashikt
 	link Skeruto
 	asteroids "large metal" 1 3.5511
-	fleet Quarg 1000
+	fleet "Large Quarg" 1000
 	object
 		sprite star/k0
 		period 10
@@ -6749,7 +6750,7 @@ system Hesselpost
 	asteroids "small metal" 83 2.366
 	asteroids "medium metal" 93 1.0985
 	asteroids "large metal" 89 1.7407
-	fleet Quarg 1000
+	fleet "Large Quarg" 1000
 	object
 		sprite star/k0
 		period 10
@@ -7706,7 +7707,7 @@ system Kaliptari
 	asteroids "medium rock" 11 6.9498
 	asteroids "large rock" 25 5.4918
 	asteroids "large metal" 1 3.2562
-	fleet Quarg 3000
+	fleet "Large Quarg" 3000
 	fleet "Small Kor Mereti" 10000
 	fleet "Large Kor Mereti" 4800
 	object
@@ -7837,6 +7838,7 @@ system Kashikt
 	trade Metal 315
 	trade Plastic 438
 	fleet Quarg 1000
+	fleet "Large Quarg" 2000
 	fleet "Kor Efret Home" 1000
 	object
 		sprite star/f5
@@ -8571,7 +8573,7 @@ system Korsmanath
 	asteroids "medium rock" 1 2.5993
 	asteroids "large rock" 4 1.3277
 	asteroids "large metal" 2 1.6456
-	fleet Quarg 3000
+	fleet "Large Quarg" 3000
 	fleet "Small Kor Mereti" 8000
 	object
 		sprite star/k0
@@ -9370,7 +9372,7 @@ system Meftarkata
 	asteroids "large rock" 14 0.8892
 	asteroids "medium metal" 4 1.5288
 	asteroids "large metal" 1 1.9344
-	fleet Quarg 1000
+	fleet "Large Quarg" 1000
 	object
 		sprite star/f5
 		distance 21.8839
@@ -12373,7 +12375,7 @@ system Sabriset
 	asteroids "small metal" 21 4.374
 	asteroids "medium metal" 4 5.1435
 	asteroids "large metal" 7 4.3335
-	fleet Quarg 4000
+	fleet "Large Quarg" 4000
 	object
 		sprite star/g0
 		distance 35.1028
@@ -12998,7 +13000,7 @@ system Seketra
 	link Skeruto
 	link Chikatip
 	asteroids "large metal" 1 1.7556
-	fleet Quarg 3000
+	fleet "Large Quarg" 3000
 	object
 		sprite star/k5
 		period 10
@@ -13090,7 +13092,7 @@ system Sepriaptu
 	asteroids "small metal" 4 10.5
 	asteroids "medium metal" 53 6.23
 	asteroids "large metal" 1 9.24
-	fleet Quarg 4000
+	fleet "Large Quarg" 4000
 	object
 		sprite star/f5
 		distance 16.1966
@@ -13134,6 +13136,7 @@ system Sevrelect
 	trade Metal 207
 	trade Plastic 534
 	fleet Quarg 1000
+	fleet "Large Quarg" 3000
 	fleet "Kor Efret Home" 1000
 	object
 		sprite star/m0
@@ -13569,7 +13572,7 @@ system Skeruto
 	link Kaliptari
 	link Seketra
 	asteroids "large metal" 1 1.5554
-	fleet Quarg 2000
+	fleet "Large Quarg" 2000
 	object
 		sprite star/m0
 		period 10
@@ -13782,7 +13785,7 @@ system Solifar
 	asteroids "small metal" 2 7.134
 	asteroids "medium metal" 80 7.946
 	asteroids "large metal" 26 7.076
-	fleet Quarg 4000
+	fleet "Large Quarg" 4000
 	object
 		sprite star/m0
 		period 10
@@ -14059,6 +14062,7 @@ system Sumprast
 	trade Metal 236
 	trade Plastic 500
 	fleet Quarg 1000
+	fleet "Large Quarg" 2500
 	fleet "Kor Efret Home" 1000
 	object
 		sprite star/k0
