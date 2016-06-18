@@ -123,6 +123,7 @@ person "Cap'n Pester"
 			"Intrusion Countermeasures" 160
 			"Cargo Scanner"
 			"Outfit Scanner"
+			"Wanderer Ramscoop"
 		
 			"Medium Graviton Thruster"
 			"Medium Graviton Steering"
