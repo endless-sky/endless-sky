@@ -198,7 +198,7 @@ void PlayerInfo::Load(const string &path)
 	
 	// Strip anything after the "~" from snapshots, so that the file we save
 	// will be the auto-save, not the snapshot.
-	size_t pos = filePath.rfind('~');
+	size_t pos = filePath.find('~');
 	size_t namePos = filePath.length() - Files::Name(filePath).length();
 	if(pos != string::npos && pos > namePos)
 		filePath = filePath.substr(0, pos) + ".txt";
