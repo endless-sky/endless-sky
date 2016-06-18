@@ -217,7 +217,7 @@ ship "Strong Wind"
 	gun 32 57 "Thunderhead Launcher"
 	explode "small explosion" 60
 	explode "medium explosion" 40
-	explode "large explosion" 20
+	explode "big explosion" 20
 	"final explode" "final explosion medium"
 	description "The Strong Wind is a Wanderer warship, an ancient design that they make use of only on the rare occasions when they find it necessary to defend themselves."
 
@@ -268,7 +268,7 @@ ship "Deep River"
 	gun 56 -217
 	explode "small explosion" 80
 	explode "medium explosion" 60
-	explode "large explosion" 30
+	explode "big explosion" 30
 	explode "huge explosion" 20
 	"final explode" "final explosion large"
 	description "The Deep River is a bulk freighter, designed to carry cargo in detachable pods."
