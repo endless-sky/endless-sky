@@ -2098,7 +2098,7 @@ mission "hired mercenaries (very small)"
 		personality vindictive heroic
 		fleet "Very Small Mercenary"
 		dialog
-			`Unfortunately the independent pilot has been killed. You try not too feel to bad about it.`
+			`Unfortunately the independent pilot has been killed. You try not to feel too bad about it.`
 				fail
 
 
