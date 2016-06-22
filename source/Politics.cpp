@@ -147,10 +147,10 @@ bool Politics::CanLand(const Planet *planet) const
 		return true;
 	if(dominatedPlanets.count(planet))
 		return true;
-	if(provoked.count(planet->GetGovernment()))
-		return false;
 	if(bribedPlanets.count(planet))
 		return true;
+	if(provoked.count(planet->GetGovernment()))
+		return false;
 	
 	return Reputation(planet->GetGovernment()) >= planet->RequiredReputation();
 }
