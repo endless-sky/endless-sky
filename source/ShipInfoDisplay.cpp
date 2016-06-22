@@ -25,15 +25,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 using namespace std;
 
-namespace {
-	bool StartsWith(const string &line, const string &with)
-	{
-		for (const char &it : with)
-			if(*line.begin() == it)
-				return true;
-		return false;
-	}
-}
 
 
 ShipInfoDisplay::ShipInfoDisplay(const Ship &ship)
@@ -128,6 +119,10 @@ void ShipInfoDisplay::UpdateDescription(const Ship &ship)
 		string text = ship.Description() + "\tTo purchase this ship you must have ";
 		for(unsigned i = 0; i < licenses.size(); ++i)
 		{
+			bool isVoweled = false;
+			for(const char &c : "aeiouh")
+				if(*licenses[i].begin() == c || *licenses[i].begin() == toupper(c))
+					isVoweled = true;
 			if(i)
 			{
 				if(licenses.size() > 2)
@@ -137,9 +132,8 @@ void ShipInfoDisplay::UpdateDescription(const Ship &ship)
 			}
 			if(i && i == licenses.size() - 1)
 				text += "and ";
-			text += (StartsWith(licenses[i], "aeiouhAEIOUH") ? "an " : "a ") +
-				licenses[i] + " License";
-			
+			text += (isVoweled ? "an " : "a ") + licenses[i] + " License";
+
 		}
 		text += ".";
 		ItemInfoDisplay::UpdateDescription(text);
