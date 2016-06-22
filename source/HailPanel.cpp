@@ -261,12 +261,12 @@ bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 		if(!hasLanguage)
 			return true;
 		// Make sure it actually makes sense to bribe this ship.
-		if(ship && (!shipIsEnemy || planet->CanLand() || ship->GetGovernment()->GetName() == "Derelict"))
+		if((ship && (!shipIsEnemy || ship->GetGovernment()->GetName() == "Derelict")) || (planet && planet->CanLand()))
 			return true;
 		
 		if(bribe > player.Accounts().Credits())
 			message = "Sorry, but you don't have enough money to be worth my while.";
-		else if(bribe)
+		else if(bribe && (ship || planet))
 		{
 			if(ship)
 			{
