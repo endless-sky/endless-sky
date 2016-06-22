@@ -266,7 +266,7 @@ bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 		
 		if(bribe > player.Accounts().Credits())
 			message = "Sorry, but you don't have enough money to be worth my while.";
-		else if(bribe && (ship || planet))
+		else if(bribe)
 		{
 			if(ship)
 			{
