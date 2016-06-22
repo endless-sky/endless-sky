@@ -120,7 +120,7 @@ void ShipInfoDisplay::UpdateDescription(const Ship &ship)
 		for(unsigned i = 0; i < licenses.size(); ++i)
 		{
 			bool isVoweled = false;
-			for(const char &c : "aeiouh")
+			for(const char &c : "aeiou")
 				if(*licenses[i].begin() == c || *licenses[i].begin() == toupper(c))
 					isVoweled = true;
 			if(i)
