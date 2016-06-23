@@ -72,7 +72,7 @@ private:
 	int payment = 0;
 	int paymentMultiplier = 0;
 	int debt = 0;
-	double interest = 0.004;
+	double interest = -1.;
 	int term = 365;
 	
 	// When this action is performed, the missions with these names fail.

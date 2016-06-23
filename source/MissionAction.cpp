@@ -152,7 +152,7 @@ void MissionAction::Load(const DataNode &node, const string &missionName)
 		{
 			if(child.Size() >= 2)
 				debt = child.Value(1);
-			if(child.Size() >= 3)
+			if(child.Size() >= 3 && !(child.Token(2) == "rating"))
 				interest = child.Value(2);
 			if(child.Size() >= 4)
 				term = child.Value(3);
