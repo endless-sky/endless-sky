@@ -191,6 +191,7 @@ void ShipyardPanel::Sell()
 	static const int MAX_LIST = 20;
 	
 	int count = playerShips.size();
+	int initialCount = count;
 	string message = "Sell ";
 	if(count == 1)
 		message += playerShip->Name();
@@ -218,7 +219,10 @@ void ShipyardPanel::Sell()
 		
 		message += "and " + Format::Number(count - (MAX_LIST - 1)) + " other ships";
 	}
-	message += "?";
+	int64_t total = 0;
+	for(const auto &it : playerShips)
+		total += it->Cost();
+	message += ((initialCount > 2) ? "\nfor " : " for ") + Format::Number(total) + " credits?";
 	GetUI()->Push(new Dialog(this, &ShipyardPanel::SellShip, message));
 }
 
