@@ -78,6 +78,8 @@ void LoadPanel::Draw() const
 	
 	if(!selectedPilot.empty())
 		info.SetCondition("pilot selected");
+	if(!player.IsDead() && player.IsLoaded() && !selectedPilot.empty())
+		info.SetCondition("pilot alive");
 	if(selectedFile.find('~') != string::npos)
 		info.SetCondition("snapshot selected");
 	if(loadedInfo.IsLoaded())
@@ -219,7 +221,7 @@ bool LoadPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 			"Are you sure you want to delete the selected pilot, \""
 				+ selectedPilot + "\", and all their saved games?"));
 	}
-	else if(key == 'a')
+	else if(key == 'a' && !player.IsDead() && player.IsLoaded())
 	{
 		string wasSelected = selectedPilot;
 		auto it = files.find(selectedPilot);
@@ -231,11 +233,13 @@ bool LoadPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 	}
 	else if(key == 'r' && !selectedFile.empty())
 	{
-		GetUI()->Push(new Dialog(this, &LoadPanel::DeleteSave,
-			"Are you sure you want to delete the selected saved game file, \""
-				+ selectedFile + "\"?"));
+		string fileName = selectedFile.substr(selectedFile.rfind('/') + 1);
+		if(!(fileName == selectedPilot + ".txt"))
+			GetUI()->Push(new Dialog(this, &LoadPanel::DeleteSave,
+				"Are you sure you want to delete the selected saved game file, \""
+					+ selectedFile + "\"?"));
 	}
-	else if(key == 'l' || key == 'e')
+	else if((key == 'l' || key == 'e') && !selectedPilot.empty())
 	{
 		// Is the selected file a snapshot or the pilot's main file?
 		string fileName = selectedFile.substr(selectedFile.rfind('/') + 1);

@@ -189,6 +189,7 @@ interface "load menu"
 		size 14
 		color dim
 		align center
+	if "!pilot alive"
 	label "_Add Snapshot" -60 148
 		size 14
 		color dim
@@ -221,6 +222,7 @@ interface "load menu"
 	
 	button a -60 155
 		size 120 30
+	if "pilot alive"
 	label "_Add Snapshot" -60 148
 		size 14
 		color bright
