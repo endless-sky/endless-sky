@@ -239,8 +239,8 @@ outfit "Steering (Comet Class)"
 	"outfit space" -18
 	"engine capacity" -18
 	"turn" 568.8
-	"turning energy" 2.8
-	"turning heat" 6.5
+	"turning energy" 1.4
+	"turning heat" 4.1
 	description "This compact steering system is a classic example of Korath technology: small, powerful, and woefully inefficient."
 
 outfit "Steering (Lunar Class)"
