@@ -134,8 +134,10 @@ void MainPanel::Step()
 		const Government *actor = event.ActorGovernment();
 		
 		player.HandleEvent(event, GetUI());
-		if((event.Type() & (ShipEvent::BOARD | ShipEvent::ASSIST)) && isActive && actor->IsPlayer())
+		if((event.Type() & (ShipEvent::BOARD | ShipEvent::ASSIST)) && isActive && actor->IsPlayer()
+				&& event.Actor().get() == player.Flagship())
 		{
+			// Boarding events are only triggered by your flagship.
 			Mission *mission = player.BoardingMission(event.Target());
 			if(mission)
 				mission->Do(Mission::OFFER, player, GetUI());

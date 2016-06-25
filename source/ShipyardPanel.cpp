@@ -301,6 +301,7 @@ void ShipyardPanel::Sell()
 	static const int MAX_LIST = 20;
 	
 	int count = playerShips.size();
+	int initialCount = count;
 	string message = "Sell ";
 	if(count == 1)
 		message += playerShip->Name();

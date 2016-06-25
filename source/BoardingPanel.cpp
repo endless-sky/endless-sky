@@ -120,7 +120,7 @@ void BoardingPanel::Draw() const
 		info.SetCondition("can take");
 	if(CanCapture())
 		info.SetCondition("can capture");
-	if(CanAttack() && you->Crew() > 1)
+	if(CanAttack() && (you->Crew() > 1 || !victim->RequiredCrew()))
 		info.SetCondition("can attack");
 	if(CanAttack())
 		info.SetCondition("can defend");
@@ -257,7 +257,7 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 		int enemyStartCrew = victim->Crew();
 		
 		// Figure out what action the other ship will take.
-		bool youAttack = (key == 'a' && yourStartCrew > 1);
+		bool youAttack = (key == 'a' && (yourStartCrew > 1 || !victim->RequiredCrew()));
 		bool enemyAttacks = defenseOdds.Odds(enemyStartCrew, yourStartCrew) > .5;
 		if(isFirstCaptureAction && !youAttack)
 			enemyAttacks = false;
