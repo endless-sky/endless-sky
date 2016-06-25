@@ -160,14 +160,19 @@ void InfoPanel::Draw() const
 			
 			if(!allSelected.empty())
 			{
+				bool parkable = false;
 				allParked = true;
 				for(int i : allSelected)
 				{
 					const Ship &ship = *player.Ships()[i];
 					if(!ship.IsDisabled() && &ship != flagship)
+					{
 						allParked &= ship.IsParked();
+						parkable = true;
+					}
 				}
-				interfaceInfo.SetCondition(allParked ? "show unpark" : "show park");
+				if(parkable)
+					interfaceInfo.SetCondition(allParked ? "show unpark" : "show park");
 			}
 		}
 		interfaceInfo.SetCondition("two buttons");
