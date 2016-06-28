@@ -722,7 +722,7 @@ void OutfitterPanel::CheckRefill()
 		for(const Outfit *outfit : toRefill)
 		{
 			int amount = ship->Attributes().CanAdd(*outfit, 1000000);
-			if(amount && HasItem(outfit->Name()))
+			if(amount > 0 && HasItem(outfit->Name()))
 				needed[outfit] += amount;
 		}
 	}
