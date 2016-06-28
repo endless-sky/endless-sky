@@ -617,7 +617,7 @@ bool OutfitterPanel::FlightCheck()
 
 bool OutfitterPanel::ShipCanBuy(const Ship *ship, const Outfit *outfit)
 {
-	return ship->Attributes().CanAdd(*outfit, 1);
+	return (ship->Attributes().CanAdd(*outfit, 1) > 0);
 }
 
 
