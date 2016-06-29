@@ -390,8 +390,8 @@ ship "Hai Carrier"
 			"hit force" 5000
 	outfits
 		"Pulse Cannon" 2
-		"Hai Tracker Pod" 4
-		"Hai Tracker" 224
+		"Hai Tracker Pod" 3
+		"Hai Tracker" 168
 		"Pulse Turret" 2
 		"Heavy Anti-Missile Turret" 2
 	
@@ -413,8 +413,8 @@ ship "Hai Carrier"
 	gun 0 -100 "Hai Tracker Pod"
 	gun -10 -110 "Hai Tracker Pod"
 	turret 54.5 50.5 "Pulse Turret"
-	turret 54.5 -48.5 "Pulse Turret"
-	turret -54.5 50.5 "Heavy Anti-Missile Turret"
+	turret 54.5 -48.5 "Heavy Anti-Missile Turret"
+	turret -54.5 50.5 "Pulse Turret"
 	turret -54.5 -48.5 "Heavy Anti-Missile Turret"
 	fighter -58.5 2 under
 	fighter 58.5 2 under
