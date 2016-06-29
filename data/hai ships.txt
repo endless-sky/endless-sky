@@ -368,61 +368,62 @@ ship "Hai Fighter"
 	
 ship "Hai Carrier"
 	sprite "ship/hai fighter carrier"
+	licenses
+		Unfettered Militia
 	attributes
 		category "Heavy Warship"
-		"cost" 15200000
-		"shields" 33400
-		"hull" 7300
-		"required crew" 151
-		"bunks" 238
-		"mass" 1110
-		"drag" 21
-		"heat dissipation" .4
-		"fuel capacity" 700
-		"cargo space" 150
-		"outfit space" 720
-		"weapon capacity" 250
-		"engine capacity" 160
+		"cost" 22800000
+		"shields" 37800
+		"hull" 11000
+		"required crew" 62
+		"bunks" 118
+		"mass" 925
+		"drag" 15.4
+		"heat dissipation" .42
+		"fuel capacity" 600
+		"cargo space" 142
+		"outfit space" 828
+		"weapon capacity" 342
+		"engine capacity" 166
 		weapon
 			"blast radius" 400
 			"shield damage" 3500
 			"hull damage" 1800
 			"hit force" 5000
 	outfits
-		"Pulse Cannon" 2
-		"Hai Tracker Pod" 3
-		"Hai Tracker" 168
-		"Pulse Turret" 2
-		"Heavy Anti-Missile Turret" 2
-	
-		"Fusion Reactor"
-		"Fission Reactor"
-		"LP288a Battery Pack"
-		"S-970 Regenerator"
-		"Cooling Ducts" 4
-		
-		"A520 Atomic Thruster"
-		"A525 Atomic Steering"
-		"Hyperdrive"
+		"Hai Tracker Pod"
+		"Hai Tracker" 56
+		"Ion Cannon" 4
+		"Chameleon Anti-Missile"
+		"Bullfrog Anti-Missile" 6
+		"Geode Reactor"
+		"Boulder Reactor"
+		"Hai Diamond Regenerator"
+		"Hai Williwaw Cooling" 4
+		"Hai Valley Batteries"
+		`"Benga" Atomic Steering`
+		`"Bufaer" Atomic Steering`
+		`"Bondir" Atomic Thruster`
+		Hyperdrive
 			
 	engine -28 135.5
 	engine 28 135,5
-	gun -9.5 -101 "Pulse Cannon"
-	gun 9.5 -101 "Pulse Cannon"
-	gun -11.5 -138.5 "Hai Tracker Pod"
-	gun 11.5 -138.5 "Hai Tracker Pod"
 	gun 0 -140 "Hai Tracker Pod"
-	turret 54.5 50.5 "Pulse Turret"
-	turret -54.5 50.5 "Pulse Turret"
-	turret 54.5 -48.5 "Heavy Anti-Missile Turret"
-	turret -54.5 -48.5 "Heavy Anti-Missile Turret"
-	turret 55 1 "Heavy Anti-Missile Turret"
-	turret -55 1 "Heavy Anti-Missile Turret"
-	turret 0 -109.5 "Heavy Anti-Missile Turret"
-	fighter -58.5 2 under
-	fighter 58.5 2 under
+	gun -11.5 -138.5 "Ion Cannon"
+	gun 11.5 -138.5 "Ion Cannon"
+	gun -9.5 -101 "Ion Cannon"
+	gun 9.5 -101 "Ion Cannon"
+	turret 0 -109.5 "Chameleon Anti-Missile"
+	turret 54.5 -48.5 "Bullfrog Anti-Missile"
+	turret -54.5 -48.5 "Bullfrog Anti-Missile"
+	turret 55 1 "Bullfrog Anti-Missile"
+	turret -55 1 "Bullfrog Anti-Missile"
+	turret 54.5 50.5 "Bullfrog Anti-Missile"
+	turret -54.5 50.5 "Bullfrog Anti-Missile"
 	fighter -51.5 -71 under
 	fighter 51.5 -71 under
+	fighter -58.5 2 under
+	fighter 58.5 2 under
 	fighter -51.5 76 under
 	fighter 51.5 76 under
 	explode "tiny explosion" 20
