@@ -407,15 +407,18 @@ ship "Hai Carrier"
 			
 	engine -28 135.5
 	engine 28 135,5
-	gun -6 -140 "Pulse Cannon"
-	gun 6 -140 "Pulse Cannon"
-	gun -10 -110.5 "Hai Tracker Pod"
-	gun 0 -100 "Hai Tracker Pod"
-	gun -10 -110 "Hai Tracker Pod"
+	gun -9.5 -101 "Pulse Cannon"
+	gun 9.5 -101 "Pulse Cannon"
+	gun -11.5 -138.5 "Hai Tracker Pod"
+	gun 11.5 -138.5 "Hai Tracker Pod"
+	gun 0 -140 "Hai Tracker Pod"
 	turret 54.5 50.5 "Pulse Turret"
-	turret 54.5 -48.5 "Heavy Anti-Missile Turret"
 	turret -54.5 50.5 "Pulse Turret"
+	turret 54.5 -48.5 "Heavy Anti-Missile Turret"
 	turret -54.5 -48.5 "Heavy Anti-Missile Turret"
+	turret 55 1 "Heavy Anti-Missile Turret"
+	turret -55 1 "Heavy Anti-Missile Turret"
+	turret 0 -109.5 "Heavy Anti-Missile Turret"
 	fighter -58.5 2 under
 	fighter 58.5 2 under
 	fighter -51.5 -71 under
