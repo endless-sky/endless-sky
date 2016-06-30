@@ -250,7 +250,213 @@ ship "Shield Beetle" "Shield Beetle (Jump, Tracker)"
 		`"Bondir" Atomic Thruster`
 		`"Bufaer" Atomic Steering`
 		"Jump Drive"
+	
+ship "Solifuge"
+	sprite "ship/hai fighter carrier"
+	licenses
+		"Unfettered Militia"
+	attributes
+		category "Heavy Warship"
+		"cost" 22800000
+		"shields" 37800
+		"hull" 11000
+		"required crew" 62
+		"bunks" 118
+		"mass" 925
+		"drag" 15.4
+		"heat dissipation" .42
+		"fuel capacity" 600
+		"cargo space" 142
+		"outfit space" 828
+		"weapon capacity" 342
+		"engine capacity" 166
+		weapon
+			"blast radius" 450
+			"shield damage" 4500
+			"hull damage" 2250
+			"hit force" 3500
+	outfits
+		"Hai Tracker Pod"
+		"Hai Tracker" 56
+		"Ion Cannon" 4
+		"Pulse Turret" 2
+		"Chameleon Anti-Missile"
+		"Bullfrog Anti-Missile" 4
+		"Boulder Reactor" 2
+		"Hai Gorge Batteries"
+		"Hai Diamond Regenerator"
+		"Hai Williwaw Cooling" 6
+		`"Benga" Atomic Steering`
+		`"Bufaer" Atomic Steering`
+		`"Bondir" Atomic Thruster`
+		Hyperdrive
+			
+	engine -28 135.5
+	engine 28 135,5
+	gun 0 -140 "Hai Tracker Pod"
+	gun -11.5 -138.5 "Ion Cannon"
+	gun 11.5 -138.5 "Ion Cannon"
+	gun -9.5 -101 "Ion Cannon"
+	gun 9.5 -101 "Ion Cannon"
+	turret 0 -109.5 "Chameleon Anti-Missile"
+	turret 54.5 -48.5 "Bullfrog Anti-Missile"
+	turret -54.5 -48.5 "Bullfrog Anti-Missile"
+	turret 55 1 "Pulse Turret"
+	turret -55 1 "Pulse Turret"
+	turret 54.5 50.5 "Bullfrog Anti-Missile"
+	turret -54.5 50.5 "Bullfrog Anti-Missile"
+	fighter -51.5 -71 under
+	fighter 51.5 -71 under
+	fighter -58.5 2 under
+	fighter 58.5 2 under
+	fighter -51.5 76 under
+	fighter 51.5 76 under
+	explode "tiny explosion" 50
+	explode "small explosion" 50
+	explode "medium explosion" 50
+	explode "big explosion" 50
+	explode "huge explosion" 20
+	"final explode" "final explosion large"
+	description `Impressed by the Alpha's "Giftbringer", the Unfettered endeavoured to build their own Fighter Carrier to take more advantage of their supply of Jump Drives.`
 
+ship "Solifuge" "Solifuge (Pulse)"
+	outfits
+		"Ion Cannon" 2
+		"Pulse Cannon" 3
+		"Pulse Turret" 5
+		"Bullfrog Anti-Missile" 2
+		"Boulder Reactor" 2
+		"Hai Fissure Batteries"
+		"Hai Corundum Regenerator"
+		"Hai Diamond Regenerator"
+		"Hai Williwaw Cooling" 8
+		`"Benga" Atomic Steering`
+		`"Bufaer" Atomic Steering`
+		`"Bondir" Atomic Thruster`
+		Hyperdrive
+	gun "Pulse Cannon"
+	gun "Pulse Cannon"
+	gun "Pulse Cannon"
+	gun "Ion Cannon"
+	gun "Ion Cannon"
+
+ship "Solifuge" "Solifuge (Tracker)"
+	outfits
+		"Hai Tracker Pod" 5
+		"Hai Tracker" 280
+		"Pulse Turret" 4
+		"Chameleon Anti-Missile"
+		"Bullfrog Anti-Missile" 2
+		"Boulder Reactor" 2
+		"Hai Gorge Batteries"
+		"Hai Corundum Regenerator"
+		"Hai Diamond Regenerator" 2
+		"Hai Williwaw Cooling" 6
+		`"Benga" Atomic Steering`
+		`"Bufaer" Atomic Steering`
+		`"Bondir" Atomic Thruster`
+		Hyperdrive
+
+ship "Solifuge" "Solifuge (Jump)"
+	outfits
+		"Hai Tracker Pod"
+		"Hai Tracker" 56
+		"Ion Cannon" 4
+		"Pulse Turret" 2
+		"Chameleon Anti-Missile"
+		"Bullfrog Anti-Missile" 4
+		"Boulder Reactor" 2
+		"Hai Gorge Batteries"
+		"Hai Diamond Regenerator"
+		"Hai Williwaw Cooling" 6
+		`"Benga" Atomic Steering`
+		`"Bufaer" Atomic Steering`
+		`"Bondir" Atomic Thruster`
+		"Jump Drive"
+
+ship "Solifuge" "Solifuge (Jump, Pulse)"
+	outfits
+		"Ion Cannon" 2
+		"Pulse Cannon" 3
+		"Pulse Turret" 5
+		"Bullfrog Anti-Missile" 2
+		"Boulder Reactor" 2
+		"Hai Fissure Batteries"
+		"Hai Corundum Regenerator"
+		"Hai Diamond Regenerator"
+		"Hai Williwaw Cooling" 8
+		`"Benga" Atomic Steering`
+		`"Bufaer" Atomic Steering`
+		`"Bondir" Atomic Thruster`
+		"Jump Drive"
+	gun "Pulse Cannon"
+	gun "Pulse Cannon"
+	gun "Pulse Cannon"
+	gun "Ion Cannon"
+	gun "Ion Cannon"
+
+ship "Solifuge" "Solifuge (Jump, Tracker)"
+	outfits
+		"Hai Tracker Pod" 5
+		"Hai Tracker" 280
+		"Pulse Turret" 4
+		"Chameleon Anti-Missile"
+		"Bullfrog Anti-Missile" 2
+		"Boulder Reactor" 2
+		"Hai Gorge Batteries"
+		"Hai Corundum Regenerator"
+		"Hai Diamond Regenerator" 2
+		"Hai Williwaw Cooling" 6
+		`"Benga" Atomic Steering`
+		`"Bufaer" Atomic Steering`
+		`"Bondir" Atomic Thruster`
+		"Jump Drive"
+
+ship "Violin Spider"
+	sprite "ship/hai fighter"
+	attributes
+		category "Fighter"
+		"cost" 29000
+		"shields" 1400
+		"hull" 600
+		"required crew" 1
+		"bunks" 1
+		"mass" 31
+		"drag" 0.9
+		"heat dissipation" .7
+		"outfit space" 92
+		"weapon capacity" 19
+		"engine capacity" 30
+		weapon
+			"blast radius" 12
+			"shield damage" 120
+			"hull damage" 60
+			"hit force" 180
+	outfits
+		"Hai Tracker Pod"
+		"Hai Tracker" 56
+		"Pebble Core"
+		Supercapacitor
+		"Hai Williwaw Cooling"
+		`"Basrem" Atomic Steering`
+		`"Basrem" Atomic Thruster`
+
+	engine -15 30
+	engine 15 30
+	gun 0 -31 "Pulse Cannon"
+	turret 0 5 "Bullfrog Anti-Missile"
+	explode "tiny explosion" 15
+	explode "small explosion" 5
+	description `The Hai Fighter is equipped with what most Humans would consider the greatest technology available, but all of that high tech comes at a cost.`
+
+ship "Violin Spider" "Violin Spider (Pulse)"
+	outfits
+		"Pulse Cannon"
+		"Pebble Core"
+		"Hai Chasm Batteries"
+		"Hai Williwaw Cooling"
+		`"Basrem" Atomic Steering`
+		`"Basrem" Atomic Thruster`
 
 ship "Water Bug"
 	sprite "ship/hai water bug"
@@ -329,104 +535,3 @@ ship "Water Bug" "Water Bug (Jump)"
 		`"Benga" Atomic Thruster`
 		`"Benga" Atomic Steering`
 		"Jump Drive"
-
-ship "Hai Fighter"
-	sprite "ship/hai fighter"
-	attributes
-		category "Fighter"
-		"cost" 29000
-		"shields" 1400
-		"hull" 600
-		"required crew" 1
-		"bunks" 1
-		"mass" 31
-		"drag" 0.9
-		"heat dissipation" .7
-		"outfit space" 92
-		"weapon capacity" 19
-		"engine capacity" 30
-		weapon
-			"blast radius" 12
-			"shield damage" 120
-			"hull damage" 60
-			"hit force" 180
-	outfits
-		"Pulse Cannon"
-		"Pebble Core"
-		"Hai Chasm Batteries"
-		"Hai Williwaw Cooling"
-		`"Basrem" Atomic Steering`
-		`"Basrem" Atomic Thruster`
-
-	engine -15 30
-	engine 15 30
-	gun 0 -31 "Pulse Cannon"
-	turret 0 5 "Bullfrog Anti-Missile"
-	explode "tiny explosion" 15
-	explode "small explosion" 5
-	
-ship "Hai Carrier"
-	sprite "ship/hai fighter carrier"
-	licenses
-		Unfettered Militia
-	attributes
-		category "Heavy Warship"
-		"cost" 22800000
-		"shields" 37800
-		"hull" 11000
-		"required crew" 62
-		"bunks" 118
-		"mass" 925
-		"drag" 15.4
-		"heat dissipation" .42
-		"fuel capacity" 600
-		"cargo space" 142
-		"outfit space" 828
-		"weapon capacity" 342
-		"engine capacity" 166
-		weapon
-			"blast radius" 400
-			"shield damage" 3500
-			"hull damage" 1800
-			"hit force" 5000
-	outfits
-		"Hai Tracker Pod"
-		"Hai Tracker" 56
-		"Ion Cannon" 4
-		"Pulse Turret" 2
-		"Chameleon Anti-Missile"
-		"Bullfrog Anti-Missile" 4
-		"Boulder Reactor" 2
-		"Hai Gorge Batteries"
-		"Hai Diamond Regenerator"
-		"Hai Williwaw Cooling" 6
-		`"Benga" Atomic Steering`
-		`"Bufaer" Atomic Steering`
-		`"Bondir" Atomic Thruster`
-		Hyperdrive
-			
-	engine -28 135.5
-	engine 28 135,5
-	gun 0 -140 "Hai Tracker Pod"
-	gun -11.5 -138.5 "Ion Cannon"
-	gun 11.5 -138.5 "Ion Cannon"
-	gun -9.5 -101 "Ion Cannon"
-	gun 9.5 -101 "Ion Cannon"
-	turret 0 -109.5 "Chameleon Anti-Missile"
-	turret 54.5 -48.5 "Bullfrog Anti-Missile"
-	turret -54.5 -48.5 "Bullfrog Anti-Missile"
-	turret 55 1 "Pulse Turret"
-	turret -55 1 "Pulse Turret"
-	turret 54.5 50.5 "Bullfrog Anti-Missile"
-	turret -54.5 50.5 "Bullfrog Anti-Missile"
-	fighter -51.5 -71 under
-	fighter 51.5 -71 under
-	fighter -58.5 2 under
-	fighter 58.5 2 under
-	fighter -51.5 76 under
-	fighter 51.5 76 under
-	explode "tiny explosion" 20
-	explode "small explosion" 45
-	explode "medium explosion" 50
-	explode "big explosion" 40
-	explode "huge explosion" 15

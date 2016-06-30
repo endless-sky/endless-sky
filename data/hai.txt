@@ -125,58 +125,82 @@ fleet "Large Unfettered"
 	cargo 3
 	personality
 		plunders
-	variant 2
+	variant 3
 		"Shield Beetle"
 		"Lightning Bug (Pulse)" 2
-	variant 2
+	variant 3
 		"Shield Beetle (Tracker)"
 		"Lightning Bug" 2
-	variant 1
+	variant 2
 		"Shield Beetle"
 		"Lightning Bug (Pulse)"
-	variant 1
+	variant 2
 		"Shield Beetle (Tracker)"
 		"Lightning Bug"
-	variant 3
+	variant 4
 		"Shield Beetle (Tracker)"
 		"Shield Beetle"
-	variant 1
+	variant 2
 		"Shield Beetle (Tracker)" 2
-	variant 1
+	variant 2
 		"Shield Beetle" 2
-	variant 1
+	variant 2
 		"Lightning Bug" 5
+	variant 4
+		"Shield Beetle (Pulse)"
+		"Lightning Bug (Pulse)" 2
 	variant 3
 		"Shield Beetle (Pulse)"
-		"Lightning Bug (Pulse)" 2
-	variant 2
-		"Shield Beetle (Pulse)"
 		"Shield Beetle"
-	variant 2
+	variant 3
 		"Shield Beetle (Pulse)"
 		"Shield Beetle (Tracker)"
-	variant
+	variant 2
 		"Shield Beetle (Pulse)"
 		"Shield Beetle"
 		"Lightning Bug (Pulse)" 2
-	variant
+	variant 2
 		"Shield Beetle (Pulse)"
 		"Shield Beetle (Tracker)"
 		"Lightning Bug" 2
+	variant
+		"Solifuge"
+		"Violin Spider (Pulse)" 6
+		"Lightning Bug"
+	variant
+		"Solifuge (Tracker)"
+		"Violin Spider (Pulse)" 6
+		"Lightning Bug"
+	variant
+		"Solifuge (Pulse)"
+		"Violin Spider" 6
+		"Lightning Bug (Pulse)"
 
 fleet "Unfettered Raid"
 	government "Hai (Unfettered)"
 	names "hai"
 	personality
 		plunders
-	variant
+	variant 3
 		"Shield Beetle (Jump)" 3
-	variant
+	variant 3
 		"Shield Beetle (Jump)" 2
 		"Shield Beetle (Jump, Tracker)" 1
-	variant
+	variant 3
 		"Shield Beetle (Jump)" 1
 		"Shield Beetle (Jump, Tracker)" 2
+	variant
+		"Solifuge (Jump)"
+		"Solifuge (Jump, Tracker)"
+		"Violin Spider (Pulse)" 12
+	variant
+		"Solifuge (Jump, Pulse)"
+		"Solifuge (Jump, Tracker)"
+		"Violin Spider (Pulse)" 12
+	variant 
+		"Solifuge (Jump)"
+		"Solifuge (Jump, Pulse)"
+		"Violin Spider" 12
 
 shipyard "Hai Basics"
 	"Aphid"
