@@ -353,7 +353,11 @@ void MapPanel::Select(const System *system)
 	
 	bool shift = (SDL_GetModState() & KMOD_SHIFT) && !plan.empty();
 	if(system == playerSystem && !shift)
+	{
 		plan.clear();
+		if(player.Flagship())
+			player.Flagship()->SetTargetSystem(nullptr);
+	}
 	else if((distance.Distance(system) > 0 || shift) && player.Flagship())
 	{
 		if(shift)
@@ -372,6 +376,7 @@ void MapPanel::Select(const System *system)
 		else if(playerSystem)
 		{
 			plan.clear();
+			player.Flagship()->SetTargetSystem(nullptr);
 			while(system != playerSystem)
 			{
 				plan.push_back(system);
