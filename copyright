@@ -34,6 +34,17 @@ License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license).
 
 Files:
+ images/ship/hai?fighter?carrier*
+Copyright: Maximilian Korber
+License: CC-BY-SA-4.0
+
+Files:
+ images/ship/hai?fighter*
+Copyright: Maximilian Korber
+License: CC-BY-SA-4.0
+Comment: Derived from works by Christian Rhodes (under the same license).
+
+Files:
  images/outfit/*steering?hai*
  images/outfit/*thruster?hai*
  images/outfit/tiny?ion?engines*
