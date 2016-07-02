@@ -13,7 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef WEAPON_H_
 #define WEAPON_H_
 
-#include "Animation.h"
+#include "Body.h"
 
 #include <map>
 
@@ -37,7 +37,7 @@ public:
 	bool IsWeapon() const;
 	
 	// Get assets used by this weapon.
-	const Animation &WeaponSprite() const;
+	const Body &WeaponSprite() const;
 	const Sound *WeaponSound() const;
 	const Outfit *Ammo() const;
 	const Sprite *Icon() const;
@@ -107,7 +107,7 @@ private:
 	
 private:
 	// Sprites and sounds.
-	Animation sprite;
+	Body sprite;
 	const Sound *sound = nullptr;
 	const Outfit *ammo = nullptr;
 	const Sprite *icon = nullptr;

@@ -718,7 +718,7 @@ void InfoPanel::DrawShip() const
 	}
 	
 	// Weapon positions.
-	const Sprite *sprite = ship.GetSprite().GetSprite();
+	const Sprite *sprite = ship.GetSprite();
 	double scale = min(240. / sprite->Width(), 240. / sprite->Height());
 	Point shipCenter(-125., 155.);
 	SpriteShader::Draw(sprite, shipCenter, scale, 8);

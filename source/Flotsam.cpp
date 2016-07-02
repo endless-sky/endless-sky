@@ -51,38 +51,11 @@ void Flotsam::Place(const Ship &source)
 	this->source = &source;
 	position = source.Position();
 	velocity = source.Velocity() + Angle::Random().Unit() * (2. * Random::Real()) - 2. * source.Unit();
-	facing = Angle::Random();
+	angle = Angle::Random();
 	spin = Angle::Random(10.);
-	animation = Animation(SpriteSet::Get("effect/box"), 4. * (1. + Random::Real()));
-}
-
-
-
-// Get the animation for this object.
-const Animation &Flotsam::GetSprite() const
-{
-	return animation;
-}
-
-
-
-const Point &Flotsam::Position() const
-{
-	return position;
-}
-
-
-
-const Point &Flotsam::Velocity() const
-{
-	return velocity;
-}
-
-
-
-const Angle &Flotsam::Facing() const
-{
-	return facing;
+	
+	SetSprite(SpriteSet::Get("effect/box"));
+	SetFrameRate(4. * (1. + Random::Real()));
 }
 
 
@@ -91,7 +64,7 @@ const Angle &Flotsam::Facing() const
 bool Flotsam::Move(list<Effect> &effects)
 {
 	position += velocity;
-	facing += spin;
+	angle += spin;
 	--lifetime;
 	if(lifetime > 0)
 		return true;
@@ -100,9 +73,9 @@ bool Flotsam::Move(list<Effect> &effects)
 	const Effect *effect = GameData::Effects().Get("smoke");
 	effects.push_back(*effect);
 	
-	Angle angle = Angle::Random();
-	velocity += angle.Unit() * Random::Real();
-	effects.back().Place(position, velocity, angle);
+	Angle smokeAngle = Angle::Random();
+	velocity += smokeAngle.Unit() * Random::Real();
+	effects.back().Place(position, velocity, smokeAngle);
 	
 	return false;
 }

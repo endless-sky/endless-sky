@@ -71,7 +71,7 @@ void ShopPanel::Draw() const
 	if(dragShip)
 	{
 		static const Color selected(.8, 1.);
-		const Sprite *sprite = dragShip->GetSprite().GetSprite();
+		const Sprite *sprite = dragShip->GetSprite();
 		double scale = ICON_SIZE / max(sprite->Width(), sprite->Height());
 		Point size(sprite->Width() * scale, sprite->Height() * scale);
 		OutlineShader::Draw(sprite, dragPoint, size, selected);
@@ -148,7 +148,7 @@ void ShopPanel::DrawSidebar() const
 		const Sprite *background = SpriteSet::Get(isSelected ? "ui/icon selected" : "ui/icon unselected");
 		SpriteShader::Draw(background, point);
 		
-		const Sprite *sprite = ship->GetSprite().GetSprite();
+		const Sprite *sprite = ship->GetSprite();
 		double scale = ICON_SIZE / max(sprite->Width(), sprite->Height());
 		Point size(sprite->Width() * scale, sprite->Height() * scale);
 		OutlineShader::Draw(sprite, point, size, isSelected ? selected : unselected);
@@ -388,7 +388,7 @@ void ShopPanel::DrawShip(const Ship &ship, const Point &center, bool isSelected)
 	Point offset(-.5f * font.Width(name), -.5f * SHIP_SIZE + 10.f);
 	font.Draw(name, center + offset, *GameData::Colors().Get("bright"));
 	
-	const Sprite *sprite = ship.GetSprite().GetSprite();
+	const Sprite *sprite = ship.GetSprite();
 	if(sprite)
 	{
 		float zoom = min(1.f, zoomSize / max(sprite->Width(), sprite->Height()));

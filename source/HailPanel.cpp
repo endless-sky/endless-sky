@@ -37,7 +37,7 @@ using namespace std;
 
 HailPanel::HailPanel(PlayerInfo &player, const shared_ptr<Ship> &ship)
 	: player(player), ship(ship),
-	sprite(ship->GetSprite().GetSprite()), unit(2. * ship->Unit())
+	sprite(ship->GetSprite()), unit(2. * ship->Unit())
 {
 	SetInterruptible(false);
 	
@@ -111,7 +111,7 @@ HailPanel::HailPanel(PlayerInfo &player, const shared_ptr<Ship> &ship)
 
 HailPanel::HailPanel(PlayerInfo &player, const StellarObject *object)
 	: player(player), planet(object->GetPlanet()),
-	sprite(object->GetSprite().GetSprite()), unit(object->Position().Unit())
+	sprite(object->GetSprite()), unit(object->Facing().Unit())
 {
 	SetInterruptible(false);
 	
