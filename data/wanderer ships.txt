@@ -43,6 +43,8 @@ ship "Earth Shaper"
 	explode "small explosion" 10
 	description "The Earth Shaper is a robotic drone that the Wanderers use for mining, exploring, surveying, and terraforming."
 
+
+
 ship "Flycatcher"
 	sprite "ship/flycatcher"
 	licenses
@@ -77,6 +79,8 @@ ship "Flycatcher"
 	explode "tiny explosion" 30
 	explode "small explosion" 20
 	description "Flycatcher drones are used by the Wanderers to keep their star systems safe. Rather than carrying weapons of its own, a stock Flycatcher just carries an anti-missile turret for defending other ships."
+
+
 
 ship "Summer Leaf"
 	sprite "ship/summer leaf"
@@ -122,6 +126,8 @@ ship "Summer Leaf"
 	explode "medium explosion" 10
 	"final explode" "final explosion small"
 	description "The Summer Leaf is mostly used by the Wanderers as a light transport, but it is also quite effective in combat."
+
+
 
 ship "Autumn Leaf"
 	sprite "ship/autumn leaf"
@@ -169,6 +175,8 @@ ship "Autumn Leaf"
 	explode "medium explosion" 20
 	"final explode" "final explosion small"
 	description "The Autumn Leaf is based on the Wanderer Summer Leaf light warship, but slightly larger and better equipped for combat. Unlike Wanderer peacetime ships, it is equipped with a turret mount in addition to the ports for fixed guns."
+
+
 
 ship "Strong Wind"
 	sprite "ship/strong wind"
@@ -219,7 +227,98 @@ ship "Strong Wind"
 	explode "medium explosion" 40
 	explode "big explosion" 20
 	"final explode" "final explosion medium"
-	description "The Strong Wind is a Wanderer warship, an ancient design that they make use of only on the rare occasions when they find it necessary to defend themselves."
+	description "The Strong Wind was originally designed for science and exploration, but recently the Wanderers have modified the design to allow it to be used as a warship."
+
+
+
+ship "Tempest"
+	sprite ship/tempest
+	attributes
+		category "Medium Warship"
+		"cost" 19700000
+		"shields" 42100
+		"hull" 25900
+		"required crew" 38
+		"bunks" 53
+		"mass" 320
+		"drag" 6.2
+		"heat dissipation" 0.65
+		"fuel capacity" 600
+		"cargo space" 47
+		"outfit space" 607
+		"weapon capacity" 271
+		"engine capacity" 122
+	outfits
+		"Sunbeam" 2
+		"Thunderhead Launcher" 2
+		"Thunderhead Missile" 80
+		"Dual Sunbeam Turret"
+		"Wanderer Anti-Missile" 2
+		
+		"Yellow Sun Reactor" 2
+		"Dark Storm Shielding"
+		"Wanderer Ramscoop"
+		
+		"Type 4 Radiant Thruster"
+		"Type 4 Radiant Steering"
+		"Hyperdrive"
+	
+	engine -22 129
+	engine 22 129
+	gun -16 -100 "Sunbeam"
+	gun 16 -100 "Sunbeam"
+	gun -21 -83 "Thunderhead Launcher"
+	gun 21 -83 "Thunderhead Launcher"
+	turret 0 -37 "Dual Sunbeam Turret"
+	turret -32 87 "Wanderer Anti-Missile"
+	turret 32 87 "Wanderer Anti-Missile"
+	explode "big explosion" 25
+	explode "medium explosion" 50
+	explode "small explosion" 80
+	"final explode" "final explosion medium" 1
+	description "In response to the Unfettered invasion, the Wanderers have begun digging up ancient warship designs from their archives and putting them back into production. The Tempest is the first purpose-built warship they have manufactured in tens of thousands of years."
+
+ship "Tempest" "Tempest (Heavy)"
+	outfits
+		"Sunbeam" 4
+		"Dual Sunbeam Turret"
+		"Wanderer Anti-Missile" 2
+		
+		"White Sun Reactor"
+		"Red Sun Reactor"
+		"Dark Storm Shielding"
+		"Mass Expansion"
+		"Wanderer Ramscoop"
+		
+		"Type 3 Radiant Thruster"
+		"Type 4 Radiant Steering"
+		"Type 2 Radiant Steering"
+		"Hyperdrive"
+	
+	turret "Dual Sunbeam Turret"
+	turret "Wanderer Anti-Missile"
+	turret "Wanderer Anti-Missile"
+
+ship "Tempest" "Tempest (Missile)"
+	outfits
+		"Thunderhead Launcher" 4
+		"Thunderhead Missile" 160
+		"Dual Sunbeam Turret" 2
+		
+		"White Sun Reactor"
+		"Small Biochemical Cell"
+		"Dark Storm Shielding"
+		"Wanderer Ramscoop"
+		
+		"Type 4 Radiant Thruster"
+		"Type 4 Radiant Steering"
+		"Hyperdrive"
+	
+	turret
+	turret "Dual Sunbeam Turret"
+	turret "Dual Sunbeam Turret"
+
+
 
 ship "Deep River"
 	sprite "ship/deep river"

@@ -10,7 +10,7 @@
 
 outfit "Sunbeam"
 	category "Guns"
-	cost 2350000
+	cost 1390000
 	thumbnail "outfit/sunbeam"
 	"mass" 34
 	"outfit space" -34
@@ -45,7 +45,7 @@ effect "sunbeam impact"
 
 outfit "Sunbeam Turret"
 	category "Turrets"
-	cost 3260000
+	cost 1970000
 	thumbnail "outfit/sunbeam turret"
 	"mass" 46
 	"outfit space" -46
@@ -71,7 +71,7 @@ outfit "Sunbeam Turret"
 
 outfit "Dual Sunbeam Turret"
 	category "Turrets"
-	cost 5170000
+	cost 3720000
 	thumbnail "outfit/dual sunbeam turret"
 	"mass" 83
 	"outfit space" -83
@@ -97,7 +97,7 @@ outfit "Dual Sunbeam Turret"
 
 outfit "Wanderer Anti-Missile"
 	category "Turrets"
-	cost 1430000
+	cost 850000
 	thumbnail "outfit/wanderer anti-missile"
 	"mass" 24
 	"outfit space" -24
@@ -209,9 +209,20 @@ outfit "Large Biochemical Cell"
 	"energy capacity" 700
 	description "The Wanderers are masters of unusual and efficient technology. This bioreactor is fueled by a culture of microorganisms that produce a small electric charge."
 
+outfit "Red Sun Reactor"
+	category "Power"
+	cost 3800000
+	thumbnail "outfit/red sun"
+	"mass" 47
+	"outfit space" -47
+	"energy generation" 8.3
+	"heat generation" 13
+	"energy capacity" 1100
+	description "The Wanderers have recently begun producing this tiny reactor as a way to squeeze a bit more energy production into their warships."
+
 outfit "Yellow Sun Reactor"
 	category "Power"
-	cost 8500000
+	cost 7500000
 	thumbnail "outfit/yellow sun"
 	"mass" 82
 	"outfit space" -82
@@ -222,7 +233,7 @@ outfit "Yellow Sun Reactor"
 
 outfit "White Sun Reactor"
 	category "Power"
-	cost 16000000
+	cost 13900000
 	thumbnail "outfit/white sun"
 	"mass" 127
 	"outfit space" -127
@@ -264,7 +275,7 @@ outfit "Wanderer Ramscoop"
 
 outfit "Type 1 Radiant Thruster"
 	category "Engines"
-	"cost" 250000
+	"cost" 135000
 	thumbnail "outfit/tiny radiant thruster"
 	"mass" 12
 	"outfit space" -12
@@ -280,7 +291,7 @@ outfit "Type 1 Radiant Thruster"
 
 outfit "Type 2 Radiant Thruster"
 	category "Engines"
-	"cost" 500000
+	"cost" 390000
 	thumbnail "outfit/small radiant thruster"
 	"mass" 27
 	"outfit space" -27
@@ -296,7 +307,7 @@ outfit "Type 2 Radiant Thruster"
 
 outfit "Type 3 Radiant Thruster"
 	category "Engines"
-	"cost" 830000
+	"cost" 750000
 	thumbnail "outfit/medium radiant thruster"
 	"mass" 42
 	"outfit space" -42
@@ -328,7 +339,7 @@ outfit "Type 4 Radiant Thruster"
 
 outfit "Type 1 Radiant Steering"
 	category "Engines"
-	"cost" 190000
+	"cost" 115000
 	thumbnail "outfit/tiny radiant steering"
 	"mass" 9
 	"outfit space" -9
@@ -341,7 +352,7 @@ outfit "Type 1 Radiant Steering"
 
 outfit "Type 2 Radiant Steering"
 	category "Engines"
-	"cost" 400000
+	"cost" 325000
 	thumbnail "outfit/small radiant steering"
 	"mass" 20
 	"outfit space" -20
@@ -354,7 +365,7 @@ outfit "Type 2 Radiant Steering"
 
 outfit "Type 3 Radiant Steering"
 	category "Engines"
-	"cost" 660000
+	"cost" 590000
 	thumbnail "outfit/medium radiant steering"
 	"mass" 30
 	"outfit space" -30
