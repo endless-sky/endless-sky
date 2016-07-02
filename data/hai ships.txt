@@ -252,7 +252,7 @@ ship "Shield Beetle" "Shield Beetle (Jump, Tracker)"
 		"Jump Drive"
 	
 ship "Solifuge"
-	sprite "ship/hai fighter carrier"
+	sprite "ship/hai solifuge"
 	licenses
 		"Unfettered Militia"
 	attributes
@@ -413,7 +413,7 @@ ship "Solifuge" "Solifuge (Jump, Tracker)"
 		"Jump Drive"
 
 ship "Violin Spider"
-	sprite "ship/hai fighter"
+	sprite "ship/hai violin spider"
 	attributes
 		category "Fighter"
 		"cost" 29000
