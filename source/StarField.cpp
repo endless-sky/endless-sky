@@ -48,6 +48,7 @@ void StarField::Init(int stars, int width)
 	SetUpGraphics();
 	MakeStars(stars, width);
 	
+	const Sprite *sprite = SpriteSet::Get("_menu/haze");
 	for(size_t i = 0; i < HAZE_COUNT; ++i)
 	{
 		Point next;
@@ -56,8 +57,9 @@ void StarField::Init(int stars, int width)
 		{
 			next = Point(Random::Real() * HAZE_WRAP, Random::Real() * HAZE_WRAP);
 			overlaps = false;
-			for(const Point &previous : hazePos)
+			for(const Body &other : haze)
 			{
+				Point previous = other.Position();
 				double dx = remainder(previous.X() - next.X(), HAZE_WRAP);
 				double dy = remainder(previous.Y() - next.Y(), HAZE_WRAP);
 				if(dx * dx + dy * dy < HAZE_DISTANCE * HAZE_DISTANCE)
@@ -67,8 +69,7 @@ void StarField::Init(int stars, int width)
 				}
 			}
 		}
-		hazePos.emplace_back(next);
-		hazeUnit.emplace_back(4. * Angle::Random().Unit());
+		haze.emplace_back(sprite, next, Point(), Angle::Random(), 8.);
 	}
 }
 
@@ -127,13 +128,12 @@ void StarField::Draw(const Point &pos, const Point &vel) const
 		return;
 	
 	DrawList drawList;
-	const Sprite *haze = SpriteSet::Get("_menu/haze");
-	for(size_t i = 0; i < hazePos.size(); ++i)
+	for(const Body &it : haze)
 	{
 		Point offset(
-			remainder(hazePos[i].X() - pos.X(), HAZE_WRAP),
-			remainder(hazePos[i].Y() - pos.Y(), HAZE_WRAP));
-		drawList.Add(haze, offset, hazeUnit[i]);
+			remainder(it.Position().X() - pos.X(), HAZE_WRAP),
+			remainder(it.Position().Y() - pos.Y(), HAZE_WRAP));
+		drawList.Add(it, offset);
 	}
 	drawList.Draw();
 }

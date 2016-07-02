@@ -250,6 +250,7 @@ bool InfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 	{
 		if(CanDump())
 		{
+			int commodities = (*shipIt)->Cargo().CommoditiesSize();
 			int amount = (*shipIt)->Cargo().Get(selectedCommodity);
 			int plunderAmount = (*shipIt)->Cargo().Get(selectedPlunder);
 			if(amount)
@@ -270,10 +271,15 @@ bool InfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 					"How many of the " + selectedPlunder->Name() + " outfits to you want to jettison?",
 					plunderAmount));
 			}
-			else
+			else if(commodities)
 			{
 				GetUI()->Push(new Dialog(this, &InfoPanel::Dump,
 					"Are you sure you want to jettison all this ship's regular cargo?"));
+			}
+			else
+			{
+				GetUI()->Push(new Dialog(this, &InfoPanel::Dump,
+					"Are you sure you want to jettison all this ship's spare outfit cargo?"));
 			}
 		}
 	}
@@ -712,7 +718,7 @@ void InfoPanel::DrawShip() const
 	}
 	
 	// Weapon positions.
-	const Sprite *sprite = ship.GetSprite().GetSprite();
+	const Sprite *sprite = ship.GetSprite();
 	double scale = min(240. / sprite->Width(), 240. / sprite->Height());
 	Point shipCenter(-125., 155.);
 	SpriteShader::Draw(sprite, shipCenter, scale, 8);
@@ -802,7 +808,7 @@ bool InfoPanel::CanDump() const
 		return false;
 	
 	CargoHold &cargo = (*shipIt)->Cargo();
-	return (selectedPlunder && cargo.Get(selectedPlunder) > 0) || cargo.CommoditiesSize();
+	return (selectedPlunder && cargo.Get(selectedPlunder) > 0) || cargo.CommoditiesSize() || cargo.OutfitsSize();
 }
 
 
@@ -813,6 +819,7 @@ void InfoPanel::Dump()
 		return;
 	
 	CargoHold &cargo = (*shipIt)->Cargo();
+	int commodities = (*shipIt)->Cargo().CommoditiesSize();
 	int amount = cargo.Get(selectedCommodity);
 	int plunderAmount = cargo.Get(selectedPlunder);
 	int64_t loss = 0;
@@ -828,13 +835,21 @@ void InfoPanel::Dump()
 		loss += plunderAmount * selectedPlunder->Cost();
 		(*shipIt)->Jettison(selectedPlunder, plunderAmount);
 	}
-	else
+	else if(commodities)
 	{
 		for(const auto &it : cargo.Commodities())
 		{
 			int64_t basis = player.GetBasis(it.first, it.second);
 			loss += basis;
 			player.AdjustBasis(it.first, -basis);
+			(*shipIt)->Jettison(it.first, it.second);
+		}
+	}
+	else
+	{
+		for(const auto &it : cargo.Outfits())
+		{
+			loss += it.first->Cost() * max(0, it.second);
 			(*shipIt)->Jettison(it.first, it.second);
 		}
 	}

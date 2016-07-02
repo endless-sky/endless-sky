@@ -33,6 +33,7 @@ public:
 public:
 	Angle();
 	Angle(double degrees);
+	Angle(const Point &point);
 	
 	Angle operator+(const Angle &other) const;
 	Angle &operator+=(const Angle &other);
@@ -41,6 +42,8 @@ public:
 	Angle operator-() const;
 	
 	Point Unit() const;
+	// Convert an Angle object to degrees, in the range -180 to 180.
+	double Degrees() const;
 	
 	// Return a point rotated by this angle around (0, 0).
 	Point Rotate(const Point &point) const;

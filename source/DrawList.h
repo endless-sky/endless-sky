@@ -18,7 +18,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <cstdint>
 #include <vector>
 
-class Animation;
+class Body;
 class Sprite;
 
 
@@ -35,23 +35,28 @@ public:
 	
 	// Clear the list, also setting the global time step for animation.
 	void Clear(int step = 0);
+	void SetCenter(const Point &center, const Point &centerVelocity = Point());
 	
-	// Add an animation.
-	bool Add(const Animation &animation, Point pos, Point unit, Point blur = Point(), double clip = 1.);
+	// Add an object based on the Body class.
+	bool Add(const Body &body, double cloak = 0.);
+	bool Add(const Body &body, Point position);
+	bool AddUnblurred(const Body &body);
+	bool AddProjectile(const Body &body, const Point &adjustedVelocity, double clip);
+	bool AddSwizzled(const Body &body, int swizzle);
 	
-	// Add a single sprite.
-	bool Add(const Sprite *sprite, Point pos, Point unit = Point(0., -1.), Point blur = Point(), double cloak = 0., int swizzle = 0);
-	
-	// Draw all the items in this list. The shader object may be shared between
-	// multiple DrawLists, so pass it in here.
+	// Draw all the items in this list.
 	void Draw() const;
+	
+	
+private:
+	static bool Cull(const Body &body, const Point &position, const Point &blur);
 	
 	
 private:
 	class Item {
 	public:
 		Item() = default;
-		Item(const Animation &animation, Point pos, Point unit, Point blur, float clip, int step);
+		Item(const Body &body, Point pos, Point blur, float cloak, float clip, int swizzle, int step);
 		
 		// Get the texture of this sprite.
 		uint32_t Texture0() const;
@@ -87,6 +92,9 @@ private:
 private:
 	int step;
 	std::vector<Item> items;
+	
+	Point center;
+	Point centerVelocity;
 };
 
 

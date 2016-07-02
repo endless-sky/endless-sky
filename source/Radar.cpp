@@ -49,6 +49,13 @@ void Radar::Clear()
 
 
 
+void Radar::SetCenter(const Point &center)
+{
+	this->center = center;
+}
+
+
+
 // Add an object. If "inner" is 0 it is a dot; otherwise, it is a ring. The
 // given position should be in world units (not shrunk to radar units).
 void Radar::Add(int type, Point position, double outer, double inner)
@@ -56,7 +63,7 @@ void Radar::Add(int type, Point position, double outer, double inner)
 	if(type < 0 || type >= SIZE)
 		return;
 	
-	objects.emplace_back(color[type].Opaque(), position, outer, inner);
+	objects.emplace_back(color[type].Opaque(), position - center, outer, inner);
 }
 
 

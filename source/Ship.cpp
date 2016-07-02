@@ -47,7 +47,9 @@ const vector<string> Ship::CATEGORIES = {
 
 namespace {
 	const string BAY_TYPE[2] = {"drone", "fighter"};
-	const string BAY_DIRECTION[5] = {"none", "over", "under", "left", "right"};
+	const string BAY_SIDE[3] = {"inside", "over", "under"};
+	const string BAY_FACING[4] = {"forward", "left", "right", "back"};
+	const Angle BAY_ANGLE[4] = {Angle(0.), Angle(-90.), Angle(90.), Angle(180.)};
 }
 
 
@@ -75,7 +77,7 @@ void Ship::Load(const DataNode &node)
 	for(const DataNode &child : node)
 	{
 		if(child.Token(0) == "sprite")
-			sprite.Load(child);
+			LoadSprite(child);
 		else if(child.Token(0) == "name" && child.Size() >= 2)
 			name = child.Token(1);
 		else if(child.Token(0) == "attributes")
@@ -87,7 +89,7 @@ void Ship::Load(const DataNode &node)
 				enginePoints.clear();
 				hasEngine = true;
 			}
-			enginePoints.emplace_back(child.Value(1), child.Value(2));
+			enginePoints.emplace_back(.5 * child.Value(1), .5 * child.Value(2));
 		}
 		else if(child.Token(0) == "gun" || child.Token(0) == "turret")
 		{
@@ -138,10 +140,15 @@ void Ship::Load(const DataNode &node)
 				hasBays = true;
 			}
 			bays.emplace_back(child.Value(1), child.Value(2), child.Token(0) == "fighter");
-			if(child.Size() >= 4)
-				for(unsigned i = 1; i < sizeof(BAY_DIRECTION) / sizeof(BAY_DIRECTION[0]); ++i)
-					if(child.Token(3) == BAY_DIRECTION[i])
-						bays.back().direction = i;
+			for(int i = 3; i < child.Size(); ++i)
+			{
+				for(unsigned j = 1; j < sizeof(BAY_SIDE) / sizeof(BAY_SIDE[0]); ++j)
+					if(child.Token(i) == BAY_SIDE[j])
+						bays.back().side = j;
+				for(unsigned j = 1; j < sizeof(BAY_FACING) / sizeof(BAY_FACING[0]); ++j)
+					if(child.Token(i) == BAY_FACING[j])
+						bays.back().facing = j;
+			}
 		}
 		else if(child.Token(0) == "explode" && child.Size() >= 2)
 		{
@@ -230,8 +237,8 @@ void Ship::FinishLoading()
 	// Exception: uncapturable and "never disabled" flags don't carry over.
 	if(base && base != this)
 	{
-		if(!sprite.GetSprite())
-			sprite = base->sprite;
+		if(!HasSprite())
+			reinterpret_cast<Body &>(*this) = *base;
 		if(baseAttributes.Attributes().empty())
 			baseAttributes = base->baseAttributes;
 		if(bays.empty() && !base->bays.empty())
@@ -357,7 +364,7 @@ void Ship::Save(DataWriter &out) const
 	out.BeginChild();
 	{
 		out.Write("name", name);
-		sprite.Save(out);
+		SaveSprite(out);
 		
 		if(neverDisabled)
 			out.Write("never disabled");
@@ -397,7 +404,7 @@ void Ship::Save(DataWriter &out) const
 		out.Write("position", position.X(), position.Y());
 		
 		for(const Point &point : enginePoints)
-			out.Write("engine", point.X(), point.Y());
+			out.Write("engine", 2. * point.X(), 2. * point.Y());
 		for(const Armament::Weapon &weapon : armament.Get())
 		{
 			const char *type = (weapon.IsTurret() ? "turret" : "gun");
@@ -411,8 +418,12 @@ void Ship::Save(DataWriter &out) const
 		{
 			double x = 2. * bay.point.X();
 			double y = 2. * bay.point.Y();
-			if(bay.direction)
-				out.Write(BAY_TYPE[bay.isFighter], x, y, BAY_DIRECTION[bay.direction]);
+			if(bay.side && bay.facing)
+				out.Write(BAY_TYPE[bay.isFighter], x, y, BAY_SIDE[bay.side], BAY_FACING[bay.facing]);
+			else if(bay.side)
+				out.Write(BAY_TYPE[bay.isFighter], x, y, BAY_SIDE[bay.side]);
+			else if(bay.facing)
+				out.Write(BAY_TYPE[bay.isFighter], x, y, BAY_FACING[bay.facing]);
 			else
 				out.Write(BAY_TYPE[bay.isFighter], x, y);
 		}
@@ -437,28 +448,6 @@ void Ship::Save(DataWriter &out) const
 			out.Write("parked");
 	}
 	out.EndChild();
-}
-
-
-
-const Animation &Ship::GetSprite() const
-{
-	return sprite;
-}
-
-
-
-// Get the ship's government.
-const Government *Ship::GetGovernment() const
-{
-	return government;
-}
-
-
-
-double Ship::Zoom() const
-{
-	return max(zoom, 0.);
 }
 
 
@@ -519,7 +508,7 @@ void Ship::Place(Point position, Point velocity, Angle angle)
 	ionization = 0.;
 	disruption = 0.;
 	slowness = 0.;
-	isInvisible = sprite.IsEmpty();
+	isInvisible = !HasSprite();
 	jettisoned.clear();
 	hyperspaceCount = 0;
 	hyperspaceType = 0;
@@ -527,7 +516,7 @@ void Ship::Place(Point position, Point velocity, Angle angle)
 	targetShip.reset();
 	shipToAssist.reset();
 	if(government)
-		sprite.SetSwizzle(government->GetSwizzle());
+		SetSwizzle(government->GetSwizzle());
 }
 
 
@@ -561,7 +550,7 @@ void Ship::SetPlanet(const Planet *planet)
 void Ship::SetGovernment(const Government *government)
 {
 	if(government)
-		sprite.SetSwizzle(government->GetSwizzle());
+		SetSwizzle(government->GetSwizzle());
 	this->government = government;
 }
 
@@ -752,8 +741,9 @@ bool Ship::Move(list<Effect> &effects, list<Flotsam> &flotsam)
 			if(!forget)
 			{
 				const Effect *effect = GameData::Effects().Get("smoke");
-				double scale = .015 * (sprite.Width() + sprite.Height()) + .5;
-				double radius = .1 * (sprite.Width() + sprite.Height());
+				double size = Width() + Height();
+				double scale = .03 * size + .5;
+				double radius = .2 * size;
 				int debrisCount = attributes.Get("mass") * .07;
 				for(int i = 0; i < debrisCount; ++i)
 				{
@@ -810,23 +800,7 @@ bool Ship::Move(list<Effect> &effects, list<Flotsam> &flotsam)
 		// Create the particle effects for the jump drive. This may create 100
 		// or more particles per ship per turn at the peak of the jump.
 		if(hasJumpDrive && !forget)
-		{
-			int count = hyperspaceCount;
-			count *= sprite.Width() * sprite.Height();
-			count /= 160000;
-			const Effect *effect = GameData::Effects().Get("jump drive");
-			while(--count >= 0)
-			{
-				Point point((Random::Real() - .5) * .5 * sprite.Width(),
-					(Random::Real() - .5) * .5 * sprite.Height());
-				if(sprite.GetMask(0).Contains(point, Angle()))
-				{
-					effects.push_back(*effect);
-					Point vel = velocity + 5. * Angle::Random(360.).Unit();
-					effects.back().Place(angle.Rotate(point) + position, vel, angle);
-				}
-			}
-		}
+			CreateSparks(effects, "jump drive", hyperspaceCount * Width() * Height() * .000006);
 		
 		if(hyperspaceCount == HYPER_C)
 		{
@@ -1211,8 +1185,7 @@ void Ship::Launch(list<shared_ptr<Ship>> &ships)
 		{
 			ships.push_back(bay.ship);
 			double maxV = bay.ship->MaxVelocity();
-			Angle launchAngle = angle;
-			launchAngle += Angle(90. * ((bay.direction == Bay::RIGHT) - (bay.direction == Bay::LEFT)));
+			Angle launchAngle = angle + BAY_ANGLE[bay.facing];
 			Point v = velocity + (.3 * maxV) * launchAngle.Unit() + (.2 * maxV) * Angle::Random().Unit();
 			bay.ship->Place(position + angle.Rotate(bay.point), v, launchAngle);
 			bay.ship->SetSystem(currentSystem);
@@ -1567,35 +1540,6 @@ bool Ship::IsThrusting() const
 const vector<Point> &Ship::EnginePoints() const
 {
 	return enginePoints;
-}
-
-
-
-const Point &Ship::Position() const
-{
-	return position;
-}
-
-
-
-const Point &Ship::Velocity() const
-{
-	return velocity;
-}
-
-
-
-const Angle &Ship::Facing() const
-{
-	return angle;
-}
-
-
-
-// Get the facing unit vector times the scale factor.
-Point Ship::Unit() const
-{
-	return angle.Unit() * (Zoom() * .5);
 }
 
 
@@ -2013,6 +1957,25 @@ const vector<Ship::Bay> &Ship::Bays() const
 
 
 
+// Adjust the positions and velocities of any visible carried fighters or
+// drones. If any are visible, return true.
+bool Ship::PositionFighters() const
+{
+	bool hasVisible = false;
+	for(const Bay &bay : bays)
+		if(bay.ship && bay.side)
+		{
+			hasVisible = true;
+			bay.ship->position = angle.Rotate(bay.point) * Zoom() + position;
+			bay.ship->velocity = velocity;
+			bay.ship->angle = angle + BAY_ANGLE[bay.facing];
+			bay.ship->zoom = zoom;
+		}
+	return hasVisible;
+}
+
+
+
 CargoHold &Ship::Cargo()
 {
 	return cargo;
@@ -2364,15 +2327,15 @@ double Ship::AddShields(double rate)
 
 void Ship::CreateExplosion(list<Effect> &effects, bool spread)
 {
-	if(sprite.IsEmpty() || !sprite.GetMask(0).IsLoaded() || explosionEffects.empty())
+	if(!HasSprite() || !GetMask().IsLoaded() || explosionEffects.empty())
 		return;
 	
 	// Bail out if this loops enough times, just in case.
 	for(int i = 0; i < 10; ++i)
 	{
-		Point point((Random::Real() - .5) * .5 * sprite.Width(),
-			(Random::Real() - .5) * .5 * sprite.Height());
-		if(sprite.GetMask(0).Contains(point, Angle()))
+		Point point((Random::Real() - .5) * Width(),
+			(Random::Real() - .5) * Height());
+		if(GetMask().Contains(point, Angle()))
 		{
 			// Pick an explosion.
 			int type = Random::Int(explosionTotal);
@@ -2387,7 +2350,7 @@ void Ship::CreateExplosion(list<Effect> &effects, bool spread)
 			Point effectVelocity = velocity;
 			if(spread)
 			{
-				double scale = .02 * (sprite.Width() + sprite.Height());
+				double scale = .04 * (Width() + Height());
 				effectVelocity += Angle::Random().Unit() * (scale * Random::Real());
 			}
 			effects.back().Place(angle.Rotate(point) + position, effectVelocity, angle);
@@ -2406,8 +2369,8 @@ void Ship::CreateSparks(list<Effect> &effects, const string &name, double amount
 		return;
 	
 	// Limit the number of sparks, depending on the size of the sprite.
-	amount = min(amount, sprite.Width() * sprite.Height() * .0001);
-
+	amount = min(amount, Width() * Height() * .0006);
+	
 	const Effect *effect = GameData::Effects().Get(name);
 	while(true)
 	{
@@ -2415,9 +2378,9 @@ void Ship::CreateSparks(list<Effect> &effects, const string &name, double amount
 		if(amount <= 0.)
 			break;
 		
-		Point point((Random::Real() - .5) * .5 * sprite.Width(),
-			(Random::Real() - .5) * .5 * sprite.Height());
-		if(sprite.GetMask(0).Contains(point, Angle()))
+		Point point((Random::Real() - .5) * Width(),
+			(Random::Real() - .5) * Height());
+		if(GetMask().Contains(point, Angle()))
 		{
 			effects.push_back(*effect);
 			effects.back().Place(angle.Rotate(point) + position, velocity, angle);
