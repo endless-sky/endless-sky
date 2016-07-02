@@ -17,6 +17,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Point.h"
 
 #include <cstdint>
+#include <string>
 #include <vector>
 
 class ImageBuffer;
@@ -31,7 +32,9 @@ class ImageBuffer;
 // working with the graphics a lot simpler.
 class Sprite {
 public:
-	Sprite();
+	Sprite(const std::string &name = "");
+	
+	const std::string &Name() const;
 	
 	void AddFrame(int frame, ImageBuffer *image, Mask *mask, bool is2x);
 	// Free up all textures loaded for this sprite.
@@ -50,6 +53,8 @@ public:
 	
 	
 private:
+	std::string name;
+	
 	std::vector<uint32_t> textures;
 	std::vector<uint32_t> textures2x;
 	std::vector<Mask> masks;

@@ -26,12 +26,15 @@ namespace {
 
 const Sprite *SpriteSet::Get(const string &name)
 {
-	return &sprites[name];
+	return Modify(name);
 }
 
 
 
 Sprite *SpriteSet::Modify(const string &name)
 {
-	return &sprites[name];
+	auto it = sprites.find(name);
+	if(it == sprites.end())
+		it = sprites.insert(make_pair(name, Sprite(name))).first;
+	return &it->second;
 }
