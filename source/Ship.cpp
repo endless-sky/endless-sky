@@ -1029,7 +1029,7 @@ bool Ship::Move(list<Effect> &effects, list<Flotsam> &flotsam)
 				if(!forget)
 					for(const Point &point : enginePoints)
 					{
-						Point pos = angle.Rotate(point) * .5 * Zoom() + position;
+						Point pos = angle.Rotate(point) * Zoom() + position;
 						for(const auto &it : attributes.AfterburnerEffects())
 							for(int i = 0; i < it.second; ++i)
 							{
