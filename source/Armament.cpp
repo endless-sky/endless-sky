@@ -159,7 +159,7 @@ void Armament::Weapon::Fire(Ship &ship, list<Projectile> &projectiles, list<Effe
 		
 		p += steps * v;
 		
-		aim = Angle(TO_DEG * atan2(p.X(), -p.Y()));
+		aim = Angle(p);
 	}
 	
 	projectiles.emplace_back(ship, start, aim, outfit);
@@ -197,7 +197,7 @@ bool Armament::Weapon::FireAntiMissile(Ship &ship, const Projectile &projectile,
 		return false;
 	
 	// Firing effects are displayed at the anti-missile that just fired.
-	Angle aim = TO_DEG * atan2(offset.X(), -offset.Y());
+	Angle aim(offset);
 	for(const auto &eit : outfit->FireEffects())
 		for(int i = 0; i < eit.second; ++i)
 		{
