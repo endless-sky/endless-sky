@@ -37,17 +37,3 @@ mission "Assisting Hai"
 			`Knowing you risked your life to save the <origin>, the pilot gives you <payment>.`
 				decline
 	destination Hai-home
-	
-mission "Assisting Quarg"
-	assisting
-	repeat
-	to offer
-		random < 75
-	source
-		government Quarg
-	on offer
-		payment 1000000
-		conversation
-			`The Quarg inside the <origin> gratefully pay you <payment>, knowing that the enemies outside your ships are very powerful, and it is no small task to help an abandoned ship.`
-				decline
-	destination Lagrange
