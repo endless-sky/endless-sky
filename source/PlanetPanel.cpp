@@ -113,6 +113,8 @@ void PlanetPanel::Draw() const
 		info.SetCondition("has shipyard");
 	if(hasShip && planet.HasOutfitter() && hasAccess)
 		info.SetCondition("has outfitter");
+	if(planet.HasSpaceport() && player.MissionToOffer(Mission::SPACEPORT))
+		info.SetCondition("mission alert");
 	
 	ui.Draw(info);
 	

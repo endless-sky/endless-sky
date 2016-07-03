@@ -17,6 +17,7 @@ color "hull" .70 .62 .43 .75
 color "heat" .70 .43 .43 .75
 color "energy" .6 .6 .6 .75
 color "fuel" .70 .62 .43 .75
+color "alert"  .55 .2 .0 0.
 
 color "available job" .9 .6 0. 1.
 color "available back" .5 .3 0. .5
@@ -401,6 +402,12 @@ interface "planet"
 		align left
 	button p -400 270
 		size 140 40
+	
+	if "mission alert"
+	label "( ! )" -340 262
+		size 18
+		color alert
+		align right
 	
 	if "has ship"
 	sprite "ui/planet dialog button" 280 270
