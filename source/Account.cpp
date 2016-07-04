@@ -243,6 +243,14 @@ void Account::AddBonus(int64_t bonus)
 	mortgages.emplace_back(bonus, 1000, 60);
 }
 
+void Account::AddMissionDebt(int64_t principal, double interest, int term)
+{
+	// A negative isn't a debt, use the player's creditScore
+	if(interest < 0.)
+		interest = (600 - creditScore / 2) * .00001;
+	mortgages.emplace_back(principal, interest, term, "Mission");
+}
+
 
 
 int64_t Account::Prequalify() const
