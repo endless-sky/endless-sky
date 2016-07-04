@@ -219,6 +219,19 @@ void Ship::Load(const DataNode &node)
 		else if(child.Token(0) != "actions")
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
+	
+	// Check that all the "equipped" outfits actually match what your ship has.
+	for(auto &it : equipped)
+	{
+		int excess = it.second - outfits[it.first];
+		if(excess > 0)
+		{
+			// If there are more hardpoints specifying this outfit than there
+			// are instances of this outfit installed, remove some of them.
+			armament.Add(it.first, -excess);
+			it.second -= excess;
+		}
+	}
 }
 
 
@@ -258,7 +271,7 @@ void Ship::FinishLoading()
 			description = base->description;
 		
 		bool hasHardpoints = false;
-		for(const Armament::Weapon &weapon : armament.Get())
+		for(const Hardpoint &weapon : armament.Get())
 			if(weapon.GetPoint())
 				hasHardpoints = true;
 		
@@ -338,7 +351,7 @@ void Ship::FinishLoading()
 	
 	// Figure out how far from center the farthest weapon it.
 	weaponRadius = 0.;
-	for(const Armament::Weapon &weapon : armament.Get())
+	for(const Hardpoint &weapon : armament.Get())
 		weaponRadius = max(weaponRadius, weapon.GetPoint().Length());
 	
 	// Recharge, but don't recharge crew or fuel if not in the parent's system.
@@ -405,7 +418,7 @@ void Ship::Save(DataWriter &out) const
 		
 		for(const Point &point : enginePoints)
 			out.Write("engine", 2. * point.X(), 2. * point.Y());
-		for(const Armament::Weapon &weapon : armament.Get())
+		for(const Hardpoint &weapon : armament.Get())
 		{
 			const char *type = (weapon.IsTurret() ? "turret" : "gun");
 			if(weapon.GetOutfit())
@@ -1299,7 +1312,7 @@ bool Ship::Fire(list<Projectile> &projectiles, list<Effect> &effects)
 	
 	antiMissileRange = 0.;
 	
-	const vector<Armament::Weapon> &weapons = armament.Get();
+	const vector<Hardpoint> &weapons = armament.Get();
 	for(unsigned i = 0; i < weapons.size(); ++i)
 	{
 		const Outfit *outfit = weapons[i].GetOutfit();
@@ -1327,7 +1340,7 @@ bool Ship::FireAntiMissile(const Projectile &projectile, list<Effect> &effects)
 	if(CannotAct())
 		return false;
 	
-	const vector<Armament::Weapon> &weapons = armament.Get();
+	const vector<Hardpoint> &weapons = armament.Get();
 	for(unsigned i = 0; i < weapons.size(); ++i)
 	{
 		const Outfit *outfit = weapons[i].GetOutfit();
@@ -2081,7 +2094,7 @@ Armament &Ship::GetArmament()
 
 
 
-const vector<Armament::Weapon> &Ship::Weapons() const
+const vector<Hardpoint> &Ship::Weapons() const
 {
 	return armament.Get();
 }

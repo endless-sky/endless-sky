@@ -565,7 +565,7 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship, const list<shared_ptr<Ship>> &
 	// If this ship is not armed, do not make it fight.
 	double minRange = numeric_limits<double>::infinity();
 	double maxRange = 0.;
-	for(const Armament::Weapon &weapon : ship.Weapons())
+	for(const Hardpoint &weapon : ship.Weapons())
 		if(weapon.GetOutfit() && !weapon.IsAntiMissile())
 		{
 			minRange = min(minRange, weapon.GetOutfit()->Range());
@@ -1221,7 +1221,7 @@ void AI::Attack(Ship &ship, Command &command, const Ship &target)
 	double shortestRange = 4000.;
 	bool isArmed = false;
 	bool hasAmmo = false;
-	for(const Armament::Weapon &weapon : ship.Weapons())
+	for(const Hardpoint &weapon : ship.Weapons())
 	{
 		const Outfit *outfit = weapon.GetOutfit();
 		if(outfit && !weapon.IsAntiMissile())
@@ -1492,7 +1492,7 @@ Point AI::TargetAim(const Ship &ship)
 	if(!target)
 		return result;
 	
-	for(const Armament::Weapon &weapon : ship.Weapons())
+	for(const Hardpoint &weapon : ship.Weapons())
 	{
 		const Outfit *outfit = weapon.GetOutfit();
 		if(!outfit || weapon.IsHoming() || weapon.IsTurret())
@@ -1557,7 +1557,7 @@ Command AI::AutoFire(const Ship &ship, const list<shared_ptr<Ship>> &ships, bool
 	
 	// Find the longest range of any of your non-homing weapons.
 	double maxRange = 0.;
-	for(const Armament::Weapon &weapon : ship.Weapons())
+	for(const Hardpoint &weapon : ship.Weapons())
 		if(weapon.IsReady() && !weapon.IsHoming() && (secondary || !weapon.GetOutfit()->Icon()))
 			maxRange = max(maxRange, weapon.GetOutfit()->Range());
 	// Extend the weapon range slightly to account for velocity differences.
@@ -1575,7 +1575,7 @@ Command AI::AutoFire(const Ship &ship, const list<shared_ptr<Ship>> &ships, bool
 				&& target != currentTarget)
 			enemies.push_back(target);
 	
-	for(const Armament::Weapon &weapon : ship.Weapons())
+	for(const Hardpoint &weapon : ship.Weapons())
 	{
 		++index;
 		// Skip weapons that are not ready to fire. Also skip homing weapons if
@@ -1958,7 +1958,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, const list<shared_ptr<
 		if(keyHeld.Has(Command::PRIMARY))
 		{
 			int index = 0;
-			for(const Armament::Weapon &weapon : ship.Weapons())
+			for(const Hardpoint &weapon : ship.Weapons())
 			{
 				const Outfit *outfit = weapon.GetOutfit();
 				if(outfit && !outfit->Icon())
@@ -1972,7 +1972,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, const list<shared_ptr<
 		if(keyHeld.Has(Command::SECONDARY))
 		{
 			int index = 0;
-			for(const Armament::Weapon &weapon : ship.Weapons())
+			for(const Hardpoint &weapon : ship.Weapons())
 			{
 				const Outfit *outfit = weapon.GetOutfit();
 				if(outfit && outfit == player.SelectedWeapon())
