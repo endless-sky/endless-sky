@@ -176,13 +176,13 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 	{
 		if(playerDied)
 			player.Die(true);
-		if(crewBonus)
+		if(deathBenefits)
 		{
-			Messages::Add(("You must pay " + Format::Number(crewBonus)
+			Messages::Add(("You must pay " + Format::Number(deathBenefits)
 				+ " credits in death benefits for the ")
 				+ ((casualties > 1) ? "families of your dead crew members."
 					: "family of your dead crew member."));
-			player.Accounts().AddBonus(crewBonus);
+			player.Accounts().AddDeathBenefits(deathBenefits);
 		}
 		GetUI()->Pop(this);
 	}
@@ -338,7 +338,7 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 				isCapturing = false;
 				
 				int64_t bonus = (victim->Cost() * casualties) / (casualties + 2);
-				crewBonus += bonus;
+				deathBenefits += bonus;
 				
 				ShipEvent event(you, victim, ShipEvent::CAPTURE);
 				player.HandleEvent(event, GetUI());
@@ -556,13 +556,13 @@ void BoardingPanel::Plunder::Take(int count)
 
 void BoardingPanel::Plunder::UpdateStrings()
 {
-	int mass = static_cast<int>(UnitMass());
+	double mass = UnitMass();
 	if(!outfit)
 		size = to_string(count);
 	else if(count == 1)
-		size = to_string(mass);
+		size = Format::Number(mass);
 	else
-		size = to_string(count) + " x " + to_string(mass);
+		size = to_string(count) + " x " + Format::Number(mass);
 	
 	value = Format::Number(unitValue * count);
 }

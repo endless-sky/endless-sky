@@ -102,6 +102,9 @@ void Files::Init(const char * const *argv)
 		// Find the path to the resource directory. This will depend on the
 		// operating system, and can be overridden by a command line argument.
 		char *str = SDL_GetBasePath();
+		if(!str)
+			throw runtime_error("Unable to get path to resource directory!");
+		
 		resources = str;
 		SDL_free(str);
 	}
@@ -144,6 +147,9 @@ void Files::Init(const char * const *argv)
 		// Find the path to the directory for saved games (and create it if it does
 		// not already exist). This can also be overridden in the command line.
 		char *str = SDL_GetPrefPath("endless-sky", "saves");
+		if(!str)
+			throw runtime_error("Unable to get path to saves directory!");
+		
 		saves = str;
 #if defined _WIN32
 		FixWindowsSlashes(saves);
