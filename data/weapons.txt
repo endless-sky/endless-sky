@@ -773,7 +773,7 @@ outfit "Gatling Gun"
 		"submunition" "gbullet"
 		"cluster"
 		"hit effect" "bullet impact"
-	description `When Dr. Richard J. Gatling invented his early rapid fire gun in the mid-19th century, he called it "Peacemaker", convinced that it was so destructive that no government would ever send people to face them again. Over a millennia (and hundreds of wars) later, the basic design is still used, a testament to its fundamentally robust design (and the inability of guns to prevent wars). While capable of a fairly quick rate of fire, the gun needs to cool down for twice as much time as it fires, and can only sustain a maximum of three seconds of fire.`
+	description `When Dr. Richard J. Gatling invented his early rapid fire gun in the mid-19th century, he called it "Peacemaker", convinced that it was so destructive that no government would ever send people to face them again. Over a millennia (and hundreds of wars) later, the basic design is still used, a testament to its fundamentally robust design (and the inability of guns to prevent wars). While capable of a fairly quick rate of fire, this gun needs to cool down for twice as much time as it fires, and can only sustain a maximum of three seconds of sustained fire.`
 
 outfit "gbullet"
 	weapon
