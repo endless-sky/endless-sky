@@ -32,6 +32,8 @@ ship "Sparrow" "Sparrow (Patrol)"
 		"Chipmunk Plasma Steering"
 		"Hyperdrive"
 
+
+
 ship "Raven" "Raven (Afterburner)"
 	outfits
 		"Heavy Laser" 4
@@ -327,6 +329,7 @@ ship "Fury" "Fury (Laser)"
 		"Chipmunk Plasma Thruster"
 		"A125 Atomic Steering"
 		"Hyperdrive"
+
 
 
 ship "Hawk" "Hawk (Speedy)"
