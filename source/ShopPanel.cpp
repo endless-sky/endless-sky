@@ -179,7 +179,7 @@ void ShopPanel::DrawSidebar() const
 		font.Draw(space, right, bright);
 		point.Y() += 20.;
 	}
-	maxSideScroll = point.Y() + sideScroll - Screen::Bottom() + 70;
+	maxSideScroll = point.Y() + sideScroll - Screen::Bottom() + BUTTON_HEIGHT;
 	maxSideScroll = max(0, maxSideScroll);
 	
 	PointerShader::Draw(Point(Screen::Right() - 10, Screen::Top() + 10),
@@ -193,11 +193,10 @@ void ShopPanel::DrawSidebar() const
 void ShopPanel::DrawButtons() const
 {
 	// The last 70 pixels on the end of the side panel are for the buttons:
+	Point buttonSize(SIDE_WIDTH, BUTTON_HEIGHT);
+	FillShader::Fill(Screen::BottomRight() - .5 * buttonSize, buttonSize, Color(.2, 1.));
 	FillShader::Fill(
-		Point(Screen::Right() - SIDE_WIDTH / 2, Screen::Bottom() - 35),
-		Point(SIDE_WIDTH, 70), Color(.2, 1.));
-	FillShader::Fill(
-		Point(Screen::Right() - SIDE_WIDTH / 2, Screen::Bottom() - 70),
+		Point(Screen::Right() - SIDE_WIDTH / 2, Screen::Bottom() - BUTTON_HEIGHT),
 		Point(SIDE_WIDTH, 1), Color(.3, 1.));
 	
 	const Font &font = FontSet::Get(14);
@@ -493,8 +492,13 @@ bool ShopPanel::Click(int x, int y)
 {
 	dragShip = nullptr;
 	// Handle clicks on the buttons.
-	if(x >= Screen::Right() - SIDE_WIDTH && y >= Screen::Bottom() - 70)
+	if(x >= Screen::Right() - SIDE_WIDTH && y >= Screen::Bottom() - BUTTON_HEIGHT)
 	{
+		// Make sure the click was actually within the bottons, not the space
+		// above them that shows your credits or the padding below them.
+		if(y < Screen::Bottom() - 40 || y >= Screen::Bottom() - 10)
+			return true;
+		
 		x -= Screen::Right() - SIDE_WIDTH;
 		if(x < 80)
 			DoKey(SDLK_b);
@@ -511,7 +515,7 @@ bool ShopPanel::Click(int x, int y)
 	{
 		if(y < Screen::Top() + 20)
 			return Scroll(0, 4);
-		if(y < Screen::Bottom() - 70 && y >= Screen::Bottom() - 90)
+		if(y < Screen::Bottom() - BUTTON_HEIGHT && y >= Screen::Bottom() - BUTTON_HEIGHT - 20)
 			return Scroll(0, -4);
 	}
 	else if(x >= Screen::Right() - SIDE_WIDTH - 20 && x < Screen::Right() - SIDE_WIDTH)
@@ -580,8 +584,17 @@ bool ShopPanel::Click(int x, int y)
 bool ShopPanel::Hover(int x, int y)
 {
 	Point point(x, y);
-	shipInfo.Hover(point);
-	outfitInfo.Hover(point);
+	// Check that the point is not in the button area.
+	if(x >= Screen::Right() - SIDE_WIDTH && y >= Screen::Bottom() - BUTTON_HEIGHT)
+	{
+		shipInfo.ClearHover();
+		outfitInfo.ClearHover();
+	}
+	else
+	{
+		shipInfo.Hover(point);
+		outfitInfo.Hover(point);
+	}
 	
 	dragMain = (x < Screen::Right() - SIDE_WIDTH);
 	return true;

@@ -44,6 +44,7 @@ public:
 	
 	// Update the location where the mouse is hovering.
 	void Hover(const Point &point);
+	void ClearHover();
 	
 	
 protected:
@@ -68,6 +69,7 @@ protected:
 	Point hoverPoint;
 	mutable std::string hover;
 	mutable int hoverCount = 0;
+	bool hasHover = false;
 	mutable WrappedText hoverText;
 };
 

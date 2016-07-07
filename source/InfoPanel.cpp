@@ -385,7 +385,7 @@ bool InfoPanel::Hover(double x, double y)
 
 	hoverPoint = Point(x, y);
 	
-	const vector<Armament::Weapon> &weapons = (**shipIt).Weapons();
+	const vector<Hardpoint> &weapons = (**shipIt).Weapons();
 	hover = -1;
 	for(const auto &zone : zones)
 		if(zone.Contains(hoverPoint) && (!showShip || selected == -1
@@ -730,7 +730,7 @@ void InfoPanel::DrawShip() const
 	{
 		for(unsigned i = 0; i < ship.Weapons().size(); ++i)
 		{
-			const Armament::Weapon &weapon = ship.Weapons()[i];
+			const Hardpoint &weapon = ship.Weapons()[i];
 			if(weapon.IsTurret() == isTurret)
 			{
 				if(static_cast<int>(i) == hover)

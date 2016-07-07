@@ -487,7 +487,6 @@ outfit "Korath Slicer"
 	"outfit space" -46
 	"weapon capacity" -46
 	"gun ports" -1
-	"required crew" 1
 	weapon
 		sprite "projectile/slicer"
 			"frame rate" 6
