@@ -221,17 +221,18 @@ void Ship::Load(const DataNode &node)
 	}
 	
 	// Check that all the "equipped" outfits actually match what your ship has.
-	for(auto &it : equipped)
-	{
-		int excess = it.second - outfits[it.first];
-		if(excess > 0)
+	if(!outfits.empty())
+		for(auto &it : equipped)
 		{
-			// If there are more hardpoints specifying this outfit than there
-			// are instances of this outfit installed, remove some of them.
-			armament.Add(it.first, -excess);
-			it.second -= excess;
+			int excess = it.second - outfits[it.first];
+			if(excess > 0)
+			{
+				// If there are more hardpoints specifying this outfit than there
+				// are instances of this outfit installed, remove some of them.
+				armament.Add(it.first, -excess);
+				it.second -= excess;
+			}
 		}
-	}
 }
 
 
