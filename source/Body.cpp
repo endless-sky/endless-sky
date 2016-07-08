@@ -160,7 +160,7 @@ void Body::LoadSprite(const DataNode &node)
 	// to do that unless it is repeating endlessly.
 	for(const DataNode &child : node)
 	{
-		if(child.Token(0) == "frame rate" && child.Size() >= 2 && child.Value(1) > 0.)
+		if(child.Token(0) == "frame rate" && child.Size() >= 2 && child.Value(1) >= 0.)
 			frameRate = child.Value(1) / 60.;
 		else if(child.Token(0) == "frame time" && child.Size() >= 2 && child.Value(1) > 0.)
 			frameRate = 1. / child.Value(1);
