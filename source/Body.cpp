@@ -75,6 +75,14 @@ double Body::Height() const
 
 
 
+// Get the farthest a part of this sprite can be from its center.
+double Body::Radius() const
+{
+	return .5 * Point(Width(), Height()).Length();
+}
+
+
+
 // Which color swizzle should be applied to the sprite?
 int Body::GetSwizzle() const
 {
