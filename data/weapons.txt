@@ -778,8 +778,9 @@ outfit "Gatling Gun"
 outfit "gbullet"
 	weapon
 		sprite "projectile/bullet"
+			"delay" 5
 			"random start frame"
-			"frame rate" 1
+			"frame rate" .01
 		"random velocity" 8
 		"lifetime" 20
 		"random lifetime" 5
