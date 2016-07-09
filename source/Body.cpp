@@ -25,7 +25,7 @@ using namespace std;
 
 
 
-// Constructor.
+// Constructor, based on a Sprite.
 Body::Body(const Sprite *sprite, Point position, Point velocity, Angle facing, double zoom)
 	: position(position), velocity(velocity), angle(facing), zoom(zoom), sprite(sprite), randomize(true)
 {
@@ -33,6 +33,7 @@ Body::Body(const Sprite *sprite, Point position, Point velocity, Angle facing, d
 
 
 
+// Constructor, based on the animation from another Body object.
 Body::Body(const Body &sprite, Point position, Point velocity, Angle facing, double zoom)
 {
 	*this = sprite;
@@ -60,7 +61,7 @@ const Sprite *Body::GetSprite() const
 
 
 
-// Get the dimensions of the sprite.
+// Get the width of this object, in world coordinates (i.e. taking zoom into account).
 double Body::Width() const
 {
 	return sprite ? (.5 * zoom) * sprite->Width() : 0.;
@@ -68,6 +69,7 @@ double Body::Width() const
 
 
 
+// Get the height of this object, in world coordinates (i.e. taking zoom into account).
 double Body::Height() const
 {
 	return sprite ? (.5 * zoom) * sprite->Height() : 0.;
@@ -91,7 +93,8 @@ int Body::GetSwizzle() const
 
 
 
-// Get the sprite and mask for the given time step.
+// Get the sprite for the given time step. If no time step is given, this will
+// return the frame from the most recently given step.
 Body::Frame Body::GetFrame(int step) const
 {
 	SetStep(step);
@@ -100,6 +103,8 @@ Body::Frame Body::GetFrame(int step) const
 
 
 
+// Get the mask for the given time step. If no time step is given, this will
+// return the mask from the most recently given step.
 const Mask &Body::GetMask(int step) const
 {
 	static const Mask empty;
@@ -110,7 +115,7 @@ const Mask &Body::GetMask(int step) const
 
 
 
-// Positional attributes.
+// Position, in world coordinates (zero is the system center).
 const Point &Body::Position() const
 {
 	return position;
@@ -118,6 +123,7 @@ const Point &Body::Position() const
 
 
 
+// Velocity, in pixels per second.
 const Point &Body::Velocity() const
 {
 	return velocity;
@@ -125,6 +131,7 @@ const Point &Body::Velocity() const
 
 
 
+// Direction this Body is facing in.
 const Angle &Body::Facing() const
 {
 	return angle;
@@ -132,6 +139,8 @@ const Angle &Body::Facing() const
 
 
 
+// Unit vector in the direction this body is facing. This represents the scale
+// and transform that should be applied to the sprite before drawing it.
 Point Body::Unit() const
 {
 	return angle.Unit() * (.5 * Zoom());
@@ -139,6 +148,7 @@ Point Body::Unit() const
 
 
 
+// Zoom factor. THis controls how big the sprite should be drawn.
 double Body::Zoom() const
 {
 	return max(zoom, 0.);
@@ -155,7 +165,7 @@ const Government *Body::GetGovernment() const
 
 
 
-// Sprite serialization.
+// Load the sprite specification, including all animation attributes.
 void Body::LoadSprite(const DataNode &node)
 {
 	if(node.Size() < 2)
@@ -195,6 +205,7 @@ void Body::LoadSprite(const DataNode &node)
 
 
 
+// Save the sprite specification, including all animation attributes.
 void Body::SaveSprite(DataWriter &out) const
 {
 	if(!sprite)
@@ -235,6 +246,8 @@ void Body::SetSwizzle(int swizzle)
 
 
 
+// Set the frame rate of the sprite. This is used for objects that just specify
+// a sprite instead of a full animation data structure.
 void Body::SetFrameRate(double framesPerSecond)
 {
 	frameRate = framesPerSecond / 60.;
@@ -242,6 +255,7 @@ void Body::SetFrameRate(double framesPerSecond)
 
 
 
+// Add the given amount to the frame rate.
 void Body::AddFrameRate(double framesPerSecond)
 {
 	frameRate += framesPerSecond / 60.;
@@ -249,10 +263,15 @@ void Body::AddFrameRate(double framesPerSecond)
 
 
 
+// Set the current time step.
 void Body::SetStep(int step) const
 {
-	if(step < 0 || !sprite || !sprite->Frames())
+	// If the step is negative or there is no sprite, do nothing. This updates
+	// and caches the mask and the frame so that if further queries are made at
+	// this same time step, we don't need to redo the calculations.
+	if(step < 0 || !sprite || !sprite->Frames() || step == currentStep)
 		return;
+	currentStep = step;
 	
 	// If the sprite only has one frame, no need to animate anything.
 	int frames = sprite->Frames();
@@ -287,18 +306,27 @@ void Body::SetStep(int step) const
 	int secondIndex = 0;
 	if(!rewind)
 	{
+		// This is not a rewinding sprite. It is either playing once through, or
+		// looping from start to end over and over.
 		if(!repeat && step >= frames - 1)
 		{
+			// If the sprite is not repeating and it has reached the end, just
+			// stay on the last frame.
 			firstIndex = frames - 1;
 			frame.fade = 0.f;
 		}
 		else
 		{
+			// Figure out which animation step we're on. If the sprite has a
+			// delay and all the non-delay frames have been shown, show the
+			// first frame until the delay is over.
 			step %= (frames + delay);
 			if(step >= frames)
 				frame.fade = 0.f;
 			else
 			{
+				// The Sprite class automatically wraps a step that is out of
+				// bounds, so if steps == frames, (steps + 1) maps to frame 0.
 				firstIndex = step;
 				secondIndex = step + 1;
 			}
@@ -306,10 +334,14 @@ void Body::SetStep(int step) const
 	}
 	else
 	{
+		// This sprite "rewinds" - that is, it plays forward, then in reverse,
+		// then possibly delays for some number of frames, then may repeat.
 		if(!repeat && step >= 2 * (frames - 1))
 			frame.fade = 0.f;
 		else
 		{
+			// The first and last frame only get shown for one step. All the
+			// others get shown twice, and a delay may also be added, so:
 			step %= 2 * (frames - 1) + delay;
 			if(step < frames - 1)
 			{
@@ -326,6 +358,9 @@ void Body::SetStep(int step) const
 				frame.fade = 0.f;
 		}
 	}
+	// Cache the frame and mask info so as long as the step stays the same, none
+	// of the above calculations need to be redone. This is important for objects
+	// whose masks may be queried many times for collision tests.
 	frame.first = sprite->Texture(firstIndex);
 	frame.second = sprite->Texture(secondIndex);
 	mask = &sprite->GetMask(frame.fade > .5f ? secondIndex : firstIndex);
