@@ -385,6 +385,6 @@ effect "bullet impact"
 	sprite "effect/bullet impact"
 		"no repeat"
 		"frame rate" 60
-	"lifetime" 5
+	"lifetime" 8
 	"random angle" 40
 	"velocity scale" -.05
