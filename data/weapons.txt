@@ -780,7 +780,7 @@ outfit "gbullet"
 		sprite "projectile/bullet"
 			"delay" 5
 			"random start frame"
-			"frame rate" .01
+			"frame rate" 0
 		"random velocity" 8
 		"lifetime" 20
 		"random lifetime" 5
