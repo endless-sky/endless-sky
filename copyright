@@ -34,6 +34,13 @@ License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license).
 
 Files:
+ images/outfit/gat*
+ images/outfit/bullet*
+Copyright: Maximilian Korber
+License: CC-BY-SA-4.0
+
+Files:
+ images/projectile/tinyflare*
  images/outfit/*steering?hai*
  images/outfit/*thruster?hai*
  images/outfit/tiny?ion?engines*
@@ -51,9 +58,22 @@ Files:
 Copyright: Iaz Poolar
 License: CC-BY-SA-4.0
 
+Files:
+ images/projectile/bullet*
+ images/outfit/bullet?impact*
+Copyright: Iaz Poolar
+License: CC-BY-SA-4.0
+Comment: Derived from works by Jonathan Steck derived from works by Michael Zahniser (under the same license).
+
 Files: images/ship/vanguard*
 Copyright: Nate Graham <pointedstick@zoho.com>
 License: CC-BY-SA-4.0
+
+Files:
+ images/icon/gat*
+Copyright: Jonathan Steck
+License: CC-BY-SA-4.0
+Comment: Derived from works by Maximilian Korber (under the same license).
 
 Files: images/outfit/*photovoltaic*
 Copyright: Nick Barry (github.com/itsnickbarry)
