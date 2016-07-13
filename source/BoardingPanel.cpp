@@ -53,7 +53,7 @@ namespace {
 // Constructor.
 BoardingPanel::BoardingPanel(PlayerInfo &player, const shared_ptr<Ship> &victim)
 	: player(player), you(player.FlagshipPtr()), victim(victim),
-	attackOdds(&*you, &*victim), defenseOdds(&*victim, &*you),
+	attackOdds(*you, *victim), defenseOdds(*victim, *you),
 	initialCrew(you->Crew())
 {
 	// The escape key should close this panel rather than bringing up the main menu.
