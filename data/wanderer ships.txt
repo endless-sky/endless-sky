@@ -80,8 +80,30 @@ ship "Flycatcher"
 	explode "small explosion" 20
 	description "Flycatcher drones are used by the Wanderers to keep their star systems safe. Rather than carrying weapons of its own, a stock Flycatcher just carries an anti-missile turret for defending other ships."
 
+#Drone variant to be sold to the player
+ship "Flycatcher" "Flycatcher (Drone)"
+	sprite "ship/flycatcher"
+	licenses
+		Wanderer
+	attributes
+		category "Drone"
+		"cost" 830000
+		"hull" 4700
+		"mass" 40
+		"drag" .6
+		"heat dissipation" .9
+		"outfit space" 86
+		"weapon capacity" 28
+		"engine capacity" 26
+		"automaton" 1
+		weapon
+			"blast radius" 10
+			"shield damage" 100
+			"hull damage" 150
+			"hit force" 250
 
 
+	
 ship "Summer Leaf"
 	sprite "ship/summer leaf"
 	licenses
