@@ -60,7 +60,8 @@ private:
 	std::shared_ptr<Panel> bank;
 	std::shared_ptr<Panel> spaceport;
 	std::shared_ptr<Panel> hiring;
-	Panel *selectedPanel;
+	Panel *selectedPanel = nullptr;
+	bool isDeparting = false;
 	
 	WrappedText text;
 };
