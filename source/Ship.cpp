@@ -2008,7 +2008,7 @@ const CargoHold &Ship::Cargo() const
 // Display box effects from jettisoning this much cargo.
 void Ship::Jettison(const string &commodity, int tons)
 {
-	cargo.Transfer(commodity, tons);
+	cargo.Remove(commodity, tons);
 	
 	static const int perBox = 5;
 	for( ; tons >= perBox; tons -= perBox)
@@ -2019,7 +2019,7 @@ void Ship::Jettison(const string &commodity, int tons)
 
 void Ship::Jettison(const Outfit *outfit, int count)
 {
-	cargo.Transfer(outfit, count);
+	cargo.Remove(outfit, count);
 	
 	double mass = outfit->Get("mass");
 	static const int perBox = (mass <= 0.) ? count : (mass > 5.) ? 1 : static_cast<int>(5. / mass);
