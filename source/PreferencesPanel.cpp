@@ -263,6 +263,7 @@ bool PreferencesPanel::Click(int x, int y)
 	if(x >= 265 && x < 295 && y >= -220 && y < 70)
 	{
 		Audio::SetVolume((20 - y) / 200.);
+		Audio::Play(Audio::Get("warder"));
 		return true;
 	}
 	
