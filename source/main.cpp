@@ -266,13 +266,14 @@ int main(int argc, char *argv[])
 				}
 				else if(event.type == SDL_WINDOWEVENT && event.window.event == SDL_WINDOWEVENT_SIZE_CHANGED)
 				{
-					int width = event.window.data1 & ~1;
-					int height = event.window.data2 & ~1;
-					if(width != Screen::RawWidth() || height != Screen::RawHeight())
+					if(event.window.data1 != Screen::RawWidth() || event.window.data2 != Screen::RawHeight())
 					{
+						int width = event.window.data1 & ~1;
+						int height = event.window.data2 & ~1;
+						
 						Screen::SetRaw(width, height);
 						if((event.window.data1 | event.window.data2) & 1)
-							SDL_SetWindowSize(window, Screen::RawWidth(), Screen::RawHeight());
+							SDL_SetWindowSize(window, width, height);
 						SDL_GL_GetDrawableSize(window, &width, &height);
 						glViewport(0, 0, width, height);
 					}
