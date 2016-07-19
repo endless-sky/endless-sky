@@ -276,7 +276,7 @@ void OutfitterPanel::Buy()
 		
 		if(!playerShip)
 		{
-			player.Cargo().Transfer(selectedOutfit, -1);
+			player.Cargo().Add(selectedOutfit);
 			player.Accounts().AddCredits(-selectedOutfit->Cost());
 			--available[selectedOutfit];
 			continue;
@@ -306,7 +306,7 @@ void OutfitterPanel::Buy()
 				return;
 		
 			if(player.Cargo().Get(selectedOutfit))
-				player.Cargo().Transfer(selectedOutfit, 1);
+				player.Cargo().Remove(selectedOutfit);
 			else if(!available[selectedOutfit] && !outfitter.Has(selectedOutfit))
 				break;
 			else
@@ -464,7 +464,7 @@ void OutfitterPanel::Sell()
 {
 	if(player.Cargo().Get(selectedOutfit))
 	{
-		player.Cargo().Transfer(selectedOutfit, 1);
+		player.Cargo().Remove(selectedOutfit);
 		player.Accounts().AddCredits(selectedOutfit->Cost());
 		++available[selectedOutfit];
 	}
@@ -766,7 +766,7 @@ void OutfitterPanel::Refill()
 			while(ship->Attributes().CanAdd(*outfit))
 			{
 				if(player.Cargo().Get(outfit))
-					player.Cargo().Transfer(outfit, 1);
+					player.Cargo().Remove(outfit);
 				else if(!available[outfit] && !outfitter.Has(outfit))
 					break;
 				else

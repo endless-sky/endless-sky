@@ -777,7 +777,7 @@ void MissionPanel::MakeSpaceAndAccept()
 		
 		int64_t basis = player.GetBasis(it.first, toSell);
 		player.AdjustBasis(it.first, -basis);
-		player.Cargo().Transfer(it.first, toSell);
+		player.Cargo().Remove(it.first, toSell);
 		player.Accounts().AddCredits(toSell * price);
 	}
 	

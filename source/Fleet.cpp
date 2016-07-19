@@ -369,7 +369,7 @@ void Fleet::SetCargo(Ship *ship) const
 		int index = Random::Int(GameData::Commodities().size());
 		const Trade::Commodity &commodity = GameData::Commodities()[index];
 		int amount = Random::Int(free) + 1;
-		ship->Cargo().Transfer(commodity.name, -amount);
+		ship->Cargo().Add(commodity.name, amount);
 	}
 	int extraCrew = ship->Attributes().Get("bunks") - ship->RequiredCrew();
 	if(extraCrew > 0)

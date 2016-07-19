@@ -19,14 +19,22 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 
 
+// This is a simple template class defining a rectangular region in the UI that
+// may take action if it is clicked on. The region stores a single data object
+// that identifies it or identifies the action to take.
 template <class Type>
 class ClickZone {
 public:
+	// Constructor. The "size" is the full width and height of the zone.
 	ClickZone(Point center, Point size, Type value = 0);
 	
+	// Check if a zone contains the given point.
 	bool Contains(Point point) const;
+	// Retrieve the value associated with this zone.
 	Type Value() const;
 	
+	// The "size" returned here will be half the width and height of the zone,
+	// i.e. the distance from its center to any of its corners.
 	const Point &Center() const;
 	const Point &Size() const;
 	
