@@ -320,7 +320,7 @@ bool HailPanel::Click(int x, int y)
 void HailPanel::SetBribe(double scale)
 {
 	// Find the total value of your fleet.
-	int value = 0;
+	int64_t value = 0;
 	for(const shared_ptr<Ship> &it : player.Ships())
 		value += it->Cost();
 	
