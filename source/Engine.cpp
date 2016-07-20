@@ -808,7 +808,7 @@ void Engine::CalculateStep()
 		// create explosions. Eventually ships might create other effects too.
 		// Note that engine flares are handled separately, so that they will be
 		// drawn immediately under the ship.
-		if(!(*it)->Move(effects, flotsam))
+		if(!(*it)->Move(effects, flotsam) && (*it)->IsDestroyed())
 		{
 			eventQueue.emplace_back(nullptr, *it, ShipEvent::DESTROY);
 			it = ships.erase(it);
