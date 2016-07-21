@@ -1308,7 +1308,7 @@ mission "FW Alphas 1.2A"
 mission "FW Bloodsea 1"
 	landing
 	name "Alondo to <planet>"
-	description "Bring Alondo to <planet> to meet up with Freya, who has succeeded in working out most of the remaining kinks in the Dreadnought production line."
+	description "Bring Alondo to <planet> to try to convince the locals to join the Free Worlds."
 	source "New Tibet"
 	destination "Bloodsea"
 	clearance `Alondo manages to convince the spaceport to let you land "free of charge."`
