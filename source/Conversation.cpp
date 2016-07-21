@@ -65,13 +65,13 @@ namespace {
 }
 
 // The possible outcomes of a conversation:
-static const int Conversation::ACCEPT;
-static const int Conversation::DECLINE;
-static const int Conversation::DEFER;
-static const int Conversation::LAUNCH;
-static const int Conversation::FLEE;
-static const int Conversation::DEPART;
-static const int Conversation::DIE;
+const int Conversation::ACCEPT;
+const int Conversation::DECLINE;
+const int Conversation::DEFER;
+const int Conversation::LAUNCH;
+const int Conversation::FLEE;
+const int Conversation::DEPART;
+const int Conversation::DIE;
 
 
 
