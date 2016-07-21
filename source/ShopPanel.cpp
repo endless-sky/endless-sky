@@ -65,10 +65,13 @@ void ShopPanel::Draw() const
 	DrawButtons();
 	DrawMain();
 	
+	shipInfo.DrawTooltips();
+	outfitInfo.DrawTooltips();
+	
 	if(dragShip)
 	{
 		static const Color selected(.8, 1.);
-		const Sprite *sprite = dragShip->GetSprite().GetSprite();
+		const Sprite *sprite = dragShip->GetSprite();
 		double scale = ICON_SIZE / max(sprite->Width(), sprite->Height());
 		Point size(sprite->Width() * scale, sprite->Height() * scale);
 		OutlineShader::Draw(sprite, dragPoint, size, selected);
@@ -124,38 +127,37 @@ void ShopPanel::DrawSidebar() const
 	int shipsHere = 0;
 	for(shared_ptr<Ship> ship : player.Ships())
 		shipsHere += !(ship->GetSystem() != player.GetSystem() || ship->IsDisabled());
+	if(shipsHere < 4)
+		point.X() += .5 * ICON_TILE * (4 - shipsHere);
 	
-	if(shipsHere > 1)
+	static const Color selected(.8, 1.);
+	static const Color unselected(.4, 1.);
+	for(shared_ptr<Ship> ship : player.Ships())
 	{
-		static const Color selected(.8, 1.);
-		static const Color unselected(.4, 1.);
-		for(shared_ptr<Ship> ship : player.Ships())
+		// Skip any ships that are "absent" for whatever reason.
+		if(ship->GetSystem() != player.GetSystem() || ship->IsDisabled())
+			continue;
+	
+		if(point.X() > Screen::Right())
 		{
-			// Skip any ships that are "absent" for whatever reason.
-			if(ship->GetSystem() != player.GetSystem() || ship->IsDisabled())
-				continue;
-		
-			if(point.X() > Screen::Right())
-			{
-				point.X() -= ICON_TILE * ICON_COLS;
-				point.Y() += ICON_TILE;
-			}
-			
-			bool isSelected = playerShips.count(ship.get());
-			const Sprite *background = SpriteSet::Get(isSelected ? "ui/icon selected" : "ui/icon unselected");
-			SpriteShader::Draw(background, point);
-			
-			const Sprite *sprite = ship->GetSprite().GetSprite();
-			double scale = ICON_SIZE / max(sprite->Width(), sprite->Height());
-			Point size(sprite->Width() * scale, sprite->Height() * scale);
-			OutlineShader::Draw(sprite, point, size, isSelected ? selected : unselected);
-			
-			zones.emplace_back(point, Point(ICON_TILE, ICON_TILE), ship.get());
-			
-			point.X() += ICON_TILE;
+			point.X() -= ICON_TILE * ICON_COLS;
+			point.Y() += ICON_TILE;
 		}
-		point.Y() += ICON_TILE;
+		
+		bool isSelected = playerShips.count(ship.get());
+		const Sprite *background = SpriteSet::Get(isSelected ? "ui/icon selected" : "ui/icon unselected");
+		SpriteShader::Draw(background, point);
+		
+		const Sprite *sprite = ship->GetSprite();
+		double scale = ICON_SIZE / max(sprite->Width(), sprite->Height());
+		Point size(sprite->Width() * scale, sprite->Height() * scale);
+		OutlineShader::Draw(sprite, point, size, isSelected ? selected : unselected);
+		
+		zones.emplace_back(point, Point(ICON_TILE, ICON_TILE), ship.get());
+		
+		point.X() += ICON_TILE;
 	}
+	point.Y() += ICON_TILE;
 	
 	if(playerShip)
 	{
@@ -173,11 +175,11 @@ void ShopPanel::DrawSidebar() const
 		font.Draw("cargo space:", point, medium);
 		
 		string space = Format::Number(player.Cargo().Free()) + " / " + Format::Number(player.Cargo().Size());
-		Point right(Screen::Right() - font.Width(space), point.Y());
+		Point right(Screen::Right() - font.Width(space) - 10, point.Y());
 		font.Draw(space, right, bright);
 		point.Y() += 20.;
 	}
-	maxSideScroll = point.Y() + sideScroll - Screen::Bottom() + 70;
+	maxSideScroll = point.Y() + sideScroll - Screen::Bottom() + BUTTON_HEIGHT;
 	maxSideScroll = max(0, maxSideScroll);
 	
 	PointerShader::Draw(Point(Screen::Right() - 10, Screen::Top() + 10),
@@ -191,11 +193,10 @@ void ShopPanel::DrawSidebar() const
 void ShopPanel::DrawButtons() const
 {
 	// The last 70 pixels on the end of the side panel are for the buttons:
+	Point buttonSize(SIDE_WIDTH, BUTTON_HEIGHT);
+	FillShader::Fill(Screen::BottomRight() - .5 * buttonSize, buttonSize, Color(.2, 1.));
 	FillShader::Fill(
-		Point(Screen::Right() - SIDE_WIDTH / 2, Screen::Bottom() - 35),
-		Point(SIDE_WIDTH, 70), Color(.2, 1.));
-	FillShader::Fill(
-		Point(Screen::Right() - SIDE_WIDTH / 2, Screen::Bottom() - 70),
+		Point(Screen::Right() - SIDE_WIDTH / 2, Screen::Bottom() - BUTTON_HEIGHT),
 		Point(SIDE_WIDTH, 1), Color(.3, 1.));
 	
 	const Font &font = FontSet::Get(14);
@@ -386,7 +387,7 @@ void ShopPanel::DrawShip(const Ship &ship, const Point &center, bool isSelected)
 	Point offset(-.5f * font.Width(name), -.5f * SHIP_SIZE + 10.f);
 	font.Draw(name, center + offset, *GameData::Colors().Get("bright"));
 	
-	const Sprite *sprite = ship.GetSprite().GetSprite();
+	const Sprite *sprite = ship.GetSprite();
 	if(sprite)
 	{
 		float zoom = min(1.f, zoomSize / max(sprite->Width(), sprite->Height()));
@@ -426,7 +427,10 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 		if(!CanBuy())
 			FailBuy();
 		else
+		{
 			Buy();
+			player.UpdateCargoCapacities();
+		}
 	}
 	else if(key == 's')
 	{
@@ -437,6 +441,7 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 			int modifier = CanSellMultiple() ? Modifier() : 1;
 			for(int i = 0; i < modifier && CanSell(); ++i)
 				Sell();
+			player.UpdateCargoCapacities();
 		}
 	}
 	else if(key == SDLK_LEFT)
@@ -487,8 +492,13 @@ bool ShopPanel::Click(int x, int y)
 {
 	dragShip = nullptr;
 	// Handle clicks on the buttons.
-	if(x >= Screen::Right() - SIDE_WIDTH && y >= Screen::Bottom() - 70)
+	if(x >= Screen::Right() - SIDE_WIDTH && y >= Screen::Bottom() - BUTTON_HEIGHT)
 	{
+		// Make sure the click was actually within the bottons, not the space
+		// above them that shows your credits or the padding below them.
+		if(y < Screen::Bottom() - 40 || y >= Screen::Bottom() - 10)
+			return true;
+		
 		x -= Screen::Right() - SIDE_WIDTH;
 		if(x < 80)
 			DoKey(SDLK_b);
@@ -505,7 +515,7 @@ bool ShopPanel::Click(int x, int y)
 	{
 		if(y < Screen::Top() + 20)
 			return Scroll(0, 4);
-		if(y < Screen::Bottom() - 70 && y >= Screen::Bottom() - 90)
+		if(y < Screen::Bottom() - BUTTON_HEIGHT && y >= Screen::Bottom() - BUTTON_HEIGHT - 20)
 			return Scroll(0, -4);
 	}
 	else if(x >= Screen::Right() - SIDE_WIDTH - 20 && x < Screen::Right() - SIDE_WIDTH)
@@ -573,6 +583,19 @@ bool ShopPanel::Click(int x, int y)
 
 bool ShopPanel::Hover(int x, int y)
 {
+	Point point(x, y);
+	// Check that the point is not in the button area.
+	if(x >= Screen::Right() - SIDE_WIDTH && y >= Screen::Bottom() - BUTTON_HEIGHT)
+	{
+		shipInfo.ClearHover();
+		outfitInfo.ClearHover();
+	}
+	else
+	{
+		shipInfo.Hover(point);
+		outfitInfo.Hover(point);
+	}
+	
 	dragMain = (x < Screen::Right() - SIDE_WIDTH);
 	return true;
 }

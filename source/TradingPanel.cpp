@@ -243,7 +243,7 @@ bool TradingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 			profit += amount * price + basis;
 			tonsSold += amount;
 			
-			player.Cargo().Transfer(it.name, amount);
+			player.Cargo().Remove(it.name, amount);
 			player.Accounts().AddCredits(amount * price);
 			GameData::AddPurchase(system, it.name, -amount);
 		}
@@ -254,7 +254,7 @@ bool TradingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 			
 			player.SoldOutfits()[it.first] += it.second;
 			player.Accounts().AddCredits(it.second * it.first->Cost());
-			player.Cargo().Transfer(it.first, it.second);
+			player.Cargo().Remove(it.first, it.second);
 		}
 	}
 	else if(command.Has(Command::MAP))

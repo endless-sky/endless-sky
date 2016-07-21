@@ -16,7 +16,9 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Panel.h"
 
 #include "ClickZone.h"
+#include "OutfitInfoDisplay.h"
 #include "Point.h"
+#include "ShipInfoDisplay.h"
 
 #include <map>
 #include <set>
@@ -91,6 +93,7 @@ protected:
 	
 protected:
 	static const int SIDE_WIDTH = 250;
+	static const int BUTTON_HEIGHT = 70;
 	static const int SHIP_SIZE = 250;
 	static const int OUTFIT_SIZE = 180;
 	
@@ -122,6 +125,9 @@ protected:
 	std::map<std::string, std::set<std::string>> catalog;
 	const std::vector<std::string> &categories;
 	std::set<std::string> collapsed;
+	
+	mutable ShipInfoDisplay shipInfo;
+	mutable OutfitInfoDisplay outfitInfo;
 	
 	
 private:

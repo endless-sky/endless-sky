@@ -13,7 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef WEAPON_H_
 #define WEAPON_H_
 
-#include "Animation.h"
+#include "Body.h"
 
 #include <map>
 
@@ -37,7 +37,7 @@ public:
 	bool IsWeapon() const;
 	
 	// Get assets used by this weapon.
-	const Animation &WeaponSprite() const;
+	const Body &WeaponSprite() const;
 	const Sound *WeaponSound() const;
 	const Outfit *Ammo() const;
 	const Sprite *Icon() const;
@@ -51,6 +51,7 @@ public:
 	
 	// Accessor functions for various attributes.
 	int Lifetime() const;
+	int RandomLifetime() const;
 	double Reload() const;
 	double BurstReload() const;
 	int BurstCount() const;
@@ -106,7 +107,7 @@ private:
 	
 private:
 	// Sprites and sounds.
-	Animation sprite;
+	Body sprite;
 	const Sound *sound = nullptr;
 	const Outfit *ammo = nullptr;
 	const Sprite *icon = nullptr;
@@ -124,6 +125,7 @@ private:
 	
 	// Attributes.
 	int lifetime = 0;
+	int randomLifetime = 0;
 	double reload = 1.;
 	double burstReload = 1.;
 	int burstCount = 1;
@@ -174,6 +176,7 @@ private:
 
 // Inline the accessors because they get called so frequently.
 inline int Weapon::Lifetime() const { return lifetime; }
+inline int Weapon::RandomLifetime() const { return randomLifetime; }
 inline double Weapon::Reload() const { return reload; }
 inline double Weapon::BurstReload() const { return burstReload; }
 inline int Weapon::BurstCount() const { return burstCount; }

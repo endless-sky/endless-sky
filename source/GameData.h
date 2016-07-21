@@ -100,6 +100,8 @@ public:
 	
 	static const StarField &Background();
 	
+	static const std::string &Tooltip(const std::string &label);
+	
 	
 private:
 	static void LoadSources();

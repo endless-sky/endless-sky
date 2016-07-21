@@ -80,7 +80,7 @@ void AI::UpdateKeys(PlayerInfo &player, Command &clickCommands, bool isActive)
 	
 	Command oldHeld = keyHeld;
 	keyHeld.ReadKeyboard();
-	keyHeld |= clickCommands;
+	keyStuck |= clickCommands;
 	clickCommands.Clear();
 	keyDown = keyHeld.AndNot(oldHeld);
 	if(keyHeld.Has(AutopilotCancelKeys()))
@@ -152,9 +152,11 @@ void AI::UpdateKeys(PlayerInfo &player, Command &clickCommands, bool isActive)
 		Messages::Add(moveToMe ? "Your fleet is gathering around your flagship."
 			: "Your fleet is no longer gathering around your flagship.");
 	}
-	if(sharedTarget.lock() && sharedTarget.lock()->IsDisabled())
-		if(!killDisabledSharedTarget || sharedTarget.lock()->IsDestroyed())
-			sharedTarget.reset();
+	target = sharedTarget.lock();
+	if(target && target->IsDisabled() && (!killDisabledSharedTarget || target->IsDestroyed()))
+		sharedTarget.reset();
+	if(target && (target->GetSystem() != flagship->GetSystem() || !target->IsTargetable()))
+		sharedTarget.reset();
 }
 
 
@@ -383,7 +385,7 @@ void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &player)
 			continue;
 		}
 		
-		if(parent && personality.IsCoward() && it->Shields() + it->Hull() < 1.)
+		if(parent && personality.IsCoward() && .5 * it->Shields() + it->Hull() < 1.)
 		{
 			parent.reset();
 			it->SetParent(parent);
@@ -393,14 +395,14 @@ void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &player)
 		// the current system can fire.
 		if(isPresent)
 		{
-			command |= AutoFire(*it, ships);
-			
 			// Each ship only switches targets twice a second, so that it can
 			// focus on damaging one particular ship.
 			targetTurn = (targetTurn + 1) & 31;
-			if(targetTurn == step || !target || !target->IsTargetable()
+			if(targetTurn == step || !target || !target->IsTargetable() || target->IsDestroyed()
 					|| (target->IsDisabled() && personality.Disables()))
 				it->SetTargetShip(FindTarget(*it, ships));
+			
+			command |= AutoFire(*it, ships);
 		}
 		
 		double targetDistance = numeric_limits<double>::infinity();
@@ -414,7 +416,7 @@ void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &player)
 		bool isFighter = (category == "Fighter");
 		if(isDrone || isFighter)
 		{
-			bool hasSpace = (parent && parent->BaysFree(isFighter));
+			bool hasSpace = (parent && parent->BaysFree(isFighter) && !parent->GetGovernment()->IsEnemy(gov));
 			if(!hasSpace || parent->IsDestroyed() || parent->GetSystem() != it->GetSystem())
 			{
 				// Handle orphaned fighters and drones.
@@ -458,7 +460,8 @@ void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &player)
 			it->SetTargetShip(shipToAssist);
 			if(shipToAssist->IsDestroyed() || shipToAssist->GetSystem() != it->GetSystem()
 					|| shipToAssist->IsLanding() || shipToAssist->IsHyperspacing()
-					|| (!shipToAssist->IsDisabled() && shipToAssist->JumpsRemaining()))
+					|| (!shipToAssist->IsDisabled() && shipToAssist->JumpsRemaining())
+					|| shipToAssist->GetGovernment()->IsEnemy(gov))
 				it->SetShipToAssist(shared_ptr<Ship>());
 			else if(!it->IsBoarding())
 			{
@@ -562,7 +565,7 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship, const list<shared_ptr<Ship>> &
 	// If this ship is not armed, do not make it fight.
 	double minRange = numeric_limits<double>::infinity();
 	double maxRange = 0.;
-	for(const Armament::Weapon &weapon : ship.Weapons())
+	for(const Hardpoint &weapon : ship.Weapons())
 		if(weapon.GetOutfit() && !weapon.IsAntiMissile())
 		{
 			minRange = min(minRange, weapon.GetOutfit()->Range());
@@ -670,7 +673,7 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship, const list<shared_ptr<Ship>> &
 	
 	// Run away if your target is not disabled and you are badly damaged.
 	if(!isDisabled && target && (person.IsFleeing() || 
-			(ship.Shields() + ship.Hull() < 1. && !person.IsHeroic() && !parentIsEnemy)))
+			(.5 * ship.Shields() + ship.Hull() < 1. && !person.IsHeroic() && !parentIsEnemy)))
 	{
 		// Make sure the ship has somewhere to flee to.
 		const System *system = ship.GetSystem();
@@ -842,7 +845,7 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 
 
 
-void AI::MoveEscort(Ship &ship, Command &command)
+void AI::MoveEscort(Ship &ship, Command &command) const
 {
 	const Ship &parent = *ship.GetParent();
 	bool hasFuelCapacity = ship.Attributes().Get("fuel capacity");
@@ -856,18 +859,17 @@ void AI::MoveEscort(Ship &ship, Command &command)
 		DistanceMap distance(ship, parent.GetSystem());
 		const System *from = ship.GetSystem();
 		const System *to = distance.Route(from);
-		if(!distance.Cost(from))
-		{
-			for(const StellarObject &object : from->Objects())
-				if(object.GetPlanet() && object.GetPlanet()->WormholeDestination(from) == to)
-				{
-					ship.SetTargetPlanet(&object);
-					MoveToPlanet(ship, command);
-					command |= Command::LAND;
-					break;
-				}
-		}
-		else
+		bool hasWormhole = false;
+		for(const StellarObject &object : from->Objects())
+			if(object.GetPlanet() && object.GetPlanet()->WormholeDestination(from) == to)
+			{
+				ship.SetTargetPlanet(&object);
+				MoveToPlanet(ship, command);
+				command |= Command::LAND;
+				hasWormhole = true;
+				break;
+			}
+		if(!hasWormhole)
 		{
 			ship.SetTargetSystem(to);
 			if(!to || (from->HasFuelFor(ship) && !to->HasFuelFor(ship) && ship.JumpsRemaining() == 1))
@@ -902,6 +904,8 @@ void AI::MoveEscort(Ship &ship, Command &command)
 				command |= Command::JUMP;
 		}
 	}
+	else if(ship.IsYours() && moveToMe)
+		CircleAround(ship, command, parent);
 	else
 		KeepStation(ship, command, parent);
 }
@@ -1140,7 +1144,7 @@ void AI::KeepStation(Ship &ship, Command &command, const Ship &target)
 	double turn = ship.TurnRate();
 	double mass = ship.Mass();
 	Point unit = ship.Facing().Unit();
-	double currentAngle = TO_DEG * atan2(ship.Unit().X(), -ship.Unit().Y());
+	double currentAngle = ship.Facing().Degrees();
 	// This is where we want to be relative to where we are now:
 	Point velocityDelta = target.Velocity() - ship.Velocity();
 	Point positionDelta = target.Position() + LEAD_TIME * velocityDelta - ship.Position();
@@ -1156,7 +1160,7 @@ void AI::KeepStation(Ship &ship, Command &command, const Ship &target)
 	if(positionTime != positionTime || positionTime > MAX_TIME)
 		positionTime = MAX_TIME;
 	Point rendezvous = positionDelta + target.Velocity() * positionTime;
-	double positionAngle = TO_DEG * atan2(rendezvous.X(), -rendezvous.Y());
+	double positionAngle = Angle(rendezvous).Degrees();
 	positionTime += AngleDiff(currentAngle, positionAngle) / turn;
 	positionTime += (rendezvous.Unit() * maxV - ship.Velocity()).Length() / accel;
 	// If you are very close,stop trying to adjust:
@@ -1164,7 +1168,7 @@ void AI::KeepStation(Ship &ship, Command &command, const Ship &target)
 	
 	// Time it will take (roughly) to adjust your velocity to match the target:
 	double velocityTime = velocityDelta.Length() / accel;
-	double velocityAngle = TO_DEG * atan2(velocityDelta.X(), -velocityDelta.Y());
+	double velocityAngle = Angle(velocityDelta).Degrees();
 	velocityTime += AngleDiff(currentAngle, velocityAngle) / turn;
 	// If you are very close,stop trying to adjust:
 	velocityTime *= velocityWeight * velocityWeight;
@@ -1179,7 +1183,7 @@ void AI::KeepStation(Ship &ship, Command &command, const Ship &target)
 	Point facingGoal = rendezvous.Unit() * positionWeight
 		+ velocityDelta.Unit() * velocityWeight
 		+ target.Facing().Unit() * facingWeight;
-	double targetAngle = TO_DEG * atan2(facingGoal.X(), -facingGoal.Y()) - currentAngle;
+	double targetAngle = Angle(facingGoal).Degrees() - currentAngle;
 	if(abs(targetAngle) > 180.)
 		targetAngle += (targetAngle < 0. ? 360. : -360.);
 	if(abs(targetAngle) < turn)
@@ -1217,7 +1221,7 @@ void AI::Attack(Ship &ship, Command &command, const Ship &target)
 	double shortestRange = 4000.;
 	bool isArmed = false;
 	bool hasAmmo = false;
-	for(const Armament::Weapon &weapon : ship.Weapons())
+	for(const Hardpoint &weapon : ship.Weapons())
 	{
 		const Outfit *outfit = weapon.GetOutfit();
 		if(outfit && !weapon.IsAntiMissile())
@@ -1488,7 +1492,7 @@ Point AI::TargetAim(const Ship &ship)
 	if(!target)
 		return result;
 	
-	for(const Armament::Weapon &weapon : ship.Weapons())
+	for(const Hardpoint &weapon : ship.Weapons())
 	{
 		const Outfit *outfit = weapon.GetOutfit();
 		if(!outfit || weapon.IsHoming() || weapon.IsTurret())
@@ -1553,7 +1557,7 @@ Command AI::AutoFire(const Ship &ship, const list<shared_ptr<Ship>> &ships, bool
 	
 	// Find the longest range of any of your non-homing weapons.
 	double maxRange = 0.;
-	for(const Armament::Weapon &weapon : ship.Weapons())
+	for(const Hardpoint &weapon : ship.Weapons())
 		if(weapon.IsReady() && !weapon.IsHoming() && (secondary || !weapon.GetOutfit()->Icon()))
 			maxRange = max(maxRange, weapon.GetOutfit()->Range());
 	// Extend the weapon range slightly to account for velocity differences.
@@ -1571,7 +1575,7 @@ Command AI::AutoFire(const Ship &ship, const list<shared_ptr<Ship>> &ships, bool
 				&& target != currentTarget)
 			enemies.push_back(target);
 	
-	for(const Armament::Weapon &weapon : ship.Weapons())
+	for(const Hardpoint &weapon : ship.Weapons())
 	{
 		++index;
 		// Skip weapons that are not ready to fire. Also skip homing weapons if
@@ -1662,7 +1666,7 @@ Command AI::AutoFire(const Ship &ship, const list<shared_ptr<Ship>> &ships, bool
 			// Extrapolate over the lifetime of the projectile.
 			v *= lifetime;
 			
-			const Mask &mask = target->GetSprite().GetMask(step);
+			const Mask &mask = target->GetMask(step);
 			if(mask.Collide(-p, v, target->Facing()) < 1.)
 			{
 				command.SetFire(index);
@@ -1796,7 +1800,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, const list<shared_ptr<
 		// explaining why they cannot land there.
 		string message;
 		for(const StellarObject &object : ship.GetSystem()->Objects())
-			if(!object.GetPlanet() && !object.GetSprite().IsEmpty())
+			if(!object.GetPlanet() && object.HasSprite())
 			{
 				double distance = ship.Position().Distance(object.Position());
 				if(distance < object.Radius())
@@ -1854,25 +1858,28 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, const list<shared_ptr<
 			double closest = numeric_limits<double>::infinity();
 			int count = 0;
 			set<string> types;
-			for(const StellarObject &object : ship.GetSystem()->Objects())
-				if(object.GetPlanet())
-				{
-					++count;
-					types.insert(object.GetPlanet()->Noun());
-					double distance = ship.Position().Distance(object.Position());
-					const Planet *planet = object.GetPlanet();
-					if(planet == ship.GetDestination())
-						distance = 0.;
-					else if(!planet->HasSpaceport() && !planet->IsWormhole())
-						distance += 10000.;
-					
-					if(distance < closest)
+			if(!target)
+			{
+				for(const StellarObject &object : ship.GetSystem()->Objects())
+					if(object.GetPlanet())
 					{
-						ship.SetTargetPlanet(&object);
-						closest = distance;
+						++count;
+						types.insert(object.GetPlanet()->Noun());
+						double distance = ship.Position().Distance(object.Position());
+						const Planet *planet = object.GetPlanet();
+						if(planet == ship.GetDestination())
+							distance = 0.;
+						else if((!planet->CanLand() || !planet->HasSpaceport()) && !planet->IsWormhole())
+							distance += 10000.;
+					
+						if(distance < closest)
+						{
+							ship.SetTargetPlanet(&object);
+							closest = distance;
+						}
 					}
-				}
-			const StellarObject *target = ship.GetTargetPlanet();
+				target = ship.GetTargetPlanet();
+			}
 			if(!target)
 			{
 				message = "There are no planets in this system that you can land on.";
@@ -1900,6 +1907,8 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, const list<shared_ptr<
 				}
 				message += " in this system. Landing on " + target->Name() + ".";
 			}
+			else
+				message = "Landing on " + target->Name() + ".";
 		}
 		if(!message.empty())
 			Messages::Add(message);
@@ -1949,7 +1958,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, const list<shared_ptr<
 		if(keyHeld.Has(Command::PRIMARY))
 		{
 			int index = 0;
-			for(const Armament::Weapon &weapon : ship.Weapons())
+			for(const Hardpoint &weapon : ship.Weapons())
 			{
 				const Outfit *outfit = weapon.GetOutfit();
 				if(outfit && !outfit->Icon())
@@ -1963,7 +1972,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, const list<shared_ptr<
 		if(keyHeld.Has(Command::SECONDARY))
 		{
 			int index = 0;
-			for(const Armament::Weapon &weapon : ship.Weapons())
+			for(const Hardpoint &weapon : ship.Weapons())
 			{
 				const Outfit *outfit = weapon.GetOutfit();
 				if(outfit && outfit == player.SelectedWeapon())

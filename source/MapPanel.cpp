@@ -68,7 +68,7 @@ void MapPanel::SetCommodity(int index)
 
 void MapPanel::Step()
 {
-	if(tradeCommodity && commodity > 0)
+	if(tradeCommodity && commodity >= 0)
 		*tradeCommodity = commodity;
 }
 
@@ -353,7 +353,11 @@ void MapPanel::Select(const System *system)
 	
 	bool shift = (SDL_GetModState() & KMOD_SHIFT) && !plan.empty();
 	if(system == playerSystem && !shift)
+	{
 		plan.clear();
+		if(player.Flagship())
+			player.Flagship()->SetTargetSystem(nullptr);
+	}
 	else if((distance.Distance(system) > 0 || shift) && player.Flagship())
 	{
 		if(shift)
@@ -372,6 +376,7 @@ void MapPanel::Select(const System *system)
 		else if(playerSystem)
 		{
 			plan.clear();
+			player.Flagship()->SetTargetSystem(nullptr);
 			while(system != playerSystem)
 			{
 				plan.push_back(system);
@@ -715,7 +720,7 @@ void MapPanel::DrawSystems() const
 					bool all = true;
 					bool some = false;
 					for(const StellarObject &object : system.Objects())
-						if(object.GetPlanet())
+						if(object.GetPlanet() && !object.GetPlanet()->IsWormhole())
 						{
 							bool visited = player.HasVisited(object.GetPlanet());
 							all &= visited;
@@ -831,7 +836,7 @@ void MapPanel::DrawMissions() const
 				blink = (step % (10 * days) > 5 * days);
 		}
 		bool isSatisfied = IsSatisfied(player, mission);
-		DrawPointer(system, angle[system], blink ? black : isSatisfied ? currentColor : blockedColor);
+		DrawPointer(system, angle[system], blink ? black : isSatisfied ? currentColor : blockedColor, isSatisfied);
 		
 		for(const System *waypoint : mission.Waypoints())
 			DrawPointer(waypoint, angle[waypoint], waypointColor);
@@ -850,19 +855,19 @@ void MapPanel::DrawMissions() const
 
 
 
-void MapPanel::DrawPointer(const System *system, Angle &angle, const Color &color) const
+void MapPanel::DrawPointer(const System *system, Angle &angle, const Color &color, bool bigger) const
 {
-	DrawPointer(Zoom() * (system->Position() + center), angle, color);
+	DrawPointer(Zoom() * (system->Position() + center), angle, color, true, bigger);
 }
 
 
 
-void MapPanel::DrawPointer(Point position, Angle &angle, const Color &color, bool drawBack)
+void MapPanel::DrawPointer(Point position, Angle &angle, const Color &color, bool drawBack, bool bigger)
 {
 	static const Color black(0., 1.);
 	
 	angle += Angle(30.);
 	if(drawBack)
-		PointerShader::Draw(position, angle.Unit(), 14., 19., -4., black);
-	PointerShader::Draw(position, angle.Unit(), 8., 15., -6., color);
+		PointerShader::Draw(position, angle.Unit(), 14. + bigger, 19. + 2 * bigger, -4., black);
+	PointerShader::Draw(position, angle.Unit(), 8. + bigger, 15. + 2 * bigger, -6., color);
 }

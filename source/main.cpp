@@ -266,20 +266,21 @@ int main(int argc, char *argv[])
 				}
 				else if(event.type == SDL_WINDOWEVENT && event.window.event == SDL_WINDOWEVENT_SIZE_CHANGED)
 				{
-					int width = event.window.data1 & ~1;
-					int height = event.window.data2 & ~1;
-					if(width != Screen::RawWidth() || height != Screen::RawHeight())
+					if(event.window.data1 != Screen::RawWidth() || event.window.data2 != Screen::RawHeight())
 					{
+						int width = event.window.data1 & ~1;
+						int height = event.window.data2 & ~1;
+						
 						Screen::SetRaw(width, height);
 						if((event.window.data1 | event.window.data2) & 1)
-							SDL_SetWindowSize(window, Screen::RawWidth(), Screen::RawHeight());
+							SDL_SetWindowSize(window, width, height);
 						SDL_GL_GetDrawableSize(window, &width, &height);
 						glViewport(0, 0, width, height);
 					}
 				}
 				else if(event.type == SDL_KEYDOWN
 						&& (Command(event.key.keysym.sym).Has(Command::FULLSCREEN)
-						|| (event.key.keysym.sym == SDLK_RETURN && event.key.keysym.mod & KMOD_ALT)))
+						|| (event.key.keysym.sym == SDLK_RETURN && (event.key.keysym.mod & KMOD_ALT))))
 				{
 					if(restoreWidth)
 					{
@@ -365,7 +366,7 @@ void PrintHelp()
 void PrintVersion()
 {
 	cerr << endl;
-	cerr << "Endless Sky 0.9.1" << endl;
+	cerr << "Endless Sky 0.9.2" << endl;
 	cerr << "License GPLv3+: GNU GPL version 3 or later: <https://gnu.org/licenses/gpl.html>" << endl;
 	cerr << "This is free software: you are free to change and redistribute it." << endl;
 	cerr << "There is NO WARRANTY, to the extent permitted by law." << endl;

@@ -35,6 +35,7 @@ namespace {
 
 
 
+// Get a random angle.
 Angle Angle::Random()
 {
 	return Angle(static_cast<int32_t>(Random::Int(STEPS)));
@@ -42,17 +43,18 @@ Angle Angle::Random()
 
 
 
-
+// Get a random angle between 0 and the given number of degrees.
 Angle Angle::Random(double range)
 {
-	int64_t steps = fabs(range) * DEG_TO_STEP + .5;
-	int32_t mod = min(steps, int64_t(STEPS - 1)) + 1;
-	
-	return Angle(static_cast<int32_t>(Random::Int(mod)));
+	// The given range would have to be about 22.6 million degrees to overflow
+	// the size of a 32-bit int, which should never happen in normal usage.
+	uint32_t mod = static_cast<uint32_t>(fabs(range) * DEG_TO_STEP) + 1;
+	return Angle(mod ? static_cast<int32_t>(Random::Int(mod)) : 0);
 }
 
 
 
+// Default constructor: generates an angle pointing straight up.
 Angle::Angle()
 	: angle(0)
 {
@@ -60,8 +62,17 @@ Angle::Angle()
 
 
 
+// Convert an angle in degrees into an Angle object.
 Angle::Angle(double degrees)
 	: angle(static_cast<int64_t>(degrees * DEG_TO_STEP + .5) & MASK)
+{
+}
+
+
+
+// Construct an angle pointing in the direction of the given vector.
+Angle::Angle(const Point &point)
+	: Angle(TO_DEG * atan2(point.X(), -point.Y()))
 {
 }
 
@@ -110,8 +121,10 @@ Angle Angle::operator-() const
 
 
 
+// Get a unit vector in the direction of this angle.
 Point Angle::Unit() const
 {
+	// The very first time this is called, create a lookup table of unit vectors.
 	static vector<Point> cache;
 	if(cache.empty())
 	{
@@ -119,6 +132,10 @@ Point Angle::Unit() const
 		for(int i = 0; i < STEPS; ++i)
 		{
 			double radians = i * STEP_TO_RAD;
+			// The graphics use the usual screen coordinate system, meaning that
+			// positive Y is down rather than up. Angles are clock angles, i.e.
+			// 0 is 12:00 and angles increase in the clockwise direction. So, an
+			// angle of 0 degrees is pointing in the direction (0, -1).
 			cache.emplace_back(sin(radians), -cos(radians));
 		}
 	}
@@ -126,21 +143,31 @@ Point Angle::Unit() const
 }
 
 
+
+// Convert an angle back to a value in degrees.
+double Angle::Degrees() const
+{
+	// Most often when this function is used, it's in settings where it makes
+	// sense to return an angle in the range [-180, 180) rather than in the
+	// Angle's native range of [0, 360).
+	return angle / DEG_TO_STEP - 360. * (angle >= STEPS / 2);
+}
+
+
 	
 // Return a point rotated by this angle around (0, 0).
 Point Angle::Rotate(const Point &point) const
 {
-	if(!point)
-		return point;
-	
+	// If using the normal mathematical coordinate system, this would be easier.
+	// Since we're not, the math is a tiny bit less elegant:
 	Point unit = Unit();
-	unit.Set(-unit.Y() * point.X() - unit.X() * point.Y(),
+	return Point(-unit.Y() * point.X() - unit.X() * point.Y(),
 		-unit.Y() * point.Y() + unit.X() * point.X());
-	return unit;
 }
 
 
 
+// Constructor using Angle's internal representation.
 Angle::Angle(int32_t angle)
 	: angle(angle)
 {

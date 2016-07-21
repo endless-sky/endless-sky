@@ -141,7 +141,7 @@ void EscortDisplay::Draw() const
 
 
 EscortDisplay::Icon::Icon(const Ship &ship, bool isHere, bool fleetIsJumping)
-	: sprite(ship.GetSprite().GetSprite()),
+	: sprite(ship.GetSprite()),
 	isHere(isHere && !ship.IsDisabled()),
 	isReadyToJump(ship.CheckHyperspace()),
 	cannotJump(fleetIsJumping && !ship.IsHyperspacing() && !ship.JumpsRemaining()),
@@ -214,10 +214,13 @@ void EscortDisplay::MergeStacks() const
 		// the same system.
 		map<string, Icon *> merged;
 		
+		// The "cheapest" element in the list may be removed to merge it with an
+		// earlier ship of the same type, so store a copy of its sprite pointer:
+		const Sprite *sprite = cheapest->sprite;
 		list<Icon>::iterator it = icons.begin();
 		while(it != icons.end())
 		{
-			if(it->sprite != cheapest->sprite)
+			if(it->sprite != sprite)
 			{
 				++it;
 				continue;
@@ -233,10 +236,10 @@ void EscortDisplay::MergeStacks() const
 			}
 			else
 			{
-				merged[it->system]->Merge(*it);
+				mit->second->Merge(*it);
 				it = icons.erase(it);	
 			}
 		}
-		unstackable.insert(cheapest->sprite);
+		unstackable.insert(sprite);
 	}
 }

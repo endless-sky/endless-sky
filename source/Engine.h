@@ -77,8 +77,7 @@ private:
 	
 	void ThreadEntryPoint();
 	void CalculateStep();
-	void AddSprites(const Ship &ship, const Point &position, const Point &velocity);
-	void AddSprites(const Ship &ship, const Point &position, const Point &velocity, const Point &unit, double cloak);
+	void AddSprites(const Ship &ship);
 	
 	void DoGrudge(const std::shared_ptr<Ship> &target, const Government *attacker);
 	

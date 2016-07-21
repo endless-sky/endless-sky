@@ -73,6 +73,7 @@ void ShipInfoDisplay::DrawAttributes(const Point &topLeft) const
 	table.AddColumn(10, Table::LEFT);
 	table.AddColumn(WIDTH - 90, Table::RIGHT);
 	table.AddColumn(WIDTH - 10, Table::RIGHT);
+	table.SetHighlight(0, WIDTH);
 	table.DrawAt(point);
 	table.DrawGap(10.);
 	
@@ -82,6 +83,7 @@ void ShipInfoDisplay::DrawAttributes(const Point &topLeft) const
 	
 	for(unsigned i = 0; i < tableLabels.size(); ++i)
 	{
+		CheckHover(table, tableLabels[i]);
 		table.Draw(tableLabels[i], labelColor);
 		table.Draw(energyTable[i], valueColor);
 		table.Draw(heatTable[i], valueColor);
@@ -117,6 +119,10 @@ void ShipInfoDisplay::UpdateDescription(const Ship &ship)
 		string text = ship.Description() + "\tTo purchase this ship you must have ";
 		for(unsigned i = 0; i < licenses.size(); ++i)
 		{
+			bool isVoweled = false;
+			for(const char &c : "aeiou")
+				if(*licenses[i].begin() == c || *licenses[i].begin() == toupper(c))
+					isVoweled = true;
 			if(i)
 			{
 				if(licenses.size() > 2)
@@ -126,7 +132,8 @@ void ShipInfoDisplay::UpdateDescription(const Ship &ship)
 			}
 			if(i && i == licenses.size() - 1)
 				text += "and ";
-			text += "a " + licenses[i] + " License";
+			text += (isVoweled ? "an " : "a ") + licenses[i] + " License";
+
 		}
 		text += ".";
 		ItemInfoDisplay::UpdateDescription(text);
@@ -234,7 +241,7 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship)
 		"outfit space free:", "outfit space",
 		"    weapon capacity:", "weapon capacity",
 		"    engine capacity:", "engine capacity",
-		"guns ports free:", "gun ports",
+		"gun ports free:", "gun ports",
 		"turret mounts free:", "turret mounts"
 	};
 	static const int NAMES =  sizeof(names) / sizeof(names[0]);

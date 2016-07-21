@@ -45,6 +45,10 @@ protected:
 	
 	
 private:
+	void TakeOff();
+	
+	
+private:
 	PlayerInfo &player;
 	std::function<void()> callback = nullptr;
 	
@@ -56,7 +60,8 @@ private:
 	std::shared_ptr<Panel> bank;
 	std::shared_ptr<Panel> spaceport;
 	std::shared_ptr<Panel> hiring;
-	Panel *selectedPanel;
+	Panel *selectedPanel = nullptr;
+	bool isDeparting = false;
 	
 	WrappedText text;
 };

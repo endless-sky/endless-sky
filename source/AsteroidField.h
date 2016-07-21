@@ -14,7 +14,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #define ASTEROID_FIELD_H_
 
 #include "Angle.h"
-#include "Animation.h"
+#include "Body.h"
 #include "Point.h"
 
 #include <string>
@@ -36,35 +36,36 @@ class Sprite;
 // are hit by a projectile.
 class AsteroidField {
 public:
-	AsteroidField();
-	
+	// Reset the asteroid field (typically because you entered a new system).
 	void Clear();
 	void Add(const std::string &name, int count, double energy = 1.);
 	
+	// Move all the asteroids forward one time step.
 	void Step();
-	void Draw(DrawList &draw, const Point &center, const Point &centerVelocity) const;
+	// Draw the asteroid field, with the field of view centered on the given point.
+	void Draw(DrawList &draw, const Point &center) const;
+	// Check if the given projectile has hit any of the asteroids. The current
+	// time step must be given, so we know what animation frame each asteroid is
+	// on. If there is a collision the asteroid's velocity is returned so the
+	// projectile's hit effects can take it into account. The return value is
+	// how far along the projectile's path it should be clipped.
 	double Collide(const Projectile &projectile, int step, Point *hitVelocity = nullptr) const;
 	
 	
 private:
-	class Asteroid {
+	// This class represents an asteroid that cannot be destroyed or even
+	// deflected from its trajectory, and that repeats every 4096 pixels.
+	class Asteroid : public Body {
 	public:
 		Asteroid(const Sprite *sprite, double energy);
 		
 		void Step();
-		void Draw(DrawList &draw, const Point &center, const Point &centerVelocity) const;
+		void Draw(DrawList &draw, const Point &center) const;
 		double Collide(const Projectile &projectile, int step) const;
 		
-		Point Velocity() const;
-		
 	private:
-		Point location;
-		Point velocity;
-		
-		Angle angle;
 		Angle spin;
-		
-		Animation animation;
+		Point size;
 	};
 	
 	

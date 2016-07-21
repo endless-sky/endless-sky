@@ -37,7 +37,7 @@ using namespace std;
 
 HailPanel::HailPanel(PlayerInfo &player, const shared_ptr<Ship> &ship)
 	: player(player), ship(ship),
-	sprite(ship->GetSprite().GetSprite()), unit(2. * ship->Unit())
+	sprite(ship->GetSprite()), unit(2. * ship->Unit())
 {
 	SetInterruptible(false);
 	
@@ -46,7 +46,7 @@ HailPanel::HailPanel(PlayerInfo &player, const shared_ptr<Ship> &ship)
 	hasLanguage = (gov->Language().empty() || player.GetCondition("language: " + gov->Language()));
 	
 	if(gov->GetName() == "Derelict")
-		message = "There is no response to your hail.";
+		message = "(There is no response to your hail.)";
 	else if(!hasLanguage)
 		message = "(An alien voice says something in a language you do not recognize.)";
 	else if(gov->IsEnemy())
@@ -86,6 +86,12 @@ HailPanel::HailPanel(PlayerInfo &player, const shared_ptr<Ship> &ship)
 			canRepair = true;
 		}
 		
+		if(ship->GetPersonality().IsSurveillance())
+		{
+			canGiveFuel = false;
+			canRepair = false;
+		}
+			
 		if(canGiveFuel || canRepair)
 			message = "Looks like you've gotten yourself into a bit of trouble. "
 				"Would you like us to ";
@@ -105,7 +111,7 @@ HailPanel::HailPanel(PlayerInfo &player, const shared_ptr<Ship> &ship)
 
 HailPanel::HailPanel(PlayerInfo &player, const StellarObject *object)
 	: player(player), planet(object->GetPlanet()),
-	sprite(object->GetSprite().GetSprite()), unit(object->Position().Unit())
+	sprite(object->GetSprite()), unit(object->Facing().Unit())
 {
 	SetInterruptible(false);
 	
@@ -237,7 +243,9 @@ bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 			return false;
 		if(playerNeedsHelp)
 		{
-			if(canGiveFuel || canRepair)
+			if(ship->GetPersonality().IsSurveillance())
+				message = "Sorry, I'm too busy to help you right now.";
+			else if(canGiveFuel || canRepair)
 			{
 				ship->SetShipToAssist(player.FlagshipPtr());
 				message = "Hang on, we'll be there in a minute.";
@@ -261,7 +269,7 @@ bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 		if(!hasLanguage)
 			return true;
 		// Make sure it actually makes sense to bribe this ship.
-		if(ship && (!shipIsEnemy || ship->GetGovernment()->GetName() == "Derelict"))
+		if((ship && (!shipIsEnemy || ship->GetGovernment()->GetName() == "Derelict")) || (planet && planet->CanLand()))
 			return true;
 		
 		if(bribe > player.Accounts().Credits())
@@ -312,11 +320,11 @@ bool HailPanel::Click(int x, int y)
 void HailPanel::SetBribe(double scale)
 {
 	// Find the total value of your fleet.
-	int value = 0;
+	int64_t value = 0;
 	for(const shared_ptr<Ship> &it : player.Ships())
 		value += it->Cost();
 	
-	bribe = 1000 * static_cast<int>(sqrt(value) * scale);
+	bribe = 1000 * static_cast<int64_t>(sqrt(value) * scale);
 	if(scale && !bribe)
 		bribe = 1000;
 }

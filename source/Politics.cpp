@@ -131,9 +131,8 @@ bool Politics::CanLand(const Ship &ship, const Planet *planet) const
 		return true;
 	
 	const Government *gov = ship.GetGovernment();
-	const Government *systemGov = planet->GetGovernment();
 	if(!gov->IsPlayer())
-		return !IsEnemy(gov, systemGov);
+		return !IsEnemy(gov, planet->GetGovernment());
 	
 	return CanLand(planet);
 }
@@ -148,10 +147,10 @@ bool Politics::CanLand(const Planet *planet) const
 		return true;
 	if(dominatedPlanets.count(planet))
 		return true;
-	if(provoked.count(planet->GetGovernment()))
-		return false;
 	if(bribedPlanets.count(planet))
 		return true;
+	if(provoked.count(planet->GetGovernment()))
+		return false;
 	
 	return Reputation(planet->GetGovernment()) >= planet->RequiredReputation();
 }

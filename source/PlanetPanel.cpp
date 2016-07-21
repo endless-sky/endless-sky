@@ -16,6 +16,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "BankPanel.h"
 #include "Command.h"
+#include "Dialog.h"
 #include "GameData.h"
 #include "FontSet.h"
 #include "HiringPanel.h"
@@ -32,6 +33,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "TradingPanel.h"
 #include "UI.h"
 
+#include <sstream>
+
 using namespace std;
 
 
@@ -39,8 +42,7 @@ using namespace std;
 PlanetPanel::PlanetPanel(PlayerInfo &player, function<void()> callback)
 	: player(player), callback(callback),
 	planet(*player.GetPlanet()), system(*player.GetSystem()),
-	ui(*GameData::Interfaces().Get("planet")),
-	selectedPanel(nullptr)
+	ui(*GameData::Interfaces().Get("planet"))
 {
 	trading.reset(new TradingPanel(player));
 	bank.reset(new BankPanel(player));
@@ -122,18 +124,63 @@ void PlanetPanel::Draw() const
 // Only override the ones you need; the default action is to return false.
 bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 {
+	if(isDeparting)
+		return false;
+	
 	Panel *oldPanel = selectedPanel;
 	const Ship *flagship = player.Flagship();
 	
 	bool hasAccess = planet.CanUseServices();
 	if(key == 'd' && flagship && flagship->CanBeFlagship())
 	{
-		player.Save();
-		if(player.TakeOff(GetUI()))
+		// Check whether the player should be warned before taking off.
+		if(player.ShouldLaunch())
+			TakeOff();
+		else
 		{
-			if(callback)
-				callback();
-			GetUI()->Pop(this);
+			// Will you have to sell something other than regular cargo?
+			int cargoToSell = -(player.Cargo().Free() + player.Cargo().CommoditiesSize());
+			int droneCount = 0;
+			int fighterCount = 0;
+			for(const auto &it : player.Ships())
+				if(!it->IsParked() && !it->IsDisabled() && it->GetSystem() == player.GetSystem())
+				{
+					const string &category = it->Attributes().Category();
+					droneCount += (category == "Drone") - it->BaysFree(false);
+					fighterCount += (category == "Fighter") - it->BaysFree(true);
+				}
+			
+			if(fighterCount > 0 || droneCount > 0 || cargoToSell > 0)
+			{
+				ostringstream out;
+				out << "If you take off now you will have to sell ";
+				bool triple = (fighterCount > 0 && droneCount > 0 && cargoToSell > 0);
+			
+				if(fighterCount == 1)
+					out << "a fighter";
+				else if(fighterCount > 0)
+					out << fighterCount << " fighters";
+				if(fighterCount > 0 && (droneCount > 0 || cargoToSell > 0))
+					out << (triple ? ", " : " and ");
+			
+				if(droneCount == 1)
+					out << "a drone";
+				else if(droneCount > 0)
+					out << droneCount << " drones";
+				if(droneCount > 0 && cargoToSell > 0)
+					out << (triple ? ", and " : " and ");
+			
+				if(cargoToSell == 1)
+					out << "a ton of cargo";
+				else if(cargoToSell > 0)
+					out << cargoToSell << " tons of cargo";
+				out << " that you do not have space for. Are you sure you want to continue?";
+				
+				GetUI()->Push(new Dialog(this, &PlanetPanel::TakeOff, out.str()));
+				return true;
+			}
+			else
+				TakeOff();
 		}
 	}
 	else if(key == 'l')
@@ -213,4 +260,20 @@ bool PlanetPanel::Click(int x, int y)
 		return DoKey(key);
 	
 	return true;
+}
+
+
+
+void PlanetPanel::TakeOff()
+{
+	isDeparting = true;
+	player.Save();
+	if(player.TakeOff(GetUI()))
+	{
+		if(callback)
+			callback();
+		if(selectedPanel)
+			GetUI()->Pop(selectedPanel);
+		GetUI()->Pop(this);
+	}
 }

@@ -68,7 +68,7 @@ mission "Wanderers: Hai Diplomat"
 	landing
 	source
 		near "Ya Hai" 1 100
-		government Hai
+		attributes "hai"
 	destination "Hai-home"
 	clearance
 	to offer
@@ -576,6 +576,7 @@ mission "Wanderers: Truce Check"
 	name "Check with Iktat Rek?"
 	description "Meet up with Iktat Rek on <planet> to see if there is anything more you can do to help the Wanderers now that they have established a ceasefire with the Unfettered."
 	to offer
+		has "main plot completed"
 		has "event: wanderers: truce timer"
 		not "Wanderers: Jump Drive Source: offered"
 	source
@@ -595,6 +596,7 @@ mission "Wanderers: Jump Drive Source"
 	description "Iktat Rek asked you to acquire a spare jump drive and sell it to the Unfettered in exchange for information on where they are getting jump drives from. Then, return to <destination>."
 	source "Vara K'chrai"
 	to offer
+		has "main plot completed"
 		has "event: wanderers: truce timer"
 	on offer
 		conversation
@@ -933,6 +935,7 @@ mission "Wanderers: Alpha Surveillance D"
 	blocked "You need a bunk free in order to take on this mission."
 	
 	on offer
+		"reputation: Alpha" <?= -1
 		conversation
 			`You are met in the spaceport by a bearded, middle-aged human man and a Quarg with exceptionally wrinkly skin. The Quarg says, "I hear that you need help against the Alphas. My friend Elias here has lived among us for a long time, and has told me much about the Alphas, their wars and their depredations."`
 			`	The human shakes hands with you and introduces himself as Elias Hanover. He says, "The Quarg are very hesitant to take sides in what they view as an internal human conflict. And they are equally hesitant to entrust their technology to a stranger like you. But if the Alphas are gathering strength and amassing alien technology, they must be stopped."`
@@ -1259,7 +1262,7 @@ mission "Wanderers: Alpha Surveillance J"
 	
 	on complete
 		"reputation: Wanderer" >?= 30
-		event "wanderers: unfettered invasion" 64
+		event "wanderers: unfettered invasion starts" 64
 		conversation
 			`It's hard to be certain, but the activity around the spaceport seems more hectic that usual, and the Wanderers seem to have put some new ship models into production as well. When you ask Iktat Rek about it, he says, "When the Unfettered first [invaded, occupied] our territory, we had almost no weapons of [war, defense]. Since then we have retrieved old [designs, instructions] and begun preparing for what is to come, [unpleasant, unfortunate] though it may be."`
 			`	As you describe your mixed success at dealing with the Alphas, he shakes his wings and ruffles out his feathers in what seems to be a nervous, agitated gesture. "These Alpha [beings, creatures] sound more [dangerous, unreasonable, ruthless] than the Unfettered," he says. "Any [social, gregarious] species that evolves naturally develops certain [limits, checks, restraints] that an [artificial, constructed] species may not possess. How can we best [respond to, deal with] them?"`
@@ -1269,3 +1272,13 @@ mission "Wanderers: Alpha Surveillance J"
 				`	"Sooner or later we will have to hunt them down and destroy them."`
 			`	"You are probably right," he says, uncertainly. He stares absently up into the sky and scratches at his wing with one talon. A few feathers fall out. "If only the Eye would open," he says. "I feel the air is [charged, tense] like the moment before a storm. Like we are [waiting, anticipating] something that ought to be here and is not. Though it may bring [catastrophe, upheaval, transition] I wish the wait would end."`
 			`	You talk for a while longer, but it seems that for now there is nothing more the Wanderers need from you. Iktat Rek mentions that you should stop by the outfitter before you leave and see "our [grim, regrettable] new devices," then thanks you once more and departs.`
+
+# Patching a mistake in 0.9.1:
+mission "Wanderers: Unfettered Invasion Patch"
+	landing
+	invisible
+	to offer
+		has "event: wanderers: unfettered invasion"
+	on offer
+		event "wanderers: unfettered invasion starts"
+		fail

@@ -20,7 +20,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Point.h"
 #include "Screen.h"
 #include "Ship.h"
-#include "ShipInfoDisplay.h"
 #include "System.h"
 #include "UI.h"
 
@@ -29,7 +28,7 @@ using namespace std;
 
 
 ShipyardPanel::ShipyardPanel(PlayerInfo &player)
-	: ShopPanel(player, Ship::CATEGORIES)
+	: ShopPanel(player, Ship::CATEGORIES), modifier(0)
 {
 	for(const auto &it : GameData::Ships())
 		catalog[it.second.Attributes().Category()].insert(it.first);
@@ -49,11 +48,11 @@ int ShipyardPanel::TileSize() const
 
 int ShipyardPanel::DrawPlayerShipInfo(const Point &point) const
 {
-	ShipInfoDisplay info(*playerShip);
-	info.DrawSale(point);
-	info.DrawAttributes(point + Point(0, info.SaleHeight()));
+	shipInfo.Update(*playerShip);
+	shipInfo.DrawSale(point);
+	shipInfo.DrawAttributes(point + Point(0, shipInfo.SaleHeight()));
 	
-	return info.SaleHeight() + info.AttributesHeight();
+	return shipInfo.SaleHeight() + shipInfo.AttributesHeight();
 }
 
 
@@ -87,22 +86,21 @@ int ShipyardPanel::DividerOffset() const
 
 int ShipyardPanel::DetailWidth() const
 {
-	return 3 * ShipInfoDisplay::PanelWidth();
+	return 3 * shipInfo.PanelWidth();
 }
-
 
 
 
 int ShipyardPanel::DrawDetails(const Point &center) const
 {
-	ShipInfoDisplay info(*selectedShip);
-	Point offset(info.PanelWidth(), 0.);
+	shipInfo.Update(*selectedShip);
+	Point offset(shipInfo.PanelWidth(), 0.);
 	
-	info.DrawDescription(center - offset * 1.5);
-	info.DrawAttributes(center - offset * .5);
-	info.DrawOutfits(center + offset * .5);
+	shipInfo.DrawDescription(center - offset * 1.5);
+	shipInfo.DrawAttributes(center - offset * .5);
+	shipInfo.DrawOutfits(center + offset * .5);
 	
-	return info.MaximumHeight();
+	return shipInfo.MaximumHeight();
 }
 
 
@@ -193,6 +191,7 @@ void ShipyardPanel::Sell()
 	static const int MAX_LIST = 20;
 	
 	int count = playerShips.size();
+	int initialCount = count;
 	string message = "Sell ";
 	if(count == 1)
 		message += playerShip->Name();
@@ -220,7 +219,10 @@ void ShipyardPanel::Sell()
 		
 		message += "and " + Format::Number(count - (MAX_LIST - 1)) + " other ships";
 	}
-	message += "?";
+	int64_t total = 0;
+	for(const auto &it : playerShips)
+		total += it->Cost();
+	message += ((initialCount > 2) ? "\nfor " : " for ") + Format::Number(total) + " credits?";
 	GetUI()->Push(new Dialog(this, &ShipyardPanel::SellShip, message));
 }
 
@@ -287,6 +289,7 @@ void ShipyardPanel::SellShip()
 		}
 	if(playerShip)
 		playerShips.insert(playerShip);
+	player.UpdateCargoCapacities();
 }
 
 

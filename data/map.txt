@@ -3448,7 +3448,7 @@ system Chikatip
 	asteroids "small metal" 18 2.5415
 	asteroids "medium metal" 89 2.6979
 	asteroids "large metal" 22 4.0664
-	fleet Quarg 2000
+	fleet "Large Quarg" 2000
 	object
 		sprite star/k5
 		period 10
@@ -3593,7 +3593,7 @@ system Chornifath
 	asteroids "small metal" 5 6.0368
 	asteroids "medium metal" 2 9.4864
 	asteroids "large metal" 4 5.0176
-	fleet Quarg 1000
+	fleet "Large Quarg" 1000
 	object
 		sprite star/k0
 		period 10
@@ -4320,7 +4320,8 @@ system Dokdobaru
 	trade Medical 750
 	trade Metal 385
 	trade Plastic 379
-	fleet Quarg 500
+	fleet Quarg 600
+	fleet "Large Quarg" 800
 	fleet "Kor Efret Home" 1500
 	object
 		sprite star/g5
@@ -5480,7 +5481,7 @@ system Farbutero
 	asteroids "small metal" 2 4.4689
 	asteroids "medium metal" 1 6.7367
 	asteroids "large metal" 1 6.8701
-	fleet Quarg 2000
+	fleet "Large Quarg" 2000
 	fleet "Small Kor Mereti" 9400
 	fleet "Large Kor Mereti" 5000
 	object
@@ -5621,7 +5622,7 @@ system Feroteri
 	asteroids "small metal" 3 3.081
 	asteroids "medium metal" 12 5.265
 	asteroids "large metal" 11 4.758
-	fleet Quarg 3000
+	fleet "Large Quarg" 3000
 	fleet "Small Kor Mereti" 12000
 	fleet "Large Kor Mereti" 6400
 	object
@@ -5842,7 +5843,7 @@ system Fornarep
 	asteroids "small metal" 7 2.8224
 	asteroids "medium metal" 11 3.2928
 	asteroids "large metal" 13 4.5024
-	fleet Quarg 2000
+	fleet "Large Quarg" 2000
 	fleet "Small Kor Mereti" 9000
 	fleet "Large Kor Mereti" 5800
 	object
@@ -5889,7 +5890,7 @@ system Furmeliki
 	link Kashikt
 	link Skeruto
 	asteroids "large metal" 1 3.5511
-	fleet Quarg 1000
+	fleet "Large Quarg" 1000
 	object
 		sprite star/k0
 		period 10
@@ -6749,7 +6750,7 @@ system Hesselpost
 	asteroids "small metal" 83 2.366
 	asteroids "medium metal" 93 1.0985
 	asteroids "large metal" 89 1.7407
-	fleet Quarg 1000
+	fleet "Large Quarg" 1000
 	object
 		sprite star/k0
 		period 10
@@ -7706,7 +7707,7 @@ system Kaliptari
 	asteroids "medium rock" 11 6.9498
 	asteroids "large rock" 25 5.4918
 	asteroids "large metal" 1 3.2562
-	fleet Quarg 3000
+	fleet "Large Quarg" 3000
 	fleet "Small Kor Mereti" 10000
 	fleet "Large Kor Mereti" 4800
 	object
@@ -7837,6 +7838,7 @@ system Kashikt
 	trade Metal 315
 	trade Plastic 438
 	fleet Quarg 1000
+	fleet "Large Quarg" 2000
 	fleet "Kor Efret Home" 1000
 	object
 		sprite star/f5
@@ -8571,7 +8573,7 @@ system Korsmanath
 	asteroids "medium rock" 1 2.5993
 	asteroids "large rock" 4 1.3277
 	asteroids "large metal" 2 1.6456
-	fleet Quarg 3000
+	fleet "Large Quarg" 3000
 	fleet "Small Kor Mereti" 8000
 	object
 		sprite star/k0
@@ -9370,7 +9372,7 @@ system Meftarkata
 	asteroids "large rock" 14 0.8892
 	asteroids "medium metal" 4 1.5288
 	asteroids "large metal" 1 1.9344
-	fleet Quarg 1000
+	fleet "Large Quarg" 1000
 	object
 		sprite star/f5
 		distance 21.8839
@@ -12373,7 +12375,7 @@ system Sabriset
 	asteroids "small metal" 21 4.374
 	asteroids "medium metal" 4 5.1435
 	asteroids "large metal" 7 4.3335
-	fleet Quarg 4000
+	fleet "Large Quarg" 4000
 	object
 		sprite star/g0
 		distance 35.1028
@@ -12998,7 +13000,7 @@ system Seketra
 	link Skeruto
 	link Chikatip
 	asteroids "large metal" 1 1.7556
-	fleet Quarg 3000
+	fleet "Large Quarg" 3000
 	object
 		sprite star/k5
 		period 10
@@ -13090,7 +13092,7 @@ system Sepriaptu
 	asteroids "small metal" 4 10.5
 	asteroids "medium metal" 53 6.23
 	asteroids "large metal" 1 9.24
-	fleet Quarg 4000
+	fleet "Large Quarg" 4000
 	object
 		sprite star/f5
 		distance 16.1966
@@ -13134,6 +13136,7 @@ system Sevrelect
 	trade Metal 207
 	trade Plastic 534
 	fleet Quarg 1000
+	fleet "Large Quarg" 3000
 	fleet "Kor Efret Home" 1000
 	object
 		sprite star/m0
@@ -13569,7 +13572,7 @@ system Skeruto
 	link Kaliptari
 	link Seketra
 	asteroids "large metal" 1 1.5554
-	fleet Quarg 2000
+	fleet "Large Quarg" 2000
 	object
 		sprite star/m0
 		period 10
@@ -13782,7 +13785,7 @@ system Solifar
 	asteroids "small metal" 2 7.134
 	asteroids "medium metal" 80 7.946
 	asteroids "large metal" 26 7.076
-	fleet Quarg 4000
+	fleet "Large Quarg" 4000
 	object
 		sprite star/m0
 		period 10
@@ -14059,6 +14062,7 @@ system Sumprast
 	trade Metal 236
 	trade Plastic 500
 	fleet Quarg 1000
+	fleet "Large Quarg" 2500
 	fleet "Kor Efret Home" 1000
 	object
 		sprite star/k0
@@ -16081,7 +16085,7 @@ planet Alfheim
 planet Allhome
 	attributes hai
 	landscape land/dmottl0
-	description `This earthlike planet has been settled both by human beings and by the Hai, the species that controls this region of space. The human settlements are relatively small, mostly farming communities founded by people who came here to escape the chaos and uncertainty of human space.`
+	description `This Earth-like planet has been settled both by human beings and by the Hai, the species that controls this region of space. The human settlements are relatively small, mostly farming communities founded by people who came here to escape the chaos and uncertainty of human space.`
 	spaceport `In the spaceport, a handful of human merchants and colonists wander about amid throngs of Hai - vaguely squirrel-like aliens who are somewhat shorter than the average human being, but make up for it with an abundance of energy. You feel a little bit like an adult wading through a sea of hyperactive children as you try to locate the commodity exchange and the other services offered here.`
 	outfitter "Hai Basics"
 
@@ -16809,7 +16813,7 @@ planet Furnace
 planet Geminus
 	attributes paradise factory mining
 	landscape land/fog5
-	description `Geminus, although not the most hospitable of planets, is a young enough planet that large stores of iron, titanium, and other metals are easily accessible near the surface. For that reason, it has become one of the Republic's primary shipyards. More than half of the warships in the navy were constructed here.`
+	description `Geminus, although not the most hospitable of worlds, is a young enough planet that large stores of iron, titanium, and other metals are easily accessible near the surface. For that reason, it has become one of the Republic's primary shipyards. More than half of the warships in the navy were constructed here.`
 	description `	The constant volcanic activity leaves the planet perpetually shrouded in clouds of ash and fog, so that being outside means being in a twilight haze with low visibility. Probably in compensation for this, interior spaces tend to be brightly lit and painted in bold colors.`
 	spaceport `Like everything else on Geminus, the spaceport is not terribly pretty, but is functional and efficient. Each of the wide hallways is marked out like a road, with space in the center for electric carts carrying cargo, while pedestrians are relegated to the edges.`
 	spaceport `	The hub of the spaceport is a food court with a ring of shops in the center and seating on the outside, where you can look out of plate glass windows at the lava fields and caldera outside. By night, you can see the volcanic glow all around the horizon.`
@@ -17093,7 +17097,7 @@ planet Hope
 planet Hopper
 	attributes "dirt belt" mining
 	landscape land/myrabella1
-	description `Hopper is a temperate world of oceans, mountains, and plains, but with unfortunately high levels of sulfuric acid in its atmosphere. Metal and stone that are exposed to the atmosphere corrode quickly, requiring frequent maintenance. As a result, Hopper has only a few small settlements on it, and most of the industry is focused on underground mining. The oceans are populated only by a few indigenous life forms that have adapted to their high acidity; earth fish could not be introduced successfully here.`
+	description `Hopper is a temperate world of oceans, mountains, and plains, but with unfortunately high levels of sulfuric acid in its atmosphere. Metal and stone that are exposed to the atmosphere corrode quickly, requiring frequent maintenance. As a result, Hopper has only a few small settlements on it, and most of the industry is focused on underground mining. The oceans are populated only by a few indigenous life forms that have adapted to their high acidity; Earth fish could not be introduced successfully here.`
 	spaceport `The spaceport consists mostly of a cluster of steel-framed warehouses with tin roofs, surrounded by concrete slabs for ships to land on. Scattered among the warehouses are a few smaller wooden buildings, housing a pub, a restaurant, and a small inn. Some of the warehouses are relatively new, with metal that still gleams; others are covered in rust, and a few stand in ruins, with large holes worn through their roofs and rusted girders poking through like dead trees.`
 	outfitter "Ammo South"
 	security 0.05
@@ -18138,7 +18142,7 @@ planet Shiver
 planet Shorebreak
 	attributes rim research medical
 	landscape land/beach1
-	description `Shorebreak is an ocean world which is home to a stunning profusion of alien life, some of which is not too dissimilar from life on earth. The first settlement, centuries ago, was built as a marine biology laboratory, and from there the planet gradually grew into a regional center for bioengineering, where local life forms are tested for possible use in human medicine.`
+	description `Shorebreak is an ocean world which is home to a stunning profusion of alien life, some of which is not too dissimilar from life on Earth. The first settlement, centuries ago, was built as a marine biology laboratory, and from there the planet gradually grew into a regional center for bioengineering, where local life forms are tested for possible use in human medicine.`
 	description `	Outside the laboratories, much of the planet's land mass remains in its natural state, but the planet is currently struggling with a large increase in immigration.`
 	spaceport `The spaceport on Shorebreak is built on its own separate island, perhaps as a way to keep any contamination isolated from the main continents. The hangar where you were directed to land your ship was hermetically sealed before you were allowed to land, and the customs officer informs you that any cargo you wish to trade must first be screened for "rats, mice, invasive insects, or wild pigs."`
 	"required reputation" 2
@@ -18234,7 +18238,7 @@ planet Snowfeather
 	attributes hai
 	landscape land/dmottl4
 	description `Snowfeather is a world with unusually chaotic weather patterns, where snow can fall even in the middle of summer but will melt away within days when the temperature shifts and becomes warmer again. Surprisingly, it is a popular vacation spot for the Hai, who find the unpredictability and occasional violence of the weather here to be invigorating.`
-	spaceport `The core of the spaceport is two rows of hangars, back to back. Their thick metal roofs sloping backwards, away from the entrance to each hangar, so that any snow or ice that slides off the roofs will not fall across the opening while ships or people are passing through. The hangars are also elevated about six meters above the ground, to protect against flash flooding.`
+	spaceport `The core of the spaceport is two rows of hangars, back to back. Their thick metal roofs slope backwards, away from the entrance to each hangar, so that any snow or ice that slides off the roofs will not fall across the opening while ships or people are passing through. The hangars are also elevated about six meters above the ground, to protect against flash floods.`
 	outfitter "Hai Basics"
 
 planet Solace
@@ -18665,7 +18669,7 @@ planet "Varu Tev'kei"
 	attributes wanderer factory
 	landscape land/dune4
 	description `This is a desert world, too hot and too close to its sun to support much animal or plant life. The Wanderers have covered large stretches of the desert with solar-powered factories: smelters that use the sun's reflected heat to melt ore, and fields of solar panels that support other industries.`
-	spaceport `It is easy to distinguish the local workers from the visitors, because the locals wrap their wings in thin white sheets of cloth rather than leaving them bare: a necessary protection for any Wanderer who chooses to fly outside of the protective shade of the spaceport. Many of the building here extend deep underground, to where the surrounding bedrock is cooler than the hot sands at the surface.`
+	spaceport `It is easy to distinguish the local workers from the visitors, because the locals wrap their wings in thin white sheets of cloth rather than leaving them bare: a necessary protection for any Wanderer who chooses to fly outside of the protective shade of the spaceport. Many of the buildings here extend deep underground, to where the surrounding bedrock is cooler than the hot sands at the surface.`
 	"required reputation" 15
 	bribe 0
 
