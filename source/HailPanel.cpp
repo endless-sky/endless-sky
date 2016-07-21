@@ -324,7 +324,7 @@ void HailPanel::SetBribe(double scale)
 	for(const shared_ptr<Ship> &it : player.Ships())
 		value += it->Cost();
 	
-	bribe = 1000 * static_cast<int>(sqrt(value) * scale);
+	bribe = 1000 * static_cast<int64_t>(sqrt(value) * scale);
 	if(scale && !bribe)
 		bribe = 1000;
 }
