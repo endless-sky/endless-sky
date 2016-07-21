@@ -11,9 +11,6 @@
 government "Alpha"
 	swizzle 1
 	"player reputation" -1000
-	"attitude toward"
-		"Republic" -.1
-		"Navy (Oathkeeper)" -.1
 	"bribe" 0
 
 government "Author"
@@ -179,6 +176,7 @@ government "Navy (Oathkeeper)"
 	
 	"player reputation" 100
 	"attitude toward"
+		"Alpha" -.3
 		"Merchant" .25
 		"Militia" .1
 		"Pirate" -.3
@@ -251,6 +249,7 @@ government "Republic"
 	
 	"player reputation" 2
 	"attitude toward"
+		"Alpha" -.3
 		"Merchant" .25
 		"Militia" .1
 		"Pirate" -.3

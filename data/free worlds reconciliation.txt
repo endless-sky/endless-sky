@@ -2378,6 +2378,7 @@ mission "FW Syndicate Extremists 1B"
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
+		"reputation: Syndicate (Extremist)" = -1000
 		event "battle of algenib"
 		outfit "Cloaking Device" 1
 		conversation

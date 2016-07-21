@@ -720,7 +720,7 @@ void MapPanel::DrawSystems() const
 					bool all = true;
 					bool some = false;
 					for(const StellarObject &object : system.Objects())
-						if(object.GetPlanet())
+						if(object.GetPlanet() && !object.GetPlanet()->IsWormhole())
 						{
 							bool visited = player.HasVisited(object.GetPlanet());
 							all &= visited;

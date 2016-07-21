@@ -17,6 +17,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Point.h"
 
+#include <cstdint>
 #include <memory>
 #include <string>
 
@@ -59,7 +60,7 @@ private:
 	std::string header;
 	std::string message;
 	
-	int bribe = 0;
+	int64_t bribe = 0;
 	bool playerNeedsHelp = false;
 	bool canGiveFuel = false;
 	bool canRepair = false;
