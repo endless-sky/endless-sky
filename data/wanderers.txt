@@ -432,13 +432,13 @@ event "wanderers: first tech increase"
 		
 #Reverse compatibility
 event "wanderers: flycatcher category"
-	clear "shipyard: Wanderer Basics"
-	clear "shipyard: Wanderer Advanced"
 	shipyard "Wanderer Basics"
+		clear
 		"Flycatcher (Drone)"
 		"Earth Shaper"
 		"Summer Leaf"
 	shipyard "Wanderer Advanced"
+		clear
 		"Flycatcher (Drone)"
 		"Autumn Leaf"
 		"Earth Shaper"
