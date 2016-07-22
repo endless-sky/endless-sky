@@ -2772,6 +2772,14 @@ event "fwc southern liberation"
 		fleet "Large Free Worlds" 1700
 		fleet "Small Southern Pirates" 3000
 		fleet "Large Southern Pirates" 7000
+	system Lesath
+		fleet "Small Southern Merchants" 800
+		fleet "Large Southern Merchants" 1600
+		fleet "Small Free Worlds" 800
+		fleet "Large Free Worlds" 1100
+		fleet "Small Southern Pirates" 2000
+		fleet "Large Southern Pirates" 5000
+		fleet "Navy Surveillance" 4000
 
 
 
