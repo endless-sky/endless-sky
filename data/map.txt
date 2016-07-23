@@ -2386,6 +2386,16 @@ system Asikafarnut
 	asteroids "large rock" 3 2.184
 	asteroids "medium metal" 5 1.7472
 	asteroids "large metal" 1 4.5024
+	trade Clothing 382
+	trade Electronics 680
+	trade Equipment 563
+	trade Food 253
+	trade "Heavy Metals" 792
+	trade Industrial 757
+	trade "Luxury Goods" 1425
+	trade Medical 846
+	trade Metal 290
+	trade Plastic 276
 	fleet "Large Kor Mereti" 3600
 	fleet "Small Kor Sestor" 600
 	fleet "Large Kor Sestor" 3200
@@ -3402,6 +3412,16 @@ system Celeborim
 	asteroids "small metal" 20 4.368
 	asteroids "medium metal" 1 4.5864
 	asteroids "large metal" 21 2.5584
+	trade Clothing 411
+	trade Electronics 687
+	trade Equipment 523
+	trade Food 306
+	trade "Heavy Metals" 721
+	trade Industrial 811
+	trade "Luxury Goods" 1440
+	trade Medical 814
+	trade Metal 271
+	trade Plastic 298
 	fleet "Small Kor Sestor" 1200
 	fleet "Large Kor Sestor" 6400
 	object
@@ -3448,6 +3468,16 @@ system Chikatip
 	asteroids "small metal" 18 2.5415
 	asteroids "medium metal" 89 2.6979
 	asteroids "large metal" 22 4.0664
+	trade Clothing 261
+	trade Electronics 819
+	trade Equipment 386
+	trade Food 530
+	trade "Heavy Metals" 1010
+	trade Industrial 592
+	trade "Luxury Goods" 1060
+	trade Medical 606
+	trade Metal 283
+	trade Plastic 278
 	fleet "Large Quarg" 2000
 	object
 		sprite star/k5
@@ -3491,6 +3521,16 @@ system Chimitarp
 	asteroids "small metal" 5 5.9356
 	asteroids "medium metal" 64 5.7684
 	asteroids "large metal" 17 3.1768
+	trade Clothing 205
+	trade Electronics 731
+	trade Equipment 594
+	trade Food 351
+	trade "Heavy Metals" 1043
+	trade Industrial 698
+	trade "Luxury Goods" 1178
+	trade Medical 650
+	trade Metal 365
+	trade Plastic 432
 	fleet "Small Kor Mereti" 1000
 	fleet "Large Kor Mereti" 3600
 	object
@@ -3593,6 +3633,16 @@ system Chornifath
 	asteroids "small metal" 5 6.0368
 	asteroids "medium metal" 2 9.4864
 	asteroids "large metal" 4 5.0176
+	trade Clothing 309
+	trade Electronics 851
+	trade Equipment 359
+	trade Food 525
+	trade "Heavy Metals" 1113
+	trade Industrial 667
+	trade "Luxury Goods" 996
+	trade Medical 508
+	trade Metal 468
+	trade Plastic 373
 	fleet "Large Quarg" 1000
 	object
 		sprite star/k0
@@ -4310,16 +4360,16 @@ system Dokdobaru
 	asteroids "small metal" 1 4.05
 	asteroids "medium metal" 2 4.05
 	asteroids "large metal" 3 2.0655
-	trade Clothing 320
-	trade Electronics 645
-	trade Equipment 570
-	trade Food 304
-	trade "Heavy Metals" 1150
-	trade Industrial 621
-	trade "Luxury Goods" 1347
-	trade Medical 750
-	trade Metal 385
-	trade Plastic 379
+	trade Clothing 292
+	trade Electronics 832
+	trade Equipment 363
+	trade Food 535
+	trade "Heavy Metals" 1102
+	trade Industrial 685
+	trade "Luxury Goods" 1035
+	trade Medical 500
+	trade Metal 473
+	trade Plastic 317
 	fleet Quarg 600
 	fleet "Large Quarg" 800
 	fleet "Kor Efret Home" 1500
@@ -4938,6 +4988,16 @@ system Eneremprukt
 	asteroids "medium rock" 11 3.456
 	asteroids "large rock" 10 7.29
 	asteroids "large metal" 4 7.506
+	trade Clothing 302
+	trade Electronics 773
+	trade Equipment 685
+	trade Food 227
+	trade "Heavy Metals" 702
+	trade Industrial 609
+	trade "Luxury Goods" 1475
+	trade Medical 828
+	trade Metal 294
+	trade Plastic 295
 	fleet "Large Kor Mereti" 2000
 	fleet "Small Kor Sestor" 1600
 	fleet "Large Kor Sestor" 2400
@@ -5191,6 +5251,16 @@ system Eshkoshtar
 	asteroids "small metal" 12 4.5
 	asteroids "medium metal" 53 2.31
 	asteroids "large metal" 155 3.51
+	trade Clothing 248
+	trade Electronics 715
+	trade Equipment 703
+	trade Food 249
+	trade "Heavy Metals" 876
+	trade Industrial 588
+	trade "Luxury Goods" 1354
+	trade Medical 704
+	trade Metal 258
+	trade Plastic 481
 	fleet "Small Kor Mereti" 800
 	fleet "Large Kor Mereti" 1600
 	fleet "Large Kor Sestor" 3600
@@ -5481,6 +5551,16 @@ system Farbutero
 	asteroids "small metal" 2 4.4689
 	asteroids "medium metal" 1 6.7367
 	asteroids "large metal" 1 6.8701
+	trade Clothing 268
+	trade Electronics 781
+	trade Equipment 520
+	trade Food 449
+	trade "Heavy Metals" 1061
+	trade Industrial 749
+	trade "Luxury Goods" 1085
+	trade Medical 549
+	trade Metal 450
+	trade Plastic 403
 	fleet "Large Quarg" 2000
 	fleet "Small Kor Mereti" 9400
 	fleet "Large Kor Mereti" 5000
@@ -5540,6 +5620,16 @@ system Faronektu
 	asteroids "small metal" 116 2.448
 	asteroids "medium metal" 132 3.366
 	asteroids "large metal" 13 2.295
+	trade Clothing 241
+	trade Electronics 627
+	trade Equipment 651
+	trade Food 281
+	trade "Heavy Metals" 911
+	trade Industrial 705
+	trade "Luxury Goods" 1337
+	trade Medical 770
+	trade Metal 260
+	trade Plastic 298
 	fleet "Small Kor Mereti" 1200
 	fleet "Large Kor Mereti" 2000
 	fleet "Large Kor Sestor" 3000
@@ -5590,6 +5680,16 @@ system Fasitopfar
 	asteroids "small metal" 50 6.264
 	asteroids "medium metal" 67 7.236
 	asteroids "large metal" 83 4.968
+	trade Clothing 283
+	trade Electronics 624
+	trade Equipment 394
+	trade Food 566
+	trade "Heavy Metals" 856
+	trade Industrial 677
+	trade "Luxury Goods" 922
+	trade Medical 772
+	trade Metal 433
+	trade Plastic 481
 	object
 		sprite star/nova
 		period 1000
@@ -5622,6 +5722,16 @@ system Feroteri
 	asteroids "small metal" 3 3.081
 	asteroids "medium metal" 12 5.265
 	asteroids "large metal" 11 4.758
+	trade Clothing 320
+	trade Electronics 744
+	trade Equipment 573
+	trade Food 444
+	trade "Heavy Metals" 1045
+	trade Industrial 771
+	trade "Luxury Goods" 1072
+	trade Medical 492
+	trade Metal 406
+	trade Plastic 451
 	fleet "Large Quarg" 3000
 	fleet "Small Kor Mereti" 12000
 	fleet "Large Kor Mereti" 6400
@@ -5691,6 +5801,16 @@ system Ferukistek
 	asteroids "small metal" 12 2.144
 	asteroids "medium metal" 114 1.312
 	asteroids "large metal" 81 0.864
+	trade Clothing 296
+	trade Electronics 734
+	trade Equipment 676
+	trade Food 195
+	trade "Heavy Metals" 695
+	trade Industrial 619
+	trade "Luxury Goods" 1481
+	trade Medical 832
+	trade Metal 328
+	trade Plastic 296
 	fleet "Large Kor Mereti" 2400
 	fleet "Small Kor Sestor" 4000
 	fleet "Large Kor Sestor" 6000
@@ -5843,6 +5963,16 @@ system Fornarep
 	asteroids "small metal" 7 2.8224
 	asteroids "medium metal" 11 3.2928
 	asteroids "large metal" 13 4.5024
+	trade Clothing 296
+	trade Electronics 743
+	trade Equipment 565
+	trade Food 442
+	trade "Heavy Metals" 1051
+	trade Industrial 662
+	trade "Luxury Goods" 1225
+	trade Medical 694
+	trade Metal 438
+	trade Plastic 375
 	fleet "Large Quarg" 2000
 	fleet "Small Kor Mereti" 9000
 	fleet "Large Kor Mereti" 5800
@@ -5890,6 +6020,16 @@ system Furmeliki
 	link Kashikt
 	link Skeruto
 	asteroids "large metal" 1 3.5511
+	trade Clothing 278
+	trade Electronics 771
+	trade Equipment 373
+	trade Food 516
+	trade "Heavy Metals" 1074
+	trade Industrial 674
+	trade "Luxury Goods" 1049
+	trade Medical 536
+	trade Metal 346
+	trade Plastic 313
 	fleet "Large Quarg" 1000
 	object
 		sprite star/k0
@@ -6750,6 +6890,16 @@ system Hesselpost
 	asteroids "small metal" 83 2.366
 	asteroids "medium metal" 93 1.0985
 	asteroids "large metal" 89 1.7407
+	trade Clothing 322
+	trade Electronics 826
+	trade Equipment 365
+	trade Food 564
+	trade "Heavy Metals" 1027
+	trade Industrial 622
+	trade "Luxury Goods" 1029
+	trade Medical 484
+	trade Metal 536
+	trade Plastic 281
 	fleet "Large Quarg" 1000
 	object
 		sprite star/k0
@@ -7070,6 +7220,16 @@ system Host
 	government Uninhabited
 	habitable 486.68
 	asteroids "large metal" 1 0.732
+	trade Clothing 268
+	trade Electronics 639
+	trade Equipment 532
+	trade Food 166
+	trade "Heavy Metals" 929
+	trade Industrial 902
+	trade "Luxury Goods" 1059
+	trade Medical 772
+	trade Metal 589
+	trade Plastic 526
 	object
 		sprite star/k0
 		period 10
@@ -7707,6 +7867,16 @@ system Kaliptari
 	asteroids "medium rock" 11 6.9498
 	asteroids "large rock" 25 5.4918
 	asteroids "large metal" 1 3.2562
+	trade Clothing 316
+	trade Electronics 754
+	trade Equipment 568
+	trade Food 453
+	trade "Heavy Metals" 989
+	trade Industrial 657
+	trade "Luxury Goods" 1262
+	trade Medical 675
+	trade Metal 334
+	trade Plastic 398
 	fleet "Large Quarg" 3000
 	fleet "Small Kor Mereti" 10000
 	fleet "Large Kor Mereti" 4800
@@ -7827,16 +7997,16 @@ system Kashikt
 	asteroids "small metal" 22 3.1878
 	asteroids "medium metal" 44 6.0858
 	asteroids "large metal" 13 4.2021
-	trade Clothing 409
-	trade Electronics 732
-	trade Equipment 643
-	trade Food 540
-	trade "Heavy Metals" 1230
-	trade Industrial 576
-	trade "Luxury Goods" 1387
-	trade Medical 834
-	trade Metal 315
-	trade Plastic 438
+	trade Clothing 262
+	trade Electronics 847
+	trade Equipment 378
+	trade Food 468
+	trade "Heavy Metals" 1165
+	trade Industrial 768
+	trade "Luxury Goods" 981
+	trade Medical 543
+	trade Metal 443
+	trade Plastic 292
 	fleet Quarg 1000
 	fleet "Large Quarg" 2000
 	fleet "Kor Efret Home" 1000
@@ -7886,6 +8056,16 @@ system Kasikfar
 	asteroids "small metal" 3 6.7367
 	asteroids "medium metal" 47 4.1354
 	asteroids "large metal" 3 5.0025
+	trade Clothing 256
+	trade Electronics 593
+	trade Equipment 526
+	trade Food 498
+	trade "Heavy Metals" 1266
+	trade Industrial 614
+	trade "Luxury Goods" 921
+	trade Medical 437
+	trade Metal 288
+	trade Plastic 320
 	object
 		sprite star/nova
 		period 1000
@@ -8183,6 +8363,16 @@ system "Kor Ak'Mari"
 	asteroids "small metal" 13 3.024
 	asteroids "medium metal" 99 3.0744
 	asteroids "large metal" 32 1.5624
+	trade Clothing 216
+	trade Electronics 857
+	trade Equipment 640
+	trade Food 258
+	trade "Heavy Metals" 848
+	trade Industrial 854
+	trade "Luxury Goods" 1090
+	trade Medical 726
+	trade Metal 217
+	trade Plastic 524
 	fleet "Korath Raid" 2800
 	object
 		sprite star/wr
@@ -8224,6 +8414,16 @@ system "Kor En'lakfar"
 	asteroids "small metal" 4 0.74
 	asteroids "medium metal" 91 1.12
 	asteroids "large metal" 30 1.07
+	trade Clothing 244
+	trade Electronics 792
+	trade Equipment 397
+	trade Food 532
+	trade "Heavy Metals" 810
+	trade Industrial 692
+	trade "Luxury Goods" 1139
+	trade Medical 840
+	trade Metal 236
+	trade Plastic 488
 	fleet "Korath Raid" 600
 	fleet "Korath Home" 1800
 	object
@@ -8270,6 +8470,16 @@ system "Kor Fel'tar"
 	asteroids "small metal" 38 2.6334
 	asteroids "medium metal" 155 2.2407
 	asteroids "large metal" 5 1.9173
+	trade Clothing 281
+	trade Electronics 793
+	trade Equipment 394
+	trade Food 551
+	trade "Heavy Metals" 801
+	trade Industrial 701
+	trade "Luxury Goods" 1126
+	trade Medical 841
+	trade Metal 256
+	trade Plastic 478
 	fleet "Korath Raid" 1600
 	fleet "Korath Home" 900
 	object
@@ -8319,6 +8529,16 @@ system "Kor Men"
 	asteroids "small metal" 13 3.249
 	asteroids "medium metal" 6 4.275
 	asteroids "large metal" 4 4.1724
+	trade Clothing 282
+	trade Electronics 822
+	trade Equipment 378
+	trade Food 532
+	trade "Heavy Metals" 828
+	trade Industrial 679
+	trade "Luxury Goods" 1133
+	trade Medical 844
+	trade Metal 240
+	trade Plastic 497
 	fleet "Korath Raid" 1300
 	fleet "Korath Home" 600
 	object
@@ -8366,6 +8586,16 @@ system "Kor Nor'peli"
 	asteroids "small metal" 1 3.2364
 	asteroids "medium metal" 59 2.2272
 	asteroids "large metal" 3 3.5148
+	trade Clothing 320
+	trade Electronics 663
+	trade Equipment 371
+	trade Food 252
+	trade "Heavy Metals" 821
+	trade Industrial 859
+	trade "Luxury Goods" 1471
+	trade Medical 850
+	trade Metal 517
+	trade Plastic 423
 	fleet "Korath Raid" 1000
 	fleet "Korath Home" 500
 	object
@@ -8418,6 +8648,16 @@ system "Kor Tar'bei"
 	asteroids "small metal" 16 2.28
 	asteroids "medium metal" 169 1.992
 	asteroids "large metal" 76 3.216
+	trade Clothing 332
+	trade Electronics 660
+	trade Equipment 357
+	trade Food 276
+	trade "Heavy Metals" 800
+	trade Industrial 845
+	trade "Luxury Goods" 1470
+	trade Medical 817
+	trade Metal 498
+	trade Plastic 402
 	fleet "Korath Raid" 1200
 	fleet "Korath Home" 600
 	object
@@ -8456,6 +8696,16 @@ system "Kor Zena'i"
 	asteroids "small rock" 5 6.2205
 	asteroids "large rock" 2 4.7415
 	asteroids "large metal" 1 4.4805
+	trade Clothing 345
+	trade Electronics 658
+	trade Equipment 343
+	trade Food 300
+	trade "Heavy Metals" 779
+	trade Industrial 831
+	trade "Luxury Goods" 1469
+	trade Medical 785
+	trade Metal 478
+	trade Plastic 381
 	fleet "Korath Raid" 800
 	fleet "Korath Home" 1100
 	object
@@ -8573,6 +8823,16 @@ system Korsmanath
 	asteroids "medium rock" 1 2.5993
 	asteroids "large rock" 4 1.3277
 	asteroids "large metal" 2 1.6456
+	trade Clothing 335
+	trade Electronics 777
+	trade Equipment 509
+	trade Food 497
+	trade "Heavy Metals" 1067
+	trade Industrial 815
+	trade "Luxury Goods" 1014
+	trade Medical 479
+	trade Metal 427
+	trade Plastic 440
 	fleet "Large Quarg" 3000
 	fleet "Small Kor Mereti" 8000
 	object
@@ -9047,6 +9307,16 @@ system Makferuti
 	asteroids "medium rock" 250 3.3212
 	asteroids "large rock" 32 2.5631
 	asteroids "large metal" 1 4.5847
+	trade Clothing 354
+	trade Electronics 673
+	trade Equipment 614
+	trade Food 197
+	trade "Heavy Metals" 834
+	trade Industrial 803
+	trade "Luxury Goods" 1387
+	trade Medical 842
+	trade Metal 270
+	trade Plastic 267
 	fleet "Small Kor Sestor" 1200
 	fleet "Large Kor Sestor" 5000
 	object
@@ -9372,6 +9642,16 @@ system Meftarkata
 	asteroids "large rock" 14 0.8892
 	asteroids "medium metal" 4 1.5288
 	asteroids "large metal" 1 1.9344
+	trade Clothing 263
+	trade Electronics 797
+	trade Equipment 489
+	trade Food 510
+	trade "Heavy Metals" 1118
+	trade Industrial 694
+	trade "Luxury Goods" 1133
+	trade Medical 599
+	trade Metal 484
+	trade Plastic 334
 	fleet "Large Quarg" 1000
 	object
 		sprite star/f5
@@ -9484,6 +9764,16 @@ system Mekislepti
 	asteroids "small metal" 5 3.0976
 	asteroids "medium metal" 23 3.63
 	asteroids "large metal" 5 3.2186
+	trade Clothing 281
+	trade Electronics 694
+	trade Equipment 638
+	trade Food 344
+	trade "Heavy Metals" 992
+	trade Industrial 615
+	trade "Luxury Goods" 1259
+	trade Medical 741
+	trade Metal 330
+	trade Plastic 452
 	fleet "Small Kor Mereti" 1000
 	fleet "Large Kor Mereti" 3000
 	fleet "Large Kor Sestor" 8000
@@ -9828,6 +10118,16 @@ system Mesuket
 	link Eneremprukt
 	link Salipastart
 	asteroids "large metal" 1 1.6758
+	trade Clothing 252
+	trade Electronics 746
+	trade Equipment 681
+	trade Food 221
+	trade "Heavy Metals" 771
+	trade Industrial 660
+	trade "Luxury Goods" 1458
+	trade Medical 798
+	trade Metal 272
+	trade Plastic 366
 	fleet "Large Kor Mereti" 600
 	fleet "Large Kor Sestor" 600
 	object
@@ -11058,6 +11358,16 @@ system Peresedersi
 	asteroids "small metal" 39 2.438
 	asteroids "medium metal" 4 3.197
 	asteroids "large metal" 5 3.22
+	trade Clothing 407
+	trade Electronics 682
+	trade Equipment 659
+	trade Food 129
+	trade "Heavy Metals" 956
+	trade Industrial 841
+	trade "Luxury Goods" 1356
+	trade Medical 584
+	trade Metal 293
+	trade Plastic 499
 	object
 		sprite star/nova
 		period 1000
@@ -11144,6 +11454,16 @@ system Persitar
 	asteroids "medium rock" 2 4.482
 	asteroids "large rock" 3 4.86
 	asteroids "large metal" 2 7.344
+	trade Clothing 231
+	trade Electronics 801
+	trade Equipment 385
+	trade Food 170
+	trade "Heavy Metals" 907
+	trade Industrial 556
+	trade "Luxury Goods" 1508
+	trade Medical 456
+	trade Metal 540
+	trade Plastic 500
 	object
 		sprite star/nova
 		period 1000
@@ -12375,6 +12695,16 @@ system Sabriset
 	asteroids "small metal" 21 4.374
 	asteroids "medium metal" 4 5.1435
 	asteroids "large metal" 7 4.3335
+	trade Clothing 352
+	trade Electronics 723
+	trade Equipment 577
+	trade Food 489
+	trade "Heavy Metals" 885
+	trade Industrial 727
+	trade "Luxury Goods" 1311
+	trade Medical 621
+	trade Metal 275
+	trade Plastic 441
 	fleet "Large Quarg" 4000
 	object
 		sprite star/g0
@@ -12637,6 +12967,16 @@ system Salipastart
 	asteroids "large rock" 9 5.95
 	asteroids "medium metal" 8 4.9504
 	asteroids "large metal" 1 2.4276
+	trade Clothing 231
+	trade Electronics 655
+	trade Equipment 647
+	trade Food 247
+	trade "Heavy Metals" 856
+	trade Industrial 745
+	trade "Luxury Goods" 1372
+	trade Medical 769
+	trade Metal 274
+	trade Plastic 317
 	fleet "Small Kor Mereti" 800
 	fleet "Large Kor Mereti" 1600
 	fleet "Large Kor Sestor" 3200
@@ -12783,6 +13123,16 @@ system Sayaiban
 	asteroids "small metal" 1 2.754
 	asteroids "medium metal" 175 1.377
 	asteroids "large metal" 1 1.62
+	trade Clothing 290
+	trade Electronics 658
+	trade Equipment 588
+	trade Food 116
+	trade "Heavy Metals" 694
+	trade Industrial 728
+	trade "Luxury Goods" 1004
+	trade Medical 874
+	trade Metal 240
+	trade Plastic 531
 	fleet Nanobots 100
 	object
 		sprite star/f5
@@ -13000,6 +13350,16 @@ system Seketra
 	link Skeruto
 	link Chikatip
 	asteroids "large metal" 1 1.7556
+	trade Clothing 247
+	trade Electronics 792
+	trade Equipment 433
+	trade Food 542
+	trade "Heavy Metals" 1013
+	trade Industrial 577
+	trade "Luxury Goods" 1114
+	trade Medical 635
+	trade Metal 327
+	trade Plastic 286
 	fleet "Large Quarg" 3000
 	object
 		sprite star/k5
@@ -13046,6 +13406,16 @@ system Sepetrosk
 	asteroids "small metal" 8 1.596
 	asteroids "medium metal" 15 1.652
 	asteroids "large metal" 56 2.94
+	trade Clothing 241
+	trade Electronics 689
+	trade Equipment 638
+	trade Food 359
+	trade "Heavy Metals" 1042
+	trade Industrial 722
+	trade "Luxury Goods" 1165
+	trade Medical 589
+	trade Metal 348
+	trade Plastic 473
 	fleet "Small Kor Mereti" 1200
 	fleet "Large Kor Mereti" 4800
 	object
@@ -13092,6 +13462,16 @@ system Sepriaptu
 	asteroids "small metal" 4 10.5
 	asteroids "medium metal" 53 6.23
 	asteroids "large metal" 1 9.24
+	trade Clothing 370
+	trade Electronics 683
+	trade Equipment 588
+	trade Food 488
+	trade "Heavy Metals" 907
+	trade Industrial 740
+	trade "Luxury Goods" 1331
+	trade Medical 604
+	trade Metal 320
+	trade Plastic 449
 	fleet "Large Quarg" 4000
 	object
 		sprite star/f5
@@ -13125,16 +13505,16 @@ system Sevrelect
 	link Sumprast
 	link Kashikt
 	asteroids "large metal" 1 2.97
-	trade Clothing 340
-	trade Electronics 820
-	trade Equipment 632
-	trade Food 524
-	trade "Heavy Metals" 1309
-	trade Industrial 624
-	trade "Luxury Goods" 1409
-	trade Medical 920
-	trade Metal 207
-	trade Plastic 534
+	trade Clothing 225
+	trade Electronics 853
+	trade Equipment 436
+	trade Food 381
+	trade "Heavy Metals" 1183
+	trade Industrial 803
+	trade "Luxury Goods" 996
+	trade Medical 603
+	trade Metal 446
+	trade Plastic 288
 	fleet Quarg 1000
 	fleet "Large Quarg" 3000
 	fleet "Kor Efret Home" 1000
@@ -13424,6 +13804,16 @@ system Silikatakfar
 	asteroids "medium rock" 1 1.2544
 	asteroids "large rock" 1 2.128
 	asteroids "large metal" 1 2.128
+	trade Clothing 305
+	trade Electronics 717
+	trade Equipment 640
+	trade Food 245
+	trade "Heavy Metals" 757
+	trade Industrial 648
+	trade "Luxury Goods" 1465
+	trade Medical 870
+	trade Metal 318
+	trade Plastic 293
 	fleet "Large Kor Mereti" 1600
 	fleet "Small Kor Sestor" 1600
 	fleet "Large Kor Sestor" 2400
@@ -13470,6 +13860,16 @@ system Similisti
 	asteroids "small metal" 20 2.79
 	asteroids "medium metal" 25 3.105
 	asteroids "large metal" 40 4.005
+	trade Clothing 210
+	trade Electronics 645
+	trade Equipment 669
+	trade Food 293
+	trade "Heavy Metals" 965
+	trade Industrial 677
+	trade "Luxury Goods" 1282
+	trade Medical 693
+	trade Metal 272
+	trade Plastic 405
 	fleet "Large Kor Mereti" 1600
 	fleet "Small Kor Mereti" 600
 	fleet "Large Kor Sestor" 5400
@@ -13572,6 +13972,16 @@ system Skeruto
 	link Kaliptari
 	link Seketra
 	asteroids "large metal" 1 1.5554
+	trade Clothing 286
+	trade Electronics 736
+	trade Equipment 498
+	trade Food 514
+	trade "Heavy Metals" 1049
+	trade Industrial 630
+	trade "Luxury Goods" 1161
+	trade Medical 621
+	trade Metal 393
+	trade Plastic 333
 	fleet "Large Quarg" 2000
 	object
 		sprite star/m0
@@ -13656,6 +14066,16 @@ system Sobarati
 	habitable 3780
 	link Asikafarnut
 	asteroids "large metal" 1 3.705
+	trade Clothing 408
+	trade Electronics 694
+	trade Equipment 534
+	trade Food 234
+	trade "Heavy Metals" 829
+	trade Industrial 714
+	trade "Luxury Goods" 1433
+	trade Medical 846
+	trade Metal 309
+	trade Plastic 267
 	fleet "Small Kor Sestor" 800
 	fleet "Large Kor Sestor" 4000
 	object
@@ -13785,6 +14205,16 @@ system Solifar
 	asteroids "small metal" 2 7.134
 	asteroids "medium metal" 80 7.946
 	asteroids "large metal" 26 7.076
+	trade Clothing 256
+	trade Electronics 831
+	trade Equipment 595
+	trade Food 407
+	trade "Heavy Metals" 1046
+	trade Industrial 628
+	trade "Luxury Goods" 1227
+	trade Medical 678
+	trade Metal 285
+	trade Plastic 442
 	fleet "Large Quarg" 4000
 	object
 		sprite star/m0
@@ -14051,16 +14481,16 @@ system Sumprast
 	asteroids "small metal" 3 2.9744
 	asteroids "medium metal" 15 2.4336
 	asteroids "large metal" 7 2.4336
-	trade Clothing 421
-	trade Electronics 740
-	trade Equipment 721
-	trade Food 593
-	trade "Heavy Metals" 1292
-	trade Industrial 540
-	trade "Luxury Goods" 1324
-	trade Medical 913
-	trade Metal 236
-	trade Plastic 500
+	trade Clothing 248
+	trade Electronics 861
+	trade Equipment 430
+	trade Food 407
+	trade "Heavy Metals" 1219
+	trade Industrial 792
+	trade "Luxury Goods" 999
+	trade Medical 591
+	trade Metal 483
+	trade Plastic 323
 	fleet Quarg 1000
 	fleet "Large Quarg" 2500
 	fleet "Kor Efret Home" 1000
