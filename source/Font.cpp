@@ -350,8 +350,7 @@ void Font::SetUpShader(float glyphW, float glyphH)
 	
 	// connect the xy to the "vert" attribute of the vertex shader
 	glEnableVertexAttribArray(shader.Attrib("vert"));
-	glVertexAttribPointer(shader.Attrib("vert"), 2, GL_FLOAT, GL_FALSE,
-		4 * sizeof(GLfloat), NULL);
+	glVertexAttribPointer(shader.Attrib("vert"), 2, GL_FLOAT, GL_FALSE, 4 * sizeof(GLfloat), nullptr);
 	
 	glEnableVertexAttribArray(shader.Attrib("corner"));
 	glVertexAttribPointer(shader.Attrib("corner"), 2, GL_FLOAT, GL_FALSE,
