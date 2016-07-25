@@ -191,11 +191,12 @@ void Hardpoint::Fire(Ship &ship, list<Projectile> &projectiles, list<Effect> &ef
 	
 	// Create a new projectile, originating from this hardpoint.
 	projectiles.emplace_back(ship, start, aim, outfit);
-	// Update the reload and burst counters, and expend ammunition if applicable.
-	Fire(ship, start, aim);
 	
 	// Create any effects this weapon creates when it is fired.
 	CreateEffects(outfit->FireEffects(), start, ship.Velocity(), aim, effects);
+	
+	// Update the reload and burst counters, and expend ammunition if applicable.
+	Fire(ship, start, aim);
 }
 
 
@@ -218,11 +219,8 @@ bool Hardpoint::FireAntiMissile(Ship &ship, const Projectile &projectile, list<E
 	if(offset.Length() > range)
 		return false;
 	
-	// Update the reload and burst counters, and expend ammunition if applicable.
-	Angle aim(offset);
-	Fire(ship, start, aim);
-	
 	// Firing effects are displayed at the anti-missile hardpoint that just fired.
+	Angle aim(offset);
 	CreateEffects(outfit->FireEffects(), start, ship.Velocity(), aim, effects);
 	
 	// Figure out where the effect should be placed. Anti-missiles do not create
@@ -231,6 +229,9 @@ bool Hardpoint::FireAntiMissile(Ship &ship, const Projectile &projectile, list<E
 	
 	// Die effects are displayed at the projectile, whether or not it actually "dies."
 	CreateEffects(outfit->DieEffects(), projectile.Position(), projectile.Velocity(), aim, effects);
+	
+	// Update the reload and burst counters, and expend ammunition if applicable.
+	Fire(ship, start, aim);
 	
 	// Check whether the missile was destroyed.
 	return (Random::Int(strength) > Random::Int(projectile.MissileStrength()));
@@ -286,8 +287,6 @@ void Hardpoint::Fire(Ship &ship, const Point &start, const Angle &aim)
 	--burstCount;
 	isFiring = true;
 	
-	// Expend any ammo that this weapon uses.
-	ship.ExpendAmmo(outfit);
 	// Anti-missile sounds can be specified either in the outfit itself or in
 	// the effect they create.
 	if(outfit->WeaponSound())
@@ -296,4 +295,8 @@ void Hardpoint::Fire(Ship &ship, const Point &start, const Angle &aim)
 	double force = outfit->FiringForce();
 	if(force)
 		ship.ApplyForce(aim.Unit() * -force);
+	
+	// Expend any ammo that this weapon uses. Do this as the very last thing, in
+	// case the outfit is its own ammunition.
+	ship.ExpendAmmo(outfit);
 }
