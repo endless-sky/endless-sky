@@ -50,7 +50,7 @@ void PlayerInfo::Clear()
 {
 	*this = PlayerInfo();
 	
-	Random::Seed(time(NULL));
+	Random::Seed(time(nullptr));
 }
 
 

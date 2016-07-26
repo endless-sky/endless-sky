@@ -17,7 +17,9 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 
 
-// Class representing a date (day, month, and year).
+// Class representing a date (day, month, and year). Built-in date structures
+// combined dates with time within the day, which can lead to accumulated errors
+// when trying to increment dates in whole-day steps.
 class Date {
 public:
 	Date() = default;
@@ -33,11 +35,14 @@ public:
 	explicit operator bool() const;
 	bool operator!() const;
 	
+	// Move the date forward one day.
 	void operator++();
 	void operator++(int);
+	// Get the date this number of days in the future.
 	Date operator+(int days) const;
+	// Get the number of days between two dates.
 	int operator-(const Date &other) const;
-	// Comparison operator, ignoring fractions of a day.
+	// Comparison operators.
 	bool operator<(const Date &other) const;
 	bool operator<=(const Date &other) const;
 	bool operator>(const Date &other) const;
@@ -55,7 +60,10 @@ public:
 	
 	
 private:
+	// The date is compressed into a single integer value to make it easy to
+	// compare dates.
 	int date = 0;
+	// Cached values of complex operations.
 	mutable int daysSinceEpoch = 0;
 	mutable std::string str;
 };
