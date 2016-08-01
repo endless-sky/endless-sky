@@ -13,7 +13,7 @@
 mission "FWC Scouting 1"
 	landing
 	name "Scout Kaus Borealis"
-	description "Travel through the <system> system to determine how strong the Navy presence is there, while JJ works to gather a fleet to attack it."
+	description "Travel through the Kaus Borealis system to determine how strong the Navy presence is there, while JJ works to gather a fleet to attack it."
 	autosave
 	source "New Portland"
 	waypoint "Kaus Borealis"
