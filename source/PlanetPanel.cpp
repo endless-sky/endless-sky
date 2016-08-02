@@ -124,9 +124,6 @@ void PlanetPanel::Draw() const
 // Only override the ones you need; the default action is to return false.
 bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 {
-	if(isDeparting)
-		return false;
-	
 	Panel *oldPanel = selectedPanel;
 	const Ship *flagship = player.Flagship();
 	
@@ -266,7 +263,6 @@ bool PlanetPanel::Click(int x, int y)
 
 void PlanetPanel::TakeOff()
 {
-	isDeparting = true;
 	player.Save();
 	if(player.TakeOff(GetUI()))
 	{
