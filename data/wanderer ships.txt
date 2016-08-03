@@ -50,7 +50,7 @@ ship "Flycatcher"
 	licenses
 		Wanderer
 	attributes
-		category "Interceptor"
+		category "Drone"
 		"cost" 830000
 		"hull" 4700
 		"mass" 40
@@ -251,10 +251,10 @@ ship "Tempest"
 		"weapon capacity" 271
 		"engine capacity" 122
 		weapon
-			"blast radius" 300
-			"shield damage" 3000
-			"hull damage" 1500
-			"hit force" 4500
+			"blast radius" 280
+			"shield damage" 2800
+			"hull damage" 1400
+			"hit force" 4200
 	outfits
 		"Sunbeam" 2
 		"Thunderhead Launcher" 2
@@ -334,7 +334,7 @@ ship "Derecho"
 	attributes
 		category "Heavy Warship"
 		"cost" 30500000
-		"shields" 17400
+		"shields" 53200
 		"hull" 32700
 		"required crew" 53
 		"bunks" 82
@@ -346,6 +346,11 @@ ship "Derecho"
 		"outfit space" 796
 		"weapon capacity" 342
 		"engine capacity" 164
+		weapon
+			"blast radius" 340
+			"shield damage" 3400
+			"hull damage" 1700
+			"hit force" 5100
 	outfits
 		"Sunbeam" 2
 		"Thunderhead Launcher" 2
@@ -381,6 +386,7 @@ ship "Derecho"
 	explode "big explosion" 50
 	explode "huge explosion" 20
 	"final explode" "final explosion large" 1
+	description "Like a latent gene waiting to express itself, the knowledge of how to wage war in space has been passed down through hundreds of generations of Wanderers. Based on one of their ancient designs, the Derecho has a mixture of agility and raw firepower that is well-suited to their present, rapidly changing situation."
 
 ship "Derecho" "Derecho (Turret)"
 	outfits
@@ -440,6 +446,11 @@ ship "Hurricane"
 		"outfit space" 960
 		"weapon capacity" 428
 		"engine capacity" 140
+		weapon
+			"blast radius" 400
+			"shield damage" 4000
+			"hull damage" 2000
+			"hit force" 6000
 	outfits
 		"Sunbeam" 6
 		"Dual Sunbeam Turret" 2
@@ -474,6 +485,7 @@ ship "Hurricane"
 	explode "big explosion" 70
 	explode "huge explosion" 30
 	"final explode" "final explosion large" 1
+	description "The Hurricane is not built for speed, elegance, or versatility, but for one simple purpose: to be durable enough to serve as a rearguard, absorbing an enemy's attacks for long enough to allow the fleet it is guarding to escape."
 
 ship "Hurricane" "Hurricane (Turret)"
 	outfits

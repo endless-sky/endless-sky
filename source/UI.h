@@ -73,6 +73,11 @@ public:
 	
 	
 private:
+	// If a push or pop is queued, apply it.
+	void PushOrPop();
+	
+	
+private:
 	std::vector<std::shared_ptr<Panel>> stack;
 	
 	bool isDone;
