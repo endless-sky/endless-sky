@@ -200,9 +200,11 @@ mission "Earn Credits to Buy Data Card"
 		has "Human Cultural Archives: done"
 		not "Cultural Data to Greenwater: offered"
 	on offer
-		dialog "The station has a small museum gift shop, which sells a copy of the archives on a data card. Although, you do not have enough credits to pay for the measly 39.99 credits that the data card costs. Earn enough credits and return to <destination> to buy the data card"
+		conversation "
+			`You had wondered how you would get a copy of the entire cultural archive, but it turns out to be easier than expected. The station has a small museum gift shop, which sells a copy of the archives on a data card. ("The perfect gift for the budding historian in your family! Hold all of human history in the palm of your hand. On sale now for only 39.99!") You reach into your pocket to realize that you don't even have enough credits. You will need to earn enough credits to buy the data card.`
+				accept
 	to complete
-		has "Cultural Data to Greenwater: offered"
+		has "Cultural Data to Greenwater 2: offered"
 
 mission "Cultural Data to Greenwater"
 	description "Bring a copy of the human cultural archives to <destination>, in exchange for a translation machine."
@@ -211,10 +213,26 @@ mission "Cultural Data to Greenwater"
 	destination "Greenwater"
 	to offer
 		has "Human Cultural Archives: done"
+		not "Earn Credits to Buy Data Card: offered"
 	on offer
 		payment -40
 		conversation
 			`You had wondered how you would get a copy of the entire cultural archive, but it turns out to be easier than expected. The station has a small museum gift shop, which sells a copy of the archives on a data card. ("The perfect gift for the budding historian in your family! Hold all of human history in the palm of your hand. On sale now for only 39.99!") Given that a cheap data card costs a fraction of a credit, it's a bit of a rip-off, but you gladly buy one to take back to Eruk.`
+				accept
+				
+mission "Cultural Data to Greenwater 2"
+	name "Cultural Data to Greenwater"
+	description "Bring a copy of the human cultural archives to <destination>, in exchange for a translation machine."
+	landing
+	source "Alexandria"
+	destination "Greenwater"
+	to offer
+		has "Human Cultural Archives: done"
+		has ""Earn Credits to Buy Data Card: offered"
+	on offer
+		payment -40
+		conversation
+			`You return to Alexandria, this time with enough credits to pay the measly 39.99 credit data card. Given that a cheap data card costs a fraction of a credit, it's a bit of a rip-off, but you gladly buy one to take back to Eruk.`
 				accept
 
 mission "Visit Wanderers Again"
