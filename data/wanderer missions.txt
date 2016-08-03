@@ -199,15 +199,16 @@ mission "Earn Credits to Buy Data Card"
 	to offer
 		has "Human Cultural Archives: done"
 		not "Cultural Data to Greenwater: offered"
+	on offer
+		dialog "The station has a small museum gift shop, which sells a copy of the archives on a data card. Although, you do not have enough credits to pay for the measly 39.99 credits that the data card costs. Earn enough credits and return to <destination> to buy the data card"
 	to complete
-		has "Cultural Data to Greenwater: done"
+		has "Cultural Data to Greenwater: offered"
 
 mission "Cultural Data to Greenwater"
 	description "Bring a copy of the human cultural archives to <destination>, in exchange for a translation machine."
 	landing
 	source "Alexandria"
 	destination "Greenwater"
-	blocked "The station has a small museum gift shop, which sells a copy of the archives on a data card. Although, you do not have enough credits to pay for the measly 39.99 credits that the data card costs. Earn enough credits and return to <origin> to buy the data card"
 	to offer
 		has "Human Cultural Archives: done"
 	on offer
