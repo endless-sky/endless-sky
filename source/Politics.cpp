@@ -188,6 +188,13 @@ void Politics::DominatePlanet(const Planet *planet)
 
 
 
+void Politics::RelinquishPlanet(const Planet *planet)
+{
+	dominatedPlanets.erase(planet);
+}
+
+
+
 bool Politics::HasDominated(const Planet *planet) const
 {
 	return dominatedPlanets.count(planet);

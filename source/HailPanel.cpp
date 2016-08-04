@@ -22,6 +22,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Phrase.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
+#include "Politics.h"
 #include "Ship.h"
 #include "Sprite.h"
 #include "SpriteShader.h"
@@ -190,8 +191,11 @@ void HailPanel::Draw() const
 				interfaceInfo.SetCondition("can bribe");
 			else
 				interfaceInfo.SetCondition("cannot bribe");
-		
-			interfaceInfo.SetCondition("can dominate");
+
+			if (!GameData::GetPolitics().HasDominated(planet))
+				interfaceInfo.SetCondition("can dominate");
+			else
+				interfaceInfo.SetCondition("can relinquish");
 		}
 	}
 	
@@ -237,7 +241,11 @@ bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 			return true;
 		if(planet)
 		{
-			message = planet->DemandTribute(player);
+			if (!GameData::GetPolitics().HasDominated(planet)) {
+				message = planet->DemandTribute(player);
+			} else {
+				message = planet->RelinquishTribute(player);
+			}
 			return true;
 		}
 		else if(shipIsEnemy || ship->GetGovernment()->GetName() == "Derelict")

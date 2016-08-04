@@ -418,6 +418,19 @@ string Planet::DemandTribute(PlayerInfo &player) const
 
 
 
+string Planet::RelinquishTribute(PlayerInfo &player) const
+{
+	if (!player.GetCondition("tribute: " + name))
+		return "We aren't giving you any tribute at the moment";
+
+	player.Conditions().erase("tribute: " + name);
+	GameData::GetPolitics().RelinquishPlanet(this);
+
+	return "So long, beloved overlord, and thanks for all the fish !";
+}
+
+
+
 void Planet::DeployDefense(list<shared_ptr<Ship>> &ships) const
 {
 	if(!isDefending || Random::Int(60) || defenseDeployed == defenseCount)
