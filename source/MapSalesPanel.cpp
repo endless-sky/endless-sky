@@ -455,10 +455,8 @@ void MapSalesPanel::ScrollTo(int index)
 		return;
 	
 	const ClickZone<int> &it = zones[selected];
-	double top = (it.Center() - it.Size()).Y();
-	double bottom = (it.Center() + it.Size()).Y();
-	if(bottom > Screen::Bottom())
-		scroll += Screen::Bottom() - bottom;
-	if(top < Screen::Top())
-		scroll += Screen::Top() - top;
+	if(it.Bottom() > Screen::Bottom())
+		scroll += Screen::Bottom() - it.Bottom();
+	if(it.Top() < Screen::Top())
+		scroll += Screen::Top() - it.Top();
 }
