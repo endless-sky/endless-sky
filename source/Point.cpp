@@ -13,8 +13,11 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Point.h"
 
 #ifndef __SSE3__
+#include <algorithm>
 #include <cmath>
 #endif
+
+using namespace std;
 
 
 
@@ -305,6 +308,44 @@ double Point::Distance(const Point &point) const
 double Point::DistanceSquared(const Point &point) const
 {
 	return (*this - point).LengthSquared();
+}
+
+
+
+// Absolute value of both coordinates.
+Point abs(const Point &p)
+{
+#ifdef __SSE3__
+	// Absolute value for doubles just involves clearing the sign bit.
+	static const __m128d sign_mask = _mm_set1_pd(-0.);
+    return Point(_mm_andnot_pd(sign_mask, p.v));
+#else
+	return Point(abs(p.x), abs(p.y));
+#endif
+}
+
+
+
+// Take the min of the x and y coordinates.
+Point min(const Point &p, const Point &q)
+{
+#ifdef __SSE3__
+	return Point(_mm_min_pd(p.v, q.v));
+#else
+	return Point(min(p.x, q.x), min(p.y, q.y));
+#endif
+}
+
+
+
+// Take the max of the x and y coordinates.
+Point max(const Point &p, const Point &q)
+{
+#ifdef __SSE3__
+	return Point(_mm_max_pd(p.v, q.v));
+#else
+	return Point(max(p.x, q.x), max(p.y, q.y));
+#endif
 }
 
 
