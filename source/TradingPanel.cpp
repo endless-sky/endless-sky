@@ -136,25 +136,25 @@ void TradingPanel::Draw() const
 	int missionCargo = player.Cargo().MissionCargoSize();
 	if(player.Cargo().HasOutfits() || missionCargo)
 	{
-		bool hasPlunder = false;
-		bool hasItems = false;
+		bool hasOutfits = false;
+		bool hasHarvested = false;
 		for(const auto &it : player.Cargo().Outfits())
 			if(it.second)
 			{
-				bool isItem = (it.first->Get("installable") < 0.);
-				(isItem ? hasItems : hasPlunder) = true;
+				bool isHarvested = (it.first->Get("installable") < 0.);
+				(isHarvested ? hasHarvested : hasOutfits) = true;
 			}
 		
 		string str = to_string(outfits + missionCargo);
-		if(hasItems && missionCargo)
+		if(hasHarvested && missionCargo)
 			str += " tons of mission cargo and other items.";
-		else if(hasPlunder && missionCargo)
-			str += " tons of plunder and mission cargo.";
-		else if(hasPlunder && hasItems)
-			str += " tons of plunder and harvested materials.";
-		else if(hasPlunder)
-			str += " tons of plundered outfits.";
-		else if(hasItems)
+		else if(hasOutfits && missionCargo)
+			str += " tons of outfits and mission cargo.";
+		else if(hasOutfits && hasHarvested)
+			str += " tons of outfits and harvested materials.";
+		else if(hasOutfits)
+			str += " tons of outfits.";
+		else if(hasHarvested)
 			str += " tons of harvested materials.";
 		else
 			str += " tons of mission cargo.";
