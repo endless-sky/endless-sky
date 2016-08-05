@@ -236,9 +236,7 @@ Point UI::GetMouse()
 	int x = 0;
 	int y = 0;
 	SDL_GetMouseState(&x, &y);
-	return Point(
-		Screen::Left() + x * 100. / Screen::Zoom(),
-		Screen::Top() + y * 100. / Screen::Zoom());
+	return Screen::TopLeft() + Point(x, y) * (100. / Screen::Zoom());
 }
 
 
