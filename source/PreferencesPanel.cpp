@@ -67,10 +67,10 @@ void PreferencesPanel::Draw()
 	glClear(GL_COLOR_BUFFER_BIT);
 	GameData::Background().Draw(Point(), Point());
 	
-	const Interface *menu = GameData::Interfaces().Get("preferences");
 	Information info;
 	info.SetBar("volume", Audio::Volume());
-	menu->Draw(info, this);
+	GameData::Interfaces().Get("menu background")->Draw(info, this);
+	GameData::Interfaces().Get("preferences")->Draw(info, this);
 	
 	Color back = *GameData::Colors().Get("faint");
 	Color dim = *GameData::Colors().Get("dim");

@@ -35,24 +35,51 @@ color "waypoint back" 0. .3 .7 .5
 
 
 
-interface "main menu"
-	# Background:
-	sprite "_menu/compass"
-		center 0 0
-	sprite "_menu/title"
-		center 0 -170
+interface "menu background"
 	sprite "_menu/g0"
 		center 0 -280
 	sprite "_menu/forest2"
 		center 0 280
 	sprite "_menu/oberon"
 		center 140 180
+
+
+
+interface "main menu"
+	sprite "_menu/compass"
+		center 0 0
+	sprite "_menu/title"
+		center 0 -170
 	sprite "_menu/side panel"
 		center -360 0
 	sprite "_menu/side panel"
 		center 360 0
 	
-	# Right panel (player info):
+	visible if "pilot loaded"
+	button e "_Enter Ship"
+		center 435 155
+		dimensions 90 30
+	visible if "!pilot loaded"
+	button n "_New Pilot"
+		center 435 155
+		dimensions 90 30
+	
+	visible
+	button l "_Load / Save..."
+		center 300 155
+		dimensions 120 30
+	
+	# Left panel (credits):
+	button q "_Quit"
+		center -285 155
+		dimensions 90 30
+	button p "_Preferences..."
+		center -420 155
+		dimensions 120 30
+
+
+
+interface "menu player info"
 	outline "ship sprite"
 		center 360 -90
 		dimensions 120 120
@@ -92,86 +119,16 @@ interface "main menu"
 	string "date"
 		from 310 105
 		align left
-	
-	visible if "pilot loaded"
-	button e "_Enter Ship"
-		center 435 155
-		dimensions 90 30
-	visible if "!pilot loaded"
-	button n "_New Pilot"
-		center 435 155
-		dimensions 90 30
-	
-	visible
-	button l "_Load / Save..."
-		center 300 155
-		dimensions 120 30
-	
-	# Left panel (credits):
-	button q "_Quit"
-		center -285 155
-		dimensions 90 30
-	button p "_Preferences..."
-		center -420 155
-		dimensions 120 30
 
 
 
 interface "load menu"
-	# Background:
-	sprite "_menu/g0"
-		center 0 -280
-	sprite "_menu/forest2"
-		center 0 280
-	sprite "_menu/oberon"
-		center 140 180
 	sprite "_menu/side panel"
 		center -360 0
 	sprite "_menu/side panel"
 		center 0 0
 	sprite "_menu/side panel"
 		center 360 0
-	
-	# Right panel (player info):
-	outline "ship sprite"
-		from 360 -90
-		dimensions 120 120
-	label "pilot:"
-		from 250 -15
-		align left
-	string "pilot"
-		from 310 -15
-		align left
-	label "ship:"
-		from 250 5
-		align left
-	string "ship"
-		from 310 5
-		align left
-	label "planet:"
-		from 250 35
-		align left
-	string "planet"
-		from 310 35
-		align left
-	label "system:"
-		from 250 55
-		align left
-	string "system"
-		from 310 55
-		align left
-	label "credits:"
-		from 250 85
-		align left
-	string "credits"
-		from 310 85
-		align left
-	label "date:"
-		from 250 105
-		align left
-	string "date"
-		from 310 105
-		align left
 	
 	button n "_New Pilot"
 		center -420 155
@@ -202,12 +159,6 @@ interface "load menu"
 
 
 interface "preferences"
-	sprite "_menu/g0"
-		center 0 -280
-	sprite "_menu/forest2"
-		center 0 280
-	sprite "_menu/oberon"
-		center 140 180
 	sprite "ui/keys panel"
 		center -65 -20
 	button b "_Back to Menu..."

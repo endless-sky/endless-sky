@@ -125,8 +125,9 @@ void MenuPanel::Draw()
 		info.SetString("pilot", "No Pilot Loaded");
 	}
 	
-	const Interface *menu = GameData::Interfaces().Get("main menu");
-	menu->Draw(info, this);
+	GameData::Interfaces().Get("menu background")->Draw(info, this);
+	GameData::Interfaces().Get("main menu")->Draw(info, this);
+	GameData::Interfaces().Get("menu player info")->Draw(info, this);
 	
 	if(progress == 60)
 		alpha -= .02f;
