@@ -22,6 +22,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 class DataNode;
 class Information;
+class Panel;
 class Sprite;
 
 
@@ -32,9 +33,9 @@ class Interface {
 public:
 	void Load(const DataNode &node);
 	
-	void Draw(const Information &info, const Point &offset = Point()) const;
-	
-	char OnClick(const Point &point) const;
+	// Draw this interface. If the given panel is not null, also register any
+	// buttons in this interface with the panel's list of clickable zones.
+	void Draw(const Information &info, Panel *panel = nullptr) const;
 	
 	bool HasPoint(const std::string &name) const;
 	Point GetPoint(const std::string &name) const;

@@ -185,7 +185,7 @@ void MainPanel::Step()
 
 
 
-void MainPanel::Draw() const
+void MainPanel::Draw()
 {
 	FrameTimer loadTimer;
 	glClear(GL_COLOR_BUFFER_BIT);

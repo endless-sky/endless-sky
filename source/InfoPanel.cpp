@@ -123,7 +123,7 @@ InfoPanel::InfoPanel(PlayerInfo &player, bool showFlagship)
 
 
 
-void InfoPanel::Draw() const
+void InfoPanel::Draw()
 {
 	DrawBackdrop();
 	
@@ -178,7 +178,7 @@ void InfoPanel::Draw() const
 		interfaceInfo.SetCondition("two buttons");
 	}
 	const Interface *interface = GameData::Interfaces().Get("info panel");
-	interface->Draw(interfaceInfo);
+	interface->Draw(interfaceInfo, this);
 	
 	zones.clear();
 	commodityZones.clear();
@@ -313,17 +313,6 @@ bool InfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 
 bool InfoPanel::Click(int x, int y)
 {
-	Point point(x, y);
-	
-	// Handle clicks on the interface buttons.
-	const Interface *interface = GameData::Interfaces().Get("info panel");
-	if(interface)
-	{
-		char key = interface->OnClick(point);
-		if(key)
-			return DoKey(key);
-	}
-	
 	if(shipIt == player.Ships().end())
 		return true;
 	
@@ -372,6 +361,7 @@ bool InfoPanel::Click(int x, int y)
 	}
 	selectedCommodity.clear();
 	selectedPlunder = nullptr;
+	Point point(x, y);
 	for(const auto &zone : commodityZones)
 		if(zone.Contains(point))
 			selectedCommodity = zone.Value();

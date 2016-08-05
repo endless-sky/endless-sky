@@ -90,7 +90,7 @@ void MenuPanel::Step()
 
 
 
-void MenuPanel::Draw() const
+void MenuPanel::Draw()
 {
 	glClear(GL_COLOR_BUFFER_BIT);
 	GameData::Background().Draw(Point(), Point());
@@ -126,7 +126,7 @@ void MenuPanel::Draw() const
 	}
 	
 	const Interface *menu = GameData::Interfaces().Get("main menu");
-	menu->Draw(info);
+	menu->Draw(info, this);
 	
 	if(progress == 60)
 		alpha -= .02f;
@@ -202,17 +202,6 @@ bool MenuPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 		GetUI()->Quit();
 	else
 		return false;
-	
-	return true;
-}
-
-
-
-bool MenuPanel::Click(int x, int y)
-{
-	char key = GameData::Interfaces().Get("main menu")->OnClick(Point(x, y));
-	if(key)
-		return DoKey(key);
 	
 	return true;
 }

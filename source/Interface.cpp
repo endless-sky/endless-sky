@@ -19,6 +19,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Information.h"
 #include "LineShader.h"
 #include "OutlineShader.h"
+#include "Panel.h"
+#include "Rectangle.h"
 #include "RingShader.h"
 #include "Screen.h"
 #include "Sprite.h"
@@ -169,10 +171,9 @@ void Interface::Load(const DataNode &node)
 
 
 
-void Interface::Draw(const Information &info, const Point &offset) const
+void Interface::Draw(const Information &info, Panel *panel) const
 {
 	Point corner(Screen::Width() * position.X(), Screen::Height() * position.Y());
-	corner += offset;
 	
 	for(const SpriteSpec &sprite : sprites)
 	{
@@ -290,26 +291,15 @@ void Interface::Draw(const Information &info, const Point &offset) const
 		Point center = spec.position + corner - spec.size * position;
 		RingShader::Draw(center, .5 * spec.size.X(), spec.width, value, *spec.color, segments);
 	}
-}
-
-
-
-char Interface::OnClick(const Point &point) const
-{
-	Point corner(Screen::Width() * position.X(), Screen::Height() * position.Y());
-	
-	for(const ButtonSpec &button : buttons)
-	{
-		Point offset(
-			button.size.X() * position.X(),
-			button.size.Y() * position.Y());
+	if(panel)
+		for(const ButtonSpec &button : buttons)
+		{
+			Point offset(
+				button.size.X() * position.X(),
+				button.size.Y() * position.Y());
 		
-		Point d = point - (button.position + corner - offset);
-		if(fabs(d.X()) < button.size.X() * .5 && fabs(d.Y()) < button.size.Y() * .5)
-			return button.key;
-	}
-	
-	return '\0';
+			panel->AddZone(Rectangle(button.position + corner - offset, button.size), button.key);
+		}
 }
 
 

@@ -62,7 +62,11 @@ bool UI::Handle(const SDL_Event &event)
 			int x = Screen::Left() + event.button.x * 100 / Screen::Zoom();
 			int y = Screen::Top() + event.button.y * 100 / Screen::Zoom();
 			if(event.button.button == 1)
-				handled = (*it)->Click(x, y);
+			{
+				handled = (*it)->ZoneClick(Point(x, y));
+				if(!handled)
+					handled = (*it)->Click(x, y);
+			}
 			else if(event.button.button == 3)
 				handled = (*it)->RClick(x, y);
 		}
@@ -110,6 +114,11 @@ void UI::StepAll()
 // Draw all the panels.
 void UI::DrawAll()
 {
+	// First, clear all the clickable zones. New ones will be added in the
+	// course of drawing the screen.
+	for(const shared_ptr<Panel> &it : stack)
+		it->ClearZones();
+	
 	// Find the topmost full-screen panel. Nothing below that needs to be drawn.
 	vector<shared_ptr<Panel>>::const_iterator it = stack.end();
 	while(it != stack.begin())
