@@ -736,7 +736,7 @@ interface "info panel"
 		center 45 305
 	button c "Dump _Cargo"
 		center 45 305
-		dimensions 20 30
+		dimensions 90 30
 	active
 	
 	visible if "show park all"

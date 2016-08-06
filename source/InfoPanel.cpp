@@ -135,7 +135,11 @@ void InfoPanel::Draw()
 					&& ((shipIt->get() != player.Flagship() && !(*shipIt)->IsDisabled()) || (*shipIt)->IsParked()))
 			interfaceInfo.SetCondition((*shipIt)->IsParked() ? "show unpark" : "show park");
 		else if(!canEdit)
-			interfaceInfo.SetCondition(CanDump() ? "enable dump" : "show dump");
+		{
+			interfaceInfo.SetCondition("show dump");
+			if(CanDump())
+				interfaceInfo.SetCondition("enable dump");
+		}
 		if(player.Ships().size() > 1)
 			interfaceInfo.SetCondition("four buttons");
 		else
