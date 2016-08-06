@@ -18,6 +18,8 @@ outfit "Aluminum"
 	category "Special"
 	cost 1800
 	thumbnail "outfit/harvested aluminum"
+	weapon
+		icon "effect/flotsam aluminum"
 	"mass" 1
 	"installable" -1
 	description "Lightweight and rust resistant, aluminum is often used for the hulls of civilian spacecraft that do not need to be able to stand up to prolonged weapons fire."
@@ -33,6 +35,8 @@ outfit "Copper"
 	category "Special"
 	cost 3000
 	thumbnail "outfit/harvested copper"
+	weapon
+		icon "effect/flotsam copper"
 	"mass" 1
 	"installable" -1
 	description "In its pure form, copper is valued mostly for its high thermal and electrical conductivity. But, it is also used in small quantities in a wide variety of alloys."
@@ -48,6 +52,8 @@ outfit "Gold"
 	category "Special"
 	cost 8000
 	thumbnail "outfit/harvested gold"
+	weapon
+		icon "effect/flotsam gold"
 	"mass" 1
 	"installable" -1
 	description "Useful for its high electrical conductivity and prized for its beauty and luxury status, gold can always find a well-paying market."
@@ -63,6 +69,8 @@ outfit "Iron"
 	category "Special"
 	cost 1200
 	thumbnail "outfit/harvested iron"
+	weapon
+		icon "effect/flotsam iron"
 	"mass" 1
 	"installable" -1
 	description "Although it is one of the most common metals, iron is also one of the most useful."
@@ -78,6 +86,8 @@ outfit "Lead"
 	category "Special"
 	cost 900
 	thumbnail "outfit/harvested lead"
+	weapon
+		icon "effect/flotsam lead"
 	"mass" 1
 	"installable" -1
 	description "As the densest non-radioactive element, lead has been the material of choice for bullets ever since the invention of firearms. Its other uses are limited by regulations for preventing lead poisoning."
@@ -93,6 +103,8 @@ outfit "Neodymium"
 	category "Special"
 	cost 3800
 	thumbnail "outfit/harvested neodymium"
+	weapon
+		icon "effect/flotsam neodymium"
 	"mass" 1
 	"installable" -1
 	description "One of the most abundant of the rare earth elements, neodymium is used to make strongly magnetic alloys for use in engines and generators."
@@ -108,6 +120,8 @@ outfit "Platinum"
 	category "Special"
 	cost 10000
 	thumbnail "outfit/harvested platinum"
+	weapon
+		icon "effect/flotsam platinum"
 	"mass" 1
 	"installable" -1
 	description "As rare as gold and even more valuable, platinum has many industrial uses because it resists oxidation even when heated to high temperatures."
@@ -123,6 +137,8 @@ outfit "Silicon"
 	category "Special"
 	cost 400
 	thumbnail "outfit/harvested silicon"
+	weapon
+		icon "effect/flotsam silicon"
 	"mass" 1
 	"installable" -1
 	description "Silicon in its pure form is used for electronics and semiconductors. It is a very common element and easy to harvest."
@@ -138,6 +154,8 @@ outfit "Silver"
 	category "Special"
 	cost 6000
 	thumbnail "outfit/harvested silver"
+	weapon
+		icon "effect/flotsam silver"
 	"mass" 1
 	"installable" -1
 	description "Although not as pricy as gold, silver is used not just in jewelry but in electronics, disinfectants, and high quality mirrors, and as a chemical catalyst."
@@ -153,6 +171,8 @@ outfit "Titanium"
 	category "Special"
 	cost 2500
 	thumbnail "outfit/harvested titanium"
+	weapon
+		icon "effect/flotsam titanium"
 	"mass" 1
 	"installable" -1
 	description "Strong, lightweight, and resistant to corrosion, titanium is one of the chief metals used for starship hulls and structural members."
@@ -168,6 +188,8 @@ outfit "Tungsten"
 	category "Special"
 	cost 4500
 	thumbnail "outfit/harvested tungsten"
+	weapon
+		icon "effect/flotsam tungsten"
 	"mass" 1
 	"installable" -1
 	description "Tungsten has many industrial uses due to its high melting point and its strength."
@@ -183,6 +205,8 @@ outfit "Uranium"
 	category "Special"
 	cost 5000
 	thumbnail "outfit/harvested uranium"
+	weapon
+		icon "effect/flotsam uranium"
 	"mass" 1
 	"installable" -1
 	description "Uranium is best known for its use in the nuclear reactors that power large starships. Its most stable isotope U-238 is also used for ultra-strong hull plating and for armor-piercing projectiles."
