@@ -48,6 +48,7 @@ system Acamar
 	pos -284 -3
 	government Syndicate
 	habitable 1080
+	belt 1013
 	link Diphda
 	link Aldebaran
 	link Elnath
@@ -57,6 +58,8 @@ system Acamar
 	asteroids "small metal" 3 1.9488
 	asteroids "medium metal" 19 2.2848
 	asteroids "large metal" 12 2.352
+	minables iron 9 3.05965
+	minables titanium 1 3.40286
 	trade Clothing 297
 	trade Electronics 620
 	trade Equipment 581
@@ -103,12 +106,16 @@ system Achernar
 	pos -93 154
 	government Syndicate
 	habitable 625
+	belt 1963
 	link "Al Dhanab"
 	link Alpheratz
 	link Schedar
 	link Polaris
 	asteroids "medium metal" 27 1.8676
 	asteroids "large metal" 2 4.7334
+	minables copper 4 3.93672
+	minables iron 4 2.64095
+	minables titanium 6 2.83119
 	trade Clothing 263
 	trade Electronics 742
 	trade Equipment 618
@@ -167,6 +174,7 @@ system Acrux
 	pos -808 192
 	government Republic
 	habitable 590.625
+	belt 1407
 	link Minkar
 	link "Zeta Centauri"
 	link Izar
@@ -175,6 +183,8 @@ system Acrux
 	asteroids "large rock" 17 4.8139
 	asteroids "medium metal" 44 4.3378
 	asteroids "large metal" 19 4.8139
+	minables lead 34 5.87828
+	minables titanium 6 9.19767
 	trade Clothing 313
 	trade Electronics 655
 	trade Equipment 580
@@ -241,6 +251,7 @@ system Adhara
 	pos -669 -200
 	government Republic
 	habitable 670
+	belt 1014
 	link "Epsilon Leonis"
 	link Gomeisa
 	asteroids "small rock" 5 3.705
@@ -248,6 +259,7 @@ system Adhara
 	asteroids "large rock" 9 5.3675
 	asteroids "medium metal" 9 7.125
 	asteroids "large metal" 1 4.9875
+	minables silver 1 10.3117
 	trade Clothing 349
 	trade Electronics 692
 	trade Equipment 439
@@ -301,6 +313,7 @@ system "Al Dhanab"
 	pos -177 207
 	government Syndicate
 	habitable 1080
+	belt 1432
 	link Scheat
 	link Mirach
 	link Alpheratz
@@ -311,6 +324,9 @@ system "Al Dhanab"
 	asteroids "small metal" 94 2.7324
 	asteroids "medium metal" 36 4.14
 	asteroids "large metal" 116 3.2016
+	minables iron 32 3.202
+	minables silicon 56 3.98107
+	minables tungsten 37 3.66333
 	trade Clothing 232
 	trade Electronics 809
 	trade Equipment 573
@@ -363,6 +379,7 @@ system Albaldah
 	pos -350 484
 	government Republic
 	habitable 534.375
+	belt 1622
 	link Albireo
 	link Girtab
 	link Nunki
@@ -372,6 +389,9 @@ system Albaldah
 	asteroids "large rock" 9 7.02
 	asteroids "medium metal" 86 3.18
 	asteroids "large metal" 5 4.2
+	minables iron 20 4.32166
+	minables lead 28 5.26814
+	minables titanium 21 7.37733
 	trade Clothing 218
 	trade Electronics 772
 	trade Equipment 534
@@ -431,6 +451,7 @@ system Albireo
 	pos -270 503
 	government Republic
 	habitable 760
+	belt 1030
 	link Tarazed
 	link Albaldah
 	link Sadr
@@ -487,6 +508,7 @@ system Alcyone
 	pos -80 -144
 	government Pirate
 	habitable 270
+	belt 1438
 	link Zaurak
 	link Oblate
 	link Durax
@@ -495,6 +517,7 @@ system Alcyone
 	asteroids "large rock" 16 1.08
 	asteroids "medium metal" 11 2.5272
 	asteroids "large metal" 2 2.0736
+	minables copper 5 2.95151
 	trade Clothing 322
 	trade Electronics 699
 	trade Equipment 658
@@ -550,6 +573,7 @@ system Aldebaran
 	pos -356 -26
 	government Republic
 	habitable 625
+	belt 1296
 	link Capella
 	link Acamar
 	link Elnath
@@ -593,6 +617,7 @@ system Alderamin
 	pos -272 258
 	government Syndicate
 	habitable 1705
+	belt 1908
 	link Alnair
 	link "Delta Capricorni"
 	asteroids "small rock" 1 9.5472
@@ -655,6 +680,7 @@ system Aldhibain
 	pos -659 451
 	government Republic
 	habitable 455.625
+	belt 1840
 	link Kornephoros
 	link Sabik
 	link Alniyat
@@ -665,6 +691,9 @@ system Aldhibain
 	asteroids "small metal" 39 3.8412
 	asteroids "medium metal" 72 3.8412
 	asteroids "large metal" 3 5.2668
+	minables iron 5 6.68827
+	minables silicon 11 5.1137
+	minables titanium 10 4.19059
 	trade Clothing 294
 	trade Electronics 736
 	trade Equipment 408
@@ -709,6 +738,7 @@ system Algenib
 	pos -118 341
 	government Pirate
 	habitable 455.625
+	belt 1273
 	link Gienah
 	asteroids "large metal" 1 6.7392
 	trade Clothing 357
@@ -765,6 +795,7 @@ system Algieba
 	pos -691 -52
 	government Republic
 	habitable 2695
+	belt 1070
 	link "Tania Australis"
 	link Alphard
 	link Zosma
@@ -774,6 +805,9 @@ system Algieba
 	asteroids "small metal" 2 3.564
 	asteroids "medium metal" 5 4.482
 	asteroids "large metal" 2 5.724
+	minables lead 5 6.42007
+	minables silicon 4 10.379
+	minables titanium 2 8.83592
 	trade Clothing 332
 	trade Electronics 714
 	trade Equipment 616
@@ -832,6 +866,7 @@ system Algol
 	pos -210 17
 	government Syndicate
 	habitable 534.375
+	belt 1839
 	link Ruchbah
 	asteroids "large metal" 1 1.35
 	trade Clothing 219
@@ -891,6 +926,7 @@ system Algorel
 	pos -631 145
 	government Republic
 	habitable 320
+	belt 1993
 	link "Cor Caroli"
 	link Turais
 	link Mizar
@@ -953,6 +989,7 @@ system Alheka
 	pos -350 -271
 	government Republic
 	habitable 1080
+	belt 1380
 	link Betelgeuse
 	link Canopus
 	asteroids "small rock" 3 6.24
@@ -961,6 +998,8 @@ system Alheka
 	asteroids "small metal" 14 8.19
 	asteroids "medium metal" 47 11.466
 	asteroids "large metal" 11 7.566
+	minables lead 16 13.7996
+	minables tungsten 10 13.3676
 	trade Clothing 181
 	trade Electronics 663
 	trade Equipment 697
@@ -1005,6 +1044,7 @@ system Alhena
 	pos -430 -80
 	government Republic
 	habitable 945
+	belt 1078
 	link Menkalinan
 	link Wazn
 	asteroids "small rock" 21 8.7906
@@ -1012,6 +1052,9 @@ system Alhena
 	asteroids "large rock" 1 6.3986
 	asteroids "medium metal" 6 5.5614
 	asteroids "large metal" 1 6.6976
+	minables iron 2 8.5773
+	minables lead 1 14.4573
+	minables uranium 2 7.51131
 	trade Clothing 315
 	trade Electronics 788
 	trade Equipment 654
@@ -1068,6 +1111,7 @@ system Alioth
 	pos -620 315
 	government Republic
 	habitable 455.625
+	belt 1889
 	link Wei
 	link Vindemiatrix
 	link Alphecca
@@ -1075,6 +1119,7 @@ system Alioth
 	asteroids "small metal" 5 4.0832
 	asteroids "medium metal" 2 4.048
 	asteroids "large metal" 4 3.7664
+	minables copper 1 4.44449
 	trade Clothing 293
 	trade Electronics 795
 	trade Equipment 446
@@ -1118,11 +1163,13 @@ system Alkaid
 	pos -825 318
 	government Republic
 	habitable 1080
+	belt 1142
 	link Hadar
 	asteroids "medium rock" 7 5.2164
 	asteroids "large rock" 3 3.1464
 	asteroids "medium metal" 13 3.9744
 	asteroids "large metal" 2 4.8852
+	minables neodymium 3 4.36212
 	trade Clothing 329
 	trade Electronics 720
 	trade Equipment 632
@@ -1181,6 +1228,7 @@ system Almaaz
 	pos -349 -538
 	government Pirate
 	habitable 1080
+	belt 1873
 	link Hatysa
 	link Mintaka
 	link Unagi
@@ -1189,6 +1237,9 @@ system Almaaz
 	asteroids "large rock" 33 4.3659
 	asteroids "small metal" 1 3.6288
 	asteroids "large metal" 1 7.2576
+	minables iron 7 7.81811
+	minables silicon 6 9.57028
+	minables silver 4 6.29355
 	trade Clothing 253
 	trade Electronics 841
 	trade Equipment 511
@@ -1222,6 +1273,7 @@ system Almach
 	pos -7 232
 	government Pirate
 	habitable 320
+	belt 1914
 	link Schedar
 	asteroids "small rock" 105 2.2763
 	asteroids "medium rock" 54 1.5028
@@ -1229,6 +1281,9 @@ system Almach
 	asteroids "small metal" 20 1.4365
 	asteroids "medium metal" 4 3.0719
 	asteroids "large metal" 5 1.5249
+	minables iron 2 2.87775
+	minables lead 2 3.17637
+	minables silicon 30 2.47255
 	trade Clothing 364
 	trade Electronics 664
 	trade Equipment 601
@@ -1279,6 +1334,7 @@ system Alnair
 	pos -272 314
 	government Syndicate
 	habitable 135
+	belt 1969
 	link Persian
 	link Alderamin
 	asteroids "small rock" 20 6.825
@@ -1286,6 +1342,9 @@ system Alnair
 	asteroids "large rock" 19 8.32
 	asteroids "medium metal" 34 6.695
 	asteroids "large metal" 28 5.72
+	minables aluminum 11 8.95654
+	minables lead 74 6.44632
+	minables platinum 6 9.6188
 	trade Clothing 294
 	trade Electronics 711
 	trade Equipment 381
@@ -1341,6 +1400,7 @@ system Alnasl
 	pos -553 380
 	government Republic
 	habitable 640
+	belt 1412
 	link Seginus
 	link Wei
 	link "Kaus Borealis"
@@ -1350,6 +1410,8 @@ system Alnasl
 	asteroids "small metal" 15 3.2208
 	asteroids "medium metal" 10 3.3528
 	asteroids "large metal" 4 1.7688
+	minables aluminum 4 3.53834
+	minables iron 2 4.61991
 	trade Clothing 296
 	trade Electronics 655
 	trade Equipment 398
@@ -1399,6 +1461,7 @@ system Alnilam
 	pos -487 -513
 	government Pirate
 	habitable 1715
+	belt 1099
 	link Hatysa
 	asteroids "small rock" 1 2.166
 	asteroids "medium rock" 30 1.6245
@@ -1406,6 +1469,9 @@ system Alnilam
 	asteroids "small metal" 42 1.5675
 	asteroids "medium metal" 15 3.3345
 	asteroids "large metal" 11 3.363
+	minables aluminum 13 2.6002
+	minables iron 4 2.28631
+	minables silicon 15 2.97138
 	trade Clothing 264
 	trade Electronics 707
 	trade Equipment 537
@@ -1471,6 +1537,7 @@ system Alnitak
 	pos -331 -412
 	government Republic
 	habitable 349.375
+	belt 1907
 	link Rigel
 	link Mintaka
 	link Saiph
@@ -1524,6 +1591,7 @@ system Alniyat
 	pos -691 501
 	government Republic
 	habitable 534.375
+	belt 1760
 	link Pherkad
 	link Graffias
 	link Antares
@@ -1536,6 +1604,7 @@ system Alniyat
 	asteroids "small metal" 2 9.072
 	asteroids "medium metal" 4 4.941
 	asteroids "large metal" 1 4.455
+	minables aluminum 1 8.00281
 	trade Clothing 314
 	trade Electronics 768
 	trade Equipment 413
@@ -1594,6 +1663,7 @@ system "Alpha Arae"
 	pos -481 394
 	government Republic
 	habitable 945
+	belt 1405
 	link "Delta Sagittarii"
 	link Rastaban
 	link "Kaus Borealis"
@@ -1604,6 +1674,7 @@ system "Alpha Arae"
 	asteroids "small metal" 33 2.058
 	asteroids "medium metal" 18 1.68
 	asteroids "large metal" 9 1.932
+	minables silicon 10 3.80746
 	trade Clothing 245
 	trade Electronics 707
 	trade Equipment 483
@@ -1662,12 +1733,15 @@ system "Alpha Centauri"
 	pos -429 125
 	government Republic
 	habitable 320
+	belt 1116
 	link Sol
 	asteroids "small rock" 1 1.944
 	asteroids "medium rock" 2 5.04
 	asteroids "large rock" 1 1.8
 	asteroids "medium metal" 10 4.428
 	asteroids "large metal" 1 3.168
+	minables copper 1 5.07974
+	minables lead 4 6.13217
 	trade Clothing 262
 	trade Electronics 695
 	trade Equipment 523
@@ -1720,6 +1794,7 @@ system "Alpha Hydri"
 	pos -97 98
 	government Syndicate
 	habitable 1400
+	belt 1839
 	link Ruchbah
 	asteroids "medium rock" 1 7.467
 	asteroids "large rock" 1 7.125
@@ -1771,6 +1846,7 @@ system Alphard
 	pos -588 -47
 	government Republic
 	habitable 1080.62
+	belt 1101
 	link Algieba
 	link Zosma
 	link Miaplacidus
@@ -1781,6 +1857,9 @@ system Alphard
 	asteroids "small metal" 5 5.3872
 	asteroids "medium metal" 83 10.2648
 	asteroids "large metal" 6 6.9888
+	minables aluminum 22 15.8087
+	minables lead 16 18.6376
+	minables titanium 14 15.6458
 	trade Clothing 326
 	trade Electronics 673
 	trade Equipment 682
@@ -1830,6 +1909,7 @@ system Alphecca
 	pos -546 308
 	government Republic
 	habitable 1400
+	belt 1101
 	link Alioth
 	link Seginus
 	link Boral
@@ -1878,6 +1958,7 @@ system Alpheratz
 	pos -176 125
 	government Syndicate
 	habitable 1080.62
+	belt 1645
 	link "Al Dhanab"
 	link Ruchbah
 	link Achernar
@@ -1887,6 +1968,8 @@ system Alpheratz
 	asteroids "small metal" 1 2.28
 	asteroids "medium metal" 6 3.88
 	asteroids "large metal" 1 3.8
+	minables lead 2 6.58617
+	minables silicon 5 5.83737
 	trade Clothing 205
 	trade Electronics 751
 	trade Equipment 567
@@ -1941,6 +2024,7 @@ system Altair
 	pos -357 161
 	government Republic
 	habitable 945
+	belt 1830
 	link Vega
 	link Sol
 	link "Delta Capricorni"
@@ -2001,11 +2085,15 @@ system Aludra
 	pos -606 -374
 	government Republic
 	habitable 455.625
+	belt 1511
 	link Naos
 	asteroids "small rock" 2 3.8394
 	asteroids "large rock" 7 2.4786
 	asteroids "small metal" 2 7.1442
 	asteroids "large metal" 6 3.402
+	minables copper 2 3.7707
+	minables neodymium 2 5.17388
+	minables silicon 2 4.70507
 	trade Clothing 227
 	trade Electronics 683
 	trade Equipment 454
@@ -2056,6 +2144,7 @@ system Ankaa
 	pos -230 100
 	government Syndicate
 	habitable 625
+	belt 1003
 	link Markab
 	link Diphda
 	link Ruchbah
@@ -2064,6 +2153,8 @@ system Ankaa
 	asteroids "small metal" 1 4.352
 	asteroids "medium metal" 7 2.176
 	asteroids "large metal" 1 2.912
+	minables aluminum 1 3.23798
+	minables silicon 1 3.14899
 	trade Clothing 296
 	trade Electronics 671
 	trade Equipment 467
@@ -2106,6 +2197,7 @@ system Antares
 	pos -711 541
 	government Pirate
 	habitable 455.625
+	belt 1778
 	link Alniyat
 	asteroids "small rock" 10 3.8556
 	asteroids "medium rock" 17 1.89
@@ -2113,6 +2205,9 @@ system Antares
 	asteroids "small metal" 1 3.1752
 	asteroids "medium metal" 4 3.0996
 	asteroids "large metal" 3 5.1786
+	minables iron 1 5.1176
+	minables lead 8 3.07041
+	minables silicon 8 4.38126
 	trade Clothing 242
 	trade Electronics 804
 	trade Equipment 432
@@ -2162,6 +2257,7 @@ system Ap'arak
 	pos -164.62 -781.858
 	government Wanderer
 	habitable 1080
+	belt 1385
 	link Chirr'ay'akai
 	link Sich'ka'ara
 	link Ka'ch'chrai
@@ -2169,6 +2265,7 @@ system Ap'arak
 	asteroids "large rock" 2 4.485
 	asteroids "medium metal" 1 7.797
 	asteroids "large metal" 3 5.382
+	minables silicon 2 9.55668
 	trade Clothing 419
 	trade Electronics 652
 	trade Equipment 406
@@ -2214,6 +2311,7 @@ system Arcturus
 	pos -589 226
 	government Republic
 	habitable 320
+	belt 1422
 	link Mizar
 	link Rutilicus
 	link Holeb
@@ -2223,6 +2321,9 @@ system Arcturus
 	asteroids "small metal" 4 3.234
 	asteroids "medium metal" 5 1.848
 	asteroids "large metal" 4 1.892
+	minables copper 2 3.64174
+	minables lead 5 4.19488
+	minables silicon 3 2.62083
 	trade Clothing 202
 	trade Electronics 833
 	trade Equipment 562
@@ -2272,6 +2373,7 @@ system Arneb
 	pos -523 -580
 	government Pirate
 	habitable 1715
+	belt 1947
 	link Hatysa
 	asteroids "large rock" 1 5.3055
 	asteroids "small metal" 2 5.2245
@@ -2318,6 +2420,7 @@ system Ascella
 	pos -376 328
 	government Republic
 	habitable 640
+	belt 1971
 	link Peacock
 	link "Zeta Aquilae"
 	link Tais
@@ -2329,6 +2432,9 @@ system Ascella
 	asteroids "small metal" 5 2.023
 	asteroids "medium metal" 84 1.19
 	asteroids "large metal" 6 2.6894
+	minables silicon 33 1.74588
+	minables titanium 34 2.91332
+	minables uranium 23 2.68467
 	trade Clothing 337
 	trade Electronics 750
 	trade Equipment 636
@@ -2377,6 +2483,7 @@ system Asikafarnut
 	pos 253.431 -584.812
 	government "Kor Sestor"
 	habitable 320
+	belt 1342
 	link Silikatakfar
 	link Sobarati
 	link Makferuti
@@ -2386,6 +2493,7 @@ system Asikafarnut
 	asteroids "large rock" 3 2.184
 	asteroids "medium metal" 5 1.7472
 	asteroids "large metal" 1 4.5024
+	minables lead 2 4.41407
 	trade Clothing 382
 	trade Electronics 680
 	trade Equipment 563
@@ -2439,6 +2547,7 @@ system Aspidiske
 	pos -690 -282
 	government Republic
 	habitable 135
+	belt 1885
 	link Avior
 	link Regor
 	link "Epsilon Leonis"
@@ -2493,6 +2602,7 @@ system Atria
 	pos -551 532
 	government Republic
 	habitable 214.375
+	belt 1340
 	link Han
 	link Lesath
 	link Dschubba
@@ -2502,6 +2612,9 @@ system Atria
 	asteroids "small metal" 1 3.429
 	asteroids "medium metal" 26 2.7
 	asteroids "large metal" 2 1.431
+	minables aluminum 11 5.63475
+	minables iron 17 5.95487
+	minables silicon 16 4.85513
 	trade Clothing 347
 	trade Electronics 749
 	trade Equipment 476
@@ -2553,6 +2666,7 @@ system Avior
 	pos -658 -317
 	government Republic
 	habitable 1215
+	belt 1097
 	link Aspidiske
 	link Naos
 	link Markeb
@@ -2560,6 +2674,9 @@ system Avior
 	asteroids "large rock" 1 5.7834
 	asteroids "medium metal" 1 5.8968
 	asteroids "large metal" 1 7.4844
+	minables neodymium 1 10.1458
+	minables titanium 1 9.74859
+	minables tungsten 1 10.6785
 	trade Clothing 319
 	trade Electronics 657
 	trade Equipment 426
@@ -2616,6 +2733,7 @@ system Aya'k'k
 	pos -434.245 -616.57
 	government Wanderer
 	habitable 486.68
+	belt 1586
 	link Pik'ro'iyak
 	asteroids "small rock" 6 1.9152
 	asteroids "medium rock" 121 1.9404
@@ -2623,6 +2741,7 @@ system Aya'k'k
 	asteroids "small metal" 4 2.016
 	asteroids "medium metal" 89 3.78
 	asteroids "large metal" 96 1.5624
+	minables iron 19 3.26734
 	trade Clothing 331
 	trade Electronics 843
 	trade Equipment 501
@@ -2672,6 +2791,7 @@ system Bellatrix
 	pos -225 -82
 	government Syndicate
 	habitable 670
+	belt 1564
 	link Menkar
 	link Mirfak
 	asteroids "small rock" 6 4.8438
@@ -2680,6 +2800,7 @@ system Bellatrix
 	asteroids "small metal" 6 3.289
 	asteroids "medium metal" 31 8.372
 	asteroids "large metal" 22 7.8338
+	minables silicon 16 8.64459
 	trade Clothing 369
 	trade Electronics 707
 	trade Equipment 661
@@ -2729,6 +2850,7 @@ system "Beta Lupi"
 	pos -851 417
 	government Republic
 	habitable 625
+	belt 1261
 	link Pherkad
 	link "Kappa Centauri"
 	link Men
@@ -2738,6 +2860,9 @@ system "Beta Lupi"
 	asteroids "small metal" 2 3.6036
 	asteroids "medium metal" 4 2.4332
 	asteroids "large metal" 25 3.4496
+	minables gold 4 3.65247
+	minables lead 39 3.41114
+	minables silicon 4 3.54232
 	trade Clothing 325
 	trade Electronics 855
 	trade Equipment 383
@@ -2781,6 +2906,7 @@ system Betelgeuse
 	pos -384 -322
 	government Republic
 	habitable 1080
+	belt 1641
 	link Mirzam
 	link Alheka
 	link Rigel
@@ -2789,6 +2915,9 @@ system Betelgeuse
 	asteroids "small metal" 78 2.7
 	asteroids "medium metal" 19 3.18
 	asteroids "large metal" 56 4.38
+	minables lead 43 6.0536
+	minables silicon 25 4.05481
+	minables silver 4 3.65891
 	trade Clothing 226
 	trade Electronics 647
 	trade Equipment 681
@@ -2848,6 +2977,7 @@ system Boral
 	pos -502 331
 	government Republic
 	habitable 214.375
+	belt 1867
 	link Alphecca
 	asteroids "small rock" 7 2.4752
 	asteroids "medium rock" 126 4.42
@@ -2855,6 +2985,8 @@ system Boral
 	asteroids "small metal" 97 2.3868
 	asteroids "medium metal" 4 5.2156
 	asteroids "large metal" 11 4.5968
+	minables aluminum 6 4.01149
+	minables titanium 30 6.89282
 	trade Clothing 251
 	trade Electronics 867
 	trade Equipment 424
@@ -2909,6 +3041,7 @@ system "Bore Fah"
 	pos 71.7761 -592.536
 	government Hai
 	habitable 625
+	belt 1823
 	link "Wah Ki"
 	link "Bote Asu"
 	asteroids "small rock" 29 3.0912
@@ -2917,6 +3050,9 @@ system "Bore Fah"
 	asteroids "small metal" 6 4.5885
 	asteroids "medium metal" 25 4.3953
 	asteroids "large metal" 1 4.8783
+	minables aluminum 12 5.51239
+	minables lead 26 6.01005
+	minables titanium 8 6.5253
 	trade Clothing 328
 	trade Electronics 695
 	trade Equipment 440
@@ -2963,6 +3099,7 @@ system "Bote Asu"
 	pos 8.87418 -572.768
 	government Hai
 	habitable 2859.44
+	belt 1613
 	link "Wah Ki"
 	link "Ula Mon"
 	link "Ya Hai"
@@ -2973,6 +3110,8 @@ system "Bote Asu"
 	asteroids "small metal" 62 4.598
 	asteroids "medium metal" 96 2.2572
 	asteroids "large metal" 5 4.0546
+	minables iron 12 7.05904
+	minables titanium 9 4.77203
 	trade Clothing 268
 	trade Electronics 665
 	trade Equipment 430
@@ -3049,6 +3188,7 @@ system Canopus
 	pos -421 -225
 	government Republic
 	habitable 214.375
+	belt 1530
 	link Phurad
 	link Mirzam
 	link Alheka
@@ -3092,6 +3232,7 @@ system Capella
 	pos -378 -13
 	government Republic
 	habitable 455.625
+	belt 1722
 	link Procyon
 	link Aldebaran
 	link Menkalinan
@@ -3101,6 +3242,9 @@ system Capella
 	asteroids "small metal" 10 1.8696
 	asteroids "medium metal" 3 2.9412
 	asteroids "large metal" 15 1.2996
+	minables iron 40 2.63132
+	minables lead 23 2.64595
+	minables silver 4 3.04495
 	trade Clothing 253
 	trade Electronics 705
 	trade Equipment 582
@@ -3155,6 +3299,7 @@ system Caph
 	pos -295 77
 	government Syndicate
 	habitable 670
+	belt 1173
 	link Sol
 	link Diphda
 	link Eteron
@@ -3164,6 +3309,9 @@ system Caph
 	asteroids "small metal" 12 6.03
 	asteroids "medium metal" 49 3.465
 	asteroids "large metal" 72 6.345
+	minables lead 21 7.55696
+	minables tungsten 63 6.62784
+	minables uranium 6 7.47177
 	trade Clothing 328
 	trade Electronics 702
 	trade Equipment 440
@@ -3213,6 +3361,7 @@ system Cardax
 	pos -211 -215
 	government Republic
 	habitable 1705
+	belt 1228
 	link Moktar
 	link Volax
 	link Sumar
@@ -3221,6 +3370,8 @@ system Cardax
 	asteroids "large rock" 32 3.1382
 	asteroids "medium metal" 22 3.978
 	asteroids "large metal" 12 6.4532
+	minables aluminum 4 8.53341
+	minables lead 1 7.70182
 	trade Clothing 281
 	trade Electronics 672
 	trade Equipment 605
@@ -3271,6 +3422,7 @@ system Castor
 	pos -452 -17
 	government Republic
 	habitable 1715
+	belt 1675
 	link Pollux
 	link Talita
 	link Menkalinan
@@ -3280,6 +3432,9 @@ system Castor
 	asteroids "small metal" 5 7.6545
 	asteroids "medium metal" 27 6.5205
 	asteroids "large metal" 1 6.4638
+	minables aluminum 1 7.59239
+	minables lead 1 12.7895
+	minables silicon 6 11.0644
 	trade Clothing 223
 	trade Electronics 786
 	trade Equipment 659
@@ -3348,6 +3503,7 @@ system Cebalrai
 	pos -461 282
 	government Republic
 	habitable 625
+	belt 1955
 	link Rutilicus
 	link "Kaus Borealis"
 	link Rasalhague
@@ -3359,6 +3515,8 @@ system Cebalrai
 	asteroids "small metal" 2 4.14
 	asteroids "medium metal" 15 3.87
 	asteroids "large metal" 22 3.15
+	minables gold 1 3.87594
+	minables silicon 10 5.51354
 	trade Clothing 208
 	trade Electronics 821
 	trade Equipment 584
@@ -3405,6 +3563,7 @@ system Celeborim
 	pos 181.431 -633.812
 	government "Kor Sestor"
 	habitable 320
+	belt 1296
 	link Asikafarnut
 	asteroids "small rock" 4 3.9
 	asteroids "medium rock" 5 4.4616
@@ -3412,6 +3571,8 @@ system Celeborim
 	asteroids "small metal" 20 4.368
 	asteroids "medium metal" 1 4.5864
 	asteroids "large metal" 21 2.5584
+	minables iron 5 6.03833
+	minables silicon 2 6.62195
 	trade Clothing 411
 	trade Electronics 687
 	trade Equipment 523
@@ -3460,6 +3621,7 @@ system Chikatip
 	pos -77.5695 -307.812
 	government Uninhabited
 	habitable 425.92
+	belt 1929
 	link Furmeliki
 	link Seketra
 	asteroids "small rock" 112 4.4965
@@ -3468,6 +3630,9 @@ system Chikatip
 	asteroids "small metal" 18 2.5415
 	asteroids "medium metal" 89 2.6979
 	asteroids "large metal" 22 4.0664
+	minables lead 2 5.34146
+	minables silicon 1 4.86922
+	minables silver 15 5.05151
 	trade Clothing 261
 	trade Electronics 819
 	trade Equipment 386
@@ -3511,6 +3676,7 @@ system Chimitarp
 	pos 150.431 -287.812
 	government "Kor Mereti"
 	habitable 912.6
+	belt 1932
 	link Mekislepti
 	link Sepetrosk
 	link Farbutero
@@ -3521,6 +3687,7 @@ system Chimitarp
 	asteroids "small metal" 5 5.9356
 	asteroids "medium metal" 64 5.7684
 	asteroids "large metal" 17 3.1768
+	minables silicon 45 7.62429
 	trade Clothing 205
 	trade Electronics 731
 	trade Equipment 594
@@ -3579,6 +3746,7 @@ system Chirr'ay'akai
 	pos -102.761 -749.614
 	government Wanderer
 	habitable 486.68
+	belt 1425
 	link Prakacha'a
 	link Ap'arak
 	asteroids "large rock" 1 3.762
@@ -3626,6 +3794,7 @@ system Chornifath
 	pos 40.4305 -214.812
 	government Uninhabited
 	habitable 486.68
+	belt 1434
 	link Dokdobaru
 	asteroids "small rock" 2 6.9776
 	asteroids "medium rock" 11 7.448
@@ -3684,6 +3853,7 @@ system Chy'chra
 	pos 85.5308 -829.667
 	government Wanderer
 	habitable 625
+	belt 1120
 	link Prakacha'a
 	link Ik'kara'ka
 	asteroids "small rock" 5 3.8019
@@ -3691,6 +3861,7 @@ system Chy'chra
 	asteroids "large rock" 2 3.0305
 	asteroids "medium metal" 9 6.8875
 	asteroids "large metal" 11 5.1794
+	minables tungsten 2 7.05176
 	trade Clothing 197
 	trade Electronics 888
 	trade Equipment 449
@@ -3745,6 +3916,7 @@ system "Cor Caroli"
 	pos -682 201
 	government Republic
 	habitable 1080
+	belt 1474
 	link Vindemiatrix
 	link Gacrux
 	link Algorel
@@ -3755,6 +3927,9 @@ system "Cor Caroli"
 	asteroids "small metal" 6 2.376
 	asteroids "medium metal" 1 1.5576
 	asteroids "large metal" 8 1.3992
+	minables aluminum 2 2.98979
+	minables platinum 2 3.79511
+	minables uranium 4 2.87365
 	trade Clothing 236
 	trade Electronics 785
 	trade Equipment 513
@@ -3798,12 +3973,15 @@ system "Da Ent"
 	pos -6.22391 -462.536
 	government Hai
 	habitable 233.28
+	belt 1161
 	link "Ya Hai"
 	asteroids "small rock" 31 1.3005
 	asteroids "medium rock" 21 3.213
 	asteroids "large rock" 160 3.4425
 	asteroids "medium metal" 23 3.417
 	asteroids "large metal" 26 1.428
+	minables lead 85 5.2954
+	minables silicon 4 4.19935
 	trade Clothing 148
 	trade Electronics 655
 	trade Equipment 420
@@ -3854,6 +4032,7 @@ system "Da Lest"
 	pos -23.2239 -413.536
 	government Hai
 	habitable 320
+	belt 1108
 	link "Lom Tahr"
 	asteroids "small rock" 5 3.69
 	asteroids "medium rock" 7 4.17
@@ -3861,6 +4040,9 @@ system "Da Lest"
 	asteroids "small metal" 1 3.63
 	asteroids "medium metal" 101 2.04
 	asteroids "large metal" 23 4.44
+	minables silicon 35 5.1558
+	minables titanium 12 3.16646
+	minables uranium 5 3.90543
 	trade Clothing 338
 	trade Electronics 885
 	trade Equipment 530
@@ -3903,6 +4085,7 @@ system Dabih
 	pos -253 427
 	government Republic
 	habitable 670
+	belt 1088
 	link Tarazed
 	link Eltanin
 	link "Kaus Australis"
@@ -3960,6 +4143,7 @@ system Danoa
 	pos -239 -321
 	government Republic
 	habitable 135
+	belt 1689
 	link Sumar
 	link Hassaleh
 	asteroids "small rock" 26 2.425
@@ -3968,6 +4152,9 @@ system Danoa
 	asteroids "small metal" 11 1.875
 	asteroids "medium metal" 17 2.15
 	asteroids "large metal" 13 1.3
+	minables copper 47 2.85289
+	minables silicon 20 2.3468
+	minables titanium 3 3.894
 	trade Clothing 301
 	trade Electronics 842
 	trade Equipment 714
@@ -4018,6 +4205,7 @@ system "Delta Capricorni"
 	pos -285 202
 	government Syndicate
 	habitable 839.375
+	belt 1329
 	link Alderamin
 	link Altair
 	link Markab
@@ -4027,6 +4215,8 @@ system "Delta Capricorni"
 	asteroids "large rock" 9 10.08
 	asteroids "medium metal" 11 11.76
 	asteroids "large metal" 1 6.636
+	minables iron 34 12.4373
+	minables neodymium 16 13.4172
 	trade Clothing 300
 	trade Electronics 752
 	trade Equipment 444
@@ -4075,6 +4265,7 @@ system "Delta Sagittarii"
 	pos -414 416
 	government Republic
 	habitable 320
+	belt 1414
 	link Rastaban
 	link "Alpha Arae"
 	link Eltanin
@@ -4085,6 +4276,9 @@ system "Delta Sagittarii"
 	asteroids "small metal" 43 5.1597
 	asteroids "medium metal" 45 2.1762
 	asteroids "large metal" 16 4.0716
+	minables aluminum 32 4.42482
+	minables iron 9 4.88567
+	minables silicon 1 4.38847
 	trade Clothing 283
 	trade Electronics 731
 	trade Equipment 568
@@ -4135,6 +4329,7 @@ system "Delta Velorum"
 	pos -740 90
 	government Republic
 	habitable 1080
+	belt 1221
 	link Turais
 	link Fala
 	link Mora
@@ -4144,6 +4339,9 @@ system "Delta Velorum"
 	asteroids "small metal" 11 3.6
 	asteroids "medium metal" 54 5.4375
 	asteroids "large metal" 5 3.8625
+	minables lead 7 4.67725
+	minables neodymium 17 5.3117
+	minables silver 8 8.15115
 	trade Clothing 317
 	trade Electronics 672
 	trade Equipment 468
@@ -4187,12 +4385,16 @@ system Deneb
 	pos -348 225
 	government Pug
 	habitable 625
+	belt 1890
 	asteroids "small rock" 4 4.62
 	asteroids "medium rock" 192 8.82
 	asteroids "large rock" 42 10.332
 	asteroids "small metal" 74 11.088
 	asteroids "medium metal" 2 4.536
 	asteroids "large metal" 11 6.972
+	minables aluminum 7 15.5891
+	minables silicon 12 13.0697
+	minables titanium 51 14.5121
 	trade Clothing 314
 	trade Electronics 777
 	trade Equipment 589
@@ -4237,6 +4439,7 @@ system Denebola
 	pos -478 70
 	government Republic
 	habitable 534.375
+	belt 1050
 	link Sol
 	link Merak
 	link Fingol
@@ -4245,6 +4448,9 @@ system Denebola
 	asteroids "large rock" 15 4.6926
 	asteroids "medium metal" 13 6.831
 	asteroids "large metal" 1 8.019
+	minables copper 3 8.29669
+	minables lead 3 11.4823
+	minables silicon 3 7.30806
 	trade Clothing 271
 	trade Electronics 673
 	trade Equipment 409
@@ -4297,6 +4503,7 @@ system Diphda
 	pos -262 61
 	government Syndicate
 	habitable 590.625
+	belt 1559
 	link Ankaa
 	link Caph
 	link Acamar
@@ -4306,6 +4513,9 @@ system Diphda
 	asteroids "small metal" 34 5.3136
 	asteroids "medium metal" 25 8.2296
 	asteroids "large metal" 38 4.7304
+	minables aluminum 2 10.8416
+	minables copper 9 10.6942
+	minables uranium 4 6.68388
 	trade Clothing 323
 	trade Electronics 642
 	trade Equipment 465
@@ -4349,6 +4559,7 @@ system Dokdobaru
 	pos -21.5695 -241.812
 	government Quarg
 	habitable 320
+	belt 1935
 	link Hesselpost
 	link Kashikt
 	link Furmeliki
@@ -4360,6 +4571,8 @@ system Dokdobaru
 	asteroids "small metal" 1 4.05
 	asteroids "medium metal" 2 4.05
 	asteroids "large metal" 3 2.0655
+	minables lead 3 5.25735
+	minables silicon 3 5.59881
 	trade Clothing 292
 	trade Electronics 832
 	trade Equipment 363
@@ -4449,6 +4662,7 @@ system Dschubba
 	pos -598 501
 	government Republic
 	habitable 398.125
+	belt 1429
 	link Atria
 	link Lesath
 	link Alniyat
@@ -4459,6 +4673,9 @@ system Dschubba
 	asteroids "small metal" 57 2.075
 	asteroids "medium metal" 51 2.3
 	asteroids "large metal" 68 3.5
+	minables aluminum 37 3.17333
+	minables iron 34 4.26089
+	minables silicon 59 3.44288
 	trade Clothing 360
 	trade Electronics 698
 	trade Equipment 461
@@ -4517,12 +4734,14 @@ system Dubhe
 	pos -577 -103
 	government Republic
 	habitable 349.375
+	belt 1120
 	link Zosma
 	asteroids "medium rock" 12 3.5496
 	asteroids "large rock" 1 3.48
 	asteroids "small metal" 1 3.9672
 	asteroids "medium metal" 45 1.8792
 	asteroids "large metal" 2 5.0112
+	minables silicon 14 3.5667
 	trade Clothing 386
 	trade Electronics 779
 	trade Equipment 541
@@ -4569,6 +4788,7 @@ system "Due Yoot"
 	pos -167.547 -426.683
 	government Hai
 	habitable 233.28
+	belt 1854
 	link "Wah Oh"
 	link "Io Mann"
 	link "Heia Due"
@@ -4579,6 +4799,7 @@ system "Due Yoot"
 	asteroids "large rock" 4 4.0635
 	asteroids "medium metal" 2 3.9375
 	asteroids "large metal" 1 3.528
+	minables titanium 5 3.77479
 	trade Clothing 308
 	trade Electronics 765
 	trade Equipment 540
@@ -4630,6 +4851,7 @@ system Durax
 	pos -59 -90
 	government Pirate
 	habitable 1080
+	belt 1287
 	link Alcyone
 	asteroids "small rock" 16 8.1744
 	asteroids "medium rock" 4 5.304
@@ -4637,6 +4859,7 @@ system Durax
 	asteroids "small metal" 1 9.1728
 	asteroids "medium metal" 11 7.8624
 	asteroids "large metal" 1 8.6736
+	minables lead 9 12.9774
 	trade Clothing 381
 	trade Electronics 747
 	trade Equipment 714
@@ -4691,6 +4914,7 @@ system Eber
 	pos -532 406
 	government Republic
 	habitable 320
+	belt 1199
 	link Alnasl
 	link "Alpha Arae"
 	asteroids "small rock" 18 1.4868
@@ -4699,6 +4923,9 @@ system Eber
 	asteroids "small metal" 13 3.0744
 	asteroids "medium metal" 1 2.0916
 	asteroids "large metal" 19 2.3436
+	minables aluminum 1 3.67652
+	minables platinum 2 3.43245
+	minables uranium 4 2.53236
 	trade Clothing 321
 	trade Electronics 672
 	trade Equipment 455
@@ -4750,12 +4977,16 @@ system "Ehma Ti"
 	pos 39.1085 -749.244
 	government "Hai (Unfettered)"
 	habitable 486.68
+	belt 1094
 	link "Wah Yoot"
 	asteroids "small rock" 1 3.276
 	asteroids "medium rock" 1 1.7472
 	asteroids "large rock" 3 3.0576
 	asteroids "medium metal" 3 3.9858
 	asteroids "large metal" 1 3.549
+	minables lead 2 4.84357
+	minables silver 2 3.81787
+	minables titanium 1 3.78167
 	trade Clothing 308
 	trade Electronics 795
 	trade Equipment 550
@@ -4813,6 +5044,7 @@ system Ek'kek'ru
 	pos -287.517 -727.738
 	government Wanderer
 	habitable 320
+	belt 1517
 	link Ka'ch'chrai
 	link Si'yak'ku
 	link Pik'ro'iyak
@@ -4822,6 +5054,9 @@ system Ek'kek'ru
 	asteroids "large rock" 50 1.5015
 	asteroids "small metal" 15 2.0625
 	asteroids "large metal" 10 1.0725
+	minables aluminum 13 2.30409
+	minables copper 9 1.92341
+	minables silicon 13 2.58663
 	trade Clothing 324
 	trade Electronics 672
 	trade Equipment 386
@@ -4867,6 +5102,7 @@ system Elnath
 	pos -288 -77
 	government Republic
 	habitable 1715
+	belt 1462
 	link Acamar
 	link Aldebaran
 	link Nihal
@@ -4876,6 +5112,7 @@ system Elnath
 	asteroids "small metal" 9 7.2912
 	asteroids "medium metal" 11 4.7628
 	asteroids "large metal" 2 4.2924
+	minables iron 2 7.79782
 	trade Clothing 277
 	trade Electronics 620
 	trade Equipment 629
@@ -4928,6 +5165,7 @@ system Eltanin
 	pos -328 433
 	government Republic
 	habitable 455.625
+	belt 1859
 	link Dabih
 	link "Delta Sagittarii"
 	link Albaldah
@@ -4936,6 +5174,9 @@ system Eltanin
 	asteroids "large rock" 6 3.298
 	asteroids "medium metal" 7 3.094
 	asteroids "large metal" 2 4.658
+	minables iron 7 3.63992
+	minables silicon 1 5.00673
+	minables titanium 1 4.77008
 	trade Clothing 211
 	trade Electronics 783
 	trade Equipment 491
@@ -4982,12 +5223,16 @@ system Eneremprukt
 	pos 311.431 -448.812
 	government "Kor Sestor"
 	habitable 486.68
+	belt 1421
 	link Silikatakfar
 	link Mesuket
 	link Ferukistek
 	asteroids "medium rock" 11 3.456
 	asteroids "large rock" 10 7.29
 	asteroids "large metal" 4 7.506
+	minables copper 1 6.64767
+	minables lead 1 11.1355
+	minables silicon 3 9.15088
 	trade Clothing 302
 	trade Electronics 773
 	trade Equipment 685
@@ -5033,6 +5278,7 @@ system Enif
 	pos -177 498
 	government Quarg
 	habitable 700
+	belt 1974
 	link Sadalmelik
 	link Sadalsuud
 	link Tarazed
@@ -5042,6 +5288,9 @@ system Enif
 	asteroids "small metal" 4 4.1412
 	asteroids "medium metal" 11 6.2524
 	asteroids "large metal" 2 8.0388
+	minables neodymium 10 15.6333
+	minables silicon 2 10.2511
+	minables silver 1 13.4158
 	trade Clothing 361
 	trade Electronics 800
 	trade Equipment 485
@@ -5117,6 +5366,7 @@ system "Epsilon Leonis"
 	pos -619 -229
 	government Republic
 	habitable 1400
+	belt 1527
 	link Gomeisa
 	link Aspidiske
 	link Adhara
@@ -5126,6 +5376,7 @@ system "Epsilon Leonis"
 	asteroids "small metal" 13 2.052
 	asteroids "medium metal" 39 3.96
 	asteroids "large metal" 1 3.816
+	minables lead 15 3.56384
 	trade Clothing 297
 	trade Electronics 650
 	trade Equipment 447
@@ -5186,6 +5437,7 @@ system Es'sprak'ai
 	pos -469.044 -733.375
 	government Wanderer
 	habitable 486.68
+	belt 1928
 	link Pik'ro'iyak
 	asteroids "small rock" 3 2.2275
 	asteroids "medium rock" 2 3.9875
@@ -5193,6 +5445,8 @@ system Es'sprak'ai
 	asteroids "small metal" 2 1.705
 	asteroids "medium metal" 50 3.9875
 	asteroids "large metal" 21 2.0625
+	minables aluminum 17 5.38505
+	minables iron 11 3.31743
 	trade Clothing 230
 	trade Electronics 870
 	trade Equipment 452
@@ -5242,6 +5496,7 @@ system Eshkoshtar
 	pos 156.431 -381.812
 	government "Kor Mereti"
 	habitable 806.68
+	belt 1105
 	link Mekislepti
 	link Similisti
 	link Mesuket
@@ -5251,6 +5506,8 @@ system Eshkoshtar
 	asteroids "small metal" 12 4.5
 	asteroids "medium metal" 53 2.31
 	asteroids "large metal" 155 3.51
+	minables aluminum 8 3.97026
+	minables silicon 5 3.83848
 	trade Clothing 248
 	trade Electronics 715
 	trade Equipment 703
@@ -5311,6 +5568,7 @@ system Eteron
 	pos -330 33
 	government Republic
 	habitable 135
+	belt 1479
 	link Sirius
 	link Caph
 	asteroids "small rock" 30 2.688
@@ -5319,6 +5577,9 @@ system Eteron
 	asteroids "small metal" 35 5.136
 	asteroids "medium metal" 34 6.72
 	asteroids "large metal" 4 6.96
+	minables aluminum 29 8.87071
+	minables copper 27 6.83551
+	minables iron 27 5.29693
 	trade Clothing 241
 	trade Electronics 772
 	trade Equipment 515
@@ -5370,6 +5631,7 @@ system "Fah Root"
 	pos -264.065 -400.135
 	government Hai
 	habitable 486.68
+	belt 1057
 	link "Wah Oh"
 	asteroids "small rock" 15 2.1735
 	asteroids "medium rock" 38 3.3465
@@ -5377,6 +5639,9 @@ system "Fah Root"
 	asteroids "small metal" 115 4.002
 	asteroids "medium metal" 22 3.036
 	asteroids "large metal" 18 2.3115
+	minables copper 4 6.40626
+	minables iron 9 4.25952
+	minables lead 22 4.29651
 	trade Clothing 458
 	trade Electronics 785
 	trade Equipment 550
@@ -5432,6 +5697,7 @@ system "Fah Soom"
 	pos -179.891 -335.011
 	government Hai
 	habitable 425.92
+	belt 1185
 	link "Hevru Hai"
 	link "Wah Oh"
 	asteroids "medium rock" 5 3.2648
@@ -5439,6 +5705,9 @@ system "Fah Soom"
 	asteroids "small metal" 14 2.2176
 	asteroids "medium metal" 16 2.2792
 	asteroids "large metal" 13 1.6016
+	minables aluminum 4 4.22938
+	minables lead 1 2.43818
+	minables neodymium 1 3.87433
 	trade Clothing 408
 	trade Electronics 885
 	trade Equipment 730
@@ -5486,6 +5755,7 @@ system Fala
 	pos -690 64
 	government Republic
 	habitable 625
+	belt 1264
 	link "Tania Australis"
 	link "Delta Velorum"
 	asteroids "small rock" 2 3.0464
@@ -5494,6 +5764,9 @@ system Fala
 	asteroids "small metal" 6 2.8896
 	asteroids "medium metal" 4 1.1648
 	asteroids "large metal" 16 1.344
+	minables copper 9 3.84288
+	minables lead 7 2.60722
+	minables titanium 22 3.57674
 	trade Clothing 401
 	trade Electronics 717
 	trade Equipment 532
@@ -5541,6 +5814,7 @@ system Farbutero
 	pos 93.4305 -251.812
 	government Uninhabited
 	habitable 625
+	belt 1175
 	link Meftarkata
 	link Feroteri
 	link Korsmanath
@@ -5551,6 +5825,7 @@ system Farbutero
 	asteroids "small metal" 2 4.4689
 	asteroids "medium metal" 1 6.7367
 	asteroids "large metal" 1 6.8701
+	minables silicon 1 13.3339
 	trade Clothing 268
 	trade Electronics 781
 	trade Equipment 520
@@ -5612,6 +5887,7 @@ system Faronektu
 	pos 292.431 -309.812
 	government "Kor Mereti"
 	habitable 1080
+	belt 1630
 	link Similisti
 	link Salipastart
 	asteroids "small rock" 32 2.244
@@ -5620,6 +5896,8 @@ system Faronektu
 	asteroids "small metal" 116 2.448
 	asteroids "medium metal" 132 3.366
 	asteroids "large metal" 13 2.295
+	minables iron 13 5.13054
+	minables silicon 41 3.26981
 	trade Clothing 241
 	trade Electronics 627
 	trade Equipment 651
@@ -5674,12 +5952,15 @@ system Fasitopfar
 	pos 92.4305 -105.812
 	government Uninhabited
 	habitable 100
+	belt 1670
 	asteroids "small rock" 24 7.722
 	asteroids "medium rock" 58 6.75
 	asteroids "large rock" 25 3.348
 	asteroids "small metal" 50 6.264
 	asteroids "medium metal" 67 7.236
 	asteroids "large metal" 83 4.968
+	minables silver 44 10.8343
+	minables tungsten 113 12.1378
 	trade Clothing 283
 	trade Electronics 624
 	trade Equipment 394
@@ -5714,6 +5995,7 @@ system Feroteri
 	pos 149.431 -205.812
 	government Uninhabited
 	habitable 5425.92
+	belt 1419
 	link Farbutero
 	link Korsmanath
 	link Sepetrosk
@@ -5722,6 +6004,8 @@ system Feroteri
 	asteroids "small metal" 3 3.081
 	asteroids "medium metal" 12 5.265
 	asteroids "large metal" 11 4.758
+	minables iron 1 5.55136
+	minables lead 1 8.46976
 	trade Clothing 320
 	trade Electronics 744
 	trade Equipment 573
@@ -5793,6 +6077,7 @@ system Ferukistek
 	pos 307.431 -515.812
 	government "Kor Sestor"
 	habitable 486.68
+	belt 1520
 	link Eneremprukt
 	link Silikatakfar
 	asteroids "small rock" 1 1.072
@@ -5801,6 +6086,9 @@ system Ferukistek
 	asteroids "small metal" 12 2.144
 	asteroids "medium metal" 114 1.312
 	asteroids "large metal" 81 0.864
+	minables aluminum 4 1.59162
+	minables iron 7 1.79257
+	minables titanium 5 1.86087
 	trade Clothing 296
 	trade Electronics 734
 	trade Equipment 676
@@ -5842,12 +6130,15 @@ system Fingol
 	pos -482 113
 	government Republic
 	habitable 135
+	belt 1976
 	link Denebola
 	asteroids "small rock" 3 2.992
 	asteroids "medium rock" 8 3.74
 	asteroids "large rock" 3 1.87
 	asteroids "medium metal" 25 3.468
 	asteroids "large metal" 1 4.828
+	minables iron 6 5.99599
+	minables tungsten 9 6.24826
 	trade Clothing 346
 	trade Electronics 732
 	trade Equipment 487
@@ -5895,6 +6186,7 @@ system Fomalhaut
 	pos -314 124
 	government Syndicate
 	habitable 455.625
+	belt 1854
 	link Altair
 	link Markab
 	asteroids "small rock" 3 7.1415
@@ -5903,6 +6195,8 @@ system Fomalhaut
 	asteroids "small metal" 16 4.7817
 	asteroids "medium metal" 19 7.0173
 	asteroids "large metal" 2 6.4584
+	minables aluminum 2 7.99634
+	minables titanium 2 8.50151
 	trade Clothing 336
 	trade Electronics 735
 	trade Equipment 401
@@ -5953,6 +6247,7 @@ system Fornarep
 	pos 79.4305 -309.812
 	government Uninhabited
 	habitable 320
+	belt 1922
 	link Skeruto
 	link Meftarkata
 	link Kaliptari
@@ -5963,6 +6258,8 @@ system Fornarep
 	asteroids "small metal" 7 2.8224
 	asteroids "medium metal" 11 3.2928
 	asteroids "large metal" 13 4.5024
+	minables lead 2 3.99772
+	minables titanium 7 4.45146
 	trade Clothing 296
 	trade Electronics 743
 	trade Equipment 565
@@ -6015,6 +6312,7 @@ system Furmeliki
 	pos -35.5695 -281.812
 	government Uninhabited
 	habitable 486.68
+	belt 1577
 	link Dokdobaru
 	link Chikatip
 	link Kashikt
@@ -6075,6 +6373,7 @@ system Gacrux
 	pos -713 184
 	government Republic
 	habitable 534.375
+	belt 1188
 	link "Cor Caroli"
 	link Muhlifain
 	link Turais
@@ -6083,6 +6382,7 @@ system Gacrux
 	asteroids "small metal" 7 2.8336
 	asteroids "medium metal" 143 3.5742
 	asteroids "large metal" 30 4.7656
+	minables silicon 29 3.91092
 	trade Clothing 266
 	trade Electronics 786
 	trade Equipment 533
@@ -6140,6 +6440,7 @@ system "Gamma Cassiopeiae"
 	pos -116 293
 	government Syndicate
 	habitable 455.625
+	belt 1779
 	link Mirach
 	asteroids "small rock" 17 7.4936
 	asteroids "medium rock" 64 2.8101
@@ -6147,6 +6448,9 @@ system "Gamma Cassiopeiae"
 	asteroids "small metal" 5 2.9203
 	asteroids "medium metal" 6 6.9977
 	asteroids "large metal" 42 3.4713
+	minables aluminum 2 6.56317
+	minables titanium 28 4.09147
+	minables tungsten 6 7.59246
 	trade Clothing 252
 	trade Electronics 672
 	trade Equipment 540
@@ -6192,6 +6496,7 @@ system "Gamma Corvi"
 	pos -906 64
 	government Republic
 	habitable 1535.62
+	belt 1556
 	link Spica
 	asteroids "small rock" 20 1.5168
 	asteroids "medium rock" 59 2.8608
@@ -6199,6 +6504,8 @@ system "Gamma Corvi"
 	asteroids "small metal" 29 1.3248
 	asteroids "medium metal" 48 1.9968
 	asteroids "large metal" 36 1.6704
+	minables lead 49 2.14521
+	minables neodymium 1 2.38531
 	trade Clothing 203
 	trade Electronics 763
 	trade Equipment 366
@@ -6252,6 +6559,7 @@ system Gienah
 	pos -176 354
 	government Pirate
 	habitable 534.375
+	belt 1939
 	link Persian
 	link Algenib
 	asteroids "small rock" 1 2.574
@@ -6260,6 +6568,9 @@ system Gienah
 	asteroids "small metal" 29 1.89
 	asteroids "medium metal" 203 0.972
 	asteroids "large metal" 37 2.304
+	minables aluminum 1 1.81803
+	minables copper 12 1.48149
+	minables silver 59 2.13643
 	trade Clothing 320
 	trade Electronics 648
 	trade Equipment 387
@@ -6311,6 +6622,7 @@ system Girtab
 	pos -430 481
 	government Republic
 	habitable 1080
+	belt 1387
 	link Lesath
 	link Rastaban
 	link Albaldah
@@ -6318,6 +6630,8 @@ system Girtab
 	asteroids "small metal" 9 3.648
 	asteroids "medium metal" 1 5.7
 	asteroids "large metal" 5 3.876
+	minables copper 2 6.75977
+	minables silicon 2 6.67254
 	trade Clothing 206
 	trade Electronics 758
 	trade Equipment 494
@@ -6372,6 +6686,7 @@ system Gomeisa
 	pos -600 -161
 	government Republic
 	habitable 911.25
+	belt 1616
 	link Zosma
 	link "Epsilon Leonis"
 	link Adhara
@@ -6379,6 +6694,8 @@ system Gomeisa
 	asteroids "medium rock" 13 3.78
 	asteroids "large rock" 1 3.024
 	asteroids "large metal" 3 4.536
+	minables copper 1 7.47319
+	minables silicon 10 6.41048
 	trade Clothing 345
 	trade Electronics 681
 	trade Equipment 480
@@ -6435,6 +6752,7 @@ system Gorvi
 	pos -250 -483
 	government Republic
 	habitable 670
+	belt 1345
 	link Tortor
 	link Mintaka
 	asteroids "small rock" 60 1.1781
@@ -6442,6 +6760,8 @@ system Gorvi
 	asteroids "large rock" 17 2.7302
 	asteroids "medium metal" 8 1.2155
 	asteroids "large metal" 1 1.5895
+	minables iron 7 2.21226
+	minables lead 9 2.73021
 	trade Clothing 331
 	trade Electronics 793
 	trade Equipment 539
@@ -6488,6 +6808,7 @@ system Graffias
 	pos -784 517
 	government Republic
 	habitable 911.25
+	belt 1977
 	link Alniyat
 	asteroids "small rock" 15 3.069
 	asteroids "medium rock" 45 1.749
@@ -6495,6 +6816,9 @@ system Graffias
 	asteroids "small metal" 8 4.257
 	asteroids "medium metal" 24 2.145
 	asteroids "large metal" 4 2.343
+	minables aluminum 21 3.11152
+	minables iron 26 3.72119
+	minables lead 8 3.20431
 	trade Clothing 314
 	trade Electronics 799
 	trade Equipment 416
@@ -6546,6 +6870,7 @@ system Hadar
 	pos -788 283
 	government Republic
 	habitable 455.625
+	belt 1520
 	link "Zeta Centauri"
 	link Izar
 	link Zubeneschamali
@@ -6555,6 +6880,7 @@ system Hadar
 	asteroids "large rock" 7 4.9248
 	asteroids "medium metal" 25 4.5144
 	asteroids "large metal" 12 2.1204
+	minables tungsten 4 7.5751
 	trade Clothing 338
 	trade Electronics 700
 	trade Equipment 579
@@ -6603,12 +6929,16 @@ system Hamal
 	pos -129 24
 	government Syndicate
 	habitable 1080
+	belt 1241
 	link Ruchbah
 	asteroids "small rock" 3 2.7552
 	asteroids "medium rock" 3 3.9648
 	asteroids "large rock" 1 3.9312
 	asteroids "small metal" 1 2.1504
 	asteroids "large metal" 2 3.2928
+	minables neodymium 2 5.99356
+	minables silicon 2 6.40469
+	minables tungsten 2 4.76706
 	trade Clothing 359
 	trade Electronics 690
 	trade Equipment 533
@@ -6652,6 +6982,7 @@ system Han
 	pos -610 561
 	government Republic
 	habitable 1080.62
+	belt 1517
 	link Alniyat
 	link Atria
 	asteroids "large metal" 1 2.85
@@ -6709,6 +7040,7 @@ system Hassaleh
 	pos -291 -287
 	government Republic
 	habitable 670
+	belt 1924
 	link Rigel
 	link Sumar
 	link Danoa
@@ -6719,6 +7051,9 @@ system Hassaleh
 	asteroids "small metal" 9 2.457
 	asteroids "medium metal" 9 5.1597
 	asteroids "large metal" 28 3.5802
+	minables copper 23 7.2985
+	minables gold 10 4.45585
+	minables silicon 21 7.82544
 	trade Clothing 338
 	trade Electronics 760
 	trade Equipment 641
@@ -6763,6 +7098,7 @@ system Hatysa
 	pos -474 -542
 	government Pirate
 	habitable 533.75
+	belt 1163
 	link Arneb
 	link Alnilam
 	link Almaaz
@@ -6771,6 +7107,9 @@ system Hatysa
 	asteroids "small metal" 13 1.0153
 	asteroids "medium metal" 102 1.3585
 	asteroids "large metal" 14 1.9448
+	minables copper 27 2.2074
+	minables iron 4 2.54657
+	minables neodymium 9 2.45903
 	trade Clothing 298
 	trade Electronics 774
 	trade Equipment 552
@@ -6818,6 +7157,7 @@ system "Heia Due"
 	pos -146.177 -481.694
 	government Hai
 	habitable 1215
+	belt 1079
 	link Waypoint
 	link "Due Yoot"
 	link "Io Lowe"
@@ -6827,6 +7167,9 @@ system "Heia Due"
 	asteroids "small metal" 5 4.86
 	asteroids "medium metal" 51 3.9825
 	asteroids "large metal" 104 5.4675
+	minables copper 32 6.53713
+	minables lead 1 10.1532
+	minables silver 6 9.57567
 	trade Clothing 318
 	trade Electronics 835
 	trade Equipment 580
@@ -6883,6 +7226,7 @@ system Hesselpost
 	pos -30.5695 -187.812
 	government Uninhabited
 	habitable 486.68
+	belt 1327
 	link Dokdobaru
 	asteroids "small rock" 34 1.4872
 	asteroids "medium rock" 6 1.859
@@ -6890,6 +7234,8 @@ system Hesselpost
 	asteroids "small metal" 83 2.366
 	asteroids "medium metal" 93 1.0985
 	asteroids "large metal" 89 1.7407
+	minables iron 12 2.20485
+	minables silicon 4 2.41516
 	trade Clothing 322
 	trade Electronics 826
 	trade Equipment 365
@@ -6949,6 +7295,7 @@ system "Hevru Hai"
 	pos -189 -310
 	government Quarg
 	habitable 700
+	belt 1245
 	link "Fah Soom"
 	trade Clothing 362
 	trade Electronics 763
@@ -7062,6 +7409,7 @@ system "Hi Yahr"
 	pos 82.3672 -641.6
 	government "Hai (Unfettered)"
 	habitable 625
+	belt 1655
 	link "Wah Yoot"
 	asteroids "small rock" 18 5.9136
 	asteroids "medium rock" 65 5.4656
@@ -7069,6 +7417,8 @@ system "Hi Yahr"
 	asteroids "small metal" 34 5.6896
 	asteroids "medium metal" 78 4.4352
 	asteroids "large metal" 5 5.6448
+	minables aluminum 3 9.20554
+	minables silicon 19 8.16134
 	trade Clothing 438
 	trade Electronics 605
 	trade Equipment 580
@@ -7116,6 +7466,7 @@ system Hintar
 	pos -422 311
 	government Republic
 	habitable 625
+	belt 1725
 	link Cebalrai
 	asteroids "small rock" 34 2.016
 	asteroids "medium rock" 7 3.168
@@ -7123,6 +7474,7 @@ system Hintar
 	asteroids "small metal" 37 3.192
 	asteroids "medium metal" 23 1.344
 	asteroids "large metal" 16 1.632
+	minables tungsten 10 3.44444
 	trade Clothing 261
 	trade Electronics 784
 	trade Equipment 512
@@ -7173,6 +7525,7 @@ system Holeb
 	pos -590 287
 	government Republic
 	habitable 1715
+	belt 1181
 	link Alioth
 	link Rutilicus
 	link Arcturus
@@ -7219,6 +7572,7 @@ system Host
 	pos 384.431 -543.812
 	government Uninhabited
 	habitable 486.68
+	belt 1669
 	asteroids "large metal" 1 0.732
 	trade Clothing 268
 	trade Electronics 639
@@ -7266,6 +7620,7 @@ system Ik'kara'ka
 	pos 56.2159 -888.296
 	government Wanderer
 	habitable 625
+	belt 1497
 	link Chy'chra
 	link Prakacha'a
 	asteroids "small rock" 1 7.3138
@@ -7274,6 +7629,8 @@ system Ik'kara'ka
 	asteroids "small metal" 4 4.7502
 	asteroids "medium metal" 64 7.3138
 	asteroids "large metal" 130 3.8454
+	minables lead 21 6.73688
+	minables titanium 25 9.19994
 	trade Clothing 209
 	trade Electronics 834
 	trade Equipment 372
@@ -7323,6 +7680,7 @@ system Ildaria
 	pos -702 317
 	government Republic
 	habitable 625
+	belt 1132
 	link Zubeneschamali
 	link Kochab
 	asteroids "medium rock" 1 3.159
@@ -7374,6 +7732,7 @@ system "Imo Dep"
 	pos -56.2764 -600.1
 	government Hai
 	habitable 1715
+	belt 1416
 	link "Zuba Zub"
 	asteroids "small rock" 11 2.66
 	asteroids "medium rock" 3 4.8944
@@ -7381,6 +7740,9 @@ system "Imo Dep"
 	asteroids "small metal" 98 4.4156
 	asteroids "medium metal" 124 5.9052
 	asteroids "large metal" 4 2.9792
+	minables silicon 18 10.1357
+	minables silver 12 6.77561
+	minables titanium 9 8.61292
 	trade Clothing 338
 	trade Electronics 765
 	trade Equipment 550
@@ -7439,6 +7801,7 @@ system "Io Lowe"
 	pos -94.7566 -527.728
 	government Hai
 	habitable 135
+	belt 1552
 	link "Heia Due"
 	link "Mei Yohn"
 	link "Ula Mon"
@@ -7449,6 +7812,8 @@ system "Io Lowe"
 	asteroids "small metal" 2 3.7125
 	asteroids "medium metal" 161 6.075
 	asteroids "large metal" 4 8.8425
+	minables iron 42 7.16043
+	minables silicon 42 9.89542
 	trade Clothing 268
 	trade Electronics 775
 	trade Equipment 540
@@ -7495,6 +7860,7 @@ system "Io Mann"
 	pos -192.955 -447.669
 	government Hai
 	habitable 973.36
+	belt 1132
 	link "Wah Oh"
 	link "Due Yoot"
 	asteroids "small rock" 25 5.5944
@@ -7503,6 +7869,8 @@ system "Io Mann"
 	asteroids "small metal" 3 3.402
 	asteroids "medium metal" 8 4.5738
 	asteroids "large metal" 1 2.5704
+	minables silicon 11 7.68053
+	minables tungsten 4 7.9976
 	trade Clothing 348
 	trade Electronics 855
 	trade Equipment 600
@@ -7564,6 +7932,7 @@ system Ipsing
 	pos -549 160
 	government Republic
 	habitable 1400
+	belt 1107
 	link Mizar
 	asteroids "large metal" 1 1.1424
 	trade Clothing 231
@@ -7629,6 +7998,7 @@ system Iyech'yek
 	pos -277.37 -693.913
 	government Wanderer
 	habitable 320
+	belt 1613
 	link Ek'kek'ru
 	link Kiru'kichi
 	asteroids "small rock" 20 2.208
@@ -7637,6 +8007,8 @@ system Iyech'yek
 	asteroids "small metal" 6 1.152
 	asteroids "medium metal" 3 2.256
 	asteroids "large metal" 6 2.256
+	minables aluminum 12 2.50625
+	minables iron 9 2.96422
 	trade Clothing 218
 	trade Electronics 741
 	trade Equipment 418
@@ -7678,6 +8050,7 @@ system Izar
 	pos -784 231
 	government Republic
 	habitable 1294.38
+	belt 1449
 	link Acrux
 	link Hadar
 	asteroids "small rock" 7 3.822
@@ -7686,6 +8059,8 @@ system Izar
 	asteroids "small metal" 35 3.822
 	asteroids "medium metal" 97 4.875
 	asteroids "large metal" 27 2.145
+	minables gold 2 5.24464
+	minables lead 12 6.26729
 	trade Clothing 347
 	trade Electronics 687
 	trade Equipment 531
@@ -7738,6 +8113,7 @@ system Ka'ch'chrai
 	pos -240.163 -822.448
 	government Wanderer
 	habitable 425.92
+	belt 1745
 	link Ap'arak
 	link Ek'kek'ru
 	link Sko'karak
@@ -7747,6 +8123,7 @@ system Ka'ch'chrai
 	asteroids "small metal" 20 2.916
 	asteroids "medium metal" 86 3.726
 	asteroids "large metal" 1 1.431
+	minables titanium 4 3.84667
 	trade Clothing 430
 	trade Electronics 591
 	trade Equipment 331
@@ -7792,12 +8169,16 @@ system Ka'pru
 	pos -76.6756 -994.955
 	government Wanderer
 	habitable 1505.92
+	belt 1808
 	link Kiro'ku
 	asteroids "medium rock" 2 2.7573
 	asteroids "large rock" 1 2.7573
 	asteroids "small metal" 14 2.184
 	asteroids "medium metal" 1 3.6855
 	asteroids "large metal" 3 2.1294
+	minables iron 4 3.37835
+	minables titanium 2 3.67707
+	minables tungsten 2 4.32691
 	trade Clothing 157
 	trade Electronics 887
 	trade Equipment 720
@@ -7857,6 +8238,7 @@ system Kaliptari
 	pos 85.4305 -402.812
 	government Uninhabited
 	habitable 320
+	belt 1089
 	link Skeruto
 	link Fornarep
 	link Mekislepti
@@ -7867,6 +8249,8 @@ system Kaliptari
 	asteroids "medium rock" 11 6.9498
 	asteroids "large rock" 25 5.4918
 	asteroids "large metal" 1 3.2562
+	minables silicon 11 10.7447
+	minables tungsten 5 10.9185
 	trade Clothing 316
 	trade Electronics 754
 	trade Equipment 568
@@ -7928,6 +8312,7 @@ system "Kappa Centauri"
 	pos -867 480
 	government Republic
 	habitable 1215
+	belt 1508
 	link Pherkad
 	link "Beta Lupi"
 	asteroids "large metal" 1 3.9349
@@ -7987,6 +8372,7 @@ system Kashikt
 	pos -73.5695 -219.812
 	government "Kor Efret"
 	habitable 1715
+	belt 1013
 	link Dokdobaru
 	link Furmeliki
 	link Sumprast
@@ -7997,6 +8383,9 @@ system Kashikt
 	asteroids "small metal" 22 3.1878
 	asteroids "medium metal" 44 6.0858
 	asteroids "large metal" 13 4.2021
+	minables silicon 35 6.23036
+	minables silver 11 7.76234
+	minables tungsten 13 7.967
 	trade Clothing 262
 	trade Electronics 847
 	trade Equipment 378
@@ -8050,12 +8439,14 @@ system Kasikfar
 	pos 10.4305 -127.812
 	government Uninhabited
 	habitable 100
+	belt 1539
 	asteroids "small rock" 4 3.8019
 	asteroids "medium rock" 3 4.4689
 	asteroids "large rock" 1 4.002
 	asteroids "small metal" 3 6.7367
 	asteroids "medium metal" 47 4.1354
 	asteroids "large metal" 3 5.0025
+	minables aluminum 1 4.40452
 	trade Clothing 256
 	trade Electronics 593
 	trade Equipment 526
@@ -8086,6 +8477,7 @@ system "Kaus Australis"
 	pos -284 395
 	government Republic
 	habitable 320
+	belt 1281
 	link Dabih
 	link Tais
 	link Peacock
@@ -8095,6 +8487,7 @@ system "Kaus Australis"
 	asteroids "small metal" 4 3.1752
 	asteroids "medium metal" 36 4.8006
 	asteroids "large metal" 3 2.7594
+	minables silicon 9 6.69667
 	trade Clothing 279
 	trade Electronics 717
 	trade Equipment 591
@@ -8134,6 +8527,7 @@ system "Kaus Borealis"
 	pos -456 350
 	government Republic
 	habitable 590.625
+	belt 1074
 	link Cebalrai
 	link "Alpha Arae"
 	link Alnasl
@@ -8194,6 +8588,7 @@ system Kiro'ku
 	pos -131.923 -884.46
 	government Wanderer
 	habitable 1111.68
+	belt 1308
 	link Sich'ka'ara
 	link Ka'pru
 	asteroids "small rock" 32 4.9572
@@ -8202,6 +8597,9 @@ system Kiro'ku
 	asteroids "small metal" 25 10.1331
 	asteroids "medium metal" 29 6.1965
 	asteroids "large metal" 20 6.7797
+	minables aluminum 6 10.449
+	minables iron 16 9.30928
+	minables lead 17 7.13731
 	trade Clothing 261
 	trade Electronics 813
 	trade Equipment 601
@@ -8265,6 +8663,7 @@ system Kiru'kichi
 	pos -195.063 -662.343
 	government Wanderer
 	habitable 2795
+	belt 1465
 	link Iyech'yek
 	asteroids "small rock" 11 5.032
 	asteroids "medium rock" 107 4.454
@@ -8272,6 +8671,9 @@ system Kiru'kichi
 	asteroids "small metal" 43 2.38
 	asteroids "medium metal" 138 3.774
 	asteroids "large metal" 19 4.114
+	minables aluminum 1 6.59917
+	minables copper 1 4.1075
+	minables lead 3 5.96881
 	trade Clothing 145
 	trade Electronics 825
 	trade Equipment 524
@@ -8319,6 +8721,7 @@ system Kochab
 	pos -731 279
 	government Republic
 	habitable 320
+	belt 1912
 	link Zubeneschamali
 	link Ildaria
 	asteroids "large metal" 1 6.9552
@@ -8360,9 +8763,12 @@ system "Kor Ak'Mari"
 	pos 43 22
 	government Korath
 	habitable 625
+	belt 1606
 	asteroids "small metal" 13 3.024
 	asteroids "medium metal" 99 3.0744
 	asteroids "large metal" 32 1.5624
+	minables aluminum 21 3.3241
+	minables silicon 27 5.223
 	trade Clothing 216
 	trade Electronics 857
 	trade Equipment 640
@@ -8406,6 +8812,7 @@ system "Kor En'lakfar"
 	pos -31 -33
 	government Korath
 	habitable 1080
+	belt 1115
 	link "Kor Men"
 	link "Kor Fel'tar"
 	asteroids "small rock" 7 0.84
@@ -8414,6 +8821,9 @@ system "Kor En'lakfar"
 	asteroids "small metal" 4 0.74
 	asteroids "medium metal" 91 1.12
 	asteroids "large metal" 30 1.07
+	minables aluminum 7 1.29345
+	minables iron 7 2.00873
+	minables silicon 14 1.74239
 	trade Clothing 244
 	trade Electronics 792
 	trade Equipment 397
@@ -8462,6 +8872,7 @@ system "Kor Fel'tar"
 	pos 29 -66
 	government Korath
 	habitable 455.625
+	belt 1444
 	link "Kor En'lakfar"
 	link "Kor Men"
 	asteroids "small rock" 2 2.079
@@ -8470,6 +8881,9 @@ system "Kor Fel'tar"
 	asteroids "small metal" 38 2.6334
 	asteroids "medium metal" 155 2.2407
 	asteroids "large metal" 5 1.9173
+	minables iron 48 2.87932
+	minables titanium 16 2.87553
+	minables uranium 13 3.05224
 	trade Clothing 281
 	trade Electronics 793
 	trade Equipment 394
@@ -8522,6 +8936,7 @@ system "Kor Men"
 	pos 6 -5
 	government Korath
 	habitable 2340
+	belt 1260
 	link "Kor En'lakfar"
 	link "Kor Fel'tar"
 	asteroids "small rock" 3 1.7442
@@ -8529,6 +8944,9 @@ system "Kor Men"
 	asteroids "small metal" 13 3.249
 	asteroids "medium metal" 6 4.275
 	asteroids "large metal" 4 4.1724
+	minables copper 1 4.28861
+	minables silicon 4 4.29042
+	minables titanium 6 3.43513
 	trade Clothing 282
 	trade Electronics 822
 	trade Equipment 378
@@ -8579,6 +8997,7 @@ system "Kor Nor'peli"
 	pos 52 160
 	government Korath
 	habitable 590.625
+	belt 1213
 	link "Kor Tar'bei"
 	asteroids "small rock" 2 3.7932
 	asteroids "medium rock" 14 4.0716
@@ -8586,6 +9005,7 @@ system "Kor Nor'peli"
 	asteroids "small metal" 1 3.2364
 	asteroids "medium metal" 59 2.2272
 	asteroids "large metal" 3 3.5148
+	minables silicon 4 5.03412
 	trade Clothing 320
 	trade Electronics 663
 	trade Equipment 371
@@ -8640,6 +9060,7 @@ system "Kor Tar'bei"
 	pos 57 106
 	government Korath
 	habitable 214.375
+	belt 1614
 	link "Kor Nor'peli"
 	link "Kor Zena'i"
 	asteroids "small rock" 11 3.576
@@ -8648,6 +9069,8 @@ system "Kor Tar'bei"
 	asteroids "small metal" 16 2.28
 	asteroids "medium metal" 169 1.992
 	asteroids "large metal" 76 3.216
+	minables platinum 35 3.86798
+	minables silicon 100 4.4771
 	trade Clothing 332
 	trade Electronics 660
 	trade Equipment 357
@@ -8692,6 +9115,7 @@ system "Kor Zena'i"
 	pos -2 83
 	government Korath
 	habitable 703.125
+	belt 1866
 	link "Kor Tar'bei"
 	asteroids "small rock" 5 6.2205
 	asteroids "large rock" 2 4.7415
@@ -8742,6 +9166,7 @@ system Kornephoros
 	pos -612 424
 	government Republic
 	habitable 911.25
+	belt 1168
 	link Sabik
 	link Aldhibain
 	link Sargas
@@ -8752,6 +9177,9 @@ system Kornephoros
 	asteroids "small metal" 4 7.221
 	asteroids "medium metal" 143 8.352
 	asteroids "large metal" 7 11.745
+	minables lead 48 18.1544
+	minables silicon 24 15.5119
+	minables silver 13 18.7077
 	trade Clothing 311
 	trade Electronics 797
 	trade Equipment 439
@@ -8817,6 +9245,7 @@ system Korsmanath
 	pos 97.4305 -185.812
 	government Uninhabited
 	habitable 486.68
+	belt 1775
 	link Feroteri
 	link Farbutero
 	asteroids "small rock" 2 2.4123
@@ -8875,6 +9304,7 @@ system Kraz
 	pos -876 204
 	government Republic
 	habitable 1080
+	belt 1056
 	link Mimosa
 	asteroids "small rock" 1 7.2072
 	asteroids "medium rock" 38 6.7536
@@ -8882,6 +9312,9 @@ system Kraz
 	asteroids "small metal" 6 4.1328
 	asteroids "medium metal" 57 3.3264
 	asteroids "large metal" 7 2.9232
+	minables lead 1 5.88229
+	minables silicon 3 7.06939
+	minables tungsten 4 9.05696
 	trade Clothing 256
 	trade Electronics 758
 	trade Equipment 617
@@ -8936,12 +9369,15 @@ system Kugel
 	pos -230 -26
 	government Syndicate
 	habitable 625
+	belt 1051
 	link Acamar
 	asteroids "small rock" 58 3.234
 	asteroids "medium rock" 24 2.2792
 	asteroids "large rock" 134 3.2648
 	asteroids "medium metal" 44 2.0328
 	asteroids "large metal" 1 1.848
+	minables aluminum 10 5.68513
+	minables copper 5 3.58384
 	trade Clothing 219
 	trade Electronics 578
 	trade Equipment 650
@@ -9002,6 +9438,7 @@ system Kursa
 	pos -366 -105
 	government Republic
 	habitable 455
+	belt 1624
 	link Elnath
 	link Aldebaran
 	link Wazn
@@ -9052,6 +9489,7 @@ system Lesath
 	pos -516 485
 	government Republic
 	habitable 1715
+	belt 1865
 	link Atria
 	link Shaula
 	link Girtab
@@ -9062,6 +9500,8 @@ system Lesath
 	asteroids "large rock" 21 7.2
 	asteroids "medium metal" 8 4.3776
 	asteroids "large metal" 1 5.4144
+	minables silicon 3 10.2616
+	minables titanium 2 10.8766
 	trade Clothing 285
 	trade Electronics 759
 	trade Equipment 540
@@ -9113,6 +9553,7 @@ system Lolami
 	pos -628 -10
 	government Republic
 	habitable 1215
+	belt 1072
 	link "Tania Australis"
 	asteroids "small rock" 68 1.6926
 	asteroids "medium rock" 55 1.6653
@@ -9120,6 +9561,8 @@ system Lolami
 	asteroids "small metal" 6 2.5662
 	asteroids "medium metal" 30 3.7674
 	asteroids "large metal" 2 3.4398
+	minables silicon 40 3.12005
+	minables titanium 17 3.27761
 	trade Clothing 318
 	trade Electronics 725
 	trade Equipment 554
@@ -9173,6 +9616,7 @@ system "Lom Tahr"
 	pos -94.0437 -446.586
 	government Hai
 	habitable 2372.76
+	belt 1445
 	link "Ya Hai"
 	link "Io Lowe"
 	link "Due Yoot"
@@ -9184,6 +9628,8 @@ system "Lom Tahr"
 	asteroids "small metal" 5 1.932
 	asteroids "medium metal" 19 2.94
 	asteroids "large metal" 7 2.226
+	minables aluminum 1 3.57125
+	minables neodymium 17 4.40926
 	trade Clothing 228
 	trade Electronics 865
 	trade Equipment 430
@@ -9244,6 +9690,7 @@ system Lurata
 	pos -279 463
 	government Republic
 	habitable 455.625
+	belt 1151
 	link Dabih
 	link Albireo
 	asteroids "medium rock" 2 4.225
@@ -9251,6 +9698,8 @@ system Lurata
 	asteroids "small metal" 4 6.76
 	asteroids "medium metal" 6 5.33
 	asteroids "large metal" 2 8.71
+	minables aluminum 2 11.6169
+	minables lead 3 8.61211
 	trade Clothing 278
 	trade Electronics 717
 	trade Equipment 425
@@ -9302,11 +9751,15 @@ system Makferuti
 	pos 288.431 -628.812
 	government "Kor Sestor"
 	habitable 621.68
+	belt 1782
 	link Asikafarnut
 	asteroids "small rock" 18 5.2706
 	asteroids "medium rock" 250 3.3212
 	asteroids "large rock" 32 2.5631
 	asteroids "large metal" 1 4.5847
+	minables aluminum 1 6.08605
+	minables iron 2 3.44188
+	minables silicon 1 5.39135
 	trade Clothing 354
 	trade Electronics 673
 	trade Equipment 614
@@ -9373,6 +9826,7 @@ system Markab
 	pos -241 168
 	government Syndicate
 	habitable 625
+	belt 1411
 	link "Delta Capricorni"
 	link Scheat
 	link Ankaa
@@ -9383,6 +9837,8 @@ system Markab
 	asteroids "small metal" 2 3.5815
 	asteroids "medium metal" 4 5.0895
 	asteroids "large metal" 2 3.9962
+	minables copper 15 5.00264
+	minables iron 8 8.07455
 	trade Clothing 274
 	trade Electronics 704
 	trade Equipment 400
@@ -9449,6 +9905,7 @@ system Markeb
 	pos -602 -305
 	government Republic
 	habitable 455.625
+	belt 1556
 	link Avior
 	asteroids "small rock" 23 5.0895
 	asteroids "medium rock" 4 2.2815
@@ -9456,6 +9913,8 @@ system Markeb
 	asteroids "small metal" 29 3.159
 	asteroids "medium metal" 10 5.1948
 	asteroids "large metal" 20 4.6332
+	minables silicon 11 7.8218
+	minables tungsten 5 4.20964
 	trade Clothing 308
 	trade Electronics 674
 	trade Equipment 468
@@ -9507,6 +9966,7 @@ system Matar
 	pos -218 272
 	government Syndicate
 	habitable 455.625
+	belt 1308
 	link Persian
 	link Scheat
 	asteroids "large metal" 1 3.0888
@@ -9562,12 +10022,15 @@ system Mebsuta
 	pos -482 -394
 	government Republic
 	habitable 670
+	belt 1740
 	link Mirzam
 	asteroids "small rock" 1 4.1412
 	asteroids "large rock" 2 3.7961
 	asteroids "small metal" 2 2.8101
 	asteroids "medium metal" 17 2.7115
 	asteroids "large metal" 9 4.6342
+	minables iron 2 5.38543
+	minables titanium 1 4.59937
 	trade Clothing 369
 	trade Electronics 734
 	trade Equipment 676
@@ -9633,6 +10096,7 @@ system Meftarkata
 	pos 52.4305 -276.812
 	government Uninhabited
 	habitable 2201.68
+	belt 1232
 	link Skeruto
 	link Dokdobaru
 	link Fornarep
@@ -9642,6 +10106,7 @@ system Meftarkata
 	asteroids "large rock" 14 0.8892
 	asteroids "medium metal" 4 1.5288
 	asteroids "large metal" 1 1.9344
+	minables aluminum 3 2.02893
 	trade Clothing 263
 	trade Electronics 797
 	trade Equipment 489
@@ -9691,6 +10156,7 @@ system "Mei Yohn"
 	pos -106.757 -581.698
 	government Hai
 	habitable 425.92
+	belt 1075
 	link "Zuba Zub"
 	link "Ula Mon"
 	link "Io Lowe"
@@ -9753,6 +10219,7 @@ system Mekislepti
 	pos 137.431 -335.812
 	government "Kor Mereti"
 	habitable 1705
+	belt 1673
 	link Fornarep
 	link Kaliptari
 	link Chimitarp
@@ -9764,6 +10231,8 @@ system Mekislepti
 	asteroids "small metal" 5 3.0976
 	asteroids "medium metal" 23 3.63
 	asteroids "large metal" 5 3.2186
+	minables iron 44 1.6058
+	minables silicon 88 1.91661
 	trade Clothing 281
 	trade Electronics 694
 	trade Equipment 638
@@ -9811,6 +10280,7 @@ system Men
 	pos -888 361
 	government Pirate
 	habitable 320
+	belt 1531
 	link "Beta Lupi"
 	asteroids "small rock" 9 3.504
 	asteroids "medium rock" 2 5.376
@@ -9818,6 +10288,8 @@ system Men
 	asteroids "small metal" 8 3.648
 	asteroids "medium metal" 7 4.992
 	asteroids "large metal" 27 3.072
+	minables lead 9 4.54626
+	minables silver 10 5.20399
 	trade Clothing 299
 	trade Electronics 842
 	trade Equipment 425
@@ -9872,6 +10344,7 @@ system Menkalinan
 	pos -400 -61
 	government Republic
 	habitable 3430
+	belt 1424
 	link Capella
 	link Castor
 	link Alhena
@@ -9881,6 +10354,9 @@ system Menkalinan
 	asteroids "small metal" 33 2.43
 	asteroids "medium metal" 63 2.7216
 	asteroids "large metal" 3 3.2076
+	minables lead 8 5.07694
+	minables neodymium 8 4.05165
+	minables silicon 8 3.41901
 	trade Clothing 286
 	trade Electronics 789
 	trade Equipment 605
@@ -9933,6 +10409,7 @@ system Menkar
 	pos -183 -52
 	government Syndicate
 	habitable 455.625
+	belt 1634
 	link Zaurak
 	link Mirfak
 	link Bellatrix
@@ -9942,6 +10419,9 @@ system Menkar
 	asteroids "small metal" 33 3.2
 	asteroids "medium metal" 57 5.95
 	asteroids "large metal" 25 5.9
+	minables iron 59 10.091
+	minables silver 11 6.40238
+	minables titanium 5 8.21502
 	trade Clothing 327
 	trade Electronics 743
 	trade Equipment 662
@@ -9989,6 +10469,7 @@ system Menkent
 	pos -495 218
 	government Republic
 	habitable 2340
+	belt 1728
 	link Vega
 	link Rutilicus
 	link Cebalrai
@@ -9999,6 +10480,9 @@ system Menkent
 	asteroids "small metal" 5 1.2688
 	asteroids "medium metal" 3 2.4128
 	asteroids "large metal" 10 2.2256
+	minables aluminum 4 1.98441
+	minables copper 4 2.84453
+	minables tungsten 31 2.94008
 	trade Clothing 296
 	trade Electronics 773
 	trade Equipment 569
@@ -10054,6 +10538,7 @@ system Merak
 	pos -553 60
 	government Republic
 	habitable 1080.62
+	belt 1769
 	link Phecda
 	link Porrima
 	link Denebola
@@ -10063,6 +10548,9 @@ system Merak
 	asteroids "large rock" 1 4.9764
 	asteroids "medium metal" 10 4.2224
 	asteroids "large metal" 1 2.639
+	minables copper 2 7.54582
+	minables lead 13 9.10563
+	minables tungsten 5 8.57967
 	trade Clothing 310
 	trade Electronics 689
 	trade Equipment 394
@@ -10113,6 +10601,7 @@ system Mesuket
 	pos 220.431 -409.812
 	government Uninhabited
 	habitable 425.92
+	belt 1189
 	link Eshkoshtar
 	link Silikatakfar
 	link Eneremprukt
@@ -10178,6 +10667,7 @@ system Miaplacidus
 	pos -524 -69
 	government Republic
 	habitable 455.625
+	belt 1236
 	link Tejat
 	link Alphard
 	link Talita
@@ -10187,6 +10677,7 @@ system Miaplacidus
 	asteroids "small metal" 1 5.5692
 	asteroids "medium metal" 19 5.3788
 	asteroids "large metal" 10 3.8556
+	minables iron 19 4.58238
 	trade Clothing 283
 	trade Electronics 668
 	trade Equipment 664
@@ -10249,6 +10740,7 @@ system Mimosa
 	pos -895 168
 	government Republic
 	habitable 320
+	belt 1484
 	link Minkar
 	link Kraz
 	asteroids "medium rock" 22 3.3698
@@ -10256,6 +10748,8 @@ system Mimosa
 	asteroids "small metal" 2 3.3292
 	asteroids "medium metal" 3 2.7608
 	asteroids "large metal" 1 4.9532
+	minables aluminum 1 4.72132
+	minables neodymium 1 5.33208
 	trade Clothing 247
 	trade Electronics 740
 	trade Equipment 577
@@ -10295,6 +10789,7 @@ system Minkar
 	pos -823 138
 	government Republic
 	habitable 670
+	belt 1354
 	link Acrux
 	link Spica
 	link Mimosa
@@ -10303,6 +10798,8 @@ system Minkar
 	asteroids "small metal" 1 4.42
 	asteroids "medium metal" 40 8.385
 	asteroids "large metal" 10 9.295
+	minables aluminum 2 13.3436
+	minables iron 4 12.6942
 	trade Clothing 253
 	trade Electronics 691
 	trade Equipment 522
@@ -10356,6 +10853,7 @@ system Mintaka
 	pos -304 -462
 	government Republic
 	habitable 775.625
+	belt 1753
 	link Almaaz
 	link Alnitak
 	link Tortor
@@ -10365,6 +10863,9 @@ system Mintaka
 	asteroids "large rock" 23 5.985
 	asteroids "small metal" 46 6.6025
 	asteroids "large metal" 5 3.61
+	minables aluminum 11 9.8728
+	minables titanium 3 11.7992
+	minables uranium 9 6.96883
 	trade Clothing 265
 	trade Electronics 851
 	trade Equipment 501
@@ -10413,6 +10914,7 @@ system Mirach
 	pos -166 250
 	government Syndicate
 	habitable 292.5
+	belt 1980
 	link "Al Dhanab"
 	link Scheat
 	link "Gamma Cassiopeiae"
@@ -10423,6 +10925,8 @@ system Mirach
 	asteroids "small metal" 2 4.0392
 	asteroids "medium metal" 62 2.2644
 	asteroids "large metal" 7 3.213
+	minables lead 2 4.94454
+	minables titanium 21 4.54986
 	trade Clothing 296
 	trade Electronics 729
 	trade Equipment 552
@@ -10476,6 +10980,7 @@ system Mirfak
 	pos -187 -128
 	government Syndicate
 	habitable 320
+	belt 1887
 	link Menkar
 	link Bellatrix
 	link Moktar
@@ -10485,6 +10990,9 @@ system Mirfak
 	asteroids "small metal" 1 3.2604
 	asteroids "medium metal" 9 5.4834
 	asteroids "large metal" 2 6.1256
+	minables copper 1 7.03874
+	minables iron 3 4.97412
+	minables titanium 4 8.24243
 	trade Clothing 339
 	trade Electronics 681
 	trade Equipment 650
@@ -10527,6 +11035,7 @@ system Mirzam
 	pos -498 -301
 	government Republic
 	habitable 1080
+	belt 1025
 	link Canopus
 	link Betelgeuse
 	link Mebsuta
@@ -10535,6 +11044,9 @@ system Mirzam
 	asteroids "large rock" 6 1.6848
 	asteroids "small metal" 17 2.8836
 	asteroids "large metal" 14 4.374
+	minables iron 6 4.2336
+	minables silicon 24 7.53697
+	minables tungsten 2 5.97339
 	trade Clothing 313
 	trade Electronics 706
 	trade Equipment 672
@@ -10583,6 +11095,7 @@ system Mizar
 	pos -579 184
 	government Republic
 	habitable 1080
+	belt 1876
 	link Arcturus
 	link "Cor Caroli"
 	link Algorel
@@ -10633,6 +11146,7 @@ system Moktar
 	pos -169 -170
 	government Syndicate
 	habitable 455
+	belt 1888
 	link Oblate
 	link Cardax
 	link Mirfak
@@ -10642,6 +11156,9 @@ system Moktar
 	asteroids "small metal" 2 4.485
 	asteroids "medium metal" 1 2.875
 	asteroids "large metal" 1 6.9575
+	minables aluminum 4 7.32905
+	minables lead 2 12.5577
+	minables silicon 2 12.0685
 	trade Clothing 351
 	trade Electronics 654
 	trade Equipment 627
@@ -10695,12 +11212,16 @@ system Mora
 	pos -755 23
 	government Republic
 	habitable 320
+	belt 1176
 	link "Delta Velorum"
 	link "Tania Australis"
 	asteroids "medium rock" 54 1.9305
 	asteroids "large rock" 33 1.9877
 	asteroids "medium metal" 3 1.287
 	asteroids "large metal" 37 1.0439
+	minables iron 25 1.82412
+	minables silicon 11 1.71081
+	minables tungsten 10 2.90508
 	trade Clothing 362
 	trade Electronics 724
 	trade Equipment 558
@@ -10748,6 +11269,7 @@ system Muhlifain
 	pos -702 242
 	government Republic
 	habitable 455.625
+	belt 1265
 	link Vindemiatrix
 	link Gacrux
 	asteroids "large metal" 1 2.1186
@@ -10792,6 +11314,7 @@ system Muphrid
 	pos -495 152
 	government Republic
 	habitable 839.375
+	belt 1759
 	link Menkent
 	link Porrima
 	asteroids "small rock" 10 4.7348
@@ -10799,6 +11322,7 @@ system Muphrid
 	asteroids "large rock" 8 3.4048
 	asteroids "small metal" 1 7.182
 	asteroids "large metal" 1 5.1072
+	minables tungsten 3 4.9859
 	trade Clothing 330
 	trade Electronics 755
 	trade Equipment 553
@@ -10847,6 +11371,7 @@ system Naos
 	pos -653 -396
 	government Republic
 	habitable 625
+	belt 1045
 	link Regor
 	link Wezen
 	link Avior
@@ -10854,6 +11379,9 @@ system Naos
 	asteroids "medium rock" 167 3.8976
 	asteroids "large rock" 1 6.3168
 	asteroids "large metal" 1 6.1824
+	minables copper 21 5.05288
+	minables silicon 12 6.77871
+	minables titanium 35 4.05452
 	trade Clothing 272
 	trade Electronics 694
 	trade Equipment 427
@@ -10912,6 +11440,7 @@ system Naper
 	pos -416 369
 	government Republic
 	habitable 1715
+	belt 1445
 	link Ascella
 	asteroids "small rock" 3 2.0757
 	asteroids "medium rock" 13 0.9724
@@ -10919,6 +11448,9 @@ system Naper
 	asteroids "small metal" 5 2.6367
 	asteroids "medium metal" 55 2.7863
 	asteroids "large metal" 14 1.4212
+	minables aluminum 23 3.46095
+	minables lead 1 2.32582
+	minables titanium 17 3.86804
 	trade Clothing 370
 	trade Electronics 719
 	trade Equipment 607
@@ -10969,6 +11501,7 @@ system Nihal
 	pos -262 -121
 	government Republic
 	habitable 534.375
+	belt 1329
 	link Elnath
 	link Volax
 	link Sospi
@@ -10978,6 +11511,8 @@ system Nihal
 	asteroids "small metal" 1 1.365
 	asteroids "medium metal" 10 3.1395
 	asteroids "large metal" 37 3.276
+	minables silicon 58 4.73471
+	minables titanium 41 4.21739
 	trade Clothing 255
 	trade Electronics 600
 	trade Equipment 641
@@ -11036,6 +11571,7 @@ system Nocte
 	pos -467 172
 	government Republic
 	habitable 135
+	belt 1304
 	link Vega
 	asteroids "small rock" 121 1.9558
 	asteroids "medium rock" 14 1.9096
@@ -11043,6 +11579,9 @@ system Nocte
 	asteroids "small metal" 8 1.8326
 	asteroids "medium metal" 77 2.2946
 	asteroids "large metal" 19 1.7094
+	minables copper 46 2.98163
+	minables iron 18 3.78094
+	minables titanium 4 2.67322
 	trade Clothing 311
 	trade Electronics 713
 	trade Equipment 514
@@ -11098,6 +11637,7 @@ system Nunki
 	pos -393 537
 	government Pirate
 	habitable 214.375
+	belt 1930
 	link Albaldah
 	asteroids "small rock" 15 3.3516
 	asteroids "medium rock" 77 1.8144
@@ -11105,6 +11645,9 @@ system Nunki
 	asteroids "small metal" 6 3.4272
 	asteroids "medium metal" 1 1.8648
 	asteroids "large metal" 1 1.9152
+	minables iron 8 3.70445
+	minables titanium 7 3.31242
+	minables tungsten 23 3.33817
 	trade Clothing 259
 	trade Electronics 789
 	trade Equipment 624
@@ -11163,6 +11706,7 @@ system Oblate
 	pos -124 -119
 	government Pirate
 	habitable 2035
+	belt 1704
 	link Alcyone
 	link Moktar
 	asteroids "small rock" 2 2.1
@@ -11171,6 +11715,9 @@ system Oblate
 	asteroids "small metal" 4 2.2176
 	asteroids "medium metal" 10 2.2176
 	asteroids "large metal" 6 2.3856
+	minables iron 4 3.88695
+	minables lead 1 3.86035
+	minables silicon 3 2.34276
 	trade Clothing 385
 	trade Electronics 626
 	trade Equipment 617
@@ -11222,12 +11769,15 @@ system Orvala
 	pos -334 303
 	government Republic
 	habitable 533.75
+	belt 1431
 	link "Zeta Aquilae"
 	asteroids "small rock" 27 1.44
 	asteroids "medium rock" 2 2.6304
 	asteroids "large rock" 146 1.7088
 	asteroids "small metal" 139 1.44
 	asteroids "large metal" 27 0.9792
+	minables copper 4 2.00322
+	minables lead 13 1.96636
 	trade Clothing 342
 	trade Electronics 783
 	trade Equipment 555
@@ -11284,6 +11834,7 @@ system Peacock
 	pos -307 350
 	government Republic
 	habitable 214.375
+	belt 1870
 	link Tais
 	link "Kaus Australis"
 	link Ascella
@@ -11293,6 +11844,9 @@ system Peacock
 	asteroids "small metal" 101 5.004
 	asteroids "medium metal" 72 5.328
 	asteroids "large metal" 2 2.772
+	minables lead 37 6.75228
+	minables silicon 17 6.12779
+	minables silver 3 6.88108
 	trade Clothing 334
 	trade Electronics 700
 	trade Equipment 633
@@ -11352,12 +11906,15 @@ system Peresedersi
 	pos 81.4305 -154.812
 	government Uninhabited
 	habitable 100
+	belt 1065
 	asteroids "small rock" 49 1.403
 	asteroids "medium rock" 5 2.185
 	asteroids "large rock" 11 1.541
 	asteroids "small metal" 39 2.438
 	asteroids "medium metal" 4 3.197
 	asteroids "large metal" 5 3.22
+	minables aluminum 5 2.45602
+	minables iron 2 2.26908
 	trade Clothing 407
 	trade Electronics 682
 	trade Equipment 659
@@ -11389,6 +11946,7 @@ system Persian
 	pos -203 331
 	government Syndicate
 	habitable 2170.62
+	belt 1308
 	link Alnair
 	link Gienah
 	link Matar
@@ -11398,6 +11956,9 @@ system Persian
 	asteroids "small metal" 1 6.4584
 	asteroids "medium metal" 3 6.6976
 	asteroids "large metal" 2 4.1262
+	minables lead 6 12.3487
+	minables silicon 6 8.05034
+	minables tungsten 16 11.086
 	trade Clothing 260
 	trade Electronics 661
 	trade Equipment 400
@@ -11450,10 +12011,13 @@ system Persitar
 	pos 297.431 -395.812
 	government Uninhabited
 	habitable 100
+	belt 1948
 	asteroids "small rock" 72 3.348
 	asteroids "medium rock" 2 4.482
 	asteroids "large rock" 3 4.86
 	asteroids "large metal" 2 7.344
+	minables silicon 2 5.34947
+	minables titanium 4 3.97343
 	trade Clothing 231
 	trade Electronics 801
 	trade Equipment 385
@@ -11481,6 +12045,7 @@ system Phact
 	pos -375 -191
 	government Republic
 	habitable 1080.62
+	belt 1704
 	link Wazn
 	link Canopus
 	asteroids "small rock" 1 1.0816
@@ -11489,6 +12054,8 @@ system Phact
 	asteroids "small metal" 8 1.1999
 	asteroids "medium metal" 56 0.8619
 	asteroids "large metal" 17 1.6393
+	minables silicon 6 3.177
+	minables titanium 15 2.18441
 	trade Clothing 258
 	trade Electronics 784
 	trade Equipment 687
@@ -11547,6 +12114,7 @@ system Phecda
 	pos -607 88
 	government Republic
 	habitable 320
+	belt 1375
 	link Algorel
 	link "Tania Australis"
 	link Merak
@@ -11556,6 +12124,9 @@ system Phecda
 	asteroids "small metal" 17 6.85
 	asteroids "medium metal" 40 2.7
 	asteroids "large metal" 5 5.55
+	minables lead 41 5.68365
+	minables silicon 72 4.34737
+	minables titanium 39 5.28035
 	trade Clothing 349
 	trade Electronics 787
 	trade Equipment 423
@@ -11599,6 +12170,7 @@ system Pherkad
 	pos -798 451
 	government Republic
 	habitable 135
+	belt 1924
 	link "Beta Lupi"
 	link "Kappa Centauri"
 	link Alniyat
@@ -11652,6 +12224,7 @@ system Phurad
 	pos -494 -153
 	government Republic
 	habitable 1080
+	belt 1881
 	link Tejat
 	link Canopus
 	link Wazn
@@ -11661,6 +12234,8 @@ system Phurad
 	asteroids "small metal" 2 9.234
 	asteroids "medium metal" 12 11.178
 	asteroids "large metal" 17 5.751
+	minables aluminum 22 18.9577
+	minables lead 26 15.0139
 	trade Clothing 235
 	trade Electronics 795
 	trade Equipment 652
@@ -11708,6 +12283,7 @@ system Pik'ro'iyak
 	pos -378.845 -677.001
 	government Wanderer
 	habitable 233.28
+	belt 1279
 	link Si'yak'ku
 	link Ek'kek'ru
 	link Aya'k'k
@@ -11754,11 +12330,14 @@ system Polaris
 	pos -35 126
 	government Syndicate
 	habitable 320
+	belt 1906
 	link Achernar
 	asteroids "small rock" 1 7.67
 	asteroids "medium rock" 3 7.93
 	asteroids "large rock" 2 4.16
 	asteroids "large metal" 4 3.77
+	minables copper 1 6.73947
+	minables tungsten 1 5.76943
 	trade Clothing 280
 	trade Electronics 705
 	trade Equipment 638
@@ -11803,6 +12382,7 @@ system Pollux
 	pos -465 4
 	government Republic
 	habitable 1080
+	belt 1161
 	link Procyon
 	link Castor
 	link Talita
@@ -11853,6 +12433,7 @@ system Porrima
 	pos -556 123
 	government Republic
 	habitable 760
+	belt 1636
 	link Muphrid
 	link Merak
 	asteroids "small rock" 20 4.7334
@@ -11861,6 +12442,9 @@ system Porrima
 	asteroids "small metal" 1 5.9892
 	asteroids "medium metal" 14 3.4776
 	asteroids "large metal" 6 6.1341
+	minables aluminum 4 6.34101
+	minables titanium 5 4.95139
+	minables tungsten 5 4.48244
 	trade Clothing 348
 	trade Electronics 716
 	trade Equipment 479
@@ -11913,6 +12497,7 @@ system Prakacha'a
 	pos -35.1114 -802.607
 	government Wanderer
 	habitable 1505.92
+	belt 1637
 	link Chy'chra
 	link Ik'kara'ka
 	link Sich'ka'ara
@@ -11923,6 +12508,8 @@ system Prakacha'a
 	asteroids "small metal" 18 1.75
 	asteroids "medium metal" 186 1.638
 	asteroids "large metal" 24 1.092
+	minables iron 104 2.79327
+	minables silicon 50 1.77981
 	trade Clothing 258
 	trade Electronics 802
 	trade Equipment 426
@@ -11987,6 +12574,7 @@ system Procyon
 	pos -411 23
 	government Republic
 	habitable 455.625
+	belt 1763
 	link Sirius
 	link Pollux
 	link Capella
@@ -11996,6 +12584,8 @@ system Procyon
 	asteroids "small metal" 11 2.9862
 	asteroids "medium metal" 126 2.6838
 	asteroids "large metal" 5 4.347
+	minables iron 1 5.11549
+	minables silicon 84 4.13794
 	trade Clothing 197
 	trade Electronics 691
 	trade Equipment 500
@@ -12038,12 +12628,14 @@ system "Pug Iyik"
 	pos -361.149 -883.233
 	government Pug
 	habitable 625
+	belt 1286
 	asteroids "small rock" 35 7.6356
 	asteroids "medium rock" 5 6.9552
 	asteroids "large rock" 28 6.5016
 	asteroids "small metal" 8 7.7112
 	asteroids "medium metal" 179 8.5428
 	asteroids "large metal" 34 10.962
+	minables lead 7 14.3837
 	trade Clothing 274
 	trade Electronics 700
 	trade Equipment 430
@@ -12092,6 +12684,7 @@ system Rajak
 	pos -270 -236
 	government Republic
 	habitable 78.125
+	belt 1410
 	link Sumar
 	link Hassaleh
 	link "Ultima Thule"
@@ -12100,6 +12693,7 @@ system Rajak
 	asteroids "large rock" 14 4.1536
 	asteroids "medium metal" 2 4.1888
 	asteroids "large metal" 3 1.8304
+	minables silicon 5 4.86566
 	trade Clothing 301
 	trade Electronics 713
 	trade Equipment 606
@@ -12156,6 +12750,7 @@ system Rasalhague
 	pos -413 246
 	government Republic
 	habitable 455.625
+	belt 1282
 	link "Zeta Aquilae"
 	link Cebalrai
 	link Ascella
@@ -12165,6 +12760,9 @@ system Rasalhague
 	asteroids "small metal" 10 2.204
 	asteroids "medium metal" 8 2.698
 	asteroids "large metal" 2 2.489
+	minables aluminum 7 4.62949
+	minables iron 5 2.98954
+	minables silicon 10 3.19852
 	trade Clothing 258
 	trade Electronics 783
 	trade Equipment 657
@@ -12211,6 +12809,7 @@ system Rastaban
 	pos -463 446
 	government Republic
 	habitable 1080
+	belt 1041
 	link Girtab
 	link Lesath
 	link "Delta Sagittarii"
@@ -12220,6 +12819,9 @@ system Rastaban
 	asteroids "large rock" 3 6.9888
 	asteroids "medium metal" 6 4.095
 	asteroids "large metal" 2 7.371
+	minables copper 8 9.86407
+	minables lead 8 12.0926
+	minables titanium 1 8.61575
 	trade Clothing 255
 	trade Electronics 750
 	trade Equipment 493
@@ -12266,6 +12868,7 @@ system "Rati Cal"
 	pos -116.765 -391.123
 	government Hai
 	habitable 425.92
+	belt 1538
 	link "Due Yoot"
 	link "Lom Tahr"
 	asteroids "small rock" 2 2.967
@@ -12273,6 +12876,8 @@ system "Rati Cal"
 	asteroids "small metal" 28 2.438
 	asteroids "medium metal" 1 3.266
 	asteroids "large metal" 23 3.105
+	minables titanium 2 2.87921
+	minables tungsten 3 3.30683
 	trade Clothing 338
 	trade Electronics 775
 	trade Equipment 460
@@ -12315,6 +12920,7 @@ system Regor
 	pos -702 -335
 	government Republic
 	habitable 455.625
+	belt 1305
 	link Aspidiske
 	link Naos
 	link Suhail
@@ -12373,6 +12979,7 @@ system Regulus
 	pos -544 25
 	government Republic
 	habitable 8640
+	belt 1605
 	link Merak
 	asteroids "small rock" 31 3.7752
 	asteroids "medium rock" 47 2.145
@@ -12380,6 +12987,8 @@ system Regulus
 	asteroids "small metal" 3 1.573
 	asteroids "medium metal" 27 2.3166
 	asteroids "large metal" 15 4.0898
+	minables copper 8 4.57124
+	minables lead 36 4.94873
 	trade Clothing 249
 	trade Electronics 703
 	trade Equipment 417
@@ -12438,6 +13047,7 @@ system Rigel
 	pos -324 -363
 	government Republic
 	habitable 1080
+	belt 1782
 	link Saiph
 	link Alnitak
 	link Betelgeuse
@@ -12448,6 +13058,9 @@ system Rigel
 	asteroids "small metal" 88 5.382
 	asteroids "medium metal" 28 6.63
 	asteroids "large metal" 32 11.7
+	minables copper 6 10.5446
+	minables neodymium 17 11.7377
+	minables tungsten 5 13.3277
 	trade Clothing 311
 	trade Electronics 732
 	trade Equipment 665
@@ -12508,6 +13121,7 @@ system Ruchbah
 	pos -174 69
 	government Syndicate
 	habitable 2560
+	belt 1598
 	link Ankaa
 	link Alpheratz
 	link Sheratan
@@ -12520,6 +13134,7 @@ system Ruchbah
 	asteroids "small metal" 1 3.6036
 	asteroids "medium metal" 13 2.0384
 	asteroids "large metal" 27 4.914
+	minables tungsten 3 6.27433
 	trade Clothing 293
 	trade Electronics 706
 	trade Equipment 576
@@ -12576,6 +13191,7 @@ system Rutilicus
 	pos -535 273
 	government Republic
 	habitable 625
+	belt 1771
 	link Arcturus
 	link Cebalrai
 	link Menkent
@@ -12586,6 +13202,9 @@ system Rutilicus
 	asteroids "small metal" 13 1.4742
 	asteroids "medium metal" 50 1.2168
 	asteroids "large metal" 1 2.2932
+	minables copper 7 2.11726
+	minables lead 14 2.22127
+	minables titanium 9 1.47159
 	trade Clothing 224
 	trade Electronics 838
 	trade Equipment 560
@@ -12639,6 +13258,7 @@ system Sabik
 	pos -675 379
 	government Republic
 	habitable 625
+	belt 1609
 	link Unukalhai
 	link Zubenelgenubi
 	link Kornephoros
@@ -12649,6 +13269,8 @@ system Sabik
 	asteroids "small metal" 7 5.0344
 	asteroids "medium metal" 29 5.481
 	asteroids "large metal" 2 2.233
+	minables aluminum 4 9.1736
+	minables iron 2 7.04854
 	trade Clothing 312
 	trade Electronics 787
 	trade Equipment 383
@@ -12687,6 +13309,7 @@ system Sabriset
 	pos 151.724 -426.518
 	government Uninhabited
 	habitable 1566.68
+	belt 1025
 	link Sepriaptu
 	link Kaliptari
 	asteroids "small rock" 3 3.9285
@@ -12695,6 +13318,8 @@ system Sabriset
 	asteroids "small metal" 21 4.374
 	asteroids "medium metal" 4 5.1435
 	asteroids "large metal" 7 4.3335
+	minables aluminum 8 7.59557
+	minables tungsten 2 5.97609
 	trade Clothing 352
 	trade Electronics 723
 	trade Equipment 577
@@ -12737,6 +13362,7 @@ system Sadalmelik
 	pos -145 472
 	government Quarg
 	habitable 1715
+	belt 1273
 	link Enif
 	link Sadalsuud
 	asteroids "small rock" 1 3.38
@@ -12744,6 +13370,8 @@ system Sadalmelik
 	asteroids "large rock" 1 2.9744
 	asteroids "medium metal" 3 3.4138
 	asteroids "large metal" 1 5.07
+	minables iron 19 3.67645
+	minables tungsten 3 4.93502
 	trade Clothing 375
 	trade Electronics 852
 	trade Equipment 569
@@ -12789,6 +13417,7 @@ system Sadalsuud
 	pos -134 508
 	government Quarg
 	habitable 1400
+	belt 1859
 	link Enif
 	link Sadalmelik
 	asteroids "small rock" 1 4.116
@@ -12849,6 +13478,7 @@ system Sadr
 	pos -287 543
 	government Republic
 	habitable 3859.38
+	belt 1388
 	link Albireo
 	asteroids "small rock" 48 4.9932
 	asteroids "medium rock" 19 4.5828
@@ -12856,6 +13486,9 @@ system Sadr
 	asteroids "small metal" 9 3.3516
 	asteroids "medium metal" 9 3.1464
 	asteroids "large metal" 57 2.5308
+	minables aluminum 38 4.53472
+	minables iron 10 3.98726
+	minables titanium 23 7.41082
 	trade Clothing 231
 	trade Electronics 812
 	trade Equipment 543
@@ -12908,6 +13541,7 @@ system Saiph
 	pos -375 -390
 	government Republic
 	habitable 320
+	belt 1690
 	link Rigel
 	link Alnitak
 	asteroids "small rock" 103 6.4974
@@ -12959,6 +13593,7 @@ system Salipastart
 	pos 250.431 -370.812
 	government "Kor Mereti"
 	habitable 486.68
+	belt 1056
 	link Similisti
 	link Faronektu
 	link Mesuket
@@ -12967,6 +13602,8 @@ system Salipastart
 	asteroids "large rock" 9 5.95
 	asteroids "medium metal" 8 4.9504
 	asteroids "large metal" 1 2.4276
+	minables neodymium 3 7.92517
+	minables silicon 3 9.32739
 	trade Clothing 231
 	trade Electronics 655
 	trade Equipment 647
@@ -13020,6 +13657,7 @@ system Sargas
 	pos -542 445
 	government Republic
 	habitable 911.25
+	belt 1642
 	link Kornephoros
 	link Lesath
 	asteroids "large metal" 1 2.6656
@@ -13069,6 +13707,7 @@ system Sarin
 	pos -670 293
 	government Republic
 	habitable 1080
+	belt 1752
 	link Vindemiatrix
 	asteroids "large metal" 1 1.74
 	trade Clothing 305
@@ -13117,12 +13756,16 @@ system Sayaiban
 	pos 250.431 -274.812
 	government Drak
 	habitable 2035
+	belt 1803
 	asteroids "small rock" 13 2.106
 	asteroids "medium rock" 61 1.836
 	asteroids "large rock" 39 2.754
 	asteroids "small metal" 1 2.754
 	asteroids "medium metal" 175 1.377
 	asteroids "large metal" 1 1.62
+	minables iron 1 2.82578
+	minables titanium 6 2.18207
+	minables tungsten 27 2.9604
 	trade Clothing 290
 	trade Electronics 658
 	trade Equipment 588
@@ -13167,6 +13810,7 @@ system Scheat
 	pos -205 233
 	government Syndicate
 	habitable 625
+	belt 1536
 	link Markab
 	link "Delta Capricorni"
 	link "Al Dhanab"
@@ -13221,6 +13865,7 @@ system Schedar
 	pos -93 229
 	government Syndicate
 	habitable 1080
+	belt 1903
 	link Mirach
 	link Achernar
 	link Almach
@@ -13230,6 +13875,7 @@ system Schedar
 	asteroids "small metal" 5 1.96
 	asteroids "medium metal" 1 0.966
 	asteroids "large metal" 12 1.12
+	minables lead 2 2.57011
 	trade Clothing 344
 	trade Electronics 694
 	trade Equipment 616
@@ -13286,6 +13932,7 @@ system Seginus
 	pos -557 356
 	government Republic
 	habitable 135
+	belt 1906
 	link Alnasl
 	link Wei
 	link Alphecca
@@ -13293,6 +13940,9 @@ system Seginus
 	asteroids "medium rock" 3 6.2748
 	asteroids "large rock" 1 4.6116
 	asteroids "large metal" 1 8.7696
+	minables lead 2 10.5813
+	minables silver 4 6.19901
+	minables titanium 2 6.63633
 	trade Clothing 330
 	trade Electronics 712
 	trade Equipment 371
@@ -13347,6 +13997,7 @@ system Seketra
 	pos -24.5695 -356.812
 	government Uninhabited
 	habitable 425.92
+	belt 1465
 	link Skeruto
 	link Chikatip
 	asteroids "large metal" 1 1.7556
@@ -13397,6 +14048,7 @@ system Sepetrosk
 	pos 192.431 -243.812
 	government "Kor Mereti"
 	habitable 486.68
+	belt 1286
 	link Chimitarp
 	link Feroteri
 	link Similisti
@@ -13406,6 +14058,7 @@ system Sepetrosk
 	asteroids "small metal" 8 1.596
 	asteroids "medium metal" 15 1.652
 	asteroids "large metal" 56 2.94
+	minables aluminum 1 2.95643
 	trade Clothing 241
 	trade Electronics 689
 	trade Equipment 638
@@ -13454,6 +14107,7 @@ system Sepriaptu
 	pos 139.431 -448.812
 	government Uninhabited
 	habitable 2035
+	belt 1120
 	link Kaliptari
 	link Sabriset
 	asteroids "small rock" 127 4.34
@@ -13462,6 +14116,8 @@ system Sepriaptu
 	asteroids "small metal" 4 10.5
 	asteroids "medium metal" 53 6.23
 	asteroids "large metal" 1 9.24
+	minables aluminum 13 5.16891
+	minables lead 4 5.12023
 	trade Clothing 370
 	trade Electronics 683
 	trade Equipment 588
@@ -13502,6 +14158,7 @@ system Sevrelect
 	pos -114.569 -239.812
 	government "Kor Efret"
 	habitable 320
+	belt 1763
 	link Sumprast
 	link Kashikt
 	asteroids "large metal" 1 2.97
@@ -13550,6 +14207,7 @@ system Shaula
 	pos -460 527
 	government Pirate
 	habitable 625
+	belt 1814
 	link Lesath
 	asteroids "small rock" 1 3.2016
 	asteroids "medium rock" 2 3.5496
@@ -13557,6 +14215,8 @@ system Shaula
 	asteroids "small metal" 47 4.9764
 	asteroids "medium metal" 208 4.002
 	asteroids "large metal" 45 4.4196
+	minables platinum 9 4.50188
+	minables silver 18 4.95626
 	trade Clothing 232
 	trade Electronics 727
 	trade Equipment 606
@@ -13614,6 +14274,7 @@ system Sheratan
 	pos -40 45
 	government Syndicate
 	habitable 2035
+	belt 1183
 	link Ruchbah
 	link Zaurak
 	asteroids "large rock" 1 1.358
@@ -13671,6 +14332,7 @@ system Si'yak'ku
 	pos -329.235 -760.435
 	government Wanderer
 	habitable 1313.28
+	belt 1985
 	link Ek'kek'ru
 	link Pik'ro'iyak
 	asteroids "small rock" 19 3.78
@@ -13679,6 +14341,9 @@ system Si'yak'ku
 	asteroids "small metal" 23 3.708
 	asteroids "medium metal" 24 4.356
 	asteroids "large metal" 1 4.968
+	minables neodymium 4 5.63144
+	minables silicon 21 4.97907
+	minables titanium 30 6.90932
 	trade Clothing 360
 	trade Electronics 765
 	trade Equipment 368
@@ -13746,6 +14411,7 @@ system Sich'ka'ara
 	pos -97.1237 -831.921
 	government Wanderer
 	habitable 1715
+	belt 1744
 	link Prakacha'a
 	link Ap'arak
 	link Kiro'ku
@@ -13796,6 +14462,7 @@ system Silikatakfar
 	pos 248.431 -481.812
 	government "Kor Sestor"
 	habitable 425.92
+	belt 1641
 	link Mesuket
 	link Eneremprukt
 	link Asikafarnut
@@ -13848,6 +14515,7 @@ system Similisti
 	pos 210.431 -313.812
 	government "Kor Mereti"
 	habitable 1080
+	belt 1349
 	link Chimitarp
 	link Mekislepti
 	link Eshkoshtar
@@ -13860,6 +14528,9 @@ system Similisti
 	asteroids "small metal" 20 2.79
 	asteroids "medium metal" 25 3.105
 	asteroids "large metal" 40 4.005
+	minables iron 5 5.36391
+	minables lead 4 6.86864
+	minables silicon 2 6.31894
 	trade Clothing 210
 	trade Electronics 645
 	trade Equipment 669
@@ -13909,6 +14580,7 @@ system Sirius
 	pos -378 44
 	government Republic
 	habitable 1800
+	belt 1407
 	link Sol
 	link Procyon
 	link Eteron
@@ -13918,6 +14590,9 @@ system Sirius
 	asteroids "small metal" 34 8.085
 	asteroids "medium metal" 3 4.565
 	asteroids "large metal" 51 7.535
+	minables aluminum 2 14.6138
+	minables copper 2 9.02906
+	minables iron 2 10.911
 	trade Clothing 186
 	trade Electronics 699
 	trade Equipment 424
@@ -13966,6 +14641,7 @@ system Skeruto
 	pos 28.4305 -339.812
 	government Uninhabited
 	habitable 320
+	belt 1198
 	link Furmeliki
 	link Meftarkata
 	link Fornarep
@@ -14015,12 +14691,14 @@ system Sko'karak
 	pos -304.43 -930.688
 	government Wanderer
 	habitable 320
+	belt 1805
 	link Ka'ch'chrai
 	asteroids "medium rock" 8 2.4495
 	asteroids "large rock" 2 1.9665
 	asteroids "small metal" 40 5.175
 	asteroids "medium metal" 59 2.4495
 	asteroids "large metal" 12 5.1405
+	minables titanium 12 5.39802
 	trade Clothing 351
 	trade Electronics 650
 	trade Equipment 397
@@ -14064,6 +14742,7 @@ system Sobarati
 	pos 277.431 -557.812
 	government "Kor Sestor"
 	habitable 3780
+	belt 1314
 	link Asikafarnut
 	asteroids "large metal" 1 3.705
 	trade Clothing 408
@@ -14124,6 +14803,7 @@ system Sol
 	pos -400 100
 	government Republic
 	habitable 1080
+	belt 1529
 	link Vega
 	link "Alpha Centauri"
 	link Altair
@@ -14134,6 +14814,7 @@ system Sol
 	asteroids "large rock" 50 5.0508
 	asteroids "medium metal" 4 2.8566
 	asteroids "large metal" 1 2.2356
+	minables iron 8 4.64499
 	trade Clothing 282
 	trade Electronics 745
 	trade Equipment 491
@@ -14198,6 +14879,7 @@ system Solifar
 	pos 47.4305 -435.812
 	government Uninhabited
 	habitable 320
+	belt 1517
 	link Kaliptari
 	asteroids "small rock" 7 7.772
 	asteroids "medium rock" 21 4.176
@@ -14205,6 +14887,9 @@ system Solifar
 	asteroids "small metal" 2 7.134
 	asteroids "medium metal" 80 7.946
 	asteroids "large metal" 26 7.076
+	minables aluminum 30 12.5935
+	minables iron 6 10.1283
+	minables lead 20 11.4764
 	trade Clothing 256
 	trade Electronics 831
 	trade Equipment 595
@@ -14248,6 +14933,7 @@ system Sospi
 	pos -317 -161
 	government Republic
 	habitable 1715
+	belt 1715
 	link Volax
 	link Nihal
 	asteroids "small rock" 1 2.8336
@@ -14255,6 +14941,9 @@ system Sospi
 	asteroids "small metal" 6 3.1625
 	asteroids "medium metal" 7 1.5433
 	asteroids "large metal" 6 2.783
+	minables neodymium 1 4.20171
+	minables titanium 3 3.46551
+	minables uranium 5 3.96983
 	trade Clothing 331
 	trade Electronics 662
 	trade Equipment 593
@@ -14307,6 +14996,7 @@ system Spica
 	pos -906 120
 	government Republic
 	habitable 625
+	belt 1940
 	link Minkar
 	link "Gamma Corvi"
 	asteroids "medium rock" 28 1.386
@@ -14314,6 +15004,9 @@ system Spica
 	asteroids "small metal" 7 1.533
 	asteroids "medium metal" 5 3.129
 	asteroids "large metal" 5 1.953
+	minables lead 3 2.02632
+	minables silicon 9 1.95466
+	minables titanium 1 1.97538
 	trade Clothing 228
 	trade Electronics 735
 	trade Equipment 412
@@ -14362,6 +15055,7 @@ system Suhail
 	pos -774 -338
 	government Republic
 	habitable 1715
+	belt 1715
 	link Regor
 	asteroids "small rock" 2 2.8224
 	asteroids "medium rock" 1 4.48
@@ -14369,6 +15063,9 @@ system Suhail
 	asteroids "small metal" 5 5.7344
 	asteroids "medium metal" 3 3.4944
 	asteroids "large metal" 17 4.5696
+	minables iron 4 6.56789
+	minables silicon 2 8.63888
+	minables silver 2 4.52128
 	trade Clothing 234
 	trade Electronics 755
 	trade Equipment 442
@@ -14416,6 +15113,7 @@ system Sumar
 	pos -236 -273
 	government Republic
 	habitable 2560
+	belt 1778
 	link Cardax
 	link Hassaleh
 	link Danoa
@@ -14474,6 +15172,7 @@ system Sumprast
 	pos -101.569 -262.812
 	government "Kor Efret"
 	habitable 486.68
+	belt 1958
 	link Kashikt
 	link Sevrelect
 	asteroids "medium rock" 8 1.0608
@@ -14481,6 +15180,9 @@ system Sumprast
 	asteroids "small metal" 3 2.9744
 	asteroids "medium metal" 15 2.4336
 	asteroids "large metal" 7 2.4336
+	minables aluminum 1 4.00508
+	minables lead 8 2.5503
+	minables uranium 1 2.21816
 	trade Clothing 248
 	trade Electronics 861
 	trade Equipment 430
@@ -14534,6 +15236,7 @@ system Tais
 	pos -346 381
 	government Republic
 	habitable 3645
+	belt 1379
 	link "Delta Sagittarii"
 	link "Kaus Australis"
 	link Peacock
@@ -14543,6 +15246,8 @@ system Tais
 	asteroids "small metal" 1 10.15
 	asteroids "medium metal" 7 10.43
 	asteroids "large metal" 2 9.94
+	minables iron 2 10.9885
+	minables tungsten 2 9.2358
 	trade Clothing 346
 	trade Electronics 703
 	trade Equipment 653
@@ -14587,6 +15292,7 @@ system Talita
 	pos -519 -26
 	government Republic
 	habitable 1705
+	belt 1403
 	link Miaplacidus
 	link Alphard
 	link Castor
@@ -14597,6 +15303,9 @@ system Talita
 	asteroids "small metal" 12 1.624
 	asteroids "medium metal" 65 1.596
 	asteroids "large metal" 33 1.512
+	minables copper 7 3.2624
+	minables iron 4 2.47306
+	minables silicon 6 3.70162
 	trade Clothing 258
 	trade Electronics 717
 	trade Equipment 678
@@ -14645,6 +15354,7 @@ system "Tania Australis"
 	pos -671 7
 	government Republic
 	habitable 1080
+	belt 1738
 	link Phecda
 	link Algieba
 	link Fala
@@ -14654,6 +15364,9 @@ system "Tania Australis"
 	asteroids "large rock" 13 5.2704
 	asteroids "medium metal" 1 2.5488
 	asteroids "large metal" 7 5.9616
+	minables aluminum 5 7.2906
+	minables silicon 3 8.93934
+	minables uranium 2 5.86496
 	trade Clothing 348
 	trade Electronics 774
 	trade Equipment 501
@@ -14713,6 +15426,7 @@ system Tarazed
 	pos -194 448
 	government Republic
 	habitable 1215
+	belt 1169
 	link Enif
 	link Albireo
 	link Dabih
@@ -14774,6 +15488,7 @@ system Tejat
 	pos -489 -107
 	government Republic
 	habitable 1158.12
+	belt 1447
 	link Phurad
 	link Miaplacidus
 	asteroids "small rock" 5 4.5675
@@ -14782,6 +15497,9 @@ system Tejat
 	asteroids "small metal" 11 3.741
 	asteroids "medium metal" 49 4.263
 	asteroids "large metal" 22 4.5675
+	minables aluminum 2 6.59341
+	minables iron 9 6.73101
+	minables tungsten 3 7.11041
 	trade Clothing 264
 	trade Electronics 721
 	trade Equipment 614
@@ -14846,6 +15564,7 @@ system Tortor
 	pos -255 -424
 	government Republic
 	habitable 455.625
+	belt 1243
 	link Gorvi
 	link Mintaka
 	asteroids "small rock" 8 1.404
@@ -14853,6 +15572,9 @@ system Tortor
 	asteroids "large rock" 7 3.874
 	asteroids "medium metal" 6 3.536
 	asteroids "large metal" 7 3.614
+	minables iron 9 4.67607
+	minables lead 1 4.79499
+	minables silicon 1 3.75422
 	trade Clothing 291
 	trade Electronics 814
 	trade Equipment 525
@@ -14907,6 +15629,7 @@ system Turais
 	pos -691 134
 	government Republic
 	habitable 320
+	belt 1471
 	link Gacrux
 	link "Delta Velorum"
 	link Algorel
@@ -14916,6 +15639,9 @@ system Turais
 	asteroids "small metal" 1 2.775
 	asteroids "medium metal" 25 4.65
 	asteroids "large metal" 6 3.4125
+	minables lead 10 6.91427
+	minables silver 12 7.75611
+	minables titanium 13 8.10341
 	trade Clothing 290
 	trade Electronics 746
 	trade Equipment 482
@@ -14958,6 +15684,7 @@ system "Ula Mon"
 	pos -64.1218 -559.868
 	government Hai
 	habitable 640
+	belt 1574
 	link "Bote Asu"
 	link "Mei Yohn"
 	link "Io Lowe"
@@ -14968,6 +15695,8 @@ system "Ula Mon"
 	asteroids "small metal" 1 3.2319
 	asteroids "medium metal" 5 3.99
 	asteroids "large metal" 2 2.793
+	minables silicon 9 5.62634
+	minables titanium 2 4.55496
 	trade Clothing 278
 	trade Electronics 675
 	trade Equipment 440
@@ -15028,6 +15757,7 @@ system "Ultima Thule"
 	pos -336 -211
 	government Republic
 	habitable 2560
+	belt 1635
 	link Rajak
 	asteroids "small rock" 2 2.4966
 	asteroids "medium rock" 22 1.9836
@@ -15035,6 +15765,8 @@ system "Ultima Thule"
 	asteroids "small metal" 63 4.788
 	asteroids "medium metal" 15 4.2066
 	asteroids "large metal" 1 4.2408
+	minables iron 16 6.44991
+	minables neodymium 5 4.94979
 	trade Clothing 378
 	trade Electronics 665
 	trade Equipment 580
@@ -15077,12 +15809,16 @@ system Umbral
 	pos -164 406
 	government Republic
 	habitable 670
+	belt 1345
 	link Tarazed
 	asteroids "small rock" 4 7.1925
 	asteroids "medium rock" 21 4.2525
 	asteroids "large rock" 42 7.5075
 	asteroids "medium metal" 13 3.2025
 	asteroids "large metal" 1 6.8775
+	minables copper 1 7.12297
+	minables lead 5 8.07356
+	minables neodymium 1 10.103
 	trade Clothing 365
 	trade Electronics 717
 	trade Equipment 459
@@ -15151,11 +15887,14 @@ system Unagi
 	pos -306 -578
 	government Pirate
 	habitable 320
+	belt 1960
 	link Almaaz
 	asteroids "large rock" 1 3.102
 	asteroids "small metal" 2 2.772
 	asteroids "medium metal" 1 3.267
 	asteroids "large metal" 1 2.805
+	minables gold 4 5.8391
+	minables tungsten 1 3.91882
 	trade Clothing 215
 	trade Electronics 816
 	trade Equipment 487
@@ -15200,6 +15939,7 @@ system Unukalhai
 	pos -710 405
 	government Republic
 	habitable 625
+	belt 1968
 	link Zubenelgenubi
 	link Sabik
 	asteroids "small rock" 9 4.5864
@@ -15208,6 +15948,8 @@ system Unukalhai
 	asteroids "small metal" 42 1.8564
 	asteroids "medium metal" 190 4.55
 	asteroids "large metal" 25 2.0748
+	minables neodymium 19 5.48915
+	minables silicon 70 6.48089
 	trade Clothing 315
 	trade Electronics 758
 	trade Equipment 376
@@ -15255,6 +15997,7 @@ system "Uwa Fahn"
 	pos 35.1585 -491.67
 	government Hai
 	habitable 320
+	belt 1913
 	link "Ya Hai"
 	asteroids "small rock" 26 3.9349
 	asteroids "medium rock" 14 2.2743
@@ -15262,6 +16005,9 @@ system "Uwa Fahn"
 	asteroids "small metal" 2 3.1046
 	asteroids "medium metal" 3 3.8266
 	asteroids "large metal" 4 3.4656
+	minables gold 1 5.69635
+	minables silicon 5 4.2659
+	minables tungsten 4 5.64685
 	trade Clothing 188
 	trade Electronics 865
 	trade Equipment 410
@@ -15308,6 +16054,7 @@ system Vega
 	pos -402 182
 	government Republic
 	habitable 1400
+	belt 1744
 	link Altair
 	link Sol
 	link Menkent
@@ -15318,6 +16065,9 @@ system Vega
 	asteroids "small metal" 3 3.332
 	asteroids "medium metal" 51 6.8068
 	asteroids "large metal" 3 6.426
+	minables copper 8 8.28628
+	minables lead 4 7.71321
+	minables titanium 4 10.0815
 	trade Clothing 375
 	trade Electronics 797
 	trade Equipment 571
@@ -15366,6 +16116,7 @@ system Vindemiatrix
 	pos -635 257
 	government Republic
 	habitable 1080
+	belt 1957
 	link Alioth
 	link Muhlifain
 	link "Cor Caroli"
@@ -15376,6 +16127,9 @@ system Vindemiatrix
 	asteroids "small metal" 8 3.1356
 	asteroids "medium metal" 1 5.4288
 	asteroids "large metal" 2 6.2712
+	minables aluminum 13 5.95585
+	minables iron 2 7.3644
+	minables lead 3 7.31755
 	trade Clothing 263
 	trade Electronics 798
 	trade Equipment 494
@@ -15414,6 +16168,7 @@ system Volax
 	pos -256 -179
 	government Republic
 	habitable 1715
+	belt 1424
 	link Cardax
 	link Nihal
 	link Sospi
@@ -15466,6 +16221,7 @@ system "Wah Ki"
 	pos 14.9925 -612.792
 	government Hai
 	habitable 425.92
+	belt 1585
 	link "Zuba Zub"
 	link "Wah Yoot"
 	link "Bote Asu"
@@ -15475,6 +16231,9 @@ system "Wah Ki"
 	asteroids "large rock" 24 2.4024
 	asteroids "small metal" 17 4.7586
 	asteroids "large metal" 22 2.772
+	minables iron 4 7.24347
+	minables lead 2 6.42551
+	minables titanium 2 5.26511
 	trade Clothing 378
 	trade Electronics 595
 	trade Equipment 360
@@ -15530,6 +16289,7 @@ system "Wah Oh"
 	pos -205.344 -381.381
 	government Hai
 	habitable 5000
+	belt 1194
 	link "Io Mann"
 	link "Due Yoot"
 	link "Fah Root"
@@ -15540,6 +16300,9 @@ system "Wah Oh"
 	asteroids "small metal" 91 2.214
 	asteroids "medium metal" 13 2.538
 	asteroids "large metal" 86 2.403
+	minables aluminum 29 2.79911
+	minables iron 10 4.13916
+	minables titanium 5 3.97474
 	trade Clothing 378
 	trade Electronics 835
 	trade Equipment 640
@@ -15602,6 +16365,7 @@ system "Wah Yoot"
 	pos 40.9382 -685.994
 	government "Hai (Unfettered)"
 	habitable 1080
+	belt 1222
 	link "Wah Ki"
 	link "Ehma Ti"
 	link "Hi Yahr"
@@ -15611,6 +16375,8 @@ system "Wah Yoot"
 	asteroids "small metal" 1 4.4352
 	asteroids "medium metal" 10 2.2968
 	asteroids "large metal" 2 5.6628
+	minables lead 14 3.40165
+	minables silicon 30 4.23582
 	trade Clothing 418
 	trade Electronics 695
 	trade Equipment 470
@@ -15663,6 +16429,7 @@ system Waypoint
 	pos -184 -515
 	government Hai
 	habitable 78.125
+	belt 1610
 	link "Heia Due"
 	asteroids "small rock" 9 2.8028
 	asteroids "medium rock" 90 2.0328
@@ -15670,6 +16437,8 @@ system Waypoint
 	asteroids "small metal" 1 1.9712
 	asteroids "medium metal" 6 4.0656
 	asteroids "large metal" 2 1.9404
+	minables lead 11 3.06125
+	minables silicon 3 2.57646
 	trade Clothing 378
 	trade Electronics 765
 	trade Equipment 580
@@ -15716,6 +16485,7 @@ system Wazn
 	pos -385 -131
 	government Republic
 	habitable 534.375
+	belt 1414
 	link Alhena
 	link Kursa
 	link Phact
@@ -15723,6 +16493,8 @@ system Wazn
 	asteroids "small metal" 9 2.6048
 	asteroids "medium metal" 3 4.4704
 	asteroids "large metal" 9 1.9008
+	minables iron 2 4.91227
+	minables silicon 4 2.82661
 	trade Clothing 286
 	trade Electronics 800
 	trade Equipment 662
@@ -15775,6 +16547,7 @@ system Wei
 	pos -598 369
 	government Republic
 	habitable 455.625
+	belt 1927
 	link Seginus
 	link Alnasl
 	link Kornephoros
@@ -15831,6 +16604,7 @@ system Wezen
 	pos -664 -433
 	government Republic
 	habitable 2880
+	belt 1913
 	link Naos
 	asteroids "small rock" 6 2.6418
 	asteroids "medium rock" 68 2.2372
@@ -15838,6 +16612,8 @@ system Wezen
 	asteroids "small metal" 3 2.5228
 	asteroids "medium metal" 6 1.9992
 	asteroids "large metal" 4 2.7132
+	minables silicon 2 3.02054
+	minables titanium 19 2.21947
 	trade Clothing 310
 	trade Electronics 700
 	trade Equipment 398
@@ -15907,6 +16683,7 @@ system "Ya Hai"
 	pos -24.9453 -505.571
 	government Hai
 	habitable 425.92
+	belt 1120
 	link "Ula Mon"
 	link "Bote Asu"
 	link "Uwa Fahn"
@@ -15917,6 +16694,9 @@ system "Ya Hai"
 	asteroids "small metal" 17 1.1928
 	asteroids "medium metal" 6 1.176
 	asteroids "large metal" 5 1.5792
+	minables aluminum 2 2.13976
+	minables iron 7 1.5968
+	minables lead 2 2.26139
 	trade Clothing 168
 	trade Electronics 765
 	trade Equipment 330
@@ -15976,6 +16756,7 @@ system "Yed Prior"
 	pos -810 374
 	government Republic
 	habitable 455.625
+	belt 1837
 	link Pherkad
 	asteroids "small rock" 12 5.0784
 	asteroids "medium rock" 1 2.9072
@@ -15983,6 +16764,9 @@ system "Yed Prior"
 	asteroids "small metal" 2 5.1888
 	asteroids "medium metal" 55 1.84
 	asteroids "large metal" 6 5.0416
+	minables silver 8 4.49935
+	minables titanium 20 4.2915
+	minables tungsten 8 5.10857
 	trade Clothing 283
 	trade Electronics 864
 	trade Equipment 368
@@ -16027,6 +16811,7 @@ system Zaurak
 	pos -109 -34
 	government Syndicate
 	habitable 625
+	belt 1130
 	link Sheratan
 	link Alcyone
 	link Menkar
@@ -16036,6 +16821,7 @@ system Zaurak
 	asteroids "small metal" 4 4.6228
 	asteroids "medium metal" 199 2.4024
 	asteroids "large metal" 46 4.4044
+	minables iron 61 3.64072
 	trade Clothing 310
 	trade Electronics 750
 	trade Equipment 673
@@ -16080,6 +16866,7 @@ system "Zeta Aquilae"
 	pos -369 276
 	government Republic
 	habitable 1400
+	belt 1829
 	link Ascella
 	link Rasalhague
 	link Orvala
@@ -16087,6 +16874,7 @@ system "Zeta Aquilae"
 	asteroids "medium rock" 11 4.536
 	asteroids "large rock" 2 10.611
 	asteroids "large metal" 1 10.125
+	minables uranium 3 10.6251
 	trade Clothing 306
 	trade Electronics 755
 	trade Equipment 639
@@ -16151,10 +16939,12 @@ system "Zeta Centauri"
 	pos -835 257
 	government Republic
 	habitable 455.625
+	belt 1488
 	link Acrux
 	link Hadar
 	asteroids "large rock" 1 1.13
 	asteroids "large metal" 5 0.66
+	minables silicon 1 0.817645
 	trade Clothing 328
 	trade Electronics 678
 	trade Equipment 604
@@ -16203,6 +16993,7 @@ system Zosma
 	pos -640 -123
 	government Republic
 	habitable 455.625
+	belt 1436
 	link Algieba
 	link Dubhe
 	link Alphard
@@ -16213,6 +17004,7 @@ system Zosma
 	asteroids "small metal" 5 4.0625
 	asteroids "medium metal" 14 3.8025
 	asteroids "large metal" 9 3.2175
+	minables iron 4 5.44731
 	trade Clothing 360
 	trade Electronics 726
 	trade Equipment 589
@@ -16262,6 +17054,7 @@ system "Zuba Zub"
 	pos -48.2661 -647.926
 	government Hai
 	habitable 425.92
+	belt 1911
 	link "Mei Yohn"
 	link "Imo Dep"
 	link "Wah Ki"
@@ -16324,6 +17117,7 @@ system Zubenelgenubi
 	pos -710 353
 	government Republic
 	habitable 945
+	belt 1475
 	link Zubeneschamali
 	link Unukalhai
 	link Sabik
@@ -16332,6 +17126,8 @@ system Zubenelgenubi
 	asteroids "small metal" 10 4.9104
 	asteroids "medium metal" 39 5.7816
 	asteroids "large metal" 6 5.5836
+	minables gold 1 9.77852
+	minables iron 3 10.6772
 	trade Clothing 375
 	trade Electronics 725
 	trade Equipment 455
@@ -16386,6 +17182,7 @@ system Zubeneschamali
 	pos -759 338
 	government Republic
 	habitable 1250
+	belt 1543
 	link Hadar
 	link Zubenelgenubi
 	link Kochab
@@ -16396,6 +17193,9 @@ system Zubeneschamali
 	asteroids "small metal" 29 2.964
 	asteroids "medium metal" 41 3.0576
 	asteroids "large metal" 72 3.7752
+	minables neodymium 25 3.69745
+	minables silicon 28 4.05728
+	minables titanium 31 4.30615
 	trade Clothing 376
 	trade Electronics 673
 	trade Equipment 592

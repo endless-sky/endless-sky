@@ -94,7 +94,7 @@ void Minable::Place(double energy, double beltRadius)
 	scale = (sMin + Random::Real() * (sMax - sMin)) * beltRadius;
 	
 	// At periapsis, the object should have this velocity:
-	double maximumVelocity = (Random::Real() + 1.) * energy;
+	double maximumVelocity = (Random::Real() + 2. * eccentricity) * .5 * energy;
 	// That means that its angular momentum is equal to:
 	angularMomentum = (maximumVelocity * scale) / (1. + eccentricity);
 	
