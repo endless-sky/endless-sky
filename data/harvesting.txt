@@ -12,7 +12,8 @@ minable "aluminum"
 	sprite "asteroid/silicon/spin"
 	hull 1000
 	payload "Aluminum" 40
-	explode "smoke" 20
+	explode "smoke" 40
+	explode "bolide" 40
 
 outfit "Aluminum"
 	category "Special"
@@ -29,7 +30,8 @@ minable "copper"
 	sprite "asteroid/gold/spin"
 	hull 1200
 	payload "Copper" 20
-	explode "smoke" 10
+	explode "smoke" 20
+	explode "bolide" 20
 
 outfit "Copper"
 	category "Special"
@@ -46,7 +48,8 @@ minable "gold"
 	sprite "asteroid/gold/spin"
 	hull 2800
 	payload "Gold" 16
-	explode "smoke" 10
+	explode "smoke" 20
+	explode "bolide" 20
 
 outfit "Gold"
 	category "Special"
@@ -63,7 +66,8 @@ minable "iron"
 	sprite "asteroid/iron/spin"
 	hull 1600
 	payload "Iron" 50
-	explode "smoke" 20
+	explode "smoke" 40
+	explode "bolide" 40
 
 outfit "Iron"
 	category "Special"
@@ -80,7 +84,8 @@ minable "lead"
 	sprite "asteroid/lead/spin"
 	hull 800
 	payload "Lead" 32
-	explode "smoke" 15
+	explode "smoke" 30
+	explode "bolide" 30
 
 outfit "Lead"
 	category "Special"
@@ -97,7 +102,8 @@ minable "neodymium"
 	sprite "asteroid/iron/spin"
 	hull 3600
 	payload "Neodymium" 40
-	explode "smoke" 20
+	explode "smoke" 40
+	explode "bolide" 40
 
 outfit "Neodymium"
 	category "Special"
@@ -114,7 +120,8 @@ minable "platinum"
 	sprite "asteroid/silver/spin"
 	hull 4000
 	payload "Platinum" 16
-	explode "smoke" 10
+	explode "smoke" 20
+	explode "bolide" 20
 
 outfit "Platinum"
 	category "Special"
@@ -131,7 +138,8 @@ minable "silicon"
 	sprite "asteroid/silicon/spin"
 	hull 400
 	payload "Silicon" 50
-	explode "smoke" 20
+	explode "smoke" 40
+	explode "bolide" 40
 
 outfit "Silicon"
 	category "Special"
@@ -148,7 +156,8 @@ minable "silver"
 	sprite "asteroid/silver/spin"
 	hull 2000
 	payload "Silver" 20
-	explode "smoke" 10
+	explode "smoke" 20
+	explode "bolide" 20
 
 outfit "Silver"
 	category "Special"
@@ -165,7 +174,8 @@ minable "titanium"
 	sprite "asteroid/titanium/spin"
 	hull 2400
 	payload "Titanium" 32
-	explode "smoke" 15
+	explode "smoke" 30
+	explode "bolide" 30
 
 outfit "Titanium"
 	category "Special"
@@ -182,7 +192,8 @@ minable "tungsten"
 	sprite "asteroid/titanium/spin"
 	hull 4800
 	payload "Tungsten" 24
-	explode "smoke" 15
+	explode "smoke" 30
+	explode "bolide" 30
 
 outfit "Tungsten"
 	category "Special"
@@ -199,7 +210,8 @@ minable "uranium"
 	sprite "asteroid/lead/spin"
 	hull 3200
 	payload "Uranium" 24
-	explode "smoke" 15
+	explode "smoke" 30
+	explode "bolide" 30
 
 outfit "Uranium"
 	category "Special"

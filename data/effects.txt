@@ -398,3 +398,14 @@ effect "rail sparks"
 	"velocity scale" 1.2
 	"random angle" 360
 	"random spin" 30
+
+effect "bolide"
+	sprite "effect/bolide"
+		"random start frame"
+		"no repeat"
+		"frame rate" 3
+	"lifetime" 120
+	"random angle" 360
+	"random spin" 5
+	"velocity scale" .8
+	"random frame rate" 6
