@@ -162,7 +162,7 @@ bool Minable::Move(list<Effect> &effects, list<Flotsam> &flotsam)
 // is returned indicating how far along its path the collision occurs.
 double Minable::Collide(const Projectile &projectile, int step) const
 {
-	return GetMask(step).Collide(position - projectile.Position(), projectile.Velocity(), angle);
+	return GetMask(step).Collide(projectile.Position() - position, projectile.Velocity(), angle);
 }
 
 
