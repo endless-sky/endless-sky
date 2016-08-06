@@ -83,12 +83,15 @@ bool Flotsam::Move(list<Effect> &effects)
 		return true;
 	
 	// This flotsam has reached the end of its life. 
-	const Effect *effect = GameData::Effects().Get("smoke");
-	effects.push_back(*effect);
+	const Effect *effect = GameData::Effects().Get("flotsam death");
+	for(int i = 0; i < 3; ++i)
+	{
+		effects.push_back(*effect);
 	
-	Angle smokeAngle = Angle::Random();
-	velocity += smokeAngle.Unit() * Random::Real();
-	effects.back().Place(position, velocity, smokeAngle);
+		Angle smokeAngle = Angle::Random();
+		velocity += smokeAngle.Unit() * Random::Real();
+		effects.back().Place(position, velocity, smokeAngle);
+	}
 	
 	return false;
 }
