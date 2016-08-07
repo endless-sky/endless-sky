@@ -58,6 +58,8 @@ void Outfit::Load(const DataNode &node)
 			++flareSounds[Audio::Get(child.Token(1))];
 		else if(child.Token(0) == "afterburner effect" && child.Size() >= 2)
 			++afterburnerEffects[GameData::Effects().Get(child.Token(1))];
+		else if(child.Token(0) == "flotsam sprite" && child.Size() >= 2)
+			flotsamSprite = SpriteSet::Get(child.Token(1));
 		else if(child.Token(0) == "thumbnail" && child.Size() >= 2)
 			thumbnail = SpriteSet::Get(child.Token(1));
 		else if(child.Token(0) == "weapon")
@@ -209,4 +211,12 @@ const map<const Sound *, int> &Outfit::FlareSounds() const
 const map<const Effect *, int> &Outfit::AfterburnerEffects() const
 {
 	return afterburnerEffects;
+}
+
+
+
+// Get the sprite this outfit uses when dumped into space.
+const Sprite *Outfit::FlotsamSprite() const
+{
+	return flotsamSprite;
 }

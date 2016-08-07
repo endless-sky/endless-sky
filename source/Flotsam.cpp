@@ -64,8 +64,8 @@ void Flotsam::Place(const Body &source)
 	
 	// Special case: allow a harvested outfit item to define its flotsam sprite
 	// using the field that usually defines a secondary weapon's icon.
-	if(outfit && outfit->Get("installable") < 0 && outfit->Icon())
-		SetSprite(outfit->Icon());
+	if(outfit && outfit->FlotsamSprite())
+		SetSprite(outfit->FlotsamSprite());
 	else
 		SetSprite(SpriteSet::Get("effect/box"));
 	SetFrameRate(4. * (1. + Random::Real()));
