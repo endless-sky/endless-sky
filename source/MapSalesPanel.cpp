@@ -74,7 +74,7 @@ MapSalesPanel::MapSalesPanel(const MapPanel &panel, bool isOutfitters)
 
 
 
-void MapSalesPanel::Draw() const
+void MapSalesPanel::Draw()
 {
 	MapPanel::Draw();
 	
@@ -149,11 +149,6 @@ bool MapSalesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 
 bool MapSalesPanel::Click(int x, int y)
 {
-	const Interface *interface = GameData::Interfaces().Get("map buttons");
-	char key = interface->OnClick(Point(x, y));
-	if(key)
-		return DoKey(key);
-	
 	if(x < Screen::Left() + WIDTH)
 	{
 		Point point(x, y);
@@ -310,7 +305,7 @@ void MapSalesPanel::DrawPanel() const
 
 
 
-void MapSalesPanel::DrawButtons() const
+void MapSalesPanel::DrawButtons()
 {
 	Information info;
 	info.SetCondition(isOutfitters ? "is outfitters" : "is shipyards");
@@ -319,7 +314,7 @@ void MapSalesPanel::DrawButtons() const
 	if(ZoomIsMin())
 		info.SetCondition("min zoom");
 	const Interface *interface = GameData::Interfaces().Get("map buttons");
-	interface->Draw(info);
+	interface->Draw(info, this);
 }
 
 
@@ -455,10 +450,8 @@ void MapSalesPanel::ScrollTo(int index)
 		return;
 	
 	const ClickZone<int> &it = zones[selected];
-	double top = (it.Center() - it.Size()).Y();
-	double bottom = (it.Center() + it.Size()).Y();
-	if(bottom > Screen::Bottom())
-		scroll += Screen::Bottom() - bottom;
-	if(top < Screen::Top())
-		scroll += Screen::Top() - top;
+	if(it.Bottom() > Screen::Bottom())
+		scroll += Screen::Bottom() - it.Bottom();
+	if(it.Top() < Screen::Top())
+		scroll += Screen::Top() - it.Top();
 }

@@ -51,7 +51,7 @@ void SpaceportPanel::Step()
 
 
 
-void SpaceportPanel::Draw() const
+void SpaceportPanel::Draw()
 {
 	if(player.IsDead())
 		return;

@@ -42,8 +42,7 @@ using namespace std;
 PlanetPanel::PlanetPanel(PlayerInfo &player, function<void()> callback)
 	: player(player), callback(callback),
 	planet(*player.GetPlanet()), system(*player.GetSystem()),
-	ui(*GameData::Interfaces().Get("planet")),
-	selectedPanel(nullptr)
+	ui(*GameData::Interfaces().Get("planet"))
 {
 	trading.reset(new TradingPanel(player));
 	bank.reset(new BankPanel(player));
@@ -84,7 +83,7 @@ void PlanetPanel::Step()
 
 
 
-void PlanetPanel::Draw() const
+void PlanetPanel::Draw()
 {
 	if(player.IsDead())
 		return;
@@ -116,7 +115,7 @@ void PlanetPanel::Draw() const
 	if(planet.HasSpaceport() && player.MissionToOffer(Mission::SPACEPORT))
 		info.SetCondition("mission alert");
 	
-	ui.Draw(info);
+	ui.Draw(info, this);
 	
 	if(!selectedPanel)
 		text.Draw(Point(-300., 80.), *GameData::Colors().Get("bright"));
@@ -247,17 +246,6 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 	// panel. So, we need to pop the old selected panel:
 	if(oldPanel)
 		GetUI()->Pop(oldPanel);
-	
-	return true;
-}
-
-
-
-bool PlanetPanel::Click(int x, int y)
-{
-	char key = ui.OnClick(Point(x, y));
-	if(key)
-		return DoKey(key);
 	
 	return true;
 }

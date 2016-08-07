@@ -219,6 +219,20 @@ void Ship::Load(const DataNode &node)
 		else if(child.Token(0) != "actions")
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
+	
+	// Check that all the "equipped" outfits actually match what your ship has.
+	if(!outfits.empty())
+		for(auto &it : equipped)
+		{
+			int excess = it.second - outfits[it.first];
+			if(excess > 0)
+			{
+				// If there are more hardpoints specifying this outfit than there
+				// are instances of this outfit installed, remove some of them.
+				armament.Add(it.first, -excess);
+				it.second -= excess;
+			}
+		}
 }
 
 
@@ -237,7 +251,7 @@ void Ship::FinishLoading()
 	// Exception: uncapturable and "never disabled" flags don't carry over.
 	if(base && base != this)
 	{
-		if(!HasSprite())
+		if(!GetSprite())
 			reinterpret_cast<Body &>(*this) = *base;
 		if(baseAttributes.Attributes().empty())
 			baseAttributes = base->baseAttributes;
@@ -258,7 +272,7 @@ void Ship::FinishLoading()
 			description = base->description;
 		
 		bool hasHardpoints = false;
-		for(const Armament::Weapon &weapon : armament.Get())
+		for(const Hardpoint &weapon : armament.Get())
 			if(weapon.GetPoint())
 				hasHardpoints = true;
 		
@@ -338,7 +352,7 @@ void Ship::FinishLoading()
 	
 	// Figure out how far from center the farthest weapon it.
 	weaponRadius = 0.;
-	for(const Armament::Weapon &weapon : armament.Get())
+	for(const Hardpoint &weapon : armament.Get())
 		weaponRadius = max(weaponRadius, weapon.GetPoint().Length());
 	
 	// Recharge, but don't recharge crew or fuel if not in the parent's system.
@@ -405,7 +419,7 @@ void Ship::Save(DataWriter &out) const
 		
 		for(const Point &point : enginePoints)
 			out.Write("engine", 2. * point.X(), 2. * point.Y());
-		for(const Armament::Weapon &weapon : armament.Get())
+		for(const Hardpoint &weapon : armament.Get())
 		{
 			const char *type = (weapon.IsTurret() ? "turret" : "gun");
 			if(weapon.GetOutfit())
@@ -1299,7 +1313,7 @@ bool Ship::Fire(list<Projectile> &projectiles, list<Effect> &effects)
 	
 	antiMissileRange = 0.;
 	
-	const vector<Armament::Weapon> &weapons = armament.Get();
+	const vector<Hardpoint> &weapons = armament.Get();
 	for(unsigned i = 0; i < weapons.size(); ++i)
 	{
 		const Outfit *outfit = weapons[i].GetOutfit();
@@ -1327,7 +1341,7 @@ bool Ship::FireAntiMissile(const Projectile &projectile, list<Effect> &effects)
 	if(CannotAct())
 		return false;
 	
-	const vector<Armament::Weapon> &weapons = armament.Get();
+	const vector<Hardpoint> &weapons = armament.Get();
 	for(unsigned i = 0; i < weapons.size(); ++i)
 	{
 		const Outfit *outfit = weapons[i].GetOutfit();
@@ -1365,7 +1379,7 @@ bool Ship::IsCapturable() const
 
 bool Ship::IsTargetable() const
 {
-	return (zoom == 1. && !explosionRate && !forget && cloak < 1. && hull >= 0. && hyperspaceCount < 70);
+	return (zoom == 1. && !explosionRate && !forget && !isInvisible && cloak < 1. && hull >= 0. && hyperspaceCount < 70);
 }
 
 
@@ -1994,7 +2008,7 @@ const CargoHold &Ship::Cargo() const
 // Display box effects from jettisoning this much cargo.
 void Ship::Jettison(const string &commodity, int tons)
 {
-	cargo.Transfer(commodity, tons);
+	cargo.Remove(commodity, tons);
 	
 	static const int perBox = 5;
 	for( ; tons >= perBox; tons -= perBox)
@@ -2005,7 +2019,7 @@ void Ship::Jettison(const string &commodity, int tons)
 
 void Ship::Jettison(const Outfit *outfit, int count)
 {
-	cargo.Transfer(outfit, count);
+	cargo.Remove(outfit, count);
 	
 	double mass = outfit->Get("mass");
 	static const int perBox = (mass <= 0.) ? count : (mass > 5.) ? 1 : static_cast<int>(5. / mass);
@@ -2081,7 +2095,7 @@ Armament &Ship::GetArmament()
 
 
 
-const vector<Armament::Weapon> &Ship::Weapons() const
+const vector<Hardpoint> &Ship::Weapons() const
 {
 	return armament.Get();
 }

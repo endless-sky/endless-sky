@@ -50,7 +50,7 @@ void PlayerInfo::Clear()
 {
 	*this = PlayerInfo();
 	
-	Random::Seed(time(NULL));
+	Random::Seed(time(nullptr));
 }
 
 
@@ -1012,7 +1012,7 @@ bool PlayerInfo::TakeOff(UI *ui)
 	for(auto it = ships.begin(); it != ships.end(); )
 	{
 		shared_ptr<Ship> &ship = *it;
-		if(ship->IsParked() || ship->IsDisabled())
+		if(ship->IsParked() || ship->IsDisabled() || ship->GetSystem() != system)
 		{
 			++it;
 			continue;
@@ -1292,7 +1292,7 @@ void PlayerInfo::MissionCallback(int response)
 	
 	Mission &mission = missionList.front();
 	
-	shouldLaunch = Conversation::LeaveImmediately(response);
+	shouldLaunch = Conversation::RequiresLaunch(response);
 	if(response == Conversation::ACCEPT || response == Conversation::LAUNCH)
 	{
 		bool shouldAutosave = mission.RecommendsAutosave();

@@ -142,7 +142,7 @@ void Engine::Place()
 	// Add the player's flagship and escorts to the list of ships. The TakeOff()
 	// code already took care of loading up fighters and assigning parents.
 	for(const shared_ptr<Ship> &ship : player.Ships())
-		if(!ship->IsParked())
+		if(!ship->IsParked() && ship->GetSystem())
 		{
 			ships.push_back(ship);
 			if(it == ships.end())
@@ -606,13 +606,13 @@ void Engine::Draw() const
 			radar[drawTickTock].Draw(
 				interface->GetPoint("radar"),
 				.025,
-				interface->GetSize("radar").X(),
-				interface->GetSize("radar").Y());
+				.5 * interface->GetSize("radar").X(),
+				.5 * interface->GetSize("radar").Y());
 		}
 		if(interface->HasPoint("target") && targetAngle)
 		{
 			Point center = interface->GetPoint("target");
-			double radius = interface->GetSize("target").X();
+			double radius = .5 * interface->GetSize("target").X();
 			PointerShader::Draw(center, targetAngle, 10., 10., radius, Color(1.));
 		}
 	}
@@ -647,6 +647,10 @@ void Engine::Draw() const
 	
 	// Draw escort status.
 	escorts.Draw();
+	
+	// Upload any preloaded sprites that are now available. This is to avoid
+	// filling the entire backlog of sprites before landing on a planet.
+	GameData::Progress();
 	
 	if(Preferences::Has("Show CPU / GPU load"))
 	{
@@ -699,7 +703,13 @@ void Engine::EnterSystem()
 	
 	asteroids.Clear();
 	for(const System::Asteroid &a : system->Asteroids())
-		asteroids.Add(a.Name(), a.Count(), a.Energy());
+	{
+		// Check whether this is a minable or an ordinary asteroid.
+		if(a.Type())
+			asteroids.Add(a.Type(), a.Count(), a.Energy(), system->AsteroidBelt());
+		else
+			asteroids.Add(a.Name(), a.Count(), a.Energy());
+	}
 	
 	// Place five seconds worth of fleets.
 	for(int i = 0; i < 5; ++i)
@@ -804,13 +814,17 @@ void Engine::CalculateStep()
 		int hyperspaceType = (*it)->HyperspaceType();
 		bool wasHere = (flagship && (*it)->GetSystem() == flagship->GetSystem());
 		bool wasHyperspacing = (*it)->IsHyperspacing();
-		// Give the ship the list of effects so that if it is dying, it can
-		// create explosions. Eventually ships might create other effects too.
-		// Note that engine flares are handled separately, so that they will be
-		// drawn immediately under the ship.
+		// Give the ship the list of effects so that it can draw explosions,
+		// ion sparks, jump drive flashes, etc.
 		if(!(*it)->Move(effects, flotsam))
 		{
-			eventQueue.emplace_back(nullptr, *it, ShipEvent::DESTROY);
+			// If Move() returns false, it means the ship should be removed from
+			// play. That may be because it was destroyed, because it is an
+			// ordinary ship that has been out of system for long enough to be
+			// "forgotten," or because it is a fighter that just docked with its
+			// mothership. Report it destroyed if that's really what happened:
+			if((*it)->IsDestroyed())
+				eventQueue.emplace_back(nullptr, *it, ShipEvent::DESTROY);
 			it = ships.erase(it);
 		}
 		else
@@ -917,7 +931,7 @@ void Engine::CalculateStep()
 	// Now that the planets have been drawn, we can draw the asteroids on top
 	// of them. This could be done later, as long as it is done before the
 	// collision detection.
-	asteroids.Step();
+	asteroids.Step(effects, flotsam);
 	asteroids.Draw(draw[calcTickTock], newCenter);
 	
 	// Move existing projectiles. Do this before ships fire, which will create
@@ -973,20 +987,31 @@ void Engine::CalculateStep()
 				else
 					name = "You picked up ";
 			}
+			string commodity;
+			int amount = 0;
 			if(it->OutfitType())
 			{
-				int amount = -collector->Cargo().Transfer(it->OutfitType(), -it->Count());
+				amount = collector->Cargo().Add(it->OutfitType(), it->Count());
 				if(!name.empty())
-					Messages::Add(name + Format::Number(amount) + " " + it->OutfitType()->Name()
-						+ (amount == 1 ? "." : "s."));
+				{
+					if(it->OutfitType()->Get("installable") < 0.)
+						commodity = it->OutfitType()->Name();
+					else
+						Messages::Add(name + Format::Number(amount) + " " + it->OutfitType()->Name()
+							+ (amount == 1 ? "." : "s."));
+				}
 			}
 			else
 			{
-				int amount = -collector->Cargo().Transfer(it->CommodityType(), -it->Count());
+				amount = collector->Cargo().Add(it->CommodityType(), it->Count());
 				if(!name.empty())
-					Messages::Add(name + (amount == 1 ? "a ton" : Format::Number(amount) + " tons")
-						+ " of " + it->CommodityType() + ".");
+					commodity = it->CommodityType();
+					
 			}
+			if(!commodity.empty())
+				Messages::Add(name + (amount == 1 ? "a ton" : Format::Number(amount) + " tons")
+					+ " of " + Format::LowerCase(commodity) + ".");
+			
 			it = flotsam.erase(it);
 			continue;
 		}
@@ -1056,7 +1081,7 @@ void Engine::CalculateStep()
 			if(ship->Cloaking() == 1. && !isPlayer)
 				continue;
 			
-			if(doClick && &*ship != player.Flagship())
+			if(doClick && &*ship != player.Flagship() && ship->IsTargetable())
 			{
 				Point position = ship->Position() - newCenter;
 				const Mask &mask = ship->GetMask(step);
@@ -1113,14 +1138,13 @@ void Engine::CalculateStep()
 		// object. If the asteroid turns out to be closer than the ship, it
 		// shields the ship (unless the projectile has a blast radius).
 		Point hitVelocity;
-		double closestHit = 0.;
+		double closestHit = 1.;
 		shared_ptr<Ship> hit;
 		const Government *gov = projectile.GetGovernment();
 		
 		// If this "projectile" is a ship explosion, it always explodes.
 		if(gov)
 		{
-			closestHit = asteroids.Collide(projectile, step, &hitVelocity);
 			// Projectiles can only collide with ships that are in the current
 			// system and are not landing, and that are hostile to this projectile.
 			for(shared_ptr<Ship> &ship : ships)
@@ -1139,6 +1163,7 @@ void Engine::CalculateStep()
 						hitVelocity = ship->Velocity();
 					}
 				}
+			closestHit = asteroids.Collide(projectile, step, closestHit, &hitVelocity);
 		}
 		
 		if(closestHit < 1.)

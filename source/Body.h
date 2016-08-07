@@ -54,6 +54,8 @@ public:
 	// Get the dimensions of the sprite.
 	double Width() const;
 	double Height() const;
+	// Get the farthest a part of this sprite can be from its center.
+	double Radius() const;
 	// Which color swizzle should be applied to the sprite?
 	int GetSwizzle() const;
 	// Get the sprite and mask for the given time step.
@@ -100,6 +102,8 @@ protected:
 	
 	
 private:
+	// Set what animation step we're on. This affects future calls to GetMask()
+	// and GetFrame().
 	void SetStep(int step) const;
 	
 	

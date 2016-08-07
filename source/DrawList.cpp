@@ -188,6 +188,9 @@ DrawList::Item::Item(const Body &body, Point pos, Point blur, float cloak, float
 	// Calculate the blur vector, in texture coordinates.
 	this->blur[0] = unit.Cross(blur) / (width * 4.);
 	this->blur[1] = -unit.Dot(blur) / (height * 4.);
+
+	if(cloak > 0.)
+		Cloak(cloak);
 }
 
 

@@ -123,7 +123,7 @@ InfoPanel::InfoPanel(PlayerInfo &player, bool showFlagship)
 
 
 
-void InfoPanel::Draw() const
+void InfoPanel::Draw()
 {
 	DrawBackdrop();
 	
@@ -135,7 +135,11 @@ void InfoPanel::Draw() const
 					&& ((shipIt->get() != player.Flagship() && !(*shipIt)->IsDisabled()) || (*shipIt)->IsParked()))
 			interfaceInfo.SetCondition((*shipIt)->IsParked() ? "show unpark" : "show park");
 		else if(!canEdit)
-			interfaceInfo.SetCondition(CanDump() ? "enable dump" : "show dump");
+		{
+			interfaceInfo.SetCondition("show dump");
+			if(CanDump())
+				interfaceInfo.SetCondition("enable dump");
+		}
 		if(player.Ships().size() > 1)
 			interfaceInfo.SetCondition("four buttons");
 		else
@@ -178,7 +182,7 @@ void InfoPanel::Draw() const
 		interfaceInfo.SetCondition("two buttons");
 	}
 	const Interface *interface = GameData::Interfaces().Get("info panel");
-	interface->Draw(interfaceInfo);
+	interface->Draw(interfaceInfo, this);
 	
 	zones.clear();
 	commodityZones.clear();
@@ -260,6 +264,12 @@ bool InfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 						+ (amount == 1 ? "a ton" : Format::Number(amount) + " tons")
 						+ " of " + Format::LowerCase(selectedCommodity) + " cargo?"));
 			}
+			else if(plunderAmount > 0 && selectedPlunder->Get("installable") < 0.)
+			{
+				GetUI()->Push(new Dialog(this, &InfoPanel::DumpPlunder,
+					"How many tons of " + Format::LowerCase(selectedPlunder->Name()) + " do you want to jettison?",
+					plunderAmount));
+			}
 			else if(plunderAmount == 1)
 			{
 				GetUI()->Push(new Dialog(this, &InfoPanel::Dump,
@@ -307,17 +317,6 @@ bool InfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 
 bool InfoPanel::Click(int x, int y)
 {
-	Point point(x, y);
-	
-	// Handle clicks on the interface buttons.
-	const Interface *interface = GameData::Interfaces().Get("info panel");
-	if(interface)
-	{
-		char key = interface->OnClick(point);
-		if(key)
-			return DoKey(key);
-	}
-	
 	if(shipIt == player.Ships().end())
 		return true;
 	
@@ -366,6 +365,7 @@ bool InfoPanel::Click(int x, int y)
 	}
 	selectedCommodity.clear();
 	selectedPlunder = nullptr;
+	Point point(x, y);
 	for(const auto &zone : commodityZones)
 		if(zone.Contains(point))
 			selectedCommodity = zone.Value();
@@ -385,7 +385,7 @@ bool InfoPanel::Hover(double x, double y)
 
 	hoverPoint = Point(x, y);
 	
-	const vector<Armament::Weapon> &weapons = (**shipIt).Weapons();
+	const vector<Hardpoint> &weapons = (**shipIt).Weapons();
 	hover = -1;
 	for(const auto &zone : zones)
 		if(zone.Contains(hoverPoint) && (!showShip || selected == -1
@@ -730,7 +730,7 @@ void InfoPanel::DrawShip() const
 	{
 		for(unsigned i = 0; i < ship.Weapons().size(); ++i)
 		{
-			const Armament::Weapon &weapon = ship.Weapons()[i];
+			const Hardpoint &weapon = ship.Weapons()[i];
 			if(weapon.IsTurret() == isTurret)
 			{
 				if(static_cast<int>(i) == hover)

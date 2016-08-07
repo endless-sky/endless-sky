@@ -30,7 +30,7 @@ public:
 	~TradingPanel();
 	
 	virtual void Step() override;
-	virtual void Draw() const override;
+	virtual void Draw() override;
 	
 	
 protected:

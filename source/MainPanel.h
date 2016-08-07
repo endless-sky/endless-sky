@@ -32,7 +32,7 @@ public:
 	MainPanel(PlayerInfo &player);
 	
 	virtual void Step() override;
-	virtual void Draw() const override;
+	virtual void Draw() override;
 	
 	// The planet panel calls this when it closes.
 	void OnCallback();

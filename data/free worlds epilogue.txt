@@ -123,7 +123,7 @@ mission "FW Epilogue: Freya"
 					goto pug
 			
 			label technology
-			`	"Some," she says. "Everything the left behind is like, well... an educational toy. Like some absent parent left behind a super-advanced chemistry set for their kids to play with. That's how all the artifacts we find here feel - not like the real thing that the Pug would have used, but like a simplified model that they gave us to help us figure it out. Everything they left behind, I'm convinced they left intentionally, because it could teach us something they wanted us to know, while keeping all their true secrets secret. The rest of you moved on, and I'm still here playing their game."`
+			`	"Some," she says. "Everything they left behind is like, well... an educational toy. Like some absent parent left behind a super-advanced chemistry set for their kids to play with. That's how all the artifacts we find here feel - not like the real thing that the Pug would have used, but like a simplified model that they gave us to help us figure it out. Everything they left behind, I'm convinced they left intentionally, because it could teach us something they wanted us to know, while keeping all their true secrets secret. The rest of you moved on, and I'm still here playing their game."`
 				goto end
 			
 			label pug
