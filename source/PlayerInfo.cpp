@@ -221,7 +221,7 @@ void PlayerInfo::Load(const string &path)
 	// specified its location, but this is to avoid null locations.)
 	for(shared_ptr<Ship> &ship : ships)
 	{
-		if(!ship->GetSystem())
+		if(!ship->GetSystem() && !ship->CanBeCarried())
 			ship->SetSystem(system);
 		if(ship->GetSystem() == system)
 			ship->SetPlanet(planet);
@@ -825,9 +825,10 @@ void PlayerInfo::Land(UI *ui)
 				if(ship->IsDestroyed())
 					mission.Do(ShipEvent(nullptr, ship, ShipEvent::DESTROY), *this, ui);
 	
-	// "Unload" all fighters, so they will get recharged, etc.
+	// "Unload" fighters that are with you, so they will get recharged, etc.
 	for(const shared_ptr<Ship> &ship : ships)
-		ship->UnloadBays();
+		if(ship->GetSystem() == system && !ship->IsDisabled())
+			ship->UnloadBays();
 	
 	// Recharge any ships that are landed with you on the planet.
 	bool hasSpaceport = planet->HasSpaceport() && planet->CanUseServices();
