@@ -48,6 +48,7 @@ namespace {
 	};
 	
 	static const set<string> BOOLEAN_ATTRIBUTES = {
+		"unremovable",
 		"unplunderable"
 	};
 }
