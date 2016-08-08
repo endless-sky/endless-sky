@@ -221,7 +221,7 @@ void PlayerInfo::Load(const string &path)
 	// specified its location, but this is to avoid null locations.)
 	for(shared_ptr<Ship> &ship : ships)
 	{
-		if(!ship->GetSystem() && !ship->CanBeCarried())
+		if(!ship->GetSystem())
 			ship->SetSystem(system);
 		if(ship->GetSystem() == system)
 			ship->SetPlanet(planet);

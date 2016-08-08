@@ -412,9 +412,8 @@ void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &player)
 		
 		// Handle fighters:
 		const string &category = it->Attributes().Category();
-		bool isDrone = (category == "Drone");
 		bool isFighter = (category == "Fighter");
-		if(isDrone || isFighter)
+		if(it->CanBeCarried())
 		{
 			bool hasSpace = (parent && parent->BaysFree(isFighter) && !parent->GetGovernment()->IsEnemy(gov));
 			if(!hasSpace || parent->IsDestroyed() || parent->GetSystem() != it->GetSystem())
@@ -424,7 +423,7 @@ void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &player)
 				it->SetParent(parent);
 				for(const auto &other : ships)
 					if(other->GetGovernment() == gov && !other->IsDisabled()
-							&& other->GetSystem() == it->GetSystem() && !other->CanBeCarried())
+							&& other->GetSystem() == it->GetSystem() && !other->CanBeCarried() && other->CanCarry(*it.get()))
 					{
 						parent = other;
 						it->SetParent(other);
