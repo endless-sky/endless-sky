@@ -1294,7 +1294,7 @@ void Engine::CalculateStep()
 	}
 	
 	// Occasionally have some ship hail you.
-	if(!Random::Int(600) && !ships.empty())
+	if(!Random::Int(600) && !player.IsDead() && !ships.empty())
 	{
 		shared_ptr<Ship> source;
 		unsigned i = Random::Int(ships.size());
