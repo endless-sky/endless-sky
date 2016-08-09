@@ -825,10 +825,9 @@ void PlayerInfo::Land(UI *ui)
 				if(ship->IsDestroyed())
 					mission.Do(ShipEvent(nullptr, ship, ShipEvent::DESTROY), *this, ui);
 	
-	// "Unload" fighters that are with you, so they will get recharged, etc.
+	// "Unload" all fighters, so they will get recharged, etc.
 	for(const shared_ptr<Ship> &ship : ships)
-		if(ship->GetSystem() == system && !ship->IsDisabled())
-			ship->UnloadBays();
+		ship->UnloadBays();
 	
 	// Recharge any ships that are landed with you on the planet.
 	bool hasSpaceport = planet->HasSpaceport() && planet->CanUseServices();
