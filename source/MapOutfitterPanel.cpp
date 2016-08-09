@@ -75,6 +75,22 @@ const ItemInfoDisplay &MapOutfitterPanel::CompareInfo() const
 
 
 
+const string &MapOutfitterPanel::KeyLabel(int index) const
+{
+	static const string MINE = "Mine this here";
+	if(index == 2 && selected && selected->Get("installable") < 0)
+		return MINE;
+	
+	static const string LABEL[3] = {
+		"Has no outfitter",
+		"Has outfitter",
+		"Sells this outfit"
+	};
+	return LABEL[index];
+}
+
+
+
 void MapOutfitterPanel::Select(int index)
 {
 	if(index < 0 || index >= static_cast<int>(list.size()))
@@ -101,16 +117,27 @@ void MapOutfitterPanel::Compare(int index)
 
 
 
-bool MapOutfitterPanel::HasAny(const Planet *planet) const
+double MapOutfitterPanel::SystemValue(const System *system) const
 {
-	return !planet->Outfitter().empty();
-}
-
-
-
-bool MapOutfitterPanel::HasThis(const Planet *planet) const
-{
-	return planet->Outfitter().Has(selected);
+	if(!system)
+		return 0.;
+	
+	auto it = player.Harvested().lower_bound(pair<const System *, const Outfit *>(system, nullptr));
+	for( ; it != player.Harvested().end() && it->first == system; ++it)
+		if(it->second == selected)
+			return 1.;
+	
+	double value = -.5;
+	for(const StellarObject &object : system->Objects())
+		if(object.GetPlanet())
+		{
+			const auto &outfitter = object.GetPlanet()->Outfitter();
+			if(outfitter.Has(selected))
+				return 1.;
+			if(!outfitter.empty())
+				value = 0.;
+		}
+	return value;
 }
 
 
@@ -153,15 +180,20 @@ void MapOutfitterPanel::DrawItems() const
 		{
 			string price = Format::Number(outfit->Cost()) + " credits";
 			
-			double space = -outfit->Get("outfit space");
-			string info = Format::Number(space);
-			info += (abs(space) == 1. ? " ton" : " tons");
-			if(space && -outfit->Get("weapon capacity") == space)
-				info += " of weapon space";
-			else if(space && -outfit->Get("engine capacity") == space)
-				info += " of engine space";
+			string info;
+			if(outfit->Get("installable") < 0.)
+				info = "(Mined from asteroids)";
 			else
-				info += " of outfit space";
+			{
+				double space = -outfit->Get("outfit space");
+				info = Format::Number(space) + (abs(space) == 1. ? " ton" : " tons");
+				if(space && -outfit->Get("weapon capacity") == space)
+					info += " of weapon space";
+				else if(space && -outfit->Get("engine capacity") == space)
+					info += " of engine space";
+				else
+					info += " of outfit space";
+			}
 			
 			bool isForSale = true;
 			if(selectedSystem)
@@ -197,6 +229,12 @@ void MapOutfitterPanel::Init()
 					catalog[outfit->Category()].push_back(outfit);
 					seen.insert(outfit);
 				}
+	for(const auto &it : player.Harvested())
+		if(!seen.count(it.second))
+		{
+			catalog[it.second->Category()].push_back(it.second);
+			seen.insert(it.second);
+		}
 	
 	for(auto &it : catalog)
 		sort(it.second.begin(), it.second.end(),

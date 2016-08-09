@@ -74,6 +74,18 @@ const ItemInfoDisplay &MapShipyardPanel::CompareInfo() const
 
 
 
+const string &MapShipyardPanel::KeyLabel(int index) const
+{
+	static const string LABEL[3] = {
+		"Has no shipyard",
+		"Has shipyard",
+		"Sells this ship"
+	};
+	return LABEL[index];
+}
+
+
+
 void MapShipyardPanel::Select(int index)
 {
 	if(index < 0 || index >= static_cast<int>(list.size()))
@@ -100,16 +112,22 @@ void MapShipyardPanel::Compare(int index)
 
 
 
-bool MapShipyardPanel::HasAny(const Planet *planet) const
+double MapShipyardPanel::SystemValue(const System *system) const
 {
-	return !planet->Shipyard().empty();
-}
-
-
-
-bool MapShipyardPanel::HasThis(const Planet *planet) const
-{
-	return planet->Shipyard().Has(selected);
+	if(!system)
+		return 0.;
+	
+	double value = -.5;
+	for(const StellarObject &object : system->Objects())
+		if(object.GetPlanet())
+		{
+			const auto &shipyard = object.GetPlanet()->Shipyard();
+			if(shipyard.Has(selected))
+				return 1.;
+			if(!shipyard.empty())
+				value = 0.;
+		}
+	return value;
 }
 
 

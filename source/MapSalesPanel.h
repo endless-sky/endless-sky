@@ -40,7 +40,6 @@ public:
 	bool Hover(int x, int y);
 	bool Drag(double dx, double dy);
 	bool Scroll(double dx, double dy);
-	double SystemValue(const System *system) const;
 	
 	
 protected:
@@ -48,11 +47,11 @@ protected:
 	virtual const Sprite *CompareSprite() const = 0;
 	virtual const ItemInfoDisplay &SelectedInfo() const = 0;
 	virtual const ItemInfoDisplay &CompareInfo() const = 0;
+	virtual const std::string &KeyLabel(int index) const = 0;
 
 	virtual void Select(int index) = 0;
 	virtual void Compare(int index) = 0;
-	virtual bool HasAny(const Planet *planet) const = 0;
-	virtual bool HasThis(const Planet *planet) const = 0;
+	virtual double SystemValue(const System *system) const = 0;
 	virtual int FindItem(const std::string &text) const = 0;
 	
 	virtual void DrawItems() const = 0;

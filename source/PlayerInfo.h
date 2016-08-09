@@ -24,8 +24,9 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <map>
 #include <memory>
 #include <set>
-#include <vector>
 #include <string>
+#include <utility>
+#include <vector>
 
 class DataNode;
 class Government;
@@ -191,6 +192,10 @@ public:
 	// available to buy back until you take off.
 	std::map<const Outfit *, int> &SoldOutfits();
 	
+	// Keep track of what materials you have mined in each system.
+	void Harvest(const Outfit *type);
+	const std::set<std::pair<const System *, const Outfit *>> &Harvested() const;
+	
 	
 private:
 	// Don't anyone else to copy this class, because pointers won't get
@@ -243,6 +248,7 @@ private:
 	const Outfit *selectedWeapon = nullptr;
 	
 	std::map<const Outfit *, int> soldOutfits;
+	std::set<std::pair<const System *, const Outfit *>> harvested;
 	
 	// Changes that this PlayerInfo wants to make to the global galaxy state:
 	std::vector<std::pair<const Government *, double>> reputationChanges;

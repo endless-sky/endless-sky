@@ -247,7 +247,6 @@ bool Personality::IsSwarming() const
 
 
 
-
 bool Personality::IsUnconstrained() const
 {
 	return flags & UNCONSTRAINED;

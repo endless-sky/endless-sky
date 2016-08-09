@@ -995,7 +995,10 @@ void Engine::CalculateStep()
 				if(!name.empty())
 				{
 					if(it->OutfitType()->Get("installable") < 0.)
+					{
 						commodity = it->OutfitType()->Name();
+						player.Harvest(it->OutfitType());
+					}
 					else
 						Messages::Add(name + Format::Number(amount) + " " + it->OutfitType()->Name()
 							+ (amount == 1 ? "." : "s."));
