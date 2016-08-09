@@ -988,6 +988,7 @@ void Engine::CalculateStep()
 					name = "You picked up ";
 			}
 			string commodity;
+			string message;
 			int amount = 0;
 			if(it->OutfitType())
 			{
@@ -1000,8 +1001,8 @@ void Engine::CalculateStep()
 						player.Harvest(it->OutfitType());
 					}
 					else
-						Messages::Add(name + Format::Number(amount) + " " + it->OutfitType()->Name()
-							+ (amount == 1 ? "." : "s."));
+						message = name + Format::Number(amount) + " " + it->OutfitType()->Name()
+							+ (amount == 1 ? "." : "s.");
 				}
 			}
 			else
@@ -1012,8 +1013,15 @@ void Engine::CalculateStep()
 					
 			}
 			if(!commodity.empty())
-				Messages::Add(name + (amount == 1 ? "a ton" : Format::Number(amount) + " tons")
-					+ " of " + Format::LowerCase(commodity) + ".");
+				message = name + (amount == 1 ? "a ton" : Format::Number(amount) + " tons")
+					+ " of " + Format::LowerCase(commodity) + ".";
+			if(!message.empty())
+			{
+				int free = collector->Cargo().Free();
+				message += " (" + Format::Number(free) + (free == 1 ? " ton" : " tons");
+				message += " of free space remaining.)";
+				Messages::Add(message);
+			}
 			
 			it = flotsam.erase(it);
 			continue;
