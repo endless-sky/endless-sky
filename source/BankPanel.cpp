@@ -236,6 +236,7 @@ bool BankPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 			else
 				++i;
 		}
+		qualify = player.Accounts().Prequalify();
 	}
 	else
 		return false;
