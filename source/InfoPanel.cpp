@@ -455,6 +455,8 @@ void InfoPanel::UpdateInfo()
 	
 	const Ship &ship = **shipIt;
 	info.Update(ship);
+	if(player.Flagship() && ship.GetSystem() == player.GetSystem())
+		player.Flagship()->SetTargetShip(*shipIt);
 	
 	outfits.clear();
 	for(const auto &it : ship.Outfits())
