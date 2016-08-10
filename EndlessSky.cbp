@@ -196,6 +196,8 @@
 		<Unit filename="source/MenuPanel.h" />
 		<Unit filename="source/Messages.cpp" />
 		<Unit filename="source/Messages.h" />
+		<Unit filename="source/Minable.cpp" />
+		<Unit filename="source/Minable.h" />
 		<Unit filename="source/Mission.cpp" />
 		<Unit filename="source/Mission.h" />
 		<Unit filename="source/MissionAction.cpp" />
@@ -246,6 +248,8 @@
 		<Unit filename="source/Radar.h" />
 		<Unit filename="source/Random.cpp" />
 		<Unit filename="source/Random.h" />
+		<Unit filename="source/Rectangle.cpp" />
+		<Unit filename="source/Rectangle.h" />
 		<Unit filename="source/RingShader.cpp" />
 		<Unit filename="source/RingShader.h" />
 		<Unit filename="source/Sale.h" />

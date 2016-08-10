@@ -15,9 +15,11 @@ mission "FW Conservatory 1"
 	description "Transport Mr. Eyes and the Andersons to <destination>, where he will be helping to set up a public university."
 	source Bourne
 	destination Winter
+	passengers 3
 	to offer
 		has "FW Senate 1B: done"
 		not "fw conservatory founded"
+	blocked "You meet up with Ijs in the spaceport, but he tells you that you will need three bunks for him and some friends. Return here once you have space available."
 	
 	on offer
 		conversation

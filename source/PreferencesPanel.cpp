@@ -62,15 +62,15 @@ PreferencesPanel::PreferencesPanel()
 
 
 // Draw this panel.
-void PreferencesPanel::Draw() const
+void PreferencesPanel::Draw()
 {
 	glClear(GL_COLOR_BUFFER_BIT);
 	GameData::Background().Draw(Point(), Point());
 	
-	const Interface *menu = GameData::Interfaces().Get("preferences");
 	Information info;
 	info.SetBar("volume", Audio::Volume());
-	menu->Draw(info);
+	GameData::Interfaces().Get("menu background")->Draw(info, this);
+	GameData::Interfaces().Get("preferences")->Draw(info, this);
 	
 	Color back = *GameData::Colors().Get("faint");
 	Color dim = *GameData::Colors().Get("dim");
@@ -255,11 +255,6 @@ bool PreferencesPanel::Click(int x, int y)
 {
 	editing = -1;
 	
-	Point point(x, y);
-	char key = GameData::Interfaces().Get("preferences")->OnClick(point);
-	if(key)
-		return DoKey(key);
-	
 	if(x >= 265 && x < 295 && y >= -220 && y < 70)
 	{
 		Audio::SetVolume((20 - y) / 200.);
@@ -267,6 +262,7 @@ bool PreferencesPanel::Click(int x, int y)
 		return true;
 	}
 	
+	Point point(x, y);
 	for(unsigned index = 0; index < zones.size(); ++index)
 		if(zones[index].Contains(point))
 			editing = selected = index;

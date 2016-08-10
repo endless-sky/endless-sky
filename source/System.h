@@ -24,6 +24,7 @@ class DataNode;
 class Date;
 class Fleet;
 class Government;
+class Minable;
 class Planet;
 class Ship;
 
@@ -41,13 +42,16 @@ public:
 	class Asteroid {
 	public:
 		Asteroid(const std::string &name, int count, double energy);
+		Asteroid(const Minable *type, int count, double energy);
 		
 		const std::string &Name() const;
+		const Minable *Type() const;
 		int Count() const;
 		double Energy() const;
 		
 	private:
 		std::string name;
+		const Minable *type = nullptr;
 		int count;
 		double energy;
 	};
@@ -95,6 +99,8 @@ public:
 	const std::vector<StellarObject> &Objects() const;
 	// Get the habitable zone's center.
 	double HabitableZone() const;
+	// Get the radius of the asteroid belt.
+	double AsteroidBelt() const;
 	// Check if this system is inhabited.
 	bool IsInhabited() const;
 	// Check if ships of the given government can refuel in this system.
@@ -156,6 +162,7 @@ private:
 	std::vector<Asteroid> asteroids;
 	std::vector<FleetProbability> fleets;
 	double habitable = 1000.;
+	double asteroidBelt = 1500.;
 	
 	// Commodity prices.
 	std::map<std::string, Price> trade;

@@ -106,7 +106,7 @@ void TradingPanel::Step()
 
 
 
-void TradingPanel::Draw() const
+void TradingPanel::Draw()
 {
 	Color back = *GameData::Colors().Get("faint");
 	FillShader::Fill(Point(-60., FIRST_Y + 20 * selectedRow + 33), Point(480., 20.), back);
@@ -136,25 +136,25 @@ void TradingPanel::Draw() const
 	int missionCargo = player.Cargo().MissionCargoSize();
 	if(player.Cargo().HasOutfits() || missionCargo)
 	{
-		bool hasPlunder = false;
-		bool hasItems = false;
+		bool hasOutfits = false;
+		bool hasHarvested = false;
 		for(const auto &it : player.Cargo().Outfits())
 			if(it.second)
 			{
-				bool isItem = (it.first->Get("installable") < 0.);
-				(isItem ? hasItems : hasPlunder) = true;
+				bool isHarvested = (it.first->Get("installable") < 0.);
+				(isHarvested ? hasHarvested : hasOutfits) = true;
 			}
 		
 		string str = to_string(outfits + missionCargo);
-		if(hasItems && missionCargo)
+		if(hasHarvested && missionCargo)
 			str += " tons of mission cargo and other items.";
-		else if(hasPlunder && missionCargo)
-			str += " tons of plunder and mission cargo.";
-		else if(hasPlunder && hasItems)
-			str += " tons of plunder and harvested materials.";
-		else if(hasPlunder)
-			str += " tons of plundered outfits.";
-		else if(hasItems)
+		else if(hasOutfits && missionCargo)
+			str += " tons of outfits and mission cargo.";
+		else if(hasOutfits && hasHarvested)
+			str += " tons of outfits and harvested materials.";
+		else if(hasOutfits)
+			str += " tons of outfits.";
+		else if(hasHarvested)
 			str += " tons of harvested materials.";
 		else
 			str += " tons of mission cargo.";
@@ -211,7 +211,7 @@ void TradingPanel::Draw() const
 		info.SetCondition("can sell");
 	if(player.Cargo().Free() > 0)
 		info.SetCondition("can buy");
-	interface->Draw(info);
+	interface->Draw(info, this);
 }
 
 
@@ -269,15 +269,6 @@ bool TradingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 
 bool TradingPanel::Click(int x, int y)
 {
-	// Handle clicks on the interface buttons.
-	const Interface *interface = GameData::Interfaces().Get("trade");
-	if(interface)
-	{
-		char key = interface->OnClick(Point(x, y));
-		if(key)
-			return DoKey(key);
-	}
-	
 	int maxY = FIRST_Y + 25 + 20 * GameData::Commodities().size();
 	if(x >= MIN_X && x <= MAX_X && y >= FIRST_Y + 25 && y < maxY)
 	{

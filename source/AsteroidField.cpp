@@ -34,6 +34,7 @@ namespace {
 void AsteroidField::Clear()
 {
 	asteroids.clear();
+	minables.clear();
 }
 
 
@@ -48,11 +49,38 @@ void AsteroidField::Add(const string &name, int count, double energy)
 
 
 
+void AsteroidField::Add(const Minable *minable, int count, double energy, double beltRadius)
+{
+	// Double check that the given asteroid is defined.
+	if(!minable)
+		return;
+	
+	// Place copies of the given minable asteroid throughout the system.
+	for(int i = 0; i < count; ++i)
+	{
+		minables.emplace_back(*minable);
+		minables.back().Place(energy, beltRadius);
+	}
+}
+
+
+
 // Move all the asteroids forward one step.
-void AsteroidField::Step()
+void AsteroidField::Step(list<Effect> &effects, list<Flotsam> &flotsam)
 {
 	for(Asteroid &asteroid : asteroids)
 		asteroid.Step();
+	
+	// Step through the minables. Since they are destructible, we may need to
+	// remove them from the list.
+	auto it = minables.begin();
+	while(it != minables.end())
+	{
+		if(it->Move(effects, flotsam))
+			++it;
+		else
+			it = minables.erase(it);
+	}
 }
 
 
@@ -62,28 +90,46 @@ void AsteroidField::Draw(DrawList &draw, const Point &center) const
 {
 	for(const Asteroid &asteroid : asteroids)
 		asteroid.Draw(draw, center);
+	for(const Minable &minable : minables)
+		draw.Add(minable);
 }
 
 
 
 // Check if the given projectile collides with any asteroids.
-double AsteroidField::Collide(const Projectile &projectile, int step, Point *hitVelocity) const
+double AsteroidField::Collide(const Projectile &projectile, int step, double closestHit, Point *hitVelocity)
 {
-	// The collision "distance" is how far along the projectile's flight path
-	// for this frame it intersects the asteroid.
-	double distance = 1.;
+	// First, check for collisions with ordinary asteroids.
 	for(const Asteroid &asteroid : asteroids)
 	{
 		double thisDistance = asteroid.Collide(projectile, step);
-		if(thisDistance < distance)
+		if(thisDistance < closestHit)
 		{
-			distance = thisDistance;
+			closestHit = thisDistance;
 			if(hitVelocity)
 				*hitVelocity = asteroid.Velocity();
 		}
 	}
+	// Now, check for collisions with minable asteroids. Because this is the
+	// very last collision check to be done, if a minable asteroid is the
+	// closest hit, it really is what the projectile struck - that is, we are
+	// not going to later find a ship or something else that is closer.
+	Minable *hit = nullptr;
+	for(Minable &minable : minables)
+	{
+		double thisDistance = minable.Collide(projectile, step);
+		if(thisDistance < closestHit)
+		{
+			closestHit = thisDistance;
+			hit = &minable;
+			if(hitVelocity)
+				*hitVelocity = minable.Velocity();
+		}
+	}
+	if(hit)
+		hit->TakeDamage(projectile);
 	
-	return distance;
+	return closestHit;
 }
 
 

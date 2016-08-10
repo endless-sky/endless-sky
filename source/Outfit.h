@@ -70,6 +70,8 @@ public:
 	const std::map<const Sound *, int> &FlareSounds() const;
 	// Get the afterburner effect, if any.
 	const std::map<const Effect *, int> &AfterburnerEffects() const;
+	// Get the sprite this outfit uses when dumped into space.
+	const Sprite *FlotsamSprite() const;
 	
 	
 private:
@@ -84,6 +86,7 @@ private:
 	std::vector<std::pair<Body, int>> flareSprites;
 	std::map<const Sound *, int> flareSounds;
 	std::map<const Effect *, int> afterburnerEffects;
+	const Sprite *flotsamSprite = nullptr;
 };
 
 

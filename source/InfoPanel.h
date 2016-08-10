@@ -38,7 +38,7 @@ class InfoPanel : public Panel {
 public:
 	InfoPanel(PlayerInfo &player, bool showFlagship = false);
 	
-	virtual void Draw() const override;
+	virtual void Draw() override;
 	
 	
 protected:

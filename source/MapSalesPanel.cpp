@@ -74,7 +74,7 @@ MapSalesPanel::MapSalesPanel(const MapPanel &panel, bool isOutfitters)
 
 
 
-void MapSalesPanel::Draw() const
+void MapSalesPanel::Draw()
 {
 	MapPanel::Draw();
 	
@@ -149,11 +149,6 @@ bool MapSalesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 
 bool MapSalesPanel::Click(int x, int y)
 {
-	const Interface *interface = GameData::Interfaces().Get("map buttons");
-	char key = interface->OnClick(Point(x, y));
-	if(key)
-		return DoKey(key);
-	
 	if(x < Screen::Left() + WIDTH)
 	{
 		Point point(x, y);
@@ -232,25 +227,6 @@ bool MapSalesPanel::Scroll(double dx, double dy)
 
 
 
-double MapSalesPanel::SystemValue(const System *system) const
-{
-	if(!system)
-		return 0.;
-	
-	double value = -.5;
-	for(const StellarObject &object : system->Objects())
-		if(object.GetPlanet())
-		{
-			if(HasThis(object.GetPlanet()))
-				return 1.;
-			if(HasAny(object.GetPlanet()))
-				value = 0.;
-		}
-	return value;
-}
-
-
-
 void MapSalesPanel::DrawKey() const
 {
 	const Sprite *back = SpriteSet::Get("ui/sales key");
@@ -263,11 +239,6 @@ void MapSalesPanel::DrawKey() const
 	Point pos(Screen::Left() + 50. + WIDTH, Screen::Top() + 12.);
 	Point textOff(10., -.5 * font.Height());
 	
-	static const string LABEL[][2] = {
-		{"Has no shipyard", "Has no outfitter"},
-		{"Has shipyard", "Has outfitter"},
-		{"Sells this ship", "Sells this outfit"}
-	};
 	static const double VALUE[] = {
 		-.5,
 		0.,
@@ -279,7 +250,7 @@ void MapSalesPanel::DrawKey() const
 	{
 		bool isSelected = (VALUE[i] == selectedValue);
 		RingShader::Draw(pos, OUTER, INNER, MapColor(VALUE[i]));
-		font.Draw(LABEL[i][isOutfitters], pos + textOff, isSelected ? bright : dim);
+		font.Draw(KeyLabel(i), pos + textOff, isSelected ? bright : dim);
 		pos.Y() += 20.;
 	}
 }
@@ -310,7 +281,7 @@ void MapSalesPanel::DrawPanel() const
 
 
 
-void MapSalesPanel::DrawButtons() const
+void MapSalesPanel::DrawButtons()
 {
 	Information info;
 	info.SetCondition(isOutfitters ? "is outfitters" : "is shipyards");
@@ -319,7 +290,7 @@ void MapSalesPanel::DrawButtons() const
 	if(ZoomIsMin())
 		info.SetCondition("min zoom");
 	const Interface *interface = GameData::Interfaces().Get("map buttons");
-	interface->Draw(info);
+	interface->Draw(info, this);
 }
 
 
@@ -455,10 +426,8 @@ void MapSalesPanel::ScrollTo(int index)
 		return;
 	
 	const ClickZone<int> &it = zones[selected];
-	double top = (it.Center() - it.Size()).Y();
-	double bottom = (it.Center() + it.Size()).Y();
-	if(bottom > Screen::Bottom())
-		scroll += Screen::Bottom() - bottom;
-	if(top < Screen::Top())
-		scroll += Screen::Top() - top;
+	if(it.Bottom() > Screen::Bottom())
+		scroll += Screen::Bottom() - it.Bottom();
+	if(it.Top() < Screen::Top())
+		scroll += Screen::Top() - it.Top();
 }

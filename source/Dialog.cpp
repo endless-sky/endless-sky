@@ -102,7 +102,7 @@ Dialog::Dialog(const string &text, PlayerInfo &player, const System *system)
 
 
 // Draw this panel.
-void Dialog::Draw() const
+void Dialog::Draw()
 {
 	DrawBackdrop();
 	
@@ -264,7 +264,7 @@ void Dialog::Init(const string &message, bool canCancel, bool isMission)
 	// bottom are "padding," but text.Height() over-reports the height by about
 	// 5 pixels because it includes its own padding at the bottom. If there is a
 	// text input, we need another 20 pixels for it and 10 pixels padding.
-	height = 10 + (text.Height() - 5) + 10 + 30 * (intFun || stringFun);
+	height = 10 + (text.Height() - 5) + 10 + 30 * (!isMission && (intFun || stringFun));
 	// Determine how many 40-pixel extension panels we need.
 	if(height <= 80)
 		height = 0;

@@ -37,7 +37,7 @@ void Panel::Step()
 
 
 // Draw this panel.
-void Panel::Draw() const
+void Panel::Draw()
 {
 }
 
@@ -65,6 +65,46 @@ bool Panel::TrapAllEvents()
 bool Panel::IsInterruptible() const
 {
 	return isInterruptible;
+}
+
+
+
+// Clear the list of clickable zones.
+void Panel::ClearZones()
+{
+	zones.clear();
+}
+
+
+
+// Add a clickable zone to the panel.
+void Panel::AddZone(const Rectangle &rect, const function<void()> &fun)
+{
+	// The most recently added zone will typically correspond to what was drawn
+	// most recently, so it should be on top.
+	zones.emplace_front(rect, fun);
+}
+
+
+
+void Panel::AddZone(const Rectangle &rect, SDL_Keycode key)
+{
+	AddZone(rect, bind(&Panel::KeyDown, this, key, 0, Command()));
+}
+
+
+
+// Check if a click at the given coordinates triggers a clickable zone. If
+// so, apply that zone's action and return true.
+bool Panel::ZoneClick(const Point &point)
+{
+	for(const Zone &zone : zones)
+		if(zone.Contains(point))
+		{
+			zone.Click();
+			return true;
+		}
+	return false;
 }
 
 

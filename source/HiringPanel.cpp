@@ -50,7 +50,7 @@ void HiringPanel::Step()
 
 
 
-void HiringPanel::Draw() const
+void HiringPanel::Draw()
 {
 	if(!player.Flagship())
 		return;
@@ -105,7 +105,7 @@ void HiringPanel::Draw() const
 	if(maxFire)
 		info.SetCondition("can fire");
 	
-	interface->Draw(info);
+	interface->Draw(info, this);
 }
 
 
@@ -124,22 +124,6 @@ bool HiringPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 	{
 		player.Flagship()->AddCrew(-min(maxFire, Modifier()));
 		player.UpdateCargoCapacities();
-	}
-	
-	return false;
-}
-
-
-
-bool HiringPanel::Click(int x, int y)
-{
-	// Handle clicks on the interface buttons.
-	const Interface *interface = GameData::Interfaces().Get("hiring");
-	if(interface)
-	{
-		char key = interface->OnClick(Point(x, y));
-		if(key)
-			return DoKey(key);
 	}
 	
 	return false;

@@ -72,8 +72,7 @@ namespace {
 
 // Default settings for player's ships.
 Personality::Personality()
-	: flags(DISABLES), confusionMultiplier(DEFAULT_CONFUSION), aimMultiplier(1.),
-	confusionAngle(Angle::Random())
+	: flags(DISABLES), confusionMultiplier(DEFAULT_CONFUSION), aimMultiplier(1.)
 {
 }
 
@@ -247,7 +246,6 @@ bool Personality::IsSwarming() const
 
 
 
-
 bool Personality::IsUnconstrained() const
 {
 	return flags & UNCONSTRAINED;
@@ -264,12 +262,19 @@ const Point &Personality::Confusion() const
 
 void Personality::UpdateConfusion(bool isFiring)
 {
-	double aim = (isFiring ? .25 : 1.);
-	aimMultiplier = .99 * aimMultiplier + .01 * aim;
+	// If you're firing weapons, aiming accuracy should slowly improve until it
+	// is 4 times more precise than it initially was.
+	aimMultiplier = .99 * aimMultiplier + .01 * (isFiring ? .5 : 2.);
 	
-	confusionAngle += Angle::Random(20) - Angle::Random(20);
-	confusion += (.1 * confusionMultiplier * aimMultiplier) * confusionAngle.Unit();
-	confusion *= .9;
+	// Try to correct for any error in the aim, but constantly introduce new
+	// error and overcompensation so it oscillates around the origin. Apply
+	// damping to the position and velocity to avoid extreme outliers, though.
+	if(confusion.X() || confusion.Y())
+		confusionVelocity -= .001 * confusion.Unit();
+	confusionVelocity += .001 * Angle::Random().Unit();
+	confusionVelocity *= .999;
+	confusion += confusionVelocity * (confusionMultiplier * aimMultiplier);
+	confusion *= .9999;
 }
 
 

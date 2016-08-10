@@ -8,98 +8,217 @@
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
+minable "aluminum"
+	sprite "asteroid/silicon/spin"
+	hull 1000
+	payload "Aluminum" 40
+	explode "smoke" 40
+	explode "bolide" 40
+	explode "final explosion large"
+
 outfit "Aluminum"
 	category "Special"
 	cost 1800
 	thumbnail "outfit/harvested aluminum"
+	"flotsam sprite" "effect/flotsam aluminum"
 	"mass" 1
 	"installable" -1
 	description "Lightweight and rust resistant, aluminum is often used for the hulls of civilian spacecraft that do not need to be able to stand up to prolonged weapons fire."
+
+
+minable "copper"
+	sprite "asteroid/gold/spin"
+	hull 1200
+	payload "Copper" 20
+	explode "smoke" 20
+	explode "bolide" 20
+	explode "final explosion small"
 
 outfit "Copper"
 	category "Special"
 	cost 3000
 	thumbnail "outfit/harvested copper"
+	"flotsam sprite" "effect/flotsam copper"
 	"mass" 1
 	"installable" -1
 	description "In its pure form, copper is valued mostly for its high thermal and electrical conductivity. But, it is also used in small quantities in a wide variety of alloys."
+
+
+minable "gold"
+	sprite "asteroid/gold/spin"
+	hull 2800
+	payload "Gold" 16
+	explode "smoke" 20
+	explode "bolide" 20
+	explode "final explosion small"
 
 outfit "Gold"
 	category "Special"
 	cost 8000
 	thumbnail "outfit/harvested gold"
+	"flotsam sprite" "effect/flotsam gold"
 	"mass" 1
 	"installable" -1
 	description "Useful for its high electrical conductivity and prized for its beauty and luxury status, gold can always find a well-paying market."
+
+
+minable "iron"
+	sprite "asteroid/iron/spin"
+	hull 1600
+	payload "Iron" 50
+	explode "smoke" 40
+	explode "bolide" 40
+	explode "final explosion large"
 
 outfit "Iron"
 	category "Special"
 	cost 1200
 	thumbnail "outfit/harvested iron"
+	"flotsam sprite" "effect/flotsam iron"
 	"mass" 1
 	"installable" -1
 	description "Although it is one of the most common metals, iron is also one of the most useful."
+
+
+minable "lead"
+	sprite "asteroid/lead/spin"
+	hull 800
+	payload "Lead" 32
+	explode "smoke" 30
+	explode "bolide" 30
+	explode "final explosion medium"
 
 outfit "Lead"
 	category "Special"
 	cost 900
 	thumbnail "outfit/harvested lead"
+	"flotsam sprite" "effect/flotsam lead"
 	"mass" 1
 	"installable" -1
 	description "As the densest non-radioactive element, lead has been the material of choice for bullets ever since the invention of firearms. Its other uses are limited by regulations for preventing lead poisoning."
+
+
+minable "neodymium"
+	sprite "asteroid/iron/spin"
+	hull 3600
+	payload "Neodymium" 40
+	explode "smoke" 40
+	explode "bolide" 40
+	explode "final explosion large"
 
 outfit "Neodymium"
 	category "Special"
 	cost 3800
 	thumbnail "outfit/harvested neodymium"
+	"flotsam sprite" "effect/flotsam neodymium"
 	"mass" 1
 	"installable" -1
 	description "One of the most abundant of the rare earth elements, neodymium is used to make strongly magnetic alloys for use in engines and generators."
+
+
+minable "platinum"
+	sprite "asteroid/silver/spin"
+	hull 4000
+	payload "Platinum" 16
+	explode "smoke" 20
+	explode "bolide" 20
+	explode "final explosion small"
 
 outfit "Platinum"
 	category "Special"
 	cost 10000
 	thumbnail "outfit/harvested platinum"
+	"flotsam sprite" "effect/flotsam platinum"
 	"mass" 1
 	"installable" -1
 	description "As rare as gold and even more valuable, platinum has many industrial uses because it resists oxidation even when heated to high temperatures."
+
+
+minable "silicon"
+	sprite "asteroid/silicon/spin"
+	hull 400
+	payload "Silicon" 50
+	explode "smoke" 40
+	explode "bolide" 40
+	explode "final explosion large"
 
 outfit "Silicon"
 	category "Special"
 	cost 400
 	thumbnail "outfit/harvested silicon"
+	"flotsam sprite" "effect/flotsam silicon"
 	"mass" 1
 	"installable" -1
 	description "Silicon in its pure form is used for electronics and semiconductors. It is a very common element and easy to harvest."
+
+
+minable "silver"
+	sprite "asteroid/silver/spin"
+	hull 2000
+	payload "Silver" 20
+	explode "smoke" 20
+	explode "bolide" 20
+	explode "final explosion small"
 
 outfit "Silver"
 	category "Special"
 	cost 6000
 	thumbnail "outfit/harvested silver"
+	"flotsam sprite" "effect/flotsam silver"
 	"mass" 1
 	"installable" -1
 	description "Although not as pricy as gold, silver is used not just in jewelry but in electronics, disinfectants, and high quality mirrors, and as a chemical catalyst."
+
+
+minable "titanium"
+	sprite "asteroid/titanium/spin"
+	hull 2400
+	payload "Titanium" 32
+	explode "smoke" 30
+	explode "bolide" 30
+	explode "final explosion medium"
 
 outfit "Titanium"
 	category "Special"
 	cost 2500
 	thumbnail "outfit/harvested titanium"
+	"flotsam sprite" "effect/flotsam titanium"
 	"mass" 1
 	"installable" -1
 	description "Strong, lightweight, and resistant to corrosion, titanium is one of the chief metals used for starship hulls and structural members."
+
+
+minable "tungsten"
+	sprite "asteroid/titanium/spin"
+	hull 4800
+	payload "Tungsten" 24
+	explode "smoke" 30
+	explode "bolide" 30
+	explode "final explosion medium"
 
 outfit "Tungsten"
 	category "Special"
 	cost 4500
 	thumbnail "outfit/harvested tungsten"
+	"flotsam sprite" "effect/flotsam tungsten"
 	"mass" 1
 	"installable" -1
 	description "Tungsten has many industrial uses due to its high melting point and its strength."
+
+
+minable "uranium"
+	sprite "asteroid/lead/spin"
+	hull 3200
+	payload "Uranium" 24
+	explode "smoke" 30
+	explode "bolide" 30
+	explode "final explosion medium"
 
 outfit "Uranium"
 	category "Special"
 	cost 5000
 	thumbnail "outfit/harvested uranium"
+	"flotsam sprite" "effect/flotsam uranium"
 	"mass" 1
 	"installable" -1
 	description "Uranium is best known for its use in the nuclear reactors that power large starships. Its most stable isotope U-238 is also used for ultra-strong hull plating and for armor-piercing projectiles."

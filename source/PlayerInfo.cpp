@@ -144,6 +144,14 @@ void PlayerInfo::Load(const string &path)
 				if(grand.Size() >= 2)
 					soldOutfits[GameData::Outfits().Get(grand.Token(0))] += grand.Value(1);
 		}
+		else if(child.Token(0) == "harvested")
+		{
+			for(const DataNode &grand : child)
+				if(grand.Size() >= 2)
+					harvested.insert(make_pair(
+						GameData::Systems().Get(grand.Token(0)),
+						GameData::Outfits().Get(grand.Token(1))));
+		}
 		else if(child.Token(0) == "mission")
 		{
 			missions.push_back(Mission());
@@ -1601,6 +1609,21 @@ map<const Outfit *, int> &PlayerInfo::SoldOutfits()
 
 
 
+void PlayerInfo::Harvest(const Outfit *type)
+{
+	if(type && system)
+		harvested.insert(make_pair(system, type));
+}
+
+
+
+const set<pair<const System *, const Outfit *>> &PlayerInfo::Harvested() const
+{
+	return harvested;
+}
+
+
+
 // Update the conditions that reflect the current status of the player.
 void PlayerInfo::UpdateAutoConditions()
 {
@@ -1757,6 +1780,17 @@ void PlayerInfo::Save(const string &path) const
 			for(const auto &it : soldOutfits)
 				if(it.second)
 					out.Write(it.first->Name(), it.second);
+		}
+		out.EndChild();
+	}
+	if(!harvested.empty())
+	{
+		out.Write("harvested");
+		out.BeginChild();
+		{
+			for(const auto &it : harvested)
+				if(it.first && it.second)
+					out.Write(it.first->Name(), it.second->Name());
 		}
 		out.EndChild();
 	}

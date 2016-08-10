@@ -149,54 +149,36 @@ HailPanel::HailPanel(PlayerInfo &player, const StellarObject *object)
 
 
 
-void HailPanel::Draw() const
+void HailPanel::Draw()
 {
 	DrawBackdrop();
 	
-	Information interfaceInfo;
-	interfaceInfo.SetString("header", header);
+	Information info;
+	info.SetString("header", header);
 	if(ship)
 	{
-		bool isEnemy = ship->GetGovernment()->IsEnemy();
-		if(!hasLanguage)
+		info.SetCondition("show assist");
+		if(hasLanguage && !ship->IsDisabled())
 		{
-			interfaceInfo.SetCondition("cannot assist");
-			interfaceInfo.SetCondition("cannot bribe");
-		}
-		else if(isEnemy)
-		{
-			if(!ship->IsDisabled())
-				interfaceInfo.SetCondition("can bribe");
-			interfaceInfo.SetCondition("cannot assist");
-		}
-		else
-		{
-			if(ship->GetGovernment()->GetName() == "Derelict")
-				interfaceInfo.SetCondition("cannot assist");
-			else
-				interfaceInfo.SetCondition("can assist");
+			if(ship->GetGovernment()->IsEnemy())
+				info.SetCondition("can bribe");
+			else if(ship->GetGovernment()->GetName() != "Derelict")
+				info.SetCondition("can assist");
 		}
 	}
 	else
 	{
-		if(!hasLanguage)
+		info.SetCondition("show dominate");
+		if(hasLanguage)
 		{
-			interfaceInfo.SetCondition("cannot dominate");
-			interfaceInfo.SetCondition("cannot bribe");
-		}
-		else
-		{
+			info.SetCondition("can dominate");
 			if(!planet->CanLand())
-				interfaceInfo.SetCondition("can bribe");
-			else
-				interfaceInfo.SetCondition("cannot bribe");
-		
-			interfaceInfo.SetCondition("can dominate");
+				info.SetCondition("can bribe");
 		}
 	}
 	
 	const Interface *interface = GameData::Interfaces().Get("hail panel");
-	interface->Draw(interfaceInfo);
+	interface->Draw(info, this);
 	
 	// Draw the sprite, rotated, scaled, and swizzled as necessary.
 	int swizzle = ship ? ship->GetGovernment()->GetSwizzle() : 0;
@@ -228,19 +210,19 @@ void HailPanel::Draw() const
 
 bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 {
-	bool shipIsEnemy = ship && ship->GetGovernment()->IsEnemy();
+	bool shipIsEnemy = (ship && ship->GetGovernment()->IsEnemy());
+	bool isDerelict = (ship && ship->GetGovernment()->GetName() == "Derelict");
+	
 	if(key == 'd' || key == SDLK_ESCAPE || key == SDLK_RETURN || (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
 		GetUI()->Pop(this);
-	else if(key == 'a' || key == 't' || key == 'h')
+	else if(key == 't' && hasLanguage && planet)
 	{
-		if(!hasLanguage)
-			return true;
-		if(planet)
-		{
-			message = planet->DemandTribute(player);
-			return true;
-		}
-		else if(shipIsEnemy || ship->GetGovernment()->GetName() == "Derelict")
+		message = planet->DemandTribute(player);
+		return true;
+	}
+	else if(key == 'h' && hasLanguage && ship)
+	{
+		if(shipIsEnemy || isDerelict)
 			return false;
 		if(playerNeedsHelp)
 		{
@@ -252,12 +234,11 @@ bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 				message = "Hang on, we'll be there in a minute.";
 			}
 			else if(ship->Fuel())
-				message = "Sorry, but if we give you fuel we won't have enough"
-					" to make it to the next system.";
+				message = "Sorry, but if we give you fuel we won't have enough to make it to the next system.";
 			else
 				message = "Sorry, we don't have any fuel.";
 		}
-		else if(ship)
+		else
 		{
 			if(bribe)
 				message = "Yeah, right. Don't push your luck.";
@@ -265,12 +246,10 @@ bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 				message = "You don't seem to be in need of repairs or fuel assistance.";
 		}
 	}
-	else if(key == 'b' || key == 'o')
+	else if((key == 'b' || key == 'o') && hasLanguage)
 	{
-		if(!hasLanguage)
-			return true;
 		// Make sure it actually makes sense to bribe this ship.
-		if((ship && (!shipIsEnemy || ship->GetGovernment()->GetName() == "Derelict")) || (planet && planet->CanLand()))
+		if((ship && (!shipIsEnemy || isDerelict)) || (planet && planet->CanLand()))
 			return true;
 		
 		if(bribe > player.Accounts().Credits())
@@ -295,22 +274,6 @@ bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 		}
 		else
 			message = "I do not want your money.";
-	}
-	
-	return true;
-}
-
-
-
-bool HailPanel::Click(int x, int y)
-{
-	// Handle clicks on the interface buttons.
-	const Interface *interface = GameData::Interfaces().Get("hail panel");
-	if(interface)
-	{
-		char key = interface->OnClick(Point(x, y));
-		if(key)
-			return DoKey(key);
 	}
 	
 	return true;

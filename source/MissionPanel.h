@@ -34,7 +34,7 @@ public:
 	MissionPanel(const MapPanel &panel);
 	
 	virtual void Step() override;
-	virtual void Draw() const override;
+	virtual void Draw() override;
 	
 	
 protected:
@@ -54,7 +54,7 @@ private:
 	void DrawMissionSystem(const Mission &mission, const Color &color) const;
 	Point DrawPanel(Point pos, const std::string &label, int entries) const;
 	Point DrawList(const std::list<Mission> &list, Point pos) const;
-	void DrawMissionInfo() const;
+	void DrawMissionInfo();
 	
 	bool CanAccept() const;
 	void Accept();
