@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		6245F8251D301C7400A7A094 /* Body.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6245F8231D301C7400A7A094 /* Body.cpp */; };
 		6245F8281D301C9000A7A094 /* Hardpoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6245F8261D301C9000A7A094 /* Hardpoint.cpp */; };
+		624EF6D31D5B86AD0047045C /* Rectangle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 624EF6D11D5B86AD0047045C /* Rectangle.cpp */; };
 		628BDAEF1CC5DC950062BCD2 /* PlanetLabel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 628BDAED1CC5DC950062BCD2 /* PlanetLabel.cpp */; };
 		62A405BA1D47DA4D0054F6A0 /* FogShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 62A405B81D47DA4D0054F6A0 /* FogShader.cpp */; };
 		62C3111A1CE172D000409D91 /* Flotsam.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 62C311181CE172D000409D91 /* Flotsam.cpp */; };
@@ -157,6 +158,8 @@
 		6245F8241D301C7400A7A094 /* Body.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Body.h; path = source/Body.h; sourceTree = "<group>"; };
 		6245F8261D301C9000A7A094 /* Hardpoint.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Hardpoint.cpp; path = source/Hardpoint.cpp; sourceTree = "<group>"; };
 		6245F8271D301C9000A7A094 /* Hardpoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Hardpoint.h; path = source/Hardpoint.h; sourceTree = "<group>"; };
+		624EF6D11D5B86AD0047045C /* Rectangle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Rectangle.cpp; path = source/Rectangle.cpp; sourceTree = "<group>"; };
+		624EF6D21D5B86AD0047045C /* Rectangle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Rectangle.h; path = source/Rectangle.h; sourceTree = "<group>"; };
 		628BDAED1CC5DC950062BCD2 /* PlanetLabel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PlanetLabel.cpp; path = source/PlanetLabel.cpp; sourceTree = "<group>"; };
 		628BDAEE1CC5DC950062BCD2 /* PlanetLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlanetLabel.h; path = source/PlanetLabel.h; sourceTree = "<group>"; };
 		62A405B81D47DA4D0054F6A0 /* FogShader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = FogShader.cpp; path = source/FogShader.cpp; sourceTree = "<group>"; };
@@ -595,6 +598,8 @@
 				A96863681AE6FD0C004FE1FE /* Radar.h */,
 				A96863691AE6FD0D004FE1FE /* Random.cpp */,
 				A968636A1AE6FD0D004FE1FE /* Random.h */,
+				624EF6D11D5B86AD0047045C /* Rectangle.cpp */,
+				624EF6D21D5B86AD0047045C /* Rectangle.h */,
 				A968636B1AE6FD0D004FE1FE /* RingShader.cpp */,
 				A968636C1AE6FD0D004FE1FE /* RingShader.h */,
 				A968636D1AE6FD0D004FE1FE /* Sale.h */,
@@ -807,6 +812,7 @@
 				A96863D21AE6FD0E004FE1FE /* MapDetailPanel.cpp in Sources */,
 				A96863D41AE6FD0E004FE1FE /* Mask.cpp in Sources */,
 				A96863E61AE6FD0E004FE1FE /* Point.cpp in Sources */,
+				624EF6D31D5B86AD0047045C /* Rectangle.cpp in Sources */,
 				A96863DE1AE6FD0E004FE1FE /* OutfitterPanel.cpp in Sources */,
 				62C3111A1CE172D000409D91 /* Flotsam.cpp in Sources */,
 				A96863B91AE6FD0E004FE1FE /* Effect.cpp in Sources */,
