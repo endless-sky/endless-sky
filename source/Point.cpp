@@ -15,9 +15,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef __SSE3__
 #include <algorithm>
 #include <cmath>
-#endif
-
 using namespace std;
+#endif
 
 
 

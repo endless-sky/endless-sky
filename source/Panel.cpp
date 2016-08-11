@@ -89,7 +89,7 @@ void Panel::AddZone(const Rectangle &rect, const function<void()> &fun)
 
 void Panel::AddZone(const Rectangle &rect, SDL_Keycode key)
 {
-	AddZone(rect, bind(&Panel::KeyDown, this, key, 0, Command()));
+	AddZone(rect, [this, key](){ this->KeyDown(key, 0, Command()); });
 }
 
 
