@@ -569,6 +569,14 @@ bool Mission::HasFailed(const PlayerInfo &player) const
 
 
 
+// Mark a mission failed (e.g. due to a "fail" action in another mission).
+void Mission::Fail()
+{
+	hasFailed = true;
+}
+
+
+
 // Get a string to show if this mission is "blocked" from being offered
 // because it requires you to have more passenger or cargo space free. After
 // calling this function, any future calls to it will return an empty string
