@@ -258,7 +258,7 @@ tip "charging shields:"
 	`Energy consumed and heat generated when this ship is recharging its shields. This is in addition to the "idle" amount.`
 
 tip "max:"
-	`Total energy and heat capacity. If a ship's heat generation is above the maximum, it will eventually overheat. If a ship's energy is reduced to zero, it will not be able to use all its systems simultaneously.`
+	`Total energy and heat capacity. Energy capacity allows a ship to temporarily draw more energy than it produces. Heat capacity is the highest your heat generation rate can be without eventually causing your ship to overheat.`
 
 
 

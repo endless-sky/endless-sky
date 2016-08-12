@@ -79,7 +79,7 @@ void FogShader::Init()
 		"out vec4 finalColor;\n"
 		
 		"void main() {\n"
-		"  finalColor = vec4(0, 0, 0, texture(tex, fragTexCoord).a);\n"
+		"  finalColor = vec4(0, 0, 0, texture(tex, fragTexCoord).r);\n"
 		"}\n";
 	
 	// Compile the shader and store indices to its variables.
@@ -198,7 +198,7 @@ void FogShader::Draw(const Point &center, double zoom, const PlayerInfo &player)
 			glBindTexture(GL_TEXTURE_2D, texture);
 	
 		// Upload the new "image."
-		glTexImage2D(GL_TEXTURE_2D, 0, GL_ALPHA, columns, rows, 0, GL_ALPHA, GL_UNSIGNED_BYTE, &buffer.front());
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_R8, columns, rows, 0, GL_RED, GL_UNSIGNED_BYTE, &buffer.front());
 	}
 	else
 		glBindTexture(GL_TEXTURE_2D, texture);
