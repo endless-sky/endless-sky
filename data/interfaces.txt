@@ -742,13 +742,13 @@ interface "info panel"
 	visible if "show park all"
 	sprite "ui/wide button"
 		center 250 305
-	button n "Park All"
+	button A "Park All"
 		center 250 305
 		dimensions 90 30
 	visible if "show unpark all"
 	sprite "ui/wide button"
 		center 250 305
-	button n "Unpark All"
+	button A "Unpark All"
 		center 250 305
 		dimensions 90 30
 
