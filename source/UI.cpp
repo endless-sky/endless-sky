@@ -18,6 +18,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include <SDL2/SDL.h>
 
+#include <algorithm>
+
 using namespace std;
 
 
@@ -40,6 +42,10 @@ bool UI::Handle(const SDL_Event &event)
 	while(it != stack.begin() && !handled)
 	{
 		--it;
+		// Panels that are about to be popped cannot handle any other events.
+		if(count(toPop.begin(), toPop.end(), it->get()))
+			continue;
+		
 		if(event.type == SDL_MOUSEMOTION)
 		{
 			if(event.motion.state & SDL_BUTTON(1))
@@ -56,7 +62,11 @@ bool UI::Handle(const SDL_Event &event)
 			int x = Screen::Left() + event.button.x * 100 / Screen::Zoom();
 			int y = Screen::Top() + event.button.y * 100 / Screen::Zoom();
 			if(event.button.button == 1)
-				handled = (*it)->Click(x, y);
+			{
+				handled = (*it)->ZoneClick(Point(x, y));
+				if(!handled)
+					handled = (*it)->Click(x, y);
+			}
 			else if(event.button.button == 3)
 				handled = (*it)->RClick(x, y);
 		}
@@ -80,6 +90,9 @@ bool UI::Handle(const SDL_Event &event)
 			break;
 	}
 	
+	// Handle any queued push or pop commands.
+	PushOrPop();
+	
 	return handled;
 }
 
@@ -88,24 +101,8 @@ bool UI::Handle(const SDL_Event &event)
 // Step all the panels forward (advance animations, move objects, etc.).
 void UI::StepAll()
 {
-	// Handle any panels that should be added.
-	for(shared_ptr<Panel> &panel : toPush)
-		if(panel)
-			stack.push_back(panel);
-	toPush.clear();
-	
-	// These panels should be popped but not deleted (because someone else
-	// owns them and is managing their creation and deletion).
-	for(const Panel *panel : toPop)
-	{
-		for(auto it = stack.begin(); it != stack.end(); ++it)
-			if(it->get() == panel)
-			{
-				it = stack.erase(it);
-				break;
-			}
-	}
-	toPop.clear();
+	// Handle any queued push or pop commands.
+	PushOrPop();
 	
 	// Step all the panels.
 	for(shared_ptr<Panel> &panel : stack)
@@ -117,6 +114,11 @@ void UI::StepAll()
 // Draw all the panels.
 void UI::DrawAll()
 {
+	// First, clear all the clickable zones. New ones will be added in the
+	// course of drawing the screen.
+	for(const shared_ptr<Panel> &it : stack)
+		it->ClearZones();
+	
 	// Find the topmost full-screen panel. Nothing below that needs to be drawn.
 	vector<shared_ptr<Panel>>::const_iterator it = stack.end();
 	while(it != stack.begin())
@@ -234,7 +236,30 @@ Point UI::GetMouse()
 	int x = 0;
 	int y = 0;
 	SDL_GetMouseState(&x, &y);
-	return Point(
-		Screen::Left() + x * 100. / Screen::Zoom(),
-		Screen::Top() + y * 100. / Screen::Zoom());
+	return Screen::TopLeft() + Point(x, y) * (100. / Screen::Zoom());
+}
+
+
+
+// If a push or pop is queued, apply it.
+void UI::PushOrPop()
+{
+	// Handle any panels that should be added.
+	for(shared_ptr<Panel> &panel : toPush)
+		if(panel)
+			stack.push_back(panel);
+	toPush.clear();
+	
+	// These panels should be popped but not deleted (because someone else
+	// owns them and is managing their creation and deletion).
+	for(const Panel *panel : toPop)
+	{
+		for(auto it = stack.begin(); it != stack.end(); ++it)
+			if(it->get() == panel)
+			{
+				it = stack.erase(it);
+				break;
+			}
+	}
+	toPop.clear();
 }

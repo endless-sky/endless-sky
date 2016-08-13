@@ -24,8 +24,9 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <map>
 #include <memory>
 #include <set>
-#include <vector>
 #include <string>
+#include <utility>
+#include <vector>
 
 class DataNode;
 class Government;
@@ -154,6 +155,8 @@ public:
 	void MissionCallback(int response);
 	// Complete or fail a mission.
 	void RemoveMission(Mission::Trigger trigger, const Mission &mission, UI *ui);
+	// Mark a mission as failed, but do not remove it from the mission list yet.
+	void FailMission(const Mission &mission);
 	// Update mission status based on an event.
 	void HandleEvent(const ShipEvent &event, UI *ui);
 	
@@ -190,6 +193,10 @@ public:
 	// Keep track of any outfits that you have sold since landing. These will be
 	// available to buy back until you take off.
 	std::map<const Outfit *, int> &SoldOutfits();
+	
+	// Keep track of what materials you have mined in each system.
+	void Harvest(const Outfit *type);
+	const std::set<std::pair<const System *, const Outfit *>> &Harvested() const;
 	
 	
 private:
@@ -243,6 +250,7 @@ private:
 	const Outfit *selectedWeapon = nullptr;
 	
 	std::map<const Outfit *, int> soldOutfits;
+	std::set<std::pair<const System *, const Outfit *>> harvested;
 	
 	// Changes that this PlayerInfo wants to make to the global galaxy state:
 	std::vector<std::pair<const Government *, double>> reputationChanges;

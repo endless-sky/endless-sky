@@ -44,6 +44,8 @@ public:
 	// separate function because a ship may queue up flotsam to dump but take
 	// several frames before it finishes dumping it all.
 	void Place(const Ship &source);
+	// Place flotsam coming from something other than a ship.
+	void Place(const Body &source);
 	
 	// Move the object one time-step forward.
 	bool Move(std::list<Effect> &effects);

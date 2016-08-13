@@ -381,6 +381,15 @@ effect "box"
 	"random spin" 10
 	"random velocity" -1
 
+effect "flotsam death"
+	sprite "effect/smoke"
+		"no repeat"
+		"frame rate" 8
+	"lifetime" 60
+	"random angle" 360
+	"random spin" 5
+	"random frame rate" 8
+
 effect "bullet impact"
 	sprite "effect/bullet impact"
 		"no repeat"
@@ -398,3 +407,14 @@ effect "rail sparks"
 	"velocity scale" 1.2
 	"random angle" 360
 	"random spin" 30
+
+effect "bolide"
+	sprite "effect/bolide"
+		"random start frame"
+		"no repeat"
+		"frame rate" 3
+	"lifetime" 120
+	"random angle" 360
+	"random spin" 5
+	"velocity scale" .8
+	"random frame rate" 6

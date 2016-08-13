@@ -50,7 +50,7 @@ void PlayerInfo::Clear()
 {
 	*this = PlayerInfo();
 	
-	Random::Seed(time(NULL));
+	Random::Seed(time(nullptr));
 }
 
 
@@ -143,6 +143,14 @@ void PlayerInfo::Load(const string &path)
 			for(const DataNode &grand : child)
 				if(grand.Size() >= 2)
 					soldOutfits[GameData::Outfits().Get(grand.Token(0))] += grand.Value(1);
+		}
+		else if(child.Token(0) == "harvested")
+		{
+			for(const DataNode &grand : child)
+				if(grand.Size() >= 2)
+					harvested.insert(make_pair(
+						GameData::Systems().Get(grand.Token(0)),
+						GameData::Outfits().Get(grand.Token(1))));
 		}
 		else if(child.Token(0) == "mission")
 		{
@@ -860,6 +868,20 @@ void PlayerInfo::Land(UI *ui)
 		else if(mission.Destination() == GetPlanet())
 			mission.Do(Mission::VISIT, *this, ui);
 	}
+	// One mission's actions may influence another mission, so loop through one
+	// more time to see if any mission is now completed or failed due to a change
+	// that happened in another mission the first time through.
+	mit = missions.begin();
+	while(mit != missions.end())
+	{
+		Mission &mission = *mit;
+		++mit;
+		
+		if(mission.HasFailed(*this))
+			RemoveMission(Mission::FAIL, mission, ui);
+		else if(mission.CanComplete(*this))
+			RemoveMission(Mission::COMPLETE, mission, ui);
+	}
 	UpdateCargoCapacities();
 	
 	// Create whatever missions this planet has to offer.
@@ -1343,6 +1365,19 @@ void PlayerInfo::RemoveMission(Mission::Trigger trigger, const Mission &mission,
 
 
 
+// Mark a mission as failed, but do not remove it from the mission list yet.
+void PlayerInfo::FailMission(const Mission &mission)
+{
+	for(auto it = missions.begin(); it != missions.end(); ++it)
+		if(&*it == &mission)
+		{
+			it->Fail();
+			return;
+		}
+}
+
+
+
 // Update mission status based on an event.
 void PlayerInfo::HandleEvent(const ShipEvent &event, UI *ui)
 {
@@ -1601,6 +1636,21 @@ map<const Outfit *, int> &PlayerInfo::SoldOutfits()
 
 
 
+void PlayerInfo::Harvest(const Outfit *type)
+{
+	if(type && system)
+		harvested.insert(make_pair(system, type));
+}
+
+
+
+const set<pair<const System *, const Outfit *>> &PlayerInfo::Harvested() const
+{
+	return harvested;
+}
+
+
+
 // Update the conditions that reflect the current status of the player.
 void PlayerInfo::UpdateAutoConditions()
 {
@@ -1757,6 +1807,17 @@ void PlayerInfo::Save(const string &path) const
 			for(const auto &it : soldOutfits)
 				if(it.second)
 					out.Write(it.first->Name(), it.second);
+		}
+		out.EndChild();
+	}
+	if(!harvested.empty())
+	{
+		out.Write("harvested");
+		out.BeginChild();
+		{
+			for(const auto &it : harvested)
+				if(it.first && it.second)
+					out.Write(it.first->Name(), it.second->Name());
 		}
 		out.EndChild();
 	}

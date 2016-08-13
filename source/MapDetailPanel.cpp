@@ -76,7 +76,7 @@ MapDetailPanel::MapDetailPanel(const MapPanel &panel)
 
 
 
-void MapDetailPanel::Draw() const
+void MapDetailPanel::Draw()
 {
 	MapPanel::Draw();
 	
@@ -193,14 +193,6 @@ bool MapDetailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command
 
 bool MapDetailPanel::Click(int x, int y)
 {
-	{
-		const Interface *interface = GameData::Interfaces().Get("map buttons");
-		char key = interface->OnClick(Point(x, y));
-		// In the mission panel, the "Done" button in the button bar should be
-		// ignored (and is not shown).
-		if(key)
-			return DoKey(key);
-	}
 	if(x < Screen::Left() + 160)
 	{
 		if(y >= tradeY && y < tradeY + 200)
@@ -395,7 +387,7 @@ void MapDetailPanel::DrawKey() const
 
 
 
-void MapDetailPanel::DrawInfo() const
+void MapDetailPanel::DrawInfo()
 {
 	Color dimColor(.1, 0.);
 	Color closeColor(.6, .6);
@@ -545,7 +537,7 @@ void MapDetailPanel::DrawInfo() const
 	if(ZoomIsMin())
 		info.SetCondition("min zoom");
 	const Interface *interface = GameData::Interfaces().Get("map buttons");
-	interface->Draw(info);
+	interface->Draw(info, this);
 }
 
 

@@ -38,8 +38,8 @@ class ShopPanel : public Panel {
 public:
 	ShopPanel(PlayerInfo &player, const std::vector<std::string> &categories);
 	
-	virtual void Draw() const override;
 	virtual void Step() override;
+	virtual void Draw() override;
 	
 protected:
 	void DrawSidebar() const;

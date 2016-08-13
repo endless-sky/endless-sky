@@ -27,15 +27,24 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 // quotation marks, it should be enclosed in backticks instead.
 class DataNode {
 public:
+	// Construct a DataNode. For the purpose of printing stack traces, each node
+	// must remember what its parent node is.
 	DataNode(const DataNode *parent = nullptr);
+	// Copy constructor.
 	DataNode(const DataNode &other);
 	
 	DataNode &operator=(const DataNode &other);
 	
+	// Get the number of tokens in this node.
 	int Size() const;
+	// Get the token at the given index. No bounds checking is done internally.
 	const std::string &Token(int index) const;
+	// Convert the token at the given index to a number. This returns 0 if the
+	// index is out of range or the token cannot be interpreted as a number.
 	double Value(int index) const;
 	
+	// Check if this node has any children. If so, the iterator functions below
+	// can be used to access them.
 	bool HasChildren() const;
 	std::list<DataNode>::const_iterator begin() const;
 	std::list<DataNode>::const_iterator end() const;
@@ -45,10 +54,14 @@ public:
 	
 	
 private:
+	// These are "child" nodes found on subsequent lines with deeper indentation.
 	std::list<DataNode> children;
+	// These are the tokens found in this particular line of the data file.
 	std::vector<std::string> tokens;
+	// The parent pointer is used only for printing stack traces.
 	const DataNode *parent = nullptr;
 	
+	// Allow DataFile to modify the internal structure of DataNodes.
 	friend class DataFile;
 };
 

@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "MapPanel.h"
 
 #include "Angle.h"
+#include "FogShader.h"
 #include "Font.h"
 #include "FontSet.h"
 #include "Galaxy.h"
@@ -24,6 +25,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "PlayerInfo.h"
 #include "PointerShader.h"
 #include "Politics.h"
+#include "Preferences.h"
 #include "RingShader.h"
 #include "Screen.h"
 #include "Ship.h"
@@ -74,12 +76,15 @@ void MapPanel::Step()
 
 
 
-void MapPanel::Draw() const
+void MapPanel::Draw()
 {
 	glClear(GL_COLOR_BUFFER_BIT);
 	
 	for(const auto &it : GameData::Galaxies())
 		SpriteShader::Draw(it.second.GetSprite(), Zoom() * (center + it.second.Position()), Zoom());
+	
+	if(Preferences::Has("Hide unexplored map regions"))
+		FogShader::Draw(center, Zoom(), player);
 	
 	DrawTravelPlan();
 	

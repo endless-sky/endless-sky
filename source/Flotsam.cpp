@@ -49,12 +49,25 @@ Flotsam::Flotsam(const Outfit *outfit, int count)
 void Flotsam::Place(const Ship &source)
 {
 	this->source = &source;
+	Place(static_cast<const Body &>(source));
+}
+
+
+
+// Place flotsam coming from something other than a ship.
+void Flotsam::Place(const Body &source)
+{
 	position = source.Position();
 	velocity = source.Velocity() + Angle::Random().Unit() * (2. * Random::Real()) - 2. * source.Unit();
 	angle = Angle::Random();
 	spin = Angle::Random(10.);
 	
-	SetSprite(SpriteSet::Get("effect/box"));
+	// Special case: allow a harvested outfit item to define its flotsam sprite
+	// using the field that usually defines a secondary weapon's icon.
+	if(outfit && outfit->FlotsamSprite())
+		SetSprite(outfit->FlotsamSprite());
+	else
+		SetSprite(SpriteSet::Get("effect/box"));
 	SetFrameRate(4. * (1. + Random::Real()));
 }
 
@@ -70,12 +83,15 @@ bool Flotsam::Move(list<Effect> &effects)
 		return true;
 	
 	// This flotsam has reached the end of its life. 
-	const Effect *effect = GameData::Effects().Get("smoke");
-	effects.push_back(*effect);
+	const Effect *effect = GameData::Effects().Get("flotsam death");
+	for(int i = 0; i < 3; ++i)
+	{
+		effects.push_back(*effect);
 	
-	Angle smokeAngle = Angle::Random();
-	velocity += smokeAngle.Unit() * Random::Real();
-	effects.back().Place(position, velocity, smokeAngle);
+		Angle smokeAngle = Angle::Random();
+		velocity += smokeAngle.Unit() * Random::Real();
+		effects.back().Place(position, velocity, smokeAngle);
+	}
 	
 	return false;
 }

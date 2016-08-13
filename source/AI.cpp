@@ -412,9 +412,8 @@ void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &player)
 		
 		// Handle fighters:
 		const string &category = it->Attributes().Category();
-		bool isDrone = (category == "Drone");
 		bool isFighter = (category == "Fighter");
-		if(isDrone || isFighter)
+		if(it->CanBeCarried())
 		{
 			bool hasSpace = (parent && parent->BaysFree(isFighter) && !parent->GetGovernment()->IsEnemy(gov));
 			if(!hasSpace || parent->IsDestroyed() || parent->GetSystem() != it->GetSystem())
@@ -424,7 +423,7 @@ void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &player)
 				it->SetParent(parent);
 				for(const auto &other : ships)
 					if(other->GetGovernment() == gov && !other->IsDisabled()
-							&& other->GetSystem() == it->GetSystem() && !other->CanBeCarried())
+							&& other->GetSystem() == it->GetSystem() && !other->CanBeCarried() && other->CanCarry(*it.get()))
 					{
 						parent = other;
 						it->SetParent(other);
@@ -850,11 +849,12 @@ void AI::MoveEscort(Ship &ship, Command &command) const
 	const Ship &parent = *ship.GetParent();
 	bool hasFuelCapacity = ship.Attributes().Get("fuel capacity");
 	bool isStaying = ship.GetPersonality().IsStaying() || !hasFuelCapacity;
+	bool parentIsHere = (ship.GetSystem() == parent.GetSystem());
 	// If an escort is out of fuel, they should refuel without waiting for the
 	// "parent" to land (because the parent may not be planning on landing).
 	if(hasFuelCapacity && !ship.JumpsRemaining() && ship.GetSystem()->HasFuelFor(ship))
 		Refuel(ship, command);
-	else if(ship.GetSystem() != parent.GetSystem() && !isStaying)
+	else if(!parentIsHere && !isStaying)
 	{
 		DistanceMap distance(ship, parent.GetSystem());
 		const System *from = ship.GetSystem();
@@ -881,7 +881,7 @@ void AI::MoveEscort(Ship &ship, Command &command) const
 			}
 		}
 	}
-	else if(parent.Commands().Has(Command::LAND) && parent.GetTargetPlanet())
+	else if(parent.Commands().Has(Command::LAND) && parent.GetTargetPlanet() && parentIsHere)
 	{
 		ship.SetTargetPlanet(parent.GetTargetPlanet());
 		MoveToPlanet(ship, command);
@@ -914,11 +914,12 @@ void AI::MoveEscort(Ship &ship, Command &command) const
 
 void AI::Refuel(Ship &ship, Command &command)
 {
-	if(ship.GetParent() && ship.GetParent()->GetTargetPlanet()
-			&& ship.GetParent()->GetTargetPlanet()->GetPlanet()
-			&& ship.GetParent()->GetTargetPlanet()->GetPlanet()->HasSpaceport()
-			&& ship.GetParent()->GetTargetPlanet()->GetPlanet()->CanLand(ship))
-		ship.SetTargetPlanet(ship.GetParent()->GetTargetPlanet());
+	const StellarObject *parentPlanet = (ship.GetParent() ? ship.GetParent()->GetTargetPlanet() : nullptr);
+	if(parentPlanet && parentPlanet->GetPlanet()
+			&& parentPlanet->GetPlanet()->GetSystem() == ship.GetSystem()
+			&& parentPlanet->GetPlanet()->HasSpaceport()
+			&& parentPlanet->GetPlanet()->CanLand(ship))
+		ship.SetTargetPlanet(parentPlanet);
 	else if(!ship.GetTargetPlanet())
 	{
 		double closest = numeric_limits<double>::infinity();

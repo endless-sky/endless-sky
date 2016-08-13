@@ -33,7 +33,7 @@ mission "First Contact: Hai"
 					goto travel
 				`	"How come people back in human space don't know that you are here?"`
 			
-			`	The human merchant laughs. "Probably because most of us came here to escape from the chaos and fighting in human space. The last thing we want is for it to follow us here. Not that I'm saying you can't tell anyone about the wormhole, but if I were you I wouldn't go telling just anyone. But take a look around Hai space before you leave; you'll find that we could learn a lot from them."`
+			`	The human merchant laughs. "Probably because most of us came here to escape from the chaos and fighting in human space. The last thing we want is for it to follow us here. Not that I'm saying you can't tell anyone about the wormhole, but if I were you I wouldn't go spreading the news too widely either. And take a look around Hai space before you leave; you'll find that we could learn a lot from them."`
 			`	"So I can travel anywhere I want in your territory?" you ask the Hai.`
 			
 			label travel
@@ -177,7 +177,7 @@ mission "Unfettered Jump Drive 1"
 	to offer
 		has "First Contact: Unfettered: offered"
 		not "Wanderers: Jump Drive Source: active"
-		not "event: wanderers: unfettered invasion"
+		not "event: wanderers: unfettered invasion starts"
 	to complete
 		has "Unfettered Jump Drive 2: offered"
 	source
@@ -236,7 +236,7 @@ mission "Unfettered Jump Drive 2"
 	to offer
 		has "Unfettered Jump Drive 1: offered"
 		not "Wanderers: Jump Drive Source: active"
-		not "event: wanderers: unfettered invasion"
+		not "event: wanderers: unfettered invasion starts"
 	to complete
 		has "Unfettered Jump Drive 3: offered"
 	source
@@ -347,7 +347,7 @@ mission "Unfettered Jump Drive 3"
 	to offer
 		has "Unfettered Jump Drive 2: offered"
 		not "Wanderers: Jump Drive Source: active"
-		not "event: wanderers: unfettered invasion"
+		not "event: wanderers: unfettered invasion starts"
 	to complete
 		has "Unfettered Jump Drive 4: offered"
 	source
@@ -408,7 +408,7 @@ mission "Unfettered Jump Drive 4"
 	to offer
 		has "Unfettered Jump Drive 3: offered"
 		not "Wanderers: Jump Drive Source: active"
-		not "event: wanderers: unfettered invasion"
+		not "event: wanderers: unfettered invasion starts"
 	to complete
 		never
 	source

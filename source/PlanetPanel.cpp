@@ -70,7 +70,10 @@ void PlanetPanel::Step()
 		DoKey('d');
 		return;
 	}
-	if(GetUI()->IsTop(this))
+	// If the player starts a new game, exits the shipyard without buying
+	// anything, clicks to the bank, then returns to the shipyard and buys a
+	// ship, make sure they are shown an intro mission.
+	if(GetUI()->IsTop(this) || GetUI()->IsTop(bank.get()))
 	{
 		Mission *mission = player.MissionToOffer(Mission::LANDING);
 		if(mission)
@@ -82,8 +85,7 @@ void PlanetPanel::Step()
 
 
 
-
-void PlanetPanel::Draw() const
+void PlanetPanel::Draw()
 {
 	if(player.IsDead())
 		return;
@@ -113,7 +115,7 @@ void PlanetPanel::Draw() const
 	if(hasShip && planet.HasOutfitter() && hasAccess)
 		info.SetCondition("has outfitter");
 	
-	ui.Draw(info);
+	ui.Draw(info, this);
 	
 	if(!selectedPanel)
 		text.Draw(Point(-300., 80.), *GameData::Colors().Get("bright"));
@@ -124,9 +126,6 @@ void PlanetPanel::Draw() const
 // Only override the ones you need; the default action is to return false.
 bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 {
-	if(isDeparting)
-		return false;
-	
 	Panel *oldPanel = selectedPanel;
 	const Ship *flagship = player.Flagship();
 	
@@ -253,20 +252,8 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 
 
 
-bool PlanetPanel::Click(int x, int y)
-{
-	char key = ui.OnClick(Point(x, y));
-	if(key)
-		return DoKey(key);
-	
-	return true;
-}
-
-
-
 void PlanetPanel::TakeOff()
 {
-	isDeparting = true;
 	player.Save();
 	if(player.TakeOff(GetUI()))
 	{

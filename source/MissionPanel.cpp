@@ -141,7 +141,7 @@ void MissionPanel::Step()
 
 
 
-void MissionPanel::Draw() const
+void MissionPanel::Draw()
 {
 	MapPanel::Draw();
 	
@@ -196,7 +196,7 @@ void MissionPanel::Draw() const
 	if(ZoomIsMin())
 		info.SetCondition("min zoom");
 	const Interface *interface = GameData::Interfaces().Get("map buttons");
-	interface->Draw(info);
+	interface->Draw(info, this);
 }
 
 
@@ -317,20 +317,6 @@ bool MissionPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 bool MissionPanel::Click(int x, int y)
 {
 	dragSide = 0;
-	
-	// Handle clicks on the interface buttons.
-	{
-		const Interface *interface = GameData::Interfaces().Get("mission");
-		char key = interface->OnClick(Point(x, y));
-		if(key)
-			return DoKey(key);
-	}
-	{
-		const Interface *interface = GameData::Interfaces().Get("map buttons");
-		char key = interface->OnClick(Point(x, y));
-		if(key)
-			return DoKey(key);
-	}
 	
 	if(x > Screen::Right() - 80 && y > Screen::Bottom() - 50)
 		return DoKey('p');
@@ -660,7 +646,7 @@ Point MissionPanel::DrawList(const list<Mission> &list, Point pos) const
 
 
 
-void MissionPanel::DrawMissionInfo() const
+void MissionPanel::DrawMissionInfo()
 {
 	Information info;
 	
@@ -686,7 +672,7 @@ void MissionPanel::DrawMissionInfo() const
 	info.SetString("today", player.GetDate().ToString());
 	
 	const Interface *interface = GameData::Interfaces().Get("mission");
-	interface->Draw(info);
+	interface->Draw(info, this);
 	
 	// If a mission is selected, draw its descriptive text.
 	if(availableIt != available.end())

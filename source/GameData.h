@@ -31,6 +31,7 @@ class Galaxy;
 class GameEvent;
 class Government;
 class Interface;
+class Minable;
 class Mission;
 class Outfit;
 class Person;
@@ -83,6 +84,7 @@ public:
 	static const Set<Galaxy> &Galaxies();
 	static const Set<Government> &Governments();
 	static const Set<Interface> &Interfaces();
+	static const Set<Minable> &Minables();
 	static const Set<Mission> &Missions();
 	static const Set<Outfit> &Outfits();
 	static const Set<Person> &Persons();

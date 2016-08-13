@@ -64,7 +64,7 @@ ConversationPanel::ConversationPanel(PlayerInfo &player, const Conversation &con
 
 
 // Draw this panel.
-void ConversationPanel::Draw() const
+void ConversationPanel::Draw()
 {
 	// Dim out everything outside this panel.
 	DrawBackdrop();

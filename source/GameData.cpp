@@ -23,12 +23,14 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Files.h"
 #include "FillShader.h"
 #include "Fleet.h"
+#include "FogShader.h"
 #include "FontSet.h"
 #include "Galaxy.h"
 #include "GameEvent.h"
 #include "Government.h"
 #include "Interface.h"
 #include "LineShader.h"
+#include "Minable.h"
 #include "Mission.h"
 #include "Outfit.h"
 #include "OutlineShader.h"
@@ -68,6 +70,7 @@ namespace {
 	Set<Galaxy> galaxies;
 	Set<Government> governments;
 	Set<Interface> interfaces;
+	Set<Minable> minables;
 	Set<Mission> missions;
 	Set<Outfit> outfits;
 	Set<Person> persons;
@@ -195,6 +198,7 @@ void GameData::LoadShaders()
 	Command::LoadSettings(Files::Config() + "keys.txt");
 	
 	FillShader::Init();
+	FogShader::Init();
 	LineShader::Init();
 	OutlineShader::Init();
 	PointerShader::Init();
@@ -502,6 +506,14 @@ const Set<Interface> &GameData::Interfaces()
 
 
 
+const Set<Minable> &GameData::Minables()
+{
+	return minables;
+}
+
+
+
+
 const Set<Mission> &GameData::Missions()
 {
 	return missions;
@@ -655,6 +667,8 @@ void GameData::LoadFile(const string &path, bool debugMode)
 			governments.Get(node.Token(1))->Load(node);
 		else if(key == "interface" && node.Size() >= 2)
 			interfaces.Get(node.Token(1))->Load(node);
+		else if(key == "minable" && node.Size() >= 2)
+			minables.Get(node.Token(1))->Load(node);
 		else if(key == "mission" && node.Size() >= 2)
 			missions.Get(node.Token(1))->Load(node);
 		else if(key == "outfit" && node.Size() >= 2)

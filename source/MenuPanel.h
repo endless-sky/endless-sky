@@ -30,7 +30,7 @@ public:
 	MenuPanel(PlayerInfo &player, UI &mainUI);
 	
 	virtual void Step() override;
-	virtual void Draw() const override;
+	virtual void Draw() override;
 	
 	// New player "conversation" callback.
 	void OnCallback(int value);
@@ -39,7 +39,6 @@ public:
 protected:
 	// Only override the ones you need; the default action is to return false.
 	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command) override;
-	virtual bool Click(int x, int y) override;
 	
 	
 private:

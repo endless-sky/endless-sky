@@ -83,7 +83,7 @@ BoardingPanel::BoardingPanel(PlayerInfo &player, const shared_ptr<Ship> &victim)
 
 
 // Draw the panel.
-void BoardingPanel::Draw() const
+void BoardingPanel::Draw()
 {
 	// Draw a translucent black scrim over everything beneath this panel.
 	DrawBackdrop();
@@ -150,17 +150,25 @@ void BoardingPanel::Draw() const
 		info.SetString("your defense",
 			Round(defenseOdds.DefenderPower(crew)));
 	}
-	if(victim->IsCapturable())
+	int vCrew = victim ? victim->Crew() : 0;
+	if(victim && (victim->IsCapturable() || victim->GetGovernment()->IsPlayer()))
 	{
-		int vCrew = victim->Crew();
 		info.SetString("enemy crew", to_string(vCrew));
 		info.SetString("enemy attack",
 			Round(defenseOdds.AttackerPower(vCrew)));
 		info.SetString("enemy defense",
 			Round(attackOdds.DefenderPower(vCrew)));
-	
+	}
+	if(victim && victim->IsCapturable() && !victim->GetGovernment()->IsPlayer())
+	{
+		// If you haven't initiated capture yet, show the self destruct odds in
+		// the attack odds. It's illogical for you to have access to that info,
+		// but not knowing what your true odds are is annoying.
+		double odds = attackOdds.Odds(crew, vCrew);
+		if(!isCapturing)
+			odds *= (1. - victim->Attributes().Get("self destruct"));
 		info.SetString("attack odds",
-			Round(100. * attackOdds.Odds(crew, vCrew)) + "%");
+			Round(100. * odds) + "%");
 		info.SetString("attack casualties",
 			Round(attackOdds.AttackerCasualties(crew, vCrew)));
 		info.SetString("defense odds",
@@ -170,7 +178,7 @@ void BoardingPanel::Draw() const
 	}
 	
 	const Interface *interface = GameData::Interfaces().Get("boarding");
-	interface->Draw(info);
+	interface->Draw(info, this);
 	
 	// Draw the status messages from hand to hand combat.
 	Point messagePos(50., 55.);
@@ -404,15 +412,6 @@ bool BoardingPanel::Click(int x, int y)
 		if(static_cast<unsigned>(index) < plunder.size())
 			selected = index;
 		return true;
-	}
-	
-	// Handle clicks on the interface buttons.
-	const Interface *interface = GameData::Interfaces().Get("boarding");
-	if(interface)
-	{
-		char key = interface->OnClick(Point(x, y));
-		if(key != '\0')
-			return DoKey(key);
 	}
 	
 	return true;
