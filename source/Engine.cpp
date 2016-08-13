@@ -1174,7 +1174,12 @@ void Engine::CalculateStep()
 						hitVelocity = ship->Velocity();
 					}
 				}
-			closestHit = asteroids.Collide(projectile, step, closestHit, &hitVelocity);
+			double closestAsteroid = asteroids.Collide(projectile, step, closestHit, &hitVelocity);
+			if(closestAsteroid < closestHit)
+			{
+				closestHit = closestAsteroid;
+				hit = nullptr;
+			}
 		}
 		
 		if(closestHit < 1.)
