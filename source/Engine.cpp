@@ -1154,7 +1154,9 @@ void Engine::CalculateStep()
 		const Government *gov = projectile.GetGovernment();
 		
 		// If this "projectile" is a ship explosion, it always explodes.
-		if(gov)
+		if(!gov)
+			closestHit = 0.;
+		else
 		{
 			// Projectiles can only collide with ships that are in the current
 			// system and are not landing, and that are hostile to this projectile.
