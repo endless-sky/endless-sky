@@ -58,7 +58,7 @@ public:
 	int Count() const;
 	// This is how big one "unit" of the flotsam is (in tons). If a ship has
 	// less than this amount of space, it can't pick up anything here.
-	int UnitSize() const;
+	double UnitSize() const;
 	
 	
 private:
