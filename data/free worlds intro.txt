@@ -315,7 +315,7 @@ mission "FW Recon 1"
 			`	You cut the comlink and breathe a sigh of relief that the conversation is over.`
 	
 	on complete
-		dialog `Soon after you land, the militia officer comes to your ship pays you <payment> in exchange for your sensor logs regarding <npc>. He says, "If you would be interested in continuing to work for us, meet me in the spaceport bar in an hour."`
+		dialog `Soon after you land, the militia officer comes to your ship and pays you <payment> in exchange for your sensor logs regarding <npc>. He says, "If you would be interested in continuing to work for us, meet me in the spaceport bar in an hour."`
 		payment 10000
 
 
@@ -716,7 +716,7 @@ mission "FW Katya 2B"
 		has "chosen sides"
 	on offer
 		conversation
-			`As soon as you land and open you ship's hatch, a man wearing sunglasses and a ridiculous hat and carrying a large metal suitcase runs past you and into your ship, casting a quick furtive glance behind him to see if anyone is following.`
+			`As soon as you land and open your ship's hatch, a man wearing sunglasses and a ridiculous hat and carrying a large metal suitcase runs past you and into your ship, casting a quick furtive glance behind him to see if anyone is following.`
 			choice
 				`	(Draw my weapon to defend myself against him.)`
 					goto weapon
