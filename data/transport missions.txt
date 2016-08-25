@@ -445,7 +445,7 @@ mission "Deep Archaeology 1"
 		near Miaplacidus 1 20
 	destination Vinci
 	to offer
-		random < 150
+		random < 15
 		"combat rating" > 15
 	passengers 1
 	
