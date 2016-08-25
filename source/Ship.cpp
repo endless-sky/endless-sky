@@ -1838,7 +1838,10 @@ int Ship::TakeDamage(const Projectile &projectile, bool isBlast)
 	ionization += ionDamage * (1. - .5 * shieldFraction);
 	disruption += disruptionDamage * (1. - .5 * shieldFraction);
 	slowness += slowingDamage * (1. - .5 * shieldFraction);
-	fuel -= fuelDamage * (1.);
+	if(fuel > 0.)
+	{
+		fuel -= fuelDamage * (1.);
+	}
 	
 	if(hitForce && !IsHyperspacing())
 	{
