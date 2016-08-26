@@ -1300,7 +1300,7 @@ mission "Wanderers Invaded 0"
 		near "Ka'ch'chrai" 1 10
 	destination "Vara K'chrai"
 	to offer
-		has "event: wanderers: unfettered invasion"
+		has "event: wanderers: unfettered invasion starts"
 		not "Wanderers Invaded 1: offered"
 	on offer
 		conversation
@@ -1316,7 +1316,7 @@ mission "Wanderers Invaded 1"
 	source "Vara K'chrai"
 	destination "Varu Mer'ek"
 	to offer
-		has "event: wanderers: unfettered invasion"
+		has "event: wanderers: unfettered invasion starts"
 	on offer
 		conversation
 			`Iktat Rek looks more harried and anxious than you have ever seen him: his feathers, normally perfectly preened, stick out at odd angles in patches on his face and shoulders, and he paces back and forth restlessly as you converse. "We have begun building warships," he says, "but do not yet have the [strength, numbers] to resist the invaders. We must retreat to a more [narrow? defensible?] position. Will you assist us in the evacuation?`
