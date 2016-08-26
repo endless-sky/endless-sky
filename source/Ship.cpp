@@ -1841,6 +1841,8 @@ int Ship::TakeDamage(const Projectile &projectile, bool isBlast)
 	if(fuel > 0.)
 	{
 		fuel -= fuelDamage * (1.);
+		if(fuel < 0.)
+			fuel = 0.;
 	}
 	
 	if(hitForce && !IsHyperspacing())
