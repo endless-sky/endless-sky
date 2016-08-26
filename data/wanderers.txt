@@ -479,6 +479,54 @@ event "wanderers: unfettered invasion starts"
 		spaceport `The Unfettered are using the few jump drives they have to ferry more and more of their people into Wanderer space. When each wave of ships arrives here in the spaceport, technicians carefully remove the jump drives from all but a few of them. A few well guarded jump-capable ships then carry those spare jump drives back to Unfettered space, where they are used to bring more ships and people.`
 		shipyard clear
 
+event "wanderers: tempest mass production"
+	fleet "Wanderer Defense"
+		government "Wanderer"
+		names "wanderer"
+		personality
+			heroic
+		variant 6
+			"Tempest"
+			"Summer Leaf"
+			"Autumn Leaf"
+		variant 4
+			"Tempest (Heavy)"
+			"Strong Wind"
+		variant 1
+			"Tempest (Heavy)"
+			"Tempest"
+			"Tempest (Missile)"
+		variant 2
+			"Tempest (Heavy)"
+			"Tempest"
+		variant 1
+			"Tempest (Missile)" 2
+		variant 3
+			"Strong Wind"
+			"Summer Leaf" 2
+		variant 2
+			"Strong Wind" 2
+		variant 2
+			"Strong Wind"
+			"Autumn Leaf"
+		variant
+			"Strong Wind" 3
+		variant 2
+			"Autumn Leaf" 3
+		variant
+			"Strong Wind"
+			"Autumn Leaf"
+			"Summer Leaf"
+		variant
+			"Autumn Leaf"
+			"Summer Leaf" 2
+		variant
+			"Summer Leaf" 4
+	shipyard "Wanderer Advanced"
+		"Tempest"
+	outfitter "Wanderer Advanced"
+		"Red Sun Reactor"
+
 event "wanderers: the eye opens"
 	system Sabriset
 		object

@@ -1491,9 +1491,7 @@ event "capture of ik'kara'ka"
 		attributes factory
 		description `This Wanderer factory world was recently captured by the Unfettered Hai, who are now busy trying to repurpose the Wanderer factories and equipment that were left behind, to build more ships for their war fleets. The Wanderers did not have time to demolish any of their equipment or to carry it off-world before the planet was lost. As a result, they have given the Unfettered a significant technological advantage here.`
 		spaceport `The Unfettered seem to be quite at home in the tree house dwellings that the Hai left behind, and the Unfettered youth living here scramble up trunks and leap from tree to tree with reckless abandon, exulting in this new world they have captured and trying to outdo each other with their daredevil escapades.`
-		shipyard "Wanderer Advanced"
-		"required reputation" 15
-		bribe 0
+		shipyard clear
 
 mission "Wanderers Invaded 3"
 	landing
@@ -1655,3 +1653,156 @@ mission "Wanderers Invaded 3C (Pug)"
 			`	With a somewhat contemptuous gesture, the Pug points the staff toward your face and a wave of wonderful rainbow light washes over you and bathes the whole world in iridescent sparkles that leap nimbly from the whiskers of things and nuzzle into your contented consciousness like flashing minnows of pure joy. You caper off to chase a trail of floating soapy baubles that burst with the sound of wind chimes and distant trumpets as you touch each one and the smell of ripe peaches fills the air until you stagger through your airlock and throw up in a corner.`
 			`	It may be time to leave this planet.`
 				decline
+
+
+
+mission "Wanderers Hai Assistance 1"
+	name "Hai Assistance"
+	description `Travel to <planet> with Ambassador Sayari and see if she can convince the Hai to help restrain the Unfettered from attacking the Wanderers.`
+	source "Vara K'chrai"
+	destination "Hai-home"
+	clearance
+	passengers 1
+	blocked "To continue helping the Wanderers, you will need a bunk free for a passenger. Return here when you have space available."
+	to offer
+		has "Wanderers Invaded 3C: done"
+	on offer
+		conversation
+			`You meet up with Ambassador Sayari and Iktat Rek and tell them what the Pug said. "The Keepers of the Eye speak [subtly, carefully]," Rek says, "and hide truths in the [shades, distinctions] of their words. What precisely did they say?"`
+			choice
+				`	"It is not yet time for the portal to open. You must prepare to fight."`
+			`	"We must [make preparations, become ready] to fight," repeats Iktat Rek, slowly. He runs a claw through the ruffled feathers of his scalp, in something akin to the human gesture of scratching your head in confusion. Quite a few feathers fall out. "I see," he says, and his wings droop even lower than before. "I will tell the [war-chiefs, strategists] to tell the [builders, designers] that we must make more and bigger warships."`
+			choice
+				`	"How can I help in the meantime?"`
+			`	Sayari says, "I have offered to speak to the Hai governors, to see if they can do anything to restrain the Unfettered from making further incursions into Wanderer space. Would you be willing to transport me to <planet>?"`
+			`	"Of course," you say. She leaves to gather some traveling gear and to meet you at your ship.`
+				accept
+
+
+
+mission "Wanderers Hai Assistance 2"
+	landing
+	name "Unfettered Negotiations"
+	description "Travel to the Unfettered military planet <destination>, and see if they will agree to give the Wanderers time to evacuate their worlds near the front."
+	source "Hai-home"
+	destination "Darkcloak"
+	clearance "After a long and tense conversation, Ambassador Sayari convinces the Unfettered war chiefs to let you land and meet with them."
+	passengers 1
+	to offer
+		has "Wanderers Hai Assistance 1: done"
+	on offer
+		conversation
+			`The Hai are ruled by an elected "council of elders" who agree to meet with you and Sayari. After you describe the situation with the Wanderers, one of the elders says, "We had heard rumors of this. The Unfettered have recruited thousands of new warriors by telling stories of planets for us to explore and colonize, and a cowardly and foolish enemy to defeat."`
+			`	Sayari says, "We must not allow the Unfettered to commit genocide in the name of the Hai people."`
+			`	Another elder responds, "But, we promised in the Frostmark Accords that we would not interfere in Unfettered space."`
+			`	"They have never kept their side of the treaty," says yet another of the elders, "and surely the prevention of genocide is enough reason to break ours."`
+			choice
+				`	"Could you threaten to cut off aid to the Unfettered if they continue their aggression?"`
+				`	"Could you launch an attack on the Unfettered, force them to fight a war on two fronts?"`
+					goto attack
+			`	"I fear that would only drive them to further acts of desperation," says Sayari.`
+				goto threaten
+			label attack
+			`	"I will not authorize preemptive violence against our own flesh and blood," says one of the elders. "We only defend ourselves against them, never willingly initiate an attack."`
+			label threaten
+			`	"Perhaps it would be enough merely to threaten them," says another of the elders. "We could gather a massive war fleet above Cloudfire. The Unfettered would need to muster a matching fleet above Darkcloak. It would draw many of their warships away from the alien territory."`
+			`	After well over an hour of further discussion, they reach consensus that that is their best option. As you leave the meeting, Sayari says, "And now, I would like to visit the Unfettered themselves. Perhaps we can talk sense into them."`
+				accept
+
+mission "Wanderers Hai Assistance Fleet"
+	landing
+	invisible
+	to offer
+		has "Wanderers Hai Assistance 1: done"
+	npc kill
+		government "Hai"
+		personality heroic staying uninterested frugal
+		system "Wah Ki"
+		fleet "Large Hai"
+		fleet "Large Hai"
+		fleet "Large Hai"
+		fleet "Large Hai"
+		fleet "Large Hai"
+		fleet "Large Hai"
+
+
+
+mission "Wanderers Hai Assistance 3"
+	landing
+	name "Return to <planet>"
+	description "Return with Sayari to <destination>, and tell Iktat Rek that you had some success in convincing the Hai to interfere with the Unfettered."
+	source "Darkcloak"
+	destination "Vara K'chrai"
+	passengers 1
+	to offer
+		has "Wanderers Hai Assistance 2: done"
+	on offer
+		event "wanderers: tempest mass production"
+		conversation
+			`The Unfettered war chiefs listen to Sayari's plea with condescending smiles on their faces. When she is done speaking, one of them says, "This is a war, not a polite dinner party. We will take what we want, when we want it. We are through with waiting on the charity of others."`
+			`	"But people will die, on your side as well as the Wanderers," says Sayari. "They are willing to give you these worlds if you only give them time, perhaps no more than a few months or a year. Why lose your lives to claim what will be yours soon enough?"`
+			`	"Better to die asserting our strength than to live with our hands outstretched to beg," says another of the chiefs.`
+			`	You are unable to convince them to change their plans, and as soon as the conversation ends they insist that you leave their planet. "Our warriors in orbit are eager to test this human's strength," says one of the chiefs, laughing.`
+				launch
+
+
+
+mission "Wanderers Pond Strider Recon 1"
+	landing
+	name "Report to <planet>"
+	description "Report to the Wanderer military base on <destination>, and see if there is anything you can help them with."
+	source "Vara K'chrai"
+	destination "Vara Ke'sok"
+	to offer
+		has "Wanderers Hai Assistance 3: done"
+	on offer
+		conversation
+			`You have been gone for several weeks, and Iktat Rek's appearance has changed drastically in that time. Nearly half his head is bald, showing scaly grey skin and scattered white under-feathers in place of his usual plumage. Patches on other parts of his body have lost their feathers as well. His appearance is shocking. In a terrestrial animal you would attribute it to a mange... or to a molt.`
+			choice
+				`	"What is happening to you? Are you ill?"`
+				`	"Are you molting?"`
+			`	Rek says wearily, "The doctors believe it is what you would call a cancer, what my people would call a [premature, non-viable] molt. If so it will kill me. But I hope it may be the true Molt, come earlier than the [stories, myths] claim is possible - for the Eye is not yet open."`
+			choice
+				`	"You can't tell the difference between a cancer and the Molt?"`
+			`	"They are the same thing," he says. "Only the [outcome, result] is different. The Molt is a cancer so [successful, virulent] that it [consumes? displaces?] every cell in one's body. But since the first Unfettered attacks a [decade] ago, hundreds of Wanderers have undergone a false Molt. All of them have died. I may be a fool to hope that I might survive."`
+			choice
+				`	"Well, I hope that your doctors are wrong to be so pessimistic."`
+					goto end
+				`	"Isn't there anything your doctors can do?"`
+			`	"They could try to kill the [mutant, cancerous] cells," he says, "but if it is the true Molt, killing it would kill my future, my [true form? destiny?]. And in any case, the treatment would weaken me and leave me no [strength, attention] to help my people in this time of necessity. So for now I choose neither to hasten nor to halt the [process, progression]."`
+			`	"Well," you say, "I hope for your sake that it is a true Molt."`
+			label end
+			`	"Thank you," he says. "And now, if you are willing to help my people further, they have asked for your [assistance, expertise] on <planet>. Do not worry about me; I will [face, deal with] whatever future comes, when it comes."`
+				accept
+
+
+
+mission "Wanderers Pond Strider Recon 2"
+	landing
+	name "New Unfettered ships"
+	description "Unfettered ships of an unknown design have been spotted in the Prakacha'a system. Destroy them, then return to <destination>."
+	source "Vara Ke'sok"
+	to offer
+		has "Wanderers Pond Strider Recon 1: done"
+	on offer
+		set "license: Wanderer Military"
+		conversation
+			`Sobari Tele'ek, the military commander whom you met earlier, greets you when you land. "The human who enjoys taking part in fights!" he says. "I am glad you have come. We have two [pieces, items] of good news for you. The first is that we have decided it is [permissible? prudent?] to allow you to purchase our warships. That will include the new [ugly, brutish] one, the Tempest."`
+			`	"Thank you," you say.`
+			`	"The other news is even better!" he says. "We have [saved, set aside] a fight for you. Unfettered ships of unknown design have been [spotted, discovered] in the Prakacha'a system. I ask you to destroy all these ships, then report to me what their [capabilities, strengths] are."`
+			`	You tell him that you will do your best. Now that you are able to purchase Wanderer warships, you should be able to match anything the Unfettered throw at you.`
+				accept
+	waypoint "Prakacha'a"
+	npc kill
+		personality staying heroic
+		government "Hai (Unfettered)"
+		system "Prakacha'a"
+		fleet
+			names "hai"
+			variant
+				"Pond Strider" 2
+				"Flea" 16
+		dialog "That was the last of the new Unfettered ships. You can now report back to Tele'ek on <planet>."
+	on complete
+		conversation
+			`Tele'ek listens carefully as you outline the strengths and weaknesses of the new Unfettered drone carriers. "I am not greatly [concerned, frightened] by tiny drones," he says. "The weapon that has done us most harm is their ion cannons, which no ship so small can [wield, carry]. But thank you for your assistance. Alas, we have no other [fights, brawls] for you to take part in right now, but if you visit the spaceport, you will find another evacuation fleet that needs an [escort, protector]."`
