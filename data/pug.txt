@@ -661,6 +661,7 @@ mission "Pug in Wanderer Space"
 	landing
 	to offer
 		has "main plot completed"
+		not "Wanderers Invaded 3C: offered"
 	source "Vara Pug"
 	on offer
 		conversation
