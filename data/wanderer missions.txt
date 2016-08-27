@@ -1474,8 +1474,9 @@ event "capture of ik'kara'ka"
 	planet "Varu Mer'ek"
 		attributes unfettered factory
 		description `This Wanderer factory world was recently captured by the Unfettered Hai, who are now busy trying to repurpose the Wanderer factories and equipment that were left behind, to build more ships for their war fleets. The Wanderers did not have time to demolish any of their equipment or to carry it off-world before the planet was lost. As a result, they have given the Unfettered a significant technological advantage here.`
-		spaceport `The Unfettered seem to be quite at home in the tree house dwellings that the Hai left behind, and the Unfettered youth living here scramble up trunks and leap from tree to tree with reckless abandon, exulting in this new world they have captured and trying to outdo each other with their daredevil escapades.`
+		spaceport `The Unfettered seem to be quite at home in the tree house dwellings that the Wanderers left behind, and the Unfettered youth living here scramble up trunks and leap from tree to tree with reckless abandon, exulting in this new world they have captured and trying to outdo each other with their daredevil escapades.`
 		shipyard clear
+		outfitter clear
 
 mission "Wanderers Invaded 3"
 	landing
@@ -2021,3 +2022,199 @@ event "battle for sich'ka'ara ends"
 			"Pond Strider"
 			"Flea" 8
 			"Lightning Bug" 2
+
+
+
+mission "Wanderers Rescue 1"
+	name "Wanderer Rescue"
+	description "Some Wanderer warriors were left behind on <planet> when the Unfettered captured the planet. Land on the planet with two Wanderer warships, and rescue them."
+	source "Vara Ke'sok"
+	destination "Kort Vek'kri"
+	clearance
+	infiltrating
+	to offer
+		has "Wanderers Defend Sich'ka'ara: done"
+	on offer
+		conversation
+			`Sobari Tele'ek explains the situation to you. "Nearly a hundred warriors were on the ground on <planet> when it was captured," he says. "They [scattered, evaded capture] and flew away from the spaceport, then regrouped in hiding in one of the forests. I'm sending two warships to land on the planet and [retrieve, rescue] them, and I'd like you to [join, accompany] them. Any questions?"`
+			choice
+				`	"No, I'm ready to go."`
+					accept
+				`	"Why do you need me to take part in this mission?"`
+			`	He says, "It matters deeply to some of our people to know that a member of another species is [assisting, journeying with] us in this conflict. Not merely for [morale? public relations?] but because your [support? acceptance?] gives our [self-defense, struggle] [moral weight? legitimacy?]." Your translator seems to be having trouble with the exact shades of meaning in his explanation.`
+			`	You agree to join the expedition, and he introduces you to the captains of the two ships that will travel with you.`
+				accept
+	npc accompany save
+		personality escort heroic
+		government "Wanderer"
+		ship "Tempest (Heavy)" "Ka'asildi"
+		ship "Tempest" "Eska'ata'ka"
+	npc
+		personality staying
+		government "Hai (Unfettered)"
+		system "Chirr'ay'akai"
+		fleet
+			names "hai"
+			variant
+				"Shield Beetle (Tracker)" 5
+	on visit
+		dialog
+			"You have reached <planet>, but you will need to take off again and wait for both the Wanderer warships to be in-system as well."
+
+
+
+mission "Wanderers Rescue 1B"
+	landing
+	name "Wanderer Rescue"
+	description "Escort these two Wanderer warships, carrying rescued warriors from <origin>, safely back to <destination>."
+	source "Kort Vek'kri"
+	destination "Vara Ke'sok"
+	to offer
+		has "Wanderers Rescue 1: done"
+	on offer
+		conversation
+			`The Wanderer warships come to a stop hovering above one of the largest forests on the planet. You see the flash of many different colors of wings as the Wanderer warriors who were hiding in the trees fly up to meet the ships, which open their airlocks to receive them. After less than five minutes, the Wanderer captains signal you that everyone is aboard, and you can return to <planet>.`
+				launch
+	npc accompany save
+		personality escort heroic
+		government "Wanderer"
+		ship "Tempest (Heavy)" "Ka'asildi"
+		ship "Tempest" "Eska'ata'ka"
+	npc
+		personality staying
+		government "Hai (Unfettered)"
+		fleet
+			names "hai"
+			variant
+				"Lightning Bug" 12
+	on visit
+		dialog
+			"You have reached <planet>, but you will need to take off again and wait for both the Wanderer warships to be in-system as well."
+
+
+
+mission "Wanderers Rescue 1C"
+	landing
+	name "Visit Iktat Rek"
+	description "Return to <destination>, where Iktat Rek's condition has continued to deteriorate."
+	source "Vara Ke'sok"
+	destination "Vara K'chrai"
+	to offer
+		has "Wanderers Rescue 1B: done"
+	on offer
+		"reputation: Wanderer" >?= 40
+		conversation
+			`The Wanderers on <origin> are overjoyed that the rescue succeeded, and many of them thank you personally even though you feel like your role in the mission was rather minor. As the celebration continues, Tele'ek pulls you aside and says, "We must go somewhere [quiet, private] and speak."`
+			`	He leads you into what looks like an officers' lounge, and you sit down at a table. "Rek who was called 'Iktat' was your [designated contact? cultural guide? species companion?], yes?" he asks. You nod, although it's clear your translator doesn't know exactly what the word means. "Rek is very sick and needs [advanced, intensive] medical care," he says. "He desires that you be the one to transport him to the [hospital, medical facility] on Tik Klai. You must return to <planet> and meet him."`
+			choice
+				`	"Okay, I'll go there immediately."`
+					accept
+				`	"But, it's just the Molt. He'll be fine."`
+			`	"It is probably [beneficial, encouraging] for Rek to maintain that hope," he says, "but our [stories, myths] say that never before has a Molt been [viable, successful] if it began when the Eye was not open."`
+			`	You promise that you will go visit Rek as quickly as possible, and bring him wherever he needs to go.`
+				accept
+
+
+
+mission "Wanderers Rek 0"
+	landing
+	name "Bring Rek to <planet>"
+	description "Bring Iktat Rek to <destination>, where there is an advanced medical facility that can hopefully treat him."
+	source "Vara K'chrai"
+	destination "Tik Klai"
+	passengers 1
+	blocked "You need a bunk free in order to carry Iktat Rek."
+	to offer
+		has "Wanderers Rescue 1C: done"
+	on offer
+		conversation
+			`When Rek meets you in the spaceport, he is in the Wanderer equivalent of a motorized wheelchair. He has lost even more of his brown and grey plumage, and nothing but thin, withered, black feathers have grown in their place, like dark hairs growing from diseased skin. You are not sure if he has lost weight, or the loss of feathers simply makes him appear more gaunt. "I am glad you are here, <first> <last>," he says.`
+			choice
+				`	"Don't worry, Iktat Rek. You'll make it through this."`
+			`	He winces when you say his name. "You must not call me that anymore," he says. "'Iktat' was my role-name, and I can serve in that role no longer. I am now known only by my core-name of Rek, or my child-name Rek d' Esta'a i' Veruk. If I survive the Molt, I will become someone new, and will receive a new role-name as well."`
+			choice
+				`	"You're strong. I'm sure you will survive."`
+				`	"Do you have any idea what you will become?"`
+					goto become
+			`	"I hope so," he says, "but I cannot avoid overhearing the whispers of those around me. And the doctors say the Molt is rearranging and shutting down some of my internal organs. My primary hope now is just to live long enough to know that my people will have a future."`
+				goto end
+			label become
+			`	"It is impossible to know," he says. "The Molt can make us not just a new individual, but almost a new species, with new abilities no Wanderers had before. I have some suspicions of what may be changing inside me, but I do not wish to invite ill fortune by voicing those hopes aloud."`
+			label end
+			`	It is not until you have wheeled him halfway up the ramp into your ship that you realize something: throughout the entire conversation, Rek was speaking to you in your native language, without using the translator. You had not realized that Wanderer vocal organs could mimic human speech so perfectly.`
+			choice
+				`	"Rek, when did you learn to speak my language?"`
+			`	He makes a sound halfway between a laugh and a cough, and says, "Even as my body decays, my mind has grown sharper. The more I listened to your box speaking to you, the more its words began to make sense to me."`
+			`	He seems too tired to answer any more questions. You make sure Rek is comfortable in one of your bunk rooms, then prepare to travel to <planet>.`
+				accept
+
+
+
+mission "Wanderers Rek 1"
+	landing
+	name "Visit Sko'karak"
+	description "Rek asked you to visit the Sko'karak system, then return and tell him what you found there."
+	source "Tik Klai"
+	waypoint "Sko'karak"
+	to offer
+		has "Wanderers Rek 0: done"
+	on offer
+		conversation
+			`A Wanderer hospital is not too different from a human one. You stand in a corner trying not to get in the way as they transfer Rek to a bed and connect him to various tubes and wires. Without his feathers he looks unbelievably fragile, almost skeletal, but the Wanderer nurses and doctors are handling him as gently as possible.`
+			`	Eventually you are left alone with him. For a while he seems to just be gazing off into the distance, his eyes unfocused. Then he seems to realize that you are here and his eyes take on a new depth and alertness as he turns to look at you. Again speaking in your own language, he says, "Go visit the Sko'karak system and tell me what you find there." Then he shuts his eyes and falls asleep.`
+				accept
+	on enter "Sko'karak"
+		dialog
+			`You enter this system with high hopes that Rek, despite his weakened state, has sensed something significant happening here and sent you to discover it. But, your sensors pick up nothing out of the ordinary.`
+
+
+
+mission "Wanderers Rek 2"
+	landing
+	name "Visit Sko'karak again"
+	description "Rek asked you to visit the Sko'karak system again, and see if anything has changed there."
+	source "Tik Klai"
+	waypoint "Sko'karak"
+	to offer
+		has "Wanderers Rek 1: done"
+	on offer
+		event "wanderers: more systems lost"
+		conversation
+			`When you arrive, you can tell that the locals are agitated about something. Finally one of them switches into the Hai language and explains to you what is going on. "We have just heard that the Unfettered have [stolen, captured] three more of our worlds," he says, "but do not tell Rek the news."`
+			`	You visit Iktat Rek and tell him that you found nothing out of the ordinary in the Sko'karak system. He barely even opens his eyes as you speak to him. "Go back and look again," he says.`
+			choice
+				`	"Okay, I'll go and look again."`
+					accept
+				`	"You should know, another three systems were lost to the Unfettered."`
+			`	He sighs. "If the Eye would only open, it would not matter. I do not understand why the keepers of the portal will not open it and let us flee from this war into a place of safety. Go again to Sko'karak, and look."`
+				accept
+	on enter "Sko'karak"
+		dialog
+			`You enter the system again, and do an even more detailed sensor sweep in case you missed something the first time. You find nothing.`
+
+
+
+mission "Wanderers Rek 3"
+	landing
+	name "Visit Sko'karak"
+	description "Visit the Sko'karak system for a third time, and see if anything has changed there."
+	source "Tik Klai"
+	waypoint "Sko'karak"
+	to offer
+		has "Wanderers Rek 2: done"
+	on offer
+		event "wanderers: the eye begins to open" 2
+		conversation
+			`When you enter the spaceport, a white-plumed Wanderer who looks eerily similar to Rek comes out of the hospital to meet you. For a brief confused moment you wonder if Rek has indeed completed the Molt and is now standing before you healed, then she introduces herself as Melaka Esta'a, Rek's mother. "Rek is asleep," she says. "Do you bring good news?"`
+			choice
+				`	"No, I found nothing."`
+			`	She says, "Rek's body is destroying itself [fighting, resisting] the Molt. Soon we must give him the drugs that will [disable, eliminate] his immune system and allow the new cells to finish their [conquest, invasion] of his body. For that treatment he must enter [seclusion, isolation] to protect him from infection. But he will not go until you bring him the [word, news] he awaits."`
+			choice
+				`	"I will go back one more time and see if anything has changed."`
+					accept
+				`	"Should I lie to him and say the Eye is open?"`
+			`	"No," she says, "go back one more time and look. If there is still nothing, we will [decide, consider] what to do next."`
+				accept
+	on enter "Sko'karak"
+		dialog
+			`This time when you enter the system, your sensors pick up some strange astronomical phenomenon out beyond the orbit of the farthest planet, a wisp of light like a gathering raincloud. It's not a wormhole, but it's something.`	
