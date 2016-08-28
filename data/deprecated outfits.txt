@@ -162,3 +162,16 @@ outfit "Chameleon Anti-Missile Turret"
 		"firing heat" 6
 		"stream"
 	description ""
+
+# Because of "big explosion" being renamed to "large explosion":
+effect "big explosion"
+	sprite "effect/explosion/large"
+		"no repeat"
+		"frame rate" 15
+	sound "explosion large"
+	"lifetime" 32
+	"random angle" 360
+	"random velocity" .8
+	"random spin" 4
+	"random frame rate" 5
+	"velocity scale" .4
