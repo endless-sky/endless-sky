@@ -783,6 +783,7 @@ ship "Model 16"
 		"Generator (Inferno Class)"
 		"Systems Core (Small)"
 		"Small Heat Shunt"
+		"Reasoning Node"
 		
 		"Thruster (Planetary Class)"
 		"Steering (Lunar Class)"
@@ -834,6 +835,7 @@ ship "Model 32"
 		"Generator (Candle Class)"
 		"Systems Core (Small)"
 		"Small Heat Shunt"
+		"Reasoning Node"
 		
 		"Thruster (Planetary Class)"
 		"Steering (Lunar Class)"
@@ -885,6 +887,7 @@ ship "Model 64"
 		"Double Plasma Core"
 		"Generator (Furnace Class)"
 		"Systems Core (Medium)"
+		"Reasoning Node" 2
 		
 		"Thruster (Lunar Class)"
 		"Thruster (Asteroid Class)"
@@ -919,7 +922,7 @@ ship "Model 128"
 		"heat dissipation" 1.0
 		"fuel capacity" 400
 		"cargo space" 53
-		"outfit space" 712
+		"outfit space" 713
 		"weapon capacity" 344
 		"engine capacity" 132
 		"self destruct" .77
@@ -938,6 +941,7 @@ ship "Model 128"
 		"Double Plasma Core"
 		"Generator (Inferno Class)"
 		"Systems Core (Medium)"
+		"Reasoning Node" 2
 		
 		"Thruster (Planetary Class)"
 		"Steering (Planetary Class)"
@@ -993,6 +997,7 @@ ship "Model 256"
 		"Triple Plasma Core"
 		"Systems Core (Large)"
 		"Large Heat Shunt"
+		"Reasoning Node" 3
 		
 		"Thruster (Planetary Class)"
 		"Steering (Planetary Class)"
@@ -1051,6 +1056,7 @@ ship "Model 512"
 		"Systems Core (Large)"
 		"Large Heat Shunt"
 		"Small Heat Shunt" 2
+		"Reasoning Node" 3
 		
 		"Thruster (Planetary Class)"
 		"Steering (Stellar Class)"
