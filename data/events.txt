@@ -2377,6 +2377,10 @@ event "pug invasion"
 		fleet "Large Pug" 2000
 	system Orvala
 		government Pug
+		fleet "Small Southern Merchants" 3000
+		fleet "Large Southern Merchants" 6000
+		fleet "Small Pug" 5000
+		fleet "Large Pug" 9000
 
 
 
@@ -2414,6 +2418,10 @@ event "pug invasion 2"
 		fleet "Large Pug" 2000
 	system Nocte
 		government Pug
+		fleet "Small Northern Merchants" 1500
+		fleet "Large Northern Merchants" 5000
+		fleet "Small Pug" 3000
+		fleet "Large Pug" 7000
 
 
 
@@ -2591,6 +2599,17 @@ event "pug flee"
 		fleet "Large Core Merchants" 600
 		fleet "Small Republic" 1600
 		fleet "Large Republic" 3000
+	system Nocte
+		fleet "Small Northern Merchants" 1500
+		fleet "Large Northern Merchants" 5000
+		fleet "Small Republic" 3000
+		fleet "Large Republic" 7000
+		fleet "Small Northern Pirates" 2500
+	system Orvala
+		fleet "Small Southern Merchants" 3000
+		fleet "Large Southern Merchants" 6000
+		fleet "Small Southern Pirates" 1000
+		fleet "Large Southern Pirates" 3000
 	system Deneb
 		fleet "Small Core Merchants" 5000
 		object
@@ -2976,6 +2995,10 @@ event "fwc pug invasion"
 		fleet "Large Pug" 2000
 	system Orvala
 		government Pug
+		fleet "Small Southern Merchants" 3000
+		fleet "Large Southern Merchants" 6000
+		fleet "Small Pug" 5000
+		fleet "Large Pug" 9000
 	system Altair
 		government Pug
 		fleet "Small Core Merchants" 400
@@ -3000,6 +3023,10 @@ event "fwc pug invasion"
 		fleet "Large Pug" 2500
 	system Nocte
 		government Pug
+		fleet "Small Northern Merchants" 1500
+		fleet "Large Northern Merchants" 5000
+		fleet "Small Pug" 3000
+		fleet "Large Pug" 7000
 
 
 
