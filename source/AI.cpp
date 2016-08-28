@@ -1196,7 +1196,9 @@ void AI::KeepStation(Ship &ship, Command &command, const Ship &target)
 	Point drag = ship.Velocity() * (ship.Attributes().Get("drag") / mass);
 	if(ship.Attributes().Get("reverse thrust"))
 	{
-		Point a = (unit * (-ship.Attributes().Get("reverse thrust") / mass) - drag).Unit();
+		// Don't take drag into account when reverse thrusting, because this
+		// estimate of how it will be applied can be quite inaccurate.
+		Point a = (unit * (-ship.Attributes().Get("reverse thrust") / mass)).Unit();
 		double direction = positionWeight * positionDelta.Dot(a) / POSITION_DEADBAND
 			+ velocityWeight * velocityDelta.Dot(a) / VELOCITY_DEADBAND;
 		if(direction > THRUST_DEADBAND)
