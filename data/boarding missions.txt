@@ -8,18 +8,177 @@
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
-mission "Assisting"
+mission "Assisting Merchant Small"
 	assisting
 	repeat
 	to offer
-		random < 10
+		random < 50
 	source
 		government Merchant
 	on offer
-		payment 10000
+		payment 5000
 		conversation
 			`When you repair the <origin>, the pilot thanks you for your assistance and pays you <payment>.`
 				decline
 	# A mission with no destination will not be offered, so give it one.
 	# What the destination is doesn't matter, because you always 'decline' this.
 	destination Earth
+	
+mission "Assisting Merchant Large"
+	assisting
+	repeat
+	to offer
+		random < 20
+	source
+		government Merchant
+	on offer
+		payment 25000
+		conversation
+			`When you repair the <origin>, the pilot thanks you for your assistance and pays you <payment>.`
+				decline
+	# A mission with no destination will not be offered, so give it one.
+	# What the destination is doesn't matter, because you always 'decline' this.
+	destination Earth	
+
+mission "Assisting Syndicate"
+	assisting
+	repeat
+	to offer
+		random < 100
+	source
+		government Syndicate
+	on offer
+		payment 1000
+		conversation
+			`When you repair the <origin>, the pilot authorizes the standard assistance reward payment of <payment> with Corporate.`
+				decline
+	# A mission with no destination will not be offered, so give it one.
+	# What the destination is doesn't matter, because you always 'decline' this.
+	destination Earth
+	
+mission "Assisting Republic Small"
+	assisting
+	repeat
+	to offer
+		random < 20
+	source
+		government Republic
+	on offer
+		payment 50000
+		conversation
+			`When you repair the <origin>, the captain personally rewards you with a payment of <payment>. "The spirit of service is in you, sir. Thank you for supporting the Republic.`
+				decline
+	# A mission with no destination will not be offered, so give it one.
+	# What the destination is doesn't matter, because you always 'decline' this.
+	destination Earth
+	
+mission "Assisting Republic Big"
+	assisting
+	repeat 1
+	to offer
+		"Assisting Republic Small: offered" > 5
+		"reputation: Republic" > 0
+	source
+		government Republic
+	on offer
+		set "license: Navy"
+		conversation
+			`When you repair the <origin>, the captain personally rewards you with a payment of <payment>. "I'd do anything to have a pilot like you in our ranks. In fact, I'm making you an honorary member of the Republic Navy as of this moment, with all the attendant benefits implied therein. Thank you for your service, captain.`
+				decline
+	# A mission with no destination will not be offered, so give it one.
+	# What the destination is doesn't matter, because you always 'decline' this.
+	destination Earth	
+
+mission "Assisting Free Worlds Small"
+	assisting
+	repeat
+	to offer
+		random < 40
+	source
+		government Free Worlds
+	on offer
+		payment 2500
+		conversation
+			`When you repair the <origin>, the pilot thanks you for your assistance and pays you <payment>.`
+				decline
+	# A mission with no destination will not be offered, so give it one.
+	# What the destination is doesn't matter, because you always 'decline' this.
+	destination Earth
+	
+mission "Assisting Free Worlds Large"
+	assisting
+	repeat
+	to offer
+		random < 30
+	source
+		government Free Worlds
+	on offer
+		payment 6000
+		conversation
+			`When you repair the <origin>, the pilot thanks you for your assistance and pays you <payment>.`
+				decline
+	# A mission with no destination will not be offered, so give it one.
+	# What the destination is doesn't matter, because you always 'decline' this.
+	destination Earth	
+	
+mission "Assisting Militia Small"
+	assisting
+	repeat
+		to offer
+		random < 75
+	source
+		government Militia
+	destination
+		government "Free Worlds"
+	on offer
+		conversation
+			`When you repair the <origin>, the pilot thanks you. "I don't have anything on me, but the Cause owes you, big time. Check in with my unit commander on <destination> and I bet you'll be handsomely rewarded."`
+			choice
+				`	"Don't worry about it, I'm sure you'd do the same for me."
+					decline
+				`	"Thanks, I'll look for them."
+					accept
+	on complete
+		conversation
+			`News of your deeds has preceded you, and a smiling member of the Militia is waiting for you at the spaceport. "They say you can't repay blood with gold, but I want you to have this token of gratitude for saving one of our own all the same."`
+		payment 5000
+		decline
+
+mission "Assisting Militia Large"
+	assisting
+	repeat
+		to offer
+		random < 20
+	source
+		government Militia
+	destination
+		government "Free Worlds"
+	on offer
+		conversation
+			`When you repair the <origin>, the pilot thanks you. "I don't have anything on me, but the Cause owes you, big time. Check in with my unit commander on <destination> and I bet you'll be handsomely rewarded."`
+			choice
+				`	"Don't worry about it, I'm sure you'd do the same for me."
+					decline
+				`	"Thanks, I'll look for them."
+					accept
+	on complete
+		conversation
+			`A  Militia officer of some apparent rank stands at attention just outside your ship's landing area. When you approach her, she shakes your hand firmly. Captain <last>, when we received word of your latest rescue, top Militia brass insisted we provide you with as much of a reward as we can muster right now. I hope you'll accept this small thanks."`
+		payment 15000
+		decline
+		
+mission "Boarding Pirate Captain"
+	boarding
+	repeat 1
+		to offer
+		random < 25
+	source
+		government Pirate
+	on offer
+		conversation
+			`As you prepare to board the <origin>, the captain thanks you over comms. "Much obliged you didn't send us to hell. It's a rare breed that still follows the Code, and a rare breed deserves rare rewards, muchlike what prying eyes might find in my ship's hold - treasure and trove, and - why not - this beautiful slave I took in the north," she says, beckoning a shy, beautiful figure forward from the shadows of a tightly secured cabin. "Have fun with 'em while you can, and dump 'em when you're done!"`
+		payment 100000
+		decline
+	# A mission with no destination will not be offered, so give it one.
+	# What the destination is doesn't matter, because you always 'decline' this.
+	destination Earth			
