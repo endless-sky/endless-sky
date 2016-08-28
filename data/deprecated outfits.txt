@@ -88,7 +88,7 @@ outfit "Korath Jak'torbal Thruster"
 	"thrust" 63.1
 	"thrusting energy" 5.9
 	"thrusting heat" 14.3
-	"flare sprite" "effect/plasma flare/big"
+	"flare sprite" "effect/plasma flare/large"
 		"frame rate" 8
 	"flare sound" "plasma large"
 	description "This engine is used in the Korath capital ships."

@@ -225,7 +225,7 @@ ship "Strong Wind"
 	gun 32 57 "Thunderhead Launcher"
 	explode "small explosion" 60
 	explode "medium explosion" 40
-	explode "big explosion" 20
+	explode "large explosion" 20
 	"final explode" "final explosion medium"
 	description "The Strong Wind was originally designed for science and exploration, but recently the Wanderers have modified the design to allow it to be used as a warship."
 
@@ -281,7 +281,7 @@ ship "Tempest"
 	turret 32 87 "Wanderer Anti-Missile"
 	explode "small explosion" 80
 	explode "medium explosion" 50
-	explode "big explosion" 25
+	explode "large explosion" 25
 	"final explode" "final explosion medium" 1
 	description "In response to the Unfettered invasion, the Wanderers have begun digging up ancient warship designs from their archives and putting them back into production. The Tempest is the first purpose-built warship they have manufactured in tens of thousands of years."
 
@@ -383,7 +383,7 @@ ship "Derecho"
 	turret 38 95 "Wanderer Anti-Missile"
 	explode "small explosion" 40
 	explode "medium explosion" 70
-	explode "big explosion" 50
+	explode "large explosion" 50
 	explode "huge explosion" 20
 	"final explode" "final explosion large" 1
 	description "Like a latent gene waiting to express itself, the knowledge of how to wage war in space has been passed down through hundreds of generations of Wanderers. Based on one of their ancient designs, the Derecho has a mixture of agility and raw firepower that is well-suited to their present, rapidly changing situation."
@@ -482,7 +482,7 @@ ship "Hurricane"
 	turret 39 140 "Wanderer Anti-Missile"
 	explode "small explosion" 20
 	explode "medium explosion" 80
-	explode "big explosion" 70
+	explode "large explosion" 70
 	explode "huge explosion" 30
 	"final explode" "final explosion large" 1
 	description "The Hurricane is not built for speed, elegance, or versatility, but for one simple purpose: to be durable enough to serve as a rearguard, absorbing an enemy's attacks for long enough to allow the fleet it is guarding to escape."
@@ -583,7 +583,7 @@ ship "Deep River"
 	gun 56 -217
 	explode "small explosion" 80
 	explode "medium explosion" 60
-	explode "big explosion" 30
+	explode "large explosion" 30
 	explode "huge explosion" 20
 	"final explode" "final explosion large"
 	description "The Deep River is a bulk freighter, designed to carry cargo in detachable pods."
@@ -747,7 +747,7 @@ ship "Deep River Transport"
 	turret 36 330 "Wanderer Anti-Missile"
 	explode "small explosion" 80
 	explode "medium explosion" 60
-	explode "big explosion" 30
+	explode "large explosion" 30
 	explode "huge explosion" 20
 	"final explode" "final explosion large"
 	description "This is a Deep River freighter that has been converted into a transport ship for refugees."

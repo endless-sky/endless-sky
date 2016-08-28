@@ -1768,7 +1768,7 @@ mission "Terraforming 3"
 				"energy generation" 3
 			explode "small explosion" 25
 			explode "medium explosion" 35
-			explode "big explosion" 45
+			explode "large explosion" 45
 			explode "huge explosion" 30
 	
 	on complete
