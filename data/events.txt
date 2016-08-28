@@ -1382,6 +1382,14 @@ event "initial deployment 4"
 		fleet "Large Southern Pirates" 2000
 		fleet "Small Free Worlds" 3000
 		fleet "Large Free Worlds" 5000
+	system "Shaula"
+		fleet "Small Southern Pirates" 500
+		fleet "Large Southern Pirates" 800
+		fleet "Small Core Pirates" 4000
+		fleet "Large Core Pirates" 7000
+		fleet "Small Northern Pirates" 5000
+		fleet "Large Northern Pirates" 9000
+		fleet "Large Militia" 9000
 	
 	system "Rastaban"
 		fleet "Small Southern Merchants" 1000
@@ -1682,7 +1690,7 @@ event "fw abandoned Bloodsea"
 		government "Pirate"
 		fleet "Small Southern Pirates" 1000
 		fleet "Large Southern Pirates" 2000
-		fleet "Large Militia" 5000
+		fleet "Large Free Worlds" 5000
 
 
 
@@ -1705,7 +1713,7 @@ event "fw abandoned Greenrock"
 		fleet "Large Core Pirates" 7000
 		fleet "Small Northern Pirates" 5000
 		fleet "Large Northern Pirates" 9000
-		fleet "Large Militia" 9000
+		fleet "Large Free Worlds" 9000
 
 
 
@@ -1941,6 +1949,11 @@ event "fw southern expansion"
 		fleet "Large Southern Merchants" 4000
 		fleet "Small Republic" 400
 		fleet "Large Republic" 500
+	system "Nunki"
+		fleet "Small Southern Pirates" 1200
+		fleet "Large Southern Pirates" 2000
+		fleet "Small Southern Merchants" 1600
+		fleet "Small Free Worlds" 2000
 	planet "New Iceland"
 		description `New Iceland is a perpetually hazy volcanic world, with a slightly caustic atmosphere but enough reserves of metal and petrochemicals to draw a large number of settlers. Some of those settlers also make a living as farmers, and a few well-developed factory towns produce goods for export to other worlds.`
 		description `	In the wake of their defeat in the south, the Navy has begun to set up a massive new base here on New Iceland, in order to allow them to continue to have a strong presence in this sector.`
