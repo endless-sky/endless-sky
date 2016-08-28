@@ -25,6 +25,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "MapOutfitterPanel.h"
 #include "MapShipyardPanel.h"
 #include "MissionPanel.h"
+#include "pi.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
 #include "PointerShader.h"
@@ -41,6 +42,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "WrappedText.h"
 
 #include <algorithm>
+#include <cmath>
 #include <set>
 #include <sstream>
 #include <vector>
@@ -74,7 +76,7 @@ MapDetailPanel::MapDetailPanel(const MapPanel &panel)
 
 
 
-void MapDetailPanel::Draw() const
+void MapDetailPanel::Draw()
 {
 	MapPanel::Draw();
 	
@@ -107,26 +109,58 @@ bool MapDetailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command
 	}
 	else if((key == SDLK_TAB || command.Has(Command::JUMP)) && player.Flagship())
 	{
-		bool hasJumpDrive = player.Flagship()->Attributes().Get("jump drive");
-		const vector<const System *> &links =
-			hasJumpDrive ? player.GetSystem()->Neighbors() : player.GetSystem()->Links();
-		
-		if(!player.HasTravelPlan() && !links.empty())
-			Select(links.front());
-		else if(player.TravelPlan().size() == 1 && !links.empty())
+		// Toggle to the next link connected to the "source" system. If the
+		// shift key is down, the source is the end of the travel plan; otherwise
+		// it is one step before the end.
+		vector<const System *> &plan = player.TravelPlan();
+		const System *source = plan.empty() ? player.GetSystem() : plan.front();
+		const System *next = nullptr;
+		Point previousUnit = Point(0., -1.);
+		if(!plan.empty() && !(mod & KMOD_SHIFT))
 		{
-			auto it = links.begin();
-			for( ; it != links.end(); ++it)
-				if(*it == player.TravelPlan().front())
-					break;
-			
-			if(it != links.end())
-				++it;
-			if(it == links.end())
-				it = links.begin();
-			
-			Select(*it);
+			previousUnit = plan.front()->Position();
+			plan.erase(plan.begin());
+			next = source;
+			source = plan.empty() ? player.GetSystem() : plan.front();
+			previousUnit = (previousUnit - source->Position()).Unit();
 		}
+		Point here = source->Position();
+		
+		// Depending on whether the flagship has a jump drive, the possible links
+		// we can travel along are different:
+		bool hasJumpDrive = player.Flagship()->Attributes().Get("jump drive");
+		const vector<const System *> &links = hasJumpDrive ? source->Neighbors() : source->Links();
+		
+		double bestAngle = 2. * PI;
+		for(const System *it : links)
+		{
+			if(!player.HasSeen(it))
+				continue;
+			if(!(hasJumpDrive || player.HasVisited(it) || player.HasVisited(source)))
+				continue;
+			
+			Point unit = (it->Position() - here).Unit();
+			double angle = acos(unit.Dot(previousUnit));
+			if(unit.Cross(previousUnit) >= 0.)
+				angle = 2. * PI - angle;
+			
+			if(angle <= bestAngle)
+			{
+				next = it;
+				bestAngle = angle;
+			}
+		}
+		if(next)
+		{
+			plan.insert(plan.begin(), next);
+			Select(next);
+		}
+	}
+	else if((key == SDLK_DELETE || key == SDLK_BACKSPACE) && player.HasTravelPlan())
+	{
+		vector<const System *> &plan = player.TravelPlan();
+		plan.erase(plan.begin());
+		Select(plan.empty() ? player.GetSystem() : plan.front());
 	}
 	else if(key == SDLK_DOWN)
 	{
@@ -159,14 +193,6 @@ bool MapDetailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command
 
 bool MapDetailPanel::Click(int x, int y)
 {
-	{
-		const Interface *interface = GameData::Interfaces().Get("map buttons");
-		char key = interface->OnClick(Point(x + 250, y));
-		// In the mission panel, the "Done" button in the button bar should be
-		// ignored (and is not shown).
-		if(key)
-			return DoKey(key);
-	}
 	if(x < Screen::Left() + 160)
 	{
 		if(y >= tradeY && y < tradeY + 200)
@@ -202,7 +228,7 @@ bool MapDetailPanel::Click(int x, int y)
 				}
 		}
 	}
-	else if(x >= Screen::Right() - 240 && y >= Screen::Bottom() - 240)
+	else if(x >= Screen::Right() - 240 && y >= Screen::Top() + 280 && y <= Screen::Top() + 520)
 	{
 		Point click = Point(x, y);
 		selectedPlanet = nullptr;
@@ -361,7 +387,7 @@ void MapDetailPanel::DrawKey() const
 
 
 
-void MapDetailPanel::DrawInfo() const
+void MapDetailPanel::DrawInfo()
 {
 	Color dimColor(.1, 0.);
 	Color closeColor(.6, .6);
@@ -511,7 +537,7 @@ void MapDetailPanel::DrawInfo() const
 	if(ZoomIsMin())
 		info.SetCondition("min zoom");
 	const Interface *interface = GameData::Interfaces().Get("map buttons");
-	interface->Draw(info, Point(-250., 0.));
+	interface->Draw(info, this);
 }
 
 
@@ -520,9 +546,8 @@ void MapDetailPanel::DrawOrbits() const
 {
 	// Draw the planet orbits in the currently selected system.
 	const Sprite *orbitSprite = SpriteSet::Get("ui/orbits");
-	Point orbitCenter(Screen::Right() - 130, Screen::Bottom() - 140);
-	SpriteShader::Draw(orbitSprite, orbitCenter);
-	orbitCenter.Y() += 10.;
+	Point orbitCenter(Screen::Right() - 120, Screen::Top() + 430);
+	SpriteShader::Draw(orbitSprite, orbitCenter - Point(5., 0.));
 	
 	if(!selectedSystem || !player.HasVisited(selectedSystem))
 		return;
@@ -538,17 +563,17 @@ void MapDetailPanel::DrawOrbits() const
 	double scale = .03;
 	maxDistance *= scale;
 	
-	if(maxDistance > 120.)
-		scale *= 120. / maxDistance;
+	if(maxDistance > 115.)
+		scale *= 115. / maxDistance;
 	
 	static const Color habitColor[7] = {
-		Color(.4, 0., 0., 0.),
-		Color(.3, .3, 0., 0.),
-		Color(0., .4, 0., 0.),
-		Color(0., .3, .4, 0.),
-		Color(0., 0., .5, 0.),
-		Color(.2, .2, .2, 0.),
-		Color(1., 1., 1., 0.)
+		Color(.4, .2, .2, 1.),
+		Color(.3, .3, 0., 1.),
+		Color(0., .4, 0., 1.),
+		Color(0., .3, .4, 1.),
+		Color(.1, .2, .5, 1.),
+		Color(.2, .2, .2, 1.),
+		Color(1., 1., 1., 1.)
 	};
 	for(const StellarObject &object : selectedSystem->Objects())
 	{
@@ -593,7 +618,7 @@ void MapDetailPanel::DrawOrbits() const
 	const string &name = selectedPlanet ? selectedPlanet->Name() : selectedSystem->Name();
 	int width = font.Width(name);
 	width = (width / 2) + 65;
-	Point namePos(Screen::Right() - width - 5., Screen::Bottom() - 267.);
+	Point namePos(Screen::Right() - width - 5., Screen::Top() + 293.);
 	Color nameColor(.6, .6);
 	font.Draw(name, namePos, nameColor);
 }

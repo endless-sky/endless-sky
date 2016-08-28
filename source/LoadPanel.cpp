@@ -52,7 +52,7 @@ LoadPanel::LoadPanel(PlayerInfo &player, UI &gamePanels)
 
 
 
-void LoadPanel::Draw() const
+void LoadPanel::Draw()
 {
 	glClear(GL_COLOR_BUFFER_BIT);
 	GameData::Background().Draw(Point(), Point());
@@ -78,13 +78,16 @@ void LoadPanel::Draw() const
 	
 	if(!selectedPilot.empty())
 		info.SetCondition("pilot selected");
+	if(!player.IsDead() && player.IsLoaded() && !selectedPilot.empty())
+		info.SetCondition("pilot alive");
 	if(selectedFile.find('~') != string::npos)
 		info.SetCondition("snapshot selected");
 	if(loadedInfo.IsLoaded())
 		info.SetCondition("pilot loaded");
 	
-	const Interface *menu = GameData::Interfaces().Get("load menu");
-	menu->Draw(info);
+	GameData::Interfaces().Get("menu background")->Draw(info, this);
+	GameData::Interfaces().Get("load menu")->Draw(info, this);
+	GameData::Interfaces().Get("menu player info")->Draw(info, this);
 	
 	const Font &font = FontSet::Get(14);
 	
@@ -100,7 +103,7 @@ void LoadPanel::Draw() const
 		point += Point(0., 20.);
 	}
 	
-	if(!selectedPilot.empty() && files.find(selectedPilot) != files.end())
+	if(!selectedPilot.empty() && files.count(selectedPilot))
 	{
 		point = Point(-110., -157. - centerScroll);
 		for(const string &file : files.find(selectedPilot)->second)
@@ -124,11 +127,11 @@ void LoadPanel::OnCallback(int)
 	GetUI()->Pop(this);
 	GetUI()->Pop(GetUI()->Root().get());
 	gamePanels.Reset();
-	Panel *panel = new MainPanel(player);
-	gamePanels.Push(panel);
+	gamePanels.Push(new MainPanel(player));
 	// Tell the main panel to re-draw itself (and pop up the planet panel).
-	panel->Step();
+	gamePanels.StepAll();
 	gamePanels.Push(new ShipyardPanel(player));
+	gamePanels.StepAll();
 }
 
 
@@ -192,6 +195,10 @@ void LoadPanel::LoadCallback()
 	GetUI()->Pop(this);
 	GetUI()->Pop(GetUI()->Root().get());
 	gamePanels.Push(new MainPanel(player));
+	// It takes one step to figure out the planet panel should be created, and
+	// another step to actually place it. So, take two steps to avoid a flicker.
+	gamePanels.StepAll();
+	gamePanels.StepAll();
 }
 
 
@@ -215,7 +222,7 @@ bool LoadPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 			"Are you sure you want to delete the selected pilot, \""
 				+ selectedPilot + "\", and all their saved games?"));
 	}
-	else if(key == 'a')
+	else if(key == 'a' && !player.IsDead() && player.IsLoaded())
 	{
 		string wasSelected = selectedPilot;
 		auto it = files.find(selectedPilot);
@@ -227,11 +234,13 @@ bool LoadPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 	}
 	else if(key == 'r' && !selectedFile.empty())
 	{
-		GetUI()->Push(new Dialog(this, &LoadPanel::DeleteSave,
-			"Are you sure you want to delete the selected saved game file, \""
-				+ selectedFile + "\"?"));
+		string fileName = selectedFile.substr(selectedFile.rfind('/') + 1);
+		if(!(fileName == selectedPilot + ".txt"))
+			GetUI()->Push(new Dialog(this, &LoadPanel::DeleteSave,
+				"Are you sure you want to delete the selected saved game file, \""
+					+ selectedFile + "\"?"));
 	}
-	else if(key == 'l' || key == 'e')
+	else if((key == 'l' || key == 'e') && !selectedPilot.empty())
 	{
 		// Is the selected file a snapshot or the pilot's main file?
 		string fileName = selectedFile.substr(selectedFile.rfind('/') + 1);
@@ -307,12 +316,8 @@ bool LoadPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 
 bool LoadPanel::Click(int x, int y)
 {
-	char key = GameData::Interfaces().Get("load menu")->OnClick(Point(x, y));
-	if(key)
-		return DoKey(key);
-	
 	// The first row of each panel is y = -160 to -140.
-	if(y < -160 || y >= (-160+14*20))
+	if(y < -160 || y >= (-160 + 14 * 20))
 		return false;
 	
 	if(x >= -470 && x < -250)

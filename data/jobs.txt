@@ -63,6 +63,11 @@ mission "Escort (Small, Northern)"
 		personality nemesis waiting
 		government Pirate
 		fleet "Small Northern Pirates"
+	npc
+		system destination
+		personality nemesis staying
+		government Pirate
+		fleet "Small Northern Pirates"
 	npc accompany save
 		government Merchant
 		personality escort timid
@@ -100,6 +105,16 @@ mission "Escort (Medium, Northern)"
 		personality nemesis waiting
 		government Pirate
 		fleet "Small Northern Pirates"
+	npc
+		system destination
+		personality nemesis staying
+		government Pirate
+		fleet "Small Northern Pirates"
+	npc
+		system destination
+		personality nemesis staying
+		government Pirate
+		fleet "Small Northern Pirates"
 	npc accompany save
 		government Merchant
 		personality escort timid
@@ -133,6 +148,11 @@ mission "Escort (Large, Northern)"
 		personality nemesis waiting
 		government Pirate
 		fleet "Large Northern Pirates"
+	npc
+		system destination
+		personality nemesis staying
+		government Pirate
+		fleet "Large Northern Pirates"
 	npc accompany save
 		government Merchant
 		personality escort timid
@@ -164,6 +184,16 @@ mission "Escort (Extra Large, Northern)"
 		distance 3 4
 	npc
 		personality nemesis waiting
+		government Pirate
+		fleet "Large Northern Pirates"
+	npc
+		system destination
+		personality nemesis staying
+		government Pirate
+		fleet "Small Northern Pirates"
+	npc
+		system destination
+		personality nemesis staying
 		government Pirate
 		fleet "Large Northern Pirates"
 	npc
@@ -240,6 +270,11 @@ mission "Escort (Small, Core)"
 		personality nemesis waiting
 		government Pirate
 		fleet "Small Core Pirates"
+	npc
+		system destination
+		personality nemesis staying
+		government Pirate
+		fleet "Small Core Pirates"
 	npc accompany save
 		government Merchant
 		personality escort timid
@@ -277,6 +312,16 @@ mission "Escort (Medium, Core)"
 		personality nemesis waiting
 		government Pirate
 		fleet "Small Core Pirates"
+	npc
+		system destination
+		personality nemesis staying
+		government Pirate
+		fleet "Small Core Pirates"
+	npc
+		system destination
+		personality nemesis staying
+		government Pirate
+		fleet "Small Core Pirates"
 	npc accompany save
 		government Merchant
 		personality escort timid
@@ -308,6 +353,11 @@ mission "Escort (Large, Core)"
 		distance 3 4
 	npc
 		personality nemesis waiting
+		government Pirate
+		fleet "Large Core Pirates"
+	npc
+		system destination
+		personality nemesis staying
 		government Pirate
 		fleet "Large Core Pirates"
 	npc accompany save
@@ -345,6 +395,16 @@ mission "Escort (Extra Large, Core)"
 		fleet "Large Core Pirates"
 	npc
 		personality nemesis waiting
+		government Pirate
+		fleet "Small Core Pirates"
+	npc
+		system destination
+		personality nemesis staying
+		government Pirate
+		fleet "Large Core Pirates"
+	npc
+		system destination
+		personality nemesis staying
 		government Pirate
 		fleet "Small Core Pirates"
 	npc accompany save
@@ -417,6 +477,11 @@ mission "Escort (Small, Southern)"
 		personality nemesis waiting
 		government Pirate
 		fleet "Small Southern Pirates"
+	npc
+		system destination
+		personality nemesis staying
+		government Pirate
+		fleet "Small Southern Pirates"
 	npc accompany save
 		government Merchant
 		personality escort timid
@@ -454,6 +519,16 @@ mission "Escort (Medium, Southern)"
 		personality nemesis waiting
 		government Pirate
 		fleet "Small Southern Pirates"
+	npc
+		system destination
+		personality nemesis staying
+		government Pirate
+		fleet "Small Southern Pirates"
+	npc
+		system destination
+		personality nemesis staying
+		government Pirate
+		fleet "Small Southern Pirates"
 	npc accompany save
 		government Merchant
 		personality escort timid
@@ -485,6 +560,11 @@ mission "Escort (Large, Southern)"
 		distance 3 4
 	npc
 		personality nemesis waiting
+		government Pirate
+		fleet "Large Southern Pirates"
+	npc
+		system destination
+		personality nemesis staying
 		government Pirate
 		fleet "Large Southern Pirates"
 	npc accompany save
@@ -522,6 +602,16 @@ mission "Escort (Extra Large, Southern)"
 		fleet "Large Southern Pirates"
 	npc
 		personality nemesis waiting
+		government Pirate
+		fleet "Small Southern Pirates"
+	npc
+		system destination
+		personality nemesis staying
+		government Pirate
+		fleet "Large Southern Pirates"
+	npc
+		system destination
+		personality nemesis staying
 		government Pirate
 		fleet "Small Southern Pirates"
 	npc accompany save
@@ -1765,7 +1855,7 @@ mission "VIP transport"
 
 mission "Bounty Hunting (Marauder I)"
 	name "Hunt down <npc>"
-	description "A Marauder vessel, leading a small fleet, named <npc> has been attacking merchants near the <system> system. Destroy it and return to <planet> for payment (<payment>)."
+	description "A Marauder vessel named <npc>, leading a small fleet, has been attacking merchants near the <system> system. Destroy the whole fleet and return to <planet> for payment (<payment>)."
 	repeat
 	job
 	to offer
@@ -1787,7 +1877,7 @@ mission "Bounty Hunting (Marauder I)"
 
 mission "Bounty Hunting (Marauder II)"
 	name "Hunt down <npc>"
-	description "A Marauder vessel, leading a small fleet, named <npc> has been attacking merchants near the <system> system. Destroy it and return to <planet> for payment (<payment>)."
+	description "A Marauder vessel named <npc>, leading a small fleet, has been attacking merchants near the <system> system. Destroy the whole fleet and return to <planet> for payment (<payment>)."
 	repeat
 	job
 	to offer
@@ -1810,7 +1900,7 @@ mission "Bounty Hunting (Marauder II)"
 
 mission "Bounty Hunting (Marauder III)"
 	name "Hunt down <npc>"
-	description "A Marauder vessel, leading a small fleet, named <npc> has been attacking merchants near the <system> system. Destroy it and return to <planet> for payment (<payment>)."
+	description "A Marauder vessel named <npc>, leading a small fleet, has been attacking merchants near the <system> system. Destroy the whole fleet and return to <planet> for payment (<payment>)."
 	repeat
 	job
 	to offer
@@ -1832,7 +1922,7 @@ mission "Bounty Hunting (Marauder III)"
 
 mission "Bounty Hunting (Marauder IV)"
 	name "Hunt down <npc>"
-	description "A Marauder vessel, leading a small fleet, named <npc> has been attacking merchants near the <system> system. Destroy it and return to <planet> for payment (<payment>)."
+	description "A Marauder vessel named <npc>, leading a small fleet, has been attacking merchants near the <system> system. Destroy the whole fleet and return to <planet> for payment (<payment>)."
 	repeat
 	job
 	to offer
@@ -1854,7 +1944,7 @@ mission "Bounty Hunting (Marauder IV)"
 
 mission "Bounty Hunting (Marauder V)"
 	name "Hunt down <npc>"
-	description "A Marauder vessel, leading a small fleet, named <npc> has been attacking merchants near the <system> system. Destroy it and return to <planet> for payment (<payment>)."
+	description "A Marauder vessel named <npc>, leading a small fleet, has been attacking merchants near the <system> system. Destroy the whole fleet and return to <planet> for payment (<payment>)."
 	repeat
 	job
 	to offer
@@ -1877,7 +1967,7 @@ mission "Bounty Hunting (Marauder V)"
 
 mission "Bounty Hunting (Marauder VI)"
 	name "Hunt down <npc>"
-	description "A Marauder vessel, leading a small fleet, named <npc> has been attacking merchants near the <system> system. Destroy it and return to <planet> for payment (<payment>)."
+	description "A Marauder vessel named <npc>, leading a small fleet, has been attacking merchants near the <system> system. Destroy the whole fleet and return to <planet> for payment (<payment>)."
 	repeat
 	job
 	to offer
@@ -1899,11 +1989,9 @@ mission "Bounty Hunting (Marauder VI)"
 
 mission "Bounty Hunting (Marauder VII)"
 	name "Hunt down <npc>"
-	description "A Marauder vessel, leading a small fleet, named <npc> has been attacking merchants near the <system> system. Destroy it and return to <planet> for payment (<payment>)."
+	description "A Marauder vessel named <npc>, leading a small fleet, has been attacking merchants near the <system> system. Destroy the whole fleet and return to <planet> for payment (<payment>)."
 	repeat
 	job
-	source
-		government "Republic" "Syndicate" "Free Worlds" "Neutral"
 	to offer
 		"combat rating" > 2980
 		random < 20
@@ -1923,11 +2011,9 @@ mission "Bounty Hunting (Marauder VII)"
 
 mission "Bounty Hunting (Marauder VIII)"
 	name "Hunt down <npc>"
-	description "A Marauder vessel, leading a small fleet, named <npc> has been attacking merchants near the <system> system. Destroy it and return to <planet> for payment (<payment>)."
+	description "A Marauder vessel named <npc>, leading a small fleet, has been attacking merchants near the <system> system. Destroy the whole fleet and return to <planet> for payment (<payment>)."
 	repeat
 	job
-	source
-		government "Republic" "Syndicate" "Free Worlds" "Neutral"
 	to offer
 		"combat rating" > 4000
 		random < 15
@@ -1947,12 +2033,9 @@ mission "Bounty Hunting (Marauder VIII)"
 
 mission "Bounty Hunting (Marauder IX)"
 	name "Hunt down <npc>"
-	description "A Marauder vessel, leading a small fleet, named <npc> has been attacking merchants near the <system> system. Destroy it and return to <planet> for payment (<payment>)."
+	description "A Marauder vessel named <npc>, leading a small fleet, has been attacking merchants near the <system> system. Destroy the whole fleet and return to <planet> for payment (<payment>)."
 	repeat
 	job
-	source
-		government "Republic" "Syndicate" "Free Worlds" "Neutral"
-
 	to offer
 		"combat rating" > 6000
 		random < 10

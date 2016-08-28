@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "ShipInfoDisplay.h"
 
 #include "Color.h"
+#include "FillShader.h"
 #include "Format.h"
 #include "GameData.h"
 #include "Outfit.h"
@@ -72,6 +73,7 @@ void ShipInfoDisplay::DrawAttributes(const Point &topLeft) const
 	table.AddColumn(10, Table::LEFT);
 	table.AddColumn(WIDTH - 90, Table::RIGHT);
 	table.AddColumn(WIDTH - 10, Table::RIGHT);
+	table.SetHighlight(0, WIDTH);
 	table.DrawAt(point);
 	table.DrawGap(10.);
 	
@@ -81,6 +83,7 @@ void ShipInfoDisplay::DrawAttributes(const Point &topLeft) const
 	
 	for(unsigned i = 0; i < tableLabels.size(); ++i)
 	{
+		CheckHover(table, tableLabels[i]);
 		table.Draw(tableLabels[i], labelColor);
 		table.Draw(energyTable[i], valueColor);
 		table.Draw(heatTable[i], valueColor);
@@ -99,6 +102,9 @@ void ShipInfoDisplay::DrawOutfits(const Point &topLeft) const
 void ShipInfoDisplay::DrawSale(const Point &topLeft) const
 {
 	Draw(topLeft, saleLabels, saleValues);
+	
+	Color color = *GameData::Colors().Get("medium");
+	FillShader::Fill(topLeft + Point(.5 * WIDTH, saleHeight + 8.), Point(WIDTH - 20., 1.), color);
 }
 
 
@@ -113,6 +119,10 @@ void ShipInfoDisplay::UpdateDescription(const Ship &ship)
 		string text = ship.Description() + "\tTo purchase this ship you must have ";
 		for(unsigned i = 0; i < licenses.size(); ++i)
 		{
+			bool isVoweled = false;
+			for(const char &c : "aeiou")
+				if(*licenses[i].begin() == c || *licenses[i].begin() == toupper(c))
+					isVoweled = true;
 			if(i)
 			{
 				if(licenses.size() > 2)
@@ -122,7 +132,8 @@ void ShipInfoDisplay::UpdateDescription(const Ship &ship)
 			}
 			if(i && i == licenses.size() - 1)
 				text += "and ";
-			text += "a " + licenses[i] + " License";
+			text += (isVoweled ? "an " : "a ") + licenses[i] + " License";
+
 		}
 		text += ".";
 		ItemInfoDisplay::UpdateDescription(text);
@@ -230,7 +241,7 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship)
 		"outfit space free:", "outfit space",
 		"    weapon capacity:", "weapon capacity",
 		"    engine capacity:", "engine capacity",
-		"guns ports free:", "gun ports",
+		"gun ports free:", "gun ports",
 		"turret mounts free:", "turret mounts"
 	};
 	static const int NAMES =  sizeof(names) / sizeof(names[0]);
@@ -299,10 +310,14 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship)
 	energyTable.push_back(Format::Number(-60. * firingEnergy));
 	heatTable.push_back(Format::Number(60. * firingHeat));
 	attributesHeight += 20;
-	tableLabels.push_back("repairing:");
-	double repairEnergy = attributes.Get("shield energy") + attributes.Get("hull energy");
-	energyTable.push_back(Format::Number(-60. * repairEnergy));
-	heatTable.push_back("0");
+	double shieldEnergy = attributes.Get("shield energy");
+	double hullEnergy = attributes.Get("hull energy");
+	tableLabels.push_back((shieldEnergy && hullEnergy) ? "shields / hull:" :
+		hullEnergy ? "repairing hull:" : "charging shields:");
+	energyTable.push_back(Format::Number(-60. * (shieldEnergy + hullEnergy)));
+	double shieldHeat = attributes.Get("shield heat");
+	double hullHeat = attributes.Get("hull heat");
+	heatTable.push_back(Format::Number(60. * (shieldHeat + hullHeat)));
 	attributesHeight += 20;
 	tableLabels.push_back("max:");
 	energyTable.push_back(Format::Number(attributes.Get("energy capacity")));
@@ -359,13 +374,10 @@ void ShipInfoDisplay::UpdateOutfits(const Ship &ship)
 	saleValues.push_back(string());
 	saleHeight += 20;
 	saleLabels.push_back("empty hull:");
-	saleValues.push_back(Format::Number(totalValue - outfitsValue) + " credits");
+	saleValues.push_back(Format::Number(totalValue - outfitsValue));
 	saleHeight += 20;
 	saleLabels.push_back("  + outfits:");
-	saleValues.push_back(Format::Number(outfitsValue) + " credits");
-	saleHeight += 20;
-	saleLabels.push_back("= total:");
-	saleValues.push_back(Format::Number(totalValue) + " credits");
-	saleHeight += 20;
+	saleValues.push_back(Format::Number(outfitsValue));
+	saleHeight += 5;
 }
 

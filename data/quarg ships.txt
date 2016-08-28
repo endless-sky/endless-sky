@@ -14,7 +14,7 @@ ship "Quarg Skylark"
 		category "Heavy Warship"
 		"cost" 5900000
 		"shields" 120000
-		"hull" 12000
+		"hull" 70000
 		"required crew" 120
 		"bunks" 210
 		"mass" 460
@@ -49,8 +49,9 @@ ship "Quarg Skylark"
 	explode "tiny explosion" 12
 	explode "small explosion" 16
 	explode "medium explosion" 30
-	explode "big explosion" 40
+	explode "large explosion" 40
 	explode "huge explosion" 20
+	"final explode" "final explosion medium"
 	description "The Skylark is used by the Quarg as a freighter and warship."
 
 ship "Quarg Wardragon"
@@ -59,7 +60,7 @@ ship "Quarg Wardragon"
 		category "Heavy Warship"
 		"cost" 5900000
 		"shields" 160000
-		"hull" 8000
+		"hull" 50000
 		"required crew" 160
 		"bunks" 185
 		"mass" 360
@@ -94,6 +95,7 @@ ship "Quarg Wardragon"
 	explode "tiny explosion" 12
 	explode "small explosion" 16
 	explode "medium explosion" 30
-	explode "big explosion" 40
+	explode "large explosion" 40
 	explode "huge explosion" 20
+	"final explode" "final explosion medium"
 	description "The Wardragon is used by the Quarg as a light warship."

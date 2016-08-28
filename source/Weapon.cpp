@@ -32,7 +32,7 @@ void Weapon::LoadWeapon(const DataNode &node)
 	for(const DataNode &child : node)
 	{
 		if(child.Token(0) == "sprite" && child.Size() >= 2)
-			sprite.Load(child);
+			sprite.LoadSprite(child);
 		else if(child.Token(0) == "sound" && child.Size() >= 2)
 			sound = Audio::Get(child.Token(1));
 		else if(child.Token(0) == "ammo" && child.Size() >= 2)
@@ -72,6 +72,8 @@ void Weapon::LoadWeapon(const DataNode &node)
 		{
 			if(child.Token(0) == "lifetime")
 				lifetime = max(0., child.Value(1));
+			else if(child.Token(0) == "random lifetime")
+				randomLifetime = max(0., child.Value(1));
 			else if(child.Token(0) == "reload")
 				reload = max(1., child.Value(1));
 			else if(child.Token(0) == "burst reload")
@@ -96,6 +98,14 @@ void Weapon::LoadWeapon(const DataNode &node)
 				turn = child.Value(1);
 			else if(child.Token(0) == "inaccuracy")
 				inaccuracy = child.Value(1);
+			else if(child.Token(0) == "tracking")
+				tracking = max(0., min(1., child.Value(1)));
+			else if(child.Token(0) == "optical tracking")
+				opticalTracking = max(0., min(1., child.Value(1)));
+			else if(child.Token(0) == "infrared tracking")
+				infraredTracking = max(0., min(1., child.Value(1)));
+			else if(child.Token(0) == "radar tracking")
+				radarTracking = max(0., min(1., child.Value(1)));
 			else if(child.Token(0) == "firing energy")
 				firingEnergy = child.Value(1);
 			else if(child.Token(0) == "firing force")
@@ -142,6 +152,10 @@ void Weapon::LoadWeapon(const DataNode &node)
 	isStreamed |= !(MissileStrength() || AntiMissile());
 	isStreamed &= !isClustered;
 	
+	// Support legacy missiles with no tracking type defined:
+	if(homing && !tracking && !opticalTracking && !infraredTracking && !radarTracking)
+		tracking = 1.;
+	
 	// Convert the "live effect" counts from occurrences per projectile lifetime
 	// into chance of occurring per frame.
 	if(lifetime <= 0)
@@ -168,7 +182,7 @@ bool Weapon::IsWeapon() const
 
 
 // Get assets used by this weapon.
-const Animation &Weapon::WeaponSprite() const
+const Body &Weapon::WeaponSprite() const
 {
 	return sprite;
 }

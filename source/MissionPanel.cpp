@@ -68,7 +68,7 @@ MissionPanel::MissionPanel(PlayerInfo &player)
 	// system, or along the travel plan.
 	if(!FindMissionForSystem(selectedSystem) && player.HasTravelPlan())
 	{
-		auto& tp = player.TravelPlan();
+		const auto &tp = player.TravelPlan();
 		for(auto it = tp.crbegin(); it != tp.crend(); ++it)
 			if(FindMissionForSystem(*it))
 				break;
@@ -112,7 +112,7 @@ MissionPanel::MissionPanel(const MapPanel &panel)
 		&& !(player.GetSystem() != selectedSystem && FindMissionForSystem(player.GetSystem()))
 		&& player.HasTravelPlan())
 	{
-		auto& tp = player.TravelPlan();
+		const auto &tp = player.TravelPlan();
 		for(auto it = tp.crbegin(); it != tp.crend(); ++it)
 			if(FindMissionForSystem(*it))
 				break;
@@ -141,7 +141,7 @@ void MissionPanel::Step()
 
 
 
-void MissionPanel::Draw() const
+void MissionPanel::Draw()
 {
 	MapPanel::Draw();
 	
@@ -196,7 +196,7 @@ void MissionPanel::Draw() const
 	if(ZoomIsMin())
 		info.SetCondition("min zoom");
 	const Interface *interface = GameData::Interfaces().Get("map buttons");
-	interface->Draw(info);
+	interface->Draw(info, this);
 }
 
 
@@ -209,15 +209,16 @@ bool MissionPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 		GetUI()->Pop(this);
 		return true;
 	}
-	else if(key == 'a')
+	else if(key == 'a' && CanAccept())
 	{
-		if(CanAccept())
-			Accept();
-		else if(acceptedIt != accepted.end())
-		{
+		Accept();
+		return true;
+	}
+	else if(key == 'A' || (key == 'a' && (mod & KMOD_SHIFT)))
+	{
+		if(acceptedIt != accepted.end() && acceptedIt->IsVisible())
 			GetUI()->Push(new Dialog(this, &MissionPanel::AbortMission,
 				"Abort mission \"" + acceptedIt->Name() + "\"?"));
-		}
 		return true;
 	}
 	else if(key == 'p' || key == SDLK_PAGEUP || key == SDLK_PAGEDOWN)
@@ -240,7 +241,7 @@ bool MissionPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 		acceptedIt = accepted.end();
 		availableIt = available.begin();
 	}
-	else if(key == SDLK_RIGHT && acceptedIt == accepted.end())
+	else if(key == SDLK_RIGHT && acceptedIt == accepted.end() && AcceptedVisible())
 	{
 		availableIt = available.end();
 		acceptedIt = accepted.begin();
@@ -298,7 +299,6 @@ bool MissionPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 		ZoomMap();
 	else if(key == '-')
 		UnzoomMap();
-
 	else
 		return false;
 	
@@ -317,22 +317,6 @@ bool MissionPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 bool MissionPanel::Click(int x, int y)
 {
 	dragSide = 0;
-	
-	// Handle clicks on the interface buttons.
-	{
-		const Interface *interface = GameData::Interfaces().Get("mission");
-		char key = interface->OnClick(Point(x, y));
-		if(key)
-			return DoKey(key);
-	}
-	{
-		const Interface *interface = GameData::Interfaces().Get("map buttons");
-		char key = interface->OnClick(Point(x, y));
-		// In the mission panel, the "Done" button in the button bar should be
-		// ignored (and is not shown).
-		if(key && key != 'd')
-			return DoKey(key);
-	}
 	
 	if(x > Screen::Right() - 80 && y > Screen::Bottom() - 50)
 		return DoKey('p');
@@ -662,7 +646,7 @@ Point MissionPanel::DrawList(const list<Mission> &list, Point pos) const
 
 
 
-void MissionPanel::DrawMissionInfo() const
+void MissionPanel::DrawMissionInfo()
 {
 	Information info;
 	
@@ -672,10 +656,6 @@ void MissionPanel::DrawMissionInfo() const
 		info.SetCondition("can accept");
 	else if(acceptedIt != accepted.end())
 		info.SetCondition("can abort");
-	else if(available.size())
-		info.SetCondition("cannot accept");
-	else
-		info.SetCondition("cannot abort");
 	
 	int cargoFree = -player.Cargo().Used();
 	int bunksFree = -player.Cargo().Passengers();
@@ -692,7 +672,7 @@ void MissionPanel::DrawMissionInfo() const
 	info.SetString("today", player.GetDate().ToString());
 	
 	const Interface *interface = GameData::Interfaces().Get("mission");
-	interface->Draw(info);
+	interface->Draw(info, this);
 	
 	// If a mission is selected, draw its descriptive text.
 	if(availableIt != available.end())
@@ -783,7 +763,7 @@ void MissionPanel::MakeSpaceAndAccept()
 		
 		int64_t basis = player.GetBasis(it.first, toSell);
 		player.AdjustBasis(it.first, -basis);
-		player.Cargo().Transfer(it.first, toSell);
+		player.Cargo().Remove(it.first, toSell);
 		player.Accounts().AddCredits(toSell * price);
 	}
 	
@@ -817,7 +797,7 @@ int MissionPanel::AcceptedVisible() const
 
 
 
-bool MissionPanel::FindMissionForSystem(const System* system)
+bool MissionPanel::FindMissionForSystem(const System *system)
 {
 	if(!system)
 		return false;
@@ -838,7 +818,8 @@ bool MissionPanel::FindMissionForSystem(const System* system)
 
 bool MissionPanel::SelectAnyMission()
 {
-	if(availableIt == available.end() && acceptedIt == accepted.end()) {
+	if(availableIt == available.end() && acceptedIt == accepted.end())
+	{
 		// no previous selection, reset
 		if(!available.empty())
 			availableIt = available.begin();

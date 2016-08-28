@@ -8,6 +8,11 @@
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
+government "Alpha"
+	swizzle 1
+	"player reputation" -1000
+	"bribe" 0
+
 government "Author"
 	"player reputation" 1
 	"bribe" 0
@@ -61,7 +66,7 @@ government "Free Worlds"
 
 government "Hai"
 	swizzle 0
-	color .69 .33 .82
+	color .84 .42 .81
 	
 	"player reputation" 0
 	"attitude toward"
@@ -73,13 +78,14 @@ government "Hai"
 
 government "Hai (Unfettered)"
 	swizzle 4
-	color .84 .42 .81
+	color .69 .33 .82
 	
 	"player reputation" -1000
 	"attitude toward"
 		"Hai" -.1
 		"Wanderer" -.1
 		"Pug" -.1
+		"Merchant" -.1
 	"bribe" .02
 	"fine" 0
 	"hostile hail" "hostile unfettered"
@@ -108,7 +114,7 @@ government "Korath"
 
 government "Kor Efret"
 	swizzle 4
-	color .55 .17 .52
+	color .49 .33 .69
 	language "Korath"
 	
 	"attitude toward"
@@ -119,7 +125,7 @@ government "Kor Efret"
 
 government "Kor Mereti"
 	swizzle 5
-	color .31 .29 .69
+	color .32 .36 .65
 	language "Korath"
 	
 	"attitude toward"
@@ -129,7 +135,7 @@ government "Kor Mereti"
 
 government "Kor Sestor"
 	swizzle 0
-	color .71 .40 .13
+	color .75 .27 .37
 	language "Korath"
 	
 	"attitude toward"
@@ -164,6 +170,7 @@ government "Navy Intelligence"
 	swizzle 0
 	"attitude toward"
 		"Syndicate" -.1
+		"Pirate" -.3
 
 government "Navy (Oathkeeper)"
 	swizzle 0
@@ -171,9 +178,12 @@ government "Navy (Oathkeeper)"
 	
 	"player reputation" 100
 	"attitude toward"
+		"Alpha" -.3
 		"Merchant" .25
 		"Militia" .1
 		"Pirate" -.3
+		"Kor Sestor" -.1
+		"Kor Mereti" -.1
 	"friendly hail" "friendly navy"
 	"hostile hail" "hostile navy"
 
@@ -241,6 +251,7 @@ government "Republic"
 	
 	"player reputation" 2
 	"attitude toward"
+		"Alpha" -.3
 		"Merchant" .25
 		"Militia" .1
 		"Pirate" -.3
@@ -273,7 +284,7 @@ government "Syndicate (Extremist)"
 		"Syndicate" -.1
 		"Republic" -.1
 		"Free Worlds" -.1
-	"bribe" .08
+	"bribe" 0
 	"hostile hail" "hostile syndicate"
 
 government "Test Dummy"
@@ -288,5 +299,8 @@ government "Wanderer"
 	color .70 .91 .12
 	"player reputation" 1
 	language "Wanderer"
+	"attitude toward"
+		"Kor Sestor" -.1
+		"Kor Mereti" -.1
 	"friendly hail" "wanderer untranslated"
 	"hostile hail" "wanderer untranslated"

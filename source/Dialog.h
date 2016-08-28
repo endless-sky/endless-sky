@@ -55,7 +55,7 @@ template <class T>
 	Dialog(T *t, void (T::*fun)(), const std::string &text);
 	
 	// Draw this panel.
-	virtual void Draw() const override;
+	virtual void Draw() override;
 	
 	
 protected:

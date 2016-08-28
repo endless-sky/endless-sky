@@ -77,14 +77,20 @@ void MenuPanel::Step()
 	if(progress == 60 && !isReady)
 	{
 		if(gamePanels.IsEmpty())
+		{
 			gamePanels.Push(new MainPanel(player));
+			// It takes one step to figure out the planet panel should be created, and
+			// another step to actually place it. So, take two steps to avoid a flicker.
+			gamePanels.StepAll();
+			gamePanels.StepAll();
+		}
 		isReady = true;
 	}
 }
 
 
 
-void MenuPanel::Draw() const
+void MenuPanel::Draw()
 {
 	glClear(GL_COLOR_BUFFER_BIT);
 	GameData::Background().Draw(Point(), Point());
@@ -97,7 +103,7 @@ void MenuPanel::Draw() const
 		if(player.Flagship())
 		{
 			const Ship &flagship = *player.Flagship();
-			info.SetSprite("ship sprite", flagship.GetSprite().GetSprite());
+			info.SetSprite("ship sprite", flagship.GetSprite());
 			info.SetString("ship", flagship.Name());
 		}
 		if(player.GetSystem())
@@ -119,8 +125,9 @@ void MenuPanel::Draw() const
 		info.SetString("pilot", "No Pilot Loaded");
 	}
 	
-	const Interface *menu = GameData::Interfaces().Get("main menu");
-	menu->Draw(info);
+	GameData::Interfaces().Get("menu background")->Draw(info, this);
+	GameData::Interfaces().Get("main menu")->Draw(info, this);
+	GameData::Interfaces().Get("menu player info")->Draw(info, this);
 	
 	if(progress == 60)
 		alpha -= .02f;
@@ -161,11 +168,11 @@ void MenuPanel::OnCallback(int)
 {
 	GetUI()->Pop(this);
 	gamePanels.Reset();
-	Panel *panel = new MainPanel(player);
-	gamePanels.Push(panel);
+	gamePanels.Push(new MainPanel(player));
 	// Tell the main panel to re-draw itself (and pop up the planet panel).
-	panel->Step();
+	gamePanels.StepAll();
 	gamePanels.Push(new ShipyardPanel(player));
+	gamePanels.StepAll();
 }
 
 
@@ -196,17 +203,6 @@ bool MenuPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 		GetUI()->Quit();
 	else
 		return false;
-	
-	return true;
-}
-
-
-
-bool MenuPanel::Click(int x, int y)
-{
-	char key = GameData::Interfaces().Get("main menu")->OnClick(Point(x, y));
-	if(key)
-		return DoKey(key);
 	
 	return true;
 }

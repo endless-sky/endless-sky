@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "MapPanel.h"
 
 #include "Angle.h"
+#include "FogShader.h"
 #include "Font.h"
 #include "FontSet.h"
 #include "Galaxy.h"
@@ -24,6 +25,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "PlayerInfo.h"
 #include "PointerShader.h"
 #include "Politics.h"
+#include "Preferences.h"
 #include "RingShader.h"
 #include "Screen.h"
 #include "Ship.h"
@@ -68,18 +70,21 @@ void MapPanel::SetCommodity(int index)
 
 void MapPanel::Step()
 {
-	if(tradeCommodity && commodity > 0)
+	if(tradeCommodity && commodity >= 0)
 		*tradeCommodity = commodity;
 }
 
 
 
-void MapPanel::Draw() const
+void MapPanel::Draw()
 {
 	glClear(GL_COLOR_BUFFER_BIT);
 	
 	for(const auto &it : GameData::Galaxies())
 		SpriteShader::Draw(it.second.GetSprite(), Zoom() * (center + it.second.Position()), Zoom());
+	
+	if(Preferences::Has("Hide unexplored map regions"))
+		FogShader::Draw(center, Zoom(), player);
 	
 	DrawTravelPlan();
 	
@@ -109,6 +114,114 @@ void MapPanel::Draw() const
 		font.Draw(NO_ROUTE, point + Point(1, 1), black);
 		font.Draw(NO_ROUTE, point, red);
 	}
+}
+
+
+
+void MapPanel::DrawMiniMap(const PlayerInfo &player, double alpha, const System *const jump[2], int step)
+{
+	const Font &font = FontSet::Get(14);
+	Color lineColor(alpha, 0.);
+	Point center = .5 * (jump[0]->Position() + jump[1]->Position());
+	Point drawPos(0., Screen::Top() + 100.);
+	set<const System *> seen;
+	bool isLink = false;
+
+	const Set<Color> &colors = GameData::Colors();
+	Color currentColor = colors.Get("active mission")->Additive(alpha * 2.);
+	Color blockedColor = colors.Get("blocked mission")->Additive(alpha * 2.);
+	Color waypointColor = colors.Get("waypoint")->Additive(alpha * 2.);
+	
+	for(int i = 0; i < 2; ++i)
+	{
+		const System *system = jump[i];
+		const Government *gov = system->GetGovernment();
+		bool isKnown = player.KnowsName(system);
+		Point from = system->Position() - center + drawPos;
+		string name = isKnown ? system->Name() : "Unexplored System";
+		font.Draw(name, from + Point(6., -.5 * font.Height()), lineColor);
+		
+		Color color = Color(.5 * alpha, 0.);
+		if(player.HasVisited(system) && system->IsInhabited() && gov)
+			color = Color(
+				alpha * gov->GetColor().Get()[0],
+				alpha * gov->GetColor().Get()[1],
+				alpha * gov->GetColor().Get()[2], 0.);
+		RingShader::Draw(from, 6., 3.5, color);
+		
+		for(const System *link : system->Links())
+		{
+			if(!player.HasVisited(system) && !player.HasVisited(link))
+				continue;
+			
+			Point to = link->Position() - center + drawPos;
+			Point unit = (from - to).Unit() * 7.;
+			LineShader::Draw(from - unit, to + unit, 1.2, lineColor);
+			
+			isLink |= (link == jump[!i]);
+			if(seen.count(link) || link == jump[!i])
+				continue;
+			seen.insert(link);
+			
+			gov = link->GetGovernment();
+			Color color = Color(.5 * alpha, 0.);
+			if(player.HasVisited(link) && link->IsInhabited() && gov)
+				color = Color(
+					alpha * gov->GetColor().Get()[0],
+					alpha * gov->GetColor().Get()[1],
+					alpha * gov->GetColor().Get()[2], 0.);
+			RingShader::Draw(to, 6., 3.5, color);
+		}
+		
+		Angle angle;
+		for(const Mission &mission : player.Missions())
+		{
+			if(!mission.IsVisible())
+				continue;
+			
+			if(mission.Destination()->GetSystem() == system)
+			{
+				bool blink = false;
+				if(mission.Deadline())
+				{
+					int days = min(5, mission.Deadline() - player.GetDate()) + 1;
+					if(days > 0)
+						blink = (step % (10 * days) > 5 * days);
+				}
+				if(!blink)
+				{
+					bool isSatisfied = IsSatisfied(player, mission);
+					DrawPointer(from, angle, isSatisfied ? currentColor : blockedColor, false);
+				}
+			}
+			
+			for(const System *waypoint : mission.Waypoints())
+				if(waypoint == system)
+					DrawPointer(from, angle, waypointColor, false);
+			for(const Planet *stopover : mission.Stopovers())
+				if(stopover->GetSystem() == system)
+					DrawPointer(from, angle, waypointColor, false);
+		}
+	}
+	
+	Point from = jump[0]->Position() - center + drawPos;
+	Point to = jump[1]->Position() - center + drawPos;
+	Point unit = (to - from).Unit();
+	from += 7. * unit;
+	to -= 7. * unit;
+	Color bright(2. * alpha, 0.);
+	if(!isLink)
+	{
+		double length = (to - from).Length();
+		int segments = static_cast<int>(length / 15.);
+		for(int i = 0; i < segments; ++i)
+			LineShader::Draw(
+				from + unit * ((i * length) / segments + 2.),
+				from + unit * (((i + 1) * length) / segments - 2.),
+				1.2, bright);
+	}
+	LineShader::Draw(to, to + Angle(-30.).Rotate(unit) * -10., 1.2, bright);
+	LineShader::Draw(to, to + Angle(30.).Rotate(unit) * -10., 1.2, bright);
 }
 
 
@@ -239,34 +352,39 @@ void MapPanel::Select(const System *system)
 	if(!system)
 		return;
 	selectedSystem = system;
+	vector<const System *> &plan = player.TravelPlan();
+	if(!plan.empty() && system == plan.front())
+		return;
 	
-	bool shift = (SDL_GetModState() & KMOD_SHIFT) && player.HasTravelPlan();
+	bool shift = (SDL_GetModState() & KMOD_SHIFT) && !plan.empty();
 	if(system == playerSystem && !shift)
-		player.ClearTravel();
+	{
+		plan.clear();
+		if(player.Flagship())
+			player.Flagship()->SetTargetSystem(nullptr);
+	}
 	else if((distance.Distance(system) > 0 || shift) && player.Flagship())
 	{
 		if(shift)
 		{
-			vector<const System *> oldPath = player.TravelPlan();
-			DistanceMap localDistance(player, oldPath.front());
+			DistanceMap localDistance(player, plan.front());
 			if(localDistance.Distance(system) <= 0)
 				return;
-			player.ClearTravel();
 			
-			while(system != oldPath.front())
+			auto it = plan.begin();
+			while(system != *it)
 			{
-				player.AddTravel(system);
+				it = ++plan.insert(it, system);
 				system = localDistance.Route(system);
 			}
-			for(const System *it : oldPath)
-				player.AddTravel(it);
 		}
 		else if(playerSystem)
 		{
-			player.ClearTravel();
+			plan.clear();
+			player.Flagship()->SetTargetSystem(nullptr);
 			while(system != playerSystem)
 			{
-				player.AddTravel(system);
+				plan.push_back(system);
 				system = distance.Route(system);
 			}
 		}
@@ -349,6 +467,13 @@ bool MapPanel::ZoomIsMin() const
 // Check whether the NPC and waypoint conditions of the given mission have
 // been satisfied.
 bool MapPanel::IsSatisfied(const Mission &mission) const
+{
+	return IsSatisfied(player, mission);
+}
+
+
+
+bool MapPanel::IsSatisfied(const PlayerInfo &player, const Mission &mission)
 {
 	for(const NPC &npc : mission.NPCs())
 		if(!npc.HasSucceeded(player.GetSystem()))
@@ -459,7 +584,7 @@ void MapPanel::DrawTravelPlan() const
 			drawColor = withinFleetFuelRangeColor;
 		else if(flagshipCapacity >= 0. || escortCapacity >= 0.)
 			drawColor = defaultColor;
-        
+		
 		LineShader::Draw(from, to, 3., drawColor);
 		
 		previous = next;
@@ -571,11 +696,13 @@ void MapPanel::DrawSystems() const
 			if(commodity >= SHOW_SPECIAL)
 			{
 				double value = 0.;
+				bool showUninhabited = false;
 				if(commodity >= 0)
 				{
 					const Trade::Commodity &com = GameData::Commodities()[commodity];
-					value = (2. * (system.Trade(com.name) - com.low))
-						/ (com.high - com.low) - 1.;
+					double price = system.Trade(com.name);
+					showUninhabited = !price;
+					value = (2. * (price - com.low)) / (com.high - com.low) - 1.;
 				}
 				else if(commodity == SHOW_SHIPYARD)
 				{
@@ -598,7 +725,7 @@ void MapPanel::DrawSystems() const
 					bool all = true;
 					bool some = false;
 					for(const StellarObject &object : system.Objects())
-						if(object.GetPlanet())
+						if(object.GetPlanet() && !object.GetPlanet()->IsWormhole())
 						{
 							bool visited = player.HasVisited(object.GetPlanet());
 							all &= visited;
@@ -609,7 +736,7 @@ void MapPanel::DrawSystems() const
 				else
 					value = SystemValue(&system);
 				
-				color = MapColor(value);
+				color = (showUninhabited ? UninhabitedColor() : MapColor(value));
 			}
 			else if(commodity == SHOW_GOVERNMENT)
 			{
@@ -630,16 +757,21 @@ void MapPanel::DrawSystems() const
 			{
 				double reputation = system.GetGovernment()->Reputation();
 				
+				// A system should show up as dominated if it contains at least
+				// one inhabited planet and all inhabited planets have been
+				// dominated. It should show up as restricted if you cannot land
+				// on any of the planets that have spaceports.
 				bool hasDominated = true;
 				bool isInhabited = false;
 				bool canLand = false;
 				for(const StellarObject &object : system.Objects())
-					if(object.GetPlanet() && object.GetPlanet()->HasSpaceport())
+					if(object.GetPlanet())
 					{
-						canLand |= object.GetPlanet()->CanLand();
-						isInhabited |= object.GetPlanet()->IsInhabited();
-						hasDominated &= (!object.GetPlanet()->IsInhabited()
-							|| GameData::GetPolitics().HasDominated(object.GetPlanet()));
+						const Planet *planet = object.GetPlanet();
+						canLand |= planet->CanLand() && planet->HasSpaceport();
+						isInhabited |= planet->IsInhabited();
+						hasDominated &= (!planet->IsInhabited()
+							|| GameData::GetPolitics().HasDominated(planet));
 					}
 				hasDominated &= isInhabited;
 				color = ReputationColor(reputation, canLand, canLand && hasDominated);
@@ -655,7 +787,8 @@ void MapPanel::DrawSystems() const
 void MapPanel::DrawNames() const
 {
 	// Don't draw if too small.
-	if (Zoom() <= 0.5) return;
+	if(Zoom() <= 0.5)
+		return;
 	
 	// Draw names for all systems you have visited.
 	const Font &font = FontSet::Get((Zoom() > 2.0) ? 18 : 14);
@@ -707,8 +840,8 @@ void MapPanel::DrawMissions() const
 			if(days > 0)
 				blink = (step % (10 * days) > 5 * days);
 		}
-		DrawPointer(system, angle[system],
-			blink ? black : IsSatisfied(mission) ? currentColor : blockedColor);
+		bool isSatisfied = IsSatisfied(player, mission);
+		DrawPointer(system, angle[system], blink ? black : isSatisfied ? currentColor : blockedColor, isSatisfied);
 		
 		for(const System *waypoint : mission.Waypoints())
 			DrawPointer(waypoint, angle[waypoint], waypointColor);
@@ -727,12 +860,19 @@ void MapPanel::DrawMissions() const
 
 
 
-void MapPanel::DrawPointer(const System *system, Angle &angle, const Color &color) const
+void MapPanel::DrawPointer(const System *system, Angle &angle, const Color &color, bool bigger) const
+{
+	DrawPointer(Zoom() * (system->Position() + center), angle, color, true, bigger);
+}
+
+
+
+void MapPanel::DrawPointer(Point position, Angle &angle, const Color &color, bool drawBack, bool bigger)
 {
 	static const Color black(0., 1.);
 	
 	angle += Angle(30.);
-	Point pos = Zoom() * (system->Position() + center);
-	PointerShader::Draw(pos, angle.Unit(), 14., 19., -4., black);
-	PointerShader::Draw(pos, angle.Unit(), 8., 15., -6., color);
+	if(drawBack)
+		PointerShader::Draw(position, angle.Unit(), 14. + bigger, 19. + 2 * bigger, -4., black);
+	PointerShader::Draw(position, angle.Unit(), 8. + bigger, 15. + 2 * bigger, -6., color);
 }

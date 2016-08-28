@@ -69,8 +69,8 @@ private:
 	
 	std::map<std::string, int> events;
 	std::map<const Outfit *, int> gifts;
-	int payment = 0;
-	int paymentMultiplier = 0;
+	int64_t payment = 0;
+	int64_t paymentMultiplier = 0;
 	
 	// When this action is performed, the missions with these names fail.
 	std::set<std::string> fail;

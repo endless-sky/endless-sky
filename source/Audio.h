@@ -24,12 +24,10 @@ class Sound;
 // This class is a collection of global functions for handling audio. A sound
 // can be played from any point in the code, and from any thread, just by
 // specifying the name of the sound to play. Most sounds will come from a
-// "source" at a certain position and velocity, and their volume is adjusted
-// based on how far they are from the observer. Pitch is also adjusted (a
-// Doppler shift) depending on whether they are moving toward the observer or
-// away, and at what velocity. Sounds that are not marked as looping will play
-// once, then stop; looping sounds continue until their source stops calling
-// the "play" function for them.
+// "source" at a certain position, and their volume and left / right balance is
+// adjusted based on how far they are from the observer. Sounds that are not
+// marked as looping will play once, then stop; looping sounds continue until
+// their source stops calling the "play" function for them.
 class Audio {
 public:
 	// Begin loading sounds (in a separate thread).

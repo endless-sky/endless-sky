@@ -13,7 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef WEAPON_H_
 #define WEAPON_H_
 
-#include "Animation.h"
+#include "Body.h"
 
 #include <map>
 
@@ -37,7 +37,7 @@ public:
 	bool IsWeapon() const;
 	
 	// Get assets used by this weapon.
-	const Animation &WeaponSprite() const;
+	const Body &WeaponSprite() const;
 	const Sound *WeaponSound() const;
 	const Outfit *Ammo() const;
 	const Sprite *Icon() const;
@@ -51,6 +51,7 @@ public:
 	
 	// Accessor functions for various attributes.
 	int Lifetime() const;
+	int RandomLifetime() const;
 	double Reload() const;
 	double BurstReload() const;
 	int BurstCount() const;
@@ -70,6 +71,11 @@ public:
 	
 	double Turn() const;
 	double Inaccuracy() const;
+	
+	double Tracking() const;
+	double OpticalTracking() const;
+	double InfraredTracking() const;
+	double RadarTracking() const;
 	
 	double FiringEnergy() const;
 	double FiringForce() const;
@@ -101,7 +107,7 @@ private:
 	
 private:
 	// Sprites and sounds.
-	Animation sprite;
+	Body sprite;
 	const Sound *sound = nullptr;
 	const Outfit *ammo = nullptr;
 	const Sprite *icon = nullptr;
@@ -119,6 +125,7 @@ private:
 	
 	// Attributes.
 	int lifetime = 0;
+	int randomLifetime = 0;
 	double reload = 1.;
 	double burstReload = 1.;
 	int burstCount = 1;
@@ -134,6 +141,11 @@ private:
 	
 	double turn = 0.;
 	double inaccuracy = 0.;
+	
+	double tracking = 0.;
+	double opticalTracking = 0.;
+	double infraredTracking = 0.;
+	double radarTracking = 0.;
 	
 	double firingEnergy = 0.;
 	double firingForce = 0.;
@@ -164,6 +176,7 @@ private:
 
 // Inline the accessors because they get called so frequently.
 inline int Weapon::Lifetime() const { return lifetime; }
+inline int Weapon::RandomLifetime() const { return randomLifetime; }
 inline double Weapon::Reload() const { return reload; }
 inline double Weapon::BurstReload() const { return burstReload; }
 inline int Weapon::BurstCount() const { return burstCount; }
@@ -180,6 +193,11 @@ inline double Weapon::Drag() const { return drag; }
 
 inline double Weapon::Turn() const { return turn; }
 inline double Weapon::Inaccuracy() const { return inaccuracy; }
+
+inline double Weapon::Tracking() const { return tracking; }
+inline double Weapon::OpticalTracking() const { return opticalTracking; }
+inline double Weapon::InfraredTracking() const { return infraredTracking; }
+inline double Weapon::RadarTracking() const { return radarTracking; }
 
 inline double Weapon::FiringEnergy() const { return firingEnergy; }
 inline double Weapon::FiringForce() const { return firingForce; }

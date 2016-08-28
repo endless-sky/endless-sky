@@ -34,13 +34,12 @@ public:
 	MapSalesPanel(PlayerInfo &player, bool isOutfitters);
 	MapSalesPanel(const MapPanel &panel, bool isOutfitters);
 	
-	void Draw() const;
+	void Draw();
 	bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command);
 	bool Click(int x, int y);
 	bool Hover(int x, int y);
 	bool Drag(double dx, double dy);
 	bool Scroll(double dx, double dy);
-	double SystemValue(const System *system) const;
 	
 	
 protected:
@@ -48,18 +47,18 @@ protected:
 	virtual const Sprite *CompareSprite() const = 0;
 	virtual const ItemInfoDisplay &SelectedInfo() const = 0;
 	virtual const ItemInfoDisplay &CompareInfo() const = 0;
+	virtual const std::string &KeyLabel(int index) const = 0;
 
 	virtual void Select(int index) = 0;
 	virtual void Compare(int index) = 0;
-	virtual bool HasAny(const Planet *planet) const = 0;
-	virtual bool HasThis(const Planet *planet) const = 0;
+	virtual double SystemValue(const System *system) const = 0;
 	virtual int FindItem(const std::string &text) const = 0;
 	
 	virtual void DrawItems() const = 0;
 	
 	void DrawKey() const;
 	void DrawPanel() const;
-	void DrawButtons() const;
+	void DrawButtons();
 	void DrawInfo() const;
 
 	bool DrawHeader(Point &corner, const std::string &category) const;

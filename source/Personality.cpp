@@ -39,6 +39,8 @@ namespace {
 	static const int FRUGAL = (1 << 15);
 	static const int COWARD = (1 << 16);
 	static const int VINDICTIVE = (1 << 17);
+	static const int SWARMING = (1 << 18);
+	static const int UNCONSTRAINED = (1 << 19);
 	
 	static const map<string, int> TOKEN = {
 		{"pacifist", PACIFIST},
@@ -58,7 +60,9 @@ namespace {
 		{"escort", ESCORT},
 		{"frugal", FRUGAL},
 		{"coward", COWARD},
-		{"vindictive", VINDICTIVE}
+		{"vindictive", VINDICTIVE},
+		{"swarming", SWARMING},
+		{"unconstrained", UNCONSTRAINED}
 	};
 	
 	double DEFAULT_CONFUSION = 10.;
@@ -68,7 +72,7 @@ namespace {
 
 // Default settings for player's ships.
 Personality::Personality()
-	: flags(DISABLES), confusionMultiplier(DEFAULT_CONFUSION), confusionAngle(Angle::Random())
+	: flags(DISABLES), confusionMultiplier(DEFAULT_CONFUSION), aimMultiplier(1.)
 {
 }
 
@@ -235,6 +239,20 @@ bool Personality::IsVindictive() const
 
 
 
+bool Personality::IsSwarming() const
+{
+	return flags & SWARMING;
+}
+
+
+
+bool Personality::IsUnconstrained() const
+{
+	return flags & UNCONSTRAINED;
+}
+
+
+
 const Point &Personality::Confusion() const
 {
 	return confusion;
@@ -242,11 +260,21 @@ const Point &Personality::Confusion() const
 
 
 
-void Personality::UpdateConfusion()
+void Personality::UpdateConfusion(bool isFiring)
 {
-	confusionAngle += Angle::Random(10) - Angle::Random(10);
-	confusion += (.1 * confusionMultiplier) * confusionAngle.Unit();
-	confusion *= .9;
+	// If you're firing weapons, aiming accuracy should slowly improve until it
+	// is 4 times more precise than it initially was.
+	aimMultiplier = .99 * aimMultiplier + .01 * (isFiring ? .5 : 2.);
+	
+	// Try to correct for any error in the aim, but constantly introduce new
+	// error and overcompensation so it oscillates around the origin. Apply
+	// damping to the position and velocity to avoid extreme outliers, though.
+	if(confusion.X() || confusion.Y())
+		confusionVelocity -= .001 * confusion.Unit();
+	confusionVelocity += .001 * Angle::Random().Unit();
+	confusionVelocity *= .999;
+	confusion += confusionVelocity * (confusionMultiplier * aimMultiplier);
+	confusion *= .9999;
 }
 
 

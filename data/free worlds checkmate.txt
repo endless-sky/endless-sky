@@ -13,7 +13,7 @@
 mission "FWC Scouting 1"
 	landing
 	name "Scout Kaus Borealis"
-	description "Travel through the <system> system to determine how strong the Navy presence is there, while JJ works to gather a fleet to attack it."
+	description "Travel through the Kaus Borealis system to determine how strong the Navy presence is there, while JJ works to gather a fleet to attack it."
 	autosave
 	source "New Portland"
 	waypoint "Kaus Borealis"
@@ -99,9 +99,11 @@ mission "FWC Attack Kaus Borealis"
 		personality heroic
 		fleet
 			names "free worlds capital"
+			fighters "free worlds fighters"
 			variant
 				"Dreadnought"
-				"Bastion (Heavy)"
+				"Skein"
+				"Finch" 6
 		fleet
 			names "free worlds capital"
 			variant
@@ -206,7 +208,7 @@ mission "FWC Cebalrai 1"
 			choice
 				`	"Weren't you under house arrest?"`
 				`	"So, does the fact that you're here mean the Senate pardoned you?"`
-			`	"Yes," he says. "After that incident with the Alphas on Poisonwood, some folks in the Senate started thinking that I was right to view the pirates as a threat. And when the Navy went on the offensive, they decided I was needed for the war effort. So I've been reinstated. Glad to hear your on Council now too."`
+			`	"Yes," he says. "After that incident with the Alphas on Poisonwood, some folks in the Senate started thinking that I was right to view the pirates as a threat. And when the Navy went on the offensive, they decided I was needed for the war effort. So I've been reinstated. Glad to hear you're on Council now too."`
 			choice
 				`	"So, what's our next step?"`
 					goto end
@@ -648,9 +650,11 @@ mission "FWC Checkmate 1"
 		personality heroic
 		fleet
 			names "free worlds capital"
+			fighters "free worlds fighters"
 			variant
 				"Dreadnought"
-				"Bastion (Heavy)"
+				"Skein"
+				"Finch" 6
 				"Fury (Flamethrower)" 4
 		fleet
 			names "free worlds capital"
@@ -814,9 +818,11 @@ mission "FWC Checkmate 1"
 		government "Free Worlds"
 		fleet
 			names "free worlds capital"
+			fighters "free worlds fighters"
 			variant
 				"Dreadnought"
-				"Bastion (Heavy)"
+				"Skein"
+				"Finch" 6
 		fleet
 			names "free worlds capital"
 			variant
@@ -906,9 +912,11 @@ mission "FWC Checkmate 1B"
 		personality heroic
 		fleet
 			names "free worlds capital"
+			fighters "free worlds fighters"
 			variant
 				"Dreadnought"
-				"Bastion (Heavy)"
+				"Skein"
+				"Finch" 6
 		fleet
 			names "free worlds capital"
 			variant
@@ -1033,10 +1041,12 @@ mission "FWC Checkmate Escorts"
 				"Argosy (Laser)"
 		fleet
 			names "free worlds capital"
+			fighters "free worlds fighters"
 			variant
+				"Skein"
+				"Finch" 6
 				"Dreadnought"
 				"Falcon (Plasma)"
-				"Bastion (Heavy)"
 		fleet
 			names "free worlds capital"
 			variant
@@ -1102,8 +1112,10 @@ mission "FWC Pug 1"
 		government "Free Worlds"
 		fleet
 			names "free worlds small"
+			fighters "free worlds fighters"
 			variant
-				"Bastion (Heavy)"
+				"Skein"
+				"Finch" 6
 				"Clipper"
 				"Clipper (Heavy)"
 				"Clipper (Speedy)"
@@ -1258,7 +1270,7 @@ mission "FWC Pug 2"
 	
 	on offer
 		conversation
-			`When you land at the spaceport on <origin>, you find no evidence of violent struggle; merchant captains are walking around freely, haggling for commodities, and conversing with each other just like in any other spaceport you have visited. However, the spaceport is also being patrolled by small groups of slender, bipedal, pale-skinned aliens who you assume are the Pug. Each one is holding a metal staff that looks like sort of weapon, but none of them move to attack you.`
+			`When you land at the spaceport on <origin>, you find no evidence of violent struggle; merchant captains are walking around freely, haggling for commodities, and conversing with each other just like in any other spaceport you have visited. However, the spaceport is also being patrolled by small groups of slender, bipedal, pale-skinned aliens who you assume are the Pug. Each one is holding a metal staff that looks like some sort of weapon, but none of them move to attack you.`
 			`	Soon after you land, you spot a man making his way towards your ship, ducking behind other ships and crates every time a group of Pug look in his direction. If he is some sort of fugitive from them, it might be unwise to throw your lot in with him. On the other hand, he could have valuable information for you.`
 			choice
 				`	(Stay around and talk to him.)`
@@ -1604,7 +1616,7 @@ mission "FWC Pug 3B"
 			label end
 			branch alone
 				has "FWC Checkmate Escorts: done"
-			`	The resistance fighters tell you their own fleet will be launching shortly. You return to your ship and fire up the engines. Hopefully the ships that are leftover from your attack fleet will be enough to hold off the Pug until Freya finishes her work down here...`
+			`	The resistance fighters tell you their own fleet will be launching shortly. You return to your ship and fire up the engines. Hopefully the ships that are left over from your attack fleet will be enough to hold off the Pug until Freya finishes her work down here...`
 				launch
 			label alone
 			`	The resistance fighters tell you their own fleet will be launching shortly. You return to your ship and fire up the engines, wishing that you had managed to keep some of the ships from your attack fleet alive, and hoping you will be able to hold off the Pug until Freya finishes her work down here...`
@@ -1614,8 +1626,10 @@ mission "FWC Pug 3B"
 		personality heroic
 		fleet
 			names "free worlds capital"
+			fighters "free worlds fighters"
 			variant
-				"Bastion (Heavy)"
+				"Skein"
+				"Finch" 6
 				"Argosy (Blaster)"
 				"Argosy (Laser)"
 				"Argosy (Turret)"
@@ -1770,10 +1784,12 @@ mission "FWC Pug 3D: Reinforcements"
 				"Argosy (Laser)"
 		fleet
 			names "free worlds capital"
+			fighters "free worlds fighters"
 			variant
 				"Dreadnought"
 				"Falcon (Plasma)"
-				"Bastion (Heavy)"
+				"Skein" 
+				"Finch" 6
 		fleet
 			names "free worlds capital"
 			variant
@@ -2019,7 +2035,7 @@ mission "FWC Pug 4B: Quarg"
 		conversation
 			`You land on the Quarg station, but neither of you knows what to do next. How do you locate a Quarg diplomat? Do they even have such a thing? As you and Freya stand in the hangar looking somewhat lost, one of the Quarg approaches you and says, "These ones have questions?"`
 			`	Freya says, "We've been attacked by aliens who call themselves the Pug. We're wondering what you know about them."`
-			`	Quarg skin is normally entirely grey, as is their clothing, but several patches of skin on the Quarg's face turn red at the word "Pug." You've heard theories is a sign of emotion in the Quarg, but no one knows what emotion precisely. Anger? Embarrassment? The Quarg you are speaking with simply says, "Come," and leads you to a nook in one of the main hallways, where another Quarg stands behind a desk. You are struck by how little you know about this species: are you speaking to a tour guide, or to a diplomat? Is this the governor of the station, or just an expert in human languages? The Quarg behind the desk says, "Do you have questions for me?"`
+			`	Quarg skin is normally entirely grey, as is their clothing, but several patches of skin on the Quarg's face turn red at the word "Pug." You've heard theories that this is a sign of emotion in the Quarg, but no one knows what emotion precisely. Anger? Embarrassment? The Quarg you are speaking with simply says, "Come," and leads you to a nook in one of the main hallways, where another Quarg stands behind a desk. You are struck by how little you know about this species: are you speaking to a tour guide, or to a diplomat? Is this the governor of the station, or just an expert in human languages? The Quarg behind the desk says, "Do you have questions for me?"`
 			choice
 				`	"Can you help us to fight the Pug?"`
 				`	"Can you give us information about the Pug?"`
@@ -2180,13 +2196,13 @@ mission "FWC Pug 5"
 			choice
 				`	"That does sound like a good strategic choice."`
 				`	"How will your fleet get to Vega without traveling through the Pug home system? That system is swarming with their ships."`
-			`	Danforth says, "During the battle, we managed to salvage jump drives from a few of the Pug ships. We've installed them in three of our cruisers. Hopefully, with your help, that will be enough to overcome any resistance in the Vega system. Then Miss Winters can work her magic with the hyperlinks again, and we'll be able to bring a massive reinforcement fleet from Sol."`
+			`	Danforth says, "During the battle, we managed to salvage jump drives from a few of the Pug ships. We've installed them in three of our carriers. Hopefully, with your help, that will be enough to overcome any resistance in the Vega system. Then Miss Winters can work her magic with the hyperlinks again, and we'll be able to bring a massive reinforcement fleet from Sol."`
 			`	"Sounds good to me," says Freya. "I wish more of our own ships had jump drives, so we could assist you."`
 			`	"Indeed," says Danforth. "That's why it's so important for Captain <last>'s ship to be part of this battle. When it's all over, I want to be able to tell Parliament that this war was won by the Free Worlds and the Navy fighting side by side every step of the way. And I hope you will be able to tell your Senate the same thing, so that they will be more amenable to a compromise between us."`
 			choice
 				`	"I'm glad to hear you say that. Your fleet is so much stronger than ours that you could easily take all the credit."`
 					goto navy
-				`	"We were the ones who discovered the aliens and the way to restore the hyperpace links. The Free Worlds deserve the real credit here."`
+				`	"We were the ones who discovered the aliens and the way to restore the hyperspace links. The Free Worlds deserve the real credit here."`
 					goto free
 			label navy
 			`	"I don't want the credit," he says, "I want peace." He wishes you the best of luck in your attack on Vega, and says to contact him as soon as the link is restored and the reinforcements are ready.`
@@ -2504,10 +2520,12 @@ mission "FWC Pug 6"
 				"Argosy (Laser)"
 		fleet
 			names "free worlds capital"
+			fighters "free worlds fighters"
 			variant
 				"Dreadnought"
 				"Falcon (Plasma)"
-				"Bastion (Heavy)"
+				"Skein"
+				"Finch" 6
 		fleet
 			names "free worlds capital"
 			variant

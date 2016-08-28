@@ -34,10 +34,12 @@ namespace {
 		"heat generation",
 		"hull repair rate",
 		"hull energy",
+		"hull heat",
 		"reverse thrusting energy",
 		"reverse thrusting heat",
 		"shield generation",
 		"shield energy",
+		"shield heat",
 		"thrusting energy",
 		"thrusting heat",
 		"turn",
@@ -99,8 +101,8 @@ void OutfitInfoDisplay::UpdateRequirements(const Outfit &outfit)
 		"outfit space needed:", "outfit space",
 		"weapon capacity needed:", "weapon capacity",
 		"engine capacity needed:", "engine capacity",
-		"guns ports needed:", "gun ports",
-		"turret mounts needed:", "turrent mounts"
+		"gun ports needed:", "gun ports",
+		"turret mounts needed:", "turret mounts"
 	};
 	static const int NAMES =  sizeof(names) / sizeof(names[0]);
 	for(int i = 0; i + 1 < NAMES; i += 2)
@@ -127,7 +129,7 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 	map<string, map<string, int>> listing;
 	for(const auto &it : outfit.Attributes())
 	{
-		if(it.first == "cost" || it.first == "outfit space"
+		if(it.first == "outfit space"
 				|| it.first == "weapon capacity" || it.first == "engine capacity"
 				|| it.first == "gun ports" || it.first == "turret mounts")
 			continue;
@@ -136,13 +138,13 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		double scale = 1.;
 		if(it.first == "thrust" || it.first == "reverse thrust" || it.first == "afterburner thrust")
 			scale = 60. * 60.;
-		else if(ATTRIBUTES_TO_SCALE.find(it.first) != ATTRIBUTES_TO_SCALE.end())
+		else if(ATTRIBUTES_TO_SCALE.count(it.first))
 			scale = 60.;
 		
-		if(BOOLEAN_ATTRIBUTES.find(it.first) != BOOLEAN_ATTRIBUTES.end()) 
+		if(BOOLEAN_ATTRIBUTES.count(it.first)) 
 		{
 			attributeLabels.push_back("This outfit is " + it.first + ".");
-			attributeValues.push_back("");
+			attributeValues.push_back(" ");
 			attributesHeight += 20;
 		}
 		else
@@ -199,6 +201,20 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		attributesHeight += 20;
 	}
 	
+	if(outfit.SlowingDamage() && outfit.Reload())
+	{
+		attributeLabels.push_back("slowing damage / second:");
+		attributeValues.push_back(Format::Number(6000. * outfit.SlowingDamage() / outfit.Reload()));
+		attributesHeight += 20;
+	}
+	
+	if(outfit.DisruptionDamage() && outfit.Reload())
+	{
+		attributeLabels.push_back("disruption damage / second:");
+		attributeValues.push_back(Format::Number(6000. * outfit.DisruptionDamage() / outfit.Reload()));
+		attributesHeight += 20;
+	}
+	
 	if(outfit.FiringEnergy() && outfit.Reload())
 	{
 		attributeLabels.push_back("firing energy / second:");
@@ -242,16 +258,40 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		attributeValues.push_back(skill[max(0, min(4, homing))]);
 		attributesHeight += 20;
 	}
+	static const string percentNames[] = {
+		"tracking:",
+		"optical tracking:",
+		"infrared tracking:",
+		"radar tracking:",
+		"piercing:"
+	};
+	double percentValues[] = {
+		outfit.Tracking(),
+		outfit.OpticalTracking(),
+		outfit.InfraredTracking(),
+		outfit.RadarTracking(),
+		outfit.Piercing()
+	};
+	for(unsigned i = 0; i < sizeof(percentValues) / sizeof(percentValues[0]); ++i)
+		if(percentValues[i])
+		{
+			int percent = 100. * percentValues[i] + .5;
+			attributeLabels.push_back(percentNames[i]);
+			attributeValues.push_back(Format::Number(percent) + "%");
+			attributesHeight += 20;
+		}
 	
 	attributeLabels.push_back(string());
 	attributeValues.push_back(string());
 	attributesHeight += 10;
 	
 	static const string names[] = {
-		"shield damage / shot: ",
-		"hull damage / shot: ",
-		"heat damage / shot: ",
-		"ion damage / shot: ",
+		"shield damage / shot:",
+		"hull damage / shot:",
+		"heat damage / shot:",
+		"ion damage / shot:",
+		"slowing damage / shot:",
+		"disruption damage / shot:",
 		"firing energy / shot:",
 		"firing heat / shot:",
 		"firing fuel / shot:",
@@ -265,6 +305,8 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		outfit.HullDamage(),
 		outfit.HeatDamage(),
 		outfit.IonDamage() * 100.,
+		outfit.SlowingDamage() * 100.,
+		outfit.DisruptionDamage() * 100.,
 		outfit.FiringEnergy(),
 		outfit.FiringHeat(),
 		outfit.FiringFuel(),
@@ -274,7 +316,7 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		static_cast<double>(outfit.AntiMissile())
 	};
 	static const int NAMES = sizeof(names) / sizeof(names[0]);
-	for(int i = (isContinuous ? 7 : 0); i < NAMES; ++i)
+	for(int i = (isContinuous ? 9 : 0); i < NAMES; ++i)
 		if(values[i])
 		{
 			attributeLabels.push_back(names[i]);

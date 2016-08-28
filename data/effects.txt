@@ -214,8 +214,8 @@ effect "medium explosion"
 	"random frame rate" 5
 	"velocity scale" .4
 
-effect "big explosion"
-	sprite "effect/explosion/big"
+effect "large explosion"
+	sprite "effect/explosion/large"
 		"no repeat"
 		"frame rate" 15
 	sound "explosion large"
@@ -237,6 +237,15 @@ effect "huge explosion"
 	"random spin" 5
 	"random frame rate" 5
 	"velocity scale" .4
+
+effect "final explosion small"
+	sound "final explosion small"
+
+effect "final explosion medium"
+	sound "final explosion medium"
+
+effect "final explosion large"
+	sound "final explosion large"
 
 effect "smoke"
 	sprite "effect/smoke"
@@ -371,3 +380,41 @@ effect "box"
 	"random angle" 30
 	"random spin" 10
 	"random velocity" -1
+
+effect "flotsam death"
+	sprite "effect/smoke"
+		"no repeat"
+		"frame rate" 8
+	"lifetime" 60
+	"random angle" 360
+	"random spin" 5
+	"random frame rate" 8
+
+effect "bullet impact"
+	sprite "effect/bullet impact"
+		"no repeat"
+		"frame rate" 60
+	"lifetime" 8
+	"random angle" 40
+	"velocity scale" -.05
+
+effect "rail sparks"
+	sprite "effect/railspark"
+		"random start frame"
+		"frame rate" 30
+		"rewind"
+	"lifetime" 6
+	"velocity scale" 1.2
+	"random angle" 360
+	"random spin" 30
+
+effect "bolide"
+	sprite "effect/bolide"
+		"random start frame"
+		"no repeat"
+		"frame rate" 3
+	"lifetime" 120
+	"random angle" 360
+	"random spin" 5
+	"velocity scale" .8
+	"random frame rate" 6

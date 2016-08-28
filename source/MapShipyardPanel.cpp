@@ -48,14 +48,14 @@ MapShipyardPanel::MapShipyardPanel(const MapPanel &panel)
 
 const Sprite *MapShipyardPanel::SelectedSprite() const
 {
-	return selected ? selected->GetSprite().GetSprite() : nullptr;
+	return selected ? selected->GetSprite() : nullptr;
 }
 
 
 
 const Sprite *MapShipyardPanel::CompareSprite() const
 {
-	return compare ? compare->GetSprite().GetSprite() : nullptr;
+	return compare ? compare->GetSprite() : nullptr;
 }
 
 
@@ -70,6 +70,18 @@ const ItemInfoDisplay &MapShipyardPanel::SelectedInfo() const
 const ItemInfoDisplay &MapShipyardPanel::CompareInfo() const
 {
 	return compareInfo;
+}
+
+
+
+const string &MapShipyardPanel::KeyLabel(int index) const
+{
+	static const string LABEL[3] = {
+		"Has no shipyard",
+		"Has shipyard",
+		"Sells this ship"
+	};
+	return LABEL[index];
 }
 
 
@@ -100,21 +112,27 @@ void MapShipyardPanel::Compare(int index)
 
 
 
-bool MapShipyardPanel::HasAny(const Planet *planet) const
+double MapShipyardPanel::SystemValue(const System *system) const
 {
-	return !planet->Shipyard().empty();
+	if(!system)
+		return 0.;
+	
+	double value = -.5;
+	for(const StellarObject &object : system->Objects())
+		if(object.GetPlanet())
+		{
+			const auto &shipyard = object.GetPlanet()->Shipyard();
+			if(shipyard.Has(selected))
+				return 1.;
+			if(!shipyard.empty())
+				value = 0.;
+		}
+	return value;
 }
 
 
 
-bool MapShipyardPanel::HasThis(const Planet *planet) const
-{
-	return planet->Shipyard().Has(selected);
-}
-
-
-
-int MapShipyardPanel::FindItem(const std::string &text) const
+int MapShipyardPanel::FindItem(const string &text) const
 {
 	int bestIndex = 9999;
 	int bestItem = -1;
@@ -167,8 +185,7 @@ void MapShipyardPanel::DrawItems() const
 					}
 			}
 			
-			Draw(corner, ship->GetSprite().GetSprite(), isForSale, ship == selected,
-				ship->ModelName(), price, info);
+			Draw(corner, ship->GetSprite(), isForSale, ship == selected, ship->ModelName(), price, info);
 			list.push_back(ship);
 		}
 	}
@@ -184,7 +201,7 @@ void MapShipyardPanel::Init()
 	for(const auto &it : GameData::Planets())
 		if(player.HasVisited(it.second.GetSystem()))
 			for(const Ship *ship : it.second.Shipyard())
-				if(seen.find(ship) == seen.end())
+				if(!seen.count(ship))
 				{
 					catalog[ship->Attributes().Category()].push_back(ship);
 					seen.insert(ship);

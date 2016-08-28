@@ -34,7 +34,7 @@ public:
 	MapDetailPanel(PlayerInfo &player, int *commodity);
 	MapDetailPanel(const MapPanel &panel);
 	
-	virtual void Draw() const override;
+	virtual void Draw() override;
 	
 	
 protected:
@@ -46,7 +46,7 @@ protected:
 private:
 	void DoFind(const std::string &text);
 	void DrawKey() const;
-	void DrawInfo() const;
+	void DrawInfo();
 	void DrawOrbits() const;
 	
 	void ListShips() const;
