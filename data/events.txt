@@ -1420,6 +1420,10 @@ event "initial deployment 4"
 		fleet "Small Free Worlds" 900
 		fleet "Large Free Worlds" 1700
 		fleet "Navy Surveillance" 800
+	system "Antares"
+		fleet "Small Southern Pirates" 1000
+		fleet "Large Southern Pirates" 2000
+		fleet "Large Free Worlds" 5000
 
 
 
