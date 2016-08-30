@@ -222,6 +222,7 @@ ship "Kar Ik Vot 349"
 		"Systems Core (Large)"
 		"Large Heat Shunt" 4
 		"Small Heat Shunt" 2
+		"Control Transceiver"
 		
 		"Thruster (Planetary Class)"
 		"Steering (Stellar Class)"
@@ -262,6 +263,7 @@ ship "Kar Ik Vot 349" "Kar Ik Vot 349 (Offense)"
 		"Systems Core (Medium)"
 		"Large Heat Shunt" 5
 		"Mass Expansion"
+		"Control Transceiver"
 		
 		"Thruster (Planetary Class)"
 		"Thruster (Asteroid Class)"
@@ -291,6 +293,7 @@ ship "Kar Ik Vot 349" "Kar Ik Vot 349 (Defense)"
 		"Systems Core (Medium)"
 		"Large Heat Shunt" 3
 		"Mass Expansion"
+		"Control Transceiver"
 		
 		"Thruster (Stellar Class)"
 		"Steering (Planetary Class)"
@@ -318,6 +321,7 @@ ship "Kar Ik Vot 349" "Kar Ik Vot 349 (Trapper)"
 		"Large Heat Shunt" 3
 		"Small Heat Shunt"
 		"Mass Expansion" 4
+		"Control Transceiver"
 		
 		"Thruster (Planetary Class)"
 		"Steering (Stellar Class)"
@@ -371,6 +375,7 @@ ship "Tek Far 71 - Lek"
 		"Generator (Furnace Class)"
 		"Systems Core (Medium)"
 		"Large Heat Shunt"
+		"Control Transceiver"
 		
 		"Thruster (Lunar Class)"
 		"Steering (Lunar Class)"
@@ -416,6 +421,7 @@ ship "Tek Far 71 - Lek" "Tek Far 71 - Lek (Close Quarters)"
 		"Large Heat Shunt" 2
 		"Small Heat Shunt"
 		"Mass Expansion"
+		"Control Transceiver"
 		
 		"Thruster (Lunar Class)"
 		"Steering (Lunar Class)"
@@ -461,6 +467,7 @@ ship "Tek Far 78 - Osk"
 		"Generator (Inferno Class)"
 		"Systems Core (Medium)"
 		"Large Heat Shunt"
+		"Control Transceiver"
 		
 		"Thruster (Lunar Class)"
 		"Steering (Planetary Class)"
@@ -504,6 +511,7 @@ ship "Tek Far 78 - Osk" "Tek Far 78 - Osk (Close Quarters)"
 		"Systems Core (Medium)"
 		"Large Heat Shunt" 3
 		"Mass Expansion"
+		"Control Transceiver"
 		
 		"Thruster (Lunar Class)"
 		"Steering (Planetary Class)"
@@ -548,6 +556,7 @@ ship "Tek Far 109"
 		"Double Plasma Core"
 		"Systems Core (Medium)"
 		"Small Heat Shunt" 2
+		"Control Transceiver"
 		
 		"Thruster (Lunar Class)"
 		"Steering (Planetary Class)"
@@ -616,10 +625,11 @@ ship "Met Par Tek 53"
 		"Generator (Inferno Class)"
 		"Systems Core (Medium)"
 		"Large Heat Shunt" 3
+		"Control Transceiver"
 		
 		"Thruster (Lunar Class)"
 		"Steering (Planetary Class)"
-		Hyperdrive
+		"Hyperdrive"
 	
 	engine -24 132
 	engine 24 132
@@ -654,11 +664,12 @@ ship "Met Par Tek 53" "Met Par Tek 53 (Sniper)"
 		"Generator (Candle Class)"
 		"Systems Core (Medium)"
 		"Large Heat Shunt"
+		"Control Transceiver"
 		
 		"Thruster (Lunar Class)"
 		"Steering (Planetary Class)"
 		"Steering (Comet Class)"
-		Hyperdrive
+		"Hyperdrive"
 	
 	gun "Korath Detainer"
 	gun "Korath Piercer Launcher"
