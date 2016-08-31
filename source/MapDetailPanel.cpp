@@ -45,9 +45,36 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <cmath>
 #include <set>
 #include <sstream>
+#include <utility>
 #include <vector>
 
 using namespace std;
+
+namespace {
+	// Convert the angle between two vectors into a sortable angle, i.e an angle
+	// plus a length that is used as a tie-breaker.
+	pair<double, double> SortAngle(const Point &reference, const Point &point)
+	{
+		// Rotate the given point by the reference amount.
+		Point rotated(reference.Dot(point), reference.Cross(point));
+		
+		// This will be the tiebreaker value: the length, squared.
+		double length = rotated.Dot(rotated);
+		// Calculate the angle, but rotated 180 degrees so that the discontinuity
+		// comes at the reference angle rather than directly opposite it.
+		double angle = atan2(-rotated.Y(), -rotated.X());
+		
+		// Special case: collinear with the reference vector. If the point is
+		// a longer vector than the reference, it's the very best angle.
+		// Otherwise, it is the very worst angle. (Note: this also is applied if
+		// the angle is opposite (angle == 0) but then it's a no-op.)
+		if(!rotated.Y())
+			angle = copysign(angle, rotated.X() - reference.Dot(reference));
+		
+		// Return the angle, plus the length as a tie-breaker.
+		return make_pair(angle, length);
+	}
+}
 
 
 
@@ -125,26 +152,34 @@ bool MapDetailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command
 			previousUnit = (previousUnit - source->Position()).Unit();
 		}
 		Point here = source->Position();
+		const System *original = next;
 		
 		// Depending on whether the flagship has a jump drive, the possible links
 		// we can travel along are different:
 		bool hasJumpDrive = player.Flagship()->Attributes().Get("jump drive");
 		const vector<const System *> &links = hasJumpDrive ? source->Neighbors() : source->Links();
 		
-		double bestAngle = 2. * PI;
+		// For each link we can travel from this system, check whether the link
+		// is closer to the current angle (while still being larger) than any
+		// link we have seen so far.
+		auto bestAngle = make_pair(4., 0.);
 		for(const System *it : links)
 		{
+			// Skip the currently selected link, if any. Also skip links to
+			// systems the player has not seen, and skip hyperspace links if the
+			// player has not visited either end of them.
+			if(it == original)
+				continue;
 			if(!player.HasSeen(it))
 				continue;
 			if(!(hasJumpDrive || player.HasVisited(it) || player.HasVisited(source)))
 				continue;
 			
-			Point unit = (it->Position() - here).Unit();
-			double angle = acos(unit.Dot(previousUnit));
-			if(unit.Cross(previousUnit) >= 0.)
-				angle = 2. * PI - angle;
-			
-			if(angle <= bestAngle)
+			// Generate a sortable angle with vector length as a tiebreaker.
+			// Otherwise if two systems are in exactly the same direction it is
+			// not well defined which one comes first.
+			auto angle = SortAngle(previousUnit, it->Position() - here);
+			if(angle < bestAngle)
 			{
 				next = it;
 				bestAngle = angle;
