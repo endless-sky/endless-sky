@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop">
+  <id>endless-sky.desktop</id>
+  <name>Endless Sky</name>
+  <name xml:lang="de">Weltraumspiel</name>
+  <name xml:lang="fr">Jeu spatial</name>
+  <summary>Space exploration and combat game</summary>
+  <summary xml:lang="de">Weltraumhandels und Kampfsimulator</summary>
+  <summary xml:lang="fr">Jeu d'exploration et de combat dans l'espace</summary>
+  <developer_name>Michael Zahniser</developer_name>
+  <license>GPL-3.0 and CC-BY-SA-4.0 and CC-BY-SA-3.0 and CC-BY-3.0</license>
+  <metadata_license>CC0-1.0</metadata_license>
+  <description>
+  <p>
+   Explore other star systems. Earn money by trading, carrying passengers, or completing missions. Use your earnings to buy a better ship or to upgrade the weapons and engines on your current one. Blow up pirates. Take sides in a civil war. Or leave human space behind and hope to find some friendly aliens whose culture is more civilized than your own...
+  </p>
+  <p>
+   Endless Sky is a sandbox-style space exploration game similar to Elite, Escape Velocity, or Star Control. You start out as the captain of a tiny space ship and can choose what to do from there. The game includes a major plot line and many minor missions, but you can choose whether you want to play through the plot or strike out on your own as a merchant or bounty hunter or explorer.
+  </p>
+</description>
+  <url type="bugtracker">https://github.com/endless-sky/endless-sky/issues</url>
+  <url type="help">https://github.com/endless-sky/endless-sky/wiki/PlayersManual</url>
+  <url type="homepage">https://endless-sky.github.io/</url>
+  <screenshots>
+    <screenshot type="default">
+      <image>https://endless-sky.github.io/screenshots/fight.jpg</image>
+    </screenshot>
+    <screenshot>
+      <image>https://endless-sky.github.io/screenshots/hyperspace.jpg</image>
+    </screenshot>
+    <screenshot>
+      <image>https://endless-sky.github.io/screenshots/beams.jpg</image>
+    </screenshot>
+  </screenshots>
+</component>

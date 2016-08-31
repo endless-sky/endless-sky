@@ -947,7 +947,11 @@ bool Ship::Move(list<Effect> &effects, list<Flotsam> &flotsam)
 		
 		return true;
 	}
-	if(commands.Has(Command::LAND) && CanLand())
+	if(isDisabled)
+	{
+		// If you're disabled, you can't initiate landing or jumping.
+	}
+	else if(commands.Has(Command::LAND) && CanLand())
 		landingPlanet = GetTargetPlanet()->GetPlanet();
 	else if(commands.Has(Command::JUMP))
 	{
@@ -1064,13 +1068,20 @@ bool Ship::Move(list<Effect> &effects, list<Flotsam> &flotsam)
 				// If the net acceleration will be opposite the thrust, do not apply drag.
 				dragAcceleration *= .5 * (acceleration.Unit().Dot(dragAcceleration.Unit()) + 1.);
 				
+				// A ship can only "cheat" to stop if it is moving slow enough that
+				// it could stop completely this frame. This is to avoid overshooting
+				// when trying to stop and ending up headed in the other direction.
 				if(commands.Has(Command::STOP))
 				{
 					// How much acceleration would it take to come to a stop in the
-					// direction normal to the ship's current facing?
+					// direction normal to the ship's current facing? This is only
+					// possible if the acceleration plus drag vector is in the
+					// opposite direction from the velocity vector when both are
+					// projected onto the current facing vector, and the acceleration
+					// vector is the larger of the two.
 					double vNormal = velocity.Dot(angle.Unit());
 					double aNormal = dragAcceleration.Dot(angle.Unit());
-					if((aNormal < 0.) ^ (aNormal > -vNormal))
+					if((aNormal > 0.) != (vNormal > 0.) && fabs(aNormal) > fabs(vNormal))
 						dragAcceleration = -vNormal * angle.Unit();
 				}
 				velocity += dragAcceleration;
@@ -1204,6 +1215,13 @@ void Ship::Launch(list<shared_ptr<Ship>> &ships)
 			bay.ship->Place(position + angle.Rotate(bay.point), v, launchAngle);
 			bay.ship->SetSystem(currentSystem);
 			bay.ship->SetParent(shared_from_this());
+			// Fighters in your ship have the same temperature as your ship
+			// itself, so when they launch they should take their sahre of heat
+			// with them, so that the fighter and the mothership remain at the
+			// same temperature.
+			bay.ship->heat = heat * bay.ship->Mass() / Mass();
+			heat -= bay.ship->heat;
+			
 			bay.ship.reset();
 		}
 }
@@ -1944,6 +1962,9 @@ bool Ship::Carry(const shared_ptr<Ship> &ship)
 			ship->SetPlanet(nullptr);
 			ship->SetParent(shared_from_this());
 			ship->isThrusting = false;
+			// When a fighter rejoins its mothership, its mass is added to the
+			// mothership but so is its accumulated heat.
+			heat += ship->heat;
 			return true;
 		}
 	return false;
@@ -2010,6 +2031,11 @@ void Ship::Jettison(const string &commodity, int tons)
 {
 	cargo.Remove(commodity, tons);
 	
+	// Jettisoned cargo must carry some of the ship's heat with it. Otherwise
+	// jettisoning cargo would increase the ship's temperature.
+	double shipMass = Mass();
+	heat *= shipMass / (shipMass + tons);
+	
 	static const int perBox = 5;
 	for( ; tons >= perBox; tons -= perBox)
 		jettisoned.emplace_back(commodity, perBox);
@@ -2019,12 +2045,23 @@ void Ship::Jettison(const string &commodity, int tons)
 
 void Ship::Jettison(const Outfit *outfit, int count)
 {
+	if(count < 0)
+		return;
+
 	cargo.Remove(outfit, count);
 	
+	// Jettisoned cargo must carry some of the ship's heat with it. Otherwise
+	// jettisoning cargo would increase the ship's temperature.
 	double mass = outfit->Get("mass");
-	static const int perBox = (mass <= 0.) ? count : (mass > 5.) ? 1 : static_cast<int>(5. / mass);
-	for( ; count >= perBox; count -= perBox)
-		jettisoned.emplace_back(outfit, perBox);
+	double shipMass = Mass();
+	heat *= shipMass / (shipMass + count * mass);
+	
+	const int perBox = (mass <= 0.) ? count : (mass > 5.) ? 1 : static_cast<int>(5. / mass);
+	while(count > 0)
+	{
+		jettisoned.emplace_back(outfit, (perBox < count) ? perBox : count);
+		count -= perBox;
+	}
 }
 
 

@@ -214,8 +214,8 @@ effect "medium explosion"
 	"random frame rate" 5
 	"velocity scale" .4
 
-effect "big explosion"
-	sprite "effect/explosion/big"
+effect "large explosion"
+	sprite "effect/explosion/large"
 		"no repeat"
 		"frame rate" 15
 	sound "explosion large"
