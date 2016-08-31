@@ -109,6 +109,7 @@ fleet "Small Unfettered"
 	names "hai"
 	cargo 3
 	personality
+		disables
 		plunders
 	variant 3
 		"Lightning Bug (Pulse)" 2
@@ -124,6 +125,7 @@ fleet "Large Unfettered"
 	names "hai"
 	cargo 3
 	personality
+		disables
 		plunders
 	variant 2
 		"Shield Beetle"

@@ -59,7 +59,7 @@ ship "Korath Raider"
 	explode "tiny explosion" 20
 	explode "small explosion" 45
 	explode "medium explosion" 50
-	explode "big explosion" 40
+	explode "large explosion" 40
 	explode "huge explosion" 10
 	"final explode" "final explosion large"
 	description "The Korath Raider is their warship of choice for plundering neighboring species."
@@ -154,7 +154,7 @@ ship "Korath World-Ship"
 	explode "tiny explosion" 30
 	explode "small explosion" 45
 	explode "medium explosion" 50
-	explode "big explosion" 40
+	explode "large explosion" 40
 	explode "huge explosion" 50
 	"final explode" "final explosion large"
 	description "Korath World-Ships are massive nomadic habitats that hold all that is left of their people."
@@ -222,6 +222,7 @@ ship "Kar Ik Vot 349"
 		"Systems Core (Large)"
 		"Large Heat Shunt" 4
 		"Small Heat Shunt" 2
+		"Control Transceiver"
 		
 		"Thruster (Planetary Class)"
 		"Steering (Stellar Class)"
@@ -244,7 +245,7 @@ ship "Kar Ik Vot 349"
 	explode "tiny explosion" 120
 	explode "small explosion" 60
 	explode "medium explosion" 70
-	explode "big explosion" 50
+	explode "large explosion" 50
 	explode "huge explosion" 15
 	"final explode" "final explosion large"
 	description "The largest and deadliest of the Kor Sestor robotic warships, a single one of these battlecruisers can hold its own against an entire fleet of lesser ships."
@@ -262,6 +263,7 @@ ship "Kar Ik Vot 349" "Kar Ik Vot 349 (Offense)"
 		"Systems Core (Medium)"
 		"Large Heat Shunt" 5
 		"Mass Expansion"
+		"Control Transceiver"
 		
 		"Thruster (Planetary Class)"
 		"Thruster (Asteroid Class)"
@@ -291,6 +293,7 @@ ship "Kar Ik Vot 349" "Kar Ik Vot 349 (Defense)"
 		"Systems Core (Medium)"
 		"Large Heat Shunt" 3
 		"Mass Expansion"
+		"Control Transceiver"
 		
 		"Thruster (Stellar Class)"
 		"Steering (Planetary Class)"
@@ -318,6 +321,7 @@ ship "Kar Ik Vot 349" "Kar Ik Vot 349 (Trapper)"
 		"Large Heat Shunt" 3
 		"Small Heat Shunt"
 		"Mass Expansion" 4
+		"Control Transceiver"
 		
 		"Thruster (Planetary Class)"
 		"Steering (Stellar Class)"
@@ -371,6 +375,7 @@ ship "Tek Far 71 - Lek"
 		"Generator (Furnace Class)"
 		"Systems Core (Medium)"
 		"Large Heat Shunt"
+		"Control Transceiver"
 		
 		"Thruster (Lunar Class)"
 		"Steering (Lunar Class)"
@@ -398,7 +403,7 @@ ship "Tek Far 71 - Lek"
 	explode "tiny explosion" 80
 	explode "small explosion" 45
 	explode "medium explosion" 50
-	explode "big explosion" 40
+	explode "large explosion" 40
 	explode "huge explosion" 10
 	"final explode" "final explosion large"
 	description "The Kor Sestor war fleets rely heavily on small, powerful fighters and drones. This ship can carry up to ten of their drones, clamped to the exterior of its hull."
@@ -416,6 +421,7 @@ ship "Tek Far 71 - Lek" "Tek Far 71 - Lek (Close Quarters)"
 		"Large Heat Shunt" 2
 		"Small Heat Shunt"
 		"Mass Expansion"
+		"Control Transceiver"
 		
 		"Thruster (Lunar Class)"
 		"Steering (Lunar Class)"
@@ -461,6 +467,7 @@ ship "Tek Far 78 - Osk"
 		"Generator (Inferno Class)"
 		"Systems Core (Medium)"
 		"Large Heat Shunt"
+		"Control Transceiver"
 		
 		"Thruster (Lunar Class)"
 		"Steering (Planetary Class)"
@@ -489,7 +496,7 @@ ship "Tek Far 78 - Osk"
 	explode "tiny explosion" 90
 	explode "small explosion" 50
 	explode "medium explosion" 55
-	explode "big explosion" 45
+	explode "large explosion" 45
 	explode "huge explosion" 12
 	"final explode" "final explosion large"
 	description "This carrier is equipped with docking clamps for up to nine fighters. When loaded with a full complement of the powerful Kor Sestor robotic fighters, it is a formidable opponent."
@@ -504,6 +511,7 @@ ship "Tek Far 78 - Osk" "Tek Far 78 - Osk (Close Quarters)"
 		"Systems Core (Medium)"
 		"Large Heat Shunt" 3
 		"Mass Expansion"
+		"Control Transceiver"
 		
 		"Thruster (Lunar Class)"
 		"Steering (Planetary Class)"
@@ -548,6 +556,7 @@ ship "Tek Far 109"
 		"Double Plasma Core"
 		"Systems Core (Medium)"
 		"Small Heat Shunt" 2
+		"Control Transceiver"
 		
 		"Thruster (Lunar Class)"
 		"Steering (Planetary Class)"
@@ -579,7 +588,7 @@ ship "Tek Far 109"
 	explode "tiny explosion" 70
 	explode "small explosion" 40
 	explode "medium explosion" 45
-	explode "big explosion" 30
+	explode "large explosion" 30
 	explode "huge explosion" 8
 	"final explode" "final explosion medium"
 	description "The TF109 is designed almost solely for the purpose of carrying a fleet of Kor Sestor fighters and drones. Without them to serve as a protective screen, the ship itself is relatively helpless."
@@ -616,10 +625,11 @@ ship "Met Par Tek 53"
 		"Generator (Inferno Class)"
 		"Systems Core (Medium)"
 		"Large Heat Shunt" 3
+		"Control Transceiver"
 		
 		"Thruster (Lunar Class)"
 		"Steering (Planetary Class)"
-		Hyperdrive
+		"Hyperdrive"
 	
 	engine -24 132
 	engine 24 132
@@ -636,7 +646,7 @@ ship "Met Par Tek 53"
 	explode "tiny explosion" 60
 	explode "small explosion" 30
 	explode "medium explosion" 35
-	explode "big explosion" 20
+	explode "large explosion" 20
 	explode "huge explosion" 6
 	"final explode" "final explosion medium"
 	description "Although this is the smallest Kor Sestor ship other than their fighters, it is larger than most human capital ships and considerably more powerful."
@@ -654,11 +664,12 @@ ship "Met Par Tek 53" "Met Par Tek 53 (Sniper)"
 		"Generator (Candle Class)"
 		"Systems Core (Medium)"
 		"Large Heat Shunt"
+		"Control Transceiver"
 		
 		"Thruster (Lunar Class)"
 		"Steering (Planetary Class)"
 		"Steering (Comet Class)"
-		Hyperdrive
+		"Hyperdrive"
 	
 	gun "Korath Detainer"
 	gun "Korath Piercer Launcher"
@@ -783,6 +794,7 @@ ship "Model 16"
 		"Generator (Inferno Class)"
 		"Systems Core (Small)"
 		"Small Heat Shunt"
+		"Reasoning Node"
 		
 		"Thruster (Planetary Class)"
 		"Steering (Lunar Class)"
@@ -796,7 +808,7 @@ ship "Model 16"
 	explode "tiny explosion" 60
 	explode "small explosion" 40
 	explode "medium explosion" 30
-	explode "big explosion" 10
+	explode "large explosion" 10
 	"final explode" "final explosion small"
 	description "The Kor Mereti war drones are constructed in a modular fashion, which allows them to grow over time as more materials become available. This one is recently built, and relatively small."
 
@@ -834,6 +846,7 @@ ship "Model 32"
 		"Generator (Candle Class)"
 		"Systems Core (Small)"
 		"Small Heat Shunt"
+		"Reasoning Node"
 		
 		"Thruster (Planetary Class)"
 		"Steering (Lunar Class)"
@@ -848,7 +861,7 @@ ship "Model 32"
 	explode "tiny explosion" 80
 	explode "small explosion" 55
 	explode "medium explosion" 40
-	explode "big explosion" 15
+	explode "large explosion" 15
 	"final explode" "final explosion medium"
 	description "The Kor Mereti built their drones to mimic life: capable of growth and development throughout their life cycles. Their automated factories can convert the drones from one configuration to another by adding or removing modules."
 
@@ -885,6 +898,7 @@ ship "Model 64"
 		"Double Plasma Core"
 		"Generator (Furnace Class)"
 		"Systems Core (Medium)"
+		"Reasoning Node" 2
 		
 		"Thruster (Lunar Class)"
 		"Thruster (Asteroid Class)"
@@ -901,7 +915,7 @@ ship "Model 64"
 	explode "tiny explosion" 100
 	explode "small explosion" 70
 	explode "medium explosion" 50
-	explode "big explosion" 20
+	explode "large explosion" 20
 	"final explode" "final explosion medium"
 	description "This medium-sized drone serves the Kor Mereti fleets in much the same way as a human Frigate, but in terms of total firepower it is far beyond anything humans have constructed."
 
@@ -919,7 +933,7 @@ ship "Model 128"
 		"heat dissipation" 1.0
 		"fuel capacity" 400
 		"cargo space" 53
-		"outfit space" 712
+		"outfit space" 713
 		"weapon capacity" 344
 		"engine capacity" 132
 		"self destruct" .77
@@ -938,6 +952,7 @@ ship "Model 128"
 		"Double Plasma Core"
 		"Generator (Inferno Class)"
 		"Systems Core (Medium)"
+		"Reasoning Node" 2
 		
 		"Thruster (Planetary Class)"
 		"Steering (Planetary Class)"
@@ -956,7 +971,7 @@ ship "Model 128"
 	explode "tiny explosion" 120
 	explode "small explosion" 85
 	explode "medium explosion" 60
-	explode "big explosion" 25
+	explode "large explosion" 25
 	"final explode" "final explosion large"
 	description "As Kor Mereti drones continue to grow and develop into their final form, they split down the middle. At the same time, their shielding and weaponry continue to become stronger."
 
@@ -993,6 +1008,7 @@ ship "Model 256"
 		"Triple Plasma Core"
 		"Systems Core (Large)"
 		"Large Heat Shunt"
+		"Reasoning Node" 3
 		
 		"Thruster (Planetary Class)"
 		"Steering (Planetary Class)"
@@ -1012,7 +1028,7 @@ ship "Model 256"
 	explode "tiny explosion" 140
 	explode "small explosion" 100
 	explode "medium explosion" 70
-	explode "big explosion" 30
+	explode "large explosion" 30
 	"final explode" "final explosion large"
 	description "There is a saying among the Quarg that every species which insists on studying war will eventually construct a weapon that outlives its creators. For the Korath, their war drones have very nearly done so."
 
@@ -1051,6 +1067,7 @@ ship "Model 512"
 		"Systems Core (Large)"
 		"Large Heat Shunt"
 		"Small Heat Shunt" 2
+		"Reasoning Node" 3
 		
 		"Thruster (Planetary Class)"
 		"Steering (Stellar Class)"
@@ -1070,6 +1087,6 @@ ship "Model 512"
 	explode "tiny explosion" 160
 	explode "small explosion" 115
 	explode "medium explosion" 80
-	explode "big explosion" 35
+	explode "large explosion" 35
 	"final explode" "final explosion large"
 	description "This is the final state in the evolution of a Kor Mereti war drone: a perfect ring, with incredibly powerful shields and turrets firing in every direction."
