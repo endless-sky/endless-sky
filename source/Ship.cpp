@@ -1068,7 +1068,10 @@ bool Ship::Move(list<Effect> &effects, list<Flotsam> &flotsam)
 				// If the net acceleration will be opposite the thrust, do not apply drag.
 				dragAcceleration *= .5 * (acceleration.Unit().Dot(dragAcceleration.Unit()) + 1.);
 				
-				if(commands.Has(Command::STOP))
+				// A ship can only "cheat" to stop if it is moving slow enough that
+				// it could stop completely this frame. This is to avoid overshooting
+				// when trying to stop and ending up headed in the other direction.
+				if(commands.Has(Command::STOP) && acceleration.Length() > velocity.Length())
 				{
 					// How much acceleration would it take to come to a stop in the
 					// direction normal to the ship's current facing?
