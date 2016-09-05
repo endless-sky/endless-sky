@@ -34,13 +34,6 @@ public:
 	
 	virtual void Draw() override;
 	
-	// New player "conversation" callback.
-	void OnCallback(int value);
-	// Snapshot name callback.
-	void SnapshotCallback(const std::string &name);
-	// Load snapshot callback.
-	void LoadCallback();
-	
 	
 protected:
 	// Only override the ones you need; the default action is to return false.
@@ -53,6 +46,14 @@ protected:
 	
 private:
 	void UpdateLists();
+	
+	// New player "conversation" callback.
+	void OnCallback(int value);
+	// Snapshot name callback.
+	void SnapshotCallback(const std::string &name);
+	// Load snapshot callback.
+	void LoadCallback();
+	// Delete callbacks.
 	void DeletePilot();
 	void DeleteSave();
 	
