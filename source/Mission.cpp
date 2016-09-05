@@ -163,6 +163,11 @@ void Mission::Load(const DataNode &node)
 			destinationFilter.Load(child);
 		else if(child.Token(0) == "waypoint" && child.Size() >= 2)
 			waypoints.insert(GameData::Systems().Get(child.Token(1)));
+		else if(child.Token(0) == "waypoint")
+		{
+			waypointFilters.emplace_back();
+			waypointFilters.back().Load(child);
+		}
 		else if(child.Token(0) == "stopover" && child.Size() >= 2)
 			stopovers.insert(GameData::Planets().Get(child.Token(1)));
 		else if(child.Token(0) == "stopover")
@@ -779,6 +784,14 @@ Mission Mission::Instantiate(const PlayerInfo &player) const
 	auto it = result.waypoints.find(player.GetSystem());
 	if(it != result.waypoints.end())
 		result.waypoints.erase(it);
+	// Handle waypoint systems that are chosen randomly.
+	for(const LocationFilter &filter : waypointFilters)
+	{
+		const System *system = PickSystem(filter, player);
+		if(!system)
+			return result;
+		result.waypoints.insert(system);
+	}
 	
 	// Copy the stopover planet list, and populate the list based on the filters
 	// that were given.
@@ -950,6 +963,23 @@ void Mission::Enter(const System *system, PlayerInfo &player, UI *ui)
 		eit->second.Do(player, ui);
 		didEnter.insert(eit->first);
 	}
+}
+
+
+
+const System *Mission::PickSystem(const LocationFilter &filter, const PlayerInfo &player) const
+{
+	// Find a planet that satisfies the filter.
+	vector<const System *> options;
+	for(const auto &it : GameData::Systems())
+	{
+		// Skip entries with incomplete data.
+		if(it.second.Name().empty())
+			continue;
+		if(filter.Matches(&it.second, player.GetSystem()))
+			options.push_back(&it.second);
+	}
+	return options.empty() ? nullptr : options[Random::Int(options.size())];
 }
 
 
