@@ -882,9 +882,33 @@ Mission Mission::Instantiate(const PlayerInfo &player) const
 	}
 	result.illegalCargoFine = illegalCargoFine;
 	
-	// How far is it to the destination?
-	DistanceMap distance(player.GetSystem());
-	int jumps = distance.Distance(result.destination->GetSystem());
+	// Estimate how far the player will have to travel to visit all the waypoints
+	// and stopovers and then to land on the destination planet. Rather than a
+	// full traveling salesman path, just calculate a greedy approximation.
+	const System *source = player.GetSystem();
+	list<const System *> destinations;
+	for(const System *system : waypoints)
+		destinations.push_back(system);
+	for(const Planet *planet : stopovers)
+		destinations.push_back(planet->GetSystem());
+	
+	int jumps = 0;
+	while(!destinations.empty())
+	{
+		// Find the closest destination to this location.
+		DistanceMap distance(source);
+		auto it = destinations.begin();
+		auto bestIt = it;
+		for(++it; it != destinations.end(); ++it)
+			if(distance.Distance(*it) < distance.Distance(*bestIt))
+				bestIt = it;
+		
+		source = *bestIt;
+		destinations.erase(bestIt);
+		jumps += distance.Distance(*bestIt);
+	}
+	DistanceMap distance(source);
+	jumps += distance.Distance(result.destination->GetSystem());
 	int payload = result.cargoSize + 10 * result.passengers;
 	
 	// Set the deadline, if requested.
