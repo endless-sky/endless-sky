@@ -76,7 +76,7 @@ system Acamar
 	fleet "Small Syndicate" 3200
 	object
 		sprite star/g0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object
 		sprite planet/lava2
@@ -133,7 +133,7 @@ system Achernar
 	fleet "Small Core Merchants" 300
 	object
 		sprite star/g5
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object
 		sprite planet/desert3
@@ -205,12 +205,12 @@ system Acrux
 	fleet "Large Southern Pirates" 2400
 	object
 		sprite star/k0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 17.9429
 		period 11.4474
 	object
 		sprite star/m4
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 60.5571
 		period 11.4474
 		offset 180
@@ -281,12 +281,12 @@ system Adhara
 	fleet "Small Northern Pirates" 2000
 	object
 		sprite star/k0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 33.5961
 		period 16.6267
 	object
 		sprite star/m0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 71.4039
 		period 16.6267
 		offset 180
@@ -351,7 +351,7 @@ system "Al Dhanab"
 	fleet "Large Core Pirates" 3000
 	object
 		sprite star/g0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object
 		sprite planet/ice5
@@ -418,13 +418,13 @@ system Albaldah
 	fleet Quarg 3000
 	object
 		sprite star/k5
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 42.7246
 		period 19.0178
 		offset 180
 	object
 		sprite star/m0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 63.7754
 		period 19.0178
 	object
@@ -489,12 +489,12 @@ system Albireo
 	fleet Quarg 2000
 	object
 		sprite star/g5
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 15.6316
 		period 11.9778
 	object
 		sprite star/m4
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 72.3684
 		period 11.9778
 		offset 180
@@ -544,13 +544,13 @@ system Alcyone
 	fleet "Large Syndicate" 1200
 	object
 		sprite star/m4
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 45.5
 		period 21.132
 		offset 180
 	object
 		sprite star/m4
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 45.5
 		period 21.132
 	object Stormhold
@@ -608,7 +608,7 @@ system Aldebaran
 	fleet "Large Republic" 400
 	object
 		sprite star/g5
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object
 		sprite planet/cloud6
@@ -658,12 +658,12 @@ system Alderamin
 	fleet "Large Core Pirates" 1200
 	object
 		sprite star/g0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 36.6569
 		period 9.68719
 	object
 		sprite star/g5
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 63.3431
 		period 9.68719
 		offset 180
@@ -728,7 +728,7 @@ system Aldhibain
 	fleet "Large Southern Pirates" 2000
 	object
 		sprite star/k0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object
 		sprite planet/desert10
@@ -774,7 +774,7 @@ system Algenib
 	fleet "Small Core Merchants" 600
 	object
 		sprite star/k0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object "Buccaneer Bay"
 		sprite planet/ocean6
@@ -844,12 +844,12 @@ system Algieba
 	fleet "Large Northern Merchants" 1000
 	object
 		sprite star/f0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 5.86085
 		period 9.75123
 	object
 		sprite star/m4
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 111.139
 		period 9.75123
 		offset 180
@@ -906,12 +906,12 @@ system Algol
 	fleet "Small Syndicate" 2400
 	object
 		sprite star/k5
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 42.7246
 		period 19.0178
 	object
 		sprite star/m0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 63.7754
 		period 19.0178
 		offset 180
@@ -977,7 +977,7 @@ system Algorel
 	fleet "Large Southern Pirates" 5000
 	object
 		sprite star/k5
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object "New Wales"
 		sprite planet/cloud6
@@ -1041,7 +1041,7 @@ system Alheka
 	fleet "Large Northern Pirates" 2000
 	object
 		sprite star/g0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object
 		sprite planet/desert8
@@ -1095,13 +1095,13 @@ system Alhena
 	fleet "Large Republic" 1400
 	object
 		sprite star/g5
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 32.1693
 		period 12.0484
 		offset 180
 	object
 		sprite star/k5
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 62.8307
 		period 12.0484
 	object
@@ -1163,7 +1163,7 @@ system Alioth
 	fleet "Large Southern Pirates" 2400
 	object
 		sprite star/k0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object
 		sprite planet/fog0
@@ -1213,7 +1213,7 @@ system Alkaid
 	fleet "Large Southern Pirates" 5000
 	object
 		sprite star/g0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object
 		sprite planet/cloud5
@@ -1283,7 +1283,7 @@ system Almaaz
 	fleet "Large Republic" 4000
 	object
 		sprite star/g0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object
 		sprite planet/rock10
@@ -1329,7 +1329,7 @@ system Almach
 	fleet "Korath Raid" 20000
 	object
 		sprite star/k5
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object
 		sprite planet/desert8
@@ -1392,7 +1392,7 @@ system Alnair
 	fleet "Large Syndicate" 6000
 	object
 		sprite star/m4
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object Hippocrates
 		sprite planet/cloud4
@@ -1460,13 +1460,13 @@ system Alnasl
 	fleet "Small Southern Pirates" 4000
 	object
 		sprite star/k5
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 41.5
 		period 11.956
 		offset 180
 	object
 		sprite star/k5
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 41.5
 		period 11.956
 	object
@@ -1520,7 +1520,7 @@ system Alnilam
 	fleet "Large Republic" 10000
 	object
 		sprite star/f5
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object
 		sprite planet/desert1
@@ -1597,12 +1597,12 @@ system Alnitak
 	fleet "Large Republic" 4000
 	object
 		sprite star/m0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 31.1055
 		period 15.4564
 	object
 		sprite star/m4
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 49.3945
 		period 15.4564
 		offset 180
@@ -1659,12 +1659,12 @@ system Alniyat
 	fleet "Large Militia" 3000
 	object
 		sprite star/k5
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 41.9222
 		period 18.4847
 	object
 		sprite star/m0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 62.5778
 		period 18.4847
 		offset 180
@@ -1731,13 +1731,13 @@ system "Alpha Arae"
 	fleet "Large Southern Pirates" 9000
 	object
 		sprite star/g5
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 31.1534
 		period 11.4822
 		offset 180
 	object
 		sprite star/k5
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 60.8466
 		period 11.4822
 	object
@@ -1798,13 +1798,13 @@ system "Alpha Centauri"
 	fleet "Large Republic" 6000
 	object
 		sprite star/k5
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 26.7033
 		period 16.011
 		offset 180
 	object
 		sprite star/m4
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 63.2967
 		period 16.011
 	object Chiron
@@ -1860,12 +1860,12 @@ system "Alpha Hydri"
 	fleet "Korath Raid" 40000
 	object
 		sprite star/g0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 24.6857
 		period 11.9986
 	object
 		sprite star/k5
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 83.3143
 		period 11.9986
 		offset 180
@@ -1921,13 +1921,13 @@ system Alphard
 	fleet "Large Republic" 6000
 	object
 		sprite star/g5
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 41.5307
 		period 11.8953
 		offset 180
 	object
 		sprite star/k0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 56.9693
 		period 11.8953
 	object
@@ -1976,13 +1976,13 @@ system Alphecca
 	fleet "Small Militia" 5000
 	object
 		sprite star/g0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 27.8857
 		period 14.4057
 		offset 180
 	object
 		sprite star/k5
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 94.1143
 		period 14.4057
 	object
@@ -2036,12 +2036,12 @@ system Alpheratz
 	fleet "Large Core Pirates" 3000
 	object
 		sprite star/g5
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 48.2767
 		period 14.9084
 	object
 		sprite star/k0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 66.2233
 		period 14.9084
 		offset 180
@@ -2099,13 +2099,13 @@ system Altair
 	fleet "Small Syndicate" 9000
 	object
 		sprite star/g5
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 31.4921
 		period 11.6699
 		offset 180
 	object
 		sprite star/k5
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 61.5079
 		period 11.6699
 	object
@@ -2162,7 +2162,7 @@ system Aludra
 	fleet "Large Northern Merchants" 900
 	object
 		sprite star/k0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object
 		sprite planet/desert10
@@ -2224,7 +2224,7 @@ system Ankaa
 	fleet "Large Core Pirates" 4000
 	object
 		sprite star/g5
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object
 		sprite planet/rock4
@@ -2277,7 +2277,7 @@ system Antares
 	fleet "Large Militia" 5000
 	object
 		sprite star/k0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object
 		sprite planet/ice5
@@ -2336,7 +2336,7 @@ system Ap'arak
 	fleet "Wanderer Defense" 3000
 	object
 		sprite star/g0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object
 		sprite planet/ice3
@@ -2395,7 +2395,7 @@ system Arcturus
 	fleet "Small Militia" 10000
 	object
 		sprite star/k5
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object "New Greenland"
 		sprite planet/ocean1
@@ -2451,7 +2451,7 @@ system Arneb
 	fleet "Large Republic" 15000
 	object
 		sprite star/f5
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object
 		sprite planet/venus
@@ -2509,13 +2509,13 @@ system Ascella
 	fleet "Small Southern Pirates" 3000
 	object
 		sprite star/k5
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 43.5
 		period 12.8307
 		offset 180
 	object
 		sprite star/k5
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 43.5
 		period 12.8307
 	object Arabia
@@ -2569,7 +2569,7 @@ system Asikafarnut
 	fleet "Large Kor Sestor" 3200
 	object
 		sprite star/m0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object "Sestor Ikfar"
 		sprite planet/desert0
@@ -2629,7 +2629,7 @@ system Aspidiske
 	fleet "Large Deep" 4000
 	object
 		sprite star/m4
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object
 		sprite planet/cloud2
@@ -2694,7 +2694,7 @@ system Atria
 	fleet "Small Militia" 8000
 	object
 		sprite star/m0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object Lichen
 		sprite planet/cloud1
@@ -2756,12 +2756,12 @@ system Avior
 	fleet "Large Deep" 4000
 	object
 		sprite star/g0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 11
 		period 11.3038
 	object
 		sprite star/m4
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 88
 		period 11.3038
 		offset 180
@@ -2822,7 +2822,7 @@ system Aya'k'k
 	fleet "Wanderer Defense" 800
 	object
 		sprite star/k0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object "Varu K'prai"
 		sprite planet/ice4
@@ -2884,13 +2884,13 @@ system Bellatrix
 	fleet "Small Core Pirates" 3000
 	object
 		sprite star/k0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 34.556
 		period 17.3444
 		offset 180
 	object
 		sprite star/m0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 73.444
 		period 17.3444
 	object
@@ -2948,7 +2948,7 @@ system "Beta Lupi"
 	fleet "Large Militia" 5000
 	object
 		sprite star/g5
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object
 		sprite planet/lava5
@@ -3004,7 +3004,7 @@ system Betelgeuse
 	fleet "Large Northern Pirates" 4000
 	object
 		sprite star/g0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object
 		sprite planet/desert2
@@ -3073,7 +3073,7 @@ system Boral
 	fleet "Small Militia" 10000
 	object
 		sprite star/m0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object
 		sprite planet/cloud3
@@ -3140,7 +3140,7 @@ system "Bore Fah"
 	fleet "Large Northern Merchants" 18000
 	object
 		sprite star/g5
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object
 		sprite planet/ice3
@@ -3200,12 +3200,12 @@ system "Bote Asu"
 	fleet "Large Northern Merchants" 12000
 	object
 		sprite star/f0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 17.3605
 		period 7.70584
 	object
 		sprite star/k0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 84.6395
 		period 7.70584
 		offset 180
@@ -3284,7 +3284,7 @@ system Canopus
 	fleet "Large Republic" 2000
 	object
 		sprite star/m0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object Splashdown
 		sprite planet/ice7
@@ -3336,7 +3336,7 @@ system Capella
 	fleet "Large Republic" 1400
 	object
 		sprite star/k0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object
 		sprite planet/dust5
@@ -3403,7 +3403,7 @@ system Caph
 	fleet "Small Syndicate" 1600
 	object
 		sprite star/g0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object
 		sprite planet/desert0
@@ -3468,13 +3468,13 @@ system Cardax
 	fleet "Large Republic" 5000
 	object
 		sprite star/g0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 45.4545
 		period 13.3761
 		offset 180
 	object
 		sprite star/g5
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 78.5455
 		period 13.3761
 	object
@@ -3531,12 +3531,12 @@ system Castor
 	fleet "Large Republic" 500
 	object
 		sprite star/g5
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 52.9147
 		period 17.1076
 	object
 		sprite star/k0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 72.5853
 		period 17.1076
 		offset 180
@@ -3615,7 +3615,7 @@ system Cebalrai
 	fleet "Small Southern Pirates" 4000
 	object
 		sprite star/g5
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object
 		sprite planet/miranda
@@ -3670,7 +3670,7 @@ system Celeborim
 	fleet "Large Kor Sestor" 6400
 	object
 		sprite star/m0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object "Firka Tesk"
 		sprite planet/lava3
@@ -3730,7 +3730,7 @@ system Chikatip
 	fleet "Large Quarg" 2000
 	object
 		sprite star/k5
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object
 		sprite planet/ganymede
@@ -3787,13 +3787,13 @@ system Chimitarp
 	fleet "Large Kor Mereti" 3600
 	object
 		sprite star/k0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 53.205
 		period 16.1167
 		offset 180
 	object
 		sprite star/k5
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 60.795
 		period 16.1167
 	object
@@ -3855,7 +3855,7 @@ system Chirr'ay'akai
 	fleet "Wanderer Defense" 2000
 	object
 		sprite star/k0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object
 		sprite planet/lava5
@@ -3903,7 +3903,7 @@ system Chornifath
 	fleet "Large Quarg" 1000
 	object
 		sprite star/k0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object
 		sprite planet/rock4
@@ -3967,7 +3967,7 @@ system Chy'chra
 	fleet "Unfettered Raid" 5000
 	object
 		sprite star/g5
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object
 		sprite planet/lava3
@@ -4037,7 +4037,7 @@ system "Cor Caroli"
 	fleet "Small Militia" 7000
 	object
 		sprite star/g0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object
 		sprite planet/rock0
@@ -4089,7 +4089,7 @@ system "Da Ent"
 	fleet "Large Northern Merchants" 10000
 	object
 		sprite star/m4
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object Newhome
 		sprite planet/ice4
@@ -4151,7 +4151,7 @@ system "Da Lest"
 	fleet "Large Northern Merchants" 8000
 	object
 		sprite star/m0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object
 		sprite planet/ice2
@@ -4204,13 +4204,13 @@ system Dabih
 	fleet "Large Southern Pirates" 10000
 	object
 		sprite star/k0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 30.7164
 		period 14.5355
 		offset 180
 	object
 		sprite star/m0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 65.2836
 		period 14.5355
 	object
@@ -4266,7 +4266,7 @@ system Danoa
 	fleet "Large Republic" 30000
 	object
 		sprite star/m4
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object
 		sprite planet/desert7
@@ -4329,12 +4329,12 @@ system "Delta Capricorni"
 	fleet "Small Core Pirates" 4000
 	object
 		sprite star/g5
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 29.7539
 		period 17.3608
 	object
 		sprite star/m0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 86.7461
 		period 17.3608
 		offset 180
@@ -4393,7 +4393,7 @@ system "Delta Sagittarii"
 	fleet "Small Militia" 7000
 	object
 		sprite star/k5
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object "New Portland"
 		sprite planet/ocean6
@@ -4458,7 +4458,7 @@ system "Delta Velorum"
 	fleet "Small Republic" 12000
 	object
 		sprite star/g0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object
 		sprite planet/rock18
@@ -4509,7 +4509,7 @@ system Deneb
 	fleet "Large Pug" 1000
 	object
 		sprite star/g5
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object Pugglemug
 		sprite planet/ocean2
@@ -4568,13 +4568,13 @@ system Denebola
 	fleet "Large Republic" 2000
 	object
 		sprite star/k5
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 41.5211
 		period 18.22
 		offset 180
 	object
 		sprite star/m0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 61.9789
 		period 18.22
 	object
@@ -4634,12 +4634,12 @@ system Diphda
 	fleet "Small Syndicate" 3000
 	object
 		sprite star/k0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 20.9143
 		period 14.4057
 	object
 		sprite star/m4
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 70.5857
 		period 14.4057
 		offset 180
@@ -4693,7 +4693,7 @@ system Dokdobaru
 	fleet "Kor Efret Home" 1500
 	object
 		sprite star/g5
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object "Korati Efreti"
 		sprite planet/station1k
@@ -4800,13 +4800,13 @@ system Dschubba
 	fleet "Large Militia" 5000
 	object
 		sprite star/k5
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 18.9364
 		period 19.0038
 		offset 180
 	object
 		sprite star/m8
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 77.5636
 		period 19.0038
 	object Sundrinker
@@ -4868,13 +4868,13 @@ system Dubhe
 	fleet "Large Northern Pirates" 8000
 	object
 		sprite star/m0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 42.6977
 		period 24.8575
 		offset 180
 	object
 		sprite star/m4
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 67.8023
 		period 24.8575
 	object Haze
@@ -4927,7 +4927,7 @@ system "Due Yoot"
 	fleet Quarg 2000
 	object
 		sprite star/m4
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object Greenbloom
 		sprite planet/cloud3
@@ -4987,7 +4987,7 @@ system Durax
 	fleet "Korath Raid" 5000
 	object
 		sprite star/g0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object
 		sprite planet/rock16
@@ -5055,7 +5055,7 @@ system Eber
 	fleet "Small Southern Pirates" 2000
 	object
 		sprite star/k5
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object
 		sprite planet/gas4
@@ -5115,7 +5115,7 @@ system "Ehma Ti"
 	fleet "Unfettered Raid" 2500
 	object
 		sprite star/k0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object
 		sprite planet/lava5
@@ -5186,7 +5186,7 @@ system Ek'kek'ru
 	fleet "Wanderer Defense" 6000
 	object
 		sprite star/m0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object "Kort Kehai"
 		sprite planet/rock13
@@ -5246,7 +5246,7 @@ system Elnath
 	fleet "Large Northern Pirates" 18000
 	object
 		sprite star/f5
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object
 		sprite planet/rock13
@@ -5309,7 +5309,7 @@ system Eltanin
 	fleet Quarg 10000
 	object
 		sprite star/k0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object
 		sprite planet/cloud5
@@ -5365,7 +5365,7 @@ system Eneremprukt
 	fleet "Large Kor Sestor" 2400
 	object
 		sprite star/k0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object
 		sprite planet/desert7
@@ -5424,7 +5424,7 @@ system Enif
 	fleet Quarg 600
 	object
 		sprite star/g5
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object
 		sprite planet/lava5
@@ -5512,13 +5512,13 @@ system "Epsilon Leonis"
 	fleet "Large Deep" 3000
 	object
 		sprite star/g0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 25.8286
 		period 12.8414
 		offset 180
 	object
 		sprite star/k5
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 87.1714
 		period 12.8414
 	object
@@ -5583,7 +5583,7 @@ system Es'sprak'ai
 	fleet "Wanderer Defense" 2000
 	object
 		sprite star/k0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object
 		sprite planet/cloud4
@@ -5645,13 +5645,13 @@ system Eshkoshtar
 	fleet "Large Kor Sestor" 3600
 	object
 		sprite star/k0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 47.9992
 		period 18.7451
 		offset 180
 	object
 		sprite star/m0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 73.0008
 		period 18.7451
 	object
@@ -5721,7 +5721,7 @@ system Eteron
 	fleet "Small Northern Pirates" 1000
 	object
 		sprite star/m4
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object
 		sprite planet/rock9
@@ -5784,7 +5784,7 @@ system "Fah Root"
 	fleet Quarg 2000
 	object
 		sprite star/k0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object
 		sprite planet/rock19
@@ -5851,7 +5851,7 @@ system "Fah Soom"
 	fleet Quarg 1000
 	object
 		sprite star/k5
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object Greenwater
 		sprite planet/cloud1
@@ -5911,7 +5911,7 @@ system Fala
 	fleet "Large Northern Pirates" 4000
 	object
 		sprite star/g5
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object
 		sprite planet/desert1
@@ -5969,7 +5969,7 @@ system Farbutero
 	fleet "Large Kor Mereti" 5000
 	object
 		sprite star/g5
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object
 		sprite planet/rock6
@@ -6042,7 +6042,7 @@ system Faronektu
 	fleet "Large Kor Sestor" 3000
 	object
 		sprite star/g0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object
 		sprite planet/rock16
@@ -6151,13 +6151,13 @@ system Feroteri
 	fleet "Large Kor Mereti" 6400
 	object
 		sprite star/a0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 9.18418
 		period 6.8723
 		offset 180
 	object
 		sprite star/k5
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 107.816
 		period 6.8723
 	object
@@ -6236,7 +6236,7 @@ system Ferukistek
 	fleet "Large Kor Sestor" 6000
 	object
 		sprite star/k0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object
 		sprite planet/rock3
@@ -6289,7 +6289,7 @@ system Fingol
 	fleet "Small Northern Pirates" 2000
 	object
 		sprite star/m4
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object
 		sprite planet/cloud4
@@ -6347,7 +6347,7 @@ system Fomalhaut
 	fleet "Large Syndicate" 10000
 	object
 		sprite star/k0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object
 		sprite planet/lava4
@@ -6410,7 +6410,7 @@ system Fornarep
 	fleet "Large Kor Mereti" 5800
 	object
 		sprite star/m0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object "Sek Alarfarat"
 		sprite planet/rock4
@@ -6467,7 +6467,7 @@ system Furmeliki
 	fleet "Large Quarg" 1000
 	object
 		sprite star/k0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object
 		sprite planet/rock5
@@ -6537,12 +6537,12 @@ system Gacrux
 	fleet "Small Republic" 15000
 	object
 		sprite star/k5
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 32.6953
 		period 12.7313
 	object
 		sprite star/m0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 48.8047
 		period 12.7313
 		offset 180
@@ -6605,7 +6605,7 @@ system "Gamma Cassiopeiae"
 	fleet "Large Syndicate" 5000
 	object
 		sprite star/k0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object
 		sprite planet/ice7
@@ -6663,13 +6663,13 @@ system "Gamma Corvi"
 	fleet "Small Southern Pirates" 10000
 	object
 		sprite star/g0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 39.0165
 		period 15.3924
 		offset 180
 	object
 		sprite star/k0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 92.4835
 		period 15.3924
 	object
@@ -6728,13 +6728,13 @@ system Gienah
 	fleet "Large Syndicate" 5000
 	object
 		sprite star/k5
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 31.893
 		period 12.2656
 		offset 180
 	object
 		sprite star/m0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 47.607
 		period 12.2656
 	object Covert
@@ -6792,7 +6792,7 @@ system Girtab
 	fleet "Large Southern Pirates" 3000
 	object
 		sprite star/g0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object
 		sprite planet/cloud4
@@ -6857,13 +6857,13 @@ system Gomeisa
 	fleet "Large Deep" 2400
 	object
 		sprite star/k0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 55.5
 		period 15.4962
 		offset 180
 	object
 		sprite star/k0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 55.5
 		period 15.4962
 	object
@@ -6981,13 +6981,13 @@ system Graffias
 	fleet "Small Southern Pirates" 5000
 	object
 		sprite star/k0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 59.5
 		period 17.2013
 		offset 180
 	object
 		sprite star/k0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 59.5
 		period 17.2013
 	object
@@ -7048,7 +7048,7 @@ system Hadar
 	fleet "Large Southern Pirates" 9000
 	object
 		sprite star/k0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object
 		sprite planet/oberon
@@ -7106,7 +7106,7 @@ system Hamal
 	fleet "Small Syndicate" 4000
 	object
 		sprite star/g0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object
 		sprite planet/callisto
@@ -7155,13 +7155,13 @@ system Han
 	fleet "Large Militia" 10000
 	object
 		sprite star/g5
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 47.4335
 		period 14.5195
 		offset 180
 	object
 		sprite star/k0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 65.0665
 		period 14.5195
 	object
@@ -7223,12 +7223,12 @@ system Hassaleh
 	fleet "Large Republic" 20000
 	object
 		sprite star/k0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 36.1558
 		period 18.5627
 	object
 		sprite star/m0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 76.8442
 		period 18.5627
 		offset 180
@@ -7280,12 +7280,12 @@ system Hatysa
 	fleet "Large Republic" 15000
 	object
 		sprite star/k0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 13.6124
 		period 15.528
 	object
 		sprite star/m8
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 79.3876
 		period 15.528
 		offset 180
@@ -7343,13 +7343,13 @@ system "Heia Due"
 	fleet "Large Northern Merchants" 5000
 	object
 		sprite star/g0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 13.2222
 		period 14.8968
 		offset 180
 	object
 		sprite star/m8
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 105.778
 		period 14.8968
 	object
@@ -7408,7 +7408,7 @@ system Hesselpost
 	fleet "Large Quarg" 1000
 	object
 		sprite star/k0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object
 		sprite planet/venus
@@ -7474,7 +7474,7 @@ system "Hevru Hai"
 	fleet Quarg 600
 	object
 		sprite star/g5
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object "Alta Hai"
 		sprite planet/ringworld
@@ -7594,7 +7594,7 @@ system "Hi Yahr"
 	fleet "Large Unfettered" 500
 	object
 		sprite star/g5
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object
 		sprite planet/rock19
@@ -7653,7 +7653,7 @@ system Hintar
 	fleet "Small Southern Pirates" 2000
 	object
 		sprite star/g5
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object
 		sprite planet/desert1
@@ -7709,7 +7709,7 @@ system Holeb
 	fleet "Small Militia" 5000
 	object
 		sprite star/f5
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object
 		sprite planet/lava4
@@ -7750,7 +7750,7 @@ system Host
 	trade Plastic 526
 	object
 		sprite star/k0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object
 		sprite planet/cloud8
@@ -7811,7 +7811,7 @@ system Ik'kara'ka
 	fleet "Wanderer Defense" 600
 	object
 		sprite star/g5
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object
 		sprite planet/lava2
@@ -7925,7 +7925,7 @@ system "Imo Dep"
 	fleet "Large Northern Merchants" 14000
 	object
 		sprite star/f5
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object
 		sprite planet/gas11
@@ -7997,7 +7997,7 @@ system "Io Lowe"
 	fleet "Large Northern Merchants" 7000
 	object
 		sprite star/m8
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object Heartvalley
 		sprite planet/rock16
@@ -8055,13 +8055,13 @@ system "Io Mann"
 	fleet "Large Northern Merchants" 6000
 	object
 		sprite star/k0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 54
 		period 14.3899
 		offset 180
 	object
 		sprite star/k0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 54
 		period 14.3899
 	object
@@ -8120,13 +8120,13 @@ system Ipsing
 	fleet "Small Southern Pirates" 3000
 	object
 		sprite star/g0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 21.7143
 		period 9.89877
 		offset 180
 	object
 		sprite star/k5
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 73.2857
 		period 9.89877
 	object
@@ -8196,7 +8196,7 @@ system Iyech'yek
 	fleet "Wanderer Defense" 5000
 	object
 		sprite star/m0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object "Tik Klai"
 		sprite planet/rock15
@@ -8250,13 +8250,13 @@ system Izar
 	fleet "Large Militia" 1200
 	object
 		sprite star/g0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 15.6511
 		period 10.2136
 		offset 180
 	object
 		sprite star/m0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 78.8489
 		period 10.2136
 	object
@@ -8314,7 +8314,7 @@ system Ka'ch'chrai
 	fleet "Wanderer Defense" 1000
 	object
 		sprite star/k5
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object
 		sprite planet/europa
@@ -8370,12 +8370,12 @@ system Ka'pru
 	fleet "Wanderer Defense" 5000
 	object
 		sprite star/g0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 29.4144
 		period 10.9322
 	object
 		sprite star/k5
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 74.5856
 		period 10.9322
 		offset 180
@@ -8444,7 +8444,7 @@ system Kaliptari
 	fleet "Large Kor Mereti" 4800
 	object
 		sprite star/m0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object "Spera Anatrusk"
 		sprite planet/mars
@@ -8511,12 +8511,12 @@ system "Kappa Centauri"
 	fleet "Small Militia" 2000
 	object
 		sprite star/g0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 10.2222
 		period 10.1264
 	object
 		sprite star/m4
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 81.7778
 		period 10.1264
 		offset 180
@@ -8582,7 +8582,7 @@ system Kashikt
 	fleet "Kor Efret Home" 1000
 	object
 		sprite star/f5
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object
 		sprite planet/rock1
@@ -8687,7 +8687,7 @@ system "Kaus Australis"
 	fleet "Large Southern Pirates" 8000
 	object
 		sprite star/k5
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object Hopper
 		sprite planet/cloud8
@@ -8735,12 +8735,12 @@ system "Kaus Borealis"
 	fleet "Small Southern Pirates" 5000
 	object
 		sprite star/k0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 20.4571
 		period 13.936
 	object
 		sprite star/m4
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 69.0429
 		period 13.936
 		offset 180
@@ -8800,13 +8800,13 @@ system Kiro'ku
 	fleet "Wanderer Defense" 7000
 	object
 		sprite star/g5
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 50.3456
 		period 14.7951
 		offset 180
 	object
 		sprite star/k0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 64.6544
 		period 14.7951
 	object
@@ -8876,13 +8876,13 @@ system Kiru'kichi
 	fleet "Wanderer Defense" 2000
 	object
 		sprite star/f5
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 53.7102
 		period 12.3991
 		offset 180
 	object
 		sprite star/g0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 85.2898
 		period 12.3991
 	object
@@ -8930,7 +8930,7 @@ system Kochab
 	fleet "Small Militia" 6000
 	object
 		sprite star/k5
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object Mere
 		sprite planet/ocean4
@@ -9028,7 +9028,7 @@ system "Kor En'lakfar"
 	fleet "Korath Home" 1800
 	object
 		sprite star/g0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object
 		sprite planet/desert1
@@ -9089,7 +9089,7 @@ system "Kor Fel'tar"
 	fleet "Korath Home" 900
 	object
 		sprite star/k0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object
 		sprite planet/ocean3
@@ -9153,12 +9153,12 @@ system "Kor Men"
 	fleet "Korath Home" 600
 	object
 		sprite star/f5
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 33.3868
 		period 11.5563
 	object
 		sprite star/g5
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 91.6132
 		period 11.5563
 		offset 180
@@ -9214,12 +9214,12 @@ system "Kor Nor'peli"
 	fleet "Korath Home" 500
 	object
 		sprite star/k0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 25.4857
 		period 19.3783
 	object
 		sprite star/m4
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 86.0143
 		period 19.3783
 		offset 180
@@ -9281,7 +9281,7 @@ system "Kor Tar'bei"
 	fleet "Korath Home" 600
 	object
 		sprite star/m0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object
 		sprite planet/ocean6
@@ -9331,12 +9331,12 @@ system "Kor Zena'i"
 	fleet "Korath Home" 1100
 	object
 		sprite star/g5
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 8.94444
 		period 10.8953
 	object
 		sprite star/m8
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 71.5556
 		period 10.8953
 		offset 180
@@ -9396,13 +9396,13 @@ system Kornephoros
 	fleet "Large Militia" 4000
 	object
 		sprite star/k0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 57.5
 		period 16.3414
 		offset 180
 	object
 		sprite star/k0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 57.5
 		period 16.3414
 	object
@@ -9467,7 +9467,7 @@ system Korsmanath
 	fleet "Small Kor Mereti" 8000
 	object
 		sprite star/k0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object
 		sprite planet/rock8
@@ -9533,7 +9533,7 @@ system Kraz
 	fleet "Large Militia" 1200
 	object
 		sprite star/g0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object
 		sprite planet/rock2
@@ -9599,7 +9599,7 @@ system Kugel
 	fleet "Small Core Pirates" 4000
 	object
 		sprite star/g5
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object
 		sprite planet/desert0
@@ -9665,13 +9665,13 @@ system Kursa
 	fleet "Large Republic" 8000
 	object
 		sprite star/k5
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 27.5934
 		period 16.8182
 		offset 180
 	object
 		sprite star/m4
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 65.4066
 		period 16.8182
 	object Farseer
@@ -9725,7 +9725,7 @@ system Lesath
 	fleet "Small Militia" 5000
 	object
 		sprite star/f5
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object
 		sprite planet/rock4
@@ -9787,13 +9787,13 @@ system Lolami
 	fleet "Large Northern Pirates" 4000
 	object
 		sprite star/g0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 11
 		period 11.3038
 		offset 180
 	object
 		sprite star/m4
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 88
 		period 11.3038
 	object
@@ -9856,7 +9856,7 @@ system "Lom Tahr"
 	fleet Quarg 4000
 	object
 		sprite star/f0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object
 		sprite planet/desert8
@@ -9927,7 +9927,7 @@ system Lurata
 	fleet "Large Southern Pirates" 4000
 	object
 		sprite star/k0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object
 		sprite planet/ice1
@@ -9985,13 +9985,13 @@ system Makferuti
 	fleet "Large Kor Sestor" 5000
 	object
 		sprite star/k0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 18.2409
 		period 12.3508
 		offset 180
 	object
 		sprite star/m8
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 65.7591
 		period 12.3508
 	object
@@ -10068,7 +10068,7 @@ system Markab
 	fleet "Large Syndicate" 800
 	object
 		sprite star/g5
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object
 		sprite planet/rock19
@@ -10146,7 +10146,7 @@ system Markeb
 	fleet "Large Northern Pirates" 5000
 	object
 		sprite star/k0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object
 		sprite planet/lava0
@@ -10203,7 +10203,7 @@ system Matar
 	fleet "Large Syndicate" 6000
 	object
 		sprite star/k0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object
 		sprite planet/rock4
@@ -10264,13 +10264,13 @@ system Mebsuta
 	fleet "Small Republic" 12000
 	object
 		sprite star/k0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 37.1157
 		period 19.3068
 		offset 180
 	object
 		sprite star/m0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 78.8843
 		period 19.3068
 	object
@@ -10338,13 +10338,13 @@ system Meftarkata
 	fleet "Large Quarg" 1000
 	object
 		sprite star/f5
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 21.8839
 		period 8.39722
 		offset 180
 	object
 		sprite star/k0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 77.1161
 		period 8.39722
 	object
@@ -10401,7 +10401,7 @@ system "Mei Yohn"
 	fleet "Large Northern Merchants" 10000
 	object
 		sprite star/k5
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object
 		sprite planet/cloud8
@@ -10469,12 +10469,12 @@ system Mekislepti
 	fleet "Large Kor Sestor" 8000
 	object
 		sprite star/g0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 38.4897
 		period 10.4227
 	object
 		sprite star/g5
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 66.5103
 		period 10.4227
 		offset 180
@@ -10529,7 +10529,7 @@ system Men
 	fleet "Large Northern Pirates" 4000
 	object
 		sprite star/k5
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object Thule
 		sprite planet/forest4
@@ -10597,13 +10597,13 @@ system Menkalinan
 	fleet "Large Republic" 1500
 	object
 		sprite star/f5
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 58.5
 		period 8.64354
 		offset 180
 	object
 		sprite star/f5
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 58.5
 		period 8.64354
 	object
@@ -10665,7 +10665,7 @@ system Menkar
 	fleet "Large Core Pirates" 4000
 	object
 		sprite star/k0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object
 		sprite planet/desert2
@@ -10725,13 +10725,13 @@ system Menkent
 	fleet "Small Republic" 3000
 	object
 		sprite star/f5
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 27.7778
 		period 8.77005
 		offset 180
 	object
 		sprite star/g5
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 76.2222
 		period 8.77005
 	object
@@ -10798,12 +10798,12 @@ system Merak
 	fleet "Large Republic" 4000
 	object
 		sprite star/g5
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 40.2658
 		period 11.3561
 	object
 		sprite star/k0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 55.2342
 		period 11.3561
 		offset 180
@@ -10852,7 +10852,7 @@ system Mesuket
 	fleet "Large Kor Sestor" 600
 	object
 		sprite star/k5
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object
 		sprite planet/mercury
@@ -10926,7 +10926,7 @@ system Miaplacidus
 	fleet "Large Republic" 3000
 	object
 		sprite star/k0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object Vinci
 		sprite planet/ocean7
@@ -11000,7 +11000,7 @@ system Mimosa
 	fleet "Large Southern Pirates" 8000
 	object
 		sprite star/k5
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object
 		sprite planet/rock13
@@ -11051,12 +11051,12 @@ system Minkar
 	fleet "Large Southern Pirates" 12000
 	object
 		sprite star/k0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 33.5961
 		period 16.6267
 	object
 		sprite star/m0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 71.4039
 		period 16.6267
 		offset 180
@@ -11118,13 +11118,13 @@ system Mintaka
 	fleet "Small Northern Merchants" 4000
 	object
 		sprite star/k0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 34.4496
 		period 10.9588
 		offset 180
 	object
 		sprite star/k5
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 49.0504
 		period 10.9588
 	object
@@ -11182,13 +11182,13 @@ system Mirach
 	fleet "Large Syndicate" 5000
 	object
 		sprite star/m0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 21.1004
 		period 16.4224
 		offset 180
 	object
 		sprite star/m8
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 57.8996
 		period 16.4224
 	object Placer
@@ -11249,7 +11249,7 @@ system Mirfak
 	fleet "Large Syndicate" 1800
 	object
 		sprite star/k5
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object
 		sprite planet/rock5
@@ -11306,7 +11306,7 @@ system Mirzam
 	fleet "Large Northern Pirates" 8000
 	object
 		sprite star/g0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object
 		sprite planet/lava5
@@ -11358,7 +11358,7 @@ system Mizar
 	fleet "Small Southern Pirates" 6000
 	object
 		sprite star/g0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object
 		sprite planet/desert6
@@ -11420,13 +11420,13 @@ system Moktar
 	fleet "Small Northern Pirates" 3000
 	object
 		sprite star/k5
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 29.0769
 		period 18.1925
 		offset 180
 	object
 		sprite star/m4
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 68.9231
 		period 18.1925
 	object
@@ -11485,7 +11485,7 @@ system Mora
 	fleet "Small Republic" 20000
 	object
 		sprite star/k5
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object
 		sprite planet/desert9
@@ -11535,7 +11535,7 @@ system Muhlifain
 	fleet "Small Southern Pirates" 6000
 	object
 		sprite star/k0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object
 		sprite planet/fog0
@@ -11587,12 +11587,12 @@ system Muphrid
 	fleet "Small Republic" 5000
 	object
 		sprite star/g5
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 21.8366
 		period 10.9152
 	object
 		sprite star/m0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 63.6634
 		period 10.9152
 		offset 180
@@ -11648,7 +11648,7 @@ system Naos
 	fleet "Large Deep" 2000
 	object
 		sprite star/g5
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object
 		sprite planet/cloud6
@@ -11718,7 +11718,7 @@ system Naper
 	fleet "Small Southern Pirates" 1000
 	object
 		sprite star/f5
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object
 		sprite planet/desert9
@@ -11783,12 +11783,12 @@ system Nihal
 	fleet "Large Republic" 7000
 	object
 		sprite star/k5
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 43.1257
 		period 19.2863
 	object
 		sprite star/m0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 64.3743
 		period 19.2863
 		offset 180
@@ -11853,7 +11853,7 @@ system Nocte
 	fleet "Small Northern Pirates" 2500
 	object
 		sprite star/m4
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object
 		sprite planet/desert8
@@ -11919,7 +11919,7 @@ system Nunki
 	fleet "Small Militia" 2000
 	object
 		sprite star/m0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object Albatross
 		sprite planet/cloud8
@@ -11989,13 +11989,13 @@ system Oblate
 	fleet "Large Syndicate" 3000
 	object
 		sprite star/f5
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 19.027
 		period 11.802
 		offset 180
 	object
 		sprite star/k5
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 101.973
 		period 11.802
 	object
@@ -12052,13 +12052,13 @@ system Orvala
 	fleet "Large Southern Pirates" 3000
 	object
 		sprite star/k0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 14.9297
 		period 17.8357
 		offset 180
 	object
 		sprite star/m8
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 87.0703
 		period 17.8357
 	object
@@ -12124,7 +12124,7 @@ system Peacock
 	fleet "Large Southern Pirates" 10000
 	object
 		sprite star/m0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object "New Washington"
 		sprite planet/ocean3
@@ -12236,12 +12236,12 @@ system Persian
 	fleet "Large Core Pirates" 2000
 	object
 		sprite star/f5
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 27.8124
 		period 13.0946
 	object
 		sprite star/k0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 104.688
 		period 13.0946
 		offset 180
@@ -12337,13 +12337,13 @@ system Phact
 	fleet "Large Northern Pirates" 5000
 	object
 		sprite star/g5
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 47.0119
 		period 14.3263
 		offset 180
 	object
 		sprite star/k0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 64.4881
 		period 14.3263
 	object
@@ -12409,7 +12409,7 @@ system Phecda
 	fleet "Small Republic" 5000
 	object
 		sprite star/k5
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object "New Sahara"
 		sprite planet/forest0
@@ -12460,7 +12460,7 @@ system Pherkad
 	fleet "Large Southern Pirates" 3000
 	object
 		sprite star/m4
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object Solace
 		sprite planet/forest5
@@ -12520,7 +12520,7 @@ system Phurad
 	fleet "Small Northern Pirates" 9000
 	object
 		sprite star/g0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object
 		sprite planet/rock18
@@ -12572,7 +12572,7 @@ system Pik'ro'iyak
 	fleet "Wanderer Defense" 4000
 	object
 		sprite star/m4
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object "Var' Kayi"
 		sprite planet/forest1
@@ -12625,7 +12625,7 @@ system Polaris
 	fleet "Korath Raid" 50000
 	object
 		sprite star/k5
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object
 		sprite planet/ocean0
@@ -12677,7 +12677,7 @@ system Pollux
 	fleet "Large Republic" 2000
 	object
 		sprite star/g0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object
 		sprite planet/ice4
@@ -12732,13 +12732,13 @@ system Porrima
 	fleet "Small Southern Pirates" 6000
 	object
 		sprite star/g5
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 21.1382
 		period 18.8353
 		offset 180
 	object
 		sprite star/m4
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 97.8618
 		period 18.8353
 	object
@@ -12799,13 +12799,13 @@ system Prakacha'a
 	fleet "Unfettered Raid" 5000
 	object
 		sprite star/g0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 32.5255
 		period 12.7118
 		offset 180
 	object
 		sprite star/k5
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 82.4745
 		period 12.7118
 	object
@@ -12877,7 +12877,7 @@ system Procyon
 	fleet "Large Republic" 3000
 	object
 		sprite star/k0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object
 		sprite planet/rock4
@@ -12926,7 +12926,7 @@ system "Pug Iyik"
 	fleet "Large Pug" 1200
 	object
 		sprite star/g5
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object
 		sprite planet/rock6
@@ -12985,7 +12985,7 @@ system Rajak
 	fleet "Large Northern Pirates" 10000
 	object
 		sprite star/m8
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object
 		sprite planet/rock5
@@ -13057,7 +13057,7 @@ system Rasalhague
 	fleet "Large Southern Pirates" 8000
 	object
 		sprite star/k0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object
 		sprite planet/lava5
@@ -13117,7 +13117,7 @@ system Rastaban
 	fleet "Large Southern Pirates" 5000
 	object
 		sprite star/g0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object
 		sprite planet/ice6
@@ -13174,7 +13174,7 @@ system "Rati Cal"
 	fleet "Large Northern Merchants" 11000
 	object
 		sprite star/k5
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object
 		sprite planet/ice0
@@ -13222,7 +13222,7 @@ system Regor
 	fleet "Large Deep" 5000
 	object
 		sprite star/k0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object
 		sprite planet/rock4
@@ -13287,7 +13287,7 @@ system Regulus
 	fleet "Small Republic" 10000
 	object
 		sprite star/b5
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object
 		sprite planet/gas15
@@ -13362,7 +13362,7 @@ system Rigel
 	fleet "Large Northern Pirates" 5000
 	object
 		sprite star/g0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object
 		sprite planet/cloud7
@@ -13437,7 +13437,7 @@ system Ruchbah
 	fleet "Large Core Pirates" 3000
 	object
 		sprite star/f0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object
 		sprite planet/cloud2
@@ -13505,7 +13505,7 @@ system Rutilicus
 	fleet "Small Militia" 6000
 	object
 		sprite star/g5
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object
 		sprite planet/rock6
@@ -13573,7 +13573,7 @@ system Sabik
 	fleet "Large Militia" 2000
 	object
 		sprite star/g5
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object
 		sprite planet/cloud2
@@ -13620,12 +13620,12 @@ system Sabriset
 	fleet "Large Quarg" 4000
 	object
 		sprite star/g0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 35.1028
 		period 12.1391
 	object
 		sprite star/k0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 77.8972
 		period 12.1391
 		offset 180
@@ -13676,7 +13676,7 @@ system Sadalmelik
 	fleet Quarg 2000
 	object
 		sprite star/f5
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object
 		sprite planet/callisto
@@ -13728,12 +13728,12 @@ system Sadalsuud
 	fleet Quarg 1000
 	object
 		sprite star/g0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 26.9714
 		period 13.7031
 	object
 		sprite star/k5
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 91.0286
 		period 13.7031
 		offset 180
@@ -13797,12 +13797,12 @@ system Sadr
 	fleet "Large Southern Pirates" 9000
 	object
 		sprite star/a5
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 5.86016
 		period 6.97718
 	object
 		sprite star/m0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 99.6398
 		period 6.97718
 		offset 180
@@ -13861,7 +13861,7 @@ system Saiph
 	fleet "Large Republic" 7000
 	object
 		sprite star/k5
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object
 		sprite planet/cloud3
@@ -13914,7 +13914,7 @@ system Salipastart
 	fleet "Large Kor Sestor" 3200
 	object
 		sprite star/k0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object
 		sprite planet/titan
@@ -13975,13 +13975,13 @@ system Sargas
 	fleet "Large Militia" 7000
 	object
 		sprite star/k0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 53
 		period 14.4611
 		offset 180
 	object
 		sprite star/k0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 53
 		period 14.4611
 	object
@@ -14024,7 +14024,7 @@ system Sarin
 	fleet "Large Southern Pirates" 6000
 	object
 		sprite star/g0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object
 		sprite planet/desert6
@@ -14078,12 +14078,12 @@ system Sayaiban
 	fleet Nanobots 100
 	object
 		sprite star/f5
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 19.1843
 		period 11.9486
 	object
 		sprite star/m0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 102.816
 		period 11.9486
 	object
@@ -14136,7 +14136,7 @@ system Scheat
 	fleet "Large Core Pirates" 5000
 	object
 		sprite star/g5
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object
 		sprite planet/desert10
@@ -14196,7 +14196,7 @@ system Schedar
 	fleet "Large Core Pirates" 3000
 	object
 		sprite star/g0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object
 		sprite planet/lava7
@@ -14262,7 +14262,7 @@ system Seginus
 	fleet "Small Southern Pirates" 5000
 	object
 		sprite star/m4
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object Clark
 		sprite planet/forest6
@@ -14318,7 +14318,7 @@ system Seketra
 	fleet "Large Quarg" 3000
 	object
 		sprite star/k5
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object
 		sprite planet/rock8
@@ -14378,7 +14378,7 @@ system Sepetrosk
 	fleet "Large Kor Mereti" 4800
 	object
 		sprite star/k0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object
 		sprite planet/rock10
@@ -14437,12 +14437,12 @@ system Sepriaptu
 	fleet "Large Quarg" 4000
 	object
 		sprite star/f5
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 16.1966
 		period 9.26902
 	object
 		sprite star/m0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 86.8034
 		period 9.26902
 	object
@@ -14485,7 +14485,7 @@ system Sevrelect
 	fleet "Kor Efret Home" 1000
 	object
 		sprite star/m0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object
 		sprite planet/dust2
@@ -14545,7 +14545,7 @@ system Shaula
 	fleet "Large Militia" 9000
 	object
 		sprite star/g5
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object
 		sprite planet/desert3
@@ -14606,13 +14606,13 @@ system Sheratan
 	fleet "Korath Raid" 30000
 	object
 		sprite star/f5
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 21.0713
 		period 13.7542
 		offset 180
 	object
 		sprite star/k5
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 112.929
 		period 13.7542
 	object
@@ -14671,12 +14671,12 @@ system Si'yak'ku
 	fleet "Wanderer Defense" 9000
 	object
 		sprite star/g0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 19.5395
 		period 12.7342
 	object
 		sprite star/m4
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 90.4605
 		period 12.7342
 		offset 180
@@ -14745,7 +14745,7 @@ system Sich'ka'ara
 	fleet "Wanderer Defense" 2000
 	object
 		sprite star/f5
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object
 		sprite planet/gas10
@@ -14801,7 +14801,7 @@ system Silikatakfar
 	fleet "Large Kor Sestor" 2400
 	object
 		sprite star/k5
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object
 		sprite planet/miranda
@@ -14862,7 +14862,7 @@ system Similisti
 	fleet "Large Kor Sestor" 5400
 	object
 		sprite star/g0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object
 		sprite planet/cloud6
@@ -14926,13 +14926,13 @@ system Sirius
 	fleet "Large Republic" 1500
 	object
 		sprite star/f5
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 3.94301
 		period 8.13257
 		offset 180
 	object
 		sprite star/m8
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 86.557
 		period 8.13257
 	object
@@ -14980,7 +14980,7 @@ system Skeruto
 	fleet "Large Quarg" 2000
 	object
 		sprite star/m0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object
 		sprite planet/lava0
@@ -15032,7 +15032,7 @@ system Sko'karak
 	fleet "Wanderer Defense" 4000
 	object
 		sprite star/m0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object
 		sprite planet/rock8
@@ -15080,13 +15080,13 @@ system Sobarati
 	fleet "Large Kor Sestor" 4000
 	object
 		sprite star/a5
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 4.57143
 		period 9.4217
 		offset 180
 	object
 		sprite star/m8
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 123.429
 		period 9.4217
 	object
@@ -15156,7 +15156,7 @@ system Sol
 	fleet "Large Core Merchants" 2000
 	object
 		sprite star/g0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 25.38
 	object
 		sprite planet/mercury
@@ -15227,7 +15227,7 @@ system Solifar
 	fleet "Large Quarg" 4000
 	object
 		sprite star/m0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object "Desi Seledrak"
 		sprite planet/cloud5
@@ -15350,7 +15350,7 @@ system Spica
 	fleet "Large Southern Pirates" 10000
 	object
 		sprite star/g5
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object
 		sprite planet/desert4
@@ -15409,7 +15409,7 @@ system Suhail
 	fleet "Large Northern Pirates" 9000
 	object
 		sprite star/f5
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object
 		sprite planet/water1
@@ -15461,7 +15461,7 @@ system Sumar
 	fleet "Large Republic" 30000
 	object
 		sprite star/f0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object
 		sprite planet/lava6
@@ -15526,7 +15526,7 @@ system Sumprast
 	fleet "Kor Efret Home" 1000
 	object
 		sprite star/k0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object
 		sprite planet/desert7
@@ -15595,7 +15595,7 @@ system Tais
 	fleet "Large Southern Pirates" 7000
 	object
 		sprite star/a5
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object
 		sprite planet/venus
@@ -15652,13 +15652,13 @@ system Talita
 	fleet "Large Republic" 2000
 	object
 		sprite star/g0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 42.8886
 		period 12.2596
 		offset 180
 	object
 		sprite star/g5
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 74.1114
 		period 12.2596
 	object
@@ -15716,7 +15716,7 @@ system "Tania Australis"
 	fleet "Large Northern Pirates" 9000
 	object
 		sprite star/g0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object
 		sprite planet/desert5
@@ -15785,12 +15785,12 @@ system Tarazed
 	fleet "Large Southern Pirates" 8000
 	object
 		sprite star/g0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 11
 		period 11.3038
 	object
 		sprite star/m4
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 88
 		period 11.3038
 		offset 180
@@ -15851,12 +15851,12 @@ system Tejat
 	fleet "Large Republic" 2000
 	object
 		sprite star/g0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 7.1843
 		period 12.9183
 	object
 		sprite star/m8
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 99.3157
 		period 12.9183
 		offset 180
@@ -15928,7 +15928,7 @@ system Tortor
 	fleet "Small Northern Merchants" 6000
 	object
 		sprite star/k0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object
 		sprite planet/rock17
@@ -15996,7 +15996,7 @@ system Turais
 	fleet "Large Southern Pirates" 7000
 	object
 		sprite star/k5
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object Gemstone
 		sprite planet/cloud7
@@ -16052,13 +16052,13 @@ system "Ula Mon"
 	fleet "Large Northern Merchants" 9000
 	object
 		sprite star/m0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 56.5
 		period 18.9927
 		offset 180
 	object
 		sprite star/m0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 56.5
 		period 18.9927
 	object
@@ -16120,7 +16120,7 @@ system "Ultima Thule"
 	trade Plastic 360
 	object
 		sprite star/f0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object
 		sprite planet/desert5
@@ -16177,12 +16177,12 @@ system Umbral
 	fleet "Large Southern Pirates" 6000
 	object
 		sprite star/k0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 31.3563
 		period 14.9921
 	object
 		sprite star/m0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 66.6437
 		period 14.9921
 		offset 180
@@ -16253,7 +16253,7 @@ system Unagi
 	fleet "Large Northern Pirates" 3000
 	object
 		sprite star/k5
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object
 		sprite planet/lava3
@@ -16312,7 +16312,7 @@ system Unukalhai
 	fleet "Large Militia" 10000
 	object
 		sprite star/g5
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object
 		sprite planet/water0
@@ -16370,7 +16370,7 @@ system "Uwa Fahn"
 	fleet "Large Northern Merchants" 16000
 	object
 		sprite star/m0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object
 		sprite planet/desert8
@@ -16431,13 +16431,13 @@ system Vega
 	fleet "Large Republic" 5000
 	object
 		sprite star/g0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 23.3143
 		period 11.0128
 		offset 180
 	object
 		sprite star/k5
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 78.6857
 		period 11.0128
 	object
@@ -16495,7 +16495,7 @@ system Vindemiatrix
 	fleet "Large Southern Pirates" 4000
 	object
 		sprite star/g0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object
 		sprite planet/cloud0
@@ -16541,7 +16541,7 @@ system Volax
 	fleet "Large Republic" 9000
 	object
 		sprite star/f5
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object
 		sprite planet/desert1
@@ -16602,7 +16602,7 @@ system "Wah Ki"
 	fleet "Large Northern Merchants" 28000
 	object
 		sprite star/k5
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object
 		sprite planet/rock11
@@ -16671,7 +16671,7 @@ system "Wah Oh"
 	fleet "Large Northern Merchants" 9000
 	object
 		sprite star/a0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object
 		sprite planet/cloud4
@@ -16744,7 +16744,7 @@ system "Wah Yoot"
 	fleet "Large Unfettered" 500
 	object
 		sprite star/g0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object
 		sprite planet/cloud3
@@ -16809,7 +16809,7 @@ system Waypoint
 	fleet "Large Northern Merchants" 28000
 	object
 		sprite star/m8
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object
 		sprite planet/rock8
@@ -16866,12 +16866,12 @@ system Wazn
 	fleet "Large Republic" 4000
 	object
 		sprite star/k5
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 45.5327
 		period 20.9233
 	object
 		sprite star/m0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 67.9673
 		period 20.9233
 		offset 180
@@ -16927,7 +16927,7 @@ system Wei
 	fleet "Large Militia" 5000
 	object
 		sprite star/k0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object
 		sprite planet/dust2
@@ -16989,12 +16989,12 @@ system Wezen
 	fleet "Small Northern Pirates" 8000
 	object
 		sprite star/f0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 11.8889
 		period 8.24972
 	object
 		sprite star/k5
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 95.1111
 		period 8.24972
 		offset 180
@@ -17074,7 +17074,7 @@ system "Ya Hai"
 	fleet Quarg 6000
 	object
 		sprite star/k5
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object
 		sprite planet/ice6
@@ -17146,7 +17146,7 @@ system "Yed Prior"
 	fleet "Large Militia" 5000
 	object
 		sprite star/k0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object
 		sprite planet/desert7
@@ -17202,7 +17202,7 @@ system Zaurak
 	fleet "Large Core Pirates" 4000
 	object
 		sprite star/g5
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object
 		sprite planet/rock14
@@ -17254,12 +17254,12 @@ system "Zeta Aquilae"
 	fleet "Large Southern Pirates" 5000
 	object
 		sprite star/g0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 22.6286
 		period 10.5305
 	object
 		sprite star/k5
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 76.3714
 		period 10.5305
 		offset 180
@@ -17328,7 +17328,7 @@ system "Zeta Centauri"
 	fleet "Large Southern Pirates" 5000
 	object
 		sprite star/k0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object
 		sprite planet/cloud4
@@ -17390,7 +17390,7 @@ system Zosma
 	fleet "Large Northern Pirates" 9000
 	object
 		sprite star/k0
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object
 		sprite planet/gas11
@@ -17446,7 +17446,7 @@ system "Zuba Zub"
 	fleet "Large Northern Merchants" 18000
 	object
 		sprite star/k5
-			"frame rate" 0.5
+			"frame rate" 0.2
 		period 10
 	object
 		sprite planet/dust6
@@ -17514,12 +17514,12 @@ system Zubenelgenubi
 	fleet "Large Southern Pirates" 5000
 	object
 		sprite star/g5
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 32.8466
 		period 12.4309
 	object
 		sprite star/k5
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 64.1534
 		period 12.4309
 		offset 180
@@ -17584,13 +17584,13 @@ system Zubeneschamali
 	fleet "Large Southern Pirates" 3000
 	object
 		sprite star/g5
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 62
 		period 15.622
 		offset 180
 	object
 		sprite star/g5
-			"frame rate" 0.5
+			"frame rate" 0.2
 		distance 62
 		period 15.622
 	object
