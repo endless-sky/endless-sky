@@ -12,8 +12,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Radar.h"
 
-#include "DotShader.h"
 #include "PointerShader.h"
+#include "RingShader.h"
 
 using namespace std;
 
@@ -49,6 +49,13 @@ void Radar::Clear()
 
 
 
+void Radar::SetCenter(const Point &center)
+{
+	this->center = center;
+}
+
+
+
 // Add an object. If "inner" is 0 it is a dot; otherwise, it is a ring. The
 // given position should be in world units (not shrunk to radar units).
 void Radar::Add(int type, Point position, double outer, double inner)
@@ -56,7 +63,7 @@ void Radar::Add(int type, Point position, double outer, double inner)
 	if(type < 0 || type >= SIZE)
 		return;
 	
-	objects.emplace_back(color[type].Opaque(), position, outer, inner);
+	objects.emplace_back(color[type].Opaque(), position - center, outer, inner);
 }
 
 
@@ -75,7 +82,7 @@ void Radar::AddPointer(int type, const Point &position)
 // Draw the radar display at the given coordinates.
 void Radar::Draw(const Point &center, double scale, double radius, double pointerRadius) const
 {
-	DotShader::Bind();
+	RingShader::Bind();
 	for(const Object &object : objects)
 	{
 		Point position = object.position * scale;
@@ -84,9 +91,9 @@ void Radar::Draw(const Point &center, double scale, double radius, double pointe
 			position *= radius / length;
 		position += center;
 		
-		DotShader::Add(position, object.outer, object.inner, object.color);
+		RingShader::Add(position, object.outer, object.inner, object.color);
 	}
-	DotShader::Unbind();
+	RingShader::Unbind();
 	
 	PointerShader::Bind();
 	for(const Pointer &pointer : pointers)

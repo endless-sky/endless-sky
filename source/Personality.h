@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef PERSONALITY_H_
 #define PERSONALITY_H_
 
+#include "Angle.h"
 #include "Point.h"
 
 #include <string>
@@ -50,8 +51,12 @@ public:
 	bool IsEscort() const;
 	bool IsFrugal() const;
 	bool IsCoward() const;
+	bool IsVindictive() const;
+	bool IsSwarming() const;
+	bool IsUnconstrained() const;
 	
 	const Point &Confusion() const;
+	void UpdateConfusion(bool isFiring);
 	
 	static Personality Defender();
 	
@@ -63,7 +68,9 @@ private:
 private:
 	int flags;
 	double confusionMultiplier;
-	mutable Point confusion;
+	double aimMultiplier;
+	Point confusion;
+	Point confusionVelocity;
 };
 
 

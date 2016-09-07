@@ -38,9 +38,9 @@ void EscortDisplay::Clear()
 
 
 
-void EscortDisplay::Add(const Ship &ship, bool isHere)
+void EscortDisplay::Add(const Ship &ship, bool isHere, bool fleetIsJumping)
 {
-	icons.emplace_back(ship, isHere);
+	icons.emplace_back(ship, isHere, fleetIsJumping);
 }
 
 
@@ -58,6 +58,7 @@ void EscortDisplay::Draw() const
 	static const Color hereColor(.8, 1.);
 	static const Color elsewhereColor(.4, .4, .6, 1.);
 	static const Color readyToJumpColor(.2, .8, .2, 1.);
+	static const Color cannotJumpColor(.9, .2, 0., 1.);
 	for(const Icon &escort : icons)
 	{
 		if(!escort.sprite)
@@ -75,6 +76,8 @@ void EscortDisplay::Draw() const
 		Color color;
 		if(!escort.isHere)
 			color = elsewhereColor;
+		else if(escort.cannotJump)
+			color = cannotJumpColor;
 		else if(escort.isReadyToJump)
 			color = readyToJumpColor;
 		else
@@ -137,10 +140,11 @@ void EscortDisplay::Draw() const
 
 
 
-EscortDisplay::Icon::Icon(const Ship &ship, bool isHere)
-	: sprite(ship.GetSprite().GetSprite()),
+EscortDisplay::Icon::Icon(const Ship &ship, bool isHere, bool fleetIsJumping)
+	: sprite(ship.GetSprite()),
 	isHere(isHere && !ship.IsDisabled()),
 	isReadyToJump(ship.CheckHyperspace()),
+	cannotJump(fleetIsJumping && !ship.IsHyperspacing() && !ship.JumpsRemaining()),
 	stackSize(1),
 	cost(ship.Cost()),
 	system((!isHere && ship.GetSystem()) ? ship.GetSystem()->Name() : ""),
@@ -197,7 +201,7 @@ void EscortDisplay::MergeStacks() const
 		int height = 0;
 		for(Icon &icon : icons)
 		{
-			if(unstackable.find(icon.sprite) == unstackable.end() && (!cheapest || *cheapest < icon))
+			if(!unstackable.count(icon.sprite) && (!cheapest || *cheapest < icon))
 				cheapest = &icon;
 			
 			height += icon.Height();
@@ -206,19 +210,36 @@ void EscortDisplay::MergeStacks() const
 		if(height < maxHeight || !cheapest)
 			break;
 		
-		// Merge all other instances of this ship's sprite with this icon.
+		// Merge together each group of escorts that have this icon annd are in
+		// the same system.
+		map<string, Icon *> merged;
+		
+		// The "cheapest" element in the list may be removed to merge it with an
+		// earlier ship of the same type, so store a copy of its sprite pointer:
+		const Sprite *sprite = cheapest->sprite;
 		list<Icon>::iterator it = icons.begin();
 		while(it != icons.end())
 		{
-			if(&*it == cheapest || it->sprite != cheapest->sprite || it->isHere != cheapest->isHere)
+			if(it->sprite != sprite)
 			{
 				++it;
 				continue;
 			}
 			
-			cheapest->Merge(*it);
-			it = icons.erase(it);	
+			// If this is the first escort we've seen so far in its system, it
+			// is the one we will merge all others in this system into.
+			auto mit = merged.find(it->system);
+			if(mit == merged.end())
+			{
+				merged[it->system] = &*it;
+				++it;
+			}
+			else
+			{
+				mit->second->Merge(*it);
+				it = icons.erase(it);	
+			}
 		}
-		unstackable.insert(cheapest->sprite);
+		unstackable.insert(sprite);
 	}
 }

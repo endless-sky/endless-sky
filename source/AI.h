@@ -36,8 +36,6 @@ class PlayerInfo;
 // the same target over and over.
 class AI {
 public:
-	AI();
-	
 	void UpdateKeys(PlayerInfo &player, Command &clickCommands, bool isActive);
 	void UpdateEvents(const std::list<ShipEvent> &events);
 	void Clean();
@@ -49,16 +47,18 @@ private:
 	std::shared_ptr<Ship> FindTarget(const Ship &ship, const std::list<std::shared_ptr<Ship>> &ships) const;
 	
 	void MoveIndependent(Ship &ship, Command &command) const;
-	static void MoveEscort(Ship &ship, Command &command);
+	void MoveEscort(Ship &ship, Command &command) const;
 	static void Refuel(Ship &ship, Command &command);
 	
 	static double TurnBackward(const Ship &ship);
 	static double TurnToward(const Ship &ship, const Point &vector);
 	static bool MoveToPlanet(Ship &ship, Command &command);
 	static bool MoveTo(Ship &ship, Command &command, const Point &target, double radius, double slow);
-	static bool Stop(Ship &ship, Command &command, double slow = .2);
+	static bool Stop(Ship &ship, Command &command, bool complete = false);
 	static void PrepareForHyperspace(Ship &ship, Command &command);
 	static void CircleAround(Ship &ship, Command &command, const Ship &target);
+	static void Swarm(Ship &ship, Command &command, const Ship &target);
+	static void KeepStation(Ship &ship, Command &command, const Ship &target);
 	static void Attack(Ship &ship, Command &command, const Ship &target);
 	void DoSurveillance(Ship &ship, Command &command, const std::list<std::shared_ptr<Ship>> &ships) const;
 	static void DoCloak(Ship &ship, Command &command, const std::list<std::shared_ptr<Ship>> &ships);
@@ -81,27 +81,29 @@ private:
 	
 	
 private:
-	int step;
+	int step = 0;
 	
 	Command keyDown;
 	Command keyHeld;
 	Command keyStuck;
-	bool isLaunching;
-	bool isCloaking;
-	bool shift;
+	bool isLaunching = false;
+	bool isCloaking = false;
+	bool shift = false;
 	
-	bool holdPosition;
-	bool moveToMe;
+	bool holdPosition = false;
+	bool moveToMe = false;
+	bool killDisabledSharedTarget = false;
 	bool escortsAreFrugal = true;
 	bool escortsUseAmmo = true;
 	std::weak_ptr<Ship> sharedTarget;
 	// Pressing "land" rapidly toggles targets; pressing it once re-engages landing.
-	int landKeyInterval;
+	int landKeyInterval = 0;
 	
 	typedef std::owner_less<std::weak_ptr<const Ship>> Comp;
 	std::map<std::weak_ptr<const Ship>, std::map<std::weak_ptr<const Ship>, int, Comp>, Comp> actions;
 	std::map<const Government *, std::map<std::weak_ptr<const Ship>, int, Comp>> governmentActions;
 	std::map<std::weak_ptr<const Ship>, int, Comp> playerActions;
+	std::map<const Ship *, int> swarmCount;
 	
 	std::map<const Ship *, int64_t> shipStrength;
 	

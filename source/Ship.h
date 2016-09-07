@@ -13,15 +13,18 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef SHIP_H_
 #define SHIP_H_
 
+#include "Body.h"
+
 #include "Angle.h"
-#include "Animation.h"
 #include "Armament.h"
 #include "CargoHold.h"
 #include "Command.h"
+#include "Flotsam.h"
 #include "Outfit.h"
 #include "Personality.h"
 #include "Point.h"
 
+#include <list>
 #include <map>
 #include <memory>
 #include <string>
@@ -43,8 +46,50 @@ class System;
 // in exactly the same state. The same class is used for the player's ship as
 // for all other ships, so their capabilities are exactly the same  within the
 // limits of what the AI knows how to command them to do.
-class Ship : public std::enable_shared_from_this<Ship> {
+class Ship : public Body, public std::enable_shared_from_this<Ship> {
 public:
+	// These are all the possible category strings for ships.
+	static const std::vector<std::string> CATEGORIES;
+	
+	class Bay {
+	public:
+		Bay(double x, double y, bool isFighter) : point(x * .5, y * .5), isFighter(isFighter) {}
+		// Copying a bay does not copy the ship inside it.
+		Bay(const Bay &b) : point(b.point), isFighter(b.isFighter), side(b.side), facing(b.facing) {}
+		
+		Point point;
+		std::shared_ptr<Ship> ship;
+		bool isFighter = false;
+		
+		uint8_t side = 0;
+		static const uint8_t INSIDE = 0;
+		static const uint8_t OVER = 1;
+		static const uint8_t UNDER = 2;
+		
+		uint8_t facing = 0;
+		static const uint8_t FORWARD = 0;
+		static const uint8_t LEFT = 1;
+		static const uint8_t RIGHT = 2;
+		static const uint8_t BACK = 3;
+	};
+	
+public:
+	/* Functions provided by the Body base class:
+	bool HasSprite() const;
+	const Sprite *GetSprite() const;
+	int Width() const;
+	int Height() const;
+	int GetSwizzle() const;
+	Frame GetFrame(int step = -1) const;
+	const Mask &GetMask(int step = -1) const;
+	const Point &Position() const;
+	const Point &Velocity() const;
+	const Angle &Facing() const;
+	Point Unit() const;
+	double Zoom() const;
+	const Government *GetGovernment() const;
+	*/
+
 	// Load data for a type of ship:
 	void Load(const DataNode &node);
 	// When loading a ship, some of the outfits it lists may not have been
@@ -53,12 +98,6 @@ public:
 	// Save a full description of this ship, as currently configured.
 	void Save(DataWriter &out) const;
 	
-	// Get information on this particular ship, for displaying it.
-	const Animation &GetSprite() const;
-	// Get the ship's government.
-	const Government *GetGovernment() const;
-	// Get this ship's zoom factor (due to landing on a planet).
-	double Zoom() const;
 	// Get the name of this particular ship.
 	const std::string &Name() const;
 	
@@ -101,7 +140,7 @@ public:
 	// Move this ship. A ship may create effects as it moves, in particular if
 	// it is in the process of blowing up. If this returns false, the ship
 	// should be deleted.
-	bool Move(std::list<Effect> &effects);
+	bool Move(std::list<Effect> &effects, std::list<Flotsam> &flotsam);
 	// Launch any ships that are ready to launch.
 	void Launch(std::list<std::shared_ptr<Ship>> &ships);
 	// Check if this ship is boarding another ship. If it is, it either plunders
@@ -125,6 +164,7 @@ public:
 	const Planet *GetPlanet() const;
 	
 	// Check the status of this ship.
+	bool IsCapturable() const;
 	bool IsTargetable() const;
 	bool IsOverheated() const;
 	bool IsDisabled() const;
@@ -132,6 +172,9 @@ public:
 	bool IsLanding() const;
 	// Check if this ship is currently able to begin landing on its target.
 	bool CanLand() const;
+	// Check if some condition is keeping this ship from acting. (That is, it is
+	// landing, hyperspacing, cloaking, disabled, or under-crewed.)
+	bool CannotAct() const;
 	// Get the degree to which this ship is cloaked. 1 means invisible and
 	// impossible to hit or target; 0 means fully visible.
 	double Cloaking() const;
@@ -150,15 +193,9 @@ public:
 	// Get the points from which engine flares should be drawn.
 	const std::vector<Point> &EnginePoints() const;
 	
-	// Get the position, velocity, and heading of this ship.
-	const Point &Position() const;
-	const Point &Velocity() const;
-	const Angle &Facing() const;
-	// Get the facing unit vector times the zoom factor.
-	Point Unit() const;
-	
 	// Mark a ship as destroyed, or bring back a destroyed ship.
 	void Destroy();
+	void SelfDestruct();
 	void Restore();
 	// Check if this ship has been destroyed.
 	bool IsDestroyed() const;
@@ -187,6 +224,8 @@ public:
 	int Crew() const;
 	int RequiredCrew() const;
 	void AddCrew(int count);
+	// Check if this is a ship that can be used as a flagship.
+	bool CanBeFlagship() const;
 	
 	// Get this ship's movement characteristics.
 	double Mass() const;
@@ -208,27 +247,30 @@ public:
 	bool HasBays() const;
 	// Check how many fighter and drone bays are not occupied at present. This
 	// does not check whether one of your escorts plans to use that bay.
-	int FighterBaysFree() const;
-	int DroneBaysFree() const;
+	int BaysFree(bool isFighter) const;
 	// Check if this ship has a bay free for the given fighter, and the bay is
 	// not reserved for one of its existing escorts.
-	bool CanHoldFighter(const Ship &ship) const;
+	bool CanCarry(const Ship &ship) const;
 	// Check if this is a ship of a type that can be carried (fighter or drone).
 	bool CanBeCarried() const;
 	// Move the given ship into one of the fighter or drone bays, if possible.
-	bool AddFighter(const std::shared_ptr<Ship> &ship);
+	bool Carry(const std::shared_ptr<Ship> &ship);
 	// Empty the fighter bays. If the fighters are not special ships that are
 	// saved in the player data, they will be deleted. Otherwise, they become
 	// visible as ships landed on the same planet as their parent.
-	void UnloadFighters();
+	void UnloadBays();
 	// Get a list of any ships this ship is carrying.
-	std::vector<std::shared_ptr<Ship>> CarriedShips() const;
+	const std::vector<Bay> &Bays() const;
+	// Adjust the positions and velocities of any visible carried fighters or
+	// drones. If any are visible, return true.
+	bool PositionFighters() const;
 	
 	// Get cargo information.
 	CargoHold &Cargo();
 	const CargoHold &Cargo() const;
 	// Display box effects from jettisoning this much cargo.
-	void Jettison(int tons);
+	void Jettison(const std::string &commodity, int tons);
+	void Jettison(const Outfit *outfit, int count);
 	
 	// Get the current attributes of this ship.
 	const Outfit &Attributes() const;
@@ -243,7 +285,7 @@ public:
 	
 	// Get the list of weapons.
 	Armament &GetArmament();
-	const std::vector<Armament::Weapon> &Weapons() const;
+	const std::vector<Hardpoint> &Weapons() const;
 	// Check if we are able to fire the given weapon (i.e. there is enough
 	// energy, ammo, and fuel to fire it).
 	bool CanFire(const Outfit *outfit) const;
@@ -278,37 +320,37 @@ private:
 	// Add or remove a ship from this ship's list of escorts.
 	void AddEscort(const Ship &ship);
 	void RemoveEscort(const Ship &ship);
-	// Check if some condition is keeping this ship from acting. (That is, it is
-	// landing, hyperspacing, cloaking, disabled, or under-crewed.)
-	bool CannotAct() const;
 	// Get the hull amount at which this ship is disabled.
 	double MinimumHull() const;
+	// Get the heat level at idle.
+	double IdleHeat() const;
+	// Add to this ship's hull or shields, and return the amount added. If the
+	// ship is carrying fighters, add to them as well.
+	double AddHull(double rate);
+	double AddShields(double rate);
 	// Create one of this ship's explosions, within its mask. The explosions can
 	// either stay over the ship, or spread out if this is the final explosion.
 	void CreateExplosion(std::list<Effect> &effects, bool spread = false);
+	// Place a "spark" effect, like ionization or disruption.
+	void CreateSparks(std::list<Effect> &effects, const std::string &name, double amount);
 	
 	
 private:
-	class Bay {
-	public:
-		Bay() = default;
-		Bay(double x, double y) : point(x * .5, y * .5) {}
-		Bay(const Point &point) : point(point) {}
-		
-		Point point;
-		std::shared_ptr<Ship> ship;
-	};
+	/* Protected member variables of the Body class:
+	Point position;
+	Point velocity;
+	Angle angle;
+	double zoom;
+	int swizzle;
+	const Government *government;
+	*/
 	
-	
-private:
 	// Characteristics of the chassis:
 	const Ship *base = nullptr;
 	std::string modelName;
 	std::string description;
-	Animation sprite;
 	// Characteristics of this particular ship:
 	std::string name;
-	const Government *government = nullptr;
 	
 	// Licenses needed to operate this ship.
 	std::vector<std::string> licenses;
@@ -324,9 +366,14 @@ private:
 	bool isDisabled = false;
 	bool isBoarding = false;
 	bool hasBoarded = false;
+	bool isThrusting = false;
 	bool neverDisabled = false;
+	bool isCapturable = true;
+	bool isInvisible = false;
 	double cloak = 0.;
-	int jettisoned = 0;
+	// Cached values for figuring out when anti-missile is in range.
+	double antiMissileRange = 0.;
+	double weaponRadius = 0.;
 	
 	Command commands;
 	
@@ -339,9 +386,9 @@ private:
 	const Outfit *explosionWeapon = nullptr;
 	std::map<const Outfit *, int> outfits;
 	CargoHold cargo;
+	std::list<Flotsam> jettisoned;
 	
-	std::vector<Bay> droneBays;
-	std::vector<Bay> fighterBays;
+	std::vector<Bay> bays;
 	
 	std::vector<Point> enginePoints;
 	Armament armament;
@@ -357,6 +404,8 @@ private:
 	double heat = 0.;
 	double heatDissipation = .999;
 	double ionization = 0.;
+	double disruption = 0.;
+	double slowness = 0.;
 	
 	int crew = 0;
 	int pilotError = 0;
@@ -364,13 +413,8 @@ private:
 	
 	// Current status of this particular ship:
 	const System *currentSystem = nullptr;
-	Point position;
-	Point velocity;
-	Angle angle;
-	
 	// A Ship can be locked into one of three special states: landing,
 	// hyperspacing, and exploding. Each one must track some special counters:
-	double zoom = 1.;
 	const Planet *landingPlanet = nullptr;
 	
 	int hyperspaceCount = 0;
@@ -382,6 +426,7 @@ private:
 	unsigned explosionRate = 0;
 	unsigned explosionCount = 0;
 	unsigned explosionTotal = 0;
+	std::map<const Effect *, int> finalExplosions;
 	
 	// Target ships, planets, systems, etc.
 	std::weak_ptr<Ship> targetShip;

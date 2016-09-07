@@ -83,6 +83,14 @@ public:
 	// first mission cargo, then spare outfits, then ordinary commodities.
 	void TransferAll(CargoHold *to);
 	
+	// These functions do the same thing as Transfer() with no destination
+	// specified, but they have clearer names to make the code more readable.
+	int Add(const std::string &commodity, int amount = 1);
+	int Add(const Outfit *outfit, int amount = 1);
+	int Remove(const std::string &commodity, int amount = 1);
+	int Remove(const Outfit *outfit, int amount = 1);
+	
+	// Add or remove any cargo or passengers associated with the given mission.
 	void AddMissionCargo(const Mission *mission);
 	void RemoveMissionCargo(const Mission *mission);
 	
@@ -96,8 +104,11 @@ public:
 	
 	
 private:
+	// Use -1 to indicate unlimited capacity.
 	int size = -1;
 	int bunks = -1;
+	
+	// Track how many objects of each type are being carried:
 	std::map<std::string, int> commodities;
 	std::map<const Outfit *, int> outfits;
 	std::map<const Mission *, int> missionCargo;

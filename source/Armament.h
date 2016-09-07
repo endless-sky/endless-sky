@@ -13,15 +13,15 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef ARMAMENT_H_
 #define ARMAMENT_H_
 
-#include "Angle.h"
-#include "Point.h"
+#include "Hardpoint.h"
 
-#include <map>
 #include <list>
+#include <map>
 #include <vector>
 
 class Effect;
 class Outfit;
+class Point;
 class Projectile;
 class Ship;
 
@@ -38,51 +38,6 @@ class Ship;
 // distance away and velocity relative to the ship that is firing.
 class Armament {
 public:
-	class Weapon {
-	public:
-		Weapon(const Point &point, bool isTurret, const Outfit *outfit = nullptr);
-		
-		// Be sure to check if this is nullptr!
-		const Outfit *GetOutfit() const;
-		// Get the point, in ship image coordinates, from which projectiles of
-		// this weapon should originate.
-		const Point &GetPoint() const;
-		// Get the convergence angle adjustment of this weapon.
-		const Angle &GetAngle() const;
-		// Shortcuts for querying weapon characteristics.
-		bool IsTurret() const;
-		bool IsHoming() const;
-		bool IsAntiMissile() const;
-		
-		// Check if this weapon is ready to fire.
-		bool IsReady() const;
-		// Perform one step (i.e. decrement the reload count).
-		void Step();
-		
-		// Fire this weapon. If it is a turret, it automatically points toward
-		// the given ship's target. If the weapon requires ammunition, it will
-		// be subtracted from the given ship.
-		void Fire(Ship &ship, std::list<Projectile> &projectiles, std::list<Effect> &effects);
-		// Fire an anti-missile. Returns true if the missile should be killed.
-		bool FireAntiMissile(Ship &ship, const Projectile &projectile, std::list<Effect> &effects);
-		
-		// Install a weapon here (assuming it is empty). This is only for
-		// Armament to call internally.
-		void Install(const Outfit *outfit);
-		// Uninstall the outfit from this port (if it has one).
-		void Uninstall();
-		
-	private:
-		const Outfit *outfit;
-		Point point;
-		// Angle adjustment for convergence.
-		Angle angle;
-		int reload;
-		bool isTurret;
-	};
-	
-	
-public:
 	// Add a gun or turret hard-point.
 	void AddGunPort(const Point &point, const Outfit *outfit = nullptr);
 	void AddTurret(const Point &point, const Outfit *outfit = nullptr);
@@ -98,8 +53,8 @@ public:
 	// Swap the weapons in the given two hardpoints.
 	void Swap(int first, int second);
 	
-	// Access the array of weapons.
-	const std::vector<Weapon> &Get() const;
+	// Access the array of weapon hardpoints.
+	const std::vector<Hardpoint> &Get() const;
 	int GunCount() const;
 	int TurretCount() const;
 	
@@ -123,7 +78,7 @@ private:
 	// it should not hold any pointers specific to one ship (including to
 	// elements of this Armament itself).
 	std::map<const Outfit *, int> streamReload;
-	std::vector<Weapon> weapons;
+	std::vector<Hardpoint> hardpoints;
 };
 
 

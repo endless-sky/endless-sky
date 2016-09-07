@@ -48,7 +48,7 @@ public:
 	const std::list<std::shared_ptr<Ship>> Ships() const;
 	
 	// Handle the given ShipEvent.
-	void Do(const ShipEvent &event, PlayerInfo &player, UI *ui = nullptr);
+	void Do(const ShipEvent &event, PlayerInfo &player, UI *ui = nullptr, bool isVisible = true);
 	bool HasSucceeded(const System *playerSystem) const;
 	// Check if the NPC is supposed to be accompanied and is not.
 	bool IsLeftBehind(const System *playerSystem) const;
@@ -56,7 +56,7 @@ public:
 	
 	// Create a copy of this NPC but with the fleets replaced by the actual
 	// ships they represent, wildcards in the conversation text replaced, etc.
-	NPC Instantiate(std::map<std::string, std::string> &subs, const System *origin) const;
+	NPC Instantiate(std::map<std::string, std::string> &subs, const System *origin, const System *destination) const;
 	
 	
 private:
@@ -67,6 +67,7 @@ private:
 	// Start out in a location matching this filter, or in a particular system:
 	LocationFilter location;
 	const System *system = nullptr;
+	bool isAtDestination = false;
 	
 	// Dialog or conversation to show when all requirements for this NPC are met:
 	std::string dialogText;

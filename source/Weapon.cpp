@@ -27,11 +27,12 @@ using namespace std;
 void Weapon::LoadWeapon(const DataNode &node)
 {
 	isWeapon = true;
+	bool isClustered = false;
 	
 	for(const DataNode &child : node)
 	{
 		if(child.Token(0) == "sprite" && child.Size() >= 2)
-			sprite.Load(child);
+			sprite.LoadSprite(child);
 		else if(child.Token(0) == "sound" && child.Size() >= 2)
 			sound = Audio::Get(child.Token(1));
 		else if(child.Token(0) == "ammo" && child.Size() >= 2)
@@ -42,6 +43,11 @@ void Weapon::LoadWeapon(const DataNode &node)
 		{
 			int count = (child.Size() >= 3) ? child.Value(2) : 1;
 			fireEffects[GameData::Effects().Get(child.Token(1))] += count;
+		}
+		else if(child.Token(0) == "live effect" && child.Size() >= 2)
+		{
+			int count = (child.Size() >= 3) ? child.Value(2) : 1;
+			liveEffects[GameData::Effects().Get(child.Token(1))] += count;
 		}
 		else if(child.Token(0) == "hit effect" && child.Size() >= 2)
 		{
@@ -58,20 +64,32 @@ void Weapon::LoadWeapon(const DataNode &node)
 			int count = (child.Size() >= 3) ? child.Value(2) : 1;
 			submunitions[GameData::Outfits().Get(child.Token(1))] += count;
 		}
+		else if(child.Token(0) == "stream")
+			isStreamed = true;
+		else if(child.Token(0) == "cluster")
+			isClustered = true;
 		else if(child.Size() >= 2)
 		{
 			if(child.Token(0) == "lifetime")
-				lifetime = child.Value(1);
+				lifetime = max(0., child.Value(1));
+			else if(child.Token(0) == "random lifetime")
+				randomLifetime = max(0., child.Value(1));
 			else if(child.Token(0) == "reload")
-				reload = child.Value(1);
+				reload = max(1., child.Value(1));
+			else if(child.Token(0) == "burst reload")
+				burstReload = max(1., child.Value(1));
+			else if(child.Token(0) == "burst count")
+				burstCount = max(1., child.Value(1));
 			else if(child.Token(0) == "homing")
 				homing = child.Value(1);
 			else if(child.Token(0) == "missile strength")
-				missileStrength = child.Value(1);
+				missileStrength = max(0., child.Value(1));
 			else if(child.Token(0) == "anti-missile")
-				antiMissile = child.Value(1);
+				antiMissile = max(0., child.Value(1));
 			else if(child.Token(0) == "velocity")
 				velocity = child.Value(1);
+			else if(child.Token(0) == "random velocity")
+				randomVelocity = child.Value(1);
 			else if(child.Token(0) == "acceleration")
 				acceleration = child.Value(1);
 			else if(child.Token(0) == "drag")
@@ -80,6 +98,14 @@ void Weapon::LoadWeapon(const DataNode &node)
 				turn = child.Value(1);
 			else if(child.Token(0) == "inaccuracy")
 				inaccuracy = child.Value(1);
+			else if(child.Token(0) == "tracking")
+				tracking = max(0., min(1., child.Value(1)));
+			else if(child.Token(0) == "optical tracking")
+				opticalTracking = max(0., min(1., child.Value(1)));
+			else if(child.Token(0) == "infrared tracking")
+				infraredTracking = max(0., min(1., child.Value(1)));
+			else if(child.Token(0) == "radar tracking")
+				radarTracking = max(0., min(1., child.Value(1)));
 			else if(child.Token(0) == "firing energy")
 				firingEnergy = child.Value(1);
 			else if(child.Token(0) == "firing force")
@@ -95,20 +121,54 @@ void Weapon::LoadWeapon(const DataNode &node)
 			else if(child.Token(0) == "blast radius")
 				blastRadius = child.Value(1);
 			else if(child.Token(0) == "shield damage")
-				shieldDamage = child.Value(1);
+				damage[SHIELD_DAMAGE] = child.Value(1);
 			else if(child.Token(0) == "hull damage")
-				hullDamage = child.Value(1);
+				damage[HULL_DAMAGE] = child.Value(1);
 			else if(child.Token(0) == "heat damage")
-				heatDamage = child.Value(1);
+				damage[HEAT_DAMAGE] = child.Value(1);
 			else if(child.Token(0) == "ion damage")
-				ionDamage = child.Value(1);
+				damage[ION_DAMAGE] = child.Value(1);
+			else if(child.Token(0) == "disruption damage")
+				damage[DISRUPTION_DAMAGE] = child.Value(1);
+			else if(child.Token(0) == "slowing damage")
+				damage[SLOWING_DAMAGE] = child.Value(1);
 			else if(child.Token(0) == "hit force")
 				hitForce = child.Value(1);
+			else if(child.Token(0) == "piercing")
+				piercing = max(0., min(1., child.Value(1)));
 			else
 				child.PrintTrace("Unrecognized weapon attribute: \"" + child.Token(0) + "\":");
 		}
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
+	}
+	// Sanity check:
+	if(burstReload > reload)
+		burstReload = reload;
+	
+	// Weapons of the same type will alternate firing (streaming) rather than
+	// firing all at once (clustering) if the weapon is not an anti-missile and
+	// is not vulnerable to anti-missile, or has the "stream" attribute.
+	isStreamed |= !(MissileStrength() || AntiMissile());
+	isStreamed &= !isClustered;
+	
+	// Support legacy missiles with no tracking type defined:
+	if(homing && !tracking && !opticalTracking && !infraredTracking && !radarTracking)
+		tracking = 1.;
+	
+	// Convert the "live effect" counts from occurrences per projectile lifetime
+	// into chance of occurring per frame.
+	if(lifetime <= 0)
+		liveEffects.clear();
+	for(auto it = liveEffects.begin(); it != liveEffects.end(); )
+	{
+		if(!it->second)
+			it = liveEffects.erase(it);
+		else
+		{
+			it->second = max(1, lifetime / it->second);
+			++it;
+		}
 	}
 }
 
@@ -122,7 +182,7 @@ bool Weapon::IsWeapon() const
 
 
 // Get assets used by this weapon.
-const Animation &Weapon::WeaponSprite() const
+const Body &Weapon::WeaponSprite() const
 {
 	return sprite;
 }
@@ -158,6 +218,13 @@ const map<const Effect *, int> &Weapon::FireEffects() const
 
 
 
+const map<const Effect *, int> &Weapon::LiveEffects() const
+{
+	return liveEffects;
+}
+
+
+
 const map<const Effect *, int> &Weapon::HitEffects() const
 {
 	return hitEffects;
@@ -179,60 +246,6 @@ const map<const Outfit *, int> &Weapon::Submunitions() const
 
 
 
-// These accessors cache the results of recursive calculations:
-double Weapon::ShieldDamage() const
-{
-	if(totalShieldDamage < 0.)
-	{
-		totalShieldDamage = shieldDamage;
-		for(const auto &it : submunitions)
-			totalShieldDamage += it.first->ShieldDamage() * it.second;
-	}
-	return totalShieldDamage;
-}
-
-
-
-double Weapon::HullDamage() const
-{
-	if(totalHullDamage < 0.)
-	{
-		totalHullDamage = hullDamage;
-		for(const auto &it : submunitions)
-			totalHullDamage += it.first->HullDamage() * it.second;
-	}
-	return totalHullDamage;
-}
-
-
-
-double Weapon::HeatDamage() const
-{
-	if(totalHeatDamage < 0.)
-	{
-		totalHeatDamage = heatDamage;
-		for(const auto &it : submunitions)
-			totalHeatDamage += it.first->HeatDamage() * it.second;
-	}
-	return totalHeatDamage;
-}
-
-
-
-
-double Weapon::IonDamage() const
-{
-	if(totalIonDamage < 0.)
-	{
-		totalIonDamage = ionDamage;
-		for(const auto &it : submunitions)
-			totalIonDamage += it.first->IonDamage() * it.second;
-	}
-	return totalIonDamage;
-}
-
-
-
 double Weapon::TotalLifetime() const
 {
 	if(totalLifetime < 0.)
@@ -250,4 +263,17 @@ double Weapon::TotalLifetime() const
 double Weapon::Range() const
 {
 	return Velocity() * TotalLifetime();
+}
+
+
+
+double Weapon::TotalDamage(int index) const
+{
+	if(!calculatedDamage[index])
+	{
+		calculatedDamage[index] = true;
+		for(const auto &it : submunitions)
+			damage[index] += it.first->TotalDamage(index) * it.second;
+	}
+	return damage[index];
 }

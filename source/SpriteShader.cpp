@@ -24,6 +24,7 @@ namespace {
 	GLint scaleI;
 	GLint transformI;
 	GLint positionI;
+	GLint blurI;
 	GLint clipI;
 	GLint fadeI;
 	
@@ -52,37 +53,57 @@ void SpriteShader::Init()
 		"uniform mat2 transform;\n"
 		"uniform vec2 position;\n"
 		"uniform vec2 scale;\n"
+		"uniform vec2 blur;\n"
 		"uniform float clip;\n"
 		
 		"in vec2 vert;\n"
 		"out vec2 fragTexCoord;\n"
 		
 		"void main() {\n"
-		"  gl_Position = vec4((transform * vert + position) * scale, 0, 1);\n"
+		"  vec2 blurOff = 2 * vec2(vert.x * abs(blur.x), vert.y * abs(blur.y));\n"
+		"  gl_Position = vec4((transform * (vert + blurOff) + position) * scale, 0, 1);\n"
 		"  vec2 texCoord = vert + vec2(.5, .5);\n"
-		"  fragTexCoord = vec2(texCoord.x, max(clip, texCoord.y));\n"
+		"  fragTexCoord = vec2(texCoord.x, max(clip, texCoord.y)) + blurOff;\n"
 		"}\n";
 
 	static const char *fragmentCode =
 		"uniform sampler2D tex0;\n"
 		"uniform sampler2D tex1;\n"
 		"uniform float fade;\n"
+		"uniform vec2 blur;\n"
+		"const int range = 5;\n"
 		
 		"in vec2 fragTexCoord;\n"
 		"out vec4 finalColor;\n"
 		
 		"void main() {\n"
-		// Since fade is a uniform, this branch will not cause performance trouble.
-		"  if(fade != 0)\n"
-		"    finalColor = mix(texture(tex0, fragTexCoord), texture(tex1, fragTexCoord), fade);\n"
-		"  else\n"
-		"    finalColor = texture(tex0, fragTexCoord);\n"
+		"  if(blur.x == 0 && blur.y == 0)\n"
+		"  {\n"
+		"    if(fade != 0)\n"
+		"     finalColor = mix(texture(tex0, fragTexCoord), texture(tex1, fragTexCoord), fade);\n"
+		"    else\n"
+		"      finalColor = texture(tex0, fragTexCoord);\n"
+		"    return;\n"
+		"  }\n"
+		"  const float divisor = range * (range + 2) + 1;\n"
+		"  vec4 color = vec4(0., 0., 0., 0.);\n"
+		"  for(int i = -range; i <= range; ++i)\n"
+		"  {\n"
+		"    float scale = (range + 1 - abs(i)) / divisor;\n"
+		"    vec2 coord = fragTexCoord + (blur * i) / range;\n"
+		"    if(fade != 0)\n"
+		"      color += scale * mix(texture(tex0, coord), texture(tex1, coord), fade);\n"
+		"    else\n"
+		"      color += scale * texture(tex0, coord);\n"
+		"  }\n"
+		"  finalColor = color;\n"
 		"}\n";
 	
 	shader = Shader(vertexCode, fragmentCode);
 	scaleI = shader.Uniform("scale");
 	transformI = shader.Uniform("transform");
 	positionI = shader.Uniform("position");
+	blurI = shader.Uniform("blur");
 	clipI = shader.Uniform("clip");
 	fadeI = shader.Uniform("fade");
 	
@@ -107,8 +128,7 @@ void SpriteShader::Init()
 	glBufferData(GL_ARRAY_BUFFER, sizeof(vertexData), vertexData, GL_STATIC_DRAW);
 	
 	glEnableVertexAttribArray(shader.Attrib("vert"));
-	glVertexAttribPointer(shader.Attrib("vert"), 2, GL_FLOAT, GL_FALSE,
-		2 * sizeof(GLfloat), NULL);
+	glVertexAttribPointer(shader.Attrib("vert"), 2, GL_FLOAT, GL_FALSE, 2 * sizeof(GLfloat), nullptr);
 	
 	// unbind the VBO and VAO
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
@@ -145,7 +165,7 @@ void SpriteShader::Bind()
 
 
 
-void SpriteShader::Add(uint32_t tex0, uint32_t tex1, const float position[2], const float transform[4], int swizzle, float clip, float fade)
+void SpriteShader::Add(uint32_t tex0, uint32_t tex1, const float position[2], const float transform[4], int swizzle, float clip, float fade, const float blur[2])
 {
 	glUniformMatrix2fv(transformI, 1, false, transform);
 	glUniform2fv(positionI, 1, position);
@@ -167,6 +187,8 @@ void SpriteShader::Add(uint32_t tex0, uint32_t tex1, const float position[2], co
 	// Set the clipping.
 	glUniform1f(clipI, 1.f - clip);
 	glUniform1f(fadeI, fade);
+	const float noBlur[2] = {0.f, 0.f};
+	glUniform2fv(blurI, 1, blur ? blur : noBlur);
 	
 	glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 }

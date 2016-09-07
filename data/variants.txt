@@ -228,6 +228,7 @@ ship "Argosy" "Argosy (Turret)"
 		"S3 Thermionic"
 		"LP072a Battery Pack"
 		"D41-HY Shield Generator"
+		"Small Radar Jammer"
 		"Mass Expansion"
 		"X3700 Ion Thruster"
 		"Greyhound Plasma Steering"
@@ -257,6 +258,7 @@ ship "Behemoth" "Behemoth (Speedy)"
 		"Breeder Reactor"
 		"LP144a Battery Pack"
 		"D94-YV Shield Generator"
+		"Large Radar Jammer"
 		"Liquid Nitrogen Cooler"
 		"Mass Expansion" 6
 		"A250 Atomic Thruster"
@@ -378,6 +380,7 @@ ship "Bastion" "Bastion (Laser)"
 		"Fusion Reactor"
 		"Supercapacitor" 4
 		"D94-YV Shield Generator"
+		"Small Radar Jammer"
 		"Water Coolant System"
 		"Mass Expansion"
 		"A370 Atomic Thruster"
@@ -563,6 +566,7 @@ ship "Falcon" "Falcon (Laser)"
 		"Breeder Reactor"
 		"LP072a Battery Pack"
 		"D94-YV Shield Generator"
+		"Small Radar Jammer"
 		"Impala Plasma Thruster"
 		"Orca Plasma Steering"
 		"Hyperdrive"
@@ -578,6 +582,7 @@ ship "Falcon" "Falcon (Heavy)"
 		"Heavy Laser Turret" 4
 		"Fusion Reactor"
 		"D67-TM Shield Generator"
+		"Small Radar Jammer"
 		"Orca Plasma Thruster"
 		"A375 Atomic Steering"
 		"Hyperdrive"
@@ -733,13 +738,14 @@ ship "Modified Argosy" "Modified Argosy (Heavy)"
 
 
 
-ship "Modified Argosy" "Modified Argosy (Laser)"
+ship "Modified Argosy" "Modified Argosy (Blaster)"
 	outfits
 		"Modified Blaster" 4
 		"Quad Blaster Turret" 2
 		"Fission Reactor"
 		"LP144a Battery Pack"
 		"D67-TM Shield Generator"
+		"Small Radar Jammer"
 		"Liquid Nitrogen Cooler"
 		"Greyhound Plasma Thruster"
 		"X3200 Ion Steering"
@@ -770,6 +776,7 @@ ship "Falcon" "Falcon (Plasma)"
 		"Breeder Reactor"
 		"LP144a Battery Pack"
 		"D41-HY Shield Generator"
+		"Small Radar Jammer"
 		"Liquid Nitrogen Cooler"
 		"Impala Plasma Thruster"
 		"Impala Plasma Steering"
@@ -1014,8 +1021,12 @@ ship "Cruiser" "Cruiser (Jump)"
 		"Heavy Anti-Missile Turret"
 		"Armageddon Core"
 		"LP144a Battery Pack"
+		"LP036a Battery Pack"
 		"D94-YV Shield Generator"
 		"Liquid Helium Cooler"
+		"Fuel Pod" 2
+		"Ramscoop"
+		"Mass Expansion" 2
 		"A520 Atomic Thruster"
 		"A525 Atomic Steering"
 		"Jump Drive"
@@ -1044,7 +1055,9 @@ ship "Carrier" "Carrier (Jump)"
 		"LP072a Battery Pack"
 		"D94-YV Shield Generator"
 		"Liquid Helium Cooler"
-		"Mass Expansion" 3
+		"Water Coolant System"
+		"Fuel Pod"
+		"Mass Expansion" 4
 		"A860 Atomic Thruster"
 		"A525 Atomic Steering"
 		"Jump Drive"
@@ -1071,6 +1084,7 @@ ship "Dreadnought" "Dreadnought (Jump)"
 		"Stack Core"
 		"LP144a Battery Pack"
 		"D41-HY Shield Generator"
+		"Small Radar Jammer"
 		"Liquid Helium Cooler"
 		"Orca Plasma Thruster"
 		"Orca Plasma Steering"
@@ -1105,4 +1119,89 @@ ship "Osprey" "Osprey (Alien Weapons)"
 		"Mass Expansion" 2
 		"A370 Atomic Thruster"
 		"A525 Atomic Steering"
+		"Hyperdrive"
+
+ship "Nest" "Nest (Sidewinder)"
+	outfits
+		"Sidewinder Missile Launcher" 2
+		"Sidewinder Missile" 100
+		"Quad Blaster Turret" 2
+		"Heavy Anti-Missile Turret" 2
+		"S3 Thermionic"
+		"LP144a Battery Pack"
+		"D94-YV Shield Generator"
+		"Large Radar Jammer"
+		"A250 Atomic Thruster"
+		"A375 Atomic Steering"
+		Hyperdrive
+
+ship "Roost" "Roost (Sidewinder)"
+	outfits
+		"Sidewinder Missile Launcher" 2
+		"Sidewinder Missile" 100
+		"Quad Blaster Turret" 2
+		"Heavy Anti-Missile Turret" 2
+		"LP144a Battery Pack"
+		"S3 Thermionic"
+		"D94-YV Shield Generator" 2
+		"Small Radar Jammer"
+		"A250 Atomic Thruster"
+		"A375 Atomic Steering"
+		Hyperdrive
+
+ship "Skein" "Skein (Sidewinder)"
+	outfits
+		"Sidewinder Missile Launcher" 2
+		"Sidewinder Missile" 100
+		"Quad Blaster Turret" 2
+		"Heavy Anti-Missile Turret" 2
+		"LP144a Battery Pack"
+		"Fission Reactor"
+		"D94-YV Shield Generator" 3
+		"Large Radar Jammer"
+		"Mass Expansion" 2
+		"A250 Atomic Thruster"
+		"A375 Atomic Steering"
+		Hyperdrive
+
+ship "Lance" "Lance (Gatling)"
+	outfits
+		"Gatling Gun" 2
+		"Gatling Gun Ammo" 6000
+		Supercapacitor
+		"nGVF-BB Fuel Cell"
+		"D14-RN Shield Generator"
+		"X1700 Ion Thruster"
+		"X1200 Ion Steering"
+
+ship "Barb" "Barb (Gatling)"
+	outfits
+		"Gatling Gun"
+		"Gatling Gun Ammo" 3000
+		"Anti-Missile Turret"
+		"nGVF-AA Fuel Cell"
+		Supercapacitor 3
+		"D14-RN Shield Generator"
+		"X1050 Ion Engines"
+
+ship "Fury" "Fury (Gatling)"
+	outfits
+		"Gatling Gun" 4
+		"Gatling Gun Ammo" 6000
+		"nGVF-CC Fuel Cell"
+		"Supercapacitor"
+		"D23-QP Shield Generator"
+		"X2700 Ion Thruster"
+		"A125 Atomic Steering"
+		"Hyperdrive"
+
+ship "Sparrow" "Sparrow (Gatling)"
+	outfits
+		"Gatling Gun" 2
+		"Gatling Gun Ammo" 6000
+		"nGVF-AA Fuel Cell"
+		"LP036a Battery Pack"
+		"D14-RN Shield Generator"
+		"Chipmunk Plasma Thruster"
+		"Chipmunk Plasma Steering"
 		"Hyperdrive"

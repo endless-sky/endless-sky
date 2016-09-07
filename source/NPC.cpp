@@ -64,7 +64,12 @@ void NPC::Load(const DataNode &node)
 		if(child.Token(0) == "system")
 		{
 			if(child.Size() >= 2)
-				system = GameData::Systems().Get(child.Token(1));
+			{
+				if(child.Token(1) == "destination")
+					isAtDestination = true;
+				else
+					system = GameData::Systems().Get(child.Token(1));
+			}
 			else
 				location.Load(child);
 		}
@@ -212,7 +217,7 @@ const list<shared_ptr<Ship>> NPC::Ships() const
 
 
 // Handle the given ShipEvent.
-void NPC::Do(const ShipEvent &event, PlayerInfo &player, UI *ui)
+void NPC::Do(const ShipEvent &event, PlayerInfo &player, UI *ui, bool isVisible)
 {
 	bool hasSucceeded = HasSucceeded(player.GetSystem());
 	bool hasFailed = HasFailed();
@@ -220,9 +225,9 @@ void NPC::Do(const ShipEvent &event, PlayerInfo &player, UI *ui)
 		if(ship == event.Target())
 		{
 			actions[ship.get()] |= event.Type();
-			vector<shared_ptr<Ship>> carried = ship->CarriedShips();
-			for(const shared_ptr<Ship> &fighter : carried)
-				actions[fighter.get()] |= event.Type();
+			for(const Ship::Bay &bay : ship->Bays())
+				if(bay.ship)
+					actions[bay.ship.get()] |= event.Type();
 			
 			// If a mission ship is captured, let it live on under its new
 			// ownership but mark our copy of it as destroyed.
@@ -236,7 +241,7 @@ void NPC::Do(const ShipEvent &event, PlayerInfo &player, UI *ui)
 			break;
 		}
 	
-	if(HasFailed() && !hasFailed)
+	if(HasFailed() && !hasFailed && isVisible)
 		Messages::Add("Mission failed.");
 	else if(ui && HasSucceeded(player.GetSystem()) && !hasSucceeded)
 	{
@@ -260,8 +265,17 @@ bool NPC::HasSucceeded(const System *playerSystem) const
 	// it, disabling it is sufficient (you do not have to kill it).
 	if(mustEvade || mustAccompany)
 		for(const shared_ptr<Ship> &ship : ships)
-			if((ship->GetSystem() == playerSystem && !ship->IsDisabled()) ^ mustAccompany)
+		{
+			// Special case: if a ship has been captured, it counts as having
+			// been evaded.
+			auto it = actions.find(ship.get());
+			bool isCapturedOrDisabled = ship->IsDisabled();
+			if(it != actions.end())
+				isCapturedOrDisabled |= (it->second & ShipEvent::CAPTURE);
+			bool isHere = (!ship->GetSystem() || ship->GetSystem() == playerSystem);
+			if((isHere && !isCapturedOrDisabled) ^ mustAccompany)
 				return false;
+		}
 	
 	if(!succeedIf)
 		return true;
@@ -308,7 +322,7 @@ bool NPC::HasFailed() const
 
 // Create a copy of this NPC but with the fleets replaced by the actual
 // ships they represent, wildcards in the conversation text replaced, etc.
-NPC NPC::Instantiate(map<string, string> &subs, const System *origin) const
+NPC NPC::Instantiate(map<string, string> &subs, const System *origin, const System *destination) const
 {
 	NPC result;
 	result.government = government;
@@ -338,7 +352,7 @@ NPC NPC::Instantiate(map<string, string> &subs, const System *origin) const
 			result.system = options[Random::Int(options.size())];
 	}
 	if(!result.system)
-		result.system = origin;
+		result.system = (isAtDestination && destination) ? destination : origin;
 	
 	// Convert fleets into instances of ships.
 	for(const shared_ptr<Ship> &ship : ships)

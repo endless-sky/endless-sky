@@ -12,12 +12,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Armament.h"
 
-#include "Audio.h"
-#include "Effect.h"
-#include "Outfit.h"
-#include "pi.h"
-#include "Projectile.h"
-#include "Random.h"
 #include "Ship.h"
 
 #include <cmath>
@@ -27,213 +21,18 @@ using namespace std;
 
 
 
-// Members of Armament::Weapon:
-
-// Constructor.
-Armament::Weapon::Weapon(const Point &point, bool isTurret, const Outfit *outfit)
-	: outfit(outfit), point(point * .5), reload(0), isTurret(isTurret)
-{
-}
-
-
-
-// Don't call this without checking HasOutfit()!
-const Outfit *Armament::Weapon::GetOutfit() const
-{
-	return outfit;
-}
-
-
-
-// Get the point, in ship image coordinates, from which projectiles of
-// this weapon should originate.
-const Point &Armament::Weapon::GetPoint() const
-{
-	return point;
-}
-
-
-
-// Get the convergence angle adjustment of this weapon.
-const Angle &Armament::Weapon::GetAngle() const
-{
-	return angle;
-}
-
-
-
-// Shortcuts for querying weapon characteristics.
-bool Armament::Weapon::IsTurret() const
-{
-	return isTurret;
-}
-
-
-
-bool Armament::Weapon::IsHoming() const
-{
-	return outfit && outfit->Homing();
-}
-
-
-
-bool Armament::Weapon::IsAntiMissile() const
-{
-	return outfit && outfit->AntiMissile() > 0;
-}
-
-
-
-// Check if this weapon is ready to fire.
-bool Armament::Weapon::IsReady() const
-{
-	return outfit && reload <= 0;
-}
-
-
-
-// Perform one step (i.e. decrement the reload count).
-void Armament::Weapon::Step()
-{
-	if(reload)
-		--reload;
-}
-
-
-
-// Fire this weapon. If it is a turret, it automatically points toward
-// the given ship's target. If the weapon requires ammunition, it will
-// be subtracted from the given ship.
-void Armament::Weapon::Fire(Ship &ship, list<Projectile> &projectiles, std::list<Effect> &effects)
-{
-	// Since this is only called internally by Armament (no one else has non-
-	// const access), assume Armament checked that this is a valid call.
-	Angle aim = ship.Facing();
-	
-	// Get projectiles to start at the right position. They are drawn at an
-	// offset of (.5 * velocity) and that velocity includes the velocity of the
-	// ship that fired them.
-	Point start = ship.Position() + aim.Rotate(point) - .5 * ship.Velocity();
-	
-	shared_ptr<const Ship> target = ship.GetTargetShip();
-	// If you are boarding your target, do not fire on it.
-	if(ship.IsBoarding() || ship.Commands().Has(Command::BOARD))
-		target.reset();
-	
-	if(!isTurret || !target || target->GetSystem() != ship.GetSystem())
-		aim += angle;
-	else
-	{
-		Point p = target->Position() - start + ship.GetPersonality().Confusion();
-		Point v = target->Velocity() - ship.Velocity();
-		double steps = RendezvousTime(p, v, outfit->Velocity());
-		
-		// Special case: RendezvousTime() may return NaN. But in that case, this
-		// comparison will return false.
-		if(!(steps < outfit->TotalLifetime()))
-			steps = outfit->TotalLifetime();
-		
-		p += steps * v;
-		
-		aim = Angle(TO_DEG * atan2(p.X(), -p.Y()));
-	}
-	
-	projectiles.emplace_back(ship, start, aim, outfit);
-	if(outfit->WeaponSound())
-		Audio::Play(outfit->WeaponSound(), start);
-	double force = outfit->FiringForce();
-	if(force)
-		ship.ApplyForce(aim.Unit() * -force);
-	
-	for(const auto &eit : outfit->FireEffects())
-		for(int i = 0; i < eit.second; ++i)
-		{
-			effects.push_back(*eit.first);
-			effects.back().Place(start, ship.Velocity(), aim);
-		}
-	
-	// Reset the reload count.
-	reload += outfit->Reload();
-	ship.ExpendAmmo(outfit);
-}
-
-
-
-// Fire an anti-missile. Returns true if the missile should be killed.
-bool Armament::Weapon::FireAntiMissile(Ship &ship, const Projectile &projectile, list<Effect> &effects)
-{
-	int strength = outfit->AntiMissile();
-	if(!strength)
-		return false;
-	
-	double range = outfit->Velocity();
-	
-	// Check if the missile is in range.
-	Point start = ship.Position() + ship.Facing().Rotate(point);
-	Point offset = projectile.Position() - start;
-	if(offset.Length() > range)
-		return false;
-	
-	// Figure out where the effect should be placed. Anti-missiles do not create
-	// projectiles; they just create a blast animation.
-	start += (.5 * range) * offset.Unit();
-	Angle aim = TO_DEG * atan2(offset.X(), -offset.Y());
-	for(const auto &eit : outfit->HitEffects())
-		for(int i = 0; i < eit.second; ++i)
-		{
-			effects.push_back(*eit.first);
-			effects.back().Place(start, ship.Velocity(), aim);
-		}
-	
-	// Reset the reload count.
-	reload += outfit->Reload();
-	ship.ExpendAmmo(outfit);
-	
-	return (Random::Int(strength) > Random::Int(projectile.MissileStrength()));
-}
-
-
-
-// Install a weapon here (assuming it is empty). This is only for
-// Armament to call internally.
-void Armament::Weapon::Install(const Outfit *outfit)
-{
-	if(!outfit || !outfit->IsWeapon())
-		this->outfit = nullptr;
-	else if(!outfit->Get("turret mounts") || isTurret)
-	{
-		this->outfit = outfit;
-		
-		// Find the point of convergence of shots fired from this gun.
-		double d = outfit->Range();
-		// The angle is therefore:
-		angle = Angle(-asin(point.X() / d) * TO_DEG);
-	}
-}
-
-
-
-// Uninstall the outfit from this port (if it has one).
-void Armament::Weapon::Uninstall()
-{
-	outfit = nullptr;
-}
-
-
-
-// Members of Armament:
-
-// Add a gun or turret hard-point.
+// Add a gun hardpoint (fixed-direction weapon).
 void Armament::AddGunPort(const Point &point, const Outfit *outfit)
 {
-	weapons.emplace_back(point, false, outfit);
+	hardpoints.emplace_back(point, false, outfit);
 }
 
 
 
+// Add a turret hardpoint (omnidirectional weapon).
 void Armament::AddTurret(const Point &point, const Outfit *outfit)
 {
-	weapons.emplace_back(point, true, outfit);
+	hardpoints.emplace_back(point, true, outfit);
 }
 
 
@@ -243,49 +42,52 @@ void Armament::AddTurret(const Point &point, const Outfit *outfit)
 // But, the "gun ports" attribute should keep that from happening.
 void Armament::Add(const Outfit *outfit, int count)
 {
+	// Make sure this really is a weapon.
 	if(!count || !outfit || !outfit->IsWeapon())
 		return;
 	
-	int installed = 0;
+	int total = 0;
 	bool isTurret = outfit->Get("turret mounts");
 	
-	if(count < 0)
+	// To start out with, check how many instances of this weapon are already
+	// installed. If "adding" a negative number of outfits, remove the installed
+	// instances until the given number have been removed.
+	for(Hardpoint &hardpoint : hardpoints)
 	{
-		// Look for slots where this weapon is installed.
-		for(Weapon &weapon : weapons)
-			if(weapon.GetOutfit() == outfit)
-			{
-				weapon.Uninstall();
-				if(--installed == count)
-					break;
-			}
-	}
-	else
-	{
-		// Look for empty, compatible slots.
-		for(Weapon &weapon : weapons)
-			if(!weapon.GetOutfit() && weapon.IsTurret() == isTurret)
-			{
-				weapon.Install(outfit);
-				if(++installed == count)
-					break;
-			}
-	}
-	
-	// If this weapon is streamed, create a stream counter. Missiles and anti-
-	// missiles do not stream.
-	if(!outfit->MissileStrength() && !outfit->AntiMissile())
-	{
-		auto it = streamReload.find(outfit);
-		if(it == streamReload.end())
-			streamReload[outfit] = count;
-		else
+		if(hardpoint.GetOutfit() == outfit)
 		{
-			it->second += count;
-			if(!it->second)
-				streamReload.erase(it);
+			// If this slot has the given outfit in it and we need to uninstall
+			// some of them, uninstall it. Otherwise, remember the fact that one
+			// of these outfits is installed.
+			if(count < 0)
+			{
+				hardpoint.Uninstall();
+				++count;
+			}
+			else
+				++total;
+		}
+		else if(!hardpoint.GetOutfit() && hardpoint.IsTurret() == isTurret)
+		{
+			// If this is an empty, compatible slot, and we're adding outfits,
+			// install one of them here and decrease the count of how many we
+			// have left to install.
+			if(count > 0)
+			{
+				hardpoint.Install(outfit);
+				--count;
+				++total;
+			}
 		}
 	}
+	
+	// If this weapon is streamed, create a stream counter. If it is not
+	// streamed, or if the last of this weapon has been uninstalled, erase the
+	// stream counter (if there is one).
+	if(total && outfit->IsStreamed())
+		streamReload[outfit] = 0;
+	else
+		streamReload.erase(outfit);
 }
 
 
@@ -295,17 +97,16 @@ void Armament::Add(const Outfit *outfit, int count)
 void Armament::FinishLoading()
 {
 	streamReload.clear();
-	for(Weapon &weapon : weapons)
-		if(weapon.GetOutfit())
+	for(Hardpoint &hardpoint : hardpoints)
+		if(hardpoint.GetOutfit())
 		{
-			const Outfit *outfit = weapon.GetOutfit();
+			const Outfit *outfit = hardpoint.GetOutfit();
 			
 			// Make sure the firing angle is set properly.
-			weapon.Install(outfit);
+			hardpoint.Install(outfit);
 			// If this weapon is streamed, create a stream counter.
-			// Missiles and anti-missiles do not stream.
-			if(!outfit->MissileStrength() && !outfit->AntiMissile())
-				++streamReload[outfit];
+			if(outfit->IsStreamed())
+				streamReload[outfit] = 0;
 		}
 }
 
@@ -314,40 +115,45 @@ void Armament::FinishLoading()
 // Swap the weapons in the given two hardpoints.
 void Armament::Swap(int first, int second)
 {
-	if(static_cast<unsigned>(first) >= weapons.size())
+	// Make sure both of the given indices are in range, and that both slots are
+	// the same type (gun vs. turret).
+	if(static_cast<unsigned>(first) >= hardpoints.size())
 		return;
-	if(static_cast<unsigned>(second) >= weapons.size())
+	if(static_cast<unsigned>(second) >= hardpoints.size())
 		return;
-	if(weapons[first].IsTurret() != weapons[second].IsTurret())
+	if(hardpoints[first].IsTurret() != hardpoints[second].IsTurret())
 		return;
 	
-	const Outfit *outfit = weapons[first].GetOutfit();
-	weapons[first].Install(weapons[second].GetOutfit());
-	weapons[second].Install(outfit);
+	// Swap the weapons in the two hardpoints.
+	const Outfit *outfit = hardpoints[first].GetOutfit();
+	hardpoints[first].Install(hardpoints[second].GetOutfit());
+	hardpoints[second].Install(outfit);
 }
 
 
 
-// Access the array of weapons.
-const vector<Armament::Weapon> &Armament::Get() const
+// Access the array of weapon hardpoints.
+const vector<Hardpoint> &Armament::Get() const
 {
-	return weapons;
+	return hardpoints;
 }
 
 
 
+// Determine how many fixed gun hardpoints are on this ship.
 int Armament::GunCount() const
 {
-	return weapons.size() - TurretCount();
+	return hardpoints.size() - TurretCount();
 }
 
 
 
+// Determine how many turret hardpoints are on this ship.
 int Armament::TurretCount() const
 {
 	int count = 0;
-	for(const Weapon &weapon : weapons)
-		count += weapon.IsTurret();
+	for(const Hardpoint &hardpoint : hardpoints)
+		count += hardpoint.IsTurret();
 	return count;
 }
 
@@ -355,28 +161,33 @@ int Armament::TurretCount() const
 
 // Fire the given weapon, if it is ready. If it did not fire because it is
 // not ready, return false.
-void Armament::Fire(int index, Ship &ship, list<Projectile> &projectiles, std::list<Effect> &effects)
+void Armament::Fire(int index, Ship &ship, list<Projectile> &projectiles, list<Effect> &effects)
 {
-	if(static_cast<unsigned>(index) >= weapons.size() || !weapons[index].IsReady())
+	if(static_cast<unsigned>(index) >= hardpoints.size() || !hardpoints[index].IsReady())
 		return;
 	
-	auto it = streamReload.find(weapons[index].GetOutfit());
-	if(it != streamReload.end() && it->second > 0)
-		return;
-	
-	weapons[index].Fire(ship, projectiles, effects);
-	if(it != streamReload.end())
-		it->second += it->first->Reload();
+	// A weapon that has already started a burst ignores stream timing.
+	if(!hardpoints[index].WasFiring())
+	{
+		auto it = streamReload.find(hardpoints[index].GetOutfit());
+		if(it != streamReload.end())
+		{
+			if(it->second > 0)
+				return;
+			it->second += it->first->Reload() * hardpoints[index].BurstRemaining();
+		}
+	}
+	hardpoints[index].Fire(ship, projectiles, effects);
 }
 
 
 
 bool Armament::FireAntiMissile(int index, Ship &ship, const Projectile &projectile, list<Effect> &effects)
 {
-	if(static_cast<unsigned>(index) >= weapons.size() || !weapons[index].IsReady())
+	if(static_cast<unsigned>(index) >= hardpoints.size() || !hardpoints[index].IsReady())
 		return false;
 	
-	return weapons[index].FireAntiMissile(ship, projectile, effects);
+	return hardpoints[index].FireAntiMissile(ship, projectile, effects);
 }
 
 
@@ -384,8 +195,8 @@ bool Armament::FireAntiMissile(int index, Ship &ship, const Projectile &projecti
 // Update the reload counters.
 void Armament::Step(const Ship &ship)
 {
-	for(Weapon &weapon : weapons)
-		weapon.Step();
+	for(Hardpoint &hardpoint : hardpoints)
+		hardpoint.Step();
 	
 	for(auto &it : streamReload)
 	{

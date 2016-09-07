@@ -32,14 +32,7 @@ class LoadPanel : public Panel {
 public:
 	LoadPanel(PlayerInfo &player, UI &gamePanels);
 	
-	virtual void Draw() const override;
-	
-	// New player "conversation" callback.
-	void OnCallback(int value);
-	// Snapshot name callback.
-	void SnapshotCallback(const std::string &name);
-	// Load snapshot callback.
-	void LoadCallback();
+	virtual void Draw() override;
 	
 	
 protected:
@@ -47,12 +40,20 @@ protected:
 	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command) override;
 	virtual bool Click(int x, int y) override;
 	virtual bool Hover(int x, int y) override;
-	virtual bool Drag(int dx, int dy) override;
-	virtual bool Scroll(int dx, int dy) override;
+	virtual bool Drag(double dx, double dy) override;
+	virtual bool Scroll(double dx, double dy) override;
 	
 	
 private:
 	void UpdateLists();
+	
+	// New player "conversation" callback.
+	void OnCallback(int value);
+	// Snapshot name callback.
+	void SnapshotCallback(const std::string &name);
+	// Load snapshot callback.
+	void LoadCallback();
+	// Delete callbacks.
 	void DeletePilot();
 	void DeleteSave();
 	
@@ -67,8 +68,8 @@ private:
 	std::string selectedFile;
 	
 	bool sideHasFocus = false;
-	int sideScroll = 0;
-	int centerScroll = 0;
+	double sideScroll = 0;
+	double centerScroll = 0;
 };
 
 

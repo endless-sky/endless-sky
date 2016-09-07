@@ -57,17 +57,26 @@ void OutlineShader::Init()
 		"in vec2 off;\n"
 		"out vec4 finalColor;\n"
 		"void main() {\n"
-		"  float ae = texture(tex, vec2(tc.x - off.x, tc.y)).a;\n"
-		"  float aw = texture(tex, vec2(tc.x + off.x, tc.y)).a;\n"
-		"  float an = texture(tex, vec2(tc.x, tc.y - off.y)).a;\n"
-		"  float as = texture(tex, vec2(tc.x, tc.y + off.y)).a;\n"
-		"  float ane = texture(tex, vec2(tc.x - off.x, tc.y - off.y)).a;\n"
-		"  float anw = texture(tex, vec2(tc.x + off.x, tc.y - off.y)).a;\n"
-		"  float ase = texture(tex, vec2(tc.x - off.x, tc.y + off.y)).a;\n"
-		"  float asw = texture(tex, vec2(tc.x + off.x, tc.y + off.y)).a;\n"
-		"  float h = (ae * 2 + ane + ase) - (aw * 2 + anw + asw);\n"
-		"  float v = (an * 2 + ane + anw) - (as * 2 + ase + asw);\n"
-		"  finalColor = color * (sqrt(h * h + v * v) * .25);\n"
+		"  float sum = 0;\n"
+		"  for(int dy = -1; dy <= 1; ++dy)\n"
+		"  {\n"
+		"    for(int dx = -1; dx <= 1; ++dx)\n"
+		"    {\n"
+		"      vec2 d = vec2(.618 * dx * off.x, .618 * dy * off.y);\n"
+		"      float ae = texture(tex, d + vec2(tc.x - off.x, tc.y)).a;\n"
+		"      float aw = texture(tex, d + vec2(tc.x + off.x, tc.y)).a;\n"
+		"      float an = texture(tex, d + vec2(tc.x, tc.y - off.y)).a;\n"
+		"      float as = texture(tex, d + vec2(tc.x, tc.y + off.y)).a;\n"
+		"      float ane = texture(tex, d + vec2(tc.x - off.x, tc.y - off.y)).a;\n"
+		"      float anw = texture(tex, d + vec2(tc.x + off.x, tc.y - off.y)).a;\n"
+		"      float ase = texture(tex, d + vec2(tc.x - off.x, tc.y + off.y)).a;\n"
+		"      float asw = texture(tex, d + vec2(tc.x + off.x, tc.y + off.y)).a;\n"
+		"      float h = (ae * 2 + ane + ase) - (aw * 2 + anw + asw);\n"
+		"      float v = (an * 2 + ane + anw) - (as * 2 + ase + asw);\n"
+		"      sum += h * h + v * v;\n"
+		"    }\n"
+		"  }\n"
+		"  finalColor = color * sqrt(sum / 144);\n"
 		"}\n";
 	
 	shader = Shader(vertexCode, fragmentCode);
@@ -94,8 +103,7 @@ void OutlineShader::Init()
 	glBufferData(GL_ARRAY_BUFFER, sizeof(vertexData), vertexData, GL_STATIC_DRAW);
 	
 	glEnableVertexAttribArray(shader.Attrib("vert"));
-	glVertexAttribPointer(shader.Attrib("vert"), 2, GL_FLOAT, GL_FALSE,
-		4 * sizeof(GLfloat), NULL);
+	glVertexAttribPointer(shader.Attrib("vert"), 2, GL_FLOAT, GL_FALSE, 4 * sizeof(GLfloat), nullptr);
 	
 	glEnableVertexAttribArray(shader.Attrib("vertTexCoord"));
 	glVertexAttribPointer(shader.Attrib("vertTexCoord"), 2, GL_FLOAT, GL_TRUE,

@@ -35,6 +35,8 @@ public:
 	
 public:
 	void Clear();
+	void SetCenter(const Point &center);
+	
 	// Add an object. If "inner" is 0 it is a dot; otherwise, it is a ring. The
 	// given position should be in world units (not shrunk to radar units).
 	void Add(int type, Point position, double outer, double inner = 0.);
@@ -69,6 +71,7 @@ private:
 	
 	
 private:
+	Point center;
 	std::vector<Object> objects;
 	std::vector<Pointer> pointers;
 };

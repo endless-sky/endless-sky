@@ -100,3 +100,15 @@ uint32_t Random::Binomial(uint32_t t, double p)
 #endif
 	return binomial(gen);
 }
+
+
+
+// Get a normally distributed number (mean = 0, sigma= 1).
+double Random::Normal()
+{
+	normal_distribution<double> normal;
+#ifndef __linux__
+	lock_guard<mutex> lock(workaroundMutex);
+#endif
+	return normal(gen);
+}

@@ -63,6 +63,25 @@ outfit "LP576a Battery Pack"
 	description "For most ships that require this much power, a larger generator makes more sense than a battery this size. However, battery packs have the advantage that they generate no heat, so some captains use them instead of powerful generators if they do not expect to be in combat frequently or for extended periods of time."
 
 
+outfit "KP-6 Photovoltaic Panel"
+	category "Power"
+	cost 10000
+	thumbnail "outfit/tiny photovoltaic"
+	"mass" 3
+	"outfit space" -3
+	"solar collection" .1
+	description "This early commercial photovoltaic system was the driving force behind humanity's first interplanetary trade network. Rugged and modular, it can be bolted to the hull of any ship and has seen even the most remote parts of human space."
+
+outfit "KP-6 Photovoltaic Array"
+	category "Power"
+	cost 90000
+	thumbnail "outfit/small photovoltaic"
+	"mass" 24
+	"outfit space" -24
+	"solar collection" 1.1
+	description "The compact modularity of the KP-6 lent itself well to the creation of larger solar collection arrays.  This original Korunak Photovoltaics model is equipped with a solar tracker, allowing it to make better use of available light."
+
+
 outfit "nGVF-AA Fuel Cell"
 	category "Power"
 	cost 40000
@@ -70,7 +89,7 @@ outfit "nGVF-AA Fuel Cell"
 	"mass" 20
 	"outfit space" -20
 	"energy generation" 1.2
-	"heat generation" 4
+	"heat generation" 1.9
 	description "Fuel cells have been the cheapest and most common starship power sources since the dawn of the space era. This model produces only enough power for very small or slow ships."
 
 outfit "nGVF-BB Fuel Cell"
@@ -79,8 +98,8 @@ outfit "nGVF-BB Fuel Cell"
 	thumbnail "outfit/small fuel cell"
 	"mass" 30
 	"outfit space" -30
-	"energy generation" 1.8
-	"heat generation" 6
+	"energy generation" 1.9
+	"heat generation" 2.9
 	description "This is a step up from the smallest fuel cells, providing enough energy to power a few small guns in addition to your engines."
 
 outfit "nGVF-CC Fuel Cell"
@@ -90,7 +109,7 @@ outfit "nGVF-CC Fuel Cell"
 	"mass" 40
 	"outfit space" -40
 	"energy generation" 2.6
-	"heat generation" 8
+	"heat generation" 3.8
 	description "This is a medium-sized fuel cell, designed to be sufficient for larger civilian ships and small warships while still being more affordable than the more sophisticated generator options."
 
 outfit "nGVF-DD Fuel Cell"
@@ -100,7 +119,7 @@ outfit "nGVF-DD Fuel Cell"
 	"mass" 60
 	"outfit space" -60
 	"energy generation" 4.1
-	"heat generation" 12
+	"heat generation" 5.7
 	description "This is a relatively large fuel cell. Other generators are available that produce more energy and fit into a smaller space, but they are much more expensive. As a result, large civilian ships that will not be frequently in combat often come equipped with these fuel cells."
 
 outfit "nGVF-EE Fuel Cell"
@@ -110,7 +129,7 @@ outfit "nGVF-EE Fuel Cell"
 	"mass" 80
 	"outfit space" -80
 	"energy generation" 5.9
-	"heat generation" 16
+	"heat generation" 7.8
 	description "This is the largest fuel cell available, larger than some nuclear reactors but much, much more affordable. Many captains on a tight budget are willing to put up with one of these until they can raise the money for something more efficient."
 
 
@@ -147,7 +166,7 @@ outfit "NT-200 Nucleovoltaic"
 
 outfit "Dwarf Core"
 	category "Power"
-	cost 900000
+	cost 800000
 	thumbnail "outfit/dwarf core"
 	"mass" 36
 	"outfit space" -36

@@ -23,7 +23,8 @@ using namespace std;
 
 
 WrappedText::WrappedText()
-	: font(nullptr), wrapWidth(1000), alignment(JUSTIFIED), height(0)
+	: font(nullptr), space(0), wrapWidth(1000), tabWidth(0),
+	  lineHeight(0), paragraphBreak(0), alignment(JUSTIFIED), height(0)
 {
 }
 
@@ -199,7 +200,9 @@ void WrappedText::SetText(const char *it, size_t length)
 
 void WrappedText::Wrap()
 {
-	assert(font);
+	height = 0;
+	if(text.empty() || !font)
+		return;
 	
 	// Do this as a finite state machine.
 	Word word;

@@ -36,7 +36,7 @@ class System;
 // the systems based on a selected criterion. It also handles finding and
 // drawing routes in between systems.
 class MapPanel : public Panel {
-protected:
+public:
 	// Enumeration for how the systems should be colored:
 	static const int SHOW_SHIPYARD = -1;
 	static const int SHOW_OUTFITTER = -2;
@@ -53,14 +53,17 @@ public:
 	MapPanel(PlayerInfo &player, int commodity = SHOW_REPUTATION, const System *special = nullptr);
 	
 	void SetCommodity(int index);
-	virtual void Draw() const override;
+	virtual void Step() override;
+	virtual void Draw() override;
+	
+	static void DrawMiniMap(const PlayerInfo &player, double alpha, const System *const jump[2], int step);
 	
 	
 protected:
 	// Only override the ones you need; the default action is to return false.
 	virtual bool Click(int x, int y) override;
-	virtual bool Drag(int dx, int dy) override;
-	virtual bool Scroll(int dx, int dy) override;
+	virtual bool Drag(double dx, double dy) override;
+	virtual bool Scroll(double dx, double dy) override;
 	
 	// Get the color mapping for various system attributes.
 	static Color MapColor(double value);
@@ -83,6 +86,10 @@ protected:
 	// Check whether the NPC and waypoint conditions of the given mission have
 	// been satisfied.
 	bool IsSatisfied(const Mission &mission) const;
+	static bool IsSatisfied(const PlayerInfo &player, const Mission &mission);
+	
+	// Function for the "find" dialogs:
+	static int Search(const std::string &str, const std::string &sub);
 	
 	
 protected:
@@ -96,6 +103,7 @@ protected:
 	
 	Point center;
 	int commodity;
+	int *tradeCommodity = nullptr;
 	const int maxZoom = 2;
 	int zoom = 0;
 	mutable int step = 0;
@@ -110,7 +118,8 @@ private:
 	void DrawSystems() const;
 	void DrawNames() const;
 	void DrawMissions() const;
-	void DrawPointer(const System *system, Angle &angle, const Color &color) const;
+	void DrawPointer(const System *system, Angle &angle, const Color &color, bool bigger = false) const;
+	static void DrawPointer(Point position, Angle &angle, const Color &color, bool drawBack = true, bool bigger = false);
 };
 
 

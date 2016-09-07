@@ -22,14 +22,19 @@ using namespace std;
 
 
 
+// Construct a DataNode and remember what its parent is.
 DataNode::DataNode(const DataNode *parent)
 	: parent(parent)
 {
+	// To avoid a lot of memory reallocation, have every node start out with
+	// capacity for four tokens. This makes file loading slightly faster, at the
+	// cost of DataFiles taking up a bit more memory.
 	tokens.reserve(4);
 }
 
 
 
+// Copy constructor.
 DataNode::DataNode(const DataNode &other)
 	: children(other.children), tokens(other.tokens)
 {
@@ -37,6 +42,7 @@ DataNode::DataNode(const DataNode &other)
 
 
 
+// Assignment operator.
 DataNode &DataNode::operator=(const DataNode &other)
 {
 	children = other.children;
@@ -46,6 +52,7 @@ DataNode &DataNode::operator=(const DataNode &other)
 
 
 
+// Get the number of tokens in this line of the data file.
 int DataNode::Size() const
 {
 	return tokens.size();
@@ -53,6 +60,7 @@ int DataNode::Size() const
 
 
 
+// Get the token with the given index. No bounds checking is done.
 const string &DataNode::Token(int index) const
 {
 	return tokens[index];
@@ -60,6 +68,7 @@ const string &DataNode::Token(int index) const
 
 
 
+// Convert the token with the given index to a numerical value.
 double DataNode::Value(int index) const
 {
 	// Check for empty strings and out-of-bounds indices.
@@ -118,6 +127,7 @@ double DataNode::Value(int index) const
 
 
 
+// Check if this node has any children.
 bool DataNode::HasChildren() const
 {
 	return !children.empty();
@@ -125,6 +135,7 @@ bool DataNode::HasChildren() const
 
 
 
+// Iterator to the beginning of the list of children.
 list<DataNode>::const_iterator DataNode::begin() const
 {
 	return children.begin();
@@ -132,6 +143,7 @@ list<DataNode>::const_iterator DataNode::begin() const
 
 
 
+// Iterator to the end of the list of children.
 list<DataNode>::const_iterator DataNode::end() const
 {
 	return children.end();
@@ -140,33 +152,39 @@ list<DataNode>::const_iterator DataNode::end() const
 
 
 // Print a message followed by a "trace" of this node and its parents.
-int DataNode::PrintTrace(const std::string &message) const
+int DataNode::PrintTrace(const string &message) const
 {
 	if(!message.empty())
 	{
+		// Put an empty line in the log between each error message.
 		Files::LogError("");
 		Files::LogError(message);
 	}
 	
+	// Recursively print all the parents of this node, so that the user can
+	// trace it back to the right point in the file.
 	int indent = 0;
 	if(parent)
 		indent = parent->PrintTrace() + 2;
 	if(tokens.empty())
 		return indent;
 	
+	// Convert this node back to tokenized text, with quotes used as necessary.
 	string line(indent, ' ');
 	for(const string &token : tokens)
 	{
 		if(&token != &tokens.front())
 			line += ' ';
 		bool hasSpace = any_of(token.begin(), token.end(), [](char c) { return isspace(c); });
+		bool hasQuote = any_of(token.begin(), token.end(), [](char c) { return (c == '"'); });
 		if(hasSpace)
-			line += '"';
+			line += hasQuote ? '`' : '"';
 		line += token;
 		if(hasSpace)
-			line += '"';
+			line += hasQuote ? '`' : '"';
 	}
 	Files::LogError(line);
 	
+	// Tell the caller what indentation level we're at now.
 	return indent;
 }

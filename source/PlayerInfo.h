@@ -24,8 +24,9 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <map>
 #include <memory>
 #include <set>
-#include <vector>
 #include <string>
+#include <utility>
+#include <vector>
 
 class DataNode;
 class Government;
@@ -34,6 +35,7 @@ class Person;
 class Planet;
 class Ship;
 class ShipEvent;
+class StellarObject;
 class System;
 class UI;
 
@@ -95,6 +97,8 @@ public:
 	// Set what planet the player is on.
 	void SetPlanet(const Planet *planet);
 	const Planet *GetPlanet() const;
+	// If the player is landed, return the stellar object they are on.
+	const StellarObject *GetStellarObject() const;
 	// Check whether a mission conversation has raised a flag that the player
 	// must leave the planet immediately (without time to do anything else).
 	bool ShouldLaunch() const;
@@ -133,7 +137,7 @@ public:
 	// Switch cargo from being stored in ships to being stored here.
 	void Land(UI *ui);
 	// Load the cargo back into your ships. This may require selling excess.
-	void TakeOff(UI *ui);
+	bool TakeOff(UI *ui);
 	
 	// Get mission information.
 	const std::list<Mission> &Missions() const;
@@ -151,6 +155,8 @@ public:
 	void MissionCallback(int response);
 	// Complete or fail a mission.
 	void RemoveMission(Mission::Trigger trigger, const Mission &mission, UI *ui);
+	// Mark a mission as failed, but do not remove it from the mission list yet.
+	void FailMission(const Mission &mission);
 	// Update mission status based on an event.
 	void HandleEvent(const ShipEvent &event, UI *ui);
 	
@@ -158,6 +164,10 @@ public:
 	int GetCondition(const std::string &name) const;
 	std::map<std::string, int> &Conditions();
 	const std::map<std::string, int> &Conditions() const;
+	// Set and check the reputation conditions, which missions can use to modify
+	// the player's reputation.
+	void SetReputationConditions();
+	void CheckReputationConditions();
 	
 	// Check what the player knows about the given system or planet.
 	bool HasSeen(const System *system) const;
@@ -172,10 +182,8 @@ public:
 	// Access the player's travel plan.
 	bool HasTravelPlan() const;
 	const std::vector<const System *> &TravelPlan() const;
-	void ClearTravel();
-	// Add to the travel plan, starting with the last system in the journey.
-	void AddTravel(const System *system);
-	// Remove the first system from the travel plan.
+	std::vector<const System *> &TravelPlan();
+	// Remove the first or last system from the travel plan.
 	void PopTravel();
 	
 	// Toggle which secondary weapon the player has selected.
@@ -185,6 +193,10 @@ public:
 	// Keep track of any outfits that you have sold since landing. These will be
 	// available to buy back until you take off.
 	std::map<const Outfit *, int> &SoldOutfits();
+	
+	// Keep track of what materials you have mined in each system.
+	void Harvest(const Outfit *type);
+	const std::set<std::pair<const System *, const Outfit *>> &Harvested() const;
 	
 	
 private:
@@ -238,10 +250,12 @@ private:
 	const Outfit *selectedWeapon = nullptr;
 	
 	std::map<const Outfit *, int> soldOutfits;
+	std::set<std::pair<const System *, const Outfit *>> harvested;
 	
 	// Changes that this PlayerInfo wants to make to the global galaxy state:
 	std::vector<std::pair<const Government *, double>> reputationChanges;
 	std::list<DataNode> dataChanges;
+	DataNode economy;
 	// Persons that have been killed in this player's universe:
 	std::list<const Person *> destroyedPersons;
 	// Events that are going to happen some time in the future:

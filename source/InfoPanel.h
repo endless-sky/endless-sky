@@ -20,6 +20,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include <map>
 #include <memory>
+#include <set>
 #include <string>
 #include <vector>
 
@@ -37,7 +38,7 @@ class InfoPanel : public Panel {
 public:
 	InfoPanel(PlayerInfo &player, bool showFlagship = false);
 	
-	virtual void Draw() const override;
+	virtual void Draw() override;
 	
 	
 protected:
@@ -45,9 +46,9 @@ protected:
 	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command) override;
 	virtual bool Click(int x, int y) override;
 	virtual bool Hover(int x, int y) override;
-	virtual bool Drag(int dx, int dy) override;
+	virtual bool Drag(double dx, double dy) override;
 	virtual bool Release(int x, int y) override;
-	virtual bool Scroll(int dx, int dy) override;
+	virtual bool Scroll(double dx, double dy) override;
 	
 	
 private:
@@ -59,6 +60,7 @@ private:
 	bool CanDump() const;
 	void Dump();
 	void DumpPlunder(int count);
+	bool Hover(double x, double y);
 	
 	
 private:
@@ -71,14 +73,16 @@ private:
 	mutable std::vector<ClickZone<int>> zones;
 	mutable std::vector<ClickZone<std::string>> commodityZones;
 	mutable std::vector<ClickZone<const Outfit *>> plunderZones;
-	int selected;
-	int hover;
-	int scroll = 0;
+	int selected = -1;
+	int previousSelected = -1;
+	std::set<int> allSelected;
+	int hover = -1;
+	double scroll = 0.;
 	Point hoverPoint;
 	Point dragStart;
-	bool showShip;
-	bool canEdit;
-	bool didDrag;
+	bool showShip = false;
+	bool canEdit = false;
+	bool didDrag = false;
 	std::string selectedCommodity;
 	const Outfit *selectedPlunder = nullptr;
 };

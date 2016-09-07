@@ -15,7 +15,10 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Panel.h"
 
+#include "ClickZone.h"
+#include "OutfitInfoDisplay.h"
 #include "Point.h"
+#include "ShipInfoDisplay.h"
 
 #include <map>
 #include <set>
@@ -35,8 +38,8 @@ class ShopPanel : public Panel {
 public:
 	ShopPanel(PlayerInfo &player, const std::vector<std::string> &categories);
 	
-	virtual void Draw() const override;
-	
+	virtual void Step() override;
+	virtual void Draw() override;
 	
 protected:
 	void DrawSidebar() const;
@@ -48,7 +51,8 @@ protected:
 	// These are for the individual shop panels to override.
 	virtual int TileSize() const = 0;
 	virtual int DrawPlayerShipInfo(const Point &point) const = 0;
-	virtual bool DrawItem(const std::string &name, const Point &point, int scrollY) const = 0;
+	virtual bool HasItem(const std::string &name) const = 0;
+	virtual void DrawItem(const std::string &name, const Point &point, int scrollY) const = 0;
 	virtual int DividerOffset() const = 0;
 	virtual int DetailWidth() const = 0;
 	virtual int DrawDetails(const Point &center) const = 0;
@@ -65,39 +69,31 @@ protected:
 	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command) override;
 	virtual bool Click(int x, int y) override;
 	virtual bool Hover(int x, int y) override;
-	virtual bool Drag(int dx, int dy) override;
+	virtual bool Drag(double dx, double dy) override;
 	virtual bool Release(int x, int y) override;
-	virtual bool Scroll(int dx, int dy) override;
+	virtual bool Scroll(double dx, double dy) override;
 	
 	
 protected:
-	class ClickZone {
+	class Zone : public ClickZone<const Ship *> {
 	public:
-		ClickZone(int x, int y, int rx, int ry, const Ship *ship, int scrollY = 0);
-		ClickZone(int x, int y, int rx, int ry, const Outfit *outfit, int scrollY = 0);
+		Zone(Point center, Point size, const Ship *ship, double scrollY = 0.);
+		Zone(Point center, Point size, const Outfit *outfit, double scrollY = 0.);
 		
-		bool Contains(int x, int y) const;
 		const Ship *GetShip() const;
 		const Outfit *GetOutfit() const;
 		
-		int CenterX() const;
-		int CenterY() const;
-		int ScrollY() const;
+		double ScrollY() const;
 		
 	private:
-		int left;
-		int top;
-		int right;
-		int bottom;
-		int scrollY;
-		
-		const Ship *ship;
-		const Outfit *outfit;
+		double scrollY = 0.;
+		const Outfit *outfit = nullptr;
 	};
 	
 	
 protected:
 	static const int SIDE_WIDTH = 250;
+	static const int BUTTON_HEIGHT = 70;
 	static const int SHIP_SIZE = 250;
 	static const int OUTFIT_SIZE = 180;
 	
@@ -113,30 +109,37 @@ protected:
 	const Ship *selectedShip = nullptr;
 	const Outfit *selectedOutfit = nullptr;
 	
-	int mainScroll = 0;
-	int sideScroll = 0;
+	double mainScroll = 0;
+	double sideScroll = 0;
 	mutable int maxMainScroll = 0;
 	mutable int maxSideScroll = 0;
 	bool dragMain = true;
 	mutable int mainDetailHeight = 0;
 	mutable int sideDetailHeight = 0;
+	bool scrollDetailsIntoView = false;
+	mutable double selectedBottomY = 0.;
 	
-	mutable std::vector<ClickZone> zones;
+	mutable std::vector<Zone> zones;
+	mutable std::vector<ClickZone<std::string>> categoryZones;
 	
 	std::map<std::string, std::set<std::string>> catalog;
 	const std::vector<std::string> &categories;
+	std::set<std::string> collapsed;
+	
+	mutable ShipInfoDisplay shipInfo;
+	mutable OutfitInfoDisplay outfitInfo;
 	
 	
 private:
-	bool DoScroll(int dy);
+	bool DoScroll(double dy);
 	void SideSelect(int count);
 	void SideSelect(Ship *ship);
 	void MainLeft();
 	void MainRight();
 	void MainUp();
 	void MainDown();
-	std::vector<ClickZone>::const_iterator Selected() const;
-	std::vector<ClickZone>::const_iterator MainStart() const;
+	std::vector<Zone>::const_iterator Selected() const;
+	std::vector<Zone>::const_iterator MainStart() const;
 };
 
 

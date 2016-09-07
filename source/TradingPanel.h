@@ -30,7 +30,7 @@ public:
 	~TradingPanel();
 	
 	virtual void Step() override;
-	virtual void Draw() const override;
+	virtual void Draw() override;
 	
 	
 protected:
@@ -48,6 +48,9 @@ private:
 	const System &system;
 	
 	int selectedRow;
+	// Remember whether the "sell all" button will sell all outfits, or sell
+	// everything except outfits.
+	bool sellOutfits = false;
 	
 	// Keep track of how much we sold and how much profit was made.
 	int tonsSold = 0;

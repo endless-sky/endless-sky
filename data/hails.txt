@@ -10,6 +10,231 @@
 
 phrase "friendly civilian"
 	word
+		"You should watch the video of "
+		"Just watched the video of "
+		"I'm listening to "
+		"I just got tickets to see "
+		"I just heard "
+	phrase "band"
+	word
+		"is now my favourite song!"
+		"is stuck in my head... again!"
+		"is pure genius!"
+		"was awesome!"
+		"plays in my bunk on repeat!"
+		"is playing full blast throughout my ship!"
+
+phrase "musical venue"
+	word
+		"playing a concert "
+		"doing a show "
+		"in concert "
+		"at their concert "
+		"playing a benefit concert "
+		"live "
+		"on tour "
+		"at a live concert "
+		"playing a gig "
+		"live in concert "
+	word
+		"at Tarazed stadium! "
+		"at the amphitheater on Skymoot! "
+		"at a concert hall in New Sydney! "
+		"in a night club on Splashdown! "
+		"at the Syndicated Systems Velodrome! "
+		"at Betelgeuse Stadium! "
+		"on Hestia! "
+		"at Lionheart Arena! "
+		"at the Grange on Heartland! "
+		"at a resort on Vail! "
+		"at Canyonland Park! "
+
+phrase "band"
+	word
+		`"Medium Confidence" `
+	phrase "musical venue"
+	word
+		"The song "
+		"Their song "
+	word
+		`"Regret Ride" `
+		`"My Wooden Mojo" `
+		`"Blue Illusion" `
+		`"Foreign Beauty" `
+		`"Introvert Day" `
+
+phrase "band"
+	word
+		`"Confined Brain Of The Liberal Dork" `
+	phrase "musical venue"
+	word
+		"The song "
+		"Their song "
+	word
+		`"Dude, Where's My Bible?" `
+		`"Re-Inventing Rythmn" `
+		`"Abstraction Is the Answer" `
+		`"Outrageous Activism" `
+		`"Cheap Entertainment" `
+
+phrase "band"
+	word
+		`"Catastrophe Aftermath" `
+	phrase "musical venue"
+	word
+		"The song "
+		"Their song "
+	word
+		`"The Devil's Car" `
+		`"Selfish Thunder" `
+		`"Revenge Makes You Cry" `
+		`"Nature Of The Revolt" `
+		`"Instant Devastation" `
+
+phrase "band"
+	word
+		`"Swift Of The Sponge" `
+	phrase "musical venue"
+	word
+		"The song "
+		"Their song "
+	word
+		`"Weakness And All That" `
+		`"Trouble Will Return" `
+		`"Golden Smart Mouth" `
+		`"Burning Pain" `
+		`"Wisdom In Another World" `
+
+phrase "band"
+	word
+		`"Shrapnel Vacuum" `
+	phrase "musical venue"
+	word
+		"The song "
+		"Their song "
+	word
+		`"Fast Destiny" `
+		`"Fury Of My Ruggedness" `
+		`"Expensive Massacre" `
+		`"Fear Machine" `
+		`"Prisoner Of Indifference" `
+
+phrase "band"
+	word
+		`"Daniel Suburbia" `
+	phrase "musical venue"
+	word
+		"The song "
+		"Their song "
+	word
+		`"Nothing To Do With War" `
+		`"Loyalty Saved Me" `
+		`"Heaven All Over You" `
+		`"Nature Of The Heart" `
+		`"Holy Adventure" `
+
+phrase "band"
+	word
+		`"Volume Maneuver" `
+	phrase "musical venue"
+	word
+		"The song "
+		"Their song "
+	word
+		`"Loose Parade" `
+		`"The Average Girl" `
+		`"Foreign Doubt" `
+		`"Freedom Unlocked" `
+		`"Waiting For Kindness" `
+
+phrase "band"
+	word
+		`"Love Nugget" `
+	phrase "musical venue"
+	word
+		"The song "
+		"Their song "
+	word
+		`"Jet Fueled Woman" `
+		`"Sin Heals A Broken Heart" `
+		`"Talent Of The Backseat" `
+		`"Beat Orgy" `
+		`"Fairground Sinner" `
+
+phrase "band"
+	word
+		`"Under-paid Bandit" `
+	phrase "musical venue"
+	word
+		"The song "
+		"Their song "
+	word
+		`"Eternal Madman" `
+		`"Lovely Loneliness" `
+		`"Check The Time" `
+		`"Guilty Culture" `
+		`"Modern Cop" `
+
+phrase "band"
+	word
+		`"Galactic Grouch And The Greed" `
+	phrase "musical venue"
+	word
+		"The song "
+		"Their song "
+	word
+		`"Everybody Needs At Least One Shadow" `
+		`"So Much For The Showroom" `
+		`"Realism Wont Stop Me" `
+		`"Creativity Is Right Here" `
+		`"Quality... Ain't It Cool?" `
+
+phrase "band"
+	word
+		`"Headache Of The Hacker" `
+	phrase "musical venue"
+	word
+		"The song "
+		"Their song "
+	word
+		`"Ravening Hordes Of Steam Users" `
+		`"Got Any Synchronisation" `
+		`"My Wooden PC" `
+		`"Lightning Is Better Than Floods" `
+		`"Persistance Of The Sun" `
+
+phrase "band"
+	word
+		`"Diffusion Four" `
+	phrase "musical venue"
+	word
+		"The song "
+		"Their song "
+	word
+		`"Friendship Was Just The Start" `
+		`"Box Of Warmth" `
+		`"Vortex Of Optimism" `
+		`"Golden Rainbow" `
+		`"Mercy Is The Best" `
+
+phrase "band"
+	word
+		`"There Might Be Riots" `
+	phrase "musical venue"
+	word
+		"The song "
+		"Their song "
+	word
+		`"Sad Archie" `
+		`"Gluttony" `
+		`"Save The Nanobots" `
+		`"Blinded By Science" `
+		`"Let's Play War" `
+		`"World Of Silence" `
+		`"Indiscriminate" `
+
+phrase "friendly civilian"
+	word
 		"May "
 		"Let "
 	word
@@ -65,7 +290,7 @@ phrase "friendly civilian"
 		" is easiest if you stick to the safe parts of the galaxy."
 		" is easiest if you take a lot of risks at the beginning so you can afford a better ship quickly."
 		" offers the best life in the galaxy."
-		" is the biggest thrill you'll ever know.
+		" is the biggest thrill you'll ever know."
 		" is the only way to control your own destiny."
 
 phrase "friendly civilian"
@@ -221,7 +446,6 @@ phrase "friendly civilian"
 		"renegades "
 		"thugs "
 		"scam artists "
-		"panhandlers "
 		"raiders "
 	word
 		"if you're "
@@ -245,7 +469,7 @@ phrase "friendly civilian"
 		"the Dirt Belt."
 		"less wealthy systems."
 		"poorer parts of the galaxy."
-		"the Southern Rim; it's the wild west down there!"
+		"the Southern Rim."
 
 phrase "friendly civilian"
 	word
@@ -272,7 +496,7 @@ phrase "friendly civilian"
 		"transporting metals to the Southern Rim planets."
 		"selling medical goods in the Southern Rim."
 		"ferrying people with a ship that can accommodate a lot of passengers."
-		"loading up the free space in your cargo hold with goods that you can sell whenever you're landing next."
+		"checking what goods you can turn a profit on wherever you're headed next."
 		"escorting the big freighters armed with anti-missile defenses."
 		"disabling small isolated pirate ships and selling their equipment."
 
@@ -368,22 +592,25 @@ phrase "friendly civilian"
 		"This economy makes it almost impossible "
 		"The government makes it almost impossible "
 	word
-		"to be an independent merchant."
-		"to earn a living."
-		"to pay off a mortgage."
-		"to avoid going into debt."
-		"to avoid pirate attacks."
-		"to be safe from pirates."
-		"to buy a better ship."
-		"to own and maintain a starship."
-		"to pay for ship upgrades."
-		"to travel through the Southern Rim safely."
-		"to have a decent shot at a better life."
-		"to feel safe."
-		"to pay all these taxes."
-		"to get a pilot's license."
-		"to stay in business as an independent merchant."
-		"to live an independent merchant's life."
+		"to be an independent merchant"
+		"to earn a living"
+		"to pay off a mortgage"
+		"to avoid going into debt"
+		"to avoid pirate attacks"
+		"to be safe from pirates"
+		"to buy a better ship"
+		"to own and maintain a starship"
+		"to pay for ship upgrades"
+		"to travel through the Southern Rim safely"
+		"to have a decent shot at a better life"
+		"to feel safe"
+		"to pay all these taxes"
+		"to get a pilot's license"
+		"to stay in business as an independent merchant"
+		"to live an independent merchant's life"
+	word
+		"."
+		"!"
 		
 phrase "friendly civilian"
 	word
@@ -392,26 +619,26 @@ phrase "friendly civilian"
 		"found"
 		"discovered"
 		"been using"
+		"been plying"
 		"stumbled upon"
 	word
 		" some "
 		" a few "
 		" a couple of "
+		" a couple "
 		" a number of "
 	word
 		""
-		"quite "
+		"really "
 		"very "
-		"relatively "
+		"extremely "
+		"exceptionally "
 	word
-		"juicy"
 		"interesting"
 		"good"
 		"lucrative"
 		"profitable"
 		"rewarding"
-		"money-spinning"
-		"money-making"
 		"worthwhile"
 	word
 		" trade routes, but I'm not "
@@ -424,11 +651,16 @@ phrase "friendly civilian"
 		" the secrets "
 		" the paths "
 		" them "
+		" 'em "
 	word
-		"to anyone"
 		"to you"
+		"to anyone"
+		"to anybody"
+		"to anyone else"
+		"to anybody else"
 		"to someone else"
 		"to another trader"
+		"to my competition"
 	word
 		"."
 		"!"
@@ -459,7 +691,7 @@ phrase "friendly navy"
 
 phrase "friendly navy"
 	word
-		"Join the navy. "
+		"Join the Navy. "
 	word
 		"See"
 		"Tour"
@@ -471,7 +703,12 @@ phrase "friendly navy"
 	word
 		" the galaxy!"
 		" the Republic!"
-		" the world!"
+		" the Paradise Worlds!"
+		" the Core!"
+		" the Rim!"
+		" the South!"
+		" the Dirt Belt!"
+		" the Deep!"
 
 phrase "friendly navy"
 	word
@@ -503,7 +740,7 @@ phrase "friendly navy"
 		"For honor! For glory!"
 		"Answer the call of duty! Join the Navy!"
 		"If you have courage, if you have honor, join the Navy!"
-		"We need YOU for the Navy!"
+		"We want YOU for the Navy!"
 
 phrase "friendly militia"
 	word
@@ -573,7 +810,7 @@ phrase "friendly syndicate"
 		"Syndicated Systems: powering interstellar commerce, one reactor at a time."
 		"Have you heard about the Syndicated Systems Proton Gun? Schedule a test-firing today!"
 		
-phrase "friendly syndicate"	
+phrase "friendly syndicate"
 	word
 		"Smart"
 		"Intelligent"
@@ -748,7 +985,7 @@ phrase "friendly pug"
 	word
 		"peace"
 		"healing"
-		"justic "
+		"justice"
 		"freedom"
 		"an end of conflict"
 		"an end to violence"
@@ -1043,7 +1280,7 @@ phrase "hostile navy"
 		" martial "
 		" naval "
 		" fighting "
-		" famous " 
+		" famous "
 	word
 		"strength "
 		"might "
@@ -1187,7 +1424,8 @@ phrase "hostile pirate"
 		"Pummeling "
 		"Crushing "
 		"Ravaging "
-		"Stealing from"
+		"Stealing from "
+		"Waylaying "
 	word
 		"merchants "
 		"ships "
@@ -1394,7 +1632,7 @@ phrase "hostile pug"
 phrase "hostile syndicate"
 	word
 		"We defend the Syndicate"
-	word 
+	word
 		"'s best interests"
 		"'s values"
 		"'s goals"
@@ -1418,13 +1656,13 @@ phrase "hostile syndicate"
 	word
 		" like you!"
 
-phrase "hostile Syndicate"		
+phrase "hostile Syndicate"
 	word
 		"You are attacking the Syndicate; we must defend it."
 		"You have made a bad commercial move."
 		"Prepare for a hostile takeover!"
 		"Any units of Syndicate stock you own are hereby revoked!"
-		"Your hostile use of Syndicated Systems products is in violation the end user license agreement!"
+		"Your hostile use of Syndicated Systems products is in violation of the end user license agreement!"
 		"Our corporate charter includes provisions for self-defense!"
 		"Enemies of commerce are enemies of Syndicated Systems."
 		"Enemies of free trade are enemies of Syndicated Systems."

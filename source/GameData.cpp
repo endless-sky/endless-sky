@@ -13,23 +13,24 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "GameData.h"
 
 #include "Audio.h"
-#include "BlurShader.h"
 #include "Color.h"
 #include "Command.h"
 #include "Conversation.h"
 #include "DataFile.h"
 #include "DataNode.h"
-#include "DotShader.h"
+#include "DataWriter.h"
 #include "Effect.h"
 #include "Files.h"
 #include "FillShader.h"
 #include "Fleet.h"
+#include "FogShader.h"
 #include "FontSet.h"
 #include "Galaxy.h"
 #include "GameEvent.h"
 #include "Government.h"
 #include "Interface.h"
 #include "LineShader.h"
+#include "Minable.h"
 #include "Mission.h"
 #include "Outfit.h"
 #include "OutlineShader.h"
@@ -69,6 +70,7 @@ namespace {
 	Set<Galaxy> galaxies;
 	Set<Government> governments;
 	Set<Interface> interfaces;
+	Set<Minable> minables;
 	Set<Mission> missions;
 	Set<Outfit> outfits;
 	Set<Person> persons;
@@ -91,8 +93,11 @@ namespace {
 	StartConditions startConditions;
 	
 	Trade trade;
+	map<const System *, map<string, int>> purchases;
 	
 	StarField background;
+	
+	map<string, string> tooltips;
 	
 	SpriteQueue spriteQueue;
 	
@@ -192,14 +197,13 @@ void GameData::LoadShaders()
 	Command::LoadSettings(Files::Resources() + "keys.txt");
 	Command::LoadSettings(Files::Config() + "keys.txt");
 	
-	DotShader::Init();
 	FillShader::Init();
+	FogShader::Init();
 	LineShader::Init();
 	OutlineShader::Init();
 	PointerShader::Init();
 	RingShader::Init();
 	SpriteShader::Init();
-	BlurShader::Init();
 	
 	background.Init(16384, 4096);
 }
@@ -292,6 +296,7 @@ void GameData::Revert()
 		it.second.GetShip()->Restore();
 	
 	politics.Reset();
+	purchases.clear();
 }
 
 
@@ -301,6 +306,122 @@ void GameData::SetDate(const Date &date)
 	for(auto &it : systems)
 		it.second.SetDate(date);
 	politics.ResetDaily();
+}
+
+
+
+void GameData::ReadEconomy(const DataNode &node)
+{
+	if(!node.Size() || node.Token(0) != "economy")
+		return;
+	
+	vector<string> headings;
+	for(const DataNode &child : node)
+	{
+		if(child.Token(0) == "purchases")
+		{
+			for(const DataNode &grand : child)
+				if(grand.Size() >= 3 && grand.Value(2))
+					purchases[systems.Get(grand.Token(0))][grand.Token(1)] += grand.Value(2);
+		}
+		else if(child.Token(0) == "system")
+		{
+			headings.clear();
+			for(int index = 1; index < child.Size(); ++index)
+				headings.push_back(child.Token(index));
+		}
+		else
+		{
+			System &system = *systems.Get(child.Token(0));
+			
+			int index = 0;
+			for(const string &commodity : headings)
+				system.SetSupply(commodity, child.Value(++index));
+		}
+	}
+}
+
+
+
+void GameData::WriteEconomy(DataWriter &out)
+{
+	out.Write("economy");
+	out.BeginChild();
+	{
+		if(!purchases.empty())
+		{
+			out.Write("purchases");
+			out.BeginChild();
+			for(const auto &pit : purchases)
+				for(const auto &cit : pit.second)
+					out.Write(pit.first->Name(), cit.first, cit.second);
+			out.EndChild();
+		}
+		out.WriteToken("system");
+		for(const auto &cit : GameData::Commodities())
+			out.WriteToken(cit.name);
+		out.Write();
+		
+		for(const auto &sit : GameData::Systems())
+		{
+			// Skip systems that have no name.
+			if(sit.first.empty() || sit.second.Name().empty())
+				continue;
+			
+			out.WriteToken(sit.second.Name());
+			for(const auto &cit : GameData::Commodities())
+				out.WriteToken(static_cast<int>(sit.second.Supply(cit.name)));
+			out.Write();
+		}
+	}
+	out.EndChild();
+}
+
+
+
+void GameData::StepEconomy()
+{
+	// First, apply any purchases the player made. These are deferred until now
+	// so that prices will not change as you are buying or selling goods.
+	for(const auto &pit : purchases)
+	{
+		System &system = const_cast<System &>(*pit.first);
+		for(const auto &cit : pit.second)
+			system.SetSupply(cit.first, system.Supply(cit.first) - cit.second);
+	}
+	purchases.clear();
+	
+	// Then, have each system generate new goods for local use and trade.
+	for(auto &it : systems)
+		it.second.StepEconomy();
+	
+	// Finally, send out the trade goods. This has to be done in a separate step
+	// because otherwise whichever systems trade last would already have gotten
+	// supplied by the other systems.
+	for(auto &it : systems)
+	{
+		System &system = it.second;
+		if(system.Links().size())
+			for(const Trade::Commodity &commodity : trade.Commodities())
+			{
+				double supply = system.Supply(commodity.name);
+				for(const System *neighbor : system.Links())
+				{
+					double scale = neighbor->Links().size();
+					if(scale)
+						supply += neighbor->Exports(commodity.name) / scale;
+				}
+				system.SetSupply(commodity.name, supply);
+			}
+	}
+}
+
+
+
+void GameData::AddPurchase(const System &system, const string &commodity, int tons)
+{
+	if(tons < 0)
+		purchases[&system][commodity] += tons;
 }
 
 
@@ -382,6 +503,14 @@ const Set<Interface> &GameData::Interfaces()
 {
 	return interfaces;
 }
+
+
+
+const Set<Minable> &GameData::Minables()
+{
+	return minables;
+}
+
 
 
 
@@ -477,6 +606,15 @@ const StarField &GameData::Background()
 
 
 
+const string &GameData::Tooltip(const string &label)
+{
+	static const string EMPTY;
+	auto it = tooltips.find(label);
+	return (it == tooltips.end() ? EMPTY : it->second);
+}
+
+
+
 void GameData::LoadSources()
 {
 	sources.clear();
@@ -529,6 +667,8 @@ void GameData::LoadFile(const string &path, bool debugMode)
 			governments.Get(node.Token(1))->Load(node);
 		else if(key == "interface" && node.Size() >= 2)
 			interfaces.Get(node.Token(1))->Load(node);
+		else if(key == "minable" && node.Size() >= 2)
+			minables.Get(node.Token(1))->Load(node);
 		else if(key == "mission" && node.Size() >= 2)
 			missions.Get(node.Token(1))->Load(node);
 		else if(key == "outfit" && node.Size() >= 2)
@@ -555,6 +695,17 @@ void GameData::LoadFile(const string &path, bool debugMode)
 			systems.Get(node.Token(1))->Load(node, planets);
 		else if(key == "trade")
 			trade.Load(node);
+		else if(key == "tip" && node.Size() >= 2)
+		{
+			string &text = tooltips[node.Token(1)];
+			text.clear();
+			for(const DataNode &child : node)
+			{
+				if(!text.empty())
+					text += "\n\t";
+				text += child.Token(0);
+			}
+		}
 		else
 			node.PrintTrace("Skipping unrecognized root object:");
 	}

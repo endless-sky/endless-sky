@@ -20,30 +20,15 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Point.h"
 #include "Screen.h"
 #include "Ship.h"
-#include "ShipInfoDisplay.h"
 #include "System.h"
 #include "UI.h"
 
 using namespace std;
 
-namespace {
-	static const vector<string> CATEGORIES = {
-		"Transport",
-		"Light Freighter",
-		"Heavy Freighter",
-		"Interceptor",
-		"Light Warship",
-		"Medium Warship",
-		"Heavy Warship",
-		"Fighter",
-		"Drone"
-	};
-}
-
 
 
 ShipyardPanel::ShipyardPanel(PlayerInfo &player)
-	: ShopPanel(player, CATEGORIES)
+	: ShopPanel(player, Ship::CATEGORIES), modifier(0)
 {
 	for(const auto &it : GameData::Ships())
 		catalog[it.second.Attributes().Category()].insert(it.first);
@@ -63,27 +48,31 @@ int ShipyardPanel::TileSize() const
 
 int ShipyardPanel::DrawPlayerShipInfo(const Point &point) const
 {
-	ShipInfoDisplay info(*playerShip, player.GetSystem()->GetGovernment());
-	info.DrawSale(point);
+	shipInfo.Update(*playerShip);
+	shipInfo.DrawSale(point);
+	shipInfo.DrawAttributes(point + Point(0, shipInfo.SaleHeight()));
 	
-	return info.SaleHeight();
+	return shipInfo.SaleHeight() + shipInfo.AttributesHeight();
 }
 
 
 
-bool ShipyardPanel::DrawItem(const string &name, const Point &point, int scrollY) const
+bool ShipyardPanel::HasItem(const string &name) const
 {
 	const Ship *ship = GameData::Ships().Get(name);
-	if(!shipyard.Has(ship))
-		return false;
-	
-	zones.emplace_back(point.X(), point.Y(), SHIP_SIZE / 2, SHIP_SIZE / 2, ship, scrollY);
+	return shipyard.Has(ship);
+}
+
+
+
+void ShipyardPanel::DrawItem(const string &name, const Point &point, int scrollY) const
+{
+	const Ship *ship = GameData::Ships().Get(name);
+	zones.emplace_back(point, Point(SHIP_SIZE, SHIP_SIZE), ship, scrollY);
 	if(point.Y() + SHIP_SIZE / 2 < Screen::Top() || point.Y() - SHIP_SIZE / 2 > Screen::Bottom())
-		return true;
+		return;
 	
 	DrawShip(*ship, point, ship == selectedShip);
-	
-	return true;
 }
 
 
@@ -97,22 +86,21 @@ int ShipyardPanel::DividerOffset() const
 
 int ShipyardPanel::DetailWidth() const
 {
-	return 3 * ShipInfoDisplay::PanelWidth();
+	return 3 * shipInfo.PanelWidth();
 }
-
 
 
 
 int ShipyardPanel::DrawDetails(const Point &center) const
 {
-	ShipInfoDisplay info(*selectedShip, player.GetSystem()->GetGovernment());
-	Point offset(info.PanelWidth(), 0.);
+	shipInfo.Update(*selectedShip);
+	Point offset(shipInfo.PanelWidth(), 0.);
 	
-	info.DrawDescription(center - offset * 1.5);
-	info.DrawAttributes(center - offset * .5);
-	info.DrawOutfits(center + offset * .5);
+	shipInfo.DrawDescription(center - offset * 1.5);
+	shipInfo.DrawAttributes(center - offset * .5);
+	shipInfo.DrawOutfits(center + offset * .5);
 	
-	return info.MaximumHeight();
+	return shipInfo.MaximumHeight();
 }
 
 
@@ -203,6 +191,7 @@ void ShipyardPanel::Sell()
 	static const int MAX_LIST = 20;
 	
 	int count = playerShips.size();
+	int initialCount = count;
 	string message = "Sell ";
 	if(count == 1)
 		message += playerShip->Name();
@@ -230,7 +219,10 @@ void ShipyardPanel::Sell()
 		
 		message += "and " + Format::Number(count - (MAX_LIST - 1)) + " other ships";
 	}
-	message += "?";
+	int64_t total = 0;
+	for(const auto &it : playerShips)
+		total += it->Cost();
+	message += ((initialCount > 2) ? "\nfor " : " for ") + Format::Number(total) + " credits?";
 	GetUI()->Push(new Dialog(this, &ShipyardPanel::SellShip, message));
 }
 
@@ -297,6 +289,7 @@ void ShipyardPanel::SellShip()
 		}
 	if(playerShip)
 		playerShips.insert(playerShip);
+	player.UpdateCargoCapacities();
 }
 
 
