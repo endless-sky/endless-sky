@@ -65,6 +65,23 @@ phrase "one to twelve"
 		"Eleven"
 		"Twelve"
 
+phrase "numeral"
+	word
+		""
+		""
+		phrase "extra"
+
+phrase "extra"
+	word
+		" I"
+		" II"
+		" II"
+		" II"
+		" III"
+		" III"
+		" IV"
+		" V"
+
 phrase "civilian"
 	word
 		"Horizon"
@@ -127,6 +144,7 @@ phrase "civilian"
 		"Redoubtable"
 		"Primarch"
 		"Great Egret"
+	phrase "numeral"
 
 phrase "civilian"
 	word
@@ -164,6 +182,7 @@ phrase "civilian"
 		" Xian"
 		" Jing"
 		" of Men"
+	phrase "numeral"
 
 phrase "civilian"
 	word
@@ -196,6 +215,7 @@ phrase "civilian"
 		" of the Waves"
 		" of the Stars"
 		" of the Void"
+	phrase "numeral"
 
 phrase "civilian"
 	word
@@ -259,6 +279,7 @@ phrase "civilian"
 		" Eagle"
 		" Emperor"
 		" Empress"
+	phrase "numeral"
 
 phrase "civilian"
 	word
@@ -397,6 +418,7 @@ phrase "civilian"
 		"Tiamat"
 		"Sorrow"
 		"Heaven"
+	phrase "numeral"
 
 phrase "republic capital"
 	word
@@ -1204,6 +1226,7 @@ phrase "pirate"
 		"Intruder"
 		"Naga"
 		"Dungeon"
+	phrase "numeral"
 
 phrase "pirate"
 	word
@@ -1254,6 +1277,7 @@ phrase "pirate"
 		"hammer"
 		"river"
 		"pit"
+	phrase "numeral"
 
 phrase "bounty hunter"
 	word
