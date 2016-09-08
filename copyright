@@ -99,6 +99,23 @@ Copyright: Jonathan Steck
 License: CC-BY-SA-4.0
 Comment: Derived from works by Matthew Smestad (under the same license).
 
+Files:
+ images/star/a0*
+ images/star/a5*
+ images/star/b5*
+ images/star/f0*
+ images/star/f5*
+ images/star/g0*
+ images/star/g5*
+ images/star/k0*
+ images/star/k5*
+ images/star/m0*
+ images/star/m4*
+ images/star/m8*
+Copyright: Jonathan Steck
+License: CC-BY-SA-4.0
+Comment: Derived from works by Michael Zahniser (under the same license).
+
 Files: images/outfit/*photovoltaic*
 Copyright: Nick Barry (github.com/itsnickbarry)
 License: CC-BY-SA-3.0
