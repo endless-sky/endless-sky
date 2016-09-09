@@ -140,10 +140,12 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 			// The checks that follow are typically cause by parking or selling
 			// ships or changing outfits.
 
-			// Are you overbooked? Don't count fireable flagship crew
-			int overbooked = -player.Cargo().Bunks() - (flagship->Crew() - flagship->RequiredCrew());
+			// Are you overbooked? Don't count fireable flagship crew.
+			const CargoHold &cargo = player.Cargo();
+			int overbooked = -cargo.Bunks() - (flagship->Crew() - flagship->RequiredCrew());
+			int missionCargoToSell = cargo.MissionCargoSize() - cargo.Size();
 			// Will you have to sell something other than regular cargo?
-			int cargoToSell = -(player.Cargo().Free() + player.Cargo().CommoditiesSize());
+			int cargoToSell = -(cargo.Free() + cargo.CommoditiesSize());
 			int droneCount = 0;
 			int fighterCount = 0;
 			for(const auto &it : player.Ships())
@@ -157,9 +159,9 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 			if(fighterCount > 0 || droneCount > 0 || cargoToSell > 0 || overbooked > 0)
 			{
 				ostringstream out;
-				if((cargoToSell > 0 && player.Cargo().MissionCargoSize()) || overbooked > 0)
+				if(missionCargoToSell > 0 || overbooked > 0)
 				{
-					bool both = ((cargoToSell > 0 && player.Cargo().MissionCargoSize()) && overbooked > 0);
+					bool both = ((cargoToSell > 0 && cargo.MissionCargoSize()) && overbooked > 0);
 					out << "If you take off now you will fail a mission due to not having enough ";
 
 					if(overbooked > 0)
@@ -169,11 +171,11 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 						out << (both ? " and not having enough " : ".");
 					}
 
-					if(cargoToSell > 0 && player.Cargo().MissionCargoSize())
+					if(missionCargoToSell > 0)
 					{
-						out << "cargo space to hold the " << cargoToSell;
-						out << (cargoToSell > 1 ? " tons" : " ton");
-						out << " of mission cargo you require.";
+						out << "cargo space to hold " << missionCargoToSell;
+						out << (missionCargoToSell > 1 ? " tons" : " ton");
+						out << " of your mission cargo.";
 					}
 				}
 				else
@@ -201,7 +203,7 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 						out << cargoToSell << " tons of cargo";
 					out << " that you do not have space for.";
 				}
-				out << "\nAre you sure you want to continue?";
+				out << " Are you sure you want to continue?";
 				GetUI()->Push(new Dialog(this, &PlanetPanel::TakeOff, out.str()));
 				return true;
 			}
