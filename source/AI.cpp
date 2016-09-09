@@ -475,7 +475,7 @@ void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &player)
 		if((isPlayerEscort && holdPosition) || mustRecall || isStranded)
 		{
 			if(it->Velocity().Length() > .001 || !target)
-				Stop(*it, command, true);
+				Stop(*it, command);
 			else
 				command.SetTurn(TurnToward(*it, TargetAim(*it)));
 		}
@@ -889,7 +889,7 @@ void AI::MoveEscort(Ship &ship, Command &command) const
 			command |= Command::LAND;
 	}
 	else if(parent.Commands().Has(Command::BOARD) && parent.GetTargetShip().get() == &ship)
-		Stop(ship, command);
+		Stop(ship, command, .2);
 	else if(parent.Commands().Has(Command::JUMP) && parent.GetTargetSystem() && !isStaying)
 	{
 		DistanceMap distance(ship, parent.GetTargetSystem());
@@ -1007,7 +1007,7 @@ bool AI::MoveTo(Ship &ship, Command &command, const Point &target, double radius
 
 
 
-bool AI::Stop(Ship &ship, Command &command, bool complete)
+bool AI::Stop(Ship &ship, Command &command, double maxSpeed)
 {
 	const Point &velocity = ship.Velocity();
 	const Angle &angle = ship.Facing();
@@ -1015,9 +1015,9 @@ bool AI::Stop(Ship &ship, Command &command, bool complete)
 	double speed = velocity.Length();
 	
 	// If asked for a complete stop, the ship needs to be going much slower.
-	if(speed <= (complete ? .001 : .2))
+	if(speed <= (maxSpeed ? maxSpeed : .001))
 		return true;
-	if(complete)
+	if(!maxSpeed)
 		command |= Command::STOP;
 	
 	// If you're moving slow enough that one frame of acceleration could bring
