@@ -198,6 +198,10 @@ public:
 	void Harvest(const Outfit *type);
 	const std::set<std::pair<const System *, const Outfit *>> &Harvested() const;
 	
+	// Get or set what coloring is currently selected in the map.
+	int MapColoring() const;
+	void SetMapColoring(int index);
+	
 	
 private:
 	// Don't anyone else to copy this class, because pointers won't get
@@ -260,6 +264,9 @@ private:
 	std::list<const Person *> destroyedPersons;
 	// Events that are going to happen some time in the future:
 	std::list<GameEvent> gameEvents;
+	
+	// Currently selected coloring, in the map panel (defaults to reputation):
+	int mapColoring = -6;
 	
 	bool freshlyLoaded = true;
 };

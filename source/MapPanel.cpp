@@ -61,21 +61,6 @@ MapPanel::MapPanel(PlayerInfo &player, int commodity, const System *special)
 
 
 
-void MapPanel::SetCommodity(int index)
-{
-	commodity = index;
-}
-
-
-
-void MapPanel::Step()
-{
-	if(tradeCommodity && commodity >= 0)
-		*tradeCommodity = commodity;
-}
-
-
-
 void MapPanel::Draw()
 {
 	glClear(GL_COLOR_BUFFER_BIT);

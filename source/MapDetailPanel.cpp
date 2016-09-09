@@ -78,17 +78,10 @@ namespace {
 
 
 
-MapDetailPanel::MapDetailPanel(PlayerInfo &player, int commodity, const System *system)
-	: MapPanel(player, commodity, system), governmentY(0), tradeY(0), selectedPlanet(nullptr)
+MapDetailPanel::MapDetailPanel(PlayerInfo &player, const System *system)
+	: MapPanel(player, system ? MapPanel::SHOW_REPUTATION : player.MapColoring(), system),
+	governmentY(0), tradeY(0), selectedPlanet(nullptr)
 {
-}
-
-
-
-MapDetailPanel::MapDetailPanel(PlayerInfo &player, int *commodity)
-	: MapDetailPanel(player, *commodity)
-{
-	tradeCommodity = commodity;
 }
 
 
@@ -96,9 +89,8 @@ MapDetailPanel::MapDetailPanel(PlayerInfo &player, int *commodity)
 MapDetailPanel::MapDetailPanel(const MapPanel &panel)
 	: MapPanel(panel), governmentY(0), tradeY(0), selectedPlanet(nullptr)
 {
-	// Don't use the "special" coloring in this view.
-	if(commodity == SHOW_SPECIAL)
-		commodity = SHOW_REPUTATION;
+	// Use whatever map coloring is specified in the PlayerInfo.
+	commodity = player.MapColoring();
 }
 
 
@@ -200,16 +192,16 @@ bool MapDetailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command
 	else if(key == SDLK_DOWN)
 	{
 		if(commodity < 0 || commodity == 9)
-			commodity = 0;
+			SetCommodity(0);
 		else
-			++commodity;
+			SetCommodity(commodity + 1);
 	}
 	else if(key == SDLK_UP)
 	{
 		if(commodity <= 0)
-			commodity = 9;
+			SetCommodity(9);
 		else
-			--commodity;
+			SetCommodity(commodity - 1);
 	}
 	else if(key == 'f')
 		GetUI()->Push(new Dialog(
@@ -232,33 +224,35 @@ bool MapDetailPanel::Click(int x, int y)
 	{
 		if(y >= tradeY && y < tradeY + 200)
 		{
-			commodity = (y - tradeY) / 20;
+			SetCommodity((y - tradeY) / 20);
 			return true;
 		}
 		else if(y < governmentY)
-			commodity = SHOW_REPUTATION;
+			SetCommodity(SHOW_REPUTATION);
 		else if(y >= governmentY && y < governmentY + 20)
-			commodity = SHOW_GOVERNMENT;
+			SetCommodity(SHOW_GOVERNMENT);
 		else
 		{
 			for(const auto &it : planetY)
 				if(y >= it.second && y < it.second + 110)
 				{
 					selectedPlanet = it.first;
+					if(y >= it.second + 30 && y < it.second + 50)
+						SetCommodity(SHOW_REPUTATION);
 					if(y >= it.second + 50 && y < it.second + 70)
 					{
 						if(commodity == SHOW_SHIPYARD && selectedPlanet->HasShipyard())
 							ListShips();
-						commodity = SHOW_SHIPYARD;
+						SetCommodity(SHOW_SHIPYARD);
 					}
 					else if(y >= it.second + 70 && y < it.second + 90)
 					{
 						if(commodity == SHOW_OUTFITTER && selectedPlanet->HasOutfitter())
 							ListOutfits();
-						commodity = SHOW_OUTFITTER;
+						SetCommodity(SHOW_OUTFITTER);
 					}
 					else if(y >= it.second + 90 && y < it.second + 110)
-						commodity = SHOW_VISITED;
+						SetCommodity(SHOW_VISITED);
 					return true;
 				}
 		}
@@ -458,37 +452,46 @@ void MapDetailPanel::DrawInfo()
 			if(object.GetPlanet())
 			{
 				// Allow the same "planet" to appear multiple times in one system.
-				auto it = shown.find(object.GetPlanet());
+				const Planet *planet = object.GetPlanet();
+				auto it = shown.find(planet);
 				if(it != shown.end())
 					continue;
-				shown.insert(object.GetPlanet());
+				shown.insert(planet);
 				
 				SpriteShader::Draw(planetSprite, uiPoint);
-				planetY[object.GetPlanet()] = uiPoint.Y() - 60;
+				planetY[planet] = uiPoint.Y() - 60;
 			
 				font.Draw(object.Name(),
 					uiPoint + Point(-70., -52.),
-					object.GetPlanet() == selectedPlanet ? closeColor : farColor);
+					planet == selectedPlanet ? closeColor : farColor);
 				
-				font.Draw("Space Port",
+				bool hasSpaceport = planet->HasSpaceport();
+				string reputationLabel = !hasSpaceport ? "No Spaceport" :
+					GameData::GetPolitics().HasDominated(planet) ? "Dominated" :
+					planet->GetGovernment()->IsEnemy() ? "Hostile" :
+					planet->CanLand() ? "Friendly" : "Restricted";
+				font.Draw(reputationLabel,
 					uiPoint + Point(-60., -32.),
-					object.GetPlanet()->HasSpaceport() ? closeColor : dimColor);
+					hasSpaceport ? closeColor : dimColor);
+				if(commodity == SHOW_REPUTATION)
+					PointerShader::Draw(uiPoint + Point(-60., -25.), Point(1., 0.),
+						10., 10., 0., closeColor);
 				
 				font.Draw("Shipyard",
 					uiPoint + Point(-60., -12.),
-					object.GetPlanet()->HasShipyard() ? closeColor : dimColor);
+					planet->HasShipyard() ? closeColor : dimColor);
 				if(commodity == SHOW_SHIPYARD)
 					PointerShader::Draw(uiPoint + Point(-60., -5.), Point(1., 0.),
 						10., 10., 0., closeColor);
 				
 				font.Draw("Outfitter",
 					uiPoint + Point(-60., 8.),
-					object.GetPlanet()->HasOutfitter() ? closeColor : dimColor);
+					planet->HasOutfitter() ? closeColor : dimColor);
 				if(commodity == SHOW_OUTFITTER)
 					PointerShader::Draw(uiPoint + Point(-60., 15.), Point(1., 0.),
 						10., 10., 0., closeColor);
 				
-				bool hasVisited = player.HasVisited(object.GetPlanet());
+				bool hasVisited = player.HasVisited(planet);
 				font.Draw(hasVisited ? "(has been visited)" : "(not yet visited)",
 					uiPoint + Point(-70., 28.),
 					farColor);
@@ -710,4 +713,13 @@ void MapDetailPanel::ListOutfits() const
 	if(list.size() > 19)
 		out << "\n...and " << list.size() - 18 << " others.";
 	GetUI()->Push(new Dialog(out.str()));
+}
+
+
+
+// Set the commodity coloring, and update the player info as well.
+void MapDetailPanel::SetCommodity(int index)
+{
+	commodity = index;
+	player.SetMapColoring(commodity);
 }
