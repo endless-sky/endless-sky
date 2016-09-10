@@ -962,10 +962,14 @@ phrase "free worlds small"
 phrase "syndicate small"
 	word
 		"S-"
-	phrase "digit"
-	phrase "digit"
-	phrase "letter"
-	phrase "digit"
+	phrase
+		"digit"
+	phrase
+		"digit"
+	phrase
+		"letter"
+	phrase
+		"digit"
 
 phrase "republic fighter"
 	word
@@ -977,7 +981,8 @@ phrase "republic fighter"
 		"Gamma "
 		"Delta "
 		"Epsilon "
-	phrase "one to twelve"
+	phrase
+		"one to twelve"
 
 phrase "deep fighter"
 	word
@@ -986,14 +991,16 @@ phrase "deep fighter"
 		"Gamma "
 		"Delta "
 		"Epsilon "
-	phrase "one to twelve"
+	phrase
+		"one to twelve"
 
 phrase "free worlds fighter"
 	word
 		"Wolf "
 		"Hound "
 		"Fox "
-	phrase "one to twelve"
+	phrase
+		"one to twelve"
 
 phrase "free worlds fighters"
 	word
@@ -1021,17 +1028,22 @@ phrase "free worlds fighters"
 		"X-Ray "
 		"Yankee "
 		"Zulu "
-	phrase "digit"
+	phrase
+		"digit"
 	word
 		"-"
-	phrase "digit"
+	phrase
+		"digit"
 
 phrase "syndicate fighter"
 	word
 		"F-"
-	phrase "digit"
-	phrase "digit"
-	phrase "digit"
+	phrase
+		"digit"
+	phrase
+		"digit"
+	phrase
+		"digit"
 
 phrase "pirate"
 	word
