@@ -1397,17 +1397,22 @@ void AI::DoCloak(Ship &ship, Command &command, const list<shared_ptr<Ship>> &shi
 		static const double MAX_RANGE = 10000.;
 		double nearestEnemy = MAX_RANGE;
 		for(const auto &other : ships)
-			if(other->GetSystem() == ship.GetSystem() && other->IsTargetable() &&
-					other->GetGovernment()->IsEnemy(ship.GetGovernment()))
+			if(other->GetSystem() == ship.GetSystem() && other->IsTargetable()
+					&& other->GetGovernment()->IsEnemy(ship.GetGovernment())
+					&& !other->IsDisabled())
 				nearestEnemy = min(nearestEnemy,
 					ship.Position().Distance(other->Position()));
 		
-		if(ship.Hull() + ship.Shields() < 1. && nearestEnemy < 2000.)
+		// If this ship has started cloaking, it must get at least 40% repaired
+		// or 40% farther away before it begins decloaking again.
+		double hysteresis = ship.Cloaking() ? 1.4 : 1.;
+		if(ship.Hull() + ship.Shields() < hysteresis && nearestEnemy < 2000. * hysteresis)
 			command |= Command::CLOAK;
 		
 		// Also cloak if there are no enemies nearby and cloaking does
 		// not cost you fuel.
-		if(nearestEnemy == MAX_RANGE && !ship.Attributes().Get("cloaking fuel"))
+		if(nearestEnemy == MAX_RANGE && !ship.Attributes().Get("cloaking fuel")
+				&& !ship.GetTargetShip())
 			command |= Command::CLOAK;
 	}
 }
