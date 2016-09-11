@@ -1962,7 +1962,7 @@ ship "Marauder Arrow"
 	explode "small explosion" 18
 	explode "medium explosion" 6
 	"final explode" "final explosion small"
-	description "This Arrow has had numerous modifications to its hull and internal systems to make more room for outfits--mostly with combat in mind. More shields, weapons, engines, outfit space, and a turret mount nearly push this ship into the Light Warship category, and definitely make it one of the heaviest Interceptors you're likely to find."
+	description "This Arrow has had numerous modifications to its hull and internal systems to make more room for outfits - mostly with combat in mind. More shields, weapons, engines, outfit space, and a turret mount nearly push this ship into the Light Warship category, and definitely make it one of the heaviest Interceptors you're likely to find."
 
 
 
@@ -2116,7 +2116,7 @@ ship "Marauder Bounder"
 	explode "small explosion" 20
 	explode "medium explosion" 15
 	"final explode" "final explosion small"
-	description "This Megaparsec Bounder has been modified from a courier-scout into a heavy escort Interceptor--currently the largest in the class. A little extra outfit space, reinforced turret mounts, a new gun port in front of the pilot, and additional shield emitters bring this former Transport into combat with fearsome speed and armament."
+	description "This Megaparsec Bounder has been modified from a courier-scout into a heavy escort Interceptor - currently the largest in the class. A little extra outfit space, reinforced turret mounts, a new gun port in front of the pilot, and additional shield emitters bring this former Transport into combat with fearsome speed and armament."
 
 
 
@@ -2571,7 +2571,7 @@ ship "Marauder Firebird" "Marauder Firebird (Weapons)"
 	explode "medium explosion" 24
 	explode "large explosion" 8
 	"final explode" "final explosion medium"
-	description "This Medium Warship with one of the heaviest armaments possible just got heavier. With more outfit space, giant gun ports, extra hull plating, and more shield emitters--this blast from the past will make its targets history."
+	description "This Medium Warship with one of the heaviest armaments possible just got heavier. With more outfit space, giant gun ports, extra hull plating, and more shield emitters - this blast from the past will make its targets history."
 
 
 
@@ -3079,7 +3079,7 @@ ship "Marauder Quicksilver" "Marauder Quicksilver (Engines)"
 	explode "tiny explosion" 12
 	explode "small explosion" 16
 	"final explode" "final explosion small"
-	description "This Quicksilver has even more space available for engine use--and even another thruster port! It's also got a few extra shield projectors, more hull plating and another bunk. This aftermarket model also features a turret mount, perhaps in response to Lionheart's Headhunter. Whoever modified this ship wanted to chase their prey down with vicious speed."
+	description "This Quicksilver has even more space available for engine use - and even another thruster port! It's also got a few extra shield projectors, more hull plating and another bunk. This aftermarket model also features a turret mount, perhaps in response to Lionheart's Headhunter. Whoever modified this ship wanted to chase their prey down with vicious speed."
 
 
 
@@ -3623,7 +3623,7 @@ ship "Nest"
 	explode "medium explosion" 20
 	explode "large explosion" 5
 	"final explode" "final explosion medium"
-	description `Southbound Shipyards quickly answered the Free Worlds' call for a carrier by building modified cargo containers for Haulers--adding a pair of Fighter docking arms, some additional outfit space, and even a couple of bunks. Access to the fighters from within the ship is so inconvenient that most pilots opt to just stay aboard their fighters when in flight. While the technical name for this ship is "Hauler I: Type F", Southbound assembly workers started calling the single container variant the "Nest" due to its complement of Finch Fighters, and the name stuck.`
+	description `Southbound Shipyards quickly answered the Free Worlds' call for a carrier by building modified cargo containers for Haulers - adding a pair of Fighter docking arms, some additional outfit space, and even a couple of bunks. Access to the fighters from within the ship is so inconvenient that most pilots opt to just stay aboard their fighters when in flight. While the technical name for this ship is "Hauler I: Type F", Southbound assembly workers started calling the single container variant the "Nest" due to its complement of Finch Fighters, and the name stuck.`
 
 
 
