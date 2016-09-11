@@ -760,6 +760,8 @@ event "wanderers: derecho mass production"
 			"Summer Leaf" 4
 	shipyard "Wanderer Advanced"
 		"Derecho"
+	outfitter "Wanderer Advanced"
+		"Blue Sun Reactor"
 
 event "wanderers: spera anatrusk colony"
 	system Kaliptari
