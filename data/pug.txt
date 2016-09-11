@@ -193,10 +193,10 @@ effect "gridfire hit"
 effect "gridfire cloud"
 	sprite "effect/gridfire cloud"
 		"no repeat"
-		"frame rate" 1
-	"lifetime" 121
+		"frame rate" 2
+	"lifetime" 61
 	"random angle" 360
-	"random spin" 20
+	"random spin" 10
 	"velocity scale" .00001
 
 
