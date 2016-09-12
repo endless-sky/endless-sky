@@ -2168,7 +2168,7 @@ ship "Marauder Bounder" "Marauder Bounder (Engines)"
 	explode "small explosion" 20
 	explode "medium explosion" 15
 	"final explode" "final explosion small"
-	description "The previous owner of this Bounder has modified an already fast courier-scout into an even faster heavy escort Interceptor with some truly enormous engines, making it incredibly fast for its size.
+	description "The previous owner of this Bounder has modified an already fast courier-scout into an even faster heavy escort Interceptor with some truly enormous engines, making it incredibly fast for its size."
 
 
 
@@ -2221,7 +2221,7 @@ ship "Marauder Bounder" "Marauder Bounder (Weapons)"
 	explode "small explosion" 20
 	explode "medium explosion" 15
 	"final explode" "final explosion small"
-	description "Simultaneously the deadliest and most graceful Interceptor in the galaxy, this once Bounder courier-scout has been equipped with incredibly powerful weapons for a ship of its size.
+	description "Simultaneously the deadliest and most graceful Interceptor in the galaxy, this once Bounder courier-scout has been equipped with incredibly powerful weapons for a ship of its size."
 
 
 
