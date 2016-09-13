@@ -25,6 +25,7 @@ Version 0.9.3:
     * Fixed a glitch in the cycling of jump destinations in the map details panel.
     * The AI code for complete stops is no longer inappropriately applied during hyperspace jumps.
     * The slicer gun no longer requires crew.
+    * Cloaked ships no longer broadcast hail messages.
   * Game content:
     * Hai carrier, gatling, and rail guns. (@Amazinite, @LocalGod79, @mdsmestad, @Sinsling, @Wrzlprnft)
     * The Syndicate extremists are now always hostile in the mission against them. (@Amazinite)

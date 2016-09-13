@@ -1323,7 +1323,7 @@ void Engine::CalculateStep()
 				break;
 			}
 		if(source->GetGovernment() && !source->GetGovernment()->IsPlayer()
-				&& !source->IsDisabled() && source->Crew())
+				&& !source->IsDisabled() && source->Crew() && source->Cloaking() < 1.)
 		{
 			string message = source->GetHail();
 			if(!message.empty() && source->GetSystem() == player.GetSystem())
