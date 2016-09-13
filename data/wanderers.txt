@@ -765,6 +765,12 @@ event "wanderers: derecho mass production"
 		"Wanderer Heat Sink"
 
 event "wanderers: spera anatrusk colony"
+	system Ap'arak
+		fleet "Wanderer Freight" 2000
+		fleet "Wanderer Drones" 4000
+		fleet "Wanderer Defense" 600
+		fleet "Wanderer Flycatchers" 400
+		fleet "Large Unfettered" 8000
 	system Kaliptari
 		government "Wanderer"
 	planet "Spera Anatrusk"
