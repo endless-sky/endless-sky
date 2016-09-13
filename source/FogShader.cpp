@@ -64,8 +64,8 @@ void FogShader::Init()
 		"uniform vec2 corner;\n"
 		"uniform vec2 dimensions;\n"
 		
-		"in vec2 vert;\n"
-		"out vec2 fragTexCoord;\n"
+		"attribute vec2 vert;\n"
+		"varying vec2 fragTexCoord;\n"
 		
 		"void main() {\n"
 		"  gl_Position = vec4(corner + vert * dimensions, 0, 1);\n"
@@ -75,11 +75,10 @@ void FogShader::Init()
 	static const char *fragmentCode =
 		"uniform sampler2D tex;\n"
 		
-		"in vec2 fragTexCoord;\n"
-		"out vec4 finalColor;\n"
+		"varying vec2 fragTexCoord;\n"
 		
 		"void main() {\n"
-		"  finalColor = vec4(0, 0, 0, texture(tex, fragTexCoord).r);\n"
+		"  gl_FragColor = vec4(0, 0, 0, texture2D(tex, fragTexCoord).r);\n"
 		"}\n";
 	
 	// Compile the shader and store indices to its variables.

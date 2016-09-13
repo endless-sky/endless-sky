@@ -43,9 +43,9 @@ void LineShader::Init()
 		"uniform vec2 len;\n"
 		"uniform vec2 width;\n"
 		
-		"in vec2 vert;\n"
-		"out vec2 tpos;\n"
-		"out float tscale;\n"
+		"attribute vec2 vert;\n"
+		"varying vec2 tpos;\n"
+		"varying float tscale;\n"
 		
 		"void main() {\n"
 		"  tpos = vert;\n"
@@ -56,13 +56,12 @@ void LineShader::Init()
 	static const char *fragmentCode =
 		"uniform vec4 color = vec4(1, 1, 1, 1);\n"
 		
-		"in vec2 tpos;\n"
-		"in float tscale;\n"
-		"out vec4 finalColor;\n"
+		"varying vec2 tpos;\n"
+		"varying float tscale;\n"
 		
 		"void main() {\n"
 		"  float alpha = min(tscale - abs(tpos.x * (2 * tscale) - tscale), 1 - abs(tpos.y));\n"
-		"  finalColor = color * alpha;\n"
+		"  gl_FragColor = color * alpha;\n"
 		"}\n";
 	
 	shader = Shader(vertexCode, fragmentCode);

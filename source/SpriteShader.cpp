@@ -56,8 +56,8 @@ void SpriteShader::Init()
 		"uniform vec2 blur;\n"
 		"uniform float clip;\n"
 		
-		"in vec2 vert;\n"
-		"out vec2 fragTexCoord;\n"
+		"attribute vec2 vert;\n"
+		"varying vec2 fragTexCoord;\n"
 		
 		"void main() {\n"
 		"  vec2 blurOff = 2 * vec2(vert.x * abs(blur.x), vert.y * abs(blur.y));\n"
@@ -73,16 +73,15 @@ void SpriteShader::Init()
 		"uniform vec2 blur;\n"
 		"const int range = 5;\n"
 		
-		"in vec2 fragTexCoord;\n"
-		"out vec4 finalColor;\n"
+		"varying vec2 fragTexCoord;\n"
 		
 		"void main() {\n"
 		"  if(blur.x == 0 && blur.y == 0)\n"
 		"  {\n"
 		"    if(fade != 0)\n"
-		"     finalColor = mix(texture(tex0, fragTexCoord), texture(tex1, fragTexCoord), fade);\n"
+		"      gl_FragColor = mix(texture2D(tex0, fragTexCoord), texture2D(tex1, fragTexCoord), fade);\n"
 		"    else\n"
-		"      finalColor = texture(tex0, fragTexCoord);\n"
+		"      gl_FragColor = texture2D(tex0, fragTexCoord);\n"
 		"    return;\n"
 		"  }\n"
 		"  const float divisor = range * (range + 2) + 1;\n"
@@ -92,11 +91,11 @@ void SpriteShader::Init()
 		"    float scale = (range + 1 - abs(i)) / divisor;\n"
 		"    vec2 coord = fragTexCoord + (blur * i) / range;\n"
 		"    if(fade != 0)\n"
-		"      color += scale * mix(texture(tex0, coord), texture(tex1, coord), fade);\n"
+		"      color += scale * mix(texture2D(tex0, coord), texture2D(tex1, coord), fade);\n"
 		"    else\n"
-		"      color += scale * texture(tex0, coord);\n"
+		"      color += scale * texture2D(tex0, coord);\n"
 		"  }\n"
-		"  finalColor = color;\n"
+		"  gl_FragColor = color;\n"
 		"}\n";
 	
 	shader = Shader(vertexCode, fragmentCode);

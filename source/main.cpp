@@ -177,10 +177,10 @@ int main(int argc, char *argv[])
 			return DoError(out.str(), window, context);
 		}
 		
-		if(*glVersion < '3')
+		if(*glVersion < '3' && (*glVersion != '2' || glVersion[1] != '.' || glVersion[2] < '1'))
 		{
 			ostringstream out;
-			out << "Endless Sky requires OpenGL version 3.0 or higher." << endl;
+			out << "Endless Sky requires OpenGL version 2.1 or higher." << endl;
 			out << "Your OpenGL version is " << glVersion << ", GLSL version " << glslVersion << "." << endl;
 			out << "Please update your graphics drivers.";
 			return DoError(out.str(), window, context);

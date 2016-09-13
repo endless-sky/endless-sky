@@ -41,7 +41,7 @@ void FillShader::Init()
 		"uniform vec2 center;\n"
 		"uniform vec2 size;\n"
 		
-		"in vec2 vert;\n"
+		"attribute vec2 vert;\n"
 		
 		"void main() {\n"
 		"  gl_Position = vec4((center + vert * size) * scale, 0, 1);\n"
@@ -50,10 +50,8 @@ void FillShader::Init()
 	static const char *fragmentCode =
 		"uniform vec4 color = vec4(1, 1, 1, 1);\n"
 		
-		"out vec4 finalColor;\n"
-		
 		"void main() {\n"
-		"  finalColor = color;\n"
+		"  gl_FragColor = color;\n"
 		"}\n";
 	
 	shader = Shader(vertexCode, fragmentCode);

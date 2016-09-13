@@ -82,20 +82,7 @@ GLuint Shader::Compile(const char *str, GLenum type)
 	if(!object)
 		throw runtime_error("Shader creation failed.");
 	
-	static string version;
-	if(version.empty())
-	{
-		version = "#version ";
-		string glsl = reinterpret_cast<const char *>(glGetString(GL_SHADING_LANGUAGE_VERSION));
-		for(char c : glsl)
-		{
-			if(isspace(c))
-				break;
-			if(isdigit(c))
-				version += c;
-		}
-		version += '\n';
-	}
+	static const string version = "#version 120\n";
 	size_t length = strlen(str);
 	vector<GLchar> text(version.length() + length + 1);
 	memcpy(&text.front(), version.data(), version.length());

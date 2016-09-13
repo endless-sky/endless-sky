@@ -45,8 +45,8 @@ void PointerShader::Init()
 		"uniform vec2 size;\n"
 		"uniform float offset;\n"
 		
-		"in vec2 vert;\n"
-		"out vec2 coord;\n"
+		"attribute vec2 vert;\n"
+		"varying vec2 coord;\n"
 		
 		"void main() {\n"
 		"  coord = vert * size.x;\n"
@@ -59,8 +59,7 @@ void PointerShader::Init()
 		"uniform vec4 color = vec4(1, 1, 1, 1);\n"
 		"uniform vec2 size;\n"
 		
-		"in vec2 coord;\n"
-		"out vec4 finalColor;\n"
+		"varying vec2 coord;\n"
 		
 		"void main() {\n"
 		"  float height = (coord.x + coord.y) / size.x;\n"
@@ -68,7 +67,7 @@ void PointerShader::Init()
 		"  taper *= taper * .5 * size.x;\n"
 		"  float alpha = clamp(.8 * min(coord.x, coord.y) - taper, 0, 1);\n"
 		"  alpha *= clamp(1.8 * (1. - height), 0, 1);\n"
-		"  finalColor = color * alpha;\n"
+		"  gl_FragColor = color * alpha;\n"
 		"}\n";
 	
 	shader = Shader(vertexCode, fragmentCode);
