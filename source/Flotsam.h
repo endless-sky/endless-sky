@@ -44,8 +44,10 @@ public:
 	// separate function because a ship may queue up flotsam to dump but take
 	// several frames before it finishes dumping it all.
 	void Place(const Ship &source);
-	// Place flotsam coming from something other than a ship.
-	void Place(const Body &source);
+	// Place flotsam coming from something other than a ship. Optionally specify
+	// the maximum relative velocity, or the exact relative velocity as a vector.
+	void Place(const Body &source, double maxVelocity = .5);
+	void Place(const Body &source, const Point &dv);
 	
 	// Move the object one time-step forward.
 	bool Move(std::list<Effect> &effects);
@@ -58,7 +60,7 @@ public:
 	int Count() const;
 	// This is how big one "unit" of the flotsam is (in tons). If a ship has
 	// less than this amount of space, it can't pick up anything here.
-	int UnitSize() const;
+	double UnitSize() const;
 	
 	
 private:

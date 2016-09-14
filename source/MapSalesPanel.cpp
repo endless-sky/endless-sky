@@ -67,7 +67,7 @@ MapSalesPanel::MapSalesPanel(const MapPanel &panel, bool isOutfitters)
 	categories(isOutfitters ? Outfit::CATEGORIES : Ship::CATEGORIES),
 	isOutfitters(isOutfitters)
 {
-	SetCommodity(SHOW_SPECIAL);
+	commodity = SHOW_SPECIAL;
 	if(!isOutfitters)
 		swizzle = GameData::PlayerGovernment()->GetSwizzle();
 }

@@ -528,8 +528,8 @@ system Alcyone
 	trade Medical 705
 	trade Metal 249
 	trade Plastic 439
-	fleet "Small Southern Pirates" 400
-	fleet "Large Southern Pirates" 600
+	fleet "Small Core Pirates" 400
+	fleet "Large Core Pirates" 600
 	fleet "Large Syndicate" 1200
 	object
 		sprite star/m4
@@ -3386,6 +3386,7 @@ system Cardax
 	fleet "Large Northern Merchants" 3000
 	fleet "Small Northern Pirates" 1000
 	fleet "Large Northern Pirates" 3000
+	fleet "Small Core Pirates" 3000
 	fleet "Small Republic" 2000
 	fleet "Large Republic" 5000
 	object
@@ -4870,8 +4871,8 @@ system Durax
 	trade Medical 791
 	trade Metal 329
 	trade Plastic 372
-	fleet "Small Southern Pirates" 600
-	fleet "Large Southern Pirates" 900
+	fleet "Small Core Pirates" 600
+	fleet "Large Core Pirates" 900
 	fleet "Large Syndicate" 2500
 	fleet "Korath Raid" 5000
 	object
@@ -11174,6 +11175,7 @@ system Moktar
 	fleet "Small Syndicate" 3000
 	fleet "Large Syndicate" 4000
 	fleet "Small Core Pirates" 2000
+	fleet "Small Northern Pirates" 3000
 	object
 		sprite star/k5
 		distance 29.0769
@@ -11728,8 +11730,8 @@ system Oblate
 	trade Medical 656
 	trade Metal 328
 	trade Plastic 399
-	fleet "Small Southern Pirates" 600
-	fleet "Large Southern Pirates" 1000
+	fleet "Small Core Pirates" 600
+	fleet "Large Core Pirates" 1000
 	fleet "Large Syndicate" 3000
 	object
 		sprite star/f5
@@ -17531,7 +17533,7 @@ planet Canyon
 	landscape land/canyon1
 	description `Canyon is a large world, with gravity near the high end of what human beings can comfortably bear. Much of its surface is sandstone, leading scientists to believe that the planet was once home to large oceans, before some cataclysmic event, perhaps a rogue star drifting through the system, caused much of the planet's water to boil away. The few settlers who live here mostly farm the deep canyons; the mesas above are dry and almost lifeless.`
 	description `	The angular rock formations that cover most of the mesa land are identified in local mythology as the ruins of an unspeakably vast and ancient alien city. A gullible tourist can find any number of opportunities to tour these alleged sites. Off-world science has been largely skeptical of these claims.`
-	spaceport `The spaceport is a wide, flat stone field with no individual landing spots marked out; you're simply responsible for finding an unoccupied space large enough for your ship, A quarter mile away from the field is a small village with a marketplace and a pub. There are only a few starships parked here. In the village, you can recognize the locals because of their stout, muscular stature; you are taller than almost everyone here.`
+	spaceport `The spaceport is a wide, flat stone field with no individual landing spots marked out; you're simply responsible for finding an unoccupied space large enough for your ship, A half kilometer away from the field is a small village with a marketplace and a pub. There are only a few starships parked here. In the village, you can recognize the locals because of their stout, muscular stature; you are taller than almost everyone here.`
 	security 0.1
 	tribute 400
 		threshold 3000
@@ -17984,7 +17986,7 @@ planet Foundry
 	attributes core factory urban
 	landscape land/city1
 	description `Foundry is home to the Syndicated Shipyards, where more than half of the commercial freighters in human space are manufactured. Although much of the planet is blanketed in smog from the factories, there are also regions of pristine forests and majestic mountains. The Syndicate has a generous vacation policy on Foundry that allows workers to take as much as a month of vacation time every year, and many choose to take that time to escape from the cities and explore the wilderness. The shipyards claim that this vacation time is partly responsible for the high reliability of the ships built here, because a well-rested and relaxed worker is less likely to make the sort of mistakes that can quickly become disastrous in outer space.`
-	spaceport `The spaceport is surrounded by miles of hangars and factories where new ships are being assembled. The port itself is a trio of towering buildings, with a skywalk on the top floors to provide a view of the surrounding area. Larger ships land on pads on the ground surrounding the towers, while smaller ships can fly into hangars built into the sides of the towers themselves. Everything is made of gleaming metal, and each tower is slightly tapered and adorned with painted fins that make it resemble an enormous starship.`
+	spaceport `The spaceport is surrounded by kilometers of hangars and factories where new ships are being assembled. The port itself is a trio of towering buildings, with a skywalk on the top floors to provide a view of the surrounding area. Larger ships land on pads on the ground surrounding the towers, while smaller ships can fly into hangars built into the sides of the towers themselves. Everything is made of gleaming metal, and each tower is slightly tapered and adorned with painted fins that make it resemble an enormous starship.`
 	shipyard "Basic Ships"
 	shipyard "Syndicate Basics"
 	shipyard "Syndicate Advanced"
@@ -18195,7 +18197,7 @@ planet Harmony
 planet Haven
 	attributes pirate mining
 	landscape land/dune1
-	description `Haven was founded by a highly successful "privateers" nearly two centuries ago. Since then, as rival bands of pirates have fought over it, it has changed hands fourteen times, but has never been successfully invaded by the Republic. Numerous small manufacturing shops sell outfits that cannot be bought legally, and there is even a small shipyard where customized ships are sold.`
+	description `Haven was founded by highly successful "privateers" nearly two centuries ago. Since then, as rival bands of pirates have fought over it, it has changed hands fourteen times, but has never been successfully invaded by the Republic. Numerous small manufacturing shops sell outfits that cannot be bought legally, and there is even a small shipyard where customized ships are sold.`
 	description `	Much of the planet is desert, but with enough moisture to grow enough crops to feed the entire population. Strip mining has turned other parts of the planet into barren wastelands, and has polluted many of the rivers.`
 	spaceport `The spaceport is old and dingy, with piles of litter in the gutters and graffiti on many of the alley walls. Many of the shops are closed, the windows boarded over or covered with yellowing paper. This is an independent world, and a relatively stable settlement, but the effects of its separation from the rest of the galaxy are evident. A few young people carrying large backpacks eye you with interest, perhaps trying to gauge their chances of getting you to give them a cheap lift off-planet.`
 	shipyard "Northern Pirates"
@@ -18214,7 +18216,7 @@ planet Haze
 	landscape land/mfield2
 	description `Haze is a manufacturing world, covered in sprawling cities. It is a relatively prosperous planet, but so far the inhabitants have chosen to spend more of their terraforming budget on climate control than on pollution reduction.`
 	description `	Very few regions of this planet remain untouched by human hands, but a few of the particularly mountainous or marshy areas have been set aside as nature preserves. More than half of the indigenous life forms have gone extinct since human settlement began here four centuries ago.`
-	spaceport `The spaceport is constructed purely for efficiency and functionality. It is a long building, stretching in a straight line across more than a mile. Through the center, on tracks elevated at various levels, run monorail trams for carrying passengers and cargo. Along the sides of the building are docking bays alternating with storage rooms. The wide corridors are packed both with people and with robotic freight carts.`
+	spaceport `The spaceport is constructed purely for efficiency and functionality. It is a long building, stretching in a straight line across more than a kilometer. Through the center, on tracks elevated at various levels, run monorail trams for carrying passengers and cargo. Along the sides of the building are docking bays alternating with storage rooms. The wide corridors are packed both with people and with robotic freight carts.`
 	spaceport `	As the planet's economy grows and the spaceport becomes too cramped, the port authority simply clears more land and extends the building, the tramways, and the docks out farther along the same line.`
 	shipyard "Lionheart Basics"
 	outfitter "Basic Outfits"
@@ -18569,7 +18571,7 @@ planet Maelstrom
 	landscape land/mountain6
 	description `Maelstrom is a stormy, geologically young world with towering mountains and frequent earthquakes. Most of the large cities are near the center of the planet's main continent, where the iron beds from an ancient ocean are exposed. Maelstrom is one of the chief exporters of iron, copper, gold, titanium, and other metals to Ada, where Lovelace Labs and the associated industries have a continuous need for raw materials.`
 	description `	Extreme rock climbing is a hugely popular sport among the mining workers here, who have a tendency to be young, male, and reckless. The mountains are dramatic enough to even attract off-world climbers as tourists, though more than once a favorite climbing face has been sloughed off its mountain in an earthquake.`
-	spaceport `The spaceport is a single massive complex of buildings, with hangars large enough for even a dreadnought or a carrier. A railroad runs through several of the nearby mining towns and straight into the spaceport building itself, allowing ore and processed metal to be loaded directly from the mine cars into the waiting freighters.`
+	spaceport `The spaceport is a single massive complex of buildings, with hangars large enough for even a bulk freighter or a Navy flagship. A railroad runs through several of the nearby mining towns and straight into the spaceport building itself, allowing ore and processed metal to be loaded directly from the mine cars into the waiting freighters.`
 	outfitter "Lovelace Basics"
 	outfitter "Common Outfits"
 	outfitter "Ammo North"
@@ -18936,7 +18938,7 @@ planet "New Tibet"
 	landscape land/mountain0
 	description `New Tibet is a world of jagged mountains and deeply shadowed valleys. Although it has been inhabited for centuries, in many places the terrain is so rugged that roads cannot be built, leaving several of the smaller towns almost completely isolated. Taking advantage of this isolation, several orders of Buddhist monks have built monasteries here.`
 	description `	In the lowlands, large farms support sprawling cities full of factories, a striking contrast to the simplicity and isolation of the mountain villages.`
-	spaceport `The spaceport is in a hill region, just outside the largest city, with a view of a valley full of farms that stretch for miles and miles down to the ocean. The port is much less modern than the city nearby; it was built by the early settlers and has not been significantly updated since then, because the focus has been on improving life for the locals, not for their occasional visitors.`
+	spaceport `The spaceport is in a hilly region, just outside of the largest city, with a view of a valley full of farms that stretch for tens of kilometers, all the way down to the ocean. The port is much less modern than the city nearby; it was built by the early settlers and has not been significantly updated since then, because the focus has been on improving life for the locals, not for their occasional visitors.`
 	security 0.1
 
 planet "New Wales"

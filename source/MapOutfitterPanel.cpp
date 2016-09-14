@@ -25,6 +25,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include <algorithm>
 #include <cmath>
+#include <limits>
 #include <set>
 
 using namespace std;
@@ -120,12 +121,15 @@ void MapOutfitterPanel::Compare(int index)
 double MapOutfitterPanel::SystemValue(const System *system) const
 {
 	if(!system)
-		return 0.;
+		return numeric_limits<double>::quiet_NaN();
 	
 	auto it = player.Harvested().lower_bound(pair<const System *, const Outfit *>(system, nullptr));
 	for( ; it != player.Harvested().end() && it->first == system; ++it)
 		if(it->second == selected)
 			return 1.;
+	
+	if(!system->IsInhabited())
+		return numeric_limits<double>::quiet_NaN();
 	
 	double value = -.5;
 	for(const StellarObject &object : system->Objects())

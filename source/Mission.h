@@ -136,6 +136,7 @@ public:
 	
 private:
 	void Enter(const System *system, PlayerInfo &player, UI *u);
+	const System *PickSystem(const LocationFilter &filter, const PlayerInfo &player) const;
 	const Planet *PickPlanet(const LocationFilter &filter, const PlayerInfo &player) const;
 	
 	
@@ -180,6 +181,7 @@ private:
 	LocationFilter destinationFilter;
 	// Systems that must be visited:
 	std::set<const System *> waypoints;
+	std::list<LocationFilter> waypointFilters;
 	std::map<const System *, MissionAction> onEnter;
 	std::set<const System *> didEnter;
 	std::set<const Planet *> stopovers;
