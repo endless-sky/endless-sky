@@ -78,7 +78,7 @@ void FogShader::Init()
 		"varying vec2 fragTexCoord;\n"
 		
 		"void main() {\n"
-		"  gl_FragColor = vec4(0, 0, 0, texture2D(tex, fragTexCoord).r);\n"
+		"  gl_FragColor = vec4(0, 0, 0, texture(tex, fragTexCoord).r);\n"
 		"}\n";
 	
 	// Compile the shader and store indices to its variables.
