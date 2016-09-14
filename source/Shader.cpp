@@ -78,16 +78,57 @@ GLint Shader::Uniform(const char *name) const
 
 GLuint Shader::Compile(const char *str, GLenum type)
 {
+	static const char* vertexHeader =
+		"#if __VERSION__ >= 130\n"
+		"#define attribute in\n"
+		"#define varying out\n"
+		"#endif\n";
+	static const char* fragmentHeader =
+		"#if __VERSION__ >= 130\n"
+		"#define varying in\n"
+		"out vec4 finalColor;\n"
+		"#else\n"
+		"#define finalColor gl_FragColor\n"
+		// this will cause problems if Endless Sky ever uses a non-2D texture
+		"#define texture texture2D\n"
+		"#endif\n";
+
 	GLuint object = glCreateShader(type);
 	if(!object)
 		throw runtime_error("Shader creation failed.");
 	
-	static const string version = "#version 120\n";
+	static string version;
+	if(version.empty())
+	{
+		version = "#version ";
+		string glsl = reinterpret_cast<const char *>(glGetString(GL_SHADING_LANGUAGE_VERSION));
+		for(char c : glsl)
+		{
+			if(isspace(c))
+				break;
+			if(isdigit(c))
+				version += c;
+		}
+		version += '\n';
+	}
+	const char* header;
+	switch(type) {
+	case GL_VERTEX_SHADER:
+		header = vertexHeader;
+		break;
+	case GL_FRAGMENT_SHADER:
+		header = fragmentHeader;
+		break;
+	default:
+		throw runtime_error("Unknown OpenGL shader program type.");
+	}
+	size_t headerlength = strlen(header);
 	size_t length = strlen(str);
-	vector<GLchar> text(version.length() + length + 1);
+	vector<GLchar> text(version.length() + headerlength + length + 1);
 	memcpy(&text.front(), version.data(), version.length());
-	memcpy(&text.front() + version.length(), str, length);
-	text[version.length() + length] = '\0';
+	memcpy(&text.front() + version.length(), header, headerlength);
+	memcpy(&text.front() + version.length() + headerlength, str, length);
+	text[version.length() + headerlength + length] = '\0';
 	
 	const GLchar *cText = &text.front();
 	glShaderSource(object, 1, &cText, nullptr);
