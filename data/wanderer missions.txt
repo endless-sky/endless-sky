@@ -1723,7 +1723,7 @@ mission "Wanderers Hai Assistance 3"
 
 
 
-mission "Wanderers Pond Strider Recon 1"
+mission "Wanderers Solifuge Recon 1"
 	landing
 	name "Report to <planet>"
 	description "Report to the Wanderer military base on <destination>, and see if there is anything you can help them with."
@@ -1731,6 +1731,7 @@ mission "Wanderers Pond Strider Recon 1"
 	destination "Vara Ke'sok"
 	to offer
 		has "Wanderers Hai Assistance 3: done"
+		not "Wanderers Pond Strider Recon 1: offered"
 	on offer
 		conversation
 			`You have been gone for several weeks, and Iktat Rek's appearance has changed drastically in that time. Nearly half his head is bald, showing scaly grey skin and scattered white under-feathers in place of his usual plumage. Patches on other parts of his body have lost their feathers as well. His appearance is shocking. In a terrestrial animal you would attribute it to a mange... or to a molt.`
@@ -1753,13 +1754,13 @@ mission "Wanderers Pond Strider Recon 1"
 
 
 
-mission "Wanderers Pond Strider Recon 2"
+mission "Wanderers Solifuge Recon 2"
 	landing
 	name "New Unfettered ships"
 	description "Unfettered ships of an unknown design have been spotted in the Prakacha'a system. Destroy them, then return to <destination>."
 	source "Vara Ke'sok"
 	to offer
-		has "Wanderers Pond Strider Recon 1: done"
+		has "Wanderers Solifuge Recon 1: done"
 	on offer
 		set "license: Wanderer Military"
 		conversation
@@ -1793,7 +1794,7 @@ mission "Wanderers Evacuation 1"
 	source "Vara Ke'sok"
 	destination "Vara Ke'stai"
 	to offer
-		has "Wanderers Pond Strider Recon 2: done"
+		has "Wanderers Solifuge Recon 2: done"
 	on offer
 		conversation
 			`Four Wanderer transports - perhaps, in fact, the same four you escorted before - are parked here. One of the captains approaches you and says, "We are evacuating the worlds that will be [isolated, trapped] if the Unfettered gain more territory. Will you escort us to <planet>, and from there to the capital?"`
