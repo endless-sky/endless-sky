@@ -42,9 +42,11 @@ public:
 	// buttons in this interface with the panel's list of clickable zones.
 	void Draw(const Information &info, Panel *panel = nullptr) const;
 	
+	// Get the location of a named point or box.
 	bool HasPoint(const std::string &name) const;
 	Point GetPoint(const std::string &name) const;
 	Point GetSize(const std::string &name) const;
+	Rectangle GetBox(const std::string &name) const;
 	
 	
 private:

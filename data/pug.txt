@@ -419,8 +419,8 @@ ship "Pug Maboro"
 		"Jump Drive"
 		"Pug Lohmar Thruster"
 		"Pug Lohmar Steering"
-	engine -11 68
-	engine 11 68
+	engine -20 136
+	engine 20 136
 	gun -20 -150 "Pug Seeker"
 	gun 20 -150 "Pug Seeker"
 	gun -10 -150 "Pug Seeker"
