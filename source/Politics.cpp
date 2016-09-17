@@ -224,10 +224,16 @@ string Politics::Fine(PlayerInfo &player, const Government *gov, int scan, const
 				maxFine = fine;
 				reason = "carrying illegal cargo.";
 
-				// Fail any missions with illegal cargo
 				for(const Mission &mission : player.Missions())
 				{
-					// Found a mission with illegal cargo that's supposed to remain undiscovered
+					// Append the illegalCargoMessage from each applicable mission, if available
+					std::string illegalCargoMessage = mission.IllegalCargoMessage();
+					if(!illegalCargoMessage.empty())
+					{
+						reason.append("\n");
+						reason.append(illegalCargoMessage);
+					}
+					// Fail any missions with illegal cargo and "Stealth" set
 					if(mission.IllegalCargoFine() > 0 && mission.FailIfDiscovered())
 						player.FailMission(mission);
 				}
