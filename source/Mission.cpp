@@ -244,15 +244,7 @@ void Mission::Save(DataWriter &out, const string &tag) const
 			{
 				out.BeginChild();
 				{
-					out.Write("illegal", illegalCargoFine);
-				}
-				out.EndChild();
-			}
-			if(!illegalCargoMessage.empty())
-			{
-				out.BeginChild();
-				{
-					out.Write("illegalCargoMessage", illegalCargoMessage);
+					out.Write("illegal", illegalCargoFine, illegalCargoMessage);
 				}
 				out.EndChild();
 			}
