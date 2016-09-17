@@ -227,11 +227,9 @@ string Politics::Fine(PlayerInfo &player, const Government *gov, int scan, const
 				// Fail any missions with illegal cargo
 				for(const Mission &mission : player.Missions())
 				{
-					// Found a mission with illegal cargo we should fail
-					if(mission.IllegalCargoFine() > 0)
-					{
+					// Found a mission with illegal cargo that's supposed to remain undiscovered
+					if(mission.IllegalCargoFine() > 0 && mission.FailIfDiscovered())
 						player.FailMission(mission);
-					}
 				}
 			}
 		}

@@ -72,6 +72,7 @@ public:
 	const std::string &Cargo() const;
 	int CargoSize() const;
 	int IllegalCargoFine() const;
+	bool FailIfDiscovered() const;
 	int Passengers() const;
 	// The mission must be completed by this deadline (if there is a deadline).
 	const Date &Deadline() const;
@@ -166,6 +167,7 @@ private:
 	int cargoLimit = 0;
 	double cargoProb = 0.;
 	int illegalCargoFine = 0;
+	bool failIfDiscovered = false;
 	int passengers = 0;
 	// Parameters for generating random passenger amounts:
 	int passengerLimit = 0;
