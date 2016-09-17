@@ -425,7 +425,6 @@ int Mission::IllegalCargoFine() const
 
 bool Mission::FailIfDiscovered() const
 {
-	printf("Mission::FailIfDiscovered called. Will this fail if you are discovered? %s\n", (failIfDiscovered)?"true":"false");
 	return failIfDiscovered;
 }
 
