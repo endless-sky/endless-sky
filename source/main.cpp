@@ -206,11 +206,13 @@ int main(int argc, char *argv[])
 			box.buttons = buttons;
 
 			int result = 0;
+			SDL_HideWindow(window);
 			if(SDL_ShowMessageBox(&box, &result) < 0 || result < 0) {
 				// The user closed the dialog or hit Cancel
 				Cleanup(window, context);
 				return 1;
 			}
+			SDL_ShowWindow(window);
 		}
 		
 		glClearColor(0.f, 0.f, 0.0f, 1.f);
