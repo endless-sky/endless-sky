@@ -889,7 +889,7 @@ mission "FW Northern 3"
 	on offer
 		conversation
 			`As you approach <origin>, Freya quickly locates two Navy surveillance stations and contacts Alondo, asking him to send some Free Worlds personnel to destroy them. Then you land, and Alondo comes aboard your ship to discuss your next steps in person.`
-			`	"There's a good chance we've taken care of all the sensors in this sector," says Freya, "so we can start moving our fleets around here without tipping the Navy off. And I just heard from Southbound Shipping that they've got two more Dreadnoughts ready for service."`
+			`	"There's a good chance we've taken care of all the sensors in this sector," says Freya, "so we can start moving our fleets around here without tipping the Navy off. And I just heard from Southbound Shipyards that they've got two more Dreadnoughts ready for service."`
 			choice
 				`	"Only two? I was hoping to get a Dreadnought of my own soon!"`
 					goto two
