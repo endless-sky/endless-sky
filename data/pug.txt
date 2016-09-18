@@ -651,6 +651,7 @@ mission "Ruin: Landing"
 
 mission "Pug Cease Hostilities"
 	landing
+	invisible
 	to offer
 		has "main plot completed"
 	on offer
