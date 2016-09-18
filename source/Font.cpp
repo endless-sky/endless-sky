@@ -18,6 +18,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Screen.h"
 
 #include <cmath>
+#include <cstdlib>
 #include <cstring>
 
 using namespace std;
