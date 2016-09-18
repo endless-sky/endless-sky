@@ -59,7 +59,7 @@ namespace {
 
 
 TradingPanel::TradingPanel(PlayerInfo &player)
-	: player(player), system(*player.GetSystem()), selectedRow(0)
+	: player(player), system(*player.GetSystem()), COMMODITY_COUNT(GameData::Commodities().size())
 {
 	SetTrapAllEvents(false);
 }
@@ -109,7 +109,9 @@ void TradingPanel::Step()
 void TradingPanel::Draw()
 {
 	Color back = *GameData::Colors().Get("faint");
-	FillShader::Fill(Point(-60., FIRST_Y + 20 * selectedRow + 33), Point(480., 20.), back);
+	int selectedRow = player.MapColoring();
+	if(selectedRow >= 0 && selectedRow < COMMODITY_COUNT)
+		FillShader::Fill(Point(-60., FIRST_Y + 20 * selectedRow + 33), Point(480., 20.), back);
 	
 	const Font &font = FontSet::Get(14);
 	Color unselected = *GameData::Colors().Get("medium");
@@ -128,12 +130,13 @@ void TradingPanel::Draw()
 	font.Draw("In Hold", Point(HOLD_X, y), selected);
 	
 	y += 5;
-	int lastY = y + 20 * GameData::Commodities().size() + 25;
+	int lastY = y + 20 * COMMODITY_COUNT + 25;
 	font.Draw("free:", Point(SELL_X + 5, lastY), selected);
 	font.Draw(to_string(player.Cargo().Free()), Point(HOLD_X, lastY), selected);
 	
 	int outfits = player.Cargo().OutfitsSize();
 	int missionCargo = player.Cargo().MissionCargoSize();
+	sellOutfits = false;
 	if(player.Cargo().HasOutfits() || missionCargo)
 	{
 		bool hasOutfits = false;
@@ -144,6 +147,7 @@ void TradingPanel::Draw()
 				bool isHarvested = (it.first->Get("installable") < 0.);
 				(isHarvested ? hasHarvested : hasOutfits) = true;
 			}
+		sellOutfits = (hasOutfits && !hasHarvested);
 		
 		string str = to_string(outfits + missionCargo);
 		if(hasHarvested && missionCargo)
@@ -200,6 +204,7 @@ void TradingPanel::Draw()
 		int hold = player.Cargo().Get(commodity.name);
 		if(hold)
 		{
+			sellOutfits = false;
 			canSell |= (price != 0);
 			font.Draw(to_string(hold), Point(HOLD_X, y), selected);
 		}
@@ -207,7 +212,9 @@ void TradingPanel::Draw()
 	
 	const Interface *interface = GameData::Interfaces().Get("trade");
 	Information info;
-	if(player.Cargo().HasOutfits() || canSell)
+	if(sellOutfits)
+		info.SetCondition("can sell outfits");
+	else if(player.Cargo().HasOutfits() || canSell)
 		info.SetCondition("can sell");
 	if(player.Cargo().Free() > 0)
 		info.SetCondition("can buy");
@@ -219,10 +226,10 @@ void TradingPanel::Draw()
 // Only override the ones you need; the default action is to return false.
 bool TradingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 {
-	if(key == SDLK_UP && selectedRow)
-		--selectedRow;
-	else if(key == SDLK_DOWN && selectedRow < static_cast<int>(GameData::Commodities().size()) - 1)
-		++selectedRow;
+	if(key == SDLK_UP)
+		player.SetMapColoring(max(0, player.MapColoring() - 1));
+	else if(key == SDLK_DOWN)
+		player.SetMapColoring(max(0, min(COMMODITY_COUNT - 1, player.MapColoring() + 1)));
 	else if(key == '=' || key == SDLK_RETURN || key == SDLK_SPACE)
 		Buy(1);
 	else if(key == '-' || key == SDLK_BACKSPACE || key == SDLK_DELETE)
@@ -249,6 +256,9 @@ bool TradingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 		}
 		for(const auto &it : player.Cargo().Outfits())
 		{
+			if(it.first->Get("installable") >= 0. && !sellOutfits)
+				continue;
+			
 			profit += it.second * it.first->Cost();
 			tonsSold += it.second * static_cast<int>(it.first->Get("mass"));
 			
@@ -258,7 +268,7 @@ bool TradingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 		}
 	}
 	else if(command.Has(Command::MAP))
-		GetUI()->Push(new MapDetailPanel(player, &selectedRow));
+		GetUI()->Push(new MapDetailPanel(player));
 	else
 		return false;
 	
@@ -269,10 +279,10 @@ bool TradingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 
 bool TradingPanel::Click(int x, int y)
 {
-	int maxY = FIRST_Y + 25 + 20 * GameData::Commodities().size();
+	int maxY = FIRST_Y + 25 + 20 * COMMODITY_COUNT;
 	if(x >= MIN_X && x <= MAX_X && y >= FIRST_Y + 25 && y < maxY)
 	{
-		selectedRow = (y - FIRST_Y - 25) / 20;
+		player.SetMapColoring((y - FIRST_Y - 25) / 20);
 		if(x >= BUY_X && x < SELL_X)
 			Buy(1);
 		else if(x >= SELL_X && x < HOLD_X)
@@ -288,6 +298,10 @@ bool TradingPanel::Click(int x, int y)
 
 void TradingPanel::Buy(int64_t amount)
 {
+	int selectedRow = player.MapColoring();
+	if(selectedRow < 0 || selectedRow >= COMMODITY_COUNT)
+		return;
+	
 	amount *= Modifier();
 	const string &type = GameData::Commodities()[selectedRow].name;
 	int64_t price = system.Trade(type);

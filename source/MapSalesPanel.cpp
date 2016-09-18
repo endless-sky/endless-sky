@@ -67,7 +67,7 @@ MapSalesPanel::MapSalesPanel(const MapPanel &panel, bool isOutfitters)
 	categories(isOutfitters ? Outfit::CATEGORIES : Ship::CATEGORIES),
 	isOutfitters(isOutfitters)
 {
-	SetCommodity(SHOW_SPECIAL);
+	commodity = SHOW_SPECIAL;
 	if(!isOutfitters)
 		swizzle = GameData::PlayerGovernment()->GetSwizzle();
 }
@@ -195,10 +195,8 @@ bool MapSalesPanel::Click(int x, int y)
 bool MapSalesPanel::Hover(int x, int y)
 {
 	isDragging = (x < Screen::Left() + WIDTH);
-	if(isDragging)
-		return true;
 	
-	return MapPanel::Hover(x, y);
+	return true;
 }
 
 

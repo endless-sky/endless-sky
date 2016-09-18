@@ -47,14 +47,16 @@ namespace {
 
 
 // Constructor.
-ConversationPanel::ConversationPanel(PlayerInfo &player, const Conversation &conversation, const System *system)
+ConversationPanel::ConversationPanel(PlayerInfo &player, const Conversation &conversation, const System *system, const Ship *ship)
 	: player(player), conversation(conversation), scroll(0.), system(system)
 {
 	// These substitutions need to be applied on the fly as each paragraph of
 	// text is prepared for display.
 	subs["<first>"] = player.FirstName();
 	subs["<last>"] = player.LastName();
-	if(player.Flagship())
+	if(ship)
+		subs["<ship>"] = ship->Name();
+	else if(player.Flagship())
 		subs["<ship>"] = player.Flagship()->Name();
 	
 	// Begin at the start of the conversation.
@@ -178,7 +180,7 @@ bool ConversationPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comm
 	// Map popup happens when you press the map key, unless the name text entry
 	// fields are currently active.
 	if(command.Has(Command::MAP) && !choices.empty())
-		GetUI()->Push(new MapDetailPanel(player, MapPanel::SHOW_REPUTATION, system));
+		GetUI()->Push(new MapDetailPanel(player, system));
 	if(node < 0)
 	{
 		// If the conversation has ended, the only possible action is to exit.

@@ -565,18 +565,25 @@ interface "hiring"
 interface "trade"
 	active if "can buy"
 	sprite "ui/dialog cancel"
-		center 60 355
+		center 40 355
 	button B "Buy All"
-		center 60 355
-		dimensions 80 40
+		center 40 355
+		dimensions 70 30
+	
+	sprite "ui/wide button"
+		center 130 355
 	
 	active if "can sell"
-	sprite "ui/dialog cancel"
-		center 140 355
+	visible if "!can sell outfits"
 	button S "Sell All"
-		center 140 355
-		dimensions 80 40
-
+		center 130 355
+		dimensions 90 30
+	
+	active if "can sell outfits"
+	visible if "can sell outfits"
+	button S "Sell Outfits"
+		center 130 355
+		dimensions 90 30
 
 
 interface "bank"
@@ -673,6 +680,20 @@ interface "info panel"
 	sprite "ui/two info buttons"
 		center 0 305
 	
+	box "player"
+		from -500 -290 to -250 280
+	box "fleet"
+		from -250 -290 to 500 280
+	
+	box "stats"
+		from -500 -290 to -250 280
+	box "outfits"
+		from -250 -290 to 250 30
+	box "weapons"
+		from -250 30 to 250 280
+	box "cargo"
+		from 250 -290 to 500 280
+	
 	visible if "ship tab"
 	button R
 		center -375 -270
@@ -717,17 +738,26 @@ interface "info panel"
 		dimensions 90 30
 	
 	visible if "show park"
+	active if "can park"
 	sprite "ui/dialog cancel"
 		center 55 305
 	button P "_Park"
 		center 55 305
 		dimensions 70 30
+	active
 	
 	visible if "show unpark"
 	sprite "ui/dialog cancel"
 		center 55 305
 	button P "Un_park"
 		center 55 305
+		dimensions 70 30
+	
+	visible if "show disown"
+	sprite "ui/dialog cancel"
+		center -45 305
+	button D "Disown"
+		center -45 305
 		dimensions 70 30
 	
 	visible if "show dump"
