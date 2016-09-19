@@ -1025,7 +1025,7 @@ ship "Cruiser" "Cruiser (Jump)"
 		"D94-YV Shield Generator"
 		"Liquid Helium Cooler"
 		"Fuel Pod" 2
-		"Ramscoop"
+		"Catalytic Ramscoop"
 		"Mass Expansion" 2
 		"A520 Atomic Thruster"
 		"A525 Atomic Steering"
