@@ -1025,6 +1025,7 @@ ship "Cruiser" "Cruiser (Jump)"
 		"D94-YV Shield Generator"
 		"Liquid Nitrogen Cooler"
 		"Water Coolant System"
+		"Cooling Ducts"
 		"Fuel Pod" 2
 		"Catalytic Ramscoop"
 		"Mass Expansion" 2
