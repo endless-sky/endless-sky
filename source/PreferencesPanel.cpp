@@ -40,6 +40,7 @@ namespace {
 	static const string EXPEND_AMMO = "Escorts expend ammo";
 	static const string FRUGAL_ESCORTS = "Escorts use ammo frugally";
 	static const string SETTINGS[] = {
+		"Always show keyboard shortcuts",
 		"Show CPU / GPU load",
 		"Render motion blur",
 		"",

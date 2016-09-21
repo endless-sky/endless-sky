@@ -316,7 +316,7 @@ int main(int argc, char *argv[])
 					// No need to do anything more!
 				}
 			}
-			Font::ShowUnderlines(SDL_GetModState() & KMOD_ALT);
+			Font::ShowUnderlines(SDL_GetModState() & KMOD_ALT || Preferences::Has("Always show keyboard shortcuts") );
 			
 			// Tell all the panels to step forward, then draw them.
 			((!isPaused && menuPanels.IsEmpty()) ? gamePanels : menuPanels).StepAll();
