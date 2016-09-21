@@ -230,7 +230,7 @@ string Politics::Fine(PlayerInfo &player, const Government *gov, int scan, const
 					std::string illegalCargoMessage = mission.IllegalCargoMessage();
 					if(!illegalCargoMessage.empty())
 					{
-						reason = ".\n";
+						reason = ".\n\t";
 						reason.append(illegalCargoMessage);
 					}
 					// Fail any missions with illegal cargo and "Stealth" set
