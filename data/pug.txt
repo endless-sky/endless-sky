@@ -193,10 +193,10 @@ effect "gridfire hit"
 effect "gridfire cloud"
 	sprite "effect/gridfire cloud"
 		"no repeat"
-		"frame rate" 1
-	"lifetime" 121
+		"frame rate" 2
+	"lifetime" 61
 	"random angle" 360
-	"random spin" 20
+	"random spin" 10
 	"velocity scale" .00001
 
 
@@ -419,8 +419,8 @@ ship "Pug Maboro"
 		"Jump Drive"
 		"Pug Lohmar Thruster"
 		"Pug Lohmar Steering"
-	engine -11 68
-	engine 11 68
+	engine -20 136
+	engine 20 136
 	gun -20 -150 "Pug Seeker"
 	gun 20 -150 "Pug Seeker"
 	gun -10 -150 "Pug Seeker"
@@ -651,6 +651,7 @@ mission "Ruin: Landing"
 
 mission "Pug Cease Hostilities"
 	landing
+	invisible
 	to offer
 		has "main plot completed"
 	on offer

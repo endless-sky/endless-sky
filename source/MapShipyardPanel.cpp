@@ -24,6 +24,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "System.h"
 
 #include <algorithm>
+#include <limits>
 #include <set>
 
 using namespace std;
@@ -114,8 +115,8 @@ void MapShipyardPanel::Compare(int index)
 
 double MapShipyardPanel::SystemValue(const System *system) const
 {
-	if(!system)
-		return 0.;
+	if(!system || !system->IsInhabited())
+		return numeric_limits<double>::quiet_NaN();
 	
 	double value = -.5;
 	for(const StellarObject &object : system->Objects())

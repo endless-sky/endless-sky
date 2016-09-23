@@ -175,6 +175,8 @@ void PlayerInfo::Load(const string &path)
 		}
 		else if(child.Token(0) == "launching")
 			shouldLaunch = true;
+		else if(child.Token(0) == "map coloring" && child.Size() >= 2)
+			mapColoring = child.Value(1);
 		else if(child.Token(0) == "changes")
 		{
 			for(const DataNode &grand : child)
@@ -224,12 +226,23 @@ void PlayerInfo::Load(const string &path)
 			}
 	}
 	
+	// As a result of game data changes (e.g. unloading a mod) it's possible for
+	// the player to end up in an undefined system or planet. In that case, move
+	// them to the starting system to avoid crashing.
+	if(planet && !system)
+		system = planet->GetSystem();
+	if(!planet || planet->Name().empty() || !system || system->Name().empty())
+	{
+		system = GameData::Start().GetSystem();
+		planet = GameData::Start().GetPlanet();
+	}
+	
 	// For any ship that did not store what system it is in or what planet it is
 	// on, place it with the player. (In practice, every ship ought to have
 	// specified its location, but this is to avoid null locations.)
 	for(shared_ptr<Ship> &ship : ships)
 	{
-		if(!ship->GetSystem())
+		if(!ship->GetSystem() || ship->GetSystem()->Name().empty())
 			ship->SetSystem(system);
 		if(ship->GetSystem() == system)
 			ship->SetPlanet(planet);
@@ -355,8 +368,26 @@ void PlayerInfo::ApplyChanges()
 // Apply the given set of changes to the game data.
 void PlayerInfo::AddChanges(list<DataNode> &changes)
 {
+	bool changedSystems = false;
 	for(const DataNode &change : changes)
+	{
+		changedSystems |= (change.Token(0) == "system");
+		changedSystems |= (change.Token(0) == "link");
+		changedSystems |= (change.Token(0) == "unlink");
 		GameData::Change(change);
+	}
+	if(changedSystems)
+	{
+		// Recalculate what systems have been seen.
+		GameData::UpdateNeighbors();
+		seen.clear();
+		for(const System *system : visitedSystems)
+		{
+			seen.insert(system);
+			for(const System *neighbor : system->Neighbors())
+				seen.insert(neighbor);
+		}
+	}
 	
 	// Only move the changes into my list if they are not already there.
 	if(&changes != &dataChanges)
@@ -698,6 +729,19 @@ void PlayerInfo::SellShip(const Ship *selected)
 				soldOutfits[it.first] += it.second;
 			
 			accounts.AddCredits(selected->Cost());
+			ships.erase(it);
+			flagship.reset();
+			return;
+		}
+}
+
+
+
+void PlayerInfo::DisownShip(const Ship *selected)
+{
+	for(auto it = ships.begin(); it != ships.end(); ++it)
+		if(it->get() == selected)
+		{
 			ships.erase(it);
 			flagship.reset();
 			return;
@@ -1856,6 +1900,9 @@ void PlayerInfo::Save(const string &path) const
 	if(shouldLaunch)
 		out.Write("launching");
 	
+	// Save the current setting for the map coloring;
+	out.Write("map coloring", mapColoring);
+	
 	// Save pending events, and changes that have happened due to past events.
 	for(const GameEvent &event : gameEvents)
 		event.Save(out);
@@ -1885,4 +1932,20 @@ void PlayerInfo::Save(const string &path) const
 	for(const Planet *planet : visitedPlanets)
 		if(!planet->TrueName().empty())
 			out.Write("visited planet", planet->TrueName());
+}
+
+
+
+// Get what coloring is currently selected in the map.
+int PlayerInfo::MapColoring() const
+{
+	return mapColoring;
+}
+
+
+
+// Set what the map is being colored by.
+void PlayerInfo::SetMapColoring(int index)
+{
+	mapColoring = index;
 }

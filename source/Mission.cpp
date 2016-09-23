@@ -103,8 +103,15 @@ void Mission::Load(const DataNode &node)
 			
 			for(const DataNode &grand : child)
 			{
-				if(grand.Token(0) == "illegal" && grand.Size() >= 2)
+				if(grand.Token(0) == "illegal" && grand.Size() == 2)
 					illegalCargoFine = grand.Value(1);
+				else if(grand.Token(0) == "illegal" && grand.Size() == 3)
+				{
+					illegalCargoFine = grand.Value(1);
+					illegalCargoMessage = grand.Token(2);
+				}
+				else if(grand.Token(0) == "stealth")
+					failIfDiscovered = true;
 				else
 					grand.PrintTrace("Skipping unrecognized attribute:");
 			}
@@ -142,6 +149,8 @@ void Mission::Load(const DataNode &node)
 		}
 		else if(child.Token(0) == "infiltrating")
 			hasFullClearance = false;
+		else if(child.Token(0) == "failed")
+			hasFailed = true;
 		else if(child.Token(0) == "to" && child.Size() >= 2)
 		{
 			if(child.Token(1) == "offer")
@@ -163,6 +172,11 @@ void Mission::Load(const DataNode &node)
 			destinationFilter.Load(child);
 		else if(child.Token(0) == "waypoint" && child.Size() >= 2)
 			waypoints.insert(GameData::Systems().Get(child.Token(1)));
+		else if(child.Token(0) == "waypoint")
+		{
+			waypointFilters.emplace_back();
+			waypointFilters.back().Load(child);
+		}
 		else if(child.Token(0) == "stopover" && child.Size() >= 2)
 			stopovers.insert(GameData::Planets().Get(child.Token(1)));
 		else if(child.Token(0) == "stopover")
@@ -232,7 +246,15 @@ void Mission::Save(DataWriter &out, const string &tag) const
 			{
 				out.BeginChild();
 				{
-					out.Write("illegal", illegalCargoFine);
+					out.Write("illegal", illegalCargoFine, illegalCargoMessage);
+				}
+				out.EndChild();
+			}
+			if(failIfDiscovered)
+			{
+				out.BeginChild();
+				{
+					out.Write("stealth");
 				}
 				out.EndChild();
 			}
@@ -262,6 +284,8 @@ void Mission::Save(DataWriter &out, const string &tag) const
 		}
 		if(!hasFullClearance)
 			out.Write("infiltrating");
+		if(hasFailed)
+			out.Write("failed");
 		if(repeat != 1)
 			out.Write("repeat", repeat);
 		
@@ -404,6 +428,20 @@ int Mission::CargoSize() const
 int Mission::IllegalCargoFine() const
 {
 	return illegalCargoFine;
+}
+
+
+
+std::string Mission::IllegalCargoMessage() const
+{
+	return illegalCargoMessage;
+}
+
+
+
+bool Mission::FailIfDiscovered() const
+{
+	return failIfDiscovered;
 }
 
 
@@ -779,6 +817,14 @@ Mission Mission::Instantiate(const PlayerInfo &player) const
 	auto it = result.waypoints.find(player.GetSystem());
 	if(it != result.waypoints.end())
 		result.waypoints.erase(it);
+	// Handle waypoint systems that are chosen randomly.
+	for(const LocationFilter &filter : waypointFilters)
+	{
+		const System *system = PickSystem(filter, player);
+		if(!system)
+			return result;
+		result.waypoints.insert(system);
+	}
 	
 	// Copy the stopover planet list, and populate the list based on the filters
 	// that were given.
@@ -868,10 +914,36 @@ Mission Mission::Instantiate(const PlayerInfo &player) const
 			result.passengers = passengers;
 	}
 	result.illegalCargoFine = illegalCargoFine;
+	result.illegalCargoMessage = illegalCargoMessage;
+	result.failIfDiscovered = failIfDiscovered;
 	
-	// How far is it to the destination?
-	DistanceMap distance(player.GetSystem());
-	int jumps = distance.Distance(result.destination->GetSystem());
+	// Estimate how far the player will have to travel to visit all the waypoints
+	// and stopovers and then to land on the destination planet. Rather than a
+	// full traveling salesman path, just calculate a greedy approximation.
+	const System *source = player.GetSystem();
+	list<const System *> destinations;
+	for(const System *system : result.waypoints)
+		destinations.push_back(system);
+	for(const Planet *planet : result.stopovers)
+		destinations.push_back(planet->GetSystem());
+	
+	int jumps = 0;
+	while(!destinations.empty())
+	{
+		// Find the closest destination to this location.
+		DistanceMap distance(source);
+		auto it = destinations.begin();
+		auto bestIt = it;
+		for(++it; it != destinations.end(); ++it)
+			if(distance.Distance(*it) < distance.Distance(*bestIt))
+				bestIt = it;
+		
+		source = *bestIt;
+		destinations.erase(bestIt);
+		jumps += distance.Distance(*bestIt);
+	}
+	DistanceMap distance(source);
+	jumps += distance.Distance(result.destination->GetSystem());
 	int payload = result.cargoSize + 10 * result.passengers;
 	
 	// Set the deadline, if requested.
@@ -950,6 +1022,23 @@ void Mission::Enter(const System *system, PlayerInfo &player, UI *ui)
 		eit->second.Do(player, ui);
 		didEnter.insert(eit->first);
 	}
+}
+
+
+
+const System *Mission::PickSystem(const LocationFilter &filter, const PlayerInfo &player) const
+{
+	// Find a planet that satisfies the filter.
+	vector<const System *> options;
+	for(const auto &it : GameData::Systems())
+	{
+		// Skip entries with incomplete data.
+		if(it.second.Name().empty())
+			continue;
+		if(filter.Matches(&it.second, player.GetSystem()))
+			options.push_back(&it.second);
+	}
+	return options.empty() ? nullptr : options[Random::Int(options.size())];
 }
 
 

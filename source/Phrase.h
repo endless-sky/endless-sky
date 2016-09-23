@@ -29,19 +29,18 @@ public:
 	
 	
 private:
-	bool ReferencesPhrase(const std::string &name) const;
+	bool ReferencesPhrase(const Phrase *phrase) const;
 	
 	
 private:
 	class Part {
 	public:
 		std::vector<std::string> words;
-		const Phrase *phrase = nullptr;
+		std::vector<const Phrase *> phrases;
 	};
 	
 	
 private:
-	std::string name;
 	std::vector<std::vector<Part>> parts;
 };
 

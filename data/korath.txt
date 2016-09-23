@@ -128,46 +128,66 @@ phrase "korath"
 		"far"
 
 phrase "kor sestor"
-	phrase "digit"
-	phrase "digit"
+	phrase
+		"digit"
+	phrase
+		"digit"
 	word
 		"-"
-	phrase "digit"
-	phrase "digit"
-	phrase "digit"
+	phrase
+		"digit"
+	phrase
+		"digit"
+	phrase
+		"digit"
 	word
 		"."
-	phrase "digit"
+	phrase
+		"digit"
 
 phrase "kor sestor fighter"
-	phrase "digit"
-	phrase "digit"
-	phrase "digit"
+	phrase
+		"digit"
+	phrase
+		"digit"
+	phrase
+		"digit"
 	word
 		" "
-	phrase "digit"
+	phrase
+		"digit"
 	word
 		"-"
-	phrase "digit"
-	phrase "digit"
+	phrase
+		"digit"
+	phrase
+		"digit"
 	word
 		"."
-	phrase "digit"
+	phrase
+		"digit"
 
 phrase "kor mereti"
-	phrase "digit"
-	phrase "digit"
+	phrase
+		"digit"
+	phrase
+		"digit"
 	word
 		":"
-	phrase "digit"
-	phrase "digit"
+	phrase
+		"digit"
+	phrase
+		"digit"
 	word
 		":"
-	phrase "digit"
-	phrase "digit"
+	phrase
+		"digit"
+	phrase
+		"digit"
 	word
 		":"
-	phrase "digit"
+	phrase
+		"digit"
 
 
 fleet "Korath Raid"

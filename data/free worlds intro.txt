@@ -613,7 +613,7 @@ mission "FW Katya 1C"
 				goto search
 			
 			label denial
-			`	He frowns. "Frisk him," he says. One of the guards pats you down and takes your gun and your pocketknife. "Have a seat," says the officer. They force you to sit on the ground, and one of the guards points a very large gun at you.`
+			`	He frowns. "We're going to have to frisk you," he says. One of the guards pats you down and takes your gun and your pocketknife. "Have a seat," says the officer. They force you to sit on the ground, and one of the guards points a very large gun at you.`
 				goto search
 			
 			label search

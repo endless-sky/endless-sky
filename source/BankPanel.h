@@ -50,7 +50,9 @@ private:
 	// Loan amount you're prequalified for.
 	int64_t qualify;
 	int selectedRow = 0;
-	int rowCount = 0;
+	
+	bool mergedMortgages = false;
+	int mortgageRows = 0;
 };
 
 

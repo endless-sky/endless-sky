@@ -57,6 +57,9 @@ public:
 	
 	// Check if a point is inside this rectangle.
 	bool Contains(const Point &point) const;
+	// Check if the given rectangle is inside this one. If one of its edge is
+	// touching the edge of this one, that still counts.
+	bool Contains(const Rectangle &other) const;
 	
 	
 private:

@@ -20,6 +20,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <vector>
 
 class Font;
+class Rectangle;
 
 
 
@@ -89,6 +90,7 @@ public:
 	// what screen region constitutes a mouse click on this particular row.
 	Point GetCenterPoint() const;
 	Point GetRowSize() const;
+	Rectangle GetRowBounds() const;
 	
 	
 private:

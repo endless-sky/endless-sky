@@ -475,7 +475,7 @@ void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &player)
 		if((isPlayerEscort && holdPosition) || mustRecall || isStranded)
 		{
 			if(it->Velocity().Length() > .001 || !target)
-				Stop(*it, command, true);
+				Stop(*it, command);
 			else
 				command.SetTurn(TurnToward(*it, TargetAim(*it)));
 		}
@@ -672,7 +672,8 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship, const list<shared_ptr<Ship>> &
 	
 	// Run away if your target is not disabled and you are badly damaged.
 	if(!isDisabled && target && (person.IsFleeing() || 
-			(.5 * ship.Shields() + ship.Hull() < 1. && !person.IsHeroic() && !parentIsEnemy)))
+			(.5 * ship.Shields() + ship.Hull() < 1.
+				&& !person.IsHeroic() && !person.IsStaying() && !parentIsEnemy)))
 	{
 		// Make sure the ship has somewhere to flee to.
 		const System *system = ship.GetSystem();
@@ -889,7 +890,7 @@ void AI::MoveEscort(Ship &ship, Command &command) const
 			command |= Command::LAND;
 	}
 	else if(parent.Commands().Has(Command::BOARD) && parent.GetTargetShip().get() == &ship)
-		Stop(ship, command);
+		Stop(ship, command, .2);
 	else if(parent.Commands().Has(Command::JUMP) && parent.GetTargetSystem() && !isStaying)
 	{
 		DistanceMap distance(ship, parent.GetTargetSystem());
@@ -1007,7 +1008,7 @@ bool AI::MoveTo(Ship &ship, Command &command, const Point &target, double radius
 
 
 
-bool AI::Stop(Ship &ship, Command &command, bool complete)
+bool AI::Stop(Ship &ship, Command &command, double maxSpeed)
 {
 	const Point &velocity = ship.Velocity();
 	const Angle &angle = ship.Facing();
@@ -1015,9 +1016,9 @@ bool AI::Stop(Ship &ship, Command &command, bool complete)
 	double speed = velocity.Length();
 	
 	// If asked for a complete stop, the ship needs to be going much slower.
-	if(speed <= (complete ? .001 : .2))
+	if(speed <= (maxSpeed ? maxSpeed : .001))
 		return true;
-	if(complete)
+	if(!maxSpeed)
 		command |= Command::STOP;
 	
 	// If you're moving slow enough that one frame of acceleration could bring
@@ -1397,17 +1398,23 @@ void AI::DoCloak(Ship &ship, Command &command, const list<shared_ptr<Ship>> &shi
 		static const double MAX_RANGE = 10000.;
 		double nearestEnemy = MAX_RANGE;
 		for(const auto &other : ships)
-			if(other->GetSystem() == ship.GetSystem() && other->IsTargetable() &&
-					other->GetGovernment()->IsEnemy(ship.GetGovernment()))
+			if(other->GetSystem() == ship.GetSystem() && other->IsTargetable()
+					&& other->GetGovernment()->IsEnemy(ship.GetGovernment())
+					&& !other->IsDisabled())
 				nearestEnemy = min(nearestEnemy,
 					ship.Position().Distance(other->Position()));
 		
-		if(ship.Hull() + ship.Shields() < 1. && nearestEnemy < 2000.)
+		// If this ship has started cloaking, it must get at least 40% repaired
+		// or 40% farther away before it begins decloaking again.
+		double hysteresis = ship.Cloaking() ? 1.4 : 1.;
+		double cloakIsFree = !ship.Attributes().Get("cloaking fuel");
+		if(ship.Hull() + .5 * ship.Shields() < hysteresis
+				&& (cloakIsFree || nearestEnemy < 2000. * hysteresis))
 			command |= Command::CLOAK;
 		
 		// Also cloak if there are no enemies nearby and cloaking does
 		// not cost you fuel.
-		if(nearestEnemy == MAX_RANGE && !ship.Attributes().Get("cloaking fuel"))
+		if(nearestEnemy == MAX_RANGE && cloakIsFree && !ship.GetTargetShip())
 			command |= Command::CLOAK;
 	}
 }
