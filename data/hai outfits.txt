@@ -85,7 +85,7 @@ outfit "Railgun Slug"
 	thumbnail "outfit/railslug"
 	"mass" 0.02
 	"railgun slug capacity" -1
-	description "These railgun slugs include capacitors that discharge energy on impact, dealing a small amount of hull damage even when the target's shields are functioning. Once the shield are down, they can punch crippling holes in the hull."
+	description "These railgun slugs include capacitors that discharge energy on impact, dealing a small amount of hull damage even when the target's shields are functioning. Once the shields are down, they can punch crippling holes in the hull."
 
 outfit "Railgun"
 	category "Secondary Weapons"
