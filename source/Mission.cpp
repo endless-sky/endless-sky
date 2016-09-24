@@ -103,8 +103,15 @@ void Mission::Load(const DataNode &node)
 			
 			for(const DataNode &grand : child)
 			{
-				if(grand.Token(0) == "illegal" && grand.Size() >= 2)
+				if(grand.Token(0) == "illegal" && grand.Size() == 2)
 					illegalCargoFine = grand.Value(1);
+				else if(grand.Token(0) == "illegal" && grand.Size() == 3)
+				{
+					illegalCargoFine = grand.Value(1);
+					illegalCargoMessage = grand.Token(2);
+				}
+				else if(grand.Token(0) == "stealth")
+					failIfDiscovered = true;
 				else
 					grand.PrintTrace("Skipping unrecognized attribute:");
 			}
@@ -142,6 +149,8 @@ void Mission::Load(const DataNode &node)
 		}
 		else if(child.Token(0) == "infiltrating")
 			hasFullClearance = false;
+		else if(child.Token(0) == "failed")
+			hasFailed = true;
 		else if(child.Token(0) == "to" && child.Size() >= 2)
 		{
 			if(child.Token(1) == "offer")
@@ -237,7 +246,15 @@ void Mission::Save(DataWriter &out, const string &tag) const
 			{
 				out.BeginChild();
 				{
-					out.Write("illegal", illegalCargoFine);
+					out.Write("illegal", illegalCargoFine, illegalCargoMessage);
+				}
+				out.EndChild();
+			}
+			if(failIfDiscovered)
+			{
+				out.BeginChild();
+				{
+					out.Write("stealth");
 				}
 				out.EndChild();
 			}
@@ -267,6 +284,8 @@ void Mission::Save(DataWriter &out, const string &tag) const
 		}
 		if(!hasFullClearance)
 			out.Write("infiltrating");
+		if(hasFailed)
+			out.Write("failed");
 		if(repeat != 1)
 			out.Write("repeat", repeat);
 		
@@ -409,6 +428,20 @@ int Mission::CargoSize() const
 int Mission::IllegalCargoFine() const
 {
 	return illegalCargoFine;
+}
+
+
+
+std::string Mission::IllegalCargoMessage() const
+{
+	return illegalCargoMessage;
+}
+
+
+
+bool Mission::FailIfDiscovered() const
+{
+	return failIfDiscovered;
 }
 
 
@@ -881,15 +914,17 @@ Mission Mission::Instantiate(const PlayerInfo &player) const
 			result.passengers = passengers;
 	}
 	result.illegalCargoFine = illegalCargoFine;
+	result.illegalCargoMessage = illegalCargoMessage;
+	result.failIfDiscovered = failIfDiscovered;
 	
 	// Estimate how far the player will have to travel to visit all the waypoints
 	// and stopovers and then to land on the destination planet. Rather than a
 	// full traveling salesman path, just calculate a greedy approximation.
 	const System *source = player.GetSystem();
 	list<const System *> destinations;
-	for(const System *system : waypoints)
+	for(const System *system : result.waypoints)
 		destinations.push_back(system);
-	for(const Planet *planet : stopovers)
+	for(const Planet *planet : result.stopovers)
 		destinations.push_back(planet->GetSystem());
 	
 	int jumps = 0;

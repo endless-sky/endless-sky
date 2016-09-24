@@ -367,7 +367,7 @@ ship "Behemoth"
 	sprite "ship/behemoth"
 	attributes
 		category "Heavy Freighter"
-		"cost" 7800000
+		"cost" 10800000
 		"shields" 7600
 		"hull" 6300
 		"required crew" 12
@@ -3520,7 +3520,7 @@ ship "Mule"
 	sprite "ship/mule"
 	attributes
 		category "Medium Warship"
-		"cost" 2580000
+		"cost" 4580000
 		"shields" 5400
 		"hull" 4400
 		"required crew" 6
