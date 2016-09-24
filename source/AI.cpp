@@ -596,6 +596,7 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship, const list<shared_ptr<Ship>> &
 		(minRange > 1000.) ? maxRange * 1.5 : 4000.;
 	const System *system = ship.GetSystem();
 	bool isDisabled = false;
+	bool hasNemesis = false;
 	// Figure out how strong this ship is.
 	int64_t maxStrength = 0;
 	auto strengthIt = shipStrength.find(&ship);
@@ -604,7 +605,9 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship, const list<shared_ptr<Ship>> &
 	for(const auto &it : ships)
 		if(it->GetSystem() == system && it->IsTargetable() && gov->IsEnemy(it->GetGovernment()))
 		{
-			if(person.IsNemesis() && !it->GetGovernment()->IsPlayer())
+			// If this is a "nemesis" ship and it has found one of the player's
+			// ships to target, it will not go after anything else.
+			if(hasNemesis && !it->GetGovernment()->IsPlayer())
 				continue;
 			
 			// Calculate what the range will be a second from now, so that ships
@@ -641,11 +644,13 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship, const list<shared_ptr<Ship>> &
 			}
 			// Focus on nearly dead ships.
 			range += 500. * (it->Shields() + it->Hull());
-			if(range < closest)
+			bool isPotentialNemesis = (person.IsNemesis() && it->GetGovernment()->IsPlayer());
+			if((isPotentialNemesis && !hasNemesis) || range < closest)
 			{
 				closest = range;
 				target = it;
 				isDisabled = it->IsDisabled();
+				hasNemesis = isPotentialNemesis;
 			}
 		}
 	
