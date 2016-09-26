@@ -871,14 +871,14 @@ ship "Corvette"
 	attributes
 		category "Medium Warship"
 		"cost" 4400000
-		"shields" 6600
+		"shields" 6500
 		"hull" 1000
 		"required crew" 8
 		"bunks" 32
 		"mass" 150
 		"drag" 3.2
 		"heat dissipation" .7
-		"fuel capacity" 700
+		"fuel capacity" 600
 		"cargo space" 40
 		"outfit space" 420
 		"weapon capacity" 150
