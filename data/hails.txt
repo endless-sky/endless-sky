@@ -8,244 +8,376 @@
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
-phrase "friendly civilian"
+phrase "band"
 	word
-		"You should watch the video of "
-		"Just watched the video of "
-		"I'm listening to "
-		"I just got tickets to see "
-		"I just heard "
-	phrase
-		"band"
+		"Medium Confidence"
+		"Catastrophe Aftermath"
+		"Swift of the Sponge"
+		"Shrapnel Vacuum"
+		"Daniel Suburbia"
+		"Volume Maneuver"
+		"Galactic Grouch"
+		"Greed"
+		"Hacker Headache"
+		"Diffusion Four"
+		"There Might Be Riots"
+		"Nuclear Martini"
+		"Illusion of Normalcy"
+		"Lost and Disturbed"
+		"Shockkkkkkk"
+		"Broken Ones"
+		"Born to Ride"
+		"The Bandits"
+		"The Untouchables"
+		"The Gunners"
+		"Five To One"
+		"Megalodon"
+		"Meathooks"
+		"Weird Over Easy"
+		"Axe Handle Conformity"
+		"Laminated Fish"
+		"Bad Food and Blasphemy"
+		"Clock Me Something Awful"
+		"Beacon Of Correct Procedure"
+		"Flammable People"
+		"Zanzibar Must Die"
+		"Immunity To Death"
+		"Fascist Blob"
+		"Apologetic Apocalypse"
+		"Mediocre Generica"
+		"Cryptic in a Nifty Way"
+		"Excessive Friction"
+		"Scratching Without Permission"
+		"Tingle of Terror"
+		"Rusty Muffins"
+		"Comrades on Toast"
+		"Hodgepodge of Progress"
+		"Hellish Wrongness"
+		"Radioactive Bishop"
+		"Unlawful Possession"
+		"Needle Injector"
+		"Trail of Bodies"
+		"High Voltage"
+		"War of Roses"
+		"North of Heaven"
+		"On Target"
+		"Bad Medicine"
+		"The Vampires"
+		"The Screaming Eagles"
+		"Violent Surprise"
+
+phrase "song"
 	word
-		"is now my favourite song!"
-		"is stuck in my head... again!"
-		"is pure genius!"
-		"was awesome!"
-		"plays in my bunk on repeat!"
-		"is playing full blast throughout my ship!"
+		`"`
+	word
+		"My Mojo"
+		"Blue Illusion"
+		"Foreign Beauty"
+		"God is Dead"
+		"Abstraction is the Answer"
+		"Outrageous Activism"
+		"Cheap Entertainment"
+		"The Devil's Moon"
+		"Roaring Thunder"
+		"Revenge Makes You Cry"
+		"Steam Ears"
+		"Organic Revolt"
+		"Nature of the Beast"
+		"Instant Devastation"
+		"Weakness and All That"
+		"Trouble Will Return"
+		"No Regrets"
+		"Golden Smart Mouth"
+		"The Girls of Pain"
+		"Burning Pain"
+		"Another Wasted Day"
+		"Wisdom in Another World"
+		"The Only Destiny"
+		"Into the Sun"
+		"Fury of My Ruggedness"
+		"Expensive Massacre"
+		"Can't Go On"
+		"Fear Machine"
+		"Always a Prisoner"
+		"Wrapped in You"
+		"The Day They Came"
+		"The Way of the Warrior"
+		"Loyalty or the Law"
+		"Heaven All Over You"
+		"Nature of the Heart"
+		"If You Could"
+		"Don't Sink Me"
+		"Parade of Broken Men"
+		"Holy Rollers"
+		"Loose Parade"
+		"The Average Girl"
+		"The Average Boy"
+		"The Average Ones"
+		"Respect for the Dead"
+		"Wolves in the Nursery"
+		"Visions of Mordecai"
+		"Foreign Doubt"
+		"Freedom Unlocked"
+		"Waiting for some Kindness"
+		"Jet Fueled Woman"
+		"Your Love is a Hurricane"
+		"Sin Heals a Broken Heart"
+		"Prisoner of the Heart"
+		"Talent of the Backseat"
+		"27 Megatons of Pain"
+		"Nobody Gets out of Here Alive"
+		"Beat Orgy"
+		"Memories of Earth"
+		"You and Me"
+		"Throw Me in the Dungeon"
+		"Fairground Sinner"
+		"Eternal Madman"
+		"Sword of Steel"
+		"High Caliber"
+		"Eaten Alive"
+		"Room for Debate"
+		"Lovely Loneliness"
+		"Check the Time"
+		"Guilty Culture"
+		"Mighty Monday"
+		"Bang you're Dead"
+		"Same Every Day"
+		"Nietzsche Killed My Father"
+		"Looking Through the Skylight"
+		"There Are No Words"
+		"Modern Cop"
+		"We Could Just Die"
+		"For or Against"
+		"Still Intact"
+		"Everybody Needs at Least One Shadow"
+		"So Much For The Showroom"
+		"Realism Won't Stop Me"
+		"Creativity"
+		"Too Much Stimulation"
+		"The Great Flood"
+		"Blademaster"
+		"Persistence of the Sun"
+		"Warped Memories"
+		"Box of Warmth"
+		"Vortex"
+		"Not Enough Firepower"
+		"Sober School"
+		"Golden Rainbow"
+		"Killing You with Mercy"
+		"Selfish Suicide"
+		"Sad Archie"
+		"There's no Reason"
+		"Into an Early Grave"
+		"Gluttony"
+		"Save the Robots"
+		"You Never Loved Me"
+		"Blinded by Science"
+		"Let's Play War"
+		"World of Silence"
+		"Indiscriminate"
+		"My Sin"
+		"Love Nugget"
+		"Sitting Around Dying of Hunger"
+		"Militantly Sleepy"
+		"Suffering From Death"
+		"The Ballad of Snappy and Delilah"
+		"No Need for Saturday"
+		"The Bath Gnomes Will Get You"
+		"Rockets in the Gazebo"
+		"Good Christ, All the Bodies in the Sahara"
+		"Pepper Spray the Mind-Controlled Loser"
+		"Too Confused to Commit a Crime"
+		"As Long as the Night is Black"
+		"My Brokenness"
+		"All Clothes, no Socks"
+		"Holding Santa Hostage"
+		"Feminism for 99 Cents"
+		"Fortune Cookies Lie"
+		"Babies And Napalm"
+		"Infinity in 28 Steps"
+		"The Lump Who Loves Me"
+		"Veneer of Chickenness"
+		"In the First Degree"
+		"Too Hot Can't Stop"
+		"Slipping Away"
+		"Ode to Spring"
+		"Look Around You"
+		"Look on My Works And Despair"
+		"Rigellian Surprise"
+		"Corrupting You"
+	word
+		`"`
 
 phrase "musical venue"
 	word
-		"playing a concert "
-		"doing a show "
-		"in concert "
-		"at their concert "
-		"playing a benefit concert "
-		"live "
-		"on tour "
-		"at a live concert "
-		"playing a gig "
-		"live in concert "
+		"playing a concert"
+		"doing a show"
+		"in concert"
+		"at their concert"
+		"playing a benefit concert"
+		"live"
+		"on tour"
+		"at a live concert"
+		"playing a gig"
+		"live in concert"
 	word
-		"at Tarazed stadium! "
-		"at the amphitheater on Skymoot! "
-		"at a concert hall in New Sydney! "
-		"in a night club on Splashdown! "
-		"at the Syndicated Systems Velodrome! "
-		"at Betelgeuse Stadium! "
-		"on Hestia! "
-		"at Lionheart Arena! "
-		"at the Grange on Heartland! "
-		"at a resort on Vail! "
-		"at Canyonland Park! "
+		" "
+	word
+		"at Tarazed stadium!"
+		"at the amphitheater on Skymoot!"
+		"at a concert hall in New Sydney!"
+		"in a nightclub on Splashdown!"
+		"at the Syndicated Systems Velodrome!"
+		"at Betelgeuse Stadium!"
+		"on Hestia!"
+		"on Earth!"
+		"at Lionheart Arena!"
+		"at the Grange on Heartland!"
+		"at a resort on Vail!"
+		"at Canyonland Park!"
 
-phrase "band"
+
+phrase "friendly civilian"
 	word
-		`"Medium Confidence" `
+		"You should watch the video of"
+		"Tune your feed to the video of"
+		"Just watched the video of"
+		"I'm listening to"
+		"I just got tickets to see"
+		"I just heard"
+		"I just saw"
+	word
+		" "
+	phrase
+		"band"
+	word
+		" "
 	phrase
 		"musical venue"
-	word
-		"The song "
-		"Their song "
-	word
-		`"Regret Ride" `
-		`"My Wooden Mojo" `
-		`"Blue Illusion" `
-		`"Foreign Beauty" `
-		`"Introvert Day" `
 
-phrase "band"
+phrase "friendly civilian"
 	word
-		`"Confined Brain Of The Liberal Dork" `
+		"Ugh, I can't believe"
+		"I don't know why"
+		"It's a mystery why"
+		"I have no idea why"
+		"It's burning me up that"
+		"Nobody can explain to me why"
+	word
+		" "
+	word
+		"the kids are"
+		"people are"
+		"anyone is"
+		"everyone's"
+		"my crew is"
+		"some of my friends are"
+	word
+		" still"
+		""
+	word
+		" "
+	word
+		"following"
+		"listening to"
+		"paying attention to"
+		"giving their money to"
+		"paying to listen to"
+		"so in love with"
+	word
+		" "
+		" that new group "
+		" that new band "
+		" those hacks "
 	phrase
-		"musical venue"
+		"band"
 	word
-		"The song "
-		"Their song "
+		". "
 	word
-		`"Dude, Where's My Bible?" `
-		`"Re-Inventing Rythmn" `
-		`"Abstraction Is the Answer" `
-		`"Outrageous Activism" `
-		`"Cheap Entertainment" `
+		"Their music"
+	word
+		" "
+	word
+		"is awful"
+		"is terrible"
+		"is garbage"
+		"is such trash"
+		"is so irritating"
+		"is so bad"
+		"is junk"
+		"is filthy"
+		"is offensive"
+		"is an embarrassment"
+		"is ear-splitting"
+		"is completely derivative"
+		"is totally unoriginal"
+		"is nauseating"
+		"is more like random noise"
+		"is an affront to good taste"
+		"gives its whole genre a bad name"
+		"is a tool of the Devil"
+		"goes against common decency"
+		"ought to be banned"
+		"hurts my ears"
+	word
+		"!"
 
-phrase "band"
-	word
-		`"Catastrophe Aftermath" `
+phrase "friendly civilian"
 	phrase
-		"musical venue"
+		"song"
 	word
-		"The song "
-		"Their song "
+		" by "
+	phrase
+		"band"
 	word
-		`"The Devil's Car" `
-		`"Selfish Thunder" `
-		`"Revenge Makes You Cry" `
-		`"Nature Of The Revolt" `
-		`"Instant Devastation" `
+		" "
+	word
+		"is my kind of music"
+		"is now my favorite song"
+		"is stuck in my head... again"
+		"is pure genius"
+		"is awesome"
+		"plays on repeat in my bunk"
+		"is playing full blast throughout my ship"
+		"is the hit of the year"
+		"is the best thing going"
+		"is the best thing playing right now"
+	word
+		"!"
+	word
+		""
+		" Have you heard it yet?"
+		" You gotta hear it!"
+		" I was into them before they were popular."
+		" Check it out!"
+		" Check 'em out!"
+		" I can't wait to see them live!"
 
-phrase "band"
+phrase "friendly civilian"
 	word
-		`"Swift Of The Sponge" `
-	phrase
-		"musical venue"
+		"Hi there"
+		"Hello"
+		"Good day"
+		"Greetings"
+		"Salutations"
+		"Nice to meet you"
+		"Nice to see you again"
+		"All clear"
+		"Affirmative"
+		"I read you"
+		"On screen"
+		"See you later"
+		"See you round the 'verse"
+		"Stay safe"
 	word
-		"The song "
-		"Their song "
+		", "
 	word
-		`"Weakness And All That" `
-		`"Trouble Will Return" `
-		`"Golden Smart Mouth" `
-		`"Burning Pain" `
-		`"Wisdom In Another World" `
-
-phrase "band"
+		"fellow captain"
+		"captain"
+		"friend"
 	word
-		`"Shrapnel Vacuum" `
-	phrase
-		"musical venue"
-	word
-		"The song "
-		"Their song "
-	word
-		`"Fast Destiny" `
-		`"Fury Of My Ruggedness" `
-		`"Expensive Massacre" `
-		`"Fear Machine" `
-		`"Prisoner Of Indifference" `
-
-phrase "band"
-	word
-		`"Daniel Suburbia" `
-	phrase
-		"musical venue"
-	word
-		"The song "
-		"Their song "
-	word
-		`"Nothing To Do With War" `
-		`"Loyalty Saved Me" `
-		`"Heaven All Over You" `
-		`"Nature Of The Heart" `
-		`"Holy Adventure" `
-
-phrase "band"
-	word
-		`"Volume Maneuver" `
-	phrase
-		"musical venue"
-	word
-		"The song "
-		"Their song "
-	word
-		`"Loose Parade" `
-		`"The Average Girl" `
-		`"Foreign Doubt" `
-		`"Freedom Unlocked" `
-		`"Waiting For Kindness" `
-
-phrase "band"
-	word
-		`"Love Nugget" `
-	phrase
-		"musical venue"
-	word
-		"The song "
-		"Their song "
-	word
-		`"Jet Fueled Woman" `
-		`"Sin Heals A Broken Heart" `
-		`"Talent Of The Backseat" `
-		`"Beat Orgy" `
-		`"Fairground Sinner" `
-
-phrase "band"
-	word
-		`"Under-paid Bandit" `
-	phrase
-		"musical venue"
-	word
-		"The song "
-		"Their song "
-	word
-		`"Eternal Madman" `
-		`"Lovely Loneliness" `
-		`"Check The Time" `
-		`"Guilty Culture" `
-		`"Modern Cop" `
-
-phrase "band"
-	word
-		`"Galactic Grouch And The Greed" `
-	phrase
-		"musical venue"
-	word
-		"The song "
-		"Their song "
-	word
-		`"Everybody Needs At Least One Shadow" `
-		`"So Much For The Showroom" `
-		`"Realism Wont Stop Me" `
-		`"Creativity Is Right Here" `
-		`"Quality... Ain't It Cool?" `
-
-phrase "band"
-	word
-		`"Headache Of The Hacker" `
-	phrase
-		"musical venue"
-	word
-		"The song "
-		"Their song "
-	word
-		`"Ravening Hordes Of Steam Users" `
-		`"Got Any Synchronisation" `
-		`"My Wooden PC" `
-		`"Lightning Is Better Than Floods" `
-		`"Persistance Of The Sun" `
-
-phrase "band"
-	word
-		`"Diffusion Four" `
-	phrase
-		"musical venue"
-	word
-		"The song "
-		"Their song "
-	word
-		`"Friendship Was Just The Start" `
-		`"Box Of Warmth" `
-		`"Vortex Of Optimism" `
-		`"Golden Rainbow" `
-		`"Mercy Is The Best" `
-
-phrase "band"
-	word
-		`"There Might Be Riots" `
-	phrase
-		"musical venue"
-	word
-		"The song "
-		"Their song "
-	word
-		`"Sad Archie" `
-		`"Gluttony" `
-		`"Save The Nanobots" `
-		`"Blinded By Science" `
-		`"Let's Play War" `
-		`"World Of Silence" `
-		`"Indiscriminate" `
+		"."
+		"!"
 
 phrase "friendly civilian"
 	word
@@ -290,6 +422,7 @@ phrase "friendly civilian"
 	word
 		" "
 	word
+		"a"
 		"an independent"
 		"a free"
 	word
@@ -307,34 +440,82 @@ phrase "friendly civilian"
 		"is harder than it looks"
 		"is almost impossible"
 		"is so simple a child could do it"
+		"isn't too bad as long as you avoid going into debt"
 		"is hard at first, but it gets a lot easier over time"
-		"is easiest if you buy a ship with a lot of bunks for passengers"
-		"is easiest if you buy a ship with a big cargo bay"
-		"is easiest if you fly a ship that isn't totally defenseless against pirates"
-		"is easiest if you stick to the safe parts of the galaxy"
-		"is easiest if you take a lot of risks at the beginning so you can afford a better ship quickly"
 		"offers the best life in the galaxy"
 		"is the biggest thrill you'll ever know"
 		"is the only way to control your own destiny"
+		"is the only way to be truly free in this day and age"
+		"is the only path to genuine freedom"
+		"tops everything"
+		"is a challenge, but ultimately rewarding"
+		"gives you the opportunity to see the whole galaxy"
 	word
 		"."
 		"!"
 
 phrase "friendly civilian"
 	word
-		"The best way to be safe from pirates is to"
+		"The best way to achieve success is to"
+		"Here's a word of advice:"
+		"A word of advice:"
+		"Take my advice:"
+		"Here's a secret:
+		"The secret to success is to"
+		"Want my opinion? You should"
+		"Be like the best ship captains and"
+		"Don't forget to"
 	word
 		" "
 	word
-		"have a fast ship than can outrun them"
+		"pay off your mortgage as quickly as possible"
+		"make extra payments on your mortgage whenever you can"
+		"have a fast ship than can outrun the pirates"
+		"buy a ship with a lot of bunks for passengers"
+		"buy a ship with a big cargo bay"
+		"fly a ship that isn't totally defenseless against pirates"
+		"stick to the safe parts of the galaxy"
+		"take a lot of risks at the beginning so you can afford a better ship ASAP"
+		"keep your ship running cool to confuse Meteor missiles"
+		"invest in a bigger reactor and downsize your batteries"
+		"always install a ramscoop"
+		"always install an afterburner"
+		"double up your shield generators so nothing gets through"
+		"prefer passenger jobs to cargo jobs; they pay better"
+		"say no to drugs"
+		"avoid carrying illegal cargo"
+		"just have fun and don't sweat it"
+	word
+		"."
+		"!"
+
+phrase "friendly civilian"
+	word
+		"The best"
+		"The preferred"
+		"A good"
+		"A sensible"
+	word
+		" way to "
+	word
+		"be safe from pirates"
+		"stay safe from pirates"
+		"keep the pirates at bay"
+		"avoid pirates"
+	word
+		" is to "
+	word
 		"stay close to the Paradise worlds and the Deep"
+		"avoid the Dirt Belt systems"
+		"stay far away from systems they control near the edges of the galaxy"
 		"stick to systems patrolled by the Navy"
 		"get so rich that you can just buy them off"
-		"equip particle cannons and blast them to bits before they can get within close range"
+		"outfight the small ones, and outrun the big ones"
+		"blast them to bits with particle cannons before they can get within close range"
 		"put a pair of heavy laser turrets on each of your cargo ships"
 		"blow them out of the sky with a barrage of missiles before they can get anywhere near you"
 		"buy a light warship that still has decent passenger capacity"
-		"use a multipurpose ship that has room for cargo, shields, and heavy weapons"
+		"fly a multipurpose ship that has room for cargo, shields, and heavy weapons"
 		"equip anti-missile turrets so they can't get you with missiles, and then you can run away"
 		"have a fleet with interceptors to tie them up while the cargo ships can warp to safety"
 	word
@@ -414,7 +595,6 @@ phrase "friendly civilian"
 		"!"
 		"."
 		". You shoulda seen it!"
-		", but I lost a bunch of money betting on the wrong one!"
 		". I wish my feed was clearer."
 
 phrase "friendly civilian"
@@ -442,15 +622,19 @@ phrase "friendly civilian"
 		"secondhand socks"
 		"compost"
 		"fish heads"
+		"rotten fruit"
+		"sludge"
 	word
 		". My"
 		", and now my"
 	word
 		" "
-		" ship's "
-		" poor "
-		" poor ship's "
-		" beautiful ship's "
+	word
+		""
+		"ship's "
+		"poor "
+		"poor ship's "
+		"beautiful ship's "
 
 	word
 		"hold"
@@ -491,6 +675,7 @@ phrase "friendly civilian"
 		"thugs"
 		"scam artists"
 		"raiders"
+		"marauders"
 	word
 		" "
 	word
@@ -510,16 +695,20 @@ phrase "friendly civilian"
 	word
 		" "
 	word
-		"the far North."
-		"the southern Rim."
-		"the stars closest to the Core."
-		"uninhabited systems."
-		"empty systems."
-		"unsettled systems."
-		"the Dirt Belt."
-		"less wealthy systems."
-		"poorer parts of the galaxy."
-		"the Southern Rim."
+		"the far North"
+		"the southern Rim"
+		"the stars closest to the Core"
+		"uninhabited systems"
+		"empty systems"
+		"unsettled systems"
+		"the Dirt Belt"
+		"less wealthy systems"
+		"poorer parts of the galaxy"
+		"the Southern Rim"
+		"the edges of Syndicate space"
+	word
+		"."
+		"!"
 
 phrase "friendly civilian"
 	word
@@ -556,6 +745,7 @@ phrase "friendly civilian"
 	word
 		"I suspect that"
 		"I'm positive that"
+		"People say"
 		"People say that"
 		"They say"
 		"I hear rumors that"
@@ -579,6 +769,12 @@ phrase "friendly civilian"
 		"I believe that"
 		"I really do believe that"
 		"I'm sure that"
+		"Everyone knows"
+		"Everyone knows that"
+		"Everybody knows"
+		"Everybody knows that"
+		"I wish more people realized"
+		"I wish more people realized that"
 	word
 		" "
 	word
@@ -637,35 +833,46 @@ phrase "friendly civilian"
 
 phrase "friendly civilian"
 	word
-		"It's getting harder and harder"
-		"It used to be easier"
-		"It shouldn't be so difficult"
-		"So many people are struggling"
-		"There must be an easier way"
-		"It's the government's job to make it possible for a person"
-		"Parliament needs to do more to help any citizen"
-		"I've nearly given up on being able"
-		"This economy makes it almost impossible"
-		"The government makes it almost impossible"
+		"It's getting harder and harder to"
+		"It used to be easier to"
+		"It shouldn't be so difficult to"
+		"So many people are struggling to"
+		"There must be an easier way to"
+		"It's the government's job to make it possible for a person to"
+		"Parliament needs to do more to help citizens to"
+		"Something needs to be done about how hard it is to"
+		"I've nearly given up on being able to"
+		"This economy makes it almost impossible to"
+		"The government makes it almost impossible to"
+		"No one seems to be able to"
+		"I'm finally able to"
+		"At long last, I can"
+		"These days, nobody can"
+		"These days, you just can't"
+		"I wish I could"
+		"I'm worried that I can't"
+		"I don't know why people can't"
+		"Some people just can't seem to"
 	word
 		" "
 	word
-		"to be an independent merchant"
-		"to earn a living"
-		"to pay off a mortgage"
-		"to avoid going into debt"
-		"to avoid pirate attacks"
-		"to be safe from pirates"
-		"to buy a better ship"
-		"to own and maintain a starship"
-		"to pay for ship upgrades"
-		"to travel through the Southern Rim safely"
-		"to have a decent shot at a better life"
-		"to feel safe"
-		"to pay all these taxes"
-		"to get a pilot's license"
-		"to stay in business as an independent merchant"
-		"to live an independent merchant's life"
+		"earn a living"
+		"make a living"
+		"pay off a mortgage"
+		"avoid going into debt"
+		"avoid pirate attacks"
+		"be safe from pirates"
+		"buy a better ship"
+		"own and maintain a starship"
+		"pay for ship upgrades"
+		"travel through the Southern Rim safely"
+		"have a decent shot at a better life"
+		"feel safe"
+		"pay all these taxes"
+		"be an independent merchant"
+		"stay in business as an independent merchant"
+		"live an independent merchant's life"
+		"save any money"
 	word
 		"."
 		"!"
@@ -730,7 +937,6 @@ phrase "friendly civilian"
 		"to anybody"
 		"to anyone else"
 		"to anybody else"
-		"to someone else"
 		"to another trader"
 		"to my competition"
 	word
@@ -1895,6 +2101,7 @@ phrase "hostile syndicate"
 		"from"
 	word
 		" "
+		" worthless "
 	word
 		"brutes"
 		"bullies"
@@ -1905,6 +2112,8 @@ phrase "hostile syndicate"
 		"thugs"
 		"parasites"
 		"looters"
+		"pond scum"
+		"deplorables"
 	word
 		" "
 	word
