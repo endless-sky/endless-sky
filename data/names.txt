@@ -153,7 +153,6 @@ phrase "singular nouns"
 		"Light"
 		"Flash"
 		"Dance"
-		"Wings"
 		"Flood"
 		"Bounty"
 		"Castle"
@@ -185,6 +184,14 @@ phrase "singular nouns"
 		"Goblet"
 		"Sunset"
 		"Sunrise"
+		"Fish"
+		"Symbol"
+		"Mark"
+		"Realm"
+		"Tree"
+		"Crossing"
+		"Shadow"
+		"Swan"
 
 phrase "plural nouns"
 	word
@@ -217,6 +224,7 @@ phrase "plural nouns"
 		"Thoughts"
 		"Roses"
 		"Cups"
+		"Wings"
 
 phrase "nouns of indeterminate quantity"
 	word
@@ -590,6 +598,16 @@ phrase "civilian"
 	phrase
 		"female names"
 		"things you can be of"
+
+phrase "civilian"
+	phrase
+		"singular nouns"
+		"nouns of indeterminate quantity"
+	word
+		" "
+	phrase
+		"male titles"
+		"female titles"
 
 phrase "civilian"
 	phrase
@@ -1385,6 +1403,7 @@ phrase "pirate nouns"
 		"Serpent"
 		"Hammer"
 		"Children"
+		"Thunderbolt"
 
 phrase "pirate"
 	word
@@ -1537,6 +1556,9 @@ phrase "pirate"
 		"Screaming"
 		"Painful"
 		"Suffocating"
+		"Evil"
+		"Wicked"
+		"Trickster"
 	word
 		" "
 	phrase
@@ -1703,6 +1725,10 @@ phrase "bounty hunter"
 		"Hound"
 		"Warhorse"
 		"Lion"
+		"Vindicator"
+		"Punisher"
+		"Nemesis"
+		"Fury"
 
 phrase "bounty hunter"
 	word
