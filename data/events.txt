@@ -38,58 +38,158 @@ event "war begins"
 		fleet "Large Free Worlds" 1300
 	system "Spica"
 		government "Free Worlds"
+	planet Oasis
+		tribute 300
+			threshold 2000
+			fleet "Large Free Worlds" 5
 	system "Minkar"
 		government "Free Worlds"
 	system "Acrux"
 		government "Free Worlds"
+	planet Starcross
+		tribute 300
+			threshold 2500
+			fleet "Small Free Worlds" 22
 	system "Mimosa"
 		government "Free Worlds"
+	planet Shorebreak
+		tribute 500
+			threshold 3000
+			fleet "Large Free Worlds" 8
 	system "Kraz"
 		government "Free Worlds"
+	planet Rust
+		tribute 1200
+			threshold 5000
+			fleet "Large Free Worlds" 18
 	system "Izar"
 		government "Free Worlds"
+	planet Poseidos
+		tribute 400
+			threshold 3000
+			fleet "Large Free Worlds" 6
+	planet "Wyvern Station"
+		tribute 400
+			threshold 3500
+			fleet "Large Free Worlds" 6
 	system "Zeta Centauri"
 		government "Free Worlds"
+	planet Dune
+		tribute 300
+			threshold 3000
+			fleet "Small Free Worlds" 23
 	system "Hadar"
 		government "Free Worlds"
+	planet Skymoot
+		tribute 400
+			threshold 2000
+			fleet "Large Free Worlds" 6
+	planet "Typhon Station"
+		tribute 500
+			threshold 2000
+			fleet "Large Free Worlds" 8
 	system "Alkaid"
 		government "Free Worlds"
+	planet Thunder
+		tribute 300
+			threshold 2500
+			fleet "Small Free Worlds" 20
 	system "Zubeneschamali"
 		government "Free Worlds"
+	planet Zug
+		tribute 1200
+			threshold 3000
+			fleet "Large Free Worlds" 18
 	system "Kochab"
 		government "Free Worlds"
+	planet Mere
+		tribute 900
+			threshold 3000
+			fleet "Large Free Worlds" 14
 	system "Ildaria"
 		government "Free Worlds"
 	system "Zubenelgenubi"
 		government "Free Worlds"
 	system "Sabik"
 		government "Free Worlds"
+	planet Longjump
+		tribute 600
+			threshold 3000
+			fleet "Large Free Worlds" 9
 	system "Unukalhai"
 		government "Free Worlds"
 	system "Kornephoros"
 		government "Free Worlds"
+	planet Deep
+		tribute 500
+			threshold 3000
+			fleet "Small Free Worlds" 37
+	planet Clink
+		tribute 200
+			threshold 1500
+			fleet "Small Free Worlds" 15
 	system "Sargas"
 		government "Free Worlds"
+	planet Trinket
+		tribute 500
+			threshold 2500
+			fleet "Small Free Worlds" 36
 	system "Lesath"
 		government "Free Worlds"
 	system "Aldhibain"
 		government "Free Worlds"
+	planet Glaze
+		tribute 1700
+			threshold 3500
+			fleet "Large Free Worlds" 25
+	planet "Charon Station"
+		tribute 200
+			threshold 1500
+			fleet "Small Free Worlds" 15
 	system "Dschubba"
 		government "Free Worlds"
+	planet Sundrinker
+		tribute 200
+			threshold 2000
+			fleet "Small Free Worlds" 15
 	system "Atria"
 		government "Free Worlds"
+	planet Lichen
+		tribute 500
+			threshold 3000
+			fleet "Large Free Worlds" 8
 	system "Alniyat"
 		government "Free Worlds"
+	planet Twinstar
+		tribute 200
+			threshold 2000
+			fleet "Small Free Worlds" 15
 	system "Han"
 		government "Free Worlds"
+	planet Darkstone
+		tribute 200
+			threshold 1500
+			fleet "Small Free Worlds" 18
 	system "Pherkad"
 		government "Free Worlds"
+	planet Solace
+		tribute 1000
+			threshold 4000
+			fleet "Large Free Worlds" 15
 	system "Yed Prior"
 		government "Free Worlds"
+	planet Winter
+		tribute 300
+			threshold 2500
+			fleet "Large Free Worlds" 5
 	system "Beta Lupi"
 		government "Free Worlds"
 	system "Kappa Centauri"
 		government "Free Worlds"
+	planet Cornucopia
+		tribute 800
+			threshold 4000
+			fleet "Large Free Worlds" 12
 	system "Castor"
 		fleet "Small Northern Merchants" 800
 		fleet "Large Northern Merchants" 1100
@@ -129,6 +229,9 @@ event "war begins"
 	planet "Bourne"
 		description `Bourne is a well-developed industrial world that was first settled four centuries ago. Its cities are home to some of the richest individuals in this section of the galaxy, but also home to tens of thousands of homeless people, and many others whose factory jobs are barely providing enough to make ends meet.`
 		description `Bourne is also the seat of government for the newly formed Coalition of Free Worlds.`
+		tribute 2200
+			threshold 4500
+			fleet "Large Free Worlds" 32
 
 mission "event: war begins"
 	landing
