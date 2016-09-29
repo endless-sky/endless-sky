@@ -1867,10 +1867,9 @@ mission "Bounty Hunting (Marauder I)"
 	repeat
 	job
 	to offer
+		"combat rating" > 600
 		or
-			and
-				"combat rating" > 600
-				random < 20
+			random < 20
 			and
 				"combat rating" < 1097
 				random < 5
@@ -1894,10 +1893,9 @@ mission "Bounty Hunting (Marauder II)"
 	repeat
 	job
 	to offer
+		"combat rating" > 750
 		or
-			and
-				"combat rating" > 750
-				random < 20
+			random < 20
 			and
 				"combat rating" < 1550
 				random < 5
@@ -1922,10 +1920,9 @@ mission "Bounty Hunting (Marauder III)"
 	repeat
 	job
 	to offer
+		"combat rating" > 1097
 		or
-			and
-				"combat rating" > 1097
-				random < 20
+			random < 20
 			and
 				"combat rating" < 2000
 				random < 5
@@ -1949,10 +1946,9 @@ mission "Bounty Hunting (Marauder IV)"
 	repeat
 	job
 	to offer
+		"combat rating" > 1555
 		or
-			and
-				"combat rating" > 1555
-				random < 20
+			random < 20
 			and
 				"combat rating" < 2500
 				random < 5
@@ -1976,10 +1972,9 @@ mission "Bounty Hunting (Marauder V)"
 	repeat
 	job
 	to offer
+		"combat rating" > 2000
 		or
-			and
-				"combat rating" > 2000
-				random < 20
+			random < 20
 			and
 				"combat rating" < 2980
 				random < 5
@@ -2004,10 +1999,9 @@ mission "Bounty Hunting (Marauder VI)"
 	repeat
 	job
 	to offer
+		"combat rating" > 2200
 		or
-			and
-				"combat rating" > 2200
-				random < 20
+			random < 20
 			and
 				"combat rating" < 4000
 				random < 5
@@ -2031,10 +2025,9 @@ mission "Bounty Hunting (Marauder VII)"
 	repeat
 	job
 	to offer
+		"combat rating" > 2980
 		or
-			and
-				"combat rating" > 2980
-				random < 20
+			random < 20
 			and
 				"combat rating" < 6000
 				random < 5
@@ -2058,10 +2051,9 @@ mission "Bounty Hunting (Marauder VIII)"
 	repeat
 	job
 	to offer
+		"combat rating" > 4000
 		or
-			and
-				"combat rating" > 4000
-				random < 20
+			random < 20
 			and
 				"combat rating" < 8103
 				random < 5
@@ -2085,10 +2077,8 @@ mission "Bounty Hunting (Marauder IX)"
 	repeat
 	job
 	to offer
-		or
-			and
-				"combat rating" > 6000
-				random < 20
+		"combat rating" > 6000
+		random < 20
 	source
 		government Republic "Free Worlds" Syndicate Neutral
 		attributes rim south north "dirt belt" core frontier
