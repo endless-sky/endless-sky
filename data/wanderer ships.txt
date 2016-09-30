@@ -572,9 +572,9 @@ ship "Deep River"
 		"Type 3 Radiant Steering"
 		"Hyperdrive"
 		
-	engine 53 345
+	engine 53 345 .7
 	engine 0 345
-	engine -53 345
+	engine -53 345 .7
 	gun -56 -217
 	gun -40 -217
 	gun -18 -217
@@ -738,9 +738,9 @@ ship "Deep River Transport"
 		"Type 4 Radiant Steering"
 		"Hyperdrive"
 		
-	engine 53 345
+	engine 53 345 .7
 	engine 0 345
-	engine -53 345
+	engine -53 345 .7
 	turret -36 -205 "Wanderer Anti-Missile"
 	turret 36 -205 "Wanderer Anti-Missile"
 	turret -36 330 "Wanderer Anti-Missile"
