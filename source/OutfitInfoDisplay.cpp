@@ -235,15 +235,8 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		attributeValues.push_back(Format::Number(60. * outfit.FiringFuel() / outfit.Reload()));
 		attributesHeight += 20;
 	}
-	
-	bool isContinuous = (outfit.Reload() <= 1);
-	attributeLabels.push_back("shots / second:");
-	if(isContinuous)
-		attributeValues.push_back("continuous");
-	else
-		attributeValues.push_back(Format::Number(60. / outfit.Reload()));
-	attributesHeight += 20;
-	
+
+
 	int homing = outfit.Homing();
 	if(homing)
 	{
@@ -284,7 +277,8 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 	attributeLabels.push_back(string());
 	attributeValues.push_back(string());
 	attributesHeight += 10;
-	
+
+// per-shot info
 	static const string names[] = {
 		"shield damage / shot:",
 		"hull damage / shot:",
@@ -295,12 +289,12 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		"firing energy / shot:",
 		"firing heat / shot:",
 		"firing fuel / shot:",
-		"inaccuracy:",
+		"inaccuracy:",                      // loop starts here for continuous-fire weapons
 		"blast radius:",
 		"missile strength:",
-		"anti-missile:",
+		"anti-missile damage / shot:",      // having this next to shots/second is important
 	};
-	double values[] = {
+	const double values[] = {
 		outfit.ShieldDamage(),
 		outfit.HullDamage(),
 		outfit.HeatDamage(),
@@ -315,6 +309,7 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		static_cast<double>(outfit.MissileStrength()),
 		static_cast<double>(outfit.AntiMissile())
 	};
+	bool isContinuous = (outfit.Reload() <= 1);
 	static const int NAMES = sizeof(names) / sizeof(names[0]);
 	for(int i = (isContinuous ? 9 : 0); i < NAMES; ++i)
 		if(values[i])
@@ -323,4 +318,11 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 			attributeValues.push_back(Format::Number(values[i]));
 			attributesHeight += 20;
 		}
+
+	attributeLabels.push_back("shots / second:");
+	if(isContinuous)
+		attributeValues.push_back("continuous");
+	else
+		attributeValues.push_back(Format::Number(60. / outfit.Reload()));
+	attributesHeight += 20;
 }
