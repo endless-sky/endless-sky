@@ -22,6 +22,14 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 using namespace std;
 
+// TODO: move this to a common header file
+// C++11 replacement for sizeof(a)/sizeof(a[0]), from https://www.g-truc.net/post-0708.html
+template <typename T, std::size_t N>
+constexpr std::size_t countof(T const (&)[N]) noexcept
+{
+    return N;
+}
+
 namespace {
 	static const set<string> ATTRIBUTES_TO_SCALE = {
 		"afterburner energy",
@@ -104,8 +112,7 @@ void OutfitInfoDisplay::UpdateRequirements(const Outfit &outfit)
 		"gun ports needed:", "gun ports",
 		"turret mounts needed:", "turret mounts"
 	};
-	static const int NAMES =  sizeof(names) / sizeof(names[0]);
-	for(int i = 0; i + 1 < NAMES; i += 2)
+	for(unsigned i = 0; i + 1 < countof(names); i += 2)
 		if(outfit.Get(names[i + 1]))
 		{
 			requirementLabels.push_back(string());
@@ -197,10 +204,10 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		    outfit.FiringHeat(),
 		    outfit.FiringFuel()
 		};
-		//static_assert(countof(values) == countof(perSecondLabels), "labels / values size mismatch");
-		static const int PER_SECOND_LABELS = sizeof(perSecondLabels) / sizeof(perSecondLabels[0]);
+		static_assert(countof(values) == countof(perSecondLabels), "labels / values size mismatch");
+
 		const double shotsPerSec = 60. / outfit.Reload();
-		for(int i = 0; i < PER_SECOND_LABELS; ++i)
+		for(unsigned i = 0; i < countof(perSecondLabels); ++i)
 			if(values[i])
 			{
 				attributeLabels.push_back(perSecondLabels[i]);
@@ -238,7 +245,7 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		outfit.RadarTracking(),
 		outfit.Piercing()
 	};
-	for(unsigned i = 0; i < sizeof(percentValues) / sizeof(percentValues[0]); ++i)
+	for(unsigned i = 0; i < countof(percentValues); ++i)
 		if(percentValues[i])
 		{
 			int percent = 100. * percentValues[i] + .5;
@@ -283,8 +290,7 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		static_cast<double>(outfit.AntiMissile())
 	};
 	bool isContinuous = (outfit.Reload() <= 1);
-	static const int NAMES = sizeof(names) / sizeof(names[0]);
-	for(int i = (isContinuous ? 9 : 0); i < NAMES; ++i)
+	for(unsigned i = (isContinuous ? 9 : 0); i < countof(names); ++i)
 		if(values[i])
 		{
 			attributeLabels.push_back(names[i]);
