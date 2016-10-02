@@ -172,6 +172,8 @@ outfit "Hai Tracker Pod"
 		"drag" .05
 		"turn" 1.2
 		"homing" 4
+		"optical tracking" .8
+		"infrared tracking" .4
 		"shield damage" 200
 		"hull damage" 160
 		"hit force" 50

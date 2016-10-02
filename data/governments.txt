@@ -112,6 +112,9 @@ government "Korath"
 	
 	"player reputation" -10
 
+government "Korath Nanobots"
+	"player reputation" -1000
+
 government "Kor Efret"
 	swizzle 4
 	color .49 .33 .69

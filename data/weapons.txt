@@ -436,7 +436,6 @@ outfit "Flamethrower Projectile"
 		sprite "projectile/flamethrower"
 			"frame rate" 17
 			"random start frame"
-		sound "plasma"
 		"hit effect" "flamethrower hit"
 		"die effect" "flamethrower die"
 		"inaccuracy" 20

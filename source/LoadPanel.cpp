@@ -99,7 +99,8 @@ void LoadPanel::Draw()
 		double alpha = min(1., max(0., min(.1 * (113. - point.Y()), .1 * (point.Y() - -167.))));
 		if(it.first == selectedPilot)
 			FillShader::Fill(point + Point(110., 7.), Point(230., 20.), Color(.1 * alpha, 0.));
-		font.Draw(it.first, point, Color(.5 * alpha, 0.));
+		string name = font.Truncate(it.first, 220);
+		font.Draw(name, point, Color(.5 * alpha, 0.));
 		point += Point(0., 20.);
 	}
 	
@@ -112,7 +113,7 @@ void LoadPanel::Draw()
 			if(file == selectedFile)
 				FillShader::Fill(point + Point(110., 7.), Point(230., 20.), Color(.1 * alpha, 0.));
 			size_t pos = file.find('~') + 1;
-			string name = file.substr(pos, file.size() - 4 - pos);
+			string name = font.Truncate(file.substr(pos, file.size() - 4 - pos), 220);
 			font.Draw(name, point, Color(.5 * alpha, 0.));
 			point += Point(0., 20.);
 		}
