@@ -280,7 +280,7 @@ outfit "Fuel Pod"
 	"fuel capacity" 100
 	description "A fuel pod increases your fuel capacity, allowing your ship to make one additional hyperspace jump before it needs to land and refuel."
 	
-outfit "Small radiator"
+outfit "Small Radiator"
 	category "Systems"
 	cost 7500
 	thumbnail "outfit/small radiator"
