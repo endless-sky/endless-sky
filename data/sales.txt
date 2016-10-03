@@ -237,6 +237,7 @@ outfitter "Deep Sky Advanced"
 	"A865 Atomic Steering"
 	"AR120 Reverse Thruster"
 	"Dwarf Core"
+	"Small Radiator"
 
 outfitter "Lovelace Basics"
 	"Anti-Missile Turret"
