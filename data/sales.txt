@@ -260,6 +260,7 @@ outfitter "Lovelace Advanced"
 	"Torpedo Launcher"
 	"Outfit Scanner"
 	"Scram Drive"
+	"Small Radiator"
 	"A120 Atomic Thruster"
 	"A125 Atomic Steering"
 
