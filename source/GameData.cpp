@@ -95,6 +95,8 @@ namespace {
 	Trade trade;
 	map<const System *, map<string, int>> purchases;
 	
+	map<const Sprite *, string> landingMessages;
+	
 	StarField background;
 	
 	map<string, string> tooltips;
@@ -608,6 +610,23 @@ const vector<Trade::Commodity> &GameData::SpecialCommodities()
 
 
 
+// Custom messages to be shown when trying to land on certain stellar objects.
+bool GameData::HasLandingMessage(const Sprite *sprite)
+{
+	return landingMessages.count(sprite);
+}
+
+
+
+const string &GameData::LandingMessage(const Sprite *sprite)
+{
+	static const string EMPTY;
+	auto it = landingMessages.find(sprite);
+	return (it == landingMessages.end() ? EMPTY : it->second);
+}
+
+
+
 const StarField &GameData::Background()
 {
 	return background;
@@ -704,6 +723,11 @@ void GameData::LoadFile(const string &path, bool debugMode)
 			systems.Get(node.Token(1))->Load(node, planets);
 		else if(key == "trade")
 			trade.Load(node);
+		else if(key == "landing message" && node.Size() >= 2)
+		{
+			for(const DataNode &child : node)
+				landingMessages[SpriteSet::Get(child.Token(0))] = node.Token(1);
+		}
 		else if(key == "tip" && node.Size() >= 2)
 		{
 			string &text = tooltips[node.Token(1)];
