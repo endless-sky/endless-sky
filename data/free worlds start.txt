@@ -1513,6 +1513,7 @@ mission "FW Pirates 4B"
 	
 	on offer
 		event "Thule becomes independent"
+		event "Smuggler's Den starts producing Hyperdrive boosters" 40
 		conversation
 			`A pall of smoke still hangs over the spaceport, and as you are coming in for a landing you fly over one landing pad where bodies draped in sheets have been laid out side by side: dozens of casualties. Several buildings are in ruins, some of them still smoldering.`
 			`	Alondo has survived, fortunately. He tells you, "While the fight was going on overhead, I met with the elders, and they agreed that now that the Free Worlds exist and opposing the pirates is a viable option, they will try to put an end to piracy in this system. But they have no interest whatsoever in joining the Free Worlds."`
