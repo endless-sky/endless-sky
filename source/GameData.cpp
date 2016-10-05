@@ -100,6 +100,7 @@ namespace {
 	StarField background;
 	
 	map<string, string> tooltips;
+	map<string, string> helpMessages;
 	
 	SpriteQueue spriteQueue;
 	
@@ -643,6 +644,15 @@ const string &GameData::Tooltip(const string &label)
 
 
 
+string GameData::HelpMessage(const std::string &name)
+{
+	static const string EMPTY;
+	auto it = helpMessages.find(name);
+	return Command::ReplaceNamesWithKeys(it == helpMessages.end() ? EMPTY : it->second);
+}
+
+
+
 void GameData::LoadSources()
 {
 	sources.clear();
@@ -728,14 +738,18 @@ void GameData::LoadFile(const string &path, bool debugMode)
 			for(const DataNode &child : node)
 				landingMessages[SpriteSet::Get(child.Token(0))] = node.Token(1);
 		}
-		else if(key == "tip" && node.Size() >= 2)
+		else if((key == "tip" || key == "help") && node.Size() >= 2)
 		{
-			string &text = tooltips[node.Token(1)];
+			string &text = (key == "tip" ? tooltips : helpMessages)[node.Token(1)];
 			text.clear();
 			for(const DataNode &child : node)
 			{
 				if(!text.empty())
-					text += "\n\t";
+				{
+					text += '\n';
+					if(child.Token(0)[0] != '\t')
+						text += '\t';
+				}
 				text += child.Token(0);
 			}
 		}

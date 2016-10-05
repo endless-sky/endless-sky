@@ -65,19 +65,7 @@ void OutfitterPanel::Step()
 	if(!Preferences::Has("help: outfitter"))
 	{
 		Preferences::Set("help: outfitter");
-		GetUI()->Push(new Dialog(
-			"Here, you can buy new equipment for your ship. "
-			"Your ship has a limited amount of \"outfit space,\" "
-			"and most outfits use up some of that space.\n"
-			"\tSome types of outfits have other requirements as well. "
-			"For example, only some of your outfit space can be used for engines or weapons; "
-			"this is your ship's \"engine capacity\" and \"weapon capacity.\" "
-			"Guns and missile launchers also require a free \"gun port,\" "
-			"and turrets require a free \"turret mount.\" "
-			"Also, missiles can only be bought if you have the right launcher installed.\n"
-			"\tUse your scroll wheel, or click and drag, to scroll the view.\n"
-			"\tAs in the trading panel, you can hold down Shift or Control "
-			"to buy 5 or 20 of an outfit at once, or both keys to buy 100."));
+		GetUI()->Push(new Dialog(GameData::HelpMessage("outfitter")));
 	}
 	ShopPanel::Step();
 }

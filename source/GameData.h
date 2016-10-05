@@ -110,6 +110,7 @@ public:
 	static const StarField &Background();
 	
 	static const std::string &Tooltip(const std::string &label);
+	static std::string HelpMessage(const std::string &name);
 	
 	
 private:
