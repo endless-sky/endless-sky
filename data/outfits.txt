@@ -287,7 +287,7 @@ outfit "Small Radiator"
 	"mass" 1
 	"outfit space" -1
 	"cooling" 0.9
-	description "A tiny and efficient cooling system whose only shortcoming is its high price. Ideal for rich people who wants to use all the available space in theirs ships. Radiators work by radiating heat energy away as infrared light."
+	description "Radiators work by radiating heat energy away as infrared light. This tiny and efficient cooling system is ideal for rich captains who want to use all the available space in their ships."
 
 outfit "Interference Plating"
 	category "Systems"
