@@ -223,6 +223,9 @@ double GameData::Progress()
 // done with all landscapes to speed up the program's startup.
 void GameData::Preload(const Sprite *sprite)
 {
+	if(!sprite)
+		return;
+	
 	auto loadedRange = preloaded.equal_range(sprite);
 	if(loadedRange.first != loadedRange.second)
 	{
