@@ -449,7 +449,7 @@ void MapDetailPanel::DrawInfo()
 		set<const Planet *> shown;
 		const Sprite *planetSprite = SpriteSet::Get("ui/map planet");
 		for(const StellarObject &object : selectedSystem->Objects())
-			if(object.GetPlanet())
+			if(object.GetPlanet() && !object.GetPlanet()->IsWormhole())
 			{
 				// Allow the same "planet" to appear multiple times in one system.
 				const Planet *planet = object.GetPlanet();
