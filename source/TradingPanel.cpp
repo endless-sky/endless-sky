@@ -89,18 +89,7 @@ void TradingPanel::Step()
 	if(!Preferences::Has("help: trading"))
 	{
 		Preferences::Set("help: trading");
-		GetUI()->Push(new Dialog(
-			string("This is the trading panel. "
-				"Earn money by buying commodities at a low price in one system, "
-				"and selling at a higher price elsewhere. "
-				"To view your map of commodity prices in other systems, press \"")
-			+ Command::MAP.KeyName()
-			+ string("\". To buy or sell, click on [buy] or [sell], "
-				"or select a line with the up and down arrows and press \"+\" or \"-\" "
-				"(or Enter and Delete).\n"
-				"\tYou can buy 5 tons at once by holding down Shift, "
-				"20 by holding down Control, "
-				"or 100 at a time by holding down both.")));
+		GetUI()->Push(new Dialog(GameData::HelpMessage("trading")));
 	}
 }
 

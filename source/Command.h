@@ -62,6 +62,11 @@ public:
 	static const Command STOP;
 	
 public:
+	// In the given text, replace any instances of command names (in angle
+	// brackets) with key names (in quotes).
+	static std::string ReplaceNamesWithKeys(const std::string &text);
+	
+public:
 	Command() = default;
 	// Create a command representing whatever command is mapped to the given
 	// keycode (if any).
