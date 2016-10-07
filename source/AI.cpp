@@ -48,7 +48,7 @@ namespace {
 	
 	bool IsStranded(const Ship &ship)
 	{
-		return ship.GetSystem() && !ship.GetSystem()->HasFuelFor(ship)
+		return ship.GetSystem() && !ship.GetSystem()->HasFuelFor(ship) && ship.JumpFuel()
 			&& ship.Attributes().Get("fuel capacity") && !ship.JumpsRemaining();
 	}
 	
@@ -273,6 +273,9 @@ void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &player)
 			Ship *nextAlly = nullptr;
 			for(const auto &ship : ships)
 			{
+				// Never ask yourself for help.
+				if(ship.get() == it.get())
+					continue;
 				if(ship->IsDisabled() || !ship->IsTargetable() || ship->GetSystem() != it->GetSystem())
 					continue;
 				
@@ -797,7 +800,14 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 				totalWeight += planetWeight;
 			}
 		if(!totalWeight)
-			return;
+		{
+			// If there is nothing this ship can land on, have it just go to the
+			// star and hover over it rather than drifting far away.
+			if(ship.GetSystem()->Objects().empty())
+				return;
+			totalWeight = 1;
+			planets.push_back(&ship.GetSystem()->Objects().front());
+		}
 		
 		int choice = Random::Int(totalWeight);
 		if(choice < systemTotalWeight)
@@ -853,7 +863,7 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 void AI::MoveEscort(Ship &ship, Command &command) const
 {
 	const Ship &parent = *ship.GetParent();
-	bool hasFuelCapacity = ship.Attributes().Get("fuel capacity");
+	bool hasFuelCapacity = ship.Attributes().Get("fuel capacity") && ship.JumpFuel();
 	bool isStaying = ship.GetPersonality().IsStaying() || !hasFuelCapacity;
 	bool parentIsHere = (ship.GetSystem() == parent.GetSystem());
 	// If an escort is out of fuel, they should refuel without waiting for the

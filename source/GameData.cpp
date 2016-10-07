@@ -95,9 +95,12 @@ namespace {
 	Trade trade;
 	map<const System *, map<string, int>> purchases;
 	
+	map<const Sprite *, string> landingMessages;
+	
 	StarField background;
 	
 	map<string, string> tooltips;
+	map<string, string> helpMessages;
 	
 	SpriteQueue spriteQueue;
 	
@@ -220,6 +223,9 @@ double GameData::Progress()
 // done with all landscapes to speed up the program's startup.
 void GameData::Preload(const Sprite *sprite)
 {
+	if(!sprite)
+		return;
+	
 	auto loadedRange = preloaded.equal_range(sprite);
 	if(loadedRange.first != loadedRange.second)
 	{
@@ -608,6 +614,23 @@ const vector<Trade::Commodity> &GameData::SpecialCommodities()
 
 
 
+// Custom messages to be shown when trying to land on certain stellar objects.
+bool GameData::HasLandingMessage(const Sprite *sprite)
+{
+	return landingMessages.count(sprite);
+}
+
+
+
+const string &GameData::LandingMessage(const Sprite *sprite)
+{
+	static const string EMPTY;
+	auto it = landingMessages.find(sprite);
+	return (it == landingMessages.end() ? EMPTY : it->second);
+}
+
+
+
 const StarField &GameData::Background()
 {
 	return background;
@@ -620,6 +643,15 @@ const string &GameData::Tooltip(const string &label)
 	static const string EMPTY;
 	auto it = tooltips.find(label);
 	return (it == tooltips.end() ? EMPTY : it->second);
+}
+
+
+
+string GameData::HelpMessage(const std::string &name)
+{
+	static const string EMPTY;
+	auto it = helpMessages.find(name);
+	return Command::ReplaceNamesWithKeys(it == helpMessages.end() ? EMPTY : it->second);
 }
 
 
@@ -704,14 +736,23 @@ void GameData::LoadFile(const string &path, bool debugMode)
 			systems.Get(node.Token(1))->Load(node, planets);
 		else if(key == "trade")
 			trade.Load(node);
-		else if(key == "tip" && node.Size() >= 2)
+		else if(key == "landing message" && node.Size() >= 2)
 		{
-			string &text = tooltips[node.Token(1)];
+			for(const DataNode &child : node)
+				landingMessages[SpriteSet::Get(child.Token(0))] = node.Token(1);
+		}
+		else if((key == "tip" || key == "help") && node.Size() >= 2)
+		{
+			string &text = (key == "tip" ? tooltips : helpMessages)[node.Token(1)];
 			text.clear();
 			for(const DataNode &child : node)
 			{
 				if(!text.empty())
-					text += "\n\t";
+				{
+					text += '\n';
+					if(child.Token(0)[0] != '\t')
+						text += '\t';
+				}
 				text += child.Token(0);
 			}
 		}

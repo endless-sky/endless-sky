@@ -26,7 +26,8 @@ string Format::Number(double value)
 	if(!value)
 		return "0";
 	
-	int power = floor(log10(fabs(value)));
+	// Check what the power will be, after the value is rounded to five digits.
+	int power = floor(log10(fabs(value)) - log10(.999995));
 	if(power >= 15 || power <= -5)
 	{
 		// Fall back to scientific notation if the number is outside the range
@@ -65,7 +66,12 @@ string Format::Number(double value)
 	int rounded = round(fabs(value) * pow(10., right));
 	int delimiterIndex = -1;
 	
-	if (left > 3)
+	// Special case: the value is close enough to a power of 10 that it rounds
+	// up to one. There is now an extra digit on the left. (This should never
+	// happen due to the rounding in the initial power calculation.)
+	if(pow(10., left) <= rounded)
+		++left;
+	if(left > 3)
 		delimiterIndex = left - 3;
 	
 	while(rounded | right)
@@ -91,7 +97,7 @@ string Format::Number(double value)
 		else
 		{
 			--left;
-			if(left == delimiterIndex)
+			if(left == delimiterIndex && rounded)
 				result += ',';
 		}
 	}

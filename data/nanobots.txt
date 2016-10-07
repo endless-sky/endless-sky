@@ -60,7 +60,7 @@ effect "nano spark"
 	"random velocity" 2
 
 fleet "Nanobots"
-	government "Kor Mereti"
+	government "Korath Nanobots"
 	personality
 		heroic
 		vindictive

@@ -83,7 +83,7 @@ void ShopPanel::Draw()
 	shipInfo.DrawTooltips();
 	outfitInfo.DrawTooltips();
 	
-	if(dragShip)
+	if(dragShip && dragShip->GetSprite())
 	{
 		static const Color selected(.8, 1.);
 		const Sprite *sprite = dragShip->GetSprite();
@@ -149,9 +149,12 @@ void ShopPanel::DrawSidebar() const
 		SpriteShader::Draw(background, point);
 		
 		const Sprite *sprite = ship->GetSprite();
-		double scale = ICON_SIZE / max(sprite->Width(), sprite->Height());
-		Point size(sprite->Width() * scale, sprite->Height() * scale);
-		OutlineShader::Draw(sprite, point, size, isSelected ? selected : unselected);
+		if(sprite)
+		{
+			double scale = ICON_SIZE / max(sprite->Width(), sprite->Height());
+			Point size(sprite->Width() * scale, sprite->Height() * scale);
+			OutlineShader::Draw(sprite, point, size, isSelected ? selected : unselected);
+		}
 		
 		zones.emplace_back(point, Point(ICON_TILE, ICON_TILE), ship.get());
 		

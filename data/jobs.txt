@@ -1868,7 +1868,11 @@ mission "Bounty Hunting (Marauder I)"
 	job
 	to offer
 		"combat rating" > 600
-		random < 35
+		or
+			random < 5
+			and
+				"combat rating" < 1200
+				random < 35
 	source
 		government Republic "Free Worlds" Syndicate Neutral
 		attributes rim south north "dirt belt" core frontier
@@ -1890,7 +1894,11 @@ mission "Bounty Hunting (Marauder II)"
 	job
 	to offer
 		"combat rating" > 750
-		random < 30
+		or
+			random < 5
+			and
+				"combat rating" < 1800
+				random < 30
 	source
 		government Republic "Free Worlds" Syndicate Neutral
 		attributes rim south north "dirt belt" core frontier
@@ -1913,7 +1921,11 @@ mission "Bounty Hunting (Marauder III)"
 	job
 	to offer
 		"combat rating" > 1097
-		random < 25
+		or
+			random < 5
+			and
+				"combat rating" < 2200
+				random < 25
 	source
 		government Republic "Free Worlds" Syndicate Neutral
 		attributes rim south north "dirt belt" core frontier
@@ -1935,7 +1947,11 @@ mission "Bounty Hunting (Marauder IV)"
 	job
 	to offer
 		"combat rating" > 1550
-		random < 30
+		or
+			random < 5
+			and
+				"combat rating" < 2700
+				random < 30
 	source
 		government Republic "Free Worlds" Syndicate Neutral
 		attributes rim south north "dirt belt" core frontier
@@ -1957,7 +1973,11 @@ mission "Bounty Hunting (Marauder V)"
 	job
 	to offer
 		"combat rating" > 2000
-		random < 25
+		or
+			random < 5
+			and
+				"combat rating" < 3500
+				random < 25
 	source
 		government Republic "Free Worlds" Syndicate Neutral
 		attributes rim south north "dirt belt" core frontier
@@ -1980,7 +2000,11 @@ mission "Bounty Hunting (Marauder VI)"
 	job
 	to offer
 		"combat rating" > 2500
-		random < 20
+		or
+			random < 5
+			and
+				"combat rating" < 5000
+				random < 20
 	source
 		government Republic "Free Worlds" Syndicate Neutral
 		attributes rim south north "dirt belt" core frontier
