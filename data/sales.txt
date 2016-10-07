@@ -479,6 +479,7 @@ outfitter "Special Outfits"
 	"Wanderer Heat Sink"
 	"Red Sun Reactor"
 	"Blue Sun Reactor"
+	"Hai Heat Sink"
 
 shipyard "Alien Ships"
 	"Pug Zibruka"
