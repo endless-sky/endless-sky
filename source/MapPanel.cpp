@@ -56,6 +56,9 @@ MapPanel::MapPanel(PlayerInfo &player, int commodity, const System *special)
 {
 	SetIsFullScreen(true);
 	SetInterruptible(false);
+	// Recalculate the fog each time the map is opened, just in case the player
+	// bought a map since the last time they viewed the map.
+	FogShader::Redraw();
 	
 	if(selectedSystem)
 		center = Point(0., 0.) - Zoom() * (selectedSystem->Position());
