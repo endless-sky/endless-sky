@@ -18,8 +18,6 @@
 		A93931F019880EFC00C2A87B /* SDL2.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = A9CC52A01950CA16004E4E22 /* SDL2.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		A93931FB1988135200C2A87B /* libturbojpeg.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A93931FA1988135200C2A87B /* libturbojpeg.a */; };
 		A93931FD1988136B00C2A87B /* libpng.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A93931FC1988136B00C2A87B /* libpng.a */; };
-		A93931FE1988136E00C2A87B /* libturbojpeg.a in CopyFiles */ = {isa = PBXBuildFile; fileRef = A93931FA1988135200C2A87B /* libturbojpeg.a */; };
-		A93931FF1988136F00C2A87B /* libpng.a in CopyFiles */ = {isa = PBXBuildFile; fileRef = A93931FC1988136B00C2A87B /* libpng.a */; };
 		A94408A51982F3E600610427 /* endless-sky.iconset in Resources */ = {isa = PBXBuildFile; fileRef = A94408A41982F3E600610427 /* endless-sky.iconset */; };
 		A966A5AB1B964E6300DFF69C /* Person.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A966A5A91B964E6300DFF69C /* Person.cpp */; };
 		A96863A01AE6FD0E004FE1FE /* Account.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A96862CD1AE6FD0A004FE1FE /* Account.cpp */; };
@@ -147,8 +145,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				A93931FF1988136F00C2A87B /* libpng.a in CopyFiles */,
-				A93931FE1988136E00C2A87B /* libturbojpeg.a in CopyFiles */,
 				A93931F019880EFC00C2A87B /* SDL2.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
