@@ -250,6 +250,26 @@ outfit "Cargo Expansion"
 	"outfit space" -20
 	unplunderable 1
 	description "If being able to carry more cargo is more important to you than having advanced weapons or other systems, a cargo expansion will significantly increase the size of your cargo hold."
+
+outfit "Minor Mass Expansion"
+	category "Systems"
+	cost 30000
+	thumbnail "outfit/green screwdriver"
+	"mass" 3
+	"outfit space" 7
+	"cargo space" -10
+	unplunderable 1
+	description "A smaller version of the standard Mass Expansion. It allows to sacrifice a small amount of cargo space in order to make room for more outfits, in situations where you need just that little extra."
+		
+outfit "Minor Cargo Expansion"
+	category "Systems"
+	cost 18000
+	thumbnail "outfit/orange screwdriver"
+	"mass" 3
+	"cargo space" 7
+	"outfit space" -10
+	unplunderable 1
+	description "A smaller version of the standard Cargo Expansion. It allows to sacrifice that bit of outfit space that you don't need to make room for some cargo space."
 	
 outfit "Bunk Room"
 	category "Systems"
