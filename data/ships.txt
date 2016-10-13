@@ -2600,11 +2600,9 @@ ship "Marauder Fury"
 			"hit force" 520
 	outfits
 		"Hai Tracker Pod" 2
-		"Sidewinder Missile Launcher" 2
-		"Meteor Missile Launcher" 2
+		"Meteor Missile Launcher" 4
 		"Hai Tracker" 224
-		"Sidewinder Missile" 200
-		"Meteor Missile" 140
+		"Meteor Missile" 280
 
 		"Pebble Core"
 		"Small Biochemical Cell"
