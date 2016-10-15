@@ -117,6 +117,13 @@ void FogShader::Init()
 
 
 
+void FogShader::Redraw()
+{
+	previousZoom = 0.;
+}
+
+
+
 void FogShader::Draw(const Point &center, double zoom, const PlayerInfo &player)
 {
 	// Generate a scaled-down mask image that represents the entire screen plus

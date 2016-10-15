@@ -153,7 +153,7 @@ int MapShipyardPanel::FindItem(const string &text) const
 
 
 
-void MapShipyardPanel::DrawItems() const
+void MapShipyardPanel::DrawItems()
 {
 	list.clear();
 	Point corner = Screen::TopLeft() + Point(0, scroll);

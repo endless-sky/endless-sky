@@ -311,9 +311,12 @@ int main(int argc, char *argv[])
 						{
 							// We either can't resize the window, or don't have to.
 							// So, just inform Screen and OpenGL of the new size.
+							// Note: this may mean that a maximized window with
+							// odd dimensions ends up blurry because everything
+							// is offset by half a pixel.
+							Screen::SetRaw(width, height);
 							SDL_GL_GetDrawableSize(window, &width, &height);
-							Screen::SetRaw(width & ~1, height & ~1);
-							glViewport(0, 0, width & ~1, height & ~1);
+							glViewport(0, 0, width, height);
 						}
 					}
 				}
