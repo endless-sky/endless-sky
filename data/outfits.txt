@@ -44,7 +44,7 @@ outfit "Liquid Helium Cooler"
 	"cooling" 69
 	description "Liquid helium is the ultimate in cooling technology. Given how much space this cooling system takes up, you may be better off just installing more efficient, low-heat components instead, but where that is not an option, this cooler can handle almost anything you throw at it."
 
-outfit "Small radiator"
+outfit "Small Radiator"
 	category "Systems"
 	cost 20000
 	thumbnail "outfit/small radiator"
