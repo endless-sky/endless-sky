@@ -1017,7 +1017,7 @@ void Engine::CalculateStep()
 			{
 				int amountInTons = it->Count() * it->UnitSize();
 				message = name + (amountInTons == 1 ? "a ton" : Format::Number(amountInTons) + " tons")
-					+ " of " + commodity + ".";
+					+ " of " + Format::LowerCase(commodity) + ".";
 			}
 			if(!message.empty())
 			{
