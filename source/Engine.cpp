@@ -1010,11 +1010,15 @@ void Engine::CalculateStep()
 				amount = collector->Cargo().Add(it->CommodityType(), it->Count());
 				if(!name.empty())
 					commodity = it->CommodityType();
+				
 					
 			}
 			if(!commodity.empty())
-				message = name + (amount == 1 ? "a ton" : Format::Number(amount) + " tons")
+			{
+				int amountInTons = it->Count() * it->UnitSize();
+				message = name + (amountInTons == 1 ? "a ton" : Format::Number(amountInTons) + " tons")
 					+ " of " + Format::LowerCase(commodity) + ".";
+			}
 			if(!message.empty())
 			{
 				int free = collector->Cargo().Free();
