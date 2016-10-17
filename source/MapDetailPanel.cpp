@@ -506,50 +506,54 @@ void MapDetailPanel::DrawInfo()
 	uiPoint.Y() += 45.;
 	tradeY = uiPoint.Y() - 95.;
 	
-	// Trade sprite goes from 310 to 540.
-	const Sprite *tradeSprite = SpriteSet::Get("ui/map trade");
-	SpriteShader::Draw(tradeSprite, uiPoint);
-	
-	uiPoint.X() -= 90.;
-	uiPoint.Y() -= 97.;
-	for(const Trade::Commodity &commodity : GameData::Commodities())
+	// Draw trade panel if the selected system has been not been visited
+	// or the system is inhabited and visited
+	if (!player.HasVisited(selectedSystem) || selectedSystem->IsInhabited())
 	{
-		bool isSelected = false;
-		if(static_cast<unsigned>(this->commodity) < GameData::Commodities().size())
-			isSelected = (&commodity == &GameData::Commodities()[this->commodity]);
-		Color &color = isSelected ? closeColor : farColor;
+		// Trade sprite goes from 310 to 540.
+		const Sprite *tradeSprite = SpriteSet::Get("ui/map trade");
+		SpriteShader::Draw(tradeSprite, uiPoint);
 		
-		font.Draw(commodity.name, uiPoint, color);
-		
-		string price;
-		
-		bool hasVisited = player.HasVisited(selectedSystem);
-		if(hasVisited && selectedSystem->IsInhabited())
+		uiPoint.X() -= 90.;
+		uiPoint.Y() -= 97.;
+		for(const Trade::Commodity &commodity : GameData::Commodities())
 		{
-			int value = selectedSystem->Trade(commodity.name);
-			int localValue = (player.GetSystem() ? player.GetSystem()->Trade(commodity.name) : 0);
-			if(!player.GetSystem() || player.GetSystem() == selectedSystem || !value || !localValue)
-				price = to_string(value);
-			else
+			bool isSelected = false;
+			if(static_cast<unsigned>(this->commodity) < GameData::Commodities().size())
+				isSelected = (&commodity == &GameData::Commodities()[this->commodity]);
+			Color &color = isSelected ? closeColor : farColor;
+			
+			font.Draw(commodity.name, uiPoint, color);
+			
+			string price;
+			
+			if(player.HasVisited(selectedSystem) && selectedSystem->IsInhabited())
 			{
-				value -= localValue;
-				price += "(";
-				if(value > 0)
-					price += '+';
-				price += to_string(value);
-				price += ")";
+				int value = selectedSystem->Trade(commodity.name);
+				int localValue = (player.GetSystem() ? player.GetSystem()->Trade(commodity.name) : 0);
+				if(!player.GetSystem() || player.GetSystem() == selectedSystem || !value || !localValue)
+					price = to_string(value);
+				else
+				{
+					value -= localValue;
+					price += "(";
+					if(value > 0)
+						price += '+';
+					price += to_string(value);
+					price += ")";
+				}
 			}
+			else
+				price = "?";
+			
+			Point pos = uiPoint + Point(140. - font.Width(price), 0.);
+			font.Draw(price, pos, color);
+			
+			if(isSelected)
+				PointerShader::Draw(uiPoint + Point(0., 7.), Point(1., 0.), 10., 10., 0., color);
+			
+			uiPoint.Y() += 20.;
 		}
-		else
-			price = (hasVisited ? "n/a" : "?");
-		
-		Point pos = uiPoint + Point(140. - font.Width(price), 0.);
-		font.Draw(price, pos, color);
-		
-		if(isSelected)
-			PointerShader::Draw(uiPoint + Point(0., 7.), Point(1., 0.), 10., 10., 0., color);
-		
-		uiPoint.Y() += 20.;
 	}
 	
 	if(selectedPlanet && !selectedPlanet->Description().empty() && player.HasVisited(selectedPlanet))
