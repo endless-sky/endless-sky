@@ -508,7 +508,7 @@ void MapDetailPanel::DrawInfo()
 	
 	// Draw trade panel if the selected system has been not been visited
 	// or the system is inhabited and visited
-	if (!player.HasVisited(selectedSystem) || selectedSystem->IsInhabited())
+	if(!player.HasVisited(selectedSystem) || selectedSystem->IsInhabited())
 	{
 		// Trade sprite goes from 310 to 540.
 		const Sprite *tradeSprite = SpriteSet::Get("ui/map trade");
