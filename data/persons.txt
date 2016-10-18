@@ -134,6 +134,7 @@ person "Cap'n Pester"
 person "Marauding Max K"
 	government "Author"
 	frequency 300
+	government Republic "Free Worlds" Syndicate Neutral Independent Hai Pirate "Hai (Unfettered)" Quarg
 	personality
 		surveillance
 	phrase
@@ -194,7 +195,7 @@ person "Marauding Max K"
 			"lately?"
 			"recently?"
 			"in the past couple of days?"
-# Not sure about implying there is a shop that people can have this done to their ships, but it's fun banter...
+# Not sure about implying there is a shop that people can have this done to their ships, but it's fun banter...(there is no shop)
 	phrase
 		word
 			"If you can find me or my crew within the community, we'll help you turning that "

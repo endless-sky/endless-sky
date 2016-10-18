@@ -2621,9 +2621,9 @@ ship "Marauder Fury"
 	gun -12 -33 "Meteor Missile Launcher"
 	gun 12 -33 "Meteor Missile Launcher"
 	gun -20 -25 "Meteor Missile Launcher"
-	gun 20 -25 "Hai Tracker Pod"
+	gun 20 -25 "Meteor Missile Launcher"
 	gun -43.5 2 "Hai Tracker Pod"
-	gun 43.5 2 "Sidewinder Missile Launcher"
+	gun 43.5 2 "Hai Tracker Pod"
 	explode "tiny explosion" 10
 	explode "small explosion" 20
 	"final explode" "final explosion small"
