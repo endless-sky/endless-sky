@@ -2603,7 +2603,6 @@ ship "Marauder Fury"
 		"Meteor Missile Launcher" 4
 		"Hai Tracker" 112
 		"Meteor Missile" 140
-		"Sidewinder Missile" 
 		
 		"Pebble Core"
 		"Small Biochemical Cell"
