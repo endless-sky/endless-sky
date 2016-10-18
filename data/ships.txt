@@ -2599,29 +2599,30 @@ ship "Marauder Fury"
 			"hull damage" 180
 			"hit force" 520
 	outfits
-		"Beam Laser" 4
-		"Sidewinder Missile Launcher" 2
-		"Sidewinder Missile" 100
+		"Hai Tracker Pod" 2
+		"Meteor Missile Launcher" 4
+		"Hai Tracker" 112
+		"Meteor Missile" 140
+		"Sidewinder Missile" 
 		
-		"Dwarf Core"
-		"LP072a Battery Pack"
-		"Supercapacitor" 2
-		"S-270 Regenerator"
-		"Water Coolant System"
-		"Security Station" 3
+		"Pebble Core"
+		"Small Biochemical Cell"
+		"Hai Williwaw Cooling"
+		"Hai Corundum Regenerator"
+		"Intrusion Countermeasures" 3
 		
-		"A250 Atomic Thruster"
-		"A375 Atomic Steering"
+		`"Biroo" Atomic Thruster`
+		"A255 Atomic Steering"
 		"Hyperdrive"
 		
 	engine -21 42
 	engine 0 48
 	engine 21 42
-	gun -12 -33 "Beam Laser"
-	gun 12 -33 "Beam Laser"
-	gun -20 -25 "Beam Laser"
-	gun 20 -25 "Beam Laser"
-	gun -43.5 2 "Sidewinder Missile Launcher"
+	gun -12 -33 "Meteor Missile Launcher"
+	gun 12 -33 "Meteor Missile Launcher"
+	gun -20 -25 "Meteor Missile Launcher"
+	gun 20 -25 "Hai Tracker Pod"
+	gun -43.5 2 "Hai Tracker Pod"
 	gun 43.5 2 "Sidewinder Missile Launcher"
 	explode "tiny explosion" 10
 	explode "small explosion" 20
