@@ -555,7 +555,9 @@ interface "hiring"
 		center 50 200
 		align right
 	
-	label "(Extra crew for your flagship increases your odds of capturing ships,"
+	label "(Press h or = to hire crew, press f or - to fire crew."
+		center -60 270
+	label "Extra crew for your flagship increases your odds of capturing ships,"
 		center -60 290
 	label "and once you capture a ship you need crew members to serve on it.)"
 		center -60 310
