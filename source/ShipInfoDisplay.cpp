@@ -333,14 +333,10 @@ void ShipInfoDisplay::UpdateOutfits(const Ship &ship)
 	outfitLabels.clear();
 	outfitValues.clear();
 	outfitsHeight = 20;
-	int outfitsValue = 0;
 	
 	map<string, map<string, int>> listing;
 	for(const auto &it : ship.Outfits())
-	{
 		listing[it.first->Category()][it.first->Name()] += it.second;
-		outfitsValue += it.first->Cost() * it.second;
-	}
 	
 	for(const auto &cit : listing)
 	{
@@ -365,19 +361,20 @@ void ShipInfoDisplay::UpdateOutfits(const Ship &ship)
 	}
 	
 	
+	int64_t totalCost = ship.Cost();
+	int64_t chassisCost = ship.ChassisCost();
 	saleLabels.clear();
 	saleValues.clear();
 	saleHeight = 20;
-	int totalValue = ship.Attributes().Cost();
 	
 	saleLabels.push_back("This ship will sell for:");
 	saleValues.push_back(string());
 	saleHeight += 20;
 	saleLabels.push_back("empty hull:");
-	saleValues.push_back(Format::Number(totalValue - outfitsValue));
+	saleValues.push_back(Format::Number(chassisCost));
 	saleHeight += 20;
 	saleLabels.push_back("  + outfits:");
-	saleValues.push_back(Format::Number(outfitsValue));
+	saleValues.push_back(Format::Number(totalCost - chassisCost));
 	saleHeight += 5;
 }
 
