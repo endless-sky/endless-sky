@@ -48,7 +48,7 @@ int ShipyardPanel::TileSize() const
 
 int ShipyardPanel::DrawPlayerShipInfo(const Point &point) const
 {
-	shipInfo.Update(*playerShip);
+	shipInfo.Update(*playerShip, player.FleetDepreciation(), player.GetDate().DaysSinceEpoch());
 	shipInfo.DrawSale(point);
 	shipInfo.DrawAttributes(point + Point(0, shipInfo.SaleHeight()));
 	
@@ -93,7 +93,7 @@ int ShipyardPanel::DetailWidth() const
 
 int ShipyardPanel::DrawDetails(const Point &center) const
 {
-	shipInfo.Update(*selectedShip);
+	shipInfo.Update(*selectedShip, player.StockDepreciation(), player.GetDate().DaysSinceEpoch());
 	Point offset(shipInfo.PanelWidth(), 0.);
 	
 	shipInfo.DrawDescription(center - offset * 1.5);

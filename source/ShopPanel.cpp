@@ -43,7 +43,8 @@ namespace {
 
 
 ShopPanel::ShopPanel(PlayerInfo &player, const vector<string> &categories)
-	: player(player), planet(player.GetPlanet()), playerShip(player.Flagship()), categories(categories)
+	: player(player), day(player.GetDate().DaysSinceEpoch()),
+	planet(player.GetPlanet()), playerShip(player.Flagship()), categories(categories)
 {
 	if(playerShip)
 		playerShips.insert(playerShip);
@@ -666,7 +667,7 @@ bool ShopPanel::Release(int x, int y)
 bool ShopPanel::Scroll(double dx, double dy)
 {
 	scrollDetailsIntoView = false;
-	return DoScroll(dy * 50.);
+	return DoScroll(dy * 150.);
 }
 
 

@@ -16,6 +16,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Account.h"
 #include "CargoHold.h"
 #include "Date.h"
+#include "Depreciation.h"
 #include "GameEvent.h"
 #include "Mission.h"
 #include "Planet.h"
@@ -193,7 +194,11 @@ public:
 	
 	// Keep track of any outfits that you have sold since landing. These will be
 	// available to buy back until you take off.
-	std::map<const Outfit *, int> &SoldOutfits();
+	int Stock(const Outfit *outfit) const;
+	void AddStock(const Outfit *outfit, int count);
+	// Get depreciation information.
+	const Depreciation &FleetDepreciation() const;
+	const Depreciation &StockDepreciation() const;
 	
 	// Keep track of what materials you have mined in each system.
 	void Harvest(const Outfit *type);
@@ -254,7 +259,9 @@ private:
 	
 	const Outfit *selectedWeapon = nullptr;
 	
-	std::map<const Outfit *, int> soldOutfits;
+	std::map<const Outfit *, int> stock;
+	Depreciation depreciation;
+	Depreciation stockDepreciation;
 	std::set<std::pair<const System *, const Outfit *>> harvested;
 	
 	// Changes that this PlayerInfo wants to make to the global galaxy state:

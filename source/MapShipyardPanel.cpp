@@ -94,7 +94,7 @@ void MapShipyardPanel::Select(int index)
 	else
 	{
 		selected = list[index];
-		selectedInfo.Update(*selected);
+		selectedInfo.Update(*selected, player.StockDepreciation(), player.GetDate().DaysSinceEpoch());
 	}
 }
 
@@ -107,7 +107,7 @@ void MapShipyardPanel::Compare(int index)
 	else
 	{
 		compare = list[index];
-		compareInfo.Update(*compare);
+		compareInfo.Update(*compare, player.StockDepreciation(), player.GetDate().DaysSinceEpoch());
 	}
 }
 

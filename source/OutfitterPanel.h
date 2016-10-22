@@ -70,10 +70,7 @@ private:
 	
 	
 private:
-	// This is how many of each outfit we have sold to this particular outfitter
-	// in this particular shopping session (so that you can buy back things this
-	// outfitter does not normally carry that you sold by accident).
-	std::map<const Outfit *, int> &available;
+	// Record whether we've checked if the player needs ammo refilled.
 	bool checkedRefill = false;
 	
 	Sale<Outfit> outfitter;
