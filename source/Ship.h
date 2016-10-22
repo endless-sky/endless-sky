@@ -115,6 +115,7 @@ public:
 	const std::string &Description() const;
 	// Get this ship's cost.
 	int64_t Cost() const;
+	int64_t ChassisCost() const;
 	// Get the licenses needed to buy or operate this ship.
 	const std::vector<std::string> &Licenses() const;
 	

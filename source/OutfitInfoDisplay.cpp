@@ -13,12 +13,15 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "OutfitInfoDisplay.h"
 
 #include "Color.h"
+#include "Depreciation.h"
 #include "Format.h"
 #include "Outfit.h"
+#include "PlayerInfo.h"
 
 #include <algorithm>
 #include <map>
 #include <set>
+#include <sstream>
 
 using namespace std;
 
@@ -54,18 +57,18 @@ namespace {
 
 
 
-OutfitInfoDisplay::OutfitInfoDisplay(const Outfit &outfit)
+OutfitInfoDisplay::OutfitInfoDisplay(const Outfit &outfit, const PlayerInfo &player)
 {
-	Update(outfit);
+	Update(outfit, player);
 }
 
 
 
 // Call this every time the ship changes.
-void OutfitInfoDisplay::Update(const Outfit &outfit)
+void OutfitInfoDisplay::Update(const Outfit &outfit, const PlayerInfo &player)
 {
 	UpdateDescription(outfit.Description());
-	UpdateRequirements(outfit);
+	UpdateRequirements(outfit, player);
 	UpdateAttributes(outfit);
 	
 	maximumHeight = max(descriptionHeight, max(requirementsHeight, attributesHeight));
@@ -87,15 +90,41 @@ void OutfitInfoDisplay::DrawRequirements(const Point &topLeft) const
 
 
 
-void OutfitInfoDisplay::UpdateRequirements(const Outfit &outfit)
+void OutfitInfoDisplay::UpdateRequirements(const Outfit &outfit, const PlayerInfo &player)
 {
 	requirementLabels.clear();
 	requirementValues.clear();
 	requirementsHeight = 20;
 	
-	requirementLabels.push_back("cost:");
-	requirementValues.push_back(Format::Number(outfit.Cost()));
+	int day = player.GetDate().DaysSinceEpoch();
+	int64_t cost = outfit.Cost();
+	int64_t buyValue = player.StockDepreciation().Value(&outfit, day);
+	int64_t sellValue = player.FleetDepreciation().Value(&outfit, day);
+	
+	if(buyValue == cost)
+		requirementLabels.push_back("cost:");
+	else
+	{
+		ostringstream out;
+		out << "cost (" << (100 * buyValue) / cost << "%):";
+		requirementLabels.push_back(out.str());
+	}
+	requirementValues.push_back(Format::Number(buyValue));
 	requirementsHeight += 20;
+	
+	if(sellValue != buyValue)
+	{
+		if(sellValue == cost)
+			requirementLabels.push_back("sells for:");
+		else
+		{
+			ostringstream out;
+			out << "sells for (" << (100 * sellValue) / cost << "%):";
+			requirementLabels.push_back(out.str());
+		}
+		requirementValues.push_back(Format::Number(sellValue));
+		requirementsHeight += 20;
+	}
 	
 	static const string names[] = {
 		"outfit space needed:", "outfit space",

@@ -100,6 +100,8 @@ protected:
 	
 protected:
 	PlayerInfo &player;
+	// Remember the current day, for calculating depreciation.
+	int day;
 	const Planet *planet = nullptr;
 	
 	Ship *playerShip = nullptr;
