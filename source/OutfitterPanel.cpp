@@ -186,7 +186,7 @@ int OutfitterPanel::DetailWidth() const
 
 int OutfitterPanel::DrawDetails(const Point &center) const
 {
-	outfitInfo.Update(*selectedOutfit, player);
+	outfitInfo.Update(*selectedOutfit, player, CanSell());
 	Point offset(outfitInfo.PanelWidth(), 0.);
 	
 	outfitInfo.DrawDescription(center - offset * 1.5 - Point(0., 10.));
