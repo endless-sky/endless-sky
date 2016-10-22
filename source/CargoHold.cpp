@@ -543,7 +543,7 @@ int64_t CargoHold::Value(const System *system) const
 	for(const auto &it : commodities)
 		value += system->Trade(it.first) * it.second;
 	// For outfits, assume they're fully depreciated, since that will always be
-	// the case unless the player bought itno cargo for some reason.
+	// the case unless the player bought into cargo for some reason.
 	for(const auto &it : outfits)
 		value += it.first->Cost() * it.second * Depreciation::Full();
 	return value;
