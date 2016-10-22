@@ -284,7 +284,7 @@ int Depreciation::Sell(map<int, int> &record)
 // Calculate depreciation for some number of items.
 double Depreciation::Depreciate(const map<int, int> &record, int day, int count) const
 {
-	// Depending on whether this is a plahnet's stock or a player's fleet, we
+	// Depending on whether this is a planet's stock or a player's fleet, we
 	// should either start with the oldest item, or the newest.
 	map<int, int>::const_iterator it = (isStock ? record.begin() : record.end());
 	
