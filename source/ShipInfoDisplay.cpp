@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "ShipInfoDisplay.h"
 
 #include "Color.h"
+#include "Depreciation.h"
 #include "FillShader.h"
 #include "Format.h"
 #include "GameData.h"
@@ -22,24 +23,25 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include <algorithm>
 #include <map>
+#include <sstream>
 
 using namespace std;
 
 
 
-ShipInfoDisplay::ShipInfoDisplay(const Ship &ship)
+ShipInfoDisplay::ShipInfoDisplay(const Ship &ship, const Depreciation &depreciation, int day)
 {
-	Update(ship);
+	Update(ship, depreciation, day);
 }
 
 
 
 // Call this every time the ship changes.
-void ShipInfoDisplay::Update(const Ship &ship)
+void ShipInfoDisplay::Update(const Ship &ship, const Depreciation &depreciation, int day)
 {
 	UpdateDescription(ship);
-	UpdateAttributes(ship);
-	UpdateOutfits(ship);
+	UpdateAttributes(ship, depreciation, day);
+	UpdateOutfits(ship, depreciation, day);
 	
 	maximumHeight = max(descriptionHeight, max(attributesHeight, outfitsHeight));
 }
@@ -142,7 +144,7 @@ void ShipInfoDisplay::UpdateDescription(const Ship &ship)
 
 
 
-void ShipInfoDisplay::UpdateAttributes(const Ship &ship)
+void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const Depreciation &depreciation, int day)
 {
 	bool isGeneric = ship.Name().empty() || ship.GetPlanet();
 	
@@ -152,8 +154,17 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship)
 	
 	const Outfit &attributes = ship.Attributes();
 	
-	attributeLabels.push_back("cost:");
-	attributeValues.push_back(Format::Number(ship.Cost()));
+	int64_t fullCost = ship.Cost();
+	int64_t depreciated = depreciation.Value(ship, day);
+	if(depreciated == fullCost)
+		attributeLabels.push_back("cost:");
+	else
+	{
+		ostringstream out;
+		out << "cost (" << (100 * depreciated) / fullCost << "%):";
+		attributeLabels.push_back(out.str());
+	}
+	attributeValues.push_back(Format::Number(depreciated));
 	attributesHeight += 20;
 	
 	attributeLabels.push_back(string());
@@ -328,7 +339,7 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship)
 
 
 
-void ShipInfoDisplay::UpdateOutfits(const Ship &ship)
+void ShipInfoDisplay::UpdateOutfits(const Ship &ship, const Depreciation &depreciation, int day)
 {
 	outfitLabels.clear();
 	outfitValues.clear();
@@ -361,8 +372,8 @@ void ShipInfoDisplay::UpdateOutfits(const Ship &ship)
 	}
 	
 	
-	int64_t totalCost = ship.Cost();
-	int64_t chassisCost = ship.ChassisCost();
+	int64_t totalCost = depreciation.Value(ship, day);
+	int64_t chassisCost = depreciation.Value(GameData::Ships().Get(ship.ModelName()), day);
 	saleLabels.clear();
 	saleValues.clear();
 	saleHeight = 20;

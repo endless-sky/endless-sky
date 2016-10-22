@@ -43,7 +43,8 @@ namespace {
 
 
 ShopPanel::ShopPanel(PlayerInfo &player, const vector<string> &categories)
-	: player(player), planet(player.GetPlanet()), playerShip(player.Flagship()), categories(categories)
+	: player(player), day(player.GetDate().DaysSinceEpoch()),
+	planet(player.GetPlanet()), playerShip(player.Flagship()), categories(categories)
 {
 	if(playerShip)
 		playerShips.insert(playerShip);
