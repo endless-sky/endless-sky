@@ -45,7 +45,7 @@ tip "cooling:"
 	`Reduces heat by this amount per second. This is for when your ship's built-in heat dissipation is not sufficient to keep it from overheating.`
 
 tip "cost:"
-	`Cost, in credits. Outfits and ships can always be sold back to the store for their full value.`
+	`Cost, in credits. If you have sold any used (depreciated) items today, you can buy them back for the same price you sold them for.`
 
 tip "drag:"
 	`Limits the maximum speed of a ship.`
@@ -163,6 +163,9 @@ tip "scram drive:"
 
 tip "self destruct:"
 	`How likely this ship is to self-destruct when you try to board or capture it.`
+
+tip "sells for:"
+	`What this outfit will sell for, in credits. Outfits and ships will depreciate (lose resale value) over time, and plunder always starts out fully depreciated.`
 
 tip "shield energy:"
 	`Energy consumed per second when recharging shields.`

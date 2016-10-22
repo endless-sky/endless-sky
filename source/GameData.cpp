@@ -642,6 +642,12 @@ const string &GameData::Tooltip(const string &label)
 {
 	static const string EMPTY;
 	auto it = tooltips.find(label);
+	// Special case: the "cost" and "sells for" labels include the percentage of
+	// the full price, so they will not match exactly.
+	if(it == tooltips.end() && !label.compare(0, 4, "cost"))
+		it = tooltips.find("cost:");
+	if(it == tooltips.end() && !label.compare(0, 9, "sells for"))
+		it = tooltips.find("sells for:");
 	return (it == tooltips.end() ? EMPTY : it->second);
 }
 
