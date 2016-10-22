@@ -77,7 +77,7 @@ outfit "Ion Cannon"
 		"shield damage" 168
 		"hull damage" 60
 		"ion damage" 5
-	description "Ion cannons do not deal as much damage as some other weapons, but they disrupt the electrical systems on any ship they hit, draining its energy. If a ship has sizable battery reserves, this may not have any effect, but for a ship running at near its energy generation capacity an ion strike can take it out of the battle for a few seconds while it recovers."
+	description "Ion cannons do not inflict as much damage as some other weapons, but they disrupt the electrical systems on any ship they hit, draining its energy. If a ship has sizable battery reserves, this may not have any effect, but for a ship running at near its energy generation capacity an ion strike can take it out of the battle for a few seconds while it recovers."
 
 outfit "Railgun Slug"
 	category "Ammunition"
