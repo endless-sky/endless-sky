@@ -2079,13 +2079,12 @@ event "dreadnought deployment"
 			"Dreadnought"
 			"Argosy"
 			"Fury"
-		variant 2
+		variant 3
 			"Skein"
 			"Finch" 6
-		variant 1
+		variant 2
 			"Skein" 2
-			"Finch" 8
-			"Boxwing" 4
+			"Finch" 12
 
 
 
