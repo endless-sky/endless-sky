@@ -167,6 +167,9 @@ void Depreciation::Buy(const Ship &ship, int day, Depreciation *source)
 // Add a single outfit to the depreciation record.
 void Depreciation::Buy(const Outfit *outfit, int day, Depreciation *source)
 {
+	if(outfit->Get("installable") < 0.)
+		return;
+	
 	if(source)
 	{
 		// Check if the source has any instances of this outfit.
@@ -245,6 +248,9 @@ int64_t Depreciation::Value(const Ship *ship, int day, int count) const
 // Get the value of an outfit.
 int64_t Depreciation::Value(const Outfit *outfit, int day, int count) const
 {
+	if(outfit->Get("installable") < 0.)
+		return count * outfit->Cost();
+	
 	// Check whether a record exists for this outfit. If not, its value is full
 	// if this is  planet's stock, or fully depreciated if this is the player.
 	auto recordIt = outfits.find(outfit);
