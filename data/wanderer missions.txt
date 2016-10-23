@@ -493,7 +493,7 @@ mission "Wanderers: Unfettered Diplomacy 1B"
 		has "Wanderers: Unfettered Diplomacy 1A: done"
 	on offer
 		conversation
-			`The Unfettered make no attempt to attack you once you have landed on their planet. The Wanderer crew begins unloading the crates of food onto the landing pad, and eventually a small delegation of Unfettered leaders approaches. Itkat Rek explains that the food is a peace offering.`
+			`The Unfettered make no attempt to attack you once you have landed on their planet. The Wanderer crew begins unloading the crates of food onto the landing pad, and eventually a small delegation of Unfettered leaders approaches. Iktat Rek explains that the food is a peace offering.`
 			`	"It is far too little," says the Unfettered leader, "too little to pay us back for the ships you have destroyed and the worlds you have stolen. Until you give us back our worlds, we cannot have peace."`
 			choice
 				`	(Let Iktat Rek do the talking.)`
@@ -1723,7 +1723,7 @@ mission "Wanderers Hai Assistance 3"
 
 
 
-mission "Wanderers Pond Strider Recon 1"
+mission "Wanderers Solifuge Recon 1"
 	landing
 	name "Report to <planet>"
 	description "Report to the Wanderer military base on <destination>, and see if there is anything you can help them with."
@@ -1731,6 +1731,7 @@ mission "Wanderers Pond Strider Recon 1"
 	destination "Vara Ke'sok"
 	to offer
 		has "Wanderers Hai Assistance 3: done"
+		not "Wanderers Pond Strider Recon 1: offered"
 	on offer
 		conversation
 			`You have been gone for several weeks, and Iktat Rek's appearance has changed drastically in that time. Nearly half his head is bald, showing scaly grey skin and scattered white under-feathers in place of his usual plumage. Patches on other parts of his body have lost their feathers as well. His appearance is shocking. In a terrestrial animal you would attribute it to a mange... or to a molt.`
@@ -1753,13 +1754,16 @@ mission "Wanderers Pond Strider Recon 1"
 
 
 
-mission "Wanderers Pond Strider Recon 2"
+mission "Wanderers Solifuge Recon 2"
 	landing
 	name "New Unfettered ships"
 	description "Unfettered ships of an unknown design have been spotted in the Prakacha'a system. Destroy them, then return to <destination>."
 	source "Vara Ke'sok"
 	to offer
-		has "Wanderers Pond Strider Recon 1: done"
+		not "Wanderers Pond Strider Recon 2: offered"
+		or
+			has "Wanderers Solifuge Recon 1: done"
+			has "Wanderers Pond Strider Recon 1: done"
 	on offer
 		set "license: Wanderer Military"
 		conversation
@@ -1783,7 +1787,7 @@ mission "Wanderers Pond Strider Recon 2"
 		dialog "That was the last of the new Unfettered ships. You can now report back to Tele'ek on <planet>."
 	on complete
 		conversation
-			`Tele'ek listens carefully as you outline the strengths and weaknesses of the new Unfettered drone carriers. "I am not greatly [concerned, frightened] by tiny drones," he says. "The weapon that has done us most harm is their ion cannons, which no ship so small can [wield, carry]. But thank you for your assistance. Alas, we have no other [fights, brawls] for you to take part in right now, but if you visit the spaceport, you will find another evacuation fleet that needs an [escort, protector]."`
+			`Tele'ek listens carefully as you outline the strengths and weaknesses of the new Unfettered carriers. "I am not greatly [concerned, frightened] by tiny fighters," he says. "The weapon that has done us most harm is their ion cannons, which no ship so small can [wield, carry]. But thank you for your assistance. Alas, we have no other [fights, brawls] for you to take part in right now, but if you visit the spaceport, you will find another evacuation fleet that needs an [escort, protector]."`
 
 
 
@@ -1793,7 +1797,9 @@ mission "Wanderers Evacuation 1"
 	source "Vara Ke'sok"
 	destination "Vara Ke'stai"
 	to offer
-		has "Wanderers Pond Strider Recon 2: done"
+		or
+			has "Wanderers Solifuge Recon 2: done"
+			has "Wanderers Pond Strider Recon 2: done"
 	on offer
 		conversation
 			`Four Wanderer transports - perhaps, in fact, the same four you escorted before - are parked here. One of the captains approaches you and says, "We are evacuating the worlds that will be [isolated, trapped] if the Unfettered gain more territory. Will you escort us to <planet>, and from there to the capital?"`

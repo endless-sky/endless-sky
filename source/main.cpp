@@ -268,14 +268,24 @@ int main(int argc, char *argv[])
 				{
 					if(event.window.data1 != Screen::RawWidth() || event.window.data2 != Screen::RawHeight())
 					{
-						int width = event.window.data1 & ~1;
-						int height = event.window.data2 & ~1;
+						int width = event.window.data1;
+						int height = event.window.data2;
 						
-						Screen::SetRaw(width, height);
-						if((event.window.data1 | event.window.data2) & 1)
-							SDL_SetWindowSize(window, width, height);
-						SDL_GL_GetDrawableSize(window, &width, &height);
-						glViewport(0, 0, width, height);
+						// If the window's dimensions are odd, if possible
+						// resize it to have even dimensions. If it is
+						// maximized, resizing will not be possible.
+						bool isMaximized = (SDL_GetWindowFlags(window) & SDL_WINDOW_MAXIMIZED);
+						bool isOdd = (width | height) & 1;
+						if(!isMaximized && isOdd)
+							SDL_SetWindowSize(window, width & ~1, height & ~1);
+						else
+						{
+							// We either can't resize the window, or don't have to.
+							// So, just inform Screen and OpenGL of the new size.
+							SDL_GL_GetDrawableSize(window, &width, &height);
+							Screen::SetRaw(width & ~1, height & ~1);
+							glViewport(0, 0, width & ~1, height & ~1);
+						}
 					}
 				}
 				else if(event.type == SDL_KEYDOWN
@@ -366,7 +376,7 @@ void PrintHelp()
 void PrintVersion()
 {
 	cerr << endl;
-	cerr << "Endless Sky 0.9.3" << endl;
+	cerr << "Endless Sky 0.9.4" << endl;
 	cerr << "License GPLv3+: GNU GPL version 3 or later: <https://gnu.org/licenses/gpl.html>" << endl;
 	cerr << "This is free software: you are free to change and redistribute it." << endl;
 	cerr << "There is NO WARRANTY, to the extent permitted by law." << endl;

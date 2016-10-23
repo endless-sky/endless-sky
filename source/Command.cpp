@@ -15,6 +15,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "DataFile.h"
 #include "DataNode.h"
 #include "DataWriter.h"
+#include "Format.h"
 
 #include <SDL2/SDL.h>
 
@@ -64,6 +65,19 @@ const Command Command::GATHER(1uL << 22, "Fleet: Gather around me");
 const Command Command::HOLD(1uL << 23, "Fleet: Hold position");
 const Command Command::WAIT(1uL << 24, "");
 const Command Command::STOP(1ul << 25, "");
+
+
+
+// In the given text, replace any instances of command names (in angle brackets)
+// with key names (in quotes).
+string Command::ReplaceNamesWithKeys(const string &text)
+{
+	map<string, string> subs;
+	for(const auto &it : description)
+		subs['<' + it.second + '>'] = '"' + keyName[it.first] + '"';
+	
+	return Format::Replace(text, subs);
+}
 
 
 

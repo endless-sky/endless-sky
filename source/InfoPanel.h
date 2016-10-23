@@ -26,6 +26,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 class Outfit;
 class PlayerInfo;
+class Rectangle;
 
 
 
@@ -52,10 +53,23 @@ protected:
 	
 	
 private:
+	// Handle any change to what ship or tab is shown.
 	void UpdateInfo();
+	
+	// Draw the info tab (and its subsections).
 	void DrawInfo() const;
+	void DrawPlayer(const Rectangle &bounds) const;
+	void DrawFleet(const Rectangle &bounds) const;
+	
+	// Draw the ship tab (and its subsections).
 	void DrawShip() const;
-	void DrawWeapon(int index, const Point &pos, const Point &hardpoint) const;
+	void DrawShipStats(const Rectangle &bounds) const;
+	void DrawOutfits(const Rectangle &bounds) const;
+	void DrawWeapons(const Rectangle &bounds) const;
+	void DrawCargo(const Rectangle &bounds) const;
+	
+	// Helper functions.
+	void DrawLine(const Point &from, const Point &to, const Color &color) const;
 	bool Hover(const Point &point);
 	void Rename(const std::string &name);
 	bool CanDump() const;

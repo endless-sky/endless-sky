@@ -368,8 +368,26 @@ void PlayerInfo::ApplyChanges()
 // Apply the given set of changes to the game data.
 void PlayerInfo::AddChanges(list<DataNode> &changes)
 {
+	bool changedSystems = false;
 	for(const DataNode &change : changes)
+	{
+		changedSystems |= (change.Token(0) == "system");
+		changedSystems |= (change.Token(0) == "link");
+		changedSystems |= (change.Token(0) == "unlink");
 		GameData::Change(change);
+	}
+	if(changedSystems)
+	{
+		// Recalculate what systems have been seen.
+		GameData::UpdateNeighbors();
+		seen.clear();
+		for(const System *system : visitedSystems)
+		{
+			seen.insert(system);
+			for(const System *neighbor : system->Neighbors())
+				seen.insert(neighbor);
+		}
+	}
 	
 	// Only move the changes into my list if they are not already there.
 	if(&changes != &dataChanges)
@@ -1009,10 +1027,11 @@ bool PlayerInfo::TakeOff(UI *ui)
 		ships.insert(ships.begin(), flagship);
 	}
 	// Make sure your ships all know who the flagship is.
-	flagship->SetParent(shared_ptr<Ship>());
 	for(const shared_ptr<Ship> &ship : ships)
-		if(ship != flagship)
-			ship->SetParent(flagship);
+	{
+		bool shouldHaveParent = (ship != flagship && !ship->IsParked() && !ship->CanBeCarried());
+		ship->SetParent(shouldHaveParent ? flagship : shared_ptr<Ship>());
+	}
 	
 	// Recharge any ships that can be recharged.
 	bool hasSpaceport = planet->HasSpaceport() && planet->CanUseServices();

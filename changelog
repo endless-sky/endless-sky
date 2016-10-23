@@ -1,3 +1,36 @@
+Version 0.9.4:
+  * Bug fixes:
+    * Unfettered jump drive mission no longer get offered on Vara Ke'sok. (@Amazinite)
+    * Typo fixes. (@Waladil, @Pointedstick, @oo13)
+    * Fixed a crash that could occur when disowning a ship.
+    * Changed how window resizing is handled to fix a hang in Windows when maximizing.
+    * The saved game now remembers which missions are "failed," so reloading won't cancel fails.
+    * Fixed various bugs with how orphaned fighters get assigned to carriers.
+  * Game content:
+    * More variety in the ship names. (@Pointedstick)
+    * Fixed an issue where both the Electron Turret and the Electron Beam mission could be completed.
+    * Raised the prices of the Behemoth and the Mule.
+    * Hai Trackers now use optical and infrared tracking, so small ships can dodge them.
+    * Fixed how the sound for the Pug Zapper is played.
+    * Reduced the probability on all but the highest tier Marauder jobs the player qualifies for.
+    * Tweaked the probabilities for the "There Might Be Riots" missions.
+  * Game mechanics:
+    * Missions can now fail if you are scanned, by specifying "stealth" cargo. (@Pointedstick)
+    * Systems created by game events are now linked properly to the rest of the map.
+    * A "nemesis" ship will now seek other targets if no player ships are available to attack.
+    * Wanderer ships will now travel through the Eye.
+    * Engine hardpoints now have adjustable zoom factors for bigger or smaller flares.
+    * Hostile fleets are now more likely to enter a system from the direction of a system they control.
+    * Put a cap on how much mortgage debt the player can take on, to avoid absurdly large mortgages.
+  * User interface:
+    * Ships with lots of outfits or more than 12 weapons now display properly in the info panel.
+    * Snapshot names displayed in the load panel are now truncated if they are too long.
+    * Added custom messages when you try to land on certain unusual stellar objects (like lava planets).
+  * Under the hood:
+    * Added support in the Font class for truncating strings (and adding ellipses).
+    * Interface definitions can now include named "boxes" for custom content to be drawn in.
+    * Cleaned up the code for rendering the Info Panel UI.
+
 Version 0.9.3:
   * Bug fixes:
     * Fixed a bug that kept you from completely clearing your travel plan. (@MarcelineVQ)

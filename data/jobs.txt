@@ -1668,6 +1668,8 @@ mission "Recycle garbage"
 	description "<origin> produces a lot of garbage that needs to be disposed of off-station. Transport <cargo> to the industrial solid waste recycler on <destination>. Payment is <payment>."
 	job
 	repeat
+	to offer
+		random < 70
 	cargo "Garbage" 15 100
 	source
 		attributes station
@@ -1676,16 +1678,17 @@ mission "Recycle garbage"
 		distance 9 12
 	on complete
 		dialog "You drop off the <commodity> at an especially smelly solid waste recycler and collect your payment of <payment>."
-		payment 20000 200
+		payment
+		payment 20000
 
-mission "Provide security for pleasure cruise"
-	name "Provide security for pleasure cruise"
+mission "Pleasure cruise security"
+	name "Pleasure cruise security"
 	description "Escort the <npc> on a pleasure cruise to the wild and exotic planet of <stopovers> along with <tons> of their <commodity>, then return to <destination>, where you will be paid <payment>."
 	job
 	repeat
 	cargo "Luxury Goods" 10 20
 	to offer
-		random < 50
+		random < 30
 		"combat rating" > 15
 	source
 		attributes paradise "near earth" rich
@@ -1705,10 +1708,11 @@ mission "Provide security for pleasure cruise"
 	on stopover
 		dialog "The passengers of the <npc> wander off, bedecked in the most conspicuous tourist attire they seem to have been able to find, and begin oohing and aahing at the exoticism of this faraway world. Hopefully none of them gets robbed. You prepare for the return journey to <destination>."
 	on visit
-		dialog "You have reached <planet>, but you left the <npc> behind! Better depart and wait for them to arrive in this star system."
+		dialog "You have reached <planet>, but you can't complete this mission until the <npc> has visited <stopovers> with you and then joined you here."
 	on complete
 		dialog "You bid goodbye to the captain of the <npc> and accept your payment of <payment>."
-		payment 130000 500
+		payment
+		payment 50000
 
 mission "Transport scientists"
 	name "Transport scientists"
@@ -1716,7 +1720,7 @@ mission "Transport scientists"
 	job
 	repeat
 	to offer
-		random < 40
+		random < 20
 	passengers 7 12
 	source
 		attributes research
@@ -1727,7 +1731,8 @@ mission "Transport scientists"
 		dialog "The scientists have been giddily discussing the results of their research during the entire trip. You're happy for a bit of peace and quiet as they make tracks for a prominent research lab to have the results analyzed. You prepare for the return journey to <planet>."
 	on complete
 		dialog "You bid goodbye to the scientists and accept your payment of <payment>."
-		payment 100000 200
+		payment
+		payment 30000
 
 mission "Escort science vessel"
 	name "Escort science vessel"
@@ -1735,7 +1740,7 @@ mission "Escort science vessel"
 	job
 	repeat
 	to offer
-		random < 40
+		random < 20
 		"combat rating" > 10
 	source
 		attributes research
@@ -1782,10 +1787,11 @@ mission "Escort science vessel"
 	on stopover
 		dialog "The <npc> lands alongside you and teams of scientists wearing crisp white lab coats and serious-looking boots and gloves descend on the test site with all manner of exotic equipment. As they take their measurements, you prepare for the return journey to <planet>."
 	on visit
-		dialog "You have reached <planet>, but you left the <npc> behind! Better depart and wait for them to arrive in this star system."
+		dialog "You have reached <planet>, but you can't complete this mission until the <npc> has visited <stopovers> with you and then joined you here."
 	on complete
 		dialog "You bid goodbye to the captain of the <npc> and accept your payment of <payment>."
-		payment 100000
+		payment
+		payment 60000
 
 mission "Corporate espionage"
 	name "Corporate espionage"
@@ -1812,8 +1818,9 @@ mission "Corporate espionage"
 				"Bounder"
 		dialog "You manage to make the requested scans of the <npc>'s cargo. Time to head to <planet>."
 	on complete
-		dialog `You transmit your scans and receive a hearty congratulations, as well as <payment>. "This will set them back months!" You hear in the background.`
-		payment 45000
+		dialog `You transmit your scans and receive a hearty congratulations, as well as <payment>. "This will set them back months!" you hear someone say in the background as you close the audio link.`
+		payment
+		payment 40000
 
 mission "VIP transport"
 	name "Transport VIP to <planet>"
@@ -1823,7 +1830,7 @@ mission "VIP transport"
 	deadline
 	passengers 1
 	to offer
-		random < 40
+		random < 20
 		"combat rating" > 100
 	source
 		government Republic Syndicate
@@ -1833,7 +1840,8 @@ mission "VIP transport"
 		distance 6 50
 	on complete
 		dialog "You bid goodbye to the VIP (who has said barely a word during the entire trip) and collect your payment of <payment>."
-		payment 50000 500
+		payment
+		payment 80000
 	npc
 		system
 			distance 1 2
@@ -1860,7 +1868,11 @@ mission "Bounty Hunting (Marauder I)"
 	job
 	to offer
 		"combat rating" > 600
-		random < 35
+		or
+			random < 5
+			and
+				"combat rating" < 1200
+				random < 35
 	source
 		government Republic "Free Worlds" Syndicate Neutral
 		attributes rim south north "dirt belt" core frontier
@@ -1882,7 +1894,11 @@ mission "Bounty Hunting (Marauder II)"
 	job
 	to offer
 		"combat rating" > 750
-		random < 30
+		or
+			random < 5
+			and
+				"combat rating" < 1800
+				random < 30
 	source
 		government Republic "Free Worlds" Syndicate Neutral
 		attributes rim south north "dirt belt" core frontier
@@ -1905,7 +1921,11 @@ mission "Bounty Hunting (Marauder III)"
 	job
 	to offer
 		"combat rating" > 1097
-		random < 25
+		or
+			random < 5
+			and
+				"combat rating" < 2200
+				random < 25
 	source
 		government Republic "Free Worlds" Syndicate Neutral
 		attributes rim south north "dirt belt" core frontier
@@ -1927,7 +1947,11 @@ mission "Bounty Hunting (Marauder IV)"
 	job
 	to offer
 		"combat rating" > 1550
-		random < 30
+		or
+			random < 5
+			and
+				"combat rating" < 2700
+				random < 30
 	source
 		government Republic "Free Worlds" Syndicate Neutral
 		attributes rim south north "dirt belt" core frontier
@@ -1949,7 +1973,11 @@ mission "Bounty Hunting (Marauder V)"
 	job
 	to offer
 		"combat rating" > 2000
-		random < 25
+		or
+			random < 5
+			and
+				"combat rating" < 3500
+				random < 25
 	source
 		government Republic "Free Worlds" Syndicate Neutral
 		attributes rim south north "dirt belt" core frontier
@@ -1972,7 +2000,11 @@ mission "Bounty Hunting (Marauder VI)"
 	job
 	to offer
 		"combat rating" > 2500
-		random < 20
+		or
+			random < 5
+			and
+				"combat rating" < 5000
+				random < 20
 	source
 		government Republic "Free Worlds" Syndicate Neutral
 		attributes rim south north "dirt belt" core frontier

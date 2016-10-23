@@ -99,7 +99,18 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 	// Where this ship can come from depends on whether it is friendly to any
 	// planets in this system and whether it has a jump drive.
 	bool hasJump = variant.ships.front()->Attributes().Get("jump drive");
-	const vector<const System *> &linkVector = hasJump ? system.Neighbors() : system.Links();
+	vector<const System *> linkVector;
+	bool isWelcomeHere = !system.GetGovernment()->IsEnemy(government);
+	for(const System *neighbor : (hasJump ? system.Neighbors() : system.Links()))
+	{
+		// If this ship is not "welcome" in the current system, prefer to have
+		// it enter from a system that is friendly to it. (This is for realism,
+		// so attack fleets don't come from what ought to be a safe direction.)
+		if(isWelcomeHere || neighbor->GetGovernment()->IsEnemy(government))
+			linkVector.push_back(neighbor);
+		else
+			linkVector.insert(linkVector.end(), 4, neighbor);
+	}
 	
 	// Find all the inhabited planets this fleet could take off from.
 	vector<const Planet *> planetVector;

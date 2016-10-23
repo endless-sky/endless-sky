@@ -554,12 +554,13 @@ event "wanderers: more systems lost"
 		spaceport `A large number of Unfettered settlers have already arrived here and begun setting up a spaceport village, complete with markets, taverns, and military barracks. To the Unfettered, who have lived their whole lives on worlds where the local ecology is in shambles, this planet must seem like a paradise.`
 		shipyard clear
 		outfitter clear
-planet "Vara Ke'sok"
-	attributes unfettered fishing
-	description `The surface of this world is almost entirely ocean. The Wanderer settlements were built on massive floating algae mats, some of them the size of a small city. Engines are attached to some of these floating villages, allowing them to be slowly propelled from one part of the planet's surface to another, and the only native industries are fishing and seaweed farming.`
-	spaceport `The raft of algae that supports the spaceport is probably at least a dozen meters thick, but flexible enough that it bends as the ocean swells pass underneath, causing individual buildings to rise up or tilt slightly relative to their neighbors. Now that this world has been captured by the Unfettered, nearly all the buildings are empty; it appears that the Hai are not too fond of the idea of inhabiting a water world, so they are using it mostly as a military base.`
+	planet "Vara Ke'sok"
+		attributes unfettered fishing
+		description `The surface of this world is almost entirely ocean. The Wanderer settlements were built on massive floating algae mats, some of them the size of a small city. Engines are attached to some of these floating villages, allowing them to be slowly propelled from one part of the planet's surface to another, and the only native industries are fishing and seaweed farming.`
+		spaceport `The raft of algae that supports the spaceport is probably at least a dozen meters thick, but flexible enough that it bends as the ocean swells pass underneath, causing individual buildings to rise up or tilt slightly relative to their neighbors. Now that this world has been captured by the Unfettered, nearly all the buildings are empty; it appears that the Hai are not too fond of the idea of inhabiting a water world, so they are using it mostly as a military base.`
 
 planet "The Eye"
+	spaceport ""
 
 event "wanderers: the eye begins to open"
 	system Sko'karak

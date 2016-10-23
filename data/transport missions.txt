@@ -664,7 +664,7 @@ mission "There Might Be Riots 1"
 	cargo "musical equipment" 4
 	passengers 8
 	to offer
-		random < 10
+		random < 15
 	
 	on offer
 		conversation
@@ -709,7 +709,7 @@ mission "There Might Be Riots part 2"
 	to offer
 		has "There Might Be Riots 1: done"
 		has "Deep Archaeology 5: done"
-		random < 20
+		random < 30
 	
 	on offer
 		conversation
@@ -779,7 +779,7 @@ mission "There Might Be Riots part 3A"
 	to offer
 		has "There Might Be Riots part 2: done"
 		has "First Contact: Hai: offered"
-		random < 100
+		random < 30
 	
 	on offer
 		conversation
@@ -796,7 +796,7 @@ mission "There Might Be Riots part 3A"
 					goto no
 				`	"Sounds like a worthy cause. Count me in!"`
 					goto yes
-				`	"You're going to do a concert on ground that could be littered with unexploded ordinance?"`
+				`	"You're going to do a concert on ground that could be littered with unexploded ordnance?"`
 			`	"Yeah. What an adventure!" he says. "Come on, it will be worth it."`
 			choice
 				`	"Sorry, that's further than I'm willing to go for you guys."`

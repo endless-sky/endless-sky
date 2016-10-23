@@ -535,8 +535,8 @@ ship "Violin Spider"
 
 	engine -15 30
 	engine 15 30
-	gun 0 -31 "Pulse Cannon"
-	turret 0 5 "Bullfrog Anti-Missile"
+	gun 0 -31 "Hai Tracker Pod"
+	turret 0 5
 	explode "tiny explosion" 15
 	explode "small explosion" 5
 	description `The Hai Fighter is equipped with what most Humans would consider the greatest technology available, but all of that high tech comes at a cost.`

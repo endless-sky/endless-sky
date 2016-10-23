@@ -195,10 +195,8 @@ bool MapSalesPanel::Click(int x, int y)
 bool MapSalesPanel::Hover(int x, int y)
 {
 	isDragging = (x < Screen::Left() + WIDTH);
-	if(isDragging)
-		return true;
 	
-	return MapPanel::Hover(x, y);
+	return true;
 }
 
 
