@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "BoardingPanel.h"
 
 #include "CargoHold.h"
+#include "Depreciation.h"
 #include "Dialog.h"
 #include "FillShader.h"
 #include "Font.h"
@@ -371,7 +372,7 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 				// If you suffered any casualties, you need to split the value
 				// of the ship with their bereaved families. You get two shares,
 				// and each dead crew member gets one.
-				int64_t bonus = (victim->Cost() * casualties) / (casualties + 2);
+				int64_t bonus = (victim->Cost() * casualties * Depreciation::Full()) / (casualties + 2);
 				deathBenefits += bonus;
 				
 				// Report this ship as captured in case any missions care.
@@ -500,7 +501,7 @@ BoardingPanel::Plunder::Plunder(const string &commodity, int count, int unitValu
 
 // Constructor (outfit installed in the victim ship).
 BoardingPanel::Plunder::Plunder(const Outfit *outfit, int count)
-	: name(outfit->Name()), outfit(outfit), count(count), unitValue(outfit->Cost())
+	: name(outfit->Name()), outfit(outfit), count(count), unitValue(outfit->Cost() * Depreciation::Full())
 {
 	UpdateStrings();
 }

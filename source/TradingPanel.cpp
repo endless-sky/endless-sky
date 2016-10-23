@@ -243,16 +243,18 @@ bool TradingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 			player.Accounts().AddCredits(amount * price);
 			GameData::AddPurchase(system, it.name, -amount);
 		}
+		int day = player.GetDate().DaysSinceEpoch();
 		for(const auto &it : player.Cargo().Outfits())
 		{
 			if(it.first->Get("installable") >= 0. && !sellOutfits)
 				continue;
 			
-			profit += it.second * it.first->Cost();
-			tonsSold += it.second * static_cast<int>(it.first->Get("mass"));
+			int64_t value = player.FleetDepreciation().Value(it.first, day, it.second);
+			profit += value;
+			tonsSold += static_cast<int>(it.second * it.first->Get("mass"));
 			
-			player.SoldOutfits()[it.first] += it.second;
-			player.Accounts().AddCredits(it.second * it.first->Cost());
+			player.AddStock(it.first, it.second);
+			player.Accounts().AddCredits(value);
 			player.Cargo().Remove(it.first, it.second);
 		}
 	}

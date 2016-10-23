@@ -451,7 +451,7 @@ void InfoPanel::UpdateInfo()
 		return;
 	
 	const Ship &ship = **shipIt;
-	info.Update(ship);
+	info.Update(ship, player.FleetDepreciation(), player.GetDate().DaysSinceEpoch());
 	if(player.Flagship() && ship.GetSystem() == player.GetSystem() && &ship != player.Flagship())
 		player.Flagship()->SetTargetShip(*shipIt);
 	
@@ -742,7 +742,9 @@ void InfoPanel::DrawWeapons(const Rectangle &bounds) const
 	
 	// Figure out how much to scale the sprite by.
 	const Sprite *sprite = ship.GetSprite();
-	double scale = min(240. / sprite->Width(), 240. / sprite->Height());
+	double scale = 0.;
+	if(sprite)
+		scale = min(240. / sprite->Width(), 240. / sprite->Height());
 	
 	// Figure out the left- and right-most hardpoints on the ship. If they are
 	// too far apart, the scale may need to be reduced.
@@ -1036,7 +1038,7 @@ void InfoPanel::Dump()
 	selectedCommodity.clear();
 	selectedPlunder = nullptr;
 	
-	info.Update(**shipIt);
+	info.Update(**shipIt, player.FleetDepreciation(), player.GetDate().DaysSinceEpoch());
 	if(loss)
 		Messages::Add("You jettisoned " + Format::Number(loss) + " credits worth of cargo.");
 }
@@ -1051,7 +1053,7 @@ void InfoPanel::DumpPlunder(int count)
 	{
 		loss += count * selectedPlunder->Cost();
 		(*shipIt)->Jettison(selectedPlunder, count);
-		info.Update(**shipIt);
+		info.Update(**shipIt, player.FleetDepreciation(), player.GetDate().DaysSinceEpoch());
 		
 		if(loss)
 			Messages::Add("You jettisoned " + Format::Number(loss) + " credits worth of cargo.");
@@ -1070,7 +1072,7 @@ void InfoPanel::DumpCommodities(int count)
 		loss += basis;
 		player.AdjustBasis(selectedCommodity, -basis);
 		(*shipIt)->Jettison(selectedCommodity, count);
-		info.Update(**shipIt);
+		info.Update(**shipIt, player.FleetDepreciation(), player.GetDate().DaysSinceEpoch());
 		
 		if(loss)
 			Messages::Add("You jettisoned " + Format::Number(loss) + " credits worth of cargo.");
