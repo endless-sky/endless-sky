@@ -57,18 +57,18 @@ namespace {
 
 
 
-OutfitInfoDisplay::OutfitInfoDisplay(const Outfit &outfit, const PlayerInfo &player)
+OutfitInfoDisplay::OutfitInfoDisplay(const Outfit &outfit, const PlayerInfo &player, bool canSell)
 {
-	Update(outfit, player);
+	Update(outfit, player, canSell);
 }
 
 
 
 // Call this every time the ship changes.
-void OutfitInfoDisplay::Update(const Outfit &outfit, const PlayerInfo &player)
+void OutfitInfoDisplay::Update(const Outfit &outfit, const PlayerInfo &player, bool canSell)
 {
 	UpdateDescription(outfit.Description());
-	UpdateRequirements(outfit, player);
+	UpdateRequirements(outfit, player, canSell);
 	UpdateAttributes(outfit);
 	
 	maximumHeight = max(descriptionHeight, max(requirementsHeight, attributesHeight));
@@ -90,7 +90,7 @@ void OutfitInfoDisplay::DrawRequirements(const Point &topLeft) const
 
 
 
-void OutfitInfoDisplay::UpdateRequirements(const Outfit &outfit, const PlayerInfo &player)
+void OutfitInfoDisplay::UpdateRequirements(const Outfit &outfit, const PlayerInfo &player, bool canSell)
 {
 	requirementLabels.clear();
 	requirementValues.clear();
@@ -112,7 +112,7 @@ void OutfitInfoDisplay::UpdateRequirements(const Outfit &outfit, const PlayerInf
 	requirementValues.push_back(Format::Number(buyValue));
 	requirementsHeight += 20;
 	
-	if(sellValue != buyValue)
+	if(canSell && sellValue != buyValue)
 	{
 		if(sellValue == cost)
 			requirementLabels.push_back("sells for:");
