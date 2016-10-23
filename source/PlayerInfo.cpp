@@ -73,6 +73,9 @@ void PlayerInfo::New()
 	// such item exists, StartConditions defines default values.
 	date = GameData::Start().GetDate();
 	GameData::SetDate(date);
+	// Make sure the fleet depreciation object knows it is tracking the player's
+	// fleet, not the planet's stock.
+	depreciation.Init(ships, date.DaysSinceEpoch());
 	
 	SetSystem(GameData::Start().GetSystem());
 	SetPlanet(GameData::Start().GetPlanet());
