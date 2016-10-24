@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5155CD731DBB9FF900EF090B /* Depreciation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5155CD711DBB9FF900EF090B /* Depreciation.cpp */; };
 		6245F8251D301C7400A7A094 /* Body.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6245F8231D301C7400A7A094 /* Body.cpp */; };
 		6245F8281D301C9000A7A094 /* Hardpoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6245F8261D301C9000A7A094 /* Hardpoint.cpp */; };
 		628BDAEF1CC5DC950062BCD2 /* PlanetLabel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 628BDAED1CC5DC950062BCD2 /* PlanetLabel.cpp */; };
@@ -152,6 +153,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		5155CD711DBB9FF900EF090B /* Depreciation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Depreciation.cpp; path = source/Depreciation.cpp; sourceTree = "<group>"; };
+		5155CD721DBB9FF900EF090B /* Depreciation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Depreciation.h; path = source/Depreciation.h; sourceTree = "<group>"; };
 		6245F8231D301C7400A7A094 /* Body.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Body.cpp; path = source/Body.cpp; sourceTree = "<group>"; };
 		6245F8241D301C7400A7A094 /* Body.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Body.h; path = source/Body.h; sourceTree = "<group>"; };
 		6245F8261D301C9000A7A094 /* Hardpoint.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Hardpoint.cpp; path = source/Hardpoint.cpp; sourceTree = "<group>"; };
@@ -467,6 +470,8 @@
 				A96862F51AE6FD0A004FE1FE /* DataWriter.h */,
 				A96862F61AE6FD0A004FE1FE /* Date.cpp */,
 				A96862F71AE6FD0A004FE1FE /* Date.h */,
+				5155CD711DBB9FF900EF090B /* Depreciation.cpp */,
+				5155CD721DBB9FF900EF090B /* Depreciation.h */,
 				A96862F81AE6FD0A004FE1FE /* Dialog.cpp */,
 				A96862F91AE6FD0B004FE1FE /* Dialog.h */,
 				A96862FA1AE6FD0B004FE1FE /* DistanceMap.cpp */,
@@ -846,6 +851,7 @@
 				A96863ED1AE6FD0E004FE1FE /* Random.cpp in Sources */,
 				A96864021AE6FD0E004FE1FE /* Trade.cpp in Sources */,
 				6245F8251D301C7400A7A094 /* Body.cpp in Sources */,
+				5155CD731DBB9FF900EF090B /* Depreciation.cpp in Sources */,
 				A96863FC1AE6FD0E004FE1FE /* SpriteShader.cpp in Sources */,
 				A96863E81AE6FD0E004FE1FE /* Politics.cpp in Sources */,
 				A96863E91AE6FD0E004FE1FE /* Preferences.cpp in Sources */,

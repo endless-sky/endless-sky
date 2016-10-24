@@ -43,7 +43,8 @@ namespace {
 
 
 ShopPanel::ShopPanel(PlayerInfo &player, const vector<string> &categories)
-	: player(player), planet(player.GetPlanet()), playerShip(player.Flagship()), categories(categories)
+	: player(player), day(player.GetDate().DaysSinceEpoch()),
+	planet(player.GetPlanet()), playerShip(player.Flagship()), categories(categories)
 {
 	if(playerShip)
 		playerShips.insert(playerShip);
@@ -535,17 +536,33 @@ bool ShopPanel::Click(int x, int y)
 	for(const ClickZone<string> &zone : categoryZones)
 		if(zone.Contains(point))
 		{
+			bool toggleAll = (SDL_GetModState() & KMOD_SHIFT);
 			auto it = collapsed.find(zone.Value());
 			if(it == collapsed.end())
 			{
-				collapsed.insert(zone.Value());
-				if(selectedShip && selectedShip->Attributes().Category() == zone.Value())
+				if(toggleAll)
+				{
 					selectedShip = nullptr;
-				if(selectedOutfit && selectedOutfit->Category() == zone.Value())
 					selectedOutfit = nullptr;
+					for(const string &category : categories)
+						collapsed.insert(category);
+				}
+				else
+				{
+					collapsed.insert(zone.Value());
+					if(selectedShip && selectedShip->Attributes().Category() == zone.Value())
+						selectedShip = nullptr;
+					if(selectedOutfit && selectedOutfit->Category() == zone.Value())
+						selectedOutfit = nullptr;
+				}
 			}
 			else
-				collapsed.erase(it);
+			{
+				if(toggleAll)
+					collapsed.clear();
+				else
+					collapsed.erase(it);
+			}
 			return true;
 		}
 	
@@ -650,7 +667,7 @@ bool ShopPanel::Release(int x, int y)
 bool ShopPanel::Scroll(double dx, double dy)
 {
 	scrollDetailsIntoView = false;
-	return DoScroll(dy * 50.);
+	return DoScroll(dy * 150.);
 }
 
 

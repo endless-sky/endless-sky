@@ -37,11 +37,40 @@ public:
 	typename std::map<std::string, Type>::const_iterator end() const { return data.end(); }
 	
 	int size() const { return data.size(); }
+	// Remove any objects in this set that are not in the given set, and for
+	// those that are in the given set, revert to their contents.
+	void Revert(const Set<Type> &other);
 	
 	
 private:
 	mutable std::map<std::string, Type> data;
 };
+
+
+
+template <class Type>
+void Set<Type>::Revert(const Set<Type> &other)
+{
+	auto it = data.begin();
+	auto oit = other.data.begin();
+	
+	while(it != data.end())
+	{
+		if(it->first == oit->first)
+		{
+			// If this is an entry that is in the set we are reverting to, copy
+			// the state we are reverting to.
+			it->second = oit->second;
+			++it;
+			++oit;
+		}
+		else if(it->first < oit->first)
+			it = data.erase(it);
+		
+		// There should never be a case when an entry in the set we are
+		// reverting to has a name that is not also in this set.
+	}
+}
 
 
 

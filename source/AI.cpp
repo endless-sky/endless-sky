@@ -940,7 +940,8 @@ void AI::Refuel(Ship &ship, Command &command)
 	{
 		double closest = numeric_limits<double>::infinity();
 		for(const StellarObject &object : ship.GetSystem()->Objects())
-			if(object.GetPlanet() && object.GetPlanet()->HasSpaceport() && object.GetPlanet()->CanLand(ship))
+			if(object.GetPlanet() && object.GetPlanet()->HasSpaceport() 
+					&& !object.GetPlanet()->IsWormhole() && object.GetPlanet()->CanLand(ship))
 			{
 				double distance = ship.Position().Distance(object.Position());
 				if(distance < closest)

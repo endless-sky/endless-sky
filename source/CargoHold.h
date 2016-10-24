@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef CARGO_HOLD_H_
 #define CARGO_HOLD_H_
 
+#include <cstdint>
 #include <map>
 #include <string>
 
@@ -95,7 +96,7 @@ public:
 	void RemoveMissionCargo(const Mission *mission);
 	
 	// Get the total value of all this cargo, in the given system.
-	int Value(const System *system) const;
+	int64_t Value(const System *system) const;
 	
 	// If anything you are carrying is illegal, return the maximum fine you can
 	// be charged. If the returned value is negative, you are carrying something
