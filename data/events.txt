@@ -2201,8 +2201,6 @@ event "fw at war with Syndicate"
 	government Syndicate
 		"attitude toward"
 			"Free Worlds" -.3
-			"Republic" -.3
-			"Navy (Oathkeeper)" -.3
 			"Pirate" -.4
 			"Korath" -.5
 	system Rutilicus
