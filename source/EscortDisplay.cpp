@@ -141,7 +141,7 @@ void EscortDisplay::Draw() const
 
 
 EscortDisplay::Icon::Icon(const Ship &ship, bool isHere, bool fleetIsJumping)
-	: sprite(ship.GetSprite().GetSprite()),
+	: sprite(ship.GetSprite()),
 	isHere(isHere && !ship.IsDisabled()),
 	isReadyToJump(ship.CheckHyperspace()),
 	cannotJump(fleetIsJumping && !ship.IsHyperspacing() && !ship.JumpsRemaining()),

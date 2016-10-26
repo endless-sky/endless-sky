@@ -48,14 +48,14 @@ MapShipyardPanel::MapShipyardPanel(const MapPanel &panel)
 
 const Sprite *MapShipyardPanel::SelectedSprite() const
 {
-	return selected ? selected->GetSprite().GetSprite() : nullptr;
+	return selected ? selected->GetSprite() : nullptr;
 }
 
 
 
 const Sprite *MapShipyardPanel::CompareSprite() const
 {
-	return compare ? compare->GetSprite().GetSprite() : nullptr;
+	return compare ? compare->GetSprite() : nullptr;
 }
 
 
@@ -167,8 +167,7 @@ void MapShipyardPanel::DrawItems() const
 					}
 			}
 			
-			Draw(corner, ship->GetSprite().GetSprite(), isForSale, ship == selected,
-				ship->ModelName(), price, info);
+			Draw(corner, ship->GetSprite(), isForSale, ship == selected, ship->ModelName(), price, info);
 			list.push_back(ship);
 		}
 	}

@@ -14,7 +14,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #define ASTEROID_FIELD_H_
 
 #include "Angle.h"
-#include "Animation.h"
+#include "Body.h"
 #include "Point.h"
 
 #include <string>
@@ -42,29 +42,21 @@ public:
 	void Add(const std::string &name, int count, double energy = 1.);
 	
 	void Step();
-	void Draw(DrawList &draw, const Point &center, const Point &centerVelocity) const;
+	void Draw(DrawList &draw, const Point &center) const;
 	double Collide(const Projectile &projectile, int step, Point *hitVelocity = nullptr) const;
 	
 	
 private:
-	class Asteroid {
+	class Asteroid : public Body {
 	public:
 		Asteroid(const Sprite *sprite, double energy);
 		
 		void Step();
-		void Draw(DrawList &draw, const Point &center, const Point &centerVelocity) const;
+		void Draw(DrawList &draw, const Point &center) const;
 		double Collide(const Projectile &projectile, int step) const;
 		
-		Point Velocity() const;
-		
 	private:
-		Point location;
-		Point velocity;
-		
-		Angle angle;
 		Angle spin;
-		
-		Animation animation;
 	};
 	
 	

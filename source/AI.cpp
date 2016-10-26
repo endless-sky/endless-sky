@@ -1144,7 +1144,7 @@ void AI::KeepStation(Ship &ship, Command &command, const Ship &target)
 	double turn = ship.TurnRate();
 	double mass = ship.Mass();
 	Point unit = ship.Facing().Unit();
-	double currentAngle = TO_DEG * atan2(ship.Unit().X(), -ship.Unit().Y());
+	double currentAngle = ship.Facing().Degrees();
 	// This is where we want to be relative to where we are now:
 	Point velocityDelta = target.Velocity() - ship.Velocity();
 	Point positionDelta = target.Position() + LEAD_TIME * velocityDelta - ship.Position();
@@ -1160,7 +1160,7 @@ void AI::KeepStation(Ship &ship, Command &command, const Ship &target)
 	if(positionTime != positionTime || positionTime > MAX_TIME)
 		positionTime = MAX_TIME;
 	Point rendezvous = positionDelta + target.Velocity() * positionTime;
-	double positionAngle = TO_DEG * atan2(rendezvous.X(), -rendezvous.Y());
+	double positionAngle = Angle(rendezvous).Degrees();
 	positionTime += AngleDiff(currentAngle, positionAngle) / turn;
 	positionTime += (rendezvous.Unit() * maxV - ship.Velocity()).Length() / accel;
 	// If you are very close,stop trying to adjust:
@@ -1168,7 +1168,7 @@ void AI::KeepStation(Ship &ship, Command &command, const Ship &target)
 	
 	// Time it will take (roughly) to adjust your velocity to match the target:
 	double velocityTime = velocityDelta.Length() / accel;
-	double velocityAngle = TO_DEG * atan2(velocityDelta.X(), -velocityDelta.Y());
+	double velocityAngle = Angle(velocityDelta).Degrees();
 	velocityTime += AngleDiff(currentAngle, velocityAngle) / turn;
 	// If you are very close,stop trying to adjust:
 	velocityTime *= velocityWeight * velocityWeight;
@@ -1183,7 +1183,7 @@ void AI::KeepStation(Ship &ship, Command &command, const Ship &target)
 	Point facingGoal = rendezvous.Unit() * positionWeight
 		+ velocityDelta.Unit() * velocityWeight
 		+ target.Facing().Unit() * facingWeight;
-	double targetAngle = TO_DEG * atan2(facingGoal.X(), -facingGoal.Y()) - currentAngle;
+	double targetAngle = Angle(facingGoal).Degrees() - currentAngle;
 	if(abs(targetAngle) > 180.)
 		targetAngle += (targetAngle < 0. ? 360. : -360.);
 	if(abs(targetAngle) < turn)
@@ -1666,7 +1666,7 @@ Command AI::AutoFire(const Ship &ship, const list<shared_ptr<Ship>> &ships, bool
 			// Extrapolate over the lifetime of the projectile.
 			v *= lifetime;
 			
-			const Mask &mask = target->GetSprite().GetMask(step);
+			const Mask &mask = target->GetMask(step);
 			if(mask.Collide(-p, v, target->Facing()) < 1.)
 			{
 				command.SetFire(index);
@@ -1800,7 +1800,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, const list<shared_ptr<
 		// explaining why they cannot land there.
 		string message;
 		for(const StellarObject &object : ship.GetSystem()->Objects())
-			if(!object.GetPlanet() && !object.GetSprite().IsEmpty())
+			if(!object.GetPlanet() && object.HasSprite())
 			{
 				double distance = ship.Position().Distance(object.Position());
 				if(distance < object.Radius())

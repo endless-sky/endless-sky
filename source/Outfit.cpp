@@ -51,8 +51,8 @@ void Outfit::Load(const DataNode &node)
 			category = child.Token(1);
 		else if(child.Token(0) == "flare sprite" && child.Size() >= 2)
 		{
-			flareSprites.emplace_back(Animation(), 1);
-			flareSprites.back().first.Load(child);
+			flareSprites.emplace_back(Body(), 1);
+			flareSprites.back().first.LoadSprite(child);
 		}
 		else if(child.Token(0) == "flare sound" && child.Size() >= 2)
 			++flareSounds[Audio::Get(child.Token(1))];
@@ -199,7 +199,7 @@ void Outfit::ResetCost(double value)
 
 
 // Get this outfit's engine flare sprite, if any.
-const vector<pair<Animation, int>> &Outfit::FlareSprites() const
+const vector<pair<Body, int>> &Outfit::FlareSprites() const
 {
 	return flareSprites;
 }

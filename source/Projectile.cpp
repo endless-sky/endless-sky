@@ -36,11 +36,11 @@ namespace {
 
 
 Projectile::Projectile(const Ship &parent, Point position, Angle angle, const Outfit *weapon)
-	: weapon(weapon), animation(weapon->WeaponSprite()),
-	position(position), velocity(parent.Velocity()), angle(angle),
-	targetShip(parent.GetTargetShip()), government(parent.GetGovernment()),
-	lifetime(weapon->Lifetime())
+	: Body(weapon->WeaponSprite(), position, parent.Velocity(), angle),
+	weapon(weapon), targetShip(parent.GetTargetShip()), lifetime(weapon->Lifetime())
 {
+	government = parent.GetGovernment();
+	
 	// If you are boarding your target, do not fire on it.
 	if(parent.IsBoarding() || parent.Commands().Has(Command::BOARD))
 		targetShip.reset();
@@ -62,11 +62,12 @@ Projectile::Projectile(const Ship &parent, Point position, Angle angle, const Ou
 
 
 Projectile::Projectile(const Projectile &parent, const Outfit *weapon)
-	: weapon(weapon), animation(weapon->WeaponSprite()),
-	position(parent.position + parent.velocity), velocity(parent.velocity), angle(parent.angle),
-	targetShip(parent.targetShip), government(parent.government),
-	targetGovernment(parent.targetGovernment), lifetime(weapon->Lifetime())
+	: Body(weapon->WeaponSprite(), parent.position + parent.velocity, parent.velocity, parent.angle),
+	weapon(weapon), targetShip(parent.targetShip), lifetime(weapon->Lifetime())
 {
+	government = parent.government;
+	targetGovernment = parent.targetGovernment;
+	
 	cachedTarget = targetShip.lock().get();
 	double inaccuracy = weapon->Inaccuracy();
 	if(inaccuracy)
@@ -90,8 +91,9 @@ Projectile::Projectile(const Projectile &parent, const Outfit *weapon)
 
 // Ship explosion.
 Projectile::Projectile(Point position, const Outfit *weapon)
-	: weapon(weapon), position(position)
+	: weapon(weapon)
 {
+	this->position = position;
 }
 
 
@@ -221,7 +223,7 @@ void Projectile::MakeSubmunitions(list<Projectile> &projectiles) const
 // frame for the given step.
 double Projectile::CheckCollision(const Ship &ship, int step) const
 {
-	const Mask &mask = ship.GetSprite().GetMask(step);
+	const Mask &mask = ship.GetMask(step);
 	Point offset = position - ship.Position();
 	
 	double radius = weapon->TriggerRadius();
@@ -250,7 +252,7 @@ bool Projectile::InBlastRadius(const Ship &ship, int step, double closestHit) co
 	if(offset.Length() <= weapon->BlastRadius())
 		return true;
 	
-	const Mask &mask = ship.GetSprite().GetMask(step);
+	const Mask &mask = ship.GetMask(step);
 	return mask.WithinRange(offset, ship.Facing(), weapon->BlastRadius());
 }
 
@@ -296,56 +298,11 @@ const Outfit &Projectile::GetWeapon() const
 }
 
 
-
-// Get the projectiles characteristics, for drawing.
-const Animation &Projectile::GetSprite() const
-{
-	return animation;
-}
-
-
-
-const Point &Projectile::Position() const
-{
-	return position;
-}
-
-
-
-const Point &Projectile::Velocity() const
-{
-	return velocity;
-}
-
-
-
-const Angle &Projectile::Facing() const
-{
-	return angle;
-}
-
-
-
-// Get the facing unit vector times the scale factor.
-Point Projectile::Unit() const
-{
-	return angle.Unit() * .5;
-}
-
-
 	
 // Find out which ship this projectile is targeting.
 const Ship *Projectile::Target() const
 {
 	return cachedTarget;
-}
-
-
-
-// Find out which government this projectile belongs to.
-const Government *Projectile::GetGovernment() const
-{
-	return government;
 }
 
 

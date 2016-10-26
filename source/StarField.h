@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef STAR_FIELD_H_
 #define STAR_FIELD_H_
 
+#include "Body.h"
 #include "Shader.h"
 
 #include "gl_header.h"
@@ -46,8 +47,7 @@ private:
 	int tileCols;
 	std::vector<int> tileIndex;
 	
-	std::vector<Point> hazePos;
-	std::vector<Point> hazeUnit;
+	std::vector<Body> haze;
 	
 	Shader shader;
 	GLuint vao;

@@ -60,10 +60,10 @@ void AsteroidField::Step()
 
 
 
-void AsteroidField::Draw(DrawList &draw, const Point &center, const Point &centerVelocity) const
+void AsteroidField::Draw(DrawList &draw, const Point &center) const
 {
 	for(const Asteroid &asteroid : asteroids)
-		asteroid.Draw(draw, center, centerVelocity);
+		asteroid.Draw(draw, center);
 }
 
 
@@ -88,12 +88,14 @@ double AsteroidField::Collide(const Projectile &projectile, int step, Point *hit
 
 
 AsteroidField::Asteroid::Asteroid(const Sprite *sprite, double energy)
-	: animation(sprite, Random::Real() * 4. * energy + 5.)
 {
-	location = Point(Random::Int() & WRAP_MASK, Random::Int() & WRAP_MASK);
+	SetSprite(sprite);
+	SetFrameRate(Random::Real() * 4. * energy + 5.);
 	
-	angle = Angle::Random(360.);
-	spin = Angle((Random::Real() * 2. - 1.) * energy);
+	position = Point(Random::Int() & WRAP_MASK, Random::Int() & WRAP_MASK);
+	
+	angle = Angle::Random();
+	spin = Angle::Random(energy) - Angle::Random(energy);
 	
 	velocity = angle.Unit() * Random::Real() * energy;
 }
@@ -103,42 +105,36 @@ AsteroidField::Asteroid::Asteroid(const Sprite *sprite, double energy)
 void AsteroidField::Asteroid::Step()
 {
 	angle += spin;
-	location += velocity;
+	position += velocity;
 	
-	if(location.X() < 0.)
-		location = Point(location.X() + WRAP, location.Y());
-	else if(location.X() >= WRAP)
-		location = Point(location.X() - WRAP, location.Y());
+	if(position.X() < 0.)
+		position = Point(position.X() + WRAP, position.Y());
+	else if(position.X() >= WRAP)
+		position = Point(position.X() - WRAP, position.Y());
 	
-	if(location.Y() < 0.)
-		location = Point(location.X(), location.Y() + WRAP);
-	else if(location.Y() >= WRAP)
-		location = Point(location.X(), location.Y() - WRAP);
+	if(position.Y() < 0.)
+		position = Point(position.X(), position.Y() + WRAP);
+	else if(position.Y() >= WRAP)
+		position = Point(position.X(), position.Y() - WRAP);
 }
 
 
 
-void AsteroidField::Asteroid::Draw(DrawList &draw, const Point &center, const Point &centerVelocity) const
+void AsteroidField::Asteroid::Draw(DrawList &draw, const Point &center) const
 {
-	Point pos = location - center;
-	pos = Point(remainder(pos.X(), WRAP), remainder(pos.Y(), WRAP));
+	Point pos(
+		remainder(position.X() - center.X(), WRAP),
+		remainder(position.Y() - center.Y(), WRAP));
 	
-	draw.Add(animation, pos, angle.Unit() * .5, velocity - centerVelocity);
+	draw.Add(*this, pos + center);
 }
 
 
 
 double AsteroidField::Asteroid::Collide(const Projectile &projectile, int step) const
 {
-	Point pos = location - projectile.Position();
+	Point pos = position - projectile.Position();
 	pos = Point(-remainder(pos.X(), WRAP), -remainder(pos.Y(), WRAP));
 	
-	return animation.GetMask(step).Collide(pos, projectile.Velocity(), angle);
-}
-
-
-
-Point AsteroidField::Asteroid::Velocity() const
-{
-	return velocity;
+	return GetMask(step).Collide(pos, projectile.Velocity(), angle);
 }

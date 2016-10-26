@@ -799,6 +799,51 @@ int InfoPanel::DrawCargoHold(const CargoHold &cargo, Point startPos, Point size,
 		font.Draw(number, numberPos, bright);
 	}
 	
+	if (panel)
+	{
+		// Weapon positions.
+		const Sprite *sprite = ship.GetSprite();
+		double scale = min(240. / sprite->Width(), 240. / sprite->Height());
+		Point shipCenter(-125., 155.);
+		SpriteShader::Draw(sprite, shipCenter, scale, 8);
+	
+		Color black(0., 1.);
+		pos = Point(10., 260.);
+		Point hoverPos;
+		for(int isTurret = true; isTurret >= 0; --isTurret)
+		{
+			for(unsigned i = 0; i < ship.Weapons().size(); ++i)
+			{
+				const Armament::Weapon &weapon = ship.Weapons()[i];
+				if(weapon.IsTurret() == isTurret)
+				{
+					if(static_cast<int>(i) == hover)
+						hoverPos = pos;
+					else
+						DrawWeapon(i, pos, shipCenter + (2. * scale) * weapon.GetPoint());
+					pos.Y() -= 20.;
+				}
+			}
+			if(pos.Y() != 260.)
+				pos.Y() -= 10.;
+		}
+		if(hover >= 0 && hover <= static_cast<int>(ship.Weapons().size()))
+			DrawWeapon(hover, hoverPos, shipCenter + (2. * scale) * ship.Weapons()[hover].GetPoint());
+	
+		info.DrawTooltips();
+	
+		// Re-positioning weapons.
+		if(selected >= 0)
+		{
+			const Outfit *outfit = ship.Weapons()[selected].GetOutfit();
+			string name = outfit ? outfit->Name() : "[empty]";
+			Point pos(hoverPoint.X() - .5 * font.Width(name), hoverPoint.Y());
+			font.Draw(name, pos + Point(1., 1.), Color(0., 1.));
+			font.Draw(name, pos, bright);
+		}
+	}
+
+	// If displaying in the shop gui.
 	if (!panel)
 	{
 		pos.Y() += 10.;

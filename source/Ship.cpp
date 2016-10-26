@@ -107,7 +107,7 @@ void Ship::Load(const DataNode &node)
 	for(const DataNode &child : node)
 	{
 		if(child.Token(0) == "sprite")
-			sprite.Load(child);
+			LoadSprite(child);
 		else if(child.Token(0) == "name" && child.Size() >= 2)
 			name = child.Token(1);
 		else if(child.Token(0) == "attributes")
@@ -119,7 +119,7 @@ void Ship::Load(const DataNode &node)
 				enginePoints.clear();
 				hasEngine = true;
 			}
-			enginePoints.emplace_back(child.Value(1), child.Value(2));
+			enginePoints.emplace_back(.5 * child.Value(1), .5 * child.Value(2));
 		}
 		else if(child.Token(0) == "gun" || child.Token(0) == "turret")
 		{
@@ -265,8 +265,8 @@ void Ship::FinishLoading()
 	// Exception: uncapturable and "never disabled" flags don't carry over.
 	if(base && base != this)
 	{
-		if(!sprite.GetSprite())
-			sprite = base->sprite;
+		if(!HasSprite())
+			reinterpret_cast<Body &>(*this) = *base;
 		if(baseAttributes.Attributes().empty())
 			baseAttributes = base->baseAttributes;
 		if(bays.empty() && !base->bays.empty())
@@ -396,7 +396,7 @@ void Ship::Save(DataWriter &out) const
 	out.BeginChild();
 	{
 		out.Write("name", name);
-		sprite.Save(out);
+		SaveSprite(out);
 		
 		if(neverDisabled)
 			out.Write("never disabled");
@@ -437,7 +437,7 @@ void Ship::Save(DataWriter &out) const
 		out.Write("position", position.X(), position.Y());
 		
 		for(const Point &point : enginePoints)
-			out.Write("engine", point.X(), point.Y());
+			out.Write("engine", 2. * point.X(), 2. * point.Y());
 		for(const Armament::Weapon &weapon : armament.Get())
 		{
 			const char *type = (weapon.IsTurret() ? "turret" : "gun");
@@ -477,28 +477,6 @@ void Ship::Save(DataWriter &out) const
 			out.Write("parked");
 	}
 	out.EndChild();
-}
-
-
-
-const Animation &Ship::GetSprite() const
-{
-	return sprite;
-}
-
-
-
-// Get the ship's government.
-const Government *Ship::GetGovernment() const
-{
-	return government;
-}
-
-
-
-double Ship::Zoom() const
-{
-	return max(zoom, 0.);
 }
 
 
@@ -601,7 +579,7 @@ void Ship::Place(Point position, Point velocity, Angle angle)
 	ionization = 0.;
 	disruption = 0.;
 	slowness = 0.;
-	isInvisible = sprite.IsEmpty();
+	isInvisible = !HasSprite();
 	jettisoned.clear();
 	hyperspaceCount = 0;
 	hyperspaceType = 0;
@@ -609,7 +587,7 @@ void Ship::Place(Point position, Point velocity, Angle angle)
 	targetShip.reset();
 	shipToAssist.reset();
 	if(government)
-		sprite.SetSwizzle(government->GetSwizzle());
+		SetSwizzle(government->GetSwizzle());
 }
 
 
@@ -643,7 +621,7 @@ void Ship::SetPlanet(const Planet *planet)
 void Ship::SetGovernment(const Government *government)
 {
 	if(government)
-		sprite.SetSwizzle(government->GetSwizzle());
+		SetSwizzle(government->GetSwizzle());
 	this->government = government;
 }
 
@@ -834,8 +812,9 @@ bool Ship::Move(list<Effect> &effects, list<Flotsam> &flotsam)
 			if(!forget)
 			{
 				const Effect *effect = GameData::Effects().Get("smoke");
-				double scale = .015 * (sprite.Width() + sprite.Height()) + .5;
-				double radius = .1 * (sprite.Width() + sprite.Height());
+				double size = Width() + Height();
+				double scale = .03 * size + .5;
+				double radius = .2 * size;
 				int debrisCount = attributes.Get("mass") * .07;
 				for(int i = 0; i < debrisCount; ++i)
 				{
@@ -892,23 +871,7 @@ bool Ship::Move(list<Effect> &effects, list<Flotsam> &flotsam)
 		// Create the particle effects for the jump drive. This may create 100
 		// or more particles per ship per turn at the peak of the jump.
 		if(hasJumpDrive && !forget)
-		{
-			int count = hyperspaceCount;
-			count *= sprite.Width() * sprite.Height();
-			count /= 160000;
-			const Effect *effect = GameData::Effects().Get("jump drive");
-			while(--count >= 0)
-			{
-				Point point((Random::Real() - .5) * .5 * sprite.Width(),
-					(Random::Real() - .5) * .5 * sprite.Height());
-				if(sprite.GetMask(0).Contains(point, Angle()))
-				{
-					effects.push_back(*effect);
-					Point vel = velocity + 5. * Angle::Random(360.).Unit();
-					effects.back().Place(angle.Rotate(point) + position, vel, angle);
-				}
-			}
-		}
+			CreateSparks(effects, "jump drive", hyperspaceCount * Width() * Height() * .000006);
 		
 		if(hyperspaceCount == HYPER_C)
 		{
@@ -1652,35 +1615,6 @@ const vector<Point> &Ship::EnginePoints() const
 
 
 
-const Point &Ship::Position() const
-{
-	return position;
-}
-
-
-
-const Point &Ship::Velocity() const
-{
-	return velocity;
-}
-
-
-
-const Angle &Ship::Facing() const
-{
-	return angle;
-}
-
-
-
-// Get the facing unit vector times the scale factor.
-Point Ship::Unit() const
-{
-	return angle.Unit() * (Zoom() * .5);
-}
-
-
-
 // Mark a ship as destroyed.
 void Ship::Destroy()
 {
@@ -2090,6 +2024,26 @@ void Ship::UnloadBays()
 const vector<Ship::Bay> &Ship::Bays() const
 {
 	return bays;
+}
+
+
+
+// Adjust the positions and velocities of any visible carried fighters or
+// drones. If any are visible, return true.
+bool Ship::PositionFighters() const
+{
+	bool hasVisible = false;
+	for(const Bay &bay : bays)
+		if(bay.ship && (bay.direction == Bay::OVER || bay.direction == Bay::UNDER))
+		{
+			// TODO: Allow ships to be *both* "over" or "under" and "right" or "left".
+			hasVisible = true;
+			bay.ship->position = angle.Rotate(bay.point) * .5 * Zoom() + position;
+			bay.ship->velocity = velocity;
+			bay.ship->angle = angle;
+			bay.ship->zoom = zoom;
+		}
+	return hasVisible;
 }
 
 
@@ -2523,15 +2477,15 @@ double Ship::AddShields(double rate)
 
 void Ship::CreateExplosion(list<Effect> &effects, bool spread)
 {
-	if(sprite.IsEmpty() || !sprite.GetMask(0).IsLoaded() || explosionEffects.empty())
+	if(!HasSprite() || !GetMask().IsLoaded() || explosionEffects.empty())
 		return;
 	
 	// Bail out if this loops enough times, just in case.
 	for(int i = 0; i < 10; ++i)
 	{
-		Point point((Random::Real() - .5) * .5 * sprite.Width(),
-			(Random::Real() - .5) * .5 * sprite.Height());
-		if(sprite.GetMask(0).Contains(point, Angle()))
+		Point point((Random::Real() - .5) * Width(),
+			(Random::Real() - .5) * Height());
+		if(GetMask().Contains(point, Angle()))
 		{
 			// Pick an explosion.
 			int type = Random::Int(explosionTotal);
@@ -2546,7 +2500,7 @@ void Ship::CreateExplosion(list<Effect> &effects, bool spread)
 			Point effectVelocity = velocity;
 			if(spread)
 			{
-				double scale = .02 * (sprite.Width() + sprite.Height());
+				double scale = .04 * (Width() + Height());
 				effectVelocity += Angle::Random().Unit() * (scale * Random::Real());
 			}
 			effects.back().Place(angle.Rotate(point) + position, effectVelocity, angle);
@@ -2565,8 +2519,8 @@ void Ship::CreateSparks(list<Effect> &effects, const string &name, double amount
 		return;
 	
 	// Limit the number of sparks, depending on the size of the sprite.
-	amount = min(amount, sprite.Width() * sprite.Height() * .0001);
-
+	amount = min(amount, Width() * Height() * .0006);
+	
 	const Effect *effect = GameData::Effects().Get(name);
 	while(true)
 	{
@@ -2574,9 +2528,9 @@ void Ship::CreateSparks(list<Effect> &effects, const string &name, double amount
 		if(amount <= 0.)
 			break;
 		
-		Point point((Random::Real() - .5) * .5 * sprite.Width(),
-			(Random::Real() - .5) * .5 * sprite.Height());
-		if(sprite.GetMask(0).Contains(point, Angle()))
+		Point point((Random::Real() - .5) * Width(),
+			(Random::Real() - .5) * Height());
+		if(GetMask().Contains(point, Angle()))
 		{
 			effects.push_back(*effect);
 			effects.back().Place(angle.Rotate(point) + position, velocity, angle);

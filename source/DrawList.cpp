@@ -12,7 +12,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "DrawList.h"
 
-#include "Animation.h"
+#include "Body.h"
 #include "Preferences.h"
 #include "Screen.h"
 #include "Sprite.h"
@@ -42,44 +42,75 @@ void DrawList::Clear(int step)
 
 
 
-// Add an animation.
-bool DrawList::Add(const Animation &animation, Point pos, Point unit, Point blur, double clip)
+void DrawList::SetCenter(const Point &center, const Point &centerVelocity)
 {
-	if(animation.IsEmpty() || !unit)
+	this->center = center;
+	this->centerVelocity = centerVelocity;
+}
+
+
+
+// Add an object based on the Body class.
+bool DrawList::Add(const Body &body, double cloak)
+{
+	Point position = body.Position() - center;
+	Point blur = body.Velocity() - centerVelocity;
+	if(Cull(body, position, blur) || cloak >= 1.)
 		return false;
 	
-	// Cull sprites that are completely off screen, to reduce the number of draw
-	// calls that we issue (which may be the bottleneck on some systems).
-	Point size(
-		.5 * (fabs(unit.X() * animation.Height()) + fabs(unit.Y() * animation.Width()) + fabs(blur.X())),
-		.5 * (fabs(unit.X() * animation.Width()) + fabs(unit.Y() * animation.Height()) + fabs(blur.Y())));
-	Point topLeft = pos - size;
-	Point bottomRight = pos + size;
-	if(bottomRight.X() < Screen::Left() || bottomRight.Y() < Screen::Top())
-		return false;
-	if(topLeft.X() > Screen::Right() || topLeft.Y() > Screen::Bottom())
-		return false;
-		
-	items.emplace_back(animation, pos, unit, blur, clip, step);
+	items.emplace_back(body, position, blur, cloak, 1., body.GetSwizzle(), step);
 	return true;
 }
 
 
 
-// Add a single sprite.
-bool DrawList::Add(const Sprite *sprite, Point pos, Point unit, Point blur, double cloak, int swizzle)
+bool DrawList::Add(const Body &body, Point position)
 {
-	if(cloak >= 1.)
+	position -= center;
+	Point blur = body.Velocity() - centerVelocity;
+	if(Cull(body, position, blur))
 		return false;
 	
-	Animation animation(sprite, 1.f);
-	animation.SetSwizzle(swizzle);
-	if(!Add(animation, pos, unit, blur))
+	items.emplace_back(body, position, blur, 0., 1., body.GetSwizzle(), step);
+	return true;
+}
+
+
+
+bool DrawList::AddUnblurred(const Body &body)
+{
+	Point position = body.Position() - center;
+	Point blur;
+	if(Cull(body, position, blur))
 		return false;
 	
-	if(cloak > 0.)
-		items.back().Cloak(cloak);
+	items.emplace_back(body, position, blur, 0., 1., body.GetSwizzle(), step);
+	return true;
+}
+
+
+
+bool DrawList::AddProjectile(const Body &body, const Point &adjustedVelocity, double clip)
+{
+	Point position = body.Position() + .5 * body.Velocity() - center;
+	Point blur = adjustedVelocity - centerVelocity;
+	if(Cull(body, position, blur) || clip <= 0.)
+		return false;
 	
+	items.emplace_back(body, position, blur, 0., clip, body.GetSwizzle(), step);
+	return true;
+}
+
+
+
+bool DrawList::AddSwizzled(const Body &body, int swizzle)
+{
+	Point position = body.Position() - center;
+	Point blur = body.Velocity() - centerVelocity;
+	if(Cull(body, position, blur))
+		return false;
+	
+	items.emplace_back(body, position, blur, 0., 1., swizzle, step);
 	return true;
 }
 
@@ -101,17 +132,40 @@ void DrawList::Draw() const
 
 
 
-DrawList::Item::Item(const Animation &animation, Point pos, Point unit, Point blur, float clip, int step)
-	: position{static_cast<float>(pos.X()), static_cast<float>(pos.Y())},
-	clip(clip), flags(animation.GetSwizzle())
+bool DrawList::Cull(const Body &body, const Point &position, const Point &blur)
 {
-	Animation::Frame frame = animation.Get(step);
+	if(!body.HasSprite() || !body.Zoom())
+		return true;
+	
+	Point unit = body.Facing().Unit();
+	// Cull sprites that are completely off screen, to reduce the number of draw
+	// calls that we issue (which may be the bottleneck on some systems).
+	Point size(
+		.5 * (fabs(unit.X() * body.Height()) + fabs(unit.Y() * body.Width()) + fabs(blur.X())),
+		.5 * (fabs(unit.X() * body.Width()) + fabs(unit.Y() * body.Height()) + fabs(blur.Y())));
+	Point topLeft = position - size;
+	Point bottomRight = position + size;
+	if(bottomRight.X() < Screen::Left() || bottomRight.Y() < Screen::Top())
+		return true;
+	if(topLeft.X() > Screen::Right() || topLeft.Y() > Screen::Bottom())
+		return true;
+	
+	return false;
+}
+
+
+
+DrawList::Item::Item(const Body &body, Point pos, Point blur, float cloak, float clip, int swizzle, int step)
+	: position{static_cast<float>(pos.X()), static_cast<float>(pos.Y())}, clip(clip), flags(swizzle)
+{
+	Body::Frame frame = body.GetFrame(step);
 	tex0 = frame.first;
 	tex1 = frame.second;
 	flags |= static_cast<uint32_t>(frame.fade * 256.f) << 8;
 	
-	double width = animation.Width();
-	double height = animation.Height();
+	double width = body.Width();
+	double height = body.Height();
+	Point unit = body.Facing().Unit();
 	Point uw = unit * width;
 	Point uh = unit * height;
 	
@@ -131,14 +185,9 @@ DrawList::Item::Item(const Animation &animation, Point pos, Point unit, Point bl
 	transform[2] = -uh.X();
 	transform[3] = -uh.Y();
 	
-	// Calculate the blur vector, in texture coordinates. This should be done by
-	// projecting the blur vector onto the unit vector and then scaling it based
-	// on the sprite size. But, the unit vector first has to be normalized (i.e.
-	// divided by the unit vector length), and the sprite size also has to be
-	// multiplied by the unit vector size, so:
-	double zoomCorrection = 4. * unit.LengthSquared();
-	this->blur[0] = unit.Cross(blur) / (width * zoomCorrection);
-	this->blur[1] = -unit.Dot(blur) / (height * zoomCorrection);
+	// Calculate the blur vector, in texture coordinates.
+	this->blur[0] = unit.Cross(blur) / (width * 4.);
+	this->blur[1] = -unit.Dot(blur) / (height * 4.);
 }
 
 
