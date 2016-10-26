@@ -38,7 +38,7 @@ mission "Escort (Tiny, Northern, Dangerous Destination)"
 			variant
 				"Wasp"
 			variant
-				"Berzerker"
+				"Berserker"
 	npc
 		personality nemesis waiting
 		system destination
@@ -51,7 +51,7 @@ mission "Escort (Tiny, Northern, Dangerous Destination)"
 			variant
 				"Wasp"
 			variant
-				"Berzerker"
+				"Berserker"
 	npc accompany save
 		government Merchant
 		personality escort timid
@@ -96,7 +96,7 @@ mission "Escort (Tiny, Northern, Dangerous Origin)"
 			variant
 				"Wasp"
 			variant
-				"Berzerker"
+				"Berserker"
 	npc
 		personality nemesis waiting
 		distance 1
@@ -108,7 +108,7 @@ mission "Escort (Tiny, Northern, Dangerous Origin)"
 			variant
 				"Wasp"
 			variant
-				"Berzerker"
+				"Berserker"
 	npc accompany save
 		government Merchant
 		personality escort timid
@@ -554,7 +554,7 @@ mission "Escort (Tiny, Core, Dangerous Destination)"
 			variant
 				"Wasp"
 			variant
-				"Berzerker"
+				"Berserker"
 	npc
 		personality nemesis staying
 		system destination
@@ -566,7 +566,7 @@ mission "Escort (Tiny, Core, Dangerous Destination)"
 			variant
 				"Wasp"
 			variant
-				"Berzerker"
+				"Berserker"
 	npc accompany save
 		government Merchant
 		personality escort timid
@@ -612,7 +612,7 @@ mission "Escort (Tiny, Core, Dangerous Origin)"
 			variant
 				"Wasp"
 			variant
-				"Berzerker"
+				"Berserker"
 	npc
 		personality nemesis waiting
 		government Pirate
@@ -623,7 +623,7 @@ mission "Escort (Tiny, Core, Dangerous Origin)"
 			variant
 				"Wasp"
 			variant
-				"Berzerker"
+				"Berserker"
 	npc accompany save
 		government Merchant
 		personality escort timid
@@ -1070,7 +1070,7 @@ mission "Escort (Tiny, Southern, Dangerous Origin or Destination)"
 			variant
 				"Wasp"
 			variant
-				"Berzerker"
+				"Berserker"
 	npc
 		personality nemesis staying
 		government Pirate
@@ -1081,7 +1081,7 @@ mission "Escort (Tiny, Southern, Dangerous Origin or Destination)"
 			variant
 				"Wasp"
 			variant
-				"Berzerker"
+				"Berserker"
 	npc accompany save
 		government Merchant
 		personality escort timid
