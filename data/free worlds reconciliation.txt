@@ -1837,6 +1837,7 @@ mission "FW Pug 4B: Reinforcements"
 	npc kill
 		personality disables
 		system Markab
+		government Syndicate
 		fleet
 			names "syndicate capital"
 			variant
