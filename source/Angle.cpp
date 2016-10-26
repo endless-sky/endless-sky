@@ -67,6 +67,13 @@ Angle::Angle(double degrees)
 
 
 
+Angle::Angle(const Point &point)
+	: Angle(TO_DEG * atan2(point.X(), -point.Y()))
+{
+}
+
+
+
 Angle Angle::operator+(const Angle &other) const
 {
 	Angle result = *this;
@@ -123,6 +130,13 @@ Point Angle::Unit() const
 		}
 	}
 	return cache[angle];
+}
+
+
+
+double Angle::Degrees() const
+{
+	return angle / DEG_TO_STEP - 360. * (angle >= STEPS / 2);
 }
 
 
