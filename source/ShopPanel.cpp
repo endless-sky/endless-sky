@@ -205,9 +205,18 @@ void ShopPanel::DrawSidebars() const
 		}
 		point.Y() += ICON_TILE/2;
 		
-		string str = (shipsHere > 1) ? "park/unpark ships with 'P'" : "ctrl-click icon to select cargo hold";
-		font.Draw(str, Point(Screen::Right() - SideWidth()/2 - font.Width(str)/2, point.Y()), parked);
-		point.Y() += 20;
+		if (shipsHere > 1)
+		{
+			static const string str = "park/unpark ships with 'P'";
+			font.Draw(str, Point(Screen::Right() - SideWidth()/2 - font.Width(str)/2, point.Y()), parked);
+			point.Y() += 20;
+		}
+		
+		{ // Always display this.
+			static const string str = "ctrl-click ship to select cargo hold";
+			font.Draw(str, Point(Screen::Right() - SideWidth()/2 - font.Width(str)/2, point.Y()), parked);
+			point.Y() += 20;			
+		}
 
 		// If any ships have a status problem draw a label explaining what their outline color means.
 		if (anyFailingFlightCheck)
