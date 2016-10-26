@@ -192,6 +192,7 @@ phrase "singular nouns"
 		"Crossing"
 		"Shadow"
 		"Swan"
+		"Forge"
 
 phrase "plural nouns"
 	word
@@ -686,6 +687,16 @@ phrase "civilian"
 		"Surprise"
 		"Star"
 		"Cutter"
+
+phrase "civilian"
+	phrase
+		"possessive male names"
+		"possessive female names"
+	word
+		" "
+	phrase
+		"plural nouns"
+		"singular nouns"
 
 phrase "civilian"
 	phrase
@@ -1404,6 +1415,7 @@ phrase "pirate nouns"
 		"Hammer"
 		"Children"
 		"Thunderbolt"
+		"Tomb"
 
 phrase "pirate"
 	word
@@ -1559,6 +1571,7 @@ phrase "pirate"
 		"Evil"
 		"Wicked"
 		"Trickster"
+		"Laughing"
 	word
 		" "
 	phrase
@@ -1619,6 +1632,7 @@ phrase "pirate"
 		"Black"
 		"Red"
 		"Pain"
+		"War"
 	word
 		"oath"
 		"fire"
@@ -1659,6 +1673,18 @@ phrase "pirate"
 		"chop"
 		"wreck"
 		"stab"
+		"beast"
+		"monger"
+		"monster"
+		"slayer"
+		"snake"
+		"rat"
+		"sport"
+		"shard"
+		"spike"
+		"stump"
+		"snap"
+		"frag"
 
 phrase "bounty hunter"
 	word
