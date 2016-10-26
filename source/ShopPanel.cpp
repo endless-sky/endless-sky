@@ -213,7 +213,12 @@ void ShopPanel::DrawSidebars() const
 		}
 		
 		{ // Always display this.
-			static const string str = "ctrl-click ship to select cargo hold";
+			static const string str = "to select cargo hold, use ctrl-click ";
+			font.Draw(str, Point(Screen::Right() - SideWidth()/2 - font.Width(str)/2, point.Y()), parked);
+			point.Y() += 20;
+		}
+		{
+			static const string str = "to un-select all ships.";
 			font.Draw(str, Point(Screen::Right() - SideWidth()/2 - font.Width(str)/2, point.Y()), parked);
 			point.Y() += 20;			
 		}
