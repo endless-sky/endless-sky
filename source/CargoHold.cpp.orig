@@ -330,11 +330,19 @@ int CargoHold::Transfer(const string &commodity, int amount, CargoHold *to)
 
 int CargoHold::Transfer(const Outfit *outfit, int amount, CargoHold *to, bool mostWornFirst)
 {
+<<<<<<< HEAD
 	if (amount < 0 && to)
 		// Transfer a positive amount the other direction.
 		return to->Transfer(outfit, -amount, this, mostWornFirst);
 	
 	// Check room in receiving cargo hold.
+=======
+	double mass = outfit->Get("mass");
+	
+	amount = min(amount, Get(outfit));
+	if(size >= 0 && mass)
+		amount = max(amount, static_cast<int>(-max(Free(), 0) / mass));
+>>>>>>> 1ddf330
 	if(to)
 	{
 		int mass = outfit->Get("mass");	

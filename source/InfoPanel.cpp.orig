@@ -875,7 +875,11 @@ bool InfoPanel::CanDump() const
 		return false;
 	
 	CargoHold &cargo = (*shipIt)->Cargo();
+<<<<<<< HEAD
 	return (selectedPlunder && cargo.GetOutfitCount(selectedPlunder) > 0) || cargo.CommoditiesSize() || cargo.OutfitsSize();
+=======
+	return (selectedPlunder && cargo.Get(selectedPlunder) > 0) || cargo.CommoditiesSize() || cargo.OutfitsSize();
+>>>>>>> 1ddf330
 }
 
 
@@ -916,8 +920,13 @@ void InfoPanel::Dump()
 	{
 		for(const auto &it : cargo.Outfits())
 		{
+<<<<<<< HEAD
 			loss += it.GetOutfit()->Cost() * max(0, it.GetQuantity());
 			(*shipIt)->Jettison(it.GetOutfit(), it.GetQuantity());
+=======
+			loss += it.first->Cost() * max(0, it.second);
+			(*shipIt)->Jettison(it.first, it.second);
+>>>>>>> 1ddf330
 		}
 	}
 	selectedCommodity.clear();
