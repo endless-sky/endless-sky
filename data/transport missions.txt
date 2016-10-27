@@ -190,7 +190,7 @@ mission "Smuggler's Den, Part 2"
 			`	Joe is crestfallen. After a long silence, you say, "Sir, do you have any work available for Joe? He and his family were hoping to be able to put down roots here."`
 			`	"I'm sorry," says the foreman, "but we've had a ton of immigrants recently. The waiting list for new jobs is about five months long. They could stay here and hope for the best, but if they need work right away, they would be better off going to one of the Syndicate worlds, like <planet>."`
 			choice
-				`	(Volunteer to take themto <planet>.)`
+				`	(Volunteer to take them to <planet>.)`
 				`	(Leave them here and hope for the best.)`
 					decline
 			
