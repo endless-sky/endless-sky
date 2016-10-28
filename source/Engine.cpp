@@ -39,6 +39,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "StarField.h"
 #include "System.h"
 
+#include <algorithm>
 #include <cmath>
 
 using namespace std;
@@ -176,7 +177,9 @@ void Engine::Place()
 				// Skip ships that have been destroyed.
 				if(ship->IsDestroyed())
 					continue;
-				
+				// Avoid the exploit where the player can wear down an NPC's
+				// crew by attrition over the course of many days.
+				ship->AddCrew(max(0, ship->RequiredCrew() - ship->Crew()));
 				if(!ship->IsDisabled())
 					ship->Recharge();
 				
