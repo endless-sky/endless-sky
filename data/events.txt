@@ -2338,6 +2338,52 @@ event "stack core for sale"
 		outfitter "Stack Core"
 	planet Wayfarer
 		outfitter "Stack Core"
+	fleet "Large Free Worlds"
+		government "Free Worlds"
+		names "free worlds capital"
+		cargo 1
+		personality
+			heroic
+		variant 5
+			"Bastion"
+		variant 4
+			"Osprey"
+			"Fury"
+		variant 2
+			"Argosy"
+		variant 3
+			"Bastion"
+			"Osprey"
+		variant 2
+			"Bastion"
+			"Sparrow" 2
+		variant 1
+			"Falcon"
+		variant 1
+			"Falcon"
+			"Hawk" 2
+			"Sparrow" 3
+		variant 1
+			"Falcon"
+			"Bastion"
+			"Hawk"
+		variant 3
+			"Falcon (Plasma)"
+		variant 2
+			"Dreadnought (Mark II)"
+		variant 1
+			"Dreadnought (Mark II)"
+			"Bastion"
+		variant 1
+			"Dreadnought (Mark II)"
+			"Argosy"
+			"Fury"
+		variant 3
+			"Skein"
+			"Finch" 6
+		variant 2
+			"Skein" 2
+			"Finch" 12
 
 
 

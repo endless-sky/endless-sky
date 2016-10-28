@@ -1076,6 +1076,22 @@ ship "Carrier" "Carrier (Jump)"
 
 
 
+ship "Dreadnought" "Dreadnought (Mark II)"
+	outfits
+		"Meteor Missile Launcher" 4
+		"Meteor Missile" 140
+		"Plasma Turret" 5
+		"Stack Core"
+		"LP144a Battery Pack"
+		"D41-HY Shield Generator"
+		"Small Radar Jammer"
+		"Liquid Helium Cooler"
+		"Orca Plasma Thruster"
+		"Orca Plasma Steering"
+		"Hyperdrive"
+
+
+
 ship "Dreadnought" "Dreadnought (Jump)"
 	outfits
 		"Meteor Missile Launcher" 4
