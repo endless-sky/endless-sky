@@ -94,6 +94,19 @@ phrase "adjectives"
 		"Honorable"
 		"Radical"
 		"Slippery"
+		"Northern"
+		"Southern"
+		"Eastern"
+		"Western"
+		"Deepwater"
+		"Blessed"
+		"Valiant"
+		"Shimmering"
+		"Noble"
+		"Thoughtful"
+		"Steely"
+		"Sanguine"
+		"Sunny"
 
 phrase "colors"
 	word
@@ -120,6 +133,13 @@ phrase "colors"
 		"Rainbow"
 		"Emerald"
 		"Sapphire"
+
+phrase "cardinal directions"
+	word
+		"North"
+		"South"
+		"East"
+		"West"
 
 phrase "space nouns"
 	word
@@ -193,6 +213,9 @@ phrase "singular nouns"
 		"Shadow"
 		"Swan"
 		"Forge"
+		"Banner"
+		"Voyage"
+		"Rose"
 
 phrase "plural nouns"
 	word
@@ -216,7 +239,6 @@ phrase "plural nouns"
 		"Clouds"
 		"Legends"
 		"Sails"
-		"Lasers"
 		"Beasts"
 		"Oceans"
 		"Idols"
@@ -226,6 +248,27 @@ phrase "plural nouns"
 		"Roses"
 		"Cups"
 		"Wings"
+		"Tears"
+		"Flags"
+		"Scars"
+		"Tongues"
+		"Deeds"
+		"Ways"
+		"Means"
+		"Coins"
+		# Need to duplicate these because not all the words in the 'female titles' phrase could be pluralized by simply adding 's' to the end
+		"Ladies"
+		"Princesses"
+		"Queens"
+		"Empresses"
+		"Duchesses"
+		"Mistresses"
+
+phrase "plural nouns"
+	phrase
+		"male titles"
+	word
+		"s"
 
 phrase "nouns of indeterminate quantity"
 	word
@@ -265,13 +308,24 @@ phrase "nouns of indeterminate quantity"
 		"Mirth"
 		"Olympus"
 		"Light"
+		"Charity"
+		"Mercy"
+		"Hope"
+		"Virtue"
+		"Fortitude"
+		"Enlightenment"
+		"Might"
+		"Destiny"
+		"Grass"
 
 phrase "the-nouns"
 	word
 		"the "
 	phrase
 		"singular nouns"
+		"plural nouns"
 		"space nouns"
+		"cardinal directions"
 
 phrase "things you can be of"
 	word
@@ -280,6 +334,7 @@ phrase "things you can be of"
 		"plural nouns"
 		"the-nouns"
 		"nouns of indeterminate quantity"
+		"colors"
 
 phrase "male titles"
 	word
@@ -287,12 +342,8 @@ phrase "male titles"
 		"Prince"
 		"King"
 		"Emperor"
-		"Sovereign"
 		"Duke"
 		"Master"
-		"Saint"
-		"Captain"
-		"Champion"
 
 phrase "female titles"
 	word
@@ -300,12 +351,16 @@ phrase "female titles"
 		"Princess"
 		"Queen"
 		"Empress"
-		"Sovereign"
 		"Duchess"
 		"Mistress"
+
+phrase "gender-neutral titles"
+	word
 		"Saint"
 		"Captain"
 		"Champion"
+		"Admiral"
+		"Sovereign"
 
 phrase "male names"
 	word
@@ -325,7 +380,6 @@ phrase "male names"
 		"William"
 		"Donald"
 		"Samuel"
-		"Horus"
 		"Khufu"
 		"Edward"
 		"Sargon"
@@ -345,7 +399,6 @@ phrase "male names"
 		"Dana"
 		"Philip"
 		"Isiah"
-		"Mordecai"
 		"Nasser"
 		"Rashid"
 		"Ahmed"
@@ -377,6 +430,7 @@ phrase "male names"
 		"Bruno"
 		"Martin"
 		"Starbuck"
+		"Xu"
 
 phrase "female names"
 	word
@@ -453,6 +507,24 @@ phrase "possessive female names"
 	word
 		"'s"
 
+phrase "possessive male titles"
+	phrase
+		"male titles"
+	word
+		"'s"
+
+phrase "possessive female titles"
+	phrase
+		"female titles"
+	word
+		"'s"
+
+phrase "possessive gender-neutral titles"
+	phrase
+		"gender-neutral titles"
+	word
+		"'s"
+
 phrase "one to twelve"
 	word
 		"One"
@@ -468,6 +540,26 @@ phrase "one to twelve"
 		"Eleven"
 		"Twelve"
 
+phrase "plural quantities"
+	word
+		"Two"
+		"Three"
+		"Four"
+		"Five"
+		"Six"
+		"Seven"
+		"Eight"
+		"Nine"
+		"Ten"
+		"Eleven"
+		"Twelve"
+		"Thirteen"
+		"Twenty"
+		"Fifty"
+		"One Hundred"
+		"One Thousand"
+		"Many"
+
 
 # Final phrases that make ship names
 phrase "civilian"
@@ -476,7 +568,6 @@ phrase "civilian"
 		"Enterprise"
 		"Rabbit"
 		"Napoleon"
-		"Khan"
 		"Khagan"
 		"Yokozuna"
 		"Ozeki"
@@ -569,6 +660,24 @@ phrase "civilian"
 		"Baba Yaga"
 		"Annie Oakley"
 		"Emiliano Zapata"
+		"North Star"
+		"Wanderer"
+		"Tears in Rain"
+		"Happy Returns"
+		"No Gods, No Masters"
+		"Majestic"
+		"Santa Fe"
+		"Hunk of Junk"
+		"Hammerhead"
+		"Heliopolis"
+
+phrase "civilian"
+	phrase
+		"plural quantities"
+	word
+		" "
+	phrase
+		"plural nouns"
 
 phrase "civilian"
 	phrase
@@ -581,10 +690,13 @@ phrase "civilian"
 		"female names"
 		"space nouns"
 		"singular nouns"
+		"plural nouns"
+		"nouns of indeterminate quantity"
 
 phrase "civilian"
 	phrase
 		"male titles"
+		"gender-neutral titles"
 	word
 		" "
 	phrase
@@ -594,6 +706,7 @@ phrase "civilian"
 phrase "civilian"
 	phrase
 		"female titles"
+		"gender-neutral titles"
 	word
 		" "
 	phrase
@@ -604,16 +717,20 @@ phrase "civilian"
 	phrase
 		"singular nouns"
 		"nouns of indeterminate quantity"
+		"adjectives"
+		"colors"
 	word
 		" "
 	phrase
 		"male titles"
 		"female titles"
+		"gender-neutral titles"
 
 phrase "civilian"
 	phrase
 		"singular nouns"
 		"plural nouns"
+		"space nouns"
 	word
 		" "
 	phrase
@@ -622,10 +739,21 @@ phrase "civilian"
 phrase "civilian"
 	phrase
 		"adjectives"
+	word
+		" "
+	phrase
+		"colors"
+
+phrase "civilian"
+	phrase
+		"adjectives"
 		"colors"
 		"space nouns"
 		"possessive male names"
+		"possessive male titles"
 		"possessive female names"
+		"possessive female titles"
+		"possessive gender-neutral titles"
 	word
 		" "
 	word
@@ -643,10 +771,8 @@ phrase "civilian"
 		"Charger"
 		"Speeder"
 		"Falcon"
-		"Princess"
 		"Paladin"
 		"Cavalier"
-		"Champion"
 		"Spear"
 		"Surfer"
 		"Strider"
@@ -656,8 +782,6 @@ phrase "civilian"
 		"Goddess"
 		"Dreamer"
 		"Eagle"
-		"Emperor"
-		"Empress"
 		"Folly"
 		"Baby"
 		"Money Pit"
@@ -665,7 +789,6 @@ phrase "civilian"
 		"Mule"
 		"Work Horse"
 		"Moneymaker"
-		"Destiny"
 		"Wings"
 		"Starship"
 		"Hauler"
@@ -690,24 +813,18 @@ phrase "civilian"
 
 phrase "civilian"
 	phrase
-		"possessive male names"
-		"possessive female names"
-	word
-		" "
-	phrase
-		"plural nouns"
-		"singular nouns"
-
-phrase "civilian"
-	phrase
 		"adjectives"
-		"space nouns"
+		"colors"
+		"possessive male names"
+		"possessive male titles"
+		"possessive female names"
+		"possessive female titles"
 	word
 		" "
 	phrase
-		"nouns of indeterminate quantity"
-		"singular nouns"
 		"plural nouns"
+		"singular nouns"
+		"nouns of indeterminate quantity"
 
 phrase "civilian"
 	phrase
@@ -718,6 +835,14 @@ phrase "civilian"
 		" of "
 	phrase
 		"nouns of indeterminate quantity"
+
+phrase "civilian"
+	phrase
+		"plural nouns"
+	word
+		" and "
+	phrase
+		"plural nouns"
 
 phrase "republic capital"
 	word
@@ -1360,6 +1485,51 @@ phrase "syndicate fighter"
 		"digit"
 
 # Pirate stuff
+
+# All of these should sound good when preceded by the word "of" or when "'s" is added onto the end
+phrase "sinister names"
+	word
+		"Blackbeard"
+		"Bluebeard"
+		"Lilith"
+		"Horus"
+		"Baal"
+		"Chernabog"
+		"Abaddon"
+		"Satan"
+		"Mordecai"
+		"Jezebel"
+		"Pandora"
+		"Asmodan"
+		"Charon"
+		"Mordred"
+		"Baphomet"
+		"Haekati"
+		"Deava"
+		"Amon"
+		"Gehenna"
+		"Malik"
+		"Perdition"
+		"Vladimir"
+		"Nergal"
+		"Azazel"
+		"Lucifer"
+		"Vexan"
+		"Babi"
+		"Belial"
+		"Djinn"
+		"Nosferatu"
+		"Ravenna"
+		"Simon"
+		"Tarik"
+		"Agrona"
+		"Lorelei"
+		"Cassandra"
+		"Balthazar"
+		"Rasputin"
+		"Khan"
+		"Malachai"
+
 phrase "pirate nouns"
 	word
 		"Star"
@@ -1416,6 +1586,51 @@ phrase "pirate nouns"
 		"Children"
 		"Thunderbolt"
 		"Tomb"
+		"Barrel"
+		"Tankard"
+		"Bolt"
+		"Ship"
+		"Barge"
+		"Brig"
+		"Hulk"
+		"Realm"
+		"Hands"
+		"Fate"
+		"Raider"
+
+phrase "bad outcomes"
+	word
+		"Doom"
+		"Death"
+		"Ruin"
+		"Pain"
+		"Agony"
+		"Decay"
+		"Screams"
+		"Torment"
+		"Torture"
+		"Madness"
+		"Insanity"
+		"Misery"
+		"Anguish"
+		"Conquest"
+		"Domination"
+		"Darkness"
+		"Spite"
+		"Violation"
+		"Apocalypse"
+		"Nightmare"
+		"Ragnarok"
+		"Hell"
+		"Plunder"
+		"Malice"
+		"Destruction"
+		"Blood"
+		"Poison"
+		"Blight"
+		"Fury"
+		"Misfortune"
+		"Damnation"
 
 phrase "pirate"
 	word
@@ -1513,6 +1728,11 @@ phrase "pirate"
 		"Calico Jack"
 		"Jeanne de Clisson"
 		"Lo Hon-cho"
+		"Hyperion"
+		"Samuel Axe"
+		"Vlad the Impaler"
+		"Elizabeth Bathory"
+		"Morgan le Fay"
 
 phrase "pirate"
 	word
@@ -1572,43 +1792,32 @@ phrase "pirate"
 		"Wicked"
 		"Trickster"
 		"Laughing"
+		"Lost"
+		"Damned"
+		"Fallen"
+		"Crumbling"
 	word
 		" "
 	phrase
 		"pirate nouns"
+		"sinister names"
+
+phrase "pirate"
+	phrase
+		"sinister names"
+	word
+		"'s "
+	phrase
+		"pirate nouns"
+		"bad outcomes"
 
 phrase "pirate"
 	phrase
 		"pirate nouns"
 	word
 		" of "
-	word
-		"Doom"
-		"Death"
-		"Ruin"
-		"Pain"
-		"Agony"
-		"Decay"
-		"Screams"
-		"Torment"
-		"Torture"
-		"Madness"
-		"Insanity"
-		"Misery"
-		"Anguish"
-		"Conquest"
-		"Domination"
-		"Darkness"
-		"Spite"
-		"Violation"
-		"Apocalypse"
-		"Nightmare"
-		"Ragnarok"
-		"Hell"
-		"the Lost"
-		"the Damned"
-		"the Fallen"
-		"Plunder"
+	phrase
+		"bad outcomes"
 
 phrase "pirate"
 	word
@@ -1633,6 +1842,7 @@ phrase "pirate"
 		"Red"
 		"Pain"
 		"War"
+		"Horn"
 	word
 		"oath"
 		"fire"
@@ -1685,6 +1895,12 @@ phrase "pirate"
 		"stump"
 		"snap"
 		"frag"
+		"bringer"
+		"flicker"
+		"boil"
+		"rider"
+		"raider"
+
 
 phrase "bounty hunter"
 	word
