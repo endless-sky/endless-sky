@@ -4353,16 +4353,16 @@ ship "Vanguard"
 		"X4200 Ion Steering"
 		"Hyperdrive"
 	
-	engine -15 145
-	engine 15 145
+	engine -15 130
+	engine 15 130
 	gun 0 -140 "Proton Gun"
-	gun -18 -140 "Proton Gun"
-	gun 18 -140 "Proton Gun"
-	gun -20 -55 "Proton Gun"
-	gun 20 -55 "Proton Gun"
-	gun -30 -55 "Proton Gun"
-	gun 30 -55 "Proton Gun"
-	turret 0 30 "Anti-Missile Turret"
+	gun -18 -130 "Proton Gun"
+	gun 18 -130 "Proton Gun"
+	gun -20 -45 "Proton Gun"
+	gun 20 -45 "Proton Gun"
+	gun -30 -45 "Proton Gun"
+	gun 30 -45 "Proton Gun"
+	turret 0 40 "Anti-Missile Turret"
 	explode "tiny explosion" 18
 	explode "small explosion" 36
 	explode "medium explosion" 24
