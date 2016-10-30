@@ -1389,7 +1389,7 @@ event "initial deployment 4"
 		fleet "Large Core Pirates" 7000
 		fleet "Small Northern Pirates" 5000
 		fleet "Large Northern Pirates" 9000
-		fleet "Large Militia" 9000
+		fleet "Free Worlds" 9000
 	
 	system "Rastaban"
 		fleet "Small Southern Merchants" 1000
