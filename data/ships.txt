@@ -4355,9 +4355,9 @@ ship "Vanguard"
 	
 	engine -15 130
 	engine 15 130
-	gun 0 -140 "Proton Gun"
-	gun -18 -130 "Proton Gun"
-	gun 18 -130 "Proton Gun"
+	gun 0 -132 "Proton Gun"
+	gun -18 -122 "Proton Gun"
+	gun 18 -122 "Proton Gun"
 	gun -20 -45 "Proton Gun"
 	gun 20 -45 "Proton Gun"
 	gun -30 -45 "Proton Gun"
