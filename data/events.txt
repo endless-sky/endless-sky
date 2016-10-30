@@ -549,7 +549,6 @@ event "initial deployment 3"
 		fleet "Large Southern Merchants" 3000
 		fleet "Small Free Worlds" 5000
 		fleet "Small Southern Pirates" 1000
-	system ""
 	
 
 mission "Southern Carriers Trigger"
