@@ -263,12 +263,13 @@ phrase "plural nouns"
 		"Empresses"
 		"Duchesses"
 		"Mistresses"
-
-phrase "plural nouns"
-	phrase
-		"male titles"
-	word
-		"s"
+		# Need to duplicate these here as well to prevent the male titles from showing up way too often relative to the female ones
+		"Lords"
+		"Princes"
+		"Kings"
+		"Emperors"
+		"Dukes"
+		"Masters"
 
 phrase "nouns of indeterminate quantity"
 	word
@@ -336,6 +337,7 @@ phrase "things you can be of"
 		"nouns of indeterminate quantity"
 		"colors"
 
+# Make sure to add any additions to the "plural nouns" list in plural form
 phrase "male titles"
 	word
 		"Lord"
@@ -345,6 +347,7 @@ phrase "male titles"
 		"Duke"
 		"Master"
 
+# Make sure to add any additions to the "plural nouns" list in plural form
 phrase "female titles"
 	word
 		"Lady"
