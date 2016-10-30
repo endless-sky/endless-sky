@@ -487,6 +487,38 @@ event "initial deployment 3"
 		fleet "Small Republic" 900
 		fleet "Large Republic" 800
 		fleet "Navy Surveillance" 1200
+	system "Dabih"
+		fleet "Small Southern Merchants" 500
+		fleet "Large Southern Merchants" 800
+		fleet Quarg 4000
+		fleet "Small Free Worlds" 6000
+		fleet "Large Southern Pirates" 10000
+	system "Lurata"
+		fleet "Small Southern Merchants" 1000
+		fleet "Large Southern Merchants" 3000
+		fleet Quarg 7000
+		fleet "Small Free Worlds" 9000
+		fleet "Large Southern Pirates" 4000
+	system "Albireo"
+		fleet "Small Southern Merchants" 800
+		fleet "Large Southern Merchants" 1200
+		fleet "Small Southern Pirates" 1000
+		fleet "Large Southern Pirates" 1400
+		fleet "Small Free Worlds" 1800
+		fleet "Large Free Worlds" 3000
+		fleet Quarg 2000
+	system "Albaldah"
+		fleet "Small Southern Merchants" 600
+		fleet "Large Southern Merchants" 1000
+		fleet "Small Southern Pirates" 800
+		fleet "Large Southern Pirates" 1200
+		fleet "Small Free Worlds" 1400
+		fleet "Large Free Worlds" 2400
+	system "Delta Sagittarii"
+		fleet "Small Southern Merchants" 900
+		fleet "Large Southern Merchants" 3000
+		fleet "Small Southern Pirates" 3000
+		fleet "Small Free Worlds" 7000
 	system "Kaus Borealis"
 		fleet "Small Southern Merchants" 900
 		fleet "Large Southern Merchants" 4000
@@ -494,6 +526,31 @@ event "initial deployment 3"
 		fleet "Small Republic" 1100
 		fleet "Large Republic" 800
 		fleet "Navy Surveillance" 1200
+	system "Tais"
+		fleet "Small Southern Merchants" 1500
+		fleet "Large Southern Merchants" 4000
+		fleet "Small Free Worlds" 9000
+		fleet Quarg 15000
+		fleet "Small Southern Pirates" 3000
+		fleet "Large Southern Pirates" 7000
+	system "Peacock"
+		fleet "Small Southern Merchants" 2000
+		fleet "Large Southern Merchants" 5000
+		fleet "Small Free Worlds" 8000
+		fleet "Small Southern Pirates" 4000
+		fleet "Large Southern Pirates" 10000
+	system "Ascella"
+		fleet "Small Southern Merchants" 600
+		fleet "Large Southern Merchants" 1000
+		fleet "Small Free Worlds" 4000
+		fleet "Small Southern Pirates" 3000
+	system "Naper"
+		fleet "Small Southern Merchants" 1500
+		fleet "Large Southern Merchants" 3000
+		fleet "Small Free Worlds" 5000
+		fleet "Small Southern Pirates" 1000
+	system ""
+	
 
 mission "Southern Carriers Trigger"
 	landing
@@ -1399,6 +1456,7 @@ event "initial deployment 4"
 		fleet "Small Republic" 900
 		fleet "Large Republic" 700
 		fleet "Navy Surveillance" 1200
+	
 	system "Sabik"
 		fleet "Small Southern Merchants" 600
 		fleet "Large Southern Merchants" 800
