@@ -111,6 +111,8 @@ protected:
 	int IconCols() const;
 	
 protected:
+	static const int BUTTON_HEIGHT = 70;
+
 	static const int SHIP_SIZE = 250;
 	static const int DETAILS_WIDTH = 250;
 	static const int OUTFIT_SIZE = 180;

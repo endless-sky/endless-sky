@@ -301,7 +301,7 @@ void ShopPanel::DrawSidebars() const
 	}
 
 	
-	maxSideScroll = point.Y() + sideScroll - Screen::Bottom() + 70;
+	maxSideScroll = point.Y() + sideScroll - Screen::Bottom() + BUTTON_HEIGHT;
 	maxSideScroll = max(0, maxSideScroll);
 	
 	// Draw the scroll buttons for the side panel.
@@ -338,11 +338,13 @@ void ShopPanel::DrawSidebars() const
 void ShopPanel::DrawButtons() const
 {
 	// The last 70 pixels on the end of the side panel are for the buttons:
+	Point buttonSize(SIDE_WIDTH, BUTTON_HEIGHT);
+	FillShader::Fill(Screen::BottomRight() - .5 * buttonSize, buttonSize, Color(.2, 1.));
 	FillShader::Fill(
-		Point(Screen::Right() - SideWidth() / 2, Screen::Bottom() - 35),
+		Point(Screen::Right() - SideWidth() / 2, Screen::Bottom() - (BUTTON_HEIGHT/2)),
 		Point(SideWidth(), 70), COLOR_DIVIDERS);
 	FillShader::Fill(
-		Point(Screen::Right() - SideWidth() / 2, Screen::Bottom() - 70),
+		Point(Screen::Right() - SideWidth() / 2, Screen::Bottom() - BUTTON_HEIGHT),
 		Point(SideWidth(), 1), COLOR_BUTTONS_BG);
 	
 	const Font &font = FontSet::Get(14);
@@ -656,7 +658,7 @@ bool ShopPanel::Click(int x, int y)
 {
 	dragShip = nullptr;
 	// Handle clicks on the buttons.
-	if(x >= Screen::Right() - DETAILS_WIDTH && y >= Screen::Bottom() - 70)
+	if(x >= Screen::Right() - DETAILS_WIDTH && y >= Screen::Bottom() - BUTTON_HEIGHT)
 	{
 		x -= Screen::Right() - DETAILS_WIDTH;
 		if(x < 80)
@@ -674,7 +676,7 @@ bool ShopPanel::Click(int x, int y)
 	{
 		if(y < Screen::Top() + 20)
 			return Scroll(0, 4);
-		if(y < Screen::Bottom() - 70 && y >= Screen::Bottom() - 90)
+		if(y < Screen::Bottom() - BUTTON_HEIGHT && y >= Screen::Bottom() - BUTTON_HEIGHT - 20)
 			return Scroll(0, -4);
 	}
 	else if((x >= Screen::Right() - SideWidth() - 20 && x < Screen::Right() - SideWidth()) 
@@ -745,8 +747,17 @@ bool ShopPanel::Hover(int x, int y)
 {
 	// Info panel hover functions.
 	Point point(x, y);
-	shipInfo.Hover(point);
-	outfitInfo.Hover(point);
+	// Check that the point is not in the button area.
+	if(x >= Screen::Right() - SIDE_WIDTH && y >= Screen::Bottom() - BUTTON_HEIGHT)
+	{
+		shipInfo.ClearHover();
+		outfitInfo.ClearHover();
+	}
+	else
+	{
+		shipInfo.Hover(point);
+		outfitInfo.Hover(point);
+	}
 	
 	// Figure out which panel the point (x,y) is in.
 	int cutoff = Screen::Right() - SideWidth() - PlayerShipWidth() - DetailsWidth();
