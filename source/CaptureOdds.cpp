@@ -173,8 +173,8 @@ vector<double> CaptureOdds::Power(const Ship &ship, bool isDefender)
 	const double crewPower = (isDefender ? 2. : 1.);
 	
 	// First calculate the automated attack or defense power, which serves as a base-value.
-	double automatedPower = ship->BaseAttributes().Get(automatedAttribute);
-	for(const auto &it : ship->Outfits())
+	double automatedPower = ship.BaseAttributes().Get(automatedAttribute);
+	for(const auto &it : ship.Outfits())
 	{
 		double value = it.GetOutfit()->Get(automatedAttribute);
 		if(value > 0. && it.GetQuantity() > 0) 
@@ -187,7 +187,7 @@ vector<double> CaptureOdds::Power(const Ship &ship, bool isDefender)
 	{
 		double value = it.GetOutfit()->Get(weaponAttribute);
 		if(value > 0. && it.GetQuantity() > 0)
-			power.insert(power->end(), it.GetQuantity(), value);
+			power.insert(power.end(), it.GetQuantity(), value);
 	}
 	// Use the best weapons first.
 	sort(power.begin(), power.end(), greater<double>());
@@ -198,7 +198,7 @@ vector<double> CaptureOdds::Power(const Ship &ship, bool isDefender)
 	// The final power vector contains the total remaining power
 	// when i crew members are still fighting at each index i. 
 	power.front() += crewPower + automatedPower;
-	for(unsigned i = 1; i < power->size(); ++i)
+	for(unsigned i = 1; i < power.size(); ++i)
 		power[i] += power[i - 1] + crewPower;
 	
 	return power;
