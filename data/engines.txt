@@ -492,3 +492,16 @@ outfit "AR120 Reverse Thruster"
 	"reverse thrusting energy" 1.8
 	"reverse thrusting heat" 3.5
 	description "For pilots who want to be able to pull fancy tricks that most ships are not capable of emulating, a reverse thruster allows a ship to accelerate backwards, without needing to turn around. Because a reverse thruster must be facing forwards, it must be installed in the weapon section of your ship instead of the engine section."
+
+outfit "Stationing Engines"
+	category "Engines"
+	"cost" 75000
+	thumbnail "outfit/ionic afterburner"
+	"mass" 8
+	"outfit space" -10
+	"engine capacity" -8
+	"afterburner thrust" 0.0001
+	"afterburner energy" 12.5
+	"afterburner heat" 12
+	"afterburner effect" "jump drive"
+	description `Stationing Engines are usually used on Space Stations and occasionally natural satellites to stabilize orbits using precise thrust vectors.  This system consists of the stationing computer and planetary sensors, and a pulse-engine more suited to spacecraft than massive planetary bodies.  Since this system is incompatible with afterburners, the kit includes a replacement afterburner button labeled "Full Stop".`
