@@ -233,6 +233,8 @@ ship "Strong Wind"
 
 ship "Tempest"
 	sprite ship/tempest
+	licenses
+		"Wanderer Military"
 	attributes
 		category "Medium Warship"
 		"cost" 19700000
