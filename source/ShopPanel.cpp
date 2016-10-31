@@ -338,7 +338,7 @@ void ShopPanel::DrawSidebars() const
 void ShopPanel::DrawButtons() const
 {
 	// The last 70 pixels on the end of the side panel are for the buttons:
-	Point buttonSize(SIDE_WIDTH, BUTTON_HEIGHT);
+	Point buttonSize(SideWidth(), BUTTON_HEIGHT);
 	FillShader::Fill(Screen::BottomRight() - .5 * buttonSize, buttonSize, Color(.2, 1.));
 	FillShader::Fill(
 		Point(Screen::Right() - SideWidth() / 2, Screen::Bottom() - (BUTTON_HEIGHT/2)),
@@ -748,7 +748,7 @@ bool ShopPanel::Hover(int x, int y)
 	// Info panel hover functions.
 	Point point(x, y);
 	// Check that the point is not in the button area.
-	if(x >= Screen::Right() - SIDE_WIDTH && y >= Screen::Bottom() - BUTTON_HEIGHT)
+	if(x >= Screen::Right() - SideWidth() && y >= Screen::Bottom() - BUTTON_HEIGHT)
 	{
 		shipInfo.ClearHover();
 		outfitInfo.ClearHover();
