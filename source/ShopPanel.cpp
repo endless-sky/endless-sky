@@ -153,7 +153,7 @@ void ShopPanel::DrawSidebars() const
 			const Sprite *background = SpriteSet::Get(isSelected ? "ui/icon selected" : "ui/icon unselected");
 			SpriteShader::Draw(background, point);
 			
-			const Sprite *sprite = ship->GetSprite().GetSprite();
+			const Sprite *sprite = ship->GetSprite();
 			double scale = ICON_SIZE / max(sprite->Width(), sprite->Height());
 			Point size(sprite->Width() * scale, sprite->Height() * scale);
 			
