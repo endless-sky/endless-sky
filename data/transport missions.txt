@@ -721,6 +721,7 @@ mission "There Might Be Riots part 2"
 					goto okay
 				`	"Sorry, I've got other plans."`
 			`	"Please," he says, "I'm serious. You'll be saving our skins. Whatever else you've got, it's not this important."`
+			choice
 				`	"Okay, I'll do it. Why's it so urgent?"`
 				`	"Sorry, I really don't want to work with you guys anymore."`
 					decline
