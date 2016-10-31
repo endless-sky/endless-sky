@@ -331,7 +331,7 @@ vector<shared_ptr<Ship>> Fleet::Instantiate(const Variant &variant) const
 			continue;
 		}
 		
-		// Ships flying around in space are well-aged
+		// Ships flying around in space are well-aged, thus use "PlunderWear".
 		shared_ptr<Ship> ship(Ship::MakeShip(*model, OutfitGroup::PlunderWear()));
 		
 		bool isFighter = ship->CanBeCarried();

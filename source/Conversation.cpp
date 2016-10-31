@@ -20,18 +20,18 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 using namespace std;
 
-namespace {
+//namespace {
 	// Lookup table for matching special tokens to enumeration values.
 	map<string, int> TOKEN_INDEX = {
-		{"accept", Conversation::ACCEPT},
-		{"decline", Conversation::DECLINE},
-		{"defer", Conversation::DEFER},
-		{"launch", Conversation::LAUNCH},
-		{"flee", Conversation::FLEE},
-		{"depart", Conversation::DEPART},
-		{"die", Conversation::DIE}
+		{"accept", static_cast<int>(Conversation::ACCEPT)},
+		{"decline", static_cast<int>(Conversation::DECLINE)},
+		{"defer", static_cast<int>(Conversation::DEFER)},
+		{"launch", static_cast<int>(Conversation::LAUNCH)},
+		{"flee", static_cast<int>(Conversation::FLEE)},
+		{"depart", static_cast<int>(Conversation::DEPART)},
+		{"die", static_cast<int>(Conversation::DIE)}
 	};
-	
+
 	// Get the index of the given special string. 0 means it is "goto", a number
 	// less than 0 means it is an outcome, and 1 means no match.
 	static int TokenIndex(const string &token)
@@ -62,7 +62,7 @@ namespace {
 		}
 		out.EndChild();
 	}
-}
+//}
 
 
 
