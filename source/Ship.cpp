@@ -2091,7 +2091,7 @@ const CargoHold &Ship::Cargo() const
 // Display box effects from jettisoning this much cargo.
 void Ship::Jettison(const string &commodity, int tons)
 {
-	cargo.Transfer(commodity, tons);
+	cargo.Remove(commodity, tons);
 	
 	static const int perBox = 5;
 	for( ; tons >= perBox; tons -= perBox)
@@ -2102,7 +2102,7 @@ void Ship::Jettison(const string &commodity, int tons)
 
 void Ship::Jettison(const Outfit *outfit, int count)
 {
-	cargo.Transfer(outfit, count);
+	cargo.Remove(outfit, count);
 	
 	double mass = outfit->Get("mass");
 	static const int perBox = (mass <= 0.) ? count : (mass > 5.) ? 1 : static_cast<int>(5. / mass);
@@ -2149,35 +2149,39 @@ void Ship::AddOutfit(const Outfit *outfit, int count, int wear)
 
 
 
-void Ship::TransferOutfit(const Outfit *outfit, int count, OutfitGroup *to, bool removeMostWornFirst, int wearToAdd)
+int Ship::TransferOutfit(const Outfit *outfit, int count, OutfitGroup *to, bool removeMostWornFirst, int wearToAdd)
 {
 	if(outfit && count)
 	{
 		int transfered = outfits.TransferOutfits(outfit, count, to, removeMostWornFirst, wearToAdd);
 		FinishAddingOutfit(outfit, -transfered);
+		return transfered;
 	}
+	return 0;
 }
 
 
 
 // Add or remove outfits. (To remove, pass a negative number.)
-void Ship::TransferOutfitToShip(const Outfit *outfit, int count, Ship &to, bool removeMostWornFirst, int wearToAdd)
+int Ship::TransferOutfitToShip(const Outfit *outfit, int count, Ship &to, bool removeMostWornFirst, int wearToAdd)
 {
 	// Need to perform attribute updates on both ships. 
 	int transfered = outfits.TransferOutfits(outfit, count, &(to.outfits), removeMostWornFirst, wearToAdd);
 	FinishAddingOutfit(outfit, -transfered);
 	to.FinishAddingOutfit(outfit, transfered);
+	return transfered;
 }
 
 
 
 // Add or remove outfits. (To remove, pass a negative number.)
-void Ship::TransferOutfitToCargo(const Outfit *outfit, int count, CargoHold &to, bool removeMostWornFirst, int wearToAdd)
+int Ship::TransferOutfitToCargo(const Outfit *outfit, int count, CargoHold &to, bool removeMostWornFirst, int wearToAdd)
 {
 	// Need to perform attribute updates on both ships. 
 	count = min(count, outfits.GetTotalCount(outfit));
 	int transfered = -(to.Transfer(outfit, -count, &outfits, removeMostWornFirst, wearToAdd));
 	FinishAddingOutfit(outfit, -transfered);
+	return transfered;
 }
 
 

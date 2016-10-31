@@ -61,7 +61,7 @@ namespace {
 		{
 			int moved = min(cargoCount, -count);
 			count += moved;
-			player.Cargo().Transfer(outfit, moved);
+			player.Cargo().Remove(outfit, moved);
 			didCargo = true;
 		}
 		while(flagship && count)
@@ -81,7 +81,7 @@ namespace {
 			// Ignore cargo size limits.
 			int size = player.Cargo().Size();
 			player.Cargo().SetSize(-1);
-			player.Cargo().Transfer(outfit, -count);
+			player.Cargo().Add(outfit, count);
 			player.Cargo().SetSize(size);
 			didCargo = true;
 			if(count > 0 && ui)

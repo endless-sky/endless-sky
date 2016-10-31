@@ -260,6 +260,12 @@ bool InfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 						+ (amount == 1 ? "a ton" : Format::Number(amount) + " tons")
 						+ " of " + Format::LowerCase(selectedCommodity) + " cargo?"));
 			}
+			else if(plunderAmount > 0 && selectedPlunder->Get("installable") < 0.)
+			{
+				GetUI()->Push(new Dialog(this, &InfoPanel::DumpPlunder,
+					"How many tons of " + Format::LowerCase(selectedPlunder->Name()) + " do you want to jettison?",
+					plunderAmount));
+			}
 			else if(plunderAmount == 1)
 			{
 				GetUI()->Push(new Dialog(this, &InfoPanel::Dump,

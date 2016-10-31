@@ -979,20 +979,31 @@ void Engine::CalculateStep()
 				else
 					name = "You picked up ";
 			}
+			string commodity;
+			int amount = 0;
 			if(it->OutfitType())
 			{
-				int amount = -collector->Cargo().Transfer(it->OutfitType(), -it->Count());
+				amount = collector->Cargo().Add(it->OutfitType(), it->Count());
 				if(!name.empty())
-					Messages::Add(name + Format::Number(amount) + " " + it->OutfitType()->Name()
-						+ (amount == 1 ? "." : "s."));
+				{
+					if(it->OutfitType()->Get("installable") < 0.)
+						commodity = it->OutfitType()->Name();
+					else
+						Messages::Add(name + Format::Number(amount) + " " + it->OutfitType()->Name()
+							+ (amount == 1 ? "." : "s."));
+				}
 			}
 			else
 			{
-				int amount = -collector->Cargo().Transfer(it->CommodityType(), -it->Count());
+				amount = collector->Cargo().Add(it->CommodityType(), it->Count());
 				if(!name.empty())
-					Messages::Add(name + (amount == 1 ? "a ton" : Format::Number(amount) + " tons")
-						+ " of " + it->CommodityType() + ".");
+					commodity = it->CommodityType();
+					
 			}
+			if(!commodity.empty())
+				Messages::Add(name + (amount == 1 ? "a ton" : Format::Number(amount) + " tons")
+					+ " of " + Format::LowerCase(commodity) + ".");
+			
 			it = flotsam.erase(it);
 			continue;
 		}

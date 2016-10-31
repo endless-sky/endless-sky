@@ -224,7 +224,7 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 					break;
 				}
 			// Transfer as many as possible of these outfits to your cargo hold.			
-			victim->TransferOutfitToCargo(outfit, count, you->Cargo(), false, 365);
+			count = victim->TransferOutfitToCargo(outfit, count, you->Cargo(), false, 365);
 		}
 		else
 			count = victim->Cargo().Transfer(plunder[selected].Name(), count, &cargo);

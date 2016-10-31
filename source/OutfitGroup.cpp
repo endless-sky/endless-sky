@@ -23,9 +23,9 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 
 namespace {
-	static const double DEFAULT_MIN_PRICE = 0.40;
+	static const double DEFAULT_MIN_PRICE = 0.25;
 	static const double DEFAULT_MAX_PRICE = 0.90;
-	static const double DEFAULT_DEPRECIATION_RATE = 0.0020;
+	static const double DEFAULT_DEPRECIATION_RATE = 0.0025;
 }
 
 
@@ -71,7 +71,7 @@ int OutfitGroup::UsedWear()
 // Returns a random between 70% and 90% depreciated. (disabling adds yet more wear)
 int OutfitGroup::PlunderWear()
 {
-	return GetRandomWear(0.7, 0.9, DEFAULT_MIN_PRICE, DEFAULT_MAX_PRICE, DEFAULT_DEPRECIATION_RATE);
+	return GetRandomWear(0.8, 0.9, DEFAULT_MIN_PRICE, DEFAULT_MAX_PRICE, DEFAULT_DEPRECIATION_RATE);
 }
 
 
