@@ -668,7 +668,7 @@ void InfoPanel::DrawShip() const
 	{
 		for(unsigned i = 0; i < ship.Weapons().size(); ++i)
 		{
-			const Armament::Weapon &weapon = ship.Weapons()[i];
+			const Hardpoint &weapon = ship.Weapons()[i];
 			if(weapon.IsTurret() == isTurret)
 			{
 				if(static_cast<int>(i) == hover)
