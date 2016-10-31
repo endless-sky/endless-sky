@@ -554,13 +554,13 @@ void BoardingPanel::Plunder::Take(int count)
 
 void BoardingPanel::Plunder::UpdateStrings()
 {
-	int mass = static_cast<int>(UnitMass());
+	double mass = UnitMass();
 	if(!outfit)
 		size = to_string(count);
 	else if(count == 1)
-		size = to_string(mass);
+		size = Format::Number(mass);
 	else
-		size = to_string(count) + " x " + to_string(mass);
+		size = to_string(count) + " x " + Format::Number(mass);
 	
 	value = Format::Number(unitValue * count);
 }
