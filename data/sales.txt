@@ -396,6 +396,8 @@ outfitter "Pirate Outfits"
 	"Scram Drive"
 	"Local Map"
 	"Interference Plating"
+	"Gatling Gun Ammo"
+	"Gatling Gun"
 
 outfitter "Stack Core"
 	"Stack Core"

@@ -34,6 +34,22 @@ License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license).
 
 Files:
+ images/outfit/gat*
+ images/outfit/bullet*
+ images/ship/hai?solifuge*
+Copyright: Maximilian Korber
+License: CC-BY-SA-4.0
+
+Files:
+ images/ship/hai?violin?spider*
+Copyright: Maximilian Korber
+License: CC-BY-SA-4.0
+Comment: Derived from works by Christian Rhodes (under the same license).
+
+Files:
+ images/effect/railspark*
+ images/projectile/tinyflare*
+ images/outfit/*engines?hai*
  images/outfit/*steering?hai*
  images/outfit/*thruster?hai*
  images/outfit/tiny?ion?engines*
@@ -46,14 +62,42 @@ License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license).
 
 Files:
+ images/projectile/bullet*
+ images/outfit/bullet?impact*
+Copyright: Iaz Poolar
+License: CC-BY-SA-4.0
+Comment: Derived from works by Jonathan Steck derived from works by Michael Zahniser (under the same license).
+
+Files:
+ images/ship/hai?pond?strider*
  images/ship/barb*
  images/ship/boxwing*
 Copyright: Iaz Poolar
 License: CC-BY-SA-4.0
 
+Files:
+ images/outfit/railgun*
+ images/outfit/railslug*
+ images/projectile/rail?slug*
+ images/ship/hai?flea*
+Copyright: Matthew Smestad
+License: CC-BY-SA-4.0
+
 Files: images/ship/vanguard*
 Copyright: Nate Graham <pointedstick@zoho.com>
 License: CC-BY-SA-4.0
+
+Files:
+ images/icon/gat*
+Copyright: Jonathan Steck
+License: CC-BY-SA-4.0
+Comment: Derived from works by Maximilian Korber (under the same license).
+
+Files:
+ images/icon/rail?gun*
+Copyright: Jonathan Steck
+License: CC-BY-SA-4.0
+Comment: Derived from works by Matthew Smestad (under the same license).
 
 Files: images/outfit/*photovoltaic*
 Copyright: Nick Barry (github.com/itsnickbarry)

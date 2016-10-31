@@ -1094,8 +1094,10 @@ fleet "Small Southern Pirates"
 		"Hawk (Rocket)"
 	variant 5
 		"Fury"
-	variant 2
+	variant 1
 		"Fury (Laser)"
+	variant 1
+		"Fury (Gatling)"
 	variant 1
 		"Fury (Missile)"
 	variant 2
@@ -1142,8 +1144,10 @@ fleet "Large Southern Pirates"
 	cargo 1
 	personality
 		plunders
-	variant 3
+	variant 2
 		"Sparrow" 4
+	variant 1
+		"Sparrow (Gatling)" 3
 	variant 5
 		"Argosy"
 	variant 3

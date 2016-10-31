@@ -835,8 +835,10 @@ event "southern carriers 3"
 			"Hawk (Rocket)"
 		variant 5
 			"Fury"
-		variant 2
+		variant 1
 			"Fury (Laser)"
+		variant 1
+			"Fury (Gatling)"
 		variant 1
 			"Fury (Missile)"
 		variant 2
@@ -879,6 +881,9 @@ event "southern carriers 3"
 		variant 1
 			"Nest"
 			"Barb" 2
+		variant 1
+			"Nest"
+			"Barb (Gatling)" 2
 
 event "southern carriers 4"
 	fleet "Large Northern Merchants"
@@ -1019,20 +1024,34 @@ event "southern carriers 4"
 			"Hauler III"
 			"Hauler II"
 			"Headhunter" 3
-		variant 4
+		variant 2
 			"Hauler III"
 			"Hauler II"
 			"Roost (Sidewinder)"
 			"Dagger" 2
 			"Lance" 2
-		variant 4
+		variant 2
+			"Hauler III"
+			"Hauler II"
+			"Roost (Sidewinder)"
+			"Dagger (Gatling)" 2
+			"Lance" 2
+		variant 2
 			"Roost" 3
 			"Dagger" 4
 			"Lance" 4
 			"Boxwing" 4
+		variant 2
+			"Roost" 3
+			"Dagger (Gatling)" 4
+			"Lance" 4
+			"Boxwing" 4
+
 	fleet "Large Southern Pirates"
-		variant 3
+		variant 2
 			"Sparrow" 4
+		variant 1
+			"Sparrow (Gatling)" 3
 		variant 5
 			"Argosy"
 		variant 3
@@ -1104,9 +1123,13 @@ event "southern carriers 4"
 			"Falcon (Heavy)"
 		variant 1
 			"Falcon (Laser)"
-		variant 2
+		variant 1
 			"Roost"
 			"Barb" 4
+		variant 1
+			"Roost"
+			"Barb (Gatling)" 4
+
 	fleet "Large Independent"
 		fighters "free worlds fighter"
 		variant 3
@@ -1179,6 +1202,8 @@ event "southern carriers 4"
 			"Fury (Missile)"
 		variant 1
 			"Fury (Laser)"
+		variant 1
+			"Fury (Gatling)"
 		variant 2
 			"Berserker"
 		variant 2
@@ -1274,9 +1299,12 @@ event "southern carriers 4"
 			"Berserker" 2
 		variant 2
 			"Berserker (Afterburner)" 2
-		variant 2
+		variant 1
 			"Roost"
 			"Lance" 4
+		variant 1
+			"Roost"
+			"Dagger (Gatling)" 4
 
 event "initial deployment 4"
 	date 17 9 3014
