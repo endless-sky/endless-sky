@@ -41,6 +41,7 @@ Beta Testers
   John Harvey
   Sean Fahey
   Mauricio Gomes
+  Iaz Poolar
 
 This game is open source.
 To contribute to story writing,

@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		625BE5EF1CADE72B00605387 /* OutfitGroup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 625BE5ED1CADE72B00605387 /* OutfitGroup.cpp */; };
+		6245F8251D301C7400A7A094 /* Body.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6245F8231D301C7400A7A094 /* Body.cpp */; };
+		6245F8281D301C9000A7A094 /* Hardpoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6245F8261D301C9000A7A094 /* Hardpoint.cpp */; };
 		628BDAEF1CC5DC950062BCD2 /* PlanetLabel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 628BDAED1CC5DC950062BCD2 /* PlanetLabel.cpp */; };
 		62C3111A1CE172D000409D91 /* Flotsam.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 62C311181CE172D000409D91 /* Flotsam.cpp */; };
 		A93931F019880EFC00C2A87B /* SDL2.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = A9CC52A01950CA16004E4E22 /* SDL2.framework */; };
@@ -20,7 +22,6 @@
 		A96863A01AE6FD0E004FE1FE /* Account.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A96862CD1AE6FD0A004FE1FE /* Account.cpp */; };
 		A96863A11AE6FD0E004FE1FE /* AI.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A96862CF1AE6FD0A004FE1FE /* AI.cpp */; };
 		A96863A21AE6FD0E004FE1FE /* Angle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A96862D11AE6FD0A004FE1FE /* Angle.cpp */; };
-		A96863A31AE6FD0E004FE1FE /* Animation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A96862D31AE6FD0A004FE1FE /* Animation.cpp */; };
 		A96863A41AE6FD0E004FE1FE /* Armament.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A96862D51AE6FD0A004FE1FE /* Armament.cpp */; };
 		A96863A51AE6FD0E004FE1FE /* AsteroidField.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A96862D71AE6FD0A004FE1FE /* AsteroidField.cpp */; };
 		A96863A61AE6FD0E004FE1FE /* Audio.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A96862D91AE6FD0A004FE1FE /* Audio.cpp */; };
@@ -154,6 +155,10 @@
 /* Begin PBXFileReference section */
 		625BE5ED1CADE72B00605387 /* OutfitGroup.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = OutfitGroup.cpp; path = source/OutfitGroup.cpp; sourceTree = "<group>"; };
 		625BE5EE1CADE72B00605387 /* OutfitGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OutfitGroup.h; path = source/OutfitGroup.h; sourceTree = "<group>"; };
+		6245F8231D301C7400A7A094 /* Body.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Body.cpp; path = source/Body.cpp; sourceTree = "<group>"; };
+		6245F8241D301C7400A7A094 /* Body.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Body.h; path = source/Body.h; sourceTree = "<group>"; };
+		6245F8261D301C9000A7A094 /* Hardpoint.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Hardpoint.cpp; path = source/Hardpoint.cpp; sourceTree = "<group>"; };
+		6245F8271D301C9000A7A094 /* Hardpoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Hardpoint.h; path = source/Hardpoint.h; sourceTree = "<group>"; };
 		628BDAED1CC5DC950062BCD2 /* PlanetLabel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PlanetLabel.cpp; path = source/PlanetLabel.cpp; sourceTree = "<group>"; };
 		628BDAEE1CC5DC950062BCD2 /* PlanetLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlanetLabel.h; path = source/PlanetLabel.h; sourceTree = "<group>"; };
 		62C311181CE172D000409D91 /* Flotsam.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Flotsam.cpp; path = source/Flotsam.cpp; sourceTree = "<group>"; };
@@ -169,8 +174,6 @@
 		A96862D01AE6FD0A004FE1FE /* AI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AI.h; path = source/AI.h; sourceTree = "<group>"; };
 		A96862D11AE6FD0A004FE1FE /* Angle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Angle.cpp; path = source/Angle.cpp; sourceTree = "<group>"; };
 		A96862D21AE6FD0A004FE1FE /* Angle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Angle.h; path = source/Angle.h; sourceTree = "<group>"; };
-		A96862D31AE6FD0A004FE1FE /* Animation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Animation.cpp; path = source/Animation.cpp; sourceTree = "<group>"; };
-		A96862D41AE6FD0A004FE1FE /* Animation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Animation.h; path = source/Animation.h; sourceTree = "<group>"; };
 		A96862D51AE6FD0A004FE1FE /* Armament.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Armament.cpp; path = source/Armament.cpp; sourceTree = "<group>"; };
 		A96862D61AE6FD0A004FE1FE /* Armament.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Armament.h; path = source/Armament.h; sourceTree = "<group>"; };
 		A96862D71AE6FD0A004FE1FE /* AsteroidField.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = AsteroidField.cpp; path = source/AsteroidField.cpp; sourceTree = "<group>"; };
@@ -424,8 +427,6 @@
 				A96862D01AE6FD0A004FE1FE /* AI.h */,
 				A96862D11AE6FD0A004FE1FE /* Angle.cpp */,
 				A96862D21AE6FD0A004FE1FE /* Angle.h */,
-				A96862D31AE6FD0A004FE1FE /* Animation.cpp */,
-				A96862D41AE6FD0A004FE1FE /* Animation.h */,
 				A96862D51AE6FD0A004FE1FE /* Armament.cpp */,
 				A96862D61AE6FD0A004FE1FE /* Armament.h */,
 				A96862D71AE6FD0A004FE1FE /* AsteroidField.cpp */,
@@ -436,6 +437,8 @@
 				A96862DC1AE6FD0A004FE1FE /* BankPanel.h */,
 				A96862DF1AE6FD0A004FE1FE /* BoardingPanel.cpp */,
 				A96862E01AE6FD0A004FE1FE /* BoardingPanel.h */,
+				6245F8231D301C7400A7A094 /* Body.cpp */,
+				6245F8241D301C7400A7A094 /* Body.h */,
 				A96862E11AE6FD0A004FE1FE /* CaptureOdds.cpp */,
 				A96862E21AE6FD0A004FE1FE /* CaptureOdds.h */,
 				A96862E31AE6FD0A004FE1FE /* CargoHold.cpp */,
@@ -500,6 +503,8 @@
 				A968631C1AE6FD0B004FE1FE /* Government.h */,
 				A968631D1AE6FD0B004FE1FE /* HailPanel.cpp */,
 				A968631E1AE6FD0B004FE1FE /* HailPanel.h */,
+				6245F8261D301C9000A7A094 /* Hardpoint.cpp */,
+				6245F8271D301C9000A7A094 /* Hardpoint.h */,
 				A968631F1AE6FD0B004FE1FE /* HiringPanel.cpp */,
 				A96863201AE6FD0B004FE1FE /* HiringPanel.h */,
 				A96863211AE6FD0B004FE1FE /* ImageBuffer.cpp */,
@@ -831,6 +836,7 @@
 				A96863BF1AE6FD0E004FE1FE /* Font.cpp in Sources */,
 				A96863ED1AE6FD0E004FE1FE /* Random.cpp in Sources */,
 				A96864021AE6FD0E004FE1FE /* Trade.cpp in Sources */,
+				6245F8251D301C7400A7A094 /* Body.cpp in Sources */,
 				A96863FC1AE6FD0E004FE1FE /* SpriteShader.cpp in Sources */,
 				A96863E81AE6FD0E004FE1FE /* Politics.cpp in Sources */,
 				A96863E91AE6FD0E004FE1FE /* Preferences.cpp in Sources */,
@@ -846,6 +852,7 @@
 				A96863FA1AE6FD0E004FE1FE /* SpriteQueue.cpp in Sources */,
 				A96863E21AE6FD0E004FE1FE /* Phrase.cpp in Sources */,
 				628BDAEF1CC5DC950062BCD2 /* PlanetLabel.cpp in Sources */,
+				6245F8281D301C9000A7A094 /* Hardpoint.cpp in Sources */,
 				A96863C01AE6FD0E004FE1FE /* FontSet.cpp in Sources */,
 				A96863CA1AE6FD0E004FE1FE /* InfoPanel.cpp in Sources */,
 				A96863D61AE6FD0E004FE1FE /* Messages.cpp in Sources */,
@@ -867,7 +874,6 @@
 				A9B99D051C616AF200BE7C2E /* MapSalesPanel.cpp in Sources */,
 				A96863A01AE6FD0E004FE1FE /* Account.cpp in Sources */,
 				A96863F51AE6FD0E004FE1FE /* ShipyardPanel.cpp in Sources */,
-				A96863A31AE6FD0E004FE1FE /* Animation.cpp in Sources */,
 				A96863DD1AE6FD0E004FE1FE /* OutfitInfoDisplay.cpp in Sources */,
 				A96863C41AE6FD0E004FE1FE /* GameData.cpp in Sources */,
 				A96863CD1AE6FD0E004FE1FE /* LineShader.cpp in Sources */,
