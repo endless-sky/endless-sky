@@ -257,18 +257,19 @@ void Ship::Load(const DataNode &node)
 	
 	// Check that all the "equipped" outfits actually match what your ship has.
 	// This should never happen in a good save file.
-	for(const auto &it : equipped)
-	{
-		int excess = equipped.GetTotalCount(it.GetOutfit()) - outfits.GetTotalCount(it.GetOutfit());
-		if(excess > 0)
+	if(!outfits.Empty())
+		for(const auto &it : equipped)
 		{
-			// If there are more hardpoints specifying this outfit than there
-			// are instances of this outfit installed, remove some of them.
-			armament.Add(it.GetOutfit(), -excess);
-			// Adjust the value in "equipped".
-			//equipped.RemoveOutfit(it.GetOutfit(), excess, true); //JMH:safe while already iterating?
+			int excess = equipped.GetTotalCount(it.GetOutfit()) - outfits.GetTotalCount(it.GetOutfit());
+			if(excess > 0)
+			{
+				// If there are more hardpoints specifying this outfit than there
+				// are instances of this outfit installed, remove some of them.
+				armament.Add(it.GetOutfit(), -excess);
+				// Adjust the value in "equipped".
+				//equipped.RemoveOutfit(it.GetOutfit(), excess, true); //JMH:safe while already iterating?
+			}
 		}
-	}
 }
 
 
