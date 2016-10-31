@@ -84,7 +84,7 @@ outfit "Railgun Slug"
 	cost 60
 	thumbnail "outfit/railslug"
 	"mass" 0.02
-	"Railgun Slug capacity" -1
+	"railgun slug capacity" -1
 	description "The standard ammunition of Hai Railguns; their shape and powerful flux capacitor carrying an immense static charge causes this slug's trajectory to bend slightly to their target, and allows them to damage the target's hull a little, even with the presence of shields. Needless to say, once a target's shields are down, this slug is effective at punching crippling holes in the hull."
 
 outfit "Railgun"
@@ -95,7 +95,7 @@ outfit "Railgun"
 	"outfit space" -7
 	"weapon capacity" -7
 	"gun ports" -1
-	"Railgun Slug capacity" 150
+	"railgun slug capacity" 150
 	weapon
 		sprite "projectile/rail slug"
 			"frame rate" 30

@@ -42,8 +42,7 @@ using namespace std;
 PlanetPanel::PlanetPanel(PlayerInfo &player, function<void()> callback)
 	: player(player), callback(callback),
 	planet(*player.GetPlanet()), system(*player.GetSystem()),
-	ui(*GameData::Interfaces().Get("planet")),
-	selectedPanel(nullptr)
+	ui(*GameData::Interfaces().Get("planet"))
 {
 	trading.reset(new TradingPanel(player));
 	bank.reset(new BankPanel(player));
@@ -125,6 +124,9 @@ void PlanetPanel::Draw() const
 // Only override the ones you need; the default action is to return false.
 bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 {
+	if(isDeparting)
+		return false;
+	
 	Panel *oldPanel = selectedPanel;
 	const Ship *flagship = player.Flagship();
 	
@@ -264,6 +266,7 @@ bool PlanetPanel::Click(int x, int y)
 
 void PlanetPanel::TakeOff()
 {
+	isDeparting = true;
 	player.Save();
 	if(player.TakeOff(GetUI()))
 	{

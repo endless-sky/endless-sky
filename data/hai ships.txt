@@ -85,9 +85,9 @@ ship "Flea"
 		`"Baellie" Atomic Engines`
 
 	engine 0 27
-	gun 0 -27 "Rail Gun"
+	gun 0 -27 "Railgun"
 	explode "tiny explosion 15"
-	description `Combat drone designed to help contain Unfettered aggression with a minimum risk to Hai life.`
+	description `This is a combat drone designed to help contain Unfettered aggression with a minimum risk to Hai life.`
 
 ship "Lightning Bug"
 	sprite "ship/hai lightning bug"

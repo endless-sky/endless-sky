@@ -250,6 +250,11 @@ ship "Tempest"
 		"outfit space" 607
 		"weapon capacity" 271
 		"engine capacity" 122
+		weapon
+			"blast radius" 300
+			"shield damage" 3000
+			"hull damage" 1500
+			"hit force" 4500
 	outfits
 		"Sunbeam" 2
 		"Thunderhead Launcher" 2
