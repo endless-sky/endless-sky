@@ -364,8 +364,8 @@ outfit `"Basrem" Atomic Thruster`
 	"outfit space" -18
 	"engine capacity" -18
 	"thrust" 12.1
-	"thrusting energy" 1.3
-	"thrusting heat" 2.5
+	"thrusting energy" 1.4
+	"thrusting heat" 2.8
 	"flare sprite" "effect/atomic flare/tiny"
 		"frame rate" 14
 	"flare sound" "atomic tiny"
@@ -378,7 +378,7 @@ outfit `"Benga" Atomic Thruster`
 	"mass" 28
 	"outfit space" -28
 	"engine capacity" -28
-	"thrust" 19.5
+	"thrust" 21
 	"thrusting energy" 2.4
 	"thrusting heat" 4.8
 	"flare sprite" "effect/atomic flare/tiny"
@@ -393,7 +393,7 @@ outfit `"Biroo" Atomic Thruster`
 	"mass" 44
 	"outfit space" -44
 	"engine capacity" -44
-	"thrust" 38.2
+	"thrust" 37
 	"thrusting energy" 4
 	"thrusting heat" 7.7
 	"flare sprite" "effect/atomic flare/small"
@@ -409,8 +409,8 @@ outfit `"Bondir" Atomic Thruster`
 	"outfit space" -63
 	"engine capacity" -63
 	"thrust" 59.4
-	"thrusting energy" 6.5
-	"thrusting heat" 13.7
+	"thrusting energy" 6.3
+	"thrusting heat" 12.1
 	"flare sprite" "effect/atomic flare/medium"
 		"frame rate" 12
 	"flare sound" "atomic medium"
@@ -424,7 +424,7 @@ outfit `"Bufaer" Atomic Thruster`
 	"outfit space" -104
 	"engine capacity" -104
 	"thrust" 113
-	"thrusting energy" 10.6
+	"thrusting energy" 11.6
 	"thrusting heat" 22.1
 	"flare sprite" "effect/atomic flare/large"
 		"frame rate" 11
@@ -438,9 +438,9 @@ outfit `"Basrem" Atomic Steering`
 	"mass" 12
 	"outfit space" -12
 	"engine capacity" -12
-	"turn" 312
+	"turn" 318
 	"turning energy" .7
-	"turning heat" 1.7
+	"turning heat" 1.6
 	description "Hai atomic engines are too expensive to buy for most humans. All but the smallest of the engines are worth more than many of the most common ships flown in human space."
 
 outfit `"Benga" Atomic Steering`
@@ -450,7 +450,7 @@ outfit `"Benga" Atomic Steering`
 	"mass" 20
 	"outfit space" -20
 	"engine capacity" -20
-	"turn" 492.4
+	"turn" 588
 	"turning energy" 1.2
 	"turning heat" 2.9
 	description "Hai atomic engines allow for some of the most customizable ships in known space due to their size and efficiency. The few humans that are able to save up enough money to buy a set of Hai engines usually astound others in human space with the efficiency of their ship."
@@ -462,7 +462,7 @@ outfit `"Biroo" Atomic Steering`
 	"mass" 32
 	"outfit space" -32
 	"engine capacity" -32
-	"turn" 958.5
+	"turn" 1014
 	"turning energy" 1.9
 	"turning heat" 4.8
 	description  "Having such powerful engines is a double edged sword for the Hai, as the Unfettered Hai too own these powerful wonders. These engines allow most Hai ships to turn at amazing speeds, making them extremely deadly in combat."
@@ -474,9 +474,9 @@ outfit `"Bondir" Atomic Steering`
 	"mass" 49
 	"outfit space" -49
 	"engine capacity" -49
-	"turn" 1482.4
-	"turning energy" 3.2
-	"turning heat" 8.3
+	"turn" 1686
+	"turning energy" 3.1
+	"turning heat" 7.9
 	description "Reserved for special use on only a small number of Hai ships, these engines are one of the most expensive outfits that one could buy. Considerably more efficient than any other engine of the same size, Hai atomic engines are a go to choice for anyone in need of a high turn speed."
 
 outfit `"Bufaer" Atomic Steering`
@@ -486,7 +486,7 @@ outfit `"Bufaer" Atomic Steering`
 	"mass" 76
 	"outfit space" -76
 	"engine capacity" -76
-	"turn" 2835
-	"turning energy" 5.2
-	"turning heat" 13.3
+	"turn" 2838
+	"turning energy" 5.1
+	"turning heat" 13.0
 	description "Nine out of every ten human captains interviewed in Hai space as to whose atomic engines they prefer say that they would choose Hai atomic engines over those of Deep Sky any day; that is if they could afford such expensive engines."
