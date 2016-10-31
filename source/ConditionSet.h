@@ -30,10 +30,10 @@ class ConditionSet {
 public:
 	// Load a set of conditions from the children of this node.
 	void Load(const DataNode &node);
-	// Write a set of conditions, but at the current indentation level, because
-	// they may be interspersed with other data.
+	// Save a set of conditions.
 	void Save(DataWriter &out) const;
 	
+	// Check if there are any entries in this set.
 	bool IsEmpty() const;
 	
 	// Read a single condition from a data node.
@@ -41,26 +41,39 @@ public:
 	bool Add(const std::string &firstToken, const std::string &secondToken);
 	bool Add(const std::string &name, const std::string &op, int value);
 	
+	// Check if the given condition values satisfy this set of conditions.
 	bool Test(const std::map<std::string, int> &conditions) const;
+	// Modify the given set of conditions.
 	void Apply(std::map<std::string, int> &conditions) const;
 	
 	
 private:
-	class Entry {
+	// This class represents a single expression involving a condition - either
+	// testing what value it has, or modifying it in some way.
+	class Expression {
 	public:
-		Entry(const std::string &name, const std::string &op, int value);
+		Expression(const std::string &name, const std::string &op, int value);
 		
+		// This is the name of the condition that this entry operates on.
 		std::string name;
 		// This needs to be saved for saving conditions.
 		std::string op;
+		// Pointer to a binary function that defines what operation should be
+		// performed on the condition and the constant value.
 		int (*fun)(int, int);
-		double value;
+		// Constant value specified in the expression.
+		int value;
 	};
 	
 	
 private:
+	// Sets of condition tests can contain nested sets of tests. Each set is
+	// either an "and" grouping (meaning every condition must be true to satisfy
+	// it) or an "or" grouping where only one condition needs to be true.
 	bool isOr = false;
-	std::vector<Entry> entries;
+	// Conditions that this set tests or applies.
+	std::vector<Expression> expressions;
+	// Nested sets of conditions to be tested.
 	std::vector<ConditionSet> children;
 };
 

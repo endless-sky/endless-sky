@@ -1372,7 +1372,7 @@ void PlayerInfo::MissionCallback(int response)
 	
 	Mission &mission = missionList.front();
 	
-	shouldLaunch = Conversation::LeaveImmediately(response);
+	shouldLaunch = Conversation::RequiresLaunch(response);
 	if(response == Conversation::ACCEPT || response == Conversation::LAUNCH)
 	{
 		bool shouldAutosave = mission.RecommendsAutosave();
