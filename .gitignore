@@ -10,5 +10,7 @@
 /bin/
 /Plugins/
 
+*.orig
+
 EndlessSky.layout
 EndlessSky.depend
