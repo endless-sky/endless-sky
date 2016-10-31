@@ -269,6 +269,8 @@ void PlanetPanel::TakeOff()
 	{
 		if(callback)
 			callback();
+		if(selectedPanel)
+			GetUI()->Pop(selectedPanel);
 		GetUI()->Pop(this);
 	}
 }
