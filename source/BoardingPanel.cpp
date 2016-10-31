@@ -224,7 +224,7 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 					break;
 				}
 			// Transfer as many as possible of these outfits to your cargo hold.			
-			victim->TransferOutfitToCargo(outfit, (count - taken), you->Cargo(), false, 365);
+			victim->TransferOutfitToCargo(outfit, count, you->Cargo(), false, 365);
 		}
 		else
 			count = victim->Cargo().Transfer(plunder[selected].Name(), count, &cargo);
@@ -506,15 +506,9 @@ BoardingPanel::Plunder::Plunder(const string &commodity, int count, int unitValu
 }
 
 
-
-<<<<<<< HEAD
+// Constructor (outfit installed in the victim ship).
 BoardingPanel::Plunder::Plunder(const Outfit *outfit, int count, int wear)
 	: name(outfit->Name()), outfit(outfit), count(count), unitValue(OutfitGroup::CostFunction(outfit, wear))
-=======
-// Constructor (outfit installed in the victim ship).
-BoardingPanel::Plunder::Plunder(const Outfit *outfit, int count)
-	: name(outfit->Name()), outfit(outfit), count(count), unitValue(outfit->Cost())
->>>>>>> 01314f2
 {
 	UpdateStrings();
 }
