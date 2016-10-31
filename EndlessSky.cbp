@@ -155,6 +155,8 @@
 		<Unit filename="source/Government.h" />
 		<Unit filename="source/HailPanel.cpp" />
 		<Unit filename="source/HailPanel.h" />
+		<Unit filename="source/Hardpoint.cpp" />
+		<Unit filename="source/Hardpoint.h" />
 		<Unit filename="source/HiringPanel.cpp" />
 		<Unit filename="source/HiringPanel.h" />
 		<Unit filename="source/ImageBuffer.cpp" />

@@ -170,8 +170,8 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 			ship->Place(pos, angle.Unit(), angle);
 		else
 		{
-			Point offset = system.Position() - source->Position();
-			angle = TO_DEG * atan2(offset.X(), -offset.Y());
+			// Place the ship stationary and pointed in the right direction.
+			angle = Angle(system.Position() - source->Position());
 			ship->Place(pos, Point(), angle);
 		}
 		if(target != source)

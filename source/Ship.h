@@ -304,7 +304,7 @@ public:
 	
 	// Get the list of weapons.
 	Armament &GetArmament();
-	const std::vector<Armament::Weapon> &Weapons() const;
+	const std::vector<Hardpoint> &Weapons() const;
 	// Check if we are able to fire the given weapon (i.e. there is enough
 	// energy, ammo, and fuel to fire it).
 	bool CanFire(const Outfit *outfit) const;
