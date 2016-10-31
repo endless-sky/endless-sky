@@ -288,7 +288,7 @@ void Ship::FinishLoading()
 	// Exception: uncapturable and "never disabled" flags don't carry over.
 	if(base && base != this)
 	{
-		if(!HasSprite())
+		if(!GetSprite())
 			reinterpret_cast<Body &>(*this) = *base;
 		if(baseAttributes.Attributes().empty())
 			baseAttributes = base->baseAttributes;
