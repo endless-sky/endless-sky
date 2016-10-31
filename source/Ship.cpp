@@ -53,7 +53,9 @@ const vector<string> Ship::CATEGORIES = {
 
 namespace {
 	const string BAY_TYPE[2] = {"drone", "fighter"};
-	const string BAY_DIRECTION[5] = {"none", "over", "under", "left", "right"};
+	const string BAY_SIDE[3] = {"inside", "over", "under"};
+	const string BAY_FACING[4] = {"forward", "left", "right", "back"};
+	const Angle BAY_ANGLE[4] = {Angle(0.), Angle(-90.), Angle(90.), Angle(180.)};
 }
 
 
@@ -170,10 +172,15 @@ void Ship::Load(const DataNode &node)
 				hasBays = true;
 			}
 			bays.emplace_back(child.Value(1), child.Value(2), child.Token(0) == "fighter");
-			if(child.Size() >= 4)
-				for(unsigned i = 1; i < sizeof(BAY_DIRECTION) / sizeof(BAY_DIRECTION[0]); ++i)
-					if(child.Token(3) == BAY_DIRECTION[i])
-						bays.back().direction = i;
+			for(int i = 3; i < child.Size(); ++i)
+			{
+				for(unsigned j = 1; j < sizeof(BAY_SIDE) / sizeof(BAY_SIDE[0]); ++j)
+					if(child.Token(i) == BAY_SIDE[j])
+						bays.back().side = j;
+				for(unsigned j = 1; j < sizeof(BAY_FACING) / sizeof(BAY_FACING[0]); ++j)
+					if(child.Token(i) == BAY_FACING[j])
+						bays.back().facing = j;
+			}
 		}
 		else if(child.Token(0) == "explode" && child.Size() >= 2)
 		{
@@ -451,8 +458,12 @@ void Ship::Save(DataWriter &out) const
 		{
 			double x = 2. * bay.point.X();
 			double y = 2. * bay.point.Y();
-			if(bay.direction)
-				out.Write(BAY_TYPE[bay.isFighter], x, y, BAY_DIRECTION[bay.direction]);
+			if(bay.side && bay.facing)
+				out.Write(BAY_TYPE[bay.isFighter], x, y, BAY_SIDE[bay.side], BAY_FACING[bay.facing]);
+			else if(bay.side)
+				out.Write(BAY_TYPE[bay.isFighter], x, y, BAY_SIDE[bay.side]);
+			else if(bay.facing)
+				out.Write(BAY_TYPE[bay.isFighter], x, y, BAY_FACING[bay.facing]);
 			else
 				out.Write(BAY_TYPE[bay.isFighter], x, y);
 		}
@@ -1100,7 +1111,7 @@ bool Ship::Move(list<Effect> &effects, list<Flotsam> &flotsam)
 				if(!forget)
 					for(const Point &point : enginePoints)
 					{
-						Point pos = angle.Rotate(point) * .5 * Zoom() + position;
+						Point pos = angle.Rotate(point) * Zoom() + position;
 						for(const auto &it : attributes.AfterburnerEffects())
 							for(int i = 0; i < it.second; ++i)
 							{
@@ -1256,8 +1267,7 @@ void Ship::Launch(list<shared_ptr<Ship>> &ships)
 		{
 			ships.push_back(bay.ship);
 			double maxV = bay.ship->MaxVelocity();
-			Angle launchAngle = angle;
-			launchAngle += Angle(90. * ((bay.direction == Bay::RIGHT) - (bay.direction == Bay::LEFT)));
+			Angle launchAngle = angle + BAY_ANGLE[bay.facing];
 			Point v = velocity + (.3 * maxV) * launchAngle.Unit() + (.2 * maxV) * Angle::Random().Unit();
 			bay.ship->Place(position + angle.Rotate(bay.point), v, launchAngle);
 			bay.ship->SetSystem(currentSystem);
@@ -2034,13 +2044,12 @@ bool Ship::PositionFighters() const
 {
 	bool hasVisible = false;
 	for(const Bay &bay : bays)
-		if(bay.ship && (bay.direction == Bay::OVER || bay.direction == Bay::UNDER))
+		if(bay.ship && bay.side)
 		{
-			// TODO: Allow ships to be *both* "over" or "under" and "right" or "left".
 			hasVisible = true;
-			bay.ship->position = angle.Rotate(bay.point) * .5 * Zoom() + position;
+			bay.ship->position = angle.Rotate(bay.point) * Zoom() + position;
 			bay.ship->velocity = velocity;
-			bay.ship->angle = angle;
+			bay.ship->angle = angle + BAY_ANGLE[bay.facing];
 			bay.ship->zoom = zoom;
 		}
 	return hasVisible;

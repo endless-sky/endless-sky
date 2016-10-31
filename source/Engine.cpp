@@ -1332,7 +1332,7 @@ void Engine::AddSprites(const Ship &ship)
 	
 	if(hasFighters)
 		for(const Ship::Bay &bay : ship.Bays())
-			if(bay.direction == Ship::Bay::UNDER && bay.ship)
+			if(bay.side == Ship::Bay::UNDER && bay.ship)
 			{
 				if(drawCloaked)
 					draw[calcTickTock].AddSwizzled(*bay.ship, 7);
@@ -1345,7 +1345,7 @@ void Engine::AddSprites(const Ship &ship)
 
 	if(hasFighters)
 		for(const Ship::Bay &bay : ship.Bays())
-			if(bay.direction == Ship::Bay::OVER && bay.ship)
+			if(bay.side == Ship::Bay::OVER && bay.ship)
 			{
 				if(drawCloaked)
 					draw[calcTickTock].AddSwizzled(*bay.ship, 7);
