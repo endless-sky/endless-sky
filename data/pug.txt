@@ -237,7 +237,7 @@ outfit "Pug Cormet Thruster"
 	"thrust" 44.0
 	"thrusting energy" 3.3
 	"thrusting heat" 4.6
-	"flare sprite" "effect/ion flare/big"
+	"flare sprite" "effect/ion flare/large"
 		"frame rate" 9
 	"flare sound" "ion large"
 	description "This is a medium-sized thruster designed by the Pug. It is not quite as powerful as a similarly sized atomic engine, but it makes up for that by being almost as energy efficient as ion engines."
@@ -331,7 +331,7 @@ ship "Pug Zibruka"
 	explode "tiny explosion" 10
 	explode "small explosion" 15
 	explode "medium explosion" 20
-	explode "big explosion" 10
+	explode "large explosion" 10
 	"final explode" "final explosion small"
 	description "The Zibruka is the smallest Pug ship that you know of."
 
@@ -380,7 +380,7 @@ ship "Pug Enfolta"
 	explode "tiny explosion" 5
 	explode "small explosion" 20
 	explode "medium explosion" 25
-	explode "big explosion" 15
+	explode "large explosion" 15
 	"final explode" "final explosion medium"
 	description "This is a medium-sized Pug warship."
 
@@ -430,7 +430,7 @@ ship "Pug Maboro"
 	turret 15 -35 "Pug Zapper Turret"
 	explode "small explosion" 25
 	explode "medium explosion" 30
-	explode "big explosion" 20
+	explode "large explosion" 20
 	explode "huge explosion" 5
 	"final explode" "final explosion large"
 	description "This is the largest Pug warship."
@@ -487,7 +487,7 @@ ship "Pug Arfecta"
 	explode "tiny explosion" 100
 	explode "small explosion" 60
 	explode "medium explosion" 30
-	explode "big explosion" 10
+	explode "large explosion" 10
 	"final explode" "final explosion large"
 	description `This is a Pug "tier 3" warship, intended for use in combat against either a species on par with the Quarg, or a lesser species that has decided to be particularly meddlesome.`
 

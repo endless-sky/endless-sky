@@ -72,7 +72,7 @@ person "Michael Zahniser"
 		turret 23 14 "Heavy Anti-Missile Turret"
 		explode "small explosion" 50
 		explode "medium explosion" 80
-		explode "big explosion" 120
+		explode "large explosion" 120
 		explode "huge explosion" 60
 
 

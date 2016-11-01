@@ -353,7 +353,7 @@ outfit "Type 4 Radiant Thruster"
 	"thrusting energy" 3.7
 	"thrusting heat" 7.6
 	"cooling" 11.7
-	"flare sprite" "effect/plasma flare/big"
+	"flare sprite" "effect/plasma flare/large"
 		"frame rate" 18
 	"flare sound" "plasma large"
 	description "This is the largest engine that the Wanderers have developed. Its incredibly efficient design allows it to cool your ship even while it is firing."

@@ -112,7 +112,7 @@ outfit "X4700 Ion Thruster"
 	"thrust" 42.5
 	"thrusting energy" 3.5
 	"thrusting heat" 6.2
-	"flare sprite" "effect/ion flare/big"
+	"flare sprite" "effect/ion flare/large"
 		"frame rate" 0.9
 	"flare sound" "ion large"
 	description "The X4700 ion thruster was developed when the Republic Navy began building warships so large that the X3700 was not sufficient for them. It allows even a capital ship to move at a respectable speed."
@@ -258,7 +258,7 @@ outfit "Orca Plasma Thruster"
 	"thrust" 67.9
 	"thrusting energy" 5.8
 	"thrusting heat" 12.3
-	"flare sprite" "effect/plasma flare/big"
+	"flare sprite" "effect/plasma flare/large"
 		"frame rate" 8
 	"flare sound" "plasma large"
 	description "This engine draws enough power that a ship with anything short of a full-fledged nuclear reactor is unlikely to be able to use it, but the thrust it generates is impressive."

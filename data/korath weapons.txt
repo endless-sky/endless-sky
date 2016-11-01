@@ -407,7 +407,7 @@ outfit "Korath Mine Submunition"
 		sprite "projectile/korath mine"
 			"frame rate" 1
 			"no repeat"
-		"hit effect" "big explosion"
+		"hit effect" "large explosion"
 		"die effect" "tiny explosion"
 		"inaccuracy" 360
 		"lifetime" 1000

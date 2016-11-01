@@ -88,7 +88,7 @@ outfit "Korath Jak'torbal Thruster"
 	"thrust" 63.1
 	"thrusting energy" 5.9
 	"thrusting heat" 14.3
-	"flare sprite" "effect/plasma flare/big"
+	"flare sprite" "effect/plasma flare/large"
 		"frame rate" 8
 	"flare sound" "plasma large"
 	description "This engine is used in the Korath capital ships."
@@ -162,3 +162,16 @@ outfit "Chameleon Anti-Missile Turret"
 		"firing heat" 6
 		"stream"
 	description ""
+
+# Because of "big explosion" being renamed to "large explosion":
+effect "big explosion"
+	sprite "effect/explosion/large"
+		"no repeat"
+		"frame rate" 15
+	sound "explosion large"
+	"lifetime" 32
+	"random angle" 360
+	"random velocity" .8
+	"random spin" 4
+	"random frame rate" 5
+	"velocity scale" .4

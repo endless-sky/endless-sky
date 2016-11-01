@@ -256,7 +256,7 @@ ship "Unknown Ship Type"
 	turret 23 14 "Heavy Laser Turret"
 	explode "small explosion" 25
 	explode "medium explosion" 35
-	explode "big explosion" 45
+	explode "large explosion" 45
 	explode "huge explosion" 30
 	"final explode" "final explosion large"
 
@@ -308,7 +308,7 @@ ship "Kestrel"
 	turret 23 14 "Heavy Laser Turret"
 	explode "small explosion" 25
 	explode "medium explosion" 35
-	explode "big explosion" 45
+	explode "large explosion" 45
 	explode "huge explosion" 30
 	"final explode" "final explosion large"
 
