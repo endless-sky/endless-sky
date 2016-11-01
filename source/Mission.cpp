@@ -142,6 +142,8 @@ void Mission::Load(const DataNode &node)
 		}
 		else if(child.Token(0) == "infiltrating")
 			hasFullClearance = false;
+		else if(child.Token(0) == "failed")
+			hasFailed = true;
 		else if(child.Token(0) == "to" && child.Size() >= 2)
 		{
 			if(child.Token(1) == "offer")
@@ -267,6 +269,8 @@ void Mission::Save(DataWriter &out, const string &tag) const
 		}
 		if(!hasFullClearance)
 			out.Write("infiltrating");
+		if(hasFailed)
+			out.Write("failed");
 		if(repeat != 1)
 			out.Write("repeat", repeat);
 		

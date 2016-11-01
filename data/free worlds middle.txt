@@ -200,6 +200,10 @@ mission "FW Southern Recon 1B"
 			`	She thinks about that for a moment, then says, "The Navy has shifted most of their capital ships to the defecting systems in the south. That means that some of the systems up north will have lighter defenses. You might try Wei or Alnasl. Good luck, Captain."`
 				accept
 	
+	to complete
+		not "FW Southern Recon 1B (Turret)"
+	to fail
+		has "FW Southern Recon 1B (Turret)"
 	on complete
 		fail "FW Southern Recon 1B (Turret)"
 		outfit "Electron Beam" -1
@@ -213,6 +217,10 @@ mission "FW Southern Recon 1B (Turret)"
 	destination Trinket
 	to offer
 		has "FW Southern Recon 1: done"
+	to complete
+		not "FW Southern Recon 1B"
+	to fail
+		has "FW Southern Recon 1B"
 	on complete
 		fail "FW Southern Recon 1B"
 		outfit "Electron Turret" -1
@@ -889,7 +897,7 @@ mission "FW Northern 3"
 	on offer
 		conversation
 			`As you approach <origin>, Freya quickly locates two Navy surveillance stations and contacts Alondo, asking him to send some Free Worlds personnel to destroy them. Then you land, and Alondo comes aboard your ship to discuss your next steps in person.`
-			`	"There's a good chance we've taken care of all the sensors in this sector," says Freya, "so we can start moving our fleets around here without tipping the Navy off. And I just heard from Southbound Shipping that they've got two more Dreadnoughts ready for service."`
+			`	"There's a good chance we've taken care of all the sensors in this sector," says Freya, "so we can start moving our fleets around here without tipping the Navy off. And I just heard from Southbound Shipyards that they've got two more Dreadnoughts ready for service."`
 			choice
 				`	"Only two? I was hoping to get a Dreadnought of my own soon!"`
 					goto two
