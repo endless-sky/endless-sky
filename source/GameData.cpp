@@ -161,8 +161,7 @@ void GameData::BeginLoad(const char * const *argv)
 	}
 	
 	// Now that all the stars are loaded, update the neighbor lists.
-	for(auto &it : systems)
-		it.second.UpdateNeighbors(systems);
+	UpdateNeighbors();
 	// And, update the ships with the outfits we've now finished loading.
 	for(auto &it : ships)
 		it.second.FinishLoading();
@@ -445,6 +444,16 @@ void GameData::Change(const DataNode &node)
 		systems.Get(node.Token(1))->Link(systems.Get(node.Token(2)));
 	else if(node.Token(0) == "unlink" && node.Size() >= 3)
 		systems.Get(node.Token(1))->Unlink(systems.Get(node.Token(2)));
+}
+
+
+
+// Update the neighbor lists of all the systems. This must be done any time
+// that a change creates or moves a system.
+void GameData::UpdateNeighbors()
+{
+	for(auto &it : systems)
+		it.second.UpdateNeighbors(systems);
 }
 
 
