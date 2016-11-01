@@ -887,9 +887,9 @@ Mission Mission::Instantiate(const PlayerInfo &player) const
 	// full traveling salesman path, just calculate a greedy approximation.
 	const System *source = player.GetSystem();
 	list<const System *> destinations;
-	for(const System *system : waypoints)
+	for(const System *system : result.waypoints)
 		destinations.push_back(system);
-	for(const Planet *planet : stopovers)
+	for(const Planet *planet : result.stopovers)
 		destinations.push_back(planet->GetSystem());
 	
 	int jumps = 0;

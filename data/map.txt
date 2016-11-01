@@ -18466,7 +18466,7 @@ planet "Kraken Station"
 	attributes "near earth" station
 	landscape land/station0
 	description `Kraken Station is seven centuries old; it was the first space station built outside of the Sol system. The station has been modified and repaired so often since that time that in all likelihood not a single deck panel or bulkhead that was part of the original station remains. Four centuries ago it was nearly destroyed by an asteroid impact, but other than that it has been a working deuterium refinery for its entire lifetime.`
-	spaceport `The main ring the station consists of three different levels, with living quarters, repair shops, a few small cafeterias, and even a barber. The lower levels also house some of the refinery equipment, but much of the harvesting is done automatically by robotic drones. For a station that is so old, everything feels surprisingly sturdy; the bolts and beams that make up the station are much thicker than they probably need to be.`
+	spaceport `The main ring of the station consists of three different levels, with living quarters, repair shops, a few small cafeterias, and even a barber. The lower levels also house some of the refinery equipment, but much of the harvesting is done automatically by robotic drones. For a station that is so old, everything feels surprisingly sturdy; the bolts and beams that make up the station are much thicker than they probably need to be.`
 	security 0.3
 	tribute 500
 		threshold 3500
@@ -19238,7 +19238,7 @@ planet "Sabira Eseskrai"
 	attributes korath
 	landscape land/bwerner3
 	description `Long ago, this planet was home to several Korath oil mining settlements, but now all that remains visible are the tops of a few dozen of the tallest buildings. Everything else has been buried by sandstorms.`
-	description `	Due to a recent shift in climate the deserts have begun shrinking once more, with local vegetation growning to cover more and more land each year, but the Korath are no longer here to benefit from the change.`
+	description `	Due to a recent shift in climate the deserts have begun shrinking once more, with local vegetation growing to cover more and more land each year, but the Korath are no longer here to benefit from the change.`
 	security 0
 
 planet "Safaresk Enlai"
