@@ -364,16 +364,6 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 				if(!victim->JumpsRemaining() && you->CanRefuel(*victim))
 					you->TransferFuel(victim->JumpFuel(), &*victim);
 				player.AddShip(victim);
-				// If you capture a fighter, find one of your ships that can
-				// carry it. Otherwise, it will follow your flagship.
-				victim->SetParent(you);
-				if(victim->CanBeCarried())
-					for(const shared_ptr<Ship> &ship : player.Ships())
-						if(ship->CanCarry(*victim))
-						{
-							victim->SetParent(ship);
-							break;
-						}
 				isCapturing = false;
 				
 				// If you suffered any casualties, you need to split the value
