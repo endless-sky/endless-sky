@@ -136,8 +136,8 @@ void TradingPanel::Draw() const
 	int missionCargo = player.Cargo().MissionCargoSize();
 	if(player.Cargo().HasOutfits() || missionCargo)
 	{
-		bool hasPlunder = false;
-		bool hasItems = false;
+		bool hasOutfits = false;
+		bool hasHarvested = false;
 		for(const auto &it : player.Cargo().Outfits())
 			if(it.GetQuantity())
 			{
@@ -147,15 +147,15 @@ void TradingPanel::Draw() const
 		
 		string str = to_string(outfits + missionCargo);
 		string worth = " worth " + Format::Number(player.Cargo().Outfits().GetTotalCost()) + ".";
-		if(hasItems && missionCargo)
+		if(hasHarvested && missionCargo)
 			str += " tons of mission cargo and items" + worth;
-		else if(hasPlunder && missionCargo)
+		else if(hasOutfits && missionCargo)
 			str += " tons of mission cargo and outfits" + worth;
-		else if(hasPlunder && hasItems)
+		else if(hasOutfits && hasHarvested)
 			str += " tons of outfits and materials" + worth;
-		else if(hasPlunder)
+		else if(hasOutfits)
 			str += " tons of outfits" + worth;
-		else if(hasItems)
+		else if(hasHarvested)
 			str += " tons of harvested materials" + worth;
 		else
 			str += " tons of mission cargo.";
