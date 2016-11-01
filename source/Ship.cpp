@@ -1288,6 +1288,13 @@ void Ship::Launch(list<shared_ptr<Ship>> &ships)
 			bay.ship->Place(position + angle.Rotate(bay.point), v, launchAngle);
 			bay.ship->SetSystem(currentSystem);
 			bay.ship->SetParent(shared_from_this());
+			// Fighters in your ship have the same temperature as your ship
+			// itself, so when they launch they should take their sahre of heat
+			// with them, so that the fighter and the mothership remain at the
+			// same temperature.
+			bay.ship->heat = heat * bay.ship->Mass() / Mass();
+			heat -= bay.ship->heat;
+			
 			bay.ship.reset();
 		}
 }
@@ -2027,6 +2034,9 @@ bool Ship::Carry(const shared_ptr<Ship> &ship)
 			ship->SetPlanet(nullptr);
 			ship->SetParent(shared_from_this());
 			ship->isThrusting = false;
+			// When a fighter rejoins its mothership, its mass is added to the
+			// mothership but so is its accumulated heat.
+			heat += ship->heat;
 			return true;
 		}
 	return false;
