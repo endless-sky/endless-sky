@@ -289,6 +289,7 @@ mission "Expedition to Hope 2"
 		Hope
 	destination
 		distance 2 5
+		govenment Republic "Free Worlds" Neutral
 	to offer
 		has "Expedition to Hope 1: done"
 	passengers 4
