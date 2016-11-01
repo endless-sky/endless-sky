@@ -1031,7 +1031,11 @@ bool Ship::Move(list<Effect> &effects, list<Flotsam> &flotsam)
 		
 		return true;
 	}
-	if(commands.Has(Command::LAND) && CanLand())
+	if(isDisabled)
+	{
+		// If you're disabled, you can't initiate landing or jumping.
+	}
+	else if(commands.Has(Command::LAND) && CanLand())
 		landingPlanet = GetTargetPlanet()->GetPlanet();
 	else if(commands.Has(Command::JUMP))
 	{
