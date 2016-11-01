@@ -41,6 +41,9 @@ namespace {
 	
 	// Position of the first line of the table.
 	static const int FIRST_Y = 78;
+	
+	// Maximum number of rows of mortages, etc. to draw.
+	static const int MAX_ROWS = 8;
 }
 
 
@@ -102,24 +105,39 @@ void BankPanel::Draw()
 	
 	// Figure out the total payments and principal (other than salaries). This
 	// is in case there are more mortgages than can be displayed.
-	int otherPrincipal = 0;
-	int otherPayment = 0;
+	int64_t otherPrincipal = 0;
+	int64_t otherPayment = 0;
 	for(const Mortgage &mortgage : player.Accounts().Mortgages())
 	{
 		otherPrincipal += mortgage.Principal();
 		otherPayment += mortgage.Payment();
 	}
-	int totalPayment = otherPayment;
+	int64_t totalPayment = otherPayment;
 	
 	// Check if salaries need to be drawn.
-	int salaries = player.Salaries();
+	int64_t salaries = player.Salaries();
+	int64_t income[2] = {0, 0};
+	static const string prefix[2] = {"salary: ", "tribute: "};
+	for(int i = 0; i < 2; ++i)
+	{
+		auto it = player.Conditions().lower_bound(prefix[i]);
+		for( ; it != player.Conditions().end() && !it->first.compare(0, prefix[i].length(), prefix[i]); ++it)
+			income[i] += it->second;
+	}
+	// Figure out how many rows of the display are for mortgages, and also check
+	// whether multiple mortgages have to be combined into the last row.
+	mortgageRows = MAX_ROWS - (salaries != 0) - (income[0] != 0 || income[1] != 0);
+	int mortgageCount = player.Accounts().Mortgages().size();
+	mergedMortgages = (mortgageCount > mortgageRows);
+	if(!mergedMortgages)
+		mortgageRows = mortgageCount;
 	
 	// Keep track of what row of the table we are on.
-	rowCount = 0;
+	int row = 0;
 	for(const Mortgage &mortgage : player.Accounts().Mortgages())
 	{
 		// Color this row depending on whether it is selected or not.
-		if(rowCount == selectedRow)
+		if(row == selectedRow)
 		{
 			table.DrawHighlight(back);
 			table.SetColor(selected);
@@ -127,10 +145,12 @@ void BankPanel::Draw()
 		else
 			table.SetColor(unselected);
 		
-		// There is room for seven rows if including salaries, or 8 if not.
-		if(rowCount == (6 + !salaries) && otherPrincipal != mortgage.Principal())
+		// Check if this is the last row we have space to draw. If so, check if
+		// it must include a combination of multiple mortgages.
+		bool isLastRow = (row == mortgageRows - 1);
+		if(isLastRow && mergedMortgages)
 		{
-			table.Draw("Other", unselected);
+			table.Draw("Other");
 			table.Draw(otherPrincipal);
 			// Skip the interest and term, because this entry represents the
 			// combination of several different mortages.
@@ -151,10 +171,10 @@ void BankPanel::Draw()
 			otherPayment -= mortgage.Payment();
 		}
 		table.Draw("[pay extra]");
-		++rowCount;
+		++row;
 		
-		// Draw no more than 8 rows, counting the salaries row if any.
-		if(rowCount == 7 + !salaries)
+		// Bail out if this was the last row we had space to draw.
+		if(isLastRow)
 			break;
 	}
 	table.SetColor(unselected);
@@ -164,10 +184,22 @@ void BankPanel::Draw()
 		// Include salaries in the total daily payment.
 		totalPayment += salaries;
 		
-		table.Draw("Crew Salaries", unselected);
+		table.Draw("Crew Salaries");
 		// For crew salaries, only the "payment" field needs to be shown.
 		table.Advance(3);
 		table.Draw(salaries);
+		table.Advance();
+	}
+	if(income[0] || income[1])
+	{
+		// Your daily income offsets expenses.
+		totalPayment -= income[0] + income[1];
+		
+		static const string LABEL[] = {"", "Your Salary Income", "Your Tribute Income", "Your Salary and Tribute Income"};
+		table.Draw(LABEL[(income[0] != 0) + 2 * (income[1] != 0)]);
+		// For crew salaries, only the "payment" field needs to be shown.
+		table.Advance(3);
+		table.Draw(-(income[0] + income[1]));
 		table.Advance();
 	}
 	
@@ -189,8 +221,7 @@ void BankPanel::Draw()
 		amount = "You do not qualify for further loans at this time.";
 	else
 		amount = "You qualify for a new loan of up to " + Format::Number(qualify) + " credits.";
-	bool isSelected = (qualify && selectedRow == rowCount);
-	if(isSelected)
+	if(qualify && selectedRow >= mortgageRows)
 		table.DrawHighlight(back);
 	table.Draw(amount, unselected);
 	if(qualify)
@@ -215,9 +246,9 @@ bool BankPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 {
 	if(key == SDLK_UP && selectedRow)
 		--selectedRow;
-	else if(key == SDLK_DOWN && selectedRow < rowCount)
+	else if(key == SDLK_DOWN && selectedRow < mortgageRows)
 		++selectedRow;
-	else if(key == SDLK_RETURN && selectedRow < rowCount)
+	else if(key == SDLK_RETURN && selectedRow < mortgageRows)
 		GetUI()->Push(new Dialog(this, &BankPanel::PayExtra,
 			"Paying off part of this debt will reduce your daily payments and the "
 			"interest that it costs you. How many extra credits will you pay?"));
@@ -251,7 +282,7 @@ bool BankPanel::Click(int x, int y)
 {
 	// Check if the click was on one of the rows of the table that represents a
 	// mortgage or other current debt you have.
-	int maxY = FIRST_Y + 25 + 20 * rowCount;
+	int maxY = FIRST_Y + 25 + 20 * mortgageRows;
 	if(x >= MIN_X && x <= MAX_X && y >= FIRST_Y + 25 && y < maxY)
 	{
 		selectedRow = (y - FIRST_Y - 25) / 20;
@@ -263,7 +294,7 @@ bool BankPanel::Click(int x, int y)
 		// If the player clicks the "apply" button, check if you qualify.
 		if(qualify)
 		{
-			selectedRow = player.Accounts().Mortgages().size();
+			selectedRow = mortgageRows;
 			DoKey(SDLK_RETURN);
 		}
 	}
@@ -282,7 +313,7 @@ void BankPanel::PayExtra(const string &str)
 	// Check if the selected row is the "Other" row, which is only the case if
 	// you have more mortages than can be displayed.
 	const vector<Mortgage> &mortgages = player.Accounts().Mortgages();
-	bool isOther = (selectedRow == rowCount - 1 && mortgages.size() > static_cast<unsigned>(rowCount));
+	bool isOther = (selectedRow == mortgageRows - 1 && mergedMortgages);
 
 	// Pay the mortgage. If this is the "other" row, loop through all the
 	// mortgages included in that row.

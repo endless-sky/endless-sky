@@ -252,12 +252,23 @@ void PlayerInfo::Load(const string &path)
 			}
 	}
 	
+	// As a result of game data changes (e.g. unloading a mod) it's possible for
+	// the player to end up in an undefined system or planet. In that case, move
+	// them to the starting system to avoid crashing.
+	if(planet && !system)
+		system = planet->GetSystem();
+	if(!planet || planet->Name().empty() || !system || system->Name().empty())
+	{
+		system = GameData::Start().GetSystem();
+		planet = GameData::Start().GetPlanet();
+	}
+	
 	// For any ship that did not store what system it is in or what planet it is
 	// on, place it with the player. (In practice, every ship ought to have
 	// specified its location, but this is to avoid null locations.)
 	for(shared_ptr<Ship> &ship : ships)
 	{
-		if(!ship->GetSystem())
+		if(!ship->GetSystem() || ship->GetSystem()->Name().empty())
 			ship->SetSystem(system);
 		if(ship->GetSystem() == system)
 			ship->SetPlanet(planet);
