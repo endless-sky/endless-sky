@@ -293,7 +293,7 @@ bool InfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 			}
 		}
 	}
-	else if(canEdit && !showShip && key == 'n' && player.Ships().size() > 1)
+	else if(canEdit && !showShip && key == 'A' && player.Ships().size() > 1)
 	{
 		bool allParked = true;
 		const Ship *flagship = player.Flagship();
