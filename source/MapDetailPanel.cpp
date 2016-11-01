@@ -528,7 +528,9 @@ void MapDetailPanel::DrawInfo()
 		{
 			int value = selectedSystem->Trade(commodity.name);
 			int localValue = (player.GetSystem() ? player.GetSystem()->Trade(commodity.name) : 0);
-			if(!player.GetSystem() || player.GetSystem() == selectedSystem || !value || !localValue)
+			if(!value)
+				price = "----";
+			else if(!player.GetSystem() || player.GetSystem() == selectedSystem || !localValue)
 				price = to_string(value);
 			else
 			{
