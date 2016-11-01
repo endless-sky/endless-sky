@@ -1463,7 +1463,7 @@ bool Ship::IsCapturable() const
 
 bool Ship::IsTargetable() const
 {
-	return (zoom == 1. && !explosionRate && !forget && cloak < 1. && hull >= 0. && hyperspaceCount < 70);
+	return (zoom == 1. && !explosionRate && !forget && !isInvisible && cloak < 1. && hull >= 0. && hyperspaceCount < 70);
 }
 
 

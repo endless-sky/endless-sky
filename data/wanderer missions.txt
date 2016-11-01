@@ -935,6 +935,7 @@ mission "Wanderers: Alpha Surveillance D"
 	blocked "You need a bunk free in order to take on this mission."
 	
 	on offer
+		"reputation: Alpha" <?= -1
 		conversation
 			`You are met in the spaceport by a bearded, middle-aged human man and a Quarg with exceptionally wrinkly skin. The Quarg says, "I hear that you need help against the Alphas. My friend Elias here has lived among us for a long time, and has told me much about the Alphas, their wars and their depredations."`
 			`	The human shakes hands with you and introduces himself as Elias Hanover. He says, "The Quarg are very hesitant to take sides in what they view as an internal human conflict. And they are equally hesitant to entrust their technology to a stranger like you. But if the Alphas are gathering strength and amassing alien technology, they must be stopped."`
