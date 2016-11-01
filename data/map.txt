@@ -528,8 +528,8 @@ system Alcyone
 	trade Medical 705
 	trade Metal 249
 	trade Plastic 439
-	fleet "Small Southern Pirates" 400
-	fleet "Large Southern Pirates" 600
+	fleet "Small Core Pirates" 400
+	fleet "Large Core Pirates" 600
 	fleet "Large Syndicate" 1200
 	object
 		sprite star/m4
@@ -3386,6 +3386,7 @@ system Cardax
 	fleet "Large Northern Merchants" 3000
 	fleet "Small Northern Pirates" 1000
 	fleet "Large Northern Pirates" 3000
+	fleet "Small Core Pirates" 3000
 	fleet "Small Republic" 2000
 	fleet "Large Republic" 5000
 	object
@@ -4870,8 +4871,8 @@ system Durax
 	trade Medical 791
 	trade Metal 329
 	trade Plastic 372
-	fleet "Small Southern Pirates" 600
-	fleet "Large Southern Pirates" 900
+	fleet "Small Core Pirates" 600
+	fleet "Large Core Pirates" 900
 	fleet "Large Syndicate" 2500
 	fleet "Korath Raid" 5000
 	object
@@ -11174,6 +11175,7 @@ system Moktar
 	fleet "Small Syndicate" 3000
 	fleet "Large Syndicate" 4000
 	fleet "Small Core Pirates" 2000
+	fleet "Small Northern Pirates" 3000
 	object
 		sprite star/k5
 		distance 29.0769
@@ -11728,8 +11730,8 @@ system Oblate
 	trade Medical 656
 	trade Metal 328
 	trade Plastic 399
-	fleet "Small Southern Pirates" 600
-	fleet "Large Southern Pirates" 1000
+	fleet "Small Core Pirates" 600
+	fleet "Large Core Pirates" 1000
 	fleet "Large Syndicate" 3000
 	object
 		sprite star/f5

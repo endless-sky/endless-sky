@@ -806,7 +806,7 @@ mission "FW Northern 2A"
 
 mission "FW Northern 2B"
 	landing
-	name "Sweep Hope"
+	name "Sweep Clark"
 	description "Bring Freya to <planet> to check for any Navy surveillance stations."
 	source "Hope"
 	destination "Clark"
@@ -826,7 +826,7 @@ mission "FW Northern 2B"
 
 mission "FW Northern 2C"
 	landing
-	name "Sweep Clark"
+	name "Sweep New Holland"
 	description "Bring Freya to <planet> to check for any Navy surveillance stations."
 	source "Clark"
 	destination "New Holland"
@@ -857,7 +857,7 @@ mission "FW Northern 2C"
 
 mission "FW Northern 2D"
 	landing
-	name "Sweep Clark"
+	name "Sweep New Tibet"
 	description "Bring Freya to <planet> to check for any Navy surveillance stations."
 	source "New Holland"
 	destination "New Tibet"

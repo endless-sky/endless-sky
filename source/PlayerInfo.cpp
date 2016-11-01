@@ -337,6 +337,10 @@ void PlayerInfo::ApplyChanges()
 	GameData::ReadEconomy(economy);
 	economy = DataNode();
 	
+	// government changes may have changed the player's ship swizzles
+	for(shared_ptr<Ship> &ship : ships)
+		ship->SetGovernment(GameData::PlayerGovernment());
+
 	// Make sure all stellar objects are correctly positioned. This is needed
 	// because EnterSystem() is not called the first time through.
 	GameData::SetDate(GetDate());

@@ -1160,7 +1160,9 @@ void Engine::CalculateStep()
 		const Government *gov = projectile.GetGovernment();
 		
 		// If this "projectile" is a ship explosion, it always explodes.
-		if(gov)
+		if(!gov)
+			closestHit = 0.;
+		else
 		{
 			// Projectiles can only collide with ships that are in the current
 			// system and are not landing, and that are hostile to this projectile.
@@ -1180,7 +1182,12 @@ void Engine::CalculateStep()
 						hitVelocity = ship->Velocity();
 					}
 				}
-			closestHit = asteroids.Collide(projectile, step, closestHit, &hitVelocity);
+			double closestAsteroid = asteroids.Collide(projectile, step, closestHit, &hitVelocity);
+			if(closestAsteroid < closestHit)
+			{
+				closestHit = closestAsteroid;
+				hit = nullptr;
+			}
 		}
 		
 		if(closestHit < 1.)
