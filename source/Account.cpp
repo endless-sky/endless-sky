@@ -43,6 +43,7 @@ void Account::Load(const DataNode &node)
 	salariesOwed = 0;
 	creditScore = 400;
 	history.clear();
+	mortgages.clear();
 	
 	for(const DataNode &child : node)
 	{

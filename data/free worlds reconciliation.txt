@@ -1429,9 +1429,9 @@ mission "FW Pug 3: Quarg"
 			
 			label balance
 			`	"War is a game to the Pug," the Quarg says. "They are a strange species. Even if they start a war, their goal may not be to win it, but to lose in a certain way. We have seen them lose battles against species far less advanced than your own, even though they had weapons that would have guaranteed them victory. If they want war, you must play their game, and if you play their game, they may allow you to win."`
-			`	"That makes no sense," says Freya. "They would die for the sake of a game?"`
+			`	"That makes no sense," says Alondo. "They would die for the sake of a game?"`
 			`	The Quarg pauses for a moment as if struggling for words. "I am myself, and also I am Quarg. You are yourselves, and also you are human. But we think perhaps a Pug is Pug first, and then also itself."`
-			`	"Their identity is communal, rather than individual?" says Freya.`
+			`	"Their identity is communal, rather than individual?" says Alondo.`
 			`	"Indeed. And because they are so deeply connected, they perceive all things as being connected to them. At least, that is the best understanding we have been able to gain of their species."`
 			choice
 				`	"Thank you for your time."`
