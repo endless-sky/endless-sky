@@ -15,8 +15,10 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Angle.h"
 #include "Body.h"
+#include "Minable.h"
 #include "Point.h"
 
+#include <list>
 #include <string>
 #include <vector>
 
@@ -39,9 +41,10 @@ public:
 	// Reset the asteroid field (typically because you entered a new system).
 	void Clear();
 	void Add(const std::string &name, int count, double energy = 1.);
+	void Add(const Minable *minable, int count, double energy = 1., double beltRadius = 1500.);
 	
 	// Move all the asteroids forward one time step.
-	void Step();
+	void Step(std::list<Effect> &effects, std::list<Flotsam> &flotsam);
 	// Draw the asteroid field, with the field of view centered on the given point.
 	void Draw(DrawList &draw, const Point &center) const;
 	// Check if the given projectile has hit any of the asteroids. The current
@@ -49,7 +52,7 @@ public:
 	// on. If there is a collision the asteroid's velocity is returned so the
 	// projectile's hit effects can take it into account. The return value is
 	// how far along the projectile's path it should be clipped.
-	double Collide(const Projectile &projectile, int step, Point *hitVelocity = nullptr) const;
+	double Collide(const Projectile &projectile, int step, double closestHit, Point *hitVelocity = nullptr);
 	
 	
 private:
@@ -71,6 +74,7 @@ private:
 	
 private:
 	std::vector<Asteroid> asteroids;
+	std::list<Minable> minables;
 };
 
 

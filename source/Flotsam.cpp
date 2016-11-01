@@ -49,12 +49,25 @@ Flotsam::Flotsam(const Outfit *outfit, int count)
 void Flotsam::Place(const Ship &source)
 {
 	this->source = &source;
+	Place(static_cast<const Body &>(source));
+}
+
+
+
+// Place flotsam coming from something other than a ship.
+void Flotsam::Place(const Body &source)
+{
 	position = source.Position();
 	velocity = source.Velocity() + Angle::Random().Unit() * (2. * Random::Real()) - 2. * source.Unit();
 	angle = Angle::Random();
 	spin = Angle::Random(10.);
 	
-	SetSprite(SpriteSet::Get("effect/box"));
+	// Special case: allow a harvested outfit item to define its flotsam sprite
+	// using the field that usually defines a secondary weapon's icon.
+	if(outfit && outfit->Get("installable") < 0 && outfit->Icon())
+		SetSprite(outfit->Icon());
+	else
+		SetSprite(SpriteSet::Get("effect/box"));
 	SetFrameRate(4. * (1. + Random::Real()));
 }
 

@@ -195,6 +195,8 @@
 		<Unit filename="source/MenuPanel.h" />
 		<Unit filename="source/Messages.cpp" />
 		<Unit filename="source/Messages.h" />
+		<Unit filename="source/Minable.cpp" />
+		<Unit filename="source/Minable.h" />
 		<Unit filename="source/Mission.cpp" />
 		<Unit filename="source/Mission.h" />
 		<Unit filename="source/MissionAction.cpp" />

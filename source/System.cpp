@@ -18,6 +18,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Fleet.h"
 #include "GameData.h"
 #include "Government.h"
+#include "Minable.h"
 #include "Planet.h"
 #include "Random.h"
 
@@ -51,9 +52,23 @@ System::Asteroid::Asteroid(const string &name, int count, double energy)
 
 
 
+System::Asteroid::Asteroid(const Minable *type, int count, double energy)
+	: type(type), count(count), energy(energy)
+{
+}
+
+
+
 const string &System::Asteroid::Name() const
 {
 	return name;
+}
+
+
+
+const Minable *System::Asteroid::Type() const
+{
+	return type;
 }
 
 
@@ -126,7 +141,9 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 		}
 		else if(child.Token(0) == "habitable" && child.Size() >= 2)
 			habitable = child.Value(1);
-		else if(child.Token(0) == "asteroids")
+		else if(child.Token(0) == "belt" && child.Size() >= 2)
+			asteroidBelt = child.Value(1);
+		else if(child.Token(0) == "asteroids" || child.Token(0) == "minables")
 		{
 			if(resetAsteroids)
 			{
@@ -134,7 +151,16 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 				asteroids.clear();
 			}
 			if(child.Size() >= 4)
-				asteroids.emplace_back(child.Token(1), child.Value(2), child.Value(3));
+			{
+				const string &name = child.Token(1);
+				int count = child.Value(2);
+				double energy = child.Value(3);
+				
+				if(child.Token(0) == "asteroids")
+					asteroids.emplace_back(name, count, energy);
+				else
+					asteroids.emplace_back(GameData::Minables().Get(name), count, energy);
+			}
 		}
 		else if(child.Token(0) == "trade" && child.Size() >= 3)
 		{
@@ -363,6 +389,14 @@ const vector<StellarObject> &System::Objects() const
 double System::HabitableZone() const
 {
 	return habitable;
+}
+
+
+
+// Get the radius of the asteroid belt.
+double System::AsteroidBelt() const
+{
+	return asteroidBelt;
 }
 
 
