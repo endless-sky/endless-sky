@@ -251,8 +251,8 @@ ship "Unknown Ship Type"
 	gun -75 57 "Torpedo Launcher"
 	gun 75 57 "Torpedo Launcher"
 	turret -7 -4 "Heavy Laser Turret"
-	turret 7 4 "Heavy Laser Turret"
-	turret -23	14 "Heavy Laser Turret"
+	turret 7 -4 "Heavy Laser Turret"
+	turret -23 14 "Heavy Laser Turret"
 	turret 23 14 "Heavy Laser Turret"
 	explode "small explosion" 25
 	explode "medium explosion" 35
@@ -303,8 +303,8 @@ ship "Kestrel"
 	gun -75 57 "Torpedo Launcher"
 	gun 75 57 "Torpedo Launcher"
 	turret -7 -4 "Heavy Laser Turret"
-	turret 7 4 "Heavy Laser Turret"
-	turret -23	14 "Heavy Laser Turret"
+	turret 7 -4 "Heavy Laser Turret"
+	turret -23 14 "Heavy Laser Turret"
 	turret 23 14 "Heavy Laser Turret"
 	explode "small explosion" 25
 	explode "medium explosion" 35

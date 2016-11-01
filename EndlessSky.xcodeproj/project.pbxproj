@@ -11,6 +11,7 @@
 		6245F8251D301C7400A7A094 /* Body.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6245F8231D301C7400A7A094 /* Body.cpp */; };
 		6245F8281D301C9000A7A094 /* Hardpoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6245F8261D301C9000A7A094 /* Hardpoint.cpp */; };
 		628BDAEF1CC5DC950062BCD2 /* PlanetLabel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 628BDAED1CC5DC950062BCD2 /* PlanetLabel.cpp */; };
+		62A405BA1D47DA4D0054F6A0 /* FogShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 62A405B81D47DA4D0054F6A0 /* FogShader.cpp */; };
 		62C3111A1CE172D000409D91 /* Flotsam.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 62C311181CE172D000409D91 /* Flotsam.cpp */; };
 		A93931F019880EFC00C2A87B /* SDL2.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = A9CC52A01950CA16004E4E22 /* SDL2.framework */; };
 		A93931FB1988135200C2A87B /* libturbojpeg.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A93931FA1988135200C2A87B /* libturbojpeg.0.dylib */; };
@@ -161,6 +162,8 @@
 		6245F8271D301C9000A7A094 /* Hardpoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Hardpoint.h; path = source/Hardpoint.h; sourceTree = "<group>"; };
 		628BDAED1CC5DC950062BCD2 /* PlanetLabel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PlanetLabel.cpp; path = source/PlanetLabel.cpp; sourceTree = "<group>"; };
 		628BDAEE1CC5DC950062BCD2 /* PlanetLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlanetLabel.h; path = source/PlanetLabel.h; sourceTree = "<group>"; };
+		62A405B81D47DA4D0054F6A0 /* FogShader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = FogShader.cpp; path = source/FogShader.cpp; sourceTree = "<group>"; };
+		62A405B91D47DA4D0054F6A0 /* FogShader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FogShader.h; path = source/FogShader.h; sourceTree = "<group>"; };
 		62C311181CE172D000409D91 /* Flotsam.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Flotsam.cpp; path = source/Flotsam.cpp; sourceTree = "<group>"; };
 		62C311191CE172D000409D91 /* Flotsam.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Flotsam.h; path = source/Flotsam.h; sourceTree = "<group>"; };
 		A93931FA1988135200C2A87B /* libturbojpeg.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libturbojpeg.0.dylib; path = "/opt/libjpeg-turbo/lib/libturbojpeg.0.dylib"; sourceTree = "<absolute>"; };
@@ -484,6 +487,8 @@
 				A968630B1AE6FD0B004FE1FE /* Fleet.h */,
 				62C311181CE172D000409D91 /* Flotsam.cpp */,
 				62C311191CE172D000409D91 /* Flotsam.h */,
+				62A405B81D47DA4D0054F6A0 /* FogShader.cpp */,
+				62A405B91D47DA4D0054F6A0 /* FogShader.h */,
 				A968630C1AE6FD0B004FE1FE /* Font.cpp */,
 				A968630D1AE6FD0B004FE1FE /* Font.h */,
 				A968630E1AE6FD0B004FE1FE /* FontSet.cpp */,
@@ -878,6 +883,7 @@
 				A96863C41AE6FD0E004FE1FE /* GameData.cpp in Sources */,
 				A96863CD1AE6FD0E004FE1FE /* LineShader.cpp in Sources */,
 				A96863C71AE6FD0E004FE1FE /* HailPanel.cpp in Sources */,
+				62A405BA1D47DA4D0054F6A0 /* FogShader.cpp in Sources */,
 				A96863C61AE6FD0E004FE1FE /* Government.cpp in Sources */,
 				A96863B51AE6FD0E004FE1FE /* Dialog.cpp in Sources */,
 				A96863AF1AE6FD0E004FE1FE /* Conversation.cpp in Sources */,

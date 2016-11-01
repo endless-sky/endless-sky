@@ -1034,7 +1034,7 @@ event "southern carriers 4"
 			"Hauler III"
 			"Hauler II"
 			"Roost (Sidewinder)"
-			"Dagger (Gatling)" 2
+			"Lance (Gatling)" 2
 			"Lance" 2
 		variant 2
 			"Roost" 3
@@ -1043,7 +1043,7 @@ event "southern carriers 4"
 			"Boxwing" 4
 		variant 2
 			"Roost" 3
-			"Dagger (Gatling)" 4
+			"Lance (Gatling)" 4
 			"Lance" 4
 			"Boxwing" 4
 
@@ -1304,7 +1304,7 @@ event "southern carriers 4"
 			"Lance" 4
 		variant 1
 			"Roost"
-			"Dagger (Gatling)" 4
+			"Lance (Gatling)" 4
 
 event "initial deployment 4"
 	date 17 9 3014

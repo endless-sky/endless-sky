@@ -242,6 +242,17 @@ outfit "White Sun Reactor"
 	"energy capacity" 6700
 	description "The White Sun is a large nuclear reactor that the Wanderers use for powering their Strong Wind warships."
 
+outfit "Blue Sun Reactor"
+	category "Power"
+	cost 21500000
+	thumbnail "outfit/white sun"
+	"mass" 152
+	"outfit space" -152
+	"energy generation" 31.3
+	"heat generation" 39
+	"energy capacity" 8900
+	description "As the Wanderers have begun producing heavy warships, a need has arisen for larger and larger reactor cores to power them."
+
 
 outfit "Bright Cloud Shielding"
 	category "Systems"
@@ -271,6 +282,16 @@ outfit "Wanderer Ramscoop"
 	"outfit space" -7
 	"ramscoop" 4
 	description "Wanderer ships are designed to be self-sufficient even when traveling through uninhabited space, and their compact and efficient ramscoops are a key part of that self-sufficiency."
+
+
+outfit "Wanderer Heat Sink"
+	category "Systems"
+	cost 94000
+	thumbnail "outfit/wanderer heat sink"
+	"mass" 12
+	"outfit space" -12
+	"cooling" 19
+	description "Most Wanderer systems are so efficient that ancillary cooling is unnecessary. As a result, their recent attempts to add cooling to their heavy warships are somewhat rudimentary."
 
 
 outfit "Type 1 Radiant Thruster"
