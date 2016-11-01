@@ -745,7 +745,7 @@ outfit "Gatling Gun Ammo"
 	thumbnail "outfit/bullet"
 	"mass" .002
 	"gatling round capacity" -1
-	description "Gatling Gun Ammo is the ammunition for the Gatling Gun. It consists of specially created cartridges containing all the reactants necessary to propel the projectile while in the vacuum of Space. The projectile consists of depleted nuclear fuel, or an incendiary tracer round. Since this ammunition is primarily manufactured on pirate worlds by slave children in poor working conditions, muzzle velocity can vary by up to 30%, and tracer distribution is seldom uniform."
+	description "This simple cartridge is the ammunition for the Gatling Gun, with a projectile of depleted nuclear fuel or an illuminated tracer round. Since this ammunition is primarily manufactured on pirate worlds by slave children in poor working conditions, muzzle velocity can vary by up to 30%, and tracer distribution is seldom uniform."
 
 outfit "Gatling Gun"
 	category "Secondary Weapons"
@@ -773,7 +773,7 @@ outfit "Gatling Gun"
 		"submunition" "gbullet"
 		"cluster"
 		"hit effect" "bullet impact"
-	description `When Dr. Richard J. Gatling invented his early rapid fire gun in the mid-19th century, he called it "Peacemaker", convinced that it was so destructive that no government would ever send people to face them again. Over a millennia (and hundreds of wars) later, the basic design is still used, a testament to its fundamentally robust design (and the inability of guns to prevent wars). While capable of a fairly quick rate of fire, this gun needs to cool down for twice as much time as it fires, and can only sustain a maximum of three seconds of continuous fire.`
+	description `When Dr. Richard J. Gatling invented the rapid-fire gun bearing his name in the 19th century, he hoped that its destructiveness would lead to the end of war itself. Over a millennia later, this modern incarnation of the gatling gun sees action in the stars, a testament to its fundamentally robust design - and Dr. Gatling's naiveté. While capable of a high fire rate, this gun needs to cool down for twice as long as it fires, and can only sustain a maximum of three seconds of continuous fire.`
 
 outfit "gbullet"
 	weapon

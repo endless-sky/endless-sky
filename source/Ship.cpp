@@ -830,7 +830,7 @@ bool Ship::Move(list<Effect> &effects, list<Flotsam> &flotsam)
 	if(!isInvisible)
 	{
 		double cloakingSpeed = attributes.Get("cloak");
-		bool canCloak = (zoom == 1. && !isDisabled && cloakingSpeed > 0.
+		bool canCloak = (!isDisabled && cloakingSpeed > 0.
 			&& fuel >= attributes.Get("cloaking fuel")
 			&& energy >= attributes.Get("cloaking energy"));
 		if(commands.Has(Command::CLOAK) && canCloak)
