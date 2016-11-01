@@ -2102,12 +2102,18 @@ void Ship::Jettison(const string &commodity, int tons)
 
 void Ship::Jettison(const Outfit *outfit, int count)
 {
+	if(count < 0)
+		return;
+
 	cargo.Remove(outfit, count);
 	
 	double mass = outfit->Get("mass");
-	static const int perBox = (mass <= 0.) ? count : (mass > 5.) ? 1 : static_cast<int>(5. / mass);
-	for( ; count >= perBox; count -= perBox)
-		jettisoned.emplace_back(outfit, perBox);
+	const int perBox = (mass <= 0.) ? count : (mass > 5.) ? 1 : static_cast<int>(5. / mass);
+	while(count > 0)
+	{
+		jettisoned.emplace_back(outfit, (perBox < count) ? perBox : count);
+		count -= perBox;
+	}
 }
 
 

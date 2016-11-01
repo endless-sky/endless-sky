@@ -969,7 +969,7 @@ mission "FW Northern 3B"
 		ship Dreadnought "F.S. Magnolia"
 	
 	on visit
-		dialog "You have reached <planet>, but without both the dreadnoughts you were assigned to escort! Better depart and wait for them to arrive in this star system."
+		dialog "You have reached <planet>, but without both the Dreadnoughts you were assigned to escort! Better depart and wait for them to arrive in this star system."
 
 
 
