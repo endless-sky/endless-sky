@@ -698,17 +698,33 @@ bool ShopPanel::Click(int x, int y)
 	for(const ClickZone<string> &zone : categoryZones)
 		if(zone.Contains(point))
 		{
+			bool toggleAll = (SDL_GetModState() & KMOD_SHIFT);
 			auto it = collapsed.find(zone.Value());
 			if(it == collapsed.end())
 			{
-				collapsed.insert(zone.Value());
-				if(selectedShip && selectedShip->Attributes().Category() == zone.Value())
+				if(toggleAll)
+				{
 					selectedShip = nullptr;
-				if(selectedOutfit && selectedOutfit->Category() == zone.Value())
 					selectedOutfit = nullptr;
+					for(const string &category : categories)
+						collapsed.insert(category);
+				}
+				else
+				{
+					collapsed.insert(zone.Value());
+					if(selectedShip && selectedShip->Attributes().Category() == zone.Value())
+						selectedShip = nullptr;
+					if(selectedOutfit && selectedOutfit->Category() == zone.Value())
+						selectedOutfit = nullptr;
+				}
 			}
 			else
-				collapsed.erase(it);
+			{
+				if(toggleAll)
+					collapsed.clear();
+				else
+					collapsed.erase(it);
+			}
 			return true;
 		}
 	
