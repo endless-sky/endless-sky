@@ -1840,3 +1840,29 @@ mission "Terraforming 5"
 			`	Amy says, "It will take a year or two for things to begin to settle down. Then we can figure out what our next steps should be."`
 			`	"I just hope we haven't made things worse than they were," says Alaric. He hands you your payment of <payment>. "Anyway, thanks for your help, <first>. It sounds like there's nothing more to be done here for the time being."`
 		event "terraforming Rand"
+
+
+
+mission "A wolf, a goat, and a cabbage"
+	job
+	description "Transport a wolf, a goat, and a cabbage to <destination>. Payment will be 100,000 credits."
+	to offer
+		"day" == 1
+		"month" == 4
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+	destination
+		distance 3 5
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+	cargo "wolf" 1
+	
+	on enter
+		dialog
+			`As soon as you take off, you hear a worrisome munching sound from the cargo hold, followed by a horrific shrieking bleating noise and then an equally horrific silence. Turning on your cargo hold's security camera, you discover that there is nothing left of the goat and the cabbage that you were transporting except a few scraps of cabbage, some bones, and a lot of blood.`
+			`	Meanwhile, the wolf is calmly gnawing on what you suspect is the goat's femur, with a rather self-satisfied look in its eyes. Apparently the goat ate the cabbage, and shortly after that the wolf ate the goat.`
+	
+	on complete
+		payment 33000
+		dialog
+			`The man who collects the wolf from you on the landing pad is furious. "I told the shipping company not to put the goat in the same ship as the wolf or the cabbage," he says, "but I guess they tried to save money by subcontracting it all to the same captain."`
+			`	Because you only delivered a third of the cargo safely, he only pays you 33,000 credits.`

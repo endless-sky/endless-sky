@@ -12,8 +12,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Rectangle.h"
 
-using namespace std;
-
 
 
 // Construct a rectangle by specifying the two corners rather than the
