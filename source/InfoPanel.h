@@ -63,6 +63,7 @@ private:
 	bool CanDump() const;
 	void Dump();
 	void DumpPlunder(int count);
+	void DumpCommodities(int count);
 	void Disown();
 	
 	

@@ -274,16 +274,15 @@ bool InfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 			int plunderAmount = (*shipIt)->Cargo().GetOutfitCount(selectedPlunder);
 			if(amount)
 			{
-				GetUI()->Push(new Dialog(this, &InfoPanel::Dump,
-					"Are you sure you want to jettison "
-						+ (amount == 1 ? "a ton" : Format::Number(amount) + " tons")
-						+ " of " + Format::LowerCase(selectedCommodity) + " cargo?"));
+				GetUI()->Push(new Dialog(this, &InfoPanel::DumpCommodities,
+					"How many tons of " + Format::LowerCase(selectedCommodity)
+						+ " do you want to jettison?", amount));
 			}
 			else if(plunderAmount > 0 && selectedPlunder->Get("installable") < 0.)
 			{
 				GetUI()->Push(new Dialog(this, &InfoPanel::DumpPlunder,
-					"How many tons of " + Format::LowerCase(selectedPlunder->Name()) + " do you want to jettison?",
-					plunderAmount));
+					"How many tons of " + Format::LowerCase(selectedPlunder->Name())
+						+ " do you want to jettison?", plunderAmount));
 			}
 			else if(plunderAmount == 1)
 			{
@@ -957,6 +956,25 @@ void InfoPanel::DumpPlunder(int count)
 	{
 		loss += count * selectedPlunder->Cost();
 		(*shipIt)->Jettison(selectedPlunder, count);
+		info.Update(**shipIt);
+		
+		if(loss)
+			Messages::Add("You jettisoned " + Format::Number(loss) + " credits worth of cargo.");
+	}
+}
+
+
+
+void InfoPanel::DumpCommodities(int count)
+{
+	int64_t loss = 0;
+	count = min(count, (*shipIt)->Cargo().Get(selectedCommodity));
+	if(count > 0)
+	{
+		int64_t basis = player.GetBasis(selectedCommodity, count);
+		loss += basis;
+		player.AdjustBasis(selectedCommodity, -basis);
+		(*shipIt)->Jettison(selectedCommodity, count);
 		info.Update(**shipIt);
 		
 		if(loss)

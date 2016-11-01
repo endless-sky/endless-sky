@@ -680,7 +680,7 @@ outfit "Heavy Rocket Launcher"
 		sound "rocket"
 		ammo "Heavy Rocket"
 		icon "icon/rocket"
-		"hit effect" "huge explosion"
+		"hit effect" "heavy rocket hit"
 		"die effect" "small explosion"
 		"inaccuracy" 1
 		"velocity" 9
