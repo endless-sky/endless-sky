@@ -1077,7 +1077,7 @@ void Engine::CalculateStep()
 			if(ship->Cloaking() == 1. && !isPlayer)
 				continue;
 			
-			if(doClick && &*ship != player.Flagship())
+			if(doClick && &*ship != player.Flagship() && ship->IsTargetable())
 			{
 				Point position = ship->Position() - newCenter;
 				const Mask &mask = ship->GetMask(step);
