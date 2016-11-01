@@ -50,7 +50,7 @@ ship "Flycatcher"
 	licenses
 		Wanderer
 	attributes
-		category "Interceptor"
+		category "Drone"
 		"cost" 830000
 		"hull" 4700
 		"mass" 40

@@ -1,3 +1,52 @@
+Version 0.9.3:
+  * Bug fixes:
+    * Fixed a bug that kept you from completely clearing your travel plan. (@MarcelineVQ)
+    * Fixed a possible crash in auto-refill of ammo. (@MarcelineVQ)
+    * Fixed planet sub-panel overlays remaining up when you depart. (@MarcelineVQ)
+    * You can no longer hire crew if you have negative bunks space. (@MarcelineVQ)
+    * Game no longer crashes if unable to create the config directory. (@lheckemann)
+    * Stranded fighters in other systems no longer get sold when you take off. (@MarcelineVQ)
+    * Typo fixes. (@lheckemann, @KiLEdEnNis, @davidwhitman)
+    * Fixed an integer overflow in fleet costs calculated in the boarding panel. (@MarcelineVQ)
+    * Invisible ships (i.e. ships with no sprite) are no longer "targetable." (@MarcelineVQ)
+    * Fixed tooltips showing up when hovering over the shop panel buttons.
+    * Fixed several glitches when multiple UI shortcut keys are pressed simultaneously.
+    * Fixed a bug where the window dimensions could end up odd.
+    * Orphaned enemy NPC drones no longer try to dock with you.
+    * Fixed a bug where fighters were counted as destroyed when they returned to their mothership.
+  * Game content:
+    * Hai carrier, gatling, and rail guns. (@Amazinite, @LocalGod79, @mdsmestad, @Sinsling, @Wrzlprnft)
+    * The Syndicate extremists are now always hostile in the mission against them. (@Amazinite)
+    * Fixed incorrect turret coordinates in the Kestrel. (@Amazinite)
+    * Fixed the energy use and heat output on the smallest Korath steering.
+    * Added three new Wanderer warships, two new reactors, and a heat sink.
+    * The slicer gun no longer requires crew.
+    * Added outfit images to use for various mined materials.
+    * Killing Navy ships no longer makes you a friend of the Alphas.
+    * Lesath now properly reverts to the Free Worlds in the "checkmate" story branch.
+    * Added commodity prices for all systems in Korath space.
+    * Flycatchers now count as drones, so other ships can carry them.
+  * Game mechanics:
+    * Cargo transfer now handles fractional mass correctly. (@MarcelineVQ)
+    * Mortgages no longer carry over when reloading an "account" definition.
+    * Fighter bays can now have both a facing direction and "over" or "under."
+    * Made it possible for animations to have a frame rate of 0.
+    * Wormholes no longer count when checking if all planets in a system have been visited.
+  * User interface:
+    * Hiding the "park" button in the info panel when it doesn't apply. (@MarcelineVQ)
+    * The "dump all" button will dump outfits if you have no other cargo. (@MarcelineVQ)
+    * The boarding panel now handles fractional outfit masses. (@MarcelineVQ)
+    * Added a click sound as feedback when you change the volume level.
+    * You can no longer select an un-targetable ship by clicking on it.
+    * The trading panel can now handle fleets with over 2 million cargo space.
+    * Added "fog of war" obscuring sections of the map backdrop that have not been visited.
+    * The boarding panel now displays self-destruct odds.
+  * Under the hood:
+    * Added a common base class for all objects added to the DrawList.
+    * Added more functionality to the Angle class.
+    * Cleaning up the code and adding more detailed and up to date comments.
+    * Replaced a few remaining instances of "NULL" with "nullptr."
+ 
 Version 0.9.2:
   * Bug fixes:
     * Typo fixes. (@Alkallid, @egony, @lheckemann, @MarcelineVQ)
