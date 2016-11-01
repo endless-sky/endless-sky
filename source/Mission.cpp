@@ -103,8 +103,15 @@ void Mission::Load(const DataNode &node)
 			
 			for(const DataNode &grand : child)
 			{
-				if(grand.Token(0) == "illegal" && grand.Size() >= 2)
+				if(grand.Token(0) == "illegal" && grand.Size() == 2)
 					illegalCargoFine = grand.Value(1);
+				else if(grand.Token(0) == "illegal" && grand.Size() == 3)
+				{
+					illegalCargoFine = grand.Value(1);
+					illegalCargoMessage = grand.Token(2);
+				}
+				else if(grand.Token(0) == "stealth")
+					failIfDiscovered = true;
 				else
 					grand.PrintTrace("Skipping unrecognized attribute:");
 			}
@@ -239,7 +246,15 @@ void Mission::Save(DataWriter &out, const string &tag) const
 			{
 				out.BeginChild();
 				{
-					out.Write("illegal", illegalCargoFine);
+					out.Write("illegal", illegalCargoFine, illegalCargoMessage);
+				}
+				out.EndChild();
+			}
+			if(failIfDiscovered)
+			{
+				out.BeginChild();
+				{
+					out.Write("stealth");
 				}
 				out.EndChild();
 			}
@@ -413,6 +428,20 @@ int Mission::CargoSize() const
 int Mission::IllegalCargoFine() const
 {
 	return illegalCargoFine;
+}
+
+
+
+std::string Mission::IllegalCargoMessage() const
+{
+	return illegalCargoMessage;
+}
+
+
+
+bool Mission::FailIfDiscovered() const
+{
+	return failIfDiscovered;
 }
 
 
@@ -885,6 +914,8 @@ Mission Mission::Instantiate(const PlayerInfo &player) const
 			result.passengers = passengers;
 	}
 	result.illegalCargoFine = illegalCargoFine;
+	result.illegalCargoMessage = illegalCargoMessage;
+	result.failIfDiscovered = failIfDiscovered;
 	
 	// Estimate how far the player will have to travel to visit all the waypoints
 	// and stopovers and then to land on the destination planet. Rather than a
