@@ -64,6 +64,15 @@ using namespace std;
 	}
 //}
 
+// The possible outcomes of a conversation:
+static const int Conversation::ACCEPT;
+static const int Conversation::DECLINE;
+static const int Conversation::DEFER;
+static const int Conversation::LAUNCH;
+static const int Conversation::FLEE;
+static const int Conversation::DEPART;
+static const int Conversation::DIE;
+
 
 
 // Check if this conversation outcome requires the player to leave immediately.
