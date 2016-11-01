@@ -475,7 +475,7 @@ void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &player)
 		if((isPlayerEscort && holdPosition) || mustRecall || isStranded)
 		{
 			if(it->Velocity().Length() > .001 || !target)
-				Stop(*it, command, .001);
+				Stop(*it, command, true);
 			else
 				command.SetTurn(TurnToward(*it, TargetAim(*it)));
 		}
@@ -1007,17 +1007,18 @@ bool AI::MoveTo(Ship &ship, Command &command, const Point &target, double radius
 
 
 
-bool AI::Stop(Ship &ship, Command &command, double slow)
+bool AI::Stop(Ship &ship, Command &command, bool complete)
 {
 	const Point &velocity = ship.Velocity();
 	const Angle &angle = ship.Facing();
 	
 	double speed = velocity.Length();
 	
-	if(speed <= slow)
+	// If asked for a complete stop, the ship needs to be going much slower.
+	if(speed <= (complete ? .001 : .2))
 		return true;
-
-	command |= Command::STOP;
+	if(complete)
+		command |= Command::STOP;
 	
 	// If you're moving slow enough that one frame of acceleration could bring
 	// you to a stop, make sure you're pointed perfectly in the right direction.
