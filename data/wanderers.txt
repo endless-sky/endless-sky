@@ -559,6 +559,8 @@ planet "Vara Ke'sok"
 	description `The surface of this world is almost entirely ocean. The Wanderer settlements were built on massive floating algae mats, some of them the size of a small city. Engines are attached to some of these floating villages, allowing them to be slowly propelled from one part of the planet's surface to another, and the only native industries are fishing and seaweed farming.`
 	spaceport `The raft of algae that supports the spaceport is probably at least a dozen meters thick, but flexible enough that it bends as the ocean swells pass underneath, causing individual buildings to rise up or tilt slightly relative to their neighbors. Now that this world has been captured by the Unfettered, nearly all the buildings are empty; it appears that the Hai are not too fond of the idea of inhabiting a water world, so they are using it mostly as a military base.`
 
+planet "The Eye"
+
 event "wanderers: the eye begins to open"
 	system Sko'karak
 		fleet "Wanderer Defense" 500
@@ -595,7 +597,12 @@ event "wanderers: the eye begins to open"
 			period 2518.05
 
 event "wanderers: the eye opens"
+	unvisit Sabriset
 	system Sabriset
+		fleet "Large Quarg" 4000
+		fleet "Wanderer Defense" 1200
+		fleet "Wanderer Drones" 600
+		fleet "Wanderer Freight" 4000
 		object
 			sprite star/g0
 			distance 35.1028
@@ -626,8 +633,36 @@ event "wanderers: the eye opens"
 			sprite planet/wormhole
 			distance 2022.87
 			period 919.438
+	system Sepriaptu
+		fleet "Large Quarg" 4000
+		fleet "Wanderer Defense" 1600
+		fleet "Wanderer Drones" 800
+	system Kaliptari
+		fleet "Large Quarg" 2000
+		fleet "Small Kor Mereti" 8000
+		fleet "Large Kor Mereti" 3600
+		fleet "Wanderer Defense" 1000
+		fleet "Wanderer Drones" 500
+	system Solifar
+		fleet "Large Quarg" 3000
+		fleet "Wanderer Defense" 1800
+		fleet "Wanderer Drones" 700
+	system Fornarep
+		fleet "Large Quarg" 1000
+		fleet "Small Kor Mereti" 7000
+		fleet "Large Kor Mereti" 4000
+	system Skeruto
+		fleet "Large Quarg" 1000
+	system Mekislepti
+		fleet "Small Kor Mereti" 800
+		fleet "Large Kor Mereti" 2400
+		fleet "Large Kor Sestor" 8000
+		fleet "Wanderer Drones" 2000
+	unvisit Sko'karak
 	system Sko'karak
 		fleet "Wanderer Defense" 500
+		fleet "Wanderer Drones" 400
+		fleet "Wanderer Freight" 2000
 		object
 			sprite star/m0
 			period 10
@@ -659,3 +694,79 @@ event "wanderers: the eye opens"
 			sprite planet/wormhole
 			distance 2331.95
 			period 2518.05
+
+event "wanderers: derecho mass production"
+	fleet "Wanderer Defense"
+		government "Wanderer"
+		names "wanderer"
+		personality
+			heroic
+		variant 4
+			"Derecho"
+			"Tempest"
+		variant 3
+			"Derecho (Turret)"
+			"Tempest (Missile)"
+		variant 2
+			"Derecho (Tough)"
+			"Tempest (Heavy)"
+		variant 4
+			"Derecho"
+			"Strong Wind" 2
+		variant 3
+			"Derecho (Tough)"
+			"Autumn Leaf"
+			"Summer Leaf" 2
+		variant 2
+			"Derecho (Turret)"
+			"Tempest (Heavy)"
+			"Tempest"
+		variant 6
+			"Tempest"
+			"Summer Leaf"
+			"Autumn Leaf"
+		variant 4
+			"Tempest (Heavy)"
+			"Strong Wind"
+		variant 1
+			"Tempest (Heavy)"
+			"Tempest"
+			"Tempest (Missile)"
+		variant 2
+			"Tempest (Heavy)"
+			"Tempest"
+		variant 1
+			"Tempest (Missile)" 2
+		variant 3
+			"Strong Wind"
+			"Summer Leaf" 2
+		variant 2
+			"Strong Wind" 2
+		variant 2
+			"Strong Wind"
+			"Autumn Leaf"
+		variant
+			"Strong Wind" 3
+		variant 2
+			"Autumn Leaf" 3
+		variant
+			"Strong Wind"
+			"Autumn Leaf"
+			"Summer Leaf"
+		variant
+			"Autumn Leaf"
+			"Summer Leaf" 2
+		variant
+			"Summer Leaf" 4
+	shipyard "Wanderer Advanced"
+		"Derecho"
+
+event "wanderers: spera anatrusk colony"
+	system Kaliptari
+		government "Wanderer"
+	planet "Spera Anatrusk"
+		attributes wanderer
+		description `This is a relatively dry planet, and the only Korath cities were close to the poles where the temperatures are more mild and the lifeless deserts give way to grasslands and even a few scattered forests. The largest city was clearly destroyed by orbital bombardment. The other cities seem to have been done in by rioting or looting, leaving smashed windows and burned-out buildings behind. Some of the damage is very recent; the Korath survivors here held out for a long time.`
+		description `	Hidden deep in a canyon, the Wanderers have begun establishing a military base here.`
+		spaceport `The Wanderers have hollowed out hangars and caves in the soft sandstone walls of this canyon and have begun to build a military base where they can store supplies and repair their ships while trying to decide how best to deal with the new challenges that face them in Korath space.`
+		spaceport `	Oddly enough, they have also found enough time to plant a large garden on a terrace near the base of the canyon, where they are experimenting to find out which plant species will best grow in this arid environment. The Wanderer drive to understand and transform the local ecology is strong, indeed.`
