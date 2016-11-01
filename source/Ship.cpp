@@ -2103,6 +2103,11 @@ void Ship::Jettison(const string &commodity, int tons)
 {
 	cargo.Remove(commodity, tons);
 	
+	// Jettisoned cargo must carry some of the ship's heat with it. Otherwise
+	// jettisoning cargo would increase the ship's temperature.
+	double shipMass = Mass();
+	heat *= shipMass / (shipMass + tons);
+	
 	static const int perBox = 5;
 	for( ; tons >= perBox; tons -= perBox)
 		jettisoned.emplace_back(commodity, perBox);
@@ -2117,7 +2122,12 @@ void Ship::Jettison(const Outfit *outfit, int count)
 
 	cargo.Remove(outfit, count);
 	
+	// Jettisoned cargo must carry some of the ship's heat with it. Otherwise
+	// jettisoning cargo would increase the ship's temperature.
 	double mass = outfit->Get("mass");
+	double shipMass = Mass();
+	heat *= shipMass / (shipMass + count * mass);
+	
 	const int perBox = (mass <= 0.) ? count : (mass > 5.) ? 1 : static_cast<int>(5. / mass);
 	while(count > 0)
 	{
