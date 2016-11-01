@@ -142,6 +142,14 @@ outfit "Command Center"
 	"automaton" -1
 	description "In response to occasional raids by the robotic war machines left behind after their recent conflict, the Kor Efret have developed this minimal, spartan command center that can be installed in a captured robotic ship to allow a pilot to override the AI and interface with the ship's controls. The command center only provides a single bunk for the captain, so more may be necessary if the ship has turrets or other systems that require crew."
 
+outfit "Reasoning Node"
+	category "Systems"
+	cost "23000"
+	thumbnail "outfit/reasoning node"
+	"mass" 1
+	"outfit space" -1
+	description "This is some sort of advanced, miniature computer combined with various sensor inputs and a hyperspace communication relay. Presumably, in some way it controls the Mereti automata or allows them to more easily coordinate their actions with each other."
+
 
 
 outfit "Thruster (Asteroid Class)"
