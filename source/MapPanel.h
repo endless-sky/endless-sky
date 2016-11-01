@@ -52,8 +52,6 @@ public:
 public:
 	MapPanel(PlayerInfo &player, int commodity = SHOW_REPUTATION, const System *special = nullptr);
 	
-	void SetCommodity(int index);
-	virtual void Step() override;
 	virtual void Draw() override;
 	
 	static void DrawMiniMap(const PlayerInfo &player, double alpha, const System *const jump[2], int step);
@@ -103,7 +101,6 @@ protected:
 	
 	Point center;
 	int commodity;
-	int *tradeCommodity = nullptr;
 	const int maxZoom = 2;
 	int zoom = 0;
 	mutable int step = 0;

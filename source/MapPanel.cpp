@@ -37,6 +37,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include <algorithm>
 #include <cctype>
+#include <limits>
 
 using namespace std;
 
@@ -57,21 +58,6 @@ MapPanel::MapPanel(PlayerInfo &player, int commodity, const System *special)
 	
 	if(selectedSystem)
 		center = Point(0., 0.) - Zoom() * (selectedSystem->Position());
-}
-
-
-
-void MapPanel::SetCommodity(int index)
-{
-	commodity = index;
-}
-
-
-
-void MapPanel::Step()
-{
-	if(tradeCommodity && commodity >= 0)
-		*tradeCommodity = commodity;
 }
 
 
@@ -270,6 +256,9 @@ bool MapPanel::Scroll(double dx, double dy)
 
 Color MapPanel::MapColor(double value)
 {
+	if(std::isnan(value))
+		return UninhabitedColor();
+	
 	value = min(1., max(-1., value));
 	if(value < 0.)
 		return Color(
@@ -342,7 +331,7 @@ Color MapPanel::UnexploredColor()
 
 double MapPanel::SystemValue(const System *system) const
 {
-	return 0;
+	return 0.;
 }
 
 
@@ -691,18 +680,19 @@ void MapPanel::DrawSystems() const
 		Color color = UninhabitedColor();
 		if(!player.HasVisited(&system))
 			color = UnexploredColor();
-		else if(system.IsInhabited())
+		else if(system.IsInhabited() || commodity == SHOW_SPECIAL)
 		{
 			if(commodity >= SHOW_SPECIAL)
 			{
 				double value = 0.;
-				bool showUninhabited = false;
 				if(commodity >= 0)
 				{
 					const Trade::Commodity &com = GameData::Commodities()[commodity];
 					double price = system.Trade(com.name);
-					showUninhabited = !price;
-					value = (2. * (price - com.low)) / (com.high - com.low) - 1.;
+					if(!price)
+						value = numeric_limits<double>::quiet_NaN();
+					else
+						value = (2. * (price - com.low)) / (com.high - com.low) - 1.;
 				}
 				else if(commodity == SHOW_SHIPYARD)
 				{
@@ -736,7 +726,7 @@ void MapPanel::DrawSystems() const
 				else
 					value = SystemValue(&system);
 				
-				color = (showUninhabited ? UninhabitedColor() : MapColor(value));
+				color = MapColor(value);
 			}
 			else if(commodity == SHOW_GOVERNMENT)
 			{
