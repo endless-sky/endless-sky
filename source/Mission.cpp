@@ -163,6 +163,11 @@ void Mission::Load(const DataNode &node)
 			destinationFilter.Load(child);
 		else if(child.Token(0) == "waypoint" && child.Size() >= 2)
 			waypoints.insert(GameData::Systems().Get(child.Token(1)));
+		else if(child.Token(0) == "waypoint")
+		{
+			waypointFilters.emplace_back();
+			waypointFilters.back().Load(child);
+		}
 		else if(child.Token(0) == "stopover" && child.Size() >= 2)
 			stopovers.insert(GameData::Planets().Get(child.Token(1)));
 		else if(child.Token(0) == "stopover")
@@ -779,6 +784,14 @@ Mission Mission::Instantiate(const PlayerInfo &player) const
 	auto it = result.waypoints.find(player.GetSystem());
 	if(it != result.waypoints.end())
 		result.waypoints.erase(it);
+	// Handle waypoint systems that are chosen randomly.
+	for(const LocationFilter &filter : waypointFilters)
+	{
+		const System *system = PickSystem(filter, player);
+		if(!system)
+			return result;
+		result.waypoints.insert(system);
+	}
 	
 	// Copy the stopover planet list, and populate the list based on the filters
 	// that were given.
@@ -869,9 +882,33 @@ Mission Mission::Instantiate(const PlayerInfo &player) const
 	}
 	result.illegalCargoFine = illegalCargoFine;
 	
-	// How far is it to the destination?
-	DistanceMap distance(player.GetSystem());
-	int jumps = result.destination ? distance.Distance(result.destination->GetSystem()) : 0;
+	// Estimate how far the player will have to travel to visit all the waypoints
+	// and stopovers and then to land on the destination planet. Rather than a
+	// full traveling salesman path, just calculate a greedy approximation.
+	const System *source = player.GetSystem();
+	list<const System *> destinations;
+	for(const System *system : waypoints)
+		destinations.push_back(system);
+	for(const Planet *planet : stopovers)
+		destinations.push_back(planet->GetSystem());
+	
+	int jumps = 0;
+	while(!destinations.empty())
+	{
+		// Find the closest destination to this location.
+		DistanceMap distance(source);
+		auto it = destinations.begin();
+		auto bestIt = it;
+		for(++it; it != destinations.end(); ++it)
+			if(distance.Distance(*it) < distance.Distance(*bestIt))
+				bestIt = it;
+		
+		source = *bestIt;
+		destinations.erase(bestIt);
+		jumps += distance.Distance(*bestIt);
+	}
+	DistanceMap distance(source);
+	jumps += distance.Distance(result.destination->GetSystem());
 	int payload = result.cargoSize + 10 * result.passengers;
 	
 	// Set the deadline, if requested.
@@ -950,6 +987,23 @@ void Mission::Enter(const System *system, PlayerInfo &player, UI *ui)
 		eit->second.Do(player, ui);
 		didEnter.insert(eit->first);
 	}
+}
+
+
+
+const System *Mission::PickSystem(const LocationFilter &filter, const PlayerInfo &player) const
+{
+	// Find a planet that satisfies the filter.
+	vector<const System *> options;
+	for(const auto &it : GameData::Systems())
+	{
+		// Skip entries with incomplete data.
+		if(it.second.Name().empty())
+			continue;
+		if(filter.Matches(&it.second, player.GetSystem()))
+			options.push_back(&it.second);
+	}
+	return options.empty() ? nullptr : options[Random::Int(options.size())];
 }
 
 
