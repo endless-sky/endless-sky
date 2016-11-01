@@ -1114,10 +1114,11 @@ bool PlayerInfo::TakeOff(UI *ui)
 		ships.insert(ships.begin(), flagship);
 	}
 	// Make sure your ships all know who the flagship is.
-	flagship->SetParent(shared_ptr<Ship>());
 	for(const shared_ptr<Ship> &ship : ships)
-		if(ship != flagship)
-			ship->SetParent(flagship);
+	{
+		bool shouldHaveParent = (ship != flagship && !ship->IsParked() && !ship->CanBeCarried());
+		ship->SetParent(shouldHaveParent ? flagship : shared_ptr<Ship>());
+	}
 	
 	// Recharge any ships that can be recharged.
 	bool hasSpaceport = planet->HasSpaceport() && planet->CanUseServices();

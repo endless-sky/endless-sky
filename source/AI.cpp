@@ -797,7 +797,14 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 				totalWeight += planetWeight;
 			}
 		if(!totalWeight)
-			return;
+		{
+			// If there is nothing this ship can land on, have it just go to the
+			// star and hover over it rather than drifting far away.
+			if(ship.GetSystem()->Objects().empty())
+				return;
+			totalWeight = 1;
+			planets.push_back(&ship.GetSystem()->Objects().front());
+		}
 		
 		int choice = Random::Int(totalWeight);
 		if(choice < systemTotalWeight)

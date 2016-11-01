@@ -1360,7 +1360,7 @@ void Engine::AddSprites(const Ship &ship)
 	bool drawCloaked = (cloak && ship.GetGovernment()->IsPlayer());
 	
 	if(ship.IsThrusting())
-		for(const Point &point : ship.EnginePoints())
+		for(const Ship::EnginePoint &point : ship.EnginePoints())
 		{
 			Point pos = ship.Facing().Rotate(point) * ship.Zoom() + ship.Position();
 			// If multiple engines with the same flare are installed, draw up to
@@ -1368,7 +1368,7 @@ void Engine::AddSprites(const Ship &ship)
 			for(const auto &it : ship.Attributes().FlareSprites())
 				for(int i = 0; i < it.second && i < 3; ++i)
 				{
-					Body sprite(it.first, pos, ship.Velocity(), ship.Facing());
+					Body sprite(it.first, pos, ship.Velocity(), ship.Facing(), point.Zoom());
 					draw[calcTickTock].Add(sprite, cloak);
 				}
 		}

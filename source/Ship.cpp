@@ -121,7 +121,8 @@ void Ship::Load(const DataNode &node)
 				enginePoints.clear();
 				hasEngine = true;
 			}
-			enginePoints.emplace_back(.5 * child.Value(1), .5 * child.Value(2));
+			enginePoints.emplace_back(.5 * child.Value(1), .5 * child.Value(2),
+				(child.Size() > 3 ? child.Value(3) : 1.));
 		}
 		else if(child.Token(0) == "gun" || child.Token(0) == "turret")
 		{
@@ -459,8 +460,8 @@ void Ship::Save(DataWriter &out) const
 		out.Write("hull", hull);
 		out.Write("position", position.X(), position.Y());
 		
-		for(const Point &point : enginePoints)
-			out.Write("engine", 2. * point.X(), 2. * point.Y());
+		for(const EnginePoint &point : enginePoints)
+			out.Write("engine", 2. * point.X(), 2. * point.Y(), point.Zoom());
 		for(const Hardpoint &weapon : armament.Get())
 		{
 			const char *type = (weapon.IsTurret() ? "turret" : "gun");
@@ -1128,7 +1129,7 @@ bool Ship::Move(list<Effect> &effects, list<Flotsam> &flotsam)
 				acceleration += angle.Unit() * thrust / mass;
 				
 				if(!forget)
-					for(const Point &point : enginePoints)
+					for(const EnginePoint &point : enginePoints)
 					{
 						Point pos = angle.Rotate(point) * Zoom() + position;
 						for(const auto &it : attributes.AfterburnerEffects())
@@ -1651,7 +1652,7 @@ bool Ship::IsThrusting() const
 
 
 // Get the points from which engine flares should be drawn.
-const vector<Point> &Ship::EnginePoints() const
+const vector<Ship::EnginePoint> &Ship::EnginePoints() const
 {
 	return enginePoints;
 }
