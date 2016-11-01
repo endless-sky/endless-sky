@@ -592,7 +592,7 @@ void InfoPanel::DrawInfo() const
 
 void InfoPanel::DrawShip() const
 {
-	if(player.Ships().empty())
+	if(player.Ships().empty() || shipIt == player.Ships().end())
 		return;
 	
 	Color dim = *GameData::Colors().Get("medium");
@@ -990,8 +990,13 @@ void InfoPanel::Disown()
 	if(shipIt == player.Ships().end() || !shipIt->get())
 		return;
 	
-	player.DisownShip(shipIt->get());
+	const Ship *ship = shipIt->get();
+	if(shipIt != player.Ships().begin())
+		--shipIt;
+	else
+		++shipIt;
+	
+	player.DisownShip(ship);
 	allSelected.clear();
-	shipIt = player.Ships().end();
 	showShip = false;
 }
