@@ -680,6 +680,20 @@ interface "info panel"
 	sprite "ui/two info buttons"
 		center 0 305
 	
+	box "player"
+		from -500 -290 to -250 280
+	box "fleet"
+		from -250 -290 to 500 280
+	
+	box "stats"
+		from -500 -290 to -250 280
+	box "outfits"
+		from -250 -290 to 250 30
+	box "weapons"
+		from -250 30 to 250 280
+	box "cargo"
+		from 250 -290 to 500 280
+	
 	visible if "ship tab"
 	button R
 		center -375 -270

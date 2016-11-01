@@ -34,6 +34,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "UI.h"
 
 #include <algorithm>
+#include <cmath>
 
 using namespace std;
 
@@ -463,20 +464,31 @@ void InfoPanel::UpdateInfo()
 
 void InfoPanel::DrawInfo() const
 {
-	Color back = *GameData::Colors().Get("faint");
+	const Interface *interface = GameData::Interfaces().Get("info panel");
+	DrawPlayer(interface->GetBox("player"));
+	DrawFleet(interface->GetBox("fleet"));
+}
+
+
+
+void InfoPanel::DrawPlayer(const Rectangle &bounds) const
+{
+	// Check that the specified area is big enough.
+	if(bounds.Width() < 250.)
+		return;
+	
+	// Colors to draw with.
 	Color dim = *GameData::Colors().Get("medium");
 	Color bright = *GameData::Colors().Get("bright");
-	Color elsewhere = *GameData::Colors().Get("dim");
-	Color dead(.4, 0., 0., 0.);
-	const Font &font = FontSet::Get(14);
 	
-	// Player info.
+	// Table attributes.
 	Table table;
 	table.AddColumn(0, Table::LEFT);
 	table.AddColumn(230, Table::RIGHT);
 	table.SetUnderline(0, 230);
-	table.DrawAt(Point(-490., -282.));
+	table.DrawAt(bounds.TopLeft() + Point(10., 8.));
 	
+	// Header row.
 	table.Draw("player:", dim);
 	table.Draw(player.FirstName() + " " + player.LastName(), bright);
 	table.Draw("net worth:", dim);
@@ -509,78 +521,98 @@ void InfoPanel::DrawInfo() const
 	int maxRows = static_cast<int>(250. - 30. - table.GetPoint().Y()) / 20;
 	auto licenses = Match(player, "license: ", " License");
 	DrawList(licenses, table, "licenses:", maxRows, false);
-	
-	// Fleet listing.
-	Point pos = Point(-240., -280.);
-	font.Draw("ship", pos + Point(0., 0.), bright);
-	font.Draw("model", pos + Point(220., 0.), bright);
-	font.Draw("system", pos + Point(350., 0.), bright);
-	font.Draw("shields", pos + Point(550. - font.Width("shields"), 0.), bright);
-	font.Draw("hull", pos + Point(610. - font.Width("hull"), 0.), bright);
-	font.Draw("fuel", pos + Point(670. - font.Width("fuel"), 0.), bright);
-	font.Draw("crew", pos + Point(730. - font.Width("crew"), 0.), bright);
-	FillShader::Fill(pos + Point(365., 15.), Point(730., 1.), dim);
-	
-	if(!player.Ships().size())
+}
+
+
+
+void InfoPanel::DrawFleet(const Rectangle &bounds) const
+{
+	// Check that the specified area is big enough.
+	if(bounds.Width() < 750.)
 		return;
-	int lastIndex = player.Ships().size() - 1;
-	const Ship *flagship = player.Flagship();
 	
-	Point zoneSize(730., 20.);
-	Point zoneCenter(.5 * zoneSize.X(), .5 * font.Height());
+	// Colors to draw with.
+	Color back = *GameData::Colors().Get("faint");
+	Color dim = *GameData::Colors().Get("medium");
+	Color bright = *GameData::Colors().Get("bright");
+	Color elsewhere = *GameData::Colors().Get("dim");
+	Color dead(.4, 0., 0., 0.);
 	
-	pos.Y() += 5.;
+	// Table attributes.
+	Table table;
+	table.AddColumn(0, Table::LEFT);
+	table.AddColumn(220, Table::LEFT);
+	table.AddColumn(350, Table::LEFT);
+	table.AddColumn(550, Table::RIGHT);
+	table.AddColumn(610, Table::RIGHT);
+	table.AddColumn(670, Table::RIGHT);
+	table.AddColumn(730, Table::RIGHT);
+	table.SetUnderline(0, 730);
+	table.DrawAt(bounds.TopLeft() + Point(10., 8.));
+	
+	// Header row.
+	table.DrawUnderline(dim);
+	table.SetColor(bright);
+	table.Draw("ship");
+	table.Draw("model");
+	table.Draw("system");
+	table.Draw("shields");
+	table.Draw("hull");
+	table.Draw("fuel");
+	table.Draw("crew");
+	table.DrawGap(5);
+	
+	// Loop through all the player's ships.
 	int index = scroll;
 	auto sit = player.Ships().begin() + scroll;
 	for( ; sit < player.Ships().end(); ++sit)
 	{
-		const shared_ptr<Ship> &ship = *sit;
-		pos.Y() += 20.;
-		if(pos.Y() >= 260.)
+		// Bail out if we've used out the whole drawing area.
+		if(!bounds.Contains(table.GetRowBounds()))
 			break;
 		
+		// Check if this row is selected.
 		if(allSelected.count(index))
-			FillShader::Fill(pos + zoneCenter, zoneSize + Point(10., 0.), back);
+			table.DrawHighlight(back);
 		
-		bool isElsewhere = (ship->GetSystem() != player.GetSystem());
-		isElsewhere |= (ship->CanBeCarried() && player.GetPlanet());
-		bool isDead = ship->IsDestroyed() || ship->IsDisabled();
+		const Ship &ship = **sit;
+		bool isElsewhere = (ship.GetSystem() != player.GetSystem());
+		isElsewhere |= (ship.CanBeCarried() && player.GetPlanet());
+		bool isDead = ship.IsDestroyed() || ship.IsDisabled();
 		bool isHovered = (index == hover);
-		const Color &color = isDead ? dead : isElsewhere ? elsewhere : isHovered ? bright : dim;
-		font.Draw(ship->Name(), pos + Point(10. * ship->CanBeCarried(), 0.), color);
-		font.Draw(ship->ModelName(), pos + Point(220., 0.), color);
+		table.SetColor(isDead ? dead : isElsewhere ? elsewhere : isHovered ? bright : dim);
 		
-		const System *system = ship->GetSystem();
-		if(system)
-			font.Draw(system->Name(), pos + Point(350., 0.), color);
+		// Store this row's position, to handle hovering.
+		zones.emplace_back(table.GetCenterPoint(), table.GetRowSize(), index);
 		
-		string shields = to_string(static_cast<int>(100. * max(0., ship->Shields()))) + "%";
-		font.Draw(shields, pos + Point(550. - font.Width(shields), 0.), color);
+		// Indent the ship name if it is a fighter or drone.
+		table.Draw(ship.CanBeCarried() ? "    " + ship.Name() : ship.Name());
+		table.Draw(ship.ModelName());
 		
-		string hull = to_string(static_cast<int>(100. * max(0., ship->Hull()))) + "%";
-		font.Draw(hull, pos + Point(610. - font.Width(hull), 0.), color);
+		const System *system = ship.GetSystem();
+		table.Draw(system ? system->Name() : "");
+		
+		string shields = to_string(static_cast<int>(100. * max(0., ship.Shields()))) + "%";
+		table.Draw(shields);
+		
+		string hull = to_string(static_cast<int>(100. * max(0., ship.Hull()))) + "%";
+		table.Draw(hull);
 		
 		string fuel = to_string(static_cast<int>(
-			ship->Attributes().Get("fuel capacity") * ship->Fuel()));
-		font.Draw(fuel, pos + Point(670. - font.Width(fuel), 0.), color);
+			ship.Attributes().Get("fuel capacity") * ship.Fuel()));
+		table.Draw(fuel);
 		
-		string crew = ship->IsParked() ? "Parked" :
-			to_string(ship.get() == flagship ? ship->Crew() : ship->RequiredCrew());
-		font.Draw(crew, pos + Point(730. - font.Width(crew), 0.), color);
+		string crew = ship.IsParked() ? "Parked" :
+			to_string(&ship == player.Flagship() ? ship.Crew() : ship.RequiredCrew());
+		table.Draw(crew);
 		
-		if(index < lastIndex || selected < 0)
-			zones.emplace_back(pos + zoneCenter, zoneSize, index);
-		else
-		{
-			Point size(zoneSize.X(), 280. - pos.Y());
-			zones.emplace_back(pos + .5 * size, size, index);
-		}
 		++index;
 	}
 	
 	// Re-ordering ships in your fleet.
 	if(selected >= 0)
 	{
+		const Font &font = FontSet::Get(14);
 		const string &name = player.Ships()[selected]->Name();
 		Point pos(hoverPoint.X() - .5 * font.Width(name), hoverPoint.Y());
 		font.Draw(name, pos + Point(1., 1.), Color(0., 1.));
@@ -595,54 +627,209 @@ void InfoPanel::DrawShip() const
 	if(player.Ships().empty() || shipIt == player.Ships().end())
 		return;
 	
+	const Interface *interface = GameData::Interfaces().Get("info panel");
+	DrawShipStats(interface->GetBox("stats"));
+	DrawOutfits(interface->GetBox("outfits"));
+	DrawWeapons(interface->GetBox("weapons"));
+	DrawCargo(interface->GetBox("cargo"));
+	
+	info.DrawTooltips();
+}
+
+
+
+void InfoPanel::DrawShipStats(const Rectangle &bounds) const
+{
+	// Check that the specified area is big enough.
+	if(bounds.Width() < 250.)
+		return;
+	
+	// Colors to draw with.
+	Color dim = *GameData::Colors().Get("medium");
+	Color bright = *GameData::Colors().Get("bright");
+	const Ship &ship = **shipIt;
+	
+	// Table attributes.
+	Table table;
+	table.AddColumn(0, Table::LEFT);
+	table.AddColumn(230, Table::RIGHT);
+	table.SetUnderline(0, 230);
+	table.DrawAt(bounds.TopLeft() + Point(10., 8.));
+	
+	// Draw the ship information.
+	table.Draw("ship:", dim);
+	table.Draw(ship.Name(), bright);
+	
+	table.Draw("model:", dim);
+	table.Draw(ship.ModelName(), bright);
+	
+	info.DrawAttributes(table.GetRowBounds().TopLeft() - Point(10., 10.));
+}
+
+
+
+void InfoPanel::DrawOutfits(const Rectangle &bounds) const
+{
+	// Check that the specified area is big enough.
+	if(bounds.Width() < 250.)
+		return;
+	
+	// Colors to draw with.
+	Color dim = *GameData::Colors().Get("medium");
+	Color bright = *GameData::Colors().Get("bright");
+	const Ship &ship = **shipIt;
+	
+	// Table attributes.
+	Table table;
+	table.AddColumn(0, Table::LEFT);
+	table.AddColumn(230, Table::RIGHT);
+	table.SetUnderline(0, 230);
+	Point start = bounds.TopLeft() + Point(10., 8.);
+	table.DrawAt(start);
+	
+	// Draw the outfits in the same order used in the outfitter.
+	for(const string &category : Outfit::CATEGORIES)
+	{
+		auto it = outfits.find(category);
+		if(it == outfits.end())
+			continue;
+		
+		// Skip to the next column if there is not space for this category label
+		// plus at least one outfit.
+		if(table.GetRowBounds().Bottom() + 40. > bounds.Bottom())
+		{
+			start += Point(250., 0.);
+			if(start.X() + 230. > bounds.Right())
+				break;
+			table.DrawAt(start);
+		}
+		
+		// Draw the category label.
+		table.Draw(category, bright);
+		table.Advance();
+		for(const Outfit *outfit : it->second)
+		{
+			// Check if we've gone below the bottom of the bounds.
+			if(table.GetRowBounds().Bottom() > bounds.Bottom())
+			{
+				start += Point(250., 0.);
+				if(start.X() + 230. > bounds.Right())
+					break;
+				table.DrawAt(start);
+				table.Draw(category, bright);
+				table.Advance();
+			}
+			
+			// Draw the outfit name and count.
+			table.Draw(outfit->Name(), dim);
+			string number = to_string(ship.OutfitCount(outfit));
+			table.Draw(number, bright);
+		}
+		// Add an extra gap in between categories.
+		table.DrawGap(10.);
+	}
+}
+
+
+
+void InfoPanel::DrawWeapons(const Rectangle &bounds) const
+{
+	// Colors to draw with.
 	Color dim = *GameData::Colors().Get("medium");
 	Color bright = *GameData::Colors().Get("bright");
 	const Font &font = FontSet::Get(14);
 	const Ship &ship = **shipIt;
 	
-	// Left column: basic ship attributes.
-	font.Draw("ship:", Point(-490., -280.), dim);
-	Point shipNamePos(-260 - font.Width(ship.Name()), -280.);
-	font.Draw(ship.Name(), shipNamePos, bright);
-	font.Draw("model:", Point(-490., -260.), dim);
-	Point modelNamePos(-260 - font.Width(ship.ModelName()), -260.);
-	font.Draw(ship.ModelName(), modelNamePos, bright);
-	info.DrawAttributes(Point(-500., -250.));
+	// Figure out how much to scale the sprite by.
+	const Sprite *sprite = ship.GetSprite();
+	double scale = min(240. / sprite->Width(), 240. / sprite->Height());
 	
-	// Outfits list.
-	Point pos(-240., -280.);
-	for(const auto &it : outfits)
+	// Figure out the left- and right-most hardpoints on the ship. If they are
+	// too far apart, the scale may need to be reduced.
+	// Also figure out how many weapons of each type are on each side.
+	double maxX = 0.;
+	int count[2][2] = {{0, 0}, {0, 0}};
+	for(const Hardpoint &hardpoint : ship.Weapons())
 	{
-		
-		int height = 20 * (it.second.size() + 1);
-		if(pos.X() == -240. && pos.Y() + height > 30.)
-			pos = Point(pos.X() + 250., -280.);
-		
-		font.Draw(it.first, pos, bright);
-		const Outfit* lastOutfit = nullptr; //Condense same-type outfits in list.
-		for(const Outfit *outfit : it.second)
-		{
-			if (outfit == lastOutfit)
-				continue;
-			lastOutfit = outfit;
-
-			pos.Y() += 20.;
-			font.Draw(outfit->Name(), pos, dim);
-			string number = to_string(ship.OutfitCount(outfit));
-			Point numberPos(pos.X() + 230. - font.Width(number), pos.Y());
-			font.Draw(number, numberPos, bright);
-		}
-		pos.Y() += 30.;
+		// Multiply hardpoint X by 2 to convert to sprite pixels.
+		maxX = max(maxX, fabs(2. * hardpoint.GetPoint().X()));
+		++count[hardpoint.GetPoint().X() >= 0.][hardpoint.IsTurret()];
 	}
+	// If necessary, shrink the sprite to keep the hardpoints inside the labels.
+	// The width of this UI block will be 2 * (LABEL_WIDTH + HARDPOINT_DX).
+	static const double LABEL_WIDTH = 150.;
+	static const double LABEL_DX = 95.;
+	static const double LABEL_PAD = 5.;
+	if(maxX > (LABEL_DX - LABEL_PAD))
+		scale = min(scale, (LABEL_DX - LABEL_PAD) / (2. * maxX));
 	
-	// Cargo list.
-	const CargoHold &cargo = (player.Cargo().Used() ? player.Cargo() : ship.Cargo());
-	pos = Point(260., -280.);
-	static const Point size(230., 20.);
-	DrawCargoHold(cargo, pos, size, 230., this);
+	// Draw the ship, using the black silhouette swizzle.
+	SpriteShader::Draw(sprite, bounds.Center(), scale, 8);
 	
-	info.DrawTooltips();
-
+	// Figure out how tall each part of the weapon listing will be.
+	int gunRows = max(count[0][0], count[1][0]);
+	int turretRows = max(count[0][1], count[1][1]);
+	// If there are both guns and turrets, add a gap of ten pixels.
+	double height = 20. * (gunRows + turretRows) + 10. * (gunRows && turretRows);
+	
+	double gunY = bounds.Top() + .5 * (bounds.Height() - height);
+	double turretY = gunY + 20. * gunRows + 10. * (gunRows != 0);
+	double nextY[2][2] = {
+		{gunY + 20. * (gunRows - count[0][0]), turretY + 20. * (turretRows - count[0][1])},
+		{gunY + 20. * (gunRows - count[1][0]), turretY + 20. * (turretRows - count[1][1])}};
+	
+	int index = 0;
+	const double centerX = bounds.Center().X();
+	const double labelCenter[2] = {-.5 * LABEL_WIDTH - LABEL_DX, LABEL_DX + .5 * LABEL_WIDTH};
+	const double fromX[2] = {-LABEL_DX + LABEL_PAD, LABEL_DX - LABEL_PAD};
+	static const double LINE_HEIGHT = 20.;
+	static const double TEXT_OFF = .5 * (LINE_HEIGHT - font.Height());
+	static const Point LINE_SIZE(LABEL_WIDTH, LINE_HEIGHT);
+	Point topFrom;
+	Point topTo;
+	Color topColor;
+	bool hasTop = false;
+	for(const Hardpoint &hardpoint : ship.Weapons())
+	{
+		string name = "[empty]";
+		if(hardpoint.GetOutfit())
+			name = font.Truncate(hardpoint.GetOutfit()->Name(), 150);
+		
+		bool isRight = (hardpoint.GetPoint().X() >= 0.);
+		bool isTurret = hardpoint.IsTurret();
+		
+		double &y = nextY[isRight][isTurret];
+		double x = centerX + (isRight ? LABEL_DX : (-LABEL_DX - font.Width(name)));
+		bool isHover = (index == hover);
+		font.Draw(name, Point(x, y + TEXT_OFF), isHover ? bright : dim);
+		Point zoneCenter(labelCenter[isRight], y + .5 * LINE_HEIGHT);
+		zones.emplace_back(zoneCenter, LINE_SIZE, index);
+		
+		// Determine what color to use for the line.
+		double high = (index == hover ? .8 : .5);
+		Color color(high, .75 * high, 0., 1.);
+		if(isTurret)
+			color = Color(0., .75 * high, high, 1.);
+		
+		// Draw the line.
+		Point from(fromX[isRight], zoneCenter.Y());
+		Point to = bounds.Center() + (2. * scale) * hardpoint.GetPoint();
+		DrawLine(from, to, color);
+		if(isHover)
+		{
+			topFrom = from;
+			topTo = to;
+			topColor = color;
+			hasTop = true;
+		}
+		
+		y += LINE_HEIGHT;
+		++index;
+	}
+	// Make sure the line for whatever hardpoint we're hovering is always on top.
+	if(hasTop)
+		DrawLine(topFrom, topTo, topColor);
+	
 	// Re-positioning weapons.
 	if(selected >= 0)
 	{
@@ -652,36 +839,25 @@ void InfoPanel::DrawShip() const
 		font.Draw(name, pos + Point(1., 1.), Color(0., 1.));
 		font.Draw(name, pos, bright);
 	}
+}
+
+
+
+void InfoPanel::DrawCargo(const Rectangle &bounds) const
+{
+	Color dim = *GameData::Colors().Get("medium");
+	Color bright = *GameData::Colors().Get("bright");
+	const Font &font = FontSet::Get(14);
+	const Ship &ship = **shipIt;
+
+	// Cargo list.
+	const CargoHold &cargo = (player.Cargo().Used() ? player.Cargo() : ship.Cargo());
+	Point pos = Point(260., -280.);
+	static const Point size(230., 20.);
+	DrawCargoHold(cargo, pos, size, 230., this);
 	
-	// Weapon positions.
-	const Sprite *sprite = ship.GetSprite();
-	double scale = min(240. / sprite->Width(), 240. / sprite->Height());
-	Point shipCenter(-125., 155.);
-	SpriteShader::Draw(sprite, shipCenter, scale, 8);
-	
-	Color black(0., 1.);
-	pos = Point(10., 260.);
-	Point hoverPos;
-	for(int isTurret = true; isTurret >= 0; --isTurret)
-	{
-		for(unsigned i = 0; i < ship.Weapons().size(); ++i)
-		{
-			const Hardpoint &weapon = ship.Weapons()[i];
-			if(weapon.IsTurret() == isTurret)
-			{
-				if(static_cast<int>(i) == hover)
-					hoverPos = pos;
-				else
-					DrawWeapon(i, pos, shipCenter + (2. * scale) * weapon.GetPoint());
-				pos.Y() -= 20.;
-			}
-		}
-		if(pos.Y() != 260.)
-			pos.Y() -= 10.;
-	}
-	if(hover >= 0 && hover <= static_cast<int>(ship.Weapons().size()))
-		DrawWeapon(hover, hoverPos, shipCenter + (2. * scale) * ship.Weapons()[hover].GetPoint());
-	
+	info.DrawTooltips();
+
 	// Re-positioning weapons.
 	if(selected >= 0)
 	{
@@ -827,32 +1003,15 @@ int InfoPanel::DrawCargoHold(const CargoHold &cargo, Point startPos, Point size,
 
 
 
-void InfoPanel::DrawWeapon(int index, const Point &pos, const Point &hardpoint) const
+void InfoPanel::DrawLine(const Point &from, const Point &to, const Color &color) const
 {
-	if(static_cast<unsigned>(index) >= (**shipIt).Weapons().size())
-		return;
-	
-	const Outfit *outfit = (**shipIt).Weapons()[index].GetOutfit();
-	
-	const Font &font = FontSet::Get(14);
-	Color textColor = *GameData::Colors().Get(index == hover ? "bright" : "medium");
-	font.Draw(outfit ? outfit->Name() : "[empty]", pos, textColor);
-	
-	double high = (index == hover ? .8 : .5);
-	Color color(high, .75 * high, 0., 1.);
-	if((**shipIt).Weapons()[index].IsTurret())
-		color = Color(0., .75 * high, high, 1.);
-	
 	Color black(0., 1.);
-	Point from(pos.X() - 5., pos.Y() + .5 * font.Height());
-	Point mid(hardpoint.X(), from.Y());
+	Point mid(to.X(), from.Y());
 	
 	LineShader::Draw(from, mid, 3.5, black);
-	LineShader::Draw(mid, hardpoint, 3.5, black);
+	LineShader::Draw(mid, to, 3.5, black);
 	LineShader::Draw(from, mid, 1.5, color);
-	LineShader::Draw(mid, hardpoint, 1.5, color);
-	
-	zones.emplace_back(from + Point(120, 0), Point(240, 20), index);
+	LineShader::Draw(mid, to, 1.5, color);
 }
 
 
