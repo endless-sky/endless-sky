@@ -234,8 +234,8 @@ bool TradingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 	{
 		for(const auto &it : GameData::Commodities())
 		{
-			int amount = player.Cargo().Get(it.name);
-			int price = system.Trade(it.name);
+			int64_t amount = player.Cargo().Get(it.name);
+			int64_t price = system.Trade(it.name);
 			if(!price || !amount)
 				continue;
 			
@@ -304,7 +304,7 @@ void TradingPanel::Buy(int64_t amount)
 {
 	amount *= Modifier();
 	const string &type = GameData::Commodities()[selectedRow].name;
-	int price = system.Trade(type);
+	int64_t price = system.Trade(type);
 	if(!price)
 		return;
 	
