@@ -13,6 +13,11 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef PANEL_H_
 #define PANEL_H_
 
+#include "Rectangle.h"
+
+#include <functional>
+#include <list>
+
 #include <SDL2/SDL.h>
 
 class Command;
@@ -34,7 +39,7 @@ public:
 	virtual void Step();
 	
 	// Draw this panel.
-	virtual void Draw() const;
+	virtual void Draw();
 	
 	// Return true if this is a full-screen panel, so there is no point in
 	// drawing any of the panels under it.
@@ -44,6 +49,15 @@ public:
 	bool TrapAllEvents();
 	// Check if this panel can be "interrupted" to return to the main menu.
 	bool IsInterruptible() const;
+	
+	// Clear the list of clickable zones.
+	void ClearZones();
+	// Add a clickable zone to the panel.
+	void AddZone(const Rectangle &rect, const std::function<void()> &fun);
+	void AddZone(const Rectangle &rect, SDL_Keycode key);
+	// Check if a click at the given coordinates triggers a clickable zone. If
+	// so, apply that zone's action and return true.
+	bool ZoneClick(const Point &point);
 	
 	
 protected:
@@ -77,12 +91,29 @@ protected:
 	
 	
 private:
+	class Zone : public Rectangle {
+	public:
+		Zone(const Rectangle &rect, const std::function<void()> &fun) : Rectangle(rect), fun(fun) {}
+		
+		void Click() const { fun(); }
+		
+	private:
+		std::function<void()> fun;
+	};
+	
+	
+private:
 	void SetUI(UI *ui);
+	
+	
+private:
 	UI *ui = nullptr;
 	
 	bool isFullScreen = false;
 	bool trapAllEvents = true;
 	bool isInterruptible = true;
+	
+	std::list<Zone> zones;
 	
 	friend class UI;
 };

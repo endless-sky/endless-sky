@@ -27,20 +27,19 @@ public:
 	HiringPanel(PlayerInfo &player);
 	
 	virtual void Step() override;
-	virtual void Draw() const override;
+	virtual void Draw() override;
 	
 	
 protected:
 	// Only override the ones you need; the default action is to return false.
 	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command) override;
-	virtual bool Click(int x, int y) override;
 	
 	
 private:
 	PlayerInfo &player;
 	
-	mutable int maxHire;
-	mutable int maxFire;
+	int maxHire;
+	int maxFire;
 };
 
 

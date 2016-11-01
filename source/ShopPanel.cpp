@@ -49,7 +49,22 @@ ShopPanel::ShopPanel(PlayerInfo &player, const vector<string> &categories)
 
 
 
-void ShopPanel::Draw() const
+void ShopPanel::Step()
+{
+	// Perform autoscroll to bring item details into view.
+	if(scrollDetailsIntoView && selectedBottomY > 0.)
+	{
+		double offY = Screen::Bottom() - selectedBottomY;
+		if(offY < 0.)
+			DoScroll(max(-30., offY));
+		else
+			scrollDetailsIntoView = false;
+	}
+}
+
+
+
+void ShopPanel::Draw()
 {
 	glClear(GL_COLOR_BUFFER_BIT);
 	
@@ -71,21 +86,6 @@ void ShopPanel::Draw() const
 		double scale = ICON_SIZE / max(sprite->Width(), sprite->Height());
 		Point size(sprite->Width() * scale, sprite->Height() * scale);
 		OutlineShader::Draw(sprite, dragPoint, size, selected);
-	}
-}
-
-
-
-void ShopPanel::Step()
-{
-	// Perform autoscroll to bring item details into view.
-	if(scrollDetailsIntoView && selectedBottomY > 0.)
-	{
-		double offY = Screen::Bottom() - selectedBottomY;
-		if(offY < 0.)
-			DoScroll(max(-30., offY));
-		else
-			scrollDetailsIntoView = false;
 	}
 }
 

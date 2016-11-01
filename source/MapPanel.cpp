@@ -76,7 +76,7 @@ void MapPanel::Step()
 
 
 
-void MapPanel::Draw() const
+void MapPanel::Draw()
 {
 	glClear(GL_COLOR_BUFFER_BIT);
 	

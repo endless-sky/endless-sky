@@ -35,7 +35,7 @@ class BoardingPanel : public Panel {
 public:
 	BoardingPanel(PlayerInfo &player, const std::shared_ptr<Ship> &victim);
 	
-	virtual void Draw() const override;
+	virtual void Draw() override;
 	
 	
 protected:

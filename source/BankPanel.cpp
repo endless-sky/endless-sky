@@ -77,7 +77,7 @@ void BankPanel::Step()
 
 
 // Draw the bank information.
-void BankPanel::Draw() const
+void BankPanel::Draw()
 {
 	// Set up the table that will contain most of the information.
 	Table table;
@@ -205,7 +205,7 @@ void BankPanel::Draw() const
 	for(const Mortgage &mortgage : player.Accounts().Mortgages())
 		if(mortgage.Principal() <= player.Accounts().Credits())
 			info.SetCondition("can pay");
-	interface->Draw(info);
+	interface->Draw(info, this);
 }
 
 
@@ -248,15 +248,6 @@ bool BankPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 // Handle mouse clicks.
 bool BankPanel::Click(int x, int y)
 {
-	// Handle clicks on the "Pay All" button.
-	const Interface *interface = GameData::Interfaces().Get("bank");
-	if(interface)
-	{
-		char key = interface->OnClick(Point(x, y));
-		if(key)
-			return DoKey(key);
-	}
-	
 	// Check if the click was on one of the rows of the table that represents a
 	// mortgage or other current debt you have.
 	int maxY = FIRST_Y + 25 + 20 * rowCount;

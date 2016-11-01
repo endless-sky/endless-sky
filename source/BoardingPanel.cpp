@@ -83,7 +83,7 @@ BoardingPanel::BoardingPanel(PlayerInfo &player, const shared_ptr<Ship> &victim)
 
 
 // Draw the panel.
-void BoardingPanel::Draw() const
+void BoardingPanel::Draw()
 {
 	// Draw a translucent black scrim over everything beneath this panel.
 	DrawBackdrop();
@@ -178,7 +178,7 @@ void BoardingPanel::Draw() const
 	}
 	
 	const Interface *interface = GameData::Interfaces().Get("boarding");
-	interface->Draw(info);
+	interface->Draw(info, this);
 	
 	// Draw the status messages from hand to hand combat.
 	Point messagePos(50., 55.);
@@ -410,15 +410,6 @@ bool BoardingPanel::Click(int x, int y)
 		if(static_cast<unsigned>(index) < plunder.size())
 			selected = index;
 		return true;
-	}
-	
-	// Handle clicks on the interface buttons.
-	const Interface *interface = GameData::Interfaces().Get("boarding");
-	if(interface)
-	{
-		char key = interface->OnClick(Point(x, y));
-		if(key != '\0')
-			return DoKey(key);
 	}
 	
 	return true;

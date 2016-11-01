@@ -44,7 +44,7 @@ template <class T>
 	void SetCallback(T *t, void (T::*fun)(int));
 	
 	// Draw this panel.
-	virtual void Draw() const override;
+	virtual void Draw() override;
 	
 	
 protected:

@@ -106,7 +106,7 @@ void TradingPanel::Step()
 
 
 
-void TradingPanel::Draw() const
+void TradingPanel::Draw()
 {
 	Color back = *GameData::Colors().Get("faint");
 	FillShader::Fill(Point(-60., FIRST_Y + 20 * selectedRow + 33), Point(480., 20.), back);
@@ -212,7 +212,7 @@ void TradingPanel::Draw() const
 		info.SetCondition("can sell");
 	if(player.Cargo().Free() > 0)
 		info.SetCondition("can buy");
-	interface->Draw(info);
+	interface->Draw(info, this);
 }
 
 
@@ -274,15 +274,6 @@ bool TradingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 
 bool TradingPanel::Click(int x, int y)
 {
-	// Handle clicks on the interface buttons.
-	const Interface *interface = GameData::Interfaces().Get("trade");
-	if(interface)
-	{
-		char key = interface->OnClick(Point(x, y));
-		if(key)
-			return DoKey(key);
-	}
-	
 	int maxY = FIRST_Y + 25 + 20 * GameData::Commodities().size();
 	if(x >= MIN_X && x <= MAX_X && y >= FIRST_Y + 25 && y < maxY)
 	{

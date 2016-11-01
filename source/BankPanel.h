@@ -29,7 +29,7 @@ public:
 	BankPanel(PlayerInfo &player);
 	
 	virtual void Step() override;
-	virtual void Draw() const override;
+	virtual void Draw() override;
 	
 	
 protected:
@@ -50,7 +50,7 @@ private:
 	// Loan amount you're prequalified for.
 	int64_t qualify;
 	int selectedRow = 0;
-	mutable int rowCount = 0;
+	int rowCount = 0;
 };
 
 

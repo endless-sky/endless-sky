@@ -54,7 +54,7 @@ public:
 	
 	void SetCommodity(int index);
 	virtual void Step() override;
-	virtual void Draw() const override;
+	virtual void Draw() override;
 	
 	static void DrawMiniMap(const PlayerInfo &player, double alpha, const System *const jump[2], int step);
 	

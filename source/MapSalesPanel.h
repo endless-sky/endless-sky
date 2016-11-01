@@ -34,7 +34,7 @@ public:
 	MapSalesPanel(PlayerInfo &player, bool isOutfitters);
 	MapSalesPanel(const MapPanel &panel, bool isOutfitters);
 	
-	void Draw() const;
+	void Draw();
 	bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command);
 	bool Click(int x, int y);
 	bool Hover(int x, int y);
@@ -59,7 +59,7 @@ protected:
 	
 	void DrawKey() const;
 	void DrawPanel() const;
-	void DrawButtons() const;
+	void DrawButtons();
 	void DrawInfo() const;
 
 	bool DrawHeader(Point &corner, const std::string &category) const;

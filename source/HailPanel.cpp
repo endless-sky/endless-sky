@@ -149,7 +149,7 @@ HailPanel::HailPanel(PlayerInfo &player, const StellarObject *object)
 
 
 
-void HailPanel::Draw() const
+void HailPanel::Draw()
 {
 	DrawBackdrop();
 	
@@ -196,7 +196,7 @@ void HailPanel::Draw() const
 	}
 	
 	const Interface *interface = GameData::Interfaces().Get("hail panel");
-	interface->Draw(interfaceInfo);
+	interface->Draw(interfaceInfo, this);
 	
 	// Draw the sprite, rotated, scaled, and swizzled as necessary.
 	int swizzle = ship ? ship->GetGovernment()->GetSwizzle() : 0;
@@ -295,22 +295,6 @@ bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 		}
 		else
 			message = "I do not want your money.";
-	}
-	
-	return true;
-}
-
-
-
-bool HailPanel::Click(int x, int y)
-{
-	// Handle clicks on the interface buttons.
-	const Interface *interface = GameData::Interfaces().Get("hail panel");
-	if(interface)
-	{
-		char key = interface->OnClick(Point(x, y));
-		if(key)
-			return DoKey(key);
 	}
 	
 	return true;

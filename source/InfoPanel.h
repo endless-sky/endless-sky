@@ -38,7 +38,7 @@ class InfoPanel : public Panel {
 public:
 	InfoPanel(PlayerInfo &player, bool showFlagship = false);
 	
-	virtual void Draw() const override;
+	virtual void Draw() override;
 	
 	// Returns height of cargo details. Static, so it can also be used in the outfitter.
 	static int DrawCargoHold(const CargoHold &cargo, Point startPos, Point size, double heightLimit, const InfoPanel* panel);

@@ -52,7 +52,7 @@ LoadPanel::LoadPanel(PlayerInfo &player, UI &gamePanels)
 
 
 
-void LoadPanel::Draw() const
+void LoadPanel::Draw()
 {
 	glClear(GL_COLOR_BUFFER_BIT);
 	GameData::Background().Draw(Point(), Point());
@@ -86,7 +86,7 @@ void LoadPanel::Draw() const
 		info.SetCondition("pilot loaded");
 	
 	const Interface *menu = GameData::Interfaces().Get("load menu");
-	menu->Draw(info);
+	menu->Draw(info, this);
 	
 	const Font &font = FontSet::Get(14);
 	
@@ -315,12 +315,8 @@ bool LoadPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 
 bool LoadPanel::Click(int x, int y)
 {
-	char key = GameData::Interfaces().Get("load menu")->OnClick(Point(x, y));
-	if(key)
-		return DoKey(key);
-	
 	// The first row of each panel is y = -160 to -140.
-	if(y < -160 || y >= (-160+14*20))
+	if(y < -160 || y >= (-160 + 14 * 20))
 		return false;
 	
 	if(x >= -470 && x < -250)

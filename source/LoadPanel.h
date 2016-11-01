@@ -32,7 +32,7 @@ class LoadPanel : public Panel {
 public:
 	LoadPanel(PlayerInfo &player, UI &gamePanels);
 	
-	virtual void Draw() const override;
+	virtual void Draw() override;
 	
 	// New player "conversation" callback.
 	void OnCallback(int value);
