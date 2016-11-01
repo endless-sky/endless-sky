@@ -293,7 +293,7 @@ outfit "Interference Plating"
 outfit "Hyperdrive Booster"
 	category "Systems"
 	"cost" 30000
-	thumbnail "outfit/hyper buffer"
+	thumbnail "outfit/hyperdrive booster"
 	"mass" 8
 	"outfit space" -8
 	"jump speed" .1
@@ -303,7 +303,7 @@ outfit "Hyperdrive Booster"
 outfit "Scram Drive Booster"
 	category "Systems"
 	"cost" 50000
-	thumbnail "outfit/scram buffer"
+	thumbnail "outfit/hyperdrive booster"
 	"mass" 12
 	"outfit space" -12
 	"scram drive" .1
