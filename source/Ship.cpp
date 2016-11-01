@@ -827,6 +827,23 @@ bool Ship::Move(list<Effect> &effects, list<Flotsam> &flotsam)
 		heat = max(0., heat);
 	}
 	
+	if(!isInvisible)
+	{
+		double cloakingSpeed = attributes.Get("cloak");
+		bool canCloak = (zoom == 1. && !isDisabled && cloakingSpeed > 0.
+			&& fuel >= attributes.Get("cloaking fuel")
+			&& energy >= attributes.Get("cloaking energy"));
+		if(commands.Has(Command::CLOAK) && canCloak)
+		{
+			cloak = min(1., cloak + cloakingSpeed);
+			fuel -= attributes.Get("cloaking fuel");
+			energy -= attributes.Get("cloaking energy");
+		}
+		else if(cloakingSpeed)
+			cloak = max(0., cloak - cloakingSpeed);
+		else
+			cloak = 0.;
+	}
 	
 	if(IsDestroyed())
 	{
@@ -1042,24 +1059,6 @@ bool Ship::Move(list<Effect> &effects, list<Flotsam> &flotsam)
 		hyperspaceType = CheckHyperspace();
 		if(hyperspaceType)
 			hyperspaceSystem = GetTargetSystem();
-	}
-	
-	if(!isInvisible)
-	{
-		double cloakingSpeed = attributes.Get("cloak");
-		bool canCloak = (zoom == 1. && !isDisabled && !hyperspaceCount && cloakingSpeed
-			&& fuel >= attributes.Get("cloaking fuel")
-			&& energy >= attributes.Get("cloaking energy"));
-		if(commands.Has(Command::CLOAK) && canCloak)
-		{
-			cloak = min(1., cloak + cloakingSpeed);
-			fuel -= attributes.Get("cloaking fuel");
-			energy -= attributes.Get("cloaking energy");
-		}
-		else if(cloakingSpeed)
-			cloak = max(0., cloak - cloakingSpeed);
-		else
-			cloak = 0.;
 	}
 	
 	if(pilotError)

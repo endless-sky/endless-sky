@@ -1167,7 +1167,7 @@ void Engine::CalculateStep()
 			// Projectiles can only collide with ships that are in the current
 			// system and are not landing, and that are hostile to this projectile.
 			for(shared_ptr<Ship> &ship : ships)
-				if(ship->GetSystem() == player.GetSystem() && !ship->IsLanding() && ship->Cloaking() < 1.)
+				if(ship->GetSystem() == player.GetSystem() && ship->Zoom() == 1. && ship->Cloaking() < 1.)
 				{
 					if(ship.get() != projectile.Target() && !gov->IsEnemy(ship->GetGovernment()))
 						continue;
