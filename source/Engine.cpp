@@ -142,7 +142,7 @@ void Engine::Place()
 	// Add the player's flagship and escorts to the list of ships. The TakeOff()
 	// code already took care of loading up fighters and assigning parents.
 	for(const shared_ptr<Ship> &ship : player.Ships())
-		if(!ship->IsParked())
+		if(!ship->IsParked() && ship->GetSystem())
 		{
 			ships.push_back(ship);
 			if(it == ships.end())
@@ -810,13 +810,17 @@ void Engine::CalculateStep()
 		int hyperspaceType = (*it)->HyperspaceType();
 		bool wasHere = (flagship && (*it)->GetSystem() == flagship->GetSystem());
 		bool wasHyperspacing = (*it)->IsHyperspacing();
-		// Give the ship the list of effects so that if it is dying, it can
-		// create explosions. Eventually ships might create other effects too.
-		// Note that engine flares are handled separately, so that they will be
-		// drawn immediately under the ship.
+		// Give the ship the list of effects so that it can draw explosions,
+		// ion sparks, jump drive flashes, etc.
 		if(!(*it)->Move(effects, flotsam))
 		{
-			eventQueue.emplace_back(nullptr, *it, ShipEvent::DESTROY);
+			// If Move() returns false, it means the ship should be removed from
+			// play. That may be because it was destroyed, because it is an
+			// ordinary ship that has been out of system for long enough to be
+			// "forgotten," or because it is a fighter that just docked with its
+			// mothership. Report it destroyed if that's really what happened:
+			if((*it)->IsDestroyed())
+				eventQueue.emplace_back(nullptr, *it, ShipEvent::DESTROY);
 			it = ships.erase(it);
 		}
 		else
