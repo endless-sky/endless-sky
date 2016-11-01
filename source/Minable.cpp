@@ -120,10 +120,17 @@ bool Minable::Move(list<Effect> &effects, list<Flotsam> &flotsam)
 	if(hull < 0)
 	{
 		// This object has been destroyed. Create explosions and flotsam.
+		double scale = .1 * Radius();
 		for(const auto &it : explosions)
 		{
-			effects.push_back(*it.first);
-			effects.back().Place(position, velocity, angle);
+			for(int i = 0; i < it.second; ++i)
+			{
+				// Add a random velocity.
+				Point dp = (Random::Real() * scale) * Angle::Random().Unit();
+				
+				effects.push_back(*it.first);
+				effects.back().Place(position + 2. * dp, velocity + dp, angle);
+			}
 		}
 		for(const auto &it : payload)
 		{

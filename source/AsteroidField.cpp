@@ -34,6 +34,7 @@ namespace {
 void AsteroidField::Clear()
 {
 	asteroids.clear();
+	minables.clear();
 }
 
 
