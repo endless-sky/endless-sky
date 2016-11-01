@@ -493,7 +493,7 @@ mission "Wanderers: Unfettered Diplomacy 1B"
 		has "Wanderers: Unfettered Diplomacy 1A: done"
 	on offer
 		conversation
-			`The Unfettered make no attempt to attack you once you have landed on their planet. The Wanderer crew begins unloading the crates of food onto the landing pad, and eventually a small delegation of Unfettered leaders approaches. Itkat Rek explains that the food is a peace offering.`
+			`The Unfettered make no attempt to attack you once you have landed on their planet. The Wanderer crew begins unloading the crates of food onto the landing pad, and eventually a small delegation of Unfettered leaders approaches. Iktat Rek explains that the food is a peace offering.`
 			`	"It is far too little," says the Unfettered leader, "too little to pay us back for the ships you have destroyed and the worlds you have stolen. Until you give us back our worlds, we cannot have peace."`
 			choice
 				`	(Let Iktat Rek do the talking.)`

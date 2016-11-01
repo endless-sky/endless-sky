@@ -796,7 +796,7 @@ mission "There Might Be Riots part 3A"
 					goto no
 				`	"Sounds like a worthy cause. Count me in!"`
 					goto yes
-				`	"You're going to do a concert on ground that could be littered with unexploded ordinance?"`
+				`	"You're going to do a concert on ground that could be littered with unexploded ordnance?"`
 			`	"Yeah. What an adventure!" he says. "Come on, it will be worth it."`
 			choice
 				`	"Sorry, that's further than I'm willing to go for you guys."`
