@@ -128,6 +128,9 @@ public:
 	int64_t UpdateCost();
 	// The wear on the base hull of the ship.
 	int GetWear() const;
+	// The base cost of the ship's hull only.
+	int64_t ChassisCost() const;
+
 	// Get the licenses needed to buy or operate this ship.
 	const std::vector<std::string> &Licenses() const;
 	

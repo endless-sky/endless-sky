@@ -332,9 +332,7 @@ void ShipInfoDisplay::UpdateOutfits(const Ship &ship)
 	
 	map<string, map<string, int>> listing;
 	for(const auto &it : ship.Outfits())
-	{
 		listing[it.GetOutfit()->Category()][it.GetOutfit()->Name()] += it.GetQuantity();
-	}
 	
 	for(const auto &cit : listing)
 	{

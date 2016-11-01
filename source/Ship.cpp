@@ -581,6 +581,14 @@ int Ship::GetWear() const
 
 
 
+// Get the cost of this ship's chassis, with no outfits installed.
+int64_t Ship::ChassisCost() const
+{
+	return baseAttributes.Cost();
+}
+
+
+
 // Get the licenses needed to buy or operate this ship.
 const vector<string> &Ship::Licenses() const
 {
