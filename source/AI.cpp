@@ -672,7 +672,8 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship, const list<shared_ptr<Ship>> &
 	
 	// Run away if your target is not disabled and you are badly damaged.
 	if(!isDisabled && target && (person.IsFleeing() || 
-			(.5 * ship.Shields() + ship.Hull() < 1. && !person.IsHeroic() && !parentIsEnemy)))
+			(.5 * ship.Shields() + ship.Hull() < 1.
+				&& !person.IsHeroic() && !person.IsStaying() && !parentIsEnemy)))
 	{
 		// Make sure the ship has somewhere to flee to.
 		const System *system = ship.GetSystem();
@@ -1406,13 +1407,14 @@ void AI::DoCloak(Ship &ship, Command &command, const list<shared_ptr<Ship>> &shi
 		// If this ship has started cloaking, it must get at least 40% repaired
 		// or 40% farther away before it begins decloaking again.
 		double hysteresis = ship.Cloaking() ? 1.4 : 1.;
-		if(ship.Hull() + ship.Shields() < hysteresis && nearestEnemy < 2000. * hysteresis)
+		double cloakIsFree = !ship.Attributes().Get("cloaking fuel");
+		if(ship.Hull() + .5 * ship.Shields() < hysteresis
+				&& (cloakIsFree || nearestEnemy < 2000. * hysteresis))
 			command |= Command::CLOAK;
 		
 		// Also cloak if there are no enemies nearby and cloaking does
 		// not cost you fuel.
-		if(nearestEnemy == MAX_RANGE && !ship.Attributes().Get("cloaking fuel")
-				&& !ship.GetTargetShip())
+		if(nearestEnemy == MAX_RANGE && cloakIsFree && !ship.GetTargetShip())
 			command |= Command::CLOAK;
 	}
 }
