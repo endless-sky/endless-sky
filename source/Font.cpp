@@ -18,6 +18,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Screen.h"
 
 #include <cmath>
+#include <cstdlib>
 #include <cstring>
 
 using namespace std;
@@ -215,7 +216,7 @@ int Font::Width(const char *str, char after) const
 
 string Font::Truncate(const string &str, int width) const
 {
-	size_t prevChars = str.size();
+	int prevChars = str.size();
 	int prevWidth = Width(str);
 	if(prevWidth <= width)
 		return str;
@@ -229,7 +230,7 @@ string Font::Truncate(const string &str, int width) const
 		// Loop until the previous width we tried was too long and this one is
 		// too short, or vice versa. Each time, the next string length we try is
 		// interpolated from the previous width.
-		size_t nextChars = (prevChars * width) / prevWidth;
+		int nextChars = (prevChars * width) / prevWidth;
 		bool isSame = (nextChars == prevChars);
 		bool prevWorks = (prevWidth <= width);
 		nextChars += (prevWorks ? isSame : -isSame);
