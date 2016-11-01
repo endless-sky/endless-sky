@@ -23,13 +23,13 @@ using namespace std;
 //namespace {
 	// Lookup table for matching special tokens to enumeration values.
 	map<string, int> TOKEN_INDEX = {
-		{"accept", static_cast<int>(Conversation::ACCEPT)},
-		{"decline", static_cast<int>(Conversation::DECLINE)},
-		{"defer", static_cast<int>(Conversation::DEFER)},
-		{"launch", static_cast<int>(Conversation::LAUNCH)},
-		{"flee", static_cast<int>(Conversation::FLEE)},
-		{"depart", static_cast<int>(Conversation::DEPART)},
-		{"die", static_cast<int>(Conversation::DIE)}
+		{"accept", Conversation::ACCEPT},
+		{"decline", Conversation::DECLINE},
+		{"defer", Conversation::DEFER},
+		{"launch", Conversation::LAUNCH},
+		{"flee", Conversation::FLEE},
+		{"depart", Conversation::DEPART},
+		{"die", Conversation::DIE}
 	};
 
 	// Get the index of the given special string. 0 means it is "goto", a number
@@ -65,13 +65,13 @@ using namespace std;
 //}
 
 // The possible outcomes of a conversation:
-static const int Conversation::ACCEPT;
-static const int Conversation::DECLINE;
-static const int Conversation::DEFER;
-static const int Conversation::LAUNCH;
-static const int Conversation::FLEE;
-static const int Conversation::DEPART;
-static const int Conversation::DIE;
+const int Conversation::ACCEPT;
+const int Conversation::DECLINE;
+const int Conversation::DEFER;
+const int Conversation::LAUNCH;
+const int Conversation::FLEE;
+const int Conversation::DEPART;
+const int Conversation::DIE;
 
 
 
