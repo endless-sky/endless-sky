@@ -54,20 +54,21 @@ protected:
 	virtual double SystemValue(const System *system) const = 0;
 	virtual int FindItem(const std::string &text) const = 0;
 	
-	virtual void DrawItems() const = 0;
+	virtual void DrawItems() = 0;
 	
 	void DrawKey() const;
 	void DrawPanel() const;
 	void DrawButtons();
 	void DrawInfo() const;
-
-	bool DrawHeader(Point &corner, const std::string &category) const;
+	
+	bool DrawHeader(Point &corner, const std::string &category);
 	void DrawSprite(const Point &corner, const Sprite *sprite) const;
 	void Draw(Point &corner, const Sprite *sprite, bool isForSale, bool isSelected,
-		const std::string &name, const std::string &price, const std::string &info) const;
+		const std::string &name, const std::string &price, const std::string &info);
 	
 	void DoFind(const std::string &text);
 	void ScrollTo(int index);
+	void ClickCategory(const std::string &name);
 	
 	
 protected:
@@ -87,11 +88,10 @@ private:
 	bool isDragging = false;
 	bool isOutfitters = false;
 	
-	mutable bool hidPrevious = true;
+	bool hidPrevious = true;
 	std::map<std::string, bool> hideCategory;
-	mutable std::vector<ClickZone<std::string>> categoryZones;
 	
-	mutable std::vector<ClickZone<int>> zones;
+	std::vector<ClickZone<int>> zones;
 	int selected = -1;
 	int compare = -1;
 	
