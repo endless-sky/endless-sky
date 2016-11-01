@@ -565,18 +565,25 @@ interface "hiring"
 interface "trade"
 	active if "can buy"
 	sprite "ui/dialog cancel"
-		center 60 355
+		center 40 355
 	button B "Buy All"
-		center 60 355
-		dimensions 80 40
+		center 40 355
+		dimensions 70 30
+	
+	sprite "ui/wide button"
+		center 130 355
 	
 	active if "can sell"
-	sprite "ui/dialog cancel"
-		center 140 355
+	visible if "!can sell outfits"
 	button S "Sell All"
-		center 140 355
-		dimensions 80 40
-
+		center 130 355
+		dimensions 90 30
+	
+	active if "can sell outfits"
+	visible if "can sell outfits"
+	button S "Sell Outfits"
+		center 130 355
+		dimensions 90 30
 
 
 interface "bank"

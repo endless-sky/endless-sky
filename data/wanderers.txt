@@ -450,6 +450,9 @@ event "wanderers: unfettered invasion starts"
 		fleet "Wanderer Defense" 200
 		fleet "Small Unfettered" 1800
 		fleet "Large Unfettered" 800
+	system "Ehma Ti"
+		fleet "Small Unfettered" 500
+		fleet "Large Unfettered" 500
 	system "Sich'ka'ara"
 		fleet "Wanderer Freight" 600
 		fleet "Wanderer Drones" 3000

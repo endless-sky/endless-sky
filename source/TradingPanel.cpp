@@ -134,6 +134,7 @@ void TradingPanel::Draw()
 	
 	int outfits = player.Cargo().OutfitsSize();
 	int missionCargo = player.Cargo().MissionCargoSize();
+	sellOutfits = false;
 	if(player.Cargo().HasOutfits() || missionCargo)
 	{
 		bool hasOutfits = false;
@@ -144,6 +145,7 @@ void TradingPanel::Draw()
 				bool isItem = (it.GetOutfit()->Get("installable") < 0.);
 				(isItem ? hasHarvested : hasOutfits) = true;
 			}
+		sellOutfits = (hasOutfits && !hasHarvested);
 		
 		string str = to_string(outfits + missionCargo);
 		string worth = " worth " + Format::Number(player.Cargo().Outfits().GetTotalCost()) + ".";
@@ -201,6 +203,7 @@ void TradingPanel::Draw()
 		int hold = player.Cargo().Get(commodity.name);
 		if(hold)
 		{
+			sellOutfits = false;
 			canSell |= (price != 0);
 			font.Draw(to_string(hold), Point(HOLD_X, y), selected);
 		}
@@ -208,7 +211,9 @@ void TradingPanel::Draw()
 	
 	const Interface *interface = GameData::Interfaces().Get("trade");
 	Information info;
-	if(player.Cargo().HasOutfits() || canSell)
+	if(sellOutfits)
+		info.SetCondition("can sell outfits");
+	else if(player.Cargo().HasOutfits() || canSell)
 		info.SetCondition("can sell");
 	if(player.Cargo().Free() > 0)
 		info.SetCondition("can buy");
@@ -251,6 +256,9 @@ bool TradingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 		
 		for(auto it = player.Cargo().Outfits().begin(); it != player.Cargo().Outfits().end();)
 		{
+			if(it.GetOutfit()->Get("installable") >= 0. && !sellOutfits)
+				continue;			
+
 			profit += it.GetTotalCost();
 			tonsSold += it.GetQuantity() * static_cast<int>(it.GetOutfit()->Get("mass"));
 			

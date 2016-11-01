@@ -702,3 +702,52 @@ ship "Deep River" "Deep River 4"
 			"shield damage" 2800
 			"hull damage" 1400
 			"hit force" 4200
+
+ship "Deep River Transport"
+	sprite "ship/deep river"
+	licenses
+		Wanderer
+	attributes
+		category "Heavy Freighter"
+		"cost" 18300000
+		"shields" 17600
+		"hull" 47500
+		"required crew" 13
+		"bunks" 166
+		"mass" 750
+		"drag" 9.4
+		"heat dissipation" .6
+		"fuel capacity" 500
+		"cargo space" 40
+		"outfit space" 321
+		"weapon capacity" 114
+		"engine capacity" 83
+		weapon
+			"blast radius" 280
+			"shield damage" 2800
+			"hull damage" 1400
+			"hit force" 4200
+	outfits
+		"Wanderer Anti-Missile" 4
+		
+		"Yellow Sun Reactor"
+		"Dark Storm Shielding"
+		"Wanderer Ramscoop"
+		
+		"Type 2 Radiant Thruster"
+		"Type 4 Radiant Steering"
+		"Hyperdrive"
+		
+	engine 53 345
+	engine 0 345
+	engine -53 345
+	turret -36 -205 "Wanderer Anti-Missile"
+	turret 36 -205 "Wanderer Anti-Missile"
+	turret -36 330 "Wanderer Anti-Missile"
+	turret 36 330 "Wanderer Anti-Missile"
+	explode "small explosion" 80
+	explode "medium explosion" 60
+	explode "big explosion" 30
+	explode "huge explosion" 20
+	"final explode" "final explosion large"
+	description "This is a Deep River freighter that has been converted into a transport ship for refugees."
