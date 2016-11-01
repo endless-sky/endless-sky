@@ -1163,3 +1163,46 @@ ship "Skein" "Skein (Sidewinder)"
 		"A250 Atomic Thruster"
 		"A375 Atomic Steering"
 		Hyperdrive
+
+ship "Dagger" "Dagger (Gatling)"
+	outfits
+		"Gatling Gun" 2
+		"Gatling Gun Ammo" 6000
+		Supercapacitor
+		"nGVF-BB Fuel Cell"
+		"D14-RN Shield Generator"
+		"X1700 Ion Thruster"
+		"X1200 Ion Steering"
+
+ship "Barb" "Barb (Gatling)"
+	outfits
+		"Gatling Gun"
+		"Gatling Gun Ammo" 3000
+		"Anti-Missile Turret"
+		"nGVF-AA Fuel Cell"
+		Supercapacitor 3
+		"D14-RN Shield Generator"
+		"X1050 Ion Engines"
+
+ship "Fury" "Fury (Gatling)"
+	outfits
+		"Gatling Gun" 4
+		"Gatling Gun Ammo" 6000
+		"RT-I Radiothermal"
+		"Supercapacitor"
+		"D23-QP Shield Generator"
+		"Cooling Ducts"
+		"Chipmunk Plasma Thruster"
+		"A125 Atomic Steering"
+		"Hyperdrive"
+
+ship "Sparrow" "Sparrow (Gatling)"
+	outfits
+		"Gatling Gun" 2
+		"Gatling Gun Ammo" 6000
+		"nGVF-AA Fuel Cell"
+		"LP036a Battery Pack"
+		"D14-RN Shield Generator"
+		"Chipmunk Plasma Thruster"
+		"Chipmunk Plasma Steering"
+		"Hyperdrive"
