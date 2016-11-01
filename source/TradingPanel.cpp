@@ -142,7 +142,7 @@ void TradingPanel::Draw() const
 			if(it.GetQuantity())
 			{
 				bool isItem = (it.GetOutfit()->Get("installable") < 0.);
-				(isItem ? hasItems : hasPlunder) = true;
+				(isItem ? hasHarvested : hasOutfits) = true;
 			}
 		
 		string str = to_string(outfits + missionCargo);
