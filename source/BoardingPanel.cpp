@@ -150,17 +150,25 @@ void BoardingPanel::Draw() const
 		info.SetString("your defense",
 			Round(defenseOdds.DefenderPower(crew)));
 	}
-	if(victim->IsCapturable())
+	int vCrew = victim ? victim->Crew() : 0;
+	if(victim && (victim->IsCapturable() || victim->GetGovernment()->IsPlayer()))
 	{
-		int vCrew = victim->Crew();
 		info.SetString("enemy crew", to_string(vCrew));
 		info.SetString("enemy attack",
 			Round(defenseOdds.AttackerPower(vCrew)));
 		info.SetString("enemy defense",
 			Round(attackOdds.DefenderPower(vCrew)));
-	
+	}
+	if(victim && victim->IsCapturable() && !victim->GetGovernment()->IsPlayer())
+	{
+		// If you haven't initiated capture yet, show the self destruct odds in
+		// the attack odds. It's illogical for you to have access to that info,
+		// but not knowing what your true odds are is annoying.
+		double odds = attackOdds.Odds(crew, vCrew);
+		if(!isCapturing)
+			odds *= (1. - victim->Attributes().Get("self destruct"));
 		info.SetString("attack odds",
-			Round(100. * attackOdds.Odds(crew, vCrew)) + "%");
+			Round(100. * odds) + "%");
 		info.SetString("attack casualties",
 			Round(attackOdds.AttackerCasualties(crew, vCrew)));
 		info.SetString("defense odds",

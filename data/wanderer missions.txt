@@ -1264,7 +1264,7 @@ mission "Wanderers: Alpha Surveillance J"
 		"reputation: Wanderer" >?= 30
 		event "wanderers: unfettered invasion starts" 64
 		conversation
-			`It's hard to be certain, but the activity around the spaceport seems more hectic that usual, and the Wanderers seem to have put some new ship models into production as well. When you ask Iktat Rek about it, he says, "When the Unfettered first [invaded, occupied] our territory, we had almost no weapons of [war, defense]. Since then we have retrieved old [designs, instructions] and begun preparing for what is to come, [unpleasant, unfortunate] though it may be."`
+			`It's hard to be certain, but the activity around the spaceport seems more hectic than usual, and the Wanderers seem to have put some new ship models into production as well. When you ask Iktat Rek about it, he says, "When the Unfettered first [invaded, occupied] our territory, we had almost no weapons of [war, defense]. Since then we have retrieved old [designs, instructions] and begun preparing for what is to come, [unpleasant, unfortunate] though it may be."`
 			`	As you describe your mixed success at dealing with the Alphas, he shakes his wings and ruffles out his feathers in what seems to be a nervous, agitated gesture. "These Alpha [beings, creatures] sound more [dangerous, unreasonable, ruthless] than the Unfettered," he says. "Any [social, gregarious] species that evolves naturally develops certain [limits, checks, restraints] that an [artificial, constructed] species may not possess. How can we best [respond to, deal with] them?"`
 			choice
 				`	"It may be wisest to leave them alone."`
