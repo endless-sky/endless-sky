@@ -765,6 +765,19 @@ void PlayerInfo::SellShip(const Ship *selected)
 
 
 
+void PlayerInfo::DisownShip(const Ship *selected)
+{
+	for(auto it = ships.begin(); it != ships.end(); ++it)
+		if(it->get() == selected)
+		{
+			ships.erase(it);
+			flagship.reset();
+			return;
+		}
+}
+
+
+
 // Park or unpark the given ship. A parked ship remains on a planet instead of
 // flying with the player, and requires no daily upkeep.
 void PlayerInfo::ParkShip(const Ship *selected, bool isParked)

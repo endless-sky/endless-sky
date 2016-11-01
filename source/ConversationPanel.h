@@ -28,6 +28,7 @@ class Color;
 class Conversation;
 class PlayerInfo;
 class Point;
+class Ship;
 class Sprite;
 class System;
 
@@ -38,7 +39,7 @@ class System;
 // the panel closes, to report the outcome of the conversation.
 class ConversationPanel : public Panel {
 public:
-	ConversationPanel(PlayerInfo &player, const Conversation &conversation, const System *system = nullptr);
+	ConversationPanel(PlayerInfo &player, const Conversation &conversation, const System *system = nullptr, const Ship *ship = nullptr);
 	
 template <class T>
 	void SetCallback(T *t, void (T::*fun)(int));

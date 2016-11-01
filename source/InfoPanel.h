@@ -58,11 +58,12 @@ private:
 	void DrawInfo() const;
 	void DrawShip() const;
 	void DrawWeapon(int index, const Point &pos, const Point &hardpoint) const;
+	bool Hover(const Point &point);
 	void Rename(const std::string &name);
 	bool CanDump() const;
 	void Dump();
 	void DumpPlunder(int count);
-	bool Hover(double x, double y);
+	void Disown();
 	
 	
 private:

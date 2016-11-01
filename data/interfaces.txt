@@ -724,17 +724,26 @@ interface "info panel"
 		dimensions 90 30
 	
 	visible if "show park"
+	active if "can park"
 	sprite "ui/dialog cancel"
 		center 55 305
 	button P "_Park"
 		center 55 305
 		dimensions 70 30
+	active
 	
 	visible if "show unpark"
 	sprite "ui/dialog cancel"
 		center 55 305
 	button P "Un_park"
 		center 55 305
+		dimensions 70 30
+	
+	visible if "show disown"
+	sprite "ui/dialog cancel"
+		center -45 305
+	button D "Disown"
+		center -45 305
 		dimensions 70 30
 	
 	visible if "show dump"

@@ -132,8 +132,13 @@ void InfoPanel::Draw()
 	{
 		interfaceInfo.SetCondition("ship tab");
 		if(canEdit && (shipIt != player.Ships().end())
-					&& ((shipIt->get() != player.Flagship() && !(*shipIt)->IsDisabled()) || (*shipIt)->IsParked()))
+				&& (shipIt->get() != player.Flagship() || (*shipIt)->IsParked()))
+		{
+			if(!(*shipIt)->IsDisabled())
+				interfaceInfo.SetCondition("can park");
 			interfaceInfo.SetCondition((*shipIt)->IsParked() ? "show unpark" : "show park");
+			interfaceInfo.SetCondition("show disown");
+		}
 		else if(!canEdit)
 		{
 			interfaceInfo.SetCondition("show dump");
@@ -176,7 +181,10 @@ void InfoPanel::Draw()
 					}
 				}
 				if(parkable)
+				{
+					interfaceInfo.SetCondition("can park");
 					interfaceInfo.SetCondition(allParked ? "show unpark" : "show park");
+				}
 			}
 		}
 		interfaceInfo.SetCondition("two buttons");
@@ -231,6 +239,13 @@ bool InfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 	{
 		if(shipIt->get() != player.Flagship() || (*shipIt)->IsParked())
 			player.ParkShip(shipIt->get(), !(*shipIt)->IsParked());
+	}
+	else if(canEdit && showShip && key == 'D')
+	{
+		if(shipIt->get() != player.Flagship())
+			GetUI()->Push(new Dialog(this, &InfoPanel::Disown, "Are you sure you want to disown \""
+				+ shipIt->get()->Name()
+				+ "\"? Disowning a ship rather than selling it means you will not get any money for it."));
 	}
 	else if(canEdit && key == 'P')
 	{
@@ -378,36 +393,18 @@ bool InfoPanel::Click(int x, int y)
 
 
 
-bool InfoPanel::Hover(double x, double y)
-{
-	if(shipIt == player.Ships().end())
-		return true;
-
-	hoverPoint = Point(x, y);
-	
-	const vector<Hardpoint> &weapons = (**shipIt).Weapons();
-	hover = -1;
-	for(const auto &zone : zones)
-		if(zone.Contains(hoverPoint) && (!showShip || selected == -1
-				|| weapons[selected].IsTurret() == weapons[zone.Value()].IsTurret()))
-			hover = zone.Value();
-	
-	return true;
-}
-
-
-
 bool InfoPanel::Hover(int x, int y)
 {
-	info.Hover(Point(x, y));
-	return Hover(static_cast<double>(x), static_cast<double>(y));
+	Point point(x, y);
+	info.Hover(point);
+	return Hover(point);
 }
 
 
 
 bool InfoPanel::Drag(double dx, double dy)
 {
-	Hover(hoverPoint.X() + dx, hoverPoint.Y() + dy);
+	Hover(hoverPoint + Point(dx, dy));
 	if(hoverPoint.Distance(dragStart) > 10.)
 		didDrag = true;
 	
@@ -861,6 +858,25 @@ void InfoPanel::DrawWeapon(int index, const Point &pos, const Point &hardpoint) 
 
 
 
+bool InfoPanel::Hover(const Point &point)
+{
+	if(shipIt == player.Ships().end())
+		return true;
+
+	hoverPoint = point;
+	
+	const vector<Hardpoint> &weapons = (**shipIt).Weapons();
+	hover = -1;
+	for(const auto &zone : zones)
+		if(zone.Contains(hoverPoint) && (!showShip || selected == -1
+				|| weapons[selected].IsTurret() == weapons[zone.Value()].IsTurret()))
+			hover = zone.Value();
+	
+	return true;
+}
+
+
+
 void InfoPanel::Rename(const string &name)
 {
 	if(!name.empty())
@@ -946,4 +962,18 @@ void InfoPanel::DumpPlunder(int count)
 		if(loss)
 			Messages::Add("You jettisoned " + Format::Number(loss) + " credits worth of cargo.");
 	}
+}
+
+
+
+void InfoPanel::Disown()
+{
+	// Make sure a ship really is selected.
+	if(shipIt == player.Ships().end() || !shipIt->get())
+		return;
+	
+	player.DisownShip(shipIt->get());
+	allSelected.clear();
+	shipIt = player.Ships().end();
+	showShip = false;
 }

@@ -37,6 +37,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include <algorithm>
 #include <cctype>
+#include <cmath>
 #include <limits>
 
 using namespace std;
