@@ -168,3 +168,12 @@ bool Rectangle::Contains(const Point &point) const
 	Point d = 2. * abs(point - center);
 	return (d.X() <= dimensions.X() && d.Y() <= dimensions.Y());
 }
+
+
+
+// Check if the given rectangle is inside this one. If one of its edge is
+// touching the edge of this one, that still counts.
+bool Rectangle::Contains(const Rectangle &other) const
+{
+	return Contains(other.TopLeft()) && Contains(other.BottomRight());
+}

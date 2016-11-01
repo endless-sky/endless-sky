@@ -79,7 +79,7 @@ void Interface::Load(const DataNode &node)
 	string activeIf;
 	for(const DataNode &child : node)
 	{
-		if(child.Token(0) == "point" && child.Size() >= 2)
+		if((child.Token(0) == "point" || child.Token(0) == "box") && child.Size() >= 2)
 		{
 			// This node specifies a named point where custom drawing is done.
 			points[child.Token(1)].Load(child, alignment);
@@ -157,6 +157,17 @@ Point Interface::GetSize(const string &name) const
 		return Point();
 	
 	return it->second.Bounds().Dimensions();
+}
+
+
+
+Rectangle Interface::GetBox(const std::string &name) const
+{
+	auto it = points.find(name);
+	if(it == points.end())
+		return Rectangle();
+	
+	return it->second.Bounds() + .5 * Screen::Dimensions() * alignment;
 }
 
 
