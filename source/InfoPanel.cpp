@@ -742,7 +742,9 @@ void InfoPanel::DrawWeapons(const Rectangle &bounds) const
 	
 	// Figure out how much to scale the sprite by.
 	const Sprite *sprite = ship.GetSprite();
-	double scale = min(240. / sprite->Width(), 240. / sprite->Height());
+	double scale = 0.;
+	if(sprite)
+		scale = min(240. / sprite->Width(), 240. / sprite->Height());
 	
 	// Figure out the left- and right-most hardpoints on the ship. If they are
 	// too far apart, the scale may need to be reduced.

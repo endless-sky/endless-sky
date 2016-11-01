@@ -79,7 +79,7 @@ void ShopPanel::Draw()
 	shipInfo.DrawTooltips();
 	outfitInfo.DrawTooltips();
 	
-	if(dragShip)
+	if(dragShip && dragShip->GetSprite())
 	{
 		static const Color selected(.8, 1.);
 		const Sprite *sprite = dragShip->GetSprite();
@@ -153,10 +153,6 @@ void ShopPanel::DrawSidebars() const
 			const Sprite *background = SpriteSet::Get(isSelected ? "ui/icon selected" : "ui/icon unselected");
 			SpriteShader::Draw(background, point);
 			
-			const Sprite *sprite = ship->GetSprite();
-			double scale = ICON_SIZE / max(sprite->Width(), sprite->Height());
-			Point size(sprite->Width() * scale, sprite->Height() * scale);
-			
 			// Get the color of the ship's outline based on its status. 
 			Color shipStatusColor;
 			if (ship->IsParked())
@@ -176,8 +172,15 @@ void ShopPanel::DrawSidebars() const
 			else 
 				shipStatusColor = unselected;
 			
-			// Draw the ship's outline
-			OutlineShader::Draw(sprite, point, size, shipStatusColor);
+			const Sprite *sprite = ship->GetSprite();
+			if(sprite)
+			{
+				// Draw the ship's outline
+				double scale = ICON_SIZE / max(sprite->Width(), sprite->Height());
+				Point size(sprite->Width() * scale, sprite->Height() * scale);
+				OutlineShader::Draw(sprite, point, size, shipStatusColor);
+			}
+			
 			// Mark the "primary selected ship" playerShip with some small framing lines.
 			if (ship.get() == playerShip)
 			{
