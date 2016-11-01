@@ -169,6 +169,7 @@ government "Navy Intelligence"
 	swizzle 0
 	"attitude toward"
 		"Syndicate" -.1
+		"Pirate" -.3
 
 government "Navy (Oathkeeper)"
 	swizzle 0
