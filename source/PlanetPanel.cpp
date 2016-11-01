@@ -70,7 +70,10 @@ void PlanetPanel::Step()
 		DoKey('d');
 		return;
 	}
-	if(GetUI()->IsTop(this))
+	// If the player starts a new game, exits the shipyard without buying
+	// anything, clicks to the bank, then returns to the shipyard and buys a
+	// ship, make sure they are shown an intro mission.
+	if(GetUI()->IsTop(this) || GetUI()->IsTop(bank.get()))
 	{
 		Mission *mission = player.MissionToOffer(Mission::LANDING);
 		if(mission)
@@ -79,7 +82,6 @@ void PlanetPanel::Step()
 			player.HandleBlockedMissions(Mission::LANDING, GetUI());
 	}
 }
-
 
 
 

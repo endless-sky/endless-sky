@@ -914,6 +914,20 @@ void PlayerInfo::Land(UI *ui)
 		else if(mission.Destination() == GetPlanet())
 			mission.Do(Mission::VISIT, *this, ui);
 	}
+	// One mission's actions may influence another mission, so loop through one
+	// more time to see if any mission is now completed or failed due to a change
+	// that happened in another mission the first time through.
+	mit = missions.begin();
+	while(mit != missions.end())
+	{
+		Mission &mission = *mit;
+		++mit;
+		
+		if(mission.HasFailed(*this))
+			RemoveMission(Mission::FAIL, mission, ui);
+		else if(mission.CanComplete(*this))
+			RemoveMission(Mission::COMPLETE, mission, ui);
+	}
 	UpdateCargoCapacities();
 	
 	// Create whatever missions this planet has to offer.
@@ -1425,6 +1439,19 @@ void PlayerInfo::RemoveMission(Mission::Trigger trigger, const Mission &mission,
 			cargo.RemoveMissionCargo(&mission);
 			for(shared_ptr<Ship> &ship : ships)
 				ship->Cargo().RemoveMissionCargo(&mission);
+			return;
+		}
+}
+
+
+
+// Mark a mission as failed, but do not remove it from the mission list yet.
+void PlayerInfo::FailMission(const Mission &mission)
+{
+	for(auto it = missions.begin(); it != missions.end(); ++it)
+		if(&*it == &mission)
+		{
+			it->Fail();
 			return;
 		}
 }

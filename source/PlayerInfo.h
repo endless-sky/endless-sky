@@ -156,6 +156,8 @@ public:
 	void MissionCallback(int response);
 	// Complete or fail a mission.
 	void RemoveMission(Mission::Trigger trigger, const Mission &mission, UI *ui);
+	// Mark a mission as failed, but do not remove it from the mission list yet.
+	void FailMission(const Mission &mission);
 	// Update mission status based on an event.
 	void HandleEvent(const ShipEvent &event, UI *ui);
 	

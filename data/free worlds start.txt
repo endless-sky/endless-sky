@@ -757,7 +757,7 @@ mission "FW Plasma Testing 1B"
 				goto improve
 			
 			label overheat
-			`	"Yes, it will require a lot of cooling," he says. "Anything other weak spots?"`
+			`	"Yes, it will require a lot of cooling," he says. "Any other weak spots?"`
 				goto improve
 			
 			label improve

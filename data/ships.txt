@@ -66,7 +66,7 @@ ship "Argosy"
 	sprite "ship/argosy"
 	attributes
 		category "Light Freighter"
-		"cost" 1560000
+		"cost" 1960000
 		"shields" 4200
 		"hull" 2600
 		"required crew" 4
@@ -3838,7 +3838,7 @@ ship "Raven"
 	sprite "ship/raven"
 	attributes
 		category "Light Warship"
-		"cost" 2000000
+		"cost" 1800000
 		"shields" 4700
 		"hull" 1400
 		"required crew" 6

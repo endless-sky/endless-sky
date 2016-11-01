@@ -182,8 +182,6 @@ mission "FW Southern Recon 1B"
 	destination Trinket
 	to offer
 		has "FW Southern Recon 1: done"
-	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
 		event "gunboats in Alnasl"
@@ -203,9 +201,22 @@ mission "FW Southern Recon 1B"
 				accept
 	
 	on complete
-		event "normal in Alnasl"
+		fail "FW Southern Recon 1B (Turret)"
 		outfit "Electron Beam" -1
 		dialog `You hand off the Electron Beam to Freya's science team. They tell you that she's waiting for you in a cafe in the spaceport.`
+
+
+
+mission "FW Southern Recon 1B (Turret)"
+	invisible
+	source Trinket
+	destination Trinket
+	to offer
+		has "FW Southern Recon 1: done"
+	on complete
+		fail "FW Southern Recon 1B"
+		outfit "Electron Turret" -1
+		dialog `You hand off the Electron Turret to Freya's science team. They tell you that she's waiting for you in a cafe in the spaceport.`
 
 
 
@@ -215,11 +226,14 @@ mission "FW Southern Battle 1"
 	source Trinket
 	destination Zug
 	to offer
-		has "FW Southern Recon 1B: done"
+		or
+			has "FW Southern Recon 1B: done"
+			has "FW Southern Recon 1B (Turret): done"
 	on fail
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
+		event "normal in Alnasl"
 		conversation
 			`Because this world is a tourist destination, there are innumerable fancy cafes in the spaceport. You meet up with Freya in one of the smaller ones. "Thank you for acquiring that weapon sample for us," she says. "It's typical Republic weaponry: far more efficient than anything we're able to make, and very well designed. My engineers were kind of in awe as they disassembled it."`
 			choice
