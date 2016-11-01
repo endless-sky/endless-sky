@@ -24,8 +24,9 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <map>
 #include <memory>
 #include <set>
-#include <vector>
 #include <string>
+#include <utility>
+#include <vector>
 
 class DataNode;
 class Government;
@@ -194,6 +195,11 @@ public:
 	// Keep track of used ships available today on this planet, so it doesn't change until after you take off again.
 	std::list<const Ship*> &UsedShips();
 	std::list<const Ship*> &JunkyardShips();
+
+	// Keep track of what materials you have mined in each system.
+	void Harvest(const Outfit *type);
+	const std::set<std::pair<const System *, const Outfit *>> &Harvested() const;
+
 	
 private:
 	// Don't anyone else to copy this class, because pointers won't get
@@ -248,6 +254,9 @@ private:
 	OutfitGroup soldOutfits;
 	std::list<const Ship*> usedShips;
 	std::list<const Ship*> junkyardShips;
+
+	std::set<std::pair<const System *, const Outfit *>> harvested;
+
 	
 	// Changes that this PlayerInfo wants to make to the global galaxy state:
 	std::vector<std::pair<const Government *, double>> reputationChanges;

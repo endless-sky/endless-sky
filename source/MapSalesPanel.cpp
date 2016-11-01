@@ -227,25 +227,6 @@ bool MapSalesPanel::Scroll(double dx, double dy)
 
 
 
-double MapSalesPanel::SystemValue(const System *system) const
-{
-	if(!system)
-		return 0.;
-	
-	double value = -.5;
-	for(const StellarObject &object : system->Objects())
-		if(object.GetPlanet())
-		{
-			if(HasThis(object.GetPlanet()))
-				return 1.;
-			if(HasAny(object.GetPlanet()))
-				value = 0.;
-		}
-	return value;
-}
-
-
-
 void MapSalesPanel::DrawKey() const
 {
 	const Sprite *back = SpriteSet::Get("ui/sales key");
@@ -258,11 +239,6 @@ void MapSalesPanel::DrawKey() const
 	Point pos(Screen::Left() + 50. + WIDTH, Screen::Top() + 12.);
 	Point textOff(10., -.5 * font.Height());
 	
-	static const string LABEL[][2] = {
-		{"Has no shipyard", "Has no outfitter"},
-		{"Has shipyard", "Has outfitter"},
-		{"Sells this ship", "Sells this outfit"}
-	};
 	static const double VALUE[] = {
 		-.5,
 		0.,
@@ -274,7 +250,7 @@ void MapSalesPanel::DrawKey() const
 	{
 		bool isSelected = (VALUE[i] == selectedValue);
 		RingShader::Draw(pos, OUTER, INNER, MapColor(VALUE[i]));
-		font.Draw(LABEL[i][isOutfitters], pos + textOff, isSelected ? bright : dim);
+		font.Draw(KeyLabel(i), pos + textOff, isSelected ? bright : dim);
 		pos.Y() += 20.;
 	}
 }

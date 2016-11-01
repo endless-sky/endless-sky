@@ -165,7 +165,7 @@ interface "preferences"
 		center 195 210
 		dimensions 120 30
 	bar "volume"
-		from 280.5 15
+		from 280.5 -85
 		dimensions 0 -200
 		color "energy"
 		size 3
@@ -365,82 +365,82 @@ interface "boarding"
 	sprite "ui/boarding dialog"
 	
 	label "item"
-		from -320 -197
+		from -320 -189
 		align left
 	label "value"
-		from -60 -197
+		from -60 -189
 		align right
 	label "size"
-		from 10 -197
+		from 10 -189
 		align right
 	
 	label "cargo space free:"
-		from -320 67
+		from -320 75
 		align left
 	string "cargo space"
-		from 10 67
+		from 10 75
 		align right
 	
 	label "crew"
-		from 190 -120
+		from 190 -112
 		align right
 	label "attack"
-		from 260 -120
+		from 260 -112
 		align right
 	label "defense"
-		from 330 -120
+		from 330 -112
 		align right
 	
 	label "your ship:"
-		from 50 -100
+		from 50 -92
 		align left
 	string "your crew"
-		from 190 -100
+		from 190 -92
 		align right
 	string "your attack"
-		from 260 -100
+		from 260 -92
 		align right
 	string "your defense"
-		from 330 -100
+		from 330 -92
 		align right
 	
 	label "enemy ship:"
-		from 50 -80
+		from 50 -72
 		align left
 	string "enemy crew"
-		from 190 -80
+		from 190 -72
 		align right
 	string "enemy attack"
-		from 260 -80
+		from 260 -72
 		align right
 	string "enemy defense"
-		from 330 -80
+		from 330 -72
 		align right
 	
 	label "capture odds (attacking):"
-		from 50 -50
+		from 50 -42
 		align left
 	string "attack odds"
-		from 330 -50
+		from 330 -42
 		align right
 	label "expected casualties:"
-		from 50 -30
+		from 50 -22
 		align left
 	string "attack casualties"
-		from 330 -30
+		from 330 -22
 		align right
 	
 	label "survival odds (defending):"
-		from 50 0
+		from 50 8
 		align left
 	string "defense odds"
-		from 330 0
+		from 330 8
 		align right
 	label "expected casualties:"
-		from 50 20
+		from 50 28
 		align left
 	string "defense casualties"
-		from 330 20
+		from 330 28
 		align right
 	
 	active if "can take"

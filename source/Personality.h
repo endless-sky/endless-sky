@@ -70,7 +70,7 @@ private:
 	double confusionMultiplier;
 	double aimMultiplier;
 	Point confusion;
-	Angle confusionAngle;
+	Point confusionVelocity;
 };
 
 
