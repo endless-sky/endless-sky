@@ -70,6 +70,13 @@ bool Screen::IsHighResolution()
 
 
 
+Point Screen::Dimensions()
+{
+	return Point(WIDTH, HEIGHT);
+}
+
+
+
 int Screen::Width()
 {
 	return WIDTH;

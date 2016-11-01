@@ -612,13 +612,13 @@ void Engine::Draw() const
 			radar[drawTickTock].Draw(
 				interface->GetPoint("radar"),
 				.025,
-				interface->GetSize("radar").X(),
-				interface->GetSize("radar").Y());
+				.5 * interface->GetSize("radar").X(),
+				.5 * interface->GetSize("radar").Y());
 		}
 		if(interface->HasPoint("target") && targetAngle)
 		{
 			Point center = interface->GetPoint("target");
-			double radius = interface->GetSize("target").X();
+			double radius = .5 * interface->GetSize("target").X();
 			PointerShader::Draw(center, targetAngle, 10., 10., radius, Color(1.));
 		}
 	}

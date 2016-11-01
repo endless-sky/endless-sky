@@ -85,8 +85,9 @@ void LoadPanel::Draw()
 	if(loadedInfo.IsLoaded())
 		info.SetCondition("pilot loaded");
 	
-	const Interface *menu = GameData::Interfaces().Get("load menu");
-	menu->Draw(info, this);
+	GameData::Interfaces().Get("menu background")->Draw(info, this);
+	GameData::Interfaces().Get("load menu")->Draw(info, this);
+	GameData::Interfaces().Get("menu player info")->Draw(info, this);
 	
 	const Font &font = FontSet::Get(14);
 	
