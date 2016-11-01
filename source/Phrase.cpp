@@ -24,8 +24,6 @@ void Phrase::Load(const DataNode &node)
 {
 	if(node.Token(0) != "phrase")
 		return;
-	if(node.Size() > 1)
-		name = node.Token(1);
 	
 	parts.emplace_back();
 	for(const DataNode &child : node)
@@ -40,14 +38,21 @@ void Phrase::Load(const DataNode &node)
 		}
 		else if(child.Token(0) == "phrase")
 		{
-			const Phrase *subphrase = GameData::Phrases().Get(child.Token(1));
-			if(subphrase->ReferencesPhrase(name))
-				child.PrintTrace("Found recursive phrase reference:");
-			else
-				part.phrase = subphrase;
+			for(const DataNode &grand : child)
+			{
+				const Phrase *subphrase = GameData::Phrases().Get(grand.Token(0));
+				if(subphrase->ReferencesPhrase(this))
+					child.PrintTrace("Found recursive phrase reference:");
+				else
+					part.phrases.push_back(subphrase);
+			}
 		}
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
+		
+		// If no words or phrases were given, discard this part of the phrase.
+		if(part.words.empty() && part.phrases.empty())
+			parts.back().pop_back();
 	}
 }
 
@@ -61,8 +66,8 @@ string Phrase::Get() const
 	
 	for(const Part &part : parts[Random::Int(parts.size())])
 	{
-		if(part.phrase)
-			result += part.phrase->Get();
+		if(!part.phrases.empty())
+			result += part.phrases[Random::Int(part.phrases.size())]->Get();
 		else if(!part.words.empty())
 			result += part.words[Random::Int(part.words.size())];
 	}
@@ -72,15 +77,16 @@ string Phrase::Get() const
 
 
 
-bool Phrase::ReferencesPhrase(const string &name) const
+bool Phrase::ReferencesPhrase(const Phrase *phrase) const
 {
-	if(name == this->name)
+	if(phrase == this)
 		return true;
 	
 	for(const vector<Part> &alternative : parts)
 		for(const Part &part : alternative)
-			if(part.phrase && part.phrase->ReferencesPhrase(name))
-				return true;
+			for(const Phrase *subphrase : part.phrases)
+				if(subphrase->ReferencesPhrase(phrase))
+					return true;
 	
 	return false;
 }
