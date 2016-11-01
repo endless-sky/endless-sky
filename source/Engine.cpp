@@ -654,6 +654,10 @@ void Engine::Draw() const
 	// Draw escort status.
 	escorts.Draw();
 	
+	// Upload any preloaded sprites that are now available. This is to avoid
+	// filling the entire backlog of sprites before landing on a planet.
+	GameData::Progress();
+	
 	if(Preferences::Has("Show CPU / GPU load"))
 	{
 		string loadString = to_string(static_cast<int>(load * 100. + .5)) + "% CPU";
