@@ -253,11 +253,14 @@ bool TradingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 			GameData::AddPurchase(system, it.name, -amount);
 		}
 		
+		// Iterating the outfits in this complicated way allows 
 		for(auto it = player.Cargo().Outfits().begin(); it != player.Cargo().Outfits().end();)
 		{
 			if(it.GetOutfit()->Get("installable") >= 0. && !sellOutfits)
-				continue;			
-
+			{
+				++it;
+				continue;
+			}
 			profit += it.GetTotalCost();
 			tonsSold += it.GetQuantity() * static_cast<int>(it.GetOutfit()->Get("mass"));
 			
