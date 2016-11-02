@@ -285,18 +285,12 @@ const vector<string> &GameData::Sources()
 // Revert any changes that have been made to the universe.
 void GameData::Revert()
 {
-	for(auto &it : fleets)
-		it.second = *defaultFleets.Get(it.first);
-	for(auto &it : governments)
-		it.second = *defaultGovernments.Get(it.first);
-	for(auto &it : planets)
-		it.second = *defaultPlanets.Get(it.first);
-	for(auto &it : systems)
-		it.second = *defaultSystems.Get(it.first);
-	for(auto &it : shipSales)
-		it.second = *defaultShipSales.Get(it.first);
-	for(auto &it : outfitSales)
-		it.second = *defaultOutfitSales.Get(it.first);
+	fleets.Revert(defaultFleets);
+	governments.Revert(defaultGovernments);
+	planets.Revert(defaultPlanets);
+	systems.Revert(defaultSystems);
+	shipSales.Revert(defaultShipSales);
+	outfitSales.Revert(defaultOutfitSales);
 	for(auto &it : persons)
 		it.second.GetShip()->Restore();
 	
