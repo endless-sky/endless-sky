@@ -313,20 +313,22 @@ interface "planet"
 		align left
 		pad 10 0
 	sprite "ui/planet dialog button"
-		center -400 90
-	button t "_Trading"
-		center -400 90
-		dimensions 140 40
-		size 18
-		align left
-		pad 10 0
-	sprite "ui/planet dialog button"
 		center 280 210
 	button h "_Hire Crew"
 		center 280 210
 		dimensions 140 40
 		size 18
 		align right
+		pad 10 0
+	
+	visible if "has trade"
+	sprite "ui/planet dialog button"
+		center -400 90
+	button t "_Trading"
+		center -400 90
+		dimensions 140 40
+		size 18
+		align left
 		pad 10 0
 	
 	visible if "has bank"

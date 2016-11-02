@@ -467,6 +467,13 @@ int System::Trade(const string &commodity) const
 
 
 
+bool System::HasTrade() const
+{
+	return !trade.empty();
+}
+
+
+
 // Update the economy.
 void System::StepEconomy()
 {
