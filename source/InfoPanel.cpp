@@ -456,8 +456,17 @@ void InfoPanel::UpdateInfo()
 		player.Flagship()->SetTargetShip(*shipIt);
 	
 	outfits.clear();
+	// Build the list of outfits on this ship.
+	// List each outfit only once.
+	const Outfit* lastOutfit = nullptr;
 	for(const auto &it : ship.Outfits())
-		outfits[it.GetOutfit()->Category()].push_back(it.GetOutfit());
+	{
+		if (it.GetOutfit() != lastOutfit)
+		{
+			lastOutfit = it.GetOutfit();
+			outfits[it.GetOutfit()->Category()].push_back(it.GetOutfit());
+		}
+	}
 }
 
 
