@@ -269,17 +269,19 @@ bool MainPanel::ShowHailPanel()
 		Messages::Add("Unable to send hail: your flagship is cloaked.");
 	else if(target)
 	{
-		if(target->Cloaking() == 1.)
+		// If the target is out of system, always report a generic response
+		// because the player has no way of telling if it's presently jumping or
+		// not. If it's in system and jumping, report that.
+		if(target->Zoom() < 1. || target->IsDestroyed() || target->GetSystem() != player.GetSystem()
+				|| target->Cloaking() == 1.)
 			Messages::Add("Unable to hail target ship.");
 		else if(target->IsEnteringHyperspace())
 			Messages::Add("Unable to send hail: ship is entering hyperspace.");
-		else if(!target->IsDestroyed() && target->GetSystem() == player.GetSystem())
+		else
 		{
 			GetUI()->Push(new HailPanel(player, target));
 			return true;
 		}
-		else
-			Messages::Add("Unable to hail target ship.");
 	}
 	else if(flagship->GetTargetPlanet())
 	{
