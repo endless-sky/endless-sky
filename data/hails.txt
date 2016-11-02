@@ -353,7 +353,7 @@ phrase "friendly civilian"
 		"Here's a word of advice:"
 		"A word of advice:"
 		"Take my advice:"
-		"Here's a secret:
+		"Here's a secret:"
 		"The secret to success is to"
 		"Want my opinion? You should"
 		"Be like the best ship captains and"
