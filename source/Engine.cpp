@@ -60,12 +60,12 @@ namespace {
 		return Radar::HOSTILE;
 	}
 	
-	int RadarType(const Ship &ship)
+	int RadarType(const Ship &ship, int step)
 	{
+		if(ship.IsDisabled() || (ship.IsOverheated() && ((step / 20) % 2)))
+			return Radar::INACTIVE;
 		if(ship.GetGovernment()->IsPlayer() || ship.GetPersonality().IsEscort())
 			return Radar::PLAYER;
-		if(ship.IsDisabled() || ship.IsOverheated())
-			return Radar::INACTIVE;
 		if(!ship.GetGovernment()->IsEnemy())
 			return Radar::FRIENDLY;
 		auto target = ship.GetTargetShip();
@@ -478,7 +478,7 @@ void Engine::Step(bool isActive)
 		else
 			info.SetString("target government", target->GetGovernment()->GetName());
 		
-		int targetType = RadarType(*target);
+		int targetType = RadarType(*target, step);
 		info.SetOutlineColor(Radar::GetColor(targetType));
 		if(target->GetSystem() == player.GetSystem() && target->IsTargetable())
 		{
@@ -1115,7 +1115,7 @@ void Engine::CalculateStep()
 			
 			double size = sqrt(ship->Width() + ship->Height()) * .14 + .5;
 			bool isYourTarget = (flagship && ship == flagship->GetTargetShip());
-			int type = RadarType(*ship);
+			int type = RadarType(*ship, step);
 			hasHostiles |= (type == Radar::HOSTILE);
 			radar[calcTickTock].Add(isYourTarget ? Radar::SPECIAL : type, ship->Position(), size);
 		}
