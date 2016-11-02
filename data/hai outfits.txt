@@ -340,17 +340,17 @@ outfit "Sand Cell"
 
 outfit `"Baellie" Atomic Engines`
     category "Engines"
-	"cost" 135000
+	"cost" 240000
 	thumbnail "outfit/tiny atomic engines hai"
 	"mass" 24
 	"outfit space" -24
 	"engine capacity" -24
-	"turn" 309
-	"turning energy" .7
-	"turning heat" 1.6
-	"thrust" 8.0
-	"thrusting energy" .9
-	"thrusting heat" 1.7
+	"turn" 250
+	"turning energy" .6
+	"turning heat" 1.3
+	"thrust" 10.1
+	"thrusting energy" 1.2
+	"thrusting heat" 2.4
 	"flare sprite" "effect/atomic flare/tiny"
 	    "frame rate" 14
 	"flare sound" "atomic tiny"
@@ -358,7 +358,7 @@ outfit `"Baellie" Atomic Engines`
 
 outfit `"Basrem" Atomic Thruster`
 	category "Engines"
-	"cost" 95000
+	"cost" 150000
 	thumbnail "outfit/tiny atomic thruster hai"
 	"mass" 18
 	"outfit space" -18
@@ -373,7 +373,7 @@ outfit `"Basrem" Atomic Thruster`
 
 outfit `"Benga" Atomic Thruster`
 	category "Engines"
-	"cost" 210000
+	"cost" 300000
 	thumbnail "outfit/small atomic thruster hai"
 	"mass" 28
 	"outfit space" -28
@@ -388,7 +388,7 @@ outfit `"Benga" Atomic Thruster`
 
 outfit `"Biroo" Atomic Thruster`
 	category "Engines"
-	"cost" 420000
+	"cost" 610000
 	thumbnail "outfit/medium atomic thruster hai"
 	"mass" 44
 	"outfit space" -44
@@ -403,7 +403,7 @@ outfit `"Biroo" Atomic Thruster`
 
 outfit `"Bondir" Atomic Thruster`
 	category "Engines"
-	"cost" 780000
+	"cost" 1100000
 	thumbnail "outfit/large atomic thruster hai"
 	"mass" 63
 	"outfit space" -63
@@ -418,7 +418,7 @@ outfit `"Bondir" Atomic Thruster`
 
 outfit `"Bufaer" Atomic Thruster`
 	category "Engines"
-	"cost" 1680000
+	"cost" 2400000
 	thumbnail "outfit/huge atomic thruster hai"
 	"mass" 104
 	"outfit space" -104
@@ -433,7 +433,7 @@ outfit `"Bufaer" Atomic Thruster`
 
 outfit `"Basrem" Atomic Steering`
 	category "Engines"
-	"cost" 90000
+	"cost" 120000
 	thumbnail "outfit/tiny atomic steering hai"
 	"mass" 12
 	"outfit space" -12
@@ -445,7 +445,7 @@ outfit `"Basrem" Atomic Steering`
 
 outfit `"Benga" Atomic Steering`
 	category "Engines"
-	"cost" 180000
+	"cost" 250000
 	thumbnail "outfit/small atomic steering hai"
 	"mass" 20
 	"outfit space" -20
@@ -457,7 +457,7 @@ outfit `"Benga" Atomic Steering`
 
 outfit `"Biroo" Atomic Steering`
 	category "Engines"
-	"cost" 360000
+	"cost" 530000
 	thumbnail "outfit/medium atomic steering hai"
 	"mass" 32
 	"outfit space" -32
@@ -469,7 +469,7 @@ outfit `"Biroo" Atomic Steering`
 
 outfit `"Bondir" Atomic Steering`
 	category "Engines"
-	"cost" 720000
+	"cost" 950000
 	thumbnail "outfit/large atomic steering hai"
 	"mass" 49
 	"outfit space" -49
@@ -481,7 +481,7 @@ outfit `"Bondir" Atomic Steering`
 
 outfit `"Bufaer" Atomic Steering`
 	category "Engines"
-	"cost" 1440000
+	"cost" 2100000
 	thumbnail "outfit/huge atomic steering hai"
 	"mass" 76
 	"outfit space" -76
