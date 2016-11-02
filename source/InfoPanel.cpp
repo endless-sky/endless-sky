@@ -856,7 +856,6 @@ void InfoPanel::DrawWeapons(const Rectangle &bounds) const
 
 void InfoPanel::DrawCargo(const Rectangle &bounds) const
 {
-	Color dim = *GameData::Colors().Get("medium");
 	Color bright = *GameData::Colors().Get("bright");
 	const Font &font = FontSet::Get(14);
 	const Ship &ship = **shipIt;
