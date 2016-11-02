@@ -253,7 +253,7 @@ bool TradingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 			GameData::AddPurchase(system, it.name, -amount);
 		}
 		
-		// Iterating the outfits in this complicated way allows 
+		// Iterating the outfits in this complicated way allows removing outfits mid-loop.
 		for(auto it = player.Cargo().Outfits().begin(); it != player.Cargo().Outfits().end();)
 		{
 			if(it.GetOutfit()->Get("installable") >= 0. && !sellOutfits)
