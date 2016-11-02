@@ -323,7 +323,7 @@ interface "planet"
 		align right
 		pad 10 0
 	
-	visible if "has trade"
+	visible if "has trading"
 	sprite "ui/planet dialog button"
 		center -400 90
 	button t "_Trading"

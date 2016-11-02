@@ -126,6 +126,8 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 	
 	if(key == 'd' && ShowDepart())
 	{
+		const Ship *flagship = player.Flagship();
+		
 		// Check whether the player should be warned before taking off.
 		if(player.ShouldLaunch())
 			TakeOff();
@@ -133,11 +135,12 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 		{
 			// The checks that follow are typically cause by parking or selling
 			// ships or changing outfits.
-
+			
 			// Are you overbooked? Don't count fireable flagship crew.
 			const CargoHold &cargo = player.Cargo();
 			int overbooked = -cargo.Bunks() - (flagship->Crew() - flagship->RequiredCrew());
 			int missionCargoToSell = cargo.MissionCargoSize() - cargo.Size();
+			
 			// Will you have to sell something other than regular cargo?
 			int cargoToSell = -(cargo.Free() + cargo.CommoditiesSize());
 			int droneCount = 0;
@@ -261,17 +264,6 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 	// panel. So, we need to pop the old selected panel:
 	if(oldPanel)
 		GetUI()->Pop(oldPanel);
-	
-	return true;
-}
-
-
-
-bool PlanetPanel::Click(int x, int y)
-{
-	char key = ui.OnClick(Point(x, y));
-	if(key)
-		return DoKey(key);
 	
 	return true;
 }
