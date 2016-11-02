@@ -212,7 +212,8 @@ bool OutfitterPanel::CanBuy() const
 		return false;
 	
 	// If you have this in your cargo hold, installing it is free.
-	if(selectedOutfit->Cost() > player.Accounts().Credits() && !isInCargo)
+	int64_t cost = player.StockDepreciation().Value(selectedOutfit, day);
+	if(cost > player.Accounts().Credits() && !isInCargo)
 		return false;
 	
 	if(HasLicense(selectedOutfit->Name()))
@@ -322,14 +323,14 @@ void OutfitterPanel::FailBuy() const
 	if(!selectedOutfit || !playerShip)
 		return;
 	
-	int64_t cost = selectedOutfit->Cost();
+	int64_t cost = player.StockDepreciation().Value(selectedOutfit, day);
 	int64_t credits = player.Accounts().Credits();
 	bool isInCargo = player.Cargo().Get(selectedOutfit);
 	if(!isInCargo && cost > credits)
 	{
 		GetUI()->Push(new Dialog("You cannot buy this outfit, because it costs "
-			+ to_string(cost) + " credits, and you only have "
-			+ to_string(credits) + "."));
+			+ Format::Number(cost) + " credits, and you only have "
+			+ Format::Number(credits) + "."));
 		return;
 	}
 	
@@ -729,7 +730,7 @@ void OutfitterPanel::CheckRefill()
 		it.second = max(0, it.second - player.Cargo().Get(it.first));
 		if(!outfitter.Has(it.first))
 			it.second = min(it.second, max(0, player.Stock(it.first)));
-		cost += it.second * it.first->Cost();
+		cost += player.StockDepreciation().Value(it.first, day, it.second);
 	}
 	if(!needed.empty() && cost < player.Accounts().Credits())
 	{
