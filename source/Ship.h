@@ -13,8 +13,9 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef SHIP_H_
 #define SHIP_H_
 
+#include "Body.h"
+
 #include "Angle.h"
-#include "Animation.h"
 #include "Armament.h"
 #include "CargoHold.h"
 #include "Command.h"
@@ -45,7 +46,7 @@ class System;
 // in exactly the same state. The same class is used for the player's ship as
 // for all other ships, so their capabilities are exactly the same  within the
 // limits of what the AI knows how to command them to do.
-class Ship : public std::enable_shared_from_this<Ship> {
+class Ship : public Body, public std::enable_shared_from_this<Ship> {
 public:
 	// These are all the possible category strings for ships.
 	static const std::vector<std::string> CATEGORIES;
@@ -54,20 +55,49 @@ public:
 	public:
 		Bay(double x, double y, bool isFighter) : point(x * .5, y * .5), isFighter(isFighter) {}
 		// Copying a bay does not copy the ship inside it.
-		Bay(const Bay &b) : point(b.point), isFighter(b.isFighter), direction(b.direction) {}
+		Bay(const Bay &b) : point(b.point), isFighter(b.isFighter), side(b.side), facing(b.facing) {}
 		
 		Point point;
 		std::shared_ptr<Ship> ship;
 		bool isFighter = false;
-		uint8_t direction = 0;
 		
-		static const char OVER = 1;
-		static const char UNDER = 2;
-		static const char LEFT = 3;
-		static const char RIGHT = 4;
+		uint8_t side = 0;
+		static const uint8_t INSIDE = 0;
+		static const uint8_t OVER = 1;
+		static const uint8_t UNDER = 2;
+		
+		uint8_t facing = 0;
+		static const uint8_t FORWARD = 0;
+		static const uint8_t LEFT = 1;
+		static const uint8_t RIGHT = 2;
+		static const uint8_t BACK = 3;
+	};
+	class EnginePoint : public Point {
+	public:
+		EnginePoint(double x, double y, double zoom) : Point(x, y), zoom(zoom) {}
+		double Zoom() const { return zoom; }
+		
+	private:
+		double zoom;
 	};
 	
 public:
+	/* Functions provided by the Body base class:
+	bool HasSprite() const;
+	const Sprite *GetSprite() const;
+	int Width() const;
+	int Height() const;
+	int GetSwizzle() const;
+	Frame GetFrame(int step = -1) const;
+	const Mask &GetMask(int step = -1) const;
+	const Point &Position() const;
+	const Point &Velocity() const;
+	const Angle &Facing() const;
+	Point Unit() const;
+	double Zoom() const;
+	const Government *GetGovernment() const;
+	*/
+
 	// Load data for a type of ship:
 	void Load(const DataNode &node);
 	// When loading a ship, some of the outfits it lists may not have been
@@ -76,12 +106,6 @@ public:
 	// Save a full description of this ship, as currently configured.
 	void Save(DataWriter &out) const;
 	
-	// Get information on this particular ship, for displaying it.
-	const Animation &GetSprite() const;
-	// Get the ship's government.
-	const Government *GetGovernment() const;
-	// Get this ship's zoom factor (due to landing on a planet).
-	double Zoom() const;
 	// Get the name of this particular ship.
 	const std::string &Name() const;
 	
@@ -91,6 +115,7 @@ public:
 	const std::string &Description() const;
 	// Get this ship's cost.
 	int64_t Cost() const;
+	int64_t ChassisCost() const;
 	// Get the licenses needed to buy or operate this ship.
 	const std::vector<std::string> &Licenses() const;
 	
@@ -175,14 +200,7 @@ public:
 	// Check if the ship is thrusting. If so, the engine sound should be played.
 	bool IsThrusting() const;
 	// Get the points from which engine flares should be drawn.
-	const std::vector<Point> &EnginePoints() const;
-	
-	// Get the position, velocity, and heading of this ship.
-	const Point &Position() const;
-	const Point &Velocity() const;
-	const Angle &Facing() const;
-	// Get the facing unit vector times the zoom factor.
-	Point Unit() const;
+	const std::vector<EnginePoint> &EnginePoints() const;
 	
 	// Mark a ship as destroyed, or bring back a destroyed ship.
 	void Destroy();
@@ -252,6 +270,9 @@ public:
 	void UnloadBays();
 	// Get a list of any ships this ship is carrying.
 	const std::vector<Bay> &Bays() const;
+	// Adjust the positions and velocities of any visible carried fighters or
+	// drones. If any are visible, return true.
+	bool PositionFighters() const;
 	
 	// Get cargo information.
 	CargoHold &Cargo();
@@ -273,7 +294,7 @@ public:
 	
 	// Get the list of weapons.
 	Armament &GetArmament();
-	const std::vector<Armament::Weapon> &Weapons() const;
+	const std::vector<Hardpoint> &Weapons() const;
 	// Check if we are able to fire the given weapon (i.e. there is enough
 	// energy, ammo, and fuel to fire it).
 	bool CanFire(const Outfit *outfit) const;
@@ -324,14 +345,21 @@ private:
 	
 	
 private:
+	/* Protected member variables of the Body class:
+	Point position;
+	Point velocity;
+	Angle angle;
+	double zoom;
+	int swizzle;
+	const Government *government;
+	*/
+	
 	// Characteristics of the chassis:
 	const Ship *base = nullptr;
 	std::string modelName;
 	std::string description;
-	Animation sprite;
 	// Characteristics of this particular ship:
 	std::string name;
-	const Government *government = nullptr;
 	
 	// Licenses needed to operate this ship.
 	std::vector<std::string> licenses;
@@ -371,7 +399,7 @@ private:
 	
 	std::vector<Bay> bays;
 	
-	std::vector<Point> enginePoints;
+	std::vector<EnginePoint> enginePoints;
 	Armament armament;
 	// While loading, keep track of which outfits already have been equipped.
 	// (That is, they were specified as linked to a given gun or turret point.)
@@ -394,13 +422,8 @@ private:
 	
 	// Current status of this particular ship:
 	const System *currentSystem = nullptr;
-	Point position;
-	Point velocity;
-	Angle angle;
-	
 	// A Ship can be locked into one of three special states: landing,
 	// hyperspacing, and exploding. Each one must track some special counters:
-	double zoom = 1.;
 	const Planet *landingPlanet = nullptr;
 	
 	int hyperspaceCount = 0;

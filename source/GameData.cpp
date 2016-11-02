@@ -23,12 +23,14 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Files.h"
 #include "FillShader.h"
 #include "Fleet.h"
+#include "FogShader.h"
 #include "FontSet.h"
 #include "Galaxy.h"
 #include "GameEvent.h"
 #include "Government.h"
 #include "Interface.h"
 #include "LineShader.h"
+#include "Minable.h"
 #include "Mission.h"
 #include "Outfit.h"
 #include "OutlineShader.h"
@@ -68,6 +70,7 @@ namespace {
 	Set<Galaxy> galaxies;
 	Set<Government> governments;
 	Set<Interface> interfaces;
+	Set<Minable> minables;
 	Set<Mission> missions;
 	Set<Outfit> outfits;
 	Set<Person> persons;
@@ -92,9 +95,12 @@ namespace {
 	Trade trade;
 	map<const System *, map<string, int>> purchases;
 	
+	map<const Sprite *, string> landingMessages;
+	
 	StarField background;
 	
 	map<string, string> tooltips;
+	map<string, string> helpMessages;
 	
 	SpriteQueue spriteQueue;
 	
@@ -158,8 +164,7 @@ void GameData::BeginLoad(const char * const *argv)
 	}
 	
 	// Now that all the stars are loaded, update the neighbor lists.
-	for(auto &it : systems)
-		it.second.UpdateNeighbors(systems);
+	UpdateNeighbors();
 	// And, update the ships with the outfits we've now finished loading.
 	for(auto &it : ships)
 		it.second.FinishLoading();
@@ -195,6 +200,7 @@ void GameData::LoadShaders()
 	Command::LoadSettings(Files::Config() + "keys.txt");
 	
 	FillShader::Init();
+	FogShader::Init();
 	LineShader::Init();
 	OutlineShader::Init();
 	PointerShader::Init();
@@ -217,6 +223,9 @@ double GameData::Progress()
 // done with all landscapes to speed up the program's startup.
 void GameData::Preload(const Sprite *sprite)
 {
+	if(!sprite)
+		return;
+	
 	auto loadedRange = preloaded.equal_range(sprite);
 	if(loadedRange.first != loadedRange.second)
 	{
@@ -276,18 +285,12 @@ const vector<string> &GameData::Sources()
 // Revert any changes that have been made to the universe.
 void GameData::Revert()
 {
-	for(auto &it : fleets)
-		it.second = *defaultFleets.Get(it.first);
-	for(auto &it : governments)
-		it.second = *defaultGovernments.Get(it.first);
-	for(auto &it : planets)
-		it.second = *defaultPlanets.Get(it.first);
-	for(auto &it : systems)
-		it.second = *defaultSystems.Get(it.first);
-	for(auto &it : shipSales)
-		it.second = *defaultShipSales.Get(it.first);
-	for(auto &it : outfitSales)
-		it.second = *defaultOutfitSales.Get(it.first);
+	fleets.Revert(defaultFleets);
+	governments.Revert(defaultGovernments);
+	planets.Revert(defaultPlanets);
+	systems.Revert(defaultSystems);
+	shipSales.Revert(defaultShipSales);
+	outfitSales.Revert(defaultOutfitSales);
 	for(auto &it : persons)
 		it.second.GetShip()->Restore();
 	
@@ -445,6 +448,16 @@ void GameData::Change(const DataNode &node)
 
 
 
+// Update the neighbor lists of all the systems. This must be done any time
+// that a change creates or moves a system.
+void GameData::UpdateNeighbors()
+{
+	for(auto &it : systems)
+		it.second.UpdateNeighbors(systems);
+}
+
+
+
 const Set<Color> &GameData::Colors()
 {
 	return colors;
@@ -499,6 +512,14 @@ const Set<Interface> &GameData::Interfaces()
 {
 	return interfaces;
 }
+
+
+
+const Set<Minable> &GameData::Minables()
+{
+	return minables;
+}
+
 
 
 
@@ -587,6 +608,23 @@ const vector<Trade::Commodity> &GameData::SpecialCommodities()
 
 
 
+// Custom messages to be shown when trying to land on certain stellar objects.
+bool GameData::HasLandingMessage(const Sprite *sprite)
+{
+	return landingMessages.count(sprite);
+}
+
+
+
+const string &GameData::LandingMessage(const Sprite *sprite)
+{
+	static const string EMPTY;
+	auto it = landingMessages.find(sprite);
+	return (it == landingMessages.end() ? EMPTY : it->second);
+}
+
+
+
 const StarField &GameData::Background()
 {
 	return background;
@@ -598,7 +636,22 @@ const string &GameData::Tooltip(const string &label)
 {
 	static const string EMPTY;
 	auto it = tooltips.find(label);
+	// Special case: the "cost" and "sells for" labels include the percentage of
+	// the full price, so they will not match exactly.
+	if(it == tooltips.end() && !label.compare(0, 4, "cost"))
+		it = tooltips.find("cost:");
+	if(it == tooltips.end() && !label.compare(0, 9, "sells for"))
+		it = tooltips.find("sells for:");
 	return (it == tooltips.end() ? EMPTY : it->second);
+}
+
+
+
+string GameData::HelpMessage(const std::string &name)
+{
+	static const string EMPTY;
+	auto it = helpMessages.find(name);
+	return Command::ReplaceNamesWithKeys(it == helpMessages.end() ? EMPTY : it->second);
 }
 
 
@@ -655,6 +708,8 @@ void GameData::LoadFile(const string &path, bool debugMode)
 			governments.Get(node.Token(1))->Load(node);
 		else if(key == "interface" && node.Size() >= 2)
 			interfaces.Get(node.Token(1))->Load(node);
+		else if(key == "minable" && node.Size() >= 2)
+			minables.Get(node.Token(1))->Load(node);
 		else if(key == "mission" && node.Size() >= 2)
 			missions.Get(node.Token(1))->Load(node);
 		else if(key == "outfit" && node.Size() >= 2)
@@ -681,14 +736,23 @@ void GameData::LoadFile(const string &path, bool debugMode)
 			systems.Get(node.Token(1))->Load(node, planets);
 		else if(key == "trade")
 			trade.Load(node);
-		else if(key == "tip" && node.Size() >= 2)
+		else if(key == "landing message" && node.Size() >= 2)
 		{
-			string &text = tooltips[node.Token(1)];
+			for(const DataNode &child : node)
+				landingMessages[SpriteSet::Get(child.Token(0))] = node.Token(1);
+		}
+		else if((key == "tip" || key == "help") && node.Size() >= 2)
+		{
+			string &text = (key == "tip" ? tooltips : helpMessages)[node.Token(1)];
 			text.clear();
 			for(const DataNode &child : node)
 			{
 				if(!text.empty())
-					text += "\n\t";
+				{
+					text += '\n';
+					if(child.Token(0)[0] != '\t')
+						text += '\t';
+				}
 				text += child.Token(0);
 			}
 		}

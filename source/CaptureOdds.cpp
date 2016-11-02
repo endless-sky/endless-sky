@@ -21,20 +21,27 @@ using namespace std;
 
 
 
-CaptureOdds::CaptureOdds(const Ship *attacker, const Ship *defender)
+// Constructor.
+CaptureOdds::CaptureOdds(const Ship &attacker, const Ship &defender)
 {
-	Make(&powerA, attacker, false);
-	Make(&powerD, defender, true);
+	powerA = Power(attacker, false);
+	powerD = Power(defender, true);
 	Calculate();
 }
 
 
 
+// Get the odds of the attacker winning if the two ships have the given
+// number of crew members remaining.
 double CaptureOdds::Odds(int attackingCrew, int defendingCrew) const
 {
+	// If the defender has no crew remaining, odds are 100%.
 	if(!defendingCrew)
 		return 1.;
 	
+	// Make sure the input is within range, with the special constraint that the
+	// attacker can never succeed if they don't have two crew left (one to pilot
+	// each of the ships).
 	int index = Index(attackingCrew, defendingCrew);
 	if(attackingCrew < 2 || index < 0)
 		return 0.;
@@ -44,8 +51,12 @@ double CaptureOdds::Odds(int attackingCrew, int defendingCrew) const
 
 
 
+// Get the expected number of casualties for the attacker in the remainder of
+// the battle if the two ships have the given number of crew remaining.
 double CaptureOdds::AttackerCasualties(int attackingCrew, int defendingCrew) const
 {
+	// If the attacker has fewer than two crew, they cannot attack. If the
+	// defender has no crew, they cannot defend (so casualties will be zero).
 	int index = Index(attackingCrew, defendingCrew);
 	if(attackingCrew < 2 || !defendingCrew || index < 0)
 		return 0.;
@@ -55,8 +66,12 @@ double CaptureOdds::AttackerCasualties(int attackingCrew, int defendingCrew) con
 
 
 
+// Get the expected number of casualties for the defender in the remainder of
+// the battle if the two ships have the given number of crew remaining.
 double CaptureOdds::DefenderCasualties(int attackingCrew, int defendingCrew) const
 {
+	// If the attacker has fewer than two crew, they cannot attack. If the
+	// defender has no crew, they cannot defend (so casualties will be zero).
 	int index = Index(attackingCrew, defendingCrew);
 	if(attackingCrew < 2 || !defendingCrew || index < 0)
 		return 0.;
@@ -66,6 +81,8 @@ double CaptureOdds::DefenderCasualties(int attackingCrew, int defendingCrew) con
 
 
 
+// Get the total power (inherent crew power plus bonuses from hand to hand
+// weapons) for the attacker when they have the given number of crew remaining.
 double CaptureOdds::AttackerPower(int attackingCrew) const
 {
 	if(static_cast<unsigned>(attackingCrew - 1) >= powerA.size())
@@ -76,6 +93,8 @@ double CaptureOdds::AttackerPower(int attackingCrew) const
 
 
 
+// Get the total power (inherent crew power plus bonuses from hand to hand
+// weapons) for the defender when they have the given number of crew remaining.
 double CaptureOdds::DefenderPower(int defendingCrew) const
 {
 	if(static_cast<unsigned>(defendingCrew - 1) >= powerD.size())
@@ -86,6 +105,7 @@ double CaptureOdds::DefenderPower(int defendingCrew) const
 
 
 
+// Generate the lookup tables.
 void CaptureOdds::Calculate()
 {
 	if(powerD.empty() || powerA.empty())
@@ -108,8 +128,12 @@ void CaptureOdds::Calculate()
 		casualtiesD.push_back(odds + (1. - odds) * casualtiesD[up]);
 		++up;
 		
+		// Loop through each number of crew the defender might have.
 		for(unsigned d = 2; d <= powerD.size(); ++d)
 		{
+			// This is  basic 2D dynamic program, where each value is based on
+			// the odds of success and the values for one fewer crew members
+			// for the defender or the attacker depending on who wins.
 			odds = ap / (ap + powerD[d - 1]);
 			capture.push_back(odds * capture.back() + (1. - odds) * capture[up]);
 			casualtiesA.push_back(odds * casualtiesA.back() + (1. - odds) * (casualtiesA[up] + 1.));
@@ -121,6 +145,8 @@ void CaptureOdds::Calculate()
 
 
 
+// Map the given crew complements to an index in the lookup tables. There is no
+// row in the table for 0 crew on either ship.
 int CaptureOdds::Index(int attackingCrew, int defendingCrew) const
 {
 	if(static_cast<unsigned>(attackingCrew - 1) > powerA.size())
@@ -133,31 +159,37 @@ int CaptureOdds::Index(int attackingCrew, int defendingCrew) const
 
 
 
-void CaptureOdds::Make(vector<double> *power, const Ship *ship, bool isDefender)
+// Generate a vector with the total power of the given ship's crew when any
+// number of them are left, either for attacking or for defending.
+vector<double> CaptureOdds::Power(const Ship &ship, bool isDefender)
 {
-	power->clear();
-	int crew = ship->Crew();
-	if(!crew)
-		return;
+	vector<double> power;
+	if(!ship.Crew())
+		return power;
 	
+	// Check for any outfits that assist with attacking or defending:
 	const string attribute = (isDefender ? "capture defense" : "capture attack");
 	const double crewPower = (isDefender ? 2. : 1.);
 	
 	// Each crew member can wield one weapon. They use the most powerful ones
 	// that can be wielded by the remaining crew.
-	for(const auto &it : ship->Outfits())
+	for(const auto &it : ship.Outfits())
 	{
 		double value = it.first->Get(attribute);
 		if(value > 0. && it.second > 0)
-			power->insert(power->end(), it.second, value);
+			power.insert(power.end(), it.second, value);
 	}
 	// Use the best weapons first.
-	sort(power->begin(), power->end(), greater<double>());
+	sort(power.begin(), power.end(), greater<double>());
 	
 	// Resize the vector to have exactly one entry per crew member.
-	power->resize(ship->Crew(), 0.);
+	power.resize(ship.Crew(), 0.);
 	
-	power->front() += crewPower;
-	for(unsigned i = 1; i < power->size(); ++i)
-		(*power)[i] += (*power)[i - 1] + crewPower;
+	// Calculate partial sums. That is, power[N - 1] should be your total crew
+	// power when you have N crew left.
+	power.front() += crewPower;
+	for(unsigned i = 1; i < power.size(); ++i)
+		power[i] += power[i - 1] + crewPower;
+	
+	return power;
 }

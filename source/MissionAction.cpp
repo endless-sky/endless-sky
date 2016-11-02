@@ -58,7 +58,7 @@ namespace {
 		{
 			int moved = min(cargoCount, -count);
 			count += moved;
-			player.Cargo().Transfer(outfit, moved);
+			player.Cargo().Remove(outfit, moved);
 			didCargo = true;
 		}
 		while(flagship && count)
@@ -78,7 +78,7 @@ namespace {
 			// Ignore cargo size limits.
 			int size = player.Cargo().Size();
 			player.Cargo().SetSize(-1);
-			player.Cargo().Transfer(outfit, -count);
+			player.Cargo().Add(outfit, count);
 			player.Cargo().SetSize(size);
 			didCargo = true;
 			if(count > 0 && ui)
@@ -292,16 +292,12 @@ void MissionAction::Do(PlayerInfo &player, UI *ui, const System *destination) co
 	
 	if(!fail.empty())
 	{
-		// Failing missions invalidates iterators into the player's mission list,
-		// but does not immediately delete those missions. So, the safe way to
-		// iterate over all missions is to make a copy of the list before we
-		// begin to remove items from it.
-		vector<const Mission *> failedMissions;
+		// If this action causes this or any other mission to fail, mark that
+		// mission as failed. It will not be removed from the player's mission
+		// list until it is safe to do so.
 		for(const Mission &mission : player.Missions())
 			if(fail.count(mission.Identifier()))
-				failedMissions.push_back(&mission);
-		for(const Mission *mission : failedMissions)
-			player.RemoveMission(Mission::FAIL, *mission, ui);
+				player.FailMission(mission);
 	}
 	
 	// Check if applying the conditions changes the player's reputations.

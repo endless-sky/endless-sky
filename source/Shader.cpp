@@ -103,7 +103,7 @@ GLuint Shader::Compile(const char *str, GLenum type)
 	text[version.length() + length] = '\0';
 	
 	const GLchar *cText = &text.front();
-	glShaderSource(object, 1, &cText, NULL);
+	glShaderSource(object, 1, &cText, nullptr);
 	glCompileShader(object);
 	
 	GLint status;

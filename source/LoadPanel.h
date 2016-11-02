@@ -32,14 +32,7 @@ class LoadPanel : public Panel {
 public:
 	LoadPanel(PlayerInfo &player, UI &gamePanels);
 	
-	virtual void Draw() const override;
-	
-	// New player "conversation" callback.
-	void OnCallback(int value);
-	// Snapshot name callback.
-	void SnapshotCallback(const std::string &name);
-	// Load snapshot callback.
-	void LoadCallback();
+	virtual void Draw() override;
 	
 	
 protected:
@@ -53,6 +46,14 @@ protected:
 	
 private:
 	void UpdateLists();
+	
+	// New player "conversation" callback.
+	void OnCallback(int value);
+	// Snapshot name callback.
+	void SnapshotCallback(const std::string &name);
+	// Load snapshot callback.
+	void LoadCallback();
+	// Delete callbacks.
 	void DeletePilot();
 	void DeleteSave();
 	

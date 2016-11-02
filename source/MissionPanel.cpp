@@ -95,9 +95,8 @@ MissionPanel::MissionPanel(const MapPanel &panel)
 	acceptedIt(player.AvailableJobs().empty() ? accepted.begin() : accepted.end()),
 	availableScroll(0), acceptedScroll(0), dragSide(0)
 {
-	// Don't use the "special" coloring in this view.
-	if(commodity == SHOW_SPECIAL)
-		commodity = SHOW_REPUTATION;
+	// In this view, always color systems based on player reputation.
+	commodity = SHOW_REPUTATION;
 	
 	while(acceptedIt != accepted.end() && !acceptedIt->IsVisible())
 		++acceptedIt;
@@ -126,22 +125,13 @@ void MissionPanel::Step()
 	if(!Preferences::Has("help: jobs"))
 	{
 		Preferences::Set("help: jobs");
-		GetUI()->Push(new Dialog(
-			"Taking on jobs is a safe way to earn money. "
-			"Special missions are offered in the Space Port; "
-			"more mundane jobs are posted on the Job Board. "
-			"Most special missions are only offered once: "
-			"if you turn one down, it will not be offered to you again.\n"
-			"\tThe payment for a job depends on how far you must travel and how much you are carrying. "
-			"Jobs that have a time limit pay extra, but you are paid nothing if you miss the deadline.\n"
-			"\tAs you gain a combat reputation, new jobs will become available, "
-			"including escorting convoys and bounty hunting."));
+		GetUI()->Push(new Dialog(GameData::HelpMessage("jobs")));
 	}
 }
 
 
 
-void MissionPanel::Draw() const
+void MissionPanel::Draw()
 {
 	MapPanel::Draw();
 	
@@ -196,7 +186,7 @@ void MissionPanel::Draw() const
 	if(ZoomIsMin())
 		info.SetCondition("min zoom");
 	const Interface *interface = GameData::Interfaces().Get("map buttons");
-	interface->Draw(info);
+	interface->Draw(info, this);
 }
 
 
@@ -317,20 +307,6 @@ bool MissionPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 bool MissionPanel::Click(int x, int y)
 {
 	dragSide = 0;
-	
-	// Handle clicks on the interface buttons.
-	{
-		const Interface *interface = GameData::Interfaces().Get("mission");
-		char key = interface->OnClick(Point(x, y));
-		if(key)
-			return DoKey(key);
-	}
-	{
-		const Interface *interface = GameData::Interfaces().Get("map buttons");
-		char key = interface->OnClick(Point(x, y));
-		if(key)
-			return DoKey(key);
-	}
 	
 	if(x > Screen::Right() - 80 && y > Screen::Bottom() - 50)
 		return DoKey('p');
@@ -660,7 +636,7 @@ Point MissionPanel::DrawList(const list<Mission> &list, Point pos) const
 
 
 
-void MissionPanel::DrawMissionInfo() const
+void MissionPanel::DrawMissionInfo()
 {
 	Information info;
 	
@@ -686,7 +662,7 @@ void MissionPanel::DrawMissionInfo() const
 	info.SetString("today", player.GetDate().ToString());
 	
 	const Interface *interface = GameData::Interfaces().Get("mission");
-	interface->Draw(info);
+	interface->Draw(info, this);
 	
 	// If a mission is selected, draw its descriptive text.
 	if(availableIt != available.end())
@@ -777,7 +753,7 @@ void MissionPanel::MakeSpaceAndAccept()
 		
 		int64_t basis = player.GetBasis(it.first, toSell);
 		player.AdjustBasis(it.first, -basis);
-		player.Cargo().Transfer(it.first, toSell);
+		player.Cargo().Remove(it.first, toSell);
 		player.Accounts().AddCredits(toSell * price);
 	}
 	

@@ -436,7 +436,6 @@ outfit "Flamethrower Projectile"
 		sprite "projectile/flamethrower"
 			"frame rate" 17
 			"random start frame"
-		sound "plasma"
 		"hit effect" "flamethrower hit"
 		"die effect" "flamethrower die"
 		"inaccuracy" 20
@@ -594,7 +593,7 @@ outfit "Torpedo Launcher"
 		ammo "Torpedo"
 		icon "icon/torpedo"
 		"fire effect" "torpedo fire"
-		"hit effect" "big explosion"
+		"hit effect" "large explosion"
 		"die effect" "tiny explosion"
 		"inaccuracy" 5
 		"velocity" 7
@@ -638,7 +637,7 @@ outfit "Typhoon Launcher"
 		ammo "Typhoon Torpedo"
 		icon "icon/typhoon"
 		"fire effect" "typhoon fire"
-		"hit effect" "big explosion"
+		"hit effect" "large explosion"
 		"die effect" "tiny explosion"
 		"inaccuracy" 5
 		"velocity" 5
@@ -680,7 +679,7 @@ outfit "Heavy Rocket Launcher"
 		sound "rocket"
 		ammo "Heavy Rocket"
 		icon "icon/rocket"
-		"hit effect" "huge explosion"
+		"hit effect" "heavy rocket hit"
 		"die effect" "small explosion"
 		"inaccuracy" 1
 		"velocity" 9
@@ -738,3 +737,54 @@ outfit "Nuclear Missile"
 		"missile strength" 200
 	description "It has been centuries since the last nuclear war was fought, and until very recently, most people in the galaxy assumed that that era of chaos and destruction was forever behind us..."
 	description "	[Nuclear missiles are a one-shot weapon: each missile occupies a gun slot, and after it is fired, the slot it was in is left empty.]"
+
+outfit "Gatling Gun Ammo"
+	category "Ammunition"
+	cost 2
+	thumbnail "outfit/bullet"
+	"mass" .002
+	"gatling round capacity" -1
+	description "This simple cartridge is the ammunition for the Gatling Gun, with a projectile of depleted nuclear fuel or an illuminated tracer round. Since this ammunition is primarily manufactured on pirate worlds by slave children in poor working conditions, muzzle velocity can vary by up to 30%, and tracer distribution is seldom uniform."
+
+outfit "Gatling Gun"
+	category "Secondary Weapons"
+	cost 20000
+	thumbnail "outfit/gat"
+	"mass" 2
+	"outfit space" -8
+	"weapon capacity" -8
+	"gun ports" -1
+	"gatling round capacity" 3000
+	weapon
+		sprite "projectile/tinyflare"
+			"random start frame"
+		sound "explosion tiny"
+		ammo "Gatling Gun Ammo"
+		icon "icon/gat"
+		"inaccuracy" 2
+		"velocity" 16
+		"lifetime" 1
+		"reload" 3
+		"burst count" 180
+		"burst reload" 1
+		"firing energy" .03
+		"firing heat" 2.5
+		"submunition" "gbullet"
+		"cluster"
+		"hit effect" "bullet impact"
+	description `When Dr. Richard J. Gatling invented the rapid-fire gun bearing his name in the 19th century, he hoped that its destructiveness would lead to the end of war itself. Over a millennia later, this modern incarnation of the gatling gun sees action in the stars, a testament to its fundamentally robust design - and Dr. Gatling's naivete. While capable of a high fire rate, this gun needs to cool down for twice as long as it fires, and can only sustain a maximum of three seconds of continuous fire.`
+
+outfit "gbullet"
+	weapon
+		sprite "projectile/bullet"
+			"delay" 5
+			"random start frame"
+			"frame rate" 0
+		"random velocity" 8
+		"lifetime" 20
+		"random lifetime" 5
+		"shield damage" 3
+		"hull damage" 6
+		"hit force" 0.15
+		"missile strength" 1
+		"hit effect" "bullet impact"

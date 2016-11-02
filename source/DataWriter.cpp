@@ -19,10 +19,13 @@ using namespace std;
 
 
 
+// This string constant is just used for remembering what string needs to be
+// written before the next token - either the full indentation or this, a space:
 const string DataWriter::space = " ";
 
 
 
+// Constructor, specifying the file to save.
 DataWriter::DataWriter(const string &path)
 	: path(path), before(&indent)
 {
@@ -31,6 +34,7 @@ DataWriter::DataWriter(const string &path)
 
 
 
+// Destructor, which saves the file all in one block.
 DataWriter::~DataWriter()
 {
 	Files::Write(path, out.str());
@@ -38,13 +42,16 @@ DataWriter::~DataWriter()
 
 
 
+// Write a DataNode with all its children.
 void DataWriter::Write(const DataNode &node)
 {
+	// Write all this node's tokens.
 	for(int i = 0; i < node.Size(); ++i)
 		WriteToken(node.Token(i).c_str());
 	Write();
 	
-	if(node.begin() != node.end())
+	// If this node has any children, call this function recursively on them.
+	if(node.HasChildren())
 	{
 		BeginChild();
 		{
@@ -57,6 +64,7 @@ void DataWriter::Write(const DataNode &node)
 
 
 
+// Begin a new line of the file.
 void DataWriter::Write()
 {
 	out << '\n';
@@ -65,6 +73,7 @@ void DataWriter::Write()
 
 
 
+// Increase the indentation level.
 void DataWriter::BeginChild()
 {
 	indent += '\t';
@@ -72,6 +81,7 @@ void DataWriter::BeginChild()
 
 
 
+// Decrease the indentation level.
 void DataWriter::EndChild()
 {
 	indent.erase(indent.length() - 1);
@@ -79,6 +89,7 @@ void DataWriter::EndChild()
 
 
 
+// Write a comment line, at the current indentation level.
 void DataWriter::WriteComment(const string &str)
 {
 	out << indent << "# " << str << '\n';
@@ -86,8 +97,10 @@ void DataWriter::WriteComment(const string &str)
 
 
 
+// Write a token, given as a character string.
 void DataWriter::WriteToken(const char *a)
 {
+	// Figure out what kind of quotation marks need to be used for this string.
 	bool hasSpace = !*a;
 	bool hasQuote = false;
 	for(const char *it = a; *it; ++it)
@@ -96,6 +109,7 @@ void DataWriter::WriteToken(const char *a)
 		hasQuote |= (*it == '"');
 	}
 	
+	// Write the token, enclosed in quotes if necessary.
 	out << *before;
 	if(hasSpace && hasQuote)
 		out << '`' << a << '`';
@@ -103,11 +117,15 @@ void DataWriter::WriteToken(const char *a)
 		out << '"' << a << '"';
 	else
 		out << a;
+	
+	// The next token written will not be the first one on this line, so it only
+	// needs to have a single space before it.
 	before = &space;
 }
 
 
 
+// Write a token, given as a string object.
 void DataWriter::WriteToken(const string &a)
 {
 	WriteToken(a.c_str());

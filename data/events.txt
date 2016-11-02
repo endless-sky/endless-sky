@@ -835,8 +835,10 @@ event "southern carriers 3"
 			"Hawk (Rocket)"
 		variant 5
 			"Fury"
-		variant 2
+		variant 1
 			"Fury (Laser)"
+		variant 1
+			"Fury (Gatling)"
 		variant 1
 			"Fury (Missile)"
 		variant 2
@@ -879,6 +881,9 @@ event "southern carriers 3"
 		variant 1
 			"Nest"
 			"Barb" 2
+		variant 1
+			"Nest"
+			"Barb (Gatling)" 2
 
 event "southern carriers 4"
 	fleet "Large Northern Merchants"
@@ -1019,20 +1024,34 @@ event "southern carriers 4"
 			"Hauler III"
 			"Hauler II"
 			"Headhunter" 3
-		variant 4
+		variant 2
 			"Hauler III"
 			"Hauler II"
 			"Roost (Sidewinder)"
 			"Dagger" 2
 			"Lance" 2
-		variant 4
+		variant 2
+			"Hauler III"
+			"Hauler II"
+			"Roost (Sidewinder)"
+			"Lance (Gatling)" 2
+			"Lance" 2
+		variant 2
 			"Roost" 3
 			"Dagger" 4
 			"Lance" 4
 			"Boxwing" 4
+		variant 2
+			"Roost" 3
+			"Lance (Gatling)" 4
+			"Lance" 4
+			"Boxwing" 4
+
 	fleet "Large Southern Pirates"
-		variant 3
+		variant 2
 			"Sparrow" 4
+		variant 1
+			"Sparrow (Gatling)" 3
 		variant 5
 			"Argosy"
 		variant 3
@@ -1104,9 +1123,13 @@ event "southern carriers 4"
 			"Falcon (Heavy)"
 		variant 1
 			"Falcon (Laser)"
-		variant 2
+		variant 1
 			"Roost"
 			"Barb" 4
+		variant 1
+			"Roost"
+			"Barb (Gatling)" 4
+
 	fleet "Large Independent"
 		fighters "free worlds fighter"
 		variant 3
@@ -1179,6 +1202,8 @@ event "southern carriers 4"
 			"Fury (Missile)"
 		variant 1
 			"Fury (Laser)"
+		variant 1
+			"Fury (Gatling)"
 		variant 2
 			"Berserker"
 		variant 2
@@ -1274,9 +1299,12 @@ event "southern carriers 4"
 			"Berserker" 2
 		variant 2
 			"Berserker (Afterburner)" 2
-		variant 2
+		variant 1
 			"Roost"
 			"Lance" 4
+		variant 1
+			"Roost"
+			"Lance (Gatling)" 4
 
 event "initial deployment 4"
 	date 17 9 3014
@@ -2051,6 +2079,12 @@ event "dreadnought deployment"
 			"Dreadnought"
 			"Argosy"
 			"Fury"
+		variant 3
+			"Skein"
+			"Finch" 6
+		variant 2
+			"Skein" 2
+			"Finch" 12
 
 
 
@@ -2167,8 +2201,6 @@ event "fw at war with Syndicate"
 	government Syndicate
 		"attitude toward"
 			"Free Worlds" -.3
-			"Republic" -.3
-			"Navy (Oathkeeper)" -.3
 			"Pirate" -.4
 			"Korath" -.5
 	system Rutilicus
@@ -2349,6 +2381,10 @@ event "pug invasion"
 		fleet "Large Pug" 2000
 	system Orvala
 		government Pug
+		fleet "Small Southern Merchants" 3000
+		fleet "Large Southern Merchants" 6000
+		fleet "Small Pug" 5000
+		fleet "Large Pug" 9000
 
 
 
@@ -2386,6 +2422,10 @@ event "pug invasion 2"
 		fleet "Large Pug" 2000
 	system Nocte
 		government Pug
+		fleet "Small Northern Merchants" 1500
+		fleet "Large Northern Merchants" 5000
+		fleet "Small Pug" 3000
+		fleet "Large Pug" 7000
 
 
 
@@ -2563,6 +2603,17 @@ event "pug flee"
 		fleet "Large Core Merchants" 600
 		fleet "Small Republic" 1600
 		fleet "Large Republic" 3000
+	system Nocte
+		fleet "Small Northern Merchants" 1500
+		fleet "Large Northern Merchants" 5000
+		fleet "Small Republic" 3000
+		fleet "Large Republic" 7000
+		fleet "Small Northern Pirates" 2500
+	system Orvala
+		fleet "Small Southern Merchants" 3000
+		fleet "Large Southern Merchants" 6000
+		fleet "Small Southern Pirates" 1000
+		fleet "Large Southern Pirates" 3000
 	system Deneb
 		fleet "Small Core Merchants" 5000
 		object
@@ -2744,6 +2795,14 @@ event "fwc southern liberation"
 		fleet "Large Free Worlds" 1700
 		fleet "Small Southern Pirates" 3000
 		fleet "Large Southern Pirates" 7000
+	system Lesath
+		fleet "Small Southern Merchants" 800
+		fleet "Large Southern Merchants" 1600
+		fleet "Small Free Worlds" 800
+		fleet "Large Free Worlds" 1100
+		fleet "Small Southern Pirates" 2000
+		fleet "Large Southern Pirates" 5000
+		fleet "Navy Surveillance" 4000
 
 
 
@@ -2940,6 +2999,10 @@ event "fwc pug invasion"
 		fleet "Large Pug" 2000
 	system Orvala
 		government Pug
+		fleet "Small Southern Merchants" 3000
+		fleet "Large Southern Merchants" 6000
+		fleet "Small Pug" 5000
+		fleet "Large Pug" 9000
 	system Altair
 		government Pug
 		fleet "Small Core Merchants" 400
@@ -2964,6 +3027,10 @@ event "fwc pug invasion"
 		fleet "Large Pug" 2500
 	system Nocte
 		government Pug
+		fleet "Small Northern Merchants" 1500
+		fleet "Large Northern Merchants" 5000
+		fleet "Small Pug" 3000
+		fleet "Large Pug" 7000
 
 
 

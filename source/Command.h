@@ -20,10 +20,15 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 // Class mapping key presses to specific commands / actions. The player can
 // change the mappings for most of these keys in the preferences panel.
+// A single Command object can represent multiple individual commands, e.g.
+// everything the AI wants a ship to do, or all keys the player is holding down.
 class Command {
 public:
+	// Empty command:
 	static const Command NONE;
+	// Main menu:
 	static const Command MENU;
+	// Ship controls:
 	static const Command FORWARD;
 	static const Command LEFT;
 	static const Command RIGHT;
@@ -41,21 +46,33 @@ public:
 	static const Command DEPLOY;
 	static const Command AFTERBURNER;
 	static const Command CLOAK;
+	// UI controls:
 	static const Command MAP;
 	static const Command INFO;
 	static const Command FULLSCREEN;
+	// Escort commands:
 	static const Command FIGHT;
 	static const Command GATHER;
 	static const Command HOLD;
+	// This command from the AI tells a ship not to jump or land yet even if it
+	// is in position to do so. (There is no key mapped to this command.)
 	static const Command WAIT;
+	// This command from the AI tells a ship that if possible, it should apply
+	// less than its full thrust in order to come to a complete stop.
 	static const Command STOP;
 	
 public:
+	// In the given text, replace any instances of command names (in angle
+	// brackets) with key names (in quotes).
+	static std::string ReplaceNamesWithKeys(const std::string &text);
+	
+public:
 	Command() = default;
-	// Assume SDL_Keycode is a signed int, so I don't need to include SDL.h.
+	// Create a command representing whatever command is mapped to the given
+	// keycode (if any).
 	explicit Command(int keycode);
 	
-	// Read the current keyboard state.
+	// Read the current keyboard state and set this object to reflect it.
 	void ReadKeyboard();
 	
 	// Load or save the keyboard preferences.
@@ -69,7 +86,7 @@ public:
 	const std::string &KeyName() const;
 	bool HasConflict() const;
 	
-	// Clear all commands (i.e. set to the default state).
+	// Reset this to an empty command.
 	void Clear();
 	// Clear, set, or check the given bits. This ignores the turn field.
 	void Clear(Command command);
@@ -78,7 +95,8 @@ public:
 	// Get the commands that are set in this and not in the given command.
 	Command AndNot(Command command) const;
 	
-	// Get or set the turn amount.
+	// Get or set the turn amount. The amount must be between -1 and 1, but it
+	// can be a fractional value to allow finer control.
 	void SetTurn(double amount);
 	double Turn() const;
 	// Get or set the fire commands.
@@ -90,7 +108,7 @@ public:
 	// Check if any bits are set in this command (including a nonzero turn).
 	explicit operator bool() const;
 	bool operator!() const;
-	// For sorting commands:
+	// This operator is just provided to allow commands to be used in a map.
 	bool operator<(const Command &command) const;
 	
 	// Get the commands that are set in either of these commands.
@@ -104,7 +122,10 @@ private:
 	
 	
 private:
+	// The key commands and weapons to fire are stored in a single bitmask, with
+	// 32 bits for key commands and 32 bits for individual weapons.
 	uint64_t state = 0;
+	// Turning amount is stored as a separate double to allow fractional values.
 	double turn = 0.;
 };
 

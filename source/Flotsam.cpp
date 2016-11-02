@@ -49,40 +49,34 @@ Flotsam::Flotsam(const Outfit *outfit, int count)
 void Flotsam::Place(const Ship &source)
 {
 	this->source = &source;
+	Place(source, Angle::Random().Unit() * (2. * Random::Real()) - 2. * source.Unit());
+}
+
+
+
+// Place flotsam coming from something other than a ship. Optionally specify
+// the maximum relative velocity, or the exact relative velocity as a vector.
+void Flotsam::Place(const Body &source, double maxVelocity)
+{
+	Place(source, Angle::Random().Unit() * (maxVelocity * Random::Real()));
+}
+
+
+
+void Flotsam::Place(const Body &source, const Point &dv)
+{
 	position = source.Position();
-	velocity = source.Velocity() + Angle::Random().Unit() * (2. * Random::Real()) - 2. * source.Unit();
-	facing = Angle::Random();
+	velocity = source.Velocity() + dv;
+	angle = Angle::Random();
 	spin = Angle::Random(10.);
-	animation = Animation(SpriteSet::Get("effect/box"), 4. * (1. + Random::Real()));
-}
-
-
-
-// Get the animation for this object.
-const Animation &Flotsam::GetSprite() const
-{
-	return animation;
-}
-
-
-
-const Point &Flotsam::Position() const
-{
-	return position;
-}
-
-
-
-const Point &Flotsam::Velocity() const
-{
-	return velocity;
-}
-
-
-
-const Angle &Flotsam::Facing() const
-{
-	return facing;
+	
+	// Special case: allow a harvested outfit item to define its flotsam sprite
+	// using the field that usually defines a secondary weapon's icon.
+	if(outfit && outfit->FlotsamSprite())
+		SetSprite(outfit->FlotsamSprite());
+	else
+		SetSprite(SpriteSet::Get("effect/box"));
+	SetFrameRate(4. * (1. + Random::Real()));
 }
 
 
@@ -91,18 +85,21 @@ const Angle &Flotsam::Facing() const
 bool Flotsam::Move(list<Effect> &effects)
 {
 	position += velocity;
-	facing += spin;
+	angle += spin;
 	--lifetime;
 	if(lifetime > 0)
 		return true;
 	
 	// This flotsam has reached the end of its life. 
-	const Effect *effect = GameData::Effects().Get("smoke");
-	effects.push_back(*effect);
+	const Effect *effect = GameData::Effects().Get("flotsam death");
+	for(int i = 0; i < 3; ++i)
+	{
+		effects.push_back(*effect);
 	
-	Angle angle = Angle::Random();
-	velocity += angle.Unit() * Random::Real();
-	effects.back().Place(position, velocity, angle);
+		Angle smokeAngle = Angle::Random();
+		velocity += smokeAngle.Unit() * Random::Real();
+		effects.back().Place(position, velocity, smokeAngle);
+	}
 	
 	return false;
 }
@@ -141,7 +138,7 @@ int Flotsam::Count() const
 
 // This is how big one "unit" of the flotsam is (in tons). If a ship has
 // less than this amount of space, it can't pick up anything here.
-int Flotsam::UnitSize() const
+double Flotsam::UnitSize() const
 {
 	return outfit ? outfit->Get("mass") : 1;
 }

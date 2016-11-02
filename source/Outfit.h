@@ -13,7 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef OUTFIT_H_
 #define OUTFIT_H_
 
-#include "Animation.h"
+#include "Body.h"
 #include "Weapon.h"
 
 #include <map>
@@ -65,11 +65,13 @@ public:
 	void Add(const std::string &attribute, double value = 1.);
 	void Reset(const std::string &attribute, double value = 0.);
 	
-	// Get this outfit's engine flare sprite, if any.
-	const std::vector<std::pair<Animation, int>> &FlareSprites() const;
+	// Get this outfit's engine flare sprites, if any.
+	const std::vector<std::pair<Body, int>> &FlareSprites() const;
 	const std::map<const Sound *, int> &FlareSounds() const;
 	// Get the afterburner effect, if any.
 	const std::map<const Effect *, int> &AfterburnerEffects() const;
+	// Get the sprite this outfit uses when dumped into space.
+	const Sprite *FlotsamSprite() const;
 	
 	
 private:
@@ -81,9 +83,10 @@ private:
 	
 	std::map<std::string, double> attributes;
 	
-	std::vector<std::pair<Animation, int>> flareSprites;
+	std::vector<std::pair<Body, int>> flareSprites;
 	std::map<const Sound *, int> flareSounds;
 	std::map<const Effect *, int> afterburnerEffects;
+	const Sprite *flotsamSprite = nullptr;
 };
 
 

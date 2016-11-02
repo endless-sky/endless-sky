@@ -88,7 +88,7 @@ outfit "Korath Jak'torbal Thruster"
 	"thrust" 63.1
 	"thrusting energy" 5.9
 	"thrusting heat" 14.3
-	"flare sprite" "effect/plasma flare/big"
+	"flare sprite" "effect/plasma flare/large"
 		"frame rate" 8
 	"flare sound" "plasma large"
 	description "This engine is used in the Korath capital ships."
@@ -123,3 +123,55 @@ outfit "NDR-114 Android"
 	"required crew" -1
 	unplunderable 1
 	description "For the price of more than two year's salary, you can replace one of your crew members with a robotic counterpart. Androids possess sufficient intelligence to perform most work, but each ship still needs a human captain. And, due to long-standing convention, robots are not allowed to take part in hand to hand combat."
+
+#deprecated for 0.9.2 due to long outfit name
+outfit "Bullfrog Anti-Missile Turret"
+	category "Turrets"
+	cost 55000
+	thumbnail "outfit/anti-missile hai"
+	"mass" 10
+	"outfit space" -10
+	"weapon capacity" -10
+	"turret mounts" -1
+	weapon
+		"hit effect" "small anti-missile"
+		"anti-missile" 12
+		"velocity" 150
+		"lifetime" 1
+		"reload" 20
+		"firing energy" 12
+		"firing heat" 5
+		"stream"
+	description ""
+
+outfit "Chameleon Anti-Missile Turret"
+	category "Turrets"
+	cost 140000
+	thumbnail "outfit/heavy anti-missile hai"
+	"mass" 22
+	"outfit space" -22
+	"weapon capacity" -22
+	"turret mounts" -1
+	weapon
+		"hit effect" "large anti-missile"
+		"anti-missile" 16
+		"velocity" 200
+		"lifetime" 1
+		"reload" 15
+		"firing energy" 23
+		"firing heat" 6
+		"stream"
+	description ""
+
+# Because of "big explosion" being renamed to "large explosion":
+effect "big explosion"
+	sprite "effect/explosion/large"
+		"no repeat"
+		"frame rate" 15
+	sound "explosion large"
+	"lifetime" 32
+	"random angle" 360
+	"random velocity" .8
+	"random spin" 4
+	"random frame rate" 5
+	"velocity scale" .4

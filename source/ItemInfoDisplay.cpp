@@ -93,7 +93,7 @@ void ItemInfoDisplay::DrawTooltips() const
 	if(!hoverCount || hoverCount-- < HOVER_TIME || !hoverText.Height())
 		return;
 	
-	Point textSize(hoverText.WrapWidth(), hoverText.Height());
+	Point textSize(hoverText.WrapWidth(), hoverText.Height() - hoverText.ParagraphBreak());
 	Point boxSize = textSize + Point(20., 20.);
 	
 	Point topLeft = hoverPoint;
@@ -112,6 +112,14 @@ void ItemInfoDisplay::DrawTooltips() const
 void ItemInfoDisplay::Hover(const Point &point)
 {
 	hoverPoint = point;
+	hasHover = true;
+}
+
+
+
+void ItemInfoDisplay::ClearHover()
+{
+	hasHover = false;
 }
 
 
@@ -161,6 +169,9 @@ Point ItemInfoDisplay::Draw(Point point, const vector<string> &labels, const vec
 
 void ItemInfoDisplay::CheckHover(const Table &table, const string &label) const
 {
+	if(!hasHover)
+		return;
+	
 	Point distance = hoverPoint - table.GetCenterPoint();
 	Point radius = .5 * table.GetRowSize();
 	if(abs(distance.X()) < radius.X() && abs(distance.Y()) < radius.Y())

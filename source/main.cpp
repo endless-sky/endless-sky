@@ -47,6 +47,7 @@ using namespace std;
 
 void PrintHelp();
 void PrintVersion();
+void AdjustViewport(SDL_Window *window);
 int DoError(string message, SDL_Window *window = nullptr, SDL_GLContext context = nullptr);
 void Cleanup(SDL_Window *window, SDL_GLContext context);
 Conversation LoadConversation();
@@ -100,39 +101,27 @@ int main(int argc, char *argv[])
 		
 		Preferences::Load();
 		Uint32 flags = SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE | SDL_WINDOW_SHOWN | SDL_WINDOW_ALLOW_HIGHDPI;
-		if(Preferences::Has("fullscreen"))
+		bool isFullscreen = Preferences::Has("fullscreen");
+		if(isFullscreen)
 			flags |= SDL_WINDOW_FULLSCREEN_DESKTOP;
+		else if(Preferences::Has("maximized"))
+			flags |= SDL_WINDOW_MAXIMIZED;
 		
 		// Make the window just slightly smaller than the monitor resolution.
 		int maxWidth = mode.w;
 		int maxHeight = mode.h;
-		// Restore this after toggling fullscreen.
-		int restoreWidth = 0;
-		int restoreHeight = 0;
 		if(maxWidth < 640 || maxHeight < 480)
 			return DoError("Monitor resolution is too small!");
 		
+		// Decide how big the window should be.
+		int windowWidth = (maxWidth - 100);
+		int windowHeight = (maxHeight - 100);
 		if(Screen::RawWidth() && Screen::RawHeight())
 		{
-			// Never allow the saved screen width to be leaving less than 100
-			// pixels free around the window. This avoids the problem where you
-			// maximize without going full-screen, and next time the window pops
-			// up you can't access the resize control because it is offscreen.
-			Screen::SetRaw(
-				min(Screen::RawWidth(), (maxWidth - 100)),
-				min(Screen::RawHeight(), (maxHeight - 100)));
-			if(flags & SDL_WINDOW_FULLSCREEN_DESKTOP)
-			{
-				restoreWidth = Screen::RawWidth();
-				restoreHeight = Screen::RawHeight();
-				Screen::SetRaw(maxWidth, maxHeight);
-			}
+			// Load the previously saved window dimensions.
+			windowWidth = min(windowWidth, Screen::RawWidth());
+			windowHeight = min(windowHeight, Screen::RawHeight());
 		}
-		else
-			Screen::SetRaw(maxWidth - 100, maxHeight - 100);
-		// Make sure the zoom factor is not set too high for the full UI to fit.
-		if(Screen::Height() < 700)
-			Screen::SetZoom(100);
 		
 		// Create the window.
 		SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
@@ -144,7 +133,7 @@ int main(int argc, char *argv[])
 		
 		SDL_Window *window = SDL_CreateWindow("Endless Sky",
 			SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
-			Screen::RawWidth(), Screen::RawHeight(), flags);
+			windowWidth, windowHeight, flags);
 		if(!window)
 			return DoError("Unable to create window!");
 		
@@ -192,17 +181,10 @@ int main(int argc, char *argv[])
 		glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
 		
 		GameData::LoadShaders();
-		
-		{
-			// Check whether this is a high-DPI window.
-			int width = 0;
-			int height = 0;
-			SDL_GL_GetDrawableSize(window, &width, &height);
-			Screen::SetHighDPI(width > Screen::RawWidth() && height > Screen::RawHeight());
-			
-			// Fix a possible race condition leading to the wrong window dimensions.
-			glViewport(0, 0, width, height);
-		}
+		// Make sure the screen size and viewport are set correctly.
+		AdjustViewport(window);
+		if(!isFullscreen)
+			SDL_GetWindowSize(window, &windowWidth, &windowHeight);
 		
 		
 		UI gamePanels;
@@ -266,39 +248,26 @@ int main(int argc, char *argv[])
 				}
 				else if(event.type == SDL_WINDOWEVENT && event.window.event == SDL_WINDOWEVENT_SIZE_CHANGED)
 				{
-					int width = event.window.data1 & ~1;
-					int height = event.window.data2 & ~1;
-					if(width != Screen::RawWidth() || height != Screen::RawHeight())
-					{
-						Screen::SetRaw(width, height);
-						if((event.window.data1 | event.window.data2) & 1)
-							SDL_SetWindowSize(window, Screen::RawWidth(), Screen::RawHeight());
-						SDL_GL_GetDrawableSize(window, &width, &height);
-						glViewport(0, 0, width, height);
-					}
+					// The window has been resized. Adjust the raw screen size
+					// and the OpenGL viewport to match.
+					AdjustViewport(window);
+					if(!isFullscreen)
+						SDL_GetWindowSize(window, &windowWidth, &windowHeight);
 				}
 				else if(event.type == SDL_KEYDOWN
 						&& (Command(event.key.keysym.sym).Has(Command::FULLSCREEN)
 						|| (event.key.keysym.sym == SDLK_RETURN && (event.key.keysym.mod & KMOD_ALT))))
 				{
-					if(restoreWidth)
+					// Toggle full-screen mode. This will generate a window size
+					// change event, so no need to adjust the viewport here.
+					isFullscreen = !isFullscreen;
+					if(!isFullscreen)
 					{
 						SDL_SetWindowFullscreen(window, 0);
-						Screen::SetRaw(restoreWidth, restoreHeight);
-						SDL_SetWindowSize(window, Screen::RawWidth(), Screen::RawHeight());
-						restoreWidth = 0;
-						restoreHeight = 0;
+						SDL_SetWindowSize(window, windowWidth, windowHeight);
 					}
 					else
-					{
-						restoreWidth = Screen::RawWidth();
-						restoreHeight = Screen::RawHeight();
-						Screen::SetRaw(maxWidth, maxHeight);
 						SDL_SetWindowFullscreen(window, SDL_WINDOW_FULLSCREEN_DESKTOP);
-					}
-					int width, height;
-					SDL_GL_GetDrawableSize(window, &width, &height);
-					glViewport(0, 0, width, height);
 				}
 				else if(activeUI.Handle(event))
 				{
@@ -322,12 +291,13 @@ int main(int argc, char *argv[])
 		if(player.GetPlanet())
 			player.Save();
 		
-		// The Preferences class reads the screen dimensions, so update them if
-		// the window is full screen:
-		bool isFullscreen = (restoreWidth != 0);
+		// Remember the window state.
+		bool isMaximized = (SDL_GetWindowFlags(window) & SDL_WINDOW_MAXIMIZED);
+		Preferences::Set("maximized", isMaximized);		
 		Preferences::Set("fullscreen", isFullscreen);
-		if(isFullscreen)
-			Screen::SetRaw(restoreWidth, restoreHeight);
+		// The Preferences class reads the screen dimensions, so update them to
+		// match the actual window size.
+		Screen::SetRaw(windowWidth, windowHeight);
 		Preferences::Save();
 		
 		Cleanup(window, context);
@@ -365,11 +335,42 @@ void PrintHelp()
 void PrintVersion()
 {
 	cerr << endl;
-	cerr << "Endless Sky 0.9.1" << endl;
+	cerr << "Endless Sky 0.9.4" << endl;
 	cerr << "License GPLv3+: GNU GPL version 3 or later: <https://gnu.org/licenses/gpl.html>" << endl;
 	cerr << "This is free software: you are free to change and redistribute it." << endl;
 	cerr << "There is NO WARRANTY, to the extent permitted by law." << endl;
 	cerr << endl;
+}
+
+
+
+void AdjustViewport(SDL_Window *window)
+{
+	// Get the window's size in screen coordinates.
+	int width, height;
+	SDL_GetWindowSize(window, &width, &height);
+	
+	// Round the window size up to a multiple of 2, even if this
+	// means one pixel of the display will be clipped.
+	int roundWidth = (width + 1) & ~1;
+	int roundHeight = (height + 1) & ~1;
+	Screen::SetRaw(roundWidth, roundHeight);
+	
+	// Find out the drawable dimensions. If this is a high- DPI display, this
+	// may be larger than the window.
+	int drawWidth, drawHeight;
+	SDL_GL_GetDrawableSize(window, &drawWidth, &drawHeight);
+	Screen::SetHighDPI(drawWidth > width || drawHeight > height);	
+	
+	// Set the viewport to go off the edge of the window, if necessary, to get
+	// everything pixel-aligned.
+	drawWidth = (drawWidth * roundWidth) / width;
+	drawHeight = (drawHeight * roundHeight) / height;
+	glViewport(0, 0, drawWidth, drawHeight);
+	
+	// Make sure the zoom factor is not set too high for the full UI to fit.
+	if(Screen::Height() < 700)
+		Screen::SetZoom(100);
 }
 
 

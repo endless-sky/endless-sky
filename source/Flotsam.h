@@ -14,7 +14,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #define FLOTSAM_H_
 
 #include "Angle.h"
-#include "Animation.h"
+#include "Body.h"
 #include "Point.h"
 
 #include <list>
@@ -26,22 +26,28 @@ class Ship;
 
 
 
-class Flotsam {
+class Flotsam : public Body {
 public:
 	// Constructors for flotsam carrying either a commodity or an outfit.
 	Flotsam(const std::string &commodity, int count);
 	Flotsam(const Outfit *outfit, int count);
 	
+	/* Functions provided by the Body base class:
+	Frame GetFrame(int step = -1) const;
+	const Point &Position() const;
+	const Point &Velocity() const;
+	const Angle &Facing() const;
+	Point Unit() const;
+	*/
+	
 	// Place this flotsam, and set the given ship as its source. This is a
 	// separate function because a ship may queue up flotsam to dump but take
 	// several frames before it finishes dumping it all.
 	void Place(const Ship &source);
-	
-	// Get the animation for this object.
-	const Animation &GetSprite() const;
-	const Point &Position() const;
-	const Point &Velocity() const;
-	const Angle &Facing() const;
+	// Place flotsam coming from something other than a ship. Optionally specify
+	// the maximum relative velocity, or the exact relative velocity as a vector.
+	void Place(const Body &source, double maxVelocity = .5);
+	void Place(const Body &source, const Point &dv);
 	
 	// Move the object one time-step forward.
 	bool Move(std::list<Effect> &effects);
@@ -54,21 +60,17 @@ public:
 	int Count() const;
 	// This is how big one "unit" of the flotsam is (in tons). If a ship has
 	// less than this amount of space, it can't pick up anything here.
-	int UnitSize() const;
+	double UnitSize() const;
 	
 	
 private:
-	Animation animation;
-	Point position;
-	Point velocity;
-	Angle facing;
 	Angle spin;
-	int lifetime;
+	int lifetime = 0;
 	
 	const Ship *source = nullptr;
 	std::string commodity;
 	const Outfit *outfit = nullptr;
-	int count;
+	int count = 0;
 };
 
 

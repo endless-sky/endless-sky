@@ -81,8 +81,6 @@
 		<Unit filename="source/Account.h" />
 		<Unit filename="source/Angle.cpp" />
 		<Unit filename="source/Angle.h" />
-		<Unit filename="source/Animation.cpp" />
-		<Unit filename="source/Animation.h" />
 		<Unit filename="source/Armament.cpp" />
 		<Unit filename="source/Armament.h" />
 		<Unit filename="source/AsteroidField.cpp" />
@@ -93,6 +91,8 @@
 		<Unit filename="source/BankPanel.h" />
 		<Unit filename="source/BoardingPanel.cpp" />
 		<Unit filename="source/BoardingPanel.h" />
+		<Unit filename="source/Body.cpp" />
+		<Unit filename="source/Body.h" />
 		<Unit filename="source/CaptureOdds.cpp" />
 		<Unit filename="source/CaptureOdds.h" />
 		<Unit filename="source/CargoHold.cpp" />
@@ -116,6 +116,8 @@
 		<Unit filename="source/DataWriter.h" />
 		<Unit filename="source/Date.cpp" />
 		<Unit filename="source/Date.h" />
+		<Unit filename="source/Depreciation.cpp" />
+		<Unit filename="source/Depreciation.h" />
 		<Unit filename="source/Dialog.cpp" />
 		<Unit filename="source/Dialog.h" />
 		<Unit filename="source/DistanceMap.cpp" />
@@ -138,6 +140,8 @@
 		<Unit filename="source/Fleet.h" />
 		<Unit filename="source/Flotsam.cpp" />
 		<Unit filename="source/Flotsam.h" />
+		<Unit filename="source/FogShader.cpp" />
+		<Unit filename="source/FogShader.h" />
 		<Unit filename="source/Font.cpp" />
 		<Unit filename="source/Font.h" />
 		<Unit filename="source/FontSet.cpp" />
@@ -156,6 +160,8 @@
 		<Unit filename="source/Government.h" />
 		<Unit filename="source/HailPanel.cpp" />
 		<Unit filename="source/HailPanel.h" />
+		<Unit filename="source/Hardpoint.cpp" />
+		<Unit filename="source/Hardpoint.h" />
 		<Unit filename="source/HiringPanel.cpp" />
 		<Unit filename="source/HiringPanel.h" />
 		<Unit filename="source/ImageBuffer.cpp" />
@@ -192,6 +198,8 @@
 		<Unit filename="source/MenuPanel.h" />
 		<Unit filename="source/Messages.cpp" />
 		<Unit filename="source/Messages.h" />
+		<Unit filename="source/Minable.cpp" />
+		<Unit filename="source/Minable.h" />
 		<Unit filename="source/Mission.cpp" />
 		<Unit filename="source/Mission.h" />
 		<Unit filename="source/MissionAction.cpp" />
@@ -242,6 +250,8 @@
 		<Unit filename="source/Radar.h" />
 		<Unit filename="source/Random.cpp" />
 		<Unit filename="source/Random.h" />
+		<Unit filename="source/Rectangle.cpp" />
+		<Unit filename="source/Rectangle.h" />
 		<Unit filename="source/RingShader.cpp" />
 		<Unit filename="source/RingShader.h" />
 		<Unit filename="source/Sale.h" />

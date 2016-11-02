@@ -31,6 +31,7 @@ class Galaxy;
 class GameEvent;
 class Government;
 class Interface;
+class Minable;
 class Mission;
 class Outfit;
 class Person;
@@ -74,6 +75,9 @@ public:
 	static void AddPurchase(const System &system, const std::string &commodity, int tons);
 	// Apply the given change to the universe.
 	static void Change(const DataNode &node);
+	// Update the neighbor lists of all the systems. This must be done any time
+	// that a change creates or moves a system.
+	static void UpdateNeighbors();
 	
 	static const Set<Color> &Colors();
 	static const Set<Conversation> &Conversations();
@@ -83,6 +87,7 @@ public:
 	static const Set<Galaxy> &Galaxies();
 	static const Set<Government> &Governments();
 	static const Set<Interface> &Interfaces();
+	static const Set<Minable> &Minables();
 	static const Set<Mission> &Missions();
 	static const Set<Outfit> &Outfits();
 	static const Set<Person> &Persons();
@@ -98,9 +103,14 @@ public:
 	static const std::vector<Trade::Commodity> &Commodities();
 	static const std::vector<Trade::Commodity> &SpecialCommodities();
 	
+	// Custom messages to be shown when trying to land on certain stellar objects.
+	static bool HasLandingMessage(const Sprite *sprite);
+	static const std::string &LandingMessage(const Sprite *sprite);
+	
 	static const StarField &Background();
 	
 	static const std::string &Tooltip(const std::string &label);
+	static std::string HelpMessage(const std::string &name);
 	
 	
 private:

@@ -90,7 +90,7 @@ void MenuPanel::Step()
 
 
 
-void MenuPanel::Draw() const
+void MenuPanel::Draw()
 {
 	glClear(GL_COLOR_BUFFER_BIT);
 	GameData::Background().Draw(Point(), Point());
@@ -103,7 +103,7 @@ void MenuPanel::Draw() const
 		if(player.Flagship())
 		{
 			const Ship &flagship = *player.Flagship();
-			info.SetSprite("ship sprite", flagship.GetSprite().GetSprite());
+			info.SetSprite("ship sprite", flagship.GetSprite());
 			info.SetString("ship", flagship.Name());
 		}
 		if(player.GetSystem())
@@ -125,8 +125,9 @@ void MenuPanel::Draw() const
 		info.SetString("pilot", "No Pilot Loaded");
 	}
 	
-	const Interface *menu = GameData::Interfaces().Get("main menu");
-	menu->Draw(info);
+	GameData::Interfaces().Get("menu background")->Draw(info, this);
+	GameData::Interfaces().Get("main menu")->Draw(info, this);
+	GameData::Interfaces().Get("menu player info")->Draw(info, this);
 	
 	if(progress == 60)
 		alpha -= .02f;
@@ -202,17 +203,6 @@ bool MenuPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 		GetUI()->Quit();
 	else
 		return false;
-	
-	return true;
-}
-
-
-
-bool MenuPanel::Click(int x, int y)
-{
-	char key = GameData::Interfaces().Get("main menu")->OnClick(Point(x, y));
-	if(key)
-		return DoKey(key);
 	
 	return true;
 }

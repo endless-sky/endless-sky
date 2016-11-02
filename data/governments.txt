@@ -11,9 +11,6 @@
 government "Alpha"
 	swizzle 1
 	"player reputation" -1000
-	"attitude toward"
-		"Republic" -.1
-		"Navy (Oathkeeper)" -.1
 	"bribe" 0
 
 government "Author"
@@ -69,7 +66,7 @@ government "Free Worlds"
 
 government "Hai"
 	swizzle 0
-	color .69 .33 .82
+	color .84 .42 .81
 	
 	"player reputation" 0
 	"attitude toward"
@@ -81,13 +78,14 @@ government "Hai"
 
 government "Hai (Unfettered)"
 	swizzle 4
-	color .84 .42 .81
+	color .69 .33 .82
 	
 	"player reputation" -1000
 	"attitude toward"
 		"Hai" -.1
 		"Wanderer" -.1
 		"Pug" -.1
+		"Merchant" -.1
 	"bribe" .02
 	"fine" 0
 	"hostile hail" "hostile unfettered"
@@ -113,6 +111,9 @@ government "Korath"
 		"Kor Sestor" -.1
 	
 	"player reputation" -10
+
+government "Korath Nanobots"
+	"player reputation" -1000
 
 government "Kor Efret"
 	swizzle 4
@@ -172,6 +173,7 @@ government "Navy Intelligence"
 	swizzle 0
 	"attitude toward"
 		"Syndicate" -.1
+		"Pirate" -.3
 
 government "Navy (Oathkeeper)"
 	swizzle 0
@@ -179,6 +181,7 @@ government "Navy (Oathkeeper)"
 	
 	"player reputation" 100
 	"attitude toward"
+		"Alpha" -.3
 		"Merchant" .25
 		"Militia" .1
 		"Pirate" -.3
@@ -251,6 +254,7 @@ government "Republic"
 	
 	"player reputation" 2
 	"attitude toward"
+		"Alpha" -.3
 		"Merchant" .25
 		"Militia" .1
 		"Pirate" -.3

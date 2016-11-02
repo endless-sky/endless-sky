@@ -274,6 +274,7 @@ mission "FW Reconciliation 2A"
 	landing
 	source Valhalla
 	destination Farpoint
+	clearance
 	passengers 2
 	to offer
 		has "FW Reconciliation 2: done"
@@ -353,6 +354,7 @@ mission "FW Reconciliation 2C"
 	landing
 	source Stormhold
 	destination Farpoint
+	clearance
 	passengers 2
 	to offer
 		has "FW Reconciliation 2B: done"
@@ -374,6 +376,7 @@ mission "FW Defend Farpoint"
 	description "Assist the Oathkeepers in defending <planet> from a pirate attack, then land back on the planet."
 	autosave
 	source Farpoint
+	clearance
 	passengers 2
 	to offer
 		has "FW Reconciliation 2C: done"
@@ -1429,9 +1432,9 @@ mission "FW Pug 3: Quarg"
 			
 			label balance
 			`	"War is a game to the Pug," the Quarg says. "They are a strange species. Even if they start a war, their goal may not be to win it, but to lose in a certain way. We have seen them lose battles against species far less advanced than your own, even though they had weapons that would have guaranteed them victory. If they want war, you must play their game, and if you play their game, they may allow you to win."`
-			`	"That makes no sense," says Freya. "They would die for the sake of a game?"`
+			`	"That makes no sense," says Alondo. "They would die for the sake of a game?"`
 			`	The Quarg pauses for a moment as if struggling for words. "I am myself, and also I am Quarg. You are yourselves, and also you are human. But we think perhaps a Pug is Pug first, and then also itself."`
-			`	"Their identity is communal, rather than individual?" says Freya.`
+			`	"Their identity is communal, rather than individual?" says Alondo.`
 			`	"Indeed. And because they are so deeply connected, they perceive all things as being connected to them. At least, that is the best understanding we have been able to gain of their species."`
 			choice
 				`	"Thank you for your time."`
@@ -1532,7 +1535,7 @@ mission "FW Pug 3C"
 			
 			label yes
 			`	The supervisor seems irked that his engineers are more interested in exploring nifty new ship technology than in the task at hand, but he grudgingly offers to give you a tour of the Navy Yard in exchange for letting his engineers take a closer look at the Dreadnoughts. Freya whispers to you, "Just think of this as another step toward peace and reconciliation."`
-			`	The new shipyard is some distance away from the old one, which is still in ruins, a radioactive crater a few miles away from the spaceport. "The attack happened at night," says the supervisor. "Three hundred and forty-seven people were killed. If the attack had been during working hours, that number would have been in the thousands. We're recovering some metal from the old shipyard, but other than that it's a total loss. The radiation is slowly dying down, though."`
+			`	The new shipyard is some distance away from the old one, which is still in ruins, a radioactive crater a few kilometers away from the spaceport. "The attack happened at night," says the supervisor. "Three hundred and forty-seven people were killed. If the attack had been during working hours, that number would have been in the thousands. We're recovering some metal from the old shipyard, but other than that it's a total loss. The radiation is slowly dying down, though."`
 			`	There is deep anger in his voice as he speaks. You are glad that the Free Worlds have been proved innocent of involvement in the attack, but you suspect that on the worlds that were bombed, most people will not accept peace with the Syndicate on any terms except the full surrender of all the Syndicate personnel who were responsible.`
 			`	When they're done giving you the tour, you return to the spaceport. The supervisor and the team of engineers wish you the best of luck, and depart.`
 				accept
@@ -1834,6 +1837,7 @@ mission "FW Pug 4B: Reinforcements"
 	npc kill
 		personality disables
 		system Markab
+		government Syndicate
 		fleet
 			names "syndicate capital"
 			variant
@@ -2378,6 +2382,7 @@ mission "FW Syndicate Extremists 1B"
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
+		"reputation: Syndicate (Extremist)" = -1000
 		event "battle of algenib"
 		outfit "Cloaking Device" 1
 		conversation

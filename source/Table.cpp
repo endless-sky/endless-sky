@@ -16,6 +16,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Font.h"
 #include "FontSet.h"
 #include "Format.h"
+#include "Rectangle.h"
 
 using namespace std;
 
@@ -240,6 +241,13 @@ Point Table::GetCenterPoint() const
 Point Table::GetRowSize() const
 {
 	return rowSize;
+}
+
+
+
+Rectangle Table::GetRowBounds() const
+{
+	return Rectangle(GetCenterPoint(), GetRowSize());
 }
 
 

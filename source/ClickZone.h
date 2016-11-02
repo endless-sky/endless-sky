@@ -14,46 +14,44 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #define CLICK_ZONE_H_
 
 #include "Point.h"
+#include "Rectangle.h"
 
 #include <cmath>
 
 
 
+// This is a simple template class defining a rectangular region in the UI that
+// may take action if it is clicked on. The region stores a single data object
+// that identifies it or identifies the action to take.
 template <class Type>
-class ClickZone {
+class ClickZone : public Rectangle {
 public:
-	ClickZone(Point center, Point size, Type value = 0);
+	// Constructor. The "dimensions" are the full width and height of the zone.
+	ClickZone(const Rectangle &rect, Type value = 0);
+	ClickZone(Point center, Point dimensions, Type value = 0);
 	
-	bool Contains(Point point) const;
+	// Retrieve the value associated with this zone.
 	Type Value() const;
-	
-	const Point &Center() const;
-	const Point &Size() const;
 	
 	
 private:
-	Point center;
-	Point size;
-	
 	Type value;
 };
 
 
 
 template <class Type>
-ClickZone<Type>::ClickZone(Point center, Point size, Type value)
-	: center(center), size(size * .5), value(value)
+ClickZone<Type>::ClickZone(Point center, Point dimensions, Type value)
+	: Rectangle(center, dimensions), value(value)
 {
 }
 
 
-	
+
 template <class Type>
-bool ClickZone<Type>::Contains(Point point) const
+ClickZone<Type>::ClickZone(const Rectangle &rect, Type value)
+	: Rectangle(rect), value(value)
 {
-	point -= center;
-	
-	return (std::fabs(point.X()) < size.X() && std::fabs(point.Y()) < size.Y());
 }
 
 
@@ -62,22 +60,6 @@ template <class Type>
 Type ClickZone<Type>::Value() const
 {
 	return value;
-}
-
-
-
-template <class Type>
-const Point &ClickZone<Type>::Center() const
-{
-	return center;
-}
-
-
-
-template <class Type>
-const Point &ClickZone<Type>::Size() const
-{
-	return size;
 }
 
 

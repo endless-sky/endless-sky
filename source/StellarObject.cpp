@@ -29,32 +29,9 @@ StellarObject::StellarObject()
 	distance(0.), speed(0.), offset(0.), parent(-1),
 	message(nullptr), isStar(false), isStation(false), isMoon(false)
 {
-}
-
-
-
-// Some objects do not have sprites, because they are just an orbital
-// center for two or more other objects.
-const Animation &StellarObject::GetSprite() const
-{
-	return animation;
-}
-
-
-
-// Get this object's position on the date most recently passed to this
-// system's SetDate() function.
-const Point &StellarObject::Position() const
-{
-	return position;
-}
-
-
-
-// Get the unit vector representing the rotation of this object.
-const Point &StellarObject::Unit() const
-{
-	return unit;
+	// Unlike ships and projectiles, stellar objects are not drawn shrunk to half size,
+	// because they do not need to be so sharp.
+	zoom = 2.;
 }
 
 
@@ -63,8 +40,8 @@ const Point &StellarObject::Unit() const
 double StellarObject::Radius() const
 {
 	double radius = -1.;
-	if(!animation.IsEmpty())
-		radius = .5 * min(animation.Width(), animation.Height());
+	if(HasSprite())
+		radius = .5 * min(Width(), Height());
 	
 	// Special case: stars may have a huge cloud around them, but only count the
 	// core of the cloud as part of the radius.
@@ -99,13 +76,15 @@ const string &StellarObject::Name() const
 // explaining why (e.g. too hot, too cold, etc.).
 const string &StellarObject::LandingMessage() const
 {
-	if(!planet && Radius() >= 130.)
-	{
-		static const string GAS = "You cannot land on a gas giant.";
-		return GAS;
-	}
 	static const string EMPTY;
-	return (message) ? *message : EMPTY;
+	if(planet)
+		return EMPTY;
+	
+	// Check if there's a custom message for this sprite type.
+	if(GameData::HasLandingMessage(GetSprite()))
+		return GameData::LandingMessage(GetSprite());
+	
+	return (message ? *message : EMPTY);
 }
 
 

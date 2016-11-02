@@ -21,6 +21,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 using namespace std;
 
 namespace {
+	// For tracking the player's average income, store daily net worth over this
+	// number of days.
 	static const unsigned HISTORY = 100;
 }
 
@@ -34,13 +36,14 @@ Account::Account()
 
 
 
-// Load or save account data.
+// Load account information from a data file (saved game or starting conditions).
 void Account::Load(const DataNode &node)
 {
 	credits = 0;
 	salariesOwed = 0;
 	creditScore = 400;
 	history.clear();
+	mortgages.clear();
 	
 	for(const DataNode &child : node)
 	{
@@ -63,6 +66,7 @@ void Account::Load(const DataNode &node)
 
 
 
+// Write account information to a saved game file.
 void Account::Save(DataWriter &out) const
 {
 	out.Write("account");
@@ -89,7 +93,7 @@ void Account::Save(DataWriter &out) const
 
 
 
-// Get or change the player's credits.
+// How much the player currently has in the bank.
 int64_t Account::Credits() const
 {
 	return credits;
@@ -97,6 +101,8 @@ int64_t Account::Credits() const
 
 
 
+// Give the player credits (or pass  negative number to subtract). If subtracting,
+// the calling function needs to check that this will not result in negative credits.
 void Account::AddCredits(int64_t value)
 {
 	credits += value;
@@ -104,6 +110,7 @@ void Account::AddCredits(int64_t value)
 
 
 
+// Pay down extra principal on a mortgage.
 void Account::PayExtra(int mortgage, int64_t amount)
 {
 	if(static_cast<unsigned>(mortgage) >= mortgages.size() || amount > credits
@@ -113,6 +120,8 @@ void Account::PayExtra(int mortgage, int64_t amount)
 	mortgages[mortgage].PayExtra(amount);
 	credits -= amount;
 	
+	// If this payment was for the entire remaining amount in the mortgage,
+	// remove it from the list.
 	if(!mortgages[mortgage].Principal())
 		mortgages.erase(mortgages.begin() + mortgage);
 }
@@ -124,15 +133,19 @@ string Account::Step(int64_t assets, int64_t salaries)
 {
 	ostringstream out;
 	
+	// Keep track of what payments were made and whether any could not be made.
 	salariesOwed += salaries;
 	bool hasDebts = !mortgages.empty() || salariesOwed;
 	bool paid = true;
 	
+	// Crew salaries take highest priority.
 	int64_t salariesPaid = salariesOwed;
 	if(salariesOwed)
 	{
 		if(salariesOwed > credits)
 		{
+			// If you can't pay the full salary amount, still pay some of it and
+			// remember how much back wages you owe to your crew.
 			salariesPaid = max(credits, static_cast<int64_t>(0));
 			salariesOwed -= salariesPaid;
 			credits -= salariesPaid;
@@ -146,6 +159,8 @@ string Account::Step(int64_t assets, int64_t salaries)
 		}
 	}
 	
+	// Unlike salaries, each mortgage payment must either be made in its entirety,
+	// or skipped completely (accruing interest and reducing your credit score).
 	int64_t mortgagesPaid = 0;
 	int64_t finesPaid = 0;
 	for(Mortgage &mortgage : mortgages)
@@ -162,6 +177,7 @@ string Account::Step(int64_t assets, int64_t salaries)
 		{
 			payment = mortgage.MakePayment();
 			credits -= payment;
+			// For the status text, keep track of whether this is a mortgage or a fine.
 			if(mortgage.Type() == "Mortgage")
 				mortgagesPaid += payment;
 			else
@@ -169,6 +185,7 @@ string Account::Step(int64_t assets, int64_t salaries)
 		}
 		assets -= mortgage.Principal();
 	}
+	// If any mortgage has been fully paid off, remove it from the list.
 	for(auto it = mortgages.begin(); it != mortgages.end(); )
 	{
 		if(!it->Principal())
@@ -182,12 +199,15 @@ string Account::Step(int64_t assets, int64_t salaries)
 		history.erase(history.begin());
 	history.push_back(credits + assets);
 	
+	// If you owed any debts today, adjust your credit score based on whether
+	// you were able to pay them all.
 	if(hasDebts)
 	{
 		creditScore += paid ? 1 : -5;
 		creditScore = max(200, min(800, creditScore));
 	}
 	
+	// If you didn't make any payments, no need to continue further.
 	if(!(salariesPaid + mortgagesPaid + finesPaid))
 		return out.str();
 	
@@ -215,7 +235,7 @@ string Account::Step(int64_t assets, int64_t salaries)
 
 
 
-// Liabilities:
+// Access the list of mortgages.
 const vector<Mortgage> &Account::Mortgages() const
 {
 	return mortgages;
@@ -223,6 +243,8 @@ const vector<Mortgage> &Account::Mortgages() const
 
 
 
+// Add a new mortgage for the given amount, with an interest rate determined by
+// your credit score.
 void Account::AddMortgage(int64_t principal)
 {
 	mortgages.emplace_back(principal, creditScore);
@@ -231,6 +253,7 @@ void Account::AddMortgage(int64_t principal)
 
 
 
+// Add a "fine" with a high, fixed interest rate and a short term.
 void Account::AddFine(int64_t amount)
 {
 	mortgages.emplace_back(amount, 0, 60);
@@ -238,44 +261,39 @@ void Account::AddFine(int64_t amount)
 
 
 
-void Account::AddBonus(int64_t bonus)
+// Death benefits have a short term but lower interest than the best mortgage rate.
+void Account::AddDeathBenefits(int64_t bonus)
 {
 	mortgages.emplace_back(bonus, 1000, 60);
 }
 
 
 
+// Check how big a mortgage the player can afford to pay at their current income.
 int64_t Account::Prequalify() const
 {
 	int64_t payments = 0;
+	int64_t liabilities = 0;
 	for(const Mortgage &mortgage : mortgages)
+	{
 		payments += mortgage.Payment();
-	return Mortgage::Maximum(YearlyRevenue(), creditScore, payments);
+		liabilities += mortgage.Principal();
+	}
+	
+	// Put a limit on new debt that the player can take out, as a fraction of
+	// their net worth, to avoid absurd mortgages being offered when the player
+	// has just captured some very lucrative ships.
+	return max(static_cast<int64_t>(0), min(
+		NetWorth() / 3 + 500000 - liabilities,
+		Mortgage::Maximum(YearlyRevenue(), creditScore, payments)));
 }
 
 
 
-// Assets:
+// Get the player's total net worth (counting all ships and all debts).
 int64_t Account::NetWorth() const
 {
 	return history.empty() ? 0 : history.back();
-}
-
-
-
-const vector<int64_t> Account::History() const
-{
-	return history;
-}
-
-
-
-int64_t Account::YearlyRevenue() const
-{
-	if(history.empty() || history.back() <= history.front())
-		return 0;
-	
-	return ((history.back() - history.front()) * 365) / HISTORY;
 }
 
 
@@ -284,4 +302,18 @@ int64_t Account::YearlyRevenue() const
 int Account::CreditScore() const
 {
 	return creditScore;
+}
+
+
+
+// Extrapolate from the player's current net worth history to determine how much
+// their net worth is expected to change over the course of the next year.
+int64_t Account::YearlyRevenue() const
+{
+	if(history.empty() || history.back() <= history.front())
+		return 0;
+	
+	// Note that this intentionally under-estimates if the player has not yet
+	// played for long enough to accumulate a full income history.
+	return ((history.back() - history.front()) * 365) / HISTORY;
 }

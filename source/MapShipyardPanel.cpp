@@ -24,6 +24,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "System.h"
 
 #include <algorithm>
+#include <limits>
 #include <set>
 
 using namespace std;
@@ -48,14 +49,14 @@ MapShipyardPanel::MapShipyardPanel(const MapPanel &panel)
 
 const Sprite *MapShipyardPanel::SelectedSprite() const
 {
-	return selected ? selected->GetSprite().GetSprite() : nullptr;
+	return selected ? selected->GetSprite() : nullptr;
 }
 
 
 
 const Sprite *MapShipyardPanel::CompareSprite() const
 {
-	return compare ? compare->GetSprite().GetSprite() : nullptr;
+	return compare ? compare->GetSprite() : nullptr;
 }
 
 
@@ -74,6 +75,18 @@ const ItemInfoDisplay &MapShipyardPanel::CompareInfo() const
 
 
 
+const string &MapShipyardPanel::KeyLabel(int index) const
+{
+	static const string LABEL[3] = {
+		"Has no shipyard",
+		"Has shipyard",
+		"Sells this ship"
+	};
+	return LABEL[index];
+}
+
+
+
 void MapShipyardPanel::Select(int index)
 {
 	if(index < 0 || index >= static_cast<int>(list.size()))
@@ -81,7 +94,7 @@ void MapShipyardPanel::Select(int index)
 	else
 	{
 		selected = list[index];
-		selectedInfo.Update(*selected);
+		selectedInfo.Update(*selected, player.StockDepreciation(), player.GetDate().DaysSinceEpoch());
 	}
 }
 
@@ -94,22 +107,28 @@ void MapShipyardPanel::Compare(int index)
 	else
 	{
 		compare = list[index];
-		compareInfo.Update(*compare);
+		compareInfo.Update(*compare, player.StockDepreciation(), player.GetDate().DaysSinceEpoch());
 	}
 }
 
 
 
-bool MapShipyardPanel::HasAny(const Planet *planet) const
+double MapShipyardPanel::SystemValue(const System *system) const
 {
-	return !planet->Shipyard().empty();
-}
-
-
-
-bool MapShipyardPanel::HasThis(const Planet *planet) const
-{
-	return planet->Shipyard().Has(selected);
+	if(!system || !system->IsInhabited())
+		return numeric_limits<double>::quiet_NaN();
+	
+	double value = -.5;
+	for(const StellarObject &object : system->Objects())
+		if(object.GetPlanet())
+		{
+			const auto &shipyard = object.GetPlanet()->Shipyard();
+			if(shipyard.Has(selected))
+				return 1.;
+			if(!shipyard.empty())
+				value = 0.;
+		}
+	return value;
 }
 
 
@@ -134,7 +153,7 @@ int MapShipyardPanel::FindItem(const string &text) const
 
 
 
-void MapShipyardPanel::DrawItems() const
+void MapShipyardPanel::DrawItems()
 {
 	list.clear();
 	Point corner = Screen::TopLeft() + Point(0, scroll);
@@ -167,8 +186,7 @@ void MapShipyardPanel::DrawItems() const
 					}
 			}
 			
-			Draw(corner, ship->GetSprite().GetSprite(), isForSale, ship == selected,
-				ship->ModelName(), price, info);
+			Draw(corner, ship->GetSprite(), isForSale, ship == selected, ship->ModelName(), price, info);
 			list.push_back(ship);
 		}
 	}

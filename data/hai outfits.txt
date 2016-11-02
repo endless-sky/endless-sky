@@ -10,7 +10,7 @@
 
 outfit "Pulse Cannon"
 	category "Guns"
-	cost 110000
+	cost 130000
 	thumbnail "outfit/pulse cannon"
 	"mass" 13
 	"outfit space" -13
@@ -32,7 +32,7 @@ outfit "Pulse Cannon"
 
 outfit "Pulse Turret"
 	category "Turrets"
-	cost 320000
+	cost 590000
 	thumbnail "outfit/pulse turret"
 	"mass" 34
 	"outfit space" -34
@@ -79,6 +79,60 @@ outfit "Ion Cannon"
 		"ion damage" 5
 	description "Ion cannons do not do as much damage as some other weapons, but they disrupt the electrical systems on any ship they hit, draining its energy. If a ship has sizeable battery reserves, this may not have any effect, but for a ship running at near its energy generation capacity an ion strike can take it out of the battle for a few seconds while it recovers."
 
+outfit "Railgun Slug"
+	category "Ammunition"
+	cost 60
+	thumbnail "outfit/railslug"
+	"mass" 0.02
+	"railgun slug capacity" -1
+	description "The standard ammunition of Hai Railguns; their shape and powerful flux capacitor carrying an immense static charge causes this slug's trajectory to bend slightly to their target, and allows them to damage the target's hull a little, even with the presence of shields. Needless to say, once a target's shields are down, this slug is effective at punching crippling holes in the hull."
+
+outfit "Railgun"
+	category "Secondary Weapons"
+	cost 20000
+	thumbnail "outfit/railgun"
+	"mass" 4
+	"outfit space" -7
+	"weapon capacity" -7
+	"gun ports" -1
+	"railgun slug capacity" 150
+	weapon
+		sprite "projectile/rail slug"
+			"frame rate" 30
+		ammo "Railgun Slug"
+		icon "icon/rail gun"
+		sound "ion impact"
+		"fire effect" "rail sparks" 2
+		"live effect" "rail sparks" 5
+		"hit effect" "bullet impact"
+		"inaccuracy" 3
+		"velocity" 22
+		"lifetime" 1
+		"reload" 120
+		"firing energy" 92
+		"firing heat" 39
+		"hit force" 44
+		"stream"
+		"submunition" "rslug" 1
+	description "The Hai created this weapon for their Flea drones, providing mobile long range support for their close quarters Pond Strider carrier. This particular incarnation of a rail weapon imparts a massive static electric charge to the projectile's flux capacitor, and motivates the slug with electric repulsion. Once in flight, the projectile's charge will bend trajectory very slightly, and allows it to damage the hull a little bit through shields."
+
+outfit "rslug"
+	weapon
+		"acceleration" .022
+		"drag" .001
+		"lifetime" 99
+		sprite "projectile/rail slug"
+			"frame rate" 30
+		"live effect" "rail sparks" 5
+		"hit effect" "bullet impact"
+		"shield damage" 65
+		"hull damage" 95
+		"homing" 1
+		"optical tracking" .4
+		"turn" .3
+		"hit force" 44
+		"missile strength" 14
+		"piercing" .1
 
 outfit "Hai Tracker"
 	category "Ammunition"
@@ -118,6 +172,8 @@ outfit "Hai Tracker Pod"
 		"drag" .05
 		"turn" 1.2
 		"homing" 4
+		"optical tracking" .8
+		"infrared tracking" .4
 		"shield damage" 200
 		"hull damage" 160
 		"hit force" 50
@@ -240,15 +296,16 @@ outfit "Hai Valley Batteries"
 	"energy capacity" 17777
 	description "While most Hai ships do not employ their largest battery model, a few very powerful warships are occasionally equipped with one, keeping their heat footprint low, and allowing them to survive longer in a fight against opponents carrying Ion Cannons."
 
-outfit "Pebble Core"
+
+outfit "Boulder Reactor"
 	category "Power"
-	cost 1050000
-	thumbnail "outfit/dwarf core hai"
-	"mass" 32
-	"outfit space" -32
-	"energy generation" 4.5
-	"heat generation" 11.9
-	description "A Pebble Core is a miniaturized nuclear reactor, small enough to be installed in any ship larger than a fighter. The Hai developed this model for their smaller ships."
+	cost 5750000
+	thumbnail "outfit/fusion hai"
+	"mass" 90
+	"outfit space" -90
+	"energy generation" 17.3
+	"heat generation" 34
+	description "The Hai built spacefaring Fusion Generators centuries ago, but they never really required anything more powerful, so their design remained relatively unchanged after it was miniaturized enough for their capital warships."
 
 outfit "Geode Reactor"
 	category "Power"
@@ -260,15 +317,44 @@ outfit "Geode Reactor"
 	"heat generation" 21.2
 	description "Fission reactors are considered a rudimentary technology among interstellar species. Nonetheless, it remains a proven and safe technology that even the Hai use fairly regularly."
 
-outfit "Boulder Reactor"
+outfit "Pebble Core"
 	category "Power"
-	cost 5750000
-	thumbnail "outfit/fusion hai"
-	"mass" 90
-	"outfit space" -90
-	"energy generation" 17.3
-	"heat generation" 34
-	description "The Hai built spacefaring Fusion Generators centuries ago, but they never really required anything more powerful, so their design remained relatively unchanged after it was miniaturized enough for their capital warships."
+	cost 1050000
+	thumbnail "outfit/dwarf core hai"
+	"mass" 32
+	"outfit space" -32
+	"energy generation" 4.5
+	"heat generation" 11.9
+	description "A Pebble Core is a miniaturized nuclear reactor, small enough to be installed in any ship larger than a fighter. The Hai developed this model for their smaller ships."
+
+outfit "Sand Cell"
+    category "Power"
+	cost 45000
+	thumbnail "outfit/fuel cell hai"
+	"mass" 24
+	"outfit space" -24
+	"energy generation" 1.55
+	"heat generation" 2.4
+	description "The Sand Cell is the smallest Hai generator. It was designed to fit their drones, and it clearly resembles human Fuel Cells."
+
+
+outfit `"Baellie" Atomic Engines`
+    category "Engines"
+	"cost" 135000
+	thumbnail "outfit/tiny atomic engines hai"
+	"mass" 24
+	"outfit space" -24
+	"engine capacity" -24
+	"turn" 300
+	"turning energy" .8
+	"turning heat" 1.8
+	"thrust" 7.5
+	"thrusting energy" .8
+	"thrusting heat" 1.6
+	"flare sprite" "effect/atomic flare/tiny"
+	    "frame rate" 14
+	"flare sound" "atomic tiny"
+	description `While the Hai were designing the Flea, it quickly became apparent that even the "Basrem" engine set was too large for the purpose. As a result, a combined thruster steering set was created: "Baellie".`
 
 outfit `"Basrem" Atomic Thruster`
 	category "Engines"
@@ -284,7 +370,6 @@ outfit `"Basrem" Atomic Thruster`
 		"frame rate" 14
 	"flare sound" "atomic tiny"
 	description "Unbeknownst to the scientists of the Deep, the Hai have been using atomic engines for many millennia. Hai atomic engines are still much more energy hungry than other engines, but are more efficient than their human counterparts."
-
 
 outfit `"Benga" Atomic Thruster`
 	category "Engines"
@@ -316,7 +401,6 @@ outfit `"Biroo" Atomic Thruster`
 	"flare sound" "atomic small"
 	description "This thruster is the standard thruster on most Hai light warships, providing enough thrust to make them useable in combat, but it is not quite big enough to suffice for something as large as a Hai Shield Beetle."
 
-
 outfit `"Bondir" Atomic Thruster`
 	category "Engines"
 	"cost" 780000
@@ -346,7 +430,6 @@ outfit `"Bufaer" Atomic Thruster`
 		"frame rate" 11
 	"flare sound" "atomic large"
 	description "These thrusters are the largest of the Hai atomic thrusters, and one of the most powerful thrusters in known space. Beat out by only the largest human atomic thrusters, these massive engines provide enough thrust to push around even the largest of ships as if they were fighters."
-
 
 outfit `"Basrem" Atomic Steering`
 	category "Engines"
@@ -407,43 +490,3 @@ outfit `"Bufaer" Atomic Steering`
 	"turning energy" 5.2
 	"turning heat" 13.3
 	description "Nine out of every ten human captains interviewed in Hai space as to whose atomic engines they prefer say that they would choose Hai atomic engines over those of Deep Sky any day; that is if they could afford such expensive engines."
-
-#deprecated for 0.9.2 due to long outfit name
-outfit "Bullfrog Anti-Missile Turret"
-	category "Turrets"
-	cost 55000
-	thumbnail "outfit/anti-missile hai"
-	"mass" 10
-	"outfit space" -10
-	"weapon capacity" -10
-	"turret mounts" -1
-	weapon
-		"hit effect" "small anti-missile"
-		"anti-missile" 12
-		"velocity" 150
-		"lifetime" 1
-		"reload" 20
-		"firing energy" 12
-		"firing heat" 5
-		"stream"
-	description "Centuries ago, the Hai fought with more rudimentary versions of the Tracker, and this was the primary defence against them. In spite of the dated design, it is still effective against small numbers of their latest Missile weapons."
-
-outfit "Chameleon Anti-Missile Turret"
-	category "Turrets"
-	cost 140000
-	thumbnail "outfit/heavy anti-missile hai"
-	"mass" 22
-	"outfit space" -22
-	"weapon capacity" -22
-	"turret mounts" -1
-	weapon
-		"hit effect" "large anti-missile"
-		"anti-missile" 16
-		"velocity" 200
-		"lifetime" 1
-		"reload" 15
-		"firing energy" 23
-		"firing heat" 6
-		"stream"
-	description "The Chameleon Anti-Missile turret has a longer range, higher power, and shorter reload time than the Bullfrog."
-

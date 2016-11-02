@@ -102,7 +102,7 @@ Dialog::Dialog(const string &text, PlayerInfo &player, const System *system)
 
 
 // Draw this panel.
-void Dialog::Draw() const
+void Dialog::Draw()
 {
 	DrawBackdrop();
 	
@@ -167,9 +167,10 @@ void Dialog::Draw() const
 		Point stringPos(
 			inputPos.X() - (WIDTH - 20) * .5 + 5.,
 			inputPos.Y() - .5 * font.Height());
-		font.Draw(input, stringPos, bright);
+		string truncated = font.TruncateFront(input, WIDTH - 30);
+		font.Draw(truncated, stringPos, bright);
 		
-		Point barPos(stringPos.X() + font.Width(input) + 2., inputPos.Y());
+		Point barPos(stringPos.X() + font.Width(truncated) + 2., inputPos.Y());
 		FillShader::Fill(barPos, Point(1., 16.), dim);
 	}
 }
@@ -212,7 +213,7 @@ bool Dialog::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 		GetUI()->Pop(this);
 	}
 	else if((key == 'm' || command.Has(Command::MAP)) && system && player)
-		GetUI()->Push(new MapDetailPanel(*player, -4, system));
+		GetUI()->Push(new MapDetailPanel(*player, system));
 	else
 		return false;
 	
@@ -264,7 +265,7 @@ void Dialog::Init(const string &message, bool canCancel, bool isMission)
 	// bottom are "padding," but text.Height() over-reports the height by about
 	// 5 pixels because it includes its own padding at the bottom. If there is a
 	// text input, we need another 20 pixels for it and 10 pixels padding.
-	height = 10 + (text.Height() - 5) + 10 + 30 * (intFun || stringFun);
+	height = 10 + (text.Height() - 5) + 10 + 30 * (!isMission && (intFun || stringFun));
 	// Determine how many 40-pixel extension panels we need.
 	if(height <= 80)
 		height = 0;

@@ -51,13 +51,15 @@ void Outfit::Load(const DataNode &node)
 			category = child.Token(1);
 		else if(child.Token(0) == "flare sprite" && child.Size() >= 2)
 		{
-			flareSprites.emplace_back(Animation(), 1);
-			flareSprites.back().first.Load(child);
+			flareSprites.emplace_back(Body(), 1);
+			flareSprites.back().first.LoadSprite(child);
 		}
 		else if(child.Token(0) == "flare sound" && child.Size() >= 2)
 			++flareSounds[Audio::Get(child.Token(1))];
 		else if(child.Token(0) == "afterburner effect" && child.Size() >= 2)
 			++afterburnerEffects[GameData::Effects().Get(child.Token(1))];
+		else if(child.Token(0) == "flotsam sprite" && child.Size() >= 2)
+			flotsamSprite = SpriteSet::Get(child.Token(1));
 		else if(child.Token(0) == "thumbnail" && child.Size() >= 2)
 			thumbnail = SpriteSet::Get(child.Token(1));
 		else if(child.Token(0) == "weapon")
@@ -191,7 +193,7 @@ void Outfit::Reset(const string &attribute, double value)
 
 	
 // Get this outfit's engine flare sprite, if any.
-const vector<pair<Animation, int>> &Outfit::FlareSprites() const
+const vector<pair<Body, int>> &Outfit::FlareSprites() const
 {
 	return flareSprites;
 }
@@ -209,4 +211,12 @@ const map<const Sound *, int> &Outfit::FlareSounds() const
 const map<const Effect *, int> &Outfit::AfterburnerEffects() const
 {
 	return afterburnerEffects;
+}
+
+
+
+// Get the sprite this outfit uses when dumped into space.
+const Sprite *Outfit::FlotsamSprite() const
+{
+	return flotsamSprite;
 }

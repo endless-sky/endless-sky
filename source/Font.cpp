@@ -18,6 +18,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Screen.h"
 
 #include <cmath>
+#include <cstdlib>
 #include <cstring>
 
 using namespace std;
@@ -213,6 +214,74 @@ int Font::Width(const char *str, char after) const
 
 
 
+string Font::Truncate(const string &str, int width) const
+{
+	int prevChars = str.size();
+	int prevWidth = Width(str);
+	if(prevWidth <= width)
+		return str;
+	
+	width -= Width("...");
+	// As a safety against infinite loops (even though they won't be possible if
+	// this implementation is correct) limit the number of loops to the number
+	// of characters in the string.
+	for(size_t i = 0; i < str.length(); ++i)
+	{
+		// Loop until the previous width we tried was too long and this one is
+		// too short, or vice versa. Each time, the next string length we try is
+		// interpolated from the previous width.
+		int nextChars = (prevChars * width) / prevWidth;
+		bool isSame = (nextChars == prevChars);
+		bool prevWorks = (prevWidth <= width);
+		nextChars += (prevWorks ? isSame : -isSame);
+		
+		int nextWidth = Width(str.substr(0, nextChars), '.');
+		bool nextWorks = (nextWidth <= width);
+		if(prevWorks != nextWorks && abs(nextChars - prevChars) == 1)
+			return str.substr(0, min(prevChars, nextChars)) + "...";
+		
+		prevChars = nextChars;
+		prevWidth = nextWidth;
+	}
+	return str;
+}
+
+
+
+string Font::TruncateFront(const string &str, int width) const
+{
+	int prevChars = str.size();
+	int prevWidth = Width(str);
+	if(prevWidth <= width)
+		return str;
+	
+	width -= Width("...");
+	// As a safety against infinite loops (even though they won't be possible if
+	// this implementation is correct) limit the number of loops to the number
+	// of characters in the string.
+	for(size_t i = 0; i < str.length(); ++i)
+	{
+		// Loop until the previous width we tried was too long and this one is
+		// too short, or vice versa. Each time, the next string length we try is
+		// interpolated from the previous width.
+		int nextChars = (prevChars * width) / prevWidth;
+		bool isSame = (nextChars == prevChars);
+		bool prevWorks = (prevWidth <= width);
+		nextChars += (prevWorks ? isSame : -isSame);
+		
+		int nextWidth = Width(str.substr(str.size() - nextChars));
+		bool nextWorks = (nextWidth <= width);
+		if(prevWorks != nextWorks && abs(nextChars - prevChars) == 1)
+			return "..." + str.substr(str.size() - min(prevChars, nextChars));
+		
+		prevChars = nextChars;
+		prevWidth = nextWidth;
+	}
+	return str;
+}
+
+
+
 int Font::Height() const
 {
 	return height;
@@ -350,8 +419,7 @@ void Font::SetUpShader(float glyphW, float glyphH)
 	
 	// connect the xy to the "vert" attribute of the vertex shader
 	glEnableVertexAttribArray(shader.Attrib("vert"));
-	glVertexAttribPointer(shader.Attrib("vert"), 2, GL_FLOAT, GL_FALSE,
-		4 * sizeof(GLfloat), NULL);
+	glVertexAttribPointer(shader.Attrib("vert"), 2, GL_FLOAT, GL_FALSE, 4 * sizeof(GLfloat), nullptr);
 	
 	glEnableVertexAttribArray(shader.Attrib("corner"));
 	glVertexAttribPointer(shader.Attrib("corner"), 2, GL_FLOAT, GL_FALSE,

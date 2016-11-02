@@ -29,7 +29,7 @@ public:
 	PreferencesPanel();
 	
 	// Draw this panel.
-	virtual void Draw() const override;
+	virtual void Draw() override;
 	
 	
 protected:
@@ -49,8 +49,8 @@ private:
 	int hover;
 	std::string hoverPreference;
 	
-	mutable std::vector<ClickZone<Command>> zones;
-	mutable std::vector<ClickZone<std::string>> prefZones;
+	std::vector<ClickZone<Command>> zones;
+	std::vector<ClickZone<std::string>> prefZones;
 };
 
 

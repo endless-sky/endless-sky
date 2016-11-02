@@ -131,9 +131,8 @@ bool Politics::CanLand(const Ship &ship, const Planet *planet) const
 		return true;
 	
 	const Government *gov = ship.GetGovernment();
-	const Government *systemGov = planet->GetGovernment();
 	if(!gov->IsPlayer())
-		return !IsEnemy(gov, systemGov);
+		return !IsEnemy(gov, planet->GetGovernment());
 	
 	return CanLand(planet);
 }
@@ -148,10 +147,10 @@ bool Politics::CanLand(const Planet *planet) const
 		return true;
 	if(dominatedPlanets.count(planet))
 		return true;
-	if(provoked.count(planet->GetGovernment()))
-		return false;
 	if(bribedPlanets.count(planet))
 		return true;
+	if(provoked.count(planet->GetGovernment()))
+		return false;
 	
 	return Reputation(planet->GetGovernment()) >= planet->RequiredReputation();
 }
@@ -223,7 +222,21 @@ string Politics::Fine(PlayerInfo &player, const Government *gov, int scan, const
 			if((fine > maxFine && maxFine >= 0) || fine < 0)
 			{
 				maxFine = fine;
-				reason = "carrying illegal cargo.";
+				reason = " for carrying illegal cargo.";
+
+				for(const Mission &mission : player.Missions())
+				{
+					// Append the illegalCargoMessage from each applicable mission, if available
+					std::string illegalCargoMessage = mission.IllegalCargoMessage();
+					if(!illegalCargoMessage.empty())
+					{
+						reason = ".\n\t";
+						reason.append(illegalCargoMessage);
+					}
+					// Fail any missions with illegal cargo and "Stealth" set
+					if(mission.IllegalCargoFine() > 0 && mission.FailIfDiscovered())
+						player.FailMission(mission);
+				}
 			}
 		}
 		if(!scan || (scan & ShipEvent::SCAN_OUTFITS))
@@ -235,7 +248,7 @@ string Politics::Fine(PlayerInfo &player, const Government *gov, int scan, const
 					if((fine > maxFine && maxFine >= 0) || fine < 0)
 					{
 						maxFine = fine;
-						reason = "having illegal outfits installed on your ship.";
+						reason = " for having illegal outfits installed on your ship.";
 					}
 				}
 		}
@@ -255,8 +268,8 @@ string Politics::Fine(PlayerInfo &player, const Government *gov, int scan, const
 	{
 		// Scale the fine based on how lenient this government is.
 		maxFine = maxFine * gov->GetFineFraction() + .5;
-		reason = "The " + gov->GetName() + " fines you "
-			+ Format::Number(maxFine) + " credits for " + reason;
+		reason = "The " + gov->GetName() + " authorities fine you "
+			+ Format::Number(maxFine) + " credits" + reason;
 		player.Accounts().AddFine(maxFine);
 		fined.insert(gov);
 	}

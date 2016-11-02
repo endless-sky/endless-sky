@@ -32,6 +32,7 @@ public:
 	// This is true if the screen is high DPI, or if the zoom is above 100%.
 	static bool IsHighResolution();
 	
+	static Point Dimensions();
 	static int Width();
 	static int Height();
 	

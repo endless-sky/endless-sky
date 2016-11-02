@@ -30,16 +30,17 @@ outfit "Pug Zapper"
 		sprite "projectile/lightning"
 			"frame rate" 60
 			"random start frame"
+			"delay" 6
 		sound "zapper"
 		"hit effect" "skylance impact"
 		"inaccuracy" .3
 		"velocity" 320
 		"lifetime" 1
-		"reload" 2
-		"firing energy" 5.4
-		"firing heat" 2.9
-		"shield damage" 7.4
-		"hull damage" 5.9
+		"reload" 1
+		"firing energy" 2.7
+		"firing heat" 1.4
+		"shield damage" 3.7
+		"hull damage" 2.9
 	description "This is a formidable beam weapon, more damaging than even the most advanced energy beams that humanity has developed. Pug ships have integrated power plants that produce the considerable amount of energy that is needed to drive weapons like this one."
 
 outfit "Pug Zapper Turret"
@@ -62,9 +63,9 @@ outfit "Pug Zapper Turret"
 		"lifetime" 1
 		"reload" 1
 		"firing energy" 5.4
-		"firing heat" 2.9
+		"firing heat" 2.8
 		"shield damage" 7.4
-		"hull damage" 5.9
+		"hull damage" 5.8
 	description "Mounted on a turret, this Pug weapon becomes even more devastatingly powerful. However, its energy requirements are higher than most human ships can support."
 
 outfit "Pug Seeker"
@@ -193,10 +194,10 @@ effect "gridfire hit"
 effect "gridfire cloud"
 	sprite "effect/gridfire cloud"
 		"no repeat"
-		"frame rate" 1
-	"lifetime" 121
+		"frame rate" 2
+	"lifetime" 61
 	"random angle" 360
-	"random spin" 20
+	"random spin" 10
 	"velocity scale" .00001
 
 
@@ -237,7 +238,7 @@ outfit "Pug Cormet Thruster"
 	"thrust" 44.0
 	"thrusting energy" 3.3
 	"thrusting heat" 4.6
-	"flare sprite" "effect/ion flare/big"
+	"flare sprite" "effect/ion flare/large"
 		"frame rate" 9
 	"flare sound" "ion large"
 	description "This is a medium-sized thruster designed by the Pug. It is not quite as powerful as a similarly sized atomic engine, but it makes up for that by being almost as energy efficient as ion engines."
@@ -331,7 +332,7 @@ ship "Pug Zibruka"
 	explode "tiny explosion" 10
 	explode "small explosion" 15
 	explode "medium explosion" 20
-	explode "big explosion" 10
+	explode "large explosion" 10
 	"final explode" "final explosion small"
 	description "The Zibruka is the smallest Pug ship that you know of."
 
@@ -380,7 +381,7 @@ ship "Pug Enfolta"
 	explode "tiny explosion" 5
 	explode "small explosion" 20
 	explode "medium explosion" 25
-	explode "big explosion" 15
+	explode "large explosion" 15
 	"final explode" "final explosion medium"
 	description "This is a medium-sized Pug warship."
 
@@ -419,8 +420,8 @@ ship "Pug Maboro"
 		"Jump Drive"
 		"Pug Lohmar Thruster"
 		"Pug Lohmar Steering"
-	engine -11 68
-	engine 11 68
+	engine -20 136
+	engine 20 136
 	gun -20 -150 "Pug Seeker"
 	gun 20 -150 "Pug Seeker"
 	gun -10 -150 "Pug Seeker"
@@ -430,7 +431,7 @@ ship "Pug Maboro"
 	turret 15 -35 "Pug Zapper Turret"
 	explode "small explosion" 25
 	explode "medium explosion" 30
-	explode "big explosion" 20
+	explode "large explosion" 20
 	explode "huge explosion" 5
 	"final explode" "final explosion large"
 	description "This is the largest Pug warship."
@@ -487,7 +488,7 @@ ship "Pug Arfecta"
 	explode "tiny explosion" 100
 	explode "small explosion" 60
 	explode "medium explosion" 30
-	explode "big explosion" 10
+	explode "large explosion" 10
 	"final explode" "final explosion large"
 	description `This is a Pug "tier 3" warship, intended for use in combat against either a species on par with the Quarg, or a lesser species that has decided to be particularly meddlesome.`
 
@@ -651,6 +652,7 @@ mission "Ruin: Landing"
 
 mission "Pug Cease Hostilities"
 	landing
+	invisible
 	to offer
 		has "main plot completed"
 	on offer
@@ -661,6 +663,7 @@ mission "Pug in Wanderer Space"
 	landing
 	to offer
 		has "main plot completed"
+		not "Wanderers Invaded 3C: offered"
 	source "Vara Pug"
 	on offer
 		conversation

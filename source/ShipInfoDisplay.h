@@ -18,6 +18,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <vector>
 #include <string>
 
+class Depreciation;
 class Point;
 class Ship;
 
@@ -30,10 +31,10 @@ class Ship;
 class ShipInfoDisplay : public ItemInfoDisplay {
 public:
 	ShipInfoDisplay() = default;
-	ShipInfoDisplay(const Ship &ship);
+	ShipInfoDisplay(const Ship &ship, const Depreciation &depreciation, int day);
 	
 	// Call this every time the ship changes.
-	void Update(const Ship &ship);
+	void Update(const Ship &ship, const Depreciation &depreciation, int day);
 	
 	// Provided by ItemInfoDisplay:
 	// int PanelWidth();
@@ -52,8 +53,8 @@ public:
 	
 private:
 	void UpdateDescription(const Ship &ship);
-	void UpdateAttributes(const Ship &ship);
-	void UpdateOutfits(const Ship &ship);
+	void UpdateAttributes(const Ship &ship, const Depreciation &depreciation, int day);
+	void UpdateOutfits(const Ship &ship, const Depreciation &depreciation, int day);
 	
 	
 private:

@@ -753,11 +753,11 @@ mission "FW Plasma Testing 1B"
 					goto overheat
 			
 			label impressive
-			`	"Yes," he said, "the team sent me some videos of the battle. First-rate carnage. I was very pleased. Anything weak spots you noticed?"`
+			`	"Yes," he said, "the team sent me some videos of the battle. First-rate carnage. I was very pleased. Any weak spots you noticed?"`
 				goto improve
 			
 			label overheat
-			`	"Yes, it will require a lot of cooling," he says. "Anything other weak spots?"`
+			`	"Yes, it will require a lot of cooling," he says. "Any other weak spots?"`
 				goto improve
 			
 			label improve

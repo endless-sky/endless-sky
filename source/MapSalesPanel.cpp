@@ -67,19 +67,18 @@ MapSalesPanel::MapSalesPanel(const MapPanel &panel, bool isOutfitters)
 	categories(isOutfitters ? Outfit::CATEGORIES : Ship::CATEGORIES),
 	isOutfitters(isOutfitters)
 {
-	SetCommodity(SHOW_SPECIAL);
+	commodity = SHOW_SPECIAL;
 	if(!isOutfitters)
 		swizzle = GameData::PlayerGovernment()->GetSwizzle();
 }
 
 
 
-void MapSalesPanel::Draw() const
+void MapSalesPanel::Draw()
 {
 	MapPanel::Draw();
 	
 	zones.clear();
-	categoryZones.clear();
 	hidPrevious = true;
 	
 	DrawKey();
@@ -149,11 +148,6 @@ bool MapSalesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 
 bool MapSalesPanel::Click(int x, int y)
 {
-	const Interface *interface = GameData::Interfaces().Get("map buttons");
-	char key = interface->OnClick(Point(x, y));
-	if(key)
-		return DoKey(key);
-	
 	if(x < Screen::Left() + WIDTH)
 	{
 		Point point(x, y);
@@ -176,19 +170,6 @@ bool MapSalesPanel::Click(int x, int y)
 				break;
 			}
 		
-		for(const ClickZone<string> &zone : categoryZones)
-			if(zone.Contains(point))
-			{
-				bool set = !hideCategory[zone.Value()];
-				if(!isCompare)
-					hideCategory[zone.Value()] = set;
-				else
-					for(const string &category : categories)
-						hideCategory[category] = set;
-				
-				break;
-			}
-		
 		return true;
 	}
 	else
@@ -200,10 +181,8 @@ bool MapSalesPanel::Click(int x, int y)
 bool MapSalesPanel::Hover(int x, int y)
 {
 	isDragging = (x < Screen::Left() + WIDTH);
-	if(isDragging)
-		return true;
 	
-	return MapPanel::Hover(x, y);
+	return true;
 }
 
 
@@ -223,30 +202,11 @@ bool MapSalesPanel::Drag(double dx, double dy)
 bool MapSalesPanel::Scroll(double dx, double dy)
 {
 	if(isDragging)
-		scroll = min(0., max(-maxScroll, scroll + 50 * dy));
+		scroll = min(0., max(-maxScroll, scroll + 150 * dy));
 	else
 		return MapPanel::Scroll(dx, dy);
 	
 	return true;
-}
-
-
-
-double MapSalesPanel::SystemValue(const System *system) const
-{
-	if(!system)
-		return 0.;
-	
-	double value = -.5;
-	for(const StellarObject &object : system->Objects())
-		if(object.GetPlanet())
-		{
-			if(HasThis(object.GetPlanet()))
-				return 1.;
-			if(HasAny(object.GetPlanet()))
-				value = 0.;
-		}
-	return value;
 }
 
 
@@ -263,11 +223,6 @@ void MapSalesPanel::DrawKey() const
 	Point pos(Screen::Left() + 50. + WIDTH, Screen::Top() + 12.);
 	Point textOff(10., -.5 * font.Height());
 	
-	static const string LABEL[][2] = {
-		{"Has no shipyard", "Has no outfitter"},
-		{"Has shipyard", "Has outfitter"},
-		{"Sells this ship", "Sells this outfit"}
-	};
 	static const double VALUE[] = {
 		-.5,
 		0.,
@@ -279,7 +234,7 @@ void MapSalesPanel::DrawKey() const
 	{
 		bool isSelected = (VALUE[i] == selectedValue);
 		RingShader::Draw(pos, OUTER, INNER, MapColor(VALUE[i]));
-		font.Draw(LABEL[i][isOutfitters], pos + textOff, isSelected ? bright : dim);
+		font.Draw(KeyLabel(i), pos + textOff, isSelected ? bright : dim);
 		pos.Y() += 20.;
 	}
 }
@@ -310,7 +265,7 @@ void MapSalesPanel::DrawPanel() const
 
 
 
-void MapSalesPanel::DrawButtons() const
+void MapSalesPanel::DrawButtons()
 {
 	Information info;
 	info.SetCondition(isOutfitters ? "is outfitters" : "is shipyards");
@@ -319,7 +274,7 @@ void MapSalesPanel::DrawButtons() const
 	if(ZoomIsMin())
 		info.SetCondition("min zoom");
 	const Interface *interface = GameData::Interfaces().Get("map buttons");
-	interface->Draw(info);
+	interface->Draw(info, this);
 }
 
 
@@ -376,7 +331,7 @@ void MapSalesPanel::DrawInfo() const
 
 
 
-bool MapSalesPanel::DrawHeader(Point &corner, const string &category) const
+bool MapSalesPanel::DrawHeader(Point &corner, const string &category)
 {
 	auto hit = hideCategory.find(category);
 	bool hide = (hit != hideCategory.end() && hit->second);
@@ -387,7 +342,7 @@ bool MapSalesPanel::DrawHeader(Point &corner, const string &category) const
 	Color textColor = *GameData::Colors().Get(hide ? "dim" : "bright");
 	const Font &bigFont = FontSet::Get(18);
 	bigFont.Draw(category, corner + Point(5., 15.), textColor);
-	categoryZones.emplace_back(corner + Point(WIDTH * .5, 20.), Point(WIDTH, 40.), category);
+	AddZone(Rectangle::FromCorner(corner, Point(WIDTH, 40.)), [this, category](){ ClickCategory(category); });
 	corner.Y() += 40.;
 	
 	return hide;
@@ -408,7 +363,7 @@ void MapSalesPanel::DrawSprite(const Point &corner, const Sprite *sprite) const
 
 
 void MapSalesPanel::Draw(Point &corner, const Sprite *sprite, bool isForSale, bool isSelected,
-		const string &name, const string &price, const string &info) const
+		const string &name, const string &price, const string &info)
 {
 	const Font &font = FontSet::Get(14);
 	Color selectionColor(0., .3);
@@ -455,10 +410,23 @@ void MapSalesPanel::ScrollTo(int index)
 		return;
 	
 	const ClickZone<int> &it = zones[selected];
-	double top = (it.Center() - it.Size()).Y();
-	double bottom = (it.Center() + it.Size()).Y();
-	if(bottom > Screen::Bottom())
-		scroll += Screen::Bottom() - bottom;
-	if(top < Screen::Top())
-		scroll += Screen::Top() - top;
+	if(it.Bottom() > Screen::Bottom())
+		scroll += Screen::Bottom() - it.Bottom();
+	if(it.Top() < Screen::Top())
+		scroll += Screen::Top() - it.Top();
+}
+
+
+
+void MapSalesPanel::ClickCategory(const string &name)
+{
+	bool set = !hideCategory[name];
+	if(SDL_GetModState() & KMOD_SHIFT)
+	{
+		// If the shift key is held down, hide or show all categories.
+		for(const string &category : categories)
+			hideCategory[category] = set;
+	}
+	else
+		hideCategory[name] = set;
 }

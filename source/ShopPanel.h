@@ -38,8 +38,8 @@ class ShopPanel : public Panel {
 public:
 	ShopPanel(PlayerInfo &player, const std::vector<std::string> &categories);
 	
-	virtual void Draw() const override;
 	virtual void Step() override;
+	virtual void Draw() override;
 	
 protected:
 	void DrawSidebar() const;
@@ -93,12 +93,15 @@ protected:
 	
 protected:
 	static const int SIDE_WIDTH = 250;
+	static const int BUTTON_HEIGHT = 70;
 	static const int SHIP_SIZE = 250;
 	static const int OUTFIT_SIZE = 180;
 	
 	
 protected:
 	PlayerInfo &player;
+	// Remember the current day, for calculating depreciation.
+	int day;
 	const Planet *planet = nullptr;
 	
 	Ship *playerShip = nullptr;

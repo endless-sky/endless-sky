@@ -167,9 +167,9 @@ outfit "Korath Repeater"
 		"burst count" 3
 		"cluster"
 		"firing energy" 24
-		"firing heat" 128
-		"shield damage" 23
-		"hull damage" 19
+		"firing heat" 108
+		"shield damage" 26
+		"hull damage" 22
 		"heat damage" 33
 	description "This is the smallest and simplest Korath projectile weapon, designed mostly for use on fighters and drones. As with most Korath technology, it generates a large amount of heat, enough that the gun must pause briefly after every few shots to cool down."
 
@@ -206,9 +206,9 @@ outfit "Korath Repeater Turret"
 		"burst count" 6
 		"cluster"
 		"firing energy" 24
-		"firing heat" 128
-		"shield damage" 23
-		"hull damage" 19
+		"firing heat" 108
+		"shield damage" 26
+		"hull damage" 22
 		"heat damage" 33
 	description "Korath repeaters fire compact bolts of superheated plasma at their targets. For every one of these turrets installed on a ship, an auxiliary cooling system is typically required to cope with its heat output."
 
@@ -407,7 +407,7 @@ outfit "Korath Mine Submunition"
 		sprite "projectile/korath mine"
 			"frame rate" 1
 			"no repeat"
-		"hit effect" "big explosion"
+		"hit effect" "large explosion"
 		"die effect" "tiny explosion"
 		"inaccuracy" 360
 		"lifetime" 1000
@@ -487,7 +487,6 @@ outfit "Korath Slicer"
 	"outfit space" -46
 	"weapon capacity" -46
 	"gun ports" -1
-	"required crew" 1
 	weapon
 		sprite "projectile/slicer"
 			"frame rate" 6

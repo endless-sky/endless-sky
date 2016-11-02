@@ -25,9 +25,16 @@ using namespace std;
 
 
 
-Sprite::Sprite()
-	: width(0.f), height(0.f)
+Sprite::Sprite(const string &name)
+	: name(name), width(0.f), height(0.f)
 {
+}
+
+
+
+const string &Sprite::Name() const
+{
+	return name;
 }
 
 

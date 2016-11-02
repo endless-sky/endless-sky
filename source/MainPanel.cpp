@@ -81,49 +81,21 @@ void MainPanel::Step()
 			&& !Preferences::Has("help: navigation"))
 	{
 		Preferences::Set("help: navigation");
-		ostringstream out;
-		out << "Welcome to the sky! To travel to another star system, press \""
-			<< Command::MAP.KeyName() << "\" to view your map, "
-			<< "and click on the system you want to travel to. "
-			<< "Your hyperdrive can only travel along the \"links\" shown on your map. "
-			<< "After selecting a destination, close your map and press \""
-			<< Command::JUMP.KeyName() << "\" to jump to that system.\n"
-			<< "\tYour ship does not jump until you release the jump key. Once you have escorts, "
-			<< "you can hold the key to get them ready to jump, "
-			<< "then release it to have them all jump simultaneously.\n"
-			<< "\tWhen you reach a new system, you can press \""
-			<< Command::LAND.KeyName() << "\" to land on any inhabited planets that are there.\n"
-			<< "\tAlso, don't worry about crashing into asteroids or other ships; "
-			<< "your ship will fly safely below or above them.";
-		GetUI()->Push(new Dialog(out.str()));
+		GetUI()->Push(new Dialog(GameData::HelpMessage("navigation")));
 		isActive = false;
 	}
 	if(isActive && player.Flagship() && player.Flagship()->IsDestroyed()
 			&& !Preferences::Has("help: dead"))
 	{
 		Preferences::Set("help: dead");
-		ostringstream out;
-		out << "Uh-oh! You just died. The universe can a dangerous place for new captains!\n"
-			<< "\tFortunately, your game is automatically saved every time you leave a planet. "
-			<< "To load your most recent saved game, press \"" + Command::MENU.KeyName()
-			<< "\" to return to the main menu, then click on \"Load / Save\" and \"Enter Ship.\"";
-		GetUI()->Push(new Dialog(out.str()));
+		GetUI()->Push(new Dialog(GameData::HelpMessage("dead")));
 		isActive = false;
 	}
 	if(isActive && player.Flagship() && player.Flagship()->IsDisabled()
 			&& !player.Flagship()->IsDestroyed() && !Preferences::Has("help: disabled"))
 	{
 		Preferences::Set("help: disabled");
-		ostringstream out;
-		out << "Your ship just got disabled! "
-				<< "Before an enemy ship finishes you off, you should find someone to help you.\n\tPress \""
-				<< Command::TARGET.KeyName() << "\" to cycle through all the ships in this system. "
-				<< "When you have a friendly one selected, press \""
-				<< Command::HAIL.KeyName() << "\" to hail it. "
-				<< "You can then ask for help, and the ship will come over and patch you up."
-				<< "\n\tIf the ship that disabled you is still hanging around, "
-				<< "you might need to hail them first and bribe them to leave you alone.";
-		GetUI()->Push(new Dialog(out.str()));
+		GetUI()->Push(new Dialog(GameData::HelpMessage("disabled")));
 		isActive = false;
 	}
 	
@@ -134,8 +106,10 @@ void MainPanel::Step()
 		const Government *actor = event.ActorGovernment();
 		
 		player.HandleEvent(event, GetUI());
-		if((event.Type() & (ShipEvent::BOARD | ShipEvent::ASSIST)) && isActive && actor->IsPlayer())
+		if((event.Type() & (ShipEvent::BOARD | ShipEvent::ASSIST)) && isActive && actor->IsPlayer()
+				&& event.Actor().get() == player.Flagship())
 		{
+			// Boarding events are only triggered by your flagship.
 			Mission *mission = player.BoardingMission(event.Target());
 			if(mission)
 				mission->Do(Mission::OFFER, player, GetUI());
@@ -159,20 +133,11 @@ void MainPanel::Step()
 				}
 			}
 		}
-		if((event.Type() & ShipEvent::JUMP) && player.Flagship() && !player.Flagship()->Fuel()
+		if((event.Type() & ShipEvent::JUMP) && player.Flagship() && !player.Flagship()->JumpsRemaining()
 				&& !player.GetSystem()->IsInhabited() && !Preferences::Has("help: stranded"))
 		{
 			Preferences::Set("help: stranded");
-			ostringstream out;
-			out << "Oops! You just ran out of fuel in an uninhabited system. "
-				<< "Fortunately, other ships are willing to help you.\n\tPress \""
-				<< Command::TARGET.KeyName() << "\" to cycle through all the ships in this system. "
-				<< "When you have a friendly one selected, press \""
-				<< Command::HAIL.KeyName() << "\" to hail it. "
-				<< "You can then ask for help, "
-				<< "and if it has fuel to spare it will fly over and transfer fuel to your ship. "
-				<< "This is easiest for the other ship to do if your ship is nearly stationary.";
-			GetUI()->Push(new Dialog(out.str()));
+			GetUI()->Push(new Dialog(GameData::HelpMessage("stranded")));
 			isActive = false;
 		}
 	}
@@ -183,7 +148,7 @@ void MainPanel::Step()
 
 
 
-void MainPanel::Draw() const
+void MainPanel::Draw()
 {
 	FrameTimer loadTimer;
 	glClear(GL_COLOR_BUFFER_BIT);
@@ -304,17 +269,19 @@ bool MainPanel::ShowHailPanel()
 		Messages::Add("Unable to send hail: your flagship is cloaked.");
 	else if(target)
 	{
-		if(target->Cloaking() == 1.)
+		// If the target is out of system, always report a generic response
+		// because the player has no way of telling if it's presently jumping or
+		// not. If it's in system and jumping, report that.
+		if(target->Zoom() < 1. || target->IsDestroyed() || target->GetSystem() != player.GetSystem()
+				|| target->Cloaking() == 1.)
 			Messages::Add("Unable to hail target ship.");
 		else if(target->IsEnteringHyperspace())
 			Messages::Add("Unable to send hail: ship is entering hyperspace.");
-		else if(!target->IsDestroyed() && target->GetSystem() == player.GetSystem())
+		else
 		{
 			GetUI()->Push(new HailPanel(player, target));
 			return true;
 		}
-		else
-			Messages::Add("Unable to hail target ship.");
 	}
 	else if(flagship->GetTargetPlanet())
 	{

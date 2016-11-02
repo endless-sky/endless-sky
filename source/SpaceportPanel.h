@@ -29,7 +29,7 @@ public:
 	SpaceportPanel(PlayerInfo &player);
 	
 	virtual void Step() override;
-	virtual void Draw() const override;
+	virtual void Draw() override;
 	
 	
 private:

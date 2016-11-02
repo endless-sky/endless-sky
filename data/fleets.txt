@@ -1094,8 +1094,10 @@ fleet "Small Southern Pirates"
 		"Hawk (Rocket)"
 	variant 5
 		"Fury"
-	variant 2
+	variant 1
 		"Fury (Laser)"
+	variant 1
+		"Fury (Gatling)"
 	variant 1
 		"Fury (Missile)"
 	variant 2
@@ -1142,8 +1144,10 @@ fleet "Large Southern Pirates"
 	cargo 1
 	personality
 		plunders
-	variant 3
+	variant 2
 		"Sparrow" 4
+	variant 1
+		"Sparrow (Gatling)" 3
 	variant 5
 		"Argosy"
 	variant 3
@@ -1514,6 +1518,9 @@ fleet "Large Northern Pirates"
 		"Berserker" 2
 	variant 2
 		"Berserker (Afterburner)" 2
+	variant 1
+		"Bactrian"
+		"Dagger" 3
 
 fleet "pirate raid"
 	government "Pirate"
@@ -1630,6 +1637,28 @@ fleet "Quarg"
 	variant
 		"Quarg Skylark"
 	variant
+		"Quarg Wardragon"
+
+fleet "Large Quarg"
+	government "Quarg"
+	names "quarg"
+	cargo 1
+	personality
+		forbearing
+	variant 2
+		"Quarg Skylark" 2
+		"Quarg Wardragon"
+	variant 2
+		"Quarg Wardragon" 2
+		"Quarg Skylark"
+	variant
+		"Quarg Skylark" 2
+		"Quarg Wardragon" 2
+	variant
+		"Quarg Wardragon" 3
+		"Quarg Skylark"
+	variant
+		"Quarg Skylark" 3
 		"Quarg Wardragon"
 
 fleet "Small Pug"

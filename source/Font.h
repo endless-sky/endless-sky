@@ -41,6 +41,8 @@ public:
 	
 	int Width(const std::string &str, char after = ' ') const;
 	int Width(const char *str, char after = ' ') const;
+	std::string Truncate(const std::string &str, int width) const;
+	std::string TruncateFront(const std::string &str, int width) const;
 	
 	int Height() const;
 	

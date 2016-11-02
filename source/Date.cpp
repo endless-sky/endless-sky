@@ -15,6 +15,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 using namespace std;
 
 namespace {
+	// Figure out the day of the week of the given date.
 	const string &Weekday(int day, int month, int year)
 	{
 		// Zeller's congruence.
@@ -42,8 +43,11 @@ Date::Date(int day, int month, int year)
 
 
 
+// Convert a date to a string.
 const string &Date::ToString() const
 {
+	// Because this is a somewhat "costly" operation, cache the result. The
+	// cached value is discarded if the date is changed.
 	if(date && str.empty())
 	{
 		int day = Day();
@@ -66,6 +70,7 @@ const string &Date::ToString() const
 
 
 
+// Convert a date to the format in which it would be stated in conversation.
 string Date::LongString() const
 {
 	if(!date)
@@ -73,6 +78,8 @@ string Date::LongString() const
 	
 	int day = Day();
 	string result = "the " + to_string(day);
+	// All numbers in the teens add in "th", as do any numbers ending in 0 or in
+	// 4 through 9. Special endings are used for "1st", "2nd", and "3rd."
 	if(day / 10 == 1 || day % 10 == 0 || day % 10 > 3)
 		result += "th";
 	else if(day % 10 == 1)
@@ -82,6 +89,7 @@ string Date::LongString() const
 	else
 		result += "rd";
 	
+	// Write out the month name instead of abbreviating it.
 	result += " of ";
 	static const string MONTH[] = {
 		"January",
@@ -112,6 +120,7 @@ Date::operator bool() const
 
 
 
+// Check if this date has not been initialized.
 bool Date::operator!() const
 {
 	return !date;
@@ -119,6 +128,7 @@ bool Date::operator!() const
 
 
 
+// Increment this date.
 void Date::operator++()
 {
 	*this = Date(*this + 1);
@@ -126,6 +136,7 @@ void Date::operator++()
 
 
 
+// Increment this date.
 void Date::operator++(int)
 {
 	++*this;
@@ -133,9 +144,11 @@ void Date::operator++(int)
 
 
 
+// Add the given number of days to this date.
 Date Date::operator+(int days) const
 {
-	if(!date)
+	// If this date is not initialized, adding to it does nothing.
+	if(!date || !days)
 		return *this;
 	
 	int day = Day();
@@ -147,20 +160,36 @@ Date Date::operator+(int days) const
 	int MDAYS[] = {31, 28 + leap, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 	while(day > MDAYS[month - 1])
 	{
+		// Moving forward in time:
 		day -= MDAYS[month - 1];
 		++month;
 		if(month == 13)
 		{
 			month = 1;
 			++year;
+			// If we cycle to a new year, recalculate the days in February.
 			MDAYS[1] = 28 + !(year % 4) - !(year % 100) + !(year % 400);
 		}
+	}
+	while(day < 1)
+	{
+		// Moving backward in time:
+		--month;
+		if(month == 0)
+		{
+			month = 12;
+			--year;
+			// If we cycle to a new year, recalculate the days in February.
+			MDAYS[1] = 28 + !(year % 4) - !(year % 100) + !(year % 400);
+		}
+		day += MDAYS[month - 1];
 	}
 	return Date(day, month, year);
 }
 
 
 
+// Get the number of days between the two given dates.
 int Date::operator-(const Date &other) const
 {
 	return DaysSinceEpoch() - other.DaysSinceEpoch();
@@ -168,6 +197,7 @@ int Date::operator-(const Date &other) const
 
 
 
+// Date comparison.
 bool Date::operator<(const Date &other) const
 {
 	return date < other.date;
@@ -210,7 +240,8 @@ bool Date::operator!=(const Date &other) const
 
 
 
-// Get the number of days that have elapsed since the "epoch".
+// Get the number of days that have elapsed since the "epoch". This is used only
+// for finding the number of days in between two dates.
 int Date::DaysSinceEpoch() const
 {
 	if(date && !daysSinceEpoch)
@@ -250,7 +281,7 @@ int Date::DaysSinceEpoch() const
 
 
 
-// Get the date as numbers.
+// Get the current day of the month.
 int Date::Day() const
 {
 	return (date & 31);
@@ -258,6 +289,7 @@ int Date::Day() const
 
 
 
+// Get the current month (January = 1, rather than being zero-indexed).
 int Date::Month() const
 {
 	return ((date >> 5) & 15);
@@ -265,6 +297,7 @@ int Date::Month() const
 
 
 
+// Get the current year.
 int Date::Year() const
 {
 	return (date >> 9);

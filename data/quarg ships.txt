@@ -49,7 +49,7 @@ ship "Quarg Skylark"
 	explode "tiny explosion" 12
 	explode "small explosion" 16
 	explode "medium explosion" 30
-	explode "big explosion" 40
+	explode "large explosion" 40
 	explode "huge explosion" 20
 	"final explode" "final explosion medium"
 	description "The Skylark is used by the Quarg as a freighter and warship."
@@ -95,7 +95,7 @@ ship "Quarg Wardragon"
 	explode "tiny explosion" 12
 	explode "small explosion" 16
 	explode "medium explosion" 30
-	explode "big explosion" 40
+	explode "large explosion" 40
 	explode "huge explosion" 20
 	"final explode" "final explosion medium"
 	description "The Wardragon is used by the Quarg as a light warship."

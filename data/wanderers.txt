@@ -450,6 +450,9 @@ event "wanderers: unfettered invasion starts"
 		fleet "Wanderer Defense" 200
 		fleet "Small Unfettered" 1800
 		fleet "Large Unfettered" 800
+	system "Ehma Ti"
+		fleet "Small Unfettered" 500
+		fleet "Large Unfettered" 500
 	system "Sich'ka'ara"
 		fleet "Wanderer Freight" 600
 		fleet "Wanderer Drones" 3000
@@ -470,9 +473,137 @@ event "wanderers: unfettered invasion starts"
 			"Pug" -.1
 	outfitter "Wanderer Advanced"
 		"Wanderer Anti-Missile"
+	planet "Varu K'est"
+		attributes unfettered
+		description `Varu K'est is a spare, ancient planet of arid plateaus and deep, meandering canyons, with too little rainfall to support any but the hardiest of shrubs. Before the Unfettered invaded, the only Wanderer settlements remaining here were the military bases they had set up to defend their frontier. Now, it is home to an ever-growing number of Unfettered settlements, including many civilians who have come here just for the chance to live on a world that is not overcrowded and polluted.`
+		spaceport `The Unfettered are using the few jump drives they have to ferry more and more of their people into Wanderer space. When each wave of ships arrives here in the spaceport, technicians carefully remove the jump drives from all but a few of them. A few well guarded jump-capable ships then carry those spare jump drives back to Unfettered space, where they are used to bring more ships and people.`
+		shipyard clear
+		outfitter clear
+
+event "wanderers: tempest mass production"
+	fleet "Wanderer Defense"
+		government "Wanderer"
+		names "wanderer"
+		personality
+			heroic
+		variant 6
+			"Tempest"
+			"Summer Leaf"
+			"Autumn Leaf"
+		variant 4
+			"Tempest (Heavy)"
+			"Strong Wind"
+		variant 1
+			"Tempest (Heavy)"
+			"Tempest"
+			"Tempest (Missile)"
+		variant 2
+			"Tempest (Heavy)"
+			"Tempest"
+		variant 1
+			"Tempest (Missile)" 2
+		variant 3
+			"Strong Wind"
+			"Summer Leaf" 2
+		variant 2
+			"Strong Wind" 2
+		variant 2
+			"Strong Wind"
+			"Autumn Leaf"
+		variant
+			"Strong Wind" 3
+		variant 2
+			"Autumn Leaf" 3
+		variant
+			"Strong Wind"
+			"Autumn Leaf"
+			"Summer Leaf"
+		variant
+			"Autumn Leaf"
+			"Summer Leaf" 2
+		variant
+			"Summer Leaf" 4
+	shipyard "Wanderer Advanced"
+		"Tempest"
+	outfitter "Wanderer Advanced"
+		"Red Sun Reactor"
+
+event "wanderers: more systems lost"
+	system "Ka'pru"
+		government "Hai (Unfettered)"
+		fleet "Large Unfettered" 2000
+		fleet "Small Unfettered" 1000
+	system "Kiro'ku"
+		government "Hai (Unfettered)"
+		fleet "Large Unfettered" 1200
+		fleet "Small Unfettered" 800
+	system "Sich'ka'ara"
+		government "Hai (Unfettered)"
+		fleet "Large Unfettered" 400
+		fleet "Small Unfettered" 400
+		fleet "Wanderer Defense" 600
+	planet "Vara Ke'stai"
+		attributes unfettered farming
+		description `The Wanderers worked for years to make this desert world bloom: planting hardy shrubs and cacti that eventually transform the sand into a soil that can hold moisture. In some regions, especially closer to the poles, the deserts have given way to dense forests, but near the equator there are still large stretches of dry and barren sand, broken by the occasional belt of green where a narrow river winds between the dunes.`
+		description `	Now that the Unfettered have taken over control of the planet, it may be only a matter of time before the deserts dominate it once again.`
+		spaceport `The spaceport is in a forest village near the planet's north pole. The landing pads are massive stone monoliths laid on the ground in a nearby clearing. But aside from a few large warehouses at ground level, the village itself is entirely made of tree-houses. Although they are very different from Hai architecture, the Unfettered seem to be quite at home living in the tree-houses, and have not built many of their own structures yet.`
+		outfitter clear
+	planet "Var' Kar'i'i"
+		attributes unfettered urban farming
+		description `Of all the worlds that the Unfettered have captured, this is surely the one that the Wanderers will miss the most: a heavily forested planet that was once home to countless small villages and even a few cities. The Unfettered are clearly doing their best to tend the farms here, but they operate on a permaculture system that relies heavily on maintaining a delicate ecological balance, rather than on machines and pesticides.`
+		spaceport `A large number of Unfettered settlers have already arrived here and begun setting up a spaceport village, complete with markets, taverns, and military barracks. To the Unfettered, who have lived their whole lives on worlds where the local ecology is in shambles, this planet must seem like a paradise.`
+		shipyard clear
+		outfitter clear
+	planet "Vara Ke'sok"
+		attributes unfettered fishing
+		description `The surface of this world is almost entirely ocean. The Wanderer settlements were built on massive floating algae mats, some of them the size of a small city. Engines are attached to some of these floating villages, allowing them to be slowly propelled from one part of the planet's surface to another, and the only native industries are fishing and seaweed farming.`
+		spaceport `The raft of algae that supports the spaceport is probably at least a dozen meters thick, but flexible enough that it bends as the ocean swells pass underneath, causing individual buildings to rise up or tilt slightly relative to their neighbors. Now that this world has been captured by the Unfettered, nearly all the buildings are empty; it appears that the Hai are not too fond of the idea of inhabiting a water world, so they are using it mostly as a military base.`
+
+planet "The Eye"
+	spaceport ""
+
+event "wanderers: the eye begins to open"
+	system Sko'karak
+		fleet "Wanderer Defense" 500
+		object
+			sprite star/m0
+			period 10
+		object
+			sprite planet/rock8
+			distance 154.36
+			period 42.8832
+		object
+			sprite planet/rock18
+			distance 384.05
+			period 168.293
+		object
+			sprite planet/desert1
+			distance 617.3
+			period 342.949
+		object
+			sprite planet/gas4
+			distance 1227.46
+			period 961.603
+			object
+				sprite planet/callisto
+				distance 272
+				period 15.8216
+			object
+				sprite planet/rock3
+				distance 406
+				period 28.8527
+		object
+			sprite planet/wisp
+			distance 2331.95
+			period 2518.05
 
 event "wanderers: the eye opens"
+	unvisit Sabriset
 	system Sabriset
+		fleet "Large Quarg" 4000
+		fleet "Wanderer Defense" 1200
+		fleet "Wanderer Drones" 600
+		fleet "Wanderer Freight" 4000
 		object
 			sprite star/g0
 			distance 35.1028
@@ -503,8 +634,36 @@ event "wanderers: the eye opens"
 			sprite planet/wormhole
 			distance 2022.87
 			period 919.438
+	system Sepriaptu
+		fleet "Large Quarg" 4000
+		fleet "Wanderer Defense" 1600
+		fleet "Wanderer Drones" 800
+	system Kaliptari
+		fleet "Large Quarg" 2000
+		fleet "Small Kor Mereti" 8000
+		fleet "Large Kor Mereti" 3600
+		fleet "Wanderer Defense" 1000
+		fleet "Wanderer Drones" 500
+	system Solifar
+		fleet "Large Quarg" 3000
+		fleet "Wanderer Defense" 1800
+		fleet "Wanderer Drones" 700
+	system Fornarep
+		fleet "Large Quarg" 1000
+		fleet "Small Kor Mereti" 7000
+		fleet "Large Kor Mereti" 4000
+	system Skeruto
+		fleet "Large Quarg" 1000
+	system Mekislepti
+		fleet "Small Kor Mereti" 800
+		fleet "Large Kor Mereti" 2400
+		fleet "Large Kor Sestor" 8000
+		fleet "Wanderer Drones" 2000
+	unvisit Sko'karak
 	system Sko'karak
 		fleet "Wanderer Defense" 500
+		fleet "Wanderer Drones" 400
+		fleet "Wanderer Freight" 2000
 		object
 			sprite star/m0
 			period 10
@@ -536,3 +695,88 @@ event "wanderers: the eye opens"
 			sprite planet/wormhole
 			distance 2331.95
 			period 2518.05
+
+event "wanderers: derecho mass production"
+	fleet "Wanderer Defense"
+		government "Wanderer"
+		names "wanderer"
+		personality
+			heroic
+		variant 4
+			"Derecho"
+			"Tempest"
+		variant 3
+			"Derecho (Turret)"
+			"Tempest (Missile)"
+		variant 2
+			"Derecho (Tough)"
+			"Tempest (Heavy)"
+		variant 4
+			"Derecho"
+			"Strong Wind" 2
+		variant 3
+			"Derecho (Tough)"
+			"Autumn Leaf"
+			"Summer Leaf" 2
+		variant 2
+			"Derecho (Turret)"
+			"Tempest (Heavy)"
+			"Tempest"
+		variant 6
+			"Tempest"
+			"Summer Leaf"
+			"Autumn Leaf"
+		variant 4
+			"Tempest (Heavy)"
+			"Strong Wind"
+		variant 1
+			"Tempest (Heavy)"
+			"Tempest"
+			"Tempest (Missile)"
+		variant 2
+			"Tempest (Heavy)"
+			"Tempest"
+		variant 1
+			"Tempest (Missile)" 2
+		variant 3
+			"Strong Wind"
+			"Summer Leaf" 2
+		variant 2
+			"Strong Wind" 2
+		variant 2
+			"Strong Wind"
+			"Autumn Leaf"
+		variant
+			"Strong Wind" 3
+		variant 2
+			"Autumn Leaf" 3
+		variant
+			"Strong Wind"
+			"Autumn Leaf"
+			"Summer Leaf"
+		variant
+			"Autumn Leaf"
+			"Summer Leaf" 2
+		variant
+			"Summer Leaf" 4
+	shipyard "Wanderer Advanced"
+		"Derecho"
+	outfitter "Wanderer Advanced"
+		"Blue Sun Reactor"
+		"Wanderer Heat Sink"
+
+event "wanderers: spera anatrusk colony"
+	system Ap'arak
+		fleet "Wanderer Freight" 2000
+		fleet "Wanderer Drones" 4000
+		fleet "Wanderer Defense" 600
+		fleet "Wanderer Flycatchers" 400
+		fleet "Large Unfettered" 8000
+	system Kaliptari
+		government "Wanderer"
+	planet "Spera Anatrusk"
+		attributes wanderer
+		description `This is a relatively dry planet, and the only Korath cities were close to the poles where the temperatures are more mild and the lifeless deserts give way to grasslands and even a few scattered forests. The largest city was clearly destroyed by orbital bombardment. The other cities seem to have been done in by rioting or looting, leaving smashed windows and burned-out buildings behind. Some of the damage is very recent; the Korath survivors here held out for a long time.`
+		description `	Hidden deep in a canyon, the Wanderers have begun establishing a military base here.`
+		spaceport `The Wanderers have hollowed out hangars and caves in the soft sandstone walls of this canyon and have begun to build a military base where they can store supplies and repair their ships while trying to decide how best to deal with the new challenges that face them in Korath space.`
+		spaceport `	Oddly enough, they have also found enough time to plant a large garden on a terrace near the base of the canyon, where they are experimenting to find out which plant species will best grow in this arid environment. The Wanderer drive to understand and transform the local ecology is strong, indeed.`
