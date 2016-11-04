@@ -13,7 +13,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "ShipInfoDisplay.h"
 
 #include "Color.h"
-#include "Depreciation.h"
 #include "FillShader.h"
 #include "Format.h"
 #include "GameData.h"
@@ -23,25 +22,24 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include <algorithm>
 #include <map>
-#include <sstream>
 
 using namespace std;
 
 
 
-ShipInfoDisplay::ShipInfoDisplay(const Ship &ship, const Depreciation &depreciation, int day)
+ShipInfoDisplay::ShipInfoDisplay(const Ship &ship)
 {
-	Update(ship, depreciation, day);
+	Update(ship);
 }
 
 
 
 // Call this every time the ship changes.
-void ShipInfoDisplay::Update(const Ship &ship, const Depreciation &depreciation, int day)
+void ShipInfoDisplay::Update(const Ship &ship)
 {
 	UpdateDescription(ship);
-	UpdateAttributes(ship, depreciation, day);
-	UpdateOutfits(ship, depreciation, day);
+	UpdateAttributes(ship);
+	UpdateOutfits(ship);
 	
 	maximumHeight = max(descriptionHeight, max(attributesHeight, outfitsHeight));
 }
@@ -51,13 +49,6 @@ void ShipInfoDisplay::Update(const Ship &ship, const Depreciation &depreciation,
 int ShipInfoDisplay::OutfitsHeight() const
 {
 	return outfitsHeight;
-}
-
-
-
-int ShipInfoDisplay::SaleHeight() const
-{
-	return saleHeight;
 }
 
 
@@ -101,24 +92,14 @@ void ShipInfoDisplay::DrawOutfits(const Point &topLeft) const
 
 
 
-void ShipInfoDisplay::DrawSale(const Point &topLeft) const
-{
-	Draw(topLeft, saleLabels, saleValues);
-	
-	Color color = *GameData::Colors().Get("medium");
-	FillShader::Fill(topLeft + Point(.5 * WIDTH, saleHeight + 8.), Point(WIDTH - 20., 1.), color);
-}
-
-
-
 void ShipInfoDisplay::UpdateDescription(const Ship &ship)
 {
+	string text = "Hull Model: " + ship.ModelName() + "\n" + ship.Description();
+
 	const vector<string> &licenses = ship.Licenses();
-	if(licenses.empty())
-		ItemInfoDisplay::UpdateDescription(ship.Description());
-	else
+	if(!licenses.empty())
 	{
-		string text = ship.Description() + "\tTo purchase this ship you must have ";
+		text += "\tTo purchase this ship you must have ";
 		for(unsigned i = 0; i < licenses.size(); ++i)
 		{
 			bool isVoweled = false;
@@ -138,13 +119,14 @@ void ShipInfoDisplay::UpdateDescription(const Ship &ship)
 
 		}
 		text += ".";
-		ItemInfoDisplay::UpdateDescription(text);
 	}
+	
+	ItemInfoDisplay::UpdateDescription(text);
 }
 
 
 
-void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const Depreciation &depreciation, int day)
+void ShipInfoDisplay::UpdateAttributes(const Ship &ship)
 {
 	bool isGeneric = ship.Name().empty() || ship.GetPlanet();
 	
@@ -154,17 +136,20 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const Depreciation &dep
 	
 	const Outfit &attributes = ship.Attributes();
 	
-	int64_t fullCost = ship.Cost();
-	int64_t depreciated = depreciation.Value(ship, day);
-	if(depreciated == fullCost)
-		attributeLabels.push_back("cost:");
-	else
+	attributeLabels.push_back("cost new:");
+	attributeValues.push_back(Format::Number(ship.BaseCost()));
+	attributesHeight += 20;
+		
+	if (ship.Cost() != ship.BaseCost())
 	{
-		ostringstream out;
-		out << "cost (" << (100 * depreciated) / fullCost << "%):";
-		attributeLabels.push_back(out.str());
+		attributeLabels.push_back("actual cost:");
+		attributeValues.push_back(Format::Number(ship.Cost()));
+		attributesHeight += 20;
 	}
-	attributeValues.push_back(Format::Number(depreciated));
+	
+	attributeLabels.push_back("hull/outfit cost:");
+	attributeValues.push_back(Format::Number(ship.Cost()-ship.Outfits().GetTotalCost()) + "/" +
+		Format::Number(ship.Outfits().GetTotalCost()));
 	attributesHeight += 20;
 	
 	attributeLabels.push_back(string());
@@ -260,7 +245,7 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const Depreciation &dep
 		chassis[names[i]] = attributes.Get(names[i]);
 	for(const auto &it : ship.Outfits())
 		for(auto &cit : chassis)
-			cit.second -= it.second * it.first->Get(cit.first);
+			cit.second -= it.GetQuantity() * it.GetOutfit()->Get(cit.first);
 	
 	attributeLabels.push_back(string());
 	attributeValues.push_back(string());
@@ -312,10 +297,10 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const Depreciation &dep
 	double firingEnergy = 0.;
 	double firingHeat = 0.;
 	for(const auto &it : ship.Outfits())
-		if(it.first->IsWeapon() && it.first->Reload())
+		if(it.GetOutfit()->IsWeapon() && it.GetOutfit()->Reload())
 		{
-			firingEnergy += it.second * it.first->FiringEnergy() / it.first->Reload();
-			firingHeat += it.second * it.first->FiringHeat() / it.first->Reload();
+			firingEnergy += it.GetQuantity() * it.GetOutfit()->FiringEnergy() / it.GetOutfit()->Reload();
+			firingHeat += it.GetQuantity() * it.GetOutfit()->FiringHeat() / it.GetOutfit()->Reload();
 		}
 	tableLabels.push_back("firing:");
 	energyTable.push_back(Format::Number(-60. * firingEnergy));
@@ -339,7 +324,7 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const Depreciation &dep
 
 
 
-void ShipInfoDisplay::UpdateOutfits(const Ship &ship, const Depreciation &depreciation, int day)
+void ShipInfoDisplay::UpdateOutfits(const Ship &ship)
 {
 	outfitLabels.clear();
 	outfitValues.clear();
@@ -347,7 +332,7 @@ void ShipInfoDisplay::UpdateOutfits(const Ship &ship, const Depreciation &deprec
 	
 	map<string, map<string, int>> listing;
 	for(const auto &it : ship.Outfits())
-		listing[it.first->Category()][it.first->Name()] += it.second;
+		listing[it.GetOutfit()->Category()][it.GetOutfit()->Name()] += it.GetQuantity();
 	
 	for(const auto &cit : listing)
 	{
@@ -370,22 +355,5 @@ void ShipInfoDisplay::UpdateOutfits(const Ship &ship, const Depreciation &deprec
 			outfitsHeight += 20;
 		}
 	}
-	
-	
-	int64_t totalCost = depreciation.Value(ship, day);
-	int64_t chassisCost = depreciation.Value(GameData::Ships().Get(ship.ModelName()), day);
-	saleLabels.clear();
-	saleValues.clear();
-	saleHeight = 20;
-	
-	saleLabels.push_back("This ship will sell for:");
-	saleValues.push_back(string());
-	saleHeight += 20;
-	saleLabels.push_back("empty hull:");
-	saleValues.push_back(Format::Number(chassisCost));
-	saleHeight += 20;
-	saleLabels.push_back("  + outfits:");
-	saleValues.push_back(Format::Number(totalCost - chassisCost));
-	saleHeight += 5;
 }
 

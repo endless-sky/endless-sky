@@ -131,24 +131,25 @@ void TradingPanel::Draw()
 		bool hasOutfits = false;
 		bool hasHarvested = false;
 		for(const auto &it : player.Cargo().Outfits())
-			if(it.second)
+			if(it.GetQuantity())
 			{
-				bool isHarvested = (it.first->Get("installable") < 0.);
-				(isHarvested ? hasHarvested : hasOutfits) = true;
+				bool isItem = (it.GetOutfit()->Get("installable") < 0.);
+				(isItem ? hasHarvested : hasOutfits) = true;
 			}
 		sellOutfits = (hasOutfits && !hasHarvested);
 		
 		string str = to_string(outfits + missionCargo);
+		string worth = " worth " + Format::Number(player.Cargo().Outfits().GetTotalCost()) + ".";
 		if(hasHarvested && missionCargo)
-			str += " tons of mission cargo and other items.";
+			str += " tons of mission cargo and items" + worth;
 		else if(hasOutfits && missionCargo)
-			str += " tons of outfits and mission cargo.";
+			str += " tons of mission cargo and outfits" + worth;
 		else if(hasOutfits && hasHarvested)
-			str += " tons of outfits and harvested materials.";
+			str += " tons of outfits and materials" + worth;
 		else if(hasOutfits)
-			str += " tons of outfits.";
+			str += " tons of outfits" + worth;
 		else if(hasHarvested)
-			str += " tons of harvested materials.";
+			str += " tons of harvested materials" + worth;
 		else
 			str += " tons of mission cargo.";
 		font.Draw(str, Point(NAME_X, lastY), unselected);
@@ -247,23 +248,28 @@ bool TradingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 			profit += amount * price + basis;
 			tonsSold += amount;
 			
-			player.Cargo().Remove(it.name, amount);
+			player.Cargo().Transfer(it.name, amount);
 			player.Accounts().AddCredits(amount * price);
 			GameData::AddPurchase(system, it.name, -amount);
 		}
-		int day = player.GetDate().DaysSinceEpoch();
-		for(const auto &it : player.Cargo().Outfits())
+		
+		// Iterating the outfits in this complicated way allows removing outfits mid-loop.
+		for(auto it = player.Cargo().Outfits().begin(); it != player.Cargo().Outfits().end();)
 		{
-			if(it.first->Get("installable") >= 0. && !sellOutfits)
+			if(it.GetOutfit()->Get("installable") >= 0. && !sellOutfits)
+			{
+				++it;
 				continue;
+			}
+			profit += it.GetTotalCost();
+			tonsSold += it.GetQuantity() * static_cast<int>(it.GetOutfit()->Get("mass"));
 			
-			int64_t value = player.FleetDepreciation().Value(it.first, day, it.second);
-			profit += value;
-			tonsSold += static_cast<int>(it.second * it.first->Get("mass"));
-			
-			player.AddStock(it.first, it.second);
-			player.Accounts().AddCredits(value);
-			player.Cargo().Remove(it.first, it.second);
+			player.SoldOutfits().AddOutfit(it.GetOutfit(), it.GetQuantity(), it.GetWear());
+			player.Accounts().AddCredits(it.GetTotalCost());
+			if (player.Cargo().Transfer(it.GetOutfit(), it.GetQuantity(), nullptr, true))
+				it = player.Cargo().Outfits().begin();
+			else 
+				++it;
 		}
 	}
 	else if(command.Has(Command::MAP))

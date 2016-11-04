@@ -13,6 +13,7 @@ ship "Quarg Skylark"
 	attributes
 		category "Heavy Warship"
 		"cost" 5900000
+		"ageless" 1
 		"shields" 120000
 		"hull" 70000
 		"required crew" 120
@@ -59,6 +60,7 @@ ship "Quarg Wardragon"
 	attributes
 		category "Heavy Warship"
 		"cost" 5900000
+		"ageless" 1
 		"shields" 160000
 		"hull" 50000
 		"required crew" 160

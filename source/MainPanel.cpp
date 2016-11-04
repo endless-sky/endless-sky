@@ -229,11 +229,11 @@ void MainPanel::ShowScanDialog(const ShipEvent &event)
 	{
 		out << "This ship is equipped with:\n";
 		for(const auto &it : target->Outfits())
-			if(it.first && it.second)
+			if(it.GetOutfit() && it.GetQuantity())
 			{
-				out << "\t" << it.first->Name();
-				if(it.second != 1)
-					out << " (" << it.second << ")";
+				out << "\t" << it.GetOutfit()->Name();
+				if(it.GetQuantity() != 1)
+					out << " (" << it.GetQuantity() << ")";
 				out << "\n";
 			}
 		map<string, int> count;

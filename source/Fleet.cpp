@@ -16,6 +16,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Files.h"
 #include "GameData.h"
 #include "Government.h"
+#include "OutfitGroup.h"
 #include "Phrase.h"
 #include "pi.h"
 #include "Planet.h"
@@ -341,7 +342,8 @@ vector<shared_ptr<Ship>> Fleet::Instantiate(const Variant &variant) const
 			continue;
 		}
 		
-		shared_ptr<Ship> ship(new Ship(*model));
+		// Ships flying around in space are well-aged, thus use "PlunderWear".
+		shared_ptr<Ship> ship(Ship::MakeShip(*model, OutfitGroup::PlunderWear()));
 		
 		bool isFighter = ship->CanBeCarried();
 		ship->SetName(((isFighter && fighterNames) ? fighterNames : names)->Get());

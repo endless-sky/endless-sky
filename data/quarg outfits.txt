@@ -11,6 +11,7 @@
 outfit "Nanotech Battery"
 	category "Power"
 	cost 3000000
+	ageless 1
 	thumbnail "outfit/unknown"
 	"mass" 50
 	"outfit space" -50
@@ -19,6 +20,7 @@ outfit "Nanotech Battery"
 outfit "Antimatter Core"
 	category "Power"
 	cost 100000000
+	ageless 1
 	thumbnail "outfit/unknown"
 	"mass" 80
 	"outfit space" -80
@@ -29,6 +31,7 @@ outfit "Antimatter Core"
 outfit "Quarg Skylance"
 	category "Turrets"
 	cost 18000000
+	ageless 1
 	thumbnail "outfit/unknown"
 	"mass" 60
 	"outfit space" -60
@@ -62,6 +65,7 @@ effect "skylance impact"
 outfit "Quarg Anti-Missile"
 	category "Turrets"
 	cost 6000000
+	ageless 1
 	thumbnail "outfit/unknown"
 	"mass" 40
 	"outfit space" -40
@@ -94,6 +98,7 @@ outfit "Intrusion Countermeasures"
 outfit "Medium Graviton Thruster"
 	category "Engines"
 	"cost" 20000000
+	ageless 1
 	thumbnail "outfit/unknown"
 	"mass" 70
 	"outfit space" -70
@@ -106,6 +111,7 @@ outfit "Medium Graviton Thruster"
 outfit "Medium Graviton Steering"
 	category "Engines"
 	"cost" 16000000
+	ageless 1
 	thumbnail "outfit/unknown"
 	"mass" 50
 	"outfit space" -50
@@ -117,6 +123,7 @@ outfit "Medium Graviton Steering"
 outfit "Quantum Shield Generator"
 	category "Systems"
 	cost 30000000
+	ageless 1
 	thumbnail "outfit/unknown"
 	"mass" 120
 	"outfit space" -120

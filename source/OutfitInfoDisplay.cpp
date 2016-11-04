@@ -13,15 +13,14 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "OutfitInfoDisplay.h"
 
 #include "Color.h"
-#include "Depreciation.h"
 #include "Format.h"
 #include "Outfit.h"
-#include "PlayerInfo.h"
+#include "OutfitGroup.h"
+
 
 #include <algorithm>
 #include <map>
 #include <set>
-#include <sstream>
 
 using namespace std;
 
@@ -51,24 +50,25 @@ namespace {
 	};
 	
 	static const set<string> BOOLEAN_ATTRIBUTES = {
-		"unplunderable"
+		"unplunderable",
+		"ageless"
 	};
 }
 
 
 
-OutfitInfoDisplay::OutfitInfoDisplay(const Outfit &outfit, const PlayerInfo &player, bool canSell)
+OutfitInfoDisplay::OutfitInfoDisplay(const Outfit &outfit, int maxAvailableWear, int minSellWear)
 {
-	Update(outfit, player, canSell);
+	Update(outfit, maxAvailableWear, minSellWear);
 }
 
 
 
 // Call this every time the ship changes.
-void OutfitInfoDisplay::Update(const Outfit &outfit, const PlayerInfo &player, bool canSell)
+void OutfitInfoDisplay::Update(const Outfit &outfit, int maxAvailableWear, int minSellWear)
 {
 	UpdateDescription(outfit.Description());
-	UpdateRequirements(outfit, player, canSell);
+	UpdateRequirements(outfit, maxAvailableWear, minSellWear);
 	UpdateAttributes(outfit);
 	
 	maximumHeight = max(descriptionHeight, max(requirementsHeight, attributesHeight));
@@ -90,39 +90,26 @@ void OutfitInfoDisplay::DrawRequirements(const Point &topLeft) const
 
 
 
-void OutfitInfoDisplay::UpdateRequirements(const Outfit &outfit, const PlayerInfo &player, bool canSell)
+void OutfitInfoDisplay::UpdateRequirements(const Outfit &outfit, int maxAvailableWear, int minSellWear)
 {
 	requirementLabels.clear();
 	requirementValues.clear();
 	requirementsHeight = 20;
 	
-	int day = player.GetDate().DaysSinceEpoch();
-	int64_t cost = outfit.Cost();
-	int64_t buyValue = player.StockDepreciation().Value(&outfit, day);
-	int64_t sellValue = player.FleetDepreciation().Value(&outfit, day);
-	
-	if(buyValue == cost)
-		requirementLabels.push_back("cost:");
-	else
-	{
-		ostringstream out;
-		out << "cost (" << (100 * buyValue) / cost << "%):";
-		requirementLabels.push_back(out.str());
-	}
-	requirementValues.push_back(Format::Number(buyValue));
+	requirementLabels.push_back("cost new:");
+	requirementValues.push_back(Format::Number(outfit.Cost()));
 	requirementsHeight += 20;
 	
-	if(canSell && sellValue != buyValue)
+	if (maxAvailableWear > 0)
 	{
-		if(sellValue == cost)
-			requirementLabels.push_back("sells for:");
-		else
-		{
-			ostringstream out;
-			out << "sells for (" << (100 * sellValue) / cost << "%):";
-			requirementLabels.push_back(out.str());
-		}
-		requirementValues.push_back(Format::Number(sellValue));
+		requirementLabels.push_back("cost to buy:");
+		requirementValues.push_back(Format::Number(OutfitGroup::CostFunction(&outfit, maxAvailableWear)));
+		requirementsHeight += 20;
+	}
+	if (minSellWear >= 0)
+	{
+		requirementLabels.push_back("sell price:");
+		requirementValues.push_back(Format::Number(OutfitGroup::CostFunction(&outfit, minSellWear)));
 		requirementsHeight += 20;
 	}
 	

@@ -35,6 +35,10 @@ namespace {
 	static const double VOLUME = 2000.;
 	// Above this supply amount, price differences taper off:
 	static const double LIMIT = 20000.;
+	// The largest value by which price can deviate from the system's base price.
+	static const double MAX_PRICE_SWING = 100.;
+	// The lowest price any commodity can actually sell for.
+	static const int MIN_FINAL_PRICE = 1.;
 }
 
 const double System::NEIGHBOR_DISTANCE = 100.;
@@ -159,7 +163,12 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 			}
 		}
 		else if(child.Token(0) == "trade" && child.Size() >= 3)
-			trade[child.Token(1)].SetBase(child.Value(2));
+		{
+			if (child.Token(2) == "percentile" && child.Size() >= 4 )
+				trade[child.Token(1)].SetBase(child.Value(3), child.Token(1), true);
+			else
+				trade[child.Token(1)].SetBase(child.Value(2), "", false);
+		}
 		else if(child.Token(0) == "fleet")
 		{
 			if(resetFleets)
@@ -470,9 +479,6 @@ void System::StepEconomy()
 {
 	for(auto &it : trade)
 	{
-		it.second.exports = EXPORT * it.second.supply;
-		it.second.supply *= KEEP;
-		it.second.supply += Random::Normal() * VOLUME;
 		it.second.Update();
 	}
 }
@@ -486,7 +492,6 @@ void System::SetSupply(const string &commodity, double tons)
 		return;
 	
 	it->second.supply = tons;
-	it->second.Update();
 }
 
 
@@ -569,15 +574,43 @@ void System::LoadObject(const DataNode &node, Set<Planet> &planets, int parent)
 
 
 
-void System::Price::SetBase(int base)
+void System::Price::SetBase(double base, const std::string &name, bool usePricePercentile)
 {
-	this->base = base;
-	this->price = base;
+	if (!usePricePercentile)
+	{
+		this->basePrice = base;
+		this->price = base;
+	}
+	else 
+	{
+		this->name = name;
+		this->basePricePercentile = base / 100;
+		this->price = GetBasePrice();
+	}
 }
 
 
 
+int System::Price::GetBasePrice()
+{
+	for(auto &it : GameData::Commodities())
+	{
+		if (it.name == this->name)
+		{
+			return static_cast<int>(it.low + ((it.high - it.low) * this->basePricePercentile));
+		}
+	}
+	return basePrice;
+}
+
+
 void System::Price::Update()
 {
-	price = base + static_cast<int>(-100. * erf(supply / LIMIT));
+	exports = EXPORT * supply;
+	supply *= KEEP;
+	supply += Random::Normal() * VOLUME;
+	
+	price = GetBasePrice() + static_cast<int>(-MAX_PRICE_SWING * erf(supply / LIMIT));
+	if (price < MIN_FINAL_PRICE)
+		price = MIN_FINAL_PRICE;
 }

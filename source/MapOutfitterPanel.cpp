@@ -99,7 +99,7 @@ void MapOutfitterPanel::Select(int index)
 	else
 	{
 		selected = list[index];
-		selectedInfo.Update(*selected, player);
+		selectedInfo.Update(*selected, 0, 0);
 	}
 }
 
@@ -112,7 +112,7 @@ void MapOutfitterPanel::Compare(int index)
 	else
 	{
 		compare = list[index];
-		compareInfo.Update(*compare, player);
+		compareInfo.Update(*compare, 0, 0);
 	}
 }
 

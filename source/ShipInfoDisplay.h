@@ -18,7 +18,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <vector>
 #include <string>
 
-class Depreciation;
 class Point;
 class Ship;
 
@@ -31,10 +30,10 @@ class Ship;
 class ShipInfoDisplay : public ItemInfoDisplay {
 public:
 	ShipInfoDisplay() = default;
-	ShipInfoDisplay(const Ship &ship, const Depreciation &depreciation, int day);
+	ShipInfoDisplay(const Ship &ship);
 	
 	// Call this every time the ship changes.
-	void Update(const Ship &ship, const Depreciation &depreciation, int day);
+	void Update(const Ship &ship);
 	
 	// Provided by ItemInfoDisplay:
 	// int PanelWidth();
@@ -42,19 +41,17 @@ public:
 	// int DescriptionHeight() const;
 	// int AttributesHeight() const;
 	int OutfitsHeight() const;
-	int SaleHeight() const;
-	
+
 	// Provided by ItemInfoDisplay:
 	// void DrawDescription(const Point &topLeft) const;
 	virtual void DrawAttributes(const Point &topLeft) const override;
 	void DrawOutfits(const Point &topLeft) const;
-	void DrawSale(const Point &topLeft) const;
 	
 	
 private:
 	void UpdateDescription(const Ship &ship);
-	void UpdateAttributes(const Ship &ship, const Depreciation &depreciation, int day);
-	void UpdateOutfits(const Ship &ship, const Depreciation &depreciation, int day);
+	void UpdateAttributes(const Ship &ship);
+	void UpdateOutfits(const Ship &ship);
 	
 	
 private:
@@ -66,9 +63,6 @@ private:
 	std::vector<std::string> outfitValues;
 	int outfitsHeight = 0;
 	
-	std::vector<std::string> saleLabels;
-	std::vector<std::string> saleValues;
-	int saleHeight = 0;
 };
 
 

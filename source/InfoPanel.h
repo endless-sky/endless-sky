@@ -26,6 +26,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 class Outfit;
 class PlayerInfo;
+class CargoHold;
 class Rectangle;
 
 
@@ -41,6 +42,8 @@ public:
 	
 	virtual void Draw() override;
 	
+	// Returns height of cargo details. Static, so it can also be used in the outfitter.
+	static int DrawCargoHold(const CargoHold &cargo, Point startPos, Point size, double heightLimit, const InfoPanel* panel);
 	
 protected:
 	// Only override the ones you need; the default action is to return false.

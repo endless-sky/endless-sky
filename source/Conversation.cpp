@@ -20,7 +20,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 using namespace std;
 
-namespace {
+//namespace {
 	// Lookup table for matching special tokens to enumeration values.
 	map<string, int> TOKEN_INDEX = {
 		{"accept", Conversation::ACCEPT},
@@ -31,7 +31,7 @@ namespace {
 		{"depart", Conversation::DEPART},
 		{"die", Conversation::DIE}
 	};
-	
+
 	// Get the index of the given special string. 0 means it is "goto", a number
 	// less than 0 means it is an outcome, and 1 means no match.
 	static int TokenIndex(const string &token)
@@ -62,7 +62,7 @@ namespace {
 		}
 		out.EndChild();
 	}
-}
+//}
 
 // The possible outcomes of a conversation:
 const int Conversation::ACCEPT;

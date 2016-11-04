@@ -33,6 +33,11 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 using namespace std;
 
+
+const string Ship::JUNKYARD_CATEGORY_NAME = "Junkyard Deals";
+const string Ship::JUNKYARD_SHIP_SUFFIX = " (Empty Hull)";
+
+// Categories that can appear in the shipyard.
 const vector<string> Ship::CATEGORIES = {
 	"Transport",
 	"Light Freighter",
@@ -42,7 +47,8 @@ const vector<string> Ship::CATEGORIES = {
 	"Medium Warship",
 	"Heavy Warship",
 	"Fighter",
-	"Drone"
+	"Drone",
+	JUNKYARD_CATEGORY_NAME
 };
 
 namespace {
@@ -50,6 +56,32 @@ namespace {
 	const string BAY_SIDE[3] = {"inside", "over", "under"};
 	const string BAY_FACING[4] = {"forward", "left", "right", "back"};
 	const Angle BAY_ANGLE[4] = {Angle(0.), Angle(-90.), Angle(90.), Angle(180.)};
+}
+
+
+
+Ship* Ship::MakeShip(const Ship &ship, int addedWear)
+{
+	Ship* newShip = new Ship(ship);
+	newShip->IncrementWear(addedWear);
+	return newShip;
+}
+
+
+
+Ship* Ship::MakeEmptyShip(const Ship &ship, int addedWear)
+{
+	Ship* newShip = new Ship(ship);
+	// Remove outfits one at a time, updating stats.
+	while (newShip->outfits.begin() != newShip->outfits.end()) 
+	{
+		auto it = newShip->outfits.begin();
+		auto outfit = it.GetOutfit();
+		int quantity = it.GetQuantity();
+		newShip->AddOutfit(outfit, -quantity, 0);
+	}
+	newShip->IncrementWear(addedWear);
+	return newShip;
 }
 
 
@@ -62,7 +94,7 @@ void Ship::Load(const DataNode &node)
 		base = GameData::Ships().Get(modelName);
 	
 	government = GameData::PlayerGovernment();
-	equipped.clear();
+	equipped.Clear();
 	
 	// Note: I do not clear the attributes list here so that it is permissible
 	// to override one ship definition with another.
@@ -113,7 +145,7 @@ void Ship::Load(const DataNode &node)
 					outfit = GameData::Outfits().Get(child.Token(1));
 			}
 			if(outfit)
-				++equipped[outfit];
+				equipped.AddOutfit(outfit, 1, 0); // Don't need accurate wear in "equipped" group.
 			if(child.Token(0) == "gun")
 				armament.AddGunPort(hardpoint, outfit);
 			else
@@ -177,15 +209,18 @@ void Ship::Load(const DataNode &node)
 		{
 			if(!hasOutfits)
 			{
-				outfits.clear();
+				outfits.Clear();
 				hasOutfits = true;
 			}
 			for(const DataNode &grand : child)
 			{
 				int count = (grand.Size() >= 2) ? grand.Value(1) : 1;
-				outfits[GameData::Outfits().Get(grand.Token(0))] += count;
+				int wear = (grand.Size() >= 3) ? grand.Value(2) : 0;
+				outfits.AddOutfit(GameData::Outfits().Get(grand.Token(0)), count, wear);
 			}
 		}
+		else if(child.Token(0) == "wear")
+			wear = child.Value(1);
 		else if(child.Token(0) == "cargo")
 			cargo.Load(child);
 		else if(child.Token(0) == "crew" && child.Size() >= 2)
@@ -222,16 +257,18 @@ void Ship::Load(const DataNode &node)
 	}
 	
 	// Check that all the "equipped" outfits actually match what your ship has.
-	if(!outfits.empty())
-		for(auto &it : equipped)
+	// This should never happen in a good save file.
+	if(!outfits.Empty())
+		for(const auto &it : equipped)
 		{
-			int excess = it.second - outfits[it.first];
+			int excess = equipped.GetTotalCount(it.GetOutfit()) - outfits.GetTotalCount(it.GetOutfit());
 			if(excess > 0)
 			{
 				// If there are more hardpoints specifying this outfit than there
 				// are instances of this outfit installed, remove some of them.
-				armament.Add(it.first, -excess);
-				it.second -= excess;
+				armament.Add(it.GetOutfit(), -excess);
+				// Adjust the value in "equipped".
+				//equipped.RemoveOutfit(it.GetOutfit(), excess, true); //JMH:safe while already iterating?
 			}
 		}
 }
@@ -267,7 +304,7 @@ void Ship::FinishLoading()
 		}
 		if(finalExplosions.empty())
 			finalExplosions = base->finalExplosions;
-		if(outfits.empty())
+		if(outfits.Empty())
 			outfits = base->outfits;
 		if(description.empty())
 			description = base->description;
@@ -330,25 +367,25 @@ void Ship::FinishLoading()
 	attributes = baseAttributes;
 	for(const auto &it : outfits)
 	{
-		if(it.first->Name().empty())
+		if(it.GetOutfit()->Name().empty())
 		{
 			cerr << "Unrecognized outfit in " << modelName << " \"" << name << "\"" << endl;
 			continue;
 		}
-		attributes.Add(*it.first, it.second);
-		if(it.first->IsWeapon())
+		attributes.Add(*it.GetOutfit(), it.GetQuantity());
+		if(it.GetOutfit()->IsWeapon())
 		{
-			int count = it.second;
-			auto eit = equipped.find(it.first);
+			int count = outfits.GetTotalCount(it.GetOutfit());
+			auto eit = equipped.find(it.GetOutfit());
 			if(eit != equipped.end())
-				count -= eit->second;
+				count -= eit.GetQuantity();
 			
 			if(count)
-				armament.Add(it.first, count);
+				armament.Add(it.GetOutfit(), count);
 		}
 	}
 	cargo.SetSize(attributes.Get("cargo space"));
-	equipped.clear();
+	equipped.Clear();
 	armament.FinishLoading();
 	
 	// Figure out how far from center the farthest weapon it.
@@ -365,9 +402,13 @@ void Ship::FinishLoading()
 	}
 	else
 	{
+		// For a saved ship, recalculate whether this ship is disabled.
 		isDisabled = true;
 		isDisabled = IsDisabled();
 	}
+	
+	// Update the cost, based on wear of hull and all outfits.
+	UpdateCost();
 }
 
 
@@ -401,17 +442,18 @@ void Ship::Save(DataWriter &out) const
 		out.BeginChild();
 		{
 			for(const auto &it : outfits)
-				if(it.first && it.second)
+				if(it.GetOutfit() && it.GetQuantity())
 				{
-					if(it.second == 1)
-						out.Write(it.first->Name());
+					if(it.GetQuantity() == 1 && !it.GetWear())
+						out.Write(it.GetOutfit()->Name());
 					else
-						out.Write(it.first->Name(), it.second);
+						out.Write(it.GetOutfit()->Name(), it.GetQuantity(), it.GetWear());
 				}
 		}
 		out.EndChild();
 		
 		cargo.Save(out);
+		out.Write("wear", wear);
 		out.Write("crew", crew);
 		out.Write("fuel", fuel);
 		out.Write("shields", shields);
@@ -481,18 +523,60 @@ const string &Ship::ModelName() const
 
 
 
-// Get this ship's description.
+// Get this ship's description. 
+// Player ships are not saved with copies of their descriptions, 
+// so a ship with no description will look up it's model's description
+// in GameData::Ships().
 const string &Ship::Description() const
 {
-	return description;
+	if(!description.empty())
+		return description;
+	else
+		return GameData::Ships().Get(modelName)->description;
 }
 
 
 
-// Get this ship's cost.
+// Get this ship's actual current cost.
 int64_t Ship::Cost() const
 {
 	return attributes.Cost();
+}
+
+
+
+// The ship's base cost, not considering wear, is used by the AI to estimate strength.
+// This function is called quite a lot and should be efficient.
+int64_t Ship::BaseCost() const
+{
+	return baseCost;
+}
+
+
+
+// Update this ship's cost.
+// Only called when loading the ship, changing outfits, or adding wear.
+int64_t Ship::UpdateCost()
+{
+	// Update base cost.
+	int64_t totalBaseCost = baseAttributes.Cost();
+	// Update actual Cost.
+	int64_t totalCost = OutfitGroup::CostFunction(&baseAttributes, wear);
+	for (auto it : outfits)
+	{
+		totalBaseCost += it.GetTotalBaseCost();
+		totalCost += it.GetTotalCost();
+	}
+	baseCost = totalBaseCost;
+	attributes.ResetCost(totalCost);
+	return totalCost;
+}
+
+
+
+int Ship::GetWear() const
+{
+	return wear;
 }
 
 
@@ -807,7 +891,7 @@ bool Ship::Move(list<Effect> &effects, list<Flotsam> &flotsam)
 				for(const auto &it : cargo.Commodities())
 					Jettison(it.first, Random::Binomial(it.second, .25));
 				for(const auto &it : cargo.Outfits())
-					Jettison(it.first, Random::Binomial(it.second, .25));
+					Jettison(it.GetOutfit(), Random::Binomial(it.GetQuantity(), .25));
 				for(Flotsam &it : jettisoned)
 					it.Place(*this);
 				flotsam.splice(flotsam.end(), jettisoned);
@@ -1562,7 +1646,6 @@ int Ship::HyperspaceType() const
 		for(const System *link : currentSystem->Neighbors())
 			if(link == destination)
 				return 200;
-	
 	return 0;
 }
 
@@ -2081,7 +2164,6 @@ const Outfit &Ship::Attributes() const
 
 
 
-
 const Outfit &Ship::BaseAttributes() const
 {
 	return baseAttributes;
@@ -2090,7 +2172,7 @@ const Outfit &Ship::BaseAttributes() const
 
 
 // Get outfit information.
-const map<const Outfit *, int> &Ship::Outfits() const
+const OutfitGroup &Ship::Outfits() const
 {
 	return outfits;
 }
@@ -2099,35 +2181,52 @@ const map<const Outfit *, int> &Ship::Outfits() const
 
 int Ship::OutfitCount(const Outfit *outfit) const
 {
-	auto it = outfits.find(outfit);
-	return (it == outfits.end()) ? 0 : it->second;
+	return outfits.GetTotalCount(outfit);
 }
 
 
 
 // Add or remove outfits. (To remove, pass a negative number.)
-void Ship::AddOutfit(const Outfit *outfit, int count)
+void Ship::AddOutfit(const Outfit *outfit, int count, int wear)
+{
+	TransferOutfit(outfit, -count, nullptr, true, wear);
+}
+
+
+
+int Ship::TransferOutfit(const Outfit *outfit, int count, OutfitGroup *to, bool removeMostWornFirst, int wearToAdd)
 {
 	if(outfit && count)
 	{
-		auto it = outfits.find(outfit);
-		if(it == outfits.end())
-			outfits[outfit] = count;
-		else
-		{
-			it->second += count;
-			if(!it->second)
-				outfits.erase(it);
-		}
-		attributes.Add(*outfit, count);
-		if(outfit->IsWeapon())
-			armament.Add(outfit, count);
-		
-		if(outfit->Get("cargo space"))
-			cargo.SetSize(attributes.Get("cargo space"));
-		if(outfit->Get("hull"))
-			hull += outfit->Get("hull") * count;
+		int transfered = outfits.TransferOutfits(outfit, count, to, removeMostWornFirst, wearToAdd);
+		FinishAddingOutfit(outfit, -transfered);
+		return transfered;
 	}
+	return 0;
+}
+
+
+
+// Add or remove outfits. (To remove, pass a negative number.)
+int Ship::TransferOutfitToShip(const Outfit *outfit, int count, Ship &to, bool removeMostWornFirst, int wearToAdd)
+{
+	// Need to perform attribute updates on both ships. 
+	int transfered = outfits.TransferOutfits(outfit, count, &(to.outfits), removeMostWornFirst, wearToAdd);
+	FinishAddingOutfit(outfit, -transfered);
+	to.FinishAddingOutfit(outfit, transfered);
+	return transfered;
+}
+
+
+
+// Add or remove outfits. (To remove, pass a negative number.)
+int Ship::TransferOutfitToCargo(const Outfit *outfit, int count, CargoHold &to, bool removeMostWornFirst, int wearToAdd)
+{
+	// Need to perform attribute updates on both ships. 
+	count = min(count, outfits.GetTotalCount(outfit));
+	int transfered = -(to.Transfer(outfit, -count, &outfits, removeMostWornFirst, wearToAdd));
+	FinishAddingOutfit(outfit, -transfered);
+	return transfered;
 }
 
 
@@ -2156,8 +2255,7 @@ bool Ship::CanFire(const Outfit *outfit) const
 	
 	if(outfit->Ammo())
 	{
-		auto it = outfits.find(outfit->Ammo());
-		if(it == outfits.end() || it->second <= 0)
+		if (!outfits.GetTotalCount(outfit->Ammo()))
 			return false;
 	}
 	
@@ -2178,7 +2276,7 @@ void Ship::ExpendAmmo(const Outfit *outfit)
 	if(!outfit)
 		return;
 	if(outfit->Ammo())
-		AddOutfit(outfit->Ammo(), -1);
+		TransferOutfit(outfit->Ammo(), 1, nullptr, true, 0);
 	
 	energy -= outfit->FiringEnergy();
 	fuel -= outfit->FiringFuel();
@@ -2283,6 +2381,73 @@ shared_ptr<Ship> Ship::GetParent() const
 const vector<weak_ptr<const Ship>> &Ship::GetEscorts() const
 {
 	return escorts;
+}
+
+
+
+void Ship::IncrementWear(int value)
+{
+	// Ships don't depreciate while parked.
+	if (IsParked())
+		return;
+	// Increment the wear of the base ship and each outfit.
+	wear += value;
+	outfits.IncrementWear(value);
+	// Outfits in cargo don't wear.
+	UpdateCost();
+}
+
+
+
+bool Ship::PassesFlightCheck() const
+{
+	return FlightCheckStatus() == "pass";
+}
+
+
+
+std::string Ship::FlightCheckStatus() const 
+{
+	double energy = attributes.Get("energy generation") + attributes.Get("energy capacity");
+	if(!attributes.Get("thrust")
+		&& !attributes.Get("reverse thrust")
+		&& !attributes.Get("afterburner thrust"))
+		return "flight check: no thrusters";
+	if(attributes.Get("thrusting energy") > energy)
+		return "flight check: no thruster energy";
+	if(!attributes.Get("turn"))
+		return "flight check: no steering";
+	if(attributes.Get("turning energy") > energy)
+		return "flight check: no steering energy";
+	double maxHeat = .1 * Mass() * attributes.Get("heat dissipation");
+	if(attributes.Get("heat generation") - attributes.Get("cooling") > maxHeat)
+		return "flight check: overheating";
+	return "pass";
+}
+
+
+
+bool Ship::HasHyperdrive() const
+{
+	return attributes.Get("hyperdrive")
+		|| attributes.Get("scram drive")
+		|| attributes.Get("jump drive");
+}
+
+
+
+void Ship::FinishAddingOutfit(const Outfit *outfit, int count)
+{
+	attributes.Add(*outfit, count);
+	if(outfit->IsWeapon())
+		armament.Add(outfit, count);
+	
+	if(outfit->Get("cargo space"))
+		cargo.SetSize(attributes.Get("cargo space"));
+	if(outfit->Get("hull"))
+		hull += outfit->Get("hull") * count;
+	
+	UpdateCost();
 }
 
 

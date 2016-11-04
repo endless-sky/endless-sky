@@ -191,7 +191,15 @@ void Outfit::Reset(const string &attribute, double value)
 }
 
 
-	
+
+// Modify this outfit's cost (which is no longer an attribute).
+void Outfit::ResetCost(double value)
+{
+	cost = value;
+}
+
+
+
 // Get this outfit's engine flare sprite, if any.
 const vector<pair<Body, int>> &Outfit::FlareSprites() const
 {

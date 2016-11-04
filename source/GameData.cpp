@@ -636,12 +636,6 @@ const string &GameData::Tooltip(const string &label)
 {
 	static const string EMPTY;
 	auto it = tooltips.find(label);
-	// Special case: the "cost" and "sells for" labels include the percentage of
-	// the full price, so they will not match exactly.
-	if(it == tooltips.end() && !label.compare(0, 4, "cost"))
-		it = tooltips.find("cost:");
-	if(it == tooltips.end() && !label.compare(0, 9, "sells for"))
-		it = tooltips.find("sells for:");
 	return (it == tooltips.end() ? EMPTY : it->second);
 }
 
@@ -853,11 +847,11 @@ void GameData::PrintShipTable()
 		double heat = attributes.Get("heat generation") - attributes.Get("cooling")
 			+ attributes.Get("thrusting heat") + attributes.Get("turning heat");
 		for(const auto &oit : ship.Outfits())
-			if(oit.first->IsWeapon() && oit.first->Reload())
+			if(oit.GetOutfit()->IsWeapon() && oit.GetOutfit()->Reload())
 			{
-				double reload = oit.first->Reload();
-				energy += oit.second * oit.first->FiringEnergy() / reload;
-				heat += oit.second * oit.first->FiringHeat() / reload;
+				double reload = oit.GetOutfit()->Reload();
+				energy += oit.GetQuantity() * oit.GetOutfit()->FiringEnergy() / reload;
+				heat += oit.GetQuantity() * oit.GetOutfit()->FiringHeat() / reload;
 			}
 		cout << 60. * attributes.Get("energy generation") << '\t';
 		cout << 60. * energy << '\t';

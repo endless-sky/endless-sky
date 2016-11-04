@@ -33,6 +33,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 class DataNode;
 class DataWriter;
 class Government;
+class OutfitGroup;
 class Phrase;
 class Planet;
 class Projectile;
@@ -48,8 +49,14 @@ class System;
 // limits of what the AI knows how to command them to do.
 class Ship : public Body, public std::enable_shared_from_this<Ship> {
 public:
-	// These are all the possible category strings for ships.
+	// These constants are used in the shipyard.
 	static const std::vector<std::string> CATEGORIES;
+	static const std::string JUNKYARD_CATEGORY_NAME;
+	static const std::string JUNKYARD_SHIP_SUFFIX;
+
+	// A constructor that sets the initial wear.
+	static Ship* MakeShip(const Ship& ship, int addedWear);
+	static Ship* MakeEmptyShip(const Ship& ship, int addedWear);
 	
 	class Bay {
 	public:
@@ -115,9 +122,18 @@ public:
 	const std::string &Description() const;
 	// Get this ship's cost.
 	int64_t Cost() const;
+	// Get the ship's base cost (AI's strength estimate)
+	int64_t BaseCost() const;
+	// Re-calculate the ship's cost and baseCost.
+	int64_t UpdateCost();
+	// The wear on the base hull of the ship.
+	int GetWear() const;
+	// The base cost of the ship's hull only.
 	int64_t ChassisCost() const;
+
 	// Get the licenses needed to buy or operate this ship.
 	const std::vector<std::string> &Licenses() const;
+	
 	
 	// When creating a new ship, you must set the following:
 	void Place(Point position = Point(), Point velocity = Point(), Angle angle = Angle());
@@ -286,11 +302,16 @@ public:
 	// Get the attributes of this ship chassis before any outfits were added.
 	const Outfit &BaseAttributes() const;
 	// Get the list of all outfits installed in this ship.
-	const std::map<const Outfit *, int> &Outfits() const;
+	const OutfitGroup &Outfits() const ;
 	// Find out how many outfits of the given type this ship contains.
 	int OutfitCount(const Outfit *outfit) const;
-	// Add or remove outfits. (To remove, pass a negative number.)
-	void AddOutfit(const Outfit *outfit, int count);
+
+	// Add or remove outfits. (To add, pass a negative number.)
+	void AddOutfit(const Outfit *outfit, int count, int wear);
+	int TransferOutfit(const Outfit *outfit, int count, OutfitGroup *to, bool removeMostWornFirst, int wearToAdd);
+	int TransferOutfitToShip(const Outfit *outfit, int count, Ship &to, bool removeMostWornFirst, int wearToAdd);
+	int TransferOutfitToCargo(const Outfit *outfit, int count, CargoHold &to, bool removeMostWornFirst, int wearToAdd);
+	
 	
 	// Get the list of weapons.
 	Armament &GetArmament();
@@ -324,8 +345,22 @@ public:
 	std::shared_ptr<Ship> GetParent() const;
 	const std::vector<std::weak_ptr<const Ship>> &GetEscorts() const;
 	
+	// Increment the wear of this ship and its outfits for the purpose 
+	// of used parts value calculations. 
+	void IncrementWear(int days = 1);
+	
+	// Is this ship able to take off and function?
+	bool PassesFlightCheck() const;
+	// Returns a string corresponding to a conversation 
+	// which describes any flight check problem. 
+	std::string FlightCheckStatus() const;
+	// True if the ship is capable of hyperspace travel. 
+	bool HasHyperdrive() const;
 	
 private:
+	// Update attributes, cargo space, hull after adding or removing an outfit. 
+	void FinishAddingOutfit(const Outfit *outfit, int count);
+	
 	// Add or remove a ship from this ship's list of escorts.
 	void AddEscort(const Ship &ship);
 	void RemoveEscort(const Ship &ship);
@@ -386,6 +421,7 @@ private:
 	
 	Command commands;
 	
+	
 	Personality personality;
 	const Phrase *hail = nullptr;
 	
@@ -393,9 +429,13 @@ private:
 	Outfit attributes;
 	Outfit baseAttributes;
 	const Outfit *explosionWeapon = nullptr;
-	std::map<const Outfit *, int> outfits;
+	OutfitGroup outfits;
 	CargoHold cargo;
 	std::list<Flotsam> jettisoned;
+	int wear;
+	
+	// Base cost used for AI strength estimate. Stored for fast access.
+	int64_t baseCost;
 	
 	std::vector<Bay> bays;
 	
@@ -403,7 +443,7 @@ private:
 	Armament armament;
 	// While loading, keep track of which outfits already have been equipped.
 	// (That is, they were specified as linked to a given gun or turret point.)
-	std::map<const Outfit *, int> equipped;
+	OutfitGroup equipped;
 	
 	// Various energy levels:
 	double shields = 0.;

@@ -167,17 +167,27 @@ vector<double> CaptureOdds::Power(const Ship &ship, bool isDefender)
 	if(!ship.Crew())
 		return power;
 	
-	// Check for any outfits that assist with attacking or defending:
-	const string attribute = (isDefender ? "capture defense" : "capture attack");
+	// Check for any outfits that assist with attacking or defending:	
+	const string weaponAttribute = (isDefender ? "capture defense" : "capture attack");
+	const string automatedAttribute = (isDefender ? "automated capture defense" : "automated capture attack");
 	const double crewPower = (isDefender ? 2. : 1.);
 	
+	// First calculate the automated attack or defense power, which serves as a base-value.
+	double automatedPower = ship.BaseAttributes().Get(automatedAttribute);
+	for(const auto &it : ship.Outfits())
+	{
+		double value = it.GetOutfit()->Get(automatedAttribute);
+		if(value > 0. && it.GetQuantity() > 0) 
+			automatedPower += it.GetQuantity() * value;
+	}
+
 	// Each crew member can wield one weapon. They use the most powerful ones
 	// that can be wielded by the remaining crew.
 	for(const auto &it : ship.Outfits())
 	{
-		double value = it.first->Get(attribute);
-		if(value > 0. && it.second > 0)
-			power.insert(power.end(), it.second, value);
+		double value = it.GetOutfit()->Get(weaponAttribute);
+		if(value > 0. && it.GetQuantity() > 0)
+			power.insert(power.end(), it.GetQuantity(), value);
 	}
 	// Use the best weapons first.
 	sort(power.begin(), power.end(), greater<double>());
@@ -185,9 +195,9 @@ vector<double> CaptureOdds::Power(const Ship &ship, bool isDefender)
 	// Resize the vector to have exactly one entry per crew member.
 	power.resize(ship.Crew(), 0.);
 	
-	// Calculate partial sums. That is, power[N - 1] should be your total crew
-	// power when you have N crew left.
-	power.front() += crewPower;
+	// The final power vector contains the total remaining power
+	// when i crew members are still fighting at each index i. 
+	power.front() += crewPower + automatedPower;
 	for(unsigned i = 1; i < power.size(); ++i)
 		power[i] += power[i - 1] + crewPower;
 	

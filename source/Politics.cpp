@@ -242,9 +242,9 @@ string Politics::Fine(PlayerInfo &player, const Government *gov, int scan, const
 		if(!scan || (scan & ShipEvent::SCAN_OUTFITS))
 		{
 			for(const auto &it : ship->Outfits())
-				if(it.second)
+				if(it.GetQuantity())
 				{
-					int64_t fine = it.first->Get("illegal");
+					int64_t fine = it.GetOutfit()->Get("illegal");
 					if((fine > maxFine && maxFine >= 0) || fine < 0)
 					{
 						maxFine = fine;

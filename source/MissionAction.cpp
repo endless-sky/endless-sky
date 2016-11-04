@@ -29,7 +29,10 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 using namespace std;
 
 namespace {
-	void DoGift(PlayerInfo &player, const Outfit *outfit, int count, UI *ui)
+	static const int DEFAULT_PAYMENT_MULTIPLIER = 450; // Original value: 150;
+	
+	
+	void DoGift(PlayerInfo &player, const Outfit *outfit, int count, int wear, UI *ui)
 	{
 		Ship *flagship = player.Flagship();
 		string name = outfit->Name();
@@ -53,7 +56,7 @@ namespace {
 		
 		bool didCargo = false;
 		bool didShip = false;
-		int cargoCount = player.Cargo().Get(outfit);
+		int cargoCount = player.Cargo().GetOutfitCount(outfit);
 		if(count < 0 && cargoCount)
 		{
 			int moved = min(cargoCount, -count);
@@ -66,7 +69,7 @@ namespace {
 			int moved = (count > 0) ? 1 : -1;
 			if(flagship->Attributes().CanAdd(*outfit, moved))
 			{
-				flagship->AddOutfit(outfit, moved);
+				flagship->AddOutfit(outfit, moved, wear);
 				didShip = true;
 			}
 			else
@@ -135,14 +138,18 @@ void MissionAction::Load(const DataNode &node, const string &missionName)
 		else if(child.Token(0) == "outfit" && child.Size() >= 2)
 		{
 			int count = (child.Size() < 3 ? 1 : static_cast<int>(child.Value(2)));
-			gifts[GameData::Outfits().Get(child.Token(1))] = count;
+			int wear = (child.Size() < 4 ? 0 : static_cast<int>(child.Value(3)));
+			gifts.AddOutfit(GameData::Outfits().Get(child.Token(1)), count, wear); 
 		}
 		else if(child.Token(0) == "require" && child.Size() >= 2)
-			gifts[GameData::Outfits().Get(child.Token(1))] = 0;
+			// Saves a "requirement" as a "gift of zero". 
+			// This may prevent a mission from working 
+			// correctly if it requires and gifts the same outfit.  
+			gifts.AddOutfit(GameData::Outfits().Get(child.Token(1)), 0, 0);
 		else if(child.Token(0) == "payment")
 		{
 			if(child.Size() == 1)
-				paymentMultiplier += 150;
+				paymentMultiplier += DEFAULT_PAYMENT_MULTIPLIER;
 			if(child.Size() >= 2)
 				payment += child.Value(1);
 			if(child.Size() >= 3)
@@ -196,7 +203,7 @@ void MissionAction::Save(DataWriter &out) const
 			conversation.Save(out);
 		
 		for(const auto &it : gifts)
-			out.Write("outfit", it.first->Name(), it.second);
+			out.Write("outfit", it.GetOutfit()->Name(), it.GetQuantity());
 		if(payment)
 			out.Write("payment", payment);
 		for(const auto &it : events)
@@ -228,19 +235,19 @@ bool MissionAction::CanBeDone(const PlayerInfo &player) const
 	const Ship *flagship = player.Flagship();
 	for(const auto &it : gifts)
 	{
-		if(it.second > 0)
+		if(it.GetQuantity() > 0)
 			continue;
 		
 		// The outfit can be taken from the player's cargo or from the flagship.
-		int available = player.Cargo().Get(it.first);
+		int available = player.Cargo().GetOutfitCount(it.GetOutfit());
 		for(const auto &ship : player.Ships())
-			available += ship->Cargo().Get(it.first);
+			available += ship->Cargo().GetOutfitCount(it.GetOutfit());
 		if(flagship)
-			available += flagship->OutfitCount(it.first);
+			available += flagship->OutfitCount(it.GetOutfit());
 		
 		// If the gift "count" is 0, that means to check that the player has at
 		// least one of these items.
-		if(available < -it.second + !it.second)
+		if(available < -it.GetQuantity() + !it.GetQuantity())
 			return false;
 	}
 	return true;
@@ -278,11 +285,11 @@ void MissionAction::Do(PlayerInfo &player, UI *ui, const System *destination) co
 	// If multiple outfits are being transferred, first remove them before
 	// adding any new ones.
 	for(const auto &it : gifts)
-		if(it.second < 0)
-			DoGift(player, it.first, it.second, ui);
+		if(it.GetQuantity() < 0)
+			DoGift(player, it.GetOutfit(), it.GetQuantity(), it.GetWear(), ui);
 	for(const auto &it : gifts)
-		if(it.second > 0)
-			DoGift(player, it.first, it.second, ui);
+		if(it.GetQuantity() > 0)
+			DoGift(player, it.GetOutfit(), it.GetQuantity(), it.GetWear(), ui);
 	
 	if(payment)
 		player.Accounts().AddCredits(payment);

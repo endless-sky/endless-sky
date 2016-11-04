@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef SHOP_PANEL_H_
 #define SHOP_PANEL_H_
 
+#include "Color.h"
 #include "Panel.h"
 
 #include "ClickZone.h"
@@ -21,6 +22,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "ShipInfoDisplay.h"
 
 #include <map>
+#include <memory>
 #include <set>
 #include <string>
 #include <vector>
@@ -36,13 +38,21 @@ class Outfit;
 // outfitter panel (e.g. the sidebar with the ships you own).
 class ShopPanel : public Panel {
 public:
+	// The possible outcomes of a DrawItem call:
+	enum {
+		NOT_DRAWN = 0,
+		DRAWN = 1,
+		SELECTED = 2
+	};
+
+public:
 	ShopPanel(PlayerInfo &player, const std::vector<std::string> &categories);
 	
 	virtual void Step() override;
 	virtual void Draw() override;
 	
 protected:
-	void DrawSidebar() const;
+	void DrawSidebars() const;
 	void DrawButtons() const;
 	void DrawMain() const;
 	
@@ -51,19 +61,21 @@ protected:
 	// These are for the individual shop panels to override.
 	virtual int TileSize() const = 0;
 	virtual int DrawPlayerShipInfo(const Point &point) const = 0;
+	virtual int DrawCargoHoldInfo(const Point &point) const = 0;	
 	virtual bool HasItem(const std::string &name) const = 0;
-	virtual void DrawItem(const std::string &name, const Point &point, int scrollY) const = 0;
+	virtual int DrawItem(const std::string &name, const Point &point, int scrollY) const = 0;
 	virtual int DividerOffset() const = 0;
 	virtual int DetailWidth() const = 0;
 	virtual int DrawDetails(const Point &center) const = 0;
 	virtual bool CanBuy() const = 0;
 	virtual void Buy() = 0;
-	virtual void FailBuy() const = 0;
+	virtual void FailBuy() = 0;
 	virtual bool CanSell() const = 0;
 	virtual void Sell() = 0;
 	virtual void FailSell() const;
 	virtual bool FlightCheck() = 0;
 	virtual bool CanSellMultiple() const;
+	virtual void ToggleParked() const;
 	
 	// Only override the ones you need; the default action is to return false.
 	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command) override;
@@ -90,35 +102,64 @@ protected:
 		const Outfit *outfit = nullptr;
 	};
 	
+	bool ShipIsHere(std::shared_ptr<Ship> ship) const;
+	
+	// These can change based on configuration or resolution.
+	int DetailsWidth() const;
+	int PlayerShipWidth() const;
+	int SideWidth() const;
+	int IconCols() const;
 	
 protected:
-	static const int SIDE_WIDTH = 250;
 	static const int BUTTON_HEIGHT = 70;
+
 	static const int SHIP_SIZE = 250;
+	static const int DETAILS_WIDTH = 250;
 	static const int OUTFIT_SIZE = 180;
+
+	static const int ICON_TILE = 62;
+	static const int ICON_SIZE = ICON_TILE - 8;
 	
+	const Color COLOR_DETAILS_BG = Color(.1, 1.);
+	const Color COLOR_DIVIDERS = Color(.2, 1.);
+	const Color COLOR_BUTTONS_BG = Color(.3, 1.);
 	
 protected:
 	PlayerInfo &player;
-	// Remember the current day, for calculating depreciation.
-	int day;
 	const Planet *planet = nullptr;
 	
+	// The selected player ship
 	Ship *playerShip = nullptr;
+	// Used when holding shift to select multiple ships.
+	Ship *shiftSelectAnchorShip = nullptr;
+	
 	Ship *dragShip = nullptr;
 	Point dragPoint;
-	std::set<Ship *> playerShips;
+	// Selected ships in side panel
+	std::set<Ship *> playerShips; 
+	// Total number of player ships in the shop
+	mutable int shipsHere = 0; 
+	// Selected ship or outfit in the main panel
 	const Ship *selectedShip = nullptr;
 	const Outfit *selectedOutfit = nullptr;
 	
 	double mainScroll = 0;
 	double sideScroll = 0;
+	double playerShipScroll = 0;
+	double detailsScroll = 0;
+	
 	mutable int maxMainScroll = 0;
 	mutable int maxSideScroll = 0;
+	mutable int maxPlayerShipScroll = 0;
+	mutable int maxDetailsScroll = 0;
+	
 	bool dragMain = true;
+	bool dragDetails = true;
+	bool dragPlayerShip = true;
 	mutable int mainDetailHeight = 0;
 	mutable int sideDetailHeight = 0;
 	bool scrollDetailsIntoView = false;
+	bool detailsInWithMain = false;
 	mutable double selectedBottomY = 0.;
 	
 	mutable std::vector<Zone> zones;

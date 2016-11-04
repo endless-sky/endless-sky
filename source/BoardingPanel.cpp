@@ -13,7 +13,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "BoardingPanel.h"
 
 #include "CargoHold.h"
-#include "Depreciation.h"
 #include "Dialog.h"
 #include "FillShader.h"
 #include "Font.h"
@@ -70,8 +69,8 @@ BoardingPanel::BoardingPanel(PlayerInfo &player, const shared_ptr<Ship> &victim)
 	// crew's quarters, not mounted on the exterior of the ship. Certain other
 	// outfits are also unplunderable, like mass expansions.
 	for(const auto &it : victim->Outfits())
-		if(!it.first->Get("unplunderable"))
-			plunder.emplace_back(it.first, it.second);
+		if(!it.GetOutfit()->Get("unplunderable"))
+			plunder.emplace_back(it.GetOutfit(), it.GetQuantity(), it.GetWear());
 	
 	// Some "ships" do not represent something the player could actually pilot.
 	if(!victim->IsCapturable())
@@ -224,18 +223,16 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 			// Check if this outfit is ammo for one of your weapons. If so, use
 			// it to refill your ammo rather than putting it in cargo.
 			for(const auto &it : you->Outfits())
-				if(it.first != outfit && it.first->Ammo() == outfit)
+				if(it.GetOutfit() != outfit && it.GetOutfit()->Ammo() == outfit)
 				{
 					for( ; count && you->Attributes().CanAdd(*outfit); --count)
 					{
-						you->AddOutfit(outfit, 1);
-						victim->AddOutfit(outfit, -1);
+						victim->TransferOutfitToShip(outfit, 1, *you, false, 365);
 					}
 					break;
 				}
-			// Transfer as many as possible of these outfits to your cargo hold.
-			count = cargo.Add(outfit, count);
-			victim->AddOutfit(outfit, -count);
+			// Transfer as many as possible of these outfits to your cargo hold.			
+			count = victim->TransferOutfitToCargo(outfit, count, you->Cargo(), false, 365);
 		}
 		else
 			count = victim->Cargo().Transfer(plunder[selected].Name(), count, &cargo);
@@ -372,7 +369,7 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 				// If you suffered any casualties, you need to split the value
 				// of the ship with their bereaved families. You get two shares,
 				// and each dead crew member gets one.
-				int64_t bonus = (victim->Cost() * casualties * Depreciation::Full()) / (casualties + 2);
+				int64_t bonus = (victim->Cost() * casualties) / (casualties + 2);
 				deathBenefits += bonus;
 				
 				// Report this ship as captured in case any missions care.
@@ -498,10 +495,9 @@ BoardingPanel::Plunder::Plunder(const string &commodity, int count, int unitValu
 }
 
 
-
 // Constructor (outfit installed in the victim ship).
-BoardingPanel::Plunder::Plunder(const Outfit *outfit, int count)
-	: name(outfit->Name()), outfit(outfit), count(count), unitValue(outfit->Cost() * Depreciation::Full())
+BoardingPanel::Plunder::Plunder(const Outfit *outfit, int count, int wear)
+	: name(outfit->Name()), outfit(outfit), count(count), unitValue(OutfitGroup::CostFunction(outfit, wear))
 {
 	UpdateStrings();
 }

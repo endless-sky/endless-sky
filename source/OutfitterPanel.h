@@ -15,6 +15,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "ShopPanel.h"
 
+#include "OutfitGroup.h"
 #include "Sale.h"
 
 #include <map>
@@ -43,19 +44,19 @@ public:
 protected:
 	virtual int TileSize() const override;
 	virtual int DrawPlayerShipInfo(const Point &point) const override;
+	virtual int DrawCargoHoldInfo(const Point &point) const override;	
 	virtual bool HasItem(const std::string &name) const override;
-	virtual void DrawItem(const std::string &name, const Point &point, int scrollY) const override;
+	virtual int DrawItem(const std::string &name, const Point &point, int scrollY) const override;
 	virtual int DividerOffset() const override;
 	virtual int DetailWidth() const override;
 	virtual int DrawDetails(const Point &center) const override;
 	virtual bool CanBuy() const override;
 	virtual void Buy() override;
-	virtual void FailBuy() const override;
+	virtual void FailBuy() override;
 	virtual bool CanSell() const override;
 	virtual void Sell() override;
 	virtual void FailSell() const override;
 	virtual bool FlightCheck() override;
-	
 	
 private:
 	static bool ShipCanBuy(const Ship *ship, const Outfit *outfit);
@@ -67,10 +68,15 @@ private:
 	std::string LicenseName(const std::string &name) const;
 	void CheckRefill();
 	void Refill();
-	
+	void BuyAsCargoPrompt(std::string message);
+	void BuyAsCargoCallback();
+	bool BuyAsCargo();
 	
 private:
-	// Record whether we've checked if the player needs ammo refilled.
+	// This is how many of each outfit we have sold to this particular outfitter
+	// in this particular shopping session (so that you can buy back things this
+	// outfitter does not normally carry that you sold by accident).
+	OutfitGroup &available;
 	bool checkedRefill = false;
 	
 	Sale<Outfit> outfitter;

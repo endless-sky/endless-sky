@@ -272,7 +272,7 @@ bool InfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 		{
 			int commodities = (*shipIt)->Cargo().CommoditiesSize();
 			int amount = (*shipIt)->Cargo().Get(selectedCommodity);
-			int plunderAmount = (*shipIt)->Cargo().Get(selectedPlunder);
+			int plunderAmount = (*shipIt)->Cargo().GetOutfitCount(selectedPlunder);
 			if(amount)
 			{
 				GetUI()->Push(new Dialog(this, &InfoPanel::DumpCommodities,
@@ -451,13 +451,22 @@ void InfoPanel::UpdateInfo()
 		return;
 	
 	const Ship &ship = **shipIt;
-	info.Update(ship, player.FleetDepreciation(), player.GetDate().DaysSinceEpoch());
+	info.Update(ship);
 	if(player.Flagship() && ship.GetSystem() == player.GetSystem() && &ship != player.Flagship())
 		player.Flagship()->SetTargetShip(*shipIt);
 	
 	outfits.clear();
+	// Build the list of outfits on this ship.
+	// List each outfit only once.
+	const Outfit* lastOutfit = nullptr;
 	for(const auto &it : ship.Outfits())
-		outfits[it.first->Category()].push_back(it.first);
+	{
+		if (it.GetOutfit() != lastOutfit)
+		{
+			lastOutfit = it.GetOutfit();
+			outfits[it.GetOutfit()->Category()].push_back(it.GetOutfit());
+		}
+	}
 }
 
 
@@ -847,7 +856,6 @@ void InfoPanel::DrawWeapons(const Rectangle &bounds) const
 
 void InfoPanel::DrawCargo(const Rectangle &bounds) const
 {
-	Color dim = *GameData::Colors().Get("medium");
 	Color bright = *GameData::Colors().Get("bright");
 	const Font &font = FontSet::Get(14);
 	const Ship &ship = **shipIt;
@@ -856,11 +864,38 @@ void InfoPanel::DrawCargo(const Rectangle &bounds) const
 	const CargoHold &cargo = (player.Cargo().Used() ? player.Cargo() : ship.Cargo());
 	Point pos = Point(260., -280.);
 	static const Point size(230., 20.);
+	DrawCargoHold(cargo, pos, size, 230., this);
+	
+	info.DrawTooltips();
+
+	// Re-positioning weapons.
+	if(selected >= 0)
+	{
+		const Outfit *outfit = ship.Weapons()[selected].GetOutfit();
+		string name = outfit ? outfit->Name() : "[empty]";
+		Point pos(hoverPoint.X() - .5 * font.Width(name), hoverPoint.Y());
+		font.Draw(name, pos + Point(1., 1.), Color(0., 1.));
+		font.Draw(name, pos, bright);
+	}
+}
+
+
+
+// Returns the height of the drawn column of detail text.
+int InfoPanel::DrawCargoHold(const CargoHold &cargo, Point startPos, Point size, double heightLimit, const InfoPanel* panel)
+{
+	Point pos = startPos;
+	
+	Color dim = *GameData::Colors().Get("medium");
+	Color bright = *GameData::Colors().Get("bright");
 	Color backColor = *GameData::Colors().Get("faint");
+
+	const Font &font = FontSet::Get(14);
+
 	if(cargo.CommoditiesSize() || cargo.HasOutfits() || cargo.MissionCargoSize())
 	{
 		font.Draw("Cargo", pos, bright);
-		pos.Y() += 20.;
+		pos.Y() += size.Y();
 	}
 	if(cargo.CommoditiesSize())
 	{
@@ -870,9 +905,13 @@ void InfoPanel::DrawCargo(const Rectangle &bounds) const
 				continue;
 			
 			Point center = pos + .5 * size - Point(0., (20 - font.Height()) * .5);
-			commodityZones.emplace_back(center, size, it.first);
-			if(it.first == selectedCommodity)
-				FillShader::Fill(center, size + Point(10., 0.), backColor);
+			
+			if (panel)
+			{
+				panel->commodityZones.emplace_back(center, size, it.first);
+				if(it.first == panel->selectedCommodity)
+					FillShader::Fill(center, size + Point(10., 0.), backColor);
+			}
 			
 			string number = to_string(it.second);
 			Point numberPos(pos.X() + size.X() - font.Width(number), pos.Y());
@@ -881,36 +920,42 @@ void InfoPanel::DrawCargo(const Rectangle &bounds) const
 			pos.Y() += size.Y();
 			
 			// Truncate the list if there is not enough space.
-			if(pos.Y() >= 230.)
+			if(heightLimit && pos.Y() >= heightLimit)
 				break;
 		}
-		pos.Y() += 10.;
+		pos.Y() += size.Y()/2.;
 	}
-	if(cargo.HasOutfits() && pos.Y() < 230.)
+	if(cargo.HasOutfits() && (!heightLimit || pos.Y() < heightLimit))
 	{
+		const Outfit* lastOutfit = nullptr; //Condense same-type outfits in list.
 		for(const auto &it : cargo.Outfits())
 		{
-			if(!it.second)
+			if(!it.GetQuantity() || it.GetOutfit() == lastOutfit)
 				continue;
+			lastOutfit = it.GetOutfit();
 			
 			Point center = pos + .5 * size - Point(0., (20 - font.Height()) * .5);
-			plunderZones.emplace_back(center, size, it.first);
-			if(it.first == selectedPlunder)
-				FillShader::Fill(center, size + Point(10., 0.), backColor);
 			
-			string number = to_string(it.second);
+			if (panel)
+			{
+				panel->plunderZones.emplace_back(center, size, it.GetOutfit());
+				if(it.GetOutfit() == panel->selectedPlunder)
+					FillShader::Fill(center, size + Point(10., 0.), backColor);
+			}
+			
+			string number = to_string(cargo.Outfits().GetTotalCount(it.GetOutfit()));
 			Point numberPos(pos.X() + size.X() - font.Width(number), pos.Y());
-			font.Draw(it.first->Name(), pos, dim);
+			font.Draw(it.GetOutfit()->Name() + "(" + it.GetCostRatioString() + ")", pos, dim);
 			font.Draw(number, numberPos, bright);
 			pos.Y() += size.Y();
 			
 			// Truncate the list if there is not enough space.
-			if(pos.Y() >= 230.)
+			if(heightLimit && pos.Y() >= heightLimit)
 				break;
 		}
-		pos.Y() += 10.;
+		pos.Y() += size.Y()/2.;
 	}
-	if(cargo.HasMissionCargo() && pos.Y() < 230.)
+	if(cargo.HasMissionCargo() && (!heightLimit || pos.Y() < heightLimit))
 	{
 		for(const auto &it : cargo.MissionCargo())
 		{
@@ -918,25 +963,52 @@ void InfoPanel::DrawCargo(const Rectangle &bounds) const
 			string name = Format::Capitalize(it.first->Cargo());
 			
 			string number = to_string(it.second);
-			Point numberPos(pos.X() + 230. - font.Width(number), pos.Y());
+			Point numberPos(pos.X() + size.X() - font.Width(number), pos.Y());
 			font.Draw(name, pos, dim);
 			font.Draw(number, numberPos, bright);
-			pos.Y() += 20.;
+			pos.Y() += size.Y();
 			
 			// Truncate the list if there is not enough space.
-			if(pos.Y() >= 230.)
+			if(heightLimit && pos.Y() >= heightLimit)
 				break;
 		}
-		pos.Y() += 10.;
+		pos.Y() += size.Y()/2;
 	}
-	if(cargo.Passengers())
+	if(panel && cargo.Passengers())
 	{
-		pos = Point(pos.X(), 260.);
+		pos = Point(pos.X(), 260.); // Always in the bottom corner of the info screen.
 		string number = to_string(cargo.Passengers());
-		Point numberPos(pos.X() + 230. - font.Width(number), pos.Y());
+		Point numberPos(pos.X() + size.X() - font.Width(number), pos.Y());
 		font.Draw("passengers:", pos, dim);
 		font.Draw(number, numberPos, bright);
 	}
+	
+	// If displaying in the shop gui.
+	if (!panel)
+	{
+		pos.Y() += 10.;
+		font.Draw("Total Cargo Space:", pos, bright);
+		string number = to_string(cargo.Size());
+		Point numberPos(pos.X() + size.X() - font.Width(number), pos.Y());
+		font.Draw(number, numberPos, bright);
+		pos.Y() += size.Y();
+		
+		font.Draw("Free:", pos, bright);
+		number = to_string(cargo.Free());
+		Point freePos(pos.X() + size.X() - font.Width(number), pos.Y());
+		font.Draw(number, freePos, bright);
+		pos.Y() += size.Y() * 2;
+		
+		WrappedText warning;
+		warning.SetAlignment(WrappedText::JUSTIFIED);
+		warning.SetWrapWidth(size.X());
+		warning.SetFont(font);
+		warning.Wrap("Warning: Having enough cargo space for an outfit \"in your fleet\" does not guarantee it will fit on any particular ship when you try to take off!");
+		warning.Draw(pos, dim);
+		pos.Y() += warning.Height();
+	}
+	
+	return pos.Y() - startPos.Y();
 }
 
 
@@ -990,7 +1062,7 @@ bool InfoPanel::CanDump() const
 		return false;
 	
 	CargoHold &cargo = (*shipIt)->Cargo();
-	return (selectedPlunder && cargo.Get(selectedPlunder) > 0) || cargo.CommoditiesSize() || cargo.OutfitsSize();
+	return (selectedPlunder && cargo.GetOutfitCount(selectedPlunder) > 0) || cargo.CommoditiesSize() || cargo.OutfitsSize();
 }
 
 
@@ -1003,7 +1075,7 @@ void InfoPanel::Dump()
 	CargoHold &cargo = (*shipIt)->Cargo();
 	int commodities = (*shipIt)->Cargo().CommoditiesSize();
 	int amount = cargo.Get(selectedCommodity);
-	int plunderAmount = cargo.Get(selectedPlunder);
+	int plunderAmount = cargo.GetOutfitCount(selectedPlunder);
 	int64_t loss = 0;
 	if(amount)
 	{
@@ -1031,14 +1103,14 @@ void InfoPanel::Dump()
 	{
 		for(const auto &it : cargo.Outfits())
 		{
-			loss += it.first->Cost() * max(0, it.second);
-			(*shipIt)->Jettison(it.first, it.second);
+			loss += it.GetOutfit()->Cost() * max(0, it.GetQuantity());
+			(*shipIt)->Jettison(it.GetOutfit(), it.GetQuantity());
 		}
 	}
 	selectedCommodity.clear();
 	selectedPlunder = nullptr;
 	
-	info.Update(**shipIt, player.FleetDepreciation(), player.GetDate().DaysSinceEpoch());
+	info.Update(**shipIt);
 	if(loss)
 		Messages::Add("You jettisoned " + Format::Number(loss) + " credits worth of cargo.");
 }
@@ -1048,12 +1120,12 @@ void InfoPanel::Dump()
 void InfoPanel::DumpPlunder(int count)
 {
 	int64_t loss = 0;
-	count = min(count, (*shipIt)->Cargo().Get(selectedPlunder));
+	count = min(count, (*shipIt)->Cargo().GetOutfitCount(selectedPlunder));
 	if(count > 0)
 	{
 		loss += count * selectedPlunder->Cost();
 		(*shipIt)->Jettison(selectedPlunder, count);
-		info.Update(**shipIt, player.FleetDepreciation(), player.GetDate().DaysSinceEpoch());
+		info.Update(**shipIt);
 		
 		if(loss)
 			Messages::Add("You jettisoned " + Format::Number(loss) + " credits worth of cargo.");
@@ -1072,7 +1144,7 @@ void InfoPanel::DumpCommodities(int count)
 		loss += basis;
 		player.AdjustBasis(selectedCommodity, -basis);
 		(*shipIt)->Jettison(selectedCommodity, count);
-		info.Update(**shipIt, player.FleetDepreciation(), player.GetDate().DaysSinceEpoch());
+		info.Update(**shipIt);
 		
 		if(loss)
 			Messages::Add("You jettisoned " + Format::Number(loss) + " credits worth of cargo.");

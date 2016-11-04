@@ -16,7 +16,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Account.h"
 #include "CargoHold.h"
 #include "Date.h"
-#include "Depreciation.h"
 #include "GameEvent.h"
 #include "Mission.h"
 #include "Planet.h"
@@ -32,6 +31,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 class DataNode;
 class Government;
 class Outfit;
+class OutfitGroup;
 class Person;
 class Planet;
 class Ship;
@@ -194,12 +194,11 @@ public:
 	
 	// Keep track of any outfits that you have sold since landing. These will be
 	// available to buy back until you take off.
-	int Stock(const Outfit *outfit) const;
-	void AddStock(const Outfit *outfit, int count);
-	// Get depreciation information.
-	const Depreciation &FleetDepreciation() const;
-	const Depreciation &StockDepreciation() const;
-	
+	OutfitGroup &SoldOutfits();
+	// Keep track of used ships available today on this planet, so it doesn't change until after you take off again.
+	std::list<const Ship*> &UsedShips();
+	std::list<const Ship*> &JunkyardShips();
+
 	// Keep track of what materials you have mined in each system.
 	void Harvest(const Outfit *type);
 	const std::set<std::pair<const System *, const Outfit *>> &Harvested() const;
@@ -259,10 +258,12 @@ private:
 	
 	const Outfit *selectedWeapon = nullptr;
 	
-	std::map<const Outfit *, int> stock;
-	Depreciation depreciation;
-	Depreciation stockDepreciation;
+	OutfitGroup soldOutfits;
+	std::list<const Ship*> usedShips;
+	std::list<const Ship*> junkyardShips;
+
 	std::set<std::pair<const System *, const Outfit *>> harvested;
+
 	
 	// Changes that this PlayerInfo wants to make to the global galaxy state:
 	std::vector<std::pair<const Government *, double>> reputationChanges;

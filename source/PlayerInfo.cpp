@@ -43,6 +43,11 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 using namespace std;
 
 
+namespace {
+	static const int WEAR_PER_DAY_OF_USE = 1;
+	static const int WEAR_WHEN_DISABLED = 16;
+}
+
 
 // Completely clear all loaded information, to prepare for loading a file or
 // creating a new pilot.
@@ -73,9 +78,6 @@ void PlayerInfo::New()
 	// such item exists, StartConditions defines default values.
 	date = GameData::Start().GetDate();
 	GameData::SetDate(date);
-	// Make sure the fleet depreciation object knows it is tracking the player's
-	// fleet, not the planet's stock.
-	depreciation.Init(ships, date.DaysSinceEpoch());
 	
 	SetSystem(GameData::Start().GetSystem());
 	SetPlanet(GameData::Start().GetPlanet());
@@ -141,16 +143,6 @@ void PlayerInfo::Load(const string &path)
 				if(grand.Size() >= 2)
 					costBasis[grand.Token(0)] += grand.Value(1);
 		}
-		else if(child.Token(0) == "stock")
-		{
-			for(const DataNode &grand : child)
-				if(grand.Size() >= 2)
-					stock[GameData::Outfits().Get(grand.Token(0))] += grand.Value(1);
-		}
-		else if(child.Token(0) == "fleet depreciation")
-			depreciation.Load(child);
-		else if(child.Token(0) == "stock depreciation")
-			stockDepreciation.Load(child);
 		else if(child.Token(0) == "harvested")
 		{
 			for(const DataNode &grand : child)
@@ -174,6 +166,35 @@ void PlayerInfo::Load(const string &path)
 		{
 			availableMissions.push_back(Mission());
 			availableMissions.back().Load(child);
+		}
+		else if (child.Token(0) == "used outfits")
+		{
+			for(const DataNode &grand : child)
+			{
+				int count = (grand.Size() >= 2) ? grand.Value(1) : 1;
+				int wear = (grand.Size() >= 3) ? grand.Value(2) : OutfitGroup::UsedWear();
+				soldOutfits.AddOutfit(GameData::Outfits().Get(grand.Token(0)), count, wear);
+			}
+		}
+		else if (child.Token(0) == "used ships")
+		{
+			for(const DataNode &grand : child)
+			{
+				int wear = (grand.Size() >= 2) ? grand.Value(1) : OutfitGroup::UsedWear();
+				const Ship *model = GameData::Ships().Get(grand.Token(0));
+				usedShips.push_back(Ship::MakeShip(*model, wear));
+			}
+			usedShips.push_back(nullptr);
+		}
+		else if (child.Token(0) == "junkyard ships")
+		{
+			for(const DataNode &grand : child)
+			{
+				int wear = (grand.Size() >= 2) ? grand.Value(1) : OutfitGroup::PlunderWear();
+				const Ship *model = GameData::Ships().Get(grand.Token(0));
+				junkyardShips.push_back(Ship::MakeEmptyShip(*model, wear));
+			}
+			junkyardShips.push_back(nullptr);
 		}
 		else if(child.Token(0) == "conditions")
 		{
@@ -254,11 +275,6 @@ void PlayerInfo::Load(const string &path)
 		if(ship->GetSystem() == system)
 			ship->SetPlanet(planet);
 	}
-	
-	// If no depreciation record was loaded, every item in the player's fleet
-	// will count as non-depreciated.
-	if(!depreciation.IsLoaded())
-		depreciation.Init(ships, date.DaysSinceEpoch());
 }
 
 
@@ -539,9 +555,14 @@ void PlayerInfo::IncrementDate()
 	
 	// For accounting, keep track of the player's net worth. This is for
 	// calculation of yearly income to determine maximum mortgage amounts.
-	int64_t assets = depreciation.Value(ships, date.DaysSinceEpoch());
-	for(const shared_ptr<Ship> &ship : ships)
-		assets += ship->Cargo().Value(system);
+	int64_t assets = 0;
+	for(const shared_ptr<Ship> &ship : ships) 
+	{
+		// Increment the wear of the ship and its outfits.
+		ship->IncrementWear(WEAR_PER_DAY_OF_USE);
+		// Add the ship's value and the value of any cargo to net worth.
+		assets += ship->Cost() + ship->Cargo().Value(system);
+	}
 	
 	// Have the player pay salaries, mortgages, etc. and print a message that
 	// summarizes the payments that were made.
@@ -714,11 +735,10 @@ void PlayerInfo::AddShip(shared_ptr<Ship> &ship)
 // Buy a ship of the given model, and give it the given name.
 void PlayerInfo::BuyShip(const Ship *model, const string &name)
 {
-	int day = date.DaysSinceEpoch();
-	int64_t cost = stockDepreciation.Value(*model, day);
-	if(model && accounts.Credits() >= cost)
+	if(model && accounts.Credits() >= model->Cost())
 	{
-		ships.push_back(shared_ptr<Ship>(new Ship(*model)));
+		auto newShip = Ship::MakeShip(*model, 0);
+		ships.push_back(shared_ptr<Ship>(newShip));
 		ships.back()->SetName(name);
 		ships.back()->SetSystem(system);
 		ships.back()->SetPlanet(planet);
@@ -726,13 +746,13 @@ void PlayerInfo::BuyShip(const Ship *model, const string &name)
 		ships.back()->SetIsYours();
 		ships.back()->SetGovernment(GameData::PlayerGovernment());
 		
-		accounts.AddCredits(-cost);
-		flagship.reset();
+		accounts.AddCredits(-newShip->Cost());
 		
-		// Record the transfer of this ship in the depreciation and stock info.
-		depreciation.Buy(*model, day, &stockDepreciation);
-		for(const auto &it : model->Outfits())
-			stock[it.first] -= it.second;
+		// If you buy a ship that fails flight-check, park it. 
+		if(!ships.back()->PassesFlightCheck())
+			ships.back()->SetIsParked();
+		
+		flagship.reset();
 	}
 }
 
@@ -744,15 +764,17 @@ void PlayerInfo::SellShip(const Ship *selected)
 	for(auto it = ships.begin(); it != ships.end(); ++it)
 		if(it->get() == selected)
 		{
-			int day = date.DaysSinceEpoch();
-			int64_t cost = depreciation.Value(*selected, day);
+			// Add the price from the sale.
+			accounts.AddCredits(selected->Cost());
 			
-			// Record the transfer of this ship in the depreciation and stock info.
-			stockDepreciation.Buy(*selected, day, &depreciation);
+			// Add the ship's outfits to the outfits available at the outfitter.
 			for(const auto &it : selected->Outfits())
-				stock[it.first] += it.second;
+				soldOutfits.AddOutfit(it.GetOutfit(), it.GetQuantity(), it.GetWear());
+
+			// Add the ship's hull to the junkyard.
+			junkyardShips.push_back(Ship::MakeEmptyShip(*selected, 0));
 			
-			accounts.AddCredits(cost);
+			// Delete the ship from player's list of ships.
 			ships.erase(it);
 			flagship.reset();
 			return;
@@ -891,9 +913,6 @@ void PlayerInfo::Land(UI *ui)
 			for(const auto &cargo : (*it)->Cargo().Commodities())
 				if(cargo.second)
 					lostCargo[cargo.first] += cargo.second;
-			// Also, the ship and everything in it should be removed from your
-			// depreciation records. Transfer it to a throw-away record:
-			Depreciation().Buy(**it, date.DaysSinceEpoch(), &depreciation);
 			
 			it = ships.erase(it);
 		}
@@ -1007,6 +1026,45 @@ void PlayerInfo::Land(UI *ui)
 			ui->Push(new Dialog(message));
 	}
 	
+	// Add some random used outfits to the outfitter if there is one.
+	if(GetPlanet()->HasOutfitter() && soldOutfits.Empty())
+		for(const Outfit *outfit : GetPlanet()->Outfitter())
+		{
+			// Ammo/Maps/Licenses are never on sale.
+			if (outfit->Category() == "Ammunition" || outfit->Category() == "Special")
+				continue;
+			int added = 0;
+			while (Random::Int(100) < 35) //TODO: Variable used part generation chance and max.
+			{
+				soldOutfits.AddOutfit(outfit, 1, OutfitGroup::UsedWear());
+				if(++added >= 3)
+					break;
+			}
+		}
+	// Add a few random used ships for sale. 
+	if(GetPlanet()->HasShipyard() && usedShips.empty())
+	{
+		for(const Ship *ship : GetPlanet()->Shipyard())
+		{
+			if (Random::Int(100) < 20) //TODO: Variable used ship generation chance.
+				usedShips.push_back(Ship::MakeShip(*ship, OutfitGroup::UsedWear()));
+		}
+		if(usedShips.empty()) // If no used ships are available, put in something so the map won't be empty.
+			usedShips.push_back(nullptr); 
+	}
+	// Add a few random used ship hulls to the junkyard. 
+	if(GetPlanet()->HasShipyard() && junkyardShips.empty())
+	{
+		for(const Ship *ship : GetPlanet()->Shipyard())
+		{
+			if (Random::Int(100) < 20) //TODO: Variable used ship generation chance.
+				junkyardShips.push_back(Ship::MakeEmptyShip(*ship, OutfitGroup::PlunderWear()));
+		}
+		if(junkyardShips.empty()) // If no used ships are available, put in something so the map won't be empty.
+			junkyardShips.push_back(nullptr); 
+	}
+
+
 	freshlyLoaded = false;
 	flagship.reset();
 }
@@ -1033,8 +1091,9 @@ bool PlayerInfo::TakeOff(UI *ui)
 	availableJobs.clear();
 	availableMissions.clear();
 	doneMissions.clear();
-	stock.clear();
-	stockDepreciation = Depreciation();
+	soldOutfits.Clear();
+	usedShips.clear();
+	junkyardShips.clear();
 	
 	// Special persons who appeared last time you left the planet, can appear
 	// again.
@@ -1188,7 +1247,6 @@ bool PlayerInfo::TakeOff(UI *ui)
 	int64_t sold = cargo.Used();
 	income = 0;
 	int64_t commodityIncome = 0;
-	int64_t outfitIncome = 0;
 	int64_t totalBasis = 0;
 	if(sold)
 	{
@@ -1213,21 +1271,15 @@ bool PlayerInfo::TakeOff(UI *ui)
 			it->second -= basis;
 			totalBasis += basis;
 		}
-		for(const auto &outfit : cargo.Outfits())
-		{
-			// Compute the total value for each type of excess outfit.
-			if(!outfit.second)
-				continue;
-			outfitIncome += outfit.first->Cost() * outfit.second;
-		}
+		// Also sell any outfits that had to be left behind because they didn't fit.
+		income += cargo.Outfits().GetTotalCost();
 	}
-	accounts.AddCredits(commodityIncome);
-	accounts.AddCredits(outfitIncome);
+		
+	accounts.AddCredits(income);
 	cargo.Clear();
 	if(sold)
 	{
 		// Report how much excess cargo was sold, and what profit you earned.
-		income = commodityIncome + outfitIncome;
 		ostringstream out;
 		out << "You sold " << sold << " tons of excess cargo for " << Format::Number(income) << " credits";
 		if(totalBasis && totalBasis != income)
@@ -1458,13 +1510,18 @@ void PlayerInfo::FailMission(const Mission &mission)
 // Update mission status based on an event.
 void PlayerInfo::HandleEvent(const ShipEvent &event, UI *ui)
 {
-	// Combat rating increases when you disable an enemy ship.
-	if(event.ActorGovernment()->IsPlayer())
-		if((event.Type() & ShipEvent::DISABLE) && event.Target())
-			conditions["combat rating"] += (event.Target()->Cost() + 250000) / 500000;
-	
+	if((event.Type() & ShipEvent::DISABLE) && event.Target())
+	{
+		// Combat rating increases when you disable an enemy ship.
+		if(event.ActorGovernment()->IsPlayer())
+			conditions["combat rating"] += (event.Target()->BaseCost() + 250000) / 500000;
+		// If a ship is disabled, it takes some wear.  
+		event.Target()->IncrementWear(WEAR_WHEN_DISABLED);
+	}
+	// Missions have a chance to respond to events.
 	for(Mission &mission : missions)
 		mission.Do(event, *this, ui);
+	
 	
 	// If the player's flagship was destroyed, the player is dead.
 	if((event.Type() & ShipEvent::DESTROY) && !ships.empty() && event.Target().get() == Flagship())
@@ -1682,8 +1739,10 @@ const Outfit *PlayerInfo::SelectedWeapon() const
 // Cycle through all available secondary weapons.
 void PlayerInfo::SelectNext()
 {
-	if(!flagship || flagship->Outfits().empty())
+	if(!flagship || flagship->Outfits().Empty())
 		return;
+	
+	// TODO: Need to group weapons by type, not type/wear.
 	
 	// Start with the currently selected weapon, if any.
 	auto it = flagship->Outfits().find(selectedWeapon);
@@ -1694,9 +1753,9 @@ void PlayerInfo::SelectNext()
 	
 	// Find the next secondary weapon.
 	for( ; it != flagship->Outfits().end(); ++it)
-		if(it->first->Icon())
+		if(it.GetOutfit() != selectedWeapon && it.GetOutfit()->Icon())
 		{
-			selectedWeapon = it->first;
+			selectedWeapon = it.GetOutfit();
 			return;
 		}
 	selectedWeapon = nullptr;
@@ -1706,47 +1765,24 @@ void PlayerInfo::SelectNext()
 
 // Keep track of any outfits that you have sold since landing. These will be
 // available to buy back until you take off.
-int PlayerInfo::Stock(const Outfit *outfit) const
+OutfitGroup &PlayerInfo::SoldOutfits()
 {
-	auto it = stock.find(outfit);
-	return (it == stock.end() ? 0 : it->second);
+	return soldOutfits;
 }
 
 
 
-// Transfer outfits from the player to the planet or vice versa.
-void PlayerInfo::AddStock(const Outfit *outfit, int count)
+// Keep track of used ships available today on this planet, so it doesn't change until after you take off again.
+list<const Ship*> &PlayerInfo::UsedShips()
 {
-	stock[outfit] += count;
-	int day = date.DaysSinceEpoch();
-	if(count > 0)
-	{
-		// Remember how depreciated these items are.
-		for(int i = 0; i < count; ++i)
-			stockDepreciation.Buy(outfit, day, &depreciation);
-	}
-	else
-	{
-		// If the count is negative, outfits are being transferred from stock
-		// into the player's possession.
-		for(int i = 0; i < -count; ++i)
-			depreciation.Buy(outfit, day, &stockDepreciation);
-	}
+	return usedShips;
 }
 
 
 
-// Get depreciation information.
-const Depreciation &PlayerInfo::FleetDepreciation() const
+list<const Ship*> &PlayerInfo::JunkyardShips()
 {
-	return depreciation;
-}
-
-
-
-const Depreciation &PlayerInfo::StockDepreciation() const
-{
-	return stockDepreciation;
+	return junkyardShips;
 }
 
 
@@ -1913,20 +1949,7 @@ void PlayerInfo::Save(const string &path) const
 		out.EndChild();
 	}
 	accounts.Save(out);
-	
-	if(!stock.empty())
-	{
-		out.Write("stock");
-		out.BeginChild();
-		{
-			for(const auto &it : stock)
-				if(it.second)
-					out.Write(it.first->Name(), it.second);
-		}
-		out.EndChild();
-	}
-	depreciation.Save(out, date.DaysSinceEpoch());
-	stockDepreciation.Save(out, date.DaysSinceEpoch());
+
 	if(!harvested.empty())
 	{
 		out.Write("harvested");
@@ -1937,7 +1960,7 @@ void PlayerInfo::Save(const string &path) const
 					out.Write(it.first->Name(), it.second->Name());
 		}
 		out.EndChild();
-	}
+	}	
 	
 	// Save all missions (accepted or available).
 	for(const Mission &mission : missions)
@@ -1946,6 +1969,41 @@ void PlayerInfo::Save(const string &path) const
 		mission.Save(out, "available job");
 	for(const Mission &mission : availableMissions)
 		mission.Save(out, "available mission");
+	
+	// Save which used outfits are currently available.
+	out.Write("used outfits");
+	out.BeginChild();
+	{
+		for(const auto &it : soldOutfits)
+			if(it.GetOutfit() && it.GetQuantity())
+			{
+				if(it.GetQuantity() == 1 && !it.GetWear())
+					out.Write(it.GetOutfit()->Name());
+				else
+					out.Write(it.GetOutfit()->Name(), it.GetQuantity(), it.GetWear());
+			}
+	}
+	out.EndChild();
+	// Save which used ships are currently available.
+	out.Write("used ships");
+	out.BeginChild();
+	{
+		for(const auto &it : usedShips)
+			if(it && it->GetWear() > 0)
+				out.Write(it->ModelName(), it->GetWear());
+	}
+	out.EndChild();
+
+	// Save which junkyard hulls are currently available.
+	out.Write("junkyard ships");
+	out.BeginChild();
+	{
+		for(const auto &it : junkyardShips)
+			if(it && it->GetWear() > 0)
+				out.Write(it->ModelName(), it->GetWear());
+	}
+	out.EndChild();
+
 	
 	// Save any "condition" flags that are set.
 	if(!conditions.empty())

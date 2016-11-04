@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5155CD731DBB9FF900EF090B /* Depreciation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5155CD711DBB9FF900EF090B /* Depreciation.cpp */; };
+		625BE5EF1CADE72B00605387 /* OutfitGroup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 625BE5ED1CADE72B00605387 /* OutfitGroup.cpp */; };
 		6245F8251D301C7400A7A094 /* Body.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6245F8231D301C7400A7A094 /* Body.cpp */; };
 		6245F8281D301C9000A7A094 /* Hardpoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6245F8261D301C9000A7A094 /* Hardpoint.cpp */; };
 		628BDAEF1CC5DC950062BCD2 /* PlanetLabel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 628BDAED1CC5DC950062BCD2 /* PlanetLabel.cpp */; };
@@ -18,8 +18,8 @@
 		A93931F019880EFC00C2A87B /* SDL2.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = A9CC52A01950CA16004E4E22 /* SDL2.framework */; };
 		A93931FB1988135200C2A87B /* libturbojpeg.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A93931FA1988135200C2A87B /* libturbojpeg.0.dylib */; };
 		A93931FD1988136B00C2A87B /* libpng14.14.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A93931FC1988136B00C2A87B /* libpng14.14.dylib */; };
-		A93931FE1988136E00C2A87B /* libturbojpeg.0.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = A93931FA1988135200C2A87B /* libturbojpeg.0.dylib */; };
-		A93931FF1988136F00C2A87B /* libpng14.14.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = A93931FC1988136B00C2A87B /* libpng14.14.dylib */; };
+		A93931FE1988136E00C2A87B /* libturbojpeg.0.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = A93931FA1988135200C2A87B /* libturbojpeg.0.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		A93931FF1988136F00C2A87B /* libpng14.14.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = A93931FC1988136B00C2A87B /* libpng14.14.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		A94408A51982F3E600610427 /* endless-sky.iconset in Resources */ = {isa = PBXBuildFile; fileRef = A94408A41982F3E600610427 /* endless-sky.iconset */; };
 		A966A5AB1B964E6300DFF69C /* Person.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A966A5A91B964E6300DFF69C /* Person.cpp */; };
 		A96863A01AE6FD0E004FE1FE /* Account.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A96862CD1AE6FD0A004FE1FE /* Account.cpp */; };
@@ -156,8 +156,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		5155CD711DBB9FF900EF090B /* Depreciation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Depreciation.cpp; path = source/Depreciation.cpp; sourceTree = "<group>"; };
-		5155CD721DBB9FF900EF090B /* Depreciation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Depreciation.h; path = source/Depreciation.h; sourceTree = "<group>"; };
+		625BE5ED1CADE72B00605387 /* OutfitGroup.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = OutfitGroup.cpp; path = source/OutfitGroup.cpp; sourceTree = "<group>"; };
+		625BE5EE1CADE72B00605387 /* OutfitGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OutfitGroup.h; path = source/OutfitGroup.h; sourceTree = "<group>"; };
 		6245F8231D301C7400A7A094 /* Body.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Body.cpp; path = source/Body.cpp; sourceTree = "<group>"; };
 		6245F8241D301C7400A7A094 /* Body.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Body.h; path = source/Body.h; sourceTree = "<group>"; };
 		6245F8261D301C9000A7A094 /* Hardpoint.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Hardpoint.cpp; path = source/Hardpoint.cpp; sourceTree = "<group>"; };
@@ -471,8 +471,6 @@
 				A96862F51AE6FD0A004FE1FE /* DataWriter.h */,
 				A96862F61AE6FD0A004FE1FE /* Date.cpp */,
 				A96862F71AE6FD0A004FE1FE /* Date.h */,
-				5155CD711DBB9FF900EF090B /* Depreciation.cpp */,
-				5155CD721DBB9FF900EF090B /* Depreciation.h */,
 				A96862F81AE6FD0A004FE1FE /* Dialog.cpp */,
 				A96862F91AE6FD0B004FE1FE /* Dialog.h */,
 				A96862FA1AE6FD0B004FE1FE /* DistanceMap.cpp */,
@@ -571,6 +569,8 @@
 				A96863471AE6FD0C004FE1FE /* Outfit.h */,
 				A96863481AE6FD0C004FE1FE /* OutfitInfoDisplay.cpp */,
 				A96863491AE6FD0C004FE1FE /* OutfitInfoDisplay.h */,
+				625BE5ED1CADE72B00605387 /* OutfitGroup.cpp */,
+				625BE5EE1CADE72B00605387 /* OutfitGroup.h */,
 				A968634A1AE6FD0C004FE1FE /* OutfitterPanel.cpp */,
 				A968634B1AE6FD0C004FE1FE /* OutfitterPanel.h */,
 				A968634C1AE6FD0C004FE1FE /* OutlineShader.cpp */,
@@ -840,6 +840,7 @@
 				A96863C31AE6FD0E004FE1FE /* Galaxy.cpp in Sources */,
 				A97C24EA1B17BE35007DDFA1 /* MapOutfitterPanel.cpp in Sources */,
 				A96864061AE6FD0E004FE1FE /* WrappedText.cpp in Sources */,
+				625BE5EF1CADE72B00605387 /* OutfitGroup.cpp in Sources */,
 				A96863D91AE6FD0E004FE1FE /* MissionPanel.cpp in Sources */,
 				A96863DB1AE6FD0E004FE1FE /* NPC.cpp in Sources */,
 				A96863F81AE6FD0E004FE1FE /* SpaceportPanel.cpp in Sources */,
@@ -851,7 +852,6 @@
 				A96863ED1AE6FD0E004FE1FE /* Random.cpp in Sources */,
 				A96864021AE6FD0E004FE1FE /* Trade.cpp in Sources */,
 				6245F8251D301C7400A7A094 /* Body.cpp in Sources */,
-				5155CD731DBB9FF900EF090B /* Depreciation.cpp in Sources */,
 				A96863FC1AE6FD0E004FE1FE /* SpriteShader.cpp in Sources */,
 				A96863E81AE6FD0E004FE1FE /* Politics.cpp in Sources */,
 				A96863E91AE6FD0E004FE1FE /* Preferences.cpp in Sources */,

@@ -42,12 +42,12 @@ namespace {
 	static const string SETTINGS[] = {
 		"Show CPU / GPU load",
 		"Render motion blur",
-		"",
 		EXPEND_AMMO,
 		"Automatic firing",
 		"Automatic aiming",
-		"",
 		"Show status overlays",
+		"Outfit price labels",
+		"Details with tiles in shop"
 	};
 }
 

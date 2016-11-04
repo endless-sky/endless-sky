@@ -16,6 +16,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Point.h"
 #include "Set.h"
 #include "StellarObject.h"
+#include "Trade.h"
 
 #include <string>
 #include <vector>
@@ -136,14 +137,29 @@ private:
 private:
 	class Price {
 	public:
-		void SetBase(int base);
+		// Commodity name
+		std::string name;
+
+		void SetBase(double base, const std::string &name, bool usePricePercentile);
+		int GetBasePrice();
 		void Update();
+
+		// Indicates how expensive or inexpensive this commodity is
+		// relative to the global expected lowest and highest prices
+		// defined in commodities.txt. 0 represents the "lowest" price
+		// and 100 represents the "highest" but there is nothing to
+		// stop the value from being set outside of that range.
+		double basePricePercentile = 0;
+
+		// basePrice is used for special commodities that don't 
+		// have "expected prices" defined.
+		int basePrice = 0;
 		
-		int base = 0;
 		int price = 0;
 		double supply = 0.;
 		double exports = 0.;
 	};
+
 	
 	
 private:

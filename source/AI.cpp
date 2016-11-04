@@ -207,7 +207,7 @@ void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &player)
 	map<const Government *, int64_t> strength;
 	for(const auto &it : ships)
 		if(it->GetGovernment() && it->GetSystem() == player.GetSystem() && !it->IsDisabled())
-			strength[it->GetGovernment()] += it->Cost();
+			strength[it->GetGovernment()] += it->BaseCost();
 	enemyStrength.clear();
 	allyStrength.clear();
 	for(const auto &it : strength)
@@ -240,7 +240,7 @@ void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &player)
 				continue;
 			
 			if(ogov->AttitudeToward(gov) > 0. && oit->Position().Distance(it->Position()) < 2000.)
-				strength += oit->Cost();
+				strength += oit->BaseCost();
 		}
 	}		
 	

@@ -28,6 +28,10 @@ public:
 	// Convert a string into a number. As with the output of Number(), the
 	// string can have suffixes like "M", "B", etc.
 	static double Parse(const std::string &str);
+	// Get a string with the ratio of one number to another in percent.
+	// Used for prices, i.e. "I'll pay 80% of list price" or "this is 15% off"
+	static std::string Percent(int64_t number, int64_t base);
+	static std::string Percent(double ratio);
 	// Replace a set of "keys," which must be strings in the form "<name>", with
 	// a new set of strings, and return the result.
 	static std::string Replace(const std::string &source, const std::map<std::string, std::string> keys);
@@ -35,6 +39,9 @@ public:
 	// Convert a string to title caps or to lower case.
 	static std::string Capitalize(const std::string &str);
 	static std::string LowerCase(const std::string &str);
+	
+	// Does a string end with a certain suffix?
+	static bool EndsWith(const std::string &str, const std::string &suffix);
 };
 
 

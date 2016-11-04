@@ -15,6 +15,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "ConditionSet.h"
 #include "Conversation.h"
+#include "OutfitGroup.h"
 
 #include <map>
 #include <set>
@@ -58,6 +59,7 @@ public:
 	MissionAction Instantiate(std::map<std::string, std::string> &subs, int jumps, int payload) const;
 	
 	
+	
 private:
 	std::string trigger;
 	std::string system;
@@ -68,7 +70,7 @@ private:
 	Conversation conversation;
 	
 	std::map<std::string, int> events;
-	std::map<const Outfit *, int> gifts;
+	OutfitGroup gifts;
 	int64_t payment = 0;
 	int64_t paymentMultiplier = 0;
 	

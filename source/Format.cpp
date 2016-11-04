@@ -165,6 +165,22 @@ double Format::Parse(const string &str)
 
 
 
+string Format::Percent(int64_t number, int64_t base)
+{
+	double ratio = static_cast<double>(number) / static_cast<double>(base);
+	return Percent(ratio);
+}
+
+
+
+string Format::Percent(double ratio)
+{
+	std::string str = to_string(round(100 * ratio));
+	return str.substr(0, str.find(".")) + "%";
+}
+
+
+
 string Format::Replace(const string &source, const map<string, string> keys)
 {
 	string result;
@@ -232,4 +248,11 @@ string Format::LowerCase(const string &str)
 	for(char &c : result)
 		c = tolower(c);
 	return result;
+}
+
+
+
+bool Format::EndsWith(const string &str, const string &suffix)
+{
+	return str.size() >= suffix.size() && str.substr(str.size() - suffix.size(), suffix.size()) == suffix;
 }
