@@ -824,6 +824,10 @@ void GameData::PrintShipTable()
 		<< "e_gen" << '\t' << "e_use" << '\t' << "h_gen" << '\t' << "h_max" << '\n';
 	for(auto &it : ships)
 	{
+		// Skip variants.
+		if(it.second.ModelName() != it.first)
+			continue;
+		
 		const Ship &ship = it.second;
 		cout << it.first << '\t';
 		cout << ship.Cost() << '\t';
@@ -837,9 +841,9 @@ void GameData::PrintShipTable()
 		cout << attributes.Get("bunks") << '\t';
 		cout << attributes.Get("fuel capacity") << '\t';
 		
-		cout << attributes.Get("outfit space") << '\t';
-		cout << attributes.Get("weapon capacity") << '\t';
-		cout << attributes.Get("engine capacity") << '\t';
+		cout << ship.BaseAttributes().Get("outfit space") << '\t';
+		cout << ship.BaseAttributes().Get("weapon capacity") << '\t';
+		cout << ship.BaseAttributes().Get("engine capacity") << '\t';
 		cout << 60. * attributes.Get("thrust") / attributes.Get("drag") << '\t';
 		cout << 3600. * attributes.Get("thrust") / attributes.Get("mass") << '\t';
 		cout << 60. * attributes.Get("turn") / attributes.Get("mass") << '\t';
