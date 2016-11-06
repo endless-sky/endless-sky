@@ -756,10 +756,19 @@ bool Ship::Move(list<Effect> &effects, list<Flotsam> &flotsam)
 		double activeCooling = attributes.Get("active cooling");
 		if(activeCooling > 0.)
 		{
+			// Although it's a misuse of this feature, handle the case where
+			// "active cooling" does not require any energy.
 			double coolingEnergy = attributes.Get("cooling energy");
-			double spentEnergy = min(energy, coolingEnergy * Heat());
-			heat -= activeCooling * spentEnergy / coolingEnergy;
-			energy -= spentEnergy;
+			if(coolingEnergy)
+			{
+				double spentEnergy = min(energy, coolingEnergy * min(1., Heat()));
+				heat -= activeCooling * spentEnergy / coolingEnergy;
+				energy -= spentEnergy;
+			}
+			else
+				heat -= activeCooling;
+			
+			heat = max(0., heat);
 		}
 	}
 	
