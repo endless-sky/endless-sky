@@ -88,8 +88,8 @@ ship "Arach Freighter"
 	gun 19 -112
 	turret -41 37
 	turret 41 37
-	engine -17 141 .7
-	engine 0.5 143 1
+	engine -18 141 .7
+	engine 0 143 1
 	engine 18 141 .7
 	explode "tiny explosion" 10
 	explode "small explosion" 15
@@ -274,9 +274,9 @@ ship "Kimek Briar"
 		"Large Steering Module"
 		"Hyperdrive"
 		
-	gun -10.5 -52.5
-	gun 10.5 -52
-	turret 0.5 -14.5
+	gun -10 -52
+	gun 10 -52
+	turret 0 -14
 	engine -12 85 .5
 	engine 0 89 1.2
 	engine 12 85 .5

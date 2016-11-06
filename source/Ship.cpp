@@ -750,6 +750,17 @@ bool Ship::Move(list<Effect> &effects, list<Flotsam> &flotsam)
 		heat += attributes.Get("heat generation");
 		heat -= attributes.Get("cooling");
 		heat = max(0., heat);
+		
+		// Apply active cooling. The fraction of full cooling to apply equals
+		// your ship's current fraction of its maximum temperature.
+		double activeCooling = attributes.Get("active cooling");
+		if(activeCooling > 0.)
+		{
+			double coolingEnergy = attributes.Get("cooling energy");
+			double spentEnergy = min(energy, coolingEnergy * Heat());
+			heat -= activeCooling * spentEnergy / coolingEnergy;
+			energy -= spentEnergy;
+		}
 	}
 	
 	if(!isInvisible)
@@ -2323,7 +2334,13 @@ double Ship::MinimumHull() const
 // Get the heat level at idle.
 double Ship::IdleHeat() const
 {
-	return max(0., attributes.Get("heat generation") - attributes.Get("cooling")) / (1. - heatDissipation);
+	// Idle heat is the heat level where:
+	// heat = heat * diss + heatGen - cool - activeCool * heat / (100 * mass)
+	// heat = heat * (diss - activeCool / (100 * mass)) + (heatGen - cool)
+	// heat * (1 - diss + activeCool / (100 * mass)) = (heatGen - cool)
+	double production = max(0., attributes.Get("heat generation") - attributes.Get("cooling"));
+	double dissipation = 1. - heatDissipation + attributes.Get("active cooling") / (100. * Mass());
+	return production / dissipation;
 }
 
 
