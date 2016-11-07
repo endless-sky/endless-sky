@@ -228,6 +228,8 @@ public:
 	int JumpsRemaining() const;
 	// Get the amount of fuel expended per jump.
 	double JumpFuel() const;
+	// Get the heat level at idle.
+	double IdleHeat() const;
 	
 	// Access how many crew members this ship has or needs.
 	int Crew() const;
@@ -331,8 +333,6 @@ private:
 	void RemoveEscort(const Ship &ship);
 	// Get the hull amount at which this ship is disabled.
 	double MinimumHull() const;
-	// Get the heat level at idle.
-	double IdleHeat() const;
 	// Add to this ship's hull or shields, and return the amount added. If the
 	// ship is carrying fighters, add to them as well.
 	double AddHull(double rate);

@@ -750,6 +750,26 @@ bool Ship::Move(list<Effect> &effects, list<Flotsam> &flotsam)
 		heat += attributes.Get("heat generation");
 		heat -= attributes.Get("cooling");
 		heat = max(0., heat);
+		
+		// Apply active cooling. The fraction of full cooling to apply equals
+		// your ship's current fraction of its maximum temperature.
+		double activeCooling = attributes.Get("active cooling");
+		if(activeCooling > 0.)
+		{
+			// Although it's a misuse of this feature, handle the case where
+			// "active cooling" does not require any energy.
+			double coolingEnergy = attributes.Get("cooling energy");
+			if(coolingEnergy)
+			{
+				double spentEnergy = min(energy, coolingEnergy * min(1., Heat()));
+				heat -= activeCooling * spentEnergy / coolingEnergy;
+				energy -= spentEnergy;
+			}
+			else
+				heat -= activeCooling;
+			
+			heat = max(0., heat);
+		}
 	}
 	
 	if(!isInvisible)
@@ -1766,6 +1786,20 @@ double Ship::JumpFuel() const
 
 
 
+// Get the heat level at idle.
+double Ship::IdleHeat() const
+{
+	// Idle heat is the heat level where:
+	// heat = heat * diss + heatGen - cool - activeCool * heat / (100 * mass)
+	// heat = heat * (diss - activeCool / (100 * mass)) + (heatGen - cool)
+	// heat * (1 - diss + activeCool / (100 * mass)) = (heatGen - cool)
+	double production = max(0., attributes.Get("heat generation") - attributes.Get("cooling"));
+	double dissipation = 1. - heatDissipation + attributes.Get("active cooling") / (100. * Mass());
+	return production / dissipation;
+}
+
+
+
 int Ship::Crew() const
 {
 	return crew;
@@ -2316,14 +2350,6 @@ double Ship::MinimumHull() const
 	
 	double maximumHull = attributes.Get("hull");
 	return max(.20 * maximumHull, min(.50 * maximumHull, 400.));
-}
-
-
-
-// Get the heat level at idle.
-double Ship::IdleHeat() const
-{
-	return max(0., attributes.Get("heat generation") - attributes.Get("cooling")) / (1. - heatDissipation);
 }
 
 

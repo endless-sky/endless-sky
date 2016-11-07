@@ -97,7 +97,8 @@ outfit "Cooling Module"
 	thumbnail "outfit/unknown"
 	"mass" 5
 	"outfit space" -5
-	"cooling" 29
+	"active cooling" 29
+	"cooling energy" .4
 	description "This cooling module consumes energy. To conserve power, it does not ramp up to full strength unless a ship is very close to overheating."
 
 
@@ -111,8 +112,8 @@ outfit "Small Thrust Module"
 	"thrust" 6.6
 	"thrusting energy" 0.46
 	"thrusting heat" 3.5
-	"flare sprite" "effect/atomic flare/tiny"
-		"frame rate" 14
+	"flare sprite" "effect/coalition small flare"
+		"frame rate" 4.8
 	"flare sound" "atomic tiny"
 	description "This tiny thruster produces a considerable amount of thrust... but also a considerable amount of heat."
 
@@ -126,8 +127,8 @@ outfit "Large Thrust Module"
 	"thrust" 26.2
 	"thrusting energy" 1.7
 	"thrusting heat" 12.5
-	"flare sprite" "effect/atomic flare/small"
-		"frame rate" 13
+	"flare sprite" "effect/coalition large flare"
+		"frame rate" 3.5
 	"flare sound" "atomic small"
 	description "Coalition engineers prefer to focus on perfecting a few versatile designs rather than producing a wide range of them. This thruster is quite efficient, but large ships will need several of them stacked together to produce sufficient thrust."
 

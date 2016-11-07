@@ -598,8 +598,7 @@ bool OutfitterPanel::FlightCheck()
 				*GameData::Conversations().Get("flight check: no steering energy"), nullptr, ship.get()));
 			return false;
 		}
-		double maxHeat = .1 * ship->Mass() * attributes.Get("heat dissipation");
-		if(attributes.Get("heat generation") - attributes.Get("cooling") > maxHeat)
+		if(ship->IdleHeat() >= 100. * ship->Mass())
 		{
 			GetUI()->Push(new ConversationPanel(player,
 				*GameData::Conversations().Get("flight check: overheating"), nullptr, ship.get()));
