@@ -1786,6 +1786,20 @@ double Ship::JumpFuel() const
 
 
 
+// Get the heat level at idle.
+double Ship::IdleHeat() const
+{
+	// Idle heat is the heat level where:
+	// heat = heat * diss + heatGen - cool - activeCool * heat / (100 * mass)
+	// heat = heat * (diss - activeCool / (100 * mass)) + (heatGen - cool)
+	// heat * (1 - diss + activeCool / (100 * mass)) = (heatGen - cool)
+	double production = max(0., attributes.Get("heat generation") - attributes.Get("cooling"));
+	double dissipation = 1. - heatDissipation + attributes.Get("active cooling") / (100. * Mass());
+	return production / dissipation;
+}
+
+
+
 int Ship::Crew() const
 {
 	return crew;
@@ -2336,20 +2350,6 @@ double Ship::MinimumHull() const
 	
 	double maximumHull = attributes.Get("hull");
 	return max(.20 * maximumHull, min(.50 * maximumHull, 400.));
-}
-
-
-
-// Get the heat level at idle.
-double Ship::IdleHeat() const
-{
-	// Idle heat is the heat level where:
-	// heat = heat * diss + heatGen - cool - activeCool * heat / (100 * mass)
-	// heat = heat * (diss - activeCool / (100 * mass)) + (heatGen - cool)
-	// heat * (1 - diss + activeCool / (100 * mass)) = (heatGen - cool)
-	double production = max(0., attributes.Get("heat generation") - attributes.Get("cooling"));
-	double dissipation = 1. - heatDissipation + attributes.Get("active cooling") / (100. * Mass());
-	return production / dissipation;
 }
 
 
