@@ -180,7 +180,6 @@ government "Navy (Oathkeeper)"
 	"attitude toward"
 		"Alpha" -.3
 		"Merchant" .25
-		"Militia" .1
 		"Pirate" -.3
 		"Kor Sestor" -.1
 		"Kor Mereti" -.1
