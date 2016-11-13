@@ -5594,7 +5594,7 @@ system Eteron
 	fleet "Small Northern Merchants" 1000
 	fleet "Large Northern Merchants" 1500
 	fleet "Small Republic" 2000
-	fleet "Large Republic" 400
+	fleet "Large Republic" 4000
 	fleet "Small Northern Pirates" 1000
 	object
 		sprite star/m4
@@ -9392,7 +9392,7 @@ system Kugel
 	fleet "Large Core Merchants" 4000
 	fleet "Small Core Merchants" 4000
 	fleet "Small Republic" 6000
-	fleet "Small Syndicate" 80200
+	fleet "Small Syndicate" 8000
 	fleet "Large Core Pirates" 4000
 	fleet "Small Core Pirates" 4000
 	object
@@ -13001,7 +13001,8 @@ system Regulus
 	trade Medical 537
 	trade Metal 406
 	trade Plastic 318
-	fleet "Small Southern Merchants" 4000
+	fleet "Small Southern Merchants" 6000
+	fleet "Small Northern Merchants" 6000
 	fleet "Small Southern Pirates" 2000
 	fleet "Large Southern Pirates" 8000
 	fleet "Small Republic" 10000
@@ -16779,8 +16780,8 @@ system "Yed Prior"
 	trade Medical 902
 	trade Metal 333
 	trade Plastic 307
-	fleet "Small Northern Merchants" 800
-	fleet "Large Northern Merchants" 1600
+	fleet "Small Southern Merchants" 800
+	fleet "Large Southern Merchants" 1600
 	fleet "Small Southern Pirates" 2000
 	fleet "Large Southern Pirates" 3000
 	fleet "Small Militia" 3000
