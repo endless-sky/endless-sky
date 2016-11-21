@@ -134,7 +134,7 @@ ship "Arach Hulk"
 		
 	gun -27 -88
 	gun 27 -88
-	turret 90 88
+	turret -90 88
 	turret 90 88
 	turret 0 -65
 	turret 0 189
