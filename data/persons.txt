@@ -132,7 +132,7 @@ person "Cap'n Pester"
 
 
 person "Marauding Max K"
-	government "Author"
+	government "Content Creator"
 	frequency 300
 	government Republic "Free Worlds" Syndicate Neutral Independent Hai Pirate "Hai (Unfettered)" Quarg
 	personality
