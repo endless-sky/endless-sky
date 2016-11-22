@@ -2158,9 +2158,9 @@ ship "Marauder Bounder" "Marauder Bounder (Engines)"
 		"A375 Atomic Steering"
 		"Hyperdrive"
 		
-	engine -12 58
+	engine -12 58 .7
 	engine 0 51
-	engine 12 58
+	engine 12 58 .7
 	gun 0 -85 "Heavy Laser"
 	turret -38 7 "Quad Blaster Turret"
 	turret 38 7 "Quad Blaster Turret"
@@ -2323,9 +2323,9 @@ ship "Marauder Falcon" "Marauder Falcon (Engines)"
 		"A865 Atomic Steering"
 		"Hyperdrive"
 	
-	engine -21 138
+	engine -21 138 .7
 	engine 0 144
-	engine 21 138
+	engine 21 138 .7
 	gun -16 -88 "Electron Beam"
 	gun 16 -88 "Electron Beam"
 	gun -16 -88 "Electron Beam"
@@ -3225,9 +3225,9 @@ ship "Marauder Raven" "Marauder Raven (Engines)"
 		"A375 Atomic Steering"
 		"Hyperdrive"
 	
-	engine -12 45
+	engine -12 45 .7
 	engine 0 43
-	engine 12 45
+	engine 12 45 .7
 	gun -10 -33 "Heavy Laser"
 	gun 10 -33 "Heavy Laser"
 	gun -16 -28 "Heavy Laser"
@@ -3390,9 +3390,9 @@ ship "Marauder Splinter" "Marauder Splinter (Engines)"
 		"A525 Atomic Steering"
 		"Hyperdrive"
 	
-	engine -15 114
+	engine -15 114 .7
 	engine 0 118
-	engine 15 114
+	engine 15 114 .7
 	gun -15 -82 "Plasma Cannon"
 	gun 15 -82 "Plasma Cannon"
 	turret -17 -28 "Quad Blaster Turret"
