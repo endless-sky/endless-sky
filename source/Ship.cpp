@@ -1524,7 +1524,8 @@ int Ship::CheckHyperspace() const
 	if(!type)
 		return 0;
 	
-	if(fuel < type)
+    // You can't jump if you have less fuel than needed.
+	if(fuel < JumpFuel())
 		return 0;
 	
 	Point direction = destination->Position() - currentSystem->Position();
@@ -1777,8 +1778,11 @@ int Ship::JumpsRemaining() const
 double Ship::JumpFuel() const
 {
 	int type = HyperspaceType();
+    double driveFuel = attributes.Get("fuel use") ? 100 : attributes.Get("fuel use");
+    
+    // Fuel use is the percentage of normal fuel consumption.
 	if(type)
-		return type;
+		return type * (driveFuel / 100);
 	return attributes.Get("jump drive") ? 200. :
 		attributes.Get("scram drive") ? 150. : 
 		attributes.Get("hyperdrive") ? 100. : 0.;
