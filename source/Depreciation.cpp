@@ -81,8 +81,12 @@ void Depreciation::Save(DataWriter &out, int day) const
 			out.Write("ship", sit.first->ModelName());
 			out.BeginChild();
 			{
+				// If this is a planet's stock, remember how many outfits in
+				// stock are fully depreciated. If it's the player's stock,
+				// anything not recorded is considered fully depreciated, so
+				// there is no reason to save records for those items.
 				for(const auto &it : sit.second)
-					if(it.second && it.first > day - MAX_AGE)
+					if(isStock || (it.second && it.first > day - MAX_AGE))
 						out.Write(it.first, it.second);
 			}
 			out.EndChild();
@@ -93,7 +97,7 @@ void Depreciation::Save(DataWriter &out, int day) const
 			out.BeginChild();
 			{
 				for(const auto &it : oit.second)
-					if(it.second && it.first > day - MAX_AGE)
+					if(isStock || (it.second && it.first > day - MAX_AGE))
 						out.Write(it.first, it.second);
 			}
 			out.EndChild();
