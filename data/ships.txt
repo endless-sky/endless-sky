@@ -98,14 +98,14 @@ ship "Argosy"
 		"Greyhound Plasma Steering"
 		"Hyperdrive"
 		
-	engine -16 82
-	engine 16 82
+	engine -20 91
+	engine 20 91
 	gun -22 -37 "Energy Blaster"
 	gun 22 -37 "Energy Blaster"
 	gun -23 -37 "Meteor Missile Launcher"
 	gun 23 -37 "Meteor Missile Launcher"
-	turret 0 -8 "Blaster Turret"
-	turret 0 12 "Blaster Turret"
+	turret 0 -12 "Blaster Turret"
+	turret 0 8 "Blaster Turret"
 	explode "tiny explosion" 10
 	explode "small explosion" 25
 	explode "medium explosion" 25
@@ -3499,14 +3499,14 @@ ship "Modified Argosy"
 		"X3200 Ion Steering"
 		"Hyperdrive"
 		
-	engine -16 82
-	engine 16 82
+	engine -20 91
+	engine 20 91
 	gun -22 -37 "Heavy Laser"
 	gun 22 -37 "Heavy Laser"
 	gun -23 -37 "Heavy Laser"
 	gun 23 -37 "Heavy Laser"
-	turret 0 -8 "Heavy Laser Turret"
-	turret 0 12 "Heavy Laser Turret"
+	turret 0 -12 "Heavy Laser Turret"
+	turret 0 8 "Heavy Laser Turret"
 	explode "tiny explosion" 10
 	explode "small explosion" 25
 	explode "medium explosion" 30
