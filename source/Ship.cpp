@@ -1802,9 +1802,9 @@ int Ship::JumpsRemaining() const
 double Ship::JumpFuel() const
 {
 	int type = HyperspaceType();
-	double driveFuel = attributes.Get("hyperdrive fuel") ? attributes.Get("hyperdrive fuel"): 100.;
-	double scramFuel = attributes.Get("scram fuel") ? attributes.Get("scram fuel"): 150.;
-	double jumpFuel = attributes.Get("jump fuel") ? attributes.Get("jump fuel"): 200.;
+	double driveFuel = attributes.Get("hyperdrive fuel") ? (10000 / attributes.Get("hyperdrive fuel")): 100.;
+	double scramFuel = attributes.Get("scram fuel") ? (22500 / attributes.Get("scram fuel")): 150.;
+	double jumpFuel = attributes.Get("jump fuel") ? (40000 / attributes.Get("jump fuel")): 200.;
 	
 	if(type){
 		return type == 200 ? jumpFuel:
