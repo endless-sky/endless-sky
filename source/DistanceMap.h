@@ -66,7 +66,7 @@ private:
 	// source system or the maximum count is reached.
 	void Init(const System *center, const Ship *ship = nullptr);
 	// Add the given links to the map. Return false if an end condition is hit.
-	bool Propagate(const System *system, bool useJump, int steps, double danger);
+	bool Propagate(const System *system, bool useJump, int steps, double danger, bool cheapHyper);
 	// Check if we already have a better path to the given system.
 	bool HasBetter(const System *to, int steps);
 	// Add the given path to the record.
