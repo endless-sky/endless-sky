@@ -946,7 +946,8 @@ bool Ship::Move(list<Effect> &effects, list<Flotsam> &flotsam)
 					hyperspaceCount = 0;
 				}
 			}
-		}else
+		}
+		else
 		{
 			//If about the to exit jump, check if multi jump can continue to next system.
 			if(!hyperspaceSystem)
