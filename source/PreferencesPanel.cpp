@@ -132,12 +132,7 @@ bool PreferencesPanel::Click(int x, int y)
 				SDL_WarpMouseInWindow(nullptr, point.X(), point.Y());
 			}
 			if(zone.Value() == EXPEND_AMMO)
-			{
-				bool expend = Preferences::Has(EXPEND_AMMO);
-				bool frugal = Preferences::Has(FRUGAL_ESCORTS);
-				Preferences::Set(EXPEND_AMMO, !(expend && !frugal));
-				Preferences::Set(FRUGAL_ESCORTS, !expend);
-			}
+				Preferences::ToggleAmmoUsage();
 			else if(zone.Value() == REACTIVATE_HELP)
 			{
 				for(const auto &it : GameData::HelpTemplates())
@@ -234,7 +229,8 @@ void PreferencesPanel::DrawControls()
 		Command::DEPLOY,
 		Command::FIGHT,
 		Command::GATHER,
-		Command::HOLD
+		Command::HOLD,
+		Command::AMMO
 	};
 	static const Command *BREAK = &COMMANDS[19];
 	for(const Command &command : COMMANDS)
@@ -376,7 +372,7 @@ void PreferencesPanel::DrawSettings()
 			text = to_string(Screen::Zoom());
 		}
 		else if(setting == EXPEND_AMMO)
-			text = isOn ? Preferences::Has(FRUGAL_ESCORTS) ? "frugally" : "always" : "never";
+			text = Preferences::AmmoUsage();
 		else if(setting == REACTIVATE_HELP)
 		{
 			// Check how many help messages have been displayed.

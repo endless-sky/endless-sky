@@ -25,6 +25,10 @@ using namespace std;
 
 namespace {
 	map<string, bool> settings;
+	
+	// Strings for ammo expenditure:
+	static const string EXPEND_AMMO = "Escorts expend ammo";
+	static const string FRUGAL_ESCORTS = "Escorts use ammo frugally";
 }
 
 
@@ -84,4 +88,21 @@ bool Preferences::Has(const string &name)
 void Preferences::Set(const string &name, bool on)
 {
 	settings[name] = on;
+}
+
+
+
+void Preferences::ToggleAmmoUsage()
+{
+	bool expend = Has(EXPEND_AMMO);
+	bool frugal = Has(FRUGAL_ESCORTS);
+	Preferences::Set(EXPEND_AMMO, !(expend && !frugal));
+	Preferences::Set(FRUGAL_ESCORTS, !expend);
+}
+
+
+
+string Preferences::AmmoUsage()
+{
+	return Has(EXPEND_AMMO) ? Has(FRUGAL_ESCORTS) ? "frugally" : "always" : "never";
 }

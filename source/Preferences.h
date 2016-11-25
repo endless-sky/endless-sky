@@ -24,6 +24,11 @@ public:
 	
 	static bool Has(const std::string &name);
 	static void Set(const std::string &name, bool on = true);
+	
+	// Toogle the ammo usage preferences, cycling between "never," "frugally,"
+	// and "always."
+	static void ToggleAmmoUsage();
+	static std::string AmmoUsage();
 };
 
 
