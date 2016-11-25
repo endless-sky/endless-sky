@@ -301,7 +301,7 @@ void MapDetailPanel::DoFind(const string &text)
 
 
 
-void MapDetailPanel::DrawKey() const
+void MapDetailPanel::DrawKey()
 {
 	const Sprite *back = SpriteSet::Get("ui/map key");
 	SpriteShader::Draw(back, Screen::BottomLeft() + .5 * Point(back->Width(), -back->Height()));
@@ -582,7 +582,7 @@ void MapDetailPanel::DrawInfo()
 
 
 
-void MapDetailPanel::DrawOrbits() const
+void MapDetailPanel::DrawOrbits()
 {
 	// Draw the planet orbits in the currently selected system.
 	const Sprite *orbitSprite = SpriteSet::Get("ui/orbits");

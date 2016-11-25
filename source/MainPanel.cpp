@@ -187,6 +187,11 @@ bool MainPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 {
 	if(command.Has(Command::MAP | Command::INFO | Command::HAIL))
 		show = command;
+	else if(command.Has(Command::AMMO))
+	{
+		Preferences::ToggleAmmoUsage();
+		Messages::Add("Your escorts will now expend ammo: " + Preferences::AmmoUsage() + ".");
+	}
 	else
 		return false;
 	

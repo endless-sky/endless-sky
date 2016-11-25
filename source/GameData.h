@@ -111,6 +111,7 @@ public:
 	
 	static const std::string &Tooltip(const std::string &label);
 	static std::string HelpMessage(const std::string &name);
+	static const std::map<std::string, std::string> &HelpTemplates();
 	
 	
 private:

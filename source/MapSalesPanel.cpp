@@ -29,6 +29,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Outfit.h"
 #include "PlayerInfo.h"
 #include "Point.h"
+#include "Preferences.h"
 #include "RingShader.h"
 #include "Screen.h"
 #include "Ship.h"
@@ -202,7 +203,7 @@ bool MapSalesPanel::Drag(double dx, double dy)
 bool MapSalesPanel::Scroll(double dx, double dy)
 {
 	if(isDragging)
-		scroll = min(0., max(-maxScroll, scroll + 150 * dy));
+		scroll = min(0., max(-maxScroll, scroll + dy * 2.5 * Preferences::ScrollSpeed()));
 	else
 		return MapPanel::Scroll(dx, dy);
 	

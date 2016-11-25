@@ -85,8 +85,8 @@ private:
 	
 	std::string input;
 	
-	mutable Point okPos;
-	mutable Point cancelPos;
+	Point okPos;
+	Point cancelPos;
 	
 	const System *system = nullptr;
 	PlayerInfo *player = nullptr;

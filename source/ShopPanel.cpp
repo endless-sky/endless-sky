@@ -23,6 +23,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "PlayerInfo.h"
 #include "Point.h"
 #include "PointerShader.h"
+#include "Preferences.h"
 #include "Screen.h"
 #include "Ship.h"
 #include "Sprite.h"
@@ -96,7 +97,7 @@ void ShopPanel::Draw()
 
 
 
-void ShopPanel::DrawSidebar() const
+void ShopPanel::DrawSidebar()
 {
 	const Font &font = FontSet::Get(14);
 	Color medium = *GameData::Colors().Get("medium");
@@ -194,7 +195,7 @@ void ShopPanel::DrawSidebar() const
 
 
 
-void ShopPanel::DrawButtons() const
+void ShopPanel::DrawButtons()
 {
 	// The last 70 pixels on the end of the side panel are for the buttons:
 	Point buttonSize(SIDE_WIDTH, BUTTON_HEIGHT);
@@ -252,7 +253,7 @@ void ShopPanel::DrawButtons() const
 
 
 
-void ShopPanel::DrawMain() const
+void ShopPanel::DrawMain()
 {
 	const Font &bigFont = FontSet::Get(18);
 	Color dim = *GameData::Colors().Get("dim");
@@ -377,7 +378,7 @@ void ShopPanel::DrawMain() const
 
 
 
-void ShopPanel::DrawShip(const Ship &ship, const Point &center, bool isSelected) const
+void ShopPanel::DrawShip(const Ship &ship, const Point &center, bool isSelected)
 {
 	const Sprite *back = SpriteSet::Get(
 		isSelected ? "ui/shipyard selected" : "ui/shipyard unselected");
@@ -667,7 +668,7 @@ bool ShopPanel::Release(int x, int y)
 bool ShopPanel::Scroll(double dx, double dy)
 {
 	scrollDetailsIntoView = false;
-	return DoScroll(dy * 150.);
+	return DoScroll(dy * 2.5 * Preferences::ScrollSpeed());
 }
 
 

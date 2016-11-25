@@ -26,6 +26,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Messages.h"
 #include "MissionPanel.h"
 #include "PlayerInfo.h"
+#include "Preferences.h"
 #include "Ship.h"
 #include "Sprite.h"
 #include "SpriteShader.h"
@@ -437,7 +438,7 @@ bool InfoPanel::Release(int x, int y)
 bool InfoPanel::Scroll(double dx, double dy)
 {
 	if(!showShip)
-		scroll = max(0., min(player.Ships().size() - 26., scroll - 4. * dy));
+		scroll = max(0., min(player.Ships().size() - 26., scroll - dy * .1 * Preferences::ScrollSpeed()));
 	return true;
 }
 
@@ -462,7 +463,7 @@ void InfoPanel::UpdateInfo()
 
 
 
-void InfoPanel::DrawInfo() const
+void InfoPanel::DrawInfo()
 {
 	const Interface *interface = GameData::Interfaces().Get("info panel");
 	DrawPlayer(interface->GetBox("player"));
@@ -471,7 +472,7 @@ void InfoPanel::DrawInfo() const
 
 
 
-void InfoPanel::DrawPlayer(const Rectangle &bounds) const
+void InfoPanel::DrawPlayer(const Rectangle &bounds)
 {
 	// Check that the specified area is big enough.
 	if(bounds.Width() < 250.)
@@ -525,7 +526,7 @@ void InfoPanel::DrawPlayer(const Rectangle &bounds) const
 
 
 
-void InfoPanel::DrawFleet(const Rectangle &bounds) const
+void InfoPanel::DrawFleet(const Rectangle &bounds)
 {
 	// Check that the specified area is big enough.
 	if(bounds.Width() < 750.)
@@ -622,7 +623,7 @@ void InfoPanel::DrawFleet(const Rectangle &bounds) const
 
 
 
-void InfoPanel::DrawShip() const
+void InfoPanel::DrawShip()
 {
 	if(player.Ships().empty() || shipIt == player.Ships().end())
 		return;
@@ -638,7 +639,7 @@ void InfoPanel::DrawShip() const
 
 
 
-void InfoPanel::DrawShipStats(const Rectangle &bounds) const
+void InfoPanel::DrawShipStats(const Rectangle &bounds)
 {
 	// Check that the specified area is big enough.
 	if(bounds.Width() < 250.)
@@ -668,7 +669,7 @@ void InfoPanel::DrawShipStats(const Rectangle &bounds) const
 
 
 
-void InfoPanel::DrawOutfits(const Rectangle &bounds) const
+void InfoPanel::DrawOutfits(const Rectangle &bounds)
 {
 	// Check that the specified area is big enough.
 	if(bounds.Width() < 250.)
@@ -732,7 +733,7 @@ void InfoPanel::DrawOutfits(const Rectangle &bounds) const
 
 
 
-void InfoPanel::DrawWeapons(const Rectangle &bounds) const
+void InfoPanel::DrawWeapons(const Rectangle &bounds)
 {
 	// Colors to draw with.
 	Color dim = *GameData::Colors().Get("medium");
@@ -845,7 +846,7 @@ void InfoPanel::DrawWeapons(const Rectangle &bounds) const
 
 
 
-void InfoPanel::DrawCargo(const Rectangle &bounds) const
+void InfoPanel::DrawCargo(const Rectangle &bounds)
 {
 	Color dim = *GameData::Colors().Get("medium");
 	Color bright = *GameData::Colors().Get("bright");
