@@ -568,7 +568,7 @@ bool OutfitterPanel::FlightCheck()
 	for(const shared_ptr<Ship> &ship : player.Ships())
 	{
 		// Skip any ships that are "absent" for whatever reason.
-		if(ship->GetSystem() != player.GetSystem())
+		if(ship->GetSystem() != player.GetSystem() || ship->IsDisabled())
 			continue;
 		
 		const Outfit &attributes = ship->Attributes();
