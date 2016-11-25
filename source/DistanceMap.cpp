@@ -143,11 +143,11 @@ void DistanceMap::Init(const System *center, const Ship *ship)
 	// Check what travel capabilities this ship has. If no ship is given, assume
 	// hyperdrive capability and no jump drive.
 	bool hasHyper = ship ? ship->Attributes().Get("hyperdrive") : true;
-    bool hasJump = ship ? ship->Attributes().Get("jump drive") : false;
-    //Check if jumps cost less than hyperdrive.
-    double hFuel = ship ? ship->Attributes().Get("hyperdrive fuel") ? ship->Attributes().Get("hyperdrive fuel"): 100. : 100.;
-    double jFuel = ship ? ship->Attributes().Get("jump fuel") ? ship->Attributes().Get("jump fuel"): 200. : 200.;
-    bool cheapHyper = ship ? hFuel < jFuel : true;
+	bool hasJump = ship ? ship->Attributes().Get("jump drive") : false;
+	//Check if jumps cost less than hyperdrive.
+	double hFuel = ship ? ship->Attributes().Get("hyperdrive fuel") ? ship->Attributes().Get("hyperdrive fuel"): 100. : 100.;
+	double jFuel = ship ? ship->Attributes().Get("jump fuel") ? ship->Attributes().Get("jump fuel"): 200. : 200.;
+	bool cheapHyper = ship ? hFuel < jFuel : true;
 	// If the ship has no jump capability, do pathfinding as if it has a
 	// hyperdrive. The Ship class still won't let it jump, though.
 	hasHyper |= !(hasHyper | hasJump);
@@ -187,12 +187,12 @@ void DistanceMap::Init(const System *center, const Ship *ship)
 					
 					Add(system, link, steps + 1, danger + link->Danger());
 				}
-        if(cheapHyper){
-            if(hasHyper && !Propagate(system, false, steps, danger, cheapHyper))
-                break;
-        }
-        if(hasJump && !Propagate(system, true, steps, danger, cheapHyper))
-            break;
+		if(cheapHyper){
+			if(hasHyper && !Propagate(system, false, steps, danger, cheapHyper))
+				break;
+		}
+		if(hasJump && !Propagate(system, true, steps, danger, cheapHyper))
+			break;
 	}
 }
 
@@ -202,7 +202,7 @@ void DistanceMap::Init(const System *center, const Ship *ship)
 bool DistanceMap::Propagate(const System *system, bool useJump, int steps, double danger, bool cheapHyper)
 {
 	// The "length" of this link is 2 if using an expensive jump drive.
-    steps += 1 + (cheapHyper ? useJump : 0);
+	steps += 1 + (cheapHyper ? useJump : 0);
 	for(const System *link : (useJump ? system->Neighbors() : system->Links()))
 	{
 		// Find out whether we already have a better path to this system, and

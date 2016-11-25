@@ -316,7 +316,7 @@ public:
 	void SetTargetShip(const std::shared_ptr<Ship> &ship);
 	void SetShipToAssist(const std::shared_ptr<Ship> &ship);
 	void SetTargetPlanet(const StellarObject *object);
-    void SetTargetSystem(const System *system);
+	void SetTargetSystem(const System *system);
 	void SetDestination(const Planet *planet);
 	
 	// Manage escorts. When you set this ship's parent, it will automatically
@@ -441,7 +441,7 @@ private:
 	std::weak_ptr<Ship> targetShip;
 	std::weak_ptr<Ship> shipToAssist;
 	const StellarObject *targetPlanet = nullptr;
-    const System *targetSystem = nullptr;
+	const System *targetSystem = nullptr;
 	const Planet *destination = nullptr;
 	
 	// Links between escorts and parents.

@@ -506,37 +506,37 @@ void MapPanel::DrawTravelPlan() const
 	// Find out how much fuel your ship and your escorts use per jump.
 	double flagshipCapacity = 0.;
 	if(ship)
-        flagshipCapacity = ship->Attributes().Get("fuel capacity") * ship->Fuel();
-    double flagshipHyperFuel = 0.;
-    double flagshipJumpFuel = 0.;
-    if(ship){
-        double flagshipHFuel = ship->Attributes().Get("hyperdrive fuel") ? ship->Attributes().Get("hyperdrive fuel"): 100.;
-        double flagshipSFuel = ship->Attributes().Get("scram fuel") ? ship->Attributes().Get("scram fuel"): 150.;
-        flagshipJumpFuel = ship->Attributes().Get("jump fuel") ? ship->Attributes().Get("jump fuel"): 200.;
-        flagshipHyperFuel = hasHyper ? ship->Attributes().Get("scram drive") ? flagshipSFuel : flagshipHFuel : flagshipJumpFuel;
-    }
-    double escortCapacity = 0.;
-    double escortHyperFuel = 1.;
+		flagshipCapacity = ship->Attributes().Get("fuel capacity") * ship->Fuel();
+	double flagshipHyperFuel = 0.;
+	double flagshipJumpFuel = 0.;
+	if(ship){
+		double flagshipHFuel = ship->Attributes().Get("hyperdrive fuel") ? ship->Attributes().Get("hyperdrive fuel"): 100.;
+		double flagshipSFuel = ship->Attributes().Get("scram fuel") ? ship->Attributes().Get("scram fuel"): 150.;
+		flagshipJumpFuel = ship->Attributes().Get("jump fuel") ? ship->Attributes().Get("jump fuel"): 200.;
+		flagshipHyperFuel = hasHyper ? ship->Attributes().Get("scram drive") ? flagshipSFuel : flagshipHFuel : flagshipJumpFuel;
+	}
+	double escortCapacity = 0.;
+	double escortHyperFuel = 1.;
 	double escortJumpFuel = 1.;
 	bool escortHasJump = true;
 	// Skip your flagship, parked ships, and fighters.
 	for(const shared_ptr<Ship> &it : player.Ships())
 		if(it.get() != ship && !it->IsParked() && !it->CanBeCarried())
-        {
-            double hFuel = it->Attributes().Get("hyperdrive fuel") ? it->Attributes().Get("hyperdrive fuel"): 100.;
-            double sFuel = it->Attributes().Get("scram fuel") ? it->Attributes().Get("scram fuel"): 150.;
-            double capacity = it->Attributes().Get("fuel capacity") * it->Fuel();
-            double jumpFuel = it->Attributes().Get("jump fuel") ? it->Attributes().Get("jump fuel"): 200.;
-            double hyperFuel = it->Attributes().Get("hyperdrive") ?
-            it->Attributes().Get("scram drive") ? sFuel : hFuel : jumpFuel;
-            //Find Least Common Denominator in terms of fuel usage.
-            escortJumpFuel = (escortJumpFuel < jumpFuel) ? jumpFuel: escortJumpFuel;
-            escortHasJump = it->Attributes().Get("jump drive") && escortHasJump;
-            if(escortCapacity == 0 || capacity / hyperFuel < escortCapacity / escortHyperFuel)
-            {
-                escortCapacity = capacity;
-                escortHyperFuel = hyperFuel;
-            }
+		{
+			double hFuel = it->Attributes().Get("hyperdrive fuel") ? it->Attributes().Get("hyperdrive fuel"): 100.;
+			double sFuel = it->Attributes().Get("scram fuel") ? it->Attributes().Get("scram fuel"): 150.;
+			double capacity = it->Attributes().Get("fuel capacity") * it->Fuel();
+			double jumpFuel = it->Attributes().Get("jump fuel") ? it->Attributes().Get("jump fuel"): 200.;
+			double hyperFuel = it->Attributes().Get("hyperdrive") ?
+			it->Attributes().Get("scram drive") ? sFuel : hFuel : jumpFuel;
+			//Find Least Common Denominator in terms of fuel usage.
+			escortJumpFuel = (escortJumpFuel < jumpFuel) ? jumpFuel: escortJumpFuel;
+			escortHasJump = it->Attributes().Get("jump drive") && escortHasJump;
+			if(escortCapacity == 0 || capacity / hyperFuel < escortCapacity / escortHyperFuel)
+			{
+				escortCapacity = capacity;
+				escortHyperFuel = hyperFuel;
+			}
 		}
 	
 	// Draw your current travel plan.
