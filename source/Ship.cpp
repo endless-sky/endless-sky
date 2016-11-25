@@ -1805,10 +1805,11 @@ double Ship::JumpFuel() const
     double scramFuel = attributes.Get("scram fuel") ? attributes.Get("scram fuel"): 150.;
     double jumpFuel = attributes.Get("jump fuel") ? attributes.Get("jump fuel"): 200.;
     
-	if(type)
+    if(type){
         return type == 200 ? jumpFuel:
             type == 150 ? scramFuel:
             type == 100 ? driveFuel: 0;
+    }
     return attributes.Get("jump drive") ? jumpFuel:
 		attributes.Get("scram drive") ? scramFuel:
 		attributes.Get("hyperdrive") ? driveFuel: 0.;
@@ -2314,6 +2315,8 @@ void Ship::SetTargetSystem(const System *system)
 {
 	targetSystem = system;
 }
+
+
 
 void Ship::SetDestination(const Planet *planet)
 {
