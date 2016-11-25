@@ -855,7 +855,7 @@ bool Ship::Move(list<Effect> &effects, list<Flotsam> &flotsam)
 		static const int HYPER_C = 100;
 		static const double HYPER_A = 2.;
 		static const double HYPER_D = 1000.;
-        bool hasJumpDrive = (hyperspaceType == 200);
+		bool hasJumpDrive = (hyperspaceType == 200);
 		bool hasMultiDrive = attributes.Get("multi drive");
 		bool hasMultiJump = attributes.Get("multi jump");
 		
@@ -911,8 +911,9 @@ bool Ship::Move(list<Effect> &effects, list<Flotsam> &flotsam)
 				if(hasMultiDrive && fuel > JumpFuel()){
 					if(HyperspaceType() && HyperspaceType() != 200){
 						hyperspaceSystem = GetTargetSystem();
-						Point testing = hyperspaceSystem->Position() - currentSystem->Position();
-						angle = atan(testing.Y()/testing.X());
+						Point targetVector = hyperspaceSystem->Position() - currentSystem->Position();
+						angle = atan(targetVector.Y()/targetVector.X());
+						velocity = velocity.Length() * angle.Unit();
 						fuel -= (hyperspaceSystem != nullptr) * JumpFuel() * 0.99;
 					}
 				}
