@@ -847,7 +847,7 @@ bool Ship::Move(list<Effect> &effects, list<Flotsam> &flotsam)
 	}
 	else if(hyperspaceSystem || hyperspaceCount)
 	{
-		fuel -= (hyperspaceSystem != nullptr) * hyperspaceType * .01;
+		fuel -= (hyperspaceSystem != nullptr) * JumpFuel() * .01;
 		
 		// Enter hyperspace.
 		int direction = (hyperspaceSystem != nullptr) - (hyperspaceSystem == nullptr);
@@ -1570,7 +1570,8 @@ int Ship::HyperspaceType() const
 	// Check what equipment this ship has.
 	bool hasHyperdrive = attributes.Get("hyperdrive");
 	bool hasScramDrive = attributes.Get("scram drive");
-	bool hasJumpDrive = attributes.Get("jump drive");
+    bool hasJumpDrive = attributes.Get("jump drive");
+    bool hasMultiDrive = attributes.Get("multi drive");
 	
 	// Figure out what sort of jump we're making. 100 = normal hyperspace,
 	// 150 = scram drive, 200 = jump drive.
@@ -1582,7 +1583,16 @@ int Ship::HyperspaceType() const
 	if(hasJumpDrive)
 		for(const System *link : currentSystem->Neighbors())
 			if(link == destination)
-				return 200;
+                return 200;
+    
+    if(hasMultiDrive || hasScramDrive)
+        for(const System *link : currentSystem->Links()){
+            if(link == destination)
+                return 300;
+            for(const System *sublink : link->Links())
+                if(sublink == destination)
+                    return 300;
+        }
 	
 	return 0;
 }
@@ -1778,14 +1788,20 @@ int Ship::JumpsRemaining() const
 double Ship::JumpFuel() const
 {
 	int type = HyperspaceType();
-    double driveFuel = attributes.Get("fuel use") ? 100 : attributes.Get("fuel use");
+    double driveFuel = attributes.Get("hyperdrive fuel") ? attributes.Get("hyperdrive fuel"): 100.;
+    double scramFuel = attributes.Get("scram fuel") ? attributes.Get("scram fuel"): 150.;
+    double jumpFuel = attributes.Get("jump fuel") ? attributes.Get("jump fuel"): 200.;
+    double multiFuel = attributes.Get("multi fuel") ? attributes.Get("multi fuel"): 300.;
     
-    // Fuel use is the percentage of normal fuel consumption.
 	if(type)
-		return type * (driveFuel / 100);
-	return attributes.Get("jump drive") ? 200. :
-		attributes.Get("scram drive") ? 150. : 
-		attributes.Get("hyperdrive") ? 100. : 0.;
+        return type == 300 ? multiFuel:
+            type == 200 ? jumpFuel:
+            type == 150 ? scramFuel:
+            type == 100 ? driveFuel: 0;
+    return attributes.Get("multi drive") ? multiFuel:
+        attributes.Get("jump drive") ? jumpFuel:
+		attributes.Get("scram drive") ? scramFuel:
+		attributes.Get("hyperdrive") ? driveFuel: 0.;
 }
 
 

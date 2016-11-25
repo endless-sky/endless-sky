@@ -143,7 +143,8 @@ void DistanceMap::Init(const System *center, const Ship *ship)
 	// Check what travel capabilities this ship has. If no ship is given, assume
 	// hyperdrive capability and no jump drive.
 	bool hasHyper = ship ? ship->Attributes().Get("hyperdrive") : true;
-	bool hasJump = ship ? ship->Attributes().Get("jump drive") : false;
+    bool hasJump = ship ? ship->Attributes().Get("jump drive") : false;
+//    bool hasMulti = ship ? ship->Attributes().Get("multi drive") : false;
 	// If the ship has no jump capability, do pathfinding as if it has a
 	// hyperdrive. The Ship class still won't let it jump, though.
 	hasHyper |= !(hasHyper | hasJump);
