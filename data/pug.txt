@@ -204,7 +204,7 @@ effect "gridfire cloud"
 outfit "Pug Akfar Thruster"
 	category "Engines"
 	"cost" 608000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/pug akfar thruster"
 	"mass" 43
 	"outfit space" -43
 	"engine capacity" -43
@@ -219,7 +219,7 @@ outfit "Pug Akfar Thruster"
 outfit "Pug Akfar Steering"
 	category "Engines"
 	"cost" 472000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/pug akfar steering"
 	"mass" 33
 	"outfit space" -33
 	"engine capacity" -33
