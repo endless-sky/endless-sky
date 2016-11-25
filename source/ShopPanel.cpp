@@ -97,7 +97,7 @@ void ShopPanel::Draw()
 
 
 
-void ShopPanel::DrawSidebar() const
+void ShopPanel::DrawSidebar()
 {
 	const Font &font = FontSet::Get(14);
 	Color medium = *GameData::Colors().Get("medium");
@@ -195,7 +195,7 @@ void ShopPanel::DrawSidebar() const
 
 
 
-void ShopPanel::DrawButtons() const
+void ShopPanel::DrawButtons()
 {
 	// The last 70 pixels on the end of the side panel are for the buttons:
 	Point buttonSize(SIDE_WIDTH, BUTTON_HEIGHT);
@@ -253,7 +253,7 @@ void ShopPanel::DrawButtons() const
 
 
 
-void ShopPanel::DrawMain() const
+void ShopPanel::DrawMain()
 {
 	const Font &bigFont = FontSet::Get(18);
 	Color dim = *GameData::Colors().Get("dim");
@@ -378,7 +378,7 @@ void ShopPanel::DrawMain() const
 
 
 
-void ShopPanel::DrawShip(const Ship &ship, const Point &center, bool isSelected) const
+void ShopPanel::DrawShip(const Ship &ship, const Point &center, bool isSelected)
 {
 	const Sprite *back = SpriteSet::Get(
 		isSelected ? "ui/shipyard selected" : "ui/shipyard unselected");

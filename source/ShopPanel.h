@@ -42,20 +42,20 @@ public:
 	virtual void Draw() override;
 	
 protected:
-	void DrawSidebar() const;
-	void DrawButtons() const;
-	void DrawMain() const;
+	void DrawSidebar();
+	void DrawButtons();
+	void DrawMain();
 	
-	void DrawShip(const Ship &ship, const Point &center, bool isSelected) const;
+	void DrawShip(const Ship &ship, const Point &center, bool isSelected);
 	
 	// These are for the individual shop panels to override.
 	virtual int TileSize() const = 0;
-	virtual int DrawPlayerShipInfo(const Point &point) const = 0;
+	virtual int DrawPlayerShipInfo(const Point &point) = 0;
 	virtual bool HasItem(const std::string &name) const = 0;
-	virtual void DrawItem(const std::string &name, const Point &point, int scrollY) const = 0;
+	virtual void DrawItem(const std::string &name, const Point &point, int scrollY) = 0;
 	virtual int DividerOffset() const = 0;
 	virtual int DetailWidth() const = 0;
-	virtual int DrawDetails(const Point &center) const = 0;
+	virtual int DrawDetails(const Point &center) = 0;
 	virtual bool CanBuy() const = 0;
 	virtual void Buy() = 0;
 	virtual void FailBuy() const = 0;
@@ -113,23 +113,23 @@ protected:
 	
 	double mainScroll = 0;
 	double sideScroll = 0;
-	mutable int maxMainScroll = 0;
-	mutable int maxSideScroll = 0;
+	int maxMainScroll = 0;
+	int maxSideScroll = 0;
 	bool dragMain = true;
-	mutable int mainDetailHeight = 0;
-	mutable int sideDetailHeight = 0;
+	int mainDetailHeight = 0;
+	int sideDetailHeight = 0;
 	bool scrollDetailsIntoView = false;
-	mutable double selectedBottomY = 0.;
+	double selectedBottomY = 0.;
 	
-	mutable std::vector<Zone> zones;
-	mutable std::vector<ClickZone<std::string>> categoryZones;
+	std::vector<Zone> zones;
+	std::vector<ClickZone<std::string>> categoryZones;
 	
 	std::map<std::string, std::set<std::string>> catalog;
 	const std::vector<std::string> &categories;
 	std::set<std::string> collapsed;
 	
-	mutable ShipInfoDisplay shipInfo;
-	mutable OutfitInfoDisplay outfitInfo;
+	ShipInfoDisplay shipInfo;
+	OutfitInfoDisplay outfitInfo;
 	
 	
 private:

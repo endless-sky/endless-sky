@@ -492,7 +492,7 @@ int MapPanel::Search(const string &str, const string &sub)
 
 
 
-void MapPanel::DrawTravelPlan() const
+void MapPanel::DrawTravelPlan()
 {
 	Color defaultColor(.5, .4, 0., 0.);
 	Color outOfFlagshipFuelRangeColor(.55, .1, .0, 0.);
@@ -592,7 +592,7 @@ void MapPanel::DrawTravelPlan() const
 
 
 
-void MapPanel::DrawWormholes() const
+void MapPanel::DrawWormholes()
 {
 	Color wormholeColor(0.5, 0.2, 0.9, 1.);
 	Color wormholeDimColor(0.5 / 3., 0.2 / 3., 0.9 / 3., 1.);
@@ -634,7 +634,7 @@ void MapPanel::DrawWormholes() const
 
 
 
-void MapPanel::DrawLinks() const
+void MapPanel::DrawLinks()
 {
 	// Draw the links between the systems.
 	Color closeColor(.6, .6);
@@ -668,7 +668,7 @@ void MapPanel::DrawLinks() const
 
 
 
-void MapPanel::DrawSystems() const
+void MapPanel::DrawSystems()
 {
 	if(commodity == SHOW_GOVERNMENT)
 		closeGovernments.clear();
@@ -784,7 +784,7 @@ void MapPanel::DrawSystems() const
 
 
 
-void MapPanel::DrawNames() const
+void MapPanel::DrawNames()
 {
 	// Don't draw if too small.
 	if(Zoom() <= 0.5)
@@ -808,7 +808,7 @@ void MapPanel::DrawNames() const
 
 
 
-void MapPanel::DrawMissions() const
+void MapPanel::DrawMissions()
 {
 	// Draw a pointer for each active or available mission.
 	map<const System *, Angle> angle;
@@ -860,7 +860,7 @@ void MapPanel::DrawMissions() const
 
 
 
-void MapPanel::DrawPointer(const System *system, Angle &angle, const Color &color, bool bigger) const
+void MapPanel::DrawPointer(const System *system, Angle &angle, const Color &color, bool bigger)
 {
 	DrawPointer(Zoom() * (system->Position() + center), angle, color, true, bigger);
 }

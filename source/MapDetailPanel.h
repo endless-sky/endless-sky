@@ -44,9 +44,9 @@ protected:
 	
 private:
 	void DoFind(const std::string &text);
-	void DrawKey() const;
+	void DrawKey();
 	void DrawInfo();
-	void DrawOrbits() const;
+	void DrawOrbits();
 	
 	void ListShips() const;
 	void ListOutfits() const;
@@ -56,11 +56,11 @@ private:
 	
 	
 private:
-	mutable int governmentY;
-	mutable int tradeY;
+	int governmentY;
+	int tradeY;
 	
-	mutable std::map<const Planet *, int> planetY;
-	mutable std::map<const Planet *, Point> planets;
+	std::map<const Planet *, int> planetY;
+	std::map<const Planet *, Point> planets;
 	const Planet *selectedPlanet;
 };
 
