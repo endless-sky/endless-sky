@@ -35,6 +35,7 @@ namespace {
 	static const string EXPEND_AMMO = "Escorts expend ammo";
 	static const string FRUGAL_ESCORTS = "Escorts use ammo frugally";
 	static const string REACTIVATE_HELP = "Reactivate first-time help";
+	static const string SCROLL_SPEED = "Scroll speed";
 }
 
 
@@ -137,6 +138,14 @@ bool PreferencesPanel::Click(int x, int y)
 			{
 				for(const auto &it : GameData::HelpTemplates())
 					Preferences::Set("help: " + it.first, false);
+			}
+			else if(zone.Value() == SCROLL_SPEED)
+			{
+				// Toogle between three different speeds.
+				int speed = Preferences::ScrollSpeed() + 20;
+				if(speed > 60)
+					speed = 20;
+				Preferences::SetScrollSpeed(speed);
 			}
 			else
 				Preferences::Set(zone.Value(), !Preferences::Has(zone.Value()));
@@ -333,7 +342,8 @@ void PreferencesPanel::DrawSettings()
 		"Show hyperspace flash",
 		"\n",
 		"Other",
-		"Reactivate first-time help",
+		REACTIVATE_HELP,
+		SCROLL_SPEED,
 		"Warning siren",
 		"Hide unexplored map regions"
 	};
@@ -389,6 +399,8 @@ void PreferencesPanel::DrawSettings()
 				text = "done";
 			}
 		}
+		else if(setting == SCROLL_SPEED)
+			text = to_string(Preferences::ScrollSpeed());
 		else
 			text = isOn ? "on" : "off";
 		
