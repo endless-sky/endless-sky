@@ -501,7 +501,7 @@ void MapPanel::DrawTravelPlan() const
 	
 	Ship *ship = player.Flagship();
 	bool hasHyper = ship ? ship->Attributes().Get("hyperdrive") : false;
-    bool hasJump = ship ? ship->Attributes().Get("jump drive") : false;
+	bool hasJump = ship ? ship->Attributes().Get("jump drive") : false;
 	
 	// Find out how much fuel your ship and your escorts use per jump.
 	double flagshipCapacity = 0.;
