@@ -885,7 +885,7 @@ void AI::MoveEscort(Ship &ship, Command &command) const
 					ship.SetTargetPlanet(&object);
 					break;
 				}
-			ship.SetTargetSystem(to);
+            ship.SetTargetSystem(to);
 			// Check if we need to refuel. Wormhole travel does not require fuel.
 			if(!ship.GetTargetPlanet() && (!to || 
 					(from->HasFuelFor(ship) && !to->HasFuelFor(ship) && ship.JumpsRemaining() == 1)))

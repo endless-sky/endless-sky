@@ -855,7 +855,9 @@ bool Ship::Move(list<Effect> &effects, list<Flotsam> &flotsam)
 		static const int HYPER_C = 100;
 		static const double HYPER_A = 2.;
 		static const double HYPER_D = 1000.;
-		bool hasJumpDrive = (hyperspaceType == 200);
+        bool hasJumpDrive = (hyperspaceType == 200);
+        bool hasMultiDrive = attributes.Get("multi drive");
+        bool hasMultiJump = attributes.Get("multi jump");
 		
 		// Create the particle effects for the jump drive. This may create 100
 		// or more particles per ship per turn at the peak of the jump.
@@ -900,10 +902,21 @@ bool Ship::Move(list<Effect> &effects, list<Flotsam> &flotsam)
 			// traveling in, so that when you decelerate there will not be a
 			// sudden shift in direction at the end.
 			velocity = velocity.Length() * angle.Unit();
-		}
+        }
 		if(!hasJumpDrive)
 		{
-			velocity += (HYPER_A * direction) * angle.Unit();
+            velocity += (HYPER_A * direction) * angle.Unit();
+            //If about the to exit hyperspace, check if multi drive can continue to next system.
+            if(!hyperspaceSystem){
+                if(hasMultiDrive && fuel > JumpFuel()){
+                    if(HyperspaceType() && HyperspaceType() != 200){
+                        hyperspaceSystem = GetTargetSystem();
+                        Point testing = hyperspaceSystem->Position() - currentSystem->Position();
+                        angle = atan(testing.Y()/testing.X());
+                        fuel -= (hyperspaceSystem != nullptr) * JumpFuel() * 0.99;
+                    }
+                }
+            }
 			if(!hyperspaceSystem)
 			{
 				// Exit hyperspace far enough from the planet to be able to land.
@@ -929,7 +942,17 @@ bool Ship::Move(list<Effect> &effects, list<Flotsam> &flotsam)
 					hyperspaceCount = 0;
 				}
 			}
-		}
+        }else{
+            //If about the to exit jump, check if multi jump can continue to next system.
+            if(!hyperspaceSystem){
+                if(hasMultiJump && fuel > JumpFuel()){
+                    if(HyperspaceType() && HyperspaceType() == 200){
+                        hyperspaceSystem = GetTargetSystem();
+                        fuel -= (hyperspaceSystem != nullptr) * JumpFuel() * 0.99;
+                    }
+                }
+            }
+        }
 		position += velocity;
 		if(GetParent() && GetParent()->currentSystem == currentSystem)
 		{
@@ -2291,8 +2314,6 @@ void Ship::SetTargetSystem(const System *system)
 {
 	targetSystem = system;
 }
-
-
 
 void Ship::SetDestination(const Planet *planet)
 {
