@@ -1571,7 +1571,6 @@ int Ship::HyperspaceType() const
 	bool hasHyperdrive = attributes.Get("hyperdrive");
 	bool hasScramDrive = attributes.Get("scram drive");
     bool hasJumpDrive = attributes.Get("jump drive");
-    bool hasMultiDrive = attributes.Get("multi drive");
 	
 	// Figure out what sort of jump we're making. 100 = normal hyperspace,
 	// 150 = scram drive, 200 = jump drive.
@@ -1584,15 +1583,6 @@ int Ship::HyperspaceType() const
 		for(const System *link : currentSystem->Neighbors())
 			if(link == destination)
                 return 200;
-    
-    if(hasMultiDrive || hasScramDrive)
-        for(const System *link : currentSystem->Links()){
-            if(link == destination)
-                return 300;
-            for(const System *sublink : link->Links())
-                if(sublink == destination)
-                    return 300;
-        }
 	
 	return 0;
 }
@@ -1791,15 +1781,12 @@ double Ship::JumpFuel() const
     double driveFuel = attributes.Get("hyperdrive fuel") ? attributes.Get("hyperdrive fuel"): 100.;
     double scramFuel = attributes.Get("scram fuel") ? attributes.Get("scram fuel"): 150.;
     double jumpFuel = attributes.Get("jump fuel") ? attributes.Get("jump fuel"): 200.;
-    double multiFuel = attributes.Get("multi fuel") ? attributes.Get("multi fuel"): 300.;
     
 	if(type)
-        return type == 300 ? multiFuel:
-            type == 200 ? jumpFuel:
+        return type == 200 ? jumpFuel:
             type == 150 ? scramFuel:
             type == 100 ? driveFuel: 0;
-    return attributes.Get("multi drive") ? multiFuel:
-        attributes.Get("jump drive") ? jumpFuel:
+    return attributes.Get("jump drive") ? jumpFuel:
 		attributes.Get("scram drive") ? scramFuel:
 		attributes.Get("hyperdrive") ? driveFuel: 0.;
 }
