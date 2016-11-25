@@ -510,9 +510,12 @@ void MapPanel::DrawTravelPlan() const
 	double flagshipHyperFuel = 0.;
 	double flagshipJumpFuel = 0.;
 	if(ship){
-		double flagshipHFuel = ship->Attributes().Get("hyperdrive fuel") ? (10000 / ship->Attributes().Get("hyperdrive fuel")): 100.;
-		double flagshipSFuel = ship->Attributes().Get("scram fuel") ? (22500 / ship->Attributes().Get("scram fuel")): 150.;
-		flagshipJumpFuel = ship->Attributes().Get("jump fuel") ? (40000 / ship->Attributes().Get("jump fuel")): 200.;
+		double flagshipHFuel = ship->Attributes().Get("hyperdrive fuel") && ship->Attributes().Get("hyperdrive") ?
+			ship->Attributes().Get("hyperdrive fuel") / ship->Attributes().Get("hyperdrive") : 100.;
+		double flagshipSFuel = ship->Attributes().Get("scram fuel") && ship->Attributes().Get("scram drive") ?
+			ship->Attributes().Get("scram fuel") / ship->Attributes().Get("scram drive") : 150.;
+		flagshipJumpFuel = ship->Attributes().Get("jump fuel") && ship->Attributes().Get("jump drive") ?
+			ship->Attributes().Get("jump fuel") / ship->Attributes().Get("jump drive") : 200.;
 		flagshipHyperFuel = hasHyper ? ship->Attributes().Get("scram drive") ? flagshipSFuel : flagshipHFuel : flagshipJumpFuel;
 	}
 	double escortCapacity = 0.;
@@ -523,14 +526,17 @@ void MapPanel::DrawTravelPlan() const
 	for(const shared_ptr<Ship> &it : player.Ships())
 		if(it.get() != ship && !it->IsParked() && !it->CanBeCarried())
 		{
-			double hFuel = it->Attributes().Get("hyperdrive fuel") ? (10000 / it->Attributes().Get("hyperdrive fuel")): 100.;
-			double sFuel = it->Attributes().Get("scram fuel") ? (22500 / it->Attributes().Get("scram fuel")): 150.;
+			double hFuel = it->Attributes().Get("hyperdrive fuel") && it->Attributes().Get("hyperdrive") ?
+				it->Attributes().Get("hyperdrive fuel") / it->Attributes().Get("hyperdrive") : 100.;
+			double sFuel = it->Attributes().Get("scram fuel") && it->Attributes().Get("scram drive") ?
+				it->Attributes().Get("scram fuel") / it->Attributes().Get("scram drive") : 150.;
 			double capacity = it->Attributes().Get("fuel capacity") * it->Fuel();
-			double jumpFuel = it->Attributes().Get("jump fuel") ? (40000 / it->Attributes().Get("jump fuel")): 200.;
+			double jumpFuel = it->Attributes().Get("jump fuel") && it->Attributes().Get("jump drive") ?
+				it->Attributes().Get("jump fuel") / it->Attributes().Get("jump drive") : 200.;
 			double hyperFuel = it->Attributes().Get("hyperdrive") ?
 			it->Attributes().Get("scram drive") ? sFuel : hFuel : jumpFuel;
 			//Find Least Common Denominator in terms of fuel usage.
-			escortJumpFuel = (escortJumpFuel < jumpFuel) ? jumpFuel: escortJumpFuel;
+			escortJumpFuel = (escortJumpFuel < jumpFuel) ? jumpFuel : escortJumpFuel;
 			escortHasJump = it->Attributes().Get("jump drive") && escortHasJump;
 			if(escortCapacity == 0 || capacity / hyperFuel < escortCapacity / escortHyperFuel)
 			{
@@ -583,8 +589,8 @@ void MapPanel::DrawTravelPlan() const
 		}
 		else
 		{
-			flagshipCapacity -= flagshipHyperFuel;
-			escortCapacity -= escortHyperFuel;
+			flagshipCapacity -= min(flagshipHyperFuel, flagshipJumpFuel);
+			escortCapacity -= min(escortHyperFuel, escortJumpFuel);
 		}
 		
 		Color drawColor = outOfFlagshipFuelRangeColor;

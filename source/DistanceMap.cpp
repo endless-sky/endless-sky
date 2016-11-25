@@ -145,8 +145,10 @@ void DistanceMap::Init(const System *center, const Ship *ship)
 	bool hasHyper = ship ? ship->Attributes().Get("hyperdrive") : true;
 	bool hasJump = ship ? ship->Attributes().Get("jump drive") : false;
 	//Check if jumps cost less than hyperdrive.
-	double hFuel = ship ? ship->Attributes().Get("hyperdrive fuel") ? (10000 / ship->Attributes().Get("hyperdrive fuel")): 100. : 100.;
-	double jFuel = ship ? ship->Attributes().Get("jump fuel") ? (40000 / ship->Attributes().Get("jump fuel")): 200. : 200.;
+	double hFuel = ship ? ship->Attributes().Get("hyperdrive fuel") && ship->Attributes().Get("hyperdrive") ?
+		ship->Attributes().Get("hyperdrive fuel") / ship->Attributes().Get("hyperdrive") : 100. : 100.;
+	double jFuel = ship ? ship->Attributes().Get("jump fuel") && ship->Attributes().Get("jump drive") ?
+		ship->Attributes().Get("jump fuel") / ship->Attributes().Get("jump drive") : 200. : 200.;
 	bool cheapHyper = ship ? hFuel < jFuel : true;
 	// If the ship has no jump capability, do pathfinding as if it has a
 	// hyperdrive. The Ship class still won't let it jump, though.
@@ -187,10 +189,9 @@ void DistanceMap::Init(const System *center, const Ship *ship)
 					
 					Add(system, link, steps + 1, danger + link->Danger());
 				}
-		if(cheapHyper){
+		if(cheapHyper)
 			if(hasHyper && !Propagate(system, false, steps, danger, cheapHyper))
 				break;
-		}
 		if(hasJump && !Propagate(system, true, steps, danger, cheapHyper))
 			break;
 	}
