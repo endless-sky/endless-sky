@@ -656,6 +656,13 @@ string GameData::HelpMessage(const std::string &name)
 
 
 
+const map<string, string> &GameData::HelpTemplates()
+{
+	return helpMessages;
+}
+
+
+
 void GameData::LoadSources()
 {
 	sources.clear();
