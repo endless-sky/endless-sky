@@ -38,6 +38,8 @@ protected:
 	virtual bool Click(int x, int y) override;
 	virtual bool Hover(int x, int y) override;
 	
+	virtual void EndEditing() override;
+	
 	
 private:
 	void Exit();

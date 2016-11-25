@@ -231,7 +231,7 @@ bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comma
 	if(static_cast<unsigned>(editing) < zones.size())
 	{
 		Command::SetKey(zones[editing].Value(), key);
-		editing = -1;
+		EndEditing();
 		return true;
 	}
 	
@@ -253,7 +253,7 @@ bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comma
 
 bool PreferencesPanel::Click(int x, int y)
 {
-	editing = -1;
+	EndEditing();
 	
 	if(x >= 265 && x < 295 && y >= -220 && y < 70)
 	{
@@ -315,6 +315,13 @@ bool PreferencesPanel::Hover(int x, int y)
 			hoverPreference = zone.Value();
 	
 	return true;
+}
+
+
+
+void PreferencesPanel::EndEditing()
+{
+	editing = -1;
 }
 
 
