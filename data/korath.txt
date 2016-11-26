@@ -562,6 +562,8 @@ fleet "Large Kor Mereti"
 
 
 outfitter "Korath Basics"
+	"Korath Piercer Rack"
+	"Korath Mine Rack"
 	"Command Center"
 	"Small Bunk Room"
 	"Bunk Room"
