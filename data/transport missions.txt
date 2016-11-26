@@ -1870,14 +1870,14 @@ mission "A wolf, a goat, and a cabbage"
 
 mission "Omicron Forty-two 0"
 	name "Recover <npc>"
-	description "A surveillance drone named <npc> was left in the Kugel system by a Navy fleet, and they would like you to retrieve the scanner logs using a cargo scanner and drop them off at <destination>."
+	description "A surveillance drone named <npc> was left in the Kugel system by a Navy fleet, and they would like you to retrieve the scanner logs using a cargo scanner and drop them off at <destination>. Do not destroy or repair the ship, only scan it."
 	source
 		attributes paradise
 	destination "Carbuncle Station"
 	waypoint "Kugel"
 	on offer
 		conversation
-			`	A Navy captain stands at the corner of the spaceport, apparently scanning through the crowd for someone. He sees you, and calls you over. "You look like a respectable captain," he says, obviously in a hurry. "One of our ships recently lost an surveillance drone in Kugel. Could you scan its and bring back its cargo diagnostics to Carbuncle Station? We do not want you to retrieve it - it has certain defense systems that need to be disabled by... specialists, from Lovelace Labs. I would do it myself," he adds, "but I don't have the time. You will be paid, of course."`
+			`	A Navy captain stands at the corner of the spaceport, apparently scanning through the crowd for someone. He sees you, and calls you over. "You look like a respectable captain," he says, obviously in a hurry. "One of our ships recently lost a surveillance drone in Kugel. Could you scan its cargo and bring back its scanner logs to Carbuncle Station? We do not want you to retrieve or repair it - it has certain defense systems that need to be disabled by... specialists, from Lovelace Labs. I would do it myself," he adds, "but I don't have the time. You will be paid, of course."`
 			choice
 				`	(Accept.)`
 					accept
