@@ -268,7 +268,8 @@ string Politics::Fine(PlayerInfo &player, const Government *gov, int scan, const
 			reason = "atrocity";
 		else
 			reason = "After scanning your ship, the " + gov->GetName()
-				+ " captain hails you with a grim expression on his face. He says, \"I'm afraid we're going to have to put you to death " + reason + " Goodbye.\"";
+				+ " captain hails you with a grim expression on his face. He says, "
+				"\"I'm afraid we're going to have to put you to death " + reason + " Goodbye.\"";
 	}
 	else if(maxFine > 0)
 	{
