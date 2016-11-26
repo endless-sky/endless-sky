@@ -1870,7 +1870,7 @@ mission "A wolf, a goat, and a cabbage"
 
 mission "Omicron Forty-two 0"
 	name "Recover <npc>"
-	description "A surveillance drone named <npc> was left in the Kugel system by a Navy fleet, and they would like you to retrieve the scanner logs using an outfit scanner and drop them off at <destination>. Do not destroy or repair the ship, only scan it."
+	description "A surveillance drone named <npc> was left in the Kugel system by a Navy fleet, and they would like you to retrieve the scanner logs using an outfit scanner and drop them off at <destination>."
 	source
 		attributes paradise
 	destination "Carbuncle Station"
@@ -1883,7 +1883,7 @@ mission "Omicron Forty-two 0"
 					accept
 				`	(Decline.)`
 					decline
-	npc "scan outfits" save disable
+	npc "scan outfits"
 		personality derelict staying
 		government Republic
 		system "Kugel"
