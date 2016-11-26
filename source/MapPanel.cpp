@@ -505,11 +505,11 @@ void MapPanel::DrawTravelPlan()
 	
 	// Find out how much fuel your ship and your escorts use per jump.
 	double flagshipCapacity = 0.;
-	if(ship)
-		flagshipCapacity = ship->Attributes().Get("fuel capacity") * ship->Fuel();
 	double flagshipHyperFuel = 0.;
 	double flagshipJumpFuel = 0.;
-	if(ship){
+	if(ship)
+	{
+		flagshipCapacity = ship->Attributes().Get("fuel capacity") * ship->Fuel();
 		double flagshipHFuel = ship->Attributes().Get("hyperdrive fuel") && ship->Attributes().Get("hyperdrive") ?
 			ship->Attributes().Get("hyperdrive fuel") / ship->Attributes().Get("hyperdrive") : 100.;
 		double flagshipSFuel = ship->Attributes().Get("scram fuel") && ship->Attributes().Get("scram drive") ?
