@@ -1205,3 +1205,26 @@ ship "Sparrow" "Sparrow (Gatling)"
 		"Chipmunk Plasma Thruster"
 		"Chipmunk Plasma Steering"
 		"Hyperdrive"
+
+ship "Surveillance Drone" "Surveillance Drone (Secure)"
+	sprite "ship/surveillance drone"
+	licenses
+		Navy
+	attributes
+		category "Drone"
+		"cost" 50000
+		"hull" 300
+		"mass" 15
+		"drag" .53
+		"heat dissipation" .9
+		"outfit space" 53
+		"weapon capacity" 0
+		"engine capacity" 28
+		"self destruct" 1
+		"automaton" 1
+	outfits
+		"nGVF-AA Fuel Cell"
+		"Surveillance Pod"
+		
+		"X1700 Ion Thruster"
+		"X1200 Ion Steering"
