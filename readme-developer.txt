@@ -6,6 +6,7 @@ Linux:
 
 Use your favorite package manager to install the following (version numbers may vary depending on your distribution):
 
+DEB-based distros:
    g++ \
    scons \
    libsdl2-dev \
@@ -14,6 +15,16 @@ Use your favorite package manager to install the following (version numbers may 
    libgl1-mesa-dev \
    libglew-dev \
    libopenal-dev
+
+RPM-based distros:
+   gcc-c++ \
+   scons \
+   SDL2-devel \
+   libpng-devel \
+   libjpeg-turbo-devel \
+   mesa-libGL-devel \
+   sglew-devel \
+   openal-soft-devel \
 
 You can then just navigate to the source code folder in a terminal and type:
 
