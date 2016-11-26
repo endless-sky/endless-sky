@@ -256,9 +256,12 @@ void ShopPanel::DrawButtons()
 void ShopPanel::DrawMain()
 {
 	const Font &bigFont = FontSet::Get(18);
-	Color dim = *GameData::Colors().Get("dim");
+	Color dim = *GameData::Colors().Get("medium");
 	Color bright = *GameData::Colors().Get("bright");
 	mainDetailHeight = 0;
+	
+	const Sprite *collapsedArrow = SpriteSet::Get("ui/collapsed");
+	const Sprite *expandedArrow = SpriteSet::Get("ui/expanded");
 	
 	// Draw all the available ships.
 	// First, figure out how many columns we can draw.
@@ -285,7 +288,7 @@ void ShopPanel::DrawMain()
 		if(!planet)
 			break;
 		
-		Point side(Screen::Left() + 10., point.Y() - TILE_SIZE / 2 + 10);
+		Point side(Screen::Left() + 5., point.Y() - TILE_SIZE / 2 + 10);
 		point.Y() += bigFont.Height() + 20;
 		nextY += bigFont.Height() + 20;
 		
@@ -342,9 +345,10 @@ void ShopPanel::DrawMain()
 		
 		if(!isEmpty)
 		{
-			Point size(bigFont.Width(category), bigFont.Height());
+			Point size(bigFont.Width(category) + 25., bigFont.Height());
 			categoryZones.emplace_back(Point(Screen::Left(), side.Y()) + .5 * size, size, category);
-			bigFont.Draw(category, side, isCollapsed ? dim : bright);
+			SpriteShader::Draw(isCollapsed ? collapsedArrow : expandedArrow, side + Point(10., 10.));
+			bigFont.Draw(category, side + Point(25., 0.), isCollapsed ? dim : bright);
 			
 			if(point.X() != begin.X())
 			{
