@@ -23,6 +23,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "System.h"
 
 #include <algorithm>
+#include <cmath>
 
 using namespace std;
 
@@ -99,8 +100,12 @@ void Politics::Offend(const Government *gov, int eventType, int count)
 				provoked.insert(other);
 			}
 		}
-		else if(count * weight)
+		else if(abs(weight) >= .05 && count * weight)
 		{
+			// Weights less than 5% should never cause permanent reputation
+			// changes. This is to allow two governments to be hostile or
+			// friendly without the player's behavior toward one of them
+			// influencing their reputation with the other.
 			double penalty = (count * weight) * other->PenaltyFor(eventType);
 			if(eventType & ShipEvent::ATROCITY)
 				reputationWith[other] = min(0., reputationWith[other]);
