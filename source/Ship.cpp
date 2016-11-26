@@ -981,6 +981,7 @@ bool Ship::Move(list<Effect> &effects, list<Flotsam> &flotsam)
 				|| !landingPlanet || !landingPlanet->HasSpaceport())
 		{
 			zoom = min(1., zoom + .02);
+			SetTargetPlanet(nullptr);
 			landingPlanet = nullptr;
 		}
 		else
