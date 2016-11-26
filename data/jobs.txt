@@ -19,7 +19,7 @@ mission "Escort (Tiny, Northern, Dangerous Destination)"
 		"combat rating" < 6
 		or
 			"combat rating" > 0
-			"ships: Interceptor"
+			has "ships: Interceptor"
 	source
 		government Republic "Free Worlds" Syndicate Neutral
 		attributes deep paradise "near earth"
@@ -78,7 +78,7 @@ mission "Escort (Tiny, Northern, Dangerous Origin)"
 		"combat rating" < 6
 		or
 			"combat rating" > 0
-			"ships: Interceptor"
+			has "ships: Interceptor"
 	source
 		government Republic "Free Worlds" Syndicate Neutral
 		attributes frontier north
@@ -534,7 +534,7 @@ mission "Escort (Tiny, Core, Dangerous Destination)"
 		"combat rating" < 6
 		or
 			"combat rating" > 0
-			"ships: Interceptor"
+			has "ships: Interceptor"
 	source
 		government Republic "Free Worlds" Syndicate Neutral
 		attributes core "near earth"
@@ -593,7 +593,7 @@ mission "Escort (Tiny, Core, Dangerous Origin)"
 		"combat rating" < 6
 		or
 			"combat rating" > 0
-			"ships: Interceptor"
+			has "ships: Interceptor"
 	source
 		government Republic "Free Worlds" Syndicate Neutral
 		attributes core north frontier
@@ -1052,7 +1052,7 @@ mission "Escort (Tiny, Southern, Dangerous Origin or Destination)"
 		"combat rating" < 6
 		or
 			"combat rating" > 0
-			"ships: Interceptor"
+			has "ships: Interceptor"
 	source
 		government Republic "Free Worlds" Syndicate Neutral
 		attributes frontier south rim "dirt belt"
