@@ -227,7 +227,7 @@ string Politics::Fine(PlayerInfo &player, const Government *gov, int scan, const
 			if((fine > maxFine && maxFine >= 0) || fine < 0)
 			{
 				maxFine = fine;
-				reason = "carrying illegal cargo.";
+				reason = " for carrying illegal cargo.";
 
 				for(const Mission &mission : player.Missions())
 				{
@@ -255,7 +255,7 @@ string Politics::Fine(PlayerInfo &player, const Government *gov, int scan, const
 					if((fine > maxFine && maxFine >= 0) || fine < 0)
 					{
 						maxFine = fine;
-						reason = "having illegal outfits installed on your ship.";
+						reason = " for having illegal outfits installed on your ship.";
 					}
 				}
 		}
@@ -268,15 +268,14 @@ string Politics::Fine(PlayerInfo &player, const Government *gov, int scan, const
 			reason = "atrocity";
 		else
 			reason = "After scanning your ship, the " + gov->GetName()
-				+ " captain hails you with a grim expression on his face. He says, \"You are guilty of "
-				+ reason + " The penalty for your actions is death. Goodbye.\"";
+				+ " captain hails you with a grim expression on his face. He says, \"I'm afraid we're going to have to put you to death " + reason + " Goodbye.\"";
 	}
 	else if(maxFine > 0)
 	{
 		// Scale the fine based on how lenient this government is.
 		maxFine = maxFine * gov->GetFineFraction() + .5;
 		reason = "The " + gov->GetName() + " authorities fine you "
-			+ Format::Number(maxFine) + " credits for " + reason;
+			+ Format::Number(maxFine) + " credits" + reason;
 		player.Accounts().AddFine(maxFine);
 		fined.insert(gov);
 	}
