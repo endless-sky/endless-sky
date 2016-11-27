@@ -276,7 +276,7 @@ mission "Estate sale delivery to <planet>"
 	on complete
 		payment
 		payment 10000
-		dialog "As you watch the dockworkers unload crate after crate, you can't help but wonder what would drive someone to collect such a huge quantity of <commodity>. You collect your payment of <payment>"
+		dialog "As you watch the dockworkers unload crate after crate, you can't help but wonder what would drive someone to collect such a huge quantity of <commodity>. You collect your payment of <payment>."
 
 
 mission "Transport contract laborers to <planet>"
