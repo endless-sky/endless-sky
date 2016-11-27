@@ -28,7 +28,7 @@ void Weapon::LoadWeapon(const DataNode &node)
 {
 	isWeapon = true;
 	bool isClustered = false;
-	
+
 	for(const DataNode &child : node)
 	{
 		if(child.Token(0) == "sprite" && child.Size() >= 2)
@@ -136,6 +136,9 @@ void Weapon::LoadWeapon(const DataNode &node)
 				hitForce = child.Value(1);
 			else if(child.Token(0) == "piercing")
 				piercing = max(0., min(1., child.Value(1)));
+            else if(child.Token(0) == "optimal range")
+                optimalRange = max(0., child.Value(1));
+
 			else
 				child.PrintTrace("Unrecognized weapon attribute: \"" + child.Token(0) + "\":");
 		}
@@ -145,17 +148,17 @@ void Weapon::LoadWeapon(const DataNode &node)
 	// Sanity check:
 	if(burstReload > reload)
 		burstReload = reload;
-	
+
 	// Weapons of the same type will alternate firing (streaming) rather than
 	// firing all at once (clustering) if the weapon is not an anti-missile and
 	// is not vulnerable to anti-missile, or has the "stream" attribute.
 	isStreamed |= !(MissileStrength() || AntiMissile());
 	isStreamed &= !isClustered;
-	
+
 	// Support legacy missiles with no tracking type defined:
 	if(homing && !tracking && !opticalTracking && !infraredTracking && !radarTracking)
 		tracking = 1.;
-	
+
 	// Convert the "live effect" counts from occurrences per projectile lifetime
 	// into chance of occurring per frame.
 	if(lifetime <= 0)
@@ -253,16 +256,38 @@ double Weapon::TotalLifetime() const
 		totalLifetime = 0.;
 		for(const auto &it : submunitions)
 			totalLifetime = max(totalLifetime, it.first->TotalLifetime());
-		totalLifetime += lifetime;
+		totalLifetime += lifetime + 0.5 * randomLifetime;
 	}
 	return totalLifetime;
 }
 
 
 
+// Calculate the range of a weapon to display in the outfitter panel.
+// Has to take into account the relative velocity a parent munition
+// gives its submunitions.
 double Weapon::Range() const
 {
-	return Velocity() * TotalLifetime();
+    double range = 0.;
+
+    for(const auto &it : submunitions)
+        range = max(range, it.first->Range());
+    range += (Velocity() + 0.5 * RandomVelocity()) * TotalLifetime();
+
+	return range;
+}
+
+
+
+// Calculate a weighted velocity to inform AI firing decisions.
+double Weapon::WeightedVelocity() const
+{
+    if(optimalRange > 0.)
+        return optimalRange/TotalLifetime();
+    else
+    {
+        return Range()/TotalLifetime();
+    }
 }
 
 
