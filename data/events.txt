@@ -2280,6 +2280,7 @@ event "deep sky tech available"
 		"Typhoon Torpedo"
 		"Electron Beam"
 		"Typhoon Launcher"
+		"Typhoon Storage Tube"
 		"Electron Turret"
 
 
