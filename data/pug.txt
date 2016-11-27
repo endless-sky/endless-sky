@@ -286,7 +286,7 @@ outfit "Pug Lohmar Steering"
 outfit "Pug Biodefenses"
 	category "Hand to Hand"
 	cost 100000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/pug biodefenses"
 	"capture defense" 250
 	"unplunderable" 1
 	description "This defense system is designed to release a suite of toxins that are lethal to human beings (and probably to some other species, as well) but which have no effect at all on the Pug."
