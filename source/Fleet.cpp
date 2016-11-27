@@ -58,6 +58,12 @@ void Fleet::Load(const DataNode &node)
 			fighterNames = GameData::Phrases().Get(child.Token(1));
 		else if(child.Token(0) == "cargo" && child.Size() >= 2)
 			cargo = static_cast<int>(child.Value(1));
+		else if(child.Token(0) == "commodities" && child.Size() >= 2)
+		{
+			commodities.clear();
+			for(int i = 1; i < child.Size(); ++i)
+				commodities.push_back(child.Token(i));
+		}
 		else if(child.Token(0) == "personality")
 			personality.Load(child);
 		else if(child.Token(0) == "variant")
@@ -378,6 +384,19 @@ void Fleet::SetCargo(Ship *ship) const
 			break;
 		
 		int index = Random::Int(GameData::Commodities().size());
+		if(commodities.size())
+		{
+			// If a list of possible commodities was given, pick one of them at
+			// random and then double-check that it's a valid commodity name.
+			const string &name = commodities[Random::Int(commodities.size())];
+			for(const auto &it : GameData::Commodities())
+				if(it.name == name)
+				{
+					index = &it - &GameData::Commodities().front();
+					break;
+				}
+		}
+		
 		const Trade::Commodity &commodity = GameData::Commodities()[index];
 		int amount = Random::Int(free) + 1;
 		ship->Cargo().Add(commodity.name, amount);

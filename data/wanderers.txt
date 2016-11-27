@@ -468,9 +468,7 @@ event "wanderers: unfettered invasion starts"
 	"reputation: Hai (Unfettered)" <?= -100
 	government "Hai (Unfettered)"
 		"attitude toward"
-			"Hai" -.1
-			"Wanderer" -.1
-			"Pug" -.1
+			"Wanderer" -.01
 	outfitter "Wanderer Advanced"
 		"Wanderer Anti-Missile"
 	planet "Varu K'est"
