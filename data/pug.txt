@@ -231,7 +231,7 @@ outfit "Pug Akfar Steering"
 outfit "Pug Cormet Thruster"
 	category "Engines"
 	"cost" 1050000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/pug cormet thruster"
 	"mass" 60
 	"outfit space" -60
 	"engine capacity" -60
@@ -246,7 +246,7 @@ outfit "Pug Cormet Thruster"
 outfit "Pug Cormet Steering"
 	category "Engines"
 	"cost" 880000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/pug cormet steering"
 	"mass" 46
 	"outfit space" -46
 	"engine capacity" -46
