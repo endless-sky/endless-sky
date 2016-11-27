@@ -319,7 +319,7 @@ double Depreciation::Depreciate(const map<int, int> &record, int day, int count)
 			--it;
 		}
 	}
-	return sum + count * (isStock ? 1. : FULL_DEPRECIATION);;
+	return sum + count * (isStock ? 1. : FULL_DEPRECIATION);
 }
 
 
@@ -327,6 +327,8 @@ double Depreciation::Depreciate(const map<int, int> &record, int day, int count)
 // Calculate the value fraction for an item of the given age.
 double Depreciation::Depreciate(int age) const
 {
+	if(age <= 0)
+		return 1.;
 	if(age >= MAX_AGE)
 		return FULL_DEPRECIATION;
 	
