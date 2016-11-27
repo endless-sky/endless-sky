@@ -1665,6 +1665,23 @@ event "Thule becomes independent"
 		description `The repair shops here can make a variety of legal and illegal modifications to your ship, and in the shipyard you can buy refurbished starships... if it does not trouble your conscience to think about the likely fates of their previous owners.`
 		spaceport `It is a strange but indisputable fact that anarchists smell worse than ordinary human beings. In this day and age, where even the cheapest shuttlecraft at least has a sonic shower, there is no logical explanation for it, except that anarchist tendencies must somehow go hand in hand with a tendency to reject society's norms around hygiene. Here in a space station, with nothing but recycled air to breathe, the effect is overpowering.`
 
+event "Smuggler's Den starts producing Hyperdrive boosters"
+	planet "Smuggler's Den"
+		outfitter "Independent"
+
+mission "Hyperdrive boosters go on sale"
+	landing
+	invisible
+	to offer
+		has "event: Smuggler's Den starts producing Hyperdrive boosters"
+	on offer
+		conversation
+			`You have been sent a letter from a company you don't recognise.`
+			`	Dear Captain <first> <last>
+			`		We are pleased to announce that we are now mass producing Hyperspace Boosters on Smuggler's Den!.`
+			`		Pick yours up now!`
+			`	Smuggler's Den Industries sales team`
+
 
 
 event "fw suppressed Bloodsea"

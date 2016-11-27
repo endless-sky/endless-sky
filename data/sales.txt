@@ -341,6 +341,7 @@ outfitter "Syndicate Advanced"
 	"D67-TM Shield Generator"
 	"Security Station"
 	"Scram Drive"
+	"Scram Drive Booster"
 
 outfitter "Kraz Basics"
 	"Chipmunk Plasma Thruster"
@@ -397,6 +398,9 @@ outfitter "Pirate Outfits"
 	"Interference Plating"
 	"Gatling Gun Ammo"
 	"Gatling Gun"
+
+outfitter "Independent"
+	"Hyperdrive Booster"
 
 outfitter "Stack Core"
 	"Stack Core"
