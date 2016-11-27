@@ -111,3 +111,152 @@ mission "First Contact: Kuwaru Efreti"
 			label destroy
 			`	It clicks its teeth together, which might be the Quarg equivalent of laughter. "It was hoped that one faction of robots would destroy the other, and leave less work for us to do, but they are sadly too evenly matched. We instead merely restrain them from expanding, as one isolates a fire one cannot extinguish and waits for it to burn out." You thank it for its time, and the crowd of Quarg that has been gawking at you slowly disperses.`
 				decline
+
+mission "Quarg react to being farmed"
+	landing
+	invisible
+	to offer
+		"reputation: Quarg" < -100
+	on offer
+		event "quarg fleet buff"
+		conversation
+			`	It seems your actions have caught up to you. You receive word that the Quarg have launched special warships and have put a bounty on your head. You'll have to tread more carefully now.`
+	npc kill
+		government Quarg
+		personality nemesis heroic staying
+		system Enif
+		ship "Quarg Elderdragon" "Protector of Saai Far"
+	npc kill
+		government Quarg
+		personality nemesis heroic staying
+		system Sadalmelik
+		ship "Quarg Elderdragon" "Demonic Spider"
+	npc kill
+		government Quarg
+		personality nemesis heroic staying
+		system Sadalsuud
+		ship "Quarg Elderdragon" "Herald of Entropy"
+	npc kill
+		government Quarg
+		personality nemesis heroic staying
+		system "Hevru Hai"
+		ship "Quarg Elderdragon" "Lance of Eden"
+	npc kill
+		government Quarg
+		personality nemesis heroic staying
+		system "Dokdobaru"
+		ship "Quarg Elderdragon" "Keeper of Purity"
+		
+mission "Quarg reverts fleet"
+	landing
+	invisible
+	repeat
+	to offer
+		"reputation: Quarg" > 5
+	on offer
+		event "quarg fleet normal"
+
+mission "Quarg buffs fleet"
+	landing
+	invisible
+	repeat
+	to offer
+		has "Quarg react to being farmed: offered"
+		"reputation: Quarg" > -100
+	on offer
+		event "quarg fleet buff"
+
+mission "quarg repopulation" #They come back once more, killing them now means they are gone forever unless their fleets weren't reverted
+	landing
+	invisible
+	to offer
+		has "Quarg react to being farmed: done"
+		"reputation: Quarg" < -100
+	npc kill
+		government Quarg
+		personality nemesis heroic staying
+		system Enif
+		ship "Quarg Elderdragon" "Protector of Saai Far"
+	npc kill
+		government Quarg
+		personality nemesis heroic staying
+		system Sadalmelik
+		ship "Quarg Elderdragon" "Demonic Spider"
+	npc kill
+		government Quarg
+		personality nemesis heroic staying
+		system Sadalsuud
+		ship "Quarg Elderdragon" "Herald of Entropy"
+	npc kill
+		government Quarg
+		personality nemesis heroic staying
+		system "Hevru Hai"
+		ship "Quarg Elderdragon" "Lance of Eden"
+	npc kill
+		government Quarg
+		personality nemesis heroic staying
+		system "Dokdobaru"
+		ship "Quarg Elderdragon" "Keeper of Purity"
+
+mission "quarg bounty"
+	landing
+	repeat
+	invisible
+	to offer
+		random < 70
+		"Quarg react to being farmed: offered"
+	source
+		government Republic Syndicate "Free Worlds" Neutral Pirate
+	npc kill
+		system
+			distance 1 2
+		personality nemesis waiting
+		government "Bounty Hunter"
+		fleet "Bounty Hunters"
+	npc kill
+		system
+			distance 1 3
+		personality nemesis waiting
+		government "Bounty Hunter"
+		fleet "Bounty Hunters"
+	npc kill
+		system
+			distance 2 3
+		personality nemesis waiting
+		government "Bounty Hunter"
+		fleet "Bounty Hunters"
+			
+mission "Quarg fleet back to normal"
+	landing
+	invisible
+	repeat
+	to offer
+		"reputation: Quarg" > 5
+	on offer
+		event "quarg fleet Normal"
+		
+event "quarg fleet buff"
+	fleet "Quarg"
+		government "Quarg"
+		names "quarg"
+		cargo 3
+		personality
+			forbearing
+		variant
+			"Quarg Skylark"
+		variant
+			"Quarg Wardragon"
+		variant
+			"Quarg Elderdragon"
+			
+event "quarg fleet normal"
+	fleet "Quarg"
+		government "Quarg"
+		names "quarg"
+		cargo 3
+		personality
+			forbearing
+		variant
+			"Quarg Skylark"
+		variant
+			"Quarg Wardragon"

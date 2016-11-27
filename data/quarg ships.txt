@@ -99,3 +99,52 @@ ship "Quarg Wardragon"
 	explode "huge explosion" 20
 	"final explode" "final explosion medium"
 	description "The Wardragon is used by the Quarg as a light warship."
+
+ship "Quarg Elderdragon"
+	sprite "ship/elderdragon"
+	attributes
+		category "Heavy Warship"
+		"cost" 5900000
+		"shields" 1200000
+		"hull" 120000
+		"required crew" 200
+		"bunks" 235
+		"mass" 400
+		"drag" 9.5
+		"heat dissipation" .7
+		"fuel capacity" 900
+		"cargo space" 75
+		"outfit space" 850
+		"weapon capacity" 400
+		"engine capacity" 120
+		"energy generation" 190
+		weapon
+			"blast radius" 250
+			"shield damage" 1200
+			"hull damage" 700
+			"hit force" 1600
+	outfits
+		"Quarg Skylance" 4
+		"Quarg Anti-Missile" 4
+		"Nanotech Battery" 2
+		"Quantum Shield Generator"
+		"Intrusion Countermeasures" 200
+		"Medium Graviton Thruster"
+		"Medium Graviton Steering"
+		"Jump Drive"
+	turret 9 9 "Quarg Anti-Missile"
+	turret 8 -10 "Quarg Anti-Missile"
+	turret 24 -10 "Quarg Skylance"
+	turret 27 22 "Quarg Skylance"
+	turret -9 9 "Quarg Anti-Missile"
+	turret -8 -10 "Quarg Anti-Missile"
+	turret -24 -10 "Quarg Skylance"
+	turret -27 22 "Quarg Skylance"
+	engine -14 66
+	engine 14 66
+	explode "tiny explosion" 12
+	explode "small explosion" 16
+	explode "medium explosion" 30
+	explode "big explosion" 40
+	explode "huge explosion" 20
+	description "The Elderdragon is used by the Quarg as a heavy warship. It is rarely deployed as the Quarg’s smaller vessels are normally more than sufficient to resolve any conflict."
