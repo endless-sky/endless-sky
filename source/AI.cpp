@@ -1638,7 +1638,7 @@ Command AI::AutoFire(const Ship &ship, const list<shared_ptr<Ship>> &ships, bool
 		start += ship.GetPersonality().Confusion();
 		
 		const Outfit *outfit = weapon.GetOutfit();
-        double vp = outfit->WeightedVelocity();
+		double vp = outfit->WeightedVelocity();
 		double lifetime = outfit->TotalLifetime();
 		
 		if(currentTarget && (weapon.IsHoming() || weapon.IsTurret()))

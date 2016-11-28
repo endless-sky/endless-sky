@@ -35,20 +35,20 @@ public:
 	// Load from a "weapon" node, either in an outfit or in a ship (explosion).
 	void LoadWeapon(const DataNode &node);
 	bool IsWeapon() const;
-
+	
 	// Get assets used by this weapon.
 	const Body &WeaponSprite() const;
 	const Sound *WeaponSound() const;
 	const Outfit *Ammo() const;
 	const Sprite *Icon() const;
-
+	
 	// Effects to be created at the start or end of the weapon's lifetime.
 	const std::map<const Effect *, int> &FireEffects() const;
 	const std::map<const Effect *, int> &LiveEffects() const;
 	const std::map<const Effect *, int> &HitEffects() const;
 	const std::map<const Effect *, int> &DieEffects() const;
 	const std::map<const Outfit *, int> &Submunitions() const;
-
+	
 	// Accessor functions for various attributes.
 	int Lifetime() const;
 	int RandomLifetime() const;
@@ -56,7 +56,7 @@ public:
 	double BurstReload() const;
 	int BurstCount() const;
 	int Homing() const;
-
+	
 	int MissileStrength() const;
 	int AntiMissile() const;
 	// Weapons of the same type will alternate firing (streaming) rather than
@@ -68,25 +68,25 @@ public:
 	double RandomVelocity() const;
 	double Acceleration() const;
 	double Drag() const;
-
+	
 	double Turn() const;
 	double Inaccuracy() const;
-
+	
 	double Tracking() const;
 	double OpticalTracking() const;
 	double InfraredTracking() const;
 	double RadarTracking() const;
-
+	
 	double FiringEnergy() const;
 	double FiringForce() const;
 	double FiringFuel() const;
 	double FiringHeat() const;
-
+	
 	double SplitRange() const;
 	double TriggerRadius() const;
 	double BlastRadius() const;
 	double HitForce() const;
-
+	
 	// These values include all submunitions:
 	double ShieldDamage() const;
 	double HullDamage() const;
@@ -94,35 +94,35 @@ public:
 	double IonDamage() const;
 	double DisruptionDamage() const;
 	double SlowingDamage() const;
-
+	
 	double Piercing() const;
-
+	
 	double TotalLifetime() const;
 	double Range() const;
     double WeightedVelocity() const;
 
 private:
 	double TotalDamage(int index) const;
-
-
+	
+	
 private:
 	// Sprites and sounds.
 	Body sprite;
 	const Sound *sound = nullptr;
 	const Outfit *ammo = nullptr;
 	const Sprite *icon = nullptr;
-
+	
 	// Fire, die and hit effects.
 	std::map<const Effect *, int> fireEffects;
 	std::map<const Effect *, int> liveEffects;
 	std::map<const Effect *, int> hitEffects;
 	std::map<const Effect *, int> dieEffects;
 	std::map<const Outfit *, int> submunitions;
-
+	
 	// This stores whether or not the weapon has been loaded.
 	bool isWeapon = false;
 	bool isStreamed = false;
-
+	
 	// Attributes.
 	int lifetime = 0;
 	int randomLifetime = 0;
@@ -130,33 +130,33 @@ private:
 	double burstReload = 1.;
 	int burstCount = 1;
 	int homing = 0;
-
+	
 	int missileStrength = 0;
 	int antiMissile = 0;
-
+	
 	double velocity = 0.;
 	double randomVelocity = 0.;
 	double acceleration = 0.;
 	double drag = 0.;
-
+	
 	double turn = 0.;
 	double inaccuracy = 0.;
-
+	
 	double tracking = 0.;
 	double opticalTracking = 0.;
 	double infraredTracking = 0.;
 	double radarTracking = 0.;
-
+	
 	double firingEnergy = 0.;
 	double firingForce = 0.;
 	double firingFuel = 0.;
 	double firingHeat = 0.;
-
+	
 	double splitRange = 0.;
 	double triggerRadius = 0.;
 	double blastRadius = 0.;
 	double hitForce = 0.;
-
+	
 	static const int SHIELD_DAMAGE = 0;
 	static const int HULL_DAMAGE = 1;
 	static const int HEAT_DAMAGE = 2;
@@ -164,7 +164,7 @@ private:
 	static const int DISRUPTION_DAMAGE = 4;
 	static const int SLOWING_DAMAGE = 5;
 	mutable double damage[6] = {0., 0., 0., 0., 0., 0.};
-
+	
 	double piercing = 0.;
 
 	double optimalRange = 0.;
