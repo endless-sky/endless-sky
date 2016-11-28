@@ -99,7 +99,7 @@ public:
 	
 	double TotalLifetime() const;
 	double Range() const;
-    double WeightedVelocity() const;
+ 	double WeightedVelocity() const;
 
 
 private:
