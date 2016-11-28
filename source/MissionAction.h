@@ -63,6 +63,7 @@ private:
 	std::string system;
 	
 	std::string dialogText;
+	std::vector<std::string> randomDialogText;
 	
 	const Conversation *stockConversation = nullptr;
 	Conversation conversation;

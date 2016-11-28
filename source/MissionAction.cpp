@@ -21,6 +21,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Messages.h"
 #include "Outfit.h"
 #include "PlayerInfo.h"
+#include "Random.h"
 #include "Ship.h"
 #include "UI.h"
 
@@ -114,19 +115,38 @@ void MissionAction::Load(const DataNode &node, const string &missionName)
 	{
 		if(child.Token(0) == "dialog")
 		{
-			for(int i = 1; i < child.Size(); ++i)
+			if(child.Size() >= 2 && child.Token(1) == "random")
 			{
-				if(!dialogText.empty())
-					dialogText += "\n\t";
-				dialogText += child.Token(i);
+				if(child.Size() > 2)
+					child.PrintTrace("Ignoring extra tokens after 'dialog random':")
+				for(const DataNode &grand : child)
+				{
+					std::string randomText;
+					for(int i = 0; i < grand.Size(); ++i)
+					{
+						if(!randomText.empty())
+							randomText += "\n\t";
+						randomText += grand.Token(i);
+					}
+					randomDialogText.push_back(randomText);
+				}
 			}
-			for(const DataNode &grand : child)
-				for(int i = 0; i < grand.Size(); ++i)
+			else
+			{
+				for(int i = 1; i < child.Size(); ++i)
 				{
 					if(!dialogText.empty())
 						dialogText += "\n\t";
-					dialogText += grand.Token(i);
+					dialogText += child.Token(i);
 				}
+				for(const DataNode &grand : child)
+					for(int i = 0; i < grand.Size(); ++i)
+					{
+						if(!dialogText.empty())
+							dialogText += "\n\t";
+						dialogText += grand.Token(i);
+					}
+			}
 		}
 		else if(child.Token(0) == "conversation" && child.HasChildren())
 			conversation.Load(child);
@@ -325,6 +345,10 @@ MissionAction MissionAction::Instantiate(map<string, string> &subs, int jumps, i
 	
 	if(!dialogText.empty())
 		result.dialogText = Format::Replace(dialogText, subs);
+	else if(dialogText.empty() && randomDialogText.size() >= 1)
+	{
+		result.dialogText = Format::Replace(randomDialogText.at(Random::Int(randomDialogText.size())),subs);
+	}
 	
 	if(stockConversation)
 		result.conversation = stockConversation->Substitute(subs);
