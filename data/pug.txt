@@ -103,7 +103,7 @@ outfit "Pug Seeker"
 outfit "Pug Anti-Missile"
 	category "Turrets"
 	cost 350000
-	thumbnail "outfit/pug antimissile"
+	thumbnail "outfit/pug anti-missile"
 	"mass" 41
 	"outfit space" -41
 	"weapon capacity" -41
