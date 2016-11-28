@@ -101,6 +101,7 @@ public:
 	double Range() const;
     double WeightedVelocity() const;
 
+
 private:
 	double TotalDamage(int index) const;
 	
