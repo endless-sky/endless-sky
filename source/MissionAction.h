@@ -15,6 +15,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "ConditionSet.h"
 #include "Conversation.h"
+#include "DialogText.h"
 
 #include <map>
 #include <set>
@@ -62,8 +63,7 @@ private:
 	std::string trigger;
 	std::string system;
 	
-	std::string dialogText;
-	std::vector<std::string> randomDialogText;
+	DialogText dialogText;
 	
 	const Conversation *stockConversation = nullptr;
 	Conversation conversation;
