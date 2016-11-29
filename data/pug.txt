@@ -258,7 +258,7 @@ outfit "Pug Cormet Steering"
 outfit "Pug Lohmar Thruster"
 	category "Engines"
 	"cost" 1740000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/pug lohmar thruster"
 	"mass" 84
 	"outfit space" -84
 	"engine capacity" -84
@@ -273,7 +273,7 @@ outfit "Pug Lohmar Thruster"
 outfit "Pug Lohmar Steering"
 	category "Engines"
 	"cost" 1580000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/pug lohmar steering"
 	"mass" 64
 	"outfit space" -64
 	"engine capacity" -64
