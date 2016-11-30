@@ -15,6 +15,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "DataNode.h"
 #include "DataWriter.h"
 #include "Format.h"
+#include "Random.h"
 
 using namespace std;
 
@@ -25,6 +26,19 @@ void DialogText::Load(const DataNode &node)
 	//Make sure this is really a Dialog node.
 	if(node.Token(0) != "dialog")
 		return;
+	
+	string dialogText;
+	for(int i = 1;i<node.Size();i++)
+	{
+		if(!dialogText.empty() || !nodes.empty())
+			dialogText += "\n\t";
+		dialogText += node.Token(i);
+	}
+	if(!dialogText.empty())
+	{
+		nodes.emplace_back();
+		nodes.back().text = dialogText;
+	}
 	
 	for(const DataNode &child : node)
 	{
@@ -39,34 +53,58 @@ void DialogText::Load(const DataNode &node)
 				randomSets.emplace_back();
 				for(const DataNode &grand : child)
 				{
+					int probability = 1;
+					if(grand.Size() >= 2)
+						probability = grand.Value(1);
 					if(nodes.size() > 1 && child.Size() >= 2 && child.Token(1) == "inline")
-						randomSets[currentSet].emplace_back(grand.Token(0),1);
+						randomSets[currentSet].emplace_back(pair<string,int>(grand.Token(0),probability));
 					else
-						randomSets[currentSet].emplace_back("\n\t" + grand.Token(0),1);
+						randomSets[currentSet].emplace_back(pair<string,int>("\n\t" + grand.Token(0),probability));
+					nodes.back().probability += probability;
 				}
 			}
 		}
-		else {
-			std::string dialogText;
+		else if(child.Token(0) == "inline")
+		{
+			string text;
 			for(int i = 1;i<child.Size();i++)
 			{
-				if(!dialogText.empty() || (!nodes.empty() && child.Token(0) != "inline"))
-					dialogText += "\n\t";
-				dialogText += child.Token(i);
+				if(!text.empty())
+					text += "\n\t";
+				text += child.Token(i);
 			}
 			for(const DataNode &grand : child)
 				for(int i = 0; i < grand.Size(); ++i)
 				{
-					if(!dialogText.empty() || (!nodes.empty() && child.Token(0) != "inline"))
-						dialogText += "\n\t";
-					dialogText += grand.Token(i);
+					if(!text.empty())
+						text += "\n\t";
+					text += grand.Token(i);
 				}
-			if(!dialogText.empty())
+			if(!text.empty())
 			{
 				nodes.emplace_back();
-				nodes.back().text = dialogText;
-				if(child.Token(0) == "inline")
-					nodes.back().isInline = true;
+				nodes.back().text = text;
+			}
+		}
+		else {
+			string text;
+			for(int i = 0;i<child.Size();i++)
+			{
+				if(!text.empty() || !nodes.empty())
+					text += "\n\t";
+				text += child.Token(i);
+			}
+			for(const DataNode &grand : child)
+				for(int i = 0; i < grand.Size(); ++i)
+				{
+					if(!text.empty() || !nodes.empty())
+						text += "\n\t";
+					text += grand.Token(i);
+				}
+			if(!text.empty())
+			{
+				nodes.emplace_back();
+				nodes.back().text = text;
 			}
 		}
 	}
@@ -76,7 +114,24 @@ void DialogText::Load(const DataNode &node)
 
 void DialogText::Save(DataWriter &out) const
 {
-	
+	out.Write("dialog");
+	out.BeginChild();
+	{
+		// Break the text up into paragraphs.
+		size_t begin = 0;
+		string dialogText = Text();
+		while(true)	
+		{
+			size_t pos = dialogText.find("\n\t", begin);
+			if(pos == string::npos)
+				pos = dialogText.length();
+			out.Write(dialogText.substr(begin, pos - begin));
+			if(pos == dialogText.length())
+				break;
+			begin = pos + 2;
+		}
+	}
+	out.EndChild();
 }
 
 
@@ -95,7 +150,20 @@ DialogText DialogText::Instantiate(const map<string, string> &subs) const
 	{
 		if(node.isRandom)
 		{
-			
+			int probabilityChoice = Random::Int(node.probability);
+			int theset = node.randomSet;
+			vector<pair<string,int>> randomSet = result.randomSets[node.randomSet];
+			for(pair<string,int> &option : randomSet)
+			{
+				if(probabilityChoice < option.second)
+				{
+					node.text = Format::Replace(option.first,subs);
+					node.isRandom = false;
+					break;
+				}
+				else
+					probabilityChoice -= option.second;
+			}
 		}
 		node.text = Format::Replace(node.text,subs);
 	}
@@ -105,9 +173,9 @@ DialogText DialogText::Instantiate(const map<string, string> &subs) const
 
 
 
-std::string DialogText::Text() const
+string DialogText::Text() const
 {
-	std::string result;
+	string result;
 	for(Node node : nodes)
 		result += node.text;
 	return result;

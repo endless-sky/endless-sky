@@ -37,15 +37,21 @@ public:
 private:
 	class Node {
 	public:
-		Node(bool isInline = false, bool isRandom = false,int randomSet = 0){};
+		Node(){
+			isInline = false;
+			isRandom = false;
+			randomSet = 0;
+			probability = 0;
+		};
 		std::string text;
 		bool isRandom;
 		bool isInline;
 		int randomSet;
+		int probability;
 	};
 	
 private:
-	std::vector<std::vector<std::pair<int,int>>> randomSets;
+	std::vector<std::vector<std::pair<std::string,int>>> randomSets;
 	std::vector<Node> nodes;
 };
 
