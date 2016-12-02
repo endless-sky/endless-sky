@@ -146,8 +146,6 @@ void MissionAction::Load(const DataNode &node, const string &missionName)
 						dialogText += grand.Token(i);
 					}	
 				}
-				
-
 			}
 		}
 		else if(child.Token(0) == "conversation" && child.HasChildren())
@@ -347,7 +345,7 @@ MissionAction MissionAction::Instantiate(map<string, string> &subs, int jumps, i
 	
 	if(!dialogText.empty())
 		result.dialogText = Format::Replace(dialogText, subs);
-	else if(dialogText.empty() && randomDialogText.size() >= 1)
+	else if(!randomDialogText.empty())
 	{
 		result.dialogText = Format::Replace(randomDialogText.at(Random::Int(randomDialogText.size())),subs);
 	}
