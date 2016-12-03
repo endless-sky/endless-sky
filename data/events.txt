@@ -2619,6 +2619,7 @@ event "pug flee"
 		fleet "Small Core Merchants" 5000
 		object
 			sprite star/g5
+				"frame rate" 0.2
 			period 10
 		object "Pugglemug"
 			sprite planet/ocean2

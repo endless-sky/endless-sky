@@ -513,19 +513,23 @@ system "Over the Rainbow"
 		sprite planet/wormhole
 	object
 		sprite star/k5
+			"frame rate" 0.2
 		distance 1455.1
 		period 875.481048
 		offset 180
 		object
 			sprite star/m4
+				"frame rate" 0.2
 			distance 75
 			period 12.179969
 	object
 		sprite star/g0
+			"frame rate" 0.2
 		distance 544.9
 		period 875.481048
 		object
 			sprite star/m4
+				"frame rate" 0.2
 			distance 107
 			period 12.701281
 
@@ -542,6 +546,7 @@ system "Terra Incognita"
 	asteroids "large metal" 11 4.2624
 	object
 		sprite star/k0
+			"frame rate" 0.2
 		period 10
 	object
 		sprite planet/lava4
@@ -578,6 +583,7 @@ system "World's End"
 	habitable 700
 	object
 		sprite star/g5
+			"frame rate" 0.2
 		period 10
 	object
 		sprite "planet/ringworld right"
