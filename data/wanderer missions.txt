@@ -493,7 +493,7 @@ mission "Wanderers: Unfettered Diplomacy 1B"
 		has "Wanderers: Unfettered Diplomacy 1A: done"
 	on offer
 		conversation
-			`The Unfettered make no attempt to attack you once you have landed on their planet. The Wanderer crew begins unloading the crates of food onto the landing pad, and eventually a small delegation of Unfettered leaders approaches. Itkat Rek explains that the food is a peace offering.`
+			`The Unfettered make no attempt to attack you once you have landed on their planet. The Wanderer crew begins unloading the crates of food onto the landing pad, and eventually a small delegation of Unfettered leaders approaches. Iktat Rek explains that the food is a peace offering.`
 			`	"It is far too little," says the Unfettered leader, "too little to pay us back for the ships you have destroyed and the worlds you have stolen. Until you give us back our worlds, we cannot have peace."`
 			choice
 				`	(Let Iktat Rek do the talking.)`
@@ -523,9 +523,7 @@ event "wanderer / unfettered peace"
 	"reputation: Hai (Unfettered)" >?= 1
 	government "Hai (Unfettered)"
 		"attitude toward"
-			"Hai" -.1
 			"Wanderer" 0
-			"Pug" -.1
 	system "Ehma Ti"
 		fleet "Small Unfettered" 500
 		fleet "Large Unfettered" 500
@@ -1723,7 +1721,7 @@ mission "Wanderers Hai Assistance 3"
 
 
 
-mission "Wanderers Pond Strider Recon 1"
+mission "Wanderers Solifuge Recon 1"
 	landing
 	name "Report to <planet>"
 	description "Report to the Wanderer military base on <destination>, and see if there is anything you can help them with."
@@ -1731,6 +1729,7 @@ mission "Wanderers Pond Strider Recon 1"
 	destination "Vara Ke'sok"
 	to offer
 		has "Wanderers Hai Assistance 3: done"
+		not "Wanderers Pond Strider Recon 1: offered"
 	on offer
 		conversation
 			`You have been gone for several weeks, and Iktat Rek's appearance has changed drastically in that time. Nearly half his head is bald, showing scaly grey skin and scattered white under-feathers in place of his usual plumage. Patches on other parts of his body have lost their feathers as well. His appearance is shocking. In a terrestrial animal you would attribute it to a mange... or to a molt.`
@@ -1753,13 +1752,16 @@ mission "Wanderers Pond Strider Recon 1"
 
 
 
-mission "Wanderers Pond Strider Recon 2"
+mission "Wanderers Solifuge Recon 2"
 	landing
 	name "New Unfettered ships"
 	description "Unfettered ships of an unknown design have been spotted in the Prakacha'a system. Destroy them, then return to <destination>."
 	source "Vara Ke'sok"
 	to offer
-		has "Wanderers Pond Strider Recon 1: done"
+		not "Wanderers Pond Strider Recon 2: offered"
+		or
+			has "Wanderers Solifuge Recon 1: done"
+			has "Wanderers Pond Strider Recon 1: done"
 	on offer
 		set "license: Wanderer Military"
 		conversation
@@ -1776,12 +1778,14 @@ mission "Wanderers Pond Strider Recon 2"
 		fleet
 			names "hai"
 			variant
-				"Pond Strider" 2
-				"Flea" 16
+				"Solifuge"
+				"Solifuge (Tracker)"
+				"Violin Spider" 6
+				"Violin Spider (Pulse)" 6
 		dialog "That was the last of the new Unfettered ships. You can now report back to Tele'ek on <planet>."
 	on complete
 		conversation
-			`Tele'ek listens carefully as you outline the strengths and weaknesses of the new Unfettered drone carriers. "I am not greatly [concerned, frightened] by tiny drones," he says. "The weapon that has done us most harm is their ion cannons, which no ship so small can [wield, carry]. But thank you for your assistance. Alas, we have no other [fights, brawls] for you to take part in right now, but if you visit the spaceport, you will find another evacuation fleet that needs an [escort, protector]."`
+			`Tele'ek listens carefully as you outline the strengths and weaknesses of the new Unfettered carriers. "I am not greatly [concerned, frightened] by tiny fighters," he says. "The weapon that has done us most harm is their ion cannons, which no ship so small can [wield, carry]. But thank you for your assistance. Alas, we have no other [fights, brawls] for you to take part in right now, but if you visit the spaceport, you will find another evacuation fleet that needs an [escort, protector]."`
 
 
 
@@ -1791,7 +1795,9 @@ mission "Wanderers Evacuation 1"
 	source "Vara Ke'sok"
 	destination "Vara Ke'stai"
 	to offer
-		has "Wanderers Pond Strider Recon 2: done"
+		or
+			has "Wanderers Solifuge Recon 2: done"
+			has "Wanderers Pond Strider Recon 2: done"
 	on offer
 		conversation
 			`Four Wanderer transports - perhaps, in fact, the same four you escorted before - are parked here. One of the captains approaches you and says, "We are evacuating the worlds that will be [isolated, trapped] if the Unfettered gain more territory. Will you escort us to <planet>, and from there to the capital?"`
@@ -2005,22 +2011,28 @@ event "battle for sich'ka'ara ends"
 			"Shield Beetle (Tracker)"
 			"Lightning Bug" 2
 		variant 3
-			"Pond Strider"
-			"Flea" 8
+			"Solifuge"
+			"Violin Spider" 3
+			"Violin Spider (Pulse)" 3
 		variant 1
-			"Pond Strider" 2
-			"Flea" 16
+			"Solifuge (Pulse)"
+			"Solifuge (Tracker)"
+			"Violin Spider" 6
+			"Violin Spider (Pulse)" 6
 		variant 2
 			"Shield Beetle (Pulse)"
-			"Pond Strider"
-			"Flea" 8
+			"Solifuge"
+			"Violin Spider" 3
+			"Violin Spider (Pulse)" 3
 		variant 1
 			"Shield Beetle"
-			"Pond Strider"
-			"Flea" 8
+			"Solifuge (Tracker)"
+			"Violin Spider" 2
+			"Violin Spider (Pulse)" 4
 		variant 2
-			"Pond Strider"
-			"Flea" 8
+			"Solifuge (Pulse)"
+			"Violin Spider" 4
+			"Violin Spider (Pulse)" 2
 			"Lightning Bug" 2
 
 
@@ -2153,7 +2165,7 @@ mission "Wanderers Rek 0"
 mission "Wanderers Rek 1"
 	landing
 	name "Visit Sko'karak"
-	description "Rek asked you to visit the Sko'karak system, then return and tell him what you found there."
+	description "Rek asked you to visit the Sko'karak system, then return to <planet> and tell him what you found there."
 	source "Tik Klai"
 	waypoint "Sko'karak"
 	to offer
@@ -2172,7 +2184,7 @@ mission "Wanderers Rek 1"
 mission "Wanderers Rek 2"
 	landing
 	name "Visit Sko'karak again"
-	description "Rek asked you to visit the Sko'karak system again, and see if anything has changed there."
+	description "Rek asked you to visit the Sko'karak system again, and see if anything has changed there. Then, return to <destination>."
 	source "Tik Klai"
 	waypoint "Sko'karak"
 	to offer
@@ -2197,7 +2209,7 @@ mission "Wanderers Rek 2"
 mission "Wanderers Rek 3"
 	landing
 	name "Visit Sko'karak"
-	description "Visit the Sko'karak system for a third time, and see if anything has changed there."
+	description "Visit the Sko'karak system for a third time, and see if anything has changed there. Then, return to <planet> to report to Rek."
 	source "Tik Klai"
 	waypoint "Sko'karak"
 	to offer
@@ -2217,4 +2229,197 @@ mission "Wanderers Rek 3"
 				accept
 	on enter "Sko'karak"
 		dialog
-			`This time when you enter the system, your sensors pick up some strange astronomical phenomenon out beyond the orbit of the farthest planet, a wisp of light like a gathering raincloud. It's not a wormhole, but it's something.`	
+			`This time when you enter the system, your sensors pick up some strange astronomical phenomenon out beyond the orbit of the farthest planet, a wisp of light like a gathering raincloud. It's not a wormhole, but it is a change. Perhaps it will be enough to give Rek hope.`
+
+
+
+mission "Wanderers Ap'arak 1"
+	landing
+	name "Help defend <planet>"
+	description "Return to <destination>, where the Wanderers have chosen to take their stand against the Unfettered incursion."
+	source "Tik Klai"
+	destination "Varu Tev'kei"
+	to offer
+		has "Wanderers Rek 3: done"
+	on offer
+		conversation
+			`You hurry into the hospital room. Rek's skin is now almost entirely bare aside from the withered, stringy black feathers that have grown in place of the once rich plumage. Rek's eyes spring open when you enter the room. "You have news," Rek says. "I can see it in your expression. What did you see?" Given how hard it is to read alien facial expressions, it would be quite remarkable if Rek could actually tell anything from looking at your face, but it would not be polite to say so.`
+			choice
+				`	"Something has begun in the Sko'karak system, a cosmological phenomenon my ship's sensors did not recognize. It may be the Eye, beginning to open."`
+				`	"There is some sort of cosmological phenomenon, but it is not a wormhole. I do not want to offer you false hope."`
+			`	"It is the Eye," says Rek. "I am sure of it. It comes too late to save us from the great losses we have suffered, but perhaps not too late to preserve our species from destruction. So, my waiting is at an end."`
+			`	Rek calls to one of the nurses. The hospital bed is on wheels, and they quickly detach it from the various machines on the walls. Esta'a, Rek's mother, comes into the room and explains to you, "The room of [seclusion, isolation] is deeper underground. They will [wash, sterilize] Rek's body, then wait a week to check for any [residual, hidden] contamination, then begin to administer the drugs that will stop Rek's body from [fighting, resisting] the transformation. Even if all goes well, we will not see Rek again for a long time, and never again in this [body, form]."`
+			choice
+				`	"Don't worry. Rek is strong enough to survive this."`
+					goto hallway
+				`	"Will you let me know what happens, regardless of the outcome?"`
+			`	"I will," she says. "Unless, of course, some great [calamity? upheaval?] befalls us and we are too caught up in other [matters, necessities]."`
+			label hallway
+			`	Three Wanderer nurses come and wheel Rek's bed out the door and into an elevator. At Rek's request, you join them. The elevator opens up to a wide and vaulted hallway lined on either side by Wanderers dressed in black, come to pay their last respects to Rek. It is like something out of a dream: the subterranean passage dense with the stately forms of Wanderer officials, the black-cloaked wings and shadows contrasting with the bright linen of the hospital bed and the white plumage of Rek's mother as she follows the cart to the threshold of the isolation chamber.`
+			`	The door of the chamber snaps shut with a pneumatic hiss, and you make your way back up to the spaceport with the other visitors. One of the visitors is Emeka'a Isai, the former governor of Varu Mer'ek. She pulls you aside and says, "You should not [remain, dawdle] here, human. They will have need of you at the [front, battle line]. And the sight of you may be unwelcome to some of the [mourners? associates?] of Rek who are here."`
+			choice
+				`	"Okay, I'll go to <planet> and aid in the defenses."`
+					accept
+				`	"Wait, why would people be angry at me after all I've done to help?"`
+			`	"Not angry at you," she says, "but some say the Molt is [triggered, provoked] by exposure to [alien, foreign] things: that your coming is what made Rek's body begin its [change, metamorphosis] too soon." She is silent for a moment, then says, "Please, do not be [concerned, grieved]. Rek may yet live, and rise to great renown as the first of a new [generation, race]. In any event, that is the past. Go, now, and help us to [secure, obtain] a future."`
+				accept
+
+
+
+event "battle for ap'arak"
+	system "Ap'arak"
+		fleet "Wanderer Flycatchers" 400
+
+event "battle for ap'arak ends"
+	system "Ap'arak"
+		fleet "Wanderer Freight" 2000
+		fleet "Wanderer Drones" 4000
+		fleet "Wanderer Defense" 600
+		fleet "Wanderer Flycatchers" 400
+		fleet "Large Unfettered" 700
+
+mission "Wanderers Ap'arak 2"
+	landing
+	name "Help defend <planet>"
+	description "Defend <planet> from an Unfettered invasion fleet, then land back on the planet."
+	source "Varu Tev'kei"
+	to offer
+		has "Wanderers Ap'arak 1: done"
+	on offer
+		conversation
+			`As you are coming in for a landing here you think you see a few Wanderer ships of yet another unfamiliar design, even larger than the Tempest. Their level of military technology has risen at an incredible rate since the Unfettered invasion began, even if it is true that they are just putting ancient ship and weapon designs back into production rather than inventing them anew.`
+			`	But the new technology cannot completely offset the fact that no living Wanderer has any real military experience. So, several of their leaders here are eager to talk with you, and you spend hours telling them stories from your recent experience in the war in human space. Sobari Tele'ek, the military commander, is among them. Your conversation is interrupted when sirens begin to sound in the spaceport. "The Hai are approaching!" says Tele'ek. "Please join us in battle, one more time."`
+				launch
+	on accept
+		event "battle for ap'arak"
+	on complete
+		event "battle for ap'arak ends"
+	on visit
+		dialog "There are still Unfettered warships overhead. You should take off again and assist in the fight."
+	npc evade
+		personality staying heroic
+		government "Hai (Unfettered)"
+		fleet
+			names "hai"
+			variant
+				"Shield Beetle" 2
+				"Shield Beetle (Tracker)" 1
+				"Shield Beetle (Pulse)" 2
+				"Water Bug" 3
+				"Water Bug (Pulse)" 2
+	npc evade
+		personality heroic
+		system "Sich'ka'ara"
+		government "Hai (Unfettered)"
+		fleet
+			names "hai"
+			variant
+				"Solifuge" 2
+				"Solifuge (Pulse)" 2
+				"Solifuge (Tracker)" 1
+				"Violin Spider" 12
+				"Violin Spider (Pulse)" 18
+	npc evade
+		personality heroic
+		system "Chy'chra"
+		government "Hai (Unfettered)"
+		fleet
+			names "hai"
+			variant
+				"Shield Beetle" 1
+				"Shield Beetle (Tracker)" 1
+				"Shield Beetle (Pulse)" 2
+				"Water Bug" 4
+				"Water Bug (Pulse)" 2
+				"Solifuge" 1
+				"Solifuge (Pulse)" 1
+				"Solifuge (Tracker)" 1
+				"Violin Spider" 8
+				"Violin Spider (Pulse)" 10
+	npc
+		personality heroic
+		government "Wanderer"
+		fleet
+			names "wanderer"
+			variant
+				"Derecho (Tough)"
+				"Tempest"
+				"Tempest (Heavy)"
+				"Strong Wind" 1
+				"Autumn Leaf" 3
+				"Summer Leaf" 4
+	npc
+		personality heroic staying
+		government "Wanderer"
+		fleet
+			names "wanderer"
+			variant
+				"Derecho (Turret)"
+				"Derecho"
+				"Strong Wind" 2
+				"Autumn Leaf" 4
+				"Summer Leaf" 3
+	npc
+		personality staying derelict
+		government "Wanderer"
+		fleet
+			names "wanderer"
+			variant
+				"Strong Wind" 1
+				"Autumn Leaf" 2
+
+
+
+mission "Wanderers Ap'arak 3: Pug"
+	landing
+	invisible
+	source "Varu Tev'kei"
+	to offer
+		has "Wanderers Ap'arak 2: done"
+	npc kill
+		personality staying uninterested
+		government "Pug"
+		ship "Pug Arfecta" "Hork Ekekek Ptui"
+		ship "Pug Arfecta" "Graak Sput Kchoo"
+
+mission "Wanderers Ap'arak 3"
+	landing
+	name "Report to <planet>"
+	description "Return to the Wanderer capital on <destination>."
+	source "Varu Tev'kei"
+	destination "Vara K'chrai"
+	to offer
+		has "Wanderers Ap'arak 2: done"
+	on offer
+		conversation
+			`The Wanderers here seem incredulous that they managed to drive off such a powerful Unfettered attack force. As you walk through the spaceport, many of them stop to thank you for your assistance in defending their home.`
+			`	Just as you reach the pavilion where the military leaders are gathering, a shadow falls over you, and you look up to see two ships approaching with the unmistakable horned silhouettes of Pug warships. Throughout the spaceport you hear Wanderer voices raised in excitement, and hundreds of them leap into the air to accompany the Pug ships to the landing pad. Sobari Tele'ek says to you, "It is a [visitation, appearance] of the Keepers! In our hour of [need, desperation] they make themselves known at last." A small delegation of Pug disembarks from the ships and approaches the pavilion on foot.`
+			choice
+				`	"Let's hope that they offer you more help than they did last time I talked with them."`
+				`	"The Pug are dangerous and unpredictable. You should not trust them."`
+				`	"If they really cared about you, they would have intervened before so many of you died fighting the Unfettered."`
+			`	"The Keepers are [subtle, mysterious]," says Tele'ek, "but always their [intervention, action] has been for our [benefit, good]. Now be silent, and allow them to speak."`
+			`	The Pug delegation reaches the pavilion, and one of them begins speaking in the Wanderer language. You have no idea what they are saying, and they all seem to be ignoring your presence. A few of the Wanderer leaders respond. There's an awful lot of fanning of wings, flipping of tails, and preening of feathers going on. That might be the Wanderer way of trying to make a good impression, or else they're just feeling pleased with themselves. Or maybe they're nervous; it's hard to tell.`
+			`	The Pug finish their conversation with the Wanderers and return to their ships, and only then does Sobari Tele'ek turn to you and say, "Great news! They say that their two ships will [patrol, remain in] this system and [hold off, hold at bay] the Hai fleets. Also," he adds, preening himself, "they are very pleased with us for [growing, becoming] so strong. And, they say we need not [fight? worry about?] the Hai anymore."`
+			choice
+				`	"I've fought Pug ships. There's no way two of them can stand against the entire Unfettered war fleet."`
+				`	"Does this mean they're finally willing to open the wormhole for you?"`
+					goto eye
+			`	"Maybe they have grown stronger, too," says Tele'ek. "In any case, we are [safe, secure] here now, so we do not need your [help, protection]. Perhaps you should return to our capital and see if they need you there."`
+				goto end
+			label eye
+			`	Tele'ek's crest droops a little bit. "I suppose they did not make any [promises, predictions] about that," he says. "But in any case, we are [safe, secure] here now, so we do not need your [help, protection]. Perhaps you should return to our capital and see if they need you there."`
+			label end
+			choice
+				`	"Very well, I'll go check if they need me on <planet>."`
+					accept
+				`	"You really think that nothing can go wrong here, just because the Pug have arrived?"`
+			`	You try to convince Tele'ek that the Pug may not be completely trustworthy, but it's clear you cannot change his mind. To the Wanderers, the Pug must have the status of gods; speaking against them is fruitless. Eventually you give up and agree to go visit <planet>.`
+				accept
+	
+	on complete
+		event "wanderers: the eye opens"
+		event "wanderers: derecho mass production" 16
+		event "wanderers: spera anatrusk colony" 40
+		conversation
+			`A few minutes after you land on <planet>, a sudden uproar passes through the Wanderers in the spaceport. It's hard to be sure, but you think they sound excited, not frightened. Ships start taking off, more and more of them until the spaceport is almost deserted, and no one who is left seems at all interested in talking with you or explaining what is going on. You're probably going to have to return to your ship and see for yourself what all the fuss is about.`

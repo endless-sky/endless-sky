@@ -48,7 +48,7 @@ namespace {
 	
 	bool IsStranded(const Ship &ship)
 	{
-		return ship.GetSystem() && !ship.GetSystem()->HasFuelFor(ship)
+		return ship.GetSystem() && !ship.GetSystem()->HasFuelFor(ship) && ship.JumpFuel()
 			&& ship.Attributes().Get("fuel capacity") && !ship.JumpsRemaining();
 	}
 	
@@ -273,6 +273,9 @@ void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &player)
 			Ship *nextAlly = nullptr;
 			for(const auto &ship : ships)
 			{
+				// Never ask yourself for help.
+				if(ship.get() == it.get())
+					continue;
 				if(ship->IsDisabled() || !ship->IsTargetable() || ship->GetSystem() != it->GetSystem())
 					continue;
 				
@@ -475,7 +478,7 @@ void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &player)
 		if((isPlayerEscort && holdPosition) || mustRecall || isStranded)
 		{
 			if(it->Velocity().Length() > .001 || !target)
-				Stop(*it, command, .001);
+				Stop(*it, command);
 			else
 				command.SetTurn(TurnToward(*it, TargetAim(*it)));
 		}
@@ -596,6 +599,7 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship, const list<shared_ptr<Ship>> &
 		(minRange > 1000.) ? maxRange * 1.5 : 4000.;
 	const System *system = ship.GetSystem();
 	bool isDisabled = false;
+	bool hasNemesis = false;
 	// Figure out how strong this ship is.
 	int64_t maxStrength = 0;
 	auto strengthIt = shipStrength.find(&ship);
@@ -604,7 +608,9 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship, const list<shared_ptr<Ship>> &
 	for(const auto &it : ships)
 		if(it->GetSystem() == system && it->IsTargetable() && gov->IsEnemy(it->GetGovernment()))
 		{
-			if(person.IsNemesis() && !it->GetGovernment()->IsPlayer())
+			// If this is a "nemesis" ship and it has found one of the player's
+			// ships to target, it will not go after anything else.
+			if(hasNemesis && !it->GetGovernment()->IsPlayer())
 				continue;
 			
 			// Calculate what the range will be a second from now, so that ships
@@ -641,11 +647,13 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship, const list<shared_ptr<Ship>> &
 			}
 			// Focus on nearly dead ships.
 			range += 500. * (it->Shields() + it->Hull());
-			if(range < closest)
+			bool isPotentialNemesis = (person.IsNemesis() && it->GetGovernment()->IsPlayer());
+			if((isPotentialNemesis && !hasNemesis) || range < closest)
 			{
 				closest = range;
 				target = it;
 				isDisabled = it->IsDisabled();
+				hasNemesis = isPotentialNemesis;
 			}
 		}
 	
@@ -672,7 +680,8 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship, const list<shared_ptr<Ship>> &
 	
 	// Run away if your target is not disabled and you are badly damaged.
 	if(!isDisabled && target && (person.IsFleeing() || 
-			(.5 * ship.Shields() + ship.Hull() < 1. && !person.IsHeroic() && !parentIsEnemy)))
+			(.5 * ship.Shields() + ship.Hull() < 1.
+				&& !person.IsHeroic() && !person.IsStaying() && !parentIsEnemy)))
 	{
 		// Make sure the ship has somewhere to flee to.
 		const System *system = ship.GetSystem();
@@ -791,7 +800,14 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 				totalWeight += planetWeight;
 			}
 		if(!totalWeight)
-			return;
+		{
+			// If there is nothing this ship can land on, have it just go to the
+			// star and hover over it rather than drifting far away.
+			if(ship.GetSystem()->Objects().empty())
+				return;
+			totalWeight = 1;
+			planets.push_back(&ship.GetSystem()->Objects().front());
+		}
 		
 		int choice = Random::Int(totalWeight);
 		if(choice < systemTotalWeight)
@@ -847,7 +863,7 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 void AI::MoveEscort(Ship &ship, Command &command) const
 {
 	const Ship &parent = *ship.GetParent();
-	bool hasFuelCapacity = ship.Attributes().Get("fuel capacity");
+	bool hasFuelCapacity = ship.Attributes().Get("fuel capacity") && ship.JumpFuel();
 	bool isStaying = ship.GetPersonality().IsStaying() || !hasFuelCapacity;
 	bool parentIsHere = (ship.GetSystem() == parent.GetSystem());
 	// If an escort is out of fuel, they should refuel without waiting for the
@@ -856,29 +872,35 @@ void AI::MoveEscort(Ship &ship, Command &command) const
 		Refuel(ship, command);
 	else if(!parentIsHere && !isStaying)
 	{
-		DistanceMap distance(ship, parent.GetSystem());
-		const System *from = ship.GetSystem();
-		const System *to = distance.Route(from);
-		bool hasWormhole = false;
-		for(const StellarObject &object : from->Objects())
-			if(object.GetPlanet() && object.GetPlanet()->WormholeDestination(from) == to)
-			{
-				ship.SetTargetPlanet(&object);
-				MoveToPlanet(ship, command);
-				command |= Command::LAND;
-				hasWormhole = true;
-				break;
-			}
-		if(!hasWormhole)
+		if(!ship.GetTargetSystem() && !ship.GetTargetPlanet())
 		{
+			// If we're stranded and haven't decided where to go, figure out a
+			// path to the parent ship's system.
+			DistanceMap distance(ship, parent.GetSystem());
+			const System *from = ship.GetSystem();
+			const System *to = distance.Route(from);
+			for(const StellarObject &object : from->Objects())
+				if(object.GetPlanet() && object.GetPlanet()->WormholeDestination(from) == to)
+				{
+					ship.SetTargetPlanet(&object);
+					break;
+				}
 			ship.SetTargetSystem(to);
-			if(!to || (from->HasFuelFor(ship) && !to->HasFuelFor(ship) && ship.JumpsRemaining() == 1))
+			// Check if we need to refuel. Wormhole travel does not require fuel.
+			if(!ship.GetTargetPlanet() && (!to || 
+					(from->HasFuelFor(ship) && !to->HasFuelFor(ship) && ship.JumpsRemaining() == 1)))
 				Refuel(ship, command);
-			else
-			{
-				PrepareForHyperspace(ship, command);
-				command |= Command::JUMP;
-			}
+		}
+		// Perform the action that this ship previously decided on.
+		if(ship.GetTargetPlanet())
+		{
+			MoveToPlanet(ship, command);
+			command |= Command::LAND;
+		}
+		else if(ship.GetTargetSystem())
+		{
+			PrepareForHyperspace(ship, command);
+			command |= Command::JUMP;
 		}
 	}
 	else if(parent.Commands().Has(Command::LAND) && parent.GetTargetPlanet() && parentIsHere)
@@ -889,7 +911,7 @@ void AI::MoveEscort(Ship &ship, Command &command) const
 			command |= Command::LAND;
 	}
 	else if(parent.Commands().Has(Command::BOARD) && parent.GetTargetShip().get() == &ship)
-		Stop(ship, command);
+		Stop(ship, command, .2);
 	else if(parent.Commands().Has(Command::JUMP) && parent.GetTargetSystem() && !isStaying)
 	{
 		DistanceMap distance(ship, parent.GetTargetSystem());
@@ -924,7 +946,8 @@ void AI::Refuel(Ship &ship, Command &command)
 	{
 		double closest = numeric_limits<double>::infinity();
 		for(const StellarObject &object : ship.GetSystem()->Objects())
-			if(object.GetPlanet() && object.GetPlanet()->HasSpaceport() && object.GetPlanet()->CanLand(ship))
+			if(object.GetPlanet() && object.GetPlanet()->HasSpaceport() 
+					&& !object.GetPlanet()->IsWormhole() && object.GetPlanet()->CanLand(ship))
 			{
 				double distance = ship.Position().Distance(object.Position());
 				if(distance < closest)
@@ -1007,17 +1030,18 @@ bool AI::MoveTo(Ship &ship, Command &command, const Point &target, double radius
 
 
 
-bool AI::Stop(Ship &ship, Command &command, double slow)
+bool AI::Stop(Ship &ship, Command &command, double maxSpeed)
 {
 	const Point &velocity = ship.Velocity();
 	const Angle &angle = ship.Facing();
 	
 	double speed = velocity.Length();
 	
-	if(speed <= slow)
+	// If asked for a complete stop, the ship needs to be going much slower.
+	if(speed <= (maxSpeed ? maxSpeed : .001))
 		return true;
-
-	command |= Command::STOP;
+	if(!maxSpeed)
+		command |= Command::STOP;
 	
 	// If you're moving slow enough that one frame of acceleration could bring
 	// you to a stop, make sure you're pointed perfectly in the right direction.
@@ -1396,17 +1420,23 @@ void AI::DoCloak(Ship &ship, Command &command, const list<shared_ptr<Ship>> &shi
 		static const double MAX_RANGE = 10000.;
 		double nearestEnemy = MAX_RANGE;
 		for(const auto &other : ships)
-			if(other->GetSystem() == ship.GetSystem() && other->IsTargetable() &&
-					other->GetGovernment()->IsEnemy(ship.GetGovernment()))
+			if(other->GetSystem() == ship.GetSystem() && other->IsTargetable()
+					&& other->GetGovernment()->IsEnemy(ship.GetGovernment())
+					&& !other->IsDisabled())
 				nearestEnemy = min(nearestEnemy,
 					ship.Position().Distance(other->Position()));
 		
-		if(ship.Hull() + ship.Shields() < 1. && nearestEnemy < 2000.)
+		// If this ship has started cloaking, it must get at least 40% repaired
+		// or 40% farther away before it begins decloaking again.
+		double hysteresis = ship.Cloaking() ? 1.4 : 1.;
+		double cloakIsFree = !ship.Attributes().Get("cloaking fuel");
+		if(ship.Hull() + .5 * ship.Shields() < hysteresis
+				&& (cloakIsFree || nearestEnemy < 2000. * hysteresis))
 			command |= Command::CLOAK;
 		
 		// Also cloak if there are no enemies nearby and cloaking does
 		// not cost you fuel.
-		if(nearestEnemy == MAX_RANGE && !ship.Attributes().Get("cloaking fuel"))
+		if(nearestEnemy == MAX_RANGE && cloakIsFree && !ship.GetTargetShip())
 			command |= Command::CLOAK;
 	}
 }

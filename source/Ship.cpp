@@ -89,7 +89,8 @@ void Ship::Load(const DataNode &node)
 				enginePoints.clear();
 				hasEngine = true;
 			}
-			enginePoints.emplace_back(.5 * child.Value(1), .5 * child.Value(2));
+			enginePoints.emplace_back(.5 * child.Value(1), .5 * child.Value(2),
+				(child.Size() > 3 ? child.Value(3) : 1.));
 		}
 		else if(child.Token(0) == "gun" || child.Token(0) == "turret")
 		{
@@ -417,8 +418,8 @@ void Ship::Save(DataWriter &out) const
 		out.Write("hull", hull);
 		out.Write("position", position.X(), position.Y());
 		
-		for(const Point &point : enginePoints)
-			out.Write("engine", 2. * point.X(), 2. * point.Y());
+		for(const EnginePoint &point : enginePoints)
+			out.Write("engine", 2. * point.X(), 2. * point.Y(), point.Zoom());
 		for(const Hardpoint &weapon : armament.Get())
 		{
 			const char *type = (weapon.IsTurret() ? "turret" : "gun");
@@ -492,6 +493,14 @@ const string &Ship::Description() const
 int64_t Ship::Cost() const
 {
 	return attributes.Cost();
+}
+
+
+
+// Get the cost of this ship's chassis, with no outfits installed.
+int64_t Ship::ChassisCost() const
+{
+	return baseAttributes.Cost();
 }
 
 
@@ -741,8 +750,45 @@ bool Ship::Move(list<Effect> &effects, list<Flotsam> &flotsam)
 		heat += attributes.Get("heat generation");
 		heat -= attributes.Get("cooling");
 		heat = max(0., heat);
+		
+		// Apply active cooling. The fraction of full cooling to apply equals
+		// your ship's current fraction of its maximum temperature.
+		double activeCooling = attributes.Get("active cooling");
+		if(activeCooling > 0.)
+		{
+			// Although it's a misuse of this feature, handle the case where
+			// "active cooling" does not require any energy.
+			double coolingEnergy = attributes.Get("cooling energy");
+			if(coolingEnergy)
+			{
+				double spentEnergy = min(energy, coolingEnergy * min(1., Heat()));
+				heat -= activeCooling * spentEnergy / coolingEnergy;
+				energy -= spentEnergy;
+			}
+			else
+				heat -= activeCooling;
+			
+			heat = max(0., heat);
+		}
 	}
 	
+	if(!isInvisible)
+	{
+		double cloakingSpeed = attributes.Get("cloak");
+		bool canCloak = (!isDisabled && cloakingSpeed > 0.
+			&& fuel >= attributes.Get("cloaking fuel")
+			&& energy >= attributes.Get("cloaking energy"));
+		if(commands.Has(Command::CLOAK) && canCloak)
+		{
+			cloak = min(1., cloak + cloakingSpeed);
+			fuel -= attributes.Get("cloaking fuel");
+			energy -= attributes.Get("cloaking energy");
+		}
+		else if(cloakingSpeed)
+			cloak = max(0., cloak - cloakingSpeed);
+		else
+			cloak = 0.;
+	}
 	
 	if(IsDestroyed())
 	{
@@ -935,6 +981,7 @@ bool Ship::Move(list<Effect> &effects, list<Flotsam> &flotsam)
 				|| !landingPlanet || !landingPlanet->HasSpaceport())
 		{
 			zoom = min(1., zoom + .02);
+			SetTargetPlanet(nullptr);
 			landingPlanet = nullptr;
 		}
 		else
@@ -947,31 +994,17 @@ bool Ship::Move(list<Effect> &effects, list<Flotsam> &flotsam)
 		
 		return true;
 	}
-	if(commands.Has(Command::LAND) && CanLand())
+	if(isDisabled)
+	{
+		// If you're disabled, you can't initiate landing or jumping.
+	}
+	else if(commands.Has(Command::LAND) && CanLand())
 		landingPlanet = GetTargetPlanet()->GetPlanet();
 	else if(commands.Has(Command::JUMP))
 	{
 		hyperspaceType = CheckHyperspace();
 		if(hyperspaceType)
 			hyperspaceSystem = GetTargetSystem();
-	}
-	
-	if(!isInvisible)
-	{
-		double cloakingSpeed = attributes.Get("cloak");
-		bool canCloak = (zoom == 1. && !isDisabled && !hyperspaceCount && cloakingSpeed
-			&& fuel >= attributes.Get("cloaking fuel")
-			&& energy >= attributes.Get("cloaking energy"));
-		if(commands.Has(Command::CLOAK) && canCloak)
-		{
-			cloak = min(1., cloak + cloakingSpeed);
-			fuel -= attributes.Get("cloaking fuel");
-			energy -= attributes.Get("cloaking energy");
-		}
-		else if(cloakingSpeed)
-			cloak = max(0., cloak - cloakingSpeed);
-		else
-			cloak = 0.;
 	}
 	
 	if(pilotError)
@@ -1041,7 +1074,7 @@ bool Ship::Move(list<Effect> &effects, list<Flotsam> &flotsam)
 				acceleration += angle.Unit() * thrust / mass;
 				
 				if(!forget)
-					for(const Point &point : enginePoints)
+					for(const EnginePoint &point : enginePoints)
 					{
 						Point pos = angle.Rotate(point) * Zoom() + position;
 						for(const auto &it : attributes.AfterburnerEffects())
@@ -1064,13 +1097,20 @@ bool Ship::Move(list<Effect> &effects, list<Flotsam> &flotsam)
 				// If the net acceleration will be opposite the thrust, do not apply drag.
 				dragAcceleration *= .5 * (acceleration.Unit().Dot(dragAcceleration.Unit()) + 1.);
 				
+				// A ship can only "cheat" to stop if it is moving slow enough that
+				// it could stop completely this frame. This is to avoid overshooting
+				// when trying to stop and ending up headed in the other direction.
 				if(commands.Has(Command::STOP))
 				{
 					// How much acceleration would it take to come to a stop in the
-					// direction normal to the ship's current facing?
+					// direction normal to the ship's current facing? This is only
+					// possible if the acceleration plus drag vector is in the
+					// opposite direction from the velocity vector when both are
+					// projected onto the current facing vector, and the acceleration
+					// vector is the larger of the two.
 					double vNormal = velocity.Dot(angle.Unit());
 					double aNormal = dragAcceleration.Dot(angle.Unit());
-					if((aNormal < 0.) ^ (aNormal > -vNormal))
+					if((aNormal > 0.) != (vNormal > 0.) && fabs(aNormal) > fabs(vNormal))
 						dragAcceleration = -vNormal * angle.Unit();
 				}
 				velocity += dragAcceleration;
@@ -1558,7 +1598,7 @@ bool Ship::IsThrusting() const
 
 
 // Get the points from which engine flares should be drawn.
-const vector<Point> &Ship::EnginePoints() const
+const vector<Ship::EnginePoint> &Ship::EnginePoints() const
 {
 	return enginePoints;
 }
@@ -1743,6 +1783,20 @@ double Ship::JumpFuel() const
 	return attributes.Get("jump drive") ? 200. :
 		attributes.Get("scram drive") ? 150. : 
 		attributes.Get("hyperdrive") ? 100. : 0.;
+}
+
+
+
+// Get the heat level at idle.
+double Ship::IdleHeat() const
+{
+	// Idle heat is the heat level where:
+	// heat = heat * diss + heatGen - cool - activeCool * heat / (100 * mass)
+	// heat = heat * (diss - activeCool / (100 * mass)) + (heatGen - cool)
+	// heat * (1 - diss + activeCool / (100 * mass)) = (heatGen - cool)
+	double production = max(0., attributes.Get("heat generation") - attributes.Get("cooling"));
+	double dissipation = 1. - heatDissipation + attributes.Get("active cooling") / (100. * Mass());
+	return production / dissipation;
 }
 
 
@@ -2297,14 +2351,6 @@ double Ship::MinimumHull() const
 	
 	double maximumHull = attributes.Get("hull");
 	return max(.20 * maximumHull, min(.50 * maximumHull, 400.));
-}
-
-
-
-// Get the heat level at idle.
-double Ship::IdleHeat() const
-{
-	return max(0., attributes.Get("heat generation") - attributes.Get("cooling")) / (1. - heatDissipation);
 }
 
 

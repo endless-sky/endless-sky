@@ -49,16 +49,24 @@ Flotsam::Flotsam(const Outfit *outfit, int count)
 void Flotsam::Place(const Ship &source)
 {
 	this->source = &source;
-	Place(static_cast<const Body &>(source));
+	Place(source, Angle::Random().Unit() * (2. * Random::Real()) - 2. * source.Unit());
 }
 
 
 
-// Place flotsam coming from something other than a ship.
-void Flotsam::Place(const Body &source)
+// Place flotsam coming from something other than a ship. Optionally specify
+// the maximum relative velocity, or the exact relative velocity as a vector.
+void Flotsam::Place(const Body &source, double maxVelocity)
+{
+	Place(source, Angle::Random().Unit() * (maxVelocity * Random::Real()));
+}
+
+
+
+void Flotsam::Place(const Body &source, const Point &dv)
 {
 	position = source.Position();
-	velocity = source.Velocity() + Angle::Random().Unit() * (2. * Random::Real()) - 2. * source.Unit();
+	velocity = source.Velocity() + dv;
 	angle = Angle::Random();
 	spin = Angle::Random(10.);
 	

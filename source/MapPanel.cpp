@@ -37,6 +37,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include <algorithm>
 #include <cctype>
+#include <cmath>
+#include <limits>
 
 using namespace std;
 
@@ -54,24 +56,12 @@ MapPanel::MapPanel(PlayerInfo &player, int commodity, const System *special)
 {
 	SetIsFullScreen(true);
 	SetInterruptible(false);
+	// Recalculate the fog each time the map is opened, just in case the player
+	// bought a map since the last time they viewed the map.
+	FogShader::Redraw();
 	
 	if(selectedSystem)
 		center = Point(0., 0.) - Zoom() * (selectedSystem->Position());
-}
-
-
-
-void MapPanel::SetCommodity(int index)
-{
-	commodity = index;
-}
-
-
-
-void MapPanel::Step()
-{
-	if(tradeCommodity && commodity >= 0)
-		*tradeCommodity = commodity;
 }
 
 
@@ -270,6 +260,9 @@ bool MapPanel::Scroll(double dx, double dy)
 
 Color MapPanel::MapColor(double value)
 {
+	if(std::isnan(value))
+		return UninhabitedColor();
+	
 	value = min(1., max(-1., value));
 	if(value < 0.)
 		return Color(
@@ -342,7 +335,7 @@ Color MapPanel::UnexploredColor()
 
 double MapPanel::SystemValue(const System *system) const
 {
-	return 0;
+	return 0.;
 }
 
 
@@ -353,41 +346,47 @@ void MapPanel::Select(const System *system)
 		return;
 	selectedSystem = system;
 	vector<const System *> &plan = player.TravelPlan();
-	if(!plan.empty() && system == plan.front())
+	if(!player.Flagship() || (!plan.empty() && system == plan.front()))
 		return;
 	
+	bool isJumping = player.Flagship()->IsEnteringHyperspace();
+	const System *source = isJumping ? player.Flagship()->GetTargetSystem() : player.GetSystem();
+	
 	bool shift = (SDL_GetModState() & KMOD_SHIFT) && !plan.empty();
-	if(system == playerSystem && !shift)
+	if(system == source && !shift)
 	{
 		plan.clear();
-		if(player.Flagship())
+		if(!isJumping)
 			player.Flagship()->SetTargetSystem(nullptr);
+		else
+			plan.push_back(source);
 	}
-	else if((distance.Distance(system) > 0 || shift) && player.Flagship())
+	else if(shift)
 	{
-		if(shift)
+		DistanceMap localDistance(player, plan.front());
+		if(localDistance.Distance(system) <= 0)
+			return;
+		
+		auto it = plan.begin();
+		while(system != *it)
 		{
-			DistanceMap localDistance(player, plan.front());
-			if(localDistance.Distance(system) <= 0)
-				return;
-			
-			auto it = plan.begin();
-			while(system != *it)
-			{
-				it = ++plan.insert(it, system);
-				system = localDistance.Route(system);
-			}
+			it = ++plan.insert(it, system);
+			system = localDistance.Route(system);
 		}
-		else if(playerSystem)
-		{
-			plan.clear();
+	}
+	else if(distance.Distance(system) > 0)
+	{
+		plan.clear();
+		if(!isJumping)
 			player.Flagship()->SetTargetSystem(nullptr);
-			while(system != playerSystem)
-			{
-				plan.push_back(system);
-				system = distance.Route(system);
-			}
+		
+		while(system != source)
+		{
+			plan.push_back(system);
+			system = distance.Route(system);
 		}
+		if(isJumping)
+			plan.push_back(source);
 	}
 }
 
@@ -493,7 +492,7 @@ int MapPanel::Search(const string &str, const string &sub)
 
 
 
-void MapPanel::DrawTravelPlan() const
+void MapPanel::DrawTravelPlan()
 {
 	Color defaultColor(.5, .4, 0., 0.);
 	Color outOfFlagshipFuelRangeColor(.55, .1, .0, 0.);
@@ -593,7 +592,7 @@ void MapPanel::DrawTravelPlan() const
 
 
 
-void MapPanel::DrawWormholes() const
+void MapPanel::DrawWormholes()
 {
 	Color wormholeColor(0.5, 0.2, 0.9, 1.);
 	Color wormholeDimColor(0.5 / 3., 0.2 / 3., 0.9 / 3., 1.);
@@ -635,7 +634,7 @@ void MapPanel::DrawWormholes() const
 
 
 
-void MapPanel::DrawLinks() const
+void MapPanel::DrawLinks()
 {
 	// Draw the links between the systems.
 	Color closeColor(.6, .6);
@@ -669,7 +668,7 @@ void MapPanel::DrawLinks() const
 
 
 
-void MapPanel::DrawSystems() const
+void MapPanel::DrawSystems()
 {
 	if(commodity == SHOW_GOVERNMENT)
 		closeGovernments.clear();
@@ -691,18 +690,19 @@ void MapPanel::DrawSystems() const
 		Color color = UninhabitedColor();
 		if(!player.HasVisited(&system))
 			color = UnexploredColor();
-		else if(system.IsInhabited())
+		else if(system.IsInhabited() || commodity == SHOW_SPECIAL)
 		{
 			if(commodity >= SHOW_SPECIAL)
 			{
 				double value = 0.;
-				bool showUninhabited = false;
 				if(commodity >= 0)
 				{
 					const Trade::Commodity &com = GameData::Commodities()[commodity];
 					double price = system.Trade(com.name);
-					showUninhabited = !price;
-					value = (2. * (price - com.low)) / (com.high - com.low) - 1.;
+					if(!price)
+						value = numeric_limits<double>::quiet_NaN();
+					else
+						value = (2. * (price - com.low)) / (com.high - com.low) - 1.;
 				}
 				else if(commodity == SHOW_SHIPYARD)
 				{
@@ -736,7 +736,7 @@ void MapPanel::DrawSystems() const
 				else
 					value = SystemValue(&system);
 				
-				color = (showUninhabited ? UninhabitedColor() : MapColor(value));
+				color = MapColor(value);
 			}
 			else if(commodity == SHOW_GOVERNMENT)
 			{
@@ -784,7 +784,7 @@ void MapPanel::DrawSystems() const
 
 
 
-void MapPanel::DrawNames() const
+void MapPanel::DrawNames()
 {
 	// Don't draw if too small.
 	if(Zoom() <= 0.5)
@@ -808,7 +808,7 @@ void MapPanel::DrawNames() const
 
 
 
-void MapPanel::DrawMissions() const
+void MapPanel::DrawMissions()
 {
 	// Draw a pointer for each active or available mission.
 	map<const System *, Angle> angle;
@@ -860,7 +860,7 @@ void MapPanel::DrawMissions() const
 
 
 
-void MapPanel::DrawPointer(const System *system, Angle &angle, const Color &color, bool bigger) const
+void MapPanel::DrawPointer(const System *system, Angle &angle, const Color &color, bool bigger)
 {
 	DrawPointer(Zoom() * (system->Position() + center), angle, color, true, bigger);
 }

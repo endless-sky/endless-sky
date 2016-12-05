@@ -70,13 +70,32 @@ outfit "Triple Plasma Core"
 
 
 
+outfit "Korath Piercer Rack"
+	category "Systems"
+	cost 56000
+	thumbnail "outfit/korath piercer storage"
+	"mass" 2.2
+	"outfit space" -7
+	"piercer capacity" 16
+	description "The Korath Piercer Rack is used to store extra ammunition for Korath Piercer Launchers."
+
+outfit "Korath Mine Rack"
+	category "Systems"
+	cost 31500
+	thumbnail "outfit/korath mine storage"
+	"mass" 2.7
+	"outfit space" -9
+	"minelayer capacity" 9
+	description "The Korath Mine Rack is used to store extra ammunition for Korath Minelayers."
+
+
 outfit "Small Heat Shunt"
 	category "Systems"
 	cost 180000
 	thumbnail "outfit/small heat shunt"
 	"mass" 7
 	"outfit space" -7
-	"cooling" 15
+	"cooling" 13.5
 	description "The sheer inefficiency of most Korath equipment has forced them to become exceptionally good at one thing: dealing with large amounts of waste heat."
 
 outfit "Large Heat Shunt"
@@ -85,7 +104,7 @@ outfit "Large Heat Shunt"
 	thumbnail "outfit/large heat shunt"
 	"mass" 24
 	"outfit space" -24
-	"cooling" 60
+	"cooling" 54
 	description "Without these powerful cooling systems, most Korath warships would overheat within seconds as soon as they began to fire their weapons."
 
 
@@ -149,6 +168,14 @@ outfit "Reasoning Node"
 	"mass" 1
 	"outfit space" -1
 	description "This is some sort of advanced, miniature computer combined with various sensor inputs and a hyperspace communication relay. Presumably, in some way it controls the Mereti automata or allows them to more easily coordinate their actions with each other."
+
+outfit "Control Transceiver"
+	category "Systems"
+	cost "7000"
+	thumbnail "outfit/control transceiver"
+	"mass" 1
+	"outfit space" -1
+	description "This is a miniaturized communication device, which can be connected to all the major systems of a Kor Sestor automaton, apparently as a way of controlling them remotely. The communications are encrypted and authenticated in a way that would make it nearly impossible to spoof the control signals."
 
 
 

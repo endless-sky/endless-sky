@@ -26,6 +26,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 class Outfit;
 class PlayerInfo;
+class Rectangle;
 
 
 
@@ -52,15 +53,30 @@ protected:
 	
 	
 private:
+	// Handle any change to what ship or tab is shown.
 	void UpdateInfo();
-	void DrawInfo() const;
-	void DrawShip() const;
-	void DrawWeapon(int index, const Point &pos, const Point &hardpoint) const;
+	
+	// Draw the info tab (and its subsections).
+	void DrawInfo();
+	void DrawPlayer(const Rectangle &bounds);
+	void DrawFleet(const Rectangle &bounds);
+	
+	// Draw the ship tab (and its subsections).
+	void DrawShip();
+	void DrawShipStats(const Rectangle &bounds);
+	void DrawOutfits(const Rectangle &bounds);
+	void DrawWeapons(const Rectangle &bounds);
+	void DrawCargo(const Rectangle &bounds);
+	
+	// Helper functions.
+	void DrawLine(const Point &from, const Point &to, const Color &color) const;
+	bool Hover(const Point &point);
 	void Rename(const std::string &name);
 	bool CanDump() const;
 	void Dump();
 	void DumpPlunder(int count);
-	bool Hover(double x, double y);
+	void DumpCommodities(int count);
+	void Disown();
 	
 	
 private:
@@ -70,9 +86,9 @@ private:
 	ShipInfoDisplay info;
 	std::map<std::string, std::vector<const Outfit *>> outfits;
 	
-	mutable std::vector<ClickZone<int>> zones;
-	mutable std::vector<ClickZone<std::string>> commodityZones;
-	mutable std::vector<ClickZone<const Outfit *>> plunderZones;
+	std::vector<ClickZone<int>> zones;
+	std::vector<ClickZone<std::string>> commodityZones;
+	std::vector<ClickZone<const Outfit *>> plunderZones;
 	int selected = -1;
 	int previousSelected = -1;
 	std::set<int> allSelected;

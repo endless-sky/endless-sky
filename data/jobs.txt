@@ -8,31 +8,50 @@
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
-mission "Escort (Tiny, Northern)"
+mission "Escort (Tiny, Northern, Dangerous Destination)"
 	name "Escort to <planet>"
-	description "Despite your relative inexperience, the captain of the <npc> is willing to pay you <payment> to escort her Shuttlecraft safely to <destination> by <date>."
+	description "Despite your relative inexperience, the captain of the <npc> is willing to pay you <payment> for an escort into a dangerous region of space to reach <destination> by <date>."
 	repeat
 	job
 	deadline 8
 	to offer
-		random < 70
+		random < 40
 		"combat rating" < 6
 		or
 			"combat rating" > 0
-			"cargo space" < 20
+			has "ships: Interceptor"
 	source
 		government Republic "Free Worlds" Syndicate Neutral
-		attributes north "near earth"
+		attributes deep paradise "near earth"
 	destination
 		government Republic "Free Worlds" Syndicate Neutral
-		distance 2 3
+		attributes frontier north
+		distance 2 4
 	npc
-		personality nemesis waiting
+		personality nemesis staying
+		system destination
 		government Pirate
 		fleet
 			names "pirate"
 			variant
 				"Sparrow"
+			variant
+				"Wasp"
+			variant
+				"Berserker"
+	npc
+		personality nemesis waiting
+		system destination
+		distance 1
+		government Pirate
+		fleet
+			names "pirate"
+			variant
+				"Sparrow"
+			variant
+				"Wasp"
+			variant
+				"Berserker"
 	npc accompany save
 		government Merchant
 		personality escort timid
@@ -40,406 +59,33 @@ mission "Escort (Tiny, Northern)"
 			names "civilian"
 			variant
 				"Shuttle"
+			variant
+				"Star Barge"
 	on complete
 		payment 15000
-		dialog "The captain of the <npc> thanks you for escorting her safely, and pays you <payment>."
-
-mission "Escort (Small, Northern)"
-	name "Escort to <planet>"
-	description "The captain of the <npc> will pay you <payment> to escort them safely to <destination> by <date>."
-	repeat
-	job
-	deadline 10
-	to offer
-		random < 70
-		"combat rating" > 5
-	source
-		government Republic "Free Worlds" Syndicate Neutral
-		attributes north "near earth"
-	destination
-		government Republic "Free Worlds" Syndicate Neutral
-		distance 3 4
-	npc
-		personality nemesis waiting
-		government Pirate
-		fleet "Small Northern Pirates"
-	npc
-		system destination
-		personality nemesis staying
-		government Pirate
-		fleet "Small Northern Pirates"
-	npc accompany save
-		government Merchant
-		personality escort timid
-		fleet
-			names "civilian"
-			variant
-				"Freighter"
-	on complete
-		payment 60000
 		dialog "The captain of the <npc> thanks you for escorting them safely, and pays you <payment>."
-	
 	on visit
 		dialog "You have reached <planet>, but you left the <npc> behind! Better depart and wait for them to arrive in this star system."
 
-mission "Escort (Medium, Northern)"
+mission "Escort (Tiny, Northern, Dangerous Origin)"
 	name "Escort to <planet>"
-	description "The captain of the <npc> will pay you <payment> to escort them safely to <destination> by <date>."
-	repeat
-	job
-	deadline 10
-	to offer
-		random < 40
-		"combat rating" > 20
-	source
-		government Republic "Free Worlds" Syndicate Neutral
-		attributes north "near earth"
-	destination
-		government Republic "Free Worlds" Syndicate Neutral
-		distance 3 4
-	npc
-		personality nemesis waiting
-		government Pirate
-		fleet "Small Northern Pirates"
-	npc
-		personality nemesis waiting
-		government Pirate
-		fleet "Small Northern Pirates"
-	npc
-		system destination
-		personality nemesis staying
-		government Pirate
-		fleet "Small Northern Pirates"
-	npc
-		system destination
-		personality nemesis staying
-		government Pirate
-		fleet "Small Northern Pirates"
-	npc accompany save
-		government Merchant
-		personality escort timid
-		fleet
-			names "civilian"
-			variant
-				"Freighter"
-	on complete
-		payment 90000
-		dialog "The captain of the <npc> thanks you for escorting them safely, and pays you <payment>."
-	
-	on visit
-		dialog "You have reached <planet>, but you left the <npc> behind! Better depart and wait for them to arrive in this star system."
-
-mission "Escort (Large, Northern)"
-	name "Escort to <planet>"
-	description "The captain of the <npc> will pay you <payment> to escort them safely to <destination> by <date>."
-	repeat
-	job
-	deadline 10
-	to offer
-		random < 50
-		"combat rating" > 60
-	source
-		government Republic "Free Worlds" Syndicate Neutral
-		attributes north "near earth"
-	destination
-		government Republic "Free Worlds" Syndicate Neutral
-		distance 3 4
-	npc
-		personality nemesis waiting
-		government Pirate
-		fleet "Large Northern Pirates"
-	npc
-		system destination
-		personality nemesis staying
-		government Pirate
-		fleet "Large Northern Pirates"
-	npc accompany save
-		government Merchant
-		personality escort timid
-		fleet
-			names "civilian"
-			variant
-				"Behemoth"
-	on complete
-		payment 120000
-		dialog "The captain of the <npc> thanks you for escorting them safely, and pays you <payment>."
-	
-	on visit
-		dialog "You have reached <planet>, but you left the <npc> behind! Better depart and wait for them to arrive in this star system."
-
-mission "Escort (Extra Large, Northern)"
-	name "Escort to <planet>"
-	description "The captain of the <npc> will pay you <payment> to escort them safely to <destination> by <date>."
-	repeat
-	job
-	deadline 10
-	to offer
-		random < 20
-		"combat rating" > 100
-	source
-		government Republic "Free Worlds" Syndicate Neutral
-		attributes north "near earth"
-	destination
-		government Republic "Free Worlds" Syndicate Neutral
-		distance 3 4
-	npc
-		personality nemesis waiting
-		government Pirate
-		fleet "Large Northern Pirates"
-	npc
-		system destination
-		personality nemesis staying
-		government Pirate
-		fleet "Small Northern Pirates"
-	npc
-		system destination
-		personality nemesis staying
-		government Pirate
-		fleet "Large Northern Pirates"
-	npc
-		personality nemesis waiting
-		government Pirate
-		fleet "Small Northern Pirates"
-	npc accompany save
-		government Merchant
-		personality escort timid
-		fleet
-			names "civilian"
-			variant
-				"Behemoth"
-	on complete
-		payment 150000
-		dialog "The captain of the <npc> thanks you for escorting them safely, and pays you <payment>."
-	
-	on visit
-		dialog "You have reached <planet>, but you left the <npc> behind! Better depart and wait for them to arrive in this star system."
-
-
-mission "Escort (Tiny, Core)"
-	name "Escort to <planet>"
-	description "Despite your relative inexperience, the captain of the <npc> is willing to pay you <payment> to escort his Star Barge safely to <destination> by <date>."
+	description "Despite your relative inexperience, the captain of the <npc> is willing to pay you <payment> for an escort out of this dangerous region of space to reach <destination> by <date>."
 	repeat
 	job
 	deadline 8
 	to offer
-		random < 70
-		"combat rating" < 6
-		or
-			"combat rating" > 0
-			"cargo space" < 20
-	source
-		government Republic "Free Worlds" Syndicate Neutral
-		attributes core "near earth" "dirt belt"
-	destination
-		government Republic "Free Worlds" Syndicate Neutral
-		distance 2 3
-	npc
-		personality nemesis waiting
-		government Pirate
-		fleet
-			names "pirate"
-			variant
-				"Wasp"
-	npc accompany save
-		government Merchant
-		personality escort timid
-		fleet
-			names "civilian"
-			variant
-				"Star Barge (Armed)"
-	on complete
-		payment 20000
-		dialog "The captain of the <npc> thanks you for escorting him safely, and pays you <payment>."
-
-mission "Escort (Small, Core)"
-	name "Escort to <planet>"
-	description "The captain of the <npc> will pay you <payment> to escort them safely to <destination> by <date>."
-	repeat
-	job
-	deadline 10
-	to offer
-		random < 70
-		"combat rating" > 5
-	source
-		government Republic "Free Worlds" Syndicate Neutral
-		attributes core "near earth" "dirt belt"
-	destination
-		government Republic "Free Worlds" Syndicate Neutral
-		distance 3 4
-	npc
-		personality nemesis waiting
-		government Pirate
-		fleet "Small Core Pirates"
-	npc
-		system destination
-		personality nemesis staying
-		government Pirate
-		fleet "Small Core Pirates"
-	npc accompany save
-		government Merchant
-		personality escort timid
-		fleet
-			names "civilian"
-			variant
-				"Freighter"
-	on complete
-		payment 60000
-		dialog "The captain of the <npc> thanks you for escorting them safely, and pays you <payment>."
-	
-	on visit
-		dialog "You have reached <planet>, but you left the <npc> behind! Better depart and wait for them to arrive in this star system."
-
-mission "Escort (Medium, Core)"
-	name "Escort to <planet>"
-	description "The captain of the <npc> will pay you <payment> to escort them safely to <destination> by <date>."
-	repeat
-	job
-	deadline 10
-	to offer
 		random < 40
-		"combat rating" > 20
-	source
-		government Republic "Free Worlds" Syndicate Neutral
-		attributes core "near earth" "dirt belt"
-	destination
-		government Republic "Free Worlds" Syndicate Neutral
-		distance 3 4
-	npc
-		personality nemesis waiting
-		government Pirate
-		fleet "Small Core Pirates"
-	npc
-		personality nemesis waiting
-		government Pirate
-		fleet "Small Core Pirates"
-	npc
-		system destination
-		personality nemesis staying
-		government Pirate
-		fleet "Small Core Pirates"
-	npc
-		system destination
-		personality nemesis staying
-		government Pirate
-		fleet "Small Core Pirates"
-	npc accompany save
-		government Merchant
-		personality escort timid
-		fleet
-			names "civilian"
-			variant
-				"Freighter"
-	on complete
-		payment 90000
-		dialog "The captain of the <npc> thanks you for escorting them safely, and pays you <payment>."
-	
-	on visit
-		dialog "You have reached <planet>, but you left the <npc> behind! Better depart and wait for them to arrive in this star system."
-
-mission "Escort (Large, Core)"
-	name "Escort to <planet>"
-	description "The captain of the <npc> will pay you <payment> to escort them safely to <destination> by <date>."
-	repeat
-	job
-	deadline 10
-	to offer
-		random < 50
-		"combat rating" > 60
-	source
-		government Republic "Free Worlds" Syndicate Neutral
-		attributes core "near earth" "dirt belt"
-	destination
-		government Republic "Free Worlds" Syndicate Neutral
-		distance 3 4
-	npc
-		personality nemesis waiting
-		government Pirate
-		fleet "Large Core Pirates"
-	npc
-		system destination
-		personality nemesis staying
-		government Pirate
-		fleet "Large Core Pirates"
-	npc accompany save
-		government Merchant
-		personality escort timid
-		fleet
-			names "civilian"
-			variant
-				"Bulk Freighter"
-	on complete
-		payment 120000
-		dialog "The captain of the <npc> thanks you for escorting them safely, and pays you <payment>."
-	
-	on visit
-		dialog "You have reached <planet>, but you left the <npc> behind! Better depart and wait for them to arrive in this star system."
-
-mission "Escort (Extra Large, Core)"
-	name "Escort to <planet>"
-	description "The captain of the <npc> will pay you <payment> to escort them safely to <destination> by <date>."
-	repeat
-	job
-	deadline 10
-	to offer
-		random < 20
-		"combat rating" > 100
-	source
-		government Republic "Free Worlds" Syndicate Neutral
-		attributes core "near earth" "dirt belt"
-	destination
-		government Republic "Free Worlds" Syndicate Neutral
-		distance 3 4
-	npc
-		personality nemesis waiting
-		government Pirate
-		fleet "Large Core Pirates"
-	npc
-		personality nemesis waiting
-		government Pirate
-		fleet "Small Core Pirates"
-	npc
-		system destination
-		personality nemesis staying
-		government Pirate
-		fleet "Large Core Pirates"
-	npc
-		system destination
-		personality nemesis staying
-		government Pirate
-		fleet "Small Core Pirates"
-	npc accompany save
-		government Merchant
-		personality escort timid
-		fleet
-			names "civilian"
-			variant
-				"Bulk Freighter"
-	on complete
-		payment 150000
-		dialog "The captain of the <npc> thanks you for escorting them safely, and pays you <payment>."
-	
-	on visit
-		dialog "You have reached <planet>, but you left the <npc> behind! Better depart and wait for them to arrive in this star system."
-
-
-mission "Escort (Tiny, Southern)"
-	name "Escort to <planet>"
-	description "Despite your relative inexperience, the captain of the <npc> is willing to pay you <payment> to escort her Heavy Shuttle safely to <destination> by <date>."
-	repeat
-	job
-	deadline 8
-	to offer
-		random < 70
 		"combat rating" < 6
 		or
 			"combat rating" > 0
-			"cargo space" < 20
+			has "ships: Interceptor"
 	source
 		government Republic "Free Worlds" Syndicate Neutral
-		attributes south rim "dirt belt"
+		attributes frontier north
 	destination
 		government Republic "Free Worlds" Syndicate Neutral
-		distance 2 3
+		attributes deep paradise "near earth" core
+		distance 2 4
 	npc
 		personality nemesis waiting
 		government Pirate
@@ -447,20 +93,40 @@ mission "Escort (Tiny, Southern)"
 			names "pirate"
 			variant
 				"Sparrow"
+			variant
+				"Wasp"
+			variant
+				"Berserker"
+	npc
+		personality nemesis waiting
+		distance 1
+		government Pirate
+		fleet
+			names "pirate"
+			variant
+				"Sparrow"
+			variant
+				"Wasp"
+			variant
+				"Berserker"
 	npc accompany save
 		government Merchant
 		personality escort timid
 		fleet
 			names "civilian"
 			variant
-				"Heavy Shuttle"
+				"Shuttle"
+			variant
+				"Star Barge"
 	on complete
 		payment 15000
-		dialog "The captain of the <npc> thanks you for escorting her safely, and pays you <payment>."
+		dialog "The captain of the <npc> thanks you for escorting them safely, and pays you <payment>."
+	on visit
+		dialog "You have reached <planet>, but you left the <npc> behind! Better depart and wait for them to arrive in this star system."
 
-mission "Escort (Small, Southern)"
+mission "Escort (Small, Northern, Dangerous Destination)"
 	name "Escort to <planet>"
-	description "The captain of the <npc> will pay you <payment> to escort them safely to <destination> by <date>."
+	description "The captain of the <npc> will pay you <payment> to escort them safely into a dangerous region of space to reach <destination> by <date>."
 	repeat
 	job
 	deadline 10
@@ -469,9 +135,983 @@ mission "Escort (Small, Southern)"
 		"combat rating" > 5
 	source
 		government Republic "Free Worlds" Syndicate Neutral
-		attributes south rim "dirt belt"
+		attributes deep paradise "near earth"
 	destination
 		government Republic "Free Worlds" Syndicate Neutral
+		attributes frontier north
+		distance 3 4
+	npc
+		personality nemesis waiting
+		system destination
+		distance 1
+		government Pirate
+		fleet "Small Northern Pirates"
+	npc
+		personality nemesis waiting
+		system destination
+		distance 1
+		government Pirate
+		fleet "Small Northern Pirates"
+	npc
+		system destination
+		personality nemesis staying
+		government Pirate
+		fleet "Small Northern Pirates"
+	npc accompany save
+		government Merchant
+		personality escort timid
+		fleet
+			names "civilian"
+			variant
+				"Freighter"
+	on complete
+		payment 60000
+		dialog "The captain of the <npc> thanks you for escorting them safely, and pays you <payment>."
+	on visit
+		dialog "You have reached <planet>, but you left the <npc> behind! Better depart and wait for them to arrive in this star system."
+
+mission "Escort (Small, Northern, Dangerous Origin)"
+	name "Escort to <planet>"
+	description "The captain of the <npc> will pay you <payment> to escort them safely out of this dangerous region of space to reach <destination> by <date>."
+	repeat
+	job
+	deadline 10
+	to offer
+		random < 40
+		"combat rating" > 5
+	source
+		government Republic "Free Worlds" Syndicate Neutral
+		attributes frontier north
+	destination
+		government Republic "Free Worlds" Syndicate Neutral
+		attributes deep paradise "near earth" core
+		distance 3 4
+	npc
+		personality nemesis waiting
+		government Pirate
+		fleet "Small Northern Pirates"
+	npc
+		personality nemesis waiting
+		distance 1
+		government Pirate
+		fleet "Small Northern Pirates"
+	npc
+		personality nemesis waiting
+		distance 1
+		government Pirate
+		fleet "Small Northern Pirates"
+	npc accompany save
+		government Merchant
+		personality escort timid
+		fleet
+			names "civilian"
+			variant
+				"Freighter"
+	on complete
+		payment 60000
+		dialog "The captain of the <npc> thanks you for escorting them safely, and pays you <payment>."
+	on visit
+		dialog "You have reached <planet>, but you left the <npc> behind! Better depart and wait for them to arrive in this star system."
+
+mission "Escort (Medium, Northern, Dangerous Destination)"
+	name "Escort to <planet>"
+	description "The captain of the <npc> will pay you <payment> to escort them safely into a dangerous region of space to reach <destination> by <date>."
+	repeat
+	job
+	deadline 10
+	to offer
+		random < 40
+		"combat rating" > 20
+	source
+		government Republic "Free Worlds" Syndicate Neutral
+		attributes deep paradise "near earth"
+	destination
+		government Republic "Free Worlds" Syndicate Neutral
+		attributes frontier north
+		distance 3 4
+	npc
+		personality nemesis waiting
+		system destination
+		distance 1
+		government Pirate
+		fleet "Small Northern Pirates"
+	npc
+		personality nemesis waiting
+		system destination
+		distance 1
+		government Pirate
+		fleet "Small Northern Pirates"
+	npc
+		personality nemesis waiting
+		system destination
+		distance 1
+		government Pirate
+		fleet "Small Northern Pirates"
+	npc
+		system destination
+		personality nemesis staying
+		government Pirate
+		fleet "Small Northern Pirates"
+	npc
+		system destination
+		personality nemesis staying
+		government Pirate
+		fleet "Small Northern Pirates"
+	npc accompany save
+		government Merchant
+		personality escort timid
+		fleet
+			names "civilian"
+			variant
+				"Freighter"
+	on complete
+		payment 90000
+		dialog "The captain of the <npc> thanks you for escorting them safely, and pays you <payment>."
+	on visit
+		dialog "You have reached <planet>, but you left the <npc> behind! Better depart and wait for them to arrive in this star system."
+
+mission "Escort (Medium, Northern, Dangerous Origin)"
+	name "Escort to <planet>"
+	description "The captain of the <npc> will pay you <payment> to escort them safely out of this dangerous region of space to reach <destination> by <date>."
+	repeat
+	job
+	deadline 10
+	to offer
+		random < 40
+		"combat rating" > 20
+	source
+		government Republic "Free Worlds" Syndicate Neutral
+		attributes frontier north
+	destination
+		government Republic "Free Worlds" Syndicate Neutral
+		attributes deep paradise "near earth" core
+		distance 3 4
+	npc
+		personality nemesis waiting
+		government Pirate
+		fleet "Small Northern Pirates"
+	npc
+		personality nemesis waiting
+		government Pirate
+		fleet "Small Northern Pirates"
+	npc
+		distance 1
+		personality nemesis waiting
+		government Pirate
+		fleet "Small Northern Pirates"
+	npc
+		distance 1
+		personality nemesis waiting
+		government Pirate
+		fleet "Small Northern Pirates"
+	npc
+		system destination
+		distance 1
+		personality nemesis waiting
+		government Pirate
+		fleet "Small Northern Pirates"
+	npc accompany save
+		government Merchant
+		personality escort timid
+		fleet
+			names "civilian"
+			variant
+				"Freighter"
+	on complete
+		payment 90000
+		dialog "The captain of the <npc> thanks you for escorting them safely, and pays you <payment>."
+	on visit
+		dialog "You have reached <planet>, but you left the <npc> behind! Better depart and wait for them to arrive in this star system."
+
+mission "Escort (Large, Northern, Dangerous Destination)"
+	name "Escort to <planet>"
+	description "The captain of the <npc> will pay you <payment> to escort them safely into a dangerous region of space to reach <destination> by <date>."
+	repeat
+	job
+	deadline 10
+	to offer
+		random < 30
+		"combat rating" > 60
+	source
+		government Republic "Free Worlds" Syndicate Neutral
+		attributes deep paradise "near earth"
+	destination
+		government Republic "Free Worlds" Syndicate Neutral
+		attributes frontier north
+		distance 3 4
+	npc
+		personality nemesis waiting
+		system destination
+		distance 1
+		government Pirate
+		fleet "Large Northern Pirates"
+	npc
+		personality nemesis waiting
+		system destination
+		distance 1
+		government Pirate
+		fleet "Small Northern Pirates"
+	npc
+		system destination
+		personality nemesis staying
+		government Pirate
+		fleet "Large Northern Pirates"
+	npc accompany save
+		government Merchant
+		personality escort timid
+		fleet
+			names "civilian"
+			variant
+				"Behemoth"
+	on complete
+		payment 120000
+		dialog "The captain of the <npc> thanks you for escorting them safely, and pays you <payment>."
+	on visit
+		dialog "You have reached <planet>, but you left the <npc> behind! Better depart and wait for them to arrive in this star system."
+
+mission "Escort (Large, Northern, Dangerous Origin)"
+	name "Escort to <planet>"
+	description "The captain of the <npc> will pay you <payment> to escort them safely out of this dangerous region of space to reach <destination> by <date>."
+	repeat
+	job
+	deadline 10
+	to offer
+		random < 30
+		"combat rating" > 60
+	source
+		government Republic "Free Worlds" Syndicate Neutral
+		attributes frontier north
+	destination
+		government Republic "Free Worlds" Syndicate Neutral
+		attributes deep paradise "near earth" core
+		distance 3 4
+	npc
+		personality nemesis waiting
+		government Pirate
+		fleet "Large Northern Pirates"
+	npc
+		personality nemesis waiting
+		distance 1
+		government Pirate
+		fleet "Large Northern Pirates"
+	npc
+		personality nemesis waiting
+		distance 1
+		government Pirate
+		fleet "Small Northern Pirates"
+	npc accompany save
+		government Merchant
+		personality escort timid
+		fleet
+			names "civilian"
+			variant
+				"Behemoth"
+	on complete
+		payment 120000
+		dialog "The captain of the <npc> thanks you for escorting them safely, and pays you <payment>."
+	on visit
+		dialog "You have reached <planet>, but you left the <npc> behind! Better depart and wait for them to arrive in this star system."
+
+mission "Escort (Extra Large, Northern, Dangerous Destination)"
+	name "Escort to <planet>"
+	description "The captain of the <npc> will pay you <payment> to escort them safely into a dangerous region of space to reach <destination> by <date>."
+	repeat
+	job
+	deadline 10
+	to offer
+		random < 15
+		"combat rating" > 100
+	source
+		government Republic "Free Worlds" Syndicate Neutral
+		attributes deep paradise "near earth"
+	destination
+		government Republic "Free Worlds" Syndicate Neutral
+		attributes frontier north
+		distance 3 4
+	npc
+		personality nemesis waiting
+		system destination
+		distance 1
+		government Pirate
+		fleet "Small Northern Pirates"
+	npc
+		personality nemesis waiting
+		system destination
+		distance 1
+		government Pirate
+		fleet "Large Northern Pirates"
+	npc
+		personality nemesis waiting
+		system destination
+		distance 1
+		government Pirate
+		fleet "Large Northern Pirates"
+	npc
+		system destination
+		personality nemesis staying
+		government Pirate
+		fleet "Small Northern Pirates"
+	npc
+		system destination
+		personality nemesis staying
+		government Pirate
+		fleet "Large Northern Pirates"
+	npc accompany save
+		government Merchant
+		personality escort timid
+		fleet
+			names "civilian"
+			variant
+				"Behemoth"
+	on complete
+		payment 150000
+		dialog "The captain of the <npc> thanks you for escorting them safely, and pays you <payment>."
+	on visit
+		dialog "You have reached <planet>, but you left the <npc> behind! Better depart and wait for them to arrive in this star system."
+
+mission "Escort (Extra Large, Northern, Dangerous Origin)"
+	name "Escort to <planet>"
+	description "The captain of the <npc> will pay you <payment> to escort them safely out of this dangerous region of space to reach <destination> by <date>."
+	repeat
+	job
+	deadline 10
+	to offer
+		random < 15
+		"combat rating" > 100
+	source
+		government Republic "Free Worlds" Syndicate Neutral
+		attributes frontier north
+	destination
+		government Republic "Free Worlds" Syndicate Neutral
+		attributes deep paradise "near earth" core
+		distance 3 4
+	npc
+		personality nemesis waiting
+		government Pirate
+		fleet "Small Northern Pirates"
+	npc
+		personality nemesis waiting
+		government Pirate
+		fleet "Large Northern Pirates"
+	npc
+		personality nemesis waiting
+		distance 1
+		government Pirate
+		fleet "Small Northern Pirates"
+	npc
+		personality nemesis waiting
+		distance 1
+		government Pirate
+		fleet "Large Northern Pirates"
+	npc
+		system destination
+		distance 1
+		personality nemesis waiting
+		government Pirate
+		fleet "Large Northern Pirates"
+	npc accompany save
+		government Merchant
+		personality escort timid
+		fleet
+			names "civilian"
+			variant
+				"Behemoth"
+	on complete
+		payment 150000
+		dialog "The captain of the <npc> thanks you for escorting them safely, and pays you <payment>."
+	on visit
+		dialog "You have reached <planet>, but you left the <npc> behind! Better depart and wait for them to arrive in this star system."
+
+
+mission "Escort (Tiny, Core, Dangerous Destination)"
+	name "Escort to <planet>"
+	description "Despite your relative inexperience, the captain of the <npc> is willing to pay you <payment> for an escort into a dangerous region of space to reach <destination> by <date>."
+	repeat
+	job
+	deadline 8
+	to offer
+		random < 40
+		"combat rating" < 6
+		or
+			"combat rating" > 0
+			has "ships: Interceptor"
+	source
+		government Republic "Free Worlds" Syndicate Neutral
+		attributes core "near earth"
+	destination
+		government Republic "Free Worlds" Syndicate Neutral
+		attributes core north frontier "dirt belt"
+		distance 2 4
+	npc
+		personality nemesis waiting
+		system destination
+		distance 1
+		government Pirate
+		fleet
+			names "pirate"
+			variant
+				"Sparrow"
+			variant
+				"Wasp"
+			variant
+				"Berserker"
+	npc
+		personality nemesis staying
+		system destination
+		government Pirate
+		fleet
+			names "pirate"
+			variant
+				"Sparrow"
+			variant
+				"Wasp"
+			variant
+				"Berserker"
+	npc accompany save
+		government Merchant
+		personality escort timid
+		fleet
+			names "civilian"
+			variant
+				"Shuttle"
+			variant
+				"Star Barge"
+	on complete
+		payment 20000
+		dialog "The captain of the <npc> thanks you for escorting them safely, and pays you <payment>."
+	on visit
+		dialog "You have reached <planet>, but you left the <npc> behind! Better depart and wait for them to arrive in this star system."
+
+mission "Escort (Tiny, Core, Dangerous Origin)"
+	name "Escort to <planet>"
+	description "Despite your relative inexperience, the captain of the <npc> is willing to pay you <payment> for an escort out of this dangerous region of space to reach <destination> by <date>."
+	repeat
+	job
+	deadline 8
+	to offer
+		random < 40
+		"combat rating" < 6
+		or
+			"combat rating" > 0
+			has "ships: Interceptor"
+	source
+		government Republic "Free Worlds" Syndicate Neutral
+		attributes core north frontier
+	destination
+		government Republic "Free Worlds" Syndicate Neutral
+		attributes paradise "near earth"
+		distance 2 5
+	npc
+		personality nemesis waiting
+		distance 1
+		government Pirate
+		fleet
+			names "pirate"
+			variant
+				"Sparrow"
+			variant
+				"Wasp"
+			variant
+				"Berserker"
+	npc
+		personality nemesis waiting
+		government Pirate
+		fleet
+			names "pirate"
+			variant
+				"Sparrow"
+			variant
+				"Wasp"
+			variant
+				"Berserker"
+	npc accompany save
+		government Merchant
+		personality escort timid
+		fleet
+			names "civilian"
+			variant
+				"Shuttle"
+			variant
+				"Star Barge"
+	on complete
+		payment 20000
+		dialog "The captain of the <npc> thanks you for escorting them safely, and pays you <payment>."
+	on visit
+		dialog "You have reached <planet>, but you left the <npc> behind! Better depart and wait for them to arrive in this star system."
+
+mission "Escort (Small, Core, Dangerous Destination)"
+	name "Escort to <planet>"
+	description "The captain of the <npc> will pay you <payment> to escort them safely into a dangerous region of space to reach <destination> by <date>."
+	repeat
+	job
+	deadline 10
+	to offer
+		random < 70
+		"combat rating" > 5
+	source
+		government Republic "Free Worlds" Syndicate Neutral
+		attributes paradise "near earth"
+	destination
+		government Republic "Free Worlds" Syndicate Neutral
+		attributes core north frontier "dirt belt"
+		distance 3 4
+	npc
+		personality nemesis waiting
+		system destination
+		distance 1
+		government Pirate
+		fleet "Small Core Pirates"
+	npc
+		personality nemesis waiting
+		system destination
+		distance 1 2
+		government Pirate
+		fleet "Small Core Pirates"
+	npc
+		personality nemesis staying
+		system destination
+		government Pirate
+		fleet "Small Core Pirates"
+	npc accompany save
+		government Merchant
+		personality escort timid
+		fleet
+			names "civilian"
+			variant
+				"Freighter"
+	on complete
+		payment 60000
+		dialog "The captain of the <npc> thanks you for escorting them safely, and pays you <payment>."
+	on visit
+		dialog "You have reached <planet>, but you left the <npc> behind! Better depart and wait for them to arrive in this star system."
+
+mission "Escort (Small, Core, Dangerous Origin)"
+	name "Escort to <planet>"
+	description "The captain of the <npc> will pay you <payment> to escort them safely out of this dangerous region of space to reach <destination> by <date>."
+	repeat
+	job
+	deadline 10
+	to offer
+		random < 70
+		"combat rating" > 5
+	source
+		government Republic "Free Worlds" Syndicate Neutral
+		attributes core north frontier
+	destination
+		government Republic "Free Worlds" Syndicate Neutral
+		attributes paradise "near earth"
+		distance 3 5
+	npc
+		personality nemesis waiting
+		distance 1
+		government Pirate
+		fleet "Small Core Pirates"
+	npc
+		personality nemesis waiting
+		distance 1 2
+		government Pirate
+		fleet "Small Core Pirates"
+	npc
+		personality nemesis waiting
+		government Pirate
+		fleet "Small Core Pirates"
+	npc accompany save
+		government Merchant
+		personality escort timid
+		fleet
+			names "civilian"
+			variant
+				"Freighter"
+	on complete
+		payment 60000
+		dialog "The captain of the <npc> thanks you for escorting them safely, and pays you <payment>."
+	on visit
+		dialog "You have reached <planet>, but you left the <npc> behind! Better depart and wait for them to arrive in this star system."
+
+mission "Escort (Medium, Core, Dangerous Destination)"
+	name "Escort to <planet>"
+	description "The captain of the <npc> will pay you <payment> to escort them safely into a dangerous region of space to reach <destination> by <date>."
+	repeat
+	job
+	deadline 10
+	to offer
+		random < 40
+		"combat rating" > 20
+	source
+		government Republic "Free Worlds" Syndicate Neutral
+		attributes paradise "near earth"
+	destination
+		government Republic "Free Worlds" Syndicate Neutral
+		attributes core north frontier "dirt belt"
+		distance 3 4
+	npc
+		personality nemesis waiting
+		system destination
+		distance 1
+		government Pirate
+		fleet "Small Core Pirates"
+	npc
+		personality nemesis waiting
+		system destination
+		distance 1
+		government Pirate
+		fleet "Small Core Pirates"
+	npc
+		personality nemesis waiting
+		system destination
+		distance 1 2
+		government Pirate
+		fleet "Small Core Pirates"
+	npc
+		system destination
+		personality nemesis staying
+		government Pirate
+		fleet "Small Core Pirates"
+	npc
+		system destination
+		personality nemesis staying
+		government Pirate
+		fleet "Small Core Pirates"
+	npc accompany save
+		government Merchant
+		personality escort timid
+		fleet
+			names "civilian"
+			variant
+				"Freighter"
+	on complete
+		payment 90000
+		dialog "The captain of the <npc> thanks you for escorting them safely, and pays you <payment>."
+	on visit
+		dialog "You have reached <planet>, but you left the <npc> behind! Better depart and wait for them to arrive in this star system."
+
+mission "Escort (Medium, Core, Dangerous Origin)"
+	name "Escort to <planet>"
+	description "The captain of the <npc> will pay you <payment> to escort them safely out of this dangerous region of space to reach <destination> by <date>."
+	repeat
+	job
+	deadline 10
+	to offer
+		random < 40
+		"combat rating" > 20
+	source
+		government Republic "Free Worlds" Syndicate Neutral
+		attributes core north frontier
+	destination
+		government Republic "Free Worlds" Syndicate Neutral
+		attributes paradise "near earth"
+		distance 3 5
+	npc
+		personality nemesis waiting
+		system destination
+		distance 1
+		government Pirate
+		fleet "Small Core Pirates"
+	npc
+		personality nemesis waiting
+		system destination
+		distance 1
+		government Pirate
+		fleet "Small Core Pirates"
+	npc
+		personality nemesis waiting
+		system destination
+		distance 1 2
+		government Pirate
+		fleet "Small Core Pirates"
+	npc
+		system destination
+		personality nemesis staying
+		government Pirate
+		fleet "Small Core Pirates"
+	npc
+		system destination
+		personality nemesis waiting
+		government Pirate
+		fleet "Small Core Pirates"
+	npc accompany save
+		government Merchant
+		personality escort timid
+		fleet
+			names "civilian"
+			variant
+				"Freighter"
+	on complete
+		payment 90000
+		dialog "The captain of the <npc> thanks you for escorting them safely, and pays you <payment>."
+	on visit
+		dialog "You have reached <planet>, but you left the <npc> behind! Better depart and wait for them to arrive in this star system."
+
+mission "Escort (Large, Core, Dangerous Destination)"
+	name "Escort to <planet>"
+	description "The captain of the <npc> will pay you <payment> to escort them safely into a dangerous region of space to reach <destination> by <date>."
+	repeat
+	job
+	deadline 10
+	to offer
+		random < 50
+		"combat rating" > 60
+	source
+		government Republic "Free Worlds" Syndicate Neutral
+		attributes paradise "near earth"
+	destination
+		government Republic "Free Worlds" Syndicate Neutral
+		attributes core north frontier "dirt belt"
+		distance 3 4
+	npc
+		personality nemesis waiting
+		system destination
+		distance 1
+		government Pirate
+		fleet "Large Core Pirates"
+	npc
+		personality nemesis waiting
+		system destination
+		distance 1 2
+		government Pirate
+		fleet "Small Core Pirates"
+	npc
+		personality nemesis staying
+		system destination
+		government Pirate
+		fleet "Large Core Pirates"
+	npc accompany save
+		government Merchant
+		personality escort timid
+		fleet
+			names "civilian"
+			variant
+				"Bulk Freighter"
+	on complete
+		payment 120000
+		dialog "The captain of the <npc> thanks you for escorting them safely, and pays you <payment>."
+	on visit
+		dialog "You have reached <planet>, but you left the <npc> behind! Better depart and wait for them to arrive in this star system."
+
+mission "Escort (Large, Core, Dangerous Origin)"
+	name "Escort to <planet>"
+	description "The captain of the <npc> will pay you <payment> to escort them safely out of this dangerous region of space to reach <destination> by <date>."
+	repeat
+	job
+	deadline 10
+	to offer
+		random < 50
+		"combat rating" > 60
+	source
+		government Republic "Free Worlds" Syndicate Neutral
+		attributes core north frontier
+	destination
+		government Republic "Free Worlds" Syndicate Neutral
+		attributes paradise "near earth"
+		distance 3 5
+	npc
+		personality nemesis waiting
+		distance 1
+		government Pirate
+		fleet "Large Core Pirates"
+	npc
+		personality nemesis waiting
+		distance 1 2
+		government Pirate
+		fleet "Small Core Pirates"
+	npc
+		personality nemesis waiting
+		government Pirate
+		fleet "Large Core Pirates"
+	npc accompany save
+		government Merchant
+		personality escort timid
+		fleet
+			names "civilian"
+			variant
+				"Bulk Freighter"
+	on complete
+		payment 120000
+		dialog "The captain of the <npc> thanks you for escorting them safely, and pays you <payment>."
+	on visit
+		dialog "You have reached <planet>, but you left the <npc> behind! Better depart and wait for them to arrive in this star system."
+
+mission "Escort (Extra Large, Core, Dangerous Destination)"
+	name "Escort to <planet>"
+	description "The captain of the <npc> will pay you <payment> to escort them safely into a dangerous region of space to reach <destination> by <date>."
+	repeat
+	job
+	deadline 10
+	to offer
+		random < 20
+		"combat rating" > 100
+	source
+		government Republic "Free Worlds" Syndicate Neutral
+		attributes paradise "near earth"
+	destination
+		government Republic "Free Worlds" Syndicate Neutral
+		attributes core north frontier "dirt belt"
+		distance 3 4
+	npc
+		personality nemesis waiting
+		system destination
+		distance 1
+		government Pirate
+		fleet "Large Core Pirates"
+	npc
+		personality nemesis waiting
+		system destination
+		distance 1
+		government Pirate
+		fleet "Small Core Pirates"
+	npc
+		personality nemesis waiting
+		system destination
+		distance 1 2
+		government Pirate
+		fleet "Small Core Pirates"
+	npc
+		personality nemesis staying
+		system destination
+		government Pirate
+		fleet "Large Core Pirates"
+	npc
+		personality nemesis staying
+		system destination
+		government Pirate
+		fleet "Small Core Pirates"
+	npc accompany save
+		government Merchant
+		personality escort timid
+		fleet
+			names "civilian"
+			variant
+				"Bulk Freighter"
+	on complete
+		payment 150000
+		dialog "The captain of the <npc> thanks you for escorting them safely, and pays you <payment>."
+	on visit
+		dialog "You have reached <planet>, but you left the <npc> behind! Better depart and wait for them to arrive in this star system."
+
+mission "Escort (Extra Large, Core, Dangerous Origin)"
+	name "Escort to <planet>"
+	description "The captain of the <npc> will pay you <payment> to escort them safely into a dangerous region of space to reach <destination> by <date>."
+	repeat
+	job
+	deadline 10
+	to offer
+		random < 20
+		"combat rating" > 100
+	source
+		government Republic "Free Worlds" Syndicate Neutral
+		attributes core north frontier
+	destination
+		government Republic "Free Worlds" Syndicate Neutral
+		attributes paradise "near earth"
+		distance 3 5
+	npc
+		personality nemesis waiting
+		distance 1
+		government Pirate
+		fleet "Large Core Pirates"
+	npc
+		personality nemesis waiting
+		distance 1
+		government Pirate
+		fleet "Small Core Pirates"
+	npc
+		personality nemesis waiting
+		distance 1 2
+		government Pirate
+		fleet "Small Core Pirates"
+	npc
+		personality nemesis waiting
+		government Pirate
+		fleet "Large Core Pirates"
+	npc
+		personality nemesis waiting
+		government Pirate
+		fleet "Small Core Pirates"
+	npc accompany save
+		government Merchant
+		personality escort timid
+		fleet
+			names "civilian"
+			variant
+				"Bulk Freighter"
+	on complete
+		payment 150000
+		dialog "The captain of the <npc> thanks you for escorting them safely, and pays you <payment>."
+	on visit
+		dialog "You have reached <planet>, but you left the <npc> behind! Better depart and wait for them to arrive in this star system."
+
+
+mission "Escort (Tiny, Southern, Dangerous Origin or Destination)"
+	name "Escort to <planet>"
+	description "Despite your relative inexperience, the captain of the <npc> is willing to pay you <payment> for an escort through this dangerous region of space to reach <destination> by <date>."
+	repeat
+	job
+	deadline 8
+	to offer
+		random < 50
+		"combat rating" < 6
+		or
+			"combat rating" > 0
+			has "ships: Interceptor"
+	source
+		government Republic "Free Worlds" Syndicate Neutral
+		attributes frontier south rim "dirt belt"
+	destination
+		government Republic "Free Worlds" Syndicate Neutral
+		attributes frontier south rim "dirt belt"
+		distance 2 4
+	npc
+		personality nemesis waiting
+		government Pirate
+		fleet
+			names "pirate"
+			variant
+				"Sparrow"
+			variant
+				"Wasp"
+			variant
+				"Berserker"
+	npc
+		personality nemesis staying
+		government Pirate
+		fleet
+			names "pirate"
+			variant
+				"Sparrow"
+			variant
+				"Wasp"
+			variant
+				"Berserker"
+	npc accompany save
+		government Merchant
+		personality escort timid
+		fleet
+			names "civilian"
+			variant
+				"Shuttle"
+			variant
+				"Star Barge"
+	on complete
+		payment 15000
+		dialog "The captain of the <npc> thanks you for escorting them safely, and pays you <payment>."
+	on visit
+		dialog "You have reached <planet>, but you left the <npc> behind! Better depart and wait for them to arrive in this star system."
+
+mission "Escort (Small, Southern, Dangerous Origin or Destination)"
+	name "Escort to <planet>"
+	description "The captain of the <npc> will pay you <payment> to escort them safely through this dangerous region of space to reach <destination> by <date>."
+	repeat
+	job
+	deadline 10
+	to offer
+		random < 70
+		"combat rating" > 5
+	source
+		government Republic "Free Worlds" Syndicate Neutral
+		attributes frontier south rim "dirt belt"
+	destination
+		government Republic "Free Worlds" Syndicate Neutral
+		attributes frontier south rim "dirt belt"
 		distance 3 4
 	npc
 		personality nemesis waiting
@@ -492,13 +1132,12 @@ mission "Escort (Small, Southern)"
 	on complete
 		payment 60000
 		dialog "The captain of the <npc> thanks you for escorting them safely, and pays you <payment>."
-	
 	on visit
 		dialog "You have reached <planet>, but you left the <npc> behind! Better depart and wait for them to arrive in this star system."
 
-mission "Escort (Medium, Southern)"
+mission "Escort (Medium, Southern, Dangerous Origin or Destination)"
 	name "Escort to <planet>"
-	description "The captain of the <npc> will pay you <payment> to escort them safely to <destination> by <date>."
+	description "The captain of the <npc> will pay you <payment> to escort them safely through this dangerous region of space to reach <destination> by <date>."
 	repeat
 	job
 	deadline 10
@@ -507,9 +1146,10 @@ mission "Escort (Medium, Southern)"
 		"combat rating" > 20
 	source
 		government Republic "Free Worlds" Syndicate Neutral
-		attributes south rim "dirt belt"
+		attributes frontier south rim "dirt belt"
 	destination
 		government Republic "Free Worlds" Syndicate Neutral
+		attributes frontier south rim "dirt belt"
 		distance 3 4
 	npc
 		personality nemesis waiting
@@ -539,13 +1179,12 @@ mission "Escort (Medium, Southern)"
 	on complete
 		payment 90000
 		dialog "The captain of the <npc> thanks you for escorting them safely, and pays you <payment>."
-	
 	on visit
 		dialog "You have reached <planet>, but you left the <npc> behind! Better depart and wait for them to arrive in this star system."
 
-mission "Escort (Large, Southern)"
+mission "Escort (Large, Southern, Dangerous Origin or Destination)"
 	name "Escort to <planet>"
-	description "The captain of the <npc> will pay you <payment> to escort them safely to <destination> by <date>."
+	description "The captain of the <npc> will pay you <payment> to escort them safely through this dangerous region of space to reach <destination> by <date>."
 	repeat
 	job
 	deadline 10
@@ -554,9 +1193,10 @@ mission "Escort (Large, Southern)"
 		"combat rating" > 60
 	source
 		government Republic "Free Worlds" Syndicate Neutral
-		attributes south rim "dirt belt"
+		attributes frontier south rim "dirt belt"
 	destination
 		government Republic "Free Worlds" Syndicate Neutral
+		attributes frontier south rim "dirt belt"
 		distance 3 4
 	npc
 		personality nemesis waiting
@@ -577,13 +1217,12 @@ mission "Escort (Large, Southern)"
 	on complete
 		payment 120000
 		dialog "The captain of the <npc> thanks you for escorting them safely, and pays you <payment>."
-	
 	on visit
 		dialog "You have reached <planet>, but you left the <npc> behind! Better depart and wait for them to arrive in this star system."
 
-mission "Escort (Extra Large, Southern)"
+mission "Escort (Extra Large, Southern, Dangerous Origin or Destination)"
 	name "Escort to <planet>"
-	description "The captain of the <npc> will pay you <payment> to escort them safely to <destination> by <date>."
+	description "The captain of the <npc> will pay you <payment> to escort them safely through this dangerous region of space to reach <destination> by <date>."
 	repeat
 	job
 	deadline 10
@@ -592,9 +1231,10 @@ mission "Escort (Extra Large, Southern)"
 		"combat rating" > 100
 	source
 		government Republic "Free Worlds" Syndicate Neutral
-		attributes south rim "dirt belt"
+		attributes frontier south rim "dirt belt"
 	destination
 		government Republic "Free Worlds" Syndicate Neutral
+		attributes frontier south rim "dirt belt"
 		distance 3 4
 	npc
 		personality nemesis waiting
@@ -624,7 +1264,6 @@ mission "Escort (Extra Large, Southern)"
 	on complete
 		payment 150000
 		dialog "The captain of the <npc> thanks you for escorting them safely, and pays you <payment>."
-	
 	on visit
 		dialog "You have reached <planet>, but you left the <npc> behind! Better depart and wait for them to arrive in this star system."
 
@@ -856,10 +1495,10 @@ mission "Cargo [0]"
 	description "Deliver <cargo> to <destination>. Payment is <payment>."
 	cargo random 5 2 .1
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai" "Wanderer"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai" "Wanderer"
 	destination
 		distance 2 8
-		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai" "Wanderer"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai" "Wanderer"
 	on complete
 		payment
 		dialog "You drop off your cargo of <commodity> and collect your payment of <payment>."
@@ -873,10 +1512,10 @@ mission "Cargo [1]"
 	to offer
 		random < 90
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai" "Wanderer"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai" "Wanderer"
 	destination
 		distance 2 10
-		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai" "Wanderer"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai" "Wanderer"
 	on complete
 		payment
 		dialog "You drop off your cargo of <commodity> and collect your payment of <payment>."
@@ -891,10 +1530,10 @@ mission "Cargo [2]"
 		random < 80
 	source
 		attributes mining textiles factory farming fishing oil
-		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai"
 	destination
 		distance 2 12
-		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai"
 	on complete
 		payment
 		dialog "You drop off your cargo of <commodity> and collect your payment of <payment>."
@@ -909,10 +1548,10 @@ mission "Cargo [3]"
 		random < 70
 	source
 		attributes mining textiles factory farming fishing oil
-		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai"
 	destination
 		distance 3 14
-		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai"
 	on complete
 		payment
 		payment 2000
@@ -928,10 +1567,10 @@ mission "Cargo [4]"
 		random < 60
 	source
 		attributes mining textiles factory farming fishing oil
-		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai"
 	destination
 		distance 4 16
-		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai"
 	on complete
 		payment
 		payment 4000
@@ -946,10 +1585,10 @@ mission "Bulk Delivery [0]"
 	to offer
 		random < 70
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai" "Wanderer"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai" "Wanderer"
 	destination
 		distance 2 8
-		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai" "Wanderer"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai" "Wanderer"
 	on complete
 		payment
 		dialog "You drop off your cargo of <commodity> and collect your payment of <payment>."
@@ -963,10 +1602,10 @@ mission "Bulk Delivery [1]"
 	to offer
 		random < 60
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai" "Wanderer"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai" "Wanderer"
 	destination
 		distance 3 12
-		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai" "Wanderer"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai" "Wanderer"
 	on complete
 		payment
 		payment 2000
@@ -982,10 +1621,10 @@ mission "Bulk Delivery [2]"
 		random < 50
 	source
 		attributes mining textiles factory farming fishing oil
-		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai"
 	destination
 		distance 4 16
-		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai"
 	on complete
 		payment
 		payment 4000
@@ -1001,10 +1640,10 @@ mission "Rush Delivery [0]"
 	to offer
 		random < 90
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai" "Wanderer"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai" "Wanderer"
 	destination
 		distance 4 10
-		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai" "Wanderer"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai" "Wanderer"
 	on complete
 		payment
 		payment 16000
@@ -1020,10 +1659,10 @@ mission "Rush Delivery [1]"
 	to offer
 		random < 80
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai"
 	destination
 		distance 5 12
-		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai"
 	on complete
 		payment
 		payment 18000
@@ -1040,10 +1679,10 @@ mission "Rush Delivery [2]"
 		random < 70
 	source
 		attributes mining textiles factory farming fishing oil
-		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai"
 	destination
 		distance 6 14
-		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai"
 	on complete
 		payment
 		payment 20000
@@ -1060,10 +1699,10 @@ mission "Rush Delivery [3]"
 		random < 60
 	source
 		attributes mining textiles factory farming fishing oil
-		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai"
 	destination
 		distance 7 16
-		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai"
 	on complete
 		payment
 		payment 22000
@@ -1078,10 +1717,10 @@ mission "Passengers [0]"
 	description "Bring <fare> to <destination>. Payment is <payment>."
 	passengers 1 10 .9
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai" "Wanderer"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai" "Wanderer"
 	destination
 		distance 2 10
-		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai" "Wanderer"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai" "Wanderer"
 	on complete
 		payment
 		payment 2000
@@ -1096,10 +1735,10 @@ mission "Passengers [1]"
 	to offer
 		random < 75
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai" "Wanderer"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai" "Wanderer"
 	destination
 		distance 2 10
-		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai" "Wanderer"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai" "Wanderer"
 	on complete
 		payment
 		dialog "You wish your <passengers> the best of luck on <planet>, and collect your payment of <payment>."
@@ -1113,10 +1752,10 @@ mission "Passengers [2]"
 	to offer
 		random < 50
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai"
 	destination
 		distance 2 10
-		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai"
 	on complete
 		payment
 		dialog "You wish your <passengers> the best of luck on <planet>, and collect your payment of <payment>."
@@ -1130,10 +1769,10 @@ mission "Passengers [3]"
 	to offer
 		random < 25
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai"
 	destination
 		distance 2 10
-		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai"
 	on complete
 		payment
 		dialog "You wish your <passengers> the best of luck on <planet>, and collect your payment of <payment>."
@@ -1148,10 +1787,10 @@ mission "Passengers [4]"
 		random < 50
 	source
 		attributes "urban"
-		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai"
 	destination
 		distance 2 10
-		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai"
 	on complete
 		payment
 		payment 2000
@@ -1165,11 +1804,11 @@ mission "Transport miners to <planet>"
 	to offer
 		random < 50
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai"
 	destination
 		attributes "mining"
 		distance 3 12
-		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai"
 	on complete
 		payment
 		payment 2000
@@ -1183,11 +1822,11 @@ mission "Transport farmers to <planet>"
 	to offer
 		random < 50
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai"
 	destination
 		attributes "farming"
 		distance 3 12
-		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai"
 	on complete
 		payment
 		payment 2000
@@ -1201,11 +1840,11 @@ mission "Transport mill workers to <planet>"
 	to offer
 		random < 50
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai"
 	destination
 		attributes "textiles"
 		distance 3 12
-		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai"
 	on complete
 		payment
 		payment 2000
@@ -1219,11 +1858,11 @@ mission "Transport workers to <planet>"
 	to offer
 		random < 80
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai"
 	destination
 		attributes "factory"
 		distance 3 12
-		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai"
 	on complete
 		payment
 		payment 2000
@@ -1238,11 +1877,11 @@ mission "Tourists out [0]"
 	to offer
 		random < 20
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai"
 	destination
 		attributes "tourism"
 		distance 6 35
-		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai"
 	on complete
 		payment
 		payment 6000
@@ -1257,11 +1896,11 @@ mission "Tourists out [1]"
 	to offer
 		random < 50
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai"
 	destination
 		attributes "tourism"
 		distance 2 25
-		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai"
 	on complete
 		payment
 		payment 4000
@@ -1277,11 +1916,11 @@ mission "Tourists out [2]"
 		random < 75
 	source
 		attributes "rich" "urban"
-		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai"
 	destination
 		attributes "tourism"
 		distance 4 30
-		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai"
 	on complete
 		payment
 		payment 8000
@@ -1296,11 +1935,11 @@ mission "Tourists back [0]"
 	to offer
 		random < 20
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai"
 		attributes "tourism"
 	destination
 		distance 6 35
-		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai"
 	on complete
 		payment
 		payment 6000
@@ -1315,11 +1954,11 @@ mission "Tourists back [1]"
 	to offer
 		random < 50
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai"
 		attributes "tourism"
 	destination
 		distance 2 25
-		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai"
 	on complete
 		payment
 		payment 4000
@@ -1335,11 +1974,11 @@ mission "Tourists back [2]"
 		random < 75
 	source
 		attributes "tourism"
-		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai"
 	destination
 		attributes "rich" "urban"
 		distance 4 30
-		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai"
 	on complete
 		payment
 		payment 8000
@@ -1492,11 +2131,11 @@ mission "Colonists [0]"
 		"passenger space" > 30
 	source
 		attributes "urban" "near earth" "core" "factory"
-		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai"
 	destination
 		attributes "frontier" "dirt belt" "south" "farming" "mining" "rim" "forest"
 		distance 2 20
-		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai"
 	on complete
 		payment
 		payment 8000
@@ -1513,11 +2152,11 @@ mission "Colonists [1]"
 		"passenger space" > 30
 	source
 		attributes "urban" "near earth" "core" "factory"
-		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai"
 	destination
 		attributes "frontier" "dirt belt" "south" "farming" "mining" "rim" "forest"
 		distance 4 30
-		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai"
 	on complete
 		payment
 		payment 10000
@@ -1533,10 +2172,10 @@ mission "Large Bulk Delivery [0]"
 		random < 70
 		"cargo space" > 160
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai" "Wanderer"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai" "Wanderer"
 	destination
 		distance 2 8
-		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai" "Wanderer"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai" "Wanderer"
 	on complete
 		payment
 		payment 4000
@@ -1552,10 +2191,10 @@ mission "Large Bulk Delivery [1]"
 		random < 60
 		"cargo space" > 160
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai" "Wanderer"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai" "Wanderer"
 	destination
 		distance 3 12
-		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai" "Wanderer"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai" "Wanderer"
 	on complete
 		payment
 		payment 6000
@@ -1572,10 +2211,10 @@ mission "Large Bulk Delivery [2]"
 		"cargo space" > 160
 	source
 		attributes mining textiles factory farming fishing oil
-		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai"
 	destination
 		distance 4 16
-		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai"
 	on complete
 		payment
 		payment 8000
@@ -1592,10 +2231,10 @@ mission "Large Rush Delivery [0]"
 		random < 90
 		"cargo space" > 80
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai" "Wanderer"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai" "Wanderer"
 	destination
 		distance 4 10
-		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai" "Wanderer"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai" "Wanderer"
 	on complete
 		payment
 		payment 36000
@@ -1612,10 +2251,10 @@ mission "Large Rush Delivery [1]"
 		random < 80
 		"cargo space" > 80
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai"
 	destination
 		distance 5 12
-		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai"
 	on complete
 		payment
 		payment 38000
@@ -1633,10 +2272,10 @@ mission "Large Rush Delivery [2]"
 		"cargo space" > 80
 	source
 		attributes mining textiles factory farming fishing oil
-		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai"
 	destination
 		distance 6 14
-		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai"
 	on complete
 		payment
 		payment 40000
@@ -1654,10 +2293,10 @@ mission "Large Rush Delivery [3]"
 		"cargo space" > 80
 	source
 		attributes mining textiles factory farming fishing oil
-		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai"
 	destination
 		distance 7 16
-		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai"
 	on complete
 		payment
 		payment 42000
@@ -1668,6 +2307,8 @@ mission "Recycle garbage"
 	description "<origin> produces a lot of garbage that needs to be disposed of off-station. Transport <cargo> to the industrial solid waste recycler on <destination>. Payment is <payment>."
 	job
 	repeat
+	to offer
+		random < 70
 	cargo "Garbage" 15 100
 	source
 		attributes station
@@ -1676,16 +2317,17 @@ mission "Recycle garbage"
 		distance 9 12
 	on complete
 		dialog "You drop off the <commodity> at an especially smelly solid waste recycler and collect your payment of <payment>."
-		payment 20000 200
+		payment
+		payment 20000
 
-mission "Provide security for pleasure cruise"
-	name "Provide security for pleasure cruise"
+mission "Pleasure cruise security"
+	name "Pleasure cruise security"
 	description "Escort the <npc> on a pleasure cruise to the wild and exotic planet of <stopovers> along with <tons> of their <commodity>, then return to <destination>, where you will be paid <payment>."
 	job
 	repeat
 	cargo "Luxury Goods" 10 20
 	to offer
-		random < 50
+		random < 30
 		"combat rating" > 15
 	source
 		attributes paradise "near earth" rich
@@ -1705,10 +2347,11 @@ mission "Provide security for pleasure cruise"
 	on stopover
 		dialog "The passengers of the <npc> wander off, bedecked in the most conspicuous tourist attire they seem to have been able to find, and begin oohing and aahing at the exoticism of this faraway world. Hopefully none of them gets robbed. You prepare for the return journey to <destination>."
 	on visit
-		dialog "You have reached <planet>, but you left the <npc> behind! Better depart and wait for them to arrive in this star system."
+		dialog "You have reached <planet>, but you can't complete this mission until the <npc> has visited <stopovers> with you and then joined you here."
 	on complete
 		dialog "You bid goodbye to the captain of the <npc> and accept your payment of <payment>."
-		payment 130000 500
+		payment
+		payment 50000
 
 mission "Transport scientists"
 	name "Transport scientists"
@@ -1716,7 +2359,7 @@ mission "Transport scientists"
 	job
 	repeat
 	to offer
-		random < 40
+		random < 20
 	passengers 7 12
 	source
 		attributes research
@@ -1727,7 +2370,8 @@ mission "Transport scientists"
 		dialog "The scientists have been giddily discussing the results of their research during the entire trip. You're happy for a bit of peace and quiet as they make tracks for a prominent research lab to have the results analyzed. You prepare for the return journey to <planet>."
 	on complete
 		dialog "You bid goodbye to the scientists and accept your payment of <payment>."
-		payment 100000 200
+		payment
+		payment 30000
 
 mission "Escort science vessel"
 	name "Escort science vessel"
@@ -1735,7 +2379,7 @@ mission "Escort science vessel"
 	job
 	repeat
 	to offer
-		random < 40
+		random < 20
 		"combat rating" > 10
 	source
 		attributes research
@@ -1782,10 +2426,11 @@ mission "Escort science vessel"
 	on stopover
 		dialog "The <npc> lands alongside you and teams of scientists wearing crisp white lab coats and serious-looking boots and gloves descend on the test site with all manner of exotic equipment. As they take their measurements, you prepare for the return journey to <planet>."
 	on visit
-		dialog "You have reached <planet>, but you left the <npc> behind! Better depart and wait for them to arrive in this star system."
+		dialog "You have reached <planet>, but you can't complete this mission until the <npc> has visited <stopovers> with you and then joined you here."
 	on complete
 		dialog "You bid goodbye to the captain of the <npc> and accept your payment of <payment>."
-		payment 100000
+		payment
+		payment 60000
 
 mission "Corporate espionage"
 	name "Corporate espionage"
@@ -1812,8 +2457,9 @@ mission "Corporate espionage"
 				"Bounder"
 		dialog "You manage to make the requested scans of the <npc>'s cargo. Time to head to <planet>."
 	on complete
-		dialog `You transmit your scans and receive a hearty congratulations, as well as <payment>. "This will set them back months!" You hear in the background.`
-		payment 45000
+		dialog `You transmit your scans and receive a hearty congratulations, as well as <payment>. "This will set them back months!" you hear someone say in the background as you close the audio link.`
+		payment
+		payment 40000
 
 mission "VIP transport"
 	name "Transport VIP to <planet>"
@@ -1823,7 +2469,7 @@ mission "VIP transport"
 	deadline
 	passengers 1
 	to offer
-		random < 40
+		random < 20
 		"combat rating" > 100
 	source
 		government Republic Syndicate
@@ -1833,7 +2479,8 @@ mission "VIP transport"
 		distance 6 50
 	on complete
 		dialog "You bid goodbye to the VIP (who has said barely a word during the entire trip) and collect your payment of <payment>."
-		payment 50000 500
+		payment
+		payment 80000
 	npc
 		system
 			distance 1 2
@@ -1860,7 +2507,11 @@ mission "Bounty Hunting (Marauder I)"
 	job
 	to offer
 		"combat rating" > 600
-		random < 35
+		or
+			random < 5
+			and
+				"combat rating" < 1200
+				random < 35
 	source
 		government Republic "Free Worlds" Syndicate Neutral
 		attributes rim south north "dirt belt" core frontier
@@ -1882,7 +2533,11 @@ mission "Bounty Hunting (Marauder II)"
 	job
 	to offer
 		"combat rating" > 750
-		random < 30
+		or
+			random < 5
+			and
+				"combat rating" < 1800
+				random < 30
 	source
 		government Republic "Free Worlds" Syndicate Neutral
 		attributes rim south north "dirt belt" core frontier
@@ -1905,7 +2560,11 @@ mission "Bounty Hunting (Marauder III)"
 	job
 	to offer
 		"combat rating" > 1097
-		random < 25
+		or
+			random < 5
+			and
+				"combat rating" < 2200
+				random < 25
 	source
 		government Republic "Free Worlds" Syndicate Neutral
 		attributes rim south north "dirt belt" core frontier
@@ -1927,7 +2586,11 @@ mission "Bounty Hunting (Marauder IV)"
 	job
 	to offer
 		"combat rating" > 1550
-		random < 30
+		or
+			random < 5
+			and
+				"combat rating" < 2700
+				random < 30
 	source
 		government Republic "Free Worlds" Syndicate Neutral
 		attributes rim south north "dirt belt" core frontier
@@ -1949,7 +2612,11 @@ mission "Bounty Hunting (Marauder V)"
 	job
 	to offer
 		"combat rating" > 2000
-		random < 25
+		or
+			random < 5
+			and
+				"combat rating" < 3500
+				random < 25
 	source
 		government Republic "Free Worlds" Syndicate Neutral
 		attributes rim south north "dirt belt" core frontier
@@ -1972,7 +2639,11 @@ mission "Bounty Hunting (Marauder VI)"
 	job
 	to offer
 		"combat rating" > 2500
-		random < 20
+		or
+			random < 5
+			and
+				"combat rating" < 5000
+				random < 20
 	source
 		government Republic "Free Worlds" Syndicate Neutral
 		attributes rim south north "dirt belt" core frontier

@@ -204,7 +204,7 @@ ship "Pond Strider"
 	explode "large explosion" 40
 	explode "huge explosion" 10
 	"final explode" "final explosion large"
-	description "This short range Drone Carrier was built by the Hai to contain increasingly aggressive Unfettered with their new Solifuge and Violin Spider ships. The Hai's greater value for life is evident by piloting drones from the safety of the carrier, rather than actually placing personnel in relatively flimsy ships."
+	description "This short range Drone Carrier was built by the Hai to contain the increasingly aggressive Unfettered with their new Solifuge and Violin Spider ships. The Hai's greater value for life is evident in the remotely-piloted robotic fighter craft, preferring to keep valuable pilots out of harm's way."
 
 ship "Shield Beetle"
 	sprite "ship/hai shield beetle"
@@ -535,8 +535,8 @@ ship "Violin Spider"
 
 	engine -15 30
 	engine 15 30
-	gun 0 -31 "Pulse Cannon"
-	turret 0 5 "Bullfrog Anti-Missile"
+	gun 0 -31 "Hai Tracker Pod"
+	turret 0 5
 	explode "tiny explosion" 15
 	explode "small explosion" 5
 	description `The Hai Fighter is equipped with what most Humans would consider the greatest technology available, but all of that high tech comes at a cost.`

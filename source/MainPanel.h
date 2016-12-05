@@ -56,9 +56,9 @@ private:
 	
 	Command show;
 	
-	mutable double load;
-	mutable double loadSum;
-	mutable int loadCount;
+	double load;
+	double loadSum;
+	int loadCount;
 };
 
 

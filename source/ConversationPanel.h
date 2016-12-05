@@ -15,7 +15,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Panel.h"
 
-#include "ClickZone.h"
 #include "WrappedText.h"
 
 #include <functional>
@@ -28,6 +27,7 @@ class Color;
 class Conversation;
 class PlayerInfo;
 class Point;
+class Ship;
 class Sprite;
 class System;
 
@@ -38,7 +38,7 @@ class System;
 // the panel closes, to report the outcome of the conversation.
 class ConversationPanel : public Panel {
 public:
-	ConversationPanel(PlayerInfo &player, const Conversation &conversation, const System *system = nullptr);
+	ConversationPanel(PlayerInfo &player, const Conversation &conversation, const System *system = nullptr, const Ship *ship = nullptr);
 	
 template <class T>
 	void SetCallback(T *t, void (T::*fun)(int));
@@ -50,7 +50,6 @@ template <class T>
 protected:
 	// Event handlers.
 	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command) override;
-	virtual bool Click(int x, int y) override;
 	virtual bool Drag(double dx, double dy) override;
 	virtual bool Scroll(double dx, double dy) override;
 	
@@ -61,6 +60,9 @@ private:
 	void Goto(int index, int choice = -1);
 	// Exit this panel and do whatever needs to happen next.
 	void Exit();
+	// Handle  mouse click on the "ok," "done," or a conversation choice.
+	void ClickName(int side);
+	void ClickChoice(int index);
 	
 	
 private:
@@ -114,10 +116,8 @@ private:
 	// Text substitutions (player's name, and ship name).
 	std::map<std::string, std::string> subs;
 	
-	// UI areas the player can click in.
-	mutable std::vector<ClickZone<int>> zones;
 	// Maximum scroll amount.
-	mutable int maxScroll = 0.;
+	int maxScroll = 0.;
 	
 	// If specified, this is a star system to display with a special big pointer
 	// when the player brings up the map. (Typically a mission destination.)

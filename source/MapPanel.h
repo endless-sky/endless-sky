@@ -52,8 +52,6 @@ public:
 public:
 	MapPanel(PlayerInfo &player, int commodity = SHOW_REPUTATION, const System *special = nullptr);
 	
-	void SetCommodity(int index);
-	virtual void Step() override;
 	virtual void Draw() override;
 	
 	static void DrawMiniMap(const PlayerInfo &player, double alpha, const System *const jump[2], int step);
@@ -103,22 +101,21 @@ protected:
 	
 	Point center;
 	int commodity;
-	int *tradeCommodity = nullptr;
 	const int maxZoom = 2;
 	int zoom = 0;
-	mutable int step = 0;
+	int step = 0;
 	
-	mutable std::map<const Government *, double> closeGovernments;
+	std::map<const Government *, double> closeGovernments;
 	
 	
 private:
-	void DrawTravelPlan() const;
-	void DrawWormholes() const;
-	void DrawLinks() const;
-	void DrawSystems() const;
-	void DrawNames() const;
-	void DrawMissions() const;
-	void DrawPointer(const System *system, Angle &angle, const Color &color, bool bigger = false) const;
+	void DrawTravelPlan();
+	void DrawWormholes();
+	void DrawLinks();
+	void DrawSystems();
+	void DrawNames();
+	void DrawMissions();
+	void DrawPointer(const System *system, Angle &angle, const Color &color, bool bigger = false);
 	static void DrawPointer(Point position, Angle &angle, const Color &color, bool drawBack = true, bool bigger = false);
 };
 

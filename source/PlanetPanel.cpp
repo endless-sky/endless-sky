@@ -30,6 +30,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Ship.h"
 #include "ShipyardPanel.h"
 #include "SpaceportPanel.h"
+#include "System.h"
 #include "TradingPanel.h"
 #include "UI.h"
 
@@ -104,6 +105,8 @@ void PlanetPanel::Draw()
 		}
 	if(flagship && flagship->CanBeFlagship())
 		info.SetCondition("has ship");
+	if(flagship && planet.IsInhabited() && planet.GetSystem()->HasTrade() && hasAccess)
+		info.SetCondition("has trade");
 	if(planet.IsInhabited() && hasAccess)
 		info.SetCondition("has bank");
 	if(flagship && planet.IsInhabited() && hasAccess)
@@ -137,8 +140,15 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 			TakeOff();
 		else
 		{
+			// The checks that follow are typically cause by parking or selling
+			// ships or changing outfits.
+
+			// Are you overbooked? Don't count fireable flagship crew.
+			const CargoHold &cargo = player.Cargo();
+			int overbooked = -cargo.Bunks() - (flagship->Crew() - flagship->RequiredCrew());
+			int missionCargoToSell = cargo.MissionCargoSize() - cargo.Size();
 			// Will you have to sell something other than regular cargo?
-			int cargoToSell = -(player.Cargo().Free() + player.Cargo().CommoditiesSize());
+			int cargoToSell = -(cargo.Free() + cargo.CommoditiesSize());
 			int droneCount = 0;
 			int fighterCount = 0;
 			for(const auto &it : player.Ships())
@@ -149,32 +159,54 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 					fighterCount += (category == "Fighter") - it->BaysFree(true);
 				}
 			
-			if(fighterCount > 0 || droneCount > 0 || cargoToSell > 0)
+			if(fighterCount > 0 || droneCount > 0 || cargoToSell > 0 || overbooked > 0)
 			{
 				ostringstream out;
-				out << "If you take off now you will have to sell ";
-				bool triple = (fighterCount > 0 && droneCount > 0 && cargoToSell > 0);
-			
-				if(fighterCount == 1)
-					out << "a fighter";
-				else if(fighterCount > 0)
-					out << fighterCount << " fighters";
-				if(fighterCount > 0 && (droneCount > 0 || cargoToSell > 0))
-					out << (triple ? ", " : " and ");
-			
-				if(droneCount == 1)
-					out << "a drone";
-				else if(droneCount > 0)
-					out << droneCount << " drones";
-				if(droneCount > 0 && cargoToSell > 0)
-					out << (triple ? ", and " : " and ");
-			
-				if(cargoToSell == 1)
-					out << "a ton of cargo";
-				else if(cargoToSell > 0)
-					out << cargoToSell << " tons of cargo";
-				out << " that you do not have space for. Are you sure you want to continue?";
+				if(missionCargoToSell > 0 || overbooked > 0)
+				{
+					bool both = ((cargoToSell > 0 && cargo.MissionCargoSize()) && overbooked > 0);
+					out << "If you take off now you will fail a mission due to not having enough ";
+
+					if(overbooked > 0)
+					{
+						out << "bunks available for " << overbooked;
+						out << (overbooked > 1 ? " of the passengers" : " passenger");
+						out << (both ? " and not having enough " : ".");
+					}
+
+					if(missionCargoToSell > 0)
+					{
+						out << "cargo space to hold " << missionCargoToSell;
+						out << (missionCargoToSell > 1 ? " tons" : " ton");
+						out << " of your mission cargo.";
+					}
+				}
+				else
+				{
+					out << "If you take off now you will have to sell ";
+					bool triple = (fighterCount > 0 && droneCount > 0 && cargoToSell > 0);
+
+					if(fighterCount == 1)
+						out << "a fighter";
+					else if(fighterCount > 0)
+						out << fighterCount << " fighters";
+					if(fighterCount > 0 && (droneCount > 0 || cargoToSell > 0))
+						out << (triple ? ", " : " and ");
 				
+					if(droneCount == 1)
+						out << "a drone";
+					else if(droneCount > 0)
+						out << droneCount << " drones";
+					if(droneCount > 0 && cargoToSell > 0)
+						out << (triple ? ", and " : " and ");
+
+					if(cargoToSell == 1)
+						out << "a ton of cargo";
+					else if(cargoToSell > 0)
+						out << cargoToSell << " tons of cargo";
+					out << " that you do not have space for.";
+				}
+				out << " Are you sure you want to continue?";
 				GetUI()->Push(new Dialog(this, &PlanetPanel::TakeOff, out.str()));
 				return true;
 			}
@@ -186,7 +218,7 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 	{
 		selectedPanel = nullptr;
 	}
-	else if(key == 't' && flagship && planet.IsInhabited() && hasAccess)
+	else if(key == 't' && flagship && planet.IsInhabited() && planet.GetSystem()->HasTrade() && hasAccess)
 	{
 		selectedPanel = trading.get();
 		GetUI()->Push(trading);

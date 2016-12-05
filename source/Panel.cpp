@@ -101,6 +101,10 @@ bool Panel::ZoneClick(const Point &point)
 	for(const Zone &zone : zones)
 		if(zone.Contains(point))
 		{
+			// If the panel is in editing mode, make sure it knows that a mouse
+			// click has broken it out of that mode, so it doesn't interpret a
+			// button press and a text character entered.
+			EndEditing();
 			zone.Click();
 			return true;
 		}

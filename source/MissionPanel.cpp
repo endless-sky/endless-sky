@@ -95,9 +95,8 @@ MissionPanel::MissionPanel(const MapPanel &panel)
 	acceptedIt(player.AvailableJobs().empty() ? accepted.begin() : accepted.end()),
 	availableScroll(0), acceptedScroll(0), dragSide(0)
 {
-	// Don't use the "special" coloring in this view.
-	if(commodity == SHOW_SPECIAL)
-		commodity = SHOW_REPUTATION;
+	// In this view, always color systems based on player reputation.
+	commodity = SHOW_REPUTATION;
 	
 	while(acceptedIt != accepted.end() && !acceptedIt->IsVisible())
 		++acceptedIt;
@@ -126,16 +125,7 @@ void MissionPanel::Step()
 	if(!Preferences::Has("help: jobs"))
 	{
 		Preferences::Set("help: jobs");
-		GetUI()->Push(new Dialog(
-			"Taking on jobs is a safe way to earn money. "
-			"Special missions are offered in the Space Port; "
-			"more mundane jobs are posted on the Job Board. "
-			"Most special missions are only offered once: "
-			"if you turn one down, it will not be offered to you again.\n"
-			"\tThe payment for a job depends on how far you must travel and how much you are carrying. "
-			"Jobs that have a time limit pay extra, but you are paid nothing if you miss the deadline.\n"
-			"\tAs you gain a combat reputation, new jobs will become available, "
-			"including escorting convoys and bounty hunting."));
+		GetUI()->Push(new Dialog(GameData::HelpMessage("jobs")));
 	}
 }
 
@@ -461,7 +451,7 @@ bool MissionPanel::Hover(int x, int y)
 bool MissionPanel::Scroll(double dx, double dy)
 {
 	if(dragSide)
-		return Drag(0., dy * 50.);
+		return Drag(0., dy * Preferences::ScrollSpeed());
 	
 	return MapPanel::Scroll(dx, dy);
 }

@@ -25,6 +25,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "MapDetailPanel.h"
 #include "PlayerInfo.h"
 #include "Point.h"
+#include "Preferences.h"
 #include "Screen.h"
 #include "shift.h"
 #include "Ship.h"
@@ -47,14 +48,16 @@ namespace {
 
 
 // Constructor.
-ConversationPanel::ConversationPanel(PlayerInfo &player, const Conversation &conversation, const System *system)
+ConversationPanel::ConversationPanel(PlayerInfo &player, const Conversation &conversation, const System *system, const Ship *ship)
 	: player(player), conversation(conversation), scroll(0.), system(system)
 {
 	// These substitutions need to be applied on the fly as each paragraph of
 	// text is prepared for display.
 	subs["<first>"] = player.FirstName();
 	subs["<last>"] = player.LastName();
-	if(player.Flagship())
+	if(ship)
+		subs["<ship>"] = ship->Name();
+	else if(player.Flagship())
 		subs["<ship>"] = player.Flagship()->Name();
 	
 	// Begin at the start of the conversation.
@@ -107,7 +110,6 @@ void ConversationPanel::Draw()
 		point = it.Draw(point, grey);
 	
 	// Draw whatever choices are being presented.
-	zones.clear();
 	if(node < 0)
 	{
 		// The conversation has already ended. Draw a "done" button.
@@ -117,22 +119,29 @@ void ConversationPanel::Draw()
 		Point off(Screen::Left() + MARGIN + WIDTH - width, point.Y());
 		font.Draw(done, off, bright);
 		
-		// Remember where the done button is.
-		Point size(width, height);
-		zones.emplace_back(off + .5 * size, size);
+		// Handle clicks on this button.
+		AddZone(Rectangle::FromCorner(off, Point(width, height)), [this](){ this->Exit(); });
 	}
 	else if(choices.empty())
 	{
 		// This conversation node is prompting the player to enter their name.
-		// Fill in whichever entry box is active right now.
-		Point center = point + Point(choice ? 420 : 190, 7);
-		Point size(150, 20);
-		FillShader::Fill(center, size, selectionColor);
-		// Draw the text cursor.
-		int width = font.Width(choice ? lastName : firstName);
-		int height = font.Height();
-		center.X() += width - 67;
-		FillShader::Fill(center, Point(1., 16.), dim);
+		for(int side = 0; side < 2; ++side)
+		{
+			Point center = point + Point(side ? 420 : 190, 7);
+			Point size(150, 20);
+			// Handle mouse clicks in whatever field is not selected.
+			if(side != choice)
+			{
+				AddZone(Rectangle(center, size), [this, side](){ this->ClickName(side); });
+				continue;
+			}
+			
+			// Fill in whichever entry box is active right now.
+			FillShader::Fill(center, size, selectionColor);
+			// Draw the text cursor.
+			center.X() += font.Width(choice ? lastName : firstName) - 67;
+			FillShader::Fill(center, Point(1., 16.), dim);
+		}
 		
 		font.Draw("First name:", point + Point(40, 0), dim);
 		font.Draw(firstName, point + Point(120, 0), choice ? grey : bright);
@@ -142,15 +151,18 @@ void ConversationPanel::Draw()
 		
 		// Draw the OK button, and remember its location.
 		static const string ok = "[ok]";
-		width = font.Width(ok);
+		int width = font.Width(ok);
+		int height = font.Height();
 		Point off(Screen::Left() + MARGIN + WIDTH - width, point.Y());
 		font.Draw(ok, off, bright);
-		size = Point(width, height);
-		zones.emplace_back(off + .5 * size, size);
+
+		// Handle clicks on this button.
+		AddZone(Rectangle::FromCorner(off, Point(width, height)), SDLK_RETURN);
 	}
 	else
 	{
 		string label = "0:";
+		int index = 0;
 		for(const Paragraph &it : choices)
 		{
 			++label[0];
@@ -158,9 +170,10 @@ void ConversationPanel::Draw()
 			Point center = point + it.Center();
 			Point size(WIDTH, it.Height());
 		
-			if(zones.size() == static_cast<unsigned>(choice))
+			if(index == choice)
 				FillShader::Fill(center + Point(-5, 0), size + Point(30, 0), selectionColor);
-			zones.emplace_back(point + .5 * size, size);
+			AddZone(Rectangle::FromCorner(point, size), [this, index](){ this->ClickChoice(index); });
+			++index;
 		
 			font.Draw(label, point + Point(-15, 0), dim);
 			point = it.Draw(point, bright);
@@ -178,7 +191,7 @@ bool ConversationPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comm
 	// Map popup happens when you press the map key, unless the name text entry
 	// fields are currently active.
 	if(command.Has(Command::MAP) && !choices.empty())
-		GetUI()->Push(new MapDetailPanel(player, MapPanel::SHOW_REPUTATION, system));
+		GetUI()->Push(new MapDetailPanel(player, system));
 	if(node < 0)
 	{
 		// If the conversation has ended, the only possible action is to exit.
@@ -245,44 +258,6 @@ bool ConversationPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comm
 
 
 
-// Handle mouse clicks.
-bool ConversationPanel::Click(int x, int y)
-{
-	Point point(x, y);
-	if(node < 0)
-	{
-		// The conversation has ended. Check if the player clicked "done."
-		if(zones.empty() || zones.front().Contains(point))
-			Exit();
-	}
-	else if(choices.empty())
-	{
-		// We're currently showing a name entry field. Check if "OK" was clicked.
-		if(!zones.empty() && zones.front().Contains(point))
-			return DoKey(SDLK_RETURN);
-		
-		// Select whichever text entry box was clicked on.
-		x -= Screen::Left();
-		if(x > 135 && x < 285)
-			choice = 0;
-		else if(x > 365 && x < 515)
-			choice = 1;
-	}
-	else
-	{
-		// This is an ordinary node. Check if one of the choices was clicked.
-		for(unsigned i = 0; i < zones.size(); ++i)
-			if(zones[i].Contains(point))
-			{
-				Goto(conversation.NextNode(node, i), i);
-				break;
-			}
-	}
-	return true;
-}
-
-
-
 // Allow scrolling by click and drag.
 bool ConversationPanel::Drag(double dx, double dy)
 {
@@ -296,7 +271,7 @@ bool ConversationPanel::Drag(double dx, double dy)
 // Handle the scroll wheel.
 bool ConversationPanel::Scroll(double dx, double dy)
 {
-	return Drag(50. * dx, 50. * dy);
+	return Drag(0., dy * Preferences::ScrollSpeed());
 }
 
 
@@ -377,6 +352,22 @@ void ConversationPanel::Exit()
 	}
 	if(callback)
 		callback(node);
+}
+
+
+
+// The player just clicked one of the two name entry text fields.
+void ConversationPanel::ClickName(int side)
+{
+	choice = side;
+}
+
+
+
+// The player just clicked on a conversation choice.
+void ConversationPanel::ClickChoice(int index)
+{
+	Goto(conversation.NextNode(node, index), index);
 }
 
 

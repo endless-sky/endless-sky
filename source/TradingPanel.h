@@ -46,8 +46,8 @@ private:
 private:
 	PlayerInfo &player;
 	const System &system;
+	const int COMMODITY_COUNT;
 	
-	int selectedRow;
 	// Remember whether the "sell all" button will sell all outfits, or sell
 	// everything except outfits.
 	bool sellOutfits = false;

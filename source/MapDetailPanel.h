@@ -30,8 +30,7 @@ class PlayerInfo;
 // click on a planet to view its description.
 class MapDetailPanel : public MapPanel {
 public:
-	MapDetailPanel(PlayerInfo &player, int commodity = SHOW_REPUTATION, const System *system = nullptr);
-	MapDetailPanel(PlayerInfo &player, int *commodity);
+	MapDetailPanel(PlayerInfo &player, const System *system = nullptr);
 	MapDetailPanel(const MapPanel &panel);
 	
 	virtual void Draw() override;
@@ -45,20 +44,23 @@ protected:
 	
 private:
 	void DoFind(const std::string &text);
-	void DrawKey() const;
+	void DrawKey();
 	void DrawInfo();
-	void DrawOrbits() const;
+	void DrawOrbits();
 	
 	void ListShips() const;
 	void ListOutfits() const;
 	
+	// Set the commodity coloring, and update the player info as well.
+	void SetCommodity(int index);
+	
 	
 private:
-	mutable int governmentY;
-	mutable int tradeY;
+	int governmentY;
+	int tradeY;
 	
-	mutable std::map<const Planet *, int> planetY;
-	mutable std::map<const Planet *, Point> planets;
+	std::map<const Planet *, int> planetY;
+	std::map<const Planet *, Point> planets;
 	const Planet *selectedPlanet;
 };
 

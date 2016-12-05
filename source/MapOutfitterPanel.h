@@ -46,7 +46,7 @@ protected:
 	virtual double SystemValue(const System *system) const override;
 	virtual int FindItem(const std::string &text) const override;
 	
-	virtual void DrawItems() const override;
+	virtual void DrawItems() override;
 	
 	
 private:
@@ -55,7 +55,7 @@ private:
 	
 private:
 	std::map<std::string, std::vector<const Outfit *>> catalog;
-	mutable std::vector<const Outfit *> list;
+	std::vector<const Outfit *> list;
 	
 	const Outfit *selected = nullptr;
 	const Outfit *compare = nullptr;

@@ -82,10 +82,10 @@ government "Hai (Unfettered)"
 	
 	"player reputation" -1000
 	"attitude toward"
-		"Hai" -.1
-		"Wanderer" -.1
-		"Pug" -.1
-		"Merchant" -.1
+		"Hai" -.01
+		"Wanderer" -.01
+		"Pug" -.01
+		"Merchant" -.01
 	"bribe" .02
 	"fine" 0
 	"hostile hail" "hostile unfettered"
@@ -107,10 +107,13 @@ government "Korath"
 	language "Korath"
 	
 	"attitude toward"
-		"Kor Mereti" -.1
-		"Kor Sestor" -.1
+		"Kor Mereti" -.01
+		"Kor Sestor" -.01
 	
 	"player reputation" -10
+
+government "Korath Nanobots"
+	"player reputation" -1000
 
 government "Kor Efret"
 	swizzle 4
@@ -118,8 +121,8 @@ government "Kor Efret"
 	language "Korath"
 	
 	"attitude toward"
-		"Kor Mereti" -.1
-		"Kor Sestor" -.1
+		"Kor Mereti" -.01
+		"Kor Sestor" -.01
 	
 	"player reputation" 1
 
@@ -129,7 +132,8 @@ government "Kor Mereti"
 	language "Korath"
 	
 	"attitude toward"
-		"Kor Sestor" -.1
+		"Kor Sestor" -.01
+		"Wanderer" -.01
 	
 	"player reputation" -1000
 
@@ -139,7 +143,8 @@ government "Kor Sestor"
 	language "Korath"
 	
 	"attitude toward"
-		"Kor Mereti" -.1
+		"Kor Mereti" -.01
+		"Wanderer" -.01
 	
 	"player reputation" -1000
 
@@ -236,12 +241,12 @@ government "Quarg"
 	
 	"player reputation" 1
 	"attitude toward"
-		"Merchant" .1
-		"Kor Efret" .1
-		"Kor Mereti" -.1
-		"Kor Sestor" -.1
-		"Hai" .1
-		"Pirate" -.1
+		"Merchant" .01
+		"Kor Efret" .01
+		"Kor Mereti" -.01
+		"Kor Sestor" -.01
+		"Hai" .01
+		"Pirate" -.01
 	"hostile hail" "hostile quarg"
 
 government "Republic"
@@ -280,9 +285,9 @@ government "Syndicate (Extremist)"
 	
 	"player reputation" -1000
 	"attitude toward"
-		"Syndicate" -.1
-		"Republic" -.1
-		"Free Worlds" -.1
+		"Syndicate" -.01
+		"Republic" -.01
+		"Free Worlds" -.01
 	"bribe" 0
 	"hostile hail" "hostile syndicate"
 
@@ -298,8 +303,5 @@ government "Wanderer"
 	color .70 .91 .12
 	"player reputation" 1
 	language "Wanderer"
-	"attitude toward"
-		"Kor Sestor" -.1
-		"Kor Mereti" -.1
 	"friendly hail" "wanderer untranslated"
 	"hostile hail" "wanderer untranslated"

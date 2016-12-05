@@ -16,6 +16,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Account.h"
 #include "CargoHold.h"
 #include "Date.h"
+#include "Depreciation.h"
 #include "GameEvent.h"
 #include "Mission.h"
 #include "Planet.h"
@@ -121,6 +122,7 @@ public:
 	// Buy or sell a ship.
 	void BuyShip(const Ship *model, const std::string &name);
 	void SellShip(const Ship *selected);
+	void DisownShip(const Ship *selected);
 	void ParkShip(const Ship *selected, bool isParked);
 	void RenameShip(const Ship *selected, const std::string &name);
 	// Change the order of the given ship in the list.
@@ -192,11 +194,19 @@ public:
 	
 	// Keep track of any outfits that you have sold since landing. These will be
 	// available to buy back until you take off.
-	std::map<const Outfit *, int> &SoldOutfits();
+	int Stock(const Outfit *outfit) const;
+	void AddStock(const Outfit *outfit, int count);
+	// Get depreciation information.
+	const Depreciation &FleetDepreciation() const;
+	const Depreciation &StockDepreciation() const;
 	
 	// Keep track of what materials you have mined in each system.
 	void Harvest(const Outfit *type);
 	const std::set<std::pair<const System *, const Outfit *>> &Harvested() const;
+	
+	// Get or set what coloring is currently selected in the map.
+	int MapColoring() const;
+	void SetMapColoring(int index);
 	
 	
 private:
@@ -249,7 +259,9 @@ private:
 	
 	const Outfit *selectedWeapon = nullptr;
 	
-	std::map<const Outfit *, int> soldOutfits;
+	std::map<const Outfit *, int> stock;
+	Depreciation depreciation;
+	Depreciation stockDepreciation;
 	std::set<std::pair<const System *, const Outfit *>> harvested;
 	
 	// Changes that this PlayerInfo wants to make to the global galaxy state:
@@ -260,6 +272,9 @@ private:
 	std::list<const Person *> destroyedPersons;
 	// Events that are going to happen some time in the future:
 	std::list<GameEvent> gameEvents;
+	
+	// Currently selected coloring, in the map panel (defaults to reputation):
+	int mapColoring = -6;
 	
 	bool freshlyLoaded = true;
 };

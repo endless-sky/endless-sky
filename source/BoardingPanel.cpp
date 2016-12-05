@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "BoardingPanel.h"
 
 #include "CargoHold.h"
+#include "Depreciation.h"
 #include "Dialog.h"
 #include "FillShader.h"
 #include "Font.h"
@@ -25,6 +26,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Interface.h"
 #include "Messages.h"
 #include "PlayerInfo.h"
+#include "Preferences.h"
 #include "Random.h"
 #include "Ship.h"
 #include "ShipEvent.h"
@@ -366,22 +368,12 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 				if(!victim->JumpsRemaining() && you->CanRefuel(*victim))
 					you->TransferFuel(victim->JumpFuel(), &*victim);
 				player.AddShip(victim);
-				// If you capture a fighter, find one of your ships that can
-				// carry it. Otherwise, it will follow your flagship.
-				victim->SetParent(you);
-				if(victim->CanBeCarried())
-					for(const shared_ptr<Ship> &ship : player.Ships())
-						if(ship->CanCarry(*victim))
-						{
-							victim->SetParent(ship);
-							break;
-						}
 				isCapturing = false;
 				
 				// If you suffered any casualties, you need to split the value
 				// of the ship with their bereaved families. You get two shares,
 				// and each dead crew member gets one.
-				int64_t bonus = (victim->Cost() * casualties) / (casualties + 2);
+				int64_t bonus = (victim->Cost() * casualties * Depreciation::Full()) / (casualties + 2);
 				deathBenefits += bonus;
 				
 				// Report this ship as captured in case any missions care.
@@ -435,7 +427,7 @@ bool BoardingPanel::Drag(double dx, double dy)
 // The scroll wheel can be used to scroll the plunder list.
 bool BoardingPanel::Scroll(double dx, double dy)
 {
-	return Drag(dx, dy * 50.);
+	return Drag(0., dy * Preferences::ScrollSpeed());
 }
 
 
@@ -510,7 +502,7 @@ BoardingPanel::Plunder::Plunder(const string &commodity, int count, int unitValu
 
 // Constructor (outfit installed in the victim ship).
 BoardingPanel::Plunder::Plunder(const Outfit *outfit, int count)
-	: name(outfit->Name()), outfit(outfit), count(count), unitValue(outfit->Cost())
+	: name(outfit->Name()), outfit(outfit), count(count), unitValue(outfit->Cost() * Depreciation::Full())
 {
 	UpdateStrings();
 }

@@ -186,6 +186,14 @@ outfit "Thunderhead"
 		"hit force" 20
 		"missile strength" 3
 
+outfit "Thunderhead Storage Array"
+	category "Systems"
+	cost 36000
+	thumbnail "outfit/thunderhead storage"
+	"mass" 2
+	"outfit space" -8
+	"thunderhead capacity" 20
+	description "The Thunderhead Storage Array is used to store extra ammunition for Thunderhead Launchers."
 
 outfit "Small Biochemical Cell"
 	category "Power"
@@ -260,7 +268,7 @@ outfit "Bright Cloud Shielding"
 	thumbnail "outfit/bright cloud"
 	"mass" 19
 	"outfit space" -19
-	"shield generation" 1.2
+	"shield generation" 1.5
 	"shield energy" 3.0
 	description "This small Wanderer shield generator is able to recharge a ship's shields at a considerable rate, but it also consumes more energy than some other shield generators do."
 
@@ -270,7 +278,7 @@ outfit "Dark Storm Shielding"
 	thumbnail "outfit/dark storm"
 	"mass" 41
 	"outfit space" -41
-	"shield generation" 2.8
+	"shield generation" 3.5
 	"shield energy" 7.0
 	description "This Wanderer shield generator can restore a ship's shield strength more quickly than any human shielding technology, but while recharging shields it also draws a much larger amount of power."
 

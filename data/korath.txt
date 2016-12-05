@@ -128,46 +128,66 @@ phrase "korath"
 		"far"
 
 phrase "kor sestor"
-	phrase "digit"
-	phrase "digit"
+	phrase
+		"digit"
+	phrase
+		"digit"
 	word
 		"-"
-	phrase "digit"
-	phrase "digit"
-	phrase "digit"
+	phrase
+		"digit"
+	phrase
+		"digit"
+	phrase
+		"digit"
 	word
 		"."
-	phrase "digit"
+	phrase
+		"digit"
 
 phrase "kor sestor fighter"
-	phrase "digit"
-	phrase "digit"
-	phrase "digit"
+	phrase
+		"digit"
+	phrase
+		"digit"
+	phrase
+		"digit"
 	word
 		" "
-	phrase "digit"
+	phrase
+		"digit"
 	word
 		"-"
-	phrase "digit"
-	phrase "digit"
+	phrase
+		"digit"
+	phrase
+		"digit"
 	word
 		"."
-	phrase "digit"
+	phrase
+		"digit"
 
 phrase "kor mereti"
-	phrase "digit"
-	phrase "digit"
+	phrase
+		"digit"
+	phrase
+		"digit"
 	word
 		":"
-	phrase "digit"
-	phrase "digit"
+	phrase
+		"digit"
+	phrase
+		"digit"
 	word
 		":"
-	phrase "digit"
-	phrase "digit"
+	phrase
+		"digit"
+	phrase
+		"digit"
 	word
 		":"
-	phrase "digit"
+	phrase
+		"digit"
 
 
 fleet "Korath Raid"
@@ -215,6 +235,7 @@ fleet "Small Kor Sestor"
 	government "Kor Sestor"
 	names "kor sestor"
 	fighters "kor sestor fighter"
+	commodities Plastic Equipment Industrial Electronics "Heavy Metals"
 	personality
 		heroic
 	variant 5
@@ -274,6 +295,7 @@ fleet "Large Kor Sestor"
 	government "Kor Sestor"
 	names "kor sestor"
 	fighters "kor sestor fighter"
+	commodities Plastic Equipment Industrial Electronics "Heavy Metals"
 	personality
 		heroic
 	variant 8
@@ -388,6 +410,7 @@ fleet "Small Kor Mereti"
 	government "Kor Mereti"
 	names "kor mereti"
 	fighters "kor mereti"
+	commodities Plastic Equipment Industrial Electronics "Heavy Metals"
 	personality
 		heroic
 	variant 1
@@ -438,6 +461,7 @@ fleet "Large Kor Mereti"
 	government "Kor Mereti"
 	names "kor mereti"
 	fighters "kor mereti"
+	commodities Plastic Equipment Industrial Electronics "Heavy Metals"
 	personality
 		heroic
 	variant 5
@@ -538,6 +562,8 @@ fleet "Large Kor Mereti"
 
 
 outfitter "Korath Basics"
+	"Korath Piercer Rack"
+	"Korath Mine Rack"
 	"Command Center"
 	"Small Bunk Room"
 	"Bunk Room"

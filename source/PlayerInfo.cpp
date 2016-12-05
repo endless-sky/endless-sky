@@ -73,6 +73,9 @@ void PlayerInfo::New()
 	// such item exists, StartConditions defines default values.
 	date = GameData::Start().GetDate();
 	GameData::SetDate(date);
+	// Make sure the fleet depreciation object knows it is tracking the player's
+	// fleet, not the planet's stock.
+	depreciation.Init(ships, date.DaysSinceEpoch());
 	
 	SetSystem(GameData::Start().GetSystem());
 	SetPlanet(GameData::Start().GetPlanet());
@@ -142,8 +145,12 @@ void PlayerInfo::Load(const string &path)
 		{
 			for(const DataNode &grand : child)
 				if(grand.Size() >= 2)
-					soldOutfits[GameData::Outfits().Get(grand.Token(0))] += grand.Value(1);
+					stock[GameData::Outfits().Get(grand.Token(0))] += grand.Value(1);
 		}
+		else if(child.Token(0) == "fleet depreciation")
+			depreciation.Load(child);
+		else if(child.Token(0) == "stock depreciation")
+			stockDepreciation.Load(child);
 		else if(child.Token(0) == "harvested")
 		{
 			for(const DataNode &grand : child)
@@ -175,6 +182,8 @@ void PlayerInfo::Load(const string &path)
 		}
 		else if(child.Token(0) == "launching")
 			shouldLaunch = true;
+		else if(child.Token(0) == "map coloring" && child.Size() >= 2)
+			mapColoring = child.Value(1);
 		else if(child.Token(0) == "changes")
 		{
 			for(const DataNode &grand : child)
@@ -224,16 +233,32 @@ void PlayerInfo::Load(const string &path)
 			}
 	}
 	
+	// As a result of game data changes (e.g. unloading a mod) it's possible for
+	// the player to end up in an undefined system or planet. In that case, move
+	// them to the starting system to avoid crashing.
+	if(planet && !system)
+		system = planet->GetSystem();
+	if(!planet || planet->Name().empty() || !system || system->Name().empty())
+	{
+		system = GameData::Start().GetSystem();
+		planet = GameData::Start().GetPlanet();
+	}
+	
 	// For any ship that did not store what system it is in or what planet it is
 	// on, place it with the player. (In practice, every ship ought to have
 	// specified its location, but this is to avoid null locations.)
 	for(shared_ptr<Ship> &ship : ships)
 	{
-		if(!ship->GetSystem())
+		if(!ship->GetSystem() || ship->GetSystem()->Name().empty())
 			ship->SetSystem(system);
 		if(ship->GetSystem() == system)
 			ship->SetPlanet(planet);
 	}
+	
+	// If no depreciation record was loaded, every item in the player's fleet
+	// will count as non-depreciated.
+	if(!depreciation.IsLoaded())
+		depreciation.Init(ships, date.DaysSinceEpoch());
 }
 
 
@@ -355,8 +380,26 @@ void PlayerInfo::ApplyChanges()
 // Apply the given set of changes to the game data.
 void PlayerInfo::AddChanges(list<DataNode> &changes)
 {
+	bool changedSystems = false;
 	for(const DataNode &change : changes)
+	{
+		changedSystems |= (change.Token(0) == "system");
+		changedSystems |= (change.Token(0) == "link");
+		changedSystems |= (change.Token(0) == "unlink");
 		GameData::Change(change);
+	}
+	if(changedSystems)
+	{
+		// Recalculate what systems have been seen.
+		GameData::UpdateNeighbors();
+		seen.clear();
+		for(const System *system : visitedSystems)
+		{
+			seen.insert(system);
+			for(const System *neighbor : system->Neighbors())
+				seen.insert(neighbor);
+		}
+	}
 	
 	// Only move the changes into my list if they are not already there.
 	if(&changes != &dataChanges)
@@ -496,9 +539,9 @@ void PlayerInfo::IncrementDate()
 	
 	// For accounting, keep track of the player's net worth. This is for
 	// calculation of yearly income to determine maximum mortgage amounts.
-	int64_t assets = 0;
+	int64_t assets = depreciation.Value(ships, date.DaysSinceEpoch());
 	for(const shared_ptr<Ship> &ship : ships)
-		assets += ship->Cost() + ship->Cargo().Value(system);
+		assets += ship->Cargo().Value(system);
 	
 	// Have the player pay salaries, mortgages, etc. and print a message that
 	// summarizes the payments that were made.
@@ -671,7 +714,9 @@ void PlayerInfo::AddShip(shared_ptr<Ship> &ship)
 // Buy a ship of the given model, and give it the given name.
 void PlayerInfo::BuyShip(const Ship *model, const string &name)
 {
-	if(model && accounts.Credits() >= model->Cost())
+	int day = date.DaysSinceEpoch();
+	int64_t cost = stockDepreciation.Value(*model, day);
+	if(model && accounts.Credits() >= cost)
 	{
 		ships.push_back(shared_ptr<Ship>(new Ship(*model)));
 		ships.back()->SetName(name);
@@ -681,8 +726,13 @@ void PlayerInfo::BuyShip(const Ship *model, const string &name)
 		ships.back()->SetIsYours();
 		ships.back()->SetGovernment(GameData::PlayerGovernment());
 		
-		accounts.AddCredits(-model->Cost());
+		accounts.AddCredits(-cost);
 		flagship.reset();
+		
+		// Record the transfer of this ship in the depreciation and stock info.
+		depreciation.Buy(*model, day, &stockDepreciation);
+		for(const auto &it : model->Outfits())
+			stock[it.first] -= it.second;
 	}
 }
 
@@ -694,10 +744,28 @@ void PlayerInfo::SellShip(const Ship *selected)
 	for(auto it = ships.begin(); it != ships.end(); ++it)
 		if(it->get() == selected)
 		{
-			for(const auto &it : selected->Outfits())
-				soldOutfits[it.first] += it.second;
+			int day = date.DaysSinceEpoch();
+			int64_t cost = depreciation.Value(*selected, day);
 			
-			accounts.AddCredits(selected->Cost());
+			// Record the transfer of this ship in the depreciation and stock info.
+			stockDepreciation.Buy(*selected, day, &depreciation);
+			for(const auto &it : selected->Outfits())
+				stock[it.first] += it.second;
+			
+			accounts.AddCredits(cost);
+			ships.erase(it);
+			flagship.reset();
+			return;
+		}
+}
+
+
+
+void PlayerInfo::DisownShip(const Ship *selected)
+{
+	for(auto it = ships.begin(); it != ships.end(); ++it)
+		if(it->get() == selected)
+		{
 			ships.erase(it);
 			flagship.reset();
 			return;
@@ -823,6 +891,9 @@ void PlayerInfo::Land(UI *ui)
 			for(const auto &cargo : (*it)->Cargo().Commodities())
 				if(cargo.second)
 					lostCargo[cargo.first] += cargo.second;
+			// Also, the ship and everything in it should be removed from your
+			// depreciation records. Transfer it to a throw-away record:
+			Depreciation().Buy(**it, date.DaysSinceEpoch(), &depreciation);
 			
 			it = ships.erase(it);
 		}
@@ -962,7 +1033,8 @@ bool PlayerInfo::TakeOff(UI *ui)
 	availableJobs.clear();
 	availableMissions.clear();
 	doneMissions.clear();
-	soldOutfits.clear();
+	stock.clear();
+	stockDepreciation = Depreciation();
 	
 	// Special persons who appeared last time you left the planet, can appear
 	// again.
@@ -983,10 +1055,11 @@ bool PlayerInfo::TakeOff(UI *ui)
 		ships.insert(ships.begin(), flagship);
 	}
 	// Make sure your ships all know who the flagship is.
-	flagship->SetParent(shared_ptr<Ship>());
 	for(const shared_ptr<Ship> &ship : ships)
-		if(ship != flagship)
-			ship->SetParent(flagship);
+	{
+		bool shouldHaveParent = (ship != flagship && !ship->IsParked() && !ship->CanBeCarried());
+		ship->SetParent(shouldHaveParent ? flagship : shared_ptr<Ship>());
+	}
 	
 	// Recharge any ships that can be recharged.
 	bool hasSpaceport = planet->HasSpaceport() && planet->CanUseServices();
@@ -1633,9 +1706,54 @@ void PlayerInfo::SelectNext()
 
 // Keep track of any outfits that you have sold since landing. These will be
 // available to buy back until you take off.
-map<const Outfit *, int> &PlayerInfo::SoldOutfits()
+int PlayerInfo::Stock(const Outfit *outfit) const
 {
-	return soldOutfits;
+	auto it = stock.find(outfit);
+	return (it == stock.end() ? 0 : it->second);
+}
+
+
+
+// Transfer outfits from the player to the planet or vice versa.
+void PlayerInfo::AddStock(const Outfit *outfit, int count)
+{
+	// If you sell an individual outfit that is not sold here and that you
+	// acquired by buying a ship here, have it appear as "in stock" in case you
+	// change your mind about selling it. (On the other hand, if you sell an
+	// entire ship right after buying it, its outfits will not be "in stock.")
+	if(count > 0 && stock[outfit] < 0)
+		stock[outfit] = 0;
+	stock[outfit] += count;
+	
+	int day = date.DaysSinceEpoch();
+	if(count > 0)
+	{
+		// Remember how depreciated these items are.
+		for(int i = 0; i < count; ++i)
+			stockDepreciation.Buy(outfit, day, &depreciation);
+	}
+	else
+	{
+		// If the count is negative, outfits are being transferred from stock
+		// into the player's possession.
+		for(int i = 0; i < -count; ++i)
+			depreciation.Buy(outfit, day, &stockDepreciation);
+	}
+}
+
+
+
+// Get depreciation information.
+const Depreciation &PlayerInfo::FleetDepreciation() const
+{
+	return depreciation;
+}
+
+
+
+const Depreciation &PlayerInfo::StockDepreciation() const
+{
+	return stockDepreciation;
 }
 
 
@@ -1803,17 +1921,19 @@ void PlayerInfo::Save(const string &path) const
 	}
 	accounts.Save(out);
 	
-	if(!soldOutfits.empty())
+	if(!stock.empty())
 	{
 		out.Write("stock");
 		out.BeginChild();
 		{
-			for(const auto &it : soldOutfits)
+			for(const auto &it : stock)
 				if(it.second)
 					out.Write(it.first->Name(), it.second);
 		}
 		out.EndChild();
 	}
+	depreciation.Save(out, date.DaysSinceEpoch());
+	stockDepreciation.Save(out, date.DaysSinceEpoch());
 	if(!harvested.empty())
 	{
 		out.Write("harvested");
@@ -1856,6 +1976,9 @@ void PlayerInfo::Save(const string &path) const
 	if(shouldLaunch)
 		out.Write("launching");
 	
+	// Save the current setting for the map coloring;
+	out.Write("map coloring", mapColoring);
+	
 	// Save pending events, and changes that have happened due to past events.
 	for(const GameEvent &event : gameEvents)
 		event.Save(out);
@@ -1885,4 +2008,20 @@ void PlayerInfo::Save(const string &path) const
 	for(const Planet *planet : visitedPlanets)
 		if(!planet->TrueName().empty())
 			out.Write("visited planet", planet->TrueName());
+}
+
+
+
+// Get what coloring is currently selected in the map.
+int PlayerInfo::MapColoring() const
+{
+	return mapColoring;
+}
+
+
+
+// Set what the map is being colored by.
+void PlayerInfo::SetMapColoring(int index)
+{
+	mapColoring = index;
 }

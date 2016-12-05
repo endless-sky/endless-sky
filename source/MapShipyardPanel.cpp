@@ -24,6 +24,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "System.h"
 
 #include <algorithm>
+#include <limits>
 #include <set>
 
 using namespace std;
@@ -93,7 +94,7 @@ void MapShipyardPanel::Select(int index)
 	else
 	{
 		selected = list[index];
-		selectedInfo.Update(*selected);
+		selectedInfo.Update(*selected, player.StockDepreciation(), player.GetDate().DaysSinceEpoch());
 	}
 }
 
@@ -106,7 +107,7 @@ void MapShipyardPanel::Compare(int index)
 	else
 	{
 		compare = list[index];
-		compareInfo.Update(*compare);
+		compareInfo.Update(*compare, player.StockDepreciation(), player.GetDate().DaysSinceEpoch());
 	}
 }
 
@@ -114,8 +115,8 @@ void MapShipyardPanel::Compare(int index)
 
 double MapShipyardPanel::SystemValue(const System *system) const
 {
-	if(!system)
-		return 0.;
+	if(!system || !system->IsInhabited())
+		return numeric_limits<double>::quiet_NaN();
 	
 	double value = -.5;
 	for(const StellarObject &object : system->Objects())
@@ -152,7 +153,7 @@ int MapShipyardPanel::FindItem(const string &text) const
 
 
 
-void MapShipyardPanel::DrawItems() const
+void MapShipyardPanel::DrawItems()
 {
 	list.clear();
 	Point corner = Screen::TopLeft() + Point(0, scroll);

@@ -158,9 +158,67 @@ interface "load menu"
 
 
 
-interface "preferences"
+interface "controls"
 	sprite "ui/keys panel"
 		center -65 -20
+	button c "_Controls"
+		center -300 -230
+		dimensions 90 30
+		color bright
+	button s "_Settings"
+		center -300 -190
+		dimensions 90 30
+		color medium
+		hover bright
+	button p "_Plugins"
+		center -300 -150
+		dimensions 90 30
+		color medium
+		hover bright
+
+
+
+interface "settings"
+	sprite "ui/settings panel"
+		center -20 -20
+	button c "_Controls"
+		center -300 -230
+		dimensions 90 30
+		color medium
+		hover bright
+	button s "_Settings"
+		center -300 -190
+		dimensions 90 30
+		color bright
+	button p "_Plugins"
+		center -300 -150
+		dimensions 90 30
+		color medium
+		hover bright
+
+
+
+interface "plugins"
+	sprite "ui/settings panel"
+		center -20 -20
+	button c "_Controls"
+		center -300 -230
+		dimensions 90 30
+		color medium
+		hover bright
+	button s "_Settings"
+		center -300 -190
+		dimensions 90 30
+		color medium
+		hover bright
+	button p "_Plugins"
+		center -300 -150
+		dimensions 90 30
+		color bright
+
+
+
+interface "preferences"
 	button b "_Back to Menu..."
 		center 195 210
 		dimensions 120 30
@@ -313,20 +371,22 @@ interface "planet"
 		align left
 		pad 10 0
 	sprite "ui/planet dialog button"
-		center -400 90
-	button t "_Trading"
-		center -400 90
-		dimensions 140 40
-		size 18
-		align left
-		pad 10 0
-	sprite "ui/planet dialog button"
 		center 280 210
 	button h "_Hire Crew"
 		center 280 210
 		dimensions 140 40
 		size 18
 		align right
+		pad 10 0
+	
+	visible if "has trade"
+	sprite "ui/planet dialog button"
+		center -400 90
+	button t "_Trading"
+		center -400 90
+		dimensions 140 40
+		size 18
+		align left
 		pad 10 0
 	
 	visible if "has bank"
@@ -680,6 +740,20 @@ interface "info panel"
 	sprite "ui/two info buttons"
 		center 0 305
 	
+	box "player"
+		from -500 -290 to -250 280
+	box "fleet"
+		from -250 -290 to 500 280
+	
+	box "stats"
+		from -500 -290 to -250 280
+	box "outfits"
+		from -250 -290 to 250 30
+	box "weapons"
+		from -250 30 to 250 280
+	box "cargo"
+		from 250 -290 to 500 280
+	
 	visible if "ship tab"
 	button R
 		center -375 -270
@@ -724,17 +798,26 @@ interface "info panel"
 		dimensions 90 30
 	
 	visible if "show park"
+	active if "can park"
 	sprite "ui/dialog cancel"
 		center 55 305
 	button P "_Park"
 		center 55 305
 		dimensions 70 30
+	active
 	
 	visible if "show unpark"
 	sprite "ui/dialog cancel"
 		center 55 305
 	button P "Un_park"
 		center 55 305
+		dimensions 70 30
+	
+	visible if "show disown"
+	sprite "ui/dialog cancel"
+		center -45 305
+	button D "Disown"
+		center -45 305
 		dimensions 70 30
 	
 	visible if "show dump"

@@ -178,6 +178,18 @@ effect "flamethrower hit"
 	"random frame rate" 5
 	"velocity scale" .4
 
+effect "heavy rocket hit"
+	sprite "effect/explosion/huge"
+		"no repeat"
+		"frame rate" 15
+	sound "heavy rocket hit"
+	"lifetime" 36
+	"random angle" 360
+	"random velocity" 1
+	"random spin" 5
+	"random frame rate" 5
+	"velocity scale" .4
+
 effect "tiny explosion"
 	sprite "effect/explosion/tiny"
 		"no repeat"
