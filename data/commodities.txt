@@ -43,6 +43,7 @@ trade
 		"dumplings"
 		"eggs"
 		"evaporated milk"
+		"fertilizer"
 		"frozen fish"
 		"frozen meat"
 		"frozen pizzas"
