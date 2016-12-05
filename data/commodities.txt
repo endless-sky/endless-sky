@@ -48,7 +48,6 @@ trade
 		"eggs"
 		"evaporated milk"
 		"fast food supplies"
-		"fertilizer"
 		"frozen fish"
 		"frozen meat"
 		"frozen pizzas"
