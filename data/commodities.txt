@@ -347,6 +347,7 @@ trade
 		"electrical wire"
 		"elevator modules"
 		"enamel ovens"
+		"fertilizer"
 		"fiberglass"
 		"gravel"
 		"heat exchangers"
