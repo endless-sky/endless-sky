@@ -250,6 +250,19 @@ ship "Argosy" "Argosy (Blaster)"
 
 
 
+ship "Argosy" "Argosy (Flamethrower Turret)"
+	outfits
+		"Flamethrower Turret" 2
+		"Fission Reactor"
+		"LP072a Battery Pack"
+		"D41-HY Shield Generator"
+		"Mass Expansion"
+		"Greyhound Plasma Thruster"
+		"Impala Plasma Steering"
+		"Hyperdrive"
+
+
+
 ship "Behemoth" "Behemoth (Speedy)"
 	outfits
 		"Sidewinder Missile Launcher" 2

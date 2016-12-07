@@ -1103,6 +1103,83 @@ mission "FW Flamethrower 2"
 
 
 
+mission "FW Flamethrower Turret 1"
+	landing
+	name "Weapon Testing"
+	description "When you have time, report to <destination>, where Barmy Edward has another weapon he would like you to test."
+	destination Rust
+	to offer
+		has "event: flamethrower available"
+		random < 15
+
+	on offer
+		conversation
+			`A message arrives from Barmy Edward of Kraz Cybernetics. He writes: "Greetings! We've prototyped a new weapon based on the same technology as the flamethrower. Stop by our lab on <destination> if you have time to help us test it."`
+				accept
+
+
+
+mission "FW Flamethrower Turret 2"
+	landing
+	name "Weapon Testing"
+	description "A test ship with new weaponry is in orbit around <planet>. Fight and disable it (but do not destroy it!) and then land to give Dr. Cardona feedback on its performance."
+	source Rust
+	to offer
+		has "FW Flamethrower Turret 1: done"
+	on offer
+		conversation
+			`You received a message recently from Barmy Edward, asking you to stop by the Kraz Cybernetics facility to help test a new weapon. Do you want to visit them now?`
+			choice
+				`	(Yes.)`
+				`	(No.)`
+					defer
+			`	The Kraz Cybernetics receptionist points you in a familiar direction, towards the hangar where Barmy Edward does his work. You do not find him there; instead, you are greeted by one of his colleagues: "Good afternoon. Captain <last>, is it? I'm Dr. Chris Cardona. I work with Mr. Edward on the occasional project, including this latest prototype. We had some - uh - technical difficulties with the fuel injection component, and Mr. Edward is on temporary medical leave. Not to worry, he left me with clear instructions regarding your assignment."`
+			`	He seems unfazed by this state of affairs.`
+			`	Just as before, you are to engage our test ship in combat in orbit above <planet> and attempt to disable it without causing permanent damage to its hull. In this case, it is a salvaged Argosy, the Redhammer."`
+			choice
+				`	"Technical difficulties?"`
+				`	"Medical leave?"`
+			`	"Yes, the fuel injector came loose and doused the hangar with hyperspace fuel. It didn't ignite, but Mr. Edward inhaled enough of the vapours to put him out of action for a few weeks. Thankfully, the lab was not damaged, and production of test units is still on schedule."`
+			choice
+				`	"For science!"`
+					accept
+				`	"For Edward!"`
+					accept
+				`	"Sorry, I'd rather not end up like Edward. I don't want to be involved."`
+					decline
+	
+	npc save disable
+		personality staying heroic
+		government "Test Dummy"
+		ship "Argosy (Flamethrower Turret)" "Redhammer"
+	
+	on complete
+		event "flamethrower turret available" 70
+		conversation
+			`You return to Kraz Cybernetics to deliver your report to Dr. Cardona. As you approach the hangar, he steps outside, removes a respirator and pair of safety goggles from his face, and rushes forward to meet you.`
+			`	"Captain <last>, you're back so soon? Come, let us discuss your findings in my office, where the air is - uh - better conditioned. It's humid out here, no?"`
+			`	You follow him to his office, away from the hangar, and away from an unusual smell which has begun to fill the air.`
+			`	"The weapon worked well, I presume?"`
+			choice
+				`	"Indeed."`
+					goto good
+				`	"I was able to neutralize it without much effort."`
+					goto bad
+			label good
+			`	"Glad to hear it."`
+			`	He glances at the figures displayed on his monitor.`
+			`	"Yes, the data we've collected remotely seem to meet our expectations."`
+				goto end
+			label bad
+			`	"I see. Surely that speaks more to the effectiveness of your ship's cooling system than to any deficiency in the prototype."`
+			choice
+				`	"Indeed."`
+				`	"Don't call me Shirley."`
+			label end
+			`	"You should be able to find production models at our distributors within one to two months. On behalf of Kraz Cybernetics, I thank you for your assistance. Mr. Edward will be pleased to hear of our success." You bid Dr. Cardona farewell, and return to your ship.`
+
+
+
 mission "FW Pirates 2"
 	landing
 	name "Southern Patrol"

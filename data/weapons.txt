@@ -431,6 +431,33 @@ outfit "Flamethrower"
 		"firing heat" 2
 	description "A crude but impressive-looking weapon, the Flamethrower ignites your hyperspace fuel and directs a stream of it towards your adversaries. The damage it does is relatively minor, but it can be useful for causing a target that is already operating near its thermal capacity to overheat, temporarily taking it out of the fight."
 
+outfit "Flamethrower Turret"
+	category "Turrets"
+	cost 500000
+	thumbnail "outfit/flamethrower turret"
+	"mass" 26
+	"outfit space" -26
+	"weapon capacity" -26
+	"turret mounts" -1
+	"required crew" 1
+	"fuel capacity" 100
+	weapon
+		sprite "effect/explosion/small"
+			"frame rate" 60
+			"no repeat"
+		sound "flamethrower"
+		icon "icon/flamethrower"
+		"submunition" "Flamethrower Turret Projectile"
+		"inaccuracy" 12
+		"velocity" 13
+		"lifetime" 5
+		"reload" 1
+		"firing energy" .25
+		"firing fuel" .5
+		"firing heat" 3
+	description "The turret-mounted flamethrower represents the epitome of Free Worlds creative extravagance. So great are its fuel requirements that it comes with a standard fuel pod pre-installed. Smaller ships which lack powerful cooling systems should stay out of range at all costs."
+
+
 outfit "Flamethrower Projectile"
 	weapon
 		sprite "projectile/flamethrower"
@@ -443,6 +470,20 @@ outfit "Flamethrower Projectile"
 		"shield damage" .8
 		"hull damage" .7
 		"heat damage" 200
+
+outfit "Flamethrower Turret Projectile"
+	weapon
+		sprite "projectile/flamethrower"
+			"frame rate" 17
+			"random start frame"
+		sound "plasma"
+		"hit effect" "flamethrower hit"
+		"die effect" "flamethrower die"
+		"inaccuracy" 20
+		"lifetime" 22
+		"shield damage" 1.6
+		"hull damage" 1.4
+		"heat damage" 400
 
 outfit "Meteor Missile"
 	category "Ammunition"

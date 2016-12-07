@@ -1715,6 +1715,12 @@ event "flamethrower available"
 
 
 
+event "flamethrower turret available"
+	outfitter "Kraz Advanced"
+		"Flamethrower Turret"
+
+
+
 event "navy occupying the south"
 	system "Rastaban"
 		fleet "Small Southern Merchants" 1200
