@@ -9,7 +9,7 @@
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 
-mission "Care package delivery to <planet>"
+mission "Care package to <planet>"
 	job
 	repeat
 	deadline
@@ -29,7 +29,7 @@ mission "Care package delivery to <planet>"
 		dialog "Still wondering why one university student would possibly need such a large quantity of <commodity>, you deliver the interstellar care package and collect your payment of <payment>."
 
 
-mission "Birthday party delivery to <planet>"
+mission "Birthday supplies to <planet>"
 	job
 	repeat
 	deadline
@@ -49,7 +49,7 @@ mission "Birthday party delivery to <planet>"
 		dialog "You deliver the cargo to the garden of an imposing mansion in the countryside, wherein some pouty young sprout is throwing a very conspicuous fit at the center of a swarm of guests. The parents sheepishly hand you your payment of <payment>."
 
 
-mission "Art exhibition delivery to <planet>"
+mission "Art delivery to <planet>"
 	job
 	repeat
 	deadline
@@ -69,7 +69,7 @@ mission "Art exhibition delivery to <planet>"
 		dialog "Your ship is directed to the rear loading dock of a palatial complex where your cargo of <commodity> is unloaded. You collect your payment of <payment>."
 
 
-mission "Transport newlyweds to <planet>"
+mission "Newlyweds to <planet>"
 	job
 	repeat
 	deadline
@@ -90,11 +90,11 @@ mission "Transport newlyweds to <planet>"
 		dialog "You bid the two lovebirds goodbye on <planet> and collect your payment of <payment>."
 
 
-mission "Theatrical prop delivery to <planet>"
+mission "Theater props to <planet>"
 	job
 	repeat
 	deadline
-	description "A theatre troupe on <destination> needs a delivery of <tons> of special <commodity> to use as props in an upcoming performance on <date>. Payment is <payment>."
+	description "A theater troupe on <destination> needs a delivery of <tons> of special <commodity> to use as props in an upcoming performance on <date>. Payment is <payment>."
 	cargo "Luxury Goods" 9 15
 	to offer
 		random < 10
@@ -110,7 +110,7 @@ mission "Theatrical prop delivery to <planet>"
 		dialog "Your ship is directed to the rear loading dock of a sprawling entertainment complex where your cargo of <commodity> is unloaded. You collect your payment of <payment>."
 
 
-mission "Fine food delivery to <planet>"
+mission "Fine food to <planet>"
 	job
 	repeat
 	deadline
@@ -131,13 +131,13 @@ mission "Fine food delivery to <planet>"
 
 
 mission "Transport partiers [1]"
-	name "Transport partiers to <planet>"
+	name "Party-goers to <planet>"
 	job
 	repeat
 	description "This group of <bunks> university students is willing to pay <payment> to have a huge party on <destination>, along with <tons> of their completely legal pharmaceuticals."
 	passengers 7 12
-	cargo "completely legal pharmaceuticals" 2 4
-		illegal 1000 "It turns out that the completely legal pharmaceuticals in your hold are not so completely legal after all. The officers who confiscate the goods spend a long time talking with one of the students, whom you suspect to be politically connected. You're not surprised by the small size of the fine you receive as well as the fact that nobody was arrested."
+	cargo "pharmaceuticals" 2 4
+		illegal 1000 `It turns out that the "completely legal pharmaceuticals" in your hold are not so completely legal after all. The officers who confiscate the goods spend a long time talking with one of the students, whom you suspect to be politically connected. You're not surprised by the small size of the fine you receive as well as the fact that nobody was arrested.`
 		stealth
 	to offer
 		random < 10
@@ -152,7 +152,7 @@ mission "Transport partiers [1]"
 
 
 mission "Transport partiers [2]"
-	name "Transport partiers to <planet>"
+	name "Party-goers to <planet>"
 	job
 	repeat
 	description "This group of <bunks> university students is willing to pay <payment> to have a huge party on <destination>, along with <tons> of their snacks and school supplies."
@@ -169,7 +169,7 @@ mission "Transport partiers [2]"
 		payment 3000 140
 		dialog "You bid goodbye to the students, who behaved surprisingly well during the journey - yielding many fascinating conversations on subjects as diverse as philosophy, microfluidics, and intergalactic economics. Their proud parents send you your payment of <payment>."
 
-mission "Charity food delivery to <planet>"
+mission "Food donations to <planet>"
 	job
 	repeat
 	description "The fine citizens of <origin> seek a compassionate captain for a mission of mercy to donate <cargo> to the undernourished souls of <destination>. Payment is <payment>."
@@ -186,7 +186,7 @@ mission "Charity food delivery to <planet>"
 		dialog "You collect your payment of <payment>, but not before noticing the general robustness and ample bellies of the dockworkers unloading the donation of <commodity>."
 
 
-mission "Charity clothing delivery to <planet>"
+mission "Clothing donations to <planet>"
 	job
 	repeat
 	description "The fine citizens of <origin> seek a compassionate captain for a mission of mercy to donate <cargo> to the under-dressed and fashion-deprived souls of <destination>. Payment is <payment>."
@@ -203,7 +203,7 @@ mission "Charity clothing delivery to <planet>"
 		dialog "You collect your payment of <payment>, but not before noticing the fine quality of the clothes worn by the dockworkers unloading the donation of <commodity>."
 
 
-mission "Charity medicine delivery to <planet>"
+mission "Medical aid to <planet>"
 	job
 	repeat
 	description "The fine citizens of <origin> seek a compassionate captain for a mission of mercy to donate <cargo> to the suffering souls of <destination>. Payment is <payment>."
@@ -220,7 +220,7 @@ mission "Charity medicine delivery to <planet>"
 		dialog "You collect your payment of <payment>, but not before noticing the general health and vigor of the dockworkers unloading the donation of <commodity>."
 
 
-mission "Charity luxury goods delivery to <planet>"
+mission "Charity goods to <planet>"
 	job
 	repeat
 	description "The fine citizens of <origin> seek a compassionate captain for a mission of mercy to donate <cargo> to the naive and culturally-underexposed souls of <destination>. Payment is <payment>."
@@ -237,7 +237,7 @@ mission "Charity luxury goods delivery to <planet>"
 		dialog "You collect your payment of <payment>, but not before noticing the quality of the clothes, jewelry, and personal electronics carried by the dockworkers unloading the donation of <commodity>."
 
 
-mission "Party goods delivery to <planet>"
+mission "Party goods to <planet>"
 	job
 	repeat
 	deadline
@@ -261,7 +261,7 @@ mission "Party goods delivery to <planet>"
 		dialog "Your ship is directed to land on a makeshift tarmac near a sprawling greenfield where novelty castles are being constructed. Sharply-dressed stewards unload the <commodity> and you collect your payment of <payment>."
 
 
-mission "Estate sale delivery to <planet>"
+mission "Estate assets to <planet>"
 	job
 	repeat
 	description "Trustees are seeking starship captains willing to deliver individual portions of a recently deceased upstanding citizen's estate - <cargo> - to the upcoming estate sale on <destination>. Payment is <payment>."
@@ -279,7 +279,7 @@ mission "Estate sale delivery to <planet>"
 		dialog "As you watch the dockworkers unload crate after crate, you can't help but wonder what would drive someone to collect such a huge quantity of <commodity>. You collect your payment of <payment>."
 
 
-mission "Transport contract laborers to <planet>"
+mission "Contract laborers to <planet>"
 	job
 	repeat
 	description "Return to <destination> after picking up <bunks> contract laborers located on <stopovers> who are eager to experience the luxury of the paradise worlds. Payment is <payment>."
