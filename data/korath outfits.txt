@@ -77,6 +77,7 @@ outfit "Korath Piercer Rack"
 	"mass" 2.2
 	"outfit space" -7
 	"piercer capacity" 16
+	ammo "Korath Piercer"
 	description "The Korath Piercer Rack is used to store extra ammunition for Korath Piercer Launchers."
 
 outfit "Korath Mine Rack"
@@ -86,6 +87,7 @@ outfit "Korath Mine Rack"
 	"mass" 2.7
 	"outfit space" -9
 	"minelayer capacity" 9
+	ammo "Korath Mine"
 	description "The Korath Mine Rack is used to store extra ammunition for Korath Minelayers."
 
 

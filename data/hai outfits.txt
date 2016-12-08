@@ -187,6 +187,7 @@ outfit "Tracker Storage Pod"
 	"mass" 1.6
 	"outfit space" -10
 	"tracker capacity" 28
+	ammo "Hai Tracker"
 	description "The Tracker Storage Pod is used to store extra ammunition for Tracker Pods."
 
 outfit "Bullfrog Anti-Missile"
