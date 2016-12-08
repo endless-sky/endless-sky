@@ -846,7 +846,7 @@ mission "There Might Be Riots part 3B"
 	
 	on offer
 		conversation
-			`You bring your ship to a gingerly landing in a section of the testing range that doesn't look too pockmarked with craters, and the band begins setting up their equipment and video cameras. "This is great," says Ulrich. "We'll be broadcasting live over the Net. It's time people starting asking why the government thinks it needs all these weapons of war."`
+			`You gingerly bring your ship to a landing in a section of the testing range that doesn't look too pockmarked with craters.  The band begins setting up their equipment and video cameras. "This is great," says Ulrich. "We'll be broadcasting live over the Net. It's time people starting asking why the government thinks it needs all these weapons of war."`
 			`	The band plays through about a third of their set without any evidence that the locals even know you are here, which is surprising for such a tightly secured planet. Then, right in the middle of a particularly crunchy anti-war song, your long range radar picks up something: a large number of ships approaching from a hundred kilometers away.`
 			choice
 				`	"Guys, I think we should get out of here."`
@@ -861,7 +861,7 @@ mission "There Might Be Riots part 3B"
 			`	"Did they hail us?" asks Ulrich.`
 			`	"No," you say.`
 			`	He swears, then shouts to the rest of the band, "Gentlemen, time to pack it up posthaste, before we get turned into a tragic industrial accident!"`
-			`	The band has just packed the last of their equipment away when the ships come into view. It's a swarm of unpiloted combat drones, and they seem to be engaged in mock combat with each other. But, their flight patch is taking them straight in your direction. You power up your shields just as the first of the drones decide that your ship is a valid target for their lasers...`
+			`	The band has just packed the last of their equipment away when the ships come into view. It's a swarm of unpiloted combat drones, and they seem to be engaged in mock combat with each other. But their flight path is taking them straight in your direction. You power up your shields just as the first of the drones decide that your ship is a valid target for their lasers...`
 				launch
 	
 	npc
@@ -895,7 +895,7 @@ mission "There Might Be Riots part 3B"
 				`	"Do you think the voice was real, or just in your head?"`
 				`	"It sounds like a good warning. I'll try to take it to heart."`
 					goto end
-			`	"It was in my head," he says, "And it was real. Very real. When it spoke I felt like the whole galaxy had just tipped sideways, or like I'd just stepped too close to the edge of a cliff and got vertigo. I've imagined some crazy things, but I tell you, this I did not imagine."`
+			`	"It was in my head," he says, "And it was real. Very real. When it spoke, I felt like the whole galaxy had just tipped sideways, or like I'd just stepped too close to the edge of a cliff and got vertigo. I've imagined some crazy things, but I tell you, this I did not imagine."`
 			`	You wish him the best of luck in Hai space, and he heads off into the spaceport with the rest of the band.`
 				accept
 			label end

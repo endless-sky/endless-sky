@@ -19153,7 +19153,7 @@ planet Quicksilver
 	attributes core volcanic mining
 	landscape land/snow0
 	description `Quicksilver is a world of highly variable, violent weather: hurricanes, hail, and earth-shaking thunderstorms. Under the planet's crust, it is equally turbulent and unpredictable, leading to frequent earthquakes and volcanic activity.`
-	description `	Although Quicksilver has vast mineral resources, the tectonic activity makes underground mining far too dangerous. However, a few enterprising settlers work in surface mining and mountaintop removal. The results are ugly, but this is a far too inhospitable world for anyone to care what it looks like.`
+	description `	Although Quicksilver has vast mineral resources, the tectonic activity makes underground mining far too dangerous. However, a few enterprising settlers work in surface mining and mountaintop removal. The results are ugly, but this world is far too inhospitable for anyone to care what it looks like.`
 	spaceport `The spaceport is a single, enormous hangar built as a geodesic dome. It is filled with the constant dull roar of rain beating against the dome from above. When an especially strong blast of wind strikes the dome, its joints flex slightly and you can see the whole structure ripple and move.`
 	spaceport `	Amenities here are minimal: a small cafeteria selling hot drinks and warm stew, and a marketplace mostly filled with stacks of refined steel and aluminum and titanium for sale. A smaller stack of lead-lined crates hold radioactive metals. The air is not particularly cold here, but it is very damp, and the howling weather outside seems to weigh on everyone's spirits.`
 	security 0.2
