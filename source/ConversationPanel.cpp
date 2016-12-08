@@ -246,11 +246,11 @@ bool ConversationPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comm
 		--choice;
 	else if(key == SDLK_DOWN && choice < conversation.Choices(node) - 1)
 		++choice;
-	else if((key == SDLK_RETURN || key == SDLK_KP_ENTER)&& choice < conversation.Choices(node))
+	else if((key == SDLK_RETURN || key == SDLK_KP_ENTER) && choice < conversation.Choices(node))
 		Goto(conversation.NextNode(node, choice), choice);
-	else if(key > '0' && key <= static_cast<SDL_Keycode>('0' + choices.size()))
+	else if(key >= '1' && key < static_cast<SDL_Keycode>('1' + choices.size()))
 		Goto(conversation.NextNode(node, key - '1'), key - '1');
-	else if(key >= SDLK_KP_1 && key <= static_cast<SDL_Keycode>(SDLK_KP_1 + choices.size() - 1))
+	else if(key >= SDLK_KP_1 && key < static_cast<SDL_Keycode>(SDLK_KP_1 + choices.size()))
 		Goto(conversation.NextNode(node, key - SDLK_KP_1), key - SDLK_KP_1);
 	else
 		return false;
