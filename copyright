@@ -109,6 +109,11 @@ Files: images/outfit/pug*
 Copyright: Frederick Goy IV (https://github.com/comnom)
 License: CC-BY-SA 4.0
 
+Files: images/outfit/*storage*
+Copyright: Jonathan Steck
+License: CC-BY-SA-4.0
+Comment: Derived from works by Michael Zahniser and Maximilian Korber (under the same license).
+
 Files:
  images/outfit/harvested*
 Copyright: Michael Zahniser (mzahniser@gmail.com)
