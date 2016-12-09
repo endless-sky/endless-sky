@@ -72,7 +72,7 @@ phrase "band"
 		"Their song "
 	word
 		`"Dude, Where's My Bible?" `
-		`"Re-Inventing Rythmn" `
+		`"Re-Inventing Rhythm" `
 		`"Abstraction Is the Answer" `
 		`"Outrageous Activism" `
 		`"Cheap Entertainment" `
