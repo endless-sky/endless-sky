@@ -17,6 +17,11 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Random.h"
 #include "Sound.h"
 
+// So far, MP3 streaming is only tested on Linux.
+#ifdef __linux__
+#include "Music.h"
+#endif
+
 #ifndef __APPLE__
 #include <AL/al.h>
 #include <AL/alc.h>
@@ -103,6 +108,17 @@ namespace {
 	
 	// The current position of the "listener," i.e. the center of the screen.
 	Point listener;
+	
+#ifdef __linux__
+	// MP3 streaming:
+	unsigned musicSource = 0;
+	static const size_t MUSIC_BUFFERS = 3;
+	unsigned musicBuffers[MUSIC_BUFFERS];
+	shared_ptr<Music> currentTrack;
+	shared_ptr<Music> previousTrack;
+	int musicFade = 0;
+	vector<int16_t> fadeBuffer;
+#endif
 }
 
 
@@ -139,6 +155,22 @@ void Audio::Init(const vector<string> &sources)
 	// Begin loading the files.
 	if(!loadQueue.empty())
 		loadThread = thread(&Load);
+	
+#ifdef __linux__
+	// Create the music-streaming threads.
+	currentTrack.reset(new Music());
+	previousTrack.reset(new Music());
+	alGenSources(1, &musicSource);
+	alGenBuffers(MUSIC_BUFFERS, musicBuffers);
+	for(unsigned buffer : musicBuffers)
+	{
+		// Queue up blocks of silence to start out with.
+		const vector<int16_t> &chunk = currentTrack->NextChunk();
+		alBufferData(buffer, AL_FORMAT_STEREO16, &chunk.front(), 2 * chunk.size(), 44100);
+	}
+	alSourceQueueBuffers(musicSource, MUSIC_BUFFERS, musicBuffers);
+	alSourcePlay(musicSource);
+#endif
 }
 
 
@@ -222,6 +254,21 @@ void Audio::Play(const Sound *sound, const Point &position)
 		unique_lock<mutex> lock(audioMutex);
 		deferred[sound].Add(position - listener);
 	}
+}
+
+
+
+// Play the given music. An empty string means to play nothing.
+void Audio::PlayMusic(const std::string &name)
+{
+#ifdef __linux__
+	// Don't worry about thread safety here, since music will always be started
+	// by the main thread.
+	musicFade = 65536;
+	swap(currentTrack, previousTrack);
+	// If the name is empty, it means to turn music off.
+	currentTrack->SetSource(name.empty() ? name : Files::Sounds() + name + ".mp3");
+#endif
 }
 
 
@@ -321,6 +368,40 @@ void Audio::Step()
 		alSourcePlay(source);
 	}
 	queue.clear();
+	
+#ifdef __linux__
+	// Queue up new buffers for the music, if necessary.
+	int buffersDone = 0;
+	alGetSourcei(musicSource, AL_BUFFERS_PROCESSED, &buffersDone);
+	if(buffersDone)
+	{
+		unsigned buffer = 0;
+		alSourceUnqueueBuffers(musicSource, 1, &buffer);
+		
+		const vector<int16_t> &chunk = currentTrack->NextChunk();
+		
+		if(!musicFade)
+			alBufferData(buffer, AL_FORMAT_STEREO16, &chunk.front(), 2 * chunk.size(), 44100);
+		else
+		{
+			fadeBuffer.clear();
+			const vector<int16_t> &other = previousTrack->NextChunk();
+			for(size_t i = 0; i < chunk.size(); ++i)
+			{
+				// Blend the two tracks together.
+				fadeBuffer.push_back(
+					(musicFade * other[i] + (65536 - musicFade) * chunk[i]) / 65536);
+				
+				// Slowly fade into the new track.
+				if(musicFade)
+					--musicFade;
+			}
+			alBufferData(buffer, AL_FORMAT_STEREO16, &fadeBuffer.front(), 2 * fadeBuffer.size(), 44100);
+		}
+		
+		alSourceQueueBuffers(musicSource, 1, &buffer);
+	}
+#endif
 }
 
 
@@ -369,6 +450,15 @@ void Audio::Quit()
 		alDeleteBuffers(1, &id);
 	}
 	sounds.clear();
+	
+#ifdef __linux__
+	// Clean up the music source and buffers.
+	alSourceStop(musicSource);
+	alDeleteSources(1, &musicSource);
+	alDeleteBuffers(MUSIC_BUFFERS, musicBuffers);
+	currentTrack.reset();
+	previousTrack.reset();
+#endif
 	
 	// Close the connection to the OpenAL library.
 	if(context)

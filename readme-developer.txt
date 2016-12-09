@@ -14,7 +14,8 @@ DEB-based distros:
    libjpeg-turbo8-dev \
    libgl1-mesa-dev \
    libglew-dev \
-   libopenal-dev
+   libopenal-dev \
+   libmad0-dev
 
 RPM-based distros:
    gcc-c++ \
@@ -25,6 +26,7 @@ RPM-based distros:
    mesa-libGL-devel \
    sglew-devel \
    openal-soft-devel \
+   libmad0-devel
 
 You can then just navigate to the source code folder in a terminal and type:
 
