@@ -37,7 +37,7 @@ phrase "musical venue"
 		"playing a gig "
 		"live in concert "
 	word
-		"at Tarazed stadium! "
+		"at Tarazed Stadium! "
 		"at the amphitheater on Skymoot! "
 		"at a concert hall in New Sydney! "
 		"in a night club on Splashdown! "
