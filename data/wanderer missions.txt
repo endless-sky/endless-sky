@@ -1276,6 +1276,16 @@ mission "Wanderers: Alpha Surveillance J"
 				`	"Sooner or later we will have to hunt them down and destroy them."`
 			`	"You are probably right," he says, uncertainly. He stares absently up into the sky and scratches at his wing with one talon. A few feathers fall out. "If only the Eye would open," he says. "I feel the air is [charged, tense] like the moment before a storm. Like we are [waiting, anticipating] something that ought to be here and is not. Though it may bring [catastrophe, upheaval, transition] I wish the wait would end."`
 			`	You talk for a while longer, but it seems that for now there is nothing more the Wanderers need from you. Iktat Rek mentions that you should stop by the outfitter before you leave and see "our [grim, regrettable] new devices," then thanks you once more and departs.`
+			
+#Reverse compatibility
+mission "Wanderers: Flycatcher Category"
+	landing
+	invisible
+	to offer
+		has "event: wanderers: first tech increase"
+	on offer
+		event "wanderers: flycatcher category"
+		fail
 
 # Patching a mistake in 0.9.1:
 mission "Wanderers: Unfettered Invasion Patch"
