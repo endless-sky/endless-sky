@@ -243,56 +243,6 @@ ship "Arach Transport"
 	description ``
 
 
-ship "Heliarch Neutralizer"
-	sprite "ship/heliarch neutralizer"
-	attributes
-		category "Light Warship"
-		"cost" 18847000
-		"shields" 36400
-		"hull" 32800
-		"required crew" 17
-		"bunks" 24
-		"mass" 270
-		"drag" 4.1
-		"heat dissipation" .75
-		"fuel capacity" 1000
-		"cargo space" 36
-		"outfit space" 367
-		"weapon capacity" 72
-		"engine capacity" 102
-		weapon
-			"blast radius" 150
-			"shield damage" 1800
-			"hull damage" 900
-			"hit force" 2100
-	outfits
-		"Ion Rain Gun" 4
-		
-		"Small Reactor Module" 2
-		"Large Battery Module"
-		"Large Shield Module"
-		"Large Repair Module"
-		"Cooling Module"
-		
-		"Large Thrust Module"
-		"Small Thrust Module" 2
-		"Large Steering Module"
-		"Small Steering Module" 2
-		"Hyperdrive"
-	
-	gun -22 -57 "Ion Rain Gun"
-	gun -16 -59 "Ion Rain Gun"
-	gun 16 -59 "Ion Rain Gun"
-	gun 22 -57 "Ion Rain Gun"
-	engine -17 82 .7
-	engine 0 74 1
-	engine 17 82 .7
-	explode "small explosion" 30
-	explode "medium explosion" 40
-	explode "large explosion" 20
-	"final explode" "final explosion medium" 1
-	description ``
-
 ship "Heliarch Interdictor"
 	sprite "ship/heliarch interdictor"
 	attributes
@@ -344,6 +294,56 @@ ship "Heliarch Interdictor"
 	explode "large explosion" 30
 	explode "huge explosion" 10
 	"final explode" "final explosion large" 1
+	description ``
+
+ship "Heliarch Neutralizer"
+	sprite "ship/heliarch neutralizer"
+	attributes
+		category "Light Warship"
+		"cost" 18847000
+		"shields" 36400
+		"hull" 32800
+		"required crew" 17
+		"bunks" 24
+		"mass" 270
+		"drag" 4.1
+		"heat dissipation" .75
+		"fuel capacity" 1000
+		"cargo space" 36
+		"outfit space" 367
+		"weapon capacity" 72
+		"engine capacity" 102
+		weapon
+			"blast radius" 150
+			"shield damage" 1800
+			"hull damage" 900
+			"hit force" 2100
+	outfits
+		"Ion Rain Gun" 4
+		
+		"Small Reactor Module" 2
+		"Large Battery Module"
+		"Large Shield Module"
+		"Large Repair Module"
+		"Cooling Module"
+		
+		"Large Thrust Module"
+		"Small Thrust Module" 2
+		"Large Steering Module"
+		"Small Steering Module" 2
+		"Hyperdrive"
+	
+	gun -22 -57 "Ion Rain Gun"
+	gun -16 -59 "Ion Rain Gun"
+	gun 16 -59 "Ion Rain Gun"
+	gun 22 -57 "Ion Rain Gun"
+	engine -17 82 .7
+	engine 0 74 1
+	engine 17 82 .7
+	explode "small explosion" 30
+	explode "medium explosion" 40
+	explode "large explosion" 20
+	"final explode" "final explosion medium" 1
 	description ``
 
 ship "Heliarch Punisher"
