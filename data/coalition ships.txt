@@ -23,7 +23,7 @@ ship "Arach Courier"
 		"fuel capacity" 300
 		"cargo space" 78
 		"outfit space" 148
-		"weapon capacity" 0
+		"weapon capacity" 39
 		"engine capacity" 40
 		weapon
 			"blast radius" 20
@@ -65,7 +65,7 @@ ship "Arach Freighter"
 		"fuel capacity" 500
 		"cargo space" 310
 		"outfit space" 349
-		"weapon capacity" 0
+		"weapon capacity" 132
 		"engine capacity" 92
 		weapon
 			"blast radius" 80
@@ -112,7 +112,7 @@ ship "Arach Hulk"
 		"fuel capacity" 500
 		"cargo space" 541
 		"outfit space" 520
-		"weapon capacity" 0
+		"weapon capacity" 208
 		"engine capacity" 148
 		weapon
 			"blast radius" 120
@@ -163,7 +163,7 @@ ship "Arach Spindle"
 		"fuel capacity" 500
 		"cargo space" 280
 		"outfit space" 434
-		"weapon capacity" 0
+		"weapon capacity" 138
 		"engine capacity" 148
 		weapon
 			"blast radius" 100
@@ -211,7 +211,7 @@ ship "Arach Transport"
 		"fuel capacity" 400
 		"cargo space" 190
 		"outfit space" 281
-		"weapon capacity" 0
+		"weapon capacity" 96
 		"engine capacity" 70
 		weapon
 			"blast radius" 40
@@ -422,7 +422,7 @@ ship "Kimek Briar"
 		"fuel capacity" 700
 		"cargo space" 21
 		"outfit space" 245
-		"weapon capacity" 0
+		"weapon capacity" 89
 		"engine capacity" 60
 		weapon
 			"blast radius" 34
@@ -465,7 +465,7 @@ ship "Kimek Spire"
 		"fuel capacity" 800
 		"cargo space" 64
 		"outfit space" 489
-		"weapon capacity" 0
+		"weapon capacity" 256
 		"engine capacity" 129
 		weapon
 			"blast radius" 140
@@ -516,7 +516,7 @@ ship "Kimek Thistle"
 		"fuel capacity" 700
 		"cargo space" 29
 		"outfit space" 321
-		"weapon capacity" 0
+		"weapon capacity" 118
 		"engine capacity" 87
 		weapon
 			"blast radius" 60
@@ -562,7 +562,7 @@ ship "Kimek Thorn"
 		"fuel capacity" 600
 		"cargo space" 12
 		"outfit space" 133
-		"weapon capacity" 0
+		"weapon capacity" 40
 		"engine capacity" 38
 		weapon
 			"blast radius" 14
@@ -604,7 +604,7 @@ ship "Saryd Runabout"
 		"fuel capacity" 400
 		"cargo space" 42
 		"outfit space" 172
-		"weapon capacity" 0
+		"weapon capacity" 44
 		"engine capacity" 42
 		weapon
 			"blast radius" 22
@@ -644,7 +644,7 @@ ship "Saryd Sojourner"
 		"fuel capacity" 800
 		"cargo space" 260
 		"outfit space" 568
-		"weapon capacity" 0
+		"weapon capacity" 202
 		"engine capacity" 156
 		weapon
 			"blast radius" 200
@@ -696,7 +696,7 @@ ship "Saryd Traveler"
 		"fuel capacity" 600
 		"cargo space" 137
 		"outfit space" 466
-		"weapon capacity" 0
+		"weapon capacity" 177
 		"engine capacity" 79
 		weapon
 			"blast radius" 72
@@ -746,7 +746,7 @@ ship "Saryd Visitor"
 		"fuel capacity" 400
 		"cargo space" 98
 		"outfit space" 320
-		"weapon capacity" 0
+		"weapon capacity" 90
 		"engine capacity" 57
 		weapon
 			"blast radius" 42
