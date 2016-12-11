@@ -8,6 +8,67 @@
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
+outfit "Bombardment Cannon"
+	category "Guns"
+	cost 437000
+	thumbnail "outfit/unknown"
+	"mass" 12
+	"outfit space" -12
+	"weapon capacity" -12
+	"gun ports" -1
+	weapon
+		sprite "projectile/bombardment"
+			"frame rate" 3.2
+			"no repeat"
+		sound "blaster"
+		"hit effect" "bombardment impact"
+		"inaccuracy" 4
+		"velocity" 6
+		"random velocity" 1
+		"lifetime" 150
+		"reload" 9
+		"firing energy" 17
+		"firing heat" 14
+		"shield damage" 22
+		"hull damage" 25
+	description `The Bombardment Cannon was designed during the original war with the Quarg, in order to give Heliarch civilian ships a way to strike Quarg warships from a safe distance. But now, as with all their weapons, its use is limited to Heliarch warships.`
+
+outfit "Bombardment Turret"
+	category "Turrets"
+	cost 1845000
+	thumbnail "outfit/unknown"
+	"mass" 43
+	"outfit space" -43
+	"weapon capacity" -43
+	"turret mounts" -1
+	weapon
+		sprite "projectile/bombardment"
+			"frame rate" 3.2
+			"no repeat"
+		sound "blaster"
+		"hit effect" "bombardment impact"
+		"inaccuracy" 4
+		"velocity" 6
+		"random velocity" 1
+		"lifetime" 150
+		"reload" 3
+		"firing energy" 17
+		"firing heat" 14
+		"shield damage" 22
+		"hull damage" 25
+	description `A Bombarment Turret is not one of the most dangerous Heliarch weapons, but it has the advantage that it can hit targets a considerable distance away.`
+
+effect "bombardment impact"
+	sprite "effect/bombardment impact"
+		"no repeat"
+		"frame rate" 40
+	"lifetime" 7
+	"random angle" 40
+	"random velocity" 2
+	"random spin" 20
+	"velocity scale" -.2
+
+
 outfit "Finisher Pod"
 	category "Secondary Weapons"
 	cost 1370000
