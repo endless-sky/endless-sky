@@ -44,7 +44,7 @@ outfit "Large Reactor Module"
 	thumbnail "outfit/unknown"
 	"mass" 98
 	"outfit space" -98
-	"solar collection" 22.3
+	"energy generation" 22.3
 	"heat generation" 45
 	description "This reactor was designed for the most powerful Heliarch warships. Its design has not changed significantly in the millennia since the first battle with the Quarg, but each generation of reactors is made slightly more efficient than the previous ones."
 
