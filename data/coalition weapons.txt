@@ -40,6 +40,7 @@ outfit "Bombardment Turret"
 	"mass" 43
 	"outfit space" -43
 	"weapon capacity" -43
+	"required crew" 1
 	"turret mounts" -1
 	weapon
 		sprite "projectile/bombardment"
@@ -177,6 +178,7 @@ outfit "Heliarch Attractor"
 	"mass" 49
 	"outfit space" -49
 	"weapon capacity" -49
+	"required crew" 1
 	"turret mounts" -1
 	weapon
 		sprite "projectile/attractor"
@@ -214,6 +216,7 @@ outfit "Heliarch Repulsor"
 	"mass" 56
 	"outfit space" -56
 	"weapon capacity" -56
+	"required crew" 1
 	"turret mounts" -1
 	weapon
 		sprite "projectile/repulsor"

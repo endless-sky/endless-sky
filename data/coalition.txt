@@ -1,0 +1,93 @@
+# Copyright (c) 2016 by Michael Zahniser
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+
+government "Heliarch"
+	swizzle 0
+	color .92 .64 .11
+	color 1 .9 .8
+	color 1 .8 .5
+	"player reputation" 1
+	"attitude toward"
+		"Quarg" -.01
+		"Coalition" 1
+
+government "Coalition"
+	swizzle 5
+	color 1 .7 .8
+	color 1 .6 .7
+	"player reputation" 1
+	"attitude toward"
+		"Heliarch" 1
+
+
+fleet "Heliarch"
+	government "Heliarch"
+	cargo 1
+	personality
+		heroic
+	variant 40
+		"Heliarch Neutralizer"
+	variant 20
+		"Heliarch Interdictor"
+	variant 10
+		"Heliarch Punisher"
+
+
+outfitter "Coalition Basics"
+	"Small Reactor Module"
+	"Small Collector Module"
+	"Small Battery Module"
+	"Small Shield Module"
+	"Small Repair Module"
+	"Cooling Module"
+	"Small Thrust Module"
+	"Small Steering Module"
+
+outfitter "Coalition Advanced"
+	"Small Reactor Module"
+	"Large Reactor Module"
+	"Small Collector Module"
+	"Large Collector Module"
+	"Small Battery Module"
+	"Large Battery Module"
+	"Small Shield Module"
+	"Large Shield Module"
+	"Small Repair Module"
+	"Large Repair Module"
+	"Cooling Module"
+	"Small Thrust Module"
+	"Large Thrust Module"
+	"Small Steering Module"
+	"Large Steering Module"
+
+
+shipyard "Arach"
+	"Arach Courier"
+	"Arach Freighter"
+	"Arach Hulk"
+	"Arach Spindle"
+	"Arach Transport"
+
+shipyard "Kimek"
+	"Kimek Briar"
+	"Kimek Spire"
+	"Kimek Thistle"
+	"Kimek Thorn"
+
+shipyard "Saryd"
+	"Saryd Runabout"
+	"Saryd Sojourner"
+	"Saryd Traveler"
+	"Saryd Visitor"
+
+shipyard "Coalition Basics"
+	"Arach Courier"
+	"Kimek Thorn"
+	"Saryd Runabout"

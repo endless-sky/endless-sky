@@ -243,6 +243,170 @@ ship "Arach Transport"
 	description ``
 
 
+ship "Heliarch Neutralizer"
+	sprite "ship/heliarch neutralizer"
+	attributes
+		category "Light Warship"
+		"cost" 18847000
+		"shields" 36400
+		"hull" 32800
+		"required crew" 17
+		"bunks" 24
+		"mass" 270
+		"drag" 4.1
+		"heat dissipation" .75
+		"fuel capacity" 1000
+		"cargo space" 36
+		"outfit space" 367
+		"weapon capacity" 72
+		"engine capacity" 102
+		weapon
+			"blast radius" 150
+			"shield damage" 1800
+			"hull damage" 900
+			"hit force" 2100
+	outfits
+		"Ion Rain Gun" 4
+		
+		"Small Reactor Module" 2
+		"Large Battery Module"
+		"Large Shield Module"
+		"Large Repair Module"
+		"Cooling Module"
+		
+		"Large Thrust Module"
+		"Small Thrust Module" 2
+		"Large Steering Module"
+		"Small Steering Module" 2
+		"Hyperdrive"
+	
+	gun -22 -57 "Ion Rain Gun"
+	gun -16 -59 "Ion Rain Gun"
+	gun 16 -59 "Ion Rain Gun"
+	gun 22 -57 "Ion Rain Gun"
+	engine -17 82 .7
+	engine 0 74 1
+	engine 17 82 .7
+	explode "small explosion" 30
+	explode "medium explosion" 40
+	explode "large explosion" 20
+	"final explode" "final explosion medium" 1
+	description ``
+
+ship "Heliarch Interdictor"
+	sprite "ship/heliarch interdictor"
+	attributes
+		category "Medium Warship"
+		"cost" 35487000
+		"shields" 65300
+		"hull" 54600
+		"required crew" 42
+		"bunks" 70
+		"mass" 520
+		"drag" 7.4
+		"heat dissipation" .70
+		"fuel capacity" 800
+		"cargo space" 79
+		"outfit space" 544
+		"weapon capacity" 179
+		"engine capacity" 135
+		weapon
+			"blast radius" 250
+			"shield damage" 3000
+			"hull damage" 1500
+			"hit force" 3800
+	outfits
+		"Finisher Pod" 2
+		"Finisher Torpedo" 80
+		"Heliarch Attractor"
+		"Heliarch Repulsor"
+		
+		"Large Reactor Module"
+		"Large Battery Module"
+		"Large Shield Module" 2
+		"Large Repair Module"
+		"Cooling Module"
+		
+		"Large Thrust Module" 2
+		"Large Steering Module" 2
+		"Hyperdrive"
+	
+	gun -20 -98 "Finisher Pod"
+	gun 20 -98 "Finisher Pod"
+	turret -8 -63 "Heliarch Attractor"
+	turret 8 -63 "Heliarch Repulsor"
+	engine -30 163 .5
+	engine -20 163 .85
+	engine 20 163 .85
+	engine 30 163 .5
+	explode "small explosion" 20
+	explode "medium explosion" 50
+	explode "large explosion" 30
+	explode "huge explosion" 10
+	"final explode" "final explosion large" 1
+	description ``
+
+ship "Heliarch Punisher"
+	sprite "ship/heliarch punisher"
+	attributes
+		category "Heavy Warship"
+		"cost" 58487000
+		"shields" 108000
+		"hull" 85000
+		"required crew" 96
+		"bunks" 145
+		"mass" 780
+		"drag" 12.2
+		"heat dissipation" .60
+		"fuel capacity" 600
+		"cargo space" 94
+		"outfit space" 885
+		"weapon capacity" 324
+		"engine capacity" 187
+		weapon
+			"blast radius" 400
+			"shield damage" 4800
+			"hull damage" 2400
+			"hit force" 6000
+	outfits
+		"Ion Rain Gun" 4
+		"Finisher Pod" 2
+		"Finisher Torpedo" 80
+		"Bombardment Turret" 4
+		
+		"Large Reactor Module" 2
+		"Large Battery Module"
+		"Large Shield Module" 3
+		"Large Repair Module" 2
+		"Cooling Module" 3
+		
+		"Large Thrust Module" 2
+		"Small Thrust Module" 2
+		"Large Steering Module" 2
+		"Small Steering Module" 2
+		"Hyperdrive"
+	
+	gun -27 -118 "Ion Rain Gun"
+	gun -21 -121 "Ion Rain Gun"
+	gun 21 -121 "Ion Rain Gun"
+	gun 27 -118 "Ion Rain Gun"
+	gun -43 -43 "Finisher Pod"
+	gun 43 -43 "Finisher Pod"
+	turret -13 -42 "Bombardment Turret"
+	turret 0 -35 "Bombardment Turret"
+	turret 13 -42 "Bombardment Turret"
+	turret 0 164 "Bombardment Turret"
+	engine -24 184 .6
+	engine 0 187 1.1
+	engine 24 184 .6
+	explode "small explosion" 20
+	explode "medium explosion" 60
+	explode "large explosion" 40
+	explode "huge explosion" 20
+	"final explode" "final explosion large" 1
+	description ``
+
+
 ship "Kimek Briar"
 	sprite "ship/kimek briar"
 	attributes
