@@ -54,12 +54,18 @@ public:
 	static const Command FIGHT;
 	static const Command GATHER;
 	static const Command HOLD;
+	static const Command AMMO;
 	// This command from the AI tells a ship not to jump or land yet even if it
 	// is in position to do so. (There is no key mapped to this command.)
 	static const Command WAIT;
 	// This command from the AI tells a ship that if possible, it should apply
 	// less than its full thrust in order to come to a complete stop.
 	static const Command STOP;
+	
+public:
+	// In the given text, replace any instances of command names (in angle
+	// brackets) with key names (in quotes).
+	static std::string ReplaceNamesWithKeys(const std::string &text);
 	
 public:
 	Command() = default;

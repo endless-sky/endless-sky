@@ -408,7 +408,8 @@ bool System::IsInhabited() const
 bool System::HasFuelFor(const Ship &ship) const
 {
 	for(const StellarObject &object : objects)
-		if(object.GetPlanet() && object.GetPlanet()->HasSpaceport() && object.GetPlanet()->CanLand(ship))
+		if(object.GetPlanet() && object.GetPlanet()->HasSpaceport() 
+				&& !object.GetPlanet()->IsWormhole() && object.GetPlanet()->CanLand(ship))
 			return true;
 	
 	return false;
@@ -453,6 +454,13 @@ int System::Trade(const string &commodity) const
 {
 	auto it = trade.find(commodity);
 	return (it == trade.end()) ? 0 : it->second.price;
+}
+
+
+
+bool System::HasTrade() const
+{
+	return !trade.empty();
 }
 
 

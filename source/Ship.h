@@ -72,6 +72,14 @@ public:
 		static const uint8_t RIGHT = 2;
 		static const uint8_t BACK = 3;
 	};
+	class EnginePoint : public Point {
+	public:
+		EnginePoint(double x, double y, double zoom) : Point(x, y), zoom(zoom) {}
+		double Zoom() const { return zoom; }
+		
+	private:
+		double zoom;
+	};
 	
 public:
 	/* Functions provided by the Body base class:
@@ -107,6 +115,7 @@ public:
 	const std::string &Description() const;
 	// Get this ship's cost.
 	int64_t Cost() const;
+	int64_t ChassisCost() const;
 	// Get the licenses needed to buy or operate this ship.
 	const std::vector<std::string> &Licenses() const;
 	
@@ -191,7 +200,7 @@ public:
 	// Check if the ship is thrusting. If so, the engine sound should be played.
 	bool IsThrusting() const;
 	// Get the points from which engine flares should be drawn.
-	const std::vector<Point> &EnginePoints() const;
+	const std::vector<EnginePoint> &EnginePoints() const;
 	
 	// Mark a ship as destroyed, or bring back a destroyed ship.
 	void Destroy();
@@ -219,6 +228,8 @@ public:
 	int JumpsRemaining() const;
 	// Get the amount of fuel expended per jump.
 	double JumpFuel() const;
+	// Get the heat level at idle.
+	double IdleHeat() const;
 	
 	// Access how many crew members this ship has or needs.
 	int Crew() const;
@@ -322,8 +333,6 @@ private:
 	void RemoveEscort(const Ship &ship);
 	// Get the hull amount at which this ship is disabled.
 	double MinimumHull() const;
-	// Get the heat level at idle.
-	double IdleHeat() const;
 	// Add to this ship's hull or shields, and return the amount added. If the
 	// ship is carrying fighters, add to them as well.
 	double AddHull(double rate);
@@ -390,7 +399,7 @@ private:
 	
 	std::vector<Bay> bays;
 	
-	std::vector<Point> enginePoints;
+	std::vector<EnginePoint> enginePoints;
 	Armament armament;
 	// While loading, keep track of which outfits already have been equipped.
 	// (That is, they were specified as linked to a given gun or turret point.)

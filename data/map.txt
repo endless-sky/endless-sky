@@ -5594,7 +5594,7 @@ system Eteron
 	fleet "Small Northern Merchants" 1000
 	fleet "Large Northern Merchants" 1500
 	fleet "Small Republic" 2000
-	fleet "Large Republic" 400
+	fleet "Large Republic" 4000
 	fleet "Small Northern Pirates" 1000
 	object
 		sprite star/m4
@@ -9392,7 +9392,7 @@ system Kugel
 	fleet "Large Core Merchants" 4000
 	fleet "Small Core Merchants" 4000
 	fleet "Small Republic" 6000
-	fleet "Small Syndicate" 80200
+	fleet "Small Syndicate" 8000
 	fleet "Large Core Pirates" 4000
 	fleet "Small Core Pirates" 4000
 	object
@@ -11707,7 +11707,7 @@ system Nunki
 system Oblate
 	pos -124 -119
 	government Pirate
-	habitable 2035
+	habitable 12000
 	belt 1704
 	link Alcyone
 	link Moktar
@@ -11734,14 +11734,8 @@ system Oblate
 	fleet "Large Core Pirates" 1000
 	fleet "Large Syndicate" 3000
 	object
-		sprite star/f5
-		distance 19.027
-		period 11.802
-		offset 180
-	object
-		sprite star/k5
-		distance 101.973
-		period 11.802
+		sprite star/giant
+		period 10
 	object
 		sprite planet/ice4
 		distance 397.973
@@ -13001,7 +12995,8 @@ system Regulus
 	trade Medical 537
 	trade Metal 406
 	trade Plastic 318
-	fleet "Small Southern Merchants" 4000
+	fleet "Small Southern Merchants" 6000
+	fleet "Small Northern Merchants" 6000
 	fleet "Small Southern Pirates" 2000
 	fleet "Large Southern Pirates" 8000
 	fleet "Small Republic" 10000
@@ -16779,8 +16774,8 @@ system "Yed Prior"
 	trade Medical 902
 	trade Metal 333
 	trade Plastic 307
-	fleet "Small Northern Merchants" 800
-	fleet "Large Northern Merchants" 1600
+	fleet "Small Southern Merchants" 800
+	fleet "Large Southern Merchants" 1600
 	fleet "Small Southern Pirates" 2000
 	fleet "Large Southern Pirates" 3000
 	fleet "Small Militia" 3000
@@ -17796,7 +17791,7 @@ planet Dustmaker
 planet Earth
 	attributes "near earth" urban tourism
 	landscape land/city3
-	description `The ancestral home world of humanity, Earth has a population ten times that of any other inhabited planet. Sprawling cities cover large portions of its surface, many of them overcrowded and dangerous. Some people work to scrape together enough money to leave, while at the same time others, born on distant worlds, make a pilgrimage of sorts to see this planet that once cradled the entirety of the human species.`
+	description `The ancestral home world of humanity, Earth has a population twice that of any other inhabited planet. Sprawling cities cover large portions of its surface, many of them overcrowded and dangerous. Some people work to scrape together enough money to leave, while at the same time others, born on distant worlds, make a pilgrimage of sorts to see this planet that once cradled the entirety of the human species.`
 	description `	Earth is also the capital of the Republic. Representative government becomes complicated when one planet has a greater population than a hundred planets elsewhere. As a result, settlements of less than a million are grouped together into planetary districts that elect a single representative between them - a source of much frustration in the frontier worlds.`
 	spaceport `Earth's spaceport is a series of massive buildings; the gaps between them form narrow concrete canyons a hundred stories deep. From a distance it has the appearance of a bustling termite mound.`
 	spaceport `	Inside the towers is a warren of dim hallways and dingy shops. Hitchhikers sleep in the corners of unused docking bays under old army blankets, a few uniformed cleaners try to keep the litter and dust in check, and rich tourists from other stars cling tightly to their expensive cameras.`
@@ -17857,10 +17852,8 @@ planet "Esperaktu Station"
 
 planet "Far'en Lai"
 	landscape land/dune3
-	description `When the Korath were banished to the Core, they were left with only one living world, a planet they call "Far'en Lai," meaning, "the last candle-flame." Afraid that this planet's biosphere will turn to dust in their hands like all the other worlds they once controlled, they Korath have left Far'en Lai entirely unsettled and unexploited. It is rumored that the terms of their exile dictate that if Far'en Lai withers and dies, the remaining Korath exiles will be exterminated, but that if they can learn to make the planet flourish, their place in the galaxy will be restored.`
-	"required reputation" -1000
-	bribe 0
-	security 0
+	government Uninhabited
+	description `When the Korath were banished to the Core, they were left with only one living world, a planet they call "Far'en Lai," meaning, "the last candle-flame." Afraid that this planet's biosphere will turn to dust in their hands like all the other worlds they once controlled, the Korath have left Far'en Lai entirely unsettled and unexploited. It is rumored that the terms of their exile dictate that if Far'en Lai withers and dies, the remaining Korath exiles will be exterminated, but that if they can learn to make the planet flourish, their place in the galaxy will be restored.`
 
 planet "Fara Skaeruti"
 	attributes korath station
@@ -18384,7 +18377,7 @@ planet Icefall
 planet Icelake
 	attributes hai
 	landscape land/sky4
-	description `Icelake is the second most populous Hai planet. Since its oil and natural gas reserves have long since been depleted, the large cities and factories here rely heavily on geothermal and wind energy. One fortunate side effect of that is that the air here is almost as pristine as on a non-industrial world.	`
+	description `Icelake is the second most populous Hai planet. Since its oil and natural gas reserves have long since been depleted, the large cities and factories here rely heavily on geothermal and wind energy. One fortunate side effect of that is that the air here is almost as pristine as on a non-industrial world.`
 	spaceport `The largest hangars in the spaceport are build of metal beams more than a meter wide, with thick glass panels between them to let in the sunlight. Even the smaller and newer warehouses on the outskirts of the port seem as solid and permanent as the mountains themselves. Thousands of Hai are walking back and forth between the buildings, and many of them regard you with curiosity; there are very few human visitors here.`
 	shipyard "Hai Intermediate"
 	outfitter "Hai Advanced"
@@ -18676,7 +18669,7 @@ planet Mere
 	attributes rim fishing
 	landscape land/sea7
 	description `Mere is a world almost entirely covered by oceans. The locals live most of their lives on enormous ships, almost like floating cities, which travel around collecting fish and seaweed for food or harvesting pearls from the shallows to be sold off-world. The city-ships must do their best to avoid certain latitudes where hurricanes are most common, and even so storms are a continuous threat to anyone who lives here. Weather conditions are tracked constantly by a network of satellites.`
-	spaceport `The spaceport is on the largest island on the planet. The marketplace is a large, open plaza down by the docks, where the captains of whichever city-ships are moored here at the moment can sell their goods directly to customers. Behind the plaza are large warehouses. If a storm approaches, the goods can quickly be moved inside, while the ships launch out into the deep sea where they have a better change of weathering the storm without being smashed against the rocks.`
+	spaceport `The spaceport is on the largest island on the planet. The marketplace is a large, open plaza down by the docks, where the captains of whichever city-ships are moored here at the moment can sell their goods directly to customers. Behind the plaza are large warehouses. If a storm approaches, the goods can quickly be moved inside, while the ships launch out into the deep sea where they have a better chance of weathering the storm without being smashed against the rocks.`
 	spaceport `	The entire port is filled with the almost overpowering smell of fish. You have heard that this is the best place in the galaxy for good, cheap sushi, but the smell is doing nothing for your appetite.`
 	security 0.1
 	tribute 900

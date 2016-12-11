@@ -39,6 +39,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "StarField.h"
 #include "System.h"
 
+#include <algorithm>
 #include <cmath>
 
 using namespace std;
@@ -59,12 +60,12 @@ namespace {
 		return Radar::HOSTILE;
 	}
 	
-	int RadarType(const Ship &ship)
+	int RadarType(const Ship &ship, int step)
 	{
+		if(ship.IsDisabled() || (ship.IsOverheated() && ((step / 20) % 2)))
+			return Radar::INACTIVE;
 		if(ship.GetGovernment()->IsPlayer() || ship.GetPersonality().IsEscort())
 			return Radar::PLAYER;
-		if(ship.IsDisabled() || ship.IsOverheated())
-			return Radar::INACTIVE;
 		if(!ship.GetGovernment()->IsEnemy())
 			return Radar::FRIENDLY;
 		auto target = ship.GetTargetShip();
@@ -176,7 +177,9 @@ void Engine::Place()
 				// Skip ships that have been destroyed.
 				if(ship->IsDestroyed())
 					continue;
-				
+				// Avoid the exploit where the player can wear down an NPC's
+				// crew by attrition over the course of many days.
+				ship->AddCrew(max(0, ship->RequiredCrew() - ship->Crew()));
 				if(!ship->IsDisabled())
 					ship->Recharge();
 				
@@ -475,7 +478,7 @@ void Engine::Step(bool isActive)
 		else
 			info.SetString("target government", target->GetGovernment()->GetName());
 		
-		int targetType = RadarType(*target);
+		int targetType = RadarType(*target, step);
 		info.SetOutlineColor(Radar::GetColor(targetType));
 		if(target->GetSystem() == player.GetSystem() && target->IsTargetable())
 		{
@@ -1112,7 +1115,7 @@ void Engine::CalculateStep()
 			
 			double size = sqrt(ship->Width() + ship->Height()) * .14 + .5;
 			bool isYourTarget = (flagship && ship == flagship->GetTargetShip());
-			int type = RadarType(*ship);
+			int type = RadarType(*ship, step);
 			hasHostiles |= (type == Radar::HOSTILE);
 			radar[calcTickTock].Add(isYourTarget ? Radar::SPECIAL : type, ship->Position(), size);
 		}
@@ -1354,7 +1357,7 @@ void Engine::AddSprites(const Ship &ship)
 	bool drawCloaked = (cloak && ship.GetGovernment()->IsPlayer());
 	
 	if(ship.IsThrusting())
-		for(const Point &point : ship.EnginePoints())
+		for(const Ship::EnginePoint &point : ship.EnginePoints())
 		{
 			Point pos = ship.Facing().Rotate(point) * ship.Zoom() + ship.Position();
 			// If multiple engines with the same flare are installed, draw up to
@@ -1362,7 +1365,7 @@ void Engine::AddSprites(const Ship &ship)
 			for(const auto &it : ship.Attributes().FlareSprites())
 				for(int i = 0; i < it.second && i < 3; ++i)
 				{
-					Body sprite(it.first, pos, ship.Velocity(), ship.Facing());
+					Body sprite(it.first, pos, ship.Velocity(), ship.Facing(), point.Zoom());
 					draw[calcTickTock].Add(sprite, cloak);
 				}
 		}

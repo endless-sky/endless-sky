@@ -79,7 +79,7 @@ private:
 	double acceptedScroll = 0.;
 	
 	int dragSide = 0;
-	mutable WrappedText wrap;
+	WrappedText wrap;
 };
 
 

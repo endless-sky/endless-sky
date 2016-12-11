@@ -158,7 +158,7 @@ outfitter "Wanderer Advanced"
 	"Sunbeam"
 	"Thunderhead Missile"
 	"Thunderhead Launcher"
-	"Thunderhead"
+	"Thunderhead Storage Array"
 	"Small Biochemical Cell"
 	"Large Biochemical Cell"
 	"Yellow Sun Reactor"
@@ -468,9 +468,7 @@ event "wanderers: unfettered invasion starts"
 	"reputation: Hai (Unfettered)" <?= -100
 	government "Hai (Unfettered)"
 		"attitude toward"
-			"Hai" -.1
-			"Wanderer" -.1
-			"Pug" -.1
+			"Wanderer" -.01
 	outfitter "Wanderer Advanced"
 		"Wanderer Anti-Missile"
 	planet "Varu K'est"

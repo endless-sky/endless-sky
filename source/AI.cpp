@@ -48,7 +48,7 @@ namespace {
 	
 	bool IsStranded(const Ship &ship)
 	{
-		return ship.GetSystem() && !ship.GetSystem()->HasFuelFor(ship)
+		return ship.GetSystem() && !ship.GetSystem()->HasFuelFor(ship) && ship.JumpFuel()
 			&& ship.Attributes().Get("fuel capacity") && !ship.JumpsRemaining();
 	}
 	
@@ -273,6 +273,9 @@ void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &player)
 			Ship *nextAlly = nullptr;
 			for(const auto &ship : ships)
 			{
+				// Never ask yourself for help.
+				if(ship.get() == it.get())
+					continue;
 				if(ship->IsDisabled() || !ship->IsTargetable() || ship->GetSystem() != it->GetSystem())
 					continue;
 				
@@ -797,7 +800,14 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 				totalWeight += planetWeight;
 			}
 		if(!totalWeight)
-			return;
+		{
+			// If there is nothing this ship can land on, have it just go to the
+			// star and hover over it rather than drifting far away.
+			if(ship.GetSystem()->Objects().empty())
+				return;
+			totalWeight = 1;
+			planets.push_back(&ship.GetSystem()->Objects().front());
+		}
 		
 		int choice = Random::Int(totalWeight);
 		if(choice < systemTotalWeight)
@@ -853,7 +863,7 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 void AI::MoveEscort(Ship &ship, Command &command) const
 {
 	const Ship &parent = *ship.GetParent();
-	bool hasFuelCapacity = ship.Attributes().Get("fuel capacity");
+	bool hasFuelCapacity = ship.Attributes().Get("fuel capacity") && ship.JumpFuel();
 	bool isStaying = ship.GetPersonality().IsStaying() || !hasFuelCapacity;
 	bool parentIsHere = (ship.GetSystem() == parent.GetSystem());
 	// If an escort is out of fuel, they should refuel without waiting for the
@@ -862,29 +872,35 @@ void AI::MoveEscort(Ship &ship, Command &command) const
 		Refuel(ship, command);
 	else if(!parentIsHere && !isStaying)
 	{
-		DistanceMap distance(ship, parent.GetSystem());
-		const System *from = ship.GetSystem();
-		const System *to = distance.Route(from);
-		bool hasWormhole = false;
-		for(const StellarObject &object : from->Objects())
-			if(object.GetPlanet() && object.GetPlanet()->WormholeDestination(from) == to)
-			{
-				ship.SetTargetPlanet(&object);
-				MoveToPlanet(ship, command);
-				command |= Command::LAND;
-				hasWormhole = true;
-				break;
-			}
-		if(!hasWormhole)
+		if(!ship.GetTargetSystem() && !ship.GetTargetPlanet())
 		{
+			// If we're stranded and haven't decided where to go, figure out a
+			// path to the parent ship's system.
+			DistanceMap distance(ship, parent.GetSystem());
+			const System *from = ship.GetSystem();
+			const System *to = distance.Route(from);
+			for(const StellarObject &object : from->Objects())
+				if(object.GetPlanet() && object.GetPlanet()->WormholeDestination(from) == to)
+				{
+					ship.SetTargetPlanet(&object);
+					break;
+				}
 			ship.SetTargetSystem(to);
-			if(!to || (from->HasFuelFor(ship) && !to->HasFuelFor(ship) && ship.JumpsRemaining() == 1))
+			// Check if we need to refuel. Wormhole travel does not require fuel.
+			if(!ship.GetTargetPlanet() && (!to || 
+					(from->HasFuelFor(ship) && !to->HasFuelFor(ship) && ship.JumpsRemaining() == 1)))
 				Refuel(ship, command);
-			else
-			{
-				PrepareForHyperspace(ship, command);
-				command |= Command::JUMP;
-			}
+		}
+		// Perform the action that this ship previously decided on.
+		if(ship.GetTargetPlanet())
+		{
+			MoveToPlanet(ship, command);
+			command |= Command::LAND;
+		}
+		else if(ship.GetTargetSystem())
+		{
+			PrepareForHyperspace(ship, command);
+			command |= Command::JUMP;
 		}
 	}
 	else if(parent.Commands().Has(Command::LAND) && parent.GetTargetPlanet() && parentIsHere)
@@ -930,7 +946,8 @@ void AI::Refuel(Ship &ship, Command &command)
 	{
 		double closest = numeric_limits<double>::infinity();
 		for(const StellarObject &object : ship.GetSystem()->Objects())
-			if(object.GetPlanet() && object.GetPlanet()->HasSpaceport() && object.GetPlanet()->CanLand(ship))
+			if(object.GetPlanet() && object.GetPlanet()->HasSpaceport() 
+					&& !object.GetPlanet()->IsWormhole() && object.GetPlanet()->CanLand(ship))
 			{
 				double distance = ship.Position().Distance(object.Position());
 				if(distance < closest)

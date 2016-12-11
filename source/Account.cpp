@@ -273,9 +273,19 @@ void Account::AddDeathBenefits(int64_t bonus)
 int64_t Account::Prequalify() const
 {
 	int64_t payments = 0;
+	int64_t liabilities = 0;
 	for(const Mortgage &mortgage : mortgages)
+	{
 		payments += mortgage.Payment();
-	return Mortgage::Maximum(YearlyRevenue(), creditScore, payments);
+		liabilities += mortgage.Principal();
+	}
+	
+	// Put a limit on new debt that the player can take out, as a fraction of
+	// their net worth, to avoid absurd mortgages being offered when the player
+	// has just captured some very lucrative ships.
+	return max(static_cast<int64_t>(0), min(
+		NetWorth() / 3 + 500000 - liabilities,
+		Mortgage::Maximum(YearlyRevenue(), creditScore, payments)));
 }
 
 

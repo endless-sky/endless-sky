@@ -290,6 +290,77 @@ outfit "Interference Plating"
 	description "If you're in the habit of carrying illegal cargo or outfits, this plating increases the odds that a scan of your ship will fail to detect it. The more of these you install, the better your chances of evading detection. They won't keep anyone from noticing if you're flying an unlicensed ship, however."
 
 
+outfit "Meteor Missile Box"
+	category "Systems"
+	cost 9000
+	thumbnail "outfit/meteor storage"
+	"mass" 1.4
+	"outfit space" -5
+	"meteor capacity" 18
+	ammo "Meteor Missile"
+	description "The Meteor Missile Box is used to store extra ammunition for Meteor Missile Launchers."
+
+outfit "Sidewinder Missile Rack"
+	category "Systems"
+	cost 20000
+	thumbnail "outfit/sidewinder storage"
+	"mass" 2
+	"outfit space" -7
+	"sidewinder capacity" 25
+	ammo "Sidewinder Missile"
+	description "The Sidewinder Missile Rack is used to store extra ammunition for Sidewinder Missile Launchers."
+
+outfit "Javelin Storage Crate"
+	category "Systems"
+	cost 5000
+	thumbnail "outfit/javelin storage"
+	"mass" 2
+	"outfit space" -6
+	"javelin capacity" 100
+	ammo "Javelin"
+	description "The Javelin Storage Crate is used to store extra ammunition for Javlein Pods."
+
+outfit "Heavy Rocket Rack"
+	category "Systems"
+	cost 20000
+	thumbnail "outfit/rocket storage"
+	"mass" 2
+	"outfit space" -7
+	"rocket capacity" 10
+	ammo "Heavy Rocket"
+	description "The Heavy Rocket Rack is used to store extra ammunition for Heavy Rocket Launchers."
+
+outfit "Torpedo Storage Rack"
+	category "Systems"
+	cost 21000
+	thumbnail "outfit/torpedo storage"
+	"mass" 3
+	"outfit space" -9
+	"torpedo capacity" 15
+	ammo "Torpedo"
+	description "The Torpedo Storage Rack is used to store extra ammunition for Torpedo Launchers."
+
+outfit "Typhoon Storage Tube"
+	category "Systems"
+	cost 40500
+	thumbnail "outfit/typhoon storage"
+	"mass" 2.5
+	"outfit space" -10
+	"typhoon capacity" 15
+	ammo "Typhoon Torpedo"
+	description "The Typhoon Storage Tube is used to store extra ammunition for Typhoon Launchers."
+
+outfit "Bullet Boxes"
+	category "Systems"
+	cost 3000
+	thumbnail "outfit/bullet storage"
+	"mass" 2
+	"outfit space" -5
+	"gatling round capacity" 1500
+	ammo "Gatling Gun Ammo"
+	description "Bullet Boxes are used to store extra ammunition for Gatling Guns."
+
+
 outfit "Laser Rifle"
 	category "Hand to Hand"
 	cost 8000

@@ -80,6 +80,7 @@ private:
 	const Phrase *fighterNames = nullptr;
 	std::vector<Variant> variants;
 	int cargo = 3;
+	std::vector<std::string> commodities;
 	int total = 0;
 	
 	Personality personality;

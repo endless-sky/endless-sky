@@ -89,18 +89,7 @@ void TradingPanel::Step()
 	if(!Preferences::Has("help: trading"))
 	{
 		Preferences::Set("help: trading");
-		GetUI()->Push(new Dialog(
-			string("This is the trading panel. "
-				"Earn money by buying commodities at a low price in one system, "
-				"and selling at a higher price elsewhere. "
-				"To view your map of commodity prices in other systems, press \"")
-			+ Command::MAP.KeyName()
-			+ string("\". To buy or sell, click on [buy] or [sell], "
-				"or select a line with the up and down arrows and press \"+\" or \"-\" "
-				"(or Enter and Delete).\n"
-				"\tYou can buy 5 tons at once by holding down Shift, "
-				"20 by holding down Control, "
-				"or 100 at a time by holding down both.")));
+		GetUI()->Push(new Dialog(GameData::HelpMessage("trading")));
 	}
 }
 
@@ -167,16 +156,19 @@ void TradingPanel::Draw()
 	
 	int i = 0;
 	bool canSell = false;
+	bool canBuy = false;
 	for(const Trade::Commodity &commodity : GameData::Commodities())
 	{
 		y += 20;
 		int price = system.Trade(commodity.name);
 		
-		const Color &color = (i++ == selectedRow ? selected : unselected);
+		bool isSelected = (i++ == selectedRow);
+		const Color &color = (isSelected ? selected : unselected);
 		font.Draw(commodity.name, Point(NAME_X, y), color);
 		
 		if(price)
 		{
+			canBuy |= isSelected;
 			font.Draw(to_string(price), Point(PRICE_X, y), color);
 		
 			int basis = player.GetBasis(commodity.name);
@@ -200,6 +192,11 @@ void TradingPanel::Draw()
 			font.Draw("[buy]", Point(BUY_X, y), color);
 			font.Draw("[sell]", Point(SELL_X, y), color);
 		}
+		else
+		{
+			font.Draw("----", Point(PRICE_X, y), color);
+			font.Draw("(not for sale)", Point(LEVEL_X, y), color);
+		}
 		
 		int hold = player.Cargo().Get(commodity.name);
 		if(hold)
@@ -216,7 +213,7 @@ void TradingPanel::Draw()
 		info.SetCondition("can sell outfits");
 	else if(player.Cargo().HasOutfits() || canSell)
 		info.SetCondition("can sell");
-	if(player.Cargo().Free() > 0)
+	if(player.Cargo().Free() > 0 && canBuy)
 		info.SetCondition("can buy");
 	interface->Draw(info, this);
 }
@@ -254,16 +251,18 @@ bool TradingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 			player.Accounts().AddCredits(amount * price);
 			GameData::AddPurchase(system, it.name, -amount);
 		}
+		int day = player.GetDate().DaysSinceEpoch();
 		for(const auto &it : player.Cargo().Outfits())
 		{
 			if(it.first->Get("installable") >= 0. && !sellOutfits)
 				continue;
 			
-			profit += it.second * it.first->Cost();
-			tonsSold += it.second * static_cast<int>(it.first->Get("mass"));
+			int64_t value = player.FleetDepreciation().Value(it.first, day, it.second);
+			profit += value;
+			tonsSold += static_cast<int>(it.second * it.first->Get("mass"));
 			
-			player.SoldOutfits()[it.first] += it.second;
-			player.Accounts().AddCredits(it.second * it.first->Cost());
+			player.AddStock(it.first, it.second);
+			player.Accounts().AddCredits(value);
 			player.Cargo().Remove(it.first, it.second);
 		}
 	}

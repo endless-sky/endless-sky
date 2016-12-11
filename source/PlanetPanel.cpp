@@ -30,6 +30,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Ship.h"
 #include "ShipyardPanel.h"
 #include "SpaceportPanel.h"
+#include "System.h"
 #include "TradingPanel.h"
 #include "UI.h"
 
@@ -104,6 +105,8 @@ void PlanetPanel::Draw()
 		}
 	if(flagship && flagship->CanBeFlagship())
 		info.SetCondition("has ship");
+	if(flagship && planet.IsInhabited() && planet.GetSystem()->HasTrade() && hasAccess)
+		info.SetCondition("has trade");
 	if(planet.IsInhabited() && hasAccess)
 		info.SetCondition("has bank");
 	if(flagship && planet.IsInhabited() && hasAccess)
@@ -215,7 +218,7 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 	{
 		selectedPanel = nullptr;
 	}
-	else if(key == 't' && flagship && planet.IsInhabited() && hasAccess)
+	else if(key == 't' && flagship && planet.IsInhabited() && planet.GetSystem()->HasTrade() && hasAccess)
 	{
 		selectedPanel = trading.get();
 		GetUI()->Push(trading);
