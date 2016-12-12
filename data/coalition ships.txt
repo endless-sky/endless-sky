@@ -23,7 +23,7 @@ ship "Arach Courier"
 		"fuel capacity" 300
 		"cargo space" 78
 		"outfit space" 148
-		"weapon capacity" 0
+		"weapon capacity" 39
 		"engine capacity" 40
 		weapon
 			"blast radius" 20
@@ -65,7 +65,7 @@ ship "Arach Freighter"
 		"fuel capacity" 500
 		"cargo space" 310
 		"outfit space" 349
-		"weapon capacity" 0
+		"weapon capacity" 132
 		"engine capacity" 92
 		weapon
 			"blast radius" 80
@@ -112,7 +112,7 @@ ship "Arach Hulk"
 		"fuel capacity" 500
 		"cargo space" 541
 		"outfit space" 520
-		"weapon capacity" 0
+		"weapon capacity" 208
 		"engine capacity" 148
 		weapon
 			"blast radius" 120
@@ -163,7 +163,7 @@ ship "Arach Spindle"
 		"fuel capacity" 500
 		"cargo space" 280
 		"outfit space" 434
-		"weapon capacity" 0
+		"weapon capacity" 138
 		"engine capacity" 148
 		weapon
 			"blast radius" 100
@@ -176,6 +176,7 @@ ship "Arach Spindle"
 		"Small Battery Module"
 		"Small Shield Module" 2
 		"Small Repair Module" 3
+		"Cooling Module"
 		
 		"Large Thrust Module" 2
 		"Small Thrust Module" 3
@@ -211,7 +212,7 @@ ship "Arach Transport"
 		"fuel capacity" 400
 		"cargo space" 190
 		"outfit space" 281
-		"weapon capacity" 0
+		"weapon capacity" 96
 		"engine capacity" 70
 		weapon
 			"blast radius" 40
@@ -243,6 +244,318 @@ ship "Arach Transport"
 	description ``
 
 
+ship "Heliarch Interdictor"
+	sprite "ship/heliarch interdictor"
+	attributes
+		category "Medium Warship"
+		"cost" 35487000
+		"shields" 65300
+		"hull" 54600
+		"required crew" 42
+		"bunks" 70
+		"mass" 520
+		"drag" 7.4
+		"heat dissipation" .70
+		"fuel capacity" 800
+		"cargo space" 79
+		"outfit space" 544
+		"weapon capacity" 179
+		"engine capacity" 135
+		weapon
+			"blast radius" 250
+			"shield damage" 3000
+			"hull damage" 1500
+			"hit force" 3800
+	outfits
+		"Finisher Pod" 2
+		"Finisher Torpedo" 80
+		"Heliarch Attractor"
+		"Heliarch Repulsor"
+		
+		"Large Reactor Module"
+		"Large Battery Module"
+		"Large Shield Module" 2
+		"Large Repair Module"
+		"Cooling Module"
+		
+		"Large Thrust Module" 2
+		"Large Steering Module" 2
+		"Hyperdrive"
+	
+	gun -20 -98 "Finisher Pod"
+	gun 20 -98 "Finisher Pod"
+	turret -8 -63 "Heliarch Attractor"
+	turret 8 -63 "Heliarch Repulsor"
+	engine -30 163 .5
+	engine -20 163 .85
+	engine 20 163 .85
+	engine 30 163 .5
+	explode "small explosion" 20
+	explode "medium explosion" 50
+	explode "large explosion" 30
+	explode "huge explosion" 10
+	"final explode" "final explosion large" 1
+	description ``
+
+ship "Heliarch Interdictor" "Heliarch Interdictor (Bombardment)"
+	outfits
+		"Finisher Pod" 2
+		"Finisher Torpedo" 80
+		"Bombardment Turret" 2
+		
+		"Large Reactor Module"
+		"Large Battery Module"
+		"Large Shield Module" 2
+		"Small Shield Module"
+		"Large Repair Module"
+		"Cooling Module"
+		
+		"Large Thrust Module" 2
+		"Small Thrust Module"
+		"Large Steering Module" 2
+		"Small Steering Module"
+		"Hyperdrive"
+
+
+ship "Heliarch Neutralizer"
+	sprite "ship/heliarch neutralizer"
+	attributes
+		category "Light Warship"
+		"cost" 18847000
+		"shields" 36400
+		"hull" 32800
+		"required crew" 17
+		"bunks" 24
+		"mass" 270
+		"drag" 4.1
+		"heat dissipation" .75
+		"fuel capacity" 1000
+		"cargo space" 36
+		"outfit space" 367
+		"weapon capacity" 72
+		"engine capacity" 102
+		weapon
+			"blast radius" 150
+			"shield damage" 1800
+			"hull damage" 900
+			"hit force" 2100
+	outfits
+		"Ion Rain Gun" 4
+		
+		"Small Reactor Module" 2
+		"Large Battery Module"
+		"Large Shield Module"
+		"Large Repair Module"
+		"Cooling Module"
+		
+		"Large Thrust Module"
+		"Small Thrust Module" 2
+		"Large Steering Module"
+		"Small Steering Module" 2
+		"Hyperdrive"
+	
+	gun -22 -57 "Ion Rain Gun"
+	gun -16 -59 "Ion Rain Gun"
+	gun 16 -59 "Ion Rain Gun"
+	gun 22 -57 "Ion Rain Gun"
+	engine -17 82 .7
+	engine 0 74 1
+	engine 17 82 .7
+	explode "small explosion" 30
+	explode "medium explosion" 40
+	explode "large explosion" 20
+	"final explode" "final explosion medium" 1
+	description ``
+
+ship "Heliarch Neutralizer" "Heliarch Neutralizer (Missile)"
+	outfits
+		"Finisher Pod" 2
+		"Finisher Torpedo" 80
+		
+		"Small Reactor Module"
+		"Large Battery Module"
+		"Large Shield Module"
+		"Large Repair Module"
+		"Cooling Module"
+		
+		"Large Thrust Module"
+		"Small Thrust Module" 2
+		"Large Steering Module"
+		"Small Steering Module" 2
+		"Hyperdrive"
+	
+	gun
+	gun "Finisher Pod"
+	gun "Finisher Pod"
+	gun
+
+ship "Heliarch Neutralizer" "Heliarch Neutralizer (Nimble)"
+	outfits
+		"Ion Rain Gun" 4
+		
+		"Small Reactor Module" 2
+		"Large Battery Module"
+		"Large Shield Module"
+		"Large Repair Module"
+		"Cooling Module"
+		
+		"Large Thrust Module"
+		"Small Thrust Module"
+		"Large Steering Module" 2
+		"Small Steering Module"
+		"Hyperdrive"
+
+ship "Heliarch Neutralizer" "Heliarch Neutralizer (Scrappy)"
+	outfits
+		"Bombardment Cannon" 4
+		
+		"Small Reactor Module" 2
+		"Small Battery Module"
+		"Large Shield Module" 2
+		"Small Shield Module"
+		"Large Repair Module"
+		"Cooling Module" 2
+		
+		"Large Thrust Module"
+		"Small Thrust Module"
+		"Large Steering Module" 2
+		"Hyperdrive"
+
+
+ship "Heliarch Punisher"
+	sprite "ship/heliarch punisher"
+	attributes
+		category "Heavy Warship"
+		"cost" 58487000
+		"shields" 108000
+		"hull" 85000
+		"required crew" 96
+		"bunks" 145
+		"mass" 780
+		"drag" 12.2
+		"heat dissipation" .60
+		"fuel capacity" 600
+		"cargo space" 94
+		"outfit space" 885
+		"weapon capacity" 324
+		"engine capacity" 187
+		weapon
+			"blast radius" 400
+			"shield damage" 4800
+			"hull damage" 2400
+			"hit force" 6000
+	outfits
+		"Ion Rain Gun" 4
+		"Finisher Pod" 2
+		"Finisher Torpedo" 80
+		"Bombardment Turret" 4
+		
+		"Large Reactor Module" 2
+		"Large Battery Module"
+		"Large Shield Module" 3
+		"Large Repair Module" 2
+		"Cooling Module" 3
+		
+		"Large Thrust Module" 2
+		"Small Thrust Module" 2
+		"Large Steering Module" 2
+		"Small Steering Module" 2
+		"Hyperdrive"
+	
+	gun -27 -118 "Ion Rain Gun"
+	gun -21 -121 "Ion Rain Gun"
+	gun 21 -121 "Ion Rain Gun"
+	gun 27 -118 "Ion Rain Gun"
+	gun -43 -43 "Finisher Pod"
+	gun 43 -43 "Finisher Pod"
+	turret -13 -42 "Bombardment Turret"
+	turret 0 -35 "Bombardment Turret"
+	turret 13 -42 "Bombardment Turret"
+	turret 0 164 "Bombardment Turret"
+	engine -24 184 .6
+	engine 0 187 1.1
+	engine 24 184 .6
+	explode "small explosion" 20
+	explode "medium explosion" 60
+	explode "large explosion" 40
+	explode "huge explosion" 20
+	"final explode" "final explosion large" 1
+	description ``
+
+ship "Heliarch Punisher" "Heliarch Punisher (Interdicting)"
+	outfits
+		"Bombardment Cannon" 4
+		"Finisher Pod" 2
+		"Finisher Torpedo" 80
+		"Heliarch Attractor" 2
+		"Heliarch Repulsor"
+		
+		"Large Reactor Module" 2
+		"Large Battery Module"
+		"Large Shield Module" 3
+		"Large Repair Module" 2
+		"Cooling Module" 3
+		
+		"Large Thrust Module" 2
+		"Small Thrust Module" 2
+		"Large Steering Module" 2
+		"Small Steering Module" 2
+		"Hyperdrive"
+	
+	gun "Bombardment Cannon"
+	gun "Bombardment Cannon"
+	gun "Bombardment Cannon"
+	gun "Bombardment Cannon"
+	gun "Finisher Pod"
+	gun "Finisher Pod"
+	turret "Heliarch Attractor"
+	turret "Heliarch Repulsor"
+	turret "Heliarch Attractor"
+	turret "Bombardment Turret"
+
+ship "Heliarch Punisher" "Heliarch Punisher (Missile)"
+	outfits
+		"Finisher Pod" 6
+		"Finisher Torpedo" 240
+		"Heliarch Repulsor"
+		
+		"Large Reactor Module"
+		"Small Reactor Module"
+		"Large Battery Module"
+		"Large Shield Module" 5
+		"Large Repair Module" 2
+		"Cooling Module" 2
+		
+		"Large Thrust Module" 4
+		"Large Steering Module" 2
+		"Small Steering Module"
+		"Hyperdrive"
+	
+	turret
+	turret "Heliarch Repulsor"
+	turret
+	turret
+
+ship "Heliarch Punisher" "Heliarch Punisher (Scrappy)"
+	outfits
+		"Bombardment Cannon" 4
+		"Bombardment Turret" 6
+		
+		"Large Reactor Module" 2
+		"Small Reactor Module"
+		"Large Battery Module"
+		"Large Shield Module" 4
+		"Large Repair Module" 2
+		"Cooling Module" 5
+		"Mass Expansion" 3
+		
+		"Large Thrust Module" 2
+		"Small Thrust Module"
+		"Large Steering Module" 4
+		"Small Steering Module" 2
+		"Hyperdrive"
+
+
 ship "Kimek Briar"
 	sprite "ship/kimek briar"
 	attributes
@@ -258,7 +571,7 @@ ship "Kimek Briar"
 		"fuel capacity" 700
 		"cargo space" 21
 		"outfit space" 245
-		"weapon capacity" 0
+		"weapon capacity" 89
 		"engine capacity" 60
 		weapon
 			"blast radius" 34
@@ -301,7 +614,7 @@ ship "Kimek Spire"
 		"fuel capacity" 800
 		"cargo space" 64
 		"outfit space" 489
-		"weapon capacity" 0
+		"weapon capacity" 256
 		"engine capacity" 129
 		weapon
 			"blast radius" 140
@@ -352,7 +665,7 @@ ship "Kimek Thistle"
 		"fuel capacity" 700
 		"cargo space" 29
 		"outfit space" 321
-		"weapon capacity" 0
+		"weapon capacity" 118
 		"engine capacity" 87
 		weapon
 			"blast radius" 60
@@ -398,7 +711,7 @@ ship "Kimek Thorn"
 		"fuel capacity" 600
 		"cargo space" 12
 		"outfit space" 133
-		"weapon capacity" 0
+		"weapon capacity" 40
 		"engine capacity" 38
 		weapon
 			"blast radius" 14
@@ -440,7 +753,7 @@ ship "Saryd Runabout"
 		"fuel capacity" 400
 		"cargo space" 42
 		"outfit space" 172
-		"weapon capacity" 0
+		"weapon capacity" 44
 		"engine capacity" 42
 		weapon
 			"blast radius" 22
@@ -480,7 +793,7 @@ ship "Saryd Sojourner"
 		"fuel capacity" 800
 		"cargo space" 260
 		"outfit space" 568
-		"weapon capacity" 0
+		"weapon capacity" 202
 		"engine capacity" 156
 		weapon
 			"blast radius" 200
@@ -532,7 +845,7 @@ ship "Saryd Traveler"
 		"fuel capacity" 600
 		"cargo space" 137
 		"outfit space" 466
-		"weapon capacity" 0
+		"weapon capacity" 177
 		"engine capacity" 79
 		weapon
 			"blast radius" 72
@@ -582,7 +895,7 @@ ship "Saryd Visitor"
 		"fuel capacity" 400
 		"cargo space" 98
 		"outfit space" 320
-		"weapon capacity" 0
+		"weapon capacity" 90
 		"engine capacity" 57
 		weapon
 			"blast radius" 42

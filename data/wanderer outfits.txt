@@ -193,6 +193,7 @@ outfit "Thunderhead Storage Array"
 	"mass" 2
 	"outfit space" -8
 	"thunderhead capacity" 20
+	ammo "Thunderhead Missile"
 	description "The Thunderhead Storage Array is used to store extra ammunition for Thunderhead Launchers."
 
 outfit "Small Biochemical Cell"

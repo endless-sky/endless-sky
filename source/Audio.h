@@ -57,6 +57,9 @@ public:
 	// "listener". This will make it softer and change the left / right balance.
 	static void Play(const Sound *sound, const Point &position);
 	
+	// Play the given music. An empty string means to play nothing.
+	static void PlayMusic(const std::string &name);
+	
 	// Begin playing all the sounds that have been added since the last time
 	// this function was called.
 	static void Step();

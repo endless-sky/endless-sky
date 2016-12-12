@@ -11707,7 +11707,7 @@ system Nunki
 system Oblate
 	pos -124 -119
 	government Pirate
-	habitable 2035
+	habitable 12000
 	belt 1704
 	link Alcyone
 	link Moktar
@@ -11734,14 +11734,8 @@ system Oblate
 	fleet "Large Core Pirates" 1000
 	fleet "Large Syndicate" 3000
 	object
-		sprite star/f5
-		distance 19.027
-		period 11.802
-		offset 180
-	object
-		sprite star/k5
-		distance 101.973
-		period 11.802
+		sprite star/giant
+		period 10
 	object
 		sprite planet/ice4
 		distance 397.973
