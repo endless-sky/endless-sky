@@ -117,8 +117,8 @@ outfit "Cooling Module"
 	thumbnail "outfit/unknown"
 	"mass" 5
 	"outfit space" -5
-	"active cooling" 29
-	"cooling energy" .4
+	"active cooling" 21
+	"cooling energy" 1.4
 	description "This cooling module consumes energy. To conserve power, it does not ramp up to full strength unless a ship is very close to overheating."
 
 
