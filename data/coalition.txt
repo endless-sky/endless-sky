@@ -38,6 +38,20 @@ fleet "Heliarch"
 		"Heliarch Interdictor"
 	variant 10
 		"Heliarch Punisher"
+	variant 4
+		"Heliarch Neutralizer (Missile)"
+	variant 4
+		"Heliarch Neutralizer (Nimble)"
+	variant 4
+		"Heliarch Neutralizer (Scrappy)"
+	variant 2
+		"Heliarch Interdictor (Bombardment)"
+	variant 1
+		"Heliarch Punisher (Interdicting)"
+	variant 1
+		"Heliarch Punisher (Missile)"
+	variant 1
+		"Heliarch Punisher (Scrappy)"
 
 fleet "Small Arach"
 	government "Coalition"
@@ -211,7 +225,6 @@ fleet "Large Saryd"
 
 
 outfitter "Coalition Basics"
-	"Small Reactor Module"
 	"Small Collector Module"
 	"Small Battery Module"
 	"Small Shield Module"
@@ -219,10 +232,10 @@ outfitter "Coalition Basics"
 	"Cooling Module"
 	"Small Thrust Module"
 	"Small Steering Module"
+	"Cargo Expansion"
+	"Mass Expansion"
 
 outfitter "Coalition Advanced"
-	"Small Reactor Module"
-	"Large Reactor Module"
 	"Small Collector Module"
 	"Large Collector Module"
 	"Small Battery Module"
@@ -236,6 +249,19 @@ outfitter "Coalition Advanced"
 	"Large Thrust Module"
 	"Small Steering Module"
 	"Large Steering Module"
+	"Cargo Expansion"
+	"Mass Expansion"
+
+outfitter "Heliarch"
+	"Small Reactor Module"
+	"Large Reactor Module"
+	"Bombardment Cannon"
+	"Bombardment Turret"
+	"Finisher Pod"
+	"Finisher Torpedo"
+	"Heliarch Attractor"
+	"Heliarch Repulsor"
+	"Ion Rain Gun"
 
 
 shipyard "Arach"

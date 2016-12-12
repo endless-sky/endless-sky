@@ -176,6 +176,7 @@ ship "Arach Spindle"
 		"Small Battery Module"
 		"Small Shield Module" 2
 		"Small Repair Module" 3
+		"Cooling Module"
 		
 		"Large Thrust Module" 2
 		"Small Thrust Module" 3
@@ -296,6 +297,26 @@ ship "Heliarch Interdictor"
 	"final explode" "final explosion large" 1
 	description ``
 
+ship "Heliarch Interdictor" "Heliarch Interdictor (Bombardment)"
+	outfits
+		"Finisher Pod" 2
+		"Finisher Torpedo" 80
+		"Bombardment Turret" 2
+		
+		"Large Reactor Module"
+		"Large Battery Module"
+		"Large Shield Module" 2
+		"Small Shield Module"
+		"Large Repair Module"
+		"Cooling Module"
+		
+		"Large Thrust Module" 2
+		"Small Thrust Module"
+		"Large Steering Module" 2
+		"Small Steering Module"
+		"Hyperdrive"
+
+
 ship "Heliarch Neutralizer"
 	sprite "ship/heliarch neutralizer"
 	attributes
@@ -345,6 +366,61 @@ ship "Heliarch Neutralizer"
 	explode "large explosion" 20
 	"final explode" "final explosion medium" 1
 	description ``
+
+ship "Heliarch Neutralizer" "Heliarch Neutralizer (Missile)"
+	outfits
+		"Finisher Pod" 2
+		"Finisher Torpedo" 80
+		
+		"Small Reactor Module"
+		"Large Battery Module"
+		"Large Shield Module"
+		"Large Repair Module"
+		"Cooling Module"
+		
+		"Large Thrust Module"
+		"Small Thrust Module" 2
+		"Large Steering Module"
+		"Small Steering Module" 2
+		"Hyperdrive"
+	
+	gun
+	gun "Finisher Pod"
+	gun "Finisher Pod"
+	gun
+
+ship "Heliarch Neutralizer" "Heliarch Neutralizer (Nimble)"
+	outfits
+		"Ion Rain Gun" 4
+		
+		"Small Reactor Module" 2
+		"Large Battery Module"
+		"Large Shield Module"
+		"Large Repair Module"
+		"Cooling Module"
+		
+		"Large Thrust Module"
+		"Small Thrust Module"
+		"Large Steering Module" 2
+		"Small Steering Module"
+		"Hyperdrive"
+
+ship "Heliarch Neutralizer" "Heliarch Neutralizer (Scrappy)"
+	outfits
+		"Bombardment Cannon" 4
+		
+		"Small Reactor Module" 2
+		"Small Battery Module"
+		"Large Shield Module" 2
+		"Small Shield Module"
+		"Large Repair Module"
+		"Cooling Module" 2
+		
+		"Large Thrust Module"
+		"Small Thrust Module"
+		"Large Steering Module" 2
+		"Hyperdrive"
+
 
 ship "Heliarch Punisher"
 	sprite "ship/heliarch punisher"
@@ -405,6 +481,79 @@ ship "Heliarch Punisher"
 	explode "huge explosion" 20
 	"final explode" "final explosion large" 1
 	description ``
+
+ship "Heliarch Punisher" "Heliarch Punisher (Interdicting)"
+	outfits
+		"Bombardment Cannon" 4
+		"Finisher Pod" 2
+		"Finisher Torpedo" 80
+		"Heliarch Attractor" 2
+		"Heliarch Repulsor"
+		
+		"Large Reactor Module" 2
+		"Large Battery Module"
+		"Large Shield Module" 3
+		"Large Repair Module" 2
+		"Cooling Module" 3
+		
+		"Large Thrust Module" 2
+		"Small Thrust Module" 2
+		"Large Steering Module" 2
+		"Small Steering Module" 2
+		"Hyperdrive"
+	
+	gun "Bombardment Cannon"
+	gun "Bombardment Cannon"
+	gun "Bombardment Cannon"
+	gun "Bombardment Cannon"
+	gun "Finisher Pod"
+	gun "Finisher Pod"
+	turret "Heliarch Attractor"
+	turret "Heliarch Repulsor"
+	turret "Heliarch Attractor"
+	turret "Bombardment Turret"
+
+ship "Heliarch Punisher" "Heliarch Punisher (Missile)"
+	outfits
+		"Finisher Pod" 6
+		"Finisher Torpedo" 240
+		"Heliarch Repulsor"
+		
+		"Large Reactor Module"
+		"Small Reactor Module"
+		"Large Battery Module"
+		"Large Shield Module" 5
+		"Large Repair Module" 2
+		"Cooling Module" 2
+		
+		"Large Thrust Module" 4
+		"Large Steering Module" 2
+		"Small Steering Module"
+		"Hyperdrive"
+	
+	turret
+	turret "Heliarch Repulsor"
+	turret
+	turret
+
+ship "Heliarch Punisher" "Heliarch Punisher (Scrappy)"
+	outfits
+		"Bombardment Cannon" 4
+		"Bombardment Turret" 6
+		
+		"Large Reactor Module" 2
+		"Small Reactor Module"
+		"Large Battery Module"
+		"Large Shield Module" 4
+		"Large Repair Module" 2
+		"Cooling Module" 5
+		"Mass Expansion" 3
+		
+		"Large Thrust Module" 2
+		"Small Thrust Module"
+		"Large Steering Module" 4
+		"Small Steering Module" 2
+		"Hyperdrive"
 
 
 ship "Kimek Briar"
