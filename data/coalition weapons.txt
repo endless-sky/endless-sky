@@ -225,7 +225,7 @@ outfit "Heliarch Repulsor"
 		sound "heavy laser"
 		"hit effect" "repulsor impact"
 		"inaccuracy" 3
-		"velocity" 600
+		"velocity" 560
 		"lifetime" 1
 		"reload" 1
 		"firing energy" 5.9
