@@ -709,20 +709,38 @@ bool Ship::Move(list<Effect> &effects, list<shared_ptr<Flotsam>> &flotsam)
 	// Handle ionization effects, etc.
 	if(ionization)
 	{
+		if(ionResistance)
+			ionization = max(ionization - ionResistance, 0.);
 		ionization *= .99;
 		CreateSparks(effects, "ion spark", ionization * .1);
 	}
 	if(disruption)
 	{
+		if(disruptionResistance)
+			disruption = max(disruption - disruptionResistance, 0.);
 		disruption *= .99;
 		CreateSparks(effects, "disruption spark", disruption * .1);
 	}
 	if(slowness)
 	{
+		if(slowingResistance)
+			slowness = max(slowness - slowingResistance, 0.);
 		slowness *= .99;
 		CreateSparks(effects, "slowing spark", slowness * .1);
 	}
 	double slowMultiplier = 1. / (1. + slowness * .05);
+	
+	// Set up effect resistances for the next frame.
+	ionResistance = attributes.Get("ion resistance");
+	disruptionResistance = attributes.Get("disruption resistance");
+	slowingResistance = attributes.Get("slowing resistance");
+	
+	// Recover full piercing resistance over a second, so beams can wear
+	// down the resistance.
+	double maxPiercingResistance = attributes.Get("piercing resistance");
+	piercingResistance += maxPiercingResistance / 60.;
+	piercingResistance = min(piercingResistance, maxPiercingResistance);
+	
 	// Jettisoned cargo effects (only for ships in the current system).
 	if(!jettisoned.empty() && !forget)
 	{
@@ -1803,6 +1821,8 @@ void Ship::Recharge(bool atSpaceport)
 			hull = attributes.Get("hull");
 		if(atSpaceport || attributes.Get("energy generation"))
 			energy = attributes.Get("energy capacity");
+		if(attributes.Get("piercing resistance"))
+			piercingResistance = attributes.Get("piercing resistance");
 	}
 	heat = IdleHeat();
 	ionization = 0.;
@@ -2104,8 +2124,23 @@ int Ship::TakeDamage(const Projectile &projectile, bool isBlast)
 	double slowingDamage = weapon.SlowingDamage() / (1. + attributes.Get("slowing resistance"));
 	bool wasDisabled = IsDisabled();
 	bool wasDestroyed = IsDestroyed();
+
+	// Update piercing fraction to subtract any piercingResistance from
+	// the damage that will pierce through, and reduce the resistance
+	// for the remainder of the frame.
+	double piercingDamage = weapon.Piercing() * hullDamage;
+	double piercingIncrement = piercingDamage - piercingResistance;
+	piercingDamage = max(piercingIncrement, 0.);
+	piercingResistance = max(-piercingIncrement, 0.);
+	double piercing = (hullDamage ? piercingDamage / hullDamage : weapon.Piercing());
 	
-	double shieldFraction = 1. - weapon.Piercing();
+	// Reduce disruption damage by the remaining disruption resistance in
+	// this frame.
+	double disruptionIncrement = disruptionDamage - disruptionResistance;
+	disruptionDamage = max(disruptionIncrement, 0.);
+	disruptionResistance = max(-disruptionIncrement, 0.);
+	
+	double shieldFraction = 1. - piercing;
 	shieldFraction *= 1. / (1. + disruption * .01);
 	if(shields <= 0.)
 		shieldFraction = 0.;
