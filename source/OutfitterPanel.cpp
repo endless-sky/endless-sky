@@ -579,8 +579,9 @@ bool OutfitterPanel::FlightCheck()
 		
 		const Outfit &attributes = ship->Attributes();
 		double energy = attributes.Get("energy generation") - attributes.Get("operational energy");
+		energy += attributes.Get("solar collection");
 		energy += attributes.Get("energy capacity");
-		if(energy <= 0.)
+		if(energy < 0.)
 		{
 			GetUI()->Push(new ConversationPanel(player,
 				*GameData::Conversations().Get("flight check: no operational energy"), nullptr, ship.get()));
@@ -611,6 +612,15 @@ bool OutfitterPanel::FlightCheck()
 				*GameData::Conversations().Get("flight check: no steering energy"), nullptr, ship.get()));
 			return false;
 		}
+		// Check energy balance with solar collection at infinite distance from a star (only 20% of
+		// maximum solar collection).
+		energy -= .8 * attributes.Get("solar collection");
+		if(attributes.Get("thrusting energy") > energy || attributes.Get("turning energy") > energy)
+		{
+			GetUI()->Push(new ConversationPanel(player,
+				*GameData::Conversations().Get("flight check: solar power warning"), nullptr, ship.get()));
+			return true;
+		}			
 		if(ship->IdleHeat() >= 100. * ship->Mass())
 		{
 			GetUI()->Push(new ConversationPanel(player,
