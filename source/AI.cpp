@@ -2174,7 +2174,7 @@ void AI::AutoFire(const Ship &ship, Command &command, bool secondary) const
 		start += ship.GetPersonality().Confusion();
 		
 		const Outfit *outfit = weapon.GetOutfit();
-		double vp = outfit->Velocity() + .5 * outfit->RandomVelocity();
+		double vp = outfit->WeightedVelocity();
 		double lifetime = outfit->TotalLifetime();
 		
 		// Homing weapons revert to "dumb firing" if they have no target.
