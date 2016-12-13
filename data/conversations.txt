@@ -47,7 +47,7 @@ conversation "flight check: no steering energy"
 conversation "flight check: solar power warning"
 	scene "scene/engine2"
 	`You've heard enough horror stories about the sort of accidents that happen when starship systems malfunction to be completely convinced of the necessity of a pre-flight safety check. As you listen to the complex symphony of hums, rattles, and clicks of "<ship>" warming up, you run through a mental checklist. Computers: check. Life support: check. Engines: check.`
-	`	Everything seems fine until you notice an amber warning light: your ship's computers have detected that your solar collectors may not be able to power your thrusters or steering too far from a star. You can launch your ship, but you run the risk of becoming derelict if you fly too far from a system centre.`	
+	`	Everything seems fine until you notice an amber warning light: your ship's computers have detected that your solar collectors may not be able to power your thrusters or steering too far from a star. You can launch your ship, but you run the risk of becoming derelict if you fly too far from a system center.`	
 	
 conversation "flight check: overheating"
 	scene "scene/engine"
