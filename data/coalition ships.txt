@@ -48,7 +48,7 @@ ship "Arach Courier"
 	explode "tiny explosion" 10
 	explode "small explosion" 10
 	"final explode" "final explosion small"
-	description ``
+	description `These hardy little cargo ships are the perfect size for young Arachi just setting out into the sky with dreams of one day building their own merchant fleets. Of course, an Arach lucky enough to be born into one of the great Houses can probably find a patron to buy them a much larger ship instead.`
 
 ship "Arach Freighter"
 	sprite "ship/arach freighter"
@@ -95,7 +95,7 @@ ship "Arach Freighter"
 	explode "small explosion" 15
 	explode "medium explosion" 15
 	"final explode" "final explosion medium"
-	description ``
+	description `Arach cargo ship hulls are legendary for their durability. It is not uncommon for a large Arach family to convert a freighter that is no longer space-worthy into a planet-side dwelling, and even in the harshest of conditions these converted houses can last for hundreds of years with little or no exterior maintenance.`
 
 ship "Arach Hulk"
 	sprite "ship/arach hulk"
@@ -146,7 +146,7 @@ ship "Arach Hulk"
 	explode "large explosion" 30
 	explode "huge explosion" 10
 	"final explode" "final explosion large"
-	description ``
+	description `The Arachi believe that efficient functionality is the highest form of beauty, and none of their ships demonstrate that principle more clearly than the ugly yet utilitarian Hulk, designed with detachable side pods that can be swapped out on a planet in a matter of minutes if the captain is in a hurry to reach the next destination.`
 
 ship "Arach Spindle"
 	sprite "ship/arach spindle"
@@ -195,7 +195,7 @@ ship "Arach Spindle"
 	explode "medium explosion" 20
 	explode "large explosion" 20
 	"final explode" "final explosion large"
-	description ``
+	description `The Arach Hulk is an ungainly, lumbering behemoth of a ship, but with its side pods removed it becomes the much more maneuverable Spindle. Because of its much lower cargo space, usually the only reason a fleet would include a Spindle is if they are planning on picking up new cargo pods at their destination.`
 
 ship "Arach Transport"
 	sprite "ship/arach transport"
@@ -241,7 +241,7 @@ ship "Arach Transport"
 	explode "medium explosion" 30
 	explode "large explosion" 5
 	"final explode" "final explosion medium"
-	description ``
+	description `The Arach Transport is the oldest of their ship designs, dating back to the time when they first joined the Coalition in overthrowing the Quarg and capturing their ringworlds. Back then, Transports were occasionally used as warships, but now, thousands of years later, they are considered outdated compared to the latest Heliarch military ships.`
 
 
 ship "Heliarch Interdictor"
@@ -295,7 +295,7 @@ ship "Heliarch Interdictor"
 	explode "large explosion" 30
 	explode "huge explosion" 10
 	"final explode" "final explosion large" 1
-	description ``
+	description `Anyone who incurs the wrath of the Heliarchs cannot count on making a fast getaway thanks to the Interdictors, which were primarily designed to carry a pair of attractor and repulsor beams that can hold a ship a safe distance away while pushing it around enough to prevent it from getting a hyperspace lock to jump out of the system.`
 
 ship "Heliarch Interdictor" "Heliarch Interdictor (Bombardment)"
 	outfits
@@ -365,7 +365,7 @@ ship "Heliarch Neutralizer"
 	explode "medium explosion" 40
 	explode "large explosion" 20
 	"final explode" "final explosion medium" 1
-	description ``
+	description `The most common Heliarch patrol ship, Neutralizers are designed to be just strong enough to keep an enemy vessel occupied until reinforcements can arrive.`
 
 ship "Heliarch Neutralizer" "Heliarch Neutralizer (Missile)"
 	outfits
@@ -480,7 +480,7 @@ ship "Heliarch Punisher"
 	explode "large explosion" 40
 	explode "huge explosion" 20
 	"final explode" "final explosion large" 1
-	description ``
+	description `Although not quite as strong or powerful as the Quarg ships that they are designed to oppose, Heliarch Punishers are versatile and durable ships. Rumors say that the Heliarchs have a small stash of stolen Quarg Skylances that they can outfit the Punishers with in times of war.`
 
 ship "Heliarch Punisher" "Heliarch Punisher (Interdicting)"
 	outfits
@@ -597,7 +597,7 @@ ship "Kimek Briar"
 	explode "small explosion" 20
 	explode "medium explosion" 5
 	"final explode" "final explosion medium"
-	description ``
+	description `With more than twice the population of the Saryds and Arachi combined, the Kimek are constantly in need of transport ships to carry individuals from one world to another.`
 
 ship "Kimek Spire"
 	sprite "ship/kimek spire"
@@ -648,7 +648,7 @@ ship "Kimek Spire"
 	explode "large explosion" 20
 	explode "huge explosion" 5
 	"final explode" "final explosion large"
-	description ``
+	description `The Spire is the largest passenger transport in Coalition space, able to carry nearly two hundred individuals... as long as they're comfortable staying in the tiny bunk rooms that are primarily designed to meet the needs of a Kimek. Most of the ceilings are too short for a Saryd to stand up straight, and the beds are too small for an Arach to stretch their legs out comfortably.`
 
 ship "Kimek Thistle"
 	sprite "ship/kimek thistle"
@@ -694,7 +694,7 @@ ship "Kimek Thistle"
 	explode "medium explosion" 30
 	explode "large explosion" 10
 	"final explode" "final explosion medium"
-	description ``
+	description `The Kimek love traveling so much that some of them will happily spend months at a time in a transport this size, and the passengers often grow into a tight-knit community by the end of their journeys together.`
 
 ship "Kimek Thorn"
 	sprite "ship/kimek thorn"
@@ -735,7 +735,7 @@ ship "Kimek Thorn"
 	explode "tiny explosion" 10
 	explode "small explosion" 5
 	"final explode" "final explosion small"
-	description ``
+	description `The Thorn is the Kimek equivalent of a shuttle, and thanks to their speed and maneuverability they are used throughout Coalition space for transferring passengers from one ship to another or from a planet into orbit.`
 
 
 ship "Saryd Runabout"
@@ -776,7 +776,7 @@ ship "Saryd Runabout"
 	explode "tiny explosion" 10
 	explode "small explosion" 10
 	"final explode" "final explosion small"
-	description ``
+	description `Saryds place high value both on solitude, but also on community and collaboration. So, it is not surprising that their smallest spacefaring vessel requires a team of at least two individuals to operate it. It is quite common for a lone Saryd to take on a Kimek or Arach copilot as a way of building cross-species friendships.`
 
 ship "Saryd Sojourner"
 	sprite "ship/saryd sojourner"
@@ -828,7 +828,7 @@ ship "Saryd Sojourner"
 	explode "large explosion" 10
 	explode "huge explosion" 10
 	"final explode" "final explosion large"
-	description ``
+	description `When the first wars were fought against the Quarg, the Saryds had been spacefaring for more than ten thousand Earth years, and their starship technology was considerably more advanced than the Kimek or the Arachi. At that time, ships similar to the modern Sojourner were the most powerful capital ships in the Coalition fleet.`
 
 ship "Saryd Traveler"
 	sprite "ship/saryd traveler"
@@ -878,7 +878,7 @@ ship "Saryd Traveler"
 	explode "medium explosion" 20
 	explode "large explosion" 10
 	"final explode" "final explosion medium"
-	description ``
+	description `Travelers were originally designed as science vessels, thousands of years ago before the Saryds had catalogued all the life forms and physical phenomena of every world in Coalition space. Today, many Saryd communities still choose to live in a Traveler and journey together from system to system rather than putting down roots on a planet.`
 
 ship "Saryd Visitor"
 	sprite "ship/saryd visitor"
@@ -923,4 +923,4 @@ ship "Saryd Visitor"
 	explode "small explosion" 30
 	explode "medium explosion" 5
 	"final explode" "final explosion medium"
-	description ``
+	description `Rather than specializing in carrying passengers or carrying cargo, Saryds seek to make their ships as well-balanced and versatile as possible. As a result, the crew of a typical Visitor can count on performing a different sort of job every week.`
