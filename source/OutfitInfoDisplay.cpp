@@ -40,6 +40,7 @@ namespace {
 		"hull repair rate",
 		"hull energy",
 		"hull heat",
+		"operational energy",
 		"reverse thrusting energy",
 		"reverse thrusting heat",
 		"shield generation",
