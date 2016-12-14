@@ -10,8 +10,6 @@
 
 government "Heliarch"
 	swizzle 0
-	color .92 .64 .11
-	color 1 .9 .8
 	color 1 .8 .5
 	"player reputation" 1
 	"attitude toward"
@@ -20,7 +18,6 @@ government "Heliarch"
 
 government "Coalition"
 	swizzle 5
-	color 1 .7 .8
 	color 1 .6 .7
 	"player reputation" 1
 	"attitude toward"
