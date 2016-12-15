@@ -18,7 +18,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Sound.h"
 
 // So far, MP3 streaming is only tested on Linux.
-#ifdef __linux__
+#ifndef _WIN32
 #include "Music.h"
 #endif
 
@@ -109,7 +109,7 @@ namespace {
 	// The current position of the "listener," i.e. the center of the screen.
 	Point listener;
 	
-#ifdef __linux__
+#ifndef _WIN32
 	// MP3 streaming:
 	unsigned musicSource = 0;
 	static const size_t MUSIC_BUFFERS = 3;
@@ -156,7 +156,7 @@ void Audio::Init(const vector<string> &sources)
 	if(!loadQueue.empty())
 		loadThread = thread(&Load);
 	
-#ifdef __linux__
+#ifndef _WIN32
 	// Create the music-streaming threads.
 	currentTrack.reset(new Music());
 	previousTrack.reset(new Music());
@@ -261,7 +261,7 @@ void Audio::Play(const Sound *sound, const Point &position)
 // Play the given music. An empty string means to play nothing.
 void Audio::PlayMusic(const std::string &name)
 {
-#ifdef __linux__
+#ifndef _WIN32
 	// Don't worry about thread safety here, since music will always be started
 	// by the main thread.
 	musicFade = 65536;
@@ -369,7 +369,7 @@ void Audio::Step()
 	}
 	queue.clear();
 	
-#ifdef __linux__
+#ifndef _WIN32
 	// Queue up new buffers for the music, if necessary.
 	int buffersDone = 0;
 	alGetSourcei(musicSource, AL_BUFFERS_PROCESSED, &buffersDone);
@@ -451,7 +451,7 @@ void Audio::Quit()
 	}
 	sounds.clear();
 	
-#ifdef __linux__
+#ifndef _WIN32
 	// Clean up the music source and buffers.
 	alSourceStop(musicSource);
 	alDeleteSources(1, &musicSource);
