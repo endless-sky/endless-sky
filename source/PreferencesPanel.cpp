@@ -14,6 +14,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Audio.h"
 #include "Color.h"
+#include "Dialog.h"
 #include "Files.h"
 #include "GameData.h"
 #include "Information.h"
@@ -121,16 +122,23 @@ bool PreferencesPanel::Click(int x, int y)
 		{
 			if(zone.Value() == ZOOM_FACTOR)
 			{
-				int zoom = Screen::Zoom();
-				Screen::SetZoom(zoom == 100 ? 150 : zoom == 150 ? 200 : 100);
+				int currentZoom = Screen::Zoom();
+				int newZoom = currentZoom == 100 ? 150 : currentZoom == 150 ? 200 : 100;
+				Screen::SetZoom(newZoom);
 				// Make sure there is enough vertical space for the full UI.
 				if(Screen::Height() < 700)
+				{
+					// Notify the user why setting the zoom any higher isn't permitted.
+					GetUI()->Push(new Dialog("A zoom level of " + std::to_string(newZoom)
+					+ "% would obscure important parts of the screen. Resetting to 100%."));
 					Screen::SetZoom(100);
-				
-				// Convert to raw window coordinates, at the new zoom level.
-				point *= Screen::Zoom() / 100.;
-				point += .5 * Point(Screen::RawWidth(), Screen::RawHeight());
-				SDL_WarpMouseInWindow(nullptr, point.X(), point.Y());
+				}
+				else {
+					// Convert to raw window coordinates, at the new zoom level.
+					point *= Screen::Zoom() / 100.;
+					point += .5 * Point(Screen::RawWidth(), Screen::RawHeight());
+					SDL_WarpMouseInWindow(nullptr, point.X(), point.Y());
+				}
 			}
 			if(zone.Value() == EXPEND_AMMO)
 				Preferences::ToggleAmmoUsage();
