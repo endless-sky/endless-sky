@@ -13,13 +13,12 @@
 		628BDAEF1CC5DC950062BCD2 /* PlanetLabel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 628BDAED1CC5DC950062BCD2 /* PlanetLabel.cpp */; };
 		62A405BA1D47DA4D0054F6A0 /* FogShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 62A405B81D47DA4D0054F6A0 /* FogShader.cpp */; };
 		62C3111A1CE172D000409D91 /* Flotsam.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 62C311181CE172D000409D91 /* Flotsam.cpp */; };
+		71F1EDB91DA99A1500BB4C6F /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 71F1EDB81DA99A1500BB4C6F /* libz.tbd */; };
 		A90C15D91D5BD55700708F3A /* Minable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A90C15D71D5BD55700708F3A /* Minable.cpp */; };
 		A90C15DC1D5BD56800708F3A /* Rectangle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A90C15DA1D5BD56800708F3A /* Rectangle.cpp */; };
-		A93931F019880EFC00C2A87B /* SDL2.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = A9CC52A01950CA16004E4E22 /* SDL2.framework */; };
-		A93931FB1988135200C2A87B /* libturbojpeg.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A93931FA1988135200C2A87B /* libturbojpeg.0.dylib */; };
-		A93931FD1988136B00C2A87B /* libpng14.14.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A93931FC1988136B00C2A87B /* libpng14.14.dylib */; };
-		A93931FE1988136E00C2A87B /* libturbojpeg.0.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = A93931FA1988135200C2A87B /* libturbojpeg.0.dylib */; };
-		A93931FF1988136F00C2A87B /* libpng14.14.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = A93931FC1988136B00C2A87B /* libpng14.14.dylib */; };
+		A93931F019880EFC00C2A87B /* SDL2.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = A9CC52A01950CA16004E4E22 /* SDL2.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		A93931FB1988135200C2A87B /* libturbojpeg.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A93931FA1988135200C2A87B /* libturbojpeg.a */; };
+		A93931FD1988136B00C2A87B /* libpng.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A93931FC1988136B00C2A87B /* libpng.a */; };
 		A94408A51982F3E600610427 /* endless-sky.iconset in Resources */ = {isa = PBXBuildFile; fileRef = A94408A41982F3E600610427 /* endless-sky.iconset */; };
 		A966A5AB1B964E6300DFF69C /* Person.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A966A5A91B964E6300DFF69C /* Person.cpp */; };
 		A96863A01AE6FD0E004FE1FE /* Account.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A96862CD1AE6FD0A004FE1FE /* Account.cpp */; };
@@ -147,8 +146,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				A93931FF1988136F00C2A87B /* libpng14.14.dylib in CopyFiles */,
-				A93931FE1988136E00C2A87B /* libturbojpeg.0.dylib in CopyFiles */,
 				A93931F019880EFC00C2A87B /* SDL2.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -168,12 +165,13 @@
 		62A405B91D47DA4D0054F6A0 /* FogShader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FogShader.h; path = source/FogShader.h; sourceTree = "<group>"; };
 		62C311181CE172D000409D91 /* Flotsam.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Flotsam.cpp; path = source/Flotsam.cpp; sourceTree = "<group>"; };
 		62C311191CE172D000409D91 /* Flotsam.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Flotsam.h; path = source/Flotsam.h; sourceTree = "<group>"; };
+		71F1EDB81DA99A1500BB4C6F /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		A90C15D71D5BD55700708F3A /* Minable.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Minable.cpp; path = source/Minable.cpp; sourceTree = "<group>"; };
 		A90C15D81D5BD55700708F3A /* Minable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Minable.h; path = source/Minable.h; sourceTree = "<group>"; };
 		A90C15DA1D5BD56800708F3A /* Rectangle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Rectangle.cpp; path = source/Rectangle.cpp; sourceTree = "<group>"; };
 		A90C15DB1D5BD56800708F3A /* Rectangle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Rectangle.h; path = source/Rectangle.h; sourceTree = "<group>"; };
-		A93931FA1988135200C2A87B /* libturbojpeg.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libturbojpeg.0.dylib; path = "/opt/libjpeg-turbo/lib/libturbojpeg.0.dylib"; sourceTree = "<absolute>"; };
-		A93931FC1988136B00C2A87B /* libpng14.14.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libpng14.14.dylib; path = /usr/local/lib/libpng14.14.dylib; sourceTree = "<absolute>"; };
+		A93931FA1988135200C2A87B /* libturbojpeg.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libturbojpeg.a; path = /Users/ale/Work/EndlessSky/Xcode/lib/libturbojpeg.a; sourceTree = "<absolute>"; };
+		A93931FC1988136B00C2A87B /* libpng.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libpng.a; path = Xcode/lib/libpng.a; sourceTree = SOURCE_ROOT; };
 		A94408A41982F3E600610427 /* endless-sky.iconset */ = {isa = PBXFileReference; lastKnownFileType = folder.iconset; path = "endless-sky.iconset"; sourceTree = "<group>"; };
 		A966A5A91B964E6300DFF69C /* Person.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Person.cpp; path = source/Person.cpp; sourceTree = "<group>"; };
 		A966A5AA1B964E6300DFF69C /* Person.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Person.h; path = source/Person.h; sourceTree = "<group>"; };
@@ -406,7 +404,7 @@
 		A9CC526F1950C9F6004E4E22 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		A9CC52701950C9F6004E4E22 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		A9CC52711950C9F6004E4E22 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		A9CC52A01950CA16004E4E22 /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = /Library/Frameworks/SDL2.framework; sourceTree = "<absolute>"; };
+		A9CC52A01950CA16004E4E22 /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = /Users/ale/Work/EndlessSky/XCode/lib/SDL2.framework; sourceTree = "<absolute>"; };
 		A9D40D19195DFAA60086EE52 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -415,10 +413,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				71F1EDB91DA99A1500BB4C6F /* libz.tbd in Frameworks */,
 				A9A5297619996CC3002D7C35 /* OpenAL.framework in Frameworks */,
 				A9D40D1A195DFAA60086EE52 /* OpenGL.framework in Frameworks */,
-				A93931FB1988135200C2A87B /* libturbojpeg.0.dylib in Frameworks */,
-				A93931FD1988136B00C2A87B /* libpng14.14.dylib in Frameworks */,
+				A93931FB1988135200C2A87B /* libturbojpeg.a in Frameworks */,
+				A93931FD1988136B00C2A87B /* libpng.a in Frameworks */,
 				A9CC52A11950CA16004E4E22 /* SDL2.framework in Frameworks */,
 				A9CC526D1950C9F6004E4E22 /* Cocoa.framework in Frameworks */,
 			);
@@ -695,9 +694,10 @@
 		A9CC526B1950C9F6004E4E22 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				71F1EDB81DA99A1500BB4C6F /* libz.tbd */,
 				A9A5297519996CC3002D7C35 /* OpenAL.framework */,
-				A93931FA1988135200C2A87B /* libturbojpeg.0.dylib */,
-				A93931FC1988136B00C2A87B /* libpng14.14.dylib */,
+				A93931FA1988135200C2A87B /* libturbojpeg.a */,
+				A93931FC1988136B00C2A87B /* libpng.a */,
 				A9D40D19195DFAA60086EE52 /* OpenGL.framework */,
 				A9CC52A01950CA16004E4E22 /* SDL2.framework */,
 				A9CC526C1950C9F6004E4E22 /* Cocoa.framework */,
@@ -760,7 +760,7 @@
 		A9CC52611950C9F6004E4E22 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0510;
+				LastUpgradeCheck = 0800;
 			};
 			buildConfigurationList = A9CC52641950C9F6004E4E22 /* Build configuration list for PBXProject "EndlessSky" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -936,13 +936,19 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -955,12 +961,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-					"/opt/libjpeg-turbo/include",
-					/usr/local/include,
-				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
@@ -980,26 +981,27 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-					"/opt/libjpeg-turbo/include",
-					/usr/local/include,
-				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				SDKROOT = macosx;
 			};
@@ -1011,23 +1013,21 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(LOCAL_LIBRARY_DIR)/Frameworks",
+					"$(PROJECT_DIR)/Xcode/lib",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-					"/opt/libjpeg-turbo/include",
+					"$(PROJECT_DIR)/Xcode/lib/include",
 					/usr/local/include,
 				);
 				INFOPLIST_FILE = "XCode/EndlessSky-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"/opt/libjpeg-turbo/lib",
-					/usr/local/lib,
+					"$(PROJECT_DIR)/Xcode/lib",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1041,23 +1041,21 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(LOCAL_LIBRARY_DIR)/Frameworks",
+					"$(PROJECT_DIR)/Xcode/lib",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-					"/opt/libjpeg-turbo/include",
+					"$(PROJECT_DIR)/Xcode/lib/include",
 					/usr/local/include,
 				);
 				INFOPLIST_FILE = "XCode/EndlessSky-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"/opt/libjpeg-turbo/lib",
-					/usr/local/lib,
+					"$(PROJECT_DIR)/Xcode/lib",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_NAME = "$(TARGET_NAME)";
