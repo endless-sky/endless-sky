@@ -129,8 +129,8 @@ bool PreferencesPanel::Click(int x, int y)
 				if(Screen::Height() < 700)
 				{
 					// Notify the user why setting the zoom any higher isn't permitted.
-					GetUI()->Push(new Dialog("A zoom level of " + std::to_string(newZoom)
-					+ "% would obscure important parts of the screen. Resetting to 100%."));
+					GetUI()->Push(new Dialog("Your screen resolution is too low to support"
+					" a zoom level of " + std::to_string(newZoom) + "%. Resetting to 100%."));
 					Screen::SetZoom(100);
 				}
 				else {
