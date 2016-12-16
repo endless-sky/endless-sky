@@ -26,7 +26,7 @@ RPM-based distros:
    mesa-libGL-devel \
    sglew-devel \
    openal-soft-devel \
-   libmad0-devel
+   libmad-devel
 
 You can then just navigate to the source code folder in a terminal and type:
 
