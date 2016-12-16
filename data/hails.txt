@@ -2129,10 +2129,10 @@ phrase "hostile militia"
 		"bust open your cockpit"
 		"bust open your ship"
 	word
-		", "
-	word
-		"pirate!"
-		"criminal!"
+		"."
+		"!"
+		", pirate!"
+		", criminal!"
 
 phrase "hostile militia"
 	word
@@ -2197,7 +2197,7 @@ phrase "hostile free worlds"
 		"."
 		"!"
 
-phrase "hostile free world"
+phrase "hostile free worlds"
 	word
 		"We "
 	word
