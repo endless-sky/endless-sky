@@ -133,12 +133,10 @@ bool PreferencesPanel::Click(int x, int y)
 					" a zoom level of " + std::to_string(newZoom) + "%. Resetting to 100%."));
 					Screen::SetZoom(100);
 				}
-				else {
-					// Convert to raw window coordinates, at the new zoom level.
-					point *= Screen::Zoom() / 100.;
-					point += .5 * Point(Screen::RawWidth(), Screen::RawHeight());
-					SDL_WarpMouseInWindow(nullptr, point.X(), point.Y());
-				}
+				// Convert to raw window coordinates, at the new zoom level.
+				point *= Screen::Zoom() / 100.;
+				point += .5 * Point(Screen::RawWidth(), Screen::RawHeight());
+				SDL_WarpMouseInWindow(nullptr, point.X(), point.Y());
 			}
 			if(zone.Value() == EXPEND_AMMO)
 				Preferences::ToggleAmmoUsage();
