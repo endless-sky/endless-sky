@@ -396,7 +396,7 @@ double System::AsteroidBelt() const
 bool System::IsInhabited() const
 {
 	for(const StellarObject &object : objects)
-		if(object.GetPlanet() && object.GetPlanet()->HasSpaceport())
+		if(object.GetPlanet() && !object.GetPlanet()->IsWormhole() && object.GetPlanet()->HasSpaceport())
 			return true;
 	
 	return false;
