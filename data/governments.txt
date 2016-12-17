@@ -62,6 +62,7 @@ government "Free Worlds"
 		"Neutral" .1
 	"bribe" .1
 	"friendly hail" "friendly free worlds"
+	"hostile hail" "hostile free worlds"
 	raid "pirate raid"
 
 government "Hai"
@@ -169,7 +170,8 @@ government "Militia"
 		"Merchant" .3
 		"Pirate" -.4
 	"bribe" .1
-	"friendly hail" "friendly free worlds"
+	"friendly hail" "friendly militia"
+	"hostile hail" "hostile militia"
 
 government "Navy Intelligence"
 	swizzle 0
