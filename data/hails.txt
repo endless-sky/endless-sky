@@ -2171,7 +2171,7 @@ phrase "hostile militia"
 		" from "
 	word
 		"people"
-		"scumb"
+		"scum"
 		"pirates"
 		"trash"
 	word
@@ -2215,14 +2215,13 @@ phrase "hostile free worlds"
 		"prosperity"
 		"peace"
 		"our people"
-		"our systems"
-		"our planets"
+		"the Free Worlds"
 		"our families"
 	word
 		" from "
 	word
 		"people"
-		"scumb"
+		"scum"
 		"pirates"
 		"trash"
 	word
