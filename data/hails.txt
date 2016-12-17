@@ -2155,7 +2155,7 @@ phrase "hostile militia"
 		"We "
 	word
 		"live"
-		"breath"
+		"breathe"
 		"exist"
 		"fly"
 	word
@@ -2202,7 +2202,7 @@ phrase "hostile free worlds"
 		"We "
 	word
 		"live"
-		"breath"
+		"breathe"
 		"exist"
 		"fly"
 	word
