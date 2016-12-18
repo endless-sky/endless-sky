@@ -268,7 +268,7 @@ mission "Wanderers: First Mereti Attack"
 		system Kaliptari
 		personality staying heroic
 		fleet
-			names "Wanderer"
+			names "wanderer"
 			variant
 				"Derecho"
 				"Tempest" 2
@@ -278,7 +278,7 @@ mission "Wanderers: First Mereti Attack"
 		system Kaliptari
 		personality heroic
 		fleet
-			names "Wanderer"
+			names "wanderer"
 			variant
 				"Derecho"
 				"Tempest" 2
