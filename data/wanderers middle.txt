@@ -300,7 +300,7 @@ mission "Wanderers: Rek To Kor Efret"
 		has "Wanderers: First Mereti Attack: done"
 	on offer
 		conversation
-			`When you enter the meeting room, Sobari Tele'ek is in a heated argument with the Wanderer child who was here earlier, the one who speaks your language. She is saying, "The Eye has sent us not to a place of [empty, abandoned] worlds but to a place of [living beings?]. To complete our [calling, work] here we must collaborate with those beings, just as we would collaborate with the [ecosystem? personality] of a planet we sought to repair."`
+			`When you enter the meeting room, Sobari Tele'ek is in a heated argument with the Wanderer child who was here earlier, the one who speaks your language. The child is saying, "The Eye has sent us not to a place of [empty, abandoned] worlds but to a place of [living beings?]. To complete our [calling, work] here we must collaborate with those beings, just as we would collaborate with the [ecosystem? personality] of a planet we sought to repair."`
 			`	"What do you [propose, intend], Firstborn?" asks Tele'ek.`
 			`	"I would visit the [remaining, surviving] Korath," she says. "I would learn their [language? viewpoint? history?]. I would offer them our [companionship, assistance]."`
 			`	"No," says Tele'ek. "How could I [endanger, gamble with] your life? You are too [precious, unique] to be sent on such a [mission, assignment]."`
@@ -344,7 +344,7 @@ mission "Wanderers: Rek To Kor Efret"
 				goto end
 
 			label female
-			`	She laughs. "I'm not even technically the same species that I was before. A change in gender is minor compared to that." It's hard to read Wanderer facial expessions, but she seems to be thoroughly enjoying how confused you are.`
+			`	She laughs. "I'm not even technically the same species that I was before. A change in gender is minor compared to that." It's hard to read Wanderer facial expressions, but she seems to be thoroughly enjoying how confused you are.`
 
 			label end
 			`	Rek still remembers her way around a human ship, and gets settled in to one of your bunk rooms while you prepare for the journey to <planet>.`
@@ -940,7 +940,7 @@ mission "Wanderers: Mind 4"
 		has "Wanderers: Mind 3: done"
 	on offer
 		conversation
-			`A Wanderer fleet is waiting here to take part in the attempt at joinign the Wanderer Mind to the Kor Mereti. You notice that some of the ships that will be accompanying you are of yet another new design that you have never seen before; the Wanderer war machine is continuing to ramp up with remarkable speed.`
+			`A Wanderer fleet is waiting here to take part in the attempt at joining the Wanderer Mind to the Kor Mereti. You notice that some of the ships that will be accompanying you are of yet another new design that you have never seen before; the Wanderer war machine is continuing to ramp up with remarkable speed.`
 				accept
 
 
