@@ -721,7 +721,7 @@ mission "Wanderers: Kor Efret 3"
 		government "Quarg"
 		personality heroic staying entering
 		fleet
-			names "Quarg"
+			names "quarg"
 			variant
 				"Quarg Wardragon" 1
 	npc
@@ -729,7 +729,7 @@ mission "Wanderers: Kor Efret 3"
 		personality heroic
 		system "Host"
 		fleet
-			names "Quarg"
+			names "quarg"
 			variant
 				"Quarg Wardragon" 3
 	npc
@@ -737,7 +737,7 @@ mission "Wanderers: Kor Efret 3"
 		personality heroic
 		system "Mesuket"
 		fleet
-			names "Quarg"
+			names "quarg"
 			variant
 				"Quarg Wardragon" 5
 
