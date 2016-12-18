@@ -179,6 +179,7 @@ mission "Wanderers: Mereti Controller"
 	to offer
 		has "Wanderers: Surveying 1: done"
 	on complete
+		outfit "Reasoning Node" -1
 		conversation
 			scene "outfit/reasoning node"
 			`You hand off the Reasoning Node that you recovered from a Kor Mereti drone to a team of Wanderer scientists. A few hours later they report back to you. "This is a very [robust, redundant] design," says the lead scientist. "Each of these nodes has enough [processing power? intelligence?] to control one of the drones, but they are also [linked, interconnected] via a hyperspace network. So, all the drones [communicate, confer] with each other and are capable of making [strategic decisions?] as a collective."`
@@ -203,6 +204,7 @@ mission "Wanderers: Sestor Controller"
 	to offer
 		has "Wanderers: Surveying 1: done"
 	on complete
+		outfit "Control Transceiver" -1
 		conversation
 			scene "outfit/control transceiver"
 			`A team of Wanderer scientists examines the Control Transceiver that you salvaged from a Kor Sestor drone. "It is a remote control," they tell you. "Very little [computing power? autonomy?]. The ship receives [commands, directives] from some other source and sends back information on its own [status, observations]."`
