@@ -327,7 +327,7 @@ mission "Wanderers: Rek To Kor Efret"
 				`	"I'm surprised your father gave you permission to do this."`
 					goto father
 
-			`	She cocks her head quizically at you. "You do not know who I am?" she says. Now that you are out of the meeting, she is once more speaking to you in your own language.`
+			`	She cocks her head quizzically at you. "You do not know who I am?" she says. Now that you are out of the meeting, she is once more speaking to you in your own language.`
 			`	"No, I don't," you say.`
 				goto rek
 
