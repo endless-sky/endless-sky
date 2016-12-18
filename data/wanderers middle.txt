@@ -477,7 +477,7 @@ mission "Wanderers: Pug Assistance 1"
 			choice
 				`	"That might be worth a try. The Pug are full of surprises; they may have technology that would let them defeat the automata easily."`
 					goto end
-				`	"If getting caught in the crossfire between the two automaton factions is bad, wouldn't getting caught in the middle of a war between the Pug and the Quarg would be even worse?"`
+				`	"If getting caught in the crossfire between the two automaton factions is bad, wouldn't getting caught in the middle of a war between the Pug and the Quarg be even worse?"`
 
 			`	"They both want what is [optimal, productive] for this region," says Tele'ek. "Perhaps fighting side by side against a common enemy would allow the Pug and the Quarg to [reconcile, make peace] with each other."`
 
