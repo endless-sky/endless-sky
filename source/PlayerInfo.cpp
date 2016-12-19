@@ -875,6 +875,7 @@ void PlayerInfo::Land(UI *ui)
 		return;
 	
 	Audio::Play(Audio::Get("landing"));
+	Audio::PlayMusic(planet->MusicName());
 	
 	// Mark this planet as visited.
 	Visit(planet);
@@ -1717,7 +1718,14 @@ int PlayerInfo::Stock(const Outfit *outfit) const
 // Transfer outfits from the player to the planet or vice versa.
 void PlayerInfo::AddStock(const Outfit *outfit, int count)
 {
+	// If you sell an individual outfit that is not sold here and that you
+	// acquired by buying a ship here, have it appear as "in stock" in case you
+	// change your mind about selling it. (On the other hand, if you sell an
+	// entire ship right after buying it, its outfits will not be "in stock.")
+	if(count > 0 && stock[outfit] < 0)
+		stock[outfit] = 0;
 	stock[outfit] += count;
+	
 	int day = date.DaysSinceEpoch();
 	if(count > 0)
 	{

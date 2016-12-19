@@ -29,6 +29,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Outfit.h"
 #include "PlayerInfo.h"
 #include "Point.h"
+#include "Preferences.h"
 #include "RingShader.h"
 #include "Screen.h"
 #include "Ship.h"
@@ -202,7 +203,7 @@ bool MapSalesPanel::Drag(double dx, double dy)
 bool MapSalesPanel::Scroll(double dx, double dy)
 {
 	if(isDragging)
-		scroll = min(0., max(-maxScroll, scroll + 150 * dy));
+		scroll = min(0., max(-maxScroll, scroll + dy * 2.5 * Preferences::ScrollSpeed()));
 	else
 		return MapPanel::Scroll(dx, dy);
 	
@@ -339,9 +340,12 @@ bool MapSalesPanel::DrawHeader(Point &corner, const string &category)
 		corner.Y() += 50.;
 	hidPrevious = hide;
 	
-	Color textColor = *GameData::Colors().Get(hide ? "dim" : "bright");
+	const Sprite *arrow = SpriteSet::Get(hide ? "ui/collapsed" : "ui/expanded");
+	SpriteShader::Draw(arrow, corner + Point(15., 25.));
+	
+	Color textColor = *GameData::Colors().Get(hide ? "medium" : "bright");
 	const Font &bigFont = FontSet::Get(18);
-	bigFont.Draw(category, corner + Point(5., 15.), textColor);
+	bigFont.Draw(category, corner + Point(30., 15.), textColor);
 	AddZone(Rectangle::FromCorner(corner, Point(WIDTH, 40.)), [this, category](){ ClickCategory(category); });
 	corner.Y() += 40.;
 	
@@ -355,7 +359,7 @@ void MapSalesPanel::DrawSprite(const Point &corner, const Sprite *sprite) const
 	if(sprite)
 	{
 		Point iconOffset(.5 * ICON_HEIGHT, .5 * ICON_HEIGHT);
-		double scale = min(.5, ICON_HEIGHT / sprite->Height());
+		double scale = min(.5, (ICON_HEIGHT - 2.) / sprite->Height());
 		SpriteShader::Draw(sprite, corner + iconOffset, scale, swizzle);
 	}
 }

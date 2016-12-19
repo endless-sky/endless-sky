@@ -11,6 +11,8 @@
 mission "First Contact: Korati Efreti"
 	landing
 	source "Korati Efreti"
+	to offer
+		not "Wanderers: Rek To Kor Efret: offered"
 	on offer
 		conversation
 			`	A few of the Korath who inhabit this station greet you when you land, holding up both hands with their palms toward you. One of them says something that sounds like, "Humani efreti, naskoor amasavarkta." It's clear that none of them speak your language, but they seem friendly and willing to trade with you.`
@@ -19,6 +21,8 @@ mission "First Contact: Korati Efreti"
 mission "First Contact: Laki Nemparu"
 	landing
 	source "Laki Nemparu"
+	to offer
+		not "Wanderers: Rek To Kor Efret: offered"
 	on offer
 		conversation
 			`	A few of the Korath in this spaceport greet you when you land, holding up both hands with their palms toward you. One of them says something that sounds like, "Humani efreti, naskoor amasavarkta." It's clear that none of them speak your language, but they seem friendly and willing to trade with you.`
@@ -27,6 +31,8 @@ mission "First Contact: Laki Nemparu"
 mission "First Contact: Karek Fornati"
 	landing
 	source "Karek Fornati"
+	to offer
+		not "Wanderers: Rek To Kor Efret: offered"
 	on offer
 		conversation
 			`	A few of the Korath in this spaceport greet you when you land, holding up both hands with their palms toward you. One of them says something that sounds like, "Humani efreti, naskoor amasavarkta." It's clear that none of them speak your language, but they seem friendly and willing to trade with you.`
@@ -35,6 +41,8 @@ mission "First Contact: Karek Fornati"
 mission "First Contact: Setar Fort"
 	landing
 	source "Setar Fort"
+	to offer
+		not "Wanderers: Rek To Kor Efret: offered"
 	on offer
 		conversation
 			`	A few of the Korath in this spaceport greet you when you land, holding up both hands with their palms toward you. One of them says something that sounds like, "Humani efreti, naskoor amasavarkta." It's clear that none of them speak your language, but they seem friendly and willing to trade with you.`

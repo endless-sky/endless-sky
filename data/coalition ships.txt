@@ -23,7 +23,7 @@ ship "Arach Courier"
 		"fuel capacity" 300
 		"cargo space" 78
 		"outfit space" 148
-		"weapon capacity" 0
+		"weapon capacity" 39
 		"engine capacity" 40
 		weapon
 			"blast radius" 20
@@ -48,7 +48,7 @@ ship "Arach Courier"
 	explode "tiny explosion" 10
 	explode "small explosion" 10
 	"final explode" "final explosion small"
-	description ``
+	description `These hardy little cargo ships are the perfect size for young Arachi just setting out into the sky with dreams of one day building their own merchant fleets. Of course, an Arach lucky enough to be born into one of the great Houses can probably find a patron to buy them a much larger ship instead.`
 
 ship "Arach Freighter"
 	sprite "ship/arach freighter"
@@ -65,7 +65,7 @@ ship "Arach Freighter"
 		"fuel capacity" 500
 		"cargo space" 310
 		"outfit space" 349
-		"weapon capacity" 0
+		"weapon capacity" 132
 		"engine capacity" 92
 		weapon
 			"blast radius" 80
@@ -95,7 +95,7 @@ ship "Arach Freighter"
 	explode "small explosion" 15
 	explode "medium explosion" 15
 	"final explode" "final explosion medium"
-	description ``
+	description `Arach cargo ship hulls are legendary for their durability. It is not uncommon for a large Arach family to convert a freighter that is no longer space-worthy into a planet-side dwelling, and even in the harshest of conditions these converted houses can last for hundreds of years with little or no exterior maintenance.`
 
 ship "Arach Hulk"
 	sprite "ship/arach hulk"
@@ -112,7 +112,7 @@ ship "Arach Hulk"
 		"fuel capacity" 500
 		"cargo space" 541
 		"outfit space" 520
-		"weapon capacity" 0
+		"weapon capacity" 208
 		"engine capacity" 148
 		weapon
 			"blast radius" 120
@@ -146,7 +146,7 @@ ship "Arach Hulk"
 	explode "large explosion" 30
 	explode "huge explosion" 10
 	"final explode" "final explosion large"
-	description ``
+	description `The Arachi believe that efficient functionality is the highest form of beauty, and none of their ships demonstrate that principle more clearly than the ugly yet utilitarian Hulk, designed with detachable side pods that can be swapped out on a planet in a matter of minutes if the captain is in a hurry to reach the next destination.`
 
 ship "Arach Spindle"
 	sprite "ship/arach spindle"
@@ -163,7 +163,7 @@ ship "Arach Spindle"
 		"fuel capacity" 500
 		"cargo space" 280
 		"outfit space" 434
-		"weapon capacity" 0
+		"weapon capacity" 138
 		"engine capacity" 148
 		weapon
 			"blast radius" 100
@@ -176,6 +176,7 @@ ship "Arach Spindle"
 		"Small Battery Module"
 		"Small Shield Module" 2
 		"Small Repair Module" 3
+		"Cooling Module"
 		
 		"Large Thrust Module" 2
 		"Small Thrust Module" 3
@@ -194,7 +195,7 @@ ship "Arach Spindle"
 	explode "medium explosion" 20
 	explode "large explosion" 20
 	"final explode" "final explosion large"
-	description ``
+	description `The Arach Hulk is an ungainly, lumbering behemoth of a ship, but with its side pods removed it becomes the much more maneuverable Spindle. Because of its much lower cargo space, usually the only reason a fleet would include a Spindle is if they are planning on picking up new cargo pods at their destination.`
 
 ship "Arach Transport"
 	sprite "ship/arach transport"
@@ -211,7 +212,7 @@ ship "Arach Transport"
 		"fuel capacity" 400
 		"cargo space" 190
 		"outfit space" 281
-		"weapon capacity" 0
+		"weapon capacity" 96
 		"engine capacity" 70
 		weapon
 			"blast radius" 40
@@ -240,7 +241,319 @@ ship "Arach Transport"
 	explode "medium explosion" 30
 	explode "large explosion" 5
 	"final explode" "final explosion medium"
-	description ``
+	description `The Arach Transport is the oldest of their ship designs, dating back to the time when they first joined the Coalition in overthrowing the Quarg and capturing their ringworlds. Back then, Transports were occasionally used as warships, but now, thousands of years later, they are considered outdated compared to the latest Heliarch military ships.`
+
+
+ship "Heliarch Interdictor"
+	sprite "ship/heliarch interdictor"
+	attributes
+		category "Medium Warship"
+		"cost" 35487000
+		"shields" 65300
+		"hull" 54600
+		"required crew" 42
+		"bunks" 70
+		"mass" 520
+		"drag" 7.4
+		"heat dissipation" .70
+		"fuel capacity" 800
+		"cargo space" 79
+		"outfit space" 544
+		"weapon capacity" 179
+		"engine capacity" 135
+		weapon
+			"blast radius" 250
+			"shield damage" 3000
+			"hull damage" 1500
+			"hit force" 3800
+	outfits
+		"Finisher Pod" 2
+		"Finisher Torpedo" 80
+		"Heliarch Attractor"
+		"Heliarch Repulsor"
+		
+		"Large Reactor Module"
+		"Large Battery Module"
+		"Large Shield Module" 2
+		"Large Repair Module"
+		"Cooling Module"
+		
+		"Large Thrust Module" 2
+		"Large Steering Module" 2
+		"Hyperdrive"
+	
+	gun -20 -98 "Finisher Pod"
+	gun 20 -98 "Finisher Pod"
+	turret -8 -63 "Heliarch Attractor"
+	turret 8 -63 "Heliarch Repulsor"
+	engine -30 163 .5
+	engine -20 163 .85
+	engine 20 163 .85
+	engine 30 163 .5
+	explode "small explosion" 20
+	explode "medium explosion" 50
+	explode "large explosion" 30
+	explode "huge explosion" 10
+	"final explode" "final explosion large" 1
+	description `Anyone who incurs the wrath of the Heliarchs cannot count on making a fast getaway thanks to the Interdictors, which were primarily designed to carry a pair of attractor and repulsor beams that can hold a ship a safe distance away while pushing it around enough to prevent it from getting a hyperspace lock to jump out of the system.`
+
+ship "Heliarch Interdictor" "Heliarch Interdictor (Bombardment)"
+	outfits
+		"Finisher Pod" 2
+		"Finisher Torpedo" 80
+		"Bombardment Turret" 2
+		
+		"Large Reactor Module"
+		"Large Battery Module"
+		"Large Shield Module" 2
+		"Small Shield Module"
+		"Large Repair Module"
+		"Cooling Module"
+		
+		"Large Thrust Module" 2
+		"Small Thrust Module"
+		"Large Steering Module" 2
+		"Small Steering Module"
+		"Hyperdrive"
+
+
+ship "Heliarch Neutralizer"
+	sprite "ship/heliarch neutralizer"
+	attributes
+		category "Light Warship"
+		"cost" 18847000
+		"shields" 36400
+		"hull" 32800
+		"required crew" 17
+		"bunks" 24
+		"mass" 270
+		"drag" 4.1
+		"heat dissipation" .75
+		"fuel capacity" 1000
+		"cargo space" 36
+		"outfit space" 367
+		"weapon capacity" 72
+		"engine capacity" 102
+		weapon
+			"blast radius" 150
+			"shield damage" 1800
+			"hull damage" 900
+			"hit force" 2100
+	outfits
+		"Ion Rain Gun" 4
+		
+		"Small Reactor Module" 2
+		"Large Battery Module"
+		"Large Shield Module"
+		"Large Repair Module"
+		"Cooling Module"
+		
+		"Large Thrust Module"
+		"Small Thrust Module" 2
+		"Large Steering Module"
+		"Small Steering Module" 2
+		"Hyperdrive"
+	
+	gun -22 -57 "Ion Rain Gun"
+	gun -16 -59 "Ion Rain Gun"
+	gun 16 -59 "Ion Rain Gun"
+	gun 22 -57 "Ion Rain Gun"
+	engine -17 82 .7
+	engine 0 74 1
+	engine 17 82 .7
+	explode "small explosion" 30
+	explode "medium explosion" 40
+	explode "large explosion" 20
+	"final explode" "final explosion medium" 1
+	description `The most common Heliarch patrol ship, Neutralizers are designed to be just strong enough to keep an enemy vessel occupied until reinforcements can arrive.`
+
+ship "Heliarch Neutralizer" "Heliarch Neutralizer (Missile)"
+	outfits
+		"Finisher Pod" 2
+		"Finisher Torpedo" 80
+		
+		"Small Reactor Module"
+		"Large Battery Module"
+		"Large Shield Module"
+		"Large Repair Module"
+		"Cooling Module"
+		
+		"Large Thrust Module"
+		"Small Thrust Module" 2
+		"Large Steering Module"
+		"Small Steering Module" 2
+		"Hyperdrive"
+	
+	gun
+	gun "Finisher Pod"
+	gun "Finisher Pod"
+	gun
+
+ship "Heliarch Neutralizer" "Heliarch Neutralizer (Nimble)"
+	outfits
+		"Ion Rain Gun" 4
+		
+		"Small Reactor Module" 2
+		"Large Battery Module"
+		"Large Shield Module"
+		"Large Repair Module"
+		"Cooling Module"
+		
+		"Large Thrust Module"
+		"Small Thrust Module"
+		"Large Steering Module" 2
+		"Small Steering Module"
+		"Hyperdrive"
+
+ship "Heliarch Neutralizer" "Heliarch Neutralizer (Scrappy)"
+	outfits
+		"Bombardment Cannon" 4
+		
+		"Small Reactor Module" 2
+		"Small Battery Module"
+		"Large Shield Module" 2
+		"Small Shield Module"
+		"Large Repair Module"
+		"Cooling Module" 2
+		
+		"Large Thrust Module"
+		"Small Thrust Module"
+		"Large Steering Module" 2
+		"Hyperdrive"
+
+
+ship "Heliarch Punisher"
+	sprite "ship/heliarch punisher"
+	attributes
+		category "Heavy Warship"
+		"cost" 58487000
+		"shields" 108000
+		"hull" 85000
+		"required crew" 96
+		"bunks" 145
+		"mass" 780
+		"drag" 12.2
+		"heat dissipation" .60
+		"fuel capacity" 600
+		"cargo space" 94
+		"outfit space" 885
+		"weapon capacity" 324
+		"engine capacity" 187
+		weapon
+			"blast radius" 400
+			"shield damage" 4800
+			"hull damage" 2400
+			"hit force" 6000
+	outfits
+		"Ion Rain Gun" 4
+		"Finisher Pod" 2
+		"Finisher Torpedo" 80
+		"Bombardment Turret" 4
+		
+		"Large Reactor Module" 2
+		"Large Battery Module"
+		"Large Shield Module" 3
+		"Large Repair Module" 2
+		"Cooling Module" 3
+		
+		"Large Thrust Module" 2
+		"Small Thrust Module" 2
+		"Large Steering Module" 2
+		"Small Steering Module" 2
+		"Hyperdrive"
+	
+	gun -27 -118 "Ion Rain Gun"
+	gun -21 -121 "Ion Rain Gun"
+	gun 21 -121 "Ion Rain Gun"
+	gun 27 -118 "Ion Rain Gun"
+	gun -43 -43 "Finisher Pod"
+	gun 43 -43 "Finisher Pod"
+	turret -13 -42 "Bombardment Turret"
+	turret 0 -35 "Bombardment Turret"
+	turret 13 -42 "Bombardment Turret"
+	turret 0 164 "Bombardment Turret"
+	engine -24 184 .6
+	engine 0 187 1.1
+	engine 24 184 .6
+	explode "small explosion" 20
+	explode "medium explosion" 60
+	explode "large explosion" 40
+	explode "huge explosion" 20
+	"final explode" "final explosion large" 1
+	description `Although not quite as strong or powerful as the Quarg ships that they are designed to oppose, Heliarch Punishers are versatile and durable ships. Rumors say that the Heliarchs have a small stash of stolen Quarg Skylances that they can outfit the Punishers with in times of war.`
+
+ship "Heliarch Punisher" "Heliarch Punisher (Interdicting)"
+	outfits
+		"Bombardment Cannon" 4
+		"Finisher Pod" 2
+		"Finisher Torpedo" 80
+		"Heliarch Attractor" 2
+		"Heliarch Repulsor"
+		
+		"Large Reactor Module" 2
+		"Large Battery Module"
+		"Large Shield Module" 3
+		"Large Repair Module" 2
+		"Cooling Module" 3
+		
+		"Large Thrust Module" 2
+		"Small Thrust Module" 2
+		"Large Steering Module" 2
+		"Small Steering Module" 2
+		"Hyperdrive"
+	
+	gun "Bombardment Cannon"
+	gun "Bombardment Cannon"
+	gun "Bombardment Cannon"
+	gun "Bombardment Cannon"
+	gun "Finisher Pod"
+	gun "Finisher Pod"
+	turret "Heliarch Attractor"
+	turret "Heliarch Repulsor"
+	turret "Heliarch Attractor"
+	turret "Bombardment Turret"
+
+ship "Heliarch Punisher" "Heliarch Punisher (Missile)"
+	outfits
+		"Finisher Pod" 6
+		"Finisher Torpedo" 240
+		"Heliarch Repulsor"
+		
+		"Large Reactor Module"
+		"Small Reactor Module"
+		"Large Battery Module"
+		"Large Shield Module" 5
+		"Large Repair Module" 2
+		"Cooling Module" 2
+		
+		"Large Thrust Module" 4
+		"Large Steering Module" 2
+		"Small Steering Module"
+		"Hyperdrive"
+	
+	turret
+	turret "Heliarch Repulsor"
+	turret
+	turret
+
+ship "Heliarch Punisher" "Heliarch Punisher (Scrappy)"
+	outfits
+		"Bombardment Cannon" 4
+		"Bombardment Turret" 6
+		
+		"Large Reactor Module" 2
+		"Small Reactor Module"
+		"Large Battery Module"
+		"Large Shield Module" 4
+		"Large Repair Module" 2
+		"Cooling Module" 5
+		"Mass Expansion" 3
+		
+		"Large Thrust Module" 2
+		"Small Thrust Module"
+		"Large Steering Module" 4
+		"Small Steering Module" 2
+		"Hyperdrive"
 
 
 ship "Kimek Briar"
@@ -258,7 +571,7 @@ ship "Kimek Briar"
 		"fuel capacity" 700
 		"cargo space" 21
 		"outfit space" 245
-		"weapon capacity" 0
+		"weapon capacity" 89
 		"engine capacity" 60
 		weapon
 			"blast radius" 34
@@ -284,7 +597,7 @@ ship "Kimek Briar"
 	explode "small explosion" 20
 	explode "medium explosion" 5
 	"final explode" "final explosion medium"
-	description ``
+	description `With more than twice the population of the Saryds and Arachi combined, the Kimek are constantly in need of transport ships to carry individuals from one world to another.`
 
 ship "Kimek Spire"
 	sprite "ship/kimek spire"
@@ -301,7 +614,7 @@ ship "Kimek Spire"
 		"fuel capacity" 800
 		"cargo space" 64
 		"outfit space" 489
-		"weapon capacity" 0
+		"weapon capacity" 256
 		"engine capacity" 129
 		weapon
 			"blast radius" 140
@@ -335,7 +648,7 @@ ship "Kimek Spire"
 	explode "large explosion" 20
 	explode "huge explosion" 5
 	"final explode" "final explosion large"
-	description ``
+	description `The Spire is the largest passenger transport in Coalition space, able to carry nearly two hundred individuals... as long as they're comfortable staying in the tiny bunk rooms that are primarily designed to meet the needs of a Kimek. Most of the ceilings are too short for a Saryd to stand up straight, and the beds are too small for an Arach to stretch their legs out comfortably.`
 
 ship "Kimek Thistle"
 	sprite "ship/kimek thistle"
@@ -352,7 +665,7 @@ ship "Kimek Thistle"
 		"fuel capacity" 700
 		"cargo space" 29
 		"outfit space" 321
-		"weapon capacity" 0
+		"weapon capacity" 118
 		"engine capacity" 87
 		weapon
 			"blast radius" 60
@@ -381,7 +694,7 @@ ship "Kimek Thistle"
 	explode "medium explosion" 30
 	explode "large explosion" 10
 	"final explode" "final explosion medium"
-	description ``
+	description `The Kimek love traveling so much that some of them will happily spend months at a time in a transport this size, and the passengers often grow into a tight-knit community by the end of their journeys together.`
 
 ship "Kimek Thorn"
 	sprite "ship/kimek thorn"
@@ -398,7 +711,7 @@ ship "Kimek Thorn"
 		"fuel capacity" 600
 		"cargo space" 12
 		"outfit space" 133
-		"weapon capacity" 0
+		"weapon capacity" 40
 		"engine capacity" 38
 		weapon
 			"blast radius" 14
@@ -422,7 +735,7 @@ ship "Kimek Thorn"
 	explode "tiny explosion" 10
 	explode "small explosion" 5
 	"final explode" "final explosion small"
-	description ``
+	description `The Thorn is the Kimek equivalent of a shuttle, and thanks to their speed and maneuverability they are used throughout Coalition space for transferring passengers from one ship to another or from a planet into orbit.`
 
 
 ship "Saryd Runabout"
@@ -440,7 +753,7 @@ ship "Saryd Runabout"
 		"fuel capacity" 400
 		"cargo space" 42
 		"outfit space" 172
-		"weapon capacity" 0
+		"weapon capacity" 44
 		"engine capacity" 42
 		weapon
 			"blast radius" 22
@@ -463,7 +776,7 @@ ship "Saryd Runabout"
 	explode "tiny explosion" 10
 	explode "small explosion" 10
 	"final explode" "final explosion small"
-	description ``
+	description `Saryds place high value both on solitude, but also on community and collaboration. So, it is not surprising that their smallest spacefaring vessel requires a team of at least two individuals to operate it. It is quite common for a lone Saryd to take on a Kimek or Arach copilot as a way of building cross-species friendships.`
 
 ship "Saryd Sojourner"
 	sprite "ship/saryd sojourner"
@@ -480,7 +793,7 @@ ship "Saryd Sojourner"
 		"fuel capacity" 800
 		"cargo space" 260
 		"outfit space" 568
-		"weapon capacity" 0
+		"weapon capacity" 202
 		"engine capacity" 156
 		weapon
 			"blast radius" 200
@@ -515,7 +828,7 @@ ship "Saryd Sojourner"
 	explode "large explosion" 10
 	explode "huge explosion" 10
 	"final explode" "final explosion large"
-	description ``
+	description `When the first wars were fought against the Quarg, the Saryds had been spacefaring for more than ten thousand Earth years, and their starship technology was considerably more advanced than the Kimek or the Arachi. At that time, ships similar to the modern Sojourner were the most powerful capital ships in the Coalition fleet.`
 
 ship "Saryd Traveler"
 	sprite "ship/saryd traveler"
@@ -532,7 +845,7 @@ ship "Saryd Traveler"
 		"fuel capacity" 600
 		"cargo space" 137
 		"outfit space" 466
-		"weapon capacity" 0
+		"weapon capacity" 177
 		"engine capacity" 79
 		weapon
 			"blast radius" 72
@@ -565,7 +878,7 @@ ship "Saryd Traveler"
 	explode "medium explosion" 20
 	explode "large explosion" 10
 	"final explode" "final explosion medium"
-	description ``
+	description `Travelers were originally designed as science vessels, thousands of years ago before the Saryds had catalogued all the life forms and physical phenomena of every world in Coalition space. Today, many Saryd communities still choose to live in a Traveler and journey together from system to system rather than putting down roots on a planet.`
 
 ship "Saryd Visitor"
 	sprite "ship/saryd visitor"
@@ -582,7 +895,7 @@ ship "Saryd Visitor"
 		"fuel capacity" 400
 		"cargo space" 98
 		"outfit space" 320
-		"weapon capacity" 0
+		"weapon capacity" 90
 		"engine capacity" 57
 		weapon
 			"blast radius" 42
@@ -610,4 +923,4 @@ ship "Saryd Visitor"
 	explode "small explosion" 30
 	explode "medium explosion" 5
 	"final explode" "final explosion medium"
-	description ``
+	description `Rather than specializing in carrying passengers or carrying cargo, Saryds seek to make their ships as well-balanced and versatile as possible. As a result, the crew of a typical Visitor can count on performing a different sort of job every week.`

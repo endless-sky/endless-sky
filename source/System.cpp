@@ -125,6 +125,8 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 			position.Set(child.Value(1), child.Value(2));
 		else if(child.Token(0) == "government" && child.Size() >= 2)
 			government = GameData::Governments().Get(child.Token(1));
+		else if(child.Token(0) == "music" && child.Size() >= 2)
+			music = child.Token(1);
 		else if(child.Token(0) == "link")
 		{
 			if(resetLinks)
@@ -323,6 +325,15 @@ const Government *System::GetGovernment() const
 
 
 
+
+// Get the name of the ambient audio to play in this system.
+const string &System::MusicName() const
+{
+	return music;
+}
+
+
+
 // Get a list of systems you can travel to through hyperspace from here.
 const vector<const System *> &System::Links() const
 {
@@ -396,7 +407,7 @@ double System::AsteroidBelt() const
 bool System::IsInhabited() const
 {
 	for(const StellarObject &object : objects)
-		if(object.GetPlanet() && object.GetPlanet()->HasSpaceport())
+		if(object.GetPlanet() && !object.GetPlanet()->IsWormhole() && object.GetPlanet()->HasSpaceport())
 			return true;
 	
 	return false;

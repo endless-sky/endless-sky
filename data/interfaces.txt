@@ -158,9 +158,67 @@ interface "load menu"
 
 
 
-interface "preferences"
+interface "controls"
 	sprite "ui/keys panel"
 		center -65 -20
+	button c "_Controls"
+		center -300 -230
+		dimensions 90 30
+		color bright
+	button s "_Settings"
+		center -300 -190
+		dimensions 90 30
+		color medium
+		hover bright
+	button p "_Plugins"
+		center -300 -150
+		dimensions 90 30
+		color medium
+		hover bright
+
+
+
+interface "settings"
+	sprite "ui/settings panel"
+		center -20 -20
+	button c "_Controls"
+		center -300 -230
+		dimensions 90 30
+		color medium
+		hover bright
+	button s "_Settings"
+		center -300 -190
+		dimensions 90 30
+		color bright
+	button p "_Plugins"
+		center -300 -150
+		dimensions 90 30
+		color medium
+		hover bright
+
+
+
+interface "plugins"
+	sprite "ui/settings panel"
+		center -20 -20
+	button c "_Controls"
+		center -300 -230
+		dimensions 90 30
+		color medium
+		hover bright
+	button s "_Settings"
+		center -300 -190
+		dimensions 90 30
+		color medium
+		hover bright
+	button p "_Plugins"
+		center -300 -150
+		dimensions 90 30
+		color bright
+
+
+
+interface "preferences"
 	button b "_Back to Menu..."
 		center 195 210
 		dimensions 120 30

@@ -38,7 +38,7 @@ phrase "musical venue"
 		"playing a gig "
 		"live in concert "
 	word
-		"at Tarazed stadium! "
+		"at Tarazed Stadium! "
 		"at the amphitheater on Skymoot! "
 		"at a concert hall in New Sydney! "
 		"in a night club on Splashdown! "
@@ -75,7 +75,7 @@ phrase "band"
 		"Their song "
 	word
 		`"Dude, Where's My Bible?" `
-		`"Re-Inventing Rythmn" `
+		`"Re-Inventing Rhythm" `
 		`"Abstraction Is the Answer" `
 		`"Outrageous Activism" `
 		`"Cheap Entertainment" `
@@ -970,6 +970,91 @@ phrase "friendly militia"
 		"starships"
 	word
 		"."
+
+phrase "friendly militia"
+	word
+		"No"
+		"Not a single"
+		"Not one"
+	word
+		" "
+	word
+		"merchant"
+		"innocent life"
+		"innocent ship"
+		"inhabitant of this system"
+	word
+		" "
+	word
+		"will die"
+		"will be harmed"
+		"will be killed"
+		"will be destroyed"
+	word
+		" "
+	word
+		"on our watch"
+		"while we are around"
+		"while we are still flying"
+		"while we are still breathing"
+		"while we are here"
+	word
+		"."
+		"!"
+
+phrase "friendly militia"
+	word
+		"Pirates"
+		"Criminals"
+		"Evil-doers"
+		"Threats to freedom"
+		"Threats to this system"
+		"Threats to this planet"
+		"Threats to our system"
+		"Threats to our planet"
+	word
+		" beware"
+		" be warned"
+		", turn back now"
+	word
+		". "
+		"! "
+	word
+		"The militia are here"
+		"The cavalry are here"
+		"The militia are on the watch"
+		"You won't beat us"
+		"We can not be defeated"
+	word
+		"."
+		"!"
+
+phrase "friendly milita"
+	word
+		"We are the militia, "
+	word
+		"defenders of freedom"
+		"defenders of the innocent"
+		"defenders of this system"
+		"defenders of this planet"
+		"destroyers of pirates"
+		"destroyers of evil"
+	word
+		"."
+		"!"
+
+phrase "friendly militia"
+	word
+		"It wouldn't hurt if "
+	word
+		"the Navy"
+		"the Republic"
+		"a Navy fleet"
+	word
+		" would help us out with these "
+	word
+		"pirates."
+		"criminals."
 
 phrase "friendly syndicate"
 	word
@@ -2025,3 +2110,122 @@ phrase "hostile Syndicate"
 		"Thank you for volunteering to be a target ship for Syndicated Weapon Systems!"
 		"Syndicated Systems disapproves of space littering; your ship's wreckage will be recycled after we are finished destroying it."
 		"With authority vested in me by Syndicated Systems corporate charter, section 8, paragraph 22... prepare to die!"
+
+phrase "hostile militia"
+	word
+		"Get back"
+		"Run away"
+		"Leave this system"
+		"Leave this place"
+		"Surrender"
+	word
+		" before we "
+	word
+		"destroy you"
+		"demolish you"
+		"turn you into scraps"
+		"turn you into scrap metal"
+		"toss you into the vacuum of space"
+		"bust open your cockpit"
+		"bust open your ship"
+	word
+		"."
+		"!"
+		", pirate!"
+		", criminal!"
+
+phrase "hostile militia"
+	word
+		"Quickly, merchants"
+	word
+		". "
+		"! "
+	word
+		"Leave before this pirate destroys you"
+		"Escape from this pirate"
+		"Activate your hyperdrives"
+		"Escape and allow us to fight this battle"
+	word
+		"."
+		"!"
+
+phrase "hostile militia"
+	word
+		"The militia"
+		"We "
+	word
+		"live"
+		"breathe"
+		"exist"
+		"fly"
+	word
+		" to defend "
+		" to protect "
+	word
+		"the innocent"
+		"our people"
+		"our systems"
+		"our planets"
+		"our families"
+	word
+		" from "
+	word
+		"people"
+		"scum"
+		"pirates"
+		"trash"
+	word
+		" like you"
+	word
+		"."
+		"!"
+
+phrase "hostile free worlds"
+	word
+		"Safety"
+		"Justice"
+		"Freedom"
+		"Equality"
+	word
+		" shall be "
+	word
+		"defended"
+		"upheld"
+		"protected"
+		"enforced"
+	word
+		"."
+		"!"
+
+phrase "hostile free worlds"
+	word
+		"We "
+	word
+		"live"
+		"breathe"
+		"exist"
+		"fly"
+	word
+		" to defend "
+		" to protect "
+	word
+		"the innocent"
+		"freedom"
+		"equality"
+		"prosperity"
+		"peace"
+		"our people"
+		"the Free Worlds"
+		"our families"
+	word
+		" from "
+	word
+		"people"
+		"scum"
+		"pirates"
+		"trash"
+	word
+		" like you"
+	word
+		"."
+		"!"

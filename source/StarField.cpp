@@ -124,16 +124,31 @@ void StarField::Draw(const Point &pos, const Point &vel) const
 	glBindVertexArray(0);
 	glUseProgram(0);
 	
+	// Draw the background haze unless it is disabled in the preferences.
 	if(!Preferences::Has("Draw background haze"))
 		return;
 	
 	DrawList drawList;
+	drawList.SetCenter(pos);
+	
+	// Any object within this range must be drawn. Some haze sprites may repeat
+	// more than once if the view covers a very large area.
+	Point size = Point(1., 1.) * haze.front().Radius();
+	Point topLeft = pos + Screen::TopLeft() - size;
+	Point bottomRight = pos + Screen::BottomRight() + size;
 	for(const Body &it : haze)
 	{
-		Point offset(
-			remainder(it.Position().X() - pos.X(), HAZE_WRAP),
-			remainder(it.Position().Y() - pos.Y(), HAZE_WRAP));
-		drawList.Add(it, offset);
+		// Figure out the position of the first instance of this haze that is to
+		// the right of and below the top left corner of the screen.
+		double startX = fmod(it.Position().X() - topLeft.X(), HAZE_WRAP);
+		startX += topLeft.X() + HAZE_WRAP * (startX < 0.);
+		double startY = fmod(it.Position().Y() - topLeft.Y(), HAZE_WRAP);
+		startY += topLeft.Y() + HAZE_WRAP * (startY < 0.);
+	
+		// Draw any instances of this haze that are on screen.
+		for(double y = startY; y < bottomRight.Y(); y += HAZE_WRAP)
+			for(double x = startX; x < bottomRight.X(); x += HAZE_WRAP)
+				drawList.Add(it, Point(x, y));
 	}
 	drawList.Draw();
 }

@@ -79,8 +79,8 @@ protected:
 	
 protected:
 	double scroll = 0.;
-	mutable double maxScroll = 0.;
-
+	double maxScroll = 0.;
+	
 	const std::vector<std::string> &categories;
 	
 	

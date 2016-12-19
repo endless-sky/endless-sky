@@ -2280,6 +2280,7 @@ event "deep sky tech available"
 		"Typhoon Torpedo"
 		"Electron Beam"
 		"Typhoon Launcher"
+		"Typhoon Storage Tube"
 		"Electron Turret"
 
 
@@ -2504,10 +2505,10 @@ event "at war with the pug"
 	"reputation: Pug" = -1000
 	government Pug
 		"attitude toward"
-			"Free Worlds" -.1
-			"Republic" -.1
-			"Syndicate" -.1
-			"Syndicate (Extremist)" -.5
+			"Free Worlds" -.01
+			"Republic" -.01
+			"Syndicate" -.01
+			"Syndicate (Extremist)" -.01
 	system "Delta Capricorni"
 		fleet "Small Core Merchants" 1500
 
@@ -2981,10 +2982,10 @@ event "fwc pug invasion"
 	link Alderamin Deneb
 	link "Zeta Aquilae" Deneb
 	link Rasalhague Deneb
-	"reputation: Pug" = -1000
+	"reputation: Pug" <?= -1000
 	government Pug
 		"attitude toward"
-			"Free Worlds" -.1
+			"Free Worlds" -.01
 	system "Zeta Aquilae"
 		government Pug
 		fleet "Small Southern Merchants" 1000
@@ -3113,9 +3114,9 @@ event "fwc battle for rasalhague"
 		fleet "Small Southern Merchants" 10000
 	government "Pug"
 		"attitude toward"
-			"Free Worlds" -.1
-			"Republic" -.1
-			"Navy (Oathkeeper)" -.1
+			"Free Worlds" -.01
+			"Republic" -.01
+			"Navy (Oathkeeper)" -.01
 
 
 

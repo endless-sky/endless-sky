@@ -55,7 +55,7 @@ private:
 	
 private:
 	std::map<std::string, std::vector<const Ship *>> catalog;
-	mutable std::vector<const Ship *> list;
+	std::vector<const Ship *> list;
 	
 	const Ship *selected = nullptr;
 	const Ship *compare = nullptr;
