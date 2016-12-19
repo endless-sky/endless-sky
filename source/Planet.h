@@ -49,6 +49,8 @@ public:
 	const std::string &Description() const;
 	// Get the landscape sprite.
 	const Sprite *Landscape() const;
+	// Get the name of the ambient audio to play on this planet.
+	const std::string &MusicName() const;
 	
 	// Get the list of "attributes" of the planet.
 	const std::set<std::string> &Attributes() const;
@@ -117,6 +119,7 @@ private:
 	std::string description;
 	std::string spaceport;
 	const Sprite *landscape = nullptr;
+	std::string music;
 	
 	std::set<std::string> attributes;
 	

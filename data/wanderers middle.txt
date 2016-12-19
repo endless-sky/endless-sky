@@ -28,7 +28,7 @@ mission "Wanderers: Surveying 1"
 		conversation
 			`The Wanderers have begun building a base here, with freighters landing every few minutes to bring more supplies or people. They have a fair number of weapons and warships to keep the Korath automata at bay, but the majority of the supplies look like scientific tools or possibly equipment for terraforming planets.`
 			`	Soon after you land, you are ushered in to a meeting with several of the senior Wanderer leaders. You recognize the military commander Sobari Tele'ek, but the others are strangers to you. And oddly, in addition to the adults there is a Wanderer child in the meeting, barely more than a meter tall, with iridescent black plumage like a starling.`
-			`	When she sees you the child says, "Greetings, Captain." Surprisingly, she speaks in your own language. It's heartening that the Wanderers are teaching human language to their children; perhaps in a few years you'll no longer need the translation device to talk with them.`
+			`	When she sees you the child says, "Greetings, Captain." Surprisingly, she speaks in your own language. It's heartening that the Wanderers are teaching your language to their children; perhaps in a few years you'll no longer need the translation device to talk with them.`
 			`	Tele'ek asks you, "Have you explored this new [territory, responsibility] that the Eye has brought us to?"`
 			choice
 				`	"Yes, it looks like the worlds here are in great need of your care."`
@@ -327,7 +327,7 @@ mission "Wanderers: Rek To Kor Efret"
 				`	"I'm surprised your father gave you permission to do this."`
 					goto father
 
-			`	She cocks her head quizically at you. "You do not know who I am?" she says. Now that you are out of the meeting, she is once more speaking to you in your own language.`
+			`	She cocks her head quizzically at you. "You do not know who I am?" she says. Now that you are out of the meeting, she is once more speaking to you in your own language.`
 			`	"No, I don't," you say.`
 				goto rek
 
@@ -477,7 +477,7 @@ mission "Wanderers: Pug Assistance 1"
 			choice
 				`	"That might be worth a try. The Pug are full of surprises; they may have technology that would let them defeat the automata easily."`
 					goto end
-				`	"If getting caught in the crossfire between the two automaton factions is bad, wouldn't getting caught in the middle of a war between the Pug and the Quarg would be even worse?"`
+				`	"If getting caught in the crossfire between the two automaton factions is bad, wouldn't getting caught in the middle of a war between the Pug and the Quarg be even worse?"`
 
 			`	"They both want what is [optimal, productive] for this region," says Tele'ek. "Perhaps fighting side by side against a common enemy would allow the Pug and the Quarg to [reconcile, make peace] with each other."`
 
@@ -536,7 +536,7 @@ mission "Wanderers: Pug Assistance 2"
 				goto end
 
 			label archons
-			`	"We know that they were created to mediate peace and prevent extinction," says one of the Pug. "And we know that they failed. Have failed many times, in fact. And that makes then all mopey and depressing."`
+			`	"We know that they were created to mediate peace and prevent extinction," says one of the Pug. "And we know that they failed. Have failed many times, in fact. And that makes them all mopey and depressing."`
 
 			label end
 			`	You talk with them for a while longer but are unable to gain any more information or to convince them to come to the aid of the Wanderers who are in Korath space. You'll have to report to Sobari Tele'ek that the Quarg fleet is the only outside aid they are likely to receive.`
@@ -721,7 +721,7 @@ mission "Wanderers: Kor Efret 3"
 		government "Quarg"
 		personality heroic staying entering
 		fleet
-			names "Quarg"
+			names "quarg"
 			variant
 				"Quarg Wardragon" 1
 	npc
@@ -729,7 +729,7 @@ mission "Wanderers: Kor Efret 3"
 		personality heroic
 		system "Host"
 		fleet
-			names "Quarg"
+			names "quarg"
 			variant
 				"Quarg Wardragon" 3
 	npc
@@ -737,7 +737,7 @@ mission "Wanderers: Kor Efret 3"
 		personality heroic
 		system "Mesuket"
 		fleet
-			names "Quarg"
+			names "quarg"
 			variant
 				"Quarg Wardragon" 5
 
@@ -799,7 +799,7 @@ mission "Wanderers: Kor Efret 5"
 mission "Wanderers: Kor Mereti Hacking"
 	landing
 	name "Kor Mereti Hacking"
-	description "Test a device that the Wanderers think may be able to cain access to the Kor Mereti network and disrupt it."
+	description "Test a device that the Wanderers think may be able to gain access to the Kor Mereti network and disrupt it."
 	source "Spera Anatrusk"
 	waypoint "Mekislepti"
 	to offer
@@ -855,7 +855,7 @@ mission "Wanderers: Mind 1"
 
 			`	She thinks about that for a moment, then says, "In terraforming, we say that each planet has a [will, identity], and it will never work to [overrule, overpower] the planet. Instead, we must [collaborate, partner] with it. Perhaps we can do the same with this [consciousness]."`
 			`	A stir of excitement passes through the Wanderers. Finally, this is a strategy that lines up with their preferred way of doing things. "What do you mean?" asks one of them.`
-			`	Ikiket says, "We give them one of the [artificial minds?] that we use for [planetary oversight?]. Let it [merge with, become a part of] the Mereti gestalt consciousness. Not to [destroy, subvert] it, but to reach an [understanding, partnership] with it."`
+			`	Iriket says, "We give them one of the [artificial minds?] that we use for [planetary oversight?]. Let it [merge with, become a part of] the Mereti gestalt consciousness. Not to [destroy, subvert] it, but to reach an [understanding, partnership] with it."`
 			`	Several of the Wanderers seem very agitated by that suggestion. Tele'ek says, "You would give them access to a [technology, resource] that would make them even more [powerful, capable] than before?"`
 			choice
 				`	"That sounds like it might work. If your artificial intelligence truly means them no harm, the Mereti might recognize that."`
@@ -1095,7 +1095,7 @@ mission "Wanderers: Mind 7"
 			`	"They seem to be [scavenging, hunting] for resources to build something," says Pa'aret. "It is [strange, surprising]; the Mereti drones until now were ignoring the planets in their [systems, territory]. Would you be [willing, bold] to land your ship on the surface and investigate?" You agree to do so.`
 
 			label end
-			`	The Wanderers wish you the best of luck, and you prepare to return to the <system> system. Hopefully the Mereti drones will not become hostile once more while you are landed on the planets surface, exposed and relatively defenseless.`
+			`	The Wanderers wish you the best of luck, and you prepare to return to the <system> system. Hopefully the Mereti drones will not become hostile once more while you are landed on the planet's surface, exposed and relatively defenseless.`
 				accept
 
 
@@ -1196,7 +1196,7 @@ mission "Wanderers: Mentors 2"
 		has "Wanderers: Mentors 1: done"
 	on offer
 		conversation
-			`A team of Wanderer terraforming experts has been assembled on <origin>. They have requisitioned a bulk freighter and filled it with an overwhelming variety of sensors, bioreactors, chemical filters, and other scientific devices. But, it's clear that none of them quite understand what is going on with the Kor Mereti. The team's manager says, "We are to meet with [sentient? awakened?] robots? They are interested in [foliage, plants]? There are worlds to be [repaired, healed]?"`
+			`A team of Wanderer terraforming experts has been assembled on <origin>. They have requisitioned a transport and filled it with an overwhelming variety of sensors, bioreactors, chemical filters, and other scientific devices. But, it's clear that none of them quite understand what is going on with the Kor Mereti. The team's manager says, "We are to meet with [sentient? awakened?] robots? They are interested in [foliage, plants]? There are worlds to be [repaired, healed]?"`
 			`	You do your best to answer their questions, but this is clearly not a situation that any of them had anticipated. Perhaps not even a situation that their species has ever had to deal with before, given that usually they are working in regions of space that have long since been abandoned by their former inhabitants.`
 			`	The freighter gets ready to follow you back to <planet>, where hopefully more of their questions will be answered.`
 				accept
