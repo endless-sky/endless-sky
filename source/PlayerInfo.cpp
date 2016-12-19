@@ -875,6 +875,7 @@ void PlayerInfo::Land(UI *ui)
 		return;
 	
 	Audio::Play(Audio::Get("landing"));
+	Audio::PlayMusic(planet->MusicName());
 	
 	// Mark this planet as visited.
 	Visit(planet);

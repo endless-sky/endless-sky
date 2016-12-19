@@ -685,6 +685,7 @@ void Engine::EnterSystem()
 		return;
 	
 	const System *system = flagship->GetSystem();
+	Audio::PlayMusic(system->MusicName());
 	
 	doEnter = true;
 	player.IncrementDate();
