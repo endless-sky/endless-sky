@@ -43,12 +43,17 @@ const vector<string> Outfit::CATEGORIES = {
 void Outfit::Load(const DataNode &node)
 {
 	if(node.Size() >= 2)
+	{
 		name = node.Token(1);
+		pluralName = name + 's';
+	}
 	
 	for(const DataNode &child : node)
 	{
 		if(child.Token(0) == "category" && child.Size() >= 2)
 			category = child.Token(1);
+		else if(child.Token(0) == "plural" && child.Size() >= 2)
+			pluralName = child.Token(1);
 		else if(child.Token(0) == "flare sprite" && child.Size() >= 2)
 		{
 			flareSprites.emplace_back(Body(), 1);
@@ -85,6 +90,13 @@ void Outfit::Load(const DataNode &node)
 const string &Outfit::Name() const
 {
 	return name;
+}
+
+
+
+const string &Outfit::PluralName() const
+{
+	return pluralName;
 }
 
 

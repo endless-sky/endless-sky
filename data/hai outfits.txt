@@ -262,6 +262,7 @@ outfit "Hai Williwaw Cooling"
 	description "While Hai technology is fairly heat efficient, occasionally they outfit their ships such that they sporadically overheat and shut down. When that happens, they install these."
 
 outfit "Hai Chasm Batteries"
+	plural "Hai Chasm Batteries"
 	category "Power"
 	cost 18000
 	thumbnail "outfit/tiny battery hai"
@@ -271,6 +272,7 @@ outfit "Hai Chasm Batteries"
 	description "Power storage technology is thousands of years old. This is the smallest Hai battery pack."
 
 outfit "Hai Fissure Batteries"
+	plural "Hai Fissure Batteries"
 	category "Power"
 	cost 22000
 	thumbnail "outfit/small battery hai"
@@ -280,6 +282,7 @@ outfit "Hai Fissure Batteries"
 	description "This battery pack has more than three times the energy capacity of the the Hai Chasm Batteries, allowing their ships to engage in combat for longer periods of time before running out of energy."
 
 outfit "Hai Gorge Batteries"
+	plural "Hai Gorge Batteries"
 	category "Power"
 	cost 55000
 	thumbnail "outfit/medium battery hai"
@@ -289,6 +292,7 @@ outfit "Hai Gorge Batteries"
 	description "This medium-sized battery pack is ideal for most of the Hai power needs, allowing for medium length combat engagements, but could also be used keep a ship's heat footprint low with a small power generator and oversized engines."
 
 outfit "Hai Ravine Batteries"
+	plural "Hai Ravine Batteries"
 	category "Power"
 	cost 124000
 	thumbnail "outfit/large battery hai"
@@ -298,6 +302,7 @@ outfit "Hai Ravine Batteries"
 	description "This large battery pack boasts higher energy density than smaller models, and helps keep ships fighting in spite of sustaining several Ion Cannon impacts."
 
 outfit "Hai Valley Batteries"
+	plural "Hai Valley Batteries"
 	category "Power"
 	cost 300000
 	thumbnail "outfit/huge battery hai"
@@ -349,6 +354,7 @@ outfit "Sand Cell"
 
 
 outfit `"Baellie" Atomic Engines`
+	plural `"Baellie" Atomic Engines`
     category "Engines"
 	"cost" 240000
 	thumbnail "outfit/tiny atomic engines hai"

@@ -668,6 +668,7 @@ ship "Marauder Firebird" "Marauder Firebird (Weapons)"
 
 
 ship "Marauder Fury"
+	plural "Marauder Furies"
 	sprite "ship/mfury"
 	attributes
 		category "Interceptor"

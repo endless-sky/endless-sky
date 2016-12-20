@@ -111,6 +111,7 @@ public:
 	
 	// Get the name of this model of ship.
 	const std::string &ModelName() const;
+	const std::string &PluralModelName() const;
 	// Get this ship's description.
 	const std::string &Description() const;
 	// Get this ship's cost.
@@ -357,6 +358,7 @@ private:
 	// Characteristics of the chassis:
 	const Ship *base = nullptr;
 	std::string modelName;
+	std::string pluralModelName;
 	std::string description;
 	// Characteristics of this particular ship:
 	std::string name;

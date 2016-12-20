@@ -294,7 +294,7 @@ bool InfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 			else if(plunderAmount > 1)
 			{
 				GetUI()->Push(new Dialog(this, &InfoPanel::DumpPlunder,
-					"How many of the " + selectedPlunder->Name() + " outfits to you want to jettison?",
+					"How many " + selectedPlunder->PluralName() + " do you want to jettison?",
 					plunderAmount));
 			}
 			else if(commodities)
@@ -901,7 +901,8 @@ void InfoPanel::DrawCargo(const Rectangle &bounds)
 			
 			string number = to_string(it.second);
 			Point numberPos(pos.X() + size.X() - font.Width(number), pos.Y());
-			font.Draw(it.first->Name(), pos, dim);
+			bool isSingular = (it.second == 1 || it.first->Get("installable") < 0.);
+			font.Draw(isSingular ? it.first->Name() : it.first->PluralName(), pos, dim);
 			font.Draw(number, numberPos, bright);
 			pos.Y() += size.Y();
 			
