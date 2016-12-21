@@ -54,7 +54,7 @@ Music::~Music()
 
 
 // Set the source of music. If the path is empty, this music will be silent.
-void Music::SetSource(const std::string &path)
+void Music::SetSource(const string &path)
 {
 	// Do nothing if this is the same file we're playing.
 	if(path == previousPath)
@@ -82,7 +82,7 @@ void Music::SetSource(const std::string &path)
 
 
 // Get the next audio buffer to play.
-const std::vector<int16_t> &Music::NextChunk()
+const vector<int16_t> &Music::NextChunk()
 {
 	// Check whether the "next" buffer is ready.
 	unique_lock<mutex> lock(decodeMutex);
@@ -111,7 +111,7 @@ const std::vector<int16_t> &Music::NextChunk()
 void Music::Decode()
 {
 	// This vector will store the input from the file.
-	std::vector<unsigned char> input(INPUT_CHUNK, 0);
+	vector<unsigned char> input(INPUT_CHUNK, 0);
 	// Objects for MP3 decoding:
 	mad_stream stream;
 	mad_frame frame;

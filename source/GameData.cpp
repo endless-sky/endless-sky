@@ -647,7 +647,7 @@ const string &GameData::Tooltip(const string &label)
 
 
 
-string GameData::HelpMessage(const std::string &name)
+string GameData::HelpMessage(const string &name)
 {
 	static const string EMPTY;
 	auto it = helpMessages.find(name);
