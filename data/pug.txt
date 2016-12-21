@@ -284,6 +284,7 @@ outfit "Pug Lohmar Steering"
 
 
 outfit "Pug Biodefenses"
+	plural "Pug Biodefenses"
 	category "Hand to Hand"
 	cost 100000
 	thumbnail "outfit/pug biodefenses"

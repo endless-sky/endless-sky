@@ -996,17 +996,18 @@ void Engine::CalculateStep()
 			int amount = 0;
 			if(it->OutfitType())
 			{
-				amount = collector->Cargo().Add(it->OutfitType(), it->Count());
+				const Outfit *outfit = it->OutfitType();
+				amount = collector->Cargo().Add(outfit, it->Count());
 				if(!name.empty())
 				{
-					if(it->OutfitType()->Get("installable") < 0.)
+					if(outfit->Get("installable") < 0.)
 					{
-						commodity = it->OutfitType()->Name();
-						player.Harvest(it->OutfitType());
+						commodity = outfit->Name();
+						player.Harvest(outfit);
 					}
 					else
-						message = name + Format::Number(amount) + " " + it->OutfitType()->Name()
-							+ (amount == 1 ? "." : "s.");
+						message = name + Format::Number(amount) + " "
+							+ (amount == 1 ? outfit->Name() : outfit->PluralName()) + ".";
 				}
 			}
 			else

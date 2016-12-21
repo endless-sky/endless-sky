@@ -126,6 +126,7 @@ outfit "Active Finisher"
 		"hit force" 240
 
 outfit "Finisher Torpedo"
+	plural "Finisher Torpedoes"
 	category "Ammunition"
 	cost 32000
 	thumbnail "outfit/unknown"

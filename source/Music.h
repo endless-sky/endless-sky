@@ -43,10 +43,6 @@ private:
 	
 	
 private:
-	std::thread thread;
-	std::mutex decodeMutex;
-	std::condition_variable condition;
-	
 	// Buffers for storing the decoded audio sample. The "silence" buffer holds
 	// a block of silence to be returned if nothing was read from the file.
 	std::vector<int16_t> silence;
@@ -56,6 +52,10 @@ private:
 	std::string previousPath;
 	FILE *nextFile = nullptr;
 	bool done = false;
+	
+	std::thread thread;
+	std::mutex decodeMutex;
+	std::condition_variable condition;
 };
 
 
