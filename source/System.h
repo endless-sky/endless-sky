@@ -85,6 +85,8 @@ public:
 	const Point &Position() const;
 	// Get this system's government.
 	const Government *GetGovernment() const;
+	// Get the name of the ambient audio to play in this system.
+	const std::string &MusicName() const;
 	
 	// Get a list of systems you can travel to through hyperspace from here.
 	const std::vector<const System *> &Links() const;
@@ -115,6 +117,7 @@ public:
 	
 	// Get the price of the given commodity in this system.
 	int Trade(const std::string &commodity) const;
+	bool HasTrade() const;
 	// Update the economy. Returns the amount of trade goods this system exports.
 	void StepEconomy();
 	void SetSupply(const std::string &commodity, double tons);
@@ -150,6 +153,8 @@ private:
 	std::string name;
 	Point position;
 	const Government *government = nullptr;
+	std::string music;
+	
 	// Hyperspace links to other systems.
 	std::vector<const System *> links;
 	std::vector<const System *> neighbors;

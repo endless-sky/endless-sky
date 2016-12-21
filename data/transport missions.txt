@@ -111,7 +111,7 @@ mission "Smuggler's Den, Part 1"
 	passengers 2
 	on offer
 		conversation
-			`You wander into one of several dimly lit, smoke-filled bars near your docking bay and sit down at an empty table. As you scan the room, you notice a pair of hooded figures who stand up and begin moving toward you. They aren't carrying any visible weapons, but on a station like this one there's a good chance that everyone you meet has a concealed gun. One of them is carrying a bundle wrapped in cloth. You can't see their faces.`
+			`You wander into one of several dimly lit, smoke-filled bars near your docking bay. Soon after you sit down, a pair of hooded figures stand up and begin moving toward you. They aren't carrying any visible weapons, but on a station like this one there's a good chance that everyone you meet has a concealed gun. One of them is carrying a bundle wrapped in cloth. You can't see their faces.`
 			choice
 				`	(Get out of here.)`
 				`	(Wait and see what they want.)`
@@ -121,7 +121,7 @@ mission "Smuggler's Den, Part 1"
 				decline
 			
 			label meet
-			`	You decide to wait and see what they want from you. They sit down at your table, and turn out to be a boy and a girl, perhaps thirteen or fourteen years old. The bundle in her arms is a baby. "Are you a captain?" he asks.`
+			`	The hooded figures turn out to be a boy and a girl, both perhaps thirteen or fourteen years old. The bundle in the girl's arms is a baby. "Are you a captain?" the boy asks.`
 			`	"Yes," you say.`
 			`	"We're looking for passage off-world," he says. "My cousin works in the refineries on Arabia, and I'm hoping he can get me a job there."`
 			choice
@@ -131,19 +131,17 @@ mission "Smuggler's Den, Part 1"
 					goto payment
 			
 			label legal
-			`	You ask, "Are you in some sort of trouble with the law?"`
 			`	The boy grins. "No, not at all. I mean, aside from the fact that we're pirates."`
-			`	Seeing the incredulous look on your face, she says, "Members of a pirate gang. Crew on a pirate ship. Captains are usually older, but most of the pirate ships you see out there are crewed by kids like us. It's a hard place to grow up. We want something better for our daughter."`
+			`	Seeing the incredulous look on your face, the girl says, "Members of a pirate gang. Crew on a pirate ship. Captains are usually older, but most of the pirate ships you see out there are crewed by kids like us. It's a hard place to grow up. We want something better for our daughter."`
 				goto search
 			
 			label payment
-			`	You ask, "How much can you pay?"`
-			`	They are silent for a long moment, looking down at the table. Finally, the boy says, "We're crew on a pirate ship, hardly better than slaves. The captain keeps our wages. We don't get paid anything unless they agree to let us go. Which isn't going to happen. But if you help us start a new life, we'll work hard and some day we'll pay you back. That's the best we can offer."`
-			`	She adds, "You don't know what it's like for a little girl to grow up on a pirate ship. We want something better than that for our daughter."`
+			`	They are silent for a long moment, looking down at the table. Finally, the boy says, "We're crew on a pirate ship, hardly better than slaves. The captain keeps our wages. We don't get paid anything unless they agree to let us go. But if you help us start a new life, we'll work hard and some day we'll pay you back."`
+			`	The girl adds, "You don't know what it's like for a little girl to grow up on a pirate ship. We want something better than that for our daughter."`
 				goto search
 			
 			label search
-			`	As you are conversing, someone else walks into the bar: a bearded man, and a rough-looking teenage boy. They stand in the doorway, scanning the room. "That's our captain," she says. "Please, you have to help us. There's a service tunnel that connects to the back entrance of the bar. We can escape through there."`
+			`	As you are conversing a bearded man and a rough-looking teenage boy enter the bar and begin looking around the room. "That's our captain," she says. "Please, you have to help us. There's a service tunnel that connects to the back entrance of the bar. We can escape through there."`
 			`	You've heard of these service passageways: the most dangerous part of this lawless station, dimly lit and seldom travelled, except by drug addicts and prostitutes. This whole thing might just be a ruse to lure you into one, where they can attack you without anyone interfering. "No," says the boy, "if we head for the service tunnel, they'll be sure to notice us. Let's just stay at the table until they go away."`
 			`	The baby begins to cry, softly, and she bounces it gently, trying desperately to quiet it. "Shh. Shh." For the moment, it falls silent.`
 			choice
@@ -157,24 +155,23 @@ mission "Smuggler's Den, Part 1"
 				decline
 			
 			label `tunnel`
-			`	"Let's try the tunnel," you say.`
-			`	The boy stands up. "Wait ten seconds, then head to the tunnel," he says. He walks into the bathroom, which is right next to back entrance that she pointed out. You wait for a few seconds, then stand up and head for the service tunnel. "Don't run," says the girl. "Walk slowly. Pretend. You've had a bit too much to drink. We're headed out back to find some privacy." You don't dare look behind you to see if the men in the doorway are watching you.`
-			`	Finally, you reach the back entrance. It's an old-fashioned airtight door, in case the service tunnel depressurizes. She spins the wheel to unlock it, and then gives it a yank. The hinges squeal, but it opens enough for you to squeeze through. You find yourselves in a narrow corridor lit only by flickering sodium lamps. In the yellow lamplight her face and hands look pale, jaundiced. The floor of the corridor is littered with beer bottles and discarded hypodermic needles. To one side of the door are several over-stuffed trash cans. As you step into the corridor, a rat scurries away into the darkness.`
+			`	The boy stands up. "Wait ten seconds, then head to the tunnel," he says. He walks into the bathroom, which is right next to back entrance that she pointed out. You wait for a few seconds, then stand up. "Don't run," says the girl. "Walk slowly. Pretend. You've had a bit too much to drink. We're headed out back to find some privacy." You don't dare look behind you to see if the men in the doorway are watching you.`
+			`	Finally, you reach the back entrance, and she spins the wheel to unlock it. The hinges squeal, but it opens enough for you to squeeze through. You find yourselves in a narrow corridor lit only by flickering sodium lamps. In the yellow lamplight her face and hands look pale, jaundiced. The floor of the corridor is littered with beer bottles and discarded hypodermic needles. To one side of the door are several over-stuffed trash cans. As you step into the corridor, a rat scurries away into the darkness.`
 			`	A few second later, watching through the open airlock, you see the boy walk out of the bathroom. He can't help stealing a quick glance towards the men in the doorway, after which he quickly ducks through the airlock and slams the door shut. "Run!" he whispers.`
-			`	You begin running down the corridor, in the direction of your ship. You pass a man, slumped over in a corner; there is no time to see if he is dead, or just sleeping. In places the lights have gone out, and it is so dim that you can barely see the floor beneath you. Your footsteps pounding on the metal decking ring terribly loud up and down the empty hallway. You cannot tell if the sound of more footsteps behind you is just an echo, or someone following you.`
-			`	Eventually the passageway widens out into some sort of maintenance room, with large tanks and humming equipment lining the walls. There are also several small, windowless sheds. You duck behind one of them and listen for sounds of pursuit. You hear nothing. "I think we're safe," says the boy. He walks over to another airlock door on the opposite wall and tugs it open. Light pours in, almost blinding at first. You are looking out into the rimway, the main passage in this ring of the station. Crowds of people are walking past, paying no attention to you. He glances quickly in both directions, then gestures for you to follow.`
+			`	You begin running down the corridor, in the direction of your ship. You pass a man, slumped over in a corner; there is no time to see if he is dead, or just sleeping. In places the lights have gone out, and it is so dim that you can barely see the floor beneath you. Your footsteps pounding on the metal decking ring terribly loud up and down the empty hallway.`
+			`	Eventually the passageway widens out into a maintenance room, full of humming equipment and large tanks. You duck behind one of them and listen for sounds of pursuit. "I think we're safe," says the boy. He walks over to another airlock door on the opposite wall and tugs it open. Light pours in, almost blinding at first. You are looking out into the rimway, the main passage in this ring of the station. Crowds of people are walking past, paying no attention to you. He glances quickly in both directions, then gestures for you to follow.`
 				goto ship
 			
 			label outside
-			`	You wait at the table, playing with the computer terminal at the center of it, pretending that you are busy placing a drink order. The men at the door do not leave. Instead, they step into the room and begin circling around the edge of it. Fortunately, right now they are headed away from you. "What berth is your ship in?" asks the boy. You tell him. "Wait ten seconds, then follow," he says. He stands up and walks through the door. The searchers glance at him as he leaves, but they must be looking for two people together, because they ignore him.`
+			`	You wait at the table, pretending that you are busy placing a drink order. The men at the door do not leave. Instead, they step into the room and begin circling around the edge of it. "What berth is your ship in?" asks the boy. You tell him. "Wait ten seconds, then follow," he says. He stands up and walks through the door. The searchers glance at him as he leaves, but they must be looking for two people together, because they ignore him.`
 			`	The searchers approach the bar and begin talking to one of the bartenders. You and the girl stand up. "Walk slowly," she hisses under her breath. "Saunter. Don't run." You put an arm around her shoulders and do your best to act like an ordinary bar patron headed home with a new friend after having a bit too much to drink. You don't dare to glance at the bar to see if you are being watched.`
-			`	Finally you reach the door. You are in the rimway, the main passage in this ring of the station. It is crowded and brightly lit. You quicken your pace slightly and begin walking toward your ship, still afraid that if you break into a run, you will attract attention. The girl keeps glancing at the shop windows that you pass by: checking the reflection for anyone following you. "They're leaving the bar," she says. And then, "They're walking in the other direction. I think we're safe."`
-			`	You pass a narrow doorway, probably an entrance to one of the service tunnels. The boy is standing there, holding a gun by his side. His grim expression softens somewhat when he sees you approaching. He looks out behind you, scanning the crowd, then steps out of the doorway to follow you.`
+			`	Finally you reach the door. You are in the rimway, the main passage in this ring of the station. It is crowded and brightly lit. You quicken your pace slightly and begin walking toward your ship, still afraid that if you break into a run, you will attract attention. The girl keeps glancing at the shop windows that you pass by: checking the reflection to see if anyone is following you. "They're leaving the bar," she says. And then, "They're walking in the other direction. I think we're safe."`
+			`	You pass a narrow doorway, probably an entrance to one of the service tunnels. The boy is standing there, holding a gun by his side. His grim expression softens somewhat when he sees you approaching.`
 				goto ship
 			
 			label ship
 			`	You quickly make your way back to your ship. As soon as the door has closed behind you, all three of you breathe a sigh of relief. A second later, the baby begins to wail, loudly. As you show them to their bunks, they introduce themselves as Joe and Maria; the baby's name is Jesse. "I don't know how to thank you," says Maria.`
-			`	"Please don't take too long leaving the station," adds Joe. "But, I think we'll be safe here until you're ready to leave. There's no way they can search all the ships on the dock."`
+			`	"Please don't take too long leaving the station," adds Joe. "But, I think we'll be safe here until you're ready to leave. There's no way they can search all the ships at the dock."`
 				accept
 
 
@@ -193,11 +190,10 @@ mission "Smuggler's Den, Part 2"
 			`	Joe is crestfallen. After a long silence, you say, "Sir, do you have any work available for Joe? He and his family were hoping to be able to put down roots here."`
 			`	"I'm sorry," says the foreman, "but we've had a ton of immigrants recently. The waiting list for new jobs is about five months long. They could stay here and hope for the best, but if they need work right away, they would be better off going to one of the Syndicate worlds, like <planet>."`
 			choice
-				`	(Volunteer to take them on another journey.)`
+				`	(Volunteer to take them to <planet>.)`
 				`	(Leave them here and hope for the best.)`
 					decline
 			
-			`	"Well Joe," you say, "do you want me to bring you to <planet>? It's not too far out of my way."`
 			`	Despite his shock and grief, Joe is quite grateful. "You know we can't pay you, right?"`
 			`	"Don't worry about it," you say. You return to your ship and tell the bad news to Maria.`
 				accept
@@ -865,7 +861,7 @@ mission "There Might Be Riots part 3B"
 			`	"Did they hail us?" asks Ulrich.`
 			`	"No," you say.`
 			`	He swears, then shouts to the rest of the band, "Gentlemen, time to pack it up posthaste, before we get turned into a tragic industrial accident!"`
-			`	The band has just packed the last of their equipment away when the ships come into view. It's a swarm of unpiloted combat drones, and they seem to be engaged in mock combat with each other. But, their flight patch is taking them straight in your direction. You power up your shields just as the first of the drones decide that your ship is a valid target for their lasers...`
+			`	The band has just packed the last of their equipment away when the ships come into view. It's a swarm of unpiloted combat drones, and they seem to be engaged in mock combat with each other. But, their flight path is taking them straight in your direction. You power up your shields just as the first of the drones decide that your ship is a valid target for their lasers...`
 				launch
 	
 	npc

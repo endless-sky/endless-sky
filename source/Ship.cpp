@@ -58,6 +58,7 @@ void Ship::Load(const DataNode &node)
 {
 	assert(node.Size() >= 2 && node.Token(0) == "ship");
 	modelName = node.Token(1);
+	pluralModelName = modelName + 's';
 	if(node.Size() >= 3)
 		base = GameData::Ships().Get(modelName);
 	
@@ -80,6 +81,8 @@ void Ship::Load(const DataNode &node)
 			LoadSprite(child);
 		else if(child.Token(0) == "name" && child.Size() >= 2)
 			name = child.Token(1);
+		else if(child.Token(0) == "plural" && child.Size() >= 2)
+			pluralModelName = child.Token(1);
 		else if(child.Token(0) == "attributes")
 			baseAttributes.Load(child);
 		else if(child.Token(0) == "engine" && child.Size() >= 3)
@@ -252,6 +255,7 @@ void Ship::FinishLoading()
 	// Exception: uncapturable and "never disabled" flags don't carry over.
 	if(base && base != this)
 	{
+		pluralModelName = base->pluralModelName;
 		if(!GetSprite())
 			reinterpret_cast<Body &>(*this) = *base;
 		if(baseAttributes.Attributes().empty())
@@ -379,6 +383,8 @@ void Ship::Save(DataWriter &out) const
 	out.BeginChild();
 	{
 		out.Write("name", name);
+		if(pluralModelName != modelName + 's')
+			out.Write("plural", pluralModelName);
 		SaveSprite(out);
 		
 		if(neverDisabled)
@@ -481,6 +487,14 @@ const string &Ship::ModelName() const
 
 
 
+
+const string &Ship::PluralModelName() const
+{
+	return pluralModelName;
+}
+
+
+
 // Get this ship's description.
 const string &Ship::Description() const
 {
@@ -493,6 +507,14 @@ const string &Ship::Description() const
 int64_t Ship::Cost() const
 {
 	return attributes.Cost();
+}
+
+
+
+// Get the cost of this ship's chassis, with no outfits installed.
+int64_t Ship::ChassisCost() const
+{
+	return baseAttributes.Cost();
 }
 
 
@@ -742,6 +764,26 @@ bool Ship::Move(list<Effect> &effects, list<Flotsam> &flotsam)
 		heat += attributes.Get("heat generation");
 		heat -= attributes.Get("cooling");
 		heat = max(0., heat);
+		
+		// Apply active cooling. The fraction of full cooling to apply equals
+		// your ship's current fraction of its maximum temperature.
+		double activeCooling = attributes.Get("active cooling");
+		if(activeCooling > 0.)
+		{
+			// Although it's a misuse of this feature, handle the case where
+			// "active cooling" does not require any energy.
+			double coolingEnergy = attributes.Get("cooling energy");
+			if(coolingEnergy)
+			{
+				double spentEnergy = min(energy, coolingEnergy * min(1., Heat()));
+				heat -= activeCooling * spentEnergy / coolingEnergy;
+				energy -= spentEnergy;
+			}
+			else
+				heat -= activeCooling;
+			
+			heat = max(0., heat);
+		}
 	}
 	
 	if(!isInvisible)
@@ -953,6 +995,7 @@ bool Ship::Move(list<Effect> &effects, list<Flotsam> &flotsam)
 				|| !landingPlanet || !landingPlanet->HasSpaceport())
 		{
 			zoom = min(1., zoom + .02);
+			SetTargetPlanet(nullptr);
 			landingPlanet = nullptr;
 		}
 		else
@@ -1758,6 +1801,20 @@ double Ship::JumpFuel() const
 
 
 
+// Get the heat level at idle.
+double Ship::IdleHeat() const
+{
+	// Idle heat is the heat level where:
+	// heat = heat * diss + heatGen - cool - activeCool * heat / (100 * mass)
+	// heat = heat * (diss - activeCool / (100 * mass)) + (heatGen - cool)
+	// heat * (1 - diss + activeCool / (100 * mass)) = (heatGen - cool)
+	double production = max(0., attributes.Get("heat generation") - attributes.Get("cooling"));
+	double dissipation = 1. - heatDissipation + attributes.Get("active cooling") / (100. * Mass());
+	return production / dissipation;
+}
+
+
+
 int Ship::Crew() const
 {
 	return crew;
@@ -2308,14 +2365,6 @@ double Ship::MinimumHull() const
 	
 	double maximumHull = attributes.Get("hull");
 	return max(.20 * maximumHull, min(.50 * maximumHull, 400.));
-}
-
-
-
-// Get the heat level at idle.
-double Ship::IdleHeat() const
-{
-	return max(0., attributes.Get("heat generation") - attributes.Get("cooling")) / (1. - heatDissipation);
 }
 
 

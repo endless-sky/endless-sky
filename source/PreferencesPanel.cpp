@@ -30,25 +30,12 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 using namespace std;
 
 namespace {
-	static const string CATEGORIES[] = {
-		"Navigation",
-		"Weapons",
-		"Targeting",
-		"Menus",
-		"Fleet"
-	};
+	// Settings that require special handling.
+	static const string ZOOM_FACTOR = "Zoom factor";
 	static const string EXPEND_AMMO = "Escorts expend ammo";
 	static const string FRUGAL_ESCORTS = "Escorts use ammo frugally";
-	static const string SETTINGS[] = {
-		"Show CPU / GPU load",
-		"Render motion blur",
-		"",
-		EXPEND_AMMO,
-		"Automatic firing",
-		"Automatic aiming",
-		"",
-		"Show status overlays",
-	};
+	static const string REACTIVATE_HELP = "Reactivate first-time help";
+	static const string SCROLL_SPEED = "Scroll speed";
 }
 
 
@@ -70,8 +57,134 @@ void PreferencesPanel::Draw()
 	Information info;
 	info.SetBar("volume", Audio::Volume());
 	GameData::Interfaces().Get("menu background")->Draw(info, this);
+	string pageName = (page == 'c' ? "controls" : page == 's' ? "settings" : "plugins");
+	GameData::Interfaces().Get(pageName)->Draw(info, this);
 	GameData::Interfaces().Get("preferences")->Draw(info, this);
 	
+	zones.clear();
+	prefZones.clear();
+	if(page == 'c')
+		DrawControls();
+	else if(page == 's')
+		DrawSettings();
+	else if(page == 'p')
+		DrawPlugins();
+}
+
+
+
+bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
+{
+	if(static_cast<unsigned>(editing) < zones.size())
+	{
+		Command::SetKey(zones[editing].Value(), key);
+		EndEditing();
+		return true;
+	}
+	
+	if(key == SDLK_DOWN && static_cast<unsigned>(selected + 1) < zones.size())
+		++selected;
+	else if(key == SDLK_UP && selected > 0)
+		--selected;
+	else if(key == SDLK_RETURN)
+		editing = selected;
+	else if(key == 'b' || command.Has(Command::MENU) || (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
+		Exit();
+	else if(key == 'c' || key == 's' || key == 'p')
+		page = key;
+	else
+		return false;
+	
+	return true;
+}
+
+
+
+bool PreferencesPanel::Click(int x, int y)
+{
+	EndEditing();
+	
+	if(x >= 265 && x < 295 && y >= -220 && y < 70)
+	{
+		Audio::SetVolume((20 - y) / 200.);
+		Audio::Play(Audio::Get("warder"));
+		return true;
+	}
+	
+	Point point(x, y);
+	for(unsigned index = 0; index < zones.size(); ++index)
+		if(zones[index].Contains(point))
+			editing = selected = index;
+	
+	for(const auto &zone : prefZones)
+		if(zone.Contains(point))
+		{
+			if(zone.Value() == ZOOM_FACTOR)
+			{
+				int zoom = Screen::Zoom();
+				Screen::SetZoom(zoom == 100 ? 150 : zoom == 150 ? 200 : 100);
+				// Make sure there is enough vertical space for the full UI.
+				if(Screen::Height() < 700)
+					Screen::SetZoom(100);
+				
+				// Convert to raw window coordinates, at the new zoom level.
+				point *= Screen::Zoom() / 100.;
+				point += .5 * Point(Screen::RawWidth(), Screen::RawHeight());
+				SDL_WarpMouseInWindow(nullptr, point.X(), point.Y());
+			}
+			if(zone.Value() == EXPEND_AMMO)
+				Preferences::ToggleAmmoUsage();
+			else if(zone.Value() == REACTIVATE_HELP)
+			{
+				for(const auto &it : GameData::HelpTemplates())
+					Preferences::Set("help: " + it.first, false);
+			}
+			else if(zone.Value() == SCROLL_SPEED)
+			{
+				// Toogle between three different speeds.
+				int speed = Preferences::ScrollSpeed() + 20;
+				if(speed > 60)
+					speed = 20;
+				Preferences::SetScrollSpeed(speed);
+			}
+			else
+				Preferences::Set(zone.Value(), !Preferences::Has(zone.Value()));
+			break;
+		}
+	
+	return true;
+}
+
+
+
+bool PreferencesPanel::Hover(int x, int y)
+{
+	Point point(x, y);
+	
+	hover = -1;
+	for(unsigned index = 0; index < zones.size(); ++index)
+		if(zones[index].Contains(point))
+			hover = index;
+	
+	hoverPreference.clear();
+	for(const auto &zone : prefZones)
+		if(zone.Contains(point))
+			hoverPreference = zone.Value();
+	
+	return true;
+}
+
+
+
+void PreferencesPanel::EndEditing()
+{
+	editing = -1;
+}
+
+
+
+void PreferencesPanel::DrawControls()
+{
 	Color back = *GameData::Colors().Get("faint");
 	Color dim = *GameData::Colors().Get("dim");
 	Color medium = *GameData::Colors().Get("medium");
@@ -88,9 +201,14 @@ void PreferencesPanel::Draw()
 	int firstY = -248;
 	table.DrawAt(Point(-130, firstY));
 	
-	Point endPoint;
+	static const string CATEGORIES[] = {
+		"Navigation",
+		"Weapons",
+		"Targeting",
+		"Menus",
+		"Fleet"
+	};
 	const string *category = CATEGORIES;
-	zones.clear();
 	static const Command COMMANDS[] = {
 		Command::NONE,
 		Command::FORWARD,
@@ -120,17 +238,15 @@ void PreferencesPanel::Draw()
 		Command::DEPLOY,
 		Command::FIGHT,
 		Command::GATHER,
-		Command::HOLD
+		Command::HOLD,
+		Command::AMMO
 	};
 	static const Command *BREAK = &COMMANDS[19];
 	for(const Command &command : COMMANDS)
 	{
 		// The "BREAK" line is where to go to the next column.
 		if(&command == BREAK)
-		{
-			endPoint = table.GetPoint() + Point(260, -20);
 			table.DrawAt(Point(130, firstY));
-		}
 		
 		if(!command)
 		{
@@ -175,41 +291,6 @@ void PreferencesPanel::Draw()
 		}
 	}
 	
-	table.DrawAt(endPoint);
-	prefZones.clear();
-	{
-		prefZones.emplace_back(table.GetCenterPoint(), table.GetRowSize(), "zoom factor");
-		if(hoverPreference == "zoom factor")
-			table.DrawHighlight(back);
-		
-		table.Draw("zoom factor", medium);
-		table.Draw(to_string(Screen::Zoom()));
-		table.DrawGap(-40);
-	}
-	for(const string &setting : SETTINGS)
-	{
-		if(setting.empty())
-		{
-			table.DrawGap(-10);
-			continue;
-		}
-		
-		prefZones.emplace_back(table.GetCenterPoint(), table.GetRowSize(), setting);
-		
-		bool isOn = Preferences::Has(setting);
-		string text;
-		if(setting == EXPEND_AMMO)
-			text = isOn ? Preferences::Has(FRUGAL_ESCORTS) ? "frugally" : "always" : "never";
-		else
-			text = isOn ? "on" : "off";
-		
-		if(setting == hoverPreference)
-			table.DrawHighlight(back);
-		table.Draw(setting, isOn ? medium : dim);
-		table.Draw(text, isOn ? bright : medium);
-		table.DrawGap(-40);
-	}
-	
 	Table shiftTable;
 	shiftTable.AddColumn(125, Table::RIGHT);
 	shiftTable.SetUnderline(0, 130);
@@ -226,95 +307,115 @@ void PreferencesPanel::Draw()
 
 
 
-bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
+void PreferencesPanel::DrawSettings()
 {
-	if(static_cast<unsigned>(editing) < zones.size())
+	Color back = *GameData::Colors().Get("faint");
+	Color dim = *GameData::Colors().Get("dim");
+	Color medium = *GameData::Colors().Get("medium");
+	Color bright = *GameData::Colors().Get("bright");
+	
+	Table table;
+	table.AddColumn(-115, Table::LEFT);
+	table.AddColumn(115, Table::RIGHT);
+	table.SetUnderline(-120, 120);
+	
+	int firstY = -248;
+	table.DrawAt(Point(-130, firstY));
+	
+	static const string SETTINGS[] = {
+		"Display",
+		ZOOM_FACTOR,
+		"Show status overlays",
+		"Show planet labels",
+		"Show mini-map",
+		"",
+		"AI",
+		"Automatic aiming",
+		"Automatic firing",
+		EXPEND_AMMO,
+		"",
+		"Performance",
+		"Show CPU / GPU load",
+		"Render motion blur",
+		"Reduce large graphics",
+		"Draw background haze",
+		"Show hyperspace flash",
+		"\n",
+		"Other",
+		REACTIVATE_HELP,
+		SCROLL_SPEED,
+		"Warning siren",
+		"Hide unexplored map regions"
+	};
+	bool isCategory = true;
+	for(const string &setting : SETTINGS)
 	{
-		Command::SetKey(zones[editing].Value(), key);
-		editing = -1;
-		return true;
-	}
-	
-	if(key == SDLK_DOWN && static_cast<unsigned>(selected + 1) < zones.size())
-		++selected;
-	else if(key == SDLK_UP && selected > 0)
-		--selected;
-	else if(key == SDLK_RETURN)
-		editing = selected;
-	else if(key == 'b' || command.Has(Command::MENU) || (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
-		Exit();
-	else
-		return false;
-	
-	return true;
-}
-
-
-
-bool PreferencesPanel::Click(int x, int y)
-{
-	editing = -1;
-	
-	if(x >= 265 && x < 295 && y >= -220 && y < 70)
-	{
-		Audio::SetVolume((20 - y) / 200.);
-		Audio::Play(Audio::Get("warder"));
-		return true;
-	}
-	
-	Point point(x, y);
-	for(unsigned index = 0; index < zones.size(); ++index)
-		if(zones[index].Contains(point))
-			editing = selected = index;
-	
-	for(const auto &zone : prefZones)
-		if(zone.Contains(point))
+		// Check if this is a category break or column break.
+		if(setting.empty() || setting == "\n")
 		{
-			if(zone.Value() == EXPEND_AMMO)
-			{
-				bool expend = Preferences::Has(EXPEND_AMMO);
-				bool frugal = Preferences::Has(FRUGAL_ESCORTS);
-				Preferences::Set(EXPEND_AMMO, !(expend && !frugal));
-				Preferences::Set(FRUGAL_ESCORTS, !expend);
-			}
-			else if(zone.Value() != "zoom factor")
-				Preferences::Set(zone.Value(), !Preferences::Has(zone.Value()));
+			isCategory = true;
+			if(!setting.empty())
+				table.DrawAt(Point(130, firstY));
+			continue;
+		}
+		
+		if(isCategory)
+		{
+			isCategory = false;
+			table.DrawGap(10);
+			table.DrawUnderline(medium);
+			table.Draw(setting, bright);
+			table.Advance();
+			table.DrawGap(5);
+			continue;
+		}
+		
+		// Record where this setting is displayed, so the user can click on it.
+		prefZones.emplace_back(table.GetCenterPoint(), table.GetRowSize(), setting);
+		
+		// Get the "on / off" text for this setting.
+		bool isOn = Preferences::Has(setting);
+		string text;
+		if(setting == ZOOM_FACTOR)
+		{
+			isOn = true;
+			text = to_string(Screen::Zoom());
+		}
+		else if(setting == EXPEND_AMMO)
+			text = Preferences::AmmoUsage();
+		else if(setting == REACTIVATE_HELP)
+		{
+			// Check how many help messages have been displayed.
+			const map<string, string> &help = GameData::HelpTemplates();
+			int shown = 0;
+			for(const auto &it : help)
+				shown += Preferences::Has("help: " + it.first);
+			
+			if(shown)
+				text = to_string(shown) + " / " + to_string(help.size());
 			else
 			{
-				int zoom = Screen::Zoom();
-				Screen::SetZoom(zoom == 100 ? 150 : zoom == 150 ? 200 : 100);
-				// Make sure there is enough vertical space for the full UI.
-				if(Screen::Height() < 700)
-					Screen::SetZoom(100);
-				
-				// Convert to raw window coordinates, at the new zoom level.
-				point *= Screen::Zoom() / 100.;
-				point += .5 * Point(Screen::RawWidth(), Screen::RawHeight());
-				SDL_WarpMouseInWindow(nullptr, point.X(), point.Y());
+				isOn = true;
+				text = "done";
 			}
-			break;
 		}
-	
-	return true;
+		else if(setting == SCROLL_SPEED)
+			text = to_string(Preferences::ScrollSpeed());
+		else
+			text = isOn ? "on" : "off";
+		
+		if(setting == hoverPreference)
+			table.DrawHighlight(back);
+		table.Draw(setting, isOn ? medium : dim);
+		table.Draw(text, isOn ? bright : medium);
+	}
 }
 
 
 
-bool PreferencesPanel::Hover(int x, int y)
+void PreferencesPanel::DrawPlugins()
 {
-	Point point(x, y);
-	
-	hover = -1;
-	for(unsigned index = 0; index < zones.size(); ++index)
-		if(zones[index].Contains(point))
-			hover = index;
-	
-	hoverPreference.clear();
-	for(const auto &zone : prefZones)
-		if(zone.Contains(point))
-			hoverPreference = zone.Value();
-	
-	return true;
+	// TODO.
 }
 
 

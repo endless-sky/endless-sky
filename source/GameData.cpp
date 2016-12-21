@@ -285,18 +285,12 @@ const vector<string> &GameData::Sources()
 // Revert any changes that have been made to the universe.
 void GameData::Revert()
 {
-	for(auto &it : fleets)
-		it.second = *defaultFleets.Get(it.first);
-	for(auto &it : governments)
-		it.second = *defaultGovernments.Get(it.first);
-	for(auto &it : planets)
-		it.second = *defaultPlanets.Get(it.first);
-	for(auto &it : systems)
-		it.second = *defaultSystems.Get(it.first);
-	for(auto &it : shipSales)
-		it.second = *defaultShipSales.Get(it.first);
-	for(auto &it : outfitSales)
-		it.second = *defaultOutfitSales.Get(it.first);
+	fleets.Revert(defaultFleets);
+	governments.Revert(defaultGovernments);
+	planets.Revert(defaultPlanets);
+	systems.Revert(defaultSystems);
+	shipSales.Revert(defaultShipSales);
+	outfitSales.Revert(defaultOutfitSales);
 	for(auto &it : persons)
 		it.second.GetShip()->Restore();
 	
@@ -642,16 +636,29 @@ const string &GameData::Tooltip(const string &label)
 {
 	static const string EMPTY;
 	auto it = tooltips.find(label);
+	// Special case: the "cost" and "sells for" labels include the percentage of
+	// the full price, so they will not match exactly.
+	if(it == tooltips.end() && !label.compare(0, 4, "cost"))
+		it = tooltips.find("cost:");
+	if(it == tooltips.end() && !label.compare(0, 9, "sells for"))
+		it = tooltips.find("sells for:");
 	return (it == tooltips.end() ? EMPTY : it->second);
 }
 
 
 
-string GameData::HelpMessage(const std::string &name)
+string GameData::HelpMessage(const string &name)
 {
 	static const string EMPTY;
 	auto it = helpMessages.find(name);
 	return Command::ReplaceNamesWithKeys(it == helpMessages.end() ? EMPTY : it->second);
+}
+
+
+
+const map<string, string> &GameData::HelpTemplates()
+{
+	return helpMessages;
 }
 
 
@@ -824,6 +831,10 @@ void GameData::PrintShipTable()
 		<< "e_gen" << '\t' << "e_use" << '\t' << "h_gen" << '\t' << "h_max" << '\n';
 	for(auto &it : ships)
 	{
+		// Skip variants.
+		if(it.second.ModelName() != it.first)
+			continue;
+		
 		const Ship &ship = it.second;
 		cout << it.first << '\t';
 		cout << ship.Cost() << '\t';
@@ -837,9 +848,9 @@ void GameData::PrintShipTable()
 		cout << attributes.Get("bunks") << '\t';
 		cout << attributes.Get("fuel capacity") << '\t';
 		
-		cout << attributes.Get("outfit space") << '\t';
-		cout << attributes.Get("weapon capacity") << '\t';
-		cout << attributes.Get("engine capacity") << '\t';
+		cout << ship.BaseAttributes().Get("outfit space") << '\t';
+		cout << ship.BaseAttributes().Get("weapon capacity") << '\t';
+		cout << ship.BaseAttributes().Get("engine capacity") << '\t';
 		cout << 60. * attributes.Get("thrust") / attributes.Get("drag") << '\t';
 		cout << 3600. * attributes.Get("thrust") / attributes.Get("mass") << '\t';
 		cout << 60. * attributes.Get("turn") / attributes.Get("mass") << '\t';

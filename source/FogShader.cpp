@@ -118,6 +118,13 @@ void FogShader::Init()
 
 
 
+void FogShader::Redraw()
+{
+	previousZoom = 0.;
+}
+
+
+
 void FogShader::Draw(const Point &center, double zoom, const PlayerInfo &player)
 {
 	// Generate a scaled-down mask image that represents the entire screen plus
@@ -139,6 +146,8 @@ void FogShader::Draw(const Point &center, double zoom, const PlayerInfo &player)
 		left != previousLeft || top != previousTop || columns != previousColumns || rows != previousRows);
 	if(shouldRegenerate)
 	{
+		bool sizeChanged = (!texture || columns != previousColumns || rows != previousRows);
+		
 		// Remember the current viewport attributes.
 		previousZoom = zoom;
 		previousCenter = center;
@@ -183,22 +192,30 @@ void FogShader::Draw(const Point &center, double zoom, const PlayerInfo &player)
 		// away, then it transitions somewhat quickly.
 		for(unsigned char &value : buffer)
 			value = max(0, min(LIMIT, (value - 60) * 4));
-	
+		const void *data = &buffer.front();
+		
 		// Set up the OpenGL texture if it doesn't exist yet.
-		if(!texture)
+		if(sizeChanged)
 		{
+			// If the texture size changed, it must be reallocated.
+			if(texture)
+				glDeleteTextures(1, &texture);
+			
 			glGenTextures(1, &texture);
 			glBindTexture(GL_TEXTURE_2D, texture);
 			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
 			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+			
+			// Upload the new "image."
+			glTexImage2D(GL_TEXTURE_2D, 0, GL_R8, columns, rows, 0, GL_RED, GL_UNSIGNED_BYTE, data);
 		}
 		else
+		{
 			glBindTexture(GL_TEXTURE_2D, texture);
-	
-		// Upload the new "image."
-		glTexImage2D(GL_TEXTURE_2D, 0, GL_R8, columns, rows, 0, GL_RED, GL_UNSIGNED_BYTE, &buffer.front());
+			glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, columns, rows, GL_RED, GL_UNSIGNED_BYTE, data);
+		}
 	}
 	else
 		glBindTexture(GL_TEXTURE_2D, texture);

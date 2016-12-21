@@ -187,6 +187,11 @@ bool MainPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 {
 	if(command.Has(Command::MAP | Command::INFO | Command::HAIL))
 		show = command;
+	else if(command.Has(Command::AMMO))
+	{
+		Preferences::ToggleAmmoUsage();
+		Messages::Add("Your escorts will now expend ammo: " + Preferences::AmmoUsage() + ".");
+	}
 	else
 		return false;
 	
@@ -230,21 +235,36 @@ void MainPanel::ShowScanDialog(const ShipEvent &event)
 		out << "This ship is equipped with:\n";
 		for(const auto &it : target->Outfits())
 			if(it.first && it.second)
-			{
-				out << "\t" << it.first->Name();
-				if(it.second != 1)
-					out << " (" << it.second << ")";
-				out << "\n";
-			}
+				out << "\t" << it.second << " "
+					<< (it.second == 1 ? it.first->Name() : it.first->PluralName()) << "\n";
+		
 		map<string, int> count;
 		for(const Ship::Bay &bay : target->Bays())
 			if(bay.ship)
-				++count[bay.ship->ModelName()];
+			{
+				int &value = count[bay.ship->ModelName()];
+				if(value)
+				{
+					// If the name and the plural name are the same string, just
+					// update the count. Otherwise, clear the count for the
+					// singular name and set it for the plural.
+					int &pluralValue = count[bay.ship->PluralModelName()];
+					if(!pluralValue)
+					{
+						value = -1;
+						pluralValue = 1;
+					}
+					++pluralValue;
+				}
+				else
+					++value;
+			}
 		if(!count.empty())
 		{
 			out << "This ship is carrying:\n";
 			for(const auto &it : count)
-				out << "\t" << it.second << " " << it.first << (it.second == 1 ? "\n" : "s\n");
+				if(it.second > 0)
+					out << "\t" << it.second << " " << it.first << "\n";
 		}
 	}
 	GetUI()->Push(new Dialog(out.str()));
@@ -269,17 +289,19 @@ bool MainPanel::ShowHailPanel()
 		Messages::Add("Unable to send hail: your flagship is cloaked.");
 	else if(target)
 	{
-		if(target->Cloaking() == 1.)
+		// If the target is out of system, always report a generic response
+		// because the player has no way of telling if it's presently jumping or
+		// not. If it's in system and jumping, report that.
+		if(target->Zoom() < 1. || target->IsDestroyed() || target->GetSystem() != player.GetSystem()
+				|| target->Cloaking() == 1.)
 			Messages::Add("Unable to hail target ship.");
 		else if(target->IsEnteringHyperspace())
 			Messages::Add("Unable to send hail: ship is entering hyperspace.");
-		else if(!target->IsDestroyed() && target->GetSystem() == player.GetSystem())
+		else
 		{
 			GetUI()->Push(new HailPanel(player, target));
 			return true;
 		}
-		else
-			Messages::Add("Unable to hail target ship.");
 	}
 	else if(flagship->GetTargetPlanet())
 	{

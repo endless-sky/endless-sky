@@ -872,29 +872,35 @@ void AI::MoveEscort(Ship &ship, Command &command) const
 		Refuel(ship, command);
 	else if(!parentIsHere && !isStaying)
 	{
-		DistanceMap distance(ship, parent.GetSystem());
-		const System *from = ship.GetSystem();
-		const System *to = distance.Route(from);
-		bool hasWormhole = false;
-		for(const StellarObject &object : from->Objects())
-			if(object.GetPlanet() && object.GetPlanet()->WormholeDestination(from) == to)
-			{
-				ship.SetTargetPlanet(&object);
-				MoveToPlanet(ship, command);
-				command |= Command::LAND;
-				hasWormhole = true;
-				break;
-			}
-		if(!hasWormhole)
+		if(!ship.GetTargetSystem() && !ship.GetTargetPlanet())
 		{
+			// If we're stranded and haven't decided where to go, figure out a
+			// path to the parent ship's system.
+			DistanceMap distance(ship, parent.GetSystem());
+			const System *from = ship.GetSystem();
+			const System *to = distance.Route(from);
+			for(const StellarObject &object : from->Objects())
+				if(object.GetPlanet() && object.GetPlanet()->WormholeDestination(from) == to)
+				{
+					ship.SetTargetPlanet(&object);
+					break;
+				}
 			ship.SetTargetSystem(to);
-			if(!to || (from->HasFuelFor(ship) && !to->HasFuelFor(ship) && ship.JumpsRemaining() == 1))
+			// Check if we need to refuel. Wormhole travel does not require fuel.
+			if(!ship.GetTargetPlanet() && (!to || 
+					(from->HasFuelFor(ship) && !to->HasFuelFor(ship) && ship.JumpsRemaining() == 1)))
 				Refuel(ship, command);
-			else
-			{
-				PrepareForHyperspace(ship, command);
-				command |= Command::JUMP;
-			}
+		}
+		// Perform the action that this ship previously decided on.
+		if(ship.GetTargetPlanet())
+		{
+			MoveToPlanet(ship, command);
+			command |= Command::LAND;
+		}
+		else if(ship.GetTargetSystem())
+		{
+			PrepareForHyperspace(ship, command);
+			command |= Command::JUMP;
 		}
 	}
 	else if(parent.Commands().Has(Command::LAND) && parent.GetTargetPlanet() && parentIsHere)
@@ -940,7 +946,8 @@ void AI::Refuel(Ship &ship, Command &command)
 	{
 		double closest = numeric_limits<double>::infinity();
 		for(const StellarObject &object : ship.GetSystem()->Objects())
-			if(object.GetPlanet() && object.GetPlanet()->HasSpaceport() && object.GetPlanet()->CanLand(ship))
+			if(object.GetPlanet() && object.GetPlanet()->HasSpaceport() 
+					&& !object.GetPlanet()->IsWormhole() && object.GetPlanet()->CanLand(ship))
 			{
 				double distance = ship.Position().Distance(object.Position());
 				if(distance < closest)

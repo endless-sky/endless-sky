@@ -29,6 +29,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Outfit.h"
 #include "PlayerInfo.h"
 #include "Point.h"
+#include "Preferences.h"
 #include "RingShader.h"
 #include "Screen.h"
 #include "Ship.h"
@@ -79,7 +80,6 @@ void MapSalesPanel::Draw()
 	MapPanel::Draw();
 	
 	zones.clear();
-	categoryZones.clear();
 	hidPrevious = true;
 	
 	DrawKey();
@@ -171,19 +171,6 @@ bool MapSalesPanel::Click(int x, int y)
 				break;
 			}
 		
-		for(const ClickZone<string> &zone : categoryZones)
-			if(zone.Contains(point))
-			{
-				bool set = !hideCategory[zone.Value()];
-				if(!isCompare)
-					hideCategory[zone.Value()] = set;
-				else
-					for(const string &category : categories)
-						hideCategory[category] = set;
-				
-				break;
-			}
-		
 		return true;
 	}
 	else
@@ -216,7 +203,7 @@ bool MapSalesPanel::Drag(double dx, double dy)
 bool MapSalesPanel::Scroll(double dx, double dy)
 {
 	if(isDragging)
-		scroll = min(0., max(-maxScroll, scroll + 50 * dy));
+		scroll = min(0., max(-maxScroll, scroll + dy * 2.5 * Preferences::ScrollSpeed()));
 	else
 		return MapPanel::Scroll(dx, dy);
 	
@@ -345,7 +332,7 @@ void MapSalesPanel::DrawInfo() const
 
 
 
-bool MapSalesPanel::DrawHeader(Point &corner, const string &category) const
+bool MapSalesPanel::DrawHeader(Point &corner, const string &category)
 {
 	auto hit = hideCategory.find(category);
 	bool hide = (hit != hideCategory.end() && hit->second);
@@ -353,10 +340,13 @@ bool MapSalesPanel::DrawHeader(Point &corner, const string &category) const
 		corner.Y() += 50.;
 	hidPrevious = hide;
 	
-	Color textColor = *GameData::Colors().Get(hide ? "dim" : "bright");
+	const Sprite *arrow = SpriteSet::Get(hide ? "ui/collapsed" : "ui/expanded");
+	SpriteShader::Draw(arrow, corner + Point(15., 25.));
+	
+	Color textColor = *GameData::Colors().Get(hide ? "medium" : "bright");
 	const Font &bigFont = FontSet::Get(18);
-	bigFont.Draw(category, corner + Point(5., 15.), textColor);
-	categoryZones.emplace_back(corner + Point(WIDTH * .5, 20.), Point(WIDTH, 40.), category);
+	bigFont.Draw(category, corner + Point(30., 15.), textColor);
+	AddZone(Rectangle::FromCorner(corner, Point(WIDTH, 40.)), [this, category](){ ClickCategory(category); });
 	corner.Y() += 40.;
 	
 	return hide;
@@ -369,7 +359,7 @@ void MapSalesPanel::DrawSprite(const Point &corner, const Sprite *sprite) const
 	if(sprite)
 	{
 		Point iconOffset(.5 * ICON_HEIGHT, .5 * ICON_HEIGHT);
-		double scale = min(.5, ICON_HEIGHT / sprite->Height());
+		double scale = min(.5, (ICON_HEIGHT - 2.) / sprite->Height());
 		SpriteShader::Draw(sprite, corner + iconOffset, scale, swizzle);
 	}
 }
@@ -377,7 +367,7 @@ void MapSalesPanel::DrawSprite(const Point &corner, const Sprite *sprite) const
 
 
 void MapSalesPanel::Draw(Point &corner, const Sprite *sprite, bool isForSale, bool isSelected,
-		const string &name, const string &price, const string &info) const
+		const string &name, const string &price, const string &info)
 {
 	const Font &font = FontSet::Get(14);
 	Color selectionColor(0., .3);
@@ -428,4 +418,19 @@ void MapSalesPanel::ScrollTo(int index)
 		scroll += Screen::Bottom() - it.Bottom();
 	if(it.Top() < Screen::Top())
 		scroll += Screen::Top() - it.Top();
+}
+
+
+
+void MapSalesPanel::ClickCategory(const string &name)
+{
+	bool set = !hideCategory[name];
+	if(SDL_GetModState() & KMOD_SHIFT)
+	{
+		// If the shift key is held down, hide or show all categories.
+		for(const string &category : categories)
+			hideCategory[category] = set;
+	}
+	else
+		hideCategory[name] = set;
 }

@@ -38,8 +38,14 @@ protected:
 	virtual bool Click(int x, int y) override;
 	virtual bool Hover(int x, int y) override;
 	
+	virtual void EndEditing() override;
+	
 	
 private:
+	void DrawControls();
+	void DrawSettings();
+	void DrawPlugins();
+	
 	void Exit();
 	
 	
@@ -47,6 +53,8 @@ private:
 	int editing;
 	int selected;
 	int hover;
+	// Which page of the preferences we're on.
+	char page = 'c';
 	std::string hoverPreference;
 	
 	std::vector<ClickZone<Command>> zones;

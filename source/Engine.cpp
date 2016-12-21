@@ -39,6 +39,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "StarField.h"
 #include "System.h"
 
+#include <algorithm>
 #include <cmath>
 
 using namespace std;
@@ -59,12 +60,12 @@ namespace {
 		return Radar::HOSTILE;
 	}
 	
-	int RadarType(const Ship &ship)
+	int RadarType(const Ship &ship, int step)
 	{
+		if(ship.IsDisabled() || (ship.IsOverheated() && ((step / 20) % 2)))
+			return Radar::INACTIVE;
 		if(ship.GetGovernment()->IsPlayer() || ship.GetPersonality().IsEscort())
 			return Radar::PLAYER;
-		if(ship.IsDisabled() || ship.IsOverheated())
-			return Radar::INACTIVE;
 		if(!ship.GetGovernment()->IsEnemy())
 			return Radar::FRIENDLY;
 		auto target = ship.GetTargetShip();
@@ -176,7 +177,9 @@ void Engine::Place()
 				// Skip ships that have been destroyed.
 				if(ship->IsDestroyed())
 					continue;
-				
+				// Avoid the exploit where the player can wear down an NPC's
+				// crew by attrition over the course of many days.
+				ship->AddCrew(max(0, ship->RequiredCrew() - ship->Crew()));
 				if(!ship->IsDisabled())
 					ship->Recharge();
 				
@@ -475,7 +478,7 @@ void Engine::Step(bool isActive)
 		else
 			info.SetString("target government", target->GetGovernment()->GetName());
 		
-		int targetType = RadarType(*target);
+		int targetType = RadarType(*target, step);
 		info.SetOutlineColor(Radar::GetColor(targetType));
 		if(target->GetSystem() == player.GetSystem() && target->IsTargetable())
 		{
@@ -682,6 +685,7 @@ void Engine::EnterSystem()
 		return;
 	
 	const System *system = flagship->GetSystem();
+	Audio::PlayMusic(system->MusicName());
 	
 	doEnter = true;
 	player.IncrementDate();
@@ -992,17 +996,18 @@ void Engine::CalculateStep()
 			int amount = 0;
 			if(it->OutfitType())
 			{
-				amount = collector->Cargo().Add(it->OutfitType(), it->Count());
+				const Outfit *outfit = it->OutfitType();
+				amount = collector->Cargo().Add(outfit, it->Count());
 				if(!name.empty())
 				{
-					if(it->OutfitType()->Get("installable") < 0.)
+					if(outfit->Get("installable") < 0.)
 					{
-						commodity = it->OutfitType()->Name();
-						player.Harvest(it->OutfitType());
+						commodity = outfit->Name();
+						player.Harvest(outfit);
 					}
 					else
-						message = name + Format::Number(amount) + " " + it->OutfitType()->Name()
-							+ (amount == 1 ? "." : "s.");
+						message = name + Format::Number(amount) + " "
+							+ (amount == 1 ? outfit->Name() : outfit->PluralName()) + ".";
 				}
 			}
 			else
@@ -1112,7 +1117,7 @@ void Engine::CalculateStep()
 			
 			double size = sqrt(ship->Width() + ship->Height()) * .14 + .5;
 			bool isYourTarget = (flagship && ship == flagship->GetTargetShip());
-			int type = RadarType(*ship);
+			int type = RadarType(*ship, step);
 			hasHostiles |= (type == Radar::HOSTILE);
 			radar[calcTickTock].Add(isYourTarget ? Radar::SPECIAL : type, ship->Position(), size);
 		}

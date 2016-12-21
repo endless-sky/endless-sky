@@ -116,6 +116,8 @@
 		<Unit filename="source/DataWriter.h" />
 		<Unit filename="source/Date.cpp" />
 		<Unit filename="source/Date.h" />
+		<Unit filename="source/Depreciation.cpp" />
+		<Unit filename="source/Depreciation.h" />
 		<Unit filename="source/Dialog.cpp" />
 		<Unit filename="source/Dialog.h" />
 		<Unit filename="source/DistanceMap.cpp" />

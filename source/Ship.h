@@ -111,10 +111,12 @@ public:
 	
 	// Get the name of this model of ship.
 	const std::string &ModelName() const;
+	const std::string &PluralModelName() const;
 	// Get this ship's description.
 	const std::string &Description() const;
 	// Get this ship's cost.
 	int64_t Cost() const;
+	int64_t ChassisCost() const;
 	// Get the licenses needed to buy or operate this ship.
 	const std::vector<std::string> &Licenses() const;
 	
@@ -227,6 +229,8 @@ public:
 	int JumpsRemaining() const;
 	// Get the amount of fuel expended per jump.
 	double JumpFuel() const;
+	// Get the heat level at idle.
+	double IdleHeat() const;
 	
 	// Access how many crew members this ship has or needs.
 	int Crew() const;
@@ -330,8 +334,6 @@ private:
 	void RemoveEscort(const Ship &ship);
 	// Get the hull amount at which this ship is disabled.
 	double MinimumHull() const;
-	// Get the heat level at idle.
-	double IdleHeat() const;
 	// Add to this ship's hull or shields, and return the amount added. If the
 	// ship is carrying fighters, add to them as well.
 	double AddHull(double rate);
@@ -356,6 +358,7 @@ private:
 	// Characteristics of the chassis:
 	const Ship *base = nullptr;
 	std::string modelName;
+	std::string pluralModelName;
 	std::string description;
 	// Characteristics of this particular ship:
 	std::string name;

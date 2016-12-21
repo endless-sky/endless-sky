@@ -45,6 +45,7 @@ public:
 	void Load(const DataNode &node);
 	
 	const std::string &Name() const;
+	const std::string &PluralName() const;
 	const std::string &Category() const;
 	const std::string &Description() const;
 	int64_t Cost() const;
@@ -76,6 +77,7 @@ public:
 	
 private:
 	std::string name;
+	std::string pluralName;
 	std::string category;
 	std::string description;
 	const Sprite *thumbnail = nullptr;

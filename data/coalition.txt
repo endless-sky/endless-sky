@@ -1,0 +1,286 @@
+# Copyright (c) 2016 by Michael Zahniser
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+
+government "Heliarch"
+	swizzle 0
+	color 1 .8 .5
+	"player reputation" 1
+	"attitude toward"
+		"Quarg" -.01
+		"Coalition" 1
+
+government "Coalition"
+	swizzle 5
+	color 1 .6 .7
+	"player reputation" 1
+	"attitude toward"
+		"Heliarch" 1
+
+
+fleet "Heliarch"
+	government "Heliarch"
+	cargo 1
+	personality
+		heroic
+	variant 40
+		"Heliarch Neutralizer"
+	variant 20
+		"Heliarch Interdictor"
+	variant 10
+		"Heliarch Punisher"
+	variant 4
+		"Heliarch Neutralizer (Missile)"
+	variant 4
+		"Heliarch Neutralizer (Nimble)"
+	variant 4
+		"Heliarch Neutralizer (Scrappy)"
+	variant 2
+		"Heliarch Interdictor (Bombardment)"
+	variant 1
+		"Heliarch Punisher (Interdicting)"
+	variant 1
+		"Heliarch Punisher (Missile)"
+	variant 1
+		"Heliarch Punisher (Scrappy)"
+
+fleet "Small Arach"
+	government "Coalition"
+	cargo 3
+	personality
+		timid
+	variant 20
+		"Arach Transport"
+		"Arach Courier"
+	variant 20
+		"Arach Freighter"
+		"Arach Courier"
+	variant 30
+		"Arach Courier" 2
+	variant 20
+		"Arach Courier"
+	variant 10
+		"Arach Freighter" 2
+	variant 5
+		"Arach Freighter"
+		"Kimek Thorn" 2
+	variant 5
+		"Arach Transport"
+		"Saryd Runabout"
+	variant 5
+		"Arach Courier"
+		"Saryd Runabout"
+
+fleet "Large Arach"
+	government "Coalition"
+	cargo 3
+	personality
+		timid
+	variant 30
+		"Arach Hulk"
+	variant 20
+		"Arach Spindle"
+	variant 40
+		"Arach Freighter"
+		"Arach Transport"
+		"Arach Courier" 2
+	variant 10
+		"Arach Hulk"
+		"Arach Spindle"
+	variant 10
+		"Arach Spindle"
+		"Arach Freighter"
+	variant 5
+		"Arach Freighter"
+		"Arach Transport"
+		"Kimek Thistle"
+	variant 5
+		"Arach Spindle"
+		"Kimek Briar"
+		"Saryd Visitor"
+
+fleet "Small Kimek"
+	government "Coalition"
+	cargo 3
+	personality
+		timid
+	variant 40
+		"Kimek Thorn"
+	variant 30
+		"Kimek Thorn" 2
+	variant 20
+		"Kimek Thorn" 3
+	variant 20
+		"Kimek Briar"
+		"Kimek Thorn"
+	variant 10
+		"Kimek Thistle"
+	variant 10
+		"Kimek Thistle"
+		"Kimek Thorn"
+	variant 10
+		"Kimek Briar" 2
+	variant 5
+		"Kimek Briar"
+		"Saryd Runabout"
+	variant 5
+		"Kimek Thistle"
+		"Arach Courier"
+
+fleet "Large Kimek"
+	government "Coalition"
+	cargo 3
+	personality
+		timid
+	variant 40
+		"Kimek Spire"
+	variant 30
+		"Kimek Spire"
+		"Kimek Thorn" 2
+	variant 20
+		"Kimek Thistle"
+		"Kimek Briar"
+		"Kimek Thorn"
+	variant 10
+		"Kimek Thistle" 3
+	variant 10
+		"Kimek Spire"
+		"Kimek Thistle"
+		"Kimek Briar"
+		"Kimek Thorn"
+	variant 5
+		"Kimek Spire" 2
+	variant 5
+		"Kimek Spire"
+		"Saryd Traveler"
+	variant 5
+		"Kimek Thistle"
+		"Kimek Thorn" 2
+		"Saryd Visitor"
+
+fleet "Small Saryd"
+	government "Coalition"
+	cargo 3
+	personality
+		timid
+	variant 60
+		"Saryd Runabout"
+	variant 40
+		"Saryd Visitor"
+	variant 20
+		"Saryd Runabout" 2
+	variant 20
+		"Saryd Visitor"
+		"Saryd Runabout"
+	variant 10
+		"Saryd Visitor"
+		"Saryd Runabout" 2
+	variant 5
+		"Saryd Visitor"
+		"Kimek Thorn" 2
+	variant 5
+		"Saryd Visitor"
+		"Arach Courier"
+
+fleet "Large Saryd"
+	government "Coalition"
+	cargo 3
+	personality
+		timid
+	variant 60
+		"Saryd Traveler"
+	variant 40
+		"Saryd Sojourner"
+	variant 30
+		"Saryd Traveler"
+		"Saryd Visitor"
+	variant 20
+		"Saryd Traveler"
+		"Saryd Visitor"
+		"Saryd Runabout"
+	variant 10
+		"Saryd Visitor" 3
+	variant 10
+		"Saryd Sojourner"
+		"Saryd Traveler"
+	variant 10
+		"Saryd Sojourner"
+		"Saryd Visitor" 2
+	variant 5
+		"Saryd Sojourner"
+		"Kimek Thorn" 4
+	variant 5
+		"Saryd Traveler"
+		"Arach Courier" 2
+		"Kimek Briar"
+
+
+outfitter "Coalition Basics"
+	"Small Collector Module"
+	"Small Battery Module"
+	"Small Shield Module"
+	"Small Repair Module"
+	"Cooling Module"
+	"Small Thrust Module"
+	"Small Steering Module"
+	"Cargo Expansion"
+	"Mass Expansion"
+
+outfitter "Coalition Advanced"
+	"Small Collector Module"
+	"Large Collector Module"
+	"Small Battery Module"
+	"Large Battery Module"
+	"Small Shield Module"
+	"Large Shield Module"
+	"Small Repair Module"
+	"Large Repair Module"
+	"Cooling Module"
+	"Small Thrust Module"
+	"Large Thrust Module"
+	"Small Steering Module"
+	"Large Steering Module"
+	"Cargo Expansion"
+	"Mass Expansion"
+
+outfitter "Heliarch"
+	"Small Reactor Module"
+	"Large Reactor Module"
+	"Bombardment Cannon"
+	"Bombardment Turret"
+	"Finisher Pod"
+	"Finisher Torpedo"
+	"Heliarch Attractor"
+	"Heliarch Repulsor"
+	"Ion Rain Gun"
+
+
+shipyard "Arach"
+	"Arach Courier"
+	"Arach Freighter"
+	"Arach Hulk"
+	"Arach Spindle"
+	"Arach Transport"
+
+shipyard "Kimek"
+	"Kimek Briar"
+	"Kimek Spire"
+	"Kimek Thistle"
+	"Kimek Thorn"
+
+shipyard "Saryd"
+	"Saryd Runabout"
+	"Saryd Sojourner"
+	"Saryd Traveler"
+	"Saryd Visitor"
+
+shipyard "Coalition Basics"
+	"Arach Courier"
+	"Kimek Thorn"
+	"Saryd Runabout"
