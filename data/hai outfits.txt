@@ -343,7 +343,7 @@ outfit "Pebble Core"
 	description "A Pebble Core is a miniaturized nuclear reactor, small enough to be installed in any ship larger than a fighter. The Hai developed this model for their smaller ships."
 
 outfit "Sand Cell"
-    category "Power"
+	category "Power"
 	cost 45000
 	thumbnail "outfit/fuel cell hai"
 	"mass" 24
@@ -355,7 +355,7 @@ outfit "Sand Cell"
 
 outfit `"Baellie" Atomic Engines`
 	plural `"Baellie" Atomic Engines`
-    category "Engines"
+	category "Engines"
 	"cost" 240000
 	thumbnail "outfit/tiny atomic engines hai"
 	"mass" 24
@@ -368,7 +368,7 @@ outfit `"Baellie" Atomic Engines`
 	"thrusting energy" 1.2
 	"thrusting heat" 2.4
 	"flare sprite" "effect/atomic flare/tiny"
-	    "frame rate" 14
+		"frame rate" 14
 	"flare sound" "atomic tiny"
 	description `While the Hai were designing the Flea, it quickly became apparent that even the "Basrem" engine set was too large for the purpose. As a result, a combined thruster steering set was created: "Baellie".`
 

@@ -249,7 +249,7 @@ void Audio::Play(const Sound *sound, const Point &position)
 
 
 // Play the given music. An empty string means to play nothing.
-void Audio::PlayMusic(const std::string &name)
+void Audio::PlayMusic(const string &name)
 {
 #ifndef _WIN32
 	// Don't worry about thread safety here, since music will always be started

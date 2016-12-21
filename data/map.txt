@@ -12,13 +12,13 @@ galaxy "Milky Way"
 	pos 0 0
 	sprite ui/galaxy
 
-galaxy "label south"
-	pos -566 501
-	sprite label/south
+galaxy "label core"
+	pos -136 130
+	sprite label/core
 
-galaxy "label rim"
-	pos -778 265
-	sprite label/rim
+galaxy "label deep"
+	pos -658 -300
+	sprite label/deep
 
 galaxy "label dirt belt"
 	pos -515 260
@@ -28,21 +28,1736 @@ galaxy "label earth"
 	pos -420 94
 	sprite label/earth
 
-galaxy "label core"
-	pos -136 130
-	sprite label/core
-
-galaxy "label deep"
-	pos -658 -300
-	sprite label/deep
+galaxy "label north"
+	pos -324 -332
+	sprite label/north
 
 galaxy "label paradise"
 	pos -345 -136
 	sprite label/paradise
 
-galaxy "label north"
-	pos -324 -332
-	sprite label/north
+galaxy "label rim"
+	pos -778 265
+	sprite label/rim
+
+galaxy "label south"
+	pos -566 501
+	sprite label/south
+
+system "1 Axis"
+	pos -1274.63 267.214
+	government Coalition
+	habitable 745.92
+	belt 1112
+	link "Sol Kimek"
+	link "4 Winter Rising"
+	link "4 Spring Rising"
+	link "3 Axis"
+	asteroids "small rock" 8 3.3166
+	asteroids "medium rock" 11 3.4454
+	asteroids "large rock" 1 3.1556
+	asteroids "small metal" 1 3.381
+	asteroids "medium metal" 149 4.347
+	asteroids "large metal" 11 3.9606
+	minables lead 11 6.87213
+	minables silicon 35 6.68659
+	minables tungsten 2 5.45307
+	trade Clothing 251
+	trade Electronics 831
+	trade Equipment 469
+	trade Food 231
+	trade "Heavy Metals" 1241
+	trade Industrial 767
+	trade "Luxury Goods" 1135
+	trade Medical 777
+	trade Metal 520
+	trade Plastic 384
+	fleet "Small Arach" 700
+	fleet "Large Arach" 1500
+	fleet "Small Kimek" 300
+	fleet "Large Kimek" 400
+	fleet "Small Saryd" 900
+	fleet "Large Saryd" 1800
+	fleet Heliarch 450
+	object
+		sprite star/k5
+		distance 49.335
+		period 18.0618
+		offset 180
+	object
+		sprite star/m0
+		distance 65.665
+		period 18.0618
+	object
+		sprite planet/rock12
+		distance 298.105
+		period 75.382
+	object
+		sprite planet/cloud4
+		distance 728.595
+		period 288.034
+	object "Celestial Third"
+		sprite planet/ice4
+		distance 951.355
+		period 429.762
+	object
+		sprite planet/gas9
+		distance 1811.79
+		period 1129.48
+		object
+			sprite planet/lava0
+			distance 229
+			period 12.994
+		object
+			sprite planet/dust1
+			distance 394
+			period 29.3248
+		object
+			sprite planet/dust5
+			distance 565
+			period 50.3574
+		object
+			sprite planet/ice8
+			distance 684
+			period 67.0771
+
+system "10 Pole"
+	pos -1356.63 19.2137
+	government Coalition
+	habitable 486.68
+	belt 1765
+	link "16 Autumn Rising"
+	asteroids "small rock" 30 10.7996
+	asteroids "medium rock" 42 8.4448
+	asteroids "large rock" 2 8.12
+	asteroids "medium metal" 9 11.368
+	asteroids "large metal" 2 4.7096
+	minables neodymium 9 17.5036
+	minables silicon 17 18.2422
+	trade Clothing 335
+	trade Electronics 832
+	trade Equipment 444
+	trade Food 122
+	trade "Heavy Metals" 1228
+	trade Industrial 806
+	trade "Luxury Goods" 1009
+	trade Medical 710
+	trade Metal 300
+	trade Plastic 342
+	fleet "Small Arach" 1800
+	fleet "Large Arach" 8000
+	fleet "Small Kimek" 600
+	fleet "Large Kimek" 1600
+	fleet "Small Saryd" 1200
+	fleet "Large Saryd" 5000
+	fleet Heliarch 700
+	object
+		sprite star/k0
+		period 10
+	object
+		sprite planet/ice2
+		distance 158.89
+		period 36.3148
+	object "Second Rose"
+		sprite planet/cloud4
+		distance 483.25
+		period 192.618
+		object
+			sprite planet/rock17
+			distance 152
+			period 17.6262
+	object
+		sprite planet/lava2
+		distance 1069.5
+		period 634.175
+	object
+		sprite planet/gas16
+		distance 1649.46
+		period 1214.65
+	object
+		sprite planet/gas8
+		distance 2382.55
+		period 2108.63
+		object
+			sprite planet/rhea
+			distance 230
+			period 18.5682
+		object
+			sprite planet/dust3
+			distance 335
+			period 32.6395
+		object
+			sprite planet/ice0
+			distance 490
+			period 57.7392
+
+system "11 Autumn Above"
+	pos -1278.63 148.214
+	government Coalition
+	habitable 1566.68
+	belt 1099
+	link "16 Autumn Rising"
+	link "Sol Kimek"
+	link "7 Autumn Rising"
+	asteroids "small rock" 1 4.1454
+	asteroids "medium rock" 28 3.2928
+	asteroids "large rock" 51 2.058
+	asteroids "small metal" 5 2.8812
+	asteroids "medium metal" 108 1.8816
+	asteroids "large metal" 8 2.793
+	minables gold 17 3.14953
+	minables titanium 46 3.06136
+	minables tungsten 8 3.33616
+	trade Clothing 202
+	trade Electronics 723
+	trade Equipment 518
+	trade Food 202
+	trade "Heavy Metals" 1084
+	trade Industrial 803
+	trade "Luxury Goods" 1132
+	trade Medical 608
+	trade Metal 328
+	trade Plastic 323
+	fleet "Small Arach" 800
+	fleet "Large Arach" 1800
+	fleet "Small Kimek" 300
+	fleet "Large Kimek" 500
+	fleet "Small Saryd" 900
+	fleet "Large Saryd" 2000
+	fleet Heliarch 400
+	object
+		sprite star/g0
+		distance 40.3837
+		period 14.9791
+	object
+		sprite star/k0
+		distance 89.6163
+		period 14.9791
+		offset 180
+	object
+		sprite planet/gas1
+		distance 536.616
+		period 125.622
+		object
+			sprite planet/ice8
+			distance 223
+			period 13.3098
+		object
+			sprite planet/dust0
+			distance 310
+			period 21.8151
+	object
+		sprite planet/rock12
+		distance 1117.31
+		period 377.423
+		object
+			sprite planet/rock3
+			distance 154
+			period 19.9116
+	object
+		sprite planet/gas12
+		distance 2339.35
+		period 1143.44
+		object
+			sprite planet/europa
+			distance 276
+			period 12.0434
+		object
+			sprite planet/rock14
+			distance 419
+			period 22.5271
+		object
+			sprite planet/dust7
+			distance 536
+			period 32.5936
+
+system "11 Spring Below"
+	pos -1272.63 380.214
+	government Coalition
+	habitable 912.6
+	belt 1932
+	link "4 Spring Rising"
+	link "3 Axis"
+	link "5 Spring Below"
+	asteroids "small rock" 36 3.808
+	asteroids "medium rock" 86 4.004
+	asteroids "large rock" 25 2.8
+	asteroids "small metal" 21 1.96
+	asteroids "medium metal" 41 3.696
+	asteroids "large metal" 13 2.128
+	minables silicon 5 6.88994
+	minables tungsten 32 6.67204
+	trade Clothing 291
+	trade Electronics 710
+	trade Equipment 493
+	trade Food 420
+	trade "Heavy Metals" 1205
+	trade Industrial 736
+	trade "Luxury Goods" 1212
+	trade Medical 801
+	trade Metal 549
+	trade Plastic 486
+	fleet "Small Arach" 1800
+	fleet "Large Arach" 3000
+	fleet "Small Kimek" 400
+	fleet "Large Kimek" 900
+	fleet "Small Saryd" 1200
+	fleet "Large Saryd" 3000
+	fleet Heliarch 500
+	object
+		sprite star/k0
+		distance 47.6045
+		period 13.6402
+		offset 180
+	object
+		sprite star/k5
+		distance 54.3955
+		period 13.6402
+	object
+		sprite planet/rock16
+		distance 318.396
+		period 75.2264
+		object
+			sprite planet/tethys
+			distance 115
+			period 16.8311
+	object
+		sprite planet/dust7
+		distance 583.206
+		period 186.489
+	object "Third Umber"
+		sprite planet/rock4
+		distance 1145.97
+		period 513.662
+		object
+			sprite planet/oberon
+			distance 145
+			period 15.8958
+	object
+		sprite planet/gas3
+		distance 2916.97
+		period 2086.01
+		object
+			sprite planet/rhea
+			distance 274
+			period 11.5849
+		object
+			sprite planet/dust3
+			distance 429
+			period 22.6961
+		object
+			sprite planet/dust5
+			distance 540
+			period 32.052
+
+system "12 Autumn Above"
+	pos -1276.63 -19.7863
+	government Coalition
+	habitable 1050.92
+	belt 1283
+	link "14 Pole"
+	link "16 Autumn Rising"
+	asteroids "small rock" 23 1.92
+	asteroids "medium rock" 40 1.59
+	asteroids "large rock" 2 4.26
+	asteroids "small metal" 2 3.03
+	asteroids "medium metal" 36 1.59
+	asteroids "large metal" 6 2.76
+	minables iron 1 2.03452
+	minables lead 1 2.88219
+	minables platinum 4 3.18455
+	trade Clothing 314
+	trade Electronics 824
+	trade Equipment 403
+	trade Food 266
+	trade "Heavy Metals" 1152
+	trade Industrial 691
+	trade "Luxury Goods" 964
+	trade Medical 746
+	trade Metal 314
+	trade Plastic 271
+	fleet "Small Arach" 2500
+	fleet "Large Arach" 8000
+	fleet "Small Kimek" 700
+	fleet "Large Kimek" 2400
+	fleet "Small Saryd" 1300
+	fleet "Large Saryd" 7000
+	fleet Heliarch 800
+	object
+		sprite star/g5
+		distance 49.4445
+		period 16.627
+		offset 180
+	object
+		sprite star/k5
+		distance 72.5555
+		period 16.627
+	object
+		sprite planet/lava2
+		distance 256.965
+		period 50.8262
+	object
+		sprite planet/mars
+		distance 428.975
+		period 109.629
+	object
+		sprite planet/ganymede
+		distance 603.065
+		period 182.735
+	object
+		sprite planet/gas17
+		distance 1074.32
+		period 434.483
+		object
+			sprite planet/europa
+			distance 207
+			period 12.7242
+		object
+			sprite planet/dust0
+			distance 335
+			period 26.1963
+	object
+		sprite planet/gas13
+		distance 1727.53
+		period 885.955
+	object
+		sprite planet/gas3
+		distance 8021.02
+		period 8863.78
+		object
+			sprite planet/rock7
+			distance 294
+			period 12.8761
+		object
+			sprite planet/ice7
+			distance 390
+			period 19.6726
+		object
+			sprite planet/rock17
+			distance 492
+			period 27.8748
+
+system "14 Pole"
+	pos -1343.63 -119.786
+	government Coalition
+	habitable 625
+	belt 1881
+	link "12 Autumn Above"
+	asteroids "small rock" 44 3.904
+	asteroids "medium rock" 6 4.48
+	asteroids "large rock" 8 3.84
+	asteroids "medium metal" 122 3.872
+	asteroids "large metal" 1 4.672
+	minables silicon 6 4.99492
+	minables tungsten 13 4.66751
+	minables uranium 11 5.28952
+	trade Clothing 309
+	trade Electronics 827
+	trade Equipment 381
+	trade Food 325
+	trade "Heavy Metals" 1167
+	trade Industrial 644
+	trade "Luxury Goods" 942
+	trade Medical 759
+	trade Metal 357
+	trade Plastic 258
+	fleet "Small Arach" 3000
+	fleet "Large Arach" 9000
+	fleet "Small Kimek" 800
+	fleet "Large Kimek" 3000
+	fleet "Small Saryd" 1600
+	fleet "Large Saryd" 9000
+	fleet Heliarch 1200
+	object
+		sprite star/g5
+		period 10
+	object
+		sprite planet/desert2
+		distance 187.36
+		period 41.0332
+	object
+		sprite planet/lava4
+		distance 420.45
+		period 137.94
+	object "Remote Blue"
+		sprite planet/earth
+		distance 658.54
+		period 270.392
+	object
+		sprite planet/neptune
+		distance 1097.38
+		period 581.642
+		object
+			sprite planet/dust7
+			distance 214
+			period 15.5974
+	object
+		sprite planet/gas1
+		distance 2169.47
+		period 1616.78
+
+system "14 Summer Above"
+	pos -1436.63 182.214
+	government Coalition
+	habitable 1400
+	belt 1093
+	link "3 Pole"
+	link "4 Summer Rising"
+	asteroids "small rock" 2 3.016
+	asteroids "medium rock" 1 3.406
+	asteroids "large rock" 4 3.9
+	asteroids "small metal" 4 2.106
+	asteroids "medium metal" 86 2.054
+	asteroids "large metal" 2 2.834
+	trade Clothing 252
+	trade Electronics 861
+	trade Equipment 361
+	trade Food 174
+	trade "Heavy Metals" 1187
+	trade Industrial 853
+	trade "Luxury Goods" 998
+	trade Medical 528
+	trade Metal 284
+	trade Plastic 350
+	fleet "Small Arach" 1000
+	fleet "Large Arach" 4000
+	fleet "Small Kimek" 500
+	fleet "Large Kimek" 1100
+	fleet "Small Saryd" 1300
+	fleet "Large Saryd" 4000
+	fleet Heliarch 1200
+	object
+		sprite star/g0
+		distance 20.8
+		period 9.28022
+		offset 180
+	object
+		sprite star/m0
+		distance 70.2
+		period 9.28022
+	object
+		sprite planet/gas4
+		distance 605.45
+		period 159.262
+		object
+			sprite planet/rock7
+			distance 251
+			period 14.0252
+		object
+			sprite planet/ice7
+			distance 388
+			period 26.9553
+	object "Second Viridian"
+		sprite planet/forest5
+		distance 1256.26
+		period 476.009
+	object
+		sprite planet/rock0
+		distance 1431.1
+		period 578.763
+	object
+		sprite planet/gas8
+		distance 2256.26
+		period 1145.72
+
+system "14 Winter Below"
+	pos -1143.63 341.214
+	government Coalition
+	habitable 1111.68
+	belt 1173
+	link "8 Winter Below"
+	link "Ki War Ek"
+	link "4 Axis"
+	asteroids "small rock" 27 6.0912
+	asteroids "medium rock" 2 2.7648
+	asteroids "large rock" 21 5.8752
+	asteroids "small metal" 5 3.9744
+	asteroids "medium metal" 3 5.5728
+	asteroids "large metal" 3 2.2896
+	minables neodymium 6 6.79025
+	minables titanium 9 8.6162
+	trade Clothing 310
+	trade Electronics 787
+	trade Equipment 658
+	trade Food 517
+	trade "Heavy Metals" 1016
+	trade Industrial 855
+	trade "Luxury Goods" 1175
+	trade Medical 876
+	trade Metal 445
+	trade Plastic 391
+	fleet "Small Arach" 800
+	fleet "Large Arach" 1200
+	fleet "Small Kimek" 400
+	fleet "Large Kimek" 500
+	fleet "Small Saryd" 1000
+	fleet "Large Saryd" 1800
+	fleet Heliarch 200
+	object
+		sprite star/g5
+		distance 45.0921
+		period 12.5408
+		offset 180
+	object
+		sprite star/k0
+		distance 57.9079
+		period 12.5408
+	object
+		sprite planet/dust1
+		distance 173.548
+		period 27.4283
+	object
+		sprite planet/ice4
+		distance 504.388
+		period 135.899
+	object "Midway Emerald"
+		sprite planet/forest1
+		distance 917.748
+		period 333.546
+	object
+		sprite planet/gas4
+		distance 1422.56
+		period 643.687
+	object
+		sprite planet/gas8
+		distance 1838.32
+		period 945.586
+	object
+		sprite planet/gas5
+		distance 2600.32
+		period 1590.78
+		object
+			sprite planet/desert4
+			distance 236
+			period 12.0563
+		object
+			sprite planet/rock3
+			distance 346
+			period 21.4023
+
+system "16 Autumn Rising"
+	pos -1305.63 74.2137
+	government Coalition
+	habitable 1715
+	belt 1424
+	link "12 Autumn Above"
+	link "5 Summer Above"
+	link "11 Autumn Above"
+	link "3 Pole"
+	link "10 Pole"
+	asteroids "medium rock" 6 3.4138
+	asteroids "large rock" 8 2.2984
+	asteroids "small metal" 1 4.6644
+	asteroids "medium metal" 15 4.4616
+	asteroids "large metal" 3 2.3322
+	minables silicon 2 4.30865
+	trade Clothing 286
+	trade Electronics 818
+	trade Equipment 464
+	trade Food 162
+	trade "Heavy Metals" 1146
+	trade Industrial 771
+	trade "Luxury Goods" 1025
+	trade Medical 677
+	trade Metal 278
+	trade Plastic 311
+	fleet "Small Arach" 1400
+	fleet "Large Arach" 7000
+	fleet "Small Kimek" 500
+	fleet "Large Kimek" 1200
+	fleet "Small Saryd" 1100
+	fleet "Large Saryd" 4000
+	fleet Heliarch 500
+	object
+		sprite star/f5
+		period 10
+	object
+		sprite planet/rhea
+		distance 155.04
+		period 18.6463
+	object
+		sprite planet/cloud8
+		distance 494.88
+		period 106.335
+		object
+			sprite planet/io
+			distance 159
+			period 24.2278
+	object
+		sprite planet/gas6
+		distance 1700.84
+		period 677.522
+		object
+			sprite planet/ice8
+			distance 285
+			period 12.2894
+		object
+			sprite planet/rock17
+			distance 373
+			period 18.4004
+		object
+			sprite planet/miranda
+			distance 501
+			period 28.6432
+		object
+			sprite planet/dust0
+			distance 587
+			period 36.3264
+
+system "3 Axis"
+	pos -1235.63 299.214
+	government Coalition
+	habitable 2372.76
+	belt 1202
+	link "1 Axis"
+	link "8 Winter Below"
+	link "4 Winter Rising"
+	link "4 Axis"
+	link "11 Spring Below"
+	asteroids "small rock" 1 2.1945
+	asteroids "medium rock" 39 1.8645
+	asteroids "large rock" 10 1.1715
+	asteroids "small metal" 12 2.4585
+	asteroids "medium metal" 5 0.99
+	asteroids "large metal" 4 1.98
+	minables silicon 20 2.91457
+	minables tungsten 5 3.38084
+	trade Clothing 256
+	trade Electronics 772
+	trade Equipment 541
+	trade Food 352
+	trade "Heavy Metals" 1192
+	trade Industrial 774
+	trade "Luxury Goods" 1250
+	trade Medical 815
+	trade Metal 510
+	trade Plastic 396
+	fleet "Small Arach" 600
+	fleet "Large Arach" 1200
+	fleet "Small Kimek" 200
+	fleet "Large Kimek" 300
+	fleet "Small Saryd" 800
+	fleet "Large Saryd" 1600
+	fleet Heliarch 350
+	object
+		sprite star/f0
+		period 10
+	object
+		sprite planet/desert2
+		distance 176.76
+		period 19.2979
+	object
+		sprite planet/dust6
+		distance 424.05
+		period 71.7065
+	object
+		sprite planet/rock3
+		distance 719.34
+		period 158.429
+	object
+		sprite planet/ice0
+		distance 1340.63
+		period 403.085
+	object
+		sprite planet/gas6
+		distance 2384.92
+		period 956.409
+		object "Ashy Reach"
+			sprite planet/rock14
+			distance 313
+			period 14.1443
+		object
+			sprite planet/rock7
+			distance 410
+			period 21.2051
+
+system "3 Pole"
+	pos -1344.63 162.214
+	government Coalition
+	habitable 625
+	belt 1617
+	link "16 Autumn Rising"
+	link "5 Summer Above"
+	link "14 Summer Above"
+	link "4 Summer Rising"
+	link "Sol Kimek"
+	asteroids "small rock" 1 1.7864
+	asteroids "medium rock" 1 4.5584
+	asteroids "large rock" 18 2.31
+	asteroids "small metal" 100 3.1416
+	asteroids "medium metal" 16 1.7864
+	asteroids "large metal" 19 4.466
+	minables lead 2 5.80948
+	minables silicon 42 5.08343
+	trade Clothing 240
+	trade Electronics 847
+	trade Equipment 426
+	trade Food 145
+	trade "Heavy Metals" 1146
+	trade Industrial 776
+	trade "Luxury Goods" 1036
+	trade Medical 610
+	trade Metal 326
+	trade Plastic 296
+	fleet "Small Arach" 900
+	fleet "Large Arach" 2200
+	fleet "Small Kimek" 300
+	fleet "Large Kimek" 400
+	fleet "Small Saryd" 1000
+	fleet "Large Saryd" 2000
+	fleet Heliarch 600
+	object
+		sprite star/g5
+		period 10
+	object
+		sprite planet/rock11
+		distance 145.21
+		period 27.9972
+	object "Brass Second"
+		sprite planet/forest6
+		distance 541.22
+		period 201.456
+	object
+		sprite planet/jupiter
+		distance 955.31
+		period 472.429
+		object
+			sprite planet/miranda
+			distance 262
+			period 13.3264
+	object
+		sprite planet/tethys
+		distance 2014.75
+		period 1446.94
+
+system "3 Spring Rising"
+	pos -1414.63 356.214
+	government Coalition
+	habitable 1080
+	belt 1613
+	link "4 Spring Rising"
+	asteroids "small rock" 66 4.9761
+	asteroids "medium rock" 6 4.3092
+	asteroids "large rock" 92 7.695
+	asteroids "small metal" 4 5.5917
+	asteroids "medium metal" 12 5.0787
+	asteroids "large metal" 29 3.591
+	minables aluminum 26 7.84109
+	minables silicon 2 11.9047
+	trade Clothing 218
+	trade Electronics 820
+	trade Equipment 377
+	trade Food 378
+	trade "Heavy Metals" 1181
+	trade Industrial 736
+	trade "Luxury Goods" 999
+	trade Medical 735
+	trade Metal 521
+	trade Plastic 466
+	fleet "Small Arach" 3000
+	fleet "Large Arach" 8000
+	fleet "Small Kimek" 600
+	fleet "Large Kimek" 1400
+	fleet "Small Saryd" 1500
+	fleet "Large Saryd" 6000
+	fleet Heliarch 800
+	object
+		sprite star/g0
+		period 10
+	object
+		sprite planet/rock8
+		distance 207.41
+		period 36.3574
+	object
+		sprite planet/rock2
+		distance 405.9
+		period 99.5352
+	object
+		sprite planet/cloud3
+		distance 672.74
+		period 212.383
+	object "Fourth Shadow"
+		sprite planet/ocean8
+		distance 1272.23
+		period 552.327
+	object
+		sprite planet/gas4
+		distance 3747.48
+		period 2792.27
+		object
+			sprite planet/oberon
+			distance 227
+			period 12.0625
+		object
+			sprite planet/tethys
+			distance 327
+			period 20.8554
+		object
+			sprite planet/dust3
+			distance 412
+			period 29.4946
+		object
+			sprite planet/ice8
+			distance 571
+			period 48.1229
+
+system "4 Axis"
+	pos -1169.63 365.214
+	government Coalition
+	habitable 425.92
+	belt 1838
+	link "14 Winter Below"
+	link "5 Axis"
+	link "5 Spring Below"
+	link "3 Axis"
+	asteroids "small rock" 71 3.726
+	asteroids "medium rock" 41 4.59
+	asteroids "large rock" 19 7.398
+	asteroids "small metal" 8 7.668
+	asteroids "medium metal" 22 7.452
+	asteroids "large metal" 20 6.804
+	minables aluminum 17 9.39886
+	minables iron 3 6.86334
+	trade Clothing 309
+	trade Electronics 724
+	trade Equipment 578
+	trade Food 448
+	trade "Heavy Metals" 1090
+	trade Industrial 856
+	trade "Luxury Goods" 1245
+	trade Medical 821
+	trade Metal 455
+	trade Plastic 483
+	fleet "Small Arach" 900
+	fleet "Large Arach" 1400
+	fleet "Small Kimek" 300
+	fleet "Large Kimek" 400
+	fleet "Small Saryd" 900
+	fleet "Large Saryd" 1600
+	fleet Heliarch 300
+	object
+		sprite star/k5
+		period 10
+	object
+		sprite planet/lava7
+		distance 220.36
+		period 63.4009
+	object "Rusty Second"
+		sprite planet/desert2
+		distance 415.77
+		period 164.314
+	object
+		sprite planet/rhea
+		distance 615.78
+		period 296.165
+	object
+		sprite planet/rock17
+		distance 1455.02
+		period 1075.72
+	object
+		sprite planet/gas1
+		distance 1864.98
+		period 1561.02
+		object
+			sprite planet/rock0
+			distance 221
+			period 13.1312
+
+system "4 Spring Rising"
+	pos -1309.63 321.214
+	government Coalition
+	habitable 320
+	belt 1801
+	link "1 Axis"
+	link "3 Spring Rising"
+	link "11 Spring Below"
+	asteroids "small rock" 9 10.8808
+	asteroids "large rock" 8 10.0688
+	asteroids "small metal" 3 11.4492
+	asteroids "medium metal" 42 6.1712
+	asteroids "large metal" 3 8.7696
+	minables iron 16 14.9192
+	minables silver 6 11.5775
+	trade Clothing 238
+	trade Electronics 785
+	trade Equipment 395
+	trade Food 354
+	trade "Heavy Metals" 1200
+	trade Industrial 755
+	trade "Luxury Goods" 1078
+	trade Medical 763
+	trade Metal 539
+	trade Plastic 468
+	fleet "Small Arach" 2400
+	fleet "Large Arach" 5000
+	fleet "Small Kimek" 500
+	fleet "Large Kimek" 1000
+	fleet "Small Saryd" 1300
+	fleet "Large Saryd" 4000
+	fleet Heliarch 500
+	object
+		sprite star/m0
+		period 10
+	object "Blue Interior"
+		sprite planet/ocean7
+		distance 375.04
+		period 162.406
+		object
+			sprite planet/io
+			distance 173
+			period 25.0209
+	object
+		sprite planet/lava6
+		distance 728.48
+		period 439.654
+	object
+		sprite planet/gas9
+		distance 1359.69
+		period 1121.1
+	object
+		sprite planet/gas2
+		distance 2599.94
+		period 2964.35
+		object
+			sprite planet/luna
+			distance 213
+			period 18.8358
+		object
+			sprite planet/rock17
+			distance 344
+			period 38.6591
+
+system "4 Summer Rising"
+	pos -1377.63 207.214
+	government Coalition
+	habitable 320
+	belt 1860
+	link "3 Pole"
+	link "14 Summer Above"
+	asteroids "small rock" 7 3.1694
+	asteroids "medium rock" 4 8.8504
+	asteroids "large rock" 1 8.6112
+	asteroids "small metal" 1 7.475
+	asteroids "medium metal" 19 8.8504
+	asteroids "large metal" 1 5.6212
+	minables silicon 3 12.6527
+	trade Clothing 221
+	trade Electronics 851
+	trade Equipment 363
+	trade Food 160
+	trade "Heavy Metals" 1171
+	trade Industrial 836
+	trade "Luxury Goods" 1021
+	trade Medical 570
+	trade Metal 278
+	trade Plastic 308
+	fleet "Small Arach" 1200
+	fleet "Large Arach" 2400
+	fleet "Small Kimek" 400
+	fleet "Large Kimek" 900
+	fleet "Small Saryd" 1200
+	fleet "Large Saryd" 3000
+	fleet Heliarch 900
+	object
+		sprite star/m0
+		period 10
+	object
+		sprite planet/rock2
+		distance 153.49
+		period 42.5212
+	object "Double Haze"
+		sprite planet/titan
+		distance 369.65
+		period 158.917
+	object
+		sprite planet/rock15
+		distance 571.9
+		period 305.819
+	object
+		sprite planet/desert3
+		distance 1413.15
+		period 1187.87
+	object
+		sprite planet/desert9
+		distance 1614.64
+		period 1450.77
+	object
+		sprite planet/jupiter
+		distance 3944.64
+		period 5539.83
+
+system "4 Winter Rising"
+	pos -1259.63 248.214
+	government Coalition
+	habitable 135
+	belt 1345
+	link "Sol Kimek"
+	link "1 Axis"
+	link "5 Winter Above"
+	link "3 Axis"
+	asteroids "medium rock" 6 2.2022
+	asteroids "large rock" 1 0.9464
+	asteroids "small metal" 71 2.2932
+	asteroids "medium metal" 30 2.548
+	asteroids "large metal" 5 1.7472
+	minables aluminum 1 3.8266
+	minables copper 3 3.79162
+	minables lead 9 3.97823
+	trade Clothing 201
+	trade Electronics 814
+	trade Equipment 543
+	trade Food 236
+	trade "Heavy Metals" 1248
+	trade Industrial 696
+	trade "Luxury Goods" 1162
+	trade Medical 783
+	trade Metal 444
+	trade Plastic 343
+	fleet "Small Arach" 800
+	fleet "Large Arach" 1400
+	fleet "Small Kimek" 300
+	fleet "Large Kimek" 400
+	fleet "Small Saryd" 1000
+	fleet "Large Saryd" 2000
+	fleet Heliarch 400
+	object
+		sprite star/m8
+		period 10
+	object "Inmost Blue"
+		sprite planet/ocean5
+		distance 154.25
+		period 65.9524
+	object
+		sprite planet/cloud6
+		distance 372.09
+		period 247.096
+	object
+		sprite planet/rock4
+		distance 699.1
+		period 636.359
+	object
+		sprite planet/gas10
+		distance 1598.39
+		period 2199.97
+		object
+			sprite planet/dust1
+			distance 199
+			period 14.7767
+	object
+		sprite planet/gas15
+		distance 3078.4
+		period 5880.05
+		object
+			sprite planet/dust5
+			distance 226
+			period 17.8838
+		object
+			sprite planet/rhea
+			distance 351
+			period 34.6145
+		object
+			sprite planet/ice8
+			distance 522
+			period 62.7773
+
+system "5 Axis"
+	pos -1142.63 394.214
+	government Coalition
+	habitable 233.28
+	belt 1775
+	link "4 Axis"
+	link "Ki War Ek"
+	asteroids "small rock" 6 3.3264
+	asteroids "medium rock" 86 5.4648
+	asteroids "large rock" 2 7.5438
+	asteroids "small metal" 34 6.831
+	asteroids "medium metal" 38 8.91
+	asteroids "large metal" 31 7.0092
+	minables copper 36 7.56345
+	minables iron 23 12.8681
+	trade Clothing 332
+	trade Electronics 678
+	trade Equipment 605
+	trade Food 502
+	trade "Heavy Metals" 1065
+	trade Industrial 810
+	trade "Luxury Goods" 1249
+	trade Medical 845
+	trade Metal 483
+	trade Plastic 474
+	fleet "Small Arach" 900
+	fleet "Large Arach" 1300
+	fleet "Small Kimek" 400
+	fleet "Large Kimek" 600
+	fleet "Small Saryd" 1000
+	fleet "Large Saryd" 1800
+	fleet Heliarch 300
+	object
+		sprite star/m4
+		period 10
+	object
+		sprite planet/rock11
+		distance 125.25
+		period 36.7103
+	object "Second Cerulean"
+		sprite planet/ocean6
+		distance 345.69
+		period 168.326
+	object
+		sprite planet/oberon
+		distance 532.53
+		period 321.838
+	object
+		sprite planet/cloud7
+		distance 893.69
+		period 699.683
+	object
+		sprite planet/gas17
+		distance 1685.05
+		period 1811.51
+		object
+			sprite planet/ice8
+			distance 202
+			period 12.2659
+		object
+			sprite planet/io
+			distance 289
+			period 20.9904
+		object
+			sprite planet/ice0
+			distance 399
+			period 34.0512
+		object
+			sprite planet/dust5
+			distance 536
+			period 53.0176
+
+system "5 Spring Below"
+	pos -1213.63 415.214
+	government Coalition
+	habitable 1313.28
+	belt 1104
+	link "4 Axis"
+	link "11 Spring Below"
+	asteroids "small rock" 77 6.0372
+	asteroids "medium rock" 13 8.9154
+	asteroids "large rock" 137 3.7206
+	asteroids "small metal" 21 6.0372
+	asteroids "medium metal" 5 3.7206
+	asteroids "large metal" 3 10.3194
+	minables copper 23 6.90259
+	minables silicon 25 6.11432
+	minables titanium 26 9.46178
+	trade Clothing 342
+	trade Electronics 718
+	trade Equipment 561
+	trade Food 434
+	trade "Heavy Metals" 1155
+	trade Industrial 791
+	trade "Luxury Goods" 1259
+	trade Medical 840
+	trade Metal 495
+	trade Plastic 521
+	fleet "Small Arach" 1400
+	fleet "Large Arach" 2000
+	fleet "Small Kimek" 500
+	fleet "Large Kimek" 1000
+	fleet "Small Saryd" 1000
+	fleet "Large Saryd" 2500
+	fleet Heliarch 500
+	object
+		sprite star/g0
+		distance 19.7171
+		period 12.9082
+		offset 180
+	object
+		sprite star/m4
+		distance 91.2829
+		period 12.9082
+	object
+		sprite planet/dust6
+		distance 235.643
+		period 39.9266
+	object
+		sprite planet/gas12
+		distance 863.853
+		period 280.247
+		object
+			sprite planet/europa
+			distance 297
+			period 13.4437
+	object
+		sprite planet/desert10
+		distance 1349.01
+		period 546.897
+	object
+		sprite planet/gas10
+		distance 2098.65
+		period 1061.19
+		object
+			sprite planet/miranda
+			distance 208
+			period 15.7904
+		object
+			sprite planet/rock7
+			distance 332
+			period 31.8423
+
+system "5 Summer Above"
+	pos -1387.63 118.214
+	government Coalition
+	habitable 425.92
+	belt 1133
+	link "16 Autumn Rising"
+	link "3 Pole"
+	asteroids "small rock" 5 4.8608
+	asteroids "medium rock" 17 3.92
+	asteroids "large rock" 1 2.352
+	asteroids "small metal" 13 3.9984
+	asteroids "medium metal" 1 3.1752
+	asteroids "large metal" 6 5.8016
+	minables copper 3 5.63642
+	minables iron 4 4.74904
+	minables silver 8 7.76172
+	trade Clothing 270
+	trade Electronics 823
+	trade Equipment 432
+	trade Food 196
+	trade "Heavy Metals" 1088
+	trade Industrial 707
+	trade "Luxury Goods" 1001
+	trade Medical 650
+	trade Metal 285
+	trade Plastic 289
+	fleet "Small Arach" 1200
+	fleet "Large Arach" 5000
+	fleet "Small Kimek" 400
+	fleet "Large Kimek" 900
+	fleet "Small Saryd" 1200
+	fleet "Large Saryd" 3000
+	fleet Heliarch 800
+	object
+		sprite star/k5
+		period 10
+	object
+		sprite planet/rhea
+		distance 152.21
+		period 36.3966
+	object "Nearby Jade"
+		sprite planet/forest2
+		distance 410.9
+		period 161.436
+	object
+		sprite planet/titan
+		distance 664.19
+		period 331.768
+	object
+		sprite planet/desert8
+		distance 1035.4
+		period 645.741
+	object
+		sprite planet/gas14
+		distance 1579.64
+		period 1216.84
+		object
+			sprite planet/europa
+			distance 215
+			period 12.8386
+	object
+		sprite planet/gas3
+		distance 2585.48
+		period 2548.05
+
+system "5 Winter Above"
+	pos -1216.63 208.214
+	government Coalition
+	habitable 320
+	belt 1414
+	link "4 Winter Rising"
+	asteroids "small rock" 24 3.276
+	asteroids "medium rock" 33 2.1672
+	asteroids "large rock" 28 3.7044
+	asteroids "small metal" 35 1.3104
+	asteroids "medium metal" 207 1.7388
+	asteroids "large metal" 14 2.6712
+	minables neodymium 15 2.45957
+	minables titanium 12 3.07246
+	trade Clothing 191
+	trade Electronics 773
+	trade Equipment 567
+	trade Food 250
+	trade "Heavy Metals" 1263
+	trade Industrial 632
+	trade "Luxury Goods" 1217
+	trade Medical 803
+	trade Metal 388
+	trade Plastic 329
+	fleet "Small Arach" 400
+	fleet "Large Arach" 800
+	fleet "Small Kimek" 400
+	fleet "Large Kimek" 800
+	fleet "Small Saryd" 1200
+	fleet "Large Saryd" 4000
+	fleet Heliarch 300
+	object
+		sprite star/m0
+		period 10
+	object "Into White"
+		sprite planet/ice1
+		distance 357.96
+		period 151.439
+		object
+			sprite planet/ice0
+			distance 177
+			period 20.126
+	object
+		sprite planet/ganymede
+		distance 797.17
+		period 503.282
+	object
+		sprite planet/lava3
+		distance 1312.86
+		period 1063.68
+	object
+		sprite planet/jupiter
+		distance 1764.7
+		period 1657.64
+	object
+		sprite planet/gas2
+		distance 2494.95
+		period 2786.62
+		object
+			sprite planet/io
+			distance 183
+			period 15
+
+system "7 Autumn Rising"
+	pos -1235.63 177.214
+	government Coalition
+	habitable 425.92
+	belt 1289
+	link "11 Autumn Above"
+	asteroids "small rock" 7 1.463
+	asteroids "medium rock" 7 0.638
+	asteroids "large rock" 4 1.199
+	asteroids "medium metal" 4 0.891
+	asteroids "large metal" 1 0.715
+	minables aluminum 3 2.03899
+	trade Clothing 165
+	trade Electronics 655
+	trade Equipment 513
+	trade Food 278
+	trade "Heavy Metals" 1019
+	trade Industrial 824
+	trade "Luxury Goods" 1206
+	trade Medical 547
+	trade Metal 307
+	trade Plastic 321
+	fleet "Small Arach" 1200
+	fleet "Large Arach" 7000
+	fleet "Small Kimek" 500
+	fleet "Large Kimek" 1000
+	fleet "Small Saryd" 400
+	fleet "Large Saryd" 800
+	fleet Heliarch 350
+	object
+		sprite star/k5
+		period 10
+	object
+		sprite planet/ice6
+		distance 152.76
+		period 36.594
+	object "Sandy Two"
+		sprite planet/desert9
+		distance 447.8
+		period 183.663
+	object
+		sprite planet/gas0
+		distance 1034.05
+		period 644.478
+	object
+		sprite planet/uranus
+		distance 1475.74
+		period 1098.78
+	object
+		sprite planet/gas2
+		distance 2223.3
+		period 2031.86
+		object
+			sprite planet/dust3
+			distance 184
+			period 15.1231
+		object
+			sprite planet/tethys
+			distance 287
+			period 29.4603
+		object
+			sprite planet/callisto
+			distance 453
+			period 58.4201
+
+system "8 Winter Below"
+	pos -1179.63 284.214
+	government Coalition
+	habitable 486.68
+	belt 1285
+	link "3 Axis"
+	link "14 Winter Below"
+	asteroids "small rock" 25 1.4256
+	asteroids "medium rock" 54 2.2968
+	asteroids "large rock" 69 3.5376
+	asteroids "medium metal" 31 2.112
+	asteroids "large metal" 4 2.3496
+	minables aluminum 12 2.86905
+	minables titanium 2 4.18618
+	minables uranium 11 4.2075
+	trade Clothing 281
+	trade Electronics 812
+	trade Equipment 650
+	trade Food 439
+	trade "Heavy Metals" 1060
+	trade Industrial 839
+	trade "Luxury Goods" 1238
+	trade Medical 894
+	trade Metal 520
+	trade Plastic 336
+	fleet "Small Arach" 800
+	fleet "Large Arach" 1400
+	fleet "Small Kimek" 300
+	fleet "Large Kimek" 400
+	fleet "Small Saryd" 1200
+	fleet "Large Saryd" 2000
+	fleet Heliarch 250
+	object
+		sprite star/k0
+		period 10
+	object
+		sprite planet/dust6
+		distance 172.25
+		period 40.9899
+	object "Dusk Companion"
+		sprite planet/rock19
+		distance 665.46
+		period 311.258
+		object
+			sprite planet/rock3
+			distance 156
+			period 26.0401
+	object
+		sprite planet/gas7
+		distance 1368.07
+		period 917.489
+	object
+		sprite planet/gas16
+		distance 3048.07
+		period 3051.23
+		object
+			sprite planet/io
+			distance 192
+			period 14.0039
+		object
+			sprite planet/miranda
+			distance 334
+			period 32.1305
+
+system "9 Spring Above"
+	pos -1377.63 281.214
+	government Coalition
+	habitable 1050.92
+	belt 1397
+	link "Sol Kimek"
+	asteroids "medium rock" 37 4.07
+	asteroids "large rock" 3 3.245
+	asteroids "small metal" 102 1.375
+	asteroids "medium metal" 6 2.97
+	asteroids "large metal" 63 3.3
+	minables silicon 50 3.91149
+	minables silver 19 3.36587
+	minables uranium 24 2.56933
+	trade Clothing 242
+	trade Electronics 826
+	trade Equipment 454
+	trade Food 201
+	trade "Heavy Metals" 1108
+	trade Industrial 736
+	trade "Luxury Goods" 1049
+	trade Medical 669
+	trade Metal 524
+	trade Plastic 373
+	fleet "Small Arach" 900
+	fleet "Large Arach" 2000
+	fleet "Small Kimek" 400
+	fleet "Large Kimek" 800
+	fleet "Small Saryd" 900
+	fleet "Large Saryd" 2400
+	fleet Heliarch 700
+	object
+		sprite star/g5
+		distance 42.1494
+		period 13.0866
+	object
+		sprite star/k5
+		distance 61.8506
+		period 13.0866
+		offset 180
+	object
+		sprite planet/ice1
+		distance 234.461
+		period 44.2976
+	object
+		sprite planet/rock5
+		distance 450.461
+		period 117.967
+	object
+		sprite planet/lava6
+		distance 688.711
+		period 223.013
+	object "Turquoise Four"
+		sprite planet/water1
+		distance 925.521
+		period 347.42
+	object
+		sprite planet/gas3
+		distance 1763.76
+		period 913.976
+	object
+		sprite planet/gas5
+		distance 2550
+		period 1588.86
+		object
+			sprite planet/europa
+			distance 271
+			period 14.8355
+		object
+			sprite planet/rock3
+			distance 415
+			period 28.1138
+
+system Ablodab
+	pos -854.587 592.051
+	government Coalition
+	habitable 425.92
+	belt 1368
+	link Debrugt
+	link Gupta
+	link Pelubta
+	link Mebla
+	asteroids "small rock" 2 1.8837
+	asteroids "large rock" 2 3.8766
+	asteroids "medium metal" 2 3.7401
+	asteroids "large metal" 1 2.8392
+	trade Clothing 285
+	trade Electronics 789
+	trade Equipment 578
+	trade Food 398
+	trade "Heavy Metals" 904
+	trade Industrial 808
+	trade "Luxury Goods" 1378
+	trade Medical 691
+	trade Metal 315
+	trade Plastic 515
+	fleet "Small Arach" 400
+	fleet "Large Arach" 600
+	fleet "Small Kimek" 1100
+	fleet "Large Kimek" 2400
+	fleet "Small Saryd" 1000
+	fleet "Large Saryd" 2400
+	fleet Heliarch 700
+	object
+		sprite star/k5
+		period 10
+	object
+		sprite planet/desert7
+		distance 185
+		period 48.7701
+	object
+		sprite planet/desert2
+		distance 514.56
+		period 226.23
+	object
+		sprite planet/gas5
+		distance 1141.05
+		period 747.056
+		object
+			sprite planet/tethys
+			distance 263
+			period 14.1834
+	object
+		sprite planet/cloud5
+		distance 1754.3
+		period 1424.14
+	object
+		sprite planet/gas1
+		distance 4998.14
+		period 6848.71
+		object
+			sprite planet/dust1
+			distance 245
+			period 15.3273
+		object
+			sprite planet/rock3
+			distance 396
+			period 31.4962
+		object
+			sprite planet/dust5
+			distance 558
+			period 52.6826
+		object
+			sprite planet/luna
+			distance 755
+			period 82.9155
+
+system Ablub
+	pos -581.587 637.051
+	government Coalition
+	habitable 233.28
+	belt 1641
+	link Blubipad
+	link Miblulub
+	asteroids "medium rock" 9 2.3868
+	asteroids "large rock" 3 2.4786
+	asteroids "small metal" 2 3.3354
+	asteroids "medium metal" 2 2.8458
+	asteroids "large metal" 3 2.7234
+	minables aluminum 2 4.40525
+	minables iron 2 4.60941
+	minables lead 3 4.33078
+	trade Clothing 335
+	trade Electronics 645
+	trade Equipment 668
+	trade Food 158
+	trade "Heavy Metals" 1017
+	trade Industrial 632
+	trade "Luxury Goods" 1419
+	trade Medical 574
+	trade Metal 335
+	trade Plastic 336
+	fleet "Small Arach" 600
+	fleet "Large Arach" 1800
+	fleet "Small Kimek" 2000
+	fleet "Large Kimek" 8000
+	fleet "Small Saryd" 1600
+	fleet "Large Saryd" 8000
+	fleet Heliarch 200
+	object
+		sprite star/m4
+		period 10
+	object "Ablub's Invention"
+		sprite planet/forest1
+		distance 203.76
+		period 76.1728
+	object
+		sprite planet/cloud0
+		distance 419.76
+		period 225.228
+	object
+		sprite planet/rock8
+		distance 714.8
+		period 500.493
+	object
+		sprite planet/gas5
+		distance 1929.89
+		period 2220.34
 
 system Acamar
 	pos -284 -3
@@ -2140,6 +3855,74 @@ system Aludra
 			distance 375
 			period 32.2749
 
+system "Ancient Hope"
+	pos -1159.59 702.051
+	government Coalition
+	habitable 455
+	belt 1439
+	link "Sol Saryd"
+	link "Far Horizon"
+	asteroids "small rock" 14 8.1374
+	asteroids "medium rock" 11 5.2693
+	asteroids "large rock" 6 4.9358
+	asteroids "large metal" 3 8.5376
+	minables aluminum 6 11.3536
+	minables uranium 1 6.83108
+	trade Clothing 314
+	trade Electronics 699
+	trade Equipment 388
+	trade Food 170
+	trade "Heavy Metals" 883
+	trade Industrial 635
+	trade "Luxury Goods" 1039
+	trade Medical 474
+	trade Metal 359
+	trade Plastic 507
+	fleet "Small Arach" 1000
+	fleet "Large Arach" 2000
+	fleet "Small Kimek" 1100
+	fleet "Large Kimek" 2400
+	fleet "Small Saryd" 500
+	fleet "Large Saryd" 1400
+	fleet Heliarch 1500
+	object
+		sprite star/m0
+		distance 25.5165
+		period 14.9555
+	object
+		sprite star/m8
+		distance 60.4835
+		period 14.9555
+		offset 180
+	object
+		sprite planet/rock9
+		distance 241.734
+		period 70.479
+	object "Bright Echo"
+		sprite planet/forest4
+		distance 596.624
+		period 273.278
+	object
+		sprite planet/gas12
+		distance 1406.78
+		period 989.453
+		object
+			sprite planet/lava0
+			distance 281
+			period 12.3721
+		object
+			sprite planet/rock3
+			distance 392
+			period 20.3852
+	object
+		sprite planet/gas4
+		distance 3035.42
+		period 3136.05
+		object
+			sprite planet/dust4
+			distance 255
+			period 14.3618
+
 system Ankaa
 	pos -230 100
 	government Syndicate
@@ -2192,6 +3975,69 @@ system Ankaa
 		sprite planet/rock0
 		distance 2059.68
 		period 1495.61
+
+system Answer
+	pos -1086.59 631.051
+	government Coalition
+	habitable 425.92
+	belt 1636
+	link "Bright Void"
+	asteroids "medium rock" 2 6.279
+	asteroids "large rock" 3 6.578
+	asteroids "small metal" 16 6.8172
+	asteroids "medium metal" 32 6.8172
+	asteroids "large metal" 24 8.5514
+	minables copper 7 13.583
+	minables neodymium 6 9.23127
+	minables tungsten 18 7.44324
+	trade Clothing 221
+	trade Electronics 703
+	trade Equipment 385
+	trade Food 476
+	trade "Heavy Metals" 790
+	trade Industrial 751
+	trade "Luxury Goods" 972
+	trade Medical 475
+	trade Metal 513
+	trade Plastic 324
+	fleet "Small Arach" 1000
+	fleet "Large Arach" 3000
+	fleet "Small Kimek" 400
+	fleet "Large Kimek" 800
+	fleet "Small Saryd" 600
+	fleet "Large Saryd" 1200
+	fleet Heliarch 1400
+	object
+		sprite star/k5
+		period 10
+	object
+		sprite planet/tethys
+		distance 181
+		period 47.1969
+	object "New Finding"
+		sprite planet/ocean7
+		distance 345.84
+		period 124.655
+	object
+		sprite planet/gas4
+		distance 1076.6
+		period 684.664
+		object
+			sprite planet/rock7
+			distance 233
+			period 12.5439
+		object
+			sprite planet/oberon
+			distance 341
+			period 22.209
+		object
+			sprite planet/ice0
+			distance 504
+			period 39.9065
+	object
+		sprite planet/gas11
+		distance 2097.09
+		period 1861.32
 
 system Antares
 	pos -711 541
@@ -2787,6 +4633,68 @@ system Aya'k'k
 		distance 3009.66
 		period 2993.74
 
+system Beginning
+	pos -912.587 694.051
+	government Coalition
+	habitable 425.92
+	belt 1833
+	link Belonging
+	link "Fallen Leaf"
+	link "Good Omen"
+	link Remembrance
+	link "Dark Hills"
+	asteroids "small rock" 9 6.9888
+	asteroids "medium rock" 12 5.2962
+	asteroids "large rock" 47 4.8048
+	asteroids "small metal" 2 5.0778
+	asteroids "medium metal" 7 7.098
+	asteroids "large metal" 19 5.0232
+	minables lead 1 7.49564
+	trade Clothing 310
+	trade Electronics 631
+	trade Equipment 448
+	trade Food 457
+	trade "Heavy Metals" 790
+	trade Industrial 715
+	trade "Luxury Goods" 1076
+	trade Medical 561
+	trade Metal 474
+	trade Plastic 462
+	fleet "Small Arach" 1000
+	fleet "Large Arach" 3000
+	fleet "Small Kimek" 1300
+	fleet "Large Kimek" 6000
+	fleet "Small Saryd" 500
+	fleet "Large Saryd" 1200
+	fleet Heliarch 1500
+	object
+		sprite star/k5
+		period 10
+	object
+		sprite planet/desert8
+		distance 227
+		period 66.288
+	object
+		sprite planet/rock1
+		distance 440.89
+		period 179.428
+	object "Glittering Ice"
+		sprite planet/ice4
+		distance 645.05
+		period 317.531
+	object
+		sprite planet/gas17
+		distance 1759.26
+		period 1430.18
+	object
+		sprite planet/gas13
+		distance 4101.67
+		period 5091.4
+		object
+			sprite planet/dust1
+			distance 256
+			period 11.563
+
 system Bellatrix
 	pos -225 -82
 	government Syndicate
@@ -2845,6 +4753,208 @@ system Bellatrix
 		sprite planet/gas5
 		distance 2687.64
 		period 2153.18
+
+system Belonging
+	pos -1007.59 658.051
+	government Coalition
+	habitable 625
+	belt 1407
+	link "Bright Void"
+	link "Sol Saryd"
+	link Beginning
+	asteroids "medium metal" 2 3.4848
+	asteroids "large metal" 1 4.1472
+	trade Clothing 286
+	trade Electronics 747
+	trade Equipment 393
+	trade Food 353
+	trade "Heavy Metals" 743
+	trade Industrial 713
+	trade "Luxury Goods" 1031
+	trade Medical 512
+	trade Metal 448
+	trade Plastic 412
+	fleet "Small Arach" 800
+	fleet "Large Arach" 1300
+	fleet "Small Kimek" 1000
+	fleet "Large Kimek" 1600
+	fleet "Small Saryd" 400
+	fleet "Large Saryd" 800
+	fleet Heliarch 700
+	object
+		sprite star/g5
+		period 10
+	object "Diligent Hand"
+		sprite planet/rock12
+		distance 203.56
+		period 46.4685
+	object "Cool Forest"
+		sprite planet/ocean0
+		distance 634.6
+		period 255.782
+	object
+		sprite planet/rock19
+		distance 1390.96
+		period 830.026
+		object
+			sprite planet/callisto
+			distance 158
+			period 26.5425
+	object
+		sprite planet/gas9
+		distance 1993.97
+		period 1424.62
+		object
+			sprite planet/tethys
+			distance 206
+			period 11.0864
+		object
+			sprite planet/oberon
+			distance 294
+			period 18.9022
+
+system Belug
+	pos -1024.59 388.051
+	government Coalition
+	habitable 486.68
+	belt 1170
+	link Ekuarik
+	link Speloog
+	asteroids "small rock" 1 5.4432
+	asteroids "medium rock" 25 3.8556
+	asteroids "large rock" 4 5.7834
+	asteroids "small metal" 12 8.1648
+	asteroids "medium metal" 108 8.505
+	asteroids "large metal" 1 4.3092
+	minables aluminum 34 11.4021
+	minables titanium 1 14.0326
+	minables uranium 4 14.72
+	trade Clothing 349
+	trade Electronics 737
+	trade Equipment 650
+	trade Food 568
+	trade "Heavy Metals" 1043
+	trade Industrial 802
+	trade "Luxury Goods" 1137
+	trade Medical 844
+	trade Metal 291
+	trade Plastic 341
+	fleet "Small Arach" 700
+	fleet "Large Arach" 1200
+	fleet "Small Kimek" 800
+	fleet "Large Kimek" 1500
+	fleet "Small Saryd" 1000
+	fleet "Large Saryd" 2400
+	fleet Heliarch 200
+	object
+		sprite star/k0
+		period 10
+	object
+		sprite planet/mercury
+		distance 126.01
+		period 25.6475
+	object
+		sprite planet/rock11
+		distance 425.62
+		period 159.21
+	object "Belug's Plunge"
+		sprite planet/ice4
+		distance 807.26
+		period 415.871
+	object
+		sprite planet/mars
+		distance 1364.62
+		period 914.02
+		object
+			sprite planet/europa
+			distance 158
+			period 26.5425
+	object
+		sprite planet/gas7
+		distance 2421.98
+		period 2161.2
+		object
+			sprite planet/callisto
+			distance 269
+			period 15.6949
+		object
+			sprite planet/dust3
+			distance 405
+			period 28.9943
+
+system Belugt
+	pos -838.587 668.051
+	government Coalition
+	habitable 486.68
+	belt 1517
+	link Gupta
+	asteroids "small rock" 8 3.3525
+	asteroids "medium rock" 14 2.0025
+	asteroids "large rock" 71 2.3175
+	asteroids "medium metal" 118 2.7225
+	asteroids "large metal" 10 3.105
+	minables aluminum 37 2.63466
+	minables lead 14 4.03144
+	trade Clothing 271
+	trade Electronics 790
+	trade Equipment 688
+	trade Food 396
+	trade "Heavy Metals" 974
+	trade Industrial 699
+	trade "Luxury Goods" 1483
+	trade Medical 738
+	trade Metal 352
+	trade Plastic 521
+	fleet "Small Arach" 700
+	fleet "Large Arach" 1500
+	fleet "Small Kimek" 1400
+	fleet "Large Kimek" 3000
+	fleet "Small Saryd" 1200
+	fleet "Large Saryd" 3000
+	fleet Heliarch 1400
+	object
+		sprite star/k0
+		period 10
+	object
+		sprite planet/lava4
+		distance 147.04
+		period 32.3289
+	object "Refuge of Belugt"
+		sprite planet/cloud0
+		distance 466.2
+		period 182.514
+		object
+			sprite planet/miranda
+			distance 162
+			period 25.4101
+	object
+		sprite planet/rock8
+		distance 1065.2
+		period 630.355
+	object
+		sprite planet/lava5
+		distance 1246.56
+		period 798.009
+	object
+		sprite planet/gas9
+		distance 4008.25
+		period 4601.19
+		object
+			sprite planet/io
+			distance 250
+			period 14.8218
+		object
+			sprite planet/lava0
+			distance 376
+			period 27.3383
+		object
+			sprite planet/rock0
+			distance 517
+			period 44.0784
+		object
+			sprite planet/dust1
+			distance 694
+			period 68.5535
 
 system "Beta Lupi"
 	pos -851 417
@@ -2972,6 +5082,192 @@ system Betelgeuse
 			sprite planet/oberon
 			distance 516
 			period 31.4485
+
+system Bloptab
+	pos -813.587 727.051
+	government Coalition
+	habitable 1080
+	belt 1061
+	link Blugtad
+	asteroids "small rock" 1 4.41
+	asteroids "medium rock" 12 3.6
+	asteroids "large rock" 8 2.79
+	asteroids "small metal" 55 4.23
+	asteroids "medium metal" 21 3.18
+	asteroids "large metal" 4 3.87
+	minables silicon 14 7.35211
+	minables titanium 10 6.77673
+	minables tungsten 8 4.20103
+	trade Clothing 339
+	trade Electronics 718
+	trade Equipment 663
+	trade Food 346
+	trade "Heavy Metals" 812
+	trade Industrial 599
+	trade "Luxury Goods" 1470
+	trade Medical 846
+	trade Metal 222
+	trade Plastic 497
+	fleet "Small Arach" 500
+	fleet "Large Arach" 1200
+	fleet "Small Kimek" 1600
+	fleet "Large Kimek" 5000
+	fleet "Small Saryd" 1600
+	fleet "Large Saryd" 7000
+	fleet Heliarch 1500
+	object
+		sprite star/g0
+		period 10
+	object
+		sprite planet/desert0
+		distance 171.81
+		period 27.4107
+	object "Bloptab's Furnace"
+		sprite planet/desert9
+		distance 367.22
+		period 85.652
+	object "Delve of Bloptab"
+		sprite planet/desert2
+		distance 777.219
+		period 263.732
+	object
+		sprite planet/gas0
+		distance 1252.63
+		period 539.612
+	object
+		sprite planet/gas7
+		distance 4227.99
+		period 3346.18
+		object
+			sprite planet/callisto
+			distance 240
+			period 13.2266
+
+system Blubipad
+	pos -650.587 594.051
+	government Coalition
+	habitable 1080
+	belt 1567
+	link "Sol Arach"
+	link Miblulub
+	link Ablub
+	asteroids "small rock" 5 4
+	asteroids "medium rock" 17 5.55
+	asteroids "large rock" 5 5
+	asteroids "medium metal" 7 6.35
+	asteroids "large metal" 9 6.1
+	minables silver 7 9.80748
+	trade Clothing 351
+	trade Electronics 668
+	trade Equipment 653
+	trade Food 226
+	trade "Heavy Metals" 955
+	trade Industrial 665
+	trade "Luxury Goods" 1405
+	trade Medical 604
+	trade Metal 299
+	trade Plastic 374
+	fleet "Small Arach" 400
+	fleet "Large Arach" 800
+	fleet "Small Kimek" 1400
+	fleet "Large Kimek" 4000
+	fleet "Small Saryd" 1300
+	fleet "Large Saryd" 3000
+	fleet Heliarch 300
+	object
+		sprite star/g0
+		period 10
+	object
+		sprite planet/dust2
+		distance 132.44
+		period 18.5514
+	object
+		sprite planet/cloud8
+		distance 356.68
+		period 81.991
+	object "Blubipad's Workshop"
+		sprite planet/forest3
+		distance 1004.12
+		period 387.281
+	object
+		sprite planet/cloud2
+		distance 1286.96
+		period 561.947
+	object
+		sprite planet/rock3
+		distance 3003.77
+		period 2003.77
+
+system Blugtad
+	pos -771.587 680.051
+	government Coalition
+	habitable 625
+	belt 1841
+	link Gupta
+	link Eblumab
+	link Bloptab
+	link "Sol Arach"
+	asteroids "small rock" 11 9.477
+	asteroids "medium rock" 52 4.698
+	asteroids "large rock" 9 9.558
+	asteroids "small metal" 11 6.075
+	asteroids "medium metal" 17 11.664
+	asteroids "large metal" 1 7.776
+	minables lead 6 8.60749
+	minables platinum 2 12.9822
+	minables silver 2 11.8763
+	trade Clothing 339
+	trade Electronics 759
+	trade Equipment 653
+	trade Food 355
+	trade "Heavy Metals" 879
+	trade Industrial 590
+	trade "Luxury Goods" 1439
+	trade Medical 791
+	trade Metal 278
+	trade Plastic 496
+	fleet "Small Arach" 400
+	fleet "Large Arach" 600
+	fleet "Small Kimek" 1300
+	fleet "Large Kimek" 2500
+	fleet "Small Saryd" 1200
+	fleet "Large Saryd" 3500
+	fleet Heliarch 900
+	object
+		sprite star/g5
+		period 10
+	object
+		sprite planet/ice3
+		distance 249.64
+		period 63.109
+	object "Bank of Blugtad"
+		sprite planet/earth
+		distance 629.067
+		period 252.444
+		object
+			sprite planet/desert4
+			distance 141
+			period 17.141
+	object
+		sprite planet/gas1
+		distance 2037.36
+		period 1471.37
+		object
+			sprite planet/dust3
+			distance 216
+			period 12.6881
+		object
+			sprite planet/miranda
+			distance 333
+			period 24.2874
+		object
+			sprite planet/dust4
+			distance 465
+			period 40.077
+		object
+			sprite planet/dust7
+			distance 650
+			period 66.2347
 
 system Boral
 	pos -502 331
@@ -3183,6 +5479,143 @@ system "Bote Asu"
 			sprite planet/rock14
 			distance 601
 			period 38.6987
+
+system "Bright Void"
+	pos -1059.59 605.051
+	government Coalition
+	habitable 2795
+	belt 1385
+	link "Steep Roof"
+	link "Silver Bell"
+	link Hunter
+	link Belonging
+	link Answer
+	asteroids "small rock" 7 2.5992
+	asteroids "medium rock" 8 3.9672
+	asteroids "large rock" 6 5.7
+	asteroids "small metal" 2 5.4264
+	asteroids "medium metal" 12 5.472
+	asteroids "large metal" 1 4.0584
+	trade Clothing 228
+	trade Electronics 757
+	trade Equipment 411
+	trade Food 466
+	trade "Heavy Metals" 772
+	trade Industrial 695
+	trade "Luxury Goods" 987
+	trade Medical 487
+	trade Metal 508
+	trade Plastic 334
+	fleet "Small Arach" 700
+	fleet "Large Arach" 1200
+	fleet "Small Kimek" 900
+	fleet "Large Kimek" 1400
+	fleet "Small Saryd" 500
+	fleet "Large Saryd" 800
+	fleet Heliarch 500
+	object
+		sprite star/f5
+		distance 54.8694
+		period 12.8027
+	object
+		sprite star/g0
+		distance 87.1306
+		period 12.8027
+		offset 180
+	object
+		sprite planet/ice3
+		distance 398.421
+		period 60.1702
+		object
+			sprite planet/lava0
+			distance 178
+			period 22.7102
+	object
+		sprite planet/ice7
+		distance 771.831
+		period 162.238
+	object
+		sprite planet/europa
+		distance 1238.39
+		period 329.728
+	object
+		sprite planet/gas17
+		distance 1637.68
+		period 501.433
+		object
+			sprite planet/callisto
+			distance 212
+			period 13.1879
+	object
+		sprite planet/gas7
+		distance 2577.77
+		period 990.229
+		object
+			sprite planet/ice0
+			distance 259
+			period 14.8279
+		object
+			sprite planet/rock17
+			distance 369
+			period 25.2156
+
+system "Broken Bowl"
+	pos -956.587 566.051
+	government Coalition
+	habitable 1080
+	belt 1648
+	link "Dark Hills"
+	link Hunter
+	link "Silver Bell"
+	asteroids "medium rock" 19 2.277
+	asteroids "large rock" 2 3.013
+	asteroids "medium metal" 24 2.231
+	asteroids "large metal" 4 1.495
+	minables aluminum 1 3.03997
+	trade Clothing 278
+	trade Electronics 738
+	trade Equipment 390
+	trade Food 535
+	trade "Heavy Metals" 761
+	trade Industrial 658
+	trade "Luxury Goods" 1172
+	trade Medical 515
+	trade Metal 476
+	trade Plastic 311
+	fleet "Small Arach" 900
+	fleet "Large Arach" 2500
+	fleet "Small Kimek" 1000
+	fleet "Large Kimek" 3000
+	fleet "Small Saryd" 500
+	fleet "Large Saryd" 1200
+	fleet Heliarch 700
+	object
+		sprite star/g0
+		period 10
+	object
+		sprite planet/mars
+		distance 202.41
+		period 35.0506
+	object
+		sprite planet/ice5
+		distance 551.65
+		period 157.704
+	object "Warm Wind"
+		sprite planet/forest5
+		distance 827.41
+		period 289.687
+	object
+		sprite planet/lava1
+		distance 1185.02
+		period 496.52
+	object
+		sprite planet/gas6
+		distance 2068.02
+		period 1144.67
+		object
+			sprite planet/dust4
+			distance 297
+			period 13.0737
 
 system Canopus
 	pos -421 -225
@@ -3913,6 +6346,62 @@ system Chy'chra
 			distance 614
 			period 80.0847
 
+system Companion
+	pos -1032.59 709.051
+	government Coalition
+	habitable 425.92
+	belt 1786
+	link "Sol Saryd"
+	link "Far Horizon"
+	asteroids "small rock" 18 8.265
+	asteroids "medium rock" 3 8.845
+	asteroids "large rock" 6 8.845
+	asteroids "small metal" 6 9.715
+	asteroids "medium metal" 30 3.915
+	asteroids "large metal" 2 4.1325
+	minables aluminum 2 8.36691
+	minables silicon 7 10.9209
+	trade Clothing 292
+	trade Electronics 813
+	trade Equipment 442
+	trade Food 198
+	trade "Heavy Metals" 888
+	trade Industrial 590
+	trade "Luxury Goods" 1002
+	trade Medical 559
+	trade Metal 309
+	trade Plastic 495
+	fleet "Small Arach" 1200
+	fleet "Large Arach" 3000
+	fleet "Small Kimek" 1000
+	fleet "Large Kimek" 1800
+	fleet "Small Saryd" 400
+	fleet "Large Saryd" 1200
+	fleet Heliarch 1200
+	object
+		sprite star/k5
+		period 10
+	object
+		sprite planet/desert1
+		distance 211.56
+		period 59.6412
+	object "Far Garden"
+		sprite planet/forest4
+		distance 497.8
+		period 215.267
+	object
+		sprite planet/desert6
+		distance 736.41
+		period 387.325
+	object
+		sprite planet/gas13
+		distance 2044.05
+		period 1791.16
+		object
+			sprite planet/dust3
+			distance 283
+			period 13.4397
+
 system "Cor Caroli"
 	pos -682 201
 	government Republic
@@ -4201,6 +6690,141 @@ system Danoa
 			sprite planet/lava2
 			distance 607
 			period 33.895
+
+system "Dark Hills"
+	pos -926.587 619.051
+	government Coalition
+	habitable 1080
+	belt 1367
+	link Beginning
+	link Remembrance
+	link "Broken Bowl"
+	link Hunter
+	asteroids "small rock" 16 3.4944
+	asteroids "medium rock" 2 4.8384
+	asteroids "large rock" 10 4.9536
+	asteroids "small metal" 7 2.8416
+	asteroids "medium metal" 8 1.92
+	asteroids "large metal" 12 4.1472
+	minables gold 2 5.3967
+	minables iron 4 6.82272
+	trade Clothing 299
+	trade Electronics 672
+	trade Equipment 385
+	trade Food 521
+	trade "Heavy Metals" 753
+	trade Industrial 656
+	trade "Luxury Goods" 1164
+	trade Medical 558
+	trade Metal 515
+	trade Plastic 408
+	fleet "Small Arach" 1200
+	fleet "Large Arach" 4000
+	fleet "Small Kimek" 1200
+	fleet "Large Kimek" 4000
+	fleet "Small Saryd" 600
+	fleet "Large Saryd" 1400
+	fleet Heliarch 1000
+	object
+		sprite star/g0
+		period 10
+	object
+		sprite planet/gas7
+		distance 384.56
+		period 91.7898
+		object
+			sprite planet/io
+			distance 225
+			period 12.0062
+	object
+		sprite planet/jupiter
+		distance 1131.12
+		period 463.032
+		object
+			sprite planet/lava0
+			distance 266
+			period 13.6328
+		object
+			sprite planet/ice7
+			distance 377
+			period 23.0024
+	object
+		sprite planet/gas11
+		distance 1788.61
+		period 920.707
+	object
+		sprite planet/desert4
+		distance 2367.9
+		period 1402.47
+
+system Debrugt
+	pos -869.587 513.051
+	government Coalition
+	habitable 640
+	belt 1224
+	link Torbab
+	link Flugbu
+	link Mebla
+	link Ablodab
+	asteroids "large metal" 1 3.1104
+	trade Clothing 344
+	trade Electronics 740
+	trade Equipment 484
+	trade Food 448
+	trade "Heavy Metals" 921
+	trade Industrial 857
+	trade "Luxury Goods" 1254
+	trade Medical 774
+	trade Metal 263
+	trade Plastic 489
+	fleet "Small Arach" 300
+	fleet "Large Arach" 500
+	fleet "Small Kimek" 900
+	fleet "Large Kimek" 1600
+	fleet "Small Saryd" 900
+	fleet "Large Saryd" 2200
+	fleet Heliarch 300
+	object
+		sprite star/m0
+		distance 48.5
+		period 15.1052
+		offset 180
+	object
+		sprite star/m0
+		distance 48.5
+		period 15.1052
+	object
+		sprite planet/cloud8
+		distance 236.46
+		period 57.4919
+	object "Hammer of Debrugt"
+		sprite planet/cloud5
+		distance 689.71
+		period 286.398
+	object
+		sprite planet/gas4
+		distance 1481.72
+		period 901.819
+		object
+			sprite planet/dust5
+			distance 252
+			period 14.1091
+		object
+			sprite planet/dust0
+			distance 370
+			period 25.1015
+	object
+		sprite planet/gas1
+		distance 2443.48
+		period 1909.78
+		object
+			sprite planet/tethys
+			distance 227
+			period 13.6696
+		object
+			sprite planet/europa
+			distance 324
+			period 23.3095
 
 system "Delta Capricorni"
 	pos -285 202
@@ -4974,6 +7598,70 @@ system Eber
 		distance 2248.11
 		period 2383.48
 
+system Eblumab
+	pos -767.587 703.051
+	government Coalition
+	habitable 425.92
+	belt 1804
+	link Blugtad
+	asteroids "small rock" 10 7.8364
+	asteroids "medium rock" 39 4.1756
+	asteroids "large rock" 2 8.294
+	asteroids "small metal" 20 3.7752
+	asteroids "medium metal" 2 4.0612
+	asteroids "large metal" 33 4.5188
+	minables copper 8 6.10344
+	minables iron 6 6.39134
+	minables lead 17 7.069
+	trade Clothing 339
+	trade Electronics 750
+	trade Equipment 648
+	trade Food 389
+	trade "Heavy Metals" 942
+	trade Industrial 573
+	trade "Luxury Goods" 1415
+	trade Medical 849
+	trade Metal 275
+	trade Plastic 507
+	fleet "Small Arach" 600
+	fleet "Large Arach" 1200
+	fleet "Small Kimek" 1500
+	fleet "Large Kimek" 4000
+	fleet "Small Saryd" 1500
+	fleet "Large Saryd" 5000
+	fleet Heliarch 1000
+	object
+		sprite star/k5
+		period 10
+	object "Factory of Eblumab"
+		sprite planet/cloud2
+		distance 294.861
+		period 98.1345
+	object
+		sprite planet/fog0
+		distance 789.318
+		period 429.808
+		object
+			sprite planet/ice7
+			distance 195
+			period 20.0877
+	object
+		sprite planet/desert2
+		distance 1262.96
+		period 869.92
+		object
+			sprite planet/tethys
+			distance 153
+			period 21.1965
+	object
+		sprite planet/uranus
+		distance 2384.24
+		period 2256.42
+		object
+			sprite planet/rock14
+			distance 228
+			period 14.7087
+
 system "Ehma Ti"
 	pos 39.1085 -749.244
 	government "Hai (Unfettered)"
@@ -5098,6 +7786,223 @@ system Ek'kek'ru
 		sprite planet/gas7
 		distance 2129.85
 		period 2197.9
+
+system Ekuarik
+	pos -1029.63 426.214
+	government Heliarch
+	habitable 700
+	belt 1711
+	link "Ki War Ek"
+	link Quaru
+	link Belug
+	link Speloog
+	asteroids "small rock" 2 4.5954
+	asteroids "medium rock" 3 9.1908
+	asteroids "large rock" 2 5.5269
+	asteroids "small metal" 131 5.4648
+	asteroids "medium metal" 50 7.8867
+	asteroids "large metal" 23 9.1287
+	minables iron 39 9.39516
+	minables silicon 2 6.84215
+	trade Clothing 389
+	trade Electronics 660
+	trade Equipment 673
+	trade Food 578
+	trade "Heavy Metals" 1018
+	trade Industrial 765
+	trade "Luxury Goods" 1114
+	trade Medical 873
+	trade Metal 322
+	trade Plastic 333
+	fleet "Small Arach" 500
+	fleet "Large Arach" 800
+	fleet "Small Kimek" 600
+	fleet "Large Kimek" 1000
+	fleet "Small Saryd" 800
+	fleet "Large Saryd" 1600
+	fleet Heliarch 200
+	object
+		sprite star/g5
+		period 10
+	object
+		sprite planet/lava4
+		distance 812
+		period 360
+	object
+		sprite "planet/ringworld right"
+		distance 812
+		period 360
+		offset 65
+	object
+		sprite "planet/ringworld left"
+		distance 812
+		period 360
+		offset 85
+	object
+		sprite "planet/ringworld right"
+		distance 812
+		period 360
+		offset 100
+	object
+		sprite planet/ringworld
+		distance 812
+		period 360
+		offset 120
+	object
+		sprite planet/ringworld
+		distance 812
+		period 360
+		offset 140
+	object "Ring of Wisdom"
+		sprite planet/ringworld
+		distance 812
+		period 360
+		offset 160
+	object "Ring of Wisdom"
+		sprite planet/ringworld
+		distance 812
+		period 360
+		offset 180
+	object "Ring of Wisdom"
+		sprite planet/ringworld
+		distance 812
+		period 360
+		offset 200
+	object "Ring of Wisdom"
+		sprite planet/ringworld
+		distance 812
+		period 360
+		offset 220
+	object "Ring of Wisdom"
+		sprite planet/ringworld
+		distance 812
+		period 360
+		offset 240
+	object
+		sprite planet/ringworld
+		distance 812
+		period 360
+		offset 260
+	object
+		sprite planet/ringworld
+		distance 812
+		period 360
+		offset 280
+	object
+		sprite "planet/ringworld left"
+		distance 812
+		period 360
+		offset 300
+	object
+		sprite planet/panels1
+		distance 800
+		period 360
+		offset 122
+	object
+		sprite planet/panels2
+		distance 800
+		period 360
+		offset 138
+	object
+		sprite planet/panels1
+		distance 800
+		period 360
+		offset 148
+	object
+		sprite planet/panels3
+		distance 800
+		period 360
+		offset 157
+	object
+		sprite planet/panels1
+		distance 800
+		period 360
+		offset 164
+	object
+		sprite planet/panels2
+		distance 800
+		period 360
+		offset 171
+	object
+		sprite planet/panels5
+		distance 800
+		period 360
+		offset 189
+	object
+		sprite planet/panels4
+		distance 800
+		period 360
+		offset 204
+	object
+		sprite planet/panels2
+		distance 800
+		period 360
+		offset 214
+	object
+		sprite planet/panels2
+		distance 800
+		period 360
+		offset 226
+	object
+		sprite planet/panels2
+		distance 800
+		period 360
+		offset 240
+	object
+		sprite planet/panels2
+		distance 800
+		period 360
+		offset 258
+	object
+		sprite planet/panels3
+		distance 830
+		period 360
+		offset 145
+	object
+		sprite planet/panels5
+		distance 830
+		period 360
+		offset 163
+	object
+		sprite planet/panels3
+		distance 830
+		period 360
+		offset 178
+	object
+		sprite planet/panels1
+		distance 830
+		period 360
+		offset 185
+	object
+		sprite planet/panels2
+		distance 830
+		period 360
+		offset 191
+	object
+		sprite planet/panels4
+		distance 830
+		period 360
+		offset 200
+	object
+		sprite planet/panels5
+		distance 830
+		period 360
+		offset 218
+	object
+		sprite planet/panels2
+		distance 830
+		period 360
+		offset 228
+	object
+		sprite planet/panels1
+		distance 830
+		period 360
+		offset 245
+	object
+		sprite planet/panels1
+		distance 830
+		period 360
+		offset 250
 
 system Elnath
 	pos -288 -77
@@ -5811,6 +8716,112 @@ system Fala
 			distance 229
 			period 17.0811
 
+system "Fallen Leaf"
+	pos -903.587 717.051
+	government Coalition
+	habitable 320
+	belt 1327
+	link Beginning
+	asteroids "large metal" 1 7.748
+	trade Clothing 310
+	trade Electronics 620
+	trade Equipment 410
+	trade Food 489
+	trade "Heavy Metals" 770
+	trade Industrial 680
+	trade "Luxury Goods" 1021
+	trade Medical 561
+	trade Metal 473
+	trade Plastic 468
+	fleet "Small Arach" 1200
+	fleet "Large Arach" 5000
+	fleet "Small Kimek" 1500
+	fleet "Large Kimek" 7000
+	fleet "Small Saryd" 600
+	fleet "Large Saryd" 1600
+	fleet Heliarch 1800
+	object
+		sprite star/m0
+		period 10
+	object
+		sprite planet/lava7
+		distance 131.69
+		period 33.792
+	object "Shadowed Valley"
+		sprite planet/ocean1
+		distance 369.65
+		period 158.917
+	object
+		sprite planet/rock8
+		distance 640.54
+		period 362.497
+	object
+		sprite planet/rock15
+		distance 1431.55
+		period 1211.14
+	object
+		sprite planet/desert0
+		distance 1920.55
+		period 1882.02
+		object
+			sprite planet/rock7
+			distance 126
+			period 17.7794
+
+system "Far Horizon"
+	pos -1108.59 726.051
+	government Coalition
+	habitable 320
+	belt 1242
+	link Companion
+	link "Ancient Hope"
+	link "Four Pillars"
+	asteroids "large metal" 1 2.1945
+	trade Clothing 265
+	trade Electronics 769
+	trade Equipment 417
+	trade Food 157
+	trade "Heavy Metals" 972
+	trade Industrial 633
+	trade "Luxury Goods" 1004
+	trade Medical 512
+	trade Metal 334
+	trade Plastic 509
+	fleet "Small Arach" 1600
+	fleet "Large Arach" 4000
+	fleet "Small Kimek" 1400
+	fleet "Large Kimek" 3000
+	fleet "Small Saryd" 600
+	fleet "Large Saryd" 1600
+	fleet Heliarch 1800
+	object
+		sprite star/m0
+		period 10
+	object
+		sprite planet/tethys
+		distance 99.44
+		period 22.1731
+	object "Secret Sky"
+		sprite planet/cloud3
+		distance 367.6
+		period 157.597
+	object
+		sprite planet/ice5
+		distance 821.09
+		period 526.103
+		object
+			sprite planet/rock14
+			distance 161
+			period 20.2055
+	object
+		sprite planet/uranus
+		distance 1859.34
+		period 1792.76
+		object
+			sprite planet/ice0
+			distance 238
+			period 15.687
+
 system Farbutero
 	pos 93.4305 -251.812
 	government Uninhabited
@@ -5991,6 +9002,80 @@ system Fasitopfar
 		sprite planet/dust0
 		distance 1927.7
 		period 1640.42
+
+system "Fell Omen"
+	pos -1156.59 475.051
+	government Coalition
+	habitable 425.92
+	belt 1240
+	link "Last Word"
+	asteroids "small rock" 30 6.3
+	asteroids "medium rock" 91 4.1832
+	asteroids "large rock" 34 5.3424
+	asteroids "medium metal" 5 6.6024
+	asteroids "large metal" 1 4.3344
+	minables silicon 71 8.14237
+	minables tungsten 32 8.52992
+	trade Clothing 270
+	trade Electronics 692
+	trade Equipment 670
+	trade Food 399
+	trade "Heavy Metals" 1024
+	trade Industrial 651
+	trade "Luxury Goods" 976
+	trade Medical 698
+	trade Metal 485
+	trade Plastic 537
+	fleet "Small Arach" 1000
+	fleet "Large Arach" 3000
+	fleet "Small Kimek" 900
+	fleet "Large Kimek" 2500
+	fleet "Small Saryd" 800
+	fleet "Large Saryd" 1800
+	fleet Heliarch 400
+	object
+		sprite star/k5
+		period 10
+	object
+		sprite planet/cloud4
+		distance 179.81
+		period 46.7323
+	object
+		sprite planet/dust2
+		distance 406.62
+		period 158.92
+	object "Cold Horizon"
+		sprite planet/forest1
+		distance 733.87
+		period 385.323
+		object
+			sprite planet/tethys
+			distance 168
+			period 24.3888
+	object
+		sprite planet/gas11
+		distance 1560.63
+		period 1194.94
+		object
+			sprite planet/rock0
+			distance 257
+			period 13.5887
+		object
+			sprite planet/rock14
+			distance 381
+			period 24.5282
+	object
+		sprite planet/gas14
+		distance 3654.64
+		period 4282.16
+		object
+			sprite planet/dust3
+			distance 250
+			period 16.0979
+		object
+			sprite planet/luna
+			distance 361
+			period 27.9331
 
 system Feroteri
 	pos 149.431 -205.812
@@ -6183,6 +9268,70 @@ system Fingol
 		distance 2463.48
 		period 4209.37
 
+system Flugbu
+	pos -903.587 534.051
+	government Coalition
+	habitable 425.92
+	belt 1843
+	link Torbab
+	link Debrugt
+	asteroids "small rock" 92 4.0848
+	asteroids "medium rock" 4 2.9808
+	asteroids "large rock" 7 4.416
+	asteroids "medium metal" 2 7.5072
+	asteroids "large metal" 4 2.9256
+	minables silicon 3 7.90651
+	minables tungsten 16 7.61572
+	minables uranium 21 5.19184
+	trade Clothing 298
+	trade Electronics 704
+	trade Equipment 433
+	trade Food 506
+	trade "Heavy Metals" 932
+	trade Industrial 837
+	trade "Luxury Goods" 1188
+	trade Medical 859
+	trade Metal 259
+	trade Plastic 488
+	fleet "Small Arach" 700
+	fleet "Large Arach" 1200
+	fleet "Small Kimek" 1000
+	fleet "Large Kimek" 2400
+	fleet "Small Saryd" 1000
+	fleet "Large Saryd" 3000
+	fleet Heliarch 500
+	object
+		sprite star/k5
+		period 10
+	object
+		sprite planet/ice2
+		distance 161.44
+		period 39.7569
+	object "Stronghold of Flugbu"
+		sprite planet/ocean0
+		distance 437.4
+		period 177.302
+	object
+		sprite planet/titan
+		distance 795.29
+		period 434.695
+	object
+		sprite planet/gas6
+		distance 1577.1
+		period 1213.91
+		object
+			sprite planet/dust1
+			distance 308
+			period 13.8067
+		object
+			sprite planet/dust4
+			distance 455
+			period 24.7903
+		object
+			sprite planet/ice7
+			distance 596
+			period 37.165
+
 system Fomalhaut
 	pos -314 124
 	government Syndicate
@@ -6308,6 +9457,67 @@ system Fornarep
 			sprite planet/miranda
 			distance 371
 			period 30.5305
+
+system "Four Pillars"
+	pos -1210.59 772.051
+	government Coalition
+	habitable 486.68
+	belt 1061
+	link "Far Horizon"
+	link "Lone Cloud"
+	asteroids "small rock" 9 4.851
+	asteroids "medium rock" 2 2.937
+	asteroids "large rock" 21 4.158
+	asteroids "small metal" 5 4.488
+	asteroids "medium metal" 9 3.267
+	asteroids "large metal" 9 4.521
+	minables iron 2 5.83209
+	minables lead 1 7.66489
+	minables silicon 1 6.78678
+	trade Clothing 215
+	trade Electronics 801
+	trade Equipment 464
+	trade Food 142
+	trade "Heavy Metals" 1083
+	trade Industrial 743
+	trade "Luxury Goods" 963
+	trade Medical 570
+	trade Metal 280
+	trade Plastic 514
+	fleet "Small Arach" 1800
+	fleet "Large Arach" 6000
+	fleet "Small Kimek" 1500
+	fleet "Large Kimek" 7000
+	fleet "Small Saryd" 700
+	fleet "Large Saryd" 2000
+	fleet Heliarch 2400
+	object
+		sprite star/k0
+		period 10
+	object
+		sprite planet/rock6
+		distance 216.89
+		period 57.9159
+	object "Flowing Fields"
+		sprite planet/desert2
+		distance 520.9
+		period 215.561
+	object
+		sprite planet/water0
+		distance 709.11
+		period 342.38
+	object
+		sprite planet/lava4
+		distance 1220.35
+		period 772.974
+	object
+		sprite planet/gas0
+		distance 2094.35
+		period 1737.85
+		object
+			sprite planet/rock7
+			distance 277
+			period 13.5106
 
 system Furmeliki
 	pos -35.5695 -281.812
@@ -6683,6 +9893,83 @@ system Girtab
 			distance 501
 			period 55.2737
 
+system Glubatub
+	pos -650.587 693.051
+	government Coalition
+	habitable 233.28
+	belt 1093
+	link "Sol Arach"
+	link Miblulub
+	link Tebuteb
+	asteroids "small rock" 17 7.6038
+	asteroids "medium rock" 27 5.3998
+	asteroids "large rock" 30 5.0141
+	asteroids "small metal" 5 3.4713
+	asteroids "medium metal" 43 5.7304
+	asteroids "large metal" 12 6.1161
+	minables aluminum 9 8.60233
+	minables lead 14 9.73445
+	trade Clothing 367
+	trade Electronics 726
+	trade Equipment 597
+	trade Food 152
+	trade "Heavy Metals" 872
+	trade Industrial 606
+	trade "Luxury Goods" 1447
+	trade Medical 704
+	trade Metal 307
+	trade Plastic 317
+	fleet "Small Arach" 400
+	fleet "Large Arach" 800
+	fleet "Small Kimek" 1500
+	fleet "Large Kimek" 4500
+	fleet "Small Saryd" 1400
+	fleet "Large Saryd" 4000
+	fleet Heliarch 500
+	object
+		sprite star/m4
+		period 10
+	object "Weir of Glubatub"
+		sprite planet/cloud0
+		distance 268.25
+		period 115.062
+		object
+			sprite planet/desert4
+			distance 137
+			period 19.7613
+	object
+		sprite planet/desert6
+		distance 584.81
+		period 370.377
+	object
+		sprite planet/jupiter
+		distance 1332.37
+		period 1273.67
+		object
+			sprite planet/tethys
+			distance 246
+			period 12.1245
+	object
+		sprite planet/gas15
+		distance 2435.86
+		period 3148.47
+		object
+			sprite planet/dust4
+			distance 191
+			period 13.8946
+		object
+			sprite planet/dust0
+			distance 277
+			period 24.267
+		object
+			sprite planet/ice7
+			distance 423
+			period 45.7939
+		object
+			sprite planet/io
+			distance 539
+			period 65.8689
+
 system Gomeisa
 	pos -600 -161
 	government Republic
@@ -6748,6 +10035,66 @@ system Gomeisa
 			sprite planet/ice8
 			distance 356
 			period 21.7957
+
+system "Good Omen"
+	pos -941.587 746.051
+	government Coalition
+	habitable 1715
+	belt 1598
+	link Beginning
+	asteroids "small rock" 1 2.5536
+	asteroids "medium rock" 1 3.99
+	asteroids "large rock" 1 3.4048
+	asteroids "medium metal" 2 3.5378
+	asteroids "large metal" 1 2.8462
+	trade Clothing 350
+	trade Electronics 608
+	trade Equipment 532
+	trade Food 484
+	trade "Heavy Metals" 854
+	trade Industrial 781
+	trade "Luxury Goods" 1094
+	trade Medical 611
+	trade Metal 502
+	trade Plastic 488
+	fleet "Small Arach" 1500
+	fleet "Large Arach" 7000
+	fleet "Small Kimek" 1600
+	fleet "Large Kimek" 8000
+	fleet "Small Saryd" 700
+	fleet "Large Saryd" 2400
+	fleet Heliarch 2000
+	object
+		sprite star/f5
+		period 10
+	object
+		sprite planet/titan
+		distance 161.09
+		period 19.7483
+	object
+		sprite planet/lava6
+		distance 386.7
+		period 73.4496
+	object
+		sprite planet/desert9
+		distance 559.91
+		period 127.969
+	object
+		sprite planet/desert0
+		distance 1307.87
+		period 456.851
+	object "Shifting Sand"
+		sprite planet/ice1
+		distance 1682.91
+		period 666.836
+		object
+			sprite planet/lava0
+			distance 175
+			period 19.7858
+	object
+		sprite planet/gas10
+		distance 3837.15
+		period 2295.84
 
 system Gorvi
 	pos -250 -483
@@ -6866,6 +10213,66 @@ system Graffias
 			sprite planet/ice0
 			distance 516
 			period 57.7746
+
+system Gupta
+	pos -808.587 625.051
+	government Coalition
+	habitable 912.6
+	belt 1771
+	link Ablodab
+	link Belugt
+	link Blugtad
+	link "Sol Arach"
+	link Membulem
+	link Pelubta
+	asteroids "small rock" 40 8.448
+	asteroids "medium rock" 7 6.006
+	asteroids "large rock" 3 7.062
+	asteroids "small metal" 2 3.762
+	asteroids "medium metal" 6 8.712
+	asteroids "large metal" 6 7.656
+	trade Clothing 285
+	trade Electronics 792
+	trade Equipment 675
+	trade Food 357
+	trade "Heavy Metals" 907
+	trade Industrial 678
+	trade "Luxury Goods" 1456
+	trade Medical 722
+	trade Metal 358
+	trade Plastic 503
+	fleet "Small Arach" 400
+	fleet "Large Arach" 600
+	fleet "Small Kimek" 1200
+	fleet "Large Kimek" 2200
+	fleet "Small Saryd" 1100
+	fleet "Large Saryd" 2500
+	fleet Heliarch 800
+	object
+		sprite star/k0
+		distance 46.2043
+		period 13.0429
+		offset 180
+	object
+		sprite star/k5
+		distance 52.7957
+		period 13.0429
+	object
+		sprite planet/lava2
+		distance 181.046
+		period 32.2554
+	object
+		sprite planet/rock13
+		distance 566.296
+		period 178.437
+	object "Market of Gupta"
+		sprite planet/forest6
+		distance 916.031
+		period 367.101
+	object
+		sprite planet/gas9
+		distance 1879.03
+		period 1078.5
 
 system Hadar
 	pos -788 283
@@ -7569,6 +10976,71 @@ system Holeb
 		distance 3958.09
 		period 2405.23
 
+system Homeward
+	pos -1045.59 477.051
+	government Coalition
+	habitable 425.92
+	belt 1499
+	link "Silver Bell"
+	link Quaru
+	asteroids "small rock" 20 6.1248
+	asteroids "medium rock" 46 6.3162
+	asteroids "large rock" 33 6.2524
+	asteroids "small metal" 3 6.1248
+	asteroids "medium metal" 7 3.19
+	asteroids "large metal" 28 4.4022
+	minables platinum 3 9.98007
+	minables silicon 6 5.93079
+	minables uranium 4 7.18515
+	trade Clothing 294
+	trade Electronics 680
+	trade Equipment 585
+	trade Food 554
+	trade "Heavy Metals" 916
+	trade Industrial 636
+	trade "Luxury Goods" 1024
+	trade Medical 677
+	trade Metal 462
+	trade Plastic 315
+	fleet "Small Arach" 700
+	fleet "Large Arach" 1400
+	fleet "Small Kimek" 700
+	fleet "Large Kimek" 1000
+	fleet "Small Saryd" 600
+	fleet "Large Saryd" 1200
+	fleet Heliarch 200
+	object
+		sprite star/k5
+		period 10
+	object
+		sprite planet/desert2
+		distance 218.61
+		period 62.6471
+	object "Far Home"
+		sprite planet/forest3
+		distance 420.7
+		period 167.246
+	object
+		sprite planet/desert4
+		distance 814.95
+		period 450.913
+	object
+		sprite planet/desert3
+		distance 1289.2
+		period 897.173
+	object
+		sprite planet/gas7
+		distance 2236.41
+		period 2049.85
+		object
+			sprite planet/rock7
+			distance 262
+			period 15.0863
+		object
+			sprite planet/dust5
+			distance 408
+			period 29.3171
+
 system Host
 	pos 384.431 -543.812
 	government Uninhabited
@@ -7616,6 +11088,67 @@ system Host
 			sprite planet/rock3
 			distance 360
 			period 41.3874
+
+system Hunter
+	pos -968.587 590.051
+	government Coalition
+	habitable 425.92
+	belt 1498
+	link "Bright Void"
+	link "Dark Hills"
+	link "Broken Bowl"
+	asteroids "small rock" 10 2.7189
+	asteroids "medium rock" 2 3.7449
+	asteroids "large rock" 7 4.8222
+	asteroids "small metal" 3 6.669
+	asteroids "medium metal" 1 4.9248
+	asteroids "large metal" 10 7.0794
+	minables silicon 10 7.11503
+	minables tungsten 6 8.18967
+	trade Clothing 276
+	trade Electronics 736
+	trade Equipment 396
+	trade Food 515
+	trade "Heavy Metals" 767
+	trade Industrial 662
+	trade "Luxury Goods" 1120
+	trade Medical 495
+	trade Metal 537
+	trade Plastic 378
+	fleet "Small Arach" 800
+	fleet "Large Arach" 2000
+	fleet "Small Kimek" 1000
+	fleet "Large Kimek" 2400
+	fleet "Small Saryd" 600
+	fleet "Large Saryd" 1200
+	fleet Heliarch 900
+	object
+		sprite star/k5
+		period 10
+	object
+		sprite planet/cloud6
+		distance 256.01
+		period 79.3928
+	object "Shadow of Leaves"
+		sprite planet/forest2
+		distance 485.62
+		period 207.415
+	object
+		sprite planet/rock11
+		distance 689.03
+		period 350.553
+	object
+		sprite planet/gas12
+		distance 2352.59
+		period 2211.64
+		object
+			sprite planet/dust3
+			distance 272
+			period 11.7825
+		object
+			sprite planet/oberon
+			distance 415
+			period 22.2053
 
 system Ik'kara'ka
 	pos 56.2159 -888.296
@@ -8585,6 +12118,188 @@ system "Kaus Borealis"
 			distance 371
 			period 35.2227
 
+system "Ki War Ek"
+	pos -1106.63 368.214
+	government Heliarch
+	habitable 700
+	belt 1777
+	link Quaru
+	link Ekuarik
+	link "14 Winter Below"
+	link "5 Axis"
+	asteroids "small rock" 12 2.349
+	asteroids "medium rock" 11 2.523
+	asteroids "large rock" 22 4.1325
+	asteroids "small metal" 2 2.262
+	asteroids "medium metal" 8 3.045
+	asteroids "large metal" 2 5.6115
+	minables lead 2 3.47294
+	minables silicon 10 6.26357
+	trade Clothing 370
+	trade Electronics 700
+	trade Equipment 661
+	trade Food 562
+	trade "Heavy Metals" 1020
+	trade Industrial 751
+	trade "Luxury Goods" 1157
+	trade Medical 880
+	trade Metal 417
+	trade Plastic 386
+	fleet "Small Arach" 600
+	fleet "Large Arach" 900
+	fleet "Small Kimek" 500
+	fleet "Large Kimek" 700
+	fleet "Small Saryd" 800
+	fleet "Large Saryd" 1500
+	fleet Heliarch 150
+	object
+		sprite star/g5
+		period 10
+	object
+		sprite planet/lava6
+		distance 812
+		period 360
+	object
+		sprite "planet/ringworld right"
+		distance 812
+		period 360
+		offset 30
+	object
+		sprite "planet/ringworld left"
+		distance 812
+		period 360
+		offset 50
+	object
+		sprite "planet/ringworld right"
+		distance 812
+		period 360
+		offset 75
+	object "Ring of Power"
+		sprite planet/ringworld
+		distance 812
+		period 360
+		offset 95
+	object
+		sprite "planet/ringworld left"
+		distance 812
+		period 360
+		offset 115
+	object
+		sprite "planet/ringworld right"
+		distance 812
+		period 360
+		offset 150
+	object
+		sprite "planet/ringworld left"
+		distance 812
+		period 360
+		offset 170
+	object
+		sprite "planet/ringworld right"
+		distance 812
+		period 360
+		offset 200
+	object "Ring of Power"
+		sprite planet/ringworld
+		distance 812
+		period 360
+		offset 220
+	object "Ring of Power"
+		sprite planet/ringworld
+		distance 812
+		period 360
+		offset 240
+	object
+		sprite "planet/ringworld left"
+		distance 812
+		period 360
+		offset 260
+	object
+		sprite "planet/ringworld right"
+		distance 812
+		period 360
+		offset 280
+	object "Ring of Power"
+		sprite planet/ringworld
+		distance 812
+		period 360
+		offset 300
+	object
+		sprite "planet/ringworld left"
+		distance 812
+		period 360
+		offset 320
+	object
+		sprite planet/panels1
+		distance 830
+		period 360
+		offset 82
+	object
+		sprite planet/panels2
+		distance 830
+		period 360
+		offset 90
+	object
+		sprite planet/panels1
+		distance 830
+		period 360
+		offset 99
+	object
+		sprite planet/panels1
+		distance 830
+		period 360
+		offset 112
+	object
+		sprite planet/panels1
+		distance 800
+		period 360
+		offset 207
+	object
+		sprite planet/panels2
+		distance 800
+		period 360
+		offset 216
+	object
+		sprite planet/panels1
+		distance 800
+		period 360
+		offset 225
+	object
+		sprite planet/panels4
+		distance 800
+		period 360
+		offset 234
+	object
+		sprite planet/panels3
+		distance 830
+		period 360
+		offset 221
+	object
+		sprite planet/panels5
+		distance 830
+		period 360
+		offset 239
+	object
+		sprite planet/panels2
+		distance 830
+		period 360
+		offset 253
+	object
+		sprite planet/panels1
+		distance 800
+		period 360
+		offset 281
+	object
+		sprite planet/panels4
+		distance 800
+		period 360
+		offset 298
+	object
+		sprite planet/panels2
+		distance 800
+		period 360
+		offset 312
+
 system Kiro'ku
 	pos -131.923 -884.46
 	government Wanderer
@@ -9486,6 +13201,69 @@ system Kursa
 		distance 1936.75
 		period 1598.32
 
+system "Last Word"
+	pos -1145.59 495.051
+	government Coalition
+	habitable 625
+	belt 1761
+	link "Silver Bell"
+	link "Fell Omen"
+	link Quaru
+	asteroids "small rock" 167 4.6574
+	asteroids "medium rock" 31 3.828
+	asteroids "large rock" 32 3.5409
+	asteroids "small metal" 32 3.6047
+	asteroids "medium metal" 4 1.6269
+	asteroids "large metal" 5 4.785
+	trade Clothing 290
+	trade Electronics 650
+	trade Equipment 633
+	trade Food 446
+	trade "Heavy Metals" 972
+	trade Industrial 669
+	trade "Luxury Goods" 1001
+	trade Medical 700
+	trade Metal 495
+	trade Plastic 458
+	fleet "Small Arach" 800
+	fleet "Large Arach" 2000
+	fleet "Small Kimek" 800
+	fleet "Large Kimek" 2000
+	fleet "Small Saryd" 700
+	fleet "Large Saryd" 1200
+	fleet Heliarch 200
+	object
+		sprite star/g5
+		period 10
+	object
+		sprite planet/cloud8
+		distance 318.56
+		period 90.9718
+		object
+			sprite planet/rock3
+			distance 136
+			period 19.1658
+	object "Gentle Rain"
+		sprite planet/forest6
+		distance 649
+		period 264.537
+	object
+		sprite planet/rock4
+		distance 893.49
+		period 427.321
+	object
+		sprite planet/forest1
+		distance 1172.25
+		period 642.17
+	object
+		sprite planet/rock1
+		distance 1383.46
+		period 823.322
+	object
+		sprite planet/gas1
+		distance 4922.46
+		period 5525.78
+
 system Lesath
 	pos -516 485
 	government Republic
@@ -9686,6 +13464,56 @@ system "Lom Tahr"
 			sprite planet/dust3
 			distance 191
 			period 14.0516
+
+system "Lone Cloud"
+	pos -1239.59 747.051
+	government Coalition
+	habitable 233.28
+	belt 1730
+	link "Four Pillars"
+	asteroids "medium rock" 119 4.732
+	asteroids "large rock" 30 7.1344
+	asteroids "small metal" 4 9.2456
+	asteroids "medium metal" 95 10.1192
+	asteroids "large metal" 9 8.5904
+	minables aluminum 11 7.83953
+	minables silicon 27 14.0224
+	trade Clothing 185
+	trade Electronics 821
+	trade Equipment 513
+	trade Food 138
+	trade "Heavy Metals" 1129
+	trade Industrial 795
+	trade "Luxury Goods" 958
+	trade Medical 621
+	trade Metal 251
+	trade Plastic 517
+	fleet "Small Arach" 2000
+	fleet "Large Arach" 8000
+	fleet "Small Kimek" 1800
+	fleet "Large Kimek" 9000
+	fleet "Small Saryd" 800
+	fleet "Large Saryd" 2500
+	fleet Heliarch 3000
+	object
+		sprite star/m4
+		period 10
+	object "Vibrant Water"
+		sprite planet/cloud1
+		distance 219.84
+		period 85.3653
+	object
+		sprite planet/ice0
+		distance 581.08
+		period 366.839
+	object
+		sprite planet/cloud0
+		distance 954.33
+		period 772.092
+	object
+		sprite planet/io
+		distance 2146.74
+		period 2604.9
 
 system Lurata
 	pos -279 463
@@ -10019,6 +13847,63 @@ system Matar
 			distance 332
 			period 23.3043
 
+system Mebla
+	pos -814.587 555.051
+	government Coalition
+	habitable 486.68
+	belt 1114
+	link Debrugt
+	link Pelubta
+	link Ablodab
+	asteroids "medium metal" 16 2.175
+	asteroids "large metal" 1 4.725
+	minables gold 3 3.12889
+	minables iron 4 2.33201
+	trade Clothing 295
+	trade Electronics 747
+	trade Equipment 565
+	trade Food 354
+	trade "Heavy Metals" 942
+	trade Industrial 867
+	trade "Luxury Goods" 1381
+	trade Medical 697
+	trade Metal 338
+	trade Plastic 497
+	fleet "Small Arach" 500
+	fleet "Large Arach" 700
+	fleet "Small Kimek" 1000
+	fleet "Large Kimek" 1800
+	fleet "Small Saryd" 1000
+	fleet "Large Saryd" 2400
+	fleet Heliarch 350
+	object
+		sprite star/k0
+		period 10
+	object
+		sprite planet/dust5
+		distance 131.56
+		period 27.3605
+	object "Mebla's Portion"
+		sprite planet/ocean4
+		distance 430.52
+		period 161.968
+		object
+			sprite planet/oberon
+			distance 133
+			period 13.9639
+	object
+		sprite planet/desert7
+		distance 955.16
+		period 535.245
+	object
+		sprite planet/gas0
+		distance 2427.45
+		period 2168.52
+		object
+			sprite planet/europa
+			distance 258
+			period 12.1447
+
 system Mebsuta
 	pos -482 -394
 	government Republic
@@ -10276,6 +14161,70 @@ system Mekislepti
 			sprite planet/station1k
 			distance 334.445
 			period 30.4733
+
+system Membulem
+	pos -722.587 616.051
+	government Coalition
+	habitable 2201.68
+	belt 1794
+	link "Sol Arach"
+	link Pelubta
+	link Gupta
+	asteroids "large metal" 1 2.376
+	trade Clothing 322
+	trade Electronics 758
+	trade Equipment 660
+	trade Food 259
+	trade "Heavy Metals" 843
+	trade Industrial 673
+	trade "Luxury Goods" 1468
+	trade Medical 765
+	trade Metal 432
+	trade Plastic 433
+	fleet "Small Arach" 400
+	fleet "Large Arach" 600
+	fleet "Small Kimek" 1200
+	fleet "Large Kimek" 2400
+	fleet "Small Saryd" 1200
+	fleet "Large Saryd" 2800
+	fleet Heliarch 400
+	object
+		sprite star/f5
+		distance 28.2943
+		period 12.3452
+	object
+		sprite star/k0
+		distance 99.7057
+		period 12.3452
+		offset 180
+	object
+		sprite planet/desert4
+		distance 521.254
+		period 101.451
+	object
+		sprite planet/desert5
+		distance 817.478
+		period 199.249
+	object
+		sprite planet/fog0
+		distance 1278.61
+		period 389.753
+		object
+			sprite planet/rock7
+			distance 176
+			period 17.2245
+	object
+		sprite planet/desert6
+		distance 1710.08
+		period 602.849
+	object "Corral of Meblumem"
+		sprite planet/forest1
+		distance 1975.08
+		period 748.274
+	object
+		sprite planet/gas4
+		distance 2986.38
+		period 1391.23
 
 system Men
 	pos -888 361
@@ -10736,6 +14685,86 @@ system Miaplacidus
 			sprite planet/dust0
 			distance 704
 			period 51.9616
+
+system Miblulub
+	pos -630.587 670.051
+	government Coalition
+	habitable 1080
+	belt 1757
+	link "Sol Arach"
+	link Blubipad
+	link Glubatub
+	link Tebuteb
+	link Ablub
+	asteroids "small rock" 74 1.0335
+	asteroids "medium rock" 169 1.716
+	asteroids "large rock" 33 1.9695
+	asteroids "small metal" 4 2.145
+	asteroids "medium metal" 60 1.365
+	asteroids "large metal" 1 2.4765
+	minables lead 78 2.83043
+	minables silicon 12 2.95657
+	minables titanium 21 1.61849
+	trade Clothing 364
+	trade Electronics 716
+	trade Equipment 658
+	trade Food 154
+	trade "Heavy Metals" 954
+	trade Industrial 612
+	trade "Luxury Goods" 1398
+	trade Medical 599
+	trade Metal 341
+	trade Plastic 342
+	fleet "Small Arach" 500
+	fleet "Large Arach" 1200
+	fleet "Small Kimek" 1600
+	fleet "Large Kimek" 5000
+	fleet "Small Saryd" 1500
+	fleet "Large Saryd" 5000
+	fleet Heliarch 300
+	object
+		sprite star/g0
+		period 10
+	object
+		sprite planet/desert6
+		distance 285.84
+		period 58.821
+		object
+			sprite planet/rock7
+			distance 169
+			period 22.8905
+	object
+		sprite planet/ice3
+		distance 627.65
+		period 191.392
+	object "Miblulub's Plenty"
+		sprite planet/forest0
+		distance 1074.29
+		period 428.579
+		object
+			sprite planet/dust0
+			distance 162
+			period 17.6226
+	object
+		sprite planet/gas10
+		distance 2213.65
+		period 1267.69
+		object
+			sprite planet/io
+			distance 223
+			period 17.5289
+		object
+			sprite planet/ice7
+			distance 345
+			period 33.7307
+		object
+			sprite planet/luna
+			distance 463
+			period 52.4407
+		object
+			sprite planet/ice0
+			distance 619
+			period 81.065
 
 system Mimosa
 	pos -895 168
@@ -11898,6 +15927,79 @@ system Peacock
 			distance 498
 			period 49.3926
 
+system Pelubta
+	pos -757.587 575.051
+	government Coalition
+	habitable 9265
+	belt 1709
+	link Membulem
+	link Gupta
+	link Ablodab
+	link Mebla
+	asteroids "small rock" 23 4.48
+	asteroids "medium rock" 1 6.496
+	asteroids "large rock" 74 2.5088
+	asteroids "small metal" 7 3.136
+	asteroids "medium metal" 29 5.6
+	asteroids "large metal" 3 4.48
+	minables iron 17 6.81922
+	minables lead 2 3.63334
+	minables uranium 29 4.87538
+	trade Clothing 292
+	trade Electronics 760
+	trade Equipment 661
+	trade Food 327
+	trade "Heavy Metals" 887
+	trade Industrial 776
+	trade "Luxury Goods" 1442
+	trade Medical 713
+	trade Metal 451
+	trade Plastic 472
+	fleet "Small Arach" 500
+	fleet "Large Arach" 700
+	fleet "Small Kimek" 1100
+	fleet "Large Kimek" 2000
+	fleet "Small Saryd" 1100
+	fleet "Large Saryd" 2500
+	fleet Heliarch 400
+	object
+		sprite star/b5
+		distance 10.9957
+		period 8.64806
+		offset 180
+	object
+		sprite star/g5
+		distance 152.004
+		period 8.64806
+	object
+		sprite planet/rock7
+		distance 331.254
+		period 25.0541
+	object
+		sprite planet/dust7
+		distance 451.254
+		period 39.8354
+	object
+		sprite planet/lava6
+		distance 668.214
+		period 71.7812
+	object
+		sprite planet/gas6
+		distance 1497.46
+		period 240.809
+	object
+		sprite planet/gas2
+		distance 2309.75
+		period 461.303
+		object
+			sprite planet/io
+			distance 188
+			period 15.6189
+		object
+			sprite planet/rock14
+			distance 338
+			period 37.6521
+
 system Peresedersi
 	pos 81.4305 -154.812
 	government Uninhabited
@@ -12322,6 +16424,65 @@ system Pik'ro'iyak
 		distance 3272.11
 		period 4901.88
 
+system Plort
+	pos -708.587 723.051
+	government Coalition
+	habitable 320
+	belt 1490
+	link "Sol Arach"
+	asteroids "small rock" 7 7.3606
+	asteroids "medium rock" 40 4.5942
+	asteroids "large rock" 17 4.199
+	asteroids "small metal" 19 5.3352
+	asteroids "medium metal" 81 5.0388
+	asteroids "large metal" 2 5.2858
+	minables aluminum 62 6.16545
+	minables uranium 3 5.36309
+	trade Clothing 349
+	trade Electronics 739
+	trade Equipment 643
+	trade Food 308
+	trade "Heavy Metals" 911
+	trade Industrial 596
+	trade "Luxury Goods" 1382
+	trade Medical 612
+	trade Metal 316
+	trade Plastic 380
+	fleet "Small Arach" 400
+	fleet "Large Arach" 1200
+	fleet "Small Kimek" 1200
+	fleet "Large Kimek" 3000
+	fleet "Small Saryd" 1200
+	fleet "Large Saryd" 4000
+	fleet Heliarch 800
+	object
+		sprite star/m0
+		period 10
+	object
+		sprite planet/ice0
+		distance 158.84
+		period 44.7636
+	object "Plort's Water"
+		sprite planet/water1
+		distance 343.05
+		period 142.076
+	object
+		sprite planet/rock2
+		distance 791.09
+		period 497.535
+	object
+		sprite planet/gas10
+		distance 1546.5
+		period 1359.91
+	object
+		sprite planet/gas2
+		distance 2335.71
+		period 2524.14
+		object
+			sprite planet/callisto
+			distance 201
+			period 17.2667
+
 system Polaris
 	pos -35 126
 	government Syndicate
@@ -12675,6 +16836,296 @@ system "Pug Iyik"
 			sprite planet/desert4
 			distance 365
 			period 36.706
+
+system Quaru
+	pos -1080.63 448.214
+	government Heliarch
+	habitable 700
+	belt 1440
+	link "Ki War Ek"
+	link Ekuarik
+	link "Last Word"
+	link Homeward
+	asteroids "large metal" 1 2.0202
+	trade Clothing 372
+	trade Electronics 637
+	trade Equipment 676
+	trade Food 541
+	trade "Heavy Metals" 963
+	trade Industrial 679
+	trade "Luxury Goods" 1050
+	trade Medical 794
+	trade Metal 438
+	trade Plastic 350
+	fleet "Small Arach" 600
+	fleet "Large Arach" 1000
+	fleet "Small Kimek" 600
+	fleet "Large Kimek" 900
+	fleet "Small Saryd" 700
+	fleet "Large Saryd" 1400
+	fleet Heliarch 100
+	object
+		sprite star/g5
+		period 10
+	object "Ring of Friendship"
+		sprite planet/ringworld
+		distance 812
+		period 360
+	object "Ring of Friendship"
+		sprite planet/ringworld
+		distance 812
+		period 360
+		offset 20
+	object "Ring of Friendship"
+		sprite planet/ringworld
+		distance 812
+		period 360
+		offset 40
+	object "Ring of Friendship"
+		sprite planet/ringworld
+		distance 812
+		period 360
+		offset 60
+	object "Ring of Friendship"
+		sprite planet/ringworld
+		distance 812
+		period 360
+		offset 80
+	object "Ring of Friendship"
+		sprite planet/ringworld
+		distance 812
+		period 360
+		offset 100
+	object "Ring of Friendship"
+		sprite planet/ringworld
+		distance 812
+		period 360
+		offset 120
+	object "Ring of Friendship"
+		sprite planet/ringworld
+		distance 812
+		period 360
+		offset 140
+	object "Ring of Friendship"
+		sprite planet/ringworld
+		distance 812
+		period 360
+		offset 160
+	object "Ring of Friendship"
+		sprite planet/ringworld
+		distance 812
+		period 360
+		offset 180
+	object "Ring of Friendship"
+		sprite planet/ringworld
+		distance 812
+		period 360
+		offset 200
+	object "Ring of Friendship"
+		sprite planet/ringworld
+		distance 812
+		period 360
+		offset 220
+	object "Ring of Friendship"
+		sprite planet/ringworld
+		distance 812
+		period 360
+		offset 240
+	object "Ring of Friendship"
+		sprite planet/ringworld
+		distance 812
+		period 360
+		offset 260
+	object "Ring of Friendship"
+		sprite planet/ringworld
+		distance 812
+		period 360
+		offset 280
+	object "Ring of Friendship"
+		sprite planet/ringworld
+		distance 812
+		period 360
+		offset 300
+	object "Ring of Friendship"
+		sprite planet/ringworld
+		distance 812
+		period 360
+		offset 320
+	object "Ring of Friendship"
+		sprite planet/ringworld
+		distance 812
+		period 360
+		offset 340
+	object
+		sprite planet/panels1
+		distance 800
+		period 360
+		offset 21
+	object
+		sprite planet/panels2
+		distance 800
+		period 360
+		offset 32
+	object
+		sprite planet/panels1
+		distance 800
+		period 360
+		offset 44
+	object
+		sprite planet/panels3
+		distance 800
+		period 360
+		offset 53
+	object
+		sprite planet/panels2
+		distance 800
+		period 360
+		offset 62
+	object
+		sprite planet/panels1
+		distance 800
+		period 360
+		offset 66
+	object
+		sprite planet/panels4
+		distance 800
+		period 360
+		offset 73
+	object
+		sprite planet/panels5
+		distance 800
+		period 360
+		offset 87
+	object
+		sprite planet/panels3
+		distance 800
+		period 360
+		offset 95
+	object
+		sprite planet/panels2
+		distance 800
+		period 360
+		offset 104
+	object
+		sprite planet/panels4
+		distance 800
+		period 360
+		offset 116
+	object
+		sprite planet/panels1
+		distance 800
+		period 360
+		offset 125
+	object
+		sprite planet/panels2
+		distance 800
+		period 360
+		offset 134
+	object
+		sprite planet/panels2
+		distance 800
+		period 360
+		offset 149
+	object
+		sprite planet/panels2
+		distance 830
+		period 360
+		offset 29
+	object
+		sprite planet/panels1
+		distance 830
+		period 360
+		offset 38
+	object
+		sprite planet/panels1
+		distance 830
+		period 360
+		offset 42
+	object
+		sprite planet/panels3
+		distance 830
+		period 360
+		offset 55
+	object
+		sprite planet/panels2
+		distance 830
+		period 360
+		offset 64
+	object
+		sprite planet/panels5
+		distance 830
+		period 360
+		offset 78
+	object
+		sprite planet/panels3
+		distance 830
+		period 360
+		offset 92
+	object
+		sprite planet/panels5
+		distance 830
+		period 360
+		offset 106
+	object
+		sprite planet/panels2
+		distance 830
+		period 360
+		offset 120
+	object
+		sprite planet/panels1
+		distance 830
+		period 360
+		offset 132
+	object
+		sprite planet/panels1
+		distance 830
+		period 360
+		offset 145
+	object
+		sprite planet/panels1
+		distance 800
+		period 360
+		offset 185
+	object
+		sprite planet/panels3
+		distance 800
+		period 360
+		offset 197
+	object
+		sprite planet/panels2
+		distance 800
+		period 360
+		offset 207
+	object
+		sprite planet/panels5
+		distance 800
+		period 360
+		offset 218
+	object
+		sprite planet/panels2
+		distance 800
+		period 360
+		offset 231
+	object
+		sprite planet/panels2
+		distance 800
+		period 360
+		offset 244
+	object
+		sprite planet/panels2
+		distance 830
+		period 360
+		offset 198
+	object
+		sprite planet/panels3
+		distance 830
+		period 360
+		offset 212
+	object
+		sprite planet/panels4
+		distance 830
+		period 360
+		offset 237
 
 system Rajak
 	pos -270 -236
@@ -13039,6 +17490,62 @@ system Regulus
 			sprite planet/lava2
 			distance 346
 			period 20.065
+
+system Remembrance
+	pos -884.587 641.051
+	government Coalition
+	habitable 486.68
+	belt 1536
+	link Beginning
+	link "Dark Hills"
+	asteroids "small rock" 12 1.716
+	asteroids "medium rock" 27 1.2
+	asteroids "large rock" 1 0.876
+	asteroids "small metal" 6 0.684
+	asteroids "medium metal" 14 0.744
+	asteroids "large metal" 1 0.624
+	minables aluminum 13 2.0911
+	minables iron 9 1.93958
+	trade Clothing 279
+	trade Electronics 616
+	trade Equipment 430
+	trade Food 490
+	trade "Heavy Metals" 791
+	trade Industrial 688
+	trade "Luxury Goods" 1099
+	trade Medical 547
+	trade Metal 460
+	trade Plastic 460
+	fleet "Small Arach" 1400
+	fleet "Large Arach" 4000
+	fleet "Small Kimek" 1400
+	fleet "Large Kimek" 5000
+	fleet "Small Saryd" 700
+	fleet "Large Saryd" 3000
+	fleet Heliarch 1200
+	object
+		sprite star/k0
+		period 10
+	object
+		sprite planet/desert9
+		distance 155.81
+		period 35.264
+	object
+		sprite planet/desert7
+		distance 335.82
+		period 111.583
+	object "Deep Water"
+		sprite planet/water0
+		distance 506.82
+		period 206.88
+	object
+		sprite planet/gas0
+		distance 2021.82
+		period 1648.36
+		object
+			sprite planet/callisto
+			distance 273
+			period 13.2191
 
 system Rigel
 	pos -324 -363
@@ -14508,6 +19015,137 @@ system Silikatakfar
 			period 30.5006
 			offset 276.215
 
+system "Silver Bell"
+	pos -1045.59 541.051
+	government Coalition
+	habitable 1080
+	belt 1406
+	link "Bright Void"
+	link "Silver String"
+	link "Broken Bowl"
+	link Homeward
+	link "Last Word"
+	asteroids "small rock" 2 6.9498
+	asteroids "medium rock" 5 2.43
+	asteroids "large rock" 13 6.7068
+	asteroids "small metal" 2 2.6244
+	asteroids "medium metal" 7 4.3254
+	asteroids "large metal" 8 7.2414
+	minables lead 2 10.4732
+	minables tungsten 3 8.0673
+	trade Clothing 228
+	trade Electronics 689
+	trade Equipment 485
+	trade Food 518
+	trade "Heavy Metals" 886
+	trade Industrial 676
+	trade "Luxury Goods" 1040
+	trade Medical 604
+	trade Metal 499
+	trade Plastic 317
+	fleet "Small Arach" 600
+	fleet "Large Arach" 1000
+	fleet "Small Kimek" 800
+	fleet "Large Kimek" 1200
+	fleet "Small Saryd" 500
+	fleet "Large Saryd" 1000
+	fleet Heliarch 300
+	object
+		sprite star/g0
+		period 10
+	object
+		sprite planet/mercury
+		distance 165.49
+		period 25.9123
+	object
+		sprite planet/gas4
+		distance 615.1
+		period 185.681
+	object
+		sprite planet/tethys
+		distance 1195.71
+		period 503.254
+	object "Chosen Nexus"
+		sprite planet/cloud3
+		distance 1355.87
+		period 607.68
+	object
+		sprite planet/gas3
+		distance 2442.31
+		period 1469.09
+		object
+			sprite planet/rock17
+			distance 260
+			period 10.7084
+		object
+			sprite planet/dust4
+			distance 346
+			period 16.4391
+
+system "Silver String"
+	pos -1022.59 517.051
+	government Coalition
+	habitable 1080
+	belt 1986
+	link "Silver Bell"
+	asteroids "small rock" 4 1.209
+	asteroids "medium rock" 44 1.131
+	asteroids "large rock" 2 0.819
+	asteroids "small metal" 23 1.04
+	asteroids "medium metal" 25 1.729
+	asteroids "large metal" 3 0.663
+	minables aluminum 1 2.47607
+	minables silver 1 2.06763
+	minables uranium 10 1.57759
+	trade Clothing 193
+	trade Electronics 652
+	trade Equipment 451
+	trade Food 525
+	trade "Heavy Metals" 940
+	trade Industrial 729
+	trade "Luxury Goods" 1020
+	trade Medical 659
+	trade Metal 548
+	trade Plastic 281
+	fleet "Small Arach" 900
+	fleet "Large Arach" 2000
+	fleet "Small Kimek" 900
+	fleet "Large Kimek" 2400
+	fleet "Small Saryd" 700
+	fleet "Large Saryd" 1500
+	fleet Heliarch 500
+	object
+		sprite star/g0
+		period 10
+	object
+		sprite planet/lava4
+		distance 157.61
+		period 24.0837
+	object
+		sprite planet/gas12
+		distance 678.17
+		period 214.959
+		object
+			sprite planet/dust1
+			distance 311
+			period 14.4054
+	object "Deep Treasure"
+		sprite planet/ocean2
+		distance 1197.42
+		period 504.334
+	object
+		sprite planet/gas11
+		distance 2649.46
+		period 1659.91
+		object
+			sprite planet/dust0
+			distance 253
+			period 13.2727
+		object
+			sprite planet/europa
+			distance 363
+			period 22.8107
+
 system Similisti
 	pos 210.431 -313.812
 	government "Kor Mereti"
@@ -14872,6 +19510,226 @@ system Sol
 			distance 811.717
 			period 66.76
 
+system "Sol Arach"
+	pos -711.587 649.051
+	government Coalition
+	habitable 486.68
+	belt 1147
+	link Membulem
+	link Gupta
+	link Blugtad
+	link Glubatub
+	link Miblulub
+	link Blubipad
+	link Plort
+	asteroids "small rock" 5 4.5864
+	asteroids "medium rock" 9 4.6872
+	asteroids "large rock" 4 6.8544
+	asteroids "small metal" 16 6.1488
+	asteroids "medium metal" 12 6.5016
+	asteroids "large metal" 81 2.8728
+	minables iron 6 4.61643
+	minables silicon 25 7.59101
+	minables titanium 3 5.6753
+	trade Clothing 361
+	trade Electronics 756
+	trade Equipment 621
+	trade Food 256
+	trade "Heavy Metals" 868
+	trade Industrial 631
+	trade "Luxury Goods" 1425
+	trade Medical 688
+	trade Metal 348
+	trade Plastic 412
+	fleet "Small Arach" 300
+	fleet "Large Arach" 500
+	fleet "Small Kimek" 1000
+	fleet "Large Kimek" 1800
+	fleet "Small Saryd" 1000
+	fleet "Large Saryd" 2000
+	fleet Heliarch 500
+	object
+		sprite star/k0
+		period 10
+	object
+		sprite planet/desert1
+		distance 176.84
+		period 42.6392
+	object Ahr
+		sprite planet/forest2
+		distance 465.3
+		period 181.986
+	object
+		sprite planet/rock11
+		distance 706.54
+		period 340.52
+	object
+		sprite planet/gas4
+		distance 1022.54
+		period 592.869
+	object
+		sprite planet/gas14
+		distance 3419.3
+		period 3625.3
+		object
+			sprite planet/miranda
+			distance 249
+			period 16.0014
+		object
+			sprite planet/dust0
+			distance 346
+			period 26.2104
+
+system "Sol Kimek"
+	pos -1310.63 227.214
+	government Coalition
+	habitable 425.92
+	belt 1490
+	link "3 Pole"
+	link "11 Autumn Above"
+	link "4 Winter Rising"
+	link "1 Axis"
+	link "9 Spring Above"
+	asteroids "small rock" 3 6.9552
+	asteroids "medium rock" 1 5.1543
+	asteroids "large rock" 8 7.6383
+	asteroids "small metal" 24 6.831
+	asteroids "medium metal" 1 8.3214
+	asteroids "large metal" 4 7.3899
+	minables iron 2 7.60621
+	minables lead 2 13.2343
+	minables silicon 7 10.8648
+	trade Clothing 238
+	trade Electronics 812
+	trade Equipment 493
+	trade Food 161
+	trade "Heavy Metals" 1157
+	trade Industrial 744
+	trade "Luxury Goods" 1078
+	trade Medical 692
+	trade Metal 461
+	trade Plastic 330
+	fleet "Small Arach" 600
+	fleet "Large Arach" 1200
+	fleet "Small Kimek" 200
+	fleet "Large Kimek" 300
+	fleet "Small Saryd" 800
+	fleet "Large Saryd" 1600
+	fleet Heliarch 500
+	object
+		sprite star/k5
+		period 10
+	object
+		sprite planet/rock8
+		distance 137.16
+		period 31.1342
+	object "Ki Patek Ka"
+		sprite planet/ocean1
+		distance 345.41
+		period 124.422
+	object
+		sprite planet/gas12
+		distance 1153.05
+		period 758.871
+		object
+			sprite planet/europa
+			distance 291
+			period 13.0384
+		object
+			sprite planet/oberon
+			distance 382
+			period 19.6101
+		object
+			sprite planet/rock7
+			distance 522
+			period 31.325
+	object
+		sprite planet/dust1
+		distance 2429.06
+		period 2320.35
+
+system "Sol Saryd"
+	pos -1037.59 675.051
+	government Coalition
+	habitable 1313.28
+	belt 1720
+	link Belonging
+	link "Ancient Hope"
+	link Companion
+	asteroids "small rock" 4 2.42
+	asteroids "medium rock" 140 1.48
+	asteroids "large rock" 1 1.08
+	asteroids "small metal" 2 2.74
+	asteroids "medium metal" 1 2.56
+	asteroids "large metal" 3 1
+	minables aluminum 34 1.76938
+	trade Clothing 331
+	trade Electronics 753
+	trade Equipment 396
+	trade Food 233
+	trade "Heavy Metals" 801
+	trade Industrial 647
+	trade "Luxury Goods" 1023
+	trade Medical 523
+	trade Metal 348
+	trade Plastic 477
+	fleet "Small Arach" 800
+	fleet "Large Arach" 1000
+	fleet "Small Kimek" 800
+	fleet "Large Kimek" 1200
+	fleet "Small Saryd" 300
+	fleet "Large Saryd" 800
+	fleet Heliarch 900
+	object
+		sprite star/g0
+		distance 19.7171
+		period 12.9082
+		offset 180
+	object
+		sprite star/m4
+		distance 91.2829
+		period 12.9082
+	object
+		sprite planet/rock0
+		distance 199.893
+		period 31.1945
+	object
+		sprite planet/desert5
+		distance 380.453
+		period 81.9092
+	object
+		sprite planet/rock10
+		distance 754.743
+		period 228.865
+		object
+			sprite planet/rock17
+			distance 144
+			period 14.5432
+	object Saros
+		sprite planet/forest2
+		distance 1376.69
+		period 563.817
+		object Revelation
+			sprite planet/dust0
+			distance 153
+			period 18.0979
+		object Mystery
+			sprite planet/rock7
+			distance 283
+			period 45.5271
+	object
+		sprite planet/ocean9
+		distance 2042.37
+		period 1018.79
+		object
+			sprite planet/ice8
+			distance 160
+			period 20.7199
+	object
+		sprite planet/gas11
+		distance 2533.21
+		period 1407.31
+
 system Solifar
 	pos 47.4305 -435.812
 	government Uninhabited
@@ -14989,6 +19847,72 @@ system Sospi
 			distance 457
 			period 48.1545
 
+system Speloog
+	pos -967.587 445.051
+	government Coalition
+	habitable 625
+	belt 1159
+	link Belug
+	link Ekuarik
+	link Torbab
+	asteroids "medium metal" 7 2.975
+	asteroids "large metal" 1 4.515
+	minables aluminum 1 5.5696
+	minables neodymium 2 4.87245
+	minables silver 1 5.29231
+	trade Clothing 335
+	trade Electronics 722
+	trade Equipment 589
+	trade Food 557
+	trade "Heavy Metals" 1017
+	trade Industrial 831
+	trade "Luxury Goods" 1113
+	trade Medical 822
+	trade Metal 258
+	trade Plastic 395
+	fleet "Small Arach" 500
+	fleet "Large Arach" 700
+	fleet "Small Kimek" 700
+	fleet "Large Kimek" 1200
+	fleet "Small Saryd" 800
+	fleet "Large Saryd" 1800
+	fleet Heliarch 200
+	object
+		sprite star/g5
+		period 10
+	object
+		sprite planet/rock10
+		distance 243.56
+		period 60.8176
+	object "Dwelling of Speloog"
+		sprite planet/forest4
+		distance 627.77
+		period 251.664
+		object
+			sprite planet/callisto
+			distance 152
+			period 16.7891
+	object
+		sprite planet/europa
+		distance 1013.86
+		period 516.52
+	object
+		sprite planet/rock17
+		distance 1912.47
+		period 1338.17
+	object
+		sprite planet/uranus
+		distance 3373.43
+		period 3134.93
+		object
+			sprite planet/io
+			distance 240
+			period 15.8851
+		object
+			sprite planet/luna
+			distance 359
+			period 29.0613
+
 system Spica
 	pos -906 120
 	government Republic
@@ -15047,6 +19971,77 @@ system Spica
 			sprite planet/rhea
 			distance 402
 			period 26.1539
+
+system "Steep Roof"
+	pos -1113.59 570.051
+	government Coalition
+	habitable 1080
+	belt 1100
+	link "Bright Void"
+	asteroids "small rock" 30 5.4918
+	asteroids "medium rock" 65 6.7068
+	asteroids "large rock" 1 6.561
+	asteroids "small metal" 8 5.2002
+	asteroids "medium metal" 10 2.7702
+	asteroids "large metal" 6 3.2562
+	minables copper 22 6.79651
+	minables silver 18 9.38539
+	trade Clothing 244
+	trade Electronics 814
+	trade Equipment 388
+	trade Food 441
+	trade "Heavy Metals" 719
+	trade Industrial 662
+	trade "Luxury Goods" 937
+	trade Medical 478
+	trade Metal 498
+	trade Plastic 308
+	fleet "Small Arach" 1200
+	fleet "Large Arach" 2500
+	fleet "Small Kimek" 400
+	fleet "Large Kimek" 800
+	fleet "Small Saryd" 700
+	fleet "Large Saryd" 1400
+	fleet Heliarch 1200
+	object
+		sprite star/g0
+		period 10
+	object
+		sprite planet/lava3
+		distance 167.04
+		period 26.2772
+	object "Ceaseless Toil"
+		sprite planet/cloud8
+		distance 494.8
+		period 133.965
+		object
+			sprite planet/lava0
+			distance 159
+			period 24.2278
+	object "Warm Slope"
+		sprite planet/cloud6
+		distance 1010.56
+		period 391.013
+		object
+			sprite planet/luna
+			distance 166
+			period 21.8962
+	object
+		sprite planet/gas17
+		distance 2828.56
+		period 1831.03
+		object
+			sprite planet/callisto
+			distance 232
+			period 15.0975
+		object
+			sprite planet/tethys
+			distance 350
+			period 27.9753
+		object
+			sprite planet/dust1
+			distance 498
+			period 47.4807
 
 system Suhail
 	pos -774 -338
@@ -15481,6 +20476,67 @@ system Tarazed
 			distance 228
 			period 16.9693
 
+system Tebuteb
+	pos -615.587 710.051
+	government Coalition
+	habitable 553.28
+	belt 1855
+	link Miblulub
+	link Glubatub
+	asteroids "small rock" 7 2.0468
+	asteroids "medium rock" 54 3.094
+	asteroids "large rock" 30 2.4514
+	asteroids "small metal" 1 2.975
+	asteroids "medium metal" 1 3.2368
+	asteroids "large metal" 4 3.1654
+	minables silicon 22 2.92343
+	trade Clothing 384
+	trade Electronics 699
+	trade Equipment 633
+	trade Food 124
+	trade "Heavy Metals" 904
+	trade Industrial 587
+	trade "Luxury Goods" 1452
+	trade Medical 617
+	trade Metal 274
+	trade Plastic 290
+	fleet "Small Arach" 600
+	fleet "Large Arach" 2000
+	fleet "Small Kimek" 1800
+	fleet "Large Kimek" 7000
+	fleet "Small Saryd" 1600
+	fleet "Large Saryd" 6000
+	fleet Heliarch 250
+	object
+		sprite star/m0
+		distance 40.0549
+		period 15.7461
+		offset 180
+	object
+		sprite star/m4
+		distance 54.9451
+		period 15.7461
+	object "Tebuteb's Table"
+		sprite planet/cloud3
+		distance 454.983
+		period 165.037
+		object
+			sprite planet/dust5
+			distance 152
+			period 20.6063
+	object
+		sprite planet/rock19
+		distance 816.943
+		period 397.078
+	object
+		sprite planet/gas13
+		distance 1300.7
+		period 797.728
+	object
+		sprite planet/gas12
+		distance 2511.99
+		period 2140.99
+
 system Tejat
 	pos -489 -107
 	government Republic
@@ -15556,6 +20612,82 @@ system Tejat
 			sprite planet/rhea
 			distance 438
 			period 22.9367
+
+system Torbab
+	pos -949.587 490.051
+	government Coalition
+	habitable 1505.92
+	belt 1702
+	link Speloog
+	link Debrugt
+	link Flugbu
+	asteroids "small rock" 12 3.094
+	asteroids "medium rock" 5 2.3296
+	asteroids "large rock" 1 2.0384
+	asteroids "small metal" 3 4.2952
+	asteroids "medium metal" 30 3.3852
+	asteroids "large metal" 1 4.2588
+	minables aluminum 2 4.79729
+	minables silicon 6 3.34977
+	minables uranium 8 5.5571
+	trade Clothing 293
+	trade Electronics 682
+	trade Equipment 474
+	trade Food 533
+	trade "Heavy Metals" 954
+	trade Industrial 819
+	trade "Luxury Goods" 1155
+	trade Medical 838
+	trade Metal 279
+	trade Plastic 467
+	fleet "Small Arach" 400
+	fleet "Large Arach" 600
+	fleet "Small Kimek" 800
+	fleet "Large Kimek" 1400
+	fleet "Small Saryd" 800
+	fleet "Large Saryd" 2000
+	fleet Heliarch 250
+	object
+		sprite star/g0
+		distance 26.8689
+		period 9.54431
+	object
+		sprite star/k5
+		distance 68.1311
+		period 9.54431
+		offset 180
+	object
+		sprite planet/luna
+		distance 240.541
+		period 38.4541
+	object
+		sprite planet/rock15
+		distance 385.181
+		period 77.9213
+	object
+		sprite planet/mars
+		distance 659.221
+		period 174.464
+	object
+		sprite planet/gas8
+		distance 1535.78
+		period 620.373
+		object
+			sprite planet/rock0
+			distance 183
+			period 13.1781
+		object
+			sprite planet/rock17
+			distance 260
+			period 22.3171
+	object
+		sprite planet/neptune
+		distance 2533.14
+		period 1314.16
+		object
+			sprite planet/rock14
+			distance 237
+			period 18.1784
 
 system Tortor
 	pos -255 -424
@@ -17243,6 +22375,14 @@ system Zubeneschamali
 		distance 2218.25
 		period 1182.01
 
+planet "Ablub's Invention"
+	attributes arach factory
+	landscape land/sky3
+	description `This ancient and quiet world, orbiting a dim red sun, is home to the microchip foundries of House Idriss, the Arach guild that specializes in computers and advanced electronics. Outside of the cities, which are clustered around the equator, Ablub's Invention is uninhabited except by the native lifeforms, including strange, spindly-legged quadrupeds, awkward birds with leathery wings, and amphibians with webbed feet and long, whiskered snouts.`
+	spaceport `The day-night cycle here is at least three as long as any of the Coalition’s species are habituated to, so the entire city enters a "false nighttime" in the middle of the day, shuttering all the windows so that the locals can rest and reset their biological clocks. And in the middle of the night, the city is brightly lit for a "false day."`
+	spaceport `	The local work schedule has adapted to this unusual cycle, with the two true daytime periods serving the equivalent of the human work week, and the false daytime treated as a weekend, a time for socializing or working at home.`
+	"required reputation" 25
+
 planet Ada
 	attributes paradise mining
 	landscape land/canyon4
@@ -17263,6 +22403,13 @@ planet Ada
 	tribute 4200
 		threshold 8000
 		fleet "Large Republic" 16
+
+planet Ahr
+	attributes arach factory tourism shipping urban
+	landscape land/forest4
+	description `The homeworld of the Arach people, Ahr is a metropolitan world with nearly nine billion inhabitants, enough that they cannot all be fed by what this world produces. The government maintains a storehouse with a month's supply of food in each major metropolitan center, as well as a collection of bioreactors, built according to Kimek designs, that can produce a tasteless but nutritious paste as emergency rations in the unlikely event that shipments of food from off-world are somehow disrupted for a prolonged period of time.`
+	spaceport `A constant line of cargo barges and trucks streams through this spaceport city, collecting goods to be distributed to the outlying suburbs and neighboring cities. Inside the main terminal, members of all three Coalition species mix freely, but the Heliarch agents and interpreters here are all Arach.`
+	spaceport `	Carts carrying passengers and cargo whiz past at frightening speeds, expertly navigating to dodge the pedestrians.`
 
 planet Albatross
 	attributes pirate
@@ -17396,11 +22543,31 @@ planet Asgard
 		threshold 7000
 		fleet "Large Deep" 39
 
+planet "Ashy Reach"
+	attributes kimek shipping
+	landscape land/canyon2
+	description `The thin, unbreathable atmosphere and low gravity mean that Ashy Reach will never become popular as a residential world, but it serves a useful role as a hub for shipping and commercial exchange. There is only one settlement here, built around the spaceport, and consisting mostly of pressurized underground caverns. Outside the settlement, the planet's surface is drab and almost lifeless.`
+	spaceport `Only a handful of towers, most of them windowless, protrude above the planet's surface at the center of the spaceport settlement. The hangars and warehouses are all underground. The surface is visible through a few thick acrylic polymer windows on the lower levels of the towers. Lit by the glow of the gas giant that this moon orbits, the towers form a surreal landscape, like a city abandoned and only halfway formed.`
+	"required reputation" 15
+
 planet Avalon
 	landscape land/sea9
 	description `This is a pristine and perfectly habitable world, with warm oceans and a temperate climate. The land is dominated by large reptiles similar to the dinosaurs that roamed the continents of ancient Earth. Some of the land reptiles are over twenty meters in length, and the sea holds monsters more than twice that size.`
 	description `	Deep in the jungles near the equator, small mammals are working hard to avoid being eaten by the great lizards, and to survive for long enough that they will be able to evolve into the dominant life form.`
 	security 0
+
+planet "Bank of Blugtad"
+	attributes arach wealthy urban
+	landscape land/valley8
+	description `This idyllic planet is home to almost as many Arachi as their homeworld in the neighboring system. It is also home to House Plumtab, the Arach guild in charge of banks and finance. Because pretty much every other sector of the Arach economy depends on loans from House Plumtab and trades stock on their equity exchanges, this House is quite influential throughout Arach space.`
+	spaceport `The central concourse of the spaceport is reminiscent of a major stock exchange on a human world, with video screens everywhere displaying constantly fluctuating line graphs and lists of numbers and symbols. The only difference is that the graphs run top to bottom, rather than left to right.`
+	spaceport `	Every once in a while, one of the Arachi will cause a minor pedestrian traffic jam by abruptly stopping to look at one of the displays.`
+
+planet "Belug's Plunge"
+	attributes arach mining research
+	landscape land/mountain6
+	description `Although it is in Arach territory, Belug's Plunge is a cold enough planet that most of the native population is Saryds rather than Arachi. Most of the industry here focuses on mining metals and exotic elements to be used in building new extensions to the Rings. There is also a Saryd materials research lab trying to learn how to duplicate the advanced composites used by the Quarg.`
+	spaceport `The central spaceport terminal is a large chamber with a hushed atmosphere reminiscent of a library's reading room. In small nooks along the periphery, small groups are engaged in quiet conversation. Most cargo is carried by robotic carts, wheeling around on a floor so smooth that the only time they make noise is when they politely speak up to warn people to get out of their way.`
 
 planet "Big Sky"
 	attributes "dirt belt" farming
@@ -17444,6 +22611,26 @@ planet Bloodsea
 		threshold 1500
 		fleet "Small Southern Pirates" 12
 
+planet "Bloptab's Furnace"
+	attributes arach mining
+	landscape land/badlands7
+	description `The surface of Bloptab's Furnace is rich in mineral deposits but too hot for any but the hardiest plants and insects to survive. The locals live deep underground in caverns carved out by the same automated mining machines that are used for collecting ore on the surface. When maintenance is needed for the surface robots, crews of engineers will wait until nightfall and then emerge from underground and do their best to complete the repairs before sunrise.`
+	spaceport `This is not a planet that any sane tourist would visit. The artificial underground dwelling places are so alike and so monotonous that it's no different than being on a space station, except without the stunning views that a station affords.`
+	spaceport `	Nearly everyone you see here is an Arach, and they are walking around with an air of purpose that suggests that they are locals hard at work, rather than visitors to this planet.`
+	"required reputation" 15
+
+planet "Blubipad's Workshop"
+	attributes arach factory tourism urban
+	landscape land/forest2
+	description `Dozens of small cities dot the valleys and hilltops of this warm and pleasant forest world. Due to a high tech manufacturing industry, there is plenty of work here for all the inhabitants, who hail from planets throughout Coalition space. With broad streets, ample parks, and gleaming skyscrapers, the cities bear witness to the very best of what Coalition society can accomplish when the three species work together.`
+	spaceport `The spaceport here has become a popular destination for tourists interested in exotic foods. The blend of smells drifting from the many restaurants, cafes, and open-air markets is almost overwhelming, and not always pleasant to your human senses; the Kimek, in particular, appear to consider food that has already been partly broken down by decomposition to be a delicacy.`
+
+planet "Blue Interior"
+	attributes kimek tourism urban
+	landscape land/water0
+	description `Blue Interior is a strikingly beautiful earthlike world, covered mostly in oceans but with regions of rainforest, desert, mountains, and frozen tundra. Billions of Kimek live here, and there are also large Saryd and Arach populations in the cities whose climates are most agreeable to them. The Coalition often presents this world as a model of how their three species can benefit from sharing space with each other.`
+	spaceport `This is a truly cosmopolitan spaceport, with members of all three Coalition species mixing freely, conversing and doing business with each other. There are also a large number of Heliarch interpreters and mediators mingling with the crowds, helping those interactions to go as smoothly as possible.`
+
 planet Bluestone
 	attributes core oil research frontier
 	landscape land/mountain2
@@ -17481,6 +22668,18 @@ planet Bourne
 	tribute 2200
 		threshold 4500
 		fleet "Large Militia" 32
+
+planet "Brass Second"
+	attributes kimek farming shipping urban
+	landscape land/sky9
+	description `This is a farming world. In the century prior to their discovery of space flight, billions of Kimek starved in a series of increasingly severe global famines. Fourteen thousand years later, their culture is still haunted by fear of not having enough food, and in response they have developed enough farms in their region of space to feed a population three times their size. Much of the food that they produce each year is either put into storage or simply recycled back into fertilizer for next year's crop.`
+	spaceport `The farms on Brass Second operate on a colossal scale. The spaceport is not the sort of rustic farmers' market typical of other farming worlds; it is a major commercial enterprise, complete with cargo-loading robots, climate-controlled warehouses, and a supply chain management system that ensures that fresh produce works its way to the head of the shipping queue in time for it to reach its destination unspoiled.`
+
+planet "Bright Echo"
+	attributes saryd tourism urban
+	landscape land/dmottl1
+	description `This is the first world that the Saryds colonized outside of their own solar system. Although somewhat colder than their native planet, it developed into a thriving metropolitan world. The original settlers planned out in exacting detail how every part of the planet's land mass should be used, in order to satisfy their aesthetic ideal of blending residential areas with parks and farms. Large areas have also been set aside as undeveloped wilderness.`
+	spaceport `The spaceport is in what, by Saryd standards, is a major city, with scattered skyscrapers surrounded by forests and grassy park land along with smaller dwellings and occasional factories or power plants. The city is built on either side of one of this continent's largest rivers, a few kilometers downstream from a dam and hydroelectric plant. Here, the river cuts through a deep gorge, and the graceful bridges that cross the gorge are often shrouded in mist.`
 
 planet "Buccaneer Bay"
 	attributes pirate
@@ -17547,6 +22746,19 @@ planet "Carbuncle Station"
 		threshold 5500
 		fleet "Large Republic" 10
 
+planet "Ceaseless Toil"
+	attributes saryd factory
+	landscape land/canyon5
+	description `The Saryds prefer to build their largest factories on sun-drenched, uninhabitable worlds, in order to allow more hospitable planets to be used for residences and recreation. Where possible, their factories harness solar power: either using mirrors to concentrate sunlight for solar foundries, or collecting energy through large fields of solar panels. The factories are almost entirely maintained by robots, which are capable not only of repairing damage but also of constructing entire new factories according to predefined plans.`
+	description `	The solar collectors are mounted on frames about ten meters above the shifting sand dunes. In addition to turning to face the sun, they can be turned upside-down as necessary to dump off and sand that accumulates on them.`
+	"required reputation" 15
+
+planet "Celestial Third"
+	attributes kimek farming factory urban
+	landscape land/fields4
+	description `Celestial Third is the breadbasket of Kimek space. Most of its land mass is used for farming, augmented by seaweed farms and fisheries in the oceans and factories near the equator producing yeast and bacterial cultures as nutritional supplements. The first settlers came here more than thirteen thousand years ago, at a time when their home world had run out of arable land for farming and food was desperately needed.`
+	spaceport `The constant stream of freighters passing through this spaceport is a testament to how much food is needed to feed the densely populated Kimek worlds, in particular their homeworld in the neighboring star system. The city that hosts the spaceport has also become something of a tourist destination for those with adventurous culinary tastes; restaurants here serve recipes native to each of the Coalition species, along with some dishes that blend their three cuisines in unique and sometimes surprising ways.`
+
 planet "Charon Station"
 	attributes south station
 	landscape land/station3
@@ -17591,6 +22803,14 @@ planet Chiron
 		threshold 7500
 		fleet "Large Republic" 17
 
+planet "Chosen Nexus"
+	attributes saryd shipping urban
+	landscape land/canyon3
+	description `The Saryds established a trading colony here in the early days of their era of space exploration, when they first made contact with the Quarg. When the Quarg gave them the gift of a small number of jump drives, in order to build relationships with the neighboring species, Chosen Nexus grew into a far larger and more important trading hub.`
+	description `	It has now been many millennia since the Quarg were driven out and free travel began between the members of the Coalition, and Chosen Nexus now has nearly as many Arach and Kimek inhabitants as native Saryds.`
+	spaceport `This is a truly cosmopolitan spaceport, a city where the distinctive architectures of the Coalition's species are blended together and where the food or lodgings unique to each of them can easily be found. Cargo drones hover over the landing pads, constantly loading and unloading the merchant ships that are parked here as their captains arrange to buy or sell cargo.`
+	spaceport `	Mingling among the crowds, Heliarch representatives wearing golden bands as a mark of their authority serve both as translators and as peacekeepers.`
+
 planet Clark
 	attributes "dirt belt" forest factory
 	landscape land/valley3
@@ -17622,6 +22842,20 @@ planet Cloudfire
 	shipyard "Hai Basics"
 	outfitter "Hai Intermediate"
 
+planet "Cold Horizon"
+	attributes saryd tourism
+	landscape land/snow1
+	description `In the early mornings on Cold Horizon, the trees are often coated in a thin layer of glittering frost that burns away a few hours after sunrise. In the short summer season, flocks of migratory birds arrive in the forest, bringing a cacophony of music and a riot of color to the otherwise serene woodlands.`
+	description `	Half a billion Saryds live here, drawn not so much by the planet's resources, which are scarce, as by its natural beauty.`
+	spaceport `The spaceport on Cold Horizon is only a tiny village; most of the natives prefer to stay as far as possible from the bustle and confusion of interstellar life. The spaceport is also a railway hub, with trains departing from here to bring tourists to and from the larger population centers in the forest, on the shore, and far up in the mountains.`
+	"required reputation" 15
+
+planet "Cool Forest"
+	attributes saryd shipping urban
+	landscape land/myrabella0
+	description `Much of Cool Forest's land mass is covered by the sort of temperate woodlands that the Saryds prefer to build their residential neighborhoods in. The total population is over a billion, but living in small settlements so well integrated with the surrounding forest that from space only a few major cities are visible.`
+	spaceport `The spaceport here is a major city, with a continuous stream of cargo transports bringing goods manufactured on Cool Forest's sister planet, Diligent Hand. Here, some final assembly, testing, and repackaging is performed before those goods are shipped out to the rest of Saryd space and beyond.`
+
 planet Cornucopia
 	attributes south farming research frontier
 	landscape land/fields0
@@ -17633,6 +22867,13 @@ planet Cornucopia
 	tribute 800
 		threshold 4000
 		fleet "Large Militia" 12
+
+planet "Corral of Meblumem"
+	attributes arach mining farming
+	landscape land/fields8
+	description `The Corral of Meblumem is home to two major industries: uranium mining, and longcow ranching. The long lifetime of the longcows means that their bodies can easily accumulate dangerous loads of heavy metals if exposed to them, so the two industries are kept separated by conservation zones dozens of kilometers wide. The dark strips of primal forests separating the red-brown pit mines from the tan and light green of the pastures makes the land look like a stained-glass patchwork from above.`
+	spaceport `The spaceport is a small facility, a five-story tower and some warehouses surrounded by landing pads, with tall fences around them to make sure that a herd of longcows does not accidentally wander in. Outside the fences, longcows mill about like hundred-ton centipedes, and visiting spacecraft are strictly required to approach using repulsors only rather than their main thrusters to avoid spooking the cattle.`
+	"required reputation" 15
 
 planet Covert
 	attributes pirate mining
@@ -17734,6 +22975,22 @@ planet Deep
 		threshold 3000
 		fleet "Small Militia" 37
 
+planet "Deep Treasure"
+	attributes saryd oil farming
+	landscape land/sea10-sfiera
+	description `Thick layers of kelp and plankton sediment have gathered on the floors of Deep Treasure's oceans over the eons, leaving behind rich deposits of oil that the Saryds harvest to make plastics and other hydrocarbon products. In the shallower seas, shoals of fish swim among some of the most varied and extensive coral reefs found anywhere in Coalition space.`
+	spaceport `The spaceport is built in a ring along the lower slopes of an extinct volcano that rises from the ocean near Deep Treasure's equator. Landing pads and hangars have been cut into the rock, and below them are a system of docks and oil refineries. The residences are on the volcanoes upper slopes, where they have a clear view of the glittering water stretching out in every direction.`
+	"required reputation" 15
+
+planet "Deep Water"
+	attributes saryd research
+	landscape land/fog3
+	description `The upper layers of Deep Water's mantle are unusually hot, resulting in continuous volcanic eruptions that shroud its skies in ash and particulate matter. Aside from one small continent most of the surface is ocean, but the volcanoes have formed hundreds of separate island chains and archipelagos, each of which is home to unique plant and animal species.`
+	description `	To preserve the planet's rich biodiversity, the Saryds do not allow permanent settlements to be built on the islands, but village-sized research stations have been built that can be anchored near an island while scientists work there.`
+	spaceport `The entire spaceport on Deep Water is an artificial island, an mesh of floating platforms the size of city blocks connected to each other by flexible bridges, leaving a system of canals in between them. The platforms are large enough that even the weight of a bulk freighter landing only causes them to ride a meter or two lower in the water.`
+	spaceport `	The spaceport is moored in place to keep it from drifting on the ocean currents and colliding with the natural islands that dot the planet's surface.`
+	"required reputation" 15
+
 planet Delve
 	attributes core mining
 	landscape land/snow1
@@ -17749,6 +23006,13 @@ planet Delve
 		threshold 4500
 		fleet "Large Syndicate" 9
 
+planet "Delve of Bloptab"
+	attributes arach mining
+	landscape land/hills1
+	description `This is a mining world, hotter than even the Arach would prefer but still much more habitable than its sister world of Blobtab's Furnace. It is home to House Ablomab, the guild of mining and metalworking, and the dry climate makes it possible to store stockpiles of iron, steel, and other metals here without worrying about rust. Supposedly the warehouses here contain enough raw materials to double the size of the Heliarch war fleet if needed; the Arach like to be able to trust that they are prepared for any eventuality.`
+	spaceport `This is one of the few Coalition worlds where the Heliarch agents openly carry weapons, due to the feat that the Resistance might see the storehouses here of base and precious metals as a tempting target. Although there are plenty of civilians of all three species milling about, the spaceport has something of the atmosphere of a military base.`
+	"required reputation" 25
+
 planet "Desi Seledrak"
 	attributes korath
 	landscape land/hills3
@@ -17763,6 +23027,21 @@ planet "Devru Kaska"
 	"required reputation" 1
 	bribe 0
 	security 0
+
+planet "Diligent Hand"
+	attributes saryd factory
+	landscape land/badlands5
+	description `On this factory world, robotic workers operate the factories, repair themselves, and keep the solar power stations free of sand with very little direction or assistance from their Saryd creators. Each factory complex has its own landing pads for the freighters that drop off raw materials and receive the processed goods.`
+	"required reputation" 15
+
+planet "Double Haze"
+	attributes kimek farming factory urban
+	landscape land/fields2
+	description `The haze that perpetually blankets this world is actually an organic soup rich in nutrients and airborne bacteria, and the rain that falls here forms a sort of natural fertilizer. The entire planet's surface, including every quiet nook or alleyway in the cities, is covered in moss, grass, shrubs, or other green and growing things.`
+	description `	Billions of Kimek live here, working either in the farms or in the mines and factories that operate in the hill country where harvesting crops would be more difficult.`
+	spaceport `This is a bustling commercial spaceport, with trucks carrying cargo crates to and from the landing pads and merchants haggling over prices. Everyone is moving around with purpose; not many people come to this particular planet for sightseeing.`
+	spaceport `	The air here smells sour and salty, and seems to leave a thin, slimy residue on your tongue. Presumably if you lived here you would get used to it after a while, but it is a bit unnerving.`
+	"required reputation" 15
 
 planet "Drekag Firask"
 	attributes korath
@@ -17786,11 +23065,25 @@ planet Dune
 		threshold 3000
 		fleet "Small Militia" 23
 
+planet "Dusk Companion"
+	attributes kimek oil
+	landscape land/mountain9
+	description `Dusk Companion's moon is so large and orbits so close to the planet that the tidal forces even affect the planet's plate tectonics. The skies here are frequently blanketed in a volcanic haze. This world is rich in oil deposits, a relic of a past when more life flourished here, but drilling for oil is costly because the shifting ground can damage drills or seal up previously productive bore-holes.`
+	spaceport `The spaceport is in a particularly dingy corner of Dusk Companion's largest city. The windows are caked with soot and grime, and the few plants that grow here have a thin layer of volcanic ash on their leaves. The thick clouds overhead cloak the city in a perpetual twilight, and the streetlights remain lit even at midday.`
+	"required reputation" 15
+
 planet Dustmaker
 	attributes hai
 	landscape land/badlands0
 	description `The surface of this planet, when it is not obscured by dust storms, receives enough sunlight to power not only large solar farms, but solar furnaces as well, which the Hai use for manufacturing a large variety of goods. Some of the solar farms are so large that from orbit, the light reflecting off them could almost be mistaken for lakes and small oceans. However, there is almost no water on the planet's surface except near the poles.`
 	spaceport `Like most Hai architecture, the spaceport is made of bare, unpainted metal, so weathered that you would not be surprised to learn that it is tens of thousands of years old. Tall, curved walls around the outskirts of the port create a sort of labyrinth with the port building itself at the center; they are probably intended to block sandstorms while allowing gentler breezes to pass through.`
+
+planet "Dwelling of Speloog"
+	attributes arach shipping urban
+	landscape land/fog4
+	description `With a wide band of tropical rainforests around its equator, this planet's climate is ideal for the Arach. Several billion of them live here, and many of the workers assisting with the expansion of the Heliarch ringworlds come from this planet.`
+	spaceport `The air in the spaceport facility is uncomfortably damp, and you imagine that you can see a thin sheen of moss or algae on nearly every surface here that receives any sunlight. Except for the largest cargo bays, all the rooms smell faintly of mildew.`
+	spaceport `	One entire wing of the spaceport is dedicated to the Heliarch recruitment office for construction workers, and the waiting room is packed; many Coalition citizens are excited at the chance to help build something that will last thousands of years.`
 
 planet Earth
 	attributes "near earth" urban tourism
@@ -17854,10 +23147,30 @@ planet "Esperaktu Station"
 	description `	For food, the Korath set up vats of photosynthetic yeast and bacteria in some rooms on the outer shell of the station. In their absence, the bacterial soup has worked its way through the ventilation system into the rest of the station and formed a thin layer of slime on almost every sun-facing wall.`
 	security 0
 
+planet "Factory of Eblumab"
+	attributes arach factory mining
+	landscape land/badlands4
+	description `The tiny sun that the Factory of Eblumab orbits is too small to provide much power, so the manufacturing plants here are mostly powered by nuclear reactors running on radioisotopes that are mined and refined locally. It is a hot, dry, and mostly barren world, and most of the workers here are young and single, hoping to build up enough wealth to move somewhere more pleasant.`
+	spaceport `The spaceport village is under an artificial climate-controlled dome, and consists largely of pedestrian thoroughfares winding past fancy shops and restaurants. On torch-lit patios, young Arach couples sit gazing soulfully into each other's multiple eyes. This is where they come on their time off from the factories to dream of the day when they will hop aboard one of the ships parked here and start a more stable life elsewhere.`
+	"required reputation" 15
+
+planet "Far Garden"
+	attributes saryd farming tourism urban
+	landscape land/mountain15-sfiera
+	description `Saryd culture places high value on connection to the natural world and to settings suitable for silent reflection. This is one of their most populous worlds, but even in the cities more land is set aside for parks and wild spaces than for buildings.`
+	description `	Farther out from the city, the Saryds live in communal buildings that each house up to a dozen families, surrounded by gardens and cultivated forests. Unlike on many human worlds, here the most remote real estate locations are often the most valuable.`
+	spaceport `This spaceport is, in some ways, quite similar to the ports on human agricultural worlds, with large warehouses and open-air markets and heavy trucks bringing in piles of produce from the farms to be shipped offworld. The fact that it is inhabited by utterly alien creatures, each with six or eight limbs, makes the sight somewhat surreal.`
+
+planet "Far Home"
+	attributes saryd tourism urban
+	landscape land/valley5
+	description `The weather on Far Home is a nearly perfect blend of what is most comfortable for each of the three member species of the Coalition. The mountains and boreal forests have been settled by the Saryds, the grasslands and savanna by the Kimek, and the rainforests by the Arachi, even though this is technically part of Saryd territory.`
+	spaceport `The spaceport is a large city on the edge of a temperate forest. The city's layout, with green space and parks woven throughout it, is clearly a Saryd design, but the architecture borrows equally from all three cultures. As with the other ports where interspecies interactions are frequent, hundreds of Heliarch representatives wander around to mediate conversations and prevent misunderstandings.`
+
 planet "Far'en Lai"
 	landscape land/dune3
-	government Uninhabited
 	description `When the Korath were banished to the Core, they were left with only one living world, a planet they call "Far'en Lai," meaning, "the last candle-flame." Afraid that this planet's biosphere will turn to dust in their hands like all the other worlds they once controlled, the Korath have left Far'en Lai entirely unsettled and unexploited. It is rumored that the terms of their exile dictate that if Far'en Lai withers and dies, the remaining Korath exiles will be exterminated, but that if they can learn to make the planet flourish, their place in the galaxy will be restored.`
+	government Uninhabited
 
 planet "Fara Skaeruti"
 	attributes korath station
@@ -17954,6 +23267,15 @@ planet Flood
 		threshold 3000
 		fleet "Large Militia" 11
 
+planet "Flowing Fields"
+	attributes saryd farming
+	landscape land/dune0
+	description `During the rainy season, the plants on Flowing Fields grow so rapidly that the grass can tower more than three meters tall. Although they look verdant and serene when viewed from a distance, the grasslands are also home to many dangerous predators, including hundreds of species of snakes and ferocious packs of carnivorous rodents that can bring down animals many times their size. During the dry season, the rodent packs build domed hutches out of woven grass and mud where they shelter from the sun and the dusty wind.`
+	description `	Most of the Saryd dwellings are in the temperate forests, but they have converted almost a tenth of the grasslands into farms.`
+	spaceport `Nearly everything within a hundred kilometers of the spaceport is farmland, punctuated with occasional small villages where the farm workers live. The villages and the spaceport itself are each surrounded by walls that keep dangerous animals at bay, as well as shielding the inhabitants from the flash floods that come at the very start of the rainy season.`
+	spaceport `	The farms operate by embedding seeds in the dirt during the dry season, when the ground is hard baked clay and heavy machines can drive over it without sinking in. When the rains come, the clay turns to mud and the crops begin to sprout.`
+	"required reputation" 15
+
 planet Follower
 	attributes paradise factory
 	landscape land/city10
@@ -17998,6 +23320,12 @@ planet Foundry
 	tribute 2900
 		threshold 5500
 		fleet "Large Syndicate" 18
+
+planet "Fourth Shadow"
+	attributes kimek factory urban
+	landscape land/mountain13-sfiera
+	description `In all of Coalition space, this is the one planet that comes closest to deserving being called a slum world. More than ten billion Kimek live here, mostly in densely packed and run-down apartment buildings on the outskirts of the cities. Unlike more prosperous Coalition worlds, the city centers here are reserved for factories rather than for parks or government buildings or civic centers.`
+	spaceport `The spaceport is crowded with travelers, about equally divided between those who are freshly arriving, drawn by the promise of plentiful work and a cheap cost of living, and those who are preparing to leave and attempt to build a better life somewhere else. most Kimek choose to specialize as workers rather than raising families, so the vast majority of the travelers are alone or traveling only with a loosely knit group of friends.`
 
 planet Freedom
 	attributes pirate farming
@@ -18073,6 +23401,13 @@ planet Gemstone
 		threshold 2500
 		fleet "Large Militia" 8
 
+planet "Gentle Rain"
+	attributes saryd tourism
+	landscape land/forest5
+	description `The rainforests on Gentle Rain are home to spiders so large that their webs are strung from one tree to another, and their typical prey is birds rather than insects. Another, equally large species of spider is able to leap four or five meters into the air in order to snatch a bird out of a passing flock. The rainforest trees grow so thick that except for occasional clearings, very little light actually filters through the leaves and reaches the ground, and during the rainy season the dirt is transformed into pools of stagnant mud.`
+	spaceport `The spaceport is shaped like a giant tree: raised landing platforms branching out from a central hub where several towers provide lodging for visitors. In every corner of the platforms where the foot traffic is not enough to keep them clear, moss and vines have begun to take over.`
+	spaceport `	Judging from the number of Arach visitors here in addition to the Saryd natives, this must be a popular tourist destination.`
+
 planet Geyser
 	attributes "near earth" oil factory
 	landscape land/bwerner8
@@ -18112,6 +23447,14 @@ planet Glaze
 	tribute 1700
 		threshold 3500
 		fleet "Large Militia" 25
+
+planet "Glittering Ice"
+	attributes saryd
+	landscape land/snow7
+	description `The climate on Glittering Ice is so cold for most of the year that the creatures here have evolved thick layers of feathers, fur, or fat to keep themselves warm. As a result nearly all of them, from the smallest rodents to the largest predators, are practically spherical, appearing as shapeless blobs; for many of them it is hard for a casual observer to even figure out which side of them is their head.`
+	description `	Colonies of one particularly clever species of large rodents that live near the equator are capable of using ice and snow to build interconnected, multi-layered warrens.`
+	spaceport `The spaceport here is almost deserted, and most of the Saryds who are walking around in the frigid air seem completely uninterested in talking to strangers. Saryd culture places a high value on experiences of solitude and isolation, and the cold and stark landscape of Glittering Ice provides them with the perfect setting for quiet retreats. Not surprisingly, the other species of the Coalition seldom find reason to visit here.`
+	"required reputation" 15
 
 planet Glory
 	attributes paradise medical
@@ -18183,6 +23526,13 @@ planet Hai-home
 	shipyard "Hai Advanced"
 	outfitter "Hai Advanced"
 	"required reputation" 10
+
+planet "Hammer of Debrugt"
+	attributes arach mining shipping urban
+	landscape land/myrabella5
+	description `House Chamgar claims that their advances in aerospace and weapon technology were instrumental in driving the Quarg out of Coalition space about six millennia ago. Given how much more advanced the Saryds and Kimek were at the time, their claims are likely an exaggeration. But, there is no doubt that in the present day the home of House Chamgar has developed into an industrial world as productive as any in Coalition space, partly because this world is rich enough in natural resources that there is little need to import raw materials from elsewhere.`
+	spaceport `The spaceport is a multi-tiered, gravity-defying structure reaching hundreds of meters above the ground, with steel and glass arches, cantilevered platforms, and luxury-class docking bays on its upper levels. On the ground level surrounding the facility are landing pads for heavy cargo ships, along with the associated warehouses and repair shops.`
+	"required reputation" 25
 
 planet Harmony
 	attributes south farming religious frontier
@@ -18401,6 +23751,20 @@ planet Ingot
 		threshold 1500
 		fleet "Small Militia" 15
 
+planet "Inmost Blue"
+	attributes kimek farming urban
+	landscape land/water4
+	description `Inmost Blue is an ocean world, one of the first planets that the Kimek settled outside their own solar system. About two billion Kimek live on the low-lying islands and the one major continent, and the shallow ocean regions have been entirely converted into kelp farms. The Kimek take a utilitarian approach to food, and processed seaweed is a nutritious but highly unappetizing staple of their diet.`
+	spaceport `The spaceport city is built on the mountain slopes overlooking a fjord, whose water is deep enough for even the largest of cargo barges to enter. Many of the barges have landing pads on their decks so that the cargo can be transferred directly to freighter starships without needing to be stored on land first. The chief export is a grey-green meal made from dried and ground up seaweed.`
+
+planet "Into White"
+	attributes kimek
+	landscape land/snow10
+	description `Formerly a fruitful farming world, this planet is now in the grips of an approaching ice age. The Kimek have chosen to wait it out rather than risking destabilizing the planet's ecosystems by trying to correct the temperature change, and the population has dwindled to less than a billion, mostly living near the equator where the climate is still somewhat temperate.`
+	spaceport `The spaceport city was once the largest on the planet, but now more than half of it is uninhabited, buried in snowdrifts. Within the next century, the Kimek will probably need to build a new spaceport closer to the equator, unless they choose to abandon this world altogether.`
+	spaceport `	The Kimek who live here are dressed in puffy winter coats that entirely cover their bodies and heads; only their spindly legs protrude out.`
+	"required reputation" 15
+
 planet "Karek Fornati"
 	attributes korath
 	landscape land/badlands4
@@ -18428,6 +23792,12 @@ planet "Kessel Sepret"
 	landscape land/station1
 	description `In this factory station, raw metal harvested in the other Korath systems is shaped into ships and weapons, the war materiel for their raids on Human space. Sections of the ships are assembled and tested in pressurized hangars, but the Korath Raider is a large enough ship that the final assembly must be done in space, outside the station.`
 	spaceport `This station is run with military discipline reminiscent of a human Navy base. All the Korath, even the construction workers, are in full uniform with some sort of rank insignia: epaulettes that vary both in shape and color. The largest ones appear to mark the officers in charge.`
+
+planet "Ki Patek Ka"
+	attributes kimek farming tourism urban
+	landscape land/fields1
+	description `This is the Kimek home world. Before they developed spaceflight, billions of Kimek died either from famine or from civil wars brought on by overpopulation. Today, every major city still has "hunger towers": kilometer-high skyscrapers where yeast and bacterial cultures are grown in massive vats in order to provide a bland but stable source of emergency rations if the crops and the food shipments from off-world should ever fail.`
+	spaceport `Nearly all the land mass on Ki Patek Ka is covered in cities; the only undeveloped land is the high mountain peaks and the ice caps near the poles. The spaceport alone is larger than most human cities, stretching from horizon to horizon, with a ship taking off or landing every few seconds. The sheer number of people here - mostly Kimek, but a fair number of Saryds and Arachi as well - is overwhelming.`
 
 planet "Korati Efreti"
 	attributes station
@@ -18631,6 +24001,12 @@ planet Mani
 		threshold 3000
 		fleet "Small Deep" 11
 
+planet "Market of Gupta"
+	attributes arach shipping
+	landscape land/valley9
+	description `This mountain world is the home base of House Mallob, the powerful Arach guild in charge of commerce and shipping. All the Arach starships that are currently in use were designed here, and many of them are manufactured here as well. The motto of House Mallob's shipyards is "strong as the mountains, spacious as the skies," referring to their focus on durable hulls and high cargo capacity.`
+	spaceport `This spaceport serves as the primary repair and service center for the Arach merchant marine. At any given time hundreds of ships may be in dry-dock here to have new equipment installed or their engines or internal systems tuned for better efficiency. Meanwhile, thousands of analysts and software experts work to plan out delivery routes, schedules, and supply chains for the merchant fleets to ensure that goods are always delivered where they will be most needed, and will earn the best profit. House Mallob's finances and organizational structure are legendary for their complexity.`
+
 planet Mars
 	attributes "near earth" tourism farming
 	landscape land/desert0
@@ -18651,6 +24027,12 @@ planet Martini
 	tribute 5600
 		threshold 8500
 		fleet "Large Republic" 22
+
+planet "Mebla's Portion"
+	attributes arach urban
+	landscape land/fog5
+	description `A stormy world with unpredictable and rapidly changing weather, Mebla's Portion is nonetheless home to several billion Arachi and millions of members of the other Coalition species, in part because rent is cheaper here than on worlds with more idyllic weather. Many of the residents are artists or work in other creative fields that allow them to work from home on days when the weather is too violent for them to venture outside.`
+	spaceport `The spaceport is a sprawling complex of hangars and warehouses connected by covered walkways and underground tunnels. Because it has grown larger and larger over the millennia as this world's population increased, the spaceport's current layout is maze-like and seemingly random. Colored stripes painted on the floors mark the pathways between the major sections of the complex, and many local children earn a living just by wandering around offering to give directions to visitors who seem to be lost.`
 
 planet Memory
 	attributes deep research factory medical
@@ -18694,6 +24076,13 @@ planet "Mereti Station"
 	bribe 0
 	security 0
 
+planet "Miblulub's Plenty"
+	attributes arach farming
+	landscape land/fields7
+	description `Miblulub's Plenty was the first colony created by the Arachi outside of their home system, founded at a time when their home world could not produce enough food to reliably feed its entire population. This planet has long seasons and plentiful rainfall that make its temperate zones ideal for farming, while the grasslands near the tropics are mostly used for longcow ranching. Longcows are a distinctive and ill-behaved species of multi-legged cattle; their meat is a key part of the Arach diet.`
+	spaceport `Although most of this planet is rural agricultural land, the spaceport is on the outskirts of a large and prosperous city. Ten thousand years ago, in the early days of Arach interstellar travel, this city was the home of the wealthy investors and business people who funded the farming settlements, and who moved here with their families to escape the pollution and conflict on their home world of Ahr.`
+	"required reputation" 15
+
 planet Midgard
 	attributes deep urban factory mining
 	landscape land/city5
@@ -18711,6 +24100,12 @@ planet Midgard
 	tribute 3000
 		threshold 6000
 		fleet "Large Deep" 30
+
+planet "Midway Emerald"
+	attributes kimek shipping urban wealthy
+	landscape land/forest3
+	description `Wealthy Kimek prefer to live as close as possible to the centers of power, and in Coalition space the center of power is the Heliarch ringworlds. The dwellings here are a bit more luxurious and less densely packed than on other Kimek worlds, and the total population is less than two billion. Outside the cities, this is a hot forest world, without much local industry or natural resources.`
+	spaceport `The relative opulence of this spaceport means that the walkways and doorways are big enough to be comfortable not only for the diminutive Kimek, but for the Arachi and even the Saryds as well, and the three species mingle here in roughly even numbers. The spaceport even has a few gardens and parks, as a concession to the Saryd need for quiet and beautiful spaces.`
 
 planet Millrace
 	attributes "near earth" factory urban
@@ -18775,6 +24170,18 @@ planet Mutiny
 	landscape land/sky9
 	description `Centuries ago, Mutiny was used as a sort of prison world for a powerful band of pirates, a place where rivals could be marooned or held for ransom, rather than killing them outright. It is a cold, dark planet, and food is scarce, but over time several villages developed in the more hospitable regions. No longer prisoners, the inhabitants who remain do so because they prefer a simple life beyond the reach of any government, on a planet that will never be stolen from them because it carries nothing of value.`
 	security 0
+
+planet Mystery
+	attributes saryd
+	landscape land/desert0
+	description `The Saryd culture's fascination with the movement of the stars and planets can perhaps be attributed to the fact that their homeworld is orbited by two moons, which cause a complex and seemingly unpredictable cycle of tides as well as a variety of subtle effects on the circadian rhythms of the creatures that evolved on Saros. Saryd homes on other worlds often have night lighting cycles designed to mimic the moons of their homeworld.`
+	"required reputation" 15
+
+planet "Nearby Jade"
+	attributes kimek farming urban
+	landscape land/fields6
+	description `Aside from fish, the Kimek diet is mostly vegetarian, but a few centuries ago an Arach entrepreneur decided to start ranching longcows here. It is an ideal world for ranching, with plenty of grassy fields. The ranches have begun a major industry, although generally only the wealthiest of Kimek are willing to spend money on longcow meat.`
+	spaceport `The spaceport is at the very center of a city that is laid out with perfect radial symmetry: six sectors, each with their own markets, schools, and other public services, and clusters of skyscrapers that can each house a million individuals. The spaceport itself is also symmetrical, with a concourse in the center and smaller and smaller landing pads radiating out from it so that the largest freighters have easiest access.`
 
 planet "New Argentina"
 	attributes "dirt belt" farming
@@ -18844,6 +24251,15 @@ planet "New China"
 		threshold 4000
 		fleet "Small Republic" 50
 
+planet "New Finding"
+	attributes saryd research
+	landscape land/canyon6
+	description `Due to complex atmospheric currents and swiftly changing seasons, the surface of New Finding is constantly scoured by powerful winds, making it difficult for soil to accumulated except in sheltered canyons and gorges. Each of these patches of greenery stands like an island amid a sea of bare rock. Over time, where the forests are able to take hold and grow, they spread outward and begin to turn more of the rock into habitable soil. On the exposed slopes, rock slides are a constant danger.`
+	description `	Due to the limited habitable land, the local economy focuses on high tech medicine and equipment that can be produced by relatively small laboratories.`
+	spaceport `The New Finding spaceport is in a canyon, with hangars cut into both the canyon walls and delicate covered bridges linking them together. Attempting to land here without crashing into anything is a harrowing experience.`
+	spaceport `	The bottom of the canyon is a bright green ribbon of trees and plants that stands out in sharp contrast against the red and yellow layers of sandstone.`
+	"required reputation" 15
+
 planet "New Greenland"
 	attributes "dirt belt" textiles
 	landscape land/snow7
@@ -18873,7 +24289,7 @@ planet "New Iceland"
 	attributes "dirt belt" oil mining volcanic
 	landscape land/valley0
 	description `New Iceland is a perpetually hazy volcanic world, with a slightly caustic atmosphere but enough reserves of metal and petrochemicals to draw a large number of settlers. Some of those settlers also make a living as farmers, and a few well-developed factory towns produce goods for export to other worlds.`
-	description `	Many of the inhabitants wear dust masks to avoid letting the particulate matter from the volcanos accumulate in their lungs.`
+	description `	Many of the inhabitants wear dust masks to avoid letting the particulate matter from the volcanoes accumulate in their lungs.`
 	spaceport `Almost as soon as you stepped off your ship, your eyes began to sting. You try to breathe as shallowly as possible.`
 	spaceport `	This port consists of a single large hangar, only big enough for two or three bulk freighters, plus some overflow landing pads and old rusted storage sheds outside. There is a small cafeteria, offering you a choice between two kinds of soup, some pre-made sandwiches, or the hot meal of the day.`
 	security 0.05
@@ -19099,6 +24515,13 @@ planet Placer
 		threshold 2000
 		fleet "Small Syndicate" 4
 
+planet "Plort's Water"
+	attributes arach research
+	landscape land/sea3
+	description `Plort's Water is an ocean world, with no landforms except for some scattered volcanic archipelagos. A few of the larger islands are home to small Arach settlements, and others live aboard "island-ships" that can each carry tens of thousands of individuals. There is very little industry here, but many of the locals are involved in biological experiments or in categorizing the millions of species that inhabit the oceans.`
+	spaceport `The spaceport is built on the slopes of a dormant volcano, and only has space for a few dozen ships to land at any one time. Too few visitors come here to support any shops or restaurants in the spaceport itself. In the village, the cheapest and most abundant food is a variety of soups, cakes, and puddings that all look and smell as if they are made from processed algae.`
+	"required reputation" 15
+
 planet Poisonwood
 	attributes south factory farming frontier
 	landscape land/bwerner6
@@ -19183,6 +24606,13 @@ planet Rand
 		threshold 3000
 		fleet "Large Militia" 8
 
+planet "Refuge of Belugt"
+	attributes arach tourism urban
+	landscape land/beach4
+	description `Billions of Arachi live on this warm ocean world. It is home to House Debdo, one of the largest of the great Arach houses, which is composed of those who are employed in various service industries. This is a popular tourist destination not just for the Arachi, but for the Kimek as well and even a few particularly adventuresome Saryds.`
+	spaceport `Many of the Kimek and Arachi tourists here are rather scantily clad, wearing what must be their equivalent of swimwear. Of the few Saryds who are mingling with them, most are clad from head to hoof in thin white robes that block the glaring sun. Apparently Saryds have a more conservative sense of modesty than the other Coalition species.`
+	spaceport `	Many of the shops and restaurants have signs on the doors that are oddly reminiscent of human beach towns: the signs explain pictorially that all patrons must be wearing pants.`
+
 planet "Rekat Moraski"
 	attributes korath station
 	landscape land/space4
@@ -19203,6 +24633,13 @@ planet Relic
 		threshold 3000
 		fleet "Small Republic" 25
 
+planet "Remote Blue"
+	attributes kimek urban
+	landscape land/water5
+	description `Most Kimek are proud to be members of the Coalition, but those who are either suspicious of the other species or simply want to be as far away from the Heliarch ringworlds as possible when the Quarg return with retribution, choose to live here. As a result, despite its remote location this world supports a population of over eight billion. Many of the cities have defensive gun emplacements on their outskirts, yet another sign of the local paranoia.`
+	spaceport `There are almost no non-Kimek in this spaceport, and as an alien visitor from beyond Coalition space you receive a considerable amount of scrutiny. Several of the local restaurants outright refuse to serve any species but the Kimek, claiming that their patrons would lose their appetites if forced to witness the disgusting eating habits of other species. (The Kimek generally eat their food by vomiting digestive fluid onto it, waiting for it to dissolve, and then slurping up the soupy mixture.)`
+	"required reputation" 15
+
 planet Reunion
 	attributes "near earth" urban factory
 	landscape land/mfield4
@@ -19219,6 +24656,36 @@ planet Reunion
 	tribute 2900
 		threshold 5000
 		fleet "Large Syndicate" 17
+
+planet Revelation
+	attributes saryd
+	landscape land/canyon0
+	description `The Saryds are the only known species who successfully visited another world when their technology was still in the age of steam. The scientist who first landed here was piloting a ramshackle rocket ship of dizzying complexity. Modern analysis of his plans indicates that his flight had less than a one in ten thousand chance of success. This has led to speculation that he was either secretly assisted by friendly aliens, or completely insane, or possibly both.`
+	"required reputation" 15
+
+planet "Ring of Friendship"
+	attributes heliarch
+	landscape land/station2
+	description `This is the crown jewel of the Heliarchs, a ringworld that was completed by the Quarg before the Coalition formed and drove them away. It now serves both as a center of finance and trade, and as the seat of the Heliarch government, which is made up of "elders" who have been selected by the other Heliarchs from among their number in such a way that all three species always have equal representation. The Heliarchs, in turn, are selected from among the best and brightest members of each species. Despite the occasional resistance to it, this meritocracy has survived ten times longer than any human democracy.`
+	spaceport `At any given time, thousands of young people are in training here to become "interpreters," the Heliarch agents who serve as translators and mediators on all the Coalition worlds. As they rise through the ranks, some of those agents will be honored by being elevated to the rank of Heliarch, gaining a voice in the selection of new elders and perhaps one day even being selected themselves.`
+	spaceport `	Heliarch rank is not hereditary, and the children of Heliarchs are given no special preferment for promotions or educational opportunities.`
+	"required reputation" 5
+
+planet "Ring of Power"
+	attributes heliarch
+	landscape land/station2
+	description `This ringworld is the center of operations for the Heliarch defense forces. Although they have not had to fight a major space battle in thousands of years, they still maintain a sizable fleet, believing that if they ever allow their vigilance to waver, the Quarg may return and try to reclaim what was once theirs.`
+	spaceport `The hallways of the spaceport echo with the footsteps of groups of marching defense force cadets. Each group contains a mixture of Saryds, Kimek, and Arachi, to help them learn allegiance to all the peoples of the Coalition instead of just identifying with their own species.`
+	spaceport `	The designer who invented the Heliarch uniforms, with a distinctive style that unifies them despite the wildly different body shapes of the three species, must have been an absolute genius.`
+	"required reputation" 25
+
+planet "Ring of Wisdom"
+	attributes heliarch
+	landscape land/station2
+	description `This Heliarch ringworld is their center for science, mostly trying to understand and reverse engineer Quarg technology rather than inventing new devices of their own. But after thousands of years of controlling these ringworlds, it seems that their inner workings are still something of a mystery to the Heliarchs.`
+	description `	"Construction" work is always ongoing here, but rather than extending the backbone of the ring itself, which uses exotic materials that they cannot replicate, the Heliarchs are just adding sheets of solar panels and other extensions to the sides of the ring.`
+	spaceport `Most of this ringworld is off-limits to everyone but the Heliarch scientists, not just for the sake of secrecy but also for safety. When the Heliarchs first began exploring the machinery of this ringworld, hundreds of them died in explosions, gas leaks, and power discharges after trying to cut their way into inaccessible areas. More recently, an entire team of scientists vanished from one of the main hangars without a trace and without any sign of resistance.`
+	"required reputation" 25
 
 planet Rust
 	attributes rim farming factory
@@ -19239,6 +24706,13 @@ planet Rust
 		threshold 5000
 		fleet "Large Militia" 18
 
+planet "Rusty Second"
+	attributes kimek shipping urban wealthy
+	landscape land/badlands0
+	description `The combination of a dry, temperate climate and its prestigious location near the Heliarch ringworlds make Rusty Second a highly desirable home for wealthy Kimek. Nothing is cheap here, and there is very little local industry aside from the banks, shipping conglomerations, and other corporations whose senior management offices are located here.`
+	spaceport `Although this is a Kimek world, the spaceport and the surrounding city more closely resembles Saryd architecture. This port was developed in the days when the Kimek had first made contact with the other species of the Coalition, and were still in awe of the technological sophistication of the Saryds.`
+	spaceport `	The original architecture also borrowed heavily from the Quarg, but anything reminiscent of them was stripped away after the Coalition's rebellion succeeded.`
+
 planet "Sabira Eseskrai"
 	attributes korath
 	landscape land/bwerner3
@@ -19252,6 +24726,12 @@ planet "Safaresk Enlai"
 	description `It is unclear what the primary purpose of this station is. The station contains numerous greenhouses where a wide variety of plants, and even some small animals, are kept. Other parts of the station are closed off to non-Korath visitors.`
 	spaceport `This spaceport is relatively unpopulated for a station of this size, and the few Korath who are here are wandering about with the sort of deeply absorbed attitude you would expect from a scientist or an academic.`
 	spaceport `	In one corner of the spaceport is a cage housing several large rodents and some small shrubs, lit by a warm sun-lamp. The rodents are quite acrobatic.`
+
+planet "Sandy Two"
+	attributes kimek factory farming urban
+	landscape land/badlands1
+	description `This world is relatively hot and dry by human standards, but nearly ideal for the Kimek, and more than fifteen billion of them live here in cities where the skyscrapers are so densely packed that many of the streets never receive direct sunlight. The residential areas tend to be spread out along the banks of rivers, so the cities are linear, with factories and other industry on their fringes. Access to limitless skilled labor makes it cheap to manufacture almost anything here.`
+	spaceport `The spaceport facility is on an island in the center of a river, surrounded by a city so large that the rows of skyscrapers stretch all the way to the horizon. Civilian aircraft, boats, and cargo trucks swarm around the spaceport, bringing goods and people to and from the residences and the outlying factories.`
 
 planet "Sapira Mereti"
 	attributes korath
@@ -19269,6 +24749,12 @@ planet "Sarisa Fentra"
 	description `	In the oceans, bizarre and corrupted creatures frolic.`
 	security 0
 
+planet Saros
+	attributes saryd tourism urban
+	landscape land/water8
+	description `The homeworld of the Saryds still bears some scars from the adolescence of their species, particularly in its lack of biodiversity. But over thousands of years, they have returned significant portions of the planet to their original wilderness state. The planet's population currently stands at just over two billion, in part due to the fact that Saryds live very long lives and many of them choose to dedicate their lives to serving society in other ways rather than raising children.`
+	spaceport `The main spaceport is on the outskirts of a large city near the planet's equator, supposedly not far from the place where the Saryds launched their first rockets to explore their own solar system. It has all the standard accoutrements of a tourist trap, including stall after stall of vendors selling food or articles of clothing, and mobs of wide-eyed visitors wandering about and generally getting in the way of the merchant captains trying to conduct actual business here.`
+
 planet "Sasirka Gatru"
 	attributes korath
 	landscape land/desert0
@@ -19283,6 +24769,37 @@ planet "Sebra Skira"
 	"required reputation" 1
 	bribe 0
 	security 0
+
+planet "Second Cerulean"
+	attributes kimek research
+	landscape land/snow2
+	description `From above this ocean world looks like a frozen wasteland, but a wide variety of uncanny creatures inhabit the rift valleys and hydrothermal vents deep underwater. The Kimek operate a small research station on the surface, because this is one of the few worlds in Coalition territory where there are still new species left undiscovered, kilometers below the frozen surface. Above ground, only a few species of birds and insects are able to survive.`
+	spaceport `The spaceport station is a cylindrical tower rising above the snowdrifts, anchored to the volcanic rock of one of the few islands that protrudes above the ice sheets near the equator. Near the station a hole about ten meters in diameter has been bored through the ice to allow submersible research craft access to the ocean depths.`
+	spaceport `	There are relatively few permanent inhabitants here; most of the people in the spaceport are just crews stopping over to refuel while coming to or from the Heliarch ringworlds.`
+	"required reputation" 15
+
+planet "Second Rose"
+	attributes kimek farming mining
+	landscape land/beach5
+	description `Second Rose is a warm planet, but a bit too rainy for Kimek preferences. That, plus its relatively remote location, means that its population is low despite its fertile fields and fisheries: most Kimek prefer to live somewhere closer to their inner core of bustling metropolitan worlds.`
+	description `	The planet's crust is rich in metal, and in some areas mine shafts have been sunk two or three kilometers below the surface to tap the richest seams.`
+	spaceport `A surprising number of Saryds and Arachi are wandering through this spaceport, conversing with the locals and sampling the food that is served here while they wait either for transport off-world or for local flights to other parts of the planet's surface. Apparently this is something of a tourist destination.`
+	"required reputation" 15
+
+planet "Second Viridian"
+	attributes kimek farming urban
+	landscape land/forest0
+	description `More than ten billion Kimek live here, most of them living in one of several arcologies near the equator: massive structures that each nearly a kilometer tall and may house over half a billion individuals. As a result, despite the large population most of the land is either undeveloped or used for farming.`
+	description `	The Kimek arcologies are said to be able to recycle more than 99% of the waste produced in them each day, which is what makes it feasible for so many Kimek to live in such close proximity.`
+	spaceport `The spaceport facility is a kilometer-tall pyramid honeycombed with tunnels wide enough for a pair of bulk freighters to pass each other with plenty of room to spare. There is no single central warehouse district or meeting area. Instead, each cluster of docking bays is surrounded by its own storage facilities, food courts, and concourses.`
+
+planet "Secret Sky"
+	attributes saryd research
+	landscape land/sea13-sfiera
+	description `Grass and trees are scarce on this perpetually cold and foggy planet. The dominant form of vegetation is a mixture of mosses and lichens which can grow into mats more than half a meter thick. Vast herds of hoofed animals wander across the planet's surface, unable to stay in one place for long because the moss that they eat can take decades to grow back.`
+	description `	The hardy plants that grow here are useful for producing a wide range of medical compounds.`
+	spaceport `The spaceport city had a ring of searchlights perpetually pointed skyward to direct ships in to a landing in the fog in case their other instruments malfunction. Entire sectors of the city are off limits to non-Saryd visitors, and presumably are home to the secret research labs where advanced medicines and other technologies are being developed.`
+	"required reputation" 15
 
 planet "Sek Alarfarat"
 	attributes korath
@@ -19348,6 +24865,21 @@ planet "Setar Fort"
 	spaceport `This spaceport is the only place where you have ever encountered the Korath cooking food that actually smells appetizing. But in other places, the stench of the enormous cattle that they are trading more than makes up for it. Occasionally as you walk by the stalls, one of the cattle will lower its head to sniff at you. They seem docile enough, although perhaps a bit undernourished, but their horns are alarming.`
 	outfitter "Korath Basics"
 
+planet "Shadow of Leaves"
+	attributes saryd urban
+	landscape land/snow10-sfiera
+	description `Saryds are particularly drawn to forested environments, and as a result this world has become heavily populated. Rather than gathering in tightly packed cities with skyscrapers and busy roads, they have spread out evenly across the whole land area in a sort of endless suburban sprawl. But enough patches of forest have been maintained between the roads and housing compounds that from orbit, at a first glance the planet looks pristine and uninhabited.`
+	spaceport `The spaceport is built at the base of a mountain. At the peak of the mountain is the Starlit University, one of the premier Saryd institutions of higher learning, elevated above the ordinary world of the forest below so that the students can remain detached and focused on their education.`
+	spaceport `	Given the number of boisterous young Saryds who are galloping about the spaceport at an undignified pace, some of whom are stumbling and showing other signs of inebriation, it is possible that the University's attempts to keep the youth secluded in an ivory tower of learning are not entirely successful.`
+
+planet "Shadowed Valley"
+	attributes saryd research
+	landscape land/fog7
+	description `A dizzying variety of bizarre and stunted life forms have evolved on Shadowed Valley, each with different means of coping with the high levels of sulfuric acid in the planet's atmosphere and rainwater. In the mountains where cliffs and rocks are exposed to the acid rain, they have been sculpted into smooth, flowing contours etched with lines and wrinkles. But the Saryds prize this planet primarily for the beauty of its gypsum caves, full of delicate crystalline deposits, towering speleothems, and deep, clear pools of poisonous water.`
+	spaceport `The spaceport here is built almost entirely underground, and populated mostly by research scientists; very few Saryds have chosen to call this planet home, although it does draw the occasional adventurous tourist. In a few large caverns they have installed sun lamps and planted groves of trees to make up for the relative lack of vegetation on the surface.`
+	spaceport `	The atmosphere outside the port is breathable, but not terribly pleasant.`
+	"required reputation" 15
+
 planet Shangri-La
 	attributes core rich urban frontier
 	landscape land/sea6
@@ -19364,6 +24896,13 @@ planet Shangri-La
 	tribute 1200
 		threshold 4000
 		fleet "Large Syndicate" 7
+
+planet "Shifting Sand"
+	attributes saryd
+	landscape land/dune4
+	description `This world is dry, but not particularly hot. The settlements are small and scattered, because each oasis only provides enough water for a few thousand individuals. Some of them focus on manufacturing, while others are attempting to farm the desert with drought-resistant crops. But the largest industry is retirement housing: the cool, dry climate and slow, quiet pace of life here are exactly what elderly Saryds find most comfortable.`
+	spaceport `The spaceport village is built around a large oasis, a sandy-bottomed lake with startlingly blue water. The landing pads are in the desert half a kilometer out from the village, separated from the houses by windbreaks and noise barriers to avoid disrupting the tranquil atmosphere. On balconies overlooking the lake, Saryds with greying hair walk or stand around in small groups enjoying quiet conversation with each other.`
+	"required reputation" 15
 
 planet Shiver
 	attributes "near earth"
@@ -19561,6 +25100,14 @@ planet Stormhold
 		threshold 2000
 		fleet "Large Core Pirates" 7
 
+planet "Stronghold of Flugbu"
+	attributes arach factory
+	landscape land/mountain5
+	description `The Stronghold of Flugbu was used a military base during the War of Independence. Now it is a manufacturing world, specializing not in large machines but small, intricate components. It is also home to House Bebliss, the secretive guild that specializes in communication, translation, and encryption. House Bebliss is essential to the Coalition economy because they maintain the hyperspace communication network, but there are also rumors that they may have ties to the Resistance.`
+	spaceport `The spaceport here is a single massive compound, a relic of its military past, with hangars of all different sizes along its periphery and gun emplacements that may still be operational even though there has been little need for them in thousands of years. A fleet of Heliarch military ships is stationed here, as well, but their role is mostly ceremonial.`
+	spaceport `	The hallways of the compound are packed with members of all three Coalition species, most of whom walk quietly and purposefully without stopping to speak with each other.`
+	"required reputation" 25
+
 planet Sundive
 	attributes core farming research frontier
 	landscape land/water9
@@ -19603,10 +25150,25 @@ planet Sunracer
 		threshold 5000
 		fleet "Large Syndicate" 10
 
+planet "Tebuteb's Table"
+	attributes arach farming
+	landscape land/fields9
+	description `This world is home to House Garbarag, the Arachi guild of farmers and ranchers. On private ranches far from the cities, they experiment with raising new breeds of longcows, a unique species of cattle that grow a new body segment each year and can reach more than thirty meters in length. The meat from a single longcow can feed a village for a month.`
+	description `	Longcows are typically docile and slow-moving, but when frightened one of them can do as much damage as an entire herd of stampeding terrestrial cattle.`
+	spaceport `The spaceport is next door to the city's meat-packing district, which it not any more pleasant or scenic than its equivalent on a human world would be. The actual slaughterhouses are some distance outside the city limits, placed there because in the early days of the colony a particularly large longcow in its death throes went on a rampage and destroyed several city blocks before it bled out and died.`
+
 planet "Tefkar Ret"
 	attributes korath station
 	landscape land/station0
 	description `This station is run down and completely abandoned, emptied of atmosphere so that air pressure will not put ongoing stress on the station's structure. Each section is sealed off from the others by heavy blast doors, leaving most of the station inaccessible.`
+
+planet "Third Umber"
+	attributes kimek factory research
+	landscape land/bwerner6
+	description `This cool, dry world is a sort of natural cleanroom, an ideal place for manufacturing sensitive equipment that could be harmed by the presence of condensation or mildew or pollen granules. The factory workers and overseers live in hive-like dormitories that each house tens of thousands of Kimek.`
+	description `	Closer to the poles, the air is too cold to be comfortable for the Kimek, but a small community of Saryd engineers has established a factory compound where they produce their own equipment to sell to the Kimek.`
+	spaceport `This is a sparsely populated world by Kimek standards, with a population of slightly less than a billion, but by the standards of most other species the spaceport is still a crowded and chaotic metropolis, with constant streams of traffic both on the roads and on the pedestrian walkways and footbridges. It is somewhat disconcerting to be surrounded by a sea of giant beetles scurrying back and forth between the landing pads and the port buildings.`
+	"required reputation" 15
 
 planet Thrall
 	attributes paradise textiles
@@ -19729,6 +25291,13 @@ planet Tundra
 	tribute 400
 		threshold 3000
 		fleet "Large Militia" 6
+
+planet "Turquoise Four"
+	attributes kimek farming
+	landscape land/beach1
+	description `The offshore kelp farms on Turquoise Four produce not only nutritional food, but also an ultra-strong fiber that is used for creating durable textiles. Farther from shore, the Kimek operate fish farms as well. Viewed from above, the ocean surface is divided into patches of deep blue or green or rusty brown depending on what sort of product is being farmed in each patch.`
+	spaceport `The boats docked in this spaceport city are more numerous than the space ships, and some of them are considerably larger, as well. Almost half of the city is built on piers that extend out into the harbor with broad canals between them, but the largest and fanciest dwellings are on land, built along a ridge of hills that overlook the ocean. The air is full of the cries of gulls and the smell of fish and salt and drying seaweed.`
+	"required reputation" 15
 
 planet Twinstar
 	attributes south tourism frontier
@@ -19912,6 +25481,14 @@ planet "Varu Tev'kei"
 	"required reputation" 15
 	bribe 0
 
+planet "Vibrant Water"
+	attributes saryd farming
+	landscape land/beach8-sfiera
+	description `Due to strong currents and extreme seasonal temperature fluctuations, the oceans of Vibrant Water are dotted with icebergs that can drift almost as far as the tropics before melting. The largest icebergs are more than a dozen kilometers across and are home to entire ecosystems ranging from ice-dwelling insects to sea birds to large seal-like mammals. Beneath the ocean surface shoals of fish, forests of kelp, and drifting clouds of algae provide a continuous food source for the creatures than inhabit the icebergs.`
+	description `	Near the equator, the Saryds farm several species of engineered algae.`
+	spaceport `Very little of the industry on Vibrant Water takes place on land. The spaceport is built on a high bluff overlooking the sea, frequently visited by barges carrying goods from the floating factories and refineries out in the midst of the algae farms. Surrounding the port are fields of wind turbines positioned to catch the ocean breeze.`
+	"required reputation" 15
+
 planet Vinci
 	attributes paradise factory
 	landscape land/nasa5
@@ -19928,6 +25505,19 @@ planet Warfeed
 	description `Warfeed is mostly covered in oceans, and much of its land area devoted to agriculture. Most of the fields are tilled and harvested by robots, but there are also many scattered homesteads of subsistence farmers, who survive with the aid of little or no technology.`
 	description `	In recent years, both the land and the seas of Warfeed have begun to show the toll of centuries of overharvesting. Large portions of the continents near the equator are now nothing but growing deserts, and even the best remaining farmland is sandy and nutrient-poor. All but the smallest marine organisms have been nearly fished to extinction.`
 	spaceport `This spaceport is a collection of ramshackle wooden buildings and packed dirt landing pads. The wagons piled high with produce and bags of grain would not look out of place in many human ports, but they are being drawn by giant lizards instead of horses or oxen. There are no human beings here, and most of the Hai eye you with suspicion and distaste.`
+
+planet "Warm Slope"
+	attributes saryd urban urban
+	landscape land/forest1
+	description `This is an ideal world, by Saryd standards: rugged, hilly, mostly forested, with oceans and land masses in equal proportions. It serves mostly as a residential world, because this system's heavy industry is focused on the automated factories on its sister world of Ceaseless Toil.`
+	spaceport `The spaceport is part of a city built into one of the slopes of a large mountain, with the landing pads and spaceport facilities near the peak. Saryds, Arachi, and Kimek mingle freely here and converse with the aid of interpreters or translation devices as the amble up and down the steep city streets.`
+
+planet "Warm Wind"
+	attributes saryd tourism
+	landscape land/fog1
+	description `The tropical rainforests of Warm Wind are unusual: instead of rivers on the surface, water flows through intricate underground networks of caves that span entire continents. The trees have evolved deep and strong roots that can pierce through the limestone into the subterranean rivers in order to draw a constant supply of water even in the dry seasons. The Saryds have explored only a tiny fraction of the caves.`
+	spaceport `The spaceport village is built on a volcanic highland where the inhabitants do not need to worry about their houses disappearing overnight into one of the limestone sinkholes that pockmark this planet's tropics. In place of trees, the village is full of trellised arches and spires; vines grow on the trellises, and moss grows on the vines, watered by the fog that sweeps up every evening from the rainforest below.`
+	"required reputation" 15
 
 planet Watcher
 	attributes "dirt belt" research uninhabited moon
@@ -19954,6 +25544,14 @@ planet Wayfarer
 	tribute 1700
 		threshold 5000
 		fleet "Large Militia" 26
+
+planet "Weir of Glubatub"
+	attributes arach farming
+	landscape land/beach6
+	description `The Weir of Glubatub is a quiet ocean world, lit by a dim red sun, whose atmosphere seldom gathers enough energy to spawn storms or other violent weather. Nearly all the life in the oceans is very close to the surface, where the sun's light is bright enough for algae and seaweed to flourish.`
+	description `	A few of the larger islands have been settled by the Arachi, and most of the locals work in the fishing industry. Some of the fishing boats are so large that a small starship can land on their decks.`
+	spaceport `The spaceport island is on an island near one of the planet's poles, where the temperature is cool and sea ice can be gathered to stock the warehouses where the fish are kept cold until they can be shipped offworld. Even with most of the fish being kept on ice, the smell is still overpowering, except at the rare moments when the wind picks up and it is replaced by the smell of fresh salt air.`
+	"required reputation" 15
 
 planet Windblain
 	attributes deep oil textiles
