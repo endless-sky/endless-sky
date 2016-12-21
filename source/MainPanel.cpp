@@ -235,21 +235,36 @@ void MainPanel::ShowScanDialog(const ShipEvent &event)
 		out << "This ship is equipped with:\n";
 		for(const auto &it : target->Outfits())
 			if(it.first && it.second)
-			{
-				out << "\t" << it.first->Name();
-				if(it.second != 1)
-					out << " (" << it.second << ")";
-				out << "\n";
-			}
+				out << "\t" << it.second << " "
+					<< (it.second == 1 ? it.first->Name() : it.first->PluralName()) << "\n";
+		
 		map<string, int> count;
 		for(const Ship::Bay &bay : target->Bays())
 			if(bay.ship)
-				++count[bay.ship->ModelName()];
+			{
+				int &value = count[bay.ship->ModelName()];
+				if(value)
+				{
+					// If the name and the plural name are the same string, just
+					// update the count. Otherwise, clear the count for the
+					// singular name and set it for the plural.
+					int &pluralValue = count[bay.ship->PluralModelName()];
+					if(!pluralValue)
+					{
+						value = -1;
+						pluralValue = 1;
+					}
+					++pluralValue;
+				}
+				else
+					++value;
+			}
 		if(!count.empty())
 		{
 			out << "This ship is carrying:\n";
 			for(const auto &it : count)
-				out << "\t" << it.second << " " << it.first << (it.second == 1 ? "\n" : "s\n");
+				if(it.second > 0)
+					out << "\t" << it.second << " " << it.first << "\n";
 		}
 	}
 	GetUI()->Push(new Dialog(out.str()));

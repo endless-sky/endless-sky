@@ -33,7 +33,7 @@ namespace {
 // Music constructor, which starts the decoding thread. Initially, the thread
 // has no file to read, so it will sleep until a file is specified.
 Music::Music()
-	: thread(&Music::Decode, this), silence(OUTPUT_CHUNK, 0)
+	: silence(OUTPUT_CHUNK, 0), thread(&Music::Decode, this)
 {
 }
 
@@ -53,12 +53,13 @@ Music::~Music()
 
 
 
-// Set the source of music. If the path is 
-void Music::SetSource(const std::string &path)
+// Set the source of music. If the path is empty, this music will be silent.
+void Music::SetSource(const string &path)
 {
 	// Do nothing if this is the same file we're playing.
 	if(path == previousPath)
 		return;
+	previousPath = path;
 	
 	// If the path is empty or does not end in ".mp3", do not load it.
 	string extension = (path.length() < 4 ? "" : path.substr(path.length() - 4));
@@ -81,7 +82,7 @@ void Music::SetSource(const std::string &path)
 
 
 // Get the next audio buffer to play.
-const std::vector<int16_t> &Music::NextChunk()
+const vector<int16_t> &Music::NextChunk()
 {
 	// Check whether the "next" buffer is ready.
 	unique_lock<mutex> lock(decodeMutex);
@@ -110,7 +111,7 @@ const std::vector<int16_t> &Music::NextChunk()
 void Music::Decode()
 {
 	// This vector will store the input from the file.
-	std::vector<unsigned char> input(INPUT_CHUNK, 0);
+	vector<unsigned char> input(INPUT_CHUNK, 0);
 	// Objects for MP3 decoding:
 	mad_stream stream;
 	mad_frame frame;
@@ -143,7 +144,7 @@ void Music::Decode()
 		mad_synth_init(&synth);
 		
 		// Loop until we are asked to switch files.
-		while(true)
+		while(nextFile == file)
 		{
 			// If the "next" buffer has filled up, wait until it is retrieved.
 			// Generally try to queue up two chunks worth of samples in it, just
@@ -203,6 +204,8 @@ void Music::Decode()
 				
 				// For this part, we need access to the output buffer.
 				lock.lock();
+				if(nextFile != file)
+					break;
 	
 				// We'll alternate what channel we read from each time through the loop.
 				int channel = 0;

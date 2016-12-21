@@ -58,6 +58,7 @@ void Ship::Load(const DataNode &node)
 {
 	assert(node.Size() >= 2 && node.Token(0) == "ship");
 	modelName = node.Token(1);
+	pluralModelName = modelName + 's';
 	if(node.Size() >= 3)
 		base = GameData::Ships().Get(modelName);
 	
@@ -80,6 +81,8 @@ void Ship::Load(const DataNode &node)
 			LoadSprite(child);
 		else if(child.Token(0) == "name" && child.Size() >= 2)
 			name = child.Token(1);
+		else if(child.Token(0) == "plural" && child.Size() >= 2)
+			pluralModelName = child.Token(1);
 		else if(child.Token(0) == "attributes")
 			baseAttributes.Load(child);
 		else if(child.Token(0) == "engine" && child.Size() >= 3)
@@ -252,6 +255,7 @@ void Ship::FinishLoading()
 	// Exception: uncapturable and "never disabled" flags don't carry over.
 	if(base && base != this)
 	{
+		pluralModelName = base->pluralModelName;
 		if(!GetSprite())
 			reinterpret_cast<Body &>(*this) = *base;
 		if(baseAttributes.Attributes().empty())
@@ -379,6 +383,8 @@ void Ship::Save(DataWriter &out) const
 	out.BeginChild();
 	{
 		out.Write("name", name);
+		if(pluralModelName != modelName + 's')
+			out.Write("plural", pluralModelName);
 		SaveSprite(out);
 		
 		if(neverDisabled)
@@ -477,6 +483,14 @@ const string &Ship::Name() const
 const string &Ship::ModelName() const
 {
 	return modelName;
+}
+
+
+
+
+const string &Ship::PluralModelName() const
+{
+	return pluralModelName;
 }
 
 

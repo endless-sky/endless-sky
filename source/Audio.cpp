@@ -85,11 +85,9 @@ namespace {
 	ALCcontext *context = nullptr;
 	double volume = .5;
 	
-	// This is the ID of the one thread allowed to play sounds directly.
-	thread::id mainThreadID;
-	// This queue keeps track of sounds that have been requested to play. Any
-	// sounds not added by the main thread are "deferred" and are added all at
-	// once when the main thread tells us to update.
+	// This queue keeps track of sounds that have been requested to play. Each
+	// added sound is "deferred" until the next audio position update to make
+	// sure that all sounds from a given frame start at the same time.
 	map<const Sound *, QueueEntry> queue;
 	map<const Sound *, QueueEntry> deferred;
 	
@@ -145,9 +143,6 @@ void Audio::Init(const vector<string> &sources)
 	alListenerfv(AL_ORIENTATION, orientation);
 	alDistanceModel(AL_INVERSE_DISTANCE_CLAMPED);
 	alDopplerFactor(0.);
-	
-	// Remember what thread is allowed to update the audio directly.
-	mainThreadID = this_thread::get_id();
 	
 	// Get all the sound files in the game data and all plugins.
 	for(const string &source : sources)
@@ -247,19 +242,14 @@ void Audio::Play(const Sound *sound, const Point &position)
 	if(!sound || !sound->Buffer() || !volume)
 		return;
 	
-	if(this_thread::get_id() == mainThreadID)
-		queue[sound].Add(position - listener);
-	else
-	{
-		unique_lock<mutex> lock(audioMutex);
-		deferred[sound].Add(position - listener);
-	}
+	unique_lock<mutex> lock(audioMutex);
+	deferred[sound].Add(position - listener);
 }
 
 
 
 // Play the given music. An empty string means to play nothing.
-void Audio::PlayMusic(const std::string &name)
+void Audio::PlayMusic(const string &name)
 {
 #ifndef _WIN32
 	// Don't worry about thread safety here, since music will always be started
@@ -277,10 +267,6 @@ void Audio::PlayMusic(const std::string &name)
 // this function was called.
 void Audio::Step()
 {
-	// Just to be sure, check we're in the main thread.
-	if(this_thread::get_id() != mainThreadID)
-		return;
-	
 	vector<Source> newSources;
 	// For each sound that is looping, see if it is going to continue. For other
 	// sounds, check if they are done playing.
