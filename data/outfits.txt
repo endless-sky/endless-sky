@@ -213,10 +213,10 @@ outfit "Surveillance Pod"
 	category "Systems"
 	cost 42000
 	thumbnail "outfit/outfit scanner"
-	"mass" 5
-	"outfit space" -5
-	"outfit scan" 400
-	"cargo scan" 200
+	"mass" 2
+	"outfit space" -2
+	"outfit scan" 600
+	"cargo scan" 400
 	"atmosphere scan" 100
 	description "This is Republic military technology, a collection of scanners designed to fit perfectly inside one of their surveillance drones. Since the outputs are fairly standard, you could connect it to your own ship's systems if you want."
 
