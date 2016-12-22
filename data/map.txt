@@ -22379,7 +22379,7 @@ planet "Ablub's Invention"
 	attributes arach factory
 	landscape land/sky3
 	description `This ancient and quiet world, orbiting a dim red sun, is home to the microchip foundries of House Idriss, the Arach guild that specializes in computers and advanced electronics. Outside of the cities, which are clustered around the equator, Ablub's Invention is uninhabited except by the native lifeforms, including strange, spindly-legged quadrupeds, awkward birds with leathery wings, and amphibians with webbed feet and long, whiskered snouts.`
-	spaceport `The day-night cycle here is at least three as long as any of the Coalition’s species are habituated to, so the entire city enters a "false nighttime" in the middle of the day, shuttering all the windows so that the locals can rest and reset their biological clocks. And in the middle of the night, the city is brightly lit for a "false day."`
+	spaceport `The day-night cycle here is at least three times as long as any of the Coalition’s species are habituated to, so the entire city enters a "false nighttime" in the middle of the day, shuttering all the windows so that the locals can rest and reset their biological clocks. And in the middle of the night, the city is brightly lit for a "false day."`
 	spaceport `	The local work schedule has adapted to this unusual cycle, with the two true daytime periods serving the equivalent of the human work week, and the false daytime treated as a weekend, a time for socializing or working at home.`
 	"required reputation" 25
 
@@ -22566,8 +22566,9 @@ planet "Bank of Blugtad"
 planet "Belug's Plunge"
 	attributes arach mining research
 	landscape land/mountain6
-	description `Although it is in Arach territory, Belug's Plunge is a cold enough planet that most of the native population is Saryds rather than Arachi. Most of the industry here focuses on mining metals and exotic elements to be used in building new extensions to the Rings. There is also a Saryd materials research lab trying to learn how to duplicate the advanced composites used by the Quarg.`
+	description `Although it is in Arach territory, Belug's Plunge is a cold enough planet that most of the native population is Saryds rather than Arachi. Most of the industry here focuses on mining metals and exotic elements to be used in building new extensions to the Rings. There is also a Saryd materials research lab trying to learn how to duplicate the advanced composites used by the Quarg. But Belug's Plunge is best known for the Academy, where cadets for the Heliarch defense forces are trained.`
 	spaceport `The central spaceport terminal is a large chamber with a hushed atmosphere reminiscent of a library's reading room. In small nooks along the periphery, small groups are engaged in quiet conversation. Most cargo is carried by robotic carts, wheeling around on a floor so smooth that the only time they make noise is when they politely speak up to warn people to get out of their way.`
+	spaceport `	Occasionally a group of cadets wearing yellow baldrics marches through, stepping as lightly as they can to avoid disturbing the quiet.`
 
 planet "Big Sky"
 	attributes "dirt belt" farming
@@ -23165,7 +23166,9 @@ planet "Far Home"
 	attributes saryd tourism urban
 	landscape land/valley5
 	description `The weather on Far Home is a nearly perfect blend of what is most comfortable for each of the three member species of the Coalition. The mountains and boreal forests have been settled by the Saryds, the grasslands and savanna by the Kimek, and the rainforests by the Arachi, even though this is technically part of Saryd territory.`
+	description `	This world is also home to the annual Coalition Games, where athletes from throughout Coalition space compete. The winners become eligible for immediate elevation to Heliarch rank.`
 	spaceport `The spaceport is a large city on the edge of a temperate forest. The city's layout, with green space and parks woven throughout it, is clearly a Saryd design, but the architecture borrows equally from all three cultures. As with the other ports where interspecies interactions are frequent, hundreds of Heliarch representatives wander around to mediate conversations and prevent misunderstandings.`
+	spaceport `	Once a year, when the Games begin, the spaceport city grows to nearly four times its usual population.`
 
 planet "Far'en Lai"
 	landscape land/dune3
