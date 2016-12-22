@@ -497,7 +497,7 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 
 
 
-bool ShopPanel::Click(int x, int y)
+bool ShopPanel::Click(int x, int y, int clicks)
 {
 	dragShip = nullptr;
 	// Handle clicks on the buttons.

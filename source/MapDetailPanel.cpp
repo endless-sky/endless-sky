@@ -218,7 +218,7 @@ bool MapDetailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command
 
 
 
-bool MapDetailPanel::Click(int x, int y)
+bool MapDetailPanel::Click(int x, int y, int clicks)
 {
 	if(x < Screen::Left() + 160)
 	{
@@ -284,7 +284,7 @@ bool MapDetailPanel::Click(int x, int y)
 		return DoKey(SDLK_PAGEDOWN);
 	}
 	
-	MapPanel::Click(x, y);
+	MapPanel::Click(x, y, clicks);
 	if(selectedPlanet && selectedPlanet->GetSystem() != selectedSystem)
 		selectedPlanet = nullptr;
 	return true;
