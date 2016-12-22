@@ -935,7 +935,7 @@ mission "Coalition: Doctors"
 		"coalition jobs" ++
 		payment
 		payment 50000
-		dialog `The doctors methodically pack up their equipment and leave your ship. From their lack or urgency, it appears that this is a routine event, not a crisis. A few minutes later you receive a transfer of <payment>.`
+		dialog `The doctors methodically pack up their equipment and leave your ship. From their lack of urgency, it appears that this is a routine event, not a crisis. A few minutes later you receive a transfer of <payment>.`
 
 
 mission "Coalition: Cadets 1"
