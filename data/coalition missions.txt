@@ -69,3 +69,113 @@ mission "Coalition: First Contact"
 			label end
 			`	You talk with them for a while longer, and learn that the centaurs are called "Saryds," and are the oldest of the three species. The beetles are the "Kimek," and come next, and the spiders are called "Arachi," and were the last of the three to discover spaceflight.`
 			`	They tell you that the best way to learn more about them is to visit their worlds, and to see for yourself how the three species live in friendship and equality. They also offer to give you jobs to do in their territory, so that you may become a "valuable contributor" to their society.`
+
+
+
+mission "Coalition: Contributor"
+	landing
+	name "Return to the <planet>"
+	description "Return to the <planet> to see if the Heliarchs will grant you a higher status in the Coalition now that you have been working among them for some time."
+	to offer
+		"coalition jobs" >= 30
+	source
+		government "Coalition"
+	destination "Ring of Friendship"
+	on offer
+		conversation
+			`A Heliarch agent contacts you soon after you land, and says, "In many useful ways, among us you have been working. The Heliarchs you should petition, and your rights and status among us they may elevate." The agent instructs you to return to the <planet> and petition the Heliarch rulers there.`
+				accept
+	on complete
+		"reputation: Coalition" += 10
+		"reputation: Heliarch" += 10
+		event "coalition: shipyard and outfitters"
+		conversation
+			`Once again, when you exit your ship you are met by a member of each of the three Coalition species, wearing the golden circlets that mark them as Heliarchs. "Told we have been," says the Saryd, "that among us with great diligence and commitment, small tasks you have performed."`
+			`	The Kimek says, "Those who in our society's prosperity have invested, with our society's technology may be trusted."`
+			`	"But," says the Arach, "like all civilians, even citizens, to you our weapons and warships we still cannot sell."`
+			choice
+				`	"Thank you."`
+					goto end
+				`	"Why don't you allow civilians to purchase weapons or warships?"`
+			`	"For the sake of peace it is," says the Saryd. "The Heliarch military, well trained to use weapons only for defense and only for justice, they are. And to place the needs of the Coalition over the ambitions of their own native species, each one committed is. No such discipline do civilians have."`
+			label end
+			`	Apparently nothing is for sale here, but they assure you that many Coalition worlds will now grant you access to their shipyards and outfitters.`
+
+
+
+event "coalition: shipyard and outfitters"
+	planet "Ablub's Invention"
+		outfitter "Coalition Advanced"
+	planet "Ahr"
+		shipyard "Coalition Basics"
+		shipyard "Arach"
+		outfitter "Coalition Advanced"
+	planet "Bank of Blugtad"
+		shipyard "Coalition Basics"
+		shipyard "Arach"
+		outfitter "Coalition Advanced"
+	planet "Belug's Plunge"
+		outfitter "Coalition Advanced"
+	planet "Blubipad's Workshop"
+		outfitter "Coalition Basics"
+	planet "Dwelling of Speloog"
+		outfitter "Coalition Basics"
+	planet "Hammer of Debrugt"
+		shipyard "Coalition Basics"
+		shipyard "Arach"
+		outfitter "Coalition Advanced"
+	planet "Market of Gupta"
+		shipyard "Coalition Basics"
+		shipyard "Arach"
+		outfitter "Coalition Advanced"
+	planet "Stronghold of Flugbu"
+		outfitter "Coalition Advanced"
+	planet "Ashy Reach"
+		outfitter "Coalition Basics"
+	planet "Blue Interior"
+		shipyard "Coalition Basics"
+		shipyard "Kimek"
+		outfitter "Coalition Advanced"
+	planet "Brass Second"
+		outfitter "Coalition Basics"
+	planet "Ki Patek Ka"
+		shipyard "Coalition Basics"
+		shipyard "Kimek"
+		outfitter "Coalition Advanced"
+	planet "Midway Emerald"
+		shipyard "Coalition Basics"
+		outfitter "Coalition Basics"
+	planet "Remote Blue"
+		shipyard "Kimek"
+		outfitter "Coalition Advanced"
+	planet "Rusty Second"
+		shipyard "Coalition Basics"
+		outfitter "Coalition Basics"
+	planet "Sandy Two"
+		outfitter "Coalition Basics"
+	planet "Second Viridian"
+		outfitter "Coalition Basics"
+	planet "Bright Echo"
+		shipyard "Coalition Basics"
+		shipyard "Saryd"
+		outfitter "Coalition Basics"
+	planet "Chosen Nexus"
+		shipyard "Coalition Basics"
+		shipyard "Arach"
+		shipyard "Kimek"
+		shipyard "Saryd"
+		outfitter "Coalition Advanced"
+	planet "Far Garden"
+		outfitter "Coalition Basics"
+	planet "Far Home"
+		shipyard "Coalition Basics"
+		shipyard "Arach"
+		shipyard "Kimek"
+		shipyard "Saryd"
+		outfitter "Coalition Advanced"
+	planet "Saros"
+		shipyard "Coalition Basics"
+		shipyard "Saryd"
+		outfitter "Coalition Advanced"
+	planet "Warm Slope"
+		outfitter "Coalition Basics"

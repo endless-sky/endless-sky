@@ -248,7 +248,7 @@ mission "Coalition: Heliarch Candidate"
 		"coalition jobs" ++
 		payment
 		payment 50000
-		dialog `Heliarch agents meet your ship as soon as it docks and receive the candidate you have been transporting, in a small ceremony. A few minutes later you receive a transfer of <payment>.`
+		dialog `Heliarch agents meet your ship as soon as it docks and receive the candidate whom you have been transporting, in a small ceremony. A few minutes later you receive a transfer of <payment>.`
 
 
 mission "Coalition: Interpreters 1"
@@ -644,7 +644,7 @@ mission "Coalition: Tourists Home 3"
 mission "Coalition: Fast Courier 1"
 	job
 	name "Fast courier to <planet>"
-	description "Deliver <cargo> to <destination>, prior to <date>. The payment is <payment>."
+	description "Deliver <cargo> to <destination>, by <date>. The payment is <payment>."
 	deadline 5 1
 	cargo random 2 20 .6
 	to offer
@@ -664,7 +664,7 @@ mission "Coalition: Fast Courier 1"
 mission "Coalition: Fast Courier 2"
 	job
 	name "Fast courier to <planet>"
-	description "Deliver <cargo> to <destination>, prior to <date>. The payment is <payment>."
+	description "Deliver <cargo> to <destination>, by <date>. The payment is <payment>."
 	deadline 5 1
 	cargo random 2 30 .6
 	to offer
@@ -684,7 +684,7 @@ mission "Coalition: Fast Courier 2"
 mission "Coalition: Fast Courier 3"
 	job
 	name "Fast courier to <planet>"
-	description "Deliver <cargo> to <destination>, prior to <date>. The payment is <payment>."
+	description "Deliver <cargo> to <destination>, by <date>. The payment is <payment>."
 	deadline 5 1
 	cargo random 2 40 .6
 	to offer
