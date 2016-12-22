@@ -22750,7 +22750,7 @@ planet "Ceaseless Toil"
 	attributes saryd factory
 	landscape land/canyon5
 	description `The Saryds prefer to build their largest factories on sun-drenched, uninhabitable worlds, in order to allow more hospitable planets to be used for residences and recreation. Where possible, their factories harness solar power: either using mirrors to concentrate sunlight for solar foundries, or collecting energy through large fields of solar panels. The factories are almost entirely maintained by robots, which are capable not only of repairing damage but also of constructing entire new factories according to predefined plans.`
-	description `	The solar collectors are mounted on frames about ten meters above the shifting sand dunes. In addition to turning to face the sun, they can be turned upside-down as necessary to dump off and sand that accumulates on them.`
+	description `	The solar collectors are mounted on frames about ten meters above the shifting sand dunes. In addition to turning to face the sun, they can be turned upside-down as necessary to dump off any sand that accumulates on them.`
 	"required reputation" 15
 
 planet "Celestial Third"
@@ -23325,7 +23325,7 @@ planet "Fourth Shadow"
 	attributes kimek factory urban
 	landscape land/mountain13-sfiera
 	description `In all of Coalition space, this is the one planet that comes closest to deserving being called a slum world. More than ten billion Kimek live here, mostly in densely packed and run-down apartment buildings on the outskirts of the cities. Unlike more prosperous Coalition worlds, the city centers here are reserved for factories rather than for parks or government buildings or civic centers.`
-	spaceport `The spaceport is crowded with travelers, about equally divided between those who are freshly arriving, drawn by the promise of plentiful work and a cheap cost of living, and those who are preparing to leave and attempt to build a better life somewhere else. most Kimek choose to specialize as workers rather than raising families, so the vast majority of the travelers are alone or traveling only with a loosely knit group of friends.`
+	spaceport `The spaceport is crowded with travelers, about equally divided between those who are freshly arriving, drawn by the promise of plentiful work and a cheap cost of living, and those who are preparing to leave and attempt to build a better life somewhere else. Most Kimek choose to specialize as workers rather than raising families, so the vast majority of the travelers are alone or traveling only with a loosely knit group of friends.`
 
 planet Freedom
 	attributes pirate farming
@@ -24868,7 +24868,7 @@ planet "Setar Fort"
 planet "Shadow of Leaves"
 	attributes saryd urban
 	landscape land/snow10-sfiera
-	description `Saryds are particularly drawn to forested environments, and as a result this world has become heavily populated. Rather than gathering in tightly packed cities with skyscrapers and busy roads, they have spread out evenly across the whole land area in a sort of endless suburban sprawl. But enough patches of forest have been maintained between the roads and housing compounds that from orbit, at a first glance the planet looks pristine and uninhabited.`
+	description `Saryds are particularly drawn to forested environments, and as a result this world has become heavily populated. Rather than gathering in tightly packed cities with skyscrapers and busy roads, they have spread out evenly across the whole land area in a sort of endless suburban sprawl. But enough patches of forest have been maintained between the roads and housing compounds that from orbit, at a first glance, the planet looks pristine and uninhabited.`
 	spaceport `The spaceport is built at the base of a mountain. At the peak of the mountain is the Starlit University, one of the premier Saryd institutions of higher learning, elevated above the ordinary world of the forest below so that the students can remain detached and focused on their education.`
 	spaceport `	Given the number of boisterous young Saryds who are galloping about the spaceport at an undignified pace, some of whom are stumbling and showing other signs of inebriation, it is possible that the University's attempts to keep the youth secluded in an ivory tower of learning are not entirely successful.`
 
@@ -25507,10 +25507,10 @@ planet Warfeed
 	spaceport `This spaceport is a collection of ramshackle wooden buildings and packed dirt landing pads. The wagons piled high with produce and bags of grain would not look out of place in many human ports, but they are being drawn by giant lizards instead of horses or oxen. There are no human beings here, and most of the Hai eye you with suspicion and distaste.`
 
 planet "Warm Slope"
-	attributes saryd urban urban
+	attributes saryd urban
 	landscape land/forest1
 	description `This is an ideal world, by Saryd standards: rugged, hilly, mostly forested, with oceans and land masses in equal proportions. It serves mostly as a residential world, because this system's heavy industry is focused on the automated factories on its sister world of Ceaseless Toil.`
-	spaceport `The spaceport is part of a city built into one of the slopes of a large mountain, with the landing pads and spaceport facilities near the peak. Saryds, Arachi, and Kimek mingle freely here and converse with the aid of interpreters or translation devices as the amble up and down the steep city streets.`
+	spaceport `The spaceport is part of a city built into one of the slopes of a large mountain, with the landing pads and spaceport facilities near the peak. Saryds, Arachi, and Kimek mingle freely here and converse with the aid of interpreters or translation devices as they amble up and down the steep city streets.`
 
 planet "Warm Wind"
 	attributes saryd tourism
@@ -25550,7 +25550,7 @@ planet "Weir of Glubatub"
 	landscape land/beach6
 	description `The Weir of Glubatub is a quiet ocean world, lit by a dim red sun, whose atmosphere seldom gathers enough energy to spawn storms or other violent weather. Nearly all the life in the oceans is very close to the surface, where the sun's light is bright enough for algae and seaweed to flourish.`
 	description `	A few of the larger islands have been settled by the Arachi, and most of the locals work in the fishing industry. Some of the fishing boats are so large that a small starship can land on their decks.`
-	spaceport `The spaceport island is on an island near one of the planet's poles, where the temperature is cool and sea ice can be gathered to stock the warehouses where the fish are kept cold until they can be shipped offworld. Even with most of the fish being kept on ice, the smell is still overpowering, except at the rare moments when the wind picks up and it is replaced by the smell of fresh salt air.`
+	spaceport `The spaceport is on an island near one of the planet's poles, where the temperature is cool and sea ice can be gathered to stock the warehouses where the fish are kept cold until they can be shipped offworld. Even with most of the fish being kept on ice, the smell is still overpowering, except at the rare moments when the wind picks up and it is replaced by the smell of fresh salt air.`
 	"required reputation" 15
 
 planet Windblain
