@@ -91,31 +91,24 @@ void PlanetPanel::Draw()
 	if(player.IsDead())
 		return;
 	
-	const Ship *flagship = player.Flagship();
-	
 	Information info;
 	info.SetSprite("land", planet.Landscape());
-	bool hasAccess = planet.CanUseServices();
-	bool hasShip = false;
-	for(const auto &it : player.Ships())
-		if(it->GetSystem() == player.GetSystem() && !it->IsDisabled())
-		{
-			hasShip = true;
-			break;
-		}
-	if(flagship && flagship->CanBeFlagship())
+
+	if(ShowDepart())
 		info.SetCondition("has ship");
-	if(flagship && planet.IsInhabited() && planet.GetSystem()->HasTrade() && hasAccess)
-		info.SetCondition("has trade");
-	if(planet.IsInhabited() && hasAccess)
-		info.SetCondition("has bank");
-	if(flagship && planet.IsInhabited() && hasAccess)
-		info.SetCondition("is inhabited");
-	if(flagship && planet.HasSpaceport() && hasAccess)
+	if(ShowTrading())
+		info.SetCondition("has trading");
+	if(ShowJobs())
+		info.SetCondition("has jobs");
+	if(ShowBanking())
+		info.SetCondition("has banking");
+	if(ShowHiring())
+		info.SetCondition("has hiring");
+	if(ShowSpaceport())
 		info.SetCondition("has spaceport");
-	if(planet.HasShipyard() && hasAccess)
+	if(ShowShipyard())
 		info.SetCondition("has shipyard");
-	if(hasShip && planet.HasOutfitter() && hasAccess)
+	if(ShowOutfitter())
 		info.SetCondition("has outfitter");
 	
 	ui.Draw(info, this);
@@ -130,11 +123,11 @@ void PlanetPanel::Draw()
 bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 {
 	Panel *oldPanel = selectedPanel;
-	const Ship *flagship = player.Flagship();
 	
-	bool hasAccess = planet.CanUseServices();
-	if(key == 'd' && flagship && flagship->CanBeFlagship())
+	if(key == 'd' && ShowDepart())
 	{
+		const Ship *flagship = player.Flagship();
+		
 		// Check whether the player should be warned before taking off.
 		if(player.ShouldLaunch())
 			TakeOff();
@@ -142,11 +135,12 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 		{
 			// The checks that follow are typically cause by parking or selling
 			// ships or changing outfits.
-
+			
 			// Are you overbooked? Don't count fireable flagship crew.
 			const CargoHold &cargo = player.Cargo();
 			int overbooked = -cargo.Bunks() - (flagship->Crew() - flagship->RequiredCrew());
 			int missionCargoToSell = cargo.MissionCargoSize() - cargo.Size();
+			
 			// Will you have to sell something other than regular cargo?
 			int cargoToSell = -(cargo.Free() + cargo.CommoditiesSize());
 			int droneCount = 0;
@@ -218,45 +212,37 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 	{
 		selectedPanel = nullptr;
 	}
-	else if(key == 't' && flagship && planet.IsInhabited() && planet.GetSystem()->HasTrade() && hasAccess)
+	else if(key == 't' && ShowTrading())
 	{
 		selectedPanel = trading.get();
 		GetUI()->Push(trading);
 	}
-	else if(key == 'b' && planet.IsInhabited() && hasAccess)
+	else if(key == 'b' && ShowBanking())
 	{
 		selectedPanel = bank.get();
 		GetUI()->Push(bank);
 	}
-	else if(key == 'p' && flagship && planet.HasSpaceport() && hasAccess)
+	else if(key == 'p' && ShowSpaceport())
 	{
 		selectedPanel = spaceport.get();
 		GetUI()->Push(spaceport);
 	}
-	else if(key == 's' && planet.HasShipyard() && hasAccess)
+	else if(key == 's' && ShowShipyard())
 	{
 		GetUI()->Push(new ShipyardPanel(player));
 		return true;
 	}
-	else if(key == 'o' && planet.HasOutfitter() && hasAccess)
+	else if(key == 'o' && ShowOutfitter())
 	{
-		bool hasShip = false;
-		for(const auto &it : player.Ships())
-			if(it->GetSystem() == player.GetSystem() && !it->IsDisabled())
-			{
-				hasShip = true;
-				break;
-			}
-		if(hasShip)
-			GetUI()->Push(new OutfitterPanel(player));
+		GetUI()->Push(new OutfitterPanel(player));
 		return true;
 	}
-	else if(key == 'j' && flagship && planet.IsInhabited() && hasAccess)
+	else if(key == 'j' && ShowJobs())
 	{
 		GetUI()->Push(new MissionPanel(player));
 		return true;
 	}
-	else if(key == 'h' && flagship && planet.IsInhabited() && hasAccess)
+	else if(key == 'h' && ShowHiring())
 	{
 		selectedPanel = hiring.get();
 		GetUI()->Push(hiring);
@@ -280,6 +266,74 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 		GetUI()->Pop(oldPanel);
 	
 	return true;
+}
+
+
+
+bool PlanetPanel::ShowDepart() const
+{
+	return player.Flagship() && player.Flagship()->CanBeFlagship();
+}
+
+
+
+bool PlanetPanel::ShowTrading() const
+{
+	return planet.HasTrading()
+		&& planet.CanUseServices();
+}
+
+
+
+bool PlanetPanel::ShowJobs() const
+{
+	return player.Flagship() && planet.HasJobs() 
+		&& planet.CanSpeakLanguage(player) && planet.CanUseServices();
+}
+
+
+
+bool PlanetPanel::ShowBanking() const
+{
+	return planet.HasBanking()
+		&& planet.CanSpeakLanguage(player) && planet.CanUseServices();
+}
+
+
+
+bool PlanetPanel::ShowHiring() const
+{
+	return planet.HasHiring()
+		&& planet.CanSpeakLanguage(player) && planet.CanUseServices();
+}
+
+
+
+bool PlanetPanel::ShowSpaceport() const
+{
+	return player.Flagship() && planet.HasSpaceport() && planet.CanUseServices();
+}
+
+
+
+bool PlanetPanel::ShowShipyard() const
+{
+	return planet.HasShipyard() && planet.CanUseServices();
+}
+
+
+
+bool PlanetPanel::ShowOutfitter() const
+{
+	bool hasShip = false;
+	for(const auto &it : player.Ships())
+		if(it->GetSystem() == player.GetSystem() && !it->IsDisabled())
+		{
+			hasShip = true;
+			break;
+		}
+
+	return hasShip && planet.HasOutfitter() && planet.CanUseServices();
 }
 
 

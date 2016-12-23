@@ -44,8 +44,17 @@ protected:
 	
 	
 private:
-	void TakeOff();
+	// Shared condition checks used in Draw, KeyDown/Click.
+	bool ShowDepart() const;
+	bool ShowTrading() const;
+	bool ShowBanking() const;
+	bool ShowJobs() const;
+	bool ShowHiring() const;
+	bool ShowSpaceport() const;
+	bool ShowShipyard() const;
+	bool ShowOutfitter() const;
 	
+	void TakeOff();
 	
 private:
 	PlayerInfo &player;
