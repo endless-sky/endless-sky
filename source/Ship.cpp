@@ -12,6 +12,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Ship.h"
 
+#include "Audio.h"
 #include "DataNode.h"
 #include "DataWriter.h"
 #include "Effect.h"
@@ -1335,8 +1336,13 @@ shared_ptr<Ship> Ship::Board(bool autoPlunder)
 
 // Scan the target, if able and commanded to. Return a ShipEvent bitmask
 // giving the types of scan that succeeded.
-int Ship::Scan() const
+int Ship::Scan()
 {
+	// Whenever not actively scanning, the amount of scan information the ship
+	// has "decays" over time. For a scanner with a speed of 1, one second of
+	// uninterrupted scanning is required to successfully scan its target.
+	cargoScan = max(0., cargoScan - 1.);
+	outfitScan = max(0., outfitScan - 1.);
 	if(!commands.Has(Command::SCAN) || CannotAct())
 		return 0;
 	
@@ -1344,12 +1350,52 @@ int Ship::Scan() const
 	if(!target)
 		return 0;
 	
-	int result = 0;
+	// Play the scanning sound if the actor or the target is the player's ship.
+	if(government->IsPlayer() || target->GetGovernment()->IsPlayer())
+		Audio::Play(Audio::Get("scan"), Position());
+	
+	// Check how close this ship is to the target it is trying to scan.
 	double distance = (target->position - position).Length();
-	if(distance < attributes.Get("cargo scan"))
-		result |= ShipEvent::SCAN_CARGO;
-	if(distance < attributes.Get("outfit scan"))
-		result |= ShipEvent::SCAN_OUTFITS;
+	
+	// Check if either scanner has finished scanning.
+	bool startedScanning = false;
+	int result = 0;
+	static const double SCAN_TIME = 60.;
+	if(cargoScan < SCAN_TIME)
+	{
+		// The range of a scanner is proportional to the square root of its power.
+		double cargoPower = attributes.Get("cargo scan power");
+		double cargoDistance = cargoPower ? 100. * sqrt(cargoPower) : attributes.Get("cargo scan");
+		if(distance < cargoDistance)
+		{
+			startedScanning |= !cargoScan;
+			cargoScan += sqrt(attributes.Get("cargo scan speed"));
+			if(cargoScan >= SCAN_TIME)
+				result |= ShipEvent::SCAN_CARGO;
+			// To make up for the scan decay above:
+			cargoScan += 1.;
+		}
+	}
+	if(outfitScan < SCAN_TIME)
+	{
+		// The range of a scanner is proportional to the square root of its power.
+		double outfitPower = attributes.Get("outfit scan power");
+		double outfitDistance = outfitPower ? 100. * sqrt(outfitPower) : attributes.Get("outfit scan");
+		if(distance < outfitDistance)
+		{
+			startedScanning |= !outfitScan;
+			outfitScan += sqrt(attributes.Get("cargo scan speed"));
+			if(outfitScan >= SCAN_TIME)
+				result |= ShipEvent::SCAN_OUTFITS;
+			// To make up for the scan decay above:
+			outfitScan += 1.;
+		}
+	}
+	if(startedScanning && government->IsPlayer())
+		Messages::Add("Attempting to scan the ship \"" + target->Name() + "\".");
+	else if(startedScanning && target->GetGovernment()->IsPlayer())
+		Messages::Add("The " + target->GetGovernment()->GetName() + " ship \""
+			+ Name() + "\" is attempting to scan you.");
 	
 	return result;
 }
@@ -2277,6 +2323,9 @@ const Planet *Ship::GetDestination() const
 void Ship::SetTargetShip(const shared_ptr<Ship> &ship)
 {
 	targetShip = ship;
+	// When you change targets, clear your scanning records.
+	cargoScan = 0.;
+	outfitScan = 0.;
 }
 
 
