@@ -100,7 +100,7 @@ bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comma
 
 
 
-bool PreferencesPanel::Click(int x, int y)
+bool PreferencesPanel::Click(int x, int y, int clicks)
 {
 	EndEditing();
 	

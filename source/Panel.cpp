@@ -121,7 +121,7 @@ bool Panel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 
 
 
-bool Panel::Click(int x, int y)
+bool Panel::Click(int x, int y, int clicks)
 {
 	return false;
 }

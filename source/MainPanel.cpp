@@ -200,7 +200,7 @@ bool MainPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 
 
 
-bool MainPanel::Click(int x, int y)
+bool MainPanel::Click(int x, int y, int clicks)
 {
 	engine.Click(Point(x, y));
 	return true;

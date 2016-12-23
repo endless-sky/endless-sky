@@ -34,15 +34,16 @@ public:
 	MapSalesPanel(PlayerInfo &player, bool isOutfitters);
 	MapSalesPanel(const MapPanel &panel, bool isOutfitters);
 	
-	void Draw();
-	bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command);
-	bool Click(int x, int y);
-	bool Hover(int x, int y);
-	bool Drag(double dx, double dy);
-	bool Scroll(double dx, double dy);
+	virtual void Draw() override;
 	
 	
 protected:
+	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command) override;
+	virtual bool Click(int x, int y, int clicks) override;
+	virtual bool Hover(int x, int y) override;
+	virtual bool Drag(double dx, double dy) override;
+	virtual bool Scroll(double dx, double dy) override;
+	
 	virtual const Sprite *SelectedSprite() const = 0;
 	virtual const Sprite *CompareSprite() const = 0;
 	virtual const ItemInfoDisplay &SelectedInfo() const = 0;

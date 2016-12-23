@@ -13,14 +13,10 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Audio.h"
 
 #include "Files.h"
+#include "Music.h"
 #include "Point.h"
 #include "Random.h"
 #include "Sound.h"
-
-// So far, MP3 streaming is only tested on Linux.
-#ifndef _WIN32
-#include "Music.h"
-#endif
 
 #ifndef __APPLE__
 #include <AL/al.h>
@@ -107,7 +103,6 @@ namespace {
 	// The current position of the "listener," i.e. the center of the screen.
 	Point listener;
 	
-#ifndef _WIN32
 	// MP3 streaming:
 	unsigned musicSource = 0;
 	static const size_t MUSIC_BUFFERS = 3;
@@ -116,7 +111,6 @@ namespace {
 	shared_ptr<Music> previousTrack;
 	int musicFade = 0;
 	vector<int16_t> fadeBuffer;
-#endif
 }
 
 
@@ -151,7 +145,6 @@ void Audio::Init(const vector<string> &sources)
 	if(!loadQueue.empty())
 		loadThread = thread(&Load);
 	
-#ifndef _WIN32
 	// Create the music-streaming threads.
 	currentTrack.reset(new Music());
 	previousTrack.reset(new Music());
@@ -165,7 +158,6 @@ void Audio::Init(const vector<string> &sources)
 	}
 	alSourceQueueBuffers(musicSource, MUSIC_BUFFERS, musicBuffers);
 	alSourcePlay(musicSource);
-#endif
 }
 
 
@@ -251,14 +243,12 @@ void Audio::Play(const Sound *sound, const Point &position)
 // Play the given music. An empty string means to play nothing.
 void Audio::PlayMusic(const string &name)
 {
-#ifndef _WIN32
 	// Don't worry about thread safety here, since music will always be started
 	// by the main thread.
 	musicFade = 65536;
 	swap(currentTrack, previousTrack);
 	// If the name is empty, it means to turn music off.
 	currentTrack->SetSource(name.empty() ? name : Files::Sounds() + name + ".mp3");
-#endif
 }
 
 
@@ -355,7 +345,6 @@ void Audio::Step()
 	}
 	queue.clear();
 	
-#ifndef _WIN32
 	// Queue up new buffers for the music, if necessary.
 	int buffersDone = 0;
 	alGetSourcei(musicSource, AL_BUFFERS_PROCESSED, &buffersDone);
@@ -387,7 +376,6 @@ void Audio::Step()
 		
 		alSourceQueueBuffers(musicSource, 1, &buffer);
 	}
-#endif
 }
 
 
@@ -437,14 +425,12 @@ void Audio::Quit()
 	}
 	sounds.clear();
 	
-#ifndef _WIN32
 	// Clean up the music source and buffers.
 	alSourceStop(musicSource);
 	alDeleteSources(1, &musicSource);
 	alDeleteBuffers(MUSIC_BUFFERS, musicBuffers);
 	currentTrack.reset();
 	previousTrack.reset();
-#endif
 	
 	// Close the connection to the OpenAL library.
 	if(context)

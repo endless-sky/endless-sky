@@ -304,7 +304,7 @@ bool MissionPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 
 
 
-bool MissionPanel::Click(int x, int y)
+bool MissionPanel::Click(int x, int y, int clicks)
 {
 	dragSide = 0;
 	

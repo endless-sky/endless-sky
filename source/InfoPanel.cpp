@@ -331,7 +331,7 @@ bool InfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 
 
 
-bool InfoPanel::Click(int x, int y)
+bool InfoPanel::Click(int x, int y, int clicks)
 {
 	if(shipIt == player.Ships().end())
 		return true;
@@ -346,7 +346,7 @@ bool InfoPanel::Click(int x, int y)
 		if(hover >= 0 && (**shipIt).GetSystem() == player.GetSystem() && !(**shipIt).IsDisabled())
 			selected = hover;
 	}
-	else if(canEdit && (shift || control || hover != previousSelected))
+	else if(canEdit && (shift || control || clicks < 2))
 	{
 		// Only allow changing your flagship when landed.
 		if(hover >= 0)

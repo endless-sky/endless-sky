@@ -147,7 +147,7 @@ bool MapSalesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 
 
 
-bool MapSalesPanel::Click(int x, int y)
+bool MapSalesPanel::Click(int x, int y, int clicks)
 {
 	if(x < Screen::Left() + WIDTH)
 	{
@@ -174,7 +174,7 @@ bool MapSalesPanel::Click(int x, int y)
 		return true;
 	}
 	else
-		return MapPanel::Click(x, y);
+		return MapPanel::Click(x, y, clicks);
 }
 
 
