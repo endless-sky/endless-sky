@@ -19,9 +19,11 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "DataFile.h"
 #include "DataNode.h"
 #include "Dialog.h"
+#include "Files.h"
 #include "Font.h"
 #include "FrameTimer.h"
 #include "GameData.h"
+#include "ImageBuffer.h"
 #include "MenuPanel.h"
 #include "Panel.h"
 #include "PlayerInfo.h"
@@ -47,6 +49,7 @@ using namespace std;
 
 void PrintHelp();
 void PrintVersion();
+void SetIcon(SDL_Window *window);
 void AdjustViewport(SDL_Window *window);
 int DoError(string message, SDL_Window *window = nullptr, SDL_GLContext context = nullptr);
 void Cleanup(SDL_Window *window, SDL_GLContext context);
@@ -183,6 +186,7 @@ int main(int argc, char *argv[])
 		GameData::LoadShaders();
 		// Make sure the screen size and viewport are set correctly.
 		AdjustViewport(window);
+		SetIcon(window);
 		if(!isFullscreen)
 			SDL_GetWindowSize(window, &windowWidth, &windowHeight);
 		
@@ -340,6 +344,32 @@ void PrintVersion()
 	cerr << "This is free software: you are free to change and redistribute it." << endl;
 	cerr << "There is NO WARRANTY, to the extent permitted by law." << endl;
 	cerr << endl;
+}
+
+
+
+void SetIcon(SDL_Window *window)
+{
+	// Load the icon file.
+	ImageBuffer *buffer = ImageBuffer::Read(Files::Resources() + "icon.png");
+	if(!buffer)
+		return;
+	if(!buffer->Pixels() || !buffer->Width() || !buffer->Height())
+	{
+		delete buffer;
+		return;
+	}
+	
+	// Convert the icon to an SDL surface.
+	SDL_Surface *surface = SDL_CreateRGBSurfaceFrom(buffer->Pixels(), buffer->Width(), buffer->Height(),
+		32, 4 * buffer->Width(), 0x00FF0000, 0x0000FF00, 0x000000FF, 0xFF000000);
+	if(surface)
+	{
+		SDL_SetWindowIcon(window, surface);
+		SDL_FreeSurface(surface);
+	}
+	// Free the image buffer.
+	delete buffer;
 }
 
 
