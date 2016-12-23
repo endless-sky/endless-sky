@@ -43,9 +43,11 @@ namespace {
 
 
 
-ShopPanel::ShopPanel(PlayerInfo &player, const vector<string> &categories)
+ShopPanel::ShopPanel(PlayerInfo &player, bool isOutfitter)
 	: player(player), day(player.GetDate().DaysSinceEpoch()),
-	planet(player.GetPlanet()), playerShip(player.Flagship()), categories(categories)
+	planet(player.GetPlanet()), playerShip(player.Flagship()),
+	categories(isOutfitter ? Outfit::CATEGORIES : Ship::CATEGORIES),
+	collapsed(player.Collapsed(isOutfitter ? "outfitter" : "shipyard"))
 {
 	if(playerShip)
 		playerShips.insert(playerShip);

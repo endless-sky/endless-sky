@@ -17,7 +17,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "ClickZone.h"
 
-#include <map>
+#include <set>
 #include <string>
 #include <vector>
 
@@ -90,7 +90,7 @@ private:
 	bool isOutfitters = false;
 	
 	bool hidPrevious = true;
-	std::map<std::string, bool> hideCategory;
+	std::set<std::string> &collapsed;
 	
 	std::vector<ClickZone<int>> zones;
 	int selected = -1;
