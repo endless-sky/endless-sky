@@ -1350,6 +1350,25 @@ int Ship::Scan()
 	if(!target)
 		return 0;
 	
+	// The range of a scanner is proportional to the square root of its power.
+	double cargoPower = attributes.Get("cargo scan power");
+	double cargoDistance = cargoPower ? 100. * sqrt(cargoPower) : attributes.Get("cargo scan");
+	double outfitPower = attributes.Get("outfit scan power");
+	double outfitDistance = outfitPower ? 100. * sqrt(outfitPower) : attributes.Get("outfit scan");
+	
+	// Bail out if this ship has no scanners.
+	if(!cargoDistance && !outfitDistance)
+		return 0;
+	
+	// Scanning speed also uses a square root, so you need four scanners to get
+	// twice the speed out of them.
+	double cargoSpeed = sqrt(attributes.Get("cargo scan speed"));
+	if(!cargoSpeed)
+		cargoSpeed = 1.;
+	double outfitSpeed = sqrt(attributes.Get("outfit scan speed"));
+	if(!outfitSpeed)
+		outfitSpeed = 1.;
+	
 	// Play the scanning sound if the actor or the target is the player's ship.
 	if(government->IsPlayer() || target->GetGovernment()->IsPlayer())
 		Audio::Play(Audio::Get("scan"), Position());
@@ -1363,13 +1382,10 @@ int Ship::Scan()
 	static const double SCAN_TIME = 60.;
 	if(cargoScan < SCAN_TIME)
 	{
-		// The range of a scanner is proportional to the square root of its power.
-		double cargoPower = attributes.Get("cargo scan power");
-		double cargoDistance = cargoPower ? 100. * sqrt(cargoPower) : attributes.Get("cargo scan");
 		if(distance < cargoDistance)
 		{
 			startedScanning |= !cargoScan;
-			cargoScan += sqrt(attributes.Get("cargo scan speed"));
+			cargoScan += cargoSpeed;
 			if(cargoScan >= SCAN_TIME)
 				result |= ShipEvent::SCAN_CARGO;
 			// To make up for the scan decay above:
@@ -1378,13 +1394,10 @@ int Ship::Scan()
 	}
 	if(outfitScan < SCAN_TIME)
 	{
-		// The range of a scanner is proportional to the square root of its power.
-		double outfitPower = attributes.Get("outfit scan power");
-		double outfitDistance = outfitPower ? 100. * sqrt(outfitPower) : attributes.Get("outfit scan");
 		if(distance < outfitDistance)
 		{
 			startedScanning |= !outfitScan;
-			outfitScan += sqrt(attributes.Get("cargo scan speed"));
+			outfitScan += outfitSpeed;
 			if(outfitScan >= SCAN_TIME)
 				result |= ShipEvent::SCAN_OUTFITS;
 			// To make up for the scan decay above:
