@@ -19,13 +19,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "FontSet.h"
 #include "GameData.h"
 #include "Government.h"
-#include "Information.h"
-#include "Interface.h"
 #include "ItemInfoDisplay.h"
-#include "MapDetailPanel.h"
-#include "MapOutfitterPanel.h"
-#include "MapShipyardPanel.h"
-#include "MissionPanel.h"
 #include "Outfit.h"
 #include "PlayerInfo.h"
 #include "Point.h"
@@ -87,7 +81,7 @@ void MapSalesPanel::Draw()
 	DrawKey();
 	DrawPanel();
 	DrawItems();
-	DrawButtons();
+	DrawButtons(isOutfitters ? "is outfitters" : "is shipyards");
 	DrawInfo();
 }
 
@@ -95,29 +89,7 @@ void MapSalesPanel::Draw()
 
 bool MapSalesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 {
-	if(command.Has(Command::MAP) || key == 'd' || key == SDLK_ESCAPE || (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
-		GetUI()->Pop(this);
-	else if(key == 's' && isOutfitters)
-	{
-		GetUI()->Pop(this);
-		GetUI()->Push(new MapShipyardPanel(*this));
-	}
-	else if(key == 'o' && !isOutfitters)
-	{
-		GetUI()->Pop(this);
-		GetUI()->Push(new MapOutfitterPanel(*this));
-	}
-	else if(key == 'i')
-	{
-		GetUI()->Pop(this);
-		GetUI()->Push(new MissionPanel(*this));
-	}
-	else if(key == 'p')
-	{
-		GetUI()->Pop(this);
-		GetUI()->Push(new MapDetailPanel(*this));
-	}
-	else if(key == SDLK_PAGEUP || key == SDLK_PAGEDOWN)
+	if(key == SDLK_PAGEUP || key == SDLK_PAGEDOWN)
 	{
 		scroll += static_cast<double>((Screen::Height() - 100) * ((key == SDLK_PAGEUP) - (key == SDLK_PAGEDOWN)));
 		scroll = min(0., max(-maxScroll, scroll));
@@ -137,12 +109,8 @@ bool MapSalesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 	else if(key == 'f')
 		GetUI()->Push(new Dialog(
 			this, &MapSalesPanel::DoFind, "Search for:"));
-	else if(key == '+' || key == '=')
-		ZoomMap();
-	else if(key == '-')
-		UnzoomMap();
 	else
-		return false;
+		return MapPanel::KeyDown(key, mod, command);
 	
 	return true;
 }
@@ -264,20 +232,6 @@ void MapSalesPanel::DrawPanel() const
 			SpriteShader::Draw(edgeSprite, pos);
 		}
 	}
-}
-
-
-
-void MapSalesPanel::DrawButtons()
-{
-	Information info;
-	info.SetCondition(isOutfitters ? "is outfitters" : "is shipyards");
-	if(ZoomIsMax())
-		info.SetCondition("max zoom");
-	if(ZoomIsMin())
-		info.SetCondition("min zoom");
-	const Interface *interface = GameData::Interfaces().Get("map buttons");
-	interface->Draw(info, this);
 }
 
 

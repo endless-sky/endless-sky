@@ -47,8 +47,6 @@ protected:
 	
 	
 private:
-	void DoFind(const std::string &text);
-	
 	void DrawKey() const;
 	void DrawSelectedSystem() const;
 	void DrawMissionSystem(const Mission &mission, const Color &color) const;

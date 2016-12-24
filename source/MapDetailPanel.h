@@ -48,20 +48,16 @@ private:
 	void DrawInfo();
 	void DrawOrbits();
 	
-	void ListShips() const;
-	void ListOutfits() const;
-	
 	// Set the commodity coloring, and update the player info as well.
 	void SetCommodity(int index);
 	
 	
 private:
-	int governmentY;
-	int tradeY;
+	int governmentY = 0;
+	int tradeY = 0;
 	
 	std::map<const Planet *, int> planetY;
 	std::map<const Planet *, Point> planets;
-	const Planet *selectedPlanet;
 };
 
 
