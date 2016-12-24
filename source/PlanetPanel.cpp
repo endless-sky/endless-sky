@@ -143,9 +143,11 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 			// The checks that follow are typically cause by parking or selling
 			// ships or changing outfits.
 
-			// Are you overbooked? Don't count fireable flagship crew.
+			// Are you overbooked? Don't count fireable flagship crew. If your
+			// ship can't hold the required crew, count it as having no firable
+			// crew rather than a negative number.
 			const CargoHold &cargo = player.Cargo();
-			int overbooked = -cargo.Bunks() - (flagship->Crew() - flagship->RequiredCrew());
+			int overbooked = -cargo.Bunks() - max(0, flagship->Crew() - flagship->RequiredCrew());
 			int missionCargoToSell = cargo.MissionCargoSize() - cargo.Size();
 			// Will you have to sell something other than regular cargo?
 			int cargoToSell = -(cargo.Free() + cargo.CommoditiesSize());

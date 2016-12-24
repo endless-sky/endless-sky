@@ -159,7 +159,7 @@ public:
 	std::shared_ptr<Ship> Board(bool autoPlunder = true);
 	// Scan the target, if able and commanded to. Return a ShipEvent bitmask
 	// giving the types of scan that succeeded.
-	int Scan() const;
+	int Scan();
 	
 	// Fire any weapons that are ready to fire. If an anti-missile is ready,
 	// instead of firing here this function returns true and it can be fired if
@@ -385,6 +385,9 @@ private:
 	// Cached values for figuring out when anti-missile is in range.
 	double antiMissileRange = 0.;
 	double weaponRadius = 0.;
+	// Cargo and outfit scanning takes time.
+	double cargoScan = 0.;
+	double outfitScan = 0.;
 	
 	Command commands;
 	

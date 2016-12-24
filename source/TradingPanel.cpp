@@ -276,7 +276,7 @@ bool TradingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 
 
 
-bool TradingPanel::Click(int x, int y)
+bool TradingPanel::Click(int x, int y, int clicks)
 {
 	int maxY = FIRST_Y + 25 + 20 * COMMODITY_COUNT;
 	if(x >= MIN_X && x <= MAX_X && y >= FIRST_Y + 25 && y < maxY)

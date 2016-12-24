@@ -62,7 +62,7 @@ protected:
 	// The use can click "ok" or "cancel", or use the tab key to toggle which
 	// button is highlighted and the enter key to select it.
 	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command) override;
-	virtual bool Click(int x, int y) override;
+	virtual bool Click(int x, int y, int clicks) override;
 	
 	
 private:

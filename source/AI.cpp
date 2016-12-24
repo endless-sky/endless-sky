@@ -165,12 +165,6 @@ void AI::UpdateEvents(const list<ShipEvent> &events)
 {
 	for(const ShipEvent &event : events)
 	{
-		if(event.Type() & (ShipEvent::SCAN_CARGO | ShipEvent::SCAN_OUTFITS))
-		{
-			if(event.TargetGovernment()->IsPlayer())
-				Messages::Add("You are being scanned by the " +
-					event.ActorGovernment()->GetName() + " ship \"" + event.Actor()->Name() + ".\"");
-		}
 		if(event.Actor() && event.Target())
 			actions[event.Actor()][event.Target()] |= event.Type();
 		if(event.ActorGovernment() && event.Target())
@@ -657,8 +651,8 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship, const list<shared_ptr<Ship>> &
 			}
 		}
 	
-	bool cargoScan = ship.Attributes().Get("cargo scan");
-	bool outfitScan = ship.Attributes().Get("outfit scan");
+	bool cargoScan = ship.Attributes().Get("cargo scan") || ship.Attributes().Get("cargo scan power");
+	bool outfitScan = ship.Attributes().Get("outfit scan") || ship.Attributes().Get("outfit scan power");
 	if(!target && (cargoScan || outfitScan) && !isPlayerEscort)
 	{
 		closest = numeric_limits<double>::infinity();
@@ -740,8 +734,8 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 	}
 	else if(target)
 	{
-		bool cargoScan = ship.Attributes().Get("cargo scan");
-		bool outfitScan = ship.Attributes().Get("outfit scan");
+		bool cargoScan = ship.Attributes().Get("cargo scan") || ship.Attributes().Get("cargo scan power");
+		bool outfitScan = ship.Attributes().Get("outfit scan") || ship.Attributes().Get("outfit scan power");
 		if((!cargoScan || Has(ship.GetGovernment(), target, ShipEvent::SCAN_CARGO))
 				&& (!outfitScan || Has(ship.GetGovernment(), target, ShipEvent::SCAN_OUTFITS)))
 			target.reset();
@@ -1311,8 +1305,8 @@ void AI::DoSurveillance(Ship &ship, Command &command, const list<shared_ptr<Ship
 		return;
 	}
 	
-	bool cargoScan = ship.Attributes().Get("cargo scan");
-	bool outfitScan = ship.Attributes().Get("outfit scan");
+	bool cargoScan = ship.Attributes().Get("cargo scan") || ship.Attributes().Get("cargo scan power");
+	bool outfitScan = ship.Attributes().Get("outfit scan") || ship.Attributes().Get("outfit scan power");
 	double atmosphereScan = ship.Attributes().Get("atmosphere scan");
 	bool jumpDrive = ship.Attributes().Get("jump drive");
 	bool hyperdrive = ship.Attributes().Get("hyperdrive");
@@ -1965,7 +1959,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, const list<shared_ptr<
 			}
 		}
 	}
-	else if(keyDown.Has(Command::SCAN))
+	else if(keyHeld.Has(Command::SCAN))
 		command |= Command::SCAN;
 	
 	bool hasGuns = Preferences::Has("Automatic firing") && !ship.IsBoarding()

@@ -218,7 +218,7 @@ bool MapDetailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command
 
 
 
-bool MapDetailPanel::Click(int x, int y)
+bool MapDetailPanel::Click(int x, int y, int clicks)
 {
 	if(x < Screen::Left() + 160)
 	{
@@ -284,7 +284,7 @@ bool MapDetailPanel::Click(int x, int y)
 		return DoKey(SDLK_PAGEDOWN);
 	}
 	
-	MapPanel::Click(x, y);
+	MapPanel::Click(x, y, clicks);
 	if(selectedPlanet && selectedPlanet->GetSystem() != selectedSystem)
 		selectedPlanet = nullptr;
 	return true;
@@ -657,7 +657,7 @@ void MapDetailPanel::DrawOrbits()
 	// Draw the name of the selected planet.
 	const string &name = selectedPlanet ? selectedPlanet->Name() : selectedSystem->Name();
 	int width = font.Width(name);
-	width = (width / 2) + 65;
+	width = (width / 2) + 75;
 	Point namePos(Screen::Right() - width - 5., Screen::Top() + 293.);
 	Color nameColor(.6, .6);
 	font.Draw(name, namePos, nameColor);

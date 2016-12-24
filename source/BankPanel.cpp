@@ -271,7 +271,7 @@ bool BankPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 
 
 // Handle mouse clicks.
-bool BankPanel::Click(int x, int y)
+bool BankPanel::Click(int x, int y, int clicks)
 {
 	// Check if the click was on one of the rows of the table that represents a
 	// mortgage or other current debt you have.

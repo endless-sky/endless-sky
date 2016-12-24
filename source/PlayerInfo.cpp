@@ -184,6 +184,11 @@ void PlayerInfo::Load(const string &path)
 			shouldLaunch = true;
 		else if(child.Token(0) == "map coloring" && child.Size() >= 2)
 			mapColoring = child.Value(1);
+		else if(child.Token(0) == "collapsed" && child.Size() >= 2)
+		{
+			for(const DataNode &grand : child)
+				collapsed[child.Token(1)].insert(grand.Token(0));
+		}
 		else if(child.Token(0) == "changes")
 		{
 			for(const DataNode &grand : child)
@@ -1979,6 +1984,21 @@ void PlayerInfo::Save(const string &path) const
 	
 	// Save the current setting for the map coloring;
 	out.Write("map coloring", mapColoring);
+	// Remember what categories are collapsed.
+	for(const auto &it : collapsed)
+	{
+		// Skip panels where nothing was collapsed.
+		if(it.second.empty())
+			continue;
+		
+		out.Write("collapsed", it.first);
+		out.BeginChild();
+		{
+			for(const auto &cit : it.second)
+				out.Write(cit);
+		}
+		out.EndChild();
+	}
 	
 	// Save pending events, and changes that have happened due to past events.
 	for(const GameEvent &event : gameEvents)
@@ -2025,4 +2045,12 @@ int PlayerInfo::MapColoring() const
 void PlayerInfo::SetMapColoring(int index)
 {
 	mapColoring = index;
+}
+
+
+
+// Get the set of collapsed categories for the named panel.
+set<string> &PlayerInfo::Collapsed(const string &name)
+{
+	return collapsed[name];
 }

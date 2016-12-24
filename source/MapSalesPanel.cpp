@@ -55,7 +55,8 @@ using namespace std;
 MapSalesPanel::MapSalesPanel(PlayerInfo &player, bool isOutfitters)
 	: MapPanel(player, SHOW_SPECIAL),
 	categories(isOutfitters ? Outfit::CATEGORIES : Ship::CATEGORIES),
-	isOutfitters(isOutfitters)
+	isOutfitters(isOutfitters),
+	collapsed(player.Collapsed(isOutfitters ? "outfitter map" : "shipyard map"))
 {
 	if(!isOutfitters)
 		swizzle = GameData::PlayerGovernment()->GetSwizzle();
@@ -66,7 +67,8 @@ MapSalesPanel::MapSalesPanel(PlayerInfo &player, bool isOutfitters)
 MapSalesPanel::MapSalesPanel(const MapPanel &panel, bool isOutfitters)
 	: MapPanel(panel),
 	categories(isOutfitters ? Outfit::CATEGORIES : Ship::CATEGORIES),
-	isOutfitters(isOutfitters)
+	isOutfitters(isOutfitters),
+	collapsed(player.Collapsed(isOutfitters ? "outfitter map" : "shipyard map"))
 {
 	commodity = SHOW_SPECIAL;
 	if(!isOutfitters)
@@ -147,7 +149,7 @@ bool MapSalesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 
 
 
-bool MapSalesPanel::Click(int x, int y)
+bool MapSalesPanel::Click(int x, int y, int clicks)
 {
 	if(x < Screen::Left() + WIDTH)
 	{
@@ -174,7 +176,7 @@ bool MapSalesPanel::Click(int x, int y)
 		return true;
 	}
 	else
-		return MapPanel::Click(x, y);
+		return MapPanel::Click(x, y, clicks);
 }
 
 
@@ -334,8 +336,7 @@ void MapSalesPanel::DrawInfo() const
 
 bool MapSalesPanel::DrawHeader(Point &corner, const string &category)
 {
-	auto hit = hideCategory.find(category);
-	bool hide = (hit != hideCategory.end() && hit->second);
+	bool hide = collapsed.count(category);
 	if(!hidPrevious)
 		corner.Y() += 50.;
 	hidPrevious = hide;
@@ -424,13 +425,18 @@ void MapSalesPanel::ScrollTo(int index)
 
 void MapSalesPanel::ClickCategory(const string &name)
 {
-	bool set = !hideCategory[name];
+	bool isHidden = collapsed.count(name);
 	if(SDL_GetModState() & KMOD_SHIFT)
 	{
 		// If the shift key is held down, hide or show all categories.
-		for(const string &category : categories)
-			hideCategory[category] = set;
+		if(isHidden)
+			collapsed.clear();
+		else
+			for(const string &category : categories)
+				collapsed.insert(category);
 	}
+	else if(isHidden)
+		collapsed.erase(name);
 	else
-		hideCategory[name] = set;
+		collapsed.insert(name);
 }

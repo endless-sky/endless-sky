@@ -867,12 +867,12 @@ ship "Cruiser" "Cruiser (Mark II)"
 		"A520 Atomic Thruster"
 		"A525 Atomic Steering"
 		"Hyperdrive"
+	gun "Sidewinder Missile Launcher"
+	gun "Sidewinder Missile Launcher"
+	gun "Sidewinder Missile Launcher"
+	gun "Sidewinder Missile Launcher"
 	gun "Typhoon Launcher"
 	gun "Typhoon Launcher"
-	gun "Sidewinder Missile Launcher"
-	gun "Sidewinder Missile Launcher"
-	gun "Sidewinder Missile Launcher"
-	gun "Sidewinder Missile Launcher"
 	turret "Electron Turret"
 	turret "Electron Turret"
 	turret "Electron Turret"
@@ -1111,15 +1111,16 @@ ship "Osprey" "Osprey (Alien Weapons)"
 		"Ion Cannon" 2
 		"Pulse Cannon" 2
 		"Pulse Turret"
-		"Anti-Missile Turret"
-		"Fusion Reactor"
-		"LP072a Battery Pack"
-		"S-970 Regenerator"
+		"Chameleon Anti-Missile"
+		"Boulder Reactor"
+		"Hai Fissure Batteries"
+		"Hai Corundum Regenerator"
 		"Liquid Nitrogen Cooler"
-		"Mass Expansion" 2
-		"A370 Atomic Thruster"
-		"A525 Atomic Steering"
-		"Hyperdrive"
+		`"Bondir" Atomic Thruster`
+		`"Bondir" Atomic Steering`
+		Hyperdrive
+
+
 
 ship "Nest" "Nest (Sidewinder)"
 	outfits
@@ -1135,6 +1136,8 @@ ship "Nest" "Nest (Sidewinder)"
 		"A375 Atomic Steering"
 		Hyperdrive
 
+
+
 ship "Roost" "Roost (Sidewinder)"
 	outfits
 		"Sidewinder Missile Launcher" 2
@@ -1148,6 +1151,8 @@ ship "Roost" "Roost (Sidewinder)"
 		"A250 Atomic Thruster"
 		"A375 Atomic Steering"
 		Hyperdrive
+
+
 
 ship "Skein" "Skein (Sidewinder)"
 	outfits
@@ -1164,6 +1169,8 @@ ship "Skein" "Skein (Sidewinder)"
 		"A375 Atomic Steering"
 		Hyperdrive
 
+
+
 ship "Lance" "Lance (Gatling)"
 	outfits
 		"Gatling Gun" 2
@@ -1173,6 +1180,8 @@ ship "Lance" "Lance (Gatling)"
 		"D14-RN Shield Generator"
 		"X1700 Ion Thruster"
 		"X1200 Ion Steering"
+
+
 
 ship "Barb" "Barb (Gatling)"
 	outfits
@@ -1184,6 +1193,8 @@ ship "Barb" "Barb (Gatling)"
 		"D14-RN Shield Generator"
 		"X1050 Ion Engines"
 
+
+
 ship "Fury" "Fury (Gatling)"
 	outfits
 		"Gatling Gun" 4
@@ -1194,6 +1205,8 @@ ship "Fury" "Fury (Gatling)"
 		"X2700 Ion Thruster"
 		"A125 Atomic Steering"
 		"Hyperdrive"
+
+
 
 ship "Sparrow" "Sparrow (Gatling)"
 	outfits

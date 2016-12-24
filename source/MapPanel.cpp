@@ -216,7 +216,7 @@ void MapPanel::DrawMiniMap(const PlayerInfo &player, double alpha, const System 
 
 
 
-bool MapPanel::Click(int x, int y)
+bool MapPanel::Click(int x, int y, int clicks)
 {
 	// Figure out if a system was clicked on.
 	Point click = Point(x, y) / Zoom() - center;
