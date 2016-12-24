@@ -5361,8 +5361,8 @@ system "Bore Fah"
 	trade Plastic 322
 	fleet "Small Hai" 1000
 	fleet "Large Hai" 1000
-	fleet "Small Northern Merchants" 12000
-	fleet "Large Northern Merchants" 18000
+	fleet "Small Human Merchants (Hai)" 12000
+	fleet "Large Human Merchants (Hai)" 18000
 	object
 		sprite star/g5
 		period 10
@@ -5420,8 +5420,8 @@ system "Bote Asu"
 	trade Plastic 362
 	fleet "Small Hai" 900
 	fleet "Large Hai" 600
-	fleet "Small Northern Merchants" 8000
-	fleet "Large Northern Merchants" 12000
+	fleet "Small Human Merchants (Hai)" 8000
+	fleet "Large Human Merchants (Hai)" 12000
 	object
 		sprite star/f0
 		distance 17.3605
@@ -6484,8 +6484,8 @@ system "Da Ent"
 	trade Plastic 532
 	fleet "Small Hai" 500
 	fleet "Large Hai" 1200
-	fleet "Small Northern Merchants" 9000
-	fleet "Large Northern Merchants" 10000
+	fleet "Small Human Merchants (Hai)" 9000
+	fleet "Large Human Merchants (Hai)" 10000
 	object
 		sprite star/m4
 		period 10
@@ -6545,8 +6545,8 @@ system "Da Lest"
 	trade Plastic 452
 	fleet "Small Hai" 600
 	fleet "Large Hai" 1400
-	fleet "Small Northern Merchants" 7000
-	fleet "Large Northern Merchants" 8000
+	fleet "Small Human Merchants (Hai)" 7000
+	fleet "Large Human Merchants (Hai)" 8000
 	object
 		sprite star/m0
 		period 10
@@ -7437,8 +7437,8 @@ system "Due Yoot"
 	trade Plastic 472
 	fleet "Small Hai" 700
 	fleet "Large Hai" 2000
-	fleet "Small Northern Merchants" 3000
-	fleet "Large Northern Merchants" 6000
+	fleet "Small Human Merchants (Hai)" 3000
+	fleet "Large Human Merchants (Hai)" 6000
 	fleet Quarg 2000
 	object
 		sprite star/m4
@@ -8560,8 +8560,8 @@ system "Fah Root"
 	trade Plastic 332
 	fleet "Small Hai" 2000
 	fleet "Large Hai" 4000
-	fleet "Small Northern Merchants" 15000
-	fleet "Large Northern Merchants" 25000
+	fleet "Small Human Merchants (Hai)" 15000
+	fleet "Large Human Merchants (Hai)" 25000
 	fleet Quarg 2000
 	object
 		sprite star/k0
@@ -8626,8 +8626,8 @@ system "Fah Soom"
 	trade Plastic 532
 	fleet "Small Hai" 600
 	fleet "Large Hai" 1600
-	fleet "Small Northern Merchants" 6000
-	fleet "Large Northern Merchants" 9000
+	fleet "Small Human Merchants (Hai)" 6000
+	fleet "Large Human Merchants (Hai)" 9000
 	fleet Quarg 1000
 	object
 		sprite star/k5
@@ -10590,8 +10590,8 @@ system "Heia Due"
 	trade Plastic 362
 	fleet "Small Hai" 600
 	fleet "Large Hai" 2000
-	fleet "Small Northern Merchants" 2000
-	fleet "Large Northern Merchants" 5000
+	fleet "Small Human Merchants (Hai)" 2000
+	fleet "Large Human Merchants (Hai)" 5000
 	object
 		sprite star/g0
 		distance 13.2222
@@ -10717,8 +10717,8 @@ system "Hevru Hai"
 	trade Plastic 503
 	fleet "Small Hai" 1000
 	fleet "Large Hai" 2500
-	fleet "Small Northern Merchants" 9000
-	fleet "Large Northern Merchants" 15000
+	fleet "Small Human Merchants (Hai)" 9000
+	fleet "Large Human Merchants (Hai)" 15000
 	fleet Quarg 600
 	object
 		sprite star/g5
@@ -11289,8 +11289,8 @@ system "Imo Dep"
 	trade Plastic 532
 	fleet "Small Hai" 1000
 	fleet "Large Hai" 2000
-	fleet "Small Northern Merchants" 10000
-	fleet "Large Northern Merchants" 14000
+	fleet "Small Human Merchants (Hai)" 10000
+	fleet "Large Human Merchants (Hai)" 14000
 	object
 		sprite star/f5
 		period 10
@@ -11360,8 +11360,8 @@ system "Io Lowe"
 	trade Plastic 262
 	fleet "Small Hai" 600
 	fleet "Large Hai" 1200
-	fleet "Small Northern Merchants" 4000
-	fleet "Large Northern Merchants" 7000
+	fleet "Small Human Merchants (Hai)" 4000
+	fleet "Large Human Merchants (Hai)" 7000
 	object
 		sprite star/m8
 		period 10
@@ -11417,8 +11417,8 @@ system "Io Mann"
 	trade Plastic 532
 	fleet "Small Hai" 700
 	fleet "Large Hai" 1800
-	fleet "Small Northern Merchants" 3000
-	fleet "Large Northern Merchants" 6000
+	fleet "Small Human Merchants (Hai)" 3000
+	fleet "Large Human Merchants (Hai)" 6000
 	object
 		sprite star/k0
 		distance 54
@@ -13421,8 +13421,8 @@ system "Lom Tahr"
 	trade Plastic 372
 	fleet "Small Hai" 600
 	fleet "Large Hai" 1600
-	fleet "Small Northern Merchants" 6000
-	fleet "Large Northern Merchants" 9000
+	fleet "Small Human Merchants (Hai)" 6000
+	fleet "Large Human Merchants (Hai)" 9000
 	fleet Quarg 4000
 	object
 		sprite star/f0
@@ -14063,8 +14063,8 @@ system "Mei Yohn"
 	trade Plastic 362
 	fleet "Small Hai" 600
 	fleet "Large Hai" 1000
-	fleet "Small Northern Merchants" 7000
-	fleet "Large Northern Merchants" 10000
+	fleet "Small Human Merchants (Hai)" 7000
+	fleet "Large Human Merchants (Hai)" 10000
 	object
 		sprite star/k5
 		period 10
@@ -17337,8 +17337,8 @@ system "Rati Cal"
 	trade Plastic 392
 	fleet "Small Hai" 900
 	fleet "Large Hai" 1700
-	fleet "Small Northern Merchants" 8000
-	fleet "Large Northern Merchants" 11000
+	fleet "Small Human Merchants (Hai)" 8000
+	fleet "Large Human Merchants (Hai)" 11000
 	object
 		sprite star/k5
 		period 10
@@ -20838,8 +20838,8 @@ system "Ula Mon"
 	trade Plastic 372
 	fleet "Small Hai" 400
 	fleet "Large Hai" 900
-	fleet "Small Northern Merchants" 6000
-	fleet "Large Northern Merchants" 9000
+	fleet "Small Human Merchants (Hai)" 6000
+	fleet "Large Human Merchants (Hai)" 9000
 	object
 		sprite star/m0
 		distance 56.5
@@ -21149,8 +21149,8 @@ system "Uwa Fahn"
 	trade Plastic 372
 	fleet "Small Hai" 700
 	fleet "Large Hai" 700
-	fleet "Small Northern Merchants" 11000
-	fleet "Large Northern Merchants" 16000
+	fleet "Small Human Merchants (Hai)" 11000
+	fleet "Large Human Merchants (Hai)" 16000
 	object
 		sprite star/m0
 		period 10
@@ -21376,8 +21376,8 @@ system "Wah Ki"
 	fleet "Small Hai" 1200
 	fleet "Large Hai" 500
 	fleet "Large Unfettered" 800
-	fleet "Small Northern Merchants" 18000
-	fleet "Large Northern Merchants" 28000
+	fleet "Small Human Merchants (Hai)" 18000
+	fleet "Large Human Merchants (Hai)" 28000
 	object
 		sprite star/k5
 		period 10
@@ -21444,8 +21444,8 @@ system "Wah Oh"
 	trade Plastic 432
 	fleet "Small Hai" 500
 	fleet "Large Hai" 1500
-	fleet "Small Northern Merchants" 6000
-	fleet "Large Northern Merchants" 9000
+	fleet "Small Human Merchants (Hai)" 6000
+	fleet "Large Human Merchants (Hai)" 9000
 	object
 		sprite star/a0
 		period 10
@@ -21580,8 +21580,8 @@ system Waypoint
 	trade Plastic 452
 	fleet "Small Hai" 1200
 	fleet "Large Hai" 2500
-	fleet "Small Northern Merchants" 18000
-	fleet "Large Northern Merchants" 28000
+	fleet "Small Human Merchants (Hai)" 18000
+	fleet "Large Human Merchants (Hai)" 28000
 	object
 		sprite star/m8
 		period 10
@@ -21838,8 +21838,8 @@ system "Ya Hai"
 	trade Plastic 472
 	fleet "Small Hai" 400
 	fleet "Large Hai" 500
-	fleet "Small Northern Merchants" 12000
-	fleet "Large Northern Merchants" 17000
+	fleet "Small Human Merchants (Hai)" 12000
+	fleet "Large Human Merchants (Hai)" 17000
 	fleet Quarg 6000
 	object
 		sprite star/k5
@@ -22204,8 +22204,8 @@ system "Zuba Zub"
 	trade Plastic 452
 	fleet "Small Hai" 1000
 	fleet "Large Hai" 800
-	fleet "Small Northern Merchants" 10000
-	fleet "Large Northern Merchants" 18000
+	fleet "Small Human Merchants (Hai)" 10000
+	fleet "Large Human Merchants (Hai)" 18000
 	object
 		sprite star/k5
 		period 10
