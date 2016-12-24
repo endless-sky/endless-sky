@@ -48,7 +48,7 @@ class PlayerInfo;
 // situations where there are many objects on screen at once.
 class Engine {
 public:
-	Engine(PlayerInfo &player);
+	explicit Engine(PlayerInfo &player);
 	~Engine();
 	
 	// Place all the player's ships, and "enter" the system the player is in.

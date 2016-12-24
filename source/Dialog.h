@@ -35,7 +35,7 @@ class Dialog : public Panel {
 public:
 	// Dialog that has no callback (information only). In this form, there is
 	// only an "ok" button, not a "cancel" button.
-	Dialog(const std::string &text);
+	explicit Dialog(const std::string &text);
 	// Mission accept / decline dialog.
 	Dialog(const std::string &text, PlayerInfo &player, const System *system = nullptr);
 	virtual ~Dialog() = default;

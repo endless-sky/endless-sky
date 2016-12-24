@@ -70,7 +70,7 @@ private:
 	// may also include "scene" images.
 	class Paragraph {
 	public:
-		Paragraph(const std::string &text, const Sprite *scene = nullptr, bool isFirst = false);
+		explicit Paragraph(const std::string &text, const Sprite *scene = nullptr, bool isFirst = false);
 		
 		// Get the height of this paragraph.
 		int Height() const;

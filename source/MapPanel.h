@@ -50,7 +50,7 @@ public:
 	
 	
 public:
-	MapPanel(PlayerInfo &player, int commodity = SHOW_REPUTATION, const System *special = nullptr);
+	explicit MapPanel(PlayerInfo &player, int commodity = SHOW_REPUTATION, const System *special = nullptr);
 	
 	virtual void Draw() override;
 	

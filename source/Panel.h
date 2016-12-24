@@ -71,7 +71,7 @@ protected:
 	virtual bool Scroll(double dx, double dy);
 	// If a clickable zone is clicked while editing is happening, the panel may
 	// need to know to exit editing mode before handling the click.
-	virtual void EndEditing() {};
+	virtual void EndEditing() {}
 	
 	void SetIsFullScreen(bool set);
 	void SetTrapAllEvents(bool set);

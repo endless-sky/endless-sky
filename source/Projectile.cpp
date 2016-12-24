@@ -104,12 +104,14 @@ bool Projectile::Move(list<Effect> &effects)
 	if(--lifetime <= 0)
 	{
 		if(lifetime > -100)
+		{
 			for(const auto &it : weapon->DieEffects())
 				for(int i = 0; i < it.second; ++i)
 				{
 					effects.push_back(*it.first);
 					effects.back().Place(position, velocity, angle);
 				}
+		}
 		
 		return false;
 	}

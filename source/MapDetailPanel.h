@@ -30,8 +30,8 @@ class PlayerInfo;
 // click on a planet to view its description.
 class MapDetailPanel : public MapPanel {
 public:
-	MapDetailPanel(PlayerInfo &player, const System *system = nullptr);
-	MapDetailPanel(const MapPanel &panel);
+	explicit MapDetailPanel(PlayerInfo &player, const System *system = nullptr);
+	explicit MapDetailPanel(const MapPanel &panel);
 	
 	virtual void Draw() override;
 	

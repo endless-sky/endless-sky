@@ -739,9 +739,11 @@ void Engine::EnterSystem()
 				attraction += 2;
 		}
 		if(attraction > 2)
+		{
 			for(int i = 0; i < 10; ++i)
 				if(Random::Int(200) + 1 < attraction)
 					raidFleet->Place(*system, ships);
+		}
 	}
 	
 	projectiles.clear();
