@@ -1160,7 +1160,7 @@ bool Ship::Move(list<Effect> &effects, list<Flotsam> &flotsam)
 		double distance = dp.Length();
 		Point dv = (target->velocity - velocity);
 		double speed = dv.Length();
-		isBoarding |= (distance < 50. && speed < 1. && commands.Has(Command::BOARD) && !cloak);
+		isBoarding |= (distance < 50. && speed < 1. && commands.Has(Command::BOARD));
 		if(isBoarding && !CanBeCarried())
 		{
 			if(!target->IsDisabled() && government->IsEnemy(target->government))
@@ -1188,16 +1188,27 @@ bool Ship::Move(list<Effect> &effects, list<Flotsam> &flotsam)
 			
 			if(distance < 10. && speed < 1. && (CanBeCarried() || !turn))
 			{
-				isBoarding = false;
-				bool isEnemy = government->IsEnemy(target->government);
-				if(isEnemy && Random::Real() < target->Attributes().Get("self destruct"))
+				if(cloak)
 				{
-					Messages::Add("The " + target->ModelName() + " \"" + target->Name()
-						+ "\" has activated its self-destruct mechanism.");
-					targetShip.lock()->SelfDestruct();
+					// Allow the player to get all the way to the end of the
+					// boarding sequence (including locking on to the ship) but
+					// not to actually board, if they are cloaked.
+					if(government->IsPlayer())
+						Messages::Add("You cannot board a ship while cloaked.");
 				}
 				else
-					hasBoarded = true;
+				{
+					isBoarding = false;
+					bool isEnemy = government->IsEnemy(target->government);
+					if(isEnemy && Random::Real() < target->Attributes().Get("self destruct"))
+					{
+						Messages::Add("The " + target->ModelName() + " \"" + target->Name()
+							+ "\" has activated its self-destruct mechanism.");
+						targetShip.lock()->SelfDestruct();
+					}
+					else
+						hasBoarded = true;
+				}
 			}
 		}
 	}
