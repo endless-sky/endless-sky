@@ -1418,7 +1418,7 @@ int Ship::Scan()
 	if(startedScanning && government->IsPlayer())
 		Messages::Add("Attempting to scan the ship \"" + target->Name() + "\".");
 	else if(startedScanning && target->GetGovernment()->IsPlayer())
-		Messages::Add("The " + target->GetGovernment()->GetName() + " ship \""
+		Messages::Add("The " + government->GetName() + " ship \""
 			+ Name() + "\" is attempting to scan you.");
 	
 	return result;
