@@ -1218,3 +1218,363 @@ ship "Sparrow" "Sparrow (Gatling)"
 		"Chipmunk Plasma Thruster"
 		"Chipmunk Plasma Steering"
 		"Hyperdrive"
+
+
+
+ship "Flivver" "Flivver (Hai)"
+	outfits
+		"RT-I Radiothermal"
+		"D14-RN Shield Generator"
+		"Hai Williwaw Cooling"
+		`"Basrem" Atomic Thruster`
+		`"Benga" Atomic Steering`
+		"Hyperdrive"
+
+
+
+ship "Arrow" "Arrow (Hai)"
+	outfits
+		"Sidewinder Missile Launcher" 2
+		"Sidewinder Missile" 100
+		"Bullfrog Anti-Missile"
+		"Pebble Core"
+		"Supercapacitor" 2
+		"D14-RN Shield Generator"
+		"Small Radar Jammer"
+		`"Benga" Atomic Thruster`
+		`"Biroo" Atomic Steering`
+		"Hyperdrive"
+
+
+
+ship "Bounder" "Bounder (Hai)"
+	outfits
+		"Pulse Turret"
+		"Bullfrog Anti-Missile"
+		"Pebble Core"
+		"Hai Fissure Batteries"
+		"D14-RN Shield Generator"
+		"Hai Williwaw Cooling"
+		"X3700 Ion Thruster"
+		"X3200 Ion Steering"
+		"Hyperdrive"
+
+
+
+ship "Star Queen" "Star Queen (Hai)"
+	outfits
+		"Hai Tracker Pod" 3
+		"Hai Tracker" 168
+		"Chameleon Anti-Missile" 2
+		"NT-200 Nucleovoltaic"
+		"Hai Fissure Batteries"
+		"D94-YV Shield Generator"
+		"Small Radar Jammer"
+		"X3700 Ion Thruster"
+		"A375 Atomic Steering"
+		"Hyperdrive"
+
+
+
+ship "Freighter" "Freighter (Hai)"
+	outfits
+		"Pulse Turret"
+		"Laser Turret"
+		"Bullfrog Anti-Missile"
+		"Geode Reactor"
+		"Hai Chasm Batteries"
+		"D14-RN Shield Generator"
+		"Ramscoop"
+		"Mass Expansion"
+		"Greyhound Plasma Thruster"
+		"X3200 Ion Steering"
+		"Scram Drive"
+	turret "Pulse Turret"
+	turret "Laser Turret"
+	turret "Bullfrog Anti-Missile"
+
+
+
+ship "Hauler" "Hauler (Hai)"
+	outfits
+		"Meteor Missile Launcher" 2
+		"Meteor Missile" 70
+		"Quad Blaster Turret" 2
+		"Chameleon Anti-Missile" 2
+		"Geode Reactor"
+		"Hai Gorge Batteries"
+		"Hai Corundum Regenerator"
+		"Hai Williwaw Cooling"
+		"Small Radar"
+		"Greyhound Plasma Thruster"
+		"Impala Plasma Steering"
+		"Hyperdrive"
+	turret "Quad Blaster Turret"
+	turret "Chameleon Anti-Missile"
+	turret "Chameleon Anti-Missile"
+	turret "Quad Blaster Turret"
+
+
+
+ship "Hauler II" "Hauler II (Hai)"
+	outfits
+		"Meteor Missile Launcher" 2
+		"Meteor Missile" 70
+		"Quad Blaster Turret" 2
+		"Chameleon Anti-Missile" 2
+		"Geode Reactor"
+		"Hai Gorge Batteries"
+		"Hai Corundum Regenerator"
+		"Hai Williwaw Cooling"
+		"Small Radar"
+		"Greyhound Plasma Thruster"
+		"Impala Plasma Steering"
+		"Hyperdrive"
+	turret "Quad Blaster Turret"
+	turret "Chameleon Anti-Missile"
+	turret "Chameleon Anti-Missile"
+	turret "Quad Blaster Turret"
+
+
+
+ship "Hauler III" "Hauler III (Hai)"
+	outfits
+		"Meteor Missile Launcher" 2
+		"Meteor Missile" 70
+		"Quad Blaster Turret" 2
+		"Chameleon Anti-Missile" 2
+		"Geode Reactor"
+		"Hai Gorge Batteries"
+		"Hai Corundum Regenerator"
+		"Hai Williwaw Cooling"
+		"Small Radar"
+		"Greyhound Plasma Thruster"
+		"Impala Plasma Steering"
+		"Hyperdrive"
+	turret "Quad Blaster Turret"
+	turret "Chameleon Anti-Missile"
+	turret "Chameleon Anti-Missile"
+	turret "Quad Blaster Turret"
+
+
+
+ship "Behemoth" "Behemoth (Hai)"
+	outfits
+		"Sidewinder Missile Launcher" 2
+		"Sidewinder Missile" 100
+		"Pulse Turret" 6
+		"Boulder Reactor"
+		"Hai Ravine Batteries"
+		"Hai Diamond Regenerator"
+		"Large Radar Jammer"
+		"Liquid Nitrogen Cooler"
+		"Mass Expansion" 6
+		`"Benga" Atomic Thruster`
+		`"Biroo" Atomic Steering`
+		`"Benga" Atomic Steering`
+		"Scram Drive"
+
+
+
+ship "Bulk Freighter" "Bulk Freighter (Hai)"
+	outfits
+		"Sidewinder Missile Launcher" 2
+		"Sidewinder Missile" 100
+		"Pulse Turret" 2
+		"Chameleon Anti-Missile" 3
+		"RT-I Radiothermal"
+		"Hai Ravine Batteries"
+		"D23-QP Shield Generator"
+		"X3700 Ion Thruster"
+		`"Benga" Atomic Steering`
+		`"Basrem" Atomic Steering`
+		"Scram Drive"
+	turret "Pulse Turret"
+	turret "Chameleon Anti-Missile"
+	turret "Chameleon Anti-Missile"
+	turret "Pulse Turret"
+	turret "Chameleon Anti-Missile"
+
+
+
+ship "Headhunter" "Headhunter (Hai)"
+	outfits
+		"Particle Cannon" 2
+		"Geode Reactor"
+		"Hai Chasm Batteries"
+		"Hai Corundum Regenerator"
+		"Hai Williwaw Cooling"
+		"A250 Atomic Thruster"
+		"A375 Atomic Steering"
+		"Hyperdrive"
+
+
+
+ship "Corvette" "Corvette (Hai)"
+	outfits
+		"Hai Tracker Pod" 4
+		"Hai Tracker" 224
+		"Heavy Anti-Missile Turret" 2
+		"Fission Reactor"
+		"LP036a Battery Pack"
+		"D94-YV Shield Generator"
+		"Cooling Ducts"
+		"Cargo Expansion"
+		`"Biroo" Atomic Thruster`
+		`"Bondir" Atomic Steering`
+		"Hyperdrive"
+
+
+
+ship "Firebird" "Firebird (Hai Weapons)"
+	outfits
+		"Ion Cannon" 2
+		"Pulse Cannon" 2
+		"Chameleon Anti-Missile"
+		"Bullfrog Anti-Missile"
+		"Geode Reactor"
+		"Hai Gorge Batteries"
+		"D41-HY Shield Generator"
+		"Hai Williwaw Coooling" 2
+		"X3700 Ion Thruster"
+		"X3200 Ion Steering"
+		"Hyperdrive"
+
+
+
+ship "Firebird" "Firebird (Hai Shields)"
+	outfits
+		"Plasma Cannon" 4
+		"Bullfrog Anti-Missile 2
+		"Breeder Reactor"
+		"Hai Fissure Batteries"
+		"Hai Diamond Regenerator"
+		"Hai Corundum Regenerator" 2
+		"Liquid Nitrogen Cooler"
+		"Hai Williwaw Cooling"
+		"Mass Expansion" 2
+		"X3700 Ion Thruster"
+		"A375 Atomic Steering"
+		"Hyperdrive"
+
+
+
+ship "Mule" "Mule (Hai Engines)"
+	outfits
+		"Sidewinder Missile Launcher" 2
+		"Sidewinder Missile" 100
+		"Heavy Laser Turret" 3
+		"Chameleon Anti-Missile"
+		"Boulder Reactor"
+		"Hai Fissure Batteries"
+		"D41-HY Shield Generator"
+		"Small Radar Jammer" 2
+		"Water Coolant System"
+		"Cooling Ducts"
+		"Mass Expansion"
+		"Ramscoop"
+		`"Bondir" Atomic Thruster`
+		`"Biroo" Atomic Steering`
+		`"Basrem" Atomic Steering`
+		"Hyperdrive"
+
+
+
+ship "Mule" "Mule (Hai Weapons)"
+	outfits
+		"Ion Cannon"
+		"Pulse Turret" 4
+		"Geode Reactor"
+		"Hai Ravine Batteries"
+		"Hai Fissure Batteries"
+		"D67-TM Shield Generator"
+		"Water Coolant System"
+		"Mass Expansion" 3
+		"Ramscoop"
+		"A370 Atomic Thruster"
+		"A375 Atomic Steering"
+		"Hyperdrive"
+
+
+
+ship "Leviathan" "Leviathan (Hai Engines)"
+	outfits
+		"Particle Cannon" 4
+		"Quad Blaster Turret" 2
+		"Chameleon Anti-Missile" 2
+		"Boulder Reactor"
+		"Hai Ravine Batteries"
+		"D67-TM Shield Generator"
+		"Liquid Helium Cooler"
+		`"Bondir" Atomic Thruster`
+		`"Bondir" Atomic Steering`
+		"Hyperdrive"
+
+
+
+ship "Leviathan" "Leviathan (Hai Weapons)"
+	outfits
+		"Hai Tracker Pod" 4
+		"Hai Tracker" 224
+		"Heavy Laser Turret" 4
+		"Boulder Reactor"
+		"Hai Ravine Batteries"
+		"Hai Diamond Regenerator"
+		"Liquid Nitrogen Cooler"
+		"Impala Plasma Thruster"
+		"A375 Atomic Steering"
+		"Afterburner"
+		"Scram Drive"
+		"Ramscoop"
+
+
+
+ship "Bactrian" "Bactrian (Hai Engines)"
+	outfits
+		"Sidewinder Missile Launcher" 2
+		"Sidewinder Missile" 100
+		"Torpedo Launcher" 2
+		"Torpedo" 60
+		"Heavy Laser Turret" 4
+		"Heavy Anti-Missile Turret" 2
+		"Fusion Reactor"
+		"Geode Reactor"
+		"Hai Gorge Batteries"
+		"D67-TM Shield Generator"
+		"Hai Williwaw Cooling" 3
+		"Ramscoop"
+		"Mass Expansion"
+		`"Bufaer" Atomic Thruster`
+		`"Bufaer" Atomic Steering`
+		"Hyperdrive"
+
+
+
+ship "Bactrian" "Bactrian (Hai Weapons)"
+	outfits
+		"Pulse Cannon" 2
+		"Hai Tracker Pod" 2
+		"Hai Tracker" 112
+		"Chameleon Anti-Missile" 2
+		"Pulse Turret" 2
+		"Heavy Laser Turret" 2
+		"Fusion Reactor"
+		"Pebble Core"
+		"Hai Ravine Batteries"
+		"Hai Diamond Regenerator"
+		"Hai Williwaw Cooling" 2
+		"Ramscoop"
+		"Large Radar Jammer"
+		"X4700 Ion Thruster"
+		"X5200 Ion Steering"
+		"Hyperdrive"
+	gun "Pulse Cannon"
+	gun "Pulse Cannon"
+	gun "Hai Tracker Pod"
+	gun "Hai Tracker Pod"
+	turret "Chameleon Anti-Missile"
+	turret "Heavy Laser Turret"
+	turret "Pulse Turret"
+	turret "Pulse Turret"
+	turret "Chameleon Anti-Missile"
+	turret "Heavy Laser Turret"
