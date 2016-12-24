@@ -1218,3 +1218,5 @@ ship "Sparrow" "Sparrow (Gatling)"
 		"Chipmunk Plasma Thruster"
 		"Chipmunk Plasma Steering"
 		"Hyperdrive"
+
+ship "Surveillance Drone" "Surveillance Drone (Secure)"
