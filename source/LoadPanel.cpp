@@ -343,7 +343,7 @@ void LoadPanel::UpdateLists()
 
 
 // New player "conversation" callback.
-void LoadPanel::OnCallback(int)
+void LoadPanel::OnCallback(int, UI *)
 {
 	GetUI()->Pop(this);
 	GetUI()->Pop(GetUI()->Root().get());

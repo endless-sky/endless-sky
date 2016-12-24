@@ -41,7 +41,7 @@ public:
 	ConversationPanel(PlayerInfo &player, const Conversation &conversation, const System *system = nullptr, const Ship *ship = nullptr);
 	
 template <class T>
-	void SetCallback(T *t, void (T::*fun)(int));
+	void SetCallback(T *t, void (T::*fun)(int, UI *));
 	
 	// Draw this panel.
 	virtual void Draw() override;
@@ -128,9 +128,9 @@ private:
 
 // Allow the callback function to be a member of any class.
 template <class T>
-void ConversationPanel::SetCallback(T *t, void (T::*fun)(int))
+void ConversationPanel::SetCallback(T *t, void (T::*fun)(int, UI *))
 {
-	callback = std::bind(fun, t, std::placeholders::_1);
+	callback = std::bind(fun, t, std::placeholders::_1, GetUI());
 }
 
 

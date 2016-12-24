@@ -275,7 +275,7 @@ void MissionAction::Do(PlayerInfo &player, UI *ui, const System *destination) co
 			ui->Push(new Dialog(text));
 	}
 	else if(isOffer && ui)
-		player.MissionCallback(Conversation::ACCEPT);
+		player.MissionCallback(Conversation::ACCEPT, ui);
 	
 	// If multiple outfits are being transferred, first remove them before
 	// adding any new ones.

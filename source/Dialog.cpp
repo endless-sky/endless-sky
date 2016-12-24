@@ -93,7 +93,7 @@ Dialog::Dialog(const string &text)
 
 // Mission accept / decline dialog.
 Dialog::Dialog(const string &text, PlayerInfo &player, const System *system)
-	: intFun(bind(&PlayerInfo::MissionCallback, &player, placeholders::_1)),
+	: intFun(bind(&PlayerInfo::MissionCallback, &player, placeholders::_1, GetUI())),
 	system(system), player(&player)
 {
 	Init(text, true, true);

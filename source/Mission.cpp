@@ -723,7 +723,7 @@ bool Mission::Do(Trigger trigger, PlayerInfo &player, UI *ui)
 	{
 		// If a mission has no "on offer" field, it is automatically accepted.
 		if(trigger == OFFER && location != JOB)
-			player.MissionCallback(Conversation::ACCEPT);
+			player.MissionCallback(Conversation::ACCEPT, ui);
 		return true;
 	}
 	

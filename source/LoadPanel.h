@@ -22,6 +22,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <vector>
 
 class PlayerInfo;
+class UI;
 
 
 
@@ -48,7 +49,7 @@ private:
 	void UpdateLists();
 	
 	// New player "conversation" callback.
-	void OnCallback(int value);
+	void OnCallback(int, UI *);
 	// Snapshot name callback.
 	void SnapshotCallback(const std::string &name);
 	// Load snapshot callback.
