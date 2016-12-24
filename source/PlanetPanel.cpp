@@ -144,7 +144,7 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 			// ships or changing outfits.
 
 			// Are you overbooked? Don't count fireable flagship crew. If your
-			// ship can't hold the required crew, count it as having no firable
+			// ship can't hold the required crew, count it as having no fireable
 			// crew rather than a negative number.
 			const CargoHold &cargo = player.Cargo();
 			int overbooked = -cargo.Bunks() - max(0, flagship->Crew() - flagship->RequiredCrew());
