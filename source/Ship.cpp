@@ -28,7 +28,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "System.h"
 
 #include <algorithm>
-#include <cassert>
 #include <cmath>
 #include <iostream>
 
@@ -57,9 +56,11 @@ namespace {
 
 void Ship::Load(const DataNode &node)
 {
-	assert(node.Size() >= 2 && node.Token(0) == "ship");
-	modelName = node.Token(1);
-	pluralModelName = modelName + 's';
+	if(node.Size() >= 2)
+	{
+		modelName = node.Token(1);
+		pluralModelName = modelName + 's';
+	}
 	if(node.Size() >= 3)
 		base = GameData::Ships().Get(modelName);
 	

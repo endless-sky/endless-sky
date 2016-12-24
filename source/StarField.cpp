@@ -22,7 +22,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Sprite.h"
 #include "SpriteSet.h"
 
-#include <cassert>
 #include <cmath>
 #include <numeric>
 
@@ -211,7 +210,8 @@ void StarField::SetUpGraphics()
 void StarField::MakeStars(int stars, int width)
 {
 	// We can only work with power-of-two widths above 256.
-	assert(width >= TILE_SIZE && !(width & (width - 1)));
+	if(width < TILE_SIZE || (width & (width - 1)))
+		return;
 	
 	widthMod = width - 1;
 	
