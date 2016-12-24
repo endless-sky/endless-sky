@@ -24,7 +24,7 @@ RPM-based distros:
    libpng-devel \
    libjpeg-turbo-devel \
    mesa-libGL-devel \
-   sglew-devel \
+   glew-devel \
    openal-soft-devel \
    libmad-devel
 
