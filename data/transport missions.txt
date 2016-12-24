@@ -1865,3 +1865,31 @@ mission "A wolf, a goat, and a cabbage"
 		dialog
 			`The man who collects the wolf from you on the landing pad is furious. "I told the shipping company not to put the goat in the same ship as the wolf or the cabbage," he says, "but I guess they tried to save money by subcontracting it all to the same captain."`
 			`	Because you only delivered a third of the cargo safely, he only pays you 33,000 credits.`
+
+
+
+mission "Omicron Forty-two 0"
+	name "Recover <npc>"
+	description "A surveillance drone named <npc> was left in the Kugel system by a Navy fleet, and they would like you to retrieve the scanner logs using an outfit scanner and drop them off at <destination>."
+	source
+		attributes paradise
+	destination "Carbuncle Station"
+	waypoint "Kugel"
+	on offer
+		conversation
+			`	A Navy captain stands at the corner of the spaceport, apparently scanning through the crowd for someone. He sees you, and calls you over. "You look like a respectable captain," he says, obviously in a hurry. "One of our ships recently lost an important surveillance drone in Kugel. Could you scan its outfits and bring back your scanner logs to Carbuncle Station? We do not want you to retrieve or repair it - it has certain defense systems that need to be disabled by... specialists, from Lovelace Labs. I would do it myself," he adds, "but I don't have the time. You will be paid, of course."`
+			choice
+				`	(Accept.)`
+					accept
+				`	(Decline.)`
+					decline
+	npc "scan outfits"
+		personality derelict staying
+		government Republic
+		system "Kugel"
+		ship "Surveillance Drone (Secure)" "Omicron Forty-two"
+		dialog `You scan the surveillance drone and prepare to return the logs to <destination>.`
+	on complete
+		conversation
+			`	A group of Lovelace technicians, along with an intimidating man in a dark suit, meet you in <destination>'s docking bay and take the sensor logs from you. "Thank you, Captain <last>. This will help us greatly," says the man in the suit. He signals for the technicians to leave, and then pays you <payment>.`
+		payment 125000
