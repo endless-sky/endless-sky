@@ -649,7 +649,7 @@ mission "Escort to Hai Space (Small)"
 	job
 	deadline 12
 	to offer
-		random < 70
+		random < 45
 		"combat rating" > 5
 		has "First Contact: Hai: offered"
 	source
@@ -691,7 +691,7 @@ mission "Escort to Hai Space (Medium)"
 	job
 	deadline 12
 	to offer
-		random < 40
+		random < 25
 		"combat rating" > 20
 		has "First Contact: Hai: offered"
 	source
@@ -743,7 +743,7 @@ mission "Escort to Hai Space (Large)"
 	job
 	deadline 12
 	to offer
-		random < 30
+		random < 20
 		"combat rating" > 60
 		has "First Contact: Hai: offered"
 	source
@@ -785,7 +785,7 @@ mission "Escort to Hai Space (Extra Large)"
 	job
 	deadline 12
 	to offer
-		random < 15
+		random < 10
 		"combat rating" > 100
 		has "First Contact: Hai: offered"
 	source
