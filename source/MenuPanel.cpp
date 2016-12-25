@@ -164,7 +164,7 @@ void MenuPanel::Draw()
 
 
 // New player "conversation" callback.
-void MenuPanel::OnCallback(int, UI *)
+void MenuPanel::OnCallback(int)
 {
 	GetUI()->Pop(this);
 	gamePanels.Reset();

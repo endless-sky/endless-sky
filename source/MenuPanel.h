@@ -19,7 +19,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <vector>
 
 class PlayerInfo;
-class UI;
 
 
 
@@ -34,7 +33,7 @@ public:
 	virtual void Draw() override;
 	
 	// New player "conversation" callback.
-	void OnCallback(int value, UI *);
+	void OnCallback(int value);
 	
 	
 protected:

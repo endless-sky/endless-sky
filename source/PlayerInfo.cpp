@@ -1291,7 +1291,7 @@ void PlayerInfo::AcceptJob(const Mission &mission, UI *ui)
 		if(&*it == &mission)
 		{
 			cargo.AddMissionCargo(&mission);
-			it->Do(Mission::OFFER, *this, ui);
+			it->Do(Mission::OFFER, *this);
 			it->Do(Mission::ACCEPT, *this, ui);
 			auto spliceIt = it->IsUnique() ? missions.begin() : missions.end();
 			missions.splice(spliceIt, availableJobs, it);
@@ -1390,7 +1390,7 @@ void PlayerInfo::HandleBlockedMissions(Mission::Location location, UI *ui)
 
 
 // Callback for accepting or declining whatever mission has been offered.
-void PlayerInfo::MissionCallback(int response, UI *ui)
+void PlayerInfo::MissionCallback(int response)
 {
 	boardingShip.reset();
 	list<Mission> &missionList = availableMissions.empty() ? boardingMissions : availableMissions;
@@ -1407,20 +1407,18 @@ void PlayerInfo::MissionCallback(int response, UI *ui)
 		auto spliceIt = mission.IsUnique() ? missions.begin() : missions.end();
 		missions.splice(spliceIt, missionList, missionList.begin());
 		UpdateCargoCapacities();
-		mission.Do(Mission::ACCEPT, *this, ui);
+		mission.Do(Mission::ACCEPT, *this);
 		if(shouldAutosave)
 			Autosave();
 	}
 	else if(response == Conversation::DECLINE || response == Conversation::FLEE)
 	{
-		doneMissions.splice(doneMissions.end(), missionList, missionList.begin());
-		mission.Do(Mission::DECLINE, *this, ui);
+		mission.Do(Mission::DECLINE, *this);
 		missionList.pop_front();
 	}
 	else if(response == Conversation::DEFER || response == Conversation::DEPART)
 	{
-		doneMissions.splice(doneMissions.end(), missionList, missionList.begin());
-		mission.Do(Mission::DEFER, *this, ui);
+		mission.Do(Mission::DEFER, *this);
 		missionList.pop_front();
 	}
 	else if(response == Conversation::DIE)
