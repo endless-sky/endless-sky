@@ -1877,11 +1877,11 @@ mission "Tourists out [0]"
 	to offer
 		random < 20
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
 	destination
 		attributes "tourism"
 		distance 6 35
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
 	on complete
 		payment
 		payment 6000
@@ -1896,11 +1896,11 @@ mission "Tourists out [1]"
 	to offer
 		random < 50
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
 	destination
 		attributes "tourism"
 		distance 2 25
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
 	on complete
 		payment
 		payment 4000
@@ -1916,11 +1916,11 @@ mission "Tourists out [2]"
 		random < 75
 	source
 		attributes "rich" "urban"
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
 	destination
 		attributes "tourism"
 		distance 4 30
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
 	on complete
 		payment
 		payment 8000
@@ -1935,11 +1935,11 @@ mission "Tourists back [0]"
 	to offer
 		random < 20
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
 		attributes "tourism"
 	destination
 		distance 6 35
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
 	on complete
 		payment
 		payment 6000
@@ -1954,11 +1954,11 @@ mission "Tourists back [1]"
 	to offer
 		random < 50
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
 		attributes "tourism"
 	destination
 		distance 2 25
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
 	on complete
 		payment
 		payment 4000
@@ -1974,11 +1974,11 @@ mission "Tourists back [2]"
 		random < 75
 	source
 		attributes "tourism"
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
 	destination
 		attributes "rich" "urban"
 		distance 4 30
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
 	on complete
 		payment
 		payment 8000
@@ -2131,11 +2131,11 @@ mission "Colonists [0]"
 		"passenger space" > 30
 	source
 		attributes "urban" "near earth" "core" "factory"
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
 	destination
 		attributes "frontier" "dirt belt" "south" "farming" "mining" "rim" "forest"
 		distance 2 20
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
 	on complete
 		payment
 		payment 8000
@@ -2152,11 +2152,11 @@ mission "Colonists [1]"
 		"passenger space" > 30
 	source
 		attributes "urban" "near earth" "core" "factory"
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
 	destination
 		attributes "frontier" "dirt belt" "south" "farming" "mining" "rim" "forest"
 		distance 4 30
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
 	on complete
 		payment
 		payment 10000
