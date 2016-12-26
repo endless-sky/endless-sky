@@ -453,7 +453,7 @@ mission "Delivery to Hai Space [2]"
 
 
 mission "Escort to Human Space (Small)"
-	name "Escort to <planet>"
+	name "Special Escort to <planet>"
 	description "The captain of the <npc> will pay you <payment> for an escort to reach <destination> in human space by <date>."
 	repeat
 	job
@@ -496,7 +496,7 @@ mission "Escort to Human Space (Small)"
 		dialog "You have reached <planet>, but you left the <npc> behind! Better depart and wait for them to arrive in this star system."
 
 mission "Escort to Human Space (Medium)"
-	name "Escort to <planet>"
+	name "Special Escort to <planet>"
 	description "The captain of the <npc> will pay you <payment> for an escort to reach <destination> in human space by <date>."
 	repeat
 	job
@@ -548,7 +548,7 @@ mission "Escort to Human Space (Medium)"
 		dialog "You have reached <planet>, but you left the <npc> behind! Better depart and wait for them to arrive in this star system."
 
 mission "Escort to Human Space (Large)"
-	name "Escort to <planet>"
+	name "Special Escort to <planet>"
 	description "The captain of the <npc> will pay you <payment> for an escort to reach <destination> in human space by <date>."
 	repeat
 	job
@@ -591,7 +591,7 @@ mission "Escort to Human Space (Large)"
 		dialog "You have reached <planet>, but you left the <npc> behind! Better depart and wait for them to arrive in this star system."
 
 mission "Escort to Human Space (Extra Large)"
-	name "Escort to <planet>"
+	name "Special Escort to <planet>"
 	description "The captain of the <npc> will pay you <payment> for an escort to reach <destination> in human space by <date>."
 	repeat
 	job
@@ -643,8 +643,8 @@ mission "Escort to Human Space (Extra Large)"
 		dialog "You have reached <planet>, but you left the <npc> behind! Better depart and wait for them to arrive in this star system."
 
 mission "Escort to Hai Space (Small)"
-	name "Escort to <planet>"
-	description "The captain of the <npc> will pay you <payment> for an escort to reach <destination> in Hai Space by <date>."
+	name "Special Escort to <planet>"
+	description "The captain of the <npc> will pay you <payment> for an escort to reach <destination> in Hai space by <date>."
 	repeat
 	job
 	deadline 15
@@ -685,8 +685,8 @@ mission "Escort to Hai Space (Small)"
 		dialog "You have reached <planet>, but you left the <npc> behind! Better depart and wait for them to arrive in this star system."
 
 mission "Escort to Hai Space (Medium)"
-	name "Escort to <planet>"
-	description "The captain of the <npc> will pay you <payment> for an escort to reach <destination> in Hai Space by <date>."
+	name "Special Escort to <planet>"
+	description "The captain of the <npc> will pay you <payment> for an escort to reach <destination> in Hai space by <date>."
 	repeat
 	job
 	deadline 15
@@ -737,8 +737,8 @@ mission "Escort to Hai Space (Medium)"
 		dialog "You have reached <planet>, but you left the <npc> behind! Better depart and wait for them to arrive in this star system."
 
 mission "Escort to Hai Space (Large)"
-	name "Escort to <planet>"
-	description "The captain of the <npc> will pay you <payment> for an escort to reach <destination> in Hai Space by <date>."
+	name "Special Escort to <planet>"
+	description "The captain of the <npc> will pay you <payment> for an escort to reach <destination> in Hai space by <date>."
 	repeat
 	job
 	deadline 15
@@ -779,8 +779,8 @@ mission "Escort to Hai Space (Large)"
 		dialog "You have reached <planet>, but you left the <npc> behind! Better depart and wait for them to arrive in this star system."
 
 mission "Escort to Hai Space (Extra Large)"
-	name "Escort to <planet>"
-	description "The captain of the <npc> will pay you <payment> for an escort to reach <destination> in Hai Space by <date>."
+	name "Special Escort to <planet>"
+	description "The captain of the <npc> will pay you <payment> for an escort to reach <destination> in Hai space by <date>."
 	repeat
 	job
 	deadline 15
