@@ -350,7 +350,7 @@ mission "Delivery to Human Space [0]"
 	job
 	repeat
 	description "This human wishes for <cargo> to be delivered to <destination> in human space. Payment is <payment>."
-	cargo random 5 2 .1
+	cargo random 2 10
 	to offer
 		random < 30
 	source
@@ -367,7 +367,7 @@ mission "Delivery to Human Space [1]"
 	job
 	repeat
 	description "This Hai wishes for <cargo> to be delivered to <destination> in human space. Payment is <payment>."
-	cargo random 5 2 .1
+	cargo random 2 10
 	to offer
 		random < 25
 	source
@@ -384,7 +384,7 @@ mission "Delivery to Human Space [2]"
 	job
 	repeat
 	description "This human wishes for <cargo> to be delivered to <destination> in human space. Payment is <payment>."
-	cargo random 5 2 .1
+	cargo random 2 10
 	to offer
 		random < 20
 	source
@@ -401,7 +401,7 @@ mission "Delivery to Hai Space [0]"
 	job
 	repeat
 	description "This human wishes for <cargo> to be delivered to <destination> in Hai space. Payment is <payment>."
-	cargo random 5 2 .1
+	cargo random 2 10
 	to offer
 		random < 20
 		has "First Contact: Hai: offered"
@@ -419,7 +419,7 @@ mission "Delivery to Hai Space [1]"
 	job
 	repeat
 	description "This human wishes for <cargo> to be delivered to <destination> in Hai space. Payment is <payment>."
-	cargo random 5 2 .1
+	cargo random 2 10
 	to offer
 		random < 15
 		has "First Contact: Hai: offered"
@@ -437,7 +437,7 @@ mission "Delivery to Hai Space [2]"
 	job
 	repeat
 	description "This human wishes for <cargo> to be delivered to <destination> in Hai space. Payment is <payment>."
-	cargo random 5 2 .1
+	cargo random 2 10
 	to offer
 		random < 10
 		has "First Contact: Hai: offered"
