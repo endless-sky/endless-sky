@@ -12,7 +12,7 @@ mission "Human Vacation [1]"
 	name "Transport human to <planet>"
 	job
 	repeat
-	description "This human wants vacation on the Hai world of <destination>, and will pay you <payment>."
+	description "This human wants to vacation on the Hai world of <destination>, and will pay you <payment>."
 	passengers 1
 	to offer
 		random < 60
@@ -30,7 +30,7 @@ mission "Human Vacation [2]"
 	name "Transport humans to <planet>"
 	job
 	repeat
-	description "These <bunks> humans want vacation on the Hai world of <destination>, and will pay you <payment>."
+	description "These <bunks> humans want to vacation on the Hai world of <destination>, and will pay you <payment>."
 	passengers 2 12 .9
 	to offer
 		random < 40
@@ -48,7 +48,7 @@ mission "Human Vacation [3]"
 	name "Transport humans to <planet>"
 	job
 	repeat
-	description "These <bunks> humans want vacation on the Hai world of <destination>, and will pay you <payment>."
+	description "These <bunks> humans want to vacation on the Hai world of <destination>, and will pay you <payment>."
 	passengers 2 12 .9
 	to offer
 		random < 30
@@ -66,7 +66,7 @@ mission "Human Vacation [4]"
 	name "Transport humans to <planet>"
 	job
 	repeat
-	description "These <bunks> humans want vacation on the Hai world of <destination>, and will pay you <payment>."
+	description "These <bunks> humans want to vacation on the Hai world of <destination>, and will pay you <payment>."
 	passengers 2 12 .9
 	to offer
 		random < 30
