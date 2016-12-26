@@ -9,7 +9,7 @@
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 mission "Human Vacation [1]"
-	name "Transport human to <planet>"
+	name "Human to <planet>"
 	job
 	repeat
 	description "This human wants to vacation on the Hai world of <destination>, and will pay you <payment>."
@@ -27,7 +27,7 @@ mission "Human Vacation [1]"
 		dialog "You wish your <passengers> the best of luck on <planet>, and collect your payment of <payment>."
 
 mission "Human Vacation [2]"
-	name "Transport humans to <planet>"
+	name "Humans to <planet>"
 	job
 	repeat
 	description "These <bunks> humans want to vacation on the Hai world of <destination>, and will pay you <payment>."
@@ -45,7 +45,7 @@ mission "Human Vacation [2]"
 		dialog "You wish your <passengers> the best of luck on <planet>, and collect your payment of <payment>."
 
 mission "Human Vacation [3]"
-	name "Transport humans to <planet>"
+	name "Humans to <planet>"
 	job
 	repeat
 	description "These <bunks> humans want to vacation on the Hai world of <destination>, and will pay you <payment>."
@@ -63,7 +63,7 @@ mission "Human Vacation [3]"
 		dialog "You wish your <passengers> the best of luck on <planet>, and collect your payment of <payment>."
 
 mission "Human Vacation [4]"
-	name "Transport humans to <planet>"
+	name "Humans to <planet>"
 	job
 	repeat
 	description "These <bunks> humans want to vacation on the Hai world of <destination>, and will pay you <payment>."
@@ -81,7 +81,7 @@ mission "Human Vacation [4]"
 		dialog "You wish your <passengers> the best of luck on <planet>, and collect your payment of <payment>."
 
 mission "Hai Vacation [1]"
-	name "Transport Hai to <planet>"
+	name "Hai to <planet>"
 	job
 	repeat
 	description "This Hai wants to vacation on the strange Hai world of <destination>, and will pay you <payment>."
@@ -97,7 +97,7 @@ mission "Hai Vacation [1]"
 		dialog "You wish your <passengers> the best of luck on <planet>, and collect your payment of <payment>."
 
 mission "Hai Vacation [2]"
-	name "Transport Hai to <planet>"
+	name "Hai to <planet>"
 	job
 	repeat
 	description "These <bunks> Hai want to vacation on the strange Hai world of <destination>, and will pay you <payment>."
@@ -115,7 +115,7 @@ mission "Hai Vacation [2]"
 		dialog "You wish your <passengers> the best of luck on <planet>, and collect your payment of <payment>."
 
 mission "Hai Vacation [3]"
-	name "Transport Hai to <planet>"
+	name "Hai to <planet>"
 	job
 	repeat
 	description "These <bunks> Hai want to vacation on the strange Hai world of <destination>, and will pay you <payment>."
@@ -133,7 +133,7 @@ mission "Hai Vacation [3]"
 		dialog "You wish your <passengers> the best of luck on <planet>, and collect your payment of <payment>."
 
 mission "Hai Vacation [4]"
-	name "Transport Hai to <planet>"
+	name "Hai to <planet>"
 	job
 	repeat
 	description "These <bunks> Hai want to vacation on the strange Hai world of <destination>, and will pay you <payment>."
