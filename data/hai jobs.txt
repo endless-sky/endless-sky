@@ -30,8 +30,8 @@ mission "Human Vacation [2]"
 	name "Transport humans to <planet>"
 	job
 	repeat
-	description "These humans want vacation on the Hai world of <destination>, and will pay you <payment>."
-	passengers 1 12 .9
+	description "These <bunks> humans want vacation on the Hai world of <destination>, and will pay you <payment>."
+	passengers 2 12 .9
 	to offer
 		random < 40
 	source
@@ -48,8 +48,8 @@ mission "Human Vacation [3]"
 	name "Transport humans to <planet>"
 	job
 	repeat
-	description "These humans want vacation on the Hai world of <destination>, and will pay you <payment>."
-	passengers 1 12 .9
+	description "These <bunks> humans want vacation on the Hai world of <destination>, and will pay you <payment>."
+	passengers 2 12 .9
 	to offer
 		random < 30
 	source
@@ -66,8 +66,8 @@ mission "Human Vacation [4]"
 	name "Transport humans to <planet>"
 	job
 	repeat
-	description "These humans want vacation on the Hai world of <destination>, and will pay you <payment>."
-	passengers 1 12 .9
+	description "These <bunks> humans want vacation on the Hai world of <destination>, and will pay you <payment>."
+	passengers 2 12 .9
 	to offer
 		random < 30
 	source
@@ -100,8 +100,8 @@ mission "Hai Vacation [2]"
 	name "Transport Hai to <planet>"
 	job
 	repeat
-	description "These Hai want to vacation on the strange Hai world of <destination>, and will pay you <payment>."
-	passengers 1 12 .9
+	description "These <bunks> Hai want to vacation on the strange Hai world of <destination>, and will pay you <payment>."
+	passengers 2 12 .9
 	to offer
 		random < 70
 	source
@@ -118,8 +118,8 @@ mission "Hai Vacation [3]"
 	name "Transport Hai to <planet>"
 	job
 	repeat
-	description "These Hai want to vacation on the strange Hai world of <destination>, and will pay you <payment>."
-	passengers 1 12 .9
+	description "These <bunks> Hai want to vacation on the strange Hai world of <destination>, and will pay you <payment>."
+	passengers 2 12 .9
 	to offer
 		random < 50
 	source
@@ -136,8 +136,8 @@ mission "Hai Vacation [4]"
 	name "Transport Hai to <planet>"
 	job
 	repeat
-	description "These Hai want to vacation on the strange Hai world of <destination>, and will pay you <payment>."
-	passengers 1 12 .9
+	description "These <bunks> Hai want to vacation on the strange Hai world of <destination>, and will pay you <payment>."
+	passengers 2 12 .9
 	to offer
 		random < 40
 	source
