@@ -78,7 +78,7 @@ namespace {
 
 
 Engine::Engine(PlayerInfo &player)
-	: player(player)
+	: player(player), shipCollisions(256, 32), cloakedCollisions(256, 32)
 {
 	// Start the thread for doing calculations.
 	calcThread = thread(&Engine::ThreadEntryPoint, this);
@@ -878,6 +878,21 @@ void Engine::CalculateStep()
 		EnterSystem();
 	}
 	
+	// Populate the collision detection set.
+	shipCollisions.Clear(step);
+	for(const shared_ptr<Ship> &it : ships)
+		if(it->GetSystem() == player.GetSystem() && it->Zoom() == 1.)
+		{
+			// If this ship is able to collide with projectiles, add it to the
+			// collision detection set.
+			if(it->Cloaking() < 1.)
+				shipCollisions.Add(*it);
+			else
+				cloakedCollisions.Add(*it);
+		}
+	// Get the ship collision set ready to query.
+	shipCollisions.Finish();
+	
 	// Draw the planets.
 	Point newCenter = center;
 	Point newCenterVelocity;
@@ -969,17 +984,12 @@ void Engine::CalculateStep()
 		}
 		
 		Ship *collector = nullptr;
-		for(const shared_ptr<Ship> &ship : ships)
+		for(Body *body : shipCollisions.Circle(it->Position(), 5.))
 		{
-			if(ship->GetSystem() != player.GetSystem() || ship->CannotAct())
-				continue;
-			if(ship.get() == it->Source() || ship->Cargo().Free() < it->UnitSize())
-				continue;
-			
-			const Mask &mask = ship->GetMask(step);
-			if(mask.Contains(it->Position() - ship->Position(), ship->Facing()))
+			Ship *ship = reinterpret_cast<Ship *>(body);
+			if(!ship->CannotAct() && ship != it->Source() && ship->Cargo().Free() >= it->UnitSize())
 			{
-				collector = ship.get();
+				collector = ship;
 				break;
 			}
 		}
@@ -1165,24 +1175,29 @@ void Engine::CalculateStep()
 			closestHit = 0.;
 		else
 		{
-			// Projectiles can only collide with ships that are in the current
-			// system and are not landing, and that are hostile to this projectile.
-			for(shared_ptr<Ship> &ship : ships)
-				if(ship->GetSystem() == player.GetSystem() && ship->Zoom() == 1. && ship->Cloaking() < 1.)
-				{
-					if(ship.get() != projectile.Target() && !gov->IsEnemy(ship->GetGovernment()))
-						continue;
-					
-					// This returns a value of 0 if the projectile has a trigger
-					// radius and the ship is within it.
-					double range = projectile.CheckCollision(*ship, step);
-					if(range < closestHit)
+			double triggerRadius = projectile.GetWeapon().TriggerRadius();
+			if(triggerRadius)
+			{
+				// Check if something triggered this projectile.
+				for(const Body *body : shipCollisions.Circle(projectile.Position(), triggerRadius))
+					if(body == projectile.Target() || gov->IsEnemy(body->GetGovernment()))
 					{
-						closestHit = range;
-						hit = ship;
-						hitVelocity = ship->Velocity();
+						closestHit = 0.;
+						break;
 					}
+			}
+			if(closestHit > 0.)
+			{
+				// If the projectile was not triggered, check if it hit a ship.
+				Ship *ship = reinterpret_cast<Ship *>(shipCollisions.Line(projectile, &closestHit));
+				if(ship)
+				{
+					hit = ship->shared_from_this();
+					hitVelocity = ship->Velocity();
 				}
+			}
+			// Check if the projectile hits an asteroid that is closer than the
+			// ship that it hit (if any).
 			double closestAsteroid = asteroids.Collide(projectile, step, closestHit, &hitVelocity);
 			if(closestAsteroid < closestHit)
 			{
@@ -1199,18 +1214,27 @@ void Engine::CalculateStep()
 			
 			// If this projectile has a blast radius, find all ships within its
 			// radius. Otherwise, only one is damaged.
-			if(projectile.HasBlastRadius())
+			double blastRadius = projectile.GetWeapon().BlastRadius();
+			if(blastRadius)
 			{
 				// Even friendly ships can be hit by the blast.
-				for(shared_ptr<Ship> &ship : ships)
-					if(ship->GetSystem() == player.GetSystem() && ship->Zoom() == 1.)
-						if(projectile.InBlastRadius(*ship, step, closestHit))
-						{
-							int eventType = ship->TakeDamage(projectile, ship != hit);
-							if(eventType)
-								eventQueue.emplace_back(
-									projectile.GetGovernment(), ship, eventType);
-						}
+				for(Body *body : shipCollisions.Circle(projectile.Position(), blastRadius))
+				{
+					shared_ptr<Ship> ship = reinterpret_cast<Ship *>(body)->shared_from_this();
+					int eventType = ship->TakeDamage(projectile, ship != hit);
+					if(eventType)
+						eventQueue.emplace_back(
+							projectile.GetGovernment(), ship, eventType);
+				}
+				// Cloaked ships can be hit be a blast, too.
+				for(Body *body : cloakedCollisions.Circle(projectile.Position(), blastRadius))
+				{
+					shared_ptr<Ship> ship = reinterpret_cast<Ship *>(body)->shared_from_this();
+					int eventType = ship->TakeDamage(projectile, ship != hit);
+					if(eventType)
+						eventQueue.emplace_back(
+							projectile.GetGovernment(), ship, eventType);
+				}
 			}
 			else if(hit)
 			{
@@ -1241,7 +1265,7 @@ void Engine::CalculateStep()
 						break;
 					}
 		}
-		else if(projectile.HasBlastRadius())
+		else if(projectile.GetWeapon().BlastRadius())
 			radar[calcTickTock].Add(Radar::SPECIAL, projectile.Position(), 1.8);
 		
 		// Now, we can draw the projectile. The motion blur should be reduced

@@ -221,45 +221,6 @@ void Projectile::MakeSubmunitions(list<Projectile> &projectiles) const
 
 
 
-// Check if this projectile collides with the given step, with the animation
-// frame for the given step.
-double Projectile::CheckCollision(const Ship &ship, int step) const
-{
-	const Mask &mask = ship.GetMask(step);
-	Point offset = position - ship.Position();
-	
-	double radius = weapon->TriggerRadius();
-	if(radius > 0. && mask.WithinRange(offset, angle, radius))
-		return 0.;
-	
-	return mask.Collide(offset, velocity, ship.Facing());
-}
-
-
-
-// Check if this projectile has a blast radius.
-bool Projectile::HasBlastRadius() const
-{
-	return (weapon->BlastRadius() > 0.);
-}
-
-
-
-// Check if the given ship is within this projectile's blast radius. (The
-// projectile will not explode unless it is also within the trigger radius.)
-bool Projectile::InBlastRadius(const Ship &ship, int step, double closestHit) const
-{
-	// "Invisible" ships can be killed by weapons with blast radii.
-	Point offset = position + closestHit * velocity - ship.Position();
-	if(offset.Length() <= weapon->BlastRadius())
-		return true;
-	
-	const Mask &mask = ship.GetMask(step);
-	return mask.WithinRange(offset, ship.Facing(), weapon->BlastRadius());
-}
-
-
-
 // This projectile hit something. Create the explosion, if any. This also
 // marks the projectile as needing deletion.
 void Projectile::Explode(list<Effect> &effects, double intersection, Point hitVelocity)

@@ -15,6 +15,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "AI.h"
 #include "AsteroidField.h"
+#include "CollisionSet.h"
 #include "DrawList.h"
 #include "EscortDisplay.h"
 #include "Flotsam.h"
@@ -150,6 +151,9 @@ private:
 	int grudgeTime = 0;
 	
 	AsteroidField asteroids;
+	
+	CollisionSet shipCollisions;
+	CollisionSet cloakedCollisions;
 	
 	int alarmTime = 0;
 	double flash = 0.;
