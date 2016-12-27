@@ -1892,7 +1892,7 @@ mission "Elminating Law Enforcement (North, Small) [0]"
 		"combat rating" > 500
 	source
 		government "Pirate"
-		attribute "north pirate"
+		attributes "north pirate"
 	npc kill
 		personality heroic staying
 		government "Bounty: Republic"
@@ -1915,7 +1915,7 @@ mission "Elminating Law Enforcement (North, Large) [1]"
 		"combat rating" > 750
 	source
 		government "Pirate"
-		attribute "north pirate"
+		attributes "north pirate"
 	npc kill
 		personality heroic staying
 		government "Bounty: Republic"
@@ -1938,7 +1938,7 @@ mission "Elminating Law Enforcement (Core, Small) [0]"
 		"combat rating" > 500
 	source
 		government "Pirate"
-		attribute "core pirate"
+		attributes "core pirate"
 	npc kill
 		personality heroic staying
 		government "Bounty: Syndicate"
@@ -1961,7 +1961,7 @@ mission "Elminating Law Enforcement (Core, Large) [1]"
 		"combat rating" > 750
 	source
 		government "Pirate"
-		attribute "core pirate"
+		attributes "core pirate"
 	npc kill
 		personality heroic staying
 		government "Bounty: Syndicate"
@@ -1984,7 +1984,7 @@ mission "Elminating Law Enforcement (South, Small) [0]"
 		"combat rating" > 500
 	source
 		government "Pirate"
-		attribute "core pirate"
+		attributes "core pirate"
 	npc kill
 		personality heroic staying
 		government "Bounty: Militia"
@@ -2007,7 +2007,7 @@ mission "Elminating Law Enforcement (South, Large) [1]"
 		"combat rating" > 750
 	source
 		government "Pirate"
-		attribute "core pirate"
+		attributes "core pirate"
 	npc kill
 		personality heroic staying
 		government "Bounty: Militia"
@@ -2168,7 +2168,7 @@ mission "Raid on Merchants (North)"
 		"combat rating" > 100
 	source
 		government "Pirate"
-		attribute "north pirate"
+		attributes "north pirate"
 	npc
 		personality plunders escort
 		government "Pirate"
@@ -2195,7 +2195,7 @@ mission "Raid on Merchants (Core)"
 		"combat rating" > 100
 	source
 		government "Pirate"
-		attribute "core pirate"
+		attributes "core pirate"
 	npc
 		personality plunders escort
 		government "Pirate"
@@ -2222,7 +2222,7 @@ mission "Raid on Merchants (South)"
 		"combat rating" > 100
 	source
 		government "Pirate"
-		attribute "south pirate"
+		attributes "south pirate"
 	npc
 		personality plunders escort
 		government "Pirate"
@@ -2248,7 +2248,7 @@ mission "Defend from Law Enforcement (North)"
 		random < 30
 	source
 		government "Pirate"
-		attribute "north pirate"
+		attributes "north pirate"
 	npc
 		personality plunders staying
 		government "Pirate"
@@ -2273,7 +2273,7 @@ mission "Defend from Law Enforcement (Core)"
 		random < 30
 	source
 		government "Pirate"
-		attribute "core pirate"
+		attributes "core pirate"
 	npc
 		personality plunders staying
 		government "Pirate"
@@ -2298,7 +2298,7 @@ mission "Defend from Law Enforcement (South)"
 		random < 30
 	source
 		government "Pirate"
-		attribute "south pirate"
+		attributes "south pirate"
 	npc
 		personality plunders staying
 		government "Pirate"
