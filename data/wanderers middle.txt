@@ -349,7 +349,7 @@ mission "Wanderers: Rek To Kor Efret"
 			`	She laughs. "I'm not even technically the same species that I was before. A change in gender is minor compared to that." It's hard to read Wanderer facial expressions, but she seems to be thoroughly enjoying how confused you are.`
 
 			label end
-			`	Rek still remembers her way around a human ship, and gets settled in to one of your bunk rooms while you prepare for the journey to <planet>.`
+			`	Rek has no trouble finding the bunk rooms, and cheerfully settles in while you prepare for the journey to <planet>.`
 				accept
 
 
