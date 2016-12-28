@@ -2616,3 +2616,30 @@ mission "Cargo Theft (South)"
 		outfit "Secret Cargo" -1
 		payment 1750000
 		dialog "The pirates of <planet> take the secret cargo from your cargo hold and pay you <payment>."
+
+mission "Fake Identity"
+	name "Buy a Fake ID"
+	job
+	repeat
+	description "You seem to have found yourself on the wrong side of a law. Pick up a fake ID from a contact on <destination> and get yourself back on the right side of things for the small cost of 10 million credits."
+	source
+		government "Pirate"
+	destination
+		government "Pirate"
+	to offer
+		"reputation: Pirate" > 0
+		or
+			"reputation: Republic" < -50
+			"reputation: Syndicate" < -50
+			"reputation: Free Worlds" < -50
+	on visit
+		dialog `You land on <planet> and locate the contact, but when asked about the 10 million credits, you find that you do not have enough. Return with 10 million credits in order to get your fake ID.`
+	on complete
+		payment -10000000
+		"reputation: Republic" = 50
+		"reputation: Syndicate" = 50
+		"reputation: Free Worlds" = 50
+		"reputation: Militia" = 50
+		"reputation: Merchant" = 50
+		"reputation: Neutral" = 50
+		dialog `You land on <planet> and find the contact. After some talking, you hand them 10 million credits, and in return recieve a fake ID. You're on the good side of the law again... for now.`
