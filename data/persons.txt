@@ -214,3 +214,97 @@ person "Marauding Max K"
 		word
 			"into a REAL marauding warship!"
 	ship "Marauder Fury" "Mad Quest"
+
+person "Java Joe"
+	government "Author"
+	frequency 50
+	personality
+		surveillance
+	phrase
+		word
+			"Hasn't it been a long time since  "
+			"Can you remember the last time that "
+		word
+			"you made a "
+		word
+			"break?"
+			"pause?"
+			"coffee pause?"
+	phrase
+		word
+			"Hell, it's about time "
+			"Don't forget "
+			"I don't know about you but i am ready "
+		word
+			"to make a "
+		word
+			"break."
+			"pause."
+			"coffee pause."
+			"cup of coffee."
+	phrase
+		word
+			"I like "
+			"Don't forget "
+		word
+			"to make a "
+		word
+			"break "
+			"pause "
+			"cup of coffee "
+		word
+			"frequently."
+			"every hour or so."
+	phrase
+		word
+			"If "
+			"In the case "
+		word
+			"you don't like coffee, try tea."
+	ship "Coffee Machine" "Coffee Cruiser"
+		sprite "ship/coffee machine"
+		"never disabled"
+		attributes
+			category "Heavy Freighter"
+			"cost" 7800000
+			"shields" 40000
+			"hull" 40000
+			"required crew" 12
+			"bunks" 30
+			"mass" 540
+			"drag" 11.7
+			"heat dissipation" .4
+			"fuel capacity" 600
+			"cargo space" 490
+			"outfit space" 510
+			"weapon capacity" 280
+			"engine capacity" 90
+			weapon
+				"blast radius" 140
+				"shield damage" 1400
+				"hull damage" 700
+				"hit force" 2100
+		outfits
+			"Heavy Laser Turret" 4
+			"Heavy Anti-Missile Turret" 2
+		
+			"NT-200 Nucleovoltaic"
+			"LP144a Battery Pack"
+			"D41-HY Shield Generator"
+		
+			"X3700 Ion Thruster"
+			"X3200 Ion Steering"
+			"Scram Drive"
+		
+		engine -51 117.5
+		engine 0 117.5
+		engine 51 117.5
+		turret 37 -59.5 "Heavy Laser Turret"
+		turret -37 -59.5 "Heavy Laser Turret"
+		turret 37 -42.5 "Heavy Laser Turret"
+		turret -37 -42.5 "Heavy Laser Turret"
+		turret 37 27.5 "Heavy Anti-Missile Turret"
+		turret -37 -27.5 "Heavy Anti-Missile Turret"
+		explode "small explosion" 15
+		explode "medium explosion" 25
+		explode "big explosion" 35
