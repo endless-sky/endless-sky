@@ -808,7 +808,7 @@ void Engine::CalculateStep()
 		return;
 	
 	// Now, all the ships must decide what they are doing next.
-	ai.Step(ships, player);
+	ai.Step(player);
 	const Ship *flagship = player.Flagship();
 	bool wasHyperspacing = (flagship && flagship->IsEnteringHyperspace());
 	

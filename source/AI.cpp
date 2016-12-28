@@ -207,7 +207,7 @@ void AI::Clean()
 
 
 
-void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &player)
+void AI::Step(const PlayerInfo &player)
 {
 	// First, figure out the comparative strengths of the present governments.
 	map<const Government *, int64_t> strength;
@@ -262,7 +262,7 @@ void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &player)
 		
 		if(it.get() == flagship)
 		{
-			MovePlayer(*it, player, ships);
+			MovePlayer(*it, player);
 			continue;
 		}
 		
@@ -391,7 +391,7 @@ void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &player)
 		
 		if(isPresent && personality.IsSurveillance())
 		{
-			DoSurveillance(*it, command, ships);
+			DoSurveillance(*it, command);
 			it->SetCommands(command);
 			continue;
 		}
@@ -403,9 +403,9 @@ void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &player)
 			targetTurn = (targetTurn + 1) & 31;
 			if(targetTurn == step || !target || !target->IsTargetable() || target->IsDestroyed()
 					|| (target->IsDisabled() && personality.Disables()))
-				it->SetTargetShip(FindTarget(*it, ships));
+				it->SetTargetShip(FindTarget(*it));
 			
-			command |= AutoFire(*it, ships);
+			command |= AutoFire(*it);
 		}
 		if(isPresent && personality.Harvests() && DoHarvesting(*it, command))
 		{
@@ -578,10 +578,10 @@ void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &player)
 		// Your own ships cloak on your command; all others do it when the
 		// AI considers it appropriate.
 		if(!it->IsYours())
-			DoCloak(*it, command, ships);
+			DoCloak(*it, command);
 		
 		// Force ships that are overlapping each other to "scatter":
-		DoScatter(*it, command, ships);
+		DoScatter(*it, command);
 		
 		it->SetCommands(command);
 	}
@@ -590,7 +590,7 @@ void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &player)
 
 
 // Pick a new target for the given ship.
-shared_ptr<Ship> AI::FindTarget(const Ship &ship, const list<shared_ptr<Ship>> &ships) const
+shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 {
 	// If this ship has no government, it has no enemies.
 	shared_ptr<Ship> target;
@@ -1373,7 +1373,7 @@ void AI::PickUp(Ship &ship, Command &command, const Body &target)
 
 
 
-void AI::DoSurveillance(Ship &ship, Command &command, const list<shared_ptr<Ship>> &ships) const
+void AI::DoSurveillance(Ship &ship, Command &command) const
 {
 	const shared_ptr<Ship> &target = ship.GetTargetShip();
 	if(target && (!target->IsTargetable() || target->GetSystem() != ship.GetSystem()))
@@ -1381,7 +1381,7 @@ void AI::DoSurveillance(Ship &ship, Command &command, const list<shared_ptr<Ship
 	if(target && ship.GetGovernment()->IsEnemy(target->GetGovernment()))
 	{
 		MoveIndependent(ship, command);
-		command |= AutoFire(ship, ships);
+		command |= AutoFire(ship);
 		return;
 	}
 	
@@ -1423,7 +1423,7 @@ void AI::DoSurveillance(Ship &ship, Command &command, const list<shared_ptr<Ship
 	}
 	else
 	{
-		shared_ptr<Ship> newTarget = FindTarget(ship, ships);
+		shared_ptr<Ship> newTarget = FindTarget(ship);
 		if(newTarget && ship.GetGovernment()->IsEnemy(newTarget->GetGovernment()))
 		{
 			ship.SetTargetShip(newTarget);
@@ -1563,7 +1563,7 @@ bool AI::DoHarvesting(Ship &ship, Command &command)
 
 
 
-void AI::DoCloak(Ship &ship, Command &command, const list<shared_ptr<Ship>> &ships)
+void AI::DoCloak(Ship &ship, Command &command)
 {
 	if(ship.Attributes().Get("cloak"))
 	{
@@ -1602,7 +1602,7 @@ void AI::DoCloak(Ship &ship, Command &command, const list<shared_ptr<Ship>> &shi
 
 
 
-void AI::DoScatter(Ship &ship, Command &command, const list<shared_ptr<Ship>> &ships)
+void AI::DoScatter(Ship &ship, Command &command)
 {
 	if(!command.Has(Command::FORWARD))
 		return;
@@ -1714,7 +1714,7 @@ Point AI::TargetAim(const Ship &ship, const Body &target)
 
 
 // Fire whichever of the given ship's weapons can hit a hostile target.
-Command AI::AutoFire(const Ship &ship, const list<shared_ptr<Ship>> &ships, bool secondary) const
+Command AI::AutoFire(const Ship &ship, bool secondary) const
 {
 	Command command;
 	if(ship.GetPersonality().IsPacifist())
@@ -1915,7 +1915,7 @@ Command AI::AutoFire(const Ship &ship, const Body &target) const
 
 
 
-void AI::MovePlayer(Ship &ship, const PlayerInfo &player, const list<shared_ptr<Ship>> &ships)
+void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 {
 	Command command;
 	
@@ -2174,7 +2174,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, const list<shared_ptr<
 		&& !(keyStuck | keyHeld).Has(Command::LAND | Command::JUMP | Command::BOARD)
 		&& (!ship.GetTargetShip() || ship.GetTargetShip()->GetGovernment()->IsEnemy());
 	if(hasGuns)
-		command |= AutoFire(ship, ships, false);
+		command |= AutoFire(ship, false);
 	hasGuns |= keyHeld.Has(Command::PRIMARY);
 	if(keyHeld)
 	{
