@@ -2617,10 +2617,10 @@ mission "Cargo Theft (South)"
 		payment 1750000
 		dialog "The pirates of <planet> take the secret cargo from your cargo hold and pay you <payment>."
 
-mission "Fake Identity"
+mission "Fake Identity [0]"
 	name "Buy a Fake ID"
 	job
-	repeat
+	repeat 2
 	description "You seem to have found yourself on the wrong side of a law. Pick up a fake ID from a contact on <destination> and get yourself back on the right side of things for the small cost of 10 million credits."
 	source
 		government "Pirate"
@@ -2643,3 +2643,59 @@ mission "Fake Identity"
 		"reputation: Merchant" = 50
 		"reputation: Neutral" = 50
 		dialog `You land on <planet> and find the contact. After some talking, you hand them 10 million credits, and in return recieve a fake ID. You're on the good side of the law again... for now.`
+
+mission "Fake Identity [1]"
+	name "Buy a Fake ID"
+	job
+	repeat 2
+	description "You seem to have found yourself on the wrong side of a law. Pick up a fake ID from a contact on <destination> and get yourself back on the right side of things for the small cost of 20 million credits."
+	source
+		government "Pirate"
+	destination
+		government "Pirate"
+	to offer
+		"reputation: Pirate" > 0
+		has "Fake Identity [0]: done" 2
+		or
+			"reputation: Republic" < -100
+			"reputation: Syndicate" < -100
+			"reputation: Free Worlds" < -100
+	on visit
+		dialog `You land on <planet> and locate the contact, but when asked about the 20 million credits, you find that you do not have enough. Return with 20 million credits in order to get your fake ID.`
+	on complete
+		payment -20000000
+		"reputation: Republic" = 25
+		"reputation: Syndicate" = 25
+		"reputation: Free Worlds" = 25
+		"reputation: Militia" = 25
+		"reputation: Merchant" = 25
+		"reputation: Neutral" = 25
+		dialog `You land on <planet> and find the contact. After some talking, you hand them 20 million credits, and in return recieve a fake ID. You're on the good side of the law again... for now.`
+
+mission "Fake Identity [2]"
+	name "Buy a Fake ID"
+	job
+	repeat 2
+	description "You seem to have found yourself on the wrong side of a law. Pick up a fake ID from a contact on <destination> and get yourself back on the right side of things for the small cost of 30 million credits."
+	source
+		government "Pirate"
+	destination
+		government "Pirate"
+	to offer
+		"reputation: Pirate" > 0
+		has "Fake Identity [1]: done" 2
+		or
+			"reputation: Republic" < -200
+			"reputation: Syndicate" < -200
+			"reputation: Free Worlds" < -200
+	on visit
+		dialog `You land on <planet> and locate the contact, but when asked about the 30 million credits, you find that you do not have enough. Return with 30 million credits in order to get your fake ID.`
+	on complete
+		payment -30000000
+		"reputation: Republic" = 10
+		"reputation: Syndicate" = 10
+		"reputation: Free Worlds" = 10
+		"reputation: Militia" = 10
+		"reputation: Merchant" = 10
+		"reputation: Neutral" = 10
+		dialog `You land on <planet> and find the contact. After some talking, you hand them 30 million credits, and in return recieve a fake ID. You're on the good side of the law again... for now.`
