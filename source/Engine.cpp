@@ -881,6 +881,7 @@ void Engine::CalculateStep()
 	
 	// Populate the collision detection set.
 	shipCollisions.Clear(step);
+	cloakedCollisions.Clear(step);
 	for(const shared_ptr<Ship> &it : ships)
 		if(it->GetSystem() == player.GetSystem() && it->Zoom() == 1.)
 		{
@@ -893,6 +894,7 @@ void Engine::CalculateStep()
 		}
 	// Get the ship collision set ready to query.
 	shipCollisions.Finish();
+	cloakedCollisions.Finish();
 	
 	// Draw the planets.
 	Point newCenter = center;
