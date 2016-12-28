@@ -22,8 +22,7 @@ mission "Human Vacation [1]"
 		distance 2 9
 		attributes "human vacation"
 	on complete
-		payment
-		payment 8000
+		payment 8000 200
 		dialog "You wish your <passengers> the best of luck on <planet>, and collect your payment of <payment>."
 
 mission "Human Vacation [2]"
@@ -40,8 +39,7 @@ mission "Human Vacation [2]"
 		distance 2 9
 		attributes "human vacation"
 	on complete
-		payment
-		payment 3000
+		payment 5000 200
 		dialog "You wish your <passengers> the best of luck on <planet>, and collect your payment of <payment>."
 
 mission "Human Vacation [3]"
@@ -58,8 +56,7 @@ mission "Human Vacation [3]"
 		distance 2 9
 		attributes "human vacation"
 	on complete
-		payment
-		payment 3000
+		payment 5000 200
 		dialog "You wish your <passengers> the best of luck on <planet>, and collect your payment of <payment>."
 
 mission "Human Vacation [4]"
@@ -76,8 +73,7 @@ mission "Human Vacation [4]"
 		distance 2 9
 		attributes "human vacation"
 	on complete
-		payment
-		payment 3000
+		payment 5000 200
 		dialog "You wish your <passengers> the best of luck on <planet>, and collect your payment of <payment>."
 
 mission "Hai Vacation [1]"
@@ -92,8 +88,7 @@ mission "Hai Vacation [1]"
 		distance 2 9
 		attributes "hai vacation"
 	on complete
-		payment
-		payment 7000
+		payment 6000 200
 		dialog "You wish your <passengers> the best of luck on <planet>, and collect your payment of <payment>."
 
 mission "Hai Vacation [2]"
@@ -110,8 +105,7 @@ mission "Hai Vacation [2]"
 		distance 2 9
 		attributes "hai vacation"
 	on complete
-		payment
-		payment 2500
+		payment 4000 200
 		dialog "You wish your <passengers> the best of luck on <planet>, and collect your payment of <payment>."
 
 mission "Hai Vacation [3]"
@@ -128,8 +122,7 @@ mission "Hai Vacation [3]"
 		distance 2 9
 		attributes "hai vacation"
 	on complete
-		payment
-		payment 2500
+		payment 4000 200
 		dialog "You wish your <passengers> the best of luck on <planet>, and collect your payment of <payment>."
 
 mission "Hai Vacation [4]"
@@ -146,8 +139,7 @@ mission "Hai Vacation [4]"
 		distance 2 9
 		attributes "hai vacation"
 	on complete
-		payment
-		payment 2500
+		payment 4000 200
 		dialog "You wish your <passengers> the best of luck on <planet>, and collect your payment of <payment>."
 
 
@@ -168,8 +160,7 @@ mission "Hai Festival [1]"
 		distance 2 9
 		government "Hai"
 	on complete
-		payment
-		payment 8000 150
+		payment 10000 250
 		dialog "Luckily your <passengers> didn't cause too much trouble on the trip. After collecting their things, they pay you <payment> and make their way to the festival."
 
 mission "Hai Festival [2]"
@@ -188,8 +179,7 @@ mission "Hai Festival [2]"
 		distance 2 9
 		government "Hai"
 	on complete
-		payment
-		payment 8000 150
+		payment 10000 250
 		dialog "Luckily your <passengers> didn't cause too much trouble on the trip. After collecting their things, they pay you <payment> and make their way to the festival."
 
 mission "Hai Festival [3]"
@@ -208,8 +198,7 @@ mission "Hai Festival [3]"
 		distance 2 9
 		government "Hai"
 	on complete
-		payment
-		payment 8000 150
+		payment 10000 250
 		dialog "Luckily your <passengers> didn't cause too much trouble on the trip. After collecting their things, they pay you <payment> and make their way to the festival."
 
 
@@ -359,7 +348,7 @@ mission "Delivery to Human Space [0]"
 	destination
 		attributes north
 	on complete
-		payment 180000
+		payment 120000
 		dialog "You drop off your cargo of <commodity> and collect your payment of <payment>."
 
 mission "Delivery to Human Space [1]"
@@ -376,7 +365,7 @@ mission "Delivery to Human Space [1]"
 	destination
 		attributes north
 	on complete
-		payment 180000
+		payment 120000
 		dialog "You drop off your cargo of <commodity> and collect your payment of <payment>."
 
 mission "Delivery to Human Space [2]"
@@ -393,7 +382,7 @@ mission "Delivery to Human Space [2]"
 	destination
 		attributes north
 	on complete
-		payment 180000
+		payment 120000
 		dialog "You drop off your cargo of <commodity> and collect your payment of <payment>."
 
 mission "Delivery to Hai Space [0]"
@@ -411,7 +400,7 @@ mission "Delivery to Hai Space [0]"
 		government "Hai"
 		near "Heia Due" 0 2
 	on complete
-		payment 180000
+		payment 120000
 		dialog "You drop off your cargo of <commodity> and collect your payment of <payment>."
 
 mission "Delivery to Hai Space [1]"
@@ -429,7 +418,7 @@ mission "Delivery to Hai Space [1]"
 		government "Hai"
 		near "Heia Due" 0 2
 	on complete
-		payment 180000
+		payment 120000
 		dialog "You drop off your cargo of <commodity> and collect your payment of <payment>."
 
 mission "Delivery to Hai Space [2]"
@@ -447,7 +436,7 @@ mission "Delivery to Hai Space [2]"
 		government "Hai"
 		near "Heia Due" 0 2
 	on complete
-		payment 180000
+		payment 120000
 		dialog "You drop off your cargo of <commodity> and collect your payment of <payment>."
 
 
