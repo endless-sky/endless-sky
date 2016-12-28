@@ -10,19 +10,42 @@
 
 trade	
 	commodity "Illegal Substances"
-		"death dust"
-		"death sticks"
-		"death snaps"
 		"space weed"
-		"space dust"
-		"stardust"
-		`"whale blubber"`
 		"narcotics"
-		`"ringworld shavings"`
-		`"Quarg bones"`
-		"toad juice"
-		"flavor drops"
-		`"steam"`
+		"hallucinogens"
+		"stolen pharmaceuticals"
+		"bootleg alcohol"
+		"knockout pills"
+		"horse tranquilizers"
+		"opium"
+		`"Death Sticks"`
+		`"Stardust"`
+		`"Whale Blubber"`
+		`"Ringworld Shavings"`
+		`"Quarg Bones"`
+		`"Toad Juice"`
+		`"Flavor Drops"`
+		`"Steam"`
+		`"Blackholes"`
+		`"Wormholes"`
+		`"Quasars"`
+		`"Bad Blues"`
+		`"Good Reds"`
+		`"Cores"`
+		`"Deeps"`
+		`"Belts"`
+		`"Southern Snacks"`
+		`"Far North Flakes"`
+		`"Red Giants"`
+		`"Solaris Joyrides"`
+		`"Memory Chips"`
+		`"Fire Apples"`
+		`"Hyperdrives"`
+		`"Boosters"`
+		`"Little Js"`
+		`"Hot Wings"`
+		`"Quarg Cakes"`
+		`"Space Salts"`
 	commodity "Illegal Cargo"
 		"stolen ship parts"
 		"stolen weapons"
@@ -35,6 +58,24 @@ trade
 		"weaponized chickens"
 		"weaponized pigs"
 		"weaponized cows"
+		"nerve gas"
+		"napalm"
+		"military weapons"
+		"counterfeit artwork"
+		"counterfeit sculptures"
+		"plundered artifacts"
+		"forged IDs"
+		"stolen identities"
+		"unregistered IFF modules"
+		"undeclared nuclear fuel"
+		"embargoed goods"
+		"untraceable electronics"
+		"conflict minerals"
+		"outlawed pesticides"
+		"endangered animals"
+		"explosives"
+		"pain sticks"
+		"torture devices"
 
 mission "Cargo Smuggling [0]"
 	name "Smuggling to <planet>"
