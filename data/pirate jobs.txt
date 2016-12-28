@@ -2616,4 +2616,3 @@ mission "Cargo Theft (South)"
 		outfit "Secret Cargo" -1
 		payment 1750000
 		dialog "The pirates of <planet> take the secret cargo from your cargo hold and pay you <payment>."
-
