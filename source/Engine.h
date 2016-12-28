@@ -138,7 +138,7 @@ private:
 	
 	std::list<std::shared_ptr<Ship>> ships;
 	std::list<Projectile> projectiles;
-	std::list<Flotsam> flotsam;
+	std::list<std::shared_ptr<Flotsam>> flotsam;
 	std::list<Effect> effects;
 	// Keep track of which ships we have not seen for long enough that it is
 	// time to stop tracking their movements.

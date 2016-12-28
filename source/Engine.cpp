@@ -78,7 +78,7 @@ namespace {
 
 
 Engine::Engine(PlayerInfo &player)
-	: player(player), ai(ships, asteroids.Minables()),
+	: player(player), ai(ships, asteroids.Minables(), flotsam),
 	shipCollisions(256, 32), cloakedCollisions(256, 32)
 {
 	// Start the thread for doing calculations.
@@ -978,17 +978,17 @@ void Engine::CalculateStep()
 	// Move the flotsam, which should be drawn underneath the ships.
 	for(auto it = flotsam.begin(); it != flotsam.end(); )
 	{
-		if(!it->Move(effects))
+		if(!(*it)->Move(effects))
 		{
 			it = flotsam.erase(it);
 			continue;
 		}
 		
 		Ship *collector = nullptr;
-		for(Body *body : shipCollisions.Circle(it->Position(), 5.))
+		for(Body *body : shipCollisions.Circle((*it)->Position(), 5.))
 		{
 			Ship *ship = reinterpret_cast<Ship *>(body);
-			if(!ship->CannotAct() && ship != it->Source() && ship->Cargo().Free() >= it->UnitSize())
+			if(!ship->CannotAct() && ship != (*it)->Source() && ship->Cargo().Free() >= (*it)->UnitSize())
 			{
 				collector = ship;
 				break;
@@ -1007,10 +1007,10 @@ void Engine::CalculateStep()
 			string commodity;
 			string message;
 			int amount = 0;
-			if(it->OutfitType())
+			if((*it)->OutfitType())
 			{
-				const Outfit *outfit = it->OutfitType();
-				amount = collector->Cargo().Add(outfit, it->Count());
+				const Outfit *outfit = (*it)->OutfitType();
+				amount = collector->Cargo().Add(outfit, (*it)->Count());
 				if(!name.empty())
 				{
 					if(outfit->Get("installable") < 0.)
@@ -1025,10 +1025,9 @@ void Engine::CalculateStep()
 			}
 			else
 			{
-				amount = collector->Cargo().Add(it->CommodityType(), it->Count());
+				amount = collector->Cargo().Add((*it)->CommodityType(), (*it)->Count());
 				if(!name.empty())
-					commodity = it->CommodityType();
-					
+					commodity = (*it)->CommodityType();
 			}
 			if(!commodity.empty())
 				message = name + (amount == 1 ? "a ton" : Format::Number(amount) + " tons")
@@ -1046,7 +1045,7 @@ void Engine::CalculateStep()
 		}
 		
 		// Draw this flotsam.
-		draw[calcTickTock].Add(*it);
+		draw[calcTickTock].Add(**it);
 		++it;
 	}
 	

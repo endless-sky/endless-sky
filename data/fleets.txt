@@ -709,7 +709,7 @@ fleet "Human Miners"
 	cargo 0
 	personality
 		confusion 20
-		timid frugal mining
+		timid frugal mining harvests
 	variant 5
 		"Sparrow"
 	variant 1

@@ -16,6 +16,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Audio.h"
 #include "Command.h"
 #include "DistanceMap.h"
+#include "Flotsam.h"
 #include "Government.h"
 #include "Mask.h"
 #include "Messages.h"
@@ -75,8 +76,8 @@ namespace {
 
 
 
-AI::AI(const List<Ship> &ships, const List<Minable> &minables)
-	: ships(ships), minables(minables)
+AI::AI(const List<Ship> &ships, const List<Minable> &minables, const List<Flotsam> &flotsam)
+	: ships(ships), minables(minables), flotsam(flotsam)
 {
 }
 
@@ -251,6 +252,7 @@ void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &player)
 	const Ship *flagship = player.Flagship();
 	step = (step + 1) & 31;
 	int targetTurn = 0;
+	int minerCount = 0;
 	for(const auto &it : ships)
 	{
 		// Skip any carried fighters or drones that are somehow in the list.
@@ -391,8 +393,13 @@ void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &player)
 			it->SetCommands(command);
 			continue;
 		}
+		if(isPresent && personality.Harvests() && DoHarvesting(*it, command))
+		{
+			it->SetCommands(command);
+			continue;
+		}
 		if(isPresent && personality.IsMining() && !target
-				&& it->Cargo().Free() >= 5 && ++miningTime[&*it] < 3600)
+				&& it->Cargo().Free() >= 5 && ++miningTime[&*it] < 3600 && ++minerCount < 9)
 		{
 			DoMining(*it, command);
 			it->SetCommands(command);
@@ -1318,6 +1325,29 @@ void AI::MoveToAttack(Ship &ship, Command &command, const Body &target)
 
 
 
+void AI::PickUp(Ship &ship, Command &command, const Body &target)
+{
+	// Figure out the target's velocity relative to the ship.
+	Point p = target.Position() - ship.Position();
+	Point v = target.Velocity() - ship.Velocity();
+	double vMax = ship.MaxVelocity();
+	
+	// Estimate where the target will be by the time we reach it.
+	double time = Armament::RendezvousTime(p, v, vMax);
+	if(std::isnan(time))
+		time = p.Length() / vMax;
+	double degreesToTurn = TO_DEG * acos(min(1., max(-1., p.Unit().Dot(ship.Facing().Unit()))));
+	time += degreesToTurn / ship.TurnRate();
+	p += v * time;
+	
+	// Move toward the target.
+	command.SetTurn(TurnToward(ship, p));
+	if(p.Unit().Dot(ship.Facing().Unit()) > .7)
+		command |= Command::FORWARD;
+}
+
+
+
 void AI::DoSurveillance(Ship &ship, Command &command, const list<shared_ptr<Ship>> &ships) const
 {
 	const shared_ptr<Ship> &target = ship.GetTargetShip();
@@ -1459,6 +1489,51 @@ void AI::DoMining(Ship &ship, Command &command)
 	command.SetTurn(TurnToward(ship, heading));
 	if(ship.Velocity().Dot(heading.Unit()) < .7 * ship.MaxVelocity())
 		command |= Command::FORWARD;
+}
+
+
+
+bool AI::DoHarvesting(Ship &ship, Command &command)
+{
+	// If the ship has no target to pick up, do nothing.
+	shared_ptr<Flotsam> target = ship.GetTargetFlotsam();
+	if(!target)
+	{
+		// Only check for new targets every 10 frames, on average.
+		if(Random::Int(10))
+			return false;
+		
+		// Don't chase anything that will take more than 10 seconds to reach.
+		double bestTime = 600.;
+		for(const shared_ptr<Flotsam> &it : flotsam)
+		{
+			Point p = it->Position() - ship.Position();
+			if(p.Length() > 800.)
+				continue;
+			
+			// Estimate how long it would take to intercept this flotsam.
+			Point v = it->Velocity() - ship.Velocity();
+			double vMax = ship.MaxVelocity();
+			double time = Armament::RendezvousTime(p, v, vMax);
+			if(std::isnan(time))
+				continue;
+			
+			double degreesToTurn = TO_DEG * acos(min(1., max(-1., p.Unit().Dot(ship.Facing().Unit()))));
+			time += degreesToTurn / ship.TurnRate();
+			if(time < bestTime)
+			{
+				bestTime = time;
+				target = it;
+			}
+		}
+		if(!target)
+			return false;
+		
+		ship.SetTargetFlotsam(target);
+	}
+	
+	PickUp(ship, command, *target);
+	return true;
 }
 
 

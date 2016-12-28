@@ -55,6 +55,7 @@ public:
 	bool IsSwarming() const;
 	bool IsUnconstrained() const;
 	bool IsMining() const;
+	bool Harvests() const;
 	
 	const Point &Confusion() const;
 	void UpdateConfusion(bool isFiring);

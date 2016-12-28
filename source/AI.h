@@ -23,6 +23,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 class Angle;
 class AsteroidField;
 class Body;
+class Flotsam;
 class Government;
 class Minable;
 class Point;
@@ -42,7 +43,7 @@ class AI {
 public:
 	template <class Type>
 	using List = std::list<std::shared_ptr<Type>>;
-	AI(const List<Ship> &ships, const List<Minable> &minables);
+	AI(const List<Ship> &ships, const List<Minable> &minables, const List<Flotsam> &flotsam);
 	
 	void UpdateKeys(PlayerInfo &player, Command &clickCommands, bool isActive);
 	void UpdateEvents(const std::list<ShipEvent> &events);
@@ -69,8 +70,10 @@ private:
 	static void KeepStation(Ship &ship, Command &command, const Ship &target);
 	static void Attack(Ship &ship, Command &command, const Ship &target);
 	static void MoveToAttack(Ship &ship, Command &command, const Body &target);
+	static void PickUp(Ship &ship, Command &command, const Body &target);
 	void DoSurveillance(Ship &ship, Command &command, const std::list<std::shared_ptr<Ship>> &ships) const;
 	void DoMining(Ship &ship, Command &command);
+	bool DoHarvesting(Ship &ship, Command &command);
 	static void DoCloak(Ship &ship, Command &command, const std::list<std::shared_ptr<Ship>> &ships);
 	static void DoScatter(Ship &ship, Command &command, const std::list<std::shared_ptr<Ship>> &ships);
 	
@@ -96,6 +99,7 @@ private:
 	// Data from the game engine.
 	const List<Ship> &ships;
 	const List<Minable> &minables;
+	const List<Flotsam> &flotsam;
 	
 	int step = 0;
 	
