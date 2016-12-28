@@ -43,6 +43,7 @@ namespace {
 	static const int UNCONSTRAINED = (1 << 19);
 	static const int MINING = (1 << 20);
 	static const int HARVESTS = (1 << 21);
+	static const int APPEASING = (1 << 22);
 	
 	static const map<string, int> TOKEN = {
 		{"pacifist", PACIFIST},
@@ -66,7 +67,8 @@ namespace {
 		{"swarming", SWARMING},
 		{"unconstrained", UNCONSTRAINED},
 		{"mining", MINING},
-		{"harvests", HARVESTS}
+		{"harvests", HARVESTS},
+		{"appeasing", APPEASING}
 	};
 	
 	double DEFAULT_CONFUSION = 10.;
@@ -250,11 +252,17 @@ bool Personality::IsSwarming() const
 
 
 
+bool Personality::IsUnconstrained() const
+{
+	return flags & UNCONSTRAINED;
+}
+
+
+
 bool Personality::IsMining() const
 {
 	return flags & MINING;
 }
-
 
 
 
@@ -265,10 +273,9 @@ bool Personality::Harvests() const
 
 
 
-
-bool Personality::IsUnconstrained() const
+bool Personality::IsAppeasing() const
 {
-	return flags & UNCONSTRAINED;
+	return flags & APPEASING;
 }
 
 

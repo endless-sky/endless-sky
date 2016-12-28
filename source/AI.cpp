@@ -202,6 +202,7 @@ void AI::Clean()
 	swarmCount.clear();
 	miningAngle.clear();
 	miningTime.clear();
+	appeasmentThreshold.clear();
 }
 
 
@@ -406,10 +407,35 @@ void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &player)
 			continue;
 		}
 		
-		if(parent && personality.IsCoward() && .5 * it->Shields() + it->Hull() < 1.)
+		// Special actions when a ship is near death:
+		double health = .5 * it->Shields() + it->Hull();
+		if(health < 1.)
 		{
-			parent.reset();
-			it->SetParent(parent);
+			if(parent && personality.IsCoward())
+			{
+				// Cowards abandon their fleets.
+				parent.reset();
+				it->SetParent(parent);
+			}
+			if(personality.IsAppeasing() && it->Cargo().Used())
+			{
+				double &threshold = appeasmentThreshold[it.get()];
+				if(1. - health > threshold)
+				{
+					// "Appeasing" ships will dump some fraction of their cargo.
+					int toDump = 11 + (1. - health) * .5 * it->Cargo().Size();
+					for(const auto &commodity : it->Cargo().Commodities())
+					{
+						it->Jettison(commodity.first, min(commodity.second, toDump));
+						toDump -= commodity.second;
+						if(toDump <= 0)
+							break;
+					}
+					Messages::Add(it->GetGovernment()->GetName() + " ship \"" + it->Name()
+						+ "\": Please, just take my cargo and leave me alone.");
+					threshold = (1. - health) + .1;
+				}
+			}
 		}
 		
 		// Fire any weapons that will hit the target. Only ships that are in

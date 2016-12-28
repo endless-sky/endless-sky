@@ -126,6 +126,7 @@ private:
 	std::map<const Ship *, int> swarmCount;
 	std::map<const Ship *, Angle> miningAngle;
 	std::map<const Ship *, int> miningTime;
+	std::map<const Ship *, double> appeasmentThreshold;
 	
 	std::map<const Ship *, int64_t> shipStrength;
 	
