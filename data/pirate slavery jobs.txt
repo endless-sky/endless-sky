@@ -18,7 +18,7 @@ mission "Tourists back [0]: Slavery"
 		has "Tourists back [0]: active"
 	on offer
 		dialog "Upon landing on <planet> a few pirates in the spaceport begin to eye up your ship. One of them approaches you."
-		dialog `"I see you've got a passenger. You willing to take <payment> to give them over?"`
+		dialog `"I see you've got a passenger. You willing to take 200,000 credits to give them over?"`
 	on accept
 		"reputation: Merchant" -= 2
 		"reputation: Republic" -= 2
@@ -40,7 +40,7 @@ mission "Tourists out [0]: Slavery"
 		has "Tourists out [0]: active"
 	on offer
 		dialog "Upon landing on <planet> a few pirates in the spaceport begin to eye up your ship. One of them approaches you."
-		dialog `"I see you've got a passenger. You willing to take <payment> to give them over?"`
+		dialog `"I see you've got a passenger. You willing to take 200,000 credits to give them over?"`
 	on accept
 		"reputation: Merchant" -= 2
 		"reputation: Republic" -= 2
@@ -62,7 +62,7 @@ mission "Tourists out [1]: Slavery"
 		has "Tourists out [1]: active"
 	on offer
 		dialog "Upon landing on <planet> a few pirates in the spaceport begin to eye up your ship. One of them approaches you."
-		dialog `"I see you've got some passengers. You willing to take <payment> to give them over?"`
+		dialog `"I see you've got some passengers. You willing to take 1,000,000 credits to give them over?"`
 	on accept
 		"reputation: Merchant" -= 10
 		"reputation: Republic" -= 10
@@ -84,7 +84,7 @@ mission "Tourists out [2]: Slavery"
 		has "Tourists out [2]: active"
 	on offer
 		dialog "Upon landing on <planet> a few pirates in the spaceport begin to eye up your ship. One of them approaches you."
-		dialog `"I see you've got some passengers. You willing to take <payment> to give them over?"`
+		dialog `"I see you've got some passengers. You willing to take 1,000,000 credits to give them over?"`
 	on accept
 		"reputation: Merchant" -= 10
 		"reputation: Republic" -= 10
@@ -106,7 +106,7 @@ mission "Tourists back [1]: Slavery"
 		has "Tourists back [1]: active"
 	on offer
 		dialog "Upon landing on <planet> a few pirates in the spaceport begin to eye up your ship. One of them approaches you."
-		dialog `"I see you've got some passengers. You willing to take <payment> to give them over?"`
+		dialog `"I see you've got some passengers. You willing to take 1,000,000 credits to give them over?"`
 	on accept
 		"reputation: Merchant" -= 10
 		"reputation: Republic" -= 10
@@ -128,7 +128,7 @@ mission "Tourists back [2]: Slavery"
 		has "Tourists back [2]: active"
 	on offer
 		dialog "Upon landing on <planet> a few pirates in the spaceport begin to eye up your ship. One of them approaches you."
-		dialog `"I see you've got some passengers. You willing to take <payment> to give them over?"`
+		dialog `"I see you've got some passengers. You willing to take 1,000,000 credits to give them over?"`
 	on accept
 		"reputation: Merchant" -= 10
 		"reputation: Republic" -= 10
@@ -150,7 +150,7 @@ mission "Passengers [0]: Slavery"
 		has "Passengers [0]: active"
 	on offer
 		dialog "Upon landing on <planet> a few pirates in the spaceport begin to eye up your ship. One of them approaches you."
-		dialog `"I see you've got some passengers. You willing to take <payment> to give them over?"`
+		dialog `"I see you've got some passengers. You willing to take 1,000,000 credits to give them over?"`
 	on accept
 		"reputation: Merchant" -= 10
 		"reputation: Republic" -= 10
@@ -172,7 +172,7 @@ mission "Passengers [1]: Slavery"
 		has "Passengers [1]: active"
 	on offer
 		dialog "Upon landing on <planet> a few pirates in the spaceport begin to eye up your ship. One of them approaches you."
-		dialog `"I see you've got some passengers. You willing to take <payment> to give them over?"`
+		dialog `"I see you've got some passengers. You willing to take 1,000,000 credits to give them over?"`
 	on accept
 		"reputation: Merchant" -= 10
 		"reputation: Republic" -= 10
@@ -194,7 +194,7 @@ mission "Passengers [2]: Slavery"
 		has "Passengers [2]: active"
 	on offer
 		dialog "Upon landing on <planet> a few pirates in the spaceport begin to eye up your ship. One of them approaches you."
-		dialog `"I see you've got some passengers. You willing to take <payment> to give them over?"`
+		dialog `"I see you've got some passengers. You willing to take 1,000,000 credits to give them over?"`
 	on accept
 		"reputation: Merchant" -= 10
 		"reputation: Republic" -= 10
@@ -216,7 +216,7 @@ mission "Passengers [3]: Slavery"
 		has "Passengers [3]: active"
 	on offer
 		dialog "Upon landing on <planet> a few pirates in the spaceport begin to eye up your ship. One of them approaches you."
-		dialog `"I see you've got some passengers. You willing to take <payment> to give them over?"`
+		dialog `"I see you've got some passengers. You willing to take 1,000,000 credits to give them over?"`
 	on accept
 		"reputation: Merchant" -= 10
 		"reputation: Republic" -= 10
@@ -238,7 +238,7 @@ mission "Passengers [4]: Slavery"
 		has "Passengers [4]: active"
 	on offer
 		dialog "Upon landing on <planet> a few pirates in the spaceport begin to eye up your ship. One of them approaches you."
-		dialog `"I see you've got some passengers. You willing to take <payment> to give them over?"`
+		dialog `"I see you've got some passengers. You willing to take 1,000,000 credits to give them over?"`
 	on accept
 		"reputation: Merchant" -= 10
 		"reputation: Republic" -= 10
@@ -260,7 +260,7 @@ mission "Transport miners to <planet>: Slavery"
 		has "Transport miners to <planet>: active"
 	on offer
 		dialog "Upon landing on <planet> a few pirates in the spaceport begin to eye up your ship. One of them approaches you."
-		dialog `"I see you've got some passengers. You willing to take <payment> to give them over?"`
+		dialog `"I see you've got some passengers. You willing to take 2,000,000 credits to give them over?"`
 	on accept
 		"reputation: Merchant" -= 20
 		"reputation: Republic" -= 20
@@ -282,7 +282,7 @@ mission "Transport farmers to <planet>: Slavery"
 		has "Transport farmers to <planet>: active"
 	on offer
 		dialog "Upon landing on <planet> a few pirates in the spaceport begin to eye up your ship. One of them approaches you."
-		dialog `"I see you've got some passengers. You willing to take <payment> to give them over?"`
+		dialog `"I see you've got some passengers. You willing to take 2,000,000 credits to give them over?"`
 	on accept
 		"reputation: Merchant" -= 20
 		"reputation: Republic" -= 20
@@ -304,7 +304,7 @@ mission "Transport mill workers to <planet>: Slavery"
 		has "Transport mill workers to <planet>: active"
 	on offer
 		dialog "Upon landing on <planet> a few pirates in the spaceport begin to eye up your ship. One of them approaches you."
-		dialog `"I see you've got some passengers. You willing to take <payment> to give them over?"`
+		dialog `"I see you've got some passengers. You willing to take 2,000,000 credits to give them over?"`
 	on accept
 		"reputation: Merchant" -= 20
 		"reputation: Republic" -= 20
@@ -326,7 +326,7 @@ mission "Transport workers to <planet>: Slavery"
 		has "Transport workers to <planet>: active"
 	on offer
 		dialog "Upon landing on <planet> a few pirates in the spaceport begin to eye up your ship. One of them approaches you."
-		dialog `"I see you've got some passengers. You willing to take <payment> to give them over?"`
+		dialog `"I see you've got some passengers. You willing to take 2,000,000 credits to give them over?"`
 	on accept
 		"reputation: Merchant" -= 20
 		"reputation: Republic" -= 20
@@ -348,7 +348,7 @@ mission "Family [0]: Slavery"
 		has "Family [0]: active"
 	on offer
 		dialog "Upon landing on <planet> a few pirates in the spaceport begin to eye up your ship. One of them approaches you."
-		dialog `"I see you've got some passengers. You willing to take <payment> to give them over?"`
+		dialog `"I see you've got some passengers. You willing to take 1,500,000 credits to give them over?"`
 	on accept
 		"reputation: Merchant" -= 15
 		"reputation: Republic" -= 15
@@ -370,7 +370,7 @@ mission "Family [1]: Slavery"
 		has "Family [1]: active"
 	on offer
 		dialog "Upon landing on <planet> a few pirates in the spaceport begin to eye up your ship. One of them approaches you."
-		dialog `"I see you've got some passengers. You willing to take <payment> to give them over?"`
+		dialog `"I see you've got some passengers. You willing to take 1,500,000 credits to give them over?"`
 	on accept
 		"reputation: Merchant" -= 15
 		"reputation: Republic" -= 15
@@ -392,7 +392,7 @@ mission "Family [2]: Slavery"
 		has "Family [2]: active"
 	on offer
 		dialog "Upon landing on <planet> a few pirates in the spaceport begin to eye up your ship. One of them approaches you."
-		dialog `"I see you've got some passengers. You willing to take <payment> to give them over?"`
+		dialog `"I see you've got some passengers. You willing to take 1,500,000 credits to give them over?"`
 	on accept
 		"reputation: Merchant" -= 15
 		"reputation: Republic" -= 15
@@ -414,7 +414,7 @@ mission "Family [3]: Slavery"
 		has "Family [3]: active"
 	on offer
 		dialog "Upon landing on <planet> a few pirates in the spaceport begin to eye up your ship. One of them approaches you."
-		dialog `"I see you've got some passengers. You willing to take <payment> to give them over?"`
+		dialog `"I see you've got some passengers. You willing to take 1,500,000 credits to give them over?"`
 	on accept
 		"reputation: Merchant" -= 15
 		"reputation: Republic" -= 15
@@ -436,7 +436,7 @@ mission "Colonists [0]: Slavery"
 		has "Colonists [0]: active"
 	on offer
 		dialog "Upon landing on <planet> a few pirates in the spaceport begin to eye up your ship. One of them approaches you."
-		dialog `"I see you've got some passengers. You willing to take <payment> to give them over?"`
+		dialog `"I see you've got some passengers. You willing to take 5,000,000 credits to give them over?"`
 	on accept
 		"reputation: Merchant" -= 50
 		"reputation: Republic" -= 50
@@ -458,7 +458,7 @@ mission "Colonists [1]: Slavery"
 		has "Colonists [1]: active"
 	on offer
 		dialog "Upon landing on <planet> a few pirates in the spaceport begin to eye up your ship. One of them approaches you."
-		dialog `"I see you've got some passengers. You willing to take <payment> to give them over?"`
+		dialog `"I see you've got some passengers. You willing to take 5,000,000 credits to give them over?"`
 	on accept
 		"reputation: Merchant" -= 50
 		"reputation: Republic" -= 50
