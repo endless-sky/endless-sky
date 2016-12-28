@@ -760,6 +760,50 @@ ship "Far Osk 27"
 	description "Because it is piloted by a computer and has no need for a cockpit or life support systems, the FS27 fighter is able to carry far more weaponry than any comparable human ship."
 
 
+ship "Model 8"
+	sprite "ship/model 8"
+	attributes
+		category "Interceptor"
+		"cost" 3725000
+		"shields" 5450
+		"hull" 3320
+		"automaton" 1
+		"mass" 110
+		"drag" 3.2
+		"heat dissipation" 1.5
+		"fuel capacity" 200
+		"cargo space" 29
+		"outfit space" 220
+		"weapon capacity" 49
+		"engine capacity" 60
+		"self destruct" .60
+		"ramscoop" 3
+		weapon
+			"blast radius" 100
+			"shield damage" 1200
+			"hull damage" 600
+			"hit force" 1800
+	outfits
+		"Korath Slicer"
+		
+		"Generator (Furnace Class)"
+		"Generator (Candle Class)"
+		"Systems Core (Small)"
+		"Reasoning Node"
+		
+		"Thruster (Comet Class)"
+		"Steering (Lunar Class)"
+		Hyperdrive
+	
+	engine -11 49
+	engine 11 49
+	gun 9 -36 "Korath Slicer"
+	gun -11 -15
+	explode "tiny explosion" 30
+	explode "small explosion" 10
+	"final explode" "final explosion small"
+	description "The primary role of the smallest Kor Mereti drones is asteroid mining, but their lasers can also be employed as offensive weapons when necessary."
+
 
 ship "Model 16"
 	sprite "ship/model 16"

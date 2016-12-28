@@ -6134,6 +6134,7 @@ system Chimitarp
 	trade Plastic 432
 	fleet "Small Kor Mereti" 1000
 	fleet "Large Kor Mereti" 3600
+	fleet "Kor Mereti Miners" 2000
 	object
 		sprite star/k0
 		distance 53.205
@@ -8427,6 +8428,7 @@ system Eshkoshtar
 	fleet "Small Kor Mereti" 800
 	fleet "Large Kor Mereti" 1600
 	fleet "Large Kor Sestor" 3600
+	fleet "Kor Mereti Miners" 3000
 	object
 		sprite star/k0
 		distance 47.9992
@@ -8923,6 +8925,7 @@ system Faronektu
 	fleet "Small Kor Mereti" 1200
 	fleet "Large Kor Mereti" 2000
 	fleet "Large Kor Sestor" 3000
+	fleet "Kor Mereti Miners" 2000
 	object
 		sprite star/g0
 		period 10
@@ -14132,6 +14135,7 @@ system Mekislepti
 	fleet "Small Kor Mereti" 1000
 	fleet "Large Kor Mereti" 3000
 	fleet "Large Kor Sestor" 8000
+	fleet "Kor Mereti Miners" 2000
 	object
 		sprite star/g0
 		distance 38.4897
@@ -18121,6 +18125,7 @@ system Salipastart
 	fleet "Small Kor Mereti" 800
 	fleet "Large Kor Mereti" 1600
 	fleet "Large Kor Sestor" 3200
+	fleet "Kor Mereti Miners" 3000
 	object
 		sprite star/k0
 		period 10
@@ -18575,6 +18580,7 @@ system Sepetrosk
 	trade Plastic 473
 	fleet "Small Kor Mereti" 1200
 	fleet "Large Kor Mereti" 4800
+	fleet "Kor Mereti Miners" 2000
 	object
 		sprite star/k0
 		period 10
@@ -19179,6 +19185,7 @@ system Similisti
 	fleet "Large Kor Mereti" 1600
 	fleet "Small Kor Mereti" 600
 	fleet "Large Kor Sestor" 5400
+	fleet "Kor Mereti Miners" 1600
 	object
 		sprite star/g0
 		period 10
