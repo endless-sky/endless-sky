@@ -19,6 +19,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Government.h"
 #include "Mask.h"
 #include "Messages.h"
+#include "Minable.h"
 #include "pi.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
@@ -70,6 +71,13 @@ namespace {
 	}
 	
 	static const double MAX_DISTANCE_FROM_CENTER = 10000.;
+}
+
+
+
+AI::AI(const List<Ship> &ships, const List<Minable> &minables)
+	: ships(ships), minables(minables)
+{
 }
 
 
@@ -191,6 +199,8 @@ void AI::Clean()
 	playerActions.clear();
 	shipStrength.clear();
 	swarmCount.clear();
+	miningAngle.clear();
+	miningTime.clear();
 }
 
 
@@ -378,6 +388,13 @@ void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &player)
 		if(isPresent && personality.IsSurveillance())
 		{
 			DoSurveillance(*it, command, ships);
+			it->SetCommands(command);
+			continue;
+		}
+		if(isPresent && personality.IsMining() && !target
+				&& it->Cargo().Free() >= 5 && ++miningTime[&*it] < 3600)
+		{
+			DoMining(*it, command);
 			it->SetCommands(command);
 			continue;
 		}
@@ -1236,8 +1253,6 @@ void AI::KeepStation(Ship &ship, Command &command, const Ship &target)
 
 void AI::Attack(Ship &ship, Command &command, const Ship &target)
 {
-	Point d = target.Position() - ship.Position();
-	
 	// First, figure out what your shortest-range weapon is.
 	double shortestRange = 4000.;
 	bool isArmed = false;
@@ -1268,6 +1283,7 @@ void AI::Attack(Ship &ship, Command &command, const Ship &target)
 		command |= Command::DEPLOY;
 	// If this ship only has long-range weapons, it should keep its distance
 	// instead of trying to close with the target ship.
+	Point d = target.Position() - ship.Position();
 	if(shortestRange > 1000. && d.Length() < .5 * shortestRange)
 	{
 		command.SetTurn(TurnToward(ship, -d));
@@ -1276,8 +1292,17 @@ void AI::Attack(Ship &ship, Command &command, const Ship &target)
 		return;
 	}
 	
+	MoveToAttack(ship, command, target);
+}
+
+
+	
+void AI::MoveToAttack(Ship &ship, Command &command, const Body &target)
+{
+	Point d = target.Position() - ship.Position();
+	
 	// First of all, aim in the direction that will hit this target.
-	command.SetTurn(TurnToward(ship, TargetAim(ship)));
+	command.SetTurn(TurnToward(ship, TargetAim(ship, target)));
 	
 	// Calculate this ship's "turning radius; that is, the smallest circle it
 	// can make while at full speed.
@@ -1398,6 +1423,46 @@ void AI::DoSurveillance(Ship &ship, Command &command, const list<shared_ptr<Ship
 
 
 
+void AI::DoMining(Ship &ship, Command &command)
+{
+	// This function is only called for ships that are in the player's system.
+	// Update the radius that the ship is searching for asteroids at.
+	bool isNew = !miningAngle.count(&ship);
+	Angle &angle = miningAngle[&ship];
+	if(isNew)
+		angle = Angle::Random();
+	angle += Angle::Random(1.) - Angle::Random(1.);
+	double miningRadius = ship.GetSystem()->AsteroidBelt() * pow(2., angle.Unit().X());
+	
+	shared_ptr<Minable> target = ship.GetTargetAsteroid();
+	if(!target)
+	{
+		for(const shared_ptr<Minable> &minable : minables)
+		{
+			Point offset = minable->Position() - ship.Position();
+			if(offset.Length() < 800. && offset.Unit().Dot(ship.Facing().Unit()) > .7)
+			{
+				target = minable;
+				ship.SetTargetAsteroid(target);
+				break;
+			}
+		}
+	}
+	if(target)
+	{
+		MoveToAttack(ship, command, *target);
+		command |= AutoFire(ship, *target);
+		return;
+	}
+	
+	Point heading = Angle(30.).Rotate(ship.Position().Unit() * miningRadius) - ship.Position();
+	command.SetTurn(TurnToward(ship, heading));
+	if(ship.Velocity().Dot(heading.Unit()) < .7 * ship.MaxVelocity())
+		command |= Command::FORWARD;
+}
+
+
+
 void AI::DoCloak(Ship &ship, Command &command, const list<shared_ptr<Ship>> &ships)
 {
 	if(ship.Attributes().Get("cloak"))
@@ -1514,11 +1579,15 @@ Point AI::StoppingPoint(const Ship &ship, bool &shouldReverse)
 // returns the direction to the target.
 Point AI::TargetAim(const Ship &ship)
 {
-	Point result;
 	shared_ptr<const Ship> target = ship.GetTargetShip();
-	if(!target)
-		return result;
-	
+	return target ? TargetAim(ship, *target) : Point();
+}
+
+
+
+Point AI::TargetAim(const Ship &ship, const Body &target)
+{
+	Point result;
 	for(const Hardpoint &weapon : ship.Weapons())
 	{
 		const Outfit *outfit = weapon.GetOutfit();
@@ -1526,8 +1595,8 @@ Point AI::TargetAim(const Ship &ship)
 			continue;
 		
 		Point start = ship.Position() + ship.Facing().Rotate(weapon.GetPoint());
-		Point p = target->Position() - start + ship.GetPersonality().Confusion();
-		Point v = target->Velocity() - ship.Velocity();
+		Point p = target.Position() - start + ship.GetPersonality().Confusion();
+		Point v = target.Velocity() - ship.Velocity();
 		double steps = Armament::RendezvousTime(p, v, outfit->Velocity());
 		if(!(steps == steps))
 			continue;
@@ -1539,9 +1608,7 @@ Point AI::TargetAim(const Ship &ship)
 		result += p.Unit() * abs(damage);
 	}
 	
-	if(!result)
-		return target->Position() - ship.Position();
-	return result;
+	return result ? result : target.Position() - ship.Position();
 }
 
 
@@ -1702,6 +1769,47 @@ Command AI::AutoFire(const Ship &ship, const list<shared_ptr<Ship>> &ships, bool
 		}
 	}
 	
+	return command;
+}
+
+
+
+Command AI::AutoFire(const Ship &ship, const Body &target) const
+{
+	Command command;
+	
+	int index = -1;
+	for(const Hardpoint &weapon : ship.Weapons())
+	{
+		++index;
+		// Only auto-fire primary weapons that take no ammunition.
+		if(!weapon.IsReady() || weapon.GetOutfit()->Icon() || weapon.GetOutfit()->Ammo())
+			continue;
+		
+		// Figure out where this weapon will fire from, but add some randomness
+		// depending on how accurate this ship's pilot is.
+		Point start = ship.Position() + ship.Facing().Rotate(weapon.GetPoint());
+		start += ship.GetPersonality().Confusion();
+		
+		const Outfit *outfit = weapon.GetOutfit();
+		double vp = outfit->Velocity();
+		double lifetime = outfit->TotalLifetime();
+		
+		Point p = target.Position() - start;
+		Point v = target.Velocity() - ship.Velocity();
+		// By the time this action is performed, the ships will have moved
+		// forward one time step.
+		p += v;
+		
+		// Get the vector the weapon will travel along.
+		v = (ship.Facing() + weapon.GetAngle()).Unit() * vp - v;
+		// Extrapolate over the lifetime of the projectile.
+		v *= lifetime;
+		
+		const Mask &mask = target.GetMask(step);
+		if(mask.Collide(-p, v, target.Facing()) < 1.)
+			command.SetFire(index);
+	}
 	return command;
 }
 

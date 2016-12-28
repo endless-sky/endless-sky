@@ -703,6 +703,28 @@ fleet "Large Human Merchants (Hai)"
 	variant 1
 		"Shield Beetle"
 
+fleet "Human Miners"
+	government "Merchant"
+	names "civilian"
+	cargo 0
+	personality
+		confusion 20
+		timid frugal mining
+	variant 5
+		"Sparrow"
+	variant 1
+		"Fury"
+	variant 2
+		"Fury (Laser)"
+	variant 3
+		"Hawk"
+	variant 1
+		"Hawk (Speedy)"
+	variant 2
+		"Headhunter"
+	variant 1
+		"Headhunter (Particle)"
+
 fleet "Small Free Worlds"
 	government "Free Worlds"
 	names "free worlds small"

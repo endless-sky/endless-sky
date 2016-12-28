@@ -2344,6 +2344,14 @@ const Planet *Ship::GetDestination() const
 
 
 
+// Mining target.
+shared_ptr<Minable> Ship::GetTargetAsteroid() const
+{
+	return targetAsteroid.lock();
+}
+
+
+
 // Set this ship's targets.
 void Ship::SetTargetShip(const shared_ptr<Ship> &ship)
 {
@@ -2379,6 +2387,14 @@ void Ship::SetTargetSystem(const System *system)
 void Ship::SetDestination(const Planet *planet)
 {
 	destination = planet;
+}
+
+
+
+// Mining target.
+void Ship::SetTargetAsteroid(const shared_ptr<Minable> &asteroid)
+{
+	targetAsteroid = asteroid;
 }
 
 

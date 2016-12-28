@@ -19,6 +19,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Point.h"
 
 #include <list>
+#include <memory>
 #include <string>
 #include <vector>
 
@@ -54,6 +55,9 @@ public:
 	// how far along the projectile's path it should be clipped.
 	double Collide(const Projectile &projectile, int step, double closestHit, Point *hitVelocity = nullptr);
 	
+	// Get the list of mainable asteroids.
+	const std::list<std::shared_ptr<Minable>> &Minables() const;
+	
 	
 private:
 	// This class represents an asteroid that cannot be destroyed or even
@@ -74,7 +78,7 @@ private:
 	
 private:
 	std::vector<Asteroid> asteroids;
-	std::list<Minable> minables;
+	std::list<std::shared_ptr<Minable>> minables;
 };
 
 

@@ -33,6 +33,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 class DataNode;
 class DataWriter;
 class Government;
+class Minable;
 class Phrase;
 class Planet;
 class Projectile;
@@ -312,6 +313,8 @@ public:
 	const StellarObject *GetTargetPlanet() const;
 	const System *GetTargetSystem() const;
 	const Planet *GetDestination() const;
+	// Mining target.
+	std::shared_ptr<Minable> GetTargetAsteroid() const;
 	
 	// Set this ship's targets.
 	void SetTargetShip(const std::shared_ptr<Ship> &ship);
@@ -319,6 +322,8 @@ public:
 	void SetTargetPlanet(const StellarObject *object);
 	void SetTargetSystem(const System *system);
 	void SetDestination(const Planet *planet);
+	// Mining target.
+	void SetTargetAsteroid(const std::shared_ptr<Minable> &asteroid);
 	
 	// Manage escorts. When you set this ship's parent, it will automatically
 	// register itself as an escort of that ship, and unregister itself from any
@@ -448,6 +453,7 @@ private:
 	const StellarObject *targetPlanet = nullptr;
 	const System *targetSystem = nullptr;
 	const Planet *destination = nullptr;
+	std::weak_ptr<Minable> targetAsteroid;
 	
 	// Links between escorts and parents.
 	std::vector<std::weak_ptr<const Ship>> escorts;

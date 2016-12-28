@@ -20,7 +20,11 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <map>
 #include <memory>
 
+class Angle;
+class AsteroidField;
+class Body;
 class Government;
+class Minable;
 class Point;
 class Ship;
 class ShipEvent;
@@ -36,6 +40,10 @@ class PlayerInfo;
 // the same target over and over.
 class AI {
 public:
+	template <class Type>
+	using List = std::list<std::shared_ptr<Type>>;
+	AI(const List<Ship> &ships, const List<Minable> &minables);
+	
 	void UpdateKeys(PlayerInfo &player, Command &clickCommands, bool isActive);
 	void UpdateEvents(const std::list<ShipEvent> &events);
 	void Clean();
@@ -60,7 +68,9 @@ private:
 	static void Swarm(Ship &ship, Command &command, const Ship &target);
 	static void KeepStation(Ship &ship, Command &command, const Ship &target);
 	static void Attack(Ship &ship, Command &command, const Ship &target);
+	static void MoveToAttack(Ship &ship, Command &command, const Body &target);
 	void DoSurveillance(Ship &ship, Command &command, const std::list<std::shared_ptr<Ship>> &ships) const;
+	void DoMining(Ship &ship, Command &command);
 	static void DoCloak(Ship &ship, Command &command, const std::list<std::shared_ptr<Ship>> &ships);
 	static void DoScatter(Ship &ship, Command &command, const std::list<std::shared_ptr<Ship>> &ships);
 	
@@ -70,9 +80,11 @@ private:
 	// non-homing weapons. If the ship has no non-homing weapons, this just
 	// returns the direction to the target.
 	static Point TargetAim(const Ship &ship);
+	static Point TargetAim(const Ship &ship, const Body &target);
 	// Fire whichever of the given ship's weapons can hit a hostile target.
 	// Return a bitmask giving the weapons to fire.
 	Command AutoFire(const Ship &ship, const std::list<std::shared_ptr<Ship>> &ships, bool secondary = true) const;
+	Command AutoFire(const Ship &ship, const Body &target) const;
 	
 	void MovePlayer(Ship &ship, const PlayerInfo &player, const std::list<std::shared_ptr<Ship>> &ships);
 	
@@ -81,6 +93,10 @@ private:
 	
 	
 private:
+	// Data from the game engine.
+	const List<Ship> &ships;
+	const List<Minable> &minables;
+	
 	int step = 0;
 	
 	Command keyDown;
@@ -104,6 +120,8 @@ private:
 	std::map<const Government *, std::map<std::weak_ptr<const Ship>, int, Comp>> governmentActions;
 	std::map<std::weak_ptr<const Ship>, int, Comp> playerActions;
 	std::map<const Ship *, int> swarmCount;
+	std::map<const Ship *, Angle> miningAngle;
+	std::map<const Ship *, int> miningTime;
 	
 	std::map<const Ship *, int64_t> shipStrength;
 	

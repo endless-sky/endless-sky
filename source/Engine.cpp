@@ -78,7 +78,8 @@ namespace {
 
 
 Engine::Engine(PlayerInfo &player)
-	: player(player), shipCollisions(256, 32), cloakedCollisions(256, 32)
+	: player(player), ai(ships, asteroids.Minables()),
+	shipCollisions(256, 32), cloakedCollisions(256, 32)
 {
 	// Start the thread for doing calculations.
 	calcThread = thread(&Engine::ThreadEntryPoint, this);
