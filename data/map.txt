@@ -23018,7 +23018,7 @@ planet "Delve of Bloptab"
 	attributes arach mining
 	landscape land/hills1
 	description `This is a mining world, hotter than even the Arach would prefer but still much more habitable than its sister world of Blobtab's Furnace. It is home to House Ablomab, the guild of mining and metalworking, and the dry climate makes it possible to store stockpiles of iron, steel, and other metals here without worrying about rust. Supposedly the warehouses here contain enough raw materials to double the size of the Heliarch war fleet if needed; the Arach like to be able to trust that they are prepared for any eventuality.`
-	spaceport `This is one of the few Coalition worlds where the Heliarch agents openly carry weapons, due to the feat that the Resistance might see the storehouses here of base and precious metals as a tempting target. Although there are plenty of civilians of all three species milling about, the spaceport has something of the atmosphere of a military base.`
+	spaceport `This is one of the few Coalition worlds where the Heliarch agents openly carry weapons, due to the fear that the Resistance might see the storehouses here of base and precious metals as a tempting target. Although there are plenty of civilians of all three species milling about, the spaceport has something of the atmosphere of a military base.`
 	"required reputation" 25
 
 planet "Desi Seledrak"
