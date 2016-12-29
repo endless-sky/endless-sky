@@ -81,9 +81,9 @@ mission "Cargo Smuggling [0]"
 	name "Smuggling to <planet>"
 	job
 	repeat
-	description "Smuggle <cargo> to <destination>. If law enforcement catches you, you will be fined 5,000 credits. A contact at the location will retrieve the cargo. Payment is <payment>."
+	description "Smuggle <cargo> to <destination>. If law enforcement catches you, you will be fined 20,000 credits. A contact at the location will retrieve the cargo. Payment is <payment>."
 	cargo "Illegal Cargo" 5 2 .1
-		illegal 5000
+		illegal 20000
 	to offer
 		or
 			"reputation: Pirate" > -100
@@ -94,17 +94,16 @@ mission "Cargo Smuggling [0]"
 		distance 3 6
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate"
 	on complete
-		payment
-		payment 10000
+		payment 10000 250
 		dialog "You find the contact at the edge of the spaceport. Your cargo of <commodity> is removed from your ship and you collect your payment of <payment>."
 
 mission "Cargo Smuggling [1]"
 	name "Smuggling to <planet>"
 	job
 	repeat
-	description "Smuggle <cargo> to <destination>. If law enforcement catches you, you will be fined 6,000 credits. A contact at the location will retrieve the cargo. Payment is <payment>."
+	description "Smuggle <cargo> to <destination>. If law enforcement catches you, you will be fined 30,000 credits. A contact at the location will retrieve the cargo. Payment is <payment>."
 	cargo "Illegal Cargo" 5 2 .1
-		illegal 6000
+		illegal 30000
 	to offer
 		random < 90
 		or
@@ -116,17 +115,16 @@ mission "Cargo Smuggling [1]"
 		distance 3 8
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate"
 	on complete
-		payment
-		payment 12000
+		payment 15000 250
 		dialog "You find the contact at the edge of the spaceport. Your cargo of <commodity> is removed from your ship and you collect your payment of <payment>."
 
 mission "Cargo Smuggling [2]"
 	name "Smuggling to <planet>"
 	job
 	repeat
-	description "Smuggle <cargo> to <destination>. If law enforcement catches you, you will be fined 7,000 credits. A contact at the location will retrieve the cargo. Payment is <payment>."
+	description "Smuggle <cargo> to <destination>. If law enforcement catches you, you will be fined 40,000 credits. A contact at the location will retrieve the cargo. Payment is <payment>."
 	cargo "Illegal Cargo" 5 2 .1
-		illegal 7000
+		illegal 40000
 	to offer
 		random < 70
 		or
@@ -138,17 +136,16 @@ mission "Cargo Smuggling [2]"
 		distance 4 10
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate"
 	on complete
-		payment
-		payment 14000
+		payment 20000 250
 		dialog "You find the contact at the edge of the spaceport. Your cargo of <commodity> is removed from your ship and you collect your payment of <payment>."
 
 mission "Cargo Smuggling [3]"
 	name "Smuggling to <planet>"
 	job
 	repeat
-	description "Smuggle <cargo> to <destination>. If law enforcement catches you, you will be fined 8,000 credits. A contact at the location will retrieve the cargo. Payment is <payment>."
+	description "Smuggle <cargo> to <destination>. If law enforcement catches you, you will be fined 50,000 credits. A contact at the location will retrieve the cargo. Payment is <payment>."
 	cargo "Illegal Cargo" 5 2 .1
-		illegal 8000
+		illegal 50000
 	to offer
 		random < 60
 		or
@@ -160,17 +157,16 @@ mission "Cargo Smuggling [3]"
 		distance 5 12
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate"
 	on complete
-		payment
-		payment 16000
+		payment 25000 250
 		dialog "You find the contact at the edge of the spaceport. Your cargo of <commodity> is removed from your ship and you collect your payment of <payment>."
 
 mission "Drug Running [0]"
 	name "Drug run to <planet>"
 	job
 	repeat
-	description "Run <cargo> to <destination>. If law enforcement catches you, you will be fined 20,000 credits. A contact at the location will retrieve the cargo. Payment is <payment>."
+	description "Run <cargo> to <destination>. If law enforcement catches you, you will be fined 100,000 credits. A contact at the location will retrieve the cargo. Payment is <payment>."
 	cargo "Illegal Substances" 5 2 .1
-		illegal 20000
+		illegal 100000
 	to offer
 		random < 80
 		or
@@ -182,17 +178,16 @@ mission "Drug Running [0]"
 		distance 3 10
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate"
 	on complete
-		payment
-		payment 60000
+		payment 50000 300
 		dialog "You find the contact at the edge of the spaceport. Your cargo of <commodity> is removed from your ship and you collect your payment of <payment>."
 
 mission "Drug Running [1]"
 	name "Drug run to <planet>"
 	job
 	repeat
-	description "Run <cargo> to <destination>. If law enforcement catches you, you will be fined 22,000 credits. A contact at the location will retrieve the cargo. Payment is <payment>."
+	description "Run <cargo> to <destination>. If law enforcement catches you, you will be fined 120,000 credits. A contact at the location will retrieve the cargo. Payment is <payment>."
 	cargo "Illegal Substances" 5 2 .1
-		illegal 22000
+		illegal 120000
 	to offer
 		random < 70
 		or
@@ -204,17 +199,16 @@ mission "Drug Running [1]"
 		distance 4 12
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate"
 	on complete
-		payment
-		payment 66000
+		payment 60000 300
 		dialog "You find the contact at the edge of the spaceport. Your cargo of <commodity> is removed from your ship and you collect your payment of <payment>."
 
 mission "Drug Running [2]"
 	name "Drug run to <planet>"
 	job
 	repeat
-	description "Run <cargo> to <destination>. If law enforcement catches you, you will be fined 26,000 credits. A contact at the location will retrieve the cargo. Payment is <payment>."
+	description "Run <cargo> to <destination>. If law enforcement catches you, you will be fined 140,000 credits. A contact at the location will retrieve the cargo. Payment is <payment>."
 	cargo "Illegal Substances" 5 2 .1
-		illegal 26000
+		illegal 140000
 	to offer
 		random < 60
 		or
@@ -226,17 +220,16 @@ mission "Drug Running [2]"
 		distance 5 14
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate"
 	on complete
-		payment
-		payment 78000
+		payment 70000 300
 		dialog "You find the contact at the edge of the spaceport. Your cargo of <commodity> is removed from your ship and you collect your payment of <payment>."
 
 mission "Drug Running [3]"
 	name "Drug run to <planet>"
 	job
 	repeat
-	description "Run <cargo> to <destination>. If law enforcement catches you, you will be fined 30,000 credits. A contact at the location will retrieve the cargo. Payment is <payment>."
+	description "Run <cargo> to <destination>. If law enforcement catches you, you will be fined 160,000 credits. A contact at the location will retrieve the cargo. Payment is <payment>."
 	cargo "Illegal Substances" 5 2 .1
-		illegal 30000
+		illegal 160000
 	to offer
 		random < 50
 		or
@@ -248,17 +241,16 @@ mission "Drug Running [3]"
 		distance 6 16
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate"
 	on complete
-		payment
-		payment 90000
+		payment 80000 300
 		dialog "You find the contact at the edge of the spaceport. Your cargo of <commodity> is removed from your ship and you collect your payment of <payment>."
 
 mission "Bulk Cargo Smuggling [0]"
 	name "Bulk smuggling to <planet>"
 	job
 	repeat
-	description "Smuggle <cargo> to <destination>. If law enforcement catches you, you will be fined 6,000 credits. A contact at the location will retrieve the cargo. Payment is <payment>."
+	description "Smuggle <cargo> to <destination>. If law enforcement catches you, you will be fined 30,000 credits. A contact at the location will retrieve the cargo. Payment is <payment>."
 	cargo "Illegal Cargo" 25 2 .1
-		illegal 6000
+		illegal 30000
 	to offer
 		random < 70
 		or
@@ -270,17 +262,16 @@ mission "Bulk Cargo Smuggling [0]"
 		distance 3 8
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate"
 	on complete
-		payment
-		payment 12000
+		payment 15000 250
 		dialog "You find the contact at the edge of the spaceport. Your cargo of <commodity> is removed from your ship and you collect your payment of <payment>."
 
 mission "Bulk Cargo Smuggling [1]"
 	name "Bulk smuggling to <planet>"
 	job
 	repeat
-	description "Smuggle <cargo> to <destination>. If law enforcement catches you, you will be fined 7,000 credits. A contact at the location will retrieve the cargo. Payment is <payment>."
+	description "Smuggle <cargo> to <destination>. If law enforcement catches you, you will be fined 40,000 credits. A contact at the location will retrieve the cargo. Payment is <payment>."
 	cargo "Illegal Cargo" 25 2 .1
-		illegal 7000
+		illegal 40000
 	to offer
 		random < 60
 		or
@@ -292,17 +283,16 @@ mission "Bulk Cargo Smuggling [1]"
 		distance 3 12
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate"
 	on complete
-		payment
-		payment 14000
+		payment 20000 250
 		dialog "You find the contact at the edge of the spaceport. Your cargo of <commodity> is removed from your ship and you collect your payment of <payment>."
 
 mission "Bulk Cargo Smuggling [2]"
 	name "Bulk smuggling to <planet>"
 	job
 	repeat
-	description "Smuggle <cargo> to <destination>. If law enforcement catches you, you will be fined 8,000 credits. A contact at the location will retrieve the cargo. Payment is <payment>."
+	description "Smuggle <cargo> to <destination>. If law enforcement catches you, you will be fined 50,000 credits. A contact at the location will retrieve the cargo. Payment is <payment>."
 	cargo "Illegal Cargo" 25 2 .1
-		illegal 8000
+		illegal 50000
 	to offer
 		random < 40
 		or
@@ -314,17 +304,16 @@ mission "Bulk Cargo Smuggling [2]"
 		distance 4 16
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate"
 	on complete
-		payment
-		payment 16000
+		payment 25000 250
 		dialog "You find the contact at the edge of the spaceport. Your cargo of <commodity> is removed from your ship and you collect your payment of <payment>."
 
 mission "Bulk Drug Running [0]"
 	name "Bulk drug run to <planet>"
 	job
 	repeat
-	description "Run <cargo> to <destination>. If law enforcement catches you, you will be fined 22,000 credits. A contact at the location will retrieve the cargo. Payment is <payment>."
+	description "Run <cargo> to <destination>. If law enforcement catches you, you will be fined 120,000 credits. A contact at the location will retrieve the cargo. Payment is <payment>."
 	cargo "Illegal Substances" 25 2 .1
-		illegal 22000
+		illegal 120000
 	to offer
 		random < 50
 		or
@@ -336,17 +325,16 @@ mission "Bulk Drug Running [0]"
 		distance 4 12
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate"
 	on complete
-		payment
-		payment 66000
+		payment 60000 300
 		dialog "You find the contact at the edge of the spaceport. Your cargo of <commodity> is removed from your ship and you collect your payment of <payment>."
 
 mission "Bulk Drug Running [1]"
 	name "Bulk drug run to <planet>"
 	job
 	repeat
-	description "Run <cargo> to <destination>. If law enforcement catches you, you will be fined 26,000 credits. A contact at the location will retrieve the cargo. Payment is <payment>."
+	description "Run <cargo> to <destination>. If law enforcement catches you, you will be fined 140,000 credits. A contact at the location will retrieve the cargo. Payment is <payment>."
 	cargo "Illegal Substances" 25 2 .1
-		illegal 26000
+		illegal 140000
 	to offer
 		random < 40
 		or
@@ -358,17 +346,16 @@ mission "Bulk Drug Running [1]"
 		distance 5 14
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate"
 	on complete
-		payment
-		payment 78000
+		payment 70000 300
 		dialog "You find the contact at the edge of the spaceport. Your cargo of <commodity> is removed from your ship and you collect your payment of <payment>."
 
 mission "Bulk Drug Running [2]"
 	name "Bulk drug run to <planet>"
 	job
 	repeat
-	description "Run <cargo> to <destination>. If law enforcement catches you, you will be fined 30,000 credits. A contact at the location will retrieve the cargo. Payment is <payment>."
+	description "Run <cargo> to <destination>. If law enforcement catches you, you will be fined 160,000 credits. A contact at the location will retrieve the cargo. Payment is <payment>."
 	cargo "Illegal Substances" 25 2 .1
-		illegal 30000
+		illegal 160000
 	to offer
 		random < 30
 		or
@@ -380,8 +367,7 @@ mission "Bulk Drug Running [2]"
 		distance 6 16
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate"
 	on complete
-		payment
-		payment 90000
+		payment 80000 300
 		dialog "You find the contact at the edge of the spaceport. Your cargo of <commodity> is removed from your ship and you collect your payment of <payment>."
 
 mission "Stealth Cargo Smuggling (North) [0]"
@@ -389,9 +375,9 @@ mission "Stealth Cargo Smuggling (North) [0]"
 	job
 	repeat
 	infiltrating
-	description "Run <cargo> to <destination>. If law enforcement catches you, you will be fined 75,000 credits and the cargo will be seized. You will need to land away from the spaceport or else you may get caught. Payment is <payment>."
+	description "Run <cargo> to <destination>. If law enforcement catches you, you will be fined 200,000 credits and the cargo will be seized. You will need to land away from the spaceport or else you may get caught. Payment is <payment>."
 	cargo "Illegal Cargo" 5 2 .1
-		illegal 75000 `After being given a very hefty fine, the illegal cargo is confiscated from your hold. The pirates won't be happy to hear about this.`
+		illegal 200000 `After being given a very hefty fine, the illegal cargo is confiscated from your hold. The pirates won't be happy to hear about this.`
 		stealth
 	to offer
 		random < 40
@@ -421,7 +407,7 @@ mission "Stealth Cargo Smuggling (North) [0]"
 		government Republic
 		ship "Gunboat"
 	on complete
-		payment 75000 500
+		payment 100000 500
 		dialog "You find the contact outside of the main city. Your cargo of <commodity> is removed from your ship and you collect your payment of <payment>."
 
 mission "Stealth Cargo Smuggling (North) [1]"
@@ -429,9 +415,9 @@ mission "Stealth Cargo Smuggling (North) [1]"
 	job
 	repeat
 	infiltrating
-	description "Run <cargo> to <destination>. If law enforcement catches you, you will be fined 100,000 credits and the cargo will be seized. You will need to land away from the spaceport or else you may get caught. Payment is <payment>."
+	description "Run <cargo> to <destination>. If law enforcement catches you, you will be fined 300,000 credits and the cargo will be seized. You will need to land away from the spaceport or else you may get caught. Payment is <payment>."
 	cargo "Illegal Cargo" 5 2 .1
-		illegal 100000 `After being given a very hefty fine, the illegal cargo is confiscated from your hold. The pirates won't be happy to hear about this.`
+		illegal 300000 `After being given a very hefty fine, the illegal cargo is confiscated from your hold. The pirates won't be happy to hear about this.`
 		stealth
 	to offer
 		random < 20
@@ -477,7 +463,7 @@ mission "Stealth Cargo Smuggling (North) [1]"
 		government Republic
 		fleet "Navy Surveillance"
 	on complete
-		payment 100000 600
+		payment 150000 500
 		dialog "You find the contact outside of the main city. Your cargo of <commodity> is removed from your ship and you collect your payment of <payment>."
 
 mission "Stealth Cargo Smuggling (Core) [0]"
@@ -485,9 +471,9 @@ mission "Stealth Cargo Smuggling (Core) [0]"
 	job
 	repeat
 	infiltrating
-	description "Run <cargo> to <destination>. If law enforcement catches you, you will be fined 75,000 credits and the cargo will be seized. You will need to land away from the spaceport or else you may get caught. Payment is <payment>."
+	description "Run <cargo> to <destination>. If law enforcement catches you, you will be fined 200,000 credits and the cargo will be seized. You will need to land away from the spaceport or else you may get caught. Payment is <payment>."
 	cargo "Illegal Cargo" 5 2 .1
-		illegal 75000 `After being given a very hefty fine, the illegal cargo is confiscated from your hold. The pirates won't be happy to hear about this.`
+		illegal 200000 `After being given a very hefty fine, the illegal cargo is confiscated from your hold. The pirates won't be happy to hear about this.`
 		stealth
 	to offer
 		random < 40
@@ -517,7 +503,7 @@ mission "Stealth Cargo Smuggling (Core) [0]"
 		government Syndicate
 		ship "Quicksilver (Scanner)"
 	on complete
-		payment 75000 500
+		payment 100000 500
 		dialog "You find the contact outside of the main city. Your cargo of <commodity> is removed from your ship and you collect your payment of <payment>."
 
 mission "Stealth Cargo Smuggling (Core) [1]"
@@ -525,9 +511,9 @@ mission "Stealth Cargo Smuggling (Core) [1]"
 	job
 	repeat
 	infiltrating
-	description "Run <cargo> to <destination>. If law enforcement catches you, you will be fined 100,000 credits and the cargo will be seized. You will need to land away from the spaceport or else you may get caught. Payment is <payment>."
+	description "Run <cargo> to <destination>. If law enforcement catches you, you will be fined 300,000 credits and the cargo will be seized. You will need to land away from the spaceport or else you may get caught. Payment is <payment>."
 	cargo "Illegal Cargo" 5 2 .1
-		illegal 100000 `After being given a very hefty fine, the illegal cargo is confiscated from your hold. The pirates won't be happy to hear about this.`
+		illegal 300000 `After being given a very hefty fine, the illegal cargo is confiscated from your hold. The pirates won't be happy to hear about this.`
 		stealth
 	to offer
 		random < 20
@@ -574,16 +560,16 @@ mission "Stealth Cargo Smuggling (Core) [1]"
 		ship "Quicksilver (Scanner)"
 		ship "Quicksilver (Scanner)"
 	on complete
-		payment 100000 600
+		payment 150000 500
 		dialog "You find the contact outside of the main city. Your cargo of <commodity> is removed from your ship and you collect your payment of <payment>."
 
 mission "Stealth Cargo Smuggling (South) [0]"
 	name "Highly illegal cargo to <planet>"job
 	repeat
 	infiltrating
-	description "Run <cargo> to <destination>. If law enforcement catches you, you will be fined 75,000 credits and the cargo will be seized. You will need to land away from the spaceport or else you may get caught. Payment is <payment>."
+	description "Run <cargo> to <destination>. If law enforcement catches you, you will be fined 200,000 credits and the cargo will be seized. You will need to land away from the spaceport or else you may get caught. Payment is <payment>."
 	cargo "Illegal Cargo" 5 2 .1
-		illegal 75000 `After being given a very hefty fine, the illegal cargo is confiscated from your hold. The pirates won't be happy to hear about this.`
+		illegal 200000 `After being given a very hefty fine, the illegal cargo is confiscated from your hold. The pirates won't be happy to hear about this.`
 		stealth
 	to offer
 		random < 40
@@ -613,7 +599,7 @@ mission "Stealth Cargo Smuggling (South) [0]"
 		government Militia
 		ship "Bastion (Scanner)"
 	on complete
-		payment 75000 500
+		payment 100000 500
 		dialog "You find the contact outside of the main city. Your cargo of <commodity> is removed from your ship and you collect your payment of <payment>."
 
 mission "Stealth Cargo Smuggling (South) [1]"
@@ -621,9 +607,9 @@ mission "Stealth Cargo Smuggling (South) [1]"
 	job
 	repeat
 	infiltrating
-	description "Run <cargo> to <destination>. If law enforcement catches you, you will be fined 100,000 credits and the cargo will be seized. You will need to land away from the spaceport or else you may get caught. Payment is <payment>."
+	description "Run <cargo> to <destination>. If law enforcement catches you, you will be fined 300,000 credits and the cargo will be seized. You will need to land away from the spaceport or else you may get caught. Payment is <payment>."
 	cargo "Illegal Cargo" 5 2 .1
-		illegal 100000 `After being given a very hefty fine, the illegal cargo is confiscated from your hold. The pirates won't be happy to hear about this.`
+		illegal 300000 `After being given a very hefty fine, the illegal cargo is confiscated from your hold. The pirates won't be happy to hear about this.`
 		stealth
 	to offer
 		random < 20
@@ -670,7 +656,7 @@ mission "Stealth Cargo Smuggling (South) [1]"
 		ship "Bastion (Scanner)"
 		ship "Bastion (Scanner)"
 	on complete
-		payment 100000 600
+		payment 150000 500
 		dialog "You find the contact outside of the main city. Your cargo of <commodity> is removed from your ship and you collect your payment of <payment>."
 
 mission "Stealth Drug Running (North) [0]"
@@ -678,9 +664,9 @@ mission "Stealth Drug Running (North) [0]"
 	job
 	repeat
 	infiltrating
-	description "Run <cargo> to <destination>. If law enforcement catches you, you will be fined 250,000 credits and the cargo will be seized. You will need to land away from the spaceport or else you may get caught. Payment is <payment>."
+	description "Run <cargo> to <destination>. If law enforcement catches you, you will be fined 500,000 credits and the cargo will be seized. You will need to land away from the spaceport or else you may get caught. Payment is <payment>."
 	cargo "Illegal Substances" 5 2 .1
-		illegal 250000 `After being given a very hefty fine, the illegal cargo is confiscated from your hold. The pirates won't be happy to hear about this.`
+		illegal 500000 `After being given a very hefty fine, the illegal cargo is confiscated from your hold. The pirates won't be happy to hear about this.`
 		stealth
 	to offer
 		random < 30
@@ -710,7 +696,7 @@ mission "Stealth Drug Running (North) [0]"
 		government Republic
 		ship "Gunboat"
 	on complete
-		payment 250000 800
+		payment 250000 750
 		dialog "You find the contact outside of the main city. Your cargo of <commodity> is removed from your ship and you collect your payment of <payment>."
 
 mission "Stealth Drug Running (North) [1]"
@@ -718,9 +704,9 @@ mission "Stealth Drug Running (North) [1]"
 	job
 	repeat
 	infiltrating
-	description "Run <cargo> to <destination>. If law enforcement catches you, you will be fined 400,000 credits and the cargo will be seized. You will need to land away from the spaceport or else you may get caught. Payment is <payment>."
+	description "Run <cargo> to <destination>. If law enforcement catches you, you will be fined 750,000 credits and the cargo will be seized. You will need to land away from the spaceport or else you may get caught. Payment is <payment>."
 	cargo "Illegal Substances" 5 2 .1
-		illegal 400000 `After being given a very hefty fine, the illegal cargo is confiscated from your hold. The pirates won't be happy to hear about this.`
+		illegal 750000 `After being given a very hefty fine, the illegal cargo is confiscated from your hold. The pirates won't be happy to hear about this.`
 		stealth
 	to offer
 		random < 15
@@ -766,7 +752,7 @@ mission "Stealth Drug Running (North) [1]"
 		government Republic
 		fleet "Navy Surveillance"
 	on complete
-		payment 400000 1000
+		payment 375000 750
 		dialog "You find the contact outside of the main city. Your cargo of <commodity> is removed from your ship and you collect your payment of <payment>."
 
 mission "Stealth Drug Running (Core) [0]"
@@ -774,9 +760,9 @@ mission "Stealth Drug Running (Core) [0]"
 	job
 	repeat
 	infiltrating
-	description "Run <cargo> to <destination>. If law enforcement catches you, you will be fined 250,000 credits and the cargo will be seized. You will need to land away from the spaceport or else you may get caught. Payment is <payment>."
+	description "Run <cargo> to <destination>. If law enforcement catches you, you will be fined 500,000 credits and the cargo will be seized. You will need to land away from the spaceport or else you may get caught. Payment is <payment>."
 	cargo "Illegal Substances" 5 2 .1
-		illegal 250000 `After being given a very hefty fine, the illegal cargo is confiscated from your hold. The pirates won't be happy to hear about this.`
+		illegal 500000 `After being given a very hefty fine, the illegal cargo is confiscated from your hold. The pirates won't be happy to hear about this.`
 		stealth
 	to offer
 		random < 30
@@ -806,7 +792,7 @@ mission "Stealth Drug Running (Core) [0]"
 		government Syndicate
 		ship "Quicksilver (Scanner)"
 	on complete
-		payment 250000 800
+		payment 250000 750
 		dialog "You find the contact outside of the main city. Your cargo of <commodity> is removed from your ship and you collect your payment of <payment>."
 
 mission "Stealth Drug Running (Core) [1]"
@@ -814,9 +800,9 @@ mission "Stealth Drug Running (Core) [1]"
 	job
 	repeat
 	infiltrating
-	description "Run <cargo> to <destination>. If law enforcement catches you, you will be fined 400,000 credits and the cargo will be seized. You will need to land away from the spaceport or else you may get caught. Payment is <payment>."
+	description "Run <cargo> to <destination>. If law enforcement catches you, you will be fined 750,000 credits and the cargo will be seized. You will need to land away from the spaceport or else you may get caught. Payment is <payment>."
 	cargo "Illegal Substances" 5 2 .1
-		illegal 400000 `After being given a very hefty fine, the illegal cargo is confiscated from your hold. The pirates won't be happy to hear about this.`
+		illegal 750000 `After being given a very hefty fine, the illegal cargo is confiscated from your hold. The pirates won't be happy to hear about this.`
 		stealth
 	to offer
 		random < 15
@@ -863,7 +849,7 @@ mission "Stealth Drug Running (Core) [1]"
 		ship "Quicksilver (Scanner)"
 		ship "Quicksilver (Scanner)"
 	on complete
-		payment 400000 1000
+		payment 375000 750
 		dialog "You find the contact outside of the main city. Your cargo of <commodity> is removed from your ship and you collect your payment of <payment>."
 
 mission "Stealth Drug Running (South) [0]"
@@ -871,9 +857,9 @@ mission "Stealth Drug Running (South) [0]"
 	job
 	repeat
 	infiltrating
-	description "Run <cargo> to <destination>. If law enforcement catches you, you will be fined 250,000 credits and the cargo will be seized. You will need to land away from the spaceport or else you may get caught. Payment is <payment>."
+	description "Run <cargo> to <destination>. If law enforcement catches you, you will be fined 500,000 credits and the cargo will be seized. You will need to land away from the spaceport or else you may get caught. Payment is <payment>."
 	cargo "Illegal Substances" 5 2 .1
-		illegal 250000 `After being given a very hefty fine, the illegal cargo is confiscated from your hold. The pirates won't be happy to hear about this.`
+		illegal 500000 `After being given a very hefty fine, the illegal cargo is confiscated from your hold. The pirates won't be happy to hear about this.`
 		stealth
 	to offer
 		random < 30
@@ -903,7 +889,7 @@ mission "Stealth Drug Running (South) [0]"
 		government Militia
 		ship "Bastion (Scanner)"
 	on complete
-		payment 250000 800
+		payment 250000 750
 		dialog "You find the contact outside of the main city. Your cargo of <commodity> is removed from your ship and you collect your payment of <payment>."
 
 mission "Stealth Drug Running (South) [1]"
@@ -911,9 +897,9 @@ mission "Stealth Drug Running (South) [1]"
 	job
 	repeat
 	infiltrating
-	description "Run <cargo> to <destination>. If law enforcement catches you, you will be fined 400,000 credits and the cargo will be seized. You will need to land away from the spaceport or else you may get caught. Payment is <payment>."
+	description "Run <cargo> to <destination>. If law enforcement catches you, you will be fined 750,000 credits and the cargo will be seized. You will need to land away from the spaceport or else you may get caught. Payment is <payment>."
 	cargo "Illegal Substances" 5 2 .1
-		illegal 400000 `After being given a very hefty fine, the illegal cargo is confiscated from your hold. The pirates won't be happy to hear about this.`
+		illegal 750000 `After being given a very hefty fine, the illegal cargo is confiscated from your hold. The pirates won't be happy to hear about this.`
 		stealth
 	to offer
 		random < 15
@@ -960,7 +946,7 @@ mission "Stealth Drug Running (South) [1]"
 		ship "Bastion (Scanner)"
 		ship "Bastion (Scanner)"
 	on complete
-		payment 400000 1000
+		payment 375000 750
 		dialog "You find the contact outside of the main city. Your cargo of <commodity> is removed from your ship and you collect your payment of <payment>."
 
 mission "Wanted Passengers [0]"
@@ -970,7 +956,7 @@ mission "Wanted Passengers [0]"
 	description "This wanted individual wishes to reach <destination> without being caught by local law enforcement. They also wish to bring with them <cargo>. Payment is <payment>."
 	passengers 1
 	cargo "Illegal Substances" 1
-		illegal 60000 `Upon scanning your vessel, law enforcement noticed the small amount of illegal substances in your cargo hold. When entering your ship to confiscate it, they also found your wanted passengers and detained them, leaving you with nothing to show for but a fine.`
+		illegal 50000 `Upon scanning your vessel, law enforcement noticed the small amount of illegal substances in your cargo hold. When entering your ship to confiscate it, they also found your wanted passengers and detained them, leaving you with nothing to show for but a fine.`
 		stealth
 	to offer
 		or
@@ -982,7 +968,7 @@ mission "Wanted Passengers [0]"
 		distance 2 10
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
 	on complete
-		payment 60000 200
+		payment 25000 900
 		dialog "Your <passengers> insists that you land on the edge of the spaceport to avoid being seen. After you land, they pay you <payment> before quickly grabbing their things and leaving your ship."
 
 mission "Wanted Passengers [1]"
@@ -992,7 +978,7 @@ mission "Wanted Passengers [1]"
 	description "These <bunks> wanted individuals wish to reach <destination> without being caught by local law enforcement. They also wish to bring with them <cargo>. Payment is <payment>."
 	passengers 2 10 .9
 	cargo "Illegal Substances" 1
-		illegal 60000 `Upon scanning your vessel, law enforcement noticed the small amount of illegal substances in your cargo hold. When entering your ship to confiscate it, they also found your wanted passengers and detained them, leaving you with nothing to show for but a fine.`
+		illegal 100000 `Upon scanning your vessel, law enforcement noticed the small amount of illegal substances in your cargo hold. When entering your ship to confiscate it, they also found your wanted passengers and detained them, leaving you with nothing to show for but a fine.`
 		stealth
 	to offer
 		random < 75
@@ -1005,7 +991,7 @@ mission "Wanted Passengers [1]"
 		distance 2 10
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
 	on complete
-		payment 60000 500
+		payment 50000 600
 		dialog "Your <passengers> insist that you land on the edge of the spaceport to avoid being seen. After you land, they pay you <payment> before quickly grabbing their things and leaving your ship."
 	
 mission "Wanted Passengers [2]"
@@ -1015,7 +1001,7 @@ mission "Wanted Passengers [2]"
 	description "These <bunks> wanted individuals wish to reach <destination> without being caught by local law enforcement. They also wish to bring with them <cargo>. Payment is <payment>."
 	passengers 2 10 .9
 	cargo "Illegal Substances" 1
-		illegal 60000 `Upon scanning your vessel, law enforcement noticed the small amount of illegal substances in your cargo hold. When entering your ship to confiscate it, they also found your wanted passengers and detained them, leaving you with nothing to show for but a fine.`
+		illegal 100000 `Upon scanning your vessel, law enforcement noticed the small amount of illegal substances in your cargo hold. When entering your ship to confiscate it, they also found your wanted passengers and detained them, leaving you with nothing to show for but a fine.`
 		stealth
 	to offer
 		random < 50
@@ -1028,7 +1014,7 @@ mission "Wanted Passengers [2]"
 		distance 2 10
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
 	on complete
-		payment 60000 500
+		payment 50000 600
 		dialog "Your <passengers> insist that you land on the edge of the spaceport to avoid being seen. After you land, they pay you <payment> before quickly grabbing their things and leaving your ship."
 
 mission "Wanted Passengers [3]"
@@ -1038,7 +1024,7 @@ mission "Wanted Passengers [3]"
 	description "These <bunks> wanted individuals wish to reach <destination> without being caught by local law enforcement. They also wish to bring with them <cargo>. Payment is <payment>."
 	passengers 2 10 .9
 	cargo "Illegal Substances" 1
-		illegal 60000 `Upon scanning your vessel, law enforcement noticed the small amount of illegal substances in your cargo hold. When entering your ship to confiscate it, they also found your wanted passengers and detained them, leaving you with nothing to show for but a fine.`
+		illegal 100000 `Upon scanning your vessel, law enforcement noticed the small amount of illegal substances in your cargo hold. When entering your ship to confiscate it, they also found your wanted passengers and detained them, leaving you with nothing to show for but a fine.`
 		stealth
 	to offer
 		random < 25
@@ -1051,7 +1037,7 @@ mission "Wanted Passengers [3]"
 		distance 2 10
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
 	on complete
-		payment 60000 500
+		payment 50000 600
 		dialog "Your <passengers> insist that you land on the edge of the spaceport to avoid being seen. After you land, they pay you <payment> before quickly grabbing their things and leaving your ship."
 
 mission "Highly Wanted Passenger (North)"
@@ -1112,7 +1098,7 @@ mission "Highly Wanted Passenger (North)"
 		government Republic
 		fleet "Navy Surveillance"
 	on complete
-		payment 1000000 25000
+		payment 500000 25000
 		dialog "You land outside of the main city to avoid any chances of your passenger being seen. They grab their things and make their way off of your ship after paying you <payment>."
 
 mission "Highly Wanted Passenger (Core)"
@@ -1174,7 +1160,7 @@ mission "Highly Wanted Passenger (Core)"
 		ship "Quicksilver (Scanner)"
 		ship "Quicksilver (Scanner)"
 	on complete
-		payment 1000000 25000
+		payment 500000 25000
 		dialog "You land outside of the main city to avoid any chances of your passenger being seen. They grab their things and make their way off of your ship after paying you <payment>."
 
 mission "Highly Wanted Passenger (South)"
@@ -1236,7 +1222,7 @@ mission "Highly Wanted Passenger (South)"
 		ship "Bastion (Scanner)"
 		ship "Bastion (Scanner)"
 	on complete
-		payment 1000000 25000
+		payment 500000 25000
 		dialog "You land outside of the main city to avoid any chances of your passenger being seen. They grab their things and make their way off of your ship after paying you <payment>."
 
 mission "Slave Transport [0]"
@@ -1255,7 +1241,7 @@ mission "Slave Transport [0]"
 		distance 3 30
 		government "Pirate"
 	on complete
-		payment 1000000 1500
+		payment 0 2000
 		dialog "After landing on <planet>, the pirates move the <bunks> slaves from your ship and pay you <payment>."
 
 mission "Slave Transport [1]"
@@ -1274,7 +1260,7 @@ mission "Slave Transport [1]"
 		distance 3 30
 		government "Pirate"
 	on complete
-		payment 1000000 1500
+		payment 0 2000
 		dialog "After landing on <planet>, the pirates move the <bunks> slaves from your ship and pay you <payment>."
 
 mission "Slave Transport [2]"
@@ -1293,7 +1279,7 @@ mission "Slave Transport [2]"
 		distance 3 30
 		government "Pirate"
 	on complete
-		payment 1000000 1500
+		payment 0 2000
 		dialog "After landing on <planet>, the pirates move the <bunks> slaves from your ship and pay you <payment>."
 
 mission "Bulk Slave Transport [0]"
@@ -1312,7 +1298,7 @@ mission "Bulk Slave Transport [0]"
 		distance 3 30
 		government "Pirate"
 	on complete
-		payment 1000000 1500
+		payment 0 2000
 		dialog "After landing on <planet>, the pirates move the <bunks> slaves from your ship and pay you <payment>."
 
 mission "Bulk Slave Transport [1]"
@@ -1331,7 +1317,7 @@ mission "Bulk Slave Transport [1]"
 		distance 3 30
 		government "Pirate"
 	on complete
-		payment 1000000 1500
+		payment 0 2000
 		dialog "After landing on <planet>, the pirates move the <bunks> slaves from your ship and pay you <payment>."
 
 mission "Mercenary Job (Medium, North, Dangerous Origin)"
@@ -1381,7 +1367,7 @@ mission "Mercenary Job (Medium, North, Dangerous Origin)"
 			variant
 				"Corvette (Speedy)"
 	on complete
-		payment 120000
+		payment 180000
 		dialog "The captain of the <npc> thanks you for escorting them safely, and pays you <payment>."
 	on visit
 		dialog "You have reached <planet>, but you left the <npc> behind! Better depart and wait for them to arrive in this star system."
@@ -1434,7 +1420,7 @@ mission "Mercenary Job (Medium, North, Dangerous Destination)"
 			variant 1
 				"Corvette (Speedy)"
 	on complete
-		payment 120000
+		payment 180000
 		dialog "The captain of the <npc> thanks you for escorting them safely, and pays you <payment>."
 	on visit
 		dialog "You have reached <planet>, but you left the <npc> behind! Better depart and wait for them to arrive in this star system."
@@ -1481,7 +1467,7 @@ mission "Escort Illegal Cargo (Large, North, Dangerous Path)"
 			variant 1
 				"Leviathan"
 	on complete
-		payment 180000
+		payment 240000
 		dialog "The captain of the <npc> thanks you for escorting them safely, and pays you <payment>."
 	on visit
 		dialog "You have reached <planet>, but you left the <npc> behind! Better depart and wait for them to arrive in this star system."
@@ -1532,7 +1518,7 @@ mission "Escort Stolen Vessel (Extra Large, North, Dangerous Path)"
 				"Dagger" 3
 				"Shuttle"
 	on complete
-		payment 220000
+		payment 375000
 		dialog "The captain of the <npc> thanks you for escorting them safely, and pays you <payment>."
 	on visit
 		dialog "You have reached <planet>, but you left the <npc> behind! Better depart and wait for them to arrive in this star system."
@@ -1578,7 +1564,7 @@ mission "Mercenary Job (Medium, Core, Dangerous Origin)"
 			variant 1
 				"Quicksilver (Proton)"
 	on complete
-		payment 120000
+		payment 180000
 		dialog "The captain of the <npc> thanks you for escorting them safely, and pays you <payment>."
 	on visit
 		dialog "You have reached <planet>, but you left the <npc> behind! Better depart and wait for them to arrive in this star system."
@@ -1625,7 +1611,7 @@ mission "Mercenary Job (Medium, Core, Dangerous Destination)"
 			variant 1
 				"Quicksilver (Proton)"
 	on complete
-		payment 120000
+		payment 180000
 		dialog "The captain of the <npc> thanks you for escorting them safely, and pays you <payment>."
 	on visit
 		dialog "You have reached <planet>, but you left the <npc> behind! Better depart and wait for them to arrive in this star system."
@@ -1668,7 +1654,7 @@ mission "Escort Illegal Cargo (Large, Core, Dangerous Path)"
 			variant 1
 				"Splinter (Laser)" 2
 	on complete
-		payment 180000
+		payment 240000
 		dialog "The captain of the <npc> thanks you for escorting them safely, and pays you <payment>."
 	on visit
 		dialog "You have reached <planet>, but you left the <npc> behind! Better depart and wait for them to arrive in this star system."
@@ -1724,7 +1710,7 @@ mission "Escort Stolen Vessel (Extra Large, Core, Dangerous Path)"
 				"Falcon (Heavy)"
 				"Heavy Shuttle"
 	on complete
-		payment 220000
+		payment 375000
 		dialog "The captain of the <npc> thanks you for escorting them safely, and pays you <payment>."
 	on visit
 		dialog "You have reached <planet>, but you left the <npc> behind! Better depart and wait for them to arrive in this star system."
@@ -1770,7 +1756,7 @@ mission "Mercenary Job (Medium, South, Dangerous Origin)"
 			variant 1
 				"Modified Argosy"
 	on complete
-		payment 120000
+		payment 180000
 		dialog "The captain of the <npc> thanks you for escorting them safely, and pays you <payment>."
 	on visit
 		dialog "You have reached <planet>, but you left the <npc> behind! Better depart and wait for them to arrive in this star system."
@@ -1817,7 +1803,7 @@ mission "Mercenary Job (Medium, South, Dangerous Destination)"
 			variant 1
 				"Modified Argosy"
 	on complete
-		payment 120000
+		payment 180000
 		dialog "The captain of the <npc> thanks you for escorting them safely, and pays you <payment>."
 	on visit
 		dialog "You have reached <planet>, but you left the <npc> behind! Better depart and wait for them to arrive in this star system."
@@ -1862,7 +1848,7 @@ mission "Escort Illegal Cargo (Large, South, Dangerous Path)"
 			variant 1
 				"Bastion (Heavy)"
 	on complete
-		payment 180000
+		payment 240000
 		dialog "The captain of the <npc> thanks you for escorting them safely, and pays you <payment>."
 	on visit
 		dialog "You have reached <planet>, but you left the <npc> behind! Better depart and wait for them to arrive in this star system."
@@ -1918,7 +1904,7 @@ mission "Escort Stolen Vessel (Extra Large, South, Dangerous Path)"
 				"Falcon (Heavy)"
 				"Heavy Shuttle"
 	on complete
-		payment 220000
+		payment 375000
 		dialog "The captain of the <npc> thanks you for escorting them safely, and pays you <payment>."
 	on visit
 		dialog "You have reached <planet>, but you left the <npc> behind! Better depart and wait for them to arrive in this star system."
@@ -1943,7 +1929,7 @@ mission "Elminating Law Enforcement (North, Small) [0]"
 		fleet "Small Republic"
 		dialog "The fleet has been eliminated. You can claim the bounty payment by returning to <destination>."
 	on complete
-		payment 300000
+		payment 250000
 		dialog "The pirates of <planet> gratefully pay you <payment> for eliminating the Navy fleet."
 
 mission "Elminating Law Enforcement (North, Large) [1]"
@@ -1964,9 +1950,10 @@ mission "Elminating Law Enforcement (North, Large) [1]"
 			distance 1 3
 		fleet "Large Republic"
 		fleet "Small Republic"
+		fleet "Small Republic"
 		dialog "The fleet has been eliminated. You can claim the bounty payment by returning to <destination>."
 	on complete
-		payment 450000
+		payment 400000
 		dialog "The pirates of <planet> gratefully pay you <payment> for eliminating the Navy fleet."
 
 mission "Elminating Law Enforcement (Core, Small) [0]"
@@ -1989,7 +1976,7 @@ mission "Elminating Law Enforcement (Core, Small) [0]"
 		fleet "Small Syndicate"
 		dialog "The fleet has been eliminated. You can claim the bounty payment by returning to <destination>."
 	on complete
-		payment 300000
+		payment 250000
 		dialog "The pirates of <planet> gratefully pay you <payment> for eliminating the Syndicate fleet."
 
 mission "Elminating Law Enforcement (Core, Large) [1]"
@@ -2010,9 +1997,10 @@ mission "Elminating Law Enforcement (Core, Large) [1]"
 			distance 1 3
 		fleet "Large Syndicate"
 		fleet "Small Syndicate"
+		fleet "Small Syndicate"
 		dialog "The fleet has been eliminated. You can claim the bounty payment by returning to <destination>."
 	on complete
-		payment 450000
+		payment 400000
 		dialog "The pirates of <planet> gratefully pay you <payment> for eliminating the Syndicate fleet."
 
 mission "Elminating Law Enforcement (South, Small) [0]"
@@ -2025,7 +2013,7 @@ mission "Elminating Law Enforcement (South, Small) [0]"
 		"combat rating" > 500
 	source
 		government "Pirate"
-		attributes "core pirate"
+		attributes "south pirate"
 	npc kill
 		personality heroic staying
 		government "Bounty: Militia"
@@ -2035,7 +2023,7 @@ mission "Elminating Law Enforcement (South, Small) [0]"
 		fleet "Small Militia"
 		dialog "The fleet has been eliminated. You can claim the bounty payment by returning to <destination>."
 	on complete
-		payment 300000
+		payment 250000
 		dialog "The pirates of <planet> gratefully pay you <payment> for eliminating the Militia fleet."
 
 mission "Elminating Law Enforcement (South, Large) [1]"
@@ -2048,7 +2036,7 @@ mission "Elminating Law Enforcement (South, Large) [1]"
 		"combat rating" > 750
 	source
 		government "Pirate"
-		attributes "core pirate"
+		attributes "south pirate"
 	npc kill
 		personality heroic staying
 		government "Bounty: Militia"
@@ -2056,9 +2044,10 @@ mission "Elminating Law Enforcement (South, Large) [1]"
 			distance 1 3
 		fleet "Large Militia"
 		fleet "Small Militia"
+		fleet "Small Militia"
 		dialog "The fleet has been eliminated. You can claim the bounty payment by returning to <destination>."
 	on complete
-		payment 450000
+		payment 400000
 		dialog "The pirates of <planet> gratefully pay you <payment> for eliminating the Militia fleet."
 
 mission "Eliminating Competition (North, Small) [0]"
@@ -2077,6 +2066,8 @@ mission "Eliminating Competition (North, Small) [0]"
 		government Bounty
 		system
 			distance 1 2
+		fleet "Small Northern Pirate"
+		fleet "Small Northern Pirate"
 		fleet "Small Northern Pirate"
 		fleet "Small Northern Pirate"
 		dialog "The fleet has been eliminated. You can claim the bounty payment by returning to <destination>."
@@ -2102,6 +2093,8 @@ mission "Eliminating Competition (North, Large) [1]"
 			distance 1 3
 		fleet "Large Northern Pirate"
 		fleet "Large Northern Pirate"
+		fleet "Small Northern Pirate"
+		fleet "Small Northern Pirate"
 		dialog "The fleet has been eliminated. You can claim the bounty payment by returning to <destination>."
 	on complete
 		payment 750000
@@ -2123,6 +2116,8 @@ mission "Eliminating Competition (Core, Small) [0]"
 		government Bounty
 		system
 			distance 1 2
+		fleet "Small Core Pirate"
+		fleet "Small Core Pirate"
 		fleet "Small Core Pirate"
 		fleet "Small Core Pirate"
 		dialog "The fleet has been eliminated. You can claim the bounty payment by returning to <destination>."
@@ -2148,6 +2143,8 @@ mission "Eliminating Competition (Core, Large) [1]"
 			distance 1 3
 		fleet "Large Core Pirate"
 		fleet "Large Core Pirate"
+		fleet "Small Core Pirate"
+		fleet "Small Core Pirate"
 		dialog "The fleet has been eliminated. You can claim the bounty payment by returning to <destination>."
 	on complete
 		payment 750000
@@ -2169,6 +2166,8 @@ mission "Eliminating Competition (South, Small) [0]"
 		government Bounty
 		system
 			distance 1 2
+		fleet "Small Southern Pirate"
+		fleet "Small Southern Pirate"
 		fleet "Small Southern Pirate"
 		fleet "Small Southern Pirate"
 		dialog "The fleet has been eliminated. You can claim the bounty payment by returning to <destination>."
@@ -2194,6 +2193,8 @@ mission "Eliminating Competition (South, Large) [1]"
 			distance 1 3
 		fleet "Large Southern Pirate"
 		fleet "Large Southern Pirate"
+		fleet "Small Southern Pirate"
+		fleet "Small Southern Pirate"
 		dialog "The fleet has been eliminated. You can claim the bounty payment by returning to <destination>."
 	on complete
 		payment 750000
@@ -2221,6 +2222,7 @@ mission "Raid on Merchants (North)"
 			distance 1 3
 		fleet "Small Northern Merchant"
 		fleet "Small Northern Merchant"
+		fleet "Large Northern Merchant"
 		dialog "The merchants have been eliminated. Return to <destination> for your cut of the loot."
 	on complete
 		payment 150000
@@ -2248,6 +2250,7 @@ mission "Raid on Merchants (Core)"
 			distance 1 3
 		fleet "Small Core Merchant"
 		fleet "Small Core Merchant"
+		fleet "Large Core Merchant"
 		dialog "The merchants have been eliminated. Return to <destination> for your cut of the loot."
 	on complete
 		payment 150000
@@ -2275,6 +2278,7 @@ mission "Raid on Merchants (South)"
 			distance 1 3
 		fleet "Small Southern Merchant"
 		fleet "Small Southern Merchant"
+		fleet "Large Southern Merchant"
 		dialog "The merchants have been eliminated. Return to <destination> for your cut of the loot."
 	on complete
 		payment 150000
