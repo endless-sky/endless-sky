@@ -2699,3 +2699,26 @@ mission "Fake Identity [2]"
 		"reputation: Merchant" = 10
 		"reputation: Neutral" = 10
 		dialog `You land on <planet> and find the contact. After some talking, you hand them 30 million credits, and in return recieve a fake ID. You're on the good side of the law again... for now.`
+
+#must destroy hunters and land to fail
+mission "Hunted by State"
+	invisible
+	landing
+	repeat
+	destination Earth
+	source
+		government "Republic" "Syndicate" "Free Worlds" "Neutral"
+	to offer
+		random > 80
+		or
+			"reputation: Republic" < -100
+			"reputation: Syndicate" < -100
+			"reputation: Free Worlds" < -100
+	to complete
+		never
+	npc save
+		fleet "Hired Guns"
+		personality heroic nemesis plunders
+		government "Bounty Hunter"
+		system
+			distance 5 5

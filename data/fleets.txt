@@ -2340,3 +2340,64 @@ fleet "Marauder fleet X"
 		"Marauder Quicksilver"
 		"Marauder Arrow"
 		"Marauder Bounder"
+
+fleet "Hired Guns"
+	government "Bounty Hunter"
+	names "bounty hunter"
+	personality
+		nemesis waiting heroic
+	variant 1
+		"Leviathan (Laser)"
+		"Modified Argosy" 2
+	variant 1
+		"Leviathan (Laser)"
+		"Mule (Heavy)"
+		"Dagger"
+	variant 1
+		"Leviathan (Laser)"
+		"Corvette"
+	variant 1
+		"Leviathan (Laser)"
+		"Splinter (Laser)"
+	variant 1
+		"Falcon (Laser)"
+		"Modified Argosy" 2
+	variant 1
+		"Falcon (Laser)"
+		"Mule (Heavy)"
+		"Dagger"
+	variant 1
+		"Falcon (Laser)"
+		"Corvette"
+	variant 1
+		"Falcon (Laser)"
+		"Splinter (Laser)"
+	variant 1
+		"Vanguard (Particle)"
+		"Modified Argosy" 2
+	variant 1
+		"Vanguard (Particle)"
+		"Mule (Heavy)"
+		"Dagger"
+	variant 1
+		"Vanguard (Particle)"
+		"Corvette"
+	variant 1
+		"Vanguard (Particle)"
+		"Splinter (Laser)"
+	variant 1
+		"Bactrian (Hired Gun)"
+		"Dagger" 3
+		"Modified Argosy" 2
+	variant 1
+		"Bactrian (Hired Gun)"
+		"Dagger" 4
+		"Mule (Heavy)"
+	variant 1
+		"Bactrian (Hired Gun)"
+		"Dagger" 3
+		"Corvette"
+	variant 1
+		"Bactrian (Hired Gun)"
+		"Dagger" 3
+		"Splinter (Laser)"

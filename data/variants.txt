@@ -1624,3 +1624,19 @@ ship "Freighter" "Freighter (Secret Cargo)"
 		"X2200 Ion Steering"
 		"Scram Drive"
 		"Secret Cargo"
+
+ship "Bactrian" "Bactrian (Hired Gun)"
+	outfits
+		"Heavy Laser" 4
+		"Heavy Laser Turret" 6
+		"Armageddon Core"
+		"LP144a Battery Pack"
+		"D94-YV Shield Generator"
+		"D41-HY Shield Generator"
+		"Liquid Nitrogen Cooler"
+		"Water Coolant System"
+		"Mass Expansion" 2
+		"Large Radar Jammer"
+		"A520 Atomic Thruster"
+		"A525 Atomic Steering"
+		"Hyperdrive"
