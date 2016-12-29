@@ -32,12 +32,12 @@ mission "Slave Transport [0]: Release Slaves"
 				accept
 	on accept
 		"sold slaves" --
-		"reputation: Merchant" -= 30
-		"reputation: Republic" -= 30
-		"reputation: Syndicate" -= 30
-		"reputation: Militia" -= 30
-		"reputation: Free Worlds" -= 30
-		"reputation: Pirate" += 60
+		"reputation: Merchant" += 30
+		"reputation: Republic" += 30
+		"reputation: Syndicate" += 30
+		"reputation: Militia" += 30
+		"reputation: Free Worlds" += 30
+		"reputation: Pirate" -= 60
 		payment 1000000
 		fail "Slave Transport [0]"
 		fail
@@ -66,12 +66,12 @@ mission "Slave Transport [1]: Release Slaves"
 				accept
 	on accept
 		"sold slaves" --
-		"reputation: Merchant" -= 30
-		"reputation: Republic" -= 30
-		"reputation: Syndicate" -= 30
-		"reputation: Militia" -= 30
-		"reputation: Free Worlds" -= 30
-		"reputation: Pirate" += 60
+		"reputation: Merchant" += 30
+		"reputation: Republic" += 30
+		"reputation: Syndicate" += 30
+		"reputation: Militia" += 30
+		"reputation: Free Worlds" += 30
+		"reputation: Pirate" -= 60
 		payment 1000000
 		fail "Slave Transport [1]"
 		fail
@@ -152,6 +152,7 @@ mission "Tourists back [0]: Slavery"
 		government "Pirate"
 	to offer
 		has "Tourists back [0]: active"
+		random < 70
 	on offer
 		conversation
 			`Upon walking into the spaceport, you notice a few pirates looking at you strangely. One of them approaches you.`
@@ -183,6 +184,7 @@ mission "Tourists out [0]: Slavery"
 		government "Pirate"
 	to offer
 		has "Tourists out [0]: active"
+		random < 70
 	on offer
 		conversation
 			`Upon walking into the spaceport, you notice a few pirates looking at you strangely. One of them approaches you.`
@@ -214,6 +216,7 @@ mission "Tourists out [1]: Slavery"
 		government "Pirate"
 	to offer
 		has "Tourists out [1]: active"
+		random < 70
 	on offer
 		conversation
 			`Upon walking into the spaceport, you notice a few pirates looking at you strangely. One of them approaches you.`
@@ -245,6 +248,7 @@ mission "Tourists out [2]: Slavery"
 		government "Pirate"
 	to offer
 		has "Tourists out [2]: active"
+		random < 70
 	on offer
 		conversation
 			`Upon walking into the spaceport, you notice a few pirates looking at you strangely. One of them approaches you.`
@@ -276,6 +280,7 @@ mission "Tourists back [1]: Slavery"
 		government "Pirate"
 	to offer
 		has "Tourists back [1]: active"
+		random < 70
 	on offer
 		conversation
 			`Upon walking into the spaceport, you notice a few pirates looking at you strangely. One of them approaches you.`
@@ -307,6 +312,7 @@ mission "Tourists back [2]: Slavery"
 		government "Pirate"
 	to offer
 		has "Tourists back [2]: active"
+		random < 70
 	on offer
 		conversation
 			`Upon walking into the spaceport, you notice a few pirates looking at you strangely. One of them approaches you.`
@@ -338,6 +344,7 @@ mission "Passengers [0]: Slavery"
 		government "Pirate"
 	to offer
 		has "Passengers [0]: active"
+		random < 70
 	on offer
 		conversation
 			`Upon walking into the spaceport, you notice a few pirates looking at you strangely. One of them approaches you.`
@@ -369,6 +376,7 @@ mission "Passengers [1]: Slavery"
 		government "Pirate"
 	to offer
 		has "Passengers [1]: active"
+		random < 70
 	on offer
 		conversation
 			`Upon walking into the spaceport, you notice a few pirates looking at you strangely. One of them approaches you.`
@@ -400,6 +408,7 @@ mission "Passengers [2]: Slavery"
 		government "Pirate"
 	to offer
 		has "Passengers [2]: active"
+		random < 70
 	on offer
 		conversation
 			`Upon walking into the spaceport, you notice a few pirates looking at you strangely. One of them approaches you.`
@@ -431,6 +440,7 @@ mission "Passengers [3]: Slavery"
 		government "Pirate"
 	to offer
 		has "Passengers [3]: active"
+		random < 70
 	on offer
 		conversation
 			`Upon walking into the spaceport, you notice a few pirates looking at you strangely. One of them approaches you.`
@@ -462,6 +472,7 @@ mission "Passengers [4]: Slavery"
 		government "Pirate"
 	to offer
 		has "Passengers [4]: active"
+		random < 70
 	on offer
 		conversation
 			`Upon walking into the spaceport, you notice a few pirates looking at you strangely. One of them approaches you.`
@@ -493,6 +504,7 @@ mission "Family [0]: Slavery"
 		government "Pirate"
 	to offer
 		has "Family [0]: active"
+		random < 70
 	on offer
 		conversation
 			`Upon walking into the spaceport, you notice a few pirates looking at you strangely. One of them approaches you.`
@@ -524,6 +536,7 @@ mission "Family [1]: Slavery"
 		government "Pirate"
 	to offer
 		has "Family [1]: active"
+		random < 70
 	on offer
 		conversation
 			`Upon walking into the spaceport, you notice a few pirates looking at you strangely. One of them approaches you.`
@@ -555,6 +568,7 @@ mission "Family [2]: Slavery"
 		government "Pirate"
 	to offer
 		has "Family [2]: active"
+		random < 70
 	on offer
 		conversation
 			`Upon walking into the spaceport, you notice a few pirates looking at you strangely. One of them approaches you.`
@@ -586,6 +600,7 @@ mission "Family [3]: Slavery"
 		government "Pirate"
 	to offer
 		has "Family [3]: active"
+		random < 70
 	on offer
 		conversation
 			`Upon walking into the spaceport, you notice a few pirates looking at you strangely. One of them approaches you.`
@@ -617,6 +632,7 @@ mission "Transport miners to <planet>: Slavery"
 		government "Pirate"
 	to offer
 		has "Transport miners to <planet>: active"
+		random < 70
 	on offer
 		conversation
 			`Upon walking into the spaceport, you notice a few pirates looking at you strangely. One of them approaches you.`
@@ -648,6 +664,7 @@ mission "Transport farmers to <planet>: Slavery"
 		government "Pirate"
 	to offer
 		has "Transport farmers to <planet>: active"
+		random < 70
 	on offer
 		conversation
 			`Upon walking into the spaceport, you notice a few pirates looking at you strangely. One of them approaches you.`
@@ -679,6 +696,7 @@ mission "Transport mill workers to <planet>: Slavery"
 		government "Pirate"
 	to offer
 		has "Transport mill workers to <planet>: active"
+		random < 70
 	on offer
 		conversation
 			`Upon walking into the spaceport, you notice a few pirates looking at you strangely. One of them approaches you.`
@@ -710,6 +728,7 @@ mission "Transport workers to <planet>: Slavery"
 		government "Pirate"
 	to offer
 		has "Transport workers to <planet>: active"
+		random < 70
 	on offer
 		conversation
 			`Upon walking into the spaceport, you notice a few pirates looking at you strangely. One of them approaches you.`
@@ -741,6 +760,7 @@ mission "Colonists [0]: Slavery"
 		government "Pirate"
 	to offer
 		has "Colonists [0]: active"
+		random < 70
 	on offer
 		conversation
 			`Upon walking into the spaceport, you notice a few pirates looking at you strangely. One of them approaches you.`
@@ -772,6 +792,7 @@ mission "Colonists [1]: Slavery"
 		government "Pirate"
 	to offer
 		has "Colonists [1]: active"
+		random < 70
 	on offer
 		conversation
 			`Upon walking into the spaceport, you notice a few pirates looking at you strangely. One of them approaches you.`
@@ -803,6 +824,7 @@ mission "Transport scientists: Slavery"
 		government "Pirate"
 	to offer
 		has "Transport scientists: active"
+		random < 70
 	on offer
 		conversation
 			`Upon walking into the spaceport, you notice a few pirates looking at you strangely. One of them approaches you.`
@@ -834,6 +856,7 @@ mission "Newlyweds to <planet>: Slavery"
 		government "Pirate"
 	to offer
 		has "Newlyweds to <planet>: active"
+		random < 70
 	on offer
 		conversation
 			`Upon walking into the spaceport, you notice a few pirates looking at you strangely. One of them approaches you.`
@@ -865,6 +888,7 @@ mission "Transport partiers [1]: Slavery"
 		government "Pirate"
 	to offer
 		has "Transport partiers [1]: active"
+		random < 70
 	on offer
 		conversation
 			`Upon walking into the spaceport, you notice a few pirates looking at you strangely. One of them approaches you.`
@@ -896,6 +920,7 @@ mission "Transport partiers [2]: Slavery"
 		government "Pirate"
 	to offer
 		has "Transport partiers [2]: active"
+		random < 70
 	on offer
 		conversation
 			`Upon walking into the spaceport, you notice a few pirates looking at you strangely. One of them approaches you.`
@@ -927,6 +952,7 @@ mission "Contract laborers to <planet>: Slavery"
 		government "Pirate"
 	to offer
 		has "Contract laborers to <planet>: active"
+		random < 70
 	on offer
 		conversation
 			`Upon walking into the spaceport, you notice a few pirates looking at you strangely. One of them approaches you.`
@@ -958,6 +984,7 @@ mission "Transport rich tourists: Slavery"
 		government "Pirate"
 	to offer
 		has "Transport rich tourists: active"
+		random < 70
 	on offer
 		conversation
 			`Upon walking into the spaceport, you notice a few pirates looking at you strangely. One of them approaches you.`
@@ -989,6 +1016,7 @@ mission "Transport executive to <planet>: Slavery"
 		government "Pirate"
 	to offer
 		has "Transport executive to <planet>: active"
+		random < 70
 	on offer
 		conversation
 			`Upon walking into the spaceport, you notice a few pirates looking at you strangely. One of them approaches you.`
@@ -1020,6 +1048,7 @@ mission "Corporate retreat on <planet>: Slavery"
 		government "Pirate"
 	to offer
 		has "Corporate retreat on <planet>: active"
+		random < 70
 	on offer
 		conversation
 			`Upon walking into the spaceport, you notice a few pirates looking at you strangely. One of them approaches you.`
