@@ -2701,7 +2701,7 @@ mission "Fake Identity [2]"
 		dialog `You land on <planet> and find the contact. After some talking, you hand them 30 million credits, and in return recieve a fake ID. You're on the good side of the law again... for now.`
 
 #must destroy hunters and land to fail
-mission "Hunted by State"
+mission "Hunted by State [0]"
 	invisible
 	landing
 	repeat
@@ -2711,9 +2711,31 @@ mission "Hunted by State"
 	to offer
 		random > 80
 		or
-			"reputation: Republic" < -100
-			"reputation: Syndicate" < -100
-			"reputation: Free Worlds" < -100
+			"reputation: Republic" < -10
+			"reputation: Syndicate" < -10
+			"reputation: Free Worlds" < -10
+	to complete
+		never
+	npc save
+		fleet "Bounty Hunters"
+		personality heroic nemesis plunders
+		government "Bounty Hunter"
+		system
+			distance 5 5
+
+mission "Hunted by State [1]"
+	invisible
+	landing
+	repeat
+	destination Earth
+	source
+		government "Republic" "Syndicate" "Free Worlds" "Neutral"
+	to offer
+		random > 90
+		or
+			"reputation: Republic" < -200
+			"reputation: Syndicate" < -200
+			"reputation: Free Worlds" < -200
 	to complete
 		never
 	npc save
