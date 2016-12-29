@@ -37,6 +37,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "System.h"
 #include "UI.h"
 
+#include <algorithm>
 #include <ctime>
 #include <sstream>
 
@@ -1469,7 +1470,11 @@ void PlayerInfo::HandleEvent(const ShipEvent &event, UI *ui)
 	// Combat rating increases when you disable an enemy ship.
 	if(event.ActorGovernment()->IsPlayer())
 		if((event.Type() & ShipEvent::DISABLE) && event.Target())
-			conditions["combat rating"] += (event.Target()->Cost() + 250000) / 500000;
+		{
+			int &rating = conditions["combat rating"];
+			static const int64_t maxRating = 2000000000;
+			rating = min(maxRating, rating + (event.Target()->Cost() + 250000) / 500000);
+		}
 	
 	for(Mission &mission : missions)
 		mission.Do(event, *this, ui);
