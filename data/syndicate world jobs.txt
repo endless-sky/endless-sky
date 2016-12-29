@@ -185,7 +185,7 @@ mission "Syndicate target practice [1]"
 	name "Syndicate target practice"
 	job
 	repeat
-	description "Disable the robotic target dummy ship in <system>, collect test data for Syndicate engineers by performing a cargo scan, and land on <planet>. Be advised that the target ship is programmed to engage in self-defense behaviors to ensure a realistic simulation. Payment is <payment>."
+	description "Disable the robotic target dummy ship in <system>, collect test data for Syndicate engineers by scanning its cargo, and land on <planet>. Warning: the target ship is programmed to engage in self-defense behaviors to ensure a realistic simulation. Payment is <payment>."
 	source
 		government Syndicate
 	destination
@@ -212,7 +212,7 @@ mission "Syndicate target practice [2]"
 	name "Syndicate target practice"
 	job
 	repeat
-	description "Disable the robotic target dummy ship in <system>, collect test data for Syndicate engineers by performing a cargo scan, and land on <planet>. Be advised that the target ship is programmed to engage in self-defense behaviors to ensure a realistic simulation. Payment is <payment>."
+	description "Disable the robotic target dummy ship in <system>, collect test data for Syndicate engineers by scanning its cargo, and land on <planet>. Warning: the target ship is programmed to engage in self-defense behaviors to ensure a realistic simulation. Payment is <payment>."
 	source
 		government Syndicate
 	destination
