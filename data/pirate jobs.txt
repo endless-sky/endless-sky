@@ -2522,7 +2522,7 @@ mission "Cargo Theft (North)"
 	name "Convoy at <system>"
 	job
 	repeat
-	descrption `A merchant convoy has been spotted near the <system> system. Word is that they are carrying important cargo on the <npc>. Plunder it and return to <planet> for payment of <payment>.`
+	description `A merchant convoy has been spotted near the <system> system. Word is that they are carrying important cargo on the <npc>. Plunder it and return to <planet> for payment of <payment>.`
 	to offer
 		random < 15
 	source
@@ -2555,7 +2555,7 @@ mission "Cargo Theft (Core)"
 	name "Convoy at <system>"
 	job
 	repeat
-	descrption `A merchant convoy has been spotted near the <system> system. Word is that they are carrying important cargo on the <npc>. Plunder it and return to <planet> for payment of <payment>.`
+	description `A merchant convoy has been spotted near the <system> system. Word is that they are carrying important cargo on the <npc>. Plunder it and return to <planet> for payment of <payment>.`
 	to offer
 		random < 15
 	source
@@ -2588,7 +2588,7 @@ mission "Cargo Theft (South)"
 	name "Convoy at <system>"
 	job
 	repeat
-	descrption `A merchant convoy has been spotted near the <system> system. Word is that they are carrying important cargo on the <npc>. Plunder it and return to <planet> for payment of <payment>.`
+	description `A merchant convoy has been spotted near the <system> system. Word is that they are carrying important cargo on the <npc>. Plunder it and return to <planet> for payment of <payment>.`
 	to offer
 		random < 15
 	source

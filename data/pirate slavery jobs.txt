@@ -17,10 +17,16 @@ mission "Tourists back [0]: Slavery"
 	to offer
 		has "Tourists back [0]: active"
 	on offer
-		dialog "Upon walking into the spaceport, you notice a few pirates looking at you strangely. One of them approaches you."
-		dialog `"I hear you've got a passenger on board. You willing to take 100,000 credits to give them over?"`
+		conversation
+			`Upon walking into the spaceport, you notice a few pirates looking at you strangely. One of them approaches you.`
+			`	"I hear you've got a passenger on board. You willing to take 100,000 credits to give them over?"`
+			choice
+				`	(Accept.)`
+				`	(Decline.)`
+					decline
+			`	You accept the pirate's offer to hand over your passenger. The pirate makes his way onto your ship with a few others and haul off the tourist, who is kicking and screaming as he curses you out.`
+				accept
 	on accept
-		dialog `You accept the pirate's offer to hand over your passenger. The pirate makes his way onto your ship with a few others and haul off the tourist, who is kicking and screaming as he curses you out.`
 		"reputation: Merchant" -= 5
 		"reputation: Republic" -= 5
 		"reputation: Syndicate" -= 5
@@ -40,11 +46,16 @@ mission "Tourists out [0]: Slavery"
 	to offer
 		has "Tourists out [0]: active"
 	on offer
-		dialog "Upon walking into the spaceport, you notice a few pirates looking at you strangely. One of them approaches you."
-		dialog `"I hear you've got a passenger on board. You willing to take 100,000 credits to give them over?"`
+		conversation
+			`Upon walking into the spaceport, you notice a few pirates looking at you strangely. One of them approaches you.`
+			`	"I hear you've got a passenger on board. You willing to take 100,000 credits to give them over?"`
+			choice
+				`	(Accept.)`
+				`	(Decline.)`
+					decline
+			`	You accept the pirate's offer to hand over your passenger. The pirate makes his way onto your ship with a few others and haul off the tourist. Counting your credits, you hear crying and screaming as it slowly gets farther away.`
+				accept
 	on accept
-		dialog `You accept the pirate's offer to hand over your passenger. The pirate makes his way onto your ship with a few others and haul off the tourist.`
-		dialog `Counting your credits, you hear crying and screaming as it slowly gets farther away.`
 		"reputation: Merchant" -= 5
 		"reputation: Republic" -= 5
 		"reputation: Syndicate" -= 5
@@ -64,11 +75,16 @@ mission "Tourists out [1]: Slavery"
 	to offer
 		has "Tourists out [1]: active"
 	on offer
-		dialog "Upon walking into the spaceport, you notice a few pirates looking at you strangely. One of them approaches you."
-		dialog `"I hear you've got some passengers on board. You willing to take 300,000 credits to give them over?"`
+		conversation
+			`Upon walking into the spaceport, you notice a few pirates looking at you strangely. One of them approaches you.`
+			`	"I hear you've got some passengers on board. You willing to take 300,000 credits to give them over?"`
+			choice
+				`	(Accept.)`
+				`	(Decline.)`
+					decline
+			`	You accept the pirate's offer to hand over your passengers. The pirate makes his way onto your ship with a few others and haul off the tourists. As you count your credits, you think about how this wasn't the vacation that your passengers were expecting.`
+				accept
 	on accept
-		dialog `You accept the pirate's offer to hand over your passengers. The pirate makes his way onto your ship with a few others and haul off the tourists.`
-		dialog `As you count your credits, you think about how this wasn't the vacation that your passengers were expecting.`
 		"reputation: Merchant" -= 15
 		"reputation: Republic" -= 15
 		"reputation: Syndicate" -= 15
@@ -88,11 +104,16 @@ mission "Tourists out [2]: Slavery"
 	to offer
 		has "Tourists out [2]: active"
 	on offer
-		dialog "Upon walking into the spaceport, you notice a few pirates looking at you strangely. One of them approaches you."
-		dialog `"I hear you've got some passengers on board. You willing to take 300,000 credits to give them over?"`
+		conversation
+			`Upon walking into the spaceport, you notice a few pirates looking at you strangely. One of them approaches you.`
+			`	"I hear you've got some passengers on board. You willing to take 300,000 credits to give them over?"`
+			choice
+				`	(Accept.)`
+				`	(Decline.)`
+					decline
+			`	You accept the pirate's offer to hand over your passengers. The pirate makes his way onto your ship with a few others and haul off the tourists. You try not to pay much attention to the cries of your former passengers as you return to your ship with the credits.`
+				accept
 	on accept
-		dialog `You accept the pirate's offer to hand over your passengers. The pirate makes his way onto your ship with a few others and haul off the tourists.`
-		dialog `You try not to pay much attention to the cries of your former passengers as you return to your ship with the credits.`
 		"reputation: Merchant" -= 15
 		"reputation: Republic" -= 15
 		"reputation: Syndicate" -= 15
@@ -112,11 +133,16 @@ mission "Tourists back [1]: Slavery"
 	to offer
 		has "Tourists back [1]: active"
 	on offer
-		dialog "Upon walking into the spaceport, you notice a few pirates looking at you strangely. One of them approaches you."
-		dialog `"I hear you've got some passengers on board. You willing to take 300,000 credits to give them over?"`
+		conversation
+			`Upon walking into the spaceport, you notice a few pirates looking at you strangely. One of them approaches you.`
+			`	"I hear you've got some passengers on board. You willing to take 300,000 credits to give them over?"`
+			choice
+				`	(Accept.)`
+				`	(Decline.)`
+					decline
+			`	You accept the pirate's offer to hand over your passengers. The pirate makes his way onto your ship with a few others and haul off the tourists. As you count your credits, you think about how this wasn't the home that your passengers were expecting to return to.`
+				accept
 	on accept
-		dialog `You accept the pirate's offer to hand over your passengers. The pirate makes his way onto your ship with a few others and haul off the tourists.`
-		dialog `As you count your credits, you think about how this wasn't the home that your passengers were expecting to return to.`
 		"reputation: Merchant" -= 15
 		"reputation: Republic" -= 15
 		"reputation: Syndicate" -= 15
@@ -136,11 +162,16 @@ mission "Tourists back [2]: Slavery"
 	to offer
 		has "Tourists back [2]: active"
 	on offer
-		dialog "Upon walking into the spaceport, you notice a few pirates looking at you strangely. One of them approaches you."
-		dialog `"I hear you've got some passengers on board. You willing to take 300,000 credits to give them over?"`
+		conversation
+			`Upon walking into the spaceport, you notice a few pirates looking at you strangely. One of them approaches you.`
+			`	"I hear you've got some passengers on board. You willing to take 300,000 credits to give them over?"`
+			choice
+				`	(Accept.)`
+				`	(Decline.)`
+					decline
+			`	You accept the pirate's offer to hand over your passengers. The pirate makes his way onto your ship with a few others and haul off the tourists. You try not to pay much attention to the cries of your former passengers as you return to your ship with the credits.`
+				accept
 	on accept
-		dialog `You accept the pirate's offer to hand over your passengers. The pirate makes his way onto your ship with a few others and haul off the tourists.`
-		dialog `You try not to pay much attention to the cries of your former passengers as you return to your ship with the credits.`
 		"reputation: Merchant" -= 15
 		"reputation: Republic" -= 15
 		"reputation: Syndicate" -= 15
@@ -160,11 +191,16 @@ mission "Passengers [0]: Slavery"
 	to offer
 		has "Passengers [0]: active"
 	on offer
-		dialog "Upon walking into the spaceport, you notice a few pirates looking at you strangely. One of them approaches you."
-		dialog `"I hear you've got some passengers on board. You willing to take 400,000 credits to give them over?"`
+		conversation
+			`Upon walking into the spaceport, you notice a few pirates looking at you strangely. One of them approaches you.`
+			`	"I hear you've got some passengers on board. You willing to take 400,000 credits to give them over?"`
+			choice
+				`	(Accept.)`
+				`	(Decline.)`
+					decline
+			`	You accept the pirate's offer to hand over your passengers. The pirate makes his way onto your ship with a few others and haul off the passengers. You try not to pay much attention to the cries of your former passengers as you return to your ship with the credits.`
+				accept
 	on accept
-		dialog `You accept the pirate's offer to hand over your passengers. The pirate makes his way onto your ship with a few others and haul off the passengers.`
-		dialog `You try not to pay much attention to the cries of your former passengers as you return to your ship with the credits.`
 		"reputation: Merchant" -= 20
 		"reputation: Republic" -= 20
 		"reputation: Syndicate" -= 20
@@ -184,11 +220,16 @@ mission "Passengers [1]: Slavery"
 	to offer
 		has "Passengers [1]: active"
 	on offer
-		dialog "Upon walking into the spaceport, you notice a few pirates looking at you strangely. One of them approaches you."
-		dialog `"I hear you've got some passengers on board. You willing to take 400,000 credits to give them over?"`
+		conversation
+			`Upon walking into the spaceport, you notice a few pirates looking at you strangely. One of them approaches you.`
+			`	"I hear you've got some passengers on board. You willing to take 400,000 credits to give them over?"`
+			choice
+				`	(Accept.)`
+				`	(Decline.)`
+					decline
+			`	You accept the pirate's offer to hand over your passengers. The pirate makes his way onto your ship with a few others and haul off the passengers. You try not to pay much attention to the cries of your former passengers as you return to your ship with the credits.`
+				accept
 	on accept
-		dialog `You accept the pirate's offer to hand over your passengers. The pirate makes his way onto your ship with a few others and haul off the passengers.`
-		dialog `You try not to pay much attention to the cries of your former passengers as you return to your ship with the credits.`
 		"reputation: Merchant" -= 20
 		"reputation: Republic" -= 20
 		"reputation: Syndicate" -= 20
@@ -208,11 +249,16 @@ mission "Passengers [2]: Slavery"
 	to offer
 		has "Passengers [2]: active"
 	on offer
-		dialog "Upon walking into the spaceport, you notice a few pirates looking at you strangely. One of them approaches you."
-		dialog `"I hear you've got some passengers on board. You willing to take 400,000 credits to give them over?"`
+		conversation
+			`Upon walking into the spaceport, you notice a few pirates looking at you strangely. One of them approaches you.`
+			`	"I hear you've got some passengers on board. You willing to take 400,000 credits to give them over?"`
+			choice
+				`	(Accept.)`
+				`	(Decline.)`
+					decline
+			`	You accept the pirate's offer to hand over your passengers. The pirate makes his way onto your ship with a few others and haul off the passengers. You try not to pay much attention to the cries of your former passengers as you return to your ship with the credits.`
+				accept
 	on accept
-		dialog `You accept the pirate's offer to hand over your passengers. The pirate makes his way onto your ship with a few others and haul off the passengers.`
-		dialog `You try not to pay much attention to the cries of your former passengers as you return to your ship with the credits.`
 		"reputation: Merchant" -= 20
 		"reputation: Republic" -= 20
 		"reputation: Syndicate" -= 20
@@ -232,11 +278,16 @@ mission "Passengers [3]: Slavery"
 	to offer
 		has "Passengers [3]: active"
 	on offer
-		dialog "Upon walking into the spaceport, you notice a few pirates looking at you strangely. One of them approaches you."
-		dialog `"I hear you've got some passengers on board. You willing to take 400,000 credits to give them over?"`
+		conversation
+			`Upon walking into the spaceport, you notice a few pirates looking at you strangely. One of them approaches you.`
+			`	"I hear you've got some passengers on board. You willing to take 400,000 credits to give them over?"`
+			choice
+				`	(Accept.)`
+				`	(Decline.)`
+					decline
+			`	You accept the pirate's offer to hand over your passengers. The pirate makes his way onto your ship with a few others and haul off the passengers. You try not to pay much attention to the cries of your former passengers as you return to your ship with the credits.`
+				accept
 	on accept
-		dialog `You accept the pirate's offer to hand over your passengers. The pirate makes his way onto your ship with a few others and haul off the passengers.`
-		dialog `You try not to pay much attention to the cries of your former passengers as you return to your ship with the credits.`
 		"reputation: Merchant" -= 20
 		"reputation: Republic" -= 20
 		"reputation: Syndicate" -= 20
@@ -256,11 +307,16 @@ mission "Passengers [4]: Slavery"
 	to offer
 		has "Passengers [4]: active"
 	on offer
-		dialog "Upon walking into the spaceport, you notice a few pirates looking at you strangely. One of them approaches you."
-		dialog `"I hear you've got some passengers on board. You willing to take 400,000 credits to give them over?"`
+		conversation
+			`Upon walking into the spaceport, you notice a few pirates looking at you strangely. One of them approaches you.`
+			`	"I hear you've got some passengers on board. You willing to take 400,000 credits to give them over?"`
+			choice
+				`	(Accept.)`
+				`	(Decline.)`
+					decline
+			`	You accept the pirate's offer to hand over your passengers. The pirate makes his way onto your ship with a few others and haul off the passengers. As you count your credits, you think how at least they are away from the pollution of their home planet.`
+				accept
 	on accept
-		dialog `You accept the pirate's offer to hand over your passengers. The pirate makes his way onto your ship with a few others and haul off the passengers.`
-		dialog `As you count your credits, you think how at least they are away from the pollution of their home planet.`
 		"reputation: Merchant" -= 20
 		"reputation: Republic" -= 20
 		"reputation: Syndicate" -= 20
@@ -280,11 +336,16 @@ mission "Family [0]: Slavery"
 	to offer
 		has "Family [0]: active"
 	on offer
-		dialog "Upon walking into the spaceport, you notice a few pirates looking at you strangely. One of them approaches you."
-		dialog `"I hear you've got some passengers on board. You willing to take 500,000 credits to give them over?"`
+		conversation
+			`Upon walking into the spaceport, you notice a few pirates looking at you strangely. One of them approaches you.`
+			`	"I hear you've got some passengers on board. You willing to take 500,000 credits to give them over?"`
+			choice
+				`	(Accept.)`
+				`	(Decline.)`
+					decline
+			`	You accept the pirate's offer to hand over your passengers. The pirate makes his way onto your ship with a few others and haul off the family. As the family passes by you, you try to not pay attention to the cries of the child aa they are moved away at gun point.`
+				accept
 	on accept
-		dialog `You accept the pirate's offer to hand over your passengers. The pirate makes his way onto your ship with a few others and haul off the family.`
-		dialog `As the family passes by you, you try to not pay attention to the cries of the child aa they are moved away at gun point.`
 		"reputation: Merchant" -= 25
 		"reputation: Republic" -= 25
 		"reputation: Syndicate" -= 25
@@ -304,11 +365,16 @@ mission "Family [1]: Slavery"
 	to offer
 		has "Family [1]: active"
 	on offer
-		dialog "Upon walking into the spaceport, you notice a few pirates looking at you strangely. One of them approaches you."
-		dialog `"I hear you've got some passengers on board. You willing to take 500,000 credits to give them over?"`
+		conversation
+			`Upon walking into the spaceport, you notice a few pirates looking at you strangely. One of them approaches you.`
+			`	"I hear you've got some passengers on board. You willing to take 500,000 credits to give them over?"`
+			choice
+				`	(Accept.)`
+				`	(Decline.)`
+					decline
+			`	You accept the pirate's offer to hand over your passengers. The pirate makes his way onto your ship with a few others and haul off the family. Making your way back to your ship, you count up the credits you've just made.`
+				accept
 	on accept
-		dialog `You accept the pirate's offer to hand over your passengers. The pirate makes his way onto your ship with a few others and haul off the family.`
-		dialog `Making your way back to your ship, you count up the credits you've just made.`
 		"reputation: Merchant" -= 25
 		"reputation: Republic" -= 25
 		"reputation: Syndicate" -= 25
@@ -328,17 +394,23 @@ mission "Family [2]: Slavery"
 	to offer
 		has "Family [2]: active"
 	on offer
-		dialog "Upon walking into the spaceport, you notice a few pirates looking at you strangely. One of them approaches you."
-		dialog `"I hear you've got some passengers on board. You willing to take 500,000 credits to give them over?"`
+		conversation
+			`Upon walking into the spaceport, you notice a few pirates looking at you strangely. One of them approaches you.`
+			`	"I hear you've got some passengers on board. You willing to take 500,000 credits to give them over?"`
+			choice
+				`	(Accept.)`
+				`	(Decline.)`
+					decline
+			`	You accept the pirate's offer to hand over your passengers. The pirate makes his way onto your ship with a few others and haul off the family. Counting your credits, you think about how this wasn't the place that your passengers were expecting to relocate to.`
+				accept
 	on accept
-		dialog `You accept the pirate's offer to hand over your passengers. The pirate makes his way onto your ship with a few others and haul off the family.`
-		dialog `Counting your credits, you think about how this wasn't the place that your passengers were expecting to relocate to.`
 		"reputation: Merchant" -= 25
 		"reputation: Republic" -= 25
 		"reputation: Syndicate" -= 25
 		"reputation: Militia" -= 25
 		"reputation: Free Worlds" -= 25
 		"reputation: Pirate" += 25
+		payment 500000
 		fail "Family [2]"
 		fail
 
@@ -351,11 +423,16 @@ mission "Family [3]: Slavery"
 	to offer
 		has "Family [3]: active"
 	on offer
-		dialog "Upon walking into the spaceport, you notice a few pirates looking at you strangely. One of them approaches you."
-		dialog `"I hear you've got some passengers on board. You willing to take 500,000 credits to give them over?"`
+		conversation
+			`Upon walking into the spaceport, you notice a few pirates looking at you strangely. One of them approaches you.`
+			`	"I hear you've got some passengers on board. You willing to take 500,000 credits to give them over?"`
+			choice
+				`	(Accept.)`
+				`	(Decline.)`
+					decline
+			`	You accept the pirate's offer to hand over your passengers. The pirate makes his way onto your ship with a few others and haul off the family. You try not to pay much attention to the cries of your former passengers as you return to your ship with the credits.`
+				accept
 	on accept
-		dialog `You accept the pirate's offer to hand over your passengers. The pirate makes his way onto your ship with a few others and haul off the family.`
-		dialog `You try not to pay much attention to the cries of your former passengers as you return to your ship with the credits.`
 		"reputation: Merchant" -= 25
 		"reputation: Republic" -= 25
 		"reputation: Syndicate" -= 25
@@ -375,11 +452,16 @@ mission "Transport miners to <planet>: Slavery"
 	to offer
 		has "Transport miners to <planet>: active"
 	on offer
-		dialog "Upon walking into the spaceport, you notice a few pirates looking at you strangely. One of them approaches you."
-		dialog `"I hear you've got some passengers on board. You willing to take 600,000 credits to give them over?"`
+		conversation
+			`Upon walking into the spaceport, you notice a few pirates looking at you strangely. One of them approaches you.`
+			`	"I hear you've got some passengers on board. You willing to take 600,000 credits to give them over?"`
+			choice
+				`	(Accept.)`
+				`	(Decline.)`
+					decline
+			`	You accept the pirate's offer to hand over your passengers. The pirate makes his way onto your ship with a few others and haul off the miners. As the pirates pass by you with your former passengers, the one that paid you turns to you and says "Thanks for the workers. I'll make sure they're put to good use."`
+				accept
 	on accept
-		dialog `You accept the pirate's offer to hand over your passengers. The pirate makes his way onto your ship with a few others and haul off the miners.`
-		dialog `As the pirates pass by you with your former passengers, the one that paid you turns to you and says "Thanks for the workers. I'll make sure they're put to good use."`
 		"reputation: Merchant" -= 30
 		"reputation: Republic" -= 30
 		"reputation: Syndicate" -= 30
@@ -399,11 +481,16 @@ mission "Transport farmers to <planet>: Slavery"
 	to offer
 		has "Transport farmers to <planet>: active"
 	on offer
-		dialog "Upon walking into the spaceport, you notice a few pirates looking at you strangely. One of them approaches you."
-		dialog `"I hear you've got some passengers on board. You willing to take 600,000 credits to give them over?"`
+		conversation
+			`Upon walking into the spaceport, you notice a few pirates looking at you strangely. One of them approaches you.`
+			`	"I hear you've got some passengers on board. You willing to take 600,000 credits to give them over?"`
+			choice
+				`	(Accept.)`
+				`	(Decline.)`
+					decline
+			`	You accept the pirate's offer to hand over your passengers. The pirate makes his way onto your ship with a few others and haul off the farmers. As the pirates pass by you with your former passengers, the one that paid you turns to you and says "Thanks for the workers. I'll make sure they're put to good use."`
+				accept
 	on accept
-		dialog `You accept the pirate's offer to hand over your passengers. The pirate makes his way onto your ship with a few others and haul off the farmers.`
-		dialog `As the pirates pass by you with your former passengers, the one that paid you turns to you and says "Thanks for the workers. I'll make sure they're put to good use."`
 		"reputation: Merchant" -= 30
 		"reputation: Republic" -= 30
 		"reputation: Syndicate" -= 30
@@ -423,11 +510,16 @@ mission "Transport mill workers to <planet>: Slavery"
 	to offer
 		has "Transport mill workers to <planet>: active"
 	on offer
-		dialog "Upon walking into the spaceport, you notice a few pirates looking at you strangely. One of them approaches you."
-		dialog `"I hear you've got some passengers on board. You willing to take 600,000 credits to give them over?"`
+		conversation
+			`Upon walking into the spaceport, you notice a few pirates looking at you strangely. One of them approaches you.`
+			`	"I hear you've got some passengers on board. You willing to take 600,000 credits to give them over?"`
+			choice
+				`	(Accept.)`
+				`	(Decline.)`
+					decline
+			`	You accept the pirate's offer to hand over your passengers. The pirate makes his way onto your ship with a few others and haul off the mill workers. As the pirates pass by you with your former passengers, the one that paid you turns to you and says "Thanks for the workers. I'll make sure they're put to good use."`
+				accept
 	on accept
-		dialog `You accept the pirate's offer to hand over your passengers. The pirate makes his way onto your ship with a few others and haul off the mill workers.`
-		dialog `As the pirates pass by you with your former passengers, the one that paid you turns to you and says "Thanks for the workers. I'll make sure they're put to good use."`
 		"reputation: Merchant" -= 30
 		"reputation: Republic" -= 30
 		"reputation: Syndicate" -= 30
@@ -447,11 +539,16 @@ mission "Transport workers to <planet>: Slavery"
 	to offer
 		has "Transport workers to <planet>: active"
 	on offer
-		dialog "Upon walking into the spaceport, you notice a few pirates looking at you strangely. One of them approaches you."
-		dialog `"I hear you've got some passengers on board. You willing to take 600,000 credits to give them over?"`
+		conversation
+			`Upon walking into the spaceport, you notice a few pirates looking at you strangely. One of them approaches you.`
+			`	"I hear you've got some passengers on board. You willing to take 4,000,000 credits to give them over?"`
+			choice
+				`	(Accept.)`
+				`	(Decline.)`
+					decline
+			`	You accept the pirate's offer to hand over your passengers. The pirate makes his way onto your ship with a few others and haul off the workers. As the pirates pass by you with your former passengers, the one that paid you turns to you and says "Thanks for the workers. I'll make sure they're put to good use."`
+				accept
 	on accept
-		dialog `You accept the pirate's offer to hand over your passengers. The pirate makes his way onto your ship with a few others and haul off the workers.`
-		dialog `As the pirates pass by you with your former passengers, the one that paid you turns to you and says "Thanks for the workers. I'll make sure they're put to good use."`
 		"reputation: Merchant" -= 30
 		"reputation: Republic" -= 30
 		"reputation: Syndicate" -= 30
@@ -471,10 +568,16 @@ mission "Colonists [0]: Slavery"
 	to offer
 		has "Colonists [0]: active"
 	on offer
-		dialog "Upon walking into the spaceport, you notice a few pirates looking at you strangely. One of them approaches you."
-		dialog `"I hear you've got some passengers on board. You willing to take 4,000,000 credits to give them over?"`
+		conversation
+			`Upon walking into the spaceport, you notice a few pirates looking at you strangely. One of them approaches you.`
+			`	"I hear you've got some passengers on board. You willing to take 4,000,000 credits to give them over?"`
+			choice
+				`	(Accept.)`
+				`	(Decline.)`
+					decline
+			`	You accept the pirate's offer to hand over your passengers. The pirate makes his way onto your ship with a few others and haul off the colonists. Given how many there are, it takes quite a few minutes to take them away. Some try to fight, but quickly surrender to the guns. After they have all been removed from your ship, the pirates thank you and go on their way.`
+				accept
 	on accept
-		dialog `You accept the pirate's offer to hand over your passengers. The pirate makes his way onto your ship with a few others and haul off the colonists.`
 		"reputation: Merchant" -= 200
 		"reputation: Republic" -= 200
 		"reputation: Syndicate" -= 200
@@ -494,10 +597,16 @@ mission "Colonists [1]: Slavery"
 	to offer
 		has "Colonists [1]: active"
 	on offer
-		dialog "Upon walking into the spaceport, you notice a few pirates looking at you strangely. One of them approaches you."
-		dialog `"I hear you've got some passengers on board. You willing to take 4,000,000 credits to give them over?"`
+		conversation
+			`Upon walking into the spaceport, you notice a few pirates looking at you strangely. One of them approaches you.`
+			`	"I hear you've got some passengers on board. You willing to take 300,000 credits to give them over?"`
+			choice
+				`	(Accept.)`
+				`	(Decline.)`
+					decline
+			`	You accept the pirate's offer to hand over your passengers. The pirate makes his way onto your ship with a few others and haul off the colonists. Given how many there are, it takes quite a few minutes to take them away. Some try to fight, but quickly surrender to the guns. After they have all been removed from your ship, the pirates thank you and go on their way.`
+				accept
 	on accept
-		dialog `You accept the pirate's offer to hand over your passengers. The pirate makes his way onto your ship with a few others and haul off the colonists.`
 		"reputation: Merchant" -= 200
 		"reputation: Republic" -= 200
 		"reputation: Syndicate" -= 200
