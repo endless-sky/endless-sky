@@ -9,7 +9,7 @@
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 mission "Tourists back [0]: Slavery"
-	landing
+	minor
 	invisible
 	repeat
 	source
@@ -17,21 +17,22 @@ mission "Tourists back [0]: Slavery"
 	to offer
 		has "Tourists back [0]: active"
 	on offer
-		dialog "Upon landing on <planet> a few pirates in the spaceport begin to eye up your ship. One of them approaches you."
-		dialog `"I see you've got a passenger. You willing to take 200,000 credits to give them over?"`
+		dialog "Upon walking into the spaceport, you notice a few pirates looking at you strangely. One of them approaches you."
+		dialog `"I hear you've got a passenger on board. You willing to take 100,000 credits to give them over?"`
 	on accept
-		"reputation: Merchant" -= 2
-		"reputation: Republic" -= 2
-		"reputation: Syndicate" -= 2
-		"reputation: Militia" -= 2
-		"reputation: Free Worlds" -= 2
-		"reputation: Pirate" += 2
-		payment 200000
+		dialog `You accept the pirate's offer to hand over your passenger. The pirate makes his way onto your ship with a few others and haul off the tourist, who is kicking and screaming as he curses you out.`
+		"reputation: Merchant" -= 5
+		"reputation: Republic" -= 5
+		"reputation: Syndicate" -= 5
+		"reputation: Militia" -= 5
+		"reputation: Free Worlds" -= 5
+		"reputation: Pirate" += 5
+		payment 100000
 		fail "Tourists back [0]"
 		fail
 
 mission "Tourists out [0]: Slavery"
-	landing
+	minor
 	invisible
 	repeat
 	source
@@ -39,21 +40,23 @@ mission "Tourists out [0]: Slavery"
 	to offer
 		has "Tourists out [0]: active"
 	on offer
-		dialog "Upon landing on <planet> a few pirates in the spaceport begin to eye up your ship. One of them approaches you."
-		dialog `"I see you've got a passenger. You willing to take 200,000 credits to give them over?"`
+		dialog "Upon walking into the spaceport, you notice a few pirates looking at you strangely. One of them approaches you."
+		dialog `"I hear you've got a passenger on board. You willing to take 100,000 credits to give them over?"`
 	on accept
-		"reputation: Merchant" -= 2
-		"reputation: Republic" -= 2
-		"reputation: Syndicate" -= 2
-		"reputation: Militia" -= 2
-		"reputation: Free Worlds" -= 2
-		"reputation: Pirate" += 2
-		payment 200000
+		dialog `You accept the pirate's offer to hand over your passenger. The pirate makes his way onto your ship with a few others and haul off the tourist.`
+		dialog `Counting your credits, you hear crying and screaming as it slowly gets farther away.`
+		"reputation: Merchant" -= 5
+		"reputation: Republic" -= 5
+		"reputation: Syndicate" -= 5
+		"reputation: Militia" -= 5
+		"reputation: Free Worlds" -= 5
+		"reputation: Pirate" += 5
+		payment 100000
 		fail "Tourists out [0]"
 		fail
 
 mission "Tourists out [1]: Slavery"
-	landing
+	minor
 	invisible
 	repeat
 	source
@@ -61,21 +64,23 @@ mission "Tourists out [1]: Slavery"
 	to offer
 		has "Tourists out [1]: active"
 	on offer
-		dialog "Upon landing on <planet> a few pirates in the spaceport begin to eye up your ship. One of them approaches you."
-		dialog `"I see you've got some passengers. You willing to take 1,000,000 credits to give them over?"`
+		dialog "Upon walking into the spaceport, you notice a few pirates looking at you strangely. One of them approaches you."
+		dialog `"I hear you've got some passengers on board. You willing to take 300,000 credits to give them over?"`
 	on accept
-		"reputation: Merchant" -= 10
-		"reputation: Republic" -= 10
-		"reputation: Syndicate" -= 10
-		"reputation: Militia" -= 10
-		"reputation: Free Worlds" -= 10
-		"reputation: Pirate" += 10
-		payment 1000000
+		dialog `You accept the pirate's offer to hand over your passengers. The pirate makes his way onto your ship with a few others and haul off the tourists.`
+		dialog `As you count your credits, you think about how this wasn't the vacation that your passengers were expecting.`
+		"reputation: Merchant" -= 15
+		"reputation: Republic" -= 15
+		"reputation: Syndicate" -= 15
+		"reputation: Militia" -= 15
+		"reputation: Free Worlds" -= 15
+		"reputation: Pirate" += 15
+		payment 300000
 		fail "Tourists out [1]"
 		fail
 
 mission "Tourists out [2]: Slavery"
-	landing
+	minor
 	invisible
 	repeat
 	source
@@ -83,21 +88,23 @@ mission "Tourists out [2]: Slavery"
 	to offer
 		has "Tourists out [2]: active"
 	on offer
-		dialog "Upon landing on <planet> a few pirates in the spaceport begin to eye up your ship. One of them approaches you."
-		dialog `"I see you've got some passengers. You willing to take 1,000,000 credits to give them over?"`
+		dialog "Upon walking into the spaceport, you notice a few pirates looking at you strangely. One of them approaches you."
+		dialog `"I hear you've got some passengers on board. You willing to take 300,000 credits to give them over?"`
 	on accept
-		"reputation: Merchant" -= 10
-		"reputation: Republic" -= 10
-		"reputation: Syndicate" -= 10
-		"reputation: Militia" -= 10
-		"reputation: Free Worlds" -= 10
-		"reputation: Pirate" += 10
-		payment 1000000
+		dialog `You accept the pirate's offer to hand over your passengers. The pirate makes his way onto your ship with a few others and haul off the tourists.`
+		dialog `You try not to pay much attention to the cries of your former passengers as you return to your ship with the credits.`
+		"reputation: Merchant" -= 15
+		"reputation: Republic" -= 15
+		"reputation: Syndicate" -= 15
+		"reputation: Militia" -= 15
+		"reputation: Free Worlds" -= 15
+		"reputation: Pirate" += 15
+		payment 300000
 		fail "Tourists out [2]"
 		fail
 
 mission "Tourists back [1]: Slavery"
-	landing
+	minor
 	invisible
 	repeat
 	source
@@ -105,21 +112,23 @@ mission "Tourists back [1]: Slavery"
 	to offer
 		has "Tourists back [1]: active"
 	on offer
-		dialog "Upon landing on <planet> a few pirates in the spaceport begin to eye up your ship. One of them approaches you."
-		dialog `"I see you've got some passengers. You willing to take 1,000,000 credits to give them over?"`
+		dialog "Upon walking into the spaceport, you notice a few pirates looking at you strangely. One of them approaches you."
+		dialog `"I hear you've got some passengers on board. You willing to take 300,000 credits to give them over?"`
 	on accept
-		"reputation: Merchant" -= 10
-		"reputation: Republic" -= 10
-		"reputation: Syndicate" -= 10
-		"reputation: Militia" -= 10
-		"reputation: Free Worlds" -= 10
-		"reputation: Pirate" += 10
-		payment 1000000
+		dialog `You accept the pirate's offer to hand over your passengers. The pirate makes his way onto your ship with a few others and haul off the tourists.`
+		dialog `As you count your credits, you think about how this wasn't the home that your passengers were expecting to return to.`
+		"reputation: Merchant" -= 15
+		"reputation: Republic" -= 15
+		"reputation: Syndicate" -= 15
+		"reputation: Militia" -= 15
+		"reputation: Free Worlds" -= 15
+		"reputation: Pirate" += 15
+		payment 300000
 		fail "Tourists back [1]"
 		fail
 
 mission "Tourists back [2]: Slavery"
-	landing
+	minor
 	invisible
 	repeat
 	source
@@ -127,21 +136,23 @@ mission "Tourists back [2]: Slavery"
 	to offer
 		has "Tourists back [2]: active"
 	on offer
-		dialog "Upon landing on <planet> a few pirates in the spaceport begin to eye up your ship. One of them approaches you."
-		dialog `"I see you've got some passengers. You willing to take 1,000,000 credits to give them over?"`
+		dialog "Upon walking into the spaceport, you notice a few pirates looking at you strangely. One of them approaches you."
+		dialog `"I hear you've got some passengers on board. You willing to take 300,000 credits to give them over?"`
 	on accept
-		"reputation: Merchant" -= 10
-		"reputation: Republic" -= 10
-		"reputation: Syndicate" -= 10
-		"reputation: Militia" -= 10
-		"reputation: Free Worlds" -= 10
-		"reputation: Pirate" += 10
-		payment 1000000
+		dialog `You accept the pirate's offer to hand over your passengers. The pirate makes his way onto your ship with a few others and haul off the tourists.`
+		dialog `You try not to pay much attention to the cries of your former passengers as you return to your ship with the credits.`
+		"reputation: Merchant" -= 15
+		"reputation: Republic" -= 15
+		"reputation: Syndicate" -= 15
+		"reputation: Militia" -= 15
+		"reputation: Free Worlds" -= 15
+		"reputation: Pirate" += 15
+		payment 300000
 		fail "Tourists back [2]"
 		fail
 
 mission "Passengers [0]: Slavery"
-	landing
+	minor
 	invisible
 	repeat
 	source
@@ -149,21 +160,23 @@ mission "Passengers [0]: Slavery"
 	to offer
 		has "Passengers [0]: active"
 	on offer
-		dialog "Upon landing on <planet> a few pirates in the spaceport begin to eye up your ship. One of them approaches you."
-		dialog `"I see you've got some passengers. You willing to take 1,000,000 credits to give them over?"`
+		dialog "Upon walking into the spaceport, you notice a few pirates looking at you strangely. One of them approaches you."
+		dialog `"I hear you've got some passengers on board. You willing to take 400,000 credits to give them over?"`
 	on accept
-		"reputation: Merchant" -= 10
-		"reputation: Republic" -= 10
-		"reputation: Syndicate" -= 10
-		"reputation: Militia" -= 10
-		"reputation: Free Worlds" -= 10
-		"reputation: Pirate" += 10
-		payment 1000000
+		dialog `You accept the pirate's offer to hand over your passengers. The pirate makes his way onto your ship with a few others and haul off the passengers.`
+		dialog `You try not to pay much attention to the cries of your former passengers as you return to your ship with the credits.`
+		"reputation: Merchant" -= 20
+		"reputation: Republic" -= 20
+		"reputation: Syndicate" -= 20
+		"reputation: Militia" -= 20
+		"reputation: Free Worlds" -= 20
+		"reputation: Pirate" += 20
+		payment 400000
 		fail "Passengers [0]"
 		fail
 
 mission "Passengers [1]: Slavery"
-	landing
+	minor
 	invisible
 	repeat
 	source
@@ -171,21 +184,23 @@ mission "Passengers [1]: Slavery"
 	to offer
 		has "Passengers [1]: active"
 	on offer
-		dialog "Upon landing on <planet> a few pirates in the spaceport begin to eye up your ship. One of them approaches you."
-		dialog `"I see you've got some passengers. You willing to take 1,000,000 credits to give them over?"`
+		dialog "Upon walking into the spaceport, you notice a few pirates looking at you strangely. One of them approaches you."
+		dialog `"I hear you've got some passengers on board. You willing to take 400,000 credits to give them over?"`
 	on accept
-		"reputation: Merchant" -= 10
-		"reputation: Republic" -= 10
-		"reputation: Syndicate" -= 10
-		"reputation: Militia" -= 10
-		"reputation: Free Worlds" -= 10
-		"reputation: Pirate" += 10
-		payment 1000000
+		dialog `You accept the pirate's offer to hand over your passengers. The pirate makes his way onto your ship with a few others and haul off the passengers.`
+		dialog `You try not to pay much attention to the cries of your former passengers as you return to your ship with the credits.`
+		"reputation: Merchant" -= 20
+		"reputation: Republic" -= 20
+		"reputation: Syndicate" -= 20
+		"reputation: Militia" -= 20
+		"reputation: Free Worlds" -= 20
+		"reputation: Pirate" += 20
+		payment 400000
 		fail "Passengers [1]"
 		fail
 
 mission "Passengers [2]: Slavery"
-	landing
+	minor
 	invisible
 	repeat
 	source
@@ -193,21 +208,23 @@ mission "Passengers [2]: Slavery"
 	to offer
 		has "Passengers [2]: active"
 	on offer
-		dialog "Upon landing on <planet> a few pirates in the spaceport begin to eye up your ship. One of them approaches you."
-		dialog `"I see you've got some passengers. You willing to take 1,000,000 credits to give them over?"`
+		dialog "Upon walking into the spaceport, you notice a few pirates looking at you strangely. One of them approaches you."
+		dialog `"I hear you've got some passengers on board. You willing to take 400,000 credits to give them over?"`
 	on accept
-		"reputation: Merchant" -= 10
-		"reputation: Republic" -= 10
-		"reputation: Syndicate" -= 10
-		"reputation: Militia" -= 10
-		"reputation: Free Worlds" -= 10
-		"reputation: Pirate" += 10
-		payment 1000000
+		dialog `You accept the pirate's offer to hand over your passengers. The pirate makes his way onto your ship with a few others and haul off the passengers.`
+		dialog `You try not to pay much attention to the cries of your former passengers as you return to your ship with the credits.`
+		"reputation: Merchant" -= 20
+		"reputation: Republic" -= 20
+		"reputation: Syndicate" -= 20
+		"reputation: Militia" -= 20
+		"reputation: Free Worlds" -= 20
+		"reputation: Pirate" += 20
+		payment 400000
 		fail "Passengers [2]"
 		fail
 
 mission "Passengers [3]: Slavery"
-	landing
+	minor
 	invisible
 	repeat
 	source
@@ -215,21 +232,23 @@ mission "Passengers [3]: Slavery"
 	to offer
 		has "Passengers [3]: active"
 	on offer
-		dialog "Upon landing on <planet> a few pirates in the spaceport begin to eye up your ship. One of them approaches you."
-		dialog `"I see you've got some passengers. You willing to take 1,000,000 credits to give them over?"`
+		dialog "Upon walking into the spaceport, you notice a few pirates looking at you strangely. One of them approaches you."
+		dialog `"I hear you've got some passengers on board. You willing to take 400,000 credits to give them over?"`
 	on accept
-		"reputation: Merchant" -= 10
-		"reputation: Republic" -= 10
-		"reputation: Syndicate" -= 10
-		"reputation: Militia" -= 10
-		"reputation: Free Worlds" -= 10
-		"reputation: Pirate" += 10
-		payment 1000000
+		dialog `You accept the pirate's offer to hand over your passengers. The pirate makes his way onto your ship with a few others and haul off the passengers.`
+		dialog `You try not to pay much attention to the cries of your former passengers as you return to your ship with the credits.`
+		"reputation: Merchant" -= 20
+		"reputation: Republic" -= 20
+		"reputation: Syndicate" -= 20
+		"reputation: Militia" -= 20
+		"reputation: Free Worlds" -= 20
+		"reputation: Pirate" += 20
+		payment 400000
 		fail "Passengers [3]"
 		fail
 
 mission "Passengers [4]: Slavery"
-	landing
+	minor
 	invisible
 	repeat
 	source
@@ -237,109 +256,23 @@ mission "Passengers [4]: Slavery"
 	to offer
 		has "Passengers [4]: active"
 	on offer
-		dialog "Upon landing on <planet> a few pirates in the spaceport begin to eye up your ship. One of them approaches you."
-		dialog `"I see you've got some passengers. You willing to take 1,000,000 credits to give them over?"`
+		dialog "Upon walking into the spaceport, you notice a few pirates looking at you strangely. One of them approaches you."
+		dialog `"I hear you've got some passengers on board. You willing to take 400,000 credits to give them over?"`
 	on accept
-		"reputation: Merchant" -= 10
-		"reputation: Republic" -= 10
-		"reputation: Syndicate" -= 10
-		"reputation: Militia" -= 10
-		"reputation: Free Worlds" -= 10
-		"reputation: Pirate" += 10
-		payment 1000000
+		dialog `You accept the pirate's offer to hand over your passengers. The pirate makes his way onto your ship with a few others and haul off the passengers.`
+		dialog `As you count your credits, you think how at least they are away from the pollution of their home planet.`
+		"reputation: Merchant" -= 20
+		"reputation: Republic" -= 20
+		"reputation: Syndicate" -= 20
+		"reputation: Militia" -= 20
+		"reputation: Free Worlds" -= 20
+		"reputation: Pirate" += 20
+		payment 400000
 		fail "Passengers [4]"
 		fail
 
-mission "Transport miners to <planet>: Slavery"
-	landing
-	invisible
-	repeat
-	source
-		government "Pirate"
-	to offer
-		has "Transport miners to <planet>: active"
-	on offer
-		dialog "Upon landing on <planet> a few pirates in the spaceport begin to eye up your ship. One of them approaches you."
-		dialog `"I see you've got some passengers. You willing to take 2,000,000 credits to give them over?"`
-	on accept
-		"reputation: Merchant" -= 20
-		"reputation: Republic" -= 20
-		"reputation: Syndicate" -= 20
-		"reputation: Militia" -= 20
-		"reputation: Free Worlds" -= 20
-		"reputation: Pirate" += 20
-		payment 2000000
-		fail "Transport miners to <planet>"
-		fail
-
-mission "Transport farmers to <planet>: Slavery"
-	landing
-	invisible
-	repeat
-	source
-		government "Pirate"
-	to offer
-		has "Transport farmers to <planet>: active"
-	on offer
-		dialog "Upon landing on <planet> a few pirates in the spaceport begin to eye up your ship. One of them approaches you."
-		dialog `"I see you've got some passengers. You willing to take 2,000,000 credits to give them over?"`
-	on accept
-		"reputation: Merchant" -= 20
-		"reputation: Republic" -= 20
-		"reputation: Syndicate" -= 20
-		"reputation: Militia" -= 20
-		"reputation: Free Worlds" -= 20
-		"reputation: Pirate" += 20
-		payment 2000000
-		fail "Transport farmers to <planet>"
-		fail
-
-mission "Transport mill workers to <planet>: Slavery"
-	landing
-	invisible
-	repeat
-	source
-		government "Pirate"
-	to offer
-		has "Transport mill workers to <planet>: active"
-	on offer
-		dialog "Upon landing on <planet> a few pirates in the spaceport begin to eye up your ship. One of them approaches you."
-		dialog `"I see you've got some passengers. You willing to take 2,000,000 credits to give them over?"`
-	on accept
-		"reputation: Merchant" -= 20
-		"reputation: Republic" -= 20
-		"reputation: Syndicate" -= 20
-		"reputation: Militia" -= 20
-		"reputation: Free Worlds" -= 20
-		"reputation: Pirate" += 20
-		payment 2000000
-		fail "Transport mill workers to <planet>"
-		fail
-
-mission "Transport workers to <planet>: Slavery"
-	landing
-	invisible
-	repeat
-	source
-		government "Pirate"
-	to offer
-		has "Transport workers to <planet>: active"
-	on offer
-		dialog "Upon landing on <planet> a few pirates in the spaceport begin to eye up your ship. One of them approaches you."
-		dialog `"I see you've got some passengers. You willing to take 2,000,000 credits to give them over?"`
-	on accept
-		"reputation: Merchant" -= 20
-		"reputation: Republic" -= 20
-		"reputation: Syndicate" -= 20
-		"reputation: Militia" -= 20
-		"reputation: Free Worlds" -= 20
-		"reputation: Pirate" += 20
-		payment 2000000
-		fail "Transport workers to <planet>"
-		fail
-
 mission "Family [0]: Slavery"
-	landing
+	minor
 	invisible
 	repeat
 	source
@@ -347,21 +280,23 @@ mission "Family [0]: Slavery"
 	to offer
 		has "Family [0]: active"
 	on offer
-		dialog "Upon landing on <planet> a few pirates in the spaceport begin to eye up your ship. One of them approaches you."
-		dialog `"I see you've got some passengers. You willing to take 1,500,000 credits to give them over?"`
+		dialog "Upon walking into the spaceport, you notice a few pirates looking at you strangely. One of them approaches you."
+		dialog `"I hear you've got some passengers on board. You willing to take 500,000 credits to give them over?"`
 	on accept
-		"reputation: Merchant" -= 15
-		"reputation: Republic" -= 15
-		"reputation: Syndicate" -= 15
-		"reputation: Militia" -= 15
-		"reputation: Free Worlds" -= 15
-		"reputation: Pirate" += 15
-		payment 1500000
+		dialog `You accept the pirate's offer to hand over your passengers. The pirate makes his way onto your ship with a few others and haul off the family.`
+		dialog `As the family passes by you, you try to not pay attention to the cries of the child aa they are moved away at gun point.`
+		"reputation: Merchant" -= 25
+		"reputation: Republic" -= 25
+		"reputation: Syndicate" -= 25
+		"reputation: Militia" -= 25
+		"reputation: Free Worlds" -= 25
+		"reputation: Pirate" += 25
+		payment 500000
 		fail "Family [0]"
 		fail
 
 mission "Family [1]: Slavery"
-	landing
+	minor
 	invisible
 	repeat
 	source
@@ -369,21 +304,23 @@ mission "Family [1]: Slavery"
 	to offer
 		has "Family [1]: active"
 	on offer
-		dialog "Upon landing on <planet> a few pirates in the spaceport begin to eye up your ship. One of them approaches you."
-		dialog `"I see you've got some passengers. You willing to take 1,500,000 credits to give them over?"`
+		dialog "Upon walking into the spaceport, you notice a few pirates looking at you strangely. One of them approaches you."
+		dialog `"I hear you've got some passengers on board. You willing to take 500,000 credits to give them over?"`
 	on accept
-		"reputation: Merchant" -= 15
-		"reputation: Republic" -= 15
-		"reputation: Syndicate" -= 15
-		"reputation: Militia" -= 15
-		"reputation: Free Worlds" -= 15
-		"reputation: Pirate" += 15
-		payment 1500000
+		dialog `You accept the pirate's offer to hand over your passengers. The pirate makes his way onto your ship with a few others and haul off the family.`
+		dialog `Making your way back to your ship, you count up the credits you've just made.`
+		"reputation: Merchant" -= 25
+		"reputation: Republic" -= 25
+		"reputation: Syndicate" -= 25
+		"reputation: Militia" -= 25
+		"reputation: Free Worlds" -= 25
+		"reputation: Pirate" += 25
+		payment 500000
 		fail "Family [1]"
 		fail
 
 mission "Family [2]: Slavery"
-	landing
+	minor
 	invisible
 	repeat
 	source
@@ -391,21 +328,22 @@ mission "Family [2]: Slavery"
 	to offer
 		has "Family [2]: active"
 	on offer
-		dialog "Upon landing on <planet> a few pirates in the spaceport begin to eye up your ship. One of them approaches you."
-		dialog `"I see you've got some passengers. You willing to take 1,500,000 credits to give them over?"`
+		dialog "Upon walking into the spaceport, you notice a few pirates looking at you strangely. One of them approaches you."
+		dialog `"I hear you've got some passengers on board. You willing to take 500,000 credits to give them over?"`
 	on accept
-		"reputation: Merchant" -= 15
-		"reputation: Republic" -= 15
-		"reputation: Syndicate" -= 15
-		"reputation: Militia" -= 15
-		"reputation: Free Worlds" -= 15
-		"reputation: Pirate" += 15
-		payment 1500000
+		dialog `You accept the pirate's offer to hand over your passengers. The pirate makes his way onto your ship with a few others and haul off the family.`
+		dialog `Counting your credits, you think about how this wasn't the place that your passengers were expecting to relocate to.`
+		"reputation: Merchant" -= 25
+		"reputation: Republic" -= 25
+		"reputation: Syndicate" -= 25
+		"reputation: Militia" -= 25
+		"reputation: Free Worlds" -= 25
+		"reputation: Pirate" += 25
 		fail "Family [2]"
 		fail
 
 mission "Family [3]: Slavery"
-	landing
+	minor
 	invisible
 	repeat
 	source
@@ -413,21 +351,119 @@ mission "Family [3]: Slavery"
 	to offer
 		has "Family [3]: active"
 	on offer
-		dialog "Upon landing on <planet> a few pirates in the spaceport begin to eye up your ship. One of them approaches you."
-		dialog `"I see you've got some passengers. You willing to take 1,500,000 credits to give them over?"`
+		dialog "Upon walking into the spaceport, you notice a few pirates looking at you strangely. One of them approaches you."
+		dialog `"I hear you've got some passengers on board. You willing to take 500,000 credits to give them over?"`
 	on accept
-		"reputation: Merchant" -= 15
-		"reputation: Republic" -= 15
-		"reputation: Syndicate" -= 15
-		"reputation: Militia" -= 15
-		"reputation: Free Worlds" -= 15
-		"reputation: Pirate" += 15
-		payment 1500000
+		dialog `You accept the pirate's offer to hand over your passengers. The pirate makes his way onto your ship with a few others and haul off the family.`
+		dialog `You try not to pay much attention to the cries of your former passengers as you return to your ship with the credits.`
+		"reputation: Merchant" -= 25
+		"reputation: Republic" -= 25
+		"reputation: Syndicate" -= 25
+		"reputation: Militia" -= 25
+		"reputation: Free Worlds" -= 25
+		"reputation: Pirate" += 25
+		payment 500000
 		fail "Family [3]"
 		fail
 
+mission "Transport miners to <planet>: Slavery"
+	minor
+	invisible
+	repeat
+	source
+		government "Pirate"
+	to offer
+		has "Transport miners to <planet>: active"
+	on offer
+		dialog "Upon walking into the spaceport, you notice a few pirates looking at you strangely. One of them approaches you."
+		dialog `"I hear you've got some passengers on board. You willing to take 600,000 credits to give them over?"`
+	on accept
+		dialog `You accept the pirate's offer to hand over your passengers. The pirate makes his way onto your ship with a few others and haul off the miners.`
+		dialog `As the pirates pass by you with your former passengers, the one that paid you turns to you and says "Thanks for the workers. I'll make sure they're put to good use."`
+		"reputation: Merchant" -= 30
+		"reputation: Republic" -= 30
+		"reputation: Syndicate" -= 30
+		"reputation: Militia" -= 30
+		"reputation: Free Worlds" -= 30
+		"reputation: Pirate" += 30
+		payment 600000
+		fail "Transport miners to <planet>"
+		fail
+
+mission "Transport farmers to <planet>: Slavery"
+	minor
+	invisible
+	repeat
+	source
+		government "Pirate"
+	to offer
+		has "Transport farmers to <planet>: active"
+	on offer
+		dialog "Upon walking into the spaceport, you notice a few pirates looking at you strangely. One of them approaches you."
+		dialog `"I hear you've got some passengers on board. You willing to take 600,000 credits to give them over?"`
+	on accept
+		dialog `You accept the pirate's offer to hand over your passengers. The pirate makes his way onto your ship with a few others and haul off the farmers.`
+		dialog `As the pirates pass by you with your former passengers, the one that paid you turns to you and says "Thanks for the workers. I'll make sure they're put to good use."`
+		"reputation: Merchant" -= 30
+		"reputation: Republic" -= 30
+		"reputation: Syndicate" -= 30
+		"reputation: Militia" -= 30
+		"reputation: Free Worlds" -= 30
+		"reputation: Pirate" += 30
+		payment 600000
+		fail "Transport farmers to <planet>"
+		fail
+
+mission "Transport mill workers to <planet>: Slavery"
+	minor
+	invisible
+	repeat
+	source
+		government "Pirate"
+	to offer
+		has "Transport mill workers to <planet>: active"
+	on offer
+		dialog "Upon walking into the spaceport, you notice a few pirates looking at you strangely. One of them approaches you."
+		dialog `"I hear you've got some passengers on board. You willing to take 600,000 credits to give them over?"`
+	on accept
+		dialog `You accept the pirate's offer to hand over your passengers. The pirate makes his way onto your ship with a few others and haul off the mill workers.`
+		dialog `As the pirates pass by you with your former passengers, the one that paid you turns to you and says "Thanks for the workers. I'll make sure they're put to good use."`
+		"reputation: Merchant" -= 30
+		"reputation: Republic" -= 30
+		"reputation: Syndicate" -= 30
+		"reputation: Militia" -= 30
+		"reputation: Free Worlds" -= 30
+		"reputation: Pirate" += 30
+		payment 600000
+		fail "Transport mill workers to <planet>"
+		fail
+
+mission "Transport workers to <planet>: Slavery"
+	minor
+	invisible
+	repeat
+	source
+		government "Pirate"
+	to offer
+		has "Transport workers to <planet>: active"
+	on offer
+		dialog "Upon walking into the spaceport, you notice a few pirates looking at you strangely. One of them approaches you."
+		dialog `"I hear you've got some passengers on board. You willing to take 600,000 credits to give them over?"`
+	on accept
+		dialog `You accept the pirate's offer to hand over your passengers. The pirate makes his way onto your ship with a few others and haul off the workers.`
+		dialog `As the pirates pass by you with your former passengers, the one that paid you turns to you and says "Thanks for the workers. I'll make sure they're put to good use."`
+		"reputation: Merchant" -= 30
+		"reputation: Republic" -= 30
+		"reputation: Syndicate" -= 30
+		"reputation: Militia" -= 30
+		"reputation: Free Worlds" -= 30
+		"reputation: Pirate" += 30
+		payment 600000
+		fail "Transport workers to <planet>"
+		fail
+
 mission "Colonists [0]: Slavery"
-	landing
+	minor
 	invisible
 	repeat
 	source
@@ -435,21 +471,22 @@ mission "Colonists [0]: Slavery"
 	to offer
 		has "Colonists [0]: active"
 	on offer
-		dialog "Upon landing on <planet> a few pirates in the spaceport begin to eye up your ship. One of them approaches you."
-		dialog `"I see you've got some passengers. You willing to take 5,000,000 credits to give them over?"`
+		dialog "Upon walking into the spaceport, you notice a few pirates looking at you strangely. One of them approaches you."
+		dialog `"I hear you've got some passengers on board. You willing to take 4,000,000 credits to give them over?"`
 	on accept
-		"reputation: Merchant" -= 50
-		"reputation: Republic" -= 50
-		"reputation: Syndicate" -= 50
-		"reputation: Militia" -= 50
-		"reputation: Free Worlds" -= 50
-		"reputation: Pirate" += 50
-		payment 5000000
+		dialog `You accept the pirate's offer to hand over your passengers. The pirate makes his way onto your ship with a few others and haul off the colonists.`
+		"reputation: Merchant" -= 200
+		"reputation: Republic" -= 200
+		"reputation: Syndicate" -= 200
+		"reputation: Militia" -= 200
+		"reputation: Free Worlds" -= 200
+		"reputation: Pirate" += 200
+		payment 4000000
 		fail "Colonists [0]"
 		fail
 
 mission "Colonists [1]: Slavery"
-	landing
+	minor
 	invisible
 	repeat
 	source
@@ -457,15 +494,16 @@ mission "Colonists [1]: Slavery"
 	to offer
 		has "Colonists [1]: active"
 	on offer
-		dialog "Upon landing on <planet> a few pirates in the spaceport begin to eye up your ship. One of them approaches you."
-		dialog `"I see you've got some passengers. You willing to take 5,000,000 credits to give them over?"`
+		dialog "Upon walking into the spaceport, you notice a few pirates looking at you strangely. One of them approaches you."
+		dialog `"I hear you've got some passengers on board. You willing to take 4,000,000 credits to give them over?"`
 	on accept
-		"reputation: Merchant" -= 50
-		"reputation: Republic" -= 50
-		"reputation: Syndicate" -= 50
-		"reputation: Militia" -= 50
-		"reputation: Free Worlds" -= 50
-		"reputation: Pirate" += 50
-		payment 5000000
+		dialog `You accept the pirate's offer to hand over your passengers. The pirate makes his way onto your ship with a few others and haul off the colonists.`
+		"reputation: Merchant" -= 200
+		"reputation: Republic" -= 200
+		"reputation: Syndicate" -= 200
+		"reputation: Militia" -= 200
+		"reputation: Free Worlds" -= 200
+		"reputation: Pirate" += 200
+		payment 4000000
 		fail "Colonists [1]"
 		fail
