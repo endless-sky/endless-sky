@@ -19,13 +19,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "FontSet.h"
 #include "GameData.h"
 #include "Government.h"
-#include "Information.h"
-#include "Interface.h"
 #include "ItemInfoDisplay.h"
-#include "MapDetailPanel.h"
-#include "MapOutfitterPanel.h"
-#include "MapShipyardPanel.h"
-#include "MissionPanel.h"
 #include "Outfit.h"
 #include "PlayerInfo.h"
 #include "Point.h"
@@ -55,7 +49,8 @@ using namespace std;
 MapSalesPanel::MapSalesPanel(PlayerInfo &player, bool isOutfitters)
 	: MapPanel(player, SHOW_SPECIAL),
 	categories(isOutfitters ? Outfit::CATEGORIES : Ship::CATEGORIES),
-	isOutfitters(isOutfitters)
+	isOutfitters(isOutfitters),
+	collapsed(player.Collapsed(isOutfitters ? "outfitter map" : "shipyard map"))
 {
 	if(!isOutfitters)
 		swizzle = GameData::PlayerGovernment()->GetSwizzle();
@@ -66,7 +61,8 @@ MapSalesPanel::MapSalesPanel(PlayerInfo &player, bool isOutfitters)
 MapSalesPanel::MapSalesPanel(const MapPanel &panel, bool isOutfitters)
 	: MapPanel(panel),
 	categories(isOutfitters ? Outfit::CATEGORIES : Ship::CATEGORIES),
-	isOutfitters(isOutfitters)
+	isOutfitters(isOutfitters),
+	collapsed(player.Collapsed(isOutfitters ? "outfitter map" : "shipyard map"))
 {
 	commodity = SHOW_SPECIAL;
 	if(!isOutfitters)
@@ -85,7 +81,7 @@ void MapSalesPanel::Draw()
 	DrawKey();
 	DrawPanel();
 	DrawItems();
-	DrawButtons();
+	DrawButtons(isOutfitters ? "is outfitters" : "is shipyards");
 	DrawInfo();
 }
 
@@ -93,29 +89,7 @@ void MapSalesPanel::Draw()
 
 bool MapSalesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 {
-	if(command.Has(Command::MAP) || key == 'd' || key == SDLK_ESCAPE || (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
-		GetUI()->Pop(this);
-	else if(key == 's' && isOutfitters)
-	{
-		GetUI()->Pop(this);
-		GetUI()->Push(new MapShipyardPanel(*this));
-	}
-	else if(key == 'o' && !isOutfitters)
-	{
-		GetUI()->Pop(this);
-		GetUI()->Push(new MapOutfitterPanel(*this));
-	}
-	else if(key == 'i')
-	{
-		GetUI()->Pop(this);
-		GetUI()->Push(new MissionPanel(*this));
-	}
-	else if(key == 'p')
-	{
-		GetUI()->Pop(this);
-		GetUI()->Push(new MapDetailPanel(*this));
-	}
-	else if(key == SDLK_PAGEUP || key == SDLK_PAGEDOWN)
+	if(key == SDLK_PAGEUP || key == SDLK_PAGEDOWN)
 	{
 		scroll += static_cast<double>((Screen::Height() - 100) * ((key == SDLK_PAGEUP) - (key == SDLK_PAGEDOWN)));
 		scroll = min(0., max(-maxScroll, scroll));
@@ -135,12 +109,8 @@ bool MapSalesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 	else if(key == 'f')
 		GetUI()->Push(new Dialog(
 			this, &MapSalesPanel::DoFind, "Search for:"));
-	else if(key == '+' || key == '=')
-		ZoomMap();
-	else if(key == '-')
-		UnzoomMap();
 	else
-		return false;
+		return MapPanel::KeyDown(key, mod, command);
 	
 	return true;
 }
@@ -266,20 +236,6 @@ void MapSalesPanel::DrawPanel() const
 
 
 
-void MapSalesPanel::DrawButtons()
-{
-	Information info;
-	info.SetCondition(isOutfitters ? "is outfitters" : "is shipyards");
-	if(ZoomIsMax())
-		info.SetCondition("max zoom");
-	if(ZoomIsMin())
-		info.SetCondition("min zoom");
-	const Interface *interface = GameData::Interfaces().Get("map buttons");
-	interface->Draw(info, this);
-}
-
-
-
 void MapSalesPanel::DrawInfo() const
 {
 	if(selected >= 0)
@@ -334,8 +290,7 @@ void MapSalesPanel::DrawInfo() const
 
 bool MapSalesPanel::DrawHeader(Point &corner, const string &category)
 {
-	auto hit = hideCategory.find(category);
-	bool hide = (hit != hideCategory.end() && hit->second);
+	bool hide = collapsed.count(category);
 	if(!hidPrevious)
 		corner.Y() += 50.;
 	hidPrevious = hide;
@@ -424,13 +379,18 @@ void MapSalesPanel::ScrollTo(int index)
 
 void MapSalesPanel::ClickCategory(const string &name)
 {
-	bool set = !hideCategory[name];
+	bool isHidden = collapsed.count(name);
 	if(SDL_GetModState() & KMOD_SHIFT)
 	{
 		// If the shift key is held down, hide or show all categories.
-		for(const string &category : categories)
-			hideCategory[category] = set;
+		if(isHidden)
+			collapsed.clear();
+		else
+			for(const string &category : categories)
+				collapsed.insert(category);
 	}
+	else if(isHidden)
+		collapsed.erase(name);
 	else
-		hideCategory[name] = set;
+		collapsed.insert(name);
 }

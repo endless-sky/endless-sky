@@ -36,7 +36,7 @@ class Outfit;
 // outfitter panel (e.g. the sidebar with the ships you own).
 class ShopPanel : public Panel {
 public:
-	ShopPanel(PlayerInfo &player, const std::vector<std::string> &categories);
+	ShopPanel(PlayerInfo &player, bool isOutfitter);
 	
 	virtual void Step() override;
 	virtual void Draw() override;
@@ -126,7 +126,7 @@ protected:
 	
 	std::map<std::string, std::set<std::string>> catalog;
 	const std::vector<std::string> &categories;
-	std::set<std::string> collapsed;
+	std::set<std::string> &collapsed;
 	
 	ShipInfoDisplay shipInfo;
 	OutfitInfoDisplay outfitInfo;

@@ -85,7 +85,7 @@ outfit "Finisher Pod"
 			"no repeat"
 		sound "torpedo"
 		ammo "Finisher Torpedo"
-		icon "icon/torpedo"
+		icon "icon/finisher"
 		"fire effect" "finisher sparks" 8
 		"hit effect" "finisher impact" 2
 		"hit effect" "finisher fragment" 12

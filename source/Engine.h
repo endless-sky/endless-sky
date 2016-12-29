@@ -15,6 +15,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "AI.h"
 #include "AsteroidField.h"
+#include "CollisionSet.h"
 #include "DrawList.h"
 #include "EscortDisplay.h"
 #include "Flotsam.h"
@@ -48,7 +49,7 @@ class PlayerInfo;
 // situations where there are many objects on screen at once.
 class Engine {
 public:
-	Engine(PlayerInfo &player);
+	explicit Engine(PlayerInfo &player);
 	~Engine();
 	
 	// Place all the player's ships, and "enter" the system the player is in.
@@ -137,7 +138,7 @@ private:
 	
 	std::list<std::shared_ptr<Ship>> ships;
 	std::list<Projectile> projectiles;
-	std::list<Flotsam> flotsam;
+	std::list<std::shared_ptr<Flotsam>> flotsam;
 	std::list<Effect> effects;
 	// Keep track of which ships we have not seen for long enough that it is
 	// time to stop tracking their movements.
@@ -150,6 +151,9 @@ private:
 	int grudgeTime = 0;
 	
 	AsteroidField asteroids;
+	
+	CollisionSet shipCollisions;
+	CollisionSet cloakedCollisions;
 	
 	int alarmTime = 0;
 	double flash = 0.;

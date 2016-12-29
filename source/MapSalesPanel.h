@@ -17,7 +17,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "ClickZone.h"
 
-#include <map>
+#include <set>
 #include <string>
 #include <vector>
 
@@ -59,7 +59,6 @@ protected:
 	
 	void DrawKey() const;
 	void DrawPanel() const;
-	void DrawButtons();
 	void DrawInfo() const;
 	
 	bool DrawHeader(Point &corner, const std::string &category);
@@ -90,7 +89,7 @@ private:
 	bool isOutfitters = false;
 	
 	bool hidPrevious = true;
-	std::map<std::string, bool> hideCategory;
+	std::set<std::string> &collapsed;
 	
 	std::vector<ClickZone<int>> zones;
 	int selected = -1;

@@ -13,14 +13,21 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "MapPanel.h"
 
 #include "Angle.h"
+#include "Dialog.h"
 #include "FogShader.h"
 #include "Font.h"
 #include "FontSet.h"
 #include "Galaxy.h"
 #include "GameData.h"
 #include "Government.h"
+#include "Information.h"
+#include "Interface.h"
 #include "LineShader.h"
+#include "MapDetailPanel.h"
+#include "MapOutfitterPanel.h"
+#include "MapShipyardPanel.h"
 #include "Mission.h"
+#include "MissionPanel.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
 #include "PointerShader.h"
@@ -104,6 +111,24 @@ void MapPanel::Draw()
 		font.Draw(NO_ROUTE, point + Point(1, 1), black);
 		font.Draw(NO_ROUTE, point, red);
 	}
+}
+
+
+
+void MapPanel::DrawButtons(const string &condition)
+{
+	// Remember which buttons we're showing.
+	buttonCondition = condition;
+	
+	// Draw the buttons to switch to other map modes.
+	Information info;
+	info.SetCondition(condition);
+	if(player.MapZoom() == 2)
+		info.SetCondition("max zoom");
+	if(player.MapZoom() == -2)
+		info.SetCondition("min zoom");
+	const Interface *interface = GameData::Interfaces().Get("map buttons");
+	interface->Draw(info, this);
 }
 
 
@@ -216,6 +241,49 @@ void MapPanel::DrawMiniMap(const PlayerInfo &player, double alpha, const System 
 
 
 
+bool MapPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
+{
+	if(command.Has(Command::MAP) || key == 'd' || key == SDLK_ESCAPE
+			|| (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
+		GetUI()->Pop(this);
+	else if(key == 's' && buttonCondition != "is shipyards")
+	{
+		GetUI()->Pop(this);
+		GetUI()->Push(new MapShipyardPanel(*this));
+	}
+	else if(key == 'o' && buttonCondition != "is outfitters")
+	{
+		GetUI()->Pop(this);
+		GetUI()->Push(new MapOutfitterPanel(*this));
+	}
+	else if(key == 'i' && buttonCondition != "is missions")
+	{
+		GetUI()->Pop(this);
+		GetUI()->Push(new MissionPanel(*this));
+	}
+	else if(key == 'p' && buttonCondition != "is ports")
+	{
+		GetUI()->Pop(this);
+		GetUI()->Push(new MapDetailPanel(*this));
+	}
+	else if(key == 'f')
+	{
+		GetUI()->Push(new Dialog(
+			this, &MapPanel::Find, "Search for:"));
+		return true;
+	}
+	else if(key == '+' || key == '=')
+		player.SetMapZoom(min(2, player.MapZoom() + 1));
+	else if(key == '-')
+		player.SetMapZoom(max(-2, player.MapZoom() - 1));
+	else
+		return false;
+	
+	return true;
+}
+
+
+
 bool MapPanel::Click(int x, int y, int clicks)
 {
 	// Figure out if a system was clicked on.
@@ -247,9 +315,10 @@ bool MapPanel::Scroll(double dx, double dy)
 	Point mouse = UI::GetMouse();
 	Point anchor = mouse / Zoom() - center;
 	if(dy > 0.)
-		ZoomMap();
+		player.SetMapZoom(min(2, player.MapZoom() + 1));
 	else
-		UnzoomMap();
+		player.SetMapZoom(max(-2, player.MapZoom() - 1));
+	
 	// Now, Zoom() has changed (unless at one of the limits). But, we still want
 	// anchor to be the same, so:
 	center = mouse / Zoom() - anchor;
@@ -392,7 +461,7 @@ void MapPanel::Select(const System *system)
 
 
 
-const Planet *MapPanel::Find(const string &name)
+void MapPanel::Find(const string &name)
 {
 	int bestIndex = 9999;
 	for(const auto &it : GameData::Systems())
@@ -405,7 +474,10 @@ const Planet *MapPanel::Find(const string &name)
 				selectedSystem = &it.second;
 				center = Zoom() * (Point() - selectedSystem->Position());
 				if(!index)
-					return nullptr;
+				{
+					selectedPlanet = nullptr;
+					return;
+				}
 			}
 		}
 	for(const auto &it : GameData::Planets())
@@ -418,47 +490,19 @@ const Planet *MapPanel::Find(const string &name)
 				selectedSystem = it.second.GetSystem();
 				center = Zoom() * (Point() - selectedSystem->Position());
 				if(!index)
-					return &it.second;
+				{
+					selectedPlanet = &it.second;
+					return;
+				}
 			}
 		}
-	return nullptr;
-}
-
-
-
-void MapPanel::ZoomMap()
-{
-	if(zoom < maxZoom)
-		zoom++;
-}
-
-
-
-void MapPanel::UnzoomMap()
-{
-	if(zoom > -maxZoom)
-		zoom--;
 }
 
 
 
 double MapPanel::Zoom() const
 {
-	return pow(1.5, zoom);
-}
-
-
-
-bool MapPanel::ZoomIsMax() const
-{
-	return (zoom == maxZoom);
-}
-
-
-
-bool MapPanel::ZoomIsMin() const
-{
-	return (zoom == -maxZoom);
+	return pow(1.5, player.MapZoom());
 }
 
 

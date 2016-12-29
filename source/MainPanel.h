@@ -29,7 +29,7 @@ class ShipEvent;
 // needed to move the ships around and to figure out where they should be drawn.
 class MainPanel : public Panel {
 public:
-	MainPanel(PlayerInfo &player);
+	explicit MainPanel(PlayerInfo &player);
 	
 	virtual void Step() override;
 	virtual void Draw() override;

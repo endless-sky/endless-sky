@@ -30,8 +30,8 @@ class Mission;
 // have previously accepted.
 class MissionPanel : public MapPanel {
 public:
-	MissionPanel(PlayerInfo &player);
-	MissionPanel(const MapPanel &panel);
+	explicit MissionPanel(PlayerInfo &player);
+	explicit MissionPanel(const MapPanel &panel);
 	
 	virtual void Step() override;
 	virtual void Draw() override;
@@ -47,8 +47,6 @@ protected:
 	
 	
 private:
-	void DoFind(const std::string &text);
-	
 	void DrawKey() const;
 	void DrawSelectedSystem() const;
 	void DrawMissionSystem(const Mission &mission, const Color &color) const;

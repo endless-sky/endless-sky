@@ -30,8 +30,8 @@ class Sprite;
 // to see which systems it is available in.
 class MapShipyardPanel : public MapSalesPanel {
 public:
-	MapShipyardPanel(PlayerInfo &player);
-	MapShipyardPanel(const MapPanel &panel);
+	explicit MapShipyardPanel(PlayerInfo &player);
+	explicit MapShipyardPanel(const MapPanel &panel);
 	
 	
 protected:

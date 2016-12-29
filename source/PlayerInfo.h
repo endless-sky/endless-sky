@@ -207,6 +207,11 @@ public:
 	// Get or set what coloring is currently selected in the map.
 	int MapColoring() const;
 	void SetMapColoring(int index);
+	// Get or set the map zoom level.
+	int MapZoom() const;
+	void SetMapZoom(int level);
+	// Get the set of collapsed categories for the named panel.
+	std::set<std::string> &Collapsed(const std::string &name);
 	
 	
 private:
@@ -275,6 +280,9 @@ private:
 	
 	// Currently selected coloring, in the map panel (defaults to reputation):
 	int mapColoring = -6;
+	int mapZoom = 0;
+	// Currently collapsed categories for various panels.
+	std::map<std::string, std::set<std::string>> collapsed;
 	
 	bool freshlyLoaded = true;
 };

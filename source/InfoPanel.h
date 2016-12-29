@@ -37,7 +37,7 @@ class Rectangle;
 // hardpoints.
 class InfoPanel : public Panel {
 public:
-	InfoPanel(PlayerInfo &player, bool showFlagship = false);
+	explicit InfoPanel(PlayerInfo &player, bool showFlagship = false);
 	
 	virtual void Draw() override;
 	

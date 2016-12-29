@@ -33,8 +33,10 @@ namespace {
 // Music constructor, which starts the decoding thread. Initially, the thread
 // has no file to read, so it will sleep until a file is specified.
 Music::Music()
-	: silence(OUTPUT_CHUNK, 0), thread(&Music::Decode, this)
+	: silence(OUTPUT_CHUNK, 0)
 {
+	// Don't start the thread until this object is fully constructed.
+	thread = std::thread(&Music::Decode, this);
 }
 
 
@@ -117,7 +119,7 @@ void Music::Decode()
 	mad_frame frame;
 	mad_synth synth;
 	// Loop until the thread is told to quit.
-	while(!done)
+	while(true)
 	{
 		// First, wait until the "nextFile" has been specified or we're done.
 		FILE *file = nullptr;
@@ -144,7 +146,7 @@ void Music::Decode()
 		mad_synth_init(&synth);
 		
 		// Loop until we are asked to switch files.
-		while(nextFile == file)
+		while(true)
 		{
 			// If the "next" buffer has filled up, wait until it is retrieved.
 			// Generally try to queue up two chunks worth of samples in it, just
@@ -174,7 +176,7 @@ void Music::Decode()
 			if(!read || feof(file))
 				rewind(file);
 			// If there is nothing to decode, return to the top of this loop.
-			if(input.empty())
+			if(!(read + remainder))
 				continue;
 			
 			// Hand the input to the stream decoder.
@@ -204,7 +206,7 @@ void Music::Decode()
 				
 				// For this part, we need access to the output buffer.
 				lock.lock();
-				if(nextFile != file)
+				if(done || nextFile != file)
 					break;
 	
 				// We'll alternate what channel we read from each time through the loop.
@@ -221,7 +223,7 @@ void Music::Decode()
 					next.push_back(sample >> (MAD_F_FRACBITS + 1 - 16));
 				}
 				// Now, the "next" buffer can be used by others. In theory, the
-				// NextBuffer() function could take what's in that buffer while
+				// NextChunk() function could take what's in that buffer while
 				// we are right in the middle of this decoding cycle.
 				lock.unlock();
 			}

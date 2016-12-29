@@ -156,7 +156,7 @@ mission "Coalition: Ringworld Materials 2"
 		payment 40000
 		dialog `You drop off the construction materials and receive <payment> in payment.`
 
-mission "Coalition: Ringworld Materials 2"
+mission "Coalition: Ringworld Materials 3"
 	job
 	name "Materials to the <planet>"
 	description "Deliver these <tons> of construction materials to the Heliarch <planet> by <date>. Payment will be <payment>."
@@ -324,7 +324,7 @@ mission "Coalition: Peacekeepers 1"
 		payment 20000
 		dialog `You drop off the peacekeepers on <planet>. A few minutes later you receive a transfer of <payment>.`
 
-mission "Coalition: Peacekeepers 1"
+mission "Coalition: Peacekeepers 2"
 	job
 	name "Peacekeepers to <planet>"
 	description "Transport this corps of <bunks> peacekeepers to <destination>, to investigate reports of Resistance activity. Payment is <payment>."

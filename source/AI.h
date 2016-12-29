@@ -20,7 +20,12 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <map>
 #include <memory>
 
+class Angle;
+class AsteroidField;
+class Body;
+class Flotsam;
 class Government;
+class Minable;
 class Point;
 class Ship;
 class ShipEvent;
@@ -36,15 +41,19 @@ class PlayerInfo;
 // the same target over and over.
 class AI {
 public:
+	template <class Type>
+	using List = std::list<std::shared_ptr<Type>>;
+	AI(const List<Ship> &ships, const List<Minable> &minables, const List<Flotsam> &flotsam);
+	
 	void UpdateKeys(PlayerInfo &player, Command &clickCommands, bool isActive);
 	void UpdateEvents(const std::list<ShipEvent> &events);
 	void Clean();
-	void Step(const std::list<std::shared_ptr<Ship>> &ships, const PlayerInfo &player);
+	void Step(const PlayerInfo &player);
 	
 	
 private:
 	// Pick a new target for the given ship.
-	std::shared_ptr<Ship> FindTarget(const Ship &ship, const std::list<std::shared_ptr<Ship>> &ships) const;
+	std::shared_ptr<Ship> FindTarget(const Ship &ship) const;
 	
 	void MoveIndependent(Ship &ship, Command &command) const;
 	void MoveEscort(Ship &ship, Command &command) const;
@@ -60,9 +69,13 @@ private:
 	static void Swarm(Ship &ship, Command &command, const Ship &target);
 	static void KeepStation(Ship &ship, Command &command, const Ship &target);
 	static void Attack(Ship &ship, Command &command, const Ship &target);
-	void DoSurveillance(Ship &ship, Command &command, const std::list<std::shared_ptr<Ship>> &ships) const;
-	static void DoCloak(Ship &ship, Command &command, const std::list<std::shared_ptr<Ship>> &ships);
-	static void DoScatter(Ship &ship, Command &command, const std::list<std::shared_ptr<Ship>> &ships);
+	static void MoveToAttack(Ship &ship, Command &command, const Body &target);
+	static void PickUp(Ship &ship, Command &command, const Body &target);
+	void DoSurveillance(Ship &ship, Command &command) const;
+	void DoMining(Ship &ship, Command &command);
+	bool DoHarvesting(Ship &ship, Command &command);
+	void DoCloak(Ship &ship, Command &command);
+	void DoScatter(Ship &ship, Command &command);
 	
 	static Point StoppingPoint(const Ship &ship, bool &shouldReverse);
 	// Get a vector giving the direction this ship should aim in in order to do
@@ -70,17 +83,24 @@ private:
 	// non-homing weapons. If the ship has no non-homing weapons, this just
 	// returns the direction to the target.
 	static Point TargetAim(const Ship &ship);
+	static Point TargetAim(const Ship &ship, const Body &target);
 	// Fire whichever of the given ship's weapons can hit a hostile target.
 	// Return a bitmask giving the weapons to fire.
-	Command AutoFire(const Ship &ship, const std::list<std::shared_ptr<Ship>> &ships, bool secondary = true) const;
+	Command AutoFire(const Ship &ship, bool secondary = true) const;
+	Command AutoFire(const Ship &ship, const Body &target) const;
 	
-	void MovePlayer(Ship &ship, const PlayerInfo &player, const std::list<std::shared_ptr<Ship>> &ships);
+	void MovePlayer(Ship &ship, const PlayerInfo &player);
 	
 	bool Has(const Ship &ship, const std::weak_ptr<const Ship> &other, int type) const;
 	bool Has(const Government *government, const std::weak_ptr<const Ship> &other, int type) const;
 	
 	
 private:
+	// Data from the game engine.
+	const List<Ship> &ships;
+	const List<Minable> &minables;
+	const List<Flotsam> &flotsam;
+	
 	int step = 0;
 	
 	Command keyDown;
@@ -104,6 +124,9 @@ private:
 	std::map<const Government *, std::map<std::weak_ptr<const Ship>, int, Comp>> governmentActions;
 	std::map<std::weak_ptr<const Ship>, int, Comp> playerActions;
 	std::map<const Ship *, int> swarmCount;
+	std::map<const Ship *, Angle> miningAngle;
+	std::map<const Ship *, int> miningTime;
+	std::map<const Ship *, double> appeasmentThreshold;
 	
 	std::map<const Ship *, int64_t> shipStrength;
 	
