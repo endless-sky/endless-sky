@@ -30,7 +30,7 @@ class Sprite;
 class EscortDisplay {
 public:
 	void Clear();
-	void Add(const Ship &ship, bool isHere, bool fleetIsJumping);
+	void Add(const Ship &ship, bool isHere, bool fleetIsJumping, bool isSelected);
 	
 	// The display starts in the lower left corner of the screen and takes up
 	// all but the top 450 pixels of the screen.
@@ -44,7 +44,7 @@ public:
 private:
 	class Icon {
 	public:
-		Icon(const Ship &ship, bool isHere, bool fleetIsJumping);
+		Icon(const Ship &ship, bool isHere, bool fleetIsJumping, bool isSelected);
 		
 		// Sorting operator.
 		bool operator<(const Icon &other) const;
@@ -54,9 +54,9 @@ private:
 		
 		const Sprite *sprite;
 		bool isHere;
-		bool isReadyToJump;
+		bool notReadyToJump;
 		bool cannotJump;
-		int stackSize;
+		bool isSelected;
 		int64_t cost;
 		std::string system;
 		std::vector<double> low;

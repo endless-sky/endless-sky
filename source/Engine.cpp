@@ -370,10 +370,23 @@ void Engine::Step(bool isActive)
 	for(const auto &it : ships)
 		if(it->GetGovernment()->IsPlayer() || it->GetPersonality().IsEscort())
 			if(!it->IsYours() && !it->CanBeCarried())
-				escorts.Add(*it, it->GetSystem() == currentSystem, fleetIsJumping);
+			{
+				bool isSelected = (flagship && flagship->GetTargetShip() == it);
+				escorts.Add(*it, it->GetSystem() == currentSystem, fleetIsJumping, isSelected);
+			}
 	for(const shared_ptr<Ship> &escort : player.Ships())
 		if(!escort->IsParked() && escort != flagship)
-			escorts.Add(*escort, escort->GetSystem() == currentSystem, fleetIsJumping);
+		{
+			// Check if this escort is selected.
+			bool isSelected = false;
+			for(const weak_ptr<Ship> &ptr : player.SelectedShips())
+				if(ptr.lock() == escort)
+				{
+					isSelected = true;
+					break;
+				}
+			escorts.Add(*escort, escort->GetSystem() == currentSystem, fleetIsJumping, isSelected);
+		}
 	
 	// Create the status overlays.
 	statuses.clear();
