@@ -216,6 +216,8 @@ void PlayerInfo::Load(const string &path)
 			ships.back()->FinishLoading();
 			ships.back()->SetIsYours();
 		}
+		else if(child.Token(0) == "groups" && child.Size() >= 2 && !ships.empty())
+			groups[ships.back().get()] = child.Value(1);
 	}
 	// Based on the ships that were loaded, calculate the player's capacity for
 	// cargo and passengers.
@@ -1775,6 +1777,20 @@ bool PlayerInfo::SelectShips(const vector<const Ship *> &stack, bool hasShift)
 
 
 
+void PlayerInfo::SelectShip(const Ship *ship, bool hasShift)
+{
+	// If shift is not held down, replace the current selection.
+	if(!hasShift)
+		selectedShips.clear();
+	
+	bool first = !hasShift;
+	for(const shared_ptr<Ship> &it : ships)
+		if(it.get() == ship)
+			SelectShip(it, &first);
+}
+
+
+
 void PlayerInfo::SelectGroup(int group, bool hasShift)
 {
 	int bit = (1 << group);
@@ -1782,6 +1798,12 @@ void PlayerInfo::SelectGroup(int group, bool hasShift)
 	// already selected, deselect them all. Otherwise, select them all. The easy
 	// way to do this is first to remove all the ships that match in one pass,
 	// then add them in a subsequent pass if any were not selected.
+	const Ship *oldTarget = nullptr;
+	if(Flagship() && Flagship()->GetTargetShip())
+	{
+		oldTarget = Flagship()->GetTargetShip().get();
+		Flagship()->SetTargetShip(shared_ptr<Ship>());
+	}
 	if(hasShift)
 	{
 		bool allWereSelected = true;
@@ -1807,7 +1829,11 @@ void PlayerInfo::SelectGroup(int group, bool hasShift)
 	// shift is held they won't be added twice, because we removed them above.
 	for(const shared_ptr<Ship> &ship : ships)
 		if(groups[ship.get()] & bit)
+		{
 			selectedShips.push_back(ship);
+			if(ship.get() == oldTarget)
+				Flagship()->SetTargetShip(ship);
+		}
 }
 
 
@@ -1824,7 +1850,7 @@ void PlayerInfo::SetGroup(int group)
 	{
 		shared_ptr<Ship> ship = ptr.lock();
 		if(ship)
-			groups[ship.get()] |= mask;
+			groups[ship.get()] |= bit;
 	}
 }
 
@@ -2070,7 +2096,12 @@ void PlayerInfo::Save(const string &path) const
 		
 	// Save all the data for all the player's ships.
 	for(const shared_ptr<Ship> &ship : ships)
+	{
 		ship->Save(out);
+		auto it = groups.find(ship.get());
+		if(it != groups.end() && it->second)
+			out.Write("groups", it->second);
+	}
 	
 	// Save accounting information, cargo, and cargo cost bases.
 	cargo.Save(out);
@@ -2207,7 +2238,7 @@ void PlayerInfo::SelectShip(const shared_ptr<Ship> &ship, bool *first)
 		// This ship is not yet selected.
 		selectedShips.push_back(ship);
 		Ship *flagship = Flagship();
-		if(first && flagship && ship.get() != flagship)
+		if(*first && flagship && ship.get() != flagship)
 		{
 			flagship->SetTargetShip(ship);
 			*first = false;

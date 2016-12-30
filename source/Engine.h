@@ -72,7 +72,7 @@ public:
 	
 	// Select the object the player clicked on.
 	void Click(const Point &from, const Point &to, bool hasShift);
-	void SelectGroup(int group, bool hasShift);
+	void SelectGroup(int group, bool hasShift, bool hasControl);
 	
 	
 private:
@@ -167,6 +167,7 @@ private:
 	
 	bool doClick = false;
 	bool hasShift = false;
+	bool hasControl = false;
 	Point clickPoint;
 	Rectangle clickBox;
 	int groupSelect = -1;

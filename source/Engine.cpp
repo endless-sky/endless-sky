@@ -522,14 +522,24 @@ void Engine::Step(bool isActive)
 	// Handle any events that change the selected ships.
 	if(groupSelect >= 0)
 	{
-		player.SelectGroup(groupSelect, hasShift);
+		// This has to be done in Step() to avoid race conditions.
+		if(hasControl)
+			player.SetGroup(groupSelect);
+		else
+			player.SelectGroup(groupSelect, hasShift);
 		groupSelect = -1;
 	}
 	if(doClick)
 	{
 		doClick = !player.SelectShips(clickBox, hasShift);
 		if(doClick)
-			doClick = !player.SelectShips(escorts.Click(clickPoint), hasShift);
+		{
+			const vector<const Ship *> &stack = escorts.Click(clickPoint);
+			if(!stack.empty())
+				doClick = !player.SelectShips(stack, hasShift);
+			else
+				clickPoint /= zoom;
+		}
 	}
 	
 	// Draw crosshairs on all the selected ships.
@@ -712,15 +722,16 @@ void Engine::Click(const Point &from, const Point &to, bool hasShift)
 	doClick = true;
 	this->hasShift = hasShift;
 	clickPoint = from;
-	clickBox = Rectangle::WithCorners(from * zoom + center, to * zoom + center);
+	clickBox = Rectangle::WithCorners(from / zoom + center, to / zoom + center);
 }
 
 
 
-void Engine::SelectGroup(int group, bool hasShift)
+void Engine::SelectGroup(int group, bool hasShift, bool hasControl)
 {
 	groupSelect = group;
 	this->hasShift = hasShift;
+	this->hasControl = hasControl;
 }
 
 
@@ -1194,8 +1205,13 @@ void Engine::CalculateStep()
 					Audio::Play(it.first);
 		}
 	}
-	if(clickTarget && clickTarget == previousTarget)
-		clickCommands |= Command::BOARD;
+	if(clickTarget)
+	{
+		if(clickTarget == previousTarget)
+			clickCommands |= Command::BOARD;
+		else if(clickTarget->GetGovernment()->IsPlayer())
+			player.SelectShip(clickTarget, hasShift);
+	}
 	if(alarmTime)
 		--alarmTime;
 	else if(hasHostiles && !hadHostiles)

@@ -199,6 +199,7 @@ public:
 	// selected.
 	bool SelectShips(const Rectangle &box, bool hasShift);
 	bool SelectShips(const std::vector<const Ship *> &stack, bool hasShift);
+	void SelectShip(const Ship *ship, bool hasShift);
 	void SelectGroup(int group, bool hasShift);
 	void SetGroup(int group);
 	
