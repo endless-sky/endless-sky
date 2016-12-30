@@ -25,8 +25,8 @@ mission "Slave Transport [0]: Release Slaves"
 		conversation
 			`Luckily, the security on <planet> did not detect the slaves on your ship. You've sold your passengers into slavery before, so maybe you could release these slaves to the local government and recieve a reward.`
 			choice
-				`	(Accept.)`
-				`	(Decline.)`
+				`	(Free the slaves.)`
+				`	(Keep the slaves.)`
 					decline
 			`	You make up some story about how you rescued these slaves from their warlord. The local government praise you for releasing them and rewards you <payment>.`
 				accept
@@ -59,8 +59,8 @@ mission "Slave Transport [1]: Release Slaves"
 		conversation
 			`Luckily, the security on <planet> did not detect the slaves on your ship. You've sold your passengers into slavery before, so maybe you could release these slaves to the local government and recieve a reward.`
 			choice
-				`	(Accept.)`
-				`	(Decline.)`
+				`	(Free the slaves.)`
+				`	(Keep the slaves.)`
 					decline
 			`	You make up some story about how you rescued these slaves from their warlord. The local government praise you for releasing them and rewards you <payment>.`
 				accept
@@ -93,8 +93,8 @@ mission "Bulk Slave Transport [0]: Release Slaves"
 		conversation
 			`Luckily, the security on <planet> did not detect the slaves on your ship. You've sold your passengers into slavery before, so maybe you could release these slaves to the local government and recieve a reward.`
 			choice
-				`	(Accept.)`
-				`	(Decline.)`
+				`	(Free the slaves.)`
+				`	(Keep the slaves.)`
 					decline
 			`	You make up some story about how you rescued these slaves from their warlord. The local government praise you for releasing them and rewards you <payment>.`
 				accept
@@ -127,8 +127,8 @@ mission "Bulk Slave Transport [1]: Release Slaves"
 		conversation
 			`Luckily, the security on <planet> did not detect the slaves on your ship. You've sold your passengers into slavery before, so maybe you could release these slaves to the local government and recieve a reward.`
 			choice
-				`	(Accept.)`
-				`	(Decline.)`
+				`	(Free the slaves.)`
+				`	(Keep the slaves.)`
 					decline
 			`	You make up some story about how you rescued these slaves from their warlord. The local government praise you for releasing them and rewards you <payment>.`
 				accept
