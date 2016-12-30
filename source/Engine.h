@@ -24,6 +24,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Point.h"
 #include "Projectile.h"
 #include "Radar.h"
+#include "Rectangle.h"
 #include "Ship.h"
 #include "ShipEvent.h"
 
@@ -70,7 +71,8 @@ public:
 	void Draw() const;
 	
 	// Select the object the player clicked on.
-	void Click(const Point &point);
+	void Click(const Point &from, const Point &to, bool hasShift);
+	void SelectGroup(int group, bool hasShift);
 	
 	
 private:
@@ -164,8 +166,11 @@ private:
 	double zoom = 1.;
 	
 	bool doClick = false;
-	Command clickCommands;
+	bool hasShift = false;
 	Point clickPoint;
+	Rectangle clickBox;
+	int groupSelect = -1;
+	Command clickCommands;
 	
 	double load = 0.;
 	int loadCount = 0;

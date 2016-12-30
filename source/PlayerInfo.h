@@ -34,6 +34,7 @@ class Government;
 class Outfit;
 class Person;
 class Planet;
+class Rectangle;
 class Ship;
 class ShipEvent;
 class StellarObject;
@@ -192,6 +193,15 @@ public:
 	const Outfit *SelectedWeapon() const;
 	void SelectNext();
 	
+	// Escorts currently selected for giving orders.
+	const std::vector<std::weak_ptr<Ship>> &SelectedShips() const;
+	// Select any player ships in the given box or list. Return true if any were
+	// selected.
+	bool SelectShips(const Rectangle &box, bool hasShift);
+	bool SelectShips(const std::vector<const Ship *> &stack, bool hasShift);
+	void SelectGroup(int group, bool hasShift);
+	void SetGroup(int group);
+	
 	// Keep track of any outfits that you have sold since landing. These will be
 	// available to buy back until you take off.
 	int Stock(const Outfit *outfit) const;
@@ -226,6 +236,9 @@ private:
 	void Autosave() const;
 	void Save(const std::string &path) const;
 	
+	// Helper function to update the ship selection.
+	void SelectShip(const std::shared_ptr<Ship> &ship, bool *first);
+	
 	
 private:
 	std::string firstName;
@@ -243,6 +256,8 @@ private:
 	
 	std::shared_ptr<Ship> flagship;
 	std::vector<std::shared_ptr<Ship>> ships;
+	std::vector<std::weak_ptr<Ship>> selectedShips;
+	std::map<const Ship *, int> groups;
 	CargoHold cargo;
 	std::map<std::string, int64_t> costBasis;
 	

@@ -519,6 +519,33 @@ void Engine::Step(bool isActive)
 			info.SetBar("target hull", 0.);
 		}
 	}
+	// Handle any events that change the selected ships.
+	if(groupSelect >= 0)
+	{
+		player.SelectGroup(groupSelect, hasShift);
+		groupSelect = -1;
+	}
+	if(doClick)
+	{
+		doClick = !player.SelectShips(clickBox, hasShift);
+		if(doClick)
+			doClick = !player.SelectShips(escorts.Click(clickPoint), hasShift);
+	}
+	
+	// Draw crosshairs on all the selected ships.
+	for(const weak_ptr<Ship> &selected : player.SelectedShips())
+	{
+		shared_ptr<Ship> ship = selected.lock();
+		if(ship && ship != target && !ship->IsParked() && ship->GetSystem() == player.GetSystem())
+		{
+			double size = (ship->Width() + ship->Height()) * .35;
+			targets.push_back({
+				ship->Position() - center,
+				Angle(45.) + ship->Facing(),
+				size,
+				Radar::PLAYER});
+		}
+	}
 }
 
 
@@ -679,10 +706,21 @@ void Engine::Draw() const
 
 
 // Select the object the player clicked on.
-void Engine::Click(const Point &point)
+void Engine::Click(const Point &from, const Point &to, bool hasShift)
 {
+	// First, see if this is a click on an escort icon.
 	doClick = true;
-	clickPoint = point;
+	this->hasShift = hasShift;
+	clickPoint = from;
+	clickBox = Rectangle::WithCorners(from * zoom + center, to * zoom + center);
+}
+
+
+
+void Engine::SelectGroup(int group, bool hasShift)
+{
+	groupSelect = group;
+	this->hasShift = hasShift;
 }
 
 

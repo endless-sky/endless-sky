@@ -13,6 +13,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef ESCORT_DISPLAY_H_
 #define ESCORT_DISPLAY_H_
 
+#include "Point.h"
+
 #include <cstdint>
 #include <list>
 #include <string>
@@ -33,6 +35,10 @@ public:
 	// The display starts in the lower left corner of the screen and takes up
 	// all but the top 450 pixels of the screen.
 	void Draw() const;
+	
+	// Check if the given point is a click on an escort icon. If so, return the
+	// stack of ships represented by the icon. Otherwise, return an empty stack.
+	const std::vector<const Ship *> &Click(const Point &point) const;
 	
 	
 private:
@@ -55,6 +61,7 @@ private:
 		std::string system;
 		std::vector<double> low;
 		std::vector<double> high;
+		std::vector<const Ship *> ships;
 	};
 	
 	
@@ -64,6 +71,8 @@ private:
 	
 private:
 	mutable std::list<Icon> icons;
+	mutable std::vector<std::vector<const Ship *>> stacks;
+	mutable std::vector<Point> zones; 
 };
 
 

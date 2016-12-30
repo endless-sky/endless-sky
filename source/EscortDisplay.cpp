@@ -87,6 +87,8 @@ void EscortDisplay::Draw() const
 		double scale = min(20. / escort.sprite->Width(), 20. / escort.sprite->Height());
 		Point size(escort.sprite->Width() * scale, escort.sprite->Height() * scale);
 		OutlineShader::Draw(escort.sprite, pos, size, color);
+		zones.push_back(pos);
+		stacks.push_back(escort.ships);
 		// Draw the number of ships in this stack.
 		double width = 70.;
 		if(escort.stackSize > 1)
@@ -140,6 +142,20 @@ void EscortDisplay::Draw() const
 
 
 
+// Check if the given point is a click on an escort icon. If so, return the
+// stack of ships represented by the icon. Otherwise, return an empty stack.
+const vector<const Ship *> &EscortDisplay::Click(const Point &point) const
+{
+	for(unsigned i = 0; i < zones.size(); ++i)
+		if(point.Distance(zones[i]) < 15.)
+			return stacks[i];
+	
+	static const vector<const Ship *> empty;
+	return empty;
+}
+
+
+
 EscortDisplay::Icon::Icon(const Ship &ship, bool isHere, bool fleetIsJumping)
 	: sprite(ship.GetSprite()),
 	isHere(isHere && !ship.IsDisabled()),
@@ -149,7 +165,8 @@ EscortDisplay::Icon::Icon(const Ship &ship, bool isHere, bool fleetIsJumping)
 	cost(ship.Cost()),
 	system((!isHere && ship.GetSystem()) ? ship.GetSystem()->Name() : ""),
 	low{ship.Shields(), ship.Hull(), ship.Energy(), ship.Heat(), ship.Fuel()},
-	high(low)
+	high(low),
+	ships(1, &ship)
 {
 }
 
@@ -183,6 +200,7 @@ void EscortDisplay::Icon::Merge(const Icon &other)
 		low[i] = min(low[i], other.low[i]);
 		high[i] = max(high[i], other.high[i]);
 	}
+	ships.insert(ships.end(), other.ships.begin(), other.ships.end());
 }
 
 

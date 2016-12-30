@@ -42,6 +42,8 @@ protected:
 	// Only override the ones you need; the default action is to return false.
 	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command) override;
 	virtual bool Click(int x, int y, int clicks) override;
+	virtual bool Drag(double dx, double dy);
+	virtual bool Release(int x, int y);
 	virtual bool Scroll(double dx, double dy) override;
 	
 	
@@ -60,6 +62,11 @@ private:
 	double load;
 	double loadSum;
 	int loadCount;
+	
+	Point dragSource;
+	Point dragPoint;
+	bool isDragging = false;
+	bool hasShift = false;
 };
 
 

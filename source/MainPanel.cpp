@@ -22,6 +22,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Government.h"
 #include "HailPanel.h"
 #include "InfoPanel.h"
+#include "LineShader.h"
 #include "MapDetailPanel.h"
 #include "Messages.h"
 #include "Planet.h"
@@ -155,6 +156,15 @@ void MainPanel::Draw()
 	
 	engine.Draw();
 	
+	if(isDragging)
+	{
+		Color color(.2, 1., 0., 0.);
+		LineShader::Draw(dragSource, Point(dragSource.X(), dragPoint.Y()), .8, color);
+		LineShader::Draw(Point(dragSource.X(), dragPoint.Y()), dragPoint, .8, color);
+		LineShader::Draw(dragPoint, Point(dragPoint.X(), dragSource.Y()), .8, color);
+		LineShader::Draw(Point(dragPoint.X(), dragSource.Y()), dragSource, .8, color);
+	}
+	
 	if(Preferences::Has("Show CPU / GPU load"))
 	{
 		string loadString = to_string(static_cast<int>(load * 100. + .5)) + "% GPU";
@@ -206,7 +216,39 @@ bool MainPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 
 bool MainPanel::Click(int x, int y, int clicks)
 {
-	engine.Click(Point(x, y));
+	dragSource = Point(x, y);
+	dragPoint = dragSource;
+	
+	SDL_Keymod mod = SDL_GetModState();
+	hasShift = (mod & KMOD_SHIFT);
+	
+	engine.Click(dragSource, dragSource, hasShift);
+	
+	return true;
+}
+
+
+
+bool MainPanel::Drag(double dx, double dy)
+{
+	dragPoint += Point(dx, dy);
+	isDragging = true;
+	return true;
+}
+
+
+
+bool MainPanel::Release(int x, int y)
+{
+	if(isDragging)
+	{
+		dragPoint = Point(x, y);
+		if(dragPoint.Distance(dragSource) > 5.)
+			engine.Click(dragSource, dragPoint, hasShift);
+	
+		isDragging = false;
+	}
+	
 	return true;
 }
 

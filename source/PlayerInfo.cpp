@@ -1717,6 +1717,119 @@ void PlayerInfo::SelectNext()
 
 
 
+// Escorts currently selected for giving orders.
+const vector<weak_ptr<Ship>> &PlayerInfo::SelectedShips() const
+{
+	return selectedShips;
+}
+
+
+
+// Select any player ships in the given box or list. Return true if any were
+// selected, so we know not to search further for a match.
+bool PlayerInfo::SelectShips(const Rectangle &box, bool hasShift)
+{
+	// If shift is not held down, replace the current selection.
+	if(!hasShift)
+		selectedShips.clear();
+	// If shift is not held, the first ship in the box will also become the
+	// player's flagship's target.
+	bool first = !hasShift;
+	
+	bool matched = false;
+	for(const shared_ptr<Ship> &ship : ships)
+		if(!ship->IsParked() && ship->GetSystem() == system && ship.get() != Flagship()
+				&& box.Contains(ship->Position()))
+		{
+			matched = true;
+			SelectShip(ship, &first);
+		}
+	return matched;
+}
+
+
+
+bool PlayerInfo::SelectShips(const vector<const Ship *> &stack, bool hasShift)
+{
+	// If shift is not held down, replace the current selection.
+	if(!hasShift)
+		selectedShips.clear();
+	// If shift is not held, the first ship in the stack will also become the
+	// player's flagship's target.
+	bool first = !hasShift;
+	
+	// Loop through all the player's ships and check which of them are in the
+	// given stack.
+	bool matched = false;
+	for(const shared_ptr<Ship> &ship : ships)
+	{
+		auto it = find(stack.begin(), stack.end(), ship.get());
+		if(it != stack.end())
+		{
+			matched = true;
+			SelectShip(ship, &first);
+		}
+	}
+	return matched;
+}
+
+
+
+void PlayerInfo::SelectGroup(int group, bool hasShift)
+{
+	int bit = (1 << group);
+	// If the shift key is held down and all the ships in the given group are
+	// already selected, deselect them all. Otherwise, select them all. The easy
+	// way to do this is first to remove all the ships that match in one pass,
+	// then add them in a subsequent pass if any were not selected.
+	if(hasShift)
+	{
+		bool allWereSelected = true;
+		for(const shared_ptr<Ship> &ship : ships)
+			if(groups[ship.get()] & bit)
+			{
+				auto it = selectedShips.begin();
+				for( ; it != selectedShips.end(); ++it)
+					if(it->lock() == ship)
+						break;
+				if(it != selectedShips.end())
+					selectedShips.erase(it);
+				else
+					allWereSelected = false;
+			}
+		if(allWereSelected)
+			return;
+	}
+	else
+		selectedShips.clear();
+	
+	// Now, go through and add any ships in the group to the selection. Even if
+	// shift is held they won't be added twice, because we removed them above.
+	for(const shared_ptr<Ship> &ship : ships)
+		if(groups[ship.get()] & bit)
+			selectedShips.push_back(ship);
+}
+
+
+
+void PlayerInfo::SetGroup(int group)
+{
+	int bit = (1 << group);
+	int mask = ~bit;
+	// First, remove any of your ships that are in the group.
+	for(const shared_ptr<Ship> &ship : ships)
+		groups[ship.get()] &= mask;
+	// Then, add all the currently selected ships to the group.
+	for(const weak_ptr<Ship> &ptr : selectedShips)
+	{
+		shared_ptr<Ship> ship = ptr.lock();
+		if(ship)
+			groups[ship.get()] |= mask;
+	}
+}
+
+
+
 // Keep track of any outfits that you have sold since landing. These will be
 // available to buy back until you take off.
 int PlayerInfo::Stock(const Outfit *outfit) const
@@ -1782,6 +1895,46 @@ void PlayerInfo::Harvest(const Outfit *type)
 const set<pair<const System *, const Outfit *>> &PlayerInfo::Harvested() const
 {
 	return harvested;
+}
+
+
+
+// Get what coloring is currently selected in the map.
+int PlayerInfo::MapColoring() const
+{
+	return mapColoring;
+}
+
+
+
+// Set what the map is being colored by.
+void PlayerInfo::SetMapColoring(int index)
+{
+	mapColoring = index;
+}
+
+
+
+// Get the map zoom level.
+int PlayerInfo::MapZoom() const
+{
+	return mapZoom;
+}
+
+
+
+// Set the map zoom level.
+void PlayerInfo::SetMapZoom(int level)
+{
+	mapZoom = level;
+}
+
+
+
+// Get the set of collapsed categories for the named panel.
+set<string> &PlayerInfo::Collapsed(const string &name)
+{
+	return collapsed[name];
 }
 
 
@@ -2041,40 +2194,23 @@ void PlayerInfo::Save(const string &path) const
 
 
 
-// Get what coloring is currently selected in the map.
-int PlayerInfo::MapColoring() const
+// Helper function to update the ship selection.
+void PlayerInfo::SelectShip(const shared_ptr<Ship> &ship, bool *first)
 {
-	return mapColoring;
-}
-
-
-
-// Set what the map is being colored by.
-void PlayerInfo::SetMapColoring(int index)
-{
-	mapColoring = index;
-}
-
-
-
-// Get the map zoom level.
-int PlayerInfo::MapZoom() const
-{
-	return mapZoom;
-}
-
-
-
-// Set the map zoom level.
-void PlayerInfo::SetMapZoom(int level)
-{
-	mapZoom = level;
-}
-
-
-
-// Get the set of collapsed categories for the named panel.
-set<string> &PlayerInfo::Collapsed(const string &name)
-{
-	return collapsed[name];
+	// Make sure this ship is not already selected.
+	auto it = selectedShips.begin();
+	for( ; it != selectedShips.end(); ++it)
+		if(it->lock() == ship)
+			break;
+	if(it == selectedShips.end())
+	{
+		// This ship is not yet selected.
+		selectedShips.push_back(ship);
+		Ship *flagship = Flagship();
+		if(first && flagship && ship.get() != flagship)
+		{
+			flagship->SetTargetShip(ship);
+			*first = false;
+		}
+	}
 }
