@@ -74,15 +74,19 @@ void StarField::Init(int stars, int width)
 
 
 
-void StarField::Draw(const Point &pos, const Point &vel) const
+void StarField::Draw(const Point &pos, const Point &vel, double zoom) const
 {
 	glUseProgram(shader.Object());
 	glBindVertexArray(vao);
 	
 	float length = vel.Length();
 	Point unit = length ? vel.Unit() : Point(1., 0.);
+	// Don't zoom the stars at the same rate as the field; otherwise, at the
+	// farthest out zoom they are too small to draw well.
+	unit /= sqrt(zoom);
 	
-	GLfloat scale[2] = {2.f / Screen::Width(), -2.f / Screen::Height()};
+	float baseZoom = static_cast<float>(2. * zoom);
+	GLfloat scale[2] = {baseZoom / Screen::Width(), -baseZoom / Screen::Height()};
 	glUniform2fv(scaleI, 1, scale);
 	
 	GLfloat rotate[4] = {
@@ -96,10 +100,10 @@ void StarField::Draw(const Point &pos, const Point &vel) const
 	double borderX = fabs(vel.X()) + 1.;
 	double borderY = fabs(vel.Y()) + 1.;
 	// Find the absolute bounds of the star field we must draw.
-	int minX = Screen::Left() + pos.X() - borderX;
-	int minY = Screen::Top() + pos.Y() - borderY;
-	int maxX = Screen::Right() + pos.X() + borderX;
-	int maxY = Screen::Bottom() + pos.Y() + borderY;
+	int minX = pos.X() + (Screen::Left() - borderX) / zoom;
+	int minY = pos.Y() + (Screen::Top() - borderY) / zoom;
+	int maxX = pos.X() + (Screen::Right() + borderX) / zoom;
+	int maxY = pos.Y() + (Screen::Bottom() + borderY) / zoom;
 	// Round down to the start of the nearest tile.
 	minX &= ~(TILE_SIZE - 1l);
 	minY &= ~(TILE_SIZE - 1l);
@@ -128,13 +132,14 @@ void StarField::Draw(const Point &pos, const Point &vel) const
 		return;
 	
 	DrawList drawList;
+	drawList.Clear(0, zoom);
 	drawList.SetCenter(pos);
 	
 	// Any object within this range must be drawn. Some haze sprites may repeat
 	// more than once if the view covers a very large area.
 	Point size = Point(1., 1.) * haze.front().Radius();
-	Point topLeft = pos + Screen::TopLeft() - size;
-	Point bottomRight = pos + Screen::BottomRight() + size;
+	Point topLeft = pos + (Screen::TopLeft() - size) / zoom;
+	Point bottomRight = pos + (Screen::BottomRight() + size) / zoom;
 	for(const Body &it : haze)
 	{
 		// Figure out the position of the first instance of this haze that is to

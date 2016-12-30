@@ -192,6 +192,10 @@ bool MainPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 		Preferences::ToggleAmmoUsage();
 		Messages::Add("Your escorts will now expend ammo: " + Preferences::AmmoUsage() + ".");
 	}
+	else if(key == '-')
+		Preferences::ZoomViewOut();
+	else if(key == '=')
+		Preferences::ZoomViewIn();
 	else
 		return false;
 	
@@ -203,6 +207,20 @@ bool MainPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 bool MainPanel::Click(int x, int y, int clicks)
 {
 	engine.Click(Point(x, y));
+	return true;
+}
+
+
+
+bool MainPanel::Scroll(double dx, double dy)
+{
+	if(dy < 0)
+		Preferences::ZoomViewOut();
+	else if(dy > 0)
+		Preferences::ZoomViewIn();
+	else
+		return false;
+	
 	return true;
 }
 

@@ -81,6 +81,8 @@ Engine::Engine(PlayerInfo &player)
 	: player(player), ai(ships, asteroids.Minables(), flotsam),
 	shipCollisions(256, 32), cloakedCollisions(256, 32)
 {
+	zoom = Preferences::ViewZoom();
+	
 	// Start the thread for doing calculations.
 	calcThread = thread(&Engine::ThreadEntryPoint, this);
 	
@@ -98,6 +100,7 @@ Engine::Engine(PlayerInfo &player)
 		center = object->Position();
 	
 	// Now we know the player's current position. Draw the planets.
+	draw[calcTickTock].Clear(step, zoom);
 	draw[calcTickTock].SetCenter(center);
 	radar[calcTickTock].SetCenter(center);
 	for(const StellarObject &object : player.GetSystem()->Objects())
@@ -309,6 +312,13 @@ void Engine::Step(bool isActive)
 	wasActive = isActive;
 	Audio::Update(center);
 	
+	// Smoothly zoom in and out.
+	double zoomTarget = Preferences::ViewZoom();
+	if(zoom < zoomTarget)
+		zoom = min(zoomTarget, zoom * 1.01);
+	else if(zoom > zoomTarget)
+		zoom = max(zoomTarget, zoom * .99);
+	
 	// Any of the player's ships that are in system are assumed to have
 	// landed along with the player.
 	if(flagship && flagship->GetPlanet() && isActive)
@@ -392,8 +402,8 @@ void Engine::Step(bool isActive)
 				continue;
 			
 			Point pos = object.Position() - center;
-			if(pos.Length() < 600. + object.Radius())
-				labels.emplace_back(pos, object, currentSystem);
+			if(pos.Length() - object.Radius() < 600. / zoom)
+				labels.emplace_back(pos, object, currentSystem, zoom);
 		}
 	}
 	
@@ -536,7 +546,7 @@ const list<ShipEvent> &Engine::Events() const
 // Draw a frame.
 void Engine::Draw() const
 {
-	GameData::Background().Draw(center, centerVelocity);
+	GameData::Background().Draw(center, centerVelocity, zoom);
 	
 	// Draw any active planet labels.
 	for(const PlanetLabel &label : labels)
@@ -555,8 +565,9 @@ void Engine::Draw() const
 			Color(.45, .5, 0., .25),
 			Color(.5, .3, 0., .25)
 		};
-		RingShader::Draw(it.position, it.radius + 3., 1.5, it.shields, color[it.isEnemy]);
-		RingShader::Draw(it.position, it.radius, 1.5, it.hull, color[2 + it.isEnemy], 20.);
+		RingShader::Draw(it.position * zoom, it.radius * zoom + 3., 1.5, it.shields, color[it.isEnemy]);
+		double dashes = 20. * min(1., zoom);
+		RingShader::Draw(it.position * zoom, it.radius * zoom, 1.5, it.hull, color[2 + it.isEnemy], dashes);
 	}
 	
 	if(flash)
@@ -592,7 +603,7 @@ void Engine::Draw() const
 		
 		for(int i = 0; i < 4; ++i)
 		{
-			PointerShader::Draw(target.center, a.Unit(), 12., 14., -target.radius,
+			PointerShader::Draw(target.center * zoom, a.Unit(), 12., 14., -target.radius * zoom,
 				Radar::GetColor(target.type));
 			a += da;
 		}
@@ -801,7 +812,7 @@ void Engine::CalculateStep()
 	FrameTimer loadTimer;
 	
 	// Clear the list of objects to draw.
-	draw[calcTickTock].Clear(step);
+	draw[calcTickTock].Clear(step, zoom);
 	radar[calcTickTock].Clear();
 	
 	if(!player.GetSystem())
@@ -956,7 +967,7 @@ void Engine::CalculateStep()
 	// of them. This could be done later, as long as it is done before the
 	// collision detection.
 	asteroids.Step(effects, flotsam);
-	asteroids.Draw(draw[calcTickTock], newCenter);
+	asteroids.Draw(draw[calcTickTock], newCenter, zoom);
 	
 	// Move existing projectiles. Do this before ships fire, which will create
 	// new projectiles, since those should just stay where they are created for

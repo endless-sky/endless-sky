@@ -161,6 +161,8 @@ private:
 	bool doEnter = false;
 	bool hadHostiles = false;
 	
+	double zoom = 1.;
+	
 	bool doClick = false;
 	Command clickCommands;
 	Point clickPoint;

@@ -33,6 +33,11 @@ public:
 	// Scroll speed preference.
 	static int ScrollSpeed();
 	static void SetScrollSpeed(int speed);
+	
+	// View zoom.
+	static double ViewZoom();
+	static void ZoomViewIn();
+	static void ZoomViewOut();
 };
 
 

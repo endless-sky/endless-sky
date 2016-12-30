@@ -34,7 +34,7 @@ class StarField {
 public:
 	void Init(int stars, int width);
 	
-	void Draw(const Point &pos, const Point &vel) const;
+	void Draw(const Point &pos, const Point &vel, double zoom = 1.) const;
 	
 	
 private:

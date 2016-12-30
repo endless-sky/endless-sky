@@ -25,19 +25,13 @@ using namespace std;
 
 
 
-// Default constructor.
-DrawList::DrawList()
-{
-	Clear();
-}
-
-
-
 // Clear the list.
-void DrawList::Clear(int step)
+void DrawList::Clear(int step, double zoom)
 {
 	items.clear();
 	this->step = step;
+	this->zoom = zoom;
+	isHighDPI = (Screen::IsHighResolution() ? zoom > .5 : zoom > 1.);
 }
 
 
@@ -58,7 +52,7 @@ bool DrawList::Add(const Body &body, double cloak)
 	if(Cull(body, position, blur) || cloak >= 1.)
 		return false;
 	
-	items.emplace_back(body, position, blur, cloak, 1., body.GetSwizzle(), step);
+	Push(body, position, blur, cloak, 1., body.GetSwizzle());
 	return true;
 }
 
@@ -71,7 +65,7 @@ bool DrawList::Add(const Body &body, Point position)
 	if(Cull(body, position, blur))
 		return false;
 	
-	items.emplace_back(body, position, blur, 0., 1., body.GetSwizzle(), step);
+	Push(body, position, blur, 0., 1., body.GetSwizzle());
 	return true;
 }
 
@@ -84,7 +78,7 @@ bool DrawList::AddUnblurred(const Body &body)
 	if(Cull(body, position, blur))
 		return false;
 	
-	items.emplace_back(body, position, blur, 0., 1., body.GetSwizzle(), step);
+	Push(body, position, blur, 0., 1., body.GetSwizzle());
 	return true;
 }
 
@@ -97,7 +91,7 @@ bool DrawList::AddProjectile(const Body &body, const Point &adjustedVelocity, do
 	if(Cull(body, position, blur) || clip <= 0.)
 		return false;
 	
-	items.emplace_back(body, position, blur, 0., clip, body.GetSwizzle(), step);
+	Push(body, position, blur, 0., clip, body.GetSwizzle());
 	return true;
 }
 
@@ -110,7 +104,7 @@ bool DrawList::AddSwizzled(const Body &body, int swizzle)
 	if(Cull(body, position, blur))
 		return false;
 	
-	items.emplace_back(body, position, blur, 0., 1., swizzle, step);
+	Push(body, position, blur, 0., 1., swizzle);
 	return true;
 }
 
@@ -123,16 +117,16 @@ void DrawList::Draw() const
 	SpriteShader::Bind();
 
 	for(const Item &item : items)
-		SpriteShader::Add(item.Texture0(), item.Texture1(),
-			item.Position(), item.Transform(),
-			item.Swizzle(), item.Clip(), item.Fade(), showBlur ? item.Blur() : nullptr);
+		SpriteShader::Add(
+			item.tex0, item.tex1, item.position, item.transform,
+			item.Swizzle(), item.Clip(), item.Fade(), showBlur ? item.blur : nullptr);
 
 	SpriteShader::Unbind();
 }
 
 
 
-bool DrawList::Cull(const Body &body, const Point &position, const Point &blur)
+bool DrawList::Cull(const Body &body, const Point &position, const Point &blur) const
 {
 	if(!body.HasSprite() || !body.Zoom())
 		return true;
@@ -143,8 +137,8 @@ bool DrawList::Cull(const Body &body, const Point &position, const Point &blur)
 	Point size(
 		.5 * (fabs(unit.X() * body.Height()) + fabs(unit.Y() * body.Width()) + fabs(blur.X())),
 		.5 * (fabs(unit.X() * body.Width()) + fabs(unit.Y() * body.Height()) + fabs(blur.Y())));
-	Point topLeft = position - size;
-	Point bottomRight = position + size;
+	Point topLeft = (position - size) * zoom;
+	Point bottomRight = (position + size) * zoom;
 	if(bottomRight.X() < Screen::Left() || bottomRight.Y() < Screen::Top())
 		return true;
 	if(topLeft.X() > Screen::Right() || topLeft.Y() > Screen::Bottom())
@@ -155,82 +149,50 @@ bool DrawList::Cull(const Body &body, const Point &position, const Point &blur)
 
 
 
-DrawList::Item::Item(const Body &body, Point pos, Point blur, float cloak, float clip, int swizzle, int step)
-	: position{static_cast<float>(pos.X()), static_cast<float>(pos.Y())}, clip(clip), flags(swizzle)
+void DrawList::Push(const Body &body, Point pos, Point blur, double cloak, double clip, int swizzle)
 {
-	Body::Frame frame = body.GetFrame(step);
-	tex0 = frame.first;
-	tex1 = frame.second;
-	flags |= static_cast<uint32_t>(frame.fade * 256.f) << 8;
+	Item item;
 	
+	Body::Frame frame = body.GetFrame(step, isHighDPI);
+	item.tex0 = frame.first;
+	item.tex1 = frame.second;
+	item.flags = swizzle | (static_cast<uint32_t>(frame.fade * 256.f) << 8);
+	
+	// Get unit vectors in the direction of the object's width and height.
 	double width = body.Width();
 	double height = body.Height();
 	Point unit = body.Facing().Unit();
 	Point uw = unit * width;
 	Point uh = unit * height;
 	
+	item.clip = clip;
 	if(clip < 1.)
 	{
 		// "clip" is the fraction of its height that we're clipping the sprite
 		// to. We still want it to start at the same spot, though.
 		pos -= uh * ((1. - clip) * .5);
-		position[0] = static_cast<float>(pos.X());
-		position[1] = static_cast<float>(pos.Y());
 		uh *= clip;
 	}
+	item.position[0] = static_cast<float>(pos.X() * zoom);
+	item.position[1] = static_cast<float>(pos.Y() * zoom);
 	
 	// (0, -1) means a zero-degree rotation (since negative Y is up).
-	transform[0] = -uw.Y();
-	transform[1] = uw.X();
-	transform[2] = -uh.X();
-	transform[3] = -uh.Y();
+	uw *= zoom;
+	uh *= zoom;
+	item.transform[0] = -uw.Y();
+	item.transform[1] = uw.X();
+	item.transform[2] = -uh.X();
+	item.transform[3] = -uh.Y();
 	
 	// Calculate the blur vector, in texture coordinates.
-	this->blur[0] = unit.Cross(blur) / (width * 4.);
-	this->blur[1] = -unit.Dot(blur) / (height * 4.);
+	blur *= zoom;
+	item.blur[0] = unit.Cross(blur) / (width * 4.);
+	item.blur[1] = -unit.Dot(blur) / (height * 4.);
 
-	if(cloak > 0.)
-		Cloak(cloak);
-}
-
-
-
-// Get the texture of this sprite.
-uint32_t DrawList::Item::Texture0() const
-{
-	return tex0;
-}
-
-
-
-uint32_t DrawList::Item::Texture1() const
-{
-	return tex1;
-}
-
-
-
-// These two items can be uploaded directly to the shader:
-// Get the (x, y) position of the center of the sprite.
-const float *DrawList::Item::Position() const
-{
-	return position;
-}
-
-
-
-// Get the [a, b; c, d] size and rotation matrix.
-const float *DrawList::Item::Transform() const
-{
-	return transform;
-}
-
-
-
-// Get the blur vector, in texture space.
-const float *DrawList::Item::Blur() const
-{
-	return blur;
+	if(cloak > 0.f)
+		item.Cloak(cloak);
+	
+	items.push_back(item);
 }
 
 
@@ -240,7 +202,6 @@ uint32_t DrawList::Item::Swizzle() const
 {
 	return (flags & 7);
 }
-
 
 
 		
