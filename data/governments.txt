@@ -337,7 +337,7 @@ government "Syndicate"
 	
 	"player reputation" 2
 	"attitude toward"
-		"Bounty: Sydnicate" .01
+		"Bounty: Syndicate" .01
 		"Merchant" .3
 		"Bounty: Merchant" .01
 		"Pirate" -.4
