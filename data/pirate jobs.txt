@@ -2622,8 +2622,8 @@ mission "Cargo Theft (South)"
 mission "Fake Identity [0]"
 	name "Buy a Fake ID"
 	job
-	description "You seem to have found yourself on the wrong side of a law. Pick up a fake ID from a contact on <destination> and get yourself back on the right side of things for the small cost of 10 million credits."
 	repeat
+	description "You seem to have found yourself on the wrong side of a law. There is a man named Crow said to be on <destination> who is able to help those looking to get on the right side of the law again... for the small price of 10 million credits, that is."
 	source
 		government "Pirate"
 	destination
@@ -2636,10 +2636,9 @@ mission "Fake Identity [0]"
 			"reputation: Syndicate" < -50
 			"reputation: Free Worlds" < -50
 	on visit
-		dialog `You land on <planet> and locate the contact, but when asked about the 10 million credits, you find that you do not have enough. Return with 10 million credits in order to get your fake ID.`
+		dialog `You land on <planet> and locate Crow, but when asked about the 10 million credits, you find that you do not have enough. Return with 10 million credits in order to get your fake ID.`
 	on complete
 		payment -10000000
-		dialog `You land on <planet> and find the contact. After some talking, you hand them 10 million credits, and in return recieve a fake ID. You're on the good side of the law again... for now.`
 		"reputation: Republic" = 2
 		"reputation: Navy (Oathkeeper)" = 2
 		"reputation: Syndicate" = 2
@@ -2647,12 +2646,16 @@ mission "Fake Identity [0]"
 		"reputation: Militia" = 0
 		"reputation: Merchant" = 10
 		"reputation: Neutral" = 1
+		conversation
+			`You land on <planet> and find Crow. After some talking, you hand him 10 million credits. Crow begins working away at his console.` 
+			`	An hour passes, and at the end he says "I've transfered all your credits to a new account. The transactions should not be tracable unless they're really out to get you. I've also changed the identification on your ship, meaning that you won't need to buy a new one."`
+			`	You shake Crow's hand and go on your way.`
 
 mission "Fake Identity [1]"
 	name "Buy a Fake ID"
 	job
-	description "You seem to have found yourself on the wrong side of a law. Pick up a fake ID from a contact on <destination> and get yourself back on the right side of things for the small cost of 20 million credits."
 	repeat
+	description "You seem to have found yourself on the wrong side of a law. There is a man named Crow said to be on <destination> who is able to help those looking to get on the right side of the law again... for the small price of 20 million credits, that is."
 	source
 		government "Pirate"
 	destination
@@ -2666,10 +2669,9 @@ mission "Fake Identity [1]"
 			"reputation: Syndicate" < -100
 			"reputation: Free Worlds" < -100
 	on visit
-		dialog `You land on <planet> and locate the contact, but when asked about the 20 million credits, you find that you do not have enough. Return with 20 million credits in order to get your fake ID.`
+		dialog `You land on <planet> and locate Crow, but when asked about the 20 million credits, you find that you do not have enough. Return with 20 million credits in order to get your fake ID.`
 	on complete
 		payment -20000000
-		dialog `You land on <planet> and find the contact. After some talking, you hand them 20 million credits, and in return recieve a fake ID. You're on the good side of the law again... for now.`
 		"reputation: Republic" = 2
 		"reputation: Navy (Oathkeeper)" = 2
 		"reputation: Syndicate" = 2
@@ -2677,12 +2679,16 @@ mission "Fake Identity [1]"
 		"reputation: Militia" = 0
 		"reputation: Merchant" = 10
 		"reputation: Neutral" = 1
+		conversation 
+			`You land on <planet> and find Crow. After some talking, and explaining that this is your second time doing this, you hand him 20 million credits.`
+			`	As with last time, he begins working at his console. "The same trick doesn't work twice, meaning that I need to do more this time. That also means that I can't do this forever. I have done the same thing as before, but this time I have also wiped your previous records. That means that if they find out who you are, they won't have anything saying that you're someone worth chasing."`
+			`	You shake Crow's hand and go on your way.`
 
 mission "Fake Identity [2]"
 	name "Buy a Fake ID"
 	job
-	description "You seem to have found yourself on the wrong side of a law. Pick up a fake ID from a contact on <destination> and get yourself back on the right side of things for the small cost of 30 million credits."
 	repeat
+	description "You seem to have found yourself on the wrong side of a law. There is a man named Crow said to be on <destination> who is able to help those looking to get on the right side of the law again... for the small price of 30 million credits, that is."
 	source
 		government "Pirate"
 	destination
@@ -2696,7 +2702,7 @@ mission "Fake Identity [2]"
 			"reputation: Syndicate" < -200
 			"reputation: Free Worlds" < -200
 	on visit
-		dialog `You land on <planet> and locate the contact, but when asked about the 30 million credits, you find that you do not have enough. Return with 30 million credits in order to get your fake ID.`
+		dialog `You land on <planet> and locate Crow, but when asked about the 30 million credits, you find that you do not have enough. Return with 30 million credits in order to get your fake ID.`
 	on complete
 		payment -30000000
 		"reputation: Republic" = 2
@@ -2705,8 +2711,14 @@ mission "Fake Identity [2]"
 		"reputation: Free Worlds" = 1
 		"reputation: Militia" = 0
 		"reputation: Merchant" = 10
-		dialog `You land on <planet> and find the contact. After some talking, you hand them 30 million credits, and in return recieve a fake ID. You're on the good side of the law again... for now.`
 		"reputation: Neutral" = 1
+		conversation
+			`You land on <planet> and find Crow. After some talking, and explaining that this is your third time doing this, you hand them 30 million credits, but instead of going straight to his console like last time, he leans in to speak to you.`
+			`	"Given the number of times you've done this before, we're going to need to take more... drastic measures."`
+			``
+			`	After a few hours, you awake in a bed. Aching slightly, you sit up and your eyes spot a mirror across the room. You instantly notice your changed face. The plastic surgery must have gone well. Just then, Crow walks into the room.`
+			`	"After this, I don't think there's anything else I can do to help you. Have fun with your last shot at being part of the civilized world."`
+			`	You shake Crow's hand and go on your way.`
 
 #must destroy hunters and land to fail
 mission "Hunted by State [0]"
