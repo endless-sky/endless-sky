@@ -1002,7 +1002,7 @@ mission "Wanted Passengers [2]"
 	description "These <bunks> wanted individuals wish to reach <destination> without being caught by local law enforcement. They also wish to bring with them <cargo>. Payment is <payment>."
 	passengers 2 10 .9
 	cargo "customized weapons" 1
-		illegal 100000 `Upon scanning your vessel, law enforcement notice the criminal that you have on board. Entering your ship to detain them, the criminals begin firing down the hallways with their customized weapons. Immediately met with tear gas, the criminals did not put up too much of a fight. The law enforcement carry the criminals out and leave you with a moderate fine and a few laser marks in the halls of your ship.`
+		illegal 100000 `Upon scanning your vessel, law enforcement notice the criminals that you have on board. Entering your ship to detain them, the criminals begin firing down the hallways with their customized weapons. Immediately met with tear gas, the criminals did not put up too much of a fight. The law enforcement carry the criminals out and leave you with a moderate fine and a few laser marks in the halls of your ship.`
 		stealth
 	to offer
 		random < 50
