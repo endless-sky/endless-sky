@@ -348,7 +348,7 @@ mission "Delivery to Human Space [0]"
 	destination
 		attributes north
 	on complete
-		payment 120000
+		payment 80000
 		dialog "You drop off your cargo of <commodity> and collect your payment of <payment>."
 
 mission "Delivery to Human Space [1]"
@@ -365,7 +365,7 @@ mission "Delivery to Human Space [1]"
 	destination
 		attributes north
 	on complete
-		payment 120000
+		payment 80000
 		dialog "You drop off your cargo of <commodity> and collect your payment of <payment>."
 
 mission "Delivery to Human Space [2]"
@@ -382,7 +382,7 @@ mission "Delivery to Human Space [2]"
 	destination
 		attributes north
 	on complete
-		payment 120000
+		payment 80000
 		dialog "You drop off your cargo of <commodity> and collect your payment of <payment>."
 
 mission "Delivery to Hai Space [0]"
@@ -400,7 +400,7 @@ mission "Delivery to Hai Space [0]"
 		government "Hai"
 		near "Heia Due" 0 2
 	on complete
-		payment 120000
+		payment 80000
 		dialog "You drop off your cargo of <commodity> and collect your payment of <payment>."
 
 mission "Delivery to Hai Space [1]"
@@ -418,7 +418,7 @@ mission "Delivery to Hai Space [1]"
 		government "Hai"
 		near "Heia Due" 0 2
 	on complete
-		payment 120000
+		payment 80000
 		dialog "You drop off your cargo of <commodity> and collect your payment of <payment>."
 
 mission "Delivery to Hai Space [2]"
@@ -436,7 +436,7 @@ mission "Delivery to Hai Space [2]"
 		government "Hai"
 		near "Heia Due" 0 2
 	on complete
-		payment 120000
+		payment 80000
 		dialog "You drop off your cargo of <commodity> and collect your payment of <payment>."
 
 
