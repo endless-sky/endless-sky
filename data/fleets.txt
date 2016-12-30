@@ -2352,6 +2352,7 @@ fleet "Hired Guns"
 	variant 1
 		"Leviathan (Laser)"
 		"Mule (Heavy)"
+		"Dagger"
 	variant 1
 		"Leviathan (Laser)"
 		"Corvette"
@@ -2364,6 +2365,7 @@ fleet "Hired Guns"
 	variant 1
 		"Falcon (Laser)"
 		"Mule (Heavy)"
+		"Dagger"
 	variant 1
 		"Falcon (Laser)"
 		"Corvette"
@@ -2376,6 +2378,7 @@ fleet "Hired Guns"
 	variant 1
 		"Vanguard (Particle)"
 		"Mule (Heavy)"
+		"Dagger"
 	variant 1
 		"Vanguard (Particle)"
 		"Corvette"
@@ -2384,13 +2387,17 @@ fleet "Hired Guns"
 		"Splinter (Laser)"
 	variant 1
 		"Bactrian (Hired Gun)"
+		"Dagger" 3
 		"Modified Argosy" 2
 	variant 1
 		"Bactrian (Hired Gun)"
 		"Mule (Heavy)"
+		"Dagger" 4
 	variant 1
 		"Bactrian (Hired Gun)"
+		"Dagger" 3
 		"Corvette"
 	variant 1
 		"Bactrian (Hired Gun)"
+		"Dagger" 3
 		"Splinter (Laser)"

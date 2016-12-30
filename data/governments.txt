@@ -34,6 +34,18 @@ government "Bounty: Merchant"
 	"friendly hail" "friendly civilian"
 	"hostile hail" "hostile civilian"
 
+government "Bounty: Militia"
+	swizzle 2
+	"player reputation" -1000
+	"attitude toward"
+		"Merchant" .01
+		"Pirate" -.01
+		"Militia" .01
+		"Free Worlds" .01
+	"bribe" .1
+	"friendly hail" "friendly militia"
+	"hostile hail" "hostile militia"
+
 government "Bounty: Republic"
 	swizzle 0
 	"player reputation" -1000
@@ -56,18 +68,6 @@ government "Bounty: Syndicate"
 	"bribe" .08
 	"friendly hail" "friendly syndicate"
 	"hostile hail" "hostile syndicate"
-
-government "Bounty: Militia"
-	swizzle 2
-	"player reputation" -1000
-	"attitude toward"
-		"Merchant" .01
-		"Pirate" -.01
-		"Militia" .01
-		"Free Worlds" .01
-	"bribe" .1
-	"friendly hail" "friendly militia"
-	"hostile hail" "hostile militia"
 
 government "Bounty Hunter"
 	swizzle 6
@@ -103,6 +103,7 @@ government "Free Worlds"
 	"player reputation" 1
 	"attitude toward"
 		"Merchant" .3
+		"Bounty: Merchant" .01
 		"Militia" .3
 		"Bounty: Militia" .01
 		"Pirate" -.4
@@ -202,6 +203,7 @@ government "Merchant"
 	
 	"player reputation" 10
 	"attitude toward"
+		"Bounty: Merchant" .01
 		"Pirate" -.2
 		"Korath" -.2
 	"bribe" .05
@@ -215,6 +217,7 @@ government "Militia"
 	
 	"player reputation" 0
 	"attitude toward"
+		"Bounty: Militia" .01
 		"Merchant" .3
 		"Bounty: Merchant" .01
 		"Pirate" -.4
@@ -234,6 +237,7 @@ government "Navy (Oathkeeper)"
 	
 	"player reputation" 100
 	"attitude toward"
+		"Bounty: Republic" .01
 		"Alpha" -.3
 		"Merchant" .25
 		"Bounty: Merchant" .01
@@ -314,6 +318,7 @@ government "Republic"
 	
 	"player reputation" 2
 	"attitude toward"
+		"Bounty: Republic" .01
 		"Alpha" -.3
 		"Merchant" .25
 		"Bounty: Merchant" .01
@@ -332,6 +337,7 @@ government "Syndicate"
 	
 	"player reputation" 2
 	"attitude toward"
+		"Bounty: Sydnicate" .01
 		"Merchant" .3
 		"Bounty: Merchant" .01
 		"Pirate" -.4

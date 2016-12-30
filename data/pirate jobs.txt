@@ -1516,7 +1516,6 @@ mission "Escort Stolen Vessel (Extra Large, North, Dangerous Path)"
 				"Freighter"
 			variant 1
 				"Bactrian"
-				"Dagger" 3
 				"Shuttle"
 	on complete
 		payment 375000
@@ -1910,7 +1909,7 @@ mission "Escort Stolen Vessel (Extra Large, South, Dangerous Path)"
 	on visit
 		dialog "You have reached <planet>, but you left the <npc> behind! Better depart and wait for them to arrive in this star system."
 
-mission "Elminating Law Enforcement (North, Small) [0]"
+mission "Eliminating Law Enforcement (North, Small) [0]"
 	name "Navy near <system>"
 	repeat
 	job
@@ -1923,7 +1922,7 @@ mission "Elminating Law Enforcement (North, Small) [0]"
 		attributes "north pirate"
 	npc kill
 		personality heroic staying
-		government "Republic"
+		government "Bounty: Republic"
 		system
 			distance 1 3
 		fleet "Small Republic"
@@ -1933,7 +1932,7 @@ mission "Elminating Law Enforcement (North, Small) [0]"
 		payment 250000
 		dialog "The pirates of <planet> gratefully pay you <payment> for eliminating the Navy fleet."
 
-mission "Elminating Law Enforcement (North, Large) [1]"
+mission "Eliminating Law Enforcement (North, Large) [1]"
 	name "Navy near <system>"
 	repeat
 	job
@@ -1946,7 +1945,7 @@ mission "Elminating Law Enforcement (North, Large) [1]"
 		attributes "north pirate"
 	npc kill
 		personality heroic staying
-		government "Republic"
+		government "Bounty: Republic"
 		system
 			distance 1 3
 		fleet "Large Republic"
@@ -1957,7 +1956,7 @@ mission "Elminating Law Enforcement (North, Large) [1]"
 		payment 400000
 		dialog "The pirates of <planet> gratefully pay you <payment> for eliminating the Navy fleet."
 
-mission "Elminating Law Enforcement (Core, Small) [0]"
+mission "Eliminating Law Enforcement (Core, Small) [0]"
 	name "Syndicate near <system>"
 	repeat
 	job
@@ -1970,7 +1969,7 @@ mission "Elminating Law Enforcement (Core, Small) [0]"
 		attributes "core pirate"
 	npc kill
 		personality heroic staying
-		government "Syndicate"
+		government "Bounty: Syndicate"
 		system
 			distance 1 3
 		fleet "Small Syndicate"
@@ -1980,7 +1979,7 @@ mission "Elminating Law Enforcement (Core, Small) [0]"
 		payment 250000
 		dialog "The pirates of <planet> gratefully pay you <payment> for eliminating the Syndicate fleet."
 
-mission "Elminating Law Enforcement (Core, Large) [1]"
+mission "Eliminating Law Enforcement (Core, Large) [1]"
 	name "Syndicate near <system>"
 	repeat
 	job
@@ -1993,7 +1992,7 @@ mission "Elminating Law Enforcement (Core, Large) [1]"
 		attributes "core pirate"
 	npc kill
 		personality heroic staying
-		government "Syndicate"
+		government "Bounty: Syndicate"
 		system
 			distance 1 3
 		fleet "Large Syndicate"
@@ -2004,7 +2003,7 @@ mission "Elminating Law Enforcement (Core, Large) [1]"
 		payment 400000
 		dialog "The pirates of <planet> gratefully pay you <payment> for eliminating the Syndicate fleet."
 
-mission "Elminating Law Enforcement (South, Small) [0]"
+mission "Eliminating Law Enforcement (South, Small) [0]"
 	name "Militia near <system>"
 	repeat
 	job
@@ -2017,7 +2016,7 @@ mission "Elminating Law Enforcement (South, Small) [0]"
 		attributes "south pirate"
 	npc kill
 		personality heroic staying
-		government "Militia"
+		government "Bounty: Militia"
 		system
 			distance 1 3
 		fleet "Small Militia"
@@ -2027,7 +2026,7 @@ mission "Elminating Law Enforcement (South, Small) [0]"
 		payment 250000
 		dialog "The pirates of <planet> gratefully pay you <payment> for eliminating the Militia fleet."
 
-mission "Elminating Law Enforcement (South, Large) [1]"
+mission "Eliminating Law Enforcement (South, Large) [1]"
 	name "Militia near <system>"
 	repeat
 	job
@@ -2040,7 +2039,7 @@ mission "Elminating Law Enforcement (South, Large) [1]"
 		attributes "south pirate"
 	npc kill
 		personality heroic staying
-		government "Militia"
+		government "Bounty: Militia"
 		system
 			distance 1 3
 		fleet "Large Militia"
@@ -2218,7 +2217,7 @@ mission "Raid on Merchants (North)"
 		fleet "Small Northern Pirate"
 	npc kill
 		personality heroic staying
-		government "Merchant"
+		government "Bounty: Merchant"
 		system
 			distance 1 3
 		fleet "Small Northern Merchant"
@@ -2246,7 +2245,7 @@ mission "Raid on Merchants (Core)"
 		fleet "Small Core Pirate"
 	npc kill
 		personality heroic staying
-		government "Merchant"
+		government "Bounty: Merchant"
 		system
 			distance 1 3
 		fleet "Small Core Merchant"
@@ -2274,7 +2273,7 @@ mission "Raid on Merchants (South)"
 		fleet "Small Southern Pirate"
 	npc kill
 		personality heroic staying
-		government "Merchant"
+		government "Bounty: Merchant"
 		system
 			distance 1 3
 		fleet "Small Southern Merchant"
@@ -2402,7 +2401,7 @@ mission "Ransom Situation (North, Dangerous)"
 		dialog `Upon entering Alnitak, Navy ships begin firing upon your ship. It's a trap! Take them out!.`
 	npc kill
 		personality staying heroic
-		government "Republic"
+		government "Bounty: Republic"
 		system Alnitak
 		fleet "Large Republic"
 		fleet "Large Republic"
@@ -2453,7 +2452,7 @@ mission "Ransom Situation (Core, Dangerous)"
 		dialog `Upon entering Al Dhanab, Syndicate ships begin firing upon your ship. It's a trap! Take them out!.`
 	npc kill
 		personality staying heroic
-		government "Syndicate"
+		government "Bounty: Syndicate"
 		system "Al Dhanab"
 		fleet "Large Syndicate"
 		fleet "Large Syndicate"
@@ -2504,7 +2503,7 @@ mission "Ransom Situation (South, Dangerous)"
 		dialog `Upon entering Alniyat, Militia ships begin firing upon your ship. It's a trap! Take them out!.`
 	npc kill
 		personality staying heroic
-		government "Militia"
+		government "Bounty: Militia"
 		system Alniyat
 		fleet "Large Militia"
 		fleet "Large Militia"
@@ -2532,7 +2531,7 @@ mission "Cargo Theft (North)"
 		attributes "north pirate"
 	npc
 		personality staying heroic
-		government "Merchant"
+		government "Bounty: Merchant"
 		system
 			distance 2 3
 		fleet
@@ -2565,7 +2564,7 @@ mission "Cargo Theft (Core)"
 		attributes "core pirate"
 	npc
 		personality staying heroic
-		government "Merchant"
+		government "Bounty: Merchant"
 		system
 			distance 2 3
 		fleet
@@ -2598,7 +2597,7 @@ mission "Cargo Theft (South)"
 		attributes "south pirate"
 	npc
 		personality staying heroic
-		government "Merchant"
+		government "Bounty: Merchant"
 		system
 			distance 2 3
 		fleet
