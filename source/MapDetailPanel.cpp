@@ -209,7 +209,7 @@ bool MapDetailPanel::Click(int x, int y, int clicks)
 					{
 						static const int SHOW[4] = {
 							SHOW_REPUTATION, SHOW_SHIPYARD, SHOW_OUTFITTER, SHOW_VISITED};
-						SetCommodity(SHOW[(y - it.second + 30) / 20]);
+						SetCommodity(SHOW[(y - (it.second + 30)) / 20]);
 					}
 					return true;
 				}
