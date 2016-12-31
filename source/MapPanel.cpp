@@ -68,7 +68,7 @@ MapPanel::MapPanel(PlayerInfo &player, int commodity, const System *special)
 	FogShader::Redraw();
 	
 	if(selectedSystem)
-		center = Point(0., 0.) - Zoom() * (selectedSystem->Position());
+		center = Point(0., 0.) - selectedSystem->Position();
 }
 
 
