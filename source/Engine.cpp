@@ -375,7 +375,7 @@ void Engine::Step(bool isActive)
 				escorts.Add(*it, it->GetSystem() == currentSystem, fleetIsJumping, isSelected);
 			}
 	for(const shared_ptr<Ship> &escort : player.Ships())
-		if(!escort->IsParked() && escort != flagship)
+		if(!escort->IsParked() && escort != flagship && !escort->IsDestroyed())
 		{
 			// Check if this escort is selected.
 			bool isSelected = false;
@@ -569,7 +569,8 @@ void Engine::Step(bool isActive)
 	for(const weak_ptr<Ship> &selected : player.SelectedShips())
 	{
 		shared_ptr<Ship> ship = selected.lock();
-		if(ship && ship != target && !ship->IsParked() && ship->GetSystem() == player.GetSystem())
+		if(ship && ship != target && !ship->IsParked() && ship->GetSystem() == player.GetSystem()
+				&& !ship->IsDestroyed())
 		{
 			double size = (ship->Width() + ship->Height()) * .35;
 			targets.push_back({
