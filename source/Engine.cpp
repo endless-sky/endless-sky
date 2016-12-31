@@ -1299,7 +1299,7 @@ void Engine::CalculateStep()
 			{
 				// Even friendly ships can be hit by the blast.
 				Point hitPos = projectile.Position() + closestHit * projectile.Velocity();
-				for(Body *body : shipCollisions.Circle(InBlastRadius, blastRadius))
+				for(Body *body : shipCollisions.Circle(hitPos, blastRadius))
 				{
 					shared_ptr<Ship> ship = reinterpret_cast<Ship *>(body)->shared_from_this();
 					int eventType = ship->TakeDamage(projectile, ship != hit);
@@ -1308,7 +1308,7 @@ void Engine::CalculateStep()
 							projectile.GetGovernment(), ship, eventType);
 				}
 				// Cloaked ships can be hit be a blast, too.
-				for(Body *body : cloakedCollisions.Circle(InBlastRadius, blastRadius))
+				for(Body *body : cloakedCollisions.Circle(hitPos, blastRadius))
 				{
 					shared_ptr<Ship> ship = reinterpret_cast<Ship *>(body)->shared_from_this();
 					int eventType = ship->TakeDamage(projectile, ship != hit);
