@@ -36,8 +36,8 @@ public:
 	
 	// View zoom.
 	static double ViewZoom();
-	static void ZoomViewIn();
-	static void ZoomViewOut();
+	static bool ZoomViewIn();
+	static bool ZoomViewOut();
 };
 
 

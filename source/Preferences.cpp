@@ -141,14 +141,22 @@ double Preferences::ViewZoom()
 
 
 
-void Preferences::ZoomViewIn()
+bool Preferences::ZoomViewIn()
 {
-	zoomIndex = min(static_cast<int>(ZOOMS.size() - 1), zoomIndex + 1);
+	if(zoomIndex == static_cast<int>(ZOOMS.size() - 1))
+		return false;
+	
+	++zoomIndex;
+	return true;
 }
 
 
 
-void Preferences::ZoomViewOut()
+bool Preferences::ZoomViewOut()
 {
-	zoomIndex = max(0, zoomIndex - 1);
+	if(zoomIndex == 0)
+		return false;
+	
+	--zoomIndex;
+	return true;
 }
