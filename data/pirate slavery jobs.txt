@@ -34,6 +34,7 @@ mission "Slave Transport [0]: Release Slaves"
 		"sold slaves" --
 		"reputation: Merchant" += 30
 		"reputation: Republic" += 30
+		"reputation: Navy (Oathkeeper)" += 30
 		"reputation: Syndicate" += 30
 		"reputation: Militia" += 30
 		"reputation: Free Worlds" += 30
@@ -68,6 +69,7 @@ mission "Slave Transport [1]: Release Slaves"
 		"sold slaves" --
 		"reputation: Merchant" += 30
 		"reputation: Republic" += 30
+		"reputation: Navy (Oathkeeper)" += 30
 		"reputation: Syndicate" += 30
 		"reputation: Militia" += 30
 		"reputation: Free Worlds" += 30
@@ -102,6 +104,7 @@ mission "Bulk Slave Transport [0]: Release Slaves"
 		"sold slaves" --
 		"reputation: Merchant" += 120
 		"reputation: Republic" += 120
+		"reputation: Navy (Oathkeeper)" += 120
 		"reputation: Syndicate" += 120
 		"reputation: Militia" += 120
 		"reputation: Free Worlds" += 120
@@ -136,6 +139,7 @@ mission "Bulk Slave Transport [1]: Release Slaves"
 		"sold slaves" --
 		"reputation: Merchant" += 120
 		"reputation: Republic" += 120
+		"reputation: Navy (Oathkeeper)" += 120
 		"reputation: Syndicate" += 120
 		"reputation: Militia" += 120
 		"reputation: Free Worlds" += 120
@@ -168,6 +172,7 @@ mission "Tourists back [0]: Slavery"
 		"sold slaves" ++
 		"reputation: Merchant" -= 3
 		"reputation: Republic" -= 3
+		"reputation: Navy (Oathkeeper)" -= 3
 		"reputation: Syndicate" -= 3
 		"reputation: Militia" -= 3
 		"reputation: Free Worlds" -= 3
@@ -200,6 +205,7 @@ mission "Tourists out [0]: Slavery"
 		"sold slaves" ++
 		"reputation: Merchant" -= 3
 		"reputation: Republic" -= 3
+		"reputation: Navy (Oathkeeper)" -= 3
 		"reputation: Syndicate" -= 3
 		"reputation: Militia" -= 3
 		"reputation: Free Worlds" -= 3
@@ -232,6 +238,7 @@ mission "Tourists out [1]: Slavery"
 		"sold slaves" ++
 		"reputation: Merchant" -= 9
 		"reputation: Republic" -= 9
+		"reputation: Navy (Oathkeeper)" -= 9
 		"reputation: Syndicate" -= 9
 		"reputation: Militia" -= 9
 		"reputation: Free Worlds" -= 9
@@ -264,6 +271,7 @@ mission "Tourists out [2]: Slavery"
 		"sold slaves" ++
 		"reputation: Merchant" -= 9
 		"reputation: Republic" -= 9
+		"reputation: Navy (Oathkeeper)" -= 9
 		"reputation: Syndicate" -= 9
 		"reputation: Militia" -= 9
 		"reputation: Free Worlds" -= 9
@@ -296,6 +304,7 @@ mission "Tourists back [1]: Slavery"
 		"sold slaves" ++
 		"reputation: Merchant" -= 9
 		"reputation: Republic" -= 9
+		"reputation: Navy (Oathkeeper)" -= 9
 		"reputation: Syndicate" -= 9
 		"reputation: Militia" -= 9
 		"reputation: Free Worlds" -= 9
@@ -328,6 +337,7 @@ mission "Tourists back [2]: Slavery"
 		"sold slaves" ++
 		"reputation: Merchant" -= 9
 		"reputation: Republic" -= 9
+		"reputation: Navy (Oathkeeper)" -= 9
 		"reputation: Syndicate" -= 9
 		"reputation: Militia" -= 9
 		"reputation: Free Worlds" -= 9
@@ -360,6 +370,7 @@ mission "Passengers [0]: Slavery"
 		"sold slaves" ++
 		"reputation: Merchant" -= 12
 		"reputation: Republic" -= 12
+		"reputation: Navy (Oathkeeper)" -= 12
 		"reputation: Syndicate" -= 12
 		"reputation: Militia" -= 12
 		"reputation: Free Worlds" -= 12
@@ -392,6 +403,7 @@ mission "Passengers [1]: Slavery"
 		"sold slaves" ++
 		"reputation: Merchant" -= 12
 		"reputation: Republic" -= 12
+		"reputation: Navy (Oathkeeper)" -= 12
 		"reputation: Syndicate" -= 12
 		"reputation: Militia" -= 12
 		"reputation: Free Worlds" -= 12
@@ -424,6 +436,7 @@ mission "Passengers [2]: Slavery"
 		"sold slaves" ++
 		"reputation: Merchant" -= 12
 		"reputation: Republic" -= 12
+		"reputation: Navy (Oathkeeper)" -= 12
 		"reputation: Syndicate" -= 12
 		"reputation: Militia" -= 12
 		"reputation: Free Worlds" -= 12
@@ -456,6 +469,7 @@ mission "Passengers [3]: Slavery"
 		"sold slaves" ++
 		"reputation: Merchant" -= 12
 		"reputation: Republic" -= 12
+		"reputation: Navy (Oathkeeper)" -= 12
 		"reputation: Syndicate" -= 12
 		"reputation: Militia" -= 12
 		"reputation: Free Worlds" -= 12
@@ -488,6 +502,7 @@ mission "Passengers [4]: Slavery"
 		"sold slaves" ++
 		"reputation: Merchant" -= 12
 		"reputation: Republic" -= 12
+		"reputation: Navy (Oathkeeper)" -= 12
 		"reputation: Syndicate" -= 12
 		"reputation: Militia" -= 12
 		"reputation: Free Worlds" -= 12
@@ -520,6 +535,7 @@ mission "Family [0]: Slavery"
 		"sold slaves" ++
 		"reputation: Merchant" -= 15
 		"reputation: Republic" -= 15
+		"reputation: Navy (Oathkeeper)" -= 15
 		"reputation: Syndicate" -= 15
 		"reputation: Militia" -= 15
 		"reputation: Free Worlds" -= 15
@@ -552,6 +568,7 @@ mission "Family [1]: Slavery"
 		"sold slaves" ++
 		"reputation: Merchant" -= 15
 		"reputation: Republic" -= 15
+		"reputation: Navy (Oathkeeper)" -= 15
 		"reputation: Syndicate" -= 15
 		"reputation: Militia" -= 15
 		"reputation: Free Worlds" -= 15
@@ -584,6 +601,7 @@ mission "Family [2]: Slavery"
 		"sold slaves" ++
 		"reputation: Merchant" -= 15
 		"reputation: Republic" -= 15
+		"reputation: Navy (Oathkeeper)" -= 15
 		"reputation: Syndicate" -= 15
 		"reputation: Militia" -= 15
 		"reputation: Free Worlds" -= 15
@@ -616,6 +634,7 @@ mission "Family [3]: Slavery"
 		"sold slaves" ++
 		"reputation: Merchant" -= 15
 		"reputation: Republic" -= 15
+		"reputation: Navy (Oathkeeper)" -= 15
 		"reputation: Syndicate" -= 15
 		"reputation: Militia" -= 15
 		"reputation: Free Worlds" -= 15
@@ -648,6 +667,7 @@ mission "Transport miners to <planet>: Slavery"
 		"sold slaves" ++
 		"reputation: Merchant" -= 18
 		"reputation: Republic" -= 18
+		"reputation: Navy (Oathkeeper)" -= 18
 		"reputation: Syndicate" -= 18
 		"reputation: Militia" -= 18
 		"reputation: Free Worlds" -= 18
@@ -680,6 +700,7 @@ mission "Transport farmers to <planet>: Slavery"
 		"sold slaves" ++
 		"reputation: Merchant" -= 18
 		"reputation: Republic" -= 18
+		"reputation: Navy (Oathkeeper)" -= 18
 		"reputation: Syndicate" -= 18
 		"reputation: Militia" -= 18
 		"reputation: Free Worlds" -= 18
@@ -712,6 +733,7 @@ mission "Transport mill workers to <planet>: Slavery"
 		"sold slaves" ++
 		"reputation: Merchant" -= 18
 		"reputation: Republic" -= 18
+		"reputation: Navy (Oathkeeper)" -= 18
 		"reputation: Syndicate" -= 18
 		"reputation: Militia" -= 18
 		"reputation: Free Worlds" -= 18
@@ -744,6 +766,7 @@ mission "Transport workers to <planet>: Slavery"
 		"sold slaves" ++
 		"reputation: Merchant" -= 18
 		"reputation: Republic" -= 18
+		"reputation: Navy (Oathkeeper)" -= 18
 		"reputation: Syndicate" -= 18
 		"reputation: Militia" -= 18
 		"reputation: Free Worlds" -= 18
@@ -776,6 +799,7 @@ mission "Colonists [0]: Slavery"
 		"sold slaves" ++
 		"reputation: Merchant" -= 120
 		"reputation: Republic" -= 120
+		"reputation: Navy (Oathkeeper)" -= 120
 		"reputation: Syndicate" -= 120
 		"reputation: Militia" -= 120
 		"reputation: Free Worlds" -= 120
@@ -808,6 +832,7 @@ mission "Colonists [1]: Slavery"
 		"sold slaves" ++
 		"reputation: Merchant" -= 120
 		"reputation: Republic" -= 120
+		"reputation: Navy (Oathkeeper)" -= 120
 		"reputation: Syndicate" -= 120
 		"reputation: Militia" -= 120
 		"reputation: Free Worlds" -= 120
@@ -840,6 +865,7 @@ mission "Transport scientists: Slavery"
 		"sold slaves" ++
 		"reputation: Merchant" -= 15
 		"reputation: Republic" -= 60
+		"reputation: Navy (Oathkeeper)" -= 60
 		"reputation: Syndicate" -= 15
 		"reputation: Militia" -= 15
 		"reputation: Free Worlds" -= 15
@@ -872,6 +898,7 @@ mission "Newlyweds to <planet>: Slavery"
 		"sold slaves" ++
 		"reputation: Merchant" -= 4
 		"reputation: Republic" -= 15
+		"reputation: Navy (Oathkeeper)" -= 15
 		"reputation: Syndicate" -= 4
 		"reputation: Militia" -= 4
 		"reputation: Free Worlds" -= 4
@@ -904,6 +931,7 @@ mission "Transport partiers [1]: Slavery"
 		"sold slaves" ++
 		"reputation: Merchant" -= 15
 		"reputation: Republic" -= 60
+		"reputation: Navy (Oathkeeper)" -= 60
 		"reputation: Syndicate" -= 15
 		"reputation: Militia" -= 15
 		"reputation: Free Worlds" -= 15
@@ -936,6 +964,7 @@ mission "Transport partiers [2]: Slavery"
 		"sold slaves" ++
 		"reputation: Merchant" -= 14
 		"reputation: Republic" -= 54
+		"reputation: Navy (Oathkeeper)" -= 54
 		"reputation: Syndicate" -= 14
 		"reputation: Militia" -= 14
 		"reputation: Free Worlds" -= 14
@@ -968,6 +997,7 @@ mission "Contract laborers to <planet>: Slavery"
 		"sold slaves" ++
 		"reputation: Merchant" -= 33
 		"reputation: Republic" -= 132
+		"reputation: Navy (Oathkeeper)" -= 132
 		"reputation: Syndicate" -= 33
 		"reputation: Militia" -= 33
 		"reputation: Free Worlds" -= 33
@@ -1000,6 +1030,7 @@ mission "Transport rich tourists: Slavery"
 		"sold slaves" ++
 		"reputation: Merchant" -= 23
 		"reputation: Republic" -= 90
+		"reputation: Navy (Oathkeeper)" -= 90
 		"reputation: Syndicate" -= 23
 		"reputation: Militia" -= 23
 		"reputation: Free Worlds" -= 23
@@ -1032,6 +1063,7 @@ mission "Transport executive to <planet>: Slavery"
 		"sold slaves" ++
 		"reputation: Merchant" -= 15
 		"reputation: Republic" -= 15
+		"reputation: Navy (Oathkeeper)" -= 15
 		"reputation: Syndicate" -= 60
 		"reputation: Militia" -= 15
 		"reputation: Free Worlds" -= 15
@@ -1064,6 +1096,7 @@ mission "Corporate retreat on <planet>: Slavery"
 		"sold slaves" ++
 		"reputation: Merchant" -= 40
 		"reputation: Republic" -= 40
+		"reputation: Navy (Oathkeeper)" -= 40
 		"reputation: Syndicate" -= 150
 		"reputation: Militia" -= 40
 		"reputation: Free Worlds" -= 40
