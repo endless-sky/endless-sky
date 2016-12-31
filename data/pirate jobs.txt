@@ -394,18 +394,27 @@ mission "Stealth Cargo Smuggling (North) [0]"
 		distance 3
 		personality heroic waiting
 		government Republic
-		ship "Gunboat"
+		fleet
+			names "republic small"
+			variant
+				"Gunboat"
 	npc
 		system destination
 		distance 1
 		personality heroic waiting
 		government Republic
-		ship "Gunboat"
+		fleet
+			names "republic small"
+			variant
+				"Gunboat"
 	npc
 		system destination
 		personality heroic staying
 		government Republic
-		ship "Gunboat"
+		fleet
+			names "republic small"
+			variant
+				"Gunboat"
 	on complete
 		payment 100000 500
 		dialog "You find the contact outside of the main city. Your cargo of <commodity> is removed from your ship and you collect your payment of <payment>."
@@ -434,29 +443,44 @@ mission "Stealth Cargo Smuggling (North) [1]"
 		distance 5
 		personality heroic waiting
 		government Republic
-		ship "Gunboat"
+		fleet
+			names "republic small"
+			variant
+				"Gunboat"
 	npc
 		distance 4
 		personality heroic waiting 
 		government Republic
-		ship "Gunboat"
+		fleet
+			names "republic small"
+			variant
+				"Gunboat"
 	npc
 		distance 3
 		personality heroic waiting
 		government Republic
-		ship "Gunboat"
+		fleet
+			names "republic small"
+			variant
+				"Gunboat"
 	npc
 		system destination
 		distance 1
 		personality heroic waiting
 		government Republic
-		ship "Gunboat"
+		fleet
+			names "republic small"
+			variant
+				"Gunboat"
 	npc
 		system destination
 		distance 1
 		personality heroic waiting
 		government Republic
-		ship "Gunboat"
+		fleet
+			names "republic small"
+			variant
+				"Gunboat"
 	npc
 		system destination
 		personality heroic staying
@@ -490,18 +514,27 @@ mission "Stealth Cargo Smuggling (Core) [0]"
 		distance 3
 		personality heroic waiting
 		government Syndicate
-		ship "Quicksilver (Scanner)"
+		fleet
+			names "syndicate small"
+			variant
+				"Quicksilver (Scanner)"
 	npc
 		system destination
 		distance 1
 		personality heroic waiting
 		government Syndicate
-		ship "Quicksilver (Scanner)"
+		fleet
+			names "syndicate small"
+			variant
+				"Quicksilver (Scanner)"
 	npc
 		system destination
 		personality heroic staying
 		government Syndicate
-		ship "Quicksilver (Scanner)"
+		fleet
+			names "syndicate small"
+			variant
+				"Quicksilver (Scanner)"
 	on complete
 		payment 100000 500
 		dialog "You find the contact outside of the main city. Your cargo of <commodity> is removed from your ship and you collect your payment of <payment>."
@@ -530,35 +563,52 @@ mission "Stealth Cargo Smuggling (Core) [1]"
 		distance 5
 		personality heroic waiting
 		government Syndicate
-		ship "Quicksilver (Scanner)"
+		fleet
+			names "syndicate small"
+			variant
+				"Quicksilver (Scanner)"
 	npc
 		distance 4
 		personality heroic waiting
 		government Syndicate
-		ship "Quicksilver (Scanner)"
+		fleet
+			names "syndicate small"
+			variant
+				"Quicksilver (Scanner)"
 	npc
 		distance 3
 		personality heroic waiting
 		government Syndicate
-		ship "Quicksilver (Scanner)"
+		fleet
+			names "syndicate small"
+			variant
+				"Quicksilver (Scanner)"
 	npc
 		system destination
 		distance 1
 		personality heroic waiting
 		government Syndicate
-		ship "Quicksilver (Scanner)"
+		fleet
+			names "syndicate small"
+			variant
+				"Quicksilver (Scanner)"
 	npc
 		system destination
 		distance 1
 		personality heroic waiting
 		government Syndicate
-		ship "Quicksilver (Scanner)"
+		fleet
+			names "syndicate small"
+			variant
+				"Quicksilver (Scanner)"
 	npc
 		system destination
 		personality heroic staying
 		government Syndicate
-		ship "Quicksilver (Scanner)"
-		ship "Quicksilver (Scanner)"
+		fleet
+			names "syndicate small"
+			variant
+				"Quicksilver (Scanner)" 2
 	on complete
 		payment 150000 500
 		dialog "You find the contact outside of the main city. Your cargo of <commodity> is removed from your ship and you collect your payment of <payment>."
@@ -587,18 +637,27 @@ mission "Stealth Cargo Smuggling (South) [0]"
 		distance 3
 		personality heroic waiting
 		government Militia
-		ship "Bastion (Scanner)"
+		fleet
+			names "militia"
+			variant
+				"Bastion (Scanner)"
 	npc
 		system destination
 		distance 1
 		personality heroic waiting
 		government Militia
-		ship "Bastion (Scanner)"
+		fleet
+			names "militia"
+			variant
+				"Bastion (Scanner)"
 	npc
 		system destination
 		personality heroic staying
 		government Militia
-		ship "Bastion (Scanner)"
+		fleet
+			names "militia"
+			variant
+				"Bastion (Scanner)"
 	on complete
 		payment 100000 500
 		dialog "You find the contact outside of the main city. Your cargo of <commodity> is removed from your ship and you collect your payment of <payment>."
@@ -627,35 +686,52 @@ mission "Stealth Cargo Smuggling (South) [1]"
 		distance 5
 		personality heroic waiting
 		government Militia
-		ship "Bastion (Scanner)"
+		fleet
+			names "militia"
+			variant
+				"Bastion (Scanner)"
 	npc
 		distance 4
 		personality heroic waiting
 		government Militia
-		ship "Bastion (Scanner)"
+		fleet
+			names "militia"
+			variant
+				"Bastion (Scanner)"
 	npc
 		distance 3
 		personality heroic waiting
 		government Militia
-		ship "Bastion (Scanner)"
+		fleet
+			names "militia"
+			variant
+				"Bastion (Scanner)"
 	npc
 		system destination
 		distance 1
 		personality heroic waiting
 		government Militia
-		ship "Bastion (Scanner)"
+		fleet
+			names "militia"
+			variant
+				"Bastion (Scanner)"
 	npc
 		system destination
 		distance 1
 		personality heroic waiting
 		government Militia
-		ship "Bastion (Scanner)"
+		fleet
+			names "militia"
+			variant
+				"Bastion (Scanner)"
 	npc
 		system destination
 		personality heroic staying
 		government Militia
-		ship "Bastion (Scanner)"
-		ship "Bastion (Scanner)"
+		fleet
+			names "militia"
+			variant
+				"Bastion (Scanner)" 2
 	on complete
 		payment 150000 500
 		dialog "You find the contact outside of the main city. Your cargo of <commodity> is removed from your ship and you collect your payment of <payment>."
@@ -684,18 +760,27 @@ mission "Stealth Drug Running (North) [0]"
 		distance 3
 		personality heroic waiting
 		government Republic
-		ship "Gunboat"
+		fleet
+			names "republic small"
+			variant
+				"Gunboat"
 	npc
 		system destination
 		distance 1
 		personality heroic waiting
 		government Republic
-		ship "Gunboat"
+		fleet
+			names "republic small"
+			variant
+				"Gunboat"
 	npc
 		system destination
 		personality heroic staying
 		government Republic
-		ship "Gunboat"
+		fleet
+			names "republic small"
+			variant
+				"Gunboat"
 	on complete
 		payment 250000 750
 		dialog "You find the contact outside of the main city. Your cargo of <commodity> is removed from your ship and you collect your payment of <payment>."
@@ -724,29 +809,44 @@ mission "Stealth Drug Running (North) [1]"
 		distance 5
 		personality heroic waiting
 		government Republic
-		ship "Gunboat"
+		fleet
+			names "republic small"
+			variant
+				"Gunboat"
 	npc
 		distance 4
 		personality heroic waiting
 		government Republic
-		ship "Gunboat"
+		fleet
+			names "republic small"
+			variant
+				"Gunboat"
 	npc
 		distance 3
 		personality heroic waiting
 		government Republic
-		ship "Gunboat"
+		fleet
+			names "republic small"
+			variant
+				"Gunboat"
 	npc
 		system destination
 		distance 1
 		personality heroic waiting
 		government Republic
-		ship "Gunboat"
+		fleet
+			names "republic small"
+			variant
+				"Gunboat"
 	npc
 		system destination
 		distance 1
 		personality heroic waiting
 		government Republic
-		ship "Gunboat"
+		fleet
+			names "republic small"
+			variant
+				"Gunboat"
 	npc
 		system destination
 		personality heroic staying
@@ -780,18 +880,27 @@ mission "Stealth Drug Running (Core) [0]"
 		distance 3
 		personality heroic waiting
 		government Syndicate
-		ship "Quicksilver (Scanner)"
+		fleet
+			names "syndicate small"
+			variant
+				"Quicksilver (Scanner)"
 	npc
 		system destination
 		distance 1
 		personality heroic waiting
 		government Syndicate
-		ship "Quicksilver (Scanner)"
+		fleet
+			names "syndicate small"
+			variant
+				"Quicksilver (Scanner)"
 	npc
 		system destination
 		personality heroic staying
 		government Syndicate
-		ship "Quicksilver (Scanner)"
+		fleet
+			names "syndicate small"
+			variant
+				"Quicksilver (Scanner)"
 	on complete
 		payment 250000 750
 		dialog "You find the contact outside of the main city. Your cargo of <commodity> is removed from your ship and you collect your payment of <payment>."
@@ -820,35 +929,52 @@ mission "Stealth Drug Running (Core) [1]"
 		distance 5
 		personality heroic waiting
 		government Syndicate
-		ship "Quicksilver (Scanner)"
+		fleet
+			names "syndicate small"
+			variant
+				"Quicksilver (Scanner)"
 	npc
 		distance 4
 		personality heroic waiting
 		government Syndicate
-		ship "Quicksilver (Scanner)"
+		fleet
+			names "syndicate small"
+			variant
+				"Quicksilver (Scanner)"
 	npc
 		distance 3
 		personality heroic waiting
 		government Syndicate
-		ship "Quicksilver (Scanner)"
+		fleet
+			names "syndicate small"
+			variant
+				"Quicksilver (Scanner)"
 	npc
 		system destination
 		distance 1
 		personality heroic waiting
 		government Syndicate
-		ship "Quicksilver (Scanner)"
+		fleet
+			names "syndicate small"
+			variant
+				"Quicksilver (Scanner)"
 	npc
 		system destination
 		distance 1
 		personality heroic waiting
 		government Syndicate
-		ship "Quicksilver (Scanner)"
+		fleet
+			names "syndicate small"
+			variant
+				"Quicksilver (Scanner)"
 	npc
 		system destination
 		personality heroic staying
 		government Syndicate
-		ship "Quicksilver (Scanner)"
-		ship "Quicksilver (Scanner)"
+		fleet
+			names "syndicate small"
+			variant
+				"Quicksilver (Scanner)" 2
 	on complete
 		payment 375000 750
 		dialog "You find the contact outside of the main city. Your cargo of <commodity> is removed from your ship and you collect your payment of <payment>."
@@ -877,18 +1003,27 @@ mission "Stealth Drug Running (South) [0]"
 		distance 3
 		personality heroic waiting
 		government Militia
-		ship "Bastion (Scanner)"
+		fleet
+			names "militia"
+			variant
+				"Bastion (Scanner)"
 	npc
 		system destination
 		distance 1
 		personality heroic waiting
 		government Militia
-		ship "Bastion (Scanner)"
+		fleet
+			names "militia"
+			variant
+				"Bastion (Scanner)"
 	npc
 		system destination
 		personality heroic staying
 		government Militia
-		ship "Bastion (Scanner)"
+		fleet
+			names "militia"
+			variant
+				"Bastion (Scanner)"
 	on complete
 		payment 250000 750
 		dialog "You find the contact outside of the main city. Your cargo of <commodity> is removed from your ship and you collect your payment of <payment>."
@@ -917,35 +1052,52 @@ mission "Stealth Drug Running (South) [1]"
 		distance 5
 		personality heroic waiting
 		government Militia
-		ship "Bastion (Scanner)"
+		fleet
+			names "militia"
+			variant
+				"Bastion (Scanner)"
 	npc
 		distance 4
 		personality heroic waiting
 		government Militia
-		ship "Bastion (Scanner)"
+		fleet
+			names "militia"
+			variant
+				"Bastion (Scanner)"
 	npc
 		distance 3
 		personality heroic waiting
 		government Militia
-		ship "Bastion (Scanner)"
+		fleet
+			names "militia"
+			variant
+				"Bastion (Scanner)"
 	npc
 		system destination
 		distance 1
 		personality heroic waiting
 		government Militia
-		ship "Bastion (Scanner)"
+		fleet
+			names "militia"
+			variant
+				"Bastion (Scanner)"
 	npc
 		system destination
 		distance 1
 		personality heroic waiting
 		government Militia
-		ship "Bastion (Scanner)"
+		fleet
+			names "militia"
+			variant
+				"Bastion (Scanner)"
 	npc
 		system destination
 		personality heroic staying
 		government Militia
-		ship "Bastion (Scanner)"
-		ship "Bastion (Scanner)"
+		fleet
+			names "militia"
+			variant
+				"Bastion (Scanner)" 2
 	on complete
 		payment 375000 750
 		dialog "You find the contact outside of the main city. Your cargo of <commodity> is removed from your ship and you collect your payment of <payment>."
@@ -1065,34 +1217,52 @@ mission "Highly Wanted Passenger (North)"
 	npc
 		personality heroic waiting
 		government Republic
-		ship "Gunboat"
+		fleet
+			names "republic small"
+			variant
+				"Gunboat"
 	npc
 		distance 5
 		personality heroic waiting
 		government Republic
-		ship "Gunboat"
+		fleet
+			names "republic small"
+			variant
+				"Gunboat"
 	npc
 		distance 4
 		personality heroic waiting
 		government Republic
-		ship "Gunboat"
+		fleet
+			names "republic small"
+			variant
+				"Gunboat"
 	npc
 		distance 3
 		personality heroic waiting
 		government Republic
-		ship "Gunboat"
+		fleet
+			names "republic small"
+			variant
+				"Gunboat"
 	npc
 		system destination
 		distance 1
 		personality heroic waiting
 		government Republic
-		ship "Gunboat"
+		fleet
+			names "republic small"
+			variant
+				"Gunboat"
 	npc
 		system destination
 		distance 1
 		personality heroic waiting
 		government Republic
-		ship "Gunboat"
+		fleet
+			names "republic small"
+			variant
+				"Gunboat"
 	npc
 		system destination
 		personality heroic staying
@@ -1126,40 +1296,60 @@ mission "Highly Wanted Passenger (Core)"
 	npc
 		personality heroic waiting
 		government Syndicate
-		ship "Quicksilver (Scanner)"
+		fleet
+			names "syndicate small"
+			variant
+				"Quicksilver (Scanner)"
 	npc
 		distance 5
 		personality heroic waiting
 		government Syndicate
-		ship "Quicksilver (Scanner)"
+		fleet
+			names "syndicate small"
+			variant
+				"Quicksilver (Scanner)"
 	npc
 		distance 4
 		personality heroic waiting
 		government Syndicate
-		ship "Quicksilver (Scanner)"
+		fleet
+			names "syndicate small"
+			variant
+				"Quicksilver (Scanner)"
 	npc
 		distance 3
 		personality heroic waiting
 		government Syndicate
-		ship "Quicksilver (Scanner)"
+		fleet
+			names "syndicate small"
+			variant
+				"Quicksilver (Scanner)"
 	npc
 		system destination
 		distance 1
 		personality heroic waiting
 		government Syndicate
-		ship "Quicksilver (Scanner)"
+		fleet
+			names "syndicate small"
+			variant
+				"Quicksilver (Scanner)"
 	npc
 		system destination
 		distance 1
 		personality heroic waiting
 		government Syndicate
-		ship "Quicksilver (Scanner)"
+		fleet
+			names "syndicate small"
+			variant
+				"Quicksilver (Scanner)"
 	npc
 		system destination
 		personality heroic staying
 		government Syndicate
-		ship "Quicksilver (Scanner)"
-		ship "Quicksilver (Scanner)"
+		fleet
+			names "syndicate small"
+			variant
+				"Quicksilver (Scanner)" 2
 	on complete
 		payment 500000 25000
 		dialog "You land outside of the main city to avoid any chances of your passenger being seen. They grab their things and make their way off of your ship after paying you <payment>."
@@ -1188,40 +1378,60 @@ mission "Highly Wanted Passenger (South)"
 	npc
 		personality heroic waiting
 		government Militia
-		ship "Bastion (Scanner)"
+		fleet
+			names "militia"
+			variant
+				"Bastion (Scanner)"
 	npc
 		distance 5
 		personality heroic waiting
 		government Militia
-		ship "Bastion (Scanner)"
+		fleet
+			names "militia"
+			variant
+				"Bastion (Scanner)"
 	npc
 		distance 4
 		personality heroic waiting
 		government Militia
-		ship "Bastion (Scanner)"
+		fleet
+			names "militia"
+			variant
+				"Bastion (Scanner)"
 	npc
 		distance 3
 		personality heroic waiting
 		government Militia
-		ship "Bastion (Scanner)"
+		fleet
+			names "militia"
+			variant
+				"Bastion (Scanner)"
 	npc
 		system destination
 		distance 1
 		personality heroic waiting
 		government Militia
-		ship "Bastion (Scanner)"
+		fleet
+			names "militia"
+			variant
+				"Bastion (Scanner)"
 	npc
 		system destination
 		distance 1
 		personality heroic waiting
 		government Militia
-		ship "Bastion (Scanner)"
+		fleet
+			names "militia"
+			variant
+				"Bastion (Scanner)"
 	npc
 		system destination
 		personality heroic staying
 		government Militia
-		ship "Bastion (Scanner)"
-		ship "Bastion (Scanner)"
+		fleet
+			names "militia"
+			variant
+				"Bastion (Scanner)" 2
 	on complete
 		payment 500000 25000
 		dialog "You land outside of the main city to avoid any chances of your passenger being seen. They grab their things and make their way off of your ship after paying you <payment>."
