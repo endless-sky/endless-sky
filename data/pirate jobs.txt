@@ -375,7 +375,7 @@ mission "Stealth Cargo Smuggling (North) [0]"
 	job
 	repeat
 	infiltrating
-	description "Run <cargo> to <destination>. If law enforcement catches you, you will be fined 200,000 credits and the cargo will be seized. You will need to land away from the spaceport or else you may get caught. Payment is <payment>."
+	description "Run <cargo> to <destination>. Being scanned will result in a 200,000 credit fine and the cargo will be seized. You will need to land away from the spaceport or else you may get caught. Payment is <payment>."
 	cargo "Illegal Cargo" 5 2 .1
 		illegal 200000 `After being given a very hefty fine, the illegal cargo is confiscated from your hold. The pirates won't be happy to hear about this.`
 		stealth
@@ -392,18 +392,18 @@ mission "Stealth Cargo Smuggling (North) [0]"
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate"
 	npc
 		distance 3
-		personality heroic waiting surveillance
+		personality heroic waiting
 		government Republic
 		ship "Gunboat"
 	npc
 		system destination
 		distance 1
-		personality heroic waiting surveillance
+		personality heroic waiting
 		government Republic
 		ship "Gunboat"
 	npc
 		system destination
-		personality heroic staying surveillance
+		personality heroic staying
 		government Republic
 		ship "Gunboat"
 	on complete
@@ -415,7 +415,7 @@ mission "Stealth Cargo Smuggling (North) [1]"
 	job
 	repeat
 	infiltrating
-	description "Run <cargo> to <destination>. If law enforcement catches you, you will be fined 300,000 credits and the cargo will be seized. You will need to land away from the spaceport or else you may get caught. Payment is <payment>."
+	description "Run <cargo> to <destination>. Being scanned will result in a 300,000 credit fine and the cargo will be seized. You will need to land away from the spaceport or else you may get caught. Payment is <payment>."
 	cargo "Illegal Cargo" 5 2 .1
 		illegal 300000 `After being given a very hefty fine, the illegal cargo is confiscated from your hold. The pirates won't be happy to hear about this.`
 		stealth
@@ -432,34 +432,34 @@ mission "Stealth Cargo Smuggling (North) [1]"
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate"
 	npc
 		distance 5
-		personality heroic waiting surveillance
+		personality heroic waiting
 		government Republic
 		ship "Gunboat"
 	npc
 		distance 4
-		personality heroic waiting surveillance
+		personality heroic waiting 
 		government Republic
 		ship "Gunboat"
 	npc
 		distance 3
-		personality heroic waiting surveillance
+		personality heroic waiting
 		government Republic
 		ship "Gunboat"
 	npc
 		system destination
 		distance 1
-		personality heroic waiting surveillance
+		personality heroic waiting
 		government Republic
 		ship "Gunboat"
 	npc
 		system destination
 		distance 1
-		personality heroic waiting surveillance
+		personality heroic waiting
 		government Republic
 		ship "Gunboat"
 	npc
 		system destination
-		personality heroic staying surveillance
+		personality heroic staying
 		government Republic
 		fleet "Navy Surveillance"
 	on complete
@@ -471,7 +471,7 @@ mission "Stealth Cargo Smuggling (Core) [0]"
 	job
 	repeat
 	infiltrating
-	description "Run <cargo> to <destination>. If law enforcement catches you, you will be fined 200,000 credits and the cargo will be seized. You will need to land away from the spaceport or else you may get caught. Payment is <payment>."
+	description "Run <cargo> to <destination>. Being scanned will result in a 200,000 credit fine and the cargo will be seized. You will need to land away from the spaceport or else you may get caught. Payment is <payment>."
 	cargo "Illegal Cargo" 5 2 .1
 		illegal 200000 `After being given a very hefty fine, the illegal cargo is confiscated from your hold. The pirates won't be happy to hear about this.`
 		stealth
@@ -488,18 +488,18 @@ mission "Stealth Cargo Smuggling (Core) [0]"
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate"
 	npc
 		distance 3
-		personality heroic waiting surveillance
+		personality heroic waiting
 		government Syndicate
 		ship "Quicksilver (Scanner)"
 	npc
 		system destination
 		distance 1
-		personality heroic waiting surveillance
+		personality heroic waiting
 		government Syndicate
 		ship "Quicksilver (Scanner)"
 	npc
 		system destination
-		personality heroic staying surveillance
+		personality heroic staying
 		government Syndicate
 		ship "Quicksilver (Scanner)"
 	on complete
@@ -511,7 +511,7 @@ mission "Stealth Cargo Smuggling (Core) [1]"
 	job
 	repeat
 	infiltrating
-	description "Run <cargo> to <destination>. If law enforcement catches you, you will be fined 300,000 credits and the cargo will be seized. You will need to land away from the spaceport or else you may get caught. Payment is <payment>."
+	description "Run <cargo> to <destination>. Being scanned will result in a 300,000 credit fine and the cargo will be seized. You will need to land away from the spaceport or else you may get caught. Payment is <payment>."
 	cargo "Illegal Cargo" 5 2 .1
 		illegal 300000 `After being given a very hefty fine, the illegal cargo is confiscated from your hold. The pirates won't be happy to hear about this.`
 		stealth
@@ -528,34 +528,34 @@ mission "Stealth Cargo Smuggling (Core) [1]"
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate"
 	npc
 		distance 5
-		personality heroic waiting surveillance
+		personality heroic waiting
 		government Syndicate
 		ship "Quicksilver (Scanner)"
 	npc
 		distance 4
-		personality heroic waiting surveillance
+		personality heroic waiting
 		government Syndicate
 		ship "Quicksilver (Scanner)"
 	npc
 		distance 3
-		personality heroic waiting surveillance
+		personality heroic waiting
 		government Syndicate
 		ship "Quicksilver (Scanner)"
 	npc
 		system destination
 		distance 1
-		personality heroic waiting surveillance
+		personality heroic waiting
 		government Syndicate
 		ship "Quicksilver (Scanner)"
 	npc
 		system destination
 		distance 1
-		personality heroic waiting surveillance
+		personality heroic waiting
 		government Syndicate
 		ship "Quicksilver (Scanner)"
 	npc
 		system destination
-		personality heroic staying surveillance
+		personality heroic staying
 		government Syndicate
 		ship "Quicksilver (Scanner)"
 		ship "Quicksilver (Scanner)"
@@ -568,7 +568,7 @@ mission "Stealth Cargo Smuggling (South) [0]"
 	job
 	repeat
 	infiltrating
-	description "Run <cargo> to <destination>. If law enforcement catches you, you will be fined 200,000 credits and the cargo will be seized. You will need to land away from the spaceport or else you may get caught. Payment is <payment>."
+	description "Run <cargo> to <destination>. Being scanned will result in a 200,000 credit fine and the cargo will be seized. You will need to land away from the spaceport or else you may get caught. Payment is <payment>."
 	cargo "Illegal Cargo" 5 2 .1
 		illegal 200000 `After being given a very hefty fine, the illegal cargo is confiscated from your hold. The pirates won't be happy to hear about this.`
 		stealth
@@ -585,18 +585,18 @@ mission "Stealth Cargo Smuggling (South) [0]"
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate"
 	npc
 		distance 3
-		personality heroic waiting surveillance
+		personality heroic waiting
 		government Militia
 		ship "Bastion (Scanner)"
 	npc
 		system destination
 		distance 1
-		personality heroic waiting surveillance
+		personality heroic waiting
 		government Militia
 		ship "Bastion (Scanner)"
 	npc
 		system destination
-		personality heroic staying surveillance
+		personality heroic staying
 		government Militia
 		ship "Bastion (Scanner)"
 	on complete
@@ -608,7 +608,7 @@ mission "Stealth Cargo Smuggling (South) [1]"
 	job
 	repeat
 	infiltrating
-	description "Run <cargo> to <destination>. If law enforcement catches you, you will be fined 300,000 credits and the cargo will be seized. You will need to land away from the spaceport or else you may get caught. Payment is <payment>."
+	description "Run <cargo> to <destination>. Being scanned will result in a 300,000 credit fine and the cargo will be seized. You will need to land away from the spaceport or else you may get caught. Payment is <payment>."
 	cargo "Illegal Cargo" 5 2 .1
 		illegal 300000 `After being given a very hefty fine, the illegal cargo is confiscated from your hold. The pirates won't be happy to hear about this.`
 		stealth
@@ -625,34 +625,34 @@ mission "Stealth Cargo Smuggling (South) [1]"
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate"
 	npc
 		distance 5
-		personality heroic waiting surveillance
+		personality heroic waiting
 		government Militia
 		ship "Bastion (Scanner)"
 	npc
 		distance 4
-		personality heroic waiting surveillance
+		personality heroic waiting
 		government Militia
 		ship "Bastion (Scanner)"
 	npc
 		distance 3
-		personality heroic waiting surveillance
+		personality heroic waiting
 		government Militia
 		ship "Bastion (Scanner)"
 	npc
 		system destination
 		distance 1
-		personality heroic waiting surveillance
+		personality heroic waiting
 		government Militia
 		ship "Bastion (Scanner)"
 	npc
 		system destination
 		distance 1
-		personality heroic waiting surveillance
+		personality heroic waiting
 		government Militia
 		ship "Bastion (Scanner)"
 	npc
 		system destination
-		personality heroic staying surveillance
+		personality heroic staying
 		government Militia
 		ship "Bastion (Scanner)"
 		ship "Bastion (Scanner)"
@@ -665,7 +665,7 @@ mission "Stealth Drug Running (North) [0]"
 	job
 	repeat
 	infiltrating
-	description "Run <cargo> to <destination>. If law enforcement catches you, you will be fined 500,000 credits and the cargo will be seized. You will need to land away from the spaceport or else you may get caught. Payment is <payment>."
+	description "Run <cargo> to <destination>. Being scanned will result in a 500,000 credit fine and the cargo will be seized. You will need to land away from the spaceport or else you may get caught. Payment is <payment>."
 	cargo "Illegal Substances" 5 2 .1
 		illegal 500000 `After being given a very hefty fine, the illegal cargo is confiscated from your hold. The pirates won't be happy to hear about this.`
 		stealth
@@ -682,18 +682,18 @@ mission "Stealth Drug Running (North) [0]"
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate"
 	npc
 		distance 3
-		personality heroic waiting surveillance
+		personality heroic waiting
 		government Republic
 		ship "Gunboat"
 	npc
 		system destination
 		distance 1
-		personality heroic waiting surveillance
+		personality heroic waiting
 		government Republic
 		ship "Gunboat"
 	npc
 		system destination
-		personality heroic staying surveillance
+		personality heroic staying
 		government Republic
 		ship "Gunboat"
 	on complete
@@ -705,7 +705,7 @@ mission "Stealth Drug Running (North) [1]"
 	job
 	repeat
 	infiltrating
-	description "Run <cargo> to <destination>. If law enforcement catches you, you will be fined 750,000 credits and the cargo will be seized. You will need to land away from the spaceport or else you may get caught. Payment is <payment>."
+	description "Run <cargo> to <destination>. Being scanned will result in a 750,000 credit fine and the cargo will be seized. You will need to land away from the spaceport or else you may get caught. Payment is <payment>."
 	cargo "Illegal Substances" 5 2 .1
 		illegal 750000 `After being given a very hefty fine, the illegal cargo is confiscated from your hold. The pirates won't be happy to hear about this.`
 		stealth
@@ -722,34 +722,34 @@ mission "Stealth Drug Running (North) [1]"
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate"
 	npc
 		distance 5
-		personality heroic waiting surveillance
+		personality heroic waiting
 		government Republic
 		ship "Gunboat"
 	npc
 		distance 4
-		personality heroic waiting surveillance
+		personality heroic waiting
 		government Republic
 		ship "Gunboat"
 	npc
 		distance 3
-		personality heroic waiting surveillance
+		personality heroic waiting
 		government Republic
 		ship "Gunboat"
 	npc
 		system destination
 		distance 1
-		personality heroic waiting surveillance
+		personality heroic waiting
 		government Republic
 		ship "Gunboat"
 	npc
 		system destination
 		distance 1
-		personality heroic waiting surveillance
+		personality heroic waiting
 		government Republic
 		ship "Gunboat"
 	npc
 		system destination
-		personality heroic staying surveillance
+		personality heroic staying
 		government Republic
 		fleet "Navy Surveillance"
 	on complete
@@ -761,7 +761,7 @@ mission "Stealth Drug Running (Core) [0]"
 	job
 	repeat
 	infiltrating
-	description "Run <cargo> to <destination>. If law enforcement catches you, you will be fined 500,000 credits and the cargo will be seized. You will need to land away from the spaceport or else you may get caught. Payment is <payment>."
+	description "Run <cargo> to <destination>. Being scanned will result in a 500,000 credit fine and the cargo will be seized. You will need to land away from the spaceport or else you may get caught. Payment is <payment>."
 	cargo "Illegal Substances" 5 2 .1
 		illegal 500000 `After being given a very hefty fine, the illegal cargo is confiscated from your hold. The pirates won't be happy to hear about this.`
 		stealth
@@ -778,18 +778,18 @@ mission "Stealth Drug Running (Core) [0]"
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate"
 	npc
 		distance 3
-		personality heroic waiting surveillance
+		personality heroic waiting
 		government Syndicate
 		ship "Quicksilver (Scanner)"
 	npc
 		system destination
 		distance 1
-		personality heroic waiting surveillance
+		personality heroic waiting
 		government Syndicate
 		ship "Quicksilver (Scanner)"
 	npc
 		system destination
-		personality heroic staying surveillance
+		personality heroic staying
 		government Syndicate
 		ship "Quicksilver (Scanner)"
 	on complete
@@ -801,7 +801,7 @@ mission "Stealth Drug Running (Core) [1]"
 	job
 	repeat
 	infiltrating
-	description "Run <cargo> to <destination>. If law enforcement catches you, you will be fined 750,000 credits and the cargo will be seized. You will need to land away from the spaceport or else you may get caught. Payment is <payment>."
+	description "Run <cargo> to <destination>. Being scanned will result in a 750,000 credit fine and the cargo will be seized. You will need to land away from the spaceport or else you may get caught. Payment is <payment>."
 	cargo "Illegal Substances" 5 2 .1
 		illegal 750000 `After being given a very hefty fine, the illegal cargo is confiscated from your hold. The pirates won't be happy to hear about this.`
 		stealth
@@ -818,34 +818,34 @@ mission "Stealth Drug Running (Core) [1]"
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate"
 	npc
 		distance 5
-		personality heroic waiting surveillance
+		personality heroic waiting
 		government Syndicate
 		ship "Quicksilver (Scanner)"
 	npc
 		distance 4
-		personality heroic waiting surveillance
+		personality heroic waiting
 		government Syndicate
 		ship "Quicksilver (Scanner)"
 	npc
 		distance 3
-		personality heroic waiting surveillance
+		personality heroic waiting
 		government Syndicate
 		ship "Quicksilver (Scanner)"
 	npc
 		system destination
 		distance 1
-		personality heroic waiting surveillance
+		personality heroic waiting
 		government Syndicate
 		ship "Quicksilver (Scanner)"
 	npc
 		system destination
 		distance 1
-		personality heroic waiting surveillance
+		personality heroic waiting
 		government Syndicate
 		ship "Quicksilver (Scanner)"
 	npc
 		system destination
-		personality heroic staying surveillance
+		personality heroic staying
 		government Syndicate
 		ship "Quicksilver (Scanner)"
 		ship "Quicksilver (Scanner)"
@@ -858,7 +858,7 @@ mission "Stealth Drug Running (South) [0]"
 	job
 	repeat
 	infiltrating
-	description "Run <cargo> to <destination>. If law enforcement catches you, you will be fined 500,000 credits and the cargo will be seized. You will need to land away from the spaceport or else you may get caught. Payment is <payment>."
+	description "Run <cargo> to <destination>. Being scanned will result in a 500,000 credit fine and the cargo will be seized. You will need to land away from the spaceport or else you may get caught. Payment is <payment>."
 	cargo "Illegal Substances" 5 2 .1
 		illegal 500000 `After being given a very hefty fine, the illegal cargo is confiscated from your hold. The pirates won't be happy to hear about this.`
 		stealth
@@ -875,18 +875,18 @@ mission "Stealth Drug Running (South) [0]"
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate"
 	npc
 		distance 3
-		personality heroic waiting surveillance
+		personality heroic waiting
 		government Militia
 		ship "Bastion (Scanner)"
 	npc
 		system destination
 		distance 1
-		personality heroic waiting surveillance
+		personality heroic waiting
 		government Militia
 		ship "Bastion (Scanner)"
 	npc
 		system destination
-		personality heroic staying surveillance
+		personality heroic staying
 		government Militia
 		ship "Bastion (Scanner)"
 	on complete
@@ -898,7 +898,7 @@ mission "Stealth Drug Running (South) [1]"
 	job
 	repeat
 	infiltrating
-	description "Run <cargo> to <destination>. If law enforcement catches you, you will be fined 750,000 credits and the cargo will be seized. You will need to land away from the spaceport or else you may get caught. Payment is <payment>."
+	description "Run <cargo> to <destination>. Being scanned will result in a 750,000 credit fine and the cargo will be seized. You will need to land away from the spaceport or else you may get caught. Payment is <payment>."
 	cargo "Illegal Substances" 5 2 .1
 		illegal 750000 `After being given a very hefty fine, the illegal cargo is confiscated from your hold. The pirates won't be happy to hear about this.`
 		stealth
@@ -915,34 +915,34 @@ mission "Stealth Drug Running (South) [1]"
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate"
 	npc
 		distance 5
-		personality heroic waiting surveillance
+		personality heroic waiting
 		government Militia
 		ship "Bastion (Scanner)"
 	npc
 		distance 4
-		personality heroic waiting surveillance
+		personality heroic waiting
 		government Militia
 		ship "Bastion (Scanner)"
 	npc
 		distance 3
-		personality heroic waiting surveillance
+		personality heroic waiting
 		government Militia
 		ship "Bastion (Scanner)"
 	npc
 		system destination
 		distance 1
-		personality heroic waiting surveillance
+		personality heroic waiting
 		government Militia
 		ship "Bastion (Scanner)"
 	npc
 		system destination
 		distance 1
-		personality heroic waiting surveillance
+		personality heroic waiting
 		government Militia
 		ship "Bastion (Scanner)"
 	npc
 		system destination
-		personality heroic staying surveillance
+		personality heroic staying
 		government Militia
 		ship "Bastion (Scanner)"
 		ship "Bastion (Scanner)"
@@ -1063,39 +1063,39 @@ mission "Highly Wanted Passenger (North)"
 		distance 4 14
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate"
 	npc
-		personality heroic waiting surveillance
+		personality heroic waiting
 		government Republic
 		ship "Gunboat"
 	npc
 		distance 5
-		personality heroic waiting surveillance
+		personality heroic waiting
 		government Republic
 		ship "Gunboat"
 	npc
 		distance 4
-		personality heroic waiting surveillance
+		personality heroic waiting
 		government Republic
 		ship "Gunboat"
 	npc
 		distance 3
-		personality heroic waiting surveillance
+		personality heroic waiting
 		government Republic
 		ship "Gunboat"
 	npc
 		system destination
 		distance 1
-		personality heroic waiting surveillance
+		personality heroic waiting
 		government Republic
 		ship "Gunboat"
 	npc
 		system destination
 		distance 1
-		personality heroic waiting surveillance
+		personality heroic waiting
 		government Republic
 		ship "Gunboat"
 	npc
 		system destination
-		personality heroic staying surveillance
+		personality heroic staying
 		government Republic
 		fleet "Navy Surveillance"
 	on complete
@@ -1124,39 +1124,39 @@ mission "Highly Wanted Passenger (Core)"
 		distance 4 14
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate"
 	npc
-		personality heroic waiting surveillance
+		personality heroic waiting
 		government Syndicate
 		ship "Quicksilver (Scanner)"
 	npc
 		distance 5
-		personality heroic waiting surveillance
+		personality heroic waiting
 		government Syndicate
 		ship "Quicksilver (Scanner)"
 	npc
 		distance 4
-		personality heroic waiting surveillance
+		personality heroic waiting
 		government Syndicate
 		ship "Quicksilver (Scanner)"
 	npc
 		distance 3
-		personality heroic waiting surveillance
+		personality heroic waiting
 		government Syndicate
 		ship "Quicksilver (Scanner)"
 	npc
 		system destination
 		distance 1
-		personality heroic waiting surveillance
+		personality heroic waiting
 		government Syndicate
 		ship "Quicksilver (Scanner)"
 	npc
 		system destination
 		distance 1
-		personality heroic waiting surveillance
+		personality heroic waiting
 		government Syndicate
 		ship "Quicksilver (Scanner)"
 	npc
 		system destination
-		personality heroic staying surveillance
+		personality heroic staying
 		government Syndicate
 		ship "Quicksilver (Scanner)"
 		ship "Quicksilver (Scanner)"
@@ -1186,39 +1186,39 @@ mission "Highly Wanted Passenger (South)"
 		distance 4 14
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate"
 	npc
-		personality heroic waiting surveillance
+		personality heroic waiting
 		government Militia
 		ship "Bastion (Scanner)"
 	npc
 		distance 5
-		personality heroic waiting surveillance
+		personality heroic waiting
 		government Militia
 		ship "Bastion (Scanner)"
 	npc
 		distance 4
-		personality heroic waiting surveillance
+		personality heroic waiting
 		government Militia
 		ship "Bastion (Scanner)"
 	npc
 		distance 3
-		personality heroic waiting surveillance
+		personality heroic waiting
 		government Militia
 		ship "Bastion (Scanner)"
 	npc
 		system destination
 		distance 1
-		personality heroic waiting surveillance
+		personality heroic waiting
 		government Militia
 		ship "Bastion (Scanner)"
 	npc
 		system destination
 		distance 1
-		personality heroic waiting surveillance
+		personality heroic waiting
 		government Militia
 		ship "Bastion (Scanner)"
 	npc
 		system destination
-		personality heroic staying surveillance
+		personality heroic staying
 		government Militia
 		ship "Bastion (Scanner)"
 		ship "Bastion (Scanner)"
@@ -1242,7 +1242,7 @@ mission "Slave Transport [0]"
 		distance 3 30
 		government "Pirate"
 	on complete
-		payment 0 2000
+		payment 0 1000
 		dialog "After landing on <planet>, the pirates move the <bunks> slaves from your ship and pay you <payment>."
 
 mission "Slave Transport [1]"
@@ -1261,7 +1261,7 @@ mission "Slave Transport [1]"
 		distance 3 30
 		government "Pirate"
 	on complete
-		payment 0 2000
+		payment 0 1000
 		dialog "After landing on <planet>, the pirates move the <bunks> slaves from your ship and pay you <payment>."
 
 mission "Slave Transport [2]"
@@ -1280,7 +1280,7 @@ mission "Slave Transport [2]"
 		distance 3 30
 		government "Pirate"
 	on complete
-		payment 0 2000
+		payment 0 1000
 		dialog "After landing on <planet>, the pirates move the <bunks> slaves from your ship and pay you <payment>."
 
 mission "Bulk Slave Transport [0]"
@@ -1299,7 +1299,7 @@ mission "Bulk Slave Transport [0]"
 		distance 3 30
 		government "Pirate"
 	on complete
-		payment 0 2000
+		payment 0 1000
 		dialog "After landing on <planet>, the pirates move the <bunks> slaves from your ship and pay you <payment>."
 
 mission "Bulk Slave Transport [1]"
@@ -1318,7 +1318,7 @@ mission "Bulk Slave Transport [1]"
 		distance 3 30
 		government "Pirate"
 	on complete
-		payment 0 2000
+		payment 0 1000
 		dialog "After landing on <planet>, the pirates move the <bunks> slaves from your ship and pay you <payment>."
 
 mission "Mercenary Job (Medium, North, Dangerous Origin)"
@@ -2622,7 +2622,7 @@ mission "Fake Identity [0]"
 	name "Buy a Fake ID"
 	job
 	repeat
-	description "You seem to have found yourself on the wrong side of a law. There is a man named Crow said to be on <destination> who is able to help those looking to get on the right side of the law again... for the small price of 10 million credits, that is."
+	description "You seem to have found yourself on the wrong side of a law. There is a man named Crow said to be on <destination> who is able to help those looking to get on the right side again... for the small price of 10 million credits, that is."
 	source
 		government "Pirate"
 	destination
@@ -2654,7 +2654,7 @@ mission "Fake Identity [1]"
 	name "Buy a Fake ID"
 	job
 	repeat
-	description "You seem to have found yourself on the wrong side of a law. There is a man named Crow said to be on <destination> who is able to help those looking to get on the right side of the law again... for the small price of 20 million credits, that is."
+	description "You seem to have found yourself on the wrong side of a law. There is a man named Crow said to be on <destination> who is able to help those looking to get on the right side again... for the small price of 20 million credits, that is."
 	source
 		government "Pirate"
 	destination
@@ -2687,7 +2687,7 @@ mission "Fake Identity [2]"
 	name "Buy a Fake ID"
 	job
 	repeat
-	description "You seem to have found yourself on the wrong side of a law. There is a man named Crow said to be on <destination> who is able to help those looking to get on the right side of the law again... for the small price of 30 million credits, that is."
+	description "You seem to have found yourself on the wrong side of a law. There is a man named Crow said to be on <destination> who is able to help those looking to get on the right side again... for the small price of 30 million credits, that is."
 	source
 		government "Pirate"
 	destination
