@@ -41,13 +41,23 @@ class PlayerInfo;
 // the same target over and over.
 class AI {
 public:
-	template <class Type>
+	// Any object that can be a ship's target is in a list of this type:
+template <class Type>
 	using List = std::list<std::shared_ptr<Type>>;
+	// Constructor, giving the AI access to various object lists.
 	AI(const List<Ship> &ships, const List<Minable> &minables, const List<Flotsam> &flotsam);
 	
+	// Fleet commands from the player.
+	void IssueShipTarget(const PlayerInfo &player, const std::shared_ptr<Ship> &target);
+	void IssueMoveTarget(const PlayerInfo &player, const Point &target);
+	// Commands issued via the keyboard (mostly, to the flagship).
 	void UpdateKeys(PlayerInfo &player, Command &clickCommands, bool isActive);
+	
+	// Allow the AI to track any events it is interested in.
 	void UpdateEvents(const std::list<ShipEvent> &events);
+	// Reset the AI's memory of events.
 	void Clean();
+	// Issue AI commands to all ships for one game step.
 	void Step(const PlayerInfo &player);
 	
 	

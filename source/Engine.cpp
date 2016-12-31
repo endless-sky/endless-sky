@@ -542,7 +542,17 @@ void Engine::Step(bool isActive)
 			player.SelectGroup(groupSelect, hasShift);
 		groupSelect = -1;
 	}
-	if(doClick)
+	if(doClickNextStep)
+	{
+		// If a click command is issued, always wait until the next step to act
+		// on it, to avoid race conditions.
+		doClick = true;
+		doClickNextStep = false;
+	}
+	else
+		doClick = false;
+	
+	if(doClick && !isRightClick)
 	{
 		doClick = !player.SelectShips(clickBox, hasShift);
 		if(doClick)
@@ -732,10 +742,21 @@ void Engine::Draw() const
 void Engine::Click(const Point &from, const Point &to, bool hasShift)
 {
 	// First, see if this is a click on an escort icon.
-	doClick = true;
+	doClickNextStep = true;
 	this->hasShift = hasShift;
+	isRightClick = false;
 	clickPoint = from;
 	clickBox = Rectangle::WithCorners(from / zoom + center, to / zoom + center);
+}
+
+
+
+void Engine::RClick(const Point &point)
+{
+	doClickNextStep = true;
+	hasShift = false;
+	isRightClick = true;
+	clickPoint = point / zoom;
 }
 
 
@@ -977,8 +998,8 @@ void Engine::CalculateStep()
 		newCenter = flagship->Position();
 		newCenterVelocity = flagship->Velocity();
 	}
-	else
-		doClick = false;
+	bool checkClicks = doClick;
+	
 	draw[calcTickTock].SetCenter(newCenter, newCenterVelocity);
 	radar[calcTickTock].SetCenter(newCenter);
 	
@@ -998,7 +1019,8 @@ void Engine::CalculateStep()
 				object.GetPlanet()->DeployDefense(ships);
 			
 			Point position = object.Position() - newCenter;
-			if(doClick && object.GetPlanet() && (clickPoint - position).Length() < object.Radius())
+			if(checkClicks && !isRightClick && object.GetPlanet()
+					&& (clickPoint - position).Length() < object.Radius())
 			{
 				if(&object == player.Flagship()->GetTargetPlanet())
 				{
@@ -1135,7 +1157,7 @@ void Engine::CalculateStep()
 	vector<Ship *> hasAntiMissile;
 	double clickRange = 50.;
 	const Ship *previousTarget = nullptr;
-	const Ship *clickTarget = nullptr;
+	shared_ptr<Ship> clickTarget;
 	if(player.Flagship() && player.Flagship()->GetTargetShip())
 		previousTarget = &*player.Flagship()->GetTargetShip();
 	
@@ -1184,7 +1206,7 @@ void Engine::CalculateStep()
 			if(ship->Cloaking() == 1. && !isPlayer)
 				continue;
 			
-			if(doClick && &*ship != player.Flagship() && ship->IsTargetable())
+			if(checkClicks && &*ship != player.Flagship() && ship->IsTargetable())
 			{
 				Point position = ship->Position() - newCenter;
 				const Mask &mask = ship->GetMask(step);
@@ -1192,13 +1214,12 @@ void Engine::CalculateStep()
 				if(range <= clickRange)
 				{
 					clickRange = range;
-					clickTarget = ship.get();
-					player.Flagship()->SetTargetShip(ship);
+					clickTarget = ship;
 					// If we've found an enemy within the click zone, favor
 					// targeting it rather than any other ship. Otherwise, keep
 					// checking for hits because another ship might be an enemy.
 					if(!range && ship->GetGovernment()->IsEnemy())
-						doClick = false;
+						checkClicks = false;
 				}
 			}
 			
@@ -1220,11 +1241,21 @@ void Engine::CalculateStep()
 	}
 	if(clickTarget)
 	{
-		if(clickTarget == previousTarget)
-			clickCommands |= Command::BOARD;
-		else if(clickTarget->GetGovernment()->IsPlayer())
-			player.SelectShip(clickTarget, hasShift);
+		if(isRightClick)
+			ai.IssueShipTarget(player, clickTarget);
+		else
+		{
+			// Left click: has your flagship select or board the target.
+			player.Flagship()->SetTargetShip(clickTarget);
+			if(clickTarget.get() == previousTarget)
+				clickCommands |= Command::BOARD;
+			else if(clickTarget->GetGovernment()->IsPlayer())
+				player.SelectShip(clickTarget.get(), hasShift);
+		}
 	}
+	else if(doClick && isRightClick)
+		ai.IssueMoveTarget(player, clickPoint + newCenter);
+	
 	if(alarmTime)
 		--alarmTime;
 	else if(hasHostiles && !hadHostiles)
@@ -1443,9 +1474,6 @@ void Engine::CalculateStep()
 					+ source->Name() + "\": " + message);
 		}
 	}
-	
-	// A mouse click should only be active for a single step.
-	doClick = false;
 	
 	// Keep track of how much of the CPU time we are using.
 	loadSum += loadTimer.Time();

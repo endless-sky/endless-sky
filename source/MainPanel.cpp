@@ -231,6 +231,15 @@ bool MainPanel::Click(int x, int y, int clicks)
 
 
 
+bool MainPanel::RClick(int x, int y)
+{
+	engine.RClick(Point(x, y));
+	
+	return true;
+}
+
+
+
 bool MainPanel::Drag(double dx, double dy)
 {
 	dragPoint += Point(dx, dy);

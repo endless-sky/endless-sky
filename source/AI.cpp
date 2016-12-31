@@ -82,7 +82,32 @@ AI::AI(const List<Ship> &ships, const List<Minable> &minables, const List<Flotsa
 }
 
 
+	
+// Fleet commands from the player.
+void AI::IssueShipTarget(const PlayerInfo &player, const std::shared_ptr<Ship> &target)
+{
+	Orders newOrders;
+	bool isEnemy = target->GetGovernment()->IsEnemy();
+	newOrders.type = (!isEnemy ? Orders::GATHER
+		: target->IsDisabled() ? Orders::FINISH_OFF : Orders::ATTACK); 
+	newOrders.target = target;
+	string description = (isEnemy ? "focusing fire on" : "following") + (" \"" + target->Name() + "\".");
+	IssueOrders(player, newOrders, description);
+}
 
+
+
+void AI::IssueMoveTarget(const PlayerInfo &player, const Point &target)
+{
+	Orders newOrders;
+	newOrders.type = Orders::MOVE_TO;
+	newOrders.point = target;
+	IssueOrders(player, newOrders, "moving to the given location.");
+}
+
+
+
+// Commands issued via the keyboard (mostly, to the flagship).
 void AI::UpdateKeys(PlayerInfo &player, Command &clickCommands, bool isActive)
 {
 	shift = (SDL_GetModState() & KMOD_SHIFT);
@@ -2381,7 +2406,7 @@ void AI::IssueOrders(const PlayerInfo &player, const Orders &newOrders, const st
 	if(player.SelectedShips().empty())
 	{
 		for(const shared_ptr<Ship> &it : player.Ships())
-			if(it.get() != player.Flagship())
+			if(it.get() != player.Flagship() && !it->IsParked())
 				ships.push_back(it.get());
 		who = ships.size() > 1 ? "Your fleet is " : "Your escort is ";
 	}
@@ -2399,10 +2424,26 @@ void AI::IssueOrders(const PlayerInfo &player, const Orders &newOrders, const st
 	if(ships.empty())
 		return;
 	
+	Point centerOfGravity;
+	bool isMoveOrder = (newOrders.type == Orders::MOVE_TO);
+	if(isMoveOrder)
+	{
+		int count = 0;
+		for(const Ship *ship : ships)
+			if(ship->GetSystem() == player.GetSystem() && !ship->IsDisabled())
+			{
+				centerOfGravity += ship->Position();
+				++count;
+			}
+		if(count > 1)
+			centerOfGravity /= count;
+	}
+	
 	// Now, go through all the given ships and set their orders to the new
 	// orders. But, if it turns out that they already had the given orders,
-	// their orders will be cleared instead.
-	bool hasMismatch = false;
+	// their orders will be cleared instead. The only command that does not
+	// toggle is a move command; it always counts as a new command.
+	bool hasMismatch = isMoveOrder;
 	for(const Ship *ship : ships)
 	{
 		hasMismatch |= !orders.count(ship);
@@ -2411,6 +2452,14 @@ void AI::IssueOrders(const PlayerInfo &player, const Orders &newOrders, const st
 		hasMismatch |= (existing.type != newOrders.type);
 		hasMismatch |= (existing.target.lock() != newOrders.target.lock());
 		existing = newOrders;
+		
+		if(isMoveOrder)
+		{
+			// In a move order, rather than commanding every ship to move to the
+			// same point, they move as a mass so their center of gravity is
+			// that point but their relative positions are unchanged.
+			existing.point += ship->Position() - centerOfGravity;
+		}
 	}
 	if(hasMismatch)
 		Messages::Add(who + description);
