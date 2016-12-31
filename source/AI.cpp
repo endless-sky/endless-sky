@@ -137,35 +137,39 @@ void AI::UpdateKeys(PlayerInfo &player, Command &clickCommands, bool isActive)
 			}
 	
 	shared_ptr<Ship> target = flagship->GetTargetShip();
+	Orders newOrders;
 	if(keyDown.Has(Command::FIGHT) && target && !target->IsYours())
 	{
-		sharedTarget = target;
-		holdPosition = false;
-		moveToMe = false;
-		killDisabledSharedTarget = target->IsDisabled();
-		Messages::Add("All your ships are focusing their fire on \"" + target->Name() + "\".");
+		newOrders.type = target->IsDisabled() ? Orders::FINISH_OFF : Orders::ATTACK;
+		newOrders.target = target;
+		IssueOrders(player, newOrders, "focusing fire on \"" + target->Name() + "\".");
 	}
 	if(keyDown.Has(Command::HOLD))
 	{
-		sharedTarget.reset();
-		holdPosition = !holdPosition;
-		moveToMe = false;
-		Messages::Add(holdPosition ? "Your fleet is holding position."
-			: "Your fleet is no longer holding position.");
+		newOrders.type = Orders::HOLD_POSITION;
+		IssueOrders(player, newOrders, "holding position.");
 	}
 	if(keyDown.Has(Command::GATHER))
 	{
-		sharedTarget.reset();
-		holdPosition = false;
-		moveToMe = !moveToMe;
-		Messages::Add(moveToMe ? "Your fleet is gathering around your flagship."
-			: "Your fleet is no longer gathering around your flagship.");
+		newOrders.type = Orders::GATHER;
+		newOrders.target = player.FlagshipPtr();
+		IssueOrders(player, newOrders, "gathering around your flagship.");
 	}
-	target = sharedTarget.lock();
-	if(target && target->IsDisabled() && (!killDisabledSharedTarget || target->IsDestroyed()))
-		sharedTarget.reset();
-	if(target && (target->GetSystem() != flagship->GetSystem() || !target->IsTargetable()))
-		sharedTarget.reset();
+	// Get rid of any invalid orders.
+	for(auto it = orders.begin(); it != orders.end(); )
+	{
+		if(it->second.type & Orders::REQUIRES_TARGET)
+		{
+			shared_ptr<Ship> ship = it->second.target.lock();
+			if(!ship || !ship->IsTargetable() || ship->GetSystem() != it->first->GetSystem()
+					|| (ship->IsDisabled() && it->second.type == Orders::ATTACK))
+			{
+				it = orders.erase(it);
+				continue;
+			}
+		}
+		++it;
+	}
 }
 
 
@@ -195,6 +199,7 @@ void AI::UpdateEvents(const list<ShipEvent> &events)
 
 void AI::Clean()
 {
+	orders.clear();
 	actions.clear();
 	governmentActions.clear();
 	playerActions.clear();
@@ -300,7 +305,7 @@ void AI::Step(const PlayerInfo &player)
 				if((otherGov->IsPlayer() && !gov->IsPlayer()) || ship.get() == flagship)
 					continue;
 				// Your escorts should not help each other if already under orders.
-				if(otherGov->IsPlayer() && gov->IsPlayer() && (moveToMe || holdPosition))
+				if(otherGov->IsPlayer() && gov->IsPlayer() && orders.count(ship.get()))
 					continue;
 				
 				if(it->IsDisabled() ? (otherGov == gov) : (!otherGov->IsEnemy(gov)))
@@ -518,7 +523,12 @@ void AI::Step(const PlayerInfo &player)
 		}
 		
 		bool isPlayerEscort = it->IsYours();
-		if((isPlayerEscort && holdPosition) || mustRecall || isStranded)
+		if(FollowOrders(*it, command))
+		{
+			// If this is an escort and it has orders to follow, no need for the
+			// AI to figure out what action it must perform.
+		}
+		else if(mustRecall || isStranded)
 		{
 			if(it->Velocity().Length() > .001 || !target)
 				Stop(*it, command);
@@ -548,13 +558,6 @@ void AI::Step(const PlayerInfo &player)
 		// jump, always follow.
 		else if(parent->Commands().Has(Command::JUMP) && it->JumpsRemaining())
 			MoveEscort(*it, command);
-		// If the player is ordering escorts to gather, don't go off to fight.
-		else if(isPlayerEscort && moveToMe)
-			MoveEscort(*it, command);
-		// On the other hand, if the player ordered you to attack, do so even
-		// if you're usually more timid than that.
-		else if(isPlayerEscort && sharedTarget.lock())
-			MoveIndependent(*it, command);
 		// Timid ships always stay near their parent.
 		else if(personality.IsTimid() && parent->Position().Distance(it->Position()) > 500.)
 			MoveEscort(*it, command);
@@ -601,10 +604,9 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 	bool isPlayerEscort = ship.IsYours();
 	if(isPlayerEscort)
 	{
-		shared_ptr<Ship> locked = sharedTarget.lock();
-		if(locked && locked->GetSystem() == ship.GetSystem() && !locked->IsDestroyed())
-			if(killDisabledSharedTarget || !locked->IsDisabled())
-				return locked;
+		auto it = orders.find(&ship);
+		if(it != orders.end() && (it->second.type == Orders::ATTACK || it->second.type == Orders::FINISH_OFF))
+			return it->second.target.lock();
 	}
 	
 	// If this ship is not armed, do not make it fight.
@@ -751,6 +753,41 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 
 
 
+bool AI::FollowOrders(Ship &ship, Command &command) const
+{
+	auto it = orders.find(&ship);
+	if(it == orders.end())
+		return false;
+	
+	int type = it->second.type;
+	shared_ptr<Ship> target = it->second.target.lock();
+	if(type == Orders::MOVE_TO && ship.Position().Distance(it->second.point) > 20.)
+		MoveTo(ship, command, it->second.point, 10., .1);
+	else if(type == Orders::HOLD_POSITION || type == Orders::MOVE_TO)
+	{
+		if(ship.Velocity().Length() > .001 || !target)
+			Stop(ship, command);
+		else
+			command.SetTurn(TurnToward(ship, TargetAim(ship)));
+	}
+	else if(!target)
+	{
+		// Note: in AI::UpdateKeys() we already made sure that if a set of orders
+		// has a target, the target is in-system and targetable. But, to be sure:
+		return false;
+	}
+	else if(type == Orders::KEEP_STATION)
+		KeepStation(ship, command, *target);
+	else if(type == Orders::GATHER)
+		CircleAround(ship, command, *target);
+	else
+		MoveIndependent(ship, command);
+	
+	return true;
+}
+
+
+
 void AI::MoveIndependent(Ship &ship, Command &command) const
 {
 	shared_ptr<const Ship> target = ship.GetTargetShip();
@@ -765,8 +802,14 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 			return;
 		}
 	}
-	if(target && (ship.GetGovernment()->IsEnemy(target->GetGovernment())
-			|| (ship.IsYours() && target == sharedTarget.lock())))
+	bool friendlyOverride = false;
+	if(ship.IsYours())
+	{
+		auto it = orders.find(&ship);
+		if(it != orders.end() && it->second.target.lock() == target)
+			friendlyOverride = (it->second.type == Orders::ATTACK || it->second.type == Orders::FINISH_OFF);
+	}
+	if(target && (ship.GetGovernment()->IsEnemy(target->GetGovernment()) || friendlyOverride))
 	{
 		bool shouldBoard = ship.Cargo().Free() && ship.GetPersonality().Plunders();
 		bool hasBoarded = Has(ship, target, ShipEvent::BOARD);
@@ -969,8 +1012,6 @@ void AI::MoveEscort(Ship &ship, Command &command) const
 				command |= Command::JUMP;
 		}
 	}
-	else if(ship.IsYours() && moveToMe)
-		CircleAround(ship, command, parent);
 	else
 		KeepStation(ship, command, parent);
 }
@@ -1739,11 +1780,21 @@ Command AI::AutoFire(const Ship &ship, bool secondary) const
 	// for assistance.
 	shared_ptr<Ship> currentTarget = ship.GetTargetShip();
 	const Government *gov = ship.GetGovernment();
-	bool isSharingTarget = ship.IsYours() && currentTarget == sharedTarget.lock();
+	bool friendlyOverride = false;
+	bool disabledOverride = false;
+	if(ship.IsYours())
+	{
+		auto it = orders.find(&ship);
+		if(it != orders.end() && it->second.target.lock() == currentTarget)
+		{
+			disabledOverride = (it->second.type == Orders::FINISH_OFF);
+			friendlyOverride = disabledOverride | (it->second.type == Orders::ATTACK);
+		}
+	}
 	bool currentIsEnemy = currentTarget
 		&& currentTarget->GetGovernment()->IsEnemy(gov)
 		&& currentTarget->GetSystem() == ship.GetSystem();
-	if(currentTarget && !(currentIsEnemy || isSharingTarget))
+	if(currentTarget && !(currentIsEnemy || friendlyOverride))
 		currentTarget.reset();
 	
 	// Only fire on disabled targets if you don't want to plunder them.
@@ -1805,9 +1856,8 @@ Command AI::AutoFire(const Ship &ship, bool secondary) const
 		if(currentTarget && (weapon.IsHoming() || weapon.IsTurret()))
 		{
 			bool hasBoarded = Has(ship, currentTarget, ShipEvent::BOARD);
-			if(currentTarget->IsDisabled() && spareDisabled && !hasBoarded)
-				if(!(isSharingTarget && killDisabledSharedTarget))
-					continue;
+			if(currentTarget->IsDisabled() && spareDisabled && !hasBoarded && !disabledOverride)
+				continue;
 			// Don't fire turrets at targets that are accelerating or decelerating
 			// rapidly due to hyperspace jumping.
 			if(weapon.IsTurret() && currentTarget->IsHyperspacing() && currentTarget->Velocity().Length() > 10.)
@@ -1845,9 +1895,8 @@ Command AI::AutoFire(const Ship &ship, bool secondary) const
 		{
 			// Don't shoot ships we want to plunder.
 			bool hasBoarded = Has(ship, target, ShipEvent::BOARD);
-			if(target->IsDisabled() && spareDisabled && !hasBoarded)
-				if(!(ship.IsYours() && target == sharedTarget.lock() && killDisabledSharedTarget))
-					continue;
+			if(target->IsDisabled() && spareDisabled && !hasBoarded && !disabledOverride)
+				continue;
 			
 			Point p = target->Position() - start;
 			Point v = target->Velocity() - ship.Velocity();
@@ -2319,4 +2368,57 @@ bool AI::Has(const Government *government, const weak_ptr<const Ship> &other, in
 		return false;
 	
 	return (oit->second & type);
+}
+
+
+
+void AI::IssueOrders(const PlayerInfo &player, const Orders &newOrders, const string &description)
+{
+	string who;
+	
+	// Figure out what ships we are giving orders to.
+	vector<const Ship *> ships;
+	if(player.SelectedShips().empty())
+	{
+		for(const shared_ptr<Ship> &it : player.Ships())
+			if(it.get() != player.Flagship())
+				ships.push_back(it.get());
+		who = ships.size() > 1 ? "Your fleet is " : "Your escort is ";
+	}
+	else
+	{
+		for(const weak_ptr<Ship> &it : player.SelectedShips())
+		{
+			shared_ptr<Ship> ship = it.lock();
+			if(ship)
+				ships.push_back(ship.get());
+		}
+		who = ships.size() > 1 ? "The selected escorts are " : "The selected escort is ";
+	}
+	// This should never happen, but just in case:
+	if(ships.empty())
+		return;
+	
+	// Now, go through all the given ships and set their orders to the new
+	// orders. But, if it turns out that they already had the given orders,
+	// their orders will be cleared instead.
+	bool hasMismatch = false;
+	for(const Ship *ship : ships)
+	{
+		hasMismatch |= !orders.count(ship);
+		
+		Orders &existing = orders[ship];
+		hasMismatch |= (existing.type != newOrders.type);
+		hasMismatch |= (existing.target.lock() != newOrders.target.lock());
+		existing = newOrders;
+	}
+	if(hasMismatch)
+		Messages::Add(who + description);
+	else
+	{
+		// Clear all the orders for these ships.
+		Messages::Add(who + "no longer " + description);
+		for(const Ship *ship : ships)
+			orders.erase(ship);
+	}
 }
