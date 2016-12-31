@@ -1269,7 +1269,7 @@ mission "Highly Wanted Passenger (North)"
 		government Republic
 		fleet "Navy Surveillance"
 	on complete
-		payment 500000 25000
+		payment 0 15000
 		dialog "You land outside of the main city to avoid any chances of your passenger being seen. They grab their things and make their way off of your ship after paying you <payment>."
 
 mission "Highly Wanted Passenger (Core)"
@@ -1351,7 +1351,7 @@ mission "Highly Wanted Passenger (Core)"
 			variant
 				"Quicksilver (Scanner)" 2
 	on complete
-		payment 500000 25000
+		payment 0 15000
 		dialog "You land outside of the main city to avoid any chances of your passenger being seen. They grab their things and make their way off of your ship after paying you <payment>."
 
 mission "Highly Wanted Passenger (South)"
@@ -1433,7 +1433,7 @@ mission "Highly Wanted Passenger (South)"
 			variant
 				"Bastion (Scanner)" 2
 	on complete
-		payment 500000 25000
+		payment 0 15000
 		dialog "You land outside of the main city to avoid any chances of your passenger being seen. They grab their things and make their way off of your ship after paying you <payment>."
 
 mission "Slave Transport [0]"
@@ -1441,8 +1441,8 @@ mission "Slave Transport [0]"
 	job
 	repeat
 	description "These pirates need <bunks> slaves moved to <destination> along with <cargo>. Payment is <payment>. Slavery is highly illegal throughout the galaxy, so this may be a dangerous job to take."
-	passengers 5 5 .2
-	cargo "shackles" 1
+	passengers 2 10 .5
+	cargo "shackles and grub" 1
 		illegal -1
 	to offer
 		random < 25
@@ -1460,8 +1460,8 @@ mission "Slave Transport [1]"
 	job
 	repeat
 	description "These pirates need <bunks> slaves moved to <destination> along with <cargo>. Payment is <payment>. Slavery is highly illegal throughout the galaxy, so this may be a dangerous job to take."
-	passengers 5 5 .2
-	cargo "shackles" 1
+	passengers 2 10 .5
+	cargo "shackles and grub" 1
 		illegal -1
 	to offer
 		random < 25
@@ -1479,8 +1479,8 @@ mission "Slave Transport [2]"
 	job
 	repeat
 	description "These pirates need <bunks> slaves moved to <destination> along with <cargo>. Payment is <payment>. Slavery is highly illegal throughout the galaxy, so this may be a dangerous job to take."
-	passengers 5 5 .2
-	cargo "shackles" 1
+	passengers 2 10 .5
+	cargo "shackles and grub" 1
 		illegal -1
 	to offer
 		random < 25
@@ -1499,7 +1499,7 @@ mission "Bulk Slave Transport [0]"
 	repeat
 	description "These pirates need <bunks> slaves moved to <destination> along with <cargo>. Payment is <payment>. Slavery is highly illegal throughout the galaxy, so this may be a dangerous job to take."
 	passengers 10 4 .1
-	cargo "shackles" 1
+	cargo "shackles and grub" 1
 		illegal -1
 	to offer
 		random < 15
@@ -1518,7 +1518,7 @@ mission "Bulk Slave Transport [1]"
 	repeat
 	description "These pirates need <bunks> slaves moved to <destination> along with <cargo>. Payment is <payment>. Slavery is highly illegal throughout the galaxy, so this may be a dangerous job to take."
 	passengers 10 4 .1
-	cargo "shackles" 1
+	cargo "shackles and grub" 1
 		illegal -1
 	to offer
 		random < 15
@@ -2838,6 +2838,7 @@ mission "Fake Identity [0]"
 	destination
 		government "Pirate"
 	to offer
+		not "Fake Identity [0]: active"
 		not "Fake Identity [0]: done"
 		"reputation: Pirate" > 0
 		or
@@ -2872,6 +2873,7 @@ mission "Fake Identity [1]"
 	to offer
 		"reputation: Pirate" > 0
 		has "Fake Identity [0]: done"
+		not "Fake Identity [1]: active"
 		not "Fake Identity [1]: done"
 		or
 			"reputation: Republic" < -100
@@ -2905,6 +2907,7 @@ mission "Fake Identity [2]"
 	to offer
 		"reputation: Pirate" > 0
 		has "Fake Identity [1]: done"
+		not "Fake Identity [2]: active"
 		not "Fake Identity [2]: done"
 		or
 			"reputation: Republic" < -200
