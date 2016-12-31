@@ -82,6 +82,7 @@ void PlayerInfo::New()
 	SetPlanet(GameData::Start().GetPlanet());
 	accounts = GameData::Start().GetAccounts();
 	GameData::Start().GetConditions().Apply(conditions);
+	UpdateAutoConditions();
 	
 	// Generate missions that will be available on the first day.
 	CreateMissions();
@@ -936,6 +937,9 @@ void PlayerInfo::Land(UI *ui)
 	// Adjust cargo cost basis for any cargo lost due to a ship being destroyed.
 	for(const auto &it : lostCargo)
 		AdjustBasis(it.first, -(costBasis[it.first] * it.second) / (cargo.Get(it.first) + it.second));
+	
+	// Bring auto conditions up-to-date for missions to check your current status.
+	UpdateAutoConditions();
 	
 	// Check for missions that are completed.
 	auto mit = missions.begin();
@@ -1994,7 +1998,6 @@ void PlayerInfo::UpdateAutoConditions()
 // New missions are generated each time you land on a planet.
 void PlayerInfo::CreateMissions()
 {
-	UpdateAutoConditions();
 	boardingMissions.clear();
 	boardingShip.reset();
 	
