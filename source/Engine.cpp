@@ -121,6 +121,8 @@ Engine::Engine(PlayerInfo &player)
 		radar[calcTickTock].AddPointer(
 			(system == targetSystem) ? Radar::SPECIAL : Radar::INACTIVE,
 			system->Position() - player.GetSystem()->Position());
+	
+	GameData::SetHaze(player.GetSystem()->Haze());
 }
 
 
@@ -782,6 +784,7 @@ void Engine::EnterSystem()
 	
 	const System *system = flagship->GetSystem();
 	Audio::PlayMusic(system->MusicName());
+	GameData::SetHaze(system->Haze());
 	
 	doEnter = true;
 	player.IncrementDate();
