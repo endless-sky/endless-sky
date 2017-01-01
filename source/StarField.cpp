@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "StarField.h"
 
 #include "Angle.h"
+#include "Body.h"
 #include "DrawList.h"
 #include "pi.h"
 #include "Point.h"
@@ -70,6 +71,18 @@ void StarField::Init(int stars, int width)
 		}
 		haze.emplace_back(sprite, next, Point(), Angle::Random(), 8.);
 	}
+}
+
+
+
+void StarField::SetHaze(const Sprite *sprite)
+{
+	// If no sprite is given, set the default one.
+	if(!sprite)
+		sprite = SpriteSet::Get("_menu/haze");
+	
+	for(Body &body : haze)
+		body.SetSprite(sprite);
 }
 
 

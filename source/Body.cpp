@@ -243,6 +243,7 @@ void Body::SaveSprite(DataWriter &out) const
 void Body::SetSprite(const Sprite *sprite)
 {
 	this->sprite = sprite;
+	currentStep = -1;
 }
 
 
