@@ -107,6 +107,14 @@ phrase "adjectives"
 		"Steely"
 		"Sanguine"
 		"Sunny"
+		"Chiseled"
+		"Lightning"
+		"Storm"
+		"Endless"
+		"Infinite"
+		"Diligent"
+		"Patient"
+		"Wistful"
 
 phrase "colors"
 	word
@@ -141,7 +149,7 @@ phrase "cardinal directions"
 		"East"
 		"West"
 
-phrase "space nouns"
+phrase "singular nouns"
 	word
 		"Star"
 		"Sun"
@@ -164,9 +172,6 @@ phrase "space nouns"
 		"Flare"
 		"Energy"
 		"Galaxy"
-
-phrase "singular nouns"
-	word
 		"Ring"
 		"Blade"
 		"Sword"
@@ -216,6 +221,13 @@ phrase "singular nouns"
 		"Banner"
 		"Voyage"
 		"Rose"
+		"Song"
+		"Hawk"
+		"Raven"
+		"Point"
+		"Mountain"
+		"Island"
+		"Forest"
 
 phrase "plural nouns"
 	word
@@ -246,7 +258,10 @@ phrase "plural nouns"
 		"Names"
 		"Thoughts"
 		"Roses"
+		"Coins"
 		"Cups"
+		"Wands"
+		"Swords"
 		"Wings"
 		"Tears"
 		"Flags"
@@ -255,7 +270,6 @@ phrase "plural nouns"
 		"Deeds"
 		"Ways"
 		"Means"
-		"Coins"
 		# Need to duplicate these because not all the words in the 'female titles' phrase could be pluralized by simply adding 's' to the end
 		"Ladies"
 		"Princesses"
@@ -290,6 +304,7 @@ phrase "nouns of indeterminate quantity"
 		"Sand"
 		"Moonlight"
 		"Dawn"
+		"Dusk"
 		"Mystery"
 		"Magic"
 		"Fire"
@@ -318,6 +333,9 @@ phrase "nouns of indeterminate quantity"
 		"Might"
 		"Destiny"
 		"Grass"
+		"Clarity"
+		"Serenity"
+		"Tranquility"
 
 phrase "the-nouns"
 	word
@@ -325,7 +343,6 @@ phrase "the-nouns"
 	phrase
 		"singular nouns"
 		"plural nouns"
-		"space nouns"
 		"cardinal directions"
 
 phrase "things you can be of"
@@ -335,7 +352,6 @@ phrase "things you can be of"
 		"plural nouns"
 		"the-nouns"
 		"nouns of indeterminate quantity"
-		"colors"
 
 # Make sure to add any additions to the "plural nouns" list in plural form
 phrase "male titles"
@@ -364,6 +380,12 @@ phrase "gender-neutral titles"
 		"Champion"
 		"Admiral"
 		"Sovereign"
+
+phrase "all titles"
+	phrase
+		"male titles"
+		"female titles"
+		"gender-neutral titles"
 
 phrase "male names"
 	word
@@ -441,7 +463,7 @@ phrase "female names"
 		"Anne"
 		"Genevieve"
 		"Elizabeth"
-		"Yi"
+		"Shanshan"
 		"Yin"
 		"Lu"
 		"Maria"
@@ -528,6 +550,14 @@ phrase "possessive gender-neutral titles"
 	word
 		"'s"
 
+phrase "all possessive names and titles"
+	phrase
+		"possessive male names"
+		"possessive male titles"
+		"possessive female names"
+		"possessive female titles"
+		"possessive gender-neutral titles"
+
 phrase "one to twelve"
 	word
 		"One"
@@ -545,8 +575,11 @@ phrase "one to twelve"
 
 phrase "plural quantities"
 	word
+		"Double"
+		"Twin"
 		"Two"
 		"Three"
+		"Triple"
 		"Four"
 		"Five"
 		"Six"
@@ -562,6 +595,64 @@ phrase "plural quantities"
 		"One Hundred"
 		"One Thousand"
 		"Many"
+		"Too Many"
+
+phrase "classic ship names"
+	word
+		"Jumper"
+		"Rider"
+		"Chaser"
+		"Dancer"
+		"Seeker"
+		"Explorer"
+		"Lover"
+		"Hunter"
+		"Beater"
+		"Racer"
+		"Piercer"
+		"Charger"
+		"Speeder"
+		"Falcon"
+		"Paladin"
+		"Cavalier"
+		"Spear"
+		"Surfer"
+		"Strider"
+		"Genie"
+		"Caravan"
+		"Destiny"
+		"Goddess"
+		"Dreamer"
+		"Eagle"
+		"Folly"
+		"Baby"
+		"Money Pit"
+		"Beauty"
+		"Mule"
+		"Work Horse"
+		"Moneymaker"
+		"Wings"
+		"Starship"
+		"Hauler"
+		"Beater"
+		"Fortune"
+		"Dream"
+		"Pride"
+		"Gamble"
+		"Downfall"
+		"Regret"
+		"Savior"
+		"Glory"
+		"Miracle"
+		"Last Chance"
+		"Last Stand"
+		"Adventure"
+		"Hope"
+		"Jewel"
+		"Surprise"
+		"Star"
+		"Cutter"
+		"Cruiser"
 
 
 # Final phrases that make ship names
@@ -674,6 +765,11 @@ phrase "civilian"
 		"Hammerhead"
 		"Heliopolis"
 
+# e.g.:
+# Five Men
+# Twin Dragons
+# Ten Thousand Worlds
+# Too Many Scars
 phrase "civilian"
 	phrase
 		"plural quantities"
@@ -682,6 +778,11 @@ phrase "civilian"
 	phrase
 		"plural nouns"
 
+# e.g.
+# Honorable Guardian
+# Poor Richard
+# Golden Mary
+# Infinite Mystery
 phrase "civilian"
 	phrase
 		"adjectives"
@@ -691,11 +792,13 @@ phrase "civilian"
 	phrase
 		"male names"
 		"female names"
-		"space nouns"
 		"singular nouns"
 		"plural nouns"
 		"nouns of indeterminate quantity"
 
+# e.g.:
+# King of the Mountain
+# Champion Ivan
 phrase "civilian"
 	phrase
 		"male titles"
@@ -706,6 +809,9 @@ phrase "civilian"
 		"male names"
 		"things you can be of"
 
+# e.g.:
+# Queen of Thoughts
+# Lady Caroline
 phrase "civilian"
 	phrase
 		"female titles"
@@ -716,6 +822,24 @@ phrase "civilian"
 		"female names"
 		"things you can be of"
 
+#e.g.:
+# Ivan the Bold
+# Wendy the White
+phrase "civilian"
+	phrase
+		"male names"
+		"female names"
+	word
+		" the "
+	phrase
+		"adjectives"
+		"colors"
+
+# e.g.:
+# Sword King
+# Dawn Empress
+# Lucky Princess
+# Green Admiral
 phrase "civilian"
 	phrase
 		"singular nouns"
@@ -725,103 +849,46 @@ phrase "civilian"
 	word
 		" "
 	phrase
-		"male titles"
-		"female titles"
-		"gender-neutral titles"
+		"all titles"
 
+# e.g.:
+# Castle of Water
+# Oceans of the West
 phrase "civilian"
 	phrase
 		"singular nouns"
 		"plural nouns"
-		"space nouns"
+		"classic ship names"
 	word
 		" "
 	phrase
 		"things you can be of"
 
+# e.g.:
+# Lord's Spear
+# Altheia's Money Pit
+# Xena's Fortune
 phrase "civilian"
 	phrase
 		"adjectives"
+		"colors"
+		"all possessive names and titles"
 	word
 		" "
 	phrase
-		"colors"
+		"classic ship names"
 
+# e.g.:
+# Bittersweet Stone
+# Azure Nymph
+# Xu's Flags
+# Katerina's Silhouette
+# Lord's Whispers
 phrase "civilian"
 	phrase
 		"adjectives"
 		"colors"
-		"space nouns"
-		"possessive male names"
-		"possessive male titles"
-		"possessive female names"
-		"possessive female titles"
-		"possessive gender-neutral titles"
-	word
-		" "
-	word
-		"Jumper"
-		"Rider"
-		"Chaser"
-		"Dancer"
-		"Seeker"
-		"Explorer"
-		"Lover"
-		"Hunter"
-		"Beater"
-		"Racer"
-		"Piercer"
-		"Charger"
-		"Speeder"
-		"Falcon"
-		"Paladin"
-		"Cavalier"
-		"Spear"
-		"Surfer"
-		"Strider"
-		"Genie"
-		"Caravan"
-		"Destiny"
-		"Goddess"
-		"Dreamer"
-		"Eagle"
-		"Folly"
-		"Baby"
-		"Money Pit"
-		"Beauty"
-		"Mule"
-		"Work Horse"
-		"Moneymaker"
-		"Wings"
-		"Starship"
-		"Hauler"
-		"Beater"
-		"Fortune"
-		"Dream"
-		"Pride"
-		"Gamble"
-		"Downfall"
-		"Regret"
-		"Savior"
-		"Glory"
-		"Miracle"
-		"Last Chance"
-		"Last Stand"
-		"Adventure"
-		"Hope"
-		"Jewel"
-		"Surprise"
-		"Star"
-		"Cutter"
-
-phrase "civilian"
-	phrase
-		"adjectives"
-		"colors"
-		"possessive male names"
-		"possessive male titles"
-		"possessive female names"
-		"possessive female titles"
+		"all possessive names and titles"
 	word
 		" "
 	phrase
@@ -829,23 +896,32 @@ phrase "civilian"
 		"singular nouns"
 		"nouns of indeterminate quantity"
 
+# e.g.:
+# Jade Leviathan
+# Olympus Legends
+# Fire Words
 phrase "civilian"
+	phrase
+		"nouns of indeterminate quantity"
+	word
+		" "
 	phrase
 		"singular nouns"
 		"plural nouns"
-		"space nouns"
-	word
-		" of "
-	phrase
-		"nouns of indeterminate quantity"
 
+# e.g.:
+# Words and Changes
+# Beauty and Legends
+# Tears and Sorrow
 phrase "civilian"
 	phrase
 		"plural nouns"
+		"nouns of indeterminate quantity"
 	word
 		" and "
 	phrase
 		"plural nouns"
+		"nouns of indeterminate quantity"
 
 phrase "republic capital"
 	word
@@ -1600,6 +1676,7 @@ phrase "pirate nouns"
 		"Hands"
 		"Fate"
 		"Raider"
+		"Volcano"
 
 phrase "bad outcomes"
 	word
@@ -1634,6 +1711,13 @@ phrase "bad outcomes"
 		"Fury"
 		"Misfortune"
 		"Damnation"
+		"Contagion"
+		"Betrayal"
+		"Asphyxiation"
+		"Hatred"
+		"Vileness"
+		"Evil"
+		"Murder"
 
 phrase "pirate"
 	word
@@ -1736,6 +1820,11 @@ phrase "pirate"
 		"Vlad the Impaler"
 		"Elizabeth Bathory"
 		"Morgan le Fay"
+		"Charnel Ground"
+		"Gaping Wound"
+		"Festering Wounds"
+		"Horrible Flies"
+		"Death's Head"
 
 phrase "pirate"
 	word
@@ -1799,6 +1888,9 @@ phrase "pirate"
 		"Damned"
 		"Fallen"
 		"Crumbling"
+		"Murderous"
+		"Sadistic"
+		"Crippled"
 	word
 		" "
 	phrase
@@ -1846,6 +1938,8 @@ phrase "pirate"
 		"Pain"
 		"War"
 		"Horn"
+		"Murder"
+		"Poison"
 	word
 		"oath"
 		"fire"
@@ -1903,6 +1997,9 @@ phrase "pirate"
 		"boil"
 		"rider"
 		"raider"
+		"stalker"
+		"swarm"
+		"fiend"
 
 
 phrase "bounty hunter"
