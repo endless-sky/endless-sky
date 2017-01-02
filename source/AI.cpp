@@ -1598,8 +1598,10 @@ bool AI::DoHarvesting(Ship &ship, Command &command)
 		double bestTime = 600.;
 		for(const shared_ptr<Flotsam> &it : flotsam)
 		{
+			// Only pick up flotsam that is nearby and that you are facing toward.
 			Point p = it->Position() - ship.Position();
-			if(p.Length() > 800.)
+			double range = p.Length();
+			if(range > 800. || (range > 100. && p.Unit().Dot(ship.Facing().Unit()) < .9))
 				continue;
 			
 			// Estimate how long it would take to intercept this flotsam.
