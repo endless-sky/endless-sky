@@ -31,7 +31,7 @@ class Sprite;
 class MapShipyardPanel : public MapSalesPanel {
 public:
 	explicit MapShipyardPanel(PlayerInfo &player);
-	explicit MapShipyardPanel(const MapPanel &panel);
+	explicit MapShipyardPanel(const MapPanel &panel, bool onlyHere = false);
 	
 	
 protected:

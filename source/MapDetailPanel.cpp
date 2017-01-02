@@ -19,6 +19,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Format.h"
 #include "GameData.h"
 #include "Government.h"
+#include "MapOutfitterPanel.h"
+#include "MapShipyardPanel.h"
 #include "pi.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
@@ -207,9 +209,22 @@ bool MapDetailPanel::Click(int x, int y, int clicks)
 					selectedPlanet = it.first;
 					if(y >= it.second + 30 && y < it.second + 110)
 					{
+						// Figure out what row of the planet info was clicked.
+						int row = (y - (it.second + 30)) / 20;
 						static const int SHOW[4] = {
 							SHOW_REPUTATION, SHOW_SHIPYARD, SHOW_OUTFITTER, SHOW_VISITED};
-						SetCommodity(SHOW[(y - (it.second + 30)) / 20]);
+						SetCommodity(SHOW[row]);
+						
+						if(clicks > 1 && SHOW[row] == SHOW_SHIPYARD)
+						{
+							GetUI()->Pop(this);
+							GetUI()->Push(new MapShipyardPanel(*this, true));
+						}
+						if(clicks > 1 && SHOW[row] == SHOW_OUTFITTER)
+						{
+							GetUI()->Pop(this);
+							GetUI()->Push(new MapOutfitterPanel(*this, true));
+						}
 					}
 					return true;
 				}

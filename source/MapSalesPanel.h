@@ -82,6 +82,7 @@ protected:
 	double maxScroll = 0.;
 	
 	const std::vector<std::string> &categories;
+	bool onlyShowSoldHere = false;
 	
 	
 private:
