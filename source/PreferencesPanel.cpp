@@ -31,7 +31,8 @@ using namespace std;
 
 namespace {
 	// Settings that require special handling.
-	static const string ZOOM_FACTOR = "Zoom factor";
+	static const string ZOOM_FACTOR = "Main zoom factor";
+	static const string VIEW_ZOOM_FACTOR = "View zoom factor";
 	static const string EXPEND_AMMO = "Escorts expend ammo";
 	static const string FRUGAL_ESCORTS = "Escorts use ammo frugally";
 	static const string REACTIVATE_HELP = "Reactivate first-time help";
@@ -132,6 +133,13 @@ bool PreferencesPanel::Click(int x, int y, int clicks)
 				point += .5 * Point(Screen::RawWidth(), Screen::RawHeight());
 				SDL_WarpMouseInWindow(nullptr, point.X(), point.Y());
 			}
+			if(zone.Value() == VIEW_ZOOM_FACTOR)
+			{
+				// Increase the zoom factor unless it is at the maximum. In that
+				// case, cycle around to the lowest zoom factor.
+				if(!Preferences::ZoomViewIn())
+					while(Preferences::ZoomViewOut()) {}
+			}
 			if(zone.Value() == EXPEND_AMMO)
 				Preferences::ToggleAmmoUsage();
 			else if(zone.Value() == REACTIVATE_HELP)
@@ -159,18 +167,65 @@ bool PreferencesPanel::Click(int x, int y, int clicks)
 
 bool PreferencesPanel::Hover(int x, int y)
 {
-	Point point(x, y);
+	hoverPoint = Point(x, y);
 	
 	hover = -1;
 	for(unsigned index = 0; index < zones.size(); ++index)
-		if(zones[index].Contains(point))
+		if(zones[index].Contains(hoverPoint))
 			hover = index;
 	
 	hoverPreference.clear();
 	for(const auto &zone : prefZones)
-		if(zone.Contains(point))
+		if(zone.Contains(hoverPoint))
 			hoverPreference = zone.Value();
 	
+	return true;
+}
+
+
+
+bool PreferencesPanel::Scroll(double dx, double dy)
+{
+	if(!dy || hoverPreference.empty())
+		return false;
+	
+	if(hoverPreference == ZOOM_FACTOR)
+	{
+		int zoom = Screen::Zoom();
+		if(dy < 0. && zoom > 100)
+			zoom -= 50;
+		if(dy > 0. && zoom < 200)
+			zoom += 50;
+		
+		Screen::SetZoom(zoom);
+		// Make sure there is enough vertical space for the full UI.
+		while(Screen::Height() < 700 && zoom > 100)
+		{
+			zoom -= 50;
+			Screen::SetZoom(zoom);
+		}
+		
+		// Convert to raw window coordinates, at the new zoom level.
+		Point point = hoverPoint * (Screen::Zoom() / 100.);
+		point += .5 * Point(Screen::RawWidth(), Screen::RawHeight());
+		SDL_WarpMouseInWindow(nullptr, point.X(), point.Y());
+	}
+	else if(hoverPreference == VIEW_ZOOM_FACTOR)
+	{
+		if(dy < 0.)
+			Preferences::ZoomViewOut();
+		else
+			Preferences::ZoomViewIn();
+	}
+	else if(hoverPreference == SCROLL_SPEED)
+	{
+		int speed = Preferences::ScrollSpeed();
+		if(dy < 0.)
+			speed = max(20, speed - 20);
+		else
+			speed = min(60, speed + 20);
+		Preferences::SetScrollSpeed(speed);
+	}
 	return true;
 }
 
@@ -325,6 +380,7 @@ void PreferencesPanel::DrawSettings()
 	static const string SETTINGS[] = {
 		"Display",
 		ZOOM_FACTOR,
+		VIEW_ZOOM_FACTOR,
 		"Show status overlays",
 		"Show planet labels",
 		"Show mini-map",
@@ -381,6 +437,11 @@ void PreferencesPanel::DrawSettings()
 			isOn = true;
 			text = to_string(Screen::Zoom());
 		}
+		else if(setting == VIEW_ZOOM_FACTOR)
+		{
+			isOn = true;
+			text = to_string(static_cast<int>(100. * Preferences::ViewZoom()));
+		}
 		else if(setting == EXPEND_AMMO)
 			text = Preferences::AmmoUsage();
 		else if(setting == REACTIVATE_HELP)
@@ -400,7 +461,10 @@ void PreferencesPanel::DrawSettings()
 			}
 		}
 		else if(setting == SCROLL_SPEED)
+		{
+			isOn = true;
 			text = to_string(Preferences::ScrollSpeed());
+		}
 		else
 			text = isOn ? "on" : "off";
 		

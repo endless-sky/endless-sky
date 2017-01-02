@@ -21,6 +21,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Minable.h"
 #include "Planet.h"
 #include "Random.h"
+#include "SpriteSet.h"
 
 #include <cmath>
 
@@ -160,6 +161,8 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 					asteroids.emplace_back(GameData::Minables().Get(name), count, energy);
 			}
 		}
+		else if(child.Token(0) == "haze" && child.Size() >= 2)
+			haze = SpriteSet::Get(child.Token(1));
 		else if(child.Token(0) == "trade" && child.Size() >= 3)
 			trade[child.Token(1)].SetBase(child.Value(2));
 		else if(child.Token(0) == "fleet")
@@ -456,6 +459,14 @@ bool System::HasOutfitter() const
 const vector<System::Asteroid> &System::Asteroids() const
 {
 	return asteroids;
+}
+
+
+
+// Get the background haze sprite for this system.
+const Sprite *System::Haze() const
+{
+	return haze;
 }
 
 

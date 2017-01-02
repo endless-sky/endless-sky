@@ -49,13 +49,20 @@ namespace {
 		"moderately intimidating",
 		"not to be trifled with",
 		"seasoned fighter",
-		"respected foe",
+		"respected enemy",
 		"force to be reckoned with",
 		"fearsome scrapper",
 		"formidable adversary",
 		"dread warrior",
 		"veteran battle-lord",
-		"terror of the galaxy"
+		"legendary foe",
+		"war-hungry lunatic",
+		"absurdly bloodthirsty",
+		"terror of the galaxy",
+		"inconceivably destructive",
+		"agent of mass extinction",
+		"genocidal maniac",
+		"destroyer of worlds"
 	};
 	
 	vector<pair<int, string>> Match(const PlayerInfo &player, const string &prefix, const string &suffix)

@@ -47,7 +47,7 @@ public:
 	// Move all the asteroids forward one time step.
 	void Step(std::list<Effect> &effects, std::list<std::shared_ptr<Flotsam>> &flotsam);
 	// Draw the asteroid field, with the field of view centered on the given point.
-	void Draw(DrawList &draw, const Point &center) const;
+	void Draw(DrawList &draw, const Point &center, double zoom) const;
 	// Check if the given projectile has hit any of the asteroids. The current
 	// time step must be given, so we know what animation frame each asteroid is
 	// on. If there is a collision the asteroid's velocity is returned so the
@@ -67,7 +67,7 @@ private:
 		Asteroid(const Sprite *sprite, double energy);
 		
 		void Step();
-		void Draw(DrawList &draw, const Point &center) const;
+		void Draw(DrawList &draw, const Point &center, double zoom) const;
 		double Collide(const Projectile &projectile, int step) const;
 		
 	private:

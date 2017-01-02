@@ -632,6 +632,13 @@ const StarField &GameData::Background()
 
 
 
+void GameData::SetHaze(const Sprite *sprite)
+{
+	background.SetHaze(sprite);
+}
+
+
+
 const string &GameData::Tooltip(const string &label)
 {
 	static const string EMPTY;

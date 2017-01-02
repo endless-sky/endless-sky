@@ -23,6 +23,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Outfit.h"
 #include "PlayerInfo.h"
 #include "Point.h"
+#include "PointerShader.h"
 #include "Preferences.h"
 #include "RingShader.h"
 #include "Screen.h"
@@ -77,6 +78,10 @@ void MapSalesPanel::Draw()
 	
 	zones.clear();
 	hidPrevious = true;
+	
+	// Adjust the scroll amount if for some reason the display has changed so
+	// that no items are visible.
+	scroll = min(0., max(-maxScroll, scroll));
 	
 	DrawKey();
 	DrawPanel();
@@ -140,11 +145,16 @@ bool MapSalesPanel::Click(int x, int y, int clicks)
 				}
 				break;
 			}
-		
-		return true;
+	}
+	else if(x >= Screen::Left() + WIDTH + 30 && x < Screen::Left() + WIDTH + 190 && y < Screen::Top() + 70)
+	{
+		// This click was in the map key.
+		onlyShowSoldHere = (!onlyShowSoldHere && y >= Screen::Top() + 42 && y < Screen::Top() + 62);
 	}
 	else
 		return MapPanel::Click(x, y, clicks);
+	
+	return true;
 }
 
 
@@ -206,6 +216,11 @@ void MapSalesPanel::DrawKey() const
 		bool isSelected = (VALUE[i] == selectedValue);
 		RingShader::Draw(pos, OUTER, INNER, MapColor(VALUE[i]));
 		font.Draw(KeyLabel(i), pos + textOff, isSelected ? bright : dim);
+		if(onlyShowSoldHere && i == 2)
+		{
+			// If we're filtering out items not sold here, draw a pointer.
+			PointerShader::Draw(pos + Point(-7., 0.), Point(1., 0.), 10., 10., 0., bright);
+		}
 		pos.Y() += 20.;
 	}
 }
