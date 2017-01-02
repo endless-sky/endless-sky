@@ -15,14 +15,19 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Audio.h"
 #include "Color.h"
 #include "Files.h"
+#include "FontSet.h"
 #include "GameData.h"
 #include "Information.h"
 #include "Interface.h"
 #include "Preferences.h"
 #include "Screen.h"
+#include "Sprite.h"
+#include "SpriteSet.h"
+#include "SpriteShader.h"
 #include "StarField.h"
 #include "Table.h"
 #include "UI.h"
+#include "WrappedText.h"
 
 #include "gl_header.h"
 #include <SDL2/SDL.h>
@@ -44,6 +49,9 @@ namespace {
 PreferencesPanel::PreferencesPanel()
 	: editing(-1), selected(0), hover(-1)
 {
+	if(!GameData::PluginAboutText().empty())
+		selectedPlugin = GameData::PluginAboutText().begin()->first;
+	
 	SetIsFullScreen(true);
 }
 
@@ -64,6 +72,7 @@ void PreferencesPanel::Draw()
 	
 	zones.clear();
 	prefZones.clear();
+	pluginZones.clear();
 	if(page == 'c')
 		DrawControls();
 	else if(page == 's')
@@ -160,6 +169,10 @@ bool PreferencesPanel::Click(int x, int y, int clicks)
 			break;
 		}
 	
+	for(const auto &zone : pluginZones)
+		if(zone.Contains(point))
+			selectedPlugin = zone.Value();
+	
 	return true;
 }
 
@@ -178,6 +191,11 @@ bool PreferencesPanel::Hover(int x, int y)
 	for(const auto &zone : prefZones)
 		if(zone.Contains(hoverPoint))
 			hoverPreference = zone.Value();
+	
+	hoverPlugin.clear();
+	for(const auto &zone : pluginZones)
+		if(zone.Contains(hoverPoint))
+			hoverPlugin = zone.Value();
 	
 	return true;
 }
@@ -479,7 +497,47 @@ void PreferencesPanel::DrawSettings()
 
 void PreferencesPanel::DrawPlugins()
 {
-	// TODO.
+	Color back = *GameData::Colors().Get("faint");
+	Color medium = *GameData::Colors().Get("medium");
+	Color bright = *GameData::Colors().Get("bright");
+	
+	Table table;
+	table.AddColumn(-115, Table::LEFT);
+	table.SetUnderline(-120, 120);
+	
+	int firstY = -238;
+	table.DrawAt(Point(-130, firstY));
+	table.DrawUnderline(medium);
+	table.Draw("Installed plugins:", bright);
+	table.DrawGap(5);
+	
+	for(const auto &it : GameData::PluginAboutText())
+	{
+		pluginZones.emplace_back(table.GetCenterPoint(), table.GetRowSize(), it.first);
+		
+		bool isSelected = (it.first == selectedPlugin);
+		if(isSelected || it.first == hoverPlugin)
+			table.DrawHighlight(back);
+		table.Draw(it.first, isSelected ? bright : medium);
+		
+		if(isSelected)
+		{
+			const Sprite *sprite = SpriteSet::Get(it.first);
+			Point top(15., firstY);
+			if(sprite)
+			{
+				Point center(130., top.Y() + .5 * sprite->Height());
+				SpriteShader::Draw(sprite, center);
+				top.Y() += sprite->Height() + 10.;
+			}
+			
+			WrappedText wrap(FontSet::Get(14));
+			wrap.SetWrapWidth(230);
+			static const string empty = "(No description given.)";
+			wrap.Wrap(it.second.empty() ? empty : it.second);
+			wrap.Draw(top, medium);
+		}
+	}
 }
 
 

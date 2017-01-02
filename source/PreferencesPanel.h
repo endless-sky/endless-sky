@@ -59,8 +59,12 @@ private:
 	char page = 'c';
 	std::string hoverPreference;
 	
+	std::string selectedPlugin;
+	std::string hoverPlugin;
+	
 	std::vector<ClickZone<Command>> zones;
 	std::vector<ClickZone<std::string>> prefZones;
+	std::vector<ClickZone<std::string>> pluginZones;
 };
 
 
