@@ -8437,8 +8437,8 @@ system Eshkoshtar
 	asteroids "small metal" 12 4.5
 	asteroids "medium metal" 53 2.31
 	asteroids "large metal" 155 3.51
-	minables aluminum 8 3.97026
-	minables silicon 5 3.83848
+	minables aluminum 38 3.97026
+	minables silicon 25 3.83848
 	trade Clothing 248
 	trade Electronics 715
 	trade Equipment 703
@@ -18161,8 +18161,8 @@ system Salipastart
 	asteroids "large rock" 9 5.95
 	asteroids "medium metal" 8 4.9504
 	asteroids "large metal" 1 2.4276
-	minables neodymium 3 7.92517
-	minables silicon 3 9.32739
+	minables neodymium 23 7.92517
+	minables silicon 13 9.32739
 	trade Clothing 231
 	trade Electronics 655
 	trade Equipment 647
@@ -18618,7 +18618,7 @@ system Sepetrosk
 	asteroids "small metal" 8 1.596
 	asteroids "medium metal" 15 1.652
 	asteroids "large metal" 56 2.94
-	minables aluminum 1 2.95643
+	minables aluminum 31 2.95643
 	trade Clothing 241
 	trade Electronics 689
 	trade Equipment 638
@@ -19220,9 +19220,9 @@ system Similisti
 	asteroids "small metal" 20 2.79
 	asteroids "medium metal" 25 3.105
 	asteroids "large metal" 40 4.005
-	minables iron 5 5.36391
-	minables lead 4 6.86864
-	minables silicon 2 6.31894
+	minables iron 15 5.36391
+	minables lead 34 6.86864
+	minables silicon 22 6.31894
 	trade Clothing 210
 	trade Electronics 645
 	trade Equipment 669
