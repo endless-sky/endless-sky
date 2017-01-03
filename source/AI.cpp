@@ -742,6 +742,30 @@ void AI::Step(const PlayerInfo &player)
 				double minHealth = RETREAT_HEALTH + .1 * !it->Commands().Has(Command::DEPLOY);
 				if(it->Health() < minHealth && (!it->IsYours() || fightersRetreat))
 					shouldRetreat = true;
+				// If a fighter is armed with ammo-using weapons, but no longer
+				// has the ammunition needed to use them, it should return if the
+				// parent can supply that ammo.
+				bool isArmed = false;
+				bool hasAmmo = false;
+				for(const Hardpoint &hardpoint : it->Weapons())
+				{
+					const Weapon *weapon = hardpoint.GetOutfit();
+					if(weapon && !hardpoint.IsAntiMissile())
+					{
+						isArmed = true;
+						if(!weapon->Ammo() || it->OutfitCount(weapon->Ammo()))
+						{
+							hasAmmo = true;
+							break;
+						}
+					}
+				}
+				if(isArmed && !hasAmmo)
+					shouldRetreat = true;
+				
+				// If a fighter has fuel capacity but is low, it should return.
+				if(!it->Fuel() && it->Attributes().Get("fuel capacity"))
+					shouldRetreat = true;
 				
 				if(shouldRetreat)
 				{
