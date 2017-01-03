@@ -602,9 +602,14 @@ void AI::Step(const PlayerInfo &player)
 					it->SetParent(parent);
 				}
 			}
-			else if(parent && 
-					(it->Attributes().Get("shields") && it->Shields() < 0.5f) 
-					&& ((!it->IsYours() ? thisIsLaunching : parent->Commands().Has(Command::DEPLOY)) || (isArmed && ! hasAmmo)))
+			else if(parent &&
+					( !(it->IsYours() ? thisIsLaunching : parent->Commands().Has(Command::DEPLOY)) ||
+					( isArmed && ! hasAmmo) || 
+					//no enemy nearby so recharge shields in carrier
+					( it->Attributes().Get("shields") && 
+					  it->Shields() < 0.9 && 
+					  (!it->GetTargetShip() || !it->GetTargetShip()->GetGovernment()->IsEnemy(gov))) ||
+					( it->Attributes().Get("shields") && it->Shields() < 0.6)))
 			{
 				it->SetTargetShip(parent);
 				MoveTo(*it, command, parent->Position(), parent->Velocity(), 40., .8);
@@ -1561,9 +1566,7 @@ void AI::Attack(Ship &ship, Command &command, const Ship &target)
 	// is not realistic, but it's a whole lot less annoying for the player when
 	// they are trying to hunt down and kill the last missile boat in a fleet.
 	if(isArmed && !hasAmmo)
-			shortestRange = 0.;
-		
-
+		shortestRange = 0.;
 	
 	// Deploy any fighters you are carrying.
 	if(!ship.IsYours())
