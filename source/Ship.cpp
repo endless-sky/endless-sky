@@ -1318,6 +1318,12 @@ void Ship::Launch(list<shared_ptr<Ship>> &ships)
 		{
 			std::shared_ptr<Ship> &ship = bay.ship;
 
+			//do not launch ships with low shields
+			if( ship->Shields() < .9)
+			{
+				continue;
+			}
+
 			//rearm fighters as they leave the bay
 			set<const Outfit *> toRefill;
 			for(const auto &it : ship->Weapons())
