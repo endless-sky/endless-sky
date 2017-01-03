@@ -1316,6 +1316,26 @@ void Ship::Launch(list<shared_ptr<Ship>> &ships)
 	for(Bay &bay : bays)
 		if(bay.ship && !Random::Int(40 + 20 * bay.isFighter))
 		{
+			std::shared_ptr<Ship> &ship = bay.ship;
+
+			//rearm fighters as they leave the bay
+			set<const Outfit *> toRefill;
+			for(const auto &it : ship->Weapons())
+				if(it.GetOutfit() && it.GetOutfit()->Ammo())
+					toRefill.insert(it.GetOutfit()->Ammo());
+
+			// This is slower than just calculating the proper number to add, but
+			// that does not matter because this is not so time-consuming anyways.
+			for(const Outfit *outfit : toRefill)
+			{
+				while(ship->Attributes().CanAdd(*outfit))
+				{
+					if(Cargo().Get(outfit))
+						Cargo().Remove(outfit);
+					ship->AddOutfit(outfit, 1);
+				}
+			}
+
 			ships.push_back(bay.ship);
 			double maxV = bay.ship->MaxVelocity();
 			Angle launchAngle = angle + BAY_ANGLE[bay.facing];
