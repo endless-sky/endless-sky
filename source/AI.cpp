@@ -715,6 +715,15 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 				// Don't plunder unless there are no "live" enemies nearby.
 				range += 2000. * (2 * it->IsDisabled() - !hasBoarded);
 			}
+			// Check if this target has any weapons (not counting anti-missiles).
+			bool isArmed = false;
+			for(const auto &ait : it->Weapons())
+				if(ait.GetOutfit() && !ait.GetOutfit()->AntiMissile())
+				{
+					isArmed = true;
+					break;
+				}
+			range += 2000. * !isArmed;
 			// Focus on nearly dead ships.
 			range += 500. * (it->Shields() + it->Hull());
 			bool isPotentialNemesis = (person.IsNemesis() && it->GetGovernment()->IsPlayer());
