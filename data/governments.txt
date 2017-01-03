@@ -103,9 +103,9 @@ government "Free Worlds"
 	"player reputation" 1
 	"attitude toward"
 		"Merchant" .3
-		"Bounty: Merchant" .01
+		"Bounty: Merchant" .3
 		"Militia" .3
-		"Bounty: Militia" .01
+		"Bounty: Militia" .3
 		"Pirate" -.4
 		"Neutral" .1
 	"bribe" .1
@@ -203,7 +203,7 @@ government "Merchant"
 	
 	"player reputation" 10
 	"attitude toward"
-		"Bounty: Merchant" .01
+		"Bounty: Merchant" 1
 		"Pirate" -.2
 		"Korath" -.2
 	"bribe" .05
@@ -217,9 +217,9 @@ government "Militia"
 	
 	"player reputation" 0
 	"attitude toward"
-		"Bounty: Militia" .01
+		"Bounty: Militia" 1
 		"Merchant" .3
-		"Bounty: Merchant" .01
+		"Bounty: Merchant" .3
 		"Pirate" -.4
 	"bribe" .1
 	"friendly hail" "friendly militia"
@@ -237,12 +237,12 @@ government "Navy (Oathkeeper)"
 	
 	"player reputation" 100
 	"attitude toward"
-		"Bounty: Republic" .01
+		"Bounty: Republic" 1
 		"Alpha" -.3
 		"Merchant" .25
-		"Bounty: Merchant" .01
+		"Bounty: Merchant" .25
 		"Militia" .1
-		"Bounty: Militia" .01
+		"Bounty: Militia" .1
 		"Pirate" -.3
 		"Kor Sestor" -.1
 		"Kor Mereti" -.1
@@ -256,7 +256,7 @@ government "Neutral"
 	"player reputation" 1
 	"attitude toward"
 		"Merchant" .3
-		"Bounty: Merchant" .01
+		"Bounty: Merchant" .3
 		"Pirate" -.2
 	"bribe" .05
 	"friendly hail" "friendly civilian"
@@ -275,9 +275,9 @@ government "Pirate"
 	"player reputation" -10
 	"attitude toward"
 		"Merchant" -.1
-		"Bounty: Merchant" -.01
+		"Bounty: Merchant" -.1
 		"Syndicate" -.1
-		"Bounty: Syndicate" -.01
+		"Bounty: Syndicate" -.1
 		"Korath" -.1
 		"Author" -.1
 	"bribe" .05
@@ -292,7 +292,7 @@ government "Pug"
 	"player reputation" 1
 	"attitude toward"
 		"Merchant" .1
-		"Bounty: Merchant" .01
+		"Bounty: Merchant" .1
 		"Pirate" -.1
 	"friendly hail" "friendly pug"
 	"hostile hail" "hostile pug"
@@ -318,12 +318,12 @@ government "Republic"
 	
 	"player reputation" 2
 	"attitude toward"
-		"Bounty: Republic" .01
+		"Bounty: Republic" 1
 		"Alpha" -.3
 		"Merchant" .25
-		"Bounty: Merchant" .01
+		"Bounty: Merchant" .25
 		"Militia" .1
-		"Bounty: Militia" .01
+		"Bounty: Militia" .1
 		"Pirate" -.3
 		"Navy (Oathkeeper)" 1
 		"Neutral" .1
@@ -337,9 +337,9 @@ government "Syndicate"
 	
 	"player reputation" 2
 	"attitude toward"
-		"Bounty: Syndicate" .01
+		"Bounty: Syndicate" 1
 		"Merchant" .3
-		"Bounty: Merchant" .01
+		"Bounty: Merchant" .3
 		"Pirate" -.4
 		"Korath" -.5
 	"bribe" .08
