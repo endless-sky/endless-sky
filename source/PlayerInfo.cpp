@@ -363,7 +363,11 @@ void PlayerInfo::ApplyChanges()
 	// SetDate() clears any bribes from yesterday, so restore any auto-clearance.
 	for(const Mission &mission : Missions())
 		if(mission.ClearanceMessage() == "auto")
+		{
 			mission.Destination()->Bribe(mission.HasFullClearance());
+			for(const Planet *planet : mission.Stopovers())
+				planet->Bribe(mission.HasFullClearance());
+		}
 	if(system)
 		GameData::GetPolitics().Bribe(system->GetGovernment());
 	
