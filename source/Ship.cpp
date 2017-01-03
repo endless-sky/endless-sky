@@ -728,6 +728,9 @@ bool Ship::Move(list<Effect> &effects, list<shared_ptr<Flotsam>> &flotsam)
 		jettisoned.front()->Place(*this);
 		flotsam.splice(flotsam.end(), jettisoned, jettisoned.begin());
 	}
+
+	if(combatCounter)
+		combatCounter--;
 	
 	// When ships recharge, what actually happens is that they can exceed their
 	// maximum capacity for the rest of the turn, but must be clamped to the
@@ -1239,6 +1242,17 @@ bool Ship::Move(list<Effect> &effects, list<shared_ptr<Flotsam>> &flotsam)
 			energy -= shieldEnergy * shieldsAdded / shieldRate;
 			heat += shieldHeat * shieldsAdded / shieldRate;
 		}
+
+
+        double oocShieldRate = attributes.Get("ooc shield generation");
+        if( ! IsInCombat() && oocShieldRate > 0.)
+        {
+			double shieldEnergy = attributes.Get("ooc shield energy");
+			double shieldHeat = attributes.Get("ooc shield heat");
+			double shieldsAdded = AddShieldsOOC(oocShieldRate * min(1., shieldEnergy ? energy / shieldEnergy : 1.));
+			energy -= shieldEnergy * shieldsAdded / oocShieldRate;
+			heat += shieldHeat * shieldsAdded / oocShieldRate;
+        }
 	}
 	
 	// Clear your target if it is destroyed. This is only important for NPCs,
@@ -1521,6 +1535,9 @@ bool Ship::IsOverheated() const
 	return isOverheated;
 }
 
+bool Ship::IsInCombat() const {
+    return combatCounter;
+}
 
 
 bool Ship::IsDisabled() const
@@ -1983,6 +2000,9 @@ int Ship::TakeDamage(const Projectile &projectile, bool isBlast)
 	ionization += ionDamage * (1. - .5 * shieldFraction);
 	disruption += disruptionDamage * (1. - .5 * shieldFraction);
 	slowness += slowingDamage * (1. - .5 * shieldFraction);
+
+    combatCounter = 60 * 5; //5 seconds of frames
+
 	
 	if(hitForce && !IsHyperspacing())
 	{
@@ -2501,6 +2521,30 @@ double Ship::AddHull(double rate)
 }
 
 
+double Ship::AddShieldsOOC(double rate)
+{
+	double added = min(rate, attributes.Get("shields") - shields);
+	shields += added;
+	rate -= added;
+	
+	for(Bay &bay : bays)
+	{
+		if(!bay.ship)
+			continue;
+		
+		double myGen = bay.ship->Attributes().Get("ooc shield generation");
+		double myMax = bay.ship->Attributes().Get("shields");
+		bay.ship->shields = min(myMax, bay.ship->shields + myGen);
+		if(rate > 0. && bay.ship->shields < myMax)
+		{
+			double extra = min(myMax - bay.ship->shields, rate);
+			bay.ship->shields += extra;
+			rate -= extra;
+			added += extra;
+		}
+	}
+	return added;
+}
 
 double Ship::AddShields(double rate)
 {
