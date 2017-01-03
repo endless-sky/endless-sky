@@ -1705,6 +1705,35 @@ void Ship::Launch(list<shared_ptr<Ship>> &ships, vector<Visual> &visuals)
 	for(Bay &bay : bays)
 		if(bay.ship && bay.ship->Commands().Has(Command::DEPLOY) && !Random::Int(40 + 20 * bay.isFighter))
 		{
+			// Re-arm fighters as they launch.
+			set<const Outfit *> toRefill;
+			for(const auto &hit : bay.ship->Weapons())
+				if(hit.GetOutfit() && hit.GetOutfit()->Ammo())
+					toRefill.insert(hit.GetOutfit()->Ammo());
+			
+			// Transfer as much of the parent's ammo as you are able to use.
+			for(const Outfit *outfit : toRefill)
+			{
+				int neededAmmo = bay.ship->attributes.CanAdd(*outfit, cargo.Get(outfit));
+				if(neededAmmo)
+				{
+					cargo.Remove(outfit, neededAmmo);
+					bay.ship->AddOutfit(outfit, neededAmmo);
+				}
+			}
+			
+			// Refuel before launching, if the fighter uses fuel.
+			double maxFuel = bay.ship->attributes.Get("fuel capacity");
+			if(maxFuel)
+			{
+				double toTransfer = min(maxFuel - bay.ship->fuel, fuel);
+				fuel -= toTransfer;
+				bay.ship->fuel += toTransfer;
+				// If still low or out-of-fuel, don't launch.
+				if(bay.ship->fuel < .25 * maxFuel)
+					continue;
+			}
+			
 			ships.push_back(bay.ship);
 			double maxV = bay.ship->MaxVelocity();
 			Angle launchAngle = angle + BAY_ANGLE[bay.facing];
