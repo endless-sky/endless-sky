@@ -560,6 +560,19 @@ void AI::Step(const PlayerInfo &player)
 		bool isFighter = (category == "Fighter");
 		if(it->CanBeCarried())
 		{
+
+			bool isArmed=false, hasAmmo=false;
+			for(const Hardpoint &weapon : it->Weapons())
+			{
+				const Outfit *outfit = weapon.GetOutfit();
+				if(outfit && !weapon.IsAntiMissile())
+				{
+					isArmed = true;
+					if(!outfit->Ammo() || it->OutfitCount(outfit->Ammo()))
+						hasAmmo = true;
+				}
+			}
+
 			bool hasSpace = (parent && parent->BaysFree(isFighter) && !parent->GetGovernment()->IsEnemy(gov));
 			if(!hasSpace || parent->IsDestroyed() || parent->GetSystem() != it->GetSystem())
 			{
@@ -589,7 +602,7 @@ void AI::Step(const PlayerInfo &player)
 					it->SetParent(parent);
 				}
 			}
-			else if(parent && !(it->IsYours() ? thisIsLaunching : parent->Commands().Has(Command::DEPLOY)))
+			else if(parent && ((!it->IsYours() ? thisIsLaunching : parent->Commands().Has(Command::DEPLOY)) || (isArmed && ! hasAmmo)) )
 			{
 				it->SetTargetShip(parent);
 				MoveTo(*it, command, parent->Position(), parent->Velocity(), 40., .8);
