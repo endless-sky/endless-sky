@@ -1362,7 +1362,6 @@ Mission *PlayerInfo::BoardingMission(const shared_ptr<Ship> &ship)
 		if(!it.second.IsAtLocation(location))
 			continue;
 		
-		conditions["random"] = Random::Int(100);
 		if(it.second.CanOffer(*this))
 		{
 			boardingMissions.push_back(it.second.Instantiate(*this));
@@ -2024,7 +2023,6 @@ void PlayerInfo::CreateMissions()
 		if(skipJobs && it.second.IsAtLocation(Mission::JOB))
 			continue;
 		
-		conditions["random"] = Random::Int(100);
 		if(it.second.CanOffer(*this))
 		{
 			list<Mission> &missions =
