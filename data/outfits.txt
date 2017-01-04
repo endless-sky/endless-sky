@@ -45,7 +45,15 @@ outfit "Liquid Helium Cooler"
 	"cooling" 69
 	description "Liquid helium is the ultimate in cooling technology. Given how much space this cooling system takes up, you may be better off just installing more efficient, low-heat components instead, but where that is not an option, this cooler can handle almost anything you throw at it."
 
-
+outfit "Small Radiator"
+	category "Systems"
+	cost 20000
+	thumbnail "outfit/small radiator"
+	"mass" 1
+	"outfit space" -1
+	"cooling" 0.9
+	description "This tiny and efficient cooling system is ideal for rich captains who want to use all the available space in theirs ships. Radiators work by radiating heat energy away as infrared light."
+	
 outfit "D14-RN Shield Generator"
 	category "Systems"
 	cost 20000
