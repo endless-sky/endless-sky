@@ -723,7 +723,8 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 					isArmed = true;
 					break;
 				}
-			range += 2000. * !isArmed;
+			// Prefer to go after armed targets, expecially if you're not a pirate.
+			range += 1000. * (!isArmed * (1 + !person.Plunders()));
 			// Focus on nearly dead ships.
 			range += 500. * (it->Shields() + it->Hull());
 			bool isPotentialNemesis = (person.IsNemesis() && it->GetGovernment()->IsPlayer());
