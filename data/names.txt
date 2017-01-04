@@ -115,6 +115,9 @@ phrase "adjectives"
 		"Diligent"
 		"Patient"
 		"Wistful"
+		"Wise"
+		"Graceful"
+		"Subtle"
 
 phrase "colors"
 	word
@@ -228,6 +231,10 @@ phrase "singular nouns"
 		"Mountain"
 		"Island"
 		"Forest"
+		"Carnation"
+		"Gaze"
+		"Ship"
+		"Cave"
 
 phrase "plural nouns"
 	word
@@ -270,6 +277,10 @@ phrase "plural nouns"
 		"Deeds"
 		"Ways"
 		"Means"
+		"Mysteries"
+		"Wonders"
+		"Fools"
+		"Souls"
 		# Need to duplicate these because not all the words in the 'female titles' phrase could be pluralized by simply adding 's' to the end
 		"Ladies"
 		"Princesses"
@@ -336,6 +347,10 @@ phrase "nouns of indeterminate quantity"
 		"Clarity"
 		"Serenity"
 		"Tranquility"
+		"Paradise"
+		"Contentment"
+		"Strength"
+		"Power"
 
 phrase "the-nouns"
 	word
@@ -596,6 +611,7 @@ phrase "plural quantities"
 		"One Thousand"
 		"Many"
 		"Too Many"
+		"No More"
 
 phrase "classic ship names"
 	word
@@ -764,6 +780,8 @@ phrase "civilian"
 		"Hunk of Junk"
 		"Hammerhead"
 		"Heliopolis"
+		"Cornwall"
+		"Constantinople"
 
 # e.g.:
 # Five Men
@@ -854,11 +872,15 @@ phrase "civilian"
 # e.g.:
 # Castle of Water
 # Oceans of the West
+# Sword of Destiny
+# Moonlight of Bravery
+# Rain of Riches
 phrase "civilian"
 	phrase
 		"singular nouns"
 		"plural nouns"
 		"classic ship names"
+		"nouns of indeterminate quantity"
 	word
 		" "
 	phrase
@@ -922,6 +944,7 @@ phrase "civilian"
 	phrase
 		"plural nouns"
 		"nouns of indeterminate quantity"
+
 
 phrase "republic capital"
 	word
@@ -1718,6 +1741,7 @@ phrase "bad outcomes"
 		"Vileness"
 		"Evil"
 		"Murder"
+		"Oppression"
 
 phrase "pirate"
 	word
@@ -1891,6 +1915,7 @@ phrase "pirate"
 		"Murderous"
 		"Sadistic"
 		"Crippled"
+		"Flayed"
 	word
 		" "
 	phrase
