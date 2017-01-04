@@ -377,7 +377,7 @@ ship "Solifuge"
 		"Boulder Reactor" 2
 		"Hai Gorge Batteries"
 		"Hai Diamond Regenerator"
-		"Hai Williwaw Cooling" 6
+		"Hai Heat Sink" 2
 		`"Benga" Atomic Steering`
 		`"Bufaer" Atomic Steering`
 		`"Bondir" Atomic Thruster`
@@ -421,7 +421,7 @@ ship "Solifuge" "Solifuge (Pulse)"
 		"Hai Fissure Batteries"
 		"Hai Corundum Regenerator"
 		"Hai Diamond Regenerator"
-		"Hai Williwaw Cooling" 8
+		"Hai Heat Sink" 3
 		`"Benga" Atomic Steering`
 		`"Bufaer" Atomic Steering`
 		`"Bondir" Atomic Thruster`
@@ -443,7 +443,7 @@ ship "Solifuge" "Solifuge (Tracker)"
 		"Hai Gorge Batteries"
 		"Hai Corundum Regenerator"
 		"Hai Diamond Regenerator" 2
-		"Hai Williwaw Cooling" 6
+		"Hai Heat Sink" 2
 		`"Benga" Atomic Steering`
 		`"Bufaer" Atomic Steering`
 		`"Bondir" Atomic Thruster`
@@ -460,7 +460,7 @@ ship "Solifuge" "Solifuge (Jump)"
 		"Boulder Reactor" 2
 		"Hai Gorge Batteries"
 		"Hai Diamond Regenerator"
-		"Hai Williwaw Cooling" 6
+		"Hai Heat Sink" 2
 		`"Benga" Atomic Steering`
 		`"Bufaer" Atomic Steering`
 		`"Bondir" Atomic Thruster`
@@ -476,7 +476,7 @@ ship "Solifuge" "Solifuge (Jump, Pulse)"
 		"Hai Fissure Batteries"
 		"Hai Corundum Regenerator"
 		"Hai Diamond Regenerator"
-		"Hai Williwaw Cooling" 8
+		"Hai Heat Sink" 3
 		`"Benga" Atomic Steering`
 		`"Bufaer" Atomic Steering`
 		`"Bondir" Atomic Thruster`
@@ -498,7 +498,7 @@ ship "Solifuge" "Solifuge (Jump, Tracker)"
 		"Hai Gorge Batteries"
 		"Hai Corundum Regenerator"
 		"Hai Diamond Regenerator" 2
-		"Hai Williwaw Cooling" 6
+		"Hai Heat Sink" 2
 		`"Benga" Atomic Steering`
 		`"Bufaer" Atomic Steering`
 		`"Bondir" Atomic Thruster`

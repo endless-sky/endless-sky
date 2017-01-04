@@ -260,6 +260,15 @@ outfit "Hai Williwaw Cooling"
 	"outfit space" -8
 	"cooling" 9.5
 	description "While Hai technology is fairly heat efficient, occasionally they outfit their ships such that they sporadically overheat and shut down. When that happens, they install these."
+	
+outfit "Hai Heat Sink"
+	category "Systems"
+	cost 53000
+	thumbnail "outfit/hai heat sink"
+	"mass" 21
+	"outfit space" -21
+	"cooling" 28.5
+	description "Unfettered Hai engineers developed this cooling device from a stolen Wanderer early prototype. Much bulkier and less efficient than the original one, but a lot cheaper too."
 
 outfit "Hai Chasm Batteries"
 	plural "Hai Chasm Batteries"
