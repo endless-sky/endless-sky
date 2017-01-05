@@ -56,6 +56,16 @@ outfit "D14-RN Shield Generator"
 	"shield energy" .2
 	description "This is the standard shield generator for fighters and interceptors, as well as for many non-combat starships. Although it is possible for a ship to have no shield generator at all, recharging its shield matrix only when landed in a hospitable spaceport, life in deep space is unpredictable enough that most pilots find shield generators to be well worth the space they take up."
 
+
+outfit "Overclocked Shield Generator"
+	category "Systems"
+	cost 20000
+	"mass" 5
+	"outfit space" -15
+	"overclocked shield generation" 1.5
+	"overclocked shield energy"     0.75
+	description "A shield gen that is less effictive on heavily shielded ships"
+
 outfit "OOC Shield Generator"
 	category "Systems"
 	cost 20000

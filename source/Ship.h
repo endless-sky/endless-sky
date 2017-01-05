@@ -130,7 +130,7 @@ public:
 	void SetGovernment(const Government *government);
 	void SetIsSpecial(bool special = true);
 	bool IsSpecial() const;
-    bool IsInCombat() const;
+	bool IsInCombat() const;
 	// If a ship belongs to the player, the player can give it commands.
 	void SetIsYours(bool yours = true);
 	bool IsYours() const;
@@ -347,6 +347,7 @@ private:
 	double AddHull(double rate);
 	double AddShields(double rate);
     double AddShieldsOOC(double rate);
+    double AddShieldsOverclocked(double rate);
 	// Create one of this ship's explosions, within its mask. The explosions can
 	// either stay over the ship, or spread out if this is the final explosion.
 	void CreateExplosion(std::list<Effect> &effects, bool spread = false);

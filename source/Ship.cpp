@@ -1244,15 +1244,27 @@ bool Ship::Move(list<Effect> &effects, list<shared_ptr<Flotsam>> &flotsam)
 		}
 
 
-        double oocShieldRate = attributes.Get("ooc shield generation");
-        if( ! IsInCombat() && oocShieldRate > 0.)
-        {
+		double oocShieldRate = attributes.Get("ooc shield generation");
+		if( ! IsInCombat() && oocShieldRate > 0.)
+		{
 			double shieldEnergy = attributes.Get("ooc shield energy");
 			double shieldHeat = attributes.Get("ooc shield heat");
 			double shieldsAdded = AddShieldsOOC(oocShieldRate * min(1., shieldEnergy ? energy / shieldEnergy : 1.));
 			energy -= shieldEnergy * shieldsAdded / oocShieldRate;
 			heat += shieldHeat * shieldsAdded / oocShieldRate;
-        }
+		}
+
+		double overShieldRate = attributes.Get("overclocked shield generation");
+		if( overShieldRate > 0.)
+		{
+			double shieldEnergy = attributes.Get("overclocked shield energy");
+			double shieldHeat = attributes.Get("overclocked shield heat");
+			double shieldsAdded = AddShieldsOverclocked(overShieldRate * min(1., shieldEnergy ? energy / shieldEnergy : 1.));
+			energy -= shieldEnergy * shieldsAdded / overShieldRate;
+			heat += shieldHeat * shieldsAdded / overShieldRate;
+		}
+
+
 	}
 	
 	// Clear your target if it is destroyed. This is only important for NPCs,
@@ -2520,6 +2532,32 @@ double Ship::AddHull(double rate)
 	return added;
 }
 
+double Ship::AddShieldsOverclocked(double rate)
+{
+	rate = rate * std::pow(0.9999, attributes.Get("shields"));
+	double added = min(rate, attributes.Get("shields") - shields);
+	shields += added;
+	rate -= added;
+	
+	for(Bay &bay : bays)
+	{
+		if(!bay.ship)
+			continue;
+		
+		//TODO make the overclocking work correctly on carried ships
+		double myGen = bay.ship->Attributes().Get("overclocked shield generation");
+		double myMax = bay.ship->Attributes().Get("shields");
+		bay.ship->shields = min(myMax, bay.ship->shields + myGen);
+		if(rate > 0. && bay.ship->shields < myMax)
+		{
+			double extra = min(myMax - bay.ship->shields, rate);
+			bay.ship->shields += extra;
+			rate -= extra;
+			added += extra;
+		}
+	}
+	return added;
+}
 
 double Ship::AddShieldsOOC(double rate)
 {
