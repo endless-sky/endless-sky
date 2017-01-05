@@ -28,6 +28,9 @@ public:
 	// const references to avoid anyone else modifying the objects.
 	Type *Get(const std::string &name) { return &data[name]; }
 	const Type *Get(const std::string &name) const { return &data[name]; }
+	// If an item already exists in this set, get it. Otherwise, return a null
+	// pointer rather than creating the item.
+	const Type *Find(const std::string &name) const;
 	
 	bool Has(const std::string &name) const { return data.count(name); }
 	
@@ -49,6 +52,15 @@ private:
 
 
 template <class Type>
+const Type *Set<Type>::Find(const std::string &name) const
+{
+	auto it = data.find(name);
+	return (it == data.end() ? nullptr : &it->second);
+}
+
+
+
+template <class Type>
 void Set<Type>::Revert(const Set<Type> &other)
 {
 	auto it = data.begin();
@@ -56,7 +68,9 @@ void Set<Type>::Revert(const Set<Type> &other)
 	
 	while(it != data.end())
 	{
-		if(it->first == oit->first)
+		if(oit == other.data.end() || it->first < oit->first)
+			it = data.erase(it);
+		else if(it->first == oit->first)
 		{
 			// If this is an entry that is in the set we are reverting to, copy
 			// the state we are reverting to.
@@ -64,8 +78,6 @@ void Set<Type>::Revert(const Set<Type> &other)
 			++it;
 			++oit;
 		}
-		else if(it->first < oit->first)
-			it = data.erase(it);
 		
 		// There should never be a case when an entry in the set we are
 		// reverting to has a name that is not also in this set.

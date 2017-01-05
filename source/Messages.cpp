@@ -49,6 +49,9 @@ const vector<Messages::Entry> &Messages::Get(int step)
 		auto it = list.begin();
 		while(it != list.end())
 		{
+			// Each time a new message comes in, "age" all the existing ones to
+			// limit how many of them appear at once.
+			it->step -= 60;
 			// Also erase messages that have reached the end of their lifetime.
 			if(it->message == message || it->step < step - 1000)
 				it = list.erase(it);

@@ -101,6 +101,10 @@ public:
 	double Range() const;
 	
 	
+protected:
+	const Outfit *ammo = nullptr;
+	
+	
 private:
 	double TotalDamage(int index) const;
 	
@@ -109,7 +113,6 @@ private:
 	// Sprites and sounds.
 	Body sprite;
 	const Sound *sound = nullptr;
-	const Outfit *ammo = nullptr;
 	const Sprite *icon = nullptr;
 	
 	// Fire, die and hit effects.

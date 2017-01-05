@@ -17,7 +17,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "ClickZone.h"
 
-#include <map>
+#include <set>
 #include <string>
 #include <vector>
 
@@ -34,15 +34,16 @@ public:
 	MapSalesPanel(PlayerInfo &player, bool isOutfitters);
 	MapSalesPanel(const MapPanel &panel, bool isOutfitters);
 	
-	void Draw();
-	bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command);
-	bool Click(int x, int y);
-	bool Hover(int x, int y);
-	bool Drag(double dx, double dy);
-	bool Scroll(double dx, double dy);
+	virtual void Draw() override;
 	
 	
 protected:
+	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command) override;
+	virtual bool Click(int x, int y, int clicks) override;
+	virtual bool Hover(int x, int y) override;
+	virtual bool Drag(double dx, double dy) override;
+	virtual bool Scroll(double dx, double dy) override;
+	
 	virtual const Sprite *SelectedSprite() const = 0;
 	virtual const Sprite *CompareSprite() const = 0;
 	virtual const ItemInfoDisplay &SelectedInfo() const = 0;
@@ -58,7 +59,6 @@ protected:
 	
 	void DrawKey() const;
 	void DrawPanel() const;
-	void DrawButtons();
 	void DrawInfo() const;
 	
 	bool DrawHeader(Point &corner, const std::string &category);
@@ -79,9 +79,10 @@ protected:
 	
 protected:
 	double scroll = 0.;
-	mutable double maxScroll = 0.;
-
+	double maxScroll = 0.;
+	
 	const std::vector<std::string> &categories;
+	bool onlyShowSoldHere = false;
 	
 	
 private:
@@ -89,7 +90,7 @@ private:
 	bool isOutfitters = false;
 	
 	bool hidPrevious = true;
-	std::map<std::string, bool> hideCategory;
+	std::set<std::string> &collapsed;
 	
 	std::vector<ClickZone<int>> zones;
 	int selected = -1;

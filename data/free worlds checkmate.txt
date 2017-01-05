@@ -2348,6 +2348,7 @@ mission "FWC Pug 5C"
 	destination Silver
 	to offer
 		has "FWC Pug 5B: done"
+	passengers 1
 	on fail
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	

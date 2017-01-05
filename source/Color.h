@@ -23,7 +23,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 class Color {
 public:
 	// Constructor for shades of grey, opaque unless an alpha is also given.
-	Color(float i = 1.f, float a = 1.f);
+	explicit Color(float i = 1.f, float a = 1.f);
 	// Constructor for colors, opaque unless an alpha is also given.
 	Color(float r, float g, float b, float a = 1.f);
 	

@@ -35,7 +35,7 @@ class Dialog : public Panel {
 public:
 	// Dialog that has no callback (information only). In this form, there is
 	// only an "ok" button, not a "cancel" button.
-	Dialog(const std::string &text);
+	explicit Dialog(const std::string &text);
 	// Mission accept / decline dialog.
 	Dialog(const std::string &text, PlayerInfo &player, const System *system = nullptr);
 	virtual ~Dialog() = default;
@@ -62,7 +62,7 @@ protected:
 	// The use can click "ok" or "cancel", or use the tab key to toggle which
 	// button is highlighted and the enter key to select it.
 	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command) override;
-	virtual bool Click(int x, int y) override;
+	virtual bool Click(int x, int y, int clicks) override;
 	
 	
 private:
@@ -85,8 +85,8 @@ private:
 	
 	std::string input;
 	
-	mutable Point okPos;
-	mutable Point cancelPos;
+	Point okPos;
+	Point cancelPos;
 	
 	const System *system = nullptr;
 	PlayerInfo *player = nullptr;

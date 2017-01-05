@@ -26,6 +26,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Interface.h"
 #include "Messages.h"
 #include "PlayerInfo.h"
+#include "Preferences.h"
 #include "Random.h"
 #include "Ship.h"
 #include "ShipEvent.h"
@@ -394,7 +395,7 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 
 
 // Handle mouse clicks.
-bool BoardingPanel::Click(int x, int y)
+bool BoardingPanel::Click(int x, int y, int clicks)
 {
 	// Was the click inside the plunder list?
 	if(x >= -330 && x < 20 && y >= -180 && y < 60)
@@ -426,7 +427,7 @@ bool BoardingPanel::Drag(double dx, double dy)
 // The scroll wheel can be used to scroll the plunder list.
 bool BoardingPanel::Scroll(double dx, double dy)
 {
-	return Drag(dx, dy * 50.);
+	return Drag(0., dy * Preferences::ScrollSpeed());
 }
 
 

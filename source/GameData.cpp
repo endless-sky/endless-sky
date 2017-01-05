@@ -101,6 +101,7 @@ namespace {
 	
 	map<string, string> tooltips;
 	map<string, string> helpMessages;
+	map<string, string> plugins;
 	
 	SpriteQueue spriteQueue;
 	
@@ -632,6 +633,13 @@ const StarField &GameData::Background()
 
 
 
+void GameData::SetHaze(const Sprite *sprite)
+{
+	background.SetHaze(sprite);
+}
+
+
+
 const string &GameData::Tooltip(const string &label)
 {
 	static const string EMPTY;
@@ -647,11 +655,25 @@ const string &GameData::Tooltip(const string &label)
 
 
 
-string GameData::HelpMessage(const std::string &name)
+string GameData::HelpMessage(const string &name)
 {
 	static const string EMPTY;
 	auto it = helpMessages.find(name);
 	return Command::ReplaceNamesWithKeys(it == helpMessages.end() ? EMPTY : it->second);
+}
+
+
+
+const map<string, string> &GameData::HelpTemplates()
+{
+	return helpMessages;
+}
+
+
+
+const map<string, string> &GameData::PluginAboutText()
+{
+	return plugins;
 }
 
 
@@ -673,6 +695,27 @@ void GameData::LoadSources()
 	{
 		if(Files::Exists(path + "data") || Files::Exists(path + "images") || Files::Exists(path + "sounds"))
 			sources.push_back(path);
+	}
+	
+	// Load the plugin data, if any.
+	for(auto it = sources.begin() + 1; it != sources.end(); ++it)
+	{
+		// Get the name of the folder containing the plugin.
+		size_t pos = it->rfind('/', it->length() - 2) + 1;
+		string name = it->substr(pos, it->length() - 1 - pos);
+		
+		// Load the about text and the icon, if any.
+		plugins[name] = Files::Read(*it + "about.txt");
+		
+		if(Files::Exists(*it + "icon.png"))
+			spriteQueue.Add(name, *it + "icon.png");
+		else if(Files::Exists(*it + "icon.jpg"))
+			spriteQueue.Add(name, *it + "icon.jpg");
+		
+		if(Files::Exists(*it + "icon@2x.png"))
+			spriteQueue.Add(name, *it + "icon@2x.png");
+		else if(Files::Exists(*it + "icon@2x.jpg"))
+			spriteQueue.Add(name, *it + "icon@2x.jpg");
 	}
 }
 
@@ -824,6 +867,10 @@ void GameData::PrintShipTable()
 		<< "e_gen" << '\t' << "e_use" << '\t' << "h_gen" << '\t' << "h_max" << '\n';
 	for(auto &it : ships)
 	{
+		// Skip variants.
+		if(it.second.ModelName() != it.first)
+			continue;
+		
 		const Ship &ship = it.second;
 		cout << it.first << '\t';
 		cout << ship.Cost() << '\t';
@@ -837,9 +884,9 @@ void GameData::PrintShipTable()
 		cout << attributes.Get("bunks") << '\t';
 		cout << attributes.Get("fuel capacity") << '\t';
 		
-		cout << attributes.Get("outfit space") << '\t';
-		cout << attributes.Get("weapon capacity") << '\t';
-		cout << attributes.Get("engine capacity") << '\t';
+		cout << ship.BaseAttributes().Get("outfit space") << '\t';
+		cout << ship.BaseAttributes().Get("weapon capacity") << '\t';
+		cout << ship.BaseAttributes().Get("engine capacity") << '\t';
 		cout << 60. * attributes.Get("thrust") / attributes.Get("drag") << '\t';
 		cout << 3600. * attributes.Get("thrust") / attributes.Get("mass") << '\t';
 		cout << 60. * attributes.Get("turn") / attributes.Get("mass") << '\t';

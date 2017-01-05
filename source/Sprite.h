@@ -32,7 +32,7 @@ class ImageBuffer;
 // working with the graphics a lot simpler.
 class Sprite {
 public:
-	Sprite(const std::string &name = "");
+	explicit Sprite(const std::string &name = "");
 	
 	const std::string &Name() const;
 	
@@ -49,6 +49,7 @@ public:
 	Point Center() const;
 	
 	uint32_t Texture(int frame = 0) const;
+	uint32_t Texture(int frame, bool isHighDPI) const;
 	const Mask &GetMask(int frame = 0) const;
 	
 	

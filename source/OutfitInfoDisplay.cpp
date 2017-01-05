@@ -27,12 +27,14 @@ using namespace std;
 
 namespace {
 	static const set<string> ATTRIBUTES_TO_SCALE = {
+		"active cooling",
 		"afterburner energy",
 		"afterburner fuel",
 		"afterburner heat",
 		"cloaking energy",
 		"cloaking fuel",
 		"cooling",
+		"cooling energy",
 		"energy generation",
 		"heat generation",
 		"hull repair rate",
@@ -43,6 +45,7 @@ namespace {
 		"shield generation",
 		"shield energy",
 		"shield heat",
+		"solar collection",
 		"thrusting energy",
 		"thrusting heat",
 		"turn",
