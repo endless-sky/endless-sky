@@ -142,6 +142,16 @@ outfit "Hai Tracker"
 	"tracker capacity" -1
 	description "This is ammunition for a Tracker Pod."
 
+outfit "Tracker Storage Pod"
+	category "Ammunition"
+	cost 28000
+	thumbnail "outfit/hai tracker storage"
+	"mass" 1.6
+	"outfit space" -10
+	"tracker capacity" 28
+	ammo "Hai Tracker"
+	description "The Tracker Storage Pod is used to store extra ammunition for Tracker Pods."
+
 outfit "Hai Tracker Pod"
 	category "Secondary Weapons"
 	cost 150000
@@ -179,16 +189,6 @@ outfit "Hai Tracker Pod"
 		"hit force" 50
 		"missile strength" 16
 	description "Trackers are a fast, powerful, and accurate homing weapon. Their only weakness is their large turning radius: if a Tracker misses its target, it takes a long time to turn around."
-
-outfit "Tracker Storage Pod"
-	category "Systems"
-	cost 28000
-	thumbnail "outfit/hai tracker storage"
-	"mass" 1.6
-	"outfit space" -10
-	"tracker capacity" 28
-	ammo "Hai Tracker"
-	description "The Tracker Storage Pod is used to store extra ammunition for Tracker Pods."
 
 outfit "Bullfrog Anti-Missile"
 	category "Turrets"
