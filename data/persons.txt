@@ -264,8 +264,8 @@ person "Captain Nate"
 		word
 			"When you need to make your point, stick to Pointedstick Communications Inc.!"
 			"Pointedstick Communications: making the galaxy a more verbose place, one commit at a time!"
-			`Pointedstick inc.: "Sharpen your communication skills!"`
-			`Pointedstick inc.: "Our products are simply so good that no one feels the need to compete with us!"`
+			`Pointedstick Inc.: "Sharpen your communication skills!"`
+			`Pointedstick Inc.: "Our products are simply so good that no one feels the need to compete with us!"`
 			"Did you know that you can hail a ship over and over again and you'll get a different reply each time?"
 			"Don't you have a cargo of antique grandfather clocks or something to deliver somewhere?"
 			"Need as well as greed have followed us to the stars, and the rewards of wealth still await those wise enough to recognize this deep thrumming of our common pulse."
