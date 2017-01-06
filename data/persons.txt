@@ -134,7 +134,6 @@ person "Cap'n Pester"
 person "Marauding Max K"
 	government "Author"
 	frequency 300
-	government Republic "Free Worlds" Syndicate Neutral Independent Hai Pirate "Hai (Unfettered)" Quarg
 	personality
 		surveillance
 	phrase
@@ -214,3 +213,122 @@ person "Marauding Max K"
 		word
 			"into a REAL marauding warship!"
 	ship "Marauder Fury" "Mad Quest"
+
+
+
+person "Captain Nate"
+	government "Author"
+	frequency 300
+	personality
+		vindictive heroic
+	phrase
+		word
+			"Who is your daddy and what does he DO?"
+			"I'm detective John Kimball!"
+			"Get to da choppa!"
+			"My CPU is a neural net processor; a learning computer."
+			"I need your clothes, your boots, and your motorcycle."
+			"I know now why you humans cry, but it's something I can never do."
+			"Now this is the plan: Get your butt to Mars!"
+			"Excuse me, I would like to talk to you about Thomas Aquinas."
+			"I have no respect for those with no respect for logic!"
+			"I swear I will not kill anyone."
+			"Give these people air!"
+			"It's not a tumor!"
+			"There IS no bathroom!!!"
+			"You're a freakin' choirboy compared to me, a choirboy!!!!"
+
+	phrase
+		word
+			"Do you have a problem?"
+			"I know the solution:"
+			"Here's what you need to do:"
+			"In a sticky situation, here's what you do:"
+			"A piece of advice:"
+		word
+			" "
+		word
+			"Beam them into space!"
+			"Beam their internal organs into space!"
+			"Launch all torpedoes at once!"
+			"Fire in all directions!"
+			"Transfer power from life support to the phaser banks!"
+			"Transfer power from life support to the weapons array!"
+			"Shoot everything at them!"
+			"Stuff your ship full of devastating short-ranged weapons; it's fun!"
+			"Ram them!"
+			"Ram them again!"
+			"Accelerate to Waaagh velocity!"
+
+	phrase
+		word
+			"When you need to make your point, stick to Pointedstick Communications Inc.!"
+			"Pointedstick Communications: making the galaxy a more verbose place, one commit at a time!"
+			`Pointedstick Inc.: "Sharpen your communication skills!"`
+			`Pointedstick Inc.: "Our products are simply so good that no one feels the need to compete with us!"`
+			"Did you know that you can hail a ship over and over again and you'll get a different reply each time?"
+			"Don't you have a cargo of antique grandfather clocks or something to deliver somewhere?"
+			"Need as well as greed have followed us to the stars, and the rewards of wealth still await those wise enough to recognize this deep thrumming of our common pulse."
+
+	ship Vanguard "Pointedstick"
+		"never disabled"
+		attributes
+			category "Heavy Warship"
+			"cost" 7200000
+			"shields" 20000
+			"hull" 8000
+			"required crew" 23
+			"bunks" 45
+			"mass" 500
+			"drag" 8
+			"heat dissipation" .6
+			"fuel capacity" 400
+			"cargo space" 50
+			"outfit space" 1000
+			"weapon capacity" 450
+			"engine capacity" 330
+			weapon
+				"blast radius" 160
+				"shield damage" 1600
+				"hull damage" 800
+				"hit force" 2400
+		outfits
+			"Proton Gun" 11
+			"Heavy Rocket Launcher" 4
+			"Heavy Rocket" 400
+			"Anti-Missile Turret"
+
+			"Armageddon Core" 2
+			"KP-6 Photovoltaic Array" 4
+			"LP072a Battery Pack"
+			"D67-TM Shield Generator" 2
+			"Liquid Helium Cooler" 2
+
+			"A860 Atomic Thruster"
+			"A865 Atomic Steering"
+			"Ionic Afterburner"
+			"Hyperdrive"
+
+		engine -15 130
+		engine 15 130
+		gun 0 -132 "Proton Gun"
+		gun 0 -132 "Proton Gun"
+		gun 0 -132 "Proton Gun"
+		gun -22 -122 "Proton Gun"
+		gun -22 -122 "Proton Gun"
+		gun 22 -122 "Proton Gun"
+		gun 22 -122 "Proton Gun"
+		gun -21 -45 "Proton Gun"
+		gun -21 -45 "Proton Gun"
+		gun 21 -45 "Proton Gun"
+		gun 21 -45 "Proton Gun"
+		gun -31 -45 "Heavy Rocket Launcher"
+		gun -31 -45 "Heavy Rocket Launcher"
+		gun 31 -45 "Heavy Rocket Launcher"
+		gun 31 -45 "Heavy Rocket Launcher"
+		turret 0 40 "Anti-Missile Turret"
+		explode "tiny explosion" 18
+		explode "small explosion" 36
+		explode "medium explosion" 24
+		explode "large explosion" 8
+		"final explode" "final explosion large"
