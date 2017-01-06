@@ -80,7 +80,7 @@ outfit "Over OOC Shield Generator"
 	cost 20000
 	"mass" 5
 	"outfit space" -15
-	"oooc shield generation" 3.0
+	"oooc shield generation" 4.0
 	"oooc shield energy" 1.0
 	description "A shield gen that requires out of combat time to be effective"
 

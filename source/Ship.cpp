@@ -1255,7 +1255,7 @@ bool Ship::Move(list<Effect> &effects, list<shared_ptr<Flotsam>> &flotsam)
 		}
 
 		double ooocShieldRate = attributes.Get("oooc shield generation");
-		if( ! IsInCombat() && ooocShieldRate > 0.)
+		if(  ooocShieldRate > 0.)
 		{
 			double shieldEnergy = attributes.Get("oooc shield energy");
 			double shieldHeat = attributes.Get("oooc shield heat");
@@ -2545,7 +2545,8 @@ double Ship::AddHull(double rate)
 
 double Ship::AddShieldsOOOC(double rate)
 {
-	rate = rate * std::pow(0.9995, attributes.Get("shields"));
+	rate *= std::pow(0.9995, attributes.Get("shields"));
+	rate *= std::pow((double)( 5*60 - combatCounter) / 5.0 / 60, 1);
 
 	double added = min(rate, attributes.Get("shields") - shields);
 	shields += added;
