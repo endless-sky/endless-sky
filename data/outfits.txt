@@ -63,7 +63,7 @@ outfit "Overclocked Shield Generator"
 	"mass" 5
 	"outfit space" -15
 	"overclocked shield generation" 1.5
-	"overclocked shield energy"     0.75
+	"overclocked shield energy" .75
 	description "A shield gen that is less effictive on heavily shielded ships"
 
 outfit "OOC Shield Generator"
