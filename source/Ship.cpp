@@ -1254,6 +1254,17 @@ bool Ship::Move(list<Effect> &effects, list<shared_ptr<Flotsam>> &flotsam)
 			heat += shieldHeat * shieldsAdded / oocShieldRate;
 		}
 
+		double ooocShieldRate = attributes.Get("oooc shield generation");
+		if( ! IsInCombat() && ooocShieldRate > 0.)
+		{
+			double shieldEnergy = attributes.Get("oooc shield energy");
+			double shieldHeat = attributes.Get("oooc shield heat");
+			double shieldsAdded = AddShieldsOOOC(ooocShieldRate * min(1., shieldEnergy ? energy / shieldEnergy : 1.));
+			energy -= shieldEnergy * shieldsAdded / ooocShieldRate;
+			heat += shieldHeat * shieldsAdded / ooocShieldRate;
+		}
+
+
 		double overShieldRate = attributes.Get("overclocked shield generation");
 		if( overShieldRate > 0.)
 		{
@@ -2531,6 +2542,35 @@ double Ship::AddHull(double rate)
 	}
 	return added;
 }
+
+double Ship::AddShieldsOOOC(double rate)
+{
+	rate = rate * std::pow(0.9995, attributes.Get("shields"));
+
+	double added = min(rate, attributes.Get("shields") - shields);
+	shields += added;
+	rate -= added;
+	
+	for(Bay &bay : bays)
+	{
+		if(!bay.ship)
+			continue;
+		
+		double myGen = bay.ship->Attributes().Get("oooc shield generation");
+		double myMax = bay.ship->Attributes().Get("shields");
+		bay.ship->shields = min(myMax, bay.ship->shields + myGen);
+		if(rate > 0. && bay.ship->shields < myMax)
+		{
+			double extra = min(myMax - bay.ship->shields, rate);
+			bay.ship->shields += extra;
+			rate -= extra;
+			added += extra;
+		}
+	}
+	return added;
+}
+
+
 
 double Ship::AddShieldsOverclocked(double rate)
 {

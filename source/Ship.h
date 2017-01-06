@@ -347,6 +347,7 @@ private:
 	double AddHull(double rate);
 	double AddShields(double rate);
     double AddShieldsOOC(double rate);
+    double AddShieldsOOOC(double rate);
     double AddShieldsOverclocked(double rate);
 	// Create one of this ship's explosions, within its mask. The explosions can
 	// either stay over the ship, or spread out if this is the final explosion.
