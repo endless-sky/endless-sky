@@ -187,7 +187,7 @@ outfit "Thunderhead"
 		"missile strength" 3
 
 outfit "Thunderhead Storage Array"
-	category "Systems"
+	category "Ammunition"
 	cost 36000
 	thumbnail "outfit/thunderhead storage"
 	"mass" 2
