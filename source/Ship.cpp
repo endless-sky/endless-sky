@@ -2534,7 +2534,7 @@ double Ship::AddHull(double rate)
 
 double Ship::AddShieldsOverclocked(double rate)
 {
-	rate = rate * std::pow(0.9999, attributes.Get("shields"));
+	rate = rate * std::pow(0.9995, attributes.Get("shields"));
 	double added = min(rate, attributes.Get("shields") - shields);
 	shields += added;
 	rate -= added;
