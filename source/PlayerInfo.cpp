@@ -1650,18 +1650,28 @@ void PlayerInfo::Visit(const Planet *planet)
 // Mark a system as unvisited, even if visited previously.
 void PlayerInfo::Unvisit(const System *system)
 {
+	if(!system)
+		return;
+	
 	auto it = visitedSystems.find(system);
 	if(it != visitedSystems.end())
-	{
 		visitedSystems.erase(it);
-		for(const StellarObject &object : system->Objects())
-			if(object.GetPlanet())
-			{
-				auto it2 = visitedPlanets.find(object.GetPlanet());
-				if(it2 != visitedPlanets.end())
-					visitedPlanets.erase(it2);
-			}
-	}
+	
+	for(const StellarObject &object : system->Objects())
+		if(object.GetPlanet())
+			Unvisit(object.GetPlanet());
+}
+
+
+
+void PlayerInfo::Unvisit(const Planet *planet)
+{
+	if(!planet)
+		return;
+	
+	auto it = visitedPlanets.find(planet);
+	if(it != visitedPlanets.end())
+		visitedPlanets.erase(it);
 }
 
 

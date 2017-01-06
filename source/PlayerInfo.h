@@ -181,6 +181,7 @@ public:
 	void Visit(const Planet *planet);
 	// Mark a system and its planets as unvisited, even if visited previously.
 	void Unvisit(const System *system);
+	void Unvisit(const Planet *planet);
 	
 	// Access the player's travel plan.
 	bool HasTravelPlan() const;
