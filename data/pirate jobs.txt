@@ -2132,7 +2132,7 @@ mission "Eliminating Law Enforcement (North, Small) [0]"
 		attributes "north pirate"
 	npc kill
 		personality heroic staying
-		government "Bounty: Republic"
+		government "Target: Republic"
 		system
 			distance 1 3
 		fleet "Small Republic"
@@ -2155,7 +2155,7 @@ mission "Eliminating Law Enforcement (North, Large) [1]"
 		attributes "north pirate"
 	npc kill
 		personality heroic staying
-		government "Bounty: Republic"
+		government "Target: Republic"
 		system
 			distance 1 3
 		fleet "Large Republic"
@@ -2179,7 +2179,7 @@ mission "Eliminating Law Enforcement (Core, Small) [0]"
 		attributes "core pirate"
 	npc kill
 		personality heroic staying
-		government "Bounty: Syndicate"
+		government "Target: Syndicate"
 		system
 			distance 1 3
 		fleet "Small Syndicate"
@@ -2202,7 +2202,7 @@ mission "Eliminating Law Enforcement (Core, Large) [1]"
 		attributes "core pirate"
 	npc kill
 		personality heroic staying
-		government "Bounty: Syndicate"
+		government "Target: Syndicate"
 		system
 			distance 1 3
 		fleet "Large Syndicate"
@@ -2226,7 +2226,7 @@ mission "Eliminating Law Enforcement (South, Small) [0]"
 		attributes "south pirate"
 	npc kill
 		personality heroic staying
-		government "Bounty: Militia"
+		government "Target: Militia"
 		system
 			distance 1 3
 		fleet "Small Militia"
@@ -2249,7 +2249,7 @@ mission "Eliminating Law Enforcement (South, Large) [1]"
 		attributes "south pirate"
 	npc kill
 		personality heroic staying
-		government "Bounty: Militia"
+		government "Target: Militia"
 		system
 			distance 1 3
 		fleet "Large Militia"
@@ -2427,7 +2427,7 @@ mission "Raid on Merchants (North)"
 		fleet "Small Northern Pirate"
 	npc kill
 		personality heroic staying
-		government "Bounty: Merchant"
+		government "Target: Merchant"
 		system
 			distance 1 3
 		fleet "Small Northern Merchant"
@@ -2455,7 +2455,7 @@ mission "Raid on Merchants (Core)"
 		fleet "Small Core Pirate"
 	npc kill
 		personality heroic staying
-		government "Bounty: Merchant"
+		government "Target: Merchant"
 		system
 			distance 1 3
 		fleet "Small Core Merchant"
@@ -2483,7 +2483,7 @@ mission "Raid on Merchants (South)"
 		fleet "Small Southern Pirate"
 	npc kill
 		personality heroic staying
-		government "Bounty: Merchant"
+		government "Target: Merchant"
 		system
 			distance 1 3
 		fleet "Small Southern Merchant"
@@ -2611,7 +2611,7 @@ mission "Ransom Situation (North, Dangerous)"
 		dialog `Upon entering Alnitak, Navy ships begin firing upon your ship. It's a trap! Take them out!.`
 	npc kill
 		personality staying heroic
-		government "Bounty: Republic"
+		government "Target: Republic"
 		system Alnitak
 		fleet "Large Republic"
 		fleet "Large Republic"
@@ -2662,7 +2662,7 @@ mission "Ransom Situation (Core, Dangerous)"
 		dialog `Upon entering Al Dhanab, Syndicate ships begin firing upon your ship. It's a trap! Take them out!.`
 	npc kill
 		personality staying heroic
-		government "Bounty: Syndicate"
+		government "Target: Syndicate"
 		system "Al Dhanab"
 		fleet "Large Syndicate"
 		fleet "Large Syndicate"
@@ -2713,7 +2713,7 @@ mission "Ransom Situation (South, Dangerous)"
 		dialog `Upon entering Alniyat, Militia ships begin firing upon your ship. It's a trap! Take them out!.`
 	npc kill
 		personality staying heroic
-		government "Bounty: Militia"
+		government "Target: Militia"
 		system Alniyat
 		fleet "Large Militia"
 		fleet "Large Militia"
@@ -2741,7 +2741,7 @@ mission "Cargo Theft (North)"
 		attributes "north pirate"
 	npc
 		personality staying heroic
-		government "Bounty: Merchant"
+		government "Target: Merchant"
 		system
 			distance 2 3
 		fleet
@@ -2774,7 +2774,7 @@ mission "Cargo Theft (Core)"
 		attributes "core pirate"
 	npc
 		personality staying heroic
-		government "Bounty: Merchant"
+		government "Target: Merchant"
 		system
 			distance 2 3
 		fleet
@@ -2807,7 +2807,7 @@ mission "Cargo Theft (South)"
 		attributes "south pirate"
 	npc
 		personality staying heroic
-		government "Bounty: Merchant"
+		government "Target: Merchant"
 		system
 			distance 2 3
 		fleet
@@ -2853,7 +2853,7 @@ mission "Fake Identity [0]"
 		"reputation: Navy (Oathkeeper)" = 2
 		"reputation: Syndicate" = 2
 		"reputation: Free Worlds" = 1
-		"reputation: Militia" = 0
+		"reputation: Militia" = 1
 		"reputation: Merchant" = 10
 		"reputation: Neutral" = 1
 		conversation
@@ -2887,7 +2887,7 @@ mission "Fake Identity [1]"
 		"reputation: Navy (Oathkeeper)" = 2
 		"reputation: Syndicate" = 2
 		"reputation: Free Worlds" = 1
-		"reputation: Militia" = 0
+		"reputation: Militia" = 1
 		"reputation: Merchant" = 10
 		"reputation: Neutral" = 1
 		conversation 
@@ -2921,7 +2921,7 @@ mission "Fake Identity [2]"
 		"reputation: Navy (Oathkeeper)" = 2
 		"reputation: Syndicate" = 2
 		"reputation: Free Worlds" = 1
-		"reputation: Militia" = 0
+		"reputation: Militia" = 1
 		"reputation: Merchant" = 10
 		"reputation: Neutral" = 1
 		conversation
