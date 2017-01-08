@@ -861,7 +861,7 @@ mission "There Might Be Riots part 3B"
 			`	"Did they hail us?" asks Ulrich.`
 			`	"No," you say.`
 			`	He swears, then shouts to the rest of the band, "Gentlemen, time to pack it up posthaste, before we get turned into a tragic industrial accident!"`
-			`	The band has just packed the last of their equipment away when the ships come into view. It's a swarm of unpiloted combat drones, and they seem to be engaged in mock combat with each other. But, their flight patch is taking them straight in your direction. You power up your shields just as the first of the drones decide that your ship is a valid target for their lasers...`
+			`	The band has just packed the last of their equipment away when the ships come into view. It's a swarm of unpiloted combat drones, and they seem to be engaged in mock combat with each other. But, their flight path is taking them straight in your direction. You power up your shields just as the first of the drones decide that your ship is a valid target for their lasers...`
 				launch
 	
 	npc

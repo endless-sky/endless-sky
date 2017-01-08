@@ -63,6 +63,7 @@ ship "Aerie"
 
 
 ship "Argosy"
+	plural "Argosies"
 	sprite "ship/argosy"
 	attributes
 		category "Light Freighter"
@@ -1142,6 +1143,7 @@ ship "Falcon"
 
 
 ship "Finch"
+	plural "Finches"
 	sprite "ship/finch"
 	attributes
 		category "Fighter"
@@ -1382,6 +1384,7 @@ ship "Frigate"
 
 
 ship "Fury"
+	plural "Furies"
 	sprite "ship/fury"
 	attributes
 		category "Interceptor"
@@ -1917,6 +1920,7 @@ ship "Manta"
 
 
 ship "Modified Argosy"
+	plural "Modified Argosies"
 	sprite "ship/modified argosy"
 	attributes
 		category "Light Warship"

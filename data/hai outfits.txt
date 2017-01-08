@@ -142,6 +142,16 @@ outfit "Hai Tracker"
 	"tracker capacity" -1
 	description "This is ammunition for a Tracker Pod."
 
+outfit "Tracker Storage Pod"
+	category "Ammunition"
+	cost 28000
+	thumbnail "outfit/hai tracker storage"
+	"mass" 1.6
+	"outfit space" -10
+	"tracker capacity" 28
+	ammo "Hai Tracker"
+	description "The Tracker Storage Pod is used to store extra ammunition for Tracker Pods."
+
 outfit "Hai Tracker Pod"
 	category "Secondary Weapons"
 	cost 150000
@@ -252,6 +262,7 @@ outfit "Hai Williwaw Cooling"
 	description "While Hai technology is fairly heat efficient, occasionally they outfit their ships such that they sporadically overheat and shut down. When that happens, they install these."
 
 outfit "Hai Chasm Batteries"
+	plural "Hai Chasm Batteries"
 	category "Power"
 	cost 18000
 	thumbnail "outfit/tiny battery hai"
@@ -261,6 +272,7 @@ outfit "Hai Chasm Batteries"
 	description "Power storage technology is thousands of years old. This is the smallest Hai battery pack."
 
 outfit "Hai Fissure Batteries"
+	plural "Hai Fissure Batteries"
 	category "Power"
 	cost 22000
 	thumbnail "outfit/small battery hai"
@@ -270,6 +282,7 @@ outfit "Hai Fissure Batteries"
 	description "This battery pack has more than three times the energy capacity of the the Hai Chasm Batteries, allowing their ships to engage in combat for longer periods of time before running out of energy."
 
 outfit "Hai Gorge Batteries"
+	plural "Hai Gorge Batteries"
 	category "Power"
 	cost 55000
 	thumbnail "outfit/medium battery hai"
@@ -279,6 +292,7 @@ outfit "Hai Gorge Batteries"
 	description "This medium-sized battery pack is ideal for most of the Hai power needs, allowing for medium length combat engagements, but could also be used keep a ship's heat footprint low with a small power generator and oversized engines."
 
 outfit "Hai Ravine Batteries"
+	plural "Hai Ravine Batteries"
 	category "Power"
 	cost 124000
 	thumbnail "outfit/large battery hai"
@@ -288,6 +302,7 @@ outfit "Hai Ravine Batteries"
 	description "This large battery pack boasts higher energy density than smaller models, and helps keep ships fighting in spite of sustaining several Ion Cannon impacts."
 
 outfit "Hai Valley Batteries"
+	plural "Hai Valley Batteries"
 	category "Power"
 	cost 300000
 	thumbnail "outfit/huge battery hai"
@@ -328,7 +343,7 @@ outfit "Pebble Core"
 	description "A Pebble Core is a miniaturized nuclear reactor, small enough to be installed in any ship larger than a fighter. The Hai developed this model for their smaller ships."
 
 outfit "Sand Cell"
-    category "Power"
+	category "Power"
 	cost 45000
 	thumbnail "outfit/fuel cell hai"
 	"mass" 24
@@ -339,7 +354,8 @@ outfit "Sand Cell"
 
 
 outfit `"Baellie" Atomic Engines`
-    category "Engines"
+	plural `"Baellie" Atomic Engines`
+	category "Engines"
 	"cost" 240000
 	thumbnail "outfit/tiny atomic engines hai"
 	"mass" 24
@@ -352,7 +368,7 @@ outfit `"Baellie" Atomic Engines`
 	"thrusting energy" 1.2
 	"thrusting heat" 2.4
 	"flare sprite" "effect/atomic flare/tiny"
-	    "frame rate" 14
+		"frame rate" 14
 	"flare sound" "atomic tiny"
 	description `While the Hai were designing the Flea, it quickly became apparent that even the "Basrem" engine set was too large for the purpose. As a result, a combined thruster steering set was created: "Baellie".`
 

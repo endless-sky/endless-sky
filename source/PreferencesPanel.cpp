@@ -15,14 +15,19 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Audio.h"
 #include "Color.h"
 #include "Files.h"
+#include "FontSet.h"
 #include "GameData.h"
 #include "Information.h"
 #include "Interface.h"
 #include "Preferences.h"
 #include "Screen.h"
+#include "Sprite.h"
+#include "SpriteSet.h"
+#include "SpriteShader.h"
 #include "StarField.h"
 #include "Table.h"
 #include "UI.h"
+#include "WrappedText.h"
 
 #include "gl_header.h"
 #include <SDL2/SDL.h>
@@ -31,7 +36,8 @@ using namespace std;
 
 namespace {
 	// Settings that require special handling.
-	static const string ZOOM_FACTOR = "Zoom factor";
+	static const string ZOOM_FACTOR = "Main zoom factor";
+	static const string VIEW_ZOOM_FACTOR = "View zoom factor";
 	static const string EXPEND_AMMO = "Escorts expend ammo";
 	static const string FRUGAL_ESCORTS = "Escorts use ammo frugally";
 	static const string REACTIVATE_HELP = "Reactivate first-time help";
@@ -43,6 +49,9 @@ namespace {
 PreferencesPanel::PreferencesPanel()
 	: editing(-1), selected(0), hover(-1)
 {
+	if(!GameData::PluginAboutText().empty())
+		selectedPlugin = GameData::PluginAboutText().begin()->first;
+	
 	SetIsFullScreen(true);
 }
 
@@ -63,6 +72,7 @@ void PreferencesPanel::Draw()
 	
 	zones.clear();
 	prefZones.clear();
+	pluginZones.clear();
 	if(page == 'c')
 		DrawControls();
 	else if(page == 's')
@@ -100,7 +110,7 @@ bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comma
 
 
 
-bool PreferencesPanel::Click(int x, int y)
+bool PreferencesPanel::Click(int x, int y, int clicks)
 {
 	EndEditing();
 	
@@ -132,6 +142,13 @@ bool PreferencesPanel::Click(int x, int y)
 				point += .5 * Point(Screen::RawWidth(), Screen::RawHeight());
 				SDL_WarpMouseInWindow(nullptr, point.X(), point.Y());
 			}
+			if(zone.Value() == VIEW_ZOOM_FACTOR)
+			{
+				// Increase the zoom factor unless it is at the maximum. In that
+				// case, cycle around to the lowest zoom factor.
+				if(!Preferences::ZoomViewIn())
+					while(Preferences::ZoomViewOut()) {}
+			}
 			if(zone.Value() == EXPEND_AMMO)
 				Preferences::ToggleAmmoUsage();
 			else if(zone.Value() == REACTIVATE_HELP)
@@ -152,6 +169,10 @@ bool PreferencesPanel::Click(int x, int y)
 			break;
 		}
 	
+	for(const auto &zone : pluginZones)
+		if(zone.Contains(point))
+			selectedPlugin = zone.Value();
+	
 	return true;
 }
 
@@ -159,18 +180,70 @@ bool PreferencesPanel::Click(int x, int y)
 
 bool PreferencesPanel::Hover(int x, int y)
 {
-	Point point(x, y);
+	hoverPoint = Point(x, y);
 	
 	hover = -1;
 	for(unsigned index = 0; index < zones.size(); ++index)
-		if(zones[index].Contains(point))
+		if(zones[index].Contains(hoverPoint))
 			hover = index;
 	
 	hoverPreference.clear();
 	for(const auto &zone : prefZones)
-		if(zone.Contains(point))
+		if(zone.Contains(hoverPoint))
 			hoverPreference = zone.Value();
 	
+	hoverPlugin.clear();
+	for(const auto &zone : pluginZones)
+		if(zone.Contains(hoverPoint))
+			hoverPlugin = zone.Value();
+	
+	return true;
+}
+
+
+
+bool PreferencesPanel::Scroll(double dx, double dy)
+{
+	if(!dy || hoverPreference.empty())
+		return false;
+	
+	if(hoverPreference == ZOOM_FACTOR)
+	{
+		int zoom = Screen::Zoom();
+		if(dy < 0. && zoom > 100)
+			zoom -= 50;
+		if(dy > 0. && zoom < 200)
+			zoom += 50;
+		
+		Screen::SetZoom(zoom);
+		// Make sure there is enough vertical space for the full UI.
+		while(Screen::Height() < 700 && zoom > 100)
+		{
+			zoom -= 50;
+			Screen::SetZoom(zoom);
+		}
+		
+		// Convert to raw window coordinates, at the new zoom level.
+		Point point = hoverPoint * (Screen::Zoom() / 100.);
+		point += .5 * Point(Screen::RawWidth(), Screen::RawHeight());
+		SDL_WarpMouseInWindow(nullptr, point.X(), point.Y());
+	}
+	else if(hoverPreference == VIEW_ZOOM_FACTOR)
+	{
+		if(dy < 0.)
+			Preferences::ZoomViewOut();
+		else
+			Preferences::ZoomViewIn();
+	}
+	else if(hoverPreference == SCROLL_SPEED)
+	{
+		int speed = Preferences::ScrollSpeed();
+		if(dy < 0.)
+			speed = max(20, speed - 20);
+		else
+			speed = min(60, speed + 20);
+		Preferences::SetScrollSpeed(speed);
+	}
 	return true;
 }
 
@@ -325,6 +398,7 @@ void PreferencesPanel::DrawSettings()
 	static const string SETTINGS[] = {
 		"Display",
 		ZOOM_FACTOR,
+		VIEW_ZOOM_FACTOR,
 		"Show status overlays",
 		"Show planet labels",
 		"Show mini-map",
@@ -381,6 +455,11 @@ void PreferencesPanel::DrawSettings()
 			isOn = true;
 			text = to_string(Screen::Zoom());
 		}
+		else if(setting == VIEW_ZOOM_FACTOR)
+		{
+			isOn = true;
+			text = to_string(static_cast<int>(100. * Preferences::ViewZoom()));
+		}
 		else if(setting == EXPEND_AMMO)
 			text = Preferences::AmmoUsage();
 		else if(setting == REACTIVATE_HELP)
@@ -400,7 +479,10 @@ void PreferencesPanel::DrawSettings()
 			}
 		}
 		else if(setting == SCROLL_SPEED)
+		{
+			isOn = true;
 			text = to_string(Preferences::ScrollSpeed());
+		}
 		else
 			text = isOn ? "on" : "off";
 		
@@ -415,7 +497,47 @@ void PreferencesPanel::DrawSettings()
 
 void PreferencesPanel::DrawPlugins()
 {
-	// TODO.
+	Color back = *GameData::Colors().Get("faint");
+	Color medium = *GameData::Colors().Get("medium");
+	Color bright = *GameData::Colors().Get("bright");
+	
+	Table table;
+	table.AddColumn(-115, Table::LEFT);
+	table.SetUnderline(-120, 120);
+	
+	int firstY = -238;
+	table.DrawAt(Point(-130, firstY));
+	table.DrawUnderline(medium);
+	table.Draw("Installed plugins:", bright);
+	table.DrawGap(5);
+	
+	for(const auto &it : GameData::PluginAboutText())
+	{
+		pluginZones.emplace_back(table.GetCenterPoint(), table.GetRowSize(), it.first);
+		
+		bool isSelected = (it.first == selectedPlugin);
+		if(isSelected || it.first == hoverPlugin)
+			table.DrawHighlight(back);
+		table.Draw(it.first, isSelected ? bright : medium);
+		
+		if(isSelected)
+		{
+			const Sprite *sprite = SpriteSet::Get(it.first);
+			Point top(15., firstY);
+			if(sprite)
+			{
+				Point center(130., top.Y() + .5 * sprite->Height());
+				SpriteShader::Draw(sprite, center);
+				top.Y() += sprite->Height() + 10.;
+			}
+			
+			WrappedText wrap(FontSet::Get(14));
+			wrap.SetWrapWidth(230);
+			static const string empty = "(No description given.)";
+			wrap.Wrap(it.second.empty() ? empty : it.second);
+			wrap.Draw(top, medium);
+		}
+	}
 }
 
 

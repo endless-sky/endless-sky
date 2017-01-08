@@ -118,7 +118,7 @@ public:
 	
 	
 private:
-	Command(uint64_t state);
+	explicit Command(uint64_t state);
 	Command(uint64_t state, const std::string &text);
 	
 	

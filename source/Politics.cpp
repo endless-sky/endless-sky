@@ -232,7 +232,7 @@ string Politics::Fine(PlayerInfo &player, const Government *gov, int scan, const
 				for(const Mission &mission : player.Missions())
 				{
 					// Append the illegalCargoMessage from each applicable mission, if available
-					std::string illegalCargoMessage = mission.IllegalCargoMessage();
+					string illegalCargoMessage = mission.IllegalCargoMessage();
 					if(!illegalCargoMessage.empty())
 					{
 						reason = ".\n\t";

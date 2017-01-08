@@ -66,11 +66,13 @@ PlanetPanel::PlanetPanel(PlayerInfo &player, function<void()> callback)
 void PlanetPanel::Step()
 {
 	// If the previous mission callback resulted in a "launch", take off now.
-	if(player.ShouldLaunch())
+	const Ship *flagship = player.Flagship();
+	if(flagship && flagship->CanBeFlagship() && (player.ShouldLaunch() || requestedLaunch))
 	{
-		DoKey('d');
+		TakeOffIfReady();
 		return;
 	}
+	
 	// If the player starts a new game, exits the shipyard without buying
 	// anything, clicks to the bank, then returns to the shipyard and buys a
 	// ship, make sure they are shown an intro mission.
@@ -134,86 +136,7 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 	
 	bool hasAccess = planet.CanUseServices();
 	if(key == 'd' && flagship && flagship->CanBeFlagship())
-	{
-		// Check whether the player should be warned before taking off.
-		if(player.ShouldLaunch())
-			TakeOff();
-		else
-		{
-			// The checks that follow are typically cause by parking or selling
-			// ships or changing outfits.
-
-			// Are you overbooked? Don't count fireable flagship crew.
-			const CargoHold &cargo = player.Cargo();
-			int overbooked = -cargo.Bunks() - (flagship->Crew() - flagship->RequiredCrew());
-			int missionCargoToSell = cargo.MissionCargoSize() - cargo.Size();
-			// Will you have to sell something other than regular cargo?
-			int cargoToSell = -(cargo.Free() + cargo.CommoditiesSize());
-			int droneCount = 0;
-			int fighterCount = 0;
-			for(const auto &it : player.Ships())
-				if(!it->IsParked() && !it->IsDisabled() && it->GetSystem() == player.GetSystem())
-				{
-					const string &category = it->Attributes().Category();
-					droneCount += (category == "Drone") - it->BaysFree(false);
-					fighterCount += (category == "Fighter") - it->BaysFree(true);
-				}
-			
-			if(fighterCount > 0 || droneCount > 0 || cargoToSell > 0 || overbooked > 0)
-			{
-				ostringstream out;
-				if(missionCargoToSell > 0 || overbooked > 0)
-				{
-					bool both = ((cargoToSell > 0 && cargo.MissionCargoSize()) && overbooked > 0);
-					out << "If you take off now you will fail a mission due to not having enough ";
-
-					if(overbooked > 0)
-					{
-						out << "bunks available for " << overbooked;
-						out << (overbooked > 1 ? " of the passengers" : " passenger");
-						out << (both ? " and not having enough " : ".");
-					}
-
-					if(missionCargoToSell > 0)
-					{
-						out << "cargo space to hold " << missionCargoToSell;
-						out << (missionCargoToSell > 1 ? " tons" : " ton");
-						out << " of your mission cargo.";
-					}
-				}
-				else
-				{
-					out << "If you take off now you will have to sell ";
-					bool triple = (fighterCount > 0 && droneCount > 0 && cargoToSell > 0);
-
-					if(fighterCount == 1)
-						out << "a fighter";
-					else if(fighterCount > 0)
-						out << fighterCount << " fighters";
-					if(fighterCount > 0 && (droneCount > 0 || cargoToSell > 0))
-						out << (triple ? ", " : " and ");
-				
-					if(droneCount == 1)
-						out << "a drone";
-					else if(droneCount > 0)
-						out << droneCount << " drones";
-					if(droneCount > 0 && cargoToSell > 0)
-						out << (triple ? ", and " : " and ");
-
-					if(cargoToSell == 1)
-						out << "a ton of cargo";
-					else if(cargoToSell > 0)
-						out << cargoToSell << " tons of cargo";
-					out << " that you do not have space for.";
-				}
-				out << " Are you sure you want to continue?";
-				GetUI()->Push(new Dialog(this, &PlanetPanel::TakeOff, out.str()));
-				return true;
-			}
-			else
-				TakeOff();
-		}
-	}
+		requestedLaunch = true;
 	else if(key == 'l')
 	{
 		selectedPanel = nullptr;
@@ -280,6 +203,109 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 		GetUI()->Pop(oldPanel);
 	
 	return true;
+}
+
+
+
+void PlanetPanel::TakeOffIfReady()
+{
+	// If we're currently showing a conversation or dialog, wait for it to close.
+	if(!GetUI()->IsTop(this) && !GetUI()->IsTop(trading.get()) && !GetUI()->IsTop(bank.get())
+			&& !GetUI()->IsTop(spaceport.get()) && !GetUI()->IsTop(hiring.get()))
+		return;
+	
+	// Check for any landing missions that have not been offered.
+	Mission *mission = player.MissionToOffer(Mission::LANDING);
+	if(mission)
+	{
+		mission->Do(Mission::OFFER, player, GetUI());
+		return;
+	}
+	
+	// Check whether the player should be warned before taking off.
+	if(player.ShouldLaunch())
+	{
+		TakeOff();
+		return;
+	}
+	
+	// The checks that follow are typically cause by parking or selling
+	// ships or changing outfits.
+	const Ship *flagship = player.Flagship();
+	
+	// Are you overbooked? Don't count fireable flagship crew. If your
+	// ship can't hold the required crew, count it as having no fireable
+	// crew rather than a negative number.
+	const CargoHold &cargo = player.Cargo();
+	int overbooked = -cargo.Bunks() - max(0, flagship->Crew() - flagship->RequiredCrew());
+	int missionCargoToSell = cargo.MissionCargoSize() - cargo.Size();
+	// Will you have to sell something other than regular cargo?
+	int cargoToSell = -(cargo.Free() + cargo.CommoditiesSize());
+	int droneCount = 0;
+	int fighterCount = 0;
+	for(const auto &it : player.Ships())
+		if(!it->IsParked() && !it->IsDisabled() && it->GetSystem() == player.GetSystem())
+		{
+			const string &category = it->Attributes().Category();
+			droneCount += (category == "Drone") - it->BaysFree(false);
+			fighterCount += (category == "Fighter") - it->BaysFree(true);
+		}
+	
+	if(fighterCount > 0 || droneCount > 0 || cargoToSell > 0 || overbooked > 0)
+	{
+		ostringstream out;
+		if(missionCargoToSell > 0 || overbooked > 0)
+		{
+			bool both = ((cargoToSell > 0 && cargo.MissionCargoSize()) && overbooked > 0);
+			out << "If you take off now you will fail a mission due to not having enough ";
+
+			if(overbooked > 0)
+			{
+				out << "bunks available for " << overbooked;
+				out << (overbooked > 1 ? " of the passengers" : " passenger");
+				out << (both ? " and not having enough " : ".");
+			}
+
+			if(missionCargoToSell > 0)
+			{
+				out << "cargo space to hold " << missionCargoToSell;
+				out << (missionCargoToSell > 1 ? " tons" : " ton");
+				out << " of your mission cargo.";
+			}
+		}
+		else
+		{
+			out << "If you take off now you will have to sell ";
+			bool triple = (fighterCount > 0 && droneCount > 0 && cargoToSell > 0);
+
+			if(fighterCount == 1)
+				out << "a fighter";
+			else if(fighterCount > 0)
+				out << fighterCount << " fighters";
+			if(fighterCount > 0 && (droneCount > 0 || cargoToSell > 0))
+				out << (triple ? ", " : " and ");
+		
+			if(droneCount == 1)
+				out << "a drone";
+			else if(droneCount > 0)
+				out << droneCount << " drones";
+			if(droneCount > 0 && cargoToSell > 0)
+				out << (triple ? ", and " : " and ");
+
+			if(cargoToSell == 1)
+				out << "a ton of cargo";
+			else if(cargoToSell > 0)
+				out << cargoToSell << " tons of cargo";
+			out << " that you do not have space for.";
+		}
+		out << " Are you sure you want to continue?";
+		GetUI()->Push(new Dialog(this, &PlanetPanel::TakeOff, out.str()));
+		return;
+	}
+	
+	// There was no need to ask the player whether we can get rid of anything,
+	// so go ahead and take off.
+	TakeOff();
 }
 
 
