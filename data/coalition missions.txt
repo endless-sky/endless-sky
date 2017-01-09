@@ -50,7 +50,7 @@ mission "Coalition: First Contact"
 			choice
 				`	"Tell me more about your Coalition."`
 				`	"Is this a Quarg ringworld? Where are the Quarg?"`
-			`	The Centaur says, "Like you, our three species once, by the Quarg were ruled. But with each other, connections we made. An alliance we formed, and the oppressors we drove away. For six thousand Earth years now, in prosperity and freedom from Quarg constraint and in friendship with each other we have lived."`
+			`	The centaur says, "Like you, our three species once, by the Quarg were ruled. But with each other, connections we made. An alliance we formed, and the oppressors we drove away. For six thousand Earth years now, in prosperity and freedom from Quarg constraint and in friendship with each other we have lived."`
 			choice
 				`	"The Quarg don't seem that oppressive to me."`
 					goto oppressive
