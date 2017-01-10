@@ -606,10 +606,13 @@ void AI::Step(const PlayerInfo &player)
 					( !(it->IsYours() ? thisIsLaunching : parent->Commands().Has(Command::DEPLOY)) ||
 					( isArmed && ! hasAmmo) || 
 					//no enemy nearby so recharge shields in carrier
-					( it->Attributes().Get("shields") && 
-					  it->Shields() < 0.9 && 
+					( it->Attributes().Get("shields") &&
+					  it->Shields() < 0.9 &&
 					  (!it->GetTargetShip() || !it->GetTargetShip()->GetGovernment()->IsEnemy(gov))) ||
-					( it->Attributes().Get("shields") && it->Shields() < 0.6)))
+					//low on fuel
+					  (!it->Fuel() && it->Attributes().Get("Fuel Capacity")) || 
+					//in combat with low shields
+					( it->Attributes().Get("shields") && it->Shields() < 0.6))) 
 			{
 				it->SetTargetShip(parent);
 				MoveTo(*it, command, parent->Position(), parent->Velocity(), 40., .8);
