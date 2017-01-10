@@ -115,11 +115,15 @@ void PlayerInfo::Load(const string &path)
 		else if(child.Token(0) == "date" && child.Size() >= 4)
 			date = Date(child.Value(1), child.Value(2), child.Value(3));
 		else if(child.Token(0) == "system" && child.Size() >= 2)
-			system = GameData::Systems().Get(child.Token(1));
+			system = GameData::Systems().Find(child.Token(1));
 		else if(child.Token(0) == "planet" && child.Size() >= 2)
-			planet = GameData::Planets().Get(child.Token(1));
+			planet = GameData::Planets().Find(child.Token(1));
 		else if(child.Token(0) == "travel" && child.Size() >= 2)
-			travelPlan.push_back(GameData::Systems().Get(child.Token(1)));
+		{
+			const System *next = GameData::Systems().Find(child.Token(1));
+			if(next)
+				travelPlan.push_back(next);
+		}
 		else if(child.Token(0) == "reputation with")
 		{
 			for(const DataNode &grand : child)
@@ -130,9 +134,9 @@ void PlayerInfo::Load(const string &path)
 		else if(child.Token(0) == "account")
 			accounts.Load(child);
 		else if(child.Token(0) == "visited" && child.Size() >= 2)
-			Visit(GameData::Systems().Get(child.Token(1)));
+			Visit(GameData::Systems().Find(child.Token(1)));
 		else if(child.Token(0) == "visited planet" && child.Size() >= 2)
-			Visit(GameData::Planets().Get(child.Token(1)));
+			Visit(GameData::Planets().Find(child.Token(1)));
 		else if(child.Token(0) == "destroyed" && child.Size() >= 2)
 			destroyedPersons.push_back(GameData::Persons().Get(child.Token(1)));
 		else if(child.Token(0) == "cargo")
@@ -157,9 +161,13 @@ void PlayerInfo::Load(const string &path)
 		{
 			for(const DataNode &grand : child)
 				if(grand.Size() >= 2)
-					harvested.insert(make_pair(
-						GameData::Systems().Get(grand.Token(0)),
-						GameData::Outfits().Get(grand.Token(1))));
+				{
+					auto item = make_pair(
+						GameData::Systems().Find(grand.Token(0)),
+						GameData::Outfits().Get(grand.Token(1)));
+					if(item.first)
+						harvested.insert(item);
+				}
 		}
 		else if(child.Token(0) == "mission")
 		{
@@ -355,7 +363,11 @@ void PlayerInfo::ApplyChanges()
 	// SetDate() clears any bribes from yesterday, so restore any auto-clearance.
 	for(const Mission &mission : Missions())
 		if(mission.ClearanceMessage() == "auto")
+		{
 			mission.Destination()->Bribe(mission.HasFullClearance());
+			for(const Planet *planet : mission.Stopovers())
+				planet->Bribe(mission.HasFullClearance());
+		}
 	if(system)
 		GameData::GetPolitics().Bribe(system->GetGovernment());
 	
@@ -381,8 +393,9 @@ void PlayerInfo::ApplyChanges()
 		if(it->first.compare(0, prefix.length(), prefix))
 			break;
 		
-		const Planet *planet = GameData::Planets().Get(it->first.substr(prefix.length()));
-		GameData::GetPolitics().DominatePlanet(planet);
+		const Planet *planet = GameData::Planets().Find(it->first.substr(prefix.length()));
+		if(planet)
+			GameData::GetPolitics().DominatePlanet(planet);
 	}
 }
 
@@ -1349,7 +1362,6 @@ Mission *PlayerInfo::BoardingMission(const shared_ptr<Ship> &ship)
 		if(!it.second.IsAtLocation(location))
 			continue;
 		
-		conditions["random"] = Random::Int(100);
 		if(it.second.CanOffer(*this))
 		{
 			boardingMissions.push_back(it.second.Instantiate(*this));
@@ -1406,7 +1418,7 @@ void PlayerInfo::MissionCallback(int response)
 	
 	Mission &mission = missionList.front();
 	
-	shouldLaunch = Conversation::RequiresLaunch(response);
+	shouldLaunch |= Conversation::RequiresLaunch(response);
 	if(response == Conversation::ACCEPT || response == Conversation::LAUNCH)
 	{
 		bool shouldAutosave = mission.RecommendsAutosave();
@@ -1629,7 +1641,7 @@ void PlayerInfo::Visit(const System *system)
 // Mark the given system as visited, and mark all its neighbors as seen.
 void PlayerInfo::Visit(const Planet *planet)
 {
-	if(!planet->TrueName().empty())
+	if(planet && !planet->TrueName().empty())
 		visitedPlanets.insert(planet);
 }
 
@@ -1638,18 +1650,28 @@ void PlayerInfo::Visit(const Planet *planet)
 // Mark a system as unvisited, even if visited previously.
 void PlayerInfo::Unvisit(const System *system)
 {
+	if(!system)
+		return;
+	
 	auto it = visitedSystems.find(system);
 	if(it != visitedSystems.end())
-	{
 		visitedSystems.erase(it);
-		for(const StellarObject &object : system->Objects())
-			if(object.GetPlanet())
-			{
-				auto it2 = visitedPlanets.find(object.GetPlanet());
-				if(it2 != visitedPlanets.end())
-					visitedPlanets.erase(it2);
-			}
-	}
+	
+	for(const StellarObject &object : system->Objects())
+		if(object.GetPlanet())
+			Unvisit(object.GetPlanet());
+}
+
+
+
+void PlayerInfo::Unvisit(const Planet *planet)
+{
+	if(!planet)
+		return;
+	
+	auto it = visitedPlanets.find(planet);
+	if(it != visitedPlanets.end())
+		visitedPlanets.erase(it);
 }
 
 
@@ -2011,7 +2033,6 @@ void PlayerInfo::CreateMissions()
 		if(skipJobs && it.second.IsAtLocation(Mission::JOB))
 			continue;
 		
-		conditions["random"] = Random::Int(100);
 		if(it.second.CanOffer(*this))
 		{
 			list<Mission> &missions =

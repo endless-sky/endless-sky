@@ -10,6 +10,9 @@ if 'CPPFLAGS' in os.environ:
 	env.Append(CPPFLAGS = os.environ['CPPFLAGS'])
 if 'LDFLAGS' in os.environ:
 	env.Append(LINKFLAGS = os.environ['LDFLAGS'])
+if 'CPPPATH' in os.environ:
+	env.Append(CPPPATH = os.environ['CPPPATH'])
+
 # The Steam runtime has an out-of-date libstdc++, so link it in statically:
 if 'SCHROOT_CHROOT_NAME' in os.environ and 'steamrt' in os.environ['SCHROOT_CHROOT_NAME']:
 	env.Append(LINKFLAGS = ["-static-libstdc++"])

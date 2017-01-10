@@ -118,7 +118,14 @@ void AI::UpdateKeys(PlayerInfo &player, Command &clickCommands, bool isActive)
 	clickCommands.Clear();
 	keyDown = keyHeld.AndNot(oldHeld);
 	if(keyHeld.Has(AutopilotCancelKeys()))
+	{
+		bool canceled = (keyStuck.Has(Command::JUMP) && !keyHeld.Has(Command::JUMP));
+		canceled |= (keyStuck.Has(Command::LAND) && !keyHeld.Has(Command::LAND));
+		canceled |= (keyStuck.Has(Command::BOARD) && !keyHeld.Has(Command::BOARD));
+		if(canceled)
+			Messages::Add("Disengaging autopilot.");
 		keyStuck.Clear();
+	}
 	if(keyStuck.Has(Command::JUMP) && !player.HasTravelPlan())
 		keyStuck.Clear(Command::JUMP);
 	
@@ -715,6 +722,16 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 				// Don't plunder unless there are no "live" enemies nearby.
 				range += 2000. * (2 * it->IsDisabled() - !hasBoarded);
 			}
+			// Check if this target has any weapons (not counting anti-missiles).
+			bool isArmed = false;
+			for(const auto &ait : it->Weapons())
+				if(ait.GetOutfit() && !ait.GetOutfit()->AntiMissile())
+				{
+					isArmed = true;
+					break;
+				}
+			// Prefer to go after armed targets, expecially if you're not a pirate.
+			range += 1000. * (!isArmed * (1 + !person.Plunders()));
 			// Focus on nearly dead ships.
 			range += 500. * (it->Shields() + it->Hull());
 			bool isPotentialNemesis = (person.IsNemesis() && it->GetGovernment()->IsPlayer());
@@ -1598,8 +1615,10 @@ bool AI::DoHarvesting(Ship &ship, Command &command)
 		double bestTime = 600.;
 		for(const shared_ptr<Flotsam> &it : flotsam)
 		{
+			// Only pick up flotsam that is nearby and that you are facing toward.
 			Point p = it->Position() - ship.Position();
-			if(p.Length() > 800.)
+			double range = p.Length();
+			if(range > 800. || (range > 100. && p.Unit().Dot(ship.Facing().Unit()) < .9))
 				continue;
 			
 			// Estimate how long it would take to intercept this flotsam.
@@ -2239,6 +2258,14 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 					ship.SetTargetSystem(link);
 				}
 			}
+		}
+		if(ship.GetTargetSystem())
+		{
+			string name = "selected star";
+			if(player.KnowsName(ship.GetTargetSystem()))
+				name = ship.GetTargetSystem()->Name();
+			
+			Messages::Add("Engaging autopilot to jump to the " + name + " system.");
 		}
 	}
 	else if(keyHeld.Has(Command::SCAN))

@@ -452,6 +452,17 @@ outfit "Meteor Missile"
 	"meteor capacity" -1
 	description "A Meteor Missile serves as ammunition for the Meteor Missile Launcher. Each missile launcher has the capacity for 35 missiles; you cannot install missiles if you have not first purchased a launcher to store them in."
 
+outfit "Meteor Missile Box"
+	plural "Meteor Missile Boxes"
+	category "Ammunition"
+	cost 9000
+	thumbnail "outfit/meteor storage"
+	"mass" 1.4
+	"outfit space" -5
+	"meteor capacity" 18
+	ammo "Meteor Missile"
+	description "The Meteor Missile Box is used to store extra ammunition for Meteor Missile Launchers."
+
 outfit "Meteor Missile Launcher"
 	category "Secondary Weapons"
 	cost 15000
@@ -495,6 +506,16 @@ outfit "Sidewinder Missile"
 	"mass" .2
 	"sidewinder capacity" -1
 	description "The Sidewinder Missile is ammunition for the Sidewinder Missile Launcher; each launcher that you have installed can be armed with up to 50 of them. You cannot install a missile without a launcher to fire it from."
+
+outfit "Sidewinder Missile Rack"
+	category "Ammunition"
+	cost 20000
+	thumbnail "outfit/sidewinder storage"
+	"mass" 2
+	"outfit space" -7
+	"sidewinder capacity" 25
+	ammo "Sidewinder Missile"
+	description "The Sidewinder Missile Rack is used to store extra ammunition for Sidewinder Missile Launchers."
 
 outfit "Sidewinder Missile Launcher"
 	category "Secondary Weapons"
@@ -541,6 +562,16 @@ outfit "Javelin"
 	"javelin capacity" -1
 	description "A Javelin missile is ammunition for the Javelin Pod; without a Pod to store them in you cannot purchase or use Javelins. Each pod stores up to 200 Javelins."
 
+outfit "Javelin Storage Crate"
+	category "Ammunition"
+	cost 5000
+	thumbnail "outfit/javelin storage"
+	"mass" 2
+	"outfit space" -6
+	"javelin capacity" 100
+	ammo "Javelin"
+	description "The Javelin Storage Crate is used to store extra ammunition for Javlein Pods."
+
 outfit "Javelin Pod"
 	category "Secondary Weapons"
 	cost 20000
@@ -576,6 +607,16 @@ outfit "Torpedo"
 	"mass" .4
 	"torpedo capacity" -1
 	description "Torpedoes are ammunition for the Torpedo Launcher. Each Torpedo Launcher can hold 30 of them. You cannot install torpedoes unless you have also installed a launcher to fire them from."
+
+outfit "Torpedo Storage Rack"
+	category "Ammunition"
+	cost 21000
+	thumbnail "outfit/torpedo storage"
+	"mass" 3
+	"outfit space" -9
+	"torpedo capacity" 15
+	ammo "Torpedo"
+	description "The Torpedo Storage Rack is used to store extra ammunition for Torpedo Launchers."
 
 outfit "Torpedo Launcher"
 	category "Secondary Weapons"
@@ -622,6 +663,16 @@ outfit "Typhoon Torpedo"
 	"typhoon capacity" -1
 	description "Typhoon Torpedoes are ammunition for the Typhoon Launcher. Each launcher can hold 30 of them. You cannot install Typhoon Torpedoes unless you have also installed a launcher to fire them from."
 
+outfit "Typhoon Storage Tube"
+	category "Ammunition"
+	cost 40500
+	thumbnail "outfit/typhoon storage"
+	"mass" 2.5
+	"outfit space" -10
+	"typhoon capacity" 15
+	ammo "Typhoon Torpedo"
+	description "The Typhoon Storage Tube is used to store extra ammunition for Typhoon Launchers."
+
 outfit "Typhoon Launcher"
 	category "Secondary Weapons"
 	cost 260000
@@ -665,6 +716,16 @@ outfit "Heavy Rocket"
 	"mass" .5
 	"rocket capacity" -1
 	description "Heavy Rockets are ammunition for the Heavy Rocket Launcher. You cannot install one unless you have first installed a launcher to fire it from. Each launcher holds up to 20 rockets."
+
+outfit "Heavy Rocket Rack"
+	category "Ammunition"
+	cost 20000
+	thumbnail "outfit/rocket storage"
+	"mass" 2
+	"outfit space" -7
+	"rocket capacity" 10
+	ammo "Heavy Rocket"
+	description "The Heavy Rocket Rack is used to store extra ammunition for Heavy Rocket Launchers."
 
 outfit "Heavy Rocket Launcher"
 	category "Secondary Weapons"
@@ -748,6 +809,17 @@ outfit "Gatling Gun Ammo"
 	"mass" .002
 	"gatling round capacity" -1
 	description "This simple cartridge is the ammunition for the Gatling Gun, with a projectile of depleted nuclear fuel or an illuminated tracer round. Since this ammunition is primarily manufactured on pirate worlds by slave children in poor working conditions, muzzle velocity can vary by up to 30%, and tracer distribution is seldom uniform."
+
+outfit "Bullet Boxes"
+	plural "Bullet Boxes"
+	category "Ammunition"
+	cost 3000
+	thumbnail "outfit/bullet storage"
+	"mass" 2
+	"outfit space" -5
+	"gatling round capacity" 1500
+	ammo "Gatling Gun Ammo"
+	description "Bullet Boxes are used to store extra ammunition for Gatling Guns."
 
 outfit "Gatling Gun"
 	category "Secondary Weapons"
