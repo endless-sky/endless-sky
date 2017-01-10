@@ -1344,9 +1344,15 @@ void Ship::Launch(list<shared_ptr<Ship>> &ships)
 
 
 			//Refuel the fighter.
-			double toTransfer = std::max(ship->attributes.Get("fuel capacity") - ship->fuel, fuel);
+			double toTransfer = std::min(ship->attributes.Get("fuel capacity") - ship->fuel, fuel);
 			fuel -= toTransfer;
 			ship->fuel += toTransfer;
+
+			//if still low or out of fuel don't launch
+			if( ship->Fuel() < 0.25 && ship->attributes.Get("fuel capacity"))
+			{
+				continue;
+			}
 
 			ships.push_back(bay.ship);
 			double maxV = bay.ship->MaxVelocity();
