@@ -1342,6 +1342,12 @@ void Ship::Launch(list<shared_ptr<Ship>> &ships)
 				}
 			}
 
+
+			//Refuel the fighter.
+			double toTransfer = std::max(ship->attributes.Get("fuel capacity") - ship->fuel, fuel);
+			fuel -= toTransfer;
+			ship->fuel += toTransfer;
+
 			ships.push_back(bay.ship);
 			double maxV = bay.ship->MaxVelocity();
 			Angle launchAngle = angle + BAY_ANGLE[bay.facing];
