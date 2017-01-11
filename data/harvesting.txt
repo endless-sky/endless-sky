@@ -222,3 +222,236 @@ outfit "Uranium"
 	"mass" 1
 	"installable" -1
 	description "Uranium is best known for its use in the nuclear reactors that power large starships. Its most stable isotope U-238 is also used for ultra-strong hull plating and for armor-piercing projectiles."
+
+
+
+minable "arrow debris"
+	sprite "asteroid/debris/arrow/spin"
+	hull 400
+	explode "smoke" 20
+	explode "bolide" 20
+	explode "final explosion small"
+
+minable "barb debris"
+	sprite "asteroid/debris/barb/spin"
+	hull 200
+	explode "smoke" 20
+	explode "bolide" 20
+	explode "final explosion small"
+
+minable "barb (proton) debris"
+	sprite "asteroid/debris/barb/spin"
+	hull 200
+	explode "smoke" 20
+	explode "bolide" 20
+	explode "final explosion small"
+
+minable "barb (gatling) debris"
+	sprite "asteroid/debris/barb/spin"
+	hull 200
+	explode "smoke" 20
+	explode "bolide" 20
+	explode "final explosion small"
+
+minable "berserker debris"
+	sprite "asteroid/debris/berserker/spin"
+	hull 500
+	explode "smoke" 20
+	explode "bolide" 20
+	explode "final explosion small"
+
+minable "berserker (afterburner) debris"
+	sprite "asteroid/debris/berserker/spin"
+	hull 500
+	explode "smoke" 20
+	explode "bolide" 20
+	explode "final explosion small"
+
+minable "boxwing debris"
+	sprite "asteroid/debris/boxwing/spin"
+	hull 800
+	explode "smoke" 20
+	explode "bolide" 20
+	explode "final explosion small"
+
+minable "combat drone debris"
+	sprite "asteroid/debris/combat drone/spin"
+	hull 700
+	explode "smoke" 20
+	explode "bolide" 20
+	explode "final explosion small"
+
+minable "dagger debris"
+	sprite "asteroid/debris/dagger/spin"
+	hull 300
+	explode "smoke" 20
+	explode "bolide" 20
+	explode "final explosion small"
+
+minable "finch debris"
+	sprite "asteroid/debris/finch/spin"
+	hull 200
+	explode "smoke" 20
+	explode "bolide" 20
+	explode "final explosion small"
+
+minable "flivver debris"
+	sprite "asteroid/debris/flivver/spin"
+	hull 200
+	explode "smoke" 20
+	explode "bolide" 20
+	explode "final explosion small"
+
+minable "flivver (racing) debris"
+	sprite "asteroid/debris/flivver/spin"
+	hull 200
+	explode "smoke" 20
+	explode "bolide" 20
+	explode "final explosion small"
+
+minable "fury debris"
+	sprite "asteroid/debris/fury/spin"
+	hull 400
+	explode "smoke" 20
+	explode "bolide" 20
+	explode "final explosion small"
+
+minable "fury (laser) debris"
+	sprite "asteroid/debris/fury/spin"
+	hull 400
+	explode "smoke" 20
+	explode "bolide" 20
+	explode "final explosion small"
+
+minable "fury (missile) debris"
+	sprite "asteroid/debris/fury/spin"
+	hull 400
+	explode "smoke" 20
+	explode "bolide" 20
+	explode "final explosion small"
+
+minable "fury (gatling) debris"
+	sprite "asteroid/debris/fury/spin"
+	hull 400
+	explode "smoke" 20
+	explode "bolide" 20
+	explode "final explosion small"
+
+minable "hawk debris"
+	sprite "asteroid/debris/hawk/spin"
+	hull 500
+	explode "smoke" 20
+	explode "bolide" 20
+	explode "final explosion small"
+
+minable "hawk (speedy) debris"
+	sprite "asteroid/debris/hawk/spin"
+	hull 500
+	explode "smoke" 20
+	explode "bolide" 20
+	explode "final explosion small"
+
+minable "hawk (rocket) debris"
+	sprite "asteroid/debris/hawk/spin"
+	hull 500
+	explode "smoke" 20
+	explode "bolide" 20
+	explode "final explosion small"
+
+minable "heavy shuttle debris"
+	sprite "asteroid/debris/heavy shuttle/spin"
+	hull 700
+	explode "smoke" 20
+	explode "bolide" 20
+	explode "final explosion small"
+
+minable "heavy shuttle (armed) debris"
+	sprite "asteroid/debris/heavy shuttle/spin"
+	hull 700
+	explode "smoke" 20
+	explode "bolide" 20
+	explode "final explosion small"
+
+minable "lance debris"
+	sprite "asteroid/debris/lance/spin"
+	hull 400
+	explode "smoke" 20
+	explode "bolide" 20
+	explode "final explosion small"
+
+minable "lance (gatling) debris"
+	sprite "asteroid/debris/lance/spin"
+	hull 400
+	explode "smoke" 20
+	explode "bolide" 20
+	explode "final explosion small"
+
+minable "scout debris"
+	sprite "asteroid/debris/scout/spin"
+	hull 400
+	explode "smoke" 20
+	explode "bolide" 20
+	explode "final explosion small"
+
+minable "scout (speedy) debris"
+	sprite "asteroid/debris/scout/spin"
+	hull 400
+	explode "smoke" 20
+	explode "bolide" 20
+	explode "final explosion small"
+
+minable "shuttle debris"
+	sprite "asteroid/debris/shuttle/spin"
+	hull 600
+	explode "smoke" 20
+	explode "bolide" 20
+	explode "final explosion small"
+
+minable "sparrow debris"
+	sprite "asteroid/debris/sparrow/spin"
+	hull 300
+	explode "smoke" 20
+	explode "bolide" 20
+	explode "final explosion small"
+
+minable "sparrow (gatling) debris"
+	sprite "asteroid/debris/sparrow/spin"
+	hull 300
+	explode "smoke" 20
+	explode "bolide" 20
+	explode "final explosion small"
+
+minable "sparrow (patrol) debris"
+	sprite "asteroid/debris/sparrow/spin"
+	hull 300
+	explode "smoke" 20
+	explode "bolide" 20
+	explode "final explosion small"
+
+minable "star barge debris"
+	sprite "asteroid/debris/star barge/spin"
+	hull 1000
+	explode "smoke" 20
+	explode "bolide" 20
+	explode "final explosion small"
+
+minable "star barge (armed) debris"
+	sprite "asteroid/debris/star barge/spin"
+	hull 1000
+	explode "smoke" 20
+	explode "bolide" 20
+	explode "final explosion small"
+
+minable "wasp debris"
+	sprite "asteroid/debris/wasp/spin"
+	hull 500
+	explode "smoke" 20
+	explode "bolide" 20
+	explode "final explosion small"
+
+minable "wasp (proton) debris"
+	sprite "asteroid/debris/wasp/spin"
+	hull 500
+	explode "smoke" 20
+	explode "bolide" 20
+	explode "final explosion small"
