@@ -300,6 +300,7 @@ void PlanetPanel::TakeOffIfReady()
 		}
 		out << " Are you sure you want to continue?";
 		GetUI()->Push(new Dialog(this, &PlanetPanel::TakeOff, out.str()));
+		requestedLaunch = false;
 		return;
 	}
 	
