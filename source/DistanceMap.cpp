@@ -202,8 +202,8 @@ void DistanceMap::Init(const System *center, const Ship *ship)
 // Add the given links to the map. Return false if an end condition is hit.
 bool DistanceMap::Propagate(const System *system, bool useJump, int steps, double danger, bool cheapHyper)
 {
-	// The "length" of this link is 2 if using an expensive jump drive.
-	steps += 1 + (cheapHyper ? useJump : 0);
+	// The "length" of this link is 2 if using an expensive drive.
+	steps += 1 + (cheapHyper ? useJump : 1-useJump);
 	for(const System *link : (useJump ? system->Neighbors() : system->Links()))
 	{
 		// Find out whether we already have a better path to this system, and
