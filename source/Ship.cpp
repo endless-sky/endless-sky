@@ -1048,6 +1048,9 @@ bool Ship::Move(list<Effect> &effects, list<shared_ptr<Flotsam>> &flotsam)
 	double drag = attributes.Get("drag");
 	// By default, use Newtonian physics and so apply no drag.
 	bool applyDrag = false;
+	// Scale used to switch drag off when the net acceleration would be opposite
+	// the thrust.
+	double accelScale = 1.;
 	
 	// Disabled ships should always apply drag so they do not endlessly drift.
 	if(isDisabled)
@@ -1119,12 +1122,9 @@ bool Ship::Move(list<Effect> &effects, list<shared_ptr<Flotsam>> &flotsam)
 			if(dragAcceleration)
 			{
 				// What direction will the net acceleration be if this drag is applied?
-				// If the net acceleration will be opposite the thrust, don't change velocity.
-				if(acceleration.Unit().Dot(dragAcceleration.Unit()) < 0.)
-				{
-					acceleration *= 0.;
-					applyDrag = false;
-				}
+				// If the net acceleration will be opposite the thrust, do not apply drag.
+				accelScale = .5 * (acceleration.Unit().Dot(dragAcceleration.Unit()) + 1.);
+				acceleration *= accelScale;
 				
 				// A ship can only "cheat" to stop if it is moving slow enough that
 				// it could stop completely this frame. This is to avoid overshooting
@@ -1173,7 +1173,7 @@ bool Ship::Move(list<Effect> &effects, list<shared_ptr<Flotsam>> &flotsam)
 
 	// Reduce velocity due to the effect of drag.
 	if(applyDrag)
-		velocity *= 1. - drag / mass;
+		velocity *= 1. - accelScale * drag / mass;
 	
 	// Boarding:
 	if(isBoarding && (commands.Has(Command::FORWARD | Command::BACK) || commands.Turn()))
