@@ -174,7 +174,7 @@ mission "Wanderers: Nova Remnants"
 mission "Wanderers: Mereti Controller"
 	landing
 	name "Kor Mereti Controller"
-	description "Board one of the Kor Mereti drones, find whatever component is controlling its actions, and bring that componenet back to the Wanderers on <planet>."
+	description "Board one of the Kor Mereti drones, find whatever component is controlling its actions, and bring that component back to the Wanderers on <planet>."
 	source "Spera Anatrusk"
 	to offer
 		has "Wanderers: Surveying 1: done"
@@ -199,7 +199,7 @@ mission "Wanderers: Mereti Controller"
 mission "Wanderers: Sestor Controller"
 	landing
 	name "Kor Sestor Controller"
-	description "Board one of the Kor Sestor drones, find whatever component is controlling its actions, and bring that componenet back to the Wanderers on <planet>."
+	description "Board one of the Kor Sestor drones, find whatever component is controlling its actions, and bring that component back to the Wanderers on <planet>."
 	source "Spera Anatrusk"
 	to offer
 		has "Wanderers: Surveying 1: done"
@@ -664,7 +664,7 @@ event "wanderers: kashikt battle ends"
 mission "Wanderers: Kor Efret 3"
 	landing
 	name "Defend <planet>"
-	description "Defend this Kor Efret world from a Kor Mereti raid. Hopefully if you hold out long enough, more reinforecements will arrive."
+	description "Defend this Kor Efret world from a Kor Mereti raid. Hopefully if you hold out long enough, more reinforcements will arrive."
 	source "Laki Nemparu"
 	to offer
 		has "Wanderers: Kor Efret 2: done"
@@ -1246,3 +1246,1812 @@ mission "Wanderers: Mentors 3"
 		conversation
 			`The mood among the Wanderer leaders is much lighter now that the danger from the Mereti drones appears to have been eliminated. In fact, they're now so intrigued by the emergent Mereti consciousness that they don't seem to be thinking about the more distant threat of the drones in Kor Sestor space. Instead, they want to focus on their true calling: terraforming planets.`
 			`	Sobari Tele'ek tells you, "We should take time to enjoy this [peace, respite]. We need not [face, deal with] the other drones immediately. We will be working to start a second [settlement, base] nearby. Visit us there when the base is [formed, established] and we will decide our next [actions, steps]. In the meantime, our latest ship of [war, defense] is now being produced on our [major, central] worlds, and you may buy one."`
+
+
+
+mission "Wanderers: Tour 1"
+	landing
+	name "Kor Efret Diplomacy"
+	description "Visit Ektasi Rek on <planet> and see if the Kor Efret would like to come to <origin> for a diplomatic visit."
+	source "Desi Seledrak"
+	destination "Setar Fort"
+	to offer
+		has "event: wanderers: desi seledrak"
+	on offer
+		conversation
+			`Most of the Wanderer elders have moved to this world, to be more involved in the newest terraforming effort, which they clearly find much more rewarding than the battle against the drones. After listening to them talk for nearly an hour about soil restoration and atmospheric particulates and carbon cycles, you ask what you can help them with next.`
+			`	Tema'a Iriket says, "We should take further action to [befriend, collaborate with] the Korath. Perhaps you could visit Rek, and [invite, welcome] her Korath friends to [witness, inspect] the work we are doing here? Our hope is that our next [settlement, project] will be a [joint effort?] with them."`
+			choice
+				`	"Sure, I would be glad to do that."`
+					accept
+				`	"What about dealing with the Sestor drones?"`
+			`	"There will be [time, opportunity] for that later," says Iriket. "They are not a [threat, pressing concern] to us at this time."`
+			`	You agree to visit the Kor Efreti and invite them to come back here for a visit.`
+				accept
+
+
+
+mission "Wanderers: Tour 2"
+	landing
+	name "Kor Efret Diplomacy"
+	description "Escort a Kor Efret ship back to <planet> for a diplomatic visit."
+	source "Setar Fort"
+	destination "Desi Seledrak"
+	to offer
+		has "Wanderers: Tour 1: done"
+	on offer
+		conversation
+			`Rek is making marvelous progress not only in learning the Korath language, but also in winning their trust. They have built her a Wanderer-style treehouse here to live in, and it seems that she is entertaining a constant stream of new visitors. "What can I help you with?" she asks.`
+			choice
+				`	"The Wanderers on <planet> want to invite some Kor Efret leaders to visit them."`
+					goto visit
+				`	"What is your impression of the Korath so far?"`
+			`	She says, "We Wanderers have seen the ruins left behind by so many failed species. It puzzles us greatly to wonder why some are able to transition to a strong and stable and sustainable civilization, as we have done, while others descend into chaos. The Kor Efret hope that what they build out of the ashes will finally be a society of true peace and prosperity."`
+			label visit
+			`	You tell her about the Wanderer invitation, and she takes you to visit some of the Korath leaders. They are eager to learn more about the Wanderers, but after some negotiation they make it clear that they would prefer to travel in one of their own ships, and with Rek as their guest, rather than going as your passengers.`
+			choice
+				`	(Agree to escort their ship to <planet>.)`
+					accept
+				`	"I think you might be safer if you travel aboard my ship."`
+			`	Rek talks with them for a while, then explains to you, "They want to be in control of their own journey, rather than being no more than 'living cargo' aboard an alien ship. It sounds like this is a matter of honor." Since it seems like the only option, you agree to let them follow you to <planet> in their own ship.`
+				accept
+	on visit
+		dialog "You've reached your destination, but the Korath ship is not here yet."
+	npc accompany save
+		government "Kor Efret"
+		personality escort
+		ship "Korath World-Ship" "Asikimi Ko Cheska"
+
+
+
+mission "Wanderers: Tour 3"
+	landing
+	name "Kor Efret Tour"
+	description "Escort a Kor Efret ship to <planet>, to give them a taste of what Wanderer terraforming of a world can achieve."
+	source "Desi Seledrak"
+	destination "Vara K'chrai"
+	to offer
+		has "Wanderers: Tour 2: done"
+	on offer
+		conversation
+			`The Kor Efret ship lands next to yours, and Rek brings their leaders to meet with the Wanderers. They spend nearly the whole day being led around the settlement, asking questions and inspecting the Wanderer terraforming equipment. But at last, one of the Korath leaders says, "How long until we will see the change here? How long until it will be clear that your plans will work?"`
+			`	When Tema'a Iriket, translating through Rek, explains that it will take centuries, the leader says, "Can you show us a world where you have completed your work?"`
+			`	The Wanderers discuss that, and Tele'ek says, "They should [visit, journey to] <planet>, and be shown what we can achieve at the [apex, conclusion] of our work. Captain <last>, will you [accompany, lead] them to there?"`
+			choice
+				`	"Sure, I would be glad to."`
+					accept
+				`	"Are you sure it is safe to let them bring their ship to your homeworld?"`
+			`	Tele'ek says, "If we do not [choose, take a risk] to trust them, they will never have [opportunity, impetus] to show themselves trustworthy. So, we will take the [first, catalyzing] step."`
+			`	You agree to escort the Kor Efret ship on a journey through the wormhole to <planet>.`
+				accept
+	on visit
+		dialog "You've reached your destination, but the Korath ship is not here yet."
+	npc accompany save
+		government "Kor Efret"
+		personality escort
+		ship "Korath World-Ship" "Asikimi Ko Cheska"
+
+
+
+mission "Wanderers: Tour 4"
+	landing
+	name "Kor Efret Tour"
+	description "Escort a Kor Efret ship to <planet>, to show them how Wanderer farming worlds are run."
+	source "Vara K'chrai"
+	destination "Vara Rakak"
+	to offer
+		has "Wanderers: Tour 3: done"
+	on offer
+		conversation
+			`The Kor Efret are awed by the treetop villages, the towering buildings, and the bustling spaceport here on <origin>. But what moves them most deeply is the wild forests and mountains outside the city. After being led there by some of the local Wanderer leaders, they stand for half an hour just watching the trees swaying in the wind and the birds circling overhead. A few of them make a strange barking, keening noise, and Rek tells you they are weeping: mourning the fact that few places this beautiful and unspoiled are left on their own worlds.`
+			`	The Korath are eager to see more places of natural beauty like this one, and the Wanderer leaders suggest that they travel to <planet> next, to see how the Wanderers have built farms that will produce rich crops year after year without depleting the soil.`
+				accept
+	on visit
+		dialog "You've reached your destination, but the Korath ship is not here yet."
+	npc accompany save
+		government "Kor Efret"
+		personality escort
+		ship "Korath World-Ship" "Asikimi Ko Cheska"
+
+
+
+mission "Wanderers: Tour 5"
+	landing
+	name "Kor Efret Tour"
+	description "Escort a Kor Efret ship to <planet>, where the Wanderers are battling the Unfettered."
+	source "Vara Rakak"
+	destination "Varu Tev'kei"
+	to offer
+		has "Wanderers: Tour 4: done"
+	on offer
+		conversation
+			`The Korath are very interested to see how the farms here work. "We are trying to learn to do this on our worlds," one of them explains, "but there has been blight, and drought, and crops that fail for reasons we do not even understand." The Wanderer scientists here do their best to explain how they keep the crops and the soil healthy, with Rek working hard to translate their technical jargon into terms that the Korath can understand.`
+			`	When they have completed their tour, Rek says to you in your own language, "<first>, I think we should show them <planet> next. We should show them the war with the Unfettered. If they see that we are few in number, embattled, with only a handful of worlds, they will feel less threatened by us."`
+			choice
+				`	"That sounds like a good idea."`
+					goto end
+				`	"What if seeing you as less of a threat emboldens them to attack you?"`
+			`	Rek says, "We are still more numerous and more advanced. And besides, wars are started by fear as often as they are started by aggression."`
+			label end
+			`	You agree to escort the Korath ship to <planet>. Hopefully they won't be blown to bits by an Unfettered fleet; that would be quite a diplomatic disaster.`
+				accept
+	on visit
+		dialog "You've reached your destination, but the Korath ship is not here yet."
+	npc accompany save
+		government "Kor Efret"
+		personality escort
+		ship "Korath World-Ship" "Asikimi Ko Cheska"
+	npc
+		system "Ap'arak"
+		government "Hai (Unfettered)"
+		personality staying heroic
+		fleet "Large Unfettered"
+		fleet "Large Unfettered"
+
+
+
+mission "Wanderers: Tour 6"
+	landing
+	name "Kor Efret Tour"
+	description "Escort the Kor Efret ship back through the Eye to <planet>."
+	source "Varu Tev'kei"
+	destination "Setar Fort"
+	to offer
+		has "Wanderers: Tour 5: done"
+	on offer
+		conversation
+			`The Korath ship lands safely on <origin>. Rek explains to the Korath that the entire Wanderer territory was once controlled by the Hai, but that the Hai ruined these worlds and abandoned them. She tells them that now that the Wanderers have completed their work of healing these worlds, they are returning them to the Hai.`
+			`	It's a somewhat slanted story, and the Korath are dubious. "If you have done them this great favor," one of them asks, "why are they attacking you?"`
+			`	Rek explains that the Hai wanted these worlds back before the Wanderers were ready to give them back, and the same Korath says, "So, if we allow you to spread to our worlds, you will return them to us not when we ask you to, but when you decide you are done?"`
+			`	Rek tries to assure them that in their own territory, they will be working and living side by side with the Wanderers, in joint control of their worlds. It's not clear if they believe her. "We have seen enough," says the same Korath. "We will return to our world now." You agree to escort them back through the Eye and to make sure they reach <planet> safely.`
+				accept
+	on visit
+		dialog "You've reached your destination, but the Korath ship is not here yet."
+	npc accompany save
+		government "Kor Efret"
+		personality escort
+		ship "Korath World-Ship" "Asikimi Ko Cheska"
+
+
+
+mission "Wanderers: Tour 7"
+	landing
+	name "Return to <planet>"
+	description "Return to <planet> with Rek's report from the Kor Efret diplomatic tour."
+	source "Setar Fort"
+	destination "Desi Seledrak"
+	to offer
+		has "Wanderers: Tour 6: done"
+	on offer
+		conversation
+			`You have escorted the Korath world-ship safely back to their home. Hopefully what they saw on their journey will make them more eager to be friends with the Wanderers, rather than less. Rek hands you a written report that she says is an account of the diplomatic mission and says, "Please deliver this to Sobari Tele'ek on <planet>."`
+			choice
+				`	"Okay, I'll do that."`
+					accept
+				`	"Do you think the mission was a success?"`
+			`	"I hope so," she says. "The true test will be how we treat the Kor Efreti in the days to come. Clearly it will take some effort to earn their trust."`
+			`	You return to your ship, and get ready to travel to <planet>.`
+				accept
+
+
+
+mission "Wanderers: Sestor Scanning"
+	landing
+	name "Scan Sestor Planets"
+	description "Scan all the habitable planets in Sestor space to attempt to find where the control center for the automata is located."
+	source "Desi Seledrak"
+	to offer
+		has "Wanderers: Tour 7: done"
+	blocked "You will need three tons of cargo space to take on the next mission."
+	cargo "scanning equipment" 3
+	clearance
+	infiltrating
+	stopover "Sopi Lefarkata"
+	stopover "Keneska Fek"
+	stopover "Sasirka Gatru"
+	stopover "Sestor Ikfar"
+	stopover "Drekag Firask"
+	stopover "Firka Tesk"
+	on offer
+		conversation
+			`The Wanderers are eager to hear the results of your diplomatic mission, and whatever is in Rek's report seems to encourage them. Tele'ek says, "If we can [deal with, neutralize] the Kor Sestor drones as well, all of Korath space will be [open, available] for us and for the Korath survivors. Then there will be no more [barriers, impediments] to peace."`
+			choice
+				`	"If you combined your fleet with the Kor Mereti, you could destroy the Kor Sestor drones outright."`
+				`	"If the Sestor drones are being controlled remotely, we should try to find the control station and take it over, or destroy it."`
+					goto next
+
+			`	"With great [destruction, loss] of life," says Tema'a Iriket. "That is not [acceptable, moral]. We should seek a more [subtle, elegant] solution."`
+
+			label next
+			`	After some discussion, the Wanderers agree that the best way to deal with the Sestor drones is to try to figure out where their control center is. "Their communications are [untraceable, undetectable]," says Tele'ek, "but surely the [control center, communications hub] will be well defended. So by [hunting, searching] for a well defended [site, installation] we may find it."`
+			`	Iriket says, "I can supply Captain <last> with [surveying?] scanners and [ground-penetrating radar?] from the terraforming team. Such a [facility, installation] might well be deep underground."`
+			`	The Wanderers begin loading the scanning equipment onto your ship, and ask you to land on each of the planets in Kor Sestor space to collect measurements. "Bring the [data, results] back to us to be analyzed," says Iriket.`
+				accept
+	on stopover
+		dialog `That was the last of the Kor Sestor planets that the Wanderers asked you to scan. Time to return to <planet> with the data.`
+
+
+
+event "wanderers: battle in solifar begins"
+	system Solifar
+		fleet "Wanderer Flycatchers" 400
+
+event "wanderers: battle in solifar ends"
+	system Solifar
+		fleet "Large Quarg" 3000
+		fleet "Wanderer Defense" 1800
+		fleet "Wanderer Drones" 700
+		fleet "Wanderer Flycatchers" 800
+
+mission "Wanderers: Sestor Attack"
+	landing
+	name "Defend <planet>"
+	description "<planet> is under attack by a Kor Sestor fleet. Drive them off, then return to the planet to figure out what to do next."
+	source "Desi Seledrak"
+	to offer
+		has "Wanderers: Sestor Scanning: done"
+	on offer
+		conversation
+			`A few hours after you present the scanning data to the scientists, you are called into a meeting with the Wanderer leaders. "We may have found the [facility, center]," says, Tele'ek, "but we are not [certain, confident]. There is indeed an underground [bunker, fortress] on one of the planets, but it must have been [damaged, overrun] in the course of their war." He calls up a holographic display of the facility, showing that one section of it has been breached, and a tunnel leads from there to the surface.`
+			choice
+				`	"You're probably right that they wouldn't have kept using the facility once it was been breached."`
+				`	"Is there any sign that they tried to rebuild it after the damage? Or that it's still in use?"`
+
+			`	Iriket walks up closer to the display to look on it. She adjusts some controls, and an overlay shows up in another color. "The Kor Efret said their [civil war, cultural collapse] ended a century ago, yes?" she asks. You nod. She walks around the display, examining it carefully, then says, "These [cracks, fractures] in the [bedrock?] have not yet been [infiltrated, saturated] with ground water. This damage is not a century old. It is from at most one [month?] ago."`
+			choice
+				`	"Could it be that whoever was living down there decided to give up and return to the surface?"`
+				`	"Does that mean that someone else captured the facility before we could?"`
+
+			`	Suddenly, you hear the noise of alarm sirens from the spaceport, and a messenger comes bursting into the room, his talons screeching across the floor as he skids to a stop. "Sestor drones!" he says. "[Enormous, overwhelming] fleet. Need all [defenders, fighters] immediately."`
+			`	You return to your ship and quickly fire up the engines...`
+				launch
+	on enter
+		dialog `There is indeed a Kor Sestor fleet here, but it is nowhere near as large as the messenger indicated. Either the messenger was exaggerating, or some of the fleet has already fled.`
+	on visit
+		dialog `There are still Kor Sestor ships overhead. You should take off and rejoin the battle.`
+	on accept
+		event "wanderers: battle in solifar begins"
+	on complete
+		event "wanderers: battle in solifar ends"
+	npc evade
+		government "Kor Sestor"
+		personality staying heroic
+		fleet
+			names "kor sestor"
+			fighters "kor sestor fighter"
+			variant
+				"Kar Ik Vot 349 (Trapper)"
+				"Tek Far 71 - Lek (Close Quarters)"
+				"Far Lek 14" 7
+				"Met Par Tek 53"
+				"Met Par Tek 53 (Sniper)"
+		fleet
+			names "kor sestor"
+			fighters "kor sestor fighter"
+			variant
+				"Kar Ik Vot 349 (Defense)"
+				"Tek Far 78 - Osk (Close Quarters)"
+				"Far Osk 27" 7
+				"Met Par Tek 53"
+	npc evade
+		government "Kor Sestor"
+		personality entering heroic
+		fleet
+			names "kor sestor"
+			fighters "kor sestor fighter"
+			variant
+				"Tek Far 109"
+				"Tek Far 71 - Lek"
+				"Tek Far 78 - Osk"
+				"Far Lek 14" 17
+				"Far Osk 27" 13
+				"Met Par Tek 53 (Sniper)" 2
+		fleet
+			names "kor sestor"
+			fighters "kor sestor fighter"
+			variant
+				"Tek Far 109" 3
+				"Far Lek 14" 27
+				"Far Osk 27" 21
+		fleet
+			names "kor sestor"
+			fighters "kor sestor fighter"
+			variant
+				"Kar Ik Vot 349 (Trapper)"
+				"Tek Far 71 - Lek (Close Quarters)"
+				"Far Lek 14" 7
+				"Tek Far 78 - Osk (Close Quarters)"
+				"Far Osk 27" 6
+	npc
+		government "Wanderer"
+		personality staying heroic
+		fleet
+			names "wanderer"
+			variant
+				"Hurricane (Turret)"
+				"Tempest"
+				"Derecho (Turret)"
+		fleet
+			names "wanderer"
+			variant
+				"Tempest (Heavy)"
+				"Strong Wind"
+		fleet
+			names "wanderer"
+			variant
+				"Autumn Leaf"
+				"Summer Leaf"
+	npc
+		government "Wanderer"
+		personality heroic
+		fleet
+			names "wanderer"
+			variant
+				"Autumn Leaf"
+				"Summer Leaf" 3
+		fleet
+			names "wanderer"
+			variant
+				"Hurricane (Tough)"
+				"Derecho"
+				"Tempest (Missile)" 2
+
+
+
+event "wanderers: kor sestor are aimless"
+	fleet "Small Kor Sestor"
+		personality
+			timid
+			coward
+	fleet "Large Kor Sestor"
+		personality
+			timid
+			coward
+	system "Mesuket"
+		fleet "Large Kor Mereti" 900
+		fleet "Large Kor Sestor" 5000
+	system Eshkoshtar
+		fleet "Small Kor Mereti" 800
+		fleet "Large Kor Mereti" 1600
+		fleet "Kor Mereti Miners" 3000
+	system Salipastart
+		fleet "Small Kor Mereti" 800
+		fleet "Large Kor Mereti" 1600
+		fleet "Kor Mereti Miners" 3000
+	system Mekislepti
+		fleet "Small Kor Mereti" 1000
+		fleet "Large Kor Mereti" 3000
+		fleet "Kor Mereti Miners" 2000
+	system Similisti
+		fleet "Large Kor Mereti" 1600
+		fleet "Small Kor Mereti" 600
+		fleet "Kor Mereti Miners" 1600
+	system Faronektu
+		fleet "Small Kor Mereti" 1200
+		fleet "Large Kor Mereti" 2000
+		fleet "Kor Mereti Miners" 2000
+	planet "Varu K'prai"
+		attributes wanderer oil
+		landscape land/beach1
+		description `This is one of the only Wanderer worlds that still has large reserves of oil, albeit deep below the ocean surface where mining is difficult. Aside from the drilling companies and refineries, the largest local employer is the local government's safety oversight department, whose inspectors are constantly visiting the drilling platforms and shipping hubs to ensure that all the regulations for preventing oil spills are being followed.`
+		description `	There used to be a thriving spaceport here, but it has been razed to the ground by the Kor Sestor fleet.`
+		spaceport clear
+	planet Zenith
+		bribe 0
+		"required reputation" 1000
+	"reputation: Pirate" <?= -1
+	"unvisit planet" "Varu K'prai"
+
+mission "Wanderers: Sestor Search"
+	landing
+	name "Find the Sestor fleet"
+	description "A large Kor Sestor fleet passed through the wormhole to Wanderer space. Figure out where they went and what they are doing there."
+	source "Desi Seledrak"
+	to offer
+		has "Wanderers: Sestor Attack: done"
+	to complete
+		never
+	destination "Vara K'chrai"
+	on offer
+		event "wanderers: kor sestor are aimless"
+		conversation
+			`You return to the planet expecting the Wanderers to be celebrating their victory, but the leaders have grim news. "The drones we fought were only the [rearguard? remnant?] of the fleet," says Tele'ek. "Dozens of [capital ships?] passed through this system and continued on. With this [heading, destination]." On the holographic projector, he brings up a star map, and points to the system where the Eye is. The wormhole leading back to Wanderer space.`
+			`	Tele'ek says, "Every ship we can spare must [pursue, follow] the Sestor drones through the Eye, and hope that we [locate, track down] the drones before they can cause [harm, destruction] to our people." You should probably join them.`
+				accept
+	to fail
+		has "wanderers: found the sestor fleet"
+	on enter "Aya'k'k"
+		dialog
+			`A major battle was fought here. The burned-out hulks of several Wanderer ships are floating around in space, along with a handful of disabled Kor Sestor ships. Meanwhile, Wanderer ships are engaged in some sort of rescue or evacuation process on the surface of <planet>. But there is no sign of the bulk of the Kor Sestor fleet.`
+	npc
+		system "Aya'k'k"
+		government "Wanderer"
+		personality derelict uninterested
+		fleet "Wanderer Defense"
+		fleet "Wanderer Freight"
+		fleet "Wanderer Freight"
+	npc
+		system "Aya'k'k"
+		government "Kor Sestor"
+		personality derelict uninterested
+		fleet "Large Kor Sestor"
+	on enter "Alnilam"
+		set "wanderers: found the sestor fleet"
+		dialog
+			`Quite a few Kor Sestor ships are in orbit around the anarchist world of <planet>, and you detect many more on the surface. Strangely, the Kor Sestor ships are not attacking the local pirate and anarchist fleets.`
+			`	That is probably not a good sign.`
+
+
+
+mission "Wanderers: Sestor: Alnilam Fleet 1"
+	landing
+	invisible
+	destination "Farpoint"
+	to offer
+		has "Wanderers: Sestor Attack: done"
+	to complete
+		never
+	npc kill
+		government "Kor Sestor"
+		system Alnilam
+		personality heroic staying
+		fleet
+			names "kor sestor"
+			fighters "kor sestor fighter"
+			variant
+				"Kar Ik Vot 349"
+				"Kar Ik Vot 349 (Trapper)"
+				"Tek Far 109"
+				"Far Lek 14" 9
+				"Far Osk 27" 7
+				"Met Par Tek 53" 2
+				"Met Par Tek 53 (Sniper)" 2
+
+
+
+mission "Wanderers: Sestor Search: Vara K'chrai"
+	landing
+	source "Vara K'chrai"
+	to offer
+		has "Wanderers: Sestor Search: active"
+	on offer
+		conversation
+			`Everyone in the spaceport on Vara K'chrai is still in a panic from watching the Kor Sestor fleet fly through their system, but fortunately the drones did not attack the planet. In fact, they did not even fire on the Wanderer ships that were in orbit at the time. The Wanderer defenders, not wanting to provoke a fight with a fleet they could probably not defeat, did not attack either. So, the Kor Sestor fleet passed peacefully through this system and continued on to... wherever it is going. No one here has any idea yet what the fleet's destination was.`
+				decline
+
+
+
+mission "Wanderers: Sestor Search: Varu Tev'kei"
+	landing
+	source "Varu Tev'kei"
+	to offer
+		has "Wanderers: Sestor Search: active"
+	on offer
+		conversation
+			`The defenders on <planet> have heard of the Kor Sestor incursion into Wanderer space, but they tell you that the fleet did not pass through this system. And here, they are clearly too worried about the Unfettered threat to be able to think about fighting a war on a second front at the same time.`
+				decline
+
+
+
+mission "Wanderers: Sestor Search: Varu K'prai"
+	landing
+	source "Varu K'prai"
+	to offer
+		has "Wanderers: Sestor Search: active"
+	on offer
+		conversation
+			`The entire spaceport on <planet> has been razed to the ground. Teams of Wanderers are sifting through the rubble to recover the bodies of those who were killed here. Apparently the Kor Sestor fleet destroyed the spaceport and every Wanderer ship it found in this system, and then occupied the system for several days, destroying or driving away any scout ships that entered the system.`
+			`	The Wanderers don't know what happened next, but the drones are no longer here, so they must have moved on to a different system.`
+				decline
+
+
+
+mission "Wanderers: Sestor Search: Human Hint"
+	landing
+	name "Warn Admiral Danforth"
+	description "Meet with Admiral Danforth on <planet> as soon as possible, to warn him of the possible threat from the Kor Sestor fleet."
+	source
+		near "Alnitak" 1 100
+	destination "Farpoint"
+	to offer
+		has "wanderers: found the sestor fleet"
+		not "Wanderers: Sestor Search: Wanderer Hint: offered"
+		not "Wanderers: Sestor: Farpoint Attack 1: offered"
+	on offer
+		conversation
+			`You've located the Kor Sestor fleet, in the Alniyam system. The Republic Navy is probably ill-equipped to fight such powerful alien ships, but they may be the only thing standing in the way of an outright invasion of human space. You should warn Admiral Danforth and the Oathkeepers of the impending threat as soon as possible.`
+				accept
+
+
+
+mission "Wanderers: Sestor Search: Wanderer Hint"
+	landing
+	name "Warn Admiral Danforth"
+	description "Meet with Admiral Danforth on <planet> as soon as possible, to warn him of the possible threat from the Kor Sestor fleet."
+	source
+		government "Wanderer"
+	destination "Farpoint"
+	to offer
+		has "wanderers: found the sestor fleet"
+		not "Wanderers: Sestor Search: Human Hint: offered"
+		not "Wanderers: Sestor: Farpoint Attack 1: offered"
+	on offer
+		conversation
+			`You've located the Kor Sestor fleet, in the Alniyam system. The Republic Navy is probably ill-equipped to fight such powerful alien ships, but they may be the only thing standing in the way of an outright invasion of human space. You should warn Admiral Danforth and the Oathkeepers of the impending threat as soon as possible.`
+				accept
+
+
+
+mission "Wanderers: Sestor: Farpoint Attack 1"
+	landing
+	name "Defend Farpoint"
+	description "Farpoint is under attack by a Kor Sestor fleet. Drive them off, then return to the planet to speak with Admiral Danforth."
+	source "Farpoint"
+	to offer
+		has "wanderers: found the sestor fleet"
+	on offer
+		conversation
+			`As you are coming in for a landing, you contact Admiral Danforth and ask to speak with him as soon as possible. He meets you at the landing pad and invites you back to his office, where you explain about the large Kor Sestor fleet that is now gathering to the north of here. He tells you, "For the past several months, Intelligence has been tracking a hidden Alpha base on Zenith and making plans to trap and exterminate them. And now you tell me that Zenith is being guarded by Korath drones. It seems unlikely to be a coincidence."`
+			choice
+				`	"Could the Kor Sestor have made some sort of deal with the Alphas?"`
+				`	"Maybe the Alphas gained control of the Kor Sestor fleet somehow?"`
+					goto next
+
+			`	"That would assume that some of the Korath who controlled the Sestor fleet are still alive," he says. "Is there evidence that that is the case?"`
+
+			label next
+			`	You tell him about the underground bunker that the Wanderers discovered, and the signs that someone either recently departed from it, or recently infiltrated it from the surface. He says, "We already know that a group of Alphas was active in that region of space. You and I fought them there just recently, and failed to capture them. I bet that after they fled, they somehow gained access to the Kor Sestor bunker and took over control of the drone fleets."`
+			`	It is not particularly surprising when, a few seconds after he says that, an alarm siren begins to sound...`
+				launch
+	npc evade
+		government "Kor Sestor"
+		personality heroic staying
+		fleet
+			names "kor sestor"
+			fighters "kor sestor fighter"
+			variant
+				"Kar Ik Vot 349"
+				"Tek Far 71 - Lek"
+				"Far Lek 14" 10
+				"Met Par Tek 53" 2
+		fleet
+			names "kor sestor"
+			fighters "kor sestor fighter"
+			variant
+				"Kar Ik Vot 349 (Offense)"
+				"Tek Far 78 - Osk"
+				"Far Osk 27" 8
+				"Met Par Tek 53 (Sniper)"
+		fleet
+			names "kor sestor"
+			fighters "kor sestor fighter"
+			variant
+				"Kar Ik Vot 349 (Defense)"
+				"Kar Ik Vot 349 (Trapper)"
+		dialog `The Kor Sestor fleet has been driven off. Time to land and see what Danforth thinks you should do next.`
+	npc
+		government "Navy (Oathkeeper)"
+		personality heroic
+		fleet
+			names "republic capital"
+			fighters "republic fighter"
+			variant
+				"Carrier (Mark II)"
+				"Lance" 4
+				"Combat Drone" 6
+				"Cruiser (Mark II)"
+				"Combat Drone" 4
+				"Frigate (Mark II)" 2
+				"Rainmaker (Mark II)" 2
+				"Gunboat (Mark II)" 2
+		fleet
+			names "republic capital"
+			fighters "republic fighter"
+				"Cruiser"
+				"Combat Drone" 4
+				"Frigate"
+				"Rainmaker"
+	npc
+		government "Navy (Oathkeeper)"
+		personality heroic staying
+		fleet
+			names "republic capital"
+			fighters "republic fighter"
+			variant
+				"Carrier (Mark II)"
+				"Lance" 4
+				"Combat Drone" 6
+				"Cruiser (Mark II)"
+				"Combat Drone" 4
+				"Frigate (Mark II)" 2
+				"Rainmaker (Mark II)" 2
+				"Gunboat (Mark II)" 2
+		fleet
+			names "republic capital"
+			fighters "republic fighter"
+				"Cruiser"
+				"Combat Drone" 4
+				"Frigate"
+				"Rainmaker"
+		fleet
+			names "republic capital"
+			fighters "republic fighter"
+				"Carrier"
+				"Lance" 4
+				"Combat Drone" 6
+				"Frigate" 3
+
+
+
+mission "Wanderers: Sestor: Quarg Help 1"
+	landing
+	name "Ask the Quarg for help"
+	description "Admiral Danforth asked you to visit <planet> and ask the Quarg if they can provide any ships to help you fight off the Kor Sestor fleet (now presumably under Alpha control)."
+	source "Farpoint"
+	destination "Alta Hai"
+	clearance
+	to offer
+		has "Wanderers: Sestor: Farpoint Attack 1: done"
+	on offer
+		conversation
+			`Admiral Danforth looks like he is still in shock from the carnage and loss of life in the battle that you just fought. "Please tell me that that was the entire drone fleet," he says.`
+			`	Sadly, you shake your head. "They have dozens of capital ships," you say. "That was probably just the vanguard of their fleet."`
+			`	Danforth sighs. "I got a taste of how powerful these Korath ships are during our attack on the previous Alpha base," he says. "I'm not sure I can stand up against a whole fleet of them. Our only hope may be the Quarg. They have a ringworld in Hai space. In fact, isn't that where we left your friend Elias?" You nod. "You should go there immediately," says Danforth. "Hopefully, you will be able to bring back help in time."`
+				accept
+
+
+
+mission "Wanderers: Sestor: Quarg Help 2"
+	landing
+	name "Return to <planet>"
+	description "Return to <planet> with this small fleet of Quarg ships."
+	source "Alta Hai"
+	destination "Farpoint"
+	to offer
+		has "Wanderers: Sestor: Quarg Help 1: done"
+	on offer
+		conversation
+			`As you are coming in for a landing, you contact the Quarg and discover that Elias Hanover is indeed still living here. He meets you the moment you dock with the station, and you describe the situation. "This must be retaliation," he says. "They want to wipe Danforth and the Oathkeepers off the map to get revenge for him driving them out of their base on Avalon."`
+			`	He leaves to try to find help, and returns about fifteen minutes later. "I've got four Quarg ships who volunteered to help," he says. "That may not seem like a lot, but their ships pack quite a punch. Good luck, captain."`
+			`	You thank him for his assistance, and hurry to fire up your ship and return to human space. Hopefully Danforth's base has not already been overrun in your absence.`
+				accept
+	npc accompany save
+		government "Quarg"
+		personality heroic waiting escort
+		ship "Quarg Wardragon" "Leukos-nikeseh"
+		ship "Quarg Wardragon" "Purros-machaira"
+		ship "Quarg Wardragon" "Melas-zugon"
+		ship "Quarg Wardragon" "Chloros-thanatos"
+	npc
+		government "Kor Sestor"
+		personality heroic staying
+		system "Alnitak"
+		fleet "Large Kor Sestor"
+		fleet "Large Kor Sestor"
+
+
+
+mission "Wanderers: Sestor: Alnilam Fleet 2"
+	landing
+	invisible
+	source "Farpoint"
+	to offer
+		has "Wanderers: Sestor: Quarg Help 2: done"
+	to complete
+		never
+	npc kill
+		government "Kor Sestor"
+		system Alnilam
+		personality heroic staying
+		fleet
+			names "kor sestor"
+			fighters "kor sestor fighter"
+			variant
+				"Kar Ik Vot 349 (Trapper)"
+				"Tek Far 71 - Lek (Close Quarters)"
+				"Far Lek 14" 10
+				"Tek Far 78 - Osk (Close Quarters)"
+				"Far Osk 27" 9
+
+
+
+mission "Wanderers: Sestor: Bomb Zenith 1"
+	landing
+	name "Deliver device to Zenith"
+	description "Admiral Danforth asked you to drop this device (presumably a bomb) above the Alpha base on <destination>."
+	source "Farpoint"
+	destination "Zenith"
+	clearance
+	infiltrating
+	to offer
+		has "Wanderers: Sestor: Quarg Help 2: done"
+	cargo "unknown device" 2
+	blocked "You will need two tons of cargo space to take on the next mission for Danforth."
+	on offer
+		conversation
+			`Danforth is still alive, and still holding out against the Alpha-controlled drones. He tells you, "The Alpha base we've been watching on <planet> is buried deep underground. I'm hoping that the Alphas either don't know we're aware of their base's location, or have chosen to remain there anyway because it is so well defended. If the drones are being controlled from there, taking out the base might deactivate the drones."`
+			choice
+				`	"Do you think your troops could capture the base?"`
+				`	"Do you have a plan for destroying the Alphas?"`
+
+			`	Danforth says, "The base is several kilometers underground. Before it was guarded by Sestor drones, we had a chance. We could have landed dozens of troop transports and fought our way inside, albeit with heavy losses. But now, I doubt our troops could even make it to the surface."`
+			`	As he is speaking, two Navy officers approach your ship with a hover-cart carrying something that looks a little bit like a retro-fitted Typhoon Torpedo. They salute Danforth, and he tells them, "Put it aboard Captain <last>'s ship." Then he turns to you. "I'm going to give you the coordinates of the Alpha base," he says. "It's on the polar continent, deep under the ice. Fortunately there are no other human settlements nearby."`
+			`	He pauses, as if to resign himself to what he is about to command you to do, and then says, "Land on the planet, drop this device at the coordinates, and then get the hell out of there. You'll have fifteen seconds after you deploy the device to get at least a thousand kilometers away."`
+			choice
+				`	"Wait, is this a nuke? I thought the Navy was too principled to use them."`
+				`	"Okay, I'll do what you say."`
+					goto end
+
+			`	"Just drop the damn thing and get out of there, fast," he says. Clearly he doesn't want to tell you anything more about the weapon's origin.`
+
+			label end
+			`	Alarm sirens begin to sound. "Don't wait here to defend us," says Danforth. "Go straight to <planet> and deploy the device. It may be the only way you can save us."`
+				launch
+	on complete
+		fail "Wanderers: Sestor: Farpoint Attack 2"
+
+
+
+mission "Wanderers: Sestor: Farpoint Attack 2"
+	landing
+	invisible
+	source "Farpoint"
+	to offer
+		has "Wanderers: Sestor: Quarg Help 2: done"
+	npc
+		government "Quarg"
+		personality heroic staying
+		ship "Quarg Wardragon" "Leukos-nikeseh"
+		ship "Quarg Wardragon" "Purros-machaira"
+		ship "Quarg Wardragon" "Melas-zugon"
+		ship "Quarg Wardragon" "Chloros-thanatos"
+	npc
+		government "Navy (Oathkeeper)"
+		personality heroic staying
+		fleet
+			names "republic capital"
+			fighters "republic fighter"
+			variant
+				"Carrier (Mark II)"
+				"Lance" 4
+				"Combat Drone" 6
+				"Cruiser (Mark II)"
+				"Combat Drone" 4
+				"Frigate (Mark II)" 2
+				"Rainmaker (Mark II)" 2
+				"Gunboat (Mark II)" 2
+		fleet
+			names "republic capital"
+			fighters "republic fighter"
+				"Cruiser"
+				"Combat Drone" 4
+				"Frigate"
+				"Rainmaker"
+		fleet
+			names "republic capital"
+			fighters "republic fighter"
+			variant
+				"Carrier"
+				"Lance" 4
+				"Combat Drone" 6
+				"Cruiser"
+				"Combat Drone" 4
+				"Frigate" 2
+				"Rainmaker" 2
+				"Gunboat" 2
+		fleet
+			names "republic capital"
+			fighters "republic fighter"
+				"Cruiser (Mark II)"
+				"Combat Drone" 4
+				"Frigate (Mark II)"
+				"Rainmaker (Mark II)"
+		fleet
+			names "republic capital"
+			fighters "republic fighter"
+				"Carrier (Mark II)"
+				"Lance" 4
+				"Combat Drone" 6
+				"Frigate (Mark II)" 3
+	npc evade
+		government "Kor Sestor"
+		personality heroic staying
+		fleet
+			names "kor sestor"
+			fighters "kor sestor fighter"
+			variant
+				"Kar Ik Vot 349"
+				"Tek Far 71 - Lek"
+				"Far Lek 14" 10
+				"Met Par Tek 53" 2
+		fleet
+			names "kor sestor"
+			fighters "kor sestor fighter"
+			variant
+				"Kar Ik Vot 349 (Defense)"
+				"Tek Far 71 - Lek (Close Quarters)"
+				"Far Lek 14" 8
+				"Met Par Tek 53 (Sniper)" 2
+		fleet
+			names "kor sestor"
+			fighters "kor sestor fighter"
+			variant
+				"Kar Ik Vot 349 (Offense)"
+				"Tek Far 78 - Osk"
+				"Far Osk 27" 8
+				"Met Par Tek 53 (Sniper)"
+		fleet
+			names "kor sestor"
+			fighters "kor sestor fighter"
+			variant
+				"Kar Ik Vot 349 (Trapper)"
+				"Tek Far 78 - Osk (Close Quarters)"
+				"Far Osk 27" 6
+				"Met Par Tek 53 (Sniper)"
+		fleet
+			names "kor sestor"
+			fighters "kor sestor fighter"
+			variant
+				"Kar Ik Vot 349 (Defense)"
+				"Tek Far 71 - Lek (Close Quarters)"
+				"Far Lek 14" 8
+				"Tek Far 78 - Osk"
+				"Far Osk 27" 8
+		fleet
+			names "kor sestor"
+			fighters "kor sestor fighter"
+			variant
+				"Kar Ik Vot 349 (Offense)"
+				"Tek Far 71 - Lek"
+				"Far Lek 14" 9
+				"Tek Far 78 - Osk (Close Quarters)"
+				"Far Osk 27" 7
+		fleet
+			names "kor sestor"
+			fighters "kor sestor fighter"
+			variant
+				"Kar Ik Vot 349 (Trapper)"
+				"Tek Far 71 - Lek (Close Quarters)"
+				"Far Lek 14" 7
+				"Tek Far 78 - Osk (Close Quarters)"
+				"Far Osk 27" 6
+		fleet
+			names "kor sestor"
+			fighters "kor sestor fighter"
+			variant
+				"Kar Ik Vot 349 (Defense)"
+				"Met Par Tek 53" 2
+				"Met Par Tek 53 (Sniper)"
+		fleet
+			names "kor sestor"
+			fighters "kor sestor fighter"
+			variant
+				"Kar Ik Vot 349 (Offense)"
+				"Met Par Tek 53"
+				"Met Par Tek 53 (Sniper)" 2
+		fleet
+			names "kor sestor"
+			fighters "kor sestor fighter"
+			variant
+				"Kar Ik Vot 349 (Trapper)"
+				"Met Par Tek 53 (Sniper)" 3
+		fleet
+			names "kor sestor"
+			fighters "kor sestor fighter"
+			variant
+				"Tek Far 109"
+				"Tek Far 71 - Lek"
+				"Tek Far 78 - Osk"
+				"Far Lek 14" 17
+				"Far Osk 27" 13
+				"Met Par Tek 53 (Sniper)" 2
+		fleet
+			names "kor sestor"
+			fighters "kor sestor fighter"
+			variant
+				"Tek Far 109"
+				"Tek Far 71 - Lek (Close Quarters)"
+				"Tek Far 78 - Osk (Close Quarters)"
+				"Far Lek 14" 17
+				"Far Osk 27" 13
+				"Met Par Tek 53" 2
+		dialog `Against all odds, all the Kor Sestor ships attacking the Oathkeepers have been destroyed. Maybe you won't have to use Danforth's bomb after all.`
+
+
+
+mission "Wanderers: Sestor: Scattered Remnant"
+	landing
+	invisible
+	source "Zenith"
+	destination "Farpoint"
+	to offer
+		has "Wanderers: Sestor: Bomb Zenith 1: done"
+	npc kill
+		system "Alnitak"
+		government "Kor Sestor"
+		personality heroic staying
+		fleet
+			names "kor sestor"
+			fighters "kor sestor fighter"
+			variant
+				"Kar Ik Vot 349"
+				"Tek Far 71 - Lek"
+				"Far Lek 14" 10
+				"Met Par Tek 53" 2
+	npc kill
+		system "Canopus"
+		government "Kor Sestor"
+		personality heroic staying
+		fleet
+			names "kor sestor"
+			fighters "kor sestor fighter"
+			variant
+				"Kar Ik Vot 349 (Defense)"
+				"Tek Far 71 - Lek (Close Quarters)"
+				"Far Lek 14" 8
+				"Met Par Tek 53 (Sniper)" 2
+	npc kill
+		system "Betelgeuse"
+		government "Kor Sestor"
+		personality heroic staying
+		fleet
+			names "kor sestor"
+			fighters "kor sestor fighter"
+			variant
+				"Kar Ik Vot 349 (Offense)"
+				"Tek Far 78 - Osk"
+				"Far Osk 27" 8
+				"Met Par Tek 53 (Sniper)"
+	npc kill
+		system "Betelgeuse"
+		government "Kor Sestor"
+		personality heroic staying
+		fleet
+			names "kor sestor"
+			fighters "kor sestor fighter"
+			variant
+				"Kar Ik Vot 349 (Trapper)"
+				"Tek Far 78 - Osk (Close Quarters)"
+				"Far Osk 27" 6
+				"Met Par Tek 53 (Sniper)"
+	npc kill
+		system "Capella"
+		government "Kor Sestor"
+		personality heroic staying
+		fleet
+			names "kor sestor"
+			fighters "kor sestor fighter"
+			variant
+				"Kar Ik Vot 349 (Defense)"
+				"Tek Far 71 - Lek (Close Quarters)"
+				"Far Lek 14" 8
+				"Tek Far 78 - Osk"
+				"Far Osk 27" 8
+	npc kill
+		system "Mebsuta"
+		government "Kor Sestor"
+		personality heroic staying
+		fleet
+			names "kor sestor"
+			fighters "kor sestor fighter"
+			variant
+				"Kar Ik Vot 349 (Offense)"
+				"Tek Far 71 - Lek"
+				"Far Lek 14" 9
+				"Tek Far 78 - Osk (Close Quarters)"
+				"Far Osk 27" 7
+	npc kill
+		system "Rigel"
+		government "Kor Sestor"
+		personality heroic staying
+		fleet
+			names "kor sestor"
+			fighters "kor sestor fighter"
+			variant
+				"Kar Ik Vot 349 (Trapper)"
+				"Tek Far 71 - Lek (Close Quarters)"
+				"Far Lek 14" 7
+				"Tek Far 78 - Osk (Close Quarters)"
+				"Far Osk 27" 6
+	npc kill
+		system "Castor"
+		government "Kor Sestor"
+		personality heroic staying
+		fleet
+			names "kor sestor"
+			fighters "kor sestor fighter"
+			variant
+				"Kar Ik Vot 349 (Defense)"
+				"Met Par Tek 53" 2
+				"Met Par Tek 53 (Sniper)"
+	npc kill
+		system "Wazn"
+		government "Kor Sestor"
+		personality heroic staying
+		fleet
+			names "kor sestor"
+			fighters "kor sestor fighter"
+			variant
+				"Kar Ik Vot 349 (Offense)"
+				"Met Par Tek 53"
+				"Met Par Tek 53 (Sniper)" 2
+	npc kill
+		system "Miaplacidus"
+		government "Kor Sestor"
+		personality heroic staying
+		fleet
+			names "kor sestor"
+			fighters "kor sestor fighter"
+			variant
+				"Kar Ik Vot 349 (Trapper)"
+				"Met Par Tek 53 (Sniper)" 3
+	npc kill
+		system "Kursa"
+		government "Kor Sestor"
+		personality heroic staying
+		fleet
+			names "kor sestor"
+			fighters "kor sestor fighter"
+			variant
+				"Tek Far 109"
+				"Tek Far 71 - Lek"
+				"Tek Far 78 - Osk"
+				"Far Lek 14" 17
+				"Far Osk 27" 13
+				"Met Par Tek 53 (Sniper)" 2
+	npc kill
+		system "Saiph"
+		government "Kor Sestor"
+		personality heroic staying
+		fleet
+			names "kor sestor"
+			fighters "kor sestor fighter"
+			variant
+				"Tek Far 109"
+				"Tek Far 71 - Lek (Close Quarters)"
+				"Tek Far 78 - Osk (Close Quarters)"
+				"Far Lek 14" 17
+				"Far Osk 27" 13
+				"Met Par Tek 53" 2
+		
+
+
+event "bombed zenith"
+	government "Kor Sestor"
+		"attitude toward"
+			"Pirate" -.01
+	planet Zenith
+		description `Zenith is a cold and unpleasant world, where the fog seldom lifts and the sun is rarely seen, where much of the lowlands are flooded each day by the tide, and storms are unpredictable and fierce. It has, however, one major advantage as a place to settle: it is far enough away that the Republic makes no attempt to control it.`
+		description `	The settlements here were never more than tenuous villages operating on the brink of starvation as they sought to make a living in this icy wilderness. Now, many of them have collapsed due to massive earthquakes that came after the Oathkeepers had the planet bombed to destroy an Alpha base.`
+		bribe .04
+		"required reputation" 0
+
+mission "Wanderers: Sestor: Bomb Zenith 2"
+	landing
+	name "Return to <planet>"
+	description "You have destroyed the Alpha base on Zenith. Return to Farpoint and find out if your intervention allowed Danforth to gain the upper hand against the Kor Sestor fleet."
+	source "Zenith"
+	destination "Farpoint"
+	to offer
+		has "Wanderers: Sestor: Bomb Zenith 1: done"
+	on offer
+		event "bombed zenith"
+		conversation
+			`You shove Danforth's device out the airlock at the coordinates he gave you, and immediately fire your ship's repulsors full blast to take you back up into orbit...`
+				launch
+	on enter
+		conversation
+			`The way Danforth talked about the device he gave you made you assume that it was a nuclear bomb, but the explosion that rocks <planet> a few seconds after you depart is far too powerful for that. The light of the explosion is many times brighter than this system's sun. And unless your sensors are lying to you, there is now a crater near <planet>'s south pole that goes all the way down to the mantle. Lava is filling the hole, and the entire planet's crust is shifting and shivering in response.`
+			`	You are glad that no human settlements were near the explosion, but your sensors are picking up compression waves traveling along the whole planet's surface, bouncing across it again and again as the planet rings like a bell. Anyone who lived anywhere on <planet> just got hit by an earthquake of deadly proportions.`
+			`	You can only hope that it was worth it, and that the control station has indeed been destroyed.`
+
+
+
+mission "Wanderers: Sestor: Kill Southern Remnant"
+	landing
+	name "Destroy Kor Sestor drones"
+	description "What you destroyed the Alpha base, the Kor Sestor drones began acting independently. They are now attacking human space. Help the Navy destroy the drones, then return to <planet>."
+	source "Farpoint"
+	to offer
+		has "Wanderers: Sestor: Bomb Zenith 2: done"
+	to complete
+		has "Wanderers: Sestor: Scattered Remnant: done"
+	waypoint "Alnitak"
+	waypoint "Betelgeuse"
+	waypoint "Canopus"
+	waypoint "Capella"
+	waypoint "Castor"
+	waypoint "Kursa"
+	waypoint "Mebsuta"
+	waypoint "Miaplacidus"
+	waypoint "Rigel"
+	waypoint "Saiph"
+	waypoint "Wazn"
+	on offer
+		conversation
+			`The base on <planet> appears to have survived the attack, despite the Kor Sestor drones that were overhead. You meet with Danforth and tell him that you destroyed the Alpha base using the weapon he gave you.`
+			`	He says, "When you destroyed the base, the Sestor drones suddenly stopped acting as a unified fleet. A few stayed here, but most of them have spread throughout this sector of space, and we are receiving reports that they are attacking Navy and civilian ships indiscriminately. My own fleet is too damaged to do anything to stop them, but other Navy bases are sending in reinforcements. Can you join them to help eliminate the drones?"`
+			choice
+				`	"Of course, I would be glad to."`
+					goto end
+				`	"Of course. But first, what the hell was that bomb you had me drop on <planet>? It cracked the whole planet open."`
+
+			`	Danforth sighs. "Unfortunately," he says, "I am not permitted to tell you what that weapon was or how we acquired it. And already news agencies throughout the Republic are questioning our use of such a terrible weapon. I wish we had been able to defeat the Kor Sestor fleet without resorting to such extreme measures, but we had no choice."`
+
+			label end
+			`	Danforth gives you a map of the systems where there have been reports of Kor Sestor drones attacking civilian ships. "These, plus any that were left alive in the Alnilam system, are all the automata that we have been able to track," he says. "Report back here once you have succeeded in destroying them. The Navy will hopefully send some ships to help you."`
+				accept
+
+
+
+mission "Wanderers: Sestor: Remnant Visit"
+	landing
+	source Farpoint
+	to offer
+		has "Wanderers: Sestor: Kill Southern Remnant: active"
+		not "Wanderers: Sestor: Scattered Remnant: done"
+	on offer
+		conversation
+			`You check in with Danforth, but he tells you that there are still reports of Kor Sestor drones in human space. "You'll have to be sure to destroy them completely," he says. "We can't risk letting some local warlord capture them."`
+				defer
+
+
+
+mission "Wanderers: Sestor: Drones in Alnilam"
+	landing
+	source "Farpoint"
+	name "Drones in Alniyam"
+	description "With the help of the Oathkeepers, eliminate the Kor Sestor fleet in the Alnilam system."
+	to offer
+		has "Wanderers: Sestor: Scattered Remnant: done"
+		or
+			not "Wanderers: Sestor: Alnilam Fleet 1: done"
+			not "Wanderers: Sestor: Alnilam Fleet 2: done"
+	to complete
+		has "Wanderers: Sestor: Alnilam Fleet 1: done"
+		has "Wanderers: Sestor: Alnilam Fleet 2: done"
+	on offer
+		conversation
+			`When you return to <planet>, Danforth tells you, "It seems that you have dealt with the last of the Kor Sestor drones that were terrorizing Republic space, but we still need to deal with the fleet in the Alnilam system. Do you think you can destroy that fleet on your own?`
+			choice
+				`	"Yes, I think I can manage it."`
+					defer
+				`	"Are any of your ships repaired yet? I could use some assistance."`
+			`	He agrees to send some Oathkeeper ships with you to destroy the remaining drones, but it is clear that it pains him to risk the last few ships he has that are still spaceworthy.`
+				accept
+	npc
+		government "Navy (Oathkeeper)"
+		personality heroic escort
+		fleet
+			names "republic capital"
+			fighters "republic fighter"
+			variant
+				"Carrier (Mark II)"
+				"Lance" 4
+				"Combat Drone" 6
+				"Cruiser (Mark II)"
+				"Combat Drone" 4
+				"Frigate (Mark II)" 2
+				"Rainmaker (Mark II)" 2
+				"Gunboat (Mark II)" 2
+		fleet
+			names "republic capital"
+			fighters "republic fighter"
+				"Cruiser"
+				"Combat Drone" 4
+				"Frigate" 2
+				"Rainmaker" 4
+		fleet
+			names "republic capital"
+			fighters "republic fighter"
+				"Carrier"
+				"Lance" 4
+				"Combat Drone" 6
+				"Frigate" 3
+				"Gunboat" 3
+
+
+
+mission "Wanderers: Sestor: Return to Wanderers"
+	landing
+	name "Return to <planet>"
+	description "The Kor Sestor drones in human space have been eliminated. Return to <planet> in Wanderer space to find out what is happening there."
+	source "Farpoint"
+	destination "Desi Seledrak"
+	to offer
+		has "Wanderers: Sestor: Scattered Remnant: done"
+		has "Wanderers: Sestor: Alnilam Fleet 1: done"
+		has "Wanderers: Sestor: Alnilam Fleet 2: done"
+	on offer
+		fail "Wanderers: Sestor: Drones in Alnilam"
+		conversation
+			`Danforth beaches a sigh of relief when you tell him that the last of the Kor Sestor drones have been destroyed. "I am grateful for your help, Captain <last>," he says. "And now that we have finished with that battle, the public relations nightmare over what we did to <planet> begins. We don't need you to get involved in that, though; perhaps you should return to Wanderer space until things cool down a bit around here."`
+				accept
+
+
+
+mission "Wanderers: Sestor Alt: Alnilam 1"
+	landing
+	name "Destroy remaining drones"
+	description "Rather than bombing Zenith, destroy any Kor Sestor drones that are left over in the Alnilam system, then report back to Admiral Danforth on Farpoint."
+	source "Farpoint"
+	to offer
+		not "event: bombed zenith"
+		has "Wanderers: Sestor: Farpoint Attack 2: done"
+		or
+			not "Wanderers: Sestor: Alnilam Fleet 1: done"
+			not "Wanderers: Sestor: Alnilam Fleet 2: done"
+	on offer
+		fail "Wanderers: Sestor: Bomb Zenith 1"
+		conversation
+			`Danforth is impressed that you were able to eliminate the Kor Sestor fleet. "The weapon I gave you was a last resort, and one that I would be ashamed to use," he says. "I have no ships to give you until we have had time to make repairs, but if you are able to destroy whatever Kor Sestor ships remain in the <system> system on your own, return here and I will send my troop transports with you to destroy the Alpha base the old-fashioned way."`
+				accept
+
+
+
+mission "Wanderers: Sestor Alt: Alnilam 2"
+	landing
+	name "Attack Alpha base"
+	description "Travel to the <system> system with these Oathkeeper cruisers to eliminate the Alpha base on <planet>."
+	source "Farpoint"
+	destination "Zenith"
+	clearance
+	to offer
+		not "event: bombed zenith"
+		has "Wanderers: Sestor: Farpoint Attack 2: done"
+		has "Wanderers: Sestor: Alnilam Fleet 1: done"
+		has "Wanderers: Sestor: Alnilam Fleet 2: done"
+	on offer
+		conversation
+			`You tell Danforth that you have destroyed the entire Kor Sestor fleet, without needing to bomb <planet>. He is impressed, and grateful. "I'll send some troop transports with you to take out the Alpha base," he says. "It is riskier destroying it this way, but at least the civilians on <planet> will not be harmed."`
+			choice
+				`	"Understood. We'll go directly to <planet>."`
+					goto end
+				`	"The anarchist settlers, you mean? You're willing to lose your own troops just to avoid harming the anarchists and pirates by bombing their planet?"`
+
+			`	Danforth says, "If we had used such a terrible weapon on an inhabited planet, even an anarchist one, it would have sullied the good name of the Navy. Compared to that, the loss of a few Navy lives is acceptable, and the troops who volunteered for this mission are willing to risk their lives for that cause."`
+
+			label end
+			`	You return to your ship and prepare to escort the troop transports to <planet>.`
+				accept
+	npc accompany save
+		government "Navy (Oathkeeper)"
+		personality escort
+		ship "Cruiser (Mark II)" "R.N.S. Dauntless"
+		ship "Cruiser (Mark II)" "R.N.S. Forthright"
+		ship "Cruiser (Mark II)" "R.N.S. Virtue"
+
+
+
+mission "Wanderers: Sestor Alt: Alnilam 3"
+	landing
+	name "Return to <planet>"
+	description "Escort the Oathkeeper cruisers back to <destination>."
+	source "Zenith"
+	destination "Farpoint"
+	to offer
+		has "Wanderers: Sestor Alt: Alnilam 2: done"
+	on offer
+		conversation
+			`	Danforth's troops set up a defensive circle around the entrance to the Alpha base. It appears that they have achieved the element of surprise: the Alphas did not know that the Navy had already located their base, and were probably counting on having a longer time to evacuate. The troop transports were carrying cement mixers and mining drills; apparently their plan is to seal the Alphas underground and then drill down through the ice and bedrock to bomb and collapse the bunker.`
+			`	As the Navy troops begin pouring the cement, the massive gate to the tunnel bursts open and more Alphas than you have ever seen in one place come flooding out, several dozen of them. But even these superhuman soldiers cannot survive the concentrated firepower of hundreds of Navy troops. The air fills with explosions and smoke and powdered snow, but as far as you can tell not one of the Alphas escapes alive.`
+			`	When the battle is over, the Navy troops explore the bunker, hoping to find prisoners, but they find no one alive. They seal up the entrance and collapse the bunker, and prepare to travel back with you to <planet>.`
+				accept
+	npc accompany save
+		government "Navy (Oathkeeper)"
+		personality escort
+		ship "Cruiser (Mark II)" "R.N.S. Dauntless"
+		ship "Cruiser (Mark II)" "R.N.S. Forthright"
+		ship "Cruiser (Mark II)" "R.N.S. Virtue"
+
+
+
+mission "Wanderers: Sestor Alt: Return to Wanderers"
+	landing
+	name "Return to <planet>"
+	description "The Kor Sestor drones in human space have been eliminated. Return to <planet> in Wanderer space to find out what is happening there."
+	source "Farpoint"
+	destination "Desi Seledrak"
+	to offer
+		has "Wanderers: Sestor Alt: Alnilam 3: done"
+	on offer
+		conversation
+			`The Navy officers report the results of the battle on <planet>'s surface to Danforth. "So it's over," he says. "Captain <last>, thank you for your assistance. This battle would have gone very differently if you were not here."`
+			`	Now that the Kor Sestor fleet has been dealt with, you should probably return and see how things are going for the Wanderers in Korath space.`
+				accept
+
+
+
+mission "Wanderers: Sestor: Scan Drones"
+	landing
+	name "Scan remaining drones"
+	description "Scan the remaining Kor Sestor drones in a few of their systems, to collect data for the Wanderers to use to determine how quickly they are still being produced."
+	source "Desi Seledrak"
+	to offer
+		or
+			has "Wanderers: Sestor: Return to Wanderers: done"
+			has "Wanderers: Sestor Alt: Return to Wanderers: done"
+	waypoint "Silikatakfar"
+	on enter "Silikatakfar"
+		dialog `You fire up your ship's sensors and log the identification numbers and markings of the Kor Sestor ships in this system.`
+	waypoint "Asikafarnut"
+	on enter "Asikafarnut"
+		dialog `You fire up your ship's sensors and log the identification numbers and markings of the Kor Sestor ships in this system.`
+	on offer
+		conversation
+			`You are pleased to discover that the Wanderer colony here has grown into a small city; about a hundred thousand Wanderers have already come through the Eye to settle here. Sobari Tele'ek meets you in the airport. He has lost half of his feathers - his whole face is bare and scaly - but rather than wasting away like Rek he has gained considerable weight, and now towers over you.`
+			`	He tells you, "Our Mereti [friends, kinsfolk] tell us that the Kor Sestor have become less [aggressive, warlike] of late. The factories on their worlds are still [producing, churning out] drones, but they no longer act with a [unified will? purpose?]."`
+			choice
+				`	"Do you think they are weakened enough that we can destroy them?"`
+				`	"Do you think there is any way we could regain control of them?"`
+					goto control
+			`	"Probably," he says, "but we would prefer a more [elegant, peaceful] solution if possible. Would you be willing to [visit, observe] their star systems again, and collect [data, measurements] that might help us to learn to control them or shut them down?`
+				goto end
+			label control
+			`	"That is our [hope, desire]," he says. "Or, barring that, at least we may [disable, shut down] the factories. Would you be willing to [visit, observe] their star systems again, and collect [data, measurements] on the drones?"`
+			label end
+			choice
+				`	"I'd be glad to."`
+					goto data
+				`	"What about the Kor Mereti drones? Have they remained peaceful?"`
+			`	"Indeed," he says. "And, they have brought much [entertainment? novelty?] to us. You should [visit, call on] them when you have time; they are very fond of you."`
+			label data
+			`	Tele'ek introduces you to the team of scientists who will tackle the problem of shutting down the Kor Sestor factories. They explain to you that they are looking for any identifying information on the drones, including the alloy composition of their hulls and prevalence of blast marks or other signs of age. That will allow them to estimate how quickly the drones are being produced.`
+				accept
+	npc
+		system "Silikatakfar"
+		government "Kor Sestor"
+		personality heroic staying
+		ship "Kar Ik Vot 349" "07-134.2"
+		ship "Tek Far 78 - Osk" "07-894.0"
+		ship "Tek Far 71 - Lek" "07-554.3"
+		ship "Met Par Tek 53" "07-983.2"
+		ship "Met Par Tek 53" "07-992.1"
+		ship "Met Par Tek 53" "07-284.5"
+	npc
+		system "Asikafarnut"
+		government "Kor Sestor"
+		personality heroic staying
+		fleet "Large Kor Sestor"
+		ship "Kar Ik Vot 349 (Offense)" "07-546.2"
+		ship "Kar Ik Vot 349 (Trapper)" "07-321.8"
+		ship "Kar Ik Vot 349 (Defense)" "07-963.4"
+
+
+
+mission "Wanderers: Sestor: Exiles 1"
+	landing
+	name "Pick up Rek"
+	description "Pick up Rek on <planet>. She will be helping you to attempt to open diplomatic negotiations with the Korath exiles."
+	source "Desi Seledrak"
+	destination "Setar Fort"
+	to offer
+		has "Wanderers: Sestor: Scan Drones: done"
+	on offer
+		conversation
+			`You give your scanner logs to the Wanderer scientists. A few hours later, you are called in to a meeting of the leaders. Sobari Tele'ek tells you, "Our scientists noted that the most recently constructed drones all have very similar [alloy composition?] and identification numbers. We suspect that means that they are all being produced on a single world, perhaps even a single [factory, facility]."`
+			`	He pulls up a star map and says, "Based on your previous geological scans, we [believe, deduce] that the factory is on this world, Sestor Ikfar. It would be easy enough to [destroy, eliminate] the facility, but Tema'a Iriket has a different proposal."`
+			`	Iriket stands up and says, "I propose that we use this as an [excuse, justification] for a visit to the Korath [exiles, outcasts]. We offer them the chance to [help, assist] us in ending the [scourge, plague] that they started. By [allying with, fighting alongside] us, they will come to view us as [friends, coworkers]."`
+			choice
+				`	"Why get them involved if you think you can handle this on your own?"`
+				`	"Wait, you want to ask them for help just so they can feel good about themselves?"`
+					goto good
+				`	"That does sound like a good way to solve two problems at the same time."`
+					goto next
+			`	Tele'ek says, "The exiles must [feel, be aware of] their loss of [agency? significance?] in the galaxy. If we [plant, instill] a sense of purpose and [worth, importance] in them, they may become [peaceful, wise] just as the Kor Mereti collective did."`
+				goto next
+			label good
+			`	Tele'ek says, "Nothing [forges, solidifies] a friendship as quickly as fighting a [common foe?]. And, we [feel, perceive, project] that the reason the exiles engage in [raiding, piracy] is that their society has no greater [purpose, goal] than mere survival. By involving them in the [restoration, healing] of their lands, we will give them [agency? significance?] and they will be free to be [peaceful, wise]."`
+			label next
+			`	After more discussion the Wanderer leaders reach a consensus that they would like you to travel with Rek to the territory of the Korath exiles and seek to make contact with them. It seems like a very optimistic plan, but then again, the Wanderer approach of seeking friendship worked quite well with the Mereti drones.`
+				accept
+
+
+
+mission "Wanderers: Sestor: Exiles 2"
+	landing
+	name "Contact the exiles"
+	description "Enter the territory of the Korath exiles. Do not fire on them. Instead, with Rek's help, try to find a way to speak with them or a place where they will meet with you."
+	source "Setar Fort"
+	passengers 1
+	to offer
+		has "Wanderers: Sestor: Exiles 1: done"
+	to complete
+		never
+	on offer
+		conversation
+			`Surprisingly, Rek is less enthusiastic about the diplomatic plan than the other Wanderer leaders were. "Of course I greatly desire to make contact with the exiles," she says, "but it is not safe to assume that the minds of an alien species works the same as our own. These Korath were exiled due to their endless, fruitless war-making. I'm not sure an offer of friendship and a small ego boost is all they need to make them become peaceful."`
+			choice
+				`	"Do you think we should cancel the mission and just deal with the Sestor ourselves?"`
+				`	"Perhaps not, but isn't it better to try for peace while we have the chance?"`
+					goto better
+			`	"No," says Rek, "the leaders are right, we must offer them our trust until they prove utterly unworthy of it. But you should not be surprised if they are more interested in destroying you than in listening to me."`
+				goto end
+			label better
+			`	"It is not only better," says Rek, "it is a moral imperative. Our first interaction with the exiles must be an offer of trust, not an act of war. But you should not be surprised if they are more interested in destroying you than in listening to me."`
+			label end
+			`	Rek makes herself comfortable in one of your bunk rooms, and you prepare for a visit to the territory of the Korath exiles. "We must somehow earn their trust," she says, "so do not fire on any of their ships. Instead we must find a way to communicate with them or a place where they will meet with us peacefully."`
+				accept
+	npc save
+		government "Korath"
+		system "Kor Fel'tar"
+		personality heroic staying
+		fleet "Korath Home"
+	npc save
+		government "Korath"
+		system "Kor En'lakfar"
+		personality heroic staying
+		fleet "Korath Raid"
+	npc save
+		government "Korath"
+		system "Kor Men"
+		personality heroic staying
+		fleet "Korath Raid"
+	npc save
+		government "Korath"
+		system "Kor Ak'Mari"
+		personality heroic staying
+		fleet "Korath Raid"
+	npc save
+		government "Korath"
+		system "Kor Zena'i"
+		personality heroic staying
+		fleet "Korath Raid"
+	npc save
+		government "Korath"
+		system "Kor Tar'bei"
+		personality heroic staying
+		fleet "Korath Home"
+	npc save
+		government "Korath"
+		system "Kor Nor'peli"
+		personality heroic staying
+		fleet "Korath Home"
+		fleet "Korath Home"
+		fleet "Korath Raid"
+
+
+
+event "wanderers: exiles peaceful"
+	"reputation: Korath" >?= 1
+
+mission "Wanderers: Sestor: Exiles 3"
+	landing
+	name "Diplomacy with the exiles"
+	description "Escort these three Korath exile world-ships to <planet> for a diplomatic meeting with the Wanderers."
+	source "Far'en Lai"
+	destination "Desi Seledrak"
+	passengers 1
+	to offer
+		has "Wanderers: Sestor: Exiles 2: active"
+	on offer
+		fail "Wanderers: Sestor: Exiles 2"
+		event "wanderers: exiles peaceful"
+		conversation
+			`The Korath ships tail you to the planet's surface, but they do not fire on you.  Instead, they hover above your ship for a long, indecisive moment. You hold your fire, and they eventually land in the sand next to you. Their airlocks open, and a few of them step out and approach your ship. They do not appear to be armed. Perhaps they have a cultural taboo against using weapons on this world.`
+			choice
+				`	(Go outside to meet them.)`
+				`	(Leave the planet while I still can.)`
+					defer
+			`	The Korath seem surprised when you and Rek, two members of obviously different species, step off your ship side by side. They mutter quietly amongst themselves as you approach, then nearly jump in surprise when Rek addresses them in their own language.`
+			`	They converse with Rek for a while, and then Rek explains, "I told them that we hope to eliminate the infection of self-replicating war machines that they left behind, and make their territory safe for habitation once more. They say they are glad we have not destroyed the drones, because they are proud of their handiwork. They say they have command codes for the Sestor factories, to shut them down. But, they will not give the codes to us; they must go and enter them in person."`
+			choice
+				`	"That sounds reasonable."`
+					goto end
+				`	"What are they asking for in return?"`
+			`	Rek says, "They request a meeting with our leaders, to work out terms of trade for our mutual benefit. It is something we would certainly agree to with no difficulty."`
+			label end
+			`	Rek speaks with the Korath again, and then tells you, "They say that three of their 'world-ships' will travel with us to meet with the Wanderer leaders. If they are able to work out favorable terms, and are convinced that the Wanderers have peaceful intentions, they will go with us to the Sestor factory world and shut it down."`
+				accept
+	npc accompany save
+		government "Korath"
+		personality escort
+		ship "Korath World-Ship A (Jump)" "Seskerat Pratka"
+		ship "Korath World-Ship B (Jump)" "Eskretakfakta"
+		ship "Korath World-Ship C (Jump)" "Prekaprat Skata"
+
+
+
+mission "Wanderers: Sestor: Factory 1"
+	landing
+	name "Shut down the factory"
+	description "Escort these Korath ships to <planet>, where they will shut down the remaining Kor Sestor factories."
+	source "Desi Seledrak"
+	destination "Sestor Ikfar"
+	clearance
+	infiltrating
+	passengers 1
+	to offer
+		has "Wanderers: Sestor: Exiles 3: done"
+	on offer
+		conversation
+			`Rek brings the Korath to meet with the Wanderer leaders. After the meeting ends, she and Tele'ek meet up with you. "That was a strange meeting," says Tele'ek. "It did not feel like a peace summit, but like a child's play at a peace summit, as if negotiating for peace is a skill they are only just beginning to learn. And the terms they asked for were minimal; I would have preferred to offer them far more. But they are taking steps toward becoming a peaceful society, and for that we can be grateful."`
+			choice
+				`	"So, what do we do now?"`
+					goto next
+				`	"Are you sure that they really want peace? They aren't trying to trick you?"`
+			`	Rek says, "It is hard to be sure. Their culture is very different from the Kor Efret; even some of their language and gestures are new to me. But they have behaved peacefully toward us so far; we must hope that their peacefulness continues."`
+			label next
+			`	Tele'ek says, "You must bring the [exile, outcast] ships to <planet> and keep them from being destroyed by the drones [along the way?]. There, they will [attempt, accomplish] what they have promised, and shut down the factories. Your only role will be to [shield, protect] them, and we will give you some of our warships to [assist, accompany] you."`
+			`	You return to your ship, and get ready for the trip to <planet>.`
+				accept
+	npc accompany save
+		government "Korath"
+		personality escort
+		ship "Korath World-Ship A (Jump)" "Seskerat Pratka"
+		ship "Korath World-Ship B (Jump)" "Eskretakfakta"
+		ship "Korath World-Ship C (Jump)" "Prekaprat Skata"
+
+
+
+mission "Wanderers: Sestor: Factory Escorts"
+	landing
+	invisible
+	source "Desi Seledrak"
+	to offer
+		has "Wanderers: Sestor: Exiles 3: done"
+	npc kill
+		government "Wanderer"
+		personality escort heroic
+		fleet
+			names "wanderer"
+			variant
+				"Hurricane (Tough)"
+				"Derecho"
+				"Derecho (Turret)"
+				"Tempest (Heavy)" 2
+				"Tempest"
+
+
+
+event "wanderers: asikafarnut battle"
+	system "Asikafarnut"
+		fleet "Large Kor Mereti" 10000
+
+mission "Wanderers: Sestor: Factory 2"
+	landing
+	name "Defend <planet>"
+	description "Drive off the Kor Sestor drones and keep them from interfering with the Korath exiles who are shutting down their factories."
+	source "Sestor Ikfar"
+	clearance
+	infiltrating
+	passengers 1
+	to offer
+		has "Wanderers: Sestor: Factory 1: done"
+	on visit
+		dialog `There are still Kor Sestor drones overhead. You should go fight them off so the Korath exiles are not attacked while trying to disable the factories.`
+	on offer
+		event "wanderers: asikafarnut battle"
+		conversation
+			`The drones stop firing on the Korath world-ships the moment they enter the atmosphere, which is a good sign - it probably means that their command codes worked. While they begin scouting out the manufacturing center, the exiles tell you (through Rek) that they need you to return to orbit and keep the remaining drones from attacking them until they can be sure the factory is shut down for good; it might take them a while to accomplish that.`
+			`	You fire up your engines and blast off for one last battle against the Kor Sestor...`
+				launch
+	npc evade
+		government "Kor Sestor"
+		personality waiting staying heroic
+		fleet
+			names "kor sestor"
+			fighters "kor sestor fighter"
+			variant
+				"Kar Ik Vot 349"
+				"Tek Far 71 - Lek"
+				"Far Lek 14" 10
+				"Met Par Tek 53" 2
+		fleet
+			names "kor sestor"
+			fighters "kor sestor fighter"
+			variant
+				"Kar Ik Vot 349 (Offense)"
+				"Tek Far 78 - Osk"
+				"Far Osk 27" 8
+				"Met Par Tek 53 (Sniper)" 2
+		fleet
+			names "kor sestor"
+			fighters "kor sestor fighter"
+			variant
+				"Tek Far 109"
+				"Tek Far 71 - Lek"
+				"Tek Far 78 - Osk"
+				"Far Lek 14" 17
+				"Far Osk 27" 13
+
+
+
+event "wanderers: sestor shutdown"
+	system "Celeborim"
+		fleet "Small Kor Sestor" 2400
+		fleet "Large Kor Sestor" 10000
+	system "Makferuti"
+		fleet "Small Kor Sestor" 2400
+		fleet "Large Kor Sestor" 10000
+	system "Asikafarnut"
+		fleet "Large Kor Mereti" 3600
+		fleet "Small Kor Sestor" 1200
+		fleet "Large Kor Sestor" 6000
+	system "Sobarati"
+		fleet "Small Kor Sestor" 1600
+		fleet "Large Kor Sestor" 8000
+	system "Silikatakfar"
+		fleet "Large Kor Mereti" 1600
+		fleet "Small Kor Sestor" 3200
+		fleet "Large Kor Sestor" 4800
+	system "Ferukistek"
+		fleet "Large Kor Mereti" 2400
+		fleet "Small Kor Sestor" 8000
+		fleet "Large Kor Sestor" 10000
+	system "Eneremprukt"
+		fleet "Large Kor Mereti" 2000
+		fleet "Small Kor Sestor" 3200
+		fleet "Large Kor Sestor" 4800
+	system "Mesuket"
+		fleet "Large Kor Mereti" 900
+		fleet "Large Kor Sestor" 10000
+
+mission "Wanderers: Sestor: Factory 3"
+	landing
+	name "Return to <planet>"
+	description "Return to <planet> and report to the Wanderers that the exiles have shut down the Kor Sestor factory (and possibly stolen the equipment in the process)."
+	source "Sestor Ikfar"
+	destination "Desi Seledrak"
+	passengers 1
+	to offer
+		has "Wanderers: Sestor: Factory 2: done"
+	on offer
+		fail "Wanderers: Sestor: Factory Escorts"
+		event "wanderers: sestor shutdown"
+		conversation
+			`As you come in for a landing, the Korath exiles inform you that they have succeeded in disabling the factories. They tell you that they will be returning to their territory on their own; now that their job is done, they no longer need you to "chaperone" them, as Rek translates it. You wish them luck, and they depart.`
+			`	The factory district does indeed seem to have been shut down: no more hum of machinery or flashes of arc-welders or smokestacks belching steam into the atmosphere. In fact, on closer inspection you realize that they did not merely shut down the factories; they have also removed some critical components from them.`
+			`	Rek asks, "Does it look like they succeeded?"`
+			choice
+				`	"Yes, the factories are shut down."`
+					goto end
+				`	"It looks like they disassembled the factories and took some of the parts with them."`
+			`	"Oh," says Rek, "that is slightly ominous. But they are scavengers after all; perhaps they simply did not wish to leave useful machinery to rust."`
+			label end
+			`	With nothing else to do here, you get ready to return to <planet> and report to the Wanderer leaders.`
+				accept
+
+
+
+event "wanderers: exiles hostile"
+	"reputation: Korath" = -1000
+
+event "wanderers: exiles have drones"
+	fleet "Korath Home"
+		variant 12
+			"Korath World-Ship"
+		variant 12
+			"Korath World-Ship B"
+		variant 12
+			"Korath World-Ship C"
+		variant 2
+			"Tek Far 71 - Lek"
+			"Far Lek 14" 6
+		variant 2
+			"Tek Far 71 - Lek (Close Quarters)"
+			"Far Lek 14" 4
+		variant 2
+			"Tek Far 78 - Osk (Close Quarters)"
+			"Far Osk 27" 5
+		variant 2
+			"Tek Far 78 - Osk"
+			"Far Osk 27" 2
+		variant 3
+			"Tek Far 109"
+			"Far Lek 14" 9
+			"Far Osk 27" 7
+		variant 3
+			"Met Par Tek 53" 3
+		variant 2
+			"Met Par Tek 53 (Sniper)" 3
+		variant
+			"Kar Ik Vot 349"
+		variant
+			"Kar Ik Vot 349 (Defense)"
+		variant
+			"Kar Ik Vot 349 (Offense)"
+		variant
+			"Kar Ik Vot 349 (Trapper)"
+		variant 1
+			"Model 512"
+		variant 2
+			"Model 512"
+			"Model 256"
+		variant 2
+			"Model 256"
+		variant 2
+			"Model 256"
+			"Model 64" 2
+		variant 2
+			"Model 128" 2
+		variant 2
+			"Model 64"
+			"Model 32" 3
+		variant 3
+			"Model 64" 2
+			"Model 32" 3
+		variant 4
+			"Model 32"
+			"Model 16" 5
+
+event "wanderers: sestor eliminated"
+	system "Celeborim"
+		government "Uninhabited"
+		fleet "Small Kor Mereti" 10000
+	system "Makferuti"
+		government "Uninhabited"
+		fleet "Small Kor Mereti" 10000
+	system "Asikafarnut"
+		government "Uninhabited"
+		fleet "Large Kor Mereti" 3600
+	system "Sobarati"
+		government "Uninhabited"
+		fleet "Small Kor Mereti" 10000
+	system "Silikatakfar"
+		government "Uninhabited"
+		fleet "Large Kor Mereti" 1600
+	system "Ferukistek"
+		government "Uninhabited"
+		fleet "Large Kor Mereti" 2400
+	system "Eneremprukt"
+		government "Uninhabited"
+		fleet "Large Kor Mereti" 2000
+	system "Mesuket"
+		fleet "Large Kor Mereti" 900
+
+event "wanderers: sabira eseskrai colony"
+	system "Skeruto"
+		government "Wanderer"
+		fleet "Large Quarg" 1000
+		fleet "Wanderer Defense" 1200
+		fleet "Wanderer Drones" 800
+		fleet "Kor Efret Home" 800
+	system "Furmeliki"
+		fleet "Large Quarg" 1000
+		fleet "Kor Efret Home" 800
+	planet "Sabira Eseskrai"
+		description `Long ago, this planet was home to several Korath oil mining settlements, but now all that remains visible are the tops of a few dozen of the tallest buildings. Everything else has been buried by sandstorms.`
+		description `	Due to a recent shift in climate the deserts have begun shrinking once more, with local vegetation growing to cover more and more land each year. The Wanderers, working together with the Kor Efreti, have founded a settlement here and begun working to accelerate the process of rejuvenating the wastelands.`
+		spaceport `This small settlement is populated by a roughly equal number of Korath and Wanderer settlers. Since most of them do not speak each other's language, the two groups do not mingle much, and communicate mostly via gestures and drawings. It's not much, but it's at least a start for the two species to begin learning from each other.`
+
+mission "Wanderers: Sestor: Final"
+	landing
+	name "Investigate the exiles"
+	description "Visit the Korath exile territory to look for any signs that they plan to start constructing war drones of their own."
+	source "Desi Seledrak"
+	to offer
+		has "Wanderers: Sestor: Factory 3: done"
+	waypoint "Kor Fel'tar"
+	on enter "Kor Fel'tar"
+		dialog `There are several Kor Mereti and Kor Sestor drones in this system, and they don't look friendly. You should report to the Wanderers that the exiles have begun manufacturing drones of their own.`
+	on offer
+		event "wanderers: exiles hostile" 4
+		conversation
+			`When you meet with the Wanderer leaders, Sobari Tele'ek tells you, "We have received word from our [scouts, observers] that the Sestor drones are [dwindling, reducing] in numbers and will soon be no more. We owe you our [gratitude, thanks]. But, the Mereti tell us a more worrisome [tale, story]."`
+			`	Meto Pa'aret says, "The Mereti [contacted, communicated with] me and said that one of their stations was [raided, infiltrated] by the Korath exiles, and some of their [machinery, equipment] was stolen. The Mereti did not [fight, attack] the exiles because they thought they were [friends, allies]. Captain <last>, can you bring Rek to visit the [exiles, outcasts] and learn what their plans are?"`
+			choice
+				`	"Sure, I would be glad to."`
+					accept
+				`	"Could the stolen equipment make it possible for them to build a drone army of their own?"`
+			`	"That is what we are afraid of," says Tele'ek. You agree to travel to the territory of the exiles and see if there is any evidence that they are building war drones there.`
+				accept
+	npc
+		system "Kor Fel'tar"
+		government "Korath"
+		personality heroic staying
+		fleet
+			names "korath"
+			variant
+				"Model 32"
+				"Model 16" 3
+				"Tek Far 78 - Osk"
+				"Met Par Tek 53 (Sniper)" 2
+	on complete
+		event "wanderers: exiles have drones" 20
+		event "wanderers: sabira eseskrai colony" 30
+		event "wanderers: sestor eliminated" 40
+		conversation
+			`You inform the Wanderers that the Korath exiles are now producing war drones. "This is [unfortunate, regrettable]," says Sobari Tele'ek. "Clearly they [anticipate, expect] further conflict in the future."`
+			`	Tema'a Iriket says, "Perhaps they are [afraid of, threatened by] us and seek only to have the means to [defend, protect] themselves. The important thing is that the drones in this [territory, area] have been [neutralized, pacified] and we can now focus on our true work."`
+			`	From there, the conversation shifts to an excited discussion about what worlds they will settle on next and what their next steps should be in building relationships with the Kor Efret and the Kor Mereti collective. The exiles may become a threat some time in the future, but for now the Wanderers are eager to pursue their peacetime calling in this new territory that the Eye has led them to.`
