@@ -138,6 +138,8 @@ void Weapon::LoadWeapon(const DataNode &node)
 				damage[HEAT_DAMAGE] = value;
 			else if(key == "ion damage")
 				damage[ION_DAMAGE] = value;
+			else if(child.Token(0) == "fuel damage")
+				damage[FUEL_DAMAGE] = child.Value(1);
 			else if(key == "disruption damage")
 				damage[DISRUPTION_DAMAGE] = value;
 			else if(key == "slowing damage")

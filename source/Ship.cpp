@@ -2093,6 +2093,7 @@ int Ship::TakeDamage(const Projectile &projectile, bool isBlast)
 	double hitForce = weapon.HitForce();
 	double heatDamage = weapon.HeatDamage();
 	double ionDamage = weapon.IonDamage();
+	double fuelDamage = weapon.FuelDamage();
 	double disruptionDamage = weapon.DisruptionDamage();
 	double slowingDamage = weapon.SlowingDamage();
 	bool wasDisabled = IsDisabled();
@@ -2110,6 +2111,21 @@ int Ship::TakeDamage(const Projectile &projectile, bool isBlast)
 	ionization += ionDamage * (1. - .5 * shieldFraction);
 	disruption += disruptionDamage * (1. - .5 * shieldFraction);
 	slowness += slowingDamage * (1. - .5 * shieldFraction);
+
+	// Prevent fuel from going negative and allow recharge through shields.
+	double maxFuel = attributes.Get("fuel capacity");
+	if(fuelDamage > 0. && fuel > 0.)
+	{
+		fuel -= fuelDamage * (1. - .5 * shieldFraction);
+		if(fuel < 0.)
+			fuel = 0.;
+	}
+	else if(fuelDamage < 0. && fuel < maxFuel)
+	{
+		fuel -= fuelDamage;
+		if(fuel > maxFuel)
+			fuel = maxFuel;
+	}
 	
 	if(hitForce)
 	{
@@ -2130,7 +2146,7 @@ int Ship::TakeDamage(const Projectile &projectile, bool isBlast)
 	// ship that hit it, it is now "provoked" against that government.
 	if(!isBlast && projectile.GetGovernment() && !projectile.GetGovernment()->IsEnemy(government)
 			&& (Shields() < .9 || Hull() < .9 || !personality.IsForbearing())
-			&& !personality.IsPacifist() && (shieldDamage > 0. || hullDamage > 0.))
+			&& !personality.IsPacifist() && (shieldDamage > 0. || hullDamage > 0. || fuelDamage > 0.))
 		type |= ShipEvent::PROVOKE;
 	
 	return type;

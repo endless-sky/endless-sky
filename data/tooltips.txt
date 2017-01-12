@@ -338,6 +338,9 @@ tip "heat damage / second:"
 tip "ion damage / second:"
 	`Reduces the target's energy. Ionization slowly wears off over time.`
 
+tip "fuel damage / second:"
+	`Amount of fuel removed from target each second.`
+
 tip "slowing damage / second:"
 	`Reduces the target's turn rate, acceleration, and top speed. Slowing wears off over time.`
 
@@ -388,6 +391,9 @@ tip "heat damage / shot:"
 
 tip "ion damage / shot:"
 	`Each shot increases the target's ionization by this amount. Total energy lost is 100 times this amount.`
+
+tip "fuel damage / shot:"
+	`Amount of fuel removed from target per shot.`
 
 tip "slowing damage / shot:"
 	`Reduces the target's turn rate, acceleration, and top speed. Slowing wears off over time.`
