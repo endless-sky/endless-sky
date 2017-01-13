@@ -30,10 +30,14 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 // so the game won't freeze if the music stops for some reason.
 class Music {
 public:
+	static void Init(const std::vector<std::string> &sources);
+	
+	
+public:
 	Music();
 	~Music();
 	
-	void SetSource(const std::string &path = "");
+	void SetSource(const std::string &name = "");
 	const std::vector<int16_t> &NextChunk();
 	
 	

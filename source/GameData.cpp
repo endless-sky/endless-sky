@@ -32,6 +32,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "LineShader.h"
 #include "Minable.h"
 #include "Mission.h"
+#include "Music.h"
 #include "Outfit.h"
 #include "OutlineShader.h"
 #include "Person.h"
@@ -153,6 +154,9 @@ void GameData::BeginLoad(const char * const *argv)
 		else
 			spriteQueue.Add(name, it.second);
 	}
+	
+	// Generate a catalog of music files.
+	Music::Init(sources);
 	
 	for(const string &source : sources)
 	{
