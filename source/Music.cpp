@@ -158,6 +158,7 @@ void Music::Decode()
 	{
 		// First, wait until a new file has been specified or we're done.
 		FILE *file = nullptr;
+		while(!file)
 		{
 			unique_lock<mutex> lock(decodeMutex);
 			while(!done && !hasNewFile)
