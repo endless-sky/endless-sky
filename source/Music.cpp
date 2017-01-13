@@ -79,6 +79,11 @@ Music::~Music()
 	}
 	condition.notify_all();
 	thread.join();
+	
+	// If the decode thread has not yet taken possession of the next file, it is
+	// our job to close it.
+	if(nextFile)
+		fclose(nextFile);
 }
 
 
@@ -95,15 +100,13 @@ void Music::SetSource(const string &name)
 		return;
 	previousPath = path;
 	
-	// If the path is empty or does not end in ".mp3", do not load it.
-	string extension = (path.length() < 4 ? "" : path.substr(path.length() - 4));
-
 	// Inform the decoding thread that it should switch to decoding a new file.
 	unique_lock<mutex> lock(decodeMutex);
-	if(extension != ".mp3" && extension != ".MP3")
+	if(path.empty())
 		nextFile = nullptr;
 	else
 		nextFile = Files::Open(path);
+	hasNewFile = true;
 	
 	// Also clear any decoded data left over from the previous file.
 	next.clear();
@@ -153,23 +156,21 @@ void Music::Decode()
 	// Loop until the thread is told to quit.
 	while(true)
 	{
-		// First, wait until the "nextFile" has been specified or we're done.
+		// First, wait until a new file has been specified or we're done.
 		FILE *file = nullptr;
 		{
 			unique_lock<mutex> lock(decodeMutex);
-			while(!done && !nextFile)
+			while(!done && !hasNewFile)
 				condition.wait(lock);
 			
 			// If the "done" variable has been set, exit this thread.
 			if(done)
-			{
-				if(nextFile)
-					fclose(nextFile);
 				return;
-			}
 			
 			// The new file now belongs to us, and it's our job to close it.
 			file = nextFile;
+			nextFile = nullptr;
+			hasNewFile = false;
 		}
 		
 		// Now, we have a file to read. Initialize the decoder.
@@ -187,7 +188,7 @@ void Music::Decode()
 			while(!done && next.size() >= 2 * OUTPUT_CHUNK)
 				condition.wait(lock);
 			// Check if we're done or if we need to switch files.
-			if(done || nextFile != file)
+			if(done || hasNewFile)
 				break;
 			
 			// The lock can be freed until we start filling the output buffer.
@@ -238,7 +239,7 @@ void Music::Decode()
 				
 				// For this part, we need access to the output buffer.
 				lock.lock();
-				if(done || nextFile != file)
+				if(done || hasNewFile)
 					break;
 	
 				// We'll alternate what channel we read from each time through the loop.
