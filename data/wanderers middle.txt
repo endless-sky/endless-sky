@@ -1759,7 +1759,7 @@ mission "Wanderers: Sestor Search: Human Hint"
 		not "Wanderers: Sestor: Farpoint Attack 1: offered"
 	on offer
 		conversation
-			`You've located the Kor Sestor fleet, in the Alniyam system. The Republic Navy is probably ill-equipped to fight such powerful alien ships, but they may be the only thing standing in the way of an outright invasion of human space. You should warn Admiral Danforth and the Oathkeepers of the impending threat as soon as possible.`
+			`You've located the Kor Sestor fleet, in the Alnilam system. The Republic Navy is probably ill-equipped to fight such powerful alien ships, but they may be the only thing standing in the way of an outright invasion of human space. You should warn Admiral Danforth and the Oathkeepers of the impending threat as soon as possible.`
 				accept
 
 
@@ -1777,7 +1777,7 @@ mission "Wanderers: Sestor Search: Wanderer Hint"
 		not "Wanderers: Sestor: Farpoint Attack 1: offered"
 	on offer
 		conversation
-			`You've located the Kor Sestor fleet, in the Alniyam system. The Republic Navy is probably ill-equipped to fight such powerful alien ships, but they may be the only thing standing in the way of an outright invasion of human space. You should warn Admiral Danforth and the Oathkeepers of the impending threat as soon as possible.`
+			`You've located the Kor Sestor fleet, in the Alnilam system. The Republic Navy is probably ill-equipped to fight such powerful alien ships, but they may be the only thing standing in the way of an outright invasion of human space. You should warn Admiral Danforth and the Oathkeepers of the impending threat as soon as possible.`
 				accept
 
 
@@ -2400,7 +2400,7 @@ mission "Wanderers: Sestor: Remnant Visit"
 mission "Wanderers: Sestor: Drones in Alnilam"
 	landing
 	source "Farpoint"
-	name "Drones in Alniyam"
+	name "Drones in Alnilam"
 	description "With the help of the Oathkeepers, eliminate the Kor Sestor fleet in the Alnilam system."
 	to offer
 		has "Wanderers: Sestor: Scattered Remnant: done"
