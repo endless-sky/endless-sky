@@ -1002,6 +1002,9 @@ bool Ship::Move(list<Effect> &effects, list<shared_ptr<Flotsam>> &flotsam)
 				hyperspaceOffset *= 1000. / length;
 		}
 		
+		if(fuel < 0.)
+			fuel = 0.;
+		
 		return true;
 	}
 	else if(landingPlanet || zoom < 1.)
@@ -2112,20 +2115,14 @@ int Ship::TakeDamage(const Projectile &projectile, bool isBlast)
 	disruption += disruptionDamage * (1. - .5 * shieldFraction);
 	slowness += slowingDamage * (1. - .5 * shieldFraction);
 
-	// Prevent fuel from going negative and allow recharge through shields.
+	// Prevent fuel from going negative on hit and allow recharge through shields.
 	double maxFuel = attributes.Get("fuel capacity");
-	if(fuelDamage > 0. && fuel > 0.)
-	{
-		fuel -= fuelDamage * (1. - .5 * shieldFraction);
-		if(fuel < 0.)
-			fuel = 0.;
-	}
+	if(fuel < 0.)
+		fuel = 0.;
+	else if(fuelDamage > 0. && fuel > 0.)
+		fuel = max(0., fuel - fuelDamage * (1. - .5 * shieldFraction));
 	else if(fuelDamage < 0. && fuel < maxFuel)
-	{
-		fuel -= fuelDamage;
-		if(fuel > maxFuel)
-			fuel = maxFuel;
-	}
+		fuel = min(maxFuel, fuel - fuelDamage);
 	
 	if(hitForce)
 	{
