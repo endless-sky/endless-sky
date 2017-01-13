@@ -1689,8 +1689,6 @@ mission "Wanderers: Sestor: Alnilam Fleet 1"
 	destination "Farpoint"
 	to offer
 		has "Wanderers: Sestor Attack: done"
-	to complete
-		never
 	npc kill
 		government "Kor Sestor"
 		system Alnilam
@@ -1937,8 +1935,6 @@ mission "Wanderers: Sestor: Alnilam Fleet 2"
 	source "Farpoint"
 	to offer
 		has "Wanderers: Sestor: Quarg Help 2: done"
-	to complete
-		never
 	npc kill
 		government "Kor Sestor"
 		system Alnilam
