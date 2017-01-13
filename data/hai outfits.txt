@@ -320,7 +320,7 @@ outfit "Boulder Reactor"
 	"outfit space" -90
 	"energy generation" 17.3
 	"heat generation" 34
-	description "The Hai built spacefaring Fusion Generators centuries ago, but they never really required anything more powerful, so their design remained relatively unchanged after it was miniaturized enough for their capital warships."
+	description "The Hai built spacefaring fusion generators centuries ago, but they never really required anything more powerful, so their design remained relatively unchanged after it was miniaturized enough for their capital warships."
 
 outfit "Geode Reactor"
 	category "Power"
@@ -350,7 +350,7 @@ outfit "Sand Cell"
 	"outfit space" -24
 	"energy generation" 1.55
 	"heat generation" 2.4
-	description "The Sand Cell is the smallest Hai generator. It was designed to fit their drones, and it clearly resembles human Fuel Cells."
+	description "The Sand Cell is the smallest Hai generator. It was designed to fit their drones, and it clearly resembles human fuel cells."
 
 
 outfit `"Baellie" Atomic Engines`
