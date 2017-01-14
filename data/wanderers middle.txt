@@ -2337,8 +2337,8 @@ mission "Wanderers: Sestor: Bomb Zenith 2"
 				launch
 	on enter
 		conversation
-			`The way Danforth talked about the device he gave you made you assume that it was a nuclear bomb, but the explosion that rocks <planet> a few seconds after you depart is far too powerful for that. The light of the explosion is many times brighter than this system's sun. And unless your sensors are lying to you, there is now a crater near <planet>'s south pole that goes all the way down to the mantle. Lava is filling the hole, and the entire planet's crust is shifting and shivering in response.`
-			`	You are glad that no human settlements were near the explosion, but your sensors are picking up compression waves traveling along the whole planet's surface, bouncing across it again and again as the planet rings like a bell. Anyone who lived anywhere on <planet> just got hit by an earthquake of deadly proportions.`
+			`The way Danforth talked about the device he gave you made you assume that it was a nuclear bomb, but the explosion that rocks <origin> a few seconds after you depart is far too powerful for that. The light of the explosion is many times brighter than this system's sun. And unless your sensors are lying to you, there is now a crater near <origin>'s south pole that goes all the way down to the mantle. Lava is filling the hole, and the entire planet's crust is shifting and shivering in response.`
+			`	You are glad that no human settlements were near the explosion, but your sensors are picking up compression waves traveling along the whole planet's surface, bouncing across it again and again as the planet rings like a bell. Anyone who lived anywhere on <origin> just got hit by an earthquake of deadly proportions.`
 			`	You can only hope that it was worth it, and that the control station has indeed been destroyed.`
 
 
