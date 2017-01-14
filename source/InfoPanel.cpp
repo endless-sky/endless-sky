@@ -774,7 +774,7 @@ void InfoPanel::DrawWeapons(const Rectangle &bounds)
 		scale = min(scale, (LABEL_DX - LABEL_PAD) / (2. * maxX));
 	
 	// Draw the ship, using the black silhouette swizzle.
-	SpriteShader::Draw(sprite, bounds.Center(), scale, 8);
+	SpriteShader::Draw(sprite, bounds.Center(), scale, 28);
 	
 	// Figure out how tall each part of the weapon listing will be.
 	int gunRows = max(count[0][0], count[1][0]);
