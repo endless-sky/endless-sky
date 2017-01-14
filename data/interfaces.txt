@@ -864,6 +864,10 @@ interface "hail panel"
 	button t "Demand _Tribute"
 		center -20 115
 		dimensions 140 30
+	visible if "show relinquish"
+	button t "Relinquish _Tribute"
+		center -20 115
+		dimensions 140 30
 	visible if "show assist"
 	active if "can assist"
 	button h "Ask For _Help"

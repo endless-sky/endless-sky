@@ -186,9 +186,15 @@ void Politics::BribePlanet(const Planet *planet, bool fullAccess)
 
 
 
-void Politics::DominatePlanet(const Planet *planet)
+void Politics::DominatePlanet(const Planet *planet, bool dominate)
 {
-	dominatedPlanets.insert(planet);
+	if(dominate)
+		dominatedPlanets.insert(planet);
+	else
+	{
+		if(dominatedPlanets.find(planet) != dominatedPlanets.end())
+			dominatedPlanets.erase(dominatedPlanets.find(planet));
+	}
 }
 
 
