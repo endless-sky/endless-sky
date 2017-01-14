@@ -2552,7 +2552,7 @@ mission "Wanderers: Sestor Alt: Return to Wanderers"
 		has "Wanderers: Sestor Alt: Alnilam 3: done"
 	on offer
 		conversation
-			`The Navy officers report the results of the battle on <planet>'s surface to Danforth. "So it's over," he says. "Captain <last>, thank you for your assistance. This battle would have gone very differently if you were not here."`
+			`The Navy officers report the results of the battle on Zenith's surface to Danforth. "So it's over," he says. "Captain <last>, thank you for your assistance. This battle would have gone very differently if you were not here."`
 			`	Now that the Kor Sestor fleet has been dealt with, you should probably return and see how things are going for the Wanderers in Korath space.`
 				accept
 
