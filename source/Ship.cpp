@@ -2119,7 +2119,8 @@ int Ship::TakeDamage(const Projectile &projectile, bool isBlast)
 	double maxFuel = attributes.Get("fuel capacity");
 	if(fuel < 0.)
 		fuel = 0.;
-	else if(fuelDamage > 0. && fuel > 0.)
+	
+	if(fuelDamage > 0. && fuel > 0.)
 		fuel = max(0., fuel - fuelDamage * (1. - .5 * shieldFraction));
 	else if(fuelDamage < 0. && fuel < maxFuel)
 		fuel = min(maxFuel, fuel - fuelDamage);
