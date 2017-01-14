@@ -1678,7 +1678,7 @@ mission "Wanderers: Sestor Search"
 	on enter "Alnilam"
 		set "wanderers: found the sestor fleet"
 		dialog
-			`Quite a few Kor Sestor ships are in orbit around the anarchist world of <planet>, and you detect many more on the surface. Strangely, the Kor Sestor ships are not attacking the local pirate and anarchist fleets.`
+			`Quite a few Kor Sestor ships are in orbit around the anarchist world of Zenith, and you detect many more on the surface. Strangely, the Kor Sestor ships are not attacking the local pirate and anarchist fleets.`
 			`	That is probably not a good sign.`
 
 
