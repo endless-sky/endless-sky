@@ -65,19 +65,19 @@ mission "Vintage Spaceman"
 	on complete
 		payment 100
 		conversation
-			`"We're here!" Vintage spaceman slams the emergency unlock and jumps out while your ship is still a meter off the ground. He runs off in to the crowd.`
+			`"We're here!" The vintage spaceman slams the emergency lock and jumps out while your ship is still a meter off the ground. He runs off in to the crowd.`
 				choice
-					`	(Grab a beverage, climb on top of the <ship> and relax)`
-					`	(Unload cargo)`
+					`	(Grab a beverage, climb on top of your ship and relax.)`
+					`	(Unload cargo.)`
 				`	A while later you see your passenger emerge from the crowd, his head hung low. "It's all a ruse, man. She was just a bot. A marketing tool to get me to buy tickets."`
 				choice
 					`	"I'm sure there's a girl out there for you."`
 					goto end
-					`	(Rub it in)`
+					`	(Rub it in.)`
 				`	"Guess she was made for you." You quip, feeling a little bad about it.`
 				label end
-				`	"Sorry I wasted your time. I'm such a sucker. I don't have any credits for you, but you can have this suit. I don't feel like wearing it any more."`
-				`	He leaves the suit on your deck and disappears back in to the crowd. You take the suit to a pawn shop and get <payment> for it.`
+				`	"Sorry I wasted your time. I'm such a sucker. I don't have any credits for you, but you can have this suit. I don't feel like wearing it anymore."`
+				`	He leaves the suit on your deck and disappears back into the crowd. You take the suit to a pawn shop and get <payment> for it.`
 
 					
 mission "Pookie, Part 1"
