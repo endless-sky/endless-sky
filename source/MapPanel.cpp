@@ -346,41 +346,47 @@ void MapPanel::Select(const System *system)
 		return;
 	selectedSystem = system;
 	vector<const System *> &plan = player.TravelPlan();
-	if(!plan.empty() && system == plan.front())
+	if(!player.Flagship() || (!plan.empty() && system == plan.front()))
 		return;
 	
+	bool isJumping = player.Flagship()->IsEnteringHyperspace();
+	const System *source = isJumping ? player.Flagship()->GetTargetSystem() : player.GetSystem();
+	
 	bool shift = (SDL_GetModState() & KMOD_SHIFT) && !plan.empty();
-	if(system == playerSystem && !shift)
+	if(system == source && !shift)
 	{
 		plan.clear();
-		if(player.Flagship())
+		if(!isJumping)
 			player.Flagship()->SetTargetSystem(nullptr);
+		else
+			plan.push_back(source);
 	}
-	else if((distance.Distance(system) > 0 || shift) && player.Flagship())
+	else if(shift)
 	{
-		if(shift)
+		DistanceMap localDistance(player, plan.front());
+		if(localDistance.Distance(system) <= 0)
+			return;
+		
+		auto it = plan.begin();
+		while(system != *it)
 		{
-			DistanceMap localDistance(player, plan.front());
-			if(localDistance.Distance(system) <= 0)
-				return;
-			
-			auto it = plan.begin();
-			while(system != *it)
-			{
-				it = ++plan.insert(it, system);
-				system = localDistance.Route(system);
-			}
+			it = ++plan.insert(it, system);
+			system = localDistance.Route(system);
 		}
-		else if(playerSystem)
-		{
-			plan.clear();
+	}
+	else if(distance.Distance(system) > 0)
+	{
+		plan.clear();
+		if(!isJumping)
 			player.Flagship()->SetTargetSystem(nullptr);
-			while(system != playerSystem)
-			{
-				plan.push_back(system);
-				system = distance.Route(system);
-			}
+		
+		while(system != source)
+		{
+			plan.push_back(system);
+			system = distance.Route(system);
 		}
+		if(isJumping)
+			plan.push_back(source);
 	}
 }
 

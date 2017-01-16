@@ -1518,6 +1518,9 @@ fleet "Large Northern Pirates"
 		"Berserker" 2
 	variant 2
 		"Berserker (Afterburner)" 2
+	variant 1
+		"Bactrian"
+		"Dagger" 3
 
 fleet "pirate raid"
 	government "Pirate"
