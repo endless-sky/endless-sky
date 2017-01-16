@@ -1244,40 +1244,17 @@ bool Ship::Move(list<Effect> &effects, list<shared_ptr<Flotsam>> &flotsam)
 		}
 
 
-		double oocShieldRate = attributes.Get("ooc shield generation");
-		if( ! IsInCombat() && oocShieldRate > 0.)
+		double skirmisherShieldRate = attributes.Get("skirmisher shield generation");
+		if( ! IsInCombat() && skirmisherShieldRate > 0.)
 		{
-			double shieldEnergy = attributes.Get("ooc shield energy");
-			double shieldHeat = attributes.Get("ooc shield heat");
-			double shieldsAdded = AddShieldsOOC(oocShieldRate * min(1., shieldEnergy ? energy / shieldEnergy : 1.));
-			energy -= shieldEnergy * shieldsAdded / oocShieldRate;
-			heat += shieldHeat * shieldsAdded / oocShieldRate;
+			double shieldEnergy = attributes.Get("skirmisher shield energy");
+			double shieldHeat = attributes.Get("skirmisher shield heat");
+			double shieldsAdded = AddSkirmisherShields(skirmisherShieldRate * min(1., shieldEnergy ? energy / shieldEnergy : 1.));
+			energy -= shieldEnergy * shieldsAdded / skirmisherShieldRate;
+			heat += shieldHeat * shieldsAdded / skirmisherShieldRate;
 		}
+    }
 
-		double ooocShieldRate = attributes.Get("oooc shield generation");
-		if(  ooocShieldRate > 0.)
-		{
-			double shieldEnergy = attributes.Get("oooc shield energy");
-			double shieldHeat = attributes.Get("oooc shield heat");
-			double shieldsAdded = AddShieldsOOOC(ooocShieldRate * min(1., shieldEnergy ? energy / shieldEnergy : 1.));
-			energy -= shieldEnergy * shieldsAdded / ooocShieldRate;
-			heat += shieldHeat * shieldsAdded / ooocShieldRate;
-		}
-
-
-		double overShieldRate = attributes.Get("overclocked shield generation");
-		if( overShieldRate > 0.)
-		{
-			double shieldEnergy = attributes.Get("overclocked shield energy");
-			double shieldHeat = attributes.Get("overclocked shield heat");
-			double shieldsAdded = AddShieldsOverclocked(overShieldRate * min(1., shieldEnergy ? energy / shieldEnergy : 1.));
-			energy -= shieldEnergy * shieldsAdded / overShieldRate;
-			heat += shieldHeat * shieldsAdded / overShieldRate;
-		}
-
-
-	}
-	
 	// Clear your target if it is destroyed. This is only important for NPCs,
 	// because ordinary ships cease to exist once they are destroyed.
 	target = targetShip.lock();
@@ -2543,10 +2520,10 @@ double Ship::AddHull(double rate)
 	return added;
 }
 
-double Ship::AddShieldsOOOC(double rate)
+double Ship::AddSkirmisherShields(double rate)
 {
 	rate *= std::pow(0.9995, attributes.Get("shields"));
-	rate *= std::pow((double)( 5*60 - combatCounter) / 5.0 / 60, 1);
+	rate *= (double)( 5*60 - combatCounter) / 5.0 / 60;
 
 	double added = min(rate, attributes.Get("shields") - shields);
 	shields += added;
@@ -2557,61 +2534,7 @@ double Ship::AddShieldsOOOC(double rate)
 		if(!bay.ship)
 			continue;
 		
-		double myGen = bay.ship->Attributes().Get("oooc shield generation");
-		double myMax = bay.ship->Attributes().Get("shields");
-		bay.ship->shields = min(myMax, bay.ship->shields + myGen);
-		if(rate > 0. && bay.ship->shields < myMax)
-		{
-			double extra = min(myMax - bay.ship->shields, rate);
-			bay.ship->shields += extra;
-			rate -= extra;
-			added += extra;
-		}
-	}
-	return added;
-}
-
-
-
-double Ship::AddShieldsOverclocked(double rate)
-{
-	rate = rate * std::pow(0.9995, attributes.Get("shields"));
-	double added = min(rate, attributes.Get("shields") - shields);
-	shields += added;
-	rate -= added;
-	
-	for(Bay &bay : bays)
-	{
-		if(!bay.ship)
-			continue;
-		
-		//TODO make the overclocking work correctly on carried ships
-		double myGen = bay.ship->Attributes().Get("overclocked shield generation");
-		double myMax = bay.ship->Attributes().Get("shields");
-		bay.ship->shields = min(myMax, bay.ship->shields + myGen);
-		if(rate > 0. && bay.ship->shields < myMax)
-		{
-			double extra = min(myMax - bay.ship->shields, rate);
-			bay.ship->shields += extra;
-			rate -= extra;
-			added += extra;
-		}
-	}
-	return added;
-}
-
-double Ship::AddShieldsOOC(double rate)
-{
-	double added = min(rate, attributes.Get("shields") - shields);
-	shields += added;
-	rate -= added;
-	
-	for(Bay &bay : bays)
-	{
-		if(!bay.ship)
-			continue;
-		
-		double myGen = bay.ship->Attributes().Get("ooc shield generation");
+		double myGen = bay.ship->Attributes().Get("skirmisher shield generation");
 		double myMax = bay.ship->Attributes().Get("shields");
 		bay.ship->shields = min(myMax, bay.ship->shields + myGen);
 		if(rate > 0. && bay.ship->shields < myMax)
