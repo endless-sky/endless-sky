@@ -27,6 +27,7 @@ class Government;
 class Minable;
 class Planet;
 class Ship;
+class Sprite;
 
 
 
@@ -114,6 +115,8 @@ public:
 	
 	// Get the specification of how many asteroids of each type there are.
 	const std::vector<Asteroid> &Asteroids() const;
+	// Get the background haze sprite for this system.
+	const Sprite *Haze() const;
 	
 	// Get the price of the given commodity in this system.
 	int Trade(const std::string &commodity) const;
@@ -165,6 +168,7 @@ private:
 	// proper position before that object is updated).
 	std::vector<StellarObject> objects;
 	std::vector<Asteroid> asteroids;
+	const Sprite *haze;
 	std::vector<FleetProbability> fleets;
 	double habitable = 1000.;
 	double asteroidBelt = 1500.;

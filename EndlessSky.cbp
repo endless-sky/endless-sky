@@ -100,6 +100,8 @@
 		<Unit filename="source/CargoHold.cpp" />
 		<Unit filename="source/CargoHold.h" />
 		<Unit filename="source/ClickZone.h" />
+		<Unit filename="source/CollisionSet.cpp" />
+		<Unit filename="source/CollisionSet.h" />
 		<Unit filename="source/Color.cpp" />
 		<Unit filename="source/Color.h" />
 		<Unit filename="source/Command.cpp" />
@@ -306,6 +308,9 @@
 		<Unit filename="source/UI.h" />
 		<Unit filename="source/Weapon.cpp" />
 		<Unit filename="source/Weapon.h" />
+		<Unit filename="source/WinApp.rc">
+			<Option compilerVar="WINDRES" />
+		</Unit>
 		<Unit filename="source/WrappedText.cpp" />
 		<Unit filename="source/WrappedText.h" />
 		<Unit filename="source/gl_header.h" />

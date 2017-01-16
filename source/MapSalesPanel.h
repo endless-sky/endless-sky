@@ -59,7 +59,6 @@ protected:
 	
 	void DrawKey() const;
 	void DrawPanel() const;
-	void DrawButtons();
 	void DrawInfo() const;
 	
 	bool DrawHeader(Point &corner, const std::string &category);
@@ -83,6 +82,7 @@ protected:
 	double maxScroll = 0.;
 	
 	const std::vector<std::string> &categories;
+	bool onlyShowSoldHere = false;
 	
 	
 private:

@@ -73,27 +73,6 @@ outfit "Triple Plasma Core"
 
 
 
-outfit "Korath Piercer Rack"
-	category "Systems"
-	cost 56000
-	thumbnail "outfit/korath piercer storage"
-	"mass" 2.2
-	"outfit space" -7
-	"piercer capacity" 16
-	ammo "Korath Piercer"
-	description "The Korath Piercer Rack is used to store extra ammunition for Korath Piercer Launchers."
-
-outfit "Korath Mine Rack"
-	category "Systems"
-	cost 31500
-	thumbnail "outfit/korath mine storage"
-	"mass" 2.7
-	"outfit space" -9
-	"minelayer capacity" 9
-	ammo "Korath Mine"
-	description "The Korath Mine Rack is used to store extra ammunition for Korath Minelayers."
-
-
 outfit "Small Heat Shunt"
 	category "Systems"
 	cost 180000

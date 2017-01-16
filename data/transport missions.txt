@@ -262,7 +262,7 @@ mission "Expedition to Hope 1"
 				`	"What sort of research are you doing?"`
 				`	"Sorry, I don't have space for you."`
 					decline
-			`	"You probably know about the supervolcano that forced the evacuation of Hope two decades ago," he says. "My family lived on Hope back then. We want to measure how much ash is still in the air, to see how long it will be before the glaciers recede and the planet is habitable again."`
+			`	"You probably know about the supervolcano that forced the evacuation of Hope some decades ago," he says. "My family lived on Hope back then. We want to measure how much ash is still in the air, to see how long it will be before the glaciers recede and the planet is habitable again."`
 			choice
 				`	"That sounds like a worthy cause. I'd be glad to transport you."`
 					goto yes

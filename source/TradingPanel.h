@@ -26,7 +26,7 @@ class System;
 // will need to select them individually in the outfitter panel.
 class TradingPanel : public Panel {
 public:
-	TradingPanel(PlayerInfo &player);
+	explicit TradingPanel(PlayerInfo &player);
 	~TradingPanel();
 	
 	virtual void Step() override;
