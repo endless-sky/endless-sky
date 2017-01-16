@@ -10,6 +10,9 @@ if 'CPPFLAGS' in os.environ:
 	env.Append(CPPFLAGS = os.environ['CPPFLAGS'])
 if 'LDFLAGS' in os.environ:
 	env.Append(LINKFLAGS = os.environ['LDFLAGS'])
+if 'CPPPATH' in os.environ:
+	env.Append(CPPPATH = os.environ['CPPPATH'])
+
 # The Steam runtime has an out-of-date libstdc++, so link it in statically:
 if 'SCHROOT_CHROOT_NAME' in os.environ and 'steamrt' in os.environ['SCHROOT_CHROOT_NAME']:
 	env.Append(LINKFLAGS = ["-static-libstdc++"])
@@ -43,6 +46,14 @@ env.Append(LIBS = [
 	"openal",
 	"pthread"
 ]);
+# libmad is not in the Steam runtime, so link it statically:
+if 'SCHROOT_CHROOT_NAME' in os.environ and 'steamrt_scout_i386' in os.environ['SCHROOT_CHROOT_NAME']:
+	env.Append(LIBS = File("/usr/lib/i386-linux-gnu/libmad.a"))
+elif 'SCHROOT_CHROOT_NAME' in os.environ and 'steamrt_scout_amd64' in os.environ['SCHROOT_CHROOT_NAME']:
+	env.Append(LIBS = File("/usr/lib/x86_64-linux-gnu/libmad.a"))
+else:
+	env.Append(LIBS = "mad")
+
 
 # Work with clang's static analyzer:
 env["CC"] = os.getenv("CC") or env["CC"]

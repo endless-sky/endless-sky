@@ -32,7 +32,7 @@ class Ship;
 // a government that is particularly repressive of independent pilots.)
 class ShipyardPanel : public ShopPanel {
 public:
-	ShipyardPanel(PlayerInfo &player);
+	explicit ShipyardPanel(PlayerInfo &player);
 	
 	
 protected:

@@ -21,7 +21,7 @@ effect "seeker impact"
 outfit "Pug Zapper"
 	category "Guns"
 	cost 290000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/pug zapper"
 	"mass" 25
 	"outfit space" -25
 	"weapon capacity" -25
@@ -46,7 +46,7 @@ outfit "Pug Zapper"
 outfit "Pug Zapper Turret"
 	category "Turrets"
 	cost 860000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/pug zapper turret"
 	"mass" 66
 	"outfit space" -66
 	"weapon capacity" -66
@@ -71,7 +71,7 @@ outfit "Pug Zapper Turret"
 outfit "Pug Seeker"
 	category "Guns"
 	cost 540000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/pug seeker"
 	"mass" 34
 	"outfit space" -34
 	"weapon capacity" -34
@@ -103,7 +103,7 @@ outfit "Pug Seeker"
 outfit "Pug Anti-Missile"
 	category "Turrets"
 	cost 350000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/pug anti-missile"
 	"mass" 41
 	"outfit space" -41
 	"weapon capacity" -41
@@ -204,7 +204,7 @@ effect "gridfire cloud"
 outfit "Pug Akfar Thruster"
 	category "Engines"
 	"cost" 608000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/pug akfar thruster"
 	"mass" 43
 	"outfit space" -43
 	"engine capacity" -43
@@ -219,7 +219,7 @@ outfit "Pug Akfar Thruster"
 outfit "Pug Akfar Steering"
 	category "Engines"
 	"cost" 472000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/pug akfar steering"
 	"mass" 33
 	"outfit space" -33
 	"engine capacity" -33
@@ -231,7 +231,7 @@ outfit "Pug Akfar Steering"
 outfit "Pug Cormet Thruster"
 	category "Engines"
 	"cost" 1050000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/pug cormet thruster"
 	"mass" 60
 	"outfit space" -60
 	"engine capacity" -60
@@ -246,7 +246,7 @@ outfit "Pug Cormet Thruster"
 outfit "Pug Cormet Steering"
 	category "Engines"
 	"cost" 880000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/pug cormet steering"
 	"mass" 46
 	"outfit space" -46
 	"engine capacity" -46
@@ -258,7 +258,7 @@ outfit "Pug Cormet Steering"
 outfit "Pug Lohmar Thruster"
 	category "Engines"
 	"cost" 1740000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/pug lohmar thruster"
 	"mass" 84
 	"outfit space" -84
 	"engine capacity" -84
@@ -273,7 +273,7 @@ outfit "Pug Lohmar Thruster"
 outfit "Pug Lohmar Steering"
 	category "Engines"
 	"cost" 1580000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/pug lohmar steering"
 	"mass" 64
 	"outfit space" -64
 	"engine capacity" -64
@@ -284,9 +284,10 @@ outfit "Pug Lohmar Steering"
 
 
 outfit "Pug Biodefenses"
+	plural "Pug Biodefenses"
 	category "Hand to Hand"
 	cost 100000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/pug biodefenses"
 	"capture defense" 250
 	"unplunderable" 1
 	description "This defense system is designed to release a suite of toxins that are lethal to human beings (and probably to some other species, as well) but which have no effect at all on the Pug."

@@ -171,6 +171,7 @@ event "initial deployment 1"
 		fleet "Large Southern Merchants" 800
 		fleet "Small Free Worlds" 700
 		fleet "Large Free Worlds" 1100
+		fleet "Human Miners" 5000
 	
 	system "Tania Australis"
 		fleet "Small Northern Merchants" 1400
@@ -240,6 +241,7 @@ event "initial deployment 1"
 		fleet "Small Republic" 500
 		fleet "Large Republic" 600
 		fleet "Navy Surveillance" 2000
+		fleet "Human Miners" 2000
 	planet "New Austria"
 		description `New Austria is a rugged mountain world, full of snow-capped peaks and valleys so deep and so steep that they rarely see sunlight. The few settlements that have been built here were developed for mining sapphires and rubies; the sapphires found in New Austria range from blue to yellow to black to clear in color, and are used both for industrial abrasives and for jewelry.`
 		description `The Navy has recently requisitioned one of the abandoned mining towns and begun refurbishing it for a secure military base, with the mining tunnels used as deep underground bunkers.`
@@ -450,6 +452,7 @@ event "initial deployment 3"
 		fleet "Small Southern Pirates" 5000
 		fleet "Small Free Worlds" 1000
 		fleet "Large Free Worlds" 2000
+		fleet "Human Miners" 3000
 	
 	system "Wei"
 		fleet "Small Southern Merchants" 800
@@ -1481,6 +1484,7 @@ event "initial deployment 4"
 		fleet "Small Southern Pirates" 1000
 		fleet "Large Southern Pirates" 2000
 		fleet "Large Free Worlds" 5000
+		fleet "Human Miners" 3000
 
 
 
@@ -1545,6 +1549,7 @@ event "recapture of Kornephoros"
 		fleet "Large Southern Merchants" 1000
 		fleet "Small Free Worlds" 900
 		fleet "Large Free Worlds" 1700
+		fleet "Human Miners" 3000
 	planet "Clink"
 		description `About a decade ago, a mining corporation from Zug planted a colony on Clink for harvesting some rare earth minerals that are present in this moon's crust due to its unusually high rate of asteroid impacts. The atmosphere here is too thin to breathe without a respirator, and because of the low gravity, the dust raised by the mining operations hangs perpetually in the air.`
 		description `The miners who work here are a tight-knit group, since most of them were part of the original colonization team. They are not particularly open to outsiders, and the facilities here are so rudimentary that they do not even stock fuel for visiting ships.`
@@ -1709,6 +1714,7 @@ event "fw conservatory founded"
 		fleet "Large Southern Pirates" 2400
 		fleet "Small Free Worlds" 1000
 		fleet "Large Free Worlds" 1500
+		fleet "Human Miners" 1600
 	planet Winter
 		description `The dense clouds in Winter's atmosphere block out much of the sunlight, creating a frigid landscape below. The planet was not settled until about a century ago, when a group of investors from Pherkad decided to build a manufacturing center here, rather than trying to find more land on the already overcrowded planet of Solace. Claiming that the industrial emissions of carbon dioxide and other greenhouse gases would eventually warm the planet and turn it into a tropical paradise, they were able to draw enough settlers to keep the factories going.`
 		description `	Winter is home to the Free Worlds Conservatory, a new university that is focused on making terraforming technology and expertise available at a reasonable price, as well as on ecological protection and renewal.`
@@ -1805,6 +1811,7 @@ event "navy occupying the south"
 		fleet "Large Southern Merchants" 4000
 		fleet "Small Republic" 500
 		fleet "Large Republic" 700
+		fleet "Human Miners" 3000
 
 
 
@@ -2092,6 +2099,7 @@ event "liberation of Poisonwood"
 		fleet "Small Southern Pirates" 6000
 		fleet "Small Free Worlds" 700
 		fleet "Small Free Worlds" 1200
+		fleet "Human Miners" 2000
 
 event "Poisonwood reverts to Republic"
 	system Graffias
@@ -2101,6 +2109,7 @@ event "Poisonwood reverts to Republic"
 		fleet "Small Southern Pirates" 4000
 		fleet "Small Free Worlds" 1500
 		fleet "Small Free Worlds" 2600
+		fleet "Human Miners" 2000
 
 event "death of nguyen"
 
@@ -2277,6 +2286,7 @@ event "fw at war with Syndicate"
 			"Free Worlds" -.3
 			"Pirate" -.4
 			"Korath" -.5
+		bribe 0
 	system Rutilicus
 		fleet "Small Southern Merchants" 600
 		fleet "Large Southern Merchants" 2000
@@ -2501,6 +2511,7 @@ event "pug invasion 2"
 		fleet "Large Northern Merchants" 5000
 		fleet "Small Pug" 3000
 		fleet "Large Pug" 7000
+		fleet "Human Miners" 1600
 
 
 
@@ -2557,6 +2568,7 @@ event "pug invasion 4"
 		fleet "Large Core Merchants" 600
 		fleet "Small Pug" 700
 		fleet "Large Pug" 1000
+		fleet "Human Miners" 2000
 
 
 
@@ -2567,6 +2579,7 @@ event "fw syndicate welcoming"
 			"Free Worlds" 0
 			Republic 0
 			"Navy (Oathkeeper)" 0
+		bribe .08
 	system Algenib
 		government "Syndicate (Extremist)"
 		fleet "Small Core Pirates" 1500
@@ -2601,6 +2614,7 @@ event "reconnected delta capricorni"
 		fleet "Large Core Merchants" 3000
 		fleet "Small Pug" 2000
 		fleet "Large Syndicate" 400
+		fleet "Human Miners" 3000
 
 
 
@@ -3011,6 +3025,7 @@ event "fwc defended cebalrai"
 		fleet "Large Free Worlds" 1900
 		fleet "Small Southern Pirates" 3000
 		fleet "Large Southern Pirates" 7000
+		fleet "Human Miners" 3000
 
 
 
@@ -3028,6 +3043,7 @@ event "fwc capture menkent"
 		fleet "Small Free Worlds" 300
 		fleet "Large Free Worlds" 400
 		fleet "Large Republic" 2000
+		fleet "Human Miners" 2000
 	planet "New Austria"
 		description `New Austria is a rugged mountain world, full of snow-capped peaks and valleys so deep and so steep that they rarely see sunlight. The few settlements that have been built here were developed for mining sapphires and rubies; the sapphires found in New Austria range from blue to yellow to black to clear in color, and are used both for industrial abrasives and for jewelry. For centuries the locals have been trying to find a deposit of diamonds, which would sell for much higher prices than sapphires, and local folklore revolves around the prosperity that would come to this world if diamonds were ever discovered.`
 
@@ -3106,6 +3122,7 @@ event "fwc pug invasion"
 		fleet "Large Northern Merchants" 5000
 		fleet "Small Pug" 3000
 		fleet "Large Pug" 7000
+		fleet "Human Miners" 1600
 
 
 
@@ -3134,6 +3151,7 @@ event "fwc navy retakes cebalrai"
 		fleet "Small Republic" 300
 		fleet "Large Republic" 400
 		fleet "Large Free Worlds" 2000
+		fleet "Human Miners" 2000
 
 
 
@@ -3179,6 +3197,7 @@ event "fwc peace with the navy"
 		fleet "Large Northern Merchants" 3000
 		fleet "Small Pug" 800
 		fleet "Large Pug" 1200
+		fleet "Human Miners" 5000
 
 
 
@@ -3259,6 +3278,7 @@ event "fwc reconnect vega"
 		fleet "Large Southern Merchants" 2000
 		fleet "Small Republic" 500
 		fleet "Large Republic" 700
+		fleet "Human Miners" 5000
 
 
 

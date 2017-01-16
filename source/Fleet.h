@@ -58,7 +58,7 @@ public:
 private:
 	class Variant {
 	public:
-		Variant(const DataNode &node);
+		explicit Variant(const DataNode &node);
 		
 		int weight;
 		std::vector<const Ship *> ships;

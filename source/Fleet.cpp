@@ -102,20 +102,33 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 	if(variant.ships.empty())
 		return;
 	
-	// Where this ship can come from depends on whether it is friendly to any
-	// planets in this system and whether it has a jump drive.
-	bool hasJump = variant.ships.front()->Attributes().Get("jump drive");
+	// Where this fleet can come from depends on whether it is friendly to any
+	// planets in this system and whether it has jump drives.
 	vector<const System *> linkVector;
-	bool isWelcomeHere = !system.GetGovernment()->IsEnemy(government);
-	for(const System *neighbor : (hasJump ? system.Neighbors() : system.Links()))
+	// Find out what the "best" jump method the fleet has is. Assume that if the
+	// others don't have that jump method, they are being carried as fighters.
+	// That is, content creators should avoid creating fleets with a mix of jump
+	// drives and hyperdrives.
+	int jumpType = 0;
+	for(const Ship *ship : variant.ships)
+		jumpType = max(jumpType,
+			 ship->Attributes().Get("jump drive") ? 200 :
+			 ship->Attributes().Get("hyperdrive") ? 100 : 0);
+	if(jumpType)
 	{
-		// If this ship is not "welcome" in the current system, prefer to have
-		// it enter from a system that is friendly to it. (This is for realism,
-		// so attack fleets don't come from what ought to be a safe direction.)
-		if(isWelcomeHere || neighbor->GetGovernment()->IsEnemy(government))
-			linkVector.push_back(neighbor);
-		else
-			linkVector.insert(linkVector.end(), 4, neighbor);
+		// Don't try to make a fleet "enter" from another system if none of the
+		// ships have jump drives.
+		bool isWelcomeHere = !system.GetGovernment()->IsEnemy(government);
+		for(const System *neighbor : (jumpType == 200 ? system.Neighbors() : system.Links()))
+		{
+			// If this ship is not "welcome" in the current system, prefer to have
+			// it enter from a system that is friendly to it. (This is for realism,
+			// so attack fleets don't come from what ought to be a safe direction.)
+			if(isWelcomeHere || neighbor->GetGovernment()->IsEnemy(government))
+				linkVector.push_back(neighbor);
+			else
+				linkVector.insert(linkVector.end(), 4, neighbor);
+		}
 	}
 	
 	// Find all the inhabited planets this fleet could take off from.

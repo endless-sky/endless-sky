@@ -49,13 +49,20 @@ namespace {
 		"moderately intimidating",
 		"not to be trifled with",
 		"seasoned fighter",
-		"respected foe",
+		"respected enemy",
 		"force to be reckoned with",
 		"fearsome scrapper",
 		"formidable adversary",
 		"dread warrior",
 		"veteran battle-lord",
-		"terror of the galaxy"
+		"legendary foe",
+		"war-hungry lunatic",
+		"absurdly bloodthirsty",
+		"terror of the galaxy",
+		"inconceivably destructive",
+		"agent of mass extinction",
+		"genocidal maniac",
+		"destroyer of worlds"
 	};
 	
 	vector<pair<int, string>> Match(const PlayerInfo &player, const string &prefix, const string &suffix)
@@ -294,7 +301,7 @@ bool InfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 			else if(plunderAmount > 1)
 			{
 				GetUI()->Push(new Dialog(this, &InfoPanel::DumpPlunder,
-					"How many of the " + selectedPlunder->Name() + " outfits to you want to jettison?",
+					"How many " + selectedPlunder->PluralName() + " do you want to jettison?",
 					plunderAmount));
 			}
 			else if(commodities)
@@ -331,7 +338,7 @@ bool InfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 
 
 
-bool InfoPanel::Click(int x, int y)
+bool InfoPanel::Click(int x, int y, int clicks)
 {
 	if(shipIt == player.Ships().end())
 		return true;
@@ -346,7 +353,7 @@ bool InfoPanel::Click(int x, int y)
 		if(hover >= 0 && (**shipIt).GetSystem() == player.GetSystem() && !(**shipIt).IsDisabled())
 			selected = hover;
 	}
-	else if(canEdit && (shift || control || hover != previousSelected))
+	else if(canEdit && (shift || control || clicks < 2))
 	{
 		// Only allow changing your flagship when landed.
 		if(hover >= 0)
@@ -901,7 +908,8 @@ void InfoPanel::DrawCargo(const Rectangle &bounds)
 			
 			string number = to_string(it.second);
 			Point numberPos(pos.X() + size.X() - font.Width(number), pos.Y());
-			font.Draw(it.first->Name(), pos, dim);
+			bool isSingular = (it.second == 1 || it.first->Get("installable") < 0.);
+			font.Draw(isSingular ? it.first->Name() : it.first->PluralName(), pos, dim);
 			font.Draw(number, numberPos, bright);
 			pos.Y() += size.Y();
 			
