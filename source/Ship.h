@@ -33,6 +33,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 class DataNode;
 class DataWriter;
 class Government;
+class Minable;
 class Phrase;
 class Planet;
 class Projectile;
@@ -150,7 +151,7 @@ public:
 	// Move this ship. A ship may create effects as it moves, in particular if
 	// it is in the process of blowing up. If this returns false, the ship
 	// should be deleted.
-	bool Move(std::list<Effect> &effects, std::list<Flotsam> &flotsam);
+	bool Move(std::list<Effect> &effects, std::list<std::shared_ptr<Flotsam>> &flotsam);
 	// Launch any ships that are ready to launch.
 	void Launch(std::list<std::shared_ptr<Ship>> &ships);
 	// Check if this ship is boarding another ship. If it is, it either plunders
@@ -312,6 +313,9 @@ public:
 	const StellarObject *GetTargetPlanet() const;
 	const System *GetTargetSystem() const;
 	const Planet *GetDestination() const;
+	// Mining target.
+	std::shared_ptr<Minable> GetTargetAsteroid() const;
+	std::shared_ptr<Flotsam> GetTargetFlotsam() const;
 	
 	// Set this ship's targets.
 	void SetTargetShip(const std::shared_ptr<Ship> &ship);
@@ -319,6 +323,9 @@ public:
 	void SetTargetPlanet(const StellarObject *object);
 	void SetTargetSystem(const System *system);
 	void SetDestination(const Planet *planet);
+	// Mining target.
+	void SetTargetAsteroid(const std::shared_ptr<Minable> &asteroid);
+	void SetTargetFlotsam(const std::shared_ptr<Flotsam> &flotsam);
 	
 	// Manage escorts. When you set this ship's parent, it will automatically
 	// register itself as an escort of that ship, and unregister itself from any
@@ -400,7 +407,7 @@ private:
 	const Outfit *explosionWeapon = nullptr;
 	std::map<const Outfit *, int> outfits;
 	CargoHold cargo;
-	std::list<Flotsam> jettisoned;
+	std::list<std::shared_ptr<Flotsam>> jettisoned;
 	
 	std::vector<Bay> bays;
 	
@@ -448,6 +455,8 @@ private:
 	const StellarObject *targetPlanet = nullptr;
 	const System *targetSystem = nullptr;
 	const Planet *destination = nullptr;
+	std::weak_ptr<Minable> targetAsteroid;
+	std::weak_ptr<Flotsam> targetFlotsam;
 	
 	// Links between escorts and parents.
 	std::vector<std::weak_ptr<const Ship>> escorts;

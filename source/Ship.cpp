@@ -689,7 +689,7 @@ const Command &Ship::Commands() const
 // Move this ship. A ship may create effects as it moves, in particular if
 // it is in the process of blowing up. If this returns false, the ship
 // should be deleted.
-bool Ship::Move(list<Effect> &effects, list<Flotsam> &flotsam)
+bool Ship::Move(list<Effect> &effects, list<shared_ptr<Flotsam>> &flotsam)
 {
 	// Check if this ship has been in a different system from the player for so
 	// long that it should be "forgotten." Also eliminate ships that have no
@@ -725,7 +725,7 @@ bool Ship::Move(list<Effect> &effects, list<Flotsam> &flotsam)
 	// Jettisoned cargo effects (only for ships in the current system).
 	if(!jettisoned.empty() && !forget)
 	{
-		jettisoned.front().Place(*this);
+		jettisoned.front()->Place(*this);
 		flotsam.splice(flotsam.end(), jettisoned, jettisoned.begin());
 	}
 	
@@ -844,8 +844,8 @@ bool Ship::Move(list<Effect> &effects, list<Flotsam> &flotsam)
 					Jettison(it.first, Random::Binomial(it.second, .25));
 				for(const auto &it : cargo.Outfits())
 					Jettison(it.first, Random::Binomial(it.second, .25));
-				for(Flotsam &it : jettisoned)
-					it.Place(*this);
+				for(shared_ptr<Flotsam> &it : jettisoned)
+					it->Place(*this);
 				flotsam.splice(flotsam.end(), jettisoned);
 			}
 			energy = 0.;
@@ -2166,7 +2166,7 @@ void Ship::Jettison(const string &commodity, int tons)
 	
 	static const int perBox = 5;
 	for( ; tons >= perBox; tons -= perBox)
-		jettisoned.emplace_back(commodity, perBox);
+		jettisoned.emplace_back(new Flotsam(commodity, perBox));
 }
 
 
@@ -2187,7 +2187,7 @@ void Ship::Jettison(const Outfit *outfit, int count)
 	const int perBox = (mass <= 0.) ? count : (mass > 5.) ? 1 : static_cast<int>(5. / mass);
 	while(count > 0)
 	{
-		jettisoned.emplace_back(outfit, (perBox < count) ? perBox : count);
+		jettisoned.emplace_back(new Flotsam(outfit, (perBox < count) ? perBox : count));
 		count -= perBox;
 	}
 }
@@ -2344,6 +2344,21 @@ const Planet *Ship::GetDestination() const
 
 
 
+// Mining target.
+shared_ptr<Minable> Ship::GetTargetAsteroid() const
+{
+	return targetAsteroid.lock();
+}
+
+
+
+shared_ptr<Flotsam> Ship::GetTargetFlotsam() const
+{
+	return targetFlotsam.lock();
+}
+
+
+
 // Set this ship's targets.
 void Ship::SetTargetShip(const shared_ptr<Ship> &ship)
 {
@@ -2379,6 +2394,21 @@ void Ship::SetTargetSystem(const System *system)
 void Ship::SetDestination(const Planet *planet)
 {
 	destination = planet;
+}
+
+
+
+// Mining target.
+void Ship::SetTargetAsteroid(const shared_ptr<Minable> &asteroid)
+{
+	targetAsteroid = asteroid;
+}
+
+
+
+void Ship::SetTargetFlotsam(const shared_ptr<Flotsam> &flotsam)
+{
+	targetFlotsam = flotsam;
 }
 
 

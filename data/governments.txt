@@ -32,6 +32,14 @@ government "Bounty Hunter"
 	"fine" 0
 	"hostile hail" "hostile bounty hunter"
 
+government "Coalition"
+	swizzle 5
+	color 1 .6 .7
+	language "Coalition"
+	"player reputation" 1
+	"attitude toward"
+		"Heliarch" 1
+
 government "Deep"
 	swizzle 0
 	"player reputation" -1000
@@ -93,6 +101,15 @@ government "Hai (Unfettered)"
 	"bribe" .02
 	"fine" 0
 	"hostile hail" "hostile unfettered"
+
+government "Heliarch"
+	swizzle 0
+	color 1 .8 .5
+	"player reputation" 1
+	"friendly hail" "friendly heliarch"
+	"attitude toward"
+		"Quarg" -.01
+		"Coalition" 1
 
 government "Independent"
 	swizzle 6
@@ -200,6 +217,7 @@ government "Navy (Oathkeeper)"
 		"Pirate" -.3
 		"Kor Sestor" -.1
 		"Kor Mereti" -.1
+		"Navy Intelligence" 1
 	"friendly hail" "friendly navy"
 	"hostile hail" "hostile navy"
 
@@ -279,6 +297,7 @@ government "Republic"
 		"Militia" .1
 		"Target: Militia" .1
 		"Pirate" -.3
+		"Navy Intelligence" 1
 		"Navy (Oathkeeper)" 1
 		"Neutral" .1
 	"friendly hail" "friendly navy"

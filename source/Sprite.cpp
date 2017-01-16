@@ -132,7 +132,14 @@ Point Sprite::Center() const
 
 uint32_t Sprite::Texture(int frame) const
 {
-	if(Screen::IsHighResolution() && !textures2x.empty())
+	return Texture(frame, Screen::IsHighResolution());
+}
+
+
+
+uint32_t Sprite::Texture(int frame, bool isHighDPI) const
+{
+	if(isHighDPI && !textures2x.empty())
 		return textures2x[frame % textures2x.size()];
 	
 	if(textures.empty())

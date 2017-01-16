@@ -37,6 +37,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "System.h"
 #include "UI.h"
 
+#include <algorithm>
 #include <ctime>
 #include <sstream>
 
@@ -81,6 +82,7 @@ void PlayerInfo::New()
 	SetPlanet(GameData::Start().GetPlanet());
 	accounts = GameData::Start().GetAccounts();
 	GameData::Start().GetConditions().Apply(conditions);
+	UpdateAutoConditions();
 	
 	// Generate missions that will be available on the first day.
 	CreateMissions();
@@ -113,11 +115,15 @@ void PlayerInfo::Load(const string &path)
 		else if(child.Token(0) == "date" && child.Size() >= 4)
 			date = Date(child.Value(1), child.Value(2), child.Value(3));
 		else if(child.Token(0) == "system" && child.Size() >= 2)
-			system = GameData::Systems().Get(child.Token(1));
+			system = GameData::Systems().Find(child.Token(1));
 		else if(child.Token(0) == "planet" && child.Size() >= 2)
-			planet = GameData::Planets().Get(child.Token(1));
+			planet = GameData::Planets().Find(child.Token(1));
 		else if(child.Token(0) == "travel" && child.Size() >= 2)
-			travelPlan.push_back(GameData::Systems().Get(child.Token(1)));
+		{
+			const System *next = GameData::Systems().Find(child.Token(1));
+			if(next)
+				travelPlan.push_back(next);
+		}
 		else if(child.Token(0) == "reputation with")
 		{
 			for(const DataNode &grand : child)
@@ -128,9 +134,9 @@ void PlayerInfo::Load(const string &path)
 		else if(child.Token(0) == "account")
 			accounts.Load(child);
 		else if(child.Token(0) == "visited" && child.Size() >= 2)
-			Visit(GameData::Systems().Get(child.Token(1)));
+			Visit(GameData::Systems().Find(child.Token(1)));
 		else if(child.Token(0) == "visited planet" && child.Size() >= 2)
-			Visit(GameData::Planets().Get(child.Token(1)));
+			Visit(GameData::Planets().Find(child.Token(1)));
 		else if(child.Token(0) == "destroyed" && child.Size() >= 2)
 			destroyedPersons.push_back(GameData::Persons().Get(child.Token(1)));
 		else if(child.Token(0) == "cargo")
@@ -155,9 +161,13 @@ void PlayerInfo::Load(const string &path)
 		{
 			for(const DataNode &grand : child)
 				if(grand.Size() >= 2)
-					harvested.insert(make_pair(
-						GameData::Systems().Get(grand.Token(0)),
-						GameData::Outfits().Get(grand.Token(1))));
+				{
+					auto item = make_pair(
+						GameData::Systems().Find(grand.Token(0)),
+						GameData::Outfits().Get(grand.Token(1)));
+					if(item.first)
+						harvested.insert(item);
+				}
 		}
 		else if(child.Token(0) == "mission")
 		{
@@ -215,6 +225,8 @@ void PlayerInfo::Load(const string &path)
 			ships.back()->FinishLoading();
 			ships.back()->SetIsYours();
 		}
+		else if(child.Token(0) == "groups" && child.Size() >= 2 && !ships.empty())
+			groups[ships.back().get()] = child.Value(1);
 	}
 	// Based on the ships that were loaded, calculate the player's capacity for
 	// cargo and passengers.
@@ -351,7 +363,11 @@ void PlayerInfo::ApplyChanges()
 	// SetDate() clears any bribes from yesterday, so restore any auto-clearance.
 	for(const Mission &mission : Missions())
 		if(mission.ClearanceMessage() == "auto")
+		{
 			mission.Destination()->Bribe(mission.HasFullClearance());
+			for(const Planet *planet : mission.Stopovers())
+				planet->Bribe(mission.HasFullClearance());
+		}
 	if(system)
 		GameData::GetPolitics().Bribe(system->GetGovernment());
 	
@@ -377,8 +393,9 @@ void PlayerInfo::ApplyChanges()
 		if(it->first.compare(0, prefix.length(), prefix))
 			break;
 		
-		const Planet *planet = GameData::Planets().Get(it->first.substr(prefix.length()));
-		GameData::GetPolitics().DominatePlanet(planet);
+		const Planet *planet = GameData::Planets().Find(it->first.substr(prefix.length()));
+		if(planet)
+			GameData::GetPolitics().DominatePlanet(planet);
 	}
 }
 
@@ -934,6 +951,9 @@ void PlayerInfo::Land(UI *ui)
 	for(const auto &it : lostCargo)
 		AdjustBasis(it.first, -(costBasis[it.first] * it.second) / (cargo.Get(it.first) + it.second));
 	
+	// Bring auto conditions up-to-date for missions to check your current status.
+	UpdateAutoConditions();
+	
 	// Check for missions that are completed.
 	auto mit = missions.begin();
 	while(mit != missions.end())
@@ -1342,7 +1362,6 @@ Mission *PlayerInfo::BoardingMission(const shared_ptr<Ship> &ship)
 		if(!it.second.IsAtLocation(location))
 			continue;
 		
-		conditions["random"] = Random::Int(100);
 		if(it.second.CanOffer(*this))
 		{
 			boardingMissions.push_back(it.second.Instantiate(*this));
@@ -1399,7 +1418,7 @@ void PlayerInfo::MissionCallback(int response)
 	
 	Mission &mission = missionList.front();
 	
-	shouldLaunch = Conversation::RequiresLaunch(response);
+	shouldLaunch |= Conversation::RequiresLaunch(response);
 	if(response == Conversation::ACCEPT || response == Conversation::LAUNCH)
 	{
 		bool shouldAutosave = mission.RecommendsAutosave();
@@ -1469,7 +1488,11 @@ void PlayerInfo::HandleEvent(const ShipEvent &event, UI *ui)
 	// Combat rating increases when you disable an enemy ship.
 	if(event.ActorGovernment()->IsPlayer())
 		if((event.Type() & ShipEvent::DISABLE) && event.Target())
-			conditions["combat rating"] += (event.Target()->Cost() + 250000) / 500000;
+		{
+			int &rating = conditions["combat rating"];
+			static const int64_t maxRating = 2000000000;
+			rating = min(maxRating, rating + (event.Target()->Cost() + 250000) / 500000);
+		}
 	
 	for(Mission &mission : missions)
 		mission.Do(event, *this, ui);
@@ -1618,7 +1641,7 @@ void PlayerInfo::Visit(const System *system)
 // Mark the given system as visited, and mark all its neighbors as seen.
 void PlayerInfo::Visit(const Planet *planet)
 {
-	if(!planet->TrueName().empty())
+	if(planet && !planet->TrueName().empty())
 		visitedPlanets.insert(planet);
 }
 
@@ -1627,18 +1650,28 @@ void PlayerInfo::Visit(const Planet *planet)
 // Mark a system as unvisited, even if visited previously.
 void PlayerInfo::Unvisit(const System *system)
 {
+	if(!system)
+		return;
+	
 	auto it = visitedSystems.find(system);
 	if(it != visitedSystems.end())
-	{
 		visitedSystems.erase(it);
-		for(const StellarObject &object : system->Objects())
-			if(object.GetPlanet())
-			{
-				auto it2 = visitedPlanets.find(object.GetPlanet());
-				if(it2 != visitedPlanets.end())
-					visitedPlanets.erase(it2);
-			}
-	}
+	
+	for(const StellarObject &object : system->Objects())
+		if(object.GetPlanet())
+			Unvisit(object.GetPlanet());
+}
+
+
+
+void PlayerInfo::Unvisit(const Planet *planet)
+{
+	if(!planet)
+		return;
+	
+	auto it = visitedPlanets.find(planet);
+	if(it != visitedPlanets.end())
+		visitedPlanets.erase(it);
 }
 
 
@@ -1712,6 +1745,143 @@ void PlayerInfo::SelectNext()
 
 
 
+// Escorts currently selected for giving orders.
+const vector<weak_ptr<Ship>> &PlayerInfo::SelectedShips() const
+{
+	return selectedShips;
+}
+
+
+
+// Select any player ships in the given box or list. Return true if any were
+// selected, so we know not to search further for a match.
+bool PlayerInfo::SelectShips(const Rectangle &box, bool hasShift)
+{
+	// If shift is not held down, replace the current selection.
+	if(!hasShift)
+		selectedShips.clear();
+	// If shift is not held, the first ship in the box will also become the
+	// player's flagship's target.
+	bool first = !hasShift;
+	
+	bool matched = false;
+	for(const shared_ptr<Ship> &ship : ships)
+		if(!ship->IsParked() && ship->GetSystem() == system && ship.get() != Flagship()
+				&& box.Contains(ship->Position()))
+		{
+			matched = true;
+			SelectShip(ship, &first);
+		}
+	return matched;
+}
+
+
+
+bool PlayerInfo::SelectShips(const vector<const Ship *> &stack, bool hasShift)
+{
+	// If shift is not held down, replace the current selection.
+	if(!hasShift)
+		selectedShips.clear();
+	// If shift is not held, the first ship in the stack will also become the
+	// player's flagship's target.
+	bool first = !hasShift;
+	
+	// Loop through all the player's ships and check which of them are in the
+	// given stack.
+	bool matched = false;
+	for(const shared_ptr<Ship> &ship : ships)
+	{
+		auto it = find(stack.begin(), stack.end(), ship.get());
+		if(it != stack.end())
+		{
+			matched = true;
+			SelectShip(ship, &first);
+		}
+	}
+	return matched;
+}
+
+
+
+void PlayerInfo::SelectShip(const Ship *ship, bool hasShift)
+{
+	// If shift is not held down, replace the current selection.
+	if(!hasShift)
+		selectedShips.clear();
+	
+	bool first = !hasShift;
+	for(const shared_ptr<Ship> &it : ships)
+		if(it.get() == ship)
+			SelectShip(it, &first);
+}
+
+
+
+void PlayerInfo::SelectGroup(int group, bool hasShift)
+{
+	int bit = (1 << group);
+	// If the shift key is held down and all the ships in the given group are
+	// already selected, deselect them all. Otherwise, select them all. The easy
+	// way to do this is first to remove all the ships that match in one pass,
+	// then add them in a subsequent pass if any were not selected.
+	const Ship *oldTarget = nullptr;
+	if(Flagship() && Flagship()->GetTargetShip())
+	{
+		oldTarget = Flagship()->GetTargetShip().get();
+		Flagship()->SetTargetShip(shared_ptr<Ship>());
+	}
+	if(hasShift)
+	{
+		bool allWereSelected = true;
+		for(const shared_ptr<Ship> &ship : ships)
+			if(groups[ship.get()] & bit)
+			{
+				auto it = selectedShips.begin();
+				for( ; it != selectedShips.end(); ++it)
+					if(it->lock() == ship)
+						break;
+				if(it != selectedShips.end())
+					selectedShips.erase(it);
+				else
+					allWereSelected = false;
+			}
+		if(allWereSelected)
+			return;
+	}
+	else
+		selectedShips.clear();
+	
+	// Now, go through and add any ships in the group to the selection. Even if
+	// shift is held they won't be added twice, because we removed them above.
+	for(const shared_ptr<Ship> &ship : ships)
+		if(groups[ship.get()] & bit)
+		{
+			selectedShips.push_back(ship);
+			if(ship.get() == oldTarget)
+				Flagship()->SetTargetShip(ship);
+		}
+}
+
+
+
+void PlayerInfo::SetGroup(int group)
+{
+	int bit = (1 << group);
+	int mask = ~bit;
+	// First, remove any of your ships that are in the group.
+	for(const shared_ptr<Ship> &ship : ships)
+		groups[ship.get()] &= mask;
+	// Then, add all the currently selected ships to the group.
+	for(const weak_ptr<Ship> &ptr : selectedShips)
+	{
+		shared_ptr<Ship> ship = ptr.lock();
+		if(ship)
+			groups[ship.get()] |= bit;
+	}
+}
+
+
+
 // Keep track of any outfits that you have sold since landing. These will be
 // available to buy back until you take off.
 int PlayerInfo::Stock(const Outfit *outfit) const
@@ -1781,6 +1951,46 @@ const set<pair<const System *, const Outfit *>> &PlayerInfo::Harvested() const
 
 
 
+// Get what coloring is currently selected in the map.
+int PlayerInfo::MapColoring() const
+{
+	return mapColoring;
+}
+
+
+
+// Set what the map is being colored by.
+void PlayerInfo::SetMapColoring(int index)
+{
+	mapColoring = index;
+}
+
+
+
+// Get the map zoom level.
+int PlayerInfo::MapZoom() const
+{
+	return mapZoom;
+}
+
+
+
+// Set the map zoom level.
+void PlayerInfo::SetMapZoom(int level)
+{
+	mapZoom = level;
+}
+
+
+
+// Get the set of collapsed categories for the named panel.
+set<string> &PlayerInfo::Collapsed(const string &name)
+{
+	return collapsed[name];
+}
+
+
+
 // Update the conditions that reflect the current status of the player.
 void PlayerInfo::UpdateAutoConditions()
 {
@@ -1810,7 +2020,6 @@ void PlayerInfo::UpdateAutoConditions()
 // New missions are generated each time you land on a planet.
 void PlayerInfo::CreateMissions()
 {
-	UpdateAutoConditions();
 	boardingMissions.clear();
 	boardingShip.reset();
 	
@@ -1824,7 +2033,6 @@ void PlayerInfo::CreateMissions()
 		if(skipJobs && it.second.IsAtLocation(Mission::JOB))
 			continue;
 		
-		conditions["random"] = Random::Int(100);
 		if(it.second.CanOffer(*this))
 		{
 			list<Mission> &missions =
@@ -1912,7 +2120,12 @@ void PlayerInfo::Save(const string &path) const
 		
 	// Save all the data for all the player's ships.
 	for(const shared_ptr<Ship> &ship : ships)
+	{
 		ship->Save(out);
+		auto it = groups.find(ship.get());
+		if(it != groups.end() && it->second)
+			out.Write("groups", it->second);
+	}
 	
 	// Save accounting information, cargo, and cargo cost bases.
 	cargo.Save(out);
@@ -2036,40 +2249,23 @@ void PlayerInfo::Save(const string &path) const
 
 
 
-// Get what coloring is currently selected in the map.
-int PlayerInfo::MapColoring() const
+// Helper function to update the ship selection.
+void PlayerInfo::SelectShip(const shared_ptr<Ship> &ship, bool *first)
 {
-	return mapColoring;
-}
-
-
-
-// Set what the map is being colored by.
-void PlayerInfo::SetMapColoring(int index)
-{
-	mapColoring = index;
-}
-
-
-
-// Get the map zoom level.
-int PlayerInfo::MapZoom() const
-{
-	return mapZoom;
-}
-
-
-
-// Set the map zoom level.
-void PlayerInfo::SetMapZoom(int level)
-{
-	mapZoom = level;
-}
-
-
-
-// Get the set of collapsed categories for the named panel.
-set<string> &PlayerInfo::Collapsed(const string &name)
-{
-	return collapsed[name];
+	// Make sure this ship is not already selected.
+	auto it = selectedShips.begin();
+	for( ; it != selectedShips.end(); ++it)
+		if(it->lock() == ship)
+			break;
+	if(it == selectedShips.end())
+	{
+		// This ship is not yet selected.
+		selectedShips.push_back(ship);
+		Ship *flagship = Flagship();
+		if(*first && flagship && ship.get() != flagship)
+		{
+			flagship->SetTargetShip(ship);
+			*first = false;
+		}
+	}
 }

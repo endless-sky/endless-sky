@@ -57,7 +57,7 @@ outfit "Bombardment Turret"
 		"firing heat" 14
 		"shield damage" 22
 		"hull damage" 25
-	description `A Bombarment Turret is not one of the most dangerous Heliarch weapons, but it has the advantage that it can hit targets a considerable distance away.`
+	description `A Bombardment Turret is not one of the most dangerous Heliarch weapons, but it has the advantage that it can hit targets a considerable distance away.`
 
 effect "bombardment impact"
 	sprite "effect/bombardment impact"
@@ -85,7 +85,7 @@ outfit "Finisher Pod"
 			"no repeat"
 		sound "torpedo"
 		ammo "Finisher Torpedo"
-		icon "icon/torpedo"
+		icon "icon/finisher"
 		"fire effect" "finisher sparks" 8
 		"hit effect" "finisher impact" 2
 		"hit effect" "finisher fragment" 12

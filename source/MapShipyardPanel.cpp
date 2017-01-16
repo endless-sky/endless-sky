@@ -39,10 +39,11 @@ MapShipyardPanel::MapShipyardPanel(PlayerInfo &player)
 
 
 
-MapShipyardPanel::MapShipyardPanel(const MapPanel &panel)
+MapShipyardPanel::MapShipyardPanel(const MapPanel &panel, bool onlyHere)
 	: MapSalesPanel(panel, false)
 {
 	Init();
+	onlyShowSoldHere = onlyHere;
 }
 
 
@@ -185,6 +186,8 @@ void MapShipyardPanel::DrawItems()
 						break;
 					}
 			}
+			if(!isForSale && onlyShowSoldHere)
+				continue;
 			
 			Draw(corner, ship->GetSprite(), isForSale, ship == selected, ship->ModelName(), price, info);
 			list.push_back(ship);

@@ -101,6 +101,7 @@ namespace {
 	
 	map<string, string> tooltips;
 	map<string, string> helpMessages;
+	map<string, string> plugins;
 	
 	SpriteQueue spriteQueue;
 	
@@ -632,6 +633,13 @@ const StarField &GameData::Background()
 
 
 
+void GameData::SetHaze(const Sprite *sprite)
+{
+	background.SetHaze(sprite);
+}
+
+
+
 const string &GameData::Tooltip(const string &label)
 {
 	static const string EMPTY;
@@ -663,6 +671,13 @@ const map<string, string> &GameData::HelpTemplates()
 
 
 
+const map<string, string> &GameData::PluginAboutText()
+{
+	return plugins;
+}
+
+
+
 void GameData::LoadSources()
 {
 	sources.clear();
@@ -680,6 +695,27 @@ void GameData::LoadSources()
 	{
 		if(Files::Exists(path + "data") || Files::Exists(path + "images") || Files::Exists(path + "sounds"))
 			sources.push_back(path);
+	}
+	
+	// Load the plugin data, if any.
+	for(auto it = sources.begin() + 1; it != sources.end(); ++it)
+	{
+		// Get the name of the folder containing the plugin.
+		size_t pos = it->rfind('/', it->length() - 2) + 1;
+		string name = it->substr(pos, it->length() - 1 - pos);
+		
+		// Load the about text and the icon, if any.
+		plugins[name] = Files::Read(*it + "about.txt");
+		
+		if(Files::Exists(*it + "icon.png"))
+			spriteQueue.Add(name, *it + "icon.png");
+		else if(Files::Exists(*it + "icon.jpg"))
+			spriteQueue.Add(name, *it + "icon.jpg");
+		
+		if(Files::Exists(*it + "icon@2x.png"))
+			spriteQueue.Add(name, *it + "icon@2x.png");
+		else if(Files::Exists(*it + "icon@2x.jpg"))
+			spriteQueue.Add(name, *it + "icon@2x.jpg");
 	}
 }
 

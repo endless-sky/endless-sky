@@ -1845,6 +1845,7 @@ system Achernar
 	fleet "Large Syndicate" 600
 	fleet "Small Syndicate" 500
 	fleet "Small Core Merchants" 300
+	fleet "Human Miners" 3000
 	object
 		sprite star/g5
 		period 10
@@ -1916,6 +1917,7 @@ system Acrux
 	fleet "Large Militia" 1200
 	fleet "Small Southern Pirates" 1000
 	fleet "Large Southern Pirates" 2400
+	fleet "Human Miners" 5000
 	object
 		sprite star/k0
 		distance 17.9429
@@ -2058,6 +2060,7 @@ system "Al Dhanab"
 	fleet "Large Syndicate" 800
 	fleet "Small Core Pirates" 2000
 	fleet "Large Core Pirates" 3000
+	fleet "Human Miners" 2000
 	object
 		sprite star/g0
 		period 10
@@ -2124,6 +2127,7 @@ system Albaldah
 	fleet "Small Militia" 1400
 	fleet "Large Militia" 2400
 	fleet Quarg 3000
+	fleet "Human Miners" 3000
 	object
 		sprite star/k5
 		distance 42.7246
@@ -2425,6 +2429,7 @@ system Aldhibain
 	fleet "Large Militia" 1000
 	fleet "Small Southern Pirates" 800
 	fleet "Large Southern Pirates" 2000
+	fleet "Human Miners" 3000
 	object
 		sprite star/k0
 		period 10
@@ -2731,6 +2736,7 @@ system Alheka
 	fleet "Large Republic" 4000
 	fleet "Small Northern Pirates" 2000
 	fleet "Large Northern Pirates" 2000
+	fleet "Human Miners" 3000
 	object
 		sprite star/g0
 		period 10
@@ -2899,6 +2905,7 @@ system Alkaid
 	fleet "Large Southern Merchants" 5000
 	fleet "Small Southern Pirates" 2400
 	fleet "Large Southern Pirates" 5000
+	fleet "Human Miners" 3000
 	object
 		sprite star/g0
 		period 10
@@ -3075,6 +3082,7 @@ system Alnair
 	fleet "Large Core Pirates" 4000
 	fleet "Small Syndicate" 4000
 	fleet "Large Syndicate" 6000
+	fleet "Human Miners" 2000
 	object
 		sprite star/m4
 		period 10
@@ -3590,6 +3598,7 @@ system Alphard
 	fleet "Small Deep" 3000
 	fleet "Small Republic" 2400
 	fleet "Large Republic" 6000
+	fleet "Human Miners" 2000
 	object
 		sprite star/g5
 		distance 41.5307
@@ -3823,6 +3832,7 @@ system Aludra
 	fleet "Large Deep" 1000
 	fleet "Small Northern Merchants" 300
 	fleet "Large Northern Merchants" 900
+	fleet "Human Miners" 5000
 	object
 		sprite star/k0
 		period 10
@@ -4183,6 +4193,7 @@ system Arcturus
 	fleet "Small Southern Merchants" 700
 	fleet "Large Southern Merchants" 3000
 	fleet "Small Militia" 10000
+	fleet "Human Miners" 5000
 	object
 		sprite star/k5
 		period 10
@@ -4295,6 +4306,7 @@ system Ascella
 	fleet "Large Southern Merchants" 1000
 	fleet "Small Militia" 4000
 	fleet "Small Southern Pirates" 3000
+	fleet "Human Miners" 1600
 	object
 		sprite star/k5
 		distance 43.5
@@ -4476,6 +4488,7 @@ system Atria
 	fleet "Small Southern Pirates" 3000
 	fleet "Large Southern Pirates" 5000
 	fleet "Small Militia" 8000
+	fleet "Human Miners" 2000
 	object
 		sprite star/m0
 		period 10
@@ -4988,6 +5001,7 @@ system "Beta Lupi"
 	fleet "Large Southern Pirates" 2500
 	fleet "Small Militia" 2000
 	fleet "Large Militia" 5000
+	fleet "Human Miners" 3000
 	object
 		sprite star/g5
 		period 10
@@ -5043,6 +5057,7 @@ system Betelgeuse
 	fleet "Small Republic" 2000
 	fleet "Large Republic" 3000
 	fleet "Large Northern Pirates" 4000
+	fleet "Human Miners" 3000
 	object
 		sprite star/g0
 		period 10
@@ -5297,6 +5312,7 @@ system Boral
 	fleet "Large Northern Merchants" 8000
 	fleet "Small Southern Pirates" 1500
 	fleet "Small Militia" 10000
+	fleet "Human Miners" 2000
 	object
 		sprite star/m0
 		period 10
@@ -5692,6 +5708,7 @@ system Capella
 	fleet "Large Northern Merchants" 800
 	fleet "Small Republic" 800
 	fleet "Large Republic" 1400
+	fleet "Human Miners" 2000
 	object
 		sprite star/k0
 		period 10
@@ -5758,6 +5775,7 @@ system Caph
 	fleet "Small Core Merchants" 500
 	fleet "Large Core Merchants" 600
 	fleet "Small Syndicate" 1600
+	fleet "Human Miners" 2000
 	object
 		sprite star/g0
 		period 10
@@ -6134,6 +6152,7 @@ system Chimitarp
 	trade Plastic 432
 	fleet "Small Kor Mereti" 1000
 	fleet "Large Kor Mereti" 3600
+	fleet "Kor Mereti Miners" 2000
 	object
 		sprite star/k0
 		distance 53.205
@@ -6435,6 +6454,7 @@ system "Cor Caroli"
 	fleet "Small Southern Pirates" 2000
 	fleet "Small Republic" 10000
 	fleet "Small Militia" 7000
+	fleet "Human Miners" 3000
 	object
 		sprite star/g0
 		period 10
@@ -6659,6 +6679,7 @@ system Danoa
 	fleet "Small Northern Pirates" 5000
 	fleet "Large Northern Pirates" 16000
 	fleet "Large Republic" 30000
+	fleet "Human Miners" 1600
 	object
 		sprite star/m4
 		period 10
@@ -6856,6 +6877,7 @@ system "Delta Capricorni"
 	fleet "Large Core Merchants" 800
 	fleet "Small Syndicate" 2000
 	fleet "Small Core Pirates" 4000
+	fleet "Human Miners" 3000
 	object
 		sprite star/g5
 		distance 29.7539
@@ -6918,6 +6940,7 @@ system "Delta Sagittarii"
 	fleet "Large Southern Merchants" 3000
 	fleet "Small Southern Pirates" 3000
 	fleet "Small Militia" 7000
+	fleet "Human Miners" 3000
 	object
 		sprite star/k5
 		period 10
@@ -6982,6 +7005,7 @@ system "Delta Velorum"
 	fleet "Small Southern Pirates" 2000
 	fleet "Large Southern Pirates" 5000
 	fleet "Small Republic" 12000
+	fleet "Human Miners" 2000
 	object
 		sprite star/g0
 		period 10
@@ -7317,6 +7341,7 @@ system Dschubba
 	fleet "Large Southern Pirates" 4000
 	fleet "Small Militia" 3000
 	fleet "Large Militia" 5000
+	fleet "Human Miners" 2000
 	object
 		sprite star/k5
 		distance 18.9364
@@ -8412,8 +8437,8 @@ system Eshkoshtar
 	asteroids "small metal" 12 4.5
 	asteroids "medium metal" 53 2.31
 	asteroids "large metal" 155 3.51
-	minables aluminum 8 3.97026
-	minables silicon 5 3.83848
+	minables aluminum 38 3.97026
+	minables silicon 25 3.83848
 	trade Clothing 248
 	trade Electronics 715
 	trade Equipment 703
@@ -8427,6 +8452,7 @@ system Eshkoshtar
 	fleet "Small Kor Mereti" 800
 	fleet "Large Kor Mereti" 1600
 	fleet "Large Kor Sestor" 3600
+	fleet "Kor Mereti Miners" 3000
 	object
 		sprite star/k0
 		distance 47.9992
@@ -8501,6 +8527,7 @@ system Eteron
 	fleet "Small Republic" 2000
 	fleet "Large Republic" 4000
 	fleet "Small Northern Pirates" 1000
+	fleet "Human Miners" 2000
 	object
 		sprite star/m4
 		period 10
@@ -8688,6 +8715,7 @@ system Fala
 	fleet "Small Republic" 4000
 	fleet "Small Northern Pirates" 2000
 	fleet "Large Northern Pirates" 4000
+	fleet "Human Miners" 2000
 	object
 		sprite star/g5
 		period 10
@@ -8923,6 +8951,7 @@ system Faronektu
 	fleet "Small Kor Mereti" 1200
 	fleet "Large Kor Mereti" 2000
 	fleet "Large Kor Sestor" 3000
+	fleet "Kor Mereti Miners" 2000
 	object
 		sprite star/g0
 		period 10
@@ -9240,6 +9269,7 @@ system Fingol
 	fleet "Small Republic" 2000
 	fleet "Large Republic" 3000
 	fleet "Small Northern Pirates" 2000
+	fleet "Human Miners" 3000
 	object
 		sprite star/m4
 		period 10
@@ -9675,6 +9705,7 @@ system "Gamma Cassiopeiae"
 	fleet "Small Core Pirates" 1000
 	fleet "Large Core Pirates" 2000
 	fleet "Large Syndicate" 5000
+	fleet "Human Miners" 2000
 	object
 		sprite star/k0
 		period 10
@@ -9732,6 +9763,7 @@ system "Gamma Corvi"
 	fleet "Small Militia" 1000
 	fleet "Large Militia" 2000
 	fleet "Small Southern Pirates" 10000
+	fleet "Human Miners" 5000
 	object
 		sprite star/g0
 		distance 39.0165
@@ -10180,6 +10212,7 @@ system Graffias
 	fleet "Small Southern Merchants" 1000
 	fleet "Large Southern Merchants" 4000
 	fleet "Small Southern Pirates" 5000
+	fleet "Human Miners" 2000
 	object
 		sprite star/k0
 		distance 59.5
@@ -10476,6 +10509,7 @@ system Hassaleh
 	fleet "Small Northern Pirates" 6000
 	fleet "Large Northern Pirates" 20000
 	fleet "Large Republic" 20000
+	fleet "Human Miners" 2000
 	object
 		sprite star/k0
 		distance 36.1558
@@ -12911,6 +12945,7 @@ system Kornephoros
 	fleet "Small Southern Pirates" 3000
 	fleet "Small Militia" 2000
 	fleet "Large Militia" 4000
+	fleet "Human Miners" 3000
 	object
 		sprite star/k0
 		distance 57.5
@@ -13357,6 +13392,7 @@ system Lolami
 	fleet "Small Republic" 5000
 	fleet "Small Northern Pirates" 2000
 	fleet "Large Northern Pirates" 4000
+	fleet "Human Miners" 3000
 	object
 		sprite star/g0
 		distance 11
@@ -13682,6 +13718,7 @@ system Markab
 	fleet "Large Core Merchants" 600
 	fleet "Small Syndicate" 600
 	fleet "Large Syndicate" 800
+	fleet "Human Miners" 3000
 	object
 		sprite star/g5
 		period 10
@@ -14132,6 +14169,7 @@ system Mekislepti
 	fleet "Small Kor Mereti" 1000
 	fleet "Large Kor Mereti" 3000
 	fleet "Large Kor Sestor" 8000
+	fleet "Kor Mereti Miners" 2000
 	object
 		sprite star/g0
 		distance 38.4897
@@ -14387,6 +14425,7 @@ system Menkar
 	fleet "Small Syndicate" 1500
 	fleet "Large Syndicate" 2000
 	fleet "Large Core Pirates" 4000
+	fleet "Human Miners" 2000
 	object
 		sprite star/k0
 		period 10
@@ -14446,6 +14485,7 @@ system Menkent
 	fleet "Small Southern Merchants" 500
 	fleet "Large Southern Merchants" 1500
 	fleet "Small Republic" 3000
+	fleet "Human Miners" 2000
 	object
 		sprite star/f5
 		distance 27.7778
@@ -14910,6 +14950,7 @@ system Mintaka
 	fleet "Large Northern Pirates" 2000
 	fleet "Large Republic" 5000
 	fleet "Small Northern Merchants" 4000
+	fleet "Human Miners" 2000
 	object
 		sprite star/k0
 		distance 34.4496
@@ -14972,6 +15013,7 @@ system Mirach
 	fleet "Small Core Pirates" 4000
 	fleet "Small Syndicate" 3000
 	fleet "Large Syndicate" 5000
+	fleet "Human Miners" 3000
 	object
 		sprite star/m0
 		distance 21.1004
@@ -15268,6 +15310,7 @@ system Mora
 	fleet "Small Southern Pirates" 2000
 	fleet "Large Southern Pirates" 3000
 	fleet "Small Republic" 20000
+	fleet "Human Miners" 2000
 	object
 		sprite star/k5
 		period 10
@@ -15427,6 +15470,7 @@ system Naos
 	fleet "Large Northern Merchants" 1000
 	fleet "Small Deep" 1000
 	fleet "Large Deep" 2000
+	fleet "Human Miners" 2000
 	object
 		sprite star/g5
 		period 10
@@ -15496,6 +15540,7 @@ system Naper
 	fleet "Large Southern Merchants" 3000
 	fleet "Small Militia" 5000
 	fleet "Small Southern Pirates" 1000
+	fleet "Human Miners" 3000
 	object
 		sprite star/f5
 		period 10
@@ -15560,6 +15605,7 @@ system Nihal
 	fleet "Large Northern Pirates" 5000
 	fleet "Small Republic" 4000
 	fleet "Large Republic" 7000
+	fleet "Human Miners" 2000
 	object
 		sprite star/k5
 		distance 43.1257
@@ -15628,6 +15674,7 @@ system Nocte
 	fleet "Small Republic" 3000
 	fleet "Large Republic" 7000
 	fleet "Small Northern Pirates" 2500
+	fleet "Human Miners" 1600
 	object
 		sprite star/m4
 		period 10
@@ -15887,6 +15934,7 @@ system Peacock
 	fleet "Small Militia" 8000
 	fleet "Small Southern Pirates" 4000
 	fleet "Large Southern Pirates" 10000
+	fleet "Human Miners" 3000
 	object
 		sprite star/m0
 		period 10
@@ -16071,6 +16119,7 @@ system Persian
 	fleet "Large Syndicate" 1200
 	fleet "Small Core Pirates" 600
 	fleet "Large Core Pirates" 2000
+	fleet "Human Miners" 3000
 	object
 		sprite star/f5
 		distance 27.8124
@@ -16170,6 +16219,7 @@ system Phact
 	fleet "Large Republic" 8000
 	fleet "Small Northern Pirates" 3000
 	fleet "Large Northern Pirates" 5000
+	fleet "Human Miners" 5000
 	object
 		sprite star/g5
 		distance 47.0119
@@ -16240,6 +16290,7 @@ system Phecda
 	fleet "Small Southern Merchants" 700
 	fleet "Large Southern Merchants" 1000
 	fleet "Small Republic" 5000
+	fleet "Human Miners" 2000
 	object
 		sprite star/k5
 		period 10
@@ -17451,6 +17502,7 @@ system Regulus
 	fleet "Small Southern Pirates" 2000
 	fleet "Large Southern Pirates" 8000
 	fleet "Small Republic" 10000
+	fleet "Human Miners" 3000
 	object
 		sprite star/b5
 		period 10
@@ -17581,6 +17633,7 @@ system Rigel
 	fleet "Large Republic" 5000
 	fleet "Small Northern Pirates" 3000
 	fleet "Large Northern Pirates" 5000
+	fleet "Human Miners" 2000
 	object
 		sprite star/g0
 		period 10
@@ -17722,6 +17775,7 @@ system Rutilicus
 	fleet "Small Southern Merchants" 600
 	fleet "Large Southern Merchants" 2000
 	fleet "Small Militia" 6000
+	fleet "Human Miners" 3000
 	object
 		sprite star/g5
 		period 10
@@ -18007,6 +18061,7 @@ system Sadr
 	fleet Quarg 9000
 	fleet "Small Southern Pirates" 5000
 	fleet "Large Southern Pirates" 9000
+	fleet "Human Miners" 2000
 	object
 		sprite star/a5
 		distance 5.86016
@@ -18106,8 +18161,8 @@ system Salipastart
 	asteroids "large rock" 9 5.95
 	asteroids "medium metal" 8 4.9504
 	asteroids "large metal" 1 2.4276
-	minables neodymium 3 7.92517
-	minables silicon 3 9.32739
+	minables neodymium 23 7.92517
+	minables silicon 13 9.32739
 	trade Clothing 231
 	trade Electronics 655
 	trade Equipment 647
@@ -18121,6 +18176,7 @@ system Salipastart
 	fleet "Small Kor Mereti" 800
 	fleet "Large Kor Mereti" 1600
 	fleet "Large Kor Sestor" 3200
+	fleet "Kor Mereti Miners" 3000
 	object
 		sprite star/k0
 		period 10
@@ -18562,7 +18618,7 @@ system Sepetrosk
 	asteroids "small metal" 8 1.596
 	asteroids "medium metal" 15 1.652
 	asteroids "large metal" 56 2.94
-	minables aluminum 1 2.95643
+	minables aluminum 31 2.95643
 	trade Clothing 241
 	trade Electronics 689
 	trade Equipment 638
@@ -18575,6 +18631,7 @@ system Sepetrosk
 	trade Plastic 473
 	fleet "Small Kor Mereti" 1200
 	fleet "Large Kor Mereti" 4800
+	fleet "Kor Mereti Miners" 2000
 	object
 		sprite star/k0
 		period 10
@@ -19163,9 +19220,9 @@ system Similisti
 	asteroids "small metal" 20 2.79
 	asteroids "medium metal" 25 3.105
 	asteroids "large metal" 40 4.005
-	minables iron 5 5.36391
-	minables lead 4 6.86864
-	minables silicon 2 6.31894
+	minables iron 15 5.36391
+	minables lead 34 6.86864
+	minables silicon 22 6.31894
 	trade Clothing 210
 	trade Electronics 645
 	trade Equipment 669
@@ -19179,6 +19236,7 @@ system Similisti
 	fleet "Large Kor Mereti" 1600
 	fleet "Small Kor Mereti" 600
 	fleet "Large Kor Sestor" 5400
+	fleet "Kor Mereti Miners" 1600
 	object
 		sprite star/g0
 		period 10
@@ -19815,6 +19873,7 @@ system Sospi
 	fleet "Large Northern Pirates" 2000
 	fleet "Small Republic" 5000
 	fleet "Large Republic" 9000
+	fleet "Human Miners" 5000
 	object
 		sprite star/wr
 		period 100
@@ -20312,6 +20371,7 @@ system Talita
 	fleet "Large Northern Merchants" 900
 	fleet "Small Republic" 1000
 	fleet "Large Republic" 2000
+	fleet "Human Miners" 3000
 	object
 		sprite star/g0
 		distance 42.8886
@@ -20785,6 +20845,7 @@ system Turais
 	fleet "Large Southern Merchants" 6000
 	fleet "Small Southern Pirates" 3000
 	fleet "Large Southern Pirates" 7000
+	fleet "Human Miners" 2000
 	object
 		sprite star/k5
 		period 10
@@ -21094,6 +21155,7 @@ system Unukalhai
 	fleet "Small Southern Pirates" 3000
 	fleet "Small Militia" 4000
 	fleet "Large Militia" 10000
+	fleet "Human Miners" 3000
 	object
 		sprite star/g5
 		period 10
@@ -21211,6 +21273,7 @@ system Vega
 	fleet "Large Northern Merchants" 3000
 	fleet "Small Republic" 1600
 	fleet "Large Republic" 5000
+	fleet "Human Miners" 5000
 	object
 		sprite star/g0
 		distance 23.3143
@@ -21912,6 +21975,7 @@ system "Yed Prior"
 	fleet "Large Southern Pirates" 3000
 	fleet "Small Militia" 3000
 	fleet "Large Militia" 5000
+	fleet "Human Miners" 1600
 	object
 		sprite star/k0
 		period 10
@@ -21967,6 +22031,7 @@ system Zaurak
 	fleet "Large Syndicate" 2500
 	fleet "Small Core Pirates" 2000
 	fleet "Large Core Pirates" 4000
+	fleet "Human Miners" 2000
 	object
 		sprite star/g5
 		period 10
@@ -22341,6 +22406,7 @@ system Zubeneschamali
 	fleet "Large Militia" 5000
 	fleet "Small Southern Pirates" 2000
 	fleet "Large Southern Pirates" 3000
+	fleet "Human Miners" 2000
 	object
 		sprite star/g5
 		distance 62
@@ -23011,7 +23077,7 @@ planet "Delve of Bloptab"
 	attributes arach mining
 	landscape land/hills1
 	description `This is a mining world, hotter than even the Arach would prefer but still much more habitable than its sister world of Blobtab's Furnace. It is home to House Ablomab, the guild of mining and metalworking, and the dry climate makes it possible to store stockpiles of iron, steel, and other metals here without worrying about rust. Supposedly the warehouses here contain enough raw materials to double the size of the Heliarch war fleet if needed; the Arach like to be able to trust that they are prepared for any eventuality.`
-	spaceport `This is one of the few Coalition worlds where the Heliarch agents openly carry weapons, due to the feat that the Resistance might see the storehouses here of base and precious metals as a tempting target. Although there are plenty of civilians of all three species milling about, the spaceport has something of the atmosphere of a military base.`
+	spaceport `This is one of the few Coalition worlds where the Heliarch agents openly carry weapons, due to the fear that the Resistance might see the storehouses here of base and precious metals as a tempting target. Although there are plenty of civilians of all three species milling about, the spaceport has something of the atmosphere of a military base.`
 	"required reputation" 25
 
 planet "Desi Seledrak"
