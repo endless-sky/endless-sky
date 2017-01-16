@@ -39,16 +39,19 @@ mission "Immigrant Workers"
 				accept
 
 
-
 mission "Vintage Spaceman"
 	description "A young man wants to find love on <destination>."
 	minor
 	passengers 1
 	to offer
 		random < 50
-	source "X"
+	source
+		government Republic "Free Worlds" Syndicate Neutral
+		attributes urban
 	destination
-		attributes core
+		government Republic "Free Worlds" Syndicate Neutral
+		attributes urban tourism
+		distance 2 5
 	on offer
 		conversation
 			`"Dude!" A patron in his mid twenties approaches after you accidentally make eye contact. "That your ship?" He continues. "You gotta help me. I'm in love!"`
@@ -60,15 +63,21 @@ mission "Vintage Spaceman"
 				`	(Point like there's someone famous behind him and make a run for the door.)`
 					decline
 	on complete
-		payment 10000
+		payment 100
 		conversation
 			`"We're here!" Vintage spaceman slams the emergency unlock and jumps out while your ship is still a meter off the ground. He runs off in to the crowd.`
-			`	You grab a drink, climb on top of the <ship> and relax.`
-			`	After the concert is over you see your passenger emerge from the crowd, his head hung low. "It's all a ruse man. She was just a bot. A marketing tool to get me to buy tickets."`
-			`	"Guess she was made for you." You quip, feeling a little bad about it.`
-			`	"Sorry I wasted your time. I'm such a sucker. I don't have any credits for you, but you can have this suit. I don't feel like wearing it any more."`
-			`	He leaves the suit on your deck and disappears back in to the crowd. You take the suit to a pawn shop and get <payment> for it.`
-
+				choice
+					`	(Grab a beverage, climb on top of the <ship> and relax)`
+					`	(Unload cargo)`
+				`	A while later you see your passenger emerge from the crowd, his head hung low. "It's all a ruse, man. She was just a bot. A marketing tool to get me to buy tickets."`
+				choice
+					`	"I'm sure there's a girl out there for you."`
+					goto end
+					`	(Rub it in)`
+				`	"Guess she was made for you." You quip, feeling a little bad about it.`
+				label end
+				`	"Sorry I wasted your time. I'm such a sucker. I don't have any credits for you, but you can have this suit. I don't feel like wearing it any more."`
+				`	He leaves the suit on your deck and disappears back in to the crowd. You take the suit to a pawn shop and get <payment> for it.`
 
 					
 mission "Pookie, Part 1"
