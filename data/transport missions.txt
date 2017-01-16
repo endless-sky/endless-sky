@@ -64,7 +64,7 @@ mission "Vintage Spaceman"
 		conversation
 			`"We're here!" Vintage spaceman slams the emergency unlock and jumps out while your ship is still a meter off the ground. He runs off in to the crowd.`
 			`	You grab a drink, climb on top of the <ship> and relax.`
-			`	After the concert is over you see your passenger emerge from the crowd, his head hung low. "It's all a ruse man. She was just an bot. A marketing tool to get me to buy tickets."`
+			`	After the concert is over you see your passenger emerge from the crowd, his head hung low. "It's all a ruse man. She was just a bot. A marketing tool to get me to buy tickets."`
 			`	"Guess she was made for you." You quip, feeling a little bad about it.`
 			`	"Sorry I wasted your time. I'm such a sucker. I don't have any credits for you, but you can have this suit. I don't feel like wearing it any more."`
 			`	He leaves the suit on your deck and disappears back in to the crowd. You take the suit to a pawn shop and get <payment> for it.`
