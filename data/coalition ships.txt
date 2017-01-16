@@ -489,6 +489,7 @@ ship "Heliarch Punisher" "Heliarch Punisher (Interdicting)"
 		"Finisher Torpedo" 80
 		"Heliarch Attractor" 2
 		"Heliarch Repulsor"
+		"Bombardment Turret"
 		
 		"Large Reactor Module" 2
 		"Large Battery Module"

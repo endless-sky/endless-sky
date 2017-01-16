@@ -271,6 +271,7 @@ person "Captain Nate"
 			"Need as well as greed have followed us to the stars, and the rewards of wealth still await those wise enough to recognize this deep thrumming of our common pulse."
 
 	ship Vanguard "Pointedstick"
+		sprite "ship/pointedstick_vanguard"
 		"never disabled"
 		attributes
 			category "Heavy Warship"
@@ -309,8 +310,9 @@ person "Captain Nate"
 			"Ionic Afterburner"
 			"Hyperdrive"
 
-		engine -15 130
-		engine 15 130
+		engine 0 130
+		engine -31 128 .7
+		engine 31 128 .7
 		gun 0 -132 "Proton Gun"
 		gun 0 -132 "Proton Gun"
 		gun 0 -132 "Proton Gun"

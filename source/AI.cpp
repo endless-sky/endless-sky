@@ -231,7 +231,6 @@ void AI::UpdateEvents(const list<ShipEvent> &events)
 
 void AI::Clean()
 {
-	orders.clear();
 	actions.clear();
 	governmentActions.clear();
 	playerActions.clear();
