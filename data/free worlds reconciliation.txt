@@ -530,7 +530,7 @@ mission "FW Reconciliation Break"
 					goto wait
 			
 			label peace
-			`	"At peace for now," says Ijs, but so far a peace without justice. When the time is ripe, we will strike against the Syndicate."`
+			`	"At peace for now," says Ijs, "but so far a peace without justice. When the time is ripe, we will strike against the Syndicate."`
 				goto wait
 			
 			label volunteer

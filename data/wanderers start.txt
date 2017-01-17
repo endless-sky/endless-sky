@@ -523,9 +523,7 @@ event "wanderer / unfettered peace"
 	"reputation: Hai (Unfettered)" >?= 1
 	government "Hai (Unfettered)"
 		"attitude toward"
-			"Hai" -.1
 			"Wanderer" 0
-			"Pug" -.1
 	system "Ehma Ti"
 		fleet "Small Unfettered" 500
 		fleet "Large Unfettered" 500

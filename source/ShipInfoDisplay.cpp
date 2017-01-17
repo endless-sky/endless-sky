@@ -295,9 +295,12 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const Depreciation &dep
 	tableLabels.push_back("idle:");
 	energyTable.push_back(Format::Number(
 		60. * (attributes.Get("energy generation")
-			+ attributes.Get("solar collection"))));
+			+ attributes.Get("solar collection")
+			- attributes.Get("cooling energy"))));
 	heatTable.push_back(Format::Number(
-		60. * (attributes.Get("heat generation") - attributes.Get("cooling"))));
+		60. * (attributes.Get("heat generation")
+			- attributes.Get("cooling")
+			- attributes.Get("active cooling"))));
 	attributesHeight += 20;
 	tableLabels.push_back("moving:");
 	energyTable.push_back(Format::Number(

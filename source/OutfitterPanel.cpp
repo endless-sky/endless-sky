@@ -48,7 +48,7 @@ namespace {
 
 
 OutfitterPanel::OutfitterPanel(PlayerInfo &player)
-	: ShopPanel(player, Outfit::CATEGORIES)
+	: ShopPanel(player, true)
 {
 	for(const pair<string, Outfit> &it : GameData::Outfits())
 		catalog[it.second.Category()].insert(it.first);
@@ -79,7 +79,7 @@ int OutfitterPanel::TileSize() const
 
 
 
-int OutfitterPanel::DrawPlayerShipInfo(const Point &point) const
+int OutfitterPanel::DrawPlayerShipInfo(const Point &point)
 {
 	shipInfo.Update(*playerShip, player.FleetDepreciation(), day);
 	shipInfo.DrawAttributes(point);
@@ -104,7 +104,7 @@ bool OutfitterPanel::HasItem(const string &name) const
 
 
 
-void OutfitterPanel::DrawItem(const string &name, const Point &point, int scrollY) const
+void OutfitterPanel::DrawItem(const string &name, const Point &point, int scrollY)
 {
 	const Outfit *outfit = GameData::Outfits().Get(name);
 	zones.emplace_back(point, Point(OUTFIT_SIZE, OUTFIT_SIZE), outfit, scrollY);
@@ -184,7 +184,7 @@ int OutfitterPanel::DetailWidth() const
 
 
 
-int OutfitterPanel::DrawDetails(const Point &center) const
+int OutfitterPanel::DrawDetails(const Point &center)
 {
 	outfitInfo.Update(*selectedOutfit, player, CanSell());
 	Point offset(outfitInfo.PanelWidth(), 0.);
@@ -212,7 +212,8 @@ bool OutfitterPanel::CanBuy() const
 		return false;
 	
 	// If you have this in your cargo hold, installing it is free.
-	if(selectedOutfit->Cost() > player.Accounts().Credits() && !isInCargo)
+	int64_t cost = player.StockDepreciation().Value(selectedOutfit, day);
+	if(cost > player.Accounts().Credits() && !isInCargo)
 		return false;
 	
 	if(HasLicense(selectedOutfit->Name()))
@@ -322,14 +323,14 @@ void OutfitterPanel::FailBuy() const
 	if(!selectedOutfit || !playerShip)
 		return;
 	
-	int64_t cost = selectedOutfit->Cost();
+	int64_t cost = player.StockDepreciation().Value(selectedOutfit, day);
 	int64_t credits = player.Accounts().Credits();
 	bool isInCargo = player.Cargo().Get(selectedOutfit);
 	if(!isInCargo && cost > credits)
 	{
 		GetUI()->Push(new Dialog("You cannot buy this outfit, because it costs "
-			+ to_string(cost) + " credits, and you only have "
-			+ to_string(credits) + "."));
+			+ Format::Number(cost) + " credits, and you only have "
+			+ Format::Number(credits) + "."));
 		return;
 	}
 	
@@ -567,7 +568,7 @@ bool OutfitterPanel::FlightCheck()
 	for(const shared_ptr<Ship> &ship : player.Ships())
 	{
 		// Skip any ships that are "absent" for whatever reason.
-		if(ship->GetSystem() != player.GetSystem())
+		if(ship->GetSystem() != player.GetSystem() || ship->IsDisabled())
 			continue;
 		
 		const Outfit &attributes = ship->Attributes();
@@ -597,8 +598,7 @@ bool OutfitterPanel::FlightCheck()
 				*GameData::Conversations().Get("flight check: no steering energy"), nullptr, ship.get()));
 			return false;
 		}
-		double maxHeat = .1 * ship->Mass() * attributes.Get("heat dissipation");
-		if(attributes.Get("heat generation") - attributes.Get("cooling") > maxHeat)
+		if(ship->IdleHeat() >= 100. * ship->Mass())
 		{
 			GetUI()->Push(new ConversationPanel(player,
 				*GameData::Conversations().Get("flight check: overheating"), nullptr, ship.get()));
@@ -729,7 +729,7 @@ void OutfitterPanel::CheckRefill()
 		it.second = max(0, it.second - player.Cargo().Get(it.first));
 		if(!outfitter.Has(it.first))
 			it.second = min(it.second, max(0, player.Stock(it.first)));
-		cost += it.second * it.first->Cost();
+		cost += player.StockDepreciation().Value(it.first, day, it.second);
 	}
 	if(!needed.empty() && cost < player.Accounts().Credits())
 	{

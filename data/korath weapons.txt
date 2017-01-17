@@ -221,6 +221,16 @@ outfit "Korath Piercer"
 	"piercer capacity" -1
 	description "This missile is fired from a Korath Piercer Launcher."
 
+outfit "Korath Piercer Rack"
+	category "Ammunition"
+	cost 56000
+	thumbnail "outfit/korath piercer storage"
+	"mass" 2.2
+	"outfit space" -7
+	"piercer capacity" 16
+	ammo "Korath Piercer"
+	description "The Korath Piercer Rack is used to store extra ammunition for Korath Piercer Launchers."
+
 outfit "Korath Piercer Launcher"
 	category "Secondary Weapons"
 	cost 593000
@@ -362,6 +372,16 @@ outfit "Korath Mine"
 	"mass" .7
 	"minelayer capacity" -1
 	description "This is ammunition for a Korath Minelayer. Each mine splits into eleven submunitions after it is deployed."
+
+outfit "Korath Mine Rack"
+	category "Ammunition"
+	cost 31500
+	thumbnail "outfit/korath mine storage"
+	"mass" 2.7
+	"outfit space" -9
+	"minelayer capacity" 9
+	ammo "Korath Mine"
+	description "The Korath Mine Rack is used to store extra ammunition for Korath Minelayers."
 
 outfit "Korath Minelayer"
 	category "Secondary Weapons"

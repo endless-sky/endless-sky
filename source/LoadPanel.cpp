@@ -28,6 +28,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "MainPanel.h"
 #include "Messages.h"
 #include "PlayerInfo.h"
+#include "Preferences.h"
 #include "ShipyardPanel.h"
 #include "StarField.h"
 #include "UI.h"
@@ -233,7 +234,7 @@ bool LoadPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 
 
 
-bool LoadPanel::Click(int x, int y)
+bool LoadPanel::Click(int x, int y, int clicks)
 {
 	// The first row of each panel is y = -160 to -140.
 	if(y < -160 || y >= (-160 + 14 * 20))
@@ -298,7 +299,7 @@ bool LoadPanel::Drag(double dx, double dy)
 
 bool LoadPanel::Scroll(double dx, double dy)
 {
-	return Drag(50. * dx, 50. * dy);
+	return Drag(0., dy * Preferences::ScrollSpeed());
 }
 
 

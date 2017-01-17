@@ -17,6 +17,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Sprite.h"
 #include "SpriteSet.h"
 
+#include <algorithm>
 #include <functional>
 
 using namespace std;
@@ -33,8 +34,9 @@ namespace {
 
 
 SpriteQueue::SpriteQueue()
-	: added(0), completed(0), threads(4)
+	: added(0), completed(0)
 {
+	threads.resize(max(4u, thread::hardware_concurrency()));
 	for(thread &t : threads)
 		t = thread(ref(*this));
 }
@@ -184,7 +186,7 @@ double SpriteQueue::DoLoad(unique_lock<mutex> &lock) const
 		lock.lock();
 	}
 	
-	for(int i = 0; !toLoad.empty() && i < 30; ++i)
+	for(int i = 0; !toLoad.empty() && i < 100; ++i)
 	{
 		Item item = toLoad.front();
 		toLoad.pop();

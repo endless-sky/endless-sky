@@ -142,6 +142,16 @@ outfit "Hai Tracker"
 	"tracker capacity" -1
 	description "This is ammunition for a Tracker Pod."
 
+outfit "Tracker Storage Pod"
+	category "Ammunition"
+	cost 28000
+	thumbnail "outfit/hai tracker storage"
+	"mass" 1.6
+	"outfit space" -10
+	"tracker capacity" 28
+	ammo "Hai Tracker"
+	description "The Tracker Storage Pod is used to store extra ammunition for Tracker Pods."
+
 outfit "Hai Tracker Pod"
 	category "Secondary Weapons"
 	cost 150000
@@ -252,6 +262,7 @@ outfit "Hai Williwaw Cooling"
 	description "While Hai technology is fairly heat efficient, occasionally they outfit their ships such that they sporadically overheat and shut down. When that happens, they install these."
 
 outfit "Hai Chasm Batteries"
+	plural "Hai Chasm Batteries"
 	category "Power"
 	cost 18000
 	thumbnail "outfit/tiny battery hai"
@@ -261,6 +272,7 @@ outfit "Hai Chasm Batteries"
 	description "Power storage technology is thousands of years old. This is the smallest Hai battery pack."
 
 outfit "Hai Fissure Batteries"
+	plural "Hai Fissure Batteries"
 	category "Power"
 	cost 22000
 	thumbnail "outfit/small battery hai"
@@ -270,6 +282,7 @@ outfit "Hai Fissure Batteries"
 	description "This battery pack has more than three times the energy capacity of the the Hai Chasm Batteries, allowing their ships to engage in combat for longer periods of time before running out of energy."
 
 outfit "Hai Gorge Batteries"
+	plural "Hai Gorge Batteries"
 	category "Power"
 	cost 55000
 	thumbnail "outfit/medium battery hai"
@@ -279,6 +292,7 @@ outfit "Hai Gorge Batteries"
 	description "This medium-sized battery pack is ideal for most of the Hai power needs, allowing for medium length combat engagements, but could also be used keep a ship's heat footprint low with a small power generator and oversized engines."
 
 outfit "Hai Ravine Batteries"
+	plural "Hai Ravine Batteries"
 	category "Power"
 	cost 124000
 	thumbnail "outfit/large battery hai"
@@ -288,6 +302,7 @@ outfit "Hai Ravine Batteries"
 	description "This large battery pack boasts higher energy density than smaller models, and helps keep ships fighting in spite of sustaining several Ion Cannon impacts."
 
 outfit "Hai Valley Batteries"
+	plural "Hai Valley Batteries"
 	category "Power"
 	cost 300000
 	thumbnail "outfit/huge battery hai"
@@ -305,7 +320,7 @@ outfit "Boulder Reactor"
 	"outfit space" -90
 	"energy generation" 17.3
 	"heat generation" 34
-	description "The Hai built spacefaring Fusion Generators centuries ago, but they never really required anything more powerful, so their design remained relatively unchanged after it was miniaturized enough for their capital warships."
+	description "The Hai built spacefaring fusion generators centuries ago, but they never really required anything more powerful, so their design remained relatively unchanged after it was miniaturized enough for their capital warships."
 
 outfit "Geode Reactor"
 	category "Power"
@@ -328,44 +343,45 @@ outfit "Pebble Core"
 	description "A Pebble Core is a miniaturized nuclear reactor, small enough to be installed in any ship larger than a fighter. The Hai developed this model for their smaller ships."
 
 outfit "Sand Cell"
-    category "Power"
+	category "Power"
 	cost 45000
 	thumbnail "outfit/fuel cell hai"
 	"mass" 24
 	"outfit space" -24
 	"energy generation" 1.55
 	"heat generation" 2.4
-	description "The Sand Cell is the smallest Hai generator. It was designed to fit their drones, and it clearly resembles human Fuel Cells."
+	description "The Sand Cell is the smallest Hai generator. It was designed to fit their drones, and it clearly resembles human fuel cells."
 
 
 outfit `"Baellie" Atomic Engines`
-    category "Engines"
-	"cost" 135000
+	plural `"Baellie" Atomic Engines`
+	category "Engines"
+	"cost" 240000
 	thumbnail "outfit/tiny atomic engines hai"
 	"mass" 24
 	"outfit space" -24
 	"engine capacity" -24
-	"turn" 300
-	"turning energy" .8
-	"turning heat" 1.8
-	"thrust" 7.5
-	"thrusting energy" .8
-	"thrusting heat" 1.6
+	"turn" 250
+	"turning energy" .6
+	"turning heat" 1.3
+	"thrust" 10.1
+	"thrusting energy" 1.2
+	"thrusting heat" 2.4
 	"flare sprite" "effect/atomic flare/tiny"
-	    "frame rate" 14
+		"frame rate" 14
 	"flare sound" "atomic tiny"
 	description `While the Hai were designing the Flea, it quickly became apparent that even the "Basrem" engine set was too large for the purpose. As a result, a combined thruster steering set was created: "Baellie".`
 
 outfit `"Basrem" Atomic Thruster`
 	category "Engines"
-	"cost" 95000
+	"cost" 150000
 	thumbnail "outfit/tiny atomic thruster hai"
 	"mass" 18
 	"outfit space" -18
 	"engine capacity" -18
-	"thrust" 12.1
-	"thrusting energy" 1.3
-	"thrusting heat" 2.5
+	"thrust" 13.2
+	"thrusting energy" 1.5
+	"thrusting heat" 2.9
 	"flare sprite" "effect/atomic flare/tiny"
 		"frame rate" 14
 	"flare sound" "atomic tiny"
@@ -373,14 +389,14 @@ outfit `"Basrem" Atomic Thruster`
 
 outfit `"Benga" Atomic Thruster`
 	category "Engines"
-	"cost" 210000
+	"cost" 300000
 	thumbnail "outfit/small atomic thruster hai"
 	"mass" 28
 	"outfit space" -28
 	"engine capacity" -28
-	"thrust" 19.5
-	"thrusting energy" 2.4
-	"thrusting heat" 4.8
+	"thrust" 23.6
+	"thrusting energy" 2.6
+	"thrusting heat" 5.0
 	"flare sprite" "effect/atomic flare/tiny"
 		"frame rate" 14
 	"flare sound" "atomic tiny"
@@ -388,14 +404,14 @@ outfit `"Benga" Atomic Thruster`
 
 outfit `"Biroo" Atomic Thruster`
 	category "Engines"
-	"cost" 420000
+	"cost" 610000
 	thumbnail "outfit/medium atomic thruster hai"
 	"mass" 44
 	"outfit space" -44
 	"engine capacity" -44
-	"thrust" 38.2
-	"thrusting energy" 4
-	"thrusting heat" 7.7
+	"thrust" 41.5
+	"thrusting energy" 4.2
+	"thrusting heat" 8.6
 	"flare sprite" "effect/atomic flare/small"
 		"frame rate" 13
 	"flare sound" "atomic small"
@@ -403,14 +419,14 @@ outfit `"Biroo" Atomic Thruster`
 
 outfit `"Bondir" Atomic Thruster`
 	category "Engines"
-	"cost" 780000
+	"cost" 1100000
 	thumbnail "outfit/large atomic thruster hai"
 	"mass" 63
 	"outfit space" -63
 	"engine capacity" -63
-	"thrust" 59.4
-	"thrusting energy" 6.5
-	"thrusting heat" 13.7
+	"thrust" 66.1
+	"thrusting energy" 6.4
+	"thrusting heat" 13.4
 	"flare sprite" "effect/atomic flare/medium"
 		"frame rate" 12
 	"flare sound" "atomic medium"
@@ -418,14 +434,14 @@ outfit `"Bondir" Atomic Thruster`
 
 outfit `"Bufaer" Atomic Thruster`
 	category "Engines"
-	"cost" 1680000
+	"cost" 2400000
 	thumbnail "outfit/huge atomic thruster hai"
 	"mass" 104
 	"outfit space" -104
 	"engine capacity" -104
-	"thrust" 113
-	"thrusting energy" 10.6
-	"thrusting heat" 22.1
+	"thrust" 120.1
+	"thrusting energy" 10.9
+	"thrusting heat" 23.8
 	"flare sprite" "effect/atomic flare/large"
 		"frame rate" 11
 	"flare sound" "atomic large"
@@ -433,60 +449,60 @@ outfit `"Bufaer" Atomic Thruster`
 
 outfit `"Basrem" Atomic Steering`
 	category "Engines"
-	"cost" 90000
+	"cost" 120000
 	thumbnail "outfit/tiny atomic steering hai"
 	"mass" 12
 	"outfit space" -12
 	"engine capacity" -12
-	"turn" 312
+	"turn" 309
 	"turning energy" .7
-	"turning heat" 1.7
+	"turning heat" 1.6
 	description "Hai atomic engines are too expensive to buy for most humans. All but the smallest of the engines are worth more than many of the most common ships flown in human space."
 
 outfit `"Benga" Atomic Steering`
 	category "Engines"
-	"cost" 180000
+	"cost" 250000
 	thumbnail "outfit/small atomic steering hai"
 	"mass" 20
 	"outfit space" -20
 	"engine capacity" -20
-	"turn" 492.4
-	"turning energy" 1.2
-	"turning heat" 2.9
+	"turn" 577
+	"turning energy" 1.1
+	"turning heat" 2.8
 	description "Hai atomic engines allow for some of the most customizable ships in known space due to their size and efficiency. The few humans that are able to save up enough money to buy a set of Hai engines usually astound others in human space with the efficiency of their ship."
 
 outfit `"Biroo" Atomic Steering`
 	category "Engines"
-	"cost" 360000
+	"cost" 530000
 	thumbnail "outfit/medium atomic steering hai"
 	"mass" 32
 	"outfit space" -32
 	"engine capacity" -32
-	"turn" 958.5
-	"turning energy" 1.9
-	"turning heat" 4.8
+	"turn" 1054
+	"turning energy" 2.0
+	"turning heat" 5.1
 	description  "Having such powerful engines is a double edged sword for the Hai, as the Unfettered Hai too own these powerful wonders. These engines allow most Hai ships to turn at amazing speeds, making them extremely deadly in combat."
 
 outfit `"Bondir" Atomic Steering`
 	category "Engines"
-	"cost" 720000
+	"cost" 950000
 	thumbnail "outfit/large atomic steering hai"
 	"mass" 49
 	"outfit space" -49
 	"engine capacity" -49
-	"turn" 1482.4
+	"turn" 1758
 	"turning energy" 3.2
-	"turning heat" 8.3
+	"turning heat" 8.2
 	description "Reserved for special use on only a small number of Hai ships, these engines are one of the most expensive outfits that one could buy. Considerably more efficient than any other engine of the same size, Hai atomic engines are a go to choice for anyone in need of a high turn speed."
 
 outfit `"Bufaer" Atomic Steering`
 	category "Engines"
-	"cost" 1440000
+	"cost" 2100000
 	thumbnail "outfit/huge atomic steering hai"
 	"mass" 76
 	"outfit space" -76
 	"engine capacity" -76
-	"turn" 2835
+	"turn" 3043
 	"turning energy" 5.2
-	"turning heat" 13.3
+	"turning heat" 13.8
 	description "Nine out of every ten human captains interviewed in Hai space as to whose atomic engines they prefer say that they would choose Hai atomic engines over those of Deep Sky any day; that is if they could afford such expensive engines."

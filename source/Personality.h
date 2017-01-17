@@ -54,6 +54,9 @@ public:
 	bool IsVindictive() const;
 	bool IsSwarming() const;
 	bool IsUnconstrained() const;
+	bool IsMining() const;
+	bool Harvests() const;
+	bool IsAppeasing() const;
 	
 	const Point &Confusion() const;
 	void UpdateConfusion(bool isFiring);

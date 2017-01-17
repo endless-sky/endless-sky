@@ -27,12 +27,14 @@ using namespace std;
 
 namespace {
 	static const set<string> ATTRIBUTES_TO_SCALE = {
+		"active cooling",
 		"afterburner energy",
 		"afterburner fuel",
 		"afterburner heat",
 		"cloaking energy",
 		"cloaking fuel",
 		"cooling",
+		"cooling energy",
 		"energy generation",
 		"heat generation",
 		"hull repair rate",
@@ -43,6 +45,7 @@ namespace {
 		"shield generation",
 		"shield energy",
 		"shield heat",
+		"solar collection",
 		"thrusting energy",
 		"thrusting heat",
 		"turn",
@@ -173,7 +176,13 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		if(BOOLEAN_ATTRIBUTES.count(it.first)) 
 		{
 			attributeLabels.push_back("This outfit is " + it.first + ".");
-			attributeValues.push_back(" ");
+			attributeValues.push_back("");
+			attributesHeight += 20;
+		}
+		else if(it.first == "installable" && it.second < 0)
+		{
+			attributeLabels.push_back("This is not an installable item.");
+			attributeValues.push_back("");
 			attributesHeight += 20;
 		}
 		else
