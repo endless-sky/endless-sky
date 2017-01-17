@@ -978,7 +978,7 @@ mission "Coalition: Cadets 2"
 mission "Coalition: To Games 1"
 	job
 	name "Spectators to <planet>"
-	description "These <passengers> will pay <payment> for transportation to <planet> in time for the Coalition Games (by <date>)."
+	description "These <bunks> passengers will pay <payment> for transportation to <planet> in time for the Coalition Games (by <date>)."
 	deadline
 	passengers 4 4 .2
 	to offer
@@ -997,7 +997,7 @@ mission "Coalition: To Games 1"
 mission "Coalition: To Games 2"
 	job
 	name "Spectators to <planet>"
-	description "These <passengers> will pay <payment> for transportation to <planet> in time for the Coalition Games (by <date>)."
+	description "These <bunks> passengers will pay <payment> for transportation to <planet> in time for the Coalition Games (by <date>)."
 	deadline
 	passengers 4 4 .1
 	to offer
@@ -1016,7 +1016,7 @@ mission "Coalition: To Games 2"
 mission "Coalition: To Games 3"
 	job
 	name "Spectators to <planet>"
-	description "These <passengers> will pay <payment> for transportation to <planet> in time for the Coalition Games (by <date>)."
+	description "These <bunks> passengers will pay <payment> for transportation to <planet> in time for the Coalition Games (by <date>)."
 	deadline
 	passengers 4 4 .05
 	to offer
@@ -1036,7 +1036,7 @@ mission "Coalition: To Games 3"
 mission "Coalition: From Games 1"
 	job
 	name "Passengers to <planet>"
-	description "Transport <passengers>, who were on <origin> for the Coalition Games, back to their home world of <destination>. Payment is <payment>."
+	description "Transport <bunks> passengers, who were on <origin> for the Coalition Games, back to their home world of <destination>. Payment is <payment>."
 	passengers 4 4 .2
 	to offer
 		has "known to the heliarchs"
@@ -1056,7 +1056,7 @@ mission "Coalition: From Games 1"
 mission "Coalition: From Games 2"
 	job
 	name "Passengers to <planet>"
-	description "Transport <passengers>, who were on <origin> for the Coalition Games, back to their home world of <destination>. Payment is <payment>."
+	description "Transport <bunks> passengers, who were on <origin> for the Coalition Games, back to their home world of <destination>. Payment is <payment>."
 	passengers 4 4 .1
 	to offer
 		has "known to the heliarchs"
@@ -1076,7 +1076,7 @@ mission "Coalition: From Games 2"
 mission "Coalition: From Games 3"
 	job
 	name "Passengers to <planet>"
-	description "Transport <passengers>, who were on <origin> for the Coalition Games, back to their home world of <destination>. Payment is <payment>."
+	description "Transport <bunks> passengers, who were on <origin> for the Coalition Games, back to their home world of <destination>. Payment is <payment>."
 	passengers 4 4 .05
 	to offer
 		has "known to the heliarchs"

@@ -51,6 +51,8 @@ void EscortDisplay::Draw() const
 {
 	MergeStacks();
 	icons.sort();
+	stacks.clear();
+	zones.clear();
 	
 	// Draw escort status.
 	static const Font &font = FontSet::Get(14);

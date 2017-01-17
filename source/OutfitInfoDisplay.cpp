@@ -176,7 +176,13 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		if(BOOLEAN_ATTRIBUTES.count(it.first)) 
 		{
 			attributeLabels.push_back("This outfit is " + it.first + ".");
-			attributeValues.push_back(" ");
+			attributeValues.push_back("");
+			attributesHeight += 20;
+		}
+		else if(it.first == "installable" && it.second < 0)
+		{
+			attributeLabels.push_back("This is not an installable item.");
+			attributeValues.push_back("");
 			attributesHeight += 20;
 		}
 		else
