@@ -56,7 +56,7 @@ mission "Vintage Spaceman"
 		conversation
 			`"Dude!" A patron in his mid twenties approaches after you accidentally make eye contact. "That your ship?" He continues. "You gotta help me. I'm in love!"`
 			`	He's dressed in a vintage spacesuit, something they wore before space travel was common. Useless these days, but a rare collector's item.`
-			`	"It all started last week. I was in the Spritney Beers chat room and started talking to this rad chick. We talk every day now. It's like she was made for me. I need to see her. She invited me to the next Spritney Beers concert on <system>. You have to take me!"`
+			`	"It all started last week. I was in Swift of the Sponge's holoroom and started talking to this rad chick. We talk every day now. It's like she was made for me. I need to see her. She invited me to the next concert on <system>. You have to take me!"`
 			choice
 				`	"Fine, but I'm in control of the music."`
 					accept
