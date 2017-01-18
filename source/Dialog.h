@@ -50,6 +50,8 @@ template <class T>
 	
 template <class T>
 	Dialog(T *t, void (T::*fun)(const std::string &), const std::string &text);
+template <class T>
+	Dialog(T *t, void (T::*fun)(const std::string &), const std::string &text, const std::string &initialValue);
 	
 template <class T>
 	Dialog(T *t, void (T::*fun)(), const std::string &text);
@@ -118,6 +120,16 @@ Dialog::Dialog(T *t, void (T::*fun)(const std::string &), const std::string &tex
 	: stringFun(std::bind(fun, t, std::placeholders::_1))
 {
 	Init(text);
+}
+
+
+
+template <class T>
+Dialog::Dialog(T *t, void (T::*fun)(const std::string &), const std::string &text, const std::string &initialValue)
+: stringFun(std::bind(fun, t, std::placeholders::_1))
+{
+	Init(text);
+	input = initialValue;
 }
 
 

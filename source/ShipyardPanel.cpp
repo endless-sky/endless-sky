@@ -15,6 +15,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Dialog.h"
 #include "Format.h"
 #include "GameData.h"
+#include "Phrase.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
 #include "Point.h"
@@ -131,6 +132,8 @@ void ShipyardPanel::Buy()
 	
 	modifier = Modifier();
 	string message;
+	const Phrase *names = GameData::Phrases().Get("civilian");
+	string input = names->Get();
 	if(licenseCost)
 		message = "Note: you will need to pay " + Format::Number(licenseCost)
 			+ " credits for the licenses required to operate this ship, in addition to its cost."
@@ -138,7 +141,7 @@ void ShipyardPanel::Buy()
 	else
 		message = "Enter a name for your brand new ";
 	message += selectedShip->ModelName() + "!";
-	GetUI()->Push(new Dialog(this, &ShipyardPanel::BuyShip, message));
+	GetUI()->Push(new Dialog(this, &ShipyardPanel::BuyShip, message, input));
 }
 
 
