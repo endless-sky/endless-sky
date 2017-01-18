@@ -81,7 +81,7 @@ icons = []
 for size in sizes:
 	destination = "$DESTDIR$PREFIX/share/icons/hicolor/" + size + "/apps/endless-sky.png"
 	icons.append(destination)
-	env.InstallAs(destination, “icons/icon_" + size + ".png")
+	env.InstallAs(destination, "icons/icon_" + size + ".png")
 
 # If any of those icons changed, also update the cache.
 # Do not update the cache if we're not installing into "usr".
