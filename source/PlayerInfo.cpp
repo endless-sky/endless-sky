@@ -1362,7 +1362,6 @@ Mission *PlayerInfo::BoardingMission(const shared_ptr<Ship> &ship)
 		if(!it.second.IsAtLocation(location))
 			continue;
 		
-		conditions["random"] = Random::Int(100);
 		if(it.second.CanOffer(*this))
 		{
 			boardingMissions.push_back(it.second.Instantiate(*this));
@@ -1419,7 +1418,7 @@ void PlayerInfo::MissionCallback(int response)
 	
 	Mission &mission = missionList.front();
 	
-	shouldLaunch = Conversation::RequiresLaunch(response);
+	shouldLaunch |= Conversation::RequiresLaunch(response);
 	if(response == Conversation::ACCEPT || response == Conversation::LAUNCH)
 	{
 		bool shouldAutosave = mission.RecommendsAutosave();
@@ -1651,18 +1650,28 @@ void PlayerInfo::Visit(const Planet *planet)
 // Mark a system as unvisited, even if visited previously.
 void PlayerInfo::Unvisit(const System *system)
 {
+	if(!system)
+		return;
+	
 	auto it = visitedSystems.find(system);
 	if(it != visitedSystems.end())
-	{
 		visitedSystems.erase(it);
-		for(const StellarObject &object : system->Objects())
-			if(object.GetPlanet())
-			{
-				auto it2 = visitedPlanets.find(object.GetPlanet());
-				if(it2 != visitedPlanets.end())
-					visitedPlanets.erase(it2);
-			}
-	}
+	
+	for(const StellarObject &object : system->Objects())
+		if(object.GetPlanet())
+			Unvisit(object.GetPlanet());
+}
+
+
+
+void PlayerInfo::Unvisit(const Planet *planet)
+{
+	if(!planet)
+		return;
+	
+	auto it = visitedPlanets.find(planet);
+	if(it != visitedPlanets.end())
+		visitedPlanets.erase(it);
 }
 
 
@@ -2024,7 +2033,6 @@ void PlayerInfo::CreateMissions()
 		if(skipJobs && it.second.IsAtLocation(Mission::JOB))
 			continue;
 		
-		conditions["random"] = Random::Int(100);
 		if(it.second.CanOffer(*this))
 		{
 			list<Mission> &missions =

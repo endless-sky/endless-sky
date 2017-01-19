@@ -308,6 +308,9 @@
 		<Unit filename="source/UI.h" />
 		<Unit filename="source/Weapon.cpp" />
 		<Unit filename="source/Weapon.h" />
+		<Unit filename="source/WinApp.rc">
+			<Option compilerVar="WINDRES" />
+		</Unit>
 		<Unit filename="source/WrappedText.cpp" />
 		<Unit filename="source/WrappedText.h" />
 		<Unit filename="source/gl_header.h" />

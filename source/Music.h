@@ -30,10 +30,14 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 // so the game won't freeze if the music stops for some reason.
 class Music {
 public:
+	static void Init(const std::vector<std::string> &sources);
+	
+	
+public:
 	Music();
 	~Music();
 	
-	void SetSource(const std::string &path = "");
+	void SetSource(const std::string &name = "");
 	const std::vector<int16_t> &NextChunk();
 	
 	
@@ -50,7 +54,11 @@ private:
 	std::vector<int16_t> current;
 	
 	std::string previousPath;
+	// This pointer holds the file for as long as it is owned by the main
+	// thread. When the decode thread takes possession of it, it sets this
+	// pointer to null.
 	FILE *nextFile = nullptr;
+	bool hasNewFile = false;
 	bool done = false;
 	
 	std::thread thread;

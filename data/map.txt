@@ -22586,7 +22586,7 @@ planet "Arachne Station"
 
 planet "Aresepru Nat"
 	attributes korath
-	landscape land/beach1
+	landscape land/sea0
 	description `Now that the Korath are gone, the oceans on this planet have begun to teem with fish and other living creatures once again, and the levels of dissolved oxygen and carbon dioxide are slowly swinging back into balance. Species of algae and bacteria that are able to metabolize the plastics and chemicals that the Korath left behind have spread throughout the oceans.`
 	security 0
 
@@ -22815,7 +22815,7 @@ planet "Carbuncle Station"
 
 planet "Ceaseless Toil"
 	attributes saryd factory
-	landscape land/canyon5
+	landscape land/canyon01
 	description `The Saryds prefer to build their largest factories on sun-drenched, uninhabitable worlds, in order to allow more hospitable planets to be used for residences and recreation. Where possible, their factories harness solar power: either using mirrors to concentrate sunlight for solar foundries, or collecting energy through large fields of solar panels. The factories are almost entirely maintained by robots, which are capable not only of repairing damage but also of constructing entire new factories according to predefined plans.`
 	description `	The solar collectors are mounted on frames about ten meters above the shifting sand dunes. In addition to turning to face the sun, they can be turned upside-down as necessary to dump off any sand that accumulates on them.`
 	"required reputation" 15
@@ -22996,7 +22996,7 @@ planet Darkcloak
 
 planet Darkmetal
 	attributes hai
-	landscape land/canyon6
+	landscape land/canyon02
 	description `Darkmetal is a cold, dry mining world, the source of much of the heavy metals that are used in Hai space. A haze of slightly radioactive dust hangs in the sky whenever it has been more than a week since the last rainstorm. Most of the mining is carried out by slow-moving vehicles the size of a small city, which ingest layers of dirt and bedrock, crush it to extract any valuable elements, then mix the remaining material with water to form a cement-like slurry that can be extruded in solid blocks, to reduce the amount of additional dust that is added to the atmosphere.`
 	spaceport `The spaceport is hermetically sealed, with gantry tubes that can adapt to fit the hatches of human ships as well as Hai. The seal is to keep radioactive dust out of the living spaces, but its purpose is primarily to reduce the long-term exposure of the station's permanent inhabitants; for visitors, the risks are minimal.`
 
@@ -23181,7 +23181,7 @@ planet Echo
 
 planet "Elek Kartanu"
 	attributes korath
-	landscape land/mountain2
+	landscape land/lava2
 	description `You have no idea what has happened to this planet, and you are not sure you want to know. The atmosphere is unusually hot and wet for a planet this distance from its sun, and the ocean levels seem to have dropped significantly in the recent past, leaving barnacles and bleached coral exposed to the air all around the shorelines. The wind is frenzied and full of wild energy, and the fog moves like a living creature.`
 	security 0
 
@@ -23296,7 +23296,7 @@ planet Featherweight
 
 planet "Fek Rembatu"
 	attributes korath
-	landscape land/sky3
+	landscape land/beach10-sfiera
 	description `Everything on this planet that is made of metal is overgrown with a thick layer of a reddish lichen or fungus. In the cities, the tallest buildings look like they have been melted or half digested by the fungus: tall towers lean at crazy angles, and smaller buildings are entirely buried and indistinct. The air smells like sauerkraut and roses.`
 	security 0
 
@@ -23365,7 +23365,7 @@ planet Follower
 
 planet Forpelog
 	attributes quarg moon
-	landscape land/badlands4
+	landscape land/canyon03
 	description `Forpelog is a Quarg mining world, barely habitable by their standards and, because of its low gravity, unsuitable for long-term human habitation. The Quarg city is a marvel of advanced technology, entirely enclosed within glass and steel, with gardens and terraces where alien trees and plants grow. Outside the city, the landscape is rugged and beautiful, but the atmosphere is too thin to breathe and contains almost no oxygen.`
 	spaceport `Your ship is docked on a metal pad immediately outside the dome of the city, which towers over you. Immediately after you landed, a smaller canopy unfolded around your ship, sealing it in and providing enough air for you to breathe as you make your way inside. The stark, lifeless badlands outside give way to bustling streets and lush blue foliage within. No other human beings are in sight.`
 	bribe 0
@@ -23836,7 +23836,7 @@ planet "Into White"
 
 planet "Karek Fornati"
 	attributes korath
-	landscape land/badlands4
+	landscape land/desert1
 	description `Karek Fornati was once a farming world, before global temperatures began to rise and the overworked farmland slowly deteriorated into deserts. The Korath who remain have dedicated their lives to finding a way to keep the "sand seas" from swallowing up the last of the fertile land, but without much success, and there are regions near the equator where sandstorms rage continually and no living things can survive.`
 	spaceport `The spaceport city is built around an enormous public square, with stalls around its periphery for produce or grain or cattle to be sold and shipped offworld. But only one corner of the square is still active as a market; the rest has fallen into disrepair.`
 	spaceport `	Outside the city, the land is divided up by perfectly straight strips of pine trees laid out perpendicular to the prevailing wind direction. Many of the fields are growing what looks like hay, or clover, or black, nearly leafless shrubs; only a few of the fields are actively being harvested.`
@@ -24236,13 +24236,13 @@ planet Muspel
 
 planet Mutiny
 	attributes pirate
-	landscape land/sky9
+	landscape land/badlands8
 	description `Centuries ago, Mutiny was used as a sort of prison world for a powerful band of pirates, a place where rivals could be marooned or held for ransom, rather than killing them outright. It is a cold, dark planet, and food is scarce, but over time several villages developed in the more hospitable regions. No longer prisoners, the inhabitants who remain do so because they prefer a simple life beyond the reach of any government, on a planet that will never be stolen from them because it carries nothing of value.`
 	security 0
 
 planet Mystery
 	attributes saryd
-	landscape land/desert0
+	landscape land/canyon05
 	description `The Saryd culture's fascination with the movement of the stars and planets can perhaps be attributed to the fact that their homeworld is orbited by two moons, which cause a complex and seemingly unpredictable cycle of tides as well as a variety of subtle effects on the circadian rhythms of the creatures that evolved on Saros. Saryd homes on other worlds often have night lighting cycles designed to mimic the moons of their homeworld.`
 	"required reputation" 15
 
@@ -24461,7 +24461,7 @@ planet Newhome
 
 planet Nifel
 	attributes deep research medical
-	landscape land/snow2
+	landscape land/mountain3
 	description `Nifel is a cold world, with summers too short to grow most crops, and very little indigenous wildlife aside from thick-furred mammals, and some migratory birds that travel from one hemisphere to the other every year.`
 	description `	Four centuries ago, when much of human space had been in travel quarantine for a decade to block the spread of the Rigellian Plague, it was here that researchers discovered a cryophilic bacterium growing in the permafrost that could be used to combat and eventually eliminate the plague. Some research labs and manufacturing plants still remain in operation here.`
 	spaceport `As with many of the fanciest buildings in the Deep, the spaceport here is built of carbon fiber and plastic composite instead of more traditional materials. The particular composite used here is slightly translucent, so the hallways and hangars are all bathed in dim and diffuse sunlight. The port is located near the equator, but the air is still uncomfortably cold. The spaceport is large enough to house ten times the number of people and ships that are currently here.`
@@ -24885,7 +24885,7 @@ planet "Selefkar Refinery"
 
 planet "Seleptra Nak"
 	attributes korath
-	landscape land/water8
+	landscape land/fog2
 	description `The most disturbing thing about the empty Korath cities on this planet is how pristine they are: no sign of bombing or of weapons fire. Either everyone who lived here chose to leave, or they were killed by a weapon that did no damage to the buildings they live in.`
 	description `	Outside the cities, plant and animal life has begun to flourish, and some of the smaller villages have already been swallowed up by the growing forests. The climate is temperate, and rainfall is plentiful; aside from the reduction in biodiversity, it will not take this planet long to forget its former owners.`
 	security 0
@@ -25501,7 +25501,7 @@ planet "Vara Rakak"
 
 planet "Varu Ek'lak'lai"
 	attributes wanderer mining
-	landscape land/water8
+	landscape land/canyon7
 	description `The Wanderers harvest metal ores not from planets, but from asteroids, in order to not expend even more of the resources of the planets that are under their care. This star system contains an unusually high concentration of metallic asteroids, and as a result they have built many large refineries here to process the ore that their drones harvest.`
 	spaceport `The vast majority of ships landing and taking off from this port are unmanned Wanderer drones used for mining asteroids. The drones are maneuverable enough to avoid collisions with the few ships that land under manual control.`
 	spaceport `	The port itself is a small village surrounded by towering refineries. Unlike other Wanderer architecture, the refineries are ugly, brutal buildings made of weathered concrete.`
@@ -25519,7 +25519,7 @@ planet "Varu K'est"
 
 planet "Varu K'prai"
 	attributes wanderer oil
-	landscape land/beach1
+	landscape land/sea4
 	description `This is one of the only Wanderer worlds that still has large reserves of oil, albeit deep below the ocean surface where mining is difficult. Aside from the drilling companies and refineries, the largest local employer is the local government's safety oversight department, whose inspectors are constantly visiting the drilling platforms and shipping hubs to ensure that all the regulations for preventing oil spills are being followed.`
 	spaceport `Plastics and other refined oil products are as essential to Wanderer technology as to humans, but it is clear that those responsible for harvesting them are not held in high regard. The crews of visiting ships seem eager to interact with the locals as little as possible. However, that does not appear to stop the Wanderer freighters from purchasing large shipments of plastic, which will no doubt yield a substantial profit elsewhere in Wanderer space.`
 	"required reputation" 15
@@ -25544,7 +25544,7 @@ planet "Varu Tek'kai"
 
 planet "Varu Tev'kei"
 	attributes wanderer factory
-	landscape land/dune4
+	landscape land/canyon04
 	description `This is a desert world, too hot and too close to its sun to support much animal or plant life. The Wanderers have covered large stretches of the desert with solar-powered factories: smelters that use the sun's reflected heat to melt ore, and fields of solar panels that support other industries.`
 	spaceport `It is easy to distinguish the local workers from the visitors, because the locals wrap their wings in thin white sheets of cloth rather than leaving them bare: a necessary protection for any Wanderer who chooses to fly outside of the protective shade of the spaceport. Many of the buildings here extend deep underground, to where the surrounding bedrock is cooler than the hot sands at the surface.`
 	"required reputation" 15

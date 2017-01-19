@@ -118,7 +118,14 @@ void AI::UpdateKeys(PlayerInfo &player, Command &clickCommands, bool isActive)
 	clickCommands.Clear();
 	keyDown = keyHeld.AndNot(oldHeld);
 	if(keyHeld.Has(AutopilotCancelKeys()))
+	{
+		bool canceled = (keyStuck.Has(Command::JUMP) && !keyHeld.Has(Command::JUMP));
+		canceled |= (keyStuck.Has(Command::LAND) && !keyHeld.Has(Command::LAND));
+		canceled |= (keyStuck.Has(Command::BOARD) && !keyHeld.Has(Command::BOARD));
+		if(canceled)
+			Messages::Add("Disengaging autopilot.");
 		keyStuck.Clear();
+	}
 	if(keyStuck.Has(Command::JUMP) && !player.HasTravelPlan())
 		keyStuck.Clear(Command::JUMP);
 	
@@ -224,7 +231,6 @@ void AI::UpdateEvents(const list<ShipEvent> &events)
 
 void AI::Clean()
 {
-	orders.clear();
 	actions.clear();
 	governmentActions.clear();
 	playerActions.clear();
@@ -725,7 +731,8 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 					isArmed = true;
 					break;
 				}
-			range += 2000. * !isArmed;
+			// Prefer to go after armed targets, expecially if you're not a pirate.
+			range += 1000. * (!isArmed * (1 + !person.Plunders()));
 			// Focus on nearly dead ships.
 			range += 500. * (it->Shields() + it->Hull());
 			double modifier = std::pow(it->Mass(), 0.1);
@@ -2256,6 +2263,14 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 					ship.SetTargetSystem(link);
 				}
 			}
+		}
+		if(ship.GetTargetSystem())
+		{
+			string name = "selected star";
+			if(player.KnowsName(ship.GetTargetSystem()))
+				name = ship.GetTargetSystem()->Name();
+			
+			Messages::Add("Engaging autopilot to jump to the " + name + " system.");
 		}
 	}
 	else if(keyHeld.Has(Command::SCAN))

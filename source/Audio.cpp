@@ -248,7 +248,7 @@ void Audio::PlayMusic(const string &name)
 	musicFade = 65536;
 	swap(currentTrack, previousTrack);
 	// If the name is empty, it means to turn music off.
-	currentTrack->SetSource(name.empty() ? name : Files::Sounds() + name + ".mp3");
+	currentTrack->SetSource(name);
 }
 
 
