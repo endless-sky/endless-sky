@@ -53,6 +53,11 @@ void NPC::Load(const DataNode &node)
 			succeedIf |= ShipEvent::SCAN_CARGO;
 		else if(node.Token(i) == "scan outfits")
 			succeedIf |= ShipEvent::SCAN_OUTFITS;
+		else if(node.Token(i) == "capture")
+		{
+			succeedIf |= ShipEvent::CAPTURE;
+			failIf |= ShipEvent::DESTROY;
+		}
 		else if(node.Token(i) == "evade")
 			mustEvade = true;
 		else if(node.Token(i) == "accompany")
@@ -229,9 +234,10 @@ void NPC::Do(const ShipEvent &event, PlayerInfo &player, UI *ui, bool isVisible)
 				if(bay.ship)
 					actions[bay.ship.get()] |= event.Type();
 			
-			// If a mission ship is captured, let it live on under its new
-			// ownership but mark our copy of it as destroyed.
-			if(event.Type() & ShipEvent::CAPTURE)
+			// If a mission ship without the "capture" tag is captured, let it
+			// live on under its new ownership but mark our copy of it as destroyed.
+			auto it = actions.find(ship.get());
+			if(event.Type() & ShipEvent::CAPTURE & (it->second != ShipEvent::CAPTURE))
 			{
 				Ship *copy = new Ship(*ship);
 				copy->Destroy();

@@ -588,6 +588,13 @@ bool Mission::CanComplete(const PlayerInfo &player) const
 		if(ship->GetSystem() != player.GetSystem() && ship->Cargo().Get(this))
 			return false;
 	
+	// The mission is completable, so now destroy any remaining NPC ships
+	// not already destroyed when the mission was completed (e.g. ships
+	// captured by the player for capture jobs)
+	for(const auto &npc : npcs)
+		for(const auto &ship : npc.Ships())
+			ship->Destroy();
+
 	return true;
 }
 
