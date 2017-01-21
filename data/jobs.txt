@@ -20,6 +20,10 @@ mission "Escort (Tiny, Northern, Dangerous Destination)"
 		or
 			"combat rating" > 0
 			has "ships: Interceptor"
+		or
+			"reputation: Republic" > 0
+			"reputation: Syndicate" > 0
+			"reputation: Free Worlds" > 0
 	source
 		government Republic "Free Worlds" Syndicate Neutral
 		attributes deep paradise "near earth"
@@ -79,6 +83,10 @@ mission "Escort (Tiny, Northern, Dangerous Origin)"
 		or
 			"combat rating" > 0
 			has "ships: Interceptor"
+		or
+			"reputation: Republic" > 0
+			"reputation: Syndicate" > 0
+			"reputation: Free Worlds" > 0
 	source
 		government Republic "Free Worlds" Syndicate Neutral
 		attributes frontier north
@@ -133,6 +141,10 @@ mission "Escort (Small, Northern, Dangerous Destination)"
 	to offer
 		random < 70
 		"combat rating" > 5
+		or
+			"reputation: Republic" > 0
+			"reputation: Syndicate" > 0
+			"reputation: Free Worlds" > 0
 	source
 		government Republic "Free Worlds" Syndicate Neutral
 		attributes deep paradise "near earth"
@@ -179,6 +191,10 @@ mission "Escort (Small, Northern, Dangerous Origin)"
 	to offer
 		random < 40
 		"combat rating" > 5
+		or
+			"reputation: Republic" > 0
+			"reputation: Syndicate" > 0
+			"reputation: Free Worlds" > 0
 	source
 		government Republic "Free Worlds" Syndicate Neutral
 		attributes frontier north
@@ -222,6 +238,10 @@ mission "Escort (Medium, Northern, Dangerous Destination)"
 	to offer
 		random < 40
 		"combat rating" > 20
+		or
+			"reputation: Republic" > 0
+			"reputation: Syndicate" > 0
+			"reputation: Free Worlds" > 0
 	source
 		government Republic "Free Worlds" Syndicate Neutral
 		attributes deep paradise "near earth"
@@ -279,6 +299,10 @@ mission "Escort (Medium, Northern, Dangerous Origin)"
 	to offer
 		random < 40
 		"combat rating" > 20
+		or
+			"reputation: Republic" > 0
+			"reputation: Syndicate" > 0
+			"reputation: Free Worlds" > 0
 	source
 		government Republic "Free Worlds" Syndicate Neutral
 		attributes frontier north
@@ -332,6 +356,10 @@ mission "Escort (Large, Northern, Dangerous Destination)"
 	to offer
 		random < 30
 		"combat rating" > 60
+		or
+			"reputation: Republic" > 0
+			"reputation: Syndicate" > 0
+			"reputation: Free Worlds" > 0
 	source
 		government Republic "Free Worlds" Syndicate Neutral
 		attributes deep paradise "near earth"
@@ -378,6 +406,10 @@ mission "Escort (Large, Northern, Dangerous Origin)"
 	to offer
 		random < 30
 		"combat rating" > 60
+		or
+			"reputation: Republic" > 0
+			"reputation: Syndicate" > 0
+			"reputation: Free Worlds" > 0
 	source
 		government Republic "Free Worlds" Syndicate Neutral
 		attributes frontier north
@@ -421,6 +453,10 @@ mission "Escort (Extra Large, Northern, Dangerous Destination)"
 	to offer
 		random < 15
 		"combat rating" > 100
+		or
+			"reputation: Republic" > 0
+			"reputation: Syndicate" > 0
+			"reputation: Free Worlds" > 0
 	source
 		government Republic "Free Worlds" Syndicate Neutral
 		attributes deep paradise "near earth"
@@ -478,6 +514,10 @@ mission "Escort (Extra Large, Northern, Dangerous Origin)"
 	to offer
 		random < 15
 		"combat rating" > 100
+		or
+			"reputation: Republic" > 0
+			"reputation: Syndicate" > 0
+			"reputation: Free Worlds" > 0
 	source
 		government Republic "Free Worlds" Syndicate Neutral
 		attributes frontier north
@@ -535,6 +575,10 @@ mission "Escort (Tiny, Core, Dangerous Destination)"
 		or
 			"combat rating" > 0
 			has "ships: Interceptor"
+		or
+			"reputation: Republic" > 0
+			"reputation: Syndicate" > 0
+			"reputation: Free Worlds" > 0
 	source
 		government Republic "Free Worlds" Syndicate Neutral
 		attributes core "near earth"
@@ -594,6 +638,10 @@ mission "Escort (Tiny, Core, Dangerous Origin)"
 		or
 			"combat rating" > 0
 			has "ships: Interceptor"
+		or
+			"reputation: Republic" > 0
+			"reputation: Syndicate" > 0
+			"reputation: Free Worlds" > 0
 	source
 		government Republic "Free Worlds" Syndicate Neutral
 		attributes core north frontier
@@ -648,6 +696,10 @@ mission "Escort (Small, Core, Dangerous Destination)"
 	to offer
 		random < 70
 		"combat rating" > 5
+		or
+			"reputation: Republic" > 0
+			"reputation: Syndicate" > 0
+			"reputation: Free Worlds" > 0
 	source
 		government Republic "Free Worlds" Syndicate Neutral
 		attributes paradise "near earth"
@@ -694,6 +746,10 @@ mission "Escort (Small, Core, Dangerous Origin)"
 	to offer
 		random < 70
 		"combat rating" > 5
+		or
+			"reputation: Republic" > 0
+			"reputation: Syndicate" > 0
+			"reputation: Free Worlds" > 0
 	source
 		government Republic "Free Worlds" Syndicate Neutral
 		attributes core north frontier
@@ -737,6 +793,10 @@ mission "Escort (Medium, Core, Dangerous Destination)"
 	to offer
 		random < 40
 		"combat rating" > 20
+		or
+			"reputation: Republic" > 0
+			"reputation: Syndicate" > 0
+			"reputation: Free Worlds" > 0
 	source
 		government Republic "Free Worlds" Syndicate Neutral
 		attributes paradise "near earth"
@@ -794,6 +854,10 @@ mission "Escort (Medium, Core, Dangerous Origin)"
 	to offer
 		random < 40
 		"combat rating" > 20
+		or
+			"reputation: Republic" > 0
+			"reputation: Syndicate" > 0
+			"reputation: Free Worlds" > 0
 	source
 		government Republic "Free Worlds" Syndicate Neutral
 		attributes core north frontier
@@ -846,6 +910,10 @@ mission "Escort (Large, Core, Dangerous Destination)"
 	to offer
 		random < 50
 		"combat rating" > 60
+		or
+			"reputation: Republic" > 0
+			"reputation: Syndicate" > 0
+			"reputation: Free Worlds" > 0
 	source
 		government Republic "Free Worlds" Syndicate Neutral
 		attributes paradise "near earth"
@@ -892,6 +960,10 @@ mission "Escort (Large, Core, Dangerous Origin)"
 	to offer
 		random < 50
 		"combat rating" > 60
+		or
+			"reputation: Republic" > 0
+			"reputation: Syndicate" > 0
+			"reputation: Free Worlds" > 0
 	source
 		government Republic "Free Worlds" Syndicate Neutral
 		attributes core north frontier
@@ -935,6 +1007,10 @@ mission "Escort (Extra Large, Core, Dangerous Destination)"
 	to offer
 		random < 20
 		"combat rating" > 100
+		or
+			"reputation: Republic" > 0
+			"reputation: Syndicate" > 0
+			"reputation: Free Worlds" > 0
 	source
 		government Republic "Free Worlds" Syndicate Neutral
 		attributes paradise "near earth"
@@ -992,6 +1068,10 @@ mission "Escort (Extra Large, Core, Dangerous Origin)"
 	to offer
 		random < 20
 		"combat rating" > 100
+		or
+			"reputation: Republic" > 0
+			"reputation: Syndicate" > 0
+			"reputation: Free Worlds" > 0
 	source
 		government Republic "Free Worlds" Syndicate Neutral
 		attributes core north frontier
@@ -1048,6 +1128,10 @@ mission "Escort (Tiny, Southern, Dangerous Origin or Destination)"
 		or
 			"combat rating" > 0
 			has "ships: Interceptor"
+		or
+			"reputation: Republic" > 0
+			"reputation: Syndicate" > 0
+			"reputation: Free Worlds" > 0
 	source
 		government Republic "Free Worlds" Syndicate Neutral
 		attributes frontier south rim "dirt belt"
@@ -1101,6 +1185,10 @@ mission "Escort (Small, Southern, Dangerous Origin or Destination)"
 	to offer
 		random < 70
 		"combat rating" > 5
+		or
+			"reputation: Republic" > 0
+			"reputation: Syndicate" > 0
+			"reputation: Free Worlds" > 0
 	source
 		government Republic "Free Worlds" Syndicate Neutral
 		attributes frontier south rim "dirt belt"
@@ -1139,6 +1227,10 @@ mission "Escort (Medium, Southern, Dangerous Origin or Destination)"
 	to offer
 		random < 40
 		"combat rating" > 20
+		or
+			"reputation: Republic" > 0
+			"reputation: Syndicate" > 0
+			"reputation: Free Worlds" > 0
 	source
 		government Republic "Free Worlds" Syndicate Neutral
 		attributes frontier south rim "dirt belt"
@@ -1186,6 +1278,10 @@ mission "Escort (Large, Southern, Dangerous Origin or Destination)"
 	to offer
 		random < 50
 		"combat rating" > 60
+		or
+			"reputation: Republic" > 0
+			"reputation: Syndicate" > 0
+			"reputation: Free Worlds" > 0
 	source
 		government Republic "Free Worlds" Syndicate Neutral
 		attributes frontier south rim "dirt belt"
@@ -1224,6 +1320,10 @@ mission "Escort (Extra Large, Southern, Dangerous Origin or Destination)"
 	to offer
 		random < 20
 		"combat rating" > 100
+		or
+			"reputation: Republic" > 0
+			"reputation: Syndicate" > 0
+			"reputation: Free Worlds" > 0
 	source
 		government Republic "Free Worlds" Syndicate Neutral
 		attributes frontier south rim "dirt belt"
