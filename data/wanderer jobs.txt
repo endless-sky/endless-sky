@@ -12,7 +12,7 @@ mission "Wanderer Workers [0]"
 	name "Wanderer workers to <planet>"
 	job
 	repeat
-	description `These <bunk> Wanderer workers require transportation to <destination>. They will pay you <payment> to take them there.`
+	description `These <bunks> Wanderer workers require transportation to <destination>. They will pay you <payment> to take them there.`
 	passengers 5 8 .2
 	to offer
 		has "language: Wanderer"
@@ -31,7 +31,7 @@ mission "Wanderer Workers [1]"
 	name "Wanderer workers to <planet>"
 	job
 	repeat
-	description `These <bunk> Wanderer workers require transportation to <destination>. They will pay you <payment> to take them there.`
+	description `These <bunks> Wanderer workers require transportation to <destination>. They will pay you <payment> to take them there.`
 	passengers 5 5 .1
 	to offer
 		has "language: Wanderer"
@@ -50,7 +50,7 @@ mission "Wanderer Farmers [0]"
 	name "Wanderer farmers to <planet>"
 	job
 	repeat
-	description `These <bunk> Wanderer farmers require transportation to <destination>. They will pay you <payment> to take them there.`
+	description `These <bunks> Wanderer farmers require transportation to <destination>. They will pay you <payment> to take them there.`
 	passengers 5 8 .2
 	to offer
 		has "language: Wanderer"
@@ -69,7 +69,7 @@ mission "Wanderer Farmers [1]"
 	name "Wanderer farmers to <planet>"
 	job
 	repeat
-	description `These <bunk> Wanderer farmers require transportation to <destination>. They will pay you <payment> to take them there.`
+	description `These <bunks> Wanderer farmers require transportation to <destination>. They will pay you <payment> to take them there.`
 	passengers 5 5 .1
 	to offer
 		has "language: Wanderer"
