@@ -316,7 +316,7 @@ mission "Wanderer Invasive Species [0]"
 	name "Invasive species on <planet>"
 	job
 	repeat
-	description `These <bunks> Wanderer need to get to <stopovers> with their <cargo> by <date> to contain an invasive animal species. Return the Wanderers here with the animals for a payment of <payment>.`
+	description `These <bunks> Wanderers need to get to <stopovers> with their <cargo> by <date> to contain an invasive animal species. Return the Wanderers here with the animals for a payment of <payment>.`
 	passengers 4 4 .2
 	cargo "containers" 5 2 .1
 	deadline
@@ -338,7 +338,7 @@ mission "Wanderer Invasive Species [1]"
 	name "Invasive species on <planet>"
 	job
 	repeat
-	description `These <bunks> Wanderer need to get to <stopovers> with their <cargo> by <date> to contain an invasive plant species. Return the Wanderers here with the animals for a payment of <payment>.`
+	description `These <bunks> Wanderers need to get to <stopovers> with their <cargo> by <date> to contain an invasive plant species. Return the Wanderers here with the animals for a payment of <payment>.`
 	passengers 4 4 .1
 	cargo "containers" 5 2 .1
 	deadline
