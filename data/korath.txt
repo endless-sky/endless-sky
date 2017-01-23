@@ -560,6 +560,19 @@ fleet "Large Kor Mereti"
 	variant 5
 		"Model 128" 2
 
+fleet "Kor Mereti Miners"
+	government "Kor Mereti"
+	names "kor mereti"
+	cargo 0
+	personality
+		mining harvests
+	variant 10
+		"Model 8"
+	variant 3
+		"Model 8" 2
+	variant 1
+		"Model 8" 3
+
 
 outfitter "Korath Basics"
 	"Korath Piercer Rack"

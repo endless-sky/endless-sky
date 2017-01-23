@@ -40,6 +40,7 @@ outfit "Bombardment Turret"
 	"mass" 43
 	"outfit space" -43
 	"weapon capacity" -43
+	"required crew" 1
 	"turret mounts" -1
 	weapon
 		sprite "projectile/bombardment"
@@ -56,7 +57,7 @@ outfit "Bombardment Turret"
 		"firing heat" 14
 		"shield damage" 22
 		"hull damage" 25
-	description `A Bombarment Turret is not one of the most dangerous Heliarch weapons, but it has the advantage that it can hit targets a considerable distance away.`
+	description `A Bombardment Turret is not one of the most dangerous Heliarch weapons, but it has the advantage that it can hit targets a considerable distance away.`
 
 effect "bombardment impact"
 	sprite "effect/bombardment impact"
@@ -84,7 +85,7 @@ outfit "Finisher Pod"
 			"no repeat"
 		sound "torpedo"
 		ammo "Finisher Torpedo"
-		icon "icon/torpedo"
+		icon "icon/finisher"
 		"fire effect" "finisher sparks" 8
 		"hit effect" "finisher impact" 2
 		"hit effect" "finisher fragment" 12
@@ -125,6 +126,7 @@ outfit "Active Finisher"
 		"hit force" 240
 
 outfit "Finisher Torpedo"
+	plural "Finisher Torpedoes"
 	category "Ammunition"
 	cost 32000
 	thumbnail "outfit/unknown"
@@ -177,6 +179,7 @@ outfit "Heliarch Attractor"
 	"mass" 49
 	"outfit space" -49
 	"weapon capacity" -49
+	"required crew" 1
 	"turret mounts" -1
 	weapon
 		sprite "projectile/attractor"
@@ -214,6 +217,7 @@ outfit "Heliarch Repulsor"
 	"mass" 56
 	"outfit space" -56
 	"weapon capacity" -56
+	"required crew" 1
 	"turret mounts" -1
 	weapon
 		sprite "projectile/repulsor"
@@ -222,7 +226,7 @@ outfit "Heliarch Repulsor"
 		sound "heavy laser"
 		"hit effect" "repulsor impact"
 		"inaccuracy" 3
-		"velocity" 600
+		"velocity" 560
 		"lifetime" 1
 		"reload" 1
 		"firing energy" 5.9

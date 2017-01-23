@@ -43,9 +43,11 @@ namespace {
 
 
 
-ShopPanel::ShopPanel(PlayerInfo &player, const vector<string> &categories)
+ShopPanel::ShopPanel(PlayerInfo &player, bool isOutfitter)
 	: player(player), day(player.GetDate().DaysSinceEpoch()),
-	planet(player.GetPlanet()), playerShip(player.Flagship()), categories(categories)
+	planet(player.GetPlanet()), playerShip(player.Flagship()),
+	categories(isOutfitter ? Outfit::CATEGORIES : Ship::CATEGORIES),
+	collapsed(player.Collapsed(isOutfitter ? "outfitter" : "shipyard"))
 {
 	if(playerShip)
 		playerShips.insert(playerShip);
@@ -497,7 +499,7 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 
 
 
-bool ShopPanel::Click(int x, int y)
+bool ShopPanel::Click(int x, int y, int clicks)
 {
 	dragShip = nullptr;
 	// Handle clicks on the buttons.

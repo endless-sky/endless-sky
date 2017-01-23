@@ -803,29 +803,24 @@ mission "Escort (Medium, Core, Dangerous Origin)"
 		distance 3 5
 	npc
 		personality nemesis waiting
-		system destination
 		distance 1
 		government Pirate
 		fleet "Small Core Pirates"
 	npc
 		personality nemesis waiting
-		system destination
 		distance 1
 		government Pirate
 		fleet "Small Core Pirates"
 	npc
 		personality nemesis waiting
-		system destination
 		distance 1 2
 		government Pirate
 		fleet "Small Core Pirates"
 	npc
-		system destination
-		personality nemesis staying
+		personality nemesis waiting
 		government Pirate
 		fleet "Small Core Pirates"
 	npc
-		system destination
 		personality nemesis waiting
 		government Pirate
 		fleet "Small Core Pirates"

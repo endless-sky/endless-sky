@@ -45,6 +45,11 @@
 	"planet/ringworld left"
 	"planet/ringworld"
 	"planet/ringworld right"
+	"planet/panels1"
+	"planet/panels2"
+	"planet/panels3"
+	"planet/panels4"
+	"planet/panels5"
 
 "landing message" "You are not sure what this is, but it's not something you can land on."
 	"planet/wisp"

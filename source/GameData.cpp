@@ -32,6 +32,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "LineShader.h"
 #include "Minable.h"
 #include "Mission.h"
+#include "Music.h"
 #include "Outfit.h"
 #include "OutlineShader.h"
 #include "Person.h"
@@ -43,6 +44,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Sale.h"
 #include "Set.h"
 #include "Ship.h"
+#include "Sprite.h"
 #include "SpriteQueue.h"
 #include "SpriteSet.h"
 #include "SpriteShader.h"
@@ -53,7 +55,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <algorithm>
 #include <iostream>
 #include <map>
-#include <tuple>
 #include <utility>
 #include <vector>
 
@@ -101,12 +102,13 @@ namespace {
 	
 	map<string, string> tooltips;
 	map<string, string> helpMessages;
+	map<string, string> plugins;
 	
 	SpriteQueue spriteQueue;
 	
 	vector<string> sources;
-	multimap<const Sprite *, pair<string, string>> deferred;
-	multimap<const Sprite *, tuple<string, string, int>> preloaded;
+	map<const Sprite *, vector<string>> deferred;
+	map<const Sprite *, int> preloaded;
 	
 	const Government *playerGovernment = nullptr;
 }
@@ -147,11 +149,15 @@ void GameData::BeginLoad(const char * const *argv)
 	for(const auto &it : images)
 	{
 		string name = Name(it.first);
+		// For landscapes, remember all the source files but don't load them yet.
 		if(name.substr(0, 5) == "land/")
-			deferred.emplace(SpriteSet::Get(name), pair<string, string>(name, it.second));
+			deferred[SpriteSet::Get(name)].push_back(it.second);
 		else
 			spriteQueue.Add(name, it.second);
 	}
+	
+	// Generate a catalog of music files.
+	Music::Init(sources);
 	
 	for(const string &source : sources)
 	{
@@ -223,46 +229,46 @@ double GameData::Progress()
 // done with all landscapes to speed up the program's startup.
 void GameData::Preload(const Sprite *sprite)
 {
-	if(!sprite)
+	// Make sure this sprite actually is one that uses deferred loading.
+	auto dit = deferred.find(sprite);
+	if(!sprite || dit == deferred.end())
 		return;
 	
-	auto loadedRange = preloaded.equal_range(sprite);
-	if(loadedRange.first != loadedRange.second)
+	// If this sprite is one of the currently loaded ones, there is no need to
+	// load it again. But, make note of the fact that it is the most recently
+	// asked-for sprite.
+	map<const Sprite *, int>::iterator pit = preloaded.find(sprite);
+	if(pit != preloaded.end())
 	{
-		int priority = get<2>(loadedRange.first->second);
-		for(auto &it : preloaded)
-			if(get<2>(it.second) < priority)
-				++get<2>(it.second);
-		for( ; loadedRange.first != loadedRange.second; ++loadedRange.first)
-			get<2>(loadedRange.first->second) = 0;
-	}
-	
-	auto range = deferred.equal_range(sprite);
-	if(range.first == range.second)
+		for(pair<const Sprite * const, int> &it : preloaded)
+			if(it.second < pit->second)
+				++it.second;
+		
+		pit->second = 0;
 		return;
-	
-	// Remove the oldest thing in the priority queue if it has grown big enough.
-	vector<multimap<const Sprite *, tuple<string, string, int>>::iterator> toErase;
-	for(auto it = preloaded.begin(); it != preloaded.end(); ++it)
-		if(++get<2>(it->second) >= 20)
-			toErase.push_back(it);
-	while(!toErase.empty())
-	{
-		const auto &next = *toErase.back();
-		deferred.emplace(next.first, make_pair(get<0>(next.second), get<1>(next.second)));
-		spriteQueue.Unload(get<0>(toErase.back()->second));
-		preloaded.erase(toErase.back());
-		toErase.pop_back();
 	}
 	
-	// Load this new sprite.
-	for(auto it = range.first; it != range.second; ++it)
+	// This sprite is not currently preloaded. Check to see whether we already
+	// have the maximum number of sprites loaded, in which case the oldest one
+	// must be unloaded to make room for this one.
+	const string &name = sprite->Name();
+	pit = preloaded.begin();
+	while(pit != preloaded.end())
 	{
-		spriteQueue.Add(it->second.first, it->second.second);
-		preloaded.emplace(sprite, make_tuple(it->second.first, it->second.second, 0));
+		++pit->second;
+		if(pit->second >= 20)
+		{
+			spriteQueue.Unload(name);
+			pit = preloaded.erase(pit);
+		}
+		else
+			++pit;
 	}
 	
-	deferred.erase(range.first, range.second);
+	// Now, load all the files for this sprite.
+	preloaded[sprite] = 0;
+	for(const string &path : dit->second)
+		spriteQueue.Add(name, path);
 }
 
 
@@ -632,6 +638,13 @@ const StarField &GameData::Background()
 
 
 
+void GameData::SetHaze(const Sprite *sprite)
+{
+	background.SetHaze(sprite);
+}
+
+
+
 const string &GameData::Tooltip(const string &label)
 {
 	static const string EMPTY;
@@ -647,7 +660,7 @@ const string &GameData::Tooltip(const string &label)
 
 
 
-string GameData::HelpMessage(const std::string &name)
+string GameData::HelpMessage(const string &name)
 {
 	static const string EMPTY;
 	auto it = helpMessages.find(name);
@@ -659,6 +672,13 @@ string GameData::HelpMessage(const std::string &name)
 const map<string, string> &GameData::HelpTemplates()
 {
 	return helpMessages;
+}
+
+
+
+const map<string, string> &GameData::PluginAboutText()
+{
+	return plugins;
 }
 
 
@@ -680,6 +700,27 @@ void GameData::LoadSources()
 	{
 		if(Files::Exists(path + "data") || Files::Exists(path + "images") || Files::Exists(path + "sounds"))
 			sources.push_back(path);
+	}
+	
+	// Load the plugin data, if any.
+	for(auto it = sources.begin() + 1; it != sources.end(); ++it)
+	{
+		// Get the name of the folder containing the plugin.
+		size_t pos = it->rfind('/', it->length() - 2) + 1;
+		string name = it->substr(pos, it->length() - 1 - pos);
+		
+		// Load the about text and the icon, if any.
+		plugins[name] = Files::Read(*it + "about.txt");
+		
+		if(Files::Exists(*it + "icon.png"))
+			spriteQueue.Add(name, *it + "icon.png");
+		else if(Files::Exists(*it + "icon.jpg"))
+			spriteQueue.Add(name, *it + "icon.jpg");
+		
+		if(Files::Exists(*it + "icon@2x.png"))
+			spriteQueue.Add(name, *it + "icon@2x.png");
+		else if(Files::Exists(*it + "icon@2x.jpg"))
+			spriteQueue.Add(name, *it + "icon@2x.jpg");
 	}
 }
 

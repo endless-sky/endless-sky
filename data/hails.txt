@@ -8,244 +8,410 @@
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
+phrase "band"
+	word
+		"There Might Be Riots"
+		"Medium Confidence"
+		"Catastrophe Aftermath"
+		"Swift of the Sponge"
+		"Shrapnel Vacuum"
+		"Daniel Suburbia"
+		"Volume Maneuver"
+		"Galactic Grouch"
+		"Greed"
+		"Hacker Headache"
+		"Diffusion Four"
+		"Nuclear Martini"
+		"Illusion of Normalcy"
+		"Lost and Disturbed"
+		"Shockkkkkkk"
+		"Broken Ones"
+		"Born to Ride"
+		"The Bandits"
+		"The Untouchables"
+		"The Gunners"
+		"Five To One"
+		"Megalodon"
+		"Meathooks"
+		"Weird Over Easy"
+		"Axe Handle Conformity"
+		"Laminated Fish"
+		"Bad Food and Blasphemy"
+		"Clock Me Something Awful"
+		"Beacon Of Correct Procedure"
+		"Flammable People"
+		"Zanzibar Must Die"
+		"Immunity To Death"
+		"Fascist Blob"
+		"Apologetic Apocalypse"
+		"Mediocre Generica"
+		"Cryptic in a Nifty Way"
+		"Excessive Friction"
+		"Scratching Without Permission"
+		"Tingle of Terror"
+		"Rusty Muffins"
+		"Comrades on Toast"
+		"Hodgepodge of Progress"
+		"Hellish Wrongness"
+		"Radioactive Bishop"
+		"Unlawful Possession"
+		"Needle Injector"
+		"Trail of Bodies"
+		"High Voltage"
+		"War of Roses"
+		"North of Heaven"
+		"On Target"
+		"Bad Medicine"
+		"The Vampires"
+		"The Screaming Eagles"
+		"Violent Surprise"
+
+phrase "song"
+	word
+		`"`
+	word
+		"Sad Archie"
+		"Gluttony"
+		"Save the Nanobots"
+		"Blinded by Science"
+		"Let's Play War"
+		"World of Silence"
+		"Indiscriminate"
+		"My Mojo"
+		"Blue Illusion"
+		"Foreign Beauty"
+		"God is Dead"
+		"Abstraction is the Answer"
+		"Outrageous Activism"
+		"Cheap Entertainment"
+		"The Devil's Moon"
+		"Roaring Thunder"
+		"Revenge Makes You Cry"
+		"Steam Ears"
+		"Organic Revolt"
+		"Nature of the Beast"
+		"Instant Devastation"
+		"Weakness and All That"
+		"Trouble Will Return"
+		"No Regrets"
+		"Golden Smart Mouth"
+		"The Girls of Pain"
+		"Burning Pain"
+		"Another Wasted Day"
+		"Wisdom in Another World"
+		"The Only Destiny"
+		"Into the Sun"
+		"Fury of My Ruggedness"
+		"Expensive Massacre"
+		"Can't Go On"
+		"Fear Machine"
+		"Always a Prisoner"
+		"Wrapped in You"
+		"The Day They Came"
+		"The Way of the Warrior"
+		"Loyalty or the Law"
+		"Heaven All Over You"
+		"Nature of the Heart"
+		"If You Could"
+		"Don't Sink Me"
+		"Parade of Broken Men"
+		"Holy Rollers"
+		"Loose Parade"
+		"The Average Girl"
+		"The Average Boy"
+		"The Average Ones"
+		"Respect for the Dead"
+		"Wolves in the Nursery"
+		"Visions of Mordecai"
+		"Foreign Doubt"
+		"Freedom Unlocked"
+		"Waiting for some Kindness"
+		"Jet Fueled Woman"
+		"Your Love is a Hurricane"
+		"Sin Heals a Broken Heart"
+		"Prisoner of the Heart"
+		"Talent of the Backseat"
+		"27 Megatons of Pain"
+		"Nobody Gets out of Here Alive"
+		"Beat Orgy"
+		"Memories of Earth"
+		"You and Me"
+		"Throw Me in the Dungeon"
+		"Fairground Sinner"
+		"Eternal Madman"
+		"Sword of Steel"
+		"High Caliber"
+		"Eaten Alive"
+		"Room for Debate"
+		"Lovely Loneliness"
+		"Check the Time"
+		"Guilty Culture"
+		"Mighty Monday"
+		"Bang you're Dead"
+		"Same Every Day"
+		"Nietzsche Killed My Father"
+		"Looking Through the Skylight"
+		"There Are No Words"
+		"Modern Cop"
+		"We Could Just Die"
+		"For or Against"
+		"Still Intact"
+		"Everybody Needs at Least One Shadow"
+		"So Much For The Showroom"
+		"Realism Won't Stop Me"
+		"Creativity"
+		"Too Much Stimulation"
+		"The Great Flood"
+		"Blademaster"
+		"Persistence of the Sun"
+		"Warped Memories"
+		"Box of Warmth"
+		"Vortex"
+		"Not Enough Firepower"
+		"Sober School"
+		"Golden Rainbow"
+		"Killing You with Mercy"
+		"You Never Loved Me"
+		"Selfish Suicide"
+		"There's no Reason"
+		"Into an Early Grave"
+		"My Sin"
+		"Love Nugget"
+		"Sitting Around Dying of Hunger"
+		"Militantly Sleepy"
+		"Suffering From Death"
+		"The Ballad of Snappy and Delilah"
+		"No Need for Saturday"
+		"The Bath Gnomes Will Get You"
+		"Rockets in the Gazebo"
+		"Good Christ, All the Bodies in the Sahara"
+		"Pepper Spray the Mind-Controlled Loser"
+		"Too Confused to Commit a Crime"
+		"As Long as the Night is Black"
+		"My Brokenness"
+		"All Clothes, no Socks"
+		"Holding Santa Hostage"
+		"Feminism for 99 Cents"
+		"Fortune Cookies Lie"
+		"Babies And Napalm"
+		"Infinity in 28 Steps"
+		"The Lump Who Loves Me"
+		"Veneer of Chickenness"
+		"In the First Degree"
+		"Too Hot Can't Stop"
+		"Slipping Away"
+		"Ode to Spring"
+		"Look Around You"
+		"Look on My Works And Despair"
+		"Rigellian Surprise"
+		"Corrupting You"
+		"Final Nights"
+		"Nobody in Particular"
+		"Angel Tears"
+		"Brick by Brick"
+		"The Low Road"
+		"Ghosts of the Dead"
+		"Nuclear Summer"
+		"Our Love is a Fortress"
+		"Cruel Envy"
+		"Gonna Rock Your World"
+		"Midnight Surprise"
+		"Bloodstains"
+		"Missing You"
+		"You Give Me the Strength to Go On"
+		"You Could Just Die"
+		"Full of Teeth"
+		"A Spying Shame"
+		"Glittering Prizes"
+		"You Wound Me"
+		"Silent Rage"
+		"Everything is Made of You"
+		"Stormy Winds"
+		"Native Son"
+		"Fully Prepared"
+		"Melting Point"
+		"Boiling Point"
+		"Freezing Point"
+		"The Quickening"
+		"Love is a Boot"
+		"Sweet Release"
+		"None of Them Knew They Were Humans"
+		"Chains of Ice"
+	word
+		`"`
+
 phrase "friendly civilian"
 	word
-		"You should watch the video of "
-		"Just watched the video of "
-		"I'm listening to "
-		"I just got tickets to see "
-		"I just heard "
+		"You should watch the video of"
+		"Tune your feed to the video of"
+		"Just watched the video of"
+		"I'm listening to"
+		"I just got tickets to see"
+		"I just got back from seeing"
+		"I'm just coming back from seeing"
+		"I just heard"
+		"I just saw"
+	word
+		" "
 	phrase
 		"band"
 	word
-		"is now my favourite song!"
-		"is stuck in my head... again!"
-		"is pure genius!"
-		"was awesome!"
-		"plays in my bunk on repeat!"
-		"is playing full blast throughout my ship!"
+		" "
+	word
+		"playing a concert"
+		"doing a show"
+		"in concert"
+		"at their concert"
+		"playing a benefit concert"
+		"live"
+		"on tour"
+		"at a live concert"
+		"playing a gig"
+		"live in concert"
+	word
+		" "
+	word
+		"at Tarazed stadium!"
+		"at the amphitheater on Skymoot!"
+		"at a concert hall in New Sydney!"
+		"in a nightclub on Splashdown!"
+		"at the Syndicated Systems Velodrome!"
+		"at Betelgeuse Stadium!"
+		"on Hestia!"
+		"on Earth!"
+		"at Lionheart Arena!"
+		"at the Grange on Heartland!"
+		"at a resort on Vail!"
+		"at Canyonland Park!"
 
-phrase "musical venue"
+phrase "friendly civilian"
 	word
-		"playing a concert "
-		"doing a show "
-		"in concert "
-		"at their concert "
-		"playing a benefit concert "
-		"live "
-		"on tour "
-		"at a live concert "
-		"playing a gig "
-		"live in concert "
+		""
+		""
+		""
+		"Man, "
+		"Ugh, "
+		"You know, "
 	word
-		"at Tarazed Stadium! "
-		"at the amphitheater on Skymoot! "
-		"at a concert hall in New Sydney! "
-		"in a night club on Splashdown! "
-		"at the Syndicated Systems Velodrome! "
-		"at Betelgeuse Stadium! "
-		"on Hestia! "
-		"at Lionheart Arena! "
-		"at the Grange on Heartland! "
-		"at a resort on Vail! "
-		"at Canyonland Park! "
-
-phrase "band"
+		"I can't believe"
+		"I don't know why"
+		"I have no idea why"
+		"I don't understand why"
+		"It's a mystery why"
+		"It's burning me up that"
+		"It's so weird that"
+		"Nobody can explain to me why"
 	word
-		`"Medium Confidence" `
+		" "
+	word
+		"the kids are"
+		"people are"
+		"anyone is"
+		"everyone's"
+		"my crew is"
+		"some of my friends are"
+	word
+		" still"
+		""
+	word
+		" "
+	word
+		"following"
+		"listening to"
+		"paying attention to"
+		"giving their money to"
+		"paying to listen to"
+		"so in love with"
+	word
+		""
+		" that group"
+		" that new group"
+		" that band"
+		" that new band"
+		" those hacks"
+	word
+		" "
 	phrase
-		"musical venue"
+		"band"
 	word
-		"The song "
-		"Their song "
+		". "
 	word
-		`"Regret Ride" `
-		`"My Wooden Mojo" `
-		`"Blue Illusion" `
-		`"Foreign Beauty" `
-		`"Introvert Day" `
+		"Their music"
+	word
+		" "
+	word
+		"is horrible"
+		"is terrible"
+		"is insufferable"
+		"is garbage"
+		"is such trash"
+		"is so irritating"
+		"is so bad"
+		"is junk"
+		"is filthy"
+		"is offensive"
+		"is an embarrassment"
+		"is ear-splitting"
+		"is completely derivative"
+		"is totally unoriginal"
+		"is nauseating"
+		"is more like random noise"
+		"is an affront to good taste"
+		"gives its whole genre a bad name"
+		"glorifies all the wrong things"
+		"is a tool of the Devil"
+		"goes against common decency"
+		"ought to be banned"
+		"hurts my ears"
+	word
+		"!"
 
-phrase "band"
+phrase "friendly civilian"
 	word
-		`"Confined Brain Of The Liberal Dork" `
+		"That"
+		"That new"
+		"That awesome"
+		"That awesome new"
+		"The"
+		"The new"
+	word
+		" "
+	word
+		"song"
+	word
+		" "
 	phrase
-		"musical venue"
+		"song"
 	word
-		"The song "
-		"Their song "
+		" "
 	word
-		`"Dude, Where's My Bible?" `
-		`"Re-Inventing Rhythm" `
-		`"Abstraction Is the Answer" `
-		`"Outrageous Activism" `
-		`"Cheap Entertainment" `
+		"is so great"
+		"is my kind of music"
+		"is my new favorite"
+		"is stuck in my head... again"
+		"is pure genius"
+		"is awesome"
+		"is totally rad"
+		"is the best"
+		"is the only thing I'm listening to"
+		"plays on repeat in my bunk"
+		"tops everything"
+		"is playing full blast throughout my ship"
+		"is the hit of the year"
+		"is the best thing going"
+		"is the best thing playing right now"
+	word
+		"!"
+	word
+		""
+		""
+		" Have you heard it yet?"
+		" You gotta hear it!"
+		" I was into them before they were popular."
+		" Check it out!"
+		" Check 'em out!"
+		" I can't wait to see it performed live!"
 
-phrase "band"
-	word
-		`"Catastrophe Aftermath" `
-	phrase
-		"musical venue"
-	word
-		"The song "
-		"Their song "
-	word
-		`"The Devil's Car" `
-		`"Selfish Thunder" `
-		`"Revenge Makes You Cry" `
-		`"Nature Of The Revolt" `
-		`"Instant Devastation" `
-
-phrase "band"
-	word
-		`"Swift Of The Sponge" `
-	phrase
-		"musical venue"
-	word
-		"The song "
-		"Their song "
-	word
-		`"Weakness And All That" `
-		`"Trouble Will Return" `
-		`"Golden Smart Mouth" `
-		`"Burning Pain" `
-		`"Wisdom In Another World" `
-
-phrase "band"
-	word
-		`"Shrapnel Vacuum" `
-	phrase
-		"musical venue"
-	word
-		"The song "
-		"Their song "
-	word
-		`"Fast Destiny" `
-		`"Fury Of My Ruggedness" `
-		`"Expensive Massacre" `
-		`"Fear Machine" `
-		`"Prisoner Of Indifference" `
-
-phrase "band"
-	word
-		`"Daniel Suburbia" `
-	phrase
-		"musical venue"
-	word
-		"The song "
-		"Their song "
-	word
-		`"Nothing To Do With War" `
-		`"Loyalty Saved Me" `
-		`"Heaven All Over You" `
-		`"Nature Of The Heart" `
-		`"Holy Adventure" `
-
-phrase "band"
-	word
-		`"Volume Maneuver" `
-	phrase
-		"musical venue"
-	word
-		"The song "
-		"Their song "
-	word
-		`"Loose Parade" `
-		`"The Average Girl" `
-		`"Foreign Doubt" `
-		`"Freedom Unlocked" `
-		`"Waiting For Kindness" `
-
-phrase "band"
-	word
-		`"Love Nugget" `
-	phrase
-		"musical venue"
-	word
-		"The song "
-		"Their song "
-	word
-		`"Jet Fueled Woman" `
-		`"Sin Heals A Broken Heart" `
-		`"Talent Of The Backseat" `
-		`"Beat Orgy" `
-		`"Fairground Sinner" `
-
-phrase "band"
-	word
-		`"Under-paid Bandit" `
-	phrase
-		"musical venue"
-	word
-		"The song "
-		"Their song "
-	word
-		`"Eternal Madman" `
-		`"Lovely Loneliness" `
-		`"Check The Time" `
-		`"Guilty Culture" `
-		`"Modern Cop" `
-
-phrase "band"
-	word
-		`"Galactic Grouch And The Greed" `
-	phrase
-		"musical venue"
-	word
-		"The song "
-		"Their song "
-	word
-		`"Everybody Needs At Least One Shadow" `
-		`"So Much For The Showroom" `
-		`"Realism Wont Stop Me" `
-		`"Creativity Is Right Here" `
-		`"Quality... Ain't It Cool?" `
-
-phrase "band"
-	word
-		`"Headache Of The Hacker" `
-	phrase
-		"musical venue"
-	word
-		"The song "
-		"Their song "
-	word
-		`"Ravening Hordes Of Steam Users" `
-		`"Got Any Synchronisation" `
-		`"My Wooden PC" `
-		`"Lightning Is Better Than Floods" `
-		`"Persistance Of The Sun" `
-
-phrase "band"
-	word
-		`"Diffusion Four" `
-	phrase
-		"musical venue"
-	word
-		"The song "
-		"Their song "
-	word
-		`"Friendship Was Just The Start" `
-		`"Box Of Warmth" `
-		`"Vortex Of Optimism" `
-		`"Golden Rainbow" `
-		`"Mercy Is The Best" `
-
-phrase "band"
-	word
-		`"There Might Be Riots" `
-	phrase
-		"musical venue"
-	word
-		"The song "
-		"Their song "
-	word
-		`"Sad Archie" `
-		`"Gluttony" `
-		`"Save The Nanobots" `
-		`"Blinded By Science" `
-		`"Let's Play War" `
-		`"World Of Silence" `
-		`"Indiscriminate" `
 phrase "friendly civilian"
 	word
 		"Hi there"
@@ -970,6 +1136,91 @@ phrase "friendly militia"
 		"starships"
 	word
 		"."
+
+phrase "friendly militia"
+	word
+		"No"
+		"Not a single"
+		"Not one"
+	word
+		" "
+	word
+		"merchant"
+		"innocent life"
+		"innocent ship"
+		"inhabitant of this system"
+	word
+		" "
+	word
+		"will die"
+		"will be harmed"
+		"will be killed"
+		"will be destroyed"
+	word
+		" "
+	word
+		"on our watch"
+		"while we are around"
+		"while we are still flying"
+		"while we are still breathing"
+		"while we are here"
+	word
+		"."
+		"!"
+
+phrase "friendly militia"
+	word
+		"Pirates"
+		"Criminals"
+		"Evil-doers"
+		"Threats to freedom"
+		"Threats to this system"
+		"Threats to this planet"
+		"Threats to our system"
+		"Threats to our planet"
+	word
+		" beware"
+		" be warned"
+		", turn back now"
+	word
+		". "
+		"! "
+	word
+		"The militia are here"
+		"The cavalry are here"
+		"The militia are on the watch"
+		"You won't beat us"
+		"We can not be defeated"
+	word
+		"."
+		"!"
+
+phrase "friendly milita"
+	word
+		"We are the militia, "
+	word
+		"defenders of freedom"
+		"defenders of the innocent"
+		"defenders of this system"
+		"defenders of this planet"
+		"destroyers of pirates"
+		"destroyers of evil"
+	word
+		"."
+		"!"
+
+phrase "friendly militia"
+	word
+		"It wouldn't hurt if "
+	word
+		"the Navy"
+		"the Republic"
+		"a Navy fleet"
+	word
+		" would help us out with these "
+	word
+		"pirates."
+		"criminals."
 
 phrase "friendly syndicate"
 	word
@@ -2025,3 +2276,122 @@ phrase "hostile Syndicate"
 		"Thank you for volunteering to be a target ship for Syndicated Weapon Systems!"
 		"Syndicated Systems disapproves of space littering; your ship's wreckage will be recycled after we are finished destroying it."
 		"With authority vested in me by Syndicated Systems corporate charter, section 8, paragraph 22... prepare to die!"
+
+phrase "hostile militia"
+	word
+		"Get back"
+		"Run away"
+		"Leave this system"
+		"Leave this place"
+		"Surrender"
+	word
+		" before we "
+	word
+		"destroy you"
+		"demolish you"
+		"turn you into scraps"
+		"turn you into scrap metal"
+		"toss you into the vacuum of space"
+		"bust open your cockpit"
+		"bust open your ship"
+	word
+		"."
+		"!"
+		", pirate!"
+		", criminal!"
+
+phrase "hostile militia"
+	word
+		"Quickly, merchants"
+	word
+		". "
+		"! "
+	word
+		"Leave before this pirate destroys you"
+		"Escape from this pirate"
+		"Activate your hyperdrives"
+		"Escape and allow us to fight this battle"
+	word
+		"."
+		"!"
+
+phrase "hostile militia"
+	word
+		"The militia"
+		"We "
+	word
+		"live"
+		"breathe"
+		"exist"
+		"fly"
+	word
+		" to defend "
+		" to protect "
+	word
+		"the innocent"
+		"our people"
+		"our systems"
+		"our planets"
+		"our families"
+	word
+		" from "
+	word
+		"people"
+		"scum"
+		"pirates"
+		"trash"
+	word
+		" like you"
+	word
+		"."
+		"!"
+
+phrase "hostile free worlds"
+	word
+		"Safety"
+		"Justice"
+		"Freedom"
+		"Equality"
+	word
+		" shall be "
+	word
+		"defended"
+		"upheld"
+		"protected"
+		"enforced"
+	word
+		"."
+		"!"
+
+phrase "hostile free worlds"
+	word
+		"We "
+	word
+		"live"
+		"breathe"
+		"exist"
+		"fly"
+	word
+		" to defend "
+		" to protect "
+	word
+		"the innocent"
+		"freedom"
+		"equality"
+		"prosperity"
+		"peace"
+		"our people"
+		"the Free Worlds"
+		"our families"
+	word
+		" from "
+	word
+		"people"
+		"scum"
+		"pirates"
+		"trash"
+	word
+		" like you"
+	word
+		"."
+		"!"

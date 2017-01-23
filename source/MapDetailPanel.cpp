@@ -14,17 +14,13 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Color.h"
 #include "Command.h"
-#include "Dialog.h"
 #include "Font.h"
 #include "FontSet.h"
 #include "Format.h"
 #include "GameData.h"
 #include "Government.h"
-#include "Information.h"
-#include "Interface.h"
 #include "MapOutfitterPanel.h"
 #include "MapShipyardPanel.h"
-#include "MissionPanel.h"
 #include "pi.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
@@ -44,7 +40,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <algorithm>
 #include <cmath>
 #include <set>
-#include <sstream>
 #include <utility>
 #include <vector>
 
@@ -79,15 +74,14 @@ namespace {
 
 
 MapDetailPanel::MapDetailPanel(PlayerInfo &player, const System *system)
-	: MapPanel(player, system ? MapPanel::SHOW_REPUTATION : player.MapColoring(), system),
-	governmentY(0), tradeY(0), selectedPlanet(nullptr)
+	: MapPanel(player, system ? MapPanel::SHOW_REPUTATION : player.MapColoring(), system)
 {
 }
 
 
 
 MapDetailPanel::MapDetailPanel(const MapPanel &panel)
-	: MapPanel(panel), governmentY(0), tradeY(0), selectedPlanet(nullptr)
+	: MapPanel(panel)
 {
 	// Use whatever map coloring is specified in the PlayerInfo.
 	commodity = player.MapColoring();
@@ -109,24 +103,7 @@ void MapDetailPanel::Draw()
 // Only override the ones you need; the default action is to return false.
 bool MapDetailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 {
-	if(command.Has(Command::MAP) || key == 'd' || key == SDLK_ESCAPE || (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
-		GetUI()->Pop(this);
-	else if(key == SDLK_PAGEUP || key == SDLK_PAGEDOWN || key == 'i')
-	{
-		GetUI()->Pop(this);
-		GetUI()->Push(new MissionPanel(*this));
-	}
-	else if(key == 'o')
-	{
-		GetUI()->Pop(this);
-		GetUI()->Push(new MapOutfitterPanel(*this));
-	}
-	else if(key == 's')
-	{
-		GetUI()->Pop(this);
-		GetUI()->Push(new MapShipyardPanel(*this));
-	}
-	else if((key == SDLK_TAB || command.Has(Command::JUMP)) && player.Flagship())
+	if((key == SDLK_TAB || command.Has(Command::JUMP)) && player.Flagship())
 	{
 		// Toggle to the next link connected to the "source" system. If the
 		// shift key is down, the source is the end of the travel plan; otherwise
@@ -203,22 +180,15 @@ bool MapDetailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command
 		else
 			SetCommodity(commodity - 1);
 	}
-	else if(key == 'f')
-		GetUI()->Push(new Dialog(
-			this, &MapDetailPanel::DoFind, "Search for:"));
-	else if(key == '+' || key == '=')
-		ZoomMap();
-	else if(key == '-')
-		UnzoomMap();
 	else
-		return false;
+		return MapPanel::KeyDown(key, mod, command);
 	
 	return true;
 }
 
 
 
-bool MapDetailPanel::Click(int x, int y)
+bool MapDetailPanel::Click(int x, int y, int clicks)
 {
 	if(x < Screen::Left() + 160)
 	{
@@ -237,22 +207,25 @@ bool MapDetailPanel::Click(int x, int y)
 				if(y >= it.second && y < it.second + 110)
 				{
 					selectedPlanet = it.first;
-					if(y >= it.second + 30 && y < it.second + 50)
-						SetCommodity(SHOW_REPUTATION);
-					if(y >= it.second + 50 && y < it.second + 70)
+					if(y >= it.second + 30 && y < it.second + 110)
 					{
-						if(commodity == SHOW_SHIPYARD && selectedPlanet->HasShipyard())
-							ListShips();
-						SetCommodity(SHOW_SHIPYARD);
+						// Figure out what row of the planet info was clicked.
+						int row = (y - (it.second + 30)) / 20;
+						static const int SHOW[4] = {
+							SHOW_REPUTATION, SHOW_SHIPYARD, SHOW_OUTFITTER, SHOW_VISITED};
+						SetCommodity(SHOW[row]);
+						
+						if(clicks > 1 && SHOW[row] == SHOW_SHIPYARD)
+						{
+							GetUI()->Pop(this);
+							GetUI()->Push(new MapShipyardPanel(*this, true));
+						}
+						if(clicks > 1 && SHOW[row] == SHOW_OUTFITTER)
+						{
+							GetUI()->Pop(this);
+							GetUI()->Push(new MapOutfitterPanel(*this, true));
+						}
 					}
-					else if(y >= it.second + 70 && y < it.second + 90)
-					{
-						if(commodity == SHOW_OUTFITTER && selectedPlanet->HasOutfitter())
-							ListOutfits();
-						SetCommodity(SHOW_OUTFITTER);
-					}
-					else if(y >= it.second + 90 && y < it.second + 110)
-						SetCommodity(SHOW_VISITED);
 					return true;
 				}
 		}
@@ -284,19 +257,10 @@ bool MapDetailPanel::Click(int x, int y)
 		return DoKey(SDLK_PAGEDOWN);
 	}
 	
-	MapPanel::Click(x, y);
+	MapPanel::Click(x, y, clicks);
 	if(selectedPlanet && selectedPlanet->GetSystem() != selectedSystem)
 		selectedPlanet = nullptr;
 	return true;
-}
-
-
-
-void MapDetailPanel::DoFind(const string &text)
-{
-	const Planet *planet = Find(text);
-	if(planet)
-		selectedPlanet = planet;
 }
 
 
@@ -569,15 +533,7 @@ void MapDetailPanel::DrawInfo()
 		text.Draw(Point(Screen::Right() - 500, Screen::Top() + 20), closeColor);
 	}
 	
-	// Draw the buttons.
-	Information info;
-	info.SetCondition("is ports");
-	if(ZoomIsMax())
-		info.SetCondition("max zoom");
-	if(ZoomIsMin())
-		info.SetCondition("min zoom");
-	const Interface *interface = GameData::Interfaces().Get("map buttons");
-	interface->Draw(info, this);
+	DrawButtons("is ports");
 }
 
 
@@ -657,64 +613,10 @@ void MapDetailPanel::DrawOrbits()
 	// Draw the name of the selected planet.
 	const string &name = selectedPlanet ? selectedPlanet->Name() : selectedSystem->Name();
 	int width = font.Width(name);
-	width = (width / 2) + 65;
+	width = (width / 2) + 75;
 	Point namePos(Screen::Right() - width - 5., Screen::Top() + 293.);
 	Color nameColor(.6, .6);
 	font.Draw(name, namePos, nameColor);
-}
-
-
-
-void MapDetailPanel::ListShips() const
-{
-	if(!selectedPlanet)
-		return;
-	
-	// First, count how many planets have each ship.
-	map<const Ship *, int> count;
-	for(const auto &it : GameData::Planets())
-		for(const Ship *ship : it.second.Shipyard())
-			++count[ship];
-	
-	vector<pair<int, const Ship *>> list;
-	for(const Ship *ship : selectedPlanet->Shipyard())
-		list.emplace_back(count[ship], ship);
-	
-	sort(list.begin(), list.end());
-	ostringstream out;
-	out << "Ships for sale here:";
-	for(unsigned i = 0; i < 10 + (list.size() == 11) && i < list.size(); ++i)
-		out << '\n' << list[i].second->ModelName();
-	if(list.size() > 11)
-		out << "\n...and " << list.size() - 10 << " others.";
-	GetUI()->Push(new Dialog(out.str()));
-}
-
-
-
-void MapDetailPanel::ListOutfits() const
-{
-	if(!selectedPlanet)
-		return;
-	
-	// First, count how many planets have each ship.
-	map<const Outfit *, int> count;
-	for(const auto &it : GameData::Planets())
-		for(const Outfit *outfit : it.second.Outfitter())
-			++count[outfit];
-	
-	vector<pair<int, const Outfit *>> list;
-	for(const Outfit *ship : selectedPlanet->Outfitter())
-		list.emplace_back(count[ship], ship);
-	
-	sort(list.begin(), list.end());
-	ostringstream out;
-	out << "Outfits for sale here:";
-	for(unsigned i = 0; i < 18 + (list.size() == 19) && i < list.size(); ++i)
-		out << '\n' << list[i].second->Name();
-	if(list.size() > 19)
-		out << "\n...and " << list.size() - 18 << " others.";
-	GetUI()->Push(new Dialog(out.str()));
 }
 
 

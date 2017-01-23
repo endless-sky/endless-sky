@@ -28,7 +28,7 @@ using namespace std;
 
 
 ShipyardPanel::ShipyardPanel(PlayerInfo &player)
-	: ShopPanel(player, Ship::CATEGORIES), modifier(0)
+	: ShopPanel(player, false), modifier(0)
 {
 	for(const auto &it : GameData::Ships())
 		catalog[it.second.Attributes().Category()].insert(it.first);

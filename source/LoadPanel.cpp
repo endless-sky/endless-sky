@@ -234,7 +234,7 @@ bool LoadPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 
 
 
-bool LoadPanel::Click(int x, int y)
+bool LoadPanel::Click(int x, int y, int clicks)
 {
 	// The first row of each panel is y = -160 to -140.
 	if(y < -160 || y >= (-160 + 14 * 20))

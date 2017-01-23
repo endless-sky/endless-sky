@@ -14,6 +14,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "DataNode.h"
 #include "DataWriter.h"
+#include "Random.h"
 
 #include <cmath>
 
@@ -158,8 +159,18 @@ bool ConditionSet::Test(const map<string, int> &conditions) const
 {
 	for(const Expression &expression : expressions)
 	{
-		auto it = conditions.find(expression.name);
-		bool result = expression.fun(it != conditions.end() ? it->second : 0, expression.value);
+		// Special case: if the name of the condition is "random," that means to
+		// generate a random number from 0 to 99 each time it is queried.
+		int value = 0;
+		if(expression.name == "random")
+			value = Random::Int(100);
+		else
+		{
+			auto it = conditions.find(expression.name);
+			if(it != conditions.end())
+				value = it->second;
+		}
+		bool result = expression.fun(value, expression.value);
 		// If this is a set of "and" conditions, bail out as soon as one of them
 		// returns false. If it is an "or", bail out if anything returns true.
 		if(result == isOr)

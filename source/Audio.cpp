@@ -13,14 +13,10 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Audio.h"
 
 #include "Files.h"
+#include "Music.h"
 #include "Point.h"
 #include "Random.h"
 #include "Sound.h"
-
-// So far, MP3 streaming is only tested on Linux.
-#ifdef __linux__
-#include "Music.h"
-#endif
 
 #ifndef __APPLE__
 #include <AL/al.h>
@@ -85,11 +81,9 @@ namespace {
 	ALCcontext *context = nullptr;
 	double volume = .5;
 	
-	// This is the ID of the one thread allowed to play sounds directly.
-	thread::id mainThreadID;
-	// This queue keeps track of sounds that have been requested to play. Any
-	// sounds not added by the main thread are "deferred" and are added all at
-	// once when the main thread tells us to update.
+	// This queue keeps track of sounds that have been requested to play. Each
+	// added sound is "deferred" until the next audio position update to make
+	// sure that all sounds from a given frame start at the same time.
 	map<const Sound *, QueueEntry> queue;
 	map<const Sound *, QueueEntry> deferred;
 	
@@ -109,7 +103,6 @@ namespace {
 	// The current position of the "listener," i.e. the center of the screen.
 	Point listener;
 	
-#ifdef __linux__
 	// MP3 streaming:
 	unsigned musicSource = 0;
 	static const size_t MUSIC_BUFFERS = 3;
@@ -118,7 +111,6 @@ namespace {
 	shared_ptr<Music> previousTrack;
 	int musicFade = 0;
 	vector<int16_t> fadeBuffer;
-#endif
 }
 
 
@@ -146,9 +138,6 @@ void Audio::Init(const vector<string> &sources)
 	alDistanceModel(AL_INVERSE_DISTANCE_CLAMPED);
 	alDopplerFactor(0.);
 	
-	// Remember what thread is allowed to update the audio directly.
-	mainThreadID = this_thread::get_id();
-	
 	// Get all the sound files in the game data and all plugins.
 	for(const string &source : sources)
 		Files::RecursiveList(source + "sounds/", &loadQueue);
@@ -156,7 +145,6 @@ void Audio::Init(const vector<string> &sources)
 	if(!loadQueue.empty())
 		loadThread = thread(&Load);
 	
-#ifdef __linux__
 	// Create the music-streaming threads.
 	currentTrack.reset(new Music());
 	previousTrack.reset(new Music());
@@ -170,7 +158,6 @@ void Audio::Init(const vector<string> &sources)
 	}
 	alSourceQueueBuffers(musicSource, MUSIC_BUFFERS, musicBuffers);
 	alSourcePlay(musicSource);
-#endif
 }
 
 
@@ -247,28 +234,21 @@ void Audio::Play(const Sound *sound, const Point &position)
 	if(!sound || !sound->Buffer() || !volume)
 		return;
 	
-	if(this_thread::get_id() == mainThreadID)
-		queue[sound].Add(position - listener);
-	else
-	{
-		unique_lock<mutex> lock(audioMutex);
-		deferred[sound].Add(position - listener);
-	}
+	unique_lock<mutex> lock(audioMutex);
+	deferred[sound].Add(position - listener);
 }
 
 
 
 // Play the given music. An empty string means to play nothing.
-void Audio::PlayMusic(const std::string &name)
+void Audio::PlayMusic(const string &name)
 {
-#ifdef __linux__
 	// Don't worry about thread safety here, since music will always be started
 	// by the main thread.
 	musicFade = 65536;
 	swap(currentTrack, previousTrack);
 	// If the name is empty, it means to turn music off.
-	currentTrack->SetSource(name.empty() ? name : Files::Sounds() + name + ".mp3");
-#endif
+	currentTrack->SetSource(name);
 }
 
 
@@ -277,10 +257,6 @@ void Audio::PlayMusic(const std::string &name)
 // this function was called.
 void Audio::Step()
 {
-	// Just to be sure, check we're in the main thread.
-	if(this_thread::get_id() != mainThreadID)
-		return;
-	
 	vector<Source> newSources;
 	// For each sound that is looping, see if it is going to continue. For other
 	// sounds, check if they are done playing.
@@ -369,7 +345,6 @@ void Audio::Step()
 	}
 	queue.clear();
 	
-#ifdef __linux__
 	// Queue up new buffers for the music, if necessary.
 	int buffersDone = 0;
 	alGetSourcei(musicSource, AL_BUFFERS_PROCESSED, &buffersDone);
@@ -400,8 +375,12 @@ void Audio::Step()
 		}
 		
 		alSourceQueueBuffers(musicSource, 1, &buffer);
+		// Check if the source has stopped (i.e. because it ran out of buffers).
+		ALint state;
+		alGetSourcei(musicSource, AL_SOURCE_STATE, &state);
+		if(state != AL_PLAYING)
+			alSourcePlay(musicSource);
 	}
-#endif
 }
 
 
@@ -451,14 +430,12 @@ void Audio::Quit()
 	}
 	sounds.clear();
 	
-#ifdef __linux__
 	// Clean up the music source and buffers.
 	alSourceStop(musicSource);
 	alDeleteSources(1, &musicSource);
 	alDeleteBuffers(MUSIC_BUFFERS, musicBuffers);
 	currentTrack.reset();
 	previousTrack.reset();
-#endif
 	
 	// Close the connection to the OpenAL library.
 	if(context)

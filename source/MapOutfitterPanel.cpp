@@ -40,10 +40,11 @@ MapOutfitterPanel::MapOutfitterPanel(PlayerInfo &player)
 
 
 
-MapOutfitterPanel::MapOutfitterPanel(const MapPanel &panel)
+MapOutfitterPanel::MapOutfitterPanel(const MapPanel &panel, bool onlyHere)
 	: MapSalesPanel(panel, true)
 {
 	Init();
+	onlyShowSoldHere = onlyHere;
 }
 
 
@@ -210,6 +211,8 @@ void MapOutfitterPanel::DrawItems()
 						break;
 					}
 			}
+			if(!isForSale && onlyShowSoldHere)
+				continue;
 			
 			Draw(corner, outfit->Thumbnail(), isForSale, outfit == selected,
 				outfit->Name(), price, info);

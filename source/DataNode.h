@@ -29,7 +29,7 @@ class DataNode {
 public:
 	// Construct a DataNode. For the purpose of printing stack traces, each node
 	// must remember what its parent node is.
-	DataNode(const DataNode *parent = nullptr);
+	explicit DataNode(const DataNode *parent = nullptr);
 	// Copy constructor.
 	DataNode(const DataNode &other);
 	

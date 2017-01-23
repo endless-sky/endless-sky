@@ -35,7 +35,7 @@ class Point;
 // configured in such a way that it cannot fly (e.g. no engines or steering).
 class OutfitterPanel : public ShopPanel {
 public:
-	OutfitterPanel(PlayerInfo &player);
+	explicit OutfitterPanel(PlayerInfo &player);
 	
 	virtual void Step() override;
 	

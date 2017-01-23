@@ -37,7 +37,7 @@ class Rectangle;
 // hardpoints.
 class InfoPanel : public Panel {
 public:
-	InfoPanel(PlayerInfo &player, bool showFlagship = false);
+	explicit InfoPanel(PlayerInfo &player, bool showFlagship = false);
 	
 	virtual void Draw() override;
 	
@@ -45,7 +45,7 @@ public:
 protected:
 	// Only override the ones you need; the default action is to return false.
 	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command) override;
-	virtual bool Click(int x, int y) override;
+	virtual bool Click(int x, int y, int clicks) override;
 	virtual bool Hover(int x, int y) override;
 	virtual bool Drag(double dx, double dy) override;
 	virtual bool Release(int x, int y) override;

@@ -60,6 +60,7 @@ public:
 	int GetSwizzle() const;
 	// Get the sprite and mask for the given time step.
 	Frame GetFrame(int step = -1) const;
+	Frame GetFrame(int step, bool isHighDPI) const;
 	const Mask &GetMask(int step = -1) const;
 	
 	// Positional attributes.
@@ -104,7 +105,7 @@ protected:
 private:
 	// Set what animation step we're on. This affects future calls to GetMask()
 	// and GetFrame().
-	void SetStep(int step) const;
+	void SetStep(int step, bool isHighDPI) const;
 	
 	
 private:
@@ -124,6 +125,7 @@ private:
 	
 	// Frame info for the current step:
 	mutable int currentStep = -1;
+	mutable bool currentHighDPI = false;
 	mutable const Mask *mask = nullptr;
 	mutable Frame frame;
 };

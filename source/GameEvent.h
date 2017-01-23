@@ -21,6 +21,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 class DataNode;
 class DataWriter;
+class Planet;
 class PlayerInfo;
 class System;
 
@@ -49,6 +50,7 @@ private:
 	ConditionSet conditionsToApply;
 	std::list<DataNode> changes;
 	std::vector<const System *> systemsToUnvisit; 
+	std::vector<const Planet *> planetsToUnvisit; 
 };
 
 

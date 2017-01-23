@@ -17,6 +17,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <mad.h>
 
 #include <cstring>
+#include <map>
 
 using namespace std;
 
@@ -26,6 +27,33 @@ namespace {
 	// How many samples to put in each output block. Because the output is in
 	// stereo, the duration of the sample is half this amount:
 	static const size_t OUTPUT_CHUNK = 32768;
+	
+	static map<string, string> paths;
+}
+
+
+
+void Music::Init(const vector<string> &sources)
+{
+	for(const string &source : sources)
+	{
+		// Find all the sound files that this resource source provides.
+		string root = source + "sounds/";
+		vector<string> files = Files::RecursiveList(root);
+		
+		for(const string &path : files)
+		{
+			// Sanity check on the path length.
+			if(path.length() < root.length() + 4)
+				continue;
+			string ext = path.substr(path.length() - 4);
+			if(ext != ".mp3" && path != ".MP3")
+				continue;
+			
+			string name = path.substr(root.length(), path.length() - root.length() - 4);
+			paths[name] = path;
+		}
+	}
 }
 
 
@@ -33,8 +61,10 @@ namespace {
 // Music constructor, which starts the decoding thread. Initially, the thread
 // has no file to read, so it will sleep until a file is specified.
 Music::Music()
-	: thread(&Music::Decode, this), silence(OUTPUT_CHUNK, 0)
+	: silence(OUTPUT_CHUNK, 0)
 {
+	// Don't start the thread until this object is fully constructed.
+	thread = std::thread(&Music::Decode, this);
 }
 
 
@@ -49,26 +79,34 @@ Music::~Music()
 	}
 	condition.notify_all();
 	thread.join();
+	
+	// If the decode thread has not yet taken possession of the next file, it is
+	// our job to close it.
+	if(nextFile)
+		fclose(nextFile);
 }
 
 
 
-// Set the source of music. If the path is 
-void Music::SetSource(const std::string &path)
+// Set the source of music. If the path is empty, this music will be silent.
+void Music::SetSource(const string &name)
 {
+	// Find a file that provides this music.
+	auto it = paths.find(name);
+	string path = (it == paths.end() ? "" : it->second);
+	
 	// Do nothing if this is the same file we're playing.
 	if(path == previousPath)
 		return;
+	previousPath = path;
 	
-	// If the path is empty or does not end in ".mp3", do not load it.
-	string extension = (path.length() < 4 ? "" : path.substr(path.length() - 4));
-
 	// Inform the decoding thread that it should switch to decoding a new file.
 	unique_lock<mutex> lock(decodeMutex);
-	if(extension != ".mp3" && extension != ".MP3")
+	if(path.empty())
 		nextFile = nullptr;
 	else
 		nextFile = Files::Open(path);
+	hasNewFile = true;
 	
 	// Also clear any decoded data left over from the previous file.
 	next.clear();
@@ -81,7 +119,7 @@ void Music::SetSource(const std::string &path)
 
 
 // Get the next audio buffer to play.
-const std::vector<int16_t> &Music::NextChunk()
+const vector<int16_t> &Music::NextChunk()
 {
 	// Check whether the "next" buffer is ready.
 	unique_lock<mutex> lock(decodeMutex);
@@ -110,31 +148,30 @@ const std::vector<int16_t> &Music::NextChunk()
 void Music::Decode()
 {
 	// This vector will store the input from the file.
-	std::vector<unsigned char> input(INPUT_CHUNK, 0);
+	vector<unsigned char> input(INPUT_CHUNK, 0);
 	// Objects for MP3 decoding:
 	mad_stream stream;
 	mad_frame frame;
 	mad_synth synth;
 	// Loop until the thread is told to quit.
-	while(!done)
+	while(true)
 	{
-		// First, wait until the "nextFile" has been specified or we're done.
+		// First, wait until a new file has been specified or we're done.
 		FILE *file = nullptr;
+		while(!file)
 		{
 			unique_lock<mutex> lock(decodeMutex);
-			while(!done && !nextFile)
+			while(!done && !hasNewFile)
 				condition.wait(lock);
 			
 			// If the "done" variable has been set, exit this thread.
 			if(done)
-			{
-				if(nextFile)
-					fclose(nextFile);
 				return;
-			}
 			
 			// The new file now belongs to us, and it's our job to close it.
 			file = nextFile;
+			nextFile = nullptr;
+			hasNewFile = false;
 		}
 		
 		// Now, we have a file to read. Initialize the decoder.
@@ -152,7 +189,7 @@ void Music::Decode()
 			while(!done && next.size() >= 2 * OUTPUT_CHUNK)
 				condition.wait(lock);
 			// Check if we're done or if we need to switch files.
-			if(done || nextFile != file)
+			if(done || hasNewFile)
 				break;
 			
 			// The lock can be freed until we start filling the output buffer.
@@ -173,7 +210,7 @@ void Music::Decode()
 			if(!read || feof(file))
 				rewind(file);
 			// If there is nothing to decode, return to the top of this loop.
-			if(input.empty())
+			if(!(read + remainder))
 				continue;
 			
 			// Hand the input to the stream decoder.
@@ -203,6 +240,8 @@ void Music::Decode()
 				
 				// For this part, we need access to the output buffer.
 				lock.lock();
+				if(done || hasNewFile)
+					break;
 	
 				// We'll alternate what channel we read from each time through the loop.
 				int channel = 0;
@@ -218,7 +257,7 @@ void Music::Decode()
 					next.push_back(sample >> (MAD_F_FRACBITS + 1 - 16));
 				}
 				// Now, the "next" buffer can be used by others. In theory, the
-				// NextBuffer() function could take what's in that buffer while
+				// NextChunk() function could take what's in that buffer while
 				// we are right in the middle of this decoding cycle.
 				lock.unlock();
 			}
