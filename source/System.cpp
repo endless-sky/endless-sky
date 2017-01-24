@@ -21,7 +21,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Minable.h"
 #include "Planet.h"
 #include "Random.h"
-#include "SpriteSet.h"
 
 #include <cmath>
 
@@ -126,8 +125,6 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 			position.Set(child.Value(1), child.Value(2));
 		else if(child.Token(0) == "government" && child.Size() >= 2)
 			government = GameData::Governments().Get(child.Token(1));
-		else if(child.Token(0) == "music" && child.Size() >= 2)
-			music = child.Token(1);
 		else if(child.Token(0) == "link")
 		{
 			if(resetLinks)
@@ -161,8 +158,6 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 					asteroids.emplace_back(GameData::Minables().Get(name), count, energy);
 			}
 		}
-		else if(child.Token(0) == "haze" && child.Size() >= 2)
-			haze = SpriteSet::Get(child.Token(1));
 		else if(child.Token(0) == "trade" && child.Size() >= 3)
 			trade[child.Token(1)].SetBase(child.Value(2));
 		else if(child.Token(0) == "fleet")
@@ -328,15 +323,6 @@ const Government *System::GetGovernment() const
 
 
 
-
-// Get the name of the ambient audio to play in this system.
-const string &System::MusicName() const
-{
-	return music;
-}
-
-
-
 // Get a list of systems you can travel to through hyperspace from here.
 const vector<const System *> &System::Links() const
 {
@@ -410,7 +396,7 @@ double System::AsteroidBelt() const
 bool System::IsInhabited() const
 {
 	for(const StellarObject &object : objects)
-		if(object.GetPlanet() && !object.GetPlanet()->IsWormhole() && object.GetPlanet()->HasSpaceport())
+		if(object.GetPlanet() && object.GetPlanet()->HasSpaceport())
 			return true;
 	
 	return false;
@@ -422,8 +408,7 @@ bool System::IsInhabited() const
 bool System::HasFuelFor(const Ship &ship) const
 {
 	for(const StellarObject &object : objects)
-		if(object.GetPlanet() && object.GetPlanet()->HasSpaceport() 
-				&& !object.GetPlanet()->IsWormhole() && object.GetPlanet()->CanLand(ship))
+		if(object.GetPlanet() && object.GetPlanet()->HasSpaceport() && object.GetPlanet()->CanLand(ship))
 			return true;
 	
 	return false;
@@ -463,26 +448,11 @@ const vector<System::Asteroid> &System::Asteroids() const
 
 
 
-// Get the background haze sprite for this system.
-const Sprite *System::Haze() const
-{
-	return haze;
-}
-
-
-
 // Get the price of the given commodity in this system.
 int System::Trade(const string &commodity) const
 {
 	auto it = trade.find(commodity);
 	return (it == trade.end()) ? 0 : it->second.price;
-}
-
-
-
-bool System::HasTrade() const
-{
-	return !trade.empty();
 }
 
 

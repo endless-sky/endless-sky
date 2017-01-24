@@ -13,21 +13,14 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "MapPanel.h"
 
 #include "Angle.h"
-#include "Dialog.h"
 #include "FogShader.h"
 #include "Font.h"
 #include "FontSet.h"
 #include "Galaxy.h"
 #include "GameData.h"
 #include "Government.h"
-#include "Information.h"
-#include "Interface.h"
 #include "LineShader.h"
-#include "MapDetailPanel.h"
-#include "MapOutfitterPanel.h"
-#include "MapShipyardPanel.h"
 #include "Mission.h"
-#include "MissionPanel.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
 #include "PointerShader.h"
@@ -63,12 +56,9 @@ MapPanel::MapPanel(PlayerInfo &player, int commodity, const System *special)
 {
 	SetIsFullScreen(true);
 	SetInterruptible(false);
-	// Recalculate the fog each time the map is opened, just in case the player
-	// bought a map since the last time they viewed the map.
-	FogShader::Redraw();
 	
 	if(selectedSystem)
-		center = Point(0., 0.) - selectedSystem->Position();
+		center = Point(0., 0.) - Zoom() * (selectedSystem->Position());
 }
 
 
@@ -111,24 +101,6 @@ void MapPanel::Draw()
 		font.Draw(NO_ROUTE, point + Point(1, 1), black);
 		font.Draw(NO_ROUTE, point, red);
 	}
-}
-
-
-
-void MapPanel::DrawButtons(const string &condition)
-{
-	// Remember which buttons we're showing.
-	buttonCondition = condition;
-	
-	// Draw the buttons to switch to other map modes.
-	Information info;
-	info.SetCondition(condition);
-	if(player.MapZoom() == 2)
-		info.SetCondition("max zoom");
-	if(player.MapZoom() == -2)
-		info.SetCondition("min zoom");
-	const Interface *interface = GameData::Interfaces().Get("map buttons");
-	interface->Draw(info, this);
 }
 
 
@@ -241,50 +213,7 @@ void MapPanel::DrawMiniMap(const PlayerInfo &player, double alpha, const System 
 
 
 
-bool MapPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
-{
-	if(command.Has(Command::MAP) || key == 'd' || key == SDLK_ESCAPE
-			|| (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
-		GetUI()->Pop(this);
-	else if(key == 's' && buttonCondition != "is shipyards")
-	{
-		GetUI()->Pop(this);
-		GetUI()->Push(new MapShipyardPanel(*this));
-	}
-	else if(key == 'o' && buttonCondition != "is outfitters")
-	{
-		GetUI()->Pop(this);
-		GetUI()->Push(new MapOutfitterPanel(*this));
-	}
-	else if(key == 'i' && buttonCondition != "is missions")
-	{
-		GetUI()->Pop(this);
-		GetUI()->Push(new MissionPanel(*this));
-	}
-	else if(key == 'p' && buttonCondition != "is ports")
-	{
-		GetUI()->Pop(this);
-		GetUI()->Push(new MapDetailPanel(*this));
-	}
-	else if(key == 'f')
-	{
-		GetUI()->Push(new Dialog(
-			this, &MapPanel::Find, "Search for:"));
-		return true;
-	}
-	else if(key == '+' || key == '=')
-		player.SetMapZoom(min(2, player.MapZoom() + 1));
-	else if(key == '-')
-		player.SetMapZoom(max(-2, player.MapZoom() - 1));
-	else
-		return false;
-	
-	return true;
-}
-
-
-
-bool MapPanel::Click(int x, int y, int clicks)
+bool MapPanel::Click(int x, int y)
 {
 	// Figure out if a system was clicked on.
 	Point click = Point(x, y) / Zoom() - center;
@@ -315,10 +244,9 @@ bool MapPanel::Scroll(double dx, double dy)
 	Point mouse = UI::GetMouse();
 	Point anchor = mouse / Zoom() - center;
 	if(dy > 0.)
-		player.SetMapZoom(min(2, player.MapZoom() + 1));
+		ZoomMap();
 	else
-		player.SetMapZoom(max(-2, player.MapZoom() - 1));
-	
+		UnzoomMap();
 	// Now, Zoom() has changed (unless at one of the limits). But, we still want
 	// anchor to be the same, so:
 	center = mouse / Zoom() - anchor;
@@ -415,53 +343,47 @@ void MapPanel::Select(const System *system)
 		return;
 	selectedSystem = system;
 	vector<const System *> &plan = player.TravelPlan();
-	if(!player.Flagship() || (!plan.empty() && system == plan.front()))
+	if(!plan.empty() && system == plan.front())
 		return;
 	
-	bool isJumping = player.Flagship()->IsEnteringHyperspace();
-	const System *source = isJumping ? player.Flagship()->GetTargetSystem() : player.GetSystem();
-	
 	bool shift = (SDL_GetModState() & KMOD_SHIFT) && !plan.empty();
-	if(system == source && !shift)
+	if(system == playerSystem && !shift)
 	{
 		plan.clear();
-		if(!isJumping)
+		if(player.Flagship())
 			player.Flagship()->SetTargetSystem(nullptr);
-		else
-			plan.push_back(source);
 	}
-	else if(shift)
+	else if((distance.Distance(system) > 0 || shift) && player.Flagship())
 	{
-		DistanceMap localDistance(player, plan.front());
-		if(localDistance.Distance(system) <= 0)
-			return;
-		
-		auto it = plan.begin();
-		while(system != *it)
+		if(shift)
 		{
-			it = ++plan.insert(it, system);
-			system = localDistance.Route(system);
+			DistanceMap localDistance(player, plan.front());
+			if(localDistance.Distance(system) <= 0)
+				return;
+			
+			auto it = plan.begin();
+			while(system != *it)
+			{
+				it = ++plan.insert(it, system);
+				system = localDistance.Route(system);
+			}
 		}
-	}
-	else if(distance.Distance(system) > 0)
-	{
-		plan.clear();
-		if(!isJumping)
+		else if(playerSystem)
+		{
+			plan.clear();
 			player.Flagship()->SetTargetSystem(nullptr);
-		
-		while(system != source)
-		{
-			plan.push_back(system);
-			system = distance.Route(system);
+			while(system != playerSystem)
+			{
+				plan.push_back(system);
+				system = distance.Route(system);
+			}
 		}
-		if(isJumping)
-			plan.push_back(source);
 	}
 }
 
 
 
-void MapPanel::Find(const string &name)
+const Planet *MapPanel::Find(const string &name)
 {
 	int bestIndex = 9999;
 	for(const auto &it : GameData::Systems())
@@ -474,10 +396,7 @@ void MapPanel::Find(const string &name)
 				selectedSystem = &it.second;
 				center = Zoom() * (Point() - selectedSystem->Position());
 				if(!index)
-				{
-					selectedPlanet = nullptr;
-					return;
-				}
+					return nullptr;
 			}
 		}
 	for(const auto &it : GameData::Planets())
@@ -490,19 +409,47 @@ void MapPanel::Find(const string &name)
 				selectedSystem = it.second.GetSystem();
 				center = Zoom() * (Point() - selectedSystem->Position());
 				if(!index)
-				{
-					selectedPlanet = &it.second;
-					return;
-				}
+					return &it.second;
 			}
 		}
+	return nullptr;
+}
+
+
+
+void MapPanel::ZoomMap()
+{
+	if(zoom < maxZoom)
+		zoom++;
+}
+
+
+
+void MapPanel::UnzoomMap()
+{
+	if(zoom > -maxZoom)
+		zoom--;
 }
 
 
 
 double MapPanel::Zoom() const
 {
-	return pow(1.5, player.MapZoom());
+	return pow(1.5, zoom);
+}
+
+
+
+bool MapPanel::ZoomIsMax() const
+{
+	return (zoom == maxZoom);
+}
+
+
+
+bool MapPanel::ZoomIsMin() const
+{
+	return (zoom == -maxZoom);
 }
 
 
@@ -536,7 +483,7 @@ int MapPanel::Search(const string &str, const string &sub)
 
 
 
-void MapPanel::DrawTravelPlan()
+void MapPanel::DrawTravelPlan() const
 {
 	Color defaultColor(.5, .4, 0., 0.);
 	Color outOfFlagshipFuelRangeColor(.55, .1, .0, 0.);
@@ -636,7 +583,7 @@ void MapPanel::DrawTravelPlan()
 
 
 
-void MapPanel::DrawWormholes()
+void MapPanel::DrawWormholes() const
 {
 	Color wormholeColor(0.5, 0.2, 0.9, 1.);
 	Color wormholeDimColor(0.5 / 3., 0.2 / 3., 0.9 / 3., 1.);
@@ -678,7 +625,7 @@ void MapPanel::DrawWormholes()
 
 
 
-void MapPanel::DrawLinks()
+void MapPanel::DrawLinks() const
 {
 	// Draw the links between the systems.
 	Color closeColor(.6, .6);
@@ -712,7 +659,7 @@ void MapPanel::DrawLinks()
 
 
 
-void MapPanel::DrawSystems()
+void MapPanel::DrawSystems() const
 {
 	if(commodity == SHOW_GOVERNMENT)
 		closeGovernments.clear();
@@ -828,7 +775,7 @@ void MapPanel::DrawSystems()
 
 
 
-void MapPanel::DrawNames()
+void MapPanel::DrawNames() const
 {
 	// Don't draw if too small.
 	if(Zoom() <= 0.5)
@@ -852,7 +799,7 @@ void MapPanel::DrawNames()
 
 
 
-void MapPanel::DrawMissions()
+void MapPanel::DrawMissions() const
 {
 	// Draw a pointer for each active or available mission.
 	map<const System *, Angle> angle;
@@ -904,7 +851,7 @@ void MapPanel::DrawMissions()
 
 
 
-void MapPanel::DrawPointer(const System *system, Angle &angle, const Color &color, bool bigger)
+void MapPanel::DrawPointer(const System *system, Angle &angle, const Color &color, bool bigger) const
 {
 	DrawPointer(Zoom() * (system->Position() + center), angle, color, true, bigger);
 }

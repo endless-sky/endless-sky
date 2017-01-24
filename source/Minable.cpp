@@ -115,7 +115,7 @@ void Minable::Place(double energy, double beltRadius)
 // Move the object forward one step. If it has been reduced to zero hull, it
 // will "explode" instead of moving, creating flotsam and explosion effects.
 // In that case it will return false, meaning it should be deleted.
-bool Minable::Move(list<Effect> &effects, list<shared_ptr<Flotsam>> &flotsam)
+bool Minable::Move(list<Effect> &effects, list<Flotsam> &flotsam)
 {
 	if(hull < 0)
 	{
@@ -139,8 +139,8 @@ bool Minable::Move(list<Effect> &effects, list<shared_ptr<Flotsam>> &flotsam)
 			static const int PER_BOX = 5;
 			for(int amount = Random::Binomial(it.second, .25); amount > 0; amount -= PER_BOX)
 			{
-				flotsam.emplace_back(new Flotsam(it.first, min(amount, PER_BOX)));
-				flotsam.back()->Place(*this);
+				flotsam.emplace_back(it.first, min(amount, PER_BOX));
+				flotsam.back().Place(*this);
 			}
 		}
 		return false;

@@ -201,9 +201,9 @@ mission "FW Southern Recon 1B"
 				accept
 	
 	to complete
-		not "FW Southern Recon 1B (Turret): done"
+		not "FW Southern Recon 1B (Turret)"
 	to fail
-		has "FW Southern Recon 1B (Turret): done"
+		has "FW Southern Recon 1B (Turret)"
 	on complete
 		fail "FW Southern Recon 1B (Turret)"
 		outfit "Electron Beam" -1
@@ -218,9 +218,9 @@ mission "FW Southern Recon 1B (Turret)"
 	to offer
 		has "FW Southern Recon 1: done"
 	to complete
-		not "FW Southern Recon 1B: done"
+		not "FW Southern Recon 1B"
 	to fail
-		has "FW Southern Recon 1B: done"
+		has "FW Southern Recon 1B"
 	on complete
 		fail "FW Southern Recon 1B"
 		outfit "Electron Turret" -1

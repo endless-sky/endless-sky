@@ -6,7 +6,6 @@ Linux:
 
 Use your favorite package manager to install the following (version numbers may vary depending on your distribution):
 
-DEB-based distros:
    g++ \
    scons \
    libsdl2-dev \
@@ -14,19 +13,7 @@ DEB-based distros:
    libjpeg-turbo8-dev \
    libgl1-mesa-dev \
    libglew-dev \
-   libopenal-dev \
-   libmad0-dev
-
-RPM-based distros:
-   gcc-c++ \
-   scons \
-   SDL2-devel \
-   libpng-devel \
-   libjpeg-turbo-devel \
-   mesa-libGL-devel \
-   glew-devel \
-   openal-soft-devel \
-   libmad-devel
+   libopenal-dev
 
 You can then just navigate to the source code folder in a terminal and type:
 
@@ -67,7 +54,7 @@ You will also need libmingw32.a and libopengl32.a. Those should be included in t
 
 Mac OS X:
 
-To build Endless Sky you probably want the latest XCode version (I used 5.1.1). You also need to install four libraries:
+To build Endless Sky you probably want the latest XCode version (I used 5.1.1). You also need to install three libraries:
 
 libpng
 
@@ -80,12 +67,6 @@ On my system, it was installed with the name libpng14.14..dylib (extra ".") and 
 libturbojpeg
 
 http://www.libjpeg-turbo.org/Documentation/OfficialBinaries
-
-libmad
-
-https://sourceforge.net/projects/mad/files/libmad/0.15.1b/
-
-To get it to build on Mac OS X, you may have to edit the configure script to not default to "i486" for x86 architectures. On my version of OS X gcc is also just an alias for clang, so I also had to edit the Makefile and strip out some optimization flags that the configure script filled in that only work for gcc.
 
 SDL2
 

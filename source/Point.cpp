@@ -287,15 +287,10 @@ Point Point::Unit() const
 #ifdef __SSE3__
 	__m128d b = v * v;
 	b = _mm_hadd_pd(b, b);
-	if(!_mm_cvtsd_f64(b))
-		return Point(1., 0.);
 	b = _mm_sqrt_pd(b);
 	return Point(v / b);
 #else
-	double b = x * x + y * y;
-	if(!b)
-		return Point(1., 0.);
-	b = 1. / sqrt(b);
+	double b = 1. / sqrt(x * x + y * y);
 	return Point(x * b, y * b);
 #endif
 }

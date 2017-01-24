@@ -33,11 +33,11 @@ public:
 	// Find paths to the given system. If the given maximum count is above zero,
 	// it is a limit on how many systems should be returned. If it is below zero
 	// it specifies the maximum distance away that paths should be found.
-	explicit DistanceMap(const System *center, int maxCount = -1, int maxDistance = -1);
+	DistanceMap(const System *center, int maxCount = -1, int maxDistance = -1);
 	// If a player is given, the map will only use hyperspace paths known to the
 	// player; that is, one end of the path has been visited. Also, if the
 	// player's flagship has a jump drive, the jumps will be make use of it.
-	explicit DistanceMap(const PlayerInfo &player, const System *center = nullptr);
+	DistanceMap(const PlayerInfo &player, const System *center = nullptr);
 	// Calculate the path for the given ship to get to the given system. The
 	// ship will use a jump drive or hyperdrive depending on what it has. The
 	// pathfinding will stop once a path to the destination is found.

@@ -19,7 +19,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Point.h"
 
 #include <list>
-#include <memory>
 #include <string>
 #include <vector>
 
@@ -45,18 +44,15 @@ public:
 	void Add(const Minable *minable, int count, double energy = 1., double beltRadius = 1500.);
 	
 	// Move all the asteroids forward one time step.
-	void Step(std::list<Effect> &effects, std::list<std::shared_ptr<Flotsam>> &flotsam);
+	void Step(std::list<Effect> &effects, std::list<Flotsam> &flotsam);
 	// Draw the asteroid field, with the field of view centered on the given point.
-	void Draw(DrawList &draw, const Point &center, double zoom) const;
+	void Draw(DrawList &draw, const Point &center) const;
 	// Check if the given projectile has hit any of the asteroids. The current
 	// time step must be given, so we know what animation frame each asteroid is
 	// on. If there is a collision the asteroid's velocity is returned so the
 	// projectile's hit effects can take it into account. The return value is
 	// how far along the projectile's path it should be clipped.
 	double Collide(const Projectile &projectile, int step, double closestHit, Point *hitVelocity = nullptr);
-	
-	// Get the list of mainable asteroids.
-	const std::list<std::shared_ptr<Minable>> &Minables() const;
 	
 	
 private:
@@ -67,7 +63,7 @@ private:
 		Asteroid(const Sprite *sprite, double energy);
 		
 		void Step();
-		void Draw(DrawList &draw, const Point &center, double zoom) const;
+		void Draw(DrawList &draw, const Point &center) const;
 		double Collide(const Projectile &projectile, int step) const;
 		
 	private:
@@ -78,7 +74,7 @@ private:
 	
 private:
 	std::vector<Asteroid> asteroids;
-	std::list<std::shared_ptr<Minable>> minables;
+	std::list<Minable> minables;
 };
 
 

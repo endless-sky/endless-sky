@@ -39,11 +39,10 @@ MapShipyardPanel::MapShipyardPanel(PlayerInfo &player)
 
 
 
-MapShipyardPanel::MapShipyardPanel(const MapPanel &panel, bool onlyHere)
+MapShipyardPanel::MapShipyardPanel(const MapPanel &panel)
 	: MapSalesPanel(panel, false)
 {
 	Init();
-	onlyShowSoldHere = onlyHere;
 }
 
 
@@ -95,7 +94,7 @@ void MapShipyardPanel::Select(int index)
 	else
 	{
 		selected = list[index];
-		selectedInfo.Update(*selected, player.StockDepreciation(), player.GetDate().DaysSinceEpoch());
+		selectedInfo.Update(*selected);
 	}
 }
 
@@ -108,7 +107,7 @@ void MapShipyardPanel::Compare(int index)
 	else
 	{
 		compare = list[index];
-		compareInfo.Update(*compare, player.StockDepreciation(), player.GetDate().DaysSinceEpoch());
+		compareInfo.Update(*compare);
 	}
 }
 
@@ -186,8 +185,6 @@ void MapShipyardPanel::DrawItems()
 						break;
 					}
 			}
-			if(!isForSale && onlyShowSoldHere)
-				continue;
 			
 			Draw(corner, ship->GetSprite(), isForSale, ship == selected, ship->ModelName(), price, info);
 			list.push_back(ship);

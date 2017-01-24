@@ -32,27 +32,24 @@ namespace {
 	void DoGift(PlayerInfo &player, const Outfit *outfit, int count, UI *ui)
 	{
 		Ship *flagship = player.Flagship();
-		bool isSingle = (abs(count) == 1);
-		string nameWas = (isSingle ? outfit->Name() : outfit->PluralName());
-		if(!flagship || !count || nameWas.empty())
+		string name = outfit->Name();
+		if(!flagship || !count || name.empty())
 			return;
 		
-		nameWas += (isSingle ? " was" : " were");
 		string message;
-		if(isSingle)
+		if(abs(count) == 1)
 		{
-			char c = tolower(nameWas.front());
+			char c = tolower(name.front());
 			bool isVowel = (c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u');
-			message = (isVowel ? "An " : "A ");
+			message = (isVowel ? "An " : "A ") + name + " was ";
 		}
 		else
-			message = to_string(abs(count)) + " ";
+			message = to_string(abs(count)) + " " + name + "s were ";
 		
-		message += nameWas;
 		if(count > 0)
-			message += " added to your ";
+			message += "added to your ";
 		else
-			message += " removed from your ";
+			message += "removed from your ";
 		
 		bool didCargo = false;
 		bool didShip = false;
@@ -86,9 +83,9 @@ namespace {
 			didCargo = true;
 			if(count > 0 && ui)
 			{
-				string special = "The " + nameWas;
+				string special = "The " + name + (count == 1 ? " was" : "s were");
 				special += " put in your cargo hold because there is not enough space to install ";
-				special += (isSingle ? "it" : "them");
+				special += (count == 1) ? "it" : "them";
 				special += " in your ship.";
 				ui->Push(new Dialog(special));
 			}
@@ -100,6 +97,7 @@ namespace {
 		else
 			message += "flagship.";
 		Messages::Add(message);
+
 	}
 }
 

@@ -27,7 +27,7 @@ template <class Type>
 class ClickZone : public Rectangle {
 public:
 	// Constructor. The "dimensions" are the full width and height of the zone.
-	explicit ClickZone(const Rectangle &rect, Type value = 0);
+	ClickZone(const Rectangle &rect, Type value = 0);
 	ClickZone(Point center, Point dimensions, Type value = 0);
 	
 	// Retrieve the value associated with this zone.

@@ -27,7 +27,7 @@ class Sprite;
 class SavedGame {
 public:
 	SavedGame() = default;
-	explicit SavedGame(const std::string &path);
+	SavedGame(const std::string &path);
 	
 	void Load(const std::string &path);
 	const std::string &Path() const;

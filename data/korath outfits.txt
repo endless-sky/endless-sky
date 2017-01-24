@@ -9,7 +9,6 @@
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 outfit "Generator (Candle Class)"
-	plural "Generators (Candle Class)"
 	category "Power"
 	cost 493000
 	thumbnail "outfit/small korath generator"
@@ -20,7 +19,6 @@ outfit "Generator (Candle Class)"
 	description "This tiny generator produces a significant amount of energy using the heat produced by the radioactive decay of some particularly unstable nuclear isotopes."
 
 outfit "Generator (Furnace Class)"
-	plural "Generators (Furnace Class)"
 	category "Power"
 	cost 925000
 	thumbnail "outfit/medium korath generator"
@@ -31,7 +29,6 @@ outfit "Generator (Furnace Class)"
 	description "Because Korath equipment is so power-hungry, they use radiothermal generators even in their fighters and interceptors, rather than relying on fuel cells or other comparable technology."
 
 outfit "Generator (Inferno Class)"
-	plural "Generators (Inferno Class)"
 	category "Power"
 	cost 1877000
 	thumbnail "outfit/large korath generator"
@@ -93,7 +90,6 @@ outfit "Large Heat Shunt"
 
 
 outfit "Systems Core (Small)"
-	plural "Systems Cores (Small)"
 	category "Systems"
 	cost 1452000
 	thumbnail "outfit/small systems core"
@@ -108,7 +104,6 @@ outfit "Systems Core (Small)"
 	description `The heart of any Korath ship is the Systems Core, which houses the ship's central computer, shield generators, and a small number of "hull-walking" welding robots that can make minor repairs to the ship's outer armor while in flight.`
 
 outfit "Systems Core (Medium)"
-	plural "Systems Cores (Medium)"
 	category "Systems"
 	cost 3630000
 	thumbnail "outfit/medium systems core"
@@ -123,7 +118,6 @@ outfit "Systems Core (Medium)"
 	description `This "systems core" houses a powerful computer, shield generators, and a control center for small repair robots that can walk across a ship's exterior on magnetic feet and slowly repair damage to the hull.`
 
 outfit "Systems Core (Large)"
-	plural "Systems Cores (Large)"
 	category "Systems"
 	cost 9075000
 	thumbnail "outfit/large systems core"
@@ -167,7 +161,6 @@ outfit "Control Transceiver"
 
 
 outfit "Thruster (Asteroid Class)"
-	plural "Thrusters (Asteroid Class)"
 	category "Engines"
 	"cost" 113000
 	thumbnail "outfit/tiny korath thruster"
@@ -183,7 +176,6 @@ outfit "Thruster (Asteroid Class)"
 	description "Given its size, this tiny Korath thruster produces quite a kick. But, it also draws a considerable amount of power."
 
 outfit "Thruster (Comet Class)"
-	plural "Thrusters (Comet Class)"
 	category "Engines"
 	"cost" 249000
 	thumbnail "outfit/small korath thruster"
@@ -199,7 +191,6 @@ outfit "Thruster (Comet Class)"
 	description "Like most Korath technology, this thruster's power is offset by its energy requirements and heat output."
 
 outfit "Thruster (Lunar Class)"
-	plural "Thrusters (Lunar Class)"
 	category "Engines"
 	"cost" 539000
 	thumbnail "outfit/medium korath thruster"
@@ -215,7 +206,6 @@ outfit "Thruster (Lunar Class)"
 	description "The Korath have the dubious distinction of relying on propulsion systems that produce more waste heat than the weapon systems of most other species."
 
 outfit "Thruster (Planetary Class)"
-	plural "Thrusters (Planetary Class)"
 	category "Engines"
 	"cost" 1216000
 	thumbnail "outfit/large korath thruster"
@@ -231,7 +221,6 @@ outfit "Thruster (Planetary Class)"
 	description "The Quarg, who do all things efficiently, view the Korath propulsion systems with particular distaste."
 
 outfit "Thruster (Stellar Class)"
-	plural "Thrusters (Stellar Class)"
 	category "Engines"
 	"cost" 2733000
 	thumbnail "outfit/huge korath thruster"
@@ -247,7 +236,6 @@ outfit "Thruster (Stellar Class)"
 	description "A legend among the Korath claims that when they were first testing out their latest generation of plasma thrusters, a concerned Quarg fleet approached and volunteered to help evacuate the Korath crew from what they assumed was a dying ship. The Quarg were surprised to learn that the flames shooting out the back of the ship were in fact its intended mode of propulsion."
 
 outfit "Steering (Asteroid Class)"
-	plural "Steerings (Asteroid Class)"
 	category "Engines"
 	"cost" 95000
 	thumbnail "outfit/tiny korath steering"
@@ -260,7 +248,6 @@ outfit "Steering (Asteroid Class)"
 	description "The Korath use these steering systems only in the very smallest of their ships."
 
 outfit "Steering (Comet Class)"
-	plural "Steerings (Comet Class)"
 	category "Engines"
 	"cost" 221000
 	thumbnail "outfit/small korath steering"
@@ -273,7 +260,6 @@ outfit "Steering (Comet Class)"
 	description "This compact steering system is a classic example of Korath technology: small, powerful, and woefully inefficient."
 
 outfit "Steering (Lunar Class)"
-	plural "Steerings (Lunar Class)"
 	category "Engines"
 	"cost" 473000
 	thumbnail "outfit/medium korath steering"
@@ -286,7 +272,6 @@ outfit "Steering (Lunar Class)"
 	description "Korath engines can be fitted into just about any ship, but unless accompanied by some Korath cooling systems as well, their heat output will often be more than the ship can handle."
 
 outfit "Steering (Planetary Class)"
-	plural "Steerings (Planetary Class)"
 	category "Engines"
 	"cost" 1077000
 	thumbnail "outfit/large korath steering"
@@ -299,7 +284,6 @@ outfit "Steering (Planetary Class)"
 	description "Where other species might focus on converting energy into thrust as efficiently as possible, the Korath instead strive to pack as much power as possible into the smallest area. This steering system is a classic example of their work."
 
 outfit "Steering (Stellar Class)"
-	plural "Steerings (Stellar Class)"
 	category "Engines"
 	"cost" 2435000
 	thumbnail "outfit/huge korath steering"

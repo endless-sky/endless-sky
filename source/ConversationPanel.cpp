@@ -25,7 +25,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "MapDetailPanel.h"
 #include "PlayerInfo.h"
 #include "Point.h"
-#include "Preferences.h"
 #include "Screen.h"
 #include "shift.h"
 #include "Ship.h"
@@ -195,7 +194,7 @@ bool ConversationPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comm
 	if(node < 0)
 	{
 		// If the conversation has ended, the only possible action is to exit.
-		if(key == SDLK_RETURN || key == SDLK_KP_ENTER)
+		if(key == SDLK_RETURN)
 		{
 			Exit();
 			return true;
@@ -220,9 +219,9 @@ bool ConversationPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comm
 		}
 		else if((key == SDLK_DELETE || key == SDLK_BACKSPACE) && name.size())
 			name.erase(name.size() - 1);
-		else if(key == '\t' || ((key == SDLK_RETURN || key == SDLK_KP_ENTER) && otherName.empty()))
+		else if(key == '\t' || (key == SDLK_RETURN && otherName.empty()))
 			choice = !choice;
-		else if((key == SDLK_RETURN || key == SDLK_KP_ENTER) && !firstName.empty() && !lastName.empty())
+		else if(key == SDLK_RETURN && !firstName.empty() && !lastName.empty())
 		{
 			// Display the name the player entered.
 			string name = "\t\tName: " + firstName + " " + lastName + ".\n";
@@ -246,12 +245,10 @@ bool ConversationPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comm
 		--choice;
 	else if(key == SDLK_DOWN && choice < conversation.Choices(node) - 1)
 		++choice;
-	else if((key == SDLK_RETURN || key == SDLK_KP_ENTER) && choice < conversation.Choices(node))
+	else if(key == SDLK_RETURN && choice < conversation.Choices(node))
 		Goto(conversation.NextNode(node, choice), choice);
-	else if(key >= '1' && key < static_cast<SDL_Keycode>('1' + choices.size()))
+	else if(key > '0' && key <= static_cast<SDL_Keycode>('0' + choices.size()))
 		Goto(conversation.NextNode(node, key - '1'), key - '1');
-	else if(key >= SDLK_KP_1 && key < static_cast<SDL_Keycode>(SDLK_KP_1 + choices.size()))
-		Goto(conversation.NextNode(node, key - SDLK_KP_1), key - SDLK_KP_1);
 	else
 		return false;
 	
@@ -273,7 +270,7 @@ bool ConversationPanel::Drag(double dx, double dy)
 // Handle the scroll wheel.
 bool ConversationPanel::Scroll(double dx, double dy)
 {
-	return Drag(0., dy * Preferences::ScrollSpeed());
+	return Drag(50. * dx, 50. * dy);
 }
 
 

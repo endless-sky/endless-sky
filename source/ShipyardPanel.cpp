@@ -28,7 +28,7 @@ using namespace std;
 
 
 ShipyardPanel::ShipyardPanel(PlayerInfo &player)
-	: ShopPanel(player, false), modifier(0)
+	: ShopPanel(player, Ship::CATEGORIES), modifier(0)
 {
 	for(const auto &it : GameData::Ships())
 		catalog[it.second.Attributes().Category()].insert(it.first);
@@ -46,9 +46,9 @@ int ShipyardPanel::TileSize() const
 
 
 
-int ShipyardPanel::DrawPlayerShipInfo(const Point &point)
+int ShipyardPanel::DrawPlayerShipInfo(const Point &point) const
 {
-	shipInfo.Update(*playerShip, player.FleetDepreciation(), player.GetDate().DaysSinceEpoch());
+	shipInfo.Update(*playerShip);
 	shipInfo.DrawSale(point);
 	shipInfo.DrawAttributes(point + Point(0, shipInfo.SaleHeight()));
 	
@@ -65,7 +65,7 @@ bool ShipyardPanel::HasItem(const string &name) const
 
 
 
-void ShipyardPanel::DrawItem(const string &name, const Point &point, int scrollY)
+void ShipyardPanel::DrawItem(const string &name, const Point &point, int scrollY) const
 {
 	const Ship *ship = GameData::Ships().Get(name);
 	zones.emplace_back(point, Point(SHIP_SIZE, SHIP_SIZE), ship, scrollY);
@@ -91,9 +91,9 @@ int ShipyardPanel::DetailWidth() const
 
 
 
-int ShipyardPanel::DrawDetails(const Point &center)
+int ShipyardPanel::DrawDetails(const Point &center) const
 {
-	shipInfo.Update(*selectedShip, player.StockDepreciation(), player.GetDate().DaysSinceEpoch());
+	shipInfo.Update(*selectedShip);
 	Point offset(shipInfo.PanelWidth(), 0.);
 	
 	shipInfo.DrawDescription(center - offset * 1.5);
@@ -110,7 +110,7 @@ bool ShipyardPanel::CanBuy() const
 	if(!selectedShip)
 		return false;
 	
-	int64_t cost = player.StockDepreciation().Value(*selectedShip, day);
+	int cost = selectedShip->Cost();
 	
 	// Check that the player has any necessary licenses.
 	int64_t licenseCost = LicenseCost();
@@ -148,7 +148,7 @@ void ShipyardPanel::FailBuy() const
 	if(!selectedShip)
 		return;
 	
-	int64_t cost = player.StockDepreciation().Value(*selectedShip, day);
+	int64_t cost = selectedShip->Cost();
 	
 	// Check that the player has any necessary licenses.
 	int64_t licenseCost = LicenseCost();
@@ -163,7 +163,7 @@ void ShipyardPanel::FailBuy() const
 	if(player.Accounts().Credits() < cost)
 	{
 		for(const auto &it : player.Ships())
-			cost -= player.FleetDepreciation().Value(*it, day);
+			cost -= it->Cost();
 		if(player.Accounts().Credits() < cost)
 			GetUI()->Push(new Dialog("You do not have enough credits to buy this ship. "
 				"Consider checking if the bank will offer you a loan."));
@@ -219,13 +219,9 @@ void ShipyardPanel::Sell()
 		
 		message += "and " + Format::Number(count - (MAX_LIST - 1)) + " other ships";
 	}
-	// To allow calculating the sale price of all the ships in the list,
-	// temporarily copy into a shared_ptr vector:
-	vector<shared_ptr<Ship>> toSell;
+	int64_t total = 0;
 	for(const auto &it : playerShips)
-		toSell.push_back(it->shared_from_this());
-	int64_t total = player.FleetDepreciation().Value(toSell, day);
-	
+		total += it->Cost();
 	message += ((initialCount > 2) ? "\nfor " : " for ") + Format::Number(total) + " credits?";
 	GetUI()->Push(new Dialog(this, &ShipyardPanel::SellShip, message));
 }

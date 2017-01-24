@@ -50,8 +50,6 @@ void Planet::Load(const DataNode &node, const Set<Sale<Ship>> &ships, const Set<
 	{
 		if(child.Token(0) == "landscape" && child.Size() >= 2)
 			landscape = SpriteSet::Get(child.Token(1));
-		else if(child.Token(0) == "music" && child.Size() >= 2)
-			music = child.Token(1);
 		else if(child.Token(0) == "attributes")
 		{
 			if(resetAttributes)
@@ -167,14 +165,6 @@ const string &Planet::Description() const
 const Sprite *Planet::Landscape() const
 {
 	return landscape;
-}
-
-
-
-// Get the name of the ambient audio to play on this planet.
-const string &Planet::MusicName() const
-{
-	return music;
 }
 
 

@@ -26,7 +26,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Messages.h"
 #include "MissionPanel.h"
 #include "PlayerInfo.h"
-#include "Preferences.h"
 #include "Ship.h"
 #include "Sprite.h"
 #include "SpriteShader.h"
@@ -49,20 +48,13 @@ namespace {
 		"moderately intimidating",
 		"not to be trifled with",
 		"seasoned fighter",
-		"respected enemy",
+		"respected foe",
 		"force to be reckoned with",
 		"fearsome scrapper",
 		"formidable adversary",
 		"dread warrior",
 		"veteran battle-lord",
-		"legendary foe",
-		"war-hungry lunatic",
-		"absurdly bloodthirsty",
-		"terror of the galaxy",
-		"inconceivably destructive",
-		"agent of mass extinction",
-		"genocidal maniac",
-		"destroyer of worlds"
+		"terror of the galaxy"
 	};
 	
 	vector<pair<int, string>> Match(const PlayerInfo &player, const string &prefix, const string &suffix)
@@ -301,7 +293,7 @@ bool InfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 			else if(plunderAmount > 1)
 			{
 				GetUI()->Push(new Dialog(this, &InfoPanel::DumpPlunder,
-					"How many " + selectedPlunder->PluralName() + " do you want to jettison?",
+					"How many of the " + selectedPlunder->Name() + " outfits to you want to jettison?",
 					plunderAmount));
 			}
 			else if(commodities)
@@ -338,7 +330,7 @@ bool InfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 
 
 
-bool InfoPanel::Click(int x, int y, int clicks)
+bool InfoPanel::Click(int x, int y)
 {
 	if(shipIt == player.Ships().end())
 		return true;
@@ -353,7 +345,7 @@ bool InfoPanel::Click(int x, int y, int clicks)
 		if(hover >= 0 && (**shipIt).GetSystem() == player.GetSystem() && !(**shipIt).IsDisabled())
 			selected = hover;
 	}
-	else if(canEdit && (shift || control || clicks < 2))
+	else if(canEdit && (shift || control || hover != previousSelected))
 	{
 		// Only allow changing your flagship when landed.
 		if(hover >= 0)
@@ -445,7 +437,7 @@ bool InfoPanel::Release(int x, int y)
 bool InfoPanel::Scroll(double dx, double dy)
 {
 	if(!showShip)
-		scroll = max(0., min(player.Ships().size() - 26., scroll - dy * .1 * Preferences::ScrollSpeed()));
+		scroll = max(0., min(player.Ships().size() - 26., scroll - 4. * dy));
 	return true;
 }
 
@@ -459,7 +451,7 @@ void InfoPanel::UpdateInfo()
 		return;
 	
 	const Ship &ship = **shipIt;
-	info.Update(ship, player.FleetDepreciation(), player.GetDate().DaysSinceEpoch());
+	info.Update(ship);
 	if(player.Flagship() && ship.GetSystem() == player.GetSystem() && &ship != player.Flagship())
 		player.Flagship()->SetTargetShip(*shipIt);
 	
@@ -470,7 +462,7 @@ void InfoPanel::UpdateInfo()
 
 
 
-void InfoPanel::DrawInfo()
+void InfoPanel::DrawInfo() const
 {
 	const Interface *interface = GameData::Interfaces().Get("info panel");
 	DrawPlayer(interface->GetBox("player"));
@@ -479,7 +471,7 @@ void InfoPanel::DrawInfo()
 
 
 
-void InfoPanel::DrawPlayer(const Rectangle &bounds)
+void InfoPanel::DrawPlayer(const Rectangle &bounds) const
 {
 	// Check that the specified area is big enough.
 	if(bounds.Width() < 250.)
@@ -533,7 +525,7 @@ void InfoPanel::DrawPlayer(const Rectangle &bounds)
 
 
 
-void InfoPanel::DrawFleet(const Rectangle &bounds)
+void InfoPanel::DrawFleet(const Rectangle &bounds) const
 {
 	// Check that the specified area is big enough.
 	if(bounds.Width() < 750.)
@@ -630,7 +622,7 @@ void InfoPanel::DrawFleet(const Rectangle &bounds)
 
 
 
-void InfoPanel::DrawShip()
+void InfoPanel::DrawShip() const
 {
 	if(player.Ships().empty() || shipIt == player.Ships().end())
 		return;
@@ -646,7 +638,7 @@ void InfoPanel::DrawShip()
 
 
 
-void InfoPanel::DrawShipStats(const Rectangle &bounds)
+void InfoPanel::DrawShipStats(const Rectangle &bounds) const
 {
 	// Check that the specified area is big enough.
 	if(bounds.Width() < 250.)
@@ -676,7 +668,7 @@ void InfoPanel::DrawShipStats(const Rectangle &bounds)
 
 
 
-void InfoPanel::DrawOutfits(const Rectangle &bounds)
+void InfoPanel::DrawOutfits(const Rectangle &bounds) const
 {
 	// Check that the specified area is big enough.
 	if(bounds.Width() < 250.)
@@ -740,7 +732,7 @@ void InfoPanel::DrawOutfits(const Rectangle &bounds)
 
 
 
-void InfoPanel::DrawWeapons(const Rectangle &bounds)
+void InfoPanel::DrawWeapons(const Rectangle &bounds) const
 {
 	// Colors to draw with.
 	Color dim = *GameData::Colors().Get("medium");
@@ -853,7 +845,7 @@ void InfoPanel::DrawWeapons(const Rectangle &bounds)
 
 
 
-void InfoPanel::DrawCargo(const Rectangle &bounds)
+void InfoPanel::DrawCargo(const Rectangle &bounds) const
 {
 	Color dim = *GameData::Colors().Get("medium");
 	Color bright = *GameData::Colors().Get("bright");
@@ -908,8 +900,7 @@ void InfoPanel::DrawCargo(const Rectangle &bounds)
 			
 			string number = to_string(it.second);
 			Point numberPos(pos.X() + size.X() - font.Width(number), pos.Y());
-			bool isSingular = (it.second == 1 || it.first->Get("installable") < 0.);
-			font.Draw(isSingular ? it.first->Name() : it.first->PluralName(), pos, dim);
+			font.Draw(it.first->Name(), pos, dim);
 			font.Draw(number, numberPos, bright);
 			pos.Y() += size.Y();
 			
@@ -1047,7 +1038,7 @@ void InfoPanel::Dump()
 	selectedCommodity.clear();
 	selectedPlunder = nullptr;
 	
-	info.Update(**shipIt, player.FleetDepreciation(), player.GetDate().DaysSinceEpoch());
+	info.Update(**shipIt);
 	if(loss)
 		Messages::Add("You jettisoned " + Format::Number(loss) + " credits worth of cargo.");
 }
@@ -1062,7 +1053,7 @@ void InfoPanel::DumpPlunder(int count)
 	{
 		loss += count * selectedPlunder->Cost();
 		(*shipIt)->Jettison(selectedPlunder, count);
-		info.Update(**shipIt, player.FleetDepreciation(), player.GetDate().DaysSinceEpoch());
+		info.Update(**shipIt);
 		
 		if(loss)
 			Messages::Add("You jettisoned " + Format::Number(loss) + " credits worth of cargo.");
@@ -1081,7 +1072,7 @@ void InfoPanel::DumpCommodities(int count)
 		loss += basis;
 		player.AdjustBasis(selectedCommodity, -basis);
 		(*shipIt)->Jettison(selectedCommodity, count);
-		info.Update(**shipIt, player.FleetDepreciation(), player.GetDate().DaysSinceEpoch());
+		info.Update(**shipIt);
 		
 		if(loss)
 			Messages::Add("You jettisoned " + Format::Number(loss) + " credits worth of cargo.");
