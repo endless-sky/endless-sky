@@ -22,6 +22,7 @@ mission "Wanderer Workers [0]"
 	destination
 		distance 2 8
 		attributes factory urban
+		government "Wanderer"
 	on complete
 		payment
 		payment 10000
@@ -41,6 +42,7 @@ mission "Wanderer Workers [1]"
 	destination
 		distance 2 8
 		attributes factory urban
+		government "Wanderer"
 	on complete
 		payment
 		payment 15000
@@ -60,6 +62,7 @@ mission "Wanderer Farmers [0]"
 	destination
 		distance 2 8
 		attributes farming
+		government "Wanderer"
 	on complete
 		payment
 		payment 10000
@@ -79,6 +82,7 @@ mission "Wanderer Farmers [1]"
 	destination
 		distance 2 8
 		attributes farming
+		government "Wanderer"
 	on complete
 		payment
 		payment 15000
@@ -97,6 +101,7 @@ mission "Wanderer Younglings [0]"
 		government "Wanderer"
 	destination
 		distance 2 8
+		government "Wanderer"
 	on complete
 		payment
 		payment 10000
@@ -115,6 +120,7 @@ mission "Wanderer Younglings [1]"
 		government "Wanderer"
 	destination
 		distance 2 8
+		government "Wanderer"
 	on complete
 		payment
 		payment 10000
@@ -136,6 +142,7 @@ mission "Wanderer Scientists (Pollution) [0]"
 	destination
 		distance 2 8
 		attributes mining oil factory
+		government "Wanderer"
 	on complete
 		payment 15000 180
 		dialog "You wish the scientists the best of luck on <planet> as they carry their scientific equipment off of your ship and hand you your payment."
@@ -156,6 +163,7 @@ mission "Wanderer Scientists (Pollution) [1]"
 	destination
 		distance 2 8
 		attributes mining oil factory
+		government "Wanderer"
 	on complete
 		payment 20000 180
 		dialog "You wish the scientists the best of luck on <planet> as they carry their scientific equipment off of your ship and hand you your payment."
@@ -175,6 +183,7 @@ mission "Wanderer Scientists (Phenomenon) [0]"
 		government "Wanderer"
 	destination
 		distance 2 8
+		government "Wanderer"
 	on complete
 		payment 15000 180
 		dialog "You wish the scientists the best of luck on <planet> as they carry their scientific equipment off of your ship and hand you your payment."
@@ -194,6 +203,7 @@ mission "Wanderer Scientists (Phenomenon) [1]"
 		government "Wanderer"
 	destination
 		distance 2 8
+		government "Wanderer"
 	on complete
 		payment 20000 180
 		dialog "You wish the scientists the best of luck on <planet> as they carry their scientific equipment off of your ship and hand you your payment."
@@ -212,6 +222,7 @@ mission "Wanderer Biologists [0]"
 		government "Wanderer"
 	destination
 		distance 2 8
+		government "Wanderer"
 	on complete
 		payment
 		payment 15000
@@ -231,6 +242,7 @@ mission "Wanderer Biologists [1]"
 		government "Wanderer"
 	destination
 		distance 2 8
+		government "Wanderer"
 	on complete
 		payment
 		payment 20000
@@ -250,6 +262,7 @@ mission "Wanderer Botanists [0]"
 		government "Wanderer"
 	destination
 		distance 2 8
+		government "Wanderer"
 	on complete
 		payment
 		payment 15000
@@ -269,6 +282,7 @@ mission "Wanderer Botanists [1]"
 		government "Wanderer"
 	destination
 		distance 2 8
+		government "Wanderer"
 	on complete
 		payment
 		payment 20000
@@ -288,6 +302,7 @@ mission "Wanderer Harvest [0]"
 	destination
 		distance 2 8
 		attributes farming
+		government "Wanderer"
 	on complete
 		payment
 		payment 15000
@@ -307,6 +322,7 @@ mission "Wanderer Harvest [1]"
 	destination
 		distance 2 8
 		attributes farming
+		government "Wanderer"
 	on complete
 		payment
 		payment 20000
@@ -369,6 +385,7 @@ mission "Wanderer Cargo [0]"
 		government "Wanderer"
 	destination
 		distance 2 8
+		government "Wanderer"
 	on complete
 		payment
 		payment 2000
@@ -387,6 +404,7 @@ mission "Wanderer Cargo [1]"
 		government "Wanderer"
 	destination
 		distance 2 8
+		government "Wanderer"
 	on complete
 		payment
 		payment 4000
@@ -405,6 +423,7 @@ mission "Wanderer Cargo [2]"
 		government "Wanderer"
 	destination
 		distance 2 8
+		government "Wanderer"
 	on complete
 		payment
 		payment 6000
@@ -423,6 +442,7 @@ mission "Wanderer Cargo [3]"
 		government "Wanderer"
 	destination
 		distance 2 8
+		government "Wanderer"
 	on complete
 		payment
 		payment 8000
@@ -441,6 +461,7 @@ mission "Wanderer Cargo [4]"
 		government "Wanderer"
 	destination
 		distance 2 8
+		government "Wanderer"
 	on complete
 		payment
 		payment 10000
@@ -460,6 +481,7 @@ mission "Wanderer Rush Delivery [0]"
 		government "Wanderer"
 	destination
 		distance 2 8
+		government "Wanderer"
 	on complete
 		payment
 		payment 32000
@@ -479,6 +501,7 @@ mission "Wanderer Rush Delivery [1]"
 		government "Wanderer"
 	destination
 		distance 2 8
+		government "Wanderer"
 	on complete
 		payment
 		payment 40000
@@ -498,6 +521,7 @@ mission "Wanderer Rush Delivery [2]"
 		government "Wanderer"
 	destination
 		distance 2 8
+		government "Wanderer"
 	on complete
 		payment
 		payment 44000
@@ -517,6 +541,7 @@ mission "Wanderer Rush Delivery [3]"
 		government "Wanderer"
 	destination
 		distance 2 8
+		government "Wanderer"
 	on complete
 		payment
 		payment 50000
@@ -535,6 +560,7 @@ mission "Wanderer Bulk Delivery [0]"
 		government "Wanderer"
 	destination
 		distance 2 8
+		government "Wanderer"
 	on complete
 		payment
 		payment 10000
@@ -553,6 +579,7 @@ mission "Wanderer Bulk Delivery [1]"
 		government "Wanderer"
 	destination
 		distance 2 8
+		government "Wanderer"
 	on complete
 		payment
 		payment 14000
@@ -571,6 +598,7 @@ mission "Wanderer Bulk Delivery [2]"
 		government "Wanderer"
 	destination
 		distance 2 8
+		government "Wanderer"
 	on complete
 		payment
 		payment 20000
