@@ -15,7 +15,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "AI.h"
 #include "AsteroidField.h"
-#include "CollisionSet.h"
 #include "DrawList.h"
 #include "EscortDisplay.h"
 #include "Flotsam.h"
@@ -24,7 +23,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Point.h"
 #include "Projectile.h"
 #include "Radar.h"
-#include "Rectangle.h"
 #include "Ship.h"
 #include "ShipEvent.h"
 
@@ -50,7 +48,7 @@ class PlayerInfo;
 // situations where there are many objects on screen at once.
 class Engine {
 public:
-	explicit Engine(PlayerInfo &player);
+	Engine(PlayerInfo &player);
 	~Engine();
 	
 	// Place all the player's ships, and "enter" the system the player is in.
@@ -71,9 +69,7 @@ public:
 	void Draw() const;
 	
 	// Select the object the player clicked on.
-	void Click(const Point &from, const Point &to, bool hasShift);
-	void RClick(const Point &point);
-	void SelectGroup(int group, bool hasShift, bool hasControl);
+	void Click(const Point &point);
 	
 	
 private:
@@ -141,7 +137,7 @@ private:
 	
 	std::list<std::shared_ptr<Ship>> ships;
 	std::list<Projectile> projectiles;
-	std::list<std::shared_ptr<Flotsam>> flotsam;
+	std::list<Flotsam> flotsam;
 	std::list<Effect> effects;
 	// Keep track of which ships we have not seen for long enough that it is
 	// time to stop tracking their movements.
@@ -155,26 +151,15 @@ private:
 	
 	AsteroidField asteroids;
 	
-	CollisionSet shipCollisions;
-	CollisionSet cloakedCollisions;
-	
 	int alarmTime = 0;
 	double flash = 0.;
 	bool doFlash = false;
 	bool doEnter = false;
 	bool hadHostiles = false;
 	
-	bool doClickNextStep = false;
 	bool doClick = false;
-	bool hasShift = false;
-	bool hasControl = false;
-	bool isRightClick = false;
-	Point clickPoint;
-	Rectangle clickBox;
-	int groupSelect = -1;
 	Command clickCommands;
-	
-	double zoom = 1.;
+	Point clickPoint;
 	
 	double load = 0.;
 	int loadCount = 0;

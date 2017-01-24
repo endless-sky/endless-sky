@@ -563,9 +563,9 @@ mission "FW Hope Recon 1C"
 			
 			apply
 				set "fw caught navy planting sensors"
-			`	You approach the location, flying low to avoid detection, and come upon a Navy gunboat, landed on the planet. Some distance away from the ship, several figures in thick snowsuits are setting up some sort of equipment with lots of antennae. It seems that the Navy had the same idea as Freya, of using this world as a listening post. Your sensors show that the gunboat is powered down.`
+			`	You approach the location, flying low to avoid detection, and come upon a Navy gunboat, landed on the planet. Some distance away from the ship, two figures in thick snowsuits are setting up some sort of equipment with lots of antennae. It seems that the Navy had the same idea as Freya, of using this world as a listening post. Your sensors show that the gunboat is powered down.`
 			`	The moment your ship comes over the horizon, they start running back toward the gunboat. You destroy their equipment with a few well-placed shots, then train your guns on the crew members, who are still some distance from their ship. When they realize they cannot get back to it before being shot, they raise their hands in surrender.`
-			`	You count seven crew members in the group, which is the typical crew complement of a gunboat. That may mean the gunboat is uncrewed, and you could kill the crew and steal it. On the other hand, if there are more crew aboard the ship it would be better to destroy it first, then finish off the landing crew.`
+			`	A gunboat typically only has two crew members, which means if they are alone, you could kill them and steal their ship. On the other hand, if there are more crew aboard the ship it would be better to destroy it first, then finish off the landing crew.`
 			choice
 				`	(Destroy the ship, then finish off the crew.)`
 					goto destroy

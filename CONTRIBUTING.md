@@ -16,7 +16,7 @@ The labels I assign to issues are:
 
 * bug: Anything where the game is not behaving as intended.
 * documentation: Something missing or incorrect in the game documentation.
-* balance: A ship or weapon that seems too powerful or useless, or a mission that seems too easy or hard.
+* balance: A ship or weapon that seems too powerful or useless, or a mission that seems to easy or hard.
 * mechanics: A question of whether the game mechanics should be altered.
 * enhancement: A request for new functionality in the game engine itself.
 * content: A suggestion for new content that could be created without changing the game code.

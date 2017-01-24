@@ -78,7 +78,7 @@ private:
 	public:
 		// Construct a new node. Each paragraph of conversation that involves no
 		// choice can be merged into what came before it, to simplify things.
-		explicit Node(bool isChoice = false) : isChoice(isChoice), canMergeOnto(!isChoice) {}
+		Node(bool isChoice = false) : isChoice(isChoice), canMergeOnto(!isChoice) {};
 		
 		// For applying condition changes or branching based on conditions:
 		ConditionSet conditions;

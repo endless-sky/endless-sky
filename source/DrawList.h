@@ -30,8 +30,11 @@ class Sprite;
 // a DrawList first does not make sense.
 class DrawList {
 public:
+	// Default constructor.
+	DrawList();
+	
 	// Clear the list, also setting the global time step for animation.
-	void Clear(int step = 0, double zoom = 1.);
+	void Clear(int step = 0);
 	void SetCenter(const Point &center, const Point &centerVelocity = Point());
 	
 	// Add an object based on the Body class.
@@ -46,14 +49,27 @@ public:
 	
 	
 private:
-	bool Cull(const Body &body, const Point &position, const Point &blur) const;
-	
-	void Push(const Body &body, Point pos, Point blur, double cloak, double clip, int swizzle);
+	static bool Cull(const Body &body, const Point &position, const Point &blur);
 	
 	
 private:
 	class Item {
 	public:
+		Item() = default;
+		Item(const Body &body, Point pos, Point blur, float cloak, float clip, int swizzle, int step);
+		
+		// Get the texture of this sprite.
+		uint32_t Texture0() const;
+		uint32_t Texture1() const;
+		
+		// These two items can be uploaded directly to the shader:
+		// Get the (x, y) position of the center of the sprite.
+		const float *Position() const;
+		// Get the [a, b; c, d] size and rotation matrix.
+		const float *Transform() const;
+		// Get the blur vector, in texture space.
+		const float *Blur() const;
+		
 		// Get the color swizzle.
 		uint32_t Swizzle() const;
 		
@@ -62,7 +78,7 @@ private:
 		
 		void Cloak(double cloak);
 		
-	public:
+	private:
 		uint32_t tex0;
 		uint32_t tex1;
 		float position[2];
@@ -74,9 +90,7 @@ private:
 	
 	
 private:
-	int step = 0;
-	double zoom = 1.;
-	bool isHighDPI = false;
+	int step;
 	std::vector<Item> items;
 	
 	Point center;

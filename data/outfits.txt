@@ -9,7 +9,6 @@
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 outfit "Cooling Ducts"
-	plural "Cooling Ducts"
 	category "Systems"
 	cost 10000
 	thumbnail "outfit/cooling ducts"
@@ -197,9 +196,8 @@ outfit "Cargo Scanner"
 	thumbnail "outfit/cargo scanner"
 	"mass" 1
 	"outfit space" -1
-	"cargo scan power" 9
-	"cargo scan speed" 1
-	description "This scanner allows you to scan the cargo holds of the ship you are currently targeting, as long as you are flying close enough to it. Patrol craft use cargo scanners to detect illegal contraband."
+	"cargo scan" 300
+	description "This scanner allows you to scan the cargo holds of the ship you are currently targeting, as long as you are flying close enough to it. Patrol crafts use cargo scanners to detect illegal contraband."
 
 outfit "Outfit Scanner"
 	category "Systems"
@@ -207,8 +205,7 @@ outfit "Outfit Scanner"
 	thumbnail "outfit/outfit scanner"
 	"mass" 2
 	"outfit space" -2
-	"outfit scan power" 25
-	"outfit scan speed" 1
+	"outfit scan" 500
 	description "This scanner allows you to determine what outfits are installed in the ship you are currently targeting, if you are willing to risk flying close enough to it to get a reading! The Republic Navy uses these scanners to detect when ships are equipped with illegal weaponry."
 
 outfit "Surveillance Pod"
@@ -217,10 +214,8 @@ outfit "Surveillance Pod"
 	thumbnail "outfit/outfit scanner"
 	"mass" 5
 	"outfit space" -5
-	"outfit scan power" 16
-	"outfit scan speed" 2
-	"cargo scan power" 4
-	"cargo scan speed" 2
+	"outfit scan" 400
+	"cargo scan" 200
 	"atmosphere scan" 100
 	description "This is Republic military technology, a collection of scanners designed to fit perfectly inside one of their surveillance drones. Since the outputs are fairly standard, you could connect it to your own ship's systems if you want."
 
@@ -295,7 +290,6 @@ outfit "Interference Plating"
 	description "If you're in the habit of carrying illegal cargo or outfits, this plating increases the odds that a scan of your ship will fail to detect it. The more of these you install, the better your chances of evading detection. They won't keep anyone from noticing if you're flying an unlicensed ship, however."
 
 
-
 outfit "Laser Rifle"
 	category "Hand to Hand"
 	cost 8000
@@ -306,7 +300,6 @@ outfit "Laser Rifle"
 	description "A laser rifle is a step up from the sidearms that crew members typically carry for defense against pirates: more powerful, and more accurate as well. For each of these rifles that one of your crew is wielding, your odds of capturing another ship or defending your own ship from boarders are increased substantially."
 
 outfit "Fragmentation Grenades"
-	plural "Fragmentation Grenades"
 	category "Hand to Hand"
 	cost 17000
 	thumbnail "outfit/fragmentation grenades"
@@ -326,7 +319,6 @@ outfit "Security Station"
 	description "This is a specially designed barricade, which can be installed in the hallways of your ship as a powerful defense against anyone who boards you in an attempt to take over your ship."
 
 outfit "Nerve Gas"
-	plural "Nerve Gas"
 	category "Hand to Hand"
 	cost 75000
 	thumbnail "outfit/nerve gas"

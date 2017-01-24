@@ -33,7 +33,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 class DataNode;
 class DataWriter;
 class Government;
-class Minable;
 class Phrase;
 class Planet;
 class Projectile;
@@ -112,12 +111,10 @@ public:
 	
 	// Get the name of this model of ship.
 	const std::string &ModelName() const;
-	const std::string &PluralModelName() const;
 	// Get this ship's description.
 	const std::string &Description() const;
 	// Get this ship's cost.
 	int64_t Cost() const;
-	int64_t ChassisCost() const;
 	// Get the licenses needed to buy or operate this ship.
 	const std::vector<std::string> &Licenses() const;
 	
@@ -151,7 +148,7 @@ public:
 	// Move this ship. A ship may create effects as it moves, in particular if
 	// it is in the process of blowing up. If this returns false, the ship
 	// should be deleted.
-	bool Move(std::list<Effect> &effects, std::list<std::shared_ptr<Flotsam>> &flotsam);
+	bool Move(std::list<Effect> &effects, std::list<Flotsam> &flotsam);
 	// Launch any ships that are ready to launch.
 	void Launch(std::list<std::shared_ptr<Ship>> &ships);
 	// Check if this ship is boarding another ship. If it is, it either plunders
@@ -160,7 +157,7 @@ public:
 	std::shared_ptr<Ship> Board(bool autoPlunder = true);
 	// Scan the target, if able and commanded to. Return a ShipEvent bitmask
 	// giving the types of scan that succeeded.
-	int Scan();
+	int Scan() const;
 	
 	// Fire any weapons that are ready to fire. If an anti-missile is ready,
 	// instead of firing here this function returns true and it can be fired if
@@ -230,8 +227,6 @@ public:
 	int JumpsRemaining() const;
 	// Get the amount of fuel expended per jump.
 	double JumpFuel() const;
-	// Get the heat level at idle.
-	double IdleHeat() const;
 	
 	// Access how many crew members this ship has or needs.
 	int Crew() const;
@@ -313,9 +308,6 @@ public:
 	const StellarObject *GetTargetPlanet() const;
 	const System *GetTargetSystem() const;
 	const Planet *GetDestination() const;
-	// Mining target.
-	std::shared_ptr<Minable> GetTargetAsteroid() const;
-	std::shared_ptr<Flotsam> GetTargetFlotsam() const;
 	
 	// Set this ship's targets.
 	void SetTargetShip(const std::shared_ptr<Ship> &ship);
@@ -323,9 +315,6 @@ public:
 	void SetTargetPlanet(const StellarObject *object);
 	void SetTargetSystem(const System *system);
 	void SetDestination(const Planet *planet);
-	// Mining target.
-	void SetTargetAsteroid(const std::shared_ptr<Minable> &asteroid);
-	void SetTargetFlotsam(const std::shared_ptr<Flotsam> &flotsam);
 	
 	// Manage escorts. When you set this ship's parent, it will automatically
 	// register itself as an escort of that ship, and unregister itself from any
@@ -341,6 +330,8 @@ private:
 	void RemoveEscort(const Ship &ship);
 	// Get the hull amount at which this ship is disabled.
 	double MinimumHull() const;
+	// Get the heat level at idle.
+	double IdleHeat() const;
 	// Add to this ship's hull or shields, and return the amount added. If the
 	// ship is carrying fighters, add to them as well.
 	double AddHull(double rate);
@@ -365,7 +356,6 @@ private:
 	// Characteristics of the chassis:
 	const Ship *base = nullptr;
 	std::string modelName;
-	std::string pluralModelName;
 	std::string description;
 	// Characteristics of this particular ship:
 	std::string name;
@@ -392,9 +382,6 @@ private:
 	// Cached values for figuring out when anti-missile is in range.
 	double antiMissileRange = 0.;
 	double weaponRadius = 0.;
-	// Cargo and outfit scanning takes time.
-	double cargoScan = 0.;
-	double outfitScan = 0.;
 	
 	Command commands;
 	
@@ -407,7 +394,7 @@ private:
 	const Outfit *explosionWeapon = nullptr;
 	std::map<const Outfit *, int> outfits;
 	CargoHold cargo;
-	std::list<std::shared_ptr<Flotsam>> jettisoned;
+	std::list<Flotsam> jettisoned;
 	
 	std::vector<Bay> bays;
 	
@@ -455,8 +442,6 @@ private:
 	const StellarObject *targetPlanet = nullptr;
 	const System *targetSystem = nullptr;
 	const Planet *destination = nullptr;
-	std::weak_ptr<Minable> targetAsteroid;
-	std::weak_ptr<Flotsam> targetFlotsam;
 	
 	// Links between escorts and parents.
 	std::vector<std::weak_ptr<const Ship>> escorts;

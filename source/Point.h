@@ -82,7 +82,7 @@ public:
 private:
 #ifdef __SSE3__
 	// Private constructor, using a vector.
-	explicit Point(const __m128d &v);
+	Point(const __m128d &v);
 	
 	
 private:

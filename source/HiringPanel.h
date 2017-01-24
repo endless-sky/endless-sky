@@ -24,7 +24,7 @@ class PlayerInfo;
 // hunting other ships to capture.
 class HiringPanel : public Panel {
 public:
-	explicit HiringPanel(PlayerInfo &player);
+	HiringPanel(PlayerInfo &player);
 	
 	virtual void Step() override;
 	virtual void Draw() override;

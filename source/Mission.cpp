@@ -432,7 +432,7 @@ int Mission::IllegalCargoFine() const
 
 
 
-string Mission::IllegalCargoMessage() const
+std::string Mission::IllegalCargoMessage() const
 {
 	return illegalCargoMessage;
 }

@@ -58,7 +58,7 @@ public:
 private:
 	class Variant {
 	public:
-		explicit Variant(const DataNode &node);
+		Variant(const DataNode &node);
 		
 		int weight;
 		std::vector<const Ship *> ships;
@@ -80,7 +80,6 @@ private:
 	const Phrase *fighterNames = nullptr;
 	std::vector<Variant> variants;
 	int cargo = 3;
-	std::vector<std::string> commodities;
 	int total = 0;
 	
 	Personality personality;

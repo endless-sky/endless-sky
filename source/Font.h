@@ -32,7 +32,7 @@ class Point;
 class Font {
 public:
 	Font();
-	explicit Font(const std::string &imagePath);
+	Font(const std::string &imagePath);
 	
 	void Load(const std::string &imagePath);
 	

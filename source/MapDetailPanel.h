@@ -30,8 +30,8 @@ class PlayerInfo;
 // click on a planet to view its description.
 class MapDetailPanel : public MapPanel {
 public:
-	explicit MapDetailPanel(PlayerInfo &player, const System *system = nullptr);
-	explicit MapDetailPanel(const MapPanel &panel);
+	MapDetailPanel(PlayerInfo &player, const System *system = nullptr);
+	MapDetailPanel(const MapPanel &panel);
 	
 	virtual void Draw() override;
 	
@@ -39,25 +39,29 @@ public:
 protected:
 	// Only override the ones you need; the default action is to return false.
 	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command) override;
-	virtual bool Click(int x, int y, int clicks) override;
+	virtual bool Click(int x, int y) override;
 	
 	
 private:
 	void DoFind(const std::string &text);
-	void DrawKey();
+	void DrawKey() const;
 	void DrawInfo();
-	void DrawOrbits();
+	void DrawOrbits() const;
+	
+	void ListShips() const;
+	void ListOutfits() const;
 	
 	// Set the commodity coloring, and update the player info as well.
 	void SetCommodity(int index);
 	
 	
 private:
-	int governmentY = 0;
-	int tradeY = 0;
+	mutable int governmentY;
+	mutable int tradeY;
 	
-	std::map<const Planet *, int> planetY;
-	std::map<const Planet *, Point> planets;
+	mutable std::map<const Planet *, int> planetY;
+	mutable std::map<const Planet *, Point> planets;
+	const Planet *selectedPlanet;
 };
 
 

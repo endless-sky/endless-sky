@@ -43,12 +43,7 @@ DistanceMap::DistanceMap(const PlayerInfo &player, const System *center)
 		return;
 	
 	if(!center)
-	{
-		if(player.Flagship()->IsEnteringHyperspace())
-			center = player.Flagship()->GetTargetSystem();
-		else
-			center = player.Flagship()->GetSystem();
-	}
+		center = player.Flagship()->GetSystem();
 	if(!center)
 		return;
 	

@@ -14,7 +14,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "DataNode.h"
 #include "DataWriter.h"
-#include "Depreciation.h"
 #include "GameData.h"
 #include "Mission.h"
 #include "Outfit.h"
@@ -537,15 +536,13 @@ void CargoHold::RemoveMissionCargo(const Mission *mission)
 
 	
 // Get the total value of all this cargo, in the given system.
-int64_t CargoHold::Value(const System *system) const
+int CargoHold::Value(const System *system) const
 {
-	int64_t value = 0;
+	int value = 0;
 	for(const auto &it : commodities)
 		value += system->Trade(it.first) * it.second;
-	// For outfits, assume they're fully depreciated, since that will always be
-	// the case unless the player bought into cargo for some reason.
 	for(const auto &it : outfits)
-		value += it.first->Cost() * it.second * Depreciation::Full();
+		value += it.first->Cost() * it.second;
 	return value;
 }
 

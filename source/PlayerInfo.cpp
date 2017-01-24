@@ -37,7 +37,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "System.h"
 #include "UI.h"
 
-#include <algorithm>
 #include <ctime>
 #include <sstream>
 
@@ -74,15 +73,11 @@ void PlayerInfo::New()
 	// such item exists, StartConditions defines default values.
 	date = GameData::Start().GetDate();
 	GameData::SetDate(date);
-	// Make sure the fleet depreciation object knows it is tracking the player's
-	// fleet, not the planet's stock.
-	depreciation.Init(ships, date.DaysSinceEpoch());
 	
 	SetSystem(GameData::Start().GetSystem());
 	SetPlanet(GameData::Start().GetPlanet());
 	accounts = GameData::Start().GetAccounts();
 	GameData::Start().GetConditions().Apply(conditions);
-	UpdateAutoConditions();
 	
 	// Generate missions that will be available on the first day.
 	CreateMissions();
@@ -115,15 +110,11 @@ void PlayerInfo::Load(const string &path)
 		else if(child.Token(0) == "date" && child.Size() >= 4)
 			date = Date(child.Value(1), child.Value(2), child.Value(3));
 		else if(child.Token(0) == "system" && child.Size() >= 2)
-			system = GameData::Systems().Find(child.Token(1));
+			system = GameData::Systems().Get(child.Token(1));
 		else if(child.Token(0) == "planet" && child.Size() >= 2)
-			planet = GameData::Planets().Find(child.Token(1));
+			planet = GameData::Planets().Get(child.Token(1));
 		else if(child.Token(0) == "travel" && child.Size() >= 2)
-		{
-			const System *next = GameData::Systems().Find(child.Token(1));
-			if(next)
-				travelPlan.push_back(next);
-		}
+			travelPlan.push_back(GameData::Systems().Get(child.Token(1)));
 		else if(child.Token(0) == "reputation with")
 		{
 			for(const DataNode &grand : child)
@@ -134,9 +125,9 @@ void PlayerInfo::Load(const string &path)
 		else if(child.Token(0) == "account")
 			accounts.Load(child);
 		else if(child.Token(0) == "visited" && child.Size() >= 2)
-			Visit(GameData::Systems().Find(child.Token(1)));
+			Visit(GameData::Systems().Get(child.Token(1)));
 		else if(child.Token(0) == "visited planet" && child.Size() >= 2)
-			Visit(GameData::Planets().Find(child.Token(1)));
+			Visit(GameData::Planets().Get(child.Token(1)));
 		else if(child.Token(0) == "destroyed" && child.Size() >= 2)
 			destroyedPersons.push_back(GameData::Persons().Get(child.Token(1)));
 		else if(child.Token(0) == "cargo")
@@ -151,23 +142,15 @@ void PlayerInfo::Load(const string &path)
 		{
 			for(const DataNode &grand : child)
 				if(grand.Size() >= 2)
-					stock[GameData::Outfits().Get(grand.Token(0))] += grand.Value(1);
+					soldOutfits[GameData::Outfits().Get(grand.Token(0))] += grand.Value(1);
 		}
-		else if(child.Token(0) == "fleet depreciation")
-			depreciation.Load(child);
-		else if(child.Token(0) == "stock depreciation")
-			stockDepreciation.Load(child);
 		else if(child.Token(0) == "harvested")
 		{
 			for(const DataNode &grand : child)
 				if(grand.Size() >= 2)
-				{
-					auto item = make_pair(
-						GameData::Systems().Find(grand.Token(0)),
-						GameData::Outfits().Get(grand.Token(1)));
-					if(item.first)
-						harvested.insert(item);
-				}
+					harvested.insert(make_pair(
+						GameData::Systems().Get(grand.Token(0)),
+						GameData::Outfits().Get(grand.Token(1))));
 		}
 		else if(child.Token(0) == "mission")
 		{
@@ -194,13 +177,6 @@ void PlayerInfo::Load(const string &path)
 			shouldLaunch = true;
 		else if(child.Token(0) == "map coloring" && child.Size() >= 2)
 			mapColoring = child.Value(1);
-		else if(child.Token(0) == "map zoom" && child.Size() >= 2)
-			mapZoom = child.Value(1);
-		else if(child.Token(0) == "collapsed" && child.Size() >= 2)
-		{
-			for(const DataNode &grand : child)
-				collapsed[child.Token(1)].insert(grand.Token(0));
-		}
 		else if(child.Token(0) == "changes")
 		{
 			for(const DataNode &grand : child)
@@ -225,8 +201,6 @@ void PlayerInfo::Load(const string &path)
 			ships.back()->FinishLoading();
 			ships.back()->SetIsYours();
 		}
-		else if(child.Token(0) == "groups" && child.Size() >= 2 && !ships.empty())
-			groups[ships.back().get()] = child.Value(1);
 	}
 	// Based on the ships that were loaded, calculate the player's capacity for
 	// cargo and passengers.
@@ -273,11 +247,6 @@ void PlayerInfo::Load(const string &path)
 		if(ship->GetSystem() == system)
 			ship->SetPlanet(planet);
 	}
-	
-	// If no depreciation record was loaded, every item in the player's fleet
-	// will count as non-depreciated.
-	if(!depreciation.IsLoaded())
-		depreciation.Init(ships, date.DaysSinceEpoch());
 }
 
 
@@ -363,11 +332,7 @@ void PlayerInfo::ApplyChanges()
 	// SetDate() clears any bribes from yesterday, so restore any auto-clearance.
 	for(const Mission &mission : Missions())
 		if(mission.ClearanceMessage() == "auto")
-		{
 			mission.Destination()->Bribe(mission.HasFullClearance());
-			for(const Planet *planet : mission.Stopovers())
-				planet->Bribe(mission.HasFullClearance());
-		}
 	if(system)
 		GameData::GetPolitics().Bribe(system->GetGovernment());
 	
@@ -393,9 +358,8 @@ void PlayerInfo::ApplyChanges()
 		if(it->first.compare(0, prefix.length(), prefix))
 			break;
 		
-		const Planet *planet = GameData::Planets().Find(it->first.substr(prefix.length()));
-		if(planet)
-			GameData::GetPolitics().DominatePlanet(planet);
+		const Planet *planet = GameData::Planets().Get(it->first.substr(prefix.length()));
+		GameData::GetPolitics().DominatePlanet(planet);
 	}
 }
 
@@ -563,9 +527,9 @@ void PlayerInfo::IncrementDate()
 	
 	// For accounting, keep track of the player's net worth. This is for
 	// calculation of yearly income to determine maximum mortgage amounts.
-	int64_t assets = depreciation.Value(ships, date.DaysSinceEpoch());
+	int64_t assets = 0;
 	for(const shared_ptr<Ship> &ship : ships)
-		assets += ship->Cargo().Value(system);
+		assets += ship->Cost() + ship->Cargo().Value(system);
 	
 	// Have the player pay salaries, mortgages, etc. and print a message that
 	// summarizes the payments that were made.
@@ -738,9 +702,7 @@ void PlayerInfo::AddShip(shared_ptr<Ship> &ship)
 // Buy a ship of the given model, and give it the given name.
 void PlayerInfo::BuyShip(const Ship *model, const string &name)
 {
-	int day = date.DaysSinceEpoch();
-	int64_t cost = stockDepreciation.Value(*model, day);
-	if(model && accounts.Credits() >= cost)
+	if(model && accounts.Credits() >= model->Cost())
 	{
 		ships.push_back(shared_ptr<Ship>(new Ship(*model)));
 		ships.back()->SetName(name);
@@ -750,13 +712,8 @@ void PlayerInfo::BuyShip(const Ship *model, const string &name)
 		ships.back()->SetIsYours();
 		ships.back()->SetGovernment(GameData::PlayerGovernment());
 		
-		accounts.AddCredits(-cost);
+		accounts.AddCredits(-model->Cost());
 		flagship.reset();
-		
-		// Record the transfer of this ship in the depreciation and stock info.
-		depreciation.Buy(*model, day, &stockDepreciation);
-		for(const auto &it : model->Outfits())
-			stock[it.first] -= it.second;
 	}
 }
 
@@ -768,15 +725,10 @@ void PlayerInfo::SellShip(const Ship *selected)
 	for(auto it = ships.begin(); it != ships.end(); ++it)
 		if(it->get() == selected)
 		{
-			int day = date.DaysSinceEpoch();
-			int64_t cost = depreciation.Value(*selected, day);
-			
-			// Record the transfer of this ship in the depreciation and stock info.
-			stockDepreciation.Buy(*selected, day, &depreciation);
 			for(const auto &it : selected->Outfits())
-				stock[it.first] += it.second;
+				soldOutfits[it.first] += it.second;
 			
-			accounts.AddCredits(cost);
+			accounts.AddCredits(selected->Cost());
 			ships.erase(it);
 			flagship.reset();
 			return;
@@ -899,7 +851,6 @@ void PlayerInfo::Land(UI *ui)
 		return;
 	
 	Audio::Play(Audio::Get("landing"));
-	Audio::PlayMusic(planet->MusicName());
 	
 	// Mark this planet as visited.
 	Visit(planet);
@@ -916,9 +867,6 @@ void PlayerInfo::Land(UI *ui)
 			for(const auto &cargo : (*it)->Cargo().Commodities())
 				if(cargo.second)
 					lostCargo[cargo.first] += cargo.second;
-			// Also, the ship and everything in it should be removed from your
-			// depreciation records. Transfer it to a throw-away record:
-			Depreciation().Buy(**it, date.DaysSinceEpoch(), &depreciation);
 			
 			it = ships.erase(it);
 		}
@@ -950,9 +898,6 @@ void PlayerInfo::Land(UI *ui)
 	// Adjust cargo cost basis for any cargo lost due to a ship being destroyed.
 	for(const auto &it : lostCargo)
 		AdjustBasis(it.first, -(costBasis[it.first] * it.second) / (cargo.Get(it.first) + it.second));
-	
-	// Bring auto conditions up-to-date for missions to check your current status.
-	UpdateAutoConditions();
 	
 	// Check for missions that are completed.
 	auto mit = missions.begin();
@@ -1061,8 +1006,7 @@ bool PlayerInfo::TakeOff(UI *ui)
 	availableJobs.clear();
 	availableMissions.clear();
 	doneMissions.clear();
-	stock.clear();
-	stockDepreciation = Depreciation();
+	soldOutfits.clear();
 	
 	// Special persons who appeared last time you left the planet, can appear
 	// again.
@@ -1362,6 +1306,7 @@ Mission *PlayerInfo::BoardingMission(const shared_ptr<Ship> &ship)
 		if(!it.second.IsAtLocation(location))
 			continue;
 		
+		conditions["random"] = Random::Int(100);
 		if(it.second.CanOffer(*this))
 		{
 			boardingMissions.push_back(it.second.Instantiate(*this));
@@ -1418,7 +1363,7 @@ void PlayerInfo::MissionCallback(int response)
 	
 	Mission &mission = missionList.front();
 	
-	shouldLaunch |= Conversation::RequiresLaunch(response);
+	shouldLaunch = Conversation::RequiresLaunch(response);
 	if(response == Conversation::ACCEPT || response == Conversation::LAUNCH)
 	{
 		bool shouldAutosave = mission.RecommendsAutosave();
@@ -1488,11 +1433,7 @@ void PlayerInfo::HandleEvent(const ShipEvent &event, UI *ui)
 	// Combat rating increases when you disable an enemy ship.
 	if(event.ActorGovernment()->IsPlayer())
 		if((event.Type() & ShipEvent::DISABLE) && event.Target())
-		{
-			int &rating = conditions["combat rating"];
-			static const int64_t maxRating = 2000000000;
-			rating = min(maxRating, rating + (event.Target()->Cost() + 250000) / 500000);
-		}
+			conditions["combat rating"] += (event.Target()->Cost() + 250000) / 500000;
 	
 	for(Mission &mission : missions)
 		mission.Do(event, *this, ui);
@@ -1641,7 +1582,7 @@ void PlayerInfo::Visit(const System *system)
 // Mark the given system as visited, and mark all its neighbors as seen.
 void PlayerInfo::Visit(const Planet *planet)
 {
-	if(planet && !planet->TrueName().empty())
+	if(!planet->TrueName().empty())
 		visitedPlanets.insert(planet);
 }
 
@@ -1650,28 +1591,18 @@ void PlayerInfo::Visit(const Planet *planet)
 // Mark a system as unvisited, even if visited previously.
 void PlayerInfo::Unvisit(const System *system)
 {
-	if(!system)
-		return;
-	
 	auto it = visitedSystems.find(system);
 	if(it != visitedSystems.end())
+	{
 		visitedSystems.erase(it);
-	
-	for(const StellarObject &object : system->Objects())
-		if(object.GetPlanet())
-			Unvisit(object.GetPlanet());
-}
-
-
-
-void PlayerInfo::Unvisit(const Planet *planet)
-{
-	if(!planet)
-		return;
-	
-	auto it = visitedPlanets.find(planet);
-	if(it != visitedPlanets.end())
-		visitedPlanets.erase(it);
+		for(const StellarObject &object : system->Objects())
+			if(object.GetPlanet())
+			{
+				auto it2 = visitedPlanets.find(object.GetPlanet());
+				if(it2 != visitedPlanets.end())
+					visitedPlanets.erase(it2);
+			}
+	}
 }
 
 
@@ -1745,193 +1676,11 @@ void PlayerInfo::SelectNext()
 
 
 
-// Escorts currently selected for giving orders.
-const vector<weak_ptr<Ship>> &PlayerInfo::SelectedShips() const
-{
-	return selectedShips;
-}
-
-
-
-// Select any player ships in the given box or list. Return true if any were
-// selected, so we know not to search further for a match.
-bool PlayerInfo::SelectShips(const Rectangle &box, bool hasShift)
-{
-	// If shift is not held down, replace the current selection.
-	if(!hasShift)
-		selectedShips.clear();
-	// If shift is not held, the first ship in the box will also become the
-	// player's flagship's target.
-	bool first = !hasShift;
-	
-	bool matched = false;
-	for(const shared_ptr<Ship> &ship : ships)
-		if(!ship->IsParked() && ship->GetSystem() == system && ship.get() != Flagship()
-				&& box.Contains(ship->Position()))
-		{
-			matched = true;
-			SelectShip(ship, &first);
-		}
-	return matched;
-}
-
-
-
-bool PlayerInfo::SelectShips(const vector<const Ship *> &stack, bool hasShift)
-{
-	// If shift is not held down, replace the current selection.
-	if(!hasShift)
-		selectedShips.clear();
-	// If shift is not held, the first ship in the stack will also become the
-	// player's flagship's target.
-	bool first = !hasShift;
-	
-	// Loop through all the player's ships and check which of them are in the
-	// given stack.
-	bool matched = false;
-	for(const shared_ptr<Ship> &ship : ships)
-	{
-		auto it = find(stack.begin(), stack.end(), ship.get());
-		if(it != stack.end())
-		{
-			matched = true;
-			SelectShip(ship, &first);
-		}
-	}
-	return matched;
-}
-
-
-
-void PlayerInfo::SelectShip(const Ship *ship, bool hasShift)
-{
-	// If shift is not held down, replace the current selection.
-	if(!hasShift)
-		selectedShips.clear();
-	
-	bool first = !hasShift;
-	for(const shared_ptr<Ship> &it : ships)
-		if(it.get() == ship)
-			SelectShip(it, &first);
-}
-
-
-
-void PlayerInfo::SelectGroup(int group, bool hasShift)
-{
-	int bit = (1 << group);
-	// If the shift key is held down and all the ships in the given group are
-	// already selected, deselect them all. Otherwise, select them all. The easy
-	// way to do this is first to remove all the ships that match in one pass,
-	// then add them in a subsequent pass if any were not selected.
-	const Ship *oldTarget = nullptr;
-	if(Flagship() && Flagship()->GetTargetShip())
-	{
-		oldTarget = Flagship()->GetTargetShip().get();
-		Flagship()->SetTargetShip(shared_ptr<Ship>());
-	}
-	if(hasShift)
-	{
-		bool allWereSelected = true;
-		for(const shared_ptr<Ship> &ship : ships)
-			if(groups[ship.get()] & bit)
-			{
-				auto it = selectedShips.begin();
-				for( ; it != selectedShips.end(); ++it)
-					if(it->lock() == ship)
-						break;
-				if(it != selectedShips.end())
-					selectedShips.erase(it);
-				else
-					allWereSelected = false;
-			}
-		if(allWereSelected)
-			return;
-	}
-	else
-		selectedShips.clear();
-	
-	// Now, go through and add any ships in the group to the selection. Even if
-	// shift is held they won't be added twice, because we removed them above.
-	for(const shared_ptr<Ship> &ship : ships)
-		if(groups[ship.get()] & bit)
-		{
-			selectedShips.push_back(ship);
-			if(ship.get() == oldTarget)
-				Flagship()->SetTargetShip(ship);
-		}
-}
-
-
-
-void PlayerInfo::SetGroup(int group)
-{
-	int bit = (1 << group);
-	int mask = ~bit;
-	// First, remove any of your ships that are in the group.
-	for(const shared_ptr<Ship> &ship : ships)
-		groups[ship.get()] &= mask;
-	// Then, add all the currently selected ships to the group.
-	for(const weak_ptr<Ship> &ptr : selectedShips)
-	{
-		shared_ptr<Ship> ship = ptr.lock();
-		if(ship)
-			groups[ship.get()] |= bit;
-	}
-}
-
-
-
 // Keep track of any outfits that you have sold since landing. These will be
 // available to buy back until you take off.
-int PlayerInfo::Stock(const Outfit *outfit) const
+map<const Outfit *, int> &PlayerInfo::SoldOutfits()
 {
-	auto it = stock.find(outfit);
-	return (it == stock.end() ? 0 : it->second);
-}
-
-
-
-// Transfer outfits from the player to the planet or vice versa.
-void PlayerInfo::AddStock(const Outfit *outfit, int count)
-{
-	// If you sell an individual outfit that is not sold here and that you
-	// acquired by buying a ship here, have it appear as "in stock" in case you
-	// change your mind about selling it. (On the other hand, if you sell an
-	// entire ship right after buying it, its outfits will not be "in stock.")
-	if(count > 0 && stock[outfit] < 0)
-		stock[outfit] = 0;
-	stock[outfit] += count;
-	
-	int day = date.DaysSinceEpoch();
-	if(count > 0)
-	{
-		// Remember how depreciated these items are.
-		for(int i = 0; i < count; ++i)
-			stockDepreciation.Buy(outfit, day, &depreciation);
-	}
-	else
-	{
-		// If the count is negative, outfits are being transferred from stock
-		// into the player's possession.
-		for(int i = 0; i < -count; ++i)
-			depreciation.Buy(outfit, day, &stockDepreciation);
-	}
-}
-
-
-
-// Get depreciation information.
-const Depreciation &PlayerInfo::FleetDepreciation() const
-{
-	return depreciation;
-}
-
-
-
-const Depreciation &PlayerInfo::StockDepreciation() const
-{
-	return stockDepreciation;
+	return soldOutfits;
 }
 
 
@@ -1947,46 +1696,6 @@ void PlayerInfo::Harvest(const Outfit *type)
 const set<pair<const System *, const Outfit *>> &PlayerInfo::Harvested() const
 {
 	return harvested;
-}
-
-
-
-// Get what coloring is currently selected in the map.
-int PlayerInfo::MapColoring() const
-{
-	return mapColoring;
-}
-
-
-
-// Set what the map is being colored by.
-void PlayerInfo::SetMapColoring(int index)
-{
-	mapColoring = index;
-}
-
-
-
-// Get the map zoom level.
-int PlayerInfo::MapZoom() const
-{
-	return mapZoom;
-}
-
-
-
-// Set the map zoom level.
-void PlayerInfo::SetMapZoom(int level)
-{
-	mapZoom = level;
-}
-
-
-
-// Get the set of collapsed categories for the named panel.
-set<string> &PlayerInfo::Collapsed(const string &name)
-{
-	return collapsed[name];
 }
 
 
@@ -2020,6 +1729,7 @@ void PlayerInfo::UpdateAutoConditions()
 // New missions are generated each time you land on a planet.
 void PlayerInfo::CreateMissions()
 {
+	UpdateAutoConditions();
 	boardingMissions.clear();
 	boardingShip.reset();
 	
@@ -2033,6 +1743,7 @@ void PlayerInfo::CreateMissions()
 		if(skipJobs && it.second.IsAtLocation(Mission::JOB))
 			continue;
 		
+		conditions["random"] = Random::Int(100);
 		if(it.second.CanOffer(*this))
 		{
 			list<Mission> &missions =
@@ -2120,12 +1831,7 @@ void PlayerInfo::Save(const string &path) const
 		
 	// Save all the data for all the player's ships.
 	for(const shared_ptr<Ship> &ship : ships)
-	{
 		ship->Save(out);
-		auto it = groups.find(ship.get());
-		if(it != groups.end() && it->second)
-			out.Write("groups", it->second);
-	}
 	
 	// Save accounting information, cargo, and cargo cost bases.
 	cargo.Save(out);
@@ -2142,19 +1848,17 @@ void PlayerInfo::Save(const string &path) const
 	}
 	accounts.Save(out);
 	
-	if(!stock.empty())
+	if(!soldOutfits.empty())
 	{
 		out.Write("stock");
 		out.BeginChild();
 		{
-			for(const auto &it : stock)
+			for(const auto &it : soldOutfits)
 				if(it.second)
 					out.Write(it.first->Name(), it.second);
 		}
 		out.EndChild();
 	}
-	depreciation.Save(out, date.DaysSinceEpoch());
-	stockDepreciation.Save(out, date.DaysSinceEpoch());
 	if(!harvested.empty())
 	{
 		out.Write("harvested");
@@ -2199,22 +1903,6 @@ void PlayerInfo::Save(const string &path) const
 	
 	// Save the current setting for the map coloring;
 	out.Write("map coloring", mapColoring);
-	out.Write("map zoom", mapZoom);
-	// Remember what categories are collapsed.
-	for(const auto &it : collapsed)
-	{
-		// Skip panels where nothing was collapsed.
-		if(it.second.empty())
-			continue;
-		
-		out.Write("collapsed", it.first);
-		out.BeginChild();
-		{
-			for(const auto &cit : it.second)
-				out.Write(cit);
-		}
-		out.EndChild();
-	}
 	
 	// Save pending events, and changes that have happened due to past events.
 	for(const GameEvent &event : gameEvents)
@@ -2249,23 +1937,16 @@ void PlayerInfo::Save(const string &path) const
 
 
 
-// Helper function to update the ship selection.
-void PlayerInfo::SelectShip(const shared_ptr<Ship> &ship, bool *first)
+// Get what coloring is currently selected in the map.
+int PlayerInfo::MapColoring() const
 {
-	// Make sure this ship is not already selected.
-	auto it = selectedShips.begin();
-	for( ; it != selectedShips.end(); ++it)
-		if(it->lock() == ship)
-			break;
-	if(it == selectedShips.end())
-	{
-		// This ship is not yet selected.
-		selectedShips.push_back(ship);
-		Ship *flagship = Flagship();
-		if(*first && flagship && ship.get() != flagship)
-		{
-			flagship->SetTargetShip(ship);
-			*first = false;
-		}
-	}
+	return mapColoring;
+}
+
+
+
+// Set what the map is being colored by.
+void PlayerInfo::SetMapColoring(int index)
+{
+	mapColoring = index;
 }

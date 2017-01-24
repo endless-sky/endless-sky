@@ -65,7 +65,7 @@ bool UI::Handle(const SDL_Event &event)
 			{
 				handled = (*it)->ZoneClick(Point(x, y));
 				if(!handled)
-					handled = (*it)->Click(x, y, event.button.clicks);
+					handled = (*it)->Click(x, y);
 			}
 			else if(event.button.button == 3)
 				handled = (*it)->RClick(x, y);

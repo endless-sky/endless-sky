@@ -58,15 +58,15 @@ void AsteroidField::Add(const Minable *minable, int count, double energy, double
 	// Place copies of the given minable asteroid throughout the system.
 	for(int i = 0; i < count; ++i)
 	{
-		minables.emplace_back(new Minable(*minable));
-		minables.back()->Place(energy, beltRadius);
+		minables.emplace_back(*minable);
+		minables.back().Place(energy, beltRadius);
 	}
 }
 
 
 
 // Move all the asteroids forward one step.
-void AsteroidField::Step(list<Effect> &effects, list<shared_ptr<Flotsam>> &flotsam)
+void AsteroidField::Step(list<Effect> &effects, list<Flotsam> &flotsam)
 {
 	for(Asteroid &asteroid : asteroids)
 		asteroid.Step();
@@ -76,7 +76,7 @@ void AsteroidField::Step(list<Effect> &effects, list<shared_ptr<Flotsam>> &flots
 	auto it = minables.begin();
 	while(it != minables.end())
 	{
-		if((*it)->Move(effects, flotsam))
+		if(it->Move(effects, flotsam))
 			++it;
 		else
 			it = minables.erase(it);
@@ -86,12 +86,12 @@ void AsteroidField::Step(list<Effect> &effects, list<shared_ptr<Flotsam>> &flots
 
 
 // Draw the asteroids, centered on the given location.
-void AsteroidField::Draw(DrawList &draw, const Point &center, double zoom) const
+void AsteroidField::Draw(DrawList &draw, const Point &center) const
 {
 	for(const Asteroid &asteroid : asteroids)
-		asteroid.Draw(draw, center, zoom);
-	for(const shared_ptr<Minable> &minable : minables)
-		draw.Add(*minable);
+		asteroid.Draw(draw, center);
+	for(const Minable &minable : minables)
+		draw.Add(minable);
 }
 
 
@@ -115,29 +115,21 @@ double AsteroidField::Collide(const Projectile &projectile, int step, double clo
 	// closest hit, it really is what the projectile struck - that is, we are
 	// not going to later find a ship or something else that is closer.
 	Minable *hit = nullptr;
-	for(const shared_ptr<Minable> &minable : minables)
+	for(Minable &minable : minables)
 	{
-		double thisDistance = minable->Collide(projectile, step);
+		double thisDistance = minable.Collide(projectile, step);
 		if(thisDistance < closestHit)
 		{
 			closestHit = thisDistance;
-			hit = &*minable;
+			hit = &minable;
 			if(hitVelocity)
-				*hitVelocity = minable->Velocity();
+				*hitVelocity = minable.Velocity();
 		}
 	}
 	if(hit)
 		hit->TakeDamage(projectile);
 	
 	return closestHit;
-}
-
-
-
-// Get the list of mainable asteroids.
-const list<shared_ptr<Minable>> &AsteroidField::Minables() const
-{
-	return minables;
 }
 
 
@@ -191,11 +183,11 @@ void AsteroidField::Asteroid::Step()
 
 
 // Draw any instances of this asteroid that are on screen.
-void AsteroidField::Asteroid::Draw(DrawList &draw, const Point &center, double zoom) const
+void AsteroidField::Asteroid::Draw(DrawList &draw, const Point &center) const
 {
 	// Any object within this range must be drawn.
-	Point topLeft = center + (Screen::TopLeft() - size) / zoom;
-	Point bottomRight = center + (Screen::BottomRight() + size) / zoom;
+	Point topLeft = center + Screen::TopLeft() - size;
+	Point bottomRight = center + Screen::BottomRight() + size;
 	
 	// Figure out the position of the first instance of this asteroid that is to
 	// the right of and below the top left corner of the screen.

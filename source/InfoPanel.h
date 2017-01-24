@@ -37,7 +37,7 @@ class Rectangle;
 // hardpoints.
 class InfoPanel : public Panel {
 public:
-	explicit InfoPanel(PlayerInfo &player, bool showFlagship = false);
+	InfoPanel(PlayerInfo &player, bool showFlagship = false);
 	
 	virtual void Draw() override;
 	
@@ -45,7 +45,7 @@ public:
 protected:
 	// Only override the ones you need; the default action is to return false.
 	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command) override;
-	virtual bool Click(int x, int y, int clicks) override;
+	virtual bool Click(int x, int y) override;
 	virtual bool Hover(int x, int y) override;
 	virtual bool Drag(double dx, double dy) override;
 	virtual bool Release(int x, int y) override;
@@ -57,16 +57,16 @@ private:
 	void UpdateInfo();
 	
 	// Draw the info tab (and its subsections).
-	void DrawInfo();
-	void DrawPlayer(const Rectangle &bounds);
-	void DrawFleet(const Rectangle &bounds);
+	void DrawInfo() const;
+	void DrawPlayer(const Rectangle &bounds) const;
+	void DrawFleet(const Rectangle &bounds) const;
 	
 	// Draw the ship tab (and its subsections).
-	void DrawShip();
-	void DrawShipStats(const Rectangle &bounds);
-	void DrawOutfits(const Rectangle &bounds);
-	void DrawWeapons(const Rectangle &bounds);
-	void DrawCargo(const Rectangle &bounds);
+	void DrawShip() const;
+	void DrawShipStats(const Rectangle &bounds) const;
+	void DrawOutfits(const Rectangle &bounds) const;
+	void DrawWeapons(const Rectangle &bounds) const;
+	void DrawCargo(const Rectangle &bounds) const;
 	
 	// Helper functions.
 	void DrawLine(const Point &from, const Point &to, const Color &color) const;
@@ -86,9 +86,9 @@ private:
 	ShipInfoDisplay info;
 	std::map<std::string, std::vector<const Outfit *>> outfits;
 	
-	std::vector<ClickZone<int>> zones;
-	std::vector<ClickZone<std::string>> commodityZones;
-	std::vector<ClickZone<const Outfit *>> plunderZones;
+	mutable std::vector<ClickZone<int>> zones;
+	mutable std::vector<ClickZone<std::string>> commodityZones;
+	mutable std::vector<ClickZone<const Outfit *>> plunderZones;
 	int selected = -1;
 	int previousSelected = -1;
 	std::set<int> allSelected;

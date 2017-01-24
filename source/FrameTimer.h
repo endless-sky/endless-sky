@@ -28,7 +28,7 @@ public:
 	// Create a frame timer that will space frames out at exactly the given FPS,
 	// _unless_ a frame takes too long by at least the given lag, in which case
 	// the next frame happens immediately but no "catch-up" is done.
-	explicit FrameTimer(int fps, int maxLagMsec = 5);
+	FrameTimer(int fps, int maxLagMsec = 5);
 	
 	// Wait until the next frame should begin.
 	void Wait();

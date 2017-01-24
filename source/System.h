@@ -27,7 +27,6 @@ class Government;
 class Minable;
 class Planet;
 class Ship;
-class Sprite;
 
 
 
@@ -86,8 +85,6 @@ public:
 	const Point &Position() const;
 	// Get this system's government.
 	const Government *GetGovernment() const;
-	// Get the name of the ambient audio to play in this system.
-	const std::string &MusicName() const;
 	
 	// Get a list of systems you can travel to through hyperspace from here.
 	const std::vector<const System *> &Links() const;
@@ -115,12 +112,9 @@ public:
 	
 	// Get the specification of how many asteroids of each type there are.
 	const std::vector<Asteroid> &Asteroids() const;
-	// Get the background haze sprite for this system.
-	const Sprite *Haze() const;
 	
 	// Get the price of the given commodity in this system.
 	int Trade(const std::string &commodity) const;
-	bool HasTrade() const;
 	// Update the economy. Returns the amount of trade goods this system exports.
 	void StepEconomy();
 	void SetSupply(const std::string &commodity, double tons);
@@ -156,8 +150,6 @@ private:
 	std::string name;
 	Point position;
 	const Government *government = nullptr;
-	std::string music;
-	
 	// Hyperspace links to other systems.
 	std::vector<const System *> links;
 	std::vector<const System *> neighbors;
@@ -168,7 +160,6 @@ private:
 	// proper position before that object is updated).
 	std::vector<StellarObject> objects;
 	std::vector<Asteroid> asteroids;
-	const Sprite *haze;
 	std::vector<FleetProbability> fleets;
 	double habitable = 1000.;
 	double asteroidBelt = 1500.;

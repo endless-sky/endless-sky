@@ -22,4 +22,3 @@
 "Fleet: Fight my target" 102
 "Fleet: Gather around me" 103
 "Fleet: Hold position" 104
-"Fleet: Toggle ammo usage" 117
