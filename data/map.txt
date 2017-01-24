@@ -23240,7 +23240,9 @@ planet "Far'en Lai"
 	landscape land/dune3
 	description `When the Korath were banished to the Core, they were left with only one living world, a planet they call "Far'en Lai," meaning, "the last candle-flame." Afraid that this planet's biosphere will turn to dust in their hands like all the other worlds they once controlled, the Korath have left Far'en Lai entirely unsettled and unexploited. It is rumored that the terms of their exile dictate that if Far'en Lai withers and dies, the remaining Korath exiles will be exterminated, but that if they can learn to make the planet flourish, their place in the galaxy will be restored.`
 	government Uninhabited
-
+	bribe 0
+	security 0
+	
 planet "Fara Skaeruti"
 	attributes korath station
 	landscape land/space4
