@@ -1251,6 +1251,7 @@ mission "Drug Running 1"
 		attributes "near earth" "dirt belt" "north"
 	destination
 		attributes paradise
+		distance 1 100
 	cargo "illegal drugs" 5 2 .1
 		illegal 40000
 	to offer
@@ -1281,6 +1282,7 @@ mission "Drug Running 2"
 		attributes "near earth" "dirt belt" "north"
 	destination
 		attributes rich
+		distance 1 100
 	cargo "illegal drugs" 5 2 .1
 		illegal 50000
 	to offer
@@ -1306,6 +1308,7 @@ mission "Drug Running 3"
 		attributes "near earth" "dirt belt" "north"
 	destination
 		attributes urban
+		distance 1 100
 	cargo "illegal drugs" 5 2 .1
 		illegal 70000
 	to offer
