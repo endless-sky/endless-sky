@@ -293,7 +293,7 @@ mission "Wanderers: First Mereti Attack"
 mission "Wanderers: Rek To Kor Efret"
 	landing
 	name "Bring Rek to <planet>"
-	description "Brink Rek, who has survived the Molt and taken on a new form, to try to communicate with the Kor Efret on <destination>."
+	description "Bring Rek, who has survived the Molt and taken on a new form, to try to communicate with the Kor Efret on <destination>."
 	source "Spera Anatrusk"
 	destination "Setar Fort"
 	passengers 1
