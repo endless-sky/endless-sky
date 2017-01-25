@@ -22445,7 +22445,7 @@ planet "Ablub's Invention"
 	attributes arach factory
 	landscape land/sky3
 	description `This ancient and quiet world, orbiting a dim red sun, is home to the microchip foundries of House Idriss, the Arach guild that specializes in computers and advanced electronics. Outside of the cities, which are clustered around the equator, Ablub's Invention is uninhabited except by the native lifeforms, including strange, spindly-legged quadrupeds, awkward birds with leathery wings, and amphibians with webbed feet and long, whiskered snouts.`
-	spaceport `The day-night cycle here is at least three times as long as any of the Coalition’s species are habituated to, so the entire city enters a "false nighttime" in the middle of the day, shuttering all the windows so that the locals can rest and reset their biological clocks. And in the middle of the night, the city is brightly lit for a "false day."`
+	spaceport `The day-night cycle here is at least three times as long as any of the Coalition's species are habituated to, so the entire city enters a "false nighttime" in the middle of the day, shuttering all the windows so that the locals can rest and reset their biological clocks. And in the middle of the night, the city is brightly lit for a "false day."`
 	spaceport `	The local work schedule has adapted to this unusual cycle, with the two true daytime periods serving the equivalent of the human work week, and the false daytime treated as a weekend, a time for socializing or working at home.`
 	"required reputation" 25
 
@@ -23195,7 +23195,7 @@ planet "Esayaku Fen"
 planet "Esek Stovar"
 	attributes korath station
 	landscape land/space4
-	description `This Kor Merati outpost is far enough from the front in their war with the Kor Sestor that it has fallen somewhat into disuse. The largest docking bays are still kept open for refueling and repairs, but the sections of the station that used to be living quarters have been sealed off.`
+	description `This Kor Mereti outpost is far enough from the front in their war with the Kor Sestor that it has fallen somewhat into disuse. The largest docking bays are still kept open for refueling and repairs, but the sections of the station that used to be living quarters have been sealed off.`
 	spaceport `Because this station is only in use now by autonomous vehicles, there is no atmosphere, and no need for airlocks or containment fields. The hangar bay doors have all been left wide open, so ships can come and go as they please.`
 	"required reputation" 1
 	bribe 0
@@ -24323,7 +24323,7 @@ planet "New China"
 planet "New Finding"
 	attributes saryd research
 	landscape land/canyon6
-	description `Due to complex atmospheric currents and swiftly changing seasons, the surface of New Finding is constantly scoured by powerful winds, making it difficult for soil to accumulated except in sheltered canyons and gorges. Each of these patches of greenery stands like an island amid a sea of bare rock. Over time, where the forests are able to take hold and grow, they spread outward and begin to turn more of the rock into habitable soil. On the exposed slopes, rock slides are a constant danger.`
+	description `Due to complex atmospheric currents and swiftly changing seasons, the surface of New Finding is constantly scoured by powerful winds, making it difficult for soil to accumulate except in sheltered canyons and gorges. Each of these patches of greenery stands like an island amid a sea of bare rock. Over time, where the forests are able to take hold and grow, they spread outward and begin to turn more of the rock into habitable soil. On the exposed slopes, rock slides are a constant danger.`
 	description `	Due to the limited habitable land, the local economy focuses on high tech medicine and equipment that can be produced by relatively small laboratories.`
 	spaceport `The New Finding spaceport is in a canyon, with hangars cut into both the canyon walls and delicate covered bridges linking them together. Attempting to land here without crashing into anything is a harrowing experience.`
 	spaceport `	The bottom of the canyon is a bright green ribbon of trees and plants that stands out in sharp contrast against the red and yellow layers of sandstone.`
