@@ -1006,7 +1006,7 @@ void Engine::CalculateStep()
 		newCenter = flagship->Position();
 		newCenterVelocity = flagship->Velocity();
 	}
-	bool checkClicks = doClick;
+	bool checkClicks = (flagship && doClick);
 	
 	draw[calcTickTock].SetCenter(newCenter, newCenterVelocity);
 	radar[calcTickTock].SetCenter(newCenter);
