@@ -237,7 +237,7 @@ void NPC::Do(const ShipEvent &event, PlayerInfo &player, UI *ui, bool isVisible)
 			// If a mission ship without the "capture" tag is captured, let it
 			// live on under its new ownership but mark our copy of it as destroyed.
 			auto it = actions.find(ship.get());
-			if(event.Type() & ShipEvent::CAPTURE & (it->second != ShipEvent::CAPTURE))
+			if(event.Type() & ShipEvent::CAPTURE && (it->second != ShipEvent::CAPTURE))
 			{
 				Ship *copy = new Ship(*ship);
 				copy->Destroy();
