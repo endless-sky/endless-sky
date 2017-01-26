@@ -1,7 +1,7 @@
 Version 0.9.5:
   * Bug fixes:
     * Typo fixes. (@Amazinite, @Bladewood, @doches, @Elyssaen, @jafdy, @gecko-locator)
-    * More typo fixes (@KiLEdEnNis, @MillerNerd, @retrue, @warp-core, @Wrzlprnft)
+    * More typo fixes (@KiLEdEnNis, @MillerNerd, @PointedStick, @retrue, @warp-core, @Wrzlprnft)
     * Fixed the hardpoint locations on the Vanguard. (@jafdy)
     * Republic and Syndicate ships no longer attack each other in the "reconciliation" plot. (@jafdy)
     * Fixed a mistake in the scanner warning message for the new scanner mechanics. (@Elyssaen)
@@ -29,7 +29,7 @@ Version 0.9.5:
     * New commodity names for cargo missions. (@Pointedstick)
     * More ship names, particularly for civilians and pirates. (@Pointedstick)
     * New civilian hails involving different made-up song and band names. (@Pointedstick)
-    * New "person" representing @Pointedstick in-game. (@Pointedstick)
+    * New "person" representing @Pointedstick in-game. (@Pointedstick, @Wrzlprnft)
     * In Hai space, human fleets now sometimes use Hai technology. (@Amazinite)
     * Rebalanced the cost and attributes of the Hai engines. (@Amazinite)
     * Changed the outfits on the Marauder Fury. (@LocalGod79)
@@ -66,6 +66,7 @@ Version 0.9.5:
     * Added five new landscapes using NASA pictures from Mars.
     * Attacking "Navy Intelligence" ships now angers the Republic.
     * The Syndicate can no longer be bribed during the FW story when you are fighting them.
+    * Replaced some over-used landscapes with under-used ones.
   * Game mechanics:
     * Ammo is now auto-sold when selling the new ammo capacity outfits. (@kozbot)
     * Ships and outfits now depreciate over time. When selling, you always sell the least depreciated.
@@ -92,10 +93,12 @@ Version 0.9.5:
     * Automatic mission clearance now applies to stopovers as well as the destination.
     * The "random" condition now changes every time it's checked, so you can use it in conversations.
     * Events can now mark individual planets as "unvisited" without affecting the whole system.
+    * Fixed the flicker when taking off from a planet.
   * User interface:
     * Modified the alarm sound to have less background buzz. (@DingusShingleton)
     * The conversation panel now allows you to use the numeric keypad. (@kozbot)
     * Solar collection is now displayed per second, not per frame, in the outfitter. (@Elyssaen)
+    * Added an icon for the Windows binary. (@CH-de)
     * Made it possible to zoom the main view in or out (between 25% and 200%) independent of the UI.
     * Click on escorts (or escort icons) to select them (or shift-click to select multiple).
     * Fleet commands are now issued only to selected escorts (if any).
@@ -150,6 +153,7 @@ Version 0.9.5:
     * Replaced some asserts with reasonable fall-back behavior that avoids quitting the program.
     * Fixed some things that Google's cpplint warns about, mostly making constructors explicit.
     * Cleaned up the AI code by storing a reference to the ship list instead of passing it around.
+    * Simplified the code for deferred landscape image loading.
 
 Version 0.9.4:
   * Bug fixes:
