@@ -593,34 +593,33 @@ trade
 		"knockout pills"
 		"horse tranquilizers"
 		"opium"
-		`"Death Sticks"`
-		`"Stardust"`
-		`"Whale Blubber"`
-		`"Ringworld Shavings"`
-		`"Quarg Bones"`
-		`"Toad Juice"`
-		`"Flavor Drops"`
-		`"Steam"`
-		`"Blackholes"`
-		`"Wormholes"`
-		`"Quasars"`
-		`"Bad Blues"`
-		`"Good Reds"`
-		`"Cores"`
-		`"Deeps"`
-		`"Belts"`
-		`"Southern Snacks"`
-		`"Far North Flakes"`
-		`"Red Giants"`
-		`"Solaris Joyrides"`
-		`"Memory Chips"`
-		`"Fire Apples"`
-		`"Hyperdrives"`
-		`"Boosters"`
-		`"Little Js"`
-		`"Hot Wings"`
-		`"Quarg Cakes"`
-		`"Space Salts"`
+		`"death sticks"`
+		`"stardust"`
+		`"whale blubber"`
+		`"ringworld shavings"`
+		`"Quarg bones"`
+		`"toad juice"`
+		`"flavor drops"`
+		`"steam"`
+		`"blackholes"`
+		`"wormholes"`
+		`"quasars"`
+		`"bad blues"`
+		`"good reds"`
+		`"cores"`
+		`"deeps"`
+		`"belts"`
+		`"southern snacks"`
+		`"far north flakes"`
+		`"red giants"`
+		`"solaris joyrides"`
+		`"memory chips"`
+		`"fire apples"`
+		`"hyperdrives"`
+		`"boosters"`
+		`"little Js"`
+		`"hot wings"`
+		`"space salts"`
 	commodity "Illegal Cargo"
 		"stolen ship parts"
 		"stolen weapons"
