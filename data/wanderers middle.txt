@@ -790,7 +790,7 @@ mission "Wanderers: Kor Efret 5"
 		has "Wanderers: Kor Efret 4: done"
 	on offer
 		conversation
-			`You drop of Ektasi Rek on <origin>, and wish her the best of luck in her continued efforts to understand and befriend the Korath. She is clearly eager to get back to work.`
+			`You drop off Ektasi Rek on <origin>, and wish her the best of luck in her continued efforts to understand and befriend the Korath. She is clearly eager to get back to work.`
 			`	Then, you get ready to return to <planet>. Sobari Tele'ek will not be happy to hear that the Korath engineers think there is no hope of compromising the Kor Mereti network.`
 				accept
 
