@@ -1609,9 +1609,7 @@ phrase "friendly pirate"
 		" the stupidest "
 	word
 		"merchant"
-		"Navy"
-		"Syndicate"
-		"militia"
+		"law enforcement"
 	word
 		" "
 	word
@@ -1649,12 +1647,10 @@ phrase "friendly pirate"
 		"tried this"
 		"used this"
 	word
-		" "
-	word
-		"new"
-		"crazy"
-		"amazing"
-		"fantastic"
+		" new"
+		" crazy"
+		" amazing"
+		" fantastic"
 		""
 	word
 		" toad juice"
@@ -1716,7 +1712,7 @@ phrase "friendly pirate"
 		" that a "
 	word
 		"new batch of slaves"
-		"new batch pf drugs"
+		"new batch of drugs"
 		"new delivery of slaves"
 		"new delivery of drugs"
 	word
@@ -1735,15 +1731,16 @@ phrase "friendly pirate"
 
 phrase "friendly pirate"
 	word
-		"If any other captain is "
-		"If anyone else is "
-		"If you are "
+		"If any other captain is having trouble with their crew,"
+		"If anyone else is having trouble with their crew,"
+		"If you are having trouble with your crew,"
 	word
-		"having trouble with your crew, I suggest "
+		" I suggest "
 	word
 		"using a stick to beat them into submission"
 		"throwing them out the airlock"
 		"starving them until they listen"
+		"threatening to throw them out the airlock"
 		"threatening to kill them"
 		"threatening to shoot them"
 	word
@@ -1767,6 +1764,8 @@ phrase "friendly pirate"
 		"up to buying"
 		"want to buy"
 		"looking for"
+	word
+		" "
 	word
 		"slaves"
 		"drugs"
