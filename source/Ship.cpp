@@ -2098,14 +2098,15 @@ int Ship::TakeDamage(const Projectile &projectile, bool isBlast)
 	bool wasDisabled = IsDisabled();
 	bool wasDestroyed = IsDestroyed();
 	
-	double shieldFraction = 1. - weapon.Piercing();
+	double shieldFraction = 1. - weapon.ShieldPiercing();
 	shieldFraction *= 1. / (1. + disruption * .01);
 	if(shields <= 0.)
 		shieldFraction = 0.;
 	else if(shieldDamage > shields)
 		shieldFraction = min(shieldFraction, shields / shieldDamage);
 	shields -= shieldDamage * shieldFraction;
-	hull -= hullDamage * (1. - shieldFraction);
+	hullDamage = hullDamage * (1. - shieldFraction);
+	hull -= hullDamage;
 	heat += heatDamage * (1. - .5 * shieldFraction);
 	ionization += ionDamage * (1. - .5 * shieldFraction);
 	disruption += disruptionDamage * (1. - .5 * shieldFraction);
@@ -2119,6 +2120,46 @@ int Ship::TakeDamage(const Projectile &projectile, bool isBlast)
 			ApplyForce((hitForce / distance) * d);
 	}
 	
+	double hullBreaching = weapon.HullBreaching();
+	double radiation = weapon.Radiation();
+	double toxin = weapon.Toxin();
+	
+	double bunks = attributes.Get("bunks");
+        double shipSize = attributes.Get("ship size");
+	double crewSpace = attributes.Get("crew space");
+	
+	double crewKilled = 0.;
+	
+	shipSize = shipSize ? shipSize : attributes.Get("mass");
+	crewSpace = crewSpace ? crewSpace : shipSize * .5;
+	
+	// Hull Breaching
+	hullBreaching = hullBreaching ? hullBreaching + (floor(hullDamage / 50.)) : floor(hullDamage / 500);
+
+	for( ; hullBreaching > 0.; --hullBreaching)
+	{
+		if(Random::Int(shipSize) < crewSpace)
+			if(Random::Int(bunks) < (crew - crewKilled))
+				++crewKilled;
+	}
+	
+	// Radiation
+	if(radiation > 0.)
+	{
+		if(shieldFraction)
+			shields -= radiation * (0.05 / shieldFraction);
+		shieldDamage += radiation * 0.05;
+		
+		crewKilled += max(0., (radiation - (shields * shieldFraction * 0.1) - (hull * 0.05)));
+	}
+	
+	// Toxin
+	
+	// Hit Force
+	
+	crewKilled = floor(crewKilled);
+	crew -= max(0., crewKilled);
+	
 	// Recalculate the disabled ship check.
 	isDisabled = true;
 	isDisabled = IsDisabled();
@@ -2129,8 +2170,9 @@ int Ship::TakeDamage(const Projectile &projectile, bool isBlast)
 	// If this ship was hit directly and did not consider itself an enemy of the
 	// ship that hit it, it is now "provoked" against that government.
 	if(!isBlast && projectile.GetGovernment() && !projectile.GetGovernment()->IsEnemy(government)
-			&& (Shields() < .9 || Hull() < .9 || !personality.IsForbearing())
-			&& !personality.IsPacifist() && (shieldDamage > 0. || hullDamage > 0.))
+			&& (((Shields() < .9 || Hull() < .9 || !personality.IsForbearing())
+				&& !personality.IsPacifist() && (shieldDamage > 0. || hullDamage > 0.))
+			|| crewKilled >= 1.))
 		type |= ShipEvent::PROVOKE;
 	
 	return type;

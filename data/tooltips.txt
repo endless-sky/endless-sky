@@ -374,7 +374,7 @@ tip "infrared tracking:"
 tip "radar tracking:"
 	`How well this weapon maintains a radar target lock, which can be interrupted by a ship with radar jamming installed.`
 
-tip "piercing:"
+tip "shield piercing:"
 	`This percentage of this weapon's damage always leaks through to the hull.`
 
 tip "shield damage / shot:"

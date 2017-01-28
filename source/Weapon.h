@@ -98,11 +98,15 @@ public:
 	double DisruptionDamage() const;
 	double SlowingDamage() const;
 	
-	double Piercing() const;
+	double ShieldPiercing() const;
+	double HullBreaching() const;
 	
 	double TotalLifetime() const;
 	double Range() const;
 	
+	double Radiation() const;
+	double Toxin() const;
+		
 	
 protected:
 	// Legacy support: allow turret outfits with no turn rate to specify a
@@ -178,8 +182,12 @@ private:
 	static const int SLOWING_DAMAGE = 5;
 	mutable double damage[6] = {0., 0., 0., 0., 0., 0.};
 	
-	double piercing = 0.;
+	double shieldPiercing = 0.;
+	double hullBreaching = 0.;
 	
+	double radiation = 0.;
+	double toxin = 0.;
+
 	// Cache the calculation of these values, for faster access.
 	mutable bool calculatedDamage[6] = {false, false, false, false, false, false};
 	mutable double totalLifetime = -1.;
@@ -219,7 +227,8 @@ inline double Weapon::FiringForce() const { return firingForce; }
 inline double Weapon::FiringFuel() const { return firingFuel; }
 inline double Weapon::FiringHeat() const { return firingHeat; }
 
-inline double Weapon::Piercing() const { return piercing; }
+inline double Weapon::ShieldPiercing() const { return shieldPiercing; }
+inline double Weapon::HullBreaching() const { return hullBreaching; }
 
 inline double Weapon::SplitRange() const { return splitRange; }
 inline double Weapon::TriggerRadius() const { return triggerRadius; }
@@ -233,6 +242,8 @@ inline double Weapon::IonDamage() const { return TotalDamage(ION_DAMAGE); }
 inline double Weapon::DisruptionDamage() const { return TotalDamage(DISRUPTION_DAMAGE); }
 inline double Weapon::SlowingDamage() const { return TotalDamage(SLOWING_DAMAGE); }
 
+inline double Weapon::Radiation() const {return radiation; }
+inline double Weapon::Toxin() const {return toxin; }
 
 
 #endif

@@ -144,8 +144,14 @@ void Weapon::LoadWeapon(const DataNode &node)
 				damage[SLOWING_DAMAGE] = value;
 			else if(key == "hit force")
 				hitForce = value;
-			else if(key == "piercing")
-				piercing = max(0., min(1., value));
+			else if((child.Token(0) == "piercing") || (child.Token(0) == "shield piercing"))
+				shieldPiercing = max(0., min(1., child.Value(1)));
+			else if(child.Token(0) == "hull breaching")
+				hullBreaching = child.Value(1);
+			else if(child.Token(0) == "radiation")
+				radiation = child.Value(1);
+			else if(child.Token(0) == "toxin")
+				toxin = child.Value(1);
 			else
 				child.PrintTrace("Unrecognized weapon attribute: \"" + key + "\":");
 		}
