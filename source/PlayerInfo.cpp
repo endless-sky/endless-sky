@@ -115,9 +115,9 @@ void PlayerInfo::Load(const string &path)
 		else if(child.Token(0) == "date" && child.Size() >= 4)
 			date = Date(child.Value(1), child.Value(2), child.Value(3));
 		else if(child.Token(0) == "system" && child.Size() >= 2)
-			system = GameData::Systems().Find(child.Token(1));
+			system = GameData::Systems().Get(child.Token(1));
 		else if(child.Token(0) == "planet" && child.Size() >= 2)
-			planet = GameData::Planets().Find(child.Token(1));
+			planet = GameData::Planets().Get(child.Token(1));
 		else if(child.Token(0) == "travel" && child.Size() >= 2)
 		{
 			const System *next = GameData::Systems().Find(child.Token(1));
@@ -252,28 +252,6 @@ void PlayerInfo::Load(const string &path)
 			}
 	}
 	
-	// As a result of game data changes (e.g. unloading a mod) it's possible for
-	// the player to end up in an undefined system or planet. In that case, move
-	// them to the starting system to avoid crashing.
-	if(planet && !system)
-		system = planet->GetSystem();
-	if(!planet || planet->Name().empty() || !system || system->Name().empty())
-	{
-		system = GameData::Start().GetSystem();
-		planet = GameData::Start().GetPlanet();
-	}
-	
-	// For any ship that did not store what system it is in or what planet it is
-	// on, place it with the player. (In practice, every ship ought to have
-	// specified its location, but this is to avoid null locations.)
-	for(shared_ptr<Ship> &ship : ships)
-	{
-		if(!ship->GetSystem() || ship->GetSystem()->Name().empty())
-			ship->SetSystem(system);
-		if(ship->GetSystem() == system)
-			ship->SetPlanet(planet);
-	}
-	
 	// If no depreciation record was loaded, every item in the player's fleet
 	// will count as non-depreciated.
 	if(!depreciation.IsLoaded())
@@ -353,7 +331,29 @@ void PlayerInfo::ApplyChanges()
 	GameData::ReadEconomy(economy);
 	economy = DataNode();
 	
-	// government changes may have changed the player's ship swizzles
+	// As a result of game data changes (e.g. unloading a mod) it's possible for
+	// the player to end up in an undefined system or planet. In that case, move
+	// them to the starting system to avoid crashing.
+	if(planet && !system)
+		system = planet->GetSystem();
+	if(!planet || planet->Name().empty() || !system || system->Name().empty())
+	{
+		system = GameData::Start().GetSystem();
+		planet = GameData::Start().GetPlanet();
+	}
+	
+	// For any ship that did not store what system it is in or what planet it is
+	// on, place it with the player. (In practice, every ship ought to have
+	// specified its location, but this is to avoid null locations.)
+	for(shared_ptr<Ship> &ship : ships)
+	{
+		if(!ship->GetSystem() || ship->GetSystem()->Name().empty())
+			ship->SetSystem(system);
+		if(ship->GetSystem() == system)
+			ship->SetPlanet(planet);
+	}
+	
+	// Government changes may have changed the player's ship swizzles.
 	for(shared_ptr<Ship> &ship : ships)
 		ship->SetGovernment(GameData::PlayerGovernment());
 
