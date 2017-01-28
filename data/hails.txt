@@ -1761,7 +1761,7 @@ phrase "friendly pirate"
 	word
 		" "
 	word
-		"up to buying"
+		"up for buying"
 		"want to buy"
 		"looking for"
 	word
