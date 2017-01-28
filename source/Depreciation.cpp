@@ -345,7 +345,7 @@ double Depreciation::Depreciate(int age) const
 
 // Depreciation of an item for which no record exists. If buying, items
 // default to no depreciation. When selling, they default to full.
-double DefaultDepreciation() const
+double Depreciation::DefaultDepreciation() const
 {
 	return (isStock ? 1. : FULL_DEPRECIATION);
 }
