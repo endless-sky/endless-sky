@@ -67,6 +67,9 @@ private:
 	// Calculate depreciation:
 	double Depreciate(const std::map<int, int> &record, int day, int count = 1) const;
 	double Depreciate(int age) const;
+	// Depreciation of an item for which no record exists. If buying, items
+	// default to no depreciation. When selling, they default to full.
+	double DefaultDepreciation() const;
 	
 	
 private:
