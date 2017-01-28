@@ -315,12 +315,15 @@ void Engine::Step(bool isActive)
 	Audio::Update(center);
 	
 	// Smoothly zoom in and out.
-	double zoomTarget = Preferences::ViewZoom();
-	if(zoom < zoomTarget)
-		zoom = min(zoomTarget, zoom * 1.01);
-	else if(zoom > zoomTarget)
-		zoom = max(zoomTarget, zoom * .99);
-	
+	if(isActive)
+	{
+		double zoomTarget = Preferences::ViewZoom();
+		if(zoom < zoomTarget)
+			zoom = min(zoomTarget, zoom * 1.01);
+		else if(zoom > zoomTarget)
+			zoom = max(zoomTarget, zoom * .99);
+	}
+		
 	// Any of the player's ships that are in system are assumed to have
 	// landed along with the player.
 	if(flagship && flagship->GetPlanet() && isActive)
