@@ -315,12 +315,15 @@ void Engine::Step(bool isActive)
 	Audio::Update(center);
 	
 	// Smoothly zoom in and out.
-	double zoomTarget = Preferences::ViewZoom();
-	if(zoom < zoomTarget)
-		zoom = min(zoomTarget, zoom * 1.01);
-	else if(zoom > zoomTarget)
-		zoom = max(zoomTarget, zoom * .99);
-	
+	if(isActive)
+	{
+		double zoomTarget = Preferences::ViewZoom();
+		if(zoom < zoomTarget)
+			zoom = min(zoomTarget, zoom * 1.01);
+		else if(zoom > zoomTarget)
+			zoom = max(zoomTarget, zoom * .99);
+	}
+		
 	// Any of the player's ships that are in system are assumed to have
 	// landed along with the player.
 	if(flagship && flagship->GetPlanet() && isActive)
@@ -857,15 +860,8 @@ void Engine::EnterSystem()
 	// since the new player ships can make at most four jumps before landing.
 	if(today <= Date(21, 11, 3013))
 	{
-		Messages::Add(string("Press \"")
-			+ Command::MAP.KeyName()
-			+ string("\" to view your map, and \"")
-			+ Command::JUMP.KeyName()
-			+ string("\" to make a hyperspace jump."));
-		Messages::Add(string("Or, press \"")
-			+ Command::LAND.KeyName()
-			+ string("\" to land. For the main menu, press \"")
-			+ Command::MENU.KeyName() + string("\"."));
+		Messages::Add(GameData::HelpMessage("basics 1"));
+		Messages::Add(GameData::HelpMessage("basics 2"));
 	}
 }
 
@@ -1006,7 +1002,7 @@ void Engine::CalculateStep()
 		newCenter = flagship->Position();
 		newCenterVelocity = flagship->Velocity();
 	}
-	bool checkClicks = doClick;
+	bool checkClicks = (flagship && doClick);
 	
 	draw[calcTickTock].SetCenter(newCenter, newCenterVelocity);
 	radar[calcTickTock].SetCenter(newCenter);

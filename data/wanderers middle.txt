@@ -293,7 +293,7 @@ mission "Wanderers: First Mereti Attack"
 mission "Wanderers: Rek To Kor Efret"
 	landing
 	name "Bring Rek to <planet>"
-	description "Brink Rek, who has survived the Molt and taken on a new form, to try to communicate with the Kor Efret on <destination>."
+	description "Bring Rek, who has survived the Molt and taken on a new form, to try to communicate with the Kor Efret on <destination>."
 	source "Spera Anatrusk"
 	destination "Setar Fort"
 	passengers 1
@@ -790,7 +790,7 @@ mission "Wanderers: Kor Efret 5"
 		has "Wanderers: Kor Efret 4: done"
 	on offer
 		conversation
-			`You drop of Ektasi Rek on <origin>, and wish her the best of luck in her continued efforts to understand and befriend the Korath. She is clearly eager to get back to work.`
+			`You drop off Ektasi Rek on <origin>, and wish her the best of luck in her continued efforts to understand and befriend the Korath. She is clearly eager to get back to work.`
 			`	Then, you get ready to return to <planet>. Sobari Tele'ek will not be happy to hear that the Korath engineers think there is no hope of compromising the Kor Mereti network.`
 				accept
 
@@ -2461,7 +2461,7 @@ mission "Wanderers: Sestor: Return to Wanderers"
 	on offer
 		fail "Wanderers: Sestor: Drones in Alnilam"
 		conversation
-			`Danforth beaches a sigh of relief when you tell him that the last of the Kor Sestor drones have been destroyed. "I am grateful for your help, Captain <last>," he says. "And now that we have finished with that battle, the public relations nightmare over what we did to Zenith begins. We don't need you to get involved in that, though; perhaps you should return to Wanderer space until things cool down a bit around here."`
+			`Danforth breathes a sigh of relief when you tell him that the last of the Kor Sestor drones have been destroyed. "I am grateful for your help, Captain <last>," he says. "And now that we have finished with that battle, the public relations nightmare over what we did to Zenith begins. We don't need you to get involved in that, though; perhaps you should return to Wanderer space until things cool down a bit around here."`
 				accept
 
 

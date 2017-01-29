@@ -539,8 +539,8 @@ ship "Heliarch Punisher" "Heliarch Punisher (Missile)"
 
 ship "Heliarch Punisher" "Heliarch Punisher (Scrappy)"
 	outfits
-		"Bombardment Cannon" 4
-		"Bombardment Turret" 6
+		"Bombardment Cannon" 6
+		"Bombardment Turret" 4
 		
 		"Large Reactor Module" 2
 		"Small Reactor Module"

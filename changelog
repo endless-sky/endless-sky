@@ -1,7 +1,7 @@
 Version 0.9.5:
   * Bug fixes:
     * Typo fixes. (@Amazinite, @Bladewood, @doches, @Elyssaen, @jafdy, @gecko-locator)
-    * More typo fixes (@KiLEdEnNis, @MillerNerd, @PointedStick, @retrue, @warp-core, @Wrzlprnft)
+    * More typo fixes (@KiLEdEnNis, @MillerNerd, @Pointedstick, @retrue, @warp-core, @Wrzlprnft)
     * Fixed the hardpoint locations on the Vanguard. (@jafdy)
     * Republic and Syndicate ships no longer attack each other in the "reconciliation" plot. (@jafdy)
     * Fixed a mistake in the scanner warning message for the new scanner mechanics. (@Elyssaen)
@@ -113,7 +113,7 @@ Version 0.9.5:
     * Put a limit on how many messages will display at the bottom of the screen.
     * Added a message telling you when autopilot is engaged or disengaged.
     * Added expand / collapse arrows to the shipyard and outfitter category names.
-    * The shipyard an outfitter maps can now be filtered to only show the selected system's items.
+    * The shipyard and outfitter maps can now be filtered to only show the selected system's items.
     * Shift + clicking a category name in the shops now expands or collapses all categories.
     * Collapsed categories are now remembered rather than resetting to expanded every time.
     * The zoom level is now remembered when you close the map.

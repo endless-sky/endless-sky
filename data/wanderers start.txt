@@ -1570,7 +1570,7 @@ mission "Wanderers Invaded 3C"
 		"reputation: Pug" >?= 1
 	on complete
 		dialog
-			`You have collected some useful information on the nature of the "Eye." You should probably head to the spaceport and meet up with iktat Rek.`
+			`You have collected some useful information on the nature of the "Eye." You should probably head to the spaceport and meet up with Iktat Rek.`
 
 
 
