@@ -286,6 +286,7 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const Depreciation &dep
 		attributesHeight += 20;
 	}
 	
+
 	tableLabels.clear();
 	energyTable.clear();
 	heatTable.clear();
@@ -293,25 +294,27 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const Depreciation &dep
 	attributesHeight += 30;
 	
 	tableLabels.push_back("idle:");
-	energyTable.push_back(Format::Number(
-		60. * (attributes.Get("energy generation")
+	double idleEnergy = 60. * (attributes.Get("energy generation")
 			+ attributes.Get("solar collection")
-			- attributes.Get("cooling energy"))));
-	heatTable.push_back(Format::Number(
-		60. * (attributes.Get("heat generation")
+			- attributes.Get("cooling energy"));
+	double idleHeat = 60. * (attributes.Get("heat generation")
 			- attributes.Get("cooling")
-			- attributes.Get("active cooling"))));
+			- attributes.Get("active cooling"));
+	energyTable.push_back(Format::Number(idleEnergy));
+	heatTable.push_back(Format::Number(idleHeat));
 	attributesHeight += 20;
+
 	tableLabels.push_back("moving:");
-	energyTable.push_back(Format::Number(
-		-60. * (attributes.Get("thrusting energy")
+	double movingEnergy = 60. * (attributes.Get("thrusting energy")
 			+ attributes.Get("reverse thrusting energy")
-			+ attributes.Get("turning energy"))));
-	heatTable.push_back(Format::Number(
-		60. * (attributes.Get("thrusting heat")
+			+ attributes.Get("turning energy"));
+	double movingHeat = 60. * (attributes.Get("thrusting heat")
 			+ attributes.Get("reverse thrusting heat")
-			+ attributes.Get("turning heat"))));
+			+ attributes.Get("turning heat"));
+	energyTable.push_back(Format::Number(-1. * movingEnergy));
+	heatTable.push_back(Format::Number(movingHeat));
 	attributesHeight += 20;
+
 	double firingEnergy = 0.;
 	double firingHeat = 0.;
 	for(const auto &it : ship.Outfits())
@@ -324,6 +327,7 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const Depreciation &dep
 	energyTable.push_back(Format::Number(-60. * firingEnergy));
 	heatTable.push_back(Format::Number(60. * firingHeat));
 	attributesHeight += 20;
+
 	double shieldEnergy = attributes.Get("shield energy");
 	double hullEnergy = attributes.Get("hull energy");
 	tableLabels.push_back((shieldEnergy && hullEnergy) ? "shields / hull:" :
@@ -333,11 +337,50 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const Depreciation &dep
 	double hullHeat = attributes.Get("hull heat");
 	heatTable.push_back(Format::Number(60. * (shieldHeat + hullHeat)));
 	attributesHeight += 20;
+
+	tableLabels.push_back("total:");
+	double totalEnergyLeft = idleEnergy - movingEnergy - (60. * (firingEnergy + shieldEnergy + hullEnergy));
+	double totalHeatGenerated = idleHeat + movingHeat + (60. * (firingHeat + shieldHeat + hullHeat));
+	energyTable.push_back(Format::Number(totalEnergyLeft));
+	heatTable.push_back(Format::Number(totalHeatGenerated));
+	attributesHeight += 20;
+
 	tableLabels.push_back("max:");
-	energyTable.push_back(Format::Number(attributes.Get("energy capacity")));
-	heatTable.push_back(Format::Number(60. * emptyMass * .1 * attributes.Get("heat dissipation")));
+	double energyCapacity = attributes.Get("energy capacity");
+	double heatMaximum = 60. * emptyMass * .1 * attributes.Get("heat dissipation");
+	energyTable.push_back(Format::Number(energyCapacity));
+	heatTable.push_back(Format::Number(heatMaximum));
+	attributesHeight += 20;
+
+	if ((energyCapacity > 0 && totalEnergyLeft < 0.1) || (totalHeatGenerated > heatMaximum))
+	{
+		//Either we're using too much energy or generating too much heat, so show that
+		//  to the user so they can make a decision on what to do
+		tableLabels.push_back("");
+
+		if (energyCapacity > 0 && totalEnergyLeft < -0.1)
+		{
+			energyTable.push_back(Format::Number(energyCapacity / totalEnergyLeft * -1) + " sec");
+		}
+		else
+		{
+			energyTable.push_back(string());
+		}
+
+		if (totalHeatGenerated > heatMaximum)
+		{
+			heatTable.push_back(Format::Number(totalHeatGenerated - heatMaximum) + " over");
+		}
+		else
+		{
+			heatTable.push_back(string());
+		}
+
+		attributesHeight += 20;
+	}
+
 	// Pad by 10 pixels on the top and bottom.
-	attributesHeight += 30;
+	attributesHeight += 10;
 }
 
 
