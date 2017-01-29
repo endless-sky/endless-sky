@@ -860,15 +860,8 @@ void Engine::EnterSystem()
 	// since the new player ships can make at most four jumps before landing.
 	if(today <= Date(21, 11, 3013))
 	{
-		Messages::Add(string("Press \"")
-			+ Command::MAP.KeyName()
-			+ string("\" to view your map, and \"")
-			+ Command::JUMP.KeyName()
-			+ string("\" to make a hyperspace jump."));
-		Messages::Add(string("Or, press \"")
-			+ Command::LAND.KeyName()
-			+ string("\" to land. For the main menu, press \"")
-			+ Command::MENU.KeyName() + string("\"."));
+		Messages::Add(GameData::HelpMessage("basics 1"));
+		Messages::Add(GameData::HelpMessage("basics 2"));
 	}
 }
 
