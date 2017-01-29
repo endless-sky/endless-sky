@@ -40,8 +40,8 @@ namespace {
 
 
 
-PlanetLabel::PlanetLabel(const Point &position, const StellarObject &object, const System *system)
-	: position(position), radius(object.Radius())
+PlanetLabel::PlanetLabel(const Point &position, const StellarObject &object, const System *system, double zoom)
+	: position(position * zoom), radius(object.Radius() * zoom)
 {
 	const Planet &planet = *object.GetPlanet();
 	color = object.TargetColor();
@@ -62,7 +62,7 @@ PlanetLabel::PlanetLabel(const Point &position, const StellarObject &object, con
 		else
 			government = "(No government)";
 	}
-	double alpha = min(.5, max(0., .6 - (position.Length() - radius) * .001));
+	double alpha = min(.5, max(0., .6 - (position.Length() - radius) * .001 * zoom));
 	color = Color(color.Get()[0] * alpha, color.Get()[1] * alpha, color.Get()[2] * alpha, 0.);
 	
 	if(!system)

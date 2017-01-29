@@ -274,6 +274,7 @@ mission "FW Reconciliation 2A"
 	landing
 	source Valhalla
 	destination Farpoint
+	clearance
 	passengers 2
 	to offer
 		has "FW Reconciliation 2: done"
@@ -353,6 +354,7 @@ mission "FW Reconciliation 2C"
 	landing
 	source Stormhold
 	destination Farpoint
+	clearance
 	passengers 2
 	to offer
 		has "FW Reconciliation 2B: done"
@@ -374,6 +376,7 @@ mission "FW Defend Farpoint"
 	description "Assist the Oathkeepers in defending <planet> from a pirate attack, then land back on the planet."
 	autosave
 	source Farpoint
+	clearance
 	passengers 2
 	to offer
 		has "FW Reconciliation 2C: done"
@@ -527,7 +530,7 @@ mission "FW Reconciliation Break"
 					goto wait
 			
 			label peace
-			`	"At peace for now," says Ijs, but so far a peace without justice. When the time is ripe, we will strike against the Syndicate."`
+			`	"At peace for now," says Ijs, "but so far a peace without justice. When the time is ripe, we will strike against the Syndicate."`
 				goto wait
 			
 			label volunteer
@@ -1834,6 +1837,7 @@ mission "FW Pug 4B: Reinforcements"
 	npc kill
 		personality disables
 		system Markab
+		government Syndicate
 		fleet
 			names "syndicate capital"
 			variant

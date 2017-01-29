@@ -186,6 +186,15 @@ outfit "Thunderhead"
 		"hit force" 20
 		"missile strength" 3
 
+outfit "Thunderhead Storage Array"
+	category "Ammunition"
+	cost 36000
+	thumbnail "outfit/thunderhead storage"
+	"mass" 2
+	"outfit space" -8
+	"thunderhead capacity" 20
+	ammo "Thunderhead Missile"
+	description "The Thunderhead Storage Array is used to store extra ammunition for Thunderhead Launchers."
 
 outfit "Small Biochemical Cell"
 	category "Power"

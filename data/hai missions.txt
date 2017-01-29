@@ -86,7 +86,7 @@ mission "First Contact: Unfettered"
 			`	"'Dragonfolk?'" you ask. "I've never heard of them."`
 			`	"Sheragi," it says, "they are extinct. Only their dumb ancestors survive, just as monkeys will outlast the thinking humans."`
 			`	"How were you altered?" you ask.`
-			`	It says, "We Hai took worlds that Drak said belonged to Sheragi, although Sheragi had not yet even discovered them. Drak retaliated. On all Hai words, Drak ships appeared in orbit. Sickness swept each planet: quick fever, strange feeling of frailness, like you are brittle bones with mouth full of dirt. Victims left alive, but all ambition gone, no desire but to die of comfortable old age."`
+			`	It says, "We Hai took worlds that Drak said belonged to Sheragi, although Sheragi had not yet even discovered them. Drak retaliated. On all Hai worlds, Drak ships appeared in orbit. Sickness swept each planet: quick fever, strange feeling of frailness, like you are brittle bones with mouth full of dirt. Victims left alive, but all ambition gone, no desire but to die of comfortable old age."`
 			choice
 				`	"Did you try to resist the Drak?"`
 					goto resist
@@ -177,7 +177,8 @@ mission "Unfettered Jump Drive 1"
 	to offer
 		has "First Contact: Unfettered: offered"
 		not "Wanderers: Jump Drive Source: active"
-		not "event: wanderers: unfettered invasion starts"
+	to fail
+		has "event: wanderers: unfettered invasion starts"
 	to complete
 		has "Unfettered Jump Drive 2: offered"
 	source
@@ -236,7 +237,8 @@ mission "Unfettered Jump Drive 2"
 	to offer
 		has "Unfettered Jump Drive 1: offered"
 		not "Wanderers: Jump Drive Source: active"
-		not "event: wanderers: unfettered invasion starts"
+	to fail
+		has "event: wanderers: unfettered invasion starts"
 	to complete
 		has "Unfettered Jump Drive 3: offered"
 	source
@@ -347,7 +349,8 @@ mission "Unfettered Jump Drive 3"
 	to offer
 		has "Unfettered Jump Drive 2: offered"
 		not "Wanderers: Jump Drive Source: active"
-		not "event: wanderers: unfettered invasion starts"
+	to fail
+		has "event: wanderers: unfettered invasion starts"
 	to complete
 		has "Unfettered Jump Drive 4: offered"
 	source
@@ -408,7 +411,8 @@ mission "Unfettered Jump Drive 4"
 	to offer
 		has "Unfettered Jump Drive 3: offered"
 		not "Wanderers: Jump Drive Source: active"
-		not "event: wanderers: unfettered invasion starts"
+	to fail
+		has "event: wanderers: unfettered invasion starts"
 	to complete
 		never
 	source

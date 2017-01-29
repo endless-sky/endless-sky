@@ -23,9 +23,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Information.h"
 #include "Interface.h"
 #include "LineShader.h"
-#include "MapDetailPanel.h"
-#include "MapOutfitterPanel.h"
-#include "MapShipyardPanel.h"
 #include "Mission.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
@@ -125,16 +122,7 @@ void MissionPanel::Step()
 	if(!Preferences::Has("help: jobs"))
 	{
 		Preferences::Set("help: jobs");
-		GetUI()->Push(new Dialog(
-			"Taking on jobs is a safe way to earn money. "
-			"Special missions are offered in the Space Port; "
-			"more mundane jobs are posted on the Job Board. "
-			"Most special missions are only offered once: "
-			"if you turn one down, it will not be offered to you again.\n"
-			"\tThe payment for a job depends on how far you must travel and how much you are carrying. "
-			"Jobs that have a time limit pay extra, but you are paid nothing if you miss the deadline.\n"
-			"\tAs you gain a combat reputation, new jobs will become available, "
-			"including escorting convoys and bounty hunting."));
+		GetUI()->Push(new Dialog(GameData::HelpMessage("jobs")));
 	}
 }
 
@@ -187,15 +175,7 @@ void MissionPanel::Draw()
 	if(acceptedIt != accepted.end() && acceptedIt->Destination())
 		DrawMissionSystem(*acceptedIt, IsSatisfied(*acceptedIt) ? currentColor : blockedColor);
 	
-	// Draw the buttons to switch to other map modes.
-	Information info;
-	info.SetCondition("is missions");
-	if(ZoomIsMax())
-		info.SetCondition("max zoom");
-	if(ZoomIsMin())
-		info.SetCondition("min zoom");
-	const Interface *interface = GameData::Interfaces().Get("map buttons");
-	interface->Draw(info, this);
+	DrawButtons("is missions");
 }
 
 
@@ -203,12 +183,7 @@ void MissionPanel::Draw()
 // Only override the ones you need; the default action is to return false.
 bool MissionPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 {
-	if(key == 'd' || key == SDLK_ESCAPE || (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
-	{
-		GetUI()->Pop(this);
-		return true;
-	}
-	else if(key == 'a' && CanAccept())
+	if(key == 'a' && CanAccept())
 	{
 		Accept();
 		return true;
@@ -219,21 +194,6 @@ bool MissionPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 			GetUI()->Push(new Dialog(this, &MissionPanel::AbortMission,
 				"Abort mission \"" + acceptedIt->Name() + "\"?"));
 		return true;
-	}
-	else if(key == 'p' || key == SDLK_PAGEUP || key == SDLK_PAGEDOWN)
-	{
-		GetUI()->Pop(this);
-		GetUI()->Push(new MapDetailPanel(*this));
-	}
-	else if(key == 'o')
-	{
-		GetUI()->Pop(this);
-		GetUI()->Push(new MapOutfitterPanel(*this));
-	}
-	else if(key == 's')
-	{
-		GetUI()->Pop(this);
-		GetUI()->Push(new MapShipyardPanel(*this));
 	}
 	else if(key == SDLK_LEFT && availableIt == available.end())
 	{
@@ -282,24 +242,8 @@ bool MissionPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 			} while(!acceptedIt->IsVisible());
 		}
 	}
-	else if(command.Has(Command::MAP))
-	{
-		GetUI()->Pop(this);
-		GetUI()->Push(new MapDetailPanel(*this));
-		return true;
-	}
-	else if(key == 'f')
-	{
-		GetUI()->Push(new Dialog(
-			this, &MissionPanel::DoFind, "Search for:"));
-		return true;
-	}
-	else if(key == '+' || key == '=')
-		ZoomMap();
-	else if(key == '-')
-		UnzoomMap();
 	else
-		return false;
+		return MapPanel::KeyDown(key, mod, command);
 	
 	if(availableIt != available.end())
 		selectedSystem = availableIt->Destination()->GetSystem();
@@ -313,7 +257,7 @@ bool MissionPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 
 
 
-bool MissionPanel::Click(int x, int y)
+bool MissionPanel::Click(int x, int y, int clicks)
 {
 	dragSide = 0;
 	
@@ -460,16 +404,9 @@ bool MissionPanel::Hover(int x, int y)
 bool MissionPanel::Scroll(double dx, double dy)
 {
 	if(dragSide)
-		return Drag(0., dy * 50.);
+		return Drag(0., dy * Preferences::ScrollSpeed());
 	
 	return MapPanel::Scroll(dx, dy);
-}
-
-
-
-void MissionPanel::DoFind(const string &text)
-{
-	Find(text);
 }
 
 

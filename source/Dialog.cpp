@@ -167,9 +167,10 @@ void Dialog::Draw()
 		Point stringPos(
 			inputPos.X() - (WIDTH - 20) * .5 + 5.,
 			inputPos.Y() - .5 * font.Height());
-		font.Draw(input, stringPos, bright);
+		string truncated = font.TruncateFront(input, WIDTH - 30);
+		font.Draw(truncated, stringPos, bright);
 		
-		Point barPos(stringPos.X() + font.Width(input) + 2., inputPos.Y());
+		Point barPos(stringPos.X() + font.Width(truncated) + 2., inputPos.Y());
 		FillShader::Fill(barPos, Point(1., 16.), dim);
 	}
 }
@@ -221,7 +222,7 @@ bool Dialog::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 
 
 
-bool Dialog::Click(int x, int y)
+bool Dialog::Click(int x, int y, int clicks)
 {
 	Point clickPos(x, y);
 	

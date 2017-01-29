@@ -66,14 +66,7 @@ void BankPanel::Step()
 	if(!Preferences::Has("help: bank"))
 	{
 		Preferences::Set("help: bank");
-		GetUI()->Push(new Dialog(
-			"This is the bank. "
-			"Here, you can apply for new mortgages, if your income and credit history allows it. "
-			"The bank is also a good place to get an overview of your daily expenses: "
-			"mortgage payments, crew salaries, etc.\n"
-			"\tPaying off a mortgage early means you pay less interest to the bank, "
-			"but it is sometimes wiser to instead use your money to buy a bigger ship "
-			"which can earn you more income."));
+		GetUI()->Push(new Dialog(GameData::HelpMessage("bank")));
 	}
 }
 
@@ -278,7 +271,7 @@ bool BankPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 
 
 // Handle mouse clicks.
-bool BankPanel::Click(int x, int y)
+bool BankPanel::Click(int x, int y, int clicks)
 {
 	// Check if the click was on one of the rows of the table that represents a
 	// mortgage or other current debt you have.

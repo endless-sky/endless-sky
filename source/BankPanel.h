@@ -26,7 +26,7 @@ class PlayerInfo;
 // allows them to apply for new mortgages or pay extra on existing debts.
 class BankPanel : public Panel {
 public:
-	BankPanel(PlayerInfo &player);
+	explicit BankPanel(PlayerInfo &player);
 	
 	virtual void Step() override;
 	virtual void Draw() override;
@@ -35,7 +35,7 @@ public:
 protected:
 	// Overrides from Panel.
 	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command) override;
-	virtual bool Click(int x, int y) override;
+	virtual bool Click(int x, int y, int clicks) override;
 	
 	
 private:

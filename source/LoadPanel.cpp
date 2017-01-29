@@ -28,6 +28,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "MainPanel.h"
 #include "Messages.h"
 #include "PlayerInfo.h"
+#include "Preferences.h"
 #include "ShipyardPanel.h"
 #include "StarField.h"
 #include "UI.h"
@@ -99,7 +100,8 @@ void LoadPanel::Draw()
 		double alpha = min(1., max(0., min(.1 * (113. - point.Y()), .1 * (point.Y() - -167.))));
 		if(it.first == selectedPilot)
 			FillShader::Fill(point + Point(110., 7.), Point(230., 20.), Color(.1 * alpha, 0.));
-		font.Draw(it.first, point, Color(.5 * alpha, 0.));
+		string name = font.Truncate(it.first, 220);
+		font.Draw(name, point, Color(.5 * alpha, 0.));
 		point += Point(0., 20.);
 	}
 	
@@ -112,7 +114,7 @@ void LoadPanel::Draw()
 			if(file == selectedFile)
 				FillShader::Fill(point + Point(110., 7.), Point(230., 20.), Color(.1 * alpha, 0.));
 			size_t pos = file.find('~') + 1;
-			string name = file.substr(pos, file.size() - 4 - pos);
+			string name = font.Truncate(file.substr(pos, file.size() - 4 - pos), 220);
 			font.Draw(name, point, Color(.5 * alpha, 0.));
 			point += Point(0., 20.);
 		}
@@ -232,7 +234,7 @@ bool LoadPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 
 
 
-bool LoadPanel::Click(int x, int y)
+bool LoadPanel::Click(int x, int y, int clicks)
 {
 	// The first row of each panel is y = -160 to -140.
 	if(y < -160 || y >= (-160 + 14 * 20))
@@ -297,7 +299,7 @@ bool LoadPanel::Drag(double dx, double dy)
 
 bool LoadPanel::Scroll(double dx, double dy)
 {
-	return Drag(50. * dx, 50. * dy);
+	return Drag(0., dy * Preferences::ScrollSpeed());
 }
 
 

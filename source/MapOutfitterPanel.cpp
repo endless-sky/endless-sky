@@ -40,10 +40,11 @@ MapOutfitterPanel::MapOutfitterPanel(PlayerInfo &player)
 
 
 
-MapOutfitterPanel::MapOutfitterPanel(const MapPanel &panel)
+MapOutfitterPanel::MapOutfitterPanel(const MapPanel &panel, bool onlyHere)
 	: MapSalesPanel(panel, true)
 {
 	Init();
+	onlyShowSoldHere = onlyHere;
 }
 
 
@@ -99,7 +100,7 @@ void MapOutfitterPanel::Select(int index)
 	else
 	{
 		selected = list[index];
-		selectedInfo.Update(*selected);
+		selectedInfo.Update(*selected, player);
 	}
 }
 
@@ -112,7 +113,7 @@ void MapOutfitterPanel::Compare(int index)
 	else
 	{
 		compare = list[index];
-		compareInfo.Update(*compare);
+		compareInfo.Update(*compare, player);
 	}
 }
 
@@ -166,7 +167,7 @@ int MapOutfitterPanel::FindItem(const string &text) const
 
 
 
-void MapOutfitterPanel::DrawItems() const
+void MapOutfitterPanel::DrawItems()
 {
 	list.clear();
 	Point corner = Screen::TopLeft() + Point(0, scroll);
@@ -210,6 +211,8 @@ void MapOutfitterPanel::DrawItems() const
 						break;
 					}
 			}
+			if(!isForSale && onlyShowSoldHere)
+				continue;
 			
 			Draw(corner, outfit->Thumbnail(), isForSale, outfit == selected,
 				outfit->Name(), price, info);
