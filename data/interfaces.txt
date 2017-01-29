@@ -760,10 +760,10 @@ interface "info panel"
 		dimensions 250 30
 	sprite "ui/ship tab"
 		center 0 -310
-	label "_Ship Info"
+	label "Ship Info"
 		center -300 -305
 		color "bright"
-	label "_Player Info"
+	label "Player _Info"
 		center -420 -305
 	button i
 		center -420 -305
@@ -774,7 +774,7 @@ interface "info panel"
 		center 0 -310
 	label "_Ship Info"
 		center -300 -305
-	label "_Player Info"
+	label "Player Info"
 		center -420 -305
 		color "bright"
 	button s
@@ -801,7 +801,7 @@ interface "info panel"
 	active if "can park"
 	sprite "ui/dialog cancel"
 		center 55 305
-	button P "_Park"
+	button P "Park"
 		center 55 305
 		dimensions 70 30
 	active
@@ -809,7 +809,7 @@ interface "info panel"
 	visible if "show unpark"
 	sprite "ui/dialog cancel"
 		center 55 305
-	button P "Un_park"
+	button P "Unpark"
 		center 55 305
 		dimensions 70 30
 	
