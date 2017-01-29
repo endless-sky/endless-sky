@@ -1747,7 +1747,7 @@ phrase "friendly pirate"
 		"."
 	word
 		" It worked for me!"
-		" I guarentee it works!"
+		" I guarantee it works!"
 		" If it doesn't work, you can always replace them!"
 		" It's an old family trick!"
 		""
