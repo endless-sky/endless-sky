@@ -71,7 +71,7 @@ private:
 	void DoCallback() const;
 	
 	
-private:
+protected:
 	WrappedText text;
 	int height;
 	
