@@ -1009,9 +1009,9 @@ phrase "friendly civilian"
 		"Some crazy militia officer "
 		"Walking into the spaceport, someone "
 	word
-		"asked me if I would help them fight local pirates. That's too dangerous for me!"
+		"asked me if I would help fight local pirates. That's too dangerous for me!"
 		"asked me to defend their ships from local pirates. Did they really think that I could do that?"
-		"asked me to scan a Navy ship for them. There's no way I would do that!"
+		"asked me to scan a Navy ship. There's no way I would do that!"
 		"pointed a gun at the back of my head. I almost had to change my pants!"
 		"almost broke my arm when I tried to karate chop her. I left that place in a hurry!"
 
@@ -1031,7 +1031,6 @@ phrase "friendly civilian"
 		" land on a planet"
 		" hyperdrive into a system"
 		" get disabled in space"
-		""
 	word
 		"... "
 	word
@@ -1040,6 +1039,8 @@ phrase "friendly civilian"
 		"Nevermind, that's a bad joke."
 		"I forgot the punchline."
 		"The rest of this joke can be found in the spaceport."
+		"Wait, I ruined it."
+		"Wait, let me start over."
 
 phrase "friendly civilian"
 	word
@@ -1151,7 +1152,6 @@ phrase "friendly civilian"
 		"I wonder what they were smoking."
 		"I'm ashamed that I ever believed it."
 
-# Hint toward the source or plot of a few transport missions
 phrase "friendly civilian"
 	word
 		"Never transport someone from the Paradise Worlds. Their dog will probably throw up in your bunk rooms."
@@ -1159,7 +1159,7 @@ phrase "friendly civilian"
 		"Apparently scientists near Wei are saying that the ice age on Hope caused by the supervolcano is ending soon."
 		"Have you seen any Wolf-Rayet stars yet? I like to just stay in the system and stare at them for hours."
 		"I've been told about some weird stuff that supposedly goes on in the Deep."
-		"There was this one time when I was lucky enough to find There Might Be Riots hanging out at a spaceport. They even asked me to transport them to one of their concerts!"
+		"There was this one time when I was lucky enough to find the band There Might Be Riots hanging out at a spaceport. They even asked me to transport them to one of their concerts!"
 		"A buddy of mine was busted for transporting a few tons of drugs for a shady character. They should have known better."
 		"It's amazing how far we've come as a species in the past one thousand years. Not too long ago in the time of the universe, we couldn't even terraform planets!"
 
