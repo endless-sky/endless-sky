@@ -1002,12 +1002,197 @@ phrase "friendly civilian"
 		"."
 		"!"
 
+phrase "friendly civilian"
+	word
+		"Once a militia officer "
+		"Some crazy person down in the south "
+		"Some crazy militia officer "
+		"Walking into the spaceport, someone "
+	word
+		"asked me if I would help her fight local pirates. That's too dangerous for me!"
+		"pointed a gun at the back of my head. I almost had to change my pants!"
+		"almost broke my arm when I tried to karate chop her. I left that place in a hurry!"
+
+phrase "friendly civilian"
+	word
+		"Two "
+	word
+		"merchants"
+		"pirates"
+		"aliens"
+		"Quarg"
+		"Navy officers"
+		"Syndicate executives"
+		"militia officers"
+	word
+		" walk into a spaceport"
+		" land on a planet"
+		" hyperdrive into a system"
+		" get disabled in space"
+		""
+	word
+		". . . "
+	word
+		"I forget the rest."
+		"I'll need to ask my friend for the rest."
+		"Nevermind, that's a bad joke."
+		"I forgot the punchline."
+		"The rest of this joke can be found in the spaceport."
+
+phrase "friendly civilian"
+	word
+		"A friend of mine"
+		"Someone I know"
+		"A friend of a friend"
+		"I heard that somebody"
+		"My brother"
+		"My sister"
+	word
+		" "
+	word
+		"traveled to the Far North"
+		"spent too much time on a pirate planet"
+		"disappeared in Syndicate space"
+		"decided to argue with a Navy officer"
+	word
+		""
+		""
+		" a few years ago"
+		" a few months ago"
+		" a few weeks ago"
+	word
+		" and they were never seen again"
+		" and never came back"
+		" and mysteriously disappeared"
+		", never to be seen again"
+	word
+		". "
+	word
+		"I wonder what happened to them."
+		"The universe is a dangerous place!"
+		"I'm not surprised."
+
+phrase "friendly civilian"
+	word
+		"I love it when "
+	word
+		"I'm walking through the spaceport"
+		"I land on a planet"
+		"I'm browsing the outfitter"
+		"I'm browsing the shipyard"
+	word
+		" and I "
+	word
+		"find interesting jobs"
+		"meet interesting people"
+		"get offered a unique job"
+		"find a unique quest"
+		"find things that I wouldn't find elsewhere"
+	word
+		"."
+
+phrase "friendly civilian"
+	word
+		"I have heard crazy stories about"
+		"My mother use to tell me a story about"
+		"My father use to tell me a story about"
+		"My friend told me a story about"
+		"Some people like to spin tales of"
+		"This old drunk I met talked about"
+	word
+		" "
+	word
+		"giant"
+		"scary"
+		"friendly"
+		"hostile"
+		"strange"
+		"sentient"
+		"intelligent"
+	word
+		" "
+	word
+		"rodent"
+		"chipmunk"
+		"rat"
+		"squirrel"
+		"mouse"
+		"beaver"
+		"gopher"
+		"rabbit"
+	word
+		" "
+	word
+		"creatures"
+		"aliens"
+		"beings"
+		"things"
+	word
+		" that "
+	word
+		"are more advanced than humans"
+		"have developed the hyperdrive"
+		"can terraform planets better than humans"
+		"could crush the Navy if they wanted to"
+		"live near humanity"
+		"are hiding in plain sight"
+	word
+		". "
+	word
+		""
+		"Could they be real?"
+		"How could anyone believe that?"
+		"Where could they be?"
+		"Well where are they?"
+		"What a crazy story, right?"
+		"I'll believe it when I see it."
+		"I wonder what they were smoking."
+		"I'm ashamed that I ever believed it."
+
+# Hint toward the source or plot of a few transport missions
+phrase "friendly civilian"
+	word
+		"Never transport someone from the Paradise Worlds. Their dog will probably throw up in your bunk rooms."
+		"I hear that most of the crew on pirate ships are just teenagers trying to make enough money to leave. That must be a terrible life."
+		"Apparently scientists near Wei are saying that the ice age caused by the supervolcano is ending soon."
+		"Have you seen any Wolf-Rayet stars yet? I like to just stay in the system and stare at them for hours."
+		"I've been told that there is some weird stuff that goes on in the Deep."
+		"There was this one time when I was lucky enough to find There Might Be Riots hanging out at a spaceport. They even asked me to transport them to one of their concerts!"
+		"A buddy of mine was busted for transporting a few tons of drugs for a shady character. They should have known better."
+		"It's amazing how far we have come as a species in the past one thousand years. Not to long ago in the time of the universe, we couldn't even terraform planets!"
+
+phrase "friendly civilian"
+	word
+		"It's really sad to see "
+	word
+		"poor workers and families"
+		"poor workers"
+		"poor families"
+		"young adults"
+		"kids"
+	word
+		" "
+	word
+		"stuck on factory planets like "
+	word
+		"New Iceland"
+		"Bounty"
+		"Clark"
+		"Foundry"
+		"Hephaestus"
+		"Maker"
+		"Moonshake"
+		"Sunracer"
+	word
+		"."
+
 phrase "friendly navy"
 	word
 		"The Navy"
 	word
 		" is here to"
 		"'s mission is to"
+		" will always"
 	word
 		" "
 	word
