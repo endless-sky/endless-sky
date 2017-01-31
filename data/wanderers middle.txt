@@ -1662,7 +1662,7 @@ mission "Wanderers: Sestor Search"
 		has "wanderers: found the sestor fleet"
 	on enter "Aya'k'k"
 		dialog
-			`A major battle was fought here. The burned-out hulks of several Wanderer ships are floating around in space, along with a handful of disabled Kor Sestor ships. Meanwhile, Wanderer ships are engaged in some sort of rescue or evacuation process on the surface of <planet>. But there is no sign of the bulk of the Kor Sestor fleet.`
+			`A major battle was fought here. The burned-out hulks of several Wanderer ships are floating around in space, along with a handful of disabled Kor Sestor ships. Meanwhile, Wanderer ships are engaged in some sort of rescue or evacuation process on the surface of Varu K'prai. But there is no sign of the bulk of the Kor Sestor fleet.`
 	npc
 		system "Aya'k'k"
 		government "Wanderer"
