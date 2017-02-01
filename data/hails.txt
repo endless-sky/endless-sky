@@ -1150,7 +1150,7 @@ phrase "friendly civilian"
 		"What a crazy story, right?"
 		"I'll believe it when I see it."
 		"I wonder what they were smoking."
-		"I'm ashamed that I ever believed it."
+		"I'm ashamed that I ever believed such a thing."
 
 phrase "friendly civilian"
 	word
