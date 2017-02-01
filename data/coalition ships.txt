@@ -39,12 +39,12 @@ ship "Arach Courier"
 		"Small Steering Module" 2
 		"Hyperdrive"
 		
-	gun -14 -38
-	gun 14 -38
 	engine -27 58 .6
 	engine -15 58 .8
 	engine 15 58 .8
 	engine 27 58 .6
+	gun -14 -38
+	gun 14 -38
 	explode "tiny explosion" 10
 	explode "small explosion" 10
 	"final explode" "final explosion small"
@@ -84,13 +84,13 @@ ship "Arach Freighter"
 		"Small Steering Module" 2
 		"Hyperdrive"
 		
+	engine -18 141 .7
+	engine 0 143 1
+	engine 18 141 .7
 	gun -19 -112
 	gun 19 -112
 	turret -41 37
 	turret 41 37
-	engine -18 141 .7
-	engine 0 143 1
-	engine 18 141 .7
 	explode "tiny explosion" 10
 	explode "small explosion" 15
 	explode "medium explosion" 15
@@ -132,15 +132,15 @@ ship "Arach Hulk"
 		"Small Steering Module" 2
 		"Hyperdrive"
 		
-	gun -27 -88
-	gun 27 -88
-	turret -90 88
-	turret 90 88
-	turret 0 -65
-	turret 0 189
 	engine -13 198 .7
 	engine 0 199 1
 	engine 13 198 .7
+	gun -27 -88
+	gun 27 -88
+	turret 0 -65
+	turret -90 88
+	turret 90 88
+	turret 0 189
 	explode "small explosion" 10
 	explode "medium explosion" 20
 	explode "large explosion" 30
@@ -184,13 +184,13 @@ ship "Arach Spindle"
 		"Small Steering Module" 1
 		"Hyperdrive"
 		
+	engine -13 198 .7
+	engine 0 199 1
+	engine 13 198 .7
 	gun -27 -88
 	gun 27 -88
 	turret 0 -65
 	turret 0 189
-	engine -13 198 .7
-	engine 0 199 1
-	engine 13 198 .7
 	explode "small explosion" 10
 	explode "medium explosion" 20
 	explode "large explosion" 20
@@ -230,13 +230,13 @@ ship "Arach Transport"
 		"Small Steering Module"
 		"Hyperdrive"
 		
-	gun -22 13
-	gun 22 13
-	turret 0 -77
 	engine -14 117 .4
 	engine -7 117 .9
 	engine 7 117 .9
 	engine 14 117 .4
+	gun -22 13
+	gun 22 13
+	turret 0 -77
 	explode "small explosion" 10
 	explode "medium explosion" 30
 	explode "large explosion" 5
@@ -282,14 +282,14 @@ ship "Heliarch Interdictor"
 		"Large Steering Module" 2
 		"Hyperdrive"
 	
-	gun -20 -98 "Finisher Pod"
-	gun 20 -98 "Finisher Pod"
-	turret -8 -63 "Heliarch Attractor"
-	turret 8 -63 "Heliarch Repulsor"
 	engine -30 163 .5
 	engine -20 163 .85
 	engine 20 163 .85
 	engine 30 163 .5
+	gun -20 -98 "Finisher Pod"
+	gun 20 -98 "Finisher Pod"
+	turret -8 -63 "Heliarch Attractor"
+	turret 8 -63 "Heliarch Repulsor"
 	explode "small explosion" 20
 	explode "medium explosion" 50
 	explode "large explosion" 30
@@ -354,13 +354,13 @@ ship "Heliarch Neutralizer"
 		"Small Steering Module" 2
 		"Hyperdrive"
 	
-	gun -22 -57 "Ion Rain Gun"
-	gun -16 -59 "Ion Rain Gun"
-	gun 16 -59 "Ion Rain Gun"
-	gun 22 -57 "Ion Rain Gun"
 	engine -17 82 .7
 	engine 0 74 1
 	engine 17 82 .7
+	gun -16 -59 "Ion Rain Gun"
+	gun 16 -59 "Ion Rain Gun"
+	gun -22 -57 "Ion Rain Gun"
+	gun 22 -57 "Ion Rain Gun"
 	explode "small explosion" 30
 	explode "medium explosion" 40
 	explode "large explosion" 20
@@ -384,9 +384,9 @@ ship "Heliarch Neutralizer" "Heliarch Neutralizer (Missile)"
 		"Small Steering Module" 2
 		"Hyperdrive"
 	
+	gun "Finisher Pod"
+	gun "Finisher Pod"
 	gun
-	gun "Finisher Pod"
-	gun "Finisher Pod"
 	gun
 
 ship "Heliarch Neutralizer" "Heliarch Neutralizer (Nimble)"
@@ -462,19 +462,19 @@ ship "Heliarch Punisher"
 		"Small Steering Module" 2
 		"Hyperdrive"
 	
-	gun -27 -118 "Ion Rain Gun"
+	engine -24 184 .6
+	engine 0 187 1.1
+	engine 24 184 .6
 	gun -21 -121 "Ion Rain Gun"
 	gun 21 -121 "Ion Rain Gun"
+	gun -27 -118 "Ion Rain Gun"
 	gun 27 -118 "Ion Rain Gun"
 	gun -43 -43 "Finisher Pod"
 	gun 43 -43 "Finisher Pod"
 	turret -13 -42 "Bombardment Turret"
-	turret 0 -35 "Bombardment Turret"
 	turret 13 -42 "Bombardment Turret"
+	turret 0 -35 "Bombardment Turret"
 	turret 0 164 "Bombardment Turret"
-	engine -24 184 .6
-	engine 0 187 1.1
-	engine 24 184 .6
 	explode "small explosion" 20
 	explode "medium explosion" 60
 	explode "large explosion" 40
@@ -510,8 +510,8 @@ ship "Heliarch Punisher" "Heliarch Punisher (Interdicting)"
 	gun "Finisher Pod"
 	gun "Finisher Pod"
 	turret "Heliarch Attractor"
-	turret "Heliarch Repulsor"
 	turret "Heliarch Attractor"
+	turret "Heliarch Repulsor"
 	turret "Bombardment Turret"
 
 ship "Heliarch Punisher" "Heliarch Punisher (Missile)"
@@ -533,8 +533,8 @@ ship "Heliarch Punisher" "Heliarch Punisher (Missile)"
 		"Hyperdrive"
 	
 	turret
-	turret "Heliarch Repulsor"
 	turret
+	turret "Heliarch Repulsor"
 	turret
 
 ship "Heliarch Punisher" "Heliarch Punisher (Scrappy)"
@@ -588,12 +588,12 @@ ship "Kimek Briar"
 		"Large Steering Module"
 		"Hyperdrive"
 		
-	gun -10 -52
-	gun 10 -52
-	turret 0 -14
 	engine -12 85 .5
 	engine 0 89 1.2
 	engine 12 85 .5
+	gun -10 -52
+	gun 10 -52
+	turret 0 -14
 	explode "tiny explosion" 5
 	explode "small explosion" 20
 	explode "medium explosion" 5
@@ -634,16 +634,16 @@ ship "Kimek Spire"
 		"Small Steering Module"
 		"Hyperdrive"
 		
+	engine -22 221 .6
+	engine -10 219 .8
+	engine 10 219 .8
+	engine 22 221 .6
 	gun -14 -183
 	gun 14 -183
 	turret 0 -153
 	turret 0 -43
 	turret -42 131
 	turret 42 131
-	engine -22 221 .6
-	engine -10 219 .8
-	engine 10 219 .8
-	engine 22 221 .6
 	explode "small explosion" 10
 	explode "medium explosion" 30
 	explode "large explosion" 20
@@ -684,13 +684,13 @@ ship "Kimek Thistle"
 		"Small Steering Module"
 		"Hyperdrive"
 		
+	engine -13 120 .7
+	engine 0 123 1
+	engine 13 120 .7
 	gun -11 -92
 	gun 11 -92
 	turret -13 3
 	turret 13 3
-	engine -13 120 .7
-	engine 0 123 1
-	engine 13 120 .7
 	explode "small explosion" 10
 	explode "medium explosion" 30
 	explode "large explosion" 10
@@ -728,11 +728,11 @@ ship "Kimek Thorn"
 		"Small Steering Module" 2
 		"Hyperdrive"
 		
-	gun -8 -23
-	gun 8 -23
 	engine -8 41 .7
 	engine 0 43 1
 	engine 8 41 .7
+	gun -8 -23
+	gun 8 -23
 	explode "tiny explosion" 10
 	explode "small explosion" 5
 	"final explode" "final explosion small"
@@ -770,10 +770,10 @@ ship "Saryd Runabout"
 		"Small Steering Module" 3
 		"Hyperdrive"
 		
-	gun -21 -4
-	gun 21 -4
 	engine -14 52 1
 	engine 14 52 1
+	gun -21 -4
+	gun 21 -4
 	explode "tiny explosion" 10
 	explode "small explosion" 10
 	"final explode" "final explosion small"
@@ -814,16 +814,16 @@ ship "Saryd Sojourner"
 		"Small Steering Module"
 		"Hyperdrive"
 		
-	gun -23 -104
-	gun 23 -104
-	turret -17 -104
-	turret 0 -96
-	turret 17 -104
-	turret 0 157
 	engine -24 176 .6
 	engine -11 181 .8
 	engine 11 181 .8
 	engine 24 176 .6
+	gun -23 -104
+	gun 23 -104
+	turret -17 -104
+	turret 17 -104
+	turret 0 -96
+	turret 0 157
 	explode "small explosion" 20
 	explode "medium explosion" 30
 	explode "large explosion" 10
@@ -865,16 +865,16 @@ ship "Saryd Traveler"
 		"Small Steering Module"
 		"Hyperdrive"
 		
-	gun -32 -18
-	gun -22 -18
-	gun 22 -18
-	gun 32 -18
-	turret -41 9
-	turret 41 9
 	engine -30 87 .7
 	engine -21 86 .7
 	engine 21 86 .7
 	engine 30 87 .7
+	gun -32 -18
+	gun 32 -18
+	gun -22 -18
+	gun 22 -18
+	turret -41 9
+	turret 41 9
 	explode "small explosion" 30
 	explode "medium explosion" 20
 	explode "large explosion" 10
@@ -913,13 +913,13 @@ ship "Saryd Visitor"
 		"Large Steering Module"
 		"Hyperdrive"
 		
-	gun -15 -51
-	gun 15 -51
-	turret 0 26
 	engine -23 75 .6
 	engine -11 78 .8
 	engine 11 78 .8
 	engine 23 75 .6
+	gun -15 -51
+	gun 15 -51
+	turret 0 26
 	explode "tiny explosion" 20
 	explode "small explosion" 30
 	explode "medium explosion" 5
