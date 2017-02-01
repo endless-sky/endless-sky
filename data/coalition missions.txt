@@ -61,6 +61,15 @@ mission "Coalition: First Contact"
 			`	The spider says, "In separate boxes, they each species keep. And in subtle ways, your development and discoveries they limit. And on your technology, restrictions they place."`
 			`	The beetle says, "Or, wrong are we? And the jump drive that brought you here, a gift from the Quarg it is? They its secret no longer hoard?" You tell it that the Quarg do indeed refuse to give jump drives to humans, and it says, "Then, prisoners indeed you are."`
 			label next
+			branch hai
+				has "First Contact: Hai: offered"
+			choice
+				`	"I suppose you may be right about the Quarg."`
+					goto end
+				`	"Perhaps the Quarg will change their minds in the future."`
+			`	The giant beetle considers you gravely. "Hope, we can only," it says.`
+					goto end
+			label hai
 			choice
 				`	"I suppose you may be right about the Quarg."`
 					goto end
