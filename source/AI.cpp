@@ -111,6 +111,8 @@ void AI::IssueMoveTarget(const PlayerInfo &player, const Point &target)
 void AI::UpdateKeys(PlayerInfo &player, Command &clickCommands, bool isActive)
 {
 	shift = (SDL_GetModState() & KMOD_SHIFT);
+	escortsUseAmmo = Preferences::Has("Escorts expend ammo");
+	escortsAreFrugal = Preferences::Has("Escorts use ammo frugally");
 	
 	Command oldHeld = keyHeld;
 	keyHeld.ReadKeyboard();
@@ -126,13 +128,25 @@ void AI::UpdateKeys(PlayerInfo &player, Command &clickCommands, bool isActive)
 			Messages::Add("Disengaging autopilot.");
 		keyStuck.Clear();
 	}
-	if(keyStuck.Has(Command::JUMP) && !player.HasTravelPlan())
-		keyStuck.Clear(Command::JUMP);
-	
-	escortsUseAmmo = Preferences::Has("Escorts expend ammo");
-	escortsAreFrugal = Preferences::Has("Escorts use ammo frugally");
-	
 	const Ship *flagship = player.Flagship();
+	if(keyStuck.Has(Command::JUMP) && !player.HasTravelPlan())
+	{
+		keyStuck.Clear(Command::JUMP);
+		if(flagship && flagship->GetDestination())
+		{
+			// If you've reached the end of a travel plan, check if a destination
+			// planet is set. If so, continue autopilot to land there.
+			for(const StellarObject &object : flagship->GetSystem()->Objects())
+				if(object.GetPlanet() == flagship->GetDestination())
+				{
+					player.Flagship()->SetTargetPlanet(&object);
+					Messages::Add("Autopilot: landing on " + flagship->GetDestination()->Name() + ".");
+					keyStuck |= Command::LAND;
+					break;
+				}
+		}
+	}
+	
 	if(!isActive || !flagship || flagship->IsDestroyed())
 		return;
 	
@@ -2026,19 +2040,24 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 			}
 		if(!isWormhole)
 			ship.SetTargetSystem(system);
-		// Check if there's a particular planet there we want to visit.
-		for(const Mission &mission : player.Missions())
+		
+		// Only set the ship's destination if one is not already chosen.
+		if(!ship.GetDestination())
 		{
-			if(mission.Destination() && mission.Destination()->GetSystem() == system)
+			// Check if there's a particular planet there we want to visit.
+			for(const Mission &mission : player.Missions())
 			{
-				ship.SetDestination(mission.Destination());
-				break;
+				if(mission.Destination() && mission.Destination()->GetSystem() == system)
+				{
+					ship.SetDestination(mission.Destination());
+					break;
+				}
+				// Also prefer landing on stopovers if there are no missions with
+				// a planet in this system as their final destination.
+				for(const Planet *planet : mission.Stopovers())
+					if(planet->GetSystem() == system)
+						ship.SetDestination(planet);
 			}
-			// Also prefer landing on stopovers if there are no missions with
-			// a planet in this system as their final destination.
-			for(const Planet *planet : mission.Stopovers())
-				if(planet->GetSystem() == system)
-					ship.SetDestination(planet);
 		}
 	}
 	

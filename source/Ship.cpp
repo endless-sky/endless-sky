@@ -589,7 +589,10 @@ void Ship::SetPlanet(const Planet *planet)
 	// Escorts should take off a bit behind their flagships.
 	zoom = !planet;
 	landingPlanet = planet;
-	SetDestination(nullptr);
+	// Allow a ship to set its next destination. But, it this is its selected
+	// destination, clear it.
+	if(planet == destination)
+		destination = nullptr;
 }
 
 

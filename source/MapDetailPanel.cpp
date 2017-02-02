@@ -244,6 +244,9 @@ bool MapDetailPanel::Click(int x, int y, int clicks)
 				selectedPlanet = it.first;
 			}
 		}
+		if(selectedPlanet && player.Flagship())
+			player.Flagship()->SetDestination(selectedPlanet);
+		
 		return true;
 	}
 	else if(y >= Screen::Bottom() - 40 && x >= Screen::Right() - 335 && x < Screen::Right() - 265)
