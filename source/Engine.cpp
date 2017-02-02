@@ -575,7 +575,7 @@ void Engine::Step(bool isActive)
 	{
 		shared_ptr<Ship> ship = selected.lock();
 		if(ship && ship != target && !ship->IsParked() && ship->GetSystem() == player.GetSystem()
-				&& !ship->IsDestroyed())
+				&& !ship->IsDestroyed() && ship->Zoom() > 0.)
 		{
 			double size = (ship->Width() + ship->Height()) * .35;
 			targets.push_back({
