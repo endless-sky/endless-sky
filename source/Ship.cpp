@@ -210,6 +210,10 @@ void Ship::Load(const DataNode &node)
 			zoom = 0.;
 			landingPlanet = GameData::Planets().Get(child.Token(1));
 		}
+		else if(child.Token(0) == "destination system" && child.Size() >= 2)
+			targetSystem = GameData::Systems().Get(child.Token(1));
+		else if(child.Token(0) == "destination planet" && child.Size() >= 2)
+			destination = GameData::Planets().Get(child.Token(1));
 		else if(child.Token(0) == "parked")
 			isParked = true;
 		else if(child.Token(0) == "description" && child.Size() >= 2)
@@ -467,6 +471,10 @@ void Ship::Save(DataWriter &out) const
 		}
 		if(landingPlanet)
 			out.Write("planet", landingPlanet->Name());
+		if(targetSystem && !targetSystem->Name().empty())
+			out.Write("destination system", targetSystem->Name());
+		if(destination && !destination->Name().empty())
+			out.Write("destination planet", destination->Name());
 		if(isParked)
 			out.Write("parked");
 	}
