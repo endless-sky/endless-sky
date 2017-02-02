@@ -632,9 +632,9 @@ ship "Bulk Freighter"
 	gun 20 -175 "Sidewinder Missile Launcher"
 	turret -12 -155 "Laser Turret"
 	turret 12 -155 "Heavy Anti-Missile Turret"
+	turret 0 5 "Laser Turret"
 	turret -30 175 "Heavy Anti-Missile Turret"
 	turret 30 175 "Laser Turret"
-	turret 0 5 "Laser Turret"
 	explode "small explosion" 15
 	explode "medium explosion" 25
 	explode "large explosion" 35
@@ -970,9 +970,9 @@ ship "Cruiser"
 	gun -20 -44 "Sidewinder Missile Launcher"
 	gun 20 -44 "Sidewinder Missile Launcher"
 	turret 0 -40 "Heavy Laser Turret"
-	turret 0 0 "Heavy Anti-Missile Turret"
 	turret -33 -19 "Heavy Laser Turret"
 	turret 33 -19 "Heavy Laser Turret"
+	turret 0 0 "Heavy Anti-Missile Turret"
 	drone -25 18
 	drone 25 18
 	drone -25 49
