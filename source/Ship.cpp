@@ -1051,8 +1051,17 @@ bool Ship::Move(list<Effect> &effects, list<shared_ptr<Flotsam>> &flotsam)
 	// This ship is not landing or entering hyperspace. So, move it. If it is
 	// disabled, all it can do is slow down to a stop.
 	double mass = Mass();
+	double drag = attributes.Get("drag");
+	// By default, use Newtonian physics and so apply no drag.
+	bool applyDrag = false;
+	// Scale used to switch drag off when the net acceleration would be opposite
+	// the thrust.
+	double accelScale = 1.;
+	
+	// Disabled ships should always apply drag so they do not endlessly drift.
 	if(isDisabled)
-		velocity *= 1. - attributes.Get("drag") / mass;
+		applyDrag = true;		
+
 	else if(!pilotError)
 	{
 		double thrustCommand = commands.Has(Command::FORWARD) - commands.Has(Command::BACK);
@@ -1111,13 +1120,17 @@ bool Ship::Move(list<Effect> &effects, list<shared_ptr<Flotsam>> &flotsam)
 		if(acceleration)
 		{
 			acceleration *= slowMultiplier;
-			Point dragAcceleration = acceleration - velocity * (attributes.Get("drag") / mass);
+			// Apply drag to accelerating ships to create a non-Newtonian max speed.
+			applyDrag = true;
+			Point dragAcceleration = acceleration - velocity * drag / mass;
+			
 			// Make sure dragAcceleration has nonzero length, to avoid divide by zero.
 			if(dragAcceleration)
 			{
 				// What direction will the net acceleration be if this drag is applied?
 				// If the net acceleration will be opposite the thrust, do not apply drag.
-				dragAcceleration *= .5 * (acceleration.Unit().Dot(dragAcceleration.Unit()) + 1.);
+				accelScale = .5 * (acceleration.Unit().Dot(dragAcceleration.Unit()) + 1.);
+				acceleration *= accelScale;
 				
 				// A ship can only "cheat" to stop if it is moving slow enough that
 				// it could stop completely this frame. This is to avoid overshooting
@@ -1133,9 +1146,13 @@ bool Ship::Move(list<Effect> &effects, list<shared_ptr<Flotsam>> &flotsam)
 					double vNormal = velocity.Dot(angle.Unit());
 					double aNormal = dragAcceleration.Dot(angle.Unit());
 					if((aNormal > 0.) != (vNormal > 0.) && fabs(aNormal) > fabs(vNormal))
-						dragAcceleration = -vNormal * angle.Unit();
+					{
+						acceleration = -vNormal * angle.Unit();
+						// Drag has already been considered and won't need to be applied.
+						applyDrag = false;
+					}
 				}
-				velocity += dragAcceleration;
+				velocity += acceleration;
 			}
 		}
 		if(commands.Turn())
@@ -1152,6 +1169,17 @@ bool Ship::Move(list<Effect> &effects, list<shared_ptr<Flotsam>> &flotsam)
 			}
 		}
 	}
+	
+	// If your velocity is higher than could ever be achieved with both normal thrusters
+	// and afterburners together, firing force or hit force has got out of hand. In this
+	// case, drag should always apply.
+	double bestThrust = attributes.Get("thrust") + attributes.Get("afterburner thrust");
+	if(velocity.Length() > bestThrust / drag)
+		applyDrag = true;
+
+	// Reduce velocity due to the effect of drag.
+	if(applyDrag)
+		velocity *= 1. - accelScale * drag / mass;
 	
 	// Boarding:
 	if(isBoarding && (commands.Has(Command::FORWARD | Command::BACK) || commands.Turn()))
