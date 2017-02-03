@@ -2043,6 +2043,10 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 		int count = 0;
 		for(const Mission &mission : player.Missions())
 		{
+			// Don't include invisible missions in the check.
+			if(mission.IsVisible())
+				continue;
+			
 			if(mission.Destination() && mission.Destination()->GetSystem() == system)
 			{
 				destinations.insert(mission.Destination());
