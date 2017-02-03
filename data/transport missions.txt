@@ -888,9 +888,9 @@ mission "There Might Be Riots part 3B"
 	on complete
 		payment 500000
 		conversation
-			`You drop off There Might Be Riots on Allhome. Ulrich is looking around the spaceport in wide-eyed excitement. "This is it, guys!" he says. "We're back in the land of the peaceful squirrels. Captain <last>, I don't know how to thank you, but here's a start. He hands you <payment>.`
+			`You drop off There Might Be Riots on Allhome. Ulrich is looking around the spaceport in wide-eyed excitement. "This is it, guys!" he says. "We're back in the land of the peaceful squirrels. Captain <last>, I don't know how to thank you, but here's a start." He hands you <payment>.`
 			`	As the rest of the band begins unloading their things, Ulrich adds speaking more quietly, "And, in good minstrel fashion I will pay you not just with money, but with a story.`
-			`	"Back when the fame first became too much for me, I rented a shuttlecraft under an assumed name and went tooling around the galaxy just to get away from it all. I found some cloudy star out along the Rim, parked my ship where no one would bother, shut down everything but life support, and just sat there meditating and enjoying the silence for two or three days.`
+			`	"Back when the fame first became too much for me, I rented a shuttlecraft under an assumed name and went tooling around the galaxy just to get away from it all. I found some cloudy star out along the Rim, parked my ship where no one would bother me, shut down everything but life support, and just sat there meditating and enjoying the silence for two or three days.`
 			`	"Then suddenly clear as day I heard a voice say, 'Are you okay? Do you need anything?' I was so shocked that without even thinking I said, 'I'm fine. How about you?' And the voice told me he was sad. Sad, because that part of space used to be the home of another species, and now they're all dead. He said we humans built our cities on the graveyards of a great civilization and didn't even know it. And if we didn't stop fighting each other, our species would die off too.`
 			`	"That's when the band started to speak out against war."`
 			choice
