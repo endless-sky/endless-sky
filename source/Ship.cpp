@@ -212,8 +212,6 @@ void Ship::Load(const DataNode &node)
 		}
 		else if(child.Token(0) == "destination system" && child.Size() >= 2)
 			targetSystem = GameData::Systems().Get(child.Token(1));
-		else if(child.Token(0) == "destination planet" && child.Size() >= 2)
-			destination = GameData::Planets().Get(child.Token(1));
 		else if(child.Token(0) == "parked")
 			isParked = true;
 		else if(child.Token(0) == "description" && child.Size() >= 2)
@@ -473,8 +471,6 @@ void Ship::Save(DataWriter &out) const
 			out.Write("planet", landingPlanet->Name());
 		if(targetSystem && !targetSystem->Name().empty())
 			out.Write("destination system", targetSystem->Name());
-		if(destination && !destination->Name().empty())
-			out.Write("destination planet", destination->Name());
 		if(isParked)
 			out.Write("parked");
 	}
@@ -494,7 +490,6 @@ const string &Ship::ModelName() const
 {
 	return modelName;
 }
-
 
 
 
@@ -589,10 +584,6 @@ void Ship::SetPlanet(const Planet *planet)
 	// Escorts should take off a bit behind their flagships.
 	zoom = !planet;
 	landingPlanet = planet;
-	// Allow a ship to set its next destination. But, it this is its selected
-	// destination, clear it.
-	if(planet == destination)
-		destination = nullptr;
 }
 
 
@@ -893,24 +884,28 @@ bool Ship::Move(list<Effect> &effects, list<shared_ptr<Flotsam>> &flotsam)
 		{
 			currentSystem = hyperspaceSystem;
 			hyperspaceSystem = nullptr;
-			SetTargetSystem(nullptr);
-			SetTargetPlanet(nullptr);
+			targetSystem = nullptr;
+			// Check if the target planet is in the destination system or not.
+			const Planet *planet = (targetPlanet ? targetPlanet->GetPlanet() : nullptr);
+			if(!planet || planet->GetSystem() != currentSystem)
+				targetPlanet = nullptr;
 			direction = -1;
 			
+			// If you have a target planet in the destination system, exit
+			// hyperpace aimed at it. Otherwise, target the first planet that
+			// has a spaceport.
 			Point target;
-			for(const StellarObject &object : currentSystem->Objects())
-				if(object.GetPlanet() && object.GetPlanet()->HasSpaceport())
-				{
-					target = object.Position();
-					break;
-				}
-			if(GetDestination())
+			if(targetPlanet)
+				target = targetPlanet->Position();
+			else
+			{
 				for(const StellarObject &object : currentSystem->Objects())
-					if(object.GetPlanet() == GetDestination())
+					if(object.GetPlanet() && object.GetPlanet()->HasSpaceport())
 					{
 						target = object.Position();
 						break;
 					}
+			}
 			
 			if(hasJumpDrive)
 			{
@@ -1607,11 +1602,19 @@ double Ship::Cloaking() const
 
 
 
-bool Ship::IsEnteringHyperspace() const
+// Get the system that the ship is currently jumping to. This returns null
+// if the ship has already jumped, i.e. it is leaving hyperspace.
+const System *Ship::HyperspaceSystem() const
 {
 	return hyperspaceSystem;
 }
 
+
+
+bool Ship::IsEnteringHyperspace() const
+{
+	return hyperspaceSystem;
+}
 
 
 
@@ -1827,7 +1830,6 @@ void Ship::WasCaptured(const shared_ptr<Ship> &capturer)
 	commands.Clear();
 	isDisabled = false;
 	hyperspaceSystem = nullptr;
-	destination = nullptr;
 	landingPlanet = nullptr;
 	
 	isSpecial = capturer->isSpecial;
@@ -2173,7 +2175,6 @@ CargoHold &Ship::Cargo()
 
 
 
-
 const CargoHold &Ship::Cargo() const
 {
 	return cargo;
@@ -2225,7 +2226,6 @@ const Outfit &Ship::Attributes() const
 {
 	return attributes;
 }
-
 
 
 
@@ -2364,13 +2364,6 @@ const System *Ship::GetTargetSystem() const
 
 
 
-const Planet *Ship::GetDestination() const
-{
-	return destination;
-}
-
-
-
 // Mining target.
 shared_ptr<Minable> Ship::GetTargetAsteroid() const
 {
@@ -2407,23 +2400,16 @@ void Ship::SetShipToAssist(const shared_ptr<Ship> &ship)
 
 
 
-
 void Ship::SetTargetPlanet(const StellarObject *object)
 {
 	targetPlanet = object;
 }
 
 
+
 void Ship::SetTargetSystem(const System *system)
 {
 	targetSystem = system;
-}
-
-
-
-void Ship::SetDestination(const Planet *planet)
-{
-	destination = planet;
 }
 
 

@@ -124,6 +124,8 @@ void PlayerInfo::Load(const string &path)
 			if(next)
 				travelPlan.push_back(next);
 		}
+		else if(child.Token(0) == "travel destination" && child.Size() >= 2)
+			travelDestination = GameData::Planets().Find(child.Token(1));
 		else if(child.Token(0) == "reputation with")
 		{
 			for(const DataNode &grand : child)
@@ -903,6 +905,8 @@ void PlayerInfo::Land(UI *ui)
 	
 	// Mark this planet as visited.
 	Visit(planet);
+	if(planet == travelDestination)
+		travelDestination = nullptr;
 	
 	// Remove any ships that have been destroyed or captured.
 	map<string, int> lostCargo;
@@ -1712,6 +1716,22 @@ void PlayerInfo::PopTravel()
 
 
 
+// Get the planet to land on at the end of the travel path.
+const Planet *PlayerInfo::TravelDestination() const
+{
+	return travelDestination;
+}
+
+
+
+// Set the planet to land on at the end of the travel path.
+void PlayerInfo::SetTravelDestination(const Planet *planet)
+{
+	travelDestination = planet;
+}
+
+
+
 // Check which secondary weapon the player has selected.
 const Outfit *PlayerInfo::SelectedWeapon() const
 {
@@ -2109,6 +2129,9 @@ void PlayerInfo::Save(const string &path) const
 		out.Write("clearance");
 	for(const System *system : travelPlan)
 		out.Write("travel", system->Name());
+	if(travelDestination)
+		out.Write("travel destination", travelDestination->Name());
+	
 	out.Write("reputation with");
 	out.BeginChild();
 	{

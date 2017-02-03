@@ -245,7 +245,7 @@ bool MapDetailPanel::Click(int x, int y, int clicks)
 			}
 		}
 		if(selectedPlanet && player.Flagship())
-			player.Flagship()->SetDestination(selectedPlanet);
+			player.SetTravelDestination(selectedPlanet);
 		
 		return true;
 	}

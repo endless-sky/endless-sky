@@ -140,6 +140,7 @@ private:
 	Command keyDown;
 	Command keyHeld;
 	Command keyStuck;
+	bool wasHyperspacing = false;
 	bool isLaunching = false;
 	bool isCloaking = false;
 	bool shift = false;
