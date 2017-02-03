@@ -2019,17 +2019,15 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 {
 	Command command;
 	
+	bool isWormhole = false;
 	if(player.HasTravelPlan())
 	{
 		const System *system = player.TravelPlan().back();
-		bool isWormhole = false;
 		for(const StellarObject &object : ship.GetSystem()->Objects())
 			if(object.GetPlanet() && object.GetPlanet()->WormholeDestination(ship.GetSystem()) == system)
 			{
 				isWormhole = true;
 				ship.SetTargetPlanet(&object);
-				if(keyStuck.Has(Command::JUMP))
-					keyStuck |= Command::LAND;
 				break;
 			}
 		if(!isWormhole)
@@ -2388,7 +2386,8 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 	
 	if(ship.IsBoarding())
 		keyStuck.Clear();
-	else if(keyStuck.Has(Command::LAND) && ship.GetTargetPlanet())
+	else if(ship.GetTargetPlanet() &&
+			(keyStuck.Has(Command::LAND) || (keyStuck.Has(Command::JUMP) && isWormhole)))
 	{
 		if(ship.GetPlanet())
 			keyStuck.Clear();
