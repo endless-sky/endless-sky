@@ -1066,7 +1066,6 @@ bool PlayerInfo::TakeOff(UI *ui)
 	availableMissions.clear();
 	doneMissions.clear();
 	stock.clear();
-	stockDepreciation = Depreciation();
 	
 	// Special persons who appeared last time you left the planet, can appear
 	// again.
@@ -1140,6 +1139,7 @@ bool PlayerInfo::TakeOff(UI *ui)
 	// carry it in. Any excess ships will need to be sold.
 	int shipsSold[2] = {0, 0};
 	int64_t income = 0;
+	int day = date.DaysSinceEpoch();
 	for(auto it = ships.begin(); it != ships.end(); )
 	{
 		shared_ptr<Ship> &ship = *it;
@@ -1166,7 +1166,9 @@ bool PlayerInfo::TakeOff(UI *ui)
 		if(!fit)
 		{
 			++shipsSold[isFighter];
-			income += ship->Cost();
+			int64_t cost = depreciation.Value(*ship, day);
+			stockDepreciation.Buy(*ship, day, &depreciation);
+			income += cost;
 			it = ships.erase(it);
 		}
 		else
@@ -1250,12 +1252,16 @@ bool PlayerInfo::TakeOff(UI *ui)
 			// Compute the total value for each type of excess outfit.
 			if(!outfit.second)
 				continue;
-			outfitIncome += outfit.first->Cost() * outfit.second;
+			int64_t cost = depreciation.Value(outfit.first, day, outfit.second);
+			for(int i = 0; i < outfit.second; ++i)
+				stockDepreciation.Buy(outfit.first, day, &depreciation);
+			outfitIncome += cost;
 		}
 	}
 	accounts.AddCredits(commodityIncome);
 	accounts.AddCredits(outfitIncome);
 	cargo.Clear();
+	stockDepreciation = Depreciation();
 	if(sold)
 	{
 		// Report how much excess cargo was sold, and what profit you earned.
