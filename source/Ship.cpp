@@ -1364,8 +1364,12 @@ int Ship::Scan()
 	// Whenever not actively scanning, the amount of scan information the ship
 	// has "decays" over time. For a scanner with a speed of 1, one second of
 	// uninterrupted scanning is required to successfully scan its target.
-	cargoScan = max(0., cargoScan - 1.);
-	outfitScan = max(0., outfitScan - 1.);
+	// Only apply the decay if not already done scanning the target.
+	static const double SCAN_TIME = 60.;
+	if(cargoScan < SCAN_TIME)
+		cargoScan = max(0., cargoScan - 1.);
+	if(outfitScan < SCAN_TIME)
+		outfitScan = max(0., outfitScan - 1.);
 	if(!commands.Has(Command::SCAN) || CannotAct())
 		return 0;
 	
@@ -1392,27 +1396,23 @@ int Ship::Scan()
 	if(!outfitSpeed)
 		outfitSpeed = 1.;
 	
-	// Play the scanning sound if the actor or the target is the player's ship.
-	if(government->IsPlayer() || target->GetGovernment()->IsPlayer())
-		Audio::Play(Audio::Get("scan"), Position());
-	
 	// Check how close this ship is to the target it is trying to scan.
 	double distance = (target->position - position).Length();
 	
 	// Check if either scanner has finished scanning.
 	bool startedScanning = false;
+	bool activeScanning = false;
 	int result = 0;
-	static const double SCAN_TIME = 60.;
 	if(cargoScan < SCAN_TIME)
 	{
 		if(distance < cargoDistance)
 		{
 			startedScanning |= !cargoScan;
-			cargoScan += cargoSpeed;
+			activeScanning = true;
+			// To make up for the scan decay above:
+			cargoScan += cargoSpeed + 1.;
 			if(cargoScan >= SCAN_TIME)
 				result |= ShipEvent::SCAN_CARGO;
-			// To make up for the scan decay above:
-			cargoScan += 1.;
 		}
 	}
 	if(outfitScan < SCAN_TIME)
@@ -1420,18 +1420,34 @@ int Ship::Scan()
 		if(distance < outfitDistance)
 		{
 			startedScanning |= !outfitScan;
-			outfitScan += outfitSpeed;
+			activeScanning = true;
+			// To make up for the scan decay above:
+			outfitScan += outfitSpeed + 1.;
 			if(outfitScan >= SCAN_TIME)
 				result |= ShipEvent::SCAN_OUTFITS;
-			// To make up for the scan decay above:
-			outfitScan += 1.;
 		}
 	}
+	
+	// Play the scanning sound if the actor or the target is the player's ship.
+	if(government->IsPlayer() || (target->GetGovernment()->IsPlayer() && activeScanning))
+		Audio::Play(Audio::Get("scan"), Position());
+	
 	if(startedScanning && government->IsPlayer())
 		Messages::Add("Attempting to scan the ship \"" + target->Name() + "\".", false);
 	else if(startedScanning && target->GetGovernment()->IsPlayer())
 		Messages::Add("The " + government->GetName() + " ship \""
 			+ Name() + "\" is attempting to scan you.", false);
+	
+	if(target->GetGovernment()->IsPlayer() && (result & ShipEvent::SCAN_CARGO))
+	{
+		Messages::Add("The " + government->GetName() + " ship \""
+			+ Name() + "\" succeeded in scanning your cargo.");
+	}
+	if(target->GetGovernment()->IsPlayer() && (result & ShipEvent::SCAN_OUTFITS))
+	{
+		Messages::Add("The " + government->GetName() + " ship \""
+			+ Name() + "\" succeeded in scanning your outfits.");
+	}
 	
 	return result;
 }
@@ -2373,10 +2389,13 @@ shared_ptr<Flotsam> Ship::GetTargetFlotsam() const
 // Set this ship's targets.
 void Ship::SetTargetShip(const shared_ptr<Ship> &ship)
 {
-	targetShip = ship;
-	// When you change targets, clear your scanning records.
-	cargoScan = 0.;
-	outfitScan = 0.;
+	if(ship != targetShip.lock())
+	{
+		targetShip = ship;
+		// When you change targets, clear your scanning records.
+		cargoScan = 0.;
+		outfitScan = 0.;
+	}
 }
 
 
