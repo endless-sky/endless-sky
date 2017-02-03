@@ -2044,7 +2044,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 		for(const Mission &mission : player.Missions())
 		{
 			// Don't include invisible missions in the check.
-			if(mission.IsVisible())
+			if(!mission.IsVisible())
 				continue;
 			
 			if(mission.Destination() && mission.Destination()->GetSystem() == system)
@@ -2069,7 +2069,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 						bestDestination = planet;
 				}
 		}
-		// Special case: the player has manually specified a destionation.
+		// Special case: the player has manually specified a destination.
 		if(player.TravelDestination() && player.TravelDestination()->GetSystem() == system)
 			bestDestination = player.TravelDestination();
 		
