@@ -260,8 +260,8 @@ mission "Wanderers: First Mereti Attack"
 				"Model 256" 1
 				"Model 128" 2
 				"Model 64" 3
-				"Model 32" 5
-				"Model 16" 8
+				"Model 32" 4
+				"Model 16" 6
 		dialog `As the last of the Kor Mereti raiding party is destroyed, you receive a message from Sobari Tele'ek. "Please join us at the [base, settlement] as soon as you are able to," he says. "We will need to [agree, decide] on a strategy to deal with these [robots, drones] in case their attacks grow worse."`
 	npc
 		government "Wanderer"
