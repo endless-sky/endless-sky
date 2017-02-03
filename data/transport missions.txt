@@ -697,6 +697,7 @@ mission "There Might Be Riots 1"
 mission "There Might Be Riots part 2"
 	name "Transport band to <planet>"
 	description `Give the band "There Might Be Riots" a ride to <destination>.`
+	minor
 	source
 		government Syndicate
 	destination "Prime"
@@ -765,6 +766,7 @@ mission "There Might Be Riots part 2"
 mission "There Might Be Riots part 3A"
 	name "Transport band to <planet>"
 	description `Give the band "There Might Be Riots" a ride to <destination>.`
+	minor
 	source
 		attributes "dirt belt" "south" "rim"
 	destination "Pilot"
