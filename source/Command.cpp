@@ -63,8 +63,9 @@ const Command Command::FULLSCREEN(1uL << 20, "Toggle fullscreen");
 const Command Command::FIGHT(1uL << 21, "Fleet: Fight my target");
 const Command Command::GATHER(1uL << 22, "Fleet: Gather around me");
 const Command Command::HOLD(1uL << 23, "Fleet: Hold position");
-const Command Command::WAIT(1uL << 24, "");
-const Command Command::STOP(1ul << 25, "");
+const Command Command::AMMO(1uL << 24, "Fleet: Toggle ammo usage");
+const Command Command::WAIT(1uL << 25, "");
+const Command Command::STOP(1ul << 26, "");
 
 
 
@@ -248,7 +249,7 @@ bool Command::Has(Command command) const
 // Get the commands that are set in this and not in the given command.
 Command Command::AndNot(Command command) const
 {
-	return (state & ~command.state);
+	return Command(state & ~command.state);
 }
 
 

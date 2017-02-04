@@ -70,7 +70,7 @@ private:
 	// may also include "scene" images.
 	class Paragraph {
 	public:
-		Paragraph(const std::string &text, const Sprite *scene = nullptr, bool isFirst = false);
+		explicit Paragraph(const std::string &text, const Sprite *scene = nullptr, bool isFirst = false);
 		
 		// Get the height of this paragraph.
 		int Height() const;
@@ -117,7 +117,7 @@ private:
 	std::map<std::string, std::string> subs;
 	
 	// Maximum scroll amount.
-	mutable int maxScroll = 0.;
+	int maxScroll = 0.;
 	
 	// If specified, this is a star system to display with a special big pointer
 	// when the player brings up the map. (Typically a mission destination.)

@@ -158,9 +158,67 @@ interface "load menu"
 
 
 
-interface "preferences"
+interface "controls"
 	sprite "ui/keys panel"
 		center -65 -20
+	button c "_Controls"
+		center -300 -230
+		dimensions 90 30
+		color bright
+	button s "_Settings"
+		center -300 -190
+		dimensions 90 30
+		color medium
+		hover bright
+	button p "_Plugins"
+		center -300 -150
+		dimensions 90 30
+		color medium
+		hover bright
+
+
+
+interface "settings"
+	sprite "ui/settings panel"
+		center -20 -20
+	button c "_Controls"
+		center -300 -230
+		dimensions 90 30
+		color medium
+		hover bright
+	button s "_Settings"
+		center -300 -190
+		dimensions 90 30
+		color bright
+	button p "_Plugins"
+		center -300 -150
+		dimensions 90 30
+		color medium
+		hover bright
+
+
+
+interface "plugins"
+	sprite "ui/settings panel"
+		center -20 -20
+	button c "_Controls"
+		center -300 -230
+		dimensions 90 30
+		color medium
+		hover bright
+	button s "_Settings"
+		center -300 -190
+		dimensions 90 30
+		color medium
+		hover bright
+	button p "_Plugins"
+		center -300 -150
+		dimensions 90 30
+		color bright
+
+
+
+interface "preferences"
 	button b "_Back to Menu..."
 		center 195 210
 		dimensions 120 30
@@ -313,20 +371,22 @@ interface "planet"
 		align left
 		pad 10 0
 	sprite "ui/planet dialog button"
-		center -400 90
-	button t "_Trading"
-		center -400 90
-		dimensions 140 40
-		size 18
-		align left
-		pad 10 0
-	sprite "ui/planet dialog button"
 		center 280 210
 	button h "_Hire Crew"
 		center 280 210
 		dimensions 140 40
 		size 18
 		align right
+		pad 10 0
+	
+	visible if "has trade"
+	sprite "ui/planet dialog button"
+		center -400 90
+	button t "_Trading"
+		center -400 90
+		dimensions 140 40
+		size 18
+		align left
 		pad 10 0
 	
 	visible if "has bank"
@@ -700,10 +760,10 @@ interface "info panel"
 		dimensions 250 30
 	sprite "ui/ship tab"
 		center 0 -310
-	label "_Ship Info"
+	label "Ship Info"
 		center -300 -305
 		color "bright"
-	label "_Player Info"
+	label "Player _Info"
 		center -420 -305
 	button i
 		center -420 -305
@@ -714,7 +774,7 @@ interface "info panel"
 		center 0 -310
 	label "_Ship Info"
 		center -300 -305
-	label "_Player Info"
+	label "Player Info"
 		center -420 -305
 		color "bright"
 	button s
@@ -741,7 +801,7 @@ interface "info panel"
 	active if "can park"
 	sprite "ui/dialog cancel"
 		center 55 305
-	button P "_Park"
+	button P "Park"
 		center 55 305
 		dimensions 70 30
 	active
@@ -749,7 +809,7 @@ interface "info panel"
 	visible if "show unpark"
 	sprite "ui/dialog cancel"
 		center 55 305
-	button P "Un_park"
+	button P "Unpark"
 		center 55 305
 		dimensions 70 30
 	

@@ -15,7 +15,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Font.h"
 #include "Point.h"
 
-#include <cassert>
 #include <cstring>
 
 using namespace std;

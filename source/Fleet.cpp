@@ -58,6 +58,12 @@ void Fleet::Load(const DataNode &node)
 			fighterNames = GameData::Phrases().Get(child.Token(1));
 		else if(child.Token(0) == "cargo" && child.Size() >= 2)
 			cargo = static_cast<int>(child.Value(1));
+		else if(child.Token(0) == "commodities" && child.Size() >= 2)
+		{
+			commodities.clear();
+			for(int i = 1; i < child.Size(); ++i)
+				commodities.push_back(child.Token(i));
+		}
 		else if(child.Token(0) == "personality")
 			personality.Load(child);
 		else if(child.Token(0) == "variant")
@@ -96,20 +102,33 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 	if(variant.ships.empty())
 		return;
 	
-	// Where this ship can come from depends on whether it is friendly to any
-	// planets in this system and whether it has a jump drive.
-	bool hasJump = variant.ships.front()->Attributes().Get("jump drive");
+	// Where this fleet can come from depends on whether it is friendly to any
+	// planets in this system and whether it has jump drives.
 	vector<const System *> linkVector;
-	bool isWelcomeHere = !system.GetGovernment()->IsEnemy(government);
-	for(const System *neighbor : (hasJump ? system.Neighbors() : system.Links()))
+	// Find out what the "best" jump method the fleet has is. Assume that if the
+	// others don't have that jump method, they are being carried as fighters.
+	// That is, content creators should avoid creating fleets with a mix of jump
+	// drives and hyperdrives.
+	int jumpType = 0;
+	for(const Ship *ship : variant.ships)
+		jumpType = max(jumpType,
+			 ship->Attributes().Get("jump drive") ? 200 :
+			 ship->Attributes().Get("hyperdrive") ? 100 : 0);
+	if(jumpType)
 	{
-		// If this ship is not "welcome" in the current system, prefer to have
-		// it enter from a system that is friendly to it. (This is for realism,
-		// so attack fleets don't come from what ought to be a safe direction.)
-		if(isWelcomeHere || neighbor->GetGovernment()->IsEnemy(government))
-			linkVector.push_back(neighbor);
-		else
-			linkVector.insert(linkVector.end(), 4, neighbor);
+		// Don't try to make a fleet "enter" from another system if none of the
+		// ships have jump drives.
+		bool isWelcomeHere = !system.GetGovernment()->IsEnemy(government);
+		for(const System *neighbor : (jumpType == 200 ? system.Neighbors() : system.Links()))
+		{
+			// If this ship is not "welcome" in the current system, prefer to have
+			// it enter from a system that is friendly to it. (This is for realism,
+			// so attack fleets don't come from what ought to be a safe direction.)
+			if(isWelcomeHere || neighbor->GetGovernment()->IsEnemy(government))
+				linkVector.push_back(neighbor);
+			else
+				linkVector.insert(linkVector.end(), 4, neighbor);
+		}
 	}
 	
 	// Find all the inhabited planets this fleet could take off from.
@@ -378,6 +397,19 @@ void Fleet::SetCargo(Ship *ship) const
 			break;
 		
 		int index = Random::Int(GameData::Commodities().size());
+		if(commodities.size())
+		{
+			// If a list of possible commodities was given, pick one of them at
+			// random and then double-check that it's a valid commodity name.
+			const string &name = commodities[Random::Int(commodities.size())];
+			for(const auto &it : GameData::Commodities())
+				if(it.name == name)
+				{
+					index = &it - &GameData::Commodities().front();
+					break;
+				}
+		}
+		
 		const Trade::Commodity &commodity = GameData::Commodities()[index];
 		int amount = Random::Int(free) + 1;
 		ship->Cargo().Add(commodity.name, amount);

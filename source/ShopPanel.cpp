@@ -23,6 +23,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "PlayerInfo.h"
 #include "Point.h"
 #include "PointerShader.h"
+#include "Preferences.h"
 #include "Screen.h"
 #include "Ship.h"
 #include "Sprite.h"
@@ -42,8 +43,11 @@ namespace {
 
 
 
-ShopPanel::ShopPanel(PlayerInfo &player, const vector<string> &categories)
-	: player(player), planet(player.GetPlanet()), playerShip(player.Flagship()), categories(categories)
+ShopPanel::ShopPanel(PlayerInfo &player, bool isOutfitter)
+	: player(player), day(player.GetDate().DaysSinceEpoch()),
+	planet(player.GetPlanet()), playerShip(player.Flagship()),
+	categories(isOutfitter ? Outfit::CATEGORIES : Ship::CATEGORIES),
+	collapsed(player.Collapsed(isOutfitter ? "outfitter" : "shipyard"))
 {
 	if(playerShip)
 		playerShips.insert(playerShip);
@@ -95,7 +99,7 @@ void ShopPanel::Draw()
 
 
 
-void ShopPanel::DrawSidebar() const
+void ShopPanel::DrawSidebar()
 {
 	const Font &font = FontSet::Get(14);
 	Color medium = *GameData::Colors().Get("medium");
@@ -193,7 +197,7 @@ void ShopPanel::DrawSidebar() const
 
 
 
-void ShopPanel::DrawButtons() const
+void ShopPanel::DrawButtons()
 {
 	// The last 70 pixels on the end of the side panel are for the buttons:
 	Point buttonSize(SIDE_WIDTH, BUTTON_HEIGHT);
@@ -251,12 +255,15 @@ void ShopPanel::DrawButtons() const
 
 
 
-void ShopPanel::DrawMain() const
+void ShopPanel::DrawMain()
 {
 	const Font &bigFont = FontSet::Get(18);
-	Color dim = *GameData::Colors().Get("dim");
+	Color dim = *GameData::Colors().Get("medium");
 	Color bright = *GameData::Colors().Get("bright");
 	mainDetailHeight = 0;
+	
+	const Sprite *collapsedArrow = SpriteSet::Get("ui/collapsed");
+	const Sprite *expandedArrow = SpriteSet::Get("ui/expanded");
 	
 	// Draw all the available ships.
 	// First, figure out how many columns we can draw.
@@ -283,7 +290,7 @@ void ShopPanel::DrawMain() const
 		if(!planet)
 			break;
 		
-		Point side(Screen::Left() + 10., point.Y() - TILE_SIZE / 2 + 10);
+		Point side(Screen::Left() + 5., point.Y() - TILE_SIZE / 2 + 10);
 		point.Y() += bigFont.Height() + 20;
 		nextY += bigFont.Height() + 20;
 		
@@ -340,9 +347,10 @@ void ShopPanel::DrawMain() const
 		
 		if(!isEmpty)
 		{
-			Point size(bigFont.Width(category), bigFont.Height());
+			Point size(bigFont.Width(category) + 25., bigFont.Height());
 			categoryZones.emplace_back(Point(Screen::Left(), side.Y()) + .5 * size, size, category);
-			bigFont.Draw(category, side, isCollapsed ? dim : bright);
+			SpriteShader::Draw(isCollapsed ? collapsedArrow : expandedArrow, side + Point(10., 10.));
+			bigFont.Draw(category, side + Point(25., 0.), isCollapsed ? dim : bright);
 			
 			if(point.X() != begin.X())
 			{
@@ -376,7 +384,7 @@ void ShopPanel::DrawMain() const
 
 
 
-void ShopPanel::DrawShip(const Ship &ship, const Point &center, bool isSelected) const
+void ShopPanel::DrawShip(const Ship &ship, const Point &center, bool isSelected)
 {
 	const Sprite *back = SpriteSet::Get(
 		isSelected ? "ui/shipyard selected" : "ui/shipyard unselected");
@@ -491,7 +499,7 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 
 
 
-bool ShopPanel::Click(int x, int y)
+bool ShopPanel::Click(int x, int y, int clicks)
 {
 	dragShip = nullptr;
 	// Handle clicks on the buttons.
@@ -666,7 +674,7 @@ bool ShopPanel::Release(int x, int y)
 bool ShopPanel::Scroll(double dx, double dy)
 {
 	scrollDetailsIntoView = false;
-	return DoScroll(dy * 50.);
+	return DoScroll(dy * 2.5 * Preferences::ScrollSpeed());
 }
 
 

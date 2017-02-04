@@ -35,11 +35,18 @@ public:
 protected:
 	// Only override the ones you need; the default action is to return false.
 	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command) override;
-	virtual bool Click(int x, int y) override;
+	virtual bool Click(int x, int y, int clicks) override;
 	virtual bool Hover(int x, int y) override;
+	virtual bool Scroll(double dx, double dy) override;
+	
+	virtual void EndEditing() override;
 	
 	
 private:
+	void DrawControls();
+	void DrawSettings();
+	void DrawPlugins();
+	
 	void Exit();
 	
 	
@@ -47,10 +54,17 @@ private:
 	int editing;
 	int selected;
 	int hover;
+	Point hoverPoint;
+	// Which page of the preferences we're on.
+	char page = 'c';
 	std::string hoverPreference;
+	
+	std::string selectedPlugin;
+	std::string hoverPlugin;
 	
 	std::vector<ClickZone<Command>> zones;
 	std::vector<ClickZone<std::string>> prefZones;
+	std::vector<ClickZone<std::string>> pluginZones;
 };
 
 
