@@ -550,6 +550,11 @@ void Ship::Place(Point position, Point velocity, Angle angle)
 	ionization = 0.;
 	disruption = 0.;
 	slowness = 0.;
+	toxin = 0.;
+	toxinRatio = 0.;
+	toxinLing = 0.;
+	crewDisabled = 0.;
+	radiationLing = 0.;
 	isInvisible = !HasSprite();
 	jettisoned.clear();
 	hyperspaceCount = 0;
@@ -723,6 +728,30 @@ bool Ship::Move(list<Effect> &effects, list<shared_ptr<Flotsam>> &flotsam)
 		CreateSparks(effects, "slowing spark", slowness * .1);
 	}
 	double slowMultiplier = 1. / (1. + slowness * .05);
+	
+	if(toxin || toxinLing || toxinRatio)
+	{
+		double airFiltration = attributes.Get("air filtration") ? attributes.Get("air filtration") : 2.;
+		double crewInjured = 0.;
+		
+		if(toxinRatio == -1. && toxin > 0.)
+			toxinRatio = toxin / airFiltration;
+		toxin = max(0., toxin * .991);
+		toxinRatio = max(0., toxinRatio * .991);
+		toxinLing = max(0., toxinRatio + toxinLing - .58);
+		while(toxinLing > 11.31)
+		{
+			toxinLing -= 11.31;
+			if(Random::Int(attributes.Get("bunks")) <= (crew - crewInjured))
+				++crewInjured;
+		}
+		if(crewInjured)
+			KillCrew(crewInjured);
+	}
+	if(radiationLing)
+	{
+		radiationLing *= .5;
+	}
 	// Jettisoned cargo effects (only for ships in the current system).
 	if(!jettisoned.empty() && !forget)
 	{
@@ -1081,7 +1110,7 @@ bool Ship::Move(list<Effect> &effects, list<shared_ptr<Flotsam>> &flotsam)
 	{
 		// If the ship is disabled, don't show a warning message due to missing crew.
 	}
-	else if(requiredCrew && static_cast<int>(Random::Int(requiredCrew)) >= Crew())
+	else if(requiredCrew && static_cast<int>(Random::Int(requiredCrew)) >= (Crew() - crewDisabled))
 	{
 		pilotError = 30;
 		if(parent.lock() || !government->IsPlayer())
@@ -1611,7 +1640,8 @@ bool Ship::IsDisabled() const
 	
 	double minimumHull = MinimumHull();
 	bool needsCrew = RequiredCrew() != 0;
-	return (hull < minimumHull || (!crew && needsCrew));
+	bool pilot = max(0., crew - crewDisabled);
+	return (hull < minimumHull || (!pilot && needsCrew));
 }
 
 
@@ -1808,6 +1838,13 @@ void Ship::Recharge(bool atSpaceport)
 	ionization = 0.;
 	disruption = 0.;
 	slowness = 0.;
+	
+	toxin = 0.;
+	toxinRatio = 0.;
+	toxinLing = 0.;
+	radiationLing = 0.;
+	
+	crewDisabled = 0.;
 }
 
 
@@ -1910,6 +1947,13 @@ double Ship::Fuel() const
 {
 	double maximum = attributes.Get("fuel capacity");
 	return maximum ? min(1., fuel / maximum) : 0.;
+}
+
+
+
+double Ship::Toxin() const
+{
+	return toxin;
 }
 
 
@@ -2038,6 +2082,13 @@ void Ship::AddCrew(int count)
 
 
 
+double Ship::CrewDisabled() const
+{
+	return crewDisabled;
+}
+
+
+
 // Check if this is a ship that can be used as a flagship.
 bool Ship::CanBeFlagship() const
 {
@@ -2122,43 +2173,59 @@ int Ship::TakeDamage(const Projectile &projectile, bool isBlast)
 	
 	double hullBreaching = weapon.HullBreaching();
 	double radiation = weapon.Radiation();
-	double toxin = weapon.Toxin();
+	double toxinVolume = weapon.Toxin();
 	
 	double bunks = attributes.Get("bunks");
-        double shipSize = attributes.Get("ship size");
+	double shipSize = attributes.Get("ship size");
 	double crewSpace = attributes.Get("crew space");
 	
-	double crewKilled = 0.;
+	double crewInjured = 0.;
+	
+	bool hullBreach = false;
 	
 	shipSize = shipSize ? shipSize : attributes.Get("mass");
 	crewSpace = crewSpace ? crewSpace : shipSize * .5;
 	
 	// Hull Breaching
-	hullBreaching = hullBreaching ? hullBreaching + (floor(hullDamage / 50.)) : floor(hullDamage / 500);
-
-	for( ; hullBreaching > 0.; --hullBreaching)
+	hullBreaching = hullBreaching > 1. ? floor(hullBreaching + hullDamage / 50.) : floor(hullDamage / 500.);
+	
+	for( ; hullBreaching >= 1.; --hullBreaching)
 	{
 		if(Random::Int(shipSize) < crewSpace)
-			if(Random::Int(bunks) < (crew - crewKilled))
-				++crewKilled;
+		{
+			hullBreach = true;
+			if(Random::Int(bunks) < (crew - crewInjured))
+				++crewInjured;
+		}
 	}
 	
 	// Radiation
 	if(radiation > 0.)
 	{
+		double radiationDamage = 0.;
+
 		if(shieldFraction)
 			shields -= radiation * (0.05 / shieldFraction);
 		shieldDamage += radiation * 0.05;
 		
-		crewKilled += max(0., (radiation - (shields * shieldFraction * 0.1) - (hull * 0.05)));
+		radiationDamage += max(0., (radiation - (shields * shieldFraction * 0.1) - (hull * 0.05)));
+		radiationDamage += radiationLing;
+		for( ; radiationDamage >= 1.; --radiationDamage)
+			++crewInjured;
+		radiationLing = radiationDamage;
 	}
 	
 	// Toxin
+	if(toxinVolume > 0. && hullBreach)
+	{
+		toxin += toxinVolume;
+		toxinRatio = -1.;
+	}
 	
 	// Hit Force
 	
-	crewKilled = floor(crewKilled);
-	crew -= max(0., crewKilled);
+	if(crewInjured)
+		KillCrew(crewInjured);
 	
 	// Recalculate the disabled ship check.
 	isDisabled = true;
@@ -2172,7 +2239,7 @@ int Ship::TakeDamage(const Projectile &projectile, bool isBlast)
 	if(!isBlast && projectile.GetGovernment() && !projectile.GetGovernment()->IsEnemy(government)
 			&& (((Shields() < .9 || Hull() < .9 || !personality.IsForbearing())
 				&& !personality.IsPacifist() && (shieldDamage > 0. || hullDamage > 0.))
-			|| crewKilled >= 1.))
+			|| (crewInjured >= 1. || toxinVolume > 0.)))
 		type |= ShipEvent::PROVOKE;
 	
 	return type;
@@ -2189,6 +2256,47 @@ void Ship::ApplyForce(const Point &force)
 		return;
 	
 	acceleration += force / currentMass;
+}
+
+
+
+void Ship::KillCrew(double crewInjured)
+{
+	double crewDisable = 0.;
+	double crewKilled = 0.;
+	
+	crewInjured = floor(crewInjured);
+
+	// Assuming disabled crew are kept in sickbay.
+	for(double crewInjure = crewInjured; crewInjure >= 1. && crewDisabled >= 1.; --crewInjure)
+	{
+		if(Random::Int(crew - 1) < crewDisabled)
+		{
+			--crewInjured;
+			for(int i = 2; i >= 1 && crewDisabled >= 1.; --i)
+			{
+				if(Random::Int(5) == 0)
+				{
+					++crewKilled;
+					--crewDisabled;
+				}
+			}
+		}
+	}
+
+	for( ; crewInjured >= 1.; --crewInjured)
+	{
+		if(Random::Int(5) > 0)
+			++crewDisable;
+		else
+		{
+			++crewKilled;
+			if(Random::Int(crew - 1) < crewDisabled)
+				--crewDisabled;
+		}
+	}
+	crewDisabled += crewDisable;
+	crew -= max(0., crewKilled);
 }
 
 
