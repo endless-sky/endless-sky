@@ -428,6 +428,8 @@ private:
 	double ionization = 0.;
 	double disruption = 0.;
 	double slowness = 0.;
+	// Acceleration can be created by engines, firing weapons, or weapon impacts.
+	Point acceleration;
 	
 	int crew = 0;
 	int pilotError = 0;

@@ -865,6 +865,9 @@ bool Ship::Move(list<Effect> &effects, list<shared_ptr<Flotsam>> &flotsam)
 	}
 	else if(hyperspaceSystem || hyperspaceCount)
 	{
+		// Don't apply external acceleration while jumping.
+		acceleration = Point();
+		
 		fuel -= (hyperspaceSystem != nullptr) * hyperspaceType * .01;
 		
 		// Enter hyperspace.
@@ -965,6 +968,9 @@ bool Ship::Move(list<Effect> &effects, list<shared_ptr<Flotsam>> &flotsam)
 	}
 	else if(landingPlanet || zoom < 1.)
 	{
+		// Don't apply external acceleration while landing.
+		acceleration = Point();
+		
 		// If a ship was disabled at the very moment it began landing, do not
 		// allow it to continue landing.
 		if(isDisabled)
@@ -1056,7 +1062,6 @@ bool Ship::Move(list<Effect> &effects, list<shared_ptr<Flotsam>> &flotsam)
 	else if(!pilotError)
 	{
 		double thrustCommand = commands.Has(Command::FORWARD) - commands.Has(Command::BACK);
-		Point acceleration;
 		if(thrustCommand)
 		{
 			// Check if we are able to apply this thrust.
@@ -1108,36 +1113,6 @@ bool Ship::Move(list<Effect> &effects, list<shared_ptr<Flotsam>> &flotsam)
 					}
 			}
 		}
-		if(acceleration)
-		{
-			acceleration *= slowMultiplier;
-			Point dragAcceleration = acceleration - velocity * (attributes.Get("drag") / mass);
-			// Make sure dragAcceleration has nonzero length, to avoid divide by zero.
-			if(dragAcceleration)
-			{
-				// What direction will the net acceleration be if this drag is applied?
-				// If the net acceleration will be opposite the thrust, do not apply drag.
-				dragAcceleration *= .5 * (acceleration.Unit().Dot(dragAcceleration.Unit()) + 1.);
-				
-				// A ship can only "cheat" to stop if it is moving slow enough that
-				// it could stop completely this frame. This is to avoid overshooting
-				// when trying to stop and ending up headed in the other direction.
-				if(commands.Has(Command::STOP))
-				{
-					// How much acceleration would it take to come to a stop in the
-					// direction normal to the ship's current facing? This is only
-					// possible if the acceleration plus drag vector is in the
-					// opposite direction from the velocity vector when both are
-					// projected onto the current facing vector, and the acceleration
-					// vector is the larger of the two.
-					double vNormal = velocity.Dot(angle.Unit());
-					double aNormal = dragAcceleration.Dot(angle.Unit());
-					if((aNormal > 0.) != (vNormal > 0.) && fabs(aNormal) > fabs(vNormal))
-						dragAcceleration = -vNormal * angle.Unit();
-				}
-				velocity += dragAcceleration;
-			}
-		}
 		if(commands.Turn())
 		{
 			// Check if we are able to turn.
@@ -1151,6 +1126,37 @@ bool Ship::Move(list<Effect> &effects, list<shared_ptr<Flotsam>> &flotsam)
 				angle += commands.Turn() * TurnRate() * slowMultiplier;
 			}
 		}
+	}
+	if(acceleration)
+	{
+		acceleration *= slowMultiplier;
+		Point dragAcceleration = acceleration - velocity * (attributes.Get("drag") / mass);
+		// Make sure dragAcceleration has nonzero length, to avoid divide by zero.
+		if(dragAcceleration)
+		{
+			// What direction will the net acceleration be if this drag is applied?
+			// If the net acceleration will be opposite the thrust, do not apply drag.
+			dragAcceleration *= .5 * (acceleration.Unit().Dot(dragAcceleration.Unit()) + 1.);
+			
+			// A ship can only "cheat" to stop if it is moving slow enough that
+			// it could stop completely this frame. This is to avoid overshooting
+			// when trying to stop and ending up headed in the other direction.
+			if(commands.Has(Command::STOP))
+			{
+				// How much acceleration would it take to come to a stop in the
+				// direction normal to the ship's current facing? This is only
+				// possible if the acceleration plus drag vector is in the
+				// opposite direction from the velocity vector when both are
+				// projected onto the current facing vector, and the acceleration
+				// vector is the larger of the two.
+				double vNormal = velocity.Dot(angle.Unit());
+				double aNormal = dragAcceleration.Dot(angle.Unit());
+				if((aNormal > 0.) != (vNormal > 0.) && fabs(aNormal) > fabs(vNormal))
+					dragAcceleration = -vNormal * angle.Unit();
+			}
+			velocity += dragAcceleration;
+		}
+		acceleration = Point();
 	}
 	
 	// Boarding:
@@ -2013,7 +2019,7 @@ int Ship::TakeDamage(const Projectile &projectile, bool isBlast)
 	disruption += disruptionDamage * (1. - .5 * shieldFraction);
 	slowness += slowingDamage * (1. - .5 * shieldFraction);
 	
-	if(hitForce && !IsHyperspacing())
+	if(hitForce)
 	{
 		Point d = position - projectile.Position();
 		double distance = d.Length();
@@ -2048,7 +2054,7 @@ void Ship::ApplyForce(const Point &force)
 	if(!currentMass)
 		return;
 	
-	velocity += force / currentMass;
+	acceleration += force / currentMass;
 }
 
 
