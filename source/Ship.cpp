@@ -865,7 +865,7 @@ bool Ship::Move(list<Effect> &effects, list<shared_ptr<Flotsam>> &flotsam)
 	}
 	else if(hyperspaceSystem || hyperspaceCount)
 	{
-		fuel -= (hyperspaceSystem != nullptr) * hyperspaceType * .01;
+		fuel -= (hyperspaceSystem != nullptr) * JumpFuel() * .01;
 		
 		// Enter hyperspace.
 		int direction = (hyperspaceSystem != nullptr) - (hyperspaceSystem == nullptr);
@@ -874,6 +874,8 @@ bool Ship::Move(list<Effect> &effects, list<shared_ptr<Flotsam>> &flotsam)
 		static const double HYPER_A = 2.;
 		static const double HYPER_D = 1000.;
 		bool hasJumpDrive = (hyperspaceType == 200);
+		bool hasMultiDrive = attributes.Get("multi drive");
+		bool hasMultiJump = attributes.Get("multi jump");
 		
 		// Create the particle effects for the jump drive. This may create 100
 		// or more particles per ship per turn at the peak of the jump.
@@ -926,6 +928,21 @@ bool Ship::Move(list<Effect> &effects, list<shared_ptr<Flotsam>> &flotsam)
 		if(!hasJumpDrive)
 		{
 			velocity += (HYPER_A * direction) * angle.Unit();
+			//If about the to exit hyperspace, check if multi drive can continue to next system.
+			if(!hyperspaceSystem)
+			{
+				if(hasMultiDrive && fuel > JumpFuel())
+				{
+					if(HyperspaceType() && HyperspaceType() != 200)
+					{
+						hyperspaceSystem = GetTargetSystem();
+						Point targetVector = hyperspaceSystem->Position() - currentSystem->Position();
+						angle = atan(targetVector.Y()/targetVector.X());
+						velocity = velocity.Length() * angle.Unit();
+						fuel -= (hyperspaceSystem != nullptr) * JumpFuel() * 0.99;
+					}
+				}
+			}
 			if(!hyperspaceSystem)
 			{
 				// Exit hyperspace far enough from the planet to be able to land.
@@ -949,6 +966,21 @@ bool Ship::Move(list<Effect> &effects, list<shared_ptr<Flotsam>> &flotsam)
 				{
 					velocity = angle.Unit() * exitV;
 					hyperspaceCount = 0;
+				}
+			}
+		}
+		else
+		{
+			//If about the to exit jump, check if multi jump can continue to next system.
+			if(!hyperspaceSystem)
+			{
+				if(hasMultiJump && fuel > JumpFuel())
+				{
+					if(HyperspaceType() && HyperspaceType() == 200)
+					{
+						hyperspaceSystem = GetTargetSystem();
+						fuel -= (hyperspaceSystem != nullptr) * JumpFuel() * 0.99;
+					}
 				}
 			}
 		}
@@ -1640,7 +1672,8 @@ int Ship::CheckHyperspace() const
 	if(!type)
 		return 0;
 	
-	if(fuel < type)
+	// You can't jump if you have less fuel than needed.
+	if(fuel < JumpFuel())
 		return 0;
 	
 	Point direction = destination->Position() - currentSystem->Position();
@@ -1686,10 +1719,15 @@ int Ship::HyperspaceType() const
 	bool hasHyperdrive = attributes.Get("hyperdrive");
 	bool hasScramDrive = attributes.Get("scram drive");
 	bool hasJumpDrive = attributes.Get("jump drive");
+	double driveFuel = attributes.Get("hyperdrive fuel") && attributes.Get("hyperdrive") ?
+	attributes.Get("hyperdrive fuel") / attributes.Get("hyperdrive") : 100.;
+	double jumpFuel = attributes.Get("jump fuel") && attributes.Get("jump drive") ?
+	attributes.Get("jump fuel") / attributes.Get("jump drive") : 200.;
+	bool cheapHyper = (driveFuel < jumpFuel);
 	
 	// Figure out what sort of jump we're making. 100 = normal hyperspace,
 	// 150 = scram drive, 200 = jump drive.
-	if(hasHyperdrive || hasScramDrive)
+	if(cheapHyper && (hasHyperdrive || hasScramDrive))
 		for(const System *link : currentSystem->Links())
 			if(link == destination)
 				return hasScramDrive ? 150 : 100;
@@ -1892,11 +1930,20 @@ int Ship::JumpsRemaining() const
 double Ship::JumpFuel() const
 {
 	int type = HyperspaceType();
+	double driveFuel = attributes.Get("hyperdrive fuel") && attributes.Get("hyperdrive") ?
+		attributes.Get("hyperdrive fuel") / attributes.Get("hyperdrive") : 100.;
+	double scramFuel = attributes.Get("scram fuel") && attributes.Get("scram drive") ?
+		attributes.Get("scram fuel") / attributes.Get("scram drive") : 150.;
+	double jumpFuel = attributes.Get("jump fuel") && attributes.Get("jump drive") ?
+		attributes.Get("jump fuel") / attributes.Get("jump drive") : 200.;
+	
 	if(type)
-		return type;
-	return attributes.Get("jump drive") ? 200. :
-		attributes.Get("scram drive") ? 150. : 
-		attributes.Get("hyperdrive") ? 100. : 0.;
+		return type == 200 ? jumpFuel :
+			type == 150 ? scramFuel :
+			type == 100 ? driveFuel : 0;
+	return attributes.Get("jump drive") ? jumpFuel:
+		attributes.Get("scram drive") ? scramFuel:
+		attributes.Get("hyperdrive") ? driveFuel: 0.;
 }
 
 
