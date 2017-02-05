@@ -1,4 +1,4 @@
-Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+﻿Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: endless-sky
 Upstream-Contact: Michael Zahniser <mzahniser@gmail.com>
 Source: https://github.com/endless-sky/endless-sky
@@ -228,6 +228,14 @@ Comment: Taken from Wikimedia commons. Cropped and edited.
 
 Files: images/land/*-sfiera*
 Copyright: Chris Pickel (sfiera.net)
+License: CC-BY-SA-4.0
+
+Files: images/land/*-striker*
+Copyright: Michael Wilso (sixfootplus@gmail.com)
+License: CC-BY-SA-4.0
+
+Files: images/land/*-harro*
+Copyright: @harro.eu (copyright@harro.eu)
 License: CC-BY-SA-4.0
 
 Files:
