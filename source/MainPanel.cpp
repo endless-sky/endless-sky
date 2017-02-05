@@ -395,7 +395,9 @@ bool MainPanel::ShowHailPanel()
 	else if(flagship->GetTargetPlanet())
 	{
 		const Planet *planet = flagship->GetTargetPlanet()->GetPlanet();
-		if(planet && planet->IsInhabited())
+		if(planet && planet->IsWormhole())
+			Messages::Add("The gaping hole in the fabric of the universe does not respond to your hail.");
+		else if(planet && planet->IsInhabited())
 		{
 			GetUI()->Push(new HailPanel(player, flagship->GetTargetPlanet()));
 			return true;
