@@ -2073,9 +2073,8 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 		if(player.TravelDestination() && player.TravelDestination()->GetSystem() == system)
 			bestDestination = player.TravelDestination();
 		
-		// If any destination was found, find the corresponding stellar object
-		// and set it as your ship's target planet.
-		if(bestDestination)
+		// Inform the player of any destinations in the system they are jumping to.
+		if(!destinations.empty())
 		{
 			string message = "Note: you have ";
 			message += (count == 1 ? "a mission that requires" : "missions that require");
@@ -2093,7 +2092,11 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 			}
 			message += " in the system you are jumping to.";
 			Messages::Add(message);
-			
+		}
+		// If any destination was found, find the corresponding stellar object
+		// and set it as your ship's target planet.
+		if(bestDestination)
+		{
 			for(const StellarObject &object : system->Objects())
 				if(object.GetPlanet() == bestDestination)
 					ship.SetTargetPlanet(&object);
