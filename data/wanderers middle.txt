@@ -1102,7 +1102,7 @@ mission "Wanderers: Mind 7"
 
 mission "Wanderers: Mind 8"
 	landing
-	name "Investigate <planet>"
+	name "Investigate <origin>"
 	description "Report the new behavior of the Kor Mereti drones to the Wanderers."
 	source "Korbatri Eska"
 	destination "Spera Anatrusk"
