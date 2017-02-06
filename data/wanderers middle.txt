@@ -2408,7 +2408,7 @@ mission "Wanderers: Sestor: Drones in Alnilam"
 		has "Wanderers: Sestor: Alnilam Fleet 2: done"
 	on offer
 		conversation
-			`When you return to <planet>, Danforth tells you, "It seems that you have dealt with the last of the Kor Sestor drones that were terrorizing Republic space, but we still need to deal with the fleet in the Alnilam system. Do you think you can destroy that fleet on your own?`
+			`When you return to <planet>, Danforth tells you, "It seems that you have dealt with the last of the Kor Sestor drones that were terrorizing Republic space, but we still need to deal with the fleet in the Alnilam system. Do you think you can destroy that fleet on your own?"`
 			choice
 				`	"Yes, I think I can manage it."`
 					defer
