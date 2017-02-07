@@ -32,14 +32,14 @@ mission "Slave Transport [0]: Release Slaves"
 				accept
 	on accept
 		"sold slaves" --
-		"reputation: Merchant" += 30
-		"reputation: Republic" += 30
-		"reputation: Navy (Oathkeeper)" += 30
-		"reputation: Syndicate" += 30
-		"reputation: Militia" += 30
-		"reputation: Free Worlds" += 30
-		"reputation: Pirate" -= 60
-		payment 1000000
+		"reputation: Merchant" += 6
+		"reputation: Republic" += 6
+		"reputation: Navy (Oathkeeper)" += 6
+		"reputation: Syndicate" += 6
+		"reputation: Militia" += 6
+		"reputation: Free Worlds" += 6
+		"reputation: Pirate" -= 12
+		payment 600000
 		fail "Slave Transport [0]"
 		fail
 
@@ -67,14 +67,14 @@ mission "Slave Transport [1]: Release Slaves"
 				accept
 	on accept
 		"sold slaves" --
-		"reputation: Merchant" += 30
-		"reputation: Republic" += 30
-		"reputation: Navy (Oathkeeper)" += 30
-		"reputation: Syndicate" += 30
-		"reputation: Militia" += 30
-		"reputation: Free Worlds" += 30
-		"reputation: Pirate" -= 60
-		payment 1000000
+		"reputation: Merchant" += 6
+		"reputation: Republic" += 6
+		"reputation: Navy (Oathkeeper)" += 6
+		"reputation: Syndicate" += 6
+		"reputation: Militia" += 6
+		"reputation: Free Worlds" += 6
+		"reputation: Pirate" -= 12
+		payment 600000
 		fail "Slave Transport [1]"
 		fail
 
@@ -102,14 +102,14 @@ mission "Bulk Slave Transport [0]: Release Slaves"
 				accept
 	on accept
 		"sold slaves" --
-		"reputation: Merchant" += 120
-		"reputation: Republic" += 120
-		"reputation: Navy (Oathkeeper)" += 120
-		"reputation: Syndicate" += 120
-		"reputation: Militia" += 120
-		"reputation: Free Worlds" += 120
-		"reputation: Pirate" -= 240
-		payment 4000000
+		"reputation: Merchant" += 60
+		"reputation: Republic" += 60
+		"reputation: Navy (Oathkeeper)" += 60
+		"reputation: Syndicate" += 60
+		"reputation: Militia" += 60
+		"reputation: Free Worlds" += 60
+		"reputation: Pirate" -= 120
+		payment 6000000
 		fail "Bulk Slave Transport [0]"
 		fail
 
@@ -137,14 +137,14 @@ mission "Bulk Slave Transport [1]: Release Slaves"
 				accept
 	on accept
 		"sold slaves" --
-		"reputation: Merchant" += 120
-		"reputation: Republic" += 120
-		"reputation: Navy (Oathkeeper)" += 120
-		"reputation: Syndicate" += 120
-		"reputation: Militia" += 120
-		"reputation: Free Worlds" += 120
-		"reputation: Pirate" -= 240
-		payment 4000000
+		"reputation: Merchant" += 60
+		"reputation: Republic" += 60
+		"reputation: Navy (Oathkeeper)" += 60
+		"reputation: Syndicate" += 60
+		"reputation: Militia" += 60
+		"reputation: Free Worlds" += 60
+		"reputation: Pirate" -= 120
+		payment 6000000
 		fail "Bulk Slave Transport [1]"
 		fail
 
@@ -170,13 +170,13 @@ mission "Tourists back [0]: Slavery"
 				accept
 	on accept
 		"sold slaves" ++
-		"reputation: Merchant" -= 3
-		"reputation: Republic" -= 3
-		"reputation: Navy (Oathkeeper)" -= 3
-		"reputation: Syndicate" -= 3
-		"reputation: Militia" -= 3
-		"reputation: Free Worlds" -= 3
-		"reputation: Pirate" += 3
+		"reputation: Merchant" -= 1
+		"reputation: Republic" -= 1
+		"reputation: Navy (Oathkeeper)" -= 1
+		"reputation: Syndicate" -= 1
+		"reputation: Militia" -= 1
+		"reputation: Free Worlds" -= 1
+		"reputation: Pirate" += 1
 		payment 100000
 		fail "Tourists back [0]"
 		fail
@@ -203,13 +203,13 @@ mission "Tourists out [0]: Slavery"
 				accept
 	on accept
 		"sold slaves" ++
-		"reputation: Merchant" -= 3
-		"reputation: Republic" -= 3
-		"reputation: Navy (Oathkeeper)" -= 3
-		"reputation: Syndicate" -= 3
-		"reputation: Militia" -= 3
-		"reputation: Free Worlds" -= 3
-		"reputation: Pirate" += 3
+		"reputation: Merchant" -= 1
+		"reputation: Republic" -= 1
+		"reputation: Navy (Oathkeeper)" -= 1
+		"reputation: Syndicate" -= 1
+		"reputation: Militia" -= 1
+		"reputation: Free Worlds" -= 1
+		"reputation: Pirate" += 1
 		payment 100000
 		fail "Tourists out [0]"
 		fail
@@ -236,13 +236,13 @@ mission "Tourists out [1]: Slavery"
 				accept
 	on accept
 		"sold slaves" ++
-		"reputation: Merchant" -= 9
-		"reputation: Republic" -= 9
-		"reputation: Navy (Oathkeeper)" -= 9
-		"reputation: Syndicate" -= 9
-		"reputation: Militia" -= 9
-		"reputation: Free Worlds" -= 9
-		"reputation: Pirate" += 9
+		"reputation: Merchant" -= 3
+		"reputation: Republic" -= 3
+		"reputation: Navy (Oathkeeper)" -= 3
+		"reputation: Syndicate" -= 3
+		"reputation: Militia" -= 3
+		"reputation: Free Worlds" -= 3
+		"reputation: Pirate" += 3
 		payment 300000
 		fail "Tourists out [1]"
 		fail
@@ -269,13 +269,13 @@ mission "Tourists out [2]: Slavery"
 				accept
 	on accept
 		"sold slaves" ++
-		"reputation: Merchant" -= 9
-		"reputation: Republic" -= 9
-		"reputation: Navy (Oathkeeper)" -= 9
-		"reputation: Syndicate" -= 9
-		"reputation: Militia" -= 9
-		"reputation: Free Worlds" -= 9
-		"reputation: Pirate" += 9
+		"reputation: Merchant" -= 3
+		"reputation: Republic" -= 3
+		"reputation: Navy (Oathkeeper)" -= 3
+		"reputation: Syndicate" -= 3
+		"reputation: Militia" -= 3
+		"reputation: Free Worlds" -= 3
+		"reputation: Pirate" += 3
 		payment 300000
 		fail "Tourists out [2]"
 		fail
@@ -302,13 +302,13 @@ mission "Tourists back [1]: Slavery"
 				accept
 	on accept
 		"sold slaves" ++
-		"reputation: Merchant" -= 9
-		"reputation: Republic" -= 9
-		"reputation: Navy (Oathkeeper)" -= 9
-		"reputation: Syndicate" -= 9
-		"reputation: Militia" -= 9
-		"reputation: Free Worlds" -= 9
-		"reputation: Pirate" += 9
+		"reputation: Merchant" -= 3
+		"reputation: Republic" -= 3
+		"reputation: Navy (Oathkeeper)" -= 3
+		"reputation: Syndicate" -= 3
+		"reputation: Militia" -= 3
+		"reputation: Free Worlds" -= 3
+		"reputation: Pirate" += 3
 		payment 300000
 		fail "Tourists back [1]"
 		fail
@@ -335,13 +335,13 @@ mission "Tourists back [2]: Slavery"
 				accept
 	on accept
 		"sold slaves" ++
-		"reputation: Merchant" -= 9
-		"reputation: Republic" -= 9
-		"reputation: Navy (Oathkeeper)" -= 9
-		"reputation: Syndicate" -= 9
-		"reputation: Militia" -= 9
-		"reputation: Free Worlds" -= 9
-		"reputation: Pirate" += 9
+		"reputation: Merchant" -= 3
+		"reputation: Republic" -= 3
+		"reputation: Navy (Oathkeeper)" -= 3
+		"reputation: Syndicate" -= 3
+		"reputation: Militia" -= 3
+		"reputation: Free Worlds" -= 3
+		"reputation: Pirate" += 3
 		payment 300000
 		fail "Tourists back [2]"
 		fail
@@ -368,13 +368,13 @@ mission "Passengers [0]: Slavery"
 				accept
 	on accept
 		"sold slaves" ++
-		"reputation: Merchant" -= 12
-		"reputation: Republic" -= 12
-		"reputation: Navy (Oathkeeper)" -= 12
-		"reputation: Syndicate" -= 12
-		"reputation: Militia" -= 12
-		"reputation: Free Worlds" -= 12
-		"reputation: Pirate" += 12
+		"reputation: Merchant" -= 4
+		"reputation: Republic" -= 4
+		"reputation: Navy (Oathkeeper)" -= 4
+		"reputation: Syndicate" -= 4
+		"reputation: Militia" -= 4
+		"reputation: Free Worlds" -= 4
+		"reputation: Pirate" += 4
 		payment 400000
 		fail "Passengers [0]"
 		fail
@@ -401,13 +401,13 @@ mission "Passengers [1]: Slavery"
 				accept
 	on accept
 		"sold slaves" ++
-		"reputation: Merchant" -= 12
-		"reputation: Republic" -= 12
-		"reputation: Navy (Oathkeeper)" -= 12
-		"reputation: Syndicate" -= 12
-		"reputation: Militia" -= 12
-		"reputation: Free Worlds" -= 12
-		"reputation: Pirate" += 12
+		"reputation: Merchant" -= 4
+		"reputation: Republic" -= 4
+		"reputation: Navy (Oathkeeper)" -= 4
+		"reputation: Syndicate" -= 4
+		"reputation: Militia" -= 4
+		"reputation: Free Worlds" -= 4
+		"reputation: Pirate" += 4
 		payment 400000
 		fail "Passengers [1]"
 		fail
@@ -434,13 +434,13 @@ mission "Passengers [2]: Slavery"
 				accept
 	on accept
 		"sold slaves" ++
-		"reputation: Merchant" -= 12
-		"reputation: Republic" -= 12
-		"reputation: Navy (Oathkeeper)" -= 12
-		"reputation: Syndicate" -= 12
-		"reputation: Militia" -= 12
-		"reputation: Free Worlds" -= 12
-		"reputation: Pirate" += 12
+		"reputation: Merchant" -= 4
+		"reputation: Republic" -= 4
+		"reputation: Navy (Oathkeeper)" -= 4
+		"reputation: Syndicate" -= 4
+		"reputation: Militia" -= 4
+		"reputation: Free Worlds" -= 4
+		"reputation: Pirate" += 4
 		payment 400000
 		fail "Passengers [2]"
 		fail
@@ -467,13 +467,13 @@ mission "Passengers [3]: Slavery"
 				accept
 	on accept
 		"sold slaves" ++
-		"reputation: Merchant" -= 12
-		"reputation: Republic" -= 12
-		"reputation: Navy (Oathkeeper)" -= 12
-		"reputation: Syndicate" -= 12
-		"reputation: Militia" -= 12
-		"reputation: Free Worlds" -= 12
-		"reputation: Pirate" += 12
+		"reputation: Merchant" -= 4
+		"reputation: Republic" -= 4
+		"reputation: Navy (Oathkeeper)" -= 4
+		"reputation: Syndicate" -= 4
+		"reputation: Militia" -= 4
+		"reputation: Free Worlds" -= 4
+		"reputation: Pirate" += 4
 		payment 400000
 		fail "Passengers [3]"
 		fail
@@ -500,13 +500,13 @@ mission "Passengers [4]: Slavery"
 				accept
 	on accept
 		"sold slaves" ++
-		"reputation: Merchant" -= 12
-		"reputation: Republic" -= 12
-		"reputation: Navy (Oathkeeper)" -= 12
-		"reputation: Syndicate" -= 12
-		"reputation: Militia" -= 12
-		"reputation: Free Worlds" -= 12
-		"reputation: Pirate" += 12
+		"reputation: Merchant" -= 4
+		"reputation: Republic" -= 4
+		"reputation: Navy (Oathkeeper)" -= 4
+		"reputation: Syndicate" -= 4
+		"reputation: Militia" -= 4
+		"reputation: Free Worlds" -= 4
+		"reputation: Pirate" += 4
 		payment 400000
 		fail "Passengers [4]"
 		fail
@@ -533,13 +533,13 @@ mission "Family [0]: Slavery"
 				accept
 	on accept
 		"sold slaves" ++
-		"reputation: Merchant" -= 15
-		"reputation: Republic" -= 15
-		"reputation: Navy (Oathkeeper)" -= 15
-		"reputation: Syndicate" -= 15
-		"reputation: Militia" -= 15
-		"reputation: Free Worlds" -= 15
-		"reputation: Pirate" += 15
+		"reputation: Merchant" -= 5
+		"reputation: Republic" -= 5
+		"reputation: Navy (Oathkeeper)" -= 5
+		"reputation: Syndicate" -= 5
+		"reputation: Militia" -= 5
+		"reputation: Free Worlds" -= 5
+		"reputation: Pirate" += 5
 		payment 500000
 		fail "Family [0]"
 		fail
@@ -566,13 +566,13 @@ mission "Family [1]: Slavery"
 				accept
 	on accept
 		"sold slaves" ++
-		"reputation: Merchant" -= 15
-		"reputation: Republic" -= 15
-		"reputation: Navy (Oathkeeper)" -= 15
-		"reputation: Syndicate" -= 15
-		"reputation: Militia" -= 15
-		"reputation: Free Worlds" -= 15
-		"reputation: Pirate" += 15
+		"reputation: Merchant" -= 5
+		"reputation: Republic" -= 5
+		"reputation: Navy (Oathkeeper)" -= 5
+		"reputation: Syndicate" -= 5
+		"reputation: Militia" -= 5
+		"reputation: Free Worlds" -= 5
+		"reputation: Pirate" += 5
 		payment 500000
 		fail "Family [1]"
 		fail
@@ -599,13 +599,13 @@ mission "Family [2]: Slavery"
 				accept
 	on accept
 		"sold slaves" ++
-		"reputation: Merchant" -= 15
-		"reputation: Republic" -= 15
-		"reputation: Navy (Oathkeeper)" -= 15
-		"reputation: Syndicate" -= 15
-		"reputation: Militia" -= 15
-		"reputation: Free Worlds" -= 15
-		"reputation: Pirate" += 15
+		"reputation: Merchant" -= 5
+		"reputation: Republic" -= 5
+		"reputation: Navy (Oathkeeper)" -= 5
+		"reputation: Syndicate" -= 5
+		"reputation: Militia" -= 5
+		"reputation: Free Worlds" -= 5
+		"reputation: Pirate" += 5
 		payment 500000
 		fail "Family [2]"
 		fail
@@ -632,13 +632,13 @@ mission "Family [3]: Slavery"
 				accept
 	on accept
 		"sold slaves" ++
-		"reputation: Merchant" -= 15
-		"reputation: Republic" -= 15
-		"reputation: Navy (Oathkeeper)" -= 15
-		"reputation: Syndicate" -= 15
-		"reputation: Militia" -= 15
-		"reputation: Free Worlds" -= 15
-		"reputation: Pirate" += 15
+		"reputation: Merchant" -= 5
+		"reputation: Republic" -= 5
+		"reputation: Navy (Oathkeeper)" -= 5
+		"reputation: Syndicate" -= 5
+		"reputation: Militia" -= 5
+		"reputation: Free Worlds" -= 5
+		"reputation: Pirate" += 5
 		payment 500000
 		fail "Family [3]"
 		fail
@@ -665,13 +665,13 @@ mission "Transport miners to <planet>: Slavery"
 				accept
 	on accept
 		"sold slaves" ++
-		"reputation: Merchant" -= 18
-		"reputation: Republic" -= 18
-		"reputation: Navy (Oathkeeper)" -= 18
-		"reputation: Syndicate" -= 18
-		"reputation: Militia" -= 18
-		"reputation: Free Worlds" -= 18
-		"reputation: Pirate" += 18
+		"reputation: Merchant" -= 6
+		"reputation: Republic" -= 6
+		"reputation: Navy (Oathkeeper)" -= 6
+		"reputation: Syndicate" -= 6
+		"reputation: Militia" -= 6
+		"reputation: Free Worlds" -= 6
+		"reputation: Pirate" += 6
 		payment 600000
 		fail "Transport miners to <planet>"
 		fail
@@ -698,13 +698,13 @@ mission "Transport farmers to <planet>: Slavery"
 				accept
 	on accept
 		"sold slaves" ++
-		"reputation: Merchant" -= 18
-		"reputation: Republic" -= 18
-		"reputation: Navy (Oathkeeper)" -= 18
-		"reputation: Syndicate" -= 18
-		"reputation: Militia" -= 18
-		"reputation: Free Worlds" -= 18
-		"reputation: Pirate" += 18
+		"reputation: Merchant" -= 6
+		"reputation: Republic" -= 6
+		"reputation: Navy (Oathkeeper)" -= 6
+		"reputation: Syndicate" -= 6
+		"reputation: Militia" -= 6
+		"reputation: Free Worlds" -= 6
+		"reputation: Pirate" += 6
 		payment 600000
 		fail "Transport farmers to <planet>"
 		fail
@@ -731,13 +731,13 @@ mission "Transport mill workers to <planet>: Slavery"
 				accept
 	on accept
 		"sold slaves" ++
-		"reputation: Merchant" -= 18
-		"reputation: Republic" -= 18
-		"reputation: Navy (Oathkeeper)" -= 18
-		"reputation: Syndicate" -= 18
-		"reputation: Militia" -= 18
-		"reputation: Free Worlds" -= 18
-		"reputation: Pirate" += 18
+		"reputation: Merchant" -= 6
+		"reputation: Republic" -= 6
+		"reputation: Navy (Oathkeeper)" -= 6
+		"reputation: Syndicate" -= 6
+		"reputation: Militia" -= 6
+		"reputation: Free Worlds" -= 6
+		"reputation: Pirate" += 6
 		payment 600000
 		fail "Transport mill workers to <planet>"
 		fail
@@ -764,13 +764,13 @@ mission "Transport workers to <planet>: Slavery"
 				accept
 	on accept
 		"sold slaves" ++
-		"reputation: Merchant" -= 18
-		"reputation: Republic" -= 18
-		"reputation: Navy (Oathkeeper)" -= 18
-		"reputation: Syndicate" -= 18
-		"reputation: Militia" -= 18
-		"reputation: Free Worlds" -= 18
-		"reputation: Pirate" += 18
+		"reputation: Merchant" -= 6
+		"reputation: Republic" -= 6
+		"reputation: Navy (Oathkeeper)" -= 6
+		"reputation: Syndicate" -= 6
+		"reputation: Militia" -= 6
+		"reputation: Free Worlds" -= 6
+		"reputation: Pirate" += 6
 		payment 600000
 		fail "Transport workers to <planet>"
 		fail
@@ -797,13 +797,13 @@ mission "Colonists [0]: Slavery"
 				accept
 	on accept
 		"sold slaves" ++
-		"reputation: Merchant" -= 120
-		"reputation: Republic" -= 120
-		"reputation: Navy (Oathkeeper)" -= 120
-		"reputation: Syndicate" -= 120
-		"reputation: Militia" -= 120
-		"reputation: Free Worlds" -= 120
-		"reputation: Pirate" += 120
+		"reputation: Merchant" -= 40
+		"reputation: Republic" -= 40
+		"reputation: Navy (Oathkeeper)" -= 40
+		"reputation: Syndicate" -= 40
+		"reputation: Militia" -= 40
+		"reputation: Free Worlds" -= 40
+		"reputation: Pirate" += 40
 		payment 4000000
 		fail "Colonists [0]"
 		fail
@@ -830,13 +830,13 @@ mission "Colonists [1]: Slavery"
 				accept
 	on accept
 		"sold slaves" ++
-		"reputation: Merchant" -= 120
-		"reputation: Republic" -= 120
-		"reputation: Navy (Oathkeeper)" -= 120
-		"reputation: Syndicate" -= 120
-		"reputation: Militia" -= 120
-		"reputation: Free Worlds" -= 120
-		"reputation: Pirate" += 120
+		"reputation: Merchant" -= 40
+		"reputation: Republic" -= 40
+		"reputation: Navy (Oathkeeper)" -= 40
+		"reputation: Syndicate" -= 40
+		"reputation: Militia" -= 40
+		"reputation: Free Worlds" -= 40
+		"reputation: Pirate" += 40
 		payment 4000000
 		fail "Colonists [1]"
 		fail
@@ -863,13 +863,13 @@ mission "Transport scientists: Slavery"
 				accept
 	on accept
 		"sold slaves" ++
-		"reputation: Merchant" -= 15
-		"reputation: Republic" -= 60
-		"reputation: Navy (Oathkeeper)" -= 60
-		"reputation: Syndicate" -= 15
-		"reputation: Militia" -= 15
-		"reputation: Free Worlds" -= 15
-		"reputation: Pirate" += 30
+		"reputation: Merchant" -= 10
+		"reputation: Republic" -= 20
+		"reputation: Navy (Oathkeeper)" -= 20
+		"reputation: Syndicate" -= 10
+		"reputation: Militia" -= 10
+		"reputation: Free Worlds" -= 10
+		"reputation: Pirate" += 10
 		payment 1000000
 		fail "Transport scientists"
 		fail
@@ -896,13 +896,13 @@ mission "Newlyweds to <planet>: Slavery"
 				accept
 	on accept
 		"sold slaves" ++
-		"reputation: Merchant" -= 4
-		"reputation: Republic" -= 15
-		"reputation: Navy (Oathkeeper)" -= 15
-		"reputation: Syndicate" -= 4
-		"reputation: Militia" -= 4
-		"reputation: Free Worlds" -= 4
-		"reputation: Pirate" += 8
+		"reputation: Merchant" -= 2
+		"reputation: Republic" -= 4
+		"reputation: Navy (Oathkeeper)" -= 4
+		"reputation: Syndicate" -= 2
+		"reputation: Militia" -= 2
+		"reputation: Free Worlds" -= 2
+		"reputation: Pirate" += 2
 		payment 250000
 		fail "Newlyweds to <planet>"
 		fail
@@ -929,13 +929,13 @@ mission "Transport partiers [1]: Slavery"
 				accept
 	on accept
 		"sold slaves" ++
-		"reputation: Merchant" -= 15
-		"reputation: Republic" -= 60
-		"reputation: Navy (Oathkeeper)" -= 60
-		"reputation: Syndicate" -= 15
-		"reputation: Militia" -= 15
-		"reputation: Free Worlds" -= 15
-		"reputation: Pirate" += 30
+		"reputation: Merchant" -= 10
+		"reputation: Republic" -= 20
+		"reputation: Navy (Oathkeeper)" -= 20
+		"reputation: Syndicate" -= 10
+		"reputation: Militia" -= 10
+		"reputation: Free Worlds" -= 10
+		"reputation: Pirate" += 10
 		payment 1000000
 		fail "Transport partiers [1]"
 		fail
@@ -962,13 +962,13 @@ mission "Transport partiers [2]: Slavery"
 				accept
 	on accept
 		"sold slaves" ++
-		"reputation: Merchant" -= 14
-		"reputation: Republic" -= 54
-		"reputation: Navy (Oathkeeper)" -= 54
-		"reputation: Syndicate" -= 14
-		"reputation: Militia" -= 14
-		"reputation: Free Worlds" -= 14
-		"reputation: Pirate" += 27
+		"reputation: Merchant" -= 9
+		"reputation: Republic" -= 18
+		"reputation: Navy (Oathkeeper)" -= 18
+		"reputation: Syndicate" -= 9
+		"reputation: Militia" -= 9
+		"reputation: Free Worlds" -= 9
+		"reputation: Pirate" += 9
 		payment 900000
 		fail "Transport partiers [2]"
 		fail
@@ -995,13 +995,13 @@ mission "Contract laborers to <planet>: Slavery"
 				accept
 	on accept
 		"sold slaves" ++
-		"reputation: Merchant" -= 33
-		"reputation: Republic" -= 132
-		"reputation: Navy (Oathkeeper)" -= 132
-		"reputation: Syndicate" -= 33
-		"reputation: Militia" -= 33
-		"reputation: Free Worlds" -= 33
-		"reputation: Pirate" += 66
+		"reputation: Merchant" -= 22
+		"reputation: Republic" -= 44
+		"reputation: Navy (Oathkeeper)" -= 44
+		"reputation: Syndicate" -= 22
+		"reputation: Militia" -= 22
+		"reputation: Free Worlds" -= 22
+		"reputation: Pirate" += 22
 		payment 2200000
 		fail "Contract laborers to <planet>"
 		fail
@@ -1028,13 +1028,13 @@ mission "Transport rich tourists: Slavery"
 				accept
 	on accept
 		"sold slaves" ++
-		"reputation: Merchant" -= 23
-		"reputation: Republic" -= 90
-		"reputation: Navy (Oathkeeper)" -= 90
-		"reputation: Syndicate" -= 23
-		"reputation: Militia" -= 23
-		"reputation: Free Worlds" -= 23
-		"reputation: Pirate" += 45
+		"reputation: Merchant" -= 15
+		"reputation: Republic" -= 30
+		"reputation: Navy (Oathkeeper)" -= 30
+		"reputation: Syndicate" -= 15
+		"reputation: Militia" -= 15
+		"reputation: Free Worlds" -= 15
+		"reputation: Pirate" += 15
 		payment 1500000
 		fail "Transport rich tourists"
 		fail
@@ -1061,13 +1061,13 @@ mission "Transport executive to <planet>: Slavery"
 				accept
 	on accept
 		"sold slaves" ++
-		"reputation: Merchant" -= 15
-		"reputation: Republic" -= 15
-		"reputation: Navy (Oathkeeper)" -= 15
-		"reputation: Syndicate" -= 60
-		"reputation: Militia" -= 15
-		"reputation: Free Worlds" -= 15
-		"reputation: Pirate" += 30
+		"reputation: Merchant" -= 10
+		"reputation: Republic" -= 10
+		"reputation: Navy (Oathkeeper)" -= 10
+		"reputation: Syndicate" -= 30
+		"reputation: Militia" -= 10
+		"reputation: Free Worlds" -= 10
+		"reputation: Pirate" += 10
 		payment 1000000
 		fail "Transport executive to <planet>"
 		fail
@@ -1094,13 +1094,13 @@ mission "Corporate retreat on <planet>: Slavery"
 				accept
 	on accept
 		"sold slaves" ++
-		"reputation: Merchant" -= 40
-		"reputation: Republic" -= 40
-		"reputation: Navy (Oathkeeper)" -= 40
-		"reputation: Syndicate" -= 150
-		"reputation: Militia" -= 40
-		"reputation: Free Worlds" -= 40
-		"reputation: Pirate" += 75
+		"reputation: Merchant" -= 25
+		"reputation: Republic" -= 25
+		"reputation: Navy (Oathkeeper)" -= 25
+		"reputation: Syndicate" -= 50
+		"reputation: Militia" -= 25
+		"reputation: Free Worlds" -= 25
+		"reputation: Pirate" += 25
 		payment 2500000
 		fail "Corporate retreat on <planet>"
 		fail

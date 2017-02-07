@@ -1372,7 +1372,7 @@ mission "Slave Transport [0]"
 	job
 	repeat
 	description "These pirates need <bunks> slaves moved to <destination> along with <cargo>. Payment is <payment>. Slavery is highly illegal throughout the galaxy, so this may be a dangerous job to take."
-	passengers 2 10 .5
+	passengers 2 10 .9
 	cargo "shackles and grub" 1
 		illegal -1
 	to offer
@@ -1391,7 +1391,7 @@ mission "Slave Transport [1]"
 	job
 	repeat
 	description "These pirates need <bunks> slaves moved to <destination> along with <cargo>. Payment is <payment>. Slavery is highly illegal throughout the galaxy, so this may be a dangerous job to take."
-	passengers 2 10 .5
+	passengers 2 10 .9
 	cargo "shackles and grub" 1
 		illegal -1
 	to offer
@@ -1410,7 +1410,7 @@ mission "Slave Transport [2]"
 	job
 	repeat
 	description "These pirates need <bunks> slaves moved to <destination> along with <cargo>. Payment is <payment>. Slavery is highly illegal throughout the galaxy, so this may be a dangerous job to take."
-	passengers 2 10 .5
+	passengers 2 10 .9
 	cargo "shackles and grub" 1
 		illegal -1
 	to offer
