@@ -11,7 +11,7 @@
 outfit "Small Collector Module"
 	category "Power"
 	cost 60000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/small collector module"
 	"mass" 8
 	"outfit space" -8
 	"solar collection" .8
@@ -21,7 +21,7 @@ outfit "Small Collector Module"
 outfit "Large Collector Module"
 	category "Power"
 	cost 300000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/large collector module"
 	"mass" 28
 	"outfit space" -28
 	"solar collection" 3.3
@@ -31,7 +31,7 @@ outfit "Large Collector Module"
 outfit "Small Reactor Module"
 	category "Power"
 	cost 5497000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/small reactor module"
 	"mass" 42
 	"outfit space" -42
 	"energy generation" 8.8
@@ -41,7 +41,7 @@ outfit "Small Reactor Module"
 outfit "Large Reactor Module"
 	category "Power"
 	cost 17754000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/large reactor module"
 	"mass" 98
 	"outfit space" -98
 	"energy generation" 22.3
@@ -51,7 +51,7 @@ outfit "Large Reactor Module"
 outfit "Small Battery Module"
 	category "Power"
 	cost 44000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/small battery module"
 	"mass" 4
 	"outfit space" -4
 	"energy capacity" 900
@@ -60,7 +60,7 @@ outfit "Small Battery Module"
 outfit "Large Battery Module"
 	category "Power"
 	cost 340000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/large battery module"
 	"mass" 18
 	"outfit space" -18
 	"energy capacity" 4500
