@@ -23,7 +23,7 @@ mission "Slave Transport [0]: Release Slaves"
 			"reputation: Free Worlds" > 0
 	on offer
 		conversation
-			`Luckily, the security on <planet> did not detect the slaves on your ship. You've sold your passengers into slavery before, so maybe you could release these slaves to the local government and recieve a reward.`
+			`Luckily, the security on <planet> did not detect the slaves on your ship. You've sold your passengers into slavery before, so maybe you could release these slaves to the local government and receive a reward.`
 			choice
 				`	(Free the slaves.)`
 				`	(Keep the slaves.)`
@@ -58,7 +58,7 @@ mission "Slave Transport [1]: Release Slaves"
 			"reputation: Free Worlds" > 0
 	on offer
 		conversation
-			`Luckily, the security on <planet> did not detect the slaves on your ship. You've sold your passengers into slavery before, so maybe you could release these slaves to the local government and recieve a reward.`
+			`Luckily, the security on <planet> did not detect the slaves on your ship. You've sold your passengers into slavery before, so maybe you could release these slaves to the local government and receive a reward.`
 			choice
 				`	(Free the slaves.)`
 				`	(Keep the slaves.)`
@@ -93,7 +93,7 @@ mission "Bulk Slave Transport [0]: Release Slaves"
 			"reputation: Free Worlds" > 0
 	on offer
 		conversation
-			`Luckily, the security on <planet> did not detect the slaves on your ship. You've sold your passengers into slavery before, so maybe you could release these slaves to the local government and recieve a reward.`
+			`Luckily, the security on <planet> did not detect the slaves on your ship. You've sold your passengers into slavery before, so maybe you could release these slaves to the local government and receive a reward.`
 			choice
 				`	(Free the slaves.)`
 				`	(Keep the slaves.)`
@@ -128,7 +128,7 @@ mission "Bulk Slave Transport [1]: Release Slaves"
 			"reputation: Free Worlds" > 0
 	on offer
 		conversation
-			`Luckily, the security on <planet> did not detect the slaves on your ship. You've sold your passengers into slavery before, so maybe you could release these slaves to the local government and recieve a reward.`
+			`Luckily, the security on <planet> did not detect the slaves on your ship. You've sold your passengers into slavery before, so maybe you could release these slaves to the local government and receive a reward.`
 			choice
 				`	(Free the slaves.)`
 				`	(Keep the slaves.)`
