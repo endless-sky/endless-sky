@@ -26,6 +26,9 @@ class Sprite;
 // to be logic for copying one PlayerInfo into another.
 class SavedGame {
 public:
+	SavedGame() = default;
+	explicit SavedGame(const std::string &path);
+	
 	void Load(const std::string &path);
 	const std::string &Path() const;
 	bool IsLoaded() const;

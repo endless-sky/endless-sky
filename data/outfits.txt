@@ -9,6 +9,7 @@
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 outfit "Cooling Ducts"
+	plural "Cooling Ducts"
 	category "Systems"
 	cost 10000
 	thumbnail "outfit/cooling ducts"
@@ -52,6 +53,7 @@ outfit "D14-RN Shield Generator"
 	"mass" 15
 	"outfit space" -15
 	"shield generation" .2
+	"shield energy" .2
 	description "This is the standard shield generator for fighters and interceptors, as well as for many non-combat starships. Although it is possible for a ship to have no shield generator at all, recharging its shield matrix only when landed in a hospitable spaceport, life in deep space is unpredictable enough that most pilots find shield generators to be well worth the space they take up."
 
 outfit "D23-QP Shield Generator"
@@ -61,6 +63,7 @@ outfit "D23-QP Shield Generator"
 	"mass" 22
 	"outfit space" -22
 	"shield generation" .32
+	"shield energy" .32
 	description "This is a slightly more powerful shield generator than the standard model installed in most small ships. If combat lasts long enough, the increased recharge rate is enough to give you an edge, but recharging your shields completely will still take a long time."
 
 outfit "D41-HY Shield Generator"
@@ -70,6 +73,7 @@ outfit "D41-HY Shield Generator"
 	"mass" 30
 	"outfit space" -30
 	"shield generation" .51
+	"shield energy" .51
 	description "This is a more powerful shield generator designed for ships that are likely to see frequent combat, or that have such a large shield capacity that recharging them would take a long time with a smaller generator."
 
 outfit "D67-TM Shield Generator"
@@ -79,6 +83,7 @@ outfit "D67-TM Shield Generator"
 	"mass" 45
 	"outfit space" -45
 	"shield generation" .82
+	"shield energy" .82
 	description "This shield generator is powerful enough that in combat against some particularly weak ships, they may not even be capable of depleting your shields as fast as they recharge."
 
 outfit "D94-YV Shield Generator"
@@ -88,6 +93,7 @@ outfit "D94-YV Shield Generator"
 	"mass" 60
 	"outfit space" -60
 	"shield generation" 1.31
+	"shield energy" 1.31
 	description "This is the most powerful shield generator available in human space. Because of their large size, D94-YV shield generators are mostly used in large warships, but you can fit one in a smaller ship if you are willing to sacrifice engine power or weaponry to make space for it."
 
 outfit "S-270 Regenerator"
@@ -97,6 +103,7 @@ outfit "S-270 Regenerator"
 	"mass" 12
 	"outfit space" -12
 	"shield generation" .6
+	"shield energy" .6
 	"energy generation" -.3
 	"heat generation" 2
 	description "A shield regenerator works by subtly modifying the geometry of your shield matrix in order to make your shields more malleable and therefore much easier to recharge. Unfortunately, this causes your shields to also become less efficient, which draws energy away from your other systems, even when not charging shields, and creates heat."
@@ -108,9 +115,29 @@ outfit "S-970 Regenerator"
 	"mass" 37
 	"outfit space" -37
 	"shield generation" 2.3
+	"shield energy" 2.3
 	"energy generation" -.9
 	"heat generation" 6
 	description "The S-970 Shield Regenerator is an advanced type of shield recharging technology. Unfortunately, its power needs are rather high, and the shifts it makes in your shield configuration also result in some feedback that causes heat to build up in the regenerator, even when your shields are at full strength."
+
+
+outfit "Small Radar Jammer"
+	category "Systems"
+	cost 70000
+	thumbnail "outfit/small radar jammer"
+	"mass" 4
+	"outfit space" -4
+	"radar jamming" 2
+	description "This radar jammer is designed to interfere with Sidewinders and any other missiles that rely on radar for tracking their targets. Jamming will occasionally cause missiles to lose their target locks."
+
+outfit "Large Radar Jammer"
+	category "Systems"
+	cost 490000
+	thumbnail "outfit/large radar jammer"
+	"mass" 14
+	"outfit space" -14
+	"radar jamming" 10
+	description "This high-power radar jammer will make it much more difficult for missiles that rely on radar to track you. It will not affect missiles that track you optically or that look for your ship's heat signature."
 
 
 outfit "Ramscoop"
@@ -121,6 +148,7 @@ outfit "Ramscoop"
 	"outfit space" -10
 	"ramscoop" 1
 	description "In the early days of space exploration, when ships could travel through half a dozen systems before encountering an established colony where they could refuel, ramscoops were an essential piece of equipment, harvesting plasma from the solar wind to refill your hyperspace fuel tanks. Although you can install more than one ramscoop, additional ramscoops on a single ship are not as effective as the first."
+	description "	(As a safety measure, all ships are able to harvest tiny amounts of fuel by flying close to a star, but this outfit allows you to accumulate fuel much more quickly. The closer you are to the star, the faster fuel will accumulate.)"
 
 outfit "Catalytic Ramscoop"
 	category "Systems"
@@ -152,6 +180,16 @@ outfit "Scram Drive"
 	"hyperdrive" 1
 	description "A Scram Drive is a specially designed hyperdrive that works even if your ship is traveling at a much higher speed, at the expense of using more fuel. If you are being pursued by pirates (or just want to get somewhere in a hurry) that extra bit of speed can make a big difference."
 
+outfit "Jump Drive"
+	category "Systems"
+	cost 1000000
+	thumbnail "outfit/jump drive"
+	"mass" 20
+	"outfit space" -20
+	"jump speed" .3
+	"jump drive" 1
+	description "The workings of the Jump Drive are a total mystery. The best that human scientists have been able to find out is that this device is a containment field for matter in a state that cannot normally exist in this universe; if the drive is opened up, the field collapses and its contents disappear. Therefore, even though a few jump drives have been captured over the years, it has so far proved impossible to reverse engineer them."
+
 
 outfit "Cargo Scanner"
 	category "Systems"
@@ -159,8 +197,9 @@ outfit "Cargo Scanner"
 	thumbnail "outfit/cargo scanner"
 	"mass" 1
 	"outfit space" -1
-	"cargo scan" 300
-	description "This scanner allows you to scan the cargo holds of the ship you are currently targeting, as long as you are flying close enough to it. Patrol crafts use cargo scanners to detect illegal contraband."
+	"cargo scan power" 9
+	"cargo scan speed" 1
+	description "This scanner allows you to scan the cargo holds of the ship you are currently targeting, as long as you are flying close enough to it. Patrol craft use cargo scanners to detect illegal contraband. Installing more than one increases the scan range and speed."
 
 outfit "Outfit Scanner"
 	category "Systems"
@@ -168,8 +207,9 @@ outfit "Outfit Scanner"
 	thumbnail "outfit/outfit scanner"
 	"mass" 2
 	"outfit space" -2
-	"outfit scan" 500
-	description "This scanner allows you to determine what outfits are installed in the ship you are currently targeting, if you are willing to risk flying close enough to it to get a reading! The Republic Navy uses these scanners to detect when ships are equipped with illegal weaponry."
+	"outfit scan power" 25
+	"outfit scan speed" 1
+	description "This scanner allows you to determine what outfits are installed in the ship you are currently targeting, if you are willing to risk flying close enough to it to get a reading! The Republic Navy uses these scanners to detect when ships are equipped with illegal weaponry. Installing more than one increases the scan range and speed."
 
 outfit "Surveillance Pod"
 	category "Systems"
@@ -177,10 +217,12 @@ outfit "Surveillance Pod"
 	thumbnail "outfit/outfit scanner"
 	"mass" 5
 	"outfit space" -5
-	"outfit scan" 400
-	"cargo scan" 200
+	"outfit scan power" 16
+	"outfit scan speed" 2
+	"cargo scan power" 4
+	"cargo scan speed" 2
 	"atmosphere scan" 100
-	description "This is Republic military technology, a collection of scanners designed to fit perfectly inside one of their surveillance drones. Since the outputs are fairly standard, you could connect it to your own ship's systems if you want."
+	description "This is Republic military technology, a collection of scanners designed to fit perfectly inside one of their surveillance drones. Since the outputs are fairly standard, you could connect it to your own ship's systems if you want. Installing more than one increases the scan range and speed."
 
 
 outfit "Cloaking Device"
@@ -201,6 +243,7 @@ outfit "Mass Expansion"
 	"mass" 5
 	"outfit space" 15
 	"cargo space" -20
+	unplunderable 1
 	description "A mass expansion allows you to sacrifice some cargo space in order to make room for more outfits, in situations where you need just a bit more space to install a particular system. It does not increase your weapon or engine space unfortunately."
 	
 outfit "Cargo Expansion"
@@ -210,6 +253,7 @@ outfit "Cargo Expansion"
 	"mass" 5
 	"cargo space" 15
 	"outfit space" -20
+	unplunderable 1
 	description "If being able to carry more cargo is more important to you than having advanced weapons or other systems, a cargo expansion will significantly increase the size of your cargo hold."
 	
 outfit "Bunk Room"
@@ -219,6 +263,7 @@ outfit "Bunk Room"
 	"mass" 5
 	"bunks" 4
 	"outfit space" -20
+	unplunderable 1
 	description "If you really want to make space for a few more passengers (or crew members, if you're trying to capture other ships), you can expand the living space of your ship into the area usually reserved for outfits."
 	
 outfit "Small Bunk Room"
@@ -228,6 +273,7 @@ outfit "Small Bunk Room"
 	"mass" 3
 	"bunks" 2
 	"outfit space" -12
+	unplunderable 1
 	description "Captains who do not care particularly much about the comfort of their passengers or crew can usually find a way to shove a bunk bed in behind the power generator or to hang a few hammocks from the engines as a makeshift way to make space for more people."
 
 outfit "Fuel Pod"
@@ -249,20 +295,24 @@ outfit "Interference Plating"
 	description "If you're in the habit of carrying illegal cargo or outfits, this plating increases the odds that a scan of your ship will fail to detect it. The more of these you install, the better your chances of evading detection. They won't keep anyone from noticing if you're flying an unlicensed ship, however."
 
 
+
 outfit "Laser Rifle"
 	category "Hand to Hand"
 	cost 8000
 	thumbnail "outfit/laser rifle"
 	"capture attack" .6
 	"capture defense" .8
+	"unplunderable" 1
 	description "A laser rifle is a step up from the sidearms that crew members typically carry for defense against pirates: more powerful, and more accurate as well. For each of these rifles that one of your crew is wielding, your odds of capturing another ship or defending your own ship from boarders are increased substantially."
 
 outfit "Fragmentation Grenades"
+	plural "Fragmentation Grenades"
 	category "Hand to Hand"
 	cost 17000
 	thumbnail "outfit/fragmentation grenades"
 	"capture attack" 1.3
 	"capture defense" .3
+	"unplunderable" 1
 	description "Fragmentation grenades are an only marginally legal weapon for hand-to-hand combat when boarding a ship, useful for flushing out defenders who are hunkered down in defensible choke points inside their own ship. They are much less useful as a defensive weapon, but still better than nothing."
 
 outfit "Security Station"
@@ -272,15 +322,18 @@ outfit "Security Station"
 	"mass" 2
 	"outfit space" -2
 	"capture defense" 3.4
+	"unplunderable" 1
 	description "This is a specially designed barricade, which can be installed in the hallways of your ship as a powerful defense against anyone who boards you in an attempt to take over your ship."
 
 outfit "Nerve Gas"
+	plural "Nerve Gas"
 	category "Hand to Hand"
 	cost 75000
 	thumbnail "outfit/nerve gas"
 	"capture attack" 2.8
 	"capture defense" .8
 	"illegal" 1000000
+	"unplunderable" 1
 	description "This is a highly illegal weapon for hand to hand combat when boarding an enemy ship. Because chemical weapons are banned by interstellar law, you can be severely fined for getting caught in possession of nerve gas canisters. But, they do clear out an enemy ship quicker than just about anything else..."
 
 

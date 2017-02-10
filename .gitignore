@@ -2,6 +2,11 @@
 /build/
 /.sconsign.dblite
 .DS_Store
+*.db
 /EndlessSky.xcodeproj/project.xcworkspace/
 /EndlessSky.xcodeproj/xcuserdata/
+/obj/Debug/
+/obj/Release/
+/obj/Win32/
+/bin/
 

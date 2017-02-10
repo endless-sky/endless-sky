@@ -20,8 +20,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 // Class representing a shader, i.e. a compiled GLSL program that the GPU uses
 // in order to draw something. In modern GPL, everything is drawn with shaders.
 // In general, rather than using this class directly, drawing code will use one
-// of the classes representing a particular shader, like SpriteShader or
-// DotShader or LineShader.
+// of the classes representing a particular shader.
 class Shader {
 public:
 	Shader() = default;

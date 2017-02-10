@@ -1,5 +1,5 @@
 Welcome to Endless Sky!
-version 0.8.10
+version 0.9.5
 
 Programming
   Michael Zahniser
@@ -9,6 +9,10 @@ Photos from Wikimedia Commons
   Dmitry A. Mottl (CC-BY-SA 3.0)
   Myrabella (CC-BY-SA 3.0)
   Matthew Field (CC-BY-SA 3.0)
+and other photographers
+  Chris Pickel (CC-BY-SA 4.0)
+  Michael Wilson (CC-BY-4.0)
+  @harro.eu (CC-BY-4.0)
 and from public domain sources
   NASA
   US Geological Survey
@@ -19,6 +23,13 @@ and from public domain sources
 
 Other Artwork
   Michael Zahniser (CC-BY-SA 4.0)
+  Maximilian Korber (CC-BY-SA 4.0)
+  Iaz Poolar (CC-BY-SA 4.0)
+  Matthew Smestad (CC-BY-SA 4.0)
+  Jonathan Steck (CC-BY-SA 4.0)
+  Nate Graham (CC-BY-SA 4.0)
+  Nick Barry (CC-BY-SA 3.0)
+  ESO / L. Calcada (CC-BY-4.0)
 
 Sounds from public domain sources
   freesound.org
@@ -34,6 +45,7 @@ Beta Testers
   John Harvey
   Sean Fahey
   Mauricio Gomes
+  Iaz Poolar
 
 This game is open source.
 To contribute to story writing,

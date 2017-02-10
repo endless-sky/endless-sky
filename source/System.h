@@ -24,7 +24,10 @@ class DataNode;
 class Date;
 class Fleet;
 class Government;
+class Minable;
 class Planet;
+class Ship;
+class Sprite;
 
 
 
@@ -34,16 +37,22 @@ class Planet;
 // objects in each system, and the hyperspace links between systems.
 class System {
 public:
+	static const double NEIGHBOR_DISTANCE;
+	
+public:
 	class Asteroid {
 	public:
 		Asteroid(const std::string &name, int count, double energy);
+		Asteroid(const Minable *type, int count, double energy);
 		
 		const std::string &Name() const;
+		const Minable *Type() const;
 		int Count() const;
 		double Energy() const;
 		
 	private:
 		std::string name;
+		const Minable *type = nullptr;
 		int count;
 		double energy;
 	};
@@ -77,6 +86,8 @@ public:
 	const Point &Position() const;
 	// Get this system's government.
 	const Government *GetGovernment() const;
+	// Get the name of the ambient audio to play in this system.
+	const std::string &MusicName() const;
 	
 	// Get a list of systems you can travel to through hyperspace from here.
 	const std::vector<const System *> &Links() const;
@@ -91,8 +102,12 @@ public:
 	const std::vector<StellarObject> &Objects() const;
 	// Get the habitable zone's center.
 	double HabitableZone() const;
+	// Get the radius of the asteroid belt.
+	double AsteroidBelt() const;
 	// Check if this system is inhabited.
 	bool IsInhabited() const;
+	// Check if ships of the given government can refuel in this system.
+	bool HasFuelFor(const Ship &ship) const;
 	// Check whether you can buy or sell ships in this system.
 	bool HasShipyard() const;
 	// Check whether you can buy or sell ship outfits in this system.
@@ -100,12 +115,23 @@ public:
 	
 	// Get the specification of how many asteroids of each type there are.
 	const std::vector<Asteroid> &Asteroids() const;
+	// Get the background haze sprite for this system.
+	const Sprite *Haze() const;
 	
 	// Get the price of the given commodity in this system.
 	int Trade(const std::string &commodity) const;
+	bool HasTrade() const;
+	// Update the economy. Returns the amount of trade goods this system exports.
+	void StepEconomy();
+	void SetSupply(const std::string &commodity, double tons);
+	double Supply(const std::string &commodity) const;
+	double Exports(const std::string &commodity) const;
 	
 	// Get the probabilities of various fleets entering this system.
 	const std::vector<FleetProbability> &Fleets() const;
+	// Check how dangerous this system is (credits worth of enemy ships jumping
+	// in per frame).
+	double Danger() const;
 	
 	
 private:
@@ -113,10 +139,25 @@ private:
 	
 	
 private:
+	class Price {
+	public:
+		void SetBase(int base);
+		void Update();
+		
+		int base = 0;
+		int price = 0;
+		double supply = 0.;
+		double exports = 0.;
+	};
+	
+	
+private:
 	// Name and position (within the star map) of this system.
 	std::string name;
 	Point position;
 	const Government *government = nullptr;
+	std::string music;
+	
 	// Hyperspace links to other systems.
 	std::vector<const System *> links;
 	std::vector<const System *> neighbors;
@@ -127,11 +168,13 @@ private:
 	// proper position before that object is updated).
 	std::vector<StellarObject> objects;
 	std::vector<Asteroid> asteroids;
+	const Sprite *haze;
 	std::vector<FleetProbability> fleets;
 	double habitable = 1000.;
+	double asteroidBelt = 1500.;
 	
 	// Commodity prices.
-	std::map<std::string, int> trade;
+	std::map<std::string, Price> trade;
 };
 
 

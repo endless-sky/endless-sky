@@ -36,7 +36,7 @@ public:
 	
 public:
 	// Add a message to the list.
-	static void Add(const std::string &message);
+	static void Add(const std::string &message, bool isImportant = true);
 	
 	// Get the messages for the given game step. Any messages that are too old
 	// will be culled out, and new ones that have just been added will have

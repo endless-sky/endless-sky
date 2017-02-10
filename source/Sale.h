@@ -41,8 +41,13 @@ void Sale<Item>::Load(const DataNode &node, const Set<Item> &items)
 {
 	for(const DataNode &child : node)
 	{
-		if(child.Token(0) == "clear")
+		if(child.Token(0) == "clear" && child.Size() == 1)
 			this->clear();
+		else if(child.Token(0) == "clear" && child.Size() >= 2)
+		{
+			if(this->find(items.Get(child.Token(1))) != this->end())
+				this->erase(this->find(items.Get(child.Token(1))));
+		}
 		else
 			this->insert(items.Get(child.Token(0)));
 	}
@@ -61,7 +66,7 @@ void Sale<Item>::Add(const Sale<Item> &other)
 template <class Item>
 bool Sale<Item>::Has(const Item *item) const
 {
-	return this->find(item) != this->end();
+	return this->count(item);
 }
 
 

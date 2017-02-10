@@ -32,7 +32,7 @@ mission "Intro [0]"
 			`	He grins. "I know the feeling. It's a crime how much interest the banks charge to first-timers. It's been that way ever since when I first started out."`
 				goto captain
 			label bigger
-			`	He smiles. "I'm sure you will. But there's something nice to having a ship you can pilot all by yourself. Believe me, once you have to start managing crew and paying salaries, or keeping track of a whole fleet, you'll miss these days when everything was simple."
+			`	He smiles. "I'm sure you will. But there's something nice to having a ship you can pilot all by yourself. Believe me, once you have to start managing crew and paying salaries, or keeping track of a whole fleet, you'll miss these days when everything was simple."`
 				goto captain
 			label captain
 			`	"You're a captain?" you ask.`
@@ -81,7 +81,7 @@ mission "Intro [1 Transport]"
 	passengers 5
 	to offer
 		has "Intro [0]: done"
-		"passenger space" > 4
+		has "ships: Transport"
 		not "Intro [1 Freighter]: offered"
 		not "Intro [1 Interceptor]: offered"
 	
@@ -178,7 +178,7 @@ mission "Intro [1 Freighter]"
 	destination "Heartland"
 	to offer
 		has "Intro [0]: done"
-		"cargo space" > 30
+		has "ships: Light Freighter"
 		not "Intro [1 Transport]: offered"
 		not "Intro [1 Interceptor]: offered"
 	
@@ -214,7 +214,7 @@ mission "Intro [1 Freighter]"
 
 
 
-mission "Intro [2 Freighter]
+mission "Intro [2 Freighter]"
 	priority
 	name "Rush delivery to <planet>"
 	description "This shipment of <commodity> needs to get to <destination>, by <date>."
@@ -264,7 +264,7 @@ mission "Intro [2 Freighter]
 
 
 
-mission "Intro [3 Freighter]
+mission "Intro [3 Freighter]"
 	priority
 	name "Bring James to <planet>"
 	description "Drop James off on <destination>, where he has a spot reserved in a retirement home."
@@ -305,13 +305,12 @@ mission "Intro [1 Interceptor]"
 	destination "Gemstone"
 	to offer
 		has "Intro [0]: done"
-		"cargo space" <= 30
-		"passenger space" <= 4
+		has "ships: Interceptor"
 		not "Intro [1 Transport]: offered"
 		not "Intro [1 Freighter]: offered"
 	npc save
-		government Escort
-		personality timid
+		government Merchant
+		personality timid escort
 		ship "Freighter" "Horn of Plenty"
 		ship "Freighter" "Morning Light"
 	npc
@@ -360,7 +359,7 @@ mission "Intro [2 Interceptor]"
 		conversation
 			`You find James in the spaceport bar, talking with a woman wearing a business suit. The expression on James's face is growing increasingly concerned as she speaks. Seeing you come in, he waves to you and you join them at the table.`
 			`	"Hello <first>," says James. "This is Marissa, a senior manager at the mines." You shake hands with her.`
-			`	"Here's the deal," says Marissa. "Most of the gemstones we mine here are industrial grade, not pretty enough to be worth using as anything but sandpaper grit or drill bits. But every once in a while we happen on some higher quality gems. No one in this sector has the money to spend on jewelry, so we ship them north to the paradise worlds.
+			`	"Here's the deal," says Marissa. "Most of the gemstones we mine here are industrial grade, not pretty enough to be worth using as anything but sandpaper grit or drill bits. But every once in a while we happen on some higher quality gems. No one in this sector has the money to spend on jewelry, so we ship them north to the paradise worlds.`
 			`	"But in the past few months, every shipment we've sent has been attacked by a pirate ship, the Hammer of Thor. We don't have the money to pay a bounty hunter to take out the Hammer, so instead we're going to pay you to outrun it. Is the <ship> a fast ship?"`
 			choice
 				`	"As fast as they come. Nothing bigger than a fighter could chase it down."`
@@ -387,7 +386,7 @@ mission "Intro [2 Interceptor]"
 
 
 
-mission "Intro [3 Interceptor]
+mission "Intro [3 Interceptor]"
 	priority
 	name "Bring James to <planet>"
 	description "Drop James off on <destination>, where he has a spot reserved in a retirement home."

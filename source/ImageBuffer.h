@@ -41,6 +41,8 @@ public:
 	const uint32_t *Begin(int y) const;
 	uint32_t *Begin(int y);
 	
+	void ShrinkToHalfSize();
+	
 	static ImageBuffer *Read(const std::string &path);
 	
 	

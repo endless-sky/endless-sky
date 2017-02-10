@@ -24,14 +24,23 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 using namespace std;
 
+namespace {
+	// Given the probability of losing a lock in five tries, check randomly
+	// whether it should be lost on this try.
+	inline bool Check(double probability, double base)
+	{
+		return (Random::Real() < base * pow(probability, .2));
+	}
+}
+
 
 
 Projectile::Projectile(const Ship &parent, Point position, Angle angle, const Outfit *weapon)
-	: weapon(weapon), animation(weapon->WeaponSprite()),
-	position(position), velocity(parent.Velocity()), angle(angle),
-	targetShip(parent.GetTargetShip()), government(parent.GetGovernment()),
-	lifetime(weapon->Lifetime())
+	: Body(weapon->WeaponSprite(), position, parent.Velocity(), angle),
+	weapon(weapon), targetShip(parent.GetTargetShip()), lifetime(weapon->Lifetime())
 {
+	government = parent.GetGovernment();
+	
 	// If you are boarding your target, do not fire on it.
 	if(parent.IsBoarding() || parent.Commands().Has(Command::BOARD))
 		targetShip.reset();
@@ -43,17 +52,22 @@ Projectile::Projectile(const Ship &parent, Point position, Angle angle, const Ou
 	if(inaccuracy)
 		this->angle += Angle::Random(inaccuracy) - Angle::Random(inaccuracy);
 	
-	velocity += this->angle.Unit() * weapon->Velocity();
+	velocity += this->angle.Unit() * (weapon->Velocity() + Random::Real() * weapon->RandomVelocity());
+	
+	// If a random lifetime is specified, add a random amount up to that amount.
+	if(weapon->RandomLifetime())
+		lifetime += Random::Int(weapon->RandomLifetime() + 1);
 }
 
 
 
 Projectile::Projectile(const Projectile &parent, const Outfit *weapon)
-	: weapon(weapon), animation(weapon->WeaponSprite()),
-	position(parent.position + parent.velocity), velocity(parent.velocity), angle(parent.angle),
-	targetShip(parent.targetShip), government(parent.government),
-	targetGovernment(parent.targetGovernment), lifetime(weapon->Lifetime())
+	: Body(weapon->WeaponSprite(), parent.position + parent.velocity, parent.velocity, parent.angle),
+	weapon(weapon), targetShip(parent.targetShip), lifetime(weapon->Lifetime())
 {
+	government = parent.government;
+	targetGovernment = parent.targetGovernment;
+	
 	cachedTarget = targetShip.lock().get();
 	double inaccuracy = weapon->Inaccuracy();
 	if(inaccuracy)
@@ -66,15 +80,20 @@ Projectile::Projectile(const Projectile &parent, const Outfit *weapon)
 			velocity += (this->angle.Unit() - parent.angle.Unit()) * parentVelocity;
 		}
 	}
-	velocity += this->angle.Unit() * weapon->Velocity();
+	velocity += this->angle.Unit() * (weapon->Velocity() + Random::Real() * weapon->RandomVelocity());
+	
+	// If a random lifetime is specified, add a random amount up to that amount.
+	if(weapon->RandomLifetime())
+		lifetime += Random::Int(weapon->RandomLifetime() + 1);
 }
 
 
 
 // Ship explosion.
 Projectile::Projectile(Point position, const Outfit *weapon)
-	: weapon(weapon), position(position)
+	: weapon(weapon)
 {
+	this->position = position;
 }
 
 
@@ -85,15 +104,23 @@ bool Projectile::Move(list<Effect> &effects)
 	if(--lifetime <= 0)
 	{
 		if(lifetime > -100)
+		{
 			for(const auto &it : weapon->DieEffects())
 				for(int i = 0; i < it.second; ++i)
 				{
 					effects.push_back(*it.first);
 					effects.back().Place(position, velocity, angle);
 				}
+		}
 		
 		return false;
 	}
+	for(const auto &it : weapon->LiveEffects())
+		if(!Random::Int(it.second))
+		{
+			effects.push_back(*it.first);
+			effects.back().Place(position, velocity, angle);
+		}
 	
 	// If the target has left the system, stop following it. Also stop if the
 	// target has been captured by a different government.
@@ -112,7 +139,9 @@ bool Projectile::Move(list<Effect> &effects)
 	double turn = weapon->Turn();
 	double accel = weapon->Acceleration();
 	int homing = weapon->Homing();
-	if(target && homing)
+	if(target && homing && !Random::Int(60))
+		CheckLock(*target);
+	if(target && homing && hasLock)
 	{
 		Point d = position - target->Position();
 		double drag = weapon->Drag();
@@ -192,40 +221,6 @@ void Projectile::MakeSubmunitions(list<Projectile> &projectiles) const
 
 
 
-// Check if this projectile collides with the given step, with the animation
-// frame for the given step.
-double Projectile::CheckCollision(const Ship &ship, int step) const
-{
-	const Mask &mask = ship.GetSprite().GetMask(step);
-	Point offset = position - ship.Position();
-	
-	double radius = weapon->TriggerRadius();
-	if(radius > 0. && mask.WithinRange(offset, angle, radius))
-		return 0.;
-	
-	return mask.Collide(offset, velocity, ship.Facing());
-}
-
-
-
-// Check if this projectile has a blast radius.
-bool Projectile::HasBlastRadius() const
-{
-	return (weapon->BlastRadius() > 0.);
-}
-
-
-
-// Check if the given ship is within this projectile's blast radius. (The
-// projectile will not explode unless it is also within the trigger radius.)
-bool Projectile::InBlastRadius(const Ship &ship, int step) const
-{
-	const Mask &mask = ship.GetSprite().GetMask(step);
-	return mask.WithinRange(position - ship.Position(), ship.Facing(), weapon->BlastRadius());
-}
-
-
-
 // This projectile hit something. Create the explosion, if any. This also
 // marks the projectile as needing deletion.
 void Projectile::Explode(list<Effect> &effects, double intersection, Point hitVelocity)
@@ -266,43 +261,6 @@ const Outfit &Projectile::GetWeapon() const
 }
 
 
-
-// Get the projectiles characteristics, for drawing.
-const Animation &Projectile::GetSprite() const
-{
-	return animation;
-}
-
-
-
-const Point &Projectile::Position() const
-{
-	return position;
-}
-
-
-
-const Point &Projectile::Velocity() const
-{
-	return velocity;
-}
-
-
-
-const Angle &Projectile::Facing() const
-{
-	return angle;
-}
-
-
-
-// Get the facing unit vector times the scale factor.
-Point Projectile::Unit() const
-{
-	return angle.Unit() * .5;
-}
-
-
 	
 // Find out which ship this projectile is targeting.
 const Ship *Projectile::Target() const
@@ -312,8 +270,37 @@ const Ship *Projectile::Target() const
 
 
 
-// Find out which government this projectile belongs to.
-const Government *Projectile::GetGovernment() const
+void Projectile::CheckLock(const Ship &target)
 {
-	return government;
+	double base = hasLock ? 1. : .5;
+	hasLock = false;
+	
+	// For each tracking type, calculate the probability that a lock will be
+	// lost in a given five-second period. Then, since this check is done every
+	// second, test against the fifth root of that probability.
+	if(weapon->Tracking())
+		hasLock |= Check(weapon->Tracking(), base);
+	
+	// Optical tracking is about 15% for interceptors and 75% for medium warships.
+	if(weapon->OpticalTracking())
+	{
+		double weight = target.Mass() * target.Mass();
+		double probability = weapon->OpticalTracking() * weight / (200000. + weight);
+		hasLock |= Check(probability, base);
+	}
+	
+	// Infrared tracking is 10% when heat is zero and 100% when heat is full.
+	if(weapon->InfraredTracking())
+	{
+		double probability = weapon->InfraredTracking() * min(1., target.Heat() + .1);
+		hasLock |= Check(probability, base);
+	}
+	
+	// Radar tracking depends on whether the target ship has jamming capabilities.
+	// Jamming of 1 is enough to increase your chance of dodging to 50%.
+	if(weapon->RadarTracking())
+	{
+		double probability = weapon->RadarTracking() / (1. + target.Attributes().Get("radar jamming"));
+		hasLock |= Check(probability, base);
+	}
 }

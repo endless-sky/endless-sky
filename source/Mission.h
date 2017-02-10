@@ -72,6 +72,8 @@ public:
 	const std::string &Cargo() const;
 	int CargoSize() const;
 	int IllegalCargoFine() const;
+	std::string IllegalCargoMessage() const;
+	bool FailIfDiscovered() const;
 	int Passengers() const;
 	// The mission must be completed by this deadline (if there is a deadline).
 	const Date &Deadline() const;
@@ -95,6 +97,8 @@ public:
 	bool HasSpace(const PlayerInfo &player) const;
 	bool CanComplete(const PlayerInfo &player) const;
 	bool HasFailed(const PlayerInfo &player) const;
+	// Mark a mission failed (e.g. due to a "fail" action in another mission).
+	void Fail();
 	// Get a string to show if this mission is "blocked" from being offered
 	// because it requires you to have more passenger or cargo space free. After
 	// calling this function, any future calls to it will return an empty string
@@ -133,6 +137,8 @@ public:
 	
 	
 private:
+	void Enter(const System *system, PlayerInfo &player, UI *u);
+	const System *PickSystem(const LocationFilter &filter, const PlayerInfo &player) const;
 	const Planet *PickPlanet(const LocationFilter &filter, const PlayerInfo &player) const;
 	
 	
@@ -162,6 +168,8 @@ private:
 	int cargoLimit = 0;
 	double cargoProb = 0.;
 	int illegalCargoFine = 0;
+	std::string illegalCargoMessage;
+	bool failIfDiscovered = false;
 	int passengers = 0;
 	// Parameters for generating random passenger amounts:
 	int passengerLimit = 0;
@@ -177,7 +185,9 @@ private:
 	LocationFilter destinationFilter;
 	// Systems that must be visited:
 	std::set<const System *> waypoints;
+	std::list<LocationFilter> waypointFilters;
 	std::map<const System *, MissionAction> onEnter;
+	std::set<const System *> didEnter;
 	std::set<const Planet *> stopovers;
 	std::list<LocationFilter> stopoverFilters;
 	

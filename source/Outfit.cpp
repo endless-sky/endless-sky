@@ -26,35 +26,58 @@ namespace {
 	static const double EPS = 0.0000000001;
 }
 
+const vector<string> Outfit::CATEGORIES = {
+	"Guns",
+	"Turrets",
+	"Secondary Weapons",
+	"Ammunition",
+	"Systems",
+	"Power",
+	"Engines",
+	"Hand to Hand",
+	"Special"
+};
+
 
 
 void Outfit::Load(const DataNode &node)
 {
 	if(node.Size() >= 2)
+	{
 		name = node.Token(1);
+		pluralName = name + 's';
+	}
 	
 	for(const DataNode &child : node)
 	{
 		if(child.Token(0) == "category" && child.Size() >= 2)
 			category = child.Token(1);
+		else if(child.Token(0) == "plural" && child.Size() >= 2)
+			pluralName = child.Token(1);
 		else if(child.Token(0) == "flare sprite" && child.Size() >= 2)
 		{
-			flareSprites.emplace_back(Animation(), 1);
-			flareSprites.back().first.Load(child);
+			flareSprites.emplace_back(Body(), 1);
+			flareSprites.back().first.LoadSprite(child);
 		}
 		else if(child.Token(0) == "flare sound" && child.Size() >= 2)
 			++flareSounds[Audio::Get(child.Token(1))];
 		else if(child.Token(0) == "afterburner effect" && child.Size() >= 2)
 			++afterburnerEffects[GameData::Effects().Get(child.Token(1))];
+		else if(child.Token(0) == "flotsam sprite" && child.Size() >= 2)
+			flotsamSprite = SpriteSet::Get(child.Token(1));
 		else if(child.Token(0) == "thumbnail" && child.Size() >= 2)
 			thumbnail = SpriteSet::Get(child.Token(1));
 		else if(child.Token(0) == "weapon")
 			LoadWeapon(child);
+		else if(child.Token(0) == "ammo" && child.Size() >= 2)
+			ammo = GameData::Outfits().Get(child.Token(1));
 		else if(child.Token(0) == "description" && child.Size() >= 2)
 		{
 			description += child.Token(1);
 			description += '\n';
 		}
+		else if(child.Token(0) == "cost" && child.Size() >= 2)
+			cost = child.Value(1);
 		else if(child.Size() >= 2)
 			attributes[child.Token(0)] = child.Value(1);
 		else
@@ -71,6 +94,13 @@ const string &Outfit::Name() const
 
 
 
+const string &Outfit::PluralName() const
+{
+	return pluralName;
+}
+
+
+
 const string &Outfit::Category() const
 {
 	return category;
@@ -81,13 +111,6 @@ const string &Outfit::Category() const
 const string &Outfit::Description() const
 {
 	return description;
-}
-
-
-
-int64_t Outfit::Cost() const
-{
-	return Get("cost");
 }
 
 
@@ -137,6 +160,7 @@ int Outfit::CanAdd(const Outfit &other, int count) const
 // instances of the given outfit to this outfit.
 void Outfit::Add(const Outfit &other, int count)
 {
+	cost += other.cost * count;
 	for(const auto &at : other.attributes)
 	{
 		attributes[at.first] += at.second * count;
@@ -183,7 +207,7 @@ void Outfit::Reset(const string &attribute, double value)
 
 	
 // Get this outfit's engine flare sprite, if any.
-const vector<pair<Animation, int>> &Outfit::FlareSprites() const
+const vector<pair<Body, int>> &Outfit::FlareSprites() const
 {
 	return flareSprites;
 }
@@ -201,4 +225,12 @@ const map<const Sound *, int> &Outfit::FlareSounds() const
 const map<const Effect *, int> &Outfit::AfterburnerEffects() const
 {
 	return afterburnerEffects;
+}
+
+
+
+// Get the sprite this outfit uses when dumped into space.
+const Sprite *Outfit::FlotsamSprite() const
+{
+	return flotsamSprite;
 }

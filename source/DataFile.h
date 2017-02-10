@@ -28,13 +28,15 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 // strings or as floating point values; see DataNode for more information.
 class DataFile {
 public:
+	// A DataFile can be loaded either from a file path or an istream.
 	DataFile() = default;
-	DataFile(const std::string &path);
-	DataFile(std::istream &in);
+	explicit DataFile(const std::string &path);
+	explicit DataFile(std::istream &in);
 	
 	void Load(const std::string &path);
 	void Load(std::istream &in);
 	
+	// Functions for iterating through all DataNodes in this file.
 	std::list<DataNode>::const_iterator begin() const;
 	std::list<DataNode>::const_iterator end() const;
 	
@@ -44,6 +46,7 @@ private:
 	
 	
 private:
+	// This is the container for all DataNodes in this file.
 	DataNode root;
 };
 

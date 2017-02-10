@@ -33,7 +33,25 @@ outfit "Ionic Afterburner"
 	"afterburner energy" 5.1
 	"afterburner heat" 12.0
 	"afterburner effect" "ionic afterburner"
-	description "The ionic afterburner was designed by the Syndicate to compensate for the primary weakness of an ordinary afterburner: namely, that it consumes hyperspace fuel at a prodigious rate. Ionic afterburners instead use a small amount of fuel combined with a large burst of energy from your ships batteries to achieve the same effect."
+	description "The ionic afterburner was designed by the Syndicate to compensate for the primary weakness of an ordinary afterburner: namely, that it consumes hyperspace fuel at a prodigious rate. Ionic afterburners instead use a small amount of fuel combined with a large burst of energy from your ship's batteries to achieve the same effect."
+
+outfit "X1050 Ion Engines"
+	category "Engines"
+	"cost" 20000
+	thumbnail "outfit/tiny ion engines"
+	"mass" 20
+	"outfit space" -20
+	"engine capacity" -20
+	"turn" 110
+	"turning energy" .25
+	"turning heat" .5
+	"thrust" 4.0
+	"thrusting energy" .4
+	"thrusting heat" .6
+	"flare sprite" "effect/ion flare/tiny"
+		"frame rate" 1.2
+	"flare sound" "ion tiny"
+	description `When designing the Barb, the Syndicate took the opportunity to integrate their smallest thruster models to create a more compact steering and thrusting engine. The result is not very useful on anything but a fighter, and is only "adequate" in that role. Still, if engine space is at a premium, this is the smallest set of engines that will still get you there (eventually).`
 
 
 outfit "X1700 Ion Thruster"
@@ -94,7 +112,7 @@ outfit "X4700 Ion Thruster"
 	"thrust" 42.5
 	"thrusting energy" 3.5
 	"thrusting heat" 6.2
-	"flare sprite" "effect/ion flare/big"
+	"flare sprite" "effect/ion flare/large"
 		"frame rate" 0.9
 	"flare sound" "ion large"
 	description "The X4700 ion thruster was developed when the Republic Navy began building warships so large that the X3700 was not sufficient for them. It allows even a capital ship to move at a respectable speed."
@@ -240,7 +258,7 @@ outfit "Orca Plasma Thruster"
 	"thrust" 67.9
 	"thrusting energy" 5.8
 	"thrusting heat" 12.3
-	"flare sprite" "effect/plasma flare/big"
+	"flare sprite" "effect/plasma flare/large"
 		"frame rate" 8
 	"flare sound" "plasma large"
 	description "This engine draws enough power that a ship with anything short of a full-fledged nuclear reactor is unlikely to be able to use it, but the thrust it generates is impressive."
@@ -474,15 +492,3 @@ outfit "AR120 Reverse Thruster"
 	"reverse thrusting energy" 1.8
 	"reverse thrusting heat" 3.5
 	description "For pilots who want to be able to pull fancy tricks that most ships are not capable of emulating, a reverse thruster allows a ship to accelerate backwards, without needing to turn around. Because a reverse thruster must be facing forwards, it must be installed in the weapon section of your ship instead of the engine section."
-
-# Legacy support (renamed to "AR120 Reverse Thruster").
-outfit "Reverse Thruster"
-	category "Engines"
-	"cost" 140000
-	thumbnail "outfit/reverse thruster"
-	"mass" 22
-	"outfit space" -22
-	"weapon capacity" -22
-	"reverse thrust" 15.4
-	"reverse thrusting energy" 1.8
-	"reverse thrusting heat" 3.5

@@ -28,7 +28,7 @@ mission "Liberate Kornephoros"
 				`	"Just fine. It'd take more than a few cruisers to destroy the <ship>."`
 			
 			`	"Glad to hear it," he says. "Listen, we need to press our advantage before the Republic has time to call for reinforcements. If we strike quickly, we could be able to retake Kornephoros from them. It's important to break the blockade on that system just for the sake of trade with the rest of the galaxy, and on top of that, of course, Katya needs to be rescued."`
-			`	"Indeed," you say.
+			`	"Indeed," you say.`
 			`	"We have a large fleet of reinforcements coming in from the Rim," he continues, "and a few ships here that are able to fight another battle. I need you to take off with them, wait for the reinforcements to arrive, and then retake Kornephoros. If the Navy ships retreat, let them retreat. If they surrender, let them surrender. If they stay and fight, disable them if you can, destroy them if you must. Understood?"`
 			choice
 				`	"Yes, sir."`
@@ -177,7 +177,7 @@ mission "FW Prisoner Parole"
 	
 	npc accompany save
 		government "Escort"
-		personality timid
+		personality timid escort
 		ship "Falcon (Heavy)" "F.S. Starry Warrior"
 		ship "Blackbird" "Flight of Fancy"
 		ship "Blackbird" "Southern Luxury"
@@ -217,7 +217,7 @@ mission "FW Prisoner Parole 2"
 	
 	npc accompany save
 		government "Escort"
-		personality timid
+		personality timid escort
 		ship "Falcon (Heavy)" "R.N.S. Starry Warrior"
 		ship "Blackbird" "Flight of Fancy"
 		ship "Blackbird" "Southern Luxury"
@@ -255,7 +255,7 @@ mission "oathkeepers founded"
 	on offer
 		conversation
 			`When you land on <origin>, it seems that everyone in the spaceport is talking about a recent news story: the Navy has just announced the formation of a new regiment, called the Oathkeepers. This regiment is staffed mostly by prisoners you paroled from Kornephoros, who want to honor their oath to take no further part in the conflict against the Free Worlds. They will be headquartered on Farpoint, in the far north, to defend that region of space against pirate incursions.`
-			`	Furthermore, the leader of the Oathkeepers will be General Danforth, an elderly general who is something of a folk hero and is spoken of with admiration and respect even here in Free space. Although he was not one of the paroled prisoners, he has become an outspoken advocate for a diplomatic solution to the Free Worlds conflict.`
+			`	Furthermore, the leader of the Oathkeepers will be Admiral Danforth, an elderly admiral who is something of a folk hero and is spoken of with admiration and respect even here in Free space. Although he was not one of the paroled prisoners, he has become an outspoken advocate for a diplomatic solution to the Free Worlds conflict.`
 			`	It's heartening news, but you also can't help noticing how many people in the spaceport are talking now about how the Navy really is full of "decent" and "honorable" people, and it's a shame that the Free Worlds had to fight them. By responding to your generous gesture with one of their own, the Navy has won a definite political victory, and given that they needed to defend the North anyway, it is a victory that cost them very little.`
 
 
@@ -365,7 +365,7 @@ mission "FW Syndicate Diplomacy 1B"
 			`	"Piracy is on the rise in the Dirt Belt," says Alondo. "And I know you have customers there. Such as the Tarazed Corporation. If we can count you among our friends, we could ensure that your convoys reach Tarazed unmolested."`
 			`	"And you would no doubt immediately purchase said weapons from Tarazed," says the man.`
 			`	An older man sitting next to him says, "Of course, such weapons would end up being bought at a significant price markup." He is grinning.`
-			`	You speak for a while longer, but Alondo manages to hash out a deal where the Free Worlds will defend any Syndicate ships they encounter in return for a promise that the Syndicate will not serve as Republic mercenaries and will not prevent you from purchasing their equipment indirectly through Tarazed. You thank the Syndicate leaders, and return to your ship.`
+			`	You speak for a while longer, but Alondo manages to hash out a deal where the Free Worlds will defend any Syndicate ships they encounter in return for a promise that the Syndicate will not serve as Republic mercenaries and will not prevent you from purchasing their equipment indirectly through Tarazed. Additionally, the Syndicate's new fighter will be made available at Tarazed Shipyards at such time that the Free Worlds requires them. You thank the Syndicate leaders, and return to your ship.`
 			`	"That was disgusting," says Alondo.`
 			choice
 				`	"I thought it went pretty well."`
@@ -563,9 +563,9 @@ mission "FW Hope Recon 1C"
 			
 			apply
 				set "fw caught navy planting sensors"
-			`	You approach the location, flying low to avoid detection, and come upon a Navy gunboat, landed on the planet. Some distance away from the ship, two figures in thick snowsuits are setting up some sort of equipment with lots of antennae. It seems that the Navy had the same idea as Freya, of using this world as a listening post. Your sensors show that the gunboat is powered down.`
+			`	You approach the location, flying low to avoid detection, and come upon a Navy gunboat, landed on the planet. Some distance away from the ship, several figures in thick snowsuits are setting up some sort of equipment with lots of antennae. It seems that the Navy had the same idea as Freya, of using this world as a listening post. Your sensors show that the gunboat is powered down.`
 			`	The moment your ship comes over the horizon, they start running back toward the gunboat. You destroy their equipment with a few well-placed shots, then train your guns on the crew members, who are still some distance from their ship. When they realize they cannot get back to it before being shot, they raise their hands in surrender.`
-			`	A gunboat typically only has two crew members, which means if they are alone, you could kill them and steal their ship. On the other hand, if there are more crew aboard the ship it would be better to destroy it first, then finish off the landing crew.`
+			`	You count seven crew members in the group, which is the typical crew complement of a gunboat. That may mean the gunboat is uncrewed, and you could kill the crew and steal it. On the other hand, if there are more crew aboard the ship it would be better to destroy it first, then finish off the landing crew.`
 			choice
 				`	(Destroy the ship, then finish off the crew.)`
 					goto destroy
@@ -670,8 +670,8 @@ mission "FW Plasma Testing 1B"
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	npc accompany save
-		government "Escort"
-		personality heroic
+		government "Free Worlds"
+		personality heroic escort
 		ship "Falcon (Plasma)" "Walloping Window-Blind"
 	npc kill
 		government "Pirate"
@@ -753,11 +753,11 @@ mission "FW Plasma Testing 1B"
 					goto overheat
 			
 			label impressive
-			`	"Yes," he said, "the team sent me some videos of the battle. First-rate carnage. I was very pleased. Anything weak spots you noticed?"`
+			`	"Yes," he said, "the team sent me some videos of the battle. First-rate carnage. I was very pleased. Any weak spots you noticed?"`
 				goto improve
 			
 			label overheat
-			`	"Yes, it will require a lot of cooling," he says. "Anything other weak spots?"`
+			`	"Yes, it will require a lot of cooling," he says. "Any other weak spots?"`
 				goto improve
 			
 			label improve
@@ -1258,7 +1258,7 @@ mission "FW Pirates 3.1"
 				goto plan
 			label disagree
 			`	"Absolutely," says Tomek. "The Senate doesn't know what's best for them. Perhaps we should save them from their own stupidity and make sure the right thing gets done."`
-			`	"Tomek," says Freya, "this is a diplomacy. We follow the Senate's orders."`
+			`	"Tomek," says Freya, "this is a democracy. We follow the Senate's orders."`
 			label plan
 			`	JJ says, "Captain <last>, the Senate wants you to travel to Thule and deliver their ultimatum. You will be given a single Falcon as an escort: not enough for a battle fleet, just enough to keep you safe. You are to avoid engaging any pirates you meet, if possible."`
 			`	"I'll introduce you to your escort," says Tomek, and he leads you out of the bar. Once you are outside, he pulls you aside and says, "If by any chance you are attacked by pirates along the way, and if you have any reason to suspect that they originate from the <system> system, you would be totally justified in attacking that system instead of following your initial orders. I could even supply you with a backup fleet, if that happened."`
@@ -1294,7 +1294,7 @@ mission "FW Pirates 3.2"
 			choice
 				`	"Yes, it's our best chance for eliminating the pirates."`
 					goto yes
-				`	"Only if the Senate agrees. This is a diplomatic government, after all."`
+				`	"Only if the Senate agrees. This is a democratic government, after all."`
 				`	"What's going on? Are you drunk?"`
 			`	"Those fools in the Senate want us to negotiate with the pirates," he says. "We need to save them from their own stupidity. I've got a battle fleet waiting for you on <planet>, brave captains who are willing to join you."`
 				goto others
@@ -1310,7 +1310,7 @@ mission "FW Pirates 3.2"
 					goto leave
 				`	"So, we're not going to attack the pirates?"`
 			`	Tomek says, "No, we're just going to let them sit there waiting to stab us in the back at the first opportunity."`
-			`	JJ puts a hand on his shoulder and says, "Calm down. We're obeying the orders of the Senate. We have to honor the diplomatic process even when we don't like the decisions they make. Captain, I hope your mission to Thule is a success."`
+			`	JJ puts a hand on his shoulder and says, "Calm down. We're obeying the orders of the Senate. We have to honor the democratic process even when we don't like the decisions they make. Captain, I hope your mission to Thule is a success."`
 			label leave
 			`	As you stand up to leave the bar, Tomek says, "Remember what we talked about, <first>."`
 				accept
@@ -1343,8 +1343,8 @@ mission "FW Pirates 3.2A"
 		set "fw pirates: disobeyed senate"
 	
 	npc
-		personality heroic
-		government "Escort"
+		personality heroic escort
+		government "Free Worlds"
 		fleet "Small Free Worlds"
 		fleet "Small Free Worlds"
 		fleet "Small Free Worlds"
@@ -1595,7 +1595,7 @@ mission "FW Pirates 4.1"
 				`	"Yes."`
 					goto reason
 				`	"No, I was led to believe that I was following the Senate's orders."`
-			`	"Interesting," sys Arianna. "That's not what Tomek told us. And JJ and Freya both said that you were well aware of the Senate's wishes."`
+			`	"Interesting," says Arianna. "That's not what Tomek told us. And JJ and Freya both said that you were well aware of the Senate's wishes."`
 			label reason
 			`	One of the other Senators, an older man, asks, "Why did you choose to take part in the attack?"`
 			choice
@@ -1610,7 +1610,7 @@ mission "FW Pirates 4.1"
 			`	"Indeed," says the senator. "And I bet it wasn't long after the battle that you realized saving the galaxy isn't that easy."`
 			`	"I suppose so," you admit.`
 			label sentence
-			`	A third senator speaks up, a woman whose name card identifies her as Sara, from Skymoot. "That will be all, Captain <last>. The Senate will confer and decide whether we to want your continued services."`
+			`	A third senator speaks up, a woman whose name card identifies her as Sara, from Skymoot. "That will be all, Captain <last>. The Senate will confer and decide whether we want your continued services."`
 			`	You are led back out to the lobby, where you wait for what feels like another hour. Finally, a messenger comes and hands you a small slip of paper. You open it. The message reads: "We have decided that you will be suspended without pay. When we are in need of your services again, we will contact you." It looks like for now, you are back to being a simple merchant captain.`
 
 

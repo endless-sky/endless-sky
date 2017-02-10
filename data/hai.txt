@@ -1,4 +1,4 @@
-# Copyright (c) 2014-2015 by Michael Zahniser
+# Copyright (c) 2014-2016 by Michael Zahniser
 #
 # Endless Sky is free software: you can redistribute it and/or modify it under the
 # terms of the GNU General Public License as published by the Free Software
@@ -7,31 +7,6 @@
 # Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
-
-government "Hai"
-	swizzle 0
-	color .69 .33 .82
-	
-	"player reputation" 0
-	"attitude toward"
-		"Hai (Unfettered)" -.5
-	"bribe" .02
-	"fine" 0
-	"friendly hail" "friendly hai"
-	"hostile hail" "hostile hai"
-
-government "Hai (Unfettered)"
-	swizzle 4
-	color .84 .42 .81
-	
-	"player reputation" -1000
-	"attitude toward"
-		"Hai" -.1
-		"Wanderer" -.1
-		"Pug" -.1
-	"bribe" .02
-	"fine" 0
-	"hostile hail" "hostile unfettered"
 
 fleet "Small Hai"
 	government "Hai"
@@ -111,12 +86,30 @@ fleet "Large Hai"
 	variant 3
 		"Shield Beetle (Tracker)"
 		"Water Bug" 3
+	variant 3
+		"Shield Beetle (Pulse)"
+		"Lightning Bug (Pulse)" 2
+	variant 2
+		"Shield Beetle (Pulse)"
+		"Shield Beetle"
+	variant 2
+		"Shield Beetle (Pulse)"
+		"Shield Beetle (Tracker)"
+	variant
+		"Shield Beetle (Pulse)"
+		"Shield Beetle"
+		"Lightning Bug (Pulse)" 2
+	variant
+		"Shield Beetle (Pulse)"
+		"Shield Beetle (Tracker)"
+		"Lightning Bug" 2
 
 fleet "Small Unfettered"
 	government "Hai (Unfettered)"
 	names "hai"
 	cargo 3
 	personality
+		disables
 		plunders
 	variant 3
 		"Lightning Bug (Pulse)" 2
@@ -132,6 +125,7 @@ fleet "Large Unfettered"
 	names "hai"
 	cargo 3
 	personality
+		disables
 		plunders
 	variant 2
 		"Shield Beetle"
@@ -154,6 +148,23 @@ fleet "Large Unfettered"
 		"Shield Beetle" 2
 	variant 1
 		"Lightning Bug" 5
+	variant 3
+		"Shield Beetle (Pulse)"
+		"Lightning Bug (Pulse)" 2
+	variant 2
+		"Shield Beetle (Pulse)"
+		"Shield Beetle"
+	variant 2
+		"Shield Beetle (Pulse)"
+		"Shield Beetle (Tracker)"
+	variant
+		"Shield Beetle (Pulse)"
+		"Shield Beetle"
+		"Lightning Bug (Pulse)" 2
+	variant
+		"Shield Beetle (Pulse)"
+		"Shield Beetle (Tracker)"
+		"Lightning Bug" 2
 
 fleet "Unfettered Raid"
 	government "Hai (Unfettered)"
@@ -168,285 +179,6 @@ fleet "Unfettered Raid"
 	variant
 		"Shield Beetle (Jump)" 1
 		"Shield Beetle (Jump, Tracker)" 2
-
-ship "Lightning Bug"
-	sprite "ship/hai lightning bug"
-	attributes
-		category "Light Warship"
-		"cost" 3200000
-		"shields" 6700
-		"hull" 1700
-		"required crew" 4
-		"bunks" 10
-		"mass" 220
-		"drag" 3.8
-		"heat dissipation" .85
-		"fuel capacity" 600
-		"cargo space" 73
-		"outfit space" 278
-		"weapon capacity" 87
-		"engine capacity" 93
-		weapon
-			"blast radius" 84
-			"shield damage" 840
-			"hull damage" 420
-			"hit force" 1260
-	outfits
-		"Ion Cannon"
-		"Anti-Missile Turret" 2
-		"Fission Reactor"
-		"LP072a Battery Pack"
-		"S-270 Regenerator"
-		"Cooling Ducts"
-		"A250 Atomic Thruster"
-		"A375 Atomic Steering"
-		"Hyperdrive"
-	engine -40 22
-	engine 40 22
-	gun 0 -40
-	turret -47 18
-	turret 47 18
-	explode "tiny explosion" 18
-	explode "small explosion" 36
-	explode "medium explosion" 24
-	explode "big explosion" 8
-	description "The Lightning Bug is a small defensive ship, mostly used by the Hai as a convoy escort. In its stock configuration, its only offensive weapon is a single ion cannon."
-
-ship "Lightning Bug" "Lightning Bug (Pulse)"
-	outfits
-		"Hai Tracker Pod"
-		"Hai Tracker" 56
-		"Pulse Turret" 2
-		"Fission Reactor"
-		"LP036a Battery Pack"
-		"S-270 Regenerator"
-		"Cooling Ducts"
-		"A370 Atomic Thruster"
-		"A255 Atomic Steering"
-		"Hyperdrive"
-
-ship "Aphid"
-	sprite "ship/hai aphid"
-	attributes
-		category "Light Freighter"
-		"cost" 570000
-		"shields" 1700
-		"hull" 1400
-		"required crew" 1
-		"bunks" 5
-		"mass" 100
-		"drag" 1.9
-		"heat dissipation" .90
-		"fuel capacity" 400
-		"cargo space" 51
-		"outfit space" 185
-		"weapon capacity" 37
-		"engine capacity" 48
-		weapon
-			"blast radius" 30
-			"shield damage" 300
-			"hull damage" 150
-			"hit force" 450
-	outfits
-		"Pulse Turret"
-		"Dwarf Core"
-		"LP036a Battery Pack"
-		"S-270 Regenerator"
-		"Cooling Ducts"
-		"A120 Atomic Thruster"
-		"A125 Atomic Steering"
-		"Hyperdrive"
-	engine -8 40
-	engine 8 40
-	turret 0 24
-	explode "tiny explosion" 10
-	explode "small explosion" 20
-	explode "medium explosion" 15
-	description "The Aphid is a light freighter designed by the Hai. It has only minimal armament."
-
-ship "Aphid" "Aphid (Anti-Missile)"
-	outfits
-		"Heavy Anti-Missile Turret"
-		"Dwarf Core"
-		"LP036a Battery Pack"
-		"S-270 Regenerator"
-		"Cooling Ducts"
-		"A120 Atomic Thruster"
-		"A255 Atomic Steering"
-		"Hyperdrive"
-
-ship "Water Bug"
-	sprite "ship/hai water bug"
-	attributes
-		category "Heavy Freighter"
-		"cost" 6500000
-		"shields" 7900
-		"hull" 4500
-		"required crew" 5
-		"bunks" 29
-		"mass" 270
-		"drag" 5.9
-		"heat dissipation" .75
-		"fuel capacity" 600
-		"cargo space" 197
-		"outfit space" 368
-		"weapon capacity" 145
-		"engine capacity" 64
-		weapon
-			"blast radius" 124
-			"shield damage" 1240
-			"hull damage" 620
-			"hit force" 1860
-	outfits
-		"Hai Tracker Pod" 2
-		"Hai Tracker" 112
-		"Pulse Turret"
-		"Heavy Anti-Missile Turret" 2
-		"Fission Reactor"
-		"LP144a Battery Pack"
-		"S-970 Regenerator"
-		"Cooling Ducts"
-		"A250 Atomic Thruster"
-		"A255 Atomic Steering"
-		"Hyperdrive"
-	engine -50 33
-	engine 50 33
-	gun -24 -53 "Hai Tracker Pod"
-	gun 24 -53 "Hai Tracker Pod"
-	turret 0 -10 "Pulse Turret"
-	turret -17 17 "Heavy Anti-Missile Turret"
-	turret 17 17 "Heavy Anti-Missile Turret"
-	explode "small explosion" 15
-	explode "medium explosion" 30
-	explode "big explosion" 20
-	explode "huge explosion" 5
-	description "The Water Bug is the primary freight ship used by the Hai."
-
-ship "Water Bug" "Water Bug (Pulse)"
-	outfits
-		"Hai Tracker Pod" 2
-		"Hai Tracker" 112
-		"Pulse Turret" 3
-		"Fission Reactor"
-		"LP144a Battery Pack"
-		"S-970 Regenerator"
-		"Cooling Ducts"
-		"A250 Atomic Thruster"
-		"A255 Atomic Steering"
-		"Hyperdrive"
-
-ship "Shield Beetle"
-	sprite "ship/hai shield beetle"
-	attributes
-		category "Heavy Warship"
-		"cost" 17900000
-		"shields" 32000
-		"hull" 9800
-		"required crew" 47
-		"bunks" 95
-		"mass" 650
-		"drag" 8.8
-		"heat dissipation" .60
-		"fuel capacity" 500
-		"cargo space" 142
-		"outfit space" 798
-		"weapon capacity" 333
-		"engine capacity" 150
-		weapon
-			"blast radius" 400
-			"shield damage" 4000
-			"hull damage" 2000
-			"hit force" 3000
-	outfits
-		"Ion Cannon" 4
-		"Hai Tracker Pod" 4
-		"Hai Tracker" 224
-		"Heavy Anti-Missile Turret" 2
-		"Fusion Reactor"
-		"Fission Reactor"
-		"LP288a Battery Pack"
-		"S-970 Regenerator"
-		"Cooling Ducts" 4
-		"A370 Atomic Thruster"
-		"A865 Atomic Steering"
-		"Hyperdrive"
-	engine -44 133
-	engine 44 133
-	gun -22 -102 "Ion Cannon"
-	gun 22 -102 "Ion Cannon"
-	gun -49 -38 "Ion Cannon"
-	gun 49 -38 "Ion Cannon"
-	gun -34 -68 "Hai Tracker Pod"
-	gun 34 -68 "Hai Tracker Pod"
-	gun -61 -14 "Hai Tracker Pod"
-	gun 61 -14 "Hai Tracker Pod"
-	turret -57 75 "Heavy Anti-Missile Turret"
-	turret 57 75 "Heavy Anti-Missile Turret"
-	turret -39 48
-	turret 39 48
-	explode "tiny explosion" 50
-	explode "small explosion" 50
-	explode "medium explosion" 50
-	explode "big explosion" 50
-	explode "huge explosion" 20
-	description "The Shield Beetle is a versatile warship used by the Hai to guard their merchant convoys."
-
-ship "Shield Beetle" "Shield Beetle (Tracker)"
-	outfits
-		"Hai Tracker Pod" 8
-		"Hai Tracker" 448
-		"Pulse Turret" 4
-		"Fusion Reactor"
-		"Fission Reactor"
-		"LP288a Battery Pack"
-		"S-970 Regenerator"
-		"Cooling Ducts" 4
-		"A520 Atomic Thruster"
-		"A525 Atomic Steering"
-		"Hyperdrive"
-
-ship "Shield Beetle" "Shield Beetle (Jump)"
-	outfits
-		"Ion Cannon" 4
-		"Hai Tracker Pod" 4
-		"Hai Tracker" 224
-		"Heavy Anti-Missile Turret" 2
-		"Fusion Reactor"
-		"Fission Reactor"
-		"LP288a Battery Pack"
-		"Mass Expansion" 4
-		"S-970 Regenerator" 2
-		"Fuel Pod" 3
-		"Cooling Ducts" 4
-		"A370 Atomic Thruster"
-		"A865 Atomic Steering"
-		"Jump Drive"
-	gun "Ion Cannon"
-	gun "Ion Cannon"
-	gun "Ion Cannon"
-	gun "Ion Cannon"
-	gun "Hai Tracker Pod"
-	gun "Hai Tracker Pod"
-	gun "Hai Tracker Pod"
-	gun "Hai Tracker Pod"
-	turret "Heavy Anti-Missile Turret"
-	turret "Heavy Anti-Missile Turret"
-
-ship "Shield Beetle" "Shield Beetle (Jump, Tracker)"
-	outfits
-		"Hai Tracker Pod" 8
-		"Hai Tracker" 448
-		"Pulse Turret" 4
-		"Fusion Reactor"
-		"Fission Reactor"
-		"LP288a Battery Pack"
-		"Mass Expansion" 1
-		"S-970 Regenerator" 2
-		"Fuel Pod" 3
-		"Cooling Ducts" 4
-		"A520 Atomic Thruster"
-		"A525 Atomic Steering"
-		"Jump Drive"
 
 shipyard "Hai Basics"
 	"Aphid"
@@ -466,17 +198,17 @@ shipyard "Hai Advanced"
 outfitter "Hai Basics"
 	"Pulse Cannon"
 	"Hai Tracker"
-	"Anti-Missile Turret"
-	"Fission Reactor"
-	"Cooling Ducts"
+	"Bullfrog Anti-Missile"
+	"Geode Reactor"
+	"Hai Williwaw Cooling"
 	"Hyperdrive"
-	"LP036a Battery Pack"
-	"LP072a Battery Pack"
+	"Hai Chasm Batteries"
+	"Hai Fissure Batteries"
 	"Supercapacitor"
 	"Cargo Expansion"
-	"S-270 Regenerator"
-	"A120 Atomic Thruster"
-	"A125 Atomic Steering"
+	"Hai Corundum Regenerator"
+	`"Basrem" Atomic Thruster`
+	`"Basrem" Atomic Steering`
 	"Local Map"
 
 outfitter "Hai Intermediate"
@@ -484,25 +216,26 @@ outfitter "Hai Intermediate"
 	"Pulse Turret"
 	"Hai Tracker"
 	"Hai Tracker Pod"
-	"Anti-Missile Turret"
-	"Heavy Anti-Missile Turret"
-	"Dwarf Core"
-	"Fission Reactor"
-	"Cooling Ducts"
+	"Tracker Storage Pod"
+	"Bullfrog Anti-Missile"
+	"Chameleon Anti-Missile"
+	"Pebble Core"
+	"Geode Reactor"
+	"Hai Williwaw Cooling"
 	"Hyperdrive"
-	"LP036a Battery Pack"
-	"LP072a Battery Pack"
-	"LP144a Battery Pack"
+	"Hai Chasm Batteries"
+	"Hai Fissure Batteries"
+	"Hai Gorge Batteries"
 	"Supercapacitor"
 	"Mass Expansion"
 	"Cargo Expansion"
-	"S-270 Regenerator"
-	"A120 Atomic Thruster"
-	"A125 Atomic Steering"
-	"A250 Atomic Thruster"
-	"A255 Atomic Steering"
-	"A370 Atomic Thruster"
-	"A375 Atomic Steering"
+	"Hai Corundum Regenerator"
+	`"Basrem" Atomic Thruster`
+	`"Basrem" Atomic Steering`
+	`"Benga" Atomic Thruster`
+	`"Benga" Atomic Steering`
+	`"Biroo" Atomic Thruster`
+	`"Biroo" Atomic Steering`
 	"Local Map"
 
 outfitter "Hai Advanced"
@@ -511,33 +244,34 @@ outfitter "Hai Advanced"
 	"Pulse Turret"
 	"Hai Tracker"
 	"Hai Tracker Pod"
-	"Anti-Missile Turret"
-	"Heavy Anti-Missile Turret"
-	"Dwarf Core"
-	"Fission Reactor"
-	"Fusion Reactor"
-	"Cooling Ducts"
+	"Tracker Storage Pod"
+	"Bullfrog Anti-Missile"
+	"Chameleon Anti-Missile"
+	"Pebble Core"
+	"Geode Reactor"
+	"Boulder Reactor"
+	"Hai Williwaw Cooling"
 	"Hyperdrive"
-	"LP036a Battery Pack"
-	"LP072a Battery Pack"
-	"LP144a Battery Pack"
-	"LP288a Battery Pack"
-	"LP576a Battery Pack"
+	"Hai Chasm Batteries"
+	"Hai Fissure Batteries"
+	"Hai Gorge Batteries"
+	"Hai Ravine Batteries"
+	"Hai Valley Batteries"
 	"Supercapacitor"
 	"Mass Expansion"
 	"Cargo Expansion"
-	"S-270 Regenerator"
-	"S-970 Regenerator"
-	"A120 Atomic Thruster"
-	"A125 Atomic Steering"
-	"A250 Atomic Thruster"
-	"A255 Atomic Steering"
-	"A370 Atomic Thruster"
-	"A375 Atomic Steering"
-	"A520 Atomic Thruster"
-	"A525 Atomic Steering"
-	"A860 Atomic Thruster"
-	"A865 Atomic Steering"
+	"Hai Corundum Regenerator"
+	"Hai Diamond Regenerator"
+	`"Basrem" Atomic Thruster`
+	`"Basrem" Atomic Steering`
+	`"Benga" Atomic Thruster`
+	`"Benga" Atomic Steering`
+	`"Biroo" Atomic Thruster`
+	`"Biroo" Atomic Steering`
+	`"Bondir" Atomic Thruster`
+	`"Bondir" Atomic Steering`
+	`"Bufaer" Atomic Thruster`
+	`"Bufaer" Atomic Steering`
 	"Local Map"
 
 phrase "hai"
@@ -751,6 +485,7 @@ phrase "hostile unfettered"
 		"fragile"
 		"frail"
 		"pathetic"
+		"weak"
 	word
 		"; we are the "
 		"! We are the "

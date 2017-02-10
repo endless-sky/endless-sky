@@ -19,17 +19,17 @@ using namespace std;
 namespace {
 	mutex incomingMutex;
 	
-	vector<string> incoming;
+	vector<pair<string, bool>> incoming;
 	vector<Messages::Entry> list;
 }
 
 
 
 // Add a message to the list.
-void Messages::Add(const string &message)
+void Messages::Add(const string &message, bool isImportant)
 {
 	lock_guard<mutex> lock(incomingMutex);
-	incoming.emplace_back(message);
+	incoming.emplace_back(message, isImportant);
 }
 
 
@@ -42,15 +42,32 @@ const vector<Messages::Entry> &Messages::Get(int step)
 	lock_guard<mutex> lock(incomingMutex);
 	
 	// Load the incoming messages.
-	for(const string &message : incoming)
+	for(const pair<string, bool> &item : incoming)
 	{
+		const string &message = item.first;
+		bool isImportant = item.second;
+		
+		// If this message is not important and it is already being shown in the
+		// list, ignore it.
+		if(!isImportant)
+		{
+			bool skip = false;
+			for(const Messages::Entry &entry : list)
+				skip |= (entry.message == message);
+			if(skip)
+				continue;
+		}
+		
 		// For each incoming message, if it exactly matches an existing message,
 		// replace that one with this new one.
 		auto it = list.begin();
 		while(it != list.end())
 		{
+			// Each time a new message comes in, "age" all the existing ones to
+			// limit how many of them appear at once.
+			it->step -= 60;
 			// Also erase messages that have reached the end of their lifetime.
-			if(it->message == message || it->step < step - 1000)
+			if((isImportant && it->message == message) || it->step < step - 1000)
 				it = list.erase(it);
 			else
 				++it;

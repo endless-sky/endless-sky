@@ -74,11 +74,15 @@ public:
 	double Distance(const Point &point) const;
 	double DistanceSquared(const Point &point) const;
 	
+	friend Point abs(const Point &p);
+	friend Point min(const Point &p, const Point &q);
+	friend Point max(const Point &p, const Point &q);
+	
 	
 private:
 #ifdef __SSE3__
 	// Private constructor, using a vector.
-	Point(const __m128d &v);
+	explicit Point(const __m128d &v);
 	
 	
 private:

@@ -8,306 +8,7 @@
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
-government "Wanderer"
-	swizzle 2
-	color .70 .91 .12
-	"player reputation" 1
-	language "Wanderer"
-	"friendly hail" "wanderer untranslated"
-	"hostile hail" "wanderer untranslated"
-
-
-ship "Earth Shaper"
-	sprite "ship/earth shaper"
-	licenses
-		Wanderer
-	attributes
-		category "Interceptor"
-		"cost" 500000
-		"hull" 3300
-		"mass" 30
-		"drag" .5
-		"heat dissipation" .9
-		"fuel capacity" 300
-		"outfit space" 59
-		"engine capacity" 26
-		"atmosphere scan" 100
-		weapon
-			"blast radius" 10
-			"shield damage" 100
-			"hull damage" 150
-			"hit force" 250
-	outfits
-		"Small Biochemical Cell"
-		
-		"Type 1 Radiant Thruster"
-		"Type 1 Radiant Steering"
-		"Hyperdrive"
-		
-	engine -9 30
-	engine 9 30
-	explode "tiny explosion" 20
-	explode "small explosion" 10
-	description "The Earth Shaper is a robotic drone that the Wanderers use for mining, exploring, surveying, and terraforming."
-
-ship "Summer Leaf"
-	sprite "ship/summer leaf"
-	licenses
-		Wanderer
-	attributes
-		category "Light Warship"
-		"cost" 9500000
-		"shields" 14400
-		"hull" 6700
-		"required crew" 6
-		"bunks" 15
-		"mass" 110
-		"drag" 2.6
-		"heat dissipation" .8
-		"fuel capacity" 600
-		"cargo space" 36
-		"outfit space" 295
-		"weapon capacity" 84
-		"engine capacity" 103
-		weapon
-			"blast radius" 70
-			"shield damage" 700
-			"hull damage" 350
-			"hit force" 1050
-	outfits
-		"Sunbeam" 2
-		
-		"Yellow Sun Reactor"
-		"Bright Cloud Shielding"
-		
-		"Type 3 Radiant Thruster"
-		"Type 3 Radiant Steering"
-		"Hyperdrive"
-		
-	engine -18 64
-	engine 18 64
-	gun -29 -9
-	gun 29 -9
-	explode "tiny explosion" 40
-	explode "small explosion" 20
-	explode "medium explosion" 10
-	description "The Summer Leaf is mostly used by the Wanderers as a light transport, but it is also quite effective in combat."
-
-ship "Strong Wind"
-	sprite "ship/strong wind"
-	licenses
-		"Wanderer Military"
-	attributes
-		category "Medium Warship"
-		"cost" 16100000
-		"shields" 28500
-		"hull" 19600
-		"required crew" 17
-		"bunks" 39
-		"mass" 260
-		"drag" 4.7
-		"heat dissipation" .7
-		"fuel capacity" 400
-		"cargo space" 36
-		"outfit space" 493
-		"weapon capacity" 198
-		"engine capacity" 114
-		weapon
-			"blast radius" 200
-			"shield damage" 2000
-			"hull damage" 1000
-			"hit force" 3000
-	outfits
-		"Sunbeam" 4
-		"Thunderhead Launcher" 2
-		"Thunderhead Missile" 80
-		
-		"White Sun Reactor"
-		"Dark Storm Shielding"
-		
-		"Type 3 Radiant Thruster"
-		"Type 4 Radiant Steering"
-		"Hyperdrive"
-		
-	engine -30 127
-	engine 30 127
-	gun -64 13 "Sunbeam"
-	gun 64 13 "Sunbeam"
-	gun -57 21 "Sunbeam"
-	gun 57 21 "Sunbeam"
-	gun -32 57 "Thunderhead Launcher"
-	gun 32 57 "Thunderhead Launcher"
-	explode "small explosion" 60
-	explode "medium explosion" 40
-	explode "large explosion" 20
-	description "The Strong Wind is a Wanderer warship, an ancient design that they make use of only on the rare occasions when they find it necessary to defend themselves."
-
-ship "Deep River"
-	sprite "ship/deep river"
-	licenses
-		Wanderer
-	attributes
-		category "Heavy Freighter"
-		"cost" 18300000
-		"shields" 17600
-		"hull" 47500
-		"required crew" 13
-		"bunks" 22
-		"mass" 750
-		"drag" 9.4
-		"heat dissipation" .6
-		"fuel capacity" 500
-		"cargo space" 760
-		"outfit space" 363
-		"weapon capacity" 177
-		"engine capacity" 83
-		weapon
-			"blast radius" 280
-			"shield damage" 2800
-			"hull damage" 1400
-			"hit force" 4200
-	outfits
-		"Thunderhead Launcher" 6
-		"Thunderhead Missile" 240
-		
-		"Large Biochemical Cell"
-		"Bright Cloud Shielding"
-		
-		"Type 2 Radiant Thruster"
-		"Type 3 Radiant Steering"
-		"Hyperdrive"
-		
-	engine 53 345
-	engine 0 345
-	engine -53 345
-	gun -56 -217
-	gun -40 -217
-	gun -18 -217
-	gun 18 -217
-	gun 40 -217
-	gun 56 -217
-	explode "small explosion" 80
-	explode "medium explosion" 60
-	explode "large explosion" 30
-	explode "huge explosion" 20
-	description "The Deep River is a bulk freighter, designed to carry cargo in detachable pods."
-
-ship "Deep River" "Deep River 0"
-	sprite "ship/deep river 0"
-	attributes
-		category "Heavy Freighter"
-		"cost" 8300000
-		"shields" 17600
-		"hull" 47500
-		"required crew" 13
-		"bunks" 22
-		"mass" 350
-		"drag" 7.4
-		"heat dissipation" .6
-		"fuel capacity" 500
-		"cargo space" 0
-		"outfit space" 363
-		"weapon capacity" 177
-		"engine capacity" 83
-		weapon
-			"blast radius" 280
-			"shield damage" 2800
-			"hull damage" 1400
-			"hit force" 4200
-
-ship "Deep River" "Deep River 1"
-	sprite "ship/deep river 1"
-	attributes
-		category "Heavy Freighter"
-		"cost" 10300000
-		"shields" 17600
-		"hull" 47500
-		"required crew" 13
-		"bunks" 22
-		"mass" 430
-		"drag" 7.8
-		"heat dissipation" .6
-		"fuel capacity" 500
-		"cargo space" 152
-		"outfit space" 363
-		"weapon capacity" 177
-		"engine capacity" 83
-		weapon
-			"blast radius" 280
-			"shield damage" 2800
-			"hull damage" 1400
-			"hit force" 4200
-
-ship "Deep River" "Deep River 2"
-	sprite "ship/deep river 2"
-	attributes
-		category "Heavy Freighter"
-		"cost" 12300000
-		"shields" 17600
-		"hull" 47500
-		"required crew" 13
-		"bunks" 22
-		"mass" 510
-		"drag" 8.2
-		"heat dissipation" .6
-		"fuel capacity" 500
-		"cargo space" 304
-		"outfit space" 363
-		"weapon capacity" 177
-		"engine capacity" 83
-		weapon
-			"blast radius" 280
-			"shield damage" 2800
-			"hull damage" 1400
-			"hit force" 4200
-
-ship "Deep River" "Deep River 3"
-	sprite "ship/deep river 3"
-	attributes
-		category "Heavy Freighter"
-		"cost" 14300000
-		"shields" 17600
-		"hull" 47500
-		"required crew" 13
-		"bunks" 22
-		"mass" 590
-		"drag" 8.6
-		"heat dissipation" .6
-		"fuel capacity" 500
-		"cargo space" 456
-		"outfit space" 363
-		"weapon capacity" 177
-		"engine capacity" 83
-		weapon
-			"blast radius" 280
-			"shield damage" 2800
-			"hull damage" 1400
-			"hit force" 4200
-
-ship "Deep River" "Deep River 4"
-	sprite "ship/deep river 4"
-	attributes
-		category "Heavy Freighter"
-		"cost" 16300000
-		"shields" 17600
-		"hull" 47500
-		"required crew" 13
-		"bunks" 22
-		"mass" 670
-		"drag" 9.0
-		"heat dissipation" .6
-		"fuel capacity" 500
-		"cargo space" 608
-		"outfit space" 363
-		"weapon capacity" 177
-		"engine capacity" 83
-		weapon
-			"blast radius" 280
-			"shield damage" 2800
-			"hull damage" 1400
-			"hit force" 4200
-
-
+# Ship names:
 phrase "wanderer"
 	word
 		"Iyik'"
@@ -408,282 +109,20 @@ fleet "Wanderer Defense"
 	variant
 		"Strong Wind" 3
 
-
-outfit "Sunbeam"
-	category "Guns"
-	cost 2350000
-	thumbnail "outfit/sunbeam"
-	"mass" 34
-	"outfit space" -34
-	"weapon capacity" -34
-	"gun ports" -1
-	weapon
-		sprite "projectile/sunbeam"
-			"frame rate" 1.3
-			"random start frame"
-		sound "sunbeam"
-		"hit effect" "sunbeam impact"
-		"inaccuracy" .2
-		"velocity" 540
-		"lifetime" 1
-		"reload" 1
-		"firing energy" 4.3
-		"firing heat" 6.2
-		"shield damage" 7.2
-		"hull damage" 4.5
-		"heat damage" 12.1
-	description "The Wanderers do not devote much time to developing weapon technology, preferring to focus their attention on more constructive endeavors. However, the few weapons they have created are efficient and deadly."
-
-outfit "Thunderhead Missile"
-	category "Ammunition"
-	cost 1800
-	thumbnail "outfit/thunderhead"
-	"thunderhead capacity" -1
-	description "Thunderhead cluster munitions are long-range Wanderer missiles that splits into five fast and agile submunitions when they are close to their target. Each launcher can hold up to 40 of these."
-
-outfit "Thunderhead Launcher"
-	category "Secondary Weapons"
-	cost 450000
-	thumbnail "outfit/thunderhead launcher"
-	"mass" 26
-	"outfit space" -26
-	"weapon capacity" -26
-	"gun ports" -1
-	"thunderhead capacity" 40
-	weapon
-		sprite "projectile/thunderhead"
-			"no repeat"
-			"frame rate" .1
-		sound "thunderhead"
-		ammo "Thunderhead Missile"
-		icon "icon/thunderhead"
-		"submunition" "Thunderhead" 5
-		"split range" 600
-		"fire effect" "meteor fire"
-		"die effect" "missile death"
-		"hit effect" "medium explosion"
-		"inaccuracy" 10
-		"velocity" 4
-		"lifetime" 400
-		"reload" 75
-		"firing energy" 18
-		"firing heat" 36
-		"acceleration" 1.2
-		"drag" .1
-		"turn" 2
-		"homing" 4
-		"missile strength" 12
-	description "A prime example of Wanderer ingenuity, Thunderhead missiles each carry five submunitions that are capable of independent tracking. Even if the target is able to shoot down or evade a few of them, the remaining missile fragments will still find their mark."
-
-outfit "Thunderhead"
-	weapon
-		sprite "projectile/thunderhead fragment"
-			"no repeat"
-			"frame rate" .1
-		"die effect" "missile death"
-		"hit effect" "small explosion"
-		"inaccuracy" 90
-		"velocity" 2
-		"lifetime" 400
-		"acceleration" 1.4
-		"drag" .1
-		"turn" 3
-		"homing" 4
-		"shield damage" 80
-		"hull damage" 60
-		"hit force" 20
-		"missile strength" 3
-
-outfit "Small Biochemical Cell"
-	category "Power"
-	cost 60000
-	thumbnail "outfit/small biochemical"
-	"mass" 17
-	"outfit space" -17
-	"energy generation" 1.3
-	"heat generation" 3
-	"energy capacity" 300
-	description "This tiny generator draws energy from the metabolic byproducts of a collection of microorganisms that have been engineered by the Wanderers specifically for this purpose."
-
-outfit "Large Biochemical Cell"
-	category "Power"
-	cost 270000
-	thumbnail "outfit/large biochemical"
-	"mass" 63
-	"outfit space" -63
-	"energy generation" 5.2
-	"heat generation" 11
-	"energy capacity" 700
-	description "The Wanderers are masters of unusual and efficient technology. This bioreactor is fueled by a culture of microorganisms that produce a small electric charge."
-
-outfit "Yellow Sun Reactor"
-	category "Power"
-	cost 6500000
-	thumbnail "outfit/yellow sun"
-	"mass" 82
-	"outfit space" -82
-	"energy generation" 12.7
-	"heat generation" 21
-	"energy capacity" 2600
-	description "This is a compact nuclear reactor designed by the Wanderers. In addition to generating power, it is able to store a small amount of energy."
-
-outfit "White Sun Reactor"
-	category "Power"
-	cost 9000000
-	thumbnail "outfit/white sun"
-	"mass" 127
-	"outfit space" -127
-	"energy generation" 20.4
-	"heat generation" 32
-	"energy capacity" 6700
-	description "The White Sun is a large nuclear reactor that the Wanderers use for powering their Strong Wind warships."
-
-outfit "Type 1 Radiant Thruster"
-	category "Engines"
-	"cost" 250000
-	thumbnail "outfit/tiny radiant thruster"
-	"mass" 12
-	"outfit space" -12
-	"engine capacity" -12
-	"thrust" 6.6
-	"thrusting energy" 0.5
-	"thrusting heat" 0.9
-	"cooling" 1.5
-	"flare sprite" "effect/plasma flare/tiny"
-		"frame rate" 12
-	"flare sound" "plasma tiny"
-	description "This is the tiniest Wanderer engine. Like all their engines, it works in part by radiating excess heat, and as a result it doubles as a cooler for your ship."
-
-outfit "Type 2 Radiant Thruster"
-	category "Engines"
-	"cost" 500000
-	thumbnail "outfit/small radiant thruster"
-	"mass" 27
-	"outfit space" -27
-	"engine capacity" -27
-	"thrust" 17.6
-	"thrusting energy" 1.4
-	"thrusting heat" 2.5
-	"cooling" 3.6
-	"flare sprite" "effect/plasma flare/small"
-		"frame rate" 14
-	"flare sound" "plasma small"
-	description "Wanderer engines work by transferring excess heat from the ship into the exhaust plasma. When not providing thrust, the engines still serve as a cooling system."
-
-outfit "Type 3 Radiant Thruster"
-	category "Engines"
-	"cost" 830000
-	thumbnail "outfit/medium radiant thruster"
-	"mass" 42
-	"outfit space" -42
-	"engine capacity" -42
-	"thrust" 31.5
-	"thrusting energy" 2.3
-	"thrusting heat" 4.4
-	"cooling" 6.5
-	"flare sprite" "effect/plasma flare/medium"
-		"frame rate" 16
-	"flare sound" "plasma medium"
-	description "Most engines this size generate a considerable amount of heat, but the Wanderers have developed a way of using the engine itself to vent extra heat from a ship, generating extra propulsive force in the process."
-
-outfit "Type 4 Radiant Thruster"
-	category "Engines"
-	"cost" 1370000
-	thumbnail "outfit/large radiant thruster"
-	"mass" 65
-	"outfit space" -65
-	"engine capacity" -65
-	"thrust" 55.2
-	"thrusting energy" 3.7
-	"thrusting heat" 7.6
-	"cooling" 11.7
-	"flare sprite" "effect/plasma flare/big"
-		"frame rate" 18
-	"flare sound" "plasma large"
-	description "This is the largest engine that the Wanderers have developed. Its incredibly efficient design allows it to cool your ship even while it is firing."
-
-outfit "Type 1 Radiant Steering"
-	category "Engines"
-	"cost" 190000
-	thumbnail "outfit/tiny radiant steering"
-	"mass" 9
-	"outfit space" -9
-	"engine capacity" -9
-	"turn" 172.8
-	"turning energy" .3
-	"turning heat" 0.6
-	"cooling" 1.0
-	description "This tiny steering system is used by the Wanderers to power their unpiloted mining and surveying drones."
-
-outfit "Type 2 Radiant Steering"
-	category "Engines"
-	"cost" 400000
-	thumbnail "outfit/small radiant steering"
-	"mass" 20
-	"outfit space" -20
-	"engine capacity" -20
-	"turn" 454.0
-	"turning energy" .7
-	"turning heat" 1.5
-	"cooling" 2.1
-	description "This small Wanderer steering system vents excess heat from your ship even when it is not in use, allowing it to double as a cooling system."
-
-outfit "Type 3 Radiant Steering"
-	category "Engines"
-	"cost" 660000
-	thumbnail "outfit/medium radiant steering"
-	"mass" 30
-	"outfit space" -30
-	"engine capacity" -30
-	"turn" 786.0
-	"turning energy" 1.2
-	"turning heat" 2.6
-	"cooling" 3.9
-	description "This steering system is used by the Wanderers in their mid-sized ships. In addition to turning your ship, it is able to vent a considerable amount of heat."
-
-outfit "Type 4 Radiant Steering"
-	category "Engines"
-	"cost" 1100000
-	thumbnail "outfit/large radiant steering"
-	"mass" 47
-	"outfit space" -47
-	"engine capacity" -47
-	"turn" 1395.9
-	"turning energy" 2.0
-	"turning heat" 4.5
-	"cooling" 6.7
-	description "This is the largest steering system that the Wanderers sell."
-
-outfit "Bright Cloud Shielding"
-	category "Systems"
-	cost 220000
-	thumbnail "outfit/bright cloud"
-	"mass" 19
-	"outfit space" -19
-	"shield generation" 1.2
-	"shield energy" 1.8
-	description "This small Wanderer shield generator is able to recharge a ship's shields at a considerable rate, but it also consumes more energy than some other shield generators do."
-
-outfit "Dark Storm Shielding"
-	category "Systems"
-	cost 800000
-	thumbnail "outfit/dark storm"
-	"mass" 41
-	"outfit space" -41
-	"shield generation" 2.8
-	"shield energy" 4.2
-	description "This Wanderer shield generator can restore a ship's shield strength more quickly than any human shielding technology, but while recharging shields it also draws a much larger amount of power."
-
-
-effect "sunbeam impact"
-	sprite "effect/sunbeam impact"
-		"frame rate" 30
-		"random start frame"
-	"lifetime" 3
-	"random angle" 360
-	"random spin" 360
-	"random velocity" 4
-	"velocity scale" -.0001
+fleet "Wanderer Flycatchers"
+	government "Wanderer"
+	names "wanderer"
+	personality
+		swarming
+		heroic
+	variant
+		"Flycatcher" 5
+	variant
+		"Flycatcher" 4
+	variant
+		"Flycatcher" 3
+	variant
+		"Flycatcher" 2
 
 
 shipyard "Wanderer Basics"
@@ -708,12 +147,18 @@ outfitter "Wanderer Basics"
 	"Type 2 Radiant Steering"
 	"Type 3 Radiant Steering"
 	"Bright Cloud Shielding"
+	"Fuel Pod"
+	"Wanderer Ramscoop"
+	"Cargo Expansion"
+	"Mass Expansion"
+	"Local Map"
+	"Hyperdrive"
 
 outfitter "Wanderer Advanced"
 	"Sunbeam"
 	"Thunderhead Missile"
 	"Thunderhead Launcher"
-	"Thunderhead"
+	"Thunderhead Storage Array"
 	"Small Biochemical Cell"
 	"Large Biochemical Cell"
 	"Yellow Sun Reactor"
@@ -728,8 +173,15 @@ outfitter "Wanderer Advanced"
 	"Type 4 Radiant Steering"
 	"Bright Cloud Shielding"
 	"Dark Storm Shielding"
+	"Fuel Pod"
+	"Wanderer Ramscoop"
+	"Cargo Expansion"
+	"Mass Expansion"
+	"Local Map"
+	"Hyperdrive"
 
 
+# Hails:
 phrase "wanderer untranslated"
 	word
 		"Ayek"
@@ -893,3 +345,531 @@ phrase "friendly wanderer"
 		"lands."
 		"ecosystems."
 		"biospheres."
+
+
+
+event "wanderers: first tech increase"
+	system "Ik'kara'ka"
+		fleet "Wanderer Freight" 600
+		fleet "Wanderer Drones" 700
+		fleet "Wanderer Defense" 600
+		fleet "Wanderer Flycatchers" 400
+	system "Chy'chra"
+		fleet "Wanderer Freight" 1500
+		fleet "Wanderer Drones" 1000
+		fleet "Wanderer Defense" 300
+		fleet "Wanderer Flycatchers" 300
+	system "Prakacha'a"
+		fleet "Wanderer Freight" 400
+		fleet "Wanderer Drones" 400
+		fleet "Wanderer Defense" 400
+	system "Sich'ka'ara"
+		fleet "Wanderer Freight" 600
+		fleet "Wanderer Drones" 3000
+		fleet "Wanderer Defense" 2000
+		fleet "Wanderer Flycatchers" 600
+	system "Chirr'ay'akai"
+		fleet "Wanderer Freight" 800
+		fleet "Wanderer Drones" 600
+		fleet "Wanderer Defense" 2000
+		fleet "Wanderer Flycatchers" 800
+	system "Kiro'ku"
+		fleet "Wanderer Freight" 800
+		fleet "Wanderer Drones" 3000
+		fleet "Wanderer Defense" 7000
+		fleet "Wanderer Flycatchers" 1000
+	system "Ap'arak"
+		fleet "Wanderer Freight" 500
+		fleet "Wanderer Drones" 2000
+		fleet "Wanderer Defense" 3000
+		fleet "Wanderer Flycatchers" 1200
+	fleet "Wanderer Defense"
+		government "Wanderer"
+		names "wanderer"
+		personality
+			heroic
+		variant 3
+			"Strong Wind"
+			"Summer Leaf" 2
+		variant
+			"Summer Leaf" 5
+		variant 2
+			"Strong Wind" 2
+		variant 2
+			"Strong Wind"
+			"Summer Leaf"
+		variant
+			"Strong Wind"
+			"Summer Leaf" 3
+		variant
+			"Strong Wind" 3
+		variant 2
+			"Autumn Leaf" 2
+		variant 2
+			"Strong Wind"
+			"Autumn Leaf" 2
+		variant
+			"Strong Wind"
+			"Autumn Leaf"
+			"Summer Leaf"
+		variant
+			"Autumn Leaf"
+			"Summer Leaf" 2
+		variant 2
+			"Autumn Leaf"
+			"Summer Leaf"
+	shipyard "Wanderer Basics"
+		"Flycatcher"
+	shipyard "Wanderer Advanced"
+		"Flycatcher"
+		"Autumn Leaf"
+	outfitter "Wanderer Basics"
+		"Wanderer Anti-Missile"
+	outfitter "Wanderer Advanced"
+		"Wanderer Anti-Missile"
+		"Sunbeam Turret"
+		"Dual Sunbeam Turret"
+
+event "wanderers: unfettered invasion starts"
+	system "Ik'kara'ka"
+		fleet "Wanderer Freight" 1200
+		fleet "Wanderer Drones" 900
+		fleet "Wanderer Defense" 200
+		fleet "Wanderer Flycatchers" 200
+		fleet "Small Unfettered" 1200
+		fleet "Large Unfettered" 500
+	system "Chy'chra"
+		government "Hai (Unfettered)"
+		fleet "Wanderer Defense" 3000
+		fleet "Unfettered Raid" 1000
+		fleet "Small Unfettered" 400
+		fleet "Large Unfettered" 400
+	system "Prakacha'a"
+		fleet "Wanderer Freight" 900
+		fleet "Wanderer Drones" 800
+		fleet "Wanderer Defense" 200
+		fleet "Small Unfettered" 1800
+		fleet "Large Unfettered" 800
+	system "Ehma Ti"
+		fleet "Small Unfettered" 500
+		fleet "Large Unfettered" 500
+	system "Sich'ka'ara"
+		fleet "Wanderer Freight" 600
+		fleet "Wanderer Drones" 3000
+		fleet "Wanderer Defense" 400
+		fleet "Wanderer Flycatchers" 300
+		fleet "Large Unfettered" 1200
+	system "Chirr'ay'akai"
+		fleet "Wanderer Freight" 800
+		fleet "Wanderer Drones" 600
+		fleet "Wanderer Defense" 400
+		fleet "Wanderer Flycatchers" 300
+		fleet "Large Unfettered" 1200
+	"reputation: Hai (Unfettered)" <?= -100
+	government "Hai (Unfettered)"
+		"attitude toward"
+			"Wanderer" -.01
+	outfitter "Wanderer Advanced"
+		"Wanderer Anti-Missile"
+	planet "Varu K'est"
+		attributes unfettered
+		description `Varu K'est is a spare, ancient planet of arid plateaus and deep, meandering canyons, with too little rainfall to support any but the hardiest of shrubs. Before the Unfettered invaded, the only Wanderer settlements remaining here were the military bases they had set up to defend their frontier. Now, it is home to an ever-growing number of Unfettered settlements, including many civilians who have come here just for the chance to live on a world that is not overcrowded and polluted.`
+		spaceport `The Unfettered are using the few jump drives they have to ferry more and more of their people into Wanderer space. When each wave of ships arrives here in the spaceport, technicians carefully remove the jump drives from all but a few of them. A few well guarded jump-capable ships then carry those spare jump drives back to Unfettered space, where they are used to bring more ships and people.`
+		shipyard clear
+		outfitter clear
+
+event "wanderers: tempest mass production"
+	fleet "Wanderer Defense"
+		government "Wanderer"
+		names "wanderer"
+		personality
+			heroic
+		variant 6
+			"Tempest"
+			"Summer Leaf"
+			"Autumn Leaf"
+		variant 4
+			"Tempest (Heavy)"
+			"Strong Wind"
+		variant 1
+			"Tempest (Heavy)"
+			"Tempest"
+			"Tempest (Missile)"
+		variant 2
+			"Tempest (Heavy)"
+			"Tempest"
+		variant 1
+			"Tempest (Missile)" 2
+		variant 3
+			"Strong Wind"
+			"Summer Leaf" 2
+		variant 2
+			"Strong Wind" 2
+		variant 2
+			"Strong Wind"
+			"Autumn Leaf"
+		variant
+			"Strong Wind" 3
+		variant 2
+			"Autumn Leaf" 3
+		variant
+			"Strong Wind"
+			"Autumn Leaf"
+			"Summer Leaf"
+		variant
+			"Autumn Leaf"
+			"Summer Leaf" 2
+		variant
+			"Summer Leaf" 4
+	shipyard "Wanderer Advanced"
+		"Tempest"
+	outfitter "Wanderer Advanced"
+		"Red Sun Reactor"
+
+event "wanderers: more systems lost"
+	system "Ka'pru"
+		government "Hai (Unfettered)"
+		fleet "Large Unfettered" 2000
+		fleet "Small Unfettered" 1000
+	system "Kiro'ku"
+		government "Hai (Unfettered)"
+		fleet "Large Unfettered" 1200
+		fleet "Small Unfettered" 800
+	system "Sich'ka'ara"
+		government "Hai (Unfettered)"
+		fleet "Large Unfettered" 400
+		fleet "Small Unfettered" 400
+		fleet "Wanderer Defense" 600
+	planet "Vara Ke'stai"
+		attributes unfettered farming
+		description `The Wanderers worked for years to make this desert world bloom: planting hardy shrubs and cacti that eventually transform the sand into a soil that can hold moisture. In some regions, especially closer to the poles, the deserts have given way to dense forests, but near the equator there are still large stretches of dry and barren sand, broken by the occasional belt of green where a narrow river winds between the dunes.`
+		description `	Now that the Unfettered have taken over control of the planet, it may be only a matter of time before the deserts dominate it once again.`
+		spaceport `The spaceport is in a forest village near the planet's north pole. The landing pads are massive stone monoliths laid on the ground in a nearby clearing. But aside from a few large warehouses at ground level, the village itself is entirely made of tree-houses. Although they are very different from Hai architecture, the Unfettered seem to be quite at home living in the tree-houses, and have not built many of their own structures yet.`
+		outfitter clear
+	planet "Var' Kar'i'i"
+		attributes unfettered urban farming
+		description `Of all the worlds that the Unfettered have captured, this is surely the one that the Wanderers will miss the most: a heavily forested planet that was once home to countless small villages and even a few cities. The Unfettered are clearly doing their best to tend the farms here, but they operate on a permaculture system that relies heavily on maintaining a delicate ecological balance, rather than on machines and pesticides.`
+		spaceport `A large number of Unfettered settlers have already arrived here and begun setting up a spaceport village, complete with markets, taverns, and military barracks. To the Unfettered, who have lived their whole lives on worlds where the local ecology is in shambles, this planet must seem like a paradise.`
+		shipyard clear
+		outfitter clear
+	planet "Vara Ke'sok"
+		attributes unfettered fishing
+		description `The surface of this world is almost entirely ocean. The Wanderer settlements were built on massive floating algae mats, some of them the size of a small city. Engines are attached to some of these floating villages, allowing them to be slowly propelled from one part of the planet's surface to another, and the only native industries are fishing and seaweed farming.`
+		spaceport `The raft of algae that supports the spaceport is probably at least a dozen meters thick, but flexible enough that it bends as the ocean swells pass underneath, causing individual buildings to rise up or tilt slightly relative to their neighbors. Now that this world has been captured by the Unfettered, nearly all the buildings are empty; it appears that the Hai are not too fond of the idea of inhabiting a water world, so they are using it mostly as a military base.`
+
+planet "The Eye"
+	spaceport ""
+
+event "wanderers: the eye begins to open"
+	system Sko'karak
+		fleet "Wanderer Defense" 500
+		object
+			sprite star/m0
+			period 10
+		object
+			sprite planet/rock8
+			distance 154.36
+			period 42.8832
+		object
+			sprite planet/rock18
+			distance 384.05
+			period 168.293
+		object
+			sprite planet/desert1
+			distance 617.3
+			period 342.949
+		object
+			sprite planet/gas4
+			distance 1227.46
+			period 961.603
+			object
+				sprite planet/callisto
+				distance 272
+				period 15.8216
+			object
+				sprite planet/rock3
+				distance 406
+				period 28.8527
+		object
+			sprite planet/wisp
+			distance 2331.95
+			period 2518.05
+
+event "wanderers: the eye opens"
+	unvisit Sabriset
+	system Sabriset
+		fleet "Large Quarg" 4000
+		fleet "Wanderer Defense" 1200
+		fleet "Wanderer Drones" 600
+		fleet "Wanderer Freight" 4000
+		object
+			sprite star/g0
+			distance 35.1028
+			period 12.1391
+		object
+			sprite star/k0
+			distance 77.8972
+			period 12.1391
+			offset 180
+		object
+			sprite planet/desert1
+			distance 279.387
+			period 47.1932
+		object
+			sprite planet/lava7
+			distance 738.015
+			period 202.613
+			offset 212.423
+		object
+			sprite planet/desert2
+			distance 1012.78
+			period 325.718
+		object
+			sprite planet/rock5
+			distance 1367.84
+			period 511.237
+		object "The Eye"
+			sprite planet/wormhole
+			distance 2022.87
+			period 919.438
+	system Sepriaptu
+		fleet "Large Quarg" 4000
+		fleet "Wanderer Defense" 1600
+		fleet "Wanderer Drones" 800
+	system Kaliptari
+		fleet "Large Quarg" 2000
+		fleet "Small Kor Mereti" 8000
+		fleet "Large Kor Mereti" 3600
+		fleet "Wanderer Defense" 1000
+		fleet "Wanderer Drones" 500
+	system Solifar
+		fleet "Large Quarg" 3000
+		fleet "Wanderer Defense" 1800
+		fleet "Wanderer Drones" 700
+	system Fornarep
+		fleet "Large Quarg" 1000
+		fleet "Small Kor Mereti" 7000
+		fleet "Large Kor Mereti" 4000
+	system Skeruto
+		fleet "Large Quarg" 1000
+	system Mekislepti
+		fleet "Small Kor Mereti" 800
+		fleet "Large Kor Mereti" 2400
+		fleet "Large Kor Sestor" 8000
+		fleet "Wanderer Drones" 2000
+	unvisit Sko'karak
+	system Sko'karak
+		fleet "Wanderer Defense" 500
+		fleet "Wanderer Drones" 400
+		fleet "Wanderer Freight" 2000
+		object
+			sprite star/m0
+			period 10
+		object
+			sprite planet/rock8
+			distance 154.36
+			period 42.8832
+		object
+			sprite planet/rock18
+			distance 384.05
+			period 168.293
+		object
+			sprite planet/desert1
+			distance 617.3
+			period 342.949
+		object
+			sprite planet/gas4
+			distance 1227.46
+			period 961.603
+			object
+				sprite planet/callisto
+				distance 272
+				period 15.8216
+			object
+				sprite planet/rock3
+				distance 406
+				period 28.8527
+		object "The Eye"
+			sprite planet/wormhole
+			distance 2331.95
+			period 2518.05
+
+event "wanderers: derecho mass production"
+	fleet "Wanderer Defense"
+		government "Wanderer"
+		names "wanderer"
+		personality
+			heroic
+		variant 4
+			"Derecho"
+			"Tempest"
+		variant 3
+			"Derecho (Turret)"
+			"Tempest (Missile)"
+		variant 2
+			"Derecho (Tough)"
+			"Tempest (Heavy)"
+		variant 4
+			"Derecho"
+			"Strong Wind" 2
+		variant 3
+			"Derecho (Tough)"
+			"Autumn Leaf"
+			"Summer Leaf" 2
+		variant 2
+			"Derecho (Turret)"
+			"Tempest (Heavy)"
+			"Tempest"
+		variant 6
+			"Tempest"
+			"Summer Leaf"
+			"Autumn Leaf"
+		variant 4
+			"Tempest (Heavy)"
+			"Strong Wind"
+		variant 1
+			"Tempest (Heavy)"
+			"Tempest"
+			"Tempest (Missile)"
+		variant 2
+			"Tempest (Heavy)"
+			"Tempest"
+		variant 1
+			"Tempest (Missile)" 2
+		variant 3
+			"Strong Wind"
+			"Summer Leaf" 2
+		variant 2
+			"Strong Wind" 2
+		variant 2
+			"Strong Wind"
+			"Autumn Leaf"
+		variant
+			"Strong Wind" 3
+		variant 2
+			"Autumn Leaf" 3
+		variant
+			"Strong Wind"
+			"Autumn Leaf"
+			"Summer Leaf"
+		variant
+			"Autumn Leaf"
+			"Summer Leaf" 2
+		variant
+			"Summer Leaf" 4
+	shipyard "Wanderer Advanced"
+		"Derecho"
+	outfitter "Wanderer Advanced"
+		"Blue Sun Reactor"
+		"Wanderer Heat Sink"
+
+event "wanderers: spera anatrusk colony"
+	system Ap'arak
+		fleet "Wanderer Freight" 2000
+		fleet "Wanderer Drones" 4000
+		fleet "Wanderer Defense" 600
+		fleet "Wanderer Flycatchers" 400
+		fleet "Large Unfettered" 8000
+	system Kaliptari
+		government "Wanderer"
+	planet "Spera Anatrusk"
+		attributes wanderer
+		description `This is a relatively dry planet, and the only Korath cities were close to the poles where the temperatures are more mild and the lifeless deserts give way to grasslands and even a few scattered forests. The largest city was clearly destroyed by orbital bombardment. The other cities seem to have been done in by rioting or looting, leaving smashed windows and burned-out buildings behind. Some of the damage is very recent; the Korath survivors here held out for a long time.`
+		description `	Hidden deep in a canyon, the Wanderers have begun establishing a military base here.`
+		spaceport `The Wanderers have hollowed out hangars and caves in the soft sandstone walls of this canyon and have begun to build a military base where they can store supplies and repair their ships while trying to decide how best to deal with the new challenges that face them in Korath space.`
+		spaceport `	Oddly enough, they have also found enough time to plant a large garden on a terrace near the base of the canyon, where they are experimenting to find out which plant species will best grow in this arid environment. The Wanderer drive to understand and transform the local ecology is strong, indeed.`
+
+event "wanderers: hurricane mass production"
+	fleet "Wanderer Defense"
+		government "Wanderer"
+		names "wanderer"
+		personality
+			heroic
+		variant 5
+			"Hurricane"
+		variant 2
+			"Hurricane (Turret)"
+		variant 2
+			"Hurricane (Tough)"
+		variant 3
+			"Hurricane"
+			"Derecho"
+			"Tempest"
+		variant 2
+			"Hurricane"
+			"Tempest" 2
+		variant 3
+			"Hurricane (Turret)"
+			"Derecho (Turret)"
+			"Tempest (Heavy)"
+		variant 2
+			"Hurricane (Tough)"
+			"Tempest (Missile)" 2
+		variant 4
+			"Derecho"
+			"Tempest"
+		variant 3
+			"Derecho (Turret)"
+			"Tempest (Missile)"
+		variant 2
+			"Derecho (Tough)"
+			"Tempest (Heavy)"
+		variant 4
+			"Derecho"
+			"Strong Wind" 2
+		variant 3
+			"Derecho (Tough)"
+			"Autumn Leaf"
+			"Summer Leaf" 2
+		variant 2
+			"Derecho (Turret)"
+			"Tempest (Heavy)"
+			"Tempest"
+		variant 6
+			"Tempest"
+			"Summer Leaf"
+			"Autumn Leaf"
+		variant 4
+			"Tempest (Heavy)"
+			"Strong Wind"
+		variant 1
+			"Tempest (Heavy)"
+			"Tempest"
+			"Tempest (Missile)"
+		variant 2
+			"Tempest (Heavy)"
+			"Tempest"
+		variant 1
+			"Tempest (Missile)" 2
+		variant 3
+			"Strong Wind"
+			"Summer Leaf" 2
+		variant 2
+			"Strong Wind" 2
+		variant 2
+			"Strong Wind"
+			"Autumn Leaf"
+		variant
+			"Strong Wind" 3
+		variant 2
+			"Autumn Leaf" 3
+		variant
+			"Strong Wind"
+			"Autumn Leaf"
+			"Summer Leaf"
+		variant
+			"Autumn Leaf"
+			"Summer Leaf" 2
+		variant
+			"Summer Leaf" 4
+	shipyard "Wanderer Advanced"
+		"Hurricane"
+
+event "wanderers: desi seledrak"
+	system "Solifar"
+		government "Wanderer"
+	planet "Desi Seledrak"
+		attributes wanderer
+		description `Plumes of soot and ash rise from a cluster of several dozen volcanoes on this planet's main continent, shrouding the planet in a thick layer of clouds and choking out the sunlight. The ruins of several Korath cities and the geometric grids of cleared land surrounding them show that this was once a farming world, but now few plants are able to survive and kilometer-high glaciers have begun creeping down from the poles.`
+		description `	With some help from the Mereti drones, the Wanderers have set up factories here that are pumping carbon dioxide and methane to warm the atmosphere. In a few decades, the glaciers may start to recede.`
+		spaceport `This odd settlement was built half by the Wanderers and half by the Mereti drones. The layout of the streets is completely chaotic, and they have planted rows of trees and bushes everywhere: some inside greenhouses, and some hardier species out in the open air. The settlement is near the equator, but it is still not particularly warm.`

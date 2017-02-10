@@ -15,6 +15,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "DataNode.h"
 #include "Format.h"
 #include "GameData.h"
+#include "Government.h"
 #include "PlayerInfo.h"
 #include "Politics.h"
 #include "Random.h"
@@ -49,6 +50,8 @@ void Planet::Load(const DataNode &node, const Set<Sale<Ship>> &ships, const Set<
 	{
 		if(child.Token(0) == "landscape" && child.Size() >= 2)
 			landscape = SpriteSet::Get(child.Token(1));
+		else if(child.Token(0) == "music" && child.Size() >= 2)
+			music = child.Token(1);
 		else if(child.Token(0) == "attributes")
 		{
 			if(resetAttributes)
@@ -102,6 +105,8 @@ void Planet::Load(const DataNode &node, const Set<Sale<Ship>> &ships, const Set<
 			else
 				outfitSales.push_back(outfits.Get(child.Token(1)));
 		}
+		else if(child.Token(0) == "government" && child.Size() >= 2)
+			government = GameData::Governments().Get(child.Token(1));
 		else if(child.Token(0) == "required reputation" && child.Size() >= 2)
 			requiredReputation = child.Value(1);
 		else if(child.Token(0) == "bribe" && child.Size() >= 2)
@@ -166,6 +171,14 @@ const Sprite *Planet::Landscape() const
 
 
 
+// Get the name of the ambient audio to play on this planet.
+const string &Planet::MusicName() const
+{
+	return music;
+}
+
+
+
 // Get the list of "attributes" of the planet.
 const set<string> &Planet::Attributes() const
 {
@@ -210,8 +223,7 @@ const string &Planet::SpaceportDescription() const
 // have the "uninhabited" attribute).
 bool Planet::IsInhabited() const
 {
-	return (HasSpaceport() || requiredReputation || defenseFleet)
-		&& attributes.find("uninhabited") == attributes.end();
+	return (HasSpaceport() || requiredReputation || defenseFleet) && !attributes.count("uninhabited");
 }
 
 
@@ -252,6 +264,14 @@ const Sale<Outfit> &Planet::Outfitter() const
 		outfitter.Add(*sale);
 	
 	return outfitter;
+}
+
+
+
+// Get this planet's government. Most planets follow the government of the system they are in.
+const Government *Planet::GetGovernment() const
+{
+	return government ? government : GetSystem()->GetGovernment();
 }
 
 
@@ -384,7 +404,7 @@ string Planet::DemandTribute(PlayerInfo &player) const
 	{
 		isDefending = true;
 		GameData::GetPolitics().Offend(defenseFleet->GetGovernment(), ShipEvent::PROVOKE);
-		GameData::GetPolitics().Offend(GetSystem()->GetGovernment(), ShipEvent::PROVOKE);
+		GameData::GetPolitics().Offend(GetGovernment(), ShipEvent::PROVOKE);
 		return "Our defense fleet will make short work of you.";
 	}
 	

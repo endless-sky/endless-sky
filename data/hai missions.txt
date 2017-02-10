@@ -8,7 +8,6 @@
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
-	
 mission "First Contact: Hai"
 	landing
 	source
@@ -34,13 +33,15 @@ mission "First Contact: Hai"
 					goto travel
 				`	"How come people back in human space don't know that you are here?"`
 			
-			`	The human merchant laughs. "Probably because most of us came here to escape from the chaos and fighting in human space. The last thing we want is for it to follow us here. Not that I'm saying you can't tell anyone about the wormhole, but if I were you I wouldn't go telling just anyone. But take a look around Hai space before you leave; you'll find that we could learn a lot from them."`
+			`	The human merchant laughs. "Probably because most of us came here to escape from the chaos and fighting in human space. The last thing we want is for it to follow us here. Not that I'm saying you can't tell anyone about the wormhole, but if I were you I wouldn't go spreading the news too widely either. And take a look around Hai space before you leave; you'll find that we could learn a lot from them."`
 			`	"So I can travel anywhere I want in your territory?" you ask the Hai.`
 			
 			label travel
 			`	"Yes," it says, "but be careful. The north is the territory of some renegade Hai: bandits and pirates, living off what they steal from the rest of us. If you travel among them, you will not be safe."`
 			`	You talk for a while longer, but do not gain much additional information except that several of their worlds are willing to sell Hai technology even to human beings. You thank them both for stopping to talk with you, and the Hai responds, "We are always glad to welcome new friends. May peace dwell in your heart until we meet again."`
 				decline
+
+
 
 mission "First Contact: Unfettered"
 	landing
@@ -85,7 +86,7 @@ mission "First Contact: Unfettered"
 			`	"'Dragonfolk?'" you ask. "I've never heard of them."`
 			`	"Sheragi," it says, "they are extinct. Only their dumb ancestors survive, just as monkeys will outlast the thinking humans."`
 			`	"How were you altered?" you ask.`
-			`	It says, "We Hai took worlds that Drak said belonged to Sheragi, although Sheragi had not yet even discovered them. Drak retaliated. On all Hai words, Drak ships appeared in orbit. Sickness swept each planet: quick fever, strange feeling of frailness, like you are brittle bones with mouth full of dirt. Victims left alive, but all ambition gone, no desire but to die of comfortable old age."`
+			`	It says, "We Hai took worlds that Drak said belonged to Sheragi, although Sheragi had not yet even discovered them. Drak retaliated. On all Hai worlds, Drak ships appeared in orbit. Sickness swept each planet: quick fever, strange feeling of frailness, like you are brittle bones with mouth full of dirt. Victims left alive, but all ambition gone, no desire but to die of comfortable old age."`
 			choice
 				`	"Did you try to resist the Drak?"`
 					goto resist
@@ -118,12 +119,66 @@ mission "First Contact: Unfettered"
 			`	"Bring us a jump drive," it says, "and we will count you among our friends. Bring us more, and we may even consider you worthy of a share of the plunder, when we take back what is ours."`
 				decline
 
+
+
+mission "Ask the Hai about the Unfettered"
+	landing
+	source
+		attributes "hai"
+	to offer
+		has "First Contact: Unfettered: offered"
+	on offer
+		conversation
+			`The Unfettered Hai told you that they are the "true Hai," and seem to think that the other Hai are oppressing them. Would you like to look for someone here who can tell you the other side of the story?`
+			choice
+				`	(Yes.)`
+				`	(No.)`
+					decline
+			`	You find an elderly-looking Hai who is sitting on a bench watching the starships land and take off. As you approach, he says, "Hello human."`
+			choice
+				`	"Hello. I've met some of the Unfettered Hai. What can you tell me about them?"`
+				`	"Hello. Can you tell me why you are at war with the other Hai who live to the north?"`
+					goto war
+			`	He says, "Ah, our wayward sisters and brothers to the north. You have surely seen what our society is like: safe, stable, predictable, deliberate. It suits most of us well. But there are those..."`
+				goto raids
+			label war
+			`	He says, "I would not call it war. We launch no raids on them. We only defend when they attack. And, we supply them with food and other things needful for life. They are not our enemies, they are just those who do not fit in. You have surely seen what our society is like: safe, stable, predictable, deliberate. It suits most of us well. But there are those..."`
+			label raids
+			`	He pauses. "No, I am telling this unfairly. I will start again. Hundreds of years ago, when I was young, our territory was raided by aliens from the east, who came in massive warships and plundered our worlds. In those days there were some Hai who were brave enough to risk their lives to defend us. The raids lasted for decades, then abruptly stopped.`
+			`	"Most of those who had fought the invaders were glad to return to ordinary life, but there were some for whom life now seemed bland and meaningless without the excitement and chaos of war. They started colonies in the systems to the north, and fought amongst themselves, and mismanaged the land, and grew in numbers. And now their worlds cannot feed them all, and they invade us and tell stories to put blame on us for their failures."`
+			choice
+				`	"Shouldn't they be treated with gratitude for defending you against the raiders?"`
+				`	"They said the Drak altered the Hai to make them less aggressive. Is that true?"`
+					goto drak
+				`	"That's all I wanted to know. Thanks."`
+					decline
+			`	"They were, and still should be. There will always be times when our society needs them. Only at this time, the need is not so great. There is no new frontier for them to explore, no worthy challenges for them to face. And we fear what would happen if they ventured south and gained access to the wormhole, so we must force them to stay where they are."`
+			choice
+				`	"They said the Drak altered the Hai to make them less aggressive. Is that true?"`
+				`	"That's all I wanted to know. Thanks."`
+					decline
+			label drak
+			`	"No," he says, "it is a story they invented, that the Hai were destined to be masters of the galaxy but the Drak and the Quarg prevented us. The story is not true. Our civilization beyond the wormhole was brought down by infighting and unwise governance. Amid the wreckage we studied and thought and argued and came to believe that we could rule a small territory with stability and peace, or hold more worlds but with constant turmoil. We chose stability, and relinquished those worlds."`
+			choice
+				`	"So you don't think the Drak are keeping us all in cages?"`
+				`	"That's all I wanted to know. Thanks."`
+					decline
+			`	He thinks about the question for a while, then says, "Sometimes we make a fire for cooking food. The fire consumes much wood, and the flames are tall, too wild and hot to cook food well. Then the wood becomes coals that burn slowly with no flames or smoke, and when you gather them they are good for roasting meat or even baking bread. Perhaps each species must consume many worlds and many resources before learning to burn slowly, and the wisdom of the Drak is to allow them to do so. But when they find balance, as we did, they no longer need so much space."`
+			`	You thank him for taking time to speak with you, and say goodbye.`
+				decline
+
+
+
 mission "Unfettered Jump Drive 1"
 	name "More Jump Drives"
+	minor
 	description "The Unfettered Hai have promised you rich rewards if you bring them more Jump Drives."
 	landing
 	to offer
 		has "First Contact: Unfettered: offered"
+		not "Wanderers: Jump Drive Source: active"
+	to fail
+		has "event: wanderers: unfettered invasion starts"
 	to complete
 		has "Unfettered Jump Drive 2: offered"
 	source
@@ -172,12 +227,18 @@ mission "Unfettered Jump Drive 1"
 		payment 5000000
 		"reputation: Hai (Unfettered)" >?= 10
 
+
+
 mission "Unfettered Jump Drive 2"
 	name "More Jump Drives"
+	minor
 	description "The Unfettered Hai have promised you rich rewards, and more information about their plans, if you bring them more Jump Drives."
 	landing
 	to offer
 		has "Unfettered Jump Drive 1: offered"
+		not "Wanderers: Jump Drive Source: active"
+	to fail
+		has "event: wanderers: unfettered invasion starts"
 	to complete
 		has "Unfettered Jump Drive 3: offered"
 	source
@@ -209,6 +270,8 @@ mission "Unfettered Jump Drive 2"
 		"reputation: Hai (Unfettered)" >?= 20
 		fail "Unfettered Jump Drive 1"
 
+
+
 mission "Unfettered Tribute 1"
 	name "Hai Tribute to <planet>"
 	description "Collect a tribute payment of <tons> of food from <stopovers>, and bring it to the Unfettered on <destination>. Your share of the tribute will be <payment>."
@@ -229,6 +292,8 @@ mission "Unfettered Tribute 1"
 	on stopover
 		dialog
 			`When you inform the Hai that you are here to receive a tribute payment for the Unfettered, they load the cargo onto your ship with a rather surprising swiftness and cheerfulness.`
+
+
 
 mission "Unfettered Tribute 2"
 	name "Hai Tribute to <planet>"
@@ -251,6 +316,8 @@ mission "Unfettered Tribute 2"
 		dialog
 			`The Hai dockworkers load the tribute for the Unfettered onto your ship. One of them says to you, "Thank you. This is far better than watching our kinfolk starve."`
 
+
+
 mission "Unfettered Tribute 3"
 	name "Hai Tribute to <planet>"
 	description "Collect a tribute payment of <tons> of food from <stopovers>, and bring it to the Unfettered on <destination>. Your share of the tribute will be <payment>."
@@ -272,12 +339,18 @@ mission "Unfettered Tribute 3"
 		dialog
 			`As the Hai load the tribute onto your ship, one of them says, "Tell our brothers and sisters that if they will only repent, they will be welcome to come home."`
 
+
+
 mission "Unfettered Jump Drive 3"
 	name "More Jump Drives"
+	minor
 	description "If you find more Jump Drives, you can sell them to the Unfettered Hai for considerably more money than they are worth elsewhere."
 	landing
 	to offer
 		has "Unfettered Jump Drive 2: offered"
+		not "Wanderers: Jump Drive Source: active"
+	to fail
+		has "event: wanderers: unfettered invasion starts"
 	to complete
 		has "Unfettered Jump Drive 4: offered"
 	source
@@ -330,9 +403,16 @@ mission "Unfettered Jump Drive 3"
 		"reputation: Hai (Unfettered)" >?= 30
 		fail "Unfettered Jump Drive 2"
 
+
+
 mission "Unfettered Jump Drive 4"
+	repeat
+	minor
 	to offer
 		has "Unfettered Jump Drive 3: offered"
+		not "Wanderers: Jump Drive Source: active"
+	to fail
+		has "event: wanderers: unfettered invasion starts"
 	to complete
 		never
 	source
@@ -355,8 +435,11 @@ mission "Unfettered Jump Drive 4"
 		fail "Unfettered Jump Drive 3"
 		fail "Unfettered Jump Drive 4"
 
+
+
 mission "Unfettered returning home"
 	description "This Hai has asked you to smuggle him out of Unfettered space and bring him to <destination>."
+	minor
 	source
 		attributes unfettered
 	destination Hai-home

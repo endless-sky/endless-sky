@@ -13,58 +13,55 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef MAP_SHIPYARD_PANEL_H_
 #define MAP_SHIPYARD_PANEL_H_
 
-#include "MapPanel.h"
+#include "MapSalesPanel.h"
 
-#include "ClickZone.h"
+#include "ShipInfoDisplay.h"
 
-#include <map>
-#include <string>
 #include <vector>
 
-class Ship;
 class PlayerInfo;
+class Ship;
+class Sprite;
 
 
 
 // A panel that displays the galaxy star map, along with a side panel showing
 // all ships that are for sale in known systems. You can click on one of them
 // to see which systems it is available in.
-class MapShipyardPanel : public MapPanel {
+class MapShipyardPanel : public MapSalesPanel {
 public:
-	MapShipyardPanel(PlayerInfo &player);
-	MapShipyardPanel(const MapPanel &panel);
-	
-	virtual void Draw() const override;
+	explicit MapShipyardPanel(PlayerInfo &player);
+	explicit MapShipyardPanel(const MapPanel &panel, bool onlyHere = false);
 	
 	
 protected:
-	// Only override the ones you need; the default action is to return false.
-	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command) override;
-	virtual bool Click(int x, int y) override;
-	virtual bool Hover(int x, int y) override;
-	virtual bool Drag(int dx, int dy) override;
-	virtual bool Scroll(int dx, int dy) override;
+	virtual const Sprite *SelectedSprite() const override;
+	virtual const Sprite *CompareSprite() const override;
+	virtual const ItemInfoDisplay &SelectedInfo() const override;
+	virtual const ItemInfoDisplay &CompareInfo() const override;
+	virtual const std::string &KeyLabel(int index) const override;
 
-	virtual double SystemValue(const System *system) const override;	
+	virtual void Select(int index) override;
+	virtual void Compare(int index) override;
+	virtual double SystemValue(const System *system) const override;
+	virtual int FindItem(const std::string &text) const override;
+	
+	virtual void DrawItems() override;
 	
 	
 private:
 	void Init();
-	void DrawKey() const;
-	void DrawPanel() const;
-	void DrawItems() const;
 	
 	
 private:
 	std::map<std::string, std::vector<const Ship *>> catalog;
+	std::vector<const Ship *> list;
+	
 	const Ship *selected = nullptr;
 	const Ship *compare = nullptr;
 	
-	mutable std::vector<ClickZone<const Ship *>> zones;
-	
-	int scroll = 0;
-	mutable int maxScroll = 0;
-	bool isDragging = false;
+	ShipInfoDisplay selectedInfo;
+	ShipInfoDisplay compareInfo;
 };
 
 

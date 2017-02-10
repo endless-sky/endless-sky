@@ -22,6 +22,13 @@ using namespace std;
 
 
 
+SavedGame::SavedGame(const string &path)
+{
+	Load(path);
+}
+
+
+
 void SavedGame::Load(const string &path)
 {
 	Clear();

@@ -274,6 +274,7 @@ mission "FW Reconciliation 2A"
 	landing
 	source Valhalla
 	destination Farpoint
+	clearance
 	passengers 2
 	to offer
 		has "FW Reconciliation 2: done"
@@ -332,10 +333,10 @@ mission "FW Reconciliation 2B"
 		conversation
 			branch know
 				has "FW Alphas 1.1: done"
-			`On Farpoint, you are met by none other than the famous leader of the Oathkeepers, General William Danforth. Even among the Free Worlds Danforth is spoken of with respect due to his courage and levelheadedness in battle and his leadership of countless humanitarian missions.`
+			`On Farpoint, you are met by none other than the famous leader of the Oathkeepers, Admiral William Danforth. Even among the Free Worlds Danforth is spoken of with respect due to his courage and levelheadedness in battle and his leadership of countless humanitarian missions.`
 				goto introductions
 			label know
-			`On Farpoint, you are met by General Danforth, the leader of the Oathkeepers who previously assisted you to drive the Alphas and their mercenary fleet away from Poisonwood. He is glad to see you again, and you express your sympathy over the loss of Commander Nguyen; Danforth tells you that his killer was never found.`
+			`On Farpoint, you are met by Admiral Danforth, the leader of the Oathkeepers who previously assisted you to drive the Alphas and their mercenary fleet away from Poisonwood. He is glad to see you again, and you express your sympathy over the loss of Commander Nguyen; Danforth tells you that his killer was never found.`
 			label introductions
 			`	Ijs and Katya introduce themselves to Danforth, and Katya says, "Sir, I was a child on Hope when the colony was evacuated. Your ship carried my family to safety, and I've never forgotten how every night during our journey, you would walk through the cargo bay where we were staying and check to make sure all our needs were met. I've never had a chance before now to thank you in person."`
 			`	Danforth is surprised. "Councilor Reynolds," he says, "thank you. I followed your career in Parliament with some interest, but it is a shame that we never met in person until now. But I am glad we have this chance to work together at last."`
@@ -353,6 +354,7 @@ mission "FW Reconciliation 2C"
 	landing
 	source Stormhold
 	destination Farpoint
+	clearance
 	passengers 2
 	to offer
 		has "FW Reconciliation 2B: done"
@@ -374,6 +376,7 @@ mission "FW Defend Farpoint"
 	description "Assist the Oathkeepers in defending <planet> from a pirate attack, then land back on the planet."
 	autosave
 	source Farpoint
+	clearance
 	passengers 2
 	to offer
 		has "FW Reconciliation 2C: done"
@@ -458,7 +461,7 @@ mission "FW Embassy 1"
 	on offer
 		conversation
 			`As you are landing, Katya tells you, "<first>, we just received a message from the Free Worlds Senate. They've arranged for a Republic embassy to be set up on Bourne, and a Free Worlds embassy on Earth. We've been asked to meet the ambassadors on Earth and escort them to Bourne."`
-			`	A few minutes later, General Danforth arrives at your ship. "Captain <last>," he says, "I'd like to thank you for your assistance." He hands you a million-credit chip.`
+			`	A few minutes later, Admiral Danforth arrives at your ship. "Captain <last>," he says, "I'd like to thank you for your assistance." He hands you a million-credit chip.`
 			choice
 				`	"Thank you, sir."`
 					goto next
@@ -515,7 +518,7 @@ mission "FW Reconciliation Break"
 	on offer
 		event "fw reconciliation break" 30
 		conversation
-			`From the way Alondo's eyes light up when he sees Katya, you can tell that all he wants to do right now is to get caught up with her and celebrate her freedom. But he plays the part of a good diplomat, escorting the Republic ambassadors to their new quarters. Along the way he makes pleasant small talk with them, complementing their style and sophistication. Knowing him as well as you do, you can tell he is saving up his more scathing comments about them until they are out of earshot.`
+			`From the way Alondo's eyes light up when he sees Katya, you can tell that all he wants to do right now is to get caught up with her and celebrate her freedom. But he plays the part of a good diplomat, escorting the Republic ambassadors to their new quarters. Along the way he makes pleasant small talk with them, complimenting their style and sophistication. Knowing him as well as you do, you can tell he is saving up his more scathing comments about them until they are out of earshot.`
 			`	The moment they are dealt with he gives Katya a hug and says, "Katya! So good to have you back with us. The Council has five members once more. I assume you've been told about Tomek's... departure, and <first>'s promotion?" She nods.`
 			`	Alondo says, "Unfortunately, we don't have any ambassadors of our own picked out yet. The Senate insists on selecting them, and you wouldn't believe how slowly Senate deliberations move. They've interviewed half a dozen candidates so far, and found none to their liking. It pains me to say this, but we may have succeeded in creating a bureaucracy every bit as inefficient as the one we rebelled against."`
 			choice
@@ -527,7 +530,7 @@ mission "FW Reconciliation Break"
 					goto wait
 			
 			label peace
-			`	"At peace for now," says Ijs, but so far a peace without justice. When the time is ripe, we will strike against the Syndicate."`
+			`	"At peace for now," says Ijs, "but so far a peace without justice. When the time is ripe, we will strike against the Syndicate."`
 				goto wait
 			
 			label volunteer
@@ -585,7 +588,7 @@ mission "FW Embassy 1C"
 			`When you land on Bourne you discover that Katya and Ijs have already been back there for a week. Alondo is with them, too. "We just couldn't stay away from the action for long," says Ijs.`
 			`	The Star Queen luxury liner that brought the Earth ambassadors to Bourne is still parked in a somewhat out-of-the-way hangar. "Don't worry, Captain," says Katya, "there's no way our ambassadors would travel in something as gaudy as that. They've requisitioned a Dreadnought instead. A good ship to remind the people of Earth that we have a strong fleet of our own."`
 			`	"Not to mention," says Ijs, "a good ship to take part in our strike against the Syndicate."`
-			`	Alondo introduces you to the Free Worlds ambassadors who will be returning to Earth. "I've already contacted Governor Flint and General Danforth," he says. "Their ships will be arriving in the Sol system about the same time as yours. Good luck, Captain." You help Ijs and Katya load their luggage onto your ship, and tell the Dreadnought carrying the ambassadors to be ready to follow you.`
+			`	Alondo introduces you to the Free Worlds ambassadors who will be returning to Earth. "I've already contacted Governor Flint and Admiral Danforth," he says. "Their ships will be arriving in the Sol system about the same time as yours. Good luck, Captain." You help Ijs and Katya load their luggage onto your ship, and tell the Dreadnought carrying the ambassadors to be ready to follow you.`
 				accept
 	
 	npc accompany save
@@ -652,16 +655,16 @@ mission "FW Syndicate Capture 1"
 			`	You make an excuse to depart, and return to your ship. "Well," says Ijs, "this is it. If we're lucky, they won't see us coming, but no matter what, getting back out of Syndicate space will be a nightmare. Good luck, all."`
 				accept
 	
-	npc save
+	npc accompany save
 		personality heroic
 		ship "Dreadnought" "F.S. Gibraltar"
 	
-	npc save
+	npc accompany save
 		personality escort heroic waiting
 		government "Navy (Oathkeeper)"
 		ship "Cruiser (Mark II)" "R.S. Hand of Justice"
 	
-	npc save
+	npc accompany save
 		personality escort heroic waiting
 		government "Republic"
 		ship "Bactrian" "Unbreakable"
@@ -821,7 +824,7 @@ mission "FW Syndicate Capture 1B"
 
 mission "FW Syndicate Capture 1C"
 	landing
-	name "Return to <planet>
+	name "Return to <planet>"
 	description "The Syndicate is massing a fleet in the Sol system. Return to <planet> to rendezvous with the Free Worlds fleet in order to be ready to defend Earth if it is attacked."
 	autosave
 	source Valhalla
@@ -849,7 +852,7 @@ mission "FW Syndicate Capture 1C"
 			`	"Indeed," he says.`
 				goto katya
 			label peace
-			`	"Apparently no one is shooting at anyone else," says Edrick, "but that could change at any minute. You may be aware that there is very little love for the Syndicate among Navy generals. The only thing keeping the Navy from attacking the Syndicate now is the Navy's devotion to order and obedience; they won't start a new war without Parliament's approval, and of course that approval is unlikely with Syndicate warships circling overhead."`
+			`	"Apparently no one is shooting at anyone else," says Edrick, "but that could change at any minute. You may be aware that there is very little love for the Syndicate among Navy admirals. The only thing keeping the Navy from attacking the Syndicate now is the Navy's devotion to order and obedience; they won't start a new war without Parliament's approval, and of course that approval is unlikely with Syndicate warships circling overhead."`
 				goto katya
 			label attack
 			`	"That would be a terrible idea," he says. "First, it would play right into their narrative. And second, humanity is on the very brink now of shattering into half a dozen different splinters: the Deep, the Free Worlds, the Navy, the Syndicate each on their own against the rest. I don't want to be the one who gives the order that causes that to happen."`
@@ -1039,6 +1042,8 @@ mission "FW Pug 2A"
 			label yes
 			`	Parliament thanks you for your willingness to serve, and you and Alondo hurry back to your ship. "There's no telling how long the link will remain open," he says. "So, we must hurry to the Syndicate headquarters on <planet> immediately."`
 				accept
+	on complete
+		"reputation: Syndicate" >?= 1
 	
 	npc
 		system "Sol"
@@ -1066,6 +1071,7 @@ mission "FW Pug 2A Visit"
 		has "FW Pug 2A: active"
 	
 	on offer
+		"reputation: Syndicate" >?= 1
 		conversation
 			`Oddly, when you land on <origin> you find that the people here are in as much of a state of confusion and fear as back on Earth. Either no one knows what is going on and why they have been nearly cut off from the rest of human space, or every single person you talk to is united in a conspiracy to feign ignorance. They urge you to continue your journey to meet with the Syndicate executives on Foundry. "Maybe you can talk some sense into them," says one merchant captain. "First the nukes, and now this. The extremist faction within the Syndicate is getting out of hand."`
 				decline
@@ -1426,9 +1432,9 @@ mission "FW Pug 3: Quarg"
 			
 			label balance
 			`	"War is a game to the Pug," the Quarg says. "They are a strange species. Even if they start a war, their goal may not be to win it, but to lose in a certain way. We have seen them lose battles against species far less advanced than your own, even though they had weapons that would have guaranteed them victory. If they want war, you must play their game, and if you play their game, they may allow you to win."`
-			`	"That makes no sense," says Freya. "They would die for the sake of a game?"`
+			`	"That makes no sense," says Alondo. "They would die for the sake of a game?"`
 			`	The Quarg pauses for a moment as if struggling for words. "I am myself, and also I am Quarg. You are yourselves, and also you are human. But we think perhaps a Pug is Pug first, and then also itself."`
-			`	"Their identity is communal, rather than individual?" says Freya.`
+			`	"Their identity is communal, rather than individual?" says Alondo.`
 			`	"Indeed. And because they are so deeply connected, they perceive all things as being connected to them. At least, that is the best understanding we have been able to gain of their species."`
 			choice
 				`	"Thank you for your time."`
@@ -1529,7 +1535,7 @@ mission "FW Pug 3C"
 			
 			label yes
 			`	The supervisor seems irked that his engineers are more interested in exploring nifty new ship technology than in the task at hand, but he grudgingly offers to give you a tour of the Navy Yard in exchange for letting his engineers take a closer look at the Dreadnoughts. Freya whispers to you, "Just think of this as another step toward peace and reconciliation."`
-			`	The new shipyard is some distance away from the old one, which is still in ruins, a radioactive crater a few miles away from the spaceport. "The attack happened at night," says the supervisor. "Three hundred and forty-seven people were killed. If the attack had been during working hours, that number would have been in the thousands. We're recovering some metal from the old shipyard, but other than that it's a total loss. The radiation is slowly dying down, though."`
+			`	The new shipyard is some distance away from the old one, which is still in ruins, a radioactive crater a few kilometers away from the spaceport. "The attack happened at night," says the supervisor. "Three hundred and forty-seven people were killed. If the attack had been during working hours, that number would have been in the thousands. We're recovering some metal from the old shipyard, but other than that it's a total loss. The radiation is slowly dying down, though."`
 			`	There is deep anger in his voice as he speaks. You are glad that the Free Worlds have been proved innocent of involvement in the attack, but you suspect that on the worlds that were bombed, most people will not accept peace with the Syndicate on any terms except the full surrender of all the Syndicate personnel who were responsible.`
 			`	When they're done giving you the tour, you return to the spaceport. The supervisor and the team of engineers wish you the best of luck, and depart.`
 				accept
@@ -1831,6 +1837,7 @@ mission "FW Pug 4B: Reinforcements"
 	npc kill
 		personality disables
 		system Markab
+		government Syndicate
 		fleet
 			names "syndicate capital"
 			variant
@@ -2105,14 +2112,14 @@ mission "FW Pug 6"
 	on offer
 		event "pug flee"
 		conversation
-			`The tiny spaceport on Shiver is packed with people as more and more Navy ships come in for a landing. The Navy generals have decided that there is no sense in delaying: you will be launching an attack on the Pug homeworld in the morning. Despite your success so far in battling the Pug, you know that if their entire fleet opposes you, even the Navy may not be strong enough to defeat them. This may be the last time you see many of these officers and crew members alive.`
+			`The tiny spaceport on Shiver is packed with people as more and more Navy ships come in for a landing. The Navy admirals have decided that there is no sense in delaying: you will be launching an attack on the Pug homeworld in the morning. Despite your success so far in battling the Pug, you know that if their entire fleet opposes you, even the Navy may not be strong enough to defeat them. This may be the last time you see many of these officers and crew members alive.`
 			`	Everyone prepares for death in different ways. The spaceport's pub is packed, with the crowd spilling out into the hallway and loud music blasting. The chapel is equally full, and the sound of whispered prayers and chanting clashes with the dance music from the pub. Through the doorway of the chapel you see some people sitting cross-legged on the floor and others kneeling on prayer rugs, as the various cultures that make up the Republic do their best to share the space.`
 			`	You find Freya sitting in a secluded nook on the upper floor of the spaceport building, watching the drifting snow out the window. "Ready for the last battle, Captain?" she asks.`
 			choice
 				`	"Sure, with the Navy at our backs I think we've got a good chance."`
 				`	"As ready as I'll ever be, I guess."`
 			`	She laughs. "I suppose that's the best we can hope for. Do you mind if I ride in your ship tomorrow, rather than one of the others? If this is the end, I'd rather face it with people I know." You agree. She turns back to look out the window.`
-			`	Since Freya seems to want to be alone, you return downstairs, and discover that a sizeable Oathkeeper fleet has arrived. In the main vestibule of the spaceport, an Oathkeeper officer is leading a group in qigong meditation. And surprisingly, you spot General Danforth sitting with the Muslim prayer group and chanting in fluent Arabic. Meanwhile, the party outside the pub continues.`
+			`	Since Freya seems to want to be alone, you return downstairs, and discover that a sizeable Oathkeeper fleet has arrived. In the main vestibule of the spaceport, an Oathkeeper officer is leading a group in qigong meditation. And surprisingly, you spot Admiral Danforth sitting with the Muslim prayer group and chanting in fluent Arabic. Meanwhile, the party outside the pub continues.`
 			`	Eventually morning comes, and you prepare your ship for the assault on the Pug homeworld...`
 				accept
 	
@@ -2256,13 +2263,13 @@ mission "FW Pug 6"
 				`	"Everything here is odd. The city, the holograms, all of it."`
 			`	She says, "It's an ordinary, human style electrical outlet. Human. In an alien city. And the steps we came up to get here: the Pug have legs half again as long as ours. But the tread spacing was at the normal human height. This building wasn't made for the Pug. It was made for us."`
 			`	Reports begin coming in as the Navy explores the rest of the planet, and they are all finding the same thing: the cities are abandoned, many of them with signs that they were never inhabited in the first place. The first time you visited this planet, you thought it must have a billion inhabitants, but now it seems that its true population was less than a million - all of whom have apparently departed to somewhere beyond the wormhole.`
-			`	Freya says, "Let's get back to the spaceport and meet up with the generals."`
+			`	Freya says, "Let's get back to the spaceport and meet up with the admirals."`
 
 
 
 mission "FW Syndicate Extremists 1"
 	name "Deal with the Syndicate"
-	description "Now that the Pug appear to have been driven off, it's time to get some answers from the Syndicate. Travel with General Danforth back to <destination>, for another meeting with the CEO of the Syndicate."
+	description "Now that the Pug appear to have been driven off, it's time to get some answers from the Syndicate. Travel with Admiral Danforth back to <destination>, for another meeting with the CEO of the Syndicate."
 	autosave
 	source Pugglemug
 	destination Foundry
@@ -2375,6 +2382,7 @@ mission "FW Syndicate Extremists 1B"
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
+		"reputation: Syndicate (Extremist)" = -1000
 		event "battle of algenib"
 		outfit "Cloaking Device" 1
 		conversation
@@ -2484,7 +2492,7 @@ mission "FW Syndicate Extremists 1C"
 		event "navy occupies algenib"
 		event "navy done with algenib" 50
 		conversation
-			`Soon after you land, more Navy ships begin pouring into the system, including General Danforth's own cruiser. Navy soldiers and ships are scouring the whole surface of the planet; there is very little chance that any of the Alphas who remain here will be able to escape their detection. General Danforth meets with you and Freya and thanks you for providing the decoy that kept his own ships from bearing the brunt of the Alphas' nuclear arsenal.`
+			`Soon after you land, more Navy ships begin pouring into the system, including Admiral Danforth's own cruiser. Navy soldiers and ships are scouring the whole surface of the planet; there is very little chance that any of the Alphas who remain here will be able to escape their detection. Admiral Danforth meets with you and Freya and thanks you for providing the decoy that kept his own ships from bearing the brunt of the Alphas' nuclear arsenal.`
 			`	"Do you need us to do anything more here?" asks Freya.`
 			`	"No," he says, "and I hear that Parliament wants to speak with you, Captain <last>. Something about an official commendation for your part in the battle against the Pug, I think. Meanwhile, this may not be the end of our trouble with the Syndicate, but at least it's a good start. It's been an honor to fight alongside you."`
 			choice

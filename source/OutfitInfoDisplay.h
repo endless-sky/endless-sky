@@ -13,11 +13,12 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef OUTFIT_INFO_DISPLAY_H_
 #define OUTFIT_INFO_DISPLAY_H_
 
-#include "WrappedText.h"
+#include "ItemInfoDisplay.h"
 
 #include <vector>
 #include <string>
 
+class PlayerInfo;
 class Point;
 class Outfit;
 
@@ -26,47 +27,36 @@ class Outfit;
 // Class representing three panels of information about a given outfit. One
 // shows the outfit's description, one shows the required space and cost to
 // install it, and one shows other attributes of the outfit.
-class OutfitInfoDisplay {
+class OutfitInfoDisplay : public ItemInfoDisplay {
 public:
-	OutfitInfoDisplay();
-	OutfitInfoDisplay(const Outfit &outfit);
+	OutfitInfoDisplay() = default;
+	OutfitInfoDisplay(const Outfit &outfit, const PlayerInfo &player, bool canSell = false);
 	
 	// Call this every time the ship changes.
-	void Update(const Outfit &outfit);
+	void Update(const Outfit &outfit, const PlayerInfo &player, bool canSell = false);
 	
-	// Get the panel width.
-	static int PanelWidth();
-	// Get the height of each of the three panels.
-	int MaximumHeight() const;
-	int DescriptionHeight() const;
+	// Provided by ItemInfoDisplay:
+	// int PanelWidth();
+	// int MaximumHeight() const;
+	// int DescriptionHeight() const;
+	// int AttributesHeight() const;
 	int RequirementsHeight() const;
-	int AttributesHeight() const;
 	
-	// Draw each of the panels.
-	void DrawDescription(const Point &topLeft) const;
+	// Provided by ItemInfoDisplay:
+	// void DrawDescription(const Point &topLeft) const;
+	// void DrawAttributes(const Point &topLeft) const;
 	void DrawRequirements(const Point &topLeft) const;
-	void DrawAttributes(const Point &topLeft) const;
 	
 	
 private:
-	void UpdateDescription(const Outfit &outfit);
-	void UpdateRequirements(const Outfit &outfit);
+	void UpdateRequirements(const Outfit &outfit, const PlayerInfo &player, bool canSell);
 	void UpdateAttributes(const Outfit &outfit);
 	
 	
 private:
-	WrappedText description;
-	int descriptionHeight;
-	
 	std::vector<std::string> requirementLabels;
 	std::vector<std::string> requirementValues;
-	int requirementsHeight;
-	
-	std::vector<std::string> attributeLabels;
-	std::vector<std::string> attributeValues;
-	int attributesHeight;
-	
-	int maximumHeight;
+	int requirementsHeight = 0;
 };
 
 

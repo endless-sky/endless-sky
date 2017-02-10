@@ -18,6 +18,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Screen.h"
 
 #include <cmath>
+#include <cstdlib>
 #include <cstring>
 
 using namespace std;
@@ -44,7 +45,7 @@ namespace {
 		
 		// Pick the proper glyph out of the texture.
 		"void main() {\n"
-		"  texCoord = vec2((glyph + corner.x) / 96.f, corner.y);\n"
+		"  texCoord = vec2((glyph + corner.x) / 98.f, corner.y);\n"
 		"  gl_Position = vec4((aspect * vert.x + position.x) * scale.x, (vert.y + position.y) * scale.y, 0, 1);\n"
 		"}\n";
 	
@@ -70,14 +71,15 @@ namespace {
 
 
 Font::Font()
-	: texture(0), vao(0), vbo(0), height(0), space(0)
+	: texture(0), vao(0), vbo(0), colorI(0), scaleI(0), glyphI(0), aspectI(0),
+	  positionI(0), height(0), space(0), screenWidth(0), screenHeight(0)
 {
 }
 
 
 
 Font::Font(const string &imagePath)
-	: texture(0), vao(0), vbo(0), height(0), space(0)
+	: Font()
 {
 	Load(imagePath);
 }
@@ -102,6 +104,13 @@ void Font::Load(const string &imagePath)
 
 void Font::Draw(const string &str, const Point &point, const Color &color) const
 {
+	DrawAliased(str, round(point.X()), round(point.Y()), color);
+}
+
+
+
+void Font::DrawAliased(const string &str, double x, double y, const Color &color) const
+{
 	glUseProgram(shader.Object());
 	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D, texture);
@@ -119,9 +128,10 @@ void Font::Draw(const string &str, const Point &point, const Color &color) const
 	}
 	
 	GLfloat textPos[2] = {
-		static_cast<float>(round(point.X() - 1.)),
-		static_cast<float>(round(point.Y()))};
+		static_cast<float>(x - 1.),
+		static_cast<float>(y)};
 	int previous = 0;
+	bool isAfterSpace = true;
 	bool underlineChar = false;
 	const int underscoreGlyph = max(0, min(GLYPHS - 1, '_' - 32));
 	
@@ -133,7 +143,9 @@ void Font::Draw(const string &str, const Point &point, const Color &color) const
 			continue;
 		}
 		
-		int glyph = max(0, min(GLYPHS - 1, c - 32));
+		int glyph = Glyph(c, isAfterSpace);
+		if(c != '"' && c != '\'')
+			isAfterSpace = !glyph;
 		if(!glyph)
 		{
 			textPos[0] += space;
@@ -177,13 +189,16 @@ int Font::Width(const char *str, char after) const
 {
 	int width = 0;
 	int previous = 0;
+	bool isAfterSpace = true;
 	
 	for( ; *str; ++str)
 	{
 		if(*str == '_')
 			continue;
 		
-		int glyph = max(0, min(GLYPHS - 1, *str - 32));
+		int glyph = Glyph(*str, isAfterSpace);
+		if(*str != '"' && *str != '\'')
+			isAfterSpace = !glyph;
 		if(!glyph)
 			width += space;
 		else
@@ -195,6 +210,74 @@ int Font::Width(const char *str, char after) const
 	width += advance[previous * GLYPHS + max(0, min(GLYPHS - 1, after - 32))];
 	
 	return width;
+}
+
+
+
+string Font::Truncate(const string &str, int width) const
+{
+	int prevChars = str.size();
+	int prevWidth = Width(str);
+	if(prevWidth <= width)
+		return str;
+	
+	width -= Width("...");
+	// As a safety against infinite loops (even though they won't be possible if
+	// this implementation is correct) limit the number of loops to the number
+	// of characters in the string.
+	for(size_t i = 0; i < str.length(); ++i)
+	{
+		// Loop until the previous width we tried was too long and this one is
+		// too short, or vice versa. Each time, the next string length we try is
+		// interpolated from the previous width.
+		int nextChars = (prevChars * width) / prevWidth;
+		bool isSame = (nextChars == prevChars);
+		bool prevWorks = (prevWidth <= width);
+		nextChars += (prevWorks ? isSame : -isSame);
+		
+		int nextWidth = Width(str.substr(0, nextChars), '.');
+		bool nextWorks = (nextWidth <= width);
+		if(prevWorks != nextWorks && abs(nextChars - prevChars) == 1)
+			return str.substr(0, min(prevChars, nextChars)) + "...";
+		
+		prevChars = nextChars;
+		prevWidth = nextWidth;
+	}
+	return str;
+}
+
+
+
+string Font::TruncateFront(const string &str, int width) const
+{
+	int prevChars = str.size();
+	int prevWidth = Width(str);
+	if(prevWidth <= width)
+		return str;
+	
+	width -= Width("...");
+	// As a safety against infinite loops (even though they won't be possible if
+	// this implementation is correct) limit the number of loops to the number
+	// of characters in the string.
+	for(size_t i = 0; i < str.length(); ++i)
+	{
+		// Loop until the previous width we tried was too long and this one is
+		// too short, or vice versa. Each time, the next string length we try is
+		// interpolated from the previous width.
+		int nextChars = (prevChars * width) / prevWidth;
+		bool isSame = (nextChars == prevChars);
+		bool prevWorks = (prevWidth <= width);
+		nextChars += (prevWorks ? isSame : -isSame);
+		
+		int nextWidth = Width(str.substr(str.size() - nextChars));
+		bool nextWorks = (nextWidth <= width);
+		if(prevWorks != nextWorks && abs(nextChars - prevChars) == 1)
+			return "..." + str.substr(str.size() - min(prevChars, nextChars));
+		
+		prevChars = nextChars;
+		prevWidth = nextWidth;
+	}
+	return str;
 }
 
 
@@ -216,6 +299,19 @@ int Font::Space() const
 void Font::ShowUnderlines(bool show)
 {
 	showUnderlines = show;
+}
+
+
+
+int Font::Glyph(char c, bool isAfterSpace)
+{
+	// Curly quotes.
+	if(c == '\'' && isAfterSpace)
+		return 96;
+	if(c == '"' && isAfterSpace)
+		return 97;
+	
+	return max(0, min(GLYPHS - 3, c - 32));
 }
 
 
@@ -323,8 +419,7 @@ void Font::SetUpShader(float glyphW, float glyphH)
 	
 	// connect the xy to the "vert" attribute of the vertex shader
 	glEnableVertexAttribArray(shader.Attrib("vert"));
-	glVertexAttribPointer(shader.Attrib("vert"), 2, GL_FLOAT, GL_FALSE,
-		4 * sizeof(GLfloat), NULL);
+	glVertexAttribPointer(shader.Attrib("vert"), 2, GL_FLOAT, GL_FALSE, 4 * sizeof(GLfloat), nullptr);
 	
 	glEnableVertexAttribArray(shader.Attrib("corner"));
 	glVertexAttribPointer(shader.Attrib("corner"), 2, GL_FLOAT, GL_FALSE,

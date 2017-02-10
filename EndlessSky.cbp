@@ -49,6 +49,7 @@
 					<Add library="C:\dev32\lib\libpng.dll.a" />
 					<Add library="C:\dev32\lib\libturbojpeg.dll.a" />
 					<Add library="C:\dev32\lib\libjpeg.dll.a" />
+					<Add library="C:\dev32\lib\libmad.dll.a" />
 					<Add library="C:\dev32\lib\libopenal32.dll.a" />
 					<Add library="C:\dev32\lib\libglew32.dll.a" />
 					<Add library="C:\Program Files (x86)\mingw-w64\i686-5.2.0-posix-dwarf-rt_v4-rev0\mingw32\i686-w64-mingw32\lib\libopengl32.a" />
@@ -70,6 +71,7 @@
 			<Add library="C:\dev64\lib\libpng.dll.a" />
 			<Add library="C:\dev64\lib\libturbojpeg.dll.a" />
 			<Add library="C:\dev64\lib\libjpeg.dll.a" />
+			<Add library="C:\dev64\lib\libmad.dll.a" />
 			<Add library="C:\dev64\lib\libopenal32.dll.a" />
 			<Add library="C:\dev64\lib\libglew32.dll.a" />
 			<Add library="C:\Program Files\mingw64\x86_64-w64-mingw32\lib\libopengl32.a" />
@@ -81,8 +83,6 @@
 		<Unit filename="source/Account.h" />
 		<Unit filename="source/Angle.cpp" />
 		<Unit filename="source/Angle.h" />
-		<Unit filename="source/Animation.cpp" />
-		<Unit filename="source/Animation.h" />
 		<Unit filename="source/Armament.cpp" />
 		<Unit filename="source/Armament.h" />
 		<Unit filename="source/AsteroidField.cpp" />
@@ -91,15 +91,17 @@
 		<Unit filename="source/Audio.h" />
 		<Unit filename="source/BankPanel.cpp" />
 		<Unit filename="source/BankPanel.h" />
-		<Unit filename="source/BlurShader.cpp" />
-		<Unit filename="source/BlurShader.h" />
 		<Unit filename="source/BoardingPanel.cpp" />
 		<Unit filename="source/BoardingPanel.h" />
+		<Unit filename="source/Body.cpp" />
+		<Unit filename="source/Body.h" />
 		<Unit filename="source/CaptureOdds.cpp" />
 		<Unit filename="source/CaptureOdds.h" />
 		<Unit filename="source/CargoHold.cpp" />
 		<Unit filename="source/CargoHold.h" />
 		<Unit filename="source/ClickZone.h" />
+		<Unit filename="source/CollisionSet.cpp" />
+		<Unit filename="source/CollisionSet.h" />
 		<Unit filename="source/Color.cpp" />
 		<Unit filename="source/Color.h" />
 		<Unit filename="source/Command.cpp" />
@@ -118,12 +120,12 @@
 		<Unit filename="source/DataWriter.h" />
 		<Unit filename="source/Date.cpp" />
 		<Unit filename="source/Date.h" />
+		<Unit filename="source/Depreciation.cpp" />
+		<Unit filename="source/Depreciation.h" />
 		<Unit filename="source/Dialog.cpp" />
 		<Unit filename="source/Dialog.h" />
 		<Unit filename="source/DistanceMap.cpp" />
 		<Unit filename="source/DistanceMap.h" />
-		<Unit filename="source/DotShader.cpp" />
-		<Unit filename="source/DotShader.h" />
 		<Unit filename="source/DrawList.cpp" />
 		<Unit filename="source/DrawList.h" />
 		<Unit filename="source/Effect.cpp" />
@@ -140,6 +142,10 @@
 		<Unit filename="source/FillShader.h" />
 		<Unit filename="source/Fleet.cpp" />
 		<Unit filename="source/Fleet.h" />
+		<Unit filename="source/Flotsam.cpp" />
+		<Unit filename="source/Flotsam.h" />
+		<Unit filename="source/FogShader.cpp" />
+		<Unit filename="source/FogShader.h" />
 		<Unit filename="source/Font.cpp" />
 		<Unit filename="source/Font.h" />
 		<Unit filename="source/FontSet.cpp" />
@@ -158,6 +164,8 @@
 		<Unit filename="source/Government.h" />
 		<Unit filename="source/HailPanel.cpp" />
 		<Unit filename="source/HailPanel.h" />
+		<Unit filename="source/Hardpoint.cpp" />
+		<Unit filename="source/Hardpoint.h" />
 		<Unit filename="source/HiringPanel.cpp" />
 		<Unit filename="source/HiringPanel.h" />
 		<Unit filename="source/ImageBuffer.cpp" />
@@ -168,6 +176,8 @@
 		<Unit filename="source/Information.h" />
 		<Unit filename="source/Interface.cpp" />
 		<Unit filename="source/Interface.h" />
+		<Unit filename="source/ItemInfoDisplay.cpp" />
+		<Unit filename="source/ItemInfoDisplay.h" />
 		<Unit filename="source/LineShader.cpp" />
 		<Unit filename="source/LineShader.h" />
 		<Unit filename="source/LoadPanel.cpp" />
@@ -182,6 +192,8 @@
 		<Unit filename="source/MapOutfitterPanel.h" />
 		<Unit filename="source/MapPanel.cpp" />
 		<Unit filename="source/MapPanel.h" />
+		<Unit filename="source/MapSalesPanel.cpp" />
+		<Unit filename="source/MapSalesPanel.h" />
 		<Unit filename="source/MapShipyardPanel.cpp" />
 		<Unit filename="source/MapShipyardPanel.h" />
 		<Unit filename="source/Mask.cpp" />
@@ -190,6 +202,8 @@
 		<Unit filename="source/MenuPanel.h" />
 		<Unit filename="source/Messages.cpp" />
 		<Unit filename="source/Messages.h" />
+		<Unit filename="source/Minable.cpp" />
+		<Unit filename="source/Minable.h" />
 		<Unit filename="source/Mission.cpp" />
 		<Unit filename="source/Mission.h" />
 		<Unit filename="source/MissionAction.cpp" />
@@ -198,6 +212,8 @@
 		<Unit filename="source/MissionPanel.h" />
 		<Unit filename="source/Mortgage.cpp" />
 		<Unit filename="source/Mortgage.h" />
+		<Unit filename="source/Music.cpp" />
+		<Unit filename="source/Music.h" />
 		<Unit filename="source/NPC.cpp" />
 		<Unit filename="source/NPC.h" />
 		<Unit filename="source/Outfit.cpp" />
@@ -218,6 +234,8 @@
 		<Unit filename="source/Phrase.h" />
 		<Unit filename="source/Planet.cpp" />
 		<Unit filename="source/Planet.h" />
+		<Unit filename="source/PlanetLabel.cpp" />
+		<Unit filename="source/PlanetLabel.h" />
 		<Unit filename="source/PlanetPanel.cpp" />
 		<Unit filename="source/PlanetPanel.h" />
 		<Unit filename="source/PlayerInfo.cpp" />
@@ -238,6 +256,8 @@
 		<Unit filename="source/Radar.h" />
 		<Unit filename="source/Random.cpp" />
 		<Unit filename="source/Random.h" />
+		<Unit filename="source/Rectangle.cpp" />
+		<Unit filename="source/Rectangle.h" />
 		<Unit filename="source/RingShader.cpp" />
 		<Unit filename="source/RingShader.h" />
 		<Unit filename="source/Sale.h" />
@@ -288,6 +308,9 @@
 		<Unit filename="source/UI.h" />
 		<Unit filename="source/Weapon.cpp" />
 		<Unit filename="source/Weapon.h" />
+		<Unit filename="source/WinApp.rc">
+			<Option compilerVar="WINDRES" />
+		</Unit>
 		<Unit filename="source/WrappedText.cpp" />
 		<Unit filename="source/WrappedText.h" />
 		<Unit filename="source/gl_header.h" />

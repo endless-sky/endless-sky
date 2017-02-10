@@ -13,7 +13,7 @@
 mission "FWC Scouting 1"
 	landing
 	name "Scout Kaus Borealis"
-	description "Travel through the <system> system to determine how strong the Navy presence is there, while JJ works to gather a fleet to attack it."
+	description "Travel through the Kaus Borealis system to determine how strong the Navy presence is there, while JJ works to gather a fleet to attack it."
 	autosave
 	source "New Portland"
 	waypoint "Kaus Borealis"
@@ -99,9 +99,11 @@ mission "FWC Attack Kaus Borealis"
 		personality heroic
 		fleet
 			names "free worlds capital"
+			fighters "free worlds fighters"
 			variant
 				"Dreadnought"
-				"Bastion (Heavy)"
+				"Skein"
+				"Finch" 6
 		fleet
 			names "free worlds capital"
 			variant
@@ -206,7 +208,7 @@ mission "FWC Cebalrai 1"
 			choice
 				`	"Weren't you under house arrest?"`
 				`	"So, does the fact that you're here mean the Senate pardoned you?"`
-			`	"Yes," he says. "After that incident with the Alphas on Poisonwood, some folks in the Senate started thinking that I was right to view the pirates as a threat. And when the Navy went on the offensive, they decided I was needed for the war effort. So I've been reinstated. Glad to hear your on Council now too."`
+			`	"Yes," he says. "After that incident with the Alphas on Poisonwood, some folks in the Senate started thinking that I was right to view the pirates as a threat. And when the Navy went on the offensive, they decided I was needed for the war effort. So I've been reinstated. Glad to hear you're on Council now too."`
 			choice
 				`	"So, what's our next step?"`
 					goto end
@@ -639,7 +641,7 @@ mission "FWC Checkmate 1"
 				`	"We only want this war to be over as soon as possible."`
 				`	"We've just been trying to avoid being destroyed by the Navy, and things have gotten a bit out of hand."`
 			`	"I see," she says. "Did you have a plan for what comes next, or are we just winging it now?"`
-			`	Alondo say, "Unfortunately, we do have a plan. Our very last contingency plan. We call it the 'checkmate' option. Our fleet will push north--"`
+			`	Alondo says, "Unfortunately, we do have a plan. Our very last contingency plan. We call it the 'checkmate' option. Our fleet will push north--"`
 			`	He is interrupted by one of Tomek's men running into the room. "Sir, we have a major Navy fleet incoming. We need all ships in the air immediately to repulse them. Reinforcements are on their way, but they may not get here for a while."`
 			`	Tomek says, "So, it begins. Captain <last>, get back to your ship and aid in the defenses."`
 				launch
@@ -648,9 +650,11 @@ mission "FWC Checkmate 1"
 		personality heroic
 		fleet
 			names "free worlds capital"
+			fighters "free worlds fighters"
 			variant
 				"Dreadnought"
-				"Bastion (Heavy)"
+				"Skein"
+				"Finch" 6
 				"Fury (Flamethrower)" 4
 		fleet
 			names "free worlds capital"
@@ -814,9 +818,11 @@ mission "FWC Checkmate 1"
 		government "Free Worlds"
 		fleet
 			names "free worlds capital"
+			fighters "free worlds fighters"
 			variant
 				"Dreadnought"
-				"Bastion (Heavy)"
+				"Skein"
+				"Finch" 6
 		fleet
 			names "free worlds capital"
 			variant
@@ -906,9 +912,11 @@ mission "FWC Checkmate 1B"
 		personality heroic
 		fleet
 			names "free worlds capital"
+			fighters "free worlds fighters"
 			variant
 				"Dreadnought"
-				"Bastion (Heavy)"
+				"Skein"
+				"Finch" 6
 		fleet
 			names "free worlds capital"
 			variant
@@ -1033,10 +1041,12 @@ mission "FWC Checkmate Escorts"
 				"Argosy (Laser)"
 		fleet
 			names "free worlds capital"
+			fighters "free worlds fighters"
 			variant
+				"Skein"
+				"Finch" 6
 				"Dreadnought"
 				"Falcon (Plasma)"
-				"Bastion (Heavy)"
 		fleet
 			names "free worlds capital"
 			variant
@@ -1053,8 +1063,9 @@ mission "FWC Checkmate Escorts"
 
 
 mission "FWC Pug 1"
-	name "Defend <planet>
+	name "Defend <planet>"
 	description "<planet> is under attack by ships of an unknown type. Drive them off, and then return to the planet to figure out what to do next."
+	source "Silver"
 	to offer
 		has "FWC Checkmate 1C: done"
 	on fail
@@ -1101,8 +1112,10 @@ mission "FWC Pug 1"
 		government "Free Worlds"
 		fleet
 			names "free worlds small"
+			fighters "free worlds fighters"
 			variant
-				"Bastion (Heavy)"
+				"Skein"
+				"Finch" 6
 				"Clipper"
 				"Clipper (Heavy)"
 				"Clipper (Speedy)"
@@ -1257,7 +1270,7 @@ mission "FWC Pug 2"
 	
 	on offer
 		conversation
-			`When you land at the spaceport on <origin>, you find no evidence of violent struggle; merchant captains are walking around freely, haggling for commodities, and conversing with each other just like in any other spaceport you have visited. However, the spaceport is also being patrolled by small groups of slender, bipedal, pale-skinned aliens who you assume are the Pug. Each one is holding a metal staff that looks like sort of weapon, but none of them move to attack you.`
+			`When you land at the spaceport on <origin>, you find no evidence of violent struggle; merchant captains are walking around freely, haggling for commodities, and conversing with each other just like in any other spaceport you have visited. However, the spaceport is also being patrolled by small groups of slender, bipedal, pale-skinned aliens who you assume are the Pug. Each one is holding a metal staff that looks like some sort of weapon, but none of them move to attack you.`
 			`	Soon after you land, you spot a man making his way towards your ship, ducking behind other ships and crates every time a group of Pug look in his direction. If he is some sort of fugitive from them, it might be unwise to throw your lot in with him. On the other hand, he could have valuable information for you.`
 			choice
 				`	(Stay around and talk to him.)`
@@ -1534,10 +1547,10 @@ mission "FWC Pug 3A"
 		conversation
 			branch know
 				has "FW Alphas 1.1: done"
-			`Surprisingly, the Navy lets you land without firing on you; the fact that you entered the system via jump drive probably made a big impression on them. But when your ship lands, it is immediately surrounded by Navy troops. Hesitantly, you and Katya disembark. You are greeted by a Navy general who you recognize as William Danforth, the leader of the Navy Oathkeepers. Even among the Free Worlds Danforth is spoken of with respect due to his courage and levelheadedness in battle and his leadership of countless humanitarian missions.`
+			`Surprisingly, the Navy lets you land without firing on you; the fact that you entered the system via jump drive probably made a big impression on them. But when your ship lands, it is immediately surrounded by Navy troops. Hesitantly, you and Katya disembark. You are greeted by a Navy admiral who you recognize as William Danforth, the leader of the Navy Oathkeepers. Even among the Free Worlds Danforth is spoken of with respect due to his courage and levelheadedness in battle and his leadership of countless humanitarian missions.`
 				goto introductions
 			label know
-			`Surprisingly, the Navy lets you land without firing on you; the fact that you entered the system via jump drive probably made a big impression on them. But when your ship lands, it is immediately surrounded by Navy troops. Hesitantly, you and Katya disembark. You are greeted by General Danforth, the leader of the Oathkeepers who previously assisted you to drive the Alphas and their mercenary fleet away from Poisonwood.`
+			`Surprisingly, the Navy lets you land without firing on you; the fact that you entered the system via jump drive probably made a big impression on them. But when your ship lands, it is immediately surrounded by Navy troops. Hesitantly, you and Katya disembark. You are greeted by Admiral Danforth, the leader of the Oathkeepers who previously assisted you to drive the Alphas and their mercenary fleet away from Poisonwood.`
 				goto introductions
 			label introductions
 			`	Standing next to Danforth is someone you think might be his bodyguard: a dark-skinned woman dressed entirely in black. Even the whites of her eyes are black: when she gets closer, you can see that it is actually a scleric tattoo, an intricate Celtic knotwork pattern inked into the whites of her eyes. Surprisingly, Katya recognizes her. "Raven!" says Katya. You aren't sure if Katya sounds happy to see her, or scared.`
@@ -1603,7 +1616,7 @@ mission "FWC Pug 3B"
 			label end
 			branch alone
 				has "FWC Checkmate Escorts: done"
-			`	The resistance fighters tell you their own fleet will be launching shortly. You return to your ship and fire up the engines. Hopefully the ships that are leftover from your attack fleet will be enough to hold off the Pug until Freya finishes her work down here...`
+			`	The resistance fighters tell you their own fleet will be launching shortly. You return to your ship and fire up the engines. Hopefully the ships that are left over from your attack fleet will be enough to hold off the Pug until Freya finishes her work down here...`
 				launch
 			label alone
 			`	The resistance fighters tell you their own fleet will be launching shortly. You return to your ship and fire up the engines, wishing that you had managed to keep some of the ships from your attack fleet alive, and hoping you will be able to hold off the Pug until Freya finishes her work down here...`
@@ -1613,8 +1626,10 @@ mission "FWC Pug 3B"
 		personality heroic
 		fleet
 			names "free worlds capital"
+			fighters "free worlds fighters"
 			variant
-				"Bastion (Heavy)"
+				"Skein"
+				"Finch" 6
 				"Argosy (Blaster)"
 				"Argosy (Laser)"
 				"Argosy (Turret)"
@@ -1769,10 +1784,12 @@ mission "FWC Pug 3D: Reinforcements"
 				"Argosy (Laser)"
 		fleet
 			names "free worlds capital"
+			fighters "free worlds fighters"
 			variant
 				"Dreadnought"
 				"Falcon (Plasma)"
-				"Bastion (Heavy)"
+				"Skein" 
+				"Finch" 6
 		fleet
 			names "free worlds capital"
 			variant
@@ -2018,7 +2035,7 @@ mission "FWC Pug 4B: Quarg"
 		conversation
 			`You land on the Quarg station, but neither of you knows what to do next. How do you locate a Quarg diplomat? Do they even have such a thing? As you and Freya stand in the hangar looking somewhat lost, one of the Quarg approaches you and says, "These ones have questions?"`
 			`	Freya says, "We've been attacked by aliens who call themselves the Pug. We're wondering what you know about them."`
-			`	Quarg skin is normally entirely grey, as is their clothing, but several patches of skin on the Quarg's face turn red at the word "Pug." You've heard theories is a sign of emotion in the Quarg, but no one knows what emotion precisely. Anger? Embarrassment? The Quarg you are speaking with simply says, "Come," and leads you to a nook in one of the main hallways, where another Quarg stands behind a desk. You are struck by how little you know about this species: are you speaking to a tour guide, or to a diplomat? Is this the governor of the station, or just an expert in human languages? The Quarg behind the desk says, "Do you have questions for me?"`
+			`	Quarg skin is normally entirely grey, as is their clothing, but several patches of skin on the Quarg's face turn red at the word "Pug." You've heard theories that this is a sign of emotion in the Quarg, but no one knows what emotion precisely. Anger? Embarrassment? The Quarg you are speaking with simply says, "Come," and leads you to a nook in one of the main hallways, where another Quarg stands behind a desk. You are struck by how little you know about this species: are you speaking to a tour guide, or to a diplomat? Is this the governor of the station, or just an expert in human languages? The Quarg behind the desk says, "Do you have questions for me?"`
 			choice
 				`	"Can you help us to fight the Pug?"`
 				`	"Can you give us information about the Pug?"`
@@ -2072,12 +2089,12 @@ mission "FWC Pug 4C"
 	on offer
 		event "fwc reconnect ascella"
 		conversation
-			`You help Freya to unload and set up the reflector equipment, then contact the Navy on Oblivion and instruct them to point the transmitter in your direction. A few minutes later General Danforth contacts you. "This link appears to be returning too," he says. "So, let's move on. We're going to make an attack on the <system> system, now, and we would welcome your assistance in this battle." You leave the equipment on <origin> and return to your ship with Freya.`
+			`You help Freya to unload and set up the reflector equipment, then contact the Navy on Oblivion and instruct them to point the transmitter in your direction. A few minutes later Admiral Danforth contacts you. "This link appears to be returning too," he says. "So, let's move on. We're going to make an attack on the <system> system, now, and we would welcome your assistance in this battle." You leave the equipment on <origin> and return to your ship with Freya.`
 				accept
 	
 	on complete
 		event "fwc reconnect zeta aquilae"
-		dialog `After a few minutes of scanning the surface of <planet>, Freya locates another transmitter station that matches the one you found on Oblivion. You contact General Danforth to tell him its location, and he dispatches a crew to take control of it. He also reports to you that once again, apparently all the Pug left the planet during the course of the battle. "A pity," he says. "If we had taken prisoners, maybe we could have gotten some answers from them. Anyway, meet me in the spaceport whenever you're ready to help with our next mission."`
+		dialog `After a few minutes of scanning the surface of <planet>, Freya locates another transmitter station that matches the one you found on Oblivion. You contact Admiral Danforth to tell him its location, and he dispatches a crew to take control of it. He also reports to you that once again, apparently all the Pug left the planet during the course of the battle. "A pity," he says. "If we had taken prisoners, maybe we could have gotten some answers from them. Anyway, meet me in the spaceport whenever you're ready to help with our next mission."`
 	
 	npc evade
 		personality disables heroic staying
@@ -2175,17 +2192,17 @@ mission "FWC Pug 5"
 	
 	on offer
 		conversation
-			`You find General Danforth supervising the repairs of the damaged Navy ships. "Glad you survived that battle!" he says. "These alien ships are much more advanced than ours, but we outnumber them, so now that we've established a strong beachhead I think we actually have a chance at defeating them. The only problem is, the majority of our fleet is still up north. With the Vega system cut off, our supply lines are having to go all the way around through the dirt belt. So I'd like to propose liberating Vega next."`
+			`You find Admiral Danforth supervising the repairs of the damaged Navy ships. "Glad you survived that battle!" he says. "These alien ships are much more advanced than ours, but we outnumber them, so now that we've established a strong beachhead I think we actually have a chance at defeating them. The only problem is, the majority of our fleet is still up north. With the Vega system cut off, our supply lines are having to go all the way around through the dirt belt. So I'd like to propose liberating Vega next."`
 			choice
 				`	"That does sound like a good strategic choice."`
 				`	"How will your fleet get to Vega without traveling through the Pug home system? That system is swarming with their ships."`
-			`	Danforth says, "During the battle, we managed to salvage jump drives from a few of the Pug ships. We've installed them in three of our cruisers. Hopefully, with your help, that will be enough to overcome any resistance in the Vega system. Then Miss Winters can work her magic with the hyperlinks again, and we'll be able to bring a massive reinforcement fleet from Sol."`
+			`	Danforth says, "During the battle, we managed to salvage jump drives from a few of the Pug ships. We've installed them in three of our carriers. Hopefully, with your help, that will be enough to overcome any resistance in the Vega system. Then Miss Winters can work her magic with the hyperlinks again, and we'll be able to bring a massive reinforcement fleet from Sol."`
 			`	"Sounds good to me," says Freya. "I wish more of our own ships had jump drives, so we could assist you."`
 			`	"Indeed," says Danforth. "That's why it's so important for Captain <last>'s ship to be part of this battle. When it's all over, I want to be able to tell Parliament that this war was won by the Free Worlds and the Navy fighting side by side every step of the way. And I hope you will be able to tell your Senate the same thing, so that they will be more amenable to a compromise between us."`
 			choice
 				`	"I'm glad to hear you say that. Your fleet is so much stronger than ours that you could easily take all the credit."`
 					goto navy
-				`	"We were the ones who discovered the aliens and the way to restore the hyperpace links. The Free Worlds deserve the real credit here."`
+				`	"We were the ones who discovered the aliens and the way to restore the hyperspace links. The Free Worlds deserve the real credit here."`
 					goto free
 			label navy
 			`	"I don't want the credit," he says, "I want peace." He wishes you the best of luck in your attack on Vega, and says to contact him as soon as the link is restored and the reinforcements are ready.`
@@ -2331,13 +2348,14 @@ mission "FWC Pug 5C"
 	destination Silver
 	to offer
 		has "FWC Pug 5B: done"
+	passengers 1
 	on fail
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
 		event "fwc reconnect vega"
 		conversation
-			`As soon as Freya has set up her equipment and verified that it is working, you contact General Danforth. "We're on Mars," you tell him, "and we should have the hyperspace link to Vega restored soon."`
+			`As soon as Freya has set up her equipment and verified that it is working, you contact Admiral Danforth. "We're on Mars," you tell him, "and we should have the hyperspace link to Vega restored soon."`
 			`	"Excellent," he says. "Please contact your Council and arrange for your fleet to strike from the south at the same time as the fleet from Vega jumps in from the north."`
 			`	You contact Tomek and tell him the Navy is ready for a final assault, and he agrees to send as many ships as he can spare to join you. Now it's time to return to <planet> and await the attack signal.`
 				accept
@@ -2406,14 +2424,14 @@ mission "FWC Pug 6"
 	on offer
 		event "pug flee"
 		conversation
-			`The tiny spaceport on Silver is packed with people as more and more Navy ships come in for a landing. The Navy generals have decided that there is no sense in delaying: you will be launching an attack on the Pug homeworld in the morning. Despite your success so far in battling the Pug, you know that if their entire fleet opposes you, even the Navy may not be strong enough to defeat them. This may be the last time you see many of these officers and crew members alive.`
+			`The tiny spaceport on Silver is packed with people as more and more Navy ships come in for a landing. The Navy admirals have decided that there is no sense in delaying: you will be launching an attack on the Pug homeworld in the morning. Despite your success so far in battling the Pug, you know that if their entire fleet opposes you, even the Navy may not be strong enough to defeat them. This may be the last time you see many of these officers and crew members alive.`
 			`	Everyone prepares for death in different ways. The spaceport's pub is packed, with the crowd spilling out into the hallway and loud music blasting. The chapel is equally full, and the sound of whispered prayers and chanting clashes with the dance music from the pub. Through the doorway of the chapel you see some people sitting cross-legged on the floor and others kneeling on prayer rugs, as the various cultures that make up the Republic do their best to share the space.`
 			`	You find Freya sitting in a secluded nook on the upper floor of the spaceport building, watching the stars and the drifting sand out the window. "Ready for the last battle, Captain?" she asks.`
 			choice
 				`	"Sure, with the Navy at our backs I think we've got a good chance."`
 				`	"As ready as I'll ever be, I guess."`
 			`	She laughs. "I suppose that's the best we can hope for. Do you mind if I ride in your ship tomorrow, rather than one of the others? If this is the end, I'd rather face it with people I know." You agree. She turns back to look out the window.`
-			`	Since Freya seems to want to be alone, you return downstairs, and discover that a sizeable Oathkeeper fleet has arrived. In the main vestibule of the spaceport, an Oathkeeper officer is leading a group in qigong meditation. And surprisingly, you spot General Danforth sitting with the Muslim prayer group and chanting in fluent Arabic. Meanwhile, the party outside the pub continues.`
+			`	Since Freya seems to want to be alone, you return downstairs, and discover that a sizeable Oathkeeper fleet has arrived. In the main vestibule of the spaceport, an Oathkeeper officer is leading a group in qigong meditation. And surprisingly, you spot Admiral Danforth sitting with the Muslim prayer group and chanting in fluent Arabic. Meanwhile, the party outside the pub continues.`
 			`	Eventually morning comes, and you prepare your ship for the assault on the Pug homeworld...`
 				accept
 	
@@ -2503,10 +2521,12 @@ mission "FWC Pug 6"
 				"Argosy (Laser)"
 		fleet
 			names "free worlds capital"
+			fighters "free worlds fighters"
 			variant
 				"Dreadnought"
 				"Falcon (Plasma)"
-				"Bastion (Heavy)"
+				"Skein"
+				"Finch" 6
 		fleet
 			names "free worlds capital"
 			variant
@@ -2569,7 +2589,7 @@ mission "FWC Pug 6"
 				`	"Everything here is odd. The city, the holograms, all of it."`
 			`	She says, "It's an ordinary, human style electrical outlet. Human. In an alien city. And the steps we came up to get here: the Pug have legs half again as long as ours. But the tread spacing was at the normal human height. This building wasn't made for the Pug. It was made for us."`
 			`	Reports begin coming in as the Navy explores the rest of the planet, and they are all finding the same thing: the cities are abandoned, many of them with signs that they were never inhabited in the first place. The first time you visited this planet, you thought it must have a billion inhabitants, but now it seems that its true population was less than a million - all of whom have apparently departed to somewhere beyond the wormhole.`
-			`	Freya says, "Let's get back to the spaceport and meet up with the generals."`
+			`	Freya says, "Let's get back to the spaceport and meet up with the admirals."`
 
 
 
@@ -2587,7 +2607,7 @@ mission "FWC End"
 	on offer
 		"reputation: Republic" += 20
 		conversation
-			`You find General Danforth inspecting the Pug spaceport. "This is all very odd," he says. "I'm glad the aliens appear to have left, but I wish we knew where they came from and whether they're likely to return."`
+			`You find Admiral Danforth inspecting the Pug spaceport. "This is all very odd," he says. "I'm glad the aliens appear to have left, but I wish we knew where they came from and whether they're likely to return."`
 			`	Freya says, "What should we do now?"`
 			`	"I've contacted New Austria and told them that Councilor Reynolds is free to leave," he says. "She told me that your Senate has agreed to the Free Worlds being a semi-autonomous district of the Republic, similar to the Syndicate systems. She also asked that you and Captain <last> meet up with her and Alondo Gruyere on Earth, where they will be meeting with Parliament. I sent a report to Earth that places a very heavy emphasis on the role that the Free Worlds played in this victory, so Parliament ought to be quite willing to negotiate with you."`
 			choice

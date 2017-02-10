@@ -13,7 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef OUTFIT_H_
 #define OUTFIT_H_
 
-#include "Animation.h"
+#include "Body.h"
 #include "Weapon.h"
 
 #include <map>
@@ -36,11 +36,16 @@ class Sprite;
 // or the sprite or sound to be used for an engine flare.
 class Outfit : public Weapon {
 public:
+	// These are all the possible category strings for outfits.
+	static const std::vector<std::string> CATEGORIES;
+	
+public:
 	// An "outfit" can be loaded from an "outfit" node or from a ship's
 	// "attributes" node.
 	void Load(const DataNode &node);
 	
 	const std::string &Name() const;
+	const std::string &PluralName() const;
 	const std::string &Category() const;
 	const std::string &Description() const;
 	int64_t Cost() const;
@@ -61,25 +66,35 @@ public:
 	void Add(const std::string &attribute, double value = 1.);
 	void Reset(const std::string &attribute, double value = 0.);
 	
-	// Get this outfit's engine flare sprite, if any.
-	const std::vector<std::pair<Animation, int>> &FlareSprites() const;
+	// Get this outfit's engine flare sprites, if any.
+	const std::vector<std::pair<Body, int>> &FlareSprites() const;
 	const std::map<const Sound *, int> &FlareSounds() const;
 	// Get the afterburner effect, if any.
 	const std::map<const Effect *, int> &AfterburnerEffects() const;
+	// Get the sprite this outfit uses when dumped into space.
+	const Sprite *FlotsamSprite() const;
 	
 	
 private:
 	std::string name;
+	std::string pluralName;
 	std::string category;
 	std::string description;
 	const Sprite *thumbnail = nullptr;
+	int64_t cost = 0;
 	
 	std::map<std::string, double> attributes;
 	
-	std::vector<std::pair<Animation, int>> flareSprites;
+	std::vector<std::pair<Body, int>> flareSprites;
 	std::map<const Sound *, int> flareSounds;
 	std::map<const Effect *, int> afterburnerEffects;
+	const Sprite *flotsamSprite = nullptr;
 };
+
+
+
+// This gets called a lot, so inline it for speed.
+inline int64_t Outfit::Cost() const { return cost; }
 
 
 

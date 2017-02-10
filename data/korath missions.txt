@@ -1,4 +1,4 @@
-# Copyright (c) 2014 by Michael Zahniser
+# Copyright (c) 2016 by Michael Zahniser
 #
 # Endless Sky is free software: you can redistribute it and/or modify it under the
 # terms of the GNU General Public License as published by the Free Software
@@ -8,66 +8,42 @@
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
-mission "First Contact: Korath"
+mission "First Contact: Korati Efreti"
 	landing
-	source "Far'en Lai"
+	source "Korati Efreti"
+	to offer
+		not "Wanderers: Rek To Kor Efret: offered"
 	on offer
 		conversation
-			`Almost immediately after you step out of your ship, two Korath fighters come hurtling toward your ship and land, skidding to a stop in the sand about ten meters away from you. The pilots get out and approach you. They are short, stocky, and somewhat reptilian in appearance, and both have a crest of red and brown feathers running along the top of their heads and hanging down their backs. Their clothes are a brightly colored patchwork material. They do not seem to be armed. One of them stretches both arms out sideways and says, "Oi, oi!"`
-			choice
-				`	(Try to talk to them.)`
-					goto talk
-				`	(Attack them.)`
-					goto attack
-			
-			label talk
-			`	"Hello," you say, "I am <first> <last>." You point to yourself and repeat your name. "<first> <last>."`
-			`	"Arkwam," says one of them, "mugji barak at'lap for'barai." It's clear that they do not speak your language, and you do not understand theirs.`
-			`	"Ormi borgi mali for'quar men for'barai," says the other, speaking somewhat slower.`
-			`	"I'm a human," you say, "from Earth."`
-				goto map
-			
-			label attack
-			`	You reach for your gun. They move faster than you would have expected possible. One of just waves its arms and shouts, "Nag! Nag! Koreshi far'en lai!" But the other dives at you, grabbing the gun out of your hands before you have a chance to fire it.`
-			`	Then, instead of attacking you, the one who took your gun begins waving it your face and talking very quickly, as if scolding you. It points to the sky with a sweeping gesture, then mimics drawing the gun as you just did. Then it points to the ground, puts the gun on the ground, and says, "Far'en lai ko forei lak'far." Then it picks up the gun and repeats both gestures: all the sky, gun drawn. Earth, gun on ground. Then it tosses the gun down at your feet and waits, expectantly.`
-				goto map
-			
-			label map
-			`	There is a long awkward silence, like a cocktail party where you are standing next to someone but have no idea how to start a conversation. Then one of the Korath stoops down and begins drawing in the sand, a spiral with many arms: the galaxy. Near the center of the spiral, it draws the outline of one of their warships. "Korath soru nar," it says.`
-			choice
-				`	(Draw where human territory is.)`
-					goto draw
-				`	(Pretend not to understand what the map is.)`
-					goto wait
-			
-			label draw
-			`	You draw the outline of your own ship on the same side of the core as theirs, but farther out, then draw a line around it marking the extents of human space. The Korath responds by drawing, beyond the southern edge of human space, something that looks like a spider, covering one whole galactic arm. Then, near the top of human space it pushes its finger deep into the ground, and again just north of there, and connects the two holes with a line.`
-			choice
-				`	(Add some details I know to the map.)`
-					goto add
-				`	(Wait to see what else they will draw.)`
-					goto wait
-			
-			label add
-			`	Near the southern end of human space, you draw a dot with a broken ring around it: the Quarg ringworld, under construction. The Korath respond by both beginning to draw more rings, spread out all over the galaxy, some broken, some complete. Then they draw more of the spiders, again spread out all over the galaxy, and then sprinkle sand over them so the lines are barely visible.`
-			
-			label wait
-			`	The Korath pause for a minute and look at you, then begin drawing again. "Korath," says one of them, and draws another outline of one of their warships, but much larger, on the other side of the galactic core. Then it brushes away the outline of that big ship and draws three smaller ones, facing each other. "Korath," it says again, "no'lai en vas, certu forgu, mik'lak'nal torq." It rakes its fingers through the sand, erasing the outlines of the three ships.`
-			`	Its companion picks up the story. "Vas, certu vas. Minli ka Korath torq. Kem'lor ka forli, ka merru, ka plee. Teka korma ka draki, rekki korath, marre fa long." It draws a bunch of small spiders, surrounding the Korath ships, then gathers the sand from that part of the map and tosses it onto the place where the first Korath ship was drawn. "Tarre ta fo'lu korath."`
-			`	The other one says, "Far'en lai, soru ka'lai en ka korath. Soti far'en lai ko forei lak'far." It points to the gun at the front of its fighter, then makes a gesture, hands turned downward toward the ground. "Far'en lai ka let'mari nik lak'mal." It points to a few places, hundreds of meters away, where you see green plants growing. "Nik lak'mal." Then it points to you. "Hoomani ka Korath nik lak'mal."`
-			`	To emphasize the point, on a blank part of the sand it draws an outline of your ship, very big, and makes lots of dots around it. Then it draws the outline of a Korath ship, much smaller, with only seven dots.`
-			choice
-				`	(Try to assure them you do not mean to fight them.)`
-					goto assurance
-				`	(Try to communicate that they should leave humanity alone.)`
-					goto alone
-			
-			label assurance
-			`	"We do not want to fight you," you say, and you change the drawing so that the human ship is not aiming at the Korath one.`
-			`	"Kai," says the Korath, "mik'mal ka puk." It pushes its finger deep into the ground at a point on the map not too far from Earth. "Ka puk soru, nik ka korath."`
-				goto alone
-			
-			label alone
-			`	On the map, you draw a line between Korath space and human space. "Humans will stay here," you say, "if the Korath will stay here. Humans here, Korath here." You point to each location for emphasis.`
-			`	"Kai," says the Korath, and it stretches out both arms toward you, palms out. You make the same gesture and touch its hands, palm to palm. You're not sure if that is the right response, but the Korath seem satisfied. They say, "Nik lak'mal," then get back in their fighters and take off.`
+			`	A few of the Korath who inhabit this station greet you when you land, holding up both hands with their palms toward you. One of them says something that sounds like, "Humani efreti, naskoor amasavarkta." It's clear that none of them speak your language, but they seem friendly and willing to trade with you.`
+				decline
+
+mission "First Contact: Laki Nemparu"
+	landing
+	source "Laki Nemparu"
+	to offer
+		not "Wanderers: Rek To Kor Efret: offered"
+	on offer
+		conversation
+			`	A few of the Korath in this spaceport greet you when you land, holding up both hands with their palms toward you. One of them says something that sounds like, "Humani efreti, naskoor amasavarkta." It's clear that none of them speak your language, but they seem friendly and willing to trade with you.`
+				decline
+
+mission "First Contact: Karek Fornati"
+	landing
+	source "Karek Fornati"
+	to offer
+		not "Wanderers: Rek To Kor Efret: offered"
+	on offer
+		conversation
+			`	A few of the Korath in this spaceport greet you when you land, holding up both hands with their palms toward you. One of them says something that sounds like, "Humani efreti, naskoor amasavarkta." It's clear that none of them speak your language, but they seem friendly and willing to trade with you.`
+				decline
+
+mission "First Contact: Setar Fort"
+	landing
+	source "Setar Fort"
+	to offer
+		not "Wanderers: Rek To Kor Efret: offered"
+	on offer
+		conversation
+			`	A few of the Korath in this spaceport greet you when you land, holding up both hands with their palms toward you. One of them says something that sounds like, "Humani efreti, naskoor amasavarkta." It's clear that none of them speak your language, but they seem friendly and willing to trade with you.`
 				decline

@@ -38,9 +38,9 @@ void EscortDisplay::Clear()
 
 
 
-void EscortDisplay::Add(const Ship &ship, bool isHere)
+void EscortDisplay::Add(const Ship &ship, bool isHere, bool fleetIsJumping, bool isSelected)
 {
-	icons.emplace_back(ship, isHere);
+	icons.emplace_back(ship, isHere, fleetIsJumping, isSelected);
 }
 
 
@@ -51,13 +51,17 @@ void EscortDisplay::Draw() const
 {
 	MergeStacks();
 	icons.sort();
+	stacks.clear();
+	zones.clear();
 	
 	// Draw escort status.
 	static const Font &font = FontSet::Get(14);
 	Point pos = Point(Screen::Left() + 20., Screen::Bottom());
 	static const Color hereColor(.8, 1.);
 	static const Color elsewhereColor(.4, .4, .6, 1.);
-	static const Color readyToJumpColor(.2, .8, .2, 1.);
+	static const Color notReadyToJumpColor(.9, .8, 0., 1.);
+	static const Color selectedColor(.2, .8, 0., 1.);
+	static const Color cannotJumpColor(.9, .2, 0., 1.);
 	for(const Icon &escort : icons)
 	{
 		if(!escort.sprite)
@@ -75,8 +79,12 @@ void EscortDisplay::Draw() const
 		Color color;
 		if(!escort.isHere)
 			color = elsewhereColor;
-		else if(escort.isReadyToJump)
-			color = readyToJumpColor;
+		else if(escort.cannotJump)
+			color = cannotJumpColor;
+		else if(escort.notReadyToJump)
+			color = notReadyToJumpColor;
+		else if(escort.isSelected)
+			color = selectedColor;
 		else
 			color = hereColor;
 		
@@ -84,11 +92,13 @@ void EscortDisplay::Draw() const
 		double scale = min(20. / escort.sprite->Width(), 20. / escort.sprite->Height());
 		Point size(escort.sprite->Width() * scale, escort.sprite->Height() * scale);
 		OutlineShader::Draw(escort.sprite, pos, size, color);
+		zones.push_back(pos);
+		stacks.push_back(escort.ships);
 		// Draw the number of ships in this stack.
 		double width = 70.;
-		if(escort.stackSize > 1)
+		if(escort.ships.size() > 1)
 		{
-			string number = to_string(escort.stackSize);
+			string number = to_string(escort.ships.size());
 		
 			Point numberPos = pos;
 			numberPos.X() += 15. + width - font.Width(number);
@@ -137,15 +147,31 @@ void EscortDisplay::Draw() const
 
 
 
-EscortDisplay::Icon::Icon(const Ship &ship, bool isHere)
-	: sprite(ship.GetSprite().GetSprite()),
+// Check if the given point is a click on an escort icon. If so, return the
+// stack of ships represented by the icon. Otherwise, return an empty stack.
+const vector<const Ship *> &EscortDisplay::Click(const Point &point) const
+{
+	for(unsigned i = 0; i < zones.size(); ++i)
+		if(point.Distance(zones[i]) < 15.)
+			return stacks[i];
+	
+	static const vector<const Ship *> empty;
+	return empty;
+}
+
+
+
+EscortDisplay::Icon::Icon(const Ship &ship, bool isHere, bool fleetIsJumping, bool isSelected)
+	: sprite(ship.GetSprite()),
 	isHere(isHere && !ship.IsDisabled()),
-	isReadyToJump(ship.CheckHyperspace()),
-	stackSize(1),
+	notReadyToJump(fleetIsJumping && !ship.IsHyperspacing() && !ship.CheckHyperspace()),
+	cannotJump(fleetIsJumping && !ship.IsHyperspacing() && !ship.JumpsRemaining()),
+	isSelected(isSelected),
 	cost(ship.Cost()),
 	system((!isHere && ship.GetSystem()) ? ship.GetSystem()->Name() : ""),
 	low{ship.Shields(), ship.Hull(), ship.Energy(), ship.Heat(), ship.Fuel()},
-	high(low)
+	high(low),
+	ships(1, &ship)
 {
 }
 
@@ -169,8 +195,9 @@ int EscortDisplay::Icon::Height() const
 void EscortDisplay::Icon::Merge(const Icon &other)
 {
 	isHere &= other.isHere;
-	isReadyToJump &= other.isReadyToJump;
-	stackSize += other.stackSize;
+	notReadyToJump |= other.notReadyToJump;
+	cannotJump |= other.cannotJump;
+	isSelected |= other.isSelected;
 	if(system.empty() && !other.system.empty())
 		system = other.system;
 	
@@ -179,6 +206,7 @@ void EscortDisplay::Icon::Merge(const Icon &other)
 		low[i] = min(low[i], other.low[i]);
 		high[i] = max(high[i], other.high[i]);
 	}
+	ships.insert(ships.end(), other.ships.begin(), other.ships.end());
 }
 
 
@@ -197,7 +225,7 @@ void EscortDisplay::MergeStacks() const
 		int height = 0;
 		for(Icon &icon : icons)
 		{
-			if(unstackable.find(icon.sprite) == unstackable.end() && (!cheapest || *cheapest < icon))
+			if(!unstackable.count(icon.sprite) && (!cheapest || *cheapest < icon))
 				cheapest = &icon;
 			
 			height += icon.Height();
@@ -206,19 +234,36 @@ void EscortDisplay::MergeStacks() const
 		if(height < maxHeight || !cheapest)
 			break;
 		
-		// Merge all other instances of this ship's sprite with this icon.
+		// Merge together each group of escorts that have this icon annd are in
+		// the same system.
+		map<string, Icon *> merged;
+		
+		// The "cheapest" element in the list may be removed to merge it with an
+		// earlier ship of the same type, so store a copy of its sprite pointer:
+		const Sprite *sprite = cheapest->sprite;
 		list<Icon>::iterator it = icons.begin();
 		while(it != icons.end())
 		{
-			if(&*it == cheapest || it->sprite != cheapest->sprite || it->isHere != cheapest->isHere)
+			if(it->sprite != sprite)
 			{
 				++it;
 				continue;
 			}
 			
-			cheapest->Merge(*it);
-			it = icons.erase(it);	
+			// If this is the first escort we've seen so far in its system, it
+			// is the one we will merge all others in this system into.
+			auto mit = merged.find(it->system);
+			if(mit == merged.end())
+			{
+				merged[it->system] = &*it;
+				++it;
+			}
+			else
+			{
+				mit->second->Merge(*it);
+				it = icons.erase(it);	
+			}
 		}
-		unstackable.insert(cheapest->sprite);
+		unstackable.insert(sprite);
 	}
 }

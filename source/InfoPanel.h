@@ -20,11 +20,13 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include <map>
 #include <memory>
+#include <set>
 #include <string>
 #include <vector>
 
 class Outfit;
 class PlayerInfo;
+class Rectangle;
 
 
 
@@ -35,30 +37,46 @@ class PlayerInfo;
 // hardpoints.
 class InfoPanel : public Panel {
 public:
-	InfoPanel(PlayerInfo &player, bool showFlagship = false);
+	explicit InfoPanel(PlayerInfo &player, bool showFlagship = false);
 	
-	virtual void Draw() const override;
+	virtual void Draw() override;
 	
 	
 protected:
 	// Only override the ones you need; the default action is to return false.
 	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command) override;
-	virtual bool Click(int x, int y) override;
+	virtual bool Click(int x, int y, int clicks) override;
 	virtual bool Hover(int x, int y) override;
-	virtual bool Drag(int dx, int dy) override;
+	virtual bool Drag(double dx, double dy) override;
 	virtual bool Release(int x, int y) override;
-	virtual bool Scroll(int dx, int dy) override;
+	virtual bool Scroll(double dx, double dy) override;
 	
 	
 private:
+	// Handle any change to what ship or tab is shown.
 	void UpdateInfo();
-	void DrawInfo() const;
-	void DrawShip() const;
-	void DrawWeapon(int index, const Point &pos, const Point &hardpoint) const;
+	
+	// Draw the info tab (and its subsections).
+	void DrawInfo();
+	void DrawPlayer(const Rectangle &bounds);
+	void DrawFleet(const Rectangle &bounds);
+	
+	// Draw the ship tab (and its subsections).
+	void DrawShip();
+	void DrawShipStats(const Rectangle &bounds);
+	void DrawOutfits(const Rectangle &bounds);
+	void DrawWeapons(const Rectangle &bounds);
+	void DrawCargo(const Rectangle &bounds);
+	
+	// Helper functions.
+	void DrawLine(const Point &from, const Point &to, const Color &color) const;
+	bool Hover(const Point &point);
 	void Rename(const std::string &name);
 	bool CanDump() const;
 	void Dump();
 	void DumpPlunder(int count);
+	void DumpCommodities(int count);
+	void Disown();
 	
 	
 private:
@@ -68,17 +86,19 @@ private:
 	ShipInfoDisplay info;
 	std::map<std::string, std::vector<const Outfit *>> outfits;
 	
-	mutable std::vector<ClickZone<int>> zones;
-	mutable std::vector<ClickZone<std::string>> commodityZones;
-	mutable std::vector<ClickZone<const Outfit *>> plunderZones;
-	int selected;
-	int hover;
-	int scroll = 0;
+	std::vector<ClickZone<int>> zones;
+	std::vector<ClickZone<std::string>> commodityZones;
+	std::vector<ClickZone<const Outfit *>> plunderZones;
+	int selected = -1;
+	int previousSelected = -1;
+	std::set<int> allSelected;
+	int hover = -1;
+	double scroll = 0.;
 	Point hoverPoint;
 	Point dragStart;
-	bool showShip;
-	bool canEdit;
-	bool didDrag;
+	bool showShip = false;
+	bool canEdit = false;
+	bool didDrag = false;
 	std::string selectedCommodity;
 	const Outfit *selectedPlunder = nullptr;
 };

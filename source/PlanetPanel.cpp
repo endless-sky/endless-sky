@@ -16,6 +16,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "BankPanel.h"
 #include "Command.h"
+#include "Dialog.h"
 #include "GameData.h"
 #include "FontSet.h"
 #include "HiringPanel.h"
@@ -29,8 +30,11 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Ship.h"
 #include "ShipyardPanel.h"
 #include "SpaceportPanel.h"
+#include "System.h"
 #include "TradingPanel.h"
 #include "UI.h"
+
+#include <sstream>
 
 using namespace std;
 
@@ -39,8 +43,7 @@ using namespace std;
 PlanetPanel::PlanetPanel(PlayerInfo &player, function<void()> callback)
 	: player(player), callback(callback),
 	planet(*player.GetPlanet()), system(*player.GetSystem()),
-	ui(*GameData::Interfaces().Get("planet")),
-	selectedPanel(nullptr)
+	ui(*GameData::Interfaces().Get("planet"))
 {
 	trading.reset(new TradingPanel(player));
 	bank.reset(new BankPanel(player));
@@ -63,12 +66,17 @@ PlanetPanel::PlanetPanel(PlayerInfo &player, function<void()> callback)
 void PlanetPanel::Step()
 {
 	// If the previous mission callback resulted in a "launch", take off now.
-	if(player.ShouldLaunch())
+	const Ship *flagship = player.Flagship();
+	if(flagship && flagship->CanBeFlagship() && (player.ShouldLaunch() || requestedLaunch))
 	{
-		DoKey('d');
+		TakeOffIfReady();
 		return;
 	}
-	if(GetUI()->IsTop(this))
+	
+	// If the player starts a new game, exits the shipyard without buying
+	// anything, clicks to the bank, then returns to the shipyard and buys a
+	// ship, make sure they are shown an intro mission.
+	if(GetUI()->IsTop(this) || GetUI()->IsTop(bank.get()))
 	{
 		Mission *mission = player.MissionToOffer(Mission::LANDING);
 		if(mission)
@@ -80,8 +88,7 @@ void PlanetPanel::Step()
 
 
 
-
-void PlanetPanel::Draw() const
+void PlanetPanel::Draw()
 {
 	if(player.IsDead())
 		return;
@@ -91,8 +98,17 @@ void PlanetPanel::Draw() const
 	Information info;
 	info.SetSprite("land", planet.Landscape());
 	bool hasAccess = planet.CanUseServices();
-	if(flagship && !flagship->CanBeCarried())
+	bool hasShip = false;
+	for(const auto &it : player.Ships())
+		if(it->GetSystem() == player.GetSystem() && !it->IsDisabled())
+		{
+			hasShip = true;
+			break;
+		}
+	if(flagship && flagship->CanBeFlagship())
 		info.SetCondition("has ship");
+	if(flagship && planet.IsInhabited() && planet.GetSystem()->HasTrade() && hasAccess)
+		info.SetCondition("has trade");
 	if(planet.IsInhabited() && hasAccess)
 		info.SetCondition("has bank");
 	if(flagship && planet.IsInhabited() && hasAccess)
@@ -101,10 +117,10 @@ void PlanetPanel::Draw() const
 		info.SetCondition("has spaceport");
 	if(planet.HasShipyard() && hasAccess)
 		info.SetCondition("has shipyard");
-	if(flagship && planet.HasOutfitter() && hasAccess)
+	if(hasShip && planet.HasOutfitter() && hasAccess)
 		info.SetCondition("has outfitter");
 	
-	ui.Draw(info);
+	ui.Draw(info, this);
 	
 	if(!selectedPanel)
 		text.Draw(Point(-300., 80.), *GameData::Colors().Get("bright"));
@@ -119,19 +135,13 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 	const Ship *flagship = player.Flagship();
 	
 	bool hasAccess = planet.CanUseServices();
-	if(key == 'd' && flagship && !flagship->CanBeCarried())
-	{
-		player.Save();
-		player.TakeOff(GetUI());
-		if(callback)
-			callback();
-		GetUI()->Pop(this);
-	}
+	if(key == 'd' && flagship && flagship->CanBeFlagship())
+		requestedLaunch = true;
 	else if(key == 'l')
 	{
 		selectedPanel = nullptr;
 	}
-	else if(key == 't' && flagship && planet.IsInhabited() && hasAccess)
+	else if(key == 't' && flagship && planet.IsInhabited() && planet.GetSystem()->HasTrade() && hasAccess)
 	{
 		selectedPanel = trading.get();
 		GetUI()->Push(trading);
@@ -151,9 +161,17 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 		GetUI()->Push(new ShipyardPanel(player));
 		return true;
 	}
-	else if(key == 'o' && flagship && planet.HasOutfitter() && hasAccess)
+	else if(key == 'o' && planet.HasOutfitter() && hasAccess)
 	{
-		GetUI()->Push(new OutfitterPanel(player));
+		bool hasShip = false;
+		for(const auto &it : player.Ships())
+			if(it->GetSystem() == player.GetSystem() && !it->IsDisabled())
+			{
+				hasShip = true;
+				break;
+			}
+		if(hasShip)
+			GetUI()->Push(new OutfitterPanel(player));
 		return true;
 	}
 	else if(key == 'j' && flagship && planet.IsInhabited() && hasAccess)
@@ -189,11 +207,119 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 
 
 
-bool PlanetPanel::Click(int x, int y)
+void PlanetPanel::TakeOffIfReady()
 {
-	char key = ui.OnClick(Point(x, y));
-	if(key)
-		return DoKey(key);
+	// If we're currently showing a conversation or dialog, wait for it to close.
+	if(!GetUI()->IsTop(this) && !GetUI()->IsTop(trading.get()) && !GetUI()->IsTop(bank.get())
+			&& !GetUI()->IsTop(spaceport.get()) && !GetUI()->IsTop(hiring.get()))
+		return;
 	
-	return true;
+	// Check for any landing missions that have not been offered.
+	Mission *mission = player.MissionToOffer(Mission::LANDING);
+	if(mission)
+	{
+		mission->Do(Mission::OFFER, player, GetUI());
+		return;
+	}
+	
+	// Check whether the player should be warned before taking off.
+	if(player.ShouldLaunch())
+	{
+		TakeOff();
+		return;
+	}
+	
+	// The checks that follow are typically cause by parking or selling
+	// ships or changing outfits.
+	const Ship *flagship = player.Flagship();
+	
+	// Are you overbooked? Don't count fireable flagship crew. If your
+	// ship can't hold the required crew, count it as having no fireable
+	// crew rather than a negative number.
+	const CargoHold &cargo = player.Cargo();
+	int overbooked = -cargo.Bunks() - max(0, flagship->Crew() - flagship->RequiredCrew());
+	int missionCargoToSell = cargo.MissionCargoSize() - cargo.Size();
+	// Will you have to sell something other than regular cargo?
+	int cargoToSell = -(cargo.Free() + cargo.CommoditiesSize());
+	int droneCount = 0;
+	int fighterCount = 0;
+	for(const auto &it : player.Ships())
+		if(!it->IsParked() && !it->IsDisabled() && it->GetSystem() == player.GetSystem())
+		{
+			const string &category = it->Attributes().Category();
+			droneCount += (category == "Drone") - it->BaysFree(false);
+			fighterCount += (category == "Fighter") - it->BaysFree(true);
+		}
+	
+	if(fighterCount > 0 || droneCount > 0 || cargoToSell > 0 || overbooked > 0)
+	{
+		ostringstream out;
+		if(missionCargoToSell > 0 || overbooked > 0)
+		{
+			bool both = ((cargoToSell > 0 && cargo.MissionCargoSize()) && overbooked > 0);
+			out << "If you take off now you will fail a mission due to not having enough ";
+
+			if(overbooked > 0)
+			{
+				out << "bunks available for " << overbooked;
+				out << (overbooked > 1 ? " of the passengers" : " passenger");
+				out << (both ? " and not having enough " : ".");
+			}
+
+			if(missionCargoToSell > 0)
+			{
+				out << "cargo space to hold " << missionCargoToSell;
+				out << (missionCargoToSell > 1 ? " tons" : " ton");
+				out << " of your mission cargo.";
+			}
+		}
+		else
+		{
+			out << "If you take off now you will have to sell ";
+			bool triple = (fighterCount > 0 && droneCount > 0 && cargoToSell > 0);
+
+			if(fighterCount == 1)
+				out << "a fighter";
+			else if(fighterCount > 0)
+				out << fighterCount << " fighters";
+			if(fighterCount > 0 && (droneCount > 0 || cargoToSell > 0))
+				out << (triple ? ", " : " and ");
+		
+			if(droneCount == 1)
+				out << "a drone";
+			else if(droneCount > 0)
+				out << droneCount << " drones";
+			if(droneCount > 0 && cargoToSell > 0)
+				out << (triple ? ", and " : " and ");
+
+			if(cargoToSell == 1)
+				out << "a ton of cargo";
+			else if(cargoToSell > 0)
+				out << cargoToSell << " tons of cargo";
+			out << " that you do not have space for.";
+		}
+		out << " Are you sure you want to continue?";
+		GetUI()->Push(new Dialog(this, &PlanetPanel::TakeOff, out.str()));
+		requestedLaunch = false;
+		return;
+	}
+	
+	// There was no need to ask the player whether we can get rid of anything,
+	// so go ahead and take off.
+	TakeOff();
+}
+
+
+
+void PlanetPanel::TakeOff()
+{
+	player.Save();
+	if(player.TakeOff(GetUI()))
+	{
+		if(callback)
+			callback();
+		if(selectedPanel)
+			GetUI()->Pop(selectedPanel);
+		GetUI()->Pop(this);
+	}
 }

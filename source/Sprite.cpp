@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Sprite.h"
 
 #include "ImageBuffer.h"
+#include "Preferences.h"
 #include "Screen.h"
 
 #include "gl_header.h"
@@ -24,9 +25,16 @@ using namespace std;
 
 
 
-Sprite::Sprite()
-	: width(0.f), height(0.f)
+Sprite::Sprite(const string &name)
+	: name(name), width(0.f), height(0.f)
 {
+}
+
+
+
+const string &Sprite::Name() const
+{
+	return name;
 }
 
 
@@ -50,6 +58,9 @@ void Sprite::AddFrame(int frame, ImageBuffer *image, Mask *mask, bool is2x)
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+	
+	if(Preferences::Has("Reduce large graphics") && image->Width() * image->Height() >= 1000000)
+		image->ShrinkToHalfSize();
 	
 	// ImageBuffer always loads images into 32-bit BGRA buffers.
 	// That is supposedly the fastest format to upload.
@@ -121,7 +132,14 @@ Point Sprite::Center() const
 
 uint32_t Sprite::Texture(int frame) const
 {
-	if(Screen::IsHighResolution() && !textures2x.empty())
+	return Texture(frame, Screen::IsHighResolution());
+}
+
+
+
+uint32_t Sprite::Texture(int frame, bool isHighDPI) const
+{
+	if(isHighDPI && !textures2x.empty())
 		return textures2x[frame % textures2x.size()];
 	
 	if(textures.empty())

@@ -26,10 +26,10 @@ class PlayerInfo;
 // missions that are marked as originating in the spaceport.
 class SpaceportPanel : public Panel {
 public:
-	SpaceportPanel(PlayerInfo &player);
+	explicit SpaceportPanel(PlayerInfo &player);
 	
 	virtual void Step() override;
-	virtual void Draw() const override;
+	virtual void Draw() override;
 	
 	
 private:

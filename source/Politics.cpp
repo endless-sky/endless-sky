@@ -23,6 +23,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "System.h"
 
 #include <algorithm>
+#include <cmath>
 
 using namespace std;
 
@@ -57,9 +58,9 @@ bool Politics::IsEnemy(const Government *first, const Government *second) const
 		swap(first, second);
 	if(first->IsPlayer())
 	{
-		if(bribed.find(second) != bribed.end())
+		if(bribed.count(second))
 			return false;
-		if(provoked.find(second) != provoked.end())
+		if(provoked.count(second))
 			return true;
 		
 		auto it = reputationWith.find(second);
@@ -82,15 +83,6 @@ void Politics::Offend(const Government *gov, int eventType, int count)
 	if(gov->IsPlayer())
 		return;
 	
-	// If you bribe a government but then attack it, the effect of your bribe is
-	// cancelled out.
-	if(eventType & ShipEvent::PROVOKE)
-	{
-		auto it = bribed.find(gov);
-		if(it != bribed.end())
-			bribed.erase(it);
-	}
-	
 	for(const auto &it : GameData::Governments())
 	{
 		const Government *other = &it.second;
@@ -101,10 +93,19 @@ void Politics::Offend(const Government *gov, int eventType, int count)
 		if(eventType & ShipEvent::PROVOKE)
 		{
 			if(weight > 0.)
+			{
+				// If you bribe a government but then attack it, the effect of
+				// your bribe is cancelled out.
+				bribed.erase(other);
 				provoked.insert(other);
+			}
 		}
-		else if(count * weight)
+		else if(abs(weight) >= .05 && count * weight)
 		{
+			// Weights less than 5% should never cause permanent reputation
+			// changes. This is to allow two governments to be hostile or
+			// friendly without the player's behavior toward one of them
+			// influencing their reputation with the other.
 			double penalty = (count * weight) * other->PenaltyFor(eventType);
 			if(eventType & ShipEvent::ATROCITY)
 				reputationWith[other] = min(0., reputationWith[other]);
@@ -120,11 +121,8 @@ void Politics::Offend(const Government *gov, int eventType, int count)
 void Politics::Bribe(const Government *gov)
 {
 	bribed.insert(gov);
+	provoked.erase(gov);
 	fined.insert(gov);
-	
-	auto it = provoked.find(gov);
-	if(it != provoked.end())
-		provoked.erase(it);
 }
 
 
@@ -132,15 +130,14 @@ void Politics::Bribe(const Government *gov)
 // Check if the given ship can land on the given planet.
 bool Politics::CanLand(const Ship &ship, const Planet *planet) const
 {
-	if(!planet)
+	if(!planet || !planet->GetSystem())
 		return false;
-	if(!planet->HasSpaceport())
+	if(!planet->IsInhabited())
 		return true;
 	
 	const Government *gov = ship.GetGovernment();
-	const Government *systemGov = planet->GetSystem()->GetGovernment();
 	if(!gov->IsPlayer())
-		return !IsEnemy(gov, systemGov);
+		return !IsEnemy(gov, planet->GetGovernment());
 	
 	return CanLand(planet);
 }
@@ -149,32 +146,34 @@ bool Politics::CanLand(const Ship &ship, const Planet *planet) const
 
 bool Politics::CanLand(const Planet *planet) const
 {
-	if(!planet)
+	if(!planet || !planet->GetSystem())
 		return false;
-	if(!planet->HasSpaceport())
+	if(!planet->IsInhabited())
 		return true;
-	if(dominatedPlanets.find(planet) != dominatedPlanets.end())
+	if(dominatedPlanets.count(planet))
 		return true;
-	if(provoked.find(planet->GetSystem()->GetGovernment()) != provoked.end())
+	if(bribedPlanets.count(planet))
+		return true;
+	if(provoked.count(planet->GetGovernment()))
 		return false;
-	if(bribedPlanets.find(planet) != bribedPlanets.end())
-		return true;
 	
-	return Reputation(planet->GetSystem()->GetGovernment()) >= planet->RequiredReputation();
+	return Reputation(planet->GetGovernment()) >= planet->RequiredReputation();
 }
 
 
 
 bool Politics::CanUseServices(const Planet *planet) const
 {
-	if(dominatedPlanets.find(planet) != dominatedPlanets.end())
+	if(!planet || !planet->GetSystem())
+		return false;
+	if(dominatedPlanets.count(planet))
 		return true;
 	
 	auto it = bribedPlanets.find(planet);
 	if(it != bribedPlanets.end())
 		return it->second;
 	
-	return Reputation(planet->GetSystem()->GetGovernment()) >= planet->RequiredReputation();
+	return Reputation(planet->GetGovernment()) >= planet->RequiredReputation();
 }
 
 
@@ -196,7 +195,7 @@ void Politics::DominatePlanet(const Planet *planet)
 
 bool Politics::HasDominated(const Planet *planet) const
 {
-	return (dominatedPlanets.find(planet) != dominatedPlanets.end());
+	return dominatedPlanets.count(planet);
 }
 
 
@@ -228,7 +227,21 @@ string Politics::Fine(PlayerInfo &player, const Government *gov, int scan, const
 			if((fine > maxFine && maxFine >= 0) || fine < 0)
 			{
 				maxFine = fine;
-				reason = "carrying illegal cargo.";
+				reason = " for carrying illegal cargo.";
+
+				for(const Mission &mission : player.Missions())
+				{
+					// Append the illegalCargoMessage from each applicable mission, if available
+					string illegalCargoMessage = mission.IllegalCargoMessage();
+					if(!illegalCargoMessage.empty())
+					{
+						reason = ".\n\t";
+						reason.append(illegalCargoMessage);
+					}
+					// Fail any missions with illegal cargo and "Stealth" set
+					if(mission.IllegalCargoFine() > 0 && mission.FailIfDiscovered())
+						player.FailMission(mission);
+				}
 			}
 		}
 		if(!scan || (scan & ShipEvent::SCAN_OUTFITS))
@@ -237,10 +250,12 @@ string Politics::Fine(PlayerInfo &player, const Government *gov, int scan, const
 				if(it.second)
 				{
 					int64_t fine = it.first->Get("illegal");
+					if(it.first->Get("atrocity") > 0.)
+						fine = -1;
 					if((fine > maxFine && maxFine >= 0) || fine < 0)
 					{
 						maxFine = fine;
-						reason = "having illegal outfits installed on your ship.";
+						reason = " for having illegal outfits installed on your ship.";
 					}
 				}
 		}
@@ -253,15 +268,15 @@ string Politics::Fine(PlayerInfo &player, const Government *gov, int scan, const
 			reason = "atrocity";
 		else
 			reason = "After scanning your ship, the " + gov->GetName()
-				+ " captain hails you with a grim expression on his face. He says, \"You are guilty of "
-				+ reason + " The penalty for your actions is death. Goodbye.\"";
+				+ " captain hails you with a grim expression on his face. He says, "
+				"\"I'm afraid we're going to have to put you to death " + reason + " Goodbye.\"";
 	}
 	else if(maxFine > 0)
 	{
 		// Scale the fine based on how lenient this government is.
 		maxFine = maxFine * gov->GetFineFraction() + .5;
-		reason = "The " + gov->GetName() + " fines you "
-			+ Format::Number(maxFine) + " credits for " + reason;
+		reason = "The " + gov->GetName() + " authorities fine you "
+			+ Format::Number(maxFine) + " credits" + reason;
 		player.Accounts().AddFine(maxFine);
 		fined.insert(gov);
 	}

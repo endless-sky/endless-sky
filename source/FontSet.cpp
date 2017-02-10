@@ -26,7 +26,7 @@ namespace {
 
 void FontSet::Add(const string &path, int size)
 {
-	if(fonts.find(size) == fonts.end())
+	if(!fonts.count(size))
 		fonts[size].Load(path);
 }
 

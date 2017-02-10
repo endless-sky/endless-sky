@@ -17,6 +17,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Point.h"
 
+#include <cstdint>
 #include <memory>
 #include <string>
 
@@ -36,13 +37,12 @@ public:
 	HailPanel(PlayerInfo &player, const std::shared_ptr<Ship> &ship);
 	HailPanel(PlayerInfo &player, const StellarObject *object);
 	
-	virtual void Draw() const override;
+	virtual void Draw() override;
 	
 	
 protected:
 	// Only override the ones you need; the default action is to return false.
 	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command) override;
-	virtual bool Click(int x, int y) override;
 	
 	
 private:
@@ -59,7 +59,7 @@ private:
 	std::string header;
 	std::string message;
 	
-	int bribe = 0;
+	int64_t bribe = 0;
 	bool playerNeedsHelp = false;
 	bool canGiveFuel = false;
 	bool canRepair = false;

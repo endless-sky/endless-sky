@@ -36,7 +36,7 @@ class System;
 // the systems based on a selected criterion. It also handles finding and
 // drawing routes in between systems.
 class MapPanel : public Panel {
-protected:
+public:
 	// Enumeration for how the systems should be colored:
 	static const int SHOW_SHIPYARD = -1;
 	static const int SHOW_OUTFITTER = -2;
@@ -50,17 +50,20 @@ protected:
 	
 	
 public:
-	MapPanel(PlayerInfo &player, int commodity = SHOW_REPUTATION, const System *special = nullptr);
+	explicit MapPanel(PlayerInfo &player, int commodity = SHOW_REPUTATION, const System *special = nullptr);
 	
-	void SetCommodity(int index);
-	virtual void Draw() const override;
+	virtual void Draw() override;
+	
+	void DrawButtons(const std::string &condition);
+	static void DrawMiniMap(const PlayerInfo &player, double alpha, const System *const jump[2], int step);
 	
 	
 protected:
 	// Only override the ones you need; the default action is to return false.
-	virtual bool Click(int x, int y) override;
-	virtual bool Drag(int dx, int dy) override;
-	virtual bool Scroll(int dx, int dy) override;
+	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command) override;
+	virtual bool Click(int x, int y, int clicks) override;
+	virtual bool Drag(double dx, double dy) override;
+	virtual bool Scroll(double dx, double dy) override;
 	
 	// Get the color mapping for various system attributes.
 	static Color MapColor(double value);
@@ -72,17 +75,17 @@ protected:
 	virtual double SystemValue(const System *system) const;
 	
 	void Select(const System *system);
-	const Planet *Find(const std::string &name);
+	void Find(const std::string &name);
 	
-	void ZoomMap();
-	void UnzoomMap();
 	double Zoom() const;
-	bool ZoomIsMax() const;
-	bool ZoomIsMin() const;
 	
 	// Check whether the NPC and waypoint conditions of the given mission have
 	// been satisfied.
 	bool IsSatisfied(const Mission &mission) const;
+	static bool IsSatisfied(const PlayerInfo &player, const Mission &mission);
+	
+	// Function for the "find" dialogs:
+	static int Search(const std::string &str, const std::string &sub);
 	
 	
 protected:
@@ -93,24 +96,25 @@ protected:
 	const System *playerSystem;
 	const System *selectedSystem;
 	const System *specialSystem;
+	const Planet *selectedPlanet = nullptr;
 	
 	Point center;
 	int commodity;
-	const int maxZoom = 2;
-	int zoom = 0;
-	mutable int step = 0;
+	int step = 0;
+	std::string buttonCondition;
 	
-	mutable std::map<const Government *, double> closeGovernments;
+	std::map<const Government *, double> closeGovernments;
 	
 	
 private:
-	void DrawTravelPlan() const;
-	void DrawWormholes() const;
-	void DrawLinks() const;
-	void DrawSystems() const;
-	void DrawNames() const;
-	void DrawMissions() const;
-	void DrawPointer(const System *system, Angle &angle, const Color &color) const;
+	void DrawTravelPlan();
+	void DrawWormholes();
+	void DrawLinks();
+	void DrawSystems();
+	void DrawNames();
+	void DrawMissions();
+	void DrawPointer(const System *system, Angle &angle, const Color &color, bool bigger = false);
+	static void DrawPointer(Point position, Angle &angle, const Color &color, bool drawBack = true, bool bigger = false);
 };
 
 

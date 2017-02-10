@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef CARGO_HOLD_H_
 #define CARGO_HOLD_H_
 
+#include <cstdint>
 #include <map>
 #include <string>
 
@@ -83,11 +84,19 @@ public:
 	// first mission cargo, then spare outfits, then ordinary commodities.
 	void TransferAll(CargoHold *to);
 	
+	// These functions do the same thing as Transfer() with no destination
+	// specified, but they have clearer names to make the code more readable.
+	int Add(const std::string &commodity, int amount = 1);
+	int Add(const Outfit *outfit, int amount = 1);
+	int Remove(const std::string &commodity, int amount = 1);
+	int Remove(const Outfit *outfit, int amount = 1);
+	
+	// Add or remove any cargo or passengers associated with the given mission.
 	void AddMissionCargo(const Mission *mission);
 	void RemoveMissionCargo(const Mission *mission);
 	
 	// Get the total value of all this cargo, in the given system.
-	int Value(const System *system) const;
+	int64_t Value(const System *system) const;
 	
 	// If anything you are carrying is illegal, return the maximum fine you can
 	// be charged. If the returned value is negative, you are carrying something
@@ -96,8 +105,11 @@ public:
 	
 	
 private:
+	// Use -1 to indicate unlimited capacity.
 	int size = -1;
 	int bunks = -1;
+	
+	// Track how many objects of each type are being carried:
 	std::map<std::string, int> commodities;
 	std::map<const Outfit *, int> outfits;
 	std::map<const Mission *, int> missionCargo;

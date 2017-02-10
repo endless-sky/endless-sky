@@ -18,13 +18,27 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Fleet.h"
 #include "GameData.h"
 #include "Government.h"
+#include "Minable.h"
 #include "Planet.h"
+#include "Random.h"
+#include "SpriteSet.h"
+
+#include <cmath>
 
 using namespace std;
 
 namespace {
-	static const double NEIGHBOR_DISTANCE = 100.;
+	// Dynamic economy parameters: how much of its production each system keeps
+	// and exports each day:
+	static const double KEEP = .89;
+	static const double EXPORT = .10;
+	// Standard deviation of the daily production of each commodity:
+	static const double VOLUME = 2000.;
+	// Above this supply amount, price differences taper off:
+	static const double LIMIT = 20000.;
 }
+
+const double System::NEIGHBOR_DISTANCE = 100.;
 
 
 
@@ -35,9 +49,23 @@ System::Asteroid::Asteroid(const string &name, int count, double energy)
 
 
 
+System::Asteroid::Asteroid(const Minable *type, int count, double energy)
+	: type(type), count(count), energy(energy)
+{
+}
+
+
+
 const string &System::Asteroid::Name() const
 {
 	return name;
+}
+
+
+
+const Minable *System::Asteroid::Type() const
+{
+	return type;
 }
 
 
@@ -98,6 +126,8 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 			position.Set(child.Value(1), child.Value(2));
 		else if(child.Token(0) == "government" && child.Size() >= 2)
 			government = GameData::Governments().Get(child.Token(1));
+		else if(child.Token(0) == "music" && child.Size() >= 2)
+			music = child.Token(1);
 		else if(child.Token(0) == "link")
 		{
 			if(resetLinks)
@@ -110,7 +140,9 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 		}
 		else if(child.Token(0) == "habitable" && child.Size() >= 2)
 			habitable = child.Value(1);
-		else if(child.Token(0) == "asteroids")
+		else if(child.Token(0) == "belt" && child.Size() >= 2)
+			asteroidBelt = child.Value(1);
+		else if(child.Token(0) == "asteroids" || child.Token(0) == "minables")
 		{
 			if(resetAsteroids)
 			{
@@ -118,10 +150,21 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 				asteroids.clear();
 			}
 			if(child.Size() >= 4)
-				asteroids.emplace_back(child.Token(1), child.Value(2), child.Value(3));
+			{
+				const string &name = child.Token(1);
+				int count = child.Value(2);
+				double energy = child.Value(3);
+				
+				if(child.Token(0) == "asteroids")
+					asteroids.emplace_back(name, count, energy);
+				else
+					asteroids.emplace_back(GameData::Minables().Get(name), count, energy);
+			}
 		}
+		else if(child.Token(0) == "haze" && child.Size() >= 2)
+			haze = SpriteSet::Get(child.Token(1));
 		else if(child.Token(0) == "trade" && child.Size() >= 3)
-			trade[child.Token(1)] = child.Value(2);
+			trade[child.Token(1)].SetBase(child.Value(2));
 		else if(child.Token(0) == "fleet")
 		{
 			if(resetFleets)
@@ -285,6 +328,15 @@ const Government *System::GetGovernment() const
 
 
 
+
+// Get the name of the ambient audio to play in this system.
+const string &System::MusicName() const
+{
+	return music;
+}
+
+
+
 // Get a list of systems you can travel to through hyperspace from here.
 const vector<const System *> &System::Links() const
 {
@@ -312,9 +364,8 @@ void System::SetDate(const Date &date)
 	{
 		// "offset" is used to allow binary orbits; the second object is offset
 		// by 180 degrees.
-		Angle angle(now * object.speed + object.offset);
-		object.unit = angle.Unit();
-		object.position = object.unit * object.distance;
+		object.angle = Angle(now * object.speed + object.offset);
+		object.position = object.angle.Unit() * object.distance;
 		
 		// Because of the order of the vector, the parent's position has always
 		// been updated before this loop reaches any of its children, so:
@@ -322,7 +373,7 @@ void System::SetDate(const Date &date)
 			object.position += objects[object.parent].position;
 		
 		if(object.position)
-			object.unit = object.position.Unit();
+			object.angle = Angle(object.position);
 		
 		if(object.planet)
 			object.planet->ResetDefense();
@@ -347,11 +398,32 @@ double System::HabitableZone() const
 
 
 
+// Get the radius of the asteroid belt.
+double System::AsteroidBelt() const
+{
+	return asteroidBelt;
+}
+
+
+
 // Check if this system is inhabited.
 bool System::IsInhabited() const
 {
 	for(const StellarObject &object : objects)
-		if(object.GetPlanet() && object.GetPlanet()->HasSpaceport())
+		if(object.GetPlanet() && !object.GetPlanet()->IsWormhole() && object.GetPlanet()->HasSpaceport())
+			return true;
+	
+	return false;
+}
+
+
+
+// Check if ships of the given government can refuel in this system.
+bool System::HasFuelFor(const Ship &ship) const
+{
+	for(const StellarObject &object : objects)
+		if(object.GetPlanet() && object.GetPlanet()->HasSpaceport() 
+				&& !object.GetPlanet()->IsWormhole() && object.GetPlanet()->CanLand(ship))
 			return true;
 	
 	return false;
@@ -391,11 +463,68 @@ const vector<System::Asteroid> &System::Asteroids() const
 
 
 
+// Get the background haze sprite for this system.
+const Sprite *System::Haze() const
+{
+	return haze;
+}
+
+
+
 // Get the price of the given commodity in this system.
 int System::Trade(const string &commodity) const
 {
 	auto it = trade.find(commodity);
-	return (it == trade.end()) ? 0 : it->second;
+	return (it == trade.end()) ? 0 : it->second.price;
+}
+
+
+
+bool System::HasTrade() const
+{
+	return !trade.empty();
+}
+
+
+
+// Update the economy.
+void System::StepEconomy()
+{
+	for(auto &it : trade)
+	{
+		it.second.exports = EXPORT * it.second.supply;
+		it.second.supply *= KEEP;
+		it.second.supply += Random::Normal() * VOLUME;
+		it.second.Update();
+	}
+}
+
+
+
+void System::SetSupply(const string &commodity, double tons)
+{
+	auto it = trade.find(commodity);
+	if(it == trade.end())
+		return;
+	
+	it->second.supply = tons;
+	it->second.Update();
+}
+
+
+
+double System::Supply(const string &commodity) const
+{
+	auto it = trade.find(commodity);
+	return (it == trade.end()) ? 0 : it->second.supply;
+}
+
+
+
+double System::Exports(const string &commodity) const
+{
+	auto it = trade.find(commodity);
+	return (it == trade.end()) ? 0 : it->second.exports;
 }
 
 
@@ -404,6 +533,19 @@ int System::Trade(const string &commodity) const
 const vector<System::FleetProbability> &System::Fleets() const
 {
 	return fleets;
+}
+
+
+
+// Check how dangerous this system is (credits worth of enemy ships jumping
+// in per frame).
+double System::Danger() const
+{
+	double danger = 0.;
+	for(const auto &fleet : fleets)
+		if(fleet.Get()->GetGovernment()->IsEnemy())
+			danger += static_cast<double>(fleet.Get()->Strength()) / fleet.Period();
+	return danger;
 }
 
 
@@ -426,9 +568,9 @@ void System::LoadObject(const DataNode &node, Set<Planet> &planets, int parent)
 	{
 		if(child.Token(0) == "sprite" && child.Size() >= 2)
 		{
-			object.animation.Load(child);
+			object.LoadSprite(child);
 			object.isStar = !child.Token(1).compare(0, 5, "star/");
-			if (!object.isStar)
+			if(!object.isStar)
 			{
 				object.isStation = !child.Token(1).compare(0, 14, "planet/station");
 				object.isMoon = (!object.isStation && parent >= 0 && !objects[parent].IsStar());
@@ -445,4 +587,19 @@ void System::LoadObject(const DataNode &node, Set<Planet> &planets, int parent)
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
+}
+
+
+
+void System::Price::SetBase(int base)
+{
+	this->base = base;
+	this->price = base;
+}
+
+
+
+void System::Price::Update()
+{
+	price = base + static_cast<int>(-100. * erf(supply / LIMIT));
 }

@@ -23,6 +23,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 class DataNode;
 class Fleet;
+class Government;
 class Outfit;
 class PlayerInfo;
 class Ship;
@@ -48,6 +49,8 @@ public:
 	const std::string &Description() const;
 	// Get the landscape sprite.
 	const Sprite *Landscape() const;
+	// Get the name of the ambient audio to play on this planet.
+	const std::string &MusicName() const;
 	
 	// Get the list of "attributes" of the planet.
 	const std::set<std::string> &Attributes() const;
@@ -74,6 +77,8 @@ public:
 	// Get the list of outfits available from the outfitter.
 	const Sale<Outfit> &Outfitter() const;
 	
+	// Get this planet's government. If not set, returns the system's government.
+	const Government *GetGovernment() const;
 	// You need this good a reputation with this system's government to land here.
 	double RequiredReputation() const;
 	// This is what fraction of your fleet's value you must pay as a bribe in
@@ -114,6 +119,7 @@ private:
 	std::string description;
 	std::string spaceport;
 	const Sprite *landscape = nullptr;
+	std::string music;
 	
 	std::set<std::string> attributes;
 	
@@ -124,6 +130,7 @@ private:
 	mutable Sale<Ship> shipyard;
 	mutable Sale<Outfit> outfitter;
 	
+	const Government *government = nullptr;
 	double requiredReputation = 0.;
 	double bribe = 0.01;
 	double security = .25;

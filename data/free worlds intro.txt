@@ -73,10 +73,10 @@ mission "Pact Recon 1"
 	waypoint "Eber"
 	waypoint "Alpha Arae"
 	source
-		attributes south "dirt belt" rim quarg "near earth"
+		attributes south "dirt belt" rim "near earth"
 	destination Glaze
 	to offer
-		random < 30
+		random < 40
 		not "event: war begins"
 		has "Pact Recon 0: done"
 	
@@ -87,7 +87,7 @@ mission "Pact Recon 1"
 	on complete
 		payment 35000
 		dialog
-			`You transfer your sensor logs to Officer Winters. She thanks you for your work, and pays you <payment>. She says, "I'll let you know when if need your services again."`
+			`You transfer your sensor logs to Officer Winters. She thanks you for your work, and pays you <payment>. She says, "I'll let you know when we need your services again."`
 
 
 
@@ -100,10 +100,10 @@ mission "Pact Recon 2"
 	waypoint "Shaula"
 	waypoint "Nunki"
 	source
-		attributes south "dirt belt" rim quarg "near earth"
+		attributes south "dirt belt" rim "near earth"
 	destination Glaze
 	to offer
-		random < 30
+		random < 40
 		not "event: war begins"
 		has "Pact Recon 1: done"
 	
@@ -127,10 +127,10 @@ mission "Pact Recon 3"
 	waypoint "Naper"
 	waypoint "Boral"
 	source
-		attributes south "dirt belt" rim quarg "near earth"
+		attributes south "dirt belt" rim "near earth"
 	destination Glaze
 	to offer
-		random < 30
+		random < 40
 		not "event: war begins"
 		has "Pact Recon 2: done"
 	
@@ -175,7 +175,7 @@ mission "Pact Questioning"
 			label free
 			`	"Thank you," he says. "Am I correct that you performed some missions for the Southern Defense Pact, back before they became the Free Worlds?"`
 			label start
-			`	His voice is very friendly, and he is not not armed or accompanied by any other officers that you can see, so it doesn't seem like you are in trouble or in danger of being arrested - especially since your work for the Pact was perfectly legal.`
+			`	His voice is very friendly, and he is not armed or accompanied by any other officers that you can see, so it doesn't seem like you are in trouble or in danger of being arrested - especially since your work for the Pact was perfectly legal.`
 			choice
 				`	"I don't know what you are talking about."`
 				`	"I did take a few jobs helping out the local militias, yes."`
@@ -228,6 +228,7 @@ mission "Pact Questioning"
 mission "FW Recon 0"
 	name "Transport Militia Officer"
 	description "This militia officer asked if you could transport him to <destination>."
+	minor
 	source
 		government "Free Worlds"
 		near Aldhibain 1 10
@@ -301,7 +302,7 @@ mission "FW Recon 1"
 			choice
 				`	"I was just wondering what sort of engines you've got that let you move so fast."`
 					goto engines
-				`	"Never mind sir, I was just admiring your... impressive equipment."
+				`	"Never mind sir, I was just admiring your... impressive equipment."`
 					goto equipment
 			label engines
 			`	"Nice, aren't they?" he says. "Atomic engines, the very latest in propulsion technology from Deep Sky. They're so smooth and responsive, I feel like I'm back piloting a shuttlecraft again."`
@@ -314,7 +315,7 @@ mission "FW Recon 1"
 			`	You cut the comlink and breathe a sigh of relief that the conversation is over.`
 	
 	on complete
-		dialog `Soon after you land, the militia officer comes to your ship pays you <payment> in exchange for your sensor logs regarding <npc>. He says, "If you would be interested in continuing to work for us, meet me in the spaceport bar in an hour."`
+		dialog `Soon after you land, the militia officer comes to your ship and pays you <payment> in exchange for your sensor logs regarding <npc>. He says, "If you would be interested in continuing to work for us, meet me in the spaceport bar in an hour."`
 		payment 10000
 
 
@@ -443,6 +444,7 @@ mission "FW Recon 3B"
 mission "FW Katya 1"
 	name "Assist the Free Worlds"
 	description "Stop by <destination>, pick up two passengers and some cargo, and distract the Republic from a more important cargo exchange going on simultaneously."
+	minor
 	to offer
 		random < 30
 	to fail
@@ -511,7 +513,7 @@ mission "FW Katya 1"
 					decline
 				`	"Oh yeah? Well you ARE a girl!"`
 	
-			`	She turns back around, with a fearsome gleam in her eyes, and walks up to you until your faces are only inches apart. "Yeah, but I don’t fight like one," she says. "I... fight like a she-badger."`
+			`	She turns back around, with a fearsome gleam in her eyes, and walks up to you until your faces are only inches apart. "Yeah, but I don't fight like one," she says. "I... fight like a she-badger."`
 			choice
 				`	"A she... badger?"`
 	
@@ -611,7 +613,7 @@ mission "FW Katya 1C"
 				goto search
 			
 			label denial
-			`	He frowns. "Frisk him," he says. One of the guards pats you down and takes your gun and your pocketknife. "Have a seat," says the officer. They force you to sit on the ground, and one of the guards points a very large gun at you.`
+			`	He frowns. "We're going to have to frisk you," he says. One of the guards pats you down and takes your gun and your pocketknife. "Have a seat," says the officer. They force you to sit on the ground, and one of the guards points a very large gun at you.`
 				goto search
 			
 			label search
@@ -639,6 +641,7 @@ mission "FW Katya 1C"
 mission "FW Katya Alt 2"
 	name "Transport Mr. Eyes"
 	description "Katya Reynolds asked you to travel to <destination>, where her friend Mr. Eyes is waiting for you."
+	minor
 	source
 		government "Free Worlds"
 	destination Foundry
@@ -713,7 +716,7 @@ mission "FW Katya 2B"
 		has "chosen sides"
 	on offer
 		conversation
-			`As soon as you land and open you ship's hatch, a man wearing sunglasses and a ridiculous hat and carrying a large metal suitcase runs past you and into your ship, casting a quick furtive glance behind him to see if anyone is following.`
+			`As soon as you land and open your ship's hatch, a man wearing sunglasses and a ridiculous hat and carrying a large metal suitcase runs past you and into your ship, casting a quick furtive glance behind him to see if anyone is following.`
 			choice
 				`	(Draw my weapon to defend myself against him.)`
 					goto weapon
@@ -865,7 +868,7 @@ mission "FW Katya 4"
 			
 			`	"The eruption was on the other continent," she explains, "so no one was killed in the blast. It was a slow-moving disaster. We had six months or so to move two million settlers off-world before the temperatures would drop too low to be livable. More than half of the Navy was mobilized to ferry our people to other planets."`
 			`	"Here's the best part," says Eyes. "The Navy operates with a certain amount of autonomy. Turns out when they found out about the disaster, they mobilized without even waiting to clear it with Parliament. Which was technically within their mandate, this being a natural disaster. But the Navy is funded by taxes, and the Paradise Planets pay ten times as much in taxes as the Dirt Belt."`
-			`	"The Paradise Planets viewed the Navy as their own private security force," says Katya, "so they got really mad when half the Navy suddenly vanished to assist some dirty refugees. Because those generals gave the order to assist us, millions of lives were saved. And then Parliament fired them."`
+			`	"The Paradise Planets viewed the Navy as their own private security force," says Katya, "so they got really mad when half the Navy suddenly vanished to assist some dirty refugees. Because those admirals gave the order to assist us, millions of lives were saved. And then Parliament fired them."`
 			choice
 				`	"You're making the Navy sound like heroes. I thought they were your enemies."`
 				`	"You've almost convinced me to join the Navy."`
@@ -1142,9 +1145,9 @@ mission "FW Katya 7B"
 			`	"One more try," she says. "One last world, and then we give up. I want you to take me... there." She points at the moon, hanging just above the horizon.`
 			`	Eyes says, "Mining world. Dusty atmosphere. Frequent meteorite impacts. You could set off a nuke on the far side of that world and the miners would probably sleep right through it."`
 			choice
-				`	"Okay, I'll take you to this one last world, and then we're done."
+				`	"Okay, I'll take you to this one last world, and then we're done."`
 					accept
-				`	"Sorry, 'one more world' is what you said two planets ago. I'm done with this."
+				`	"Sorry, 'one more world' is what you said two planets ago. I'm done with this."`
 					decline
 
 
@@ -1164,14 +1167,14 @@ mission "FW Katya 7C"
 		conversation
 			`You land some distance from the mining settlement, and Mr. Eyes goes into the airlock in a pressure suit, cycling it to bring in some of the moon's thin atmosphere for him to test. "Firing up my instruments now," he says through the comm link. There is a long pause, and then he starts spouting a long string of creative profanity. Katya runs over to the airlock window to see what is happening.`
 			`	Finally, Eyes calms down enough to say, "It's a match! Not only has there been a recent test here, but the signature matches the one we took on Geminus. This is it."`
-			`	He cycles the airlock and comes back inside. "Let's fly around the planet and see if we can find the site," he says. After a few hours of flying low over the surface and scanning for radiation signatures, you find a spot that looks like all the other meteorite craters but is full of radiation. Katya and Eyes look at the images of the surface almost in disbelief.`
+			`	He cycles the airlock and comes back inside. "Let's fly around and see if we can find the site," he says. After a few hours of flying low over the surface and scanning for radiation signatures, you find a spot that looks like all the other meteorite craters but is full of radiation. Katya and Eyes look at the images of the surface almost in disbelief.`
 			`	"Based on the isotopic decay rates, this explosion happened in mid-June," says Eyes. "Just before the attacks happened."`
 			`	"It makes no sense," says Katya. "It's a blatant atmospheric test. No way the Navy hasn't found this. The Navy could act on this at any moment. Captain, is the outpost reporting any miner's jobs open?"`
 			choice
 				`	(Check what my computer says.)`
 			
 			`	You check your computer. "One job opening, for a janitor in the mess hall."`
-			`	She grimaces. "Okay, it's better than nothing. I'll take the job, to go undercover and see what I can find out. You take Eyes to <planet>, where he can get in touch with the Free Worlds council. I'll find a way to send you a message once I've found the perpetrators."`
+			`	She grimaces. "Okay, it's better than nothing. I'll take the job to go undercover and see what I can find out. You take Eyes to <planet>, where he can get in touch with the Free Worlds council. I'll find a way to send you a message once I've found the perpetrators."`
 			`	"Katerina," says Eyes, "this is way too dangerous."`
 			`	"There's no other way," she says. "We have no time to lose. I'm willing to risk it."`
 			`	With deep reservations, you drop her off at the outpost, where she is quickly offered the job. "Not many folks care to work up here," says the foreman, "so your help would be much appreciated." You and Eyes return to your ship and get ready to travel to <planet> with the evidence.`
@@ -1193,6 +1196,7 @@ mission "FW Katya 7C"
 mission "FW Escort 1"
 	name "Free Worlds Escort"
 	description "Escort a Free Worlds supply convoy safely to <destination>."
+	minor
 	autosave
 	source
 		government "Free Worlds"
@@ -1511,6 +1515,7 @@ mission "FW Escort 3"
 mission "FW Escort Second Chance"
 	name "Second Chance"
 	description "Return to <destination>, to meet up with Tomek Voigt and see if he will forgive you for failing the escort mission he gave you."
+	minor
 	source
 		near Sabik 1 1000
 		government "Free Worlds"
@@ -1561,6 +1566,7 @@ mission "FW Escort Second Chance"
 mission "FW Bounty 1"
 	name "Free Worlds Bounty Hunting"
 	description `Hunt down and destroy the "Rat Pack," a gang of pirate ships led by a flagship named "Cluny." They were last seen attacking freighters in the Seginus system.`
+	minor
 	source
 		government "Free Worlds"
 	to offer
@@ -1666,6 +1672,7 @@ mission "FW Commitment"
 	landing
 	name "Join the Free Worlds"
 	description "If you want to join the Free Worlds, report to their headquarters on <destination>."
+	minor
 	source
 		government "Free Worlds"
 	destination "Bourne"
@@ -1930,3 +1937,12 @@ mission "Defend Sabik"
 	
 	on complete
 		dialog `The Navy has been driven off, but at a great cost. You should probably visit the spaceport and see if Tomek is there, or someone else who can tell you what to do next.`
+
+mission "FWCarrier License"
+	invisible
+	landing
+	to offer
+		has "event: joined the free worlds"
+	on offer
+		set "license: Militia Carrier"
+		fail

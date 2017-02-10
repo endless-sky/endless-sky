@@ -35,18 +35,23 @@ public:
 	PlanetPanel(PlayerInfo &player, std::function<void()> callback);
 	
 	virtual void Step() override;
-	virtual void Draw() const override;
+	virtual void Draw() override;
 	
 	
 protected:
 	// Only override the ones you need; the default action is to return false.
 	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command) override;
-	virtual bool Click(int x, int y) override;
+	
+	
+private:
+	void TakeOffIfReady();
+	void TakeOff();
 	
 	
 private:
 	PlayerInfo &player;
 	std::function<void()> callback = nullptr;
+	bool requestedLaunch = false;
 	
 	const Planet &planet;
 	const System &system;
@@ -56,7 +61,7 @@ private:
 	std::shared_ptr<Panel> bank;
 	std::shared_ptr<Panel> spaceport;
 	std::shared_ptr<Panel> hiring;
-	Panel *selectedPanel;
+	Panel *selectedPanel = nullptr;
 	
 	WrappedText text;
 };

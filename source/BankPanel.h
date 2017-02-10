@@ -26,27 +26,33 @@ class PlayerInfo;
 // allows them to apply for new mortgages or pay extra on existing debts.
 class BankPanel : public Panel {
 public:
-	BankPanel(PlayerInfo &player);
+	explicit BankPanel(PlayerInfo &player);
 	
 	virtual void Step() override;
-	virtual void Draw() const override;
+	virtual void Draw() override;
 	
 	
 protected:
-	// Only override the ones you need; the default action is to return false.
+	// Overrides from Panel.
 	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command) override;
-	virtual bool Click(int x, int y) override;
+	virtual bool Click(int x, int y, int clicks) override;
 	
 	
 private:
+	// Callback for the dialogs asking you to enter an amount to pay extra on an
+	// existing loan or the total amount for a new loan.
 	void PayExtra(const std::string &str);
 	void NewMortgage(const std::string &str);
 	
 	
 private:
 	PlayerInfo &player;
+	// Loan amount you're prequalified for.
 	int64_t qualify;
-	int selectedRow;
+	int selectedRow = 0;
+	
+	bool mergedMortgages = false;
+	int mortgageRows = 0;
 };
 
 

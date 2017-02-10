@@ -18,7 +18,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <cstdint>
 #include <vector>
 
-class Animation;
+class Body;
 class Sprite;
 
 
@@ -30,41 +30,30 @@ class Sprite;
 // a DrawList first does not make sense.
 class DrawList {
 public:
-	// Default constructor.
-	DrawList();
-	
 	// Clear the list, also setting the global time step for animation.
-	void Clear(int step = 0);
+	void Clear(int step = 0, double zoom = 1.);
+	void SetCenter(const Point &center, const Point &centerVelocity = Point());
 	
-	// Add an animation.
-	bool Add(const Animation &animation, Point pos, Point unit, Point blur = Point(), double clip = 1.);
+	// Add an object based on the Body class.
+	bool Add(const Body &body, double cloak = 0.);
+	bool Add(const Body &body, Point position);
+	bool AddUnblurred(const Body &body);
+	bool AddProjectile(const Body &body, const Point &adjustedVelocity, double clip);
+	bool AddSwizzled(const Body &body, int swizzle);
 	
-	// Add a single sprite.
-	bool Add(const Sprite *sprite, Point pos, Point unit = Point(0., -1.), Point blur = Point(), double cloak = 0., int swizzle = 0);
-	
-	// Draw all the items in this list. The shader object may be shared between
-	// multiple DrawLists, so pass it in here.
+	// Draw all the items in this list.
 	void Draw() const;
+	
+	
+private:
+	bool Cull(const Body &body, const Point &position, const Point &blur) const;
+	
+	void Push(const Body &body, Point pos, Point blur, double cloak, double clip, int swizzle);
 	
 	
 private:
 	class Item {
 	public:
-		Item() = default;
-		Item(const Animation &animation, Point pos, Point unit, Point blur, float clip, int step);
-		
-		// Get the texture of this sprite.
-		uint32_t Texture0() const;
-		uint32_t Texture1() const;
-		
-		// These two items can be uploaded directly to the shader:
-		// Get the (x, y) position of the center of the sprite.
-		const float *Position() const;
-		// Get the [a, b; c, d] size and rotation matrix.
-		const float *Transform() const;
-		// Get the blur vector, in texture space.
-		const float *Blur() const;
-		
 		// Get the color swizzle.
 		uint32_t Swizzle() const;
 		
@@ -73,7 +62,7 @@ private:
 		
 		void Cloak(double cloak);
 		
-	private:
+	public:
 		uint32_t tex0;
 		uint32_t tex1;
 		float position[2];
@@ -85,8 +74,13 @@ private:
 	
 	
 private:
-	int step;
+	int step = 0;
+	double zoom = 1.;
+	bool isHighDPI = false;
 	std::vector<Item> items;
+	
+	Point center;
+	Point centerVelocity;
 };
 
 

@@ -40,6 +40,8 @@ public:
 	const Government *GetGovernment() const;
 	const Personality &GetPersonality() const;
 	const Phrase &GetHail() const;
+	// Check if a person has been destroyed or captured.
+	bool IsDestroyed() const;
 	
 	
 private:

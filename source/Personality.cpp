@@ -21,23 +21,29 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 using namespace std;
 
 namespace {
-	static const int PACIFIST = 1;
-	static const int FORBEARING = 2;
-	static const int TIMID = 4;
-	static const int DISABLES = 8;
-	static const int PLUNDERS = 16;
-	static const int HEROIC = 32;
-	static const int STAYING = 64;
-	static const int ENTERING = 128;
-	static const int NEMESIS = 256;
-	static const int SURVEILLANCE = 512;
-	static const int UNINTERESTED = 1024;
-	static const int WAITING = 2048;
-	static const int DERELICT = 4096;
-	static const int FLEEING = 8192;
-	static const int ESCORT = 16384;
-	static const int FRUGAL = 32768;
-	static const int COWARD = 65536;
+	static const int PACIFIST = (1 << 0);
+	static const int FORBEARING = (1 << 1);
+	static const int TIMID = (1 << 2);
+	static const int DISABLES = (1 << 3);
+	static const int PLUNDERS = (1 << 4);
+	static const int HEROIC = (1 << 5);
+	static const int STAYING = (1 << 6);
+	static const int ENTERING = (1 << 7);
+	static const int NEMESIS = (1 << 8);
+	static const int SURVEILLANCE = (1 << 9);
+	static const int UNINTERESTED = (1 << 10);
+	static const int WAITING = (1 << 11);
+	static const int DERELICT = (1 << 12);
+	static const int FLEEING = (1 << 13);
+	static const int ESCORT = (1 << 14);
+	static const int FRUGAL = (1 << 15);
+	static const int COWARD = (1 << 16);
+	static const int VINDICTIVE = (1 << 17);
+	static const int SWARMING = (1 << 18);
+	static const int UNCONSTRAINED = (1 << 19);
+	static const int MINING = (1 << 20);
+	static const int HARVESTS = (1 << 21);
+	static const int APPEASING = (1 << 22);
 	
 	static const map<string, int> TOKEN = {
 		{"pacifist", PACIFIST},
@@ -56,17 +62,23 @@ namespace {
 		{"fleeing", FLEEING},
 		{"escort", ESCORT},
 		{"frugal", FRUGAL},
-		{"coward", COWARD}
+		{"coward", COWARD},
+		{"vindictive", VINDICTIVE},
+		{"swarming", SWARMING},
+		{"unconstrained", UNCONSTRAINED},
+		{"mining", MINING},
+		{"harvests", HARVESTS},
+		{"appeasing", APPEASING}
 	};
 	
-	double DEFAULT_CONFUSION = 10. * .001;
+	double DEFAULT_CONFUSION = 10.;
 }
 
 
 
 // Default settings for player's ships.
 Personality::Personality()
-	: flags(DISABLES), confusionMultiplier(DEFAULT_CONFUSION)
+	: flags(DISABLES), confusionMultiplier(DEFAULT_CONFUSION), aimMultiplier(1.)
 {
 }
 
@@ -81,7 +93,7 @@ void Personality::Load(const DataNode &node)
 	for(const DataNode &child : node)
 	{
 		if(child.Token(0) == "confusion" && child.Size() >= 2)
-			confusionMultiplier = child.Value(1) * .001;
+			confusionMultiplier = child.Value(1);
 		else
 		{
 			for(int i = 0; i < child.Size(); ++i)
@@ -97,7 +109,7 @@ void Personality::Save(DataWriter &out) const
 	out.Write("personality");
 	out.BeginChild();
 	{
-		out.Write("confusion", confusionMultiplier * 1000.);
+		out.Write("confusion", confusionMultiplier);
 		for(const auto &it : TOKEN)
 			if(flags & it.second)
 				out.Write(it.first);
@@ -226,11 +238,70 @@ bool Personality::IsCoward() const
 
 
 
+bool Personality::IsVindictive() const
+{
+	return flags & VINDICTIVE;
+}
+
+
+
+bool Personality::IsSwarming() const
+{
+	return flags & SWARMING;
+}
+
+
+
+bool Personality::IsUnconstrained() const
+{
+	return flags & UNCONSTRAINED;
+}
+
+
+
+bool Personality::IsMining() const
+{
+	return flags & MINING;
+}
+
+
+
+bool Personality::Harvests() const
+{
+	return flags & HARVESTS;
+}
+
+
+
+bool Personality::IsAppeasing() const
+{
+	return flags & APPEASING;
+}
+
+
+
 const Point &Personality::Confusion() const
 {
-	confusion += Angle::Random().Unit() * confusionMultiplier;
-	confusion *= .999;
 	return confusion;
+}
+
+
+
+void Personality::UpdateConfusion(bool isFiring)
+{
+	// If you're firing weapons, aiming accuracy should slowly improve until it
+	// is 4 times more precise than it initially was.
+	aimMultiplier = .99 * aimMultiplier + .01 * (isFiring ? .5 : 2.);
+	
+	// Try to correct for any error in the aim, but constantly introduce new
+	// error and overcompensation so it oscillates around the origin. Apply
+	// damping to the position and velocity to avoid extreme outliers, though.
+	if(confusion.X() || confusion.Y())
+		confusionVelocity -= .001 * confusion.Unit();
+	confusionVelocity += .001 * Angle::Random().Unit();
+	confusionVelocity *= .999;
+	confusion += confusionVelocity * (confusionMultiplier * aimMultiplier);
+	confusion *= .9999;
 }
 
 

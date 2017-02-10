@@ -103,7 +103,7 @@ mission "FW Diplomacy 1C"
 		conversation
 			`You drop off Alondo and wish him luck. Hours pass, and you begin to worry that he has been taken prisoner or killed. But finally he returns, looking very discouraged. "It makes no sense," he says. "The tax revenue they get from those three worlds doesn't come close to covering the cost of defending them. They should be glad to let them go."`
 			choice
-				`	"So, the Senate won't give up those worlds without a fight?"`
+				`	"So, Parliament won't give up those worlds without a fight?"`
 					goto fight
 				`	"Maybe they're afraid of the precedent it would set if they give in to us."`
 					goto precedent
@@ -139,8 +139,8 @@ mission "FW Diplomacy 1D"
 	on offer
 		conversation
 			`When you land on <origin>, Alondo says, "You should join me for this meeting. You may find it eye-opening."`
-			`	Four of the Navy generals who are stationed here have agreed to meet with you. You discover that one of them is from the Dirt Belt. Another grew up in the Rim, and admits to you that if he were not serving the Navy, he would be fighting for the Free Worlds. All four of them seem sympathetic to your cause, and express genuine regret not just for the Navy lives that have been lost, but for the Free Worlds losses as well.`
-			`	And all four of them state, without any hesitation or equivocation, that if the Senate orders them to continue to fight the Free Worlds, they will fight until all possibility of victory is gone.`
+			`	Four of the Navy admirals who are stationed here have agreed to meet with you. You discover that one of them is from the Dirt Belt. Another grew up in the Rim, and admits to you that if he were not serving the Navy, he would be fighting for the Free Worlds. All four of them seem sympathetic to your cause, and express genuine regret not just for the Navy lives that have been lost, but for the Free Worlds losses as well.`
+			`	And all four of them state, without any hesitation or equivocation, that if Parliament orders them to continue to fight the Free Worlds, they will fight until all possibility of victory is gone.`
 			`	Alondo thanks them for their time and their honesty, and you return to your ship. "Well, it was worth a try. Now we just have to get home safely," he says.`
 				accept
 	
@@ -165,6 +165,7 @@ mission "FW Southern Recon 1"
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
+		event "fw safe passage ends"
 		conversation
 			`Alondo and JJ are in a somber mood when you meet up with them in the bar. You can't help remembering that Tomek always used to be a part of these gatherings, before he turned against the Senate. And now it looks like your next major battle will be fought without Tomek's expert guidance.`
 			`	JJ says, "We've done all we can. Sooner or later we will have to fight the Navy for those star systems. So to start with, <first>, we'd like you to scout them out and report back to us on the Navy's presence there. Freya is on Trinket, gathering a fleet. Report to her there when you're done."`
@@ -181,8 +182,6 @@ mission "FW Southern Recon 1B"
 	destination Trinket
 	to offer
 		has "FW Southern Recon 1: done"
-	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
 		event "gunboats in Alnasl"
@@ -201,10 +200,31 @@ mission "FW Southern Recon 1B"
 			`	She thinks about that for a moment, then says, "The Navy has shifted most of their capital ships to the defecting systems in the south. That means that some of the systems up north will have lighter defenses. You might try Wei or Alnasl. Good luck, Captain."`
 				accept
 	
+	to complete
+		not "FW Southern Recon 1B (Turret): done"
+	to fail
+		has "FW Southern Recon 1B (Turret): done"
 	on complete
-		event "normal in Alnasl"
+		fail "FW Southern Recon 1B (Turret)"
 		outfit "Electron Beam" -1
 		dialog `You hand off the Electron Beam to Freya's science team. They tell you that she's waiting for you in a cafe in the spaceport.`
+
+
+
+mission "FW Southern Recon 1B (Turret)"
+	invisible
+	source Trinket
+	destination Trinket
+	to offer
+		has "FW Southern Recon 1: done"
+	to complete
+		not "FW Southern Recon 1B: done"
+	to fail
+		has "FW Southern Recon 1B: done"
+	on complete
+		fail "FW Southern Recon 1B"
+		outfit "Electron Turret" -1
+		dialog `You hand off the Electron Turret to Freya's science team. They tell you that she's waiting for you in a cafe in the spaceport.`
 
 
 
@@ -214,13 +234,16 @@ mission "FW Southern Battle 1"
 	source Trinket
 	destination Zug
 	to offer
-		has "FW Southern Recon 1B: done"
+		or
+			has "FW Southern Recon 1B: done"
+			has "FW Southern Recon 1B (Turret): done"
 	on fail
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
+		event "normal in Alnasl"
 		conversation
-			`Because this world is a tourist destination, there are innumerable small cafes in the spaceport. You meet up with Freya in one of the smaller ones. "Thank you for acquiring that weapon sample for us," she says. "It's typical Republic weaponry: far more efficient than anything we're able to make, and very well designed. My engineers were kind of in awe as they disassembled it."`
+			`Because this world is a tourist destination, there are innumerable fancy cafes in the spaceport. You meet up with Freya in one of the smaller ones. "Thank you for acquiring that weapon sample for us," she says. "It's typical Republic weaponry: far more efficient than anything we're able to make, and very well designed. My engineers were kind of in awe as they disassembled it."`
 			choice
 				`	"Do you have any tactical advice on fighting ships with one of those installed?"`
 					goto advice
@@ -363,8 +386,10 @@ mission "FW Southern Battle 2"
 				"Bastion" 2
 		fleet
 			names "free worlds capital"
+			fighters "free worlds fighters"
 			variant
-				"Bastion (Heavy)" 2
+				"Skein" 2
+				"Finch" 12
 		fleet
 			names "free worlds capital"
 			variant
@@ -470,7 +495,7 @@ mission "FW Southern Battle 3"
 				`	"What are we going to do with the prisoners?"`
 					goto prisoners
 			label patrol
-			`	"If they're fleeing, let them flee," she says, "but if you discover a strong Navy presence remaining in one of those systems, report back to Dancer before engaging them. Meanwhile, I'll ask Alondo to contact the Navy generals and see if we can get Katya back in exchange for those prisoners."`
+			`	"If they're fleeing, let them flee," she says, "but if you discover a strong Navy presence remaining in one of those systems, report back to Dancer before engaging them. Meanwhile, I'll ask Alondo to contact the Navy admirals and see if we can get Katya back in exchange for those prisoners."`
 				goto katya
 			label prisoners
 			`	"Well," she says, "my hope is that we can trade them for any of our people who have been captured so far in this war. Including Katya."`
@@ -518,11 +543,11 @@ mission "FW Southern Prisoners - Release"
 	
 	on offer
 		conversation
-			`You find Freya and Alondo watching over a large hangar where several hundred Navy crew and support staff are being kept under guard. Alondo says, "I contacted the Navy generals. They say Katya is not under their control; she is a prisoner of the Intelligence bureau, and arranging her release could take weeks. But they promised that if we return their prisoners now, they will ensure Katya's release and return her to us soon."`
+			`You find Freya and Alondo watching over a large hangar where several hundred Navy crew and support staff are being kept under guard. Alondo says, "I contacted the Navy admirals. They say Katya is not under their control; she is a prisoner of the Intelligence bureau, and arranging her release could take weeks. But they promised that if we return their prisoners now, they will ensure Katya's release and return her to us soon."`
 			choice
 				`	"How do we know they won't break that promise?"`
 				`	"Why not just keep the prisoners until we have Katya back safely?"`
-			`	Freya sighs. "Alondo claims that the generals value their honor so highly that we can trust their promise. I am not so sure. Even if the generals do their best, what if Intelligence refuses to honor the deal we make?"`
+			`	Freya sighs. "Alondo claims that the admirals value their honor so highly that we can trust their promise. I am not so sure. Even if the admirals do their best, what if Intelligence refuses to honor the deal we make?"`
 			`	Alondo says, "On the other hand, if we release these prisoners on parole as a gesture of good faith, it could bring us much closer to a diplomatic end to this war. Which would be far preferable to another battle as bloody as this one."`
 			`	Freya says, "And meanwhile, JJ is off on a top secret mission. And that means he's not available to consult with, and we need to make this decision now."`
 			`	"And since we cannot agree," says Alondo, "we are giving you the deciding vote."`
@@ -538,8 +563,8 @@ mission "FW Southern Prisoners - Release"
 		event "fw safe passage ends" 7
 	
 	npc accompany save
-		government Escort
-		personality timid
+		government "Escort"
+		personality timid escort
 		ship "Blackbird" "F.S. Charity"
 		ship "Blackbird" "F.S. Good Hope"
 		ship "Blackbird" "F.S. Stoutheart"
@@ -593,18 +618,18 @@ mission "FW Southern Prisoners - Released"
 	
 	on offer
 		conversation
-			`<origin> has become the home of a major Navy base almost overnight; the number of ships and people here is almost overwhelming. You return the prisoners, who have all taken an oath of parole to take no further part in the war against the Free Worlds. One of the four Navy generals who you and Alondo met with earlier is here, and as you are unloading the prisoners, he says, "More volunteers for the 'Oathkeepers,' I see."`
+			`<origin> has become the home of a major Navy base almost overnight; the number of ships and people here is almost overwhelming. You return the prisoners, who have all taken an oath of parole to take no further part in the war against the Free Worlds. One of the four Navy admirals who you and Alondo met with earlier is here, and as you are unloading the prisoners, he says, "More volunteers for the 'Oathkeepers,' I see."`
 			choice
 				`	"Who are the 'Oathkeepers'?"`
 			`	"The officers you granted parole to months ago. We reassigned them all to duty in the north, patrolling for pirates."`
 			`	"You mean they really do honor their promise not to fight us?" you ask.`
-			`	"Of course. They swore a vow, after all." You suspect it's not quite that simple, but decide that questioning this general's word would be pointless. As you are getting ready to leave, he says, "Don't worry, we will be returning Miss Reynolds to you shortly. The ship carrying her should arrive here in a week or two."`
+			`	"Of course. They swore a vow, after all." You suspect it's not quite that simple, but decide that questioning this admiral's word would be pointless. As you are getting ready to leave, he says, "Don't worry, we will be returning Miss Reynolds to you shortly. The ship carrying her should arrive here in a week or two."`
 			`	You hope he is telling the truth. Now, it is time to meet with Freya and Alondo and decide what should be done next.`
 				launch
 	
 	npc accompany save
-		government Escort
-		personality timid
+		government "Escort"
+		personality timid escort
 		ship "Blackbird" "F.S. Charity"
 		ship "Blackbird" "F.S. Good Hope"
 		ship "Blackbird" "F.S. Stoutheart"
@@ -789,7 +814,7 @@ mission "FW Northern 2A"
 
 mission "FW Northern 2B"
 	landing
-	name "Sweep Hope"
+	name "Sweep Clark"
 	description "Bring Freya to <planet> to check for any Navy surveillance stations."
 	source "Hope"
 	destination "Clark"
@@ -809,7 +834,7 @@ mission "FW Northern 2B"
 
 mission "FW Northern 2C"
 	landing
-	name "Sweep Clark"
+	name "Sweep New Holland"
 	description "Bring Freya to <planet> to check for any Navy surveillance stations."
 	source "Clark"
 	destination "New Holland"
@@ -840,7 +865,7 @@ mission "FW Northern 2C"
 
 mission "FW Northern 2D"
 	landing
-	name "Sweep Clark"
+	name "Sweep New Tibet"
 	description "Bring Freya to <planet> to check for any Navy surveillance stations."
 	source "New Holland"
 	destination "New Tibet"
@@ -872,7 +897,7 @@ mission "FW Northern 3"
 	on offer
 		conversation
 			`As you approach <origin>, Freya quickly locates two Navy surveillance stations and contacts Alondo, asking him to send some Free Worlds personnel to destroy them. Then you land, and Alondo comes aboard your ship to discuss your next steps in person.`
-			`	"There's a good chance we've taken care of all the sensors in this sector," says Freya, "so we can start moving our fleets around here without tipping the Navy off. And I just heard from Southbound Shipping that they've got two more Dreadnoughts ready for service."`
+			`	"There's a good chance we've taken care of all the sensors in this sector," says Freya, "so we can start moving our fleets around here without tipping the Navy off. And I just heard from Southbound Shipyards that they've got two more Dreadnoughts ready for service."`
 			choice
 				`	"Only two? I was hoping to get a Dreadnought of my own soon!"`
 					goto two
@@ -952,7 +977,7 @@ mission "FW Northern 3B"
 		ship Dreadnought "F.S. Magnolia"
 	
 	on visit
-		dialog "You have reached <planet>, but without both the dreadnoughts you were assigned to escort! Better depart and wait for them to arrive in this star system."
+		dialog "You have reached <planet>, but without both the Dreadnoughts you were assigned to escort! Better depart and wait for them to arrive in this star system."
 
 
 
@@ -985,6 +1010,7 @@ mission "FW Northern 4.1A"
 	destination "New Tibet"
 	to offer
 		has "FW Northern 4: done"
+		not "FW Northern 4.1B: offered"
 		karma >= 2
 	on fail
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
@@ -1023,6 +1049,7 @@ mission "FW Northern 4.2A"
 	destination "New Tibet"
 	to offer
 		has "FW Northern 4: done"
+		not "FW Northern 4.1A: offered"
 		karma < 2
 	on fail
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
@@ -1089,7 +1116,7 @@ mission "FW Alphas 1.1"
 				`	"Are you insane? You're letting the Navy come here?"`
 				`	"We're going to work side by side with the Navy right after that awful battle?"`
 			`	Alondo explains, "It's only one cruiser, an 'Oathkeeper' ship, sworn to take no part in our war. The Free Worlds have almost no troops trained for ground combat, so without the Navy's help we would be unlikely to be able to eliminate the Alphas."`
-			`	The Navy ship lands, and a man steps off who you recognize immediately: General William Danforth, who is something of a folk hero throughout human space, and who you have heard is the commander of the entire Oathkeepers regiment. With him is a man who he introduces as Commander Aaron Nguyen of the Navy Humanitarian Corps. As Nguyen shakes your hand, you are struck by the fact that although he is your enemy, you see no trace of hostility in his eyes - in fact, his expression is surprisingly warm and affectionate.`
+			`	The Navy ship lands, and a man steps off who you recognize immediately: Admiral William Danforth, who is something of a folk hero throughout human space, and who you have heard is the commander of the entire Oathkeepers regiment. With him is a man who he introduces as Commander Aaron Nguyen of the Navy Humanitarian Corps. As Nguyen shakes your hand, you are struck by the fact that although he is your enemy, you see no trace of hostility in his eyes - in fact, his expression is surprisingly warm and affectionate.`
 			`	"We have no room for error," says Danforth. "These Alphas must be eliminated, and they must not be allowed to escape. On that, at least, we can all agree."`
 			`	Freya says, "Captain <last> will lead the attack." She beckons to two of the Free Worlds captains. "Marco, Emily, you will join them with your Falcons. Destroy any pirate ships in orbit, then land and secure the facility. Understood?" You nod, and prepare to take off for the <system> system.`
 				accept
@@ -1099,8 +1126,8 @@ mission "FW Alphas 1.1"
 		personality escort heroic
 		ship "Cruiser (Mark II)" "N.S. Peacemaker"
 	npc
-		government "Escort"
-		personality heroic
+		government "Free Worlds"
+		personality heroic escort
 		ship "Falcon (Plasma)" "F.S. Alder"
 		ship "Falcon" "F.S. Starry Warrior"
 	npc kill
@@ -1188,8 +1215,8 @@ mission "FW Alphas 1.2"
 				accept
 	
 	npc accompany save
-		government "Escort"
-		personality heroic
+		government "Free Worlds"
+		personality heroic escort
 		ship "Falcon (Plasma)" "F.S. Oak"
 		ship "Falcon (Plasma)" "F.S. Alder"
 		ship "Falcon" "F.S. Starry Warrior"
@@ -1210,7 +1237,7 @@ mission "FW Alphas 1.2"
 
 mission "FW Alphas 1.1A"
 	name "Danforth to <planet>"
-	description "Escort General Danforth's ship to <destination>, so that he can leave Free space without being accidentally attacked."
+	description "Escort Admiral Danforth's ship to <destination>, so that he can leave Free space without being accidentally attacked."
 	autosave
 	source Poisonwood
 	destination "New Tibet"
@@ -1228,7 +1255,6 @@ mission "FW Alphas 1.1A"
 		dialog "You have reached <planet>, but you left the <npc> behind! Better depart and wait for them to arrive in this star system."
 	
 	on offer
-		set "fw alphas done"
 		event "death of nguyen" 35
 		conversation
 			`When you meet up with Nguyen, he still looks very worried. "We think we killed them all," he says, "but we can't be sure. Also, we recovered some instruments for genetic manipulation from the factory. The Alphas can't breed normally, because if their offspring inherit some of the Alpha mutations but not others, the result is rarely viable, and even those that live long enough to be born don't have all the Alpha traits. So, they rely on artificial insemination instead."`
@@ -1258,6 +1284,9 @@ mission "FW Alphas 1.1A"
 				`	"If the Republic would just leave us alone, we wouldn't need to be enemies."`
 			`	"I know," he says. "But for now, I need to return to my fleet. Which means I'll be needing an escort out of your territory, just to make sure no one attacks me. Maybe you could take us by way of New Tibet? I'm sure Commander Nguyen would appreciate one last visit to the Buddhist monasteries there before that world becomes closed off to us completely." You agree, and he begins preparing his ship for takeoff.`
 				accept
+	
+	on complete
+		set "fw alphas done"
 
 
 
@@ -1268,7 +1297,7 @@ mission "FW Death of Nguyen"
 	
 	on offer
 		conversation
-			`Soon after landing on <origin>, you receive an encoded message from General Danforth, the leader of the Oathkeepers. "Captain <last>," he says, "I would like to thank you once again for allowing us to assist you on Poisonwood. Unfortunately, I have bad news that may concern you. Commander Nguyen, who was with you when one of the Alphas was apprehended, has been assassinated, shot in the head at point blank range. His attacker has not been found. We fear that this may be retribution for his part in the action on Poisonwood, and we urge you and your crew to be cautious. With deepest regards - Danforth."`
+			`Soon after landing on <origin>, you receive an encoded message from Admiral Danforth, the leader of the Oathkeepers. "Captain <last>," he says, "I would like to thank you once again for allowing us to assist you on Poisonwood. Unfortunately, I have bad news that may concern you. Commander Nguyen, who was with you when one of the Alphas was apprehended, has been assassinated, shot in the head at point blank range. His attacker has not been found. We fear that this may be retribution for his part in the action on Poisonwood, and we urge you and your crew to be cautious. With deepest regards - Danforth."`
 				decline
 
 
@@ -1286,20 +1315,22 @@ mission "FW Alphas 1.2A"
 	
 	on offer
 		event "Poisonwood reverts to Republic"
-		set "fw alphas done"
 		conversation
 			`The ships in orbit are eliminated, but there are still the Alphas and their servants here on the ground to take care of. Your escorts unload the troops, who spread throughout the city and quickly determine that, as far as the locals know, the Alphas are all holed up in a large factory on the outskirts of town. The locals also inform you that the Alphas have taken dozens of prisoners and are holding them in the factory.`
 			`	As you are trying to prepare the Free Worlds troops to storm the building, suddenly one of your escorts, the Starry Warrior, takes off. You radio the captain, who responds, "Sorry, Captain, but I'm following orders. Alondo suspected you wouldn't like this." Then he opens fire on the factory, destroying everything within several blocks with blaster fire and torpedoes. He does not stop firing until there is nothing left but smoldering rubble in that entire section of the city.`
-			`	The Alphas are presumably dead. So are their prisoners, and any of the locals who were unlucky enough to be close to the factory when it was destroyed. The governor of Poisonwood, unable to conceal his anger, asks you to take your troops and your ships and leave his world immediately.`
+			`	The Alphas are presumably dead. So are their prisoners, and any of the locals who were unlucky enough to be close to the factory when it was destroyed. The governor of Poisonwood, unable to conceal her anger, asks you to take your troops and your ships and leave her world immediately.`
 			`	You send a message to the Council asking what you should do, and they tell you to leave the planet and join Alondo on <planet>, to help bolster the defenses there. You leave <origin> with a heavy heart, glad that the Alphas are gone but wishing things here on <origin> had ended differently.`
 				launch
+	
+	on complete
+		set "fw alphas done"
 
 
 
 mission "FW Bloodsea 1"
 	landing
 	name "Alondo to <planet>"
-	description "Bring Alondo to <planet> to meet up with Freya, who has succeeded in working out most of the remaining kinks in the Dreadnought production line."
+	description "Bring Alondo to <planet> to try to convince the locals to join the Free Worlds."
 	source "New Tibet"
 	destination "Bloodsea"
 	clearance `Alondo manages to convince the spaceport to let you land "free of charge."`
@@ -1448,6 +1479,22 @@ mission "FW Bloodsea 1.1B"
 			`A few of the locals on Bloodsea appear surprised that you actually brought the supplies for a new spaceport, and that you arrived with all the supplies intact. But after meeting up with Alondo, they agree to hold their side of the bargain: from now on, Bloodsea will be a part of the Free Worlds, with all the rights and responsibilities that implies. And that means that they will refuse to knowingly harbor any pirate fleets or other known criminals.`
 			`	Alondo tells you that he will catch a ride back with the freighters when they return. "But, you'll probably want to head out sooner," he says, "because I've got some good news for you. Freya just contacted me, to say that they're now ready to start selling Dreadnoughts to certain select members of the Free Worlds, including you. That also means she's done with her work on Zug, so she'll need you to give her a lift from there."`
 				accept
+
+
+
+mission "Ijs catches another ride"
+	landing
+	to offer
+		has "fw bloodsea done"
+		has "FW Conservatory 1: active"
+	on offer
+		payment 10000
+		event "fw conservatory founded" 30
+		conversation
+			`Ijs approaches you with his duffel as you're stepping off the <ship>.`
+			`	"Thanks for getting me this close, but I really need to get to Winter as soon as possible. I hope you don't take offense that I've booked passage on another transport. Here's <payment> for getting me this far, anyway. I hope to see you again soon, Captain <last>."`
+				decline
+		fail "FW Conservatory 1"
 
 
 
@@ -1641,7 +1688,7 @@ mission "FW Albatross 2A"
 				accept
 	
 	npc kill
-		personality staying plunders disables
+		personality staying plunders disables heroic nemesis
 		system Orvala
 		government Pirate
 		ship "Bastion (Heavy)" "Dread"
@@ -1724,7 +1771,13 @@ mission "FW Rand 1"
 		ship "Dreadnought" "F.S. Elder"
 		ship "Falcon (Plasma)" "F.S. Reliant"
 		ship "Falcon (Heavy)" "F.S. Bismark"
-		ship "Osprey" "F.S. Lapwing"
+		ship "Skein" "F.S. Lapwing"
+		ship "Finch" "Bravo 8-4"
+		ship "Finch" "Bravo 0-9"
+		ship "Finch" "Bravo 6-2"
+		ship "Finch" "Bravo 3-1"
+		ship "Finch" "Bravo 1-5"
+		ship "Finch" "Bravo 9-1"
 		ship "Hawk (Rocket)" "F.S. Echo"
 		ship "Hawk" "F.S. Shadow"
 	npc
@@ -1796,8 +1849,20 @@ mission "FW Rand 1B"
 		system Tarazed
 		ship "Dreadnought" "F.S. Holly"
 		ship "Falcon (Plasma)" "F.S. Nebula"
-		ship "Osprey" "F.S. Larkspur"
-		ship "Bastion (Heavy)" "F.S. Ironwood"
+		ship "Skein" "F.S. Larkspur"
+		ship "Finch" "Charlie 6-2"
+		ship "Finch" "Charlie 0-9"
+		ship "Finch" "Charlie 3-1"
+		ship "Finch" "Charlie 9-1"
+		ship "Finch" "Charlie 1-5"
+		ship "Finch" "Charlie 8-4"
+		ship "Skein" "F.S. Ironwood"
+		ship "Finch" "Echo 5-3"
+		ship "Finch" "Echo 4-1"
+		ship "Finch" "Echo 2-3"
+		ship "Finch" "Echo 5-8"
+		ship "Finch" "Echo 2-4"
+		ship "Finch" "Echo 6-9"
 		ship "Argosy" "F.S. Nightingale"
 
 
@@ -1903,7 +1968,7 @@ mission "FW Defend New Tibet"
 				decline
 			
 			label "definitely rescue"
-			`	JJ seems very relieved at your choice. "I think that's the right choice, Captain," he says. "We can take the fleet we have here, sweep up north to avoid the thickest part of the Navy's occupying fleet, and cut over to New Tibet to drive the Syndicate ships away. Let's just hope these monks can stay hidden until then."
+			`	JJ seems very relieved at your choice. "I think that's the right choice, Captain," he says. "We can take the fleet we have here, sweep up north to avoid the thickest part of the Navy's occupying fleet, and cut over to New Tibet to drive the Syndicate ships away. Let's just hope these monks can stay hidden until then."`
 				accept
 	
 	on accept
@@ -1925,8 +1990,20 @@ mission "FW Defend New Tibet"
 		personality heroic disables
 		ship "Dreadnought" "F.S. Holly"
 		ship "Falcon (Plasma)" "F.S. Nebula"
-		ship "Osprey" "F.S. Larkspur"
-		ship "Bastion (Heavy)" "F.S. Ironwood"
+		ship "Skein" "F.S. Larkspur"
+		ship "Finch" "Charlie 6-2"
+		ship "Finch" "Charlie 0-9"
+		ship "Finch" "Charlie 3-1"
+		ship "Finch" "Charlie 9-1"
+		ship "Finch" "Charlie 1-5"
+		ship "Finch" "Charlie 8-4"
+		ship "Skein" "F.S. Ironwood"
+		ship "Finch" "Echo 5-3"
+		ship "Finch" "Echo 4-1"
+		ship "Finch" "Echo 2-3"
+		ship "Finch" "Echo 5-8"
+		ship "Finch" "Echo 2-4"
+		ship "Finch" "Echo 6-9"
 		ship "Argosy" "F.S. Nightingale"
 	
 	on complete
@@ -1978,7 +2055,7 @@ mission "FW Defend New Tibet"
 			label wait
 			`	He says, "It was when I heard that there had been another major battle. Up until then I had been telling myself that the worst of the damage was done. But after that battle, I knew that millions more could die because of our crime, and that I had the power to stop it."`
 			`	Raven continues to ask questions: who was involved, how the facility was hidden, where the raw materials come from. At one point, JJ pulls you aside and says, "She must be a Questioner. How they operate is a tightly kept secret. I'd always assumed their methods were... a bit more medieval."`
-			`	Finally, Raven is satisfied, and radios her ship. "He's telling the truth," she tells them. "Send word to the generals at once. And, release the captive."`
+			`	Finally, Raven is satisfied, and radios her ship. "He's telling the truth," she tells them. "Send word to the admirals at once. And, release the captive."`
 			`	The door of her ship slides open, and another woman steps out - shakily, hesitantly, shielding her eyes against the sunlight. It takes you a few seconds to realize that it's Katya.`
 			`	As you all rush over to greet Katya, Raven taps your shoulder and says quietly, "Meet me in the main spaceport in a few hours and we'll figure out what's going to happen next." She returns to her ship.`
 
@@ -2044,8 +2121,10 @@ mission "FW Liberate Delta Sagittarii"
 				"Falcon (Heavy)"
 		fleet
 			names "free worlds capital"
+			fighters "free worlds fighters"
 			variant
-				"Bastion (Heavy)" 2
+				"Skein" 2
+				"Finch" 12
 		fleet
 			names "free worlds capital"
 			variant

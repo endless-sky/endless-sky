@@ -17,6 +17,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include <list>
 #include <memory>
+#include <string>
 #include <vector>
 
 class DataNode;
@@ -51,15 +52,13 @@ public:
 	static void Enter(const System &system, Ship &ship);
 	static void Place(const System &system, Ship &ship);
 	
-	
-private:
-	void SetCargo(Ship *ship) const;
+	int64_t Strength() const;
 	
 	
 private:
 	class Variant {
 	public:
-		Variant(const DataNode &node);
+		explicit Variant(const DataNode &node);
 		
 		int weight;
 		std::vector<const Ship *> ships;
@@ -67,11 +66,21 @@ private:
 	
 	
 private:
+	const Variant &ChooseVariant() const;
+	static Point ChooseCenter(const System &system);
+	std::vector<std::shared_ptr<Ship>> Instantiate(const Variant &variant) const;
+	bool PlaceFighter(std::shared_ptr<Ship> fighter, std::vector<std::shared_ptr<Ship>> &placed) const;
+	void SetCargo(Ship *ship) const;
+	
+	
+private:
+	std::string fleetName;
 	const Government *government = nullptr;
 	const Phrase *names = nullptr;
 	const Phrase *fighterNames = nullptr;
 	std::vector<Variant> variants;
 	int cargo = 3;
+	std::vector<std::string> commodities;
 	int total = 0;
 	
 	Personality personality;
