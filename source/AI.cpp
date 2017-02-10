@@ -1789,7 +1789,7 @@ Point AI::TargetAim(const Ship &ship, const Body &target)
 		Point start = ship.Position() + ship.Facing().Rotate(weapon.GetPoint());
 		Point p = target.Position() - start + ship.GetPersonality().Confusion();
 		Point v = target.Velocity() - ship.Velocity();
-		double steps = Armament::RendezvousTime(p, v, outfit->Velocity());
+		double steps = Armament::RendezvousTime(p, v, outfit->Velocity() + .5 * outfit->RandomVelocity());
 		if(!(steps == steps))
 			continue;
 		
@@ -1901,7 +1901,7 @@ Command AI::AutoFire(const Ship &ship, bool secondary) const
 		start += ship.GetPersonality().Confusion();
 		
 		const Outfit *outfit = weapon.GetOutfit();
-		double vp = outfit->Velocity();
+		double vp = outfit->Velocity() + .5 * outfit->RandomVelocity();
 		double lifetime = outfit->TotalLifetime();
 		
 		if(currentTarget && (weapon.IsHoming() || weapon.IsTurret()))
