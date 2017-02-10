@@ -25,6 +25,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "MapPanel.h"
 #include "Mask.h"
 #include "Messages.h"
+#include "OutlineShader.h"
 #include "Person.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
@@ -34,6 +35,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Random.h"
 #include "RingShader.h"
 #include "Screen.h"
+#include "Sprite.h"
 #include "SpriteSet.h"
 #include "SpriteShader.h"
 #include "StarField.h"
@@ -323,6 +325,15 @@ void Engine::Step(bool isActive)
 		else if(zoom > zoomTarget)
 			zoom = max(zoomTarget, zoom * .99);
 	}
+		
+	// Draw a highlight to distinguish the flagship from other ships.
+	if(flagship && Preferences::Has("Highlight player's flagship"))
+	{
+		highlightSprite = flagship->GetSprite();
+		highlightUnit = flagship->Unit();
+	}
+	else
+		highlightSprite = nullptr;
 		
 	// Any of the player's ships that are in system are assumed to have
 	// landed along with the player.
@@ -634,6 +645,15 @@ void Engine::Draw() const
 		RingShader::Draw(it.position * zoom, it.radius * zoom + 3., 1.5, it.shields, color[it.isEnemy]);
 		double dashes = 20. * min(1., zoom);
 		RingShader::Draw(it.position * zoom, it.radius * zoom, 1.5, it.hull, color[2 + it.isEnemy], dashes);
+	}
+	
+	// Draw the flagship highlight, if any.
+	if(highlightSprite)
+	{
+		Point size(highlightSprite->Width(), highlightSprite->Height());
+		Color color(.5, .8, .2, 0.);
+		// The flagship is always in the dead center of the screen.
+		OutlineShader::Draw(highlightSprite, Point(), size, color, highlightUnit);
 	}
 	
 	if(flash)

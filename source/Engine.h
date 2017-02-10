@@ -136,6 +136,8 @@ private:
 	std::vector<std::pair<const Outfit *, int>> ammo;
 	int jumpCount = 0;
 	const System *jumpInProgress[2] = {nullptr, nullptr};
+	const Sprite *highlightSprite = nullptr;
+	Point highlightUnit;
 	
 	int step = 0;
 	
