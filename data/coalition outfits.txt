@@ -125,7 +125,7 @@ outfit "Cooling Module"
 outfit "Small Thrust Module"
 	category "Engines"
 	"cost" 66000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/small thrust module"
 	"mass" 9
 	"outfit space" -9
 	"engine capacity" -9
@@ -140,7 +140,7 @@ outfit "Small Thrust Module"
 outfit "Large Thrust Module"
 	category "Engines"
 	"cost" 292000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/large thrust module"
 	"mass" 32
 	"outfit space" -32
 	"engine capacity" -32
@@ -155,7 +155,7 @@ outfit "Large Thrust Module"
 outfit "Small Steering Module"
 	category "Engines"
 	"cost" 60000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/small steering module"
 	"mass" 7
 	"outfit space" -7
 	"engine capacity" -7
@@ -167,7 +167,7 @@ outfit "Small Steering Module"
 outfit "Large Steering Module"
 	category "Engines"
 	"cost" 269000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/large steering module"
 	"mass" 25
 	"outfit space" -25
 	"engine capacity" -25

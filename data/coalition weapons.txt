@@ -11,7 +11,7 @@
 outfit "Bombardment Cannon"
 	category "Guns"
 	cost 437000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/bombardment cannon"
 	"mass" 12
 	"outfit space" -12
 	"weapon capacity" -12
@@ -36,7 +36,7 @@ outfit "Bombardment Cannon"
 outfit "Bombardment Turret"
 	category "Turrets"
 	cost 1845000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/bombardment turret"
 	"mass" 43
 	"outfit space" -43
 	"weapon capacity" -43
@@ -73,7 +73,7 @@ effect "bombardment impact"
 outfit "Finisher Pod"
 	category "Secondary Weapons"
 	cost 1370000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/finisher pod"
 	"mass" 16
 	"outfit space" -36
 	"weapon capacity" -36
@@ -129,7 +129,7 @@ outfit "Finisher Torpedo"
 	plural "Finisher Torpedoes"
 	category "Ammunition"
 	cost 32000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/finisher"
 	"mass" .5
 	"finisher capacity" -1
 	description `This extremely powerful but also expensive missile is ammunition for the Heliarch Finisher Pod.`
