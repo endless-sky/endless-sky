@@ -20,7 +20,7 @@ outfit "Bombardment Cannon"
 		sprite "projectile/bombardment"
 			"frame rate" 3.2
 			"no repeat"
-		sound "blaster"
+		sound "bombardment"
 		"hit effect" "bombardment impact"
 		"inaccuracy" 4
 		"velocity" 6
@@ -46,7 +46,7 @@ outfit "Bombardment Turret"
 		sprite "projectile/bombardment"
 			"frame rate" 3.2
 			"no repeat"
-		sound "blaster"
+		sound "bombardment"
 		"hit effect" "bombardment impact"
 		"inaccuracy" 4
 		"velocity" 6
@@ -83,7 +83,7 @@ outfit "Finisher Pod"
 		sprite "projectile/finisher activating"
 			"frame rate" 1
 			"no repeat"
-		sound "torpedo"
+		sound "finisher"
 		ammo "Finisher Torpedo"
 		icon "icon/finisher"
 		"fire effect" "finisher sparks" 8
@@ -185,7 +185,7 @@ outfit "Heliarch Attractor"
 		sprite "projectile/attractor"
 			"frame rate" 5.2
 			"random start frame"
-		sound "laser"
+		sound "heliarch attractor"
 		"hit effect" "attractor impact"
 		"inaccuracy" 2
 		"velocity" 640
@@ -223,7 +223,7 @@ outfit "Heliarch Repulsor"
 		sprite "projectile/repulsor"
 			"frame rate" 3.2
 			"random start frame"
-		sound "heavy laser"
+		sound "heliarch repulsor"
 		"hit effect" "repulsor impact"
 		"inaccuracy" 3
 		"velocity" 560
@@ -261,7 +261,7 @@ outfit "Ion Rain Gun"
 		sprite "projectile/ion rain"
 			"frame rate" 7
 			"random start frame"
-		sound "particle"
+		sound "ion rain"
 		"hit effect" "ion rain impact"
 		"inaccuracy" 4.5
 		"velocity" 16
