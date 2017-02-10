@@ -28,7 +28,7 @@ mission "Coalition: First Contact"
 				`	"How do you know my language?"`
 			`	The spider speaks, and the box around its neck translates. "Our nearest and most recent neighbor you are. The Heliarchs in their great wisdom, all things that come to pass in our region of space, they are aware of."`
 			label next
-			`	Speaking through its own translation box, the beetle says, "To the seat of the Heliarch government must you go. Once to the Heliarch you have become known, in many ways to our society, contribute you may."`
+			`	Speaking through its own translation box, the beetle says, "To the seat of the Heliarch government must you go. Once to the Heliarchs you have become known, in many ways to our society, contribute you may."`
 			`	The centaur pulls out a map printed on a thin sheet of plastic. You recognize it as a star map of this region. Lines mark out three different territories, and where they meet are three star systems colored yellow. The centaur points to the southernmost of the three. "Where you must go, here it is," it says.`
 			choice
 				`	"Thank you. I will go there."`
