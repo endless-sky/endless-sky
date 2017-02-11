@@ -481,11 +481,7 @@ phrase "friendly unfettered"
 		"people"
 		"individuals"
 	word
-		" "
-	word
-		"that are"
-		""
-	word
+		" that are "
 		" "
 	word
 		"ready to"

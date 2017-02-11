@@ -2392,7 +2392,7 @@ phrase "hostile bounty"
 	word
 		" "
 	word
-		"they "
+		"they"
 		"the government"
 		"the law"
 	word
@@ -2435,10 +2435,8 @@ phrase "hostile bounty"
 		"imagined"
 		"dreamed"
 	word
+		" that "
 		" "
-	word
-		"that"
-		""
 	word
 		" "
 	word
@@ -2469,16 +2467,14 @@ phrase "hostile bounty"
 		", you were "
 	word
 		""
-		"very"
-		"hopelessly"
-		"completely"
-		"absolutely"
-		"extremely"
-		"badly"
-		"totally"
-		"awfully"
-	word
-		" "
+		"very "
+		"hopelessly "
+		"completely "
+		"absolutely "
+		"extremely "
+		"badly "
+		"totally "
+		"awfully "
 	word
 		"wrong."
 		"mistaken."
