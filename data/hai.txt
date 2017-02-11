@@ -465,19 +465,27 @@ phrase "friendly unfettered"
 	word
 		"We "
 	word
-		"welcome "
-		"accept "
-		"tolerate "
+		"welcome"
+		"accept"
+		"tolerate"
+	word
+		" "
 	word
 		"true"
 		"strong"
 		"ambitious"
 	word
-		" races"
-		" people"
-		" individuals"
+		" "
 	word
-		" that are "
+		"races"
+		"people"
+		"individuals"
+	word
+		" "
+	word
+		"that are"
+		""
+	word
 		" "
 	word
 		"ready to"
@@ -486,12 +494,14 @@ phrase "friendly unfettered"
 		"willing to"
 		"prepared to"
 	word
-		" help"
-		" assist"
-		" work with"
-		" support"
-		" follow"
-		" obey to"
+		" "
+	word
+		"help"
+		"assist"
+		"work with"
+		"support"
+		"follow"
+		"obey"
 	word
 		" the "
 	word

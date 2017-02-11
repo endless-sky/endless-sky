@@ -2390,9 +2390,13 @@ phrase "hostile bounty"
 		"weakling"
 		"worthless wretch"
 	word
-		" they "
-		" the government "
-		" the law "
+		" "
+	word
+		"they "
+		"the government"
+		"the law"
+	word
+		" "
 	word
 		"sent"
 		"ordered"
@@ -2431,19 +2435,29 @@ phrase "hostile bounty"
 		"imagined"
 		"dreamed"
 	word
-		" that "
+		" "
+	word
+		"that"
+		""
+	word
 		" "
 	word
 		"I"
 		"my ship" 
+	word
+		" "
 	word 
 		"was going to be"
 		"was to be"
 		"would be"
 	word
-		" an easy"
-		" a simple"
-		" a straight-forward"
+		" "
+	word
+		"an easy"
+		"a simple"
+		"a straight-forward"
+	word
+		" "
 	word
 		"kill"
 		"victim"
@@ -2464,10 +2478,12 @@ phrase "hostile bounty"
 		"totally"
 		"awfully"
 	word
-		" wrong."
-		" mistaken."
-		" off beam."
-		" mislead."
+		" "
+	word
+		"wrong."
+		"mistaken."
+		"off beam."
+		"mislead."
 
 # From the "Southern Television broadcast interruption."
 phrase "hostile quarg"
