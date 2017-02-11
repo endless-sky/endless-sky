@@ -250,8 +250,8 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const Depreciation &dep
 	map<string, double> chassis;
 	static const string names[] = {
 		"outfit space free:", "outfit space",
-		"    weapon capacity:", "weapon capacity",
-		"    engine capacity:", "engine capacity",
+		"    weapon capacity free:", "weapon capacity",
+		"    engine capacity free:", "engine capacity",
 		"gun ports free:", "gun ports",
 		"turret mounts free:", "turret mounts"
 	};
