@@ -98,6 +98,7 @@ government "Hai (Unfettered)"
 		"Kor Efret" -.01
 	"bribe" .02
 	"fine" 0
+	"friendly hail" "friendly unfettered"
 	"hostile hail" "hostile unfettered"
 
 government "Heliarch"

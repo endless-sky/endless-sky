@@ -460,6 +460,48 @@ phrase "hostile hai"
 		"space."
 		"territory."
 		"worlds."
+	
+phrase "friendly unfettered"
+	word
+		"We "
+	word
+		"welcome "
+		"accept "
+		"tolerate "
+	word
+		"true"
+		"strong"
+		"ambitious"
+	word
+		" races"
+		" people"
+		" individuals"
+	word
+		" that are "
+		" "
+	word
+		"ready to"
+		"willing to"
+		"ready to"
+		"willing to"
+		"prepared to"
+	word
+		" help"
+		" assist"
+		" work with"
+		" support"
+		" follow"
+		" obey to"
+	word
+		" the "
+	word
+		"true"
+		"strong"
+		"original"
+		"strong"
+		"unaltered"
+	word
+		" Hai."
 		
 phrase "hostile unfettered"
 	word
