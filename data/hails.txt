@@ -2363,6 +2363,112 @@ phrase "hostile pirate"
 		"wind up a lot poorer!"
 		"get sent to Davy Jones' locker!"
 
+phrase "hostile bounty"
+	word
+		"I see"
+		"I understand"
+		"It seems"
+		"It would seem"
+		"It appears"
+	word
+		" that "
+		" "
+	word
+		"you're"
+		"this is"
+	word
+		" the "
+	word
+		"scum"
+		"worm"
+		"maggot"
+		"filth"
+		"miscreant"
+		"fool"
+		"poor fool"
+		"unlucky sap"
+		"weakling"
+		"worthless wretch"
+	word
+		" they "
+		" the government "
+		" the law "
+	word
+		"sent"
+		"ordered"
+		"payed"
+		"told"
+		"bought"
+	word
+		" to "
+	word
+		"kill me"
+		"take me out"
+		"eliminate me"
+		"vaporize me"
+		"turn me into space debris"
+		"terminate me"
+		"destroy me"
+		"end my life"
+		"get rid of me"
+		"make me disappear"
+		"make me go away"
+		"take me out of the picture"
+		"show me the afterlife"
+		"end my career"
+		"put me in a grave"
+	word
+		". Ha!"
+		
+phrase "hostile bounty"
+	word
+		"If you "
+	word
+		"though"
+		"believed"
+		"hoped"
+		"expected"
+		"imagined"
+		"dreamed"
+	word
+		" that "
+		" "
+	word
+		"I"
+		"my ship" 
+	word 
+		"was going to be"
+		"was to be"
+		"would be"
+	word
+		" an easy"
+		" a simple"
+		" a straight-forward"
+	word
+		"kill"
+		"victim"
+		"target"
+		"bounty"
+		"job"
+		"prize"
+	word
+		", you were "
+	word
+		""
+		"very"
+		"hopelessly"
+		"completely"
+		"absolutely"
+		"extremely"
+		"badly"
+		"totally"
+		"awfully"
+	word
+		" wrong."
+		" mistaken."
+		" off beam."
+		" mislead."
+
 # From the "Southern Television broadcast interruption."
 phrase "hostile quarg"
 	word
