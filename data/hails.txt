@@ -2438,8 +2438,6 @@ phrase "hostile bounty"
 		" that "
 		" "
 	word
-		" "
-	word
 		"I"
 		"my ship" 
 	word
