@@ -175,7 +175,7 @@ effect "finisher fragment"
 outfit "Heliarch Attractor"
 	category "Turrets"
 	cost 2187000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/heliarch attractor"
 	"mass" 49
 	"outfit space" -49
 	"weapon capacity" -49
@@ -213,7 +213,7 @@ effect "attractor impact"
 outfit "Heliarch Repulsor"
 	category "Turrets"
 	cost 2549000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/heliarch repulsor"
 	"mass" 56
 	"outfit space" -56
 	"weapon capacity" -56
@@ -252,7 +252,7 @@ effect "repulsor impact"
 outfit "Ion Rain Gun"
 	category "Guns"
 	cost 798000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/ion rain gun"
 	"mass" 17
 	"outfit space" -17
 	"weapon capacity" -17
