@@ -2174,6 +2174,7 @@ mission "Wanderers: Sestor: Scattered Remnant"
 				"Tek Far 71 - Lek"
 				"Far Lek 14" 10
 				"Met Par Tek 53" 2
+		dialog `You have eliminated all of the Kor Sestor ships in this system.`
 	npc kill
 		system "Canopus"
 		government "Kor Sestor"
@@ -2186,6 +2187,7 @@ mission "Wanderers: Sestor: Scattered Remnant"
 				"Tek Far 71 - Lek (Close Quarters)"
 				"Far Lek 14" 8
 				"Met Par Tek 53 (Sniper)" 2
+		dialog `You have eliminated all of the Kor Sestor ships in this system.`
 	npc kill
 		system "Betelgeuse"
 		government "Kor Sestor"
@@ -2198,10 +2200,6 @@ mission "Wanderers: Sestor: Scattered Remnant"
 				"Tek Far 78 - Osk"
 				"Far Osk 27" 8
 				"Met Par Tek 53 (Sniper)"
-	npc kill
-		system "Betelgeuse"
-		government "Kor Sestor"
-		personality heroic staying
 		fleet
 			names "kor sestor"
 			fighters "kor sestor fighter"
@@ -2210,6 +2208,7 @@ mission "Wanderers: Sestor: Scattered Remnant"
 				"Tek Far 78 - Osk (Close Quarters)"
 				"Far Osk 27" 6
 				"Met Par Tek 53 (Sniper)"
+		dialog `You have eliminated all of the Kor Sestor ships in this system.`
 	npc kill
 		system "Capella"
 		government "Kor Sestor"
@@ -2223,6 +2222,7 @@ mission "Wanderers: Sestor: Scattered Remnant"
 				"Far Lek 14" 8
 				"Tek Far 78 - Osk"
 				"Far Osk 27" 8
+		dialog `You have eliminated all of the Kor Sestor ships in this system.`
 	npc kill
 		system "Mebsuta"
 		government "Kor Sestor"
@@ -2236,6 +2236,7 @@ mission "Wanderers: Sestor: Scattered Remnant"
 				"Far Lek 14" 9
 				"Tek Far 78 - Osk (Close Quarters)"
 				"Far Osk 27" 7
+		dialog `You have eliminated all of the Kor Sestor ships in this system.`
 	npc kill
 		system "Rigel"
 		government "Kor Sestor"
@@ -2249,6 +2250,7 @@ mission "Wanderers: Sestor: Scattered Remnant"
 				"Far Lek 14" 7
 				"Tek Far 78 - Osk (Close Quarters)"
 				"Far Osk 27" 6
+		dialog `You have eliminated all of the Kor Sestor ships in this system.`
 	npc kill
 		system "Castor"
 		government "Kor Sestor"
@@ -2260,6 +2262,7 @@ mission "Wanderers: Sestor: Scattered Remnant"
 				"Kar Ik Vot 349 (Defense)"
 				"Met Par Tek 53" 2
 				"Met Par Tek 53 (Sniper)"
+		dialog `You have eliminated all of the Kor Sestor ships in this system.`
 	npc kill
 		system "Wazn"
 		government "Kor Sestor"
@@ -2271,6 +2274,7 @@ mission "Wanderers: Sestor: Scattered Remnant"
 				"Kar Ik Vot 349 (Offense)"
 				"Met Par Tek 53"
 				"Met Par Tek 53 (Sniper)" 2
+		dialog `You have eliminated all of the Kor Sestor ships in this system.`
 	npc kill
 		system "Miaplacidus"
 		government "Kor Sestor"
@@ -2281,6 +2285,7 @@ mission "Wanderers: Sestor: Scattered Remnant"
 			variant
 				"Kar Ik Vot 349 (Trapper)"
 				"Met Par Tek 53 (Sniper)" 3
+		dialog `You have eliminated all of the Kor Sestor ships in this system.`
 	npc kill
 		system "Kursa"
 		government "Kor Sestor"
@@ -2295,6 +2300,7 @@ mission "Wanderers: Sestor: Scattered Remnant"
 				"Far Lek 14" 17
 				"Far Osk 27" 13
 				"Met Par Tek 53 (Sniper)" 2
+		dialog `You have eliminated all of the Kor Sestor ships in this system.`
 	npc kill
 		system "Saiph"
 		government "Kor Sestor"
@@ -2309,6 +2315,7 @@ mission "Wanderers: Sestor: Scattered Remnant"
 				"Far Lek 14" 17
 				"Far Osk 27" 13
 				"Met Par Tek 53" 2
+		dialog `You have eliminated all of the Kor Sestor ships in this system.`
 		
 
 
@@ -2375,7 +2382,7 @@ mission "Wanderers: Sestor: Kill Southern Remnant"
 			`	Danforth sighs. "Unfortunately," he says, "I am not permitted to tell you what that weapon was or how we acquired it. And already news agencies throughout the Republic are questioning our use of such a terrible weapon. I wish we had been able to defeat the Kor Sestor fleet without resorting to such extreme measures, but we had no choice."`
 
 			label end
-			`	Danforth gives you a map of the systems where there have been reports of Kor Sestor drones attacking civilian ships. "These, plus any that were left alive in the Alnilam system, are all the automata that we have been able to track," he says. "Report back here once you have succeeded in destroying them. The Navy will hopefully send some ships to help you."`
+			`	Danforth gives you a map of the systems where there have been reports of Kor Sestor drones attacking civilian ships. "These, plus any that were left alive in the Alnilam system, are all the automata that we have been able to track," he says. "Report back here once you have succeeded in completely destroying them. We can't risk letting some local warlord capture them. The Navy will hopefully send some ships to help you."`
 				accept
 
 
