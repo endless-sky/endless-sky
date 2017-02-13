@@ -1423,8 +1423,8 @@ mission "FW Pirates 3.2C"
 			decline
 			`	(Liberate <planet>'s slaves, wipe out the cartel palaces, and destroy the pirates' infrastructure.)`
 				`	Hovering over the pirate spaceport, you demand that the pirates immediately free their slaves, abandon their ships on the ground, and evacuate their spaceport. At first, they seem to comply. Then you get a frantic radio call from a surviving rebel ship. A massive pirate armada just jumped in, and another is launching from hidden hangers all over the planet!  A gravelly voice chuckles over the radio. "If you want our ships, come and get them!"`
-				`	Alarms scream. You look at your tactical display and see a massive salvo of missiles coming from the largest pirate fleet you've ever seen. It looks as if the pirate cartels have been holding their elite ships in reserve, and they've called in a lot of favors with some outside groups to protect their way of life. The local defense fleet you already defeated was just the vanguard for this armada. Half the pirates and marauders in the galactic south must be in the system`
-				`	It also looks as if they've brought some friends along. You notice a Republic carrier emitting strange energy signatures and launching fighters that are clearly alien in design.`
+				`	Alarms scream. You look at your tactical display and see a massive salvo of missiles coming from the largest pirate fleet you've ever seen. It looks as if the pirate cartels have been holding their elite ships in reserve, which they're launching now. They've also called in a lot of favors with some outside groups. The local defense fleet you already defeated was just the vanguard for this armada. Half the pirates and marauders in the galactic south must be in the system.`
+				`	It also looks as if they've brought some other friends along. You notice a Republic carrier emitting strange energy signatures and launching fighters that are clearly alien in design.`
 				accept
 	on accept
 		set "fw pirates: own way"
@@ -1475,13 +1475,13 @@ mission "FW Pirates 3.2C"
 		fleet "Marauder fleet X"
 		ship "Bastion (Heavy)" "Dread"
 		ship "Carrier (Alpha)" "Trafficker"
-		ship "Marauder Falcon (Engines)"
-		ship "Marauder Falcon (Engines)"
-		ship "Marauder Falcon (Engines)"
-		ship "Marauder Falcon (Engines)"
-		ship "Marauder Falcon (Engines)"
-		ship "Marauder Falcon (Engines)"
-		ship "Marauder Falcon (Engines)"
+		ship "Marauder Falcon (Engines)" "Made Man"
+		ship "Marauder Falcon (Engines)" "Consigliare"
+		ship "Marauder Falcon (Engines)" "Capo Famiglia"
+		ship "Marauder Falcon (Engines)" "Oyabun"
+		ship "Marauder Falcon (Engines)" "Wakagashira"
+		ship "Marauder Falcon (Engines)" "Shateigashira"
+		ship "Marauder Falcon (Engines)" "Kyodai"
 		dialog "Songs will be written about your victory here today, but all you will remember is the screams of terrified, dying teenage pirate crews echoing over the radio, wave upon wave of incoming missiles, and the clouds of wreckage littering the system at the end. You shake yourself out of your reverie. You have work to do now on <destination>. It's time to finish what you've begun."
 	npc
 		government "Pirate"
@@ -1827,8 +1827,8 @@ mission "FW Pirates 4.2"
 			`	JJ and his policemen walk you out quietly to a small cabin in your ship. His men strip you and your cabin of weapons and personal effects and lock you in, shutting off all communications and lighting to the room. You've become a prisoner in your own ship, with only a sliver of light coming in from a tiny gap under the door. You go to sleep hungry, wondering what your future will be. `
 			`You jerk awake and frantically cover your eyes as the cabin door suddenly swings open. "Why did you fake your sensor logs?" JJ demands. "Did the pirates plant them to throw us off? Who did it?"`
 			`You groan as your eyes adjust to the light. JJ's military policemen pull you up and haul you out of your cabin. By the time your vision clears, you're back on the bridge. JJ repeats his questions, and refuses to accept your answers.`
-			`"Fine!" JJ shouts in your face. "Freya is interviewing your freighter crews now. We don't need your confession. We-"`
-			`A few loud bangs on the door interrupt JJ. Freya enters, and the two have a whispered conversation as you slowly wipe a few flecks of spit off your face. Then JJ straightens and gestures to the military policemen, who pull you to your feet. You walk to the airlock. 
+			`"Fine!" JJ finally shouts in your face. "Freya is interviewing your freighter crews now. We don't need your confession. We-"`
+			`A few loud bangs on the door interrupt JJ. Freya enters, and the two have a whispered conversation. Then JJ straightens and gestures to the military policemen, who pull you to your feet. You walk to the airlock. 
 				goto slaves
 			label argue
 			`	Freya purses her lips. "The charge against you? Unsanctioned military action. You did not have permission to attack the pirates.`
