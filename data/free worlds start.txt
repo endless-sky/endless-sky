@@ -1817,7 +1817,7 @@ mission "FW Pirates 4.2"
 					goto argue
 			label recording
 			`	"This is no time for jokes, <first>," Freya says quietly. "We saw the sensor logs from the surviving ships that got away. You're in enough trouble as it is. Don't make it worse with an obvious lie.`
-			`	"You might want to get the rest of the story before you arrest me," you say, holding up a finger. The military policemen pause and look to Tomek. Before he can wave them on, you call up a recording of the battle. The explosions, the shudder of weapon impacts, and the cries of the dying almost make you think you're back in it, but you manage to shake off the flash-backs. When the final explosion ends, JJ and Freya stare at you, pale and wide-eyed. `
+			`	"You might want to get the rest of the story before you arrest me," you say, holding up a finger. The military policemen pause and look to JJ. Before he can wave them on, you call up a recording of the battle. The explosions, the shudder of weapon impacts, and the cries of the dying almost make you think you're back in it, but you manage to shake off the flash-backs. When the final explosion ends, JJ and Freya stare at you, pale and wide-eyed. `
 			`Freya breaks the silence. "I... I don't know what to say. You destroyed the core of the combined pirate fleet?! How? What kind of technology are you packing in this ship?"` 
 			`JJ clears his throat and gathers himself up. "We'll find out soon enough. You're under arrest, Captain <lastname>, for crimes against the Free Worlds Senate. Your ship, and all these captured freighters are impounded. You-" 
 			`"-JJ," you interrupt, "perhaps you should explain this to the freed slaves crewing those captured freighters. They're waiting outside."`
