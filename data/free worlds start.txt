@@ -1399,6 +1399,162 @@ mission "FW Pirates 3.1B"
 
 
 
+mission "FW Pirates 3.2C"
+	name "Crush the Pirates of Greenrock"
+   	description "Destroy the combined pirate armada while they're concentrated in this system, then put an end to their way of life on Greenrock."
+	blocked <message>
+	deadline 0
+	deadline 1
+	priority
+	landing
+	clearance "There's no response from Greenrock's Traffic Control, and their systems aren't active. Perhaps the people there are part of the pirate armada's crew? On the planet at least, there's nothing left to stop you from landing." 
+	infiltrating
+	to offer
+        has "FW Pirates 3.2A: done"
+        "combat rating" > 5000
+	source Greenrock
+	destination Greenrock
+	on offer
+        conversation
+		`As you bring your ship in for a landing on <planet>'s main spaceport, you are struck by how little this fight meant.  You have made a dent in their local military strength, but below you can see that the pirate shipyards, outfitters, fuel depots, markets, and other support infrastructure remain, supported by their slave laborers. You have serious doubts about Tomek's plan to annex this world of determined anarchists, slavers, and pirates. As it stands, this world soon will be back to business as usual with new ships and fresh crews.`
+		`    An idea forms in your head. The root of the pirate problem was never <planet>'s fleet. You've destroyed many pirate ships since you took to the stars, and they just keep coming. Truly, what keeps the piracy going is <planet>'s culture, a culture built on the backs of its slaves and on the payrolls of its pirate cartel bosses in their private palaces. In this moment of clarity, you see a way to eliminate the pirate threat once and for all, but it will mean breaking Tomek's orders and taking the matter into your own hands`
+		choice
+			`	(Follow Tomek's drunken orders and declare <planet> to be the newest member of the Free Worlds.)`
+			decline
+			`	(Liberate <planet>'s slaves, wipe out the cartel palaces, and destroy the pirates' infrastructure.)`
+				`	Hovering over the pirate spaceport, you demand that the pirates immediately free their slaves, abandon their ships on the ground, and evacuate their spaceport. At first, they seem to comply. Then you get a frantic radio call from a surviving rebel ship. A massive pirate armada just jumped in, and another is launching from hidden hangers all over the planet! A gravelly voice chuckles over the radio. "If you want our ships, come and get them!"`
+				`	Alarms scream. You look at your tactical display and see a massive salvo of missiles coming from the largest pirate fleet you've ever heard of. The local defense fleet you already defeated was just the vanguard for this armada. Half the pirates and marauders in the galactic south must be in the system, and it looks as if they've brought some friends along.`
+				accept
+	on accept
+		set "fw pirates: own way"
+
+	npc kill
+		personality plunders staying
+		government "Pirate"
+		system Shaula
+		fleet "Small Southern Pirates"
+		fleet "Small Southern Pirates"
+		fleet "Small Southern Pirates"
+		fleet "Large Southern Pirates"
+		fleet "Large Southern Pirates"
+		fleet "Large Southern Pirates"
+		fleet "Small Core Pirates"
+		fleet "Small Core Pirates"
+		fleet "Large Core Pirates"
+		fleet "Large Core Pirates"
+		fleet "Large Core Pirates"
+		fleet "Small Northern Pirates"
+		fleet "Large Northern Pirates"
+		fleet "Large Northern Pirates"
+		fleet "Large Northern Pirates"
+		fleet "Large Northern Pirates"
+		fleet "Small Southern Pirates"
+		fleet "Small Southern Pirates"
+		fleet "Small Southern Pirates"
+		fleet "Large Southern Pirates"
+		fleet "Large Southern Pirates"
+		fleet "Large Southern Pirates"
+		fleet "Small Core Pirates"
+		fleet "Small Core Pirates"
+		fleet "Large Core Pirates"
+		fleet "Large Core Pirates"
+		fleet "Large Core Pirates"
+		fleet "Small Northern Pirates"
+		fleet "Large Northern Pirates"
+		fleet "Large Northern Pirates"
+		fleet "Large Northern Pirates"
+		fleet "Large Northern Pirates"
+		fleet "Small Southern Pirates"
+		fleet "Small Southern Pirates"
+		fleet "Small Southern Pirates"
+		fleet "Large Southern Pirates"
+		fleet "Large Southern Pirates"
+		fleet "Large Southern Pirates"
+		fleet "Small Core Pirates"
+		fleet "Small Core Pirates"
+		fleet "Large Core Pirates"
+		fleet "Large Core Pirates"
+		fleet "Large Core Pirates"
+		fleet "Small Northern Pirates"
+		fleet "Large Northern Pirates"
+		fleet "Large Northern Pirates"
+		fleet "Large Northern Pirates"
+		fleet "Large Northern Pirates"
+		fleet "Small Southern Pirates"
+		fleet "Small Southern Pirates"
+		fleet "Small Southern Pirates"
+		fleet "Large Southern Pirates"
+		fleet "Large Southern Pirates"
+		fleet "Large Southern Pirates"
+		fleet "Small Core Pirates"
+		fleet "Small Core Pirates"
+		fleet "Large Core Pirates"
+		fleet "Large Core Pirates"
+		fleet "Large Core Pirates"
+		fleet "Small Northern Pirates"
+		fleet "Large Northern Pirates"
+		fleet "Large Northern Pirates"
+		fleet "Large Northern Pirates"
+		fleet "Large Northern Pirates"
+		fleet "Marauder fleet I"
+		fleet "Marauder fleet II"
+		fleet "Marauder fleet III"
+		fleet "Marauder fleet IV"
+		fleet "Marauder fleet V"
+		fleet "Marauder fleet VI"
+		fleet "Marauder fleet VII"
+		fleet "Marauder fleet VIII"
+		fleet "Marauder fleet IX"
+		fleet "Marauder fleet X"
+		fleet "Marauder fleet I"
+		fleet "Marauder fleet II"
+		fleet "Marauder fleet III"
+		fleet "Marauder fleet IV"
+		fleet "Marauder fleet V"
+		fleet "Marauder fleet VI"
+		fleet "Marauder fleet VII"
+		fleet "Marauder fleet VIII"
+		fleet "Marauder fleet IX"
+		fleet "Marauder fleet X"
+		ship "Bastion (Heavy)" "Dread"
+		ship "Carrier (Alpha)" "Trafficker"
+		ship "Marauder Falcon (Engines)"
+		"Marauder Falcon (Engines)"
+		"Marauder Falcon (Engines)"
+		"Marauder Falcon (Engines)"
+		"Marauder Falcon (Engines)"
+		"Marauder Falcon (Engines)"
+		"Marauder Falcon (Engines)"
+		dialog "Songs will be written about your victory here today, but all you will remember is the screams of terrified, dying teenage pirate crews echoing over the radio, wave upon wave of incoming missiles, and the clouds of wreckage littering the system at the end. You shake yourself out of your reverie. You have work to do now on <destination>. It's time to finish what you've begun."
+	npc
+		government "Pirate"
+		system "Host"
+		personality heroic nemesis staying vindictive
+		ship "Korath Chaser" "Brutus"
+		ship "Korath Chaser" "Judas"
+		ship "Korath Chaser" "Benedict Arnold"
+		ship "Korath Chaser" "Alcibiades"
+		ship "Korath Chaser" "Guy Fawkes"
+		ship "Korath Chaser" "Ephialtes"
+		ship "Korath Chaser" "Quisling"
+		ship "Korath Chaser" "Tokyo Rose"
+		ship "Korath Chaser" "Doña Marina"
+		ship "Korath Chaser" "Mir Jaffar"
+	on complete
+		set "fw pirates: crushed"
+		event "fw greenrock crushed"
+
+
+event "fw pirates crushed"
+	planet "Greenrock"
+		description `Until recently, Greenrock was the center of piracy and slavery in the south. Then a Free Worlds strike force annihilated their fleet, destroyed their support base, and freed their slaves. Without the stolen goods and slave labor to support it, the economy collapsed overnight. Small-scale wars are popping up everywhere between anarchist communities, shipless pirate gangs, and scavengers.. `
+		spaceport clear
+		shipyard clear
+		outfitter clear
+"required reputation" 100	
+
+
+
 mission "FW Pirates 3.2B"
 	landing
 	name "Report to Tomek"
@@ -1417,6 +1573,56 @@ mission "FW Pirates 3.2B"
 			`	But if nothing else, the battle you have fought here will give merchants in the surrounding systems a respite from piracy for many months to come, while the pirates are busy finding new ships and recruiting new crews. Time to report back to Tomek and see what your next steps will be.`
 				accept
 
+
+	
+mission "FW Pirates 3.2D"
+	name "Discretion is the Better Part"
+	description "Escape the pirate armada and report to Tomek."
+	priority
+	landing
+	to offer
+        has "FW Pirates 3.2C: active"
+	source Greenrock
+	destination Longjump
+	on fail
+        dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+	on offer
+	set "fw pirates: victory"
+	conversation
+	    `The few surviving rebel ships immediately turn tail and flee the system. You can either follow them back to Free Worlds territory, or face the biggest fight of your life, alone.`
+
+
+
+mission "FW Pirates 3.1D"
+	name "Get the Freed Slaves to Safety"
+	description "Escort a fleet of freed slaves to Longjump and answer for your decision."
+	landing
+	to offer
+        has "FW Pirates 3.1C: active"
+	destination Longjump
+	on fail
+        dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+	on offer
+	set "fw pirates: victory"
+	conversation
+	    	`You bring your ship to hover over the spaceport and announce that they have one hour to release their captives and leave the area on the ground. Cowed by your guns, the slave market complies. The few remaining pirates and local thugs throw their valuables into any trucks they can find and head for the hills.`
+		`	Some of the freed slaves are pilots, technicians, and engineers, and they commandeer a dozen assorted transports and freighters. You spend half a day helping them liberate slave pens and labor camps around the planet. Under the threat of your guns, the slaves help themselves to the property of their former masters, and the transports and freighters are crammed with enough wealth, equipment, and weapons to enable a fresh start on a new world. Slave-masters who don't comply lose their farms, factories, and in many cases, their lives.`
+		`	Then you turn your guns onto every piece of infrastructure you can find that supports the pirate fleet. After several hours, the pirate's shipyard, outfitter, and refueling stations are destroyed beyond any hope of repair. Tracing the ion trails of other ships that launched to attack you, you find and destroy their bases of operaion, too. Former slaves are quick to point out key infrastructure that would otherwise have escaped your notice. It will take Greenrock decades to rebuild their pirate fleet and support structure, and they'll have to rebuild it without slave labor.`
+		`	Now you must get this rag-tag fleet full of escaped slaves to safety and answer for your actions.`
+		launch
+	npc accompany save
+		government Merchant
+		personality escort timid
+		fleet
+			names "civilian"
+			variant
+				"Behemoth"
+	on complete
+		payment 120000
+		dialog "The captain of the <npc> thanks you for escorting them safely, and pays you <payment>."
+	on visit
+dialog "You have reached <planet>, but you left the freed slaves behind! Better depart and wait for them to arrive in this star system."
+		
 
 
 mission "FW Pirates 4"
@@ -1613,6 +1819,116 @@ mission "FW Pirates 4.1"
 			`	A third senator speaks up, a woman whose name card identifies her as Sara, from Skymoot. "That will be all, Captain <last>. The Senate will confer and decide whether we want your continued services."`
 			`	You are led back out to the lobby, where you wait for what feels like another hour. Finally, a messenger comes and hands you a small slip of paper. You open it. The message reads: "We have decided that you will be suspended without pay. When we are in need of your services again, we will contact you." It looks like for now, you are back to being a simple merchant captain.`
 
+
+
+mission "FW Pirates 4.2"
+	landing
+	name "Senate Hearing"
+	description "Report to <destination>, for a Senate hearing on your recent failure to obey their orders. If you do not arrive by <date>, your service will be terminated."
+	source "Longjump"
+	destination "Bourne"
+	deadline 14
+	to offer
+		has "fw pirates: crushed"
+	on fail
+		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+	
+	on offer
+		conversation
+			`JJ and Freya meet you on your ship soon after you land on <origin>, accompanied by two uniformed military policemen. 
+			`	"We heard about the hornet's nest you stirred up from the other captains, before we arrested them," says JJ. "Congratulations. you escaped from the disaster brought on by your stupidity, and the pirates are united against us. Now we have to fight a war on two fronts while you sit in prison with Tomek." He gestures to two military policemen, who pull out handcuffs and move toward you.`
+
+			choice
+				`	"What pirates? I destroyed their fleet, freed their slaves, and wiped out their support bases." (show your proof)`
+					goto recording
+				`	(Accept the arrest and go quietly.)`
+					goto arrested
+				`	"You're arresting me? What's the charge?" (try to argue your case)`
+					goto argue
+			label recording
+			`	"This is no time for jokes, <first>," Freya says quietly. "We saw the sensor logs from the surviving ships that got away. You're in enough trouble as it is. Don't make it worse with an obvious lie.`
+			`	"You might want to get the rest of the story before you arrest me," you say, holding up a finger. The military policemen pause and look to Tomek. Before he can wave them on, you call up a recording of the battle. The explosions, the shudder of weapon impacts, and the cries of the dying almost make you think you're back in it, but you manage to shake off the flash-backs. When the final explosion ends, JJ and Freya stare at you, pale and wide-eyed. `
+			`Freya breaks the silence. "I... I don't know what to say. You destroyed the core of the combined pirate fleet?! How? What kind of technology are you packing in this ship?"` 
+			`JJ clears his throat and gathers himself up. "We'll find out soon enough. You're under arrest, Captain <lastname>, for crimes against the Free Worlds Senate. Your ship, and all these captured freighters are impounded. You-" 
+			`"-JJ," you interrupt, "perhaps you should explain this to the freed slaves crewing those captured freighters. They're waiting outside."`
+				goto slaves
+			label arrested
+			`	JJ and his policemen walk you out quietly to a small cabin in your ship. His men strip you and your cabin of weapons and personal effects and lock you in, shutting off all communications and lighting to the room. You've become a prisoner in your own ship, with only a sliver of light coming in from a tiny gap under the door. You eat a meager, bland meal off a tray of food gets pushed under the door an hour later, and you go to sleep wondering what your future will be. `
+			`You jerk awake and frantically cover your eyes as the cabin door suddenly swings open. "Why did you fake your sensor logs?" JJ demands. "Did the pirates plant them to throw us off? Who did it?"`
+			`You groan as your eyes adjust to the light. JJ's military policemen pull you up and haul you out of your cabin. By the time your vision clears, you're back on the bridge. JJ repeats his questions, and refuses to accept your answers.`
+			`"Fine!" JJ shouts in your face. "Freya is interviewing your freighter crews now. We don't need your confession. We-"`
+			`A few loud bangs on the door interrupt JJ. Freya enters, and the two have a whispered conversation as you slowly wipe a few flecks of spit off your face. Then JJ straightens and gestures to the military policemen, who pull you to your feet. You walk to the airlock. 
+				goto slaves
+			label argue
+			`	Freya purses her lips. "The charge against you? Unsanctioned military action. You did not have permission to attack the pirates.`
+			`"Oh really? So every other time I've fought pirates, I was committing a crime? Why did you wait until now to arrest me?"`
+			`"Don't try to cloud the issue," JJ snaps. "Your strike force attempted to annex Greenrock against the will of its people. We don't do that; it's why we're 'The Free Worlds.' You wanted to be a goddamn hero, and you betrayed what we're supposed to stand for. We have written confessions from the other surviving captains, so don't even try to play innocent with us. Don't try blaming Tomek, either. You knew his order was illegal. The whole strike force knew it!" He motions to the policemen, who turn you around and begin restraining you.`
+			`"Yes, I knew," you say. "That's why I disobeyed him.`
+			`Katya motions the policemen to stop. "What did you say?"`
+			`"I disobeyed him. Tomek was drunk, and annexing Greenrock was an idiotic idea. They're pirates and anarchists. Their way of life depends on piracy and slavery. So I took away their way of life."`
+			`"You... you... what?" JJ sputters, "the only way to do that would be to bombard the planet! What kind of maniac are-"`
+			`"I'm the kind of maniac who's very selective about my targets. I levelled their spaceport facilities, their shipyards, their outfitters, their fuel depots, and their hangers." You call up images of Greenrock before and after your attacks`
+			`Katya goes pale. "You destroyed the slave yards?! How many innocent people lived in those-"`
+			`"-Thousands." You interrupt, and you gesture to the ship's communications system. "And they're listening to this conversation. In fact," you check a small viewscreen, "It looks like quite a few have gathered around my <ship>"
+				goto slaves
+			label slaves
+			`	JJ opens the door and gasps. A crowd of freed slaves has gathered. JJ stares at you, then the crowd, then back at you.`
+			`	You shrug. 'As I was trying to tell you, I freed Greenrock's slaves. Pretty near all of them are in those ships I brought back. Plust most of their former masters' wealth, at least what we could carry away."`
+			`	JJ glares at you. "So you're dumping these refugees on us and taking all that wealth? I don't want to trade one pirate threat for a-"`
+			`"ENOUGH!" you roar. "The captured freighters aren't mine. They're theirs. So is everything inside them. Now I've answered your questions, and I'll answer any more that you have, but I'll be damned if I ever let you insult me on my own ship again!"`
+			`	The military policemen's hands stray to their holstered weapons as they glance from JJ to the crowd, which is beginning to take a dim view of him and his two guards. JJ looks from you to the crowd, then back again. Suddenly, a young woman's voice cries out from the crowd. "JJ!" A young woman elbows her way through the slaves, her face streaking with fresh tears. "Brother!" she sobs.`
+			`	"Cecille?! But... I thought you were dead!" JJ forgets all about arresting you as he embraces the young woman. The crowd cheers, and a stunned JJ leads his sister away, followed by two military policemen who are almost as confused as JJ.`
+			`	As the noise subsides, Freya gives you a hard, thoughtful look. "We have a great deal to consider about what you've done. You can keep your freedom for now, but the Senate will have to decide your fate, if you want to continue serving the Free Worlds. Until then, you're suspended without pay. Report there by <date>, and think very carefully about what you say there."
+				accept
+		clear "salary: Free Worlds"
+	on complete
+		set "fw first chapter done"
+	on complete
+		"salary: Free Worlds Clandestine" = 1000
+		event "navy occupying the south" 50set "fw first chapter done"
+		conversation
+			`With some trepidation, you enter the Senate building and introduce yourself to the receptionist. He says, "Please wait here. Someone will come for you when they are ready."`
+			`	Several hours pass. Finally, you are led into the Senate chamber, where several dozen senators sit, each with a name card identifying the world they represent. Senator Huygens of Mere asks the first question. "Captain <last>, is it true that you took part in a recent unauthorized attack on Greenrock in the Shaula system?"`
+			label start
+			choice
+				`	"I took part in an attack on Greenrock."`
+					goto knew
+				`	"There was nothing unautorized about my actions."`
+			`	"I didn't ask what your excuse is," she says. "I asked whether you took part in the attack."`
+			`	"Yes, I did," you say.`
+			label knew
+			`	"Were you aware at the time that you were going against the orders of the Senate?"`
+			choice
+				`	"I was aware."`
+					goto reason
+				`	"The orders of the senate did not apply to what I did."`
+			`	"Starting a war with pirates is a matter for the Senate." says Arianna. "Not for ship captains working for us at their convenience."`
+			`We're constantly at war with pirates across the Galactic South," you say. "Your ships attack theirs on sight. You send patrols through their systems regularly. How were my strike orders any different than the standing orders for the fleet?"`
+			`	"We're the ones asking the questions here!" Ariana snaps. `
+			`	One of the other Senators, an older man, asks, "Why did you choose to take part in the attack?"`
+			choice
+				`	"I wanted to end the pirate threat."`
+				`	"I trusted that Tomek would know the best strategy."`
+				`	"I guess I got too caught up in trying to be a hero."`
+					goto hero
+			`	"And how did that work out?" says the old man. "How long after the battle did it take you to realize that we have no way of holding on to the planet you conquered?"`
+			`	"Only Tomek said anything about conquering." you protest. "I saw the futility of annexing Greenrock as soon as I saw the planet up close. I never made any claim to the planet. I simply demanded they give up their slaves and get out of my way as I destroyed their piracy infrastructure.`
+			`	"Yet still, you attacked that pirate base. You disobeyed Senate orders, you disobeyed the Council's orders, and now you freely admit that you even disobeyed the rogue Council member who ordered the illegal strike. You took an oath of loyalty, and your actions show no loyalty to any proper authority."`
+			`	You bristle in defiance. "I became a starship captain because I yearned for freedom. I joined The Free Worlds because I believe in freedom. I have risked my life in defense of that freedom many times, and I intend to go on risking my life for The Free Worlds. I attacked Greenrock to free us from its constant piracy. I freed its slaves. I left Greenrock free behind me. The cause of freedom is the highest authority, and if you cannot respect what I've done, then the Senate of The Free Worlds is unworthy of its name."
+			`	A confused roar breaks out. A number of senators cry out their disapproval, but an equal number of senators thump their armrests or clap in approval. The older senator purses his lips, rubs his chin, and furrows his brow. Ariana scowls.
+				goto sentence
+			label hero
+			`	"Indeed," says the senator. "And I bet it wasn't long after the battle that you realized saving the galaxy isn't that easy."`
+			`	You shake your head. "It was never about being a hero to the galaxy. It was about being a hero to those slaves. Many of them have been waiting for generations to escape to a chance at a better life."`
+			`	The old senator blinks. "And you think you can provide them a better life?"`
+			`	You shrug. "I'm hoping they can be their own heroes from now on, but I'd be happy to help them find their way. They know where to find me."`
+			label sentence
+			`	A third senator speaks up, a woman whose name card identifies her as Sara, from Skymoot. "That will be all, Captain <last>. The Senate will confer and decide whether we want your continued services."`
+			`	You are led back out to the lobby, where you wait for hours. Finally, a messenger comes and leads you to the Senator Sara's office. `
+			`	The senator gestures for you to sit down and pours you a drink. "Captain <last>, you've put us in a bind. News of your actions is spreading like wildfire, and much of the public is firmly behind you and your actions. Many of us personally feel great admiration for your actions on Greenrock. Obviously, we can't condemn someone who has freed so many slaves and destroyed such a serious threat. From a practical standpoint, we are almost certain to need you and your ship in the coming battles with the Republic.`
+			`	Sara sips her drink, then continues. "However, we are a government, and governments work on the rule of law. Your actions were morally correct, but legally, you've made a hell of a mess for us. Our government is still working out basic principles and the right balance of power. While wWe cannot just allow ship captains in our forces to simply do as they please. Therefore you must have some kind of public reprimand and punishment.`
+			`	"Officially, we have decided that you will be suspended for your disobedience without pay. Separately, and rather unofficially, we have adjusted our clandestine operations budget to pay you a regular retainer. We will need your services again, and we hope you will come quickly when we contact you."` 
+			`	It looks like for now, you are back to being a simple merchant captain.`
 
 
 mission "FW Refinery 1"
