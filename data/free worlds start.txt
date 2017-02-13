@@ -1823,7 +1823,7 @@ mission "FW Pirates 4.2"
 			`"-JJ," you interrupt, "perhaps you should explain this to the freed slaves crewing those captured freighters. They're waiting outside."`
 				goto slaves
 			label arrested
-			`	JJ and his policemen walk you out quietly to a small cabin in your ship. His men strip you and your cabin of weapons and personal effects and lock you in, shutting off all communications and lighting to the room. You've become a prisoner in your own ship, with only a sliver of light coming in from a tiny gap under the door. YUou go to sleep hungry, wondering what your future will be. `
+			`	JJ and his policemen walk you out quietly to a small cabin in your ship. His men strip you and your cabin of weapons and personal effects and lock you in, shutting off all communications and lighting to the room. You've become a prisoner in your own ship, with only a sliver of light coming in from a tiny gap under the door. You go to sleep hungry, wondering what your future will be. `
 			`You jerk awake and frantically cover your eyes as the cabin door suddenly swings open. "Why did you fake your sensor logs?" JJ demands. "Did the pirates plant them to throw us off? Who did it?"`
 			`You groan as your eyes adjust to the light. JJ's military policemen pull you up and haul you out of your cabin. By the time your vision clears, you're back on the bridge. JJ repeats his questions, and refuses to accept your answers.`
 			`"Fine!" JJ shouts in your face. "Freya is interviewing your freighter crews now. We don't need your confession. We-"`
