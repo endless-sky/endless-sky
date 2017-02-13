@@ -1579,8 +1579,6 @@ mission "FW Pirates 3.1D"
 		ship "Freighter" "Deliverance"
 		ship "Freighter" "Amnesty"
 	on complete
-		payment 120000
-		dialog "The captain of the <npc> thanks you for escorting them safely, and pays you <payment>."
 	on visit
 dialog "You have reached <planet>, but you left the freed slaves behind! Better depart and wait for them to arrive in this star system."
 		
@@ -1895,7 +1893,7 @@ mission "FW Pirates 4.2"
 			`	JJ walks you out of the Senate building. "I'm so sorry for the way I treated you back on Longjump," he says. "When we thought a pirate armada was ready to strike, we were willing to do anything to break them up, even if it meant making a very public example of you." His face reddens. "It took the shock of seeing my sister again to make me see sense. I hope you'll forgive me for it someday." You shake hands, and feel him pass you a folded was of paper. Then JJ is gone, striding off to another committee meeting. 
 			Back onboard <ship>, you open the paper. It reads,`
 			`	<first>,
-			`		DESTROY THIS NOTE AFTER YOU READ IT. We've been reviewing your recording of the battle over Greenrock. One of the ships you defeated had technology and fighters in it that were radically different from anything we've seen. Some of it matched descriptions of hostile alien vessels known as Korath Raiders in the Eastern Syndicate territory, but some of it didn't. We suspect that may have been a cell of Alphas. They've been known to capture fertile women in order to breed, so they had a vested interest in protecting Greenrock's slave market. We don't have the resources to check any of this out, and I can't officially order you to do anything while you're suspended, but I suggest you check out these Korath Raiders and see if you can find a way to explore beyond human space. Godspeed.`
+			`		DESTROY THIS NOTE AFTER YOU READ IT. We've been reviewing your recording of the battle over Greenrock. One of the ships you defeated had technology and fighters in it that were radically different from anything we've seen. We suspect that may have been a cell of Alphas. They've been known to capture fertile women in order to breed, so they had a vested interest in protecting Greenrock's slave market. We've heard rumors of mysterious hostile vessels raiding the eastern Syndicate; they may be connected. We don't have the resources to check any of this out, and I can't officially order you to do anything while you're suspended, but I suggest you check out these Korath Raiders and see if you can find a way to explore beyond human space. Godspeed.`
 			`			-JJ	
 			`	As you burn the note, you ponder what you'll do now. Explore? Trade? Hunt more pirates? For now, your life is back in your hands.`
 
