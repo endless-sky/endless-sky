@@ -1856,7 +1856,7 @@ mission "FW Pirates 4.2"
 		set "fw first chapter done"
 	on complete
 		"salary: Free Worlds Clandestine" = 1000
-		event "navy occupying the south" 50set "fw first chapter done"
+		set "fw first chapter done"
 		conversation
 			`With some trepidation, you enter the Senate building and introduce yourself to the receptionist. He says, "Please wait here. Someone will come for you when they are ready."`
 			`	Several hours pass. Finally, you are led into the Senate chamber, where several dozen senators sit, each with a name card identifying the world they represent. You are surpised to see JJ take a seat next to you. He leans over and says, "I can't let my sister's savior go undefended. Just answer the questions as simply as possible. I'll argue your case from there."`
