@@ -1423,7 +1423,7 @@ mission "FW Pirates 3.2C"
 			decline
 			`	(Liberate <planet>'s slaves, wipe out the cartel palaces, and destroy the pirates' infrastructure.)`
 				`	Hovering over the pirate spaceport, you demand that the pirates immediately free their slaves, abandon their ships on the ground, and evacuate their spaceport. At first, they seem to comply. Then you get a frantic radio call from a surviving rebel ship. A massive pirate armada just jumped in, and another is launching from hidden hangers all over the planet! A gravelly voice chuckles over the radio. "If you want our ships, come and get them!"`
-				`	Alarms scream. You look at your tactical display and see a massive salvo of missiles coming from the largest pirate fleet you've ever heard of. The local defense fleet you already defeated was just the vanguard for this armada. Half the pirates and marauders in the galactic south must be in the system, and it looks as if they've brought some friends along.`
+				`	Alarms scream. You look at your tactical display and see a massive salvo of missiles coming from the largest pirate fleet you've ever seen. The local defense fleet you already defeated was just the vanguard for this armada. Half the pirates and marauders in the galactic south must be in the system, and it looks as if they've brought some friends along.`
 				accept
 	on accept
 		set "fw pirates: own way"
