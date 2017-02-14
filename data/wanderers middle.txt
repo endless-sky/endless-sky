@@ -2174,7 +2174,7 @@ mission "Wanderers: Sestor: Scattered Remnant"
 				"Tek Far 71 - Lek"
 				"Far Lek 14" 10
 				"Met Par Tek 53" 2
-		dialog `You have eliminated all of the Kor Sestor ships in this system.`
+		dialog `All of the Kor Sestor ships in this system have been eliminated.`
 	npc kill
 		system "Canopus"
 		government "Kor Sestor"
@@ -2187,7 +2187,7 @@ mission "Wanderers: Sestor: Scattered Remnant"
 				"Tek Far 71 - Lek (Close Quarters)"
 				"Far Lek 14" 8
 				"Met Par Tek 53 (Sniper)" 2
-		dialog `You have eliminated all of the Kor Sestor ships in this system.`
+		dialog `All of the Kor Sestor ships in this system have been eliminated.`
 	npc kill
 		system "Betelgeuse"
 		government "Kor Sestor"
@@ -2208,7 +2208,7 @@ mission "Wanderers: Sestor: Scattered Remnant"
 				"Tek Far 78 - Osk (Close Quarters)"
 				"Far Osk 27" 6
 				"Met Par Tek 53 (Sniper)"
-		dialog `You have eliminated all of the Kor Sestor ships in this system.`
+		dialog `All of the Kor Sestor ships in this system have been eliminated.`
 	npc kill
 		system "Capella"
 		government "Kor Sestor"
@@ -2222,7 +2222,7 @@ mission "Wanderers: Sestor: Scattered Remnant"
 				"Far Lek 14" 8
 				"Tek Far 78 - Osk"
 				"Far Osk 27" 8
-		dialog `You have eliminated all of the Kor Sestor ships in this system.`
+		dialog `All of the Kor Sestor ships in this system have been eliminated.`
 	npc kill
 		system "Mebsuta"
 		government "Kor Sestor"
@@ -2236,7 +2236,7 @@ mission "Wanderers: Sestor: Scattered Remnant"
 				"Far Lek 14" 9
 				"Tek Far 78 - Osk (Close Quarters)"
 				"Far Osk 27" 7
-		dialog `You have eliminated all of the Kor Sestor ships in this system.`
+		dialog `All of the Kor Sestor ships in this system have been eliminated.`
 	npc kill
 		system "Rigel"
 		government "Kor Sestor"
@@ -2250,7 +2250,7 @@ mission "Wanderers: Sestor: Scattered Remnant"
 				"Far Lek 14" 7
 				"Tek Far 78 - Osk (Close Quarters)"
 				"Far Osk 27" 6
-		dialog `You have eliminated all of the Kor Sestor ships in this system.`
+		dialog `All of the Kor Sestor ships in this system have been eliminated.`
 	npc kill
 		system "Castor"
 		government "Kor Sestor"
@@ -2262,7 +2262,7 @@ mission "Wanderers: Sestor: Scattered Remnant"
 				"Kar Ik Vot 349 (Defense)"
 				"Met Par Tek 53" 2
 				"Met Par Tek 53 (Sniper)"
-		dialog `You have eliminated all of the Kor Sestor ships in this system.`
+		dialog `All of the Kor Sestor ships in this system have been eliminated.`
 	npc kill
 		system "Wazn"
 		government "Kor Sestor"
@@ -2274,7 +2274,7 @@ mission "Wanderers: Sestor: Scattered Remnant"
 				"Kar Ik Vot 349 (Offense)"
 				"Met Par Tek 53"
 				"Met Par Tek 53 (Sniper)" 2
-		dialog `You have eliminated all of the Kor Sestor ships in this system.`
+		dialog `All of the Kor Sestor ships in this system have been eliminated.`
 	npc kill
 		system "Miaplacidus"
 		government "Kor Sestor"
@@ -2285,7 +2285,7 @@ mission "Wanderers: Sestor: Scattered Remnant"
 			variant
 				"Kar Ik Vot 349 (Trapper)"
 				"Met Par Tek 53 (Sniper)" 3
-		dialog `You have eliminated all of the Kor Sestor ships in this system.`
+		dialog `All of the Kor Sestor ships in this system have been eliminated.`
 	npc kill
 		system "Kursa"
 		government "Kor Sestor"
@@ -2300,7 +2300,7 @@ mission "Wanderers: Sestor: Scattered Remnant"
 				"Far Lek 14" 17
 				"Far Osk 27" 13
 				"Met Par Tek 53 (Sniper)" 2
-		dialog `You have eliminated all of the Kor Sestor ships in this system.`
+		dialog `All of the Kor Sestor ships in this system have been eliminated.`
 	npc kill
 		system "Saiph"
 		government "Kor Sestor"
@@ -2315,7 +2315,7 @@ mission "Wanderers: Sestor: Scattered Remnant"
 				"Far Lek 14" 17
 				"Far Osk 27" 13
 				"Met Par Tek 53" 2
-		dialog `You have eliminated all of the Kor Sestor ships in this system.`
+		dialog `All of the Kor Sestor ships in this system have been eliminated.`
 		
 
 
