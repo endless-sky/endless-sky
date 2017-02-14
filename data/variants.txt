@@ -8,6 +8,58 @@
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
+		"LP036a Battery Pack"
+		"Greyhound Plasma Thruster"
+		"X3200 Ion Steering"
+		"Hyperdrive"
+
+
+ship "Argosy" "Argosy (Scavenged)"
+	outfits
+		"Beam Laser" 1
+		"Laser Turret" 1
+		"NT-200 Nucleovoltaic"
+		"LP036a Battery Pack"
+		"Greyhound Plasma Thruster"
+		"Impala Plasma Steering"
+		"Hyperdrive"
+		
+		
+ship "Hauler" "Hauler (Scavenged)"
+	outfits
+		"S3 Thermionic"
+		"LP072a Battery Pack"
+		"Greyhound Plasma Thruster"
+		"Impala Plasma Steering"
+		"Hyperdrive"
+
+
+ship "Hauler II" "Hauler II (Scavenged)"
+	outfits
+		"S3 Thermionic"
+		"LP072a Battery Pack"
+		"Greyhound Plasma Thruster"
+		"Impala Plasma Steering"
+		"Hyperdrive"
+
+ship "Hauler III" "Hauler III (Scavenged)"
+	outfits
+		"Quad Blaster Turret" 1
+		"S3 Thermionic"
+		"LP072a Battery Pack"
+		"Greyhound Plasma Thruster"
+		"Impala Plasma Steering"
+		"Hyperdrive"
+
+ship "Star Queen" "Star Queen (Scavenged)"
+	outfits
+		"NT-200 Nucleovoltaic"
+		"LP072a Battery Pack"
+		"X3700 Ion Thruster"
+		"X3200 Ion Steering"
+		"Hyperdrive"
+		
+		
 ship "Star Barge" "Star Barge (Armed)"
 	outfits
 		"Blaster Turret"
