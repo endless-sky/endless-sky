@@ -9,9 +9,8 @@
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 
-ship "Behemoth" "Behemoth (Scavenged)"
+ship "Behemoth" "Behemoth (Unarmed)"
 	outfits
-		"Heavy Laser Turret" 2
 		"Breeder Reactor"
 		"LP144a Battery Pack"
 		"Liquid Nitrogen Cooler"
@@ -21,7 +20,7 @@ ship "Behemoth" "Behemoth (Scavenged)"
 		"Hyperdrive"
 
 
-ship "Blackbird" "Blackbird (Scavenged)"
+ship "Blackbird" "Blackbird (Unarmed)"
 	outfits
 		"S3 Thermionic"
 		"LP072a Battery Pack"
@@ -30,7 +29,7 @@ ship "Blackbird" "Blackbird (Scavenged)"
 		"Hyperdrive"
 
 
-ship "Bounder" "Bounder (Scavenged)"
+ship "Bounder" "Bounder (Unarmed)"
 	outfits
 		"nGVF-CC Fuel Cell"
 		"LP036a Battery Pack"
@@ -39,9 +38,8 @@ ship "Bounder" "Bounder (Scavenged)"
 		"Hyperdrive"
 
 
-ship "Bulk Freighter" "Bulk Freighter (Scavenged)"
+ship "Bulk Freighter" "Bulk Freighter (Unarmed)"
 	outfits
-		"Laser Turret" 1
 		"RT-I Radiothermal"
 		"LP144a Battery Pack"
 		"X3700 Ion Thruster"
@@ -49,7 +47,7 @@ ship "Bulk Freighter" "Bulk Freighter (Scavenged)"
 		"Hyperdrive"
 
 
-ship "Freighter" "Freighter (Scavenged)"
+ship "Freighter" "Freighter (Unarmed)"
 	outfits
 		"NT-200 Nucleovoltaic"
 		"LP036a Battery Pack"
@@ -58,10 +56,8 @@ ship "Freighter" "Freighter (Scavenged)"
 		"Hyperdrive"
 
 
-ship "Argosy" "Argosy (Scavenged)"
+ship "Argosy" "Argosy (Unarmed)"
 	outfits
-		"Beam Laser" 1
-		"Laser Turret" 1
 		"NT-200 Nucleovoltaic"
 		"LP036a Battery Pack"
 		"Greyhound Plasma Thruster"
@@ -69,7 +65,7 @@ ship "Argosy" "Argosy (Scavenged)"
 		"Hyperdrive"
 		
 		
-ship "Hauler" "Hauler (Scavenged)"
+ship "Hauler" "Hauler (Unarmed)"
 	outfits
 		"S3 Thermionic"
 		"LP072a Battery Pack"
@@ -78,7 +74,7 @@ ship "Hauler" "Hauler (Scavenged)"
 		"Hyperdrive"
 
 
-ship "Hauler II" "Hauler II (Scavenged)"
+ship "Hauler II" "Hauler II (Unarmed)"
 	outfits
 		"S3 Thermionic"
 		"LP072a Battery Pack"
@@ -86,7 +82,7 @@ ship "Hauler II" "Hauler II (Scavenged)"
 		"Impala Plasma Steering"
 		"Hyperdrive"
 
-ship "Hauler III" "Hauler III (Scavenged)"
+ship "Hauler III" "Hauler III (Unarmed)"
 	outfits
 		"Quad Blaster Turret" 1
 		"S3 Thermionic"
@@ -95,7 +91,7 @@ ship "Hauler III" "Hauler III (Scavenged)"
 		"Impala Plasma Steering"
 		"Hyperdrive"
 
-ship "Star Queen" "Star Queen (Scavenged)"
+ship "Star Queen" "Star Queen (Unarmed)"
 	outfits
 		"NT-200 Nucleovoltaic"
 		"LP072a Battery Pack"
