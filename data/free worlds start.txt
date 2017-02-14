@@ -1524,7 +1524,7 @@ mission "FW Pirates 3.2D"
         dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	on offer
 	set "fw pirates: victory"
-	dialogue
+	dialog
 	    `The few surviving rebel ships immediately turn tail and flee the system. You can either follow them back to Free Worlds territory, or face the biggest fight of your life, alone.`
 
 
@@ -1549,24 +1549,24 @@ mission "FW Pirates 3.1D"
 	npc accompany save
 		government Merchant
 		personality escort timid
-		ship "Behemoth (Scavenged)" "Emancipation"
-		ship "Behemoth (Scavenged)" "Freedom Fry"
-		ship "Behemoth (Scavenged)" "Hope"
-		ship "Bulk Freighter (Scavenged)" "Bondage Breaker"
-		ship "Bulk Freighter (Scavenged)" "Tubman"
-		ship "Bulk Freighter (Scavenged)" "Liberty"
-		ship "Hauler (Scavenged)" "Moses"
-		ship "Hauler II (Scavenged)" "Exodus"
-		ship "Hauler II (Scavenged)" "Epaminondas"
-		ship "Hauler III (Scavenged)" "Lincoln"
-		ship "Star Queen (Scavenged)" "Shattered Shackle"
-		ship "Star Queen (Scavenged)" "Sherman"
-		ship "Star Queen (Scavenged)" "New Life"
-		ship "Star Queen (Scavenged)" "Escape"
-		ship "Argosy (Scavenged)" "Broken Chain"
-		ship "Argosy (Scavenged)" "Repatriation"
-		ship "Freighter (Scavenged)" "Deliverance"
-		ship "Freighter (Scavenged)" "Amnesty"
+		ship "Behemoth (Unarmed)" "Emancipation"
+		ship "Behemoth (Unarmed)" "Freedom Fry"
+		ship "Behemoth (Unarmed)" "Hope"
+		ship "Bulk Freighter (Unarmed)" "Bondage Breaker"
+		ship "Bulk Freighter (Unarmed)" "Tubman"
+		ship "Bulk Freighter (Unarmed)" "Liberty"
+		ship "Hauler (Unarmed)" "Moses"
+		ship "Hauler II (Unarmed)" "Exodus"
+		ship "Hauler II (Unarmed)" "Epaminondas"
+		ship "Hauler III (Unarmed)" "Lincoln"
+		ship "Star Queen (Unarmed)" "Shattered Shackle"
+		ship "Star Queen (Unarmed)" "Sherman"
+		ship "Star Queen (Unarmed)" "New Life"
+		ship "Star Queen (Unarmed)" "Escape"
+		ship "Argosy (Unarmed)" "Broken Chain"
+		ship "Argosy (Unarmed)" "Repatriation"
+		ship "Freighter (Unarmed)" "Deliverance"
+		ship "Freighter (Unarmed)" "Amnesty"
 	on complete
 	on visit
 dialog "You have reached <planet>, but you left the freed slaves behind! Better depart and wait for them to arrive in this star system."
