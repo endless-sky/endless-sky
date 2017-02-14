@@ -8,6 +8,50 @@
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
+
+ship "Behemoth" "Behemoth (Scavenged)"
+	outfits
+		"Heavy Laser Turret" 2
+		"Breeder Reactor"
+		"LP144a Battery Pack"
+		"Liquid Nitrogen Cooler"
+		"A250 Atomic Thruster"
+		"A125 Atomic Steering"
+		"A375 Atomic Steering"
+		"Hyperdrive"
+
+
+ship "Blackbird" "Blackbird (Scavenged)"
+	outfits
+		"S3 Thermionic"
+		"LP072a Battery Pack"
+		"Impala Plasma Thruster"
+		"Impala Plasma Steering"
+		"Hyperdrive"
+
+
+ship "Bounder" "Bounder (Scavenged)"
+	outfits
+		"nGVF-CC Fuel Cell"
+		"LP036a Battery Pack"
+		"X3700 Ion Thruster"
+		"X3200 Ion Steering"
+		"Hyperdrive"
+
+
+ship "Bulk Freighter" "Bulk Freighter (Scavenged)"
+	outfits
+		"Laser Turret" 1
+		"RT-I Radiothermal"
+		"LP144a Battery Pack"
+		"X3700 Ion Thruster"
+		"X3200 Ion Steering"
+		"Hyperdrive"
+
+
+ship "Freighter" "Freighter (Scavenged)"
+	outfits
+		"NT-200 Nucleovoltaic"
 		"LP036a Battery Pack"
 		"Greyhound Plasma Thruster"
 		"X3200 Ion Steering"
