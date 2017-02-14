@@ -8,96 +8,6 @@
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
-
-ship "Behemoth" "Behemoth (Unarmed)"
-	outfits
-		"Breeder Reactor"
-		"LP144a Battery Pack"
-		"Liquid Nitrogen Cooler"
-		"A250 Atomic Thruster"
-		"A125 Atomic Steering"
-		"A375 Atomic Steering"
-		"Hyperdrive"
-
-
-ship "Blackbird" "Blackbird (Unarmed)"
-	outfits
-		"S3 Thermionic"
-		"LP072a Battery Pack"
-		"Impala Plasma Thruster"
-		"Impala Plasma Steering"
-		"Hyperdrive"
-
-
-ship "Bounder" "Bounder (Unarmed)"
-	outfits
-		"nGVF-CC Fuel Cell"
-		"LP036a Battery Pack"
-		"X3700 Ion Thruster"
-		"X3200 Ion Steering"
-		"Hyperdrive"
-
-
-ship "Bulk Freighter" "Bulk Freighter (Unarmed)"
-	outfits
-		"RT-I Radiothermal"
-		"LP144a Battery Pack"
-		"X3700 Ion Thruster"
-		"X3200 Ion Steering"
-		"Hyperdrive"
-
-
-ship "Freighter" "Freighter (Unarmed)"
-	outfits
-		"NT-200 Nucleovoltaic"
-		"LP036a Battery Pack"
-		"Greyhound Plasma Thruster"
-		"X3200 Ion Steering"
-		"Hyperdrive"
-
-
-ship "Argosy" "Argosy (Unarmed)"
-	outfits
-		"NT-200 Nucleovoltaic"
-		"LP036a Battery Pack"
-		"Greyhound Plasma Thruster"
-		"Impala Plasma Steering"
-		"Hyperdrive"
-		
-		
-ship "Hauler" "Hauler (Unarmed)"
-	outfits
-		"S3 Thermionic"
-		"LP072a Battery Pack"
-		"Greyhound Plasma Thruster"
-		"Impala Plasma Steering"
-		"Hyperdrive"
-
-
-ship "Hauler II" "Hauler II (Unarmed)"
-	outfits
-		"S3 Thermionic"
-		"LP072a Battery Pack"
-		"Greyhound Plasma Thruster"
-		"Impala Plasma Steering"
-		"Hyperdrive"
-
-ship "Hauler III" "Hauler III (Unarmed)"
-	outfits
-		"Quad Blaster Turret" 1
-		"S3 Thermionic"
-		"LP072a Battery Pack"
-		"Greyhound Plasma Thruster"
-		"Impala Plasma Steering"
-		"Hyperdrive"
-
-ship "Star Queen" "Star Queen (Unarmed)"
-	outfits
-		"NT-200 Nucleovoltaic"
-		"LP072a Battery Pack"
-		"X3700 Ion Thruster"
-		"X3200 Ion Steering"
-		"Hyperdrive"
 		
 		
 ship "Star Barge" "Star Barge (Armed)"
@@ -1670,3 +1580,94 @@ ship "Bactrian" "Bactrian (Hai Weapons)"
 	turret "Pulse Turret"
 	turret "Chameleon Anti-Missile"
 	turret "Heavy Laser Turret"
+
+
+ship "Behemoth" "Behemoth (Unarmed)"
+	outfits
+		"Breeder Reactor"
+		"LP144a Battery Pack"
+		"Liquid Nitrogen Cooler"
+		"A250 Atomic Thruster"
+		"A125 Atomic Steering"
+		"A375 Atomic Steering"
+		"Hyperdrive"
+
+
+ship "Blackbird" "Blackbird (Unarmed)"
+	outfits
+		"S3 Thermionic"
+		"LP072a Battery Pack"
+		"Impala Plasma Thruster"
+		"Impala Plasma Steering"
+		"Hyperdrive"
+
+
+ship "Bounder" "Bounder (Unarmed)"
+	outfits
+		"nGVF-CC Fuel Cell"
+		"LP036a Battery Pack"
+		"X3700 Ion Thruster"
+		"X3200 Ion Steering"
+		"Hyperdrive"
+
+
+ship "Bulk Freighter" "Bulk Freighter (Unarmed)"
+	outfits
+		"RT-I Radiothermal"
+		"LP144a Battery Pack"
+		"X3700 Ion Thruster"
+		"X3200 Ion Steering"
+		"Hyperdrive"
+
+
+ship "Freighter" "Freighter (Unarmed)"
+	outfits
+		"NT-200 Nucleovoltaic"
+		"LP036a Battery Pack"
+		"Greyhound Plasma Thruster"
+		"X3200 Ion Steering"
+		"Hyperdrive"
+
+
+ship "Argosy" "Argosy (Unarmed)"
+	outfits
+		"NT-200 Nucleovoltaic"
+		"LP036a Battery Pack"
+		"Greyhound Plasma Thruster"
+		"Impala Plasma Steering"
+		"Hyperdrive"
+		
+		
+ship "Hauler" "Hauler (Unarmed)"
+	outfits
+		"S3 Thermionic"
+		"LP072a Battery Pack"
+		"Greyhound Plasma Thruster"
+		"Impala Plasma Steering"
+		"Hyperdrive"
+
+
+ship "Hauler II" "Hauler II (Unarmed)"
+	outfits
+		"S3 Thermionic"
+		"LP072a Battery Pack"
+		"Greyhound Plasma Thruster"
+		"Impala Plasma Steering"
+		"Hyperdrive"
+
+ship "Hauler III" "Hauler III (Unarmed)"
+	outfits
+		"Quad Blaster Turret" 1
+		"S3 Thermionic"
+		"LP072a Battery Pack"
+		"Greyhound Plasma Thruster"
+		"Impala Plasma Steering"
+		"Hyperdrive"
+
+ship "Star Queen" "Star Queen (Unarmed)"
+	outfits
+		"NT-200 Nucleovoltaic"
+		"LP072a Battery Pack"
+		"X3700 Ion Thruster"
+		"X3200 Ion Steering"
+		"Hyperdrive"
