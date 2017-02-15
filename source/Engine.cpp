@@ -330,7 +330,7 @@ void Engine::Step(bool isActive)
 	if(flagship && Preferences::Has("Highlight player's flagship"))
 	{
 		highlightSprite = flagship->GetSprite();
-		highlightUnit = flagship->Unit();
+		highlightUnit = flagship->Unit() * zoom;
 	}
 	else
 		highlightSprite = nullptr;
