@@ -809,6 +809,18 @@ bool AI::FollowOrders(Ship &ship, Command &command) const
 		return false;
 	
 	int type = it->second.type;
+	
+	// If your parent is jumping or absent, that overrides your orders unless
+	// your orders are to hold position.
+	shared_ptr<Ship> parent = ship.GetParent();
+	if(parent && type != Orders::HOLD_POSITION)
+	{
+		if(parent->GetSystem() != ship.GetSystem())
+			return false;
+		if(parent->Commands().Has(Command::JUMP) && ship.JumpsRemaining())
+			return false;
+	}
+	
 	shared_ptr<Ship> target = it->second.target.lock();
 	if(type == Orders::MOVE_TO && ship.Position().Distance(it->second.point) > 20.)
 		MoveTo(ship, command, it->second.point, 10., .1);
