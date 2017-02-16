@@ -1517,13 +1517,13 @@ mission "FW Pirates 3.2D"
 	priority
 	landing
 	to offer
-        has "FW Pirates 3.2C: active"
+        	has "FW Pirates 3.2C: active"
 	source Greenrock
 	destination Longjump
 	on fail
-        dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+        	dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	on offer
-	set "fw pirates: victory"
+		set "fw pirates: victory"
 	dialog
 	    `The few surviving rebel ships immediately turn tail and flee the system. You can either follow them back to Free Worlds territory, or face the biggest fight of your life, alone.`
 
@@ -1534,17 +1534,17 @@ mission "FW Pirates 3.1D"
 	description "Escort a fleet of freed slaves to Longjump and answer for your decision."
 	landing
 	to offer
-        has "FW Pirates 3.1C: active"
+        	has "FW Pirates 3.1C: active"
 	destination Longjump
 	on fail
-        dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+        	dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	on offer
-	set "fw pirates: victory"
-	conversation
-	    	`You bring your ship to hover over the spaceport and announce that they have one hour to release their captives and leave the area on the ground. Cowed by your guns, the slave market complies. The few remaining pirates and local thugs throw their valuables into any trucks they can find and head for the hills.`
-		`	Some of the freed slaves are pilots, technicians, and engineers, and they commandeer a dozen assorted transports and freighters. You spend half a day helping them liberate slave pens and labor camps around the planet. Under the threat of your guns, the slaves help themselves to the property of their former masters, and the transports and freighters are crammed with enough wealth, equipment, and weapons to enable a fresh start on a new world. Slave-masters who don't comply lose their farms, factories, and in many cases, their lives.`
-		`	Then you turn your guns onto every piece of infrastructure you can find that supports the pirate fleet. After several hours, the pirate's shipyard, outfitter, and refueling stations are destroyed beyond any hope of repair. Tracing the ion trails of other ships that launched to attack you, you find and destroy their bases of operaion, too. Former slaves are quick to point out key infrastructure that would otherwise have escaped your notice. It will take Greenrock decades to rebuild their pirate fleet and support structure, and they'll have to rebuild it without slave labor.`
-		`	Now you must get this rag-tag fleet full of escaped slaves to safety and answer for your actions.`
+		set "fw pirates: victory"
+		conversation
+	    		`You bring your ship to hover over the spaceport and announce that they have one hour to release their captives and leave the area on the ground. Cowed by your guns, the slave market complies. The few remaining pirates and local thugs throw their valuables into any trucks they can find and head for the hills.`
+			`	Some of the freed slaves are pilots, technicians, and engineers, and they commandeer a dozen assorted transports and freighters. You spend half a day helping them liberate slave pens and labor camps around the planet. Under the threat of your guns, the slaves help themselves to the property of their former masters, and the transports and freighters are crammed with enough wealth, equipment, and weapons to enable a fresh start on a new world. Slave-masters who don't comply lose their farms, factories, and in many cases, their lives.`
+			`	Then you turn your guns onto every piece of infrastructure you can find that supports the pirate fleet. After several hours, the pirate's shipyard, outfitter, and refueling stations are destroyed beyond any hope of repair. Tracing the ion trails of other ships that launched to attack you, you find and destroy their bases of operaion, too. Former slaves are quick to point out key infrastructure that would otherwise have escaped your notice. It will take Greenrock decades to rebuild their pirate fleet and support structure, and they'll have to rebuild it without slave labor.`
+			`	Now you must get this rag-tag fleet full of escaped slaves to safety and answer for your actions.`
 		launch
 	npc accompany save
 		government Merchant
@@ -1569,7 +1569,7 @@ mission "FW Pirates 3.1D"
 		ship "Freighter (Unarmed)" "Amnesty"
 	on complete
 	on visit
-dialog "You have reached <planet>, but you left the freed slaves behind! Better depart and wait for them to arrive in this star system."
+		dialog "You have reached <planet>, but you left the freed slaves behind! Better depart and wait for them to arrive in this star system."
 		
 
 
@@ -1828,7 +1828,7 @@ mission "FW Pirates 4.2"
 			`	"Cecille?! But... I thought you were dead!" JJ forgets all about arresting you as he embraces the young woman. The crowd cheers, and a stunned JJ leads his sister away, followed by two military policemen who are almost as confused as JJ.`
 			`	As the noise subsides, Freya gives you a hard, thoughtful look. "We have a great deal to consider about what you've done. You can keep your freedom for now, but the Senate will have to decide your fate, if you want to continue serving the Free Worlds. Until then, you're suspended without pay. Report there by <date>, and think very carefully about what you say there."
 				accept
-		clear "salary: Free Worlds"
+			clear "salary: Free Worlds"
 	on complete
 		set "fw first chapter done"
 	on complete
