@@ -2513,18 +2513,21 @@ void AI::IssueOrders(const PlayerInfo &player, const Orders &newOrders, const st
 	
 	Point centerOfGravity;
 	bool isMoveOrder = (newOrders.type == Orders::MOVE_TO);
+	int squadCount = 0;
 	if(isMoveOrder)
 	{
-		int count = 0;
 		for(const Ship *ship : ships)
 			if(ship->GetSystem() == player.GetSystem() && !ship->IsDisabled())
 			{
 				centerOfGravity += ship->Position();
-				++count;
+				++squadCount;
 			}
-		if(count > 1)
-			centerOfGravity /= count;
+		if(squadCount > 1)
+			centerOfGravity /= squadCount;
 	}
+	// If this is a move command, make sure the fleet is bunched together
+	// enough that each ship takes up no more than about 30,000 square pixels.
+	double maxSquadOffset = sqrt(10000. * squadCount);
 	
 	// Now, go through all the given ships and set their orders to the new
 	// orders. But, if it turns out that they already had the given orders,
@@ -2545,7 +2548,10 @@ void AI::IssueOrders(const PlayerInfo &player, const Orders &newOrders, const st
 			// In a move order, rather than commanding every ship to move to the
 			// same point, they move as a mass so their center of gravity is
 			// that point but their relative positions are unchanged.
-			existing.point += ship->Position() - centerOfGravity;
+			Point offset = ship->Position() - centerOfGravity;
+			if(offset.Length() > maxSquadOffset)
+				offset = offset.Unit() * maxSquadOffset;
+			existing.point += offset;
 		}
 	}
 	if(hasMismatch)
