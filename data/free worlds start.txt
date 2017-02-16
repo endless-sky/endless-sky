@@ -1817,7 +1817,6 @@ mission "FW Pirates 4.2"
 			`"I'm the kind of maniac who's very selective about my targets. I levelled their spaceport facilities, their shipyards, their outfitters, their fuel depots, and their hangers." You call up images of Greenrock before and after your attacks`
 			`Katya goes pale. "You destroyed the slave yards?! How many innocent people lived in those-"`
 			`"-Thousands." You interrupt, and you gesture to the ship's communications system. "And they're listening to this conversation. In fact," you check a small viewscreen, "It looks like quite a few have gathered around <ship>"
-				goto slaves
 			label slaves
 			`	JJ opens the door and gasps. A crowd of dirty, ragged people has gathered. JJ stares at you, then the crowd, then back at you.`
 			`	A weathered man smiles at JJ, showing his missing teeth, and waves at the rest of the crowd with a three-fingered hand. "We are the former slaves of Greenrock. I am Obediah. If you don't mind, we'd like to thank our savior face-to-face."`
@@ -1837,7 +1836,6 @@ mission "FW Pirates 4.2"
 			`With some trepidation, you enter the Senate building and introduce yourself to the receptionist. He says, "Please wait here. Someone will come for you when they are ready."`
 			`	Several hours pass. Finally, you are led into the Senate chamber, where several dozen senators sit, each with a name card identifying the world they represent. You are surpised to see JJ take a seat next to you. He leans over and says, "I can't let my sister's savior go undefended. Just answer the questions as simply as possible. I'll argue your case from there."`
 			`	Senator Huygens of Mere asks the first question. "Captain <last>, is it true that you took part in a recent unauthorized attack on Greenrock in the Shaula system?"`
-			label start
 			choice
 				`	"I took part in an attack on Greenrock."`
 					goto knew
