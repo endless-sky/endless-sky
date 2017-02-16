@@ -68,7 +68,6 @@ int main(int argc, char *argv[])
 #endif
 	
 	Conversation conversation;
-	
 	bool debugMode = false;
 	for(const char *const *it = argv + 1; *it; ++it)
 	{
