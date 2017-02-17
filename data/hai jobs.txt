@@ -20,7 +20,7 @@ mission "Human Vacation [1]"
 		government "Hai"
 	destination
 		distance 2 9
-		attributes "human vacation"
+		attributes "human tourism"
 	on complete
 		payment 8000 200
 		dialog "You wish your <passengers> the best of luck on <planet>, and collect your payment of <payment>."
@@ -37,7 +37,7 @@ mission "Human Vacation [2]"
 		government "Hai"
 	destination
 		distance 2 9
-		attributes "human vacation"
+		attributes "human tourism"
 	on complete
 		payment 5000 200
 		dialog "You wish your <passengers> the best of luck on <planet>, and collect your payment of <payment>."
@@ -54,7 +54,7 @@ mission "Human Vacation [3]"
 		government "Hai"
 	destination
 		distance 2 9
-		attributes "human vacation"
+		attributes "human tourism"
 	on complete
 		payment 5000 200
 		dialog "You wish your <passengers> the best of luck on <planet>, and collect your payment of <payment>."
@@ -71,7 +71,7 @@ mission "Human Vacation [4]"
 		government "Hai"
 	destination
 		distance 2 9
-		attributes "human vacation"
+		attributes "human tourism"
 	on complete
 		payment 5000 200
 		dialog "You wish your <passengers> the best of luck on <planet>, and collect your payment of <payment>."
@@ -86,7 +86,7 @@ mission "Hai Vacation [1]"
 		government "Hai"
 	destination
 		distance 2 9
-		attributes "hai vacation"
+		attributes "hai tourism"
 	on complete
 		payment 6000 200
 		dialog "You wish your <passengers> the best of luck on <planet>, and collect your payment of <payment>."
@@ -103,7 +103,7 @@ mission "Hai Vacation [2]"
 		government "Hai"
 	destination
 		distance 2 9
-		attributes "hai vacation"
+		attributes "hai tourism"
 	on complete
 		payment 4000 200
 		dialog "You wish your <passengers> the best of luck on <planet>, and collect your payment of <payment>."
@@ -120,7 +120,7 @@ mission "Hai Vacation [3]"
 		government "Hai"
 	destination
 		distance 2 9
-		attributes "hai vacation"
+		attributes "hai tourism"
 	on complete
 		payment 4000 200
 		dialog "You wish your <passengers> the best of luck on <planet>, and collect your payment of <payment>."
@@ -137,7 +137,7 @@ mission "Hai Vacation [4]"
 		government "Hai"
 	destination
 		distance 2 9
-		attributes "hai vacation"
+		attributes "hai tourism"
 	on complete
 		payment 4000 200
 		dialog "You wish your <passengers> the best of luck on <planet>, and collect your payment of <payment>."

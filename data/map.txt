@@ -22523,7 +22523,7 @@ planet Alfheim
 		fleet "Small Deep" 27
 
 planet Allhome
-	attributes hai farming "human vacation"
+	attributes hai farming "human tourism"
 	landscape land/dmottl0
 	description `This Earth-like planet has been settled both by human beings and by the Hai, the species that controls this region of space. The human settlements are relatively small, mostly farming communities founded by people who came here to escape the chaos and uncertainty of human space.`
 	spaceport `In the spaceport, a handful of human merchants and colonists wander about amid throngs of Hai - vaguely squirrel-like aliens who are somewhat shorter than the average human being, but make up for it with an abundance of energy. You feel a little bit like an adult wading through a sea of hyperactive children as you try to locate the commodity exchange and the other services offered here.`
@@ -22995,7 +22995,7 @@ planet Darkcloak
 	outfitter "Hai Basics"
 
 planet Darkmetal
-	attributes hai mining "hai vacation"
+	attributes hai mining "hai tourism"
 	landscape land/canyon02
 	description `Darkmetal is a cold, dry mining world, the source of much of the heavy metals that are used in Hai space. A haze of slightly radioactive dust hangs in the sky whenever it has been more than a week since the last rainstorm. Most of the mining is carried out by slow-moving vehicles the size of a small city, which ingest layers of dirt and bedrock, crush it to extract any valuable elements, then mix the remaining material with water to form a cement-like slurry that can be extruded in solid blocks, to reduce the amount of additional dust that is added to the atmosphere.`
 	spaceport `The spaceport is hermetically sealed, with gantry tubes that can adapt to fit the hatches of human ships as well as Hai. The seal is to keep radioactive dust out of the living spaces, but its purpose is primarily to reduce the long-term exposure of the station's permanent inhabitants; for visitors, the risks are minimal.`
@@ -23140,7 +23140,7 @@ planet "Dusk Companion"
 	"required reputation" 15
 
 planet Dustmaker
-	attributes hai manufacturing "hai vacation"
+	attributes hai manufacturing "hai tourism"
 	landscape land/badlands0
 	description `The surface of this planet, when it is not obscured by dust storms, receives enough sunlight to power not only large solar farms, but solar furnaces as well, which the Hai use for manufacturing a large variety of goods. Some of the solar farms are so large that from orbit, the light reflecting off them could almost be mistaken for lakes and small oceans. However, there is almost no water on the planet's surface except near the poles.`
 	spaceport `Like most Hai architecture, the spaceport is made of bare, unpainted metal, so weathered that you would not be surprised to learn that it is tens of thousands of years old. Tall, curved walls around the outskirts of the port create a sort of labyrinth with the port building itself at the center; they are probably intended to block sandstorms while allowing gentler breezes to pass through.`
@@ -23279,7 +23279,7 @@ planet Farseer
 		fleet "Large Republic" 14
 
 planet Farwater
-	attributes hai medical "hai vacation"
+	attributes hai medical "hai tourism"
 	landscape land/beach6
 	description `In human space, this system would probably have been left unsettled, because its sun produces too much ultraviolet radiation for animals to survive for long on its surface. But the Hai have instead turned this warm ocean world into a massive incubator for photosynthetic algae and bacteria. Each species is genetically engineered to produce one or more medical or nutritional compounds that they can make use of. Barges travel slowly through the oceans harvesting these microorganisms out of the water and separating out the chemical compounds they provide.`
 	spaceport `The spaceport appears to have been built by expanding a natural set of caves in a cliff facing the ocean. At high tide the lower caves flood, allowing barges to dock and unload the compounds they have harvested. Tunnels lead deep into the rock to rooms that have been carved out as warehouse space and living quarters. The rock remains somewhat cool, even at midday, but the air is still oppressively humid.`
@@ -23417,7 +23417,7 @@ planet Freedom
 		fleet "Small Northern Pirates" 15
 
 planet Frostmark
-	attributes hai "hai vacation"
+	attributes hai "hai tourism"
 	landscape land/dmottl5
 	description `There are several large Hai cities near the equator on Frostmark, but much of the planet's surface is cold and uninhabited except by herds of extremely large, six-legged herbivores, and other equally large and frightening animals that prey on them.`
 	spaceport `Every Hai city has an appearance of great age and permanence, but this one, even more so. In Hai cities, transport vehicles carry freight and passengers along underground passages or elevated railways, while the pathways at ground level are reserved for foot traffic. Here, millennia of foot traffic have rounded off the corners of every metal staircase, and polished the railings as smooth as glass. The Hai locals do not seem to have trouble keeping their footing, but you wish your shoes gave you more traction.`
@@ -23547,7 +23547,7 @@ planet Grakhord
 	security 0.9
 
 planet Greenbloom
-	attributes hai "hai vacation" "human vacation"
+	attributes hai "hai tourism" "human tourism"
 	landscape land/water3
 	description `The islands and continents on this planet are almost entirely covered in marshes, rainforests, and (near the poles) dense coniferous forests, and the oceans appear green from above due to thick algae blooms and floating kelp mats. The overabundance of flora is caused by Greenbloom's major volcanoes, which constantly spew carbon dioxide into the atmosphere.`
 	spaceport `The spaceport is a massive floating island built by the Hai - a network of hexagonal platforms, each roughly half a kilometer in diameter, linked by bridges that can bend to accommodate the platforms rising and falling in rough weather. You are not sure what sort of alloy the platforms are built from, but judging by the fact that some of them have coral colonies growing on their edges, they can probably last for centuries without requiring any maintenance.`
@@ -23574,7 +23574,7 @@ planet Greenrock
 		fleet "Large Northern Pirates" 13
 
 planet Greenwater
-	attributes hai farming fishing "human vacation"
+	attributes hai farming fishing "human tourism"
 	landscape land/myrabella2
 	description `Greenwater is one of the few worlds in Hai space that is home to a sizable human population. The temperature on most of the planet's surface is too warm for the Hai, but tolerable for human beings. Close to the equator are scattered human settlements for farming or fishing, which trade with the Hai cities closer to the poles for technology and equipment.`
 	spaceport `In this bustling spaceport, deeply tanned human merchants are busy haggling with the Hai natives over the price of loads of fish and produce. The atmosphere is quite friendly and relaxed - even here, well into the planet's temperate zone, it is warm enough that everyone, Hai and human alike, moves at a languid pace.`
@@ -23657,7 +23657,7 @@ planet Heartland
 		fleet "Large Republic" 4
 
 planet Heartvalley
-	attributes hai manufacturing "hai vacation"
+	attributes hai manufacturing "hai tourism"
 	landscape land/fog0
 	description `An extreme amount of tectonic activity in its distant past has left Heartvalley with mountain ranges five to ten kilometers high in some places. Most of the Hai settlements here are in the valleys closer to sea level, where the air is dense enough for them to breathe comfortably. The tectonic activity has left many ancient sea-beds exposed, providing access to bountiful supplies of oil. To the Hai, oil is too precious a resource to be used for fuel; instead they process it into plastic and use the byproducts in other chemical processes.`
 	spaceport `The spaceport is built halfway up the slope of one of the most heavily settled valleys. Farther down the valley, the tallest buildings of the city seem tiny compared to the mountains that surround them. On the outskirts of the city sit strange engines the size of a spacecraft, with pipes snaking out from them in all directions and sinking deep into the ground.`
@@ -23801,7 +23801,7 @@ planet Icefall
 		fleet "Small Syndicate" 8
 
 planet Icelake
-	attributes hai factory "human vacation"
+	attributes hai factory "human tourism"
 	landscape land/sky4
 	description `Icelake is the second most populous Hai planet. Since its oil and natural gas reserves have long since been depleted, the large cities and factories here rely heavily on geothermal and wind energy. One fortunate side effect of that is that the air here is almost as pristine as on a non-industrial world.`
 	spaceport `The largest hangars in the spaceport are build of metal beams more than a meter wide, with thick glass panels between them to let in the sunlight. Even the smaller and newer warehouses on the outskirts of the port seem as solid and permanent as the mountains themselves. Thousands of Hai are walking back and forth between the buildings, and many of them regard you with curiosity; there are very few human visitors here.`
@@ -24052,7 +24052,7 @@ planet Maker
 		fleet "Large Syndicate" 10
 
 planet Makerplace
-	attributes hai manufacturing "hai vacation"
+	attributes hai manufacturing "hai tourism"
 	landscape land/lava0
 	description `Makerplace has an unusual degree of volcanic activity due to high concentrations of radioactive elements in the planet's mantle. Although it is warm by Hai standards, the abundance of geothermal energy, combined with plentiful solar energy and wind power, has made it an ideal world for manufacturing. Several cities in the temperate regions have populations of over a hundred million Hai, and the factories surrounding the cities spread out for dozens of kilometers in all directions. Near the equator, much of the land is desert or volcanic wasteland.`
 	spaceport `A fair number of the Hai walking through this spaceport are wearing no clothing at all, perhaps as a response to the warm temperatures. Given that they seem to attract no notice or disapproval by doing so, it appears that this is perfectly normal behavior. Others appear to have trimmed their fur shorter than normal as an alternative way to deal with the heat.`
@@ -24191,7 +24191,7 @@ planet Millrace
 		fleet "Large Syndicate" 8
 
 planet Mirrorlake
-	attributes hai moon "hai vacation"
+	attributes hai moon "hai tourism"
 	landscape land/bwerner1
 	description `The Hai homeworld is orbited by a moon that is large and dense enough to have been able to hold on to its own supply of surface water, and although the atmosphere is cold, much of that water is in liquid form due to the strong tides. In a few places, granite and basalt cliffs rise out of the water, and the Hai have built a few small settlements on the moon, as well.`
 	spaceport `This spaceport appears to be a tourist destination. The architecture is different than on other Hai worlds, and much more primitive: stone and mortar instead of polished metal. However, all the buildings are in good repair: despite their ancient appearance, they must be maintained and rebuilt on a regular basis.`
@@ -25044,7 +25044,7 @@ planet Skillet
 		fleet "Small Republic" 22
 
 planet Skyfarm
-	attributes hai moon "hai vacation"
+	attributes hai moon "hai tourism"
 	landscape land/myrabella6
 	description `Due to the low gravity here, some of the alien crops planted by the Hai grow to heights of five meters or more. The air is too thin for humans or Hai to breathe without carrying supplemental oxygen tanks, so the population is very small. The fields are tended by enormous spider-like robots which are equipped not only for irrigation and harvesting, but also for pollination, since the thin atmosphere has made it impossible for native insects to evolve here.`
 	spaceport `The spaceport is a small city built under a pressurized glass dome, with a ring of hangars and landing pads around its periphery. As with most Hai architecture, the dome and the buildings within it are simple and sparsely decorated, but as you walk through the city everything feels very solid, and ancient. Everything is metal, even the roads and walkways, and the center of many of the roads dips down slightly due to millennia of foot traffic slowly wearing down the metal.`
@@ -25080,7 +25080,7 @@ planet "Smuggler's Den"
 		fleet "Small Southern Pirates" 21
 
 planet Snowfeather
-	attributes hai "hai vacation"
+	attributes hai "hai tourism"
 	landscape land/dmottl4
 	description `Snowfeather is a world with unusually chaotic weather patterns, where snow can fall even in the middle of summer but will melt away within days when the temperature shifts and becomes warmer again. Surprisingly, it is a popular vacation spot for the Hai, who find the unpredictability and occasional violence of the weather here to be invigorating.`
 	spaceport `The core of the spaceport is two rows of hangars, back to back. Their thick metal roofs slope backwards, away from the entrance to each hangar, so that any snow or ice that slides off the roofs will not fall across the opening while ships or people are passing through. The hangars are also elevated about six meters above the ground, to protect against flash floods.`
