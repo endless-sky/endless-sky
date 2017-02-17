@@ -896,7 +896,8 @@ bool Ship::Move(list<Effect> &effects, list<shared_ptr<Flotsam>> &flotsam)
 			shared_ptr<Ship> parent = GetParent();
 			if(!targetPlanet && parent && parent->targetPlanet)
 			{
-				if(parent->targetPlanet->GetPlanet()->GetSystem() == currentSystem)
+				planet = parent->targetPlanet->GetPlanet();
+				if(planet && planet->GetSystem() == currentSystem)
 					targetPlanet = parent->targetPlanet;
 			}
 			direction = -1;
