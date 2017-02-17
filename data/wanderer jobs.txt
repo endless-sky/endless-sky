@@ -13,7 +13,7 @@ mission "Wanderer Workers [0]"
 	job
 	repeat
 	description `These <bunks> Wanderer workers require transportation to <destination>. They will pay you <payment> to take them there.`
-	passengers 5 8 .2
+	passengers 5 5 .1
 	to offer
 		has "language: Wanderer"
 		random < 80
@@ -33,7 +33,7 @@ mission "Wanderer Workers [1]"
 	job
 	repeat
 	description `These <bunks> Wanderer workers require transportation to <destination>. They will pay you <payment> to take them there.`
-	passengers 5 5 .1
+	passengers 5 3 .08
 	to offer
 		has "language: Wanderer"
 		random < 70
@@ -53,7 +53,7 @@ mission "Wanderer Farmers [0]"
 	job
 	repeat
 	description `These <bunks> Wanderer farmers require transportation to <destination>. They will pay you <payment> to take them there.`
-	passengers 5 8 .2
+	passengers 5 5 .1
 	to offer
 		has "language: Wanderer"
 		random < 80
@@ -73,7 +73,7 @@ mission "Wanderer Farmers [1]"
 	job
 	repeat
 	description `These <bunks> Wanderer farmers require transportation to <destination>. They will pay you <payment> to take them there.`
-	passengers 5 5 .1
+	passengers 5 3 .05
 	to offer
 		has "language: Wanderer"
 		random < 70
@@ -93,7 +93,7 @@ mission "Wanderer Younglings [0]"
 	job
 	repeat
 	description `These <bunks> Wanderer younglings are looking for transport to <destination> to learn more about the Wanderer terraforming process. The adult with them will pay you <payment>.`
-	passengers 11 31
+	passengers 5 8 .2
 	to offer
 		has "language: Wanderer"
 		random < 70
@@ -112,7 +112,7 @@ mission "Wanderer Younglings [1]"
 	job
 	repeat
 	description `These <bunks> Wanderer younglings are looking for transport to <destination> to learn more about the Wanderer terraforming process. The adult with them will pay you <payment>.`
-	passengers 11 31
+	passengers 5 5 .1
 	to offer
 		has "language: Wanderer"
 		random < 60
@@ -131,7 +131,7 @@ mission "Wanderer Scientists (Pollution) [0]"
 	job
 	repeat
 	description `These <bunks> Wanderer scientists wish to get to <destination> with their <cargo> by <date> to investigate a strange spike in atmospheric pollutants. Payment will be <payment>.`
-	passengers 4 4 .2
+	passengers 4 4 .1
 	cargo "scientific equipment" 5 2 .1
 	deadline
 	to offer
@@ -152,7 +152,7 @@ mission "Wanderer Scientists (Pollution) [1]"
 	job
 	repeat
 	description `These <bunks> Wanderer scientists wish to get to <destination> with their <cargo> by <date> to investigate a strange spike in atmospheric pollutants. Payment will be <payment>.`
-	passengers 4 4 .1
+	passengers 4 4 .05
 	cargo "scientific equipment" 5 2 .1
 	deadline
 	to offer
@@ -173,7 +173,7 @@ mission "Wanderer Scientists (Phenomenon) [0]"
 	job
 	repeat
 	description `These <bunks> Wanderer scientists wish to get to <destination> with their <cargo> by <date> to observe a rare natural phenomenon. Payment will be <payment>.`
-	passengers 4 4 .2
+	passengers 4 4 .1
 	cargo "scientific equipment" 5 2 .1
 	deadline
 	to offer
@@ -193,7 +193,7 @@ mission "Wanderer Scientists (Phenomenon) [1]"
 	job
 	repeat
 	description `These <bunks> Wanderer scientists wish to get to <destination> with their <cargo> by <date> to observe a rare natural phenomenon. Payment will be <payment>.`
-	passengers 4 4 .1
+	passengers 4 4 .05
 	cargo "scientific equipment" 5 2 .1
 	deadline
 	to offer
@@ -213,7 +213,7 @@ mission "Wanderer Biologists [0]"
 	job
 	repeat
 	description `These <bunks> Wanderer biologists wish to get to <destination> with their <cargo> to study a recently discovered animal species. Payment will be <payment>.`
-	passengers 4 4 .2
+	passengers 4 4 .1
 	cargo "scientific equipment" 5 2 .1
 	to offer
 		has "language: Wanderer"
@@ -233,7 +233,7 @@ mission "Wanderer Biologists [1]"
 	job
 	repeat
 	description `These <bunks> Wanderer biologists wish to get to <destination> with their <cargo> to study a recently discovered animal species. Payment will be <payment>.`
-	passengers 4 4 .1
+	passengers 4 4 .05
 	cargo "scientific equipment" 5 2 .1
 	to offer
 		has "language: Wanderer"
@@ -253,7 +253,7 @@ mission "Wanderer Botanists [0]"
 	job
 	repeat
 	description `These <bunks> Wanderer botanists wish to get to <destination> with their <cargo> to study a recently discovered plant species. Payment will be <payment>.`
-	passengers 4 4 .2
+	passengers 4 4 .1
 	cargo "scientific equipment" 5 2 .1
 	to offer
 		has "language: Wanderer"
@@ -273,7 +273,7 @@ mission "Wanderer Botanists [1]"
 	job
 	repeat
 	description `These <bunks> Wanderer botanists wish to get to <destination> with their <cargo> to study a recently discovered plant species. Payment will be <payment>.`
-	passengers 4 4 .1
+	passengers 4 4 .05
 	cargo "scientific equipment" 5 2 .1
 	to offer
 		has "language: Wanderer"
@@ -293,7 +293,7 @@ mission "Wanderer Harvest [0]"
 	job
 	repeat
 	description `Bring these <bunks> Wanderers to <destination> to assist in the food harvest. Payment is <payment>.`
-	passengers 2 10 .3
+	passengers 5 3 .02
 	to offer
 		has "language: Wanderer"
 		random < 60
@@ -313,7 +313,7 @@ mission "Wanderer Harvest [1]"
 	job
 	repeat
 	description `Bring these <bunks> Wanderers to <destination> to assist in the food harvest. Payment is <payment>.`
-	passengers 2 10 .2
+	passengers 5 3 .01
 	to offer
 		has "language: Wanderer"
 		random < 50
@@ -333,7 +333,7 @@ mission "Wanderer Invasive Species [0]"
 	job
 	repeat
 	description `These <bunks> Wanderers need to get to <stopovers> with their <cargo> by <date> to contain an invasive animal species. Return the Wanderers to <origin> with the animals for a payment of <payment>.`
-	passengers 4 4 .2
+	passengers 4 4 .1
 	cargo "containers" 5 2 .1
 	deadline
 	to offer
@@ -377,7 +377,7 @@ mission "Wanderer Cargo [0]"
 	job
 	repeat
 	description `Deliver <cargo> to <destination>. Payment is <payment>.`
-	cargo random 4 6 .3
+	cargo random 4 4 .2
 	to offer
 		has "language: Wanderer"
 		random < 80
@@ -396,7 +396,7 @@ mission "Wanderer Cargo [1]"
 	job
 	repeat
 	description `Deliver <cargo> to <destination>. Payment is <payment>.`
-	cargo random 4 8 .3
+	cargo random 4 4 .17
 	to offer
 		has "language: Wanderer"
 		random < 70
@@ -415,7 +415,7 @@ mission "Wanderer Cargo [2]"
 	job
 	repeat
 	description `Deliver <cargo> to <destination>. Payment is <payment>.`
-	cargo random 4 11 .3
+	cargo random 4 4 .15
 	to offer
 		has "language: Wanderer"
 		random < 60
@@ -434,7 +434,7 @@ mission "Wanderer Cargo [3]"
 	job
 	repeat
 	description `Deliver <cargo> to <destination>. Payment is <payment>.`
-	cargo random 4 13 .3
+	cargo random 4 4 .12
 	to offer
 		has "language: Wanderer"
 		random < 50
@@ -453,7 +453,7 @@ mission "Wanderer Cargo [4]"
 	job
 	repeat
 	description `Deliver <cargo> to <destination>. Payment is <payment>.`
-	cargo random 4 15 .3
+	cargo random 4 4 .1
 	to offer
 		has "language: Wanderer"
 		random < 40
@@ -472,7 +472,7 @@ mission "Wanderer Rush Delivery [0]"
 	job
 	repeat
 	description `Deliver <cargo> to <destination> by <date>. Payment is <payment>.`
-	cargo random 10 8 .2
+	cargo random 10 8 .1
 	deadline
 	to offer
 		has "language: Wanderer"
@@ -492,7 +492,7 @@ mission "Wanderer Rush Delivery [1]"
 	job
 	repeat
 	description `Deliver <cargo> to <destination> by <date>. Payment is <payment>.`
-	cargo random 10 12 .2
+	cargo random 10 12 .1
 	deadline
 	to offer
 		has "language: Wanderer"
@@ -512,7 +512,7 @@ mission "Wanderer Rush Delivery [2]"
 	job
 	repeat
 	description `Deliver <cargo> to <destination> by <date>. Payment is <payment>.`
-	cargo random 10 15 .2
+	cargo random 10 15 .1
 	deadline
 	to offer
 		has "language: Wanderer"
@@ -532,7 +532,7 @@ mission "Wanderer Rush Delivery [3]"
 	job
 	repeat
 	description `Deliver <cargo> to <destination> by <date>. Payment is <payment>.`
-	cargo random 10 18 .2
+	cargo random 10 18 .1
 	deadline
 	to offer
 		has "language: Wanderer"
@@ -552,7 +552,7 @@ mission "Wanderer Bulk Delivery [0]"
 	job
 	repeat
 	description `Deliver <cargo> to <destination>. Payment is <payment>.`
-	cargo random 20 6 .1
+	cargo random 30 4 .1
 	to offer
 		has "language: Wanderer"
 		random < 60
@@ -571,7 +571,7 @@ mission "Wanderer Bulk Delivery [1]"
 	job
 	repeat
 	description `Deliver <cargo> to <destination>. Payment is <payment>.`
-	cargo random 30 9 .1
+	cargo random 40 6 .1
 	to offer
 		has "language: Wanderer"
 		random < 50
@@ -590,7 +590,7 @@ mission "Wanderer Bulk Delivery [2]"
 	job
 	repeat
 	description `Deliver <cargo> to <destination>. Payment is <payment>.`
-	cargo random 40 15 .1
+	cargo random 50 10 .1
 	to offer
 		has "language: Wanderer"
 		random < 40
