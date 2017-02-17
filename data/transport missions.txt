@@ -656,6 +656,7 @@ mission "There Might Be Riots 1"
 	minor
 	source
 		near Tarazed 5 10
+		government "Republic" "Free Worlds" "Neutral"
 	destination "Wayfarer"
 	cargo "musical equipment" 4
 	passengers 8
