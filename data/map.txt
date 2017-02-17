@@ -7207,7 +7207,7 @@ system Diphda
 system Dokdobaru
 	pos -21.5695 -241.812
 	government Quarg
-	habitable 320
+	habitable 700
 	belt 1935
 	link Hesselpost
 	link Kashikt
