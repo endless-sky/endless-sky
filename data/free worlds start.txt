@@ -1410,8 +1410,8 @@ mission "FW Pirates 3.2C"
 	clearance "There's no response from Greenrock's Traffic Control, and their systems aren't active. Perhaps the people there are part of the pirate armada's crew? On the planet at least, there's nothing left to stop you from landing." 
 	infiltrating
 	to offer
-	has "FW Pirates 3.2A: done"
-	"combat rating" > 5000
+		has "FW Pirates 3.2A: done"
+		"combat rating" > 5000
 	source Greenrock
 	destination Greenrock
 	on offer
@@ -1786,13 +1786,11 @@ mission "FW Pirates 4.2"
 			`JJ and Freya meet you on your ship soon after you land on <origin>, accompanied by two uniformed military policemen. 
 			`	"We heard about the hornet's nest you stirred up from the other captains, before we arrested them," says JJ. "Congratulations. you escaped from the disaster brought on by your stupidity, and the pirates are united against us. Now we have to fight a war on two fronts while you sit in prison with Tomek." He gestures to two military policemen, who pull out handcuffs and move toward you.`
 			choice
-				`	"Are you aware that I destroyed the pirate armada? Let me show you."`
-					goto recording
-				`	You hold out your wrists. "I will submit to your authority."`
+				`	(Hold out your wrists.)	"I will submit to your authority."`
 					goto arrested
-				`	You surreptitiously flip on the fleet broadcaster. "You're arresting me? For what?"`
+				`	(surreptitiously flip on the fleet broadcaster.) "You're arresting me? For what?"`
 					goto argue
-			label recording
+				`	"Are you aware that I destroyed the pirate armada? Let me show you."`
 			`	"This is no time for jokes, <first>," Freya says quietly. "We saw the sensor logs from the surviving ships that got away. You're in enough trouble as it is. Don't make it worse with an obvious lie.`
 			`	"Wait," you say, holding your hands up. The military policemen pause and look to JJ. Before he can wave them on, you call up a recording of the battle. The explosions, the shudder of weapon impacts, and the cries of the dying almost make you think you're back in it, but you manage to shake off the flash-backs. When the final explosion ends, JJ and Freya stare at you, pale and wide-eyed. `
 			`Freya breaks the silence. "I... I don't know what to say. You destroyed the core of the combined pirate fleet?! How? What kind of technology are you packing in this ship?"` 
@@ -1876,11 +1874,12 @@ mission "FW Pirates 4.2"
 			`	"Officially, we have decided that you will be suspended for your disobedience without pay. Separately, and rather unofficially, we have adjusted our clandestine operations budget to pay you a regular retainer. We will need your services again, and we hope you will come quickly when we contact you."`
 			`	JJ walks you out of the Senate building. "I'm so sorry for the way I treated you back on Longjump," he says. "When we thought a pirate armada was ready to strike, we were willing to do anything to break them up, even if it meant making a very public example of you." His face reddens. "It took the shock of seeing my sister again to make me see sense. I hope you'll forgive me for it someday." You shake hands, and feel him pass you a folded was of paper. Then JJ is gone, striding off to another committee meeting. 
 			`Back onboard <ship>, you open the paper. It reads,`
-			`	<first>,`
 			`	`
+			`	<first>,`
 			`		DESTROY THIS NOTE AFTER YOU READ IT. We've been reviewing your recording of the battle over Greenrock. One of the ships you defeated had technology and fighters in it that were radically different from anything we've seen. We suspect that may have been a cell of Alphas. They've been known to capture fertile women in order to breed, so they had a vested interest in protecting Greenrock's slave market. We've heard rumors of mysterious hostile vessels raiding the eastern Syndicate; they may be connected. We don't have the resources to check any of this out, and I can't officially order you to do anything while you're suspended, but I suggest you check out that area for yourself. Godspeed.`
 			`	`
 			`			-JJ`
+			`	`
 			`	`
 			`	As you burn the note, you ponder what you'll do now. Explore? Trade? Hunt more pirates? For now, your life is back in your hands.`
 
