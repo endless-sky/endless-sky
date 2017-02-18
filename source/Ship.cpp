@@ -652,7 +652,7 @@ void Ship::SetPersonality(const Personality &other)
 	if(personality.IsDerelict())
 	{
 		shields = 0.;
-		hull = .5 * MinimumHull();
+		hull = min(hull, .5 * MinimumHull());
 		isDisabled = true;
 	}
 }
