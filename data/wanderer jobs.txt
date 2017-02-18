@@ -16,7 +16,7 @@ mission "Wanderer Workers [0]"
 	passengers 5 5 .1
 	to offer
 		has "language: Wanderer"
-		random < 80
+		random < 70
 	source
 		government "Wanderer"
 	destination
@@ -36,7 +36,7 @@ mission "Wanderer Workers [1]"
 	passengers 5 3 .08
 	to offer
 		has "language: Wanderer"
-		random < 70
+		random < 60
 	source
 		government "Wanderer"
 	destination
@@ -56,7 +56,7 @@ mission "Wanderer Farmers [0]"
 	passengers 5 5 .1
 	to offer
 		has "language: Wanderer"
-		random < 80
+		random < 70
 	source
 		government "Wanderer"
 	destination
@@ -76,7 +76,7 @@ mission "Wanderer Farmers [1]"
 	passengers 5 3 .05
 	to offer
 		has "language: Wanderer"
-		random < 70
+		random < 60
 	source
 		government "Wanderer"
 	destination
@@ -96,7 +96,7 @@ mission "Wanderer Younglings [0]"
 	passengers 5 8 .2
 	to offer
 		has "language: Wanderer"
-		random < 70
+		random < 60
 	source
 		government "Wanderer"
 	destination
@@ -115,7 +115,7 @@ mission "Wanderer Younglings [1]"
 	passengers 5 5 .1
 	to offer
 		has "language: Wanderer"
-		random < 60
+		random < 50
 	source
 		government "Wanderer"
 	destination
@@ -136,7 +136,7 @@ mission "Wanderer Scientists (Pollution) [0]"
 	deadline
 	to offer
 		has "language: Wanderer"
-		random < 40
+		random < 30
 	source
 		government "Wanderer"
 	destination
@@ -157,7 +157,7 @@ mission "Wanderer Scientists (Pollution) [1]"
 	deadline
 	to offer
 		has "language: Wanderer"
-		random < 30
+		random < 20
 	source
 		government "Wanderer"
 	destination
@@ -178,7 +178,7 @@ mission "Wanderer Scientists (Phenomenon) [0]"
 	deadline
 	to offer
 		has "language: Wanderer"
-		random < 40
+		random < 30
 	source
 		government "Wanderer"
 	destination
@@ -198,7 +198,7 @@ mission "Wanderer Scientists (Phenomenon) [1]"
 	deadline
 	to offer
 		has "language: Wanderer"
-		random < 30
+		random < 20
 	source
 		government "Wanderer"
 	destination
@@ -217,7 +217,7 @@ mission "Wanderer Biologists [0]"
 	cargo "scientific equipment" 5 2 .1
 	to offer
 		has "language: Wanderer"
-		random < 70
+		random < 60
 	source
 		government "Wanderer"
 	destination
@@ -237,7 +237,7 @@ mission "Wanderer Biologists [1]"
 	cargo "scientific equipment" 5 2 .1
 	to offer
 		has "language: Wanderer"
-		random < 60
+		random < 50
 	source
 		government "Wanderer"
 	destination
@@ -257,7 +257,7 @@ mission "Wanderer Botanists [0]"
 	cargo "scientific equipment" 5 2 .1
 	to offer
 		has "language: Wanderer"
-		random < 70
+		random < 60
 	source
 		government "Wanderer"
 	destination
@@ -277,7 +277,7 @@ mission "Wanderer Botanists [1]"
 	cargo "scientific equipment" 5 2 .1
 	to offer
 		has "language: Wanderer"
-		random < 60
+		random < 50
 	source
 		government "Wanderer"
 	destination
@@ -296,7 +296,7 @@ mission "Wanderer Harvest [0]"
 	passengers 5 3 .02
 	to offer
 		has "language: Wanderer"
-		random < 60
+		random < 50
 	source
 		government "Wanderer"
 	destination
@@ -316,7 +316,7 @@ mission "Wanderer Harvest [1]"
 	passengers 5 3 .01
 	to offer
 		has "language: Wanderer"
-		random < 50
+		random < 40
 	source
 		government "Wanderer"
 	destination
@@ -338,7 +338,7 @@ mission "Wanderer Invasive Species [0]"
 	deadline
 	to offer
 		has "language: Wanderer"
-		random < 40
+		random < 30
 	source
 		government "Wanderer"
 	stopover
@@ -380,7 +380,7 @@ mission "Wanderer Cargo [0]"
 	cargo random 4 4 .2
 	to offer
 		has "language: Wanderer"
-		random < 80
+		random < 70
 	source
 		government "Wanderer"
 	destination
@@ -399,7 +399,7 @@ mission "Wanderer Cargo [1]"
 	cargo random 4 4 .17
 	to offer
 		has "language: Wanderer"
-		random < 70
+		random < 60
 	source
 		government "Wanderer"
 	destination
@@ -418,7 +418,7 @@ mission "Wanderer Cargo [2]"
 	cargo random 4 4 .15
 	to offer
 		has "language: Wanderer"
-		random < 60
+		random < 50
 	source
 		government "Wanderer"
 	destination
@@ -437,7 +437,7 @@ mission "Wanderer Cargo [3]"
 	cargo random 4 4 .12
 	to offer
 		has "language: Wanderer"
-		random < 50
+		random < 40
 	source
 		government "Wanderer"
 	destination
@@ -456,7 +456,7 @@ mission "Wanderer Cargo [4]"
 	cargo random 4 4 .1
 	to offer
 		has "language: Wanderer"
-		random < 40
+		random < 30
 	source
 		government "Wanderer"
 	destination
@@ -476,7 +476,7 @@ mission "Wanderer Rush Delivery [0]"
 	deadline
 	to offer
 		has "language: Wanderer"
-		random < 60
+		random < 50
 	source
 		government "Wanderer"
 	destination
@@ -496,7 +496,7 @@ mission "Wanderer Rush Delivery [1]"
 	deadline
 	to offer
 		has "language: Wanderer"
-		random < 50
+		random < 40
 	source
 		government "Wanderer"
 	destination
@@ -516,7 +516,7 @@ mission "Wanderer Rush Delivery [2]"
 	deadline
 	to offer
 		has "language: Wanderer"
-		random < 40
+		random < 30
 	source
 		government "Wanderer"
 	destination
@@ -536,7 +536,7 @@ mission "Wanderer Rush Delivery [3]"
 	deadline
 	to offer
 		has "language: Wanderer"
-		random < 30
+		random < 20
 	source
 		government "Wanderer"
 	destination
@@ -555,7 +555,7 @@ mission "Wanderer Bulk Delivery [0]"
 	cargo random 30 4 .1
 	to offer
 		has "language: Wanderer"
-		random < 60
+		random < 50
 	source
 		government "Wanderer"
 	destination
@@ -574,7 +574,7 @@ mission "Wanderer Bulk Delivery [1]"
 	cargo random 40 6 .1
 	to offer
 		has "language: Wanderer"
-		random < 50
+		random < 40
 	source
 		government "Wanderer"
 	destination
@@ -593,7 +593,7 @@ mission "Wanderer Bulk Delivery [2]"
 	cargo random 50 10 .1
 	to offer
 		has "language: Wanderer"
-		random < 40
+		random < 30
 	source
 		government "Wanderer"
 	destination
