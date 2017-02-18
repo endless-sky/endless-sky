@@ -186,7 +186,12 @@ int main(int argc, char *argv[])
 		GameData::LoadShaders();
 		// Make sure the screen size and viewport are set correctly.
 		AdjustViewport(window);
+#ifndef __APPLE__
+		// On OS X, setting the window icon will cause that same icon to be used
+		// in the dock and the application switcher. That's not something we
+		// want, because the .icns icon that is used automatically is prettier.
 		SetIcon(window);
+#endif
 		if(!isFullscreen)
 			SDL_GetWindowSize(window, &windowWidth, &windowHeight);
 		
