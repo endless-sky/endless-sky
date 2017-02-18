@@ -1013,6 +1013,9 @@ void AI::MoveEscort(Ship &ship, Command &command) const
 	bool hasFuelCapacity = ship.Attributes().Get("fuel capacity") && ship.JumpFuel();
 	bool isStaying = ship.GetPersonality().IsStaying() || !hasFuelCapacity;
 	bool parentIsHere = (ship.GetSystem() == parent.GetSystem());
+	// Check if the parent has a target planet that is in the parent's system.
+	const Planet *parentPlanet = (parent.GetTargetPlanet() ? parent.GetTargetPlanet()->GetPlanet() : nullptr);
+	bool planetIsHere = (parentPlanet && parentPlanet->GetSystem() == parent.GetSystem());
 	// If an escort is out of fuel, they should refuel without waiting for the
 	// "parent" to land (because the parent may not be planning on landing).
 	if(hasFuelCapacity && !ship.JumpsRemaining() && ship.GetSystem()->HasFuelFor(ship))
@@ -1050,7 +1053,7 @@ void AI::MoveEscort(Ship &ship, Command &command) const
 			command |= Command::JUMP;
 		}
 	}
-	else if(parent.Commands().Has(Command::LAND) && parent.GetTargetPlanet() && parentIsHere)
+	else if(parent.Commands().Has(Command::LAND) && parentIsHere && planetIsHere && parentPlanet->CanLand(ship))
 	{
 		ship.SetTargetPlanet(parent.GetTargetPlanet());
 		MoveToPlanet(ship, command);
@@ -1081,18 +1084,14 @@ void AI::MoveEscort(Ship &ship, Command &command) const
 
 void AI::Refuel(Ship &ship, Command &command)
 {
-	const StellarObject *parentPlanet = (ship.GetParent() ? ship.GetParent()->GetTargetPlanet() : nullptr);
-	if(parentPlanet && parentPlanet->GetPlanet()
-			&& parentPlanet->GetPlanet()->GetSystem() == ship.GetSystem()
-			&& parentPlanet->GetPlanet()->HasSpaceport()
-			&& parentPlanet->GetPlanet()->CanLand(ship))
-		ship.SetTargetPlanet(parentPlanet);
-	else if(!ship.GetTargetPlanet())
+	const StellarObject *parentTarget = (ship.GetParent() ? ship.GetParent()->GetTargetPlanet() : nullptr);
+	if(CanRefuel(ship, parentTarget))
+		ship.SetTargetPlanet(parentTarget);
+	else if(!CanRefuel(ship, ship.GetTargetPlanet()))
 	{
 		double closest = numeric_limits<double>::infinity();
 		for(const StellarObject &object : ship.GetSystem()->Objects())
-			if(object.GetPlanet() && object.GetPlanet()->HasSpaceport() 
-					&& !object.GetPlanet()->IsWormhole() && object.GetPlanet()->CanLand(ship))
+			if(CanRefuel(ship, &object))
 			{
 				double distance = ship.Position().Distance(object.Position());
 				if(distance < closest)
@@ -1107,6 +1106,26 @@ void AI::Refuel(Ship &ship, Command &command)
 		MoveToPlanet(ship, command);
 		command |= Command::LAND;
 	}
+}
+
+
+
+bool AI::CanRefuel(const Ship &ship, const StellarObject *target)
+{
+	if(!target)
+		return false;
+	
+	const Planet *planet = target->GetPlanet();
+	if(!planet)
+		return false;
+	
+	if(planet->GetSystem() != ship.GetSystem())
+		return false;
+	
+	if(!planet->HasSpaceport() || planet->IsWormhole() || !planet->CanLand(ship))
+		return false;
+	
+	return true;
 }
 
 
