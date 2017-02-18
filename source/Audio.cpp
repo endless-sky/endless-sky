@@ -538,8 +538,6 @@ namespace {
 	// Thread entry point for loading sounds.
 	void Load()
 	{
-		set<string> loaded;
-		
 		string name;
 		string path;
 		while(true)
