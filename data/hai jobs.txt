@@ -30,7 +30,7 @@ mission "Human Vacation [2]"
 	job
 	repeat
 	description "These <bunks> humans want to vacation on the Hai world of <destination>, and will pay you <payment>."
-	passengers 2 12 .9
+	passengers 2 12 .8
 	to offer
 		random < 40
 	source
@@ -47,7 +47,7 @@ mission "Human Vacation [3]"
 	job
 	repeat
 	description "These <bunks> humans want to vacation on the Hai world of <destination>, and will pay you <payment>."
-	passengers 2 12 .9
+	passengers 2 12 .8
 	to offer
 		random < 30
 	source
@@ -64,7 +64,7 @@ mission "Human Vacation [4]"
 	job
 	repeat
 	description "These <bunks> humans want to vacation on the Hai world of <destination>, and will pay you <payment>."
-	passengers 2 12 .9
+	passengers 2 12 .8
 	to offer
 		random < 30
 	source
@@ -96,7 +96,7 @@ mission "Hai Vacation [2]"
 	job
 	repeat
 	description "These <bunks> Hai want to vacation on the strange Hai world of <destination>, and will pay you <payment>."
-	passengers 2 12 .9
+	passengers 2 12 .8
 	to offer
 		random < 70
 	source
@@ -113,7 +113,7 @@ mission "Hai Vacation [3]"
 	job
 	repeat
 	description "These <bunks> Hai want to vacation on the strange Hai world of <destination>, and will pay you <payment>."
-	passengers 2 12 .9
+	passengers 2 12 .8
 	to offer
 		random < 50
 	source
@@ -130,7 +130,7 @@ mission "Hai Vacation [4]"
 	job
 	repeat
 	description "These <bunks> Hai want to vacation on the strange Hai world of <destination>, and will pay you <payment>."
-	passengers 2 12 .9
+	passengers 2 12 .8
 	to offer
 		random < 40
 	source
@@ -820,7 +820,7 @@ mission "Hai Cargo [0]"
 	job
 	repeat
 	description "Deliver <cargo> to <destination>. Payment is <payment>."
-	cargo random 8 2 .1
+	cargo random 8 4 .1
 	source
 		government "Hai"
 	destination
@@ -835,7 +835,7 @@ mission "Hai Cargo [1]"
 	job
 	repeat
 	description "Deliver <cargo> to <destination>. Payment is <payment>."
-	cargo random 8 2 .1
+	cargo random 8 4 .1
 	to offer
 		random < 90
 	source
@@ -852,7 +852,7 @@ mission "Hai Cargo [2]"
 	job
 	repeat
 	description "Deliver <cargo> to <destination>. Payment is <payment>."
-	cargo random 8 2 .1
+	cargo random 8 4 .1
 	to offer
 		random < 80
 	source
@@ -870,7 +870,7 @@ mission "Hai Cargo [3]"
 	job
 	repeat
 	description "Deliver <cargo> to <destination>. Payment is <payment>."
-	cargo random 8 2 .1
+	cargo random 8 4 .1
 	to offer
 		random < 70
 	source
@@ -889,7 +889,7 @@ mission "Hai Cargo [4]"
 	job
 	repeat
 	description "Deliver <cargo> to <destination>. Payment is <payment>."
-	cargo random 8 2 .1
+	cargo random 8 4 .1
 	to offer
 		random < 60
 	source
@@ -908,7 +908,7 @@ mission "Hai Bulk Delivery [0]"
 	job
 	repeat
 	description "Deliver <cargo> to <destination>. Payment is <payment>."
-	cargo random 35 2 .05
+	cargo random 35 3 .05
 	to offer
 		random < 70
 	source
@@ -925,7 +925,7 @@ mission "Hai Bulk Delivery [1]"
 	job
 	repeat
 	description "Deliver <cargo> to <destination>. Payment is <payment>."
-	cargo random 35 2 .05
+	cargo random 35 3 .05
 	to offer
 		random < 60
 	source
@@ -943,7 +943,7 @@ mission "Hai Bulk Delivery [2]"
 	job
 	repeat
 	description "Deliver <cargo> to <destination>. Payment is <payment>."
-	cargo random 35 2 .05
+	cargo random 35 3 .05
 	to offer
 		random < 50
 	source
@@ -962,7 +962,7 @@ mission "Hai Large Bulk Delivery [0]"
 	job
 	repeat
 	description "Deliver <cargo> to <destination>. Payment is <payment>."
-	cargo random 50 2 .02
+	cargo random 50 3 .02
 	to offer
 		random < 70
 		"cargo space" > 160
@@ -981,7 +981,7 @@ mission "Hai Large Bulk Delivery [1]"
 	job
 	repeat
 	description "Deliver <cargo> to <destination>. Payment is <payment>."
-	cargo random 50 2 .02
+	cargo random 50 3 .02
 	to offer
 		random < 60
 		"cargo space" > 160
@@ -1000,7 +1000,7 @@ mission "Hai Large Bulk Delivery [2]"
 	job
 	repeat
 	description "Deliver <cargo> to <destination>. Payment is <payment>."
-	cargo random 50 2 .02
+	cargo random 50 3 .02
 	to offer
 		random < 50
 		"cargo space" > 160
@@ -1021,7 +1021,7 @@ mission "Hai Rush Delivery [0]"
 	repeat
 	deadline
 	description "Deliver <cargo> to <destination> by <date>. Payment is <payment>."
-	cargo random 8 2 .1
+	cargo random 8 3 .1
 	to offer
 		random < 90
 	source
@@ -1040,7 +1040,7 @@ mission "Hai Rush Delivery [1]"
 	repeat
 	deadline
 	description "Deliver <cargo> to <destination> by <date>. Payment is <payment>."
-	cargo random 8 2 .1
+	cargo random 8 3 .1
 	to offer
 		random < 80
 	source
@@ -1059,7 +1059,7 @@ mission "Hai Rush Delivery [2]"
 	repeat
 	deadline
 	description "Deliver <cargo> to <destination> by <date>. Payment is <payment>."
-	cargo random 8 2 .1
+	cargo random 8 3 .1
 	to offer
 		random < 70
 	source
@@ -1079,7 +1079,7 @@ mission "Hai Rush Delivery [3]"
 	repeat
 	deadline
 	description "Deliver <cargo> to <destination> by <date>. Payment is <payment>."
-	cargo random 8 2 .1
+	cargo random 8 3 .1
 	to offer
 		random < 60
 	source
@@ -1099,7 +1099,7 @@ mission "Hai Large Rush Delivery [0]"
 	repeat
 	deadline
 	description "Deliver <cargo> to <destination> by <date>. Payment is <payment>."
-	cargo random 30 6 .1
+	cargo random 30 8 .1
 	to offer
 		random < 90
 		"cargo space" > 80
@@ -1119,7 +1119,7 @@ mission "Hai Large Rush Delivery [1]"
 	repeat
 	deadline
 	description "Deliver <cargo> to <destination> by <date>. Payment is <payment>."
-	cargo random 30 6 .1
+	cargo random 30 8 .1
 	to offer
 		random < 80
 		"cargo space" > 80
@@ -1139,7 +1139,7 @@ mission "Hai Large Rush Delivery [2]"
 	repeat
 	deadline
 	description "Deliver <cargo> to <destination> by <date>. Payment is <payment>."
-	cargo random 30 6 .1
+	cargo random 30 8 .1
 	to offer
 		random < 70
 		"cargo space" > 80
@@ -1160,7 +1160,7 @@ mission "Hai Large Rush Delivery [3]"
 	repeat
 	deadline
 	description "Deliver <cargo> to <destination> by <date>. Payment is <payment>."
-	cargo random 30 6 .1
+	cargo random 30 8 .1
 	to offer
 		random < 60
 		"cargo space" > 80
