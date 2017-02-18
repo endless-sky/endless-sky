@@ -954,7 +954,9 @@ void Engine::CalculateStep()
 		}
 		else
 		{
-			if(&**it != flagship)
+			// Check if we need to play sounds for a ship jumping in or out of
+			// the system. Make no sound if it entered via wormhole.
+			if(&**it != flagship && (*it)->Zoom() == 1.)
 			{
 				// Did this ship just begin hyperspacing?
 				if(wasHere && !wasHyperspacing && (*it)->IsHyperspacing())
