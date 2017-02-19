@@ -698,8 +698,8 @@ ship "Carrier"
 	gun 25 -166 "Meteor Missile Launcher"
 	turret 0 -114 "Heavy Laser Turret"
 	turret 0 15 "Heavy Laser Turret"
-	turret 0 103 "Heavy Laser Turret"
-	turret 0 157 "Heavy Anti-Missile Turret"
+	turret 0 103 "Heavy Anti-Missile Turret"
+	turret 0 157 "Heavy Laser Turret"
 	fighter -37 -65
 	fighter 37 -65
 	fighter -46 40
