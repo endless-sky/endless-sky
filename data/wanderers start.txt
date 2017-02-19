@@ -596,6 +596,7 @@ mission "Wanderers: Jump Drive Source"
 	landing
 	name "Jump drive source?"
 	description "Iktat Rek asked you to acquire a spare jump drive and sell it to the Unfettered in exchange for information on where they are getting jump drives from. Then, return to <destination>."
+	autosave
 	source "Vara K'chrai"
 	to offer
 		has "main plot completed"
@@ -686,6 +687,7 @@ mission "Unfettered: Jump Drive Source"
 mission "Wanderers: Alpha Surveillance A"
 	name "Alpha Surveillance"
 	description "Drop off surveillance micro-satellites in the three Unfettered home systems, then stop by <destination>, to see if the Hai government knows anything about an Alpha enclave nearby."
+	autosave
 	source "Vara K'chrai"
 	destination "Hai-home"
 	to offer
@@ -930,6 +932,7 @@ ship "Carrier" "Carrier (Alpha)"
 mission "Wanderers: Alpha Surveillance D"
 	name "Find the Alphas"
 	description "With the help of Elias Hanover and his tracker device, locate the Alpha Base and then return to the Quarg ringworld of <planet>."
+	autosave
 	source "Alta Hai"
 	to offer
 		or
@@ -1048,6 +1051,7 @@ mission "Wanderers: Alpha Surveillance E"
 mission "Wanderers: Alpha Surveillance F"
 	name "Invade Avalon"
 	description "Escort Admiral Danforth's Navy Cruiser to <destination>, and land on the planet with them. They will attempt to locate and eliminate the Alpha base."
+	autosave
 	source "Farpoint"
 	destination "Avalon"
 	passengers 1
@@ -1216,6 +1220,7 @@ mission "Wanderers: Alpha Surveillance H"
 mission "Wanderers: Alpha Surveillance I"
 	name "Return Elias to <planet>"
 	description "Bring Elias Hanover back to <destination>, where he will hopefully be safe from Alpha retaliation for driving them out of their base on Avalon."
+	autosave
 	source "Farpoint"
 	destination "Alta Hai"
 	to offer
@@ -1313,6 +1318,7 @@ mission "Wanderers Invaded 1"
 	landing
 	name "Evacuate <planet>"
 	description `Escort a fleet of freighters, refitted for carrying refugees, to <destination>.`
+	autosave
 	source "Vara K'chrai"
 	destination "Varu Mer'ek"
 	to offer
@@ -1347,6 +1353,7 @@ mission "Wanderers Invaded 1B"
 	landing
 	name "Evacuate <origin>"
 	description `Escort a fleet of freighters, refitted for carrying refugees, to <destination>.`
+	autosave
 	source "Varu Mer'ek"
 	destination "Var' Kar'i'i"
 	to offer
@@ -1398,6 +1405,7 @@ event "battle for ik'kara'ka"
 mission "Wanderers Invaded 2"
 	name "Defend <planet>"
 	description `Drive off the Unfettered fleet attacking <system> to buy the Wanderers more time, then land on <planet>.`
+	autosave
 	source "Var' Kar'i'i"
 	destination "Varu Mer'ek"
 	to offer
@@ -1482,6 +1490,7 @@ mission "Wanderers Invaded 3"
 	landing
 	name "Evacuate <planet>"
 	description `Escort another fleet of Wanderer refugee transports to <destination>.`
+	autosave
 	source "Varu Mer'ek"
 	destination "Var' Kar'i'i"
 	passengers 1
@@ -1525,6 +1534,7 @@ mission "Wanderers Invaded 3B"
 	landing
 	name "Wanderer Meeting"
 	description `Join the Wanderer leaders on <planet> for a meeting to discuss strategy against the Unfettered.`
+	autosave
 	source "Var' Kar'i'i"
 	destination "Vara K'chrai"
 	passengers 1
@@ -1546,6 +1556,7 @@ mission "Wanderers Invaded 3C"
 	landing
 	name "Waiting for the Eye"
 	description `Figure out what controls the wormhole that the Wanderers call the "Eye," and try to find information on when it will open and where.`
+	autosave
 	source "Vara K'chrai"
 	to offer
 		has "Wanderers Invaded 3B: done"
@@ -1635,6 +1646,7 @@ mission "Wanderers Invaded 3C (Pug)"
 mission "Wanderers Hai Assistance 1"
 	name "Hai Assistance"
 	description `Travel to <planet> with Ambassador Sayari and see if she can convince the Hai to help restrain the Unfettered from attacking the Wanderers.`
+	autosave
 	source "Vara K'chrai"
 	destination "Hai-home"
 	clearance
@@ -1660,6 +1672,7 @@ mission "Wanderers Hai Assistance 2"
 	landing
 	name "Unfettered Negotiations"
 	description "Travel to the Unfettered military planet <destination>, and see if they will agree to give the Wanderers time to evacuate their worlds near the front."
+	autosave
 	source "Hai-home"
 	destination "Darkcloak"
 	clearance "After a long and tense conversation, Ambassador Sayari convinces the Unfettered war chiefs to let you land and meet with them."
@@ -1707,6 +1720,7 @@ mission "Wanderers Hai Assistance 3"
 	landing
 	name "Return to <planet>"
 	description "Return with Sayari to <destination>, and tell Iktat Rek that you had some success in convincing the Hai to interfere with the Unfettered."
+	autosave
 	source "Darkcloak"
 	destination "Vara K'chrai"
 	passengers 1
@@ -1727,6 +1741,7 @@ mission "Wanderers Solifuge Recon 1"
 	landing
 	name "Report to <planet>"
 	description "Report to the Wanderer military base on <destination>, and see if there is anything you can help them with."
+	autosave
 	source "Vara K'chrai"
 	destination "Vara Ke'sok"
 	to offer
@@ -1758,6 +1773,7 @@ mission "Wanderers Solifuge Recon 2"
 	landing
 	name "New Unfettered ships"
 	description "Unfettered ships of an unknown design have been spotted in the Prakacha'a system. Destroy them, then return to <destination>."
+	autosave
 	source "Vara Ke'sok"
 	to offer
 		not "Wanderers Pond Strider Recon 2: offered"
@@ -1794,6 +1810,7 @@ mission "Wanderers Solifuge Recon 2"
 mission "Wanderers Evacuation 1"
 	name "Evacuate <planet>"
 	description `Escort another fleet of Wanderer refugee transports to <destination>.`
+	autosave
 	source "Vara Ke'sok"
 	destination "Vara Ke'stai"
 	to offer
@@ -1830,6 +1847,7 @@ mission "Wanderers Evacuation 1B"
 	landing
 	name "Refugees to <planet>"
 	description `Escort these transports carrying Wanderer refugees to their home world of <destination>, where they will hopefully be safe.`
+	autosave
 	source "Vara Ke'stai"
 	destination "Vara K'chrai"
 	to offer
@@ -1859,6 +1877,7 @@ mission "Wanderers Evacuation 1C"
 	landing
 	name "Escort to <planet>"
 	description `Escort these transports back to <destination>.`
+	autosave
 	source "Vara K'chrai"
 	destination "Vara Ke'sok"
 	to offer
@@ -1901,6 +1920,7 @@ mission "Wanderers Defend Sich'ka'ara"
 	landing
 	name "Defend <planet>"
 	description `Drive off the Unfettered fleet attacking <system>, then land on <planet>.`
+	autosave
 	source "Vara Ke'sok"
 	to offer
 		has "Wanderers Evacuation 1C: done"
@@ -2042,6 +2062,7 @@ event "battle for sich'ka'ara ends"
 mission "Wanderers Rescue 1"
 	name "Wanderer Rescue"
 	description "Some Wanderer warriors were left behind on <planet> when the Unfettered captured the planet. Land on the planet with two Wanderer warships, and rescue them."
+	autosave
 	source "Vara Ke'sok"
 	destination "Kort Vek'kri"
 	clearance
@@ -2111,6 +2132,7 @@ mission "Wanderers Rescue 1C"
 	landing
 	name "Visit Iktat Rek"
 	description "Return to <destination>, where Iktat Rek's condition has continued to deteriorate."
+	autosave
 	source "Vara Ke'sok"
 	destination "Vara K'chrai"
 	to offer
@@ -2134,6 +2156,7 @@ mission "Wanderers Rek 0"
 	landing
 	name "Bring Rek to <planet>"
 	description "Bring Iktat Rek to <destination>, where there is an advanced medical facility that can hopefully treat him."
+	autosave
 	source "Vara K'chrai"
 	destination "Tik Klai"
 	passengers 1
@@ -2239,6 +2262,7 @@ mission "Wanderers Ap'arak 1"
 	landing
 	name "Help defend <planet>"
 	description "Return to <destination>, where the Wanderers have chosen to take their stand against the Unfettered incursion."
+	autosave
 	source "Tik Klai"
 	destination "Varu Tev'kei"
 	to offer
@@ -2388,6 +2412,7 @@ mission "Wanderers Ap'arak 3"
 	landing
 	name "Report to <planet>"
 	description "Return to the Wanderer capital on <destination>."
+	autosave
 	source "Varu Tev'kei"
 	destination "Vara K'chrai"
 	to offer
