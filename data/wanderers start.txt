@@ -647,7 +647,7 @@ mission "Unfettered: Jump Drive Source"
 				`	(Yes.)`
 				`	(Not now.)`
 						defer
-			`	You eventually find one of the Unfettered who speaks your language. She directs you to the office of the "governor" (or perhaps warlord) in charge of the spaceport. The governor says, "I offer you same terms as to the other humans. Five million credits, and we give you hyperdrive in place of jump drive. Is this acceptable?"`
+			`	You eventually find one of the Unfettered who speaks your language. She directs you to the office of the "governor" (or perhaps warlord) in charge of the spaceport. The governor says, "I offer you same terms as to the other humans. One million credits, and we give you hyperdrive in place of jump drive. Is this acceptable?"`
 			choice
 				`	"Yes."`
 				`	"Sorry, let me come back when I have a jump drive to spare."`
@@ -678,7 +678,7 @@ mission "Unfettered: Jump Drive Source"
 	on accept
 		outfit "Jump Drive" -1
 		outfit "Hyperdrive" 1
-		payment 5000000
+		payment 1000000
 		"reputation: Hai (Unfettered)" >?= 10
 		fail
 
