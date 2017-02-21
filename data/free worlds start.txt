@@ -1403,8 +1403,7 @@ mission "FW Pirates 3.2C"
 	name "Crush the Pirates of Greenrock"
 	description "Destroy the combined pirate armada while they're concentrated in this system, then put an end to their way of life on Greenrock."
 	blocked <message>
-	deadline 0
-	deadline 1
+	deadline 1 0
 	priority
 	landing
 	clearance "There's no response from Greenrock's Traffic Control, and their systems aren't active. Perhaps the people there are part of the pirate armada's crew? On the planet at least, there's nothing left to stop you from landing." 
