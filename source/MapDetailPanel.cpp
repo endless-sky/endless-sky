@@ -105,6 +105,8 @@ bool MapDetailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command
 {
 	if((key == SDLK_TAB || command.Has(Command::JUMP)) && player.Flagship())
 	{
+		// Clear the selected planet, if any.
+		selectedPlanet = nullptr;
 		// Toggle to the next link connected to the "source" system. If the
 		// shift key is down, the source is the end of the travel plan; otherwise
 		// it is one step before the end.
@@ -495,9 +497,12 @@ void MapDetailPanel::DrawInfo()
 		{
 			int value = selectedSystem->Trade(commodity.name);
 			int localValue = (player.GetSystem() ? player.GetSystem()->Trade(commodity.name) : 0);
+			// Don't "compare" prices if the current system is uninhabited and
+			// thus has no prices to compare to.
+			bool noCompare = (!player.GetSystem() || !player.GetSystem()->IsInhabited());
 			if(!value)
 				price = "----";
-			else if(!player.GetSystem() || player.GetSystem() == selectedSystem || !localValue)
+			else if(noCompare || player.GetSystem() == selectedSystem || !localValue)
 				price = to_string(value);
 			else
 			{

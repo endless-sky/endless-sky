@@ -22,6 +22,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Phrase.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
+#include "Politics.h"
 #include "Ship.h"
 #include "Sprite.h"
 #include "SpriteShader.h"
@@ -168,7 +169,10 @@ void HailPanel::Draw()
 	}
 	else
 	{
-		info.SetCondition("show dominate");
+		if(!GameData::GetPolitics().HasDominated(planet))
+			info.SetCondition("show dominate");
+		else
+			info.SetCondition("show relinquish");
 		if(hasLanguage)
 		{
 			info.SetCondition("can dominate");
@@ -217,7 +221,14 @@ bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 		GetUI()->Pop(this);
 	else if(key == 't' && hasLanguage && planet)
 	{
-		message = planet->DemandTribute(player);
+		if(GameData::GetPolitics().HasDominated(planet))
+		{
+			GameData::GetPolitics().DominatePlanet(planet, false);
+			player.Conditions().erase("tribute: " + planet->Name());
+			message = "Thank you for granting us our freedom!";
+		}
+		else
+			message = planet->DemandTribute(player);
 		return true;
 	}
 	else if(key == 'h' && hasLanguage && ship)

@@ -219,28 +219,46 @@ const list<shared_ptr<Ship>> NPC::Ships() const
 // Handle the given ShipEvent.
 void NPC::Do(const ShipEvent &event, PlayerInfo &player, UI *ui, bool isVisible)
 {
-	bool hasSucceeded = HasSucceeded(player.GetSystem());
-	bool hasFailed = HasFailed();
-	for(shared_ptr<Ship> &ship : ships)
-		if(ship == event.Target())
+	// First, check if this ship is part of this NPC. If not, do nothing. If it
+	// is an NPC and it just got captured, replace it with a destroyed copy of
+	// itself so that this class thinks the ship is destroyed.
+	shared_ptr<Ship> ship;
+	int type = event.Type();
+	for(shared_ptr<Ship> &ptr : ships)
+		if(ptr == event.Target())
 		{
-			actions[ship.get()] |= event.Type();
-			for(const Ship::Bay &bay : ship->Bays())
-				if(bay.ship)
-					actions[bay.ship.get()] |= event.Type();
-			
 			// If a mission ship is captured, let it live on under its new
-			// ownership but mark our copy of it as destroyed.
+			// ownership but mark our copy of it as destroyed. This must be done
+			// before we check the mission's success status because otherwise
+			// momentarily reactivating a ship you're supposed to evade would
+			// clear the success status and cause the success message to be
+			// displayed a second time below. 
 			if(event.Type() & ShipEvent::CAPTURE)
 			{
-				Ship *copy = new Ship(*ship);
+				Ship *copy = new Ship(*ptr);
 				copy->Destroy();
-				actions[copy] = actions[ship.get()] | ShipEvent::DESTROY;
-				ship.reset(copy);
+				actions[copy] = actions[ptr.get()];
+				// Count this ship as destroyed, as well as captured.
+				type |= ShipEvent::DESTROY;
+				ptr.reset(copy);
 			}
+			ship = ptr;
 			break;
 		}
+	if(!ship)
+		return;
 	
+	// Check if this NPC is already in the succeeded state.
+	bool hasSucceeded = HasSucceeded(player.GetSystem());
+	bool hasFailed = HasFailed();
+	
+	// Apply this event to the ship and any ships it is carrying.
+	actions[ship.get()] |= type;
+	for(const Ship::Bay &bay : ship->Bays())
+		if(bay.ship)
+			actions[bay.ship.get()] |= type;
+	
+	// Check if the success status has changed. If so, display a message.
 	if(HasFailed() && !hasFailed && isVisible)
 		Messages::Add("Mission failed.");
 	else if(ui && HasSucceeded(player.GetSystem()) && !hasSucceeded)

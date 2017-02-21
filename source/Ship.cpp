@@ -652,7 +652,7 @@ void Ship::SetPersonality(const Personality &other)
 	if(personality.IsDerelict())
 	{
 		shields = 0.;
-		hull = .5 * MinimumHull();
+		hull = min(hull, .5 * MinimumHull());
 		isDisabled = true;
 	}
 }
@@ -892,6 +892,14 @@ bool Ship::Move(list<Effect> &effects, list<shared_ptr<Flotsam>> &flotsam)
 			const Planet *planet = (targetPlanet ? targetPlanet->GetPlanet() : nullptr);
 			if(!planet || planet->GetSystem() != currentSystem)
 				targetPlanet = nullptr;
+			// Check if your parent has a target planet in this system.
+			shared_ptr<Ship> parent = GetParent();
+			if(!targetPlanet && parent && parent->targetPlanet)
+			{
+				planet = parent->targetPlanet->GetPlanet();
+				if(planet && planet->GetSystem() == currentSystem)
+					targetPlanet = parent->targetPlanet;
+			}
 			direction = -1;
 			
 			// If you have a target planet in the destination system, exit

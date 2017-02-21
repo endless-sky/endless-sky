@@ -400,6 +400,7 @@ void PreferencesPanel::DrawSettings()
 		ZOOM_FACTOR,
 		VIEW_ZOOM_FACTOR,
 		"Show status overlays",
+		"Highlight player's flagship",
 		"Show planet labels",
 		"Show mini-map",
 		"",

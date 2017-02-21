@@ -186,7 +186,12 @@ int main(int argc, char *argv[])
 		GameData::LoadShaders();
 		// Make sure the screen size and viewport are set correctly.
 		AdjustViewport(window);
+#ifndef __APPLE__
+		// On OS X, setting the window icon will cause that same icon to be used
+		// in the dock and the application switcher. That's not something we
+		// want, because the .icns icon that is used automatically is prettier.
 		SetIcon(window);
+#endif
 		if(!isFullscreen)
 			SDL_GetWindowSize(window, &windowWidth, &windowHeight);
 		
@@ -339,7 +344,7 @@ void PrintHelp()
 void PrintVersion()
 {
 	cerr << endl;
-	cerr << "Endless Sky 0.9.5" << endl;
+	cerr << "Endless Sky 0.9.6" << endl;
 	cerr << "License GPLv3+: GNU GPL version 3 or later: <https://gnu.org/licenses/gpl.html>" << endl;
 	cerr << "This is free software: you are free to change and redistribute it." << endl;
 	cerr << "There is NO WARRANTY, to the extent permitted by law." << endl;

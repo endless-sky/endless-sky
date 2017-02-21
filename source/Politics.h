@@ -50,7 +50,7 @@ public:
 	bool CanUseServices(const Planet *planet) const;
 	// Bribe a planet to let the player's ships land there.
 	void BribePlanet(const Planet *planet, bool fullAccess);
-	void DominatePlanet(const Planet *planet);
+	void DominatePlanet(const Planet *planet, bool dominate = true);
 	bool HasDominated(const Planet *planet) const;
 	
 	// Check to see if the player has done anything they should be fined for.

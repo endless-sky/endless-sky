@@ -29,6 +29,7 @@ class Government;
 class Minable;
 class Ship;
 class ShipEvent;
+class StellarObject;
 class PlayerInfo;
 
 
@@ -69,6 +70,7 @@ private:
 	void MoveIndependent(Ship &ship, Command &command) const;
 	void MoveEscort(Ship &ship, Command &command) const;
 	static void Refuel(Ship &ship, Command &command);
+	static bool CanRefuel(const Ship &ship, const StellarObject *target);
 	
 	static double TurnBackward(const Ship &ship);
 	static double TurnToward(const Ship &ship, const Point &vector);
