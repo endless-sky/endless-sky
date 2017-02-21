@@ -111,6 +111,8 @@ void AI::IssueMoveTarget(const PlayerInfo &player, const Point &target)
 void AI::UpdateKeys(PlayerInfo &player, Command &clickCommands, bool isActive)
 {
 	shift = (SDL_GetModState() & KMOD_SHIFT);
+	escortsUseAmmo = Preferences::Has("Escorts expend ammo");
+	escortsAreFrugal = Preferences::Has("Escorts use ammo frugally");
 	
 	Command oldHeld = keyHeld;
 	keyHeld.ReadKeyboard();
@@ -126,13 +128,19 @@ void AI::UpdateKeys(PlayerInfo &player, Command &clickCommands, bool isActive)
 			Messages::Add("Disengaging autopilot.");
 		keyStuck.Clear();
 	}
-	if(keyStuck.Has(Command::JUMP) && !player.HasTravelPlan())
-		keyStuck.Clear(Command::JUMP);
-	
-	escortsUseAmmo = Preferences::Has("Escorts expend ammo");
-	escortsAreFrugal = Preferences::Has("Escorts use ammo frugally");
-	
 	const Ship *flagship = player.Flagship();
+	if(keyStuck.Has(Command::JUMP) && !player.HasTravelPlan())
+	{
+		keyStuck.Clear(Command::JUMP);
+		const Planet *planet = player.TravelDestination();
+		if(planet && planet->GetSystem() == flagship->GetSystem())
+		{
+			// The MovePlayer() code will already have targeted this planet.
+			Messages::Add("Autopilot: landing on " + planet->Name() + ".");
+			keyStuck |= Command::LAND;
+		}
+	}
+	
 	if(!isActive || !flagship || flagship->IsDestroyed())
 		return;
 	
@@ -2011,36 +2019,90 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 {
 	Command command;
 	
+	bool isWormhole = false;
 	if(player.HasTravelPlan())
 	{
 		const System *system = player.TravelPlan().back();
-		bool isWormhole = false;
 		for(const StellarObject &object : ship.GetSystem()->Objects())
 			if(object.GetPlanet() && object.GetPlanet()->WormholeDestination(ship.GetSystem()) == system)
 			{
 				isWormhole = true;
 				ship.SetTargetPlanet(&object);
-				if(keyStuck.Has(Command::JUMP))
-					keyStuck |= Command::LAND;
 				break;
 			}
 		if(!isWormhole)
 			ship.SetTargetSystem(system);
+	}
+	if(ship.IsEnteringHyperspace() && !wasHyperspacing)
+	{
 		// Check if there's a particular planet there we want to visit.
+		const System *system = ship.HyperspaceSystem();
+		set<const Planet *> destinations;
+		Date deadline;
+		const Planet *bestDestination = nullptr;
+		int count = 0;
 		for(const Mission &mission : player.Missions())
 		{
+			// Don't include invisible missions in the check.
+			if(!mission.IsVisible())
+				continue;
+			
 			if(mission.Destination() && mission.Destination()->GetSystem() == system)
 			{
-				ship.SetDestination(mission.Destination());
-				break;
+				destinations.insert(mission.Destination());
+				++count;
+				// If this mission has a deadline, check if it is the soonest
+				// deadline. If so, this should be your ship's destination.
+				if(!deadline || (mission.Deadline() && mission.Deadline() < deadline))
+				{
+					deadline = mission.Deadline();
+					bestDestination = mission.Destination();
+				}
 			}
-			// Also prefer landing on stopovers if there are no missions with
-			// a planet in this system as their final destination.
+			// Also check for stopovers in the destination system.
 			for(const Planet *planet : mission.Stopovers())
 				if(planet->GetSystem() == system)
-					ship.SetDestination(planet);
+				{
+					destinations.insert(planet);
+					++count;
+					if(!bestDestination)
+						bestDestination = planet;
+				}
+		}
+		// Special case: the player has manually specified a destination.
+		if(player.TravelDestination() && player.TravelDestination()->GetSystem() == system)
+			bestDestination = player.TravelDestination();
+		
+		// Inform the player of any destinations in the system they are jumping to.
+		if(!destinations.empty())
+		{
+			string message = "Note: you have ";
+			message += (count == 1 ? "a mission that requires" : "missions that require");
+			message += " landing on ";
+			count = destinations.size();
+			bool oxfordComma = (count > 2);
+			for(const Planet *planet : destinations)
+			{
+				message += planet->Name();
+				--count;
+				if(count > 1)
+					message += ", ";
+				else if(count == 1)
+					message += (oxfordComma ? ", and " : " and ");
+			}
+			message += " in the system you are jumping to.";
+			Messages::Add(message);
+		}
+		// If any destination was found, find the corresponding stellar object
+		// and set it as your ship's target planet.
+		if(bestDestination)
+		{
+			for(const StellarObject &object : system->Objects())
+				if(object.GetPlanet() == bestDestination)
+					ship.SetTargetPlanet(&object);
 		}
 	}
+	wasHyperspacing = ship.IsEnteringHyperspace();
 	
 	if(keyDown.Has(Command::NEAREST))
 	{
@@ -2194,9 +2256,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 						types.insert(object.GetPlanet()->Noun());
 						double distance = ship.Position().Distance(object.Position());
 						const Planet *planet = object.GetPlanet();
-						if(planet == ship.GetDestination())
-							distance = 0.;
-						else if((!planet->CanLand() || !planet->HasSpaceport()) && !planet->IsWormhole())
+						if((!planet->CanLand() || !planet->HasSpaceport()) && !planet->IsWormhole())
 							distance += 10000.;
 					
 						if(distance < closest)
@@ -2333,7 +2393,8 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 	
 	if(ship.IsBoarding())
 		keyStuck.Clear();
-	else if(keyStuck.Has(Command::LAND) && ship.GetTargetPlanet())
+	else if(ship.GetTargetPlanet() &&
+			(keyStuck.Has(Command::LAND) || (keyStuck.Has(Command::JUMP) && isWormhole)))
 	{
 		if(ship.GetPlanet())
 			keyStuck.Clear();

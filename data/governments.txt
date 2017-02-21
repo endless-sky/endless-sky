@@ -246,6 +246,7 @@ government "Pirate"
 		"Author" -.1
 	"bribe" .05
 	"fine" 0
+	"friendly hail" "friendly pirate"
 	"hostile hail" "hostile pirate"
 	raid "Large Southern Pirates"
 

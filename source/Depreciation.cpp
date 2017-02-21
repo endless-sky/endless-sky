@@ -29,7 +29,7 @@ namespace {
 	// Depreciation parameters.
 	double FULL_DEPRECIATION = 0.25;
 	double DAILY_DEPRECIATION = 0.99;
-	int MAX_AGE = 360;
+	int MAX_AGE = 1000;
 }
 
 
@@ -242,7 +242,7 @@ int64_t Depreciation::Value(const Ship *ship, int day, int count) const
 	ship = GameData::Ships().Get(ship->ModelName());
 	auto recordIt = ships.find(ship);
 	if(recordIt == ships.end() || recordIt->second.empty())
-		return (isStock ? 1. : FULL_DEPRECIATION) * count * ship->ChassisCost();
+		return DefaultDepreciation() * count * ship->ChassisCost();
 	
 	return Depreciate(recordIt->second, day, count) * ship->ChassisCost();
 }
@@ -259,7 +259,7 @@ int64_t Depreciation::Value(const Outfit *outfit, int day, int count) const
 	// if this is  planet's stock, or fully depreciated if this is the player.
 	auto recordIt = outfits.find(outfit);
 	if(recordIt == outfits.end() || recordIt->second.empty())
-		return (isStock ? 1. : FULL_DEPRECIATION) * count * outfit->Cost();
+		return DefaultDepreciation() * count * outfit->Cost();
 	
 	return Depreciate(recordIt->second, day, count) * outfit->Cost();
 }
@@ -288,12 +288,15 @@ int Depreciation::Sell(map<int, int> &record)
 // Calculate depreciation for some number of items.
 double Depreciation::Depreciate(const map<int, int> &record, int day, int count) const
 {
+	if(record.empty())
+		return count * DefaultDepreciation();
+	
 	// Depending on whether this is a planet's stock or a player's fleet, we
 	// should either start with the oldest item, or the newest.
-	map<int, int>::const_iterator it = (isStock ? record.begin() : record.end());
+	map<int, int>::const_iterator it = (isStock ? record.begin() : --record.end());
 	
 	double sum = 0.;
-	while(!record.empty())
+	while(true)
 	{
 		// Check whether there are enough items in this particular bin to use up
 		// the entire remaining count, and add the depreciation amount for
@@ -319,7 +322,8 @@ double Depreciation::Depreciate(const map<int, int> &record, int day, int count)
 			--it;
 		}
 	}
-	return sum + count * (isStock ? 1. : FULL_DEPRECIATION);
+	// For all items we don't have a record for, apply the default depreciation.
+	return sum + count * DefaultDepreciation();
 }
 
 
@@ -335,4 +339,13 @@ double Depreciation::Depreciate(int age) const
 	double daily = pow(DAILY_DEPRECIATION, age);
 	double linear = static_cast<double>(MAX_AGE - age) / MAX_AGE;
 	return FULL_DEPRECIATION + (1. - FULL_DEPRECIATION) * daily * linear;
+}
+
+
+
+// Depreciation of an item for which no record exists. If buying, items
+// default to no depreciation. When selling, they default to full.
+double Depreciation::DefaultDepreciation() const
+{
+	return (isStock ? 1. : FULL_DEPRECIATION);
 }

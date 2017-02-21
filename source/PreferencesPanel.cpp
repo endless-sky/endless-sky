@@ -470,8 +470,9 @@ void PreferencesPanel::DrawSettings()
 			for(const auto &it : help)
 				shown += Preferences::Has("help: " + it.first);
 			
+			// Don't count the "basic help" messages in the total.
 			if(shown)
-				text = to_string(shown) + " / " + to_string(help.size());
+				text = to_string(shown) + " / " + to_string(help.size() - 2);
 			else
 			{
 				isOn = true;

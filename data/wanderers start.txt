@@ -1147,7 +1147,7 @@ mission "Wanderers: Alpha Surveillance G"
 
 mission "Wanderers: Alpha Surveillance H"
 	name "Meet up with Danforth"
-	description "Meet Admiral Danforth in the spaceport on Farpoint, and talk about what to do next about the Alphas."
+	description "Meet Admiral Danforth in the spaceport on <origin>, and talk about what to do next about the Alphas."
 	landing
 	source "Farpoint"
 	to offer
@@ -1245,6 +1245,8 @@ mission "Wanderers: Alpha Surveillance I"
 
 
 mission "Wanderers: Alpha Surveillance J"
+	name "Return to Iktat Rek on <planet>"
+	description "Check in with Iktat Rek on <planet> in the <system> system, now that the Alpha base has been eliminated."
 	landing
 	source "Alta Hai"
 	destination "Vara K'chrai"
@@ -1570,7 +1572,7 @@ mission "Wanderers Invaded 3C"
 		"reputation: Pug" >?= 1
 	on complete
 		dialog
-			`You have collected some useful information on the nature of the "Eye." You should probably head to the spaceport and meet up with iktat Rek.`
+			`You have collected some useful information on the nature of the "Eye." You should probably head to the spaceport and meet up with Iktat Rek.`
 
 
 
