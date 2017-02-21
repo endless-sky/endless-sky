@@ -67,10 +67,8 @@ namespace {
 		unsigned source = 0;
 	};
 	
-	// Tread entry point for loading the sound files.
+	// Thread entry point for loading the sound files.
 	void Load();
-	// Get the "name" of a sound based on its file path.
-	string Name(const string &path);
 	
 	
 	// Mutex to make sure different threads don't modify the audio at the same time.
