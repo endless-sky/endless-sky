@@ -1809,11 +1809,11 @@ mission "FW Pirates 4.2"
 			`"Oh really? So every other time I've fought pirates, I was committing a crime? Why did you wait until now to arrest me?"`
 			`"Don't try to cloud the issue," JJ snaps. "Your strike force attempted to annex Greenrock against the will of its people. We don't do that; it's why we're 'The Free Worlds.' You wanted to be a goddamn hero, and you betrayed what we're supposed to stand for. We have written confessions from the other surviving captains, so don't even try to play innocent with us. Don't try blaming Tomek, either. You knew his order was illegal. The whole strike force knew it!" He motions to the policemen, who turn you around and begin restraining you.`
 			`"Yes, I knew," you say. "That's why I disobeyed him.`
-			`Katya motions the policemen to stop. "What did you say?"`
+			`Freya motions the policemen to stop. "What did you say?"`
 			`"I disobeyed him. Tomek was drunk, and annexing Greenrock was an idiotic idea. They're pirates and anarchists. Their way of life depends on piracy and slavery. So I took away their way of life."`
 			`"You... you... what?" JJ sputters, "the only way to do that would be to bombard the planet! What kind of maniac are-"`
 			`"I'm the kind of maniac who's very selective about my targets. I levelled their spaceport facilities, their shipyards, their outfitters, their fuel depots, and their hangers." You call up images of Greenrock before and after your attacks`
-			`Katya goes pale. "You destroyed the slave yards?! How many innocent people lived in those-"`
+			`Freya goes pale. "You destroyed the slave yards?! How many innocent people lived in those-"`
 			`"-Thousands." You interrupt, and you gesture to the ship's communications system. "And they're listening to this conversation. In fact," you check a small viewscreen, "It looks like quite a few have gathered around <ship>"
 			label slaves
 			`	JJ opens the door and gasps. A crowd of dirty, ragged people has gathered. JJ stares at you, then the crowd, then back at you.`
