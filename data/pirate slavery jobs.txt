@@ -28,7 +28,7 @@ mission "Slave Transport [0]: Release Slaves"
 				`	(Free the slaves.)`
 				`	(Keep the slaves.)`
 					decline
-			`	You make up some story about how you rescued these slaves from their warlord. The local government praise you for releasing them and rewards you <payment>.`
+			`	You make up a story about how you rescued these slaves from their warlord. The local government praises you for releasing the slaves and rewards you with <payment>.`
 				accept
 	on accept
 		"sold slaves" --
@@ -63,7 +63,7 @@ mission "Slave Transport [1]: Release Slaves"
 				`	(Free the slaves.)`
 				`	(Keep the slaves.)`
 					decline
-			`	You make up some story about how you rescued these slaves from their warlord. The local government praise you for releasing them and rewards you <payment>.`
+			`	You make up a story about how you rescued these slaves from their warlord. The local government praises you for releasing the slaves and rewards you with <payment>.`
 				accept
 	on accept
 		"sold slaves" --
@@ -98,7 +98,7 @@ mission "Bulk Slave Transport [0]: Release Slaves"
 				`	(Free the slaves.)`
 				`	(Keep the slaves.)`
 					decline
-			`	You make up some story about how you rescued these slaves from their warlord. The local government praise you for releasing them and rewards you <payment>.`
+			`	You make up a story about how you rescued these slaves from their warlord. The local government praises you for releasing the slaves and rewards you with <payment>.`
 				accept
 	on accept
 		"sold slaves" --
@@ -133,7 +133,7 @@ mission "Bulk Slave Transport [1]: Release Slaves"
 				`	(Free the slaves.)`
 				`	(Keep the slaves.)`
 					decline
-			`	You make up some story about how you rescued these slaves from their warlord. The local government praise you for releasing them and rewards you <payment>.`
+			`	You make up a story about how you rescued these slaves from their warlord. The local government praises you for releasing the slaves and rewards you with <payment>.`
 				accept
 	on accept
 		"sold slaves" --
@@ -166,7 +166,7 @@ mission "Tourists back [0]: Slavery"
 				`	(Accept.)`
 				`	(Decline.)`
 					decline
-			`	You accept the pirate's offer to hand over your passenger. The pirate makes his way onto your ship with a few others and haul off the tourist, who is kicking and screaming as he curses you out.`
+			`	You accept the pirate's offer to hand over your passenger. The pirate makes his way onto your ship with a few others and hauls the tourist off, who is kicking and screaming as he curses at you.`
 				accept
 	on accept
 		"sold slaves" ++
@@ -199,7 +199,7 @@ mission "Tourists out [0]: Slavery"
 				`	(Accept.)`
 				`	(Decline.)`
 					decline
-			`	You accept the pirate's offer to hand over your passenger. The pirate makes his way onto your ship with a few others and haul off the tourist. Counting your credits, you hear crying and screaming as it slowly gets farther away.`
+			`	You accept the pirate's offer to hand over your passenger. The pirate makes his way onto your ship with a few others and hauls the tourist off. Counting your credits, you hear the crying and screaming of your previous passenger slowly get farther away.`
 				accept
 	on accept
 		"sold slaves" ++
@@ -232,7 +232,7 @@ mission "Tourists out [1]: Slavery"
 				`	(Accept.)`
 				`	(Decline.)`
 					decline
-			`	You accept the pirate's offer to hand over your passengers. The pirate makes his way onto your ship with a few others and haul off the tourists. As you count your credits, you think about how this wasn't the vacation that your passengers were expecting.`
+			`	You accept the pirate's offer to hand over your passengers. The pirate makes his way onto your ship with a few others and hauls off the tourists. As you count your credits, you think about how this wasn't the vacation that your passengers were expecting.`
 				accept
 	on accept
 		"sold slaves" ++
@@ -265,7 +265,7 @@ mission "Tourists out [2]: Slavery"
 				`	(Accept.)`
 				`	(Decline.)`
 					decline
-			`	You accept the pirate's offer to hand over your passengers. The pirate makes his way onto your ship with a few others and haul off the tourists. You try not to pay much attention to the cries of your former passengers as you return to your ship with the credits.`
+			`	You accept the pirate's offer to hand over your passengers. The pirate makes his way onto your ship with a few others and hauls off the tourists. You try not to pay much attention to the cries of your former passengers as you return to your ship with the credits.`
 				accept
 	on accept
 		"sold slaves" ++
@@ -298,7 +298,7 @@ mission "Tourists back [1]: Slavery"
 				`	(Accept.)`
 				`	(Decline.)`
 					decline
-			`	You accept the pirate's offer to hand over your passengers. The pirate makes his way onto your ship with a few others and haul off the tourists. As you count your credits, you think about how this wasn't the home that your passengers were expecting to return to.`
+			`	You accept the pirate's offer to hand over your passengers. The pirate makes his way onto your ship with a few others and hauls off the tourists. As you count your credits, you think about how this wasn't the home that your passengers were expecting to return to.`
 				accept
 	on accept
 		"sold slaves" ++
@@ -331,7 +331,7 @@ mission "Tourists back [2]: Slavery"
 				`	(Accept.)`
 				`	(Decline.)`
 					decline
-			`	You accept the pirate's offer to hand over your passengers. The pirate makes his way onto your ship with a few others and haul off the tourists. You try not to pay much attention to the cries of your former passengers as you return to your ship with the credits.`
+			`	You accept the pirate's offer to hand over your passengers. The pirate makes his way onto your ship with a few others and hauls off the tourists. You try not to pay much attention to the cries of your former passengers as you return to your ship with the credits.`
 				accept
 	on accept
 		"sold slaves" ++
@@ -364,7 +364,7 @@ mission "Passengers [0]: Slavery"
 				`	(Accept.)`
 				`	(Decline.)`
 					decline
-			`	You accept the pirate's offer to hand over your passengers. The pirate makes his way onto your ship with a few others and haul off the passengers. You try not to pay much attention to the cries of your former passengers as you return to your ship with the credits.`
+			`	You accept the pirate's offer to hand over your passengers. The pirate makes his way onto your ship with a few others and hauls off the passengers. You try not to pay much attention to the cries of your former passengers as you return to your ship with the credits.`
 				accept
 	on accept
 		"sold slaves" ++
@@ -397,7 +397,7 @@ mission "Passengers [1]: Slavery"
 				`	(Accept.)`
 				`	(Decline.)`
 					decline
-			`	You accept the pirate's offer to hand over your passengers. The pirate makes his way onto your ship with a few others and haul off the passengers. You try not to pay much attention to the cries of your former passengers as you return to your ship with the credits.`
+			`	You accept the pirate's offer to hand over your passengers. The pirate makes his way onto your ship with a few others and hauls off the passengers. You try not to pay much attention to the cries of your former passengers as you return to your ship with the credits.`
 				accept
 	on accept
 		"sold slaves" ++
@@ -430,7 +430,7 @@ mission "Passengers [2]: Slavery"
 				`	(Accept.)`
 				`	(Decline.)`
 					decline
-			`	You accept the pirate's offer to hand over your passengers. The pirate makes his way onto your ship with a few others and haul off the passengers. You try not to pay much attention to the cries of your former passengers as you return to your ship with the credits.`
+			`	You accept the pirate's offer to hand over your passengers. The pirate makes his way onto your ship with a few others and hauls off the passengers. You try not to pay much attention to the cries of your former passengers as you return to your ship with the credits.`
 				accept
 	on accept
 		"sold slaves" ++
@@ -463,7 +463,7 @@ mission "Passengers [3]: Slavery"
 				`	(Accept.)`
 				`	(Decline.)`
 					decline
-			`	You accept the pirate's offer to hand over your passengers. The pirate makes his way onto your ship with a few others and haul off the passengers. You try not to pay much attention to the cries of your former passengers as you return to your ship with the credits.`
+			`	You accept the pirate's offer to hand over your passengers. The pirate makes his way onto your ship with a few others and hauls off the passengers. You try not to pay much attention to the cries of your former passengers as you return to your ship with the credits.`
 				accept
 	on accept
 		"sold slaves" ++
@@ -496,7 +496,7 @@ mission "Passengers [4]: Slavery"
 				`	(Accept.)`
 				`	(Decline.)`
 					decline
-			`	You accept the pirate's offer to hand over your passengers. The pirate makes his way onto your ship with a few others and haul off the passengers. As you count your credits, you think how at least they are away from the pollution of their home planet.`
+			`	You accept the pirate's offer to hand over your passengers. The pirate makes his way onto your ship with a few others and hauls off the passengers. As you count your credits, you think how at least they are away from the pollution of their home planet.`
 				accept
 	on accept
 		"sold slaves" ++
@@ -529,7 +529,7 @@ mission "Family [0]: Slavery"
 				`	(Accept.)`
 				`	(Decline.)`
 					decline
-			`	You accept the pirate's offer to hand over your passengers. The pirate makes his way onto your ship with a few others and haul off the family. As the family passes by you, you try to not pay attention to the cries of the child aa they are moved away at gun point.`
+			`	You accept the pirate's offer to hand over your passengers. The pirate makes his way onto your ship with a few others and hauls off the family. As the family passes by you, you try to not pay attention to the cries of the child as they are herded away at gun point.`
 				accept
 	on accept
 		"sold slaves" ++
@@ -562,7 +562,7 @@ mission "Family [1]: Slavery"
 				`	(Accept.)`
 				`	(Decline.)`
 					decline
-			`	You accept the pirate's offer to hand over your passengers. The pirate makes his way onto your ship with a few others and haul off the family. Making your way back to your ship, you count up the credits you've just made.`
+			`	You accept the pirate's offer to hand over your passengers. The pirate makes his way onto your ship with a few others and hauls off the family. Making your way back to your ship, you count up the credits you've just made.`
 				accept
 	on accept
 		"sold slaves" ++
@@ -595,7 +595,7 @@ mission "Family [2]: Slavery"
 				`	(Accept.)`
 				`	(Decline.)`
 					decline
-			`	You accept the pirate's offer to hand over your passengers. The pirate makes his way onto your ship with a few others and haul off the family. Counting your credits, you think about how this wasn't the place that your passengers were expecting to relocate to.`
+			`	You accept the pirate's offer to hand over your passengers. The pirate makes his way onto your ship with a few others and hauls off the family. Counting your credits, you think about how this wasn't the place that your passengers were expecting to relocate to.`
 				accept
 	on accept
 		"sold slaves" ++
@@ -628,7 +628,7 @@ mission "Family [3]: Slavery"
 				`	(Accept.)`
 				`	(Decline.)`
 					decline
-			`	You accept the pirate's offer to hand over your passengers. The pirate makes his way onto your ship with a few others and haul off the family. You try not to pay much attention to the cries of your former passengers as you return to your ship with the credits.`
+			`	You accept the pirate's offer to hand over your passengers. The pirate makes his way onto your ship with a few others and hauls off the family. You try not to pay much attention to the cries of your former passengers as you return to your ship with the credits.`
 				accept
 	on accept
 		"sold slaves" ++
@@ -661,7 +661,7 @@ mission "Transport miners to <planet>: Slavery"
 				`	(Accept.)`
 				`	(Decline.)`
 					decline
-			`	You accept the pirate's offer to hand over your passengers. The pirate makes his way onto your ship with a few others and haul off the miners. As the pirates pass by you with your former passengers, the one that paid you turns to you and says "Thanks for the workers. I'll make sure they're put to good use."`
+			`	You accept the pirate's offer to hand over your passengers. The pirate makes his way onto your ship with a few others and hauls off the miners. As the pirates pass by you with your former passengers, the one that paid you turns to you and says "Thanks for the workers. I'll make sure they're put to good use."`
 				accept
 	on accept
 		"sold slaves" ++
@@ -694,7 +694,7 @@ mission "Transport farmers to <planet>: Slavery"
 				`	(Accept.)`
 				`	(Decline.)`
 					decline
-			`	You accept the pirate's offer to hand over your passengers. The pirate makes his way onto your ship with a few others and haul off the farmers. As the pirates pass by you with your former passengers, the one that paid you turns to you and says "Thanks for the workers. I'll make sure they're put to good use."`
+			`	You accept the pirate's offer to hand over your passengers. The pirate makes his way onto your ship with a few others and hauls off the farmers. As the pirates pass by you with your former passengers, the one that paid you turns to you and says "Thanks for the workers. I'll make sure they're put to good use."`
 				accept
 	on accept
 		"sold slaves" ++
@@ -727,7 +727,7 @@ mission "Transport mill workers to <planet>: Slavery"
 				`	(Accept.)`
 				`	(Decline.)`
 					decline
-			`	You accept the pirate's offer to hand over your passengers. The pirate makes his way onto your ship with a few others and haul off the mill workers. As the pirates pass by you with your former passengers, the one that paid you turns to you and says "Thanks for the workers. I'll make sure they're put to good use."`
+			`	You accept the pirate's offer to hand over your passengers. The pirate makes his way onto your ship with a few others and hauls off the mill workers. As the pirates pass by you with your former passengers, the one that paid you turns to you and says "Thanks for the workers. I'll make sure they're put to good use."`
 				accept
 	on accept
 		"sold slaves" ++
@@ -760,7 +760,7 @@ mission "Transport workers to <planet>: Slavery"
 				`	(Accept.)`
 				`	(Decline.)`
 					decline
-			`	You accept the pirate's offer to hand over your passengers. The pirate makes his way onto your ship with a few others and haul off the workers. As the pirates pass by you with your former passengers, the one that paid you turns to you and says "Thanks for the workers. I'll make sure they're put to good use."`
+			`	You accept the pirate's offer to hand over your passengers. The pirate makes his way onto your ship with a few others and hauls off the workers. As the pirates pass by you with your former passengers, the one that paid you turns to you and says "Thanks for the workers. I'll make sure they're put to good use."`
 				accept
 	on accept
 		"sold slaves" ++
@@ -793,7 +793,7 @@ mission "Colonists [0]: Slavery"
 				`	(Accept.)`
 				`	(Decline.)`
 					decline
-			`	You accept the pirate's offer to hand over your passengers. The pirate makes his way onto your ship with a few others and haul off the colonists. Given how many there are, it takes quite a few minutes to take them away. Some try to fight, but quickly surrender to the guns. After they have all been removed from your ship, the pirates thank you and go on their way.`
+			`	You accept the pirate's offer to hand over your passengers. The pirate makes his way onto your ship with a few others and hauls off the colonists. Given how many there are, it takes quite a few minutes to take them away. Some try to fight, but quickly surrender to the guns. After they have all been removed from your ship, the pirates thank you and go on their way.`
 				accept
 	on accept
 		"sold slaves" ++
@@ -826,7 +826,7 @@ mission "Colonists [1]: Slavery"
 				`	(Accept.)`
 				`	(Decline.)`
 					decline
-			`	You accept the pirate's offer to hand over your passengers. The pirate makes his way onto your ship with a few others and haul off the colonists. Given how many there are, it takes quite a few minutes to take them away. Some try to fight, but quickly surrender to the guns. After they have all been removed from your ship, the pirates thank you and go on their way.`
+			`	You accept the pirate's offer to hand over your passengers. The pirate makes his way onto your ship with a few others and hauls off the colonists. Given how many there are, it takes quite a few minutes to take them away. Some try to fight, but quickly surrender to the guns. After they have all been removed from your ship, the pirates thank you and go on their way.`
 				accept
 	on accept
 		"sold slaves" ++
@@ -859,7 +859,7 @@ mission "Transport scientists: Slavery"
 				`	(Accept.)`
 				`	(Decline.)`
 					decline
-			`	You accept the pirate's offer to hand over your passengers. The pirate makes his way onto your ship with a few others and haul off the scientists. The pirates begin messing with some of the scientific tools that the scientists had with them. One of the scientists yells at them not to touch that, and is immediately met with the butt of a laser rifle.`
+			`	You accept the pirate's offer to hand over your passengers. The pirate makes his way onto your ship with a few others and hauls off the scientists. The pirates begin messing with some of the scientific tools that the scientists had with them. One of the scientists yells at them not to touch that, and is immediately met with the butt of a laser rifle to the face.`
 				accept
 	on accept
 		"sold slaves" ++
@@ -892,7 +892,7 @@ mission "Newlyweds to <planet>: Slavery"
 				`	(Accept.)`
 				`	(Decline.)`
 					decline
-			`	You accept the pirate's offer to hand over your passengers. The pirate makes his way onto your ship with a few others and haul off the newlyweds and their wedding gifts. The pirates throw most of the wedding gifts out, keeping only the expensive things like jewelry. "What an interesting place to have a honeymoon," one of the pirates says before hauling the crying newlyweds off.`
+			`	You accept the pirate's offer to hand over your passengers. The pirate makes his way onto your ship with a few others and hauls off the newlyweds and their wedding gifts. The pirates throw most of the wedding gifts out, keeping only the expensive things like jewelry. "What an interesting place to have a honeymoon," one of the pirates jokes before hauling the crying newlyweds off.`
 				accept
 	on accept
 		"sold slaves" ++
@@ -925,7 +925,7 @@ mission "Transport partiers [1]: Slavery"
 				`	(Accept.)`
 				`	(Decline.)`
 					decline
-			`	You accept the pirate's offer to hand over your passengers. The pirate makes his way onto your ship with a few others and haul off the partiers and their "completely legal pharmaceuticals." Most of the partiers, seemingly buzzed, don't fully realize what is going on as they are escorted off by the group of pirates.`
+			`	You accept the pirate's offer to hand over your passengers. The pirate makes his way onto your ship with a few others and hauls off the partiers and their "completely legal pharmaceuticals." Most of the partiers, seemingly buzzed, don't fully realize what is going on as they are escorted off by the group of pirates.`
 				accept
 	on accept
 		"sold slaves" ++
@@ -958,7 +958,7 @@ mission "Transport partiers [2]: Slavery"
 				`	(Accept.)`
 				`	(Decline.)`
 					decline
-			`	You accept the pirate's offer to hand over your passengers. The pirate makes his way onto your ship with a few others and haul off the partiers and their school supplies. Given that the school supplies have no real use, the pirates just throw them off to the side as they escort the students from your ship.`
+			`	You accept the pirate's offer to hand over your passengers. The pirate makes his way onto your ship with a few others and hauls off the partiers and their school supplies. Given that the school supplies have no real use, the pirates just throw them off to the side as they escort the students from your ship.`
 				accept
 	on accept
 		"sold slaves" ++
@@ -991,7 +991,7 @@ mission "Contract laborers to <planet>: Slavery"
 				`	(Accept.)`
 				`	(Decline.)`
 					decline
-			`	You accept the pirate's offer to hand over your passengers. The pirate makes his way onto your ship with a few others and haul off the contract laborers. You try not to pay much attention to the protests of your former passengers as you return to your ship with the credits.`
+			`	You accept the pirate's offer to hand over your passengers. The pirate makes his way onto your ship with a few others and hauls off the contract laborers. You try not to pay much attention to the protests of your former passengers as you return to your ship with the credits.`
 				accept
 	on accept
 		"sold slaves" ++
@@ -1024,7 +1024,7 @@ mission "Transport rich tourists: Slavery"
 				`	(Accept.)`
 				`	(Decline.)`
 					decline
-			`	You accept the pirate's offer to hand over your passengers. The pirate makes his way onto your ship with a few others and haul off the tourists. You try not to pay much attention to the cries of your former passengers as you return to your ship with the credits.`
+			`	You accept the pirate's offer to hand over your passengers. The pirate makes his way onto your ship with a few others and hauls off the tourists. You try not to pay much attention to the cries of your former passengers as you return to your ship with the credits.`
 				accept
 	on accept
 		"sold slaves" ++
@@ -1057,7 +1057,7 @@ mission "Transport executive to <planet>: Slavery"
 				`	(Accept.)`
 				`	(Decline.)`
 					decline
-			`	You accept the pirate's offer to hand over your passengers. The pirate makes his way onto your ship with a few others and haul off the executive. As the pirates carry the executive away, he yells back at you. "They'll get you for this! You'll pay, I tell you! You'll pay!"`
+			`	You accept the pirate's offer to hand over your passengers. The pirate makes his way onto your ship with a few others and hauls off the executive. As the pirates carry the executive away, he yells back at you. "They'll get you for this! You'll pay, I tell you! You'll pay!"`
 				accept
 	on accept
 		"sold slaves" ++
@@ -1090,7 +1090,7 @@ mission "Corporate retreat on <planet>: Slavery"
 				`	(Accept.)`
 				`	(Decline.)`
 					decline
-			`	You accept the pirate's offer to hand over your passengers. The pirate makes his way onto your ship with a few others and haul off the engineers. You try not to pay much attention to the cries of your former passengers as you return to your ship with the credits.`
+			`	You accept the pirate's offer to hand over your passengers. The pirate makes his way onto your ship with a few others and hauls off the engineers. You try not to pay much attention to the cries of your former passengers as you return to your ship with the credits.`
 				accept
 	on accept
 		"sold slaves" ++
