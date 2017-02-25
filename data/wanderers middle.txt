@@ -305,7 +305,7 @@ mission "Wanderers: Rek To Kor Efret"
 		has "Wanderers: First Mereti Attack: done"
 	on offer
 		conversation
-			`When you enter the meeting room, Sobari Tele'ek is in a heated argument with the Wanderer child who was here earlier, the one who speaks your language. The child is saying, "The Eye has sent us not to a place of [empty, abandoned] worlds but to a place of [living beings?]. To complete our [calling, work] here we must collaborate with those beings, just as we would collaborate with the [ecosystem? personality] of a planet we sought to repair."`
+			`When you enter the meeting room, Sobari Tele'ek is in a heated argument with the Wanderer child who was here earlier, the one who speaks your language. The child is saying, "The Eye has sent us not to a place of [empty, abandoned] worlds but to a place of [living beings?]. To complete our [calling, work] here we must collaborate with those beings, just as we would collaborate with the [ecosystem? personality?] of a planet we sought to repair."`
 			`	"What do you [propose, intend], Firstborn?" asks Tele'ek.`
 			`	"I would visit the [remaining, surviving] Korath," she says. "I would learn their [language? viewpoint? history?]. I would offer them our [companionship, assistance]."`
 			`	"No," says Tele'ek. "How could I [endanger, gamble with] your life? You are too [precious, unique] to be sent on such a [mission, assignment]."`
@@ -467,7 +467,7 @@ mission "Wanderers: Pug Assistance 1"
 					goto pug
 
 			label peace
-				"Well," says Tele'ek, "if they really [desire, hope] for these worlds to be [fruitful, habitable] once more, the best thing we can do is prove our [value, virtue] by beginning our work. We are a [patient, deliberate] species too, and we understand that gaining the [trust, goodwill] of another may take time."
+			`	"Well," says Tele'ek, "if they really [desire, hope] for these worlds to be [fruitful, habitable] once more, the best thing we can do is prove our [value, virtue] by beginning our work. We are a [patient, deliberate] species too, and we understand that gaining the [trust, goodwill] of another may take time."`
 				goto next
 
 			label displace
@@ -2764,7 +2764,7 @@ mission "Wanderers: Sestor: Exiles 3"
 		fail "Wanderers: Sestor: Exiles 2"
 		event "wanderers: exiles peaceful"
 		conversation
-			`The Korath ships tail you to the planet's surface, but they do not fire on you.  Instead, they hover above your ship for a long, indecisive moment. You hold your fire, and they eventually land in the sand next to you. Their airlocks open, and a few of them step out and approach your ship. They do not appear to be armed. Perhaps they have a cultural taboo against using weapons on this world.`
+			`The Korath ships tail you to the planet's surface, but they do not fire on you. Instead, they hover above your ship for a long, indecisive moment. You hold your fire, and they eventually land in the sand next to you. Their airlocks open, and a few of them step out and approach your ship. They do not appear to be armed. Perhaps they have a cultural taboo against using weapons on this world.`
 			choice
 				`	(Go outside to meet them.)`
 				`	(Leave the planet while I still can.)`
