@@ -207,7 +207,7 @@ outfit "Bullfrog Anti-Missile"
 		"firing energy" 12
 		"firing heat" 5
 		"stream"
-	description "Centuries ago, the Hai fought with more rudimentary versions of the Tracker, and this was the primary defence against them. In spite of the dated design, it is still effective against small numbers of their latest Missile weapons."
+	description "Centuries ago, the Hai fought with more rudimentary versions of the Tracker, and this was the primary defense against them. In spite of the dated design, it is still effective against small numbers of their latest Missile weapons."
 
 outfit "Chameleon Anti-Missile"
 	category "Turrets"
