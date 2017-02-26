@@ -2400,7 +2400,7 @@ phrase "hostile bounty"
 	word
 		"sent"
 		"ordered"
-		"payed"
+		"paid"
 		"told"
 		"bought"
 	word
@@ -2428,7 +2428,7 @@ phrase "hostile bounty"
 	word
 		"If you "
 	word
-		"though"
+		"thought"
 		"believed"
 		"hoped"
 		"expected"
