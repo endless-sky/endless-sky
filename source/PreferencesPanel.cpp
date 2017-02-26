@@ -139,8 +139,12 @@ bool PreferencesPanel::Click(int x, int y, int clicks)
 				if(Screen::Height() < 700)
 				{
 					// Notify the user why setting the zoom any higher isn't permitted.
-					GetUI()->Push(new Dialog("Your screen resolution is too low to support"
-					" a zoom level of " + std::to_string(newZoom) + "%. Resetting to 100%."));
+					// Only show this if it's not possible to zoom the view at all,
+					// because otherwise if the user is toggling between 100 and 150 the
+					// dialog will show every time, which is annoying.
+					if(newZoom == 150)
+						GetUI()->Push(new Dialog(
+							"Your screen resolution is too low to support a zoom level above 100%."));
 					Screen::SetZoom(100);
 				}
 				// Convert to raw window coordinates, at the new zoom level.
