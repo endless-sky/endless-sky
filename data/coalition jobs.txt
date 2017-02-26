@@ -678,7 +678,7 @@ mission "Coalition: Fast Courier 1"
 	job
 	repeat
 	name "Fast courier to <planet>"
-	description "Deliver <cargo> to <destination>, by <date>. The payment is <payment>."
+	description "Deliver <cargo> to <destination> by <date>. The payment is <payment>."
 	deadline 5 1
 	cargo random 2 20 .6
 	to offer
@@ -699,7 +699,7 @@ mission "Coalition: Fast Courier 2"
 	job
 	repeat
 	name "Fast courier to <planet>"
-	description "Deliver <cargo> to <destination>, by <date>. The payment is <payment>."
+	description "Deliver <cargo> to <destination> by <date>. The payment is <payment>."
 	deadline 5 1
 	cargo random 2 30 .6
 	to offer
@@ -720,7 +720,7 @@ mission "Coalition: Fast Courier 3"
 	job
 	repeat
 	name "Fast courier to <planet>"
-	description "Deliver <cargo> to <destination>, by <date>. The payment is <payment>."
+	description "Deliver <cargo> to <destination> by <date>. The payment is <payment>."
 	deadline 5 1
 	cargo random 2 40 .6
 	to offer
