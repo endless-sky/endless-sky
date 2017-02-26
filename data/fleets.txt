@@ -392,6 +392,9 @@ fleet "Large Northern Merchants"
 	variant 3
 		"Freighter" 3
 		"Corvette (Missile)"
+	variant 1
+		"Freighter (Hai)" 2
+		"Corvette"
 	variant 6
 		"Freighter" 4
 		"Leviathan"
@@ -401,12 +404,17 @@ fleet "Large Northern Merchants"
 	variant 6
 		"Freighter" 4
 		"Leviathan (Laser)"
+	variant 1
+		"Freighter (Hai)" 4
+		"Leviathan"
 	variant 30
 		"Behemoth"
 	variant 10
 		"Behemoth (Speedy)"
 	variant 10
 		"Behemoth" 2
+	variant 1
+		"Behemoth (Hai)"
 	variant 4
 		"Behemoth"
 		"Headhunter" 2
@@ -445,6 +453,10 @@ fleet "Large Northern Merchants"
 		"Freighter (Fancy)" 4
 		"Sparrow" 2
 		"Firebird (Plasma)" 1
+	variant 1
+		"Freighter (Hai)" 4
+		"Sparrow" 2
+		"Firebird" 1
 	variant 2
 		"Bactrian"
 		"Dagger" 3
