@@ -48,9 +48,9 @@ ship "Aerie"
 	engine 10 91
 	gun -13 -79 "Heavy Laser"
 	gun 13 -79 "Heavy Laser"
+	turret 0 0 "Heavy Anti-Missile Turret"
 	turret -17 14 "Heavy Laser Turret"
 	turret 17 14 "Heavy Laser Turret"
-	turret 0 0 "Heavy Anti-Missile Turret"
 	fighter -42 -2
 	fighter 42 2
 	explode "tiny explosion" 10
@@ -404,11 +404,11 @@ ship "Behemoth"
 	gun -27 -83
 	gun 27 -83
 	turret -34 -64 "Heavy Laser Turret"
-	turret 24 78 "Heavy Laser Turret"
+	turret 34 -64 "Heavy Anti-Missile Turret"
 	turret -58 11 "Heavy Laser Turret"
 	turret 58 11 "Heavy Laser Turret"
 	turret -24 78 "Heavy Anti-Missile Turret"
-	turret 34 -64 "Heavy Anti-Missile Turret"
+	turret 24 78 "Heavy Laser Turret"
 	explode "small explosion" 15
 	explode "medium explosion" 25
 	explode "large explosion" 35
@@ -631,10 +631,10 @@ ship "Bulk Freighter"
 	gun -20 -175 "Sidewinder Missile Launcher"
 	gun 20 -175 "Sidewinder Missile Launcher"
 	turret -12 -155 "Laser Turret"
-	turret 30 175 "Laser Turret"
-	turret 0 5 "Laser Turret"
 	turret 12 -155 "Heavy Anti-Missile Turret"
+	turret 0 5 "Laser Turret"
 	turret -30 175 "Heavy Anti-Missile Turret"
+	turret 30 175 "Laser Turret"
 	explode "small explosion" 15
 	explode "medium explosion" 25
 	explode "large explosion" 35
@@ -688,18 +688,18 @@ ship "Carrier"
 		
 	engine -35 200
 	engine 35 200
-	gun -25 -166 "Particle Cannon"
-	gun 25 -166 "Particle Cannon"
 	gun -16 -176 "Particle Cannon"
 	gun 16 -176 "Particle Cannon"
-	gun -25 -166 "Meteor Missile Launcher"
-	gun 25 -166 "Meteor Missile Launcher"
 	gun -16 -176 "Meteor Missile Launcher"
 	gun 16 -176 "Meteor Missile Launcher"
-	turret 0 15 "Heavy Laser Turret"
+	gun -25 -166 "Particle Cannon"
+	gun 25 -166 "Particle Cannon"
+	gun -25 -166 "Meteor Missile Launcher"
+	gun 25 -166 "Meteor Missile Launcher"
 	turret 0 -114 "Heavy Laser Turret"
-	turret 0 157 "Heavy Laser Turret"
+	turret 0 15 "Heavy Laser Turret"
 	turret 0 103 "Heavy Anti-Missile Turret"
+	turret 0 157 "Heavy Laser Turret"
 	fighter -37 -65
 	fighter 37 -65
 	fighter -46 40
@@ -757,8 +757,8 @@ ship "Class C Freighter"
 	engine -22 198
 	engine 22 198
 	turret -12 -155 "Heavy Laser Turret"
-	turret 30 175 "Heavy Laser Turret"
 	turret 12 -155 "Heavy Anti-Missile Turret"
+	turret 30 175 "Heavy Laser Turret"
 	turret -30 175 "Heavy Anti-Missile Turret"
 	drone -66 -115 left
 	drone -66 -65 left
@@ -818,10 +818,10 @@ ship "Clipper"
 		
 	engine -20 45
 	engine 20 45
-	gun -12 -7 "Beam Laser"
-	gun 12 -7 "Beam Laser"
 	gun -23 -19 "Javelin Pod"
 	gun 23 -19 "Javelin Pod"
+	gun -12 -7 "Beam Laser"
+	gun 12 -7 "Beam Laser"
 	explode "tiny explosion" 15
 	explode "small explosion" 20
 	explode "medium explosion" 10
@@ -904,10 +904,10 @@ ship "Corvette"
 		
 	engine -11 118
 	engine 11 118
-	gun -14 -60 "Heavy Laser"
-	gun 14 -60 "Heavy Laser"
 	gun -12 -68 "Heavy Laser"
 	gun 12 -68 "Heavy Laser"
+	gun -14 -60 "Heavy Laser"
+	gun 14 -60 "Heavy Laser"
 	turret 0 -11 "Heavy Laser Turret"
 	turret 0 74 "Heavy Laser Turret"
 	explode "tiny explosion" 18
@@ -963,10 +963,10 @@ ship "Cruiser"
 		
 	engine -29 156
 	engine 29 156
-	gun -41 -52 "Particle Cannon"
-	gun 41 -52 "Particle Cannon"
 	gun -31 -63 "Particle Cannon"
 	gun 31 -63 "Particle Cannon"
+	gun -41 -52 "Particle Cannon"
+	gun 41 -52 "Particle Cannon"
 	gun -20 -44 "Sidewinder Missile Launcher"
 	gun 20 -44 "Sidewinder Missile Launcher"
 	turret 0 -40 "Heavy Laser Turret"
@@ -1129,10 +1129,10 @@ ship "Falcon"
 	gun 17 -88 "Plasma Cannon"
 	gun -17 -88 "Torpedo Launcher"
 	gun 17 -88 "Torpedo Launcher"
-	turret -57 40 "Quad Blaster Turret"
-	turret 57 40 "Quad Blaster Turret"
 	turret -16 -24 "Quad Blaster Turret"
 	turret 16 -24 "Quad Blaster Turret"
+	turret -57 40 "Quad Blaster Turret"
+	turret 57 40 "Quad Blaster Turret"
 	explode "tiny explosion" 40
 	explode "small explosion" 55
 	explode "medium explosion" 60
@@ -1220,10 +1220,10 @@ ship "Firebird"
 		
 	engine -33 65
 	engine 33 65
-	gun -39 -13 "Heavy Laser"
-	gun 39 -13 "Heavy Laser"
 	gun -28 -27 "Heavy Laser"
 	gun 28 -27 "Heavy Laser"
+	gun -39 -13 "Heavy Laser"
+	gun 39 -13 "Heavy Laser"
 	turret -5 3 "Heavy Laser Turret"
 	turret 5 3 "Heavy Laser Turret"
 	explode "tiny explosion" 18
@@ -1851,10 +1851,10 @@ ship "Leviathan"
 		
 	engine -25 125
 	engine 25 125
-	gun -51 -21 "Particle Cannon"
-	gun 51 -21 "Particle Cannon"
 	gun -39 -33 "Particle Cannon"
 	gun 39 -33 "Particle Cannon"
+	gun -51 -21 "Particle Cannon"
+	gun 51 -21 "Particle Cannon"
 	turret -15 -50 "Quad Blaster Turret"
 	turret 15 -50 "Quad Blaster Turret"
 	turret -25 10 "Quad Blaster Turret"
