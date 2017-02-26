@@ -441,7 +441,7 @@ mission "Coalition: Arach Interspecies 1"
 	job
 	repeat
 	name "Arachi to <planet>"
-	description "As part of the Interspecies Exchange Program, transport these <bunks> volunteer settlers to <destination>. The government will pay their transport fee of <payment>."
+	description "As part of the Interspecies Exchange Program, these <bunks> volunteer settlers need transportation to <destination>. The government will pay their transport fee of <payment>."
 	passengers 4 2 .1
 	to offer
 		has "known to the heliarchs"
@@ -460,7 +460,7 @@ mission "Coalition: Arach Interspecies 2"
 	job
 	repeat
 	name "Arachi to <planet>"
-	description "As part of the Interspecies Exchange Program, transport these <bunks> volunteer settlers to <destination>. The government will pay their transport fee of <payment>."
+	description "As part of the Interspecies Exchange Program, these <bunks> volunteer settlers need transportation to <destination>. The government will pay their transport fee of <payment>."
 	passengers 4 4 .1
 	to offer
 		has "known to the heliarchs"
