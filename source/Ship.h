@@ -189,6 +189,9 @@ public:
 	// Get the degree to which this ship is cloaked. 1 means invisible and
 	// impossible to hit or target; 0 means fully visible.
 	double Cloaking() const;
+	// Get the system that the ship is currently jumping to. This returns null
+	// if the ship has already jumped, i.e. it is leaving hyperspace.
+	const System *HyperspaceSystem() const;
 	// Check if this ship is entering (rather than leaving) hyperspace.
 	bool IsEnteringHyperspace() const;
 	// Check if this ship is entering or leaving hyperspace.
@@ -312,7 +315,6 @@ public:
 	std::shared_ptr<Ship> GetShipToAssist() const;
 	const StellarObject *GetTargetPlanet() const;
 	const System *GetTargetSystem() const;
-	const Planet *GetDestination() const;
 	// Mining target.
 	std::shared_ptr<Minable> GetTargetAsteroid() const;
 	std::shared_ptr<Flotsam> GetTargetFlotsam() const;
@@ -322,7 +324,6 @@ public:
 	void SetShipToAssist(const std::shared_ptr<Ship> &ship);
 	void SetTargetPlanet(const StellarObject *object);
 	void SetTargetSystem(const System *system);
-	void SetDestination(const Planet *planet);
 	// Mining target.
 	void SetTargetAsteroid(const std::shared_ptr<Minable> &asteroid);
 	void SetTargetFlotsam(const std::shared_ptr<Flotsam> &flotsam);
@@ -427,6 +428,8 @@ private:
 	double ionization = 0.;
 	double disruption = 0.;
 	double slowness = 0.;
+	// Acceleration can be created by engines, firing weapons, or weapon impacts.
+	Point acceleration;
 	
 	int crew = 0;
 	int pilotError = 0;
@@ -454,7 +457,6 @@ private:
 	std::weak_ptr<Ship> shipToAssist;
 	const StellarObject *targetPlanet = nullptr;
 	const System *targetSystem = nullptr;
-	const Planet *destination = nullptr;
 	std::weak_ptr<Minable> targetAsteroid;
 	std::weak_ptr<Flotsam> targetFlotsam;
 	

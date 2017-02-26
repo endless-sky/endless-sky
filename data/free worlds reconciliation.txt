@@ -655,16 +655,16 @@ mission "FW Syndicate Capture 1"
 			`	You make an excuse to depart, and return to your ship. "Well," says Ijs, "this is it. If we're lucky, they won't see us coming, but no matter what, getting back out of Syndicate space will be a nightmare. Good luck, all."`
 				accept
 	
-	npc save
+	npc accompany save
 		personality heroic
 		ship "Dreadnought" "F.S. Gibraltar"
 	
-	npc save
+	npc accompany save
 		personality escort heroic waiting
 		government "Navy (Oathkeeper)"
 		ship "Cruiser (Mark II)" "R.S. Hand of Justice"
 	
-	npc save
+	npc accompany save
 		personality escort heroic waiting
 		government "Republic"
 		ship "Bactrian" "Unbreakable"
@@ -1200,7 +1200,7 @@ mission "FW Pug 2C: Scram Drive"
 
 
 
-mission "FW Pug 2C:  Jump Drive"
+mission "FW Pug 2C: Jump Drive"
 	landing
 	name "Investigate the Pug"
 	description "Travel to the Deneb system to investigate the Pug; if possible, make contact with them and determine what their goals and desires are."

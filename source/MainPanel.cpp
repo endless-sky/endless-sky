@@ -145,6 +145,9 @@ void MainPanel::Step()
 	
 	if(isActive)
 		engine.Go();
+	else
+		canDrag = false;
+	canClick = isActive;
 }
 
 
@@ -224,6 +227,12 @@ bool MainPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 
 bool MainPanel::Click(int x, int y, int clicks)
 {
+	// Don't respond to clicks if another panel is active.
+	if(!canClick)
+		return true;
+	// Only allow drags that start when clicking was possible.
+	canDrag = true;
+	
 	dragSource = Point(x, y);
 	dragPoint = dragSource;
 	
@@ -248,6 +257,9 @@ bool MainPanel::RClick(int x, int y)
 
 bool MainPanel::Drag(double dx, double dy)
 {
+	if(!canDrag)
+		return true;
+	
 	dragPoint += Point(dx, dy);
 	isDragging = true;
 	return true;
@@ -383,7 +395,9 @@ bool MainPanel::ShowHailPanel()
 	else if(flagship->GetTargetPlanet())
 	{
 		const Planet *planet = flagship->GetTargetPlanet()->GetPlanet();
-		if(planet && planet->IsInhabited())
+		if(planet && planet->IsWormhole())
+			Messages::Add("The gaping hole in the fabric of the universe does not respond to your hail.");
+		else if(planet && planet->IsInhabited())
 		{
 			GetUI()->Push(new HailPanel(player, flagship->GetTargetPlanet()));
 			return true;

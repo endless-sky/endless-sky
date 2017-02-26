@@ -188,9 +188,9 @@ bool MenuPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 		GetUI()->Push(new PreferencesPanel());
 	else if(key == 'l')
 		GetUI()->Push(new LoadPanel(player, gamePanels));
-	else if(key == 'n' || key == 'e')
+	else if(key == 'n' && !player.IsLoaded())
 	{
-		// The "New Pilot" and "Enter Ship" buttons are in the same place.
+		// If no player is loaded, the "Enter Ship" button becomes "New Pilot."
 		GameData::Revert();
 		player.New();
 		

@@ -1490,10 +1490,10 @@ mission "Cargo [0]"
 	description "Deliver <cargo> to <destination>. Payment is <payment>."
 	cargo random 5 2 .1
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Wanderer"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
 	destination
 		distance 2 8
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Wanderer"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
 	on complete
 		payment
 		dialog "You drop off your cargo of <commodity> and collect your payment of <payment>."
@@ -1507,10 +1507,10 @@ mission "Cargo [1]"
 	to offer
 		random < 90
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Wanderer"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
 	destination
 		distance 2 10
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Wanderer"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
 	on complete
 		payment
 		dialog "You drop off your cargo of <commodity> and collect your payment of <payment>."
@@ -1580,10 +1580,10 @@ mission "Bulk Delivery [0]"
 	to offer
 		random < 70
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Wanderer"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
 	destination
 		distance 2 8
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Wanderer"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
 	on complete
 		payment
 		dialog "You drop off your cargo of <commodity> and collect your payment of <payment>."
@@ -1597,10 +1597,10 @@ mission "Bulk Delivery [1]"
 	to offer
 		random < 60
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Wanderer"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
 	destination
 		distance 3 12
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Wanderer"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
 	on complete
 		payment
 		payment 2000
@@ -1635,10 +1635,10 @@ mission "Rush Delivery [0]"
 	to offer
 		random < 90
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Wanderer"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
 	destination
 		distance 4 10
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Wanderer"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
 	on complete
 		payment
 		payment 16000
@@ -1712,10 +1712,10 @@ mission "Passengers [0]"
 	description "Bring <fare> to <destination>. Payment is <payment>."
 	passengers 1 10 .9
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Wanderer"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
 	destination
 		distance 2 10
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Wanderer"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
 	on complete
 		payment
 		payment 2000
@@ -1730,10 +1730,10 @@ mission "Passengers [1]"
 	to offer
 		random < 75
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Wanderer"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
 	destination
 		distance 2 10
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Wanderer"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
 	on complete
 		payment
 		dialog "You wish your <passengers> the best of luck on <planet>, and collect your payment of <payment>."
@@ -1989,10 +1989,10 @@ mission "Family [0]"
 		random < 60
 		"passenger space" > 10
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Wanderer"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
 	destination
 		distance 4 16
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Wanderer"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
 	on complete
 		payment
 		payment 4000
@@ -2167,10 +2167,10 @@ mission "Large Bulk Delivery [0]"
 		random < 70
 		"cargo space" > 160
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Wanderer"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
 	destination
 		distance 2 8
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Wanderer"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
 	on complete
 		payment
 		payment 4000
@@ -2186,10 +2186,10 @@ mission "Large Bulk Delivery [1]"
 		random < 60
 		"cargo space" > 160
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Wanderer"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
 	destination
 		distance 3 12
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Wanderer"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
 	on complete
 		payment
 		payment 6000
@@ -2226,10 +2226,10 @@ mission "Large Rush Delivery [0]"
 		random < 90
 		"cargo space" > 80
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Wanderer"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
 	destination
 		distance 4 10
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Wanderer"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
 	on complete
 		payment
 		payment 36000

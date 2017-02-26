@@ -7207,7 +7207,7 @@ system Diphda
 system Dokdobaru
 	pos -21.5695 -241.812
 	government Quarg
-	habitable 320
+	habitable 700
 	belt 1935
 	link Hesselpost
 	link Kashikt
@@ -22445,7 +22445,7 @@ planet "Ablub's Invention"
 	attributes arach factory
 	landscape land/sky3
 	description `This ancient and quiet world, orbiting a dim red sun, is home to the microchip foundries of House Idriss, the Arach guild that specializes in computers and advanced electronics. Outside of the cities, which are clustered around the equator, Ablub's Invention is uninhabited except by the native lifeforms, including strange, spindly-legged quadrupeds, awkward birds with leathery wings, and amphibians with webbed feet and long, whiskered snouts.`
-	spaceport `The day-night cycle here is at least three times as long as any of the Coalition’s species are habituated to, so the entire city enters a "false nighttime" in the middle of the day, shuttering all the windows so that the locals can rest and reset their biological clocks. And in the middle of the night, the city is brightly lit for a "false day."`
+	spaceport `The day-night cycle here is at least three times as long as any of the Coalition's species are habituated to, so the entire city enters a "false nighttime" in the middle of the day, shuttering all the windows so that the locals can rest and reset their biological clocks. And in the middle of the night, the city is brightly lit for a "false day."`
 	spaceport `	The local work schedule has adapted to this unusual cycle, with the two true daytime periods serving the equivalent of the human work week, and the false daytime treated as a weekend, a time for socializing or working at home.`
 	"required reputation" 25
 
@@ -22617,7 +22617,7 @@ planet "Ashy Reach"
 	"required reputation" 15
 
 planet Avalon
-	landscape land/sea9
+	landscape land/sea17-harro
 	description `This is a pristine and perfectly habitable world, with warm oceans and a temperate climate. The land is dominated by large reptiles similar to the dinosaurs that roamed the continents of ancient Earth. Some of the land reptiles are over twenty meters in length, and the sea holds monsters more than twice that size.`
 	description `	Deep in the jungles near the equator, small mammals are working hard to avoid being eaten by the great lizards, and to survive for long enough that they will be able to evolve into the dominant life form.`
 	security 0
@@ -23195,7 +23195,7 @@ planet "Esayaku Fen"
 planet "Esek Stovar"
 	attributes korath station
 	landscape land/space4
-	description `This Kor Merati outpost is far enough from the front in their war with the Kor Sestor that it has fallen somewhat into disuse. The largest docking bays are still kept open for refueling and repairs, but the sections of the station that used to be living quarters have been sealed off.`
+	description `This Kor Mereti outpost is far enough from the front in their war with the Kor Sestor that it has fallen somewhat into disuse. The largest docking bays are still kept open for refueling and repairs, but the sections of the station that used to be living quarters have been sealed off.`
 	spaceport `Because this station is only in use now by autonomous vehicles, there is no atmosphere, and no need for airlocks or containment fields. The hangar bay doors have all been left wide open, so ships can come and go as they please.`
 	"required reputation" 1
 	bribe 0
@@ -23237,9 +23237,11 @@ planet "Far Home"
 	spaceport `	Once a year, when the Games begin, the spaceport city grows to nearly four times its usual population.`
 
 planet "Far'en Lai"
+	attributes uninhabited
 	landscape land/dune3
 	description `When the Korath were banished to the Core, they were left with only one living world, a planet they call "Far'en Lai," meaning, "the last candle-flame." Afraid that this planet's biosphere will turn to dust in their hands like all the other worlds they once controlled, the Korath have left Far'en Lai entirely unsettled and unexploited. It is rumored that the terms of their exile dictate that if Far'en Lai withers and dies, the remaining Korath exiles will be exterminated, but that if they can learn to make the planet flourish, their place in the galaxy will be restored.`
 	government Uninhabited
+	security 0
 
 planet "Fara Skaeruti"
 	attributes korath station
@@ -23439,7 +23441,7 @@ planet Furnace
 
 planet Geminus
 	attributes paradise factory mining
-	landscape land/fog5
+	landscape land/mountain18-harro
 	description `Geminus, although not the most hospitable of worlds, is a young enough planet that large stores of iron, titanium, and other metals are easily accessible near the surface. For that reason, it has become one of the Republic's primary shipyards. More than half of the warships in the navy were constructed here.`
 	description `	The constant volcanic activity leaves the planet perpetually shrouded in clouds of ash and fog, so that being outside means being in a twilight haze with low visibility. Probably in compensation for this, interior spaces tend to be brightly lit and painted in bold colors.`
 	spaceport `Like everything else on Geminus, the spaceport is not terribly pretty, but is functional and efficient. Each of the wide hallways is marked out like a road, with space in the center for electric carts carrying cargo, while pedestrians are relegated to the edges.`
@@ -23586,6 +23588,7 @@ planet "Gresku Fodar"
 	landscape land/space4
 	description `Situated an ideal distance from this system's twin suns, this station holds greenhouses where the Korath grow a highly nutritious bacterial sludge that serves the exiles as their main food source. A few of the greenhouses are also growing more traditional crops, but these are clearly a luxury that the Korath cannot afford to waste more of their resources on.`
 	spaceport `The bacterial soup that is being served in the food court has a texture like wet silt and an unpardonably bland flavor. Someone who could supply the Korath with a steady stream of the right sorts of spices could make a killing in trade here.`
+	security 0
 
 planet Hai-home
 	attributes hai
@@ -23726,7 +23729,7 @@ planet Hestia
 
 planet Hippocrates
 	attributes core research frontier
-	landscape land/water6
+	landscape land/water11-harro
 	description `Hippocrates is a sparsely settled world, home mostly to scientific research outposts. The environment here, orbiting so close to a red dwarf star, is very different from most other settled planets. The scientists estimate this star system to be over ten billion years old, enough that life here has had much more time to develop and evolve than on any planet orbiting a brighter, more short-lived star.`
 	spaceport `The spaceport is a single building, and half the landing pads are just packed dirt. This port was not designed for large volumes of cargo or of visitors. Within the building is a sun-lit atrium, with separate storefronts for the commodity exchange, the job center, and the bank. The only place you can see where you might be able to get something to eat is a bar, advertised by a sign showing an Erlenmeyer flask with a folding paper umbrella hung over the rim.`
 	outfitter "Ammo North"
@@ -23861,6 +23864,7 @@ planet "Kessel Sepret"
 	landscape land/station1
 	description `In this factory station, raw metal harvested in the other Korath systems is shaped into ships and weapons, the war materiel for their raids on Human space. Sections of the ships are assembled and tested in pressurized hangars, but the Korath Raider is a large enough ship that the final assembly must be done in space, outside the station.`
 	spaceport `This station is run with military discipline reminiscent of a human Navy base. All the Korath, even the construction workers, are in full uniform with some sort of rank insignia: epaulettes that vary both in shape and color. The largest ones appear to mark the officers in charge.`
+	security 0
 
 planet "Ki Patek Ka"
 	attributes kimek farming tourism urban
@@ -24009,7 +24013,7 @@ planet Luna
 
 planet Maelstrom
 	attributes north mining frontier
-	landscape land/mountain6
+	landscape land/mountain21-harro
 	description `Maelstrom is a stormy, geologically young world with towering mountains and frequent earthquakes. Most of the large cities are near the center of the planet's main continent, where the iron beds from an ancient ocean are exposed. Maelstrom is one of the chief exporters of iron, copper, gold, titanium, and other metals to Ada, where Lovelace Labs and the associated industries have a continuous need for raw materials.`
 	description `	Extreme rock climbing is a hugely popular sport among the mining workers here, who have a tendency to be young, male, and reckless. The mountains are dramatic enough to even attract off-world climbers as tourists, though more than once a favorite climbing face has been sloughed off its mountain in an earthquake.`
 	spaceport `The spaceport is a single massive complex of buildings, with hangars large enough for even a bulk freighter or a Navy flagship. A railroad runs through several of the nearby mining towns and straight into the spaceport building itself, allowing ore and processed metal to be loaded directly from the mine cars into the waiting freighters.`
@@ -24072,7 +24076,7 @@ planet Mani
 
 planet "Market of Gupta"
 	attributes arach shipping
-	landscape land/valley9
+	landscape land/mountain16-striker
 	description `This mountain world is the home base of House Mallob, the powerful Arach guild in charge of commerce and shipping. All the Arach starships that are currently in use were designed here, and many of them are manufactured here as well. The motto of House Mallob's shipyards is "strong as the mountains, spacious as the skies," referring to their focus on durable hulls and high cargo capacity.`
 	spaceport `This spaceport serves as the primary repair and service center for the Arach merchant marine. At any given time hundreds of ships may be in dry-dock here to have new equipment installed or their engines or internal systems tuned for better efficiency. Meanwhile, thousands of analysts and software experts work to plan out delivery routes, schedules, and supply chains for the merchant fleets to ensure that goods are always delivered where they will be most needed, and will earn the best profit. House Mallob's finances and organizational structure are legendary for their complexity.`
 
@@ -24105,10 +24109,10 @@ planet "Mebla's Portion"
 
 planet Memory
 	attributes deep research factory medical
-	landscape land/badlands1
+	landscape land/badlands9-harro
 	description `Memory is a dry world, but with enough local plants to maintain a breathable atmosphere. Some of the indigenous forms of cactus-like, drought-resistant plants grow dozens of meters high. Most of the animals that have evolved here are nocturnal.`
 	description `	This planet was first settled only a few centuries ago, and the population is still relatively low, but they have developed a diverse set of industries including manufacturing and medical research.`
-	spaceport `The local government has not yet seen the need to set aside funds to replace the spaceport built by the original settlers: mostly just a collection of poured concrete pads where larger ships  can land without sinking into the sand of the desert. They have added some large hangars for richer clients and Navy ships, however, and over the years more and more buildings have sprung up along the periphery of the landing field.`
+	spaceport `The local government has not yet seen the need to set aside funds to replace the spaceport built by the original settlers: mostly just a collection of poured concrete pads where larger ships can land without sinking into the sand of the desert. They have added some large hangars for richer clients and Navy ships, however, and over the years more and more buildings have sprung up along the periphery of the landing field.`
 	outfitter "Deep Sky Basics"
 	outfitter "Ammo North"
 	security 0.8
@@ -24323,7 +24327,7 @@ planet "New China"
 planet "New Finding"
 	attributes saryd research
 	landscape land/canyon6
-	description `Due to complex atmospheric currents and swiftly changing seasons, the surface of New Finding is constantly scoured by powerful winds, making it difficult for soil to accumulated except in sheltered canyons and gorges. Each of these patches of greenery stands like an island amid a sea of bare rock. Over time, where the forests are able to take hold and grow, they spread outward and begin to turn more of the rock into habitable soil. On the exposed slopes, rock slides are a constant danger.`
+	description `Due to complex atmospheric currents and swiftly changing seasons, the surface of New Finding is constantly scoured by powerful winds, making it difficult for soil to accumulate except in sheltered canyons and gorges. Each of these patches of greenery stands like an island amid a sea of bare rock. Over time, where the forests are able to take hold and grow, they spread outward and begin to turn more of the rock into habitable soil. On the exposed slopes, rock slides are a constant danger.`
 	description `	Due to the limited habitable land, the local economy focuses on high tech medicine and equipment that can be produced by relatively small laboratories.`
 	spaceport `The New Finding spaceport is in a canyon, with hangars cut into both the canyon walls and delicate covered bridges linking them together. Attempting to land here without crashing into anything is a harrowing experience.`
 	spaceport `	The bottom of the canyon is a bright green ribbon of trees and plants that stands out in sharp contrast against the red and yellow layers of sandstone.`
@@ -24530,7 +24534,7 @@ planet Oblivion
 	attributes "dirt belt" oil mining
 	landscape land/sky7
 	description `The atmosphere here is a toxic mix of ammonia, sulfur, and methane. Although breathable by human beings if necessary, the locals use masks to reduce the risk of chronic respiratory problems. Even so, the life expectancy here is short, but that is partly because the two best-paying industries are oil drilling and mining for radioactive elements.`
-	spaceport `The spaceport is a long landing strip paved in asphalt, with warehouses on either side of it constructed from stone and mortar.  Inside are stacked lead-lined crates of radioactive materials for sale. Unlike many Dirt Belt worlds, you see few curious children watching ships land or playing among the buildings; this is not the sort of world where many people choose to put down roots and build a family.`
+	spaceport `The spaceport is a long landing strip paved in asphalt, with warehouses on either side of it constructed from stone and mortar. Inside are stacked lead-lined crates of radioactive materials for sale. Unlike many Dirt Belt worlds, you see few curious children watching ships land or playing among the buildings; this is not the sort of world where many people choose to put down roots and build a family.`
 	outfitter "Ammo South"
 	security 0.05
 	tribute 500
@@ -24586,7 +24590,7 @@ planet Placer
 
 planet "Plort's Water"
 	attributes arach research
-	landscape land/sea3
+	landscape land/sea15-harro
 	description `Plort's Water is an ocean world, with no landforms except for some scattered volcanic archipelagos. A few of the larger islands are home to small Arach settlements, and others live aboard "island-ships" that can each carry tens of thousands of individuals. There is very little industry here, but many of the locals are involved in biological experiments or in categorizing the millions of species that inhabit the oceans.`
 	spaceport `The spaceport is built on the slopes of a dormant volcano, and only has space for a few dozen ships to land at any one time. Too few visitors come here to support any shops or restaurants in the spaceport itself. In the village, the cheapest and most abundant food is a variety of soups, cakes, and puddings that all look and smell as if they are made from processed algae.`
 	"required reputation" 15
@@ -24795,6 +24799,7 @@ planet "Safaresk Enlai"
 	description `It is unclear what the primary purpose of this station is. The station contains numerous greenhouses where a wide variety of plants, and even some small animals, are kept. Other parts of the station are closed off to non-Korath visitors.`
 	spaceport `This spaceport is relatively unpopulated for a station of this size, and the few Korath who are here are wandering about with the sort of deeply absorbed attitude you would expect from a scientist or an academic.`
 	spaceport `	In one corner of the spaceport is a cage housing several large rodents and some small shrubs, lit by a warm sun-lamp. The rodents are quite acrobatic.`
+	security 0
 
 planet "Sandy Two"
 	attributes kimek factory farming urban
@@ -24820,7 +24825,7 @@ planet "Sarisa Fentra"
 
 planet Saros
 	attributes saryd tourism urban
-	landscape land/water8
+	landscape land/valley12-harro
 	description `The homeworld of the Saryds still bears some scars from the adolescence of their species, particularly in its lack of biodiversity. But over thousands of years, they have returned significant portions of the planet to their original wilderness state. The planet's population currently stands at just over two billion, in part due to the fact that Saryds live very long lives and many of them choose to dedicate their lives to serving society in other ways rather than raising children.`
 	spaceport `The main spaceport is on the outskirts of a large city near the planet's equator, supposedly not far from the place where the Saryds launched their first rockets to explore their own solar system. It has all the standard accoutrements of a tourist trap, including stall after stall of vendors selling food or articles of clothing, and mobs of wide-eyed visitors wandering about and generally getting in the way of the merchant captains trying to conduct actual business here.`
 
@@ -24895,12 +24900,14 @@ planet "Separa Tiklar"
 	landscape land/space1
 	description `This station manufactures the weapon systems and other equipment that is used in the Korath stations, war vessels, and world-ships.`
 	spaceport `From the outside this station appears as run down as their other facilities, but the interior is meticulously clean. Also, everything outside the delivery bay is restricted space, under heavy military guard.`
+	security 0
 
 planet "Septar Lorku"
 	attributes korath station
 	landscape land/loc0
 	description `This system has a high concentration of metallic asteroids, which the Korath are harvesting to provide iron ore for their space ships and fissionable materials for their reactor cores. Smelting metal in a high-temperature blast furnace in the interior of a space station is, of course, an incredibly risky proposition.`
 	spaceport `Despite your lack of knowledge of Korath health and anatomy, it is clear that the inhabitants of this station are under-fed and overworked. Also, an alarming number of them are missing fingers, hands, or entire limbs. It is quite possible that the work in the refineries is even more dangerous than the job of the raiders attacking human space.`
+	security 0
 
 planet Serpens
 	attributes north medical research
@@ -24917,6 +24924,7 @@ planet "Sessiliki Far"
 	landscape land/loc2
 	description `This is a Korath mining station, where ore extracted from asteroids is refined and processed. The Korath seem to have an aversion to harvesting raw materials from actual planets, preferring to work with lifeless asteroids instead.`
 	spaceport `A smelter is never a safe place to work, and some of the machinery looks very old, but you get the feeling that the Korath on this station are in relatively good spirits nonetheless. The cafe in the spaceport is bustling, and every few hours a bell rings and about a third of the workers leave the factory floor and are replaced by fresh and rested ones.`
+	security 0
 
 planet "Sestor Ikfar"
 	attributes korath
@@ -25105,7 +25113,7 @@ planet Solace
 
 planet "Solima Skarati"
 	attributes korath
-	landscape land/beach3
+	landscape land/beach12-harro
 	description `The Korath were endlessly creative in devising new weapons of war during the twilight years of their empire, but what destroyed this planet in the end was not a military disaster but an ecological one. Small villages along the ocean shores and rusting fleets of boats bear witness to the fact that this ocean world was once a fruitful fishery. But now the ocean carries high levels of industrial toxins, and in place of large fish only small invertebrates remain.`
 	security 0
 
@@ -25421,7 +25429,7 @@ planet Valhalla
 
 planet "Var' Kar'i'i"
 	attributes wanderer urban farming
-	landscape land/valley8
+	landscape land/valley13-harro
 	description `This is a populous Wanderer world, with small farming villages scattered across all the land, and even a few larger population centers that might almost qualify as a city. But from the air, it is not evident at first that the planet is so heavily settled, because the village tree-houses are mostly hidden beneath the forest canopies. The farms, too, are almost indistinguishable from natural land, due to a permaculture system where many varieties of plants are growing side by side.`
 	spaceport `Apparently, just as humans use horses to carry loads and draw carts of produce, the Wanderers use a large breed of lizard, nearly eight feet tall and walking on their hind legs. The lizards are meat-eaters: next to the watering troughs are cages full of large rodents, which the Wanderers occasionally feed to their beasts.`
 	spaceport `	Many different forms of produce are for sale here in open-air markets, including dozens of different nuts and berries. Aside from the rodents to feed to the lizards, and a few species of fish, the Wanderers do not seem to raise animals for food.`
@@ -25449,7 +25457,7 @@ planet "Var' Roi"
 
 planet "Vara K'chrai"
 	attributes wanderer urban
-	landscape land/sea8
+	landscape land/sea16-harro
 	description `This is the most populous Wanderer world, with dozens of large cities. The tallest buildings branch and cantilever out from their bases like metallic trees. More than half the surface of the planet is ocean, with a few small settlements built on massive living rafts of algae and seaweed, perhaps ten meters thick and up to several kilometers wide. Much of the land is forests, with villages built entirely in the treetops.`
 	description `	There are also farms here, but more like gardens or parks than a human farm: each with dozens of species of plants growing side by side, and harvested by autonomous robots.`
 	spaceport `The streets in Wanderer capital city seem to be mostly reserved for cargo vehicles; the Wanderers themselves fly from one building to another instead, and the skyscrapers have balconies dozens of stories above the ground where visitors can land or take off. The air traffic seems utterly chaotic, but somehow they avoid colliding with each other in midair, and certain columns of airspace have been reserved for ships taking off and landing so that flying Wanderers will not get caught in the backwash from the ship engines.`
@@ -25616,7 +25624,7 @@ planet Wayfarer
 
 planet "Weir of Glubatub"
 	attributes arach farming
-	landscape land/beach6
+	landscape land/beach11-harro
 	description `The Weir of Glubatub is a quiet ocean world, lit by a dim red sun, whose atmosphere seldom gathers enough energy to spawn storms or other violent weather. Nearly all the life in the oceans is very close to the surface, where the sun's light is bright enough for algae and seaweed to flourish.`
 	description `	A few of the larger islands have been settled by the Arachi, and most of the locals work in the fishing industry. Some of the fishing boats are so large that a small starship can land on their decks.`
 	spaceport `The spaceport is on an island near one of the planet's poles, where the temperature is cool and sea ice can be gathered to stock the warehouses where the fish are kept cold until they can be shipped offworld. Even with most of the fish being kept on ice, the smell is still overpowering, except at the rare moments when the wind picks up and it is replaced by the smell of fresh salt air.`

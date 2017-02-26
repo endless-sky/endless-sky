@@ -246,7 +246,7 @@ mission "Intro [2 Freighter]"
 		payment 35000
 		conversation
 			`By now, your entire ship smells like brine and raw fish, but as best you can tell the fish is still fresh enough to eat. The dock workers on <planet> offload it without comment, and give you your payment of <payment>.`
-			`	"If you can line them up right," says James, "rush deliveries can be your best source of income as a freighter captain. And keep your eye out for missions with large amounts of cargo, too, because your barge's hold is definitely big enough to handle them. And  if you've got any cargo space to spare and you know what the prices are going to be at your destination, be sure to stock up on something you can sell for a profit."`
+			`	"If you can line them up right," says James, "rush deliveries can be your best source of income as a freighter captain. And keep your eye out for missions with large amounts of cargo, too, because your barge's hold is definitely big enough to handle them. And if you've got any cargo space to spare and you know what the prices are going to be at your destination, be sure to stock up on something you can sell for a profit."`
 			choice
 				`	"What would you recommend if I want to do more than just carry cargo?"`
 					goto more

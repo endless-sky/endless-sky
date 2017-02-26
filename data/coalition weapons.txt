@@ -11,7 +11,7 @@
 outfit "Bombardment Cannon"
 	category "Guns"
 	cost 437000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/bombardment cannon"
 	"mass" 12
 	"outfit space" -12
 	"weapon capacity" -12
@@ -20,7 +20,7 @@ outfit "Bombardment Cannon"
 		sprite "projectile/bombardment"
 			"frame rate" 3.2
 			"no repeat"
-		sound "blaster"
+		sound "bombardment"
 		"hit effect" "bombardment impact"
 		"inaccuracy" 4
 		"velocity" 6
@@ -36,7 +36,7 @@ outfit "Bombardment Cannon"
 outfit "Bombardment Turret"
 	category "Turrets"
 	cost 1845000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/bombardment turret"
 	"mass" 43
 	"outfit space" -43
 	"weapon capacity" -43
@@ -46,7 +46,7 @@ outfit "Bombardment Turret"
 		sprite "projectile/bombardment"
 			"frame rate" 3.2
 			"no repeat"
-		sound "blaster"
+		sound "bombardment"
 		"hit effect" "bombardment impact"
 		"inaccuracy" 4
 		"velocity" 6
@@ -73,7 +73,7 @@ effect "bombardment impact"
 outfit "Finisher Pod"
 	category "Secondary Weapons"
 	cost 1370000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/finisher pod"
 	"mass" 16
 	"outfit space" -36
 	"weapon capacity" -36
@@ -83,7 +83,7 @@ outfit "Finisher Pod"
 		sprite "projectile/finisher activating"
 			"frame rate" 1
 			"no repeat"
-		sound "torpedo"
+		sound "finisher"
 		ammo "Finisher Torpedo"
 		icon "icon/finisher"
 		"fire effect" "finisher sparks" 8
@@ -129,7 +129,7 @@ outfit "Finisher Torpedo"
 	plural "Finisher Torpedoes"
 	category "Ammunition"
 	cost 32000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/finisher"
 	"mass" .5
 	"finisher capacity" -1
 	description `This extremely powerful but also expensive missile is ammunition for the Heliarch Finisher Pod.`
@@ -175,7 +175,7 @@ effect "finisher fragment"
 outfit "Heliarch Attractor"
 	category "Turrets"
 	cost 2187000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/heliarch attractor"
 	"mass" 49
 	"outfit space" -49
 	"weapon capacity" -49
@@ -185,7 +185,7 @@ outfit "Heliarch Attractor"
 		sprite "projectile/attractor"
 			"frame rate" 5.2
 			"random start frame"
-		sound "laser"
+		sound "heliarch attractor"
 		"hit effect" "attractor impact"
 		"inaccuracy" 2
 		"velocity" 640
@@ -213,7 +213,7 @@ effect "attractor impact"
 outfit "Heliarch Repulsor"
 	category "Turrets"
 	cost 2549000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/heliarch repulsor"
 	"mass" 56
 	"outfit space" -56
 	"weapon capacity" -56
@@ -223,7 +223,7 @@ outfit "Heliarch Repulsor"
 		sprite "projectile/repulsor"
 			"frame rate" 3.2
 			"random start frame"
-		sound "heavy laser"
+		sound "heliarch repulsor"
 		"hit effect" "repulsor impact"
 		"inaccuracy" 3
 		"velocity" 560
@@ -252,7 +252,7 @@ effect "repulsor impact"
 outfit "Ion Rain Gun"
 	category "Guns"
 	cost 798000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/ion rain gun"
 	"mass" 17
 	"outfit space" -17
 	"weapon capacity" -17
@@ -261,7 +261,7 @@ outfit "Ion Rain Gun"
 		sprite "projectile/ion rain"
 			"frame rate" 7
 			"random start frame"
-		sound "particle"
+		sound "ion rain"
 		"hit effect" "ion rain impact"
 		"inaccuracy" 4.5
 		"velocity" 16

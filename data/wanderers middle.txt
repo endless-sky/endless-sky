@@ -12,6 +12,7 @@ mission "Wanderers: Surveying 1"
 	landing
 	name "Wanderer Surveying"
 	description "The Wanderers asked you to survey several of the nearby planets in Korath space, and to bring the data back to them on <planet> when you are done."
+	autosave
 	source "Spera Anatrusk"
 	stopover "Desi Seledrak"
 	stopover "Sabira Eseskrai"
@@ -65,6 +66,7 @@ mission "Wanderers: Surveying 2"
 	landing
 	name "Wanderer Surveying"
 	description "The Wanderers have asked you to survey some more worlds, which are deep in the territory of the Kor Mereti drones, and to bring the measurements back to them on <planet>."
+	autosave
 	source "Spera Anatrusk"
 	stopover "Esayaku Fen"
 	stopover "Aresepru Nat"
@@ -260,8 +262,8 @@ mission "Wanderers: First Mereti Attack"
 				"Model 256" 1
 				"Model 128" 2
 				"Model 64" 3
-				"Model 32" 5
-				"Model 16" 8
+				"Model 32" 4
+				"Model 16" 6
 		dialog `As the last of the Kor Mereti raiding party is destroyed, you receive a message from Sobari Tele'ek. "Please join us at the [base, settlement] as soon as you are able to," he says. "We will need to [agree, decide] on a strategy to deal with these [robots, drones] in case their attacks grow worse."`
 	npc
 		government "Wanderer"
@@ -293,7 +295,8 @@ mission "Wanderers: First Mereti Attack"
 mission "Wanderers: Rek To Kor Efret"
 	landing
 	name "Bring Rek to <planet>"
-	description "Brink Rek, who has survived the Molt and taken on a new form, to try to communicate with the Kor Efret on <destination>."
+	description "Bring Rek, who has survived the Molt and taken on a new form, to try to communicate with the Kor Efret on <destination>."
+	autosave
 	source "Spera Anatrusk"
 	destination "Setar Fort"
 	passengers 1
@@ -302,7 +305,7 @@ mission "Wanderers: Rek To Kor Efret"
 		has "Wanderers: First Mereti Attack: done"
 	on offer
 		conversation
-			`When you enter the meeting room, Sobari Tele'ek is in a heated argument with the Wanderer child who was here earlier, the one who speaks your language. The child is saying, "The Eye has sent us not to a place of [empty, abandoned] worlds but to a place of [living beings?]. To complete our [calling, work] here we must collaborate with those beings, just as we would collaborate with the [ecosystem? personality] of a planet we sought to repair."`
+			`When you enter the meeting room, Sobari Tele'ek is in a heated argument with the Wanderer child who was here earlier, the one who speaks your language. The child is saying, "The Eye has sent us not to a place of [empty, abandoned] worlds but to a place of [living beings?]. To complete our [calling, work] here we must collaborate with those beings, just as we would collaborate with the [ecosystem? personality?] of a planet we sought to repair."`
 			`	"What do you [propose, intend], Firstborn?" asks Tele'ek.`
 			`	"I would visit the [remaining, surviving] Korath," she says. "I would learn their [language? viewpoint? history?]. I would offer them our [companionship, assistance]."`
 			`	"No," says Tele'ek. "How could I [endanger, gamble with] your life? You are too [precious, unique] to be sent on such a [mission, assignment]."`
@@ -358,6 +361,7 @@ mission "Wanderers: Quarg Assistance 1"
 	landing
 	name "Quarg Assistance"
 	description "Ektasi Rek suggested that you should visit the Quarg and ask if they can help defend the Wanderers from Kor Mereti attacks."
+	autosave
 	source "Setar Fort"
 	destination "Kuwaru Efreti"
 	to offer
@@ -387,6 +391,7 @@ mission "Wanderers: Quarg Assistance 2"
 	landing
 	name "Quarg Assistance"
 	description "Escort a Quarg fleet that has agreed to help protect the Wanderers back to <destination>."
+	autosave
 	source "Kuwaru Efreti"
 	destination "Spera Anatrusk"
 	to offer
@@ -444,6 +449,7 @@ mission "Wanderers: Pug Assistance 1"
 	landing
 	name "Pug Assistance"
 	description "The Wanderers are thankful for the protection of the Quarg, but hope that the Pug on <planet> will be willing to send warships to protect them as well."
+	autosave
 	source "Spera Anatrusk"
 	destination "Vara Pug"
 	clearance
@@ -461,7 +467,7 @@ mission "Wanderers: Pug Assistance 1"
 					goto pug
 
 			label peace
-				"Well," says Tele'ek, "if they really [desire, hope] for these worlds to be [fruitful, habitable] once more, the best thing we can do is prove our [value, virtue] by beginning our work. We are a [patient, deliberate] species too, and we understand that gaining the [trust, goodwill] of another may take time."
+			`	"Well," says Tele'ek, "if they really [desire, hope] for these worlds to be [fruitful, habitable] once more, the best thing we can do is prove our [value, virtue] by beginning our work. We are a [patient, deliberate] species too, and we understand that gaining the [trust, goodwill] of another may take time."`
 				goto next
 
 			label displace
@@ -548,6 +554,7 @@ mission "Wanderers: Mereti Observation"
 	landing
 	name "Mereti Observation"
 	description "Observe the Kor Mereti in Mesuket for long enough for the Wanderer equipment to collect data on their communications. Then return to <planet>."
+	autosave
 	source "Spera Anatrusk"
 	to offer
 		has "Wanderers: Pug Assistance 2: done"
@@ -605,6 +612,7 @@ mission "Wanderers: Kor Efret 1"
 	landing
 	name "Visit <planet>"
 	description "Visit Ektasi Rek and the Korath on <planet>, and see if they have information that could help in neutralizing the Kor Mereti automata."
+	autosave
 	source "Spera Anatrusk"
 	destination "Setar Fort"
 	to offer
@@ -622,6 +630,7 @@ mission "Wanderers: Kor Efret 2"
 	landing
 	name "Korath Engineers"
 	description "The Korath on <origin> referred you to a team of engineers on <planet> who have been working to try to eliminate the automata."
+	autosave
 	source "Setar Fort"
 	destination "Laki Nemparu"
 	passengers 1
@@ -747,6 +756,7 @@ mission "Wanderers: Kor Efret 4"
 	landing
 	name "Return to <planet>"
 	description "Transport Ektasi Rek back to <planet>, where she will continue her work to understand the Korath language and culture."
+	autosave
 	source "Laki Nemparu"
 	destination "Setar Fort"
 	passengers 1
@@ -784,13 +794,14 @@ mission "Wanderers: Kor Efret 5"
 	landing
 	name "Return to <planet>"
 	description "Return to <planet> and report to Sobari Tele'ek that the Korath do not think the Mereti drone network can be compromised."
+	autosave
 	source "Setar Fort"
 	destination "Spera Anatrusk"
 	to offer
 		has "Wanderers: Kor Efret 4: done"
 	on offer
 		conversation
-			`You drop of Ektasi Rek on <origin>, and wish her the best of luck in her continued efforts to understand and befriend the Korath. She is clearly eager to get back to work.`
+			`You drop off Ektasi Rek on <origin>, and wish her the best of luck in her continued efforts to understand and befriend the Korath. She is clearly eager to get back to work.`
 			`	Then, you get ready to return to <planet>. Sobari Tele'ek will not be happy to hear that the Korath engineers think there is no hope of compromising the Kor Mereti network.`
 				accept
 
@@ -800,6 +811,7 @@ mission "Wanderers: Kor Mereti Hacking"
 	landing
 	name "Kor Mereti Hacking"
 	description "Test a device that the Wanderers think may be able to gain access to the Kor Mereti network and disrupt it."
+	autosave
 	source "Spera Anatrusk"
 	waypoint "Mekislepti"
 	to offer
@@ -841,6 +853,7 @@ mission "Wanderers: Mind 1"
 	landing
 	name "Travel to <planet>"
 	description `Travel to the Wanderer artificial intelligence lab on <planet>, where they will give you one of the "artificial minds" they have constructed.`
+	autosave
 	source "Spera Anatrusk"
 	destination "Kort Kehai"
 	to offer
@@ -871,6 +884,7 @@ mission "Wanderers: Mind 2"
 	landing
 	name "Return to <planet>"
 	description `Return to <planet> with a Wanderer named Meto Pa'aret and an "artificial mind" that he constructed.`
+	autosave
 	source "Kort Kehai"
 	destination "Spera Anatrusk"
 	to offer
@@ -902,6 +916,7 @@ mission "Wanderers: Mind 3"
 	landing
 	name "Fetch Escorts"
 	description `When you are ready, visit <planet> to rendezvous with the fleet that will be accompanying you in your attempt to link a Wanderer artificial Mind to the Kor Mereti network.`
+	autosave
 	source "Spera Anatrusk"
 	destination "Vara K'chrai"
 	to offer
@@ -1066,6 +1081,7 @@ mission "Wanderers: Mind 7"
 	landing
 	name "Investigate <planet>"
 	description "Visit <destination>, and figure out what the Kor Mereti are doing there, now that they are apparently no longer hostile."
+	autosave
 	source "Spera Anatrusk"
 	destination "Korbatri Eska"
 	to offer
@@ -1102,8 +1118,9 @@ mission "Wanderers: Mind 7"
 
 mission "Wanderers: Mind 8"
 	landing
-	name "Investigate <planet>"
+	name "Investigate <origin>"
 	description "Report the new behavior of the Kor Mereti drones to the Wanderers."
+	autosave
 	source "Korbatri Eska"
 	destination "Spera Anatrusk"
 	to offer
@@ -1159,6 +1176,7 @@ mission "Wanderers: Mentors 1"
 	landing
 	name "Visit <planet>"
 	description "Travel to <planet> to meet up with a team of Wanderer professors and scientists who are eager to work with the Kor Mereti drones."
+	autosave
 	source "Spera Anatrusk"
 	destination "Var' Kayi"
 	to offer
@@ -1190,6 +1208,7 @@ mission "Wanderers: Mentors 2"
 	landing
 	name "Wanderers to <planet>"
 	description "Escort this Wanderer transport safely to <planet>, where the scientists and professors on board will begin teaching and mentoring the Kor Mereti."
+	autosave
 	source "Var' Kayi"
 	destination "Korbatri Eska"
 	to offer
@@ -1211,6 +1230,7 @@ mission "Wanderers: Mentors 3"
 	landing
 	name "Return to <planet>"
 	description "Return to <planet> to see what the Wanderer leaders have planned next."
+	autosave
 	source "Korbatri Eska"
 	destination "Spera Anatrusk"
 	to offer
@@ -1253,6 +1273,7 @@ mission "Wanderers: Tour 1"
 	landing
 	name "Kor Efret Diplomacy"
 	description "Visit Ektasi Rek on <planet> and see if the Kor Efret would like to come to <origin> for a diplomatic visit."
+	autosave
 	source "Desi Seledrak"
 	destination "Setar Fort"
 	to offer
@@ -1418,6 +1439,7 @@ mission "Wanderers: Tour 7"
 	landing
 	name "Return to <planet>"
 	description "Return to <planet> with Rek's report from the Kor Efret diplomatic tour."
+	autosave
 	source "Setar Fort"
 	destination "Desi Seledrak"
 	to offer
@@ -1439,6 +1461,7 @@ mission "Wanderers: Sestor Scanning"
 	landing
 	name "Scan Sestor Planets"
 	description "Scan all the habitable planets in Sestor space to attempt to find where the control center for the automata is located."
+	autosave
 	source "Desi Seledrak"
 	to offer
 		has "Wanderers: Tour 7: done"
@@ -1646,6 +1669,7 @@ mission "Wanderers: Sestor Search"
 	landing
 	name "Find the Sestor fleet"
 	description "A large Kor Sestor fleet passed through the wormhole to Wanderer space. Figure out where they went and what they are doing there."
+	autosave
 	source "Desi Seledrak"
 	to offer
 		has "Wanderers: Sestor Attack: done"
@@ -1662,7 +1686,7 @@ mission "Wanderers: Sestor Search"
 		has "wanderers: found the sestor fleet"
 	on enter "Aya'k'k"
 		dialog
-			`A major battle was fought here. The burned-out hulks of several Wanderer ships are floating around in space, along with a handful of disabled Kor Sestor ships. Meanwhile, Wanderer ships are engaged in some sort of rescue or evacuation process on the surface of <planet>. But there is no sign of the bulk of the Kor Sestor fleet.`
+			`A major battle was fought here. The burned-out hulks of several Wanderer ships are floating around in space, along with a handful of disabled Kor Sestor ships. Meanwhile, Wanderer ships are engaged in some sort of rescue or evacuation process on the surface of Varu K'prai. But there is no sign of the bulk of the Kor Sestor fleet.`
 	npc
 		system "Aya'k'k"
 		government "Wanderer"
@@ -1885,6 +1909,7 @@ mission "Wanderers: Sestor: Quarg Help 1"
 	landing
 	name "Ask the Quarg for help"
 	description "Admiral Danforth asked you to visit <planet> and ask the Quarg if they can provide any ships to help you fight off the Kor Sestor fleet (now presumably under Alpha control)."
+	autosave
 	source "Farpoint"
 	destination "Alta Hai"
 	clearance
@@ -2174,6 +2199,7 @@ mission "Wanderers: Sestor: Scattered Remnant"
 				"Tek Far 71 - Lek"
 				"Far Lek 14" 10
 				"Met Par Tek 53" 2
+		dialog `All of the Kor Sestor ships in this system have been eliminated.`
 	npc kill
 		system "Canopus"
 		government "Kor Sestor"
@@ -2186,6 +2212,7 @@ mission "Wanderers: Sestor: Scattered Remnant"
 				"Tek Far 71 - Lek (Close Quarters)"
 				"Far Lek 14" 8
 				"Met Par Tek 53 (Sniper)" 2
+		dialog `All of the Kor Sestor ships in this system have been eliminated.`
 	npc kill
 		system "Betelgeuse"
 		government "Kor Sestor"
@@ -2198,10 +2225,6 @@ mission "Wanderers: Sestor: Scattered Remnant"
 				"Tek Far 78 - Osk"
 				"Far Osk 27" 8
 				"Met Par Tek 53 (Sniper)"
-	npc kill
-		system "Betelgeuse"
-		government "Kor Sestor"
-		personality heroic staying
 		fleet
 			names "kor sestor"
 			fighters "kor sestor fighter"
@@ -2210,6 +2233,7 @@ mission "Wanderers: Sestor: Scattered Remnant"
 				"Tek Far 78 - Osk (Close Quarters)"
 				"Far Osk 27" 6
 				"Met Par Tek 53 (Sniper)"
+		dialog `All of the Kor Sestor ships in this system have been eliminated.`
 	npc kill
 		system "Capella"
 		government "Kor Sestor"
@@ -2223,6 +2247,7 @@ mission "Wanderers: Sestor: Scattered Remnant"
 				"Far Lek 14" 8
 				"Tek Far 78 - Osk"
 				"Far Osk 27" 8
+		dialog `All of the Kor Sestor ships in this system have been eliminated.`
 	npc kill
 		system "Mebsuta"
 		government "Kor Sestor"
@@ -2236,6 +2261,7 @@ mission "Wanderers: Sestor: Scattered Remnant"
 				"Far Lek 14" 9
 				"Tek Far 78 - Osk (Close Quarters)"
 				"Far Osk 27" 7
+		dialog `All of the Kor Sestor ships in this system have been eliminated.`
 	npc kill
 		system "Rigel"
 		government "Kor Sestor"
@@ -2249,6 +2275,7 @@ mission "Wanderers: Sestor: Scattered Remnant"
 				"Far Lek 14" 7
 				"Tek Far 78 - Osk (Close Quarters)"
 				"Far Osk 27" 6
+		dialog `All of the Kor Sestor ships in this system have been eliminated.`
 	npc kill
 		system "Castor"
 		government "Kor Sestor"
@@ -2260,6 +2287,7 @@ mission "Wanderers: Sestor: Scattered Remnant"
 				"Kar Ik Vot 349 (Defense)"
 				"Met Par Tek 53" 2
 				"Met Par Tek 53 (Sniper)"
+		dialog `All of the Kor Sestor ships in this system have been eliminated.`
 	npc kill
 		system "Wazn"
 		government "Kor Sestor"
@@ -2271,6 +2299,7 @@ mission "Wanderers: Sestor: Scattered Remnant"
 				"Kar Ik Vot 349 (Offense)"
 				"Met Par Tek 53"
 				"Met Par Tek 53 (Sniper)" 2
+		dialog `All of the Kor Sestor ships in this system have been eliminated.`
 	npc kill
 		system "Miaplacidus"
 		government "Kor Sestor"
@@ -2281,6 +2310,7 @@ mission "Wanderers: Sestor: Scattered Remnant"
 			variant
 				"Kar Ik Vot 349 (Trapper)"
 				"Met Par Tek 53 (Sniper)" 3
+		dialog `All of the Kor Sestor ships in this system have been eliminated.`
 	npc kill
 		system "Kursa"
 		government "Kor Sestor"
@@ -2295,6 +2325,7 @@ mission "Wanderers: Sestor: Scattered Remnant"
 				"Far Lek 14" 17
 				"Far Osk 27" 13
 				"Met Par Tek 53 (Sniper)" 2
+		dialog `All of the Kor Sestor ships in this system have been eliminated.`
 	npc kill
 		system "Saiph"
 		government "Kor Sestor"
@@ -2309,6 +2340,7 @@ mission "Wanderers: Sestor: Scattered Remnant"
 				"Far Lek 14" 17
 				"Far Osk 27" 13
 				"Met Par Tek 53" 2
+		dialog `All of the Kor Sestor ships in this system have been eliminated.`
 		
 
 
@@ -2347,6 +2379,7 @@ mission "Wanderers: Sestor: Kill Southern Remnant"
 	landing
 	name "Destroy Kor Sestor drones"
 	description "When you destroyed the Alpha base, the Kor Sestor drones began acting independently. They are now attacking human space. Help the Navy destroy the drones, then return to <planet>."
+	autosave
 	source "Farpoint"
 	to offer
 		has "Wanderers: Sestor: Bomb Zenith 2: done"
@@ -2375,7 +2408,7 @@ mission "Wanderers: Sestor: Kill Southern Remnant"
 			`	Danforth sighs. "Unfortunately," he says, "I am not permitted to tell you what that weapon was or how we acquired it. And already news agencies throughout the Republic are questioning our use of such a terrible weapon. I wish we had been able to defeat the Kor Sestor fleet without resorting to such extreme measures, but we had no choice."`
 
 			label end
-			`	Danforth gives you a map of the systems where there have been reports of Kor Sestor drones attacking civilian ships. "These, plus any that were left alive in the Alnilam system, are all the automata that we have been able to track," he says. "Report back here once you have succeeded in destroying them. The Navy will hopefully send some ships to help you."`
+			`	Danforth gives you a map of the systems where there have been reports of Kor Sestor drones attacking civilian ships. "These, plus any that were left alive in the Alnilam system, are all the automata that we have been able to track," he says. "Report back here once you have succeeded in completely destroying them. We can't risk letting some local warlord capture them. The Navy will hopefully send some ships to help you."`
 				accept
 
 
@@ -2406,9 +2439,10 @@ mission "Wanderers: Sestor: Drones in Alnilam"
 	to complete
 		has "Wanderers: Sestor: Alnilam Fleet 1: done"
 		has "Wanderers: Sestor: Alnilam Fleet 2: done"
+	waypoint "Alnilam"
 	on offer
 		conversation
-			`When you return to <planet>, Danforth tells you, "It seems that you have dealt with the last of the Kor Sestor drones that were terrorizing Republic space, but we still need to deal with the fleet in the Alnilam system. Do you think you can destroy that fleet on your own?`
+			`When you return to <planet>, Danforth tells you, "It seems that you have dealt with the last of the Kor Sestor drones that were terrorizing Republic space, but we still need to deal with the fleet in the Alnilam system. Do you think you can destroy that fleet on your own?"`
 			choice
 				`	"Yes, I think I can manage it."`
 					defer
@@ -2452,6 +2486,7 @@ mission "Wanderers: Sestor: Return to Wanderers"
 	landing
 	name "Return to <planet>"
 	description "The Kor Sestor drones in human space have been eliminated. Return to <planet> in Wanderer space to find out what is happening there."
+	autosave
 	source "Farpoint"
 	destination "Desi Seledrak"
 	to offer
@@ -2461,7 +2496,7 @@ mission "Wanderers: Sestor: Return to Wanderers"
 	on offer
 		fail "Wanderers: Sestor: Drones in Alnilam"
 		conversation
-			`Danforth beaches a sigh of relief when you tell him that the last of the Kor Sestor drones have been destroyed. "I am grateful for your help, Captain <last>," he says. "And now that we have finished with that battle, the public relations nightmare over what we did to Zenith begins. We don't need you to get involved in that, though; perhaps you should return to Wanderer space until things cool down a bit around here."`
+			`Danforth breathes a sigh of relief when you tell him that the last of the Kor Sestor drones have been destroyed. "I am grateful for your help, Captain <last>," he says. "And now that we have finished with that battle, the public relations nightmare over what we did to Zenith begins. We don't need you to get involved in that, though; perhaps you should return to Wanderer space until things cool down a bit around here."`
 				accept
 
 
@@ -2470,6 +2505,7 @@ mission "Wanderers: Sestor Alt: Alnilam 1"
 	landing
 	name "Destroy remaining drones"
 	description "Rather than bombing Zenith, destroy any Kor Sestor drones that are left over in the Alnilam system, then report back to Admiral Danforth on Farpoint."
+	autosave
 	source "Farpoint"
 	to offer
 		not "event: bombed zenith"
@@ -2546,6 +2582,7 @@ mission "Wanderers: Sestor Alt: Return to Wanderers"
 	landing
 	name "Return to <planet>"
 	description "The Kor Sestor drones in human space have been eliminated. Return to <planet> in Wanderer space to find out what is happening there."
+	autosave
 	source "Farpoint"
 	destination "Desi Seledrak"
 	to offer
@@ -2562,6 +2599,7 @@ mission "Wanderers: Sestor: Scan Drones"
 	landing
 	name "Scan remaining drones"
 	description "Scan the remaining Kor Sestor drones in a few of their systems, to collect data for the Wanderers to use to determine how quickly they are still being produced."
+	autosave
 	source "Desi Seledrak"
 	to offer
 		or
@@ -2619,6 +2657,7 @@ mission "Wanderers: Sestor: Exiles 1"
 	landing
 	name "Pick up Rek"
 	description "Pick up Rek on <planet>. She will be helping you to attempt to open diplomatic negotiations with the Korath exiles."
+	autosave
 	source "Desi Seledrak"
 	destination "Setar Fort"
 	to offer
@@ -2648,6 +2687,7 @@ mission "Wanderers: Sestor: Exiles 2"
 	landing
 	name "Contact the exiles"
 	description "Enter the territory of the Korath exiles. Do not fire on them. Instead, with Rek's help, try to find a way to speak with them or a place where they will meet with you."
+	autosave
 	source "Setar Fort"
 	passengers 1
 	to offer
@@ -2724,7 +2764,7 @@ mission "Wanderers: Sestor: Exiles 3"
 		fail "Wanderers: Sestor: Exiles 2"
 		event "wanderers: exiles peaceful"
 		conversation
-			`The Korath ships tail you to the planet's surface, but they do not fire on you.  Instead, they hover above your ship for a long, indecisive moment. You hold your fire, and they eventually land in the sand next to you. Their airlocks open, and a few of them step out and approach your ship. They do not appear to be armed. Perhaps they have a cultural taboo against using weapons on this world.`
+			`The Korath ships tail you to the planet's surface, but they do not fire on you. Instead, they hover above your ship for a long, indecisive moment. You hold your fire, and they eventually land in the sand next to you. Their airlocks open, and a few of them step out and approach your ship. They do not appear to be armed. Perhaps they have a cultural taboo against using weapons on this world.`
 			choice
 				`	(Go outside to meet them.)`
 				`	(Leave the planet while I still can.)`

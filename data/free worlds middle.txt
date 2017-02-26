@@ -2095,7 +2095,7 @@ mission "FW Liberate Delta Sagittarii"
 				`	"Yes, I helped them get access to some better ramscoop technology from the Deep."`
 					goto yes
 				`	"No, I haven't had any dealings with them."`
-			`	"That's odd," says JJ, "I thought they said you helped them to get their hands on the catalytic ramscoop. But anyway,  they've agreed to make an initial strike and fade attack on the Navy fleet to soften them up, before our own fleet gets there."`
+			`	"That's odd," says JJ, "I thought they said you helped them to get their hands on the catalytic ramscoop. But anyway, they've agreed to make an initial strike and fade attack on the Navy fleet to soften them up, before our own fleet gets there."`
 				goto plan
 			label yes
 			`	"Ah yes," says JJ, "an excellent piece of corporate espionage. A little shady and underhanded, of course, which is why we let the Wolf Pack handle things like that rather than doing it through official channels. But anyway, they've agreed to make an initial strike and fade attack on the Navy fleet to soften them up, before our own fleet gets there."`

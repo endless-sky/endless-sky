@@ -67,10 +67,8 @@ namespace {
 		unsigned source = 0;
 	};
 	
-	// Tread entry point for loading the sound files.
+	// Thread entry point for loading the sound files.
 	void Load();
-	// Get the "name" of a sound based on its file path.
-	string Name(const string &path);
 	
 	
 	// Mutex to make sure different threads don't modify the audio at the same time.
@@ -97,7 +95,7 @@ namespace {
 	unsigned maxSources = 255;
 	
 	// Queue and thread for loading sound files in the background.
-	vector<string> loadQueue;
+	map<string, string> loadQueue;
 	thread loadThread;
 	
 	// The current position of the "listener," i.e. the center of the screen.
@@ -140,7 +138,22 @@ void Audio::Init(const vector<string> &sources)
 	
 	// Get all the sound files in the game data and all plugins.
 	for(const string &source : sources)
-		Files::RecursiveList(source + "sounds/", &loadQueue);
+	{
+		string root = source + "sounds/";
+		vector<string> files = Files::RecursiveList(root);
+		for(const string &path : files)
+		{
+			if(!path.compare(path.length() - 4, 4, ".wav"))
+			{
+				// The "name" of the sound is its full path within the "sounds/"
+				// folder, without the ".wav" or "~.wav" suffix.
+				size_t end = path.length() - 4;
+				if(path[end - 1] == '~')
+					--end;
+				loadQueue[path.substr(root.length(), end - root.length())] = path;
+			}
+		}
+	}
 	// Begin loading the files.
 	if(!loadQueue.empty())
 		loadThread = thread(&Load);
@@ -523,8 +536,7 @@ namespace {
 	// Thread entry point for loading sounds.
 	void Load()
 	{
-		set<string> loaded;
-		
+		string name;
 		string path;
 		while(true)
 		{
@@ -534,43 +546,16 @@ namespace {
 				// in the queue. This is a signal that it has been loaded, so we
 				// must not remove it until after loading the file.
 				if(!path.empty() && !loadQueue.empty())
-					loadQueue.pop_back();
+					loadQueue.erase(loadQueue.begin());
 				if(loadQueue.empty())
 					return;
-				path = loadQueue.back();
+				name = loadQueue.begin()->first;
+				path = loadQueue.begin()->second;
 			}
 			
 			// Unlock the mutex for the time-intensive part of the loop.
-			string name = Name(path);
-			if(!name.empty() && !loaded.count(name))
-			{
-				loaded.insert(name);
-				sounds[name].Load(path);
-			}
+			if(!sounds[name].Load(path))
+				Files::LogError("Unable to load sound \"" + name + "\" from path: " + path);
 		}
-	}
-	
-	
-	
-	// Convert a full file path into a name. The name is the path relative to
-	// the "sounds" directory, but not including the ".wav" extension or the "~"
-	// looping indicator.
-	string Name(const string &path)
-	{
-		if(path.length() < 4 || path.compare(path.length() - 4, 4, ".wav"))
-			return string();
-		
-		// Only take the end of the path (after "sounds/").
-		size_t start = path.rfind("sounds/");
-		if(start == string::npos)
-			return string();
-		start += 7;
-		
-		// Remove the extension and the "~", if any.
-		size_t end = path.length() - 4;
-		if(path[end - 1] == '~')
-			--end;
-		
-		return path.substr(start, end - start);
 	}
 }
