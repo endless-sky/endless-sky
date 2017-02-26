@@ -904,7 +904,7 @@ mission "Coalition: Rush 1"
 	job
 	repeat
 	name "Rush Delivery to <planet>"
-	description "<destination>, needs a shipment of <cargo> by <date>. Payment will be <payment>."
+	description "<destination> needs a shipment of <cargo> by <date>. Payment will be <payment>."
 	deadline
 	cargo random 10 8 .2
 	to offer
@@ -925,7 +925,7 @@ mission "Coalition: Rush 2"
 	job
 	repeat
 	name "Rush Delivery to <planet>"
-	description "<destination>, needs a shipment of <cargo> by <date>. Payment will be <payment>."
+	description "<destination> needs a shipment of <cargo> by <date>. Payment will be <payment>."
 	deadline
 	cargo random 10 12 .2
 	to offer
@@ -946,7 +946,7 @@ mission "Coalition: Rush 3"
 	job
 	repeat
 	name "Rush Delivery to <planet>"
-	description "<destination>, needs a shipment of <cargo> by <date>. Payment will be <payment>."
+	description "<destination> needs a shipment of <cargo> by <date>. Payment will be <payment>."
 	deadline
 	cargo random 10 18 .2
 	to offer
