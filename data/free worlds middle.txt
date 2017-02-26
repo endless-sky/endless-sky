@@ -531,7 +531,7 @@ mission "FW Southern Battle 3"
 
 mission "FW Southern Prisoners - Release"
 	name "Return Navy Prisoners"
-	description "As a goodwill gesture, return the Navy prisoners to <destination>, rather than imprisoning them on Clink. Your safe passage ends on <day>."
+	description "As a goodwill gesture, return the Navy prisoners to <destination> rather than imprisoning them on Clink. Your safe passage ends on <day>."
 	source Dancer
 	clearance
 	destination "New Iceland"
@@ -690,7 +690,7 @@ mission "FW Southern Break"
 
 mission "FW Southern Break Ends"
 	name "Return to <planet>"
-	description "Travel as quickly as possible to <destination>, to rejoin the main Free Worlds fleet."
+	description "Travel as quickly as possible to <destination> to rejoin the main Free Worlds fleet."
 	landing
 	source
 		near Rastaban 1 1000
@@ -885,7 +885,7 @@ mission "FW Northern 2D"
 mission "FW Northern 3"
 	landing
 	name "Freya to Zug"
-	description "Bring Freya to <destination>, to help with ramping up Dreadnought production."
+	description "Bring Freya to <destination> to help with ramping up Dreadnought production."
 	source "New Tibet"
 	destination "Zug"
 	to offer
@@ -933,7 +933,7 @@ mission "FW Northern 3"
 
 mission "FW Northern 3B"
 	name "Dreadnoughts to <planet>"
-	description "Escort two more Dreadnoughts to <destination>, to help defend the front against any Navy incursions."
+	description "Escort two more Dreadnoughts to <destination> to help defend the front against any Navy incursions."
 	autosave
 	source "Zug"
 	destination "Clark"
@@ -984,7 +984,7 @@ mission "FW Northern 3B"
 mission "FW Northern 4"
 	landing
 	name "Meet Convoy"
-	description "Travel to <destination>, to escort a convoy of medical supplies. Watch out for Republic attacks."
+	description "Travel to <destination> to escort a convoy of medical supplies. Watch out for Republic attacks."
 	autosave
 	source "Clark"
 	destination "New Kansas"
@@ -1237,7 +1237,7 @@ mission "FW Alphas 1.2"
 
 mission "FW Alphas 1.1A"
 	name "Danforth to <planet>"
-	description "Escort Admiral Danforth's ship to <destination>, so that he can leave Free space without being accidentally attacked."
+	description "Escort Admiral Danforth's ship to <destination> so that he can leave Free space without being accidentally attacked."
 	autosave
 	source Poisonwood
 	destination "New Tibet"
@@ -1305,7 +1305,7 @@ mission "FW Death of Nguyen"
 mission "FW Alphas 1.2A"
 	landing
 	name "Return to the Front"
-	description "Travel to <destination>, to bolster the defenses there."
+	description "Travel to <destination> to bolster the defenses there."
 	source Poisonwood
 	destination "New Tibet"
 	to offer
@@ -1432,7 +1432,7 @@ mission "FW Bloodsea 1.1A"
 mission "FW Bloodsea 1.1B"
 	landing
 	name "Supplies to <planet>"
-	description "Escort these two freighters to <destination>, to help build a new spaceport. This may just be an excuse for pirates to attack you."
+	description "Escort these two freighters to <destination> to help build a new spaceport. This may just be an excuse for pirates to attack you."
 	autosave
 	source Deep
 	destination Bloodsea

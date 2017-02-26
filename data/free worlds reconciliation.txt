@@ -269,7 +269,7 @@ mission "FW Navy Out Of Rastaban"
 
 mission "FW Reconciliation 2A"
 	name "Oathkeepers on Farpoint"
-	description "Travel to <destination>, to meet with the Navy Oathkeepers. Raven's ship will continue to travel with you."
+	description "Travel to <destination> to meet with the Navy Oathkeepers. Raven's ship will continue to travel with you."
 	autosave
 	landing
 	source Valhalla
@@ -506,7 +506,7 @@ event "fw reconciliation break"
 
 mission "FW Reconciliation Break"
 	name "Katya and Ijs to <planet>"
-	description "Bring Katya and Ijs to <destination>, for a well-deserved sabbatical. Then you will be free to spend some time upgrading your ship while you wait for the Senate to select a team of ambassadors."
+	description "Bring Katya and Ijs to <destination> for a well-deserved sabbatical. Then you will be free to spend some time upgrading your ship while you wait for the Senate to select a team of ambassadors."
 	autosave
 	landing
 	source Bourne
@@ -638,7 +638,7 @@ mission "FW Embassy 1C"
 mission "FW Syndicate Capture 1"
 	landing
 	name "Raid on Nimbus"
-	description "Travel to <destination>, along with ships from the Oathkeepers, the Deep, and the Free Worlds, to capture Alexander Soylent, a Syndicate executive. Do not allow your escorts to be destroyed."
+	description "Travel to <destination> along with ships from the Oathkeepers, the Deep, and the Free Worlds, to capture Alexander Soylent, a Syndicate executive. Do not allow your escorts to be destroyed."
 	autosave
 	source Earth
 	destination Nimbus
@@ -1449,7 +1449,7 @@ mission "FW Pug 3: Quarg"
 mission "FW Pug 3A"
 	landing
 	name "Gather the fleet"
-	description "Travel to <destination>, and requisition two Free Worlds Dreadnoughts to join in the battle against the Pug. (But if you want to visit the Quarg or the Deep, do that first.)"
+	description "Travel to <destination> and requisition two Free Worlds Dreadnoughts to join in the battle against the Pug. (But if you want to visit the Quarg or the Deep, do that first.)"
 	autosave
 	source Earth
 	destination Zug
@@ -2269,7 +2269,7 @@ mission "FW Pug 6"
 
 mission "FW Syndicate Extremists 1"
 	name "Deal with the Syndicate"
-	description "Now that the Pug appear to have been driven off, it's time to get some answers from the Syndicate. Travel with Admiral Danforth back to <destination>, for another meeting with the CEO of the Syndicate."
+	description "Now that the Pug appear to have been driven off, it's time to get some answers from the Syndicate. Travel with Admiral Danforth back to <destination> for another meeting with the CEO of the Syndicate."
 	autosave
 	source Pugglemug
 	destination Foundry

@@ -1080,7 +1080,7 @@ event "wanderers: kor mereti transformation"
 mission "Wanderers: Mind 7"
 	landing
 	name "Investigate <planet>"
-	description "Visit <destination>, and figure out what the Kor Mereti are doing there, now that they are apparently no longer hostile."
+	description "Visit <destination> and figure out what the Kor Mereti are doing there, now that they are apparently no longer hostile."
 	autosave
 	source "Spera Anatrusk"
 	destination "Korbatri Eska"

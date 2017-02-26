@@ -195,7 +195,7 @@ mission "Human Cultural Archives"
 		payment -40
 
 mission "Cultural Data to Greenwater"
-	description "Bring a copy of the human cultural archives to <destination>, in exchange for a translation machine."
+	description "Bring a copy of the human cultural archives to <destination> in exchange for a translation machine."
 	landing
 	source "Alexandria"
 	destination "Greenwater"
@@ -211,7 +211,7 @@ mission "Cultural Data to Greenwater"
 			`	Go earn some money, then return here.`
 
 mission "Visit Wanderers Again"
-	description "Return to the Wanderer homeworld of <destination>, with a device that will allow you to converse with them more freely."
+	description "Return to the Wanderer homeworld of <destination> with a device that will allow you to converse with them more freely."
 	landing
 	source "Greenwater"
 	destination "Vara K'chrai"
@@ -686,7 +686,7 @@ mission "Unfettered: Jump Drive Source"
 
 mission "Wanderers: Alpha Surveillance A"
 	name "Alpha Surveillance"
-	description "Drop off surveillance micro-satellites in the three Unfettered home systems, then stop by <destination>, to see if the Hai government knows anything about an Alpha enclave nearby."
+	description "Drop off surveillance micro-satellites in the three Unfettered home systems, then stop by <destination> to see if the Hai government knows anything about an Alpha enclave nearby."
 	autosave
 	source "Vara K'chrai"
 	destination "Hai-home"
@@ -1050,7 +1050,7 @@ mission "Wanderers: Alpha Surveillance E"
 
 mission "Wanderers: Alpha Surveillance F"
 	name "Invade Avalon"
-	description "Escort Admiral Danforth's Navy Cruiser to <destination>, and land on the planet with them. They will attempt to locate and eliminate the Alpha base."
+	description "Escort Admiral Danforth's Navy Cruiser to <destination> and land on the planet with them. They will attempt to locate and eliminate the Alpha base."
 	autosave
 	source "Farpoint"
 	destination "Avalon"
