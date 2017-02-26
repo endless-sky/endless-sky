@@ -326,7 +326,7 @@ mission "Coalition: Peacekeepers 1"
 	job
 	repeat
 	name "Peacekeepers to <planet>"
-	description "Transport this corps of <bunks> peacekeepers to <destination>, to investigate reports of Resistance activity. Payment is <payment>."
+	description "Transport this corps of <bunks> peacekeepers to <destination> to investigate reports of Resistance activity. Payment is <payment>."
 	passengers 10 10 .2
 	to offer
 		has "known to the heliarchs"
@@ -345,7 +345,7 @@ mission "Coalition: Peacekeepers 2"
 	job
 	repeat
 	name "Peacekeepers to <planet>"
-	description "Transport this corps of <bunks> peacekeepers to <destination>, to investigate reports of Resistance activity. Payment is <payment>."
+	description "Transport this corps of <bunks> peacekeepers to <destination> to investigate reports of Resistance activity. Payment is <payment>."
 	passengers 10 5 .1
 	to offer
 		has "known to the heliarchs"
