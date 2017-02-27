@@ -1023,9 +1023,11 @@ ship "Cruiser" "Cruiser (Jump)"
 		"LP144a Battery Pack"
 		"LP036a Battery Pack"
 		"D94-YV Shield Generator"
-		"Liquid Helium Cooler"
+		"Liquid Nitrogen Cooler"
+		"Water Coolant System"
+		"Cooling Ducts"
 		"Fuel Pod" 2
-		"Ramscoop"
+		"Catalytic Ramscoop"
 		"Mass Expansion" 2
 		"A520 Atomic Thruster"
 		"A525 Atomic Steering"
