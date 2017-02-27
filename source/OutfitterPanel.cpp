@@ -152,7 +152,7 @@ void OutfitterPanel::DrawItem(const string &name, const Point &point, int scroll
 	if(player.Cargo().Get(outfit))
 	{
 		string count;
-		if(!outfitter.Has(outfit) and player.Stock(outfit) > 0)
+		if(!outfitter.Has(outfit) && player.Stock(outfit) > 0)
 		{
 			count = "in cargo: " + to_string(player.Cargo().Get(outfit)) + " | stock: " + to_string(player.Stock(outfit));
 		}
