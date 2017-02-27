@@ -1513,59 +1513,6 @@ mission "Mercenary Job (Medium, North, Dangerous Origin)"
 		dialog "The captain of the <npc> thanks you for escorting them safely, and pays you <payment>."
 	on visit
 		dialog "You have reached <planet>, but you left the <npc> behind! Better depart and wait for them to arrive in this star system."
-		
-mission "Mercenary Job (Medium, North, Dangerous Destination)"
-	name "Protection to <planet>"
-	job
-	repeat
-	description "The captain of the <npc> will pay you <payment> to escort them safely into law enforced space to reach <destination> by <date>."
-	deadline 10
-	to offer
-		random < 40
-		"combat rating" > 200
-		"reputation: Pirate" > 0
-	source
-		government "Pirate"
-		attributes "north pirate"
-	destination
-		government Republic "Free Worlds" Syndicate Neutral
-		attributes frontier north
-		distance 3 4
-	npc
-		personality waiting
-		system destination
-		distance 1
-		government Republic
-		fleet "Small Republic"
-	npc
-		system destination
-		personality staying
-		government Republic
-		fleet "Small Republic"
-	npc accompany save
-		government Pirate
-		personality escort
-		fleet
-			names "pirate"
-			variant 2
-				"Headhunter"
-			variant 2
-				"Headhunter (Particle)"
-			variant 2
-				"Raven (Afterburner)"
-			variant 2
-				"Raven (Heavy)"
-			variant 1
-				"Corvette"
-			variant 1
-				"Corvette (Missile)"
-			variant 1
-				"Corvette (Speedy)"
-	on complete
-		payment 180000
-		dialog "The captain of the <npc> thanks you for escorting them safely, and pays you <payment>."
-	on visit
-		dialog "You have reached <planet>, but you left the <npc> behind! Better depart and wait for them to arrive in this star system."
 
 mission "Escort Illegal Cargo (Large, North, Dangerous Path)"
 	name "Protect cargo to <planet>"
@@ -1578,12 +1525,12 @@ mission "Escort Illegal Cargo (Large, North, Dangerous Path)"
 		"combat rating" > 600
 		"reputation: Pirate" > 0
 	source
+		government Republic "Free Worlds" Syndicate Neutral Pirate
+		attributes frontier north "north pirate"
+		distance 3 6
+	destination
 		government "Pirate"
 		attributes "north pirate"
-	destination
-		government Republic "Free Worlds" Syndicate Neutral
-		attributes frontier north
-		distance 3 6
 	npc
 		system destination
 		personality staying
@@ -1625,8 +1572,8 @@ mission "Escort Stolen Vessel (Extra Large, North, Dangerous Path)"
 		"combat rating" > 1000
 		"reputation: Pirate" > 0
 	source
-		government Republic "Free Worlds" Syndicate Neutral
-		attributes frontier north
+		government Republic "Free Worlds" Syndicate Neutral Pirate
+		attributes frontier north "north pirate"
 	destination
 		government "Pirate"
 		attributes "north pirate"
@@ -1709,53 +1656,6 @@ mission "Mercenary Job (Medium, Core, Dangerous Origin)"
 		dialog "The captain of the <npc> thanks you for escorting them safely, and pays you <payment>."
 	on visit
 		dialog "You have reached <planet>, but you left the <npc> behind! Better depart and wait for them to arrive in this star system."
-		
-mission "Mercenary Job (Medium, Core, Dangerous Destination)"
-	name "Protection to <planet>"
-	job
-	repeat
-	description "The captain of the <npc> will pay you <payment> to escort them safely into law enforced space to reach <destination> by <date>."
-	deadline 10
-	to offer
-		random < 40
-		"combat rating" > 200
-		"reputation: Pirate" > 0
-	source
-		government "Pirate"
-		attributes "core pirate"
-	destination
-		government Republic "Free Worlds" Syndicate Neutral
-		attributes core
-		distance 3 4
-	npc
-		personality waiting
-		system destination
-		distance 1
-		government Syndicate
-		fleet "Small Syndicate"
-	npc
-		system destination
-		personality staying
-		government Syndicate
-		fleet "Small Syndicate"
-	npc accompany save
-		government Pirate
-		personality escort
-		fleet
-			names "pirate"
-			variant 1
-				"Headhunter"
-			variant 1
-				"Headhunter (Particle)"
-			variant 1
-				"Quicksilver"
-			variant 1
-				"Quicksilver (Proton)"
-	on complete
-		payment 180000
-		dialog "The captain of the <npc> thanks you for escorting them safely, and pays you <payment>."
-	on visit
-		dialog "You have reached <planet>, but you left the <npc> behind! Better depart and wait for them to arrive in this star system."
 
 mission "Escort Illegal Cargo (Large, Core, Dangerous Path)"
 	name "Protect cargo to <planet>"
@@ -1768,12 +1668,12 @@ mission "Escort Illegal Cargo (Large, Core, Dangerous Path)"
 		"combat rating" > 600
 		"reputation: Pirate" > 0
 	source
+		government Republic "Free Worlds" Syndicate Neutral Pirate
+		attributes core "core pirate"
+		distance 3 6
+	destination
 		government "Pirate"
 		attributes "core pirate"
-	destination
-		government Republic "Free Worlds" Syndicate Neutral
-		attributes core
-		distance 3 6
 	npc
 		system destination
 		personality staying
@@ -1811,8 +1711,8 @@ mission "Escort Stolen Vessel (Extra Large, Core, Dangerous Path)"
 		"combat rating" > 1000
 		"reputation: Pirate" > 0
 	source
-		government Republic "Free Worlds" Syndicate Neutral
-		attributes core
+		government Republic "Free Worlds" Syndicate Neutral Pirate
+		attributes core "core pirate"
 	destination
 		government "Pirate"
 		attributes "core pirate"
@@ -1901,53 +1801,6 @@ mission "Mercenary Job (Medium, South, Dangerous Origin)"
 		dialog "The captain of the <npc> thanks you for escorting them safely, and pays you <payment>."
 	on visit
 		dialog "You have reached <planet>, but you left the <npc> behind! Better depart and wait for them to arrive in this star system."
-		
-mission "Mercenary Job (Medium, South, Dangerous Destination)"
-	name "Protection to <planet>"
-	job
-	repeat
-	description "The captain of the <npc> will pay you <payment> to escort them safely into law enforced space to reach <destination> by <date>."
-	deadline 10
-	to offer
-		random < 40
-		"combat rating" > 200
-		"reputation: Pirate" > 0
-	source
-		government "Pirate"
-		attributes "south pirate"
-	destination
-		government Republic "Free Worlds" Syndicate Neutral
-		attributes south
-		distance 3 4
-	npc
-		personality waiting
-		system destination
-		distance 1
-		government Militia
-		fleet "Small Militia"
-	npc
-		system destination
-		personality staying
-		government Militia
-		fleet "Small Militia"
-	npc accompany save
-		government Pirate
-		personality escort
-		fleet
-			names "pirate"
-			variant 1
-				"Clipper"
-			variant 1
-				"Clipper (Speedy)"
-			variant 1
-				"Clipper (Heavy)"
-			variant 1
-				"Modified Argosy"
-	on complete
-		payment 180000
-		dialog "The captain of the <npc> thanks you for escorting them safely, and pays you <payment>."
-	on visit
-		dialog "You have reached <planet>, but you left the <npc> behind! Better depart and wait for them to arrive in this star system."
 
 mission "Escort Illegal Cargo (Large, South, Dangerous Path)"
 	name "Protect cargo to <planet>"
@@ -1960,12 +1813,12 @@ mission "Escort Illegal Cargo (Large, South, Dangerous Path)"
 		"combat rating" > 600
 		"reputation: Pirate" > 0
 	source
+		government Republic "Free Worlds" Syndicate Neutral Pirate
+		attributes south "south pirate"
+		distance 3 6
+	destination
 		government "Pirate"
 		attributes "south pirate"
-	destination
-		government Republic "Free Worlds" Syndicate Neutral
-		attributes south
-		distance 3 6
 	npc
 		system destination
 		personality staying
@@ -2005,8 +1858,8 @@ mission "Escort Stolen Vessel (Extra Large, South, Dangerous Path)"
 		"combat rating" > 1000
 		"reputation: Pirate" > 0
 	source
-		government Republic "Free Worlds" Syndicate Neutral
-		attributes south
+		government Republic "Free Worlds" Syndicate Neutral Pirate
+		attributes south "south pirate"
 	destination
 		government "Pirate"
 		attributes "south pirate"
