@@ -1,6 +1,6 @@
 "parameters"
 	"depreciation"
-		"full" 1
+		"full" 0.25
 		"daily" 0.99
 		"max age" 1000
 
