@@ -2479,6 +2479,36 @@ phrase "hostile bounty"
 		"off beam."
 		"mislead."
 
+
+phrase "friendly quarg"
+	word
+		"We"
+		"The Quarg"
+		"Our people"
+	word
+		" "
+	word
+		"guide and guard"
+		"watch"
+		"oversee"
+		"look after"
+		"safeguard"
+	word
+		" "
+	word
+		"the galaxy"
+		"the young and foolish"
+		"the young races"
+		"the galaxy's children"
+		"those who live"
+	word
+		" "
+	word
+		"as we are sworn to do."
+		"as the Drak guide us."
+		"to uphold the sanctity of life."
+		"as is our geis."
+		"to set an example to all."
 # From the "Southern Television broadcast interruption."
 phrase "hostile quarg"
 	word

@@ -274,6 +274,7 @@ government "Quarg"
 		"Kor Sestor" -.01
 		"Hai" .01
 		"Pirate" -.01
+	"friendly hail" "friendly quarg"		
 	"hostile hail" "hostile quarg"
 
 government "Republic"
