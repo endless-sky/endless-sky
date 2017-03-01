@@ -1,0 +1,16 @@
+"parameters"
+	"depreciation"
+		"full" 1
+		"daily" 0.99
+		"max age" 1000
+
+	"ship categories"
+		"Transport"
+		"Light Freighter"
+		"Heavy Freighter"
+		"Interceptor"
+		"Light Warship"
+		"Medium Warship"
+		"Heavy Warship"
+		"Fighter"
+		"Drone"

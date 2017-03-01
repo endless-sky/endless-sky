@@ -18,6 +18,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "FontSet.h"
 #include "Format.h"
 #include "GameData.h"
+#include "GameParameters.h"
 #include "Government.h"
 #include "OutlineShader.h"
 #include "PlayerInfo.h"
@@ -46,7 +47,7 @@ namespace {
 ShopPanel::ShopPanel(PlayerInfo &player, bool isOutfitter)
 	: player(player), day(player.GetDate().DaysSinceEpoch()),
 	planet(player.GetPlanet()), playerShip(player.Flagship()),
-	categories(isOutfitter ? Outfit::CATEGORIES : Ship::CATEGORIES),
+	categories(isOutfitter ? Outfit::CATEGORIES : GameData::Parameters().ShipCategories()),
 	collapsed(player.Collapsed(isOutfitter ? "outfitter" : "shipyard"))
 {
 	if(playerShip)

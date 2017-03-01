@@ -14,7 +14,9 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "DataNode.h"
 #include "DataWriter.h"
+#include "Files.h"
 #include "GameData.h"
+#include "GameParameters.h"
 #include "Outfit.h"
 #include "Ship.h"
 
@@ -26,18 +28,6 @@ using namespace std;
 namespace {
 	// Names for the two kinds of depreciation records.
 	string NAME[2] = {"fleet depreciation", "stock depreciation"};
-	// Depreciation parameters.
-	double FULL_DEPRECIATION = 0.25;
-	double DAILY_DEPRECIATION = 0.99;
-	int MAX_AGE = 1000;
-}
-
-
-
-// What fraction of its cost a fully depreciated item has left:
-double Depreciation::Full()
-{
-	return FULL_DEPRECIATION;
 }
 
 
@@ -86,7 +76,7 @@ void Depreciation::Save(DataWriter &out, int day) const
 				// anything not recorded is considered fully depreciated, so
 				// there is no reason to save records for those items.
 				for(const auto &it : sit.second)
-					if(isStock || (it.second && it.first > day - MAX_AGE))
+					if(isStock || (it.second && it.first > day - GameData::Parameters().DepreciationMaxAge()))
 						out.Write(it.first, it.second);
 			}
 			out.EndChild();
@@ -97,7 +87,7 @@ void Depreciation::Save(DataWriter &out, int day) const
 			out.BeginChild();
 			{
 				for(const auto &it : oit.second)
-					if(isStock || (it.second && it.first > day - MAX_AGE))
+					if(isStock || (it.second && it.first > day - GameData::Parameters().DepreciationMaxAge()))
 						out.Write(it.first, it.second);
 			}
 			out.EndChild();
@@ -158,7 +148,7 @@ void Depreciation::Buy(const Ship &ship, int day, Depreciation *source)
 		{
 			// If we're a planet buying from the player, and the player has no
 			// record of how old this ship is, it's fully depreciated.
-			day -= MAX_AGE;
+			day -= GameData::Parameters().DepreciationMaxAge();
 		}
 	}
 	
@@ -188,7 +178,7 @@ void Depreciation::Buy(const Outfit *outfit, int day, Depreciation *source)
 		{
 			// If we're a planet buying from the player, and the player has no
 			// record of how old this outfit is, it's fully depreciated.
-			day -= MAX_AGE;
+			day -= GameData::Parameters().DepreciationMaxAge();
 		}
 	}
 	
@@ -333,12 +323,12 @@ double Depreciation::Depreciate(int age) const
 {
 	if(age <= 0)
 		return 1.;
-	if(age >= MAX_AGE)
-		return FULL_DEPRECIATION;
+	if(age >= GameData::Parameters().DepreciationMaxAge())
+		return GameData::Parameters().DepreciationFull();
 	
-	double daily = pow(DAILY_DEPRECIATION, age);
-	double linear = static_cast<double>(MAX_AGE - age) / MAX_AGE;
-	return FULL_DEPRECIATION + (1. - FULL_DEPRECIATION) * daily * linear;
+	double daily = pow(GameData::Parameters().DepreciationDaily(), age);
+	double linear = static_cast<double>(GameData::Parameters().DepreciationMaxAge() - age) / GameData::Parameters().DepreciationMaxAge();
+	return GameData::Parameters().DepreciationFull() + (1. - GameData::Parameters().DepreciationFull()) * daily * linear;
 }
 
 
@@ -347,5 +337,5 @@ double Depreciation::Depreciate(int age) const
 // default to no depreciation. When selling, they default to full.
 double Depreciation::DefaultDepreciation() const
 {
-	return (isStock ? 1. : FULL_DEPRECIATION);
+	return (isStock ? 1. : GameData::Parameters().DepreciationFull());
 }

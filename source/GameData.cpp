@@ -27,6 +27,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "FontSet.h"
 #include "Galaxy.h"
 #include "GameEvent.h"
+#include "GameParameters.h"
 #include "Government.h"
 #include "Interface.h"
 #include "LineShader.h"
@@ -111,6 +112,8 @@ namespace {
 	map<const Sprite *, int> preloaded;
 	
 	const Government *playerGovernment = nullptr;
+
+	GameParameters parameters;
 }
 
 
@@ -683,6 +686,13 @@ const map<string, string> &GameData::PluginAboutText()
 
 
 
+const GameParameters &GameData::Parameters()
+{
+	return parameters;
+}
+
+
+
 void GameData::LoadSources()
 {
 	sources.clear();
@@ -803,6 +813,10 @@ void GameData::LoadFile(const string &path, bool debugMode)
 				}
 				text += child.Token(0);
 			}
+		}
+		else if(key == "parameters")
+		{
+			parameters.Load(node);
 		}
 		else
 			node.PrintTrace("Skipping unrecognized root object:");

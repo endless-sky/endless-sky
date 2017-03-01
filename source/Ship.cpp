@@ -16,6 +16,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "DataNode.h"
 #include "DataWriter.h"
 #include "Effect.h"
+#include "Files.h"
 #include "GameData.h"
 #include "Government.h"
 #include "Mask.h"
@@ -32,18 +33,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <iostream>
 
 using namespace std;
-
-const vector<string> Ship::CATEGORIES = {
-	"Transport",
-	"Light Freighter",
-	"Heavy Freighter",
-	"Interceptor",
-	"Light Warship",
-	"Medium Warship",
-	"Heavy Warship",
-	"Fighter",
-	"Drone"
-};
 
 namespace {
 	const string BAY_TYPE[2] = {"drone", "fighter"};

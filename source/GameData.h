@@ -29,6 +29,7 @@ class Effect;
 class Fleet;
 class Galaxy;
 class GameEvent;
+class GameParameters;
 class Government;
 class Interface;
 class Minable;
@@ -115,7 +116,8 @@ public:
 	static const std::map<std::string, std::string> &HelpTemplates();
 	
 	static const std::map<std::string, std::string> &PluginAboutText();
-	
+
+	static const GameParameters &Parameters();
 	
 private:
 	static void LoadSources();
