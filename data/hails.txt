@@ -2508,7 +2508,9 @@ phrase "friendly quarg"
 		"as the Drak guide us."
 		"to uphold the sanctity of life."
 		"as is our geis."
-		"to set an example to all."
+		"to set an example for all."
+		"to keep the peace."
+		"to prevent the suffering of all."
 
 
 # From the "Southern Television broadcast interruption."
