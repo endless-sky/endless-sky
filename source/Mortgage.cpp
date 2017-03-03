@@ -164,5 +164,5 @@ int64_t Mortgage::Payment() const
 		return round(principal / term);
 	
 	double power = pow(1. + interest, term);
-	return round(principal * interest * power / (power - 1.));
+	return ceil(principal * interest * power / (power - 1.));
 }
