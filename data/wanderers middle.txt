@@ -1770,6 +1770,7 @@ mission "Wanderers: Sestor Search: Human Spaceport"
 	landing
 	source
 		government Republic "Free Worlds" Syndicate Neutral
+		attributes north
 	to offer
 		has "Wanderers: Sestor Search: active"
 	on offer
