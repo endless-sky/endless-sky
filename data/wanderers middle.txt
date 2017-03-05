@@ -1788,10 +1788,9 @@ mission "Wanderers: Sestor Search: Human Spaceport"
 			`	"I'm not quite sure," the captain replies. "We were shot by a fleet of hostile ships that our computer couldn't identify. They didn't look at all like a run-of-the-mill pirate ship, though, and they were kitted out with tech I've never seen before."`
 			choice
 				`	"How many ships were there? What did they look like?"`
-					goto ships
+				`	"Where did this fight take place?"`
 				`	"You should be glad you're still in one piece."
 					goto glad
-				`	"Where did this fight take place?"`
 			`	"Well," the pilot continues, "we had hired a beefy Leviathan escort to Farpoint in the Alnitak system. When we were going in for landing, two of these hostile ships jumped in from the northwest, the direction of all the anarchist colonies around here. They immediately shredded the Leviathan warship, and nearly disabled our ship, too. It was lucky I decided that jumping would be faster than landing. We warped out of the system while in atmosphere, saving the ship, but now I'm in debt to all my crew because I couldn't meet my rush delivery deadline."`
 			choice
 				`	"You're lucky as hell to be here today."`
@@ -1811,18 +1810,6 @@ mission "Wanderers: Sestor Search: Human Spaceport"
 			label no
 			`	The pilot seems to be disappointed in your response, as if he wanted to learn more of the mysterious ships that attacked the Heart of Gold. "Thank you for your time," you say to the captain. The pilot quickly perks up again, and says, "No problem, kiddo. Remember, northwest of Farpoint. If they're anarchists of any sort, they'll be hiding in one of those pirate systems up there. Take care of yourself out there; if they really are alien ships, they must be pretty dangerous." With that, he bids you farewell.`
 				decline
-			
-			
-					
-				`The rear of the ship is badly hammered, and black stains streak across the hull towards the pilot's compartment. You can't help but notice the ship's rear structure 
-				
-you should be glad you're alive
-
-you know those ships?
-	Korath
-	maybe
-	Nah
-
 
 mission "Wanderers: Sestor Search: Human Hint"
 	landing
