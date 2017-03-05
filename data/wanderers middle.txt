@@ -1792,7 +1792,7 @@ mission "Wanderers: Sestor Search: Human Spaceport"
 				`	"Where did this fight take place?"`
 				`	"You should be glad you're still in one piece."
 					goto glad
-			`	"Well," the pilot continues, "we had hired a beefy Leviathan escort to Farpoint in the Alnitak system. When we were going in for landing, two of these hostile ships jumped in from the northwest, the direction of all the anarchist colonies around here. They immediately shredded the Leviathan warship, and nearly disabled our ship, too. It was lucky I decided that jumping would be faster than landing. We warped out of the system while in atmosphere, saving the ship, but now I'm in debt to all my crew because I couldn't meet my rush delivery deadline."`
+			`	"Well," the pilot continues, "we had hired a beefy Leviathan escort to Farpoint in the Alnitak system. When we were going in for landing, two of these hostile ships jumped in from the northwest, the direction of all the anarchist colonies around here. The ships weren't big, but they were tough——our four heavy laser turrets weren't enough to produce even a dent in their shields. They immediately shredded the Leviathan warship, and nearly disabled our ship, too. It was lucky I decided that jumping would be faster than landing. We warped out of the system while in atmosphere, saving the ship, but now I'm in debt to all my crew because I couldn't meet my rush delivery deadline."`
 			choice
 				`	"You're lucky as hell to be here today."`
 					goto glad
