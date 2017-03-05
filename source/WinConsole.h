@@ -18,13 +18,13 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <cstdio>
 
 
+
 class WinConsole {
 public:
 	static void Init();
 	
 	
 private:
-	static void Redirect(const HANDLE stdHandle, FILE *stdStream);
 	static void WriteConsoleLog(const LPTSTR message);
 };
 	

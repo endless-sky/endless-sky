@@ -14,6 +14,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include <fcntl.h>
 #include <io.h>
+#include <tchar.h>
 
 #include <mutex>
 
@@ -35,15 +36,6 @@ void WinConsole::Init()
 		if(!redirStdout && !redirStderr) 
 			return;
 			
-		// Make sure we can get the std handles
-		const HANDLE stdoutHandle = GetStdHandle(STD_OUTPUT_HANDLE);
-		if(stdoutHandle == INVALID_HANDLE_VALUE) 
-			throw GetLastError();
-		
-		const HANDLE stderrHandle = GetStdHandle(STD_ERROR_HANDLE);
-		if(stderrHandle == INVALID_HANDLE_VALUE) 
-			throw GetLastError();
-		
 		// Attach the parent console, and handle the case where we launched with
 		// arguments, but without a console (like a shortcut with target args)
 		if(!AttachConsole(ATTACH_PARENT_PROCESS))
@@ -58,9 +50,23 @@ void WinConsole::Init()
 				throw GetLastError();
 		}
 		
+		// Get a console handle
+		const HANDLE conoutHandle = CreateFile(
+										"CONOUT$", 
+										GENERIC_READ | 
+										GENERIC_WRITE, 
+										FILE_SHARE_READ | 
+										FILE_SHARE_WRITE, 
+										0, 
+										OPEN_EXISTING, 
+										0, 
+										0);
+		if(conoutHandle == INVALID_HANDLE_VALUE) 
+			throw GetLastError();
+		
 		// Set console's max lines for large output (--ships, --weapons)
 		CONSOLE_SCREEN_BUFFER_INFO conBufferInfo;
-		if(!GetConsoleScreenBufferInfo(stdoutHandle, &conBufferInfo)) 
+		if(!GetConsoleScreenBufferInfo(conoutHandle, &conBufferInfo)) 
 			throw GetLastError();
 			
 		// Make sure the user doesn't already have a larger screenbuffer size
@@ -68,51 +74,43 @@ void WinConsole::Init()
 		if(defaultSize < 750)
 		{
 			conBufferInfo.dwSize.Y = 750;
-			if(!SetConsoleScreenBufferSize(stdoutHandle, conBufferInfo.dwSize)) 
+			if(!SetConsoleScreenBufferSize(conoutHandle, conBufferInfo.dwSize)) 
 				throw GetLastError();
 		}
 		
+		CloseHandle(conoutHandle);
+		
 		// Redirect
-		if(redirStdout) 
-			Redirect(stdoutHandle, stdout);
-		if(redirStderr) 
-			Redirect(stderrHandle, stderr);
+		if(redirStdout)
+		{
+			freopen("CONOUT$", "w", stdout);
+			setvbuf(stdout, nullptr, _IOFBF, 4096);
+		}
+		
+		if(redirStderr)
+		{
+			freopen("CONOUT$", "w", stderr);
+			setvbuf(stderr, nullptr, _IOLBF, 1024);
+		}
 	}
-	catch(DWORD errorCode)
+	catch(const DWORD errorCode)
 	{
 		LPTSTR msgBuffer = nullptr;
 		FormatMessage(
 			FORMAT_MESSAGE_ALLOCATE_BUFFER | 
 			FORMAT_MESSAGE_FROM_SYSTEM | 
-			FORMAT_MESSAGE_IGNORE_INSERTS,
-			NULL,
-			errorCode,
-			MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT),
-			reinterpret_cast<LPTSTR>(&msgBuffer),
-			0,
-			NULL);
+			FORMAT_MESSAGE_IGNORE_INSERTS, 
+			nullptr, 
+			errorCode, 
+			MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT), 
+			reinterpret_cast<LPTSTR>(&msgBuffer), 
+			0, 
+			nullptr);
 		
 		WriteConsoleLog(msgBuffer);
 		LocalFree(msgBuffer);
 		msgBuffer = nullptr;
 	}
-}
-
-
-
-void WinConsole::Redirect(const HANDLE stdHandle, FILE *stdStream)
-{
-	const int conHandle = _open_osfhandle(reinterpret_cast<intptr_t>(stdHandle), _O_TEXT);
-	
-	FILE *conFd = _fdopen(conHandle, "w");
-	
-	// Set Buffering
-	if(stdStream == stdout) 
-		setvbuf(conFd, nullptr, _IOFBF, 4096);
-	else
-		setvbuf(conFd, nullptr, _IONBF, 0);
-	
-	*stdStream = *conFd;
 }
 
 
@@ -125,6 +123,6 @@ void WinConsole::WriteConsoleLog(const LPTSTR message)
 		consoleLog = fopen("consoleLog.txt", "w");
 	
 	fwrite("Failed to initialize console.\n", 1, 30, consoleLog);
-	fwrite(message, 1, strlen(message), consoleLog);
+	fwrite(message, sizeof(message[0]), _tcslen(message), consoleLog);
 	fflush(consoleLog);
 }
