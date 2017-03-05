@@ -1766,6 +1766,62 @@ mission "Wanderers: Sestor Search: Varu K'prai"
 			`	The Wanderers don't know what happened next, but the drones are no longer here, so they must have moved on to a different system.`
 				decline
 
+mission "Wanderers: Sestor Search: Human Spaceport"
+	landing
+	source
+		government Republic "Free Worlds" Syndicate Neutral
+	to offer
+		has "Wanderers: Sestor Search: active"
+	on offer
+		conversation
+			`As you bring your ship in for landing at an empty pad, you notice the captain of an adjacent Behemoth inspecting his ship, which is raked with projectile punctures.`
+			choice
+				`	(Approach the captain and try to find out what happened)`
+					goto approach
+				`	(Ignore him.)
+					decline
+			label approach
+			`	You get a better view of the Behemoth——the "Heart of Gold", as indicated on the ship's stern——as you walk up to it. The rear of the ship is badly hammered, and black soot-like stains streak forward across the hull. You can't help but notice that at several projectile entry along the hull, the metal is bent smoothly inwards, almost as if the penetrator had seared or melted its way through the ship's armor. The captain of the Behemoth looks up from his inspection. Seeing you, he remarks, "We were lucky to get out of that one alive!"
+			choice
+				`	"How did your ship end up in such a state?"`
+				`	"Did those damn pirates maul this freighter to pieces?"`
+			`	"I'm not quite sure," the captain replies. "We were shot by a fleet of hostile ships that our computer couldn't identify. They didn't look at all like a run-of-the-mill pirate ship, though, and they were kitted out with tech I've never seen before."`
+			choice
+				`	"How many ships were there? What did they look like?"`
+					goto ships
+				`	"You should be glad you're still in one piece."
+					goto glad
+				`	"Where did this fight take place?"`
+			`	"Well," the pilot continues, "we had hired a beefy Leviathan escort to Farpoint in the Alnitak system. When we were going in for landing, two of these hostile ships jumped in from the northwest, the direction of all the anarchist colonies around here. They immediately shredded the Leviathan warship, and nearly disabled our ship, too. It was lucky I decided that jumping would be faster than landing. We warped out of the system while in atmosphere, saving the ship, but now I'm in debt to all my crew because I couldn't meet my rush delivery deadline."`
+			choice
+				`	"You're lucky as hell to be here today."`
+					goto glad
+				`	"Thanks for the information. I think that these hostile ships are the ones I'm looking for."`
+			`	"No problem, kiddo," the captain says, although he looks awed that you are even attempting to tackle such powerful ships. "Remember, northwest of Farpoint. If they're anarchists of any sort, they'll be hiding in one of those pirate systems up there. Take care of yourself out there; those are some dangerous ships that jumped us." With that, he bids you farewell.`
+					decline
+			label glad
+			`	"Yeah, those ships would have obliterated our Heart of Gold if we hadn't jumped pronto." The pilot looks at you, then asks quizzically, "Say, do you know anything about those aggressors?"`
+			choice
+				`	"Yeah, those were Korath ships that jumped you."`
+				`	"Maybe. I have a feeling that they're the alien ships that I'm hunting."`
+				`	"I don't want to jump to any conclusions."`
+					goto no
+			`	The pilot seems to display an expression of distaste upon hearing of aliens. You try to describe the dynamic between the exiles, the Efreti, Mereti, and Sestor, but to no avail whatsoever. The pilot quickly loses interest in your explanation, so you decide to steer the conversation to an end. "Thank you for your time," you say to the captain. The pilot quickly perks up again, and says, "No problem, kiddo. Remember, northwest of Farpoint. If they're anarchists of any sort, they'll be hiding in one of those pirate systems up there. Take care of yourself out there; if they really are alien ships, they must be pretty dangerous." With that, he bids you farewell.`
+				decline
+			label no
+			`	The pilot seems to be disappointed in your response, as if he wanted to learn more of the mysterious ships that attacked the Heart of Gold. "Thank you for your time," you say to the captain. The pilot quickly perks up again, and says, "No problem, kiddo. Remember, northwest of Farpoint. If they're anarchists of any sort, they'll be hiding in one of those pirate systems up there. Take care of yourself out there; if they really are alien ships, they must be pretty dangerous." With that, he bids you farewell.`
+				decline
+			
+			
+					
+				`The rear of the ship is badly hammered, and black stains streak across the hull towards the pilot's compartment. You can't help but notice the ship's rear structure 
+				
+you should be glad you're alive
+
+you know those ships?
+	Korath
+	maybe
+	Nah
 
 
 mission "Wanderers: Sestor Search: Human Hint"
