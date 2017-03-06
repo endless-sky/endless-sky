@@ -15,7 +15,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include <windows.h>
 
-#include <cstdio>
+#include <string>
 
 
 
@@ -25,7 +25,7 @@ public:
 	
 	
 private:
-	static void WriteConsoleLog(const LPTSTR message);
+	static void WriteConsoleLog(const std::string &message);
 };
 	
 

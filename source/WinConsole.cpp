@@ -12,17 +12,43 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "WinConsole.h"
 
-#include <fcntl.h>
-#include <io.h>
-#include <tchar.h>
+#include "Files.h"
 
+#include <cstdio>
 #include <mutex>
+#include <stdexcept>
 
 using namespace std;
 
 namespace {
 	mutex consoleLogMutex;
 	FILE *consoleLog = nullptr;
+	
+	string FormatError(const DWORD errorCode)
+	{
+		LPSTR msgBuffer = nullptr;
+		FormatMessageA(
+			FORMAT_MESSAGE_ALLOCATE_BUFFER | 
+			FORMAT_MESSAGE_FROM_SYSTEM | 
+			FORMAT_MESSAGE_IGNORE_INSERTS, 
+			nullptr, 
+			errorCode, 
+			MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT), 
+			reinterpret_cast<LPSTR>(&msgBuffer), 
+			0, 
+			nullptr);
+		
+		string message;
+		if(!msgBuffer || !*msgBuffer)
+			message = "Failed to format message.";
+		else
+			message = msgBuffer;
+		
+		LocalFree(msgBuffer);
+		msgBuffer = nullptr;
+		
+		return message;
+	}
 }
 
 void WinConsole::Init()
@@ -33,7 +59,7 @@ void WinConsole::Init()
 		bool redirStderr = (_fileno(stderr) == -2 ? true : false);
 		
 		// Everything is being redirected at the command line
-		if(!redirStdout && !redirStderr) 
+		if(!redirStdout && !redirStderr)
 			return;
 			
 		// Attach the parent console, and handle the case where we launched with
@@ -47,35 +73,35 @@ void WinConsole::Init()
 			}
 			// We shouldn't get here
 			else
-				throw GetLastError();
+				throw runtime_error(FormatError(GetLastError()));
 		}
 		
 		// Get a console handle
 		const HANDLE conoutHandle = CreateFile(
-										"CONOUT$", 
-										GENERIC_READ | 
-										GENERIC_WRITE, 
-										FILE_SHARE_READ | 
-										FILE_SHARE_WRITE, 
-										0, 
-										OPEN_EXISTING, 
-										0, 
-										0);
-		if(conoutHandle == INVALID_HANDLE_VALUE) 
-			throw GetLastError();
+			"CONOUT$", 
+			GENERIC_READ | 
+			GENERIC_WRITE, 
+			FILE_SHARE_READ | 
+			FILE_SHARE_WRITE, 
+			0, 
+			OPEN_EXISTING, 
+			0, 
+			0);
+		if(conoutHandle == INVALID_HANDLE_VALUE)
+			throw runtime_error(FormatError(GetLastError()));
 		
 		// Set console's max lines for large output (--ships, --weapons)
 		CONSOLE_SCREEN_BUFFER_INFO conBufferInfo;
-		if(!GetConsoleScreenBufferInfo(conoutHandle, &conBufferInfo)) 
-			throw GetLastError();
+		if(!GetConsoleScreenBufferInfo(conoutHandle, &conBufferInfo))
+			throw runtime_error(FormatError(GetLastError()));
 			
 		// Make sure the user doesn't already have a larger screenbuffer size
 		const short defaultSize = conBufferInfo.dwSize.Y;
 		if(defaultSize < 750)
 		{
 			conBufferInfo.dwSize.Y = 750;
-			if(!SetConsoleScreenBufferSize(conoutHandle, conBufferInfo.dwSize)) 
-				throw GetLastError();
+			if(!SetConsoleScreenBufferSize(conoutHandle, conBufferInfo.dwSize))
+				throw runtime_error(FormatError(GetLastError()));
 		}
 		
 		CloseHandle(conoutHandle);
@@ -93,36 +119,21 @@ void WinConsole::Init()
 			setvbuf(stderr, nullptr, _IOLBF, 1024);
 		}
 	}
-	catch(const DWORD errorCode)
+	catch(const runtime_error &error)
 	{
-		LPTSTR msgBuffer = nullptr;
-		FormatMessage(
-			FORMAT_MESSAGE_ALLOCATE_BUFFER | 
-			FORMAT_MESSAGE_FROM_SYSTEM | 
-			FORMAT_MESSAGE_IGNORE_INSERTS, 
-			nullptr, 
-			errorCode, 
-			MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT), 
-			reinterpret_cast<LPTSTR>(&msgBuffer), 
-			0, 
-			nullptr);
-		
-		WriteConsoleLog(msgBuffer);
-		LocalFree(msgBuffer);
-		msgBuffer = nullptr;
+		WriteConsoleLog(error.what());
 	}
 }
 
 
 
-void WinConsole::WriteConsoleLog(const LPTSTR message)
+void WinConsole::WriteConsoleLog(const string &message)
 {
 	lock_guard<mutex> lock(consoleLogMutex);
 	
 	if(!consoleLog)
-		consoleLog = fopen("consoleLog.txt", "w");
+		consoleLog = Files::Open("consoleLog.txt", true);
 	
-	fwrite("Failed to initialize console.\n", 1, 30, consoleLog);
-	fwrite(message, sizeof(message[0]), _tcslen(message), consoleLog);
+	Files::Write(consoleLog, "Failed to initialize console: " + message);
 	fflush(consoleLog);
 }
