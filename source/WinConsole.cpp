@@ -14,6 +14,9 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Files.h"
 
+#include <windows.h>
+
+#include <algorithm>
 #include <cstdio>
 #include <mutex>
 #include <stdexcept>
@@ -42,7 +45,12 @@ namespace {
 		if(!msgBuffer || !*msgBuffer)
 			message = "Failed to format message.";
 		else
+		{
 			message = msgBuffer;
+			
+			// Get rid of CR or we end up with CRCRLF
+			message.erase(remove(message.begin(), message.end(), '\r'), message.end());
+		}
 		
 		LocalFree(msgBuffer);
 		msgBuffer = nullptr;
@@ -86,7 +94,7 @@ void WinConsole::Init()
 			0, 
 			OPEN_EXISTING, 
 			0, 
-			0);
+			nullptr);
 		if(conoutHandle == INVALID_HANDLE_VALUE)
 			throw runtime_error(FormatError(GetLastError()));
 		

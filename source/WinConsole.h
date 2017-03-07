@@ -13,8 +13,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef WIN_CONSOLE_H_
 #define WIN_CONSOLE_H_
 
-#include <windows.h>
-
 #include <string>
 
 
