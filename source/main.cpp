@@ -41,6 +41,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <stdexcept>
 #include <string>
 
+#include <limits.h>
+
 #ifdef _WIN32
 #include <windows.h>
 #endif
@@ -239,7 +241,27 @@ int main(int argc, char *argv[])
 						&& event.key.keysym.sym == SDLK_CAPSLOCK)
 				{
 					timer.SetFrameRate((event.key.keysym.mod & KMOD_CAPS) ? 10 : 60);
-				}
+				} else if((event.type == SDL_KEYDOWN || event.type == SDL_KEYUP)
+						&& event.key.keysym.sym == SDLK_SLASH)
+                {
+					timer.SetFrameRate((event.type == SDL_KEYDOWN) ? 60*2 : 60);
+				} 
+                else if((event.type == SDL_KEYDOWN || event.type == SDL_KEYUP)
+						&& event.key.keysym.sym == SDLK_PERIOD)
+                {
+					timer.SetFrameRate((event.type == SDL_KEYDOWN) ? 60 * 4 : 60);
+                }
+                else if((event.type == SDL_KEYDOWN || event.type == SDL_KEYUP)
+						&& event.key.keysym.sym == SDLK_COMMA)
+                {
+					timer.SetFrameRate((event.type == SDL_KEYDOWN) ? 60 * 8 : 60);
+                }
+                else if((event.type == SDL_KEYDOWN || event.type == SDL_KEYUP)
+						&& event.key.keysym.sym == SDLK_QUOTE)
+                {
+					timer.SetFrameRate((event.type == SDL_KEYDOWN) ? INT_MAX : 60);
+                }
+
 				else if(debugMode && event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_BACKQUOTE)
 				{
 					isPaused = !isPaused;
