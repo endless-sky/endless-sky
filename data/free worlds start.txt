@@ -218,7 +218,7 @@ mission "FW Prisoner Parole 2"
 	npc accompany save
 		government "Escort"
 		personality timid escort
-		ship "Falcon (Heavy)" "R.N.S. Starry Warrior"
+		ship "Falcon (Heavy)" "F.S. Starry Warrior"
 		ship "Blackbird" "Flight of Fancy"
 		ship "Blackbird" "Southern Luxury"
 	
