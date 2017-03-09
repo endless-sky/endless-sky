@@ -211,45 +211,45 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 	attributeValues.push_back(Format::Number(outfit.Range()));
 	attributesHeight += 20;
 	
-	if(outfit.ShieldDamage() && outfit.Reload())
+	if(double dps = outfit.ShieldDamagePerSecond())
 	{
 		attributeLabels.push_back("shield damage / second:");
-		attributeValues.push_back(Format::Number(60. * outfit.ShieldDamage() / outfit.Reload()));
+		attributeValues.push_back(Format::Number(dps));
 		attributesHeight += 20;
 	}
 	
-	if(outfit.HullDamage() && outfit.Reload())
+	if(double dps = outfit.HullDamagePerSecond())
 	{
 		attributeLabels.push_back("hull damage / second:");
-		attributeValues.push_back(Format::Number(60. * outfit.HullDamage() / outfit.Reload()));
+		attributeValues.push_back(Format::Number(dps));
 		attributesHeight += 20;
 	}
 	
-	if(outfit.HeatDamage() && outfit.Reload())
+	if(double dps = outfit.HeatDamagePerSecond())
 	{
 		attributeLabels.push_back("heat damage / second:");
-		attributeValues.push_back(Format::Number(60. * outfit.HeatDamage() / outfit.Reload()));
+		attributeValues.push_back(Format::Number(dps));
 		attributesHeight += 20;
 	}
 	
-	if(outfit.IonDamage() && outfit.Reload())
+	if(double dps = outfit.IonDamagePerSecond())
 	{
 		attributeLabels.push_back("ion damage / second:");
-		attributeValues.push_back(Format::Number(6000. * outfit.IonDamage() / outfit.Reload()));
+		attributeValues.push_back(Format::Number(dps));
 		attributesHeight += 20;
 	}
 	
-	if(outfit.SlowingDamage() && outfit.Reload())
+	if(double dps = outfit.SlowingDamagePerSecond())
 	{
 		attributeLabels.push_back("slowing damage / second:");
-		attributeValues.push_back(Format::Number(6000. * outfit.SlowingDamage() / outfit.Reload()));
+		attributeValues.push_back(Format::Number(dps));
 		attributesHeight += 20;
 	}
 	
-	if(outfit.DisruptionDamage() && outfit.Reload())
+	if(double dps = outfit.DisruptionDamagePerSecond())
 	{
 		attributeLabels.push_back("disruption damage / second:");
-		attributeValues.push_back(Format::Number(6000. * outfit.DisruptionDamage() / outfit.Reload()));
+		attributeValues.push_back(Format::Number(dps));
 		attributesHeight += 20;
 	}
 	

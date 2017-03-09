@@ -28,13 +28,17 @@ namespace {
 	};
 
 	// What fraction of its cost a fully depreciated item has left:
-	double depreciationFull = 0.25;
-	
-	double depreciationDaily = 0.99;
-	
+	double depreciationFull = 0.25;	
+	double depreciationDaily = 0.99;	
 	int depreciationMaxAge = 1000;
-}
 
+	double pirateAttractionMinimumOutfitSpace = 200.;
+	double pirateAttractionFactorDamagePerSecond = -1000.;
+	double pirateAttractionFactorHullRepairRate = -1.;
+	double pirateAttractionFactorShieldGeneration = -1.;
+	double pirateAttractionFactorOutfitValue = 2500000.;
+	double pirateAttractionFactorCargoTonnage = 50.;
+}
 
 
 
@@ -50,6 +54,10 @@ void GameParameters::Load(const DataNode &node)
 		else if(key == "ship categories")
 		{
 			LoadShipCategories(node);
+		}
+		else if(key == "pirate attraction")
+		{
+			LoadPirateAttraction(node);
 		}
 	}
 }
@@ -84,6 +92,40 @@ void GameParameters::LoadShipCategories(const DataNode &node)
 	}
 }
 
+void GameParameters::LoadPirateAttraction(const DataNode &node)
+{
+	for(const DataNode &node : node)
+	{
+		const string &key = node.Token(0);
+		if(key == "min outfit space")
+		{
+			pirateAttractionMinimumOutfitSpace = node.Value(1);
+		}
+		else if(key == "damage per second factor")
+		{
+			pirateAttractionFactorDamagePerSecond = node.Value(1);
+		}
+		else if(key == "hull repair rate factor")
+		{
+			pirateAttractionFactorHullRepairRate = node.Value(1);
+		}
+		else if(key == "shield generation factor")
+		{
+			pirateAttractionFactorShieldGeneration = node.Value(1);
+		}
+		else if(key == "outfit value factor")
+		{
+			pirateAttractionFactorOutfitValue = node.Value(1);
+		}
+		else if(key == "cargo tonnage factor")
+		{
+			pirateAttractionFactorCargoTonnage = node.Value(1);
+		}
+	}
+}
+
+
+
 const vector<string> &GameParameters::ShipCategories() const
 {
 	return shipCategories;
@@ -102,4 +144,34 @@ double GameParameters::DepreciationDaily() const
 int GameParameters::DepreciationMaxAge() const
 {
 	return depreciationMaxAge;
+}
+
+double GameParameters::PirateAttractionMinimumOutfitSpace() const
+{
+	return pirateAttractionMinimumOutfitSpace;
+}
+
+double GameParameters::PirateAttractionFactorDamagePerSecond() const
+{
+	return pirateAttractionFactorDamagePerSecond;
+}
+
+double GameParameters::PirateAttractionFactorHullRepairRate() const
+{
+	return pirateAttractionFactorHullRepairRate;
+}
+
+double GameParameters::PirateAttractionFactorShieldGeneration() const
+{
+	return pirateAttractionFactorShieldGeneration;
+}
+
+double GameParameters::PirateAttractionFactorOutfitValue() const
+{
+	return pirateAttractionFactorOutfitValue;
+}
+
+double GameParameters::PirateAttractionFactorCargoTonnage() const
+{
+	return pirateAttractionFactorCargoTonnage;
 }

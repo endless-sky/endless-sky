@@ -15,6 +15,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Audio.h"
 #include "Effect.h"
 #include "FillShader.h"
+#include "FleetAttractionToPiratesCalculator.h"
 #include "Font.h"
 #include "FontSet.h"
 #include "Format.h"
@@ -850,21 +851,10 @@ void Engine::EnterSystem()
 	const Fleet *raidFleet = system->GetGovernment()->RaidFleet();
 	if(raidFleet)
 	{
-		// Find out how attractive the player's fleet is to pirates. Aside from a
-		// heavy freighter, no single ship should attract extra pirate attention.
-		unsigned attraction = 0;
-		for(const shared_ptr<Ship> &ship : player.Ships())
-		{
-			if(ship->IsParked())
-				continue;
-		
-			const string &category = ship->Attributes().Category();
-			if(category == "Light Freighter")
-				attraction += 1;
-			if(category == "Heavy Freighter")
-				attraction += 2;
-		}
-		if(attraction > 2)
+		FleetAttractionToPiratesCalculator calc(player.Ships());
+		unsigned attraction = calc.AttractionFactor();
+
+		if(attraction)
 		{
 			for(int i = 0; i < 10; ++i)
 				if(Random::Int(200) + 1 < attraction)

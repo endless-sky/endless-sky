@@ -89,11 +89,17 @@ public:
 	
 	// These values include all submunitions:
 	double ShieldDamage() const;
+	double ShieldDamagePerSecond() const;
 	double HullDamage() const;
+	double HullDamagePerSecond() const;
 	double HeatDamage() const;
+	double HeatDamagePerSecond() const;
 	double IonDamage() const;
+	double IonDamagePerSecond() const;
 	double DisruptionDamage() const;
+	double DisruptionDamagePerSecond() const;
 	double SlowingDamage() const;
+	double SlowingDamagePerSecond() const;
 	
 	double Piercing() const;
 	
@@ -215,11 +221,17 @@ inline double Weapon::BlastRadius() const { return blastRadius; }
 inline double Weapon::HitForce() const { return hitForce; }
 
 inline double Weapon::ShieldDamage() const { return TotalDamage(SHIELD_DAMAGE); }
+inline double Weapon::ShieldDamagePerSecond() const { return reload ? 60. * TotalDamage(SHIELD_DAMAGE) / reload: 0; }
 inline double Weapon::HullDamage() const { return TotalDamage(HULL_DAMAGE); }
+inline double Weapon::HullDamagePerSecond() const { return reload ? 60. * TotalDamage(HULL_DAMAGE) / reload : 0; }
 inline double Weapon::HeatDamage() const { return TotalDamage(HEAT_DAMAGE); }
+inline double Weapon::HeatDamagePerSecond() const { return reload ? 60. * TotalDamage(HEAT_DAMAGE) / reload : 0; }
 inline double Weapon::IonDamage() const { return TotalDamage(ION_DAMAGE); }
+inline double Weapon::IonDamagePerSecond() const { return reload ? 6000. * TotalDamage(ION_DAMAGE) / reload : 0; }
 inline double Weapon::DisruptionDamage() const { return TotalDamage(DISRUPTION_DAMAGE); }
+inline double Weapon::DisruptionDamagePerSecond() const { return reload ? 6000. * TotalDamage(DISRUPTION_DAMAGE) / reload : 0; }
 inline double Weapon::SlowingDamage() const { return TotalDamage(SLOWING_DAMAGE); }
+inline double Weapon::SlowingDamagePerSecond() const { return reload ? 6000. * TotalDamage(SLOWING_DAMAGE) / reload : 0; }
 
 
 

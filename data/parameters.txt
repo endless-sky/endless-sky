@@ -14,3 +14,11 @@
 		"Heavy Warship"
 		"Fighter"
 		"Drone"
+
+	"pirate attraction"
+		"min outfit space" 200
+		"damage per second factor" -1000
+		"hull repair rate factor" -1
+		"shield generation factor" -1
+		"outfit value factor" 4000000
+		"cargo tonnage factor" 100

@@ -31,9 +31,18 @@ public:
 	double DepreciationDaily() const;
 	int DepreciationMaxAge() const;
 
+	// factors dealing with pirate attraction
+	double PirateAttractionMinimumOutfitSpace() const;
+	double PirateAttractionFactorDamagePerSecond() const;
+	double PirateAttractionFactorHullRepairRate() const;
+	double PirateAttractionFactorShieldGeneration() const;
+	double PirateAttractionFactorOutfitValue() const;
+	double PirateAttractionFactorCargoTonnage() const;
+
 private:
 	void LoadDepreciation(const DataNode &node);
 	void LoadShipCategories(const DataNode &node);
+	void LoadPirateAttraction(const DataNode &node);
 };
 
 
