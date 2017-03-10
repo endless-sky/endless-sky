@@ -862,11 +862,14 @@ void Engine::EnterSystem()
 			weapon_mass += ship->GetArmament().WeaponSpaceUsed();
 		}
 
-		long int  attraction = pow(cargo_capacity - weapon_mass, 0.5) * 250000;
-		printf("wep: %f, cargo: %f att: %li\n",weapon_mass, cargo_capacity, attraction);
+        double mod_cargo = 9*pow(cargo_capacity, 0.89);
+        double mod_weapon=0.9 * pow(weapon_mass, 1.2);
+		long int  attraction = (mod_cargo - mod_weapon) * 250000;
+		printf("wep: %f, cargo: %f att: %li\n",mod_weapon, mod_cargo, attraction);
 		while(attraction > raidFleet->Strength()){
-			attraction -= raidFleet->Strength() /1 * Random::Real()*0.5 + 0.5;
-			printf("fleet strength %li\n",raidFleet->Strength());
+			attraction -= raidFleet->Strength();
+            attraction *= 0.99;
+			printf("fleet strength %li att left %li\n",raidFleet->Strength(), attraction);
 			raidFleet->Place(*system, ships);
 		}
 	}
