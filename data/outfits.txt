@@ -62,9 +62,9 @@ outfit "Skirmisher Shield Generator"
 	cost 20000
 	"mass" 5
 	"outfit space" -15
-	"skirmisher shield generation" 4.0
-	"skirmisher shield energy" 1.0
-	description "A shield specialized for small craft that recharges quickly when out of combat. It is ineffective on heavily shielded ships"
+	"skirmisher shield generation" 1.0
+	"skirmisher shield energy" 2.0
+	description "A specialized shield that charges quickly when out of combat. This shield scales negativly with the ships maximum shield capacity"
 
 
 outfit "D23-QP Shield Generator"

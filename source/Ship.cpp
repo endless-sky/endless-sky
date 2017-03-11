@@ -729,8 +729,7 @@ bool Ship::Move(list<Effect> &effects, list<shared_ptr<Flotsam>> &flotsam)
 		flotsam.splice(flotsam.end(), jettisoned, jettisoned.begin());
 	}
 
-	if(combatCounter)
-		combatCounter--;
+    combatCounter++;
 	
 	// When ships recharge, what actually happens is that they can exceed their
 	// maximum capacity for the rest of the turn, but must be clamped to the
@@ -1245,7 +1244,7 @@ bool Ship::Move(list<Effect> &effects, list<shared_ptr<Flotsam>> &flotsam)
 
 
 		double skirmisherShieldRate = attributes.Get("skirmisher shield generation");
-		if( ! IsInCombat() && skirmisherShieldRate > 0.)
+		if( skirmisherShieldRate > 0.)
 		{
 			double shieldEnergy = attributes.Get("skirmisher shield energy");
 			double shieldHeat = attributes.Get("skirmisher shield heat");
@@ -1536,7 +1535,7 @@ bool Ship::IsOverheated() const
 }
 
 bool Ship::IsInCombat() const {
-    return combatCounter;
+    return combatCounter < 60 * 5;
 }
 
 
@@ -2001,7 +2000,7 @@ int Ship::TakeDamage(const Projectile &projectile, bool isBlast)
 	disruption += disruptionDamage * (1. - .5 * shieldFraction);
 	slowness += slowingDamage * (1. - .5 * shieldFraction);
 
-    combatCounter = 60 * 5; //5 seconds of frames
+    combatCounter = 0;
 
 	
 	if(hitForce && !IsHyperspacing())
@@ -2520,15 +2519,42 @@ double Ship::AddHull(double rate)
 	return added;
 }
 
+template<typename T>
+T clamp( T val, std::pair<T,T>range){
+	return std::max( std::min( val, range.second), range.first);
+}
+
+
+template <typename T>
+double normalize( T val, std::pair<T,T> range){
+	auto diff = abs(range.second - range.first);
+	return (val - range.first ) / (double)diff;
+}
+
+template <typename T>
+T lerp( double val, std::pair<T,T> range){
+	T diff = (range.second - range.first);
+	T off = diff * val;
+	return (range.first) + off;
+}
+
+template <typename T, typename R>
+R constexpr remap( T val, std::pair<T,T> range1, std::pair<R,R> range2){
+	double v = normalize( val, range1);
+	return lerp( v, range2);
+}
+
 double Ship::AddSkirmisherShields(double rate)
 {
-	rate *= std::pow(0.9995, attributes.Get("shields"));
-	rate *= (double)( 5*60 - combatCounter) / 5.0 / 60;
+	//4 seconds per 1000 shields
+	auto delay_range = std::make_pair<double>(0.0, Attributes().Get("shields")/250);
+	double multiplier = clamp<double>(combatCounter / 60.0, delay_range);
+	multiplier = normalize(multiplier, delay_range);
+	rate *= multiplier;
 
 	double added = min(rate, attributes.Get("shields") - shields);
 	shields += added;
 	rate -= added;
-	
 	for(Bay &bay : bays)
 	{
 		if(!bay.ship)
