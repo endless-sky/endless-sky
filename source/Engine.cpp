@@ -864,7 +864,7 @@ void Engine::EnterSystem()
 
         double mod_cargo = 9*pow(cargo_capacity, 0.89);
         double mod_weapon=0.9 * pow(weapon_mass, 1.2);
-		long int  attraction = (mod_cargo - mod_weapon) * 250000;
+		long int  attraction = (mod_cargo - mod_weapon) * 25000;
 		printf("wep: %f, cargo: %f att: %li\n",mod_weapon, mod_cargo, attraction);
 		while(attraction > raidFleet->Strength()){
 			attraction -= raidFleet->Strength();
