@@ -83,9 +83,6 @@ FleetAttractionToPiratesCalculator::FleetAttractionToPiratesCalculator(const std
 			attractionFactor = numeric_limits<unsigned int>::max();
 		else
 			attractionFactor = temp;
-
-		Messages::Add("dps:" + to_string(damagePerSecondFactor) + " sh:" + to_string(shieldGenerationFactor) + " $:" +
-			to_string(outfitValueFactor) + " car:" + to_string(cargoTonnageFactor) + " = " + to_string(temp));
 	}
 }
 
