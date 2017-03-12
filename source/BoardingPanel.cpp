@@ -486,7 +486,7 @@ BoardingPanel::Plunder::Plunder(const string &commodity, int count, int unitValu
 
 // Constructor (outfit installed in the victim ship).
 BoardingPanel::Plunder::Plunder(const Outfit *outfit, int count)
-	: name(outfit->Name()), outfit(outfit), count(count), unitValue(outfit->Cost() * GameData::Parameters().DepreciationMaxAge())
+	: name(outfit->Name()), outfit(outfit), count(count), unitValue(outfit->Cost() * GameData::Parameters().DepreciationFull())
 {
 	UpdateStrings();
 }
