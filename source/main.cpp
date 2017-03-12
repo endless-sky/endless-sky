@@ -242,25 +242,25 @@ int main(int argc, char *argv[])
 				{
 					timer.SetFrameRate((event.key.keysym.mod & KMOD_CAPS) ? 10 : 60);
 				} else if((event.type == SDL_KEYDOWN || event.type == SDL_KEYUP)
-						&& event.key.keysym.sym == SDLK_SLASH)
-                {
+						&& Command(event.key.keysym.sym).Has(Command::FRAMERATE_2))
+				{
 					timer.SetFrameRate((event.type == SDL_KEYDOWN) ? 60*2 : 60);
 				} 
-                else if((event.type == SDL_KEYDOWN || event.type == SDL_KEYUP)
-						&& event.key.keysym.sym == SDLK_PERIOD)
-                {
+				else if((event.type == SDL_KEYDOWN || event.type == SDL_KEYUP)
+						&& Command(event.key.keysym.sym).Has(Command::FRAMERATE_4))
+				{
 					timer.SetFrameRate((event.type == SDL_KEYDOWN) ? 60 * 4 : 60);
-                }
-                else if((event.type == SDL_KEYDOWN || event.type == SDL_KEYUP)
-						&& event.key.keysym.sym == SDLK_COMMA)
-                {
+				}
+				else if((event.type == SDL_KEYDOWN || event.type == SDL_KEYUP)
+						&& Command(event.key.keysym.sym).Has(Command::FRAMERATE_8))
+				{
 					timer.SetFrameRate((event.type == SDL_KEYDOWN) ? 60 * 8 : 60);
-                }
-                else if((event.type == SDL_KEYDOWN || event.type == SDL_KEYUP)
-						&& event.key.keysym.sym == SDLK_QUOTE)
-                {
+				}
+				else if((event.type == SDL_KEYDOWN || event.type == SDL_KEYUP)
+						&& Command(event.key.keysym.sym).Has(Command::FRAMERATE_MAX))
+				{
 					timer.SetFrameRate((event.type == SDL_KEYDOWN) ? INT_MAX : 60);
-                }
+				}
 
 				else if(debugMode && event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_BACKQUOTE)
 				{

@@ -66,6 +66,10 @@ const Command Command::HOLD(1uL << 23, "Fleet: Hold position");
 const Command Command::AMMO(1uL << 24, "Fleet: Toggle ammo usage");
 const Command Command::WAIT(1uL << 25, "");
 const Command Command::STOP(1ul << 26, "");
+const Command Command::FRAMERATE_2(1ul<<27, "Double game play speed");
+const Command Command::FRAMERATE_4(1ul<<28, "Quadruple game play speed");
+const Command Command::FRAMERATE_8(1ul<<29, "Octuple game play speed");
+const Command Command::FRAMERATE_MAX(1ul<<30, "Maximum game play speed");
 
 
 

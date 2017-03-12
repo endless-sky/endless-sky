@@ -322,7 +322,11 @@ void PreferencesPanel::DrawControls()
 		Command::FIGHT,
 		Command::GATHER,
 		Command::HOLD,
-		Command::AMMO
+		Command::AMMO,
+		Command::FRAMERATE_2,
+		Command::FRAMERATE_4,
+		Command::FRAMERATE_8,
+		Command::FRAMERATE_MAX
 	};
 	static const Command *BREAK = &COMMANDS[19];
 	for(const Command &command : COMMANDS)
