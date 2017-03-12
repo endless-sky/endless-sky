@@ -24143,7 +24143,7 @@ planet Mere
 planet "Mereti Station"
 	attributes korath station
 	landscape land/space7
-	description `This large station serves as the "mission control" for the robotic ships of the Kor Mereti faction. Warships of every shape and design are clustered in its docking bays or flying partol outside.`
+	description `This large station serves as the "mission control" for the robotic ships of the Kor Mereti faction. Warships of every shape and design are clustered in its docking bays or flying patrol outside.`
 	spaceport `The central core of this station is entirely sealed off, running on its own power generators serviced by self-maintaining repair robots. Inside the core are the advanced computers that direct the Kor Mereti war effort.`
 	"required reputation" 1
 	bribe 0
@@ -24872,7 +24872,7 @@ planet "Secret Sky"
 	landscape land/sea13-sfiera
 	description `Grass and trees are scarce on this perpetually cold and foggy planet. The dominant form of vegetation is a mixture of mosses and lichens which can grow into mats more than half a meter thick. Vast herds of hoofed animals wander across the planet's surface, unable to stay in one place for long because the moss that they eat can take decades to grow back.`
 	description `	The hardy plants that grow here are useful for producing a wide range of medical compounds.`
-	spaceport `The spaceport city had a ring of searchlights perpetually pointed skyward to direct ships in to a landing in the fog in case their other instruments malfunction. Entire sectors of the city are off limits to non-Saryd visitors, and presumably are home to the secret research labs where advanced medicines and other technologies are being developed.`
+	spaceport `The spaceport city has a ring of searchlights perpetually pointed skyward to direct ships in to a landing in the fog in case their other instruments malfunction. Entire sectors of the city are off limits to non-Saryd visitors, and presumably are home to the secret research labs where advanced medicines and other technologies are being developed.`
 	"required reputation" 15
 
 planet "Sek Alarfarat"
@@ -25561,7 +25561,7 @@ planet "Varu Tev'kei"
 planet "Vibrant Water"
 	attributes saryd farming
 	landscape land/beach8-sfiera
-	description `Due to strong currents and extreme seasonal temperature fluctuations, the oceans of Vibrant Water are dotted with icebergs that can drift almost as far as the tropics before melting. The largest icebergs are more than a dozen kilometers across and are home to entire ecosystems ranging from ice-dwelling insects to sea birds to large seal-like mammals. Beneath the ocean surface shoals of fish, forests of kelp, and drifting clouds of algae provide a continuous food source for the creatures than inhabit the icebergs.`
+	description `Due to strong currents and extreme seasonal temperature fluctuations, the oceans of Vibrant Water are dotted with icebergs that can drift almost as far as the tropics before melting. The largest icebergs are more than a dozen kilometers across and are home to entire ecosystems ranging from ice-dwelling insects to sea birds to large seal-like mammals. Beneath the ocean surface shoals of fish, forests of kelp, and drifting clouds of algae provide a continuous food source for the creatures that inhabit the icebergs.`
 	description `	Near the equator, the Saryds farm several species of engineered algae.`
 	spaceport `Very little of the industry on Vibrant Water takes place on land. The spaceport is built on a high bluff overlooking the sea, frequently visited by barges carrying goods from the floating factories and refineries out in the midst of the algae farms. Surrounding the port are fields of wind turbines positioned to catch the ocean breeze.`
 	"required reputation" 15
