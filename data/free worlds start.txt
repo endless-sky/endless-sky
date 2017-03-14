@@ -504,7 +504,7 @@ mission "FW Syndicate Diplomacy 1D"
 
 mission "FW Hope Recon 1"
 	name "Early Warning Systems"
-	description "Land on the abandoned planet <destination>, and place sensor there to monitor Navy fleet activity in the system."
+	description "Land on the abandoned planet <destination> and place sensor there to monitor Navy fleet activity in the system."
 	autosave
 	source Longjump
 	destination Hope
@@ -594,7 +594,7 @@ mission "FW Hope Recon 1C"
 mission "FW Hope Recon 1D"
 	landing
 	name "Destroy Sensors"
-	description "Travel back to <destination>, and destroy any Republic sensors you find there."
+	description "Travel back to <destination> and destroy any Republic sensors you find there."
 	source Longjump
 	destination Hope
 	to offer
@@ -647,7 +647,7 @@ mission "FW Hope Recon 1D"
 mission "FW Plasma Testing 1"
 	landing
 	name "Weapons Testing"
-	description "Report to <destination>, to assist in some experimental weapons testing."
+	description "Report to <destination> to assist in some experimental weapons testing."
 	source Longjump
 	destination Rust
 	to offer
@@ -1183,7 +1183,7 @@ mission "FW Pirates 2"
 
 mission "FW Pirates 3"
 	name "Pirate Diplomacy"
-	description "Following the Senate's orders, travel to <destination>, and negotiate with the ruling authorities. Don't fight pirates if you don't have to, and don't let your escort be destroyed."
+	description "Following the Senate's orders, travel to <destination> and negotiate with the ruling authorities. Don't fight pirates if you don't have to, and don't let your escort be destroyed."
 	source Longjump
 	destination Thule
 	clearance
@@ -1279,7 +1279,7 @@ mission "FW Pirates 3.1"
 
 mission "FW Pirates 3.2"
 	name "Attack Greenrock"
-	description "Disobeying the Senate's orders, head to <destination>, and gather a Free Worlds fleet for an all-out attack on the pirate world of Greenrock."
+	description "Disobeying the Senate's orders, head to <destination> and gather a Free Worlds fleet for an all-out attack on the pirate world of Greenrock."
 	source Longjump
 	destination Trinket
 	to offer
@@ -1534,7 +1534,7 @@ mission "FW Pirates 4B"
 mission "FW Pirates 4.1"
 	landing
 	name "Senate Hearing"
-	description "Report to <destination>, for a Senate hearing on your recent failure to obey their orders. If you do not arrive by <date>, your service will be terminated."
+	description "Report to <destination> for a Senate hearing on your recent failure to obey their orders. If you do not arrive by <date>, your service will be terminated."
 	source "Longjump"
 	destination "Bourne"
 	deadline 14

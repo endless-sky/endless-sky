@@ -371,7 +371,7 @@ ship "Marauder Falcon"
 	explode "medium explosion" 60
 	explode "large explosion" 40
 	"final explode" "final explosion large"
-	description "This Tarazed Falcon has been heavily modified by some very dedicated craftsmen.  The hull is riddled with extra shield emitters and expanded equipment bays, adding bulk and definitely voiding the warranty."
+	description "This Tarazed Falcon has been heavily modified by some very dedicated craftsmen. The hull is riddled with extra shield emitters and expanded equipment bays, adding bulk and definitely voiding the warranty."
 
 
 
@@ -1121,7 +1121,7 @@ ship "Marauder Quicksilver"
 	explode "tiny explosion" 12
 	explode "small explosion" 16
 	"final explode" "final explosion small"
-	description "This Megaparsec Quicksilver is a bit of a Hotrod, being a little faster, with extra shield projectors, hull plating, and an extra bunk. This aftermarket model also features a turret mount,  perhaps in an answer to Lionheart's Headhunter. The shop that built this ship is sure to see more customers."
+	description "This Megaparsec Quicksilver is a bit of a Hotrod, being a little faster, with extra shield projectors, hull plating, and an extra bunk. This aftermarket model also features a turret mount, perhaps in an answer to Lionheart's Headhunter. The shop that built this ship is sure to see more customers."
 
 
 

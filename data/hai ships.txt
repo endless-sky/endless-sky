@@ -187,9 +187,9 @@ ship "Pond Strider"
 	gun 0 -76 "Pulse Cannon"
 	gun -15 -72 "Railgun"
 	gun 15 -72 "Railgun"
-	turret 0 26 "Bullfrog Anti-Missile"
 	turret -18 -65 "Pulse Turret"
 	turret 18 -65 "Pulse Turret"
+	turret 0 26 "Bullfrog Anti-Missile"
 	drone -70 -45 left under
 	drone 70 -45 right under
 	drone -70 28 left under
@@ -246,16 +246,16 @@ ship "Shield Beetle"
 	engine 44 133
 	gun -22 -102 "Ion Cannon"
 	gun 22 -102 "Ion Cannon"
-	gun -49 -38 "Ion Cannon"
-	gun 49 -38 "Ion Cannon"
 	gun -34 -68 "Hai Tracker Pod"
 	gun 34 -68 "Hai Tracker Pod"
+	gun -49 -38 "Ion Cannon"
+	gun 49 -38 "Ion Cannon"
 	gun -61 -14 "Hai Tracker Pod"
 	gun 61 -14 "Hai Tracker Pod"
-	turret -57 75 "Chameleon Anti-Missile"
-	turret 57 75 "Chameleon Anti-Missile"
 	turret -39 48
 	turret 39 48
+	turret -57 75 "Chameleon Anti-Missile"
+	turret 57 75 "Chameleon Anti-Missile"
 	explode "tiny explosion" 50
 	explode "small explosion" 50
 	explode "medium explosion" 50
@@ -319,12 +319,14 @@ ship "Shield Beetle" "Shield Beetle (Jump)"
 		"Jump Drive"
 	gun "Ion Cannon"
 	gun "Ion Cannon"
+	gun "Hai Tracker Pod"
+	gun "Hai Tracker Pod"
 	gun "Ion Cannon"
 	gun "Ion Cannon"
 	gun "Hai Tracker Pod"
 	gun "Hai Tracker Pod"
-	gun "Hai Tracker Pod"
-	gun "Hai Tracker Pod"
+	turret
+	turret
 	turret "Chameleon Anti-Missile"
 	turret "Chameleon Anti-Missile"
 

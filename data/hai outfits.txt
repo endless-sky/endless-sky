@@ -207,7 +207,7 @@ outfit "Bullfrog Anti-Missile"
 		"firing energy" 12
 		"firing heat" 5
 		"stream"
-	description "Centuries ago, the Hai fought with more rudimentary versions of the Tracker, and this was the primary defence against them. In spite of the dated design, it is still effective against small numbers of their latest Missile weapons."
+	description "Centuries ago, the Hai fought with more rudimentary versions of the Tracker, and this was the primary defense against them. In spite of the dated design, it is still effective against small numbers of their latest missile weapons."
 
 outfit "Chameleon Anti-Missile"
 	category "Turrets"
@@ -250,7 +250,7 @@ outfit "Hai Diamond Regenerator"
 	"shield energy" 2.5
 	"shield heat" 9
 	"energy generation" -.9
-	description "The Hai Diamond Shield Regenerator is an advanced type of shield recharging technology. Unfortunately, its power needs are quite high, and the shifts it makes to your shield matrix causes intense heat at the regenerator when your shields are charging.  The Hai usually employ Williwaw Cooling when they use this regenerator."
+	description "The Hai Diamond Shield Regenerator is an advanced type of shield recharging technology. Unfortunately, its power needs are quite high, and the shifts it makes to your shield matrix causes intense heat at the regenerator when your shields are charging. The Hai usually employ Williwaw Cooling when they use this regenerator."
 
 outfit "Hai Williwaw Cooling"
 	category "Systems"
@@ -481,7 +481,7 @@ outfit `"Biroo" Atomic Steering`
 	"turn" 1054
 	"turning energy" 2.0
 	"turning heat" 5.1
-	description  "Having such powerful engines is a double edged sword for the Hai, as the Unfettered Hai too own these powerful wonders. These engines allow most Hai ships to turn at amazing speeds, making them extremely deadly in combat."
+	description "Having such powerful engines is a double edged sword for the Hai, as the Unfettered Hai too own these powerful wonders. These engines allow most Hai ships to turn at amazing speeds, making them extremely deadly in combat."
 
 outfit `"Bondir" Atomic Steering`
 	category "Engines"

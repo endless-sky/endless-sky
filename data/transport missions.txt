@@ -179,7 +179,7 @@ mission "Smuggler's Den, Part 1"
 mission "Smuggler's Den, Part 2"
 	landing
 	name "Refugees to <planet>"
-	description "Joe and Maria were unable to find work on <origin>. Take them to <destination>, to see if they can get a job there."
+	description "Joe and Maria were unable to find work on <origin>. Take them to <destination> to see if they can get a job there."
 	destination "Millrace"
 	passengers 2
 	to offer
@@ -486,7 +486,7 @@ mission "Deep Archaeology 1"
 mission "Deep Archaeology 2"
 	landing
 	name "Deep Archaeology"
-	description "Travel to <destination>, and take wood fiber samples from an ancient church and from the trees that grow nearby."
+	description "Travel to <destination> and take wood fiber samples from an ancient church and from the trees that grow nearby."
 	source Vinci
 	destination Midgard
 	to offer
@@ -502,7 +502,7 @@ mission "Deep Archaeology 2"
 mission "Deep Archaeology 3"
 	landing
 	name "Deep Archaeology"
-	description "Return to <destination>, with the wood samples that you retrieved from the church on <origin>."
+	description "Return to <destination> with the wood samples that you retrieved from the church on <origin>."
 	source Midgard
 	destination Vinci
 	to offer
@@ -564,7 +564,7 @@ mission "Deep Archaeology 3"
 
 mission "Deep Archaeology 4"
 	name "Deep Archaeology"
-	description "Return to <destination>, with some specialized equipment for subterranean mapping."
+	description "Return to <destination> with some specialized equipment for subterranean mapping."
 	source Vinci
 	destination Midgard
 	to offer
@@ -656,6 +656,7 @@ mission "There Might Be Riots 1"
 	minor
 	source
 		near Tarazed 5 10
+		government "Republic" "Free Worlds" "Neutral"
 	destination "Wayfarer"
 	cargo "musical equipment" 4
 	passengers 8
@@ -959,7 +960,7 @@ mission "Sad Archie"
 mission "Rim Archaeology 1"
 	landing
 	name "Archaeology on <planet>"
-	description "Bring the famous archaeologist Albert Foster to <destination>, to look for signs of an ancient alien civilization."
+	description "Bring the famous archaeologist Albert Foster to <destination> to look for signs of an ancient alien civilization."
 	source "Vinci"
 	destination "Zug"
 	passengers 1

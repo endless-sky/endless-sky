@@ -809,6 +809,18 @@ bool AI::FollowOrders(Ship &ship, Command &command) const
 		return false;
 	
 	int type = it->second.type;
+	
+	// If your parent is jumping or absent, that overrides your orders unless
+	// your orders are to hold position.
+	shared_ptr<Ship> parent = ship.GetParent();
+	if(parent && type != Orders::HOLD_POSITION)
+	{
+		if(parent->GetSystem() != ship.GetSystem())
+			return false;
+		if(parent->Commands().Has(Command::JUMP) && ship.JumpsRemaining())
+			return false;
+	}
+	
 	shared_ptr<Ship> target = it->second.target.lock();
 	if(type == Orders::MOVE_TO && ship.Position().Distance(it->second.point) > 20.)
 		MoveTo(ship, command, it->second.point, 10., .1);
@@ -1001,6 +1013,9 @@ void AI::MoveEscort(Ship &ship, Command &command) const
 	bool hasFuelCapacity = ship.Attributes().Get("fuel capacity") && ship.JumpFuel();
 	bool isStaying = ship.GetPersonality().IsStaying() || !hasFuelCapacity;
 	bool parentIsHere = (ship.GetSystem() == parent.GetSystem());
+	// Check if the parent has a target planet that is in the parent's system.
+	const Planet *parentPlanet = (parent.GetTargetPlanet() ? parent.GetTargetPlanet()->GetPlanet() : nullptr);
+	bool planetIsHere = (parentPlanet && parentPlanet->GetSystem() == parent.GetSystem());
 	// If an escort is out of fuel, they should refuel without waiting for the
 	// "parent" to land (because the parent may not be planning on landing).
 	if(hasFuelCapacity && !ship.JumpsRemaining() && ship.GetSystem()->HasFuelFor(ship))
@@ -1038,7 +1053,7 @@ void AI::MoveEscort(Ship &ship, Command &command) const
 			command |= Command::JUMP;
 		}
 	}
-	else if(parent.Commands().Has(Command::LAND) && parent.GetTargetPlanet() && parentIsHere)
+	else if(parent.Commands().Has(Command::LAND) && parentIsHere && planetIsHere && parentPlanet->CanLand(ship))
 	{
 		ship.SetTargetPlanet(parent.GetTargetPlanet());
 		MoveToPlanet(ship, command);
@@ -1069,18 +1084,14 @@ void AI::MoveEscort(Ship &ship, Command &command) const
 
 void AI::Refuel(Ship &ship, Command &command)
 {
-	const StellarObject *parentPlanet = (ship.GetParent() ? ship.GetParent()->GetTargetPlanet() : nullptr);
-	if(parentPlanet && parentPlanet->GetPlanet()
-			&& parentPlanet->GetPlanet()->GetSystem() == ship.GetSystem()
-			&& parentPlanet->GetPlanet()->HasSpaceport()
-			&& parentPlanet->GetPlanet()->CanLand(ship))
-		ship.SetTargetPlanet(parentPlanet);
-	else if(!ship.GetTargetPlanet())
+	const StellarObject *parentTarget = (ship.GetParent() ? ship.GetParent()->GetTargetPlanet() : nullptr);
+	if(CanRefuel(ship, parentTarget))
+		ship.SetTargetPlanet(parentTarget);
+	else if(!CanRefuel(ship, ship.GetTargetPlanet()))
 	{
 		double closest = numeric_limits<double>::infinity();
 		for(const StellarObject &object : ship.GetSystem()->Objects())
-			if(object.GetPlanet() && object.GetPlanet()->HasSpaceport() 
-					&& !object.GetPlanet()->IsWormhole() && object.GetPlanet()->CanLand(ship))
+			if(CanRefuel(ship, &object))
 			{
 				double distance = ship.Position().Distance(object.Position());
 				if(distance < closest)
@@ -1095,6 +1106,26 @@ void AI::Refuel(Ship &ship, Command &command)
 		MoveToPlanet(ship, command);
 		command |= Command::LAND;
 	}
+}
+
+
+
+bool AI::CanRefuel(const Ship &ship, const StellarObject *target)
+{
+	if(!target)
+		return false;
+	
+	const Planet *planet = target->GetPlanet();
+	if(!planet)
+		return false;
+	
+	if(planet->GetSystem() != ship.GetSystem())
+		return false;
+	
+	if(!planet->HasSpaceport() || planet->IsWormhole() || !planet->CanLand(ship))
+		return false;
+	
+	return true;
 }
 
 
@@ -2422,7 +2453,8 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 		{
 			Messages::Add("You do not have enough fuel to make a hyperspace jump.");
 			keyStuck.Clear();
-			Audio::Play(Audio::Get("fail"));
+			if(keyDown.Has(Command::JUMP) || !keyHeld.Has(Command::JUMP))
+				Audio::Play(Audio::Get("fail"));
 		}
 		else
 		{
@@ -2513,18 +2545,21 @@ void AI::IssueOrders(const PlayerInfo &player, const Orders &newOrders, const st
 	
 	Point centerOfGravity;
 	bool isMoveOrder = (newOrders.type == Orders::MOVE_TO);
+	int squadCount = 0;
 	if(isMoveOrder)
 	{
-		int count = 0;
 		for(const Ship *ship : ships)
 			if(ship->GetSystem() == player.GetSystem() && !ship->IsDisabled())
 			{
 				centerOfGravity += ship->Position();
-				++count;
+				++squadCount;
 			}
-		if(count > 1)
-			centerOfGravity /= count;
+		if(squadCount > 1)
+			centerOfGravity /= squadCount;
 	}
+	// If this is a move command, make sure the fleet is bunched together
+	// enough that each ship takes up no more than about 30,000 square pixels.
+	double maxSquadOffset = sqrt(10000. * squadCount);
 	
 	// Now, go through all the given ships and set their orders to the new
 	// orders. But, if it turns out that they already had the given orders,
@@ -2545,7 +2580,10 @@ void AI::IssueOrders(const PlayerInfo &player, const Orders &newOrders, const st
 			// In a move order, rather than commanding every ship to move to the
 			// same point, they move as a mass so their center of gravity is
 			// that point but their relative positions are unchanged.
-			existing.point += ship->Position() - centerOfGravity;
+			Point offset = ship->Position() - centerOfGravity;
+			if(offset.Length() > maxSquadOffset)
+				offset = offset.Unit() * maxSquadOffset;
+			existing.point += offset;
 		}
 	}
 	if(hasMismatch)

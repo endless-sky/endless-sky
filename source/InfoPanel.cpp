@@ -240,8 +240,11 @@ bool InfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 		showShip = true;
 		UpdateInfo();
 	}
-	else if(key == SDLK_PAGEUP || key == SDLK_PAGEDOWN)
-		Scroll(0, 6 * ((key == SDLK_PAGEUP) - (key == SDLK_PAGEDOWN)));
+	else if(!showShip && (key == SDLK_PAGEUP || key == SDLK_PAGEDOWN))
+	{
+		int distance = 24 * ((key == SDLK_PAGEUP) - (key == SDLK_PAGEDOWN));
+		scroll = max(0., min(player.Ships().size() - 26., scroll - distance));
+	}
 	else if(showShip && key == 'R')
 		GetUI()->Push(new Dialog(this, &InfoPanel::Rename, "Change this ship's name?"));
 	else if(canEdit && showShip && key == 'P')
