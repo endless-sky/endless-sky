@@ -65,6 +65,47 @@ namespace {
 
 
 
+bool Mission::compare_system(const Mission& first, const Mission& second)
+{
+	const Planet *firstPlanet = first.Destination();
+	const Planet *secondPlanet = second.Destination();
+
+	const string firstString(firstPlanet ? (firstPlanet->GetSystem()->Name() + "::" + firstPlanet->Name()) : "");
+	const string secondString(secondPlanet ? (secondPlanet->GetSystem()->Name() + "::" + secondPlanet->Name()) : "");
+	
+	return firstString.compare(secondString) < 0;
+}
+
+
+
+bool Mission::compare_payment(const Mission& first, const Mission& second)
+{
+	const auto &firstIt = first.actions.find(COMPLETE);
+	const auto &secondIt = second.actions.find(COMPLETE);
+	
+	const int firstPayment = firstIt == first.actions.end() ? 0 : firstIt->second.Payment();
+	const int secondPayment = secondIt == second.actions.end() ? 0 : secondIt->second.Payment();
+	
+	// inverse sort, show largest rewards first
+	return firstPayment > secondPayment;
+}
+
+
+
+bool Mission::compare_deadline(const Mission& first, const Mission& second)
+{
+	// inverse sort, show sooner dates first
+	if (first.deadline && !second.deadline)
+		return true;
+
+	if (!first.deadline && second.deadline)
+		return false;
+
+	return first.deadline < second.deadline;
+}
+
+
+
 // Load a mission, either from the game data or from a saved game.
 void Mission::Load(const DataNode &node)
 {

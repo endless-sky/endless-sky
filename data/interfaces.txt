@@ -685,47 +685,63 @@ interface "mission" bottom
 		center 70 -25
 		dimensions 80 30
 
+interface "mission sort" bottom right
+	sprite "ui/wide button"
+		from -190 -90 to -80 -40
+	button e "D_eadline"
+		from -180 -80 to -90 -50
+
+	sprite "ui/dialog cancel"
+		from -270 -90 to -180 -40
+	button y "Pa_yment"
+		from -260 -80 to -190 -50
+
+	sprite "ui/dialog cancel"
+		from -350 -90 to -260 -40
+	button t "Sys_tem"
+		from -340 -80 to -270 -50
+
 
 
 interface "map buttons" bottom right
 	sprite "ui/dialog cancel"
 		from -450 -50 to -360 0
 	button d "_Done"
-		from -450 -50 to -360 0
+		from -440 -40 to -370 -10
 	
 	active if "!is shipyards"
 	sprite "ui/wide button"
 		from -370 -50 to -260 0
 	button s "_Shipyards"
-		from -370 -50 to -260 0
+		from -360 -40 to -270 -10
 	
 	active if "!is outfitters"
 	sprite "ui/wide button"
 		from -270 -50 to -160 0
 	button o "_Outfitters"
-		from -270 -50 to -160 0
+		from -260 -40 to -170 -10
 	
 	active if "!is missions"
 	sprite "ui/dialog cancel"
 		from -170 -50 to -80 0
 	button i "M_issions"
-		from -170 -50 to -80 0
+		from -160 -40 to -90 -10
 	
 	active if "!is ports"
 	sprite "ui/dialog cancel"
 		from -90 -50 to 0 0
 	button p "_Ports"
-		from -90 -50 to 0 0
+		from -80 -40 to -10 -10
 	
 	sprite "ui/zoom"
-		from 0 -40 to -90 -90
+		from -90 -90 to 0 -40
 	active if "!max zoom"
 	button + "_+"
-		from -10 -50 to -40 -80
+		from -40 -80 to -10 -50
 		size 18
 	active if "!min zoom"
 	button - "_-"
-		from -50 -50 to -80 -80
+		from -80 -80 to -50 -50
 		size 18
 
 

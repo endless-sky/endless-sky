@@ -25,6 +25,7 @@ using namespace std;
 // Construct a DataNode and remember what its parent is.
 DataNode::DataNode(const DataNode *parent)
 	: parent(parent)
+	, isExtension(false)
 {
 	// To avoid a lot of memory reallocation, have every node start out with
 	// capacity for four tokens. This makes file loading slightly faster, at the

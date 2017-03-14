@@ -52,7 +52,8 @@ public:
 	// Print a message followed by a "trace" of this node and its parents.
 	int PrintTrace(const std::string &message = "") const;
 	
-	
+	bool IsExtension() const { return isExtension; }
+
 private:
 	// These are "child" nodes found on subsequent lines with deeper indentation.
 	std::list<DataNode> children;
@@ -61,6 +62,9 @@ private:
 	// The parent pointer is used only for printing stack traces.
 	const DataNode *parent = nullptr;
 	
+	// usually a mod, is desiring only extension behavior; do not delete anything from the current node only add to it
+	bool isExtension;
+
 	// Allow DataFile to modify the internal structure of DataNodes.
 	friend class DataFile;
 };

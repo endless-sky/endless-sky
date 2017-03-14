@@ -41,6 +41,12 @@ class UI;
 // exactly the same every time you replay the game.
 class Mission {
 public:
+	enum MissionSort {BY_DEFAULT, BY_SYSTEM, BY_PAYMENT, BY_DEADLINE};
+
+	static bool compare_system(const Mission& first, const Mission& second);
+	static bool compare_payment(const Mission& first, const Mission& second);
+	static bool compare_deadline(const Mission& first, const Mission& second);
+
 	// Load a mission, either from the game data or from a saved game.
 	void Load(const DataNode &node);
 	// Save a mission. It is safe to assume that any mission that is being saved

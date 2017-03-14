@@ -50,33 +50,38 @@ void Ship::Load(const DataNode &node)
 		modelName = node.Token(1);
 		pluralModelName = modelName + 's';
 	}
+
 	if(node.Size() >= 3)
-		base = GameData::Ships().Get(modelName);
-	
+		base = GameData::Ships().Get(modelName);  
+
 	government = GameData::PlayerGovernment();
-	equipped.clear();
-	
+	if(!node.IsExtension())
+		equipped.clear();
+
 	// Note: I do not clear the attributes list here so that it is permissible
 	// to override one ship definition with another.
-	bool hasEngine = false;
-	bool hasArmament = false;
-	bool hasLicenses = false;
-	bool hasBays = false;
-	bool hasExplode = false;
-	bool hasFinalExplode = false;
-	bool hasOutfits = false;
-	bool hasDescription = false;
+	bool hasEngine = node.IsExtension();
+	bool hasArmament = node.IsExtension();
+	bool hasLicenses = node.IsExtension();
+	bool hasBays = node.IsExtension();
+	bool hasExplode = node.IsExtension();
+	bool hasFinalExplode = node.IsExtension();
+	bool hasOutfits = node.IsExtension();
+	bool hasDescription = node.IsExtension();
+
 	for(const DataNode &child : node)
 	{
-		if(child.Token(0) == "sprite")
+		const string &token = child.Token(0);
+
+		if(token == "sprite")
 			LoadSprite(child);
-		else if(child.Token(0) == "name" && child.Size() >= 2)
+		else if(token == "name" && child.Size() >= 2)
 			name = child.Token(1);
-		else if(child.Token(0) == "plural" && child.Size() >= 2)
+		else if(token == "plural" && child.Size() >= 2)
 			pluralModelName = child.Token(1);
-		else if(child.Token(0) == "attributes")
+		else if(token == "attributes")
 			baseAttributes.Load(child);
-		else if(child.Token(0) == "engine" && child.Size() >= 3)
+		else if(token == "engine" && child.Size() >= 3)
 		{
 			if(!hasEngine)
 			{
@@ -86,7 +91,7 @@ void Ship::Load(const DataNode &node)
 			enginePoints.emplace_back(.5 * child.Value(1), .5 * child.Value(2),
 				(child.Size() > 3 ? child.Value(3) : 1.));
 		}
-		else if(child.Token(0) == "gun" || child.Token(0) == "turret")
+		else if(token == "gun" || token == "turret")
 		{
 			if(!hasArmament)
 			{
@@ -108,12 +113,12 @@ void Ship::Load(const DataNode &node)
 			}
 			if(outfit)
 				++equipped[outfit];
-			if(child.Token(0) == "gun")
+			if(token == "gun")
 				armament.AddGunPort(hardpoint, outfit);
 			else
 				armament.AddTurret(hardpoint, outfit);
 		}
-		else if(child.Token(0) == "licenses")
+		else if(token == "licenses")
 		{
 			if(!hasLicenses)
 			{
@@ -123,18 +128,18 @@ void Ship::Load(const DataNode &node)
 			for(const DataNode &grand : child)
 				licenses.push_back(grand.Token(0));
 		}
-		else if(child.Token(0) == "never disabled")
+		else if(token == "never disabled")
 			neverDisabled = true;
-		else if(child.Token(0) == "uncapturable")
+		else if(token == "uncapturable")
 			isCapturable = false;
-		else if((child.Token(0) == "fighter" || child.Token(0) == "drone") && child.Size() >= 3)
+		else if((token == "fighter" || token == "drone") && child.Size() >= 3)
 		{
 			if(!hasBays)
 			{
 				bays.clear();
 				hasBays = true;
 			}
-			bays.emplace_back(child.Value(1), child.Value(2), child.Token(0) == "fighter");
+			bays.emplace_back(child.Value(1), child.Value(2), token == "fighter");
 			for(int i = 3; i < child.Size(); ++i)
 			{
 				for(unsigned j = 1; j < sizeof(BAY_SIDE) / sizeof(BAY_SIDE[0]); ++j)
@@ -145,7 +150,7 @@ void Ship::Load(const DataNode &node)
 						bays.back().facing = j;
 			}
 		}
-		else if(child.Token(0) == "explode" && child.Size() >= 2)
+		else if(token == "explode" && child.Size() >= 2)
 		{
 			if(!hasExplode)
 			{
@@ -157,7 +162,7 @@ void Ship::Load(const DataNode &node)
 			explosionEffects[GameData::Effects().Get(child.Token(1))] += count;
 			explosionTotal += count;
 		}
-		else if(child.Token(0) == "final explode" && child.Size() >= 2)
+		else if(token == "final explode" && child.Size() >= 2)
 		{
 			if(!hasFinalExplode)
 			{
@@ -167,7 +172,7 @@ void Ship::Load(const DataNode &node)
 			int count = (child.Size() >= 3) ? child.Value(2) : 1;
 			finalExplosions[GameData::Effects().Get(child.Token(1))] += count;
 		}
-		else if(child.Token(0) == "outfits")
+		else if(token == "outfits")
 		{
 			if(!hasOutfits)
 			{
@@ -180,30 +185,30 @@ void Ship::Load(const DataNode &node)
 				outfits[GameData::Outfits().Get(grand.Token(0))] += count;
 			}
 		}
-		else if(child.Token(0) == "cargo")
+		else if(token == "cargo")
 			cargo.Load(child);
-		else if(child.Token(0) == "crew" && child.Size() >= 2)
+		else if(token == "crew" && child.Size() >= 2)
 			crew = static_cast<int>(child.Value(1));
-		else if(child.Token(0) == "fuel" && child.Size() >= 2)
+		else if(token == "fuel" && child.Size() >= 2)
 			fuel = child.Value(1);
-		else if(child.Token(0) == "shields" && child.Size() >= 2)
+		else if(token == "shields" && child.Size() >= 2)
 			shields = child.Value(1);
-		else if(child.Token(0) == "hull" && child.Size() >= 2)
+		else if(token == "hull" && child.Size() >= 2)
 			hull = child.Value(1);
-		else if(child.Token(0) == "position" && child.Size() >= 3)
+		else if(token == "position" && child.Size() >= 3)
 			position = Point(child.Value(1), child.Value(2));
-		else if(child.Token(0) == "system" && child.Size() >= 2)
+		else if(token == "system" && child.Size() >= 2)
 			currentSystem = GameData::Systems().Get(child.Token(1));
-		else if(child.Token(0) == "planet" && child.Size() >= 2)
+		else if(token == "planet" && child.Size() >= 2)
 		{
 			zoom = 0.;
 			landingPlanet = GameData::Planets().Get(child.Token(1));
 		}
-		else if(child.Token(0) == "destination system" && child.Size() >= 2)
+		else if(token == "destination system" && child.Size() >= 2)
 			targetSystem = GameData::Systems().Get(child.Token(1));
-		else if(child.Token(0) == "parked")
+		else if(token == "parked")
 			isParked = true;
-		else if(child.Token(0) == "description" && child.Size() >= 2)
+		else if(token == "description" && child.Size() >= 2)
 		{
 			if(!hasDescription)
 			{
@@ -213,10 +218,13 @@ void Ship::Load(const DataNode &node)
 			description += child.Token(1);
 			description += '\n';
 		}
-		else if(child.Token(0) != "actions")
+		else if(token != "actions")
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
 	
+	bool isShip = !node.Token(1).compare("Korath World-Ship");
+	bool isFoo = (node.Size() == 2) || node.IsExtension();
+
 	// Check that all the "equipped" outfits actually match what your ship has.
 	if(!outfits.empty())
 		for(auto &it : equipped)
