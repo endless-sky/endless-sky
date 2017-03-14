@@ -1331,14 +1331,21 @@ void PlayerInfo::AcceptJob(const Mission &mission, UI *ui)
 			it->Do(Mission::ACCEPT, *this, ui);
 			auto spliceIt = it->IsUnique() ? missions.begin() : missions.end();
 			missions.splice(spliceIt, availableJobs, it);
-			SortMissions(missionSort);
+			SetSortMissions(missionSort);
 			break;
 		}
 }
 
 
 
-void PlayerInfo::SortMissions(const Mission::MissionSort sort)
+const Mission::MissionSort PlayerInfo::MissionSort() const
+{
+	return missionSort;
+}
+
+
+
+void PlayerInfo::SetSortMissions(const Mission::MissionSort sort)
 {
 	missionSort = sort;
 

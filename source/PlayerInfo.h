@@ -146,7 +146,9 @@ public:
 	const std::list<Mission> &Missions() const;
 	const std::list<Mission> &AvailableJobs() const;
 	void AcceptJob(const Mission &mission, UI *ui);
-	void SortMissions(const Mission::MissionSort sort);
+	
+	const Mission::MissionSort MissionSort() const;
+	void SetSortMissions(const Mission::MissionSort sort);
 
 	// Check to see if there is any mission to offer in the spaceport right now.
 	Mission *MissionToOffer(Mission::Location location);

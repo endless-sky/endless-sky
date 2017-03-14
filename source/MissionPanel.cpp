@@ -244,15 +244,15 @@ bool MissionPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 	}
 	else if(key == 'e') 
 	{
-		player.SortMissions(Mission::BY_DEADLINE);
+		player.SetSortMissions(Mission::BY_DEADLINE);
 	}
 	else if(key == 'y')
 	{
-		player.SortMissions(Mission::BY_PAYMENT);
+		player.SetSortMissions(Mission::BY_PAYMENT);
 	}
 	else if(key == 't')
 	{
-		player.SortMissions(Mission::BY_SYSTEM);
+		player.SetSortMissions(Mission::BY_SYSTEM);
 	}
 	else
 		return MapPanel::KeyDown(key, mod, command);
@@ -619,6 +619,24 @@ void MissionPanel::DrawMissionInfo()
 	
 	info.SetString("today", player.GetDate().ToString());
 	
+	switch(player.MissionSort())
+	{
+	case Mission::BY_SYSTEM:
+		info.SetCondition("by system");
+		break;
+
+	case Mission::BY_PAYMENT:
+		info.SetCondition("by payment");
+		break;
+
+	case Mission::BY_DEADLINE:
+		info.SetCondition("by deadline");
+		break;
+
+	default:
+		break;
+	}
+
 	const Interface *missionInterface = GameData::Interfaces().Get("mission");
 	missionInterface->Draw(info, this);
 	

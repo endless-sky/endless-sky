@@ -686,16 +686,19 @@ interface "mission" bottom
 		dimensions 80 30
 
 interface "mission sort" bottom right
+	active if "!by deadline"
 	sprite "ui/wide button"
 		from -190 -90 to -80 -40
 	button e "D_eadline"
 		from -180 -80 to -90 -50
 
+	active if "!by payment"
 	sprite "ui/dialog cancel"
 		from -270 -90 to -180 -40
 	button y "Pa_yment"
 		from -260 -80 to -190 -50
 
+	active if "!by system"
 	sprite "ui/dialog cancel"
 		from -350 -90 to -260 -40
 	button t "Sys_tem"
