@@ -225,7 +225,7 @@ ship "Bactrian"
 	explode "huge explosion" 30
 	"final explode" "final explosion large"
 	description "The Lionheart Bactrian is the last of the great city-ships, a design hearkening back to the early days of space colonization when a long-distance vessel needed to be a self-contained world, able to survive at times for weeks without encountering an inhabited planet."
-	description "During the caravan era of the 27th century, the Bactrian was among the most powerful warships in human space, as well as being one of the best freighters and carriers. However, more modern times have seen the Bactrian become among the weakest of the warships, and it was not too many years ago that the Bactrian was recategorized as a transport vessel, and as such the Deep no longer requires for those who wish to purchase this massive ship to be vetted."
+	description "During the caravan era of the 27th century, heavily-armed Bactrians were among the most powerful warships in human space, and sales were tightly controlled by the local government of the Deep. No longer a match for today's modern warships, the Bactrian has been reclassified as a transport and is now sold freely to civilians."
 
 
 
