@@ -334,7 +334,7 @@ ship "Bastion"
 	outfits
 		"Plasma Cannon" 2
 		"Heavy Rocket Launcher" 2
-		"Heavy Rocket" 40
+		"Heavy Rocket" 60
 		"Heavy Rocket Rack" 2
 		"Blaster Turret" 3
 		
