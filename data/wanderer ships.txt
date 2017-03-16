@@ -205,7 +205,8 @@ ship "Strong Wind"
 	outfits
 		"Sunbeam" 4
 		"Thunderhead Launcher" 2
-		"Thunderhead Missile" 80
+		"Thunderhead Missile" 120
+		"Thunderhead Storage Array" 2
 		
 		"White Sun Reactor"
 		"Dark Storm Shielding"
@@ -258,7 +259,8 @@ ship "Tempest"
 	outfits
 		"Sunbeam" 2
 		"Thunderhead Launcher" 2
-		"Thunderhead Missile" 80
+		"Thunderhead Missile" 100
+		"Thunderhead Storage Array"
 		"Dual Sunbeam Turret"
 		"Wanderer Anti-Missile" 2
 		
@@ -269,7 +271,7 @@ ship "Tempest"
 		"Type 4 Radiant Thruster"
 		"Type 4 Radiant Steering"
 		"Hyperdrive"
-	
+		
 	engine -22 129
 	engine 22 129
 	gun -16 -100 "Sunbeam"
@@ -301,7 +303,7 @@ ship "Tempest" "Tempest (Heavy)"
 		"Type 4 Radiant Steering"
 		"Type 2 Radiant Steering"
 		"Hyperdrive"
-	
+		
 	turret "Dual Sunbeam Turret"
 	turret "Wanderer Anti-Missile"
 	turret "Wanderer Anti-Missile"
@@ -309,7 +311,8 @@ ship "Tempest" "Tempest (Heavy)"
 ship "Tempest" "Tempest (Missile)"
 	outfits
 		"Thunderhead Launcher" 4
-		"Thunderhead Missile" 160
+		"Thunderhead Missile" 180
+		"Thunderhead Storage Array"
 		"Dual Sunbeam Turret" 2
 		
 		"White Sun Reactor"
@@ -320,7 +323,7 @@ ship "Tempest" "Tempest (Missile)"
 		"Type 4 Radiant Thruster"
 		"Type 4 Radiant Steering"
 		"Hyperdrive"
-	
+		
 	turret
 	turret "Dual Sunbeam Turret"
 	turret "Dual Sunbeam Turret"
@@ -354,7 +357,8 @@ ship "Derecho"
 	outfits
 		"Sunbeam" 2
 		"Thunderhead Launcher" 2
-		"Thunderhead Missile" 80
+		"Thunderhead Missile" 100
+		"Thunderhead Storage Array"
 		"Dual Sunbeam Turret" 2
 		"Wanderer Anti-Missile" 2
 		
@@ -562,7 +566,8 @@ ship "Deep River"
 			"hit force" 4200
 	outfits
 		"Thunderhead Launcher" 6
-		"Thunderhead Missile" 240
+		"Thunderhead Missile" 320
+		"Thunderhead Storage Array" 4
 		
 		"Large Biochemical Cell"
 		"Bright Cloud Shielding"

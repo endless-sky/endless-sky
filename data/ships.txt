@@ -190,7 +190,8 @@ ship "Bactrian"
 			"hit force" 3900
 	outfits
 		"Sidewinder Missile Launcher" 2
-		"Sidewinder Missile" 100
+		"Sidewinder Missile" 150
+		"Sidewinder Missile Rack" 2
 		"Torpedo Launcher" 2
 		"Torpedo" 60
 		"Heavy Laser Turret" 4
@@ -334,6 +335,7 @@ ship "Bastion"
 		"Plasma Cannon" 2
 		"Heavy Rocket Launcher" 2
 		"Heavy Rocket" 40
+		"Heavy Rocket Rack" 2
 		"Blaster Turret" 3
 		
 		"S3 Thermionic"
@@ -578,9 +580,9 @@ ship "Boxwing"
 			"hit force" 180
 	outfits
 		"nGVF-AA Fuel Cell"
-
+		
 		"X1050 Ion Engines"
-
+		
 	engine 23 -1
 	engine -23 -1
 	engine 19 29
@@ -588,6 +590,7 @@ ship "Boxwing"
 	explode "tiny explosion" 15
 	explode "small explosion" 5
 	description `After introducing the "Type F" cargo pod for the Hauler, it became apparent to merchant captains that the new carriers could offer more flexibility within their fleet, if there were a cargo box they could attach to the fighter arms. Enter the "F6-C: Boxwing", the Fighter that doesn't fight, but carries cargo instead. Cargo preservation equipment gives the Boxwing much more mass and very poor heat dissipation characteristics compared to other fighters. That it cannot carry any weapons is only part of the reason jocks call it "Flying Coffin" amongst themselves; besides the ship resembling one and being very sluggish, the pilot "seat" doubles as a bunk, and is cramped beyond the comfort level of most. The interactive panoramic window H.U.D. is the only thing that keeps claustrophobic episodes from becoming a major problem.`
+
 
 
 ship "Bulk Freighter"
@@ -672,7 +675,8 @@ ship "Carrier"
 	outfits
 		"Particle Cannon" 4
 		"Meteor Missile Launcher" 4
-		"Meteor Missile" 140
+		"Meteor Missile" 248
+		"Meteor Missile Box" 6
 		"Heavy Laser Turret" 3
 		"Heavy Anti-Missile Turret"
 		
@@ -758,8 +762,8 @@ ship "Class C Freighter"
 	engine 22 198
 	turret -12 -155 "Heavy Laser Turret"
 	turret 12 -155 "Heavy Anti-Missile Turret"
-	turret 30 175 "Heavy Laser Turret"
 	turret -30 175 "Heavy Anti-Missile Turret"
+	turret 30 175 "Heavy Laser Turret"
 	drone -66 -115 left
 	drone -66 -65 left
 	drone -66 -15 left
@@ -947,7 +951,8 @@ ship "Cruiser"
 	outfits
 		"Particle Cannon" 4
 		"Sidewinder Missile Launcher" 2
-		"Sidewinder Missile" 100
+		"Sidewinder Missile" 250
+		"Sidewinder Storage Rack" 6
 		"Heavy Laser Turret" 3
 		"Heavy Anti-Missile Turret"
 		
@@ -1110,7 +1115,8 @@ ship "Falcon"
 	outfits
 		"Plasma Cannon" 2
 		"Torpedo Launcher" 2
-		"Torpedo" 60
+		"Torpedo" 90
+		"Torpedo Storage Rack" 2
 		"Quad Blaster Turret" 4
 		
 		"Breeder Reactor"
@@ -1354,7 +1360,8 @@ ship "Frigate"
 	outfits
 		"Particle Cannon" 2
 		"Torpedo Launcher" 2
-		"Torpedo" 60
+		"Torpedo" 90
+		"Torpedo Storage Rack" 2
 		"Blaster Turret" 3
 		
 		"NT-200 Nucleovoltaic"
@@ -1996,7 +2003,8 @@ ship "Mule"
 			"hit force" 1500
 	outfits
 		"Sidewinder Missile Launcher" 2
-		"Sidewinder Missile" 100
+		"Sidewinder Missile" 150
+		"Sidewinder Missile Rack" 2
 		"Heavy Laser Turret" 3
 		"Heavy Anti-Missile Turret"
 		
@@ -2051,7 +2059,8 @@ ship "Nest"
 			"hit force" 900
 	outfits
 		"Meteor Missile Launcher" 2
-		"Meteor Missile" 70
+		"Meteor Missile" 142
+		"Meteor Missile Box" 4
 		"Quad Blaster Turret" 2
 		"Heavy Anti-Missile Turret" 2
 		
@@ -2160,13 +2169,14 @@ ship "Protector"
 			"hit force" 2400
 	outfits
 		"Torpedo Launcher" 2
-		"Torpedo" 60
+		"Torpedo" 90
+		"Torpedo Storage Rack" 2
 		"Quad Blaster Turret" 6
 		
 		"Fusion Reactor"
 		"LP288a Battery Pack"
 		"D67-TM Shield Generator"
-		"Small Radar Jammer" 3
+		"Small Radar Jammer"
 		"Liquid Nitrogen Cooler"
 		
 		"X3700 Ion Thruster"
@@ -2264,7 +2274,8 @@ ship "Rainmaker"
 	outfits
 		"Energy Blaster" 2
 		"Meteor Missile Launcher" 4
-		"Meteor Missile" 140
+		"Meteor Missile" 284
+		"Meteor Missile Box" 8
 		
 		"nGVF-CC Fuel Cell"
 		"LP036a Battery Pack"
@@ -2362,7 +2373,8 @@ ship "Roost"
 			"hit force" 1200
 	outfits
 		"Meteor Missile Launcher" 2
-		"Meteor Missile" 70
+		"Meteor Missile" 106
+		"Meteor Missile Box" 2
 		"Quad Blaster Turret" 2
 		"Heavy Anti-Missile Turret" 2
 		
@@ -2799,7 +2811,7 @@ ship "Vanguard"
 	outfits
 		"Proton Gun" 7
 		"Anti-Missile Turret"
-
+		
 		"Fusion Reactor"
 		"LP072a Battery Pack"
 		"D67-TM Shield Generator"
@@ -2808,7 +2820,7 @@ ship "Vanguard"
 		"X3700 Ion Thruster"
 		"X4200 Ion Steering"
 		"Hyperdrive"
-	
+		
 	engine -15 130
 	engine 15 130
 	gun 0 -132 "Proton Gun"
