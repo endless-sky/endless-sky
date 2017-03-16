@@ -45,7 +45,7 @@ ship "Korath Raider"
 		"Thruster (Planetary Class)"
 		"Steering (Planetary Class)"
 		"Jump Drive"
-	
+		
 	engine -20 130
 	engine 20 130
 	turret -34 -143 "Korath Grab-Strike"
@@ -94,7 +94,7 @@ ship "Korath Chaser"
 		
 		"Thruster (Asteroid Class)"
 		"Steering (Asteroid Class)"
-	
+		
 	engine -7 23
 	engine 7 23
 	gun 0 -28 "Korath Fire-Lance"
@@ -139,7 +139,7 @@ ship "Korath World-Ship"
 		"Thruster (Planetary Class)"
 		"Steering (Planetary Class)"
 		"Hyperdrive"
-	
+		
 	engine -37 343 .8
 	engine 0 343 .9
 	engine 37 343 .8
@@ -196,7 +196,7 @@ ship "Korath World-Ship" "Korath World-Ship A (Jump)"
 		"Thruster (Planetary Class)"
 		"Steering (Planetary Class)"
 		"Jump Drive"
-	
+		
 	turret -76 -157 "Korath Grab-Strike"
 	turret 76 -157 "Korath Banisher"
 	turret -59 -135 "Korath Warder"
@@ -222,7 +222,7 @@ ship "Korath World-Ship" "Korath World-Ship B (Jump)"
 		"Thruster (Planetary Class)"
 		"Steering (Planetary Class)"
 		"Jump Drive"
-	
+		
 	turret -76 -219 "Korath Grab-Strike"
 	turret 76 -219 "Korath Grab-Strike"
 	turret -75 -112 "Korath Banisher"
@@ -248,7 +248,7 @@ ship "Korath World-Ship" "Korath World-Ship C (Jump)"
 		"Thruster (Planetary Class)"
 		"Steering (Planetary Class)"
 		"Jump Drive"
-	
+		
 	turret -45 -247 "Korath Warder"
 	turret 45 -247 "Korath Grab-Strike"
 	turret -47 -140 "Korath Grab-Strike"
@@ -286,7 +286,8 @@ ship "Kar Ik Vot 349"
 	outfits
 		"Korath Detainer" 2
 		"Korath Piercer Launcher" 2
-		"Korath Piercer" 62
+		"Korath Piercer" 94
+		"Korath Piercer Rack" 2
 		"Korath Warder" 2
 		"Korath Repeater Turret" 6
 		
@@ -300,7 +301,7 @@ ship "Kar Ik Vot 349"
 		"Thruster (Planetary Class)"
 		"Steering (Stellar Class)"
 		Hyperdrive
-	
+		
 	engine -24 237
 	engine 24 237
 	gun -8 -212 "Korath Detainer"
@@ -342,7 +343,7 @@ ship "Kar Ik Vot 349" "Kar Ik Vot 349 (Offense)"
 		"Thruster (Asteroid Class)"
 		"Steering (Stellar Class)"
 		Hyperdrive
-	
+		
 	turret "Korath Repeater Turret"
 	turret "Korath Repeater Turret"
 	turret "Korath Repeater Turret"
@@ -355,7 +356,8 @@ ship "Kar Ik Vot 349" "Kar Ik Vot 349 (Offense)"
 ship "Kar Ik Vot 349" "Kar Ik Vot 349 (Defense)"
 	outfits
 		"Korath Piercer Launcher" 4
-		"Korath Piercer" 124
+		"Korath Piercer" 172
+		"Korath Piercer Rack" 3
 		"Korath Warder" 3
 		"Korath Grab-Strike" 3
 		"Korath Banisher" 2
@@ -371,7 +373,7 @@ ship "Kar Ik Vot 349" "Kar Ik Vot 349 (Defense)"
 		"Thruster (Stellar Class)"
 		"Steering (Planetary Class)"
 		Hyperdrive
-	
+		
 	turret "Korath Warder"
 	turret "Korath Grab-Strike"
 	turret "Korath Grab-Strike"
@@ -399,7 +401,7 @@ ship "Kar Ik Vot 349" "Kar Ik Vot 349 (Trapper)"
 		"Thruster (Planetary Class)"
 		"Steering (Stellar Class)"
 		Hyperdrive
-	
+		
 	gun "Korath Detainer"
 	gun "Korath Detainer"
 	gun
@@ -412,6 +414,7 @@ ship "Kar Ik Vot 349" "Kar Ik Vot 349 (Trapper)"
 	turret "Korath Banisher"
 	turret
 	turret
+
 
 
 ship "Tek Far 71 - Lek"
@@ -453,7 +456,7 @@ ship "Tek Far 71 - Lek"
 		"Thruster (Lunar Class)"
 		"Steering (Lunar Class)"
 		"Hyperdrive"
-	
+		
 	engine -9 219
 	engine 9 219
 	gun 10 -180 "Korath Detainer"
@@ -499,11 +502,12 @@ ship "Tek Far 71 - Lek" "Tek Far 71 - Lek (Close Quarters)"
 		"Thruster (Lunar Class)"
 		"Steering (Lunar Class)"
 		"Hyperdrive"
-	
+		
 	turret "Korath Repeater Turret"
 	turret "Korath Repeater Turret"
 	turret "Korath Warder"
 	turret "Korath Repeater Turret"
+
 
 
 ship "Tek Far 78 - Osk"
@@ -634,7 +638,7 @@ ship "Tek Far 109"
 		"Thruster (Lunar Class)"
 		"Steering (Planetary Class)"
 		Hyperdrive
-	
+		
 	engine -9 205
 	engine 9 205
 	gun 0 -214 "Korath Detainer"
@@ -665,6 +669,7 @@ ship "Tek Far 109"
 	explode "huge explosion" 8
 	"final explode" "final explosion medium"
 	description "The TF109 is designed almost solely for the purpose of carrying a fleet of Kor Sestor fighters and drones. Without them to serve as a protective screen, the ship itself is relatively helpless."
+
 
 
 ship "Met Par Tek 53"
@@ -703,7 +708,7 @@ ship "Met Par Tek 53"
 		"Thruster (Lunar Class)"
 		"Steering (Planetary Class)"
 		"Hyperdrive"
-	
+		
 	engine -24 132
 	engine 24 132
 	gun 0 -92 "Korath Repeater"
@@ -743,7 +748,7 @@ ship "Met Par Tek 53" "Met Par Tek 53 (Sniper)"
 		"Steering (Planetary Class)"
 		"Steering (Comet Class)"
 		"Hyperdrive"
-	
+		
 	gun "Korath Detainer"
 	gun "Korath Piercer Launcher"
 	gun "Korath Piercer Launcher"
@@ -753,6 +758,7 @@ ship "Met Par Tek 53" "Met Par Tek 53 (Sniper)"
 	turret
 	turret
 	turret
+
 
 
 ship "Far Lek 14"
@@ -833,6 +839,7 @@ ship "Far Osk 27"
 	description "Because it is piloted by a computer and has no need for a cockpit or life support systems, the FS27 fighter is able to carry far more weaponry than any comparable human ship."
 
 
+
 ship "Model 8"
 	sprite "ship/model 8"
 	attributes
@@ -867,7 +874,7 @@ ship "Model 8"
 		"Thruster (Comet Class)"
 		"Steering (Lunar Class)"
 		Hyperdrive
-	
+		
 	engine -11 49
 	engine 11 49
 	gun 9 -36 "Korath Slicer"
@@ -876,6 +883,7 @@ ship "Model 8"
 	explode "small explosion" 10
 	"final explode" "final explosion small"
 	description "The primary role of the smallest Kor Mereti drones is asteroid mining, but their lasers can also be employed as offensive weapons when necessary."
+
 
 
 ship "Model 16"
@@ -916,7 +924,7 @@ ship "Model 16"
 		"Thruster (Planetary Class)"
 		"Steering (Lunar Class)"
 		Hyperdrive
-	
+		
 	engine -10 99
 	engine 10 99
 	gun 0 -99 "Korath Minelayer"
@@ -928,6 +936,7 @@ ship "Model 16"
 	explode "large explosion" 10
 	"final explode" "final explosion small"
 	description "The Kor Mereti war drones are constructed in a modular fashion, which allows them to grow over time as more materials become available. This one is recently built, and relatively small."
+
 
 
 ship "Model 32"
@@ -968,7 +977,7 @@ ship "Model 32"
 		"Thruster (Planetary Class)"
 		"Steering (Lunar Class)"
 		Hyperdrive
-
+		
 	engine -10 128
 	engine 10 128
 	gun 0 -129 "Korath Minelayer"
@@ -981,6 +990,7 @@ ship "Model 32"
 	explode "large explosion" 15
 	"final explode" "final explosion medium"
 	description "The Kor Mereti built their drones to mimic life: capable of growth and development throughout their life cycles. Their automated factories can convert the drones from one configuration to another by adding or removing modules."
+
 
 
 ship "Model 64"
@@ -1008,7 +1018,8 @@ ship "Model 64"
 			"hit force" 6000
 	outfits
 		"Korath Minelayer"
-		"Korath Mine" 17
+		"Korath Mine" 35
+		"Korath Mine Rack" 2
 		"Korath Disruptor" 2
 		"Korath Slicer Turret" 2
 		
@@ -1021,13 +1032,13 @@ ship "Model 64"
 		"Thruster (Asteroid Class)"
 		"Steering (Planetary Class)"
 		Hyperdrive
-	
+		
 	engine -19 159
 	engine 19 159
 	gun 0 -159 "Korath Minelayer"
 	turret 20 -74 "Korath Slicer Turret"
-	turret -29 71 "Korath Slicer Turret"
 	turret -35 -69 "Korath Disruptor"
+	turret -29 71 "Korath Slicer Turret"
 	turret 34 77 "Korath Disruptor"
 	explode "tiny explosion" 100
 	explode "small explosion" 70
@@ -1035,6 +1046,7 @@ ship "Model 64"
 	explode "large explosion" 20
 	"final explode" "final explosion medium"
 	description "This medium-sized drone serves the Kor Mereti fleets in much the same way as a human Frigate, but in terms of total firepower it is far beyond anything humans have constructed."
+
 
 
 ship "Model 128"
@@ -1075,7 +1087,7 @@ ship "Model 128"
 		"Steering (Planetary Class)"
 		"Steering (Asteroid Class)"
 		Hyperdrive
-
+		
 	engine -14 178
 	engine 14 178
 	gun -11 -166 "Korath Minelayer"
@@ -1091,6 +1103,7 @@ ship "Model 128"
 	explode "large explosion" 25
 	"final explode" "final explosion large"
 	description "As Kor Mereti drones continue to grow and develop into their final form, they split down the middle. At the same time, their shielding and weaponry continue to become stronger."
+
 
 
 ship "Model 256"
@@ -1118,7 +1131,8 @@ ship "Model 256"
 			"hit force" 7800
 	outfits
 		"Korath Minelayer" 2
-		"Korath Mine" 34
+		"Korath Mine" 52
+		"Korath Mine Rack" 2
 		"Korath Disruptor" 3
 		"Korath Slicer Turret" 3
 		
@@ -1131,7 +1145,7 @@ ship "Model 256"
 		"Steering (Planetary Class)"
 		"Steering (Comet Class)"
 		Hyperdrive
-
+		
 	engine -60 147
 	engine 60 147
 	gun -22 -148 "Korath Minelayer"
@@ -1148,6 +1162,7 @@ ship "Model 256"
 	explode "large explosion" 30
 	"final explode" "final explosion large"
 	description "There is a saying among the Quarg that every species which insists on studying war will eventually construct a weapon that outlives its creators. For the Korath, their war drones have very nearly done so."
+
 
 
 ship "Model 512"
@@ -1175,7 +1190,8 @@ ship "Model 512"
 			"hit force" 8400
 	outfits
 		"Korath Minelayer" 2
-		"Korath Mine" 34
+		"Korath Mine" 52
+		"Korath Mine Rack" 2
 		"Korath Disruptor" 3
 		"Korath Slicer Turret" 4
 		
@@ -1189,7 +1205,7 @@ ship "Model 512"
 		"Thruster (Planetary Class)"
 		"Steering (Stellar Class)"
 		Hyperdrive
-
+		
 	engine -145 97
 	engine 145 97
 	gun -22 -143 "Korath Minelayer"
