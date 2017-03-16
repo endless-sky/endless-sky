@@ -566,8 +566,8 @@ ship "Deep River"
 			"hit force" 4200
 	outfits
 		"Thunderhead Launcher" 6
-		"Thunderhead Missile" 320
-		"Thunderhead Storage Array" 4
+		"Thunderhead Missile" 300
+		"Thunderhead Storage Array" 3
 		
 		"Large Biochemical Cell"
 		"Bright Cloud Shielding"
