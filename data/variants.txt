@@ -8,8 +8,6 @@
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
-# Human variants (other list is Alien variants; Hai outfitted ships).
-
 ship "Argosy" "Argosy (Blaster)"
 	outfits
 		"Energy Blaster" 4
@@ -125,8 +123,6 @@ ship "Bastion" "Bastion (Laser)"
 	turret "Heavy Laser Turret"
 
 
-
-# The Behemoth (Heavy) isn't used in any fleets, only in the Bloodsea spaceport string.
 
 ship "Behemoth" "Behemoth (Heavy)"
 	outfits
@@ -1311,8 +1307,6 @@ ship "Wasp" "Wasp (Proton)"
 
 
 
-# Alien variants.
-
 ship "Arrow" "Arrow (Hai)"
 	outfits
 		"Sidewinder Missile Launcher" 2
@@ -1692,8 +1686,6 @@ ship "Mule" "Mule (Hai Weapons)"
 		"Hyperdrive"
 
 
-
-# The Osprey (Alien Weapons) isn't used in any fleets, only in a special bounty mission.
 
 ship "Osprey" "Osprey (Alien Weapons)"
 	outfits
