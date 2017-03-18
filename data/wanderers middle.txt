@@ -1991,7 +1991,8 @@ mission "Wanderers: Sestor: Quarg Help 1"
 
 
 mission "Wanderers: Sestor: Quarg Help 2"
-	landing	name "Return to <planet>"
+	landing
+	name "Return to <planet>"
 	description "Return to <planet> with this small fleet of Quarg ships."
 	source "Alta Hai"
 	destination "Farpoint"
