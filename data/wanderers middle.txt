@@ -1783,10 +1783,10 @@ mission "Wanderers: Sestor Search: Human Spaceport"
 					decline
 			
 			label approach
-			`	You get a better view of the Behemoth -- the "Heart of Gold", as indicated on the ship's stern -- as you walk up to it. The rear of the ship is badly hammered, and black soot-like stains streak forward across the hull. You can't help but notice that at several projectile entry points along the hull, the metal is bent smoothly inwards, almost as if the penetrator had seared or melted its way through the ship's armor. The captain of the Behemoth looks up from his inspection. Seeing you, he remarks, "We were lucky to get out of that one alive!"`
+			`	You get a better view of the Behemoth -- the "Heart of Gold", as indicated on the ship's stern -- as you walk up to it. The rear of the ship is badly hammered, and black scorch marks streak forward across the hull. You can't help but notice that at several projectile entry points along the hull, the metal is bent smoothly inwards, almost as if the penetrator had seared or melted its way through the ship's armor. The captain of the Behemoth looks up from his inspection. Seeing you, he remarks, "We were lucky to get out of that one alive!"`
 			choice
 				`	"How did your ship end up in such a state?"`
-				`	"Was this beauty a victim of a pirate attack?"`
+				`	"Was this beauty the victim of a pirate attack?"`
 				
 			`	"I'm not quite sure," the captain replies. "We were shot by a fleet of hostile ships that our computer couldn't identify. They didn't look at all like a run-of-the-mill pirate ship, though, and they were kitted out with tech I've never seen before."`
 			choice
