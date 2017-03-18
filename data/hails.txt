@@ -296,6 +296,7 @@ phrase "friendly civilian"
 		"Man, "
 		"Ugh, "
 		"You know, "
+		"Jeez, "
 	word
 		"I can't believe"
 		"I don't know why"
@@ -305,6 +306,7 @@ phrase "friendly civilian"
 		"It's burning me up that"
 		"It's so weird that"
 		"Nobody can explain to me why"
+		"I can hardly imagine why"
 	word
 		" "
 	word
@@ -314,6 +316,7 @@ phrase "friendly civilian"
 		"everyone's"
 		"my crew is"
 		"some of my friends are"
+		"the older generation is"
 	word
 		" still"
 		""
@@ -367,6 +370,7 @@ phrase "friendly civilian"
 		"goes against common decency"
 		"ought to be banned"
 		"hurts my ears"
+		"makes me ill"
 	word
 		"!"
 
@@ -548,6 +552,7 @@ phrase "friendly civilian"
 		"say no to drugs"
 		"avoid carrying illegal cargo"
 		"just have fun and don't sweat it"
+		"buy a fleet with similar fuel capacity"
 	word
 		"."
 		"!"
@@ -565,6 +570,7 @@ phrase "friendly civilian"
 		"stay safe from pirates"
 		"keep the pirates at bay"
 		"avoid pirates"
+		"deal with pirates"
 	word
 		" is to "
 	word
@@ -614,6 +620,8 @@ phrase "friendly civilian"
 		"Plasmaticas"
 		"Greasemonkeys"
 		"Void Dragons"
+		"Goers"
+		"Psyches"
 	word
 		" "
 	word
@@ -628,6 +636,7 @@ phrase "friendly civilian"
 		"narrowly beat the"
 		"demolished the"
 		"smashed the"
+		"walloped the"
 	word
 		" "
 	word
@@ -648,12 +657,15 @@ phrase "friendly civilian"
 		"Redeemers"
 		"Antelopes"
 		"Pythons"
+		"Rackets"
+		"Space Bears"
 	word
 		" last night"
 		" yesterday"
 		" this morning"
 		" the other day"
 		", as usual"
+		" this afternoon"
 	word
 		"!"
 		"."
@@ -666,6 +678,7 @@ phrase "friendly civilian"
 		"Finally dropped off some"
 		"Dropped off my cargo of"
 		"Just made a big delivery of"
+		"Recently got rid of"
 	word
 		" "
 	word
@@ -687,6 +700,7 @@ phrase "friendly civilian"
 		"fish heads"
 		"rotten fruit"
 		"sludge"
+		"unprocessed sewage"
 	word
 		". My"
 		", and now my"
@@ -698,6 +712,8 @@ phrase "friendly civilian"
 		"poor "
 		"poor ship's "
 		"beautiful ship's "
+		"delicate ship's "
+		"pristine ship's "
 
 	word
 		"hold"
@@ -711,6 +727,7 @@ phrase "friendly civilian"
 		"still stinks!"
 		"needs to be hosed down!"
 		"is gonna need one heck of a chemical bath!"
+		"desperately needs a sonic scrubbing!"
 
 phrase "friendly civilian"
 	word
@@ -838,6 +855,7 @@ phrase "friendly civilian"
 		"Everybody knows that"
 		"I wish more people realized"
 		"I wish more people realized that"
+		"My nutty cousin claims that"
 	word
 		" "
 	word
@@ -893,6 +911,7 @@ phrase "friendly civilian"
 		"are building a superweapon to destroy us all!"
 		"are secretly being controlled by the Lizard Illuminati!"
 		"are under the control of a hidden race of chipmunk aliens!"
+		"get together to play foosball every Thursday on Luna!"
 
 phrase "friendly civilian"
 	word
@@ -978,6 +997,7 @@ phrase "friendly civilian"
 		" "
 	word
 		"trade routes, but I'm not"
+		"trade routes, but there is no way I'm"
 	word
 		" "
 	word
@@ -1359,6 +1379,7 @@ phrase "friendly syndicate"
 		"user-friendly products"
 		"ethics"
 		"offers"
+		"dental plans"
 	word
 		" "
 	word
@@ -1397,6 +1418,7 @@ phrase "friendly free worlds"
 		"justice"
 		"sacrifice"
 		"courage"
+		"tenacity"
 	word
 		" "
 	word
@@ -2043,6 +2065,7 @@ phrase "hostile civilian"
 		"you to pieces"
 		"you to bits"
 		"you apart"
+		"off your nose"
 	word
 		", you"
 	word
@@ -2725,6 +2748,7 @@ phrase "hostile Syndicate"
 		"Thank you for volunteering to be a target ship for Syndicated Weapon Systems!"
 		"Syndicated Systems disapproves of space littering; your ship's wreckage will be recycled after we are finished destroying it."
 		"With authority vested in me by Syndicated Systems corporate charter, section 8, paragraph 22... prepare to die!"
+                "The remains of your soon to be derelict ship will pad my profit margins!"
 
 phrase "hostile militia"
 	word
