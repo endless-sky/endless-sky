@@ -65,6 +65,7 @@ phrase "band"
 		"The Vampires"
 		"The Screaming Eagles"
 		"Violent Surprise"
+		"Nine Meter Shanks"
 
 phrase "song"
 	word
@@ -237,6 +238,7 @@ phrase "song"
 		"Sweet Release"
 		"None of Them Knew They Were Humans"
 		"Chains of Ice"
+		"Monkey Butter"
 	word
 		`"`
 
@@ -251,6 +253,7 @@ phrase "friendly civilian"
 		"I'm just coming back from seeing"
 		"I just heard"
 		"I just saw"
+		"I had a backstage pass to"
 	word
 		" "
 	phrase
@@ -283,6 +286,7 @@ phrase "friendly civilian"
 		"at the Grange on Heartland!"
 		"at a resort on Vail!"
 		"at Canyonland Park!"
+		"in a stylin' party-hall on New China!"
 
 phrase "friendly civilian"
 	word
