@@ -1319,7 +1319,7 @@ void Ship::Launch(list<shared_ptr<Ship>> &ships)
 			std::shared_ptr<Ship> &ship = bay.ship;
 
 			//do not launch ships with low shields
-			if( ship->Shields() < .9)
+			if( ship->Shields() < .9 && ship->Attributes().Get("shields"))
 			{
 				continue;
 			}
