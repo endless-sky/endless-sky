@@ -79,7 +79,57 @@ mission "Coalition: First Contact"
 			`	You talk with them for a while longer, and learn that the centaurs are called "Saryds," and are the oldest of the three species. The beetles are the "Kimek," and come next, and the spiders are called "Arachi," and were the last of the three to discover spaceflight.`
 			`	They tell you that the best way to learn more about them is to visit their worlds, and to see for yourself how the three species live in friendship and equality. They also offer to give you jobs to do in their territory, so that you may become a "valuable contributor" to their society.`
 
-
+mission "Heliarchs: First Contact"
+	landing
+	name "Register with the Heliarchs"
+	description "You have been told to travel to the <planet> to register with the rulers of Coalition space and petition them for permission to do business here."
+	source
+		government "Heliarch"
+	to offer
+		not "Coalition: First Contact: offered"
+	on offer
+		"reputation: Coalition" += 20
+		"reputation: Heliarch" += 20
+		conversation
+			`Your first view of the landing area confirms beyond a doubt that this is a Quarg ringworld, not just an imitation of one. The interior architecture is unmistakable. But no Quarg are present here, only three alien races you are not familiar with. First are giant beetles, about a meter tall, who scurry quickly toward your ship and swarm around it, gawking at you, as soon as you land. The second species, even more disturbing than the beetles, are giant spiders. And the third species are centaurs. Not just something vaguely resembling centaurs; they look like they could have stepped right off the page of a story book from ancient Earth.`
+			`	Soon, a delagation consisting of one of each of these races approaches you. The circlets seem to be not just a badge of office, but seem to contain electronics as well. `
+			`	The centaur speaks first. "We, the Heliarchs, who drove out the oppressors, who maintain peace, we the human visitor greet."`
+			`	Again, the centaur speaks first. "To our territory, to welcome you we are glad," it says.`
+			`	Before you can ask how the centaur knows your language, the beetle speaks. "With our people you may mingle. The beauty of our culture, you may experience."`
+			`	The spider adds, "Our people and yours perhaps one day may trade. Perhaps one day the humans our great and free Coalition may join."`
+			choice
+				`	"Tell me more about your Coalition."`
+				`	"Is this a Quarg ringworld? Where are the Quarg?"`
+			`	The centaur says, "Like you, our three species once, by the Quarg were ruled. But with each other, connections we made. An alliance we formed, and the oppressors we drove away. For six thousand Earth years now, in prosperity and freedom from Quarg constraint and in friendship with each other we have lived."`
+			choice
+				`	"The Quarg don't seem that oppressive to me."`
+					goto oppressive
+				`	"How did you defeat the Quarg?"`
+			`	The spider says, "Alone, no species all skills or all knowledge possesses. But when our abilities we combine, powerful we may become. That, the reason is, that the Quarg all species in isolation keep."`
+				goto next
+			label oppressive
+			`	The spider says, "In separate boxes, they each species keep. And in subtle ways, your development and discoveries they limit. And on your technology, restrictions they place."`
+			`	The beetle says, "Or, wrong are we? And the jump drive that brought you here, a gift from the Quarg it is? They its secret no longer hoard?" You tell it that the Quarg do indeed refuse to give jump drives to humans, and it says, "Then, prisoners indeed you are."`
+			label next
+			branch hai
+				has "First Contact: Hai: offered"
+			choice
+				`	"I suppose you may be right about the Quarg."`
+					goto end
+				`	"Perhaps the Quarg will change their minds in the future."`
+			`	The giant beetle considers you gravely. "Hope, we can only," it says.`
+					goto end
+			label hai
+			choice
+				`	"I suppose you may be right about the Quarg."`
+					goto end
+				`	"But, the Quarg do let the humans and the Hai make contact with each other."`
+			`	This, apparently, is news to them. You explain to them who the Hai are, and that some humans have made contact with them and are living in their territory. "A second Coalition you are forming!" says the centaur, tapping its hooves on the floor in excitement. "Once again, foiled the Quarg are. A secret way for species to work together, they have overlooked. Great things, from this may come."`
+			label end
+			`	You talk with them for a while longer, and learn that the centaurs are called "Saryds," and are the oldest of the three species. The beetles are the "Kimek," and come next, and the spiders are called "Arachi," and were the last of the three to discover spaceflight.`
+			`	They tell you that the best way to learn more about them is to visit their worlds, and to see for yourself how the three species live in friendship and equality. They also offer to give you jobs to do in their territory, so that you may become a "valuable contributor" to their society.`
+	on complete
+		set "known to the heliarchs"
 
 mission "Coalition: Contributor"
 	landing
