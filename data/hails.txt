@@ -997,7 +997,7 @@ phrase "friendly civilian"
 		" "
 	word
 		"trade routes, but I'm not"
-		"trade routes, but there is no way I'm"
+		"trade routes, but there's no way I'm"
 	word
 		" "
 	word
