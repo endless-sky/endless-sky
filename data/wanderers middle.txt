@@ -1823,15 +1823,15 @@ mission "Wanderers: Sestor Search: Human Spaceport"
 				`	"I don't want to jump to any conclusions."`
 					goto no
 					
-			`	The pilot seems to display an expression of distaste upon hearing of aliens. You try to describe the dynamic between the exiles, the Efreti, Mereti, and Sestor, but to no avail whatsoever. The pilot quickly loses interest in your explanation, so you decide to steer the conversation to an end.`
+			`	"Aliens!?" The pilot's face reddens, and his eyes narrow in anger. "Like those detestable squirrles, you mean? Told me they were peaceful, went further north, and nearly had my ship torn to pieces!" You try to tell him of the dynamic between the exiles, the Efreti, Mereti, and Sestor, but he clearly does not want to hear about the Kor, so you decide to steer the conversation to an end.`
 				goto end
 				
 			label no
-			`	The pilot seems to be disappointed in your response, as if he wanted to learn more of the mysterious ships that attacked the Heart of Gold, so you decide to steer the conversation to an end.`
+			`	The pilot seems disappointed by your response, so you decide to steer the conversation to an end.`
 				goto end
 				
 			label end
-			`	"Thank you for your time," you say to the captain. The pilot quickly perks up again, and says, "No problem, kiddo. Remember, northwest of Farpoint. If they're anarchists of any sort, they'll be hiding in one of those pirate systems up there. Take care of yourself out there; if they really are alien ships, they must be pretty dangerous." With that, he bids you farewell.`
+			`	"Thank you for your time," you say to the captain. The pilot sobers up again, and says, "No problem. Remember, northwest of Farpoint. If they're anarchists of any sort, they'll be hiding in one of those pirate systems up there. Take care of yourself out there; those were dangerous ships we faced." With that, he bids you farewell.`
 				decline
 
 mission "Wanderers: Sestor Search: Human Hint"
