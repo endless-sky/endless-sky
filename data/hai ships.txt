@@ -318,13 +318,14 @@ ship "Shield Beetle" "Shield Beetle (Pulse)"
 ship "Shield Beetle" "Shield Beetle (Tracker)"
 	outfits
 		"Hai Tracker Pod" 8
-		"Hai Tracker" 672
-		"Tracker Storage Pod" 8
+		"Hai Tracker" 560
+		"Tracker Storage Pod" 4
 		"Pulse Turret" 4
 		
 		"Boulder Reactor"
 		"Geode Reactor"
 		"Hai Valley Batteries"
+		"Mass Expansion" 2
 		"Hai Diamond Regenerator"
 		"Hai Williwaw Cooling" 2
 		
