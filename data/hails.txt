@@ -316,7 +316,7 @@ phrase "friendly civilian"
 		"everyone's"
 		"my crew is"
 		"some of my friends are"
-		"the older generation is"
+		"all the oldsters are"
 	word
 		" still"
 		""
