@@ -312,6 +312,8 @@ bool Mask::WithinRange(Point point, Angle facing, double range) const
 double Mask::Range(Point point, Angle facing) const
 {
 	double range = numeric_limits<double>::infinity();
+	if(outline.empty())
+		return range;
 	
 	// Rotate into the mask's frame of reference.
 	point = (-facing).Rotate(point);
