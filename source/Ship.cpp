@@ -1450,12 +1450,12 @@ int Ship::Scan()
 	if(target->GetGovernment()->IsPlayer() && (result & ShipEvent::SCAN_CARGO))
 	{
 		Messages::Add("The " + government->GetName() + " ship \""
-			+ Name() + "\" succeeded in scanning your cargo.");
+			+ Name() + "\" completed its scan of your cargo.");
 	}
 	if(target->GetGovernment()->IsPlayer() && (result & ShipEvent::SCAN_OUTFITS))
 	{
 		Messages::Add("The " + government->GetName() + " ship \""
-			+ Name() + "\" succeeded in scanning your outfits.");
+			+ Name() + "\" completed its scan of your outfits.");
 	}
 	
 	return result;
