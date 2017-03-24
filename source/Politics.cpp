@@ -191,10 +191,7 @@ void Politics::DominatePlanet(const Planet *planet, bool dominate)
 	if(dominate)
 		dominatedPlanets.insert(planet);
 	else
-	{
-		if(dominatedPlanets.find(planet) != dominatedPlanets.end())
-			dominatedPlanets.erase(dominatedPlanets.find(planet));
-	}
+		dominatedPlanets.erase(planet);
 }
 
 
@@ -211,8 +208,7 @@ string Politics::Fine(PlayerInfo &player, const Government *gov, int scan, const
 {
 	// Do nothing if you have already been fined today, or if you evade
 	// detection.
-	auto it = fined.find(gov);
-	if(it != fined.end() || Random::Real() > security || !gov->GetFineFraction())
+	if(fined.count(gov) || Random::Real() > security || !gov->GetFineFraction())
 		return "";
 	
 	string reason;

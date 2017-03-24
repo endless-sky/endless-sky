@@ -522,16 +522,11 @@ void CargoHold::AddMissionCargo(const Mission *mission)
 
 
 
-// Remove all the cargo and passengers associated with the given mission.
+// Remove all the cargo and passengers (if any) associated with the given mission.
 void CargoHold::RemoveMissionCargo(const Mission *mission)
 {
-	auto it = missionCargo.find(mission);
-	if(it != missionCargo.end())
-		missionCargo.erase(it);
-	
-	auto pit = passengers.find(mission);
-	if(pit != passengers.end())
-		passengers.erase(pit);
+	missionCargo.erase(mission);
+	passengers.erase(mission);
 }
 
 

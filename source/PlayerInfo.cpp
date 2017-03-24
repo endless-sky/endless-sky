@@ -1663,10 +1663,7 @@ void PlayerInfo::Unvisit(const System *system)
 	if(!system)
 		return;
 	
-	auto it = visitedSystems.find(system);
-	if(it != visitedSystems.end())
-		visitedSystems.erase(it);
-	
+	visitedSystems.erase(system);
 	for(const StellarObject &object : system->Objects())
 		if(object.GetPlanet())
 			Unvisit(object.GetPlanet());
@@ -1679,9 +1676,7 @@ void PlayerInfo::Unvisit(const Planet *planet)
 	if(!planet)
 		return;
 	
-	auto it = visitedPlanets.find(planet);
-	if(it != visitedPlanets.end())
-		visitedPlanets.erase(it);
+	visitedPlanets.erase(planet);
 }
 
 

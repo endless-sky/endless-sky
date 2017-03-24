@@ -797,7 +797,7 @@ void ShopPanel::SideSelect(Ship *ship)
 		playerShips.clear();
 	else if(playerShips.count(ship))
 	{
-		playerShips.erase(playerShips.find(ship));
+		playerShips.erase(ship);
 		if(playerShip == ship)
 			playerShip = playerShips.empty() ? nullptr : *playerShips.begin();
 		return;

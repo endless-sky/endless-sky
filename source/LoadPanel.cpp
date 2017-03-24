@@ -333,7 +333,7 @@ void LoadPanel::UpdateLists()
 			auto it = files.find(selectedPilot);
 			if(it != files.end())
 			{
-				selectedFile =it->second.front();
+				selectedFile = it->second.front();
 				loadedInfo.Load(Files::Saves() + selectedFile);
 			}
 		}
