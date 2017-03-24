@@ -2729,6 +2729,7 @@ mission "Hunted by State [0]"
 		government "Republic" "Syndicate" "Free Worlds" "Neutral"
 	to offer
 		random > 80
+		not "chosen sides"
 		or
 			"reputation: Republic" < -10
 			"reputation: Syndicate" < -10
@@ -2751,6 +2752,7 @@ mission "Hunted by State [1]"
 		government "Republic" "Syndicate" "Free Worlds" "Neutral"
 	to offer
 		random > 90
+		not "chosen sides"
 		or
 			"reputation: Republic" < -200
 			"reputation: Syndicate" < -200
