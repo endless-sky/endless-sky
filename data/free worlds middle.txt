@@ -756,6 +756,7 @@ mission "FW Northern 1"
 		fleet "Large Republic"
 	
 	on complete
+		event "fw northern expansion"
 		dialog
 			`As soon as you land, Alondo rushes out of your ship to meet with the governor of <planet> and "get these papers signed before they change their minds." He tells you to meet him back in the spaceport in an hour.`
 
@@ -772,7 +773,6 @@ mission "FW Northern 2"
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
-		event "fw northern expansion"
 		conversation
 			`You wait in the spaceport bar for a while. Your Free Worlds uniform has drawn a good deal of attention from the locals: a few of them waved to you when you came in, or gave other subtle signs of approval, but no one is sitting with you. They probably want to avoid getting into trouble with the Republic if the Free Worlds is not able to hold this planet.`
 			`	Finally Alondo arrives. "Come on," he says. "Let's talk outside." He seems tired, but not frightened.`
