@@ -2422,10 +2422,17 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 			command.SetTurn(TurnToward(ship, TargetAim(ship)));
 	}
 	
+	// Clear "stuck" keys if actions can't be performed.
+	if(keyStuck.Has(Command::LAND) && !ship.GetTargetPlanet())
+		keyStuck.Clear(Command::LAND);
+	if(keyStuck.Has(Command::JUMP) && !(ship.GetTargetSystem() || isWormhole))
+		keyStuck.Clear(Command::JUMP);
+	if(keyStuck.Has(Command::BOARD) && !ship.GetTargetShip())
+		keyStuck.Clear(Command::BOARD);
+	
 	if(ship.IsBoarding())
 		keyStuck.Clear();
-	else if(ship.GetTargetPlanet() &&
-			(keyStuck.Has(Command::LAND) || (keyStuck.Has(Command::JUMP) && isWormhole)))
+	else if(keyStuck.Has(Command::LAND) || (keyStuck.Has(Command::JUMP) && isWormhole))
 	{
 		if(ship.GetPlanet())
 			keyStuck.Clear();
@@ -2435,7 +2442,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 			command |= Command::LAND;
 		}
 	}
-	else if(keyStuck.Has(Command::JUMP) && ship.GetTargetSystem())
+	else if(keyStuck.Has(Command::JUMP))
 	{
 		if(!ship.Attributes().Get("hyperdrive") && !ship.Attributes().Get("jump drive"))
 		{
@@ -2464,7 +2471,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 				command |= Command::WAIT;
 		}
 	}
-	else if(keyStuck.Has(Command::BOARD) && ship.GetTargetShip())
+	else if(keyStuck.Has(Command::BOARD))
 	{
 		shared_ptr<const Ship> target = ship.GetTargetShip();
 		if(!CanBoard(ship, *target))
