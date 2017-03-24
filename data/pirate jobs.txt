@@ -2622,6 +2622,7 @@ mission "Fake Identity [0]"
 	destination
 		government "Pirate"
 	to offer
+		not "chosen sides"
 		not "Fake Identity [0]: active"
 		not "Fake Identity [0]: done"
 		"reputation: Pirate" > 0
@@ -2655,6 +2656,7 @@ mission "Fake Identity [1]"
 	destination
 		government "Pirate"
 	to offer
+		not "chosen sides"
 		"reputation: Pirate" > 0
 		has "Fake Identity [0]: done"
 		not "Fake Identity [1]: active"
@@ -2689,6 +2691,7 @@ mission "Fake Identity [2]"
 	destination
 		government "Pirate"
 	to offer
+		not "chosen sides"
 		"reputation: Pirate" > 0
 		has "Fake Identity [1]: done"
 		not "Fake Identity [2]: active"
