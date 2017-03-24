@@ -972,7 +972,7 @@ void PlayerInfo::Land(UI *ui)
 			RemoveMission(Mission::FAIL, mission, ui);
 		else if(mission.CanComplete(*this))
 			RemoveMission(Mission::COMPLETE, mission, ui);
-		else if(mission.Destination() == GetPlanet())
+		else if(mission.Destination() == GetPlanet() && !freshlyLoaded)
 			mission.Do(Mission::VISIT, *this, ui);
 	}
 	// One mission's actions may influence another mission, so loop through one
