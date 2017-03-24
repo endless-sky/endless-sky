@@ -1015,7 +1015,7 @@ void AI::MoveEscort(Ship &ship, Command &command) const
 	bool parentIsHere = (ship.GetSystem() == parent.GetSystem());
 	// Check if the parent has a target planet that is in the parent's system.
 	const Planet *parentPlanet = (parent.GetTargetPlanet() ? parent.GetTargetPlanet()->GetPlanet() : nullptr);
-	bool planetIsHere = (parentPlanet && parentPlanet->GetSystem() == parent.GetSystem());
+	bool planetIsHere = (parentPlanet && parentPlanet->IsInSystem(parent.GetSystem()));
 	// If an escort is out of fuel, they should refuel without waiting for the
 	// "parent" to land (because the parent may not be planning on landing).
 	if(hasFuelCapacity && !ship.JumpsRemaining() && ship.GetSystem()->HasFuelFor(ship))

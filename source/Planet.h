@@ -91,6 +91,9 @@ public:
 	// Set or get what system this planet is in. This is so that missions, for
 	// example, can just hold a planet pointer instead of a system as well.
 	const System *GetSystem() const;
+	// Check if this planet is in the given system. Note that wormholes may be
+	// in more than one system.
+	bool IsInSystem(const System *system) const;
 	void SetSystem(const System *system);
 	// Remove the given system from the list of systems this planet is in. This
 	// must be done when game events rearrange the planets in a system.

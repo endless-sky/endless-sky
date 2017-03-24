@@ -309,6 +309,15 @@ const System *Planet::GetSystem() const
 
 
 
+// Check if this planet is in the given system. Note that wormholes may be
+// in more than one system.
+bool Planet::IsInSystem(const System *system) const
+{
+	return (find(systems.begin(), systems.end(), system) != systems.end());
+}
+
+
+
 void Planet::SetSystem(const System *system)
 {
 	if(find(systems.begin(), systems.end(), system) == systems.end())
