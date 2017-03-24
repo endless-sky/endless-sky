@@ -499,7 +499,7 @@ void OutfitterPanel::Sell()
 				int mustSell = 0;
 				for(const auto &it : ship->Attributes().Attributes())
 					if(it.second < 0.)
-						mustSell = max(mustSell, static_cast<int>(it.second / ammo->Get(it.first)));
+						mustSell = max<int>(mustSell, it.second / ammo->Get(it.first));
 				
 				if(mustSell)
 				{

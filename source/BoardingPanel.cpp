@@ -236,7 +236,7 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 		if(count == plunder[selected].Count())
 		{
 			plunder.erase(plunder.begin() + selected);
-			selected = min(selected, static_cast<int>(plunder.size()));
+			selected = min<int>(selected, plunder.size());
 		}
 		else
 			plunder[selected].Take(count);
@@ -562,7 +562,7 @@ int BoardingPanel::Plunder::CanTake(int freeSpace) const
 	if(freeSpace <= 0)
 		return 0;
 	
-	return min(count, static_cast<int>(freeSpace / mass));
+	return min<int>(count, freeSpace / mass);
 }
 
 

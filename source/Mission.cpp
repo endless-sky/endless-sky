@@ -45,7 +45,7 @@ namespace {
 			// For every 100 credits in profit you can make, double the chance
 			// of this commodity being chosen.
 			double profit = to.Trade(commodity.name) - from.Trade(commodity.name);
-			int w = max(1, static_cast<int>(100. * pow(2., profit * .01)));
+			int w = max<int>(1, 100. * pow(2., profit * .01));
 			weight.push_back(w);
 			total += w;
 		}

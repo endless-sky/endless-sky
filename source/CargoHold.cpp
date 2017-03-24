@@ -362,12 +362,12 @@ int CargoHold::Transfer(const Outfit *outfit, int amount, CargoHold *to)
 	// its space is limited (i.e. size is not set to -1).
 	amount = min(amount, Get(outfit));
 	if(size >= 0 && mass)
-		amount = max(amount, static_cast<int>(-max(Free(), 0) / mass));
+		amount = max<int>(amount, -max(Free(), 0) / mass);
 	if(to)
 	{
 		amount = max(amount, -to->Get(outfit));
 		if(to->size >= 0 && mass)
-			amount = min(amount, static_cast<int>(max(to->Free(), 0) / mass));
+			amount = min<int>(amount, max(to->Free(), 0) / mass);
 	}
 	if(!amount)
 		return 0;

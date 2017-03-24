@@ -146,7 +146,7 @@ string Account::Step(int64_t assets, int64_t salaries)
 		{
 			// If you can't pay the full salary amount, still pay some of it and
 			// remember how much back wages you owe to your crew.
-			salariesPaid = max(credits, static_cast<int64_t>(0));
+			salariesPaid = max<int64_t>(credits, 0);
 			salariesOwed -= salariesPaid;
 			credits -= salariesPaid;
 			paid = false;
@@ -275,7 +275,7 @@ int64_t Account::Prequalify() const
 	// Put a limit on new debt that the player can take out, as a fraction of
 	// their net worth, to avoid absurd mortgages being offered when the player
 	// has just captured some very lucrative ships.
-	return max(static_cast<int64_t>(0), min(
+	return max<int64_t>(0, min(
 		NetWorth() / 3 + 500000 - liabilities,
 		Mortgage::Maximum(YearlyRevenue(), creditScore, payments)));
 }

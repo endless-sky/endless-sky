@@ -1774,7 +1774,7 @@ void Ship::Recharge(bool atSpaceport)
 	
 	if(atSpaceport)
 	{
-		crew = min(max(crew, RequiredCrew()), static_cast<int>(attributes.Get("bunks")));
+		crew = min<int>(max(crew, RequiredCrew()), attributes.Get("bunks"));
 		fuel = attributes.Get("fuel capacity");
 	}
 	pilotError = 0;
@@ -1942,14 +1942,14 @@ int Ship::RequiredCrew() const
 		return 0;
 	
 	// Drones do not need crew, but all other ships need at least one.
-	return max(1, static_cast<int>(attributes.Get("required crew")));
+	return max<int>(1, attributes.Get("required crew"));
 }
 
 
 
 void Ship::AddCrew(int count)
 {
-	crew = min(crew + count, static_cast<int>(attributes.Get("bunks")));
+	crew = min<int>(crew + count, attributes.Get("bunks"));
 }
 
 
