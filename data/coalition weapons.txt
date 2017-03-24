@@ -103,7 +103,7 @@ outfit "Finisher Pod"
 		"radar tracking" .8
 		"missile strength" 50
 		"submunition" "Active Finisher" 1
-	description `Finisher Torpedoes are one of the Heliarch's most dreaded weapons. In fact, in one way or another most of their other weapons merely exist to hold a ship in place for long enough for a barrage of Finishers to destroy it.`
+	description `Finisher Torpedoes are one of the Heliarchs' most dreaded weapons. In fact, in one way or another most of their other weapons merely exist to hold a ship in place for long enough for a barrage of Finishers to destroy it.`
 
 outfit "Active Finisher"
 	weapon
