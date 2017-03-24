@@ -163,6 +163,7 @@ int64_t Mortgage::Payment() const
 	if(!interest)
 		return round(principal / term);
 	
+	// Always require every payment to be at least 1 credit.
 	double power = pow(1. + interest, term);
-	return round(principal * interest * power / (power - 1.));
+	return max<int64_t>(1, round(principal * interest * power / (power - 1.)));
 }
