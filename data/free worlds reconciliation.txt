@@ -662,7 +662,7 @@ mission "FW Syndicate Capture 1"
 	npc accompany save
 		personality escort heroic waiting
 		government "Navy (Oathkeeper)"
-		ship "Cruiser (Mark II)" "R.S. Hand of Justice"
+		ship "Cruiser (Mark II)" "N.S. Hand of Justice"
 	
 	npc accompany save
 		personality escort heroic waiting
@@ -698,7 +698,7 @@ mission "FW Syndicate Capture 1B"
 	npc
 		personality escort heroic waiting
 		government "Navy (Oathkeeper)"
-		ship "Cruiser (Mark II)" "R.S. Hand of Justice"
+		ship "Cruiser (Mark II)" "N.S. Hand of Justice"
 		ship "Combat Drone" "Red One"
 		ship "Combat Drone" "Red Two"
 		ship "Combat Drone" "Red Three"
