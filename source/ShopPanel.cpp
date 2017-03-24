@@ -186,7 +186,7 @@ void ShopPanel::DrawSidebar()
 		font.Draw(space, right, bright);
 		point.Y() += 20.;
 	}
-	maxSideScroll = max(0, point.Y() + sideScroll - Screen::Bottom() + BUTTON_HEIGHT);
+	maxSideScroll = max(0., point.Y() + sideScroll - Screen::Bottom() + BUTTON_HEIGHT);
 	
 	PointerShader::Draw(Point(Screen::Right() - 10, Screen::Top() + 10),
 		Point(0., -1.), 10., 10., 5., Color(sideScroll > 0 ? .8 : .2, 0.));
@@ -372,7 +372,7 @@ void ShopPanel::DrawMain()
 	
 	// What amount would mainScroll have to equal to make nextY equal the
 	// bottom of the screen?
-	maxMainScroll = max(0, nextY + mainScroll - Screen::Height() / 2 - TILE_SIZE / 2);
+	maxMainScroll = max(0., nextY + mainScroll - Screen::Height() / 2 - TILE_SIZE / 2);
 	
 	PointerShader::Draw(Point(Screen::Right() - 10 - SIDE_WIDTH, Screen::Top() + 10),
 		Point(0., -1.), 10., 10., 5., Color(mainScroll > 0 ? .8 : .2, 0.));
