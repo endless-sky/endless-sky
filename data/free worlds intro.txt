@@ -1508,7 +1508,7 @@ mission "FW Escort 3"
 		set "fw intro escort failed"
 	
 	on visit
-		dialog "You have reached <planet>, but you left the <npc> behind! Better depart and wait for them to arrive in this star system."
+		dialog `Tomek Voigt messages you and says, "Please escort the <npc> back here as soon as possible! Their crew is counting on you."`
 
 
 
