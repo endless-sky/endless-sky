@@ -1022,7 +1022,7 @@ void AI::MoveEscort(Ship &ship, Command &command) const
 		Refuel(ship, command);
 	else if(!parentIsHere && !isStaying)
 	{
-		if(!ship.GetTargetSystem() && !ship.GetTargetPlanet())
+		if(!ship.HyperspaceType() && !ship.GetTargetPlanet())
 		{
 			// If we're stranded and haven't decided where to go, figure out a
 			// path to the parent ship's system.
