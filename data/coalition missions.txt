@@ -96,7 +96,7 @@ mission "Heliarchs: First Contact"
 			`Your first view of the landing area confirms beyond a doubt that this is a Quarg ringworld, not just an imitation of one. The interior architecture is unmistakable. But no Quarg are present here, only three alien races you are not familiar with. First are giant beetles, about a meter tall, who scurry quickly toward your ship and swarm around it, gawking at you, as soon as you land. The second species, even more disturbing than the beetles, are giant spiders. And the third species are centaurs. Not just something vaguely resembling centaurs; they look like they could have stepped right off the page of a story book from ancient Earth.`
 			`	Soon, a delegation consisting of one of each of these races approaches you. The circlets seem to be not just a badge of office, but seem to contain electronics as well.`
 			`	The centaur speaks first. "We, the Heliarchs, who drove out the oppressors, who maintain peace, the human visitor greet."`
-			`	Again, the centaur speaks first. "To our territory, to welcome you we are glad," it says.`
+			`	Again, the centaur speaks. "To our territory, to welcome you we are glad," it says.`
 			`	Before you can ask how the centaur knows your language, the beetle speaks. "With our people you may mingle. The beauty of our culture, you may experience."`
 			`	The spider adds, "Our people and yours perhaps one day may trade. Perhaps one day the humans our great and free Coalition may join."`
 			choice
