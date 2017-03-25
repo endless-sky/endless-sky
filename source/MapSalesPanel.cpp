@@ -18,6 +18,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Font.h"
 #include "FontSet.h"
 #include "GameData.h"
+#include "GameParameters.h"
 #include "Government.h"
 #include "ItemInfoDisplay.h"
 #include "Outfit.h"
@@ -49,7 +50,7 @@ using namespace std;
 
 MapSalesPanel::MapSalesPanel(PlayerInfo &player, bool isOutfitters)
 	: MapPanel(player, SHOW_SPECIAL),
-	categories(isOutfitters ? Outfit::CATEGORIES : Ship::CATEGORIES),
+	categories(isOutfitters ? Outfit::CATEGORIES : GameData::Parameters().ShipCategories()),
 	isOutfitters(isOutfitters),
 	collapsed(player.Collapsed(isOutfitters ? "outfitter map" : "shipyard map"))
 {
@@ -61,7 +62,7 @@ MapSalesPanel::MapSalesPanel(PlayerInfo &player, bool isOutfitters)
 
 MapSalesPanel::MapSalesPanel(const MapPanel &panel, bool isOutfitters)
 	: MapPanel(panel),
-	categories(isOutfitters ? Outfit::CATEGORIES : Ship::CATEGORIES),
+	categories(isOutfitters ? Outfit::CATEGORIES : GameData::Parameters().ShipCategories()),
 	isOutfitters(isOutfitters),
 	collapsed(player.Collapsed(isOutfitters ? "outfitter map" : "shipyard map"))
 {

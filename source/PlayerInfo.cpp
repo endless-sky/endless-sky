@@ -91,6 +91,8 @@ void PlayerInfo::New()
 	for(const auto &it : GameData::Events())
 		if(it.second.GetDate())
 			AddEvent(it.second, it.second.GetDate());
+
+	missionSort = Mission::MissionSort::BY_DEFAULT;
 }
 
 
@@ -104,6 +106,8 @@ void PlayerInfo::Load(const string &path)
 	filePath = path;
 	DataFile file(path);
 	
+	missionSort = Mission::MissionSort::BY_DEFAULT;
+
 	hasFullClearance = false;
 	for(const DataNode &child : file)
 	{
@@ -112,6 +116,8 @@ void PlayerInfo::Load(const string &path)
 			firstName = child.Token(1);
 			lastName = child.Token(2);
 		}
+		else if(child.Token(0) == "mission sort" && child.Size() >= 2)
+			missionSort = static_cast<Mission::MissionSort>(child.Value(1));
 		else if(child.Token(0) == "date" && child.Size() >= 4)
 			date = Date(child.Value(1), child.Value(2), child.Value(3));
 		else if(child.Token(0) == "system" && child.Size() >= 2)
@@ -1325,8 +1331,38 @@ void PlayerInfo::AcceptJob(const Mission &mission, UI *ui)
 			it->Do(Mission::ACCEPT, *this, ui);
 			auto spliceIt = it->IsUnique() ? missions.begin() : missions.end();
 			missions.splice(spliceIt, availableJobs, it);
+			SetSortMissions(missionSort);
 			break;
 		}
+}
+
+
+
+const Mission::MissionSort PlayerInfo::MissionSort() const
+{
+	return missionSort;
+}
+
+
+
+void PlayerInfo::SetSortMissions(const Mission::MissionSort sort)
+{
+	missionSort = sort;
+
+	switch (sort)
+	{
+	case Mission::BY_SYSTEM:
+		missions.sort(Mission::compare_system);
+		break;
+	case Mission::BY_PAYMENT:
+		missions.sort(Mission::compare_payment);
+		break;
+	case Mission::BY_DEADLINE:
+		missions.sort(Mission::compare_deadline);
+		break;
+	default:
+		break;
+	}	
 }
 
 
@@ -2122,6 +2158,7 @@ void PlayerInfo::Save(const string &path) const
 	
 	out.Write("pilot", firstName, lastName);
 	out.Write("date", date.Day(), date.Month(), date.Year());
+	out.Write("mission sort", static_cast<int>(missionSort));
 	if(system)
 		out.Write("system", system->Name());
 	if(planet)

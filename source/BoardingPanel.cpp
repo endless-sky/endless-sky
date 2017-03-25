@@ -20,6 +20,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "FontSet.h"
 #include "Format.h"
 #include "GameData.h"
+#include "GameParameters.h"
 #include "Government.h"
 #include "InfoPanel.h"
 #include "Information.h"
@@ -485,7 +486,7 @@ BoardingPanel::Plunder::Plunder(const string &commodity, int count, int unitValu
 
 // Constructor (outfit installed in the victim ship).
 BoardingPanel::Plunder::Plunder(const Outfit *outfit, int count)
-	: name(outfit->Name()), outfit(outfit), count(count), unitValue(outfit->Cost() * Depreciation::Full())
+	: name(outfit->Name()), outfit(outfit), count(count), unitValue(outfit->Cost() * GameData::Parameters().DepreciationFull())
 {
 	UpdateStrings();
 }

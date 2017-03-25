@@ -182,6 +182,8 @@ void Files::Init(const char * const *argv)
 		throw runtime_error("Unable to find the resource directories!");
 	if(!Exists(saves))
 		throw runtime_error("Unable to create config directory!");
+
+	cerr << config;
 }
 
 

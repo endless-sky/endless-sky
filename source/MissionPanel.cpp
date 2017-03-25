@@ -242,6 +242,18 @@ bool MissionPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 			} while(!acceptedIt->IsVisible());
 		}
 	}
+	else if(key == 'e') 
+	{
+		player.SetSortMissions(Mission::BY_DEADLINE);
+	}
+	else if(key == 'y')
+	{
+		player.SetSortMissions(Mission::BY_PAYMENT);
+	}
+	else if(key == 't')
+	{
+		player.SetSortMissions(Mission::BY_SYSTEM);
+	}
 	else
 		return MapPanel::KeyDown(key, mod, command);
 	
@@ -557,7 +569,7 @@ Point MissionPanel::DrawList(const list<Mission> &list, Point pos) const
 	Color unselected = *GameData::Colors().Get("medium");
 	Color selected = *GameData::Colors().Get("bright");
 	Color dim = *GameData::Colors().Get("dim");
-	
+
 	for(auto it = list.begin(); it != list.end(); ++it)
 	{
 		if(!it->IsVisible())
@@ -607,9 +619,30 @@ void MissionPanel::DrawMissionInfo()
 	
 	info.SetString("today", player.GetDate().ToString());
 	
-	const Interface *interface = GameData::Interfaces().Get("mission");
-	interface->Draw(info, this);
+	switch(player.MissionSort())
+	{
+	case Mission::BY_SYSTEM:
+		info.SetCondition("by system");
+		break;
+
+	case Mission::BY_PAYMENT:
+		info.SetCondition("by payment");
+		break;
+
+	case Mission::BY_DEADLINE:
+		info.SetCondition("by deadline");
+		break;
+
+	default:
+		break;
+	}
+
+	const Interface *missionInterface = GameData::Interfaces().Get("mission");
+	missionInterface->Draw(info, this);
 	
+	const Interface *missionSortInterface = GameData::Interfaces().Get("mission sort");
+	missionSortInterface->Draw(info, this);
+
 	// If a mission is selected, draw its descriptive text.
 	if(availableIt != available.end())
 		wrap.Wrap(availableIt->Description());

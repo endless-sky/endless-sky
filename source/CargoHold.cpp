@@ -16,6 +16,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "DataWriter.h"
 #include "Depreciation.h"
 #include "GameData.h"
+#include "GameParameters.h"
 #include "Mission.h"
 #include "Outfit.h"
 #include "System.h"
@@ -540,7 +541,7 @@ int64_t CargoHold::Value(const System *system) const
 	// For outfits, assume they're fully depreciated, since that will always be
 	// the case unless the player bought into cargo for some reason.
 	for(const auto &it : outfits)
-		value += it.first->Cost() * it.second * Depreciation::Full();
+		value += it.first->Cost() * it.second * GameData::Parameters().DepreciationFull();
 	return value;
 }
 

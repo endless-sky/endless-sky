@@ -1,0 +1,24 @@
+"parameters"
+	"depreciation"
+		"full" 0.25
+		"daily" 0.99
+		"max age" 1000
+
+	"ship categories"
+		"Transport"
+		"Light Freighter"
+		"Heavy Freighter"
+		"Interceptor"
+		"Light Warship"
+		"Medium Warship"
+		"Heavy Warship"
+		"Fighter"
+		"Drone"
+
+	"pirate attraction"
+		"min outfit space" 200
+		"damage per second factor" -1000
+		"hull repair rate factor" -1
+		"shield generation factor" -1
+		"outfit value factor" 4000000
+		"cargo tonnage factor" 100

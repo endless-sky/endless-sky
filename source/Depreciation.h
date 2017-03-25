@@ -13,6 +13,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef DEPRECIATION_H_
 #define DEPRECIATION_H_
 
+#include "DataFile.h"
+
 #include <cstdint>
 #include <map>
 #include <memory>
@@ -30,11 +32,6 @@ class Ship;
 // outfit or ship was purchased. Any ship or outfit for which no record exists,
 // for example because it is plunder, counts as full depreciated.
 class Depreciation {
-public:
-	// What fraction of its cost a fully depreciated item has left:
-	static double Full();
-	
-	
 public:
 	// Load or save depreciation records. Multiple records may be saved in the
 	// player info, under different names (e.g. fleet and stock depreciation).
@@ -61,6 +58,9 @@ public:
 	
 	
 private:
+	static void GetDepreciationValues(double &full, double &daily, int &maxAge);
+	static void GetDepreciationValues(double &full, double &daily, int &maxAge, DataFile &dataFile);
+
 	// "Sell" an item, removing it from the given record and returning the base
 	// day for its depreciation.
 	int Sell(std::map<int, int> &record);

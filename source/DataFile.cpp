@@ -150,9 +150,22 @@ void DataFile::Load(const char *it, const char *end)
 			// range, but it appears that some libraries do not handle that case
 			// correctly. So:
 			if(start == it)
+			{
 				node.tokens.emplace_back();
+			}
 			else
-				node.tokens.emplace_back(start, it);
+			{
+				string token = string(start, it);
+				if (!token.compare("--extend"))
+				{
+					node.isExtension = true;
+				}
+				else
+				{
+					node.tokens.emplace_back(token);					
+				}
+			}
+
 			// This is not a fatal error, but it may indicate a format mistake:
 			if(isQuoted && *it == '\n')
 				node.PrintTrace("Closing quotation mark is missing:");
