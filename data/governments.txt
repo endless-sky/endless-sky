@@ -44,10 +44,6 @@ government "Deep"
 	swizzle 0
 	"player reputation" -1000
 
-government "Derelict"
-	swizzle 0
-	"player reputation" 10
-
 government "Drak"
 	swizzle 5
 	color 1 1 1

@@ -29,6 +29,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "PlayerInfo.h"
 #include "Preferences.h"
 #include "Screen.h"
+#include "SpriteSet.h"
+#include "SpriteShader.h"
 #include "UI.h"
 
 #include "gl_header.h"
@@ -223,8 +225,11 @@ int main(int argc, char *argv[])
 				"government they belong to. So, all human ships will be the same color, which "
 				"may be confusing. Consider upgrading your graphics driver (or your OS)."));
 		
-		FrameTimer timer(60);
+		int frameRate = 60;
+		FrameTimer timer(frameRate);
 		bool isPaused = false;
+		// If fast forwarding, keep track of whether the current frame should be drawn.
+		int skipFrame = 0;
 		while(!menuPanels.IsDone())
 		{
 			// Handle any events that occurred in this frame.
@@ -235,12 +240,7 @@ int main(int argc, char *argv[])
 				
 				// The caps lock key slows the game down (to make it easier to
 				// see and debug things that are happening quickly).
-				if(debugMode && (event.type == SDL_KEYDOWN || event.type == SDL_KEYUP)
-						&& event.key.keysym.sym == SDLK_CAPSLOCK)
-				{
-					timer.SetFrameRate((event.key.keysym.mod & KMOD_CAPS) ? 10 : 60);
-				}
-				else if(debugMode && event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_BACKQUOTE)
+				if(debugMode && event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_BACKQUOTE)
 				{
 					isPaused = !isPaused;
 				}
@@ -283,14 +283,45 @@ int main(int argc, char *argv[])
 					// No need to do anything more!
 				}
 			}
-			Font::ShowUnderlines(SDL_GetModState() & KMOD_ALT);
+			SDL_Keymod mod = SDL_GetModState();
+			Font::ShowUnderlines(mod & KMOD_ALT);
 			
 			// Tell all the panels to step forward, then draw them.
 			((!isPaused && menuPanels.IsEmpty()) ? gamePanels : menuPanels).StepAll();
+			
+			// Caps lock slows the frame rate in debug mode, but raises it in
+			// normal mode. Slowing eases in and out over a couple of frames.
+			bool fastForward = false;
+			if(mod & KMOD_CAPS)
+			{
+				if(debugMode)
+				{
+					if(frameRate > 10)
+					{
+						frameRate = max(frameRate - 5, 10);
+						timer.SetFrameRate(frameRate);
+					}
+				}
+				else
+				{
+					fastForward = true;
+					skipFrame = (skipFrame + 1) % 3;
+					if(skipFrame)
+						continue;
+				}
+			}
+			else if(frameRate < 60)
+			{
+				frameRate = min(frameRate + 5, 60);
+				timer.SetFrameRate(frameRate);
+			}
+			
 			Audio::Step();
-			// That may have cleared out the menu, in which case we should draw
-			// the game panels instead:
+			// Events in this frame may have cleared out the menu, in which case
+			// we should draw the game panels instead:
 			(menuPanels.IsEmpty() ? gamePanels : menuPanels).DrawAll();
+			if(fastForward)
+				SpriteShader::Draw(SpriteSet::Get("ui/fast forward"), Screen::TopLeft() + Point(10., 10.));
 			
 			SDL_GL_SwapWindow(window);
 			timer.Wait();

@@ -1428,7 +1428,7 @@ mission "Rescue Miners 1"
 
 mission "Rescue Miners 2"
 	landing
-	description "Participate in the medical evacuation of some miners injured in a recent accident on <planet>."
+	description "Participate in the medical evacuation of some miners injured in a recent accident on <origin>."
 	name "Rescue Miners"
 	minor
 	destination
@@ -1718,6 +1718,8 @@ mission "Terraforming 2"
 mission "Terraforming 3"
 	name "Terraforming Rand"
 	description "Plant a thruster on an asteroid to guide it into a collision with the northern pole of Rand."
+	blocked "You'll need more cargo space in order to take the next mission from Eric and Alaric. Return here when you have at least <capacity>."
+	cargo "thruster equipment" 10
 	source Rand
 	to offer
 		has "Terraforming 2: done"
@@ -1746,12 +1748,13 @@ mission "Terraforming 3"
 				`	"That is a stupid idea, and I want nothing to do with it."`
 					decline
 				`	"Well, if you think it will work, I'm willing to try it!"`
-			`	"Great!" says Amy. "I'll mark the asteroid on your radar. You just need to board it, install a small ion thruster, and wait for it to land on the planet, then return here."`
+			`	"Great!" says Amy. "I'll mark the asteroid on your radar. You just need to board it, install a small ion thruster, and return here."`
+			`	Eric contacts some spaceport workers and has them load a small thruster onto your ship, along with the equipment you will need to mount it on the asteroid.`
 				accept
 	
 	npc assist
-		government Derelict
-		personality derelict fleeing uninterested waiting pacifist
+		government Uninhabited
+		personality derelict fleeing uninterested waiting pacifist mute
 		ship Asteroid
 			name "Target Asteroid"
 			sprite "asteroid/medium rock/spin"

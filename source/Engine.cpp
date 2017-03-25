@@ -651,7 +651,7 @@ void Engine::Draw() const
 	if(highlightSprite)
 	{
 		Point size(highlightSprite->Width(), highlightSprite->Height());
-		Color color(.5, .8, .2, 0.);
+		const Color &color = *GameData::Colors().Get("flagship highlight");
 		// The flagship is always in the dead center of the screen.
 		OutlineShader::Draw(highlightSprite, Point(), size, color, highlightUnit);
 	}

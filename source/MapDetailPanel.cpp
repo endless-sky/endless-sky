@@ -422,8 +422,7 @@ void MapDetailPanel::DrawInfo()
 			{
 				// Allow the same "planet" to appear multiple times in one system.
 				const Planet *planet = object.GetPlanet();
-				auto it = shown.find(planet);
-				if(it != shown.end())
+				if(shown.count(planet))
 					continue;
 				shown.insert(planet);
 				

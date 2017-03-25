@@ -329,6 +329,9 @@ void AI::Step(const PlayerInfo &player)
 					continue;
 				if(ship->IsDisabled() || !ship->IsTargetable() || ship->GetSystem() != it->GetSystem())
 					continue;
+				// Fighters and drones can't offer assistance.
+				if(ship->CanBeCarried())
+					continue;
 				
 				const Government *otherGov = ship->GetGovernment();
 				// If any enemies of this ship are in system, it cannot call for help.
@@ -1015,14 +1018,14 @@ void AI::MoveEscort(Ship &ship, Command &command) const
 	bool parentIsHere = (ship.GetSystem() == parent.GetSystem());
 	// Check if the parent has a target planet that is in the parent's system.
 	const Planet *parentPlanet = (parent.GetTargetPlanet() ? parent.GetTargetPlanet()->GetPlanet() : nullptr);
-	bool planetIsHere = (parentPlanet && parentPlanet->GetSystem() == parent.GetSystem());
+	bool planetIsHere = (parentPlanet && parentPlanet->IsInSystem(parent.GetSystem()));
 	// If an escort is out of fuel, they should refuel without waiting for the
 	// "parent" to land (because the parent may not be planning on landing).
 	if(hasFuelCapacity && !ship.JumpsRemaining() && ship.GetSystem()->HasFuelFor(ship))
 		Refuel(ship, command);
 	else if(!parentIsHere && !isStaying)
 	{
-		if(!ship.GetTargetSystem() && !ship.GetTargetPlanet())
+		if(!ship.HyperspaceType() && !ship.GetTargetPlanet())
 		{
 			// If we're stranded and haven't decided where to go, figure out a
 			// path to the parent ship's system.
@@ -2422,10 +2425,17 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 			command.SetTurn(TurnToward(ship, TargetAim(ship)));
 	}
 	
+	// Clear "stuck" keys if actions can't be performed.
+	if(keyStuck.Has(Command::LAND) && !ship.GetTargetPlanet())
+		keyStuck.Clear(Command::LAND);
+	if(keyStuck.Has(Command::JUMP) && !(ship.GetTargetSystem() || isWormhole))
+		keyStuck.Clear(Command::JUMP);
+	if(keyStuck.Has(Command::BOARD) && !ship.GetTargetShip())
+		keyStuck.Clear(Command::BOARD);
+	
 	if(ship.IsBoarding())
 		keyStuck.Clear();
-	else if(ship.GetTargetPlanet() &&
-			(keyStuck.Has(Command::LAND) || (keyStuck.Has(Command::JUMP) && isWormhole)))
+	else if(keyStuck.Has(Command::LAND) || (keyStuck.Has(Command::JUMP) && isWormhole))
 	{
 		if(ship.GetPlanet())
 			keyStuck.Clear();
@@ -2435,7 +2445,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 			command |= Command::LAND;
 		}
 	}
-	else if(keyStuck.Has(Command::JUMP) && ship.GetTargetSystem())
+	else if(keyStuck.Has(Command::JUMP))
 	{
 		if(!ship.Attributes().Get("hyperdrive") && !ship.Attributes().Get("jump drive"))
 		{
@@ -2464,7 +2474,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 				command |= Command::WAIT;
 		}
 	}
-	else if(keyStuck.Has(Command::BOARD) && ship.GetTargetShip())
+	else if(keyStuck.Has(Command::BOARD))
 	{
 		shared_ptr<const Ship> target = ship.GetTargetShip();
 		if(!CanBoard(ship, *target))

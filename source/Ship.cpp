@@ -1315,10 +1315,12 @@ shared_ptr<Ship> Ship::Board(bool autoPlunder)
 	if(CannotAct() || !victim || victim->IsDestroyed() || victim->GetSystem() != GetSystem())
 		return shared_ptr<Ship>();
 	
-	// For a fighter, "board" means "return to ship."
-	if(CanBeCarried() && !victim->IsDisabled())
+	// For a fighter or drone, "board" means "return to ship."
+	if(CanBeCarried())
 	{
-		victim->Carry(shared_from_this());
+		SetTargetShip(shared_ptr<Ship>());
+		if(!victim->IsDisabled() && victim->GetGovernment() == government)
+			victim->Carry(shared_from_this());
 		return shared_ptr<Ship>();
 	}
 	
@@ -1450,12 +1452,12 @@ int Ship::Scan()
 	if(target->GetGovernment()->IsPlayer() && (result & ShipEvent::SCAN_CARGO))
 	{
 		Messages::Add("The " + government->GetName() + " ship \""
-			+ Name() + "\" succeeded in scanning your cargo.");
+			+ Name() + "\" completed its scan of your cargo.");
 	}
 	if(target->GetGovernment()->IsPlayer() && (result & ShipEvent::SCAN_OUTFITS))
 	{
 		Messages::Add("The " + government->GetName() + " ship \""
-			+ Name() + "\" succeeded in scanning your outfits.");
+			+ Name() + "\" completed its scan of your outfits.");
 	}
 	
 	return result;
@@ -1774,7 +1776,7 @@ void Ship::Recharge(bool atSpaceport)
 	
 	if(atSpaceport)
 	{
-		crew = min(max(crew, RequiredCrew()), static_cast<int>(attributes.Get("bunks")));
+		crew = min<int>(max(crew, RequiredCrew()), attributes.Get("bunks"));
 		fuel = attributes.Get("fuel capacity");
 	}
 	pilotError = 0;
@@ -1942,14 +1944,14 @@ int Ship::RequiredCrew() const
 		return 0;
 	
 	// Drones do not need crew, but all other ships need at least one.
-	return max(1, static_cast<int>(attributes.Get("required crew")));
+	return max<int>(1, attributes.Get("required crew"));
 }
 
 
 
 void Ship::AddCrew(int count)
 {
-	crew = min(crew + count, static_cast<int>(attributes.Get("bunks")));
+	crew = min<int>(crew + count, attributes.Get("bunks"));
 }
 
 

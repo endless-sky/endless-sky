@@ -16,11 +16,14 @@ color "bright" .75 .75 .75 0.
 color "medium" .5 .5 .5 0.
 color "dim" .25 .25 .25 0.
 color "faint" .1 .1 .1 0.
+
 color "shields" .43 .55 .70 .75
 color "hull" .70 .62 .43 .75
 color "heat" .70 .43 .43 .75
 color "energy" .6 .6 .6 .75
 color "fuel" .70 .62 .43 .75
+
+color "flagship highlight" .5 .8 .2 0.
 
 color "available job" .9 .6 0. 1.
 color "available back" .5 .3 0. .5

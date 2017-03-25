@@ -613,8 +613,12 @@ void InfoPanel::DrawFleet(const Rectangle &bounds)
 			ship.Attributes().Get("fuel capacity") * ship.Fuel()));
 		table.Draw(fuel);
 		
-		string crew = ship.IsParked() ? "Parked" :
-			to_string(&ship == player.Flagship() ? ship.Crew() : ship.RequiredCrew());
+		// If this isn't the flagship, we'll remember how many crew it has, but
+		// only the minimum number of crew need to be paid for.
+		int crewCount = ship.Crew();
+		if(&ship != player.Flagship())
+			crewCount = min(crewCount, ship.RequiredCrew());
+		string crew = (ship.IsParked() ? "Parked" : to_string(crewCount));
 		table.Draw(crew);
 		
 		++index;

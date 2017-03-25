@@ -180,7 +180,7 @@ void ConversationPanel::Draw()
 		}
 	}
 	// Store the total height of the text.
-	maxScroll = min(0, Screen::Top() - static_cast<int>(point.Y() - scroll) + font.Height() + 15);
+	maxScroll = min(0., Screen::Top() - (point.Y() - scroll) + font.Height() + 15.);
 }
 
 
@@ -263,7 +263,7 @@ bool ConversationPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comm
 // Allow scrolling by click and drag.
 bool ConversationPanel::Drag(double dx, double dy)
 {
-	scroll = min(0., max(static_cast<double>(maxScroll), scroll + dy));
+	scroll = min(0., max(maxScroll, scroll + dy));
 	
 	return true;
 }

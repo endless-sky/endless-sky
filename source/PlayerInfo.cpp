@@ -972,7 +972,7 @@ void PlayerInfo::Land(UI *ui)
 			RemoveMission(Mission::FAIL, mission, ui);
 		else if(mission.CanComplete(*this))
 			RemoveMission(Mission::COMPLETE, mission, ui);
-		else if(mission.Destination() == GetPlanet())
+		else if(mission.Destination() == GetPlanet() && !freshlyLoaded)
 			mission.Do(Mission::VISIT, *this, ui);
 	}
 	// One mission's actions may influence another mission, so loop through one
@@ -1663,10 +1663,7 @@ void PlayerInfo::Unvisit(const System *system)
 	if(!system)
 		return;
 	
-	auto it = visitedSystems.find(system);
-	if(it != visitedSystems.end())
-		visitedSystems.erase(it);
-	
+	visitedSystems.erase(system);
 	for(const StellarObject &object : system->Objects())
 		if(object.GetPlanet())
 			Unvisit(object.GetPlanet());
@@ -1679,9 +1676,7 @@ void PlayerInfo::Unvisit(const Planet *planet)
 	if(!planet)
 		return;
 	
-	auto it = visitedPlanets.find(planet);
-	if(it != visitedPlanets.end())
-		visitedPlanets.erase(it);
+	visitedPlanets.erase(planet);
 }
 
 

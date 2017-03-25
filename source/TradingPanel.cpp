@@ -310,14 +310,13 @@ void TradingPanel::Buy(int64_t amount)
 	
 	if(amount > 0)
 	{
-		amount = min(amount, player.Accounts().Credits() / price);
-		amount = min(amount, static_cast<int64_t>(player.Cargo().Free()));
+		amount = min(amount, min<int64_t>(player.Cargo().Free(), player.Accounts().Credits() / price));
 		player.AdjustBasis(type, amount * price);
 	}
 	else
 	{
 		// Selling cargo:
-		amount = max(amount, static_cast<int64_t>(-player.Cargo().Get(type)));
+		amount = max<int64_t>(amount, -player.Cargo().Get(type));
 		
 		int64_t basis = player.GetBasis(type, amount);
 		player.AdjustBasis(type, basis);

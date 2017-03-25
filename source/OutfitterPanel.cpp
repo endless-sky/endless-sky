@@ -499,7 +499,7 @@ void OutfitterPanel::Sell()
 				int mustSell = 0;
 				for(const auto &it : ship->Attributes().Attributes())
 					if(it.second < 0.)
-						mustSell = max(mustSell, static_cast<int>(it.second / ammo->Get(it.first)));
+						mustSell = max<int>(mustSell, it.second / ammo->Get(it.first));
 				
 				if(mustSell)
 				{
@@ -747,7 +747,7 @@ void OutfitterPanel::Refill()
 {
 	for(const auto &ship : player.Ships())
 	{
-		if(ship->GetSystem() != player.GetSystem())
+		if(ship->GetSystem() != player.GetSystem() || ship->IsDisabled())
 			continue;
 		
 		set<const Outfit *> toRefill;
@@ -758,7 +758,7 @@ void OutfitterPanel::Refill()
 		// This is slower than just calculating the proper number to add, but
 		// that does not matter because this is not so time-consuming anyways.
 		for(const Outfit *outfit : toRefill)
-			while(ship->Attributes().CanAdd(*outfit))
+			while(ship->Attributes().CanAdd(*outfit) > 0)
 			{
 				if(player.Cargo().Get(outfit))
 					player.Cargo().Remove(outfit);
