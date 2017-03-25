@@ -329,6 +329,9 @@ void AI::Step(const PlayerInfo &player)
 					continue;
 				if(ship->IsDisabled() || !ship->IsTargetable() || ship->GetSystem() != it->GetSystem())
 					continue;
+				// Fighters and drones can't offer assistance.
+				if(ship->CanBeCarried())
+					continue;
 				
 				const Government *otherGov = ship->GetGovernment();
 				// If any enemies of this ship are in system, it cannot call for help.

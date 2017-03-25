@@ -1315,10 +1315,12 @@ shared_ptr<Ship> Ship::Board(bool autoPlunder)
 	if(CannotAct() || !victim || victim->IsDestroyed() || victim->GetSystem() != GetSystem())
 		return shared_ptr<Ship>();
 	
-	// For a fighter, "board" means "return to ship."
-	if(CanBeCarried() && !victim->IsDisabled())
+	// For a fighter or drone, "board" means "return to ship."
+	if(CanBeCarried())
 	{
-		victim->Carry(shared_from_this());
+		SetTargetShip(shared_ptr<Ship>());
+		if(!victim->IsDisabled() && victim->GetGovernment() == government)
+			victim->Carry(shared_from_this());
 		return shared_ptr<Ship>();
 	}
 	

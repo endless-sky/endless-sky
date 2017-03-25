@@ -45,10 +45,11 @@ HailPanel::HailPanel(PlayerInfo &player, const shared_ptr<Ship> &ship)
 	
 	const Government *gov = ship->GetGovernment();
 	header = gov->GetName() + " ship \"" + ship->Name() + "\":";
-	hasLanguage = !ship.GetPersonality().IsMute()
-		&& (gov->Language().empty() || player.GetCondition("language: " + gov->Language()));
+	// Drones are always unpiloted, so they never respond to hails.
+	bool isMute = ship->GetPersonality().IsMute() || (ship->Attributes().Category() == "Drone");
+	hasLanguage = !isMute && (gov->Language().empty() || player.GetCondition("language: " + gov->Language()));
 	
-	if(ship.GetPersonality().IsMute())
+	if(isMute)
 		message = "(There is no response to your hail.)";
 	else if(!hasLanguage)
 		message = "(An alien voice says something in a language you do not recognize.)";
@@ -164,7 +165,7 @@ void HailPanel::Draw()
 		{
 			if(ship->GetGovernment()->IsEnemy())
 				info.SetCondition("can bribe");
-			else
+			else if(!ship->CanBeCarried())
 				info.SetCondition("can assist");
 		}
 	}
@@ -237,7 +238,9 @@ bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 			return false;
 		if(playerNeedsHelp)
 		{
-			if(ship->GetPersonality().IsSurveillance())
+			if(ship->CanBeCarried())
+				message = "Sorry, my ship is too small to have the right equipment to assist you.";
+			else if(ship->GetPersonality().IsSurveillance())
 				message = "Sorry, I'm too busy to help you right now.";
 			else if(canGiveFuel || canRepair)
 			{
