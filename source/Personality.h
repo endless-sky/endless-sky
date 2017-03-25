@@ -57,6 +57,7 @@ public:
 	bool IsMining() const;
 	bool Harvests() const;
 	bool IsAppeasing() const;
+	bool IsMute() const;
 	
 	const Point &Confusion() const;
 	void UpdateConfusion(bool isFiring);

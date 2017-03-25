@@ -1753,8 +1753,8 @@ mission "Terraforming 3"
 				accept
 	
 	npc assist
-		government Derelict
-		personality derelict fleeing uninterested waiting pacifist
+		government Uninhabited
+		personality derelict fleeing uninterested waiting pacifist mute
 		ship Asteroid
 			name "Target Asteroid"
 			sprite "asteroid/medium rock/spin"

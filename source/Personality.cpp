@@ -44,6 +44,7 @@ namespace {
 	static const int MINING = (1 << 20);
 	static const int HARVESTS = (1 << 21);
 	static const int APPEASING = (1 << 22);
+	static const int MUTE = (1 << 23);
 	
 	static const map<string, int> TOKEN = {
 		{"pacifist", PACIFIST},
@@ -68,7 +69,8 @@ namespace {
 		{"unconstrained", UNCONSTRAINED},
 		{"mining", MINING},
 		{"harvests", HARVESTS},
-		{"appeasing", APPEASING}
+		{"appeasing", APPEASING},
+		{"mute", MUTE}
 	};
 	
 	double DEFAULT_CONFUSION = 10.;
@@ -276,6 +278,13 @@ bool Personality::Harvests() const
 bool Personality::IsAppeasing() const
 {
 	return flags & APPEASING;
+}
+
+
+
+bool Personality::IsMute() const
+{
+	return flags & MUTE;
 }
 
 

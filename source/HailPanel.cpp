@@ -45,9 +45,10 @@ HailPanel::HailPanel(PlayerInfo &player, const shared_ptr<Ship> &ship)
 	
 	const Government *gov = ship->GetGovernment();
 	header = gov->GetName() + " ship \"" + ship->Name() + "\":";
-	hasLanguage = (gov->Language().empty() || player.GetCondition("language: " + gov->Language()));
+	hasLanguage = !ship.GetPersonality().IsMute()
+		&& (gov->Language().empty() || player.GetCondition("language: " + gov->Language()));
 	
-	if(gov->GetName() == "Derelict")
+	if(ship.GetPersonality().IsMute())
 		message = "(There is no response to your hail.)";
 	else if(!hasLanguage)
 		message = "(An alien voice says something in a language you do not recognize.)";
@@ -163,7 +164,7 @@ void HailPanel::Draw()
 		{
 			if(ship->GetGovernment()->IsEnemy())
 				info.SetCondition("can bribe");
-			else if(ship->GetGovernment()->GetName() != "Derelict")
+			else
 				info.SetCondition("can assist");
 		}
 	}
@@ -215,7 +216,6 @@ void HailPanel::Draw()
 bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 {
 	bool shipIsEnemy = (ship && ship->GetGovernment()->IsEnemy());
-	bool isDerelict = (ship && ship->GetGovernment()->GetName() == "Derelict");
 	
 	if(key == 'd' || key == SDLK_ESCAPE || key == SDLK_RETURN || (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
 		GetUI()->Pop(this);
@@ -233,7 +233,7 @@ bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 	}
 	else if(key == 'h' && hasLanguage && ship)
 	{
-		if(shipIsEnemy || isDerelict)
+		if(shipIsEnemy)
 			return false;
 		if(playerNeedsHelp)
 		{
@@ -260,7 +260,7 @@ bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 	else if((key == 'b' || key == 'o') && hasLanguage)
 	{
 		// Make sure it actually makes sense to bribe this ship.
-		if((ship && (!shipIsEnemy || isDerelict)) || (planet && planet->CanLand()))
+		if((ship && !shipIsEnemy) || (planet && planet->CanLand()))
 			return true;
 		
 		if(bribe > player.Accounts().Credits())
