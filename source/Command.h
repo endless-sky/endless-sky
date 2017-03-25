@@ -61,6 +61,14 @@ public:
 	// This command from the AI tells a ship that if possible, it should apply
 	// less than its full thrust in order to come to a complete stop.
 	static const Command STOP;
+
+	//change the game's framerate temporarly to enable fast forwarding
+	static const Command FRAMERATE_2;
+	static const Command FRAMERATE_4;
+	static const Command FRAMERATE_8;
+	static const Command FRAMERATE_MAX;
+
+
 	
 public:
 	// In the given text, replace any instances of command names (in angle
