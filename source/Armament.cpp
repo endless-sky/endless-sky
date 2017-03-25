@@ -146,6 +146,18 @@ int Armament::GunCount() const
 	return hardpoints.size() - TurretCount();
 }
 
+int Armament::WeaponSpaceUsed() const
+{
+	double weapon_space=0;
+	for( auto arm: hardpoints){
+		const Outfit * outfit = arm.GetOutfit();
+		if( outfit && ! outfit->Get("AntiMissile") ){
+			weapon_space += -outfit->Get("weapon capacity");
+		}
+	}
+	return weapon_space;
+}
+
 
 
 // Determine how many turret hardpoints are on this ship.

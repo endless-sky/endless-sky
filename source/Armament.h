@@ -57,6 +57,7 @@ public:
 	const std::vector<Hardpoint> &Get() const;
 	int GunCount() const;
 	int TurretCount() const;
+	int WeaponSpaceUsed() const;
 	
 	// Fire the given weapon, if it is ready. If it did not fire because it is
 	// not ready, return false.
