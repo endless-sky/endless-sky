@@ -245,7 +245,7 @@ government "Pirate"
 	"fine" 0
 	"friendly hail" "friendly pirate"
 	"hostile hail" "hostile pirate"
-	raid "Large Southern Pirates"
+	raid "pirate raid"
 
 government "Pug"
 	swizzle 0
@@ -301,7 +301,7 @@ government "Syndicate"
 	"bribe" .08
 	"friendly hail" "friendly syndicate"
 	"hostile hail" "hostile syndicate"
-	raid "Small Core Pirates"
+	raid "pirate raid"
 
 government "Syndicate (Extremist)"
 	swizzle 1
