@@ -171,30 +171,30 @@ ship "Bactrian"
 	attributes
 		category "Heavy Warship"
 		"cost" 17600000
-		"shields" 17500
-		"hull" 8600
+		"shields" 12400
+		"hull" 9800
 		"required crew" 70
 		"bunks" 245
 		"mass" 940
 		"drag" 16.1
 		"heat dissipation" .4
 		"fuel capacity" 700
-		"cargo space" 530
-		"outfit space" 740
-		"weapon capacity" 300
+		"cargo space" 240
+		"outfit space" 720
+		"weapon capacity" 280
 		"engine capacity" 180
 		weapon
-			"blast radius" 260
-			"shield damage" 2600
-			"hull damage" 1300
-			"hit force" 3900
+			"blast radius" 220
+			"shield damage" 2200
+			"hull damage" 1100
+			"hit force" 3300
 	outfits
 		"Sidewinder Missile Launcher" 2
 		"Sidewinder Missile" 100
 		"Torpedo Launcher" 2
 		"Torpedo" 60
 		"Heavy Laser Turret" 4
-		"Heavy Anti-Missile Turret" 2
+		"Anti-Missile Turret" 2
 		
 		"Fusion Reactor"
 		"LP144a Battery Pack"
@@ -226,7 +226,8 @@ ship "Bactrian"
 	explode "large explosion" 45
 	explode "huge explosion" 30
 	"final explode" "final explosion large"
-	description "The Lionheart Bactrian is the last of the great city-ships, a design hearkening back to the early days of space colonization when a long-distance vessel needed to be a self-contained world, able to survive at times for weeks without encountering an inhabited planet. It is not only a freighter, but a carrier, and a capable warship either at short range or at a distance. Naturally, this versatility also makes it extremely expensive, and the Bactrian is not normally for sale to ordinary citizens who have not been vetted by the local government of the Deep."
+	description "The Lionheart Bactrian is the last of the great city-ships, a design hearkening back to the early days of space colonization when a long-distance vessel needed to be a self-contained world, able to survive at times for weeks without encountering an inhabited planet. It is not only a freighter, but a carrier, and a capable warship either at short range or at a distance. Naturally, this versatility also makes it extremely expensive."
+	description "In the past, the Bactrian was normally only sold to citizens who had been vetted by the local government of the Deep, but in recent times the Bactrian has been made available for all to purchase as newer ship designs are now more powerful than it, making it less of a threat to sell to ordinary captains."
 
 
 
@@ -1985,10 +1986,10 @@ ship "Mule"
 		"drag" 5.7
 		"heat dissipation" .5
 		"fuel capacity" 600
-		"cargo space" 270
-		"outfit space" 450
-		"weapon capacity" 210
-		"engine capacity" 110
+		"cargo space" 150
+		"outfit space" 430
+		"weapon capacity" 200
+		"engine capacity" 100
 		weapon
 			"blast radius" 100
 			"shield damage" 1000

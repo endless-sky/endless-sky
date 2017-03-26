@@ -474,7 +474,7 @@ ship "Mule" "Mule (Heavy)"
 		"Fission Reactor"
 		"LP072a Battery Pack"
 		"Supercapacitor" 4
-		"D67-TM Shield Generator"
+		"D41-HY Shield Generator"
 		"Water Coolant System"
 		"Mass Expansion"
 		"Ramscoop"
@@ -1464,7 +1464,7 @@ ship "Mule" "Mule (Hai Engines)"
 		"Sidewinder Missile Launcher" 2
 		"Sidewinder Missile" 100
 		"Heavy Laser Turret" 3
-		"Chameleon Anti-Missile"
+		"Bullfrog Anti-Missile"
 		"Boulder Reactor"
 		"Hai Fissure Batteries"
 		"D41-HY Shield Generator"
@@ -1475,7 +1475,6 @@ ship "Mule" "Mule (Hai Engines)"
 		"Ramscoop"
 		`"Bondir" Atomic Thruster`
 		`"Biroo" Atomic Steering`
-		`"Basrem" Atomic Steering`
 		"Hyperdrive"
 
 
@@ -1483,7 +1482,8 @@ ship "Mule" "Mule (Hai Engines)"
 ship "Mule" "Mule (Hai Weapons)"
 	outfits
 		"Ion Cannon"
-		"Pulse Turret" 4
+		"Pulse Turret" 3
+		"Bullfrog Anti-Missile"
 		"Geode Reactor"
 		"Hai Ravine Batteries"
 		"Hai Fissure Batteries"
@@ -1536,7 +1536,7 @@ ship "Bactrian" "Bactrian (Hai Engines)"
 		"Torpedo Launcher" 2
 		"Torpedo" 60
 		"Heavy Laser Turret" 4
-		"Heavy Anti-Missile Turret" 2
+		"Anti-Missile Turret" 2
 		"Fusion Reactor"
 		"Geode Reactor"
 		"Hai Gorge Batteries"
@@ -1544,7 +1544,7 @@ ship "Bactrian" "Bactrian (Hai Engines)"
 		"Hai Williwaw Cooling" 3
 		"Ramscoop"
 		"Mass Expansion"
-		`"Bufaer" Atomic Thruster`
+		`"Bondir" Atomic Thruster`
 		`"Bufaer" Atomic Steering`
 		"Hyperdrive"
 
