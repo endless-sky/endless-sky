@@ -32,13 +32,16 @@ ship "Aphid"
 			"hit force" 450
 	outfits
 		"Pulse Turret"
+		
 		"Pebble Core"
 		"Hai Fissure Batteries"
 		"Hai Corundum Regenerator"
 		"Hai Williwaw Cooling"
+		
 		`"Basrem" Atomic Thruster`
 		`"Basrem" Atomic Steering`
 		"Hyperdrive"
+		
 	engine -8 40
 	engine 8 40
 	turret 0 24 "Pulse Turret"
@@ -50,13 +53,17 @@ ship "Aphid"
 ship "Aphid" "Aphid (Anti-Missile)"
 	outfits
 		"Chameleon Anti-Missile"
+		
 		"Pebble Core"
 		"Hai Fissure Batteries"
 		"Hai Corundum Regenerator"
 		"Hai Williwaw Cooling"
+		
 		`"Benga" Atomic Thruster`
 		`"Benga" Atomic Steering`
 		"Hyperdrive"
+
+
 
 ship "Flea"
 	sprite "ship/hai flea"
@@ -80,14 +87,18 @@ ship "Flea"
 	outfits
 		"Railgun"
 		"Railgun Slug" 160
+		
 		"Sand Cell"
 		"Hai Chasm Batteries"
+		
 		`"Baellie" Atomic Engines`
-
+		
 	engine 0 27
 	gun 0 -27 "Railgun"
 	explode "tiny explosion 15"
 	description `This is a combat drone designed to help contain Unfettered aggression with a minimum risk to Hai life.`
+
+
 
 ship "Lightning Bug"
 	sprite "ship/hai lightning bug"
@@ -114,13 +125,16 @@ ship "Lightning Bug"
 	outfits
 		"Ion Cannon"
 		"Bullfrog Anti-Missile" 2
+		
 		"Geode Reactor"
 		"Hai Gorge Batteries"
 		"Hai Corundum Regenerator"
 		"Hai Williwaw Cooling"
+		
 		`"Benga" Atomic Thruster`
 		`"Biroo" Atomic Steering`
 		"Hyperdrive"
+		
 	engine -40 22
 	engine 40 22
 	gun 0 -40 "Ion Cannon"
@@ -138,12 +152,16 @@ ship "Lightning Bug" "Lightning Bug (Pulse)"
 		"Hai Tracker Pod"
 		"Hai Tracker" 56
 		"Pulse Turret" 2
+		
 		"Geode Reactor"
 		"Hai Gorge Batteries"
 		"Hai Corundum Regenerator"
+		
 		`"Biroo" Atomic Thruster`
 		`"Benga" Atomic Steering`
 		"Hyperdrive"
+
+
 
 ship "Pond Strider"
 	sprite "ship/hai pond strider"
@@ -172,14 +190,16 @@ ship "Pond Strider"
 		"Railgun Slug" 320
 		"Pulse Cannon"
 		"Pulse Turret" 2
-		"Bullfrog Anti-Missile" 
+		"Bullfrog Anti-Missile"
+		
 		"Hai Diamond Regenerator"
 		"Hai Chasm Batteries"
 		"Hai Gorge Batteries"
 		"Geode Reactor"
+		"Hai Williwaw Cooling" 3
+		
 		`"Benga" Atomic Thruster`
 		`"Biroo" Atomic Steering`
-		"Hai Williwaw Cooling" 3
 		"Hyperdrive"
 		
 	engine -23 80
@@ -206,6 +226,8 @@ ship "Pond Strider"
 	"final explode" "final explosion large"
 	description "This short range drone carrier was built by the Hai to contain the increasingly aggressive Unfettered with their new Solifuge and Violin Spider ships. The Hai's greater value for life is evident in the remotely-piloted robotic fighter craft, preferring to keep valuable pilots out of harm's way."
 
+
+
 ship "Shield Beetle"
 	sprite "ship/hai shield beetle"
 	attributes
@@ -231,17 +253,21 @@ ship "Shield Beetle"
 	outfits
 		"Ion Cannon" 4
 		"Hai Tracker Pod" 4
-		"Hai Tracker" 224
+		"Hai Tracker" 280
+		"Tracker Storage Pod" 2
 		"Chameleon Anti-Missile" 2
+		
 		"Boulder Reactor"
 		"Geode Reactor"
 		"Hai Gorge Batteries"
 		"Hai Ravine Batteries"
 		"Hai Diamond Regenerator"
 		"Hai Williwaw Cooling" 2
+		
 		`"Bondir" Atomic Thruster`
 		`"Bufaer" Atomic Steering`
 		"Hyperdrive"
+		
 	engine -44 133
 	engine 44 133
 	gun -22 -102 "Ion Cannon"
@@ -264,33 +290,22 @@ ship "Shield Beetle"
 	"final explode" "final explosion large"
 	description "The Shield Beetle is a versatile warship used by the Hai to guard their merchant convoys."
 
-ship "Shield Beetle" "Shield Beetle (Tracker)"
-	outfits
-		"Hai Tracker Pod" 8
-		"Hai Tracker" 448
-		"Pulse Turret" 4
-		"Boulder Reactor"
-		"Geode Reactor"
-		"Hai Valley Batteries"
-		"Hai Diamond Regenerator"
-		"Hai Williwaw Cooling" 2
-		`"Bondir" Atomic Thruster`
-		`"Bufaer" Atomic Steering`
-		"Hyperdrive"
-
 ship "Shield Beetle" "Shield Beetle (Pulse)"
 	outfits
 		"Ion Cannon" 2
 		"Pulse Cannon" 6
 		"Pulse Turret" 4
+		
 		"Boulder Reactor"
 		"Geode Reactor"
 		"Hai Ravine Batteries"
 		"Hai Diamond Regenerator" 2
 		"Hai Williwaw Cooling" 3
+		
 		`"Bondir" Atomic Thruster`
 		`"Bufaer" Atomic Steering`
 		"Hyperdrive"
+		
 	gun "Ion Cannon"
 	gun "Ion Cannon"
 	gun "Pulse Cannon"
@@ -299,6 +314,23 @@ ship "Shield Beetle" "Shield Beetle (Pulse)"
 	gun "Pulse Cannon"
 	gun "Pulse Cannon"
 	gun "Pulse Cannon"
+
+ship "Shield Beetle" "Shield Beetle (Tracker)"
+	outfits
+		"Hai Tracker Pod" 8
+		"Hai Tracker" 672
+		"Tracker Storage Pod" 8
+		"Pulse Turret" 4
+		
+		"Boulder Reactor"
+		"Geode Reactor"
+		"Hai Valley Batteries"
+		"Hai Diamond Regenerator"
+		"Hai Williwaw Cooling" 2
+		
+		`"Bondir" Atomic Thruster`
+		`"Bufaer" Atomic Steering`
+		"Hyperdrive"
 
 ship "Shield Beetle" "Shield Beetle (Jump)"
 	outfits
@@ -306,6 +338,7 @@ ship "Shield Beetle" "Shield Beetle (Jump)"
 		"Hai Tracker Pod" 4
 		"Hai Tracker" 224
 		"Chameleon Anti-Missile" 2
+		
 		"Boulder Reactor" 2
 		"Hai Chasm Batteries" 2
 		"Hai Fissure Batteries"
@@ -314,9 +347,11 @@ ship "Shield Beetle" "Shield Beetle (Jump)"
 		"Hai Diamond Regenerator" 2
 		"Fuel Pod" 3
 		"Hai Williwaw Cooling" 4
+		
 		`"Bondir" Atomic Thruster`
 		`"Bufaer" Atomic Steering`
 		"Jump Drive"
+		
 	gun "Ion Cannon"
 	gun "Ion Cannon"
 	gun "Hai Tracker Pod"
@@ -335,16 +370,20 @@ ship "Shield Beetle" "Shield Beetle (Jump, Tracker)"
 		"Hai Tracker Pod" 8
 		"Hai Tracker" 448
 		"Pulse Turret" 4
+		
 		"Boulder Reactor" 2
 		"Hai Ravine Batteries"
 		"Mass Expansion" 4
 		"Hai Diamond Regenerator" 2
 		"Fuel Pod" 3
 		"Hai Williwaw Cooling" 6
+		
 		`"Bondir" Atomic Thruster`
 		`"Bufaer" Atomic Steering`
 		"Jump Drive"
-	
+
+
+
 ship "Solifuge"
 	sprite "ship/hai solifuge"
 	licenses
@@ -376,15 +415,17 @@ ship "Solifuge"
 		"Pulse Turret" 2
 		"Chameleon Anti-Missile"
 		"Bullfrog Anti-Missile" 4
+		
 		"Boulder Reactor" 2
 		"Hai Gorge Batteries"
 		"Hai Diamond Regenerator"
 		"Hai Williwaw Cooling" 6
+		
+		`"Bondir" Atomic Thruster`
 		`"Benga" Atomic Steering`
 		`"Bufaer" Atomic Steering`
-		`"Bondir" Atomic Thruster`
 		Hyperdrive
-			
+		
 	engine -28 135.5
 	engine 28 135,5
 	gun 0 -140 "Hai Tracker Pod"
@@ -419,15 +460,18 @@ ship "Solifuge" "Solifuge (Pulse)"
 		"Pulse Cannon" 3
 		"Pulse Turret" 5
 		"Bullfrog Anti-Missile" 2
+		
 		"Boulder Reactor" 2
 		"Hai Fissure Batteries"
 		"Hai Corundum Regenerator"
 		"Hai Diamond Regenerator"
 		"Hai Williwaw Cooling" 8
+		
+		`"Bondir" Atomic Thruster`
 		`"Benga" Atomic Steering`
 		`"Bufaer" Atomic Steering`
-		`"Bondir" Atomic Thruster`
 		Hyperdrive
+		
 	gun "Pulse Cannon"
 	gun "Pulse Cannon"
 	gun "Pulse Cannon"
@@ -441,14 +485,16 @@ ship "Solifuge" "Solifuge (Tracker)"
 		"Pulse Turret" 4
 		"Chameleon Anti-Missile"
 		"Bullfrog Anti-Missile" 2
+		
 		"Boulder Reactor" 2
 		"Hai Gorge Batteries"
 		"Hai Corundum Regenerator"
 		"Hai Diamond Regenerator" 2
 		"Hai Williwaw Cooling" 6
+		
+		`"Bondir" Atomic Thruster`
 		`"Benga" Atomic Steering`
 		`"Bufaer" Atomic Steering`
-		`"Bondir" Atomic Thruster`
 		Hyperdrive
 
 ship "Solifuge" "Solifuge (Jump)"
@@ -459,13 +505,15 @@ ship "Solifuge" "Solifuge (Jump)"
 		"Pulse Turret" 2
 		"Chameleon Anti-Missile"
 		"Bullfrog Anti-Missile" 4
+		
 		"Boulder Reactor" 2
 		"Hai Gorge Batteries"
 		"Hai Diamond Regenerator"
 		"Hai Williwaw Cooling" 6
+		
+		`"Bondir" Atomic Thruster`
 		`"Benga" Atomic Steering`
 		`"Bufaer" Atomic Steering`
-		`"Bondir" Atomic Thruster`
 		"Jump Drive"
 
 ship "Solifuge" "Solifuge (Jump, Pulse)"
@@ -474,15 +522,18 @@ ship "Solifuge" "Solifuge (Jump, Pulse)"
 		"Pulse Cannon" 3
 		"Pulse Turret" 5
 		"Bullfrog Anti-Missile" 2
+		
 		"Boulder Reactor" 2
 		"Hai Fissure Batteries"
 		"Hai Corundum Regenerator"
 		"Hai Diamond Regenerator"
 		"Hai Williwaw Cooling" 8
+		
+		`"Bondir" Atomic Thruster`
 		`"Benga" Atomic Steering`
 		`"Bufaer" Atomic Steering`
-		`"Bondir" Atomic Thruster`
 		"Jump Drive"
+		
 	gun "Pulse Cannon"
 	gun "Pulse Cannon"
 	gun "Pulse Cannon"
@@ -496,15 +547,19 @@ ship "Solifuge" "Solifuge (Jump, Tracker)"
 		"Pulse Turret" 4
 		"Chameleon Anti-Missile"
 		"Bullfrog Anti-Missile" 2
+		
 		"Boulder Reactor" 2
 		"Hai Gorge Batteries"
 		"Hai Corundum Regenerator"
 		"Hai Diamond Regenerator" 2
 		"Hai Williwaw Cooling" 6
+		
+		`"Bondir" Atomic Thruster`
 		`"Benga" Atomic Steering`
 		`"Bufaer" Atomic Steering`
-		`"Bondir" Atomic Thruster`
 		"Jump Drive"
+
+
 
 ship "Violin Spider"
 	sprite "ship/hai violin spider"
@@ -529,12 +584,14 @@ ship "Violin Spider"
 	outfits
 		"Hai Tracker Pod"
 		"Hai Tracker" 56
+		
 		"Pebble Core"
 		Supercapacitor
 		"Hai Williwaw Cooling"
-		`"Basrem" Atomic Steering`
+		
 		`"Basrem" Atomic Thruster`
-
+		`"Basrem" Atomic Steering`
+		
 	engine -15 30
 	engine 15 30
 	gun 0 -31 "Hai Tracker Pod"
@@ -546,11 +603,15 @@ ship "Violin Spider"
 ship "Violin Spider" "Violin Spider (Pulse)"
 	outfits
 		"Pulse Cannon"
+		
 		"Pebble Core"
 		"Hai Chasm Batteries"
 		"Hai Williwaw Cooling"
-		`"Basrem" Atomic Steering`
+		
 		`"Basrem" Atomic Thruster`
+		`"Basrem" Atomic Steering`
+
+
 
 ship "Water Bug"
 	sprite "ship/hai water bug"
@@ -576,17 +637,21 @@ ship "Water Bug"
 			"hit force" 1860
 	outfits
 		"Hai Tracker Pod" 2
-		"Hai Tracker" 112
+		"Hai Tracker" 140
+		"Tracker Storage Pod"
 		"Pulse Turret"
 		"Chameleon Anti-Missile" 2
+		
 		"Geode Reactor"
 		"Hai Gorge Batteries"
 		"Hai Chasm Batteries"
 		"Hai Diamond Regenerator"
 		"Hai Williwaw Cooling"
+		
 		`"Benga" Atomic Thruster`
 		`"Benga" Atomic Steering`
 		"Hyperdrive"
+		
 	engine -50 33
 	engine 50 33
 	gun -24 -53 "Hai Tracker Pod"
@@ -604,13 +669,16 @@ ship "Water Bug"
 ship "Water Bug" "Water Bug (Pulse)"
 	outfits
 		"Hai Tracker Pod" 2
-		"Hai Tracker" 112
+		"Hai Tracker" 140
+		"Tracker Storage Pod"
 		"Pulse Turret" 3
+		
 		"Geode Reactor"
 		"Hai Gorge Batteries"
 		"Hai Chasm Batteries"
 		"Hai Diamond Regenerator"
 		"Hai Williwaw Cooling"
+		
 		`"Benga" Atomic Thruster`
 		`"Benga" Atomic Steering`
 		"Hyperdrive"
@@ -618,14 +686,17 @@ ship "Water Bug" "Water Bug (Pulse)"
 ship "Water Bug" "Water Bug (Jump)"
 	outfits
 		"Hai Tracker Pod" 2
-		"Hai Tracker" 112
+		"Hai Tracker" 196
+		"Tracker Storage Pod" 3
 		"Pulse Turret"
 		"Chameleon Anti-Missile" 2
+		
 		"Geode Reactor"
 		"Hai Gorge Batteries"
 		"Hai Chasm Batteries"
 		"Hai Diamond Regenerator"
 		"Hai Williwaw Cooling"
+		
 		`"Benga" Atomic Thruster`
 		`"Benga" Atomic Steering`
 		"Jump Drive"
