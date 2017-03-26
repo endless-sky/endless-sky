@@ -439,6 +439,7 @@ mission "WR Star 1"
 mission "Deep Archaeology 1"
 	name "Deep Archaeology"
 	description "Drop this archaeologist off on <destination>, before making a trip to Midgard in the Deep to collect some samples."
+	minor
 	source
 		attributes paradise north "near earth"
 		near Miaplacidus 1 20
