@@ -852,22 +852,25 @@ void Engine::EnterSystem()
 	{
 		// Find out how attractive the player's fleet is to pirates. Aside from a
 		// heavy freighter, no single ship should attract extra pirate attention.
-		unsigned attraction = 0;
+		double sum = 0.;
 		for(const shared_ptr<Ship> &ship : player.Ships())
 		{
 			if(ship->IsParked())
 				continue;
-		
-			const string &category = ship->Attributes().Category();
-			if(category == "Light Freighter")
-				attraction += 1;
-			if(category == "Heavy Freighter")
-				attraction += 2;
+			
+			sum += .4 * sqrt(ship->Attributes().Get("cargo space")) - 1.8;
+			for(const auto &it : ship->Weapons())
+				if(it.GetOutfit())
+				{
+					double damage = it.GetOutfit()->ShieldDamage() + it.GetOutfit()->HullDamage();
+					sum -= .12 * damage / it.GetOutfit()->Reload();
+				}
 		}
+		int attraction = round(sum);
 		if(attraction > 2)
 		{
 			for(int i = 0; i < 10; ++i)
-				if(Random::Int(200) + 1 < attraction)
+				if(static_cast<int>(Random::Int(200) + 1) < attraction)
 					raidFleet->Place(*system, ships);
 		}
 	}
