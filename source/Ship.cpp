@@ -324,13 +324,6 @@ void Ship::FinishLoading()
 	if(baseAttributes.Category() == "Drone" && !baseAttributes.Attributes().count("automaton"))
 		baseAttributes.Add("automaton", 1.);
 	
-	// Different ships dissipate heat at different rates.
-	heatDissipation = baseAttributes.Get("heat dissipation");
-	if(!heatDissipation)
-		heatDissipation = .999;
-	else
-		heatDissipation = 1. - .001 * heatDissipation;
-	
 	baseAttributes.Reset("gun ports", armament.GunCount());
 	baseAttributes.Reset("turret mounts", armament.TurretCount());
 	
@@ -737,7 +730,7 @@ bool Ship::Move(list<Effect> &effects, list<shared_ptr<Flotsam>> &flotsam)
 	// with no batteries but a good generator can still move.
 	energy = min(energy, attributes.Get("energy capacity"));
 	
-	heat *= heatDissipation;
+	heat -= .001 * heat * attributes.Get("heat dissipation");
 	if(heat > Mass() * 100.)
 		isOverheated = true;
 	else if(heat < Mass() * 90.)
@@ -1931,7 +1924,7 @@ double Ship::IdleHeat() const
 	// heat = heat * (diss - activeCool / (100 * mass)) + (heatGen - cool)
 	// heat * (1 - diss + activeCool / (100 * mass)) = (heatGen - cool)
 	double production = max(0., attributes.Get("heat generation") - cooling);
-	double dissipation = 1. - heatDissipation + activeCooling / (100. * Mass());
+	double dissipation = .001 * attributes.Get("heat dissipation") + activeCooling / (100. * Mass());
 	return production / dissipation;
 }
 

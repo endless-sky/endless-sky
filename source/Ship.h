@@ -426,7 +426,6 @@ private:
 	double fuel = 0.;
 	double energy = 0.;
 	double heat = 0.;
-	double heatDissipation = .999;
 	double ionization = 0.;
 	double disruption = 0.;
 	double slowness = 0.;
