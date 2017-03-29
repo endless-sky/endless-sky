@@ -310,7 +310,7 @@ ship "Shield Beetle" "Shield Beetle (Jump)"
 		"Hai Chasm Batteries" 2
 		"Hai Fissure Batteries"
 		"Hai Gorge Batteries"
-		"Mass Expansion" 4
+		"Outfits Expansion" 4
 		"Hai Diamond Regenerator" 2
 		"Fuel Pod" 3
 		"Hai Williwaw Cooling" 4
@@ -337,7 +337,7 @@ ship "Shield Beetle" "Shield Beetle (Jump, Tracker)"
 		"Pulse Turret" 4
 		"Boulder Reactor" 2
 		"Hai Ravine Batteries"
-		"Mass Expansion" 4
+		"Outfits Expansion" 4
 		"Hai Diamond Regenerator" 2
 		"Fuel Pod" 3
 		"Hai Williwaw Cooling" 6

@@ -235,6 +235,8 @@ public:
 	double JumpFuel() const;
 	// Get the heat level at idle.
 	double IdleHeat() const;
+	// Calculate the multiplier for cooling efficiency.
+	double CoolingEfficiency() const;
 	
 	// Access how many crew members this ship has or needs.
 	int Crew() const;

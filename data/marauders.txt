@@ -189,7 +189,7 @@ ship "Marauder Bounder"
 		"Dwarf Core"
 		"LP072a Battery Pack"
 		"S-270 Regenerator"
-		"Mass Expansion"
+		"Outfits Expansion"
 		"Water Coolant System"
 		"Security Station"
 		"Laser Rifle" 18
@@ -243,7 +243,7 @@ ship "Marauder Bounder" "Marauder Bounder (Engines)"
 		"LP072a Battery Pack"
 		"S-270 Regenerator"
 		"Water Coolant System"
-		"Mass Expansion"
+		"Outfits Expansion"
 		"Laser Rifle" 18
 		
 		"A370 Atomic Thruster"
@@ -295,7 +295,7 @@ ship "Marauder Bounder" "Marauder Bounder (Weapons)"
 		"LP072a Battery Pack"
 		"S-270 Regenerator"
 		"Water Coolant System"
-		"Mass Expansion"
+		"Outfits Expansion"
 		"Security Station"
 		"Laser Rifle" 18
 		
@@ -349,7 +349,7 @@ ship "Marauder Falcon"
 		"D67-TM Shield Generator"
 		"Large Radar Jammer"
 		"Liquid Helium Cooler"
-		"Mass Expansion" 3
+		"Outfits Expansion" 3
 		"Laser Rifle" 80
 		
 		"A520 Atomic Thruster"
@@ -408,7 +408,7 @@ ship "Marauder Falcon" "Marauder Falcon (Engines)"
 		"D41-HY Shield Generator"
 		"Large Radar Jammer"
 		"Liquid Helium Cooler"
-		"Mass Expansion" 3
+		"Outfits Expansion" 3
 		"Laser Rifle" 80
 		
 		"A860 Atomic Thruster"
@@ -468,7 +468,7 @@ ship "Marauder Falcon" "Marauder Falcon (Weapons)"
 		"D41-HY Shield Generator"
 		"Large Radar Jammer"
 		"Liquid Helium Cooler"
-		"Mass Expansion" 3
+		"Outfits Expansion" 3
 		"Laser Rifle" 80
 		
 		"A370 Atomic Thruster"
@@ -528,7 +528,7 @@ ship "Marauder Firebird"
 		"Supercapacitor"
 		"S-970 Regenerator"
 		"Liquid Helium Cooler"
-		"Mass Expansion"
+		"Outfits Expansion"
 		"Laser Rifle" 25
 		
 		"A250 Atomic Thruster"
@@ -585,7 +585,7 @@ ship "Marauder Firebird" "Marauder Firebird (Engines)"
 		"Supercapacitor"
 		"S-970 Regenerator"
 		"Liquid Helium Cooler"
-		"Mass Expansion"
+		"Outfits Expansion"
 		"Security Station"
 		"Laser Rifle" 24
 		
@@ -642,7 +642,7 @@ ship "Marauder Firebird" "Marauder Firebird (Weapons)"
 		"Supercapacitor"
 		"S-970 Regenerator"
 		"Liquid Helium Cooler"
-		"Mass Expansion"
+		"Outfits Expansion"
 		"Security Station"
 		"Laser Rifle" 24
 		
@@ -756,7 +756,7 @@ ship "Marauder Leviathan"
 		"D94-YV Shield Generator"
 		"Large Radar Jammer"
 		"Liquid Helium Cooler"
-		"Mass Expansion" 2
+		"Outfits Expansion" 2
 		"Laser Rifle" 69
 		
 		"A370 Atomic Thruster"
@@ -816,7 +816,7 @@ ship "Marauder Leviathan" "Marauder Leviathan (Engines)"
 		"Large Radar Jammer"
 		"Liquid Helium Cooler"
 		"Liquid Nitrogen Cooler"
-		"Mass Expansion" 2
+		"Outfits Expansion" 2
 		"Laser Rifle" 69
 		
 		"A860 Atomic Thruster"
@@ -874,7 +874,7 @@ ship "Marauder Leviathan" "Marauder Leviathan (Weapons)"
 		"D94-YV Shield Generator"
 		"Large Radar Jammer"
 		"Liquid Helium Cooler"
-		"Mass Expansion" 2
+		"Outfits Expansion" 2
 		"Laser Rifle" 69
 
 		"A370 Atomic Thruster"
@@ -1258,7 +1258,7 @@ ship "Marauder Raven"
 		"Supercapacitor" 3
 		"S-270 Regenerator"
 		"Liquid Nitrogen Cooler"
-		"Mass Expansion"
+		"Outfits Expansion"
 		
 		"A250 Atomic Thruster"
 		"A375 Atomic Steering"
@@ -1312,7 +1312,7 @@ ship "Marauder Raven" "Marauder Raven (Engines)"
 		"Supercapacitor"
 		"S-270 Regenerator"
 		"Liquid Nitrogen Cooler"
-		"Mass Expansion"
+		"Outfits Expansion"
 		
 		"A370 Atomic Thruster"
 		"A375 Atomic Steering"
@@ -1367,7 +1367,7 @@ ship "Marauder Raven" "Marauder Raven (Weapons)"
 		"Supercapacitor" 2
 		"S-270 Regenerator"
 		"Liquid Nitrogen Cooler"
-		"Mass Expansion"
+		"Outfits Expansion"
 		
 		"A250 Atomic Thruster"
 		"A375 Atomic Steering"

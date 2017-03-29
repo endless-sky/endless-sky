@@ -548,7 +548,7 @@ ship "Heliarch Punisher" "Heliarch Punisher (Scrappy)"
 		"Large Shield Module" 4
 		"Large Repair Module" 2
 		"Cooling Module" 5
-		"Mass Expansion" 3
+		"Outfits Expansion" 3
 		
 		"Large Thrust Module" 2
 		"Small Thrust Module"

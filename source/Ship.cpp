@@ -763,15 +763,16 @@ bool Ship::Move(list<Effect> &effects, list<shared_ptr<Flotsam>> &flotsam)
 		
 		energy += scale * attributes.Get("solar collection");
 		
+		double coolingEfficiency = CoolingEfficiency();
 		energy += attributes.Get("energy generation") - ionization;
 		energy = max(0., energy);
 		heat += attributes.Get("heat generation");
-		heat -= attributes.Get("cooling");
+		heat -= coolingEfficiency * attributes.Get("cooling");
 		heat = max(0., heat);
 		
 		// Apply active cooling. The fraction of full cooling to apply equals
 		// your ship's current fraction of its maximum temperature.
-		double activeCooling = attributes.Get("active cooling");
+		double activeCooling = coolingEfficiency * attributes.Get("active cooling");
 		if(activeCooling > 0.)
 		{
 			// Although it's a misuse of this feature, handle the case where
@@ -1920,13 +1921,30 @@ double Ship::JumpFuel() const
 // Get the heat level at idle.
 double Ship::IdleHeat() const
 {
+	// This ship's cooling ability:
+	double coolingEfficiency = CoolingEfficiency();
+	double cooling = coolingEfficiency * attributes.Get("cooling");
+	double activeCooling = coolingEfficiency * attributes.Get("active cooling");
+	
 	// Idle heat is the heat level where:
 	// heat = heat * diss + heatGen - cool - activeCool * heat / (100 * mass)
 	// heat = heat * (diss - activeCool / (100 * mass)) + (heatGen - cool)
 	// heat * (1 - diss + activeCool / (100 * mass)) = (heatGen - cool)
-	double production = max(0., attributes.Get("heat generation") - attributes.Get("cooling"));
-	double dissipation = 1. - heatDissipation + attributes.Get("active cooling") / (100. * Mass());
+	double production = max(0., attributes.Get("heat generation") - cooling);
+	double dissipation = 1. - heatDissipation + activeCooling / (100. * Mass());
 	return production / dissipation;
+}
+
+
+
+// Calculate the multiplier for cooling efficiency.
+double Ship::CoolingEfficiency() const
+{
+	// This is an S-curve where the efficiency is 100% if you have no outfits
+	// that create "cooling inefficiency", and as that value increases the
+	// efficiency stays high for a while, then drops off, then approaches 0.
+	double x = attributes.Get("cooling inefficiency");
+	return 2. + 2. / (1. + exp(x / -2.)) - 4. / (1. + exp(x / -4.));
 }
 
 
