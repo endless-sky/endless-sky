@@ -2417,7 +2417,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 	}
 	if(hasGuns && Preferences::Has("Automatic aiming") && !command.Turn()
 			&& ship.GetTargetShip() && ship.GetTargetShip()->GetSystem() == ship.GetSystem()
-			&& !ship.GetTargetShip()->IsDestroyed()
+			&& ship.GetTargetShip()->IsTargetable()
 			&& !keyStuck.Has(Command::LAND | Command::JUMP | Command::BOARD))
 	{
 		Point distance = ship.GetTargetShip()->Position() - ship.Position();
