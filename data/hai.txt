@@ -206,6 +206,7 @@ outfitter "Hai Basics"
 	"Hai Fissure Batteries"
 	"Supercapacitor"
 	"Cargo Expansion"
+	"Small Bunk Room"
 	"Hai Corundum Regenerator"
 	`"Basrem" Atomic Thruster`
 	`"Basrem" Atomic Steering`
@@ -229,6 +230,8 @@ outfitter "Hai Intermediate"
 	"Supercapacitor"
 	"Outfits Expansion"
 	"Cargo Expansion"
+	"Small Bunk Room"
+	"Bunk Room"
 	"Hai Corundum Regenerator"
 	`"Basrem" Atomic Thruster`
 	`"Basrem" Atomic Steering`
