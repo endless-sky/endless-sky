@@ -465,7 +465,8 @@ void Engine::Step(bool isActive)
 	}
 	info.SetString("credits",
 		Format::Number(player.Accounts().Credits()) + " credits");
-	if(flagship && flagship->GetTargetPlanet() && !flagship->Commands().Has(Command::JUMP))
+	bool isJumping = flagship->Commands().Has(Command::JUMP) || flagship->IsEnteringHyperspace();
+	if(flagship && flagship->GetTargetPlanet() && !isJumping)
 	{
 		const StellarObject *object = flagship->GetTargetPlanet();
 		info.SetString("navigation mode", "Landing on:");
