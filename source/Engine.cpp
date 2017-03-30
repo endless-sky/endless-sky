@@ -465,7 +465,7 @@ void Engine::Step(bool isActive)
 	}
 	info.SetString("credits",
 		Format::Number(player.Accounts().Credits()) + " credits");
-	bool isJumping = flagship->Commands().Has(Command::JUMP) || flagship->IsEnteringHyperspace();
+	bool isJumping = flagship && (flagship->Commands().Has(Command::JUMP) || flagship->IsEnteringHyperspace());
 	if(flagship && flagship->GetTargetPlanet() && !isJumping)
 	{
 		const StellarObject *object = flagship->GetTargetPlanet();
