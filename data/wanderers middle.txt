@@ -133,15 +133,15 @@ mission "Wanderers: Nova Remnants"
 	waypoint "Peresedersi"
 	on enter "Peresedersi"
 		dialog
-			"You fire up your ships sensors and collect the data that the Wanderers asked for on this system's sun."
+			"You fire up your ship's sensors and collect the data that the Wanderers asked for on this system's sun."
 	waypoint "Kasikfar"
 	on enter "Kasikfar"
 		dialog
-			"You fire up your ships sensors and collect the data that the Wanderers asked for on this system's sun."
+			"You fire up your ship's sensors and collect the data that the Wanderers asked for on this system's sun."
 	waypoint "Fasitopfar"
 	on enter "Fasitopfar"
 		dialog
-			"You fire up your ships sensors and collect the data that the Wanderers asked for on this system's sun."
+			"You fire up your ship's sensors and collect the data that the Wanderers asked for on this system's sun."
 	to offer
 		has "Wanderers: Surveying 1: done"
 	on complete
