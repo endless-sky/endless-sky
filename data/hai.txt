@@ -263,6 +263,8 @@ outfitter "Hai Advanced"
 	"Supercapacitor"
 	"Outfits Expansion"
 	"Cargo Expansion"
+	"Small Bunk Room"
+	"Bunk Room"
 	"Hai Corundum Regenerator"
 	"Hai Diamond Regenerator"
 	`"Basrem" Atomic Thruster`
