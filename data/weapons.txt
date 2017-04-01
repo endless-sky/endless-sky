@@ -861,5 +861,4 @@ outfit "gbullet"
 		"shield damage" 3
 		"hull damage" 6
 		"hit force" 0.15
-		"missile strength" 1
 		"hit effect" "bullet impact"
