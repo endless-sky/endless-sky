@@ -3104,13 +3104,19 @@ mission "Wanderers: Sestor: Patch"
 event "wanderers: sestor planets unrestricted"
 	planet "Drekag Firask"
 		"required reputation" 0
+		spaceport clear
 	planet "Sestor Ikfar"
 		"required reputation" 0
+		spaceport clear
 	planet "Devru Kaska"
 		"required reputation" 0
+		spaceport clear
 	planet "Sebra Skira"
 		"required reputation" 0
+		spaceport clear
 	planet "Keneska Fek"
 		"required reputation" 0
+		spaceport clear
 	planet "Sopi Lefarkata"
 		"required reputation" 0
+		spaceport clear
