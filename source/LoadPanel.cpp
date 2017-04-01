@@ -136,7 +136,7 @@ bool LoadPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 		GetUI()->Push(panel);
 		panel->SetCallback(this, &LoadPanel::OnCallback);
 	}
-	else if(key == 'd' && !selectedPilot.empty())
+	else if(key == 'D' && !selectedPilot.empty())
 	{
 		GetUI()->Push(new Dialog(this, &LoadPanel::DeletePilot,
 			"Are you sure you want to delete the selected pilot, \""
@@ -152,7 +152,7 @@ bool LoadPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 		GetUI()->Push(new Dialog(this, &LoadPanel::SnapshotCallback,
 			"Enter a name for this snapshot, or leave the name empty to use the current date:"));
 	}
-	else if(key == 'r' && !selectedFile.empty())
+	else if(key == 'R' && !selectedFile.empty())
 	{
 		string fileName = selectedFile.substr(selectedFile.rfind('/') + 1);
 		if(!(fileName == selectedPilot + ".txt"))

@@ -137,7 +137,7 @@ interface "load menu"
 		center -420 155
 		dimensions 120 30
 	active if "pilot selected"
-	button d "_Delete"
+	button D "Delete"
 		center -285 155
 		dimensions 90 30
 	
@@ -146,7 +146,7 @@ interface "load menu"
 		center -60 155
 		dimensions 120 30
 	active if "snapshot selected"
-	button r "_Remove"
+	button R "Remove"
 		center 75 155
 		dimensions 90 30
 	
