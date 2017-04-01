@@ -353,6 +353,10 @@ bool MissionPanel::Click(int x, int y, int clicks)
 			if(acceptedIt != accepted.end() && acceptedIt->Destination()->GetSystem() == system)
 				break;
 		}
+		// Make sure invisible missions are never selected, even if there were
+		// no other missions in this system.
+		if(acceptedIt != accepted.end() && !acceptedIt->IsVisible())
+			acceptedIt = accepted.end();
 	}
 	
 	return true;
@@ -718,6 +722,8 @@ void MissionPanel::AbortMission()
 		player.RemoveMission(Mission::FAIL, toAbort, GetUI());
 		if(acceptedIt == accepted.end() && !accepted.empty())
 			--acceptedIt;
+		if(acceptedIt != accepted.end() && !acceptedIt->IsVisible())
+			acceptedIt = accepted.end();
 	}
 }
 
