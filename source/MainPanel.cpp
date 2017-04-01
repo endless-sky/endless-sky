@@ -29,6 +29,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "PlanetPanel.h"
 #include "PlayerInfo.h"
 #include "Preferences.h"
+#include "Random.h"
 #include "Screen.h"
 #include "StellarObject.h"
 #include "System.h"
@@ -396,7 +397,21 @@ bool MainPanel::ShowHailPanel()
 	{
 		const Planet *planet = flagship->GetTargetPlanet()->GetPlanet();
 		if(planet && planet->IsWormhole())
-			Messages::Add("The gaping hole in the fabric of the universe does not respond to your hail.");
+		{
+			static const vector<string> messages = {
+				"The gaping hole in the fabric of the universe does not respond to your hail.",
+				"Wormholes do not understand the language of finite beings like yourself.",
+				"You stare into the swirling abyss, but with appalling bad manners it refuses to stare back.",
+				"All the messages you try to send disappear into the wormhole without a trace.",
+				"The spatial anomaly pointedly ignores your attempts to engage it in conversation.",
+				"Like most wormholes, this one does not appear to be very talkative.",
+				"The wormhole says nothing, but silently beckons you to explore its mysteries.",
+				"You can't talk to wormholes. Maybe you should try landing on it instead.",
+				"Your words cannot travel through wormholes, but maybe your starship can.",
+				"Unable to send hail: this unfathomable void is not inhabited."
+			};
+			Messages::Add(messages[Random::Int(messages.size())]);
+		}
 		else if(planet && planet->IsInhabited())
 		{
 			GetUI()->Push(new HailPanel(player, flagship->GetTargetPlanet()));
