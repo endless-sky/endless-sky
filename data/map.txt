@@ -24743,6 +24743,7 @@ planet "Ring of Friendship"
 	spaceport `At any given time, thousands of young people are in training here to become "interpreters," the Heliarch agents who serve as translators and mediators on all the Coalition worlds. As they rise through the ranks, some of those agents will be honored by being elevated to the rank of Heliarch, gaining a voice in the selection of new elders and perhaps one day even being selected themselves.`
 	spaceport `	Heliarch rank is not hereditary, and the children of Heliarchs are given no special preferment for promotions or educational opportunities.`
 	"required reputation" 5
+	bribe 0
 
 planet "Ring of Power"
 	attributes heliarch
@@ -24751,6 +24752,7 @@ planet "Ring of Power"
 	spaceport `The hallways of the spaceport echo with the footsteps of groups of marching defense force cadets. Each group contains a mixture of Saryds, Kimek, and Arachi, to help them learn allegiance to all the peoples of the Coalition instead of just identifying with their own species.`
 	spaceport `	The designer who invented the Heliarch uniforms, with a distinctive style that unifies them despite the wildly different body shapes of the three species, must have been an absolute genius.`
 	"required reputation" 25
+	bribe 0
 
 planet "Ring of Wisdom"
 	attributes heliarch
@@ -24759,6 +24761,7 @@ planet "Ring of Wisdom"
 	description `	"Construction" work is always ongoing here, but rather than extending the backbone of the ring itself, which uses exotic materials that they cannot replicate, the Heliarchs are just adding sheets of solar panels and other extensions to the sides of the ring.`
 	spaceport `Most of this ringworld is off-limits to everyone but the Heliarch scientists, not just for the sake of secrecy but also for safety. When the Heliarchs first began exploring the machinery of this ringworld, hundreds of them died in explosions, gas leaks, and power discharges after trying to cut their way into inaccessible areas. More recently, an entire team of scientists vanished from one of the main hangars without a trace and without any sign of resistance.`
 	"required reputation" 25
+	bribe 0
 
 planet Rust
 	attributes rim farming factory
