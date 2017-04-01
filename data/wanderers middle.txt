@@ -1023,6 +1023,8 @@ event "wanderers: kor mereti friendly"
 			"Kor Mereti" 0
 	"reputation: Kor Mereti" >?= 1
 	"reputation:  Kor Mereti " = -1000
+	planet "Rekat Moraski"
+		"required reputation" 1000
 
 mission "Wanderers: Mind 6"
 	landing
@@ -1071,8 +1073,6 @@ event "wanderers: kor mereti transformation"
 	system Chimitarp
 		fleet "Small Kor Mereti" 200
 		fleet "Large Kor Mereti" 400
-	planet "Rekat Moraski"
-		"required reputation" 1000
 	planet "Korbatri Eska"
 		description `The cities on this world have been hit by an astonishing variety of weapons. Some were leveled by massive explosions, while others show signs of strafing by low-flying ships or of orbital bombardment. Outside the cities, the land is fruitful and varied: forests, mountains, oceans, desert, and tundra.`
 		description `	Far from the ruined cities, the Kor Mereti have begun building a sort of village of their own: a sprawling complex of greenhouses containing a wide variety of plant samples.`
