@@ -3091,3 +3091,26 @@ mission "Wanderers: Sestor: Final"
 			`You inform the Wanderers that the Korath exiles are now producing war drones. "This is [unfortunate, regrettable]," says Sobari Tele'ek. "Clearly they [anticipate, expect] further conflict in the future."`
 			`	Tema'a Iriket says, "Perhaps they are [afraid of, threatened by] us and seek only to have the means to [defend, protect] themselves. The important thing is that the drones in this [territory, area] have been [neutralized, pacified] and we can now focus on our true work."`
 			`	From there, the conversation shifts to an excited discussion about what worlds they will settle on next and what their next steps should be in building relationships with the Kor Efret and the Kor Mereti collective. The exiles may become a threat some time in the future, but for now the Wanderers are eager to pursue their peacetime calling in this new territory that the Eye has led them to.`
+
+mission "Wanderers: Sestor: Patch"
+	landing
+	invisible
+	to offer
+		has "event: wanderers: sestor eliminated"
+	on offer
+		event "wanderers: sestor planets unrestricted"
+		fail
+
+event "wanderers: sestor planets unrestricted"
+	planet "Drekag Firask"
+		"required reputation" 0
+	planet "Sestor Ikfar"
+		"required reputation" 0
+	planet "Devru Kaska"
+		"required reputation" 0
+	planet "Sebra Skira"
+		"required reputation" 0
+	planet "Keneska Fek"
+		"required reputation" 0
+	planet "Sopi Lefarkata"
+		"required reputation" 0
