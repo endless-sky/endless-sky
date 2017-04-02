@@ -313,6 +313,7 @@ void AI::Step(const PlayerInfo &player)
 		const Government *gov = it->GetGovernment();
 		bool isPresent = (it->GetSystem() == player.GetSystem());
 		bool isStranded = IsStranded(*it);
+		bool thisIsLaunching = (isLaunching && it->GetSystem() == player.GetSystem());
 		if(isStranded || it->IsDisabled())
 		{
 			if(it->IsDestroyed() || it->GetPersonality().IsDerelict())
@@ -376,7 +377,12 @@ void AI::Step(const PlayerInfo &player)
 				}
 			}
 			if(it->IsDisabled())
+			{
+				// Ships other than escorts should deploy fighters if disabled.
+				if(!it->IsYours() || thisIsLaunching)
+					it->SetCommands(Command::DEPLOY);
 				continue;
+			}
 		}
 		// Special case: if the player's flagship tries to board a ship to
 		// refuel it, that escort should hold position for boarding.
@@ -384,7 +390,6 @@ void AI::Step(const PlayerInfo &player)
 			&& keyStuck.Has(Command::BOARD));
 		
 		Command command;
-		bool thisIsLaunching = (isLaunching && it->GetSystem() == player.GetSystem());
 		if(it->IsYours())
 		{
 			if(thisIsLaunching)

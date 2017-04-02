@@ -1272,7 +1272,9 @@ bool Ship::Move(list<Effect> &effects, list<shared_ptr<Flotsam>> &flotsam)
 // Launch any ships that are ready to launch.
 void Ship::Launch(list<shared_ptr<Ship>> &ships)
 {
-	if(!IsDestroyed() && (!commands.Has(Command::DEPLOY) || CannotAct()))
+	// Allow fighters to launch from a disabled ship, but not from a ship that
+	// is landing, jumping, or cloaked.
+	if(!IsDestroyed() && (!commands.Has(Command::DEPLOY) || zoom != 1. || hyperspaceCount || cloak))
 		return;
 	
 	for(Bay &bay : bays)
@@ -1286,7 +1288,7 @@ void Ship::Launch(list<shared_ptr<Ship>> &ships)
 			bay.ship->SetSystem(currentSystem);
 			bay.ship->SetParent(shared_from_this());
 			// Fighters in your ship have the same temperature as your ship
-			// itself, so when they launch they should take their sahre of heat
+			// itself, so when they launch they should take their share of heat
 			// with them, so that the fighter and the mothership remain at the
 			// same temperature.
 			bay.ship->heat = heat * bay.ship->Mass() / Mass();
