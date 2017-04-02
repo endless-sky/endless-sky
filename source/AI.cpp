@@ -836,7 +836,7 @@ bool AI::FollowOrders(Ship &ship, Command &command) const
 		MoveTo(ship, command, it->second.point, 10., .1);
 	else if(type == Orders::HOLD_POSITION || type == Orders::MOVE_TO)
 	{
-		if(ship.Velocity().Length() > .001 || !target)
+		if(ship.Velocity().Length() > .001 || !ship.GetTargetShip())
 			Stop(ship, command);
 		else
 			command.SetTurn(TurnToward(ship, TargetAim(ship)));
