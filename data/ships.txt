@@ -2686,7 +2686,7 @@ ship "Star Barge"
 	description "The Syndicate CT-50 Star Barge is little more than a cluster of cargo containers with an engine at one end and a cockpit on the other. It is a slow and ugly ship, but it can carry enough cargo to earn its captain a steady income even in parts of the galaxy where it is hard to find passengers to carry or courier missions."
 	description "	Because they often carry valuable cargo, and because they are too slow to evade any attackers, Star Barges are a common target of pirates."
 
-
+333
 
 ship "Star Queen"
 	sprite "ship/star queen"
@@ -2824,7 +2824,7 @@ ship "Vanguard"
 	explode "medium explosion" 24
 	explode "large explosion" 8
 	"final explode" "final explosion medium"
-	description `The Vanguard is Syndicated Systems' newest warship intended for the heavy anti-pirate defense market. Vanguards offer an unusual feature set, focusing on powerful fixed guns and featuring Syndicated Systems' latest automation technologies, resulting in an atypically low crew complement for a ship its size. Few capital ships will endure for long under the withering fusillade of gunfire that it can unleash against those in front of it.`
+	description `The Vanguard is Syndicated Systems' newest warship intended for the heavy anti-pirate defense market. Vanguards offer an unusual feature set, focusing on powerful fixed guns and featuring Syndicated Systems' latest automation technologies, resulting in an a typically low crew complement for a ship its size. Few capital ships will endure for long under the withering fusillade of gunfire that it can unleash against those in front of it.`
 
 
 
