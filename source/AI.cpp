@@ -570,17 +570,19 @@ void AI::Step(const PlayerInfo &player)
 		}
 		
 		bool isPlayerEscort = it->IsYours();
-		if(FollowOrders(*it, command))
+		if(mustRecall || isStranded)
 		{
-			// If this is an escort and it has orders to follow, no need for the
-			// AI to figure out what action it must perform.
-		}
-		else if(mustRecall || isStranded)
-		{
+			// Stopping to let fighters board or to be refueled takes priority
+			// even over following orders from the player.
 			if(it->Velocity().Length() > .001 || !target)
 				Stop(*it, command);
 			else
 				command.SetTurn(TurnToward(*it, TargetAim(*it)));
+		}
+		else if(FollowOrders(*it, command))
+		{
+			// If this is an escort and it has orders to follow, no need for the
+			// AI to figure out what action it must perform.
 		}
 		// Hostile "escorts" (i.e. NPCs that are trailing you) only revert to
 		// escort behavior when in a different system from you. Otherwise,
