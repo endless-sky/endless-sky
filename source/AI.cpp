@@ -1591,7 +1591,12 @@ void AI::DoSurveillance(Ship &ship, Command &command) const
 		
 		unsigned total = targetShips.size() + targetPlanets.size() + targetSystems.size();
 		if(!total)
+		{
+			// If there is nothing for this ship to scan, have it hold still
+			// instead of drifting away from the system center.
+			Stop(ship, command);
 			return;
+		}
 		
 		unsigned index = Random::Int(total);
 		if(index < targetShips.size())
