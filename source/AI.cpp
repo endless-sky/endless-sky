@@ -1197,7 +1197,7 @@ bool AI::MoveTo(Ship &ship, Command &command, const Point &target, double radius
 
 
 
-bool AI::Stop(Ship &ship, Command &command, double maxSpeed)
+bool AI::Stop(Ship &ship, Command &command, double maxSpeed, const Point *direction)
 {
 	const Point &velocity = ship.Velocity();
 	const Angle &angle = ship.Facing();
@@ -1231,6 +1231,20 @@ bool AI::Stop(Ship &ship, Command &command, double maxSpeed)
 		double reverseAcceleration = ship.Attributes().Get("reverse thrust") / ship.Mass();
 		double reverseTime = (180. - degreesToTurn) / ship.TurnRate();
 		reverseTime += speed / reverseAcceleration;
+		
+		// If you want to end up facing a specific direction, add the extra turning time.
+		if(direction)
+		{
+			// Time to turn from facing backwards to target:
+            double degreesFromBackwards = TO_DEG * acos(min(1., max(-1., direction->Unit().Dot(-velocity.Unit()))));
+            double turnFromBackwardsTime = degreesFromBackwards / ship.TurnRate();
+            forwardTime += turnFromBackwardsTime;
+			
+			// Time to turn from facing forwards to target:
+            double degreesFromForward = TO_DEG * acos(min(1., max(-1., direction->Unit().Dot(angle.Unit()))));
+            double turnFromForwardTime = degreesFromForward / ship.TurnRate();
+            reverseTime += turnFromForwardTime;
+		}
 		
 		if(reverseTime < forwardTime)
 		{
