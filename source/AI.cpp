@@ -1303,7 +1303,7 @@ void AI::PrepareForHyperspace(Ship &ship, Command &command)
 		command.SetTurn(TurnToward(ship, direction));
 	}
 	// If we are moving too fast, point in the right direction.
-	else if(Stop(ship, command, ship.Attributes().Get("jump speed")))
+	else if(Stop(ship, command, ship.Attributes().Get("jump speed"), &direction))
 	{
 		if(type != 200)
 			command.SetTurn(TurnToward(ship, direction));
