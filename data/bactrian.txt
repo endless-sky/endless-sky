@@ -262,7 +262,7 @@ mission "Bactrian Unlock [2]"
 	on offer
 		conversation
 			`The remaining fleet quickly enters the atmosphere of <planet> and begins scanning the surface. After about an hour of flying, you get a transmission that the ship has been found along with the location of the Star Queen.`
-			`	You watch from afar as the Corvette lands near a hangar in some sort of pirate facility. The Corvette immediately unloads what looks to be at least four dozen armed soldiers who quickly surround and breach the hangar. After about ten minutes, the hangar doors open and out rolls the Star Queen, still intact. You hear chatter over the radio saying that most of the crew and scientists are still inside.`-
+			`	You watch from afar as the Corvette lands near a hangar in some sort of pirate facility. The Corvette immediately unloads what looks to be at least four dozen armed soldiers who quickly surround and breach the hangar. After about ten minutes, the hangar doors open and out rolls the Star Queen, still intact. You hear chatter over the radio saying that most of the crew and scientists are still inside.`
 			`	"Good job, everyone," you hear Lieutenant Paris say over the comms. "Now we just need to make it back to <destination> in one piece." Just as he says that and the Star Queen and Corvette begin activating their repulsor engines, a beam of light comes flying from the sky and cuts the Corvette in half. Soldiers begin scrambling into the Star Queen, which quickly takes off into space along with the rest of the fleet. You turn your repulsor engines to full and begin flying up into space behind them.`
 				launch
 	
