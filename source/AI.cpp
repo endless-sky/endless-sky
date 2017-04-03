@@ -133,7 +133,7 @@ void AI::UpdateKeys(PlayerInfo &player, Command &clickCommands, bool isActive)
 	{
 		keyStuck.Clear(Command::JUMP);
 		const Planet *planet = player.TravelDestination();
-		if(planet && planet->GetSystem() == flagship->GetSystem())
+		if(planet && planet->IsInSystem(flagship->GetSystem()))
 		{
 			// The MovePlayer() code will already have targeted this planet.
 			Messages::Add("Autopilot: landing on " + planet->Name() + ".");
@@ -1129,7 +1129,7 @@ bool AI::CanRefuel(const Ship &ship, const StellarObject *target)
 	if(!planet)
 		return false;
 	
-	if(planet->GetSystem() != ship.GetSystem())
+	if(!planet->IsInSystem(ship.GetSystem()))
 		return false;
 	
 	if(!planet->HasSpaceport() || planet->IsWormhole() || !planet->CanLand(ship))
@@ -2093,7 +2093,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 			if(!mission.IsVisible())
 				continue;
 			
-			if(mission.Destination() && mission.Destination()->GetSystem() == system)
+			if(mission.Destination() && mission.Destination()->IsInSystem(system))
 			{
 				destinations.insert(mission.Destination());
 				++count;
@@ -2107,7 +2107,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 			}
 			// Also check for stopovers in the destination system.
 			for(const Planet *planet : mission.Stopovers())
-				if(planet->GetSystem() == system)
+				if(planet->IsInSystem(system))
 				{
 					destinations.insert(planet);
 					++count;
@@ -2116,7 +2116,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 				}
 		}
 		// Special case: the player has manually specified a destination.
-		if(player.TravelDestination() && player.TravelDestination()->GetSystem() == system)
+		if(player.TravelDestination() && player.TravelDestination()->IsInSystem(system))
 			bestDestination = player.TravelDestination();
 		
 		// Inform the player of any destinations in the system they are jumping to.

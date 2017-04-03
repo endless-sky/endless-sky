@@ -884,14 +884,14 @@ bool Ship::Move(list<Effect> &effects, list<shared_ptr<Flotsam>> &flotsam)
 			targetSystem = nullptr;
 			// Check if the target planet is in the destination system or not.
 			const Planet *planet = (targetPlanet ? targetPlanet->GetPlanet() : nullptr);
-			if(!planet || planet->IsWormhole() || planet->GetSystem() != currentSystem)
+			if(!planet || planet->IsWormhole() || !planet->IsInSystem(currentSystem))
 				targetPlanet = nullptr;
 			// Check if your parent has a target planet in this system.
 			shared_ptr<Ship> parent = GetParent();
 			if(!targetPlanet && parent && parent->targetPlanet)
 			{
 				planet = parent->targetPlanet->GetPlanet();
-				if(planet && !planet->IsWormhole() && planet->GetSystem() == currentSystem)
+				if(planet && !planet->IsWormhole() && planet->IsInSystem(currentSystem))
 					targetPlanet = parent->targetPlanet;
 			}
 			direction = -1;

@@ -1574,7 +1574,7 @@ bool PlayerInfo::HasSeen(const System *system) const
 		if(mission.Waypoints().count(system))
 			return true;
 		for(const Planet *planet : mission.Stopovers())
-			if(planet->GetSystem() == system)
+			if(planet->IsInSystem(system))
 				return true;
 	}
 	
@@ -1585,7 +1585,7 @@ bool PlayerInfo::HasSeen(const System *system) const
 		if(mission.Waypoints().count(system))
 			return true;
 		for(const Planet *planet : mission.Stopovers())
-			if(planet->GetSystem() == system)
+			if(planet->IsInSystem(system))
 				return true;
 	}
 	
@@ -1622,11 +1622,11 @@ bool PlayerInfo::KnowsName(const System *system) const
 		return true;
 	
 	for(const Mission &mission : availableJobs)
-		if(mission.Destination()->GetSystem() == system)
+		if(mission.Destination()->IsInSystem(system))
 			return true;
 	
 	for(const Mission &mission : missions)
-		if(mission.IsVisible() && mission.Destination()->GetSystem() == system)
+		if(mission.IsVisible() && mission.Destination()->IsInSystem(system))
 			return true;
 	
 	return false;

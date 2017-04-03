@@ -263,7 +263,7 @@ bool MapDetailPanel::Click(int x, int y, int clicks)
 	}
 	
 	MapPanel::Click(x, y, clicks);
-	if(selectedPlanet && selectedPlanet->GetSystem() != selectedSystem)
+	if(selectedPlanet && !selectedPlanet->IsInSystem(selectedSystem))
 		selectedPlanet = nullptr;
 	return true;
 }
