@@ -293,7 +293,7 @@ mission "Bactrian Unlock [2]: Pirate Bactrian"
 		ship "Bactrian" "Cosmic Devil"
 		dialog `The Bactrian "<npc>" has been destroyed. Now the pirates here will have a lot harder time attacking the Republic.`
 
-mission "Bactrian Unlock [2]: More Pirates
+mission "Bactrian Unlock [2]: More Pirates"
 	landing
 	invisible
 	to offer
