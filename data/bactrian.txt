@@ -59,11 +59,17 @@ mission "Bactrian Unlock [0]"
 			choice
 				`	"I would be glad to help. I'll prepare my ship immediately."`
 					accept
+				`	"Why do you seem so sad about the situation?"`
+					goto sad
 				`	"What will I receive in exchange for helping you?"`
 				`	"Why can't you locate it yourself?"`
 					goto locate
 	
 			`	"We will pay you <payment> if you are able to at least find where the Star Queen is, but there may be more reward if you are able to return it."`
+				goto end
+			
+			label sad
+			`	The man pauses before answering you, as if trying to choose his words carefully. "I personally know a lot of the scientists on board that Star Queen, and I just know that someone's going to wind up dead in this situation, and it isn't every day that someone you know gets held captive by pirates. This whole thing is just stressful for me."`
 				goto end
 	
 			label locate
@@ -133,6 +139,8 @@ mission "Bactrian Unlock [1]"
 	description "Now that you have located the Scientists and their Star Queen, return to <destination> with the Deep escorts and retrieve it."
 	landing
 	destination Haven
+	stopover Memory
+	stopover Farpoint
 	clearance
 	infiltrating
 	to offer
@@ -162,7 +170,7 @@ mission "Bactrian Unlock [1]"
 				`	"I would rather let the professionals handle things. Good luck."`
 					decline
 			
-			`	"Thank you so much. We'll be bringing a number of warships, but just make sure that the D.S.S. Faraday Corvette makes it onto the planet. The landing crew will be on that ship. Just launch whenever you're ready to fight."`
+			`	"Thank you so much. We'll be rendezvousing with a number of warships on Memory, and I've also sent word to the Navy on Farpoint that we may be needing help. After that we'll head out to Arneb, but just make sure that the D.S.S. Faraday Corvette makes it onto the planet. The landing crew will be on that ship. Just launch whenever you're ready to fight."`
 			`	The man starts talking into some communication device, giving orders to the fleet that will be joining you on the mission, then puts the device back on his wasit and looks to you. "Also, since we'll be going into battle together, I might as well introduce myself. I'm Deep Lieutenant Shane Paris. Good luck fighting."`
 				accept
 	
@@ -195,17 +203,28 @@ mission "Bactrian Unlock [1]: Pirates"
 mission "Bactrian Unlock [1]: Escorts"
 	invisible
 	landing
+	source Memory
 	to offer
-		has "Bactrian Unlock [0]: done"
+		has "Bactrian Unlock [1]: active"
 	to fail
 		or
 			has "Bactrian Unlock [3]: offered"
 			has "Bactrian Unlock [3-alt]: offered"
+	
 	npc escort kill
 		government Republic
 		personality heroic escort
-		ship "Mule (Heavy)" "D.S.S. Edison"
-		ship "Mule (Heavy)" "D.S.S. Tesla"
+		fleet
+			names "deep"
+			variant
+				"Mule (Heavy)" 2
+				"Aerie"
+				"Dagger" 2
+	
+	on offer
+		conversation
+			`You notice a group of Deep Security warships, two Mules and an Aerie, loading up on ammunition just outside of the spaceport. After thirty minutes they tell you that they are ready to launch and join in on the rescure mission.`
+				accept
 
 mission "Bactrian Unlock [1]: Reinforcements"
 	invisible
@@ -217,18 +236,21 @@ mission "Bactrian Unlock [1]: Reinforcements"
 		or
 			has "Bactrian Unlock [3]: offered"
 			has "Bactrian Unlock [3-alt]: offered"
-	on offer
-		conversation
-			`While landing on <planet> to refuel, Lieutenant Paris tells you that he is going to speak with the Navy officers here to see if they can supply a few ships to help. After about an hour, he returns and tells the fleet that there will be two Cruisers coming with them, resulting in a big cheer from the members of the fleet.`
-				accept
 	
 	npc escort kill
 		government Republic
 		personality heroic escort
 		fleet
+			names "republic capital"
+			fighters "republic fighter"
 			variant
 				"Cruiser" 2
 				"Combat Drone" 8
+	
+	on offer
+		conversation
+			`While landing on <planet> to refuel, you are approached by two Navy officers who ask if you are involved in the rescue mission. When you respond yes, they inform you that they will be bringing two Cruisers to assist in retrieving the Star Queen.`
+				accept
 
 mission "Bactrian Unlock [2]"
 	landing
@@ -240,7 +262,7 @@ mission "Bactrian Unlock [2]"
 	on offer
 		conversation
 			`The remaining fleet quickly enters the atmosphere of <planet> and begins scanning the surface. After about an hour of flying, you get a transmission that the ship has been found along with the location of the Star Queen.`
-			`	You watch from afar as the Corvette lands near a hangar in some sort of pirate facility. The Corvette immediately unloads what looks to be at least four dozen armed soldiers who quickly surround and breach the hangar. After about ten minutes, the hangar doors open and out rolls the Star Queen, still intact.`
+			`	You watch from afar as the Corvette lands near a hangar in some sort of pirate facility. The Corvette immediately unloads what looks to be at least four dozen armed soldiers who quickly surround and breach the hangar. After about ten minutes, the hangar doors open and out rolls the Star Queen, still intact. You hear chatter over the radio saying that most of the crew and scientists are still inside.`-
 			`	"Good job, everyone," you hear Lieutenant Paris say over the comms. "Now we just need to make it back to <destination> in one piece." Just as he says that and the Star Queen and Corvette begin activating their repulsor engines, a beam of light comes flying from the sky and cuts the Corvette in half. Soldiers begin scrambling into the Star Queen, which quickly takes off into space along with the rest of the fleet. You turn your repulsor engines to full and begin flying up into space behind them.`
 				launch
 	
