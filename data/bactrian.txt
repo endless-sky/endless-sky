@@ -180,7 +180,7 @@ mission "Bactrian Unlock [1]"
 		ship "Corvette (Speedy)" "D.S.S. Faraday"
 	
 	on visit
-		dialog `You have landed on <planet>, but you left the <npc> behind! Wait for it to enter the system before landing.`
+		dialog `You have landed on <planet>, but either you left the <npc> behind or you didn't pick up the rest of your escorts! Wait for the <npc> to enter the system before landing or make sure you have picked up the escorts on Memory and Farpoint.`
 
 mission "Bactrian Unlock [1]: Pirates"
 	invisible
