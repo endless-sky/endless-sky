@@ -8,28 +8,6 @@
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
-ship "Star Queen" "Star Queen (No Fuel)"
-	attributes
-		category "Transport"
-		"cost" 5500000
-		"shields" 4100
-		"hull" 2200
-		"required crew" 43
-		"bunks" 112
-		"mass" 230
-		"drag" 5.5
-		"heat dissipation" .65
-		"fuel capacity" 0
-		"cargo space" 60
-		"outfit space" 360
-		"weapon capacity" 120
-		"engine capacity" 100
-		weapon
-			"blast radius" 60
-			"shield damage" 600
-			"hull damage" 300
-			"hit force" 900
-
 mission "Bactrian Unlock [0]"
 	minor
 	name "Locate Missing Scientists"
@@ -89,7 +67,7 @@ mission "Bactrian Unlock [0]"
 				goto end
 	
 			label locate
-			`	`
+			`	"The Star Queen had heavy escorts that shouldn't have been easy to destroy, but seeing as how they were we need someone to forge ahead and find the Star Queen now while we assemble a proper rescue fleet. In a situation like this, every minute matters, and if someone like you can find the Star Queen fast then that means that there is a higher chance everyone can come out of this alive."`
 	
 			label end
 			choice
@@ -97,19 +75,10 @@ mission "Bactrian Unlock [0]"
 					accept
 				`	"Sorry, but this doesn't sound worth it to me."`
 					decline
-	
-	on accept
-		"reputation: Deep" = 1000
-	
-	npc save
-		personality fleeing uninterested waiting pacifist
-		system Arneb
-		government Deep
-		ship "Star Queen (No Fuel)" "D.S.S. Alcubierre"
-	
+
 	on enter Arneb
 		set "found star queen"
-		dialog "As you enter Arneb, you spot the Star Queen being escorted by a number of pirate vessels. You will need to report back to the Deep in order to retrieve the Star Queen in one piece."
+		dialog "As you enter Arneb, you spot the Star Queen landing on Haven, defended by a number of pirate vessels. You will need to report back to the Deep in order to retrieve the Star Queen in one piece."
 	
 	on visit
 		dialog "You have landed on <planet>, but you have not located the Star Queen! Find it somewhere in the Far North."
@@ -118,7 +87,6 @@ mission "Bactrian Unlock [0]"
 		has "found star queen"
 	
 	on complete
-		"reputation: Deep" = -1000
 		payment 100000
 
 mission "Bactrian Unlock [0]: Prime"
