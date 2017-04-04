@@ -894,7 +894,7 @@ mission "Wanderers: Mind 2"
 	blocked "To take this mission, you will need a bunk and two tons of cargo space free."
 	on offer
 		conversation
-			`On <planet> you are met by a Wanderer named Meto Pa'aret. He explains that he is in charge of the artificial intelligence lab, and he wants to travel with you along with the "Mind" that is being entrusted to your care. "We have already [altered, reconfigured] one of the climate [simulation, prediction] Minds for this new purpose," he says. "It now contains [stores, databases, libraries] of historical and cultural information, things we hope will help the alien [consciousness, intelligence] to [understand, sympathize with] us and realize our intentions are [peaceful, forthright]."`
+			`On <origin> you are met by a Wanderer named Meto Pa'aret. He explains that he is in charge of the artificial intelligence lab, and he wants to travel with you along with the "Mind" that is being entrusted to your care. "We have already [altered, reconfigured] one of the climate [simulation, prediction] Minds for this new purpose," he says. "It now contains [stores, databases, libraries] of historical and cultural information, things we hope will help the alien [consciousness, intelligence] to [understand, sympathize with] us and realize our intentions are [peaceful, forthright]."`
 			choice
 				`	"Are you sure that's wise, giving the Kor Mereti access to so much information about the Wanderers?"`
 				`	"How likely do you think this is to work?"`
@@ -1089,7 +1089,7 @@ mission "Wanderers: Mind 7"
 	on offer
 		event "wanderers: kor mereti transformation"
 		conversation
-			`The Wanderers back on <planet> are in a frenzy to know the outcome of the battle. Pa'aret tells you, "Less than a second after the Mind [made contact, merged] with the Mereti, it severed the [backdoor, failsafe] connection. So we have no [information, visibility] on what the Mind is doing or whether the Mereti [received, welcomed] it."`
+			`The Wanderers back on <origin> are in a frenzy to know the outcome of the battle. Pa'aret tells you, "Less than a second after the Mind [made contact, merged] with the Mereti, it severed the [backdoor, failsafe] connection. So we have no [information, visibility] on what the Mind is doing or whether the Mereti [received, welcomed] it."`
 			choice
 				`	"Most of the drones started fighting on our side. That seems like a good sign."`
 				`	"They've sealed up access to the Mind. There is no way we can get it back now."`
@@ -1237,7 +1237,7 @@ mission "Wanderers: Mentors 3"
 		has "Wanderers: Mentors 2: done"
 	on offer
 		conversation
-			`When you last left <planet>, there were less than a dozen buildings in the greenhouse facility. It has now grown to the size of a major spaceport, including some towers that are dozens of stories high. Some plants now grow on open-air terraces; others are in domed enclosures tall enough to house fully-grown trees. The larger domes also have birds flying about inside them, and some larger land animals as well. Everything is built of gleaming steel and glass and filled with lush vegetation; from high above the facility looks like a scattered handful of diamonds and emeralds.`
+			`When you last left <origin>, there were less than a dozen buildings in the greenhouse facility. It has now grown to the size of a major spaceport, including some towers that are dozens of stories high. Some plants now grow on open-air terraces; others are in domed enclosures tall enough to house fully-grown trees. The larger domes also have birds flying about inside them, and some larger land animals as well. Everything is built of gleaming steel and glass and filled with lush vegetation; from high above the facility looks like a scattered handful of diamonds and emeralds.`
 			`	The freighter you were escorting was full of professors and researchers, who are clearly not used to any sort of military discipline or to living in a dangerous region of space: the moment the freighter lands they fly off toward the greenhouse without bothering to wait for instructions from their supposed manager. Several of them are already engaged in conversation with the drones, while others are exploring the different rooms of the facility, examining plants and probing soil with their talons.`
 			`	The team's manager, already looking a bit overwhelmed, flies over to talk with you. "What are we [expected, requested] to do next?" he asks.`
 			choice
@@ -2403,7 +2403,7 @@ mission "Wanderers: Sestor: Kill Southern Remnant"
 			choice
 				`	"Of course, I would be glad to."`
 					goto end
-				`	"Of course. But first, what the hell was that bomb you had me drop on <planet>? It cracked the whole planet open."`
+				`	"Of course. But first, what the hell was that bomb you had me drop on Zenith? It cracked the whole planet open."`
 
 			`	Danforth sighs. "Unfortunately," he says, "I am not permitted to tell you what that weapon was or how we acquired it. And already news agencies throughout the Republic are questioning our use of such a terrible weapon. I wish we had been able to defeat the Kor Sestor fleet without resorting to such extreme measures, but we had no choice."`
 
