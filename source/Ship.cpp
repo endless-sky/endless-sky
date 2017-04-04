@@ -983,8 +983,8 @@ bool Ship::Move(list<Effect> &effects, list<shared_ptr<Flotsam>> &flotsam)
 		if(landingPlanet && zoom)
 		{
 			// Move the ship toward the center of the planet while landing.
-			if(GetTargetPlanet())
-				position = .97 * position + .03 * GetTargetPlanet()->Position();
+			if(GetTargetStellar())
+				position = .97 * position + .03 * GetTargetStellar()->Position();
 			zoom -= .02;
 			if(zoom < 0.)
 			{
@@ -997,7 +997,7 @@ bool Ship::Move(list<Effect> &effects, list<shared_ptr<Flotsam>> &flotsam)
 					for(const StellarObject &object : currentSystem->Objects())
 						if(object.GetPlanet() == landingPlanet)
 							position = object.Position();
-					SetTargetPlanet(nullptr);
+					SetTargetStellar(nullptr);
 					landingPlanet = nullptr;
 				}
 				else if(!isSpecial || personality.IsFleeing())
@@ -1011,7 +1011,7 @@ bool Ship::Move(list<Effect> &effects, list<shared_ptr<Flotsam>> &flotsam)
 				|| !landingPlanet || !landingPlanet->HasSpaceport())
 		{
 			zoom = min(1., zoom + .02);
-			SetTargetPlanet(nullptr);
+			SetTargetStellar(nullptr);
 			landingPlanet = nullptr;
 		}
 		else
@@ -1029,7 +1029,7 @@ bool Ship::Move(list<Effect> &effects, list<shared_ptr<Flotsam>> &flotsam)
 		// If you're disabled, you can't initiate landing or jumping.
 	}
 	else if(commands.Has(Command::LAND) && CanLand())
-		landingPlanet = GetTargetPlanet()->GetPlanet();
+		landingPlanet = GetTargetStellar()->GetPlanet();
 	else if(commands.Has(Command::JUMP))
 	{
 		hyperspaceType = CheckHyperspace();
@@ -1586,16 +1586,16 @@ bool Ship::IsLanding() const
 // Check if this ship is currently able to begin landing on its target.
 bool Ship::CanLand() const
 {
-	if(!GetTargetPlanet() || !GetTargetPlanet()->GetPlanet() || isDisabled || IsDestroyed())
+	if(!GetTargetStellar() || !GetTargetStellar()->GetPlanet() || isDisabled || IsDestroyed())
 		return false;
 	
-	if(!GetTargetPlanet()->GetPlanet()->CanLand(*this))
+	if(!GetTargetStellar()->GetPlanet()->CanLand(*this))
 		return false;
 	
-	Point distance = GetTargetPlanet()->Position() - position;
+	Point distance = GetTargetStellar()->Position() - position;
 	double speed = velocity.Length();
 	
-	return (speed < 1. && distance.Length() < GetTargetPlanet()->Radius());
+	return (speed < 1. && distance.Length() < GetTargetStellar()->Radius());
 }
 
 
@@ -1836,7 +1836,7 @@ void Ship::WasCaptured(const shared_ptr<Ship> &capturer)
 	// Set the capturer as this ship's parent.
 	SetParent(capturer);
 	SetTargetShip(shared_ptr<Ship>());
-	SetTargetPlanet(nullptr);
+	SetTargetStellar(nullptr);
 	SetTargetSystem(nullptr);
 	shipToAssist.reset();
 	commands.Clear();
@@ -2379,7 +2379,7 @@ shared_ptr<Ship> Ship::GetShipToAssist() const
 
 
 
-const StellarObject *Ship::GetTargetPlanet() const
+const StellarObject *Ship::GetTargetStellar() const
 {
 	return targetPlanet;
 }
@@ -2429,7 +2429,7 @@ void Ship::SetShipToAssist(const shared_ptr<Ship> &ship)
 
 
 
-void Ship::SetTargetPlanet(const StellarObject *object)
+void Ship::SetTargetStellar(const StellarObject *object)
 {
 	targetPlanet = object;
 }

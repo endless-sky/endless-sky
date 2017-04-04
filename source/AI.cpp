@@ -923,7 +923,7 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 		return;
 	}
 	
-	if(!ship.GetTargetSystem() && !ship.GetTargetPlanet() && !ship.GetPersonality().IsStaying())
+	if(!ship.GetTargetSystem() && !ship.GetTargetStellar() && !ship.GetPersonality().IsStaying())
 	{
 		int jumps = ship.JumpsRemaining();
 		// Each destination system has an average priority of 10.
@@ -985,7 +985,7 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 		else
 		{
 			choice = (choice - systemTotalWeight) / planetWeight;
-			ship.SetTargetPlanet(planets[choice]);
+			ship.SetTargetStellar(planets[choice]);
 		}
 	}
 	
@@ -1003,18 +1003,18 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 		if(!mustWait)
 			command |= Command::JUMP;
 	}
-	else if(ship.GetTargetPlanet())
+	else if(ship.GetTargetStellar())
 	{
 		MoveToPlanet(ship, command);
 		if(!ship.GetPersonality().IsStaying() && ship.Attributes().Get("fuel capacity"))
 			command |= Command::LAND;
-		else if(ship.Position().Distance(ship.GetTargetPlanet()->Position()) < 100.)
-			ship.SetTargetPlanet(nullptr);
+		else if(ship.Position().Distance(ship.GetTargetStellar()->Position()) < 100.)
+			ship.SetTargetStellar(nullptr);
 	}
 	else if(ship.GetPersonality().IsStaying() && ship.GetSystem()->Objects().size())
 	{
 		unsigned i = Random::Int(ship.GetSystem()->Objects().size());
-		ship.SetTargetPlanet(&ship.GetSystem()->Objects()[i]);
+		ship.SetTargetStellar(&ship.GetSystem()->Objects()[i]);
 	}
 }
 
@@ -1027,7 +1027,7 @@ void AI::MoveEscort(Ship &ship, Command &command) const
 	bool isStaying = ship.GetPersonality().IsStaying() || !hasFuelCapacity;
 	bool parentIsHere = (ship.GetSystem() == parent.GetSystem());
 	// Check if the parent has a target planet that is in the parent's system.
-	const Planet *parentPlanet = (parent.GetTargetPlanet() ? parent.GetTargetPlanet()->GetPlanet() : nullptr);
+	const Planet *parentPlanet = (parent.GetTargetStellar() ? parent.GetTargetStellar()->GetPlanet() : nullptr);
 	bool planetIsHere = (parentPlanet && parentPlanet->IsInSystem(parent.GetSystem()));
 	// If an escort is out of fuel, they should refuel without waiting for the
 	// "parent" to land (because the parent may not be planning on landing).
@@ -1035,7 +1035,7 @@ void AI::MoveEscort(Ship &ship, Command &command) const
 		Refuel(ship, command);
 	else if(!parentIsHere && !isStaying)
 	{
-		if(!ship.HyperspaceType() && !ship.GetTargetPlanet())
+		if(!ship.HyperspaceType() && !ship.GetTargetStellar())
 		{
 			// If we're stranded and haven't decided where to go, figure out a
 			// path to the parent ship's system.
@@ -1045,17 +1045,17 @@ void AI::MoveEscort(Ship &ship, Command &command) const
 			for(const StellarObject &object : from->Objects())
 				if(object.GetPlanet() && object.GetPlanet()->WormholeDestination(from) == to)
 				{
-					ship.SetTargetPlanet(&object);
+					ship.SetTargetStellar(&object);
 					break;
 				}
 			ship.SetTargetSystem(to);
 			// Check if we need to refuel. Wormhole travel does not require fuel.
-			if(!ship.GetTargetPlanet() && (!to || 
+			if(!ship.GetTargetStellar() && (!to || 
 					(from->HasFuelFor(ship) && !to->HasFuelFor(ship) && ship.JumpsRemaining() == 1)))
 				Refuel(ship, command);
 		}
 		// Perform the action that this ship previously decided on.
-		if(ship.GetTargetPlanet())
+		if(ship.GetTargetStellar())
 		{
 			MoveToPlanet(ship, command);
 			command |= Command::LAND;
@@ -1068,7 +1068,7 @@ void AI::MoveEscort(Ship &ship, Command &command) const
 	}
 	else if(parent.Commands().Has(Command::LAND) && parentIsHere && planetIsHere && parentPlanet->CanLand(ship))
 	{
-		ship.SetTargetPlanet(parent.GetTargetPlanet());
+		ship.SetTargetStellar(parent.GetTargetStellar());
 		MoveToPlanet(ship, command);
 		if(parent.IsLanding() || parent.CanLand())
 			command |= Command::LAND;
@@ -1097,10 +1097,10 @@ void AI::MoveEscort(Ship &ship, Command &command) const
 
 void AI::Refuel(Ship &ship, Command &command)
 {
-	const StellarObject *parentTarget = (ship.GetParent() ? ship.GetParent()->GetTargetPlanet() : nullptr);
+	const StellarObject *parentTarget = (ship.GetParent() ? ship.GetParent()->GetTargetStellar() : nullptr);
 	if(CanRefuel(ship, parentTarget))
-		ship.SetTargetPlanet(parentTarget);
-	else if(!CanRefuel(ship, ship.GetTargetPlanet()))
+		ship.SetTargetStellar(parentTarget);
+	else if(!CanRefuel(ship, ship.GetTargetStellar()))
 	{
 		double closest = numeric_limits<double>::infinity();
 		for(const StellarObject &object : ship.GetSystem()->Objects())
@@ -1109,12 +1109,12 @@ void AI::Refuel(Ship &ship, Command &command)
 				double distance = ship.Position().Distance(object.Position());
 				if(distance < closest)
 				{
-					ship.SetTargetPlanet(&object);
+					ship.SetTargetStellar(&object);
 					closest = distance;
 				}
 			}
 	}
-	if(ship.GetTargetPlanet())
+	if(ship.GetTargetStellar())
 	{
 		MoveToPlanet(ship, command);
 		command |= Command::LAND;
@@ -1170,11 +1170,11 @@ double AI::TurnToward(const Ship &ship, const Point &vector)
 
 bool AI::MoveToPlanet(Ship &ship, Command &command)
 {
-	if(!ship.GetTargetPlanet())
+	if(!ship.GetTargetStellar())
 		return false;
 	
-	const Point &target = ship.GetTargetPlanet()->Position();
-	return MoveTo(ship, command, target, ship.GetTargetPlanet()->Radius(), 1.);
+	const Point &target = ship.GetTargetStellar()->Position();
+	return MoveTo(ship, command, target, ship.GetTargetStellar()->Radius(), 1.);
 }
 
 
@@ -1532,12 +1532,12 @@ void AI::DoSurveillance(Ship &ship, Command &command) const
 		command |= Command::JUMP;
 		command |= Command::DEPLOY;
 	}
-	else if(ship.GetTargetPlanet())
+	else if(ship.GetTargetStellar())
 	{
 		MoveToPlanet(ship, command);
-		double distance = ship.Position().Distance(ship.GetTargetPlanet()->Position());
+		double distance = ship.Position().Distance(ship.GetTargetStellar()->Position());
 		if(distance < atmosphereScan && !Random::Int(100))
-			ship.SetTargetPlanet(nullptr);
+			ship.SetTargetStellar(nullptr);
 		else
 			command |= Command::LAND;
 	}
@@ -1608,7 +1608,7 @@ void AI::DoSurveillance(Ship &ship, Command &command) const
 		{
 			index -= targetShips.size();
 			if(index < targetPlanets.size())
-				ship.SetTargetPlanet(targetPlanets[index]);
+				ship.SetTargetStellar(targetPlanets[index]);
 			else
 				ship.SetTargetSystem(targetSystems[index - targetPlanets.size()]);
 		}
@@ -2076,7 +2076,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 			if(object.GetPlanet() && object.GetPlanet()->WormholeDestination(ship.GetSystem()) == system)
 			{
 				isWormhole = true;
-				ship.SetTargetPlanet(&object);
+				ship.SetTargetStellar(&object);
 				break;
 			}
 		if(!isWormhole)
@@ -2148,7 +2148,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 		{
 			for(const StellarObject &object : system->Objects())
 				if(object.GetPlanet() == bestDestination)
-					ship.SetTargetPlanet(&object);
+					ship.SetTargetStellar(&object);
 		}
 	}
 	wasHyperspacing = ship.IsEnteringHyperspace();
@@ -2247,7 +2247,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 		if(!message.empty())
 			Audio::Play(Audio::Get("fail"));
 		
-		const StellarObject *target = ship.GetTargetPlanet();
+		const StellarObject *target = ship.GetTargetStellar();
 		if(target && ship.Position().Distance(target->Position()) < target->Radius())
 		{
 			// Special case: if there are two planets in system and you have one
@@ -2268,7 +2268,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 						next = &object;
 						break;
 					}
-					else if(&object == ship.GetTargetPlanet())
+					else if(&object == ship.GetTargetStellar())
 						found = true;
 				}
 			if(!next)
@@ -2280,11 +2280,11 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 						break;
 					}
 			}
-			ship.SetTargetPlanet(next);
+			ship.SetTargetStellar(next);
 			
 			if(next->GetPlanet() && !next->GetPlanet()->CanLand())
 			{
-				message = "The authorities on this " + ship.GetTargetPlanet()->GetPlanet()->Noun() +
+				message = "The authorities on this " + ship.GetTargetStellar()->GetPlanet()->Noun() +
 					" refuse to clear you to land here.";
 				Audio::Play(Audio::Get("fail"));
 			}
@@ -2310,11 +2310,11 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 					
 						if(distance < closest)
 						{
-							ship.SetTargetPlanet(&object);
+							ship.SetTargetStellar(&object);
 							closest = distance;
 						}
 					}
-				target = ship.GetTargetPlanet();
+				target = ship.GetTargetStellar();
 			}
 			if(!target)
 			{
@@ -2323,7 +2323,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 			}
 			else if(!target->GetPlanet()->CanLand())
 			{
-				message = "The authorities on this " + ship.GetTargetPlanet()->GetPlanet()->Noun() +
+				message = "The authorities on this " + ship.GetTargetStellar()->GetPlanet()->Noun() +
 					" refuse to clear you to land here.";
 				Audio::Play(Audio::Get("fail"));
 			}
@@ -2441,7 +2441,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 	}
 	
 	// Clear "stuck" keys if actions can't be performed.
-	if(keyStuck.Has(Command::LAND) && !ship.GetTargetPlanet())
+	if(keyStuck.Has(Command::LAND) && !ship.GetTargetStellar())
 		keyStuck.Clear(Command::LAND);
 	if(keyStuck.Has(Command::JUMP) && !(ship.GetTargetSystem() || isWormhole))
 		keyStuck.Clear(Command::JUMP);
