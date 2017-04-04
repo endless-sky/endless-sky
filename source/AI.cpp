@@ -311,6 +311,7 @@ void AI::Step(const PlayerInfo &player)
 		}
 		
 		const Government *gov = it->GetGovernment();
+		double health = .5 * it->Shields() + it->Hull();
 		bool isPresent = (it->GetSystem() == player.GetSystem());
 		bool isStranded = IsStranded(*it);
 		bool thisIsLaunching = (isLaunching && it->GetSystem() == player.GetSystem());
@@ -381,6 +382,9 @@ void AI::Step(const PlayerInfo &player)
 				// Ships other than escorts should deploy fighters if disabled.
 				if(!it->IsYours() || thisIsLaunching)
 					it->SetCommands(Command::DEPLOY);
+				// Avoid jettisoning cargo as soon as this ship is repaired.
+				double &threshold = appeasmentThreshold[it.get()];
+				threshold = max((1. - health) + .1, threshold);
 				continue;
 			}
 		}
@@ -473,7 +477,6 @@ void AI::Step(const PlayerInfo &player)
 		}
 		
 		// Special actions when a ship is near death:
-		double health = .5 * it->Shields() + it->Hull();
 		if(health < 1.)
 		{
 			if(parent && personality.IsCoward())
