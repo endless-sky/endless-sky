@@ -1445,7 +1445,7 @@ mission "FW Bloodsea 1.1B"
 	
 	on offer
 		conversation
-			`You stop on <origin>, and wait as more supplies are loaded onto the two Behemoths you are escorting. Your final stop is <planet>. Alondo thought it likely that some pirates would try to intercept your convoy and steal its cargo, but as long as both freighters land on the planet without being captured or destroyed, you will be able to begin the construction project and thus meet the demands of the people on <planet> to convince them to join the Free Worlds.`
+			`You stop on <origin>, and wait as more supplies are loaded onto the two Behemoths you are escorting. Your final stop is <planet>. Alondo thought it's likely that some pirates would try to intercept your convoy and steal its cargo, but as long as both freighters land on the planet without being captured or destroyed, you will be able to begin the construction project and thus meet the demands of the people on <planet> to convince them to join the Free Worlds.`
 				accept
 	
 	npc accompany save
