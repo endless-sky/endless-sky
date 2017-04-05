@@ -269,7 +269,7 @@ mission "Bactrian Unlock [2]"
 		dialog "As your repulsor engines roar, you notice a large pirate ship looming over you from space. Even from the underside, it is undeniably a Bactrian, but as to how a pirate could ever got ahold of one is a mystery."
 		dialog `	You receive a transmission from Lieutenant Paris. "I don't know how they have a Bactrian, but I suggest we jump out of here immediately and make it back to the Deep alive."`
 	
-	npc save escort accompany
+	npc save accompany
 		personality timid escort
 		government Republic
 		ship "Star Queen" "D.S.S. Alcubierre"
@@ -366,7 +366,7 @@ mission "Bactrian Unlock [3-alt]"
 			`As you land near the Star Queen, you can see the passengers of the ship being escorted off of it and individually checked to make sure everyone is fine. Sadly, you also notice a number of body bags next to the ship, likely from scientists or crew that were found dead on the ship.`
 			`	Lieutenant Paris is waiting for you outside of your ship, and hands you another 100,000 credits when you walk up to him.`
 			`	"Thanks for all the help, Captain <last>. We couldn't have done it without you."`
-			`	Paris looks back to the Star Queen, and you canoverhear talk on the status of the passengers and crew.. "Sarah, Nicole, Abby..." the list of names goes on for about two dozen more, most of which sound female. "...and Benjamin are all either missing or were found dead on board. The surviving crew tells us that some were killed when they were captured or thrown out the airlock for struggling, but most of the others were either killed or dragged off at the facility."`
+			`	Paris looks back to the Star Queen, and you can overhear talk on the status of the passengers and crew.. "Sarah, Nicole, Abby..." the list of names goes on for about two dozen more, most of which sound female. "...and Benjamin are all either missing or were found dead on board. The surviving crew tells us that some were killed when they were captured or thrown out the airlock for struggling, but most of the others were either killed or dragged off at the facility."`
 			`	The entire time you noticed Paris holding back tears, his face becoming more and more strained with each passing name. After they are done listing the dead or missing, he turns to you and hands you a license.`
 			`	"Thank you. I've said it before, but there's really no way I can thank you enough."`
 			`	You look down at the license that Paris just handed you and notice that it's a city-ship license, one that will allow you to purchase the Bactrian. "I think it's only fair that you be able to purchase the Bactrian after having to fight one to the death. It's really the least I could do for you."`
