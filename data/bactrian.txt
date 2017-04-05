@@ -20,13 +20,13 @@ mission "Bactrian Unlock [0]"
 		has "Smuggler's Den, Part 2: done"
 		has "Expedition to Hope 2: done"
 		has "WR Star 1: done"
-		has "Rescure Miners 2: done"
+		has "Rescue Miners 2: done"
 		has "Humanitarian 2: done"
 		has "Terraforming 5: done"
 	on offer
 		conversation
 			`While you are watching one of the telescreens in a restaurant located in the spaceport, you are approached by a man and a woman, both wearing Deep Security uniforms.`
-			`	"Hello. Are you <first> <last>?" the man asks`
+			`	"Hello. Are you <first> <last>?" the man asks.`
 			choice
 				`	"Yes I am. Is there something you need?"`
 					goto named
@@ -36,7 +36,7 @@ mission "Bactrian Unlock [0]"
 				decline
 	
 			label named
-			`	"We were wondering if you would be able to assist us. We have a record of you having assisted in a number of humanitarian ventures before."`
+			`	"We were wondering if you would be able to help us. We have a record of you having assisted in a number of humanitarian ventures before."`
 			`	The woman pulls out a tablet of some sort and begins reading from it. "Helping to terraform Rand, rescuing miners on a Syndicate world, transporting a few scientists conducting research on Hope." She continues on to mention a few more situations that you were involved in and finally ends on you helping Joe and Maria off of Smuggler's Den, although she doesn't mention them by name.`
 			`	The man begins speaking to you after the woman stops. "Rather impressive work, I might say."`
 			choice
@@ -54,7 +54,7 @@ mission "Bactrian Unlock [0]"
 			`	"Besides," the woman chimes in, "what do you expect after having been involved in the war?" The man begins to tell you about the mission.`
 	
 			label mission
-			`	"We need you to find a Star Queen that recently went missing in the Far North region and return to <destination> once you have located it. Aboard this Star Queen was a number of top scientists intending to do research on the Wolf-Rayet star in Gorvi, which, due to its proximity to the northern anarchist worlds, has very little known about it."`
+			`	"We need you to find a Star Queen that recently went missing in the Far North region and return to <destination> once you have located it. Aboard this Star Queen were a number of top scientists intending to do research on the Wolf-Rayet star in Gorvi, which, due to its proximity to the northern anarchist worlds, has very little known about it."`
 			`	"We received word yesterday that just after refueling on Prime, a large pirate fleet entered the system. The Star Queen's escorts were sadly destroyed." He chokes up a bit. "The pirates boarded and took control of the Star Queen. We then lost all connection to the vessel, so we're in the dark as to where it went from there." He takes a moment to collect himself after telling you the situation.`
 			choice
 				`	"I would be glad to help. I'll prepare my ship immediately."`
@@ -170,14 +170,14 @@ mission "Bactrian Unlock [1]"
 				`	"I would rather let the professionals handle things. Good luck."`
 					decline
 			
-			`	"Thank you so much. We'll be rendezvousing with a number of warships on Memory, and I've also sent word to the Navy on Farpoint that we may be needing help. After that we'll head out to Arneb, but just make sure that the D.S.S. Faraday Corvette makes it onto the planet. The landing crew will be on that ship. Just launch whenever you're ready to fight."`
-			`	The man starts talking into some communication device that he took from his belt, giving orders to the fleet that will be joining you on the mission, then puts the device back on his waist and looks to you. "Also, since we'll be going into battle together, I might as well introduce myself. I'm Deep Lieutenant Shane Paris. Good luck fighting."`
+			`	"Thank you so much. We'll be rendezvousing with a number of warships on Memory, and I've also sent word to the Navy on Farpoint that we may be needing help. After that we'll head out to Arneb, but just make sure that the Mule `D.S.S. Faraday` makes it onto the planet. The landing crew will be on that ship. Just launch whenever you're ready to fight."`
+			`	The man starts talking into a communication device that he takes from his belt, giving orders to the fleet that will be joining you on the mission, then puts the device back on his waist and looks to you. "Also, since we'll be going into battle together, I might as well introduce myself. I'm Deep Lieutenant Shane Paris. Good luck fighting."`
 				accept
 	
 	npc save escort accompany
 		government Republic
 		personality heroic escort
-		ship "Corvette (Speedy)" "D.S.S. Faraday"
+		ship "Mule (Heavy)" "D.S.S. Faraday"
 	
 	on visit
 		dialog `You have landed on <planet>, but either you left the <npc> behind or you didn't pick up the rest of your escorts! Wait for the <npc> to enter the system before landing or make sure you have picked up the escorts on Memory and Farpoint.`
@@ -211,19 +211,18 @@ mission "Bactrian Unlock [1]: Escorts"
 			has "Bactrian Unlock [3]: offered"
 			has "Bactrian Unlock [3-alt]: offered"
 	
-	npc escort kill
+	npc kill
 		government Republic
 		personality heroic escort
 		fleet
 			names "deep"
 			variant
-				"Mule (Heavy)" 2
-				"Aerie"
-				"Dagger" 2
+				"Aerie" 3
+				"Dagger" 6
 	
 	on offer
 		conversation
-			`You notice a group of Deep Security warships, two Mules and an Aerie, loading up on ammunition just outside of the spaceport. After thirty minutes they tell you that they are ready to launch and join in on the rescure mission.`
+			`You notice a group of Deep Security warships, three Aeries and their fighter squadron, loading up on ammunition just outside of the spaceport. After thirty minutes they tell you that they are ready to launch and join in on the rescure mission.`
 				accept
 
 mission "Bactrian Unlock [1]: Reinforcements"
@@ -237,7 +236,7 @@ mission "Bactrian Unlock [1]: Reinforcements"
 			has "Bactrian Unlock [3]: offered"
 			has "Bactrian Unlock [3-alt]: offered"
 	
-	npc escort kill
+	npc kill
 		government Republic
 		personality heroic escort
 		fleet
@@ -262,8 +261,8 @@ mission "Bactrian Unlock [2]"
 	on offer
 		conversation
 			`The remaining fleet quickly enters the atmosphere of <planet> and begins scanning the surface. After about an hour of flying, you get a transmission that the ship has been found along with the location of the Star Queen.`
-			`	You watch from afar as the Corvette lands near a hangar in some sort of pirate facility. The Corvette immediately unloads what looks to be at least three dozen armed soldiers who quickly surround and breach the hangar. After about ten minutes, the hangar doors open to reveal Star Queen, still intact. You hear chatter over the radio saying that most of the crew and scientists are still inside.`
-			`	"Good job, everyone," you hear Lieutenant Paris say over the comms. "Now we just need to make it back to <destination> in one piece." Just as he says that and the Star Queen and Corvette begin activating their repulsor engines, a beam of light comes flying from the sky and cuts the Corvette in half. Soldiers begin scrambling into the Star Queen, which quickly takes off into space along with the rest of the fleet. You turn your repulsor engines to full and begin flying up into space behind them.`
+			`	You watch from afar as the Mule lands near a hangar in some sort of pirate facility. The Mule immediately unloads what looks to be at least four dozen armed soldiers who quickly surround and breach the hangar. After about ten minutes, the hangar doors open to reveal Star Queen, still intact. You hear chatter over the radio saying that most of the crew and scientists are still inside.`
+			`	"Good job, everyone," you hear Lieutenant Paris say over the comms. "Now we just need to make it back to <destination> in one piece." Just as he says that and the Star Queen and Mule begin activating their repulsor engines, a heavy laser beam pierces the sky, slicing the Mule in half while its shields are down. Soldiers begin scrambling into the Star Queen, which quickly takes off into space along with the rest of the fleet. You turn your repulsor engines to full and begin flying up into space behind them.`
 				launch
 	
 	on enter
@@ -323,7 +322,7 @@ mission "Bactrian Unlock [3]"
 			`As you land near the Star Queen, you can see the passengers of the ship being escorted off of it and individually checked to make sure everyone is fine. Sadly, you also notice a number of body bags next to the ship, likely from scientists or crew that were found dead on the ship.`
 			`	Lieutenant Paris is waiting for you outside of your ship, and hands you another 100,000 credits when you walk up to him.`
 			`	"Thanks for all the help, Captain <last>. We couldn't have done it without you."`
-			`	Paris looks back to the Star Queen, and you can overhear talk of who survived and who died. "Sarah, Nicole, Abby..." the list of names goes on for about two dozen more, most of which sound female. "...and Benjamin are all either missing or were found dead on board. The surviving crew tells us that some were killed when they were captured or thrown out the airlock for struggling, but most of the others were either killed or dragged off at the facility."`
+			`	Paris looks back to the Star Queen, and you can overhear talk on the status of the passengers and crew. "Sarah, Nicole, Abby..." the list of names goes on for about two dozen more, most of which sound female. "...and Benjamin are all either missing or were found dead on board. The surviving crew tells us that some were killed when they were captured or thrown out the airlock for struggling, but most of the others were either killed or dragged off at the facility."`
 			`	The entire time you noticed Paris holding back tears, his face becoming more and more strained with each passing name. After they are done listing the dead or missing, he talks to you in a rather strained voice. "I want you to return to Arneb and take out every single one of those pirates that are left. Especially the Bactrian. We try to keep Bactrians out of unworthy hands, so whenever a pirate gets ahold of one we make sure we destroy it immediately. Seeing as how we're going to be busy here for a while, you need to destroy it."`
 			choice
 				`	"I'll make sure it gets done, Lieutenant."`
