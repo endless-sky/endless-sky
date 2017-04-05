@@ -170,7 +170,7 @@ mission "Bactrian Unlock [1]"
 				`	"I would rather let the professionals handle things. Good luck."`
 					decline
 			
-			`	"Thank you so much. We'll be rendezvousing with a number of warships on Memory, and I've also sent word to the Navy on Farpoint that we may be needing help. After that we'll head out to Arneb, but just make sure that the Mule `D.S.S. Faraday` makes it onto the planet. The landing crew will be on that ship. Just launch whenever you're ready to fight."`
+			`	"Thank you so much. We'll be rendezvousing with a number of warships on Memory, and I've also sent word to the Navy on Farpoint that we may be needing help. After that we'll head out to Arneb, but just make sure that the Mule 'D.S.S. Faraday' makes it onto the planet. The landing crew will be on that ship. Just launch whenever you're ready to fight."`
 			`	The man starts talking into a communication device that he takes from his belt, giving orders to the fleet that will be joining you on the mission, then puts the device back on his waist and looks to you. "Also, since we'll be going into battle together, I might as well introduce myself. I'm Deep Lieutenant Shane Paris. Good luck fighting."`
 				accept
 	
