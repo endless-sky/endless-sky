@@ -138,7 +138,7 @@ mission "Bactrian Unlock [0]: Haven"
 		has "Bactrian Unlock [0]: active"
 	on offer
 		conversation
-			`You spend a few hours scanning the surface of the planet in an attempt to find the Star Queen, but nothing comes up. It will likely require military-grade scanners in order to find the ship, which Lieutenant Paris will undoubtedly have.`
+			`You spend a few hours scanning the surface of the planet in an attempt to find the Star Queen, but nothing comes up. It will likely require military-grade scanners in order to find the ship, which the Deep Security will undoubtedly have.`
 				decline
 
 mission "Bactrian Unlock [1]"
