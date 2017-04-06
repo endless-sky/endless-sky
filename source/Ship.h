@@ -233,6 +233,8 @@ public:
 	int JumpsRemaining() const;
 	// Get the amount of fuel expended per jump.
 	double JumpFuel() const;
+	// Get the amount of fuel missing for the next jump (smart refuelling)
+	double JumpFuelMissing() const;
 	// Get the heat level at idle.
 	double IdleHeat() const;
 	// Calculate the multiplier for cooling efficiency.
