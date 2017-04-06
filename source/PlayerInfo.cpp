@@ -1286,11 +1286,13 @@ void PlayerInfo::UpdateCargoCapacities()
 {
 	int size = 0;
 	int bunks = 0;
+	flagship = FlagshipPtr();
 	for(const shared_ptr<Ship> &ship : ships)
 		if(ship->GetSystem() == system && !ship->IsParked() && !ship->IsDisabled())
 		{
 			size += ship->Attributes().Get("cargo space");
-			bunks += ship->Attributes().Get("bunks") - ship->Crew();
+			int crew = (ship == flagship ? ship->Crew() : ship->RequiredCrew());
+			bunks += ship->Attributes().Get("bunks") - crew;
 		}
 	cargo.SetSize(size);
 	cargo.SetBunks(bunks);
