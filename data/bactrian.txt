@@ -131,6 +131,16 @@ mission "Bactrian Unlock [0]: Pirates"
 		ship "Leviathan (Laser)" "His Right Hand"
 		ship "Leviathan (Laser)" "His Left Hand"
 
+mission "Bactrian Unlock [0]: Haven"
+	landing
+	source Haven
+	to offer
+		has "Bactrian Unlock [0]: active"
+	on offer
+		conversation
+			`You spend a few hours scanning the surface of the planet in an attempt to find the Star Queen, but nothing comes up. It will likely require military-grade scanners in order to find the ship, which Lieutenant Paris will undoubtedly have.`
+				decline
+
 mission "Bactrian Unlock [1]"
 	name "Secure the Scientists"
 	description "Now that you have located the Scientists and their Star Queen, return to <destination> with the Deep escorts and retrieve it."
