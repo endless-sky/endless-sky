@@ -1331,7 +1331,7 @@ shared_ptr<Ship> Ship::Board(bool autoPlunder)
 		if(!victim->JumpsRemaining() && CanRefuel(*victim))
 		{
 			helped = true;
-			TransferFuel(victim->JumpFuel(), victim.get());
+			TransferFuel(victim->JumpFuelMissing(), victim.get());
 		}
 		if(helped)
 		{
@@ -1797,7 +1797,7 @@ void Ship::Recharge(bool atSpaceport)
 
 bool Ship::CanRefuel(const Ship &other) const
 {
-	return (fuel - other.JumpFuel() >= JumpFuel());
+	return (fuel - JumpFuel() >= other.JumpFuelMissing());
 }
 
 
@@ -1909,6 +1909,16 @@ double Ship::JumpFuel() const
 	return attributes.Get("jump drive") ? 200. :
 		attributes.Get("scram drive") ? 150. : 
 		attributes.Get("hyperdrive") ? 100. : 0.;
+}
+
+
+
+double Ship::JumpFuelMissing() const
+{
+	// Used for smart refuelling: transfer only as much as really needed
+	// includes checking if fuel cap is high enough at all
+	if(!JumpsRemaining() && attributes.Get("fuel capacity") > JumpFuel())
+		return JumpFuel() - fuel;
 }
 
 
