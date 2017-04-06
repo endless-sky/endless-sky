@@ -17,6 +17,7 @@ mission "Bactrian Unlock [0]"
 	destination Valhalla
 	waypoint Betelgeuse
 	to offer
+		random < 25
 		has "Smuggler's Den, Part 2: done"
 		has "Expedition to Hope 2: done"
 		has "WR Star 1: done"
@@ -26,16 +27,12 @@ mission "Bactrian Unlock [0]"
 	on offer
 		conversation
 			`While you are watching one of the telescreens in a restaurant located in the spaceport, you are approached by a man and a woman, both wearing Deep Security uniforms.`
-			`	"Hello. Are you <first> <last>?" the man asks.`
+			`	"Hello <first> <last>. Do you have time to talk?" the man asks.`
 			choice
-				`	"Yes I am. Is there something you need?"`
-					goto named
-				`	"Sorry, but I'm not the person you're looking for."`
-				
-			`	The man looks a little embarrassed after you say that. "Alright. Sorry for bothering you." The two make their way out of the restaurant and you return to watching the telescreen.`
-				decline
-	
-			label named
+				`	"I do. What do you need?"`
+				`	"Sorry, but I'm busy right now."`
+					defer
+					
 			`	"We were wondering if you would be able to help us. We have a record of you having assisted in a number of humanitarian ventures before."`
 			`	The woman pulls out a tablet of some sort and begins reading from it. "Helping to terraform Rand, rescuing miners on a Syndicate world, transporting a few scientists conducting research on Hope." She continues on to mention a few more situations that you were involved in and finally ends on you helping Joe and Maria off of Smuggler's Den, although she doesn't mention them by name.`
 			`	The man begins speaking to you after the woman stops. "Rather impressive work, I might say."`
@@ -174,7 +171,7 @@ mission "Bactrian Unlock [1]"
 			`	The man starts talking into a communication device that he takes from his belt, giving orders to the fleet that will be joining you on the mission, then puts the device back on his waist and looks to you. "Also, since we'll be going into battle together, I might as well introduce myself. I'm Deep Lieutenant Shane Paris. Good luck fighting."`
 				accept
 	
-	npc save escort accompany
+	npc save accompany
 		government Republic
 		personality heroic escort
 		ship "Mule (Heavy)" "D.S.S. Faraday"
