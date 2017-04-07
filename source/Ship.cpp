@@ -1919,6 +1919,7 @@ double Ship::JumpFuelMissing() const
 	// includes checking if fuel cap is high enough at all
 	if(!JumpsRemaining() && attributes.Get("fuel capacity") > JumpFuel())
 		return JumpFuel() - fuel;
+	return 0.;
 }
 
 
