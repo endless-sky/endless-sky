@@ -22610,7 +22610,7 @@ planet Asgard
 		fleet "Large Deep" 39
 
 planet "Ashy Reach"
-	attributes kimek shipping
+	attributes kimek shipping moon
 	landscape land/canyon2
 	description `The thin, unbreathable atmosphere and low gravity mean that Ashy Reach will never become popular as a residential world, but it serves a useful role as a hub for shipping and commercial exchange. There is only one settlement here, built around the spaceport, and consisting mostly of pressurized underground caverns. Outside the settlement, the planet's surface is drab and almost lifeless.`
 	spaceport `Only a handful of towers, most of them windowless, protrude above the planet's surface at the center of the spaceport settlement. The hangars and warehouses are all underground. The surface is visible through a few thick acrylic polymer windows on the lower levels of the towers. Lit by the glow of the gas giant that this moon orbits, the towers form a surreal landscape, like a city abandoned and only halfway formed.`
@@ -24245,7 +24245,7 @@ planet Mutiny
 	security 0
 
 planet Mystery
-	attributes saryd
+	attributes saryd moon
 	landscape land/canyon05
 	description `The Saryd culture's fascination with the movement of the stars and planets can perhaps be attributed to the fact that their homeworld is orbited by two moons, which cause a complex and seemingly unpredictable cycle of tides as well as a variety of subtle effects on the circadian rhythms of the creatures that evolved on Saros. Saryd homes on other worlds often have night lighting cycles designed to mimic the moons of their homeworld.`
 	"required reputation" 15
@@ -24493,7 +24493,7 @@ planet Nimbus
 		fleet "Small Syndicate" 4
 
 planet Norn
-	attributes deep fishing
+	attributes deep fishing moon
 	landscape land/beach4
 	description `Norn is a water world, with low gravity but an atmosphere dense enough to breathe easily. Large mats of seaweed and algae form natural rafts that drift around with the ocean currents, and a few intrepid settlers have colonized them, people who prefer a life of relative solitude and are willing to trust their fates to wherever the winds might take them. Others have settled the few, low islands, which are prone to frequent flooding. Fish are common here, including a few species of flying fish which travel in large packs and are a considerable nuisance for the land-dwellers.`
 	spaceport `The spaceport is on one of the larger islands, a network of small buildings connected by bridges and raised up on enormous stilts about fifty meters high. Cargo winches are used to load and unload cargo from the boats that dock below. Starships dock in individual hangars, to protect them from the wind. The whole complex sways slightly, almost imperceptibly, as if it were a large boat at sea. The walkways all have tall railings, but you still find yourself afraid to venture too near the edge or to look down at the island and the sea below. The locals, however, walk swiftly and gracefully, with no sign of fear.`
@@ -24731,13 +24731,13 @@ planet Reunion
 		fleet "Large Syndicate" 17
 
 planet Revelation
-	attributes saryd
+	attributes saryd moon
 	landscape land/canyon0
 	description `The Saryds are the only known species who successfully visited another world when their technology was still in the age of steam. The scientist who first landed here was piloting a ramshackle rocket ship of dizzying complexity. Modern analysis of his plans indicates that his flight had less than a one in ten thousand chance of success. This has led to speculation that he was either secretly assisted by friendly aliens, or completely insane, or possibly both.`
 	"required reputation" 15
 
 planet "Ring of Friendship"
-	attributes heliarch
+	attributes heliarch station
 	landscape land/station2
 	description `This is the crown jewel of the Heliarchs, a ringworld that was completed by the Quarg before the Coalition formed and drove them away. It now serves both as a center of finance and trade, and as the seat of the Heliarch government, which is made up of "elders" who have been selected by the other Heliarchs from among their number in such a way that all three species always have equal representation. The Heliarchs, in turn, are selected from among the best and brightest members of each species. Despite the occasional resistance to it, this meritocracy has survived ten times longer than any human democracy.`
 	spaceport `At any given time, thousands of young people are in training here to become "interpreters," the Heliarch agents who serve as translators and mediators on all the Coalition worlds. As they rise through the ranks, some of those agents will be honored by being elevated to the rank of Heliarch, gaining a voice in the selection of new elders and perhaps one day even being selected themselves.`
@@ -24746,7 +24746,7 @@ planet "Ring of Friendship"
 	bribe 0
 
 planet "Ring of Power"
-	attributes heliarch
+	attributes heliarch station
 	landscape land/station2
 	description `This ringworld is the center of operations for the Heliarch defense forces. Although they have not had to fight a major space battle in thousands of years, they still maintain a sizable fleet, believing that if they ever allow their vigilance to waver, the Quarg may return and try to reclaim what was once theirs.`
 	spaceport `The hallways of the spaceport echo with the footsteps of groups of marching defense force cadets. Each group contains a mixture of Saryds, Kimek, and Arachi, to help them learn allegiance to all the peoples of the Coalition instead of just identifying with their own species.`
@@ -24755,7 +24755,7 @@ planet "Ring of Power"
 	bribe 0
 
 planet "Ring of Wisdom"
-	attributes heliarch
+	attributes heliarch station
 	landscape land/station2
 	description `This Heliarch ringworld is their center for science, mostly trying to understand and reverse engineer Quarg technology rather than inventing new devices of their own. But after thousands of years of controlling these ringworlds, it seems that their inner workings are still something of a mystery to the Heliarchs.`
 	description `	"Construction" work is always ongoing here, but rather than extending the backbone of the ring itself, which uses exotic materials that they cannot replicate, the Heliarchs are just adding sheets of solar panels and other extensions to the sides of the ring.`
@@ -25073,7 +25073,7 @@ planet Skymoot
 		fleet "Large Militia" 6
 
 planet "Smuggler's Den"
-	attributes pirate
+	attributes pirate station
 	landscape land/loc1
 	description `Smuggler's Den was formerly known as Grendel Station, back when it was an operating refinery. But, it has since been taken over by pirates, who turned it into a haven for all manner of smugglers and privateers. The repair shops here can make a variety of legal and illegal modifications to your ship, and in the shipyard you can buy refurbished starships... if it does not trouble your conscience to think about the likely fates of their previous owners.`
 	spaceport `It is a strange but indisputable fact that pirates smell worse than ordinary human beings. In this day and age, where even the cheapest shuttlecraft at least has a sonic shower, there is no logical explanation for it, except that anarchist tendencies must somehow go hand in hand with a tendency to reject society's norms around hygiene. Here in a space station, with nothing but recycled air to breathe, the effect is overpowering.`
@@ -25380,7 +25380,7 @@ planet "Turquoise Four"
 	"required reputation" 15
 
 planet Twinstar
-	attributes south tourism frontier
+	attributes south tourism frontier moon
 	landscape land/lava3
 	description `The only settlement on this small world is Twinstar Depot, a village created mostly just to service the spaceport, where food and equipment from the southern galactic arm is stored and sent out in all directions to supply the rest of human space. The gravity is far less than ideal for human development, but the atmosphere is breathable and some tourists come to the planet just for the experience of being able to run and jump in low gravity without the need for a suit or oxygen tanks.`
 	spaceport `The depot consists mostly of large storage racks, with automatic lifts constantly clanking up and down. Very few people are in sight, aside from a small cafe near the center of the port. It is not a hospitable place.`
@@ -25451,7 +25451,7 @@ planet "Var' Kayi"
 	bribe 0
 
 planet "Var' Roi"
-	attributes wanderer research
+	attributes wanderer research moon
 	landscape land/snow9
 	description `The surface of this small icy moon is constantly cracked and broken by tidal force from the gas giant that it orbits. The tidal disturbances also heat the moon enough to keep its oceans warm enough to support life despite the small amount of sunlight that reaches here.`
 	spaceport `The only habitation on this moon is a Wanderer research station suspended on metal pylons well above the icy surface of the ocean. The gravity here is low enough that even though the atmosphere is thin, the Wanderers who work in the station can fly out across the ocean on their own power, wearing some sort of breathing gear. The researchers also have a fleet of submarine ships, sturdy enough to pierce through the shifting ice and travel deep below the ocean surface.`
@@ -25546,7 +25546,7 @@ planet "Varu Mer'ek"
 	bribe 0
 
 planet "Varu Tek'kai"
-	attributes wanderer factory
+	attributes wanderer factory moon
 	landscape land/badlands4
 	description `This Wanderer world is almost uninhabited and devoid of any indigenous ecosystem, except perhaps on the microscopic level. It has none of the beauty of other Wanderer settlements. Here, factories have been built to process the most dangerous and destructive of industrial chemicals. If disaster strikes one of the factories, the only result will be the contamination of a world that is already dead and lifeless - far better, in the judgment of the Wanderers, than allowing such risky industries to operate on a living world.`
 	spaceport `Nearly all the operations of the factories here are automated, and the outside atmosphere is too thin for even the Wanderers to breathe. The workers live in dormitory apartments in a ring surrounding a large central dome. Inside the dome, protected from the elements, is a park whose gardens contain everything from towering conifers to fields of wildflowers; a necessary place of sanctuary and rest for the Wanderers who must spend the rest of their time servicing machines in the bleak environment outside the spaceport.`
