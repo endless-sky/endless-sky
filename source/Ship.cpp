@@ -1847,7 +1847,7 @@ void Ship::WasCaptured(const shared_ptr<Ship> &capturer)
 	isSpecial = capturer->isSpecial;
 	personality = capturer->personality;
 	
-	// Fighters should flee a disabled ship, but if the playermanages to capture
+	// Fighters should flee a disabled ship, but if the player manages to capture
 	// the ship before they flee, the fighters are captured, too.
 	for(const Bay &bay : bays)
 		if(bay.ship)
