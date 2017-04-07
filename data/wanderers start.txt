@@ -1394,7 +1394,7 @@ mission "Wanderers Invaded 1B"
 			`You have reached <planet>, but the Wanderer transports have not all arrived yet. You should take off and wait for them to catch up with you.`
 	on complete
 		conversation
-			`You drop off the Wanderer refugees. One of the Wanderer officials who is here to meet them tells you, "We are grateful for your [assistance, friendship]. If you are [available, willing] to help us further, go talk with Sobari Tele'ek, the military commander." The Wanderer official points toward one section of the spaceport where many wanderers are busy loading supplies into some Wanderer ships unlike any you have seen before.`
+			`You drop off the Wanderer refugees. One of the Wanderer officials who is here to meet them tells you, "We are grateful for your [assistance, friendship]. If you are [available, willing] to help us further, go talk with Sobari Tele'ek, the military commander." The Wanderer official points toward one section of the spaceport where many Wanderers are busy loading supplies into some Wanderer ships unlike any you have seen before.`
 
 
 

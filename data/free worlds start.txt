@@ -1641,7 +1641,7 @@ mission "FW Refinery 1"
 			`	"That's easy to answer," says JJ. "He didn't like the idea of taking orders from the Senate. He thought they should treat him like a hero and go along with whatever he thought best."`
 				goto next
 			label defend
-			`	JJ and Freya are both quiet for a minute, then Freya says, "You know, there are people in the Senate who worry that the Council could become the ruling authority in the Free Worlds, instead of a democratic Senate. It wouldn't be the first time a people's revolution turned into an oligarchy. We of the council have to be careful not to let that happen."`
+			`	JJ and Freya are both quiet for a minute, then Freya says, "You know, there are people in the Senate who worry that the Council could become the ruling authority in the Free Worlds, instead of a democratic Senate. It wouldn't be the first time a people's revolution turned into an oligarchy. We of the Council have to be careful not to let that happen."`
 				goto next
 			label next
 			`	"So, what will happen to Tomek?" you ask.`
