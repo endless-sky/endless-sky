@@ -728,7 +728,7 @@ const vector<shared_ptr<Ship>> &PlayerInfo::Ships() const
 
 
 // Add a captured ship to your fleet.
-void PlayerInfo::AddShip(shared_ptr<Ship> &ship)
+void PlayerInfo::AddShip(const shared_ptr<Ship> &ship)
 {
 	ships.push_back(ship);
 	ship->SetIsSpecial();
