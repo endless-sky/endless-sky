@@ -656,7 +656,7 @@ mission "FW Syndicate Capture 1"
 				accept
 	
 	npc accompany save
-		personality heroic
+		personality escort heroic
 		ship "Dreadnought" "F.S. Gibraltar"
 	
 	npc accompany save
@@ -693,7 +693,7 @@ mission "FW Syndicate Capture 1B"
 				accept
 	
 	npc
-		personality heroic
+		personality escort heroic
 		ship "Dreadnought" "F.S. Gibraltar"
 	npc
 		personality escort heroic waiting
