@@ -28,7 +28,7 @@ mission "Transport executive to <planet>"
 		dialog "The executive rushes off your ship without even a goodbye, fancy briefcase in hand. You collect your payment of <payment>."
 
 
-mission "Corporate retreat on <planet>"
+mission "Corporate retreat from <origin>"
 	job
 	repeat
 	deadline
@@ -171,7 +171,7 @@ mission "Syndicate target practice [0]"
 		personality staying heroic
 		government "Test Dummy"
 		ship "Berserker" "Syndicate Test Vessel"
-			
+
 		system destination
 		dialog "You scan the disabled craft and take careful measurements of the battle damage. Time to deliver the results on <planet>."
 	on visit

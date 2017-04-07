@@ -329,7 +329,7 @@ mission "Wanderer Harvest [1]"
 		dialog "You wish the Wanderers the best of luck on <planet> and collect your payment of <payment>."
 
 mission "Wanderer Invasive Species [0]"
-	name "Invasive species on <planet>"
+	name "Quarantine an invasive species"
 	job
 	repeat
 	description `These <bunks> Wanderers need to get to <stopovers> with their <cargo> by <date> to contain an invasive animal species. Return the Wanderers to <origin> with the animals for a payment of <payment>.`
@@ -351,7 +351,7 @@ mission "Wanderer Invasive Species [0]"
 		dialog `After releasing the animals, the <bunks> Wanderers each thank you for assisting them in returning the animals to <planet> and hand you <payment>.`
 
 mission "Wanderer Invasive Species [1]"
-	name "Invasive species on <planet>"
+	name "Quarantine an invasive species"
 	job
 	repeat
 	description `These <bunks> Wanderers need to get to <stopovers> with their <cargo> by <date> to contain an invasive plant species. Return the Wanderers to <origin> with the animals for a payment of <payment>.`
