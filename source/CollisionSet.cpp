@@ -310,7 +310,7 @@ const vector<Body *> &CollisionSet::Circle(const Point &center, double radius) c
 				
 				const Mask &mask = it->body->GetMask(step);
 				Point offset = center - it->body->Position();
-				if(mask.WithinRange(offset, it->body->Facing(), radius))
+				if(offset.Length() <= radius || mask.WithinRange(offset, it->body->Facing(), radius))
 					result.push_back(it->body);
 			}
 		}

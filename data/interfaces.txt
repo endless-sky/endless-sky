@@ -16,11 +16,14 @@ color "bright" .75 .75 .75 0.
 color "medium" .5 .5 .5 0.
 color "dim" .25 .25 .25 0.
 color "faint" .1 .1 .1 0.
+
 color "shields" .43 .55 .70 .75
 color "hull" .70 .62 .43 .75
 color "heat" .70 .43 .43 .75
 color "energy" .6 .6 .6 .75
 color "fuel" .70 .62 .43 .75
+
+color "flagship highlight" .5 .8 .2 0.
 
 color "available job" .9 .6 0. 1.
 color "available back" .5 .3 0. .5
@@ -134,7 +137,7 @@ interface "load menu"
 		center -420 155
 		dimensions 120 30
 	active if "pilot selected"
-	button d "_Delete"
+	button D "Delete"
 		center -285 155
 		dimensions 90 30
 	
@@ -143,7 +146,7 @@ interface "load menu"
 		center -60 155
 		dimensions 120 30
 	active if "snapshot selected"
-	button r "_Remove"
+	button R "Remove"
 		center 75 155
 		dimensions 90 30
 	
@@ -760,10 +763,10 @@ interface "info panel"
 		dimensions 250 30
 	sprite "ui/ship tab"
 		center 0 -310
-	label "_Ship Info"
+	label "Ship Info"
 		center -300 -305
 		color "bright"
-	label "_Player Info"
+	label "Player _Info"
 		center -420 -305
 	button i
 		center -420 -305
@@ -774,7 +777,7 @@ interface "info panel"
 		center 0 -310
 	label "_Ship Info"
 		center -300 -305
-	label "_Player Info"
+	label "Player Info"
 		center -420 -305
 		color "bright"
 	button s
@@ -801,7 +804,7 @@ interface "info panel"
 	active if "can park"
 	sprite "ui/dialog cancel"
 		center 55 305
-	button P "_Park"
+	button P "Park"
 		center 55 305
 		dimensions 70 30
 	active
@@ -809,7 +812,7 @@ interface "info panel"
 	visible if "show unpark"
 	sprite "ui/dialog cancel"
 		center 55 305
-	button P "Un_park"
+	button P "Unpark"
 		center 55 305
 		dimensions 70 30
 	
@@ -862,6 +865,10 @@ interface "hail panel"
 	visible if "show dominate"
 	active if "can dominate"
 	button t "Demand _Tribute"
+		center -20 115
+		dimensions 140 30
+	visible if "show relinquish"
+	button t "Relinquish _Tribute"
 		center -20 115
 		dimensions 140 30
 	visible if "show assist"

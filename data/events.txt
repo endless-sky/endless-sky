@@ -2396,6 +2396,10 @@ event "pug invasion"
 		fleet "Large Southern Merchants" 6000
 		fleet "Small Pug" 5000
 		fleet "Large Pug" 9000
+	planet "Rand"
+		security 0
+	planet "Oblivion"
+		security 0
 
 
 
@@ -2438,6 +2442,12 @@ event "pug invasion 2"
 		fleet "Small Pug" 3000
 		fleet "Large Pug" 7000
 		fleet "Human Miners" 1600
+	planet "Silver"
+		security 0
+	planet "Shiver"
+		security 0
+	planet "Millrace"
+		security 0
 
 
 
@@ -2463,6 +2473,10 @@ event "pug invasion 3"
 		fleet "Large Core Merchants" 3200
 		fleet "Small Pug" 1200
 		fleet "Large Pug" 2500
+	planet "Maker"
+		security 0
+	planet "Furnace"
+		security 0
 
 
 
@@ -2495,6 +2509,10 @@ event "pug invasion 4"
 		fleet "Small Pug" 700
 		fleet "Large Pug" 1000
 		fleet "Human Miners" 2000
+	planet "Reunion"
+		security 0
+	planet "Kraken Station"
+		security 0
 
 
 
@@ -2698,6 +2716,24 @@ event "pug territory liberated"
 		fleet "Large Republic" 900 
 		fleet "Small Syndicate" 1200
 		fleet "Large Syndicate" 2000
+	planet "Rand"
+		security 0.05
+	planet "Oblivion"
+		security 0.05
+	planet "Silver"
+		security 0.1
+	planet "Shiver"
+		security 0.1
+	planet "Millrace"
+		security 0.2
+	planet "Maker"
+		security 0.4
+	planet "Furnace"
+		security 0.1
+	planet "Reunion"
+		security 0.3
+	planet "Kraken Station"
+		security 0.3
 
 
 
@@ -3049,6 +3085,24 @@ event "fwc pug invasion"
 		fleet "Small Pug" 3000
 		fleet "Large Pug" 7000
 		fleet "Human Miners" 1600
+	planet "Rand"
+		security 0
+	planet "Oblivion"
+		security 0
+	planet "Silver"
+		security 0
+	planet "Shiver"
+		security 0
+	planet "Millrace"
+		security 0
+	planet "Maker"
+		security 0
+	planet "Furnace"
+		security 0
+	planet "Reunion"
+		security 0
+	planet "Kraken Station"
+		security 0
 
 
 
@@ -3227,6 +3281,24 @@ event "fwc pug defeated"
 		fleet "Large Syndicate" 2000
 	system Nocte
 		government Republic
+	planet "Rand"
+		security 0.05
+	planet "Oblivion"
+		security 0.05
+	planet "Silver"
+		security 0.1
+	planet "Shiver"
+		security 0.1
+	planet "Millrace"
+		security 0.2
+	planet "Maker"
+		security 0.4
+	planet "Furnace"
+		security 0.1
+	planet "Reunion"
+		security 0.3
+	planet "Kraken Station"
+		security 0.3
 
 
 

@@ -186,8 +186,7 @@ void ShopPanel::DrawSidebar()
 		font.Draw(space, right, bright);
 		point.Y() += 20.;
 	}
-	maxSideScroll = point.Y() + sideScroll - Screen::Bottom() + BUTTON_HEIGHT;
-	maxSideScroll = max(0, maxSideScroll);
+	maxSideScroll = max(0., point.Y() + sideScroll - Screen::Bottom() + BUTTON_HEIGHT);
 	
 	PointerShader::Draw(Point(Screen::Right() - 10, Screen::Top() + 10),
 		Point(0., -1.), 10., 10., 5., Color(sideScroll > 0 ? .8 : .2, 0.));
@@ -373,8 +372,7 @@ void ShopPanel::DrawMain()
 	
 	// What amount would mainScroll have to equal to make nextY equal the
 	// bottom of the screen?
-	maxMainScroll = nextY + mainScroll - Screen::Height() / 2 - TILE_SIZE / 2;
-	maxMainScroll = max(0, maxMainScroll);
+	maxMainScroll = max(0., nextY + mainScroll - Screen::Height() / 2 - TILE_SIZE / 2);
 	
 	PointerShader::Draw(Point(Screen::Right() - 10 - SIDE_WIDTH, Screen::Top() + 10),
 		Point(0., -1.), 10., 10., 5., Color(mainScroll > 0 ? .8 : .2, 0.));
@@ -717,9 +715,9 @@ double ShopPanel::Zone::ScrollY() const
 bool ShopPanel::DoScroll(double dy)
 {
 	double &scroll = dragMain ? mainScroll : sideScroll;
-	const int &maximum = dragMain ? maxMainScroll : maxSideScroll;
+	const double &maximum = dragMain ? maxMainScroll : maxSideScroll;
 	
-	scroll = max(0., min(static_cast<double>(maximum), scroll - dy));
+	scroll = max(0., min(maximum, scroll - dy));
 	
 	return true;
 }
@@ -799,7 +797,7 @@ void ShopPanel::SideSelect(Ship *ship)
 		playerShips.clear();
 	else if(playerShips.count(ship))
 	{
-		playerShips.erase(playerShips.find(ship));
+		playerShips.erase(ship);
 		if(playerShip == ship)
 			playerShip = playerShips.empty() ? nullptr : *playerShips.begin();
 		return;

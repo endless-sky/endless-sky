@@ -176,7 +176,7 @@ void MapShipyardPanel::DrawItems()
 			info += Format::Number(ship->Attributes().Get("hull")) + " hull";
 			
 			bool isForSale = true;
-			if(selectedSystem)
+			if(selectedSystem && player.HasVisited(selectedSystem))
 			{
 				isForSale = false;
 				for(const StellarObject &object : selectedSystem->Objects())

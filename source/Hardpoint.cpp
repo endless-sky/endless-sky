@@ -176,7 +176,7 @@ void Hardpoint::Fire(Ship &ship, list<Projectile> &projectiles, list<Effect> &ef
 		// effect to make turrets look less unnaturally precise.
 		Point p = target->Position() - start + ship.GetPersonality().Confusion();
 		Point v = target->Velocity() - ship.Velocity();
-		double steps = Armament::RendezvousTime(p, v, outfit->Velocity());
+		double steps = Armament::RendezvousTime(p, v, outfit->Velocity() + .5 * outfit->RandomVelocity());
 		
 		// Special case: RendezvousTime() may return NaN. But in that case, this
 		// comparison will return false. Check to see if this turret can hit the

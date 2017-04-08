@@ -294,7 +294,7 @@ ship "Tempest" "Tempest (Heavy)"
 		"White Sun Reactor"
 		"Red Sun Reactor"
 		"Dark Storm Shielding"
-		"Mass Expansion"
+		"Outfits Expansion"
 		"Wanderer Ramscoop"
 		
 		"Type 3 Radiant Thruster"
@@ -414,7 +414,7 @@ ship "Derecho" "Derecho (Tough)"
 		"Yellow Sun Reactor"
 		"Dark Storm Shielding" 2
 		"Wanderer Ramscoop"
-		"Mass Expansion"
+		"Outfits Expansion"
 		
 		"Type 4 Radiant Thruster"
 		"Type 4 Radiant Steering" 2
@@ -494,7 +494,7 @@ ship "Hurricane" "Hurricane (Turret)"
 		"Blue Sun Reactor" 2
 		"Dark Storm Shielding" 2
 		"Wanderer Heat Sink"
-		"Mass Expansion" 2
+		"Outfits Expansion" 2
 		"Wanderer Ramscoop"
 		
 		"Type 4 Radiant Thruster"
@@ -514,7 +514,7 @@ ship "Hurricane" "Hurricane (Tough)"
 		"White Sun Reactor"
 		"Dark Storm Shielding" 4
 		"Wanderer Ramscoop"
-		"Mass Expansion" 2
+		"Outfits Expansion" 2
 		
 		"Type 4 Radiant Thruster"
 		"Type 1 Radiant Thruster"

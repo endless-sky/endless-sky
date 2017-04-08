@@ -240,8 +240,11 @@ bool InfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 		showShip = true;
 		UpdateInfo();
 	}
-	else if(key == SDLK_PAGEUP || key == SDLK_PAGEDOWN)
-		Scroll(0, 6 * ((key == SDLK_PAGEUP) - (key == SDLK_PAGEDOWN)));
+	else if(!showShip && (key == SDLK_PAGEUP || key == SDLK_PAGEDOWN))
+	{
+		int distance = 24 * ((key == SDLK_PAGEUP) - (key == SDLK_PAGEDOWN));
+		scroll = max(0., min(player.Ships().size() - 26., scroll - distance));
+	}
 	else if(showShip && key == 'R')
 		GetUI()->Push(new Dialog(this, &InfoPanel::Rename, "Change this ship's name?"));
 	else if(canEdit && showShip && key == 'P')
@@ -350,7 +353,7 @@ bool InfoPanel::Click(int x, int y, int clicks)
 	bool control = (SDL_GetModState() & (KMOD_CTRL | KMOD_GUI));
 	if(showShip)
 	{
-		if(hover >= 0 && (**shipIt).GetSystem() == player.GetSystem() && !(**shipIt).IsDisabled())
+		if(canEdit && hover >= 0 && (**shipIt).GetSystem() == player.GetSystem() && !(**shipIt).IsDisabled())
 			selected = hover;
 	}
 	else if(canEdit && (shift || control || clicks < 2))
@@ -610,8 +613,12 @@ void InfoPanel::DrawFleet(const Rectangle &bounds)
 			ship.Attributes().Get("fuel capacity") * ship.Fuel()));
 		table.Draw(fuel);
 		
-		string crew = ship.IsParked() ? "Parked" :
-			to_string(&ship == player.Flagship() ? ship.Crew() : ship.RequiredCrew());
+		// If this isn't the flagship, we'll remember how many crew it has, but
+		// only the minimum number of crew need to be paid for.
+		int crewCount = ship.Crew();
+		if(&ship != player.Flagship())
+			crewCount = min(crewCount, ship.RequiredCrew());
+		string crew = (ship.IsParked() ? "Parked" : to_string(crewCount));
 		table.Draw(crew);
 		
 		++index;

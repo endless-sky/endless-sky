@@ -1494,7 +1494,333 @@ phrase "friendly pug"
 		" through-out the universe."
 		" among all sentient beings."
 
+phrase "friendly pirate"
+	word
+		"We're"
+		"We are"
+		"You're looking at"
+		"You're in the presence of"
+	word
+		" the "
+	word
+		"baddest"
+		"strongest"
+		"fiercest"
+		"deadliest"
+		"scariest"
+		"nastiest"
+		"most dangerous"
+	word
+		" "
+	word
+		"pirate"
+	word
+		" starship"
+		" warship"
+		" ship"
+		""
+	word
+		" "
+	word
+		"in the"
+	word
+		" "
+	word
+		"universe"
+		"galaxy"
+		"sky"
+		"'verse"
+		"air"
+		"cosmos"
+	word
+		"."
+		"!"
 
+phrase "friendly pirate"
+	word
+		"Plundering"
+		"Blasting"
+		"Destroying"
+		"Robbing"
+		"Raiding"
+		"Pummeling"
+		"Crushing"
+		"Ravaging"
+		"Stealing from"
+		"Waylaying"
+	word
+		" "
+	word
+		"merchants"
+		"ships"
+		"villages"
+		"freighters"
+		"convoys"
+		"rich merchants"
+		"defenseless ships"
+		"weak ships"
+		"wimpy ships"
+		"merchant ships"
+	word
+		" "
+	word
+		"and"
+	word
+		" "
+	word
+		"enjoying"
+		"spending"
+		"piling up"
+		"hoarding"
+		"squandering"
+	word
+		" "
+	word
+		"the loot"
+		"money"
+		"our gains"
+		"wealth"
+		"plunder"
+		"the booty"
+	word
+		": I love the pirate's life!"
+		": that's the way to live!"
+		" is the best way to live!"
+		" is how real anarchists live!"
+
+phrase "friendly pirate"
+	word
+		"We just "
+	word
+		"plundered"
+		"blasted"
+		"destroyed"
+		"raided"
+		"pummeled"
+		"crushed"
+		"robbed"
+		"ravaged"
+	word
+		" a "
+		" a whole "
+		" an entire "
+		" the weakest "
+		" the wimpiest "
+		" the stupidest "
+	word
+		"merchant"
+		"law enforcement"
+	word
+		" "
+	word
+		"ship!"
+		"fleet!"
+		"convoy!"
+
+phrase "friendly pirate"
+	word
+		"You better watch "
+	word
+		"who you talk to"
+		"who you look at"
+		"who you hail"
+		"who you target"
+		"your back"
+		"your cargo"
+		"your ship"
+		"your fleet"
+	word
+		" "
+	word
+		"around here"
+		"around these parts"
+		"around this system"
+		"around us"
+		"around me"
+	word
+		"."
+
+phrase "friendly pirate"
+	word
+		"Have you "
+	word
+		"tried this"
+		"used this"
+	word
+		" new"
+		" crazy"
+		" amazing"
+		" fantastic"
+		""
+	word
+		" toad juice"
+		" flavor drop"
+		" stardust"
+		" booster"
+		" space salt"
+		" hyperdrive"
+		" fire apple"
+		" quasar"
+		""
+	word
+		" "
+	word
+		"stuff?"
+		"drug?"
+	word
+		""
+		" It's the best!"
+		" It's awesome!"
+
+phrase "friendly pirate"
+	word
+		"We"
+	word
+		" "
+	word
+		"just"
+		"recently"
+	word
+		" "
+	word
+		"got"
+		"earned"
+		"made"
+	word
+		" "
+	word
+		"thousands"
+		"thousands of credits"
+		"millions"
+		"millions of credits"
+	word
+		" "
+	word
+		"selling drugs"
+		"selling slaves"
+		"plundering merchants"
+		"fetching bounties"
+	word
+		"!"
+
+phrase "friendly pirate"
+	word
+		"I heard"
+		"We heard"
+		"Word on the street is"
+	word
+		" that a "
+	word
+		"new batch of slaves"
+		"new batch of drugs"
+		"new delivery of slaves"
+		"new delivery of drugs"
+	word
+		" "
+	word
+		"was just dropped off"
+		"was delivered here"
+		"is on its way"
+	word
+		"."
+	word
+		" Can't wait to buy some!"
+		" Can't wait to buy them!"
+		" Can't wait to check them out!"
+		""
+
+phrase "friendly pirate"
+	word
+		"If any other captain is having trouble with their crew,"
+		"If anyone else is having trouble with their crew,"
+		"If you are having trouble with your crew,"
+	word
+		" I suggest "
+	word
+		"using a stick to beat them into submission"
+		"throwing them out the airlock"
+		"starving them until they listen"
+		"threatening to throw them out the airlock"
+		"threatening to kill them"
+		"threatening to shoot them"
+	word
+		"."
+	word
+		" It worked for me!"
+		" I guarantee it works!"
+		" If it doesn't work, you can always replace them!"
+		" It's an old family trick!"
+		""
+
+phrase "friendly pirate"
+	word
+		"Anyone"
+		"Anyone here"
+		"Any fellow pirates"
+		"Any fellow anarchists"
+	word
+		" "
+	word
+		"up for buying"
+		"want to buy"
+		"looking for"
+	word
+		" "
+	word
+		"slaves"
+		"drugs"
+	word
+		"?"
+	word
+		""
+		" Just talk to me in the spaceport."
+		" Talk to me for a contact."
+		" You'll find some on the nearest pirate planet."
+		" You'll find some on the nearest anarchist planet."
+		" You'll find some on the nearest planet not oppressed by the man."
+		" You'll find some where ever the man does not go."
+
+phrase "friendly"
+	word
+		"It surprises me"
+		"It surprises us"
+		"We're surprised"
+		"I'm surprised"
+		"It's interesting"
+		"It's surprising"
+	word
+		" that "
+	word
+		"merchants"
+		"rich merchants"
+		"civilians"
+		"rich civilians"
+		"non-pirates"
+		"maggots"
+		"worms"
+	word
+		" "
+	word
+		"will come to"
+		"come here to"
+		"would ever"
+		"would come to us to"
+		"would come here to"
+		"risk themselves to"
+	word
+		" "
+	word
+		"buy drugs from"
+		"sell drugs to"
+		"sell slaves to"
+	word
+		" "
+	word
+		"us"
+		"pirates"
+		"anarchists"
+	word
+		"."
 
 # Shakespearean insults.
 phrase "hostile disabled"
@@ -1950,6 +2276,7 @@ phrase "hostile pirate"
 		"sky, "
 		"'verse, "
 		"air, "
+		"cosmos, "
 	word
 		"wimp"
 		"maggot"
@@ -2006,6 +2333,8 @@ phrase "hostile pirate"
 	word
 		": I love the pirate's life!"
 		": that's the way to live!"
+		" is the best way to live!"
+		" is how real anarchists live!"
 
 phrase "hostile pirate"
 	word
@@ -2033,6 +2362,122 @@ phrase "hostile pirate"
 		"contribute your wealth to furthering the cause of anarchy!"
 		"wind up a lot poorer!"
 		"get sent to Davy Jones' locker!"
+
+phrase "hostile bounty"
+	word
+		"I see"
+		"I understand"
+		"It seems"
+		"It would seem"
+		"It appears"
+	word
+		" that "
+		" "
+	word
+		"you're"
+		"this is"
+	word
+		" the "
+	word
+		"scum"
+		"worm"
+		"maggot"
+		"filth"
+		"miscreant"
+		"fool"
+		"poor fool"
+		"unlucky sap"
+		"weakling"
+		"worthless wretch"
+	word
+		" "
+	word
+		"they"
+		"the government"
+		"the law"
+	word
+		" "
+	word
+		"sent"
+		"ordered"
+		"paid"
+		"told"
+		"bought"
+	word
+		" to "
+	word
+		"kill me"
+		"take me out"
+		"eliminate me"
+		"vaporize me"
+		"turn me into space debris"
+		"terminate me"
+		"destroy me"
+		"end my life"
+		"get rid of me"
+		"make me disappear"
+		"make me go away"
+		"take me out of the picture"
+		"show me the afterlife"
+		"end my career"
+		"put me in a grave"
+	word
+		". Ha!"
+		
+phrase "hostile bounty"
+	word
+		"If you "
+	word
+		"thought"
+		"believed"
+		"hoped"
+		"expected"
+		"imagined"
+		"dreamed"
+	word
+		" that "
+		" "
+	word
+		"I"
+		"my ship" 
+	word
+		" "
+	word 
+		"was going to be"
+		"was to be"
+		"would be"
+	word
+		" "
+	word
+		"an easy"
+		"a simple"
+		"a straight-forward"
+	word
+		" "
+	word
+		"kill"
+		"victim"
+		"target"
+		"bounty"
+		"job"
+		"prize"
+	word
+		", you were "
+	word
+		""
+		"very "
+		"hopelessly "
+		"completely "
+		"absolutely "
+		"extremely "
+		"badly "
+		"totally "
+		"awfully "
+	word
+		"wrong."
+		"mistaken."
+		"off beam."
+		"mislead."
 
 # From the "Southern Television broadcast interruption."
 phrase "hostile quarg"

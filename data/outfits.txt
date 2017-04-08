@@ -199,7 +199,7 @@ outfit "Cargo Scanner"
 	"outfit space" -1
 	"cargo scan power" 9
 	"cargo scan speed" 1
-	description "This scanner allows you to scan the cargo holds of the ship you are currently targeting, as long as you are flying close enough to it. Patrol craft use cargo scanners to detect illegal contraband."
+	description "This scanner allows you to scan the cargo holds of the ship you are currently targeting, as long as you are flying close enough to it. Patrol craft use cargo scanners to detect illegal contraband. Installing more than one increases the scan range and speed."
 
 outfit "Outfit Scanner"
 	category "Systems"
@@ -209,7 +209,7 @@ outfit "Outfit Scanner"
 	"outfit space" -2
 	"outfit scan power" 25
 	"outfit scan speed" 1
-	description "This scanner allows you to determine what outfits are installed in the ship you are currently targeting, if you are willing to risk flying close enough to it to get a reading! The Republic Navy uses these scanners to detect when ships are equipped with illegal weaponry."
+	description "This scanner allows you to determine what outfits are installed in the ship you are currently targeting, if you are willing to risk flying close enough to it to get a reading! The Republic Navy uses these scanners to detect when ships are equipped with illegal weaponry. Installing more than one increases the scan range and speed."
 
 outfit "Surveillance Pod"
 	category "Systems"
@@ -222,7 +222,7 @@ outfit "Surveillance Pod"
 	"cargo scan power" 4
 	"cargo scan speed" 2
 	"atmosphere scan" 100
-	description "This is Republic military technology, a collection of scanners designed to fit perfectly inside one of their surveillance drones. Since the outputs are fairly standard, you could connect it to your own ship's systems if you want."
+	description "This is Republic military technology, a collection of scanners designed to fit perfectly inside one of their surveillance drones. Since the outputs are fairly standard, you could connect it to your own ship's systems if you want. Installing more than one increases the scan range and speed."
 
 
 outfit "Cloaking Device"
@@ -236,16 +236,19 @@ outfit "Cloaking Device"
 	description "You're sure the cloaking device is here somewhere, but you can't see it."
 
 
-outfit "Mass Expansion"
+outfit "Outfits Expansion"
 	category "Systems"
 	cost 50000
 	thumbnail "outfit/blue screwdriver"
 	"mass" 5
 	"outfit space" 15
 	"cargo space" -20
+	"cooling inefficiency" 1
+	"heat dissipation" -.01
 	unplunderable 1
-	description "A mass expansion allows you to sacrifice some cargo space in order to make room for more outfits, in situations where you need just a bit more space to install a particular system. It does not increase your weapon or engine space unfortunately."
-	
+	description "This expansion allows you to sacrifice some cargo space in order to make room for more outfits, in situations where you need just a bit more space to install a particular system. It does not increase your weapon or engine space."
+	description "	Unfortunately, rearranging the interior of your ship in such a fundamental way tends to interfere with its cooling systems."
+
 outfit "Cargo Expansion"
 	category "Systems"
 	cost 30000
@@ -255,7 +258,7 @@ outfit "Cargo Expansion"
 	"outfit space" -20
 	unplunderable 1
 	description "If being able to carry more cargo is more important to you than having advanced weapons or other systems, a cargo expansion will significantly increase the size of your cargo hold."
-	
+
 outfit "Bunk Room"
 	category "Systems"
 	cost 40000
@@ -265,7 +268,7 @@ outfit "Bunk Room"
 	"outfit space" -20
 	unplunderable 1
 	description "If you really want to make space for a few more passengers (or crew members, if you're trying to capture other ships), you can expand the living space of your ship into the area usually reserved for outfits."
-	
+
 outfit "Small Bunk Room"
 	category "Systems"
 	cost 20000

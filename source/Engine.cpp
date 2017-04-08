@@ -25,6 +25,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "MapPanel.h"
 #include "Mask.h"
 #include "Messages.h"
+#include "OutlineShader.h"
 #include "Person.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
@@ -34,6 +35,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Random.h"
 #include "RingShader.h"
 #include "Screen.h"
+#include "Sprite.h"
 #include "SpriteSet.h"
 #include "SpriteShader.h"
 #include "StarField.h"
@@ -315,12 +317,24 @@ void Engine::Step(bool isActive)
 	Audio::Update(center);
 	
 	// Smoothly zoom in and out.
-	double zoomTarget = Preferences::ViewZoom();
-	if(zoom < zoomTarget)
-		zoom = min(zoomTarget, zoom * 1.01);
-	else if(zoom > zoomTarget)
-		zoom = max(zoomTarget, zoom * .99);
-	
+	if(isActive)
+	{
+		double zoomTarget = Preferences::ViewZoom();
+		if(zoom < zoomTarget)
+			zoom = min(zoomTarget, zoom * 1.01);
+		else if(zoom > zoomTarget)
+			zoom = max(zoomTarget, zoom * .99);
+	}
+		
+	// Draw a highlight to distinguish the flagship from other ships.
+	if(flagship && Preferences::Has("Highlight player's flagship"))
+	{
+		highlightSprite = flagship->GetSprite();
+		highlightUnit = flagship->Unit() * zoom;
+	}
+	else
+		highlightSprite = nullptr;
+		
 	// Any of the player's ships that are in system are assumed to have
 	// landed along with the player.
 	if(flagship && flagship->GetPlanet() && isActive)
@@ -451,9 +465,10 @@ void Engine::Step(bool isActive)
 	}
 	info.SetString("credits",
 		Format::Number(player.Accounts().Credits()) + " credits");
-	if(flagship && flagship->GetTargetPlanet() && !flagship->Commands().Has(Command::JUMP))
+	bool isJumping = flagship && (flagship->Commands().Has(Command::JUMP) || flagship->IsEnteringHyperspace());
+	if(flagship && flagship->GetTargetStellar() && !isJumping)
 	{
-		const StellarObject *object = flagship->GetTargetPlanet();
+		const StellarObject *object = flagship->GetTargetStellar();
 		info.SetString("navigation mode", "Landing on:");
 		const string &name = object->Name();
 		info.SetString("destination", name);
@@ -572,7 +587,7 @@ void Engine::Step(bool isActive)
 	{
 		shared_ptr<Ship> ship = selected.lock();
 		if(ship && ship != target && !ship->IsParked() && ship->GetSystem() == player.GetSystem()
-				&& !ship->IsDestroyed())
+				&& !ship->IsDestroyed() && ship->Zoom() > 0.)
 		{
 			double size = (ship->Width() + ship->Height()) * .35;
 			targets.push_back({
@@ -631,6 +646,15 @@ void Engine::Draw() const
 		RingShader::Draw(it.position * zoom, it.radius * zoom + 3., 1.5, it.shields, color[it.isEnemy]);
 		double dashes = 20. * min(1., zoom);
 		RingShader::Draw(it.position * zoom, it.radius * zoom, 1.5, it.hull, color[2 + it.isEnemy], dashes);
+	}
+	
+	// Draw the flagship highlight, if any.
+	if(highlightSprite)
+	{
+		Point size(highlightSprite->Width(), highlightSprite->Height());
+		const Color &color = *GameData::Colors().Get("flagship highlight");
+		// The flagship is always in the dead center of the screen.
+		OutlineShader::Draw(highlightSprite, Point(), size, color, highlightUnit);
 	}
 	
 	if(flash)
@@ -829,22 +853,25 @@ void Engine::EnterSystem()
 	{
 		// Find out how attractive the player's fleet is to pirates. Aside from a
 		// heavy freighter, no single ship should attract extra pirate attention.
-		unsigned attraction = 0;
+		double sum = 0.;
 		for(const shared_ptr<Ship> &ship : player.Ships())
 		{
 			if(ship->IsParked())
 				continue;
-		
-			const string &category = ship->Attributes().Category();
-			if(category == "Light Freighter")
-				attraction += 1;
-			if(category == "Heavy Freighter")
-				attraction += 2;
+			
+			sum += .4 * sqrt(ship->Attributes().Get("cargo space")) - 1.8;
+			for(const auto &it : ship->Weapons())
+				if(it.GetOutfit())
+				{
+					double damage = it.GetOutfit()->ShieldDamage() + it.GetOutfit()->HullDamage();
+					sum -= .12 * damage / it.GetOutfit()->Reload();
+				}
 		}
+		int attraction = round(sum);
 		if(attraction > 2)
 		{
 			for(int i = 0; i < 10; ++i)
-				if(Random::Int(200) + 1 < attraction)
+				if(static_cast<int>(Random::Int(200) + 1) < attraction)
 					raidFleet->Place(*system, ships);
 		}
 	}
@@ -857,15 +884,8 @@ void Engine::EnterSystem()
 	// since the new player ships can make at most four jumps before landing.
 	if(today <= Date(21, 11, 3013))
 	{
-		Messages::Add(string("Press \"")
-			+ Command::MAP.KeyName()
-			+ string("\" to view your map, and \"")
-			+ Command::JUMP.KeyName()
-			+ string("\" to make a hyperspace jump."));
-		Messages::Add(string("Or, press \"")
-			+ Command::LAND.KeyName()
-			+ string("\" to land. For the main menu, press \"")
-			+ Command::MENU.KeyName() + string("\"."));
+		Messages::Add(GameData::HelpMessage("basics 1"));
+		Messages::Add(GameData::HelpMessage("basics 2"));
 	}
 }
 
@@ -938,7 +958,9 @@ void Engine::CalculateStep()
 		}
 		else
 		{
-			if(&**it != flagship)
+			// Check if we need to play sounds for a ship jumping in or out of
+			// the system. Make no sound if it entered via wormhole.
+			if(&**it != flagship && (*it)->Zoom() == 1.)
 			{
 				// Did this ship just begin hyperspacing?
 				if(wasHere && !wasHyperspacing && (*it)->IsHyperspacing())
@@ -1006,7 +1028,7 @@ void Engine::CalculateStep()
 		newCenter = flagship->Position();
 		newCenterVelocity = flagship->Velocity();
 	}
-	bool checkClicks = doClick;
+	bool checkClicks = (flagship && doClick);
 	
 	draw[calcTickTock].SetCenter(newCenter, newCenterVelocity);
 	radar[calcTickTock].SetCenter(newCenter);
@@ -1030,7 +1052,7 @@ void Engine::CalculateStep()
 			if(checkClicks && !isRightClick && object.GetPlanet()
 					&& (clickPoint - position).Length() < object.Radius())
 			{
-				if(&object == player.Flagship()->GetTargetPlanet())
+				if(&object == player.Flagship()->GetTargetStellar())
 				{
 					if(!object.GetPlanet()->CanLand())
 						Messages::Add("The authorities on " + object.GetPlanet()->Name() +
@@ -1042,7 +1064,7 @@ void Engine::CalculateStep()
 					}
 				}
 				else
-					player.Flagship()->SetTargetPlanet(&object);
+					player.Flagship()->SetTargetStellar(&object);
 			}
 		}
 	

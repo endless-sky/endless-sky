@@ -362,12 +362,12 @@ int CargoHold::Transfer(const Outfit *outfit, int amount, CargoHold *to)
 	// its space is limited (i.e. size is not set to -1).
 	amount = min(amount, Get(outfit));
 	if(size >= 0 && mass)
-		amount = max(amount, static_cast<int>(-max(Free(), 0) / mass));
+		amount = max<int>(amount, -max(Free(), 0) / mass);
 	if(to)
 	{
 		amount = max(amount, -to->Get(outfit));
 		if(to->size >= 0 && mass)
-			amount = min(amount, static_cast<int>(max(to->Free(), 0) / mass));
+			amount = min<int>(amount, max(to->Free(), 0) / mass);
 	}
 	if(!amount)
 		return 0;
@@ -522,16 +522,11 @@ void CargoHold::AddMissionCargo(const Mission *mission)
 
 
 
-// Remove all the cargo and passengers associated with the given mission.
+// Remove all the cargo and passengers (if any) associated with the given mission.
 void CargoHold::RemoveMissionCargo(const Mission *mission)
 {
-	auto it = missionCargo.find(mission);
-	if(it != missionCargo.end())
-		missionCargo.erase(it);
-	
-	auto pit = passengers.find(mission);
-	if(pit != passengers.end())
-		passengers.erase(pit);
+	missionCargo.erase(mission);
+	passengers.erase(mission);
 }
 
 

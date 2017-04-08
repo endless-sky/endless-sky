@@ -111,10 +111,10 @@ protected:
 	const Ship *selectedShip = nullptr;
 	const Outfit *selectedOutfit = nullptr;
 	
-	double mainScroll = 0;
-	double sideScroll = 0;
-	int maxMainScroll = 0;
-	int maxSideScroll = 0;
+	double mainScroll = 0.;
+	double sideScroll = 0.;
+	double maxMainScroll = 0.;
+	double maxSideScroll = 0.;
 	bool dragMain = true;
 	int mainDetailHeight = 0;
 	int sideDetailHeight = 0;

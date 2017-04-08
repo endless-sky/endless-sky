@@ -189,6 +189,9 @@ public:
 	// Get the degree to which this ship is cloaked. 1 means invisible and
 	// impossible to hit or target; 0 means fully visible.
 	double Cloaking() const;
+	// Get the system that the ship is currently jumping to. This returns null
+	// if the ship has already jumped, i.e. it is leaving hyperspace.
+	const System *HyperspaceSystem() const;
 	// Check if this ship is entering (rather than leaving) hyperspace.
 	bool IsEnteringHyperspace() const;
 	// Check if this ship is entering or leaving hyperspace.
@@ -232,6 +235,8 @@ public:
 	double JumpFuel() const;
 	// Get the heat level at idle.
 	double IdleHeat() const;
+	// Calculate the multiplier for cooling efficiency.
+	double CoolingEfficiency() const;
 	
 	// Access how many crew members this ship has or needs.
 	int Crew() const;
@@ -310,9 +315,8 @@ public:
 	// land on) and a target ship (to move to, and attack if hostile).
 	std::shared_ptr<Ship> GetTargetShip() const;
 	std::shared_ptr<Ship> GetShipToAssist() const;
-	const StellarObject *GetTargetPlanet() const;
+	const StellarObject *GetTargetStellar() const;
 	const System *GetTargetSystem() const;
-	const Planet *GetDestination() const;
 	// Mining target.
 	std::shared_ptr<Minable> GetTargetAsteroid() const;
 	std::shared_ptr<Flotsam> GetTargetFlotsam() const;
@@ -320,9 +324,8 @@ public:
 	// Set this ship's targets.
 	void SetTargetShip(const std::shared_ptr<Ship> &ship);
 	void SetShipToAssist(const std::shared_ptr<Ship> &ship);
-	void SetTargetPlanet(const StellarObject *object);
+	void SetTargetStellar(const StellarObject *object);
 	void SetTargetSystem(const System *system);
-	void SetDestination(const Planet *planet);
 	// Mining target.
 	void SetTargetAsteroid(const std::shared_ptr<Minable> &asteroid);
 	void SetTargetFlotsam(const std::shared_ptr<Flotsam> &flotsam);
@@ -423,10 +426,11 @@ private:
 	double fuel = 0.;
 	double energy = 0.;
 	double heat = 0.;
-	double heatDissipation = .999;
 	double ionization = 0.;
 	double disruption = 0.;
 	double slowness = 0.;
+	// Acceleration can be created by engines, firing weapons, or weapon impacts.
+	Point acceleration;
 	
 	int crew = 0;
 	int pilotError = 0;
@@ -454,7 +458,6 @@ private:
 	std::weak_ptr<Ship> shipToAssist;
 	const StellarObject *targetPlanet = nullptr;
 	const System *targetSystem = nullptr;
-	const Planet *destination = nullptr;
 	std::weak_ptr<Minable> targetAsteroid;
 	std::weak_ptr<Flotsam> targetFlotsam;
 	

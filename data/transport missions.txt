@@ -179,7 +179,7 @@ mission "Smuggler's Den, Part 1"
 mission "Smuggler's Den, Part 2"
 	landing
 	name "Refugees to <planet>"
-	description "Joe and Maria were unable to find work on <origin>. Take them to <destination>, to see if they can get a job there."
+	description "Joe and Maria were unable to find work on <origin>. Take them to <destination> to see if they can get a job there."
 	destination "Millrace"
 	passengers 2
 	to offer
@@ -439,6 +439,7 @@ mission "WR Star 1"
 mission "Deep Archaeology 1"
 	name "Deep Archaeology"
 	description "Drop this archaeologist off on <destination>, before making a trip to Midgard in the Deep to collect some samples."
+	minor
 	source
 		attributes paradise north "near earth"
 		near Miaplacidus 1 20
@@ -486,7 +487,7 @@ mission "Deep Archaeology 1"
 mission "Deep Archaeology 2"
 	landing
 	name "Deep Archaeology"
-	description "Travel to <destination>, and take wood fiber samples from an ancient church and from the trees that grow nearby."
+	description "Travel to <destination> and take wood fiber samples from an ancient church and from the trees that grow nearby."
 	source Vinci
 	destination Midgard
 	to offer
@@ -502,7 +503,7 @@ mission "Deep Archaeology 2"
 mission "Deep Archaeology 3"
 	landing
 	name "Deep Archaeology"
-	description "Return to <destination>, with the wood samples that you retrieved from the church on <origin>."
+	description "Return to <destination> with the wood samples that you retrieved from the church on <origin>."
 	source Midgard
 	destination Vinci
 	to offer
@@ -564,7 +565,7 @@ mission "Deep Archaeology 3"
 
 mission "Deep Archaeology 4"
 	name "Deep Archaeology"
-	description "Return to <destination>, with some specialized equipment for subterranean mapping."
+	description "Return to <destination> with some specialized equipment for subterranean mapping."
 	source Vinci
 	destination Midgard
 	to offer
@@ -628,7 +629,7 @@ mission "Deep Archaeology 5"
 		payment 300000
 		conversation
 			`You breathe a sigh of relief as you land safely in the spaceport on <planet>. "Okay, what was that all about?" you ask.`
-			`	I honestly don't know," says Albert. "I can tell you what I suspect, though. The history books don't actually say when the Deep was first settled. The first documented expedition to the Deep was in the 24th century, and they found several human colonies already established in the region, claiming to date back to the very dawn of space flight. But I think the first settlers were brought there long before that. Brought there on alien ships."`
+			`	"I honestly don't know," says Albert. "I can tell you what I suspect, though. The history books don't actually say when the Deep was first settled. The first documented expedition to the Deep was in the 24th century, and they found several human colonies already established in the region, claiming to date back to the very dawn of space flight. But I think the first settlers were brought there long before that. Brought there on alien ships."`
 			choice
 				`	"For what purpose?"`
 					goto purpose
@@ -656,6 +657,7 @@ mission "There Might Be Riots 1"
 	minor
 	source
 		near Tarazed 5 10
+		government "Republic" "Free Worlds" "Neutral"
 	destination "Wayfarer"
 	cargo "musical equipment" 4
 	passengers 8
@@ -697,6 +699,7 @@ mission "There Might Be Riots 1"
 mission "There Might Be Riots part 2"
 	name "Transport band to <planet>"
 	description `Give the band "There Might Be Riots" a ride to <destination>.`
+	minor
 	source
 		government Syndicate
 	destination "Prime"
@@ -765,6 +768,7 @@ mission "There Might Be Riots part 2"
 mission "There Might Be Riots part 3A"
 	name "Transport band to <planet>"
 	description `Give the band "There Might Be Riots" a ride to <destination>.`
+	minor
 	source
 		attributes "dirt belt" "south" "rim"
 	destination "Pilot"
@@ -846,7 +850,7 @@ mission "There Might Be Riots part 3B"
 	
 	on offer
 		conversation
-			`You bring your ship to a gingerly landing in a section of the testing range that doesn't look too pockmarked with craters, and the band begins setting up their equipment and video cameras. "This is great," says Ulrich. "We'll be broadcasting live over the Net. It's time people starting asking why the government thinks it needs all these weapons of war."`
+			`You bring your ship to a gingerly landing in a section of the testing range that doesn't look too pockmarked with craters, and the band begins setting up their equipment and video cameras. "This is great," says Ulrich. "We'll be broadcasting live over the Net. It's time people started asking why the government thinks it needs all these weapons of war."`
 			`	The band plays through about a third of their set without any evidence that the locals even know you are here, which is surprising for such a tightly secured planet. Then, right in the middle of a particularly crunchy anti-war song, your long range radar picks up something: a large number of ships approaching from a hundred kilometers away.`
 			choice
 				`	"Guys, I think we should get out of here."`
@@ -886,9 +890,9 @@ mission "There Might Be Riots part 3B"
 	on complete
 		payment 500000
 		conversation
-			`You drop off There Might Be Riots on Allhome. Ulrich is looking around the spaceport in wide-eyed excitement. "This is it, guys!" he says. "We're back in the land of the peaceful squirrels. Captain <last>, I don't know how to thank you, but here's a start. He hands you <payment>.`
+			`You drop off There Might Be Riots on Allhome. Ulrich is looking around the spaceport in wide-eyed excitement. "This is it, guys!" he says. "We're back in the land of the peaceful squirrels. Captain <last>, I don't know how to thank you, but here's a start." He hands you <payment>.`
 			`	As the rest of the band begins unloading their things, Ulrich adds speaking more quietly, "And, in good minstrel fashion I will pay you not just with money, but with a story.`
-			`	"Back when the fame first became too much for me, I rented a shuttlecraft under an assumed name and went tooling around the galaxy just to get away from it all. I found some cloudy star out along the Rim, parked my ship where no one would bother, shut down everything but life support, and just sat there meditating and enjoying the silence for two or three days.`
+			`	"Back when the fame first became too much for me, I rented a shuttlecraft under an assumed name and went tooling around the galaxy just to get away from it all. I found some cloudy star out along the Rim, parked my ship where no one would bother me, shut down everything but life support, and just sat there meditating and enjoying the silence for two or three days.`
 			`	"Then suddenly clear as day I heard a voice say, 'Are you okay? Do you need anything?' I was so shocked that without even thinking I said, 'I'm fine. How about you?' And the voice told me he was sad. Sad, because that part of space used to be the home of another species, and now they're all dead. He said we humans built our cities on the graveyards of a great civilization and didn't even know it. And if we didn't stop fighting each other, our species would die off too.`
 			`	"That's when the band started to speak out against war."`
 			choice
@@ -957,7 +961,7 @@ mission "Sad Archie"
 mission "Rim Archaeology 1"
 	landing
 	name "Archaeology on <planet>"
-	description "Bring the famous archaeologist Albert Foster to <destination>, to look for signs of an ancient alien civilization."
+	description "Bring the famous archaeologist Albert Foster to <destination> to look for signs of an ancient alien civilization."
 	source "Vinci"
 	destination "Zug"
 	passengers 1
@@ -1251,6 +1255,7 @@ mission "Drug Running 1"
 		attributes "near earth" "dirt belt" "north"
 	destination
 		attributes paradise
+		distance 1 100
 	cargo "illegal drugs" 5 2 .1
 		illegal 40000
 	to offer
@@ -1281,6 +1286,7 @@ mission "Drug Running 2"
 		attributes "near earth" "dirt belt" "north"
 	destination
 		attributes rich
+		distance 1 100
 	cargo "illegal drugs" 5 2 .1
 		illegal 50000
 	to offer
@@ -1306,6 +1312,7 @@ mission "Drug Running 3"
 		attributes "near earth" "dirt belt" "north"
 	destination
 		attributes urban
+		distance 1 100
 	cargo "illegal drugs" 5 2 .1
 		illegal 70000
 	to offer
@@ -1422,7 +1429,7 @@ mission "Rescue Miners 1"
 
 mission "Rescue Miners 2"
 	landing
-	description "Participate in the medical evacuation of some miners injured in a recent accident on <planet>."
+	description "Participate in the medical evacuation of some miners injured in a recent accident on <origin>."
 	name "Rescue Miners"
 	minor
 	destination
@@ -1712,6 +1719,8 @@ mission "Terraforming 2"
 mission "Terraforming 3"
 	name "Terraforming Rand"
 	description "Plant a thruster on an asteroid to guide it into a collision with the northern pole of Rand."
+	blocked "You'll need more cargo space in order to take the next mission from Eric and Alaric. Return here when you have at least <capacity>."
+	cargo "thruster equipment" 10
 	source Rand
 	to offer
 		has "Terraforming 2: done"
@@ -1740,12 +1749,13 @@ mission "Terraforming 3"
 				`	"That is a stupid idea, and I want nothing to do with it."`
 					decline
 				`	"Well, if you think it will work, I'm willing to try it!"`
-			`	"Great!" says Amy. "I'll mark the asteroid on your radar. You just need to board it, install a small ion thruster, and wait for it to land on the planet, then return here."`
+			`	"Great!" says Amy. "I'll mark the asteroid on your radar. You just need to board it, install a small ion thruster, and return here."`
+			`	Eric contacts some spaceport workers and has them load a small thruster onto your ship, along with the equipment you will need to mount it on the asteroid.`
 				accept
 	
 	npc assist
-		government Derelict
-		personality derelict fleeing uninterested waiting pacifist
+		government Uninhabited
+		personality derelict fleeing uninterested waiting pacifist mute
 		ship Asteroid
 			name "Target Asteroid"
 			sprite "asteroid/medium rock/spin"
