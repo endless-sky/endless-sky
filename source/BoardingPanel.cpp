@@ -357,6 +357,12 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 				if(!victim->JumpsRemaining() && you->CanRefuel(*victim))
 					you->TransferFuel(victim->JumpFuel(), &*victim);
 				player.AddShip(victim);
+				for(const Ship::Bay &bay : victim->Bays())
+					if(bay.ship)
+					{
+						player.AddShip(bay.ship);
+						player.HandleEvent(ShipEvent(you, bay.ship, ShipEvent::CAPTURE), GetUI());
+					}
 				isCapturing = false;
 				
 				// Report this ship as captured in case any missions care.
