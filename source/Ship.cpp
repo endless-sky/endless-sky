@@ -155,6 +155,11 @@ void Ship::Load(const DataNode &node)
 					if(child.Token(i) == BAY_FACING[j])
 						bays.back().facing = j;
 			}
+			const Outfit *outfit = nullptr;
+			if(child.Size() >= 4)
+				outfit = GameData::Outfits().Get(child.Token(child.Size()-1));
+			if(outfit)
+				bays.back().outfit = outfit;
 		}
 		else if(child.Token(0) == "explode" && child.Size() >= 2)
 		{
@@ -436,14 +441,29 @@ void Ship::Save(DataWriter &out) const
 		{
 			double x = 2. * bay.point.X();
 			double y = 2. * bay.point.Y();
-			if(bay.side && bay.facing)
-				out.Write(BAY_TYPE[bay.isFighter], x, y, BAY_SIDE[bay.side], BAY_FACING[bay.facing]);
-			else if(bay.side)
-				out.Write(BAY_TYPE[bay.isFighter], x, y, BAY_SIDE[bay.side]);
-			else if(bay.facing)
-				out.Write(BAY_TYPE[bay.isFighter], x, y, BAY_FACING[bay.facing]);
-			else
-				out.Write(BAY_TYPE[bay.isFighter], x, y);
+			if (bay.GetOutfit()) {
+				if(bay.side && bay.facing)
+					out.Write(BAY_TYPE[bay.isFighter], x, y, BAY_SIDE[bay.side], BAY_FACING[bay.facing],
+						 bay.GetOutfit()->Name());
+				else if(bay.side)
+					out.Write(BAY_TYPE[bay.isFighter], x, y, BAY_SIDE[bay.side],
+						 bay.GetOutfit()->Name());
+				else if(bay.facing)
+					out.Write(BAY_TYPE[bay.isFighter], x, y, BAY_FACING[bay.facing],
+						 bay.GetOutfit()->Name());
+				else
+					out.Write(BAY_TYPE[bay.isFighter], x, y,
+						 bay.GetOutfit()->Name());
+			} else {
+				if(bay.side && bay.facing)
+					out.Write(BAY_TYPE[bay.isFighter], x, y, BAY_SIDE[bay.side], BAY_FACING[bay.facing]);
+				else if(bay.side)
+					out.Write(BAY_TYPE[bay.isFighter], x, y, BAY_SIDE[bay.side]);
+				else if(bay.facing)
+					out.Write(BAY_TYPE[bay.isFighter], x, y, BAY_FACING[bay.facing]);
+				else
+					out.Write(BAY_TYPE[bay.isFighter], x, y);
+			}
 		}
 		for(const auto &it : explosionEffects)
 			if(it.first && it.second)
@@ -2093,7 +2113,7 @@ int Ship::BaysFree(bool isFighter) const
 {
 	int count = 0;
 	for(const Bay &bay : bays)
-		count += (bay.isFighter == isFighter) && !bay.ship;
+		count += (bay.isFighter == isFighter) && !bay.ship && !bay.outfit;
 	return count;
 }
 
@@ -2141,7 +2161,7 @@ bool Ship::Carry(const shared_ptr<Ship> &ship)
 		return false;
 	
 	for(Bay &bay : bays)
-		if((bay.isFighter == isFighter) && !bay.ship)
+		if((bay.isFighter == isFighter) && !bay.ship && !bay.outfit)
 		{
 			bay.ship = ship;
 			ship->SetSystem(nullptr);
