@@ -1875,7 +1875,7 @@ mission "Defend Sabik"
 				"Rainmaker" 3
 	
 	npc
-		personality heroic disables
+		personality escort heroic disables
 		government "Free Worlds"
 		fleet
 			names "free worlds capital"
@@ -1893,7 +1893,7 @@ mission "Defend Sabik"
 				"Hawk"
 				"Fury" 2
 	npc
-		personality heroic disables
+		personality escort heroic disables
 		government "Free Worlds"
 		system "Zubenelgenubi"
 		fleet
@@ -1904,7 +1904,7 @@ mission "Defend Sabik"
 				"Hawk" 3
 				"Sparrow" 5
 	npc
-		personality heroic disables
+		personality escort heroic disables
 		government "Free Worlds"
 		system "Zubeneschamali"
 		fleet
@@ -1919,7 +1919,7 @@ mission "Defend Sabik"
 				"Bastion" 2
 				"Argosy" 4
 	npc
-		personality heroic disables
+		personality escort heroic disables
 		government "Free Worlds"
 		system "Unukalhai"
 		fleet
@@ -1927,7 +1927,7 @@ mission "Defend Sabik"
 			variant
 				"Falcon" 2
 	npc
-		personality heroic waiting disables
+		personality escort heroic waiting disables
 		government "Free Worlds"
 		fleet
 			names "free worlds small"
