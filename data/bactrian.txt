@@ -84,7 +84,7 @@ mission "Bactrian Unlock [0]"
 		dialog "As you enter Arneb, you spot the Star Queen landing on Haven, defended by a number of pirate vessels. You will need to report back to the Deep in order to retrieve the Star Queen in one piece."
 	
 	on visit
-		dialog "You have landed on <planet>, but you have not located the Star Queen! Find it somewhere in the Far North."
+		dialog "You have landed on Valhalla, but you have not located the Star Queen! Find it somewhere in the Far North."
 	
 	to complete
 		has "found star queen"
@@ -153,7 +153,7 @@ mission "Bactrian Unlock [1]"
 		has "Bactrian Unlock [0]: done"
 	on offer
 		conversation
-			`You return to <planet> to find the man that you met earlier in the spaceport talking with a large group of people in Deep Security uniforms.`
+			`You return to Valhalla to find the man that you met earlier in the spaceport talking with a large group of people in Deep Security uniforms.`
 			`	As you approach them, the man stops talking with the group after noticing you. "Captain <last>! Have you located the Star Queen?"`
 			choice
 				`	"Yes, it is located on <destination>, but is heavily defended."`
@@ -186,7 +186,7 @@ mission "Bactrian Unlock [1]"
 		ship "Mule (Heavy)" "D.S.S. Faraday"
 	
 	on visit
-		dialog `You have landed on <planet>, but either you left the <npc> behind or you didn't pick up the rest of your escorts! Wait for the <npc> to enter the system before landing or make sure you have picked up the escorts on Memory and Farpoint.`
+		dialog `You have landed on Haven, but either you left the <npc> behind or you didn't pick up the rest of your escorts! Wait for the <npc> to enter the system before landing or make sure you have picked up the escorts on Memory and Farpoint.`
 
 mission "Bactrian Unlock [1]: Pirates"
 	invisible
@@ -254,7 +254,7 @@ mission "Bactrian Unlock [1]: Reinforcements"
 	
 	on offer
 		conversation
-			`While landing on <planet> to refuel, you are approached by two Navy officers who ask if you are involved in the rescue mission. When you respond yes, they inform you that they will be bringing two Cruisers to assist in retrieving the Star Queen.`
+			`While landing on Farpoint to refuel, you are approached by two Navy officers who recognize you as Captain <last> and tell you that Lieutenant Paris had contacted them a few days ago saying that you would be arriving. They inform you that they will be bringing two Cruisers to assist in retrieving the Star Queen.`
 				accept
 
 mission "Bactrian Unlock [2]"
@@ -266,7 +266,7 @@ mission "Bactrian Unlock [2]"
 		has "Bactrian Unlock [1]: done"
 	on offer
 		conversation
-			`The remaining fleet quickly enters the atmosphere of <planet> and begins scanning the surface. After about an hour of flying, you get a transmission that the ship has been found along with the location of the Star Queen.`
+			`The remaining fleet quickly enters the atmosphere of Haven and begins scanning the surface. After about an hour of flying, you get a transmission that the ship has been found along with the location of the Star Queen.`
 			`	You watch from afar as the Mule lands near a hangar in some sort of pirate facility. The Mule immediately unloads what looks to be at least four dozen armed soldiers who quickly surround and breach the hangar. After about ten minutes, the hangar doors open to reveal Star Queen, still intact. You hear chatter over the radio saying that most of the crew and scientists are still inside.`
 			`	"Good job, everyone," you hear Lieutenant Paris say over the comms. "Now we just need to make it back to <destination> in one piece." Just as he says that and the Star Queen and Mule begin activating their repulsor engines, a heavy laser beam pierces the sky, slicing the Mule in half while its shields are down. Soldiers begin scrambling into the Star Queen, which quickly takes off into space along with the rest of the fleet. You turn your repulsor engines to full and begin flying up into space behind them.`
 				launch
@@ -281,7 +281,7 @@ mission "Bactrian Unlock [2]"
 		ship "Star Queen" "D.S.S. Alcubierre"
 	
 	on visit
-		dialog `You have landed on <planet>, but you left the <npc> behind! Wait for it to enter the system before landing.`
+		dialog `You have landed on Valhalla, but you left the <npc> behind! Wait for it to enter the system before landing.`
 	
 	on complete
 		payment 100000
@@ -343,7 +343,7 @@ mission "Bactrian Unlock [3]"
 				accept
 	
 	on visit
-		dialog "You landed on <planet>, but you didn't kill the Bactrian! Return to Arneb and make sure that the Bactrian is destroyed and forever out of pirate hands."
+		dialog "You landed on Valhalla, but you didn't kill the Bactrian! Return to Arneb and make sure that the Bactrian is destroyed and forever out of pirate hands."
 	
 	to complete
 		has "Bactrian Unlock [2]: Pirate Bactrian: done"
@@ -351,7 +351,7 @@ mission "Bactrian Unlock [3]"
 	on complete
 		set "license: City-ship"
 		conversation
-			`When you return to <planet>, the Star Queen is no longer on the landing pad and things seem to be running normally. Shortly after landing, you find Lieutenant Paris at the same restaurant that he first found you. Before saying a word to you, he hands you a license.`
+			`When you return to Valhalla, the Star Queen is no longer on the landing pad and things seem to be running normally. Shortly after landing, you find Lieutenant Paris at the same restaurant that he first found you. Before saying a word to you, he hands you a license.`
 			`	"Thank you. I've said it before, but there's really no way I can thank you enough."`
 			`	You look down at the license that Paris just handed you and notice that it's a city-ship license, one that will allow you to purchase the Bactrian. "I think it's only fair that you be able to purchase the Bactrian after having to fight one to the death. It's really the least I could do for you."`
 			choice
