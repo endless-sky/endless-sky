@@ -99,8 +99,12 @@ void ConditionSet::Add(const DataNode &node)
 	}
 	else if(node.Size() == 3)
 	{
-		if(!Add(node.Token(0), node.Token(1), node.Value(2)))
-			node.PrintTrace("Unrecognized condition expression:");
+		if(node.Value(2)) {
+			if(!Add(node.Token(0), node.Token(1), node.Value(2)))
+				node.PrintTrace("Unrecognized condition expression:");
+		} else
+			if(!Add(node.Token(0), node.Token(1), node.Token(2)))
+				node.PrintTrace("Unrecognized condition expression:");
 	}
 	else if(node.Size() == 1 && node.Token(0) == "never")
 		expressions.emplace_back("", "!=", 0);
@@ -154,6 +158,20 @@ bool ConditionSet::Add(const string &name, const string &op, int value)
 
 
 
+// Add a binary operator line to the list of expressions with a string as value
+bool ConditionSet::Add(const string &name, const string &op, const string &svalue)
+{
+	// If the operator is recognized, map it to a binary function.
+	BinFun fun = Op(op);
+	if(!fun)
+		return false;
+	
+	expressions.emplace_back(name, op, 0);
+	expressions.back().svalue = svalue;
+	return true;
+}
+
+
 // Check if the given condition values satisfy this set of conditions.
 bool ConditionSet::Test(const map<string, int> &conditions) const
 {
@@ -161,16 +179,25 @@ bool ConditionSet::Test(const map<string, int> &conditions) const
 	{
 		// Special case: if the name of the condition is "random," that means to
 		// generate a random number from 0 to 99 each time it is queried.
-		int value = 0;
+		int firstValue = 0;
 		if(expression.name == "random")
-			value = Random::Int(100);
+			firstValue = Random::Int(100);
 		else
 		{
 			auto it = conditions.find(expression.name);
 			if(it != conditions.end())
-				value = it->second;
+				firstValue = it->second;
 		}
-		bool result = expression.fun(value, expression.value);
+		int secondValue = expression.value;
+		if(expression.svalue == "random")
+			secondValue = Random::Int(100);
+		else
+		{
+			auto it = conditions.find(expression.svalue);
+			if(it != conditions.end())
+				secondValue = it->second;
+		}
+		bool result = expression.fun(firstValue, secondValue);
 		// If this is a set of "and" conditions, bail out as soon as one of them
 		// returns false. If it is an "or", bail out if anything returns true.
 		if(result == isOr)
@@ -196,7 +223,16 @@ void ConditionSet::Apply(map<string, int> &conditions) const
 	for(const Expression &expression : expressions)
 	{
 		int &c = conditions[expression.name];
-		c = expression.fun(c, expression.value);
+		int value = expression.value;
+		if(expression.svalue == "random")
+			value = Random::Int(100);
+		else
+		{
+			auto it = conditions.find(expression.svalue);
+			if(it != conditions.end())
+				value = it->second;
+		}
+		c = expression.fun(c, value);
 	}
 	// Note: "and" and "or" make no sense for "Apply()," so a condition set that
 	// is meant to be applied rather than tested should never include them. But
