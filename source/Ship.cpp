@@ -83,6 +83,11 @@ void Ship::Load(const DataNode &node)
 			LoadSprite(child);
 		else if(child.Token(0) == "name" && child.Size() >= 2)
 			name = child.Token(1);
+		else if(child.Token(0) == "personality")
+		{
+			personality.Load(child);
+			hasIndividualPersonality = true;
+		}
 		else if(child.Token(0) == "plural" && child.Size() >= 2)
 			pluralModelName = child.Token(1);
 		else if(child.Token(0) == "attributes")
@@ -382,6 +387,8 @@ void Ship::Save(DataWriter &out) const
 		out.Write("name", name);
 		if(pluralModelName != modelName + 's')
 			out.Write("plural", pluralModelName);
+		if(hasIndividualPersonality)
+			personality.Save(out);
 		SaveSprite(out);
 		
 		if(neverDisabled)
