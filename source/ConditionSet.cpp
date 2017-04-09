@@ -40,7 +40,6 @@ namespace {
 			{"=", [](int a, int b) { return b; }},
 			{"+=", [](int a, int b) { return a + b; }},
 			{"-=", [](int a, int b) { return a - b; }},
-			{"*=", [](int a, int b) { return a * b; }},
 			{"<?=", [](int a, int b) { return min(a, b); }},
 			{">?=", [](int a, int b) { return max(a, b); }}
 		};
@@ -176,31 +175,31 @@ bool ConditionSet::Add(const string &name, const string &op, const string &svalu
 }
 
 
+// Check if the passed token is numeric or a string which has to be replaced, and return its value
+double ConditionSet::TokenValue(int numValue, const string &strValue, const map<string, int> &conditions) const
+{
+	int value = numValue;
+	// Special case: if the string of the token is "random," that means to
+	// generate a random number from 0 to 99 each time it is queried.
+	if(strValue == "random")
+		value = Random::Int(100);
+	else
+	{
+		auto it = conditions.find(strValue);
+		if(it != conditions.end())
+			value = it->second;
+	}
+	return value;
+}
+
+
 // Check if the given condition values satisfy this set of conditions.
 bool ConditionSet::Test(const map<string, int> &conditions) const
 {
 	for(const Expression &expression : expressions)
 	{
-		// Special case: if the name of the condition is "random," that means to
-		// generate a random number from 0 to 99 each time it is queried.
-		int firstValue = 0;
-		if(expression.name == "random")
-			firstValue = Random::Int(100);
-		else
-		{
-			auto it = conditions.find(expression.name);
-			if(it != conditions.end())
-				firstValue = it->second;
-		}
-		int secondValue = expression.value;
-		if(expression.svalue == "random")
-			secondValue = Random::Int(100);
-		else
-		{
-			auto it = conditions.find(expression.svalue);
-			if(it != conditions.end())
-				secondValue = it->second;
-		}
+		int firstValue = TokenValue(0, expression.name, conditions);
+		int secondValue = TokenValue(expression.value, expression.svalue, conditions);
 		bool result = expression.fun(firstValue, secondValue);
 		// If this is a set of "and" conditions, bail out as soon as one of them
 		// returns false. If it is an "or", bail out if anything returns true.
@@ -227,15 +226,7 @@ void ConditionSet::Apply(map<string, int> &conditions) const
 	for(const Expression &expression : expressions)
 	{
 		int &c = conditions[expression.name];
-		int value = expression.value;
-		if(expression.svalue == "random")
-			value = Random::Int(100);
-		else
-		{
-			auto it = conditions.find(expression.svalue);
-			if(it != conditions.end())
-				value = it->second;
-		}
+		int value = TokenValue(expression.value, expression.svalue, conditions);
 		c = expression.fun(c, value);
 	}
 	// Note: "and" and "or" make no sense for "Apply()," so a condition set that
