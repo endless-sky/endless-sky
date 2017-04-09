@@ -1768,6 +1768,7 @@ mission "Wanderers: Sestor Search: Varu K'prai"
 
 mission "Wanderers: Sestor Search: Human Spaceport"
 	landing
+	invisible
 	source
 		government Republic "Free Worlds" Syndicate Neutral
 		attributes north
@@ -1783,7 +1784,7 @@ mission "Wanderers: Sestor Search: Human Spaceport"
 					decline
 			
 			label approach
-			`	You get a better view of the Behemoth -- the "Heart of Gold", as indicated on the ship's stern -- as you walk up to it. The rear of the ship is badly hammered, and black scorch marks streak forward across the hull. You can't help but notice that at several projectile entry points along the hull, the metal is bent smoothly inwards, almost as if the penetrator had seared or melted its way through the ship's armor. The captain of the Behemoth looks up from his inspection. Seeing you, he remarks, "We were lucky to get out of that one alive!"`
+			`	You get a better view of the Behemoth - the "Heart of Gold", as indicated on the ship's stern - as you walk up to it. The rear of the ship is badly hammered, and black scorch marks streak forward across the hull. You can't help but notice that at several projectile entry points along the hull, the metal is bent smoothly inwards, almost as if the penetrator had seared or melted its way through the ship's armor. The captain of the Behemoth looks up from his inspection. Seeing you, he remarks, "We were lucky to get out of that one alive!"`
 			choice
 				`	"How did your ship end up in such a state?"`
 				`	"Was this beauty the victim of a pirate attack?"`
@@ -1794,9 +1795,9 @@ mission "Wanderers: Sestor Search: Human Spaceport"
 				`	"Where did this fight take place?"`
 					goto where
 				`	"You should be glad you're still in one piece."`
-					goto glad
+					goto glad1
 					
-			`	"Well," the pilot continues, "we had hired a beefy Leviathan escort to Farpoint in the Alnitak system. When we were going in for landing, two of these hostile ships jumped in from the northwest, the direction of all the anarchist colonies in this area. The ships weren't big, but they were tough——our four heavy laser turrets weren't enough to produce even a dent in their shields. They made short work of the Leviathan, and nearly disabled our ship, too. It was lucky I decided that jumping would be faster than landing. We warped out of the system while in atmosphere, saving the ship, but now I'm in debt to all my crew because I couldn't meet my rush delivery deadline."`
+			`	"Well," the pilot continues, "we had hired a beefy Leviathan escort to Farpoint in the Alnitak system. When we were going in for landing, two of these hostile ships jumped in from the northwest, the direction of all the anarchist colonies in this area. The ships weren't big, but they were tough: our four heavy laser turrets weren't enough to produce even a dent in their shields. They made short work of the Leviathan, and nearly disabled our ship, too. It was lucky I decided that jumping would be faster than landing. We warped out of the system while in atmosphere, saving the ship, but now I'm in debt to all my crew because I couldn't meet a rush delivery deadline."`
 			choice
 				`	"You're lucky as hell to be here today."`
 					goto glad
@@ -1808,7 +1809,15 @@ mission "Wanderers: Sestor Search: Human Spaceport"
 			choice
 				`	"You're lucky as hell to be here today."`
 					goto glad
-				`	"Thanks for the information. I think that these hostile ships are the ones I'm hunting for."`
+				`	"Thanks for the information. I think that these hostile ships are the ones I'm hunting."`
+					goto thanks
+			
+			label glad1
+			`	"I am! The attacking ships weren't big, but they were tough: our four heavy laser turrets couldn't even produce a dent in their shields," the captain explains. "We even hired a beefy Leviathan to protect us from the pirate raids as we travelled to Farpoint, but when these hostile ships jumped in from the northwest, they made short work of our escort and nearly disabled our ship, too. I had to jump out of the system while in atmosphere to save the ship, but now I'm in debt to all my crew because I didn't meet a rush delivery deadline."`
+			choice
+				`	"You really are lucky as hell to be here today."`
+					goto glad
+				`	"Thanks for the information. I think that these hostile ships are the ones I'm looking for."`
 					goto thanks
 			
 			label thanks
