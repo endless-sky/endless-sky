@@ -49,6 +49,11 @@ public:
 	
 	
 private:
+	// Check if the passed token is numeric or a string which has to be replaced, and return its value
+	double TokenValue(int numValue, const std::string &strValue, const std::map<std::string, int> &conditions) const;
+	
+	
+private:
 	// This class represents a single expression involving a condition - either
 	// testing what value it has, or modifying it in some way.
 	class Expression {
