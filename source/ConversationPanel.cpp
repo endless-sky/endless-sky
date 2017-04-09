@@ -212,7 +212,7 @@ bool ConversationPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comm
 		if(key >= ' ' && key <= '~')
 		{
 			// Apply the shift or caps lock key.
-			char c = ((mod & KMOD_SHIFT) ? SHIFT[key] : ascii);
+			char c = ((mod & KMOD_SHIFT) ? SHIFT[key] : key);
 			// Caps lock should shift letters, but not any other keys.
 			if((mod & KMOD_CAPS) && c >= 'a' && c <= 'z')
 				c += 'A' - 'a';
