@@ -138,7 +138,8 @@ void NPC::Load(const DataNode &node)
 	{
 		ship->FinishLoading();
 		ship->SetGovernment(government);
-		ship->SetPersonality(personality);
+		if (!ship->HasIndividualPersonality())
+			ship->SetPersonality(personality);
 		ship->SetIsSpecial();
 	}
 }
@@ -394,7 +395,8 @@ NPC NPC::Instantiate(map<string, string> &subs, const System *origin, const Syst
 	{
 		ship->SetGovernment(result.government);
 		ship->SetIsSpecial();
-		ship->SetPersonality(result.personality);
+		if (!ship->HasIndividualPersonality())
+			ship->SetPersonality(result.personality);
 		
 		if(personality.IsEntering())
 			Fleet::Enter(*result.system, *ship);
