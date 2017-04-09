@@ -34,7 +34,7 @@ mission "Bactrian Unlock [0]"
 					defer
 					
 			`	"We were wondering if you would be able to help us. We have a record of you having assisted in a number of humanitarian ventures before."`
-			`	The woman pulls out a tablet of some sort and begins reading from it. "Helping to terraform Rand, rescuing miners on a Syndicate world, transporting a few scientists conducting research on Hope." She continues on to mention a few more situations that you were involved in and finally ends on you helping Joe and Maria off of Smuggler's Den, although she doesn't mention them by name.`
+			`	The woman pulls out a tablet of some sort and begins reading from it. "Helping to terraform Rand, rescuing miners on a Syndicate world, transporting a few scientists conducting research on Hope..." She continues on to mention a few more situations that you were involved in and finally ends on you helping Joe and Maria off of Smuggler's Den, although she doesn't mention them by name.`
 			`	The man begins speaking to you after the woman stops. "Rather impressive work, I might say."`
 			choice
 				`	"Wait, you have a record on me?"`
@@ -44,15 +44,15 @@ mission "Bactrian Unlock [0]"
 			`	"The Deep keeps a record on a lot of things, especially when we notice a certain individual doing a lot of humanitarian deeds."`
 			branch plot
 				has "main plot completed"
-			`	The man begins to tell you about the mission.`
+			`	The man begins to tell you about the mission:`
 				goto mission
 	
 			label plot
-			`	"Besides," the woman chimes in, "what do you expect after having been involved in the war?" The man begins to tell you about the mission.`
+			`	"Besides," the woman chimes in, "what do you expect after having been involved in the war?" The man begins to tell you about the mission:`
 	
 			label mission
-			`	"We need you to find a Star Queen that recently went missing in the Far North region and return to <destination> once you have located it. Aboard this Star Queen were a number of top scientists intending to do research on the Wolf-Rayet star in Gorvi, which, due to its proximity to the northern anarchist worlds, has very little known about it."`
-			`	"We received word yesterday that just after refueling on Prime, a large pirate fleet entered the system. The Star Queen's escorts were sadly destroyed." He chokes up a bit. "The pirates boarded and took control of the Star Queen. We then lost all connection to the vessel, so we're in the dark as to where it went from there." He takes a moment to collect himself after telling you the situation.`
+			`	"We need you to find a Star Queen that recently went missing in the Far North region and return to <destination> once you have located it. Aboard it were a number of top scientists intending to do research on the Wolf-Rayet star in Gorvi. Due to its proximity to the northern anarchist worlds, very little research has been conducted on it."`
+			`	"We received word yesterday that just after the the Star Queen and its escorts refueled on Prime, a large pirate fleet entered the system. The escorts were sadly destroyed." He chokes up a bit. "The pirates boarded and took control of the Star Queen. We then lost all connection to the vessel, so we're in the dark as to where it went from there." He takes a moment to collect himself after telling you the situation.`
 			choice
 				`	"I would be glad to help. I'll prepare my ship immediately."`
 					accept
@@ -70,7 +70,7 @@ mission "Bactrian Unlock [0]"
 				goto end
 	
 			label locate
-			`	"The Star Queen was being escorted by a large number of warships that should not have been easy to overwhelm, but given that the pirate somehow managed to do so, we need someone to forge ahead and find the Star Queen as soon as possible. In the mean time, we will assemble a proper rescue fleet. In a situation like this, every minute matters, and if someone like you can find the Star Queen quickly then that means that there is a higher chance everyone can come out of this alive."`
+			`	"The Star Queen was being escorted by a large number of warships that should not have been easy to overwhelm, but given that the pirates somehow managed to do so, we need someone to forge ahead and find the Star Queen as soon as possible. In the mean time, we will assemble a proper rescue fleet. In a situation like this, every minute matters, and if someone like you can find the Star Queen quickly then that means that there is a higher chance everyone can come out of this alive."`
 	
 			label end
 			choice
@@ -99,7 +99,8 @@ mission "Bactrian Unlock [0]: Prime"
 		has "Bactrian Unlock [0]: active"
 	on offer
 		conversation
-			`The Star Queen is not in this system, so you attempt to find somebody who may have some information. You eventually find a merchant who claims to have been here when the Star Queen was and that a large pirate fleet jumped in and took the Star Queen hostage before jumping north to Rigel.`
+			`The Star Queen is not in this system, so you attempt to find somebody who may have some information. After visiting several shops, you find a merchant who was clearing cargo through customs as the Star Queen departed. As she shares her experience, you can't help but be glad the Deep Security officer is not with you, as to hear this tale unfold would surely have shaken him further.`
+ 			`	According to the merchant, a large pirate fleet jumped in, eviscerated the escorts, and escaped north towards Rigel with the hostage Star Queen. You can only hope the trail is not already cold.`
 				decline
 
 mission "Bactrian Unlock [0]: Farpoint"
@@ -109,9 +110,8 @@ mission "Bactrian Unlock [0]: Farpoint"
 		has "Bactrian Unlock [0]: active"
 	on offer
 		conversation
-			`After speaking with a Navy Officer for a few minutes, you find out that the Star Queen came through here over a week ago, escorted by a few large pirate ships. They did not want to risk the lives of those on the Star Queen by attacking the pirates, so they let the ship go and it continued north from here.`
-			`	There have been preparations for a rescue mission, but the fleet that originally captured the Star Queen had also destroyed a number of Navy capital ships, so they have been waiting for supplies before going out on the potentially dangerous mission.`
-			`	The Navy officer ends by hinting that the Star Queen is likely to be in Alnilam or Arneb, as those are the farthest places from anyone willing to try and rescue the ship.`
+			`After speaking with a Navy Officer for a few minutes, you find out that the Star Queen came through here over a week ago, escorted by several large pirate ships. The Navy did not want to risk the lives of those on the Star Queen by engaging the pirate fleet, so they let it continue north from here.`			`	The spaceport clearly shows preparations for a rescue mission, but due to the destruction of a number of Navy capital ships by the Star Queen's captors in the days preceding its abduction, they have been ordered to wait for additional ammunition and reinforcements.`
+			`	The Navy officer ends by hinting that the Star Queen is likely to be in Alnilam or Arneb, as those systems are the farthest from anyone looking to find or rescue the ship.`
 				decline
 
 mission "Bactrian Unlock [0]: Pirates"
@@ -153,7 +153,7 @@ mission "Bactrian Unlock [1]"
 		has "Bactrian Unlock [0]: done"
 	on offer
 		conversation
-			`You return to Valhalla to find the man that you met earlier in the spaceport talking with a large group of people in Deep Security uniforms.`
+			`You return to Valhalla and find the man that you met earlier in the spaceport talking with a large group of people in Deep Security uniforms.`
 			`	As you approach them, the man stops talking with the group after noticing you. "Captain <last>! Have you located the Star Queen?"`
 			choice
 				`	"Yes, it is located on <destination>, but is heavily defended."`
@@ -176,8 +176,8 @@ mission "Bactrian Unlock [1]"
 				`	"I would rather let the professionals handle things. Good luck."`
 					decline
 			
-			`	"Thank you so much. We'll be rendezvousing with a number of warships on Memory, and I've also sent word to the Navy on Farpoint that we may be needing help. After that we'll head out to Arneb, but just make sure that the <npc> makes it onto the planet. The landing crew will be on that ship along with myself. Just launch whenever you're ready to fight."`
-			`	The man starts talking into a communication device that he takes from his belt, giving orders to the fleet that will be joining you on the mission, then puts the device back on his waist and looks to you. "Also, since we'll be going into battle together, I might as well introduce myself. I'm Deep Lieutenant Shane Paris. Good luck fighting."`
+			`	"Thank you so much. The plan is to rendezvous with a number of warships on Memory and then head to Alnitak. My superiors received word from the commander on Farpoint that there are a number of Navy ships at the ready to avenge the ships they lost, so I expect we'll pick up some help there when we refuel. After the fleet is mustered, we go to Arneb." He smiles briefly, adding, "Just make sure that the <npc> makes it onto the planet. She'll be carrying the landing crew, along with myself."`
+			`	The communications device on his belt squawks, and he quickly responds, giving orders to the fleet that will be joining you on the mission. Before you can return to your ship, he says, "Also, since we'll be going into battle together, I might as well introduce myself. I'm Deep Lieutenant Shane Paris. Good luck fighting; we'll meet you in orbit."`
 				accept
 	
 	npc save accompany
@@ -228,7 +228,7 @@ mission "Bactrian Unlock [1]: Escorts"
 	
 	on offer
 		conversation
-			`You notice a group of Deep Security warships - three Aeries and their fighter squadron - loading up on ammunition just outside of the spaceport. After thirty minutes they tell you that they are ready to launch and join in on the rescue mission.`
+			`As you land, you notice a group of Deep Security warships - three Aeries and their fighter squadrons - loading munitions just outside of the spaceport. Before you can make it into the spaceport, one of the pilots waves you over for a brief conversation: aside from a few trivial items left on their preflight checklist, the warships are ready to launch and join in on the rescue mission.`
 				accept
 
 mission "Bactrian Unlock [1]: Reinforcements"
@@ -254,25 +254,25 @@ mission "Bactrian Unlock [1]: Reinforcements"
 	
 	on offer
 		conversation
-			`While landing on Farpoint to refuel, you are approached by two Navy officers who recognize you as Captain <last> and tell you that Lieutenant Paris had contacted them a few days ago saying that you would be arriving. They inform you that they will be bringing two Cruisers to assist in retrieving the Star Queen.`
+			`While refueling at the Farpoint naval base, you are approached by two Navy officers who recognize you as Captain <last>. They tell you that Lieutenant Paris contacted them a few days ago, indicating that the rescue fleet was en route and would be reaching the Alnitak system shortly. They inform you that they have requisitioned two Cruisers to assist in the Star Queen's retrieval, and depart for their ships.`
 				accept
 
 mission "Bactrian Unlock [2]"
 	landing
-	name "Return to <destination>"
+	name "Return to <planet>"
 	description "Now that you have secured the Star Queen, escort it safely to <destination>."
 	destination Valhalla
 	to offer
 		has "Bactrian Unlock [1]: done"
 	on offer
 		conversation
-			`The remaining fleet quickly enters the atmosphere of Haven and begins scanning the surface. After about an hour of flying, you get a transmission that the ship has been found along with the location of the Star Queen.`
-			`	You watch from afar as the Mule lands near a hangar in some sort of pirate facility. The Mule immediately unloads what looks to be at least four dozen armed soldiers who quickly surround and breach the hangar. After about ten minutes, the hangar doors open to reveal Star Queen, still intact. You hear chatter over the radio saying that most of the crew and scientists are still inside.`
+			`The remaining fleet quickly enters the atmosphere of Haven and begins scanning the surface. After about an hour of flying, you receive a transmission that the Star Queen has been found, along with its coordinates.`
+			`	You watch from afar as the Mule lands outside a hangar in some sort of pirate facility. The Mule immediately unloads what looks to be at least four dozen armed soldiers who quickly surround and breach the hangar. After about ten minutes, the hangar doors slide open to reveal the Star Queen, still intact. You hear chatter over the radio saying that most of the crew and scientists are still inside.`
 			`	"Good job, everyone," you hear Lieutenant Paris say over the comms. "Now we just need to make it back to <destination> in one piece." Just as he says that and the Star Queen and Mule begin activating their repulsor engines, a heavy laser beam pierces the sky, slicing the Mule in half while its shields are down. Soldiers begin scrambling into the Star Queen, which quickly takes off into space along with the rest of the fleet. You turn your repulsor engines to full and begin flying up into space behind them.`
 				launch
 	
 	on enter
-		dialog "As your repulsor engines roar, you notice a large pirate ship looming over you from space. Even from the underside, it is undeniably a Bactrian, but as to how a pirate could ever got ahold of one is a mystery."
+		dialog "As your repulsor engines roar, you notice a large pirate ship looming over the planet. Even from the underside, it is undeniably a Bactrian, but as to how a pirate could ever attain one is a mystery."
 		dialog `	You receive a transmission from Lieutenant Paris. "I don't know how they have a Bactrian, but I suggest we jump out of here immediately and make it back to the Deep alive."`
 	
 	npc save accompany
@@ -325,15 +325,15 @@ mission "Bactrian Unlock [3]"
 		not "Bactrian Unlock [3-alt]: offered"
 	on offer
 		conversation
-			`As you land near the Star Queen, you can see the passengers of the ship being escorted off of it and individually checked to make sure everyone is fine. Sadly, you also notice a number of body bags next to the ship, likely from scientists or crew that were found dead on the ship.`
+			`As you land near the Star Queen, you can see the passengers of the ship being escorted off of it. A medical team is examining each passenger while a Deep Security officer asks them questions and jots down the responses. Sadly, you also notice a number of body bags next to the ship, likely from scientists or crew that were found dead on the ship.`
 			`	Lieutenant Paris is waiting for you outside of your ship, and hands you another 100,000 credits when you walk up to him.`
 			`	"Thanks for all the help, Captain <last>. We couldn't have done it without you."`
-			`	Paris looks back to the Star Queen, and you can overhear talk on the status of the passengers and crew. "Sarah, Nicole, Abby..." the list of names goes on for about two dozen more, most of which sound female. "...and Benjamin are all either missing or were found dead on board. The surviving crew tells us that some were killed when they were captured or thrown out the airlock for struggling, but most of the others were either killed or dragged off at the facility."`
+			`	Paris looks back to the Star Queen, and you can overhear talk on the status of the passengers and crew. "Sarah, Nicole, Abby..." the list of names goes on for about two dozen more, most of which sound female. "...and Benjamin are all either missing or were found dead on board. The surviving crew tells us that only a few were killed initially, either during boarding or by being thrown out the airlock on the way to Haven. Most of the others were either killed or dragged off after they had reached their destination at a facility of some sort, its purpose unidentifiable to the crew."`
 			`	The entire time you noticed Paris holding back tears, his face becoming more and more strained with each passing name. After they are done listing the dead or missing, he talks to you in a rather strained voice. "I want you to return to Arneb and take out every single one of those pirates that are left. Especially the Bactrian. We try to keep Bactrians out of unworthy hands, so whenever a pirate gets ahold of one we make sure we destroy it immediately. Seeing as how we're going to be busy here for a while, you need to destroy it."`
 			choice
 				`	"I'll make sure it gets done, Lieutenant."`
 					goto accept
-				`	"I'm sorry, but I don't have the power to be able to defeat a Bactrian. You're going to need to do it yourself."`
+				`	"I'm sorry, but I don't have the power to defeat a Bactrian. You're going to need to do it yourself."`
 			
 			`	"I see... Good luck on your travels, Captain <last>." Lieutenant Paris starts walking over to the Star Queen, leaving you alone next to your ship.`
 				decline
@@ -351,14 +351,14 @@ mission "Bactrian Unlock [3]"
 	on complete
 		set "license: City-Ship"
 		conversation
-			`When you return to Valhalla, the Star Queen is no longer on the landing pad and things seem to be running normally. Shortly after landing, you find Lieutenant Paris at the same restaurant that he first found you. Before saying a word to you, he hands you a license.`
+			`When you return to Valhalla, the Star Queen is no longer on the landing pad and the spaceport seems to be running normally. Shortly after landing, you find Lieutenant Paris at the same restaurant in which he first found you. Before saying a word to you, he hands you a license.`
 			`	"Thank you. I've said it before, but there's really no way I can thank you enough."`
-			`	You look down at the license that Paris just handed you and notice that it's a city-ship license, one that will allow you to purchase the Bactrian. "I think it's only fair that you be able to purchase the Bactrian after having to fight one to the death. It's really the least I could do for you."`
+			`	You look down at the license that Paris just handed you and notice that it's a city-ship license, one that will allow you to purchase the Bactrian. "I think it's only fair that you be able to purchase one after having to fight one to the death. It's really the least I could do for you."`
 			choice
 				`	"Thank you so much! I'll make sure that this gets put to good use."`
 				`	"Really? You shouldn't have."`
 			
-			`	"It's yours to keep. I hope you have good luck with your travels, and have fun using the Bactrian. It's a mighty fine ship to fly." Lieutenant Paris starts walking over to the Star Queen, leaving you alone next to your ship.`
+			`	"It's yours to keep. I hope you have good luck with your travels, and have fun using the Bactrian. It's a mighty fine ship to fly." Lieutenant Paris pays his bill and leaves, as you ponder the possibilities that await.`
 
 mission "Bactrian Unlock [3-alt]"
 	landing
@@ -369,16 +369,16 @@ mission "Bactrian Unlock [3-alt]"
 	on offer
 		set "license: City-Ship"
 		conversation
-			`As you land near the Star Queen, you can see the passengers of the ship being escorted off of it and individually checked to make sure everyone is fine. Sadly, you also notice a number of body bags next to the ship, likely from scientists or crew that were found dead on the ship.`
+			`As you land near the Star Queen, you can see the passengers of the ship being escorted off of it. A medical team is examining each passenger while a Deep Security officer asks them questions and jots down the responses. Sadly, you also notice a number of body bags next to the ship, likely from scientists or crew that were found dead on the ship.`
 			`	Lieutenant Paris is waiting for you outside of your ship, and hands you another 100,000 credits when you walk up to him.`
 			`	"Thanks for all the help, Captain <last>. We couldn't have done it without you."`
-			`	Paris looks back to the Star Queen, and you can overhear talk on the status of the passengers and crew.. "Sarah, Nicole, Abby..." the list of names goes on for about two dozen more, most of which sound female. "...and Benjamin are all either missing or were found dead on board. The surviving crew tells us that some were killed when they were captured or thrown out the airlock for struggling, but most of the others were either killed or dragged off at the facility."`
+			`	Paris looks back to the Star Queen, and you can overhear talk on the status of the passengers and crew. "Sarah, Nicole, Abby..." the list of names goes on for about two dozen more, most of which sound female. "...and Benjamin are all either missing or were found dead on board. The surviving crew tells us that only a few were killed initially, either during boarding or by being thrown out the airlock on the way to Haven. Most of the others were either killed or dragged off after they had reached their destination at a facility of some sort, its purpose unidentifiable to the crew."`
 			`	The entire time you noticed Paris holding back tears, his face becoming more and more strained with each passing name. After they are done listing the dead or missing, he turns to you and hands you a license.`
 			`	"Thank you. I've said it before, but there's really no way I can thank you enough."`
-			`	You look down at the license that Paris just handed you and notice that it's a city-ship license, one that will allow you to purchase the Bactrian. "I think it's only fair that you be able to purchase the Bactrian after having to fight one to the death. It's really the least I could do for you."`
+			`	You look down at the license that Paris just handed you and notice that it's a city-ship license, one that will allow you to purchase the Bactrian. "I think it's only fair that you be able to purchase one after having to fight one to the death. It's really the least I could do for you."`
 			choice
 				`	"Thank you so much! I'll make sure that this gets put to good use."`
 				`	"Really? You shouldn't have."`
 			
-			`	"It's yours to keep. I hope you have good luck with your travels, and have fun using the Bactrian. It's a mighty fine ship to fly." Lieutenant Paris starts walking over to the Star Queen, leaving you alone next to your ship.`
+			`	"It's yours to keep. I hope you have good luck with your travels, and have fun using the Bactrian. It's a mighty fine ship to fly." Lieutenant Paris starts walking over to the Star Queen, leaving you alone to ponder the possibilities that await.`
 				decline
