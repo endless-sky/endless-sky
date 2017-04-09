@@ -75,8 +75,7 @@ private:
 	static double TurnBackward(const Ship &ship);
 	static double TurnToward(const Ship &ship, const Point &vector);
 	static bool MoveToPlanet(Ship &ship, Command &command);
-	static bool MoveTo(Ship &ship, Command &command, const Point &target, double radius, double slow);
-	static bool Intercept(Ship &ship, Command &command, const Ship &target, double radius, double slow);
+	static bool MoveTo(Ship &ship, Command &command, const Point &targetPosition, const Point &targetVelocity, double radius, double slow);
 	static bool Stop(Ship &ship, Command &command, double maxSpeed = 0.);
 	static void PrepareForHyperspace(Ship &ship, Command &command);
 	static void CircleAround(Ship &ship, Command &command, const Ship &target);
@@ -91,7 +90,6 @@ private:
 	void DoCloak(Ship &ship, Command &command);
 	void DoScatter(Ship &ship, Command &command);
 	
-	static Point StoppingPoint(const Ship &ship, bool &shouldReverse);
 	static Point AdjustPoint(const Ship &ship, const Point &targetVelocity, bool &shouldReverse);
 	// Get a vector giving the direction this ship should aim in in order to do
 	// maximum damaged to a target at the given position with its non-turret,
