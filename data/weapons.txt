@@ -226,6 +226,8 @@ outfit "Heavy Laser Turret"
 	weapon
 		sprite "projectile/2x heavy laser"
 			"frame rate" 1
+		"hardpoint sprite" "hardpoint/heavy laser turret"
+		"hardpoint offset" 8.
 		sound "heavy laser"
 		"hit effect" "heavy laser impact"
 		"inaccuracy" .4

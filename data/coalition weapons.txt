@@ -46,6 +46,8 @@ outfit "Bombardment Turret"
 		sprite "projectile/bombardment"
 			"frame rate" 3.2
 			"no repeat"
+		"hardpoint sprite" "hardpoint/bombardment turret"
+		"hardpoint offset" 10.
 		sound "bombardment"
 		"hit effect" "bombardment impact"
 		"inaccuracy" 4
@@ -185,6 +187,8 @@ outfit "Heliarch Attractor"
 		sprite "projectile/attractor"
 			"frame rate" 5.2
 			"random start frame"
+		"hardpoint sprite" "hardpoint/heliarch attractor"
+		"hardpoint offset" 9.
 		sound "heliarch attractor"
 		"hit effect" "attractor impact"
 		"inaccuracy" 2
@@ -223,6 +227,8 @@ outfit "Heliarch Repulsor"
 		sprite "projectile/repulsor"
 			"frame rate" 3.2
 			"random start frame"
+		"hardpoint sprite" "hardpoint/heliarch repulsor"
+		"hardpoint offset" 9.
 		sound "heliarch repulsor"
 		"hit effect" "repulsor impact"
 		"inaccuracy" 3
