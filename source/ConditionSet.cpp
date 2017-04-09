@@ -66,7 +66,10 @@ void ConditionSet::Load(const DataNode &node)
 void ConditionSet::Save(DataWriter &out) const
 {
 	for(const Expression &expression : expressions)
-		out.Write(expression.name, expression.op, expression.value);
+		if (!expression.value && !expression.svalue.empty())
+			out.Write(expression.name, expression.op, expression.svalue);
+		else
+			out.Write(expression.name, expression.op, expression.value);
 	for(const ConditionSet &child : children)
 	{
 		out.Write(child.isOr ? "or" : "and");
