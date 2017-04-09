@@ -349,7 +349,7 @@ mission "Bactrian Unlock [3]"
 		has "Bactrian Unlock [2]: Pirate Bactrian: done"
 	
 	on complete
-		set "license: City-ship"
+		set "license: City-Ship"
 		conversation
 			`When you return to Valhalla, the Star Queen is no longer on the landing pad and things seem to be running normally. Shortly after landing, you find Lieutenant Paris at the same restaurant that he first found you. Before saying a word to you, he hands you a license.`
 			`	"Thank you. I've said it before, but there's really no way I can thank you enough."`
@@ -367,7 +367,7 @@ mission "Bactrian Unlock [3-alt]"
 		has "Bactrian Unlock [2]: Pirate Bactrian: done"
 		not "Bactrian Unlock [3]: offered"
 	on offer
-		set "license: City-ship"
+		set "license: City-Ship"
 		conversation
 			`As you land near the Star Queen, you can see the passengers of the ship being escorted off of it and individually checked to make sure everyone is fine. Sadly, you also notice a number of body bags next to the ship, likely from scientists or crew that were found dead on the ship.`
 			`	Lieutenant Paris is waiting for you outside of your ship, and hands you another 100,000 credits when you walk up to him.`
