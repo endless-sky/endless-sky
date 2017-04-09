@@ -1549,7 +1549,18 @@ void Engine::AddSprites(const Ship &ship)
 	if(drawCloaked)
 		draw[calcTickTock].AddSwizzled(ship, 7);
 	draw[calcTickTock].Add(ship, cloak);
-
+	for(const Hardpoint &hardpoint : ship.Weapons())
+		if(hardpoint.GetOutfit() && hardpoint.GetOutfit()->HardpointSprite().HasSprite())
+		{
+			Body body(
+				hardpoint.GetOutfit()->HardpointSprite(),
+				ship.Position() + ship.Zoom() * ship.Facing().Rotate(hardpoint.GetPoint()),
+				ship.Velocity(),
+				ship.Facing() + hardpoint.GetAngle(),
+				ship.Zoom());
+			draw[calcTickTock].Add(body, cloak);
+		}
+	
 	if(hasFighters)
 		for(const Ship::Bay &bay : ship.Bays())
 			if(bay.side == Ship::Bay::OVER && bay.ship)
