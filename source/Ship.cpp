@@ -646,6 +646,13 @@ const Personality &Ship::GetPersonality() const
 
 
 
+bool Ship::HasIndividualPersonality() const
+{
+	return hasIndividualPersonality;
+}
+
+
+
 void Ship::SetPersonality(const Personality &other)
 {
 	personality = other;
