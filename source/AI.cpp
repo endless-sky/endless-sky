@@ -1659,12 +1659,10 @@ void AI::DoMining(Ship &ship, Command &command)
 
 bool AI::DoHarvesting(Ship &ship, Command &command)
 {
-	// Only consider harvesting if the ship has free cargo space.
-	if(!ship.Cargo().Free())
-		return false;
-
 	// If the ship has no target to pick up, do nothing.
 	shared_ptr<Flotsam> target = ship.GetTargetFlotsam();
+	if(target && ship.Cargo().Free() < target->UnitSize())
+		target.reset();
 	if(!target)
 	{
 		// Only check for new targets every 10 frames, on average.
@@ -1690,7 +1688,7 @@ bool AI::DoHarvesting(Ship &ship, Command &command)
 			
 			double degreesToTurn = TO_DEG * acos(min(1., max(-1., p.Unit().Dot(ship.Facing().Unit()))));
 			time += degreesToTurn / ship.TurnRate();
-			if(time < bestTime)
+			if(time < bestTime && ship.Cargo().Free() >= it->UnitSize())
 			{
 				bestTime = time;
 				target = it;
