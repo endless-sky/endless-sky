@@ -1660,7 +1660,7 @@ void AI::DoMining(Ship &ship, Command &command)
 bool AI::DoHarvesting(Ship &ship, Command &command)
 {
 	// Only consider harvesting if the ship has free cargo space.
-	if(ship.Cargo().Used() >= ship.Attributes().Get("cargo space"))
+	if(!ship.Cargo().Free())
 		return false;
 
 	// If the ship has no target to pick up, do nothing.
