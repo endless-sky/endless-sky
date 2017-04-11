@@ -1642,6 +1642,62 @@ ship "Hauler III"
 
 
 
+ship "Hauler Z"
+	sprite "ship/hauler z"
+	attributes
+		category "Light Warship"
+		"cost" 530000
+		"shields" 2100
+		"hull" 2200
+		"required crew" 3
+		"bunks" 12
+		"mass" 140
+		"drag" 9.5
+		"heat dissipation" .6
+		"fuel capacity" 400
+		"cargo space" 0
+		"outfit space" 350
+		"weapon capacity" 140
+		"engine capacity" 80
+		weapon
+			"blast radius" 40
+			"shield damage" 400
+			"hull damage" 200
+			"hit force" 800
+	outfits
+		"Meteor Missile Launcher" 2
+		"Meteor Missile" 70
+		"Quad Blaster Turret" 2
+		"Heavy Anti-Missile Turret" 2
+		
+		"S3 Thermionic"
+		"LP072a Battery Pack"
+		"D23-QP Shield Generator"
+		"Small Radar Jammer"
+		"Liquid Nitrogen Cooler"
+		
+		"Greyhound Plasma Thruster"
+		"Impala Plasma Steering"
+		"Hyperdrive"
+		
+	engine -45 87
+	engine 45 87
+	gun -15 -56
+	gun 15 -56
+	turret -26 -14 "Quad Blaster Turret"
+	turret 26 -14 "Heavy Anti-Missile Turret"
+	turret -19 32 "Heavy Anti-Missile Turret"
+	turret 19 32 "Quad Blaster Turret"
+	explode "tiny explosion" 30
+	explode "small explosion" 45
+	explode "medium explosion" 10
+	"final explode" "final explosion small"
+	description "The Southbound Hauler Z is a light warship build from standardized Hauler components."
+	description "	Centuries ago, various Hauler models made up nearly half of the merchant vessels in service, but today the design is considered somewhat outdated. The first Alpha war led to a temporary high demand for warships. One of the most simple ideas was to build Haulers without any cargo modules. Numerous of these ships were build, but after the Alpha war ended, most of these ships were converted into regular Hauler freighters."
+	description "	Recently, the old Hauler Z series gained popularity again. As the pirate fleets in the South got stronger every year and the Southern Defense Pact was formed which lead once again to a sudden demand for lightweight warships. This ship still delivers high firepower for a low price."
+
+
+
 ship "Hawk"
 	sprite "ship/hawk"
 	attributes
