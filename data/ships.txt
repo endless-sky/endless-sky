@@ -1692,10 +1692,10 @@ ship "Hauler Z"
 	explode "small explosion" 45
 	explode "medium explosion" 10
 	"final explode" "final explosion small"
-	description "The Southbound Hauler Z is a light warship build from standardized Hauler components."
-	description "	Centuries ago, various Hauler models made up nearly half of the merchant vessels in service, but today the design is considered somewhat outdated. The first Alpha war led to a temporary high demand for warships. One of the most simple ideas was to build Haulers without any cargo modules. Numerous of these ships were build, but after the Alpha war ended, most of these ships were converted into regular Hauler freighters."
-	description "	Recently, the old Hauler Z series gained popularity again. As the pirate fleets in the South got stronger every year and the Southern Defense Pact was formed which lead once again to a sudden demand for lightweight warships. This ship still delivers high firepower for a low price."
-
+	description "The Southbound Hauler Z is a light warship which uses standard Hauler components."
+	description "	Centuries ago, various Hauler models made up nearly half of the merchant vessels in service, but today the design is considered somewhat outdated. The first Alpha War led to a temporary high demand for warships. One of the most simple ideas was to build Haulers without any cargo modules. Numerous of these ships were build, but after the Alpha Wars ended, most of these ships were converted into regular Hauler freighters."
+	description "	Recently, demand for the Hauler Z has increased in the South. The ship's return to prominence was fueled in part by the militia's need for a dedicated light warship to suppress the growing pirate presence in the sector. This ship delivers good firepower at an affordable price, which makes it a great choice for captains who need cheap yet robust ships to fend off attacks."
+	
 
 
 ship "Hawk"
