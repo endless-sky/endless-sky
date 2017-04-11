@@ -90,7 +90,7 @@ private:
 	void DoCloak(Ship &ship, Command &command);
 	void DoScatter(Ship &ship, Command &command);
 	
-	static Point AdjustPoint(const Ship &ship, const Point &targetVelocity, bool &shouldReverse);
+	static Point StoppingPoint(const Ship &ship, const Point &targetVelocity, bool &shouldReverse);
 	// Get a vector giving the direction this ship should aim in in order to do
 	// maximum damaged to a target at the given position with its non-turret,
 	// non-homing weapons. If the ship has no non-homing weapons, this just
