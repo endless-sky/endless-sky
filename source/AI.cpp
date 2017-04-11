@@ -1302,7 +1302,7 @@ void AI::PrepareForHyperspace(Ship &ship, Command &command)
 		}
 		command.SetTurn(TurnToward(ship, direction));
 	}
-	// If we're a hyperdrive, just stop.
+	// If we're a jump drive, just stop.
 	else if(type == 200)
 	{
 		Stop(ship, command, ship.Attributes().Get("jump speed"));
