@@ -1195,7 +1195,7 @@ bool AI::MoveTo(Ship &ship, Command &command, const Point &targetPosition, const
 		return true;
 	
 	bool shouldReverse = false;
-	dp = targetPosition - AdjustPoint(ship, targetVelocity, shouldReverse);
+	dp = targetPosition - StoppingPoint(ship, targetVelocity, shouldReverse);
 	bool isFacing = (dp.Unit().Dot(angle.Unit()) > .8);
 	if(!isClose || (!isFacing && !shouldReverse))
 		command.SetTurn(TurnToward(ship, dp));
@@ -1367,14 +1367,14 @@ void AI::KeepStation(Ship &ship, Command &command, const Ship &target)
 	double positionAngle = Angle(rendezvous).Degrees();
 	positionTime += AngleDiff(currentAngle, positionAngle) / turn;
 	positionTime += (rendezvous.Unit() * maxV - ship.Velocity()).Length() / accel;
-	// If you are very close,stop trying to adjust:
+	// If you are very close, stop trying to adjust:
 	positionTime *= positionWeight * positionWeight;
 	
 	// Time it will take (roughly) to adjust your velocity to match the target:
 	double velocityTime = velocityDelta.Length() / accel;
 	double velocityAngle = Angle(velocityDelta).Degrees();
 	velocityTime += AngleDiff(currentAngle, velocityAngle) / turn;
-	// If you are very close,stop trying to adjust:
+	// If you are very close, stop trying to adjust:
 	velocityTime *= velocityWeight * velocityWeight;
 	
 	// Focus on matching position or velocity depending on which will take longer.
@@ -1776,10 +1776,10 @@ void AI::DoScatter(Ship &ship, Command &command)
 
 
 // Instead of coming to a full stop, adjust to a target velocity vector
-Point AI::AdjustPoint(const Ship &ship, const Point &targetVelocity, bool &shouldReverse)
+Point AI::StoppingPoint(const Ship &ship, const Point &targetVelocity, bool &shouldReverse)
 {
 	const Point &position = ship.Position();
-	const Point &velocity = ship.Velocity() - targetVelocity;
+	Point velocity = ship.Velocity() - targetVelocity;
 	const Angle &angle = ship.Facing();
 	double acceleration = ship.Acceleration();
 	double turnRate = ship.TurnRate();
@@ -1814,6 +1814,7 @@ Point AI::AdjustPoint(const Ship &ship, const Point &targetVelocity, bool &shoul
 	
 	return position + stopDistance * velocity.Unit();
 }
+
 
 
 // Get a vector giving the direction this ship should aim in in order to do
