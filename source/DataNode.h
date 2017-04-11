@@ -42,6 +42,9 @@ public:
 	// Convert the token at the given index to a number. This returns 0 if the
 	// index is out of range or the token cannot be interpreted as a number.
 	double Value(int index) const;
+	// Check if the token at the given index is a number in a format that this
+	// class is able to parse.
+	bool IsNumber(int index) const;
 	
 	// Check if this node has any children. If so, the iterator functions below
 	// can be used to access them.
