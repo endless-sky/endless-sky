@@ -126,7 +126,7 @@ mission "Kestrel Testing"
 					goto kestrel
 			
 			label wolf
-			`	"Not bad," he says, "but all our other ships: the Falcon, the Osprey, the Hawk -- they're all birds. Maybe a bird name?"`
+			`	"Not bad," he says, "but all our other ships - the Falcon, the Osprey, the Hawk - they're all birds. Maybe a bird name?"`
 			choice
 				`	"The Grey Goose."`
 					goto goose
