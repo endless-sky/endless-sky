@@ -1673,6 +1673,8 @@ bool AI::DoHarvesting(Ship &ship, Command &command)
 		double bestTime = 600.;
 		for(const shared_ptr<Flotsam> &it : flotsam)
 		{
+			if (ship.Cargo().Free() < it->UnitSize())
+				continue;
 			// Only pick up flotsam that is nearby and that you are facing toward.
 			Point p = it->Position() - ship.Position();
 			double range = p.Length();
@@ -1688,7 +1690,7 @@ bool AI::DoHarvesting(Ship &ship, Command &command)
 			
 			double degreesToTurn = TO_DEG * acos(min(1., max(-1., p.Unit().Dot(ship.Facing().Unit()))));
 			time += degreesToTurn / ship.TurnRate();
-			if(time < bestTime && ship.Cargo().Free() >= it->UnitSize())
+			if(time < bestTime)
 			{
 				bestTime = time;
 				target = it;
