@@ -535,7 +535,7 @@ void AI::Step(const PlayerInfo &player)
 			else if(parent && !(it->IsYours() ? thisIsLaunching : parent->Commands().Has(Command::DEPLOY)))
 			{
 				it->SetTargetShip(parent);
-				MoveTo(*it, command, parent->Position(), 40., .8);
+				MoveTo(*it, command, parent->Position(), parent->Velocity(), 40., .8);
 				command |= Command::BOARD;
 				it->SetCommands(command);
 				continue;
@@ -565,7 +565,7 @@ void AI::Step(const PlayerInfo &player)
 				it->SetShipToAssist(shared_ptr<Ship>());
 			else if(!it->IsBoarding())
 			{
-				MoveTo(*it, command, shipToAssist->Position(), 40., .8);
+				MoveTo(*it, command, shipToAssist->Position(), shipToAssist->Velocity(), 40., .8);
 				command |= Command::BOARD;
 			}
 			it->SetCommands(command);
@@ -836,7 +836,7 @@ bool AI::FollowOrders(Ship &ship, Command &command) const
 	
 	shared_ptr<Ship> target = it->second.target.lock();
 	if(type == Orders::MOVE_TO && ship.Position().Distance(it->second.point) > 20.)
-		MoveTo(ship, command, it->second.point, 10., .1);
+		MoveTo(ship, command, it->second.point, Point(), 10., .1);
 	else if(type == Orders::HOLD_POSITION || type == Orders::MOVE_TO)
 	{
 		if(ship.Velocity().Length() > .001 || !ship.GetTargetShip())
@@ -870,7 +870,7 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 		Point extrapolated = target->Position() + 120. * (target->Velocity() - ship.Velocity());
 		if(extrapolated.Length() >= MAX_DISTANCE_FROM_CENTER)
 		{
-			MoveTo(ship, command, Point(), 40., .8);
+			MoveTo(ship, command, Point(), Point(), 40., .8);
 			if(ship.Velocity().Dot(ship.Position()) > 0.)
 				command |= Command::FORWARD;
 			return;
@@ -891,7 +891,7 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 		{
 			if(ship.IsBoarding())
 				return;
-			MoveTo(ship, command, target->Position(), 40., .8);
+			MoveTo(ship, command, target->Position(), target->Velocity(), 40., .8);
 			command |= Command::BOARD;
 		}
 		else
@@ -1174,29 +1174,31 @@ bool AI::MoveToPlanet(Ship &ship, Command &command)
 		return false;
 	
 	const Point &target = ship.GetTargetStellar()->Position();
-	return MoveTo(ship, command, target, ship.GetTargetStellar()->Radius(), 1.);
+	return MoveTo(ship, command, target, Point(), ship.GetTargetStellar()->Radius(), 1.);
 }
 
 
 
-bool AI::MoveTo(Ship &ship, Command &command, const Point &target, double radius, double slow)
+// Instead of moving to a point with a fixed location, move to a moving point (Ship = position + velocity)
+bool AI::MoveTo(Ship &ship, Command &command, const Point &targetPosition, const Point &targetVelocity, double radius, double slow)
 {
 	const Point &position = ship.Position();
 	const Point &velocity = ship.Velocity();
 	const Angle &angle = ship.Facing();
-	Point distance = target - position;
+	Point dp = targetPosition - position;
+	Point dv = targetVelocity - velocity;
 	
-	double speed = velocity.Length();
+	double speed = dv.Length();
 	
-	bool isClose = (distance.Length() < radius);
+	bool isClose = (dp.Length() < radius);
 	if(isClose && speed < slow)
 		return true;
 	
 	bool shouldReverse = false;
-	distance = target - StoppingPoint(ship, shouldReverse);
-	bool isFacing = (distance.Unit().Dot(angle.Unit()) > .8);
+	dp = targetPosition - StoppingPoint(ship, targetVelocity, shouldReverse);
+	bool isFacing = (dp.Unit().Dot(angle.Unit()) > .8);
 	if(!isClose || (!isFacing && !shouldReverse))
-		command.SetTurn(TurnToward(ship, distance));
+		command.SetTurn(TurnToward(ship, dp));
 	if(isFacing)
 		command |= Command::FORWARD;
 	else if(shouldReverse)
@@ -1325,7 +1327,7 @@ void AI::Swarm(Ship &ship, Command &command, const Ship &target)
 	if(rendezvousTime != rendezvousTime || rendezvousTime > 600.)
 		rendezvousTime = 600.;
 	direction += rendezvousTime * target.Velocity();
-	MoveTo(ship, command, target.Position() + direction, 50., 2.);
+	MoveTo(ship, command, target.Position() + direction, Point(), 50., 2.);
 }
 
 
@@ -1365,14 +1367,14 @@ void AI::KeepStation(Ship &ship, Command &command, const Ship &target)
 	double positionAngle = Angle(rendezvous).Degrees();
 	positionTime += AngleDiff(currentAngle, positionAngle) / turn;
 	positionTime += (rendezvous.Unit() * maxV - ship.Velocity()).Length() / accel;
-	// If you are very close,stop trying to adjust:
+	// If you are very close, stop trying to adjust:
 	positionTime *= positionWeight * positionWeight;
 	
 	// Time it will take (roughly) to adjust your velocity to match the target:
 	double velocityTime = velocityDelta.Length() / accel;
 	double velocityAngle = Angle(velocityDelta).Degrees();
 	velocityTime += AngleDiff(currentAngle, velocityAngle) / turn;
-	// If you are very close,stop trying to adjust:
+	// If you are very close, stop trying to adjust:
 	velocityTime *= velocityWeight * velocityWeight;
 	
 	// Focus on matching position or velocity depending on which will take longer.
@@ -1777,16 +1779,17 @@ void AI::DoScatter(Ship &ship, Command &command)
 
 
 
-Point AI::StoppingPoint(const Ship &ship, bool &shouldReverse)
+// Instead of coming to a full stop, adjust to a target velocity vector
+Point AI::StoppingPoint(const Ship &ship, const Point &targetVelocity, bool &shouldReverse)
 {
 	const Point &position = ship.Position();
-	const Point &velocity = ship.Velocity();
+	Point velocity = ship.Velocity() - targetVelocity;
 	const Angle &angle = ship.Facing();
 	double acceleration = ship.Acceleration();
 	double turnRate = ship.TurnRate();
 	shouldReverse = false;
 	
-	// If I were to turn around and stop now, where would that put me?
+	// If I were to turn around and stop now the relative movement, where would that put me?
 	double v = velocity.Length();
 	if(!v)
 		return position;
@@ -2500,7 +2503,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 			keyStuck.Clear(Command::BOARD);
 		else
 		{
-			MoveTo(ship, command, target->Position(), 40., .8);
+			MoveTo(ship, command, target->Position(), target->Velocity(), 40., .8);
 			command |= Command::BOARD;
 		}
 	}
