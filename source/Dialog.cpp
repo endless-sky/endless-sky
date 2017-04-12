@@ -183,7 +183,11 @@ bool Dialog::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 	if((it != KEY_MAP.end() || (key >= ' ' && key <= '~')) && !isMission && (intFun || stringFun))
 	{
 		int ascii = (it != KEY_MAP.end()) ? it->second : key;
-		char c = ((mod & (KMOD_SHIFT | KMOD_CAPS)) ? SHIFT[ascii] : ascii);
+		char c = ((mod & KMOD_SHIFT) ? SHIFT[ascii] : ascii);
+		// Caps lock should shift letters, but not any other keys.
+		if((mod & KMOD_CAPS) && c >= 'a' && c <= 'z')
+			c += 'A' - 'a';
+		
 		if(stringFun)
 			input += c;
 		// Integer input should not allow leading zeros.

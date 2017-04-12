@@ -223,6 +223,7 @@ outfitter "Coalition Basics"
 	"Cargo Expansion"
 	"Outfits Expansion"
 	"Hyperdrive"
+	"Local Map"
 
 outfitter "Coalition Advanced"
 	"Small Collector Module"
@@ -241,6 +242,7 @@ outfitter "Coalition Advanced"
 	"Cargo Expansion"
 	"Outfits Expansion"
 	"Hyperdrive"
+	"Local Map"
 
 outfitter "Heliarch"
 	"Small Reactor Module"
@@ -252,6 +254,7 @@ outfitter "Heliarch"
 	"Heliarch Attractor"
 	"Heliarch Repulsor"
 	"Ion Rain Gun"
+	"Local Map"
 
 
 shipyard "Arach"

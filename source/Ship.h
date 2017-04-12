@@ -315,7 +315,7 @@ public:
 	// land on) and a target ship (to move to, and attack if hostile).
 	std::shared_ptr<Ship> GetTargetShip() const;
 	std::shared_ptr<Ship> GetShipToAssist() const;
-	const StellarObject *GetTargetPlanet() const;
+	const StellarObject *GetTargetStellar() const;
 	const System *GetTargetSystem() const;
 	// Mining target.
 	std::shared_ptr<Minable> GetTargetAsteroid() const;
@@ -324,7 +324,7 @@ public:
 	// Set this ship's targets.
 	void SetTargetShip(const std::shared_ptr<Ship> &ship);
 	void SetShipToAssist(const std::shared_ptr<Ship> &ship);
-	void SetTargetPlanet(const StellarObject *object);
+	void SetTargetStellar(const StellarObject *object);
 	void SetTargetSystem(const System *system);
 	// Mining target.
 	void SetTargetAsteroid(const std::shared_ptr<Minable> &asteroid);

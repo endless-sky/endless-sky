@@ -353,7 +353,7 @@ bool InfoPanel::Click(int x, int y, int clicks)
 	bool control = (SDL_GetModState() & (KMOD_CTRL | KMOD_GUI));
 	if(showShip)
 	{
-		if(hover >= 0 && (**shipIt).GetSystem() == player.GetSystem() && !(**shipIt).IsDisabled())
+		if(canEdit && hover >= 0 && (**shipIt).GetSystem() == player.GetSystem() && !(**shipIt).IsDisabled())
 			selected = hover;
 	}
 	else if(canEdit && (shift || control || clicks < 2))

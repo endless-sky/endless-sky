@@ -33,6 +33,8 @@ void Weapon::LoadWeapon(const DataNode &node)
 	{
 		if(child.Token(0) == "sprite" && child.Size() >= 2)
 			sprite.LoadSprite(child);
+		else if(child.Token(0) == "hardpoint sprite" && child.Size() >= 2)
+			hardpointSprite.LoadSprite(child);
 		else if(child.Token(0) == "sound" && child.Size() >= 2)
 			sound = Audio::Get(child.Token(1));
 		else if(child.Token(0) == "ammo" && child.Size() >= 2)
@@ -94,6 +96,8 @@ void Weapon::LoadWeapon(const DataNode &node)
 				acceleration = child.Value(1);
 			else if(child.Token(0) == "drag")
 				drag = child.Value(1);
+			else if(child.Token(0) == "hardpoint offset")
+				hardpointOffset = child.Value(1);
 			else if(child.Token(0) == "turn")
 				turn = child.Value(1);
 			else if(child.Token(0) == "inaccuracy")
@@ -185,6 +189,13 @@ bool Weapon::IsWeapon() const
 const Body &Weapon::WeaponSprite() const
 {
 	return sprite;
+}
+
+
+
+const Body &Weapon::HardpointSprite() const
+{
+	return hardpointSprite;
 }
 
 

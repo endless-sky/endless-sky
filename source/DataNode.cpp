@@ -127,6 +127,50 @@ double DataNode::Value(int index) const
 
 
 
+// Check if the token at the given index is a number in a format that this
+// class is able to parse.
+bool DataNode::IsNumber(int index) const
+{
+	// Make sure this token exists and is not empty.
+	if(static_cast<size_t>(index) >= tokens.size() || tokens[index].empty())
+		return false;
+	
+	bool hasDecimalPoint = false;
+	bool hasExponent = false;
+	bool isLeading = true;
+	for(const char *it = tokens[index].c_str(); *it; ++it)
+	{
+		// If this is the start of the number or the exponent, it is allowed to
+		// be a '-' or '+' sign.
+		if(isLeading)
+		{
+			isLeading = false;
+			if(*it == '-' || *it == '+')
+				continue;
+		}
+		// If this is a decimal, it may or may not be allowed.
+		if(*it == '.')
+		{
+			if(hasDecimalPoint || hasExponent)
+				return false;
+			hasDecimalPoint = true;
+		}
+		else if(*it == 'e' || *it == 'E')
+		{
+			if(hasExponent)
+				return false;
+			hasExponent = true;
+			// At the start of an exponent, a '-' or '+' is allowed.
+			isLeading = true;
+		}
+		else if(*it < '0' || *it > '9')
+			return false;
+	}
+	return true;
+}
+
+
+
 // Check if this node has any children.
 bool DataNode::HasChildren() const
 {

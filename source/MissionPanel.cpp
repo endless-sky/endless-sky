@@ -348,9 +348,9 @@ bool MissionPanel::Click(int x, int y, int clicks)
 			if(acceptedIt != accepted.end() && !acceptedIt->IsVisible())
 				continue;
 			
-			if(availableIt != available.end() && availableIt->Destination()->GetSystem() == system)
+			if(availableIt != available.end() && availableIt->Destination()->IsInSystem(system))
 				break;
-			if(acceptedIt != accepted.end() && acceptedIt->Destination()->GetSystem() == system)
+			if(acceptedIt != accepted.end() && acceptedIt->Destination()->IsInSystem(system))
 				break;
 		}
 		// Make sure invisible missions are never selected, even if there were
@@ -597,17 +597,8 @@ void MissionPanel::DrawMissionInfo()
 	else if(acceptedIt != accepted.end())
 		info.SetCondition("can abort");
 	
-	int cargoFree = -player.Cargo().Used();
-	int bunksFree = -player.Cargo().Passengers();
-	for(const shared_ptr<Ship> &ship : player.Ships())
-		if(ship->GetSystem() == player.GetSystem() && !ship->IsDisabled() && !ship->IsParked())
-		{
-			cargoFree += ship->Attributes().Get("cargo space") - ship->Cargo().Used();
-			int crew = (ship.get() == player.Flagship()) ? ship->Crew() : ship->RequiredCrew();
-			bunksFree += ship->Attributes().Get("bunks") - crew - ship->Cargo().Passengers();
-		}
-	info.SetString("cargo free", to_string(cargoFree) + " tons");
-	info.SetString("bunks free", to_string(bunksFree) + " bunks");
+	info.SetString("cargo free", to_string(player.Cargo().Free()) + " tons");
+	info.SetString("bunks free", to_string(player.Cargo().Bunks()) + " bunks");
 	
 	info.SetString("today", player.GetDate().ToString());
 	
@@ -673,7 +664,7 @@ void MissionPanel::Accept()
 		const Planet *planet = toAccept.Destination();
 		const System *system = planet->GetSystem();
 		for(auto it = available.begin(); it != available.end(); ++it)
-			if(it->Destination() && it->Destination()->GetSystem() == system)
+			if(it->Destination() && it->Destination()->IsInSystem(system))
 			{
 				availableIt = it;
 				if(it->Destination() == planet)
@@ -747,10 +738,10 @@ bool MissionPanel::FindMissionForSystem(const System *system)
 	acceptedIt = accepted.end();
 
 	for(availableIt = available.begin(); availableIt != available.end(); ++availableIt)
-		if(availableIt->Destination()->GetSystem() == system)
+		if(availableIt->Destination()->IsInSystem(system))
 			return true;
 	for(acceptedIt = accepted.begin(); acceptedIt != accepted.end(); ++acceptedIt)
-		if(acceptedIt->IsVisible() && acceptedIt->Destination()->GetSystem() == system)
+		if(acceptedIt->IsVisible() && acceptedIt->Destination()->IsInSystem(system))
 			return true;
 
 	return false;

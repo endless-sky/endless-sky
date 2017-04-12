@@ -370,7 +370,7 @@ bool MainPanel::ShowHailPanel()
 		return false;
 	
 	shared_ptr<Ship> target = flagship->GetTargetShip();
-	if((SDL_GetModState() & KMOD_SHIFT) && flagship->GetTargetPlanet())
+	if((SDL_GetModState() & KMOD_SHIFT) && flagship->GetTargetStellar())
 		target.reset();
 	
 	if(flagship->IsEnteringHyperspace())
@@ -393,9 +393,9 @@ bool MainPanel::ShowHailPanel()
 			return true;
 		}
 	}
-	else if(flagship->GetTargetPlanet())
+	else if(flagship->GetTargetStellar())
 	{
-		const Planet *planet = flagship->GetTargetPlanet()->GetPlanet();
+		const Planet *planet = flagship->GetTargetStellar()->GetPlanet();
 		if(planet && planet->IsWormhole())
 		{
 			static const vector<string> messages = {
@@ -414,7 +414,7 @@ bool MainPanel::ShowHailPanel()
 		}
 		else if(planet && planet->IsInhabited())
 		{
-			GetUI()->Push(new HailPanel(player, flagship->GetTargetPlanet()));
+			GetUI()->Push(new HailPanel(player, flagship->GetTargetStellar()));
 			return true;
 		}
 		else

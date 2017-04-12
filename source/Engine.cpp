@@ -466,9 +466,9 @@ void Engine::Step(bool isActive)
 	info.SetString("credits",
 		Format::Number(player.Accounts().Credits()) + " credits");
 	bool isJumping = flagship && (flagship->Commands().Has(Command::JUMP) || flagship->IsEnteringHyperspace());
-	if(flagship && flagship->GetTargetPlanet() && !isJumping)
+	if(flagship && flagship->GetTargetStellar() && !isJumping)
 	{
-		const StellarObject *object = flagship->GetTargetPlanet();
+		const StellarObject *object = flagship->GetTargetStellar();
 		info.SetString("navigation mode", "Landing on:");
 		const string &name = object->Name();
 		info.SetString("destination", name);
@@ -1052,7 +1052,7 @@ void Engine::CalculateStep()
 			if(checkClicks && !isRightClick && object.GetPlanet()
 					&& (clickPoint - position).Length() < object.Radius())
 			{
-				if(&object == player.Flagship()->GetTargetPlanet())
+				if(&object == player.Flagship()->GetTargetStellar())
 				{
 					if(!object.GetPlanet()->CanLand())
 						Messages::Add("The authorities on " + object.GetPlanet()->Name() +
@@ -1064,7 +1064,7 @@ void Engine::CalculateStep()
 					}
 				}
 				else
-					player.Flagship()->SetTargetPlanet(&object);
+					player.Flagship()->SetTargetStellar(&object);
 			}
 		}
 	
@@ -1549,7 +1549,18 @@ void Engine::AddSprites(const Ship &ship)
 	if(drawCloaked)
 		draw[calcTickTock].AddSwizzled(ship, 7);
 	draw[calcTickTock].Add(ship, cloak);
-
+	for(const Hardpoint &hardpoint : ship.Weapons())
+		if(hardpoint.GetOutfit() && hardpoint.GetOutfit()->HardpointSprite().HasSprite())
+		{
+			Body body(
+				hardpoint.GetOutfit()->HardpointSprite(),
+				ship.Position() + ship.Zoom() * ship.Facing().Rotate(hardpoint.GetPoint()),
+				ship.Velocity(),
+				ship.Facing() + hardpoint.GetAngle(),
+				ship.Zoom());
+			draw[calcTickTock].Add(body, cloak);
+		}
+	
 	if(hasFighters)
 		for(const Ship::Bay &bay : ship.Bays())
 			if(bay.side == Ship::Bay::OVER && bay.ship)

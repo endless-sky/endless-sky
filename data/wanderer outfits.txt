@@ -56,6 +56,8 @@ outfit "Sunbeam Turret"
 		sprite "projectile/sunbeam"
 			"frame rate" 1.3
 			"random start frame"
+		"hardpoint sprite" "hardpoint/sunbeam turret"
+		"hardpoint offset" 12.
 		sound "sunbeam"
 		"hit effect" "sunbeam impact"
 		"inaccuracy" .2
@@ -82,6 +84,8 @@ outfit "Dual Sunbeam Turret"
 		sprite "projectile/2x sunbeam"
 			"frame rate" 1.3
 			"random start frame"
+		"hardpoint sprite" "hardpoint/dual sunbeam turret"
+		"hardpoint offset" 12.
 		sound "sunbeam"
 		"hit effect" "sunbeam impact"
 		"inaccuracy" .2
@@ -104,6 +108,8 @@ outfit "Wanderer Anti-Missile"
 	"weapon capacity" -24
 	"turret mounts" -1
 	weapon
+		"hardpoint sprite" "hardpoint/wanderer anti-missile"
+		"hardpoint offset" 6.
 		"hit effect" "wanderer anti-missile"
 		"anti-missile" 40
 		"velocity" 360

@@ -142,6 +142,27 @@ bool Personality::IsTimid() const
 
 
 
+bool Personality::IsHeroic() const
+{
+	return flags & HEROIC;
+}
+
+
+
+bool Personality::IsNemesis() const
+{
+	return flags & NEMESIS;
+}
+
+
+
+bool Personality::IsFrugal() const
+{
+	return flags & FRUGAL;
+}
+
+
+
 bool Personality::Disables() const
 {
 	return flags & DISABLES;
@@ -156,9 +177,30 @@ bool Personality::Plunders() const
 
 
 
-bool Personality::IsHeroic() const
+bool Personality::IsVindictive() const
 {
-	return flags & HEROIC;
+	return flags & VINDICTIVE;
+}
+
+
+
+bool Personality::IsUnconstrained() const
+{
+	return flags & UNCONSTRAINED;
+}
+
+
+
+bool Personality::IsCoward() const
+{
+	return flags & COWARD;
+}
+
+
+
+bool Personality::IsAppeasing() const
+{
+	return flags & APPEASING;
 }
 
 
@@ -177,37 +219,9 @@ bool Personality::IsEntering() const
 
 
 
-bool Personality::IsNemesis() const
-{
-	return flags & NEMESIS;
-}
-
-
-
-bool Personality::IsSurveillance() const
-{
-	return flags & SURVEILLANCE;
-}
-
-
-
-bool Personality::IsUninterested() const
-{
-	return flags & UNINTERESTED;
-}
-
-
-
 bool Personality::IsWaiting() const
 {
 	return flags & WAITING;
-}
-
-
-
-bool Personality::IsDerelict() const
-{
-	return flags & DERELICT;
 }
 
 
@@ -219,44 +233,23 @@ bool Personality::IsFleeing() const
 
 
 
-bool Personality::IsEscort() const
+bool Personality::IsDerelict() const
 {
-	return flags & ESCORT;
+	return flags & DERELICT;
 }
 
 
 
-bool Personality::IsFrugal() const
+bool Personality::IsUninterested() const
 {
-	return flags & FRUGAL;
+	return flags & UNINTERESTED;
 }
 
 
 
-bool Personality::IsCoward() const
+bool Personality::IsSurveillance() const
 {
-	return flags & COWARD;
-}
-
-
-
-bool Personality::IsVindictive() const
-{
-	return flags & VINDICTIVE;
-}
-
-
-
-bool Personality::IsSwarming() const
-{
-	return flags & SWARMING;
-}
-
-
-
-bool Personality::IsUnconstrained() const
-{
-	return flags & UNCONSTRAINED;
+	return flags & SURVEILLANCE;
 }
 
 
@@ -275,9 +268,16 @@ bool Personality::Harvests() const
 
 
 
-bool Personality::IsAppeasing() const
+bool Personality::IsSwarming() const
 {
-	return flags & APPEASING;
+	return flags & SWARMING;
+}
+
+
+
+bool Personality::IsEscort() const
+{
+	return flags & ESCORT;
 }
 
 

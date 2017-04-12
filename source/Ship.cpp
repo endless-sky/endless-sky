@@ -884,14 +884,14 @@ bool Ship::Move(list<Effect> &effects, list<shared_ptr<Flotsam>> &flotsam)
 			targetSystem = nullptr;
 			// Check if the target planet is in the destination system or not.
 			const Planet *planet = (targetPlanet ? targetPlanet->GetPlanet() : nullptr);
-			if(!planet || planet->GetSystem() != currentSystem)
+			if(!planet || planet->IsWormhole() || !planet->IsInSystem(currentSystem))
 				targetPlanet = nullptr;
 			// Check if your parent has a target planet in this system.
 			shared_ptr<Ship> parent = GetParent();
 			if(!targetPlanet && parent && parent->targetPlanet)
 			{
 				planet = parent->targetPlanet->GetPlanet();
-				if(planet && planet->GetSystem() == currentSystem)
+				if(planet && !planet->IsWormhole() && planet->IsInSystem(currentSystem))
 					targetPlanet = parent->targetPlanet;
 			}
 			direction = -1;
@@ -983,8 +983,8 @@ bool Ship::Move(list<Effect> &effects, list<shared_ptr<Flotsam>> &flotsam)
 		if(landingPlanet && zoom)
 		{
 			// Move the ship toward the center of the planet while landing.
-			if(GetTargetPlanet())
-				position = .97 * position + .03 * GetTargetPlanet()->Position();
+			if(GetTargetStellar())
+				position = .97 * position + .03 * GetTargetStellar()->Position();
 			zoom -= .02;
 			if(zoom < 0.)
 			{
@@ -997,7 +997,7 @@ bool Ship::Move(list<Effect> &effects, list<shared_ptr<Flotsam>> &flotsam)
 					for(const StellarObject &object : currentSystem->Objects())
 						if(object.GetPlanet() == landingPlanet)
 							position = object.Position();
-					SetTargetPlanet(nullptr);
+					SetTargetStellar(nullptr);
 					landingPlanet = nullptr;
 				}
 				else if(!isSpecial || personality.IsFleeing())
@@ -1011,7 +1011,7 @@ bool Ship::Move(list<Effect> &effects, list<shared_ptr<Flotsam>> &flotsam)
 				|| !landingPlanet || !landingPlanet->HasSpaceport())
 		{
 			zoom = min(1., zoom + .02);
-			SetTargetPlanet(nullptr);
+			SetTargetStellar(nullptr);
 			landingPlanet = nullptr;
 		}
 		else
@@ -1029,7 +1029,7 @@ bool Ship::Move(list<Effect> &effects, list<shared_ptr<Flotsam>> &flotsam)
 		// If you're disabled, you can't initiate landing or jumping.
 	}
 	else if(commands.Has(Command::LAND) && CanLand())
-		landingPlanet = GetTargetPlanet()->GetPlanet();
+		landingPlanet = GetTargetStellar()->GetPlanet();
 	else if(commands.Has(Command::JUMP))
 	{
 		hyperspaceType = CheckHyperspace();
@@ -1272,7 +1272,9 @@ bool Ship::Move(list<Effect> &effects, list<shared_ptr<Flotsam>> &flotsam)
 // Launch any ships that are ready to launch.
 void Ship::Launch(list<shared_ptr<Ship>> &ships)
 {
-	if(!IsDestroyed() && (!commands.Has(Command::DEPLOY) || CannotAct()))
+	// Allow fighters to launch from a disabled ship, but not from a ship that
+	// is landing, jumping, or cloaked.
+	if(!IsDestroyed() && (!commands.Has(Command::DEPLOY) || zoom != 1. || hyperspaceCount || cloak))
 		return;
 	
 	for(Bay &bay : bays)
@@ -1286,7 +1288,7 @@ void Ship::Launch(list<shared_ptr<Ship>> &ships)
 			bay.ship->SetSystem(currentSystem);
 			bay.ship->SetParent(shared_from_this());
 			// Fighters in your ship have the same temperature as your ship
-			// itself, so when they launch they should take their sahre of heat
+			// itself, so when they launch they should take their share of heat
 			// with them, so that the fighter and the mothership remain at the
 			// same temperature.
 			bay.ship->heat = heat * bay.ship->Mass() / Mass();
@@ -1584,16 +1586,16 @@ bool Ship::IsLanding() const
 // Check if this ship is currently able to begin landing on its target.
 bool Ship::CanLand() const
 {
-	if(!GetTargetPlanet() || !GetTargetPlanet()->GetPlanet() || isDisabled || IsDestroyed())
+	if(!GetTargetStellar() || !GetTargetStellar()->GetPlanet() || isDisabled || IsDestroyed())
 		return false;
 	
-	if(!GetTargetPlanet()->GetPlanet()->CanLand(*this))
+	if(!GetTargetStellar()->GetPlanet()->CanLand(*this))
 		return false;
 	
-	Point distance = GetTargetPlanet()->Position() - position;
+	Point distance = GetTargetStellar()->Position() - position;
 	double speed = velocity.Length();
 	
-	return (speed < 1. && distance.Length() < GetTargetPlanet()->Radius());
+	return (speed < 1. && distance.Length() < GetTargetStellar()->Radius());
 }
 
 
@@ -1834,7 +1836,7 @@ void Ship::WasCaptured(const shared_ptr<Ship> &capturer)
 	// Set the capturer as this ship's parent.
 	SetParent(capturer);
 	SetTargetShip(shared_ptr<Ship>());
-	SetTargetPlanet(nullptr);
+	SetTargetStellar(nullptr);
 	SetTargetSystem(nullptr);
 	shipToAssist.reset();
 	commands.Clear();
@@ -1844,6 +1846,12 @@ void Ship::WasCaptured(const shared_ptr<Ship> &capturer)
 	
 	isSpecial = capturer->isSpecial;
 	personality = capturer->personality;
+	
+	// Fighters should flee a disabled ship, but if the player manages to capture
+	// the ship before they flee, the fighters are captured, too.
+	for(const Bay &bay : bays)
+		if(bay.ship)
+			bay.ship->WasCaptured(capturer);
 }
 
 
@@ -2377,7 +2385,7 @@ shared_ptr<Ship> Ship::GetShipToAssist() const
 
 
 
-const StellarObject *Ship::GetTargetPlanet() const
+const StellarObject *Ship::GetTargetStellar() const
 {
 	return targetPlanet;
 }
@@ -2427,7 +2435,7 @@ void Ship::SetShipToAssist(const shared_ptr<Ship> &ship)
 
 
 
-void Ship::SetTargetPlanet(const StellarObject *object)
+void Ship::SetTargetStellar(const StellarObject *object)
 {
 	targetPlanet = object;
 }
