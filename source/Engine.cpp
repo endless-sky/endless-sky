@@ -440,7 +440,10 @@ void Engine::Step(bool isActive)
 		Messages::Add("Your ship has overheated.");
 	
 	if(flagship && flagship->Hull())
-		info.SetSprite("player sprite", flagship->GetSprite());
+	{
+		Point shipFacingUnit = flagship->Facing().Unit();
+		info.SetSprite("player sprite", flagship->GetSprite(), shipFacingUnit);
+	}
 	else
 		info.SetSprite("player sprite", nullptr);
 	if(currentSystem)
