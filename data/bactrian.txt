@@ -51,8 +51,8 @@ mission "Bactrian Unlock [0]"
 			`	"Besides," the woman chimes in, "what do you expect after having been involved in the war?" The man begins to tell you about the mission:`
 	
 			label mission
-			`	"We need you to find a Star Queen that recently went missing in the Far North region and return to <destination> once you have located it. Aboard it were a number of top scientists intending to do research on the Wolf-Rayet star in Gorvi. Due to its proximity to the northern anarchist worlds, very little research has been conducted on it."`
-			`	"We received word yesterday that just after the the Star Queen and its escorts refueled on Prime, a large pirate fleet entered the system. The escorts were sadly destroyed." He chokes up a bit. "The pirates boarded and took control of the Star Queen. We then lost all connection to the vessel, so we're in the dark as to where it went from there." He takes a moment to collect himself after telling you the situation.`
+			`	"We need you to find a Star Queen that recently went missing in the Far North region and return to <destination> once you have located it. Aboard the ship were a number of top scientists intending to do research on the Wolf-Rayet star in Gorvi. Due to its proximity to the northern anarchist worlds, very little research has been conducted on it."`
+			`	"We received word yesterday that just after the Star Queen and its escorts refueled on Prime, a large pirate fleet entered the system. The escorts were sadly destroyed." He chokes up a bit. "The pirates boarded and took control of the Star Queen. We lost all communications with the vessel, so we're in the dark as to where it went from there." He takes a moment to collect himself after telling you the situation.`
 			choice
 				`	"I would be glad to help. I'll prepare my ship immediately."`
 					accept
@@ -81,10 +81,10 @@ mission "Bactrian Unlock [0]"
 
 	on enter Arneb
 		set "found star queen"
-		dialog "As you enter Arneb, you spot the Star Queen landing on Haven, defended by a number of pirate vessels. You will need to report back to the Deep in order to retrieve the Star Queen in one piece."
+		dialog `As you enter Arneb, your scanners pick up the Star Queen landing on Haven. Unfortunately, there are also a large number of pirate vessels headed in your direction.  You should report back to the Deep Security officer on <destination> for further instruction.`
 	
 	on visit
-		dialog "You have landed on Valhalla, but you have not located the Star Queen! Find it somewhere in the Far North."
+		dialog `You have landed on Valhalla, but you have not located the Star Queen! Find it somewhere in the Far North.`
 	
 	to complete
 		has "found star queen"
@@ -97,10 +97,11 @@ mission "Bactrian Unlock [0]: Prime"
 	source Prime
 	to offer
 		has "Bactrian Unlock [0]: active"
+		not "found star queen"
 	on offer
 		conversation
 			`The Star Queen is not in this system, so you attempt to find somebody who may have some information. After visiting several shops, you find a merchant who was clearing cargo through customs as the Star Queen departed. As she shares her experience, you can't help but be glad the Deep Security officer is not with you, as to hear this tale unfold would surely have shaken him further.`
- 			`	According to the merchant, a large pirate fleet jumped in, eviscerated the escorts, and escaped north towards Rigel with the hostage Star Queen. You can only hope the trail is not already cold.`
+			`	According to the merchant, a large pirate fleet jumped in, eviscerated the escorts, and escaped north towards Rigel with the hostage Star Queen. You can only hope the trail is not already cold.`
 				decline
 
 mission "Bactrian Unlock [0]: Farpoint"
@@ -108,9 +109,11 @@ mission "Bactrian Unlock [0]: Farpoint"
 	source Farpoint
 	to offer
 		has "Bactrian Unlock [0]: active"
+		not "found star queen"
 	on offer
 		conversation
-			`After speaking with a Navy Officer for a few minutes, you find out that the Star Queen came through here over a week ago, escorted by several large pirate ships. The Navy did not want to risk the lives of those on the Star Queen by engaging the pirate fleet, so they let it continue north from here.`			`	The spaceport clearly shows preparations for a rescue mission, but due to the destruction of a number of Navy capital ships by the Star Queen's captors in the days preceding its abduction, they have been ordered to wait for additional ammunition and reinforcements.`
+			`After speaking with a Navy Officer for a few minutes, you find out that the Star Queen came through here over a week ago, escorted by several large pirate ships. The Navy did not want to risk the lives of those on the Star Queen by engaging the pirate fleet, so they let it continue north from here.`
+			`	The spaceport clearly shows preparations for a rescue mission, but due to the destruction of a number of Navy capital ships by the Star Queen's captors in the days preceding its abduction, they have been ordered to wait for additional ammunition and reinforcements.`
 			`	The Navy officer ends by hinting that the Star Queen is likely to be in Alnilam or Arneb, as those systems are the farthest from anyone looking to find or rescue the ship.`
 				decline
 
@@ -143,11 +146,9 @@ mission "Bactrian Unlock [0]: Haven"
 
 mission "Bactrian Unlock [1]"
 	name "Secure the Scientists"
-	description "Escort the <npc> to <destination> to retrieve the Star Queen. Escorts will be waiting for you on Memory and Farpoint."
+	description "Escort the <npc> to <destination> to retrieve the Star Queen. Escorts will be waiting for you on Memory in the Zosma system and Farpoint in the Alnitak system."
 	landing
 	destination Haven
-	waypoint Zosma
-	waypoint Alnitak
 	clearance
 	to offer
 		has "Bactrian Unlock [0]: done"
@@ -168,7 +169,7 @@ mission "Bactrian Unlock [1]"
 			
 			label next
 			`	After hearing this news, many of the faces in the group turn grim as they realize that they will need to fight to retrieve the Star Queen. `
-			`	"We will need to get a rescue fleet ready. Soldiers, ready your ships!" The group responds with a collective "Sir, yes sir!" before running off to their ships.`
+			`	"We will need to get a rescue fleet ready. Guards, ready your ships!" The group responds with a collective "Sir, yes sir!" before running off to their ships.`
 			`	Before leaving for his own ship, the man walks up to you and hands you 100,000 credits.`
 			`	"That's for finding the Star Queen. Now, Captain <last>, would you be willing to help us? If the Star Queen is as heavily defended as you say it is then we're going to need every ship we can get."`
 			choice
@@ -176,7 +177,7 @@ mission "Bactrian Unlock [1]"
 				`	"I would rather let the professionals handle things. Good luck."`
 					decline
 			
-			`	"Thank you so much. The plan is to rendezvous with a number of warships on Memory and then head to Alnitak. My superiors received word from the commander on Farpoint that there are a number of Navy ships at the ready to avenge the ships they lost, so I expect we'll pick up some help there when we refuel. After the fleet is mustered, we go to Arneb." He smiles briefly, adding, "Just make sure that the <npc> makes it onto the planet. She'll be carrying the landing crew, along with myself."`
+			`	"Thank you so much. The plan is to rendezvous with a number of warships on Memory and then head to Alnitak. My superiors received word from the admiral on Farpoint that there are a number of Navy ships at the ready to avenge the ships they lost, so I expect we'll pick up some help there when we refuel. After the fleet is mustered, we go to Arneb." He smiles briefly, adding, "Just make sure that the <npc> makes it onto the planet. She'll be carrying the landing crew, along with myself."`
 			`	The communications device on his belt squawks, and he quickly responds, giving orders to the fleet that will be joining you on the mission. Before you can return to your ship, he says, "Also, since we'll be going into battle together, I might as well introduce myself. I'm Deep Lieutenant Shane Paris. Good luck fighting; we'll meet you in orbit."`
 				accept
 	
@@ -186,7 +187,7 @@ mission "Bactrian Unlock [1]"
 		ship "Mule (Heavy)" "D.S.S. Faraday"
 	
 	on visit
-		dialog `You have landed on Haven, but either you left the <npc> behind or you didn't pick up the rest of your escorts! Wait for the <npc> to enter the system before landing or make sure you have picked up the escorts on Memory and Farpoint.`
+		dialog `You have landed on Haven, but you left the <npc> behind! Wait for the <npc> to enter the system before landing.`
 
 mission "Bactrian Unlock [1]: Pirates"
 	invisible
@@ -206,12 +207,28 @@ mission "Bactrian Unlock [1]: Pirates"
 		ship "Headhunter (Particle)" "Cerberus"
 		ship "Headhunter (Particle)" "Charon"
 
+
+
+mission "Bactrian Unlock [1]: Recruit Escorts"
+	name "Deep Security escorts on <planet>"
+	description "Lt. Paris mentioned that Deep Security was prepping an escort squadron. Meet up with them on <destination>, if you want to."
+	landing
+	to offer
+		has "Bactrian Unlock [0]: done"
+
+	source Valhalla
+	destination Memory
+	to fail
+		has "Bactrian Unlock [1]: done"
+
+
+
 mission "Bactrian Unlock [1]: Escorts"
 	invisible
 	landing
 	source Memory
 	to offer
-		has "Bactrian Unlock [1]: active"
+		has "Bactrian Unlock [1]: Recruit Escorts: done"
 	to fail
 		or
 			has "Bactrian Unlock [3]: offered"
@@ -231,12 +248,28 @@ mission "Bactrian Unlock [1]: Escorts"
 			`As you land, you notice a group of Deep Security warships - three Aeries and their fighter squadrons - loading munitions just outside of the spaceport. Before you can make it into the spaceport, one of the pilots waves you over for a brief conversation: aside from a few trivial items left on their preflight checklist, the warships are ready to launch and join in on the rescue mission.`
 				accept
 
+
+
+mission "Bactrian Unlock [1]: Recruit Reinforcements"
+	name "Republic Navy escorts on <planet>"
+	description "Lt. Paris mentioned that some Navy officers were interested in avenging the loss of their comrades. Meet up with them on <destination>, if you want to."
+	landing
+	to offer
+		has "Bactrian Unlock [0]: done"
+
+	source Valhalla
+	destination Farpoint
+	to fail
+		has "Bactrian Unlock [1]: done"
+
+
+
 mission "Bactrian Unlock [1]: Reinforcements"
 	invisible
 	landing
 	source Farpoint
 	to offer
-		has "Bactrian Unlock [1]: active"
+		has "Bactrian Unlock [1]: Recruit Reinforcements: done"
 	to fail
 		or
 			has "Bactrian Unlock [3]: offered"
@@ -256,6 +289,8 @@ mission "Bactrian Unlock [1]: Reinforcements"
 		conversation
 			`While refueling at the Farpoint naval base, you are approached by two Navy officers who recognize you as Captain <last>. They tell you that Lieutenant Paris contacted them a few days ago, indicating that the rescue fleet was en route and would be reaching the Alnitak system shortly. They inform you that they have requisitioned two Cruisers to assist in the Star Queen's retrieval, and depart for their ships.`
 				accept
+
+
 
 mission "Bactrian Unlock [2]"
 	landing
