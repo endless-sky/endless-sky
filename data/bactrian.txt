@@ -24,6 +24,7 @@ mission "Bactrian Unlock [0]"
 		has "Rescue Miners 2: done"
 		has "Humanitarian 2: done"
 		has "Terraforming 5: done"
+
 	on offer
 		conversation
 			`While you are watching one of the telescreens in a restaurant located in the spaceport, you are approached by a man and a woman, both wearing Deep Security uniforms.`
@@ -92,17 +93,22 @@ mission "Bactrian Unlock [0]"
 	on complete
 		payment 100000
 
+
+
 mission "Bactrian Unlock [0]: Prime"
 	landing
 	source Prime
 	to offer
 		has "Bactrian Unlock [0]: active"
 		not "found star queen"
+
 	on offer
 		conversation
 			`The Star Queen is not in this system, so you attempt to find somebody who may have some information. After visiting several shops, you find a merchant who was clearing cargo through customs as the Star Queen departed. As she shares her experience, you can't help but be glad the Deep Security officer is not with you, as to hear this tale unfold would surely have shaken him further.`
 			`	According to the merchant, a large pirate fleet jumped in, eviscerated the escorts, and escaped north towards Rigel with the hostage Star Queen. You can only hope the trail is not already cold.`
 				decline
+
+
 
 mission "Bactrian Unlock [0]: Farpoint"
 	landing
@@ -110,12 +116,15 @@ mission "Bactrian Unlock [0]: Farpoint"
 	to offer
 		has "Bactrian Unlock [0]: active"
 		not "found star queen"
+
 	on offer
 		conversation
 			`After speaking with a Navy Officer for a few minutes, you find out that the Star Queen came through here over a week ago, escorted by several large pirate ships. The Navy did not want to risk the lives of those on the Star Queen by engaging the pirate fleet, so they let it continue north from here.`
 			`	The spaceport clearly shows preparations for a rescue mission, but due to the destruction of a number of Navy capital ships by the Star Queen's captors in the days preceding its abduction, they have been ordered to wait for additional ammunition and reinforcements.`
 			`	The Navy officer ends by hinting that the Star Queen is likely to be in Alnilam or Arneb, as those systems are the farthest from anyone looking to find or rescue the ship.`
 				decline
+
+
 
 mission "Bactrian Unlock [0]: Pirates"
 	invisible
@@ -134,15 +143,20 @@ mission "Bactrian Unlock [0]: Pirates"
 		ship "Leviathan (Laser)" "His Right Hand"
 		ship "Leviathan (Laser)" "His Left Hand"
 
+
+
 mission "Bactrian Unlock [0]: Haven"
 	landing
 	source Haven
 	to offer
 		has "Bactrian Unlock [0]: active"
+
 	on offer
 		conversation
 			`You spend a few hours scanning the surface of the planet in an attempt to find the Star Queen, but nothing comes up. It will likely require military-grade scanners in order to find the ship, which the Deep Security will undoubtedly have.`
 				decline
+
+
 
 mission "Bactrian Unlock [1]"
 	name "Secure the Scientists"
@@ -152,6 +166,7 @@ mission "Bactrian Unlock [1]"
 	clearance
 	to offer
 		has "Bactrian Unlock [0]: done"
+
 	on offer
 		conversation
 			`You return to Valhalla and find the man that you met earlier in the spaceport talking with a large group of people in Deep Security uniforms.`
@@ -188,6 +203,8 @@ mission "Bactrian Unlock [1]"
 	
 	on visit
 		dialog `You have landed on Haven, but you left the <npc> behind! Wait for the <npc> to enter the system before landing.`
+
+
 
 mission "Bactrian Unlock [1]: Pirates"
 	invisible
@@ -242,7 +259,7 @@ mission "Bactrian Unlock [1]: Escorts"
 			variant
 				"Aerie" 3
 				"Dagger" 6
-	
+
 	on offer
 		conversation
 			`As you land, you notice a group of Deep Security warships - three Aeries and their fighter squadrons - loading munitions just outside of the spaceport. Before you can make it into the spaceport, one of the pilots waves you over for a brief conversation: aside from a few trivial items left on their preflight checklist, the warships are ready to launch and join in on the rescue mission.`
@@ -274,7 +291,7 @@ mission "Bactrian Unlock [1]: Reinforcements"
 		or
 			has "Bactrian Unlock [3]: offered"
 			has "Bactrian Unlock [3-alt]: offered"
-	
+
 	npc kill
 		government Republic
 		personality heroic escort
@@ -299,6 +316,7 @@ mission "Bactrian Unlock [2]"
 	destination Valhalla
 	to offer
 		has "Bactrian Unlock [1]: done"
+
 	on offer
 		conversation
 			`The remaining fleet quickly enters the atmosphere of Haven and begins scanning the surface. After about an hour of flying, you receive a transmission that the Star Queen has been found, along with its coordinates.`
@@ -321,6 +339,27 @@ mission "Bactrian Unlock [2]"
 	on complete
 		payment 100000
 
+
+
+ship "Bactrian" "Pirate Bactrian (Cosmic Devil)"
+	"never disabled"
+	outfits
+		"Heavy Laser Turret" 4
+		"Heavy Anti-Missile Turret" 2
+		"Torpedo Launcher" 4
+		"Torpedo" 120
+		"Fusion Reactor"
+		"Fission Reactor"
+		"LP288a Battery Pack"
+		"D94-YV Shield Generator" 2
+		"Liquid Helium Cooler" 2
+		"Large Radar Jammer" 2
+		"A520 Atomic Thruster"
+		"A525 Atomic Steering"
+		Hyperdrive
+
+		
+
 mission "Bactrian Unlock [2]: Pirate Bactrian"
 	landing
 	invisible
@@ -330,8 +369,10 @@ mission "Bactrian Unlock [2]: Pirate Bactrian"
 	npc kill
 		government Pirate
 		personality staying nemesis waiting
-		ship "Bactrian" "Cosmic Devil"
+		ship "Bactrian (Cosmic Devil)" "Cosmic Devil"
 		dialog `The Bactrian "<npc>" has been destroyed. Now the pirates here will have a harder time attacking the Republic.`
+
+
 
 mission "Bactrian Unlock [2]: More Pirates"
 	landing
@@ -348,6 +389,8 @@ mission "Bactrian Unlock [2]: More Pirates"
 		ship "Leviathan (Laser)" "Eve"
 		ship "Leviathan (Laser)" "Cain"
 
+
+
 mission "Bactrian Unlock [3]"
 	name "Take down the Devil"
 	description "You have returned the scientists, but the pirates still have a Bactrian. Eliminate it and return to <destination>."
@@ -358,6 +401,7 @@ mission "Bactrian Unlock [3]"
 		has "Bactrian Unlock [2]: done"
 		not "Bactrian Unlock: Pirate Bactrian: done"
 		not "Bactrian Unlock [3-alt]: offered"
+
 	on offer
 		conversation
 			`As you land near the Star Queen, you can see the passengers of the ship being escorted off of it. A medical team is examining each passenger while a Deep Security officer asks them questions and jots down the responses. Sadly, you also notice a number of body bags next to the ship, likely from scientists or crew that were found dead on the ship.`
@@ -395,12 +439,15 @@ mission "Bactrian Unlock [3]"
 			
 			`	"It's yours to keep. I hope you have good luck with your travels, and have fun using the Bactrian. It's a mighty fine ship to fly." Lieutenant Paris pays his bill and leaves, as you ponder the possibilities that await.`
 
+
+
 mission "Bactrian Unlock [3-alt]"
 	landing
 	to offer
 		has "Bactrian Unlock [2]: done"
 		has "Bactrian Unlock [2]: Pirate Bactrian: done"
 		not "Bactrian Unlock [3]: offered"
+
 	on offer
 		set "license: City-Ship"
 		conversation
