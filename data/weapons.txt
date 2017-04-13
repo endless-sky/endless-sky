@@ -425,6 +425,28 @@ outfit "Plasma Turret"
 		"heat damage" 340
 	description "The Plasma Turret is a pair of plasma cannons mounted on a turret so that they can fire in any direction. It is a fearsome weapon, but only the largest of ships have the space and the energy that it requires."
 
+outfit "Railgun"
+	category "Guns"
+	cost 550000
+	thumbnail "outfit/unknown"
+	"mass" 60
+	"outfit space" -60
+	"weapon capacity" -60
+	"gun ports" -1
+	weapon
+		sprite ?
+		sound ?
+		"hit effect" ?
+		"inaccuracy" 1
+		"velocity" 15
+		"lifetime" 200
+		"reload" 50
+		"firing energy" 30
+		"firing heat" 200
+		"shield damage" 250
+		"hull damage" 400
+	description "One of the newest Navy weapons, this old design was remade to be suit for space battles. An extremley powerful weapon, the railgun can destroy most interceptors in one shot. However, this weapon is very large and carries a gigantic price tag. "
+
 outfit "Flamethrower"
 	category "Secondary Weapons"
 	cost 190000
