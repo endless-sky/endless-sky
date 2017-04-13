@@ -1686,8 +1686,8 @@ ship "Hauler Z"
 	gun 15 -56
 	turret -26 -14 "Quad Blaster Turret"
 	turret 26 -14 "Heavy Anti-Missile Turret"
-	turret -19 32 "Heavy Anti-Missile Turret"
-	turret 19 32 "Quad Blaster Turret"
+	turret -19 42 "Heavy Anti-Missile Turret"
+	turret 19 42 "Quad Blaster Turret"
 	explode "tiny explosion" 30
 	explode "small explosion" 45
 	explode "medium explosion" 10
