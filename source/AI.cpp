@@ -463,13 +463,14 @@ void AI::Step(const PlayerInfo &player)
 			
 			command |= AutoFire(*it);
 		}
-		if(isPresent && personality.Harvests() && DoHarvesting(*it, command))
+		if(isPresent && (personality.Harvests() || (it->IsYours() && Preferences::Has("Escorts harvest flotsam")))
+				&& DoHarvesting(*it, command))
 		{
 			it->SetCommands(command);
 			continue;
 		}
-		if(isPresent && personality.IsMining() && !target
-				&& it->Cargo().Free() >= 5 && ++miningTime[&*it] < 3600 && ++minerCount < 9)
+		if(isPresent && (personality.IsMining() || (it->IsYours() && Preferences::Has("Escorts target asteroids")))
+				&& !target && it->Cargo().Free() >= 5 && ++miningTime[&*it] < 3600 && ++minerCount < 9)
 		{
 			DoMining(*it, command);
 			it->SetCommands(command);
