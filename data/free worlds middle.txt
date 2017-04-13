@@ -1075,7 +1075,8 @@ mission "FW Northern 4.2A"
 	
 	on visit
 		dialog "You have reached <planet>, but you left part of the convoy behind! Better depart and wait for them to arrive in this star system."
-
+	to fail
+		has "FW Northern 4.1A"
 
 
 mission "FW Alphas 1.1"
