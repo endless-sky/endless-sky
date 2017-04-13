@@ -39,6 +39,7 @@ namespace {
 	// Settings that require special handling.
 	static const string ZOOM_FACTOR = "Main zoom factor";
 	static const string VIEW_ZOOM_FACTOR = "View zoom factor";
+	static const string ESCORT_HARVEST = "Harvest behaviour";
 	static const string EXPEND_AMMO = "Escorts expend ammo";
 	static const string FRUGAL_ESCORTS = "Escorts use ammo frugally";
 	static const string REACTIVATE_HELP = "Reactivate first-time help";
@@ -159,7 +160,9 @@ bool PreferencesPanel::Click(int x, int y, int clicks)
 				if(!Preferences::ZoomViewIn())
 					while(Preferences::ZoomViewOut()) {}
 			}
-			if(zone.Value() == EXPEND_AMMO)
+			if(zone.Value() == ESCORT_HARVEST)
+				Preferences::ToggleEscortHarvesting();
+			else if(zone.Value() == EXPEND_AMMO)
 				Preferences::ToggleAmmoUsage();
 			else if(zone.Value() == REACTIVATE_HELP)
 			{
@@ -417,15 +420,16 @@ void PreferencesPanel::DrawSettings()
 		"AI",
 		"Automatic aiming",
 		"Automatic firing",
+		ESCORT_HARVEST,
 		EXPEND_AMMO,
-		"",
+		"\n",
 		"Performance",
 		"Show CPU / GPU load",
 		"Render motion blur",
 		"Reduce large graphics",
 		"Draw background haze",
 		"Show hyperspace flash",
-		"\n",
+		"",
 		"Other",
 		REACTIVATE_HELP,
 		SCROLL_SPEED,
@@ -470,6 +474,11 @@ void PreferencesPanel::DrawSettings()
 		{
 			isOn = true;
 			text = to_string(static_cast<int>(100. * Preferences::ViewZoom()));
+		}
+		else if(setting == ESCORT_HARVEST)
+		{
+			text = Preferences::EscortHarvesting();
+			isOn = (text == "uninterested" ? false : true);
 		}
 		else if(setting == EXPEND_AMMO)
 			text = Preferences::AmmoUsage();
