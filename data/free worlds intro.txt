@@ -484,9 +484,17 @@ mission "FW Katya 1"
 			`	"Look kid," she says, "when I ask you to pick sides, when I offer you a mission that's gonna burn some bridges for you, I won't be sneaky about it. I'll tell you exactly what you're signing up for. What I'm offering you now is just a chance to get to know us, and let us get to know you, with no expectations. Heck, you can even run missions for the Reps at the same time."`
 			choice
 				`	"That sounds fair. I'll hear you out."`
+                                        goto `more`
 				`	"Fair enough, but I don't like working with people who start conversations by pointing guns at my head. Even unloaded guns."`
-					decline
-	
+					goto `sorry`
+
+                        label `sorry`
+	                `      "I'm sorry about that, and I assure you it will not happen again. As I said earlier, I don't want to hire people who will lash out when their cargo hold is scanned."`
+                        choice
+                                `       "I understand. What do you need me to do?`
+                                        goto `more`
+                                `       "Still, I am not interested in assisting the Free Worlds. Please do not offer me any more work in the future."`
+                                        decline
 			label `more`
 			`	"Okay, here's the deal. We need some cargo carried from <planet> to Skymoot. It's just medical supplies - no bombs, no contraband. But we'll load it onto your ship in the dead of night, trying our best to avoid any notice. But the Reps have the sharpest eyes in the galaxy, so you'll get noticed anyway. And since anything done in the dead of night is likely to arouse their suspicions, you'll get boarded and searched. Meanwhile, the real cargo will have been loaded onto one of our ships in broad daylight, and will pass through Republic space entirely unnoticed."`
 			choice

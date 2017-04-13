@@ -16,7 +16,7 @@ outfit "Cooling Ducts"
 	"mass" 5
 	"outfit space" -5
 	"cooling" 5
-	description "When trying to cram as many high-powered outfits as possible into a ship, occasionally you reach the point where it is sporadically overheating and shutting down. In that case, you may need to install one of these."
+	description "When trying to cram as many high-powered outfits as possible into a ship, occasionally you reach the point where its sporadically overheating and shutting down. In that case, you may need to install one of these."
 
 outfit "Water Coolant System"
 	category "Systems"
@@ -157,7 +157,7 @@ outfit "Catalytic Ramscoop"
 	"mass" 16
 	"outfit space" -16
 	"ramscoop" 7
-	description "Ramscoop technology has been almost unchanged for centuries, because with nearly every system in human space settled there has not been a pressing need for ships to generate their own fuel. But with the Free Worlds war making travel once again more difficult, some engineers in the Deep recently invented a much-improved ramscoop for use in their merchant fleets."
+	description "Ramscoop technology has been almost unchanged for centuries, because with nearly every system in human space settled there has not been a pressing need for ships to generate their own fuel. But when the Free Worlds war made travel once again more difficult, some engineers in the Deep recently invented a much-improved ramscoop for use in their merchant fleets."
 
 outfit "Hyperdrive"
 	category "Systems"
