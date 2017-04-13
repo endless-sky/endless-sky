@@ -441,8 +441,13 @@ void Engine::Step(bool isActive)
 	
 	if(flagship && flagship->Hull())
 	{
-		Point shipFacingUnit = flagship->Facing().Unit();
-		info.SetSprite("player sprite", flagship->GetSprite(), shipFacingUnit);
+		if(Preferences::Has("Rotate flagship in HUD"))
+		{
+			Point shipFacingUnit = flagship->Facing().Unit();
+			info.SetSprite("player sprite", flagship->GetSprite(), shipFacingUnit);
+		}
+		else
+			info.SetSprite("player sprite", flagship->GetSprite());
 	}
 	else
 		info.SetSprite("player sprite", nullptr);
