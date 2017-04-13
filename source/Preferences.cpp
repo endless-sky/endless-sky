@@ -28,6 +28,10 @@ namespace {
 	map<string, bool> settings;
 	int scrollSpeed = 60;
 	
+	// Strings for automatic harvesting/mining:
+	static const string ESCORT_HARVEST = "Escorts harvest flotsam";
+	static const string ESCORT_MINING = "Escorts target asteroids";
+	
 	// Strings for ammo expenditure:
 	static const string EXPEND_AMMO = "Escorts expend ammo";
 	static const string FRUGAL_ESCORTS = "Escorts use ammo frugally";
