@@ -1209,7 +1209,7 @@ bool AI::MoveTo(Ship &ship, Command &command, const Point &targetPosition, const
 
 
 
-bool AI::Stop(Ship &ship, Command &command, double maxSpeed, const Point *direction)
+bool AI::Stop(Ship &ship, Command &command, double maxSpeed, const Point direction)
 {
 	const Point &velocity = ship.Velocity();
 	const Angle &angle = ship.Facing();
@@ -1248,12 +1248,12 @@ bool AI::Stop(Ship &ship, Command &command, double maxSpeed, const Point *direct
 		if(direction)
 		{
 			// Time to turn from facing backwards to target:
-            double degreesFromBackwards = TO_DEG * acos(min(1., max(-1., direction->Unit().Dot(-velocity.Unit()))));
-            double turnFromBackwardsTime = degreesFromBackwards / ship.TurnRate();
-            forwardTime += turnFromBackwardsTime;
+			double degreesFromBackwards = TO_DEG * acos(min(1., max(-1., direction.Unit().Dot(-velocity.Unit()))));
+			double turnFromBackwardsTime = degreesFromBackwards / ship.TurnRate();
+			forwardTime += turnFromBackwardsTime;
 			
 			// Time to turn from facing forwards to target:
-            double degreesFromForward = TO_DEG * acos(min(1., max(-1., direction->Unit().Dot(angle.Unit()))));
+            double degreesFromForward = TO_DEG * acos(min(1., max(-1., direction.Unit().Dot(angle.Unit()))));
             double turnFromForwardTime = degreesFromForward / ship.TurnRate();
             reverseTime += turnFromForwardTime;
 		}
@@ -1320,7 +1320,7 @@ void AI::PrepareForHyperspace(Ship &ship, Command &command)
 		Stop(ship, command, ship.Attributes().Get("jump speed"));
 	}
 	// Else stop in the fastest way to end facing in the right direction
-	else if(Stop(ship, command, ship.Attributes().Get("jump speed"), &direction))
+	else if(Stop(ship, command, ship.Attributes().Get("jump speed"), direction))
 	{
 		command.SetTurn(TurnToward(ship, direction));
 	}
