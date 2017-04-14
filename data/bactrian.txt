@@ -183,7 +183,7 @@ mission "Bactrian Unlock [1]"
 			`	You mention the multiple heavy warships that you took out in the system, but that there may be many more waiting on Haven.`
 			
 			label next
-			`	After hearing this news, many of the faces in the group turn grim as they realize that they will need to fight to retrieve the Star Queen. `
+			`	After hearing this news, many of the faces in the group turn grim as they realize that they will need to fight to retrieve the Star Queen.`
 			`	"We will need to get a rescue fleet ready. Guards, ready your ships!" The group responds with a collective "Sir, yes sir!" before running off to their ships.`
 			`	Before leaving for his own ship, the man walks up to you and hands you 100,000 credits.`
 			`	"That's for finding the Star Queen. Now, Captain <last>, would you be willing to help us? If the Star Queen is as heavily defended as you say it is then we're going to need every ship we can get."`
@@ -228,7 +228,7 @@ mission "Bactrian Unlock [1]: Pirates"
 
 mission "Bactrian Unlock [1]: Recruit Escorts"
 	name "Deep Security escorts on <planet>"
-	description "Lt. Paris mentioned that Deep Security was prepping an escort squadron. Meet up with them on <destination>, if you want to."
+	description "Lieutenant Paris mentioned an escort squadron of Deep Security ship was preparing to join you on your mission. Meet up with them on <destination>, if you want to."
 	landing
 	to offer
 		has "Bactrian Unlock [0]: done"
@@ -269,7 +269,7 @@ mission "Bactrian Unlock [1]: Escorts"
 
 mission "Bactrian Unlock [1]: Recruit Reinforcements"
 	name "Republic Navy escorts on <planet>"
-	description "Lt. Paris mentioned that some Navy officers were interested in avenging the loss of their comrades. Meet up with them on <destination>, if you want to."
+	description "Lieutenant Paris mentioned that some Navy officers were interested in avenging the loss of their comrades. Meet up with them on <destination>, if you want to."
 	landing
 	to offer
 		has "Bactrian Unlock [0]: done"
