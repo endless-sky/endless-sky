@@ -341,7 +341,7 @@ mission "Bactrian Unlock [2]"
 
 
 
-ship "Bactrian" "Pirate Bactrian (Cosmic Devil)"
+ship "Bactrian" "Bactrian (Cosmic Devil)"
 	"never disabled"
 	outfits
 		"Heavy Laser Turret" 4
