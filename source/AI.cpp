@@ -1253,9 +1253,9 @@ bool AI::Stop(Ship &ship, Command &command, double maxSpeed, const Point directi
 			forwardTime += turnFromBackwardsTime;
 			
 			// Time to turn from facing forwards to target:
-            double degreesFromForward = TO_DEG * acos(min(1., max(-1., direction.Unit().Dot(angle.Unit()))));
-            double turnFromForwardTime = degreesFromForward / ship.TurnRate();
-            reverseTime += turnFromForwardTime;
+			double degreesFromForward = TO_DEG * acos(min(1., max(-1., direction.Unit().Dot(angle.Unit()))));
+			double turnFromForwardTime = degreesFromForward / ship.TurnRate();
+			reverseTime += turnFromForwardTime;
 		}
 		
 		if(reverseTime < forwardTime)
