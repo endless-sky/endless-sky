@@ -228,7 +228,7 @@ mission "Bactrian Unlock [1]: Pirates"
 
 mission "Bactrian Unlock [1]: Recruit Escorts"
 	name "Deep Security escorts on <planet>"
-	description "Lieutenant Paris mentioned an escort squadron of Deep Security ship was preparing to join you on your mission. Meet up with them on <destination>, if you want to."
+	description "Lieutenant Paris mentioned an escort squadron of Deep Security ships was preparing to join you on your mission. Meet up with them on <destination>, if you want to."
 	landing
 	to offer
 		has "Bactrian Unlock [0]: done"
