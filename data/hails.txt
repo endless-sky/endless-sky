@@ -1190,7 +1190,7 @@ phrase "friendly militia"
 		"The cavalry are here"
 		"The militia are on the watch"
 		"You won't beat us"
-		"We can not be defeated"
+		"We cannot be defeated"
 	word
 		"."
 		"!"
