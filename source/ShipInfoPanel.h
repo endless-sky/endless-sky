@@ -55,7 +55,7 @@ private:
 	
 	// Draw the ship tab (and its subsections).
 	void DrawShipStats(const Rectangle &bounds);
-	void DrawOutfits(const Rectangle &bounds);
+	void DrawOutfits(const Rectangle &bounds, Rectangle &cargoBounds);
 	void DrawWeapons(const Rectangle &bounds);
 	void DrawCargo(const Rectangle &bounds);
 	

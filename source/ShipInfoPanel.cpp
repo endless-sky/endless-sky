@@ -94,10 +94,11 @@ void ShipInfoPanel::Draw()
 	zones.clear();
 	commodityZones.clear();
 	plunderZones.clear();
+	Rectangle cargoBounds = interface->GetBox("cargo");
 	DrawShipStats(interface->GetBox("stats"));
-	DrawOutfits(interface->GetBox("outfits"));
+	DrawOutfits(interface->GetBox("outfits"), cargoBounds);
 	DrawWeapons(interface->GetBox("weapons"));
-	DrawCargo(interface->GetBox("cargo"));
+	DrawCargo(cargoBounds);
 	
 	// If the player hovers their mouse over a ship attribute, show its tooltip.
 	info.DrawTooltips();
@@ -294,7 +295,7 @@ void ShipInfoPanel::DrawShipStats(const Rectangle &bounds)
 
 
 
-void ShipInfoPanel::DrawOutfits(const Rectangle &bounds)
+void ShipInfoPanel::DrawOutfits(const Rectangle &bounds, Rectangle &cargoBounds)
 {
 	// Check that the specified area is big enough.
 	if(bounds.Width() < 250.)
@@ -354,6 +355,12 @@ void ShipInfoPanel::DrawOutfits(const Rectangle &bounds)
 		// Add an extra gap in between categories.
 		table.DrawGap(10.);
 	}
+	
+	// Check if this information spilled over into the cargo column.
+	if(cargoBounds.Contains(table.GetPoint()))
+		cargoBounds = Rectangle::WithCorners(
+			Point(cargoBounds.Left(), table.GetPoint().Y() - 8.),
+			cargoBounds.BottomRight());
 }
 
 
@@ -475,18 +482,22 @@ void ShipInfoPanel::DrawCargo(const Rectangle &bounds)
 {
 	Color dim = *GameData::Colors().Get("medium");
 	Color bright = *GameData::Colors().Get("bright");
-	const Font &font = FontSet::Get(14);
+	Color backColor = *GameData::Colors().Get("faint");
 	const Ship &ship = **shipIt;
 
 	// Cargo list.
 	const CargoHold &cargo = (player.Cargo().Used() ? player.Cargo() : ship.Cargo());
-	Point pos = Point(260., -280.);
-	static const Point size(230., 20.);
-	Color backColor = *GameData::Colors().Get("faint");
+	Table table;
+	table.AddColumn(0, Table::LEFT);
+	table.AddColumn(230, Table::RIGHT);
+	table.SetUnderline(-5, 235);
+	table.DrawAt(bounds.TopLeft() + Point(10., 8.));
+	
+	double endY = bounds.Bottom() - 30. * (cargo.Passengers() != 0);
 	if(cargo.CommoditiesSize() || cargo.HasOutfits() || cargo.MissionCargoSize())
 	{
-		font.Draw("Cargo", pos, bright);
-		pos.Y() += 20.;
+		table.Draw("Cargo", bright);
+		table.Advance();
 	}
 	if(cargo.CommoditiesSize())
 	{
@@ -495,74 +506,59 @@ void ShipInfoPanel::DrawCargo(const Rectangle &bounds)
 			if(!it.second)
 				continue;
 			
-			Point center = pos + .5 * size - Point(0., (20 - font.Height()) * .5);
-			commodityZones.emplace_back(center, size, it.first);
+			commodityZones.emplace_back(table.GetCenterPoint(), table.GetRowSize(), it.first);
 			if(it.first == selectedCommodity)
-				FillShader::Fill(center, size + Point(10., 0.), backColor);
+				table.DrawHighlight(backColor);
 			
-			string number = to_string(it.second);
-			Point numberPos(pos.X() + size.X() - font.Width(number), pos.Y());
-			font.Draw(it.first, pos, dim);
-			font.Draw(number, numberPos, bright);
-			pos.Y() += size.Y();
+			table.Draw(it.first, dim);
+			table.Draw(to_string(it.second), bright);
 			
 			// Truncate the list if there is not enough space.
-			if(pos.Y() >= 230.)
+			if(table.GetRowBounds().Bottom() >= endY)
 				break;
 		}
-		pos.Y() += 10.;
+		table.DrawGap(10.);
 	}
-	if(cargo.HasOutfits() && pos.Y() < 230.)
+	if(cargo.HasOutfits() && table.GetRowBounds().Bottom() < endY)
 	{
 		for(const auto &it : cargo.Outfits())
 		{
 			if(!it.second)
 				continue;
 			
-			Point center = pos + .5 * size - Point(0., (20 - font.Height()) * .5);
-			plunderZones.emplace_back(center, size, it.first);
+			plunderZones.emplace_back(table.GetCenterPoint(), table.GetRowSize(), it.first);
 			if(it.first == selectedPlunder)
-				FillShader::Fill(center, size + Point(10., 0.), backColor);
+				table.DrawHighlight(backColor);
 			
-			string number = to_string(it.second);
-			Point numberPos(pos.X() + size.X() - font.Width(number), pos.Y());
 			bool isSingular = (it.second == 1 || it.first->Get("installable") < 0.);
-			font.Draw(isSingular ? it.first->Name() : it.first->PluralName(), pos, dim);
-			font.Draw(number, numberPos, bright);
-			pos.Y() += size.Y();
+			table.Draw(isSingular ? it.first->Name() : it.first->PluralName(), dim);
+			table.Draw(to_string(it.second), bright);
 			
 			// Truncate the list if there is not enough space.
-			if(pos.Y() >= 230.)
+			if(table.GetRowBounds().Bottom() >= endY)
 				break;
 		}
-		pos.Y() += 10.;
+		table.DrawGap(10.);
 	}
-	if(cargo.HasMissionCargo() && pos.Y() < 230.)
+	if(cargo.HasMissionCargo() && table.GetRowBounds().Bottom() < endY)
 	{
 		for(const auto &it : cargo.MissionCargo())
 		{
 			// Capitalize the name of the cargo.
-			string name = Format::Capitalize(it.first->Cargo());
-			
-			string number = to_string(it.second);
-			Point numberPos(pos.X() + 230. - font.Width(number), pos.Y());
-			font.Draw(name, pos, dim);
-			font.Draw(number, numberPos, bright);
-			pos.Y() += 20.;
+			table.Draw(Format::Capitalize(it.first->Cargo()), dim);
+			table.Draw(to_string(it.second), bright);
 			
 			// Truncate the list if there is not enough space.
-			if(pos.Y() >= 230.)
+			if(table.GetRowBounds().Bottom() >= endY)
 				break;
 		}
-		pos.Y() += 10.;
+		table.DrawGap(10.);
 	}
 	if(cargo.Passengers())
 	{
-		pos = Point(pos.X(), 260.);
-		string number = to_string(cargo.Passengers());
-		Point numberPos(pos.X() + 230. - font.Width(number), pos.Y());
-		font.Draw("passengers:", pos, dim);
-		font.Draw(number, numberPos, bright);
+		table.DrawAt(Point(bounds.Left(), endY) + Point(10., 8.));
+		table.Draw("passengers:", dim);
+		table.Draw(to_string(cargo.Passengers()), bright);
 	}
 }
 
