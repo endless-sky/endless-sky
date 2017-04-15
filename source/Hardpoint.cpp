@@ -168,7 +168,7 @@ void Hardpoint::Fire(Ship &ship, list<Projectile> &projectiles, list<Effect> &ef
 	// If this is a fixed gun, or it if is a turret but you have no target
 	// selected, it should fire straight forward, angled in slightly to cause
 	// the shots to converge (gun harmonization).
-	if(!isTurret || !target || target->GetSystem() != ship.GetSystem())
+	if(!isTurret || !target || !target->IsTargetable())
 	{
 		// If this is a turret and it is not tracking a target, reset its angle
 		// to the proper convergence angle.
