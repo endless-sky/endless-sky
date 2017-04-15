@@ -36,6 +36,12 @@ color "blocked back" 0. .15 .2 .5
 color "waypoint" .1 .2 .9 1.
 color "waypoint back" 0. .3 .7 .5
 
+color "escort present" .8 .8 .8 1.
+color "escort elsewhere" .4 .4 .6 1.
+color "escort not ready" .9 .8 0. 1.
+color "escort blocked" .9 .2 0. 1.
+color "escort selected" .2 .8 0. 1.
+
 
 
 interface "menu background"
