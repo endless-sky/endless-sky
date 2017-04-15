@@ -261,7 +261,7 @@ void Ship::FinishLoading()
 		explosionWeapon = &GameData::Ships().Get(modelName)->BaseAttributes();
 	
 	// If this ship has a base class, copy any attributes not defined here.
-	// Exception: uncapturable and "never disabled" flags don't carry over.
+	// Exception: uncapturable, "never disabled" flags and individual personality don't carry over.
 	if(base && base != this)
 	{
 		pluralModelName = base->pluralModelName;
