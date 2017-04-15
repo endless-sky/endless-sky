@@ -357,10 +357,13 @@ void ShipInfoPanel::DrawOutfits(const Rectangle &bounds, Rectangle &cargoBounds)
 	}
 	
 	// Check if this information spilled over into the cargo column.
-	if(cargoBounds.Contains(table.GetPoint()))
+	if(table.GetPoint().X() >= cargoBounds.Left())
+	{
+		double startY = table.GetRowBounds().Top() - 8.;
 		cargoBounds = Rectangle::WithCorners(
-			Point(cargoBounds.Left(), table.GetPoint().Y() - 8.),
-			cargoBounds.BottomRight());
+			Point(cargoBounds.Left(), startY),
+			Point(cargoBounds.Right(), max(startY, cargoBounds.Bottom())));
+	}
 }
 
 
@@ -494,12 +497,14 @@ void ShipInfoPanel::DrawCargo(const Rectangle &bounds)
 	table.DrawAt(bounds.TopLeft() + Point(10., 8.));
 	
 	double endY = bounds.Bottom() - 30. * (cargo.Passengers() != 0);
-	if(cargo.CommoditiesSize() || cargo.HasOutfits() || cargo.MissionCargoSize())
+	bool hasSpace = (table.GetRowBounds().Bottom() < endY);
+	if((cargo.CommoditiesSize() || cargo.HasOutfits() || cargo.MissionCargoSize()) && hasSpace)
 	{
 		table.Draw("Cargo", bright);
 		table.Advance();
+		hasSpace = (table.GetRowBounds().Bottom() < endY);
 	}
-	if(cargo.CommoditiesSize())
+	if(cargo.CommoditiesSize() && hasSpace)
 	{
 		for(const auto &it : cargo.Commodities())
 		{
@@ -515,11 +520,14 @@ void ShipInfoPanel::DrawCargo(const Rectangle &bounds)
 			
 			// Truncate the list if there is not enough space.
 			if(table.GetRowBounds().Bottom() >= endY)
+			{
+				hasSpace = false;
 				break;
+			}
 		}
 		table.DrawGap(10.);
 	}
-	if(cargo.HasOutfits() && table.GetRowBounds().Bottom() < endY)
+	if(cargo.HasOutfits() && hasSpace)
 	{
 		for(const auto &it : cargo.Outfits())
 		{
@@ -536,11 +544,14 @@ void ShipInfoPanel::DrawCargo(const Rectangle &bounds)
 			
 			// Truncate the list if there is not enough space.
 			if(table.GetRowBounds().Bottom() >= endY)
+			{
+				hasSpace = false;
 				break;
+			}
 		}
 		table.DrawGap(10.);
 	}
-	if(cargo.HasMissionCargo() && table.GetRowBounds().Bottom() < endY)
+	if(cargo.HasMissionCargo() && hasSpace)
 	{
 		for(const auto &it : cargo.MissionCargo())
 		{
@@ -554,7 +565,7 @@ void ShipInfoPanel::DrawCargo(const Rectangle &bounds)
 		}
 		table.DrawGap(10.);
 	}
-	if(cargo.Passengers())
+	if(cargo.Passengers() && endY >= bounds.Top())
 	{
 		table.DrawAt(Point(bounds.Left(), endY) + Point(10., 8.));
 		table.Draw("passengers:", dim);
