@@ -178,8 +178,15 @@ void BankPanel::Draw()
 		totalPayment += salaries;
 		
 		table.Draw("Crew Salaries");
-		// For crew salaries, only the "payment" field needs to be shown.
-		table.Advance(3);
+		// Check whether the player owes back salaries.
+		if(player.Accounts().SalariesOwed())
+		{
+			table.Draw(Format::Number(player.Accounts().SalariesOwed()));
+			table.Draw("(overdue)");
+			table.Advance(1);
+		}
+		else
+			table.Advance(3);
 		table.Draw(salaries);
 		table.Advance();
 	}
@@ -260,6 +267,7 @@ bool BankPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 			else
 				++i;
 		}
+		player.Accounts().PaySalaries(player.Accounts().SalariesOwed());
 		qualify = player.Accounts().Prequalify();
 	}
 	else
