@@ -327,7 +327,7 @@ void Engine::Step(bool isActive)
 	}
 		
 	// Draw a highlight to distinguish the flagship from other ships.
-	if(flagship && Preferences::Has("Highlight player's flagship"))
+	if(flagship && !flagship->IsDestroyed() && Preferences::Has("Highlight player's flagship"))
 	{
 		highlightSprite = flagship->GetSprite();
 		highlightUnit = flagship->Unit() * zoom;
