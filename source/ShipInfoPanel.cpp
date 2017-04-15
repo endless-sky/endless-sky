@@ -1,4 +1,4 @@
-/* InfoPanel.cpp
+/* ShipInfoPanel.cpp
 Copyright (c) 2014 by Michael Zahniser
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
@@ -10,10 +10,8 @@ WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 */
 
-#include "InfoPanel.h"
+#include "ShipInfoPanel.h"
 
-#include "Armament.h"
-#include "Color.h"
 #include "Dialog.h"
 #include "FillShader.h"
 #include "Font.h"
@@ -26,258 +24,125 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Messages.h"
 #include "MissionPanel.h"
 #include "PlayerInfo.h"
-#include "Preferences.h"
+#include "PlayerInfoPanel.h"
+#include "Rectangle.h"
 #include "Ship.h"
 #include "Sprite.h"
 #include "SpriteShader.h"
-#include "System.h"
 #include "Table.h"
 #include "UI.h"
 
 #include <algorithm>
-#include <cmath>
 
 using namespace std;
 
-namespace {
-	const vector<string> RATINGS = {
-		"harmless",
-		"mostly harmless",
-		"not entirely helpless",
-		"borderline competent",
-		"almost dangerous",
-		"moderately intimidating",
-		"not to be trifled with",
-		"seasoned fighter",
-		"respected enemy",
-		"force to be reckoned with",
-		"fearsome scrapper",
-		"formidable adversary",
-		"dread warrior",
-		"veteran battle-lord",
-		"legendary foe",
-		"war-hungry lunatic",
-		"absurdly bloodthirsty",
-		"terror of the galaxy",
-		"inconceivably destructive",
-		"agent of mass extinction",
-		"genocidal maniac",
-		"destroyer of worlds"
-	};
-	
-	vector<pair<int, string>> Match(const PlayerInfo &player, const string &prefix, const string &suffix)
-	{
-		vector<pair<int, string>> match;
-		
-		auto it = player.Conditions().lower_bound(prefix);
-		for( ; it != player.Conditions().end(); ++it)
-		{
-			if(it->first.compare(0, prefix.length(), prefix))
-				break;
-			if(it->second > 0)
-				match.push_back(pair<int, string>(it->second, it->first.substr(prefix.length()) + suffix));
-		}
-		return match;
-	}
-	
-	void DrawList(vector<pair<int, string>> &list, Table &table, const string &title, int maxCount = 0, bool drawValues = true)
-	{
-		if(list.empty())
-			return;
-		
-		int otherCount = list.size() - maxCount;
-		
-		if(otherCount > 0 && maxCount > 0)
-		{
-			list[maxCount - 1].second = "(" + to_string(otherCount + 1) + " Others)";
-			while(otherCount--)
-			{
-				list[maxCount - 1].first += list.back().first;
-				list.pop_back();
-			}
-		}
-		
-		Color dim = *GameData::Colors().Get("medium");
-		Color bright = *GameData::Colors().Get("bright");
-		table.DrawGap(10);
-		table.DrawUnderline(dim);
-		table.Draw(title, bright);
-		table.Advance();
-		table.DrawGap(5);
-		
-		for(const pair<int, string> &it : list)
-		{
-			table.Draw(it.second, dim);
-			if(drawValues)
-				table.Draw(it.first);
-			else
-				table.Advance();
-		}
-	}
-}
 
 
-
-InfoPanel::InfoPanel(PlayerInfo &player, bool showFlagship)
-	: player(player), shipIt(player.Ships().begin()), showShip(showFlagship), canEdit(player.GetPlanet())
+ShipInfoPanel::ShipInfoPanel(PlayerInfo &player, int index)
+	: player(player), shipIt(player.Ships().begin()), canEdit(player.GetPlanet())
 {
 	SetInterruptible(false);
 	
-	if(showFlagship)
+	// If a valid ship index was given, show that ship.
+	if(static_cast<unsigned>(index) < player.Ships().size())
+		shipIt += index;
+	else
+	{
+		// Find the player's flagship. It may not be first in the list, if the
+		// first item in the list cannot be a flagship.
 		while(shipIt != player.Ships().end() && shipIt->get() != player.Flagship())
 			++shipIt;
+	}
 	
 	UpdateInfo();
 }
 
 
 
-void InfoPanel::Draw()
+void ShipInfoPanel::Draw()
 {
+	// Dim everything behind this panel.
 	DrawBackdrop();
 	
+	// Fill in the information for how this interface should be drawn.
 	Information interfaceInfo;
-	if(showShip)
+	interfaceInfo.SetCondition("ship tab");
+	if(canEdit && (shipIt != player.Ships().end())
+			&& (shipIt->get() != player.Flagship() || (*shipIt)->IsParked()))
 	{
-		interfaceInfo.SetCondition("ship tab");
-		if(canEdit && (shipIt != player.Ships().end())
-				&& (shipIt->get() != player.Flagship() || (*shipIt)->IsParked()))
-		{
-			if(!(*shipIt)->IsDisabled())
-				interfaceInfo.SetCondition("can park");
-			interfaceInfo.SetCondition((*shipIt)->IsParked() ? "show unpark" : "show park");
-			interfaceInfo.SetCondition("show disown");
-		}
-		else if(!canEdit)
-		{
-			interfaceInfo.SetCondition("show dump");
-			if(CanDump())
-				interfaceInfo.SetCondition("enable dump");
-		}
-		if(player.Ships().size() > 1)
-			interfaceInfo.SetCondition("four buttons");
-		else
-			interfaceInfo.SetCondition("two buttons");
+		if(!(*shipIt)->IsDisabled())
+			interfaceInfo.SetCondition("can park");
+		interfaceInfo.SetCondition((*shipIt)->IsParked() ? "show unpark" : "show park");
+		interfaceInfo.SetCondition("show disown");
 	}
+	else if(!canEdit)
+	{
+		interfaceInfo.SetCondition("show dump");
+		if(CanDump())
+			interfaceInfo.SetCondition("enable dump");
+	}
+	if(player.Ships().size() > 1)
+		interfaceInfo.SetCondition("four buttons");
 	else
-	{
-		interfaceInfo.SetCondition("player tab");
-		if(canEdit && player.Ships().size() > 1)
-		{
-			bool allParked = true;
-			bool hasOtherShips = false;
-			const Ship *flagship = player.Flagship();
-			for(const auto &it : player.Ships())
-				if(!it->IsDisabled() && it.get() != flagship)
-				{
-					allParked &= it->IsParked();
-					hasOtherShips = true;
-				}
-			if(hasOtherShips)
-				interfaceInfo.SetCondition(allParked ? "show unpark all" : "show park all");
-			
-			if(!allSelected.empty())
-			{
-				bool parkable = false;
-				allParked = true;
-				for(int i : allSelected)
-				{
-					const Ship &ship = *player.Ships()[i];
-					if(!ship.IsDisabled() && &ship != flagship)
-					{
-						allParked &= ship.IsParked();
-						parkable = true;
-					}
-				}
-				if(parkable)
-				{
-					interfaceInfo.SetCondition("can park");
-					interfaceInfo.SetCondition(allParked ? "show unpark" : "show park");
-				}
-			}
-		}
 		interfaceInfo.SetCondition("two buttons");
-	}
+	
+	// Draw the interface.
 	const Interface *interface = GameData::Interfaces().Get("info panel");
 	interface->Draw(interfaceInfo, this);
 	
+	// Draw all the different information sections.
 	zones.clear();
 	commodityZones.clear();
-	if(showShip)
-		DrawShip();
-	else
-		DrawInfo();
+	plunderZones.clear();
+	DrawShipStats(interface->GetBox("stats"));
+	DrawOutfits(interface->GetBox("outfits"));
+	DrawWeapons(interface->GetBox("weapons"));
+	DrawCargo(interface->GetBox("cargo"));
+	
+	// If the player hovers their mouse over a ship attribute, show its tooltip.
+	info.DrawTooltips();
 }
 
 
 
-bool InfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
+bool ShipInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 {
 	if(key == 'd' || key == SDLK_ESCAPE || (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
 		GetUI()->Pop(this);
-	else if(showShip && !player.Ships().empty() && (key == 'p' || key == SDLK_LEFT || key == SDLK_UP))
+	else if(!player.Ships().empty() && (key == 'p' || key == SDLK_LEFT || key == SDLK_UP))
 	{
 		if(shipIt == player.Ships().begin())
 			shipIt = player.Ships().end();
 		--shipIt;
 		UpdateInfo();
 	}
-	else if(showShip && !player.Ships().empty() && (key == 'n' || key == SDLK_RIGHT || key == SDLK_DOWN))
+	else if(!player.Ships().empty() && (key == 'n' || key == SDLK_RIGHT || key == SDLK_DOWN))
 	{
 		++shipIt;
 		if(shipIt == player.Ships().end())
 			shipIt = player.Ships().begin();
 		UpdateInfo();
 	}
-	else if(key == 'i' && showShip)
+	else if(key == 'i')
 	{
-		selected = -1;
-		hover = -1;
-		showShip = false;
+		GetUI()->Pop(this);
+		GetUI()->Push(new PlayerInfoPanel(player));
 	}
-	else if(key == 's')
-	{
-		showShip = true;
-		UpdateInfo();
-	}
-	else if(!showShip && (key == SDLK_PAGEUP || key == SDLK_PAGEDOWN))
-	{
-		int distance = 24 * ((key == SDLK_PAGEUP) - (key == SDLK_PAGEDOWN));
-		scroll = max(0., min(player.Ships().size() - 26., scroll - distance));
-	}
-	else if(showShip && key == 'R')
-		GetUI()->Push(new Dialog(this, &InfoPanel::Rename, "Change this ship's name?"));
-	else if(canEdit && showShip && key == 'P')
+	else if(key == 'R')
+		GetUI()->Push(new Dialog(this, &ShipInfoPanel::Rename, "Change this ship's name?"));
+	else if(canEdit && key == 'P')
 	{
 		if(shipIt->get() != player.Flagship() || (*shipIt)->IsParked())
 			player.ParkShip(shipIt->get(), !(*shipIt)->IsParked());
 	}
-	else if(canEdit && showShip && key == 'D')
+	else if(canEdit && key == 'D')
 	{
 		if(shipIt->get() != player.Flagship())
-			GetUI()->Push(new Dialog(this, &InfoPanel::Disown, "Are you sure you want to disown \""
+			GetUI()->Push(new Dialog(this, &ShipInfoPanel::Disown, "Are you sure you want to disown \""
 				+ shipIt->get()->Name()
 				+ "\"? Disowning a ship rather than selling it means you will not get any money for it."));
 	}
-	else if(canEdit && key == 'P')
-	{
-		bool allParked = true;
-		const Ship *flagship = player.Flagship();
-		for(int i : allSelected)
-		{
-			const Ship &ship = *player.Ships()[i];
-			if(!ship.IsDisabled() && &ship != flagship)
-				allParked &= ship.IsParked();
-		}
-		
-		for(int i : allSelected)
-		{
-			const Ship &ship = *player.Ships()[i];
-			if(!ship.IsDisabled() && &ship != flagship)
-				player.ParkShip(&ship, !allParked);
-		}
-	}
-	else if((key == 'P' || key == 'c') && showShip && !canEdit)
+	else if((key == 'P' || key == 'c') && !canEdit)
 	{
 		if(CanDump())
 		{
@@ -286,50 +151,38 @@ bool InfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 			int plunderAmount = (*shipIt)->Cargo().Get(selectedPlunder);
 			if(amount)
 			{
-				GetUI()->Push(new Dialog(this, &InfoPanel::DumpCommodities,
+				GetUI()->Push(new Dialog(this, &ShipInfoPanel::DumpCommodities,
 					"How many tons of " + Format::LowerCase(selectedCommodity)
 						+ " do you want to jettison?", amount));
 			}
 			else if(plunderAmount > 0 && selectedPlunder->Get("installable") < 0.)
 			{
-				GetUI()->Push(new Dialog(this, &InfoPanel::DumpPlunder,
+				GetUI()->Push(new Dialog(this, &ShipInfoPanel::DumpPlunder,
 					"How many tons of " + Format::LowerCase(selectedPlunder->Name())
 						+ " do you want to jettison?", plunderAmount));
 			}
 			else if(plunderAmount == 1)
 			{
-				GetUI()->Push(new Dialog(this, &InfoPanel::Dump,
+				GetUI()->Push(new Dialog(this, &ShipInfoPanel::Dump,
 					"Are you sure you want to jettison a " + selectedPlunder->Name() + "?"));
 			}
 			else if(plunderAmount > 1)
 			{
-				GetUI()->Push(new Dialog(this, &InfoPanel::DumpPlunder,
+				GetUI()->Push(new Dialog(this, &ShipInfoPanel::DumpPlunder,
 					"How many " + selectedPlunder->PluralName() + " do you want to jettison?",
 					plunderAmount));
 			}
 			else if(commodities)
 			{
-				GetUI()->Push(new Dialog(this, &InfoPanel::Dump,
+				GetUI()->Push(new Dialog(this, &ShipInfoPanel::Dump,
 					"Are you sure you want to jettison all this ship's regular cargo?"));
 			}
 			else
 			{
-				GetUI()->Push(new Dialog(this, &InfoPanel::Dump,
+				GetUI()->Push(new Dialog(this, &ShipInfoPanel::Dump,
 					"Are you sure you want to jettison all this ship's spare outfit cargo?"));
 			}
 		}
-	}
-	else if(canEdit && !showShip && key == 'A' && player.Ships().size() > 1)
-	{
-		bool allParked = true;
-		const Ship *flagship = player.Flagship();
-		for(const auto &it : player.Ships())
-			if(!it->IsDisabled() && it.get() != flagship)
-				allParked &= it->IsParked();
-		
-		for(const auto &it : player.Ships())
-			if(!it->IsDisabled() && (allParked || it.get() != flagship))
-				player.ParkShip(it.get(), !allParked);
 	}
 	else if(command.Has(Command::INFO | Command::MAP) || key == 'm')
 		GetUI()->Push(new MissionPanel(player));
@@ -341,54 +194,15 @@ bool InfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 
 
 
-bool InfoPanel::Click(int x, int y, int clicks)
+bool ShipInfoPanel::Click(int x, int y, int clicks)
 {
 	if(shipIt == player.Ships().end())
 		return true;
 	
-	dragStart = hoverPoint;
-	didDrag = false;
-	selected = -1;
-	bool shift = (SDL_GetModState() & KMOD_SHIFT);
-	bool control = (SDL_GetModState() & (KMOD_CTRL | KMOD_GUI));
-	if(showShip)
-	{
-		if(canEdit && hover >= 0 && (**shipIt).GetSystem() == player.GetSystem() && !(**shipIt).IsDisabled())
-			selected = hover;
-	}
-	else if(canEdit && (shift || control || clicks < 2))
-	{
-		// Only allow changing your flagship when landed.
-		if(hover >= 0)
-		{
-			if(shift)
-			{
-				// Select all the ships between the previous selection and this one.
-				for(int i = max(0, min(previousSelected, hover)); i < max(previousSelected, hover); ++i)
-					allSelected.insert(i);
-			}
-			else if(!control)
-			{
-				allSelected.clear();
-				selected = hover;
-			}
-			
-			if(control && allSelected.count(hover))
-				allSelected.erase(hover);
-			else
-			{
-				allSelected.insert(hover);
-				previousSelected = hover;
-			}
-		}
-	}
-	else if(hover >= 0)
-	{
-		// If not landed, clicking a ship name takes you straight to its info.
-		shipIt = player.Ships().begin() + hover;
-		showShip = true;
-		UpdateInfo();
-	}
+	draggingIndex = -1;
+	if(canEdit && hoverIndex >= 0 && (**shipIt).GetSystem() == player.GetSystem() && !(**shipIt).IsDisabled())
+		draggingIndex = hoverIndex;
+	
 	selectedCommodity.clear();
 	selectedPlunder = nullptr;
 	Point point(x, y);
@@ -404,7 +218,7 @@ bool InfoPanel::Click(int x, int y, int clicks)
 
 
 
-bool InfoPanel::Hover(int x, int y)
+bool ShipInfoPanel::Hover(int x, int y)
 {
 	Point point(x, y);
 	info.Hover(point);
@@ -413,51 +227,28 @@ bool InfoPanel::Hover(int x, int y)
 
 
 
-bool InfoPanel::Drag(double dx, double dy)
+bool ShipInfoPanel::Drag(double dx, double dy)
 {
-	Hover(hoverPoint + Point(dx, dy));
-	if(hoverPoint.Distance(dragStart) > 10.)
-		didDrag = true;
+	return Hover(hoverPoint + Point(dx, dy));
+}
+
+
+
+bool ShipInfoPanel::Release(int x, int y)
+{
+	if(draggingIndex >= 0 && hoverIndex >= 0 && hoverIndex != draggingIndex)
+		(**shipIt).GetArmament().Swap(hoverIndex, draggingIndex);
 	
+	draggingIndex = -1;
 	return true;
 }
 
 
 
-bool InfoPanel::Release(int x, int y)
+void ShipInfoPanel::UpdateInfo()
 {
-	if(selected >= 0 && hover >= 0)
-	{
-		if(showShip)
-		{
-			if(hover != selected)
-				(**shipIt).GetArmament().Swap(hover, selected);
-		}
-		else if(canEdit)
-		{
-			if(hover != selected)
-				player.ReorderShip(selected, hover);
-		}
-	}
-	selected = -1;
-	return true;
-}
-
-
-
-bool InfoPanel::Scroll(double dx, double dy)
-{
-	if(!showShip)
-		scroll = max(0., min(player.Ships().size() - 26., scroll - dy * .1 * Preferences::ScrollSpeed()));
-	return true;
-}
-
-
-
-void InfoPanel::UpdateInfo()
-{
-	selected = -1;
-	hover = -1;
+	draggingIndex = -1;
+	hoverIndex = -1;
 	if(shipIt == player.Ships().end())
 		return;
 	
@@ -473,187 +264,7 @@ void InfoPanel::UpdateInfo()
 
 
 
-void InfoPanel::DrawInfo()
-{
-	const Interface *interface = GameData::Interfaces().Get("info panel");
-	DrawPlayer(interface->GetBox("player"));
-	DrawFleet(interface->GetBox("fleet"));
-}
-
-
-
-void InfoPanel::DrawPlayer(const Rectangle &bounds)
-{
-	// Check that the specified area is big enough.
-	if(bounds.Width() < 250.)
-		return;
-	
-	// Colors to draw with.
-	Color dim = *GameData::Colors().Get("medium");
-	Color bright = *GameData::Colors().Get("bright");
-	
-	// Table attributes.
-	Table table;
-	table.AddColumn(0, Table::LEFT);
-	table.AddColumn(230, Table::RIGHT);
-	table.SetUnderline(0, 230);
-	table.DrawAt(bounds.TopLeft() + Point(10., 8.));
-	
-	// Header row.
-	table.Draw("player:", dim);
-	table.Draw(player.FirstName() + " " + player.LastName(), bright);
-	table.Draw("net worth:", dim);
-	table.Draw(Format::Number(player.Accounts().NetWorth()) + " credits", bright);
-	
-	// Determine the player's combat rating.
-	table.DrawGap(10);
-	size_t ratingLevel = 0;
-	auto it = player.Conditions().find("combat rating");
-	if(it != player.Conditions().end() && it->second > 0)
-	{
-		ratingLevel = log(it->second);
-		ratingLevel = min(ratingLevel, RATINGS.size() - 1);
-	}
-	table.DrawUnderline(dim);
-	table.Draw("combat rating:", bright);
-	table.Advance();
-	table.DrawGap(5);
-	table.Draw(RATINGS[ratingLevel], dim);
-	table.Draw("(" + to_string(ratingLevel) + ")", dim);
-	
-	auto salary = Match(player, "salary: ", "");
-	sort(salary.begin(), salary.end());
-	DrawList(salary, table, "salary:", 4);
-	
-	auto tribute = Match(player, "tribute: ", "");
-	sort(tribute.begin(), tribute.end());
-	DrawList(tribute, table, "tribute:", 4);
-	
-	int maxRows = static_cast<int>(250. - 30. - table.GetPoint().Y()) / 20;
-	auto licenses = Match(player, "license: ", " License");
-	DrawList(licenses, table, "licenses:", maxRows, false);
-}
-
-
-
-void InfoPanel::DrawFleet(const Rectangle &bounds)
-{
-	// Check that the specified area is big enough.
-	if(bounds.Width() < 750.)
-		return;
-	
-	// Colors to draw with.
-	Color back = *GameData::Colors().Get("faint");
-	Color dim = *GameData::Colors().Get("medium");
-	Color bright = *GameData::Colors().Get("bright");
-	Color elsewhere = *GameData::Colors().Get("dim");
-	Color dead(.4, 0., 0., 0.);
-	
-	// Table attributes.
-	Table table;
-	table.AddColumn(0, Table::LEFT);
-	table.AddColumn(220, Table::LEFT);
-	table.AddColumn(350, Table::LEFT);
-	table.AddColumn(550, Table::RIGHT);
-	table.AddColumn(610, Table::RIGHT);
-	table.AddColumn(670, Table::RIGHT);
-	table.AddColumn(730, Table::RIGHT);
-	table.SetUnderline(0, 730);
-	table.DrawAt(bounds.TopLeft() + Point(10., 8.));
-	
-	// Header row.
-	table.DrawUnderline(dim);
-	table.SetColor(bright);
-	table.Draw("ship");
-	table.Draw("model");
-	table.Draw("system");
-	table.Draw("shields");
-	table.Draw("hull");
-	table.Draw("fuel");
-	table.Draw("crew");
-	table.DrawGap(5);
-	
-	// Loop through all the player's ships.
-	int index = scroll;
-	auto sit = player.Ships().begin() + scroll;
-	for( ; sit < player.Ships().end(); ++sit)
-	{
-		// Bail out if we've used out the whole drawing area.
-		if(!bounds.Contains(table.GetRowBounds()))
-			break;
-		
-		// Check if this row is selected.
-		if(allSelected.count(index))
-			table.DrawHighlight(back);
-		
-		const Ship &ship = **sit;
-		bool isElsewhere = (ship.GetSystem() != player.GetSystem());
-		isElsewhere |= (ship.CanBeCarried() && player.GetPlanet());
-		bool isDead = ship.IsDestroyed() || ship.IsDisabled();
-		bool isHovered = (index == hover);
-		table.SetColor(isDead ? dead : isElsewhere ? elsewhere : isHovered ? bright : dim);
-		
-		// Store this row's position, to handle hovering.
-		zones.emplace_back(table.GetCenterPoint(), table.GetRowSize(), index);
-		
-		// Indent the ship name if it is a fighter or drone.
-		table.Draw(ship.CanBeCarried() ? "    " + ship.Name() : ship.Name());
-		table.Draw(ship.ModelName());
-		
-		const System *system = ship.GetSystem();
-		table.Draw(system ? system->Name() : "");
-		
-		string shields = to_string(static_cast<int>(100. * max(0., ship.Shields()))) + "%";
-		table.Draw(shields);
-		
-		string hull = to_string(static_cast<int>(100. * max(0., ship.Hull()))) + "%";
-		table.Draw(hull);
-		
-		string fuel = to_string(static_cast<int>(
-			ship.Attributes().Get("fuel capacity") * ship.Fuel()));
-		table.Draw(fuel);
-		
-		// If this isn't the flagship, we'll remember how many crew it has, but
-		// only the minimum number of crew need to be paid for.
-		int crewCount = ship.Crew();
-		if(&ship != player.Flagship())
-			crewCount = min(crewCount, ship.RequiredCrew());
-		string crew = (ship.IsParked() ? "Parked" : to_string(crewCount));
-		table.Draw(crew);
-		
-		++index;
-	}
-	
-	// Re-ordering ships in your fleet.
-	if(selected >= 0)
-	{
-		const Font &font = FontSet::Get(14);
-		const string &name = player.Ships()[selected]->Name();
-		Point pos(hoverPoint.X() - .5 * font.Width(name), hoverPoint.Y());
-		font.Draw(name, pos + Point(1., 1.), Color(0., 1.));
-		font.Draw(name, pos, bright);
-	}
-}
-
-
-
-void InfoPanel::DrawShip()
-{
-	if(player.Ships().empty() || shipIt == player.Ships().end())
-		return;
-	
-	const Interface *interface = GameData::Interfaces().Get("info panel");
-	DrawShipStats(interface->GetBox("stats"));
-	DrawOutfits(interface->GetBox("outfits"));
-	DrawWeapons(interface->GetBox("weapons"));
-	DrawCargo(interface->GetBox("cargo"));
-	
-	info.DrawTooltips();
-}
-
-
-
-void InfoPanel::DrawShipStats(const Rectangle &bounds)
+void ShipInfoPanel::DrawShipStats(const Rectangle &bounds)
 {
 	// Check that the specified area is big enough.
 	if(bounds.Width() < 250.)
@@ -683,7 +294,7 @@ void InfoPanel::DrawShipStats(const Rectangle &bounds)
 
 
 
-void InfoPanel::DrawOutfits(const Rectangle &bounds)
+void ShipInfoPanel::DrawOutfits(const Rectangle &bounds)
 {
 	// Check that the specified area is big enough.
 	if(bounds.Width() < 250.)
@@ -747,7 +358,7 @@ void InfoPanel::DrawOutfits(const Rectangle &bounds)
 
 
 
-void InfoPanel::DrawWeapons(const Rectangle &bounds)
+void ShipInfoPanel::DrawWeapons(const Rectangle &bounds)
 {
 	// Colors to draw with.
 	Color dim = *GameData::Colors().Get("medium");
@@ -817,13 +428,13 @@ void InfoPanel::DrawWeapons(const Rectangle &bounds)
 		
 		double &y = nextY[isRight][isTurret];
 		double x = centerX + (isRight ? LABEL_DX : (-LABEL_DX - font.Width(name)));
-		bool isHover = (index == hover);
+		bool isHover = (index == hoverIndex);
 		font.Draw(name, Point(x, y + TEXT_OFF), isHover ? bright : dim);
 		Point zoneCenter(labelCenter[isRight], y + .5 * LINE_HEIGHT);
 		zones.emplace_back(zoneCenter, LINE_SIZE, index);
 		
 		// Determine what color to use for the line.
-		double high = (index == hover ? .8 : .5);
+		double high = (index == hoverIndex ? .8 : .5);
 		Color color(high, .75 * high, 0., 1.);
 		if(isTurret)
 			color = Color(0., .75 * high, high, 1.);
@@ -848,9 +459,9 @@ void InfoPanel::DrawWeapons(const Rectangle &bounds)
 		DrawLine(topFrom, topTo, topColor);
 	
 	// Re-positioning weapons.
-	if(selected >= 0)
+	if(draggingIndex >= 0)
 	{
-		const Outfit *outfit = ship.Weapons()[selected].GetOutfit();
+		const Outfit *outfit = ship.Weapons()[draggingIndex].GetOutfit();
 		string name = outfit ? outfit->Name() : "[empty]";
 		Point pos(hoverPoint.X() - .5 * font.Width(name), hoverPoint.Y());
 		font.Draw(name, pos + Point(1., 1.), Color(0., 1.));
@@ -860,7 +471,7 @@ void InfoPanel::DrawWeapons(const Rectangle &bounds)
 
 
 
-void InfoPanel::DrawCargo(const Rectangle &bounds)
+void ShipInfoPanel::DrawCargo(const Rectangle &bounds)
 {
 	Color dim = *GameData::Colors().Get("medium");
 	Color bright = *GameData::Colors().Get("bright");
@@ -957,7 +568,7 @@ void InfoPanel::DrawCargo(const Rectangle &bounds)
 
 
 
-void InfoPanel::DrawLine(const Point &from, const Point &to, const Color &color) const
+void ShipInfoPanel::DrawLine(const Point &from, const Point &to, const Color &color) const
 {
 	Color black(0., 1.);
 	Point mid(to.X(), from.Y());
@@ -970,28 +581,31 @@ void InfoPanel::DrawLine(const Point &from, const Point &to, const Color &color)
 
 
 
-bool InfoPanel::Hover(const Point &point)
+bool ShipInfoPanel::Hover(const Point &point)
 {
 	if(shipIt == player.Ships().end())
 		return true;
 
 	hoverPoint = point;
 	
+	hoverIndex = -1;
 	const vector<Hardpoint> &weapons = (**shipIt).Weapons();
-	hover = -1;
+	bool dragIsTurret = (draggingIndex >= 0 && weapons[draggingIndex].IsTurret());
 	for(const auto &zone : zones)
-		if(zone.Contains(hoverPoint) && (!showShip || selected == -1
-				|| weapons[selected].IsTurret() == weapons[zone.Value()].IsTurret()))
-			hover = zone.Value();
-	
+	{
+		bool isTurret = weapons[zone.Value()].IsTurret();
+		if(zone.Contains(hoverPoint) && (draggingIndex == -1 || isTurret == dragIsTurret))
+			hoverIndex = zone.Value();
+	}
+		
 	return true;
 }
 
 
 
-void InfoPanel::Rename(const string &name)
+void ShipInfoPanel::Rename(const string &name)
 {
-	if(!name.empty())
+	if(shipIt != player.Ships().end() && !name.empty())
 	{
 		player.RenameShip(shipIt->get(), name);
 		UpdateInfo();
@@ -1000,9 +614,9 @@ void InfoPanel::Rename(const string &name)
 
 
 
-bool InfoPanel::CanDump() const
+bool ShipInfoPanel::CanDump() const
 {
-	if(canEdit || !showShip || shipIt == player.Ships().end())
+	if(canEdit || shipIt == player.Ships().end())
 		return false;
 	
 	CargoHold &cargo = (*shipIt)->Cargo();
@@ -1011,7 +625,7 @@ bool InfoPanel::CanDump() const
 
 
 
-void InfoPanel::Dump()
+void ShipInfoPanel::Dump()
 {
 	if(!CanDump())
 		return;
@@ -1061,7 +675,7 @@ void InfoPanel::Dump()
 
 
 
-void InfoPanel::DumpPlunder(int count)
+void ShipInfoPanel::DumpPlunder(int count)
 {
 	int64_t loss = 0;
 	count = min(count, (*shipIt)->Cargo().Get(selectedPlunder));
@@ -1078,7 +692,7 @@ void InfoPanel::DumpPlunder(int count)
 
 
 
-void InfoPanel::DumpCommodities(int count)
+void ShipInfoPanel::DumpCommodities(int count)
 {
 	int64_t loss = 0;
 	count = min(count, (*shipIt)->Cargo().Get(selectedCommodity));
@@ -1097,12 +711,14 @@ void InfoPanel::DumpCommodities(int count)
 
 
 
-void InfoPanel::Disown()
+void ShipInfoPanel::Disown()
 {
 	// Make sure a ship really is selected.
-	if(shipIt == player.Ships().end() || !shipIt->get())
+	if(shipIt == player.Ships().end() || shipIt->get() == player.Flagship())
 		return;
 	
+	// Because you can never disown your flagship, the player's ship list will
+	// never become empty as a result of disowning a ship.
 	const Ship *ship = shipIt->get();
 	if(shipIt != player.Ships().begin())
 		--shipIt;
@@ -1110,6 +726,5 @@ void InfoPanel::Disown()
 		++shipIt;
 	
 	player.DisownShip(ship);
-	allSelected.clear();
-	showShip = false;
+	UpdateInfo();
 }

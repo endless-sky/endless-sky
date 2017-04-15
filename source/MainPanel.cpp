@@ -21,13 +21,13 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "GameData.h"
 #include "Government.h"
 #include "HailPanel.h"
-#include "InfoPanel.h"
 #include "LineShader.h"
 #include "MapDetailPanel.h"
 #include "Messages.h"
 #include "Planet.h"
 #include "PlanetPanel.h"
 #include "PlayerInfo.h"
+#include "PlayerInfoPanel.h"
 #include "Preferences.h"
 #include "Random.h"
 #include "Screen.h"
@@ -63,7 +63,7 @@ void MainPanel::Step()
 	}
 	else if(show.Has(Command::INFO))
 	{
-		GetUI()->Push(new InfoPanel(player));
+		GetUI()->Push(new PlayerInfoPanel(player));
 		isActive = false;
 	}
 	else if(show.Has(Command::HAIL))
