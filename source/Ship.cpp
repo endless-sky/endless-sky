@@ -324,13 +324,6 @@ void Ship::FinishLoading()
 	if(baseAttributes.Category() == "Drone" && !baseAttributes.Attributes().count("automaton"))
 		baseAttributes.Add("automaton", 1.);
 	
-	// Different ships dissipate heat at different rates.
-	heatDissipation = baseAttributes.Get("heat dissipation");
-	if(!heatDissipation)
-		heatDissipation = .999;
-	else
-		heatDissipation = 1. - .001 * heatDissipation;
-	
 	baseAttributes.Reset("gun ports", armament.GunCount());
 	baseAttributes.Reset("turret mounts", armament.TurretCount());
 	
@@ -737,7 +730,7 @@ bool Ship::Move(list<Effect> &effects, list<shared_ptr<Flotsam>> &flotsam)
 	// with no batteries but a good generator can still move.
 	energy = min(energy, attributes.Get("energy capacity"));
 	
-	heat *= heatDissipation;
+	heat -= .001 * heat * attributes.Get("heat dissipation");
 	if(heat > Mass() * 100.)
 		isOverheated = true;
 	else if(heat < Mass() * 90.)
@@ -763,15 +756,16 @@ bool Ship::Move(list<Effect> &effects, list<shared_ptr<Flotsam>> &flotsam)
 		
 		energy += scale * attributes.Get("solar collection");
 		
+		double coolingEfficiency = CoolingEfficiency();
 		energy += attributes.Get("energy generation") - ionization;
 		energy = max(0., energy);
 		heat += attributes.Get("heat generation");
-		heat -= attributes.Get("cooling");
+		heat -= coolingEfficiency * attributes.Get("cooling");
 		heat = max(0., heat);
 		
 		// Apply active cooling. The fraction of full cooling to apply equals
 		// your ship's current fraction of its maximum temperature.
-		double activeCooling = attributes.Get("active cooling");
+		double activeCooling = coolingEfficiency * attributes.Get("active cooling");
 		if(activeCooling > 0.)
 		{
 			// Although it's a misuse of this feature, handle the case where
@@ -890,14 +884,14 @@ bool Ship::Move(list<Effect> &effects, list<shared_ptr<Flotsam>> &flotsam)
 			targetSystem = nullptr;
 			// Check if the target planet is in the destination system or not.
 			const Planet *planet = (targetPlanet ? targetPlanet->GetPlanet() : nullptr);
-			if(!planet || planet->GetSystem() != currentSystem)
+			if(!planet || planet->IsWormhole() || !planet->IsInSystem(currentSystem))
 				targetPlanet = nullptr;
 			// Check if your parent has a target planet in this system.
 			shared_ptr<Ship> parent = GetParent();
 			if(!targetPlanet && parent && parent->targetPlanet)
 			{
 				planet = parent->targetPlanet->GetPlanet();
-				if(planet && planet->GetSystem() == currentSystem)
+				if(planet && !planet->IsWormhole() && planet->IsInSystem(currentSystem))
 					targetPlanet = parent->targetPlanet;
 			}
 			direction = -1;
@@ -989,8 +983,8 @@ bool Ship::Move(list<Effect> &effects, list<shared_ptr<Flotsam>> &flotsam)
 		if(landingPlanet && zoom)
 		{
 			// Move the ship toward the center of the planet while landing.
-			if(GetTargetPlanet())
-				position = .97 * position + .03 * GetTargetPlanet()->Position();
+			if(GetTargetStellar())
+				position = .97 * position + .03 * GetTargetStellar()->Position();
 			zoom -= .02;
 			if(zoom < 0.)
 			{
@@ -1003,7 +997,7 @@ bool Ship::Move(list<Effect> &effects, list<shared_ptr<Flotsam>> &flotsam)
 					for(const StellarObject &object : currentSystem->Objects())
 						if(object.GetPlanet() == landingPlanet)
 							position = object.Position();
-					SetTargetPlanet(nullptr);
+					SetTargetStellar(nullptr);
 					landingPlanet = nullptr;
 				}
 				else if(!isSpecial || personality.IsFleeing())
@@ -1017,7 +1011,7 @@ bool Ship::Move(list<Effect> &effects, list<shared_ptr<Flotsam>> &flotsam)
 				|| !landingPlanet || !landingPlanet->HasSpaceport())
 		{
 			zoom = min(1., zoom + .02);
-			SetTargetPlanet(nullptr);
+			SetTargetStellar(nullptr);
 			landingPlanet = nullptr;
 		}
 		else
@@ -1035,7 +1029,7 @@ bool Ship::Move(list<Effect> &effects, list<shared_ptr<Flotsam>> &flotsam)
 		// If you're disabled, you can't initiate landing or jumping.
 	}
 	else if(commands.Has(Command::LAND) && CanLand())
-		landingPlanet = GetTargetPlanet()->GetPlanet();
+		landingPlanet = GetTargetStellar()->GetPlanet();
 	else if(commands.Has(Command::JUMP))
 	{
 		hyperspaceType = CheckHyperspace();
@@ -1278,7 +1272,9 @@ bool Ship::Move(list<Effect> &effects, list<shared_ptr<Flotsam>> &flotsam)
 // Launch any ships that are ready to launch.
 void Ship::Launch(list<shared_ptr<Ship>> &ships)
 {
-	if(!IsDestroyed() && (!commands.Has(Command::DEPLOY) || CannotAct()))
+	// Allow fighters to launch from a disabled ship, but not from a ship that
+	// is landing, jumping, or cloaked.
+	if(!IsDestroyed() && (!commands.Has(Command::DEPLOY) || zoom != 1. || hyperspaceCount || cloak))
 		return;
 	
 	for(Bay &bay : bays)
@@ -1292,7 +1288,7 @@ void Ship::Launch(list<shared_ptr<Ship>> &ships)
 			bay.ship->SetSystem(currentSystem);
 			bay.ship->SetParent(shared_from_this());
 			// Fighters in your ship have the same temperature as your ship
-			// itself, so when they launch they should take their sahre of heat
+			// itself, so when they launch they should take their share of heat
 			// with them, so that the fighter and the mothership remain at the
 			// same temperature.
 			bay.ship->heat = heat * bay.ship->Mass() / Mass();
@@ -1315,10 +1311,12 @@ shared_ptr<Ship> Ship::Board(bool autoPlunder)
 	if(CannotAct() || !victim || victim->IsDestroyed() || victim->GetSystem() != GetSystem())
 		return shared_ptr<Ship>();
 	
-	// For a fighter, "board" means "return to ship."
-	if(CanBeCarried() && !victim->IsDisabled())
+	// For a fighter or drone, "board" means "return to ship."
+	if(CanBeCarried())
 	{
-		victim->Carry(shared_from_this());
+		SetTargetShip(shared_ptr<Ship>());
+		if(!victim->IsDisabled() && victim->GetGovernment() == government)
+			victim->Carry(shared_from_this());
 		return shared_ptr<Ship>();
 	}
 	
@@ -1450,12 +1448,12 @@ int Ship::Scan()
 	if(target->GetGovernment()->IsPlayer() && (result & ShipEvent::SCAN_CARGO))
 	{
 		Messages::Add("The " + government->GetName() + " ship \""
-			+ Name() + "\" succeeded in scanning your cargo.");
+			+ Name() + "\" completed its scan of your cargo.");
 	}
 	if(target->GetGovernment()->IsPlayer() && (result & ShipEvent::SCAN_OUTFITS))
 	{
 		Messages::Add("The " + government->GetName() + " ship \""
-			+ Name() + "\" succeeded in scanning your outfits.");
+			+ Name() + "\" completed its scan of your outfits.");
 	}
 	
 	return result;
@@ -1588,16 +1586,16 @@ bool Ship::IsLanding() const
 // Check if this ship is currently able to begin landing on its target.
 bool Ship::CanLand() const
 {
-	if(!GetTargetPlanet() || !GetTargetPlanet()->GetPlanet() || isDisabled || IsDestroyed())
+	if(!GetTargetStellar() || !GetTargetStellar()->GetPlanet() || isDisabled || IsDestroyed())
 		return false;
 	
-	if(!GetTargetPlanet()->GetPlanet()->CanLand(*this))
+	if(!GetTargetStellar()->GetPlanet()->CanLand(*this))
 		return false;
 	
-	Point distance = GetTargetPlanet()->Position() - position;
+	Point distance = GetTargetStellar()->Position() - position;
 	double speed = velocity.Length();
 	
-	return (speed < 1. && distance.Length() < GetTargetPlanet()->Radius());
+	return (speed < 1. && distance.Length() < GetTargetStellar()->Radius());
 }
 
 
@@ -1774,7 +1772,7 @@ void Ship::Recharge(bool atSpaceport)
 	
 	if(atSpaceport)
 	{
-		crew = min(max(crew, RequiredCrew()), static_cast<int>(attributes.Get("bunks")));
+		crew = min<int>(max(crew, RequiredCrew()), attributes.Get("bunks"));
 		fuel = attributes.Get("fuel capacity");
 	}
 	pilotError = 0;
@@ -1838,7 +1836,7 @@ void Ship::WasCaptured(const shared_ptr<Ship> &capturer)
 	// Set the capturer as this ship's parent.
 	SetParent(capturer);
 	SetTargetShip(shared_ptr<Ship>());
-	SetTargetPlanet(nullptr);
+	SetTargetStellar(nullptr);
 	SetTargetSystem(nullptr);
 	shipToAssist.reset();
 	commands.Clear();
@@ -1848,6 +1846,12 @@ void Ship::WasCaptured(const shared_ptr<Ship> &capturer)
 	
 	isSpecial = capturer->isSpecial;
 	personality = capturer->personality;
+	
+	// Fighters should flee a disabled ship, but if the player manages to capture
+	// the ship before they flee, the fighters are captured, too.
+	for(const Bay &bay : bays)
+		if(bay.ship)
+			bay.ship->WasCaptured(capturer);
 }
 
 
@@ -1918,13 +1922,30 @@ double Ship::JumpFuel() const
 // Get the heat level at idle.
 double Ship::IdleHeat() const
 {
+	// This ship's cooling ability:
+	double coolingEfficiency = CoolingEfficiency();
+	double cooling = coolingEfficiency * attributes.Get("cooling");
+	double activeCooling = coolingEfficiency * attributes.Get("active cooling");
+	
 	// Idle heat is the heat level where:
 	// heat = heat * diss + heatGen - cool - activeCool * heat / (100 * mass)
 	// heat = heat * (diss - activeCool / (100 * mass)) + (heatGen - cool)
 	// heat * (1 - diss + activeCool / (100 * mass)) = (heatGen - cool)
-	double production = max(0., attributes.Get("heat generation") - attributes.Get("cooling"));
-	double dissipation = 1. - heatDissipation + attributes.Get("active cooling") / (100. * Mass());
+	double production = max(0., attributes.Get("heat generation") - cooling);
+	double dissipation = .001 * attributes.Get("heat dissipation") + activeCooling / (100. * Mass());
 	return production / dissipation;
+}
+
+
+
+// Calculate the multiplier for cooling efficiency.
+double Ship::CoolingEfficiency() const
+{
+	// This is an S-curve where the efficiency is 100% if you have no outfits
+	// that create "cooling inefficiency", and as that value increases the
+	// efficiency stays high for a while, then drops off, then approaches 0.
+	double x = attributes.Get("cooling inefficiency");
+	return 2. + 2. / (1. + exp(x / -2.)) - 4. / (1. + exp(x / -4.));
 }
 
 
@@ -1942,14 +1963,14 @@ int Ship::RequiredCrew() const
 		return 0;
 	
 	// Drones do not need crew, but all other ships need at least one.
-	return max(1, static_cast<int>(attributes.Get("required crew")));
+	return max<int>(1, attributes.Get("required crew"));
 }
 
 
 
 void Ship::AddCrew(int count)
 {
-	crew = min(crew + count, static_cast<int>(attributes.Get("bunks")));
+	crew = min<int>(crew + count, attributes.Get("bunks"));
 }
 
 
@@ -2364,7 +2385,7 @@ shared_ptr<Ship> Ship::GetShipToAssist() const
 
 
 
-const StellarObject *Ship::GetTargetPlanet() const
+const StellarObject *Ship::GetTargetStellar() const
 {
 	return targetPlanet;
 }
@@ -2414,7 +2435,7 @@ void Ship::SetShipToAssist(const shared_ptr<Ship> &ship)
 
 
 
-void Ship::SetTargetPlanet(const StellarObject *object)
+void Ship::SetTargetStellar(const StellarObject *object)
 {
 	targetPlanet = object;
 }

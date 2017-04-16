@@ -728,7 +728,7 @@ const vector<shared_ptr<Ship>> &PlayerInfo::Ships() const
 
 
 // Add a captured ship to your fleet.
-void PlayerInfo::AddShip(shared_ptr<Ship> &ship)
+void PlayerInfo::AddShip(const shared_ptr<Ship> &ship)
 {
 	ships.push_back(ship);
 	ship->SetIsSpecial();
@@ -972,7 +972,7 @@ void PlayerInfo::Land(UI *ui)
 			RemoveMission(Mission::FAIL, mission, ui);
 		else if(mission.CanComplete(*this))
 			RemoveMission(Mission::COMPLETE, mission, ui);
-		else if(mission.Destination() == GetPlanet())
+		else if(mission.Destination() == GetPlanet() && !freshlyLoaded)
 			mission.Do(Mission::VISIT, *this, ui);
 	}
 	// One mission's actions may influence another mission, so loop through one
@@ -1286,11 +1286,13 @@ void PlayerInfo::UpdateCargoCapacities()
 {
 	int size = 0;
 	int bunks = 0;
+	flagship = FlagshipPtr();
 	for(const shared_ptr<Ship> &ship : ships)
 		if(ship->GetSystem() == system && !ship->IsParked() && !ship->IsDisabled())
 		{
 			size += ship->Attributes().Get("cargo space");
-			bunks += ship->Attributes().Get("bunks") - ship->Crew();
+			int crew = (ship == flagship ? ship->Crew() : ship->RequiredCrew());
+			bunks += ship->Attributes().Get("bunks") - crew;
 		}
 	cargo.SetSize(size);
 	cargo.SetBunks(bunks);
@@ -1574,7 +1576,7 @@ bool PlayerInfo::HasSeen(const System *system) const
 		if(mission.Waypoints().count(system))
 			return true;
 		for(const Planet *planet : mission.Stopovers())
-			if(planet->GetSystem() == system)
+			if(planet->IsInSystem(system))
 				return true;
 	}
 	
@@ -1585,7 +1587,7 @@ bool PlayerInfo::HasSeen(const System *system) const
 		if(mission.Waypoints().count(system))
 			return true;
 		for(const Planet *planet : mission.Stopovers())
-			if(planet->GetSystem() == system)
+			if(planet->IsInSystem(system))
 				return true;
 	}
 	
@@ -1622,11 +1624,11 @@ bool PlayerInfo::KnowsName(const System *system) const
 		return true;
 	
 	for(const Mission &mission : availableJobs)
-		if(mission.Destination()->GetSystem() == system)
+		if(mission.Destination()->IsInSystem(system))
 			return true;
 	
 	for(const Mission &mission : missions)
-		if(mission.IsVisible() && mission.Destination()->GetSystem() == system)
+		if(mission.IsVisible() && mission.Destination()->IsInSystem(system))
 			return true;
 	
 	return false;
@@ -1663,10 +1665,7 @@ void PlayerInfo::Unvisit(const System *system)
 	if(!system)
 		return;
 	
-	auto it = visitedSystems.find(system);
-	if(it != visitedSystems.end())
-		visitedSystems.erase(it);
-	
+	visitedSystems.erase(system);
 	for(const StellarObject &object : system->Objects())
 		if(object.GetPlanet())
 			Unvisit(object.GetPlanet());
@@ -1679,9 +1678,7 @@ void PlayerInfo::Unvisit(const Planet *planet)
 	if(!planet)
 		return;
 	
-	auto it = visitedPlanets.find(planet);
-	if(it != visitedPlanets.end())
-		visitedPlanets.erase(it);
+	visitedPlanets.erase(planet);
 }
 
 

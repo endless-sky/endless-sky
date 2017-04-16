@@ -327,7 +327,7 @@ void Engine::Step(bool isActive)
 	}
 		
 	// Draw a highlight to distinguish the flagship from other ships.
-	if(flagship && Preferences::Has("Highlight player's flagship"))
+	if(flagship && !flagship->IsDestroyed() && Preferences::Has("Highlight player's flagship"))
 	{
 		highlightSprite = flagship->GetSprite();
 		highlightUnit = flagship->Unit() * zoom;
@@ -465,9 +465,10 @@ void Engine::Step(bool isActive)
 	}
 	info.SetString("credits",
 		Format::Number(player.Accounts().Credits()) + " credits");
-	if(flagship && flagship->GetTargetPlanet() && !flagship->Commands().Has(Command::JUMP))
+	bool isJumping = flagship && (flagship->Commands().Has(Command::JUMP) || flagship->IsEnteringHyperspace());
+	if(flagship && flagship->GetTargetStellar() && !isJumping)
 	{
-		const StellarObject *object = flagship->GetTargetPlanet();
+		const StellarObject *object = flagship->GetTargetStellar();
 		info.SetString("navigation mode", "Landing on:");
 		const string &name = object->Name();
 		info.SetString("destination", name);
@@ -651,7 +652,7 @@ void Engine::Draw() const
 	if(highlightSprite)
 	{
 		Point size(highlightSprite->Width(), highlightSprite->Height());
-		Color color(.5, .8, .2, 0.);
+		const Color &color = *GameData::Colors().Get("flagship highlight");
 		// The flagship is always in the dead center of the screen.
 		OutlineShader::Draw(highlightSprite, Point(), size, color, highlightUnit);
 	}
@@ -852,22 +853,25 @@ void Engine::EnterSystem()
 	{
 		// Find out how attractive the player's fleet is to pirates. Aside from a
 		// heavy freighter, no single ship should attract extra pirate attention.
-		unsigned attraction = 0;
+		double sum = 0.;
 		for(const shared_ptr<Ship> &ship : player.Ships())
 		{
 			if(ship->IsParked())
 				continue;
-		
-			const string &category = ship->Attributes().Category();
-			if(category == "Light Freighter")
-				attraction += 1;
-			if(category == "Heavy Freighter")
-				attraction += 2;
+			
+			sum += .4 * sqrt(ship->Attributes().Get("cargo space")) - 1.8;
+			for(const auto &it : ship->Weapons())
+				if(it.GetOutfit())
+				{
+					double damage = it.GetOutfit()->ShieldDamage() + it.GetOutfit()->HullDamage();
+					sum -= .12 * damage / it.GetOutfit()->Reload();
+				}
 		}
+		int attraction = round(sum);
 		if(attraction > 2)
 		{
 			for(int i = 0; i < 10; ++i)
-				if(Random::Int(200) + 1 < attraction)
+				if(static_cast<int>(Random::Int(200) + 1) < attraction)
 					raidFleet->Place(*system, ships);
 		}
 	}
@@ -1048,7 +1052,7 @@ void Engine::CalculateStep()
 			if(checkClicks && !isRightClick && object.GetPlanet()
 					&& (clickPoint - position).Length() < object.Radius())
 			{
-				if(&object == player.Flagship()->GetTargetPlanet())
+				if(&object == player.Flagship()->GetTargetStellar())
 				{
 					if(!object.GetPlanet()->CanLand())
 						Messages::Add("The authorities on " + object.GetPlanet()->Name() +
@@ -1060,7 +1064,7 @@ void Engine::CalculateStep()
 					}
 				}
 				else
-					player.Flagship()->SetTargetPlanet(&object);
+					player.Flagship()->SetTargetStellar(&object);
 			}
 		}
 	
@@ -1545,7 +1549,18 @@ void Engine::AddSprites(const Ship &ship)
 	if(drawCloaked)
 		draw[calcTickTock].AddSwizzled(ship, 7);
 	draw[calcTickTock].Add(ship, cloak);
-
+	for(const Hardpoint &hardpoint : ship.Weapons())
+		if(hardpoint.GetOutfit() && hardpoint.GetOutfit()->HardpointSprite().HasSprite())
+		{
+			Body body(
+				hardpoint.GetOutfit()->HardpointSprite(),
+				ship.Position() + ship.Zoom() * ship.Facing().Rotate(hardpoint.GetPoint()),
+				ship.Velocity(),
+				ship.Facing() + hardpoint.GetAngle(),
+				ship.Zoom());
+			draw[calcTickTock].Add(body, cloak);
+		}
+	
 	if(hasFighters)
 		for(const Ship::Bay &bay : ship.Bays())
 			if(bay.side == Ship::Bay::OVER && bay.ship)

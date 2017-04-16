@@ -21,14 +21,15 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "GameData.h"
 #include "Government.h"
 #include "HailPanel.h"
-#include "InfoPanel.h"
 #include "LineShader.h"
 #include "MapDetailPanel.h"
 #include "Messages.h"
 #include "Planet.h"
 #include "PlanetPanel.h"
 #include "PlayerInfo.h"
+#include "PlayerInfoPanel.h"
 #include "Preferences.h"
+#include "Random.h"
 #include "Screen.h"
 #include "StellarObject.h"
 #include "System.h"
@@ -62,7 +63,7 @@ void MainPanel::Step()
 	}
 	else if(show.Has(Command::INFO))
 	{
-		GetUI()->Push(new InfoPanel(player));
+		GetUI()->Push(new PlayerInfoPanel(player));
 		isActive = false;
 	}
 	else if(show.Has(Command::HAIL))
@@ -369,7 +370,7 @@ bool MainPanel::ShowHailPanel()
 		return false;
 	
 	shared_ptr<Ship> target = flagship->GetTargetShip();
-	if((SDL_GetModState() & KMOD_SHIFT) && flagship->GetTargetPlanet())
+	if((SDL_GetModState() & KMOD_SHIFT) && flagship->GetTargetStellar())
 		target.reset();
 	
 	if(flagship->IsEnteringHyperspace())
@@ -392,14 +393,28 @@ bool MainPanel::ShowHailPanel()
 			return true;
 		}
 	}
-	else if(flagship->GetTargetPlanet())
+	else if(flagship->GetTargetStellar())
 	{
-		const Planet *planet = flagship->GetTargetPlanet()->GetPlanet();
+		const Planet *planet = flagship->GetTargetStellar()->GetPlanet();
 		if(planet && planet->IsWormhole())
-			Messages::Add("The gaping hole in the fabric of the universe does not respond to your hail.");
+		{
+			static const vector<string> messages = {
+				"The gaping hole in the fabric of the universe does not respond to your hail.",
+				"Wormholes do not understand the language of finite beings like yourself.",
+				"You stare into the swirling abyss, but with appalling bad manners it refuses to stare back.",
+				"All the messages you try to send disappear into the wormhole without a trace.",
+				"The spatial anomaly pointedly ignores your attempts to engage it in conversation.",
+				"Like most wormholes, this one does not appear to be very talkative.",
+				"The wormhole says nothing, but silently beckons you to explore its mysteries.",
+				"You can't talk to wormholes. Maybe you should try landing on it instead.",
+				"Your words cannot travel through wormholes, but maybe your starship can.",
+				"Unable to send hail: this unfathomable void is not inhabited."
+			};
+			Messages::Add(messages[Random::Int(messages.size())]);
+		}
 		else if(planet && planet->IsInhabited())
 		{
-			GetUI()->Push(new HailPanel(player, flagship->GetTargetPlanet()));
+			GetUI()->Push(new HailPanel(player, flagship->GetTargetStellar()));
 			return true;
 		}
 		else

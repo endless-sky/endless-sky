@@ -41,6 +41,8 @@ outfit "Pulse Turret"
 	"required crew" 1
 	weapon
 		sprite "projectile/pulse"
+		"hardpoint sprite" "hardpoint/pulse turret"
+		"hardpoint offset" 7.
 		sound "pulse"
 		"hit effect" "pulse impact"
 		"inaccuracy" 1
@@ -138,7 +140,7 @@ outfit "Hai Tracker"
 	category "Ammunition"
 	cost 1000
 	thumbnail "outfit/hai tracker"
-	"mass" .3
+	"mass" .2
 	"tracker capacity" -1
 	description "This is ammunition for a Tracker Pod."
 
@@ -146,7 +148,7 @@ outfit "Tracker Storage Pod"
 	category "Ammunition"
 	cost 28000
 	thumbnail "outfit/hai tracker storage"
-	"mass" 1.6
+	"mass" 4.4
 	"outfit space" -10
 	"tracker capacity" 28
 	ammo "Hai Tracker"
@@ -156,7 +158,7 @@ outfit "Hai Tracker Pod"
 	category "Secondary Weapons"
 	cost 150000
 	thumbnail "outfit/hai tracker pod"
-	"mass" 15
+	"mass" 8
 	"outfit space" -19
 	"weapon capacity" -19
 	"gun ports" -1
@@ -199,6 +201,8 @@ outfit "Bullfrog Anti-Missile"
 	"weapon capacity" -10
 	"turret mounts" -1
 	weapon
+		"hardpoint sprite" "hardpoint/anti-missile hai"
+		"hardpoint offset" 3.
 		"hit effect" "small anti-missile"
 		"anti-missile" 12
 		"velocity" 150
@@ -207,7 +211,7 @@ outfit "Bullfrog Anti-Missile"
 		"firing energy" 12
 		"firing heat" 5
 		"stream"
-	description "Centuries ago, the Hai fought with more rudimentary versions of the Tracker, and this was the primary defence against them. In spite of the dated design, it is still effective against small numbers of their latest Missile weapons."
+	description "Centuries ago, the Hai fought with more rudimentary versions of the Tracker, and this was the primary defense against them. In spite of the dated design, it is still effective against small numbers of their latest missile weapons."
 
 outfit "Chameleon Anti-Missile"
 	category "Turrets"
@@ -218,6 +222,8 @@ outfit "Chameleon Anti-Missile"
 	"weapon capacity" -22
 	"turret mounts" -1
 	weapon
+		"hardpoint sprite" "hardpoint/heavy anti-missile hai"
+		"hardpoint offset" 4.
 		"hit effect" "large anti-missile"
 		"anti-missile" 16
 		"velocity" 200
@@ -250,7 +256,7 @@ outfit "Hai Diamond Regenerator"
 	"shield energy" 2.5
 	"shield heat" 9
 	"energy generation" -.9
-	description "The Hai Diamond Shield Regenerator is an advanced type of shield recharging technology. Unfortunately, its power needs are quite high, and the shifts it makes to your shield matrix causes intense heat at the regenerator when your shields are charging.  The Hai usually employ Williwaw Cooling when they use this regenerator."
+	description "The Hai Diamond Shield Regenerator is an advanced type of shield recharging technology. Unfortunately, its power needs are quite high, and the shifts it makes to your shield matrix causes intense heat at the regenerator when your shields are charging. The Hai usually employ Williwaw Cooling when they use this regenerator."
 
 outfit "Hai Williwaw Cooling"
 	category "Systems"
@@ -481,7 +487,7 @@ outfit `"Biroo" Atomic Steering`
 	"turn" 1054
 	"turning energy" 2.0
 	"turning heat" 5.1
-	description  "Having such powerful engines is a double edged sword for the Hai, as the Unfettered Hai too own these powerful wonders. These engines allow most Hai ships to turn at amazing speeds, making them extremely deadly in combat."
+	description "Having such powerful engines is a double edged sword for the Hai, as the Unfettered Hai too own these powerful wonders. These engines allow most Hai ships to turn at amazing speeds, making them extremely deadly in combat."
 
 outfit `"Bondir" Atomic Steering`
 	category "Engines"

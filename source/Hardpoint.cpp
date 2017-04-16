@@ -168,8 +168,18 @@ void Hardpoint::Fire(Ship &ship, list<Projectile> &projectiles, list<Effect> &ef
 	// If this is a fixed gun, or it if is a turret but you have no target
 	// selected, it should fire straight forward, angled in slightly to cause
 	// the shots to converge (gun harmonization).
-	if(!isTurret || !target || target->GetSystem() != ship.GetSystem())
-		aim += angle;
+	if(!isTurret || !target || !target->IsTargetable())
+	{
+		// If this is a turret and it is not tracking a target, reset its angle
+		// to the proper convergence angle.
+		if(isTurret)
+		{
+			double d = outfit->Range();
+			// Projectiles with a range of zero should fire straight forward. A
+			// special check is needed to avoid divide by zero errors.
+			angle = Angle(d <= 0. ? 0. : -asin(point.X() / d) * TO_DEG);
+		}
+	}
 	else
 	{
 		// Take the ship's targeting confusion into account. This is mainly an
@@ -186,8 +196,12 @@ void Hardpoint::Fire(Ship &ship, list<Projectile> &projectiles, list<Effect> &ef
 			steps = outfit->TotalLifetime();
 		
 		// Aim toward where the target will be at the calculated rendezvous time.
-		aim = Angle(p + steps * v);
+		angle = Angle(p + steps * v) - aim;
 	}
+	
+	// Apply the aim and hardpoint offset.
+	aim += angle;
+	start += outfit->HardpointOffset() * aim.Unit();
 	
 	// Create a new projectile, originating from this hardpoint.
 	projectiles.emplace_back(ship, start, aim, outfit);
@@ -221,6 +235,8 @@ bool Hardpoint::FireAntiMissile(Ship &ship, const Projectile &projectile, list<E
 	
 	// Firing effects are displayed at the anti-missile hardpoint that just fired.
 	Angle aim(offset);
+	angle = aim - ship.Facing();
+	start += outfit->HardpointOffset() * aim.Unit();
 	CreateEffects(outfit->FireEffects(), start, ship.Velocity(), aim, effects);
 	
 	// Figure out where the effect should be placed. Anti-missiles do not create

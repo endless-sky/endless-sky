@@ -22523,7 +22523,7 @@ planet Alfheim
 		fleet "Small Deep" 27
 
 planet Allhome
-	attributes hai
+	attributes hai farming "human tourism"
 	landscape land/dmottl0
 	description `This Earth-like planet has been settled both by human beings and by the Hai, the species that controls this region of space. The human settlements are relatively small, mostly farming communities founded by people who came here to escape the chaos and uncertainty of human space.`
 	spaceport `In the spaceport, a handful of human merchants and colonists wander about amid throngs of Hai - vaguely squirrel-like aliens who are somewhat shorter than the average human being, but make up for it with an abundance of energy. You feel a little bit like an adult wading through a sea of hyperactive children as you try to locate the commodity exchange and the other services offered here.`
@@ -22610,14 +22610,14 @@ planet Asgard
 		fleet "Large Deep" 39
 
 planet "Ashy Reach"
-	attributes kimek shipping
+	attributes kimek shipping moon
 	landscape land/canyon2
 	description `The thin, unbreathable atmosphere and low gravity mean that Ashy Reach will never become popular as a residential world, but it serves a useful role as a hub for shipping and commercial exchange. There is only one settlement here, built around the spaceport, and consisting mostly of pressurized underground caverns. Outside the settlement, the planet's surface is drab and almost lifeless.`
 	spaceport `Only a handful of towers, most of them windowless, protrude above the planet's surface at the center of the spaceport settlement. The hangars and warehouses are all underground. The surface is visible through a few thick acrylic polymer windows on the lower levels of the towers. Lit by the glow of the gas giant that this moon orbits, the towers form a surreal landscape, like a city abandoned and only halfway formed.`
 	"required reputation" 15
 
 planet Avalon
-	landscape land/sea9
+	landscape land/sea17-harro
 	description `This is a pristine and perfectly habitable world, with warm oceans and a temperate climate. The land is dominated by large reptiles similar to the dinosaurs that roamed the continents of ancient Earth. Some of the land reptiles are over twenty meters in length, and the sea holds monsters more than twice that size.`
 	description `	Deep in the jungles near the equator, small mammals are working hard to avoid being eaten by the great lizards, and to survive for long enough that they will be able to evolve into the dominant life form.`
 	security 0
@@ -22902,7 +22902,7 @@ planet Clink
 		fleet "Small Militia" 15
 
 planet Cloudfire
-	attributes hai
+	attributes hai military
 	landscape land/sea2
 	description `Cloudfire's atmosphere is unusually hazy, with almost constant cloud cover, making agriculture unproductive here even though it is a warm and damp environment. There are several major cities here that were abandoned centuries ago, due to conflict with the Unfettered. The one major city that remains is the closest thing the Hai have to a military base, with new supplies of weapons and ammunition constantly pouring in from the rest of Hai space.`
 	spaceport `The spaceport has massive hangars and advanced repair facilities designed to accommodate the largest Hai warships. Where a fleet has just returned from a recent battle, the hangars are lit with flashes from robotic welders as damaged hull plates are swapped out for fresh ones and weakened joints are reinforced. The actual process of building these warships, however, takes place on the Hai homeworld, where the facilities will not be vulnerable to attack.`
@@ -22995,7 +22995,7 @@ planet Darkcloak
 	outfitter "Hai Basics"
 
 planet Darkmetal
-	attributes hai
+	attributes hai mining "hai tourism"
 	landscape land/canyon02
 	description `Darkmetal is a cold, dry mining world, the source of much of the heavy metals that are used in Hai space. A haze of slightly radioactive dust hangs in the sky whenever it has been more than a week since the last rainstorm. Most of the mining is carried out by slow-moving vehicles the size of a small city, which ingest layers of dirt and bedrock, crush it to extract any valuable elements, then mix the remaining material with water to form a cement-like slurry that can be extruded in solid blocks, to reduce the amount of additional dust that is added to the atmosphere.`
 	spaceport `The spaceport is hermetically sealed, with gantry tubes that can adapt to fit the hatches of human ships as well as Hai. The seal is to keep radioactive dust out of the living spaces, but its purpose is primarily to reduce the long-term exposure of the station's permanent inhabitants; for visitors, the risks are minimal.`
@@ -23140,7 +23140,7 @@ planet "Dusk Companion"
 	"required reputation" 15
 
 planet Dustmaker
-	attributes hai
+	attributes hai manufacturing "hai tourism"
 	landscape land/badlands0
 	description `The surface of this planet, when it is not obscured by dust storms, receives enough sunlight to power not only large solar farms, but solar furnaces as well, which the Hai use for manufacturing a large variety of goods. Some of the solar farms are so large that from orbit, the light reflecting off them could almost be mistaken for lakes and small oceans. However, there is almost no water on the planet's surface except near the poles.`
 	spaceport `Like most Hai architecture, the spaceport is made of bare, unpainted metal, so weathered that you would not be surprised to learn that it is tens of thousands of years old. Tall, curved walls around the outskirts of the port create a sort of labyrinth with the port building itself at the center; they are probably intended to block sandstorms while allowing gentler breezes to pass through.`
@@ -23281,7 +23281,7 @@ planet Farseer
 		fleet "Large Republic" 14
 
 planet Farwater
-	attributes hai
+	attributes hai medical "hai tourism"
 	landscape land/beach6
 	description `In human space, this system would probably have been left unsettled, because its sun produces too much ultraviolet radiation for animals to survive for long on its surface. But the Hai have instead turned this warm ocean world into a massive incubator for photosynthetic algae and bacteria. Each species is genetically engineered to produce one or more medical or nutritional compounds that they can make use of. Barges travel slowly through the oceans harvesting these microorganisms out of the water and separating out the chemical compounds they provide.`
 	spaceport `The spaceport appears to have been built by expanding a natural set of caves in a cliff facing the ocean. At high tide the lower caves flood, allowing barges to dock and unload the compounds they have harvested. Tunnels lead deep into the rock to rooms that have been carved out as warehouse space and living quarters. The rock remains somewhat cool, even at midday, but the air is still oppressively humid.`
@@ -23419,7 +23419,7 @@ planet Freedom
 		fleet "Small Northern Pirates" 15
 
 planet Frostmark
-	attributes hai
+	attributes hai "hai tourism"
 	landscape land/dmottl5
 	description `There are several large Hai cities near the equator on Frostmark, but much of the planet's surface is cold and uninhabited except by herds of extremely large, six-legged herbivores, and other equally large and frightening animals that prey on them.`
 	spaceport `Every Hai city has an appearance of great age and permanence, but this one, even more so. In Hai cities, transport vehicles carry freight and passengers along underground passages or elevated railways, while the pathways at ground level are reserved for foot traffic. Here, millennia of foot traffic have rounded off the corners of every metal staircase, and polished the railings as smooth as glass. The Hai locals do not seem to have trouble keeping their footing, but you wish your shoes gave you more traction.`
@@ -23441,7 +23441,7 @@ planet Furnace
 
 planet Geminus
 	attributes paradise factory mining
-	landscape land/fog5
+	landscape land/mountain18-harro
 	description `Geminus, although not the most hospitable of worlds, is a young enough planet that large stores of iron, titanium, and other metals are easily accessible near the surface. For that reason, it has become one of the Republic's primary shipyards. More than half of the warships in the navy were constructed here.`
 	description `	The constant volcanic activity leaves the planet perpetually shrouded in clouds of ash and fog, so that being outside means being in a twilight haze with low visibility. Probably in compensation for this, interior spaces tend to be brightly lit and painted in bold colors.`
 	spaceport `Like everything else on Geminus, the spaceport is not terribly pretty, but is functional and efficient. Each of the wide hallways is marked out like a road, with space in the center for electric carts carrying cargo, while pedestrians are relegated to the edges.`
@@ -23495,7 +23495,7 @@ planet Geyser
 		fleet "Large Militia" 20
 
 planet Giverstone
-	attributes hai
+	attributes hai mining
 	landscape land/valley5
 	description `On this mining world, the Hai are using boring machines to drill tunnels straight into the hearts of the mountains. Each tunnel twists and turns to intersect the regions of rock with the highest concentrations of valuable ore. Most of the tunnels also join up with other tunnels that have been dug through the same mountains, so that there are multiple exits from any given point in the mines.`
 	spaceport `The spaceport is in the center of one of the large cities that are built high up in the mountains where the air is cooler. It consists mostly of open-air landing pads: enormous slabs of metal embedded into the mountainside at different levels, with winding roads connecting them to the main marketplace and warehouse district. Several old mine entrances, well reinforced with metal struts, have been converted into hangar bays or warehouse space.`
@@ -23549,7 +23549,7 @@ planet Grakhord
 	security 0.9
 
 planet Greenbloom
-	attributes hai
+	attributes hai "hai tourism" "human tourism"
 	landscape land/water3
 	description `The islands and continents on this planet are almost entirely covered in marshes, rainforests, and (near the poles) dense coniferous forests, and the oceans appear green from above due to thick algae blooms and floating kelp mats. The overabundance of flora is caused by Greenbloom's major volcanoes, which constantly spew carbon dioxide into the atmosphere.`
 	spaceport `The spaceport is a massive floating island built by the Hai - a network of hexagonal platforms, each roughly half a kilometer in diameter, linked by bridges that can bend to accommodate the platforms rising and falling in rough weather. You are not sure what sort of alloy the platforms are built from, but judging by the fact that some of them have coral colonies growing on their edges, they can probably last for centuries without requiring any maintenance.`
@@ -23576,7 +23576,7 @@ planet Greenrock
 		fleet "Large Northern Pirates" 13
 
 planet Greenwater
-	attributes hai
+	attributes hai farming fishing "human tourism"
 	landscape land/myrabella2
 	description `Greenwater is one of the few worlds in Hai space that is home to a sizable human population. The temperature on most of the planet's surface is too warm for the Hai, but tolerable for human beings. Close to the equator are scattered human settlements for farming or fishing, which trade with the Hai cities closer to the poles for technology and equipment.`
 	spaceport `In this bustling spaceport, deeply tanned human merchants are busy haggling with the Hai natives over the price of loads of fish and produce. The atmosphere is quite friendly and relaxed - even here, well into the planet's temperate zone, it is warm enough that everyone, Hai and human alike, moves at a languid pace.`
@@ -23660,7 +23660,7 @@ planet Heartland
 		fleet "Large Republic" 4
 
 planet Heartvalley
-	attributes hai
+	attributes hai manufacturing "hai tourism"
 	landscape land/fog0
 	description `An extreme amount of tectonic activity in its distant past has left Heartvalley with mountain ranges five to ten kilometers high in some places. Most of the Hai settlements here are in the valleys closer to sea level, where the air is dense enough for them to breathe comfortably. The tectonic activity has left many ancient sea-beds exposed, providing access to bountiful supplies of oil. To the Hai, oil is too precious a resource to be used for fuel; instead they process it into plastic and use the byproducts in other chemical processes.`
 	spaceport `The spaceport is built halfway up the slope of one of the most heavily settled valleys. Farther down the valley, the tallest buildings of the city seem tiny compared to the mountains that surround them. On the outskirts of the city sit strange engines the size of a spacecraft, with pipes snaking out from them in all directions and sinking deep into the ground.`
@@ -23729,7 +23729,7 @@ planet Hestia
 
 planet Hippocrates
 	attributes core research frontier
-	landscape land/water6
+	landscape land/water11-harro
 	description `Hippocrates is a sparsely settled world, home mostly to scientific research outposts. The environment here, orbiting so close to a red dwarf star, is very different from most other settled planets. The scientists estimate this star system to be over ten billion years old, enough that life here has had much more time to develop and evolve than on any planet orbiting a brighter, more short-lived star.`
 	spaceport `The spaceport is a single building, and half the landing pads are just packed dirt. This port was not designed for large volumes of cargo or of visitors. Within the building is a sun-lit atrium, with separate storefronts for the commodity exchange, the job center, and the bank. The only place you can see where you might be able to get something to eat is a bar, advertised by a sign showing an Erlenmeyer flask with a folding paper umbrella hung over the rim.`
 	outfitter "Ammo North"
@@ -23804,7 +23804,7 @@ planet Icefall
 		fleet "Small Syndicate" 8
 
 planet Icelake
-	attributes hai
+	attributes hai factory "human tourism"
 	landscape land/sky4
 	description `Icelake is the second most populous Hai planet. Since its oil and natural gas reserves have long since been depleted, the large cities and factories here rely heavily on geothermal and wind energy. One fortunate side effect of that is that the air here is almost as pristine as on a non-industrial world.`
 	spaceport `The largest hangars in the spaceport are build of metal beams more than a meter wide, with thick glass panels between them to let in the sunlight. Even the smaller and newer warehouses on the outskirts of the port seem as solid and permanent as the mountains themselves. Thousands of Hai are walking back and forth between the buildings, and many of them regard you with curiosity; there are very few human visitors here.`
@@ -24013,7 +24013,7 @@ planet Luna
 
 planet Maelstrom
 	attributes north mining frontier
-	landscape land/mountain6
+	landscape land/mountain21-harro
 	description `Maelstrom is a stormy, geologically young world with towering mountains and frequent earthquakes. Most of the large cities are near the center of the planet's main continent, where the iron beds from an ancient ocean are exposed. Maelstrom is one of the chief exporters of iron, copper, gold, titanium, and other metals to Ada, where Lovelace Labs and the associated industries have a continuous need for raw materials.`
 	description `	Extreme rock climbing is a hugely popular sport among the mining workers here, who have a tendency to be young, male, and reckless. The mountains are dramatic enough to even attract off-world climbers as tourists, though more than once a favorite climbing face has been sloughed off its mountain in an earthquake.`
 	spaceport `The spaceport is a single massive complex of buildings, with hangars large enough for even a bulk freighter or a Navy flagship. A railroad runs through several of the nearby mining towns and straight into the spaceport building itself, allowing ore and processed metal to be loaded directly from the mine cars into the waiting freighters.`
@@ -24056,7 +24056,7 @@ planet Maker
 		fleet "Large Syndicate" 10
 
 planet Makerplace
-	attributes hai
+	attributes hai manufacturing "hai tourism"
 	landscape land/lava0
 	description `Makerplace has an unusual degree of volcanic activity due to high concentrations of radioactive elements in the planet's mantle. Although it is warm by Hai standards, the abundance of geothermal energy, combined with plentiful solar energy and wind power, has made it an ideal world for manufacturing. Several cities in the temperate regions have populations of over a hundred million Hai, and the factories surrounding the cities spread out for dozens of kilometers in all directions. Near the equator, much of the land is desert or volcanic wasteland.`
 	spaceport `A fair number of the Hai walking through this spaceport are wearing no clothing at all, perhaps as a response to the warm temperatures. Given that they seem to attract no notice or disapproval by doing so, it appears that this is perfectly normal behavior. Others appear to have trimmed their fur shorter than normal as an alternative way to deal with the heat.`
@@ -24076,7 +24076,7 @@ planet Mani
 
 planet "Market of Gupta"
 	attributes arach shipping
-	landscape land/valley9
+	landscape land/mountain16-striker
 	description `This mountain world is the home base of House Mallob, the powerful Arach guild in charge of commerce and shipping. All the Arach starships that are currently in use were designed here, and many of them are manufactured here as well. The motto of House Mallob's shipyards is "strong as the mountains, spacious as the skies," referring to their focus on durable hulls and high cargo capacity.`
 	spaceport `This spaceport serves as the primary repair and service center for the Arach merchant marine. At any given time hundreds of ships may be in dry-dock here to have new equipment installed or their engines or internal systems tuned for better efficiency. Meanwhile, thousands of analysts and software experts work to plan out delivery routes, schedules, and supply chains for the merchant fleets to ensure that goods are always delivered where they will be most needed, and will earn the best profit. House Mallob's finances and organizational structure are legendary for their complexity.`
 
@@ -24109,10 +24109,10 @@ planet "Mebla's Portion"
 
 planet Memory
 	attributes deep research factory medical
-	landscape land/badlands1
+	landscape land/badlands9-harro
 	description `Memory is a dry world, but with enough local plants to maintain a breathable atmosphere. Some of the indigenous forms of cactus-like, drought-resistant plants grow dozens of meters high. Most of the animals that have evolved here are nocturnal.`
 	description `	This planet was first settled only a few centuries ago, and the population is still relatively low, but they have developed a diverse set of industries including manufacturing and medical research.`
-	spaceport `The local government has not yet seen the need to set aside funds to replace the spaceport built by the original settlers: mostly just a collection of poured concrete pads where larger ships  can land without sinking into the sand of the desert. They have added some large hangars for richer clients and Navy ships, however, and over the years more and more buildings have sprung up along the periphery of the landing field.`
+	spaceport `The local government has not yet seen the need to set aside funds to replace the spaceport built by the original settlers: mostly just a collection of poured concrete pads where larger ships can land without sinking into the sand of the desert. They have added some large hangars for richer clients and Navy ships, however, and over the years more and more buildings have sprung up along the periphery of the landing field.`
 	outfitter "Deep Sky Basics"
 	outfitter "Ammo North"
 	security 0.8
@@ -24143,7 +24143,7 @@ planet Mere
 planet "Mereti Station"
 	attributes korath station
 	landscape land/space7
-	description `This large station serves as the "mission control" for the robotic ships of the Kor Mereti faction. Warships of every shape and design are clustered in its docking bays or flying partol outside.`
+	description `This large station serves as the "mission control" for the robotic ships of the Kor Mereti faction. Warships of every shape and design are clustered in its docking bays or flying patrol outside.`
 	spaceport `The central core of this station is entirely sealed off, running on its own power generators serviced by self-maintaining repair robots. Inside the core are the advanced computers that direct the Kor Mereti war effort.`
 	"required reputation" 1
 	bribe 0
@@ -24195,7 +24195,7 @@ planet Millrace
 		fleet "Large Syndicate" 8
 
 planet Mirrorlake
-	attributes hai moon
+	attributes hai moon "hai tourism"
 	landscape land/bwerner1
 	description `The Hai homeworld is orbited by a moon that is large and dense enough to have been able to hold on to its own supply of surface water, and although the atmosphere is cold, much of that water is in liquid form due to the strong tides. In a few places, granite and basalt cliffs rise out of the water, and the Hai have built a few small settlements on the moon, as well.`
 	spaceport `This spaceport appears to be a tourist destination. The architecture is different than on other Hai worlds, and much more primitive: stone and mortar instead of polished metal. However, all the buildings are in good repair: despite their ancient appearance, they must be maintained and rebuilt on a regular basis.`
@@ -24245,7 +24245,7 @@ planet Mutiny
 	security 0
 
 planet Mystery
-	attributes saryd
+	attributes saryd moon
 	landscape land/canyon05
 	description `The Saryd culture's fascination with the movement of the stars and planets can perhaps be attributed to the fact that their homeworld is orbited by two moons, which cause a complex and seemingly unpredictable cycle of tides as well as a variety of subtle effects on the circadian rhythms of the creatures that evolved on Saros. Saryd homes on other worlds often have night lighting cycles designed to mimic the moons of their homeworld.`
 	"required reputation" 15
@@ -24456,7 +24456,7 @@ planet "New Washington"
 		fleet "Large Militia" 3
 
 planet Newhome
-	attributes hai
+	attributes hai textiles
 	landscape land/myrabella7
 	description `Newhome's gravity, climate, and geography is very similar to the Hai homeworld. Several billion Hai live here. Most dwell in large factory cities, but there are also ranches in the undeveloped areas where the Hai raise animals that are larger than elephants but produce wool similar to sheep. Shearing them is a dangerous undertaking, but their wool can be used to make excellent, long-lasting clothing.`
 	spaceport `The roads in the spaceport are very wide, so that Hai ranchers can lead their massive, sheep-like beasts along them. The animals seem docile enough, but their size is alarming.`
@@ -24493,7 +24493,7 @@ planet Nimbus
 		fleet "Small Syndicate" 4
 
 planet Norn
-	attributes deep fishing
+	attributes deep fishing moon
 	landscape land/beach4
 	description `Norn is a water world, with low gravity but an atmosphere dense enough to breathe easily. Large mats of seaweed and algae form natural rafts that drift around with the ocean currents, and a few intrepid settlers have colonized them, people who prefer a life of relative solitude and are willing to trust their fates to wherever the winds might take them. Others have settled the few, low islands, which are prone to frequent flooding. Fish are common here, including a few species of flying fish which travel in large packs and are a considerable nuisance for the land-dwellers.`
 	spaceport `The spaceport is on one of the larger islands, a network of small buildings connected by bridges and raised up on enormous stilts about fifty meters high. Cargo winches are used to load and unload cargo from the boats that dock below. Starships dock in individual hangars, to protect them from the wind. The whole complex sways slightly, almost imperceptibly, as if it were a large boat at sea. The walkways all have tall railings, but you still find yourself afraid to venture too near the edge or to look down at the island and the sea below. The locals, however, walk swiftly and gracefully, with no sign of fear.`
@@ -24534,7 +24534,7 @@ planet Oblivion
 	attributes "dirt belt" oil mining
 	landscape land/sky7
 	description `The atmosphere here is a toxic mix of ammonia, sulfur, and methane. Although breathable by human beings if necessary, the locals use masks to reduce the risk of chronic respiratory problems. Even so, the life expectancy here is short, but that is partly because the two best-paying industries are oil drilling and mining for radioactive elements.`
-	spaceport `The spaceport is a long landing strip paved in asphalt, with warehouses on either side of it constructed from stone and mortar.  Inside are stacked lead-lined crates of radioactive materials for sale. Unlike many Dirt Belt worlds, you see few curious children watching ships land or playing among the buildings; this is not the sort of world where many people choose to put down roots and build a family.`
+	spaceport `The spaceport is a long landing strip paved in asphalt, with warehouses on either side of it constructed from stone and mortar. Inside are stacked lead-lined crates of radioactive materials for sale. Unlike many Dirt Belt worlds, you see few curious children watching ships land or playing among the buildings; this is not the sort of world where many people choose to put down roots and build a family.`
 	outfitter "Ammo South"
 	security 0.05
 	tribute 500
@@ -24590,7 +24590,7 @@ planet Placer
 
 planet "Plort's Water"
 	attributes arach research
-	landscape land/sea3
+	landscape land/sea15-harro
 	description `Plort's Water is an ocean world, with no landforms except for some scattered volcanic archipelagos. A few of the larger islands are home to small Arach settlements, and others live aboard "island-ships" that can each carry tens of thousands of individuals. There is very little industry here, but many of the locals are involved in biological experiments or in categorizing the millions of species that inhabit the oceans.`
 	spaceport `The spaceport is built on the slopes of a dormant volcano, and only has space for a few dozen ships to land at any one time. Too few visitors come here to support any shops or restaurants in the spaceport itself. In the village, the cheapest and most abundant food is a variety of soups, cakes, and puddings that all look and smell as if they are made from processed algae.`
 	"required reputation" 15
@@ -24731,34 +24731,37 @@ planet Reunion
 		fleet "Large Syndicate" 17
 
 planet Revelation
-	attributes saryd
+	attributes saryd moon
 	landscape land/canyon0
 	description `The Saryds are the only known species who successfully visited another world when their technology was still in the age of steam. The scientist who first landed here was piloting a ramshackle rocket ship of dizzying complexity. Modern analysis of his plans indicates that his flight had less than a one in ten thousand chance of success. This has led to speculation that he was either secretly assisted by friendly aliens, or completely insane, or possibly both.`
 	"required reputation" 15
 
 planet "Ring of Friendship"
-	attributes heliarch
+	attributes heliarch station
 	landscape land/station2
 	description `This is the crown jewel of the Heliarchs, a ringworld that was completed by the Quarg before the Coalition formed and drove them away. It now serves both as a center of finance and trade, and as the seat of the Heliarch government, which is made up of "elders" who have been selected by the other Heliarchs from among their number in such a way that all three species always have equal representation. The Heliarchs, in turn, are selected from among the best and brightest members of each species. Despite the occasional resistance to it, this meritocracy has survived ten times longer than any human democracy.`
 	spaceport `At any given time, thousands of young people are in training here to become "interpreters," the Heliarch agents who serve as translators and mediators on all the Coalition worlds. As they rise through the ranks, some of those agents will be honored by being elevated to the rank of Heliarch, gaining a voice in the selection of new elders and perhaps one day even being selected themselves.`
 	spaceport `	Heliarch rank is not hereditary, and the children of Heliarchs are given no special preferment for promotions or educational opportunities.`
 	"required reputation" 5
+	bribe 0
 
 planet "Ring of Power"
-	attributes heliarch
+	attributes heliarch station
 	landscape land/station2
 	description `This ringworld is the center of operations for the Heliarch defense forces. Although they have not had to fight a major space battle in thousands of years, they still maintain a sizable fleet, believing that if they ever allow their vigilance to waver, the Quarg may return and try to reclaim what was once theirs.`
 	spaceport `The hallways of the spaceport echo with the footsteps of groups of marching defense force cadets. Each group contains a mixture of Saryds, Kimek, and Arachi, to help them learn allegiance to all the peoples of the Coalition instead of just identifying with their own species.`
 	spaceport `	The designer who invented the Heliarch uniforms, with a distinctive style that unifies them despite the wildly different body shapes of the three species, must have been an absolute genius.`
 	"required reputation" 25
+	bribe 0
 
 planet "Ring of Wisdom"
-	attributes heliarch
+	attributes heliarch station
 	landscape land/station2
 	description `This Heliarch ringworld is their center for science, mostly trying to understand and reverse engineer Quarg technology rather than inventing new devices of their own. But after thousands of years of controlling these ringworlds, it seems that their inner workings are still something of a mystery to the Heliarchs.`
 	description `	"Construction" work is always ongoing here, but rather than extending the backbone of the ring itself, which uses exotic materials that they cannot replicate, the Heliarchs are just adding sheets of solar panels and other extensions to the sides of the ring.`
 	spaceport `Most of this ringworld is off-limits to everyone but the Heliarch scientists, not just for the sake of secrecy but also for safety. When the Heliarchs first began exploring the machinery of this ringworld, hundreds of them died in explosions, gas leaks, and power discharges after trying to cut their way into inaccessible areas. More recently, an entire team of scientists vanished from one of the main hangars without a trace and without any sign of resistance.`
 	"required reputation" 25
+	bribe 0
 
 planet Rust
 	attributes rim farming factory
@@ -24825,7 +24828,7 @@ planet "Sarisa Fentra"
 
 planet Saros
 	attributes saryd tourism urban
-	landscape land/water8
+	landscape land/valley12-harro
 	description `The homeworld of the Saryds still bears some scars from the adolescence of their species, particularly in its lack of biodiversity. But over thousands of years, they have returned significant portions of the planet to their original wilderness state. The planet's population currently stands at just over two billion, in part due to the fact that Saryds live very long lives and many of them choose to dedicate their lives to serving society in other ways rather than raising children.`
 	spaceport `The main spaceport is on the outskirts of a large city near the planet's equator, supposedly not far from the place where the Saryds launched their first rockets to explore their own solar system. It has all the standard accoutrements of a tourist trap, including stall after stall of vendors selling food or articles of clothing, and mobs of wide-eyed visitors wandering about and generally getting in the way of the merchant captains trying to conduct actual business here.`
 
@@ -24872,7 +24875,7 @@ planet "Secret Sky"
 	landscape land/sea13-sfiera
 	description `Grass and trees are scarce on this perpetually cold and foggy planet. The dominant form of vegetation is a mixture of mosses and lichens which can grow into mats more than half a meter thick. Vast herds of hoofed animals wander across the planet's surface, unable to stay in one place for long because the moss that they eat can take decades to grow back.`
 	description `	The hardy plants that grow here are useful for producing a wide range of medical compounds.`
-	spaceport `The spaceport city had a ring of searchlights perpetually pointed skyward to direct ships in to a landing in the fog in case their other instruments malfunction. Entire sectors of the city are off limits to non-Saryd visitors, and presumably are home to the secret research labs where advanced medicines and other technologies are being developed.`
+	spaceport `The spaceport city has a ring of searchlights perpetually pointed skyward to direct ships in to a landing in the fog in case their other instruments malfunction. Entire sectors of the city are off limits to non-Saryd visitors, and presumably are home to the secret research labs where advanced medicines and other technologies are being developed.`
 	"required reputation" 15
 
 planet "Sek Alarfarat"
@@ -25052,7 +25055,7 @@ planet Skillet
 		fleet "Small Republic" 22
 
 planet Skyfarm
-	attributes hai moon
+	attributes hai moon "hai tourism"
 	landscape land/myrabella6
 	description `Due to the low gravity here, some of the alien crops planted by the Hai grow to heights of five meters or more. The air is too thin for humans or Hai to breathe without carrying supplemental oxygen tanks, so the population is very small. The fields are tended by enormous spider-like robots which are equipped not only for irrigation and harvesting, but also for pollination, since the thin atmosphere has made it impossible for native insects to evolve here.`
 	spaceport `The spaceport is a small city built under a pressurized glass dome, with a ring of hangars and landing pads around its periphery. As with most Hai architecture, the dome and the buildings within it are simple and sparsely decorated, but as you walk through the city everything feels very solid, and ancient. Everything is metal, even the roads and walkways, and the center of many of the roads dips down slightly due to millennia of foot traffic slowly wearing down the metal.`
@@ -25070,7 +25073,7 @@ planet Skymoot
 		fleet "Large Militia" 6
 
 planet "Smuggler's Den"
-	attributes pirate
+	attributes pirate station
 	landscape land/loc1
 	description `Smuggler's Den was formerly known as Grendel Station, back when it was an operating refinery. But, it has since been taken over by pirates, who turned it into a haven for all manner of smugglers and privateers. The repair shops here can make a variety of legal and illegal modifications to your ship, and in the shipyard you can buy refurbished starships... if it does not trouble your conscience to think about the likely fates of their previous owners.`
 	spaceport `It is a strange but indisputable fact that pirates smell worse than ordinary human beings. In this day and age, where even the cheapest shuttlecraft at least has a sonic shower, there is no logical explanation for it, except that anarchist tendencies must somehow go hand in hand with a tendency to reject society's norms around hygiene. Here in a space station, with nothing but recycled air to breathe, the effect is overpowering.`
@@ -25088,7 +25091,7 @@ planet "Smuggler's Den"
 		fleet "Small Southern Pirates" 21
 
 planet Snowfeather
-	attributes hai
+	attributes hai "hai tourism"
 	landscape land/dmottl4
 	description `Snowfeather is a world with unusually chaotic weather patterns, where snow can fall even in the middle of summer but will melt away within days when the temperature shifts and becomes warmer again. Surprisingly, it is a popular vacation spot for the Hai, who find the unpredictability and occasional violence of the weather here to be invigorating.`
 	spaceport `The core of the spaceport is two rows of hangars, back to back. Their thick metal roofs slope backwards, away from the entrance to each hangar, so that any snow or ice that slides off the roofs will not fall across the opening while ships or people are passing through. The hangars are also elevated about six meters above the ground, to protect against flash floods.`
@@ -25113,7 +25116,7 @@ planet Solace
 
 planet "Solima Skarati"
 	attributes korath
-	landscape land/beach3
+	landscape land/beach12-harro
 	description `The Korath were endlessly creative in devising new weapons of war during the twilight years of their empire, but what destroyed this planet in the end was not a military disaster but an ecological one. Small villages along the ocean shores and rusting fleets of boats bear witness to the fact that this ocean world was once a fruitful fishery. But now the ocean carries high levels of industrial toxins, and in place of large fish only small invertebrates remain.`
 	security 0
 
@@ -25154,7 +25157,7 @@ planet Starcross
 		fleet "Small Militia" 22
 
 planet Stonebreak
-	attributes hai
+	attributes hai manufacturing
 	landscape land/fog7
 	description `Stonebreak is home to some of the largest cities in Hai space aside from their homeworld: massive planned communities build in concentric rings, where housing space and community buildings alternate with zones of factories and shipyards. This star system has an unusual number of metallic asteroids, which the Hai harvest for the raw materials for Stonebreak's industries.`
 	spaceport `From above, this city has almost perfect radial symmetry, a sure sign that it was planned and built as a single unit rather than expanding at random over time. Every single building in the city is made from the same metal alloy, a dull and slightly irregular grey color. The corners of each building are slightly beveled instead of meeting at right angles.`
@@ -25377,7 +25380,7 @@ planet "Turquoise Four"
 	"required reputation" 15
 
 planet Twinstar
-	attributes south tourism frontier
+	attributes south tourism frontier moon
 	landscape land/lava3
 	description `The only settlement on this small world is Twinstar Depot, a village created mostly just to service the spaceport, where food and equipment from the southern galactic arm is stored and sent out in all directions to supply the rest of human space. The gravity is far less than ideal for human development, but the atmosphere is breathable and some tourists come to the planet just for the experience of being able to run and jump in low gravity without the need for a suit or oxygen tanks.`
 	spaceport `The depot consists mostly of large storage racks, with automatic lifts constantly clanking up and down. Very few people are in sight, aside from a small cafe near the center of the port. It is not a hospitable place.`
@@ -25429,7 +25432,7 @@ planet Valhalla
 
 planet "Var' Kar'i'i"
 	attributes wanderer urban farming
-	landscape land/valley8
+	landscape land/valley13-harro
 	description `This is a populous Wanderer world, with small farming villages scattered across all the land, and even a few larger population centers that might almost qualify as a city. But from the air, it is not evident at first that the planet is so heavily settled, because the village tree-houses are mostly hidden beneath the forest canopies. The farms, too, are almost indistinguishable from natural land, due to a permaculture system where many varieties of plants are growing side by side.`
 	spaceport `Apparently, just as humans use horses to carry loads and draw carts of produce, the Wanderers use a large breed of lizard, nearly eight feet tall and walking on their hind legs. The lizards are meat-eaters: next to the watering troughs are cages full of large rodents, which the Wanderers occasionally feed to their beasts.`
 	spaceport `	Many different forms of produce are for sale here in open-air markets, including dozens of different nuts and berries. Aside from the rodents to feed to the lizards, and a few species of fish, the Wanderers do not seem to raise animals for food.`
@@ -25448,7 +25451,7 @@ planet "Var' Kayi"
 	bribe 0
 
 planet "Var' Roi"
-	attributes wanderer research
+	attributes wanderer research moon
 	landscape land/snow9
 	description `The surface of this small icy moon is constantly cracked and broken by tidal force from the gas giant that it orbits. The tidal disturbances also heat the moon enough to keep its oceans warm enough to support life despite the small amount of sunlight that reaches here.`
 	spaceport `The only habitation on this moon is a Wanderer research station suspended on metal pylons well above the icy surface of the ocean. The gravity here is low enough that even though the atmosphere is thin, the Wanderers who work in the station can fly out across the ocean on their own power, wearing some sort of breathing gear. The researchers also have a fleet of submarine ships, sturdy enough to pierce through the shifting ice and travel deep below the ocean surface.`
@@ -25457,7 +25460,7 @@ planet "Var' Roi"
 
 planet "Vara K'chrai"
 	attributes wanderer urban
-	landscape land/sea8
+	landscape land/sea16-harro
 	description `This is the most populous Wanderer world, with dozens of large cities. The tallest buildings branch and cantilever out from their bases like metallic trees. More than half the surface of the planet is ocean, with a few small settlements built on massive living rafts of algae and seaweed, perhaps ten meters thick and up to several kilometers wide. Much of the land is forests, with villages built entirely in the treetops.`
 	description `	There are also farms here, but more like gardens or parks than a human farm: each with dozens of species of plants growing side by side, and harvested by autonomous robots.`
 	spaceport `The streets in Wanderer capital city seem to be mostly reserved for cargo vehicles; the Wanderers themselves fly from one building to another instead, and the skyscrapers have balconies dozens of stories above the ground where visitors can land or take off. The air traffic seems utterly chaotic, but somehow they avoid colliding with each other in midair, and certain columns of airspace have been reserved for ships taking off and landing so that flying Wanderers will not get caught in the backwash from the ship engines.`
@@ -25543,7 +25546,7 @@ planet "Varu Mer'ek"
 	bribe 0
 
 planet "Varu Tek'kai"
-	attributes wanderer factory
+	attributes wanderer factory moon
 	landscape land/badlands4
 	description `This Wanderer world is almost uninhabited and devoid of any indigenous ecosystem, except perhaps on the microscopic level. It has none of the beauty of other Wanderer settlements. Here, factories have been built to process the most dangerous and destructive of industrial chemicals. If disaster strikes one of the factories, the only result will be the contamination of a world that is already dead and lifeless - far better, in the judgment of the Wanderers, than allowing such risky industries to operate on a living world.`
 	spaceport `Nearly all the operations of the factories here are automated, and the outside atmosphere is too thin for even the Wanderers to breathe. The workers live in dormitory apartments in a ring surrounding a large central dome. Inside the dome, protected from the elements, is a park whose gardens contain everything from towering conifers to fields of wildflowers; a necessary place of sanctuary and rest for the Wanderers who must spend the rest of their time servicing machines in the bleak environment outside the spaceport.`
@@ -25561,7 +25564,7 @@ planet "Varu Tev'kei"
 planet "Vibrant Water"
 	attributes saryd farming
 	landscape land/beach8-sfiera
-	description `Due to strong currents and extreme seasonal temperature fluctuations, the oceans of Vibrant Water are dotted with icebergs that can drift almost as far as the tropics before melting. The largest icebergs are more than a dozen kilometers across and are home to entire ecosystems ranging from ice-dwelling insects to sea birds to large seal-like mammals. Beneath the ocean surface shoals of fish, forests of kelp, and drifting clouds of algae provide a continuous food source for the creatures than inhabit the icebergs.`
+	description `Due to strong currents and extreme seasonal temperature fluctuations, the oceans of Vibrant Water are dotted with icebergs that can drift almost as far as the tropics before melting. The largest icebergs are more than a dozen kilometers across and are home to entire ecosystems ranging from ice-dwelling insects to sea birds to large seal-like mammals. Beneath the ocean surface shoals of fish, forests of kelp, and drifting clouds of algae provide a continuous food source for the creatures that inhabit the icebergs.`
 	description `	Near the equator, the Saryds farm several species of engineered algae.`
 	spaceport `Very little of the industry on Vibrant Water takes place on land. The spaceport is built on a high bluff overlooking the sea, frequently visited by barges carrying goods from the floating factories and refineries out in the midst of the algae farms. Surrounding the port are fields of wind turbines positioned to catch the ocean breeze.`
 	"required reputation" 15
@@ -25624,7 +25627,7 @@ planet Wayfarer
 
 planet "Weir of Glubatub"
 	attributes arach farming
-	landscape land/beach6
+	landscape land/beach11-harro
 	description `The Weir of Glubatub is a quiet ocean world, lit by a dim red sun, whose atmosphere seldom gathers enough energy to spawn storms or other violent weather. Nearly all the life in the oceans is very close to the surface, where the sun's light is bright enough for algae and seaweed to flourish.`
 	description `	A few of the larger islands have been settled by the Arachi, and most of the locals work in the fishing industry. Some of the fishing boats are so large that a small starship can land on their decks.`
 	spaceport `The spaceport is on an island near one of the planet's poles, where the temperature is cool and sea ice can be gathered to stock the warehouses where the fish are kept cold until they can be shipped offworld. Even with most of the fish being kept on ice, the smell is still overpowering, except at the rare moments when the wind picks up and it is replaced by the smell of fresh salt air.`

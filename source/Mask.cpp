@@ -171,22 +171,21 @@ namespace {
 	{
 		result->clear();
 		
-		// The image has been scaled to 50% size, so the raw outline must have
-		// vertices every half-pixel. Find all vertices with X coordinates
-		// within a quarter-pixel of 0, and of those, select the top-most and
-		// bottom-most ones.
+		// Out of all the top-most and bottom-most pixels, find the ones that
+		// are closest to the center of the image.
 		int top = -1;
 		int bottom = -1;
 		for(int i = 0; static_cast<unsigned>(i) < raw.size(); ++i)
-			if(raw[i].X() >= -.25 && raw[i].X() < .25)
-			{
-				if(top == -1)
-					top = bottom = i;
-				else if(raw[i].Y() > raw[bottom].Y())
-					bottom = i;
-				else
-					top = i;
-			}
+		{
+			double ax = fabs(raw[i].X());
+			double y = raw[i].Y();
+			if(top == -1)
+				top = bottom = i;
+			else if(y > raw[bottom].Y() || (y == raw[bottom].Y() && ax < fabs(raw[bottom].X())))
+				bottom = i;
+			else if(y < raw[top].Y() || (y == raw[top].Y() && ax < fabs(raw[top].X())))
+				top = i;
+		}
 		
 		// Bail out if we couldn't find top and bottom vertices.
 		if(top == bottom)
@@ -312,6 +311,8 @@ bool Mask::WithinRange(Point point, Angle facing, double range) const
 double Mask::Range(Point point, Angle facing) const
 {
 	double range = numeric_limits<double>::infinity();
+	if(outline.empty())
+		return range;
 	
 	// Rotate into the mask's frame of reference.
 	point = (-facing).Rotate(point);

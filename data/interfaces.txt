@@ -16,11 +16,14 @@ color "bright" .75 .75 .75 0.
 color "medium" .5 .5 .5 0.
 color "dim" .25 .25 .25 0.
 color "faint" .1 .1 .1 0.
+
 color "shields" .43 .55 .70 .75
 color "hull" .70 .62 .43 .75
 color "heat" .70 .43 .43 .75
 color "energy" .6 .6 .6 .75
 color "fuel" .70 .62 .43 .75
+
+color "flagship highlight" .5 .8 .2 0.
 
 color "available job" .9 .6 0. 1.
 color "available back" .5 .3 0. .5
@@ -32,6 +35,12 @@ color "blocked mission" 0. .4 .6 1.
 color "blocked back" 0. .15 .2 .5
 color "waypoint" .1 .2 .9 1.
 color "waypoint back" 0. .3 .7 .5
+
+color "escort present" .8 .8 .8 1.
+color "escort elsewhere" .4 .4 .6 1.
+color "escort not ready" .9 .8 0. 1.
+color "escort blocked" .9 .2 0. 1.
+color "escort selected" .2 .8 0. 1.
 
 
 
@@ -134,7 +143,7 @@ interface "load menu"
 		center -420 155
 		dimensions 120 30
 	active if "pilot selected"
-	button d "_Delete"
+	button D "Delete"
 		center -285 155
 		dimensions 90 30
 	
@@ -143,7 +152,7 @@ interface "load menu"
 		center -60 155
 		dimensions 120 30
 	active if "snapshot selected"
-	button r "_Remove"
+	button R "Remove"
 		center 75 155
 		dimensions 90 30
 	
@@ -748,7 +757,7 @@ interface "info panel"
 	box "stats"
 		from -500 -290 to -250 280
 	box "outfits"
-		from -250 -290 to 250 30
+		from -250 -290 to 500 30
 	box "weapons"
 		from -250 30 to 250 280
 	box "cargo"

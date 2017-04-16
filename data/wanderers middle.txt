@@ -133,15 +133,15 @@ mission "Wanderers: Nova Remnants"
 	waypoint "Peresedersi"
 	on enter "Peresedersi"
 		dialog
-			"You fire up your ships sensors and collect the data that the Wanderers asked for on this system's sun."
+			"You fire up your ship's sensors and collect the data that the Wanderers asked for on this system's sun."
 	waypoint "Kasikfar"
 	on enter "Kasikfar"
 		dialog
-			"You fire up your ships sensors and collect the data that the Wanderers asked for on this system's sun."
+			"You fire up your ship's sensors and collect the data that the Wanderers asked for on this system's sun."
 	waypoint "Fasitopfar"
 	on enter "Fasitopfar"
 		dialog
-			"You fire up your ships sensors and collect the data that the Wanderers asked for on this system's sun."
+			"You fire up your ship's sensors and collect the data that the Wanderers asked for on this system's sun."
 	to offer
 		has "Wanderers: Surveying 1: done"
 	on complete
@@ -305,7 +305,7 @@ mission "Wanderers: Rek To Kor Efret"
 		has "Wanderers: First Mereti Attack: done"
 	on offer
 		conversation
-			`When you enter the meeting room, Sobari Tele'ek is in a heated argument with the Wanderer child who was here earlier, the one who speaks your language. The child is saying, "The Eye has sent us not to a place of [empty, abandoned] worlds but to a place of [living beings?]. To complete our [calling, work] here we must collaborate with those beings, just as we would collaborate with the [ecosystem? personality] of a planet we sought to repair."`
+			`When you enter the meeting room, Sobari Tele'ek is in a heated argument with the Wanderer child who was here earlier, the one who speaks your language. The child is saying, "The Eye has sent us not to a place of [empty, abandoned] worlds but to a place of [living beings?]. To complete our [calling, work] here we must collaborate with those beings, just as we would collaborate with the [ecosystem? personality?] of a planet we sought to repair."`
 			`	"What do you [propose, intend], Firstborn?" asks Tele'ek.`
 			`	"I would visit the [remaining, surviving] Korath," she says. "I would learn their [language? viewpoint? history?]. I would offer them our [companionship, assistance]."`
 			`	"No," says Tele'ek. "How could I [endanger, gamble with] your life? You are too [precious, unique] to be sent on such a [mission, assignment]."`
@@ -467,7 +467,7 @@ mission "Wanderers: Pug Assistance 1"
 					goto pug
 
 			label peace
-				"Well," says Tele'ek, "if they really [desire, hope] for these worlds to be [fruitful, habitable] once more, the best thing we can do is prove our [value, virtue] by beginning our work. We are a [patient, deliberate] species too, and we understand that gaining the [trust, goodwill] of another may take time."
+			`	"Well," says Tele'ek, "if they really [desire, hope] for these worlds to be [fruitful, habitable] once more, the best thing we can do is prove our [value, virtue] by beginning our work. We are a [patient, deliberate] species too, and we understand that gaining the [trust, goodwill] of another may take time."`
 				goto next
 
 			label displace
@@ -894,7 +894,7 @@ mission "Wanderers: Mind 2"
 	blocked "To take this mission, you will need a bunk and two tons of cargo space free."
 	on offer
 		conversation
-			`On <planet> you are met by a Wanderer named Meto Pa'aret. He explains that he is in charge of the artificial intelligence lab, and he wants to travel with you along with the "Mind" that is being entrusted to your care. "We have already [altered, reconfigured] one of the climate [simulation, prediction] Minds for this new purpose," he says. "It now contains [stores, databases, libraries] of historical and cultural information, things we hope will help the alien [consciousness, intelligence] to [understand, sympathize with] us and realize our intentions are [peaceful, forthright]."`
+			`On <origin> you are met by a Wanderer named Meto Pa'aret. He explains that he is in charge of the artificial intelligence lab, and he wants to travel with you along with the "Mind" that is being entrusted to your care. "We have already [altered, reconfigured] one of the climate [simulation, prediction] Minds for this new purpose," he says. "It now contains [stores, databases, libraries] of historical and cultural information, things we hope will help the alien [consciousness, intelligence] to [understand, sympathize with] us and realize our intentions are [peaceful, forthright]."`
 			choice
 				`	"Are you sure that's wise, giving the Kor Mereti access to so much information about the Wanderers?"`
 				`	"How likely do you think this is to work?"`
@@ -1023,6 +1023,8 @@ event "wanderers: kor mereti friendly"
 			"Kor Mereti" 0
 	"reputation: Kor Mereti" >?= 1
 	"reputation:  Kor Mereti " = -1000
+	planet "Rekat Moraski"
+		"required reputation" 1000
 
 mission "Wanderers: Mind 6"
 	landing
@@ -1071,8 +1073,6 @@ event "wanderers: kor mereti transformation"
 	system Chimitarp
 		fleet "Small Kor Mereti" 200
 		fleet "Large Kor Mereti" 400
-	planet "Rekat Moraski"
-		"required reputation" 1000
 	planet "Korbatri Eska"
 		description `The cities on this world have been hit by an astonishing variety of weapons. Some were leveled by massive explosions, while others show signs of strafing by low-flying ships or of orbital bombardment. Outside the cities, the land is fruitful and varied: forests, mountains, oceans, desert, and tundra.`
 		description `	Far from the ruined cities, the Kor Mereti have begun building a sort of village of their own: a sprawling complex of greenhouses containing a wide variety of plant samples.`
@@ -1080,7 +1080,7 @@ event "wanderers: kor mereti transformation"
 mission "Wanderers: Mind 7"
 	landing
 	name "Investigate <planet>"
-	description "Visit <destination>, and figure out what the Kor Mereti are doing there, now that they are apparently no longer hostile."
+	description "Visit <destination> and figure out what the Kor Mereti are doing there, now that they are apparently no longer hostile."
 	autosave
 	source "Spera Anatrusk"
 	destination "Korbatri Eska"
@@ -1089,7 +1089,7 @@ mission "Wanderers: Mind 7"
 	on offer
 		event "wanderers: kor mereti transformation"
 		conversation
-			`The Wanderers back on <planet> are in a frenzy to know the outcome of the battle. Pa'aret tells you, "Less than a second after the Mind [made contact, merged] with the Mereti, it severed the [backdoor, failsafe] connection. So we have no [information, visibility] on what the Mind is doing or whether the Mereti [received, welcomed] it."`
+			`The Wanderers back on <origin> are in a frenzy to know the outcome of the battle. Pa'aret tells you, "Less than a second after the Mind [made contact, merged] with the Mereti, it severed the [backdoor, failsafe] connection. So we have no [information, visibility] on what the Mind is doing or whether the Mereti [received, welcomed] it."`
 			choice
 				`	"Most of the drones started fighting on our side. That seems like a good sign."`
 				`	"They've sealed up access to the Mind. There is no way we can get it back now."`
@@ -1237,7 +1237,7 @@ mission "Wanderers: Mentors 3"
 		has "Wanderers: Mentors 2: done"
 	on offer
 		conversation
-			`When you last left <planet>, there were less than a dozen buildings in the greenhouse facility. It has now grown to the size of a major spaceport, including some towers that are dozens of stories high. Some plants now grow on open-air terraces; others are in domed enclosures tall enough to house fully-grown trees. The larger domes also have birds flying about inside them, and some larger land animals as well. Everything is built of gleaming steel and glass and filled with lush vegetation; from high above the facility looks like a scattered handful of diamonds and emeralds.`
+			`When you last left <origin>, there were less than a dozen buildings in the greenhouse facility. It has now grown to the size of a major spaceport, including some towers that are dozens of stories high. Some plants now grow on open-air terraces; others are in domed enclosures tall enough to house fully-grown trees. The larger domes also have birds flying about inside them, and some larger land animals as well. Everything is built of gleaming steel and glass and filled with lush vegetation; from high above the facility looks like a scattered handful of diamonds and emeralds.`
 			`	The freighter you were escorting was full of professors and researchers, who are clearly not used to any sort of military discipline or to living in a dangerous region of space: the moment the freighter lands they fly off toward the greenhouse without bothering to wait for instructions from their supposed manager. Several of them are already engaged in conversation with the drones, while others are exploring the different rooms of the facility, examining plants and probing soil with their talons.`
 			`	The team's manager, already looking a bit overwhelmed, flies over to talk with you. "What are we [expected, requested] to do next?" he asks.`
 			choice
@@ -2403,7 +2403,7 @@ mission "Wanderers: Sestor: Kill Southern Remnant"
 			choice
 				`	"Of course, I would be glad to."`
 					goto end
-				`	"Of course. But first, what the hell was that bomb you had me drop on <planet>? It cracked the whole planet open."`
+				`	"Of course. But first, what the hell was that bomb you had me drop on Zenith? It cracked the whole planet open."`
 
 			`	Danforth sighs. "Unfortunately," he says, "I am not permitted to tell you what that weapon was or how we acquired it. And already news agencies throughout the Republic are questioning our use of such a terrible weapon. I wish we had been able to defeat the Kor Sestor fleet without resorting to such extreme measures, but we had no choice."`
 
@@ -2764,7 +2764,7 @@ mission "Wanderers: Sestor: Exiles 3"
 		fail "Wanderers: Sestor: Exiles 2"
 		event "wanderers: exiles peaceful"
 		conversation
-			`The Korath ships tail you to the planet's surface, but they do not fire on you.  Instead, they hover above your ship for a long, indecisive moment. You hold your fire, and they eventually land in the sand next to you. Their airlocks open, and a few of them step out and approach your ship. They do not appear to be armed. Perhaps they have a cultural taboo against using weapons on this world.`
+			`The Korath ships tail you to the planet's surface, but they do not fire on you. Instead, they hover above your ship for a long, indecisive moment. You hold your fire, and they eventually land in the sand next to you. Their airlocks open, and a few of them step out and approach your ship. They do not appear to be armed. Perhaps they have a cultural taboo against using weapons on this world.`
 			choice
 				`	(Go outside to meet them.)`
 				`	(Leave the planet while I still can.)`
@@ -3091,3 +3091,32 @@ mission "Wanderers: Sestor: Final"
 			`You inform the Wanderers that the Korath exiles are now producing war drones. "This is [unfortunate, regrettable]," says Sobari Tele'ek. "Clearly they [anticipate, expect] further conflict in the future."`
 			`	Tema'a Iriket says, "Perhaps they are [afraid of, threatened by] us and seek only to have the means to [defend, protect] themselves. The important thing is that the drones in this [territory, area] have been [neutralized, pacified] and we can now focus on our true work."`
 			`	From there, the conversation shifts to an excited discussion about what worlds they will settle on next and what their next steps should be in building relationships with the Kor Efret and the Kor Mereti collective. The exiles may become a threat some time in the future, but for now the Wanderers are eager to pursue their peacetime calling in this new territory that the Eye has led them to.`
+
+mission "Wanderers: Sestor: Patch"
+	landing
+	invisible
+	to offer
+		has "event: wanderers: sestor eliminated"
+	on offer
+		event "wanderers: sestor planets unrestricted"
+		fail
+
+event "wanderers: sestor planets unrestricted"
+	planet "Drekag Firask"
+		"required reputation" 0
+		spaceport clear
+	planet "Sestor Ikfar"
+		"required reputation" 0
+		spaceport clear
+	planet "Devru Kaska"
+		"required reputation" 0
+		spaceport clear
+	planet "Sebra Skira"
+		"required reputation" 0
+		spaceport clear
+	planet "Keneska Fek"
+		"required reputation" 0
+		spaceport clear
+	planet "Sopi Lefarkata"
+		"required reputation" 0
+		spaceport clear

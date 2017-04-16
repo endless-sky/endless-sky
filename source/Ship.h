@@ -235,6 +235,8 @@ public:
 	double JumpFuel() const;
 	// Get the heat level at idle.
 	double IdleHeat() const;
+	// Calculate the multiplier for cooling efficiency.
+	double CoolingEfficiency() const;
 	
 	// Access how many crew members this ship has or needs.
 	int Crew() const;
@@ -313,7 +315,7 @@ public:
 	// land on) and a target ship (to move to, and attack if hostile).
 	std::shared_ptr<Ship> GetTargetShip() const;
 	std::shared_ptr<Ship> GetShipToAssist() const;
-	const StellarObject *GetTargetPlanet() const;
+	const StellarObject *GetTargetStellar() const;
 	const System *GetTargetSystem() const;
 	// Mining target.
 	std::shared_ptr<Minable> GetTargetAsteroid() const;
@@ -322,7 +324,7 @@ public:
 	// Set this ship's targets.
 	void SetTargetShip(const std::shared_ptr<Ship> &ship);
 	void SetShipToAssist(const std::shared_ptr<Ship> &ship);
-	void SetTargetPlanet(const StellarObject *object);
+	void SetTargetStellar(const StellarObject *object);
 	void SetTargetSystem(const System *system);
 	// Mining target.
 	void SetTargetAsteroid(const std::shared_ptr<Minable> &asteroid);
@@ -424,7 +426,6 @@ private:
 	double fuel = 0.;
 	double energy = 0.;
 	double heat = 0.;
-	double heatDissipation = .999;
 	double ionization = 0.;
 	double disruption = 0.;
 	double slowness = 0.;

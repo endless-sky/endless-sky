@@ -263,7 +263,7 @@ bool MapDetailPanel::Click(int x, int y, int clicks)
 	}
 	
 	MapPanel::Click(x, y, clicks);
-	if(selectedPlanet && selectedPlanet->GetSystem() != selectedSystem)
+	if(selectedPlanet && !selectedPlanet->IsInSystem(selectedSystem))
 		selectedPlanet = nullptr;
 	return true;
 }
@@ -422,8 +422,7 @@ void MapDetailPanel::DrawInfo()
 			{
 				// Allow the same "planet" to appear multiple times in one system.
 				const Planet *planet = object.GetPlanet();
-				auto it = shown.find(planet);
-				if(it != shown.end())
+				if(shown.count(planet))
 					continue;
 				shown.insert(planet);
 				

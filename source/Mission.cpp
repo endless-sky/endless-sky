@@ -45,7 +45,7 @@ namespace {
 			// For every 100 credits in profit you can make, double the chance
 			// of this commodity being chosen.
 			double profit = to.Trade(commodity.name) - from.Trade(commodity.name);
-			int w = max(1, static_cast<int>(100. * pow(2., profit * .01)));
+			int w = max<int>(1, 100. * pow(2., profit * .01));
 			weight.push_back(w);
 			total += w;
 		}
@@ -772,10 +772,8 @@ void Mission::Do(const ShipEvent &event, PlayerInfo &player, UI *ui)
 	if((event.Type() & ShipEvent::JUMP) && event.Actor())
 	{
 		const System *system = event.Actor()->GetSystem();
-		
-		auto it = waypoints.find(system);
-		if(it != waypoints.end())
-			waypoints.erase(it);
+		// If this was a waypoint, clear it.
+		waypoints.erase(system);
 		
 		Enter(system, player, ui);
 		// Allow special "on enter" conditions that match any system.
@@ -814,9 +812,7 @@ Mission Mission::Instantiate(const PlayerInfo &player) const
 	result.name = name;
 	result.waypoints = waypoints;
 	// If one of the waypoints is the current system, it is already visited.
-	auto it = result.waypoints.find(player.GetSystem());
-	if(it != result.waypoints.end())
-		result.waypoints.erase(it);
+	result.waypoints.erase(player.GetSystem());
 	// Handle waypoint systems that are chosen randomly.
 	for(const LocationFilter &filter : waypointFilters)
 	{

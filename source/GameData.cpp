@@ -97,6 +97,7 @@ namespace {
 	map<const System *, map<string, int>> purchases;
 	
 	map<const Sprite *, string> landingMessages;
+	vector<string> ratingLevels;
 	
 	StarField background;
 	
@@ -631,6 +632,14 @@ const string &GameData::LandingMessage(const Sprite *sprite)
 
 
 
+// Strings for combat rating levels.
+const vector<string> &GameData::CombatRatings()
+{
+	return ratingLevels;
+}
+
+
+
 const StarField &GameData::Background()
 {
 	return background;
@@ -788,6 +797,12 @@ void GameData::LoadFile(const string &path, bool debugMode)
 		{
 			for(const DataNode &child : node)
 				landingMessages[SpriteSet::Get(child.Token(0))] = node.Token(1);
+		}
+		else if(key == "combat ratings")
+		{
+			ratingLevels.clear();
+			for(const DataNode &child : node)
+				ratingLevels.push_back(child.Token(0));
 		}
 		else if((key == "tip" || key == "help") && node.Size() >= 2)
 		{

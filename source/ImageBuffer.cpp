@@ -131,6 +131,8 @@ ImageBuffer *ImageBuffer::Read(const string &path)
 		return nullptr;
 	
 	ImageBuffer *buffer = isPNG ? ReadPNG(path) : ReadJPG(path);
+	if(!buffer)
+		return nullptr;
 	
 	// Check if the sprite uses additive blending.
 	int pos = path.length() - 4;

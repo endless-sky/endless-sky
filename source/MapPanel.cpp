@@ -194,7 +194,7 @@ void MapPanel::DrawMiniMap(const PlayerInfo &player, double alpha, const System 
 			if(!mission.IsVisible())
 				continue;
 			
-			if(mission.Destination()->GetSystem() == system)
+			if(mission.Destination()->IsInSystem(system))
 			{
 				bool blink = false;
 				if(mission.Deadline())
@@ -214,7 +214,7 @@ void MapPanel::DrawMiniMap(const PlayerInfo &player, double alpha, const System 
 				if(waypoint == system)
 					DrawPointer(from, angle, waypointColor, false);
 			for(const Planet *stopover : mission.Stopovers())
-				if(stopover->GetSystem() == system)
+				if(stopover->IsInSystem(system))
 					DrawPointer(from, angle, waypointColor, false);
 		}
 	}

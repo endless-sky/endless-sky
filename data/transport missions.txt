@@ -179,7 +179,7 @@ mission "Smuggler's Den, Part 1"
 mission "Smuggler's Den, Part 2"
 	landing
 	name "Refugees to <planet>"
-	description "Joe and Maria were unable to find work on <origin>. Take them to <destination>, to see if they can get a job there."
+	description "Joe and Maria were unable to find work on <origin>. Take them to <destination> to see if they can get a job there."
 	destination "Millrace"
 	passengers 2
 	to offer
@@ -439,6 +439,7 @@ mission "WR Star 1"
 mission "Deep Archaeology 1"
 	name "Deep Archaeology"
 	description "Drop this archaeologist off on <destination>, before making a trip to Midgard in the Deep to collect some samples."
+	minor
 	source
 		attributes paradise north "near earth"
 		near Miaplacidus 1 20
@@ -486,7 +487,7 @@ mission "Deep Archaeology 1"
 mission "Deep Archaeology 2"
 	landing
 	name "Deep Archaeology"
-	description "Travel to <destination>, and take wood fiber samples from an ancient church and from the trees that grow nearby."
+	description "Travel to <destination> and take wood fiber samples from an ancient church and from the trees that grow nearby."
 	source Vinci
 	destination Midgard
 	to offer
@@ -502,7 +503,7 @@ mission "Deep Archaeology 2"
 mission "Deep Archaeology 3"
 	landing
 	name "Deep Archaeology"
-	description "Return to <destination>, with the wood samples that you retrieved from the church on <origin>."
+	description "Return to <destination> with the wood samples that you retrieved from the church on <origin>."
 	source Midgard
 	destination Vinci
 	to offer
@@ -564,7 +565,7 @@ mission "Deep Archaeology 3"
 
 mission "Deep Archaeology 4"
 	name "Deep Archaeology"
-	description "Return to <destination>, with some specialized equipment for subterranean mapping."
+	description "Return to <destination> with some specialized equipment for subterranean mapping."
 	source Vinci
 	destination Midgard
 	to offer
@@ -960,7 +961,7 @@ mission "Sad Archie"
 mission "Rim Archaeology 1"
 	landing
 	name "Archaeology on <planet>"
-	description "Bring the famous archaeologist Albert Foster to <destination>, to look for signs of an ancient alien civilization."
+	description "Bring the famous archaeologist Albert Foster to <destination> to look for signs of an ancient alien civilization."
 	source "Vinci"
 	destination "Zug"
 	passengers 1
@@ -1428,7 +1429,7 @@ mission "Rescue Miners 1"
 
 mission "Rescue Miners 2"
 	landing
-	description "Participate in the medical evacuation of some miners injured in a recent accident on <planet>."
+	description "Participate in the medical evacuation of some miners injured in a recent accident on <origin>."
 	name "Rescue Miners"
 	minor
 	destination
@@ -1718,6 +1719,8 @@ mission "Terraforming 2"
 mission "Terraforming 3"
 	name "Terraforming Rand"
 	description "Plant a thruster on an asteroid to guide it into a collision with the northern pole of Rand."
+	blocked "You'll need more cargo space in order to take the next mission from Eric and Alaric. Return here when you have at least <capacity>."
+	cargo "thruster equipment" 10
 	source Rand
 	to offer
 		has "Terraforming 2: done"
@@ -1746,12 +1749,13 @@ mission "Terraforming 3"
 				`	"That is a stupid idea, and I want nothing to do with it."`
 					decline
 				`	"Well, if you think it will work, I'm willing to try it!"`
-			`	"Great!" says Amy. "I'll mark the asteroid on your radar. You just need to board it, install a small ion thruster, and wait for it to land on the planet, then return here."`
+			`	"Great!" says Amy. "I'll mark the asteroid on your radar. You just need to board it, install a small ion thruster, and return here."`
+			`	Eric contacts some spaceport workers and has them load a small thruster onto your ship, along with the equipment you will need to mount it on the asteroid.`
 				accept
 	
 	npc assist
-		government Derelict
-		personality derelict fleeing uninterested waiting pacifist
+		government Uninhabited
+		personality derelict fleeing uninterested waiting pacifist mute
 		ship Asteroid
 			name "Target Asteroid"
 			sprite "asteroid/medium rock/spin"

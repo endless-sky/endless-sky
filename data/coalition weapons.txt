@@ -46,6 +46,8 @@ outfit "Bombardment Turret"
 		sprite "projectile/bombardment"
 			"frame rate" 3.2
 			"no repeat"
+		"hardpoint sprite" "hardpoint/bombardment turret"
+		"hardpoint offset" 10.
 		sound "bombardment"
 		"hit effect" "bombardment impact"
 		"inaccuracy" 4
@@ -103,7 +105,7 @@ outfit "Finisher Pod"
 		"radar tracking" .8
 		"missile strength" 50
 		"submunition" "Active Finisher" 1
-	description `Finisher Torpedoes are one of the Heliarch's most dreaded weapons. In fact, in one way or another most of their other weapons merely exist to hold a ship in place for long enough for a barrage of Finishers to destroy it.`
+	description `Finisher Torpedoes are one of the Heliarchs' most dreaded weapons. In fact, in one way or another most of their other weapons merely exist to hold a ship in place for long enough for a barrage of Finishers to destroy it.`
 
 outfit "Active Finisher"
 	weapon
@@ -185,6 +187,8 @@ outfit "Heliarch Attractor"
 		sprite "projectile/attractor"
 			"frame rate" 5.2
 			"random start frame"
+		"hardpoint sprite" "hardpoint/heliarch attractor"
+		"hardpoint offset" 9.
 		sound "heliarch attractor"
 		"hit effect" "attractor impact"
 		"inaccuracy" 2
@@ -223,6 +227,8 @@ outfit "Heliarch Repulsor"
 		sprite "projectile/repulsor"
 			"frame rate" 3.2
 			"random start frame"
+		"hardpoint sprite" "hardpoint/heliarch repulsor"
+		"hardpoint offset" 9.
 		sound "heliarch repulsor"
 		"hit effect" "repulsor impact"
 		"inaccuracy" 3
