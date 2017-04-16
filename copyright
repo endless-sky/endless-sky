@@ -1,4 +1,4 @@
-Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+﻿Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: endless-sky
 Upstream-Contact: Michael Zahniser <mzahniser@gmail.com>
 Source: https://github.com/endless-sky/endless-sky
@@ -236,6 +236,10 @@ License: CC-BY-SA-4.0
 
 Files: images/land/*-harro*
 Copyright: @harro.eu (copyright@harro.eu)
+License: CC-BY-SA-4.0
+
+Files: images/land/*-iridium*
+Copyright: @Iridium Ore 
 License: CC-BY-SA-4.0
 
 Files:
