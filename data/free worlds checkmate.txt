@@ -1306,7 +1306,7 @@ mission "FWC Pug 2"
 					goto cut2
 			
 			label cut
-			`	"I'd think that would be obvious. With the hyperspace links cut, there's no way for anyone from outside to assist us. And they struck at a part of human space without much in the way of militias or bounty hunters or Navy protection. And the few half-decent warships that happened to be in system when they attacked have already been destroyed trying to fight them."`
+			`	"I'd think that would be obvious. With the hyperspace links cut, there's no way for anyone from outside to assist us. And they struck at a part of human space without much in the way of militias or bounty hunters or Navy protection. And the few half-decent warships that happened to be in-system when they attacked have already been destroyed trying to fight them."`
 			choice
 				`	"Did anyone try to resist them?"`
 					goto resist2
@@ -1489,7 +1489,7 @@ mission "FWC Pug 3"
 		set "event: fw armistice"
 		conversation
 			`Your ship creates quite a stir when it enters the system via jump drive, and the moment you've landed Alondo is waiting outside your hatch to speak with you. "What the heck is going on?" he says. "What happened to your fleet? And how in the world did you get access to a jump drive? We asked the Quarg to sell us one, but they gave us some vague response about 'not meddling in the affairs of other species.'"`
-			`	Katya says, "We were attacked by aliens. They cut the hyperspace links. And they're likely to invade more systems. We need to warn everyone. Including the Republic and the Navy." She explains more of the situation to him, and hands him a copy of your sensor scans of the alien ships.`
+			`	Katya says, "We were attacked by aliens. They cut the hyperspace links, and they're likely to invade more systems. We need to warn everyone. Including the Republic and the Navy." She explains more of the situation to him, and hands him a copy of your sensor scans of the alien ships.`
 			`	Alondo says, "What do you think we should do next?"`
 			choice
 				`	"We should negotiate a ceasefire with the Navy."`
@@ -1553,8 +1553,8 @@ mission "FWC Pug 3A"
 			`Surprisingly, the Navy lets you land without firing on you; the fact that you entered the system via jump drive probably made a big impression on them. But when your ship lands, it is immediately surrounded by Navy troops. Hesitantly, you and Katya disembark. You are greeted by Admiral Danforth, the leader of the Oathkeepers who previously assisted you to drive the Alphas and their mercenary fleet away from Poisonwood.`
 				goto introductions
 			label introductions
-			`	Standing next to Danforth is someone you think might be his bodyguard: a dark-skinned woman dressed entirely in black. Even the whites of her eyes are black: when she gets closer, you can see that it is actually a scleric tattoo, an intricate Celtic knotwork pattern inked into the whites of her eyes. Surprisingly, Katya recognizes her. "Raven!" says Katya. You aren't sure if Katya sounds happy to see her, or scared.`
-			`	"Hello Councilor," says the woman.`
+			`	Standing next to Danforth is someone you think might be his bodyguard: a dark-skinned woman dressed entirely in black. Even the whites of her eyes are black: when she gets closer, you can see that it is actually a scleric tattoo, an intricate Celtic knotwork pattern inked into the whites of her eyes. Surprisingly, Katya recognizes her. "Raven!" she exclaims. You aren't sure if Katya sounds happy to see her, or scared.`
+			`	"Hello, Councilor," says the woman.`
 			`	Danforth says, "We hear you have come from the disconnected territory, and that you bring word of a potential alien invasion. Come with us, please." He ushers you into one of the Navy cruisers that are parked nearby, and into a room you assume is his private office; the guards check you and Katya for weapons and then leave you alone with Danforth and Raven. "Now," says Danforth, "you will answer our questions."`
 			`	He gestures to Raven, who walks up to you and holds out her hands. "Take my hands, please, Captain," she says.`
 			choice
@@ -1676,7 +1676,7 @@ mission "FWC Pug 3C"
 				`	"What did you figure out?"`
 				`	"Is the link restored yet?"`
 			
-			`	She says, "I couldn't figure out exactly how this technology works, but it's some sort of graviton transmitter. I was able to switch it from sending a chaotic signal, to a coherent one. In theory, that will slowly strengthen the link. But it could take years for it to reopen, and we probably only have a few days before the Pug learn what happened here and overrun this system. So, we need to go back to <planet>, the other end of the link, and set up this thing. I think it's some sort of graviton reflector." She points to the alien equipment on the truck. "With it in place, we can set up a harmonic resonance between this star system and <system>, and in theory the link will regenerate much more quickly."`
+			`	She says, "I couldn't figure out exactly how this technology works, but it's some sort of graviton transmitter. I was able to switch it from sending a chaotic signal, to a coherent one. In theory, that will slowly strengthen the link. But it could take years for it to reopen, and we probably only have a few days before the Pug learn what happened here and overrun this system. So, we need to go back to <planet>, the other end of the link, and set up this thing. This one is mainly some sort of reflector." She points to the alien equipment on the truck. "With it in place, we can set up a harmonic resonance between this star system and <system>, and in theory the link will regenerate much more quickly."`
 			choice
 				`	"Okay, let's give it a try!"`
 					accept
@@ -1934,7 +1934,7 @@ mission "FWC Pug 4"
 mission "FWC Pug 4A"
 	landing
 	name "Equipment from <planet>"
-	description "Travel with Freya to pick up the alien equipment that you installed on <planet> and bring it to Arabia to reopen another of the hyperspace links."
+	description "Travel with Freya to pick up the alien equipment that you installed on <planet> and bring it to Arabia to reopen another one of the hyperspace links."
 	autosave
 	source Oblivion
 	destination Tundra
@@ -2583,11 +2583,11 @@ mission "FWC Pug 6"
 				goto house
 			
 			label house
-			`	You continue to explore for a while. Aside from the illusions, the city seems to be deserted. "Let's check inside one of the houses," Freya says at last. You climb up the steps to what looks like an apartment building and find that all the doors are unlocked. Inside one of the living spaces, you explore the different rooms and find that the water fixtures and electricity are working, but a thick layer of dust covers everything. Freya, meanwhile, is staring at one of the electrical outlets. "<first>, she says, "do you see anything odd about this?"`
+			`	You continue to explore for a while. Aside from the illusions, the city seems to be deserted. "Let's check inside one of the houses," Freya says at last. You climb up the steps to what looks like an apartment building and find that all the doors are unlocked. Inside one of the living spaces, you explore the different rooms and find that the water fixtures and power are working, but a thick layer of dust covers everything. Freya, meanwhile, is staring at one of the power outlets. "<first>, she says, "do you see anything odd about this?"`
 			choice
 				`	"No, it's just an ordinary electric outlet."`
 				`	"Everything here is odd. The city, the holograms, all of it."`
-			`	She says, "It's an ordinary, human style electrical outlet. Human. In an alien city. And the steps we came up to get here: the Pug have legs half again as long as ours. But the tread spacing was at the normal human height. This building wasn't made for the Pug. It was made for us."`
+			`	She says, "It's an ordinary, human style electrical outlet. Human. In an alien city. And the steps we came up to get here: the Pug have legs half as long as ours. But the tread spacing was at the normal human height. This building wasn't made for the Pug. It was made for us."`
 			`	Reports begin coming in as the Navy explores the rest of the planet, and they are all finding the same thing: the cities are abandoned, many of them with signs that they were never inhabited in the first place. The first time you visited this planet, you thought it must have a billion inhabitants, but now it seems that its true population was less than a million - all of whom have apparently departed to somewhere beyond the wormhole.`
 			`	Freya says, "Let's get back to the spaceport and meet up with the admirals."`
 
