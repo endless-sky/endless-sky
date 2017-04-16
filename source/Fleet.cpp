@@ -43,11 +43,11 @@ void Fleet::Load(const DataNode &node)
 {
 	if(node.Size() >= 2)
 		fleetName = node.Token(1);
-	
+
 	// If Load() has already been called once on this fleet, any subsequent
 	// calls will replace the variants instead of adding to them.
 	bool resetVariants = !variants.empty();
-	
+
 	for(const DataNode &child : node)
 	{
 		if(child.Token(0) == "government" && child.Size() >= 2)
@@ -96,12 +96,12 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 {
 	if(!total || !government || variants.empty())
 		return;
-	
+
 	// Pick a fleet variant to instantiate.
 	const Variant &variant = ChooseVariant();
 	if(variant.ships.empty())
 		return;
-	
+
 	// Where this fleet can come from depends on whether it is friendly to any
 	// planets in this system and whether it has jump drives.
 	vector<const System *> linkVector;
@@ -109,17 +109,22 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 	// others don't have that jump method, they are being carried as fighters.
 	// That is, content creators should avoid creating fleets with a mix of jump
 	// drives and hyperdrives.
-	int jumpType = 0;
+	bool hasJumpDrive = false;
+	double jumpType = 0.;
 	for(const Ship *ship : variant.ships)
+	{
+		hasJumpDrive |= static_cast<bool>(ship->Attributes().Get("jump drive"));
 		jumpType = max(jumpType,
-			 ship->Attributes().Get("jump drive") ? 200 :
-			 ship->Attributes().Get("hyperdrive") ? 100 : 0);
+			 ship->Attributes().Get("jump drive") ? ship->Attributes().Get("jump fuel") :
+			 ship->Attributes().Get("hyperdrive") ? ship->Attributes().Get("hyperdrive fuel") :
+			 ship->Attributes().Get("scram drive") ? ship->Attributes().Get("scram fuel") : 0.);
+	}
 	if(jumpType)
 	{
 		// Don't try to make a fleet "enter" from another system if none of the
 		// ships have jump drives.
 		bool isWelcomeHere = !system.GetGovernment()->IsEnemy(government);
-		for(const System *neighbor : (jumpType == 200 ? system.Neighbors() : system.Links()))
+		for(const System *neighbor : (hasJumpDrive ? system.Neighbors() : system.Links()))
 		{
 			// If this ship is not "welcome" in the current system, prefer to have
 			// it enter from a system that is friendly to it. (This is for realism,
@@ -130,7 +135,7 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 				linkVector.insert(linkVector.end(), 4, neighbor);
 		}
 	}
-	
+
 	// Find all the inhabited planets this fleet could take off from.
 	vector<const Planet *> planetVector;
 	if(!personality.IsSurveillance())
@@ -138,22 +143,22 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 			if(object.GetPlanet() && object.GetPlanet()->HasSpaceport()
 					&& !object.GetPlanet()->GetGovernment()->IsEnemy(government))
 				planetVector.push_back(object.GetPlanet());
-	
+
 	// If there is nowhere for this fleet to come from, don't create it.
 	size_t options = linkVector.size() + planetVector.size();
 	if(!options)
 		return;
-	
+
 	// Choose a random planet or star system to come from.
 	size_t choice = Random::Int(options);
-	
+
 	// Figure out what system the ship is starting in, where it is going, and
 	// what position it should start from in the system.
 	const System *source = &system;
 	const System *target = &system;
 	Point position;
 	double radius = 0.;
-	
+
 	// If a planet is chosen, also pick a system to travel to after taking off.
 	if(choice >= linkVector.size())
 	{
@@ -161,7 +166,7 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 		if(!linkVector.empty())
 			target = linkVector[Random::Int(linkVector.size())];
 	}
-	
+
 	// Find the stellar object for the given planet, and place the ships there.
 	if(planet)
 	{
@@ -179,7 +184,7 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 		radius = 1000.;
 		source = linkVector[choice];
 	}
-	
+
 	// Place all the ships in the chosen fleet variant.
 	shared_ptr<Ship> flagship;
 	vector<shared_ptr<Ship>> placed = Instantiate(variant);
@@ -188,10 +193,10 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 		// If this is a fighter and someone can carry it, no need to position it.
 		if(PlaceFighter(ship, placed))
 			continue;
-		
+
 		Angle angle = Angle::Random(360.);
 		Point pos = position + angle.Unit() * (Random::Real() * radius);
-		
+
 		ships.push_front(ship);
 		ship->SetSystem(source);
 		ship->SetPlanet(planet);
@@ -205,12 +210,12 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 		}
 		if(target != source)
 			ship->SetTargetSystem(target);
-		
+
 		if(flagship)
 			ship->SetParent(flagship);
 		else
 			flagship = ship;
-		
+
 		SetCargo(&*ship);
 	}
 }
@@ -222,15 +227,15 @@ void Fleet::Place(const System &system, list<shared_ptr<Ship>> &ships, bool carr
 {
 	if(!total || !government || variants.empty())
 		return;
-	
+
 	// Pick a fleet variant to instantiate.
 	const Variant &variant = ChooseVariant();
 	if(variant.ships.empty())
 		return;
-	
+
 	// Determine where the fleet is going to or coming from.
 	Point center = ChooseCenter(system);
-	
+
 	// Place all the ships in the chosen fleet variant.
 	shared_ptr<Ship> flagship;
 	vector<shared_ptr<Ship>> placed = Instantiate(variant);
@@ -239,20 +244,20 @@ void Fleet::Place(const System &system, list<shared_ptr<Ship>> &ships, bool carr
 		// If this is a fighter and someone can carry it, no need to position it.
 		if(carried && PlaceFighter(ship, placed))
 			continue;
-		
+
 		Angle angle = Angle::Random();
 		Point pos = center + Angle::Random().Unit() * Random::Real() * 400.;
 		double velocity = Random::Real() * ship->MaxVelocity();
-		
+
 		ships.push_front(ship);
 		ship->SetSystem(&system);
 		ship->Place(pos, velocity * angle.Unit(), angle);
-		
+
 		if(flagship)
 			ship->SetParent(flagship);
 		else
 			flagship = ship;
-		
+
 		SetCargo(&*ship);
 	}
 }
@@ -267,11 +272,11 @@ void Fleet::Enter(const System &system, Ship &ship)
 		Place(system, ship);
 		return;
 	}
-	
+
 	const System *source = system.Links()[Random::Int(system.Links().size())];
 	Angle angle = Angle::Random();
 	Point pos = angle.Unit() * Random::Real() * 1000.;
-	
+
 	ship.Place(pos, angle.Unit(), angle);
 	ship.SetSystem(source);
 	ship.SetTargetSystem(&system);
@@ -283,16 +288,16 @@ void Fleet::Place(const System &system, Ship &ship)
 {
 	// Move out a random distance from that object, facing toward it or away.
 	Point pos = ChooseCenter(system) + Angle::Random().Unit() * Random::Real() * 400.;
-	
+
 	double velocity = Random::Real() * ship.MaxVelocity();
-	
+
 	ship.SetSystem(&system);
 	Angle angle = Angle::Random();
 	ship.Place(pos, velocity * angle.Unit(), angle);
 }
 
 
-	
+
 int64_t Fleet::Strength() const
 {
 	int64_t sum = 0;
@@ -311,7 +316,7 @@ int64_t Fleet::Strength() const
 Fleet::Variant::Variant(const DataNode &node)
 {
 	weight = (node.Size() < 2) ? 1 : static_cast<int>(node.Value(1));
-	
+
 	for(const DataNode &child : node)
 	{
 		int n = 1;
@@ -329,7 +334,7 @@ const Fleet::Variant &Fleet::ChooseVariant() const
 	unsigned index = 0;
 	for(int choice = Random::Int(total); choice >= variants[index].weight; ++index)
 		choice -= variants[index].weight;
-	
+
 	return variants[index];
 }
 
@@ -341,7 +346,7 @@ Point Fleet::ChooseCenter(const System &system)
 	for(const StellarObject &object : system.Objects())
 		if(object.GetPlanet() && object.GetPlanet()->HasSpaceport())
 			centers.push_back(object.Position());
-	
+
 	if(centers.empty())
 		return Point();
 	return centers[Random::Int(centers.size())];
@@ -359,14 +364,14 @@ vector<shared_ptr<Ship>> Fleet::Instantiate(const Variant &variant) const
 			Files::LogError("Skipping unknown ship in fleet \"" + fleetName + "\".");
 			continue;
 		}
-		
+
 		shared_ptr<Ship> ship(new Ship(*model));
-		
+
 		bool isFighter = ship->CanBeCarried();
 		ship->SetName(((isFighter && fighterNames) ? fighterNames : names)->Get());
 		ship->SetGovernment(government);
 		ship->SetPersonality(personality);
-		
+
 		placed.push_back(ship);
 	}
 	return placed;
@@ -378,11 +383,11 @@ bool Fleet::PlaceFighter(shared_ptr<Ship> fighter, vector<shared_ptr<Ship>> &pla
 {
 	if(!fighter->CanBeCarried())
 		return false;
-	
+
 	for(const shared_ptr<Ship> &parent : placed)
 		if(parent->Carry(fighter))
 			return true;
-	
+
 	return false;
 }
 
@@ -395,7 +400,7 @@ void Fleet::SetCargo(Ship *ship) const
 		int free = ship->Cargo().Free();
 		if(!free)
 			break;
-		
+
 		int index = Random::Int(GameData::Commodities().size());
 		if(commodities.size())
 		{
@@ -409,7 +414,7 @@ void Fleet::SetCargo(Ship *ship) const
 					break;
 				}
 		}
-		
+
 		const Trade::Commodity &commodity = GameData::Commodities()[index];
 		int amount = Random::Int(free) + 1;
 		ship->Cargo().Add(commodity.name, amount);
