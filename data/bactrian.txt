@@ -193,7 +193,7 @@ mission "Bactrian Unlock [1]"
 					decline
 			
 			`	"Thank you so much. The plan is to rendezvous with a number of warships on Memory and then head to Alnitak. My superiors received word from the admiral on Farpoint that there are a number of Navy ships at the ready to avenge the ships they lost, so I expect we'll pick up some help there when we refuel. After the fleet is mustered, we go to Arneb." He smiles briefly, adding, "Just make sure that the <npc> makes it onto the planet. She'll be carrying the landing crew, along with myself."`
-			`	The communications device on his belt squawks, and he quickly responds, giving orders to the fleet that will be joining you on the mission. Before you can return to your ship, he says, "Also, since we'll be going into battle together, I might as well introduce myself. I'm Deep Lieutenant Shane Paris. Good luck fighting; we'll meet you in orbit."`
+			`	The communications device on his belt squawks, and he quickly responds, giving orders to the fleet that will be joining you on the mission. Before you can return to your ship, he says, "Also, since we'll be going into battle together, I might as well introduce myself. I'm Security Lieutenant Shane Paris. Good luck fighting; we'll meet you in orbit."`
 				accept
 	
 	npc save accompany
