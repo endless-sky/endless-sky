@@ -116,7 +116,7 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 		// Don't try to make a fleet "enter" from another system if none of the
 		// ships have jump drives.
 		bool isWelcomeHere = !system.GetGovernment()->IsEnemy(government);
-		for(const System *neighbor : system.Links())
+		for(const System *neighbor : (jumpType == Ship::JUMP ? system.Neighbors() : system.Links()))
 		{
 			// If this ship is not "welcome" in the current system, prefer to have
 			// it enter from a system that is friendly to it. (This is for realism,
