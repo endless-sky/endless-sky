@@ -477,4 +477,14 @@ private:
 
 
 
+inline constexpr Ship::JumpType operator|(const Ship::JumpType first, const Ship::JumpType second) noexcept {
+	return static_cast<Ship::JumpType>(static_cast<unsigned int>(first) | static_cast<unsigned int>(second));
+}
+
+inline Ship::JumpType& operator|=(Ship::JumpType& first, const Ship::JumpType second) noexcept {
+	return first = first | second;
+}
+
+
+
 #endif

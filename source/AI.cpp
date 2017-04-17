@@ -1275,7 +1275,7 @@ void AI::PrepareForHyperspace(Ship &ship, Command &command)
 		Point normal(-direction.Y(), direction.X());
 
 		double deviation = ship.Velocity().Dot(normal);
-		if(fabs(deviation) > ship.Attributes().Get("deviation"))
+		if(fabs(deviation) > ship.Attributes().Get("scram deviation"))
 		{
 			// Need to maneuver; not ready to jump
 			if((ship.Facing().Unit().Dot(normal) < 0) == (deviation < 0))
@@ -1293,7 +1293,7 @@ void AI::PrepareForHyperspace(Ship &ship, Command &command)
 				double correctionWhileTurning = fabs(1 - cos) * ship.Acceleration() / turnRateRadians;
 				// (Note that this will always underestimate because thrust happens before turn)
 
-				if(fabs(deviation) - correctionWhileTurning > ship.Attributes().Get("deviation"))
+				if(fabs(deviation) - correctionWhileTurning > ship.Attributes().Get("scram deviation"))
 					// Want to thrust from an even sharper angle
 					direction = -deviation * normal;
 			}

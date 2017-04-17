@@ -107,24 +107,16 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 	vector<const System *> linkVector;
 	// Find out what the "best" jump method the fleet has is. Assume that if the
 	// others don't have that jump method, they are being carried as fighters.
-	// That is, content creators should avoid creating fleets with a mix of jump
-	// drives and hyperdrives.
-	bool hasJumpDrive = false;
-	double jumpType = 0.;
+	Ship::JumpType jumpType = Ship::NONE;
 	for(const Ship *ship : variant.ships)
-	{
-		hasJumpDrive |= static_cast<bool>(ship->Attributes().Get("jump drive"));
-		jumpType = max(jumpType,
-			 ship->Attributes().Get("jump drive") ? ship->Attributes().Get("jump fuel") :
-			 ship->Attributes().Get("hyperdrive") ? ship->Attributes().Get("hyperdrive fuel") :
-			 ship->Attributes().Get("scram drive") ? ship->Attributes().Get("scram fuel") : 0.);
-	}
-	if(jumpType)
+		jumpType |= ship->HyperspaceType();
+
+	if(jumpType != Ship::NONE)
 	{
 		// Don't try to make a fleet "enter" from another system if none of the
 		// ships have jump drives.
 		bool isWelcomeHere = !system.GetGovernment()->IsEnemy(government);
-		for(const System *neighbor : (hasJumpDrive ? system.Neighbors() : system.Links()))
+		for(const System *neighbor : system.Links())
 		{
 			// If this ship is not "welcome" in the current system, prefer to have
 			// it enter from a system that is friendly to it. (This is for realism,

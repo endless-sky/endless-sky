@@ -54,16 +54,6 @@ namespace {
 
 
 
-inline constexpr Ship::JumpType operator|(const Ship::JumpType first, const Ship::JumpType second) noexcept {
-	return static_cast<Ship::JumpType>(static_cast<unsigned int>(first) | static_cast<unsigned int>(second));
-}
-
-inline Ship::JumpType& operator|=(Ship::JumpType& first, const Ship::JumpType second) noexcept {
-	return first = first | second;
-}
-
-
-
 void Ship::Load(const DataNode &node)
 {
 	if(node.Size() >= 2)
@@ -1678,7 +1668,7 @@ Ship::JumpType Ship::CheckHyperspace() const
 	if(type == SCRAM)
 	{
 		double deviation = fabs(direction.Unit().Cross(velocity));
-		if(deviation > attributes.Get("deviation"))
+		if(deviation > attributes.Get("scram deviation"))
 			return NONE;
 	}
 	else if(velocity.Length() > attributes.Get("jump speed"))
