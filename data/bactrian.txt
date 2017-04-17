@@ -82,7 +82,7 @@ mission "Bactrian Unlock [0]"
 
 	on enter Arneb
 		set "found star queen"
-		dialog `As you enter Arneb, your scanners pick up the Star Queen landing on Haven. Unfortunately, there are also a large number of pirate vessels headed in your direction.  You should report back to the Deep Security officer on <destination> for further instruction.`
+		dialog `As you enter Arneb, your scanners pick up the Star Queen landing on Haven. Unfortunately, there are also a large number of pirate vessels headed in your direction. You should report back to the Deep Security officer on <destination> for further instruction.`
 	
 	on visit
 		dialog `You have landed on Valhalla, but you have not located the Star Queen! Find it somewhere in the Far North.`
@@ -119,7 +119,7 @@ mission "Bactrian Unlock [0]: Farpoint"
 
 	on offer
 		conversation
-			`After speaking with a Navy Officer for a few minutes, you find out that the Star Queen came through here over a week ago, escorted by several large pirate ships. The Navy did not want to risk the lives of those on the Star Queen by engaging the pirate fleet, so they let it continue north from here.`
+			`After speaking with a Navy officer for a few minutes, you find out that the Star Queen came through here over a week ago, escorted by several large pirate ships. The Navy did not want to risk the lives of those on the Star Queen by engaging the pirate fleet, so they let it continue north from here.`
 			`	The spaceport clearly shows preparations for a rescue mission, but due to the destruction of a number of Navy capital ships by the Star Queen's captors in the days preceding its abduction, they have been ordered to wait for additional ammunition and reinforcements.`
 			`	The Navy officer ends by hinting that the Star Queen is likely to be in Alnilam or Arneb, as those systems are the farthest from anyone looking to find or rescue the ship.`
 				decline
