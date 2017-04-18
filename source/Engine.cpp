@@ -1523,6 +1523,15 @@ void Engine::AddSprites(const Ship &ship)
 	double cloak = ship.Cloaking();
 	bool drawCloaked = (cloak && ship.GetGovernment()->IsPlayer());
 	
+	if(hasFighters)
+		for(const Ship::Bay &bay : ship.Bays())
+			if(bay.side == Ship::Bay::UNDER && bay.ship)
+			{
+				if(drawCloaked)
+					draw[calcTickTock].AddSwizzled(*bay.ship, 7);
+				draw[calcTickTock].Add(*bay.ship, cloak);
+			}
+	
 	if(ship.IsThrusting())
 		for(const Ship::EnginePoint &point : ship.EnginePoints())
 		{
@@ -1536,15 +1545,6 @@ void Engine::AddSprites(const Ship &ship)
 					draw[calcTickTock].Add(sprite, cloak);
 				}
 		}
-	
-	if(hasFighters)
-		for(const Ship::Bay &bay : ship.Bays())
-			if(bay.side == Ship::Bay::UNDER && bay.ship)
-			{
-				if(drawCloaked)
-					draw[calcTickTock].AddSwizzled(*bay.ship, 7);
-				draw[calcTickTock].Add(*bay.ship, cloak);
-			}
 	
 	if(drawCloaked)
 		draw[calcTickTock].AddSwizzled(ship, 7);
