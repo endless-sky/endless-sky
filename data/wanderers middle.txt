@@ -1834,7 +1834,7 @@ mission "Wanderers: Sestor Search: Human Spaceport"
 				`	"I don't want to jump to any conclusions."`
 					goto no
 					
-			`	"Aliens!?" The pilot's face reddens, and his eyes narrow in anger. "Like those detestable squirrels, you mean? Told me they were peaceful, went further north, and nearly had my ship torn to pieces!" You try to tell him of the dynamic between the exiles, the Efreti, Mereti, and Sestor, but he clearly does not want to hear about the Kor, so you decide to steer the conversation to an end.`
+			`	"Aliens!?" The pilot's face reddens, and his eyes narrow in anger. "Like those detestable squirrels, you mean? Told me they were peaceful, so I went further north, and nearly had my ship torn to pieces!" You try to tell him that the Hai are a seperate species from the Korath, but he clearly does not want to hear any more, so you decide to steer the conversation to an end.`
 				goto end
 				
 			label no
