@@ -1092,8 +1092,6 @@ fleet "Small Deep"
 		"Corvette (Missile)"
 	variant 3
 		"Flivver"
-	variant 2
-		"Flivver (Racing)"
 
 fleet "Large Deep"
 	government "Republic"
