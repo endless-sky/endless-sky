@@ -116,6 +116,11 @@ void AI::UpdateKeys(PlayerInfo &player, Command &clickCommands, bool isActive)
 	
 	Command oldHeld = keyHeld;
 	keyHeld.ReadKeyboard();
+    
+#ifdef TOUCH_VERSION
+    keyHeld |= touchCommands;
+#endif
+    
 	keyStuck |= clickCommands;
 	clickCommands.Clear();
 	keyDown = keyHeld.AndNot(oldHeld);
@@ -2392,6 +2397,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 	if(hasGuns)
 		command |= AutoFire(ship, false);
 	hasGuns |= keyHeld.Has(Command::PRIMARY);
+    
 	if(keyHeld)
 	{
 		if(keyHeld.Has(Command::RIGHT | Command::LEFT))

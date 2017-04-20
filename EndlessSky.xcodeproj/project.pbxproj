@@ -62,7 +62,6 @@
 		A96863C71AE6FD0E004FE1FE /* HailPanel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A968631D1AE6FD0B004FE1FE /* HailPanel.cpp */; };
 		A96863C81AE6FD0E004FE1FE /* HiringPanel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A968631F1AE6FD0B004FE1FE /* HiringPanel.cpp */; };
 		A96863C91AE6FD0E004FE1FE /* ImageBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A96863211AE6FD0B004FE1FE /* ImageBuffer.cpp */; };
-		A96863CA1AE6FD0E004FE1FE /* InfoPanel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A96863231AE6FD0B004FE1FE /* InfoPanel.cpp */; };
 		A96863CB1AE6FD0E004FE1FE /* Information.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A96863251AE6FD0B004FE1FE /* Information.cpp */; };
 		A96863CC1AE6FD0E004FE1FE /* Interface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A96863271AE6FD0B004FE1FE /* Interface.cpp */; };
 		A96863CD1AE6FD0E004FE1FE /* LineShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A96863291AE6FD0B004FE1FE /* LineShader.cpp */; };
@@ -142,6 +141,8 @@
 		A9CC526D1950C9F6004E4E22 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9CC526C1950C9F6004E4E22 /* Cocoa.framework */; };
 		A9CC52A11950CA16004E4E22 /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9CC52A01950CA16004E4E22 /* SDL2.framework */; };
 		A9D40D1A195DFAA60086EE52 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9D40D19195DFAA60086EE52 /* OpenGL.framework */; };
+		C723E8081EA8BA8000FCF651 /* ShipInfoPanel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C723E8061EA8BA8000FCF651 /* ShipInfoPanel.cpp */; };
+		C723E80B1EA8BA9500FCF651 /* PlayerInfoPanel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C723E8091EA8BA9500FCF651 /* PlayerInfoPanel.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -264,8 +265,6 @@
 		A96863201AE6FD0B004FE1FE /* HiringPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HiringPanel.h; path = source/HiringPanel.h; sourceTree = "<group>"; };
 		A96863211AE6FD0B004FE1FE /* ImageBuffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ImageBuffer.cpp; path = source/ImageBuffer.cpp; sourceTree = "<group>"; };
 		A96863221AE6FD0B004FE1FE /* ImageBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImageBuffer.h; path = source/ImageBuffer.h; sourceTree = "<group>"; };
-		A96863231AE6FD0B004FE1FE /* InfoPanel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = InfoPanel.cpp; path = source/InfoPanel.cpp; sourceTree = "<group>"; };
-		A96863241AE6FD0B004FE1FE /* InfoPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InfoPanel.h; path = source/InfoPanel.h; sourceTree = "<group>"; };
 		A96863251AE6FD0B004FE1FE /* Information.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Information.cpp; path = source/Information.cpp; sourceTree = "<group>"; };
 		A96863261AE6FD0B004FE1FE /* Information.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Information.h; path = source/Information.h; sourceTree = "<group>"; };
 		A96863271AE6FD0B004FE1FE /* Interface.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Interface.cpp; path = source/Interface.cpp; sourceTree = "<group>"; };
@@ -418,6 +417,10 @@
 		A9CC52711950C9F6004E4E22 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		A9CC52A01950CA16004E4E22 /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = /Library/Frameworks/SDL2.framework; sourceTree = "<absolute>"; };
 		A9D40D19195DFAA60086EE52 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
+		C723E8061EA8BA8000FCF651 /* ShipInfoPanel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ShipInfoPanel.cpp; path = source/ShipInfoPanel.cpp; sourceTree = "<group>"; };
+		C723E8071EA8BA8000FCF651 /* ShipInfoPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShipInfoPanel.h; path = source/ShipInfoPanel.h; sourceTree = "<group>"; };
+		C723E8091EA8BA9500FCF651 /* PlayerInfoPanel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PlayerInfoPanel.cpp; path = source/PlayerInfoPanel.cpp; sourceTree = "<group>"; };
+		C723E80A1EA8BA9500FCF651 /* PlayerInfoPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlayerInfoPanel.h; path = source/PlayerInfoPanel.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -441,6 +444,10 @@
 		654D33611BE92C9200D1E5AB /* source */ = {
 			isa = PBXGroup;
 			children = (
+				C723E8091EA8BA9500FCF651 /* PlayerInfoPanel.cpp */,
+				C723E80A1EA8BA9500FCF651 /* PlayerInfoPanel.h */,
+				C723E8061EA8BA8000FCF651 /* ShipInfoPanel.cpp */,
+				C723E8071EA8BA8000FCF651 /* ShipInfoPanel.h */,
 				A96862CD1AE6FD0A004FE1FE /* Account.cpp */,
 				A96862CE1AE6FD0A004FE1FE /* Account.h */,
 				A96862CF1AE6FD0A004FE1FE /* AI.cpp */,
@@ -535,8 +542,6 @@
 				A96863201AE6FD0B004FE1FE /* HiringPanel.h */,
 				A96863211AE6FD0B004FE1FE /* ImageBuffer.cpp */,
 				A96863221AE6FD0B004FE1FE /* ImageBuffer.h */,
-				A96863231AE6FD0B004FE1FE /* InfoPanel.cpp */,
-				A96863241AE6FD0B004FE1FE /* InfoPanel.h */,
 				A96863251AE6FD0B004FE1FE /* Information.cpp */,
 				A96863261AE6FD0B004FE1FE /* Information.h */,
 				A96863271AE6FD0B004FE1FE /* Interface.cpp */,
@@ -886,7 +891,6 @@
 				628BDAEF1CC5DC950062BCD2 /* PlanetLabel.cpp in Sources */,
 				6245F8281D301C9000A7A094 /* Hardpoint.cpp in Sources */,
 				A96863C01AE6FD0E004FE1FE /* FontSet.cpp in Sources */,
-				A96863CA1AE6FD0E004FE1FE /* InfoPanel.cpp in Sources */,
 				A96863D61AE6FD0E004FE1FE /* Messages.cpp in Sources */,
 				A97C24ED1B17BE3C007DDFA1 /* MapShipyardPanel.cpp in Sources */,
 				A96863D71AE6FD0E004FE1FE /* Mission.cpp in Sources */,
@@ -894,11 +898,13 @@
 				A96863F21AE6FD0E004FE1FE /* Ship.cpp in Sources */,
 				A96863D01AE6FD0E004FE1FE /* main.cpp in Sources */,
 				A96863BE1AE6FD0E004FE1FE /* Fleet.cpp in Sources */,
+				C723E8081EA8BA8000FCF651 /* ShipInfoPanel.cpp in Sources */,
 				A96864011AE6FD0E004FE1FE /* Table.cpp in Sources */,
 				A96863AB1AE6FD0E004FE1FE /* CargoHold.cpp in Sources */,
 				A96864051AE6FD0E004FE1FE /* Weapon.cpp in Sources */,
 				A96863EC1AE6FD0E004FE1FE /* Radar.cpp in Sources */,
 				A96863F61AE6FD0E004FE1FE /* ShopPanel.cpp in Sources */,
+				C723E80B1EA8BA9500FCF651 /* PlayerInfoPanel.cpp in Sources */,
 				A96863BC1AE6FD0E004FE1FE /* Files.cpp in Sources */,
 				A96863CB1AE6FD0E004FE1FE /* Information.cpp in Sources */,
 				A96863F91AE6FD0E004FE1FE /* Sprite.cpp in Sources */,
@@ -1026,6 +1032,7 @@
 		A9CC529B1950C9F6004E4E22 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1048,6 +1055,10 @@
 					/usr/local/lib,
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				OTHER_CPLUSPLUSFLAGS = (
+					"$(OTHER_CFLAGS)",
+					"-DTOUCH_VERSION",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1056,6 +1067,7 @@
 		A9CC529C1950C9F6004E4E22 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1078,6 +1090,10 @@
 					/usr/local/lib,
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				OTHER_CPLUSPLUSFLAGS = (
+					"$(OTHER_CFLAGS)",
+					"-DTOUCH_VERSION",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

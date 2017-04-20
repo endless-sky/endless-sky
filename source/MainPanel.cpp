@@ -35,6 +35,12 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "System.h"
 #include "UI.h"
 
+#warning remove this
+#include "Files.h"
+#include "ImageBuffer.h"
+#include "Sprite.h"
+#include "Body.h"
+
 #include <sstream>
 #include <string>
 
@@ -56,8 +62,13 @@ void MainPanel::Step()
 	
 	bool isActive = GetUI()->IsTop(this);
 	
+#ifdef TOUCH_VERSION
+    show |= touchCommands;
+#endif
+    
 	if(show.Has(Command::MAP))
 	{
+        printf("Show map\n");
 		GetUI()->Push(new MapDetailPanel(player));
 		isActive = false;
 	}
@@ -68,6 +79,10 @@ void MainPanel::Step()
 	}
 	else if(show.Has(Command::HAIL))
 		isActive = !ShowHailPanel();
+    
+#ifdef TOUCH_VERSION
+    touchCommands.Clear(Command::MAP|Command::INFO|Command::HAIL);
+#endif
 	
 	show = Command::NONE;
 	
@@ -151,7 +166,30 @@ void MainPanel::Step()
 	canClick = isActive;
 }
 
+#ifdef TOUCH_VERSION
+void MainPanel::TouchButtonAction(Command command) {
+    canDrag = false;
+    touchCommands.Set(command);
+}
 
+DrawList *drawList = nullptr;
+int touchButtonWidth = 50;
+int touchButtonHeight = 50;
+
+void MainPanel::LoadTouchControl(const char * path, const char *name, Point off) {
+    ImageBuffer *buffer = ImageBuffer::Read(Files::Resources() + path);
+    Sprite sprite = Sprite(name);
+    sprite.AddFrame(0, buffer, nullptr, false);
+    
+    Point imagePoint(off.X()+(touchButtonWidth/2), off.Y()+(touchButtonHeight/2));
+
+    
+    Body body = Body(&sprite, imagePoint);
+    //    DrawList drawList;
+    drawList->Add(body);
+}
+
+#endif
 
 void MainPanel::Draw()
 {
@@ -159,7 +197,62 @@ void MainPanel::Draw()
 	glClear(GL_COLOR_BUFFER_BIT);
 	
 	engine.Draw();
-	
+    
+#ifdef TOUCH_VERSION
+    
+    Point forwardOffset(Screen::Left()+touchButtonWidth, Screen::Bottom()-(touchButtonHeight*3));
+    Point backOffset(Screen::Left()+touchButtonWidth, Screen::Bottom()-touchButtonHeight);
+    Point leftOffset(Screen::Left(), Screen::Bottom()-(touchButtonHeight*2));
+    Point rightOffset(Screen::Left()+(touchButtonWidth*2), Screen::Bottom()-(touchButtonHeight*2));
+    Point forwardLeftOffset(Screen::Left(), Screen::Bottom()-(touchButtonHeight*3));
+    Point forwardRightOffset(Screen::Left()+(touchButtonWidth*2), Screen::Bottom()-(touchButtonHeight*3));
+    
+    Point primaryOffset(Screen::Right()-touchButtonWidth, Screen::Bottom()-(touchButtonHeight*3));
+    Point secondaryOffset(Screen::Right()-touchButtonWidth, Screen::Bottom()-(touchButtonHeight*2));
+    
+    Point menuOffset(Screen::Left(), Screen::Top());
+    
+    Point landOffset(Screen::Right()-(Screen::Width()/2)-(touchButtonWidth/2), Screen::Bottom()-touchButtonHeight);
+    Point mapOffset((Screen::Right()-(Screen::Width()/2))+(touchButtonWidth/2), Screen::Bottom()-touchButtonHeight);
+    
+    if (!drawList) {
+        drawList = new DrawList;
+        
+        LoadTouchControl("images/ui/touchforward.jpg", "touchforward", forwardOffset);
+        LoadTouchControl("images/ui/touchback.jpg", "touchback", backOffset);
+        LoadTouchControl("images/ui/touchleft.jpg", "touchleft", leftOffset);
+        LoadTouchControl("images/ui/touchright.jpg", "touchright", rightOffset);
+        LoadTouchControl("images/ui/touchforwardleft.jpg", "touchforwardleft", forwardLeftOffset);
+        LoadTouchControl("images/ui/touchforwardright.jpg", "touchforwardright", forwardRightOffset);
+        
+        LoadTouchControl("images/ui/touchprimary.jpg", "touchprimary", primaryOffset);
+        LoadTouchControl("images/ui/touchsecondary.jpg", "touchsecondary", secondaryOffset);
+        
+        LoadTouchControl("images/ui/touchmenu.jpg", "touchmenu", menuOffset);
+        
+        LoadTouchControl("images/ui/touchland.jpg", "touchland", landOffset);
+        LoadTouchControl("images/ui/touchmap.jpg", "touchmap", mapOffset);
+    }
+    
+    AddZone(Rectangle::FromCorner(forwardOffset, Point(touchButtonWidth, touchButtonHeight)), [this](){ this->TouchButtonAction(Command::FORWARD); });
+    AddZone(Rectangle::FromCorner(backOffset, Point(touchButtonWidth, touchButtonHeight)), [this](){ this->TouchButtonAction(Command::BACK); });
+    AddZone(Rectangle::FromCorner(leftOffset, Point(touchButtonWidth, touchButtonHeight)), [this](){ this->TouchButtonAction(Command::LEFT); });
+    AddZone(Rectangle::FromCorner(rightOffset, Point(touchButtonWidth, touchButtonHeight)), [this](){ this->TouchButtonAction(Command::RIGHT); });
+    AddZone(Rectangle::FromCorner(forwardLeftOffset, Point(touchButtonWidth, touchButtonHeight)), [this](){ this->TouchButtonAction(Command::FORWARD|Command::LEFT); });
+    AddZone(Rectangle::FromCorner(forwardRightOffset, Point(touchButtonWidth, touchButtonHeight)), [this](){ this->TouchButtonAction(Command::FORWARD|Command::RIGHT); });
+    
+    AddZone(Rectangle::FromCorner(primaryOffset, Point(touchButtonWidth, touchButtonHeight)), [this](){ this->TouchButtonAction(Command::PRIMARY); });
+    AddZone(Rectangle::FromCorner(secondaryOffset, Point(touchButtonWidth, touchButtonHeight)), [this](){ this->TouchButtonAction(Command::SECONDARY); });
+    
+    AddZone(Rectangle::FromCorner(menuOffset, Point(touchButtonWidth, touchButtonHeight)), [this](){ this->TouchButtonAction(Command::MENU); });
+    
+    AddZone(Rectangle::FromCorner(landOffset, Point(touchButtonWidth, touchButtonHeight)), [this](){ this->TouchButtonAction(Command::LAND); });
+    AddZone(Rectangle::FromCorner(mapOffset, Point(touchButtonWidth, touchButtonHeight)), [this](){ this->TouchButtonAction(Command::MAP); });
+    
+    
+    drawList->Draw();
+#endif
+    
 	if(isDragging)
 	{
 		Color color(.2, 1., 0., 0.);
@@ -278,6 +371,10 @@ bool MainPanel::Release(int x, int y)
 	
 		isDragging = false;
 	}
+    
+#ifdef TOUCH_VERSION
+    touchCommands.Clear();
+#endif
 	
 	return true;
 }
