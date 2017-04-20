@@ -67,7 +67,9 @@ const Command Command::AMMO(1uL << 24, "Fleet: Toggle ammo usage");
 const Command Command::WAIT(1uL << 25, "");
 const Command Command::STOP(1ul << 26, "");
 
-
+#ifdef TOUCH_VERSION
+Command touchCommands;
+#endif
 
 // In the given text, replace any instances of command names (in angle brackets)
 // with key names (in quotes).

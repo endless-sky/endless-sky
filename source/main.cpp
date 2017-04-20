@@ -105,12 +105,18 @@ int main(int argc, char *argv[])
 			return DoError("Unable to query monitor resolution!");
 		
 		Preferences::Load();
-		Uint32 flags = SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE | SDL_WINDOW_SHOWN | SDL_WINDOW_ALLOW_HIGHDPI;
-		bool isFullscreen = Preferences::Has("fullscreen");
-		if(isFullscreen)
-			flags |= SDL_WINDOW_FULLSCREEN_DESKTOP;
-		else if(Preferences::Has("maximized"))
-			flags |= SDL_WINDOW_MAXIMIZED;
+        Uint32 flags = SDL_WINDOW_OPENGL | SDL_WINDOW_SHOWN | SDL_WINDOW_ALLOW_HIGHDPI;
+#ifndef TOUCH_VERSION
+        flags |= SDL_WINDOW_RESIZABLE;
+        
+        bool isFullscreen = Preferences::Has("fullscreen");
+        if(isFullscreen)
+            flags |= SDL_WINDOW_FULLSCREEN_DESKTOP;
+        else if(Preferences::Has("maximized"))
+            flags |= SDL_WINDOW_MAXIMIZED;
+#endif
+		
+		
 		
 		// Make the window just slightly smaller than the monitor resolution.
 		int maxWidth = mode.w;
@@ -119,14 +125,20 @@ int main(int argc, char *argv[])
 			return DoError("Monitor resolution is too small!");
 		
 		// Decide how big the window should be.
-		int windowWidth = (maxWidth - 100);
-		int windowHeight = (maxHeight - 100);
+#ifdef TOUCH_VERSION
+        int windowWidth = 1024;
+        int windowHeight = 768;
+#else
+        int windowWidth = (maxWidth - 100);
+        int windowHeight = (maxHeight - 100);
+		
 		if(Screen::RawWidth() && Screen::RawHeight())
 		{
 			// Load the previously saved window dimensions.
 			windowWidth = min(windowWidth, Screen::RawWidth());
 			windowHeight = min(windowHeight, Screen::RawHeight());
 		}
+#endif
 		
 		// Create the window.
 		SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
@@ -194,8 +206,11 @@ int main(int argc, char *argv[])
 		// want, because the .icns icon that is used automatically is prettier.
 		SetIcon(window);
 #endif
+        
+#ifndef TOUCH_VERSION
 		if(!isFullscreen)
 			SDL_GetWindowSize(window, &windowWidth, &windowHeight);
+#endif
 		
 		
 		UI gamePanels;
@@ -244,10 +259,20 @@ int main(int argc, char *argv[])
 				{
 					isPaused = !isPaused;
 				}
-				else if(event.type == SDL_KEYDOWN && menuPanels.IsEmpty()
-						&& Command(event.key.keysym.sym).Has(Command::MENU)
-						&& !gamePanels.IsEmpty() && gamePanels.Top()->IsInterruptible())
-				{
+                
+#ifdef TOUCH_VERSION
+                else if(menuPanels.IsEmpty()
+                        && touchCommands.Has(Command::MENU)
+                        && !gamePanels.IsEmpty() && gamePanels.Top()->IsInterruptible())
+                {
+                    touchCommands.Clear(Command::MENU);
+#else
+                else if(event.type == SDL_KEYDOWN && menuPanels.IsEmpty()
+                        && Command(event.key.keysym.sym).Has(Command::MENU)
+                        && !gamePanels.IsEmpty() && gamePanels.Top()->IsInterruptible())
+                {
+#endif
+				
 					menuPanels.Push(shared_ptr<Panel>(
 						new MenuPanel(player, gamePanels)));
 				}
@@ -255,6 +280,7 @@ int main(int argc, char *argv[])
 				{
 					menuPanels.Quit();
 				}
+#ifndef TOUCH_VERSION
 				else if(event.type == SDL_WINDOWEVENT && event.window.event == SDL_WINDOWEVENT_SIZE_CHANGED)
 				{
 					// The window has been resized. Adjust the raw screen size
@@ -278,6 +304,7 @@ int main(int argc, char *argv[])
 					else
 						SDL_SetWindowFullscreen(window, SDL_WINDOW_FULLSCREEN_DESKTOP);
 				}
+#endif
 				else if(activeUI.Handle(event))
 				{
 					// No need to do anything more!
@@ -333,8 +360,10 @@ int main(int argc, char *argv[])
 		
 		// Remember the window state.
 		bool isMaximized = (SDL_GetWindowFlags(window) & SDL_WINDOW_MAXIMIZED);
-		Preferences::Set("maximized", isMaximized);		
+		Preferences::Set("maximized", isMaximized);
+#ifndef TOUCH_VERSION
 		Preferences::Set("fullscreen", isFullscreen);
+#endif
 		// The Preferences class reads the screen dimensions, so update them to
 		// match the actual window size.
 		Screen::SetRaw(windowWidth, windowHeight);

@@ -36,6 +36,11 @@ public:
 	
 	// The planet panel calls this when it closes.
 	void OnCallback();
+    
+#ifdef TOUCH_VERSION
+    void TouchButtonAction(Command command);
+    void LoadTouchControl(const char * path, const char * name, Point off);
+#endif
 	
 	
 protected:

@@ -130,6 +130,8 @@ private:
 	double turn = 0.;
 };
 
-
+#ifdef TOUCH_VERSION
+extern Command touchCommands;
+#endif
 
 #endif
