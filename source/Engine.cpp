@@ -441,13 +441,12 @@ void Engine::Step(bool isActive)
 	
 	if(flagship && flagship->Hull())
 	{
+		int frame = flagship->GetFrameIndex(step);
+		Point shipFacingUnit(0., -1.);
 		if(Preferences::Has("Rotate flagship in HUD"))
-		{
-			Point shipFacingUnit = flagship->Facing().Unit();
-			info.SetSprite("player sprite", flagship->GetSprite(), shipFacingUnit);
-		}
-		else
-			info.SetSprite("player sprite", flagship->GetSprite());
+			shipFacingUnit = flagship->Facing().Unit();
+		
+		info.SetSprite("player sprite", flagship->GetSprite(), shipFacingUnit, frame);
 	}
 	else
 		info.SetSprite("player sprite", nullptr);
@@ -519,7 +518,7 @@ void Engine::Step(bool isActive)
 	{
 		if(target->GetSystem() == player.GetSystem() && target->Cloaking() < 1.)
 			targetUnit = target->Facing().Unit();
-		info.SetSprite("target sprite", target->GetSprite(), targetUnit);
+		info.SetSprite("target sprite", target->GetSprite(), targetUnit, target->GetFrameIndex(step));
 		info.SetString("target name", target->Name());
 		info.SetString("target type", target->ModelName());
 		if(!target->GetGovernment())
