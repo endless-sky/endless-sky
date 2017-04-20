@@ -1439,18 +1439,18 @@ int Ship::Scan()
 	if(government->IsPlayer() || (target->GetGovernment()->IsPlayer() && activeScanning))
 		Audio::Play(Audio::Get("scan"), Position());
 	
-	if(startedScanning && government->IsPlayer())
+	if(startedScanning && government->IsPlayer() && !target->GetGovernment()->IsPlayer())
 		Messages::Add("Attempting to scan the ship \"" + target->Name() + "\".", false);
-	else if(startedScanning && target->GetGovernment()->IsPlayer())
+	else if(startedScanning && target->GetGovernment()->IsPlayer() && !government->IsPlayer())
 		Messages::Add("The " + government->GetName() + " ship \""
 			+ Name() + "\" is attempting to scan you.", false);
 	
-	if(target->GetGovernment()->IsPlayer() && (result & ShipEvent::SCAN_CARGO))
+	if(target->GetGovernment()->IsPlayer() && !government->IsPlayer() && (result & ShipEvent::SCAN_CARGO))
 	{
 		Messages::Add("The " + government->GetName() + " ship \""
 			+ Name() + "\" completed its scan of your cargo.");
 	}
-	if(target->GetGovernment()->IsPlayer() && (result & ShipEvent::SCAN_OUTFITS))
+	if(target->GetGovernment()->IsPlayer() && !government->IsPlayer() && (result & ShipEvent::SCAN_OUTFITS))
 	{
 		Messages::Add("The " + government->GetName() + " ship \""
 			+ Name() + "\" completed its scan of your outfits.");
