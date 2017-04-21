@@ -1439,9 +1439,9 @@ int Ship::Scan()
 	if(government->IsPlayer() || (target->GetGovernment()->IsPlayer() && activeScanning))
 		Audio::Play(Audio::Get("scan"), Position());
 	
-	if(startedScanning && government->IsPlayer() && !target->GetGovernment()->IsPlayer())
+	if(startedScanning && government->IsPlayer())
 		Messages::Add("Attempting to scan the ship \"" + target->Name() + "\".", false);
-	else if(startedScanning && target->GetGovernment()->IsPlayer() && !government->IsPlayer())
+	else if(startedScanning && target->GetGovernment()->IsPlayer())
 		Messages::Add("The " + government->GetName() + " ship \""
 			+ Name() + "\" is attempting to scan you.", false);
 	
