@@ -41,7 +41,7 @@ DistanceMap::DistanceMap(const PlayerInfo &player, const System *center)
 {
 	if(!player.Flagship())
 		return;
-	
+
 	if(!center)
 	{
 		if(player.Flagship()->IsEnteringHyperspace())
@@ -51,7 +51,7 @@ DistanceMap::DistanceMap(const PlayerInfo &player, const System *center)
 	}
 	if(!center)
 		return;
-	
+
 	Init(center, player.Flagship());
 }
 
@@ -65,7 +65,7 @@ DistanceMap::DistanceMap(const Ship &ship, const System *destination)
 {
 	if(!source || !destination)
 		return;
-	
+
 	Init(destination, &ship);
 }
 
@@ -85,7 +85,7 @@ int DistanceMap::Distance(const System *system) const
 	auto it = distance.find(system);
 	if(it == distance.end())
 		return -1;
-	
+
 	return it->second;
 }
 
@@ -99,7 +99,7 @@ int DistanceMap::Cost(const System *system) const
 	int distance = Distance(system);
 	if(distance < 0)
 		return -1;
-	
+
 	int nextDistance = Distance(Route(system));
 	return (nextDistance < 0) ? -1 : distance - nextDistance;
 }
@@ -113,7 +113,7 @@ const System *DistanceMap::Route(const System *system) const
 	auto it = route.find(system);
 	if(it == route.end())
 		return nullptr;
-	
+
 	return it->second;
 }
 
@@ -134,19 +134,19 @@ void DistanceMap::Init(const System *center, const Ship *ship)
 {
 	if(!center)
 		return;
-	
+
 	distance[center] = 0;
 	if(!maxDistance)
 		return;
-	
+
 	// Check what travel capabilities this ship has. If no ship is given, assume
 	// hyperdrive capability and no jump drive.
-	bool hasHyper = ship ? ship->Attributes().Get("hyperdrive") : true;
+	bool hasHyper = ship ? ship->Attributes().Get("hyperdrive") || ship->Attributes().Get("scram drive") : true;
 	bool hasJump = ship ? ship->Attributes().Get("jump drive") : false;
-	// If the ship has no jump capability, do pathfinding as if it has a
+	// If the ship has no hyperdrive capability, do pathfinding as if it has a
 	// hyperdrive. The Ship class still won't let it jump, though.
-	hasHyper |= !(hasHyper | hasJump);
-	
+	hasHyper |= !hasJump;
+
 	// Find the route with lowest fuel use. If multiple routes use the same fuel,
 	// choose the one with the fewest jumps (i.e. using jump drive rather than
 	// hyperdrive). If multiple routes have the same fuel and the same number of
@@ -156,13 +156,13 @@ void DistanceMap::Init(const System *center, const Ship *ship)
 	{
 		tuple<int, double, const System *> top = edge.top();
 		edge.pop();
-		
+
 		const System *system = get<2>(top);
 		if(system == source)
 			break;
 		int steps = -get<0>(top);
 		double danger = get<1>(top) - system->Danger();
-		
+
 		// Check for wormholes (which cost zero fuel). Wormhole travel should
 		// not be included in maps or mission itineraries.
 		if(useWormholes)
@@ -176,13 +176,13 @@ void DistanceMap::Init(const System *center, const Ship *ship)
 						object.GetPlanet()->WormholeDestination(system);
 					if(HasBetter(link, steps + 1))
 						continue;
-					
+
 					if(player && !player->HasVisited(object.GetPlanet()))
 						continue;
-					
+
 					Add(system, link, steps + 1, danger + link->Danger());
 				}
-		
+
 		if(hasHyper && !Propagate(system, false, steps, danger))
 			break;
 		if(hasJump && !Propagate(system, true, steps, danger))
@@ -204,7 +204,7 @@ bool DistanceMap::Propagate(const System *system, bool useJump, int steps, doubl
 		// selected by the player, they are constrained to known routes.
 		if(HasBetter(link, steps) || !CheckLink(system, link, useJump))
 			continue;
-		
+
 		Add(system, link, steps, danger);
 		if(!--maxCount)
 			return false;
@@ -243,16 +243,16 @@ bool DistanceMap::CheckLink(const System *from, const System *to, bool useJump) 
 {
 	if(!player)
 		return true;
-	
+
 	if(!player->HasSeen(to))
 		return false;
-	
+
 	// If you are using a jump drive and you can see just from the positions of
 	// the two systems that you can jump between them, you can plot a course
 	// between them even if neither system is explored. Otherwise, you need to
 	// know if a link exists, so you must have explored at least one of them.
 	if(useJump && from->Position().Distance(to->Position()) <= System::NEIGHBOR_DISTANCE)
 		return true;
-	
+
 	return (player->HasVisited(from) || player->HasVisited(to));
 }
