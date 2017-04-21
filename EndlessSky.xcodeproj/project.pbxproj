@@ -143,6 +143,142 @@
 		A9D40D1A195DFAA60086EE52 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9D40D19195DFAA60086EE52 /* OpenGL.framework */; };
 		C723E8081EA8BA8000FCF651 /* ShipInfoPanel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C723E8061EA8BA8000FCF651 /* ShipInfoPanel.cpp */; };
 		C723E80B1EA8BA9500FCF651 /* PlayerInfoPanel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C723E8091EA8BA9500FCF651 /* PlayerInfoPanel.cpp */; };
+		C739B2AD1EAA871B00342414 /* Command.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A96862E81AE6FD0A004FE1FE /* Command.cpp */; };
+		C739B2AE1EAA871B00342414 /* PointerShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A968635D1AE6FD0C004FE1FE /* PointerShader.cpp */; };
+		C739B2AF1EAA871B00342414 /* PlayerInfo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A96863591AE6FD0C004FE1FE /* PlayerInfo.cpp */; };
+		C739B2B01EAA871B00342414 /* DrawList.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A96862FE1AE6FD0B004FE1FE /* DrawList.cpp */; };
+		C739B2B11EAA871B00342414 /* SpriteSet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A96863881AE6FD0D004FE1FE /* SpriteSet.cpp */; };
+		C739B2B21EAA871B00342414 /* Interface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A96863271AE6FD0B004FE1FE /* Interface.cpp */; };
+		C739B2B31EAA871B00342414 /* UI.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A968639A1AE6FD0D004FE1FE /* UI.cpp */; };
+		C739B2B41EAA871B00342414 /* RingShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A968636B1AE6FD0D004FE1FE /* RingShader.cpp */; };
+		C739B2B51EAA871B00342414 /* System.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A96863921AE6FD0D004FE1FE /* System.cpp */; };
+		C739B2B61EAA871B00342414 /* Color.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A96862E61AE6FD0A004FE1FE /* Color.cpp */; };
+		C739B2B71EAA871B00342414 /* TradingPanel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A96863981AE6FD0D004FE1FE /* TradingPanel.cpp */; };
+		C739B2B81EAA871B00342414 /* HiringPanel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A968631F1AE6FD0B004FE1FE /* HiringPanel.cpp */; };
+		C739B2B91EAA871B00342414 /* DataNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A96862F21AE6FD0A004FE1FE /* DataNode.cpp */; };
+		C739B2BA1EAA871B00342414 /* ConversationPanel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A96862EE1AE6FD0A004FE1FE /* ConversationPanel.cpp */; };
+		C739B2BB1EAA871B00342414 /* PlanetPanel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A96863571AE6FD0C004FE1FE /* PlanetPanel.cpp */; };
+		C739B2BC1EAA871B00342414 /* Panel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A968634E1AE6FD0C004FE1FE /* Panel.cpp */; };
+		C739B2BD1EAA871B00342414 /* MapDetailPanel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A96863321AE6FD0C004FE1FE /* MapDetailPanel.cpp */; };
+		C739B2BE1EAA871B00342414 /* Mask.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A96863361AE6FD0C004FE1FE /* Mask.cpp */; };
+		C739B2BF1EAA871B00342414 /* Point.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A968635B1AE6FD0C004FE1FE /* Point.cpp */; };
+		C739B2C01EAA871B00342414 /* OutfitterPanel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A968634A1AE6FD0C004FE1FE /* OutfitterPanel.cpp */; };
+		C739B2C11EAA871B00342414 /* Flotsam.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 62C311181CE172D000409D91 /* Flotsam.cpp */; };
+		C739B2C21EAA871B00342414 /* Effect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A96863001AE6FD0B004FE1FE /* Effect.cpp */; };
+		C739B2C31EAA871B00342414 /* ConditionSet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A96862EA1AE6FD0A004FE1FE /* ConditionSet.cpp */; };
+		C739B2C41EAA871B00342414 /* Outfit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A96863461AE6FD0C004FE1FE /* Outfit.cpp */; };
+		C739B2C51EAA871B00342414 /* EscortDisplay.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A96863041AE6FD0B004FE1FE /* EscortDisplay.cpp */; };
+		C739B2C61EAA871B00342414 /* Projectile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A96863651AE6FD0C004FE1FE /* Projectile.cpp */; };
+		C739B2C71EAA871B00342414 /* MainPanel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A96863301AE6FD0B004FE1FE /* MainPanel.cpp */; };
+		C739B2C81EAA871B00342414 /* DataWriter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A96862F41AE6FD0A004FE1FE /* DataWriter.cpp */; };
+		C739B2C91EAA871B00342414 /* Audio.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A96862D91AE6FD0A004FE1FE /* Audio.cpp */; };
+		C739B2CA1EAA871B00342414 /* Angle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A96862D11AE6FD0A004FE1FE /* Angle.cpp */; };
+		C739B2CB1EAA871B00342414 /* Person.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A966A5A91B964E6300DFF69C /* Person.cpp */; };
+		C739B2CC1EAA871B00342414 /* StartConditions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A968638E1AE6FD0D004FE1FE /* StartConditions.cpp */; };
+		C739B2CD1EAA871B00342414 /* BankPanel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A96862DB1AE6FD0A004FE1FE /* BankPanel.cpp */; };
+		C739B2CE1EAA871B00342414 /* Mortgage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A96863421AE6FD0C004FE1FE /* Mortgage.cpp */; };
+		C739B2CF1EAA871B00342414 /* Galaxy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A96863141AE6FD0B004FE1FE /* Galaxy.cpp */; };
+		C739B2D01EAA871B00342414 /* MapOutfitterPanel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A97C24E81B17BE35007DDFA1 /* MapOutfitterPanel.cpp */; };
+		C739B2D11EAA871B00342414 /* WrappedText.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A968639E1AE6FD0D004FE1FE /* WrappedText.cpp */; };
+		C739B2D21EAA871B00342414 /* MissionPanel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A96863401AE6FD0C004FE1FE /* MissionPanel.cpp */; };
+		C739B2D31EAA871B00342414 /* NPC.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A96863441AE6FD0C004FE1FE /* NPC.cpp */; };
+		C739B2D41EAA871B00342414 /* SpaceportPanel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A96863821AE6FD0D004FE1FE /* SpaceportPanel.cpp */; };
+		C739B2D51EAA871B00342414 /* CaptureOdds.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A96862E11AE6FD0A004FE1FE /* CaptureOdds.cpp */; };
+		C739B2D61EAA871B00342414 /* DistanceMap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A96862FA1AE6FD0B004FE1FE /* DistanceMap.cpp */; };
+		C739B2D71EAA871B00342414 /* LocationFilter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A968632D1AE6FD0B004FE1FE /* LocationFilter.cpp */; };
+		C739B2D81EAA871B00342414 /* Format.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A96863101AE6FD0B004FE1FE /* Format.cpp */; };
+		C739B2D91EAA871B00342414 /* Font.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A968630C1AE6FD0B004FE1FE /* Font.cpp */; };
+		C739B2DA1EAA871B00342414 /* Random.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A96863691AE6FD0D004FE1FE /* Random.cpp */; };
+		C739B2DB1EAA871B00342414 /* Trade.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A96863961AE6FD0D004FE1FE /* Trade.cpp */; };
+		C739B2DC1EAA871B00342414 /* Body.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6245F8231D301C7400A7A094 /* Body.cpp */; };
+		C739B2DD1EAA871B00342414 /* Depreciation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5155CD711DBB9FF900EF090B /* Depreciation.cpp */; };
+		C739B2DE1EAA871B00342414 /* SpriteShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A968638A1AE6FD0D004FE1FE /* SpriteShader.cpp */; };
+		C739B2DF1EAA871B00342414 /* Politics.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A968635F1AE6FD0C004FE1FE /* Politics.cpp */; };
+		C739B2E01EAA871B00342414 /* Preferences.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A96863611AE6FD0C004FE1FE /* Preferences.cpp */; };
+		C739B2E11EAA871B00342414 /* ShipEvent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A96863781AE6FD0D004FE1FE /* ShipEvent.cpp */; };
+		C739B2E21EAA871B00342414 /* MenuPanel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A96863381AE6FD0C004FE1FE /* MenuPanel.cpp */; };
+		C739B2E31EAA871B00342414 /* Rectangle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A90C15DA1D5BD56800708F3A /* Rectangle.cpp */; };
+		C739B2E41EAA871B00342414 /* ItemInfoDisplay.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A9B99D001C616AD000BE7C2E /* ItemInfoDisplay.cpp */; };
+		C739B2E51EAA871B00342414 /* PreferencesPanel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A96863631AE6FD0C004FE1FE /* PreferencesPanel.cpp */; };
+		C739B2E61EAA871B00342414 /* Shader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A96863731AE6FD0D004FE1FE /* Shader.cpp */; };
+		C739B2E71EAA871B00342414 /* File.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A9C70E0E1C0E5B51000B3D14 /* File.cpp */; };
+		C739B2E81EAA871B00342414 /* ShipInfoDisplay.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A968637A1AE6FD0D004FE1FE /* ShipInfoDisplay.cpp */; };
+		C739B2E91EAA871B00342414 /* FrameTimer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A96863121AE6FD0B004FE1FE /* FrameTimer.cpp */; };
+		C739B2EA1EAA871B00342414 /* MissionAction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A968633E1AE6FD0C004FE1FE /* MissionAction.cpp */; };
+		C739B2EB1EAA871B00342414 /* SpriteQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A96863861AE6FD0D004FE1FE /* SpriteQueue.cpp */; };
+		C739B2EC1EAA871B00342414 /* Phrase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A96863521AE6FD0C004FE1FE /* Phrase.cpp */; };
+		C739B2ED1EAA871B00342414 /* PlanetLabel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 628BDAED1CC5DC950062BCD2 /* PlanetLabel.cpp */; };
+		C739B2EE1EAA871B00342414 /* Hardpoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6245F8261D301C9000A7A094 /* Hardpoint.cpp */; };
+		C739B2EF1EAA871B00342414 /* FontSet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A968630E1AE6FD0B004FE1FE /* FontSet.cpp */; };
+		C739B2F01EAA871B00342414 /* Messages.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A968633A1AE6FD0C004FE1FE /* Messages.cpp */; };
+		C739B2F11EAA871B00342414 /* MapShipyardPanel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A97C24EB1B17BE3C007DDFA1 /* MapShipyardPanel.cpp */; };
+		C739B2F21EAA871B00342414 /* Mission.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A968633C1AE6FD0C004FE1FE /* Mission.cpp */; };
+		C739B2F31EAA871B00342414 /* MapPanel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A96863341AE6FD0C004FE1FE /* MapPanel.cpp */; };
+		C739B2F41EAA871B00342414 /* Ship.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A96863761AE6FD0D004FE1FE /* Ship.cpp */; };
+		C739B2F51EAA871B00342414 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A968632F1AE6FD0B004FE1FE /* main.cpp */; };
+		C739B2F61EAA871B00342414 /* Fleet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A968630A1AE6FD0B004FE1FE /* Fleet.cpp */; };
+		C739B2F71EAA871B00342414 /* ShipInfoPanel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C723E8061EA8BA8000FCF651 /* ShipInfoPanel.cpp */; };
+		C739B2F81EAA871B00342414 /* Table.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A96863941AE6FD0D004FE1FE /* Table.cpp */; };
+		C739B2F91EAA871B00342414 /* CargoHold.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A96862E31AE6FD0A004FE1FE /* CargoHold.cpp */; };
+		C739B2FA1EAA871B00342414 /* Weapon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A968639C1AE6FD0D004FE1FE /* Weapon.cpp */; };
+		C739B2FB1EAA871B00342414 /* Radar.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A96863671AE6FD0C004FE1FE /* Radar.cpp */; };
+		C739B2FC1EAA871B00342414 /* ShopPanel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A968637E1AE6FD0D004FE1FE /* ShopPanel.cpp */; };
+		C739B2FD1EAA871B00342414 /* PlayerInfoPanel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C723E8091EA8BA9500FCF651 /* PlayerInfoPanel.cpp */; };
+		C739B2FE1EAA871B00342414 /* Files.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A96863061AE6FD0B004FE1FE /* Files.cpp */; };
+		C739B2FF1EAA871B00342414 /* Information.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A96863251AE6FD0B004FE1FE /* Information.cpp */; };
+		C739B3001EAA871B00342414 /* Sprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A96863841AE6FD0D004FE1FE /* Sprite.cpp */; };
+		C739B3011EAA871B00342414 /* BoardingPanel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A96862DF1AE6FD0A004FE1FE /* BoardingPanel.cpp */; };
+		C739B3021EAA871B00342414 /* MapSalesPanel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A9B99D031C616AF200BE7C2E /* MapSalesPanel.cpp */; };
+		C739B3031EAA871B00342414 /* Account.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A96862CD1AE6FD0A004FE1FE /* Account.cpp */; };
+		C739B3041EAA871B00342414 /* Minable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A90C15D71D5BD55700708F3A /* Minable.cpp */; };
+		C739B3051EAA871B00342414 /* ShipyardPanel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A968637C1AE6FD0D004FE1FE /* ShipyardPanel.cpp */; };
+		C739B3061EAA871B00342414 /* OutfitInfoDisplay.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A96863481AE6FD0C004FE1FE /* OutfitInfoDisplay.cpp */; };
+		C739B3071EAA871B00342414 /* GameData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A96863161AE6FD0B004FE1FE /* GameData.cpp */; };
+		C739B3081EAA871B00342414 /* LineShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A96863291AE6FD0B004FE1FE /* LineShader.cpp */; };
+		C739B3091EAA871B00342414 /* HailPanel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A968631D1AE6FD0B004FE1FE /* HailPanel.cpp */; };
+		C739B30A1EAA871B00342414 /* FogShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 62A405B81D47DA4D0054F6A0 /* FogShader.cpp */; };
+		C739B30B1EAA871B00342414 /* Government.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A968631B1AE6FD0B004FE1FE /* Government.cpp */; };
+		C739B30C1EAA871B00342414 /* Dialog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A96862F81AE6FD0A004FE1FE /* Dialog.cpp */; };
+		C739B30D1EAA871B00342414 /* Conversation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A96862EC1AE6FD0A004FE1FE /* Conversation.cpp */; };
+		C739B30E1EAA871B00342414 /* GameEvent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A96863181AE6FD0B004FE1FE /* GameEvent.cpp */; };
+		C739B30F1EAA871B00342414 /* FillShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A96863081AE6FD0B004FE1FE /* FillShader.cpp */; };
+		C739B3101EAA871B00342414 /* StellarObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A96863901AE6FD0D004FE1FE /* StellarObject.cpp */; };
+		C739B3111EAA871B00342414 /* AsteroidField.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A96862D71AE6FD0A004FE1FE /* AsteroidField.cpp */; };
+		C739B3121EAA871B00342414 /* StarField.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A968638C1AE6FD0D004FE1FE /* StarField.cpp */; };
+		C739B3131EAA871B00342414 /* DataFile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A96862F01AE6FD0A004FE1FE /* DataFile.cpp */; };
+		C739B3141EAA871B00342414 /* Planet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A96863551AE6FD0C004FE1FE /* Planet.cpp */; };
+		C739B3151EAA871B00342414 /* OutlineShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A968634C1AE6FD0C004FE1FE /* OutlineShader.cpp */; };
+		C739B3161EAA871B00342414 /* ImageBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A96863211AE6FD0B004FE1FE /* ImageBuffer.cpp */; };
+		C739B3171EAA871B00342414 /* CollisionSet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A5716311E25BE6F00585EB2 /* CollisionSet.cpp */; };
+		C739B3181EAA871B00342414 /* Personality.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A96863501AE6FD0C004FE1FE /* Personality.cpp */; };
+		C739B3191EAA871B00342414 /* Date.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A96862F61AE6FD0A004FE1FE /* Date.cpp */; };
+		C739B31A1EAA871B00342414 /* SavedGame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A968636E1AE6FD0D004FE1FE /* SavedGame.cpp */; };
+		C739B31B1EAA871B00342414 /* AI.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A96862CF1AE6FD0A004FE1FE /* AI.cpp */; };
+		C739B31C1EAA871B00342414 /* Sound.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A96863801AE6FD0D004FE1FE /* Sound.cpp */; };
+		C739B31D1EAA871B00342414 /* Music.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A9BDFB521E00B8AA00A6B27E /* Music.cpp */; };
+		C739B31E1EAA871B00342414 /* Engine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A96863021AE6FD0B004FE1FE /* Engine.cpp */; };
+		C739B31F1EAA871B00342414 /* LoadPanel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A968632B1AE6FD0B004FE1FE /* LoadPanel.cpp */; };
+		C739B3201EAA871B00342414 /* Armament.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A96862D51AE6FD0A004FE1FE /* Armament.cpp */; };
+		C739B3211EAA871B00342414 /* Screen.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A96863701AE6FD0D004FE1FE /* Screen.cpp */; };
+		C739B3231EAA871B00342414 /* libmad.0.2.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A9BDFB551E00B94700A6B27E /* libmad.0.2.1.dylib */; };
+		C739B3241EAA871B00342414 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9A5297519996CC3002D7C35 /* OpenAL.framework */; };
+		C739B3251EAA871B00342414 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9D40D19195DFAA60086EE52 /* OpenGL.framework */; };
+		C739B3261EAA871B00342414 /* libturbojpeg.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A93931FA1988135200C2A87B /* libturbojpeg.0.dylib */; };
+		C739B3271EAA871B00342414 /* libpng14.14.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A93931FC1988136B00C2A87B /* libpng14.14.dylib */; };
+		C739B3281EAA871B00342414 /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9CC52A01950CA16004E4E22 /* SDL2.framework */; };
+		C739B3291EAA871B00342414 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9CC526C1950C9F6004E4E22 /* Cocoa.framework */; };
+		C739B32B1EAA871B00342414 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A99F7A4F195DF3E8002C30B8 /* Images.xcassets */; };
+		C739B32C1EAA871B00342414 /* license.txt in Resources */ = {isa = PBXBuildFile; fileRef = A99F7A95195DF44B002C30B8 /* license.txt */; };
+		C739B32D1EAA871B00342414 /* sounds in Resources */ = {isa = PBXBuildFile; fileRef = A9A5297319996C9F002D7C35 /* sounds */; };
+		C739B32E1EAA871B00342414 /* credits.txt in Resources */ = {isa = PBXBuildFile; fileRef = A99F7A6F195DF44B002C30B8 /* credits.txt */; };
+		C739B32F1EAA871B00342414 /* keys.txt in Resources */ = {isa = PBXBuildFile; fileRef = A99F7A94195DF44B002C30B8 /* keys.txt */; };
+		C739B3301EAA871B00342414 /* data in Resources */ = {isa = PBXBuildFile; fileRef = A99F7B32195DF45E002C30B8 /* data */; };
+		C739B3311EAA871B00342414 /* endless-sky.iconset in Resources */ = {isa = PBXBuildFile; fileRef = A94408A41982F3E600610427 /* endless-sky.iconset */; };
+		C739B3321EAA871B00342414 /* images in Resources */ = {isa = PBXBuildFile; fileRef = A99F7B33195DF45E002C30B8 /* images */; };
+		C739B3341EAA871B00342414 /* libmad.0.2.1.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = A9BDFB551E00B94700A6B27E /* libmad.0.2.1.dylib */; };
+		C739B3351EAA871B00342414 /* libpng14.14.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = A93931FC1988136B00C2A87B /* libpng14.14.dylib */; };
+		C739B3361EAA871B00342414 /* libturbojpeg.0.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = A93931FA1988135200C2A87B /* libturbojpeg.0.dylib */; };
+		C739B3371EAA871B00342414 /* SDL2.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = A9CC52A01950CA16004E4E22 /* SDL2.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -156,6 +292,19 @@
 				A93931FF1988136F00C2A87B /* libpng14.14.dylib in CopyFiles */,
 				A93931FE1988136E00C2A87B /* libturbojpeg.0.dylib in CopyFiles */,
 				A93931F019880EFC00C2A87B /* SDL2.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C739B3331EAA871B00342414 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				C739B3341EAA871B00342414 /* libmad.0.2.1.dylib in CopyFiles */,
+				C739B3351EAA871B00342414 /* libpng14.14.dylib in CopyFiles */,
+				C739B3361EAA871B00342414 /* libturbojpeg.0.dylib in CopyFiles */,
+				C739B3371EAA871B00342414 /* SDL2.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -421,6 +570,8 @@
 		C723E8071EA8BA8000FCF651 /* ShipInfoPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShipInfoPanel.h; path = source/ShipInfoPanel.h; sourceTree = "<group>"; };
 		C723E8091EA8BA9500FCF651 /* PlayerInfoPanel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PlayerInfoPanel.cpp; path = source/PlayerInfoPanel.cpp; sourceTree = "<group>"; };
 		C723E80A1EA8BA9500FCF651 /* PlayerInfoPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlayerInfoPanel.h; path = source/PlayerInfoPanel.h; sourceTree = "<group>"; };
+		C739B33B1EAA871B00342414 /* EndlessSky Mobile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "EndlessSky Mobile.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C739B33C1EAA871C00342414 /* EndlessSky copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "EndlessSky copy-Info.plist"; path = "/Users/mash/Desktop/endless-sky/EndlessSky copy-Info.plist"; sourceTree = "<absolute>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -435,6 +586,20 @@
 				A93931FD1988136B00C2A87B /* libpng14.14.dylib in Frameworks */,
 				A9CC52A11950CA16004E4E22 /* SDL2.framework in Frameworks */,
 				A9CC526D1950C9F6004E4E22 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C739B3221EAA871B00342414 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C739B3231EAA871B00342414 /* libmad.0.2.1.dylib in Frameworks */,
+				C739B3241EAA871B00342414 /* OpenAL.framework in Frameworks */,
+				C739B3251EAA871B00342414 /* OpenGL.framework in Frameworks */,
+				C739B3261EAA871B00342414 /* libturbojpeg.0.dylib in Frameworks */,
+				C739B3271EAA871B00342414 /* libpng14.14.dylib in Frameworks */,
+				C739B3281EAA871B00342414 /* SDL2.framework in Frameworks */,
+				C739B3291EAA871B00342414 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -701,6 +866,7 @@
 				A9CC52721950C9F6004E4E22 /* XCode */,
 				A9CC526B1950C9F6004E4E22 /* Frameworks */,
 				A9CC526A1950C9F6004E4E22 /* Products */,
+				C739B33C1EAA871C00342414 /* EndlessSky copy-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -708,6 +874,7 @@
 			isa = PBXGroup;
 			children = (
 				A9CC52691950C9F6004E4E22 /* EndlessSky.app */,
+				C739B33B1EAA871B00342414 /* EndlessSky Mobile.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -775,6 +942,24 @@
 			productReference = A9CC52691950C9F6004E4E22 /* EndlessSky.app */;
 			productType = "com.apple.product-type.application";
 		};
+		C739B2AB1EAA871B00342414 /* EndlessSky Mobile */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C739B3381EAA871B00342414 /* Build configuration list for PBXNativeTarget "EndlessSky Mobile" */;
+			buildPhases = (
+				C739B2AC1EAA871B00342414 /* Sources */,
+				C739B3221EAA871B00342414 /* Frameworks */,
+				C739B32A1EAA871B00342414 /* Resources */,
+				C739B3331EAA871B00342414 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "EndlessSky Mobile";
+			productName = EndlessSky;
+			productReference = C739B33B1EAA871B00342414 /* EndlessSky Mobile.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -797,6 +982,7 @@
 			projectRoot = "";
 			targets = (
 				A9CC52681950C9F6004E4E22 /* EndlessSky */,
+				C739B2AB1EAA871B00342414 /* EndlessSky Mobile */,
 			);
 		};
 /* End PBXProject section */
@@ -814,6 +1000,21 @@
 				A99F7B34195DF45E002C30B8 /* data in Resources */,
 				A94408A51982F3E600610427 /* endless-sky.iconset in Resources */,
 				A99F7B35195DF45E002C30B8 /* images in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C739B32A1EAA871B00342414 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C739B32B1EAA871B00342414 /* Images.xcassets in Resources */,
+				C739B32C1EAA871B00342414 /* license.txt in Resources */,
+				C739B32D1EAA871B00342414 /* sounds in Resources */,
+				C739B32E1EAA871B00342414 /* credits.txt in Resources */,
+				C739B32F1EAA871B00342414 /* keys.txt in Resources */,
+				C739B3301EAA871B00342414 /* data in Resources */,
+				C739B3311EAA871B00342414 /* endless-sky.iconset in Resources */,
+				C739B3321EAA871B00342414 /* images in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -944,6 +1145,130 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		C739B2AC1EAA871B00342414 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C739B2AD1EAA871B00342414 /* Command.cpp in Sources */,
+				C739B2AE1EAA871B00342414 /* PointerShader.cpp in Sources */,
+				C739B2AF1EAA871B00342414 /* PlayerInfo.cpp in Sources */,
+				C739B2B01EAA871B00342414 /* DrawList.cpp in Sources */,
+				C739B2B11EAA871B00342414 /* SpriteSet.cpp in Sources */,
+				C739B2B21EAA871B00342414 /* Interface.cpp in Sources */,
+				C739B2B31EAA871B00342414 /* UI.cpp in Sources */,
+				C739B2B41EAA871B00342414 /* RingShader.cpp in Sources */,
+				C739B2B51EAA871B00342414 /* System.cpp in Sources */,
+				C739B2B61EAA871B00342414 /* Color.cpp in Sources */,
+				C739B2B71EAA871B00342414 /* TradingPanel.cpp in Sources */,
+				C739B2B81EAA871B00342414 /* HiringPanel.cpp in Sources */,
+				C739B2B91EAA871B00342414 /* DataNode.cpp in Sources */,
+				C739B2BA1EAA871B00342414 /* ConversationPanel.cpp in Sources */,
+				C739B2BB1EAA871B00342414 /* PlanetPanel.cpp in Sources */,
+				C739B2BC1EAA871B00342414 /* Panel.cpp in Sources */,
+				C739B2BD1EAA871B00342414 /* MapDetailPanel.cpp in Sources */,
+				C739B2BE1EAA871B00342414 /* Mask.cpp in Sources */,
+				C739B2BF1EAA871B00342414 /* Point.cpp in Sources */,
+				C739B2C01EAA871B00342414 /* OutfitterPanel.cpp in Sources */,
+				C739B2C11EAA871B00342414 /* Flotsam.cpp in Sources */,
+				C739B2C21EAA871B00342414 /* Effect.cpp in Sources */,
+				C739B2C31EAA871B00342414 /* ConditionSet.cpp in Sources */,
+				C739B2C41EAA871B00342414 /* Outfit.cpp in Sources */,
+				C739B2C51EAA871B00342414 /* EscortDisplay.cpp in Sources */,
+				C739B2C61EAA871B00342414 /* Projectile.cpp in Sources */,
+				C739B2C71EAA871B00342414 /* MainPanel.cpp in Sources */,
+				C739B2C81EAA871B00342414 /* DataWriter.cpp in Sources */,
+				C739B2C91EAA871B00342414 /* Audio.cpp in Sources */,
+				C739B2CA1EAA871B00342414 /* Angle.cpp in Sources */,
+				C739B2CB1EAA871B00342414 /* Person.cpp in Sources */,
+				C739B2CC1EAA871B00342414 /* StartConditions.cpp in Sources */,
+				C739B2CD1EAA871B00342414 /* BankPanel.cpp in Sources */,
+				C739B2CE1EAA871B00342414 /* Mortgage.cpp in Sources */,
+				C739B2CF1EAA871B00342414 /* Galaxy.cpp in Sources */,
+				C739B2D01EAA871B00342414 /* MapOutfitterPanel.cpp in Sources */,
+				C739B2D11EAA871B00342414 /* WrappedText.cpp in Sources */,
+				C739B2D21EAA871B00342414 /* MissionPanel.cpp in Sources */,
+				C739B2D31EAA871B00342414 /* NPC.cpp in Sources */,
+				C739B2D41EAA871B00342414 /* SpaceportPanel.cpp in Sources */,
+				C739B2D51EAA871B00342414 /* CaptureOdds.cpp in Sources */,
+				C739B2D61EAA871B00342414 /* DistanceMap.cpp in Sources */,
+				C739B2D71EAA871B00342414 /* LocationFilter.cpp in Sources */,
+				C739B2D81EAA871B00342414 /* Format.cpp in Sources */,
+				C739B2D91EAA871B00342414 /* Font.cpp in Sources */,
+				C739B2DA1EAA871B00342414 /* Random.cpp in Sources */,
+				C739B2DB1EAA871B00342414 /* Trade.cpp in Sources */,
+				C739B2DC1EAA871B00342414 /* Body.cpp in Sources */,
+				C739B2DD1EAA871B00342414 /* Depreciation.cpp in Sources */,
+				C739B2DE1EAA871B00342414 /* SpriteShader.cpp in Sources */,
+				C739B2DF1EAA871B00342414 /* Politics.cpp in Sources */,
+				C739B2E01EAA871B00342414 /* Preferences.cpp in Sources */,
+				C739B2E11EAA871B00342414 /* ShipEvent.cpp in Sources */,
+				C739B2E21EAA871B00342414 /* MenuPanel.cpp in Sources */,
+				C739B2E31EAA871B00342414 /* Rectangle.cpp in Sources */,
+				C739B2E41EAA871B00342414 /* ItemInfoDisplay.cpp in Sources */,
+				C739B2E51EAA871B00342414 /* PreferencesPanel.cpp in Sources */,
+				C739B2E61EAA871B00342414 /* Shader.cpp in Sources */,
+				C739B2E71EAA871B00342414 /* File.cpp in Sources */,
+				C739B2E81EAA871B00342414 /* ShipInfoDisplay.cpp in Sources */,
+				C739B2E91EAA871B00342414 /* FrameTimer.cpp in Sources */,
+				C739B2EA1EAA871B00342414 /* MissionAction.cpp in Sources */,
+				C739B2EB1EAA871B00342414 /* SpriteQueue.cpp in Sources */,
+				C739B2EC1EAA871B00342414 /* Phrase.cpp in Sources */,
+				C739B2ED1EAA871B00342414 /* PlanetLabel.cpp in Sources */,
+				C739B2EE1EAA871B00342414 /* Hardpoint.cpp in Sources */,
+				C739B2EF1EAA871B00342414 /* FontSet.cpp in Sources */,
+				C739B2F01EAA871B00342414 /* Messages.cpp in Sources */,
+				C739B2F11EAA871B00342414 /* MapShipyardPanel.cpp in Sources */,
+				C739B2F21EAA871B00342414 /* Mission.cpp in Sources */,
+				C739B2F31EAA871B00342414 /* MapPanel.cpp in Sources */,
+				C739B2F41EAA871B00342414 /* Ship.cpp in Sources */,
+				C739B2F51EAA871B00342414 /* main.cpp in Sources */,
+				C739B2F61EAA871B00342414 /* Fleet.cpp in Sources */,
+				C739B2F71EAA871B00342414 /* ShipInfoPanel.cpp in Sources */,
+				C739B2F81EAA871B00342414 /* Table.cpp in Sources */,
+				C739B2F91EAA871B00342414 /* CargoHold.cpp in Sources */,
+				C739B2FA1EAA871B00342414 /* Weapon.cpp in Sources */,
+				C739B2FB1EAA871B00342414 /* Radar.cpp in Sources */,
+				C739B2FC1EAA871B00342414 /* ShopPanel.cpp in Sources */,
+				C739B2FD1EAA871B00342414 /* PlayerInfoPanel.cpp in Sources */,
+				C739B2FE1EAA871B00342414 /* Files.cpp in Sources */,
+				C739B2FF1EAA871B00342414 /* Information.cpp in Sources */,
+				C739B3001EAA871B00342414 /* Sprite.cpp in Sources */,
+				C739B3011EAA871B00342414 /* BoardingPanel.cpp in Sources */,
+				C739B3021EAA871B00342414 /* MapSalesPanel.cpp in Sources */,
+				C739B3031EAA871B00342414 /* Account.cpp in Sources */,
+				C739B3041EAA871B00342414 /* Minable.cpp in Sources */,
+				C739B3051EAA871B00342414 /* ShipyardPanel.cpp in Sources */,
+				C739B3061EAA871B00342414 /* OutfitInfoDisplay.cpp in Sources */,
+				C739B3071EAA871B00342414 /* GameData.cpp in Sources */,
+				C739B3081EAA871B00342414 /* LineShader.cpp in Sources */,
+				C739B3091EAA871B00342414 /* HailPanel.cpp in Sources */,
+				C739B30A1EAA871B00342414 /* FogShader.cpp in Sources */,
+				C739B30B1EAA871B00342414 /* Government.cpp in Sources */,
+				C739B30C1EAA871B00342414 /* Dialog.cpp in Sources */,
+				C739B30D1EAA871B00342414 /* Conversation.cpp in Sources */,
+				C739B30E1EAA871B00342414 /* GameEvent.cpp in Sources */,
+				C739B30F1EAA871B00342414 /* FillShader.cpp in Sources */,
+				C739B3101EAA871B00342414 /* StellarObject.cpp in Sources */,
+				C739B3111EAA871B00342414 /* AsteroidField.cpp in Sources */,
+				C739B3121EAA871B00342414 /* StarField.cpp in Sources */,
+				C739B3131EAA871B00342414 /* DataFile.cpp in Sources */,
+				C739B3141EAA871B00342414 /* Planet.cpp in Sources */,
+				C739B3151EAA871B00342414 /* OutlineShader.cpp in Sources */,
+				C739B3161EAA871B00342414 /* ImageBuffer.cpp in Sources */,
+				C739B3171EAA871B00342414 /* CollisionSet.cpp in Sources */,
+				C739B3181EAA871B00342414 /* Personality.cpp in Sources */,
+				C739B3191EAA871B00342414 /* Date.cpp in Sources */,
+				C739B31A1EAA871B00342414 /* SavedGame.cpp in Sources */,
+				C739B31B1EAA871B00342414 /* AI.cpp in Sources */,
+				C739B31C1EAA871B00342414 /* Sound.cpp in Sources */,
+				C739B31D1EAA871B00342414 /* Music.cpp in Sources */,
+				C739B31E1EAA871B00342414 /* Engine.cpp in Sources */,
+				C739B31F1EAA871B00342414 /* LoadPanel.cpp in Sources */,
+				C739B3201EAA871B00342414 /* Armament.cpp in Sources */,
+				C739B3211EAA871B00342414 /* Screen.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
@@ -1055,6 +1380,70 @@
 					/usr/local/lib,
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				OTHER_CPLUSPLUSFLAGS = "$(OTHER_CFLAGS)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		A9CC529C1950C9F6004E4E22 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(LOCAL_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = "";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"/opt/libjpeg-turbo/include",
+					/usr/local/include,
+				);
+				INFOPLIST_FILE = "XCode/EndlessSky-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"/opt/libjpeg-turbo/lib",
+					/usr/local/lib,
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				OTHER_CPLUSPLUSFLAGS = "$(OTHER_CFLAGS)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		C739B3391EAA871B00342414 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(LOCAL_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = "";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"/opt/libjpeg-turbo/include",
+					/usr/local/include,
+				);
+				INFOPLIST_FILE = "XCode/EndlessSky-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"/opt/libjpeg-turbo/lib",
+					/usr/local/lib,
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				OTHER_CPLUSPLUSFLAGS = (
 					"$(OTHER_CFLAGS)",
 					"-DTOUCH_VERSION",
@@ -1064,7 +1453,7 @@
 			};
 			name = Debug;
 		};
-		A9CC529C1950C9F6004E4E22 /* Release */ = {
+		C739B33A1EAA871B00342414 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
@@ -1116,6 +1505,15 @@
 			buildConfigurations = (
 				A9CC529B1950C9F6004E4E22 /* Debug */,
 				A9CC529C1950C9F6004E4E22 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C739B3381EAA871B00342414 /* Build configuration list for PBXNativeTarget "EndlessSky Mobile" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C739B3391EAA871B00342414 /* Debug */,
+				C739B33A1EAA871B00342414 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

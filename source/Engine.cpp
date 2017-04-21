@@ -671,7 +671,11 @@ void Engine::Draw() const
 	const Font &font = FontSet::Get(14);
 	const vector<Messages::Entry> &messages = Messages::Get(step);
 	Point messagePoint(
-		Screen::Left() + 120.,
+#ifdef TOUCH_VERSION
+        Screen::Left() + 135.,
+#else
+        Screen::Left() + 120.,
+#endif
 		Screen::Bottom() - 20. * messages.size());
 	auto it = messages.begin();
 	double firstY = Screen::Top() - font.Height();

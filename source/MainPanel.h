@@ -39,7 +39,7 @@ public:
     
 #ifdef TOUCH_VERSION
     void TouchButtonAction(Command command);
-    void LoadTouchControl(const char * path, const char * name, Point off);
+    void LoadTouchControl(const char * path, const char * name, Point off, int width, int height);
 #endif
 	
 	
