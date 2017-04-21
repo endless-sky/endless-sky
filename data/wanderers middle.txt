@@ -1786,12 +1786,12 @@ mission "Wanderers: Sestor Search: Human Spaceport"
 					decline
 			
 			label approach
-			`	You get a better view of the Behemoth - the "Heart of Gold", as indicated on the ship's stern - as you walk up to it. The rear of the ship is badly hammered, and black scorch marks streak forward across the hull. You can't help but notice that at several projectile entry points along the hull, the metal is bent smoothly inwards, almost as if the penetrator had seared or melted its way through the ship's armor. The captain of the Behemoth looks up from his inspection. Seeing you, he remarks, "We were lucky to get out of that one alive!"`
+			`	You get a better view of the Behemoth - the "Heart of Gold", as indicated on the ship's stern - as you walk up to it. The rear of the ship is badly hammered, and black scorch marks streak forward across the hull. You can't help but notice that at several projectile entry points along the hull, the metal is bent smoothly inwards, almost as if the penetrator seared or melted its way through the ship's armor. The captain of the Behemoth looks up from his inspection. Seeing you, he says, "We were lucky to get out of that one alive!"`
 			choice
 				`	"How did your ship end up in such a state?"`
 				`	"Was this beauty the victim of a pirate attack?"`
 				
-			`	"I'm not quite sure," the captain replies. "We were shot by a fleet of hostile ships that our computer couldn't identify. They didn't look at all like a run-of-the-mill pirate ship, though, and they were kitted out with tech I've never seen before."`
+			`	"I'm not quite sure," the captain says. "We were shot at by a fleet of hostile ships that our computer couldn't identify. They didn't look at all like a run-of-the-mill pirate ship, though, and they were kitted out with tech I've never seen before."`
 			choice
 				`	"How many ships were there? What did they look like?"`
 				`	"Where did this fight take place?"`
@@ -1799,7 +1799,7 @@ mission "Wanderers: Sestor Search: Human Spaceport"
 				`	"You should be glad you're still in one piece."`
 					goto glad1
 					
-			`	"Well," the pilot continues, "we had hired a beefy Leviathan escort to Farpoint in the Alnitak system. When we were going in for landing, two of these hostile ships jumped in from the northwest, the direction of all the anarchist colonies in this area. The ships weren't big, but they were tough: our four heavy laser turrets weren't enough to produce even a dent in their shields. They made short work of the Leviathan, and nearly disabled our ship, too. It was lucky I decided that jumping would be faster than landing. We warped out of the system while in atmosphere, saving the ship, but now I'm in debt to all my crew because I couldn't meet a rush delivery deadline."`
+			`	"Well," the pilot says, "we had hired a beefy Leviathan escort to Farpoint in the Alnitak system. When we were going in for landing, two of these hostile ships jumped in from the northwest, the direction of all the anarchist colonies in this area. The ships weren't big, but they were tough: our four heavy laser turrets weren't enough to produce even a dent in their shields. They made short work of the Leviathan, and nearly disabled our ship, too. It was lucky I decided that jumping would be faster than landing. We warped out of the system while in atmosphere, saving the ship, but now I'm in debt to all my crew because I couldn't meet a rush delivery deadline."`
 			choice
 				`	"You're lucky as hell to be here today."`
 					goto glad
@@ -1807,7 +1807,7 @@ mission "Wanderers: Sestor Search: Human Spaceport"
 					goto thanks
 					
 			label where
-			`	"Well," the pilot explains, "we were doing a large cargo run to Farpoint in the Alnitak system, when two of these hostile ships jumped in from the northwest, the direction of all the anarchist colonies in this area. I had to jump the ship in atmosphere to stop us from getting shredded by their strange melting weaponry. I immediately reported the attack to a desk clerk at the Navy base in the neighboring system Saiph, but their servers show no logs of any unidentified ships beyond Farpoint, so I guess they turned around after scouting out the Alnitak system."`
+			`	"Well," the pilot says, "we were doing a large cargo run to Farpoint in the Alnitak system, when two of these hostile ships jumped in from the northwest, the direction of all the anarchist colonies in this area. I had to jump the ship in atmosphere to stop us from getting shredded by their strange melting weaponry. I immediately reported the attack to a desk clerk at the Navy base in the neighboring system Saiph, but their servers show no logs of any unidentified ships beyond Farpoint, so I guess they turned around after scouting out the Alnitak system."`
 			choice
 				`	"You're lucky as hell to be here today."`
 					goto glad
@@ -1815,7 +1815,7 @@ mission "Wanderers: Sestor Search: Human Spaceport"
 					goto thanks
 			
 			label glad1
-			`	"I am! The attacking ships weren't big, but they were tough: our four heavy laser turrets couldn't even produce a dent in their shields," the captain explains. "We even hired a beefy Leviathan to protect us from the pirate raids as we travelled to Farpoint, but when these hostile ships jumped in from the northwest, they made short work of our escort and nearly disabled our ship, too. I had to jump out of the system while in atmosphere to save the ship, but now I'm in debt to all my crew because I didn't meet a rush delivery deadline."`
+			`	"I am! The attacking ships weren't big, but they were tough: our four heavy laser turrets couldn't even produce a dent in their shields," the captain says. "We even hired a beefy Leviathan to protect us from the pirate raids as we travelled to Farpoint, but when these hostile ships jumped in from the northwest, they made short work of our escort and nearly disabled our ship, too. I had to jump out of the system while in atmosphere to save the ship, but now I'm in debt to all my crew because I didn't meet a rush delivery deadline."`
 			choice
 				`	"You really are lucky as hell to be here today."`
 					goto glad
@@ -1834,11 +1834,11 @@ mission "Wanderers: Sestor Search: Human Spaceport"
 				`	"I don't want to jump to any conclusions."`
 					goto no
 					
-			`	"Aliens!?" The pilot's face reddens, and his eyes narrow in anger. "Like those detestable squirrels, you mean? Told me they were peaceful, so I went further north, and nearly had my ship torn to pieces!" You try to tell him that the Hai are a seperate species from the Korath, but he clearly does not want to hear any more, so you decide to steer the conversation to an end.`
+			`	"Aliens?" The pilot's face reddens, and his eyes narrow in anger. "Like those detestable squirrels, you mean? Told me they were peaceful, but when I went further north, I nearly had my ship torn to pieces!" You try to tell him that the Hai are a seperate species from the Korath, but he clearly does not want to hear any more, so you decide to steer the conversation to an end.`
 				goto end
 				
 			label no
-			`	The pilot seems disappointed by your response, so you decide to steer the conversation to an end.`
+			`	The pilot seems disappointed in your response, so you decide to steer the conversation to an end.`
 				goto end
 				
 			label end
