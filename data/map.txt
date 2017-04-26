@@ -24,7 +24,6 @@
 # rare ones : religious (south Harmony, dirt belt "New Tibet"), volcanic (deep Helheim, core Lodestone, "New Iceland", core Quicksilver, interestingly not Hope)
 # regionally used ones:
 #	"human tourism", "hai tourism" (only used in hai space)
-#	manufacturing *instead* of factory (hai Dustmaker, hai Heartvalley, hai Makerplace, hai Stonebreak)
 #	shipping (only used in coalition space)
 #	wealthy *instead* of rich (arach "Bank of Blugtad", kimek "Midway Emerald", kimek "Rusty Second")
 
@@ -23167,7 +23166,7 @@ planet "Dusk Companion"
 	"required reputation" 15
 
 planet Dustmaker
-	attributes hai manufacturing "hai tourism"
+	attributes hai factory "hai tourism"
 	landscape land/badlands0
 	description `The surface of this planet, when it is not obscured by dust storms, receives enough sunlight to power not only large solar farms, but solar furnaces as well, which the Hai use for manufacturing a large variety of goods. Some of the solar farms are so large that from orbit, the light reflecting off them could almost be mistaken for lakes and small oceans. However, there is almost no water on the planet's surface except near the poles.`
 	spaceport `Like most Hai architecture, the spaceport is made of bare, unpainted metal, so weathered that you would not be surprised to learn that it is tens of thousands of years old. Tall, curved walls around the outskirts of the port create a sort of labyrinth with the port building itself at the center; they are probably intended to block sandstorms while allowing gentler breezes to pass through.`
@@ -23687,7 +23686,7 @@ planet Heartland
 		fleet "Large Republic" 4
 
 planet Heartvalley
-	attributes hai shipyard syMinor manufacturing "hai tourism"
+	attributes hai shipyard syMinor factory "hai tourism"
 	landscape land/fog0
 	description `An extreme amount of tectonic activity in its distant past has left Heartvalley with mountain ranges five to ten kilometers high in some places. Most of the Hai settlements here are in the valleys closer to sea level, where the air is dense enough for them to breathe comfortably. The tectonic activity has left many ancient sea-beds exposed, providing access to bountiful supplies of oil. To the Hai, oil is too precious a resource to be used for fuel; instead they process it into plastic and use the byproducts in other chemical processes.`
 	spaceport `The spaceport is built halfway up the slope of one of the most heavily settled valleys. Farther down the valley, the tallest buildings of the city seem tiny compared to the mountains that surround them. On the outskirts of the city sit strange engines the size of a spacecraft, with pipes snaking out from them in all directions and sinking deep into the ground.`
@@ -24083,7 +24082,7 @@ planet Maker
 		fleet "Large Syndicate" 10
 
 planet Makerplace
-	attributes hai shipyard syMinor manufacturing "hai tourism"
+	attributes hai shipyard syMinor factory "hai tourism"
 	landscape land/lava0
 	description `Makerplace has an unusual degree of volcanic activity due to high concentrations of radioactive elements in the planet's mantle. Although it is warm by Hai standards, the abundance of geothermal energy, combined with plentiful solar energy and wind power, has made it an ideal world for manufacturing. Several cities in the temperate regions have populations of over a hundred million Hai, and the factories surrounding the cities spread out for dozens of kilometers in all directions. Near the equator, much of the land is desert or volcanic wasteland.`
 	spaceport `A fair number of the Hai walking through this spaceport are wearing no clothing at all, perhaps as a response to the warm temperatures. Given that they seem to attract no notice or disapproval by doing so, it appears that this is perfectly normal behavior. Others appear to have trimmed their fur shorter than normal as an alternative way to deal with the heat.`
@@ -25186,7 +25185,7 @@ planet Starcross
 		fleet "Small Militia" 22
 
 planet Stonebreak
-	attributes hai shipyard syMinor manufacturing urban
+	attributes hai shipyard syMinor factory urban
 	landscape land/fog7
 	description `Stonebreak is home to some of the largest cities in Hai space aside from their homeworld: massive planned communities build in concentric rings, where housing space and community buildings alternate with zones of factories and shipyards. This star system has an unusual number of metallic asteroids, which the Hai harvest for the raw materials for Stonebreak's industries.`
 	spaceport `From above, this city has almost perfect radial symmetry, a sure sign that it was planned and built as a single unit rather than expanding at random over time. Every single building in the city is made from the same metal alloy, a dull and slightly irregular grey color. The corners of each building are slightly beveled instead of meeting at right angles.`
