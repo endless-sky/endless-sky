@@ -365,7 +365,7 @@ ship "Heliarch Neutralizer"
 	explode "medium explosion" 40
 	explode "large explosion" 20
 	"final explode" "final explosion medium" 1
-	description `The most common Heliarch patrol ship, Neutralizers are designed to be just strong enough to keep an enemy vessel occupied until reinforcements can arrive. Their ion rain guns are particularly adept at this, draining an enemy's power to prevent them from fighting or fleeing.`
+	description `The most common Heliarch patrol ship, Neutralizers are designed to be just strong enough to keep an enemy vessel occupied until reinforcements can arrive.`
 
 ship "Heliarch Neutralizer" "Heliarch Neutralizer (Missile)"
 	outfits
