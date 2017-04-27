@@ -11,6 +11,7 @@
 mission "Coalition: First Contact"
 	landing
 	name "Register with the Heliarchs"
+	description "You have been informed that, should you wish to conduct business in Coalition space, you must petition the rulers of the Coalition for permission. You can pursue this course of action on the <planet>.
 	description "You have been told to travel to the <planet> to register with the rulers of Coalition space and petition them for permission to do business here."
 	source
 		government "Coalition"
@@ -84,7 +85,7 @@ mission "Coalition: First Contact"
 mission "Coalition: Contributor"
 	landing
 	name "Return to the <planet>"
-	description "Return to the <planet> to see if the Heliarchs will grant you a higher status in the Coalition now that you have been working among them for some time."
+	description "Return to the <planet> to see if the Heliarchs will grant you a higher status in the Coalition, given that you have now been working among them for some time."
 	to offer
 		"coalition jobs" >= 30
 	source
