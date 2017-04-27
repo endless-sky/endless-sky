@@ -12,7 +12,6 @@ mission "Coalition: First Contact"
 	landing
 	name "Register with the Heliarchs"
 	description "You have been informed that, should you wish to conduct business in Coalition space, you must petition the rulers of the Coalition for permission. You can pursue this course of action on the <planet>.
-	description "You have been told to travel to the <planet> to register with the rulers of Coalition space and petition them for permission to do business here."
 	source
 		government "Coalition"
 	destination "Ring of Friendship"
