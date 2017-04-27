@@ -146,7 +146,7 @@ ship "Arach Hulk"
 	explode "large explosion" 30
 	explode "huge explosion" 10
 	"final explode" "final explosion large"
-	description `The Arachi believe that efficient functionality is the highest form of beauty, and none of their ships demonstrate that principle more clearly than the ugly yet utilitarian Hulk, designed with detachable side pods that can be swapped out on a planet in a matter of minutes if the captain is in a hurry to reach the next destination.`
+	description `The Arachi believe that efficient functionality is the highest form of beauty, and none of their ships demonstrate that principle more clearly than the ugly yet utilitarian Hulk. This spacecraft is designed with detachable side pods that can be swapped out on a planet in a matter of minutes if the captain is in a hurry to reach the next destination.`
 
 ship "Arach Spindle"
 	sprite "ship/arach spindle"
@@ -195,7 +195,7 @@ ship "Arach Spindle"
 	explode "medium explosion" 20
 	explode "large explosion" 20
 	"final explode" "final explosion large"
-	description `The Arach Hulk is an ungainly, lumbering behemoth of a ship, but with its side pods removed it becomes the much more maneuverable Spindle. Because of its much lower cargo space, usually the only reason a fleet would include a Spindle is if they are planning on picking up new cargo pods at their destination.`
+	description `The Arach Hulk is an ungainly, lumbering behemoth of a ship, but with its side pods removed, it becomes the much more maneuverable Spindle. Because of its much lower cargo space, the only reason most fleets would include a Spindle is if they were planning on picking up new cargo pods at their destination.`
 
 ship "Arach Transport"
 	sprite "ship/arach transport"
@@ -295,7 +295,7 @@ ship "Heliarch Interdictor"
 	explode "large explosion" 30
 	explode "huge explosion" 10
 	"final explode" "final explosion large" 1
-	description `Anyone who incurs the wrath of the Heliarchs cannot count on making a fast getaway thanks to the Interdictors, which were primarily designed to carry a pair of attractor and repulsor beams that can hold a ship a safe distance away while pushing it around enough to prevent it from getting a hyperspace lock to jump out of the system.`
+	description `Anyone who incurs the wrath of the Heliarchs cannot count on making a fast getaway thanks to the Interdictors. These ships are primarily designed to carry one Heliarch Attractor and one Heliarch Repulsor each, forcing enemy ships to stay at a safe distance. At the same time, they move the target with enough force to prevent them from achieving a hyperspace lock and fleeing from the might of the Heliarchs.`
 
 ship "Heliarch Interdictor" "Heliarch Interdictor (Bombardment)"
 	outfits
@@ -365,7 +365,7 @@ ship "Heliarch Neutralizer"
 	explode "medium explosion" 40
 	explode "large explosion" 20
 	"final explode" "final explosion medium" 1
-	description `The most common Heliarch patrol ship, Neutralizers are designed to be just strong enough to keep an enemy vessel occupied until reinforcements can arrive.`
+	description `The most common Heliarch patrol ship, Neutralizers are designed to be just strong enough to keep an enemy vessel occupied until reinforcements can arrive. Their ion rain guns are particularly adept at this, draining an enemy's power to prevent them from fighting or fleeing.`
 
 ship "Heliarch Neutralizer" "Heliarch Neutralizer (Missile)"
 	outfits
