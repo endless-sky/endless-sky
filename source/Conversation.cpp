@@ -291,8 +291,12 @@ Conversation Conversation::Substitute(const map<string, string> &subs) const
 {
 	Conversation result = *this;
 	for(Node &node : result.nodes)
+	{
 		for(pair<string, int> &choice : node.data)
 			choice.first = Format::Replace(choice.first, subs);
+		if(!node.conditions.IsEmpty())
+			node.conditions = node.conditions.Substitute(subs);
+	}
 	return result;
 }
 
