@@ -973,9 +973,9 @@ Mission Mission::Instantiate(const PlayerInfo &player) const
 		subs["<originGov>"] = player.BoardingShip()->GetGovernment()->GetName();
 	}
 	subs["<planet>"] = result.destination ? result.destination->Name() : "";
-	subs["<planetGov>"] = result.destination ? result.destination->GetGovernment()->Name() : "";
+	subs["<planetGov>"] = result.destination ? result.destination->GetGovernment()->GetName() : "";
 	subs["<system>"] = result.destination ? result.destination->GetSystem()->Name() : "";
-	subs["<systemGov>"] = result.destination ? result.destination->GetSystem()->GetGovernment()->Name() : "";
+	subs["<systemGov>"] = result.destination ? result.destination->GetSystem()->GetGovernment()->GetName() : "";
 	subs["<destination>"] = subs["<planet>"] + " in the " + subs["<system>"] + " system";
 	subs["<date>"] = result.deadline.ToString();
 	subs["<day>"] = result.deadline.LongString();
