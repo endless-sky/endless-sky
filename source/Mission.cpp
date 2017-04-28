@@ -508,6 +508,7 @@ bool Mission::HasFullClearance() const
 // Check if it's possible to offer or complete this mission right now.
 bool Mission::CanOffer(const PlayerInfo &player) const
 {
+	map<string, string> subs;
 	if(location == BOARDING || location == ASSISTING)
 	{
 		if(!player.BoardingShip())
@@ -515,20 +516,26 @@ bool Mission::CanOffer(const PlayerInfo &player) const
 		
 		if(!sourceFilter.Matches(*player.BoardingShip()))
 			return false;
+		
+		subs["<origin>"] = player.BoardingShip()->Name();
+		subs["<originGov>"] = player.BoardingShip()->GetGovernment()->GetName();
 	}
 	else
 	{
 		if(source && source != player.GetPlanet())
 			return false;
-	
+		
 		if(!sourceFilter.Matches(player.GetPlanet()))
 			return false;
+		
+		subs["<origin>"] = player.GetPlanet()->Name();
+		subs["<originGov>"] = player.GetPlanet()->GetGovernment()->GetName();
 	}
 	
-	if(!toOffer.Test(player.Conditions()))
+	if(!toOffer.Substitute(subs).Test(player.Conditions()))
 		return false;
 	
-	if(!toFail.IsEmpty() && toFail.Test(player.Conditions()))
+	if(!toFail.IsEmpty() && toFail.Substitute(subs).Test(player.Conditions()))
 		return false;
 	
 	if(repeat)
