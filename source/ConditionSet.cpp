@@ -92,6 +92,29 @@ bool ConditionSet::IsEmpty() const
 
 
 
+// Do text replacement throughout this ConditionSet.
+ConditionSet ConditionSet::Substitute(const map<string, string> &subs) const
+{
+	ConditionSet result = *this;
+	DataNode someNode = DataNode();
+	for(Expression &expression : result.expressions)
+	{
+		expression.name = Format::Replace(expression.name, subs);
+		expression.strValue = Format::Replace(expression.strValue, subs);
+		if (expression.value == 0 && expression.strValue.length() > 0 && someNode.IsNumber(expression.strValue) && someNode.Value(expression.strValue) != 0)
+		{
+			expression.value = someNode.Value(expression.strValue);
+			expression.strValue = "";
+		}
+	}
+	for(ConditionSet &child : result.children) {
+		child = child.Substitute(subs);
+	}
+	return result;
+}
+
+
+
 // Read a single condition from a data node.
 void ConditionSet::Add(const DataNode &node)
 {
