@@ -1917,7 +1917,7 @@ double Ship::JumpFuelMissing() const
 {
 	// Used for smart refuelling: transfer only as much as really needed
 	// includes checking if fuel cap is high enough at all
-	if(!JumpsRemaining() && attributes.Get("fuel capacity") > JumpFuel())
+	if(!JumpsRemaining() && attributes.Get("fuel capacity") >= JumpFuel())
 		return JumpFuel() - fuel;
 	return 0.;
 }
