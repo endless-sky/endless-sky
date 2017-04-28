@@ -125,7 +125,8 @@ int Body::GetFrameIndex(int step) const
 const Mask &Body::GetMask(int step) const
 {
 	SetStep(step, currentHighDPI);
-	return sprite->GetMask(activeIndex);
+	static const Mask EMPTY;
+	return sprite ? sprite->GetMask(activeIndex) : EMPTY;
 }
 
 
