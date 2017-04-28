@@ -1266,7 +1266,7 @@ system "5 Spring Below"
 	fleet "Large Saryd" 2500
 	fleet Heliarch 500
 	object
-		sprite star/g0
+		sprite star/g0-old
 		distance 19.7171
 		period 12.9082
 		offset 180
@@ -2476,7 +2476,7 @@ system Algenib
 	fleet "Large Syndicate" 800
 	fleet "Small Core Merchants" 600
 	object
-		sprite star/k0
+		sprite star/k0-old
 		period 10
 	object "Buccaneer Bay"
 		sprite planet/ocean6
@@ -2605,7 +2605,7 @@ system Algol
 	fleet "Large Core Pirates" 5000
 	fleet "Small Syndicate" 2400
 	object
-		sprite star/k5
+		sprite star/k5-old
 		distance 42.7246
 		period 19.0178
 	object
@@ -3156,7 +3156,7 @@ system Alnasl
 		period 11.956
 		offset 180
 	object
-		sprite star/k5
+		sprite star/k5-old
 		distance 41.5
 		period 11.956
 	object
@@ -5443,7 +5443,7 @@ system "Bote Asu"
 		distance 17.3605
 		period 7.70584
 	object
-		sprite star/k0
+		sprite star/k0-old
 		distance 84.6395
 		period 7.70584
 		offset 180
@@ -7525,7 +7525,7 @@ system Durax
 	fleet "Large Syndicate" 2500
 	fleet "Korath Raid" 5000
 	object
-		sprite star/g0
+		sprite star/g0-old
 		period 10
 	object
 		sprite planet/rock16
@@ -7592,7 +7592,7 @@ system Eber
 	fleet "Large Militia" 5000
 	fleet "Small Southern Pirates" 2000
 	object
-		sprite star/k5
+		sprite star/k5-old
 		period 10
 	object
 		sprite planet/gas4
@@ -8717,7 +8717,7 @@ system Fala
 	fleet "Large Northern Pirates" 4000
 	fleet "Human Miners" 2000
 	object
-		sprite star/g5
+		sprite star/g5-old
 		period 10
 	object
 		sprite planet/desert1
@@ -9707,7 +9707,7 @@ system "Gamma Cassiopeiae"
 	fleet "Large Syndicate" 5000
 	fleet "Human Miners" 2000
 	object
-		sprite star/k0
+		sprite star/k0-old
 		period 10
 	object
 		sprite planet/ice7
@@ -9828,7 +9828,7 @@ system Gienah
 	fleet "Large Core Pirates" 800
 	fleet "Large Syndicate" 5000
 	object
-		sprite star/k5
+		sprite star/k5-old
 		distance 31.893
 		period 12.2656
 		offset 180
@@ -10987,7 +10987,7 @@ system Holeb
 	fleet "Small Southern Pirates" 5000
 	fleet "Small Militia" 5000
 	object
-		sprite star/f5
+		sprite star/f5-old
 		period 10
 	object
 		sprite planet/lava4
@@ -11517,7 +11517,7 @@ system Ipsing
 	fleet "Large Southern Merchants" 5000
 	fleet "Small Southern Pirates" 3000
 	object
-		sprite star/g0
+		sprite star/g0-old
 		distance 21.7143
 		period 9.89877
 		offset 180
@@ -12710,7 +12710,7 @@ system "Kor Men"
 	fleet "Korath Raid" 1300
 	fleet "Korath Home" 600
 	object
-		sprite star/f5
+		sprite star/f5-old
 		distance 33.3868
 		period 11.5563
 	object
@@ -12769,7 +12769,7 @@ system "Kor Nor'peli"
 	fleet "Korath Raid" 1000
 	fleet "Korath Home" 500
 	object
-		sprite star/k0
+		sprite star/k0-old
 		distance 25.4857
 		period 19.3783
 	object
@@ -12883,7 +12883,7 @@ system "Kor Zena'i"
 	fleet "Korath Raid" 800
 	fleet "Korath Home" 1100
 	object
-		sprite star/g5
+		sprite star/g5-old
 		distance 8.94444
 		period 10.8953
 	object
@@ -14293,7 +14293,7 @@ system Men
 	fleet "Small Northern Pirates" 2000
 	fleet "Large Northern Pirates" 4000
 	object
-		sprite star/k5
+		sprite star/k5-old
 		period 10
 	object Thule
 		sprite planet/forest4
@@ -14360,7 +14360,7 @@ system Menkalinan
 	fleet "Small Republic" 700
 	fleet "Large Republic" 1500
 	object
-		sprite star/f5
+		sprite star/f5-old
 		distance 58.5
 		period 8.64354
 		offset 180
@@ -14610,7 +14610,7 @@ system Mesuket
 	fleet "Large Kor Mereti" 600
 	fleet "Large Kor Sestor" 600
 	object
-		sprite star/k5
+		sprite star/k5-old
 		period 10
 	object
 		sprite planet/mercury
@@ -14886,7 +14886,7 @@ system Minkar
 	fleet "Large Militia" 2000
 	fleet "Large Southern Pirates" 12000
 	object
-		sprite star/k0
+		sprite star/k0-old
 		distance 33.5961
 		period 16.6267
 	object
@@ -15187,7 +15187,7 @@ system Mizar
 	fleet "Large Southern Merchants" 3500
 	fleet "Small Southern Pirates" 6000
 	object
-		sprite star/g0
+		sprite star/g0-old
 		period 10
 	object
 		sprite planet/desert6
@@ -15412,7 +15412,7 @@ system Muphrid
 	fleet "Small Southern Pirates" 6000
 	fleet "Small Republic" 5000
 	object
-		sprite star/g5
+		sprite star/g5-old
 		distance 21.8366
 		period 10.9152
 	object
@@ -16121,7 +16121,7 @@ system Persian
 	fleet "Large Core Pirates" 2000
 	fleet "Human Miners" 3000
 	object
-		sprite star/f5
+		sprite star/f5-old
 		distance 27.8124
 		period 13.0946
 	object
@@ -16738,7 +16738,7 @@ system Prakacha'a
 		period 12.7118
 		offset 180
 	object
-		sprite star/k5
+		sprite star/k5-old
 		distance 82.4745
 		period 12.7118
 	object
@@ -18338,7 +18338,7 @@ system Sayaiban
 	trade Plastic 531
 	fleet Nanobots 100
 	object
-		sprite star/f5
+		sprite star/f5-old
 		distance 19.1843
 		period 11.9486
 	object
@@ -20435,7 +20435,7 @@ system "Tania Australis"
 	fleet "Small Northern Pirates" 4000
 	fleet "Large Northern Pirates" 9000
 	object
-		sprite star/g0
+		sprite star/g0-old
 		period 10
 	object
 		sprite planet/desert5
@@ -20712,7 +20712,7 @@ system Torbab
 		distance 26.8689
 		period 9.54431
 	object
-		sprite star/k5
+		sprite star/k5-old
 		distance 68.1311
 		period 9.54431
 		offset 180
@@ -21024,7 +21024,7 @@ system Umbral
 	fleet Quarg 15000
 	fleet "Large Southern Pirates" 6000
 	object
-		sprite star/k0
+		sprite star/k0-old
 		distance 31.3563
 		period 14.9921
 	object
@@ -22413,7 +22413,7 @@ system Zubeneschamali
 		period 15.622
 		offset 180
 	object
-		sprite star/g5
+		sprite star/g5-old
 		distance 62
 		period 15.622
 	object
