@@ -322,8 +322,11 @@ MissionAction MissionAction::Instantiate(map<string, string> &subs, int jumps, i
 	// Fill in the payment amount if this is the "complete" action (which comes
 	// before all the others in the list).
 	if(trigger == "complete" || result.payment)
+	{
+		subs["<paymentNum>"] = to_string(result.payment);
 		subs["<payment>"] = Format::Number(result.payment)
 			+ (result.payment == 1 ? " credit" : " credits");
+	}
 	
 	if(!dialogText.empty())
 		result.dialogText = Format::Replace(dialogText, subs);
@@ -335,7 +338,7 @@ MissionAction MissionAction::Instantiate(map<string, string> &subs, int jumps, i
 	
 	result.fail = fail;
 	
-	result.conditions = conditions;
+	result.conditions = conditions.Substitute(subs);
 	
 	return result;
 }
