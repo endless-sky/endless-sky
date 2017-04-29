@@ -652,6 +652,10 @@ void MapPanel::DrawWormholes()
 			if(object.GetPlanet() && object.GetPlanet()->IsWormhole() && player.HasVisited(object.GetPlanet()))
 			{
 				const System *next = object.GetPlanet()->WormholeDestination(previous);
+				// Only draw a wormhole if both systems have been visited.
+				if(!player.HasVisited(previous) || !player.HasVisited(next))
+					continue;
+				
 				drawn[previous] = next;
 				Point from = Zoom() * (previous->Position() + center);
 				Point to = Zoom() * (next->Position() + center);

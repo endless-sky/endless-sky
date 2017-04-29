@@ -179,6 +179,9 @@ void DistanceMap::Init(const System *center, const Ship *ship)
 					
 					if(player && !player->HasVisited(object.GetPlanet()))
 						continue;
+					// Only travel through wormholes if you've visited both endpoints.
+					if(player && !(player->HasVisited(system) && player->HasVisited(link)))
+						continue;
 					
 					Add(system, link, steps + 1, danger + link->Danger());
 				}
