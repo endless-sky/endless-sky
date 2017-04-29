@@ -12,6 +12,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "HailPanel.h"
 
+#include "DrawList.h"
 #include "FontSet.h"
 #include "Format.h"
 #include "GameData.h"
@@ -25,7 +26,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Politics.h"
 #include "Ship.h"
 #include "Sprite.h"
-#include "SpriteShader.h"
 #include "System.h"
 #include "UI.h"
 #include "WrappedText.h"
@@ -38,8 +38,7 @@ using namespace std;
 
 
 HailPanel::HailPanel(PlayerInfo &player, const shared_ptr<Ship> &ship)
-	: player(player), ship(ship),
-	sprite(ship->GetSprite()), unit(2. * ship->Unit())
+	: player(player), ship(ship), sprite(ship->GetSprite()), facing(ship->Facing())
 {
 	SetInterruptible(false);
 	
@@ -114,8 +113,7 @@ HailPanel::HailPanel(PlayerInfo &player, const shared_ptr<Ship> &ship)
 
 
 HailPanel::HailPanel(PlayerInfo &player, const StellarObject *object)
-	: player(player), planet(object->GetPlanet()),
-	sprite(object->GetSprite()), unit(object->Facing().Unit())
+	: player(player), planet(object->GetPlanet()), sprite(object->GetSprite()), facing(object->Facing())
 {
 	SetInterruptible(false);
 	
@@ -187,21 +185,29 @@ void HailPanel::Draw()
 	interface->Draw(info, this);
 	
 	// Draw the sprite, rotated, scaled, and swizzled as necessary.
-	int swizzle = ship ? ship->GetGovernment()->GetSwizzle() : 0;
-	uint32_t tex = sprite->Texture();
+	double zoom = min(2., 400. / max(sprite->Width(), sprite->Height()));
+	Point center(-170., -10.);
 	
-	float pos[2] = {-170.f, -10.f};
+	DrawList draw;
+	Body mainBody(sprite, center, Point(), facing, zoom);
+	if(ship)
+		mainBody.SetSwizzle(ship->GetSwizzle());
+	draw.Add(mainBody);
 	
-	double zoom = min(1., 200. / max(sprite->Width(), sprite->Height()));
-	Point uw = unit * (sprite->Width() * zoom);
-	Point uh = unit * (sprite->Height() * zoom);
-	float tr[4] = {
-		static_cast<float>(-uw.Y()), static_cast<float>(uw.X()),
-		static_cast<float>(-uh.X()), static_cast<float>(-uh.Y())};
-	
-	SpriteShader::Bind();
-	SpriteShader::Add(tex, tex, pos, tr, swizzle);
-	SpriteShader::Unbind();
+	// If hailing a ship, draw its turret sprites.
+	if(ship)
+		for(const Hardpoint &hardpoint : ship->Weapons())
+			if(hardpoint.GetOutfit() && hardpoint.GetOutfit()->HardpointSprite().HasSprite())
+			{
+				Body body(
+					hardpoint.GetOutfit()->HardpointSprite(),
+					center + zoom * facing.Rotate(hardpoint.GetPoint()),
+					Point(),
+					facing + hardpoint.GetAngle(),
+					zoom);
+				draw.Add(body);
+			}
+	draw.Draw();
 	
 	// Draw the current message.
 	WrappedText wrap;
