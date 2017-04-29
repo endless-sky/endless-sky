@@ -40,6 +40,7 @@ namespace {
 			{"=", [](int a, int b) { return b; }},
 			{"+=", [](int a, int b) { return a + b; }},
 			{"-=", [](int a, int b) { return a - b; }},
+			{"*=", [](int a, int b) { return a * b; }},
 			{"<?=", [](int a, int b) { return min(a, b); }},
 			{">?=", [](int a, int b) { return max(a, b); }}
 		};
