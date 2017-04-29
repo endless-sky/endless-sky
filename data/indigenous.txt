@@ -66,16 +66,17 @@ outfit Mouthparts?
 	category "Guns"
 	"gun ports" -1
 	weapon
+		sound "crunch"
 		"hit effect" "void sprite chewing"
 		"inaccuracy" 180
 		"velocity" 10
 		"lifetime" 1
-		"reload" 27
-		"burst reload" 10
+		"reload" 70
+		"burst reload" 35
 		"burst count" 3
 		"cluster"
-		"shield damage" 100
-		"hull damage" 100
+		"shield damage" 300
+		"hull damage" 300
 
 effect "void sprite chewing"
 	sprite "effect/smoke"
