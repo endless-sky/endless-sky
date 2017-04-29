@@ -1842,7 +1842,8 @@ mission "Wanderers: Sestor Search: Human Spaceport"
 				goto end
 				
 			label end
-			`	"Thank you for your time," you say to the captain. The pilot sobers up again, and says, "No problem. Remember, northwest of Farpoint. If they're anarchists of any sort, they'll be hiding in one of those pirate systems up there. Take care of yourself out there; those were dangerous ships we faced." With that, he bids you farewell.`
+			`	"Thank you for your time," you say to the captain.`
+			`	The pilot sobers up again, and says, "No problem. Remember, northwest of Farpoint. If they're anarchists of any sort, they'll be hiding in one of those pirate systems up there. Take care of yourself out there; those were dangerous ships we faced." With that, he bids you farewell.`
 				decline
 
 
