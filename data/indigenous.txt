@@ -9,6 +9,7 @@
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 ship "Void Sprite"
+	noun "creature"
 	sprite "ship/void sprite adult"
 		"frame rate" 3.2
 		rewind
@@ -27,6 +28,7 @@ ship "Void Sprite"
 		"hull repair rate" 3
 		"energy capacity" 1
 		"fuel capacity" 1
+		"inscrutable" 1
 	outfits
 		Mouthparts? 2
 	gun -4 -111
@@ -40,7 +42,7 @@ ship "Void Sprite" "Void Sprite (Infant)"
 		rewind
 	"never disabled"
 	attributes
-		category "Medium Warship"
+		category "Light Warship"
 		"hull" 2800
 		"required crew" 2
 		"bunks" 2
@@ -53,6 +55,7 @@ ship "Void Sprite" "Void Sprite (Infant)"
 		"hull repair rate" 1
 		"energy capacity" 1
 		"fuel capacity" 1
+		"inscrutable" 1
 	outfits
 		Mouthparts?
 	gun 4 -41
@@ -89,7 +92,7 @@ fleet "Void Sprites"
 	government "Indigenous Lifeform"
 	cargo 0
 	personality
-		timid mining harvesting
+		timid mining harvesting mute
 	variant
 		"Void Sprite"
 	variant

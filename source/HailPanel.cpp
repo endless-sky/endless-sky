@@ -43,7 +43,10 @@ HailPanel::HailPanel(PlayerInfo &player, const shared_ptr<Ship> &ship)
 	SetInterruptible(false);
 	
 	const Government *gov = ship->GetGovernment();
-	header = gov->GetName() + " ship \"" + ship->Name() + "\":";
+	if(!ship->Name().empty())
+		header = gov->GetName() + " " + ship->Noun() + " \"" + ship->Name() + "\":";
+	else
+		header = ship->ModelName() + " (" + gov->GetName() + "): ";
 	// Drones are always unpiloted, so they never respond to hails.
 	bool isMute = ship->GetPersonality().IsMute() || (ship->Attributes().Category() == "Drone");
 	hasLanguage = !isMute && (gov->Language().empty() || player.GetCondition("language: " + gov->Language()));
@@ -189,10 +192,11 @@ void HailPanel::Draw()
 	Point center(-170., -10.);
 	
 	DrawList draw;
-	Body mainBody(sprite, center, Point(), facing, zoom);
+	// If this is a ship, copy its swizzle, animation settings, etc.
 	if(ship)
-		mainBody.SetSwizzle(ship->GetSwizzle());
-	draw.Add(mainBody);
+		draw.Add(Body(*ship, center, Point(), facing, zoom));
+	else
+		draw.Add(Body(sprite, center, Point(), facing, zoom));
 	
 	// If hailing a ship, draw its turret sprites.
 	if(ship)

@@ -85,6 +85,8 @@ void Ship::Load(const DataNode &node)
 			name = child.Token(1);
 		else if(child.Token(0) == "plural" && child.Size() >= 2)
 			pluralModelName = child.Token(1);
+		else if(child.Token(0) == "noun" && child.Size() >= 2)
+			noun = child.Token(1);
 		else if(child.Token(0) == "attributes")
 			baseAttributes.Load(child);
 		else if(child.Token(0) == "engine" && child.Size() >= 3)
@@ -253,13 +255,17 @@ void Ship::FinishLoading()
 	// definition stored safely in the ship model, which will not be destroyed
 	// until GameData is when the program quits.
 	if(GameData::Ships().Has(modelName))
-		explosionWeapon = &GameData::Ships().Get(modelName)->BaseAttributes();
+	{
+		const Ship *model = GameData::Ships().Get(modelName);
+		explosionWeapon = &model->BaseAttributes();
+		pluralModelName = model->pluralModelName;
+		noun = model->noun;
+	}
 	
 	// If this ship has a base class, copy any attributes not defined here.
 	// Exception: uncapturable and "never disabled" flags don't carry over.
 	if(base && base != this)
 	{
-		pluralModelName = base->pluralModelName;
 		if(!GetSprite())
 			reinterpret_cast<Body &>(*this) = *base;
 		if(baseAttributes.Attributes().empty())
@@ -382,6 +388,8 @@ void Ship::Save(DataWriter &out) const
 		out.Write("name", name);
 		if(pluralModelName != modelName + 's')
 			out.Write("plural", pluralModelName);
+		if(!noun.empty())
+			out.Write("noun", noun);
 		SaveSprite(out);
 		
 		if(neverDisabled)
@@ -489,6 +497,15 @@ const string &Ship::ModelName() const
 const string &Ship::PluralModelName() const
 {
 	return pluralModelName;
+}
+
+
+
+// Get the generic noun (e.g. "ship") to be used when describing this ship.
+const string &Ship::Noun() const
+{
+	static const string SHIP = "ship";
+	return noun.empty() ? SHIP : noun;
 }
 
 
@@ -1440,19 +1457,24 @@ int Ship::Scan()
 		Audio::Play(Audio::Get("scan"), Position());
 	
 	if(startedScanning && government->IsPlayer())
-		Messages::Add("Attempting to scan the ship \"" + target->Name() + "\".", false);
+	{
+		if(!target->Name().empty())
+			Messages::Add("Attempting to scan the " + target->Noun() + " \"" + target->Name() + "\".", false);
+		else
+			Messages::Add("Attempting to scan the selected " + target->Noun() + ".", false);
+	}
 	else if(startedScanning && target->GetGovernment()->IsPlayer())
-		Messages::Add("The " + government->GetName() + " ship \""
+		Messages::Add("The " + government->GetName() + " " + Noun() + " \""
 			+ Name() + "\" is attempting to scan you.", false);
 	
 	if(target->GetGovernment()->IsPlayer() && !government->IsPlayer() && (result & ShipEvent::SCAN_CARGO))
 	{
-		Messages::Add("The " + government->GetName() + " ship \""
+		Messages::Add("The " + government->GetName() + " " + Noun() + " \""
 			+ Name() + "\" completed its scan of your cargo.");
 	}
 	if(target->GetGovernment()->IsPlayer() && !government->IsPlayer() && (result & ShipEvent::SCAN_OUTFITS))
 	{
-		Messages::Add("The " + government->GetName() + " ship \""
+		Messages::Add("The " + government->GetName() + " " + Noun() + " \""
 			+ Name() + "\" completed its scan of your outfits.");
 	}
 	

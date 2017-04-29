@@ -1507,8 +1507,16 @@ void Engine::CalculateStep()
 		{
 			string message = source->GetHail();
 			if(!message.empty() && source->GetSystem() == player.GetSystem())
-				Messages::Add(source->GetGovernment()->GetName() + " ship \""
-					+ source->Name() + "\": " + message);
+			{
+				// If this ship has no name, show its model name instead.
+				string tag;
+				const string &gov = source->GetGovernment()->GetName();
+				if(!source->Name().empty())
+					tag = gov + " " + source->Noun() + " \"" + source->Name() + "\": ";
+				else
+					tag = source->ModelName() + " (" + gov + "): ";
+				Messages::Add(tag + message);
+			}
 		}
 	}
 	
@@ -1588,7 +1596,7 @@ void Engine::DoGrudge(const shared_ptr<Ship> &target, const Government *attacker
 		if(previous && previous->GetSystem() == player.GetSystem() && !previous->IsDisabled())
 		{
 			grudge[target->GetGovernment()].reset();
-			Messages::Add(previous->GetGovernment()->GetName() + " ship \""
+			Messages::Add(previous->GetGovernment()->GetName() + " " + previous->Noun() + " \""
 				+ previous->Name() + "\": Thank you for your assistance, Captain "
 				+ player.LastName() + "!");
 		}
@@ -1613,6 +1621,8 @@ void Engine::DoGrudge(const shared_ptr<Ship> &target, const Government *attacker
 	if(!attacker->IsEnemy())
 		return;
 	if(target->GetGovernment()->IsEnemy())
+		return;
+	if(target->GetPersonality().IsMute())
 		return;
 	if(!target->GetGovernment()->Language().empty())
 		if(!player.GetCondition("language: " + target->GetGovernment()->Language()))

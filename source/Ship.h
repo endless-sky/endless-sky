@@ -113,6 +113,8 @@ public:
 	// Get the name of this model of ship.
 	const std::string &ModelName() const;
 	const std::string &PluralModelName() const;
+	// Get the generic noun (e.g. "ship") to be used when describing this ship.
+	const std::string &Noun() const;
 	// Get this ship's description.
 	const std::string &Description() const;
 	// Get this ship's cost.
@@ -371,6 +373,7 @@ private:
 	const Ship *base = nullptr;
 	std::string modelName;
 	std::string pluralModelName;
+	std::string noun;
 	std::string description;
 	// Characteristics of this particular ship:
 	std::string name;
