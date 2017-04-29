@@ -55,6 +55,8 @@ class System;
 class GameData {
 public:
 	static void BeginLoad(const char * const *argv);
+	// Check for objects that are referred to but never defined.
+	static void CheckReferences();
 	static void LoadShaders();
 	static double Progress();
 	// Begin loading a sprite that was previously deferred. Currently this is

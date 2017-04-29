@@ -8,10 +8,6 @@
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
-phrase "nameless"
-	word
-		""
-
 ship "Void Sprite"
 	sprite "ship/void sprite adult"
 		"frame rate" 3.2
@@ -92,7 +88,6 @@ effect "void sprite chewing"
 fleet "Void Sprites"
 	government "Indigenous Lifeform"
 	cargo 0
-	names "nameless"
 	personality
 		timid mining harvesting
 	variant

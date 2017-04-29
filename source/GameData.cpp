@@ -197,6 +197,28 @@ void GameData::BeginLoad(const char * const *argv)
 
 
 
+// Check for objects that are referred to but never defined.
+void GameData::CheckReferences()
+{
+	for(const auto &it : effects)
+		if(it.second.Name().empty())
+			Files::LogError("Warning: effect \"" + it.first + "\" is referred to, but never defined.");
+	for(const auto &it : fleets)
+		if(!it.second.GetGovernment())
+			Files::LogError("Warning: fleet \"" + it.first + "\" is referred to, but never defined.");
+	for(const auto &it : governments)
+		if(it.second.GetName().empty())
+			Files::LogError("Warning: government \"" + it.first + "\" is referred to, but never defined.");
+	for(const auto &it : outfits)
+		if(it.second.Name().empty())
+			Files::LogError("Warning: outfit \"" + it.first + "\" is referred to, but never defined.");
+	for(const auto &it : systems)
+		if(it.second.Name().empty())
+			Files::LogError("Warning: system \"" + it.first + "\" is referred to, but never defined.");
+}
+
+
+
 void GameData::LoadShaders()
 {
 	FontSet::Add(Files::Images() + "font/ubuntu14r.png", 14);

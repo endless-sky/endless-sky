@@ -399,6 +399,9 @@ void PlayerInfo::ApplyChanges()
 		if(planet)
 			GameData::GetPolitics().DominatePlanet(planet);
 	}
+	
+	// Make sure all data defined in this saved game is valid.
+	GameData::CheckReferences();
 }
 
 

@@ -31,14 +31,6 @@ using namespace std;
 
 
 
-Fleet::Fleet()
-{
-	government = GameData::Governments().Get("Merchant");
-	names = GameData::Phrases().Get("civilian");
-}
-
-
-
 void Fleet::Load(const DataNode &node)
 {
 	if(node.Size() >= 2)
@@ -367,7 +359,9 @@ vector<shared_ptr<Ship>> Fleet::Instantiate(const Variant &variant) const
 		shared_ptr<Ship> ship(new Ship(*model));
 		
 		bool isFighter = ship->CanBeCarried();
-		ship->SetName(((isFighter && fighterNames) ? fighterNames : names)->Get());
+		const Phrase *phrase = ((isFighter && fighterNames) ? fighterNames : names);
+		if(phrase)
+			ship->SetName(phrase->Get());
 		ship->SetGovernment(government);
 		ship->SetPersonality(personality);
 		
