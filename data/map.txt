@@ -44,6 +44,24 @@ galaxy "label south"
 	pos -566 501
 	sprite label/south
 
+galaxy "label wanderers"
+	pos -145 -753
+
+galaxy "label hai"
+	pos -74 -497
+
+galaxy "label korath"
+	pos 165 -347
+
+galaxy "label saryds"
+	pos -1080 678
+
+galaxy "label kimek"
+	pos -1250 215
+
+galaxy "label arachi"
+	pos -750 615
+
 system "1 Axis"
 	pos -1274.63 267.214
 	government Coalition
@@ -23838,7 +23856,7 @@ planet "Into White"
 	"required reputation" 15
 
 planet "Karek Fornati"
-	attributes korath
+	attributes korath efret
 	landscape land/desert1
 	description `Karek Fornati was once a farming world, before global temperatures began to rise and the overworked farmland slowly deteriorated into deserts. The Korath who remain have dedicated their lives to finding a way to keep the "sand seas" from swallowing up the last of the fertile land, but without much success, and there are regions near the equator where sandstorms rage continually and no living things can survive.`
 	spaceport `The spaceport city is built around an enormous public square, with stalls around its periphery for produce or grain or cattle to be sold and shipped offworld. But only one corner of the square is still active as a market; the rest has fallen into disrepair.`
@@ -23873,7 +23891,7 @@ planet "Ki Patek Ka"
 	spaceport `Nearly all the land mass on Ki Patek Ka is covered in cities; the only undeveloped land is the high mountain peaks and the ice caps near the poles. The spaceport alone is larger than most human cities, stretching from horizon to horizon, with a ship taking off or landing every few seconds. The sheer number of people here - mostly Kimek, but a fair number of Saryds and Arachi as well - is overwhelming.`
 
 planet "Korati Efreti"
-	attributes station
+	attributes station efret
 	landscape land/loc2
 	description `This small Korath station is positioned at the Lagrangian point in between this system's sun and the planet that the Quarg had been mining for material to build the ringworld. The station is dwarfed by the ringworld, but nonetheless manages to make a statement: re-asserting the territorial rights of the Korath in the face of an alien species that chose to build a settlement in one of their systems.`
 	spaceport `As the Korath civil war became more and more brutal, the safest home for those who wanted to avoid the fighting was right here in the shadow of the Quarg. This small station is still home to well over a thousand Korath, and they are constantly on the move from one section to another, their boots ringing loudly on the metal floors.`
@@ -23934,7 +23952,7 @@ planet Lagrange
 	security 0.9
 
 planet "Laki Nemparu"
-	attributes korath
+	attributes korath efret
 	landscape land/sea2
 	description `This is an old factory world, so shrouded in smog that only tiny glimpses of the land are visible from above. Deep under the oceans of Laki Nemparu are oil reservoirs so vast that centuries of industry have not yet drained them dry. All but the hardiest of the native vegetation and wildlife is now long extinct from lack of direct sunlight or from pollution and chemical exposure.`
 	spaceport `All the Korath you encounter in the spaceport are wearing ventilator masks, and if you were staying here for longer you would probably do the same. The air leaves a metallic taste in your mouth, and your eyes feel dry and sting when the wind hits them. On the outskirts of the city, factory smokestacks are belching more pollution into the air; the Korath have either given up on preserving this planet, or simply have too great a need for the goods manufactured here to be willing to shut the factories down.`
@@ -24939,7 +24957,7 @@ planet "Sestor Ikfar"
 	security 0
 
 planet "Setar Fort"
-	attributes korath
+	attributes korath efret
 	landscape land/snow5
 	description `There are several large Korath cities on this planet, but the ones farther from the equator have been covered by encroaching glaciers as the planet slowly enters a new ice age. A small number of crops are still grown in the open air, but many of the fields have now been covered with row upon row of gleaming glass as the Korath resort to greenhouse farming to lengthen the growing season and feed their remaining population more efficiently. Farther from the city, Korath ranchers tend herds of creatures that resemble giant, six-legged yaks.`
 	spaceport `This spaceport is the only place where you have ever encountered the Korath cooking food that actually smells appetizing. But in other places, the stench of the enormous cattle that they are trading more than makes up for it. Occasionally as you walk by the stalls, one of the cattle will lower its head to sniff at you. They seem docile enough, although perhaps a bit undernourished, but their horns are alarming.`

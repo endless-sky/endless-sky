@@ -1487,7 +1487,7 @@ mission "FW Pirates 4"
 
 event "battle for Thule"
 	system Men
-		fleet "Small Southern Pirate" 10000
+		fleet "Small Southern Pirates" 10000
 
 
 
