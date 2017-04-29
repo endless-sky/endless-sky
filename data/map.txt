@@ -23091,6 +23091,7 @@ planet Delve
 	spaceport `The spaceport is an enormous hollow carved out of the side of a mountain, with a network of steel beams and mesh holding the rock in place. Inside the hollow, the landings are caves carved into the rock itself, again with steel beams above to protect the ships within. A tiered set of cog railways transport passengers and cargo between the landings and the large town at the base of the hollow. Beyond the hollow, the mountainside falls off into a steep cliff and a mist-filled valley below. Although the port is well-built and modern, you cannot help an irrational fear that the whole place will slide off the edge of the mountain one day.`
 	shipyard "Basic Ships"
 	shipyard "Syndicate Basics"
+	shipyard "Megaparsec Basics"
 	outfitter "Syndicate Advanced"
 	outfitter "Basic Outfits"
 	outfitter "Ammo North"
