@@ -959,6 +959,15 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 				planets.push_back(&object);
 				totalWeight += planetWeight;
 			}
+		// If there are no ports to land on and this ship cannot jump, consider
+		// landing on uninhabited planets.
+		if(!totalWeight)
+			for(const StellarObject &object : ship.GetSystem()->Objects())
+				if(object.GetPlanet() && object.GetPlanet()->CanLand(ship))
+				{
+					planets.push_back(&object);
+					totalWeight += planetWeight;
+				}
 		if(!totalWeight)
 		{
 			// If there is nothing this ship can land on, have it just go to the
