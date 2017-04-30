@@ -157,7 +157,7 @@ void MapPanel::DrawMiniMap(const PlayerInfo &player, double alpha, const System 
 		font.Draw(name, from + Point(6., -.5 * font.Height()), lineColor);
 		
 		Color color = Color(.5 * alpha, 0.);
-		if(player.HasVisited(system) && system->IsInhabited() && gov)
+		if(player.HasVisited(system) && system->IsInhabited(player.Flagship()) && gov)
 			color = Color(
 				alpha * gov->GetColor().Get()[0],
 				alpha * gov->GetColor().Get()[1],
@@ -180,7 +180,7 @@ void MapPanel::DrawMiniMap(const PlayerInfo &player, double alpha, const System 
 			
 			gov = link->GetGovernment();
 			Color color = Color(.5 * alpha, 0.);
-			if(player.HasVisited(link) && link->IsInhabited() && gov)
+			if(player.HasVisited(link) && link->IsInhabited(player.Flagship()) && gov)
 				color = Color(
 					alpha * gov->GetColor().Get()[0],
 					alpha * gov->GetColor().Get()[1],
@@ -738,7 +738,7 @@ void MapPanel::DrawSystems()
 		Color color = UninhabitedColor();
 		if(!player.HasVisited(&system))
 			color = UnexploredColor();
-		else if(system.IsInhabited() || commodity == SHOW_SPECIAL)
+		else if(system.IsInhabited(player.Flagship()) || commodity == SHOW_SPECIAL)
 		{
 			if(commodity >= SHOW_SPECIAL)
 			{
@@ -816,6 +816,8 @@ void MapPanel::DrawSystems()
 					if(object.GetPlanet())
 					{
 						const Planet *planet = object.GetPlanet();
+						if(!planet->IsAccessible(player.Flagship()))
+							continue;
 						canLand |= planet->CanLand() && planet->HasSpaceport();
 						isInhabited |= planet->IsInhabited();
 						hasDominated &= (!planet->IsInhabited()

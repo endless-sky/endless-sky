@@ -47,11 +47,11 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 using namespace std;
 
 namespace {
-	int RadarType(const StellarObject &object)
+	int RadarType(const StellarObject &object, const Ship *flagship)
 	{
 		if(object.IsStar())
 			return Radar::SPECIAL;
-		if(!object.GetPlanet())
+		if(!object.GetPlanet() || !object.GetPlanet()->IsAccessible(flagship))
 			return Radar::INACTIVE;
 		if(object.GetPlanet()->IsWormhole())
 			return Radar::ANOMALOUS;
@@ -105,17 +105,17 @@ Engine::Engine(PlayerInfo &player)
 	draw[calcTickTock].Clear(step, zoom);
 	draw[calcTickTock].SetCenter(center);
 	radar[calcTickTock].SetCenter(center);
+	const Ship *flagship = player.Flagship();
 	for(const StellarObject &object : player.GetSystem()->Objects())
 		if(object.HasSprite())
 		{
 			draw[calcTickTock].Add(object);
 			
 			double r = max(2., object.Radius() * .03 + .5);
-			radar[calcTickTock].Add(RadarType(object), object.Position(), r, r - 1.);
+			radar[calcTickTock].Add(RadarType(object, flagship), object.Position(), r, r - 1.);
 		}
 	
 	// Add all neighboring systems to the radar.
-	const Ship *flagship = player.Flagship();
 	const System *targetSystem = flagship ? flagship->GetTargetSystem() : nullptr;
 	const vector<const System *> &links = (flagship && flagship->Attributes().Get("jump drive")) ?
 		player.GetSystem()->Neighbors() : player.GetSystem()->Links();
@@ -427,7 +427,7 @@ void Engine::Step(bool isActive)
 	{
 		for(const StellarObject &object : currentSystem->Objects())
 		{
-			if(!object.GetPlanet())
+			if(!object.GetPlanet() || !object.GetPlanet()->IsAccessible(flagship.get()))
 				continue;
 			
 			Point pos = object.Position() - center;
@@ -821,7 +821,7 @@ void Engine::EnterSystem()
 	player.IncrementDate();
 	const Date &today = player.GetDate();
 	Messages::Add("Entering the " + system->Name() + " system on "
-		+ today.ToString() + (system->IsInhabited() ?
+		+ today.ToString() + (system->IsInhabited(flagship) ?
 			"." : ". No inhabited planets detected."));
 	
 	for(const StellarObject &object : system->Objects())
@@ -1050,7 +1050,7 @@ void Engine::CalculateStep()
 				draw[calcTickTock].Add(object);
 			
 			double r = max(2., object.Radius() * .03 + .5);
-			radar[calcTickTock].Add(RadarType(object), object.Position(), r, r - 1.);
+			radar[calcTickTock].Add(RadarType(object, flagship), object.Position(), r, r - 1.);
 			
 			if(object.GetPlanet())
 				object.GetPlanet()->DeployDefense(ships);

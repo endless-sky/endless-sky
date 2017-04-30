@@ -136,7 +136,7 @@ void MainPanel::Step()
 			}
 		}
 		if((event.Type() & ShipEvent::JUMP) && player.Flagship() && !player.Flagship()->JumpsRemaining()
-				&& !player.GetSystem()->IsInhabited() && !Preferences::Has("help: stranded"))
+				&& !player.GetSystem()->IsInhabited(player.Flagship()) && !Preferences::Has("help: stranded"))
 		{
 			Preferences::Set("help: stranded");
 			GetUI()->Push(new Dialog(GameData::HelpMessage("stranded")));

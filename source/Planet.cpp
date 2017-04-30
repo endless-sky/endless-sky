@@ -369,11 +369,35 @@ const System *Planet::WormholeDestination(const System *from) const
 
 
 
+// Check if the given ship has all the attributes necessary to allow it to
+// land on this planet.
+bool Planet::IsAccessible(const Ship *ship) const
+{
+	// Check whether any of this planet's attributes are in the form of the
+	// string "requires: <attribute>"; if so the ship must have that attribute.
+	static const string PREFIX = "requires: ";
+	static const string PREFIX_END = "requires:!";
+	auto it = attributes.lower_bound(PREFIX);
+	auto end = attributes.lower_bound(PREFIX_END);
+	if(it == end)
+		return true;
+	if(!ship)
+		return false;
+	
+	for( ; it != end; ++it)
+		if(!ship->Attributes().Get(it->substr(PREFIX.length())))
+			return false;
+	
+	return true;
+}
+
+
+
 // Below are convenience functions which access the game state in Politics,
 // but do so with a less convoluted syntax:
 bool Planet::CanLand(const Ship &ship) const
 {
-	return GameData::GetPolitics().CanLand(ship, this);
+	return IsAccessible(&ship) && GameData::GetPolitics().CanLand(ship, this);
 }
 
 

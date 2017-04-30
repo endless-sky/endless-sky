@@ -29,6 +29,7 @@ ship "Void Sprite"
 		"energy capacity" 1
 		"fuel capacity" 1
 		"inscrutable" 1
+		"gaslining" 1
 	outfits
 		Mouthparts? 2
 	gun -4 -111
@@ -56,6 +57,7 @@ ship "Void Sprite" "Void Sprite (Infant)"
 		"energy capacity" 1
 		"fuel capacity" 1
 		"inscrutable" 1
+		"gaslining" 1
 	outfits
 		Mouthparts?
 	gun 4 -41

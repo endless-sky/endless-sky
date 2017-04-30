@@ -105,7 +105,7 @@ public:
 	// Get the radius of the asteroid belt.
 	double AsteroidBelt() const;
 	// Check if this system is inhabited.
-	bool IsInhabited() const;
+	bool IsInhabited(const Ship *ship) const;
 	// Check if ships of the given government can refuel in this system.
 	bool HasFuelFor(const Ship &ship) const;
 	// Check whether you can buy or sell ships in this system.

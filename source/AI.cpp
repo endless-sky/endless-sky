@@ -2267,7 +2267,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 			int count = 0;
 			const StellarObject *next = nullptr;
 			for(const StellarObject &object : ship.GetSystem()->Objects())
-				if(object.GetPlanet())
+				if(object.GetPlanet() && object.GetPlanet()->IsAccessible(&ship))
 				{
 					++count;
 					if(found)
@@ -2281,7 +2281,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 			if(!next)
 			{
 				for(const StellarObject &object : ship.GetSystem()->Objects())
-					if(object.GetPlanet())
+					if(object.GetPlanet() && object.GetPlanet()->IsAccessible(&ship))
 					{
 						next = &object;
 						break;
@@ -2306,7 +2306,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 			if(!target)
 			{
 				for(const StellarObject &object : ship.GetSystem()->Objects())
-					if(object.GetPlanet())
+					if(object.GetPlanet() && object.GetPlanet()->IsAccessible(&ship))
 					{
 						++count;
 						types.insert(object.GetPlanet()->Noun());
