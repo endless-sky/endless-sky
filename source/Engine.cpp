@@ -849,14 +849,15 @@ void Engine::EnterSystem()
 			asteroids.Add(a.Name(), a.Count(), a.Energy());
 	}
 	
-	// Place five seconds worth of fleets.
+	// Place five seconds worth of fleets. Check for undefined fleets by not
+	// trying to create anything with no government set.
 	for(int i = 0; i < 5; ++i)
 		for(const System::FleetProbability &fleet : system->Fleets())
-			if(Random::Int(fleet.Period()) < 60)
+			if(fleet.Get()->GetGovernment() && Random::Int(fleet.Period()) < 60)
 				fleet.Get()->Place(*system, ships);
 	
 	const Fleet *raidFleet = system->GetGovernment()->RaidFleet();
-	if(raidFleet)
+	if(raidFleet && raidFleet->GetGovernment())
 	{
 		// Find out how attractive the player's fleet is to pirates. Aside from a
 		// heavy freighter, no single ship should attract extra pirate attention.
