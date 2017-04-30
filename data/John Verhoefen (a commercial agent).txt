@@ -621,7 +621,7 @@ mission "John Verhoefen: Returning Home"
 		conversation
 			`John already was 30 meters away from your ship before he made a turn and returned to you.`
 			`	"Captain <last>, I am back at home again. I have learned a lot since we met first when I started this job. I earned more money than I ever expected to earn in that job within that time and I really have to thank you for your travelling assistance. I will write a letter of recommendation to the merchants I know and to our local government. Please also accept these <payment> as expression of my gratitue."`
-			`	"Our common journey ends here for now. I will start my own company with the money I saved up in the last months. But I think we will meet again once things are running smoothly here."
+			`	"Our common journey ends here for now. I will start my own company with the money I saved up in the last months. But I think we will meet again once things are running smoothly here."`
 				decline
 
 
