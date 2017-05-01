@@ -295,7 +295,7 @@ ship "Heliarch Interdictor"
 	explode "large explosion" 30
 	explode "huge explosion" 10
 	"final explode" "final explosion large" 1
-	description `Anyone who incurs the wrath of the Heliarchs cannot count on making a fast getaway thanks to the Interdictors, which were primarily designed to carry both an attractor and repulsor beam that can hold a ship a safe distance away while pushing it around enough to prevent it from getting a hyperspace lock to jump out of the system.`
+	description `Anyone who incurs the wrath of the Heliarchs cannot count on making a fast getaway thanks to the Interdictors, which were primarily designed to carry an attractor and repulsor beam that can hold a ship a safe distance away while pushing it around enough to prevent it from getting a hyperspace lock to jump out of the system.`
 
 ship "Heliarch Interdictor" "Heliarch Interdictor (Bombardment)"
 	outfits
