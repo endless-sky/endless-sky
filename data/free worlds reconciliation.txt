@@ -998,6 +998,78 @@ mission "FW Pug 2"
 		fleet "Small Republic"
 		fleet "Small Republic"
 
+	npc evade
+		system Sol
+		personality heroic uninterested staying
+		government "Republic"
+		fleet
+			names "republic capital"
+			fighters "republic fighter"
+			variant
+				"Carrier (Mark II)"
+				"Lance" 4
+				"Combat Drone" 6
+		fleet
+			names "republic capital"
+			fighters "republic fighter"
+			variant
+				"Carrier (Mark II)"
+				"Lance" 4
+				"Combat Drone" 6
+		fleet
+			names "republic capital"
+			fighters "republic fighter"
+			variant
+				"Cruiser (Mark II)"
+				"Combat Drone" 4
+		fleet
+			names "republic capital"
+			fighters "republic fighter"
+			variant
+				"Cruiser (Mark II)"
+				"Combat Drone" 4
+		fleet
+			names "republic capital"
+			fighters "republic fighter"
+			variant
+				"Cruiser (Mark II)"
+				"Combat Drone" 4
+		fleet
+			names "republic small"
+			fighters "republic fighter"
+			variant
+				"Rainmaker (Mark II)" 2
+		fleet
+			names "republic small"
+			fighters "republic fighter"
+			variant
+				"Rainmaker (Mark II)" 2
+		fleet
+			names "republic small"
+			fighters "republic fighter"
+			variant
+				"Rainmaker (Mark II)" 2
+		fleet
+			names "republic small"
+			fighters "republic fighter"
+			variant
+				"Gunboat (Mark II)" 3
+		fleet
+			names "republic small"
+			fighters "republic fighter"
+			variant
+				"Gunboat (Mark II)" 2
+		fleet
+			names "republic small"
+			fighters "republic fighter"
+			variant
+				"Gunboat (Mark II)" 3
+		fleet
+			names "republic small"
+			fighters "republic fighter"
+			variant
+				"Gunboat (Mark II)" 2
+
 
 
 mission "FW Pug 2A"
