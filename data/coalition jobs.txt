@@ -1105,7 +1105,7 @@ mission "Coalition: From Games 1"
 		"coalition jobs" ++
 		payment
 		payment 10000
-		dialog `The passengers thank you for bringing them to <planet> and pay you <payment>. From their overall manner, it looks like the Coalition Games were quite entertaining this year.`
+		dialog `The passengers thank you for bringing them to <planet> and pay you <payment>. Based on their behaviour, it looks like the Coalition Games were quite entertaining this year.`
 
 mission "Coalition: From Games 2"
 	job
@@ -1126,7 +1126,7 @@ mission "Coalition: From Games 2"
 		"coalition jobs" ++
 		payment
 		payment 15000
-		dialog `The passengers thank you for bringing them to <planet> and pay you <payment>. From their overall manner, it looks like the Coalition Games were quite entertaining this year.`
+		dialog `The passengers thank you for bringing them to <planet> and pay you <payment>. Based on their behaviour, it looks like the Coalition Games were quite entertaining this year.`
 
 mission "Coalition: From Games 3"
 	job
@@ -1147,4 +1147,4 @@ mission "Coalition: From Games 3"
 		"coalition jobs" ++
 		payment
 		payment 25000
-		dialog `The passengers thank you for bringing them to <planet> and pay you <payment>. From their overall manner, it looks like the Coalition Games were quite entertaining this year.`
+		dialog `The passengers thank you for bringing them to <planet> and pay you <payment>. Based on their behaviour, it looks like the Coalition Games were quite entertaining this year.`
