@@ -1626,7 +1626,7 @@ mission "FW Pug 4"
 	on offer
 		event "at war with the pug"
 		conversation
-			`The Syndicate directs you to land your ships in the private hangars for Syndicated Systems. Once you have landed, they quickly work to install jump drives in the Navy and Free Worlds ships. As they work, you hear one of the workers saying to another, "Golly, I'd forgotten how big those Navy ships are. Makes a Protector look puny by comparison, doesn't it?"`
+			`Syndicate port control directs you to land your ships in the Syndicated Systems private hangars. Once you have landed, they quickly work to install jump drives in the Navy and Free Worlds ships. As they work, you hear one of the workers saying to another, "Golly, I'd forgotten how big those Navy ships are. Makes a Protector look puny by comparison, doesn't it?"`
 			`	Once the work is done, you meet with a senior Syndicate executive named Marco Bugati. "I really hope this works," he says, "because these are the only jump drives we've been able to acquire. If your fleet is destroyed, we will have lost access to the occupied territory entirely."`
 			`	You gather your fleet and prepare for an assault on Delta Capricorni, which is the occupied star system closest to Syndicate space.`
 			``
