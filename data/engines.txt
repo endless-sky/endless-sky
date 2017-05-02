@@ -213,7 +213,7 @@ outfit "Chipmunk Plasma Thruster"
 	"flare sprite" "effect/plasma flare/tiny"
 		"frame rate" 5
 	"flare sound" "plasma tiny"
-	description "This is the smallest of the plasma propulsion systems produced by Delta V Corporation, suitable for very light fighters and interceptors. Plasma thrusters are more compact than ion drives, but also use more energy and generate more heat."
+	description "This is the smallest of the plasma propulsion systems produced by Delta V Corporation, suitable for very light fighters and interceptors."
 	description "	Plasma engines are a bit more powerful than ion engines of the same size, but they are less energy efficient and produce more heat."
 
 outfit "Greyhound Plasma Thruster"
@@ -245,7 +245,7 @@ outfit "Impala Plasma Thruster"
 	"flare sprite" "effect/plasma flare/medium"
 		"frame rate" 7
 	"flare sound" "plasma medium"
-	description "Impala class thrusters produce a significant amount of force, and are suitable for smaller capital ships. But, your ship may need extra cooling systems in order to handle them."
+	description "Impala class thrusters produce a significant amount of force, and are suitable for smaller capital ships. However, your ship may need extra cooling systems in order to handle them."
 	description "	Plasma engines are a bit more powerful than ion engines of the same size, but they are less energy efficient and produce more heat."
 
 outfit "Orca Plasma Thruster"
@@ -389,7 +389,7 @@ outfit "A370 Atomic Thruster"
 	"flare sprite" "effect/atomic flare/medium"
 		"frame rate" 12
 	"flare sound" "atomic medium"
-	description "This thruster is small enough to fit in a light warship or freighter, but powerful enough to move any but the largest of ships. Naturally, such performance comes at an exorbitant price."
+	description "This thruster is small enough to fit in a light warship or freighter, but powerful enough to move any ship in the sky, excluding only the very largest of capital ships. Naturally, such performance comes at an exorbitant price."
 
 outfit "A520 Atomic Thruster"
 	category "Engines"
@@ -419,7 +419,7 @@ outfit "A860 Atomic Thruster"
 	"flare sprite" "effect/atomic flare/huge"
 		"frame rate" 10
 	"flare sound" "atomic huge"
-	description "The A860 atomic thruster is the most powerful engine sold in human space, and is much more compact than any of the alternatives. But, you may need to upgrade your ship's power and cooling systems to handle it."
+	description "The A860 atomic thruster is the most powerful engine sold in human space, and is much more compact than any of the alternatives. However, you may need to upgrade your ship's power and cooling systems to handle it."
 
 outfit "A125 Atomic Steering"
 	category "Engines"
@@ -491,4 +491,4 @@ outfit "AR120 Reverse Thruster"
 	"reverse thrust" 15.4
 	"reverse thrusting energy" 1.8
 	"reverse thrusting heat" 3.5
-	description "For pilots who want to be able to pull fancy tricks that most ships are not capable of emulating, a reverse thruster allows a ship to accelerate backwards, without needing to turn around. Because a reverse thruster must be facing forwards, it must be installed in the weapon section of your ship instead of the engine section."
+	description "For pilots who want to be able to pull fancy tricks that most ships are not capable of emulating, a reverse thruster allows a ship to accelerate backwards, without needing to turn around. Because a reverse thruster must be facing forwards, it is installed in the weapon section of your ship instead of the engine section."
