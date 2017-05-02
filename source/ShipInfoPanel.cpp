@@ -46,7 +46,7 @@ ShipInfoPanel::ShipInfoPanel(PlayerInfo &player, int index)
 	// If a valid ship index was given, show that ship.
 	if(static_cast<unsigned>(index) < player.Ships().size())
 		shipIt += index;
-	else
+	else if(player.Flagship())
 	{
 		// Find the player's flagship. It may not be first in the list, if the
 		// first item in the list cannot be a flagship.

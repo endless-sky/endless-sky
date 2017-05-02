@@ -166,8 +166,11 @@ bool PlayerInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comman
 		GetUI()->Pop(this);
 	else if(key == 's' || key == SDLK_RETURN || key == SDLK_KP_ENTER)
 	{
-		GetUI()->Pop(this);
-		GetUI()->Push(new ShipInfoPanel(player, selectedIndex));
+		if(!player.Ships().empty())
+		{
+			GetUI()->Pop(this);
+			GetUI()->Push(new ShipInfoPanel(player, selectedIndex));
+		}
 	}
 	else if(key == SDLK_PAGEUP || key == SDLK_PAGEDOWN)
 	{
