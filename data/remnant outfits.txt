@@ -50,6 +50,69 @@ effect "inhibitor impact"
 	"random frame rate" 15
 
 
+outfit "Thrasher Cannon"
+	category "Guns"
+	cost 218000
+	thumbnail "outfit/unknown"
+	"mass" 10
+	"outfit space" -10
+	"weapon capacity" -10
+	"gun ports" -1
+	weapon
+		sprite "projectile/thrasher"
+			"frame rate" 10
+			"random start frame"
+			"no repeat"
+		sound "particle"
+		"hit effect" "thrasher impact"
+		"inaccuracy" 9
+		"velocity" 10
+		"lifetime" 36
+		"reload" 20
+		"firing energy" 36
+		"firing heat" 27
+		"shield damage" 38
+		"hull damage" 46
+	description "TBD"
+
+effect "thrasher impact"
+	sprite "effect/thrasher impact"
+		"frame rate" 30
+		"no repeat"
+	"lifetime" 11
+	"velocity scale" -.1
+	"random angle" 360
+	"random spin" 30
+	"random velocity" 3
+
+
+outfit "Thrasher Turret"
+	category "Turrets"
+	cost 980000
+	thumbnail "outfit/unknown"
+	"mass" 49
+	"outfit space" -49
+	"weapon capacity" -49
+	"required crew" 1
+	"turret mounts" -1
+	weapon
+		sprite "projectile/thrasher"
+			"frame rate" 10
+			"random start frame"
+			"no repeat"
+		sound "particle"
+		"hit effect" "thrasher impact"
+		"inaccuracy" 6
+		"velocity" 10
+		"lifetime" 36
+		"reload" 5
+		"firing energy" 36
+		"firing heat" 27
+		"shield damage" 38
+		"hull damage" 46
+	description "TBD"
+
+
 outfit "Point Defense Turret"
 	category "Turrets"
 	cost 1120000
@@ -90,6 +153,70 @@ effect "point defense die"
 		"no repeat"
 	lifetime 15
 	"velocity scale" .2
+
+
+
+# Systems:
+
+outfit "Crystal Capacitor"
+	category "Power"
+	cost 280000
+	thumbnail "outfit/unknown"
+	"mass" 12
+	"outfit space" -12
+	"energy capacity" 3400
+	description "TBD"
+
+
+outfit "Millennium Cell"
+	category "Power"
+	cost 767000
+	thumbnail "outfit/unknown"
+	"mass" 29
+	"outfit space" -29
+	"energy generation" 3.5
+	"heat generation" 6.0
+	description "TBD"
+
+outfit "Epoch Cell"
+	category "Power"
+	cost 3060000
+	thumbnail "outfit/unknown"
+	"mass" 98
+	"outfit space" -98
+	"energy generation" 12.2
+	"heat generation" 19.8
+	description "TBD"
+
+outfit "Aeon Cell"
+	category "Power"
+	cost 6600000
+	thumbnail "outfit/unknown"
+	"mass" 160
+	"outfit space" -160
+	"energy generation" 21.1
+	"heat generation" 31.5
+	description "TBD"
+
+
+outfit "Thermoelectric Cooler"
+	category "Systems"
+	cost 160000
+	thumbnail "outfit/unknown"
+	"mass" 4
+	"outfit space" -4
+	"active cooling" 7
+	"cooling energy" .4
+	description "TBD"
+
+outfit "Emergency Ramscoop"
+	category "Systems"
+	cost "72000"
+	thumbnail "outfit/unknown"
+	"mass" 4
+	"outfit space" -4
+	"ramscoop" 0.5
+	description "TBD"
 
 
 
