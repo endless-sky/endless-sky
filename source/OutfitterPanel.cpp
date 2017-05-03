@@ -448,6 +448,8 @@ bool OutfitterPanel::CanSell() const
 		return true;
 	
 	for(const Ship *ship : playerShips)
+		if(selectedOutfit->Get("unremovable"))
+			return false
 		if(ShipCanSell(ship, selectedOutfit))
 			return true;
 	
