@@ -490,6 +490,38 @@ event "initial deployment 3"
 		fleet "Small Republic" 900
 		fleet "Large Republic" 800
 		fleet "Navy Surveillance" 1200
+	system "Dabih"
+		fleet "Small Southern Merchants" 500
+		fleet "Large Southern Merchants" 800
+		fleet Quarg 4000
+		fleet "Small Free Worlds" 6000
+		fleet "Large Southern Pirates" 10000
+	system "Lurata"
+		fleet "Small Southern Merchants" 1000
+		fleet "Large Southern Merchants" 3000
+		fleet Quarg 7000
+		fleet "Small Free Worlds" 9000
+		fleet "Large Southern Pirates" 4000
+	system "Albireo"
+		fleet "Small Southern Merchants" 800
+		fleet "Large Southern Merchants" 1200
+		fleet "Small Southern Pirates" 1000
+		fleet "Large Southern Pirates" 1400
+		fleet "Small Free Worlds" 1800
+		fleet "Large Free Worlds" 3000
+		fleet Quarg 2000
+	system "Albaldah"
+		fleet "Small Southern Merchants" 600
+		fleet "Large Southern Merchants" 1000
+		fleet "Small Southern Pirates" 800
+		fleet "Large Southern Pirates" 1200
+		fleet "Small Free Worlds" 1400
+		fleet "Large Free Worlds" 2400
+	system "Delta Sagittarii"
+		fleet "Small Southern Merchants" 900
+		fleet "Large Southern Merchants" 3000
+		fleet "Small Southern Pirates" 3000
+		fleet "Small Free Worlds" 7000
 	system "Kaus Borealis"
 		fleet "Small Southern Merchants" 900
 		fleet "Large Southern Merchants" 4000
@@ -497,6 +529,30 @@ event "initial deployment 3"
 		fleet "Small Republic" 1100
 		fleet "Large Republic" 800
 		fleet "Navy Surveillance" 1200
+	system "Tais"
+		fleet "Small Southern Merchants" 1500
+		fleet "Large Southern Merchants" 4000
+		fleet "Small Free Worlds" 9000
+		fleet Quarg 15000
+		fleet "Small Southern Pirates" 3000
+		fleet "Large Southern Pirates" 7000
+	system "Peacock"
+		fleet "Small Southern Merchants" 2000
+		fleet "Large Southern Merchants" 5000
+		fleet "Small Free Worlds" 8000
+		fleet "Small Southern Pirates" 4000
+		fleet "Large Southern Pirates" 10000
+	system "Ascella"
+		fleet "Small Southern Merchants" 600
+		fleet "Large Southern Merchants" 1000
+		fleet "Small Free Worlds" 4000
+		fleet "Small Southern Pirates" 3000
+	system "Naper"
+		fleet "Small Southern Merchants" 1500
+		fleet "Large Southern Merchants" 3000
+		fleet "Small Free Worlds" 5000
+		fleet "Small Southern Pirates" 1000
+	
 
 mission "Southern Carriers Trigger"
 	landing
@@ -1385,6 +1441,14 @@ event "initial deployment 4"
 		fleet "Large Southern Pirates" 2000
 		fleet "Small Free Worlds" 3000
 		fleet "Large Free Worlds" 5000
+	system "Shaula"
+		fleet "Small Southern Pirates" 500
+		fleet "Large Southern Pirates" 800
+		fleet "Small Core Pirates" 4000
+		fleet "Large Core Pirates" 7000
+		fleet "Small Northern Pirates" 5000
+		fleet "Large Northern Pirates" 9000
+		fleet "Free Worlds" 9000
 	
 	system "Rastaban"
 		fleet "Small Southern Merchants" 1000
@@ -1394,6 +1458,7 @@ event "initial deployment 4"
 		fleet "Small Republic" 900
 		fleet "Large Republic" 700
 		fleet "Navy Surveillance" 1200
+	
 	system "Sabik"
 		fleet "Small Southern Merchants" 600
 		fleet "Large Southern Merchants" 800
@@ -1415,6 +1480,10 @@ event "initial deployment 4"
 		fleet "Small Free Worlds" 900
 		fleet "Large Free Worlds" 1700
 		fleet "Navy Surveillance" 800
+	system "Antares"
+		fleet "Small Southern Pirates" 1000
+		fleet "Large Southern Pirates" 2000
+		fleet "Large Free Worlds" 5000
 		fleet "Human Miners" 3000
 
 
@@ -1688,7 +1757,7 @@ event "fw abandoned Bloodsea"
 		government "Pirate"
 		fleet "Small Southern Pirates" 1000
 		fleet "Large Southern Pirates" 2000
-		fleet "Large Militia" 5000
+		fleet "Large Free Worlds" 5000
 
 
 
@@ -1711,7 +1780,7 @@ event "fw abandoned Greenrock"
 		fleet "Large Core Pirates" 7000
 		fleet "Small Northern Pirates" 5000
 		fleet "Large Northern Pirates" 9000
-		fleet "Large Militia" 9000
+		fleet "Large Free Worlds" 9000
 
 
 
@@ -1948,6 +2017,11 @@ event "fw southern expansion"
 		fleet "Large Southern Merchants" 4000
 		fleet "Small Republic" 400
 		fleet "Large Republic" 500
+	system "Nunki"
+		fleet "Small Southern Pirates" 1200
+		fleet "Large Southern Pirates" 2000
+		fleet "Small Southern Merchants" 1600
+		fleet "Small Free Worlds" 2000
 	planet "New Iceland"
 		description `New Iceland is a perpetually hazy volcanic world, with a slightly caustic atmosphere but enough reserves of metal and petrochemicals to draw a large number of settlers. Some of those settlers also make a living as farmers, and a few well-developed factory towns produce goods for export to other worlds.`
 		description `	In the wake of their defeat in the south, the Navy has begun to set up a massive new base here on New Iceland, in order to allow them to continue to have a strong presence in this sector.`
