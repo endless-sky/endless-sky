@@ -75,7 +75,6 @@ mission "John Verhoefen: First Contact"
 	to offer
 		random < 20
 		"reputation: Merchant" >= 10
-		"John Verhoefen: stage" == 0
 	source
 		government Republic "Free Worlds" Syndicate Neutral Independent
 	destination
