@@ -84,8 +84,8 @@ mission "John Verhoefen: First Contact"
 
 	on offer
 		conversation
-			`A young man in a business dress approaches you. "Can you please take me to <destination>?" he asks you.`
-			`	"My name is John Verhoefen and I have just started this new job as commercial agent for a Rand based mining company. I hope to negoiate a <commodity> contract on <planet> and thus needs a transfer over there.`
+			`A young man in a business suit approaches you. "Can you please take me to <destination>?" he asks you.`
+			`	"My name is John Verhoefen and I have just started this new job as commercial agent for a Rand-based mining company. I hope to negotiate a <commodity> contract on <planet> and need a transfer over there.`
 			choice
 				`	"Okay, I'll take you to <planet>."`
 					goto thanks
@@ -113,13 +113,13 @@ mission "John Verhoefen: First Contact"
 		"Johns income" += 5000
 		"John Verhoefen: credits" += "Johns income"
 		clear "Johns income"
-		dialog `John thanks you for the passage and pays you <payment>. "If you want to help me further, you will find me in the job offers."`
+		dialog `John thanks you for the passage and pays you <payment>. "If you want to help me further, answer my posting on the local job board."`
 
 
 
 mission "John Verhoefen: Transport [stage 1]"
 	name "Bring John to <planet>"
-	description "John Verhoefen needs a transfer to <destination> where he wants to negotiate a contract on selling <commodity>. He will pay you <payment>."
+	description "John Verhoefen needs a transfer to <destination> where he wants to negotiate a contract selling <commodity>. He will pay you <payment>."
 	job
 	repeat
 	cargo "Heavy Metals" 0
@@ -150,13 +150,13 @@ mission "John Verhoefen: Transport [stage 1]"
 		"Johns income" += 5000
 		"John Verhoefen: credits" += "Johns income"
 		clear "Johns income"
-		dialog `John thanks you for the passage and pays you <payment>. He reminds you again, that you will find him in the job offers."`
+		dialog `John thanks you for the passage and pays you <payment>. He reminds you again of his upcoming offer on the local job board."`
 
 
 
 mission "John Verhoefen: Bankrupt [stage 1]"
 	name "Bring John to <planet>"
-	description "You agreed to give John Verhoefen a free transfer to <destination> where he wants to negotiate a contract on selling <commodity>."
+	description "You agreed to give John Verhoefen a free transfer to <destination> where he wants to negotiate a contract selling <commodity>."
 	landing
 	repeat
 	cargo "Heavy Metals" 0
@@ -176,14 +176,14 @@ mission "John Verhoefen: Bankrupt [stage 1]"
 	on offer
 		conversation
 			`It does not take long until John arrives at your ship. He looks pretty depressed.`
-			`	"I am pretty much bankrupt.", he says. "The last few negotiations didn't go well and I am afraid I cant pay you for the next passage. I hereby want to ask you if you would give me a free transfer to <destination> this time. It is a bit further than our usual trips but I hope to earn there a bit more to get back into business."`
+			`	"I am pretty much bankrupt.", he says. "The last few negotiations didn't go well and I am afraid I cant pay you for the next passage. I hereby want to ask you if you would give me a free transfer to <destination> this time. It is a bit further than our usual trips, but the <commodity> market there is more promising."`
 			choice
 				`	"Okay, I'll give you a free ride to <planet>."`
 					goto thanks
 				`	"Sorry, I'm not headed in that direction."`
 					decline
 			label thanks
-			`	"Thank you, Captain <last>," he says. "I will let other merchants know you helped me once we arrived at <planet>."`
+			`	"Thank you, Captain <last>," he says. "I will let other merchants know you helped me once we arrive."`
 				accept
 
 	on accept
@@ -196,10 +196,8 @@ mission "John Verhoefen: Bankrupt [stage 1]"
 		"John Verhoefen: stage" = -1
 		"reputation: Merchant" -= 2
 	on complete
-		payment 100
 		# Merchants reputation increases and that depends on the number of given free rides (i.e. +1 for the first free ride, +2 for the 2nd free ride, ...)
 		"reputation: Merchant" += "John Verhoefen: free transfers"
-		"John Verhoefen: credits" -= <paymentNum>
 		"John Verhoefen: location: <planet>" = 1
 		# generate some randomized income for John, averaging some 15.5k (range: 5k-26k) - higher than in Transport [stage 1] due to the higher distance and to help John a bit
 		"Johns income" = random
@@ -207,13 +205,13 @@ mission "John Verhoefen: Bankrupt [stage 1]"
 		"Johns income" += 5000
 		"John Verhoefen: credits" += "Johns income"
 		clear "Johns income"
-		dialog `John heartly thanks you for the passage and pays you his last <payment>. He hopes to see you again in the job offers.`
+		dialog `John heartily thanks you for the free passage. He hopes you will be the one who answers his new job board offer.`
 
 
 
 mission "John Verhoefen: Buying a Flivver"
 	name "John wants to buy a Flivver"
-	description "Bring John Verhoefen to <destination> where he wants to buy a Flivver ship. He will pay you <payment>."
+	description "Bring John Verhoefen to <destination> where he wants to buy a Flivver. He will pay you <payment>."
 	landing
 	to offer
 		"John Verhoefen: location: <origin>" == 1
@@ -233,14 +231,14 @@ mission "John Verhoefen: Buying a Flivver"
 
 	on offer
 		conversation
-			`Soon after John left your ship, he returns to you in a happy mood. "I have finally saved up enough credits to buy an apropriate ship for my current job position. I intend to buy a Flivver on <planet>. Can you bring me there? I can pay you as much as <payment> this time."`
+			`Soon after John left your ship, he returns to you in a happy mood. "I have finally saved up enough credits to buy an appropriate ship for my current job position. I intend to buy a Flivver on <planet>. Can you bring me there? I can pay you as much as <payment> this time."`
 			choice
 				`	"Okay, I'll give you a free ride to <planet>."`
 					goto thanks
 				`	"Sorry, I'm not headed in that direction."`
 					decline
 			label thanks
-			`	"Thank you, Captain <last>," he says. "I will let other merchants know you helped me once we arrived at <planet>."`
+			`	"Thank you, Captain <last>," he says. "I will let other merchants know you helped me once we arrive."`
 				accept
 	on accept
 		clear "John Verhoefen: location: <origin>"
@@ -248,20 +246,19 @@ mission "John Verhoefen: Buying a Flivver"
 		"John Verhoefen: stage" = -1
 		"reputation: Merchant" -= 2
 	on complete
-		payment
 		payment 10000
 		"John Verhoefen: credits" -= <paymentNum>
 		"John Verhoefen: location: <planet>" = 1
 		"John Verhoefen: stage" = 2
 		# deduct cash for the Flivver
 		"John Verhoefen: credits" -= 524000
-		dialog `John thanks you for the safe passage to <planet> and pays you <payment>. Before he heads to the shipyard he says, he hopes to see you again in the job offers afterwards.`
+		dialog `John thanks you for the safe passage to <planet> and pays you <payment>. Before he heads to the shipyard, he notifies you of his new offer on the local job board.`
 
 
 
 mission "John Verhoefen: Escort [stage 2a]"
 	name "Escort John to <planet>"
-	description "John Verhoefen asks you to escort him to <destination> where he wants to negotiate a contract on selling <commodity>. He will pay you <payment>."
+	description "John Verhoefen asks you to escort him to <destination> where he wants to negotiate a contract selling <commodity>. He will pay you <payment>."
 	job
 	repeat
 	cargo "Heavy Metals" 0
@@ -299,13 +296,13 @@ mission "John Verhoefen: Escort [stage 2a]"
 		"Johns income" += 8000
 		"John Verhoefen: credits" += "Johns income"
 		clear "Johns income"
-		dialog `John thanks you for the escort and pays you <payment>. You know that you will find him in the job offers again.`
+		dialog `John thanks you for the escort and pays you <payment>. You know that you will find his post on the local job board.`
 
 
 
 mission "John Verhoefen: Escort [stage 2b]"
 	name "Escort John to <planet>"
-	description "John Verhoefen asks you to escort him to <destination> where he wants to negotiate a contract on selling <commodity>. He will pay you <payment>."
+	description "John Verhoefen asks you to escort him to <destination> where he wants to negotiate a contract selling <commodity>. He will pay you <payment>."
 	job
 	repeat
 	cargo "Heavy Metals" 0
@@ -354,13 +351,13 @@ mission "John Verhoefen: Escort [stage 2b]"
 		"Johns income" += 8000
 		"John Verhoefen: credits" += "Johns income"
 		clear "Johns income"
-		dialog `John thanks you for the escort and pays you <payment>. You know that you will find him in the job offers again.`
+		dialog `John thanks you for the escort and pays you <payment>. You know that you will find his post on the local job board.`
 
 
 
 mission "John Verhoefen: Bankrupt [stage 2]"
 	name "Escort John to <planet>"
-	description "You agreed to give John Verhoefen a free escort to <destination> where he wants to negotiate a contract on selling <commodity>."
+	description "You agreed to give John Verhoefen a free escort to <destination> where he wants to negotiate a contract selling <commodity>."
 	landing
 	repeat
 	cargo "Heavy Metals" 0
@@ -387,14 +384,14 @@ mission "John Verhoefen: Bankrupt [stage 2]"
 	on offer
 		conversation
 			`It does not take long until John arrives at your ship. He looks pretty depressed.`
-			`	"I am pretty much bankrupt.", he says. "The last few negotiations didn't go well and I am afraid I cant pay you for the next passage. I hereby want to ask you if you would give me a free escort to <destination> this time. It is a bit further than our usual trips but I hope to earn there a bit more to get back into business."`
+			`	"I am pretty much bankrupt.", he says. "The last few negotiations didn't go well and I am afraid I cant pay you for the next passage. I hereby want to ask you if you would give me a free escort to <destination> this time. It is a bit further than our usual trips, but the <commodity> market there is more promising."`
 			choice
 				`	"Okay, I'll give you a free ride to <planet>."`
 					goto thanks
 				`	"Sorry, I'm not headed in that direction."`
 					decline
 			label thanks
-			`	"Thank you, Captain <last>," he says. "I will let other merchants know you helped me once we arrived at <planet>."`
+			`	"Thank you, Captain <last>," he says. "I will let other merchants know you helped me once we arrive."`
 				accept
 	on accept
 		clear "John Verhoefen: location: <origin>"
@@ -406,10 +403,8 @@ mission "John Verhoefen: Bankrupt [stage 2]"
 		"John Verhoefen: stage" = -2
 		"reputation: Merchant" -= 4
 	on complete
-		payment 200 20
 		# Merchants reputation increases and that depends on the number of given free rides (i.e. +1 for the first free ride, +2 for the 2nd free ride, ...)
 		"reputation: Merchant" += "John Verhoefen: free transfers"
-		"John Verhoefen: credits" -= <paymentNum>
 		"John Verhoefen: location: <planet>" = 1
 		# generate some randomized income for John, averaging some 28k (range: 8k-48k) - higher than in Escort [stage 2] due to the higher distance and to help John a bit
 		"Johns income" = random
@@ -417,13 +412,13 @@ mission "John Verhoefen: Bankrupt [stage 2]"
 		"Johns income" += 8000
 		"John Verhoefen: credits" += "Johns income"
 		clear "Johns income"
-		dialog `John heartly thanks you for the passage and pays you his last <payment>. He hopes to see you again in the job offers.`
+		dialog `John heartily thanks you for the free passage. He hopes you will be the one who answers his new job board offer.`
 
 
 
 mission "John Verhoefen: Buying a Bounder"
 	name "John wants to buy a Bounder"
-	description "Bring John Verhoefen to <destination> where he wants to buy a Bounder ship. He will pay you <payment>."
+	description "Bring John Verhoefen to <destination> where he wants to buy a Bounder. He will pay you <payment>."
 	landing
 	to offer
 		"John Verhoefen: location: <origin>" == 1
@@ -455,14 +450,14 @@ mission "John Verhoefen: Buying a Bounder"
 
 	on offer
 		conversation
-			`Soon after John left your ship, he returns to you in a happy mood. "I have finally saved up enough credits to buy a new ship fitting to my promotion. I intend to buy a Bounder on <planet>. Would you please escort me there? I will pay you as much as <payment> this time."`
+			`Soon after John left your ship, he returns to you in a happy mood. "I have finally saved up enough credits to buy a new ship more fitting of my position. I intend to buy a Bounder on <planet>. Would you please escort me there? I will pay you as much as <payment> this time."`
 			choice
 				`	"Okay, I'll give you a free ride to <planet>."`
 					goto thanks
 				`	"Sorry, I'm not headed in that direction."`
 					decline
 			label thanks
-			`	"Thank you, Captain <last>," he says. "I will let other merchants know you helped me once we arrived at <planet>."`
+			`	"Thank you, Captain <last>," he says. "I will let other merchants know you helped me once we arrive."`
 				accept
 	on accept
 		clear "John Verhoefen: location: <origin>"
@@ -478,13 +473,13 @@ mission "John Verhoefen: Buying a Bounder"
 		"John Verhoefen: credits" += 200000
 		# deduct cash for the Bounder
 		"John Verhoefen: credits" -= 1600000
-		dialog `John thanks you for the safe passage to <planet> and pays you <payment>. Before he heads to the shipyard he says, he hopes to see you again in the job offers afterwards.`
+		dialog `John thanks you for the safe passage to <planet> and pays you <payment>. Before he heads to the shipyard, he notifies you of his new offer on the local job board.`
 
 
 
 mission "John Verhoefen: Escort [stage 3]"
 	name "Escort John to <planet>"
-	description "John Verhoefen asks you to escort him to <destination> where he wants to negotiate a contract on selling <commodity>. He will pay you <payment>."
+	description "John Verhoefen asks you to escort him to <destination> where he wants to negotiate a contract selling <commodity>. He will pay you <payment>."
 	job
 	repeat
 	cargo "Heavy Metals" 0
@@ -535,13 +530,13 @@ mission "John Verhoefen: Escort [stage 3]"
 		"Johns income" += 10000
 		"John Verhoefen: credits" += "Johns income"
 		clear "Johns income"
-		dialog `John thanks you for the escort and pays you <payment>. You know that you will find him in the job offers again.`
+		dialog `John thanks you for the escort and pays you <payment>. You know that you will find his post on the local job board.`
 
 
 
 mission "John Verhoefen: Bankrupt [stage 3]"
 	name "Escort John to <planet>"
-	description "You agreed to give John Verhoefen a free escort to <destination> where he wants to negotiate a contract on selling <commodity>."
+	description "You agreed to give John Verhoefen a free escort to <destination> where he wants to negotiate a contract selling <commodity>."
 	landing
 	repeat
 	cargo "Heavy Metals" 0
@@ -560,14 +555,14 @@ mission "John Verhoefen: Bankrupt [stage 3]"
 	on offer
 		conversation
 			`It does not take long until John arrives at your ship. He looks pretty depressed.`
-			`	"I am pretty much bankrupt.", he says. "The last few negotiations didn't go well and I am afraid I cant pay you for the next passage. I hereby want to ask you if you would give me a free escort to <destination> this time. It is a bit further than our usual trips but I hope to earn there a bit more to get back into business."`
+			`	"I am pretty much bankrupt.", he says. "The last few negotiations didn't go well and I am afraid I cant pay you for the next passage. I hereby want to ask you if you would give me a free escort to <destination> this time. It is a bit further than our usual trips, but the <commodity> market there is more promising."`
 			choice
 				`	"Okay, I'll give you a free ride to <planet>."`
 					goto thanks
 				`	"Sorry, I'm not headed in that direction."`
 					decline
 			label thanks
-			`	"Thank you, Captain <last>," he says. "I will let other merchants know you helped me once we arrived at <planet>."`
+			`	"Thank you, Captain <last>," he says. "I will let other merchants know you helped me once we arrive."`
 				accept
 
 	npc accompany save
@@ -587,10 +582,8 @@ mission "John Verhoefen: Bankrupt [stage 3]"
 		"John Verhoefen: stage" = -3
 		"reputation: Merchant" -= 6
 	on complete
-		payment 500 50
 		# Merchants reputation increases and that depends on the number of given free rides (i.e. +1 for the first free ride, +2 for the 2nd free ride, ...)
 		"reputation: Merchant" += "John Verhoefen: free transfers"
-		"John Verhoefen: credits" -= <paymentNum>
 		"John Verhoefen: location: <planet>" = 1
 		# generate some randomized income for John, averaging some 50k (range: 10k-90k) - higher than in Escort [stage 3] due to the higher distance and to help John a bit
 		"Johns income" = random
@@ -598,7 +591,7 @@ mission "John Verhoefen: Bankrupt [stage 3]"
 		"Johns income" += 10000
 		"John Verhoefen: credits" += "Johns income"
 		clear "Johns income"
-		dialog `John heartly thanks you for the passage and pays you his last <payment>. He hopes to see you again in the job offers.`
+		dialog `John heartly thanks you for the free passage. He hopes you will be the one who answers his new job board offer.`
 
 
 
@@ -620,8 +613,8 @@ mission "John Verhoefen: Returning Home"
 		"John Verhoefen: credits" -= <paymentNum>
 		conversation
 			`John already was 30 meters away from your ship before he made a turn and returned to you.`
-			`	"Captain <last>, I am back at home again. I have learned a lot since we met first when I started this job. I earned more money than I ever expected to earn in that job within that time and I really have to thank you for your travelling assistance. I will write a letter of recommendation to the merchants I know and to our local government. Please also accept these <payment> as expression of my gratitue."`
-			`	"Our common journey ends here for now. I will start my own company with the money I saved up in the last months. But I think we will meet again once things are running smoothly here."`
+			`	"Captain <last>, finally, I am home again. I have learned a lot since we met first when I started this job. I earned more money than I ever expected and I really have to thank you for your assistance in my travels. I will write a letter of recommendation to the merchants I know and to our local government. Please also accept these <payment> as expression of my gratitude."`
+			`	"Our common journey ends here for now. I will start my own company with the money I saved up in the last months. But perhaps we will meet again once things are running smoothly here."`
 				decline
 
 
