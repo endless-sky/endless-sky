@@ -22,6 +22,7 @@ color "hull" .70 .62 .43 .75
 color "heat" .70 .43 .43 .75
 color "energy" .6 .6 .6 .75
 color "fuel" .70 .62 .43 .75
+color "alert"  .55 .2 .0 0.
 
 color "flagship highlight" .5 .8 .2 0.
 
@@ -417,6 +418,12 @@ interface "planet"
 		size 18
 		align left
 		pad 10 0
+	visible if "has spaceport" and "mission alert"
+	label "( ! )"
+		from -340 269
+		size 18
+		color alert
+		align right
 	
 	visible if "has ship"
 	sprite "ui/planet dialog button"
