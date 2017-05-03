@@ -1774,6 +1774,57 @@ ship "Heavy Shuttle"
 
 
 
+ship "Kraken"
+	sprite "ship/Kraken"
+	attributes
+		category "Medium Warship"
+		"cost" 4100000
+		"shields" 9500
+		"hull" 2600
+		"required crew" 21
+		"bunks" 32
+		"mass" 320
+		"drag" 4.5
+		"heat dissipation" .6
+		"fuel capacity" 500
+		"cargo space" 30
+		"outfit space" 410
+		"weapon capacity" 200
+		"engine capacity" 90
+		weapon
+			"blast radius" 40
+			"shield damage" 450
+			"hull damage" 250
+			"hit force" 650
+	outfits
+		"Torpedo Launcher"
+		"Torpedo" 30
+		"Heavy Laser Turret" 2
+		
+		"NT-200 Nucleovoltaic"
+		"LP036a Battery Pack"
+		"D41-HY Shield Generator"
+		"Cooling Ducts" 2
+		
+		"X2700 Ion Thruster"
+		"X2200 Ion Steering" 2
+		"Scram Drive"
+		
+	gun 0 -122.5
+	turret -32 47.5
+	turret 32 47.5
+	engine -29.5 117.5
+	engine 29.5 117.5
+	explode "tiny explosion" 18
+	explode "small explosion" 24
+	explode "medium explosion" 16
+	explode "big explosion" 3
+	"final explode" "final explosion medium"
+	description "The Kraken is the newest successor to the time-worn Leviathan, both built by Betelgeuse Shipyards."
+	description "Unlike Tarazed Shipyards' updated version, the Falcon, the Kraken takes after it's parent more in that it focuses less on speed, but more on tanking. You might be thinking, But what about the heavy damage output the Leviathan sported? The Kraken warship instead has the room for even the largest of weapons, that usually appear on capital warships such as the Navy Carrier or the timeless Bactrian city ship. A deadly surprise to any pirate without backup."
+
+
+
 ship "Lance"
 	sprite "ship/lance"
 	attributes

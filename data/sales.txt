@@ -57,6 +57,7 @@ shipyard "Betelgeuse Advanced"
 	"Behemoth"
 	"Star Queen"
 	"Hauler"
+	"Kraken"
 
 shipyard "Navy Basics"
 	"Rainmaker"
