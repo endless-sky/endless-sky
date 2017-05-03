@@ -287,6 +287,15 @@ outfit "Fuel Pod"
 	"outfit space" -8
 	"fuel capacity" 100
 	description "A fuel pod increases your fuel capacity, allowing your ship to make one additional hyperspace jump before it needs to land and refuel."
+	
+outfit "Small Radiator"
+	category "Systems"
+	cost 20000
+	thumbnail "outfit/small radiator"
+	"mass" 1
+	"outfit space" -1
+	"cooling" 0.9
+	description "Radiators work by radiating heat energy away as infrared light. This tiny and efficient cooling system is ideal for rich captains who want to use all the available space in their ships."
 
 outfit "Interference Plating"
 	category "Systems"
