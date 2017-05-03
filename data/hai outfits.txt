@@ -41,6 +41,8 @@ outfit "Pulse Turret"
 	"required crew" 1
 	weapon
 		sprite "projectile/pulse"
+		"hardpoint sprite" "hardpoint/pulse turret"
+		"hardpoint offset" 7.
 		sound "pulse"
 		"hit effect" "pulse impact"
 		"inaccuracy" 1
@@ -199,6 +201,8 @@ outfit "Bullfrog Anti-Missile"
 	"weapon capacity" -10
 	"turret mounts" -1
 	weapon
+		"hardpoint sprite" "hardpoint/anti-missile hai"
+		"hardpoint offset" 3.
 		"hit effect" "small anti-missile"
 		"anti-missile" 12
 		"velocity" 150
@@ -218,6 +222,8 @@ outfit "Chameleon Anti-Missile"
 	"weapon capacity" -22
 	"turret mounts" -1
 	weapon
+		"hardpoint sprite" "hardpoint/heavy anti-missile hai"
+		"hardpoint offset" 4.
 		"hit effect" "large anti-missile"
 		"anti-missile" 16
 		"velocity" 200

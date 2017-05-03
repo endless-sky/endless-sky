@@ -126,7 +126,7 @@ mission "Kestrel Testing"
 					goto kestrel
 			
 			label wolf
-			`	"Not bad," he says, "but all our other ships: the Falcon, the Osprey, the Hawk -- they're all birds. Maybe a bird name?"`
+			`	"Not bad," he says, "but all our other ships - the Falcon, the Osprey, the Hawk - they're all birds. Maybe a bird name?"`
 			choice
 				`	"The Grey Goose."`
 					goto goose
@@ -311,6 +311,7 @@ ship "Kestrel"
 	explode "large explosion" 45
 	explode "huge explosion" 30
 	"final explode" "final explosion large"
+	description "Several years ago, while visiting a sweat lodge in search of spiritual renewal, Tarazed's chief ship designer fell into a trance and journeyed to a reality separate from our own. There he saw visions of a strange and elegant starship. Returning to his work with renewed purpose, he spent the next seven years making the Kestrel a reality."
 
 
 
@@ -330,24 +331,6 @@ ship "Kestrel" "Kestrel (More Weapons)"
 		"outfit space" 810
 		"weapon capacity" 400
 		"engine capacity" 210
-		weapon
-			"blast radius" 260
-			"shield damage" 2600
-			"hull damage" 1300
-			"hit force" 3900
-	outfits
-		"Particle Cannon" 4
-		"Torpedo Launcher" 2
-		"Torpedo" 60
-		"Heavy Laser Turret" 4
-		"Fusion Reactor"
-		"LP144a Battery Pack"
-		"D94-YV Shield Generator"
-		"Liquid Nitrogen Cooler"
-		"Orca Plasma Thruster"
-		"X5200 Ion Steering"
-		"Hyperdrive"
-	description "Several years ago, while visiting a sweat lodge in search of spiritual renewal, Tarazed's chief ship designer fell into a trance and journeyed to a reality separate from our own. There he saw visions of a strange and elegant starship. Returning to his work with renewed purpose, he spent the next seven years making the Kestrel a reality."
 
 
 
@@ -367,24 +350,6 @@ ship "Kestrel" "Kestrel (More Engines)"
 		"outfit space" 810
 		"weapon capacity" 380
 		"engine capacity" 230
-		weapon
-			"blast radius" 260
-			"shield damage" 2600
-			"hull damage" 1300
-			"hit force" 3900
-	outfits
-		"Particle Cannon" 4
-		"Torpedo Launcher" 2
-		"Torpedo" 60
-		"Heavy Laser Turret" 4
-		"Fusion Reactor"
-		"LP144a Battery Pack"
-		"D94-YV Shield Generator"
-		"Liquid Nitrogen Cooler"
-		"Orca Plasma Thruster"
-		"X5200 Ion Steering"
-		"Hyperdrive"
-	description "Several years ago, while visiting a sweat lodge in search of spiritual renewal, Tarazed's chief ship designer fell into a trance and journeyed to a reality separate from our own. There he saw visions of a strange starship. He returned with sketches of the ship and ordered his engineers to build it. After several years of development and testing, the Kestrel is now available for sale."
 
 
 
@@ -404,22 +369,3 @@ ship "Kestrel" "Kestrel (More Shields)"
 		"outfit space" 810
 		"weapon capacity" 380
 		"engine capacity" 210
-		weapon
-			"blast radius" 260
-			"shield damage" 2600
-			"hull damage" 1300
-			"hit force" 3900
-	outfits
-		"Particle Cannon" 4
-		"Torpedo Launcher" 2
-		"Torpedo" 60
-		"Heavy Laser Turret" 4
-		"Fusion Reactor"
-		"LP144a Battery Pack"
-		"D94-YV Shield Generator"
-		"Liquid Nitrogen Cooler"
-		"Orca Plasma Thruster"
-		"X5200 Ion Steering"
-		"Hyperdrive"
-	description "Several years ago, while visiting a sweat lodge in search of spiritual renewal, Tarazed's chief ship designer fell into a trance and journeyed to a reality separate from our own. There he saw visions of a strange starship. He returned with sketches of the ship and ordered his engineers to build it. After several years of development and testing, the Kestrel is now available for sale."
-

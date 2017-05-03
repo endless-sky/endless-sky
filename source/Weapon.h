@@ -38,6 +38,7 @@ public:
 	
 	// Get assets used by this weapon.
 	const Body &WeaponSprite() const;
+	const Body &HardpointSprite() const;
 	const Sound *WeaponSound() const;
 	const Outfit *Ammo() const;
 	const Sprite *Icon() const;
@@ -68,6 +69,7 @@ public:
 	double RandomVelocity() const;
 	double Acceleration() const;
 	double Drag() const;
+	double HardpointOffset() const;
 	
 	double Turn() const;
 	double Inaccuracy() const;
@@ -112,6 +114,7 @@ private:
 private:
 	// Sprites and sounds.
 	Body sprite;
+	Body hardpointSprite;
 	const Sound *sound = nullptr;
 	const Sprite *icon = nullptr;
 	
@@ -141,6 +144,7 @@ private:
 	double randomVelocity = 0.;
 	double acceleration = 0.;
 	double drag = 0.;
+	double hardpointOffset = 0.;
 	
 	double turn = 0.;
 	double inaccuracy = 0.;
@@ -193,6 +197,7 @@ inline double Weapon::Velocity() const { return velocity; }
 inline double Weapon::RandomVelocity() const { return randomVelocity; }
 inline double Weapon::Acceleration() const { return acceleration; }
 inline double Weapon::Drag() const { return drag; }
+inline double Weapon::HardpointOffset() const { return hardpointOffset; }
 
 inline double Weapon::Turn() const { return turn; }
 inline double Weapon::Inaccuracy() const { return inaccuracy; }

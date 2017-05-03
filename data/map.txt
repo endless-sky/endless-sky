@@ -44,6 +44,24 @@ galaxy "label south"
 	pos -566 501
 	sprite label/south
 
+galaxy "label wanderers"
+	pos -145 -753
+
+galaxy "label hai"
+	pos -74 -497
+
+galaxy "label korath"
+	pos 165 -347
+
+galaxy "label saryds"
+	pos -1080 678
+
+galaxy "label kimek"
+	pos -1250 215
+
+galaxy "label arachi"
+	pos -750 615
+
 system "1 Axis"
 	pos -1274.63 267.214
 	government Coalition
@@ -1266,7 +1284,7 @@ system "5 Spring Below"
 	fleet "Large Saryd" 2500
 	fleet Heliarch 500
 	object
-		sprite star/g0
+		sprite star/g0-old
 		distance 19.7171
 		period 12.9082
 		offset 180
@@ -2476,7 +2494,7 @@ system Algenib
 	fleet "Large Syndicate" 800
 	fleet "Small Core Merchants" 600
 	object
-		sprite star/k0
+		sprite star/k0-old
 		period 10
 	object "Buccaneer Bay"
 		sprite planet/ocean6
@@ -2605,7 +2623,7 @@ system Algol
 	fleet "Large Core Pirates" 5000
 	fleet "Small Syndicate" 2400
 	object
-		sprite star/k5
+		sprite star/k5-old
 		distance 42.7246
 		period 19.0178
 	object
@@ -3156,7 +3174,7 @@ system Alnasl
 		period 11.956
 		offset 180
 	object
-		sprite star/k5
+		sprite star/k5-old
 		distance 41.5
 		period 11.956
 	object
@@ -5443,7 +5461,7 @@ system "Bote Asu"
 		distance 17.3605
 		period 7.70584
 	object
-		sprite star/k0
+		sprite star/k0-old
 		distance 84.6395
 		period 7.70584
 		offset 180
@@ -7525,7 +7543,7 @@ system Durax
 	fleet "Large Syndicate" 2500
 	fleet "Korath Raid" 5000
 	object
-		sprite star/g0
+		sprite star/g0-old
 		period 10
 	object
 		sprite planet/rock16
@@ -7592,7 +7610,7 @@ system Eber
 	fleet "Large Militia" 5000
 	fleet "Small Southern Pirates" 2000
 	object
-		sprite star/k5
+		sprite star/k5-old
 		period 10
 	object
 		sprite planet/gas4
@@ -8717,7 +8735,7 @@ system Fala
 	fleet "Large Northern Pirates" 4000
 	fleet "Human Miners" 2000
 	object
-		sprite star/g5
+		sprite star/g5-old
 		period 10
 	object
 		sprite planet/desert1
@@ -9707,7 +9725,7 @@ system "Gamma Cassiopeiae"
 	fleet "Large Syndicate" 5000
 	fleet "Human Miners" 2000
 	object
-		sprite star/k0
+		sprite star/k0-old
 		period 10
 	object
 		sprite planet/ice7
@@ -9828,7 +9846,7 @@ system Gienah
 	fleet "Large Core Pirates" 800
 	fleet "Large Syndicate" 5000
 	object
-		sprite star/k5
+		sprite star/k5-old
 		distance 31.893
 		period 12.2656
 		offset 180
@@ -10987,7 +11005,7 @@ system Holeb
 	fleet "Small Southern Pirates" 5000
 	fleet "Small Militia" 5000
 	object
-		sprite star/f5
+		sprite star/f5-old
 		period 10
 	object
 		sprite planet/lava4
@@ -11517,7 +11535,7 @@ system Ipsing
 	fleet "Large Southern Merchants" 5000
 	fleet "Small Southern Pirates" 3000
 	object
-		sprite star/g0
+		sprite star/g0-old
 		distance 21.7143
 		period 9.89877
 		offset 180
@@ -12710,7 +12728,7 @@ system "Kor Men"
 	fleet "Korath Raid" 1300
 	fleet "Korath Home" 600
 	object
-		sprite star/f5
+		sprite star/f5-old
 		distance 33.3868
 		period 11.5563
 	object
@@ -12769,7 +12787,7 @@ system "Kor Nor'peli"
 	fleet "Korath Raid" 1000
 	fleet "Korath Home" 500
 	object
-		sprite star/k0
+		sprite star/k0-old
 		distance 25.4857
 		period 19.3783
 	object
@@ -12883,7 +12901,7 @@ system "Kor Zena'i"
 	fleet "Korath Raid" 800
 	fleet "Korath Home" 1100
 	object
-		sprite star/g5
+		sprite star/g5-old
 		distance 8.94444
 		period 10.8953
 	object
@@ -14293,7 +14311,7 @@ system Men
 	fleet "Small Northern Pirates" 2000
 	fleet "Large Northern Pirates" 4000
 	object
-		sprite star/k5
+		sprite star/k5-old
 		period 10
 	object Thule
 		sprite planet/forest4
@@ -14360,7 +14378,7 @@ system Menkalinan
 	fleet "Small Republic" 700
 	fleet "Large Republic" 1500
 	object
-		sprite star/f5
+		sprite star/f5-old
 		distance 58.5
 		period 8.64354
 		offset 180
@@ -14610,7 +14628,7 @@ system Mesuket
 	fleet "Large Kor Mereti" 600
 	fleet "Large Kor Sestor" 600
 	object
-		sprite star/k5
+		sprite star/k5-old
 		period 10
 	object
 		sprite planet/mercury
@@ -14886,7 +14904,7 @@ system Minkar
 	fleet "Large Militia" 2000
 	fleet "Large Southern Pirates" 12000
 	object
-		sprite star/k0
+		sprite star/k0-old
 		distance 33.5961
 		period 16.6267
 	object
@@ -15187,7 +15205,7 @@ system Mizar
 	fleet "Large Southern Merchants" 3500
 	fleet "Small Southern Pirates" 6000
 	object
-		sprite star/g0
+		sprite star/g0-old
 		period 10
 	object
 		sprite planet/desert6
@@ -15412,7 +15430,7 @@ system Muphrid
 	fleet "Small Southern Pirates" 6000
 	fleet "Small Republic" 5000
 	object
-		sprite star/g5
+		sprite star/g5-old
 		distance 21.8366
 		period 10.9152
 	object
@@ -16121,7 +16139,7 @@ system Persian
 	fleet "Large Core Pirates" 2000
 	fleet "Human Miners" 3000
 	object
-		sprite star/f5
+		sprite star/f5-old
 		distance 27.8124
 		period 13.0946
 	object
@@ -16738,7 +16756,7 @@ system Prakacha'a
 		period 12.7118
 		offset 180
 	object
-		sprite star/k5
+		sprite star/k5-old
 		distance 82.4745
 		period 12.7118
 	object
@@ -18338,7 +18356,7 @@ system Sayaiban
 	trade Plastic 531
 	fleet Nanobots 100
 	object
-		sprite star/f5
+		sprite star/f5-old
 		distance 19.1843
 		period 11.9486
 	object
@@ -20435,7 +20453,7 @@ system "Tania Australis"
 	fleet "Small Northern Pirates" 4000
 	fleet "Large Northern Pirates" 9000
 	object
-		sprite star/g0
+		sprite star/g0-old
 		period 10
 	object
 		sprite planet/desert5
@@ -20712,7 +20730,7 @@ system Torbab
 		distance 26.8689
 		period 9.54431
 	object
-		sprite star/k5
+		sprite star/k5-old
 		distance 68.1311
 		period 9.54431
 		offset 180
@@ -21024,7 +21042,7 @@ system Umbral
 	fleet Quarg 15000
 	fleet "Large Southern Pirates" 6000
 	object
-		sprite star/k0
+		sprite star/k0-old
 		distance 31.3563
 		period 14.9921
 	object
@@ -22413,7 +22431,7 @@ system Zubeneschamali
 		period 15.622
 		offset 180
 	object
-		sprite star/g5
+		sprite star/g5-old
 		distance 62
 		period 15.622
 	object
@@ -23838,7 +23856,7 @@ planet "Into White"
 	"required reputation" 15
 
 planet "Karek Fornati"
-	attributes korath
+	attributes korath efret
 	landscape land/desert1
 	description `Karek Fornati was once a farming world, before global temperatures began to rise and the overworked farmland slowly deteriorated into deserts. The Korath who remain have dedicated their lives to finding a way to keep the "sand seas" from swallowing up the last of the fertile land, but without much success, and there are regions near the equator where sandstorms rage continually and no living things can survive.`
 	spaceport `The spaceport city is built around an enormous public square, with stalls around its periphery for produce or grain or cattle to be sold and shipped offworld. But only one corner of the square is still active as a market; the rest has fallen into disrepair.`
@@ -23873,7 +23891,7 @@ planet "Ki Patek Ka"
 	spaceport `Nearly all the land mass on Ki Patek Ka is covered in cities; the only undeveloped land is the high mountain peaks and the ice caps near the poles. The spaceport alone is larger than most human cities, stretching from horizon to horizon, with a ship taking off or landing every few seconds. The sheer number of people here - mostly Kimek, but a fair number of Saryds and Arachi as well - is overwhelming.`
 
 planet "Korati Efreti"
-	attributes station
+	attributes station efret
 	landscape land/loc2
 	description `This small Korath station is positioned at the Lagrangian point in between this system's sun and the planet that the Quarg had been mining for material to build the ringworld. The station is dwarfed by the ringworld, but nonetheless manages to make a statement: re-asserting the territorial rights of the Korath in the face of an alien species that chose to build a settlement in one of their systems.`
 	spaceport `As the Korath civil war became more and more brutal, the safest home for those who wanted to avoid the fighting was right here in the shadow of the Quarg. This small station is still home to well over a thousand Korath, and they are constantly on the move from one section to another, their boots ringing loudly on the metal floors.`
@@ -23934,7 +23952,7 @@ planet Lagrange
 	security 0.9
 
 planet "Laki Nemparu"
-	attributes korath
+	attributes korath efret
 	landscape land/sea2
 	description `This is an old factory world, so shrouded in smog that only tiny glimpses of the land are visible from above. Deep under the oceans of Laki Nemparu are oil reservoirs so vast that centuries of industry have not yet drained them dry. All but the hardiest of the native vegetation and wildlife is now long extinct from lack of direct sunlight or from pollution and chemical exposure.`
 	spaceport `All the Korath you encounter in the spaceport are wearing ventilator masks, and if you were staying here for longer you would probably do the same. The air leaves a metallic taste in your mouth, and your eyes feel dry and sting when the wind hits them. On the outskirts of the city, factory smokestacks are belching more pollution into the air; the Korath have either given up on preserving this planet, or simply have too great a need for the goods manufactured here to be willing to shut the factories down.`
@@ -24939,7 +24957,7 @@ planet "Sestor Ikfar"
 	security 0
 
 planet "Setar Fort"
-	attributes korath
+	attributes korath efret
 	landscape land/snow5
 	description `There are several large Korath cities on this planet, but the ones farther from the equator have been covered by encroaching glaciers as the planet slowly enters a new ice age. A small number of crops are still grown in the open air, but many of the fields have now been covered with row upon row of gleaming glass as the Korath resort to greenhouse farming to lengthen the growing season and feed their remaining population more efficiently. Farther from the city, Korath ranchers tend herds of creatures that resemble giant, six-legged yaks.`
 	spaceport `This spaceport is the only place where you have ever encountered the Korath cooking food that actually smells appetizing. But in other places, the stench of the enormous cattle that they are trading more than makes up for it. Occasionally as you walk by the stalls, one of the cattle will lower its head to sniff at you. They seem docile enough, although perhaps a bit undernourished, but their horns are alarming.`

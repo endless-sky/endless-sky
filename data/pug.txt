@@ -56,6 +56,8 @@ outfit "Pug Zapper Turret"
 		sprite "projectile/lightning"
 			"frame rate" 60
 			"random start frame"
+		"hardpoint sprite" "hardpoint/pug zapper turret"
+		"hardpoint offset" 7.
 		sound "zapper"
 		"hit effect" "skylance impact"
 		"inaccuracy" .3
@@ -109,6 +111,8 @@ outfit "Pug Anti-Missile"
 	"weapon capacity" -41
 	"turret mounts" -1
 	weapon
+		"hardpoint sprite" "hardpoint/pug anti-missile"
+		"hardpoint offset" 6.
 		"hit effect" "pug anti-missile"
 		"anti-missile" 5
 		"velocity" 200

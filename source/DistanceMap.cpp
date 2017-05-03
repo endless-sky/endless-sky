@@ -177,7 +177,16 @@ void DistanceMap::Init(const System *center, const Ship *ship)
 					if(HasBetter(link, steps + 1))
 						continue;
 					
+					// In order to plan travel through a wormhole, it must be
+					// "accessible" to your flagship, and you must have visited
+					// the wormhole and both endpoint systems. (If this is a
+					// multi-stop wormhole, you may know about some paths that
+					// it takes but not others.)
+					if(player && !object.GetPlanet()->IsAccessible(player->Flagship()))
+						continue;
 					if(player && !player->HasVisited(object.GetPlanet()))
+						continue;
+					if(player && !(player->HasVisited(system) && player->HasVisited(link)))
 						continue;
 					
 					Add(system, link, steps + 1, danger + link->Danger());

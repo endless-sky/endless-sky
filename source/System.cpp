@@ -407,11 +407,15 @@ double System::AsteroidBelt() const
 
 
 // Check if this system is inhabited.
-bool System::IsInhabited() const
+bool System::IsInhabited(const Ship *ship) const
 {
 	for(const StellarObject &object : objects)
-		if(object.GetPlanet() && !object.GetPlanet()->IsWormhole() && object.GetPlanet()->HasSpaceport())
-			return true;
+		if(object.GetPlanet())
+		{
+			const Planet &planet = *object.GetPlanet();
+			if(!planet.IsWormhole() && planet.HasSpaceport() && planet.IsAccessible(ship))
+				return true;
+		}
 	
 	return false;
 }
@@ -422,9 +426,12 @@ bool System::IsInhabited() const
 bool System::HasFuelFor(const Ship &ship) const
 {
 	for(const StellarObject &object : objects)
-		if(object.GetPlanet() && object.GetPlanet()->HasSpaceport() 
-				&& !object.GetPlanet()->IsWormhole() && object.GetPlanet()->CanLand(ship))
-			return true;
+		if(object.GetPlanet())
+		{
+			const Planet &planet = *object.GetPlanet();
+			if(!planet.IsWormhole() && planet.HasSpaceport() && planet.CanLand(ship))
+				return true;
+		}
 	
 	return false;
 }

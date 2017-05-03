@@ -1,0 +1,259 @@
+# Copyright (c) 2017 by Michael Zahniser
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+
+ship "Starling" # 300
+	sprite "ship/starling"
+	attributes
+		category "Light Warship"
+		cost 8800000
+		"shields" 8800
+		"hull" 4900
+		"required crew" 6
+		"bunks" 15
+		"mass" 270
+		"drag" 4.2
+		"heat dissipation" 0.7
+		"fuel capacity" 600
+		"cargo space" 36
+		"outfit space" 312
+		"weapon capacity" 83
+		"engine capacity" 94
+		"shield generation" 1.8
+		"shield energy" 1.2
+		"hull repair rate" 0.8
+		"hull energy" 0.6
+		"cloak" .02
+		"cloaking energy" 5
+		"cloaking fuel" .1
+	outfits
+		"Inhibitor Cannon" 3
+		"Point Defense Turret"
+		
+		"Epoch Cell"
+		"Crystal Capacitor"
+		"Emergency Ramscoop" 2
+		
+		"Forge-Class Thruster"
+		"Forge-Class Steering"
+		"Crucible-Class Steering"
+		"Hyperdrive"
+	
+	engine -16 82 0.7
+	engine 16 82 0.7
+	engine 0 90 1
+	gun 0 -99 "Inhibitor Cannon"
+	gun -12 -72 "Inhibitor Cannon"
+	gun 12 -72 "Inhibitor Cannon"
+	gun -18 -49
+	gun 18 -49
+	turret 0 2 "Point Defense Turret"
+	explode "tiny explosion" 40
+	explode "small explosion" 20
+	explode "medium explosion" 10
+	"final explode" "final explosion small" 1
+	description "TBD"
+
+ship "Starling" "Starling (Heavy)" # 309
+	outfits
+		"Thrasher Cannon" 5
+		"Point Defense Turret"
+		
+		"Epoch Cell"
+		"Millennium Cell"
+		"Crystal Capacitor"
+		
+		"Forge-Class Thruster"
+		"Forge-Class Steering"
+		"Hyperdrive"
+
+ship "Starling" "Starling (Sniper)" # 308
+	outfits
+		"Inhibitor Cannon" 5
+		
+		"Epoch Cell"
+		"Crystal Capacitor"
+		"Emergency Ramscoop"
+		
+		"Forge-Class Thruster"
+		"Smelter-Class Steering"
+		"Hyperdrive"
+
+ship "Starling" "Starling (Hunter)" # 311
+	outfits
+		"Inhibitor Cannon" 2
+		"Thrasher Turret"
+		
+		"Epoch Cell"
+		"Millennium Cell"
+		"Crystal Capacitor"
+		"Emergency Ramscoop"
+		
+		"Forge-Class Thruster"
+		"Forge-Class Steering"
+		"Hyperdrive"
+	
+	gun
+	gun "Inhibitor Cannon"
+	gun "Inhibitor Cannon"
+	gun
+	gun
+
+ship "Starling" "Starling (Thrasher)" # 305
+	outfits
+		"Thrasher Cannon" 3
+		"Thrasher Turret"
+		
+		"Epoch Cell"
+		"Millennium Cell"
+		"Crystal Capacitor"
+		
+		"Forge-Class Thruster"
+		"Forge-Class Steering"
+		"Hyperdrive"
+	
+	gun "Thrasher Cannon"
+	gun "Thrasher Cannon"
+	gun "Thrasher Cannon"
+	gun
+	gun
+
+
+
+ship "Albatross" # 656
+	sprite "ship/albatross"
+	attributes
+		category "Heavy Warship"
+		cost 20000000
+		"shields" 34200
+		"hull" 12600
+		"required crew" 44
+		"bunks" 75
+		"cargo space" 124
+		"mass" 690
+		"drag" 10.6
+		"heat dissipation" 0.6
+		"fuel capacity" 600
+		"engine capacity" 142
+		"outfit space" 658
+		"weapon capacity" 236
+		"shield generation" 5.2
+		"shield energy" 4.6
+		"hull repair rate" 1.5
+		"hull energy" 1.2
+	outfits
+		"Inhibitor Cannon" 6
+		"Thrasher Turret" 2
+		"Point Defense Turret"
+		
+		"Aeon Cell"
+		"Epoch Cell"
+		"Crystal Capacitor"
+		"Thermoelectric Cooler" 2
+		
+		"Smelter-Class Thruster"
+		"Smelter-Class Steering"
+		"Hyperdrive"
+	
+	engine -28 155 .8
+	engine 28 155 .9
+	engine 0 184 .8
+	gun 0 -190
+	gun -9 -177 "Inhibitor Cannon"
+	gun 9 -177 "Inhibitor Cannon"
+	gun -14 -162 "Inhibitor Cannon"
+	gun 14 -162 "Inhibitor Cannon"
+	gun -18 -144 "Inhibitor Cannon"
+	gun 18 -144 "Inhibitor Cannon"
+	turret -23 -34 "Thrasher Turret"
+	turret 23 -34 "Thrasher Turret"
+	turret -74 62
+	turret 74 62
+	turret 0 77 "Point Defense Turret"
+	explode "small explosion" 30
+	explode "medium explosion" 60
+	explode "large explosion" 40
+	explode "huge explosion" 10
+	"final explode" "final explosion large" 1
+
+ship "Albatross" "Albatross (Sniper)" # 651
+	outfits
+		"Inhibitor Cannon" 7
+		"Point Defense Turret" 3
+		
+		"Aeon Cell"
+		"Epoch Cell"
+		"Crystal Capacitor"
+		"Thermoelectric Cooler" 2
+		
+		"Forge-Class Thruster"
+		"Crucible-Class Thruster"
+		"Smelter-Class Steering"
+		"Forge-Class Steering"
+		"Hyperdrive"
+	
+	turret "Point Defense Turret"
+	turret "Point Defense Turret"
+	turret
+	turret
+	turret "Point Defense Turret"
+
+ship "Albatross" "Albatross (Turret)" # 654
+	outfits
+		"Thrasher Turret" 4
+		"Point Defense Turret"
+		
+		"Aeon Cell"
+		"Epoch Cell"
+		"Millennium Cell"
+		"Crystal Capacitor"
+		"Thermoelectric Cooler"
+		"Outfits Expansion" 2
+		
+		"Smelter-Class Thruster"
+		"Smelter-Class Steering"
+		"Hyperdrive"
+	
+	turret "Thrasher Turret"
+	turret "Thrasher Turret"
+	turret "Thrasher Turret"
+	turret "Thrasher Turret"
+	turret "Point Defense Turret"
+
+ship "Albatross" "Albatross (Heavy)" # 656
+	outfits
+		"Inhibitor Cannon" 3
+		"Thrasher Cannon" 4
+		"Thrasher Turret" 3
+		
+		"Aeon Cell"
+		"Epoch Cell"
+		"Millennium Cell"
+		"Crystal Capacitor" 2
+		"Thermoelectric Cooler" 2
+		"Outfits Expansion" 4
+		
+		"Forge-Class Thruster"
+		"Crucible-Class Thruster"
+		"Smelter-Class Steering"
+		"Forge-Class Steering"
+		"Hyperdrive"
+	
+	gun "Inhibitor Cannon"
+	gun "Inhibitor Cannon"
+	gun "Inhibitor Cannon"
+	gun "Thrasher Cannon"
+	gun "Thrasher Cannon"
+	gun "Thrasher Cannon"
+	gun "Thrasher Cannon"
+	turret "Thrasher Turret"
+	turret "Thrasher Turret"
+	turret
+	turret
+	turret "Thrasher Turret"
