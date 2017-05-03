@@ -353,3 +353,15 @@ outfit "Pilot's License"
 	cost 50000
 	thumbnail "outfit/license"
 	description "Without a pilot's license, you cannot purchase a ship on a Republic planet. And if you buy an unlicensed ship on another planet and then bring it into Republic space, you can be fined until you cough up the money for a license. Needless to say, this policy is not terribly popular with freelance merchant captains."
+
+outfit "NDR-212 Android"
+	category "Systems"
+	cost 80000
+	thumbnail "outfit/android"
+	"required crew" -1
+	"energy generation" 0.1
+	"energy capacity" 60
+	"bunks" -1
+	unplunderable 1
+	description "For the price of more than two year's salary and a bunk, you can replace one of your crew members with a robotic counterpart. Interface stations take up a bunk, allowing NDR-212 to contribute its meagre power systems to ships operations. Androids possess sufficient intelligence to perform most work, but each ship still needs a human captain. And, due to long-standing convention, robots are not allowed to take part in hand to hand combat."
+
