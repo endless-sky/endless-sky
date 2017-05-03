@@ -126,7 +126,7 @@ void Ship::Load(const DataNode &node)
 			else
 				armament.AddTurret(hardpoint, outfit);
 			if (armament.Get().size() > 32)
-				child.PrintTrace("Warning: only the first 32 hardpoints will fire:");
+				child.PrintTrace("Warning: Ships with more than 32 hardpoints do not behave as one would expect:");
 		}
 		else if(child.Token(0) == "licenses")
 		{
