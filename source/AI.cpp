@@ -2561,6 +2561,9 @@ void AI::IssueOrders(const PlayerInfo &player, const Orders &newOrders, const st
 {
 	string who;
 	
+	// Find out what the target of these orders is.
+	const Ship *newTarget = newOrders.target.lock().get();
+	
 	// Figure out what ships we are giving orders to.
 	vector<const Ship *> ships;
 	if(player.SelectedShips().empty())
@@ -2607,13 +2610,19 @@ void AI::IssueOrders(const PlayerInfo &player, const Orders &newOrders, const st
 	// their orders will be cleared instead. The only command that does not
 	// toggle is a move command; it always counts as a new command.
 	bool hasMismatch = isMoveOrder;
+	bool gaveOrder = false;
 	for(const Ship *ship : ships)
 	{
+		// Never issue orders to a ship to target itself.
+		if(ship == newTarget)
+			continue;
+		
+		gaveOrder = true;
 		hasMismatch |= !orders.count(ship);
 		
 		Orders &existing = orders[ship];
 		hasMismatch |= (existing.type != newOrders.type);
-		hasMismatch |= (existing.target.lock() != newOrders.target.lock());
+		hasMismatch |= (existing.target.lock().get() != newTarget);
 		existing = newOrders;
 		
 		if(isMoveOrder)
@@ -2627,6 +2636,8 @@ void AI::IssueOrders(const PlayerInfo &player, const Orders &newOrders, const st
 			existing.point += offset;
 		}
 	}
+	if(!gaveOrder)
+		return;
 	if(hasMismatch)
 		Messages::Add(who + description);
 	else
