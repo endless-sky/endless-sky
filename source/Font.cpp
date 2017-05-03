@@ -237,7 +237,7 @@ string Font::Truncate(const string &str, int width) const
 		
 		int nextWidth = Width(str.substr(0, nextChars), '.');
 		bool nextWorks = (nextWidth <= width);
-		if(prevWorks != nextWorks && abs(nextChars - prevChars) == 1)
+		if(prevWorks != nextWorks && fabs(nextChars - prevChars) == 1)
 			return str.substr(0, min(prevChars, nextChars)) + "...";
 		
 		prevChars = nextChars;
