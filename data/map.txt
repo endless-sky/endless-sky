@@ -22538,7 +22538,7 @@ planet Alfheim
 	security 0.7
 	tribute 1200
 		threshold 5000
-		fleet "Small Deep" 27
+		fleet "Small Deep (Defensive)" 27
 
 planet Allhome
 	attributes hai farming "human tourism"
@@ -23331,7 +23331,7 @@ planet "Fenrir Station"
 	security 0.8
 	tribute 600
 		threshold 3000
-		fleet "Small Deep" 14
+		fleet "Small Deep (Defensive)" 14
 
 planet Firelode
 	attributes unfettered
@@ -23694,7 +23694,7 @@ planet Helheim
 	security 0.6
 	tribute 700
 		threshold 3000
-		fleet "Small Deep" 15
+		fleet "Small Deep (Defensive)" 15
 
 planet Hephaestus
 	attributes core factory urban
@@ -23970,7 +23970,7 @@ planet "Leviathan Station"
 	security 0.9
 	tribute 1200
 		threshold 3500
-		fleet "Small Deep" 27
+		fleet "Small Deep (Defensive)" 27
 
 planet Lichen
 	attributes south farming frontier
@@ -24090,7 +24090,7 @@ planet Mani
 	security 0.6
 	tribute 500
 		threshold 3000
-		fleet "Small Deep" 11
+		fleet "Small Deep (Defensive)" 11
 
 planet "Market of Gupta"
 	attributes arach shipping
@@ -24136,7 +24136,7 @@ planet Memory
 	security 0.8
 	tribute 700
 		threshold 4000
-		fleet "Small Deep" 16
+		fleet "Small Deep (Defensive)" 16
 
 planet "Merask Fortuno"
 	attributes korath station
@@ -24242,7 +24242,7 @@ planet "Muninn Station"
 	security 0.8
 	tribute 1100
 		threshold 5500
-		fleet "Small Deep" 25
+		fleet "Small Deep (Defensive)" 25
 
 planet Muspel
 	attributes deep mining factory
@@ -24254,7 +24254,7 @@ planet Muspel
 	security 0.6
 	tribute 600
 		threshold 3000
-		fleet "Small Deep" 14
+		fleet "Small Deep (Defensive)" 14
 
 planet Mutiny
 	attributes pirate
@@ -24523,7 +24523,7 @@ planet Norn
 	security 0.6
 	tribute 500
 		threshold 3000
-		fleet "Small Deep" 12
+		fleet "Small Deep (Defensive)" 12
 
 planet Oasis
 	attributes rim farming textiles
@@ -25663,7 +25663,7 @@ planet Windblain
 	security 0.6
 	tribute 800
 		threshold 3500
-		fleet "Small Deep" 18
+		fleet "Small Deep (Defensive)" 18
 
 planet Winter
 	attributes south factory frontier

@@ -1051,6 +1051,48 @@ fleet "Navy Surveillance"
 	variant 10
 		"Gunboat" 2
 
+fleet "Small Deep (Defensive)"
+	government "Republic"
+	names "deep"
+	cargo 0
+	personality
+		heroic
+	variant 4
+		"Aerie"
+		"Dagger" 2
+	variant 3
+		"Raven"
+	variant 1
+		"Raven (Heavy)"
+	variant 1
+		"Raven (Afterburner)"
+	variant 6
+		"Mule"
+		"Dagger"
+	variant 2
+		"Mule (Heavy)"
+		"Dagger"
+	variant 2
+		"Mule"
+		"Dagger"
+		"Raven"
+	variant 1
+		"Mule (Heavy)"
+		"Dagger"
+		"Raven (Heavy)"
+	variant 3
+		"Headhunter"
+	variant 2
+		"Headhunter (Particle)"
+	variant 4
+		"Corvette"
+	variant 2
+		"Corvette (Speedy)"
+	variant 2
+		"Corvette (Missile)"
+	variant 3
+		"Flivver"
+
 fleet "Small Deep"
 	government "Republic"
 	names "deep"
@@ -1094,7 +1136,7 @@ fleet "Small Deep"
 		"Flivver"
 	variant 2
 		"Flivver (Racing)"
-
+		
 fleet "Large Deep"
 	government "Republic"
 	names "deep"
