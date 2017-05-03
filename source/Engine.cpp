@@ -331,6 +331,7 @@ void Engine::Step(bool isActive)
 	{
 		highlightSprite = flagship->GetSprite();
 		highlightUnit = flagship->Unit() * zoom;
+		highlightFrame = flagship->GetFrameIndex();
 	}
 	else
 		highlightSprite = nullptr;
@@ -661,7 +662,7 @@ void Engine::Draw() const
 		Point size(highlightSprite->Width(), highlightSprite->Height());
 		const Color &color = *GameData::Colors().Get("flagship highlight");
 		// The flagship is always in the dead center of the screen.
-		OutlineShader::Draw(highlightSprite, Point(), size, color, highlightUnit);
+		OutlineShader::Draw(highlightSprite, Point(), size, color, highlightUnit, highlightFrame);
 	}
 	
 	if(flash)
