@@ -1782,7 +1782,7 @@ mission "Wanderers: Sestor Search: Human Spaceport"
 			choice
 				`	(Approach the captain and try to find out what happened.)`
 					goto approach
-				`	(Ignore him.)
+				`	(Ignore him.)`
 					decline
 			
 			label approach
