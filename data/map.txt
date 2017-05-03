@@ -22538,7 +22538,7 @@ planet Alfheim
 	security 0.7
 	tribute 1200
 		threshold 5000
-		fleet "Small Deep" 27
+		fleet "Small Deep Military" 27
 
 planet Allhome
 	attributes hai farming "human tourism"
@@ -22625,7 +22625,7 @@ planet Asgard
 	security 0.7
 	tribute 4000
 		threshold 7000
-		fleet "Large Deep" 39
+		fleet "Large Deep Military" 39
 
 planet "Ashy Reach"
 	attributes kimek shipping moon
@@ -22677,7 +22677,7 @@ planet Bivrost
 	security 0.8
 	tribute 3600
 		threshold 7000
-		fleet "Large Deep" 35
+		fleet "Large Deep Military" 35
 
 planet Bloodsea
 	attributes pirate
@@ -23331,7 +23331,7 @@ planet "Fenrir Station"
 	security 0.8
 	tribute 600
 		threshold 3000
-		fleet "Small Deep" 14
+		fleet "Small Deep Military" 14
 
 planet Firelode
 	attributes unfettered
@@ -23663,7 +23663,7 @@ planet Haze
 	security 0.6
 	tribute 2600
 		threshold 5500
-		fleet "Large Deep" 26
+		fleet "Large Deep Military" 26
 
 planet Heartland
 	attributes "dirt belt" farming
@@ -23694,7 +23694,7 @@ planet Helheim
 	security 0.6
 	tribute 700
 		threshold 3000
-		fleet "Small Deep" 15
+		fleet "Small Deep Military" 15
 
 planet Hephaestus
 	attributes core factory urban
@@ -23786,7 +23786,7 @@ planet "Huginn Station"
 	security 0.9
 	tribute 1800
 		threshold 5500
-		fleet "Large Deep" 18
+		fleet "Large Deep Military" 18
 
 planet Humanika
 	attributes south farming
@@ -23970,7 +23970,7 @@ planet "Leviathan Station"
 	security 0.9
 	tribute 1200
 		threshold 3500
-		fleet "Small Deep" 27
+		fleet "Small Deep Military" 27
 
 planet Lichen
 	attributes south farming frontier
@@ -24090,7 +24090,7 @@ planet Mani
 	security 0.6
 	tribute 500
 		threshold 3000
-		fleet "Small Deep" 11
+		fleet "Small Deep Military" 11
 
 planet "Market of Gupta"
 	attributes arach shipping
@@ -24136,7 +24136,7 @@ planet Memory
 	security 0.8
 	tribute 700
 		threshold 4000
-		fleet "Small Deep" 16
+		fleet "Small Deep Military" 16
 
 planet "Merask Fortuno"
 	attributes korath station
@@ -24190,7 +24190,7 @@ planet Midgard
 	security 0.8
 	tribute 3000
 		threshold 6000
-		fleet "Large Deep" 30
+		fleet "Large Deep Military" 30
 
 planet "Midway Emerald"
 	attributes kimek shipping urban wealthy
@@ -24242,7 +24242,7 @@ planet "Muninn Station"
 	security 0.8
 	tribute 1100
 		threshold 5500
-		fleet "Small Deep" 25
+		fleet "Small Deep Military" 25
 
 planet Muspel
 	attributes deep mining factory
@@ -24254,7 +24254,7 @@ planet Muspel
 	security 0.6
 	tribute 600
 		threshold 3000
-		fleet "Small Deep" 14
+		fleet "Small Deep Military" 14
 
 planet Mutiny
 	attributes pirate
@@ -24494,7 +24494,7 @@ planet Nifel
 	security 0.7
 	tribute 1500
 		threshold 4000
-		fleet "Large Deep" 16
+		fleet "Large Deep Military" 16
 
 planet Nimbus
 	attributes core fishing medical
@@ -24523,7 +24523,7 @@ planet Norn
 	security 0.6
 	tribute 500
 		threshold 3000
-		fleet "Small Deep" 12
+		fleet "Small Deep Military" 12
 
 planet Oasis
 	attributes rim farming textiles
@@ -24581,7 +24581,7 @@ planet "Phoenix Station"
 	security 0.7
 	tribute 500
 		threshold 2000
-		fleet "Large Deep" 5
+		fleet "Large Deep Military" 5
 
 planet Pilot
 	attributes north research
@@ -25446,7 +25446,7 @@ planet Valhalla
 	security 0.8
 	tribute 3600
 		threshold 7000
-		fleet "Large Deep" 35
+		fleet "Large Deep Military" 35
 
 planet "Var' Kar'i'i"
 	attributes wanderer urban farming
@@ -25663,7 +25663,7 @@ planet Windblain
 	security 0.6
 	tribute 800
 		threshold 3500
-		fleet "Small Deep" 18
+		fleet "Small Deep Military" 18
 
 planet Winter
 	attributes south factory frontier
