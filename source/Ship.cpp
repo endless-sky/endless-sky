@@ -1931,12 +1931,21 @@ int Ship::JumpsRemaining() const
 
 double Ship::JumpFuel() const
 {
+	//Check what kind of jump we are making.
 	int type = HyperspaceType();
-	if(type)
-		return type;
-	return attributes.Get("jump drive") ? 200. :
-		attributes.Get("scram drive") ? 150. : 
-		attributes.Get("hyperdrive") ? 100. : 0.;
+	//Get whether the drive has custom values.
+	double hasHyperdriveFuel = attributes.Get("hyperdrive fuel");
+	double hasScramDriveFuel = attributes.Get("scram drive fuel");
+	double hasJumpDriveFuel = attributes.Get("jump drive fuel"); 
+	//If the drive has custom values return the custom value for 
+	//that type else return the default value for that type.
+	if(type = 100)
+		return (hasHyperdriveFuel ? hasHyperdriveFuel: 100 );
+	if(type = 150)
+		return (hasScramDriveFuel ? hasScramDriveFuel: 150 );
+	if(type = 200)
+		return (hasJumpDriveFuel ? hasJumpDriveFuel: 150 );
+	return 0.;
 }
 
 
