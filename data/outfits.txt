@@ -104,7 +104,7 @@ outfit "S-270 Regenerator"
 	"outfit space" -12
 	"shield generation" .6
 	"shield energy" .6
-	"energy generation" -.3
+	"energy consumption" .3
 	"heat generation" 2
 	description "A shield regenerator works by subtly modifying the geometry of your shield matrix in order to make your shields more malleable and therefore much easier to recharge. Unfortunately, this causes your shields to also become less efficient, which draws energy away from your other systems, even when not charging shields, and creates heat."
 
@@ -116,7 +116,7 @@ outfit "S-970 Regenerator"
 	"outfit space" -37
 	"shield generation" 2.3
 	"shield energy" 2.3
-	"energy generation" -.9
+	"energy consumption" .9
 	"heat generation" 6
 	description "The S-970 Shield Regenerator is an advanced type of shield recharging technology. Unfortunately, its power needs are rather high, and the shifts it makes in your shield configuration also result in some feedback that causes heat to build up in the regenerator, even when your shields are at full strength."
 

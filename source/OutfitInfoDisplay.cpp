@@ -35,6 +35,7 @@ namespace {
 		"cloaking fuel",
 		"cooling",
 		"cooling energy",
+		"energy consumption",
 		"energy generation",
 		"heat generation",
 		"hull repair rate",

@@ -19,6 +19,11 @@ conversation "intro"
 	`	The elevator is so well-tuned that you do not even realize it is moving until it has deposited you back in the lobby. But as you leave the bank, you are smiling. This crazy adventure suddenly feels real to you. You are going to do it. You are finally going to get off this planet.`
 	`	Compared to the bank, you feel much more at home in the shipyard, walking among the rusted out hulks and newer ships that gleam in the sunlight. You smell grease and dirt and rocket fuel; wonderful smells. There are three ship models within your price range. Which one you choose will determine your future...`
 
+conversation "flight check: no energy"
+	scene "scene/engine2"
+	`You've heard enough horror stories about the sort of accidents that happen when starship systems malfunction to be completely convinced of the necessity of a pre-flight safety check. As you listen to the complex symphony of hums, rattles, and clicks of "<ship>" warming up, you run through a mental checklist. Computers: check. Life support: check.`
+	`	It is all going smoothly until it comes time to fire up your systems for a test run... and you discover that your generator does not produce enough power to power them. You'll have to either install some batteries, or switch to a more powerful generator.`	
+	
 conversation "flight check: no thrusters"
 	scene "scene/engine2"
 	`You've heard enough horror stories about the sort of accidents that happen when starship systems malfunction to be completely convinced of the necessity of a pre-flight safety check. As you listen to the complex symphony of hums, rattles, and clicks of "<ship>" warming up, you run through a mental checklist. Computers: check. Life support: check.`
@@ -39,6 +44,11 @@ conversation "flight check: no steering energy"
 	`You've heard enough horror stories about the sort of accidents that happen when starship systems malfunction to be completely convinced of the necessity of a pre-flight safety check. As you listen to the complex symphony of hums, rattles, and clicks of "<ship>" warming up, you run through a mental checklist. Computers: check. Life support: check.`
 	`	It is all going smoothly until it comes time to fire up the steering engines for a test run... and you discover that your generator does not produce enough power to drive them. You'll have to either install some batteries, or switch to a more powerful generator.`
 
+conversation "flight check: solar power warning"
+	scene "scene/engine2"
+	`You've heard enough horror stories about the sort of accidents that happen when starship systems malfunction to be completely convinced of the necessity of a pre-flight safety check. As you listen to the complex symphony of hums, rattles, and clicks of "<ship>" warming up, you run through a mental checklist. Computers: check. Life support: check. Engines: check.`
+	`	Everything seems fine until you notice an amber warning light: your ship's computers have detected that your solar collectors may not be able to power your thrusters or steering systems too far from a star. You can launch your ship, but you run the risk of becoming derelict if you fly too far from the center of a system.`	
+	
 conversation "flight check: overheating"
 	scene "scene/engine"
 	`You've heard enough horror stories about the sort of accidents that happen when starship systems malfunction to be completely convinced of the necessity of a pre-flight safety check. As you listen to the complex symphony of hums, rattles, and clicks of "<ship>" warming up, you run through a mental checklist. Computers: check. Life support: check.`
