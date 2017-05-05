@@ -351,6 +351,8 @@ private:
 	// ship is carrying fighters, add to them as well.
 	double AddHull(double rate);
 	double AddShields(double rate);
+	// Find out how much fuel is consumed by the hyperdrive of the given type.
+	double BestFuel(const std::string &type, const std::string &subtype, double defaultFuel) const;
 	// Create one of this ship's explosions, within its mask. The explosions can
 	// either stay over the ship, or spread out if this is the final explosion.
 	void CreateExplosion(std::list<Effect> &effects, bool spread = false);

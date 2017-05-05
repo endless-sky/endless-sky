@@ -53,8 +53,11 @@ namespace {
 		"turning heat"
 	};
 	
-	static const set<string> BOOLEAN_ATTRIBUTES = {
-		"unplunderable"
+	static const map<string, string> BOOLEAN_ATTRIBUTES = {
+		{"unplunderable", "This outfit cannot be plundered."},
+		{"installable", "This is not an installable item."},
+		{"hyperdrive", "Allows you to make hyperjumps."},
+		{"jump drive", "Lets you jump to any nearby system."}
 	};
 }
 
@@ -173,16 +176,11 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		else if(ATTRIBUTES_TO_SCALE.count(it.first))
 			scale = 60.;
 		
-		if(BOOLEAN_ATTRIBUTES.count(it.first)) 
+		auto bit = BOOLEAN_ATTRIBUTES.find(it.first);
+		if(bit != BOOLEAN_ATTRIBUTES.end()) 
 		{
-			attributeLabels.push_back("This outfit is " + it.first + ".");
-			attributeValues.push_back("");
-			attributesHeight += 20;
-		}
-		else if(it.first == "installable" && it.second < 0)
-		{
-			attributeLabels.push_back("This is not an installable item.");
-			attributeValues.push_back("");
+			attributeLabels.push_back(bit->second);
+			attributeValues.push_back(" ");
 			attributesHeight += 20;
 		}
 		else

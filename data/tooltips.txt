@@ -128,6 +128,9 @@ tip "jump drive:"
 tip "jump speed:"
 	`How slow the ship must be moving to make a jump.`
 
+tip "jump fuel:"
+	`How much fuel is consumed when you jump between systems using this drive.`
+
 tip "map:"
 	`How many star systems are included in this map.`
 
