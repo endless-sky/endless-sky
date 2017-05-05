@@ -59,6 +59,10 @@ ShopPanel::ShopPanel(PlayerInfo &player, bool isOutfitter)
 
 void ShopPanel::Step()
 {
+	// If the player has acquired a second ship for the first time, explain to
+	// them how to reorder the ships in their fleet.
+	if(player.Ships().size() > 1)
+		DoHelp("multiple ships");
 	// Perform autoscroll to bring item details into view.
 	if(scrollDetailsIntoView && selectedBottomY > 0.)
 	{

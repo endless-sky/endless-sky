@@ -25,7 +25,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Planet.h"
 #include "PlayerInfo.h"
 #include "Point.h"
-#include "Preferences.h"
 #include "Screen.h"
 #include "Ship.h"
 #include "Sprite.h"
@@ -63,11 +62,7 @@ OutfitterPanel::OutfitterPanel(PlayerInfo &player)
 void OutfitterPanel::Step()
 {
 	CheckRefill();
-	if(!Preferences::Has("help: outfitter"))
-	{
-		Preferences::Set("help: outfitter");
-		GetUI()->Push(new Dialog(GameData::HelpMessage("outfitter")));
-	}
+	DoHelp("outfitter");
 	ShopPanel::Step();
 }
 

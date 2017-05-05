@@ -79,26 +79,19 @@ void MainPanel::Step()
 		player.Land(GetUI());
 		isActive = false;
 	}
-	if(isActive && player.Flagship() && player.Flagship()->IsTargetable()
-			&& !Preferences::Has("help: navigation"))
+	const Ship *flagship = player.Flagship();
+	if(flagship)
 	{
-		Preferences::Set("help: navigation");
-		GetUI()->Push(new Dialog(GameData::HelpMessage("navigation")));
-		isActive = false;
-	}
-	if(isActive && player.Flagship() && player.Flagship()->IsDestroyed()
-			&& !Preferences::Has("help: dead"))
-	{
-		Preferences::Set("help: dead");
-		GetUI()->Push(new Dialog(GameData::HelpMessage("dead")));
-		isActive = false;
-	}
-	if(isActive && player.Flagship() && player.Flagship()->IsDisabled()
-			&& !player.Flagship()->IsDestroyed() && !Preferences::Has("help: disabled"))
-	{
-		Preferences::Set("help: disabled");
-		GetUI()->Push(new Dialog(GameData::HelpMessage("disabled")));
-		isActive = false;
+		// Check if any help messages should be shown.
+		if(isActive && flagship->IsTargetable())
+			isActive = !DoHelp("navigation");
+		if(isActive && flagship->IsDestroyed())
+			isActive = !DoHelp("dead");
+		if(isActive && flagship->IsDisabled())
+			isActive = !DoHelp("disabled");
+		bool canRefuel = player.GetSystem()->IsInhabited(flagship);
+		if(isActive && !flagship->IsHyperspacing() && !flagship->JumpsRemaining() && !canRefuel)
+			isActive = !DoHelp("stranded");
 	}
 	
 	engine.Step(isActive);
@@ -134,13 +127,6 @@ void MainPanel::Step()
 					isActive = false;
 				}
 			}
-		}
-		if((event.Type() & ShipEvent::JUMP) && player.Flagship() && !player.Flagship()->JumpsRemaining()
-				&& !player.GetSystem()->IsInhabited(player.Flagship()) && !Preferences::Has("help: stranded"))
-		{
-			Preferences::Set("help: stranded");
-			GetUI()->Push(new Dialog(GameData::HelpMessage("stranded")));
-			isActive = false;
 		}
 	}
 	

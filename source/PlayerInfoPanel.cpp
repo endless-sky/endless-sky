@@ -102,6 +102,16 @@ PlayerInfoPanel::PlayerInfoPanel(PlayerInfo &player)
 
 
 
+void PlayerInfoPanel::Step()
+{
+	// If the player has acquired a second ship for the first time, explain to
+	// them how to reorder the ships in their fleet.
+	if(player.Ships().size() > 1)
+		DoHelp("multiple ships");
+}
+
+
+
 void PlayerInfoPanel::Draw()
 {
 	// Dim everything behind this panel.

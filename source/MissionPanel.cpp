@@ -119,11 +119,7 @@ MissionPanel::MissionPanel(const MapPanel &panel)
 
 void MissionPanel::Step()
 {
-	if(!Preferences::Has("help: jobs"))
-	{
-		Preferences::Set("help: jobs");
-		GetUI()->Push(new Dialog(GameData::HelpMessage("jobs")));
-	}
+	DoHelp("jobs");
 }
 
 
