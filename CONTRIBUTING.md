@@ -1,16 +1,30 @@
-If you are contributing a pull request to change the game's C++ code, please review the [style guide](http://endless-sky.github.io/styleguide/styleguide.xml) and try to mimic the style that the existing code uses.
+### Posting issues
 
-The [issues page](https://github.com/endless-sky/endless-sky/issues) here on GitHub is for tracking bugs and feature requests. When posting a new issue, please:
+The [issues page](https://github.com/endless-sky/endless-sky/issues) on GitHub is for tracking bugs and feature requests. When posting a new issue, please:
 
 * Check to make sure it's not a duplicate of an existing issue.
 * Create a separate "issue" for each bug you are reporting and each feature you are requesting.
 * Do not use the issues page for things other than bug reports and feature requests.
 
-Once you've posted an issue, I'll assign it a label. GitHub does not allow anyone who does not have commit access to the repository to assign labels.
+If requesting a new feature, first ask yourself: will this make the game more fun or interesting? Remember that this is a game, not a simulator. Changes will not be made purely for the sake of realism, especially if they introduce needless complexity or aggravation.
+
+### Posting pull requests
+
+If you are posting a pull request, please:
+
+* Do not combine multiple unrelated changes into a single pull.
+* Check the diff and make sure the pull request does not contain unintended changes.
+* If changing the C++ code, follow the [coding standard](http://endless-sky.github.io/styleguide/styleguide.xml).
+
+If proposing a major pull request, start by posting an issue and discussing the best way to implement it. Often the first strategy that occurs to you will not be the cleanest or most effective way to implement a new feature. I will not merge pull requests that are too large for me to read through the diff and check that the change will not introduce bugs.
+
+### Closing issues
 
 If you believe your issue has been resolved, you can close the issue yourself. I won't close an issue unless it has been idle for a few weeks, to avoid having me mark something as fixed when the original poster does not think their request has been fully addressed.
 
 If an issue is a bug and it has been fixed in the code, it may be helpful to leave it "open" until an official release that fixes the bug has been made, so that other people encountering the same bug will see that it has already been reported.
+
+### Issue labels
 
 The labels I assign to issues are:
 
