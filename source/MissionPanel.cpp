@@ -130,7 +130,7 @@ void MissionPanel::Draw()
 	
 	Color routeColor(.2, .1, 0., 0.);
 	const System *system = selectedSystem;
-	while(distance.Distance(system) > 0)
+	while(distance.Days(system) > 0)
 	{
 		const System *next = distance.Route(system);
 		
@@ -475,12 +475,8 @@ void MissionPanel::DrawSelectedSystem() const
 	if(it != plan.end())
 		jumps = plan.end() - it;
 	else if(distance.HasRoute(selectedSystem))
-	{
-		// Figure out how many jumps (not how much fuel) getting to the selected
-		// system will take.
-		for(const System *system = selectedSystem; system != player.GetSystem(); system = distance.Route(system))
-			++jumps;
-	}
+		jumps = distance.Days(selectedSystem);
+	
 	if(jumps == 1)
 		text += " (1 jump away)";
 	else if(jumps > 0)

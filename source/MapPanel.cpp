@@ -433,7 +433,7 @@ void MapPanel::Select(const System *system)
 	else if(shift)
 	{
 		DistanceMap localDistance(player, plan.front());
-		if(localDistance.Distance(system) <= 0)
+		if(localDistance.Days(system) <= 0)
 			return;
 		
 		auto it = plan.begin();
@@ -443,7 +443,7 @@ void MapPanel::Select(const System *system)
 			system = localDistance.Route(system);
 		}
 	}
-	else if(distance.Distance(system) > 0)
+	else if(distance.Days(system) > 0)
 	{
 		plan.clear();
 		if(!isJumping)
