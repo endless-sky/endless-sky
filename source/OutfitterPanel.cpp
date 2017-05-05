@@ -578,13 +578,13 @@ bool OutfitterPanel::FlightCheck()
 			continue;
 		
 		const Outfit &attributes = ship->Attributes();
-		double energy = attributes.Get("energy generation") - attributes.Get("operational energy");
+		double energy = attributes.Get("energy generation") - attributes.Get("energy consumption");
 		energy += attributes.Get("solar collection");
 		energy += attributes.Get("energy capacity");
 		if(energy < 0.)
 		{
 			GetUI()->Push(new ConversationPanel(player,
-				*GameData::Conversations().Get("flight check: no operational energy"), nullptr, ship.get()));
+				*GameData::Conversations().Get("flight check: no energy"), nullptr, ship.get()));
 			return false;			
 		}
 		if(!attributes.Get("thrust") && !attributes.Get("reverse thrust")

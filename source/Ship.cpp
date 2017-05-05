@@ -773,7 +773,7 @@ bool Ship::Move(list<Effect> &effects, list<shared_ptr<Flotsam>> &flotsam)
 		energy += scale * attributes.Get("solar collection");
 		
 		double coolingEfficiency = CoolingEfficiency();
-		energy += attributes.Get("energy generation") - attributes.Get("operational energy");
+		energy += attributes.Get("energy generation") - attributes.Get("energy consumption");
 		energy -= ionization;
 		energy = max(0., energy);
 		heat += attributes.Get("heat generation");

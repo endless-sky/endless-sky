@@ -68,6 +68,9 @@ tip "drone bays:"
 tip "energy capacity:"
 	`How much energy this ship can store. This allows you to temporarily use more power than your generators produce.`
 
+tip "energy consumption:"
+	`Energy consumed per second while in flight.`
+	
 tip "energy generation:"
 	`Energy generated per second. If your ship has weapons other than beam weapons, you will probably also need batteries to store energy in.`
 
@@ -139,9 +142,6 @@ tip "mass with no cargo:"
 
 tip "mass:"
 	`Mass, in tons. A ship's mass determines how fast it turns and accelerates.`
-
-tip "operational energy:"
-	`Energy consumed per second while in flight.`
 	
 tip "outfit scan:"
 	`Lets you scan your target ship's outfits from up to this distance away.`
