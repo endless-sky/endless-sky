@@ -1045,7 +1045,9 @@ void AI::MoveEscort(Ship &ship, Command &command) const
 		Refuel(ship, command);
 	else if(!parentIsHere && !isStaying)
 	{
-		if(!ship.HyperspaceType() && !ship.GetTargetStellar())
+		// Check whether the ship has a target system and is able to jump to it.
+		bool hasJump = (ship.GetTargetSystem() && ship.JumpFuel(ship.GetTargetSystem()));
+		if(!hasJump && !ship.GetTargetStellar())
 		{
 			// If we're stranded and haven't decided where to go, figure out a
 			// path to the parent ship's system.
@@ -1095,7 +1097,7 @@ void AI::MoveEscort(Ship &ship, Command &command) const
 		else
 		{
 			PrepareForHyperspace(ship, command);
-			if(parent.IsEnteringHyperspace() || parent.CheckHyperspace())
+			if(parent.IsEnteringHyperspace() || parent.IsReadyToJump())
 				command |= Command::JUMP;
 		}
 	}
@@ -1274,18 +1276,22 @@ bool AI::Stop(Ship &ship, Command &command, double maxSpeed)
 
 void AI::PrepareForHyperspace(Ship &ship, Command &command)
 {
-	int type = ship.HyperspaceType();
-	if(!type)
+	bool hasHyperdrive = ship.Attributes().Get("hyperdrive");
+	double scramThreshold = ship.Attributes().Get("scram drive");
+	bool hasJumpDrive = ship.Attributes().Get("jump drive");
+	if(!hasHyperdrive && !hasJumpDrive)
 		return;
 	
+	bool isJump = !hasHyperdrive || !ship.GetSystem()->Links().count(ship.GetTargetSystem());
+	
 	Point direction = ship.GetTargetSystem()->Position() - ship.GetSystem()->Position();
-	if(type == 150)
+	if(!isJump && scramThreshold)
 	{
 		direction = direction.Unit();
 		Point normal(-direction.Y(), direction.X());
 		
 		double deviation = ship.Velocity().Dot(normal);
-		if(fabs(deviation) > ship.Attributes().Get("scram drive"))
+		if(fabs(deviation) > scramThreshold)
 		{
 			// Need to maneuver; not ready to jump
 			if((ship.Facing().Unit().Dot(normal) < 0) == (deviation < 0))
@@ -1303,7 +1309,7 @@ void AI::PrepareForHyperspace(Ship &ship, Command &command)
 				double correctionWhileTurning = fabs(1 - cos) * ship.Acceleration() / turnRateRadians;
 				// (Note that this will always underestimate because thrust happens before turn)
 				
-				if(fabs(deviation) - correctionWhileTurning > ship.Attributes().Get("scram drive"))
+				if(fabs(deviation) - correctionWhileTurning > scramThreshold)
 					// Want to thrust from an even sharper angle
 					direction = -deviation * normal;
 			}
@@ -1313,7 +1319,7 @@ void AI::PrepareForHyperspace(Ship &ship, Command &command)
 	// If we are moving too fast, point in the right direction.
 	else if(Stop(ship, command, ship.Attributes().Get("jump speed")))
 	{
-		if(type != 200)
+		if(!isJump)
 			command.SetTurn(TurnToward(ship, direction));
 	}
 }
@@ -2102,7 +2108,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 	if(ship.IsEnteringHyperspace() && !wasHyperspacing)
 	{
 		// Check if there's a particular planet there we want to visit.
-		const System *system = ship.HyperspaceSystem();
+		const System *system = ship.GetTargetSystem();
 		set<const Planet *> destinations;
 		Date deadline;
 		const Planet *bestDestination = nullptr;
@@ -2485,7 +2491,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 			keyStuck.Clear();
 			Audio::Play(Audio::Get("fail"));
 		}
-		else if(!ship.HyperspaceType())
+		else if(!ship.JumpFuel(ship.GetTargetSystem()))
 		{
 			Messages::Add("You cannot jump to the selected system.");
 			keyStuck.Clear();

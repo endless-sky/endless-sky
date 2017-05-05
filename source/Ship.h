@@ -191,18 +191,14 @@ public:
 	// Get the degree to which this ship is cloaked. 1 means invisible and
 	// impossible to hit or target; 0 means fully visible.
 	double Cloaking() const;
-	// Get the system that the ship is currently jumping to. This returns null
-	// if the ship has already jumped, i.e. it is leaving hyperspace.
-	const System *HyperspaceSystem() const;
 	// Check if this ship is entering (rather than leaving) hyperspace.
 	bool IsEnteringHyperspace() const;
 	// Check if this ship is entering or leaving hyperspace.
 	bool IsHyperspacing() const;
+	// Check if this ship is hyperspacing, specifically via a jump drive.
+	bool IsUsingJumpDrive() const;
 	// Check if this ship is currently able to enter hyperspace to it target.
-	int CheckHyperspace() const;
-	// Check what type of hyperspce jump this ship is making (0 = not allowed,
-	// 100 = hyperdrive, 150 = scram drive, 200 = jump drive).
-	int HyperspaceType() const;
+	bool IsReadyToJump() const;
 	
 	// Check if the ship is thrusting. If so, the engine sound should be played.
 	bool IsThrusting() const;
@@ -234,7 +230,10 @@ public:
 	// This depends on how much fuel it has and what sort of hyperdrive it uses.
 	int JumpsRemaining() const;
 	// Get the amount of fuel expended per jump.
-	double JumpFuel() const;
+	double JumpFuel(const System *destination = nullptr) const;
+	// Get the cost of making a jump of the given type (if possible).
+	double HyperdriveFuel() const;
+	double JumpDriveFuel() const;
 	// Get the amount of fuel missing for the next jump (smart refuelling)
 	double JumpFuelMissing() const;
 	// Get the heat level at idle.
@@ -449,7 +448,8 @@ private:
 	
 	int hyperspaceCount = 0;
 	const System *hyperspaceSystem = nullptr;
-	int hyperspaceType = 0;
+	bool isUsingJumpDrive = false;
+	double hyperspaceFuelCost = 0.;
 	Point hyperspaceOffset;
 	
 	std::map<const Effect *, int> explosionEffects;

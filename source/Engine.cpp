@@ -949,7 +949,7 @@ void Engine::CalculateStep()
 	// where they may create explosions if they are dying.
 	for(auto it = ships.begin(); it != ships.end(); )
 	{
-		int hyperspaceType = (*it)->HyperspaceType();
+		bool isJump = (*it)->IsUsingJumpDrive();
 		bool wasHere = (flagship && (*it)->GetSystem() == flagship->GetSystem());
 		bool wasHyperspacing = (*it)->IsHyperspacing();
 		// Give the ship the list of effects so that it can draw explosions,
@@ -974,13 +974,13 @@ void Engine::CalculateStep()
 				// Did this ship just begin hyperspacing?
 				if(wasHere && !wasHyperspacing && (*it)->IsHyperspacing())
 					Audio::Play(
-						Audio::Get(hyperspaceType >= 200 ? "jump out" : "hyperdrive out"),
+						Audio::Get(isJump ? "jump out" : "hyperdrive out"),
 						(*it)->Position());
 				
 				// Did this ship just jump into the player's system?
 				if(!wasHere && flagship && (*it)->GetSystem() == flagship->GetSystem())
 					Audio::Play(
-						Audio::Get(hyperspaceType >= 200 ? "jump in" : "hyperdrive in"),
+						Audio::Get(isJump ? "jump in" : "hyperdrive in"),
 						(*it)->Position());
 			}
 			
@@ -996,7 +996,7 @@ void Engine::CalculateStep()
 	}
 	
 	if(!wasHyperspacing && flagship && flagship->IsEnteringHyperspace())
-		Audio::Play(Audio::Get(flagship->HyperspaceType() >= 200 ? "jump drive" : "hyperdrive"));
+		Audio::Play(Audio::Get(flagship->IsUsingJumpDrive() ? "jump drive" : "hyperdrive"));
 	
 	if(flagship && player.GetSystem() != flagship->GetSystem())
 	{

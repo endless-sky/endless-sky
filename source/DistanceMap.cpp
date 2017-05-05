@@ -146,13 +146,12 @@ void DistanceMap::Init(const System *center, const Ship *ship)
 	// hyperdrive capability and no jump drive.
 	if(ship)
 	{
-		if(ship->Attributes().Get("scram drive"))
-			hyperspaceFuel = 150;
-		else if(!ship->Attributes().Get("hyperdrive"))
-			hyperspaceFuel = 0;
-		
-		if(ship->Attributes().Get("jump drive"))
-			jumpFuel = 200;
+		hyperspaceFuel = ship->HyperdriveFuel();
+		jumpFuel = ship->JumpDriveFuel();
+		// If hyperjumps and non-hyper jumps cost the same amount, there is no
+		// need to check hyperjump paths at all.
+		if(hyperspaceFuel == jumpFuel)
+			hyperspaceFuel = 0.;
 		
 		// If this ship has no mode of hyperspace travel, bail out.
 		if(!hyperspaceFuel && !jumpFuel)
