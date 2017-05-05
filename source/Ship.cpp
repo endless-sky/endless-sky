@@ -1716,22 +1716,19 @@ int Ship::HyperspaceType() const
 	if(!destination)
 		return 0;
 	
-	// Check what equipment this ship has.
+	// Check what equipment this ship has. Note that a scram drive also returns
+	// true for the "hyperdrive" attribute.
 	bool hasHyperdrive = attributes.Get("hyperdrive");
 	bool hasScramDrive = attributes.Get("scram drive");
 	bool hasJumpDrive = attributes.Get("jump drive");
 	
 	// Figure out what sort of jump we're making. 100 = normal hyperspace,
 	// 150 = scram drive, 200 = jump drive.
-	if(hasHyperdrive || hasScramDrive)
-		for(const System *link : currentSystem->Links())
-			if(link == destination)
-				return hasScramDrive ? 150 : 100;
+	if(hasHyperdrive && currentSystem->Links().count(destination))
+		return hasScramDrive ? 150 : 100;
 	
-	if(hasJumpDrive)
-		for(const System *link : currentSystem->Neighbors())
-			if(link == destination)
-				return 200;
+	if(hasJumpDrive && currentSystem->Neighbors().count(destination))
+		return 200;
 	
 	return 0;
 }

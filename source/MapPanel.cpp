@@ -582,12 +582,8 @@ void MapPanel::DrawTravelPlan()
 		
 		// Figure out what kind of jump this is, and check if the player is able
 		// to make jumps of that kind.
-		bool isHyper = 
-			(find(previous->Links().begin(), previous->Links().end(), next)
-				!= previous->Links().end());
-		bool isJump = isHyper ||
-			(find(previous->Neighbors().begin(), previous->Neighbors().end(), next)
-				!= previous->Neighbors().end());
+		bool isHyper = previous->Links().count(next);
+		bool isJump = isHyper || previous->Neighbors().count(next);
 		bool isWormhole = false;
 		if(!((isHyper && hasHyper) || (isJump && hasJump)))
 		{

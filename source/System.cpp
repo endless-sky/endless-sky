@@ -136,7 +136,7 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 				links.clear();
 			}
 			if(child.Size() >= 2)
-				links.push_back(GameData::Systems().Get(child.Token(1)));
+				links.insert(GameData::Systems().Get(child.Token(1)));
 		}
 		else if(child.Token(0) == "habitable" && child.Size() >= 2)
 			habitable = child.Value(1);
@@ -251,13 +251,13 @@ void System::UpdateNeighbors(const Set<System> &systems)
 	// even if it is farther away than the maximum distance.
 	for(const System *system : links)
 		if(!(system->Position().Distance(position) <= NEIGHBOR_DISTANCE))
-			neighbors.push_back(system);
+			neighbors.insert(system);
 	
 	// Any other star system that is within the neighbor distance is also a
 	// neighbor. This will include any nearby linked systems.
 	for(const auto &it : systems)
 		if(&it.second != this && it.second.Position().Distance(position) <= NEIGHBOR_DISTANCE)
-			neighbors.push_back(&it.second);
+			neighbors.insert(&it.second);
 }
 
 
@@ -265,15 +265,11 @@ void System::UpdateNeighbors(const Set<System> &systems)
 // Modify a system's links.
 void System::Link(System *other)
 {
-	if(find(links.begin(), links.end(), other) == links.end())
-		links.push_back(other);
-	if(find(other->links.begin(), other->links.end(), this) == other->links.end())
-		other->links.push_back(this);
+	links.insert(other);
+	other->links.insert(this);
 	
-	if(find(neighbors.begin(), neighbors.end(), other) == neighbors.end())
-		neighbors.push_back(other);
-	if(find(other->neighbors.begin(), other->neighbors.end(), this) == other->neighbors.end())
-		other->neighbors.push_back(this);
+	neighbors.insert(other);
+	other->neighbors.insert(this);
 }
 
 
@@ -338,7 +334,7 @@ const string &System::MusicName() const
 
 
 // Get a list of systems you can travel to through hyperspace from here.
-const vector<const System *> &System::Links() const
+const set<const System *> &System::Links() const
 {
 	return links;
 }
@@ -348,7 +344,7 @@ const vector<const System *> &System::Links() const
 // Get a list of systems you can "see" from here, whether or not there is a
 // direct hyperspace link to them. This is also the set of systems that you
 // can travel to from here via the jump drive.
-const vector<const System *> &System::Neighbors() const
+const set<const System *> &System::Neighbors() const
 {
 	return neighbors;
 }

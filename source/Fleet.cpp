@@ -267,18 +267,23 @@ void Fleet::Place(const System &system, list<shared_ptr<Ship>> &ships, bool carr
 // Do the randomization to make a ship enter or be in the given system.
 void Fleet::Enter(const System &system, Ship &ship)
 {
-	if(!system.Links().size())
+	if(system.Links().empty())
 	{
 		Place(system, ship);
 		return;
 	}
 	
-	const System *source = system.Links()[Random::Int(system.Links().size())];
+	// Choose which system this ship is coming from.
+	int choice = Random::Int(system.Links().size());
+	set<const System *>::const_iterator it = system.Links().begin();
+	while(choice--)
+		++it;
+	
 	Angle angle = Angle::Random();
 	Point pos = angle.Unit() * Random::Real() * 1000.;
 	
 	ship.Place(pos, angle.Unit(), angle);
-	ship.SetSystem(source);
+	ship.SetSystem(*it);
 	ship.SetTargetSystem(&system);
 }
 

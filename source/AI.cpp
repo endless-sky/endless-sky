@@ -932,7 +932,7 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 		
 		vector<int> systemWeights;
 		int totalWeight = 0;
-		const vector<const System *> &links = ship.Attributes().Get("jump drive")
+		const set<const System *> &links = ship.Attributes().Get("jump drive")
 			? ship.GetSystem()->Neighbors() : ship.GetSystem()->Links();
 		if(jumps)
 		{
@@ -978,15 +978,16 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 			planets.push_back(&ship.GetSystem()->Objects().front());
 		}
 		
+		set<const System *>::const_iterator it = links.begin();
 		int choice = Random::Int(totalWeight);
 		if(choice < systemTotalWeight)
 		{
-			for(unsigned i = 0; i < systemWeights.size(); ++i)
+			for(unsigned i = 0; i < systemWeights.size(); ++i, ++it)
 			{
 				choice -= systemWeights[i];
 				if(choice < 0)
 				{
-					ship.SetTargetSystem(links[i]);
+					ship.SetTargetSystem(*it);
 					break;
 				}
 			}
