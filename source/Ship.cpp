@@ -46,10 +46,10 @@ const vector<string> Ship::CATEGORIES = {
 };
 
 namespace {
-	const string BAY_TYPE[2] = {"drone", "fighter"};
-	const string BAY_SIDE[3] = {"inside", "over", "under"};
-	const string BAY_FACING[4] = {"forward", "left", "right", "back"};
-	const Angle BAY_ANGLE[4] = {Angle(0.), Angle(-90.), Angle(90.), Angle(180.)};
+	const vector<string> BAY_TYPE = {"drone", "fighter"};
+	const vector<string> BAY_SIDE = {"inside", "over", "under"};
+	const vector<string> BAY_FACING = {"forward", "left", "right", "back"};
+	const vector<Angle> BAY_ANGLE = {Angle(0.), Angle(-90.), Angle(90.), Angle(180.)};
 }
 
 
@@ -150,10 +150,10 @@ void Ship::Load(const DataNode &node)
 			bays.emplace_back(child.Value(1), child.Value(2), child.Token(0) == "fighter");
 			for(int i = 3; i < child.Size(); ++i)
 			{
-				for(unsigned j = 1; j < sizeof(BAY_SIDE) / sizeof(BAY_SIDE[0]); ++j)
+				for(unsigned j = 1; j < BAY_SIDE.size(); ++j)
 					if(child.Token(i) == BAY_SIDE[j])
 						bays.back().side = j;
-				for(unsigned j = 1; j < sizeof(BAY_FACING) / sizeof(BAY_FACING[0]); ++j)
+				for(unsigned j = 1; j < BAY_FACING.size(); ++j)
 					if(child.Token(i) == BAY_FACING[j])
 						bays.back().facing = j;
 			}
