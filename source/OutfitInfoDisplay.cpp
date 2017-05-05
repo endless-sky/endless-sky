@@ -209,77 +209,43 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 	attributeValues.push_back(Format::Number(outfit.Range()));
 	attributesHeight += 20;
 	
-	if(outfit.ShieldDamage() && outfit.Reload())
+	if(outfit.Reload())
 	{
-		attributeLabels.push_back("shield damage / second:");
-		attributeValues.push_back(Format::Number(60. * outfit.ShieldDamage() / outfit.Reload()));
-		attributesHeight += 20;
+		static const string perSecondLabels[] = {
+			"shield damage / second:",
+			"hull damage / second:",
+			"heat damage / second:",
+			"ion damage / second:",
+			"slowing damage / second:",
+			"disruption damage / second:",
+			"firing energy / second:",
+			"firing heat / second:",
+			"firing fuel / second:"
+		};
+		const double values[] = {                 // TODO: eliminate redundancy with per-shot values
+		    outfit.ShieldDamage(),
+		    outfit.HullDamage(),
+		    outfit.HeatDamage(),
+		    100. * outfit.IonDamage(),
+		    100. * outfit.SlowingDamage(),
+		    100. * outfit.DisruptionDamage(),
+		    outfit.FiringEnergy(),
+		    outfit.FiringHeat(),
+		    outfit.FiringFuel()
+		};
+		//static_assert(countof(values) == countof(perSecondLabels), "labels / values size mismatch");
+		static const int PER_SECOND_LABELS = sizeof(perSecondLabels) / sizeof(perSecondLabels[0]);
+		const double shotsPerSec = 60. / outfit.Reload();
+		for(int i = 0; i < PER_SECOND_LABELS; ++i)
+			if(values[i])
+			{
+				attributeLabels.push_back(perSecondLabels[i]);
+				attributeValues.push_back(Format::Number(shotsPerSec * values[i]));
+				attributesHeight += 20;
+			}
 	}
-	
-	if(outfit.HullDamage() && outfit.Reload())
-	{
-		attributeLabels.push_back("hull damage / second:");
-		attributeValues.push_back(Format::Number(60. * outfit.HullDamage() / outfit.Reload()));
-		attributesHeight += 20;
-	}
-	
-	if(outfit.HeatDamage() && outfit.Reload())
-	{
-		attributeLabels.push_back("heat damage / second:");
-		attributeValues.push_back(Format::Number(60. * outfit.HeatDamage() / outfit.Reload()));
-		attributesHeight += 20;
-	}
-	
-	if(outfit.IonDamage() && outfit.Reload())
-	{
-		attributeLabels.push_back("ion damage / second:");
-		attributeValues.push_back(Format::Number(6000. * outfit.IonDamage() / outfit.Reload()));
-		attributesHeight += 20;
-	}
-	
-	if(outfit.SlowingDamage() && outfit.Reload())
-	{
-		attributeLabels.push_back("slowing damage / second:");
-		attributeValues.push_back(Format::Number(6000. * outfit.SlowingDamage() / outfit.Reload()));
-		attributesHeight += 20;
-	}
-	
-	if(outfit.DisruptionDamage() && outfit.Reload())
-	{
-		attributeLabels.push_back("disruption damage / second:");
-		attributeValues.push_back(Format::Number(6000. * outfit.DisruptionDamage() / outfit.Reload()));
-		attributesHeight += 20;
-	}
-	
-	if(outfit.FiringEnergy() && outfit.Reload())
-	{
-		attributeLabels.push_back("firing energy / second:");
-		attributeValues.push_back(Format::Number(60. * outfit.FiringEnergy() / outfit.Reload()));
-		attributesHeight += 20;
-	}
-	
-	if(outfit.FiringHeat() && outfit.Reload())
-	{
-		attributeLabels.push_back("firing heat / second:");
-		attributeValues.push_back(Format::Number(60. * outfit.FiringHeat() / outfit.Reload()));
-		attributesHeight += 20;
-	}
-	
-	if(outfit.FiringFuel() && outfit.Reload())
-	{
-		attributeLabels.push_back("firing fuel / second:");
-		attributeValues.push_back(Format::Number(60. * outfit.FiringFuel() / outfit.Reload()));
-		attributesHeight += 20;
-	}
-	
-	bool isContinuous = (outfit.Reload() <= 1);
-	attributeLabels.push_back("shots / second:");
-	if(isContinuous)
-		attributeValues.push_back("continuous");
-	else
-		attributeValues.push_back(Format::Number(60. / outfit.Reload()));
-	attributesHeight += 20;
-	
+
+
 	int homing = outfit.Homing();
 	if(homing)
 	{
@@ -320,7 +286,8 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 	attributeLabels.push_back(string());
 	attributeValues.push_back(string());
 	attributesHeight += 10;
-	
+
+// per-shot info
 	static const string names[] = {
 		"shield damage / shot:",
 		"hull damage / shot:",
@@ -331,12 +298,12 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		"firing energy / shot:",
 		"firing heat / shot:",
 		"firing fuel / shot:",
-		"inaccuracy:",
+		"inaccuracy:",                      // loop starts here for continuous-fire weapons
 		"blast radius:",
 		"missile strength:",
-		"anti-missile:",
+		"anti-missile damage / shot:",      // having this next to shots/second is important
 	};
-	double values[] = {
+	const double values[] = {
 		outfit.ShieldDamage(),
 		outfit.HullDamage(),
 		outfit.HeatDamage(),
@@ -351,6 +318,7 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		static_cast<double>(outfit.MissileStrength()),
 		static_cast<double>(outfit.AntiMissile())
 	};
+	bool isContinuous = (outfit.Reload() <= 1);
 	static const int NAMES = sizeof(names) / sizeof(names[0]);
 	for(int i = (isContinuous ? 9 : 0); i < NAMES; ++i)
 		if(values[i])
@@ -359,4 +327,11 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 			attributeValues.push_back(Format::Number(values[i]));
 			attributesHeight += 20;
 		}
+
+	attributeLabels.push_back("shots / second:");
+	if(isContinuous)
+		attributeValues.push_back("continuous");
+	else
+		attributeValues.push_back(Format::Number(60. / outfit.Reload()));
+	attributesHeight += 20;
 }
