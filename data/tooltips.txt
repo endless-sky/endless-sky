@@ -142,7 +142,7 @@ tip "mass with no cargo:"
 
 tip "mass:"
 	`Mass, in tons. A ship's mass determines how fast it turns and accelerates.`
-	
+
 tip "outfit scan:"
 	`Lets you scan your target ship's outfits from up to this distance away.`
 
