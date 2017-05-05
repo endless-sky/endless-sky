@@ -50,6 +50,8 @@ void Planet::Load(const DataNode &node, const Set<Sale<Ship>> &ships, const Set<
 	{
 		if(child.Token(0) == "landscape" && child.Size() >= 2)
 			landscape = SpriteSet::Get(child.Token(1));
+		else if(child.Token(0) == "music" && child.Size() >= 2)
+			music = child.Token(1);
 		else if(child.Token(0) == "attributes")
 		{
 			if(resetAttributes)
@@ -165,6 +167,14 @@ const string &Planet::Description() const
 const Sprite *Planet::Landscape() const
 {
 	return landscape;
+}
+
+
+
+// Get the name of the ambient audio to play on this planet.
+const string &Planet::MusicName() const
+{
+	return music;
 }
 
 
@@ -299,6 +309,15 @@ const System *Planet::GetSystem() const
 
 
 
+// Check if this planet is in the given system. Note that wormholes may be
+// in more than one system.
+bool Planet::IsInSystem(const System *system) const
+{
+	return (find(systems.begin(), systems.end(), system) != systems.end());
+}
+
+
+
 void Planet::SetSystem(const System *system)
 {
 	if(find(systems.begin(), systems.end(), system) == systems.end())
@@ -350,11 +369,35 @@ const System *Planet::WormholeDestination(const System *from) const
 
 
 
+// Check if the given ship has all the attributes necessary to allow it to
+// land on this planet.
+bool Planet::IsAccessible(const Ship *ship) const
+{
+	// Check whether any of this planet's attributes are in the form of the
+	// string "requires: <attribute>"; if so the ship must have that attribute.
+	static const string PREFIX = "requires: ";
+	static const string PREFIX_END = "requires:!";
+	auto it = attributes.lower_bound(PREFIX);
+	auto end = attributes.lower_bound(PREFIX_END);
+	if(it == end)
+		return true;
+	if(!ship)
+		return false;
+	
+	for( ; it != end; ++it)
+		if(!ship->Attributes().Get(it->substr(PREFIX.length())))
+			return false;
+	
+	return true;
+}
+
+
+
 // Below are convenience functions which access the game state in Politics,
 // but do so with a less convoluted syntax:
 bool Planet::CanLand(const Ship &ship) const
 {
-	return GameData::GetPolitics().CanLand(ship, this);
+	return IsAccessible(&ship) && GameData::GetPolitics().CanLand(ship, this);
 }
 
 

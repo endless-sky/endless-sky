@@ -30,8 +30,8 @@ class Sprite;
 // to see which systems it is available in.
 class MapShipyardPanel : public MapSalesPanel {
 public:
-	MapShipyardPanel(PlayerInfo &player);
-	MapShipyardPanel(const MapPanel &panel);
+	explicit MapShipyardPanel(PlayerInfo &player);
+	explicit MapShipyardPanel(const MapPanel &panel, bool onlyHere = false);
 	
 	
 protected:
@@ -46,7 +46,7 @@ protected:
 	virtual double SystemValue(const System *system) const override;
 	virtual int FindItem(const std::string &text) const override;
 	
-	virtual void DrawItems() const override;
+	virtual void DrawItems() override;
 	
 	
 private:
@@ -55,7 +55,7 @@ private:
 	
 private:
 	std::map<std::string, std::vector<const Ship *>> catalog;
-	mutable std::vector<const Ship *> list;
+	std::vector<const Ship *> list;
 	
 	const Ship *selected = nullptr;
 	const Ship *compare = nullptr;

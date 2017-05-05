@@ -63,12 +63,15 @@ public:
 protected:
 	// Only override the ones you need; the default action is to return false.
 	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command);
-	virtual bool Click(int x, int y);
+	virtual bool Click(int x, int y, int clicks);
 	virtual bool RClick(int x, int y);
 	virtual bool Hover(int x, int y);
 	virtual bool Drag(double dx, double dy);
 	virtual bool Release(int x, int y);
 	virtual bool Scroll(double dx, double dy);
+	// If a clickable zone is clicked while editing is happening, the panel may
+	// need to know to exit editing mode before handling the click.
+	virtual void EndEditing() {}
 	
 	void SetIsFullScreen(bool set);
 	void SetTrapAllEvents(bool set);
@@ -88,6 +91,9 @@ protected:
 	// A lot of different UI elements allow a modifier to change the number of
 	// something you are buying, so the shared function is defined here:
 	static int Modifier();
+	// Display the given help message if it has not yet been shown. Return true
+	// if the message was displayed.
+	bool DoHelp(const std::string &name) const;
 	
 	
 private:

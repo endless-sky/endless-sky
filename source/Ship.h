@@ -33,6 +33,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 class DataNode;
 class DataWriter;
 class Government;
+class Minable;
 class Phrase;
 class Planet;
 class Projectile;
@@ -72,6 +73,14 @@ public:
 		static const uint8_t RIGHT = 2;
 		static const uint8_t BACK = 3;
 	};
+	class EnginePoint : public Point {
+	public:
+		EnginePoint(double x, double y, double zoom) : Point(x, y), zoom(zoom) {}
+		double Zoom() const { return zoom; }
+		
+	private:
+		double zoom;
+	};
 	
 public:
 	/* Functions provided by the Body base class:
@@ -103,10 +112,14 @@ public:
 	
 	// Get the name of this model of ship.
 	const std::string &ModelName() const;
+	const std::string &PluralModelName() const;
+	// Get the generic noun (e.g. "ship") to be used when describing this ship.
+	const std::string &Noun() const;
 	// Get this ship's description.
 	const std::string &Description() const;
 	// Get this ship's cost.
 	int64_t Cost() const;
+	int64_t ChassisCost() const;
 	// Get the licenses needed to buy or operate this ship.
 	const std::vector<std::string> &Licenses() const;
 	
@@ -140,7 +153,7 @@ public:
 	// Move this ship. A ship may create effects as it moves, in particular if
 	// it is in the process of blowing up. If this returns false, the ship
 	// should be deleted.
-	bool Move(std::list<Effect> &effects, std::list<Flotsam> &flotsam);
+	bool Move(std::list<Effect> &effects, std::list<std::shared_ptr<Flotsam>> &flotsam);
 	// Launch any ships that are ready to launch.
 	void Launch(std::list<std::shared_ptr<Ship>> &ships);
 	// Check if this ship is boarding another ship. If it is, it either plunders
@@ -149,7 +162,7 @@ public:
 	std::shared_ptr<Ship> Board(bool autoPlunder = true);
 	// Scan the target, if able and commanded to. Return a ShipEvent bitmask
 	// giving the types of scan that succeeded.
-	int Scan() const;
+	int Scan();
 	
 	// Fire any weapons that are ready to fire. If an anti-missile is ready,
 	// instead of firing here this function returns true and it can be fired if
@@ -182,16 +195,15 @@ public:
 	bool IsEnteringHyperspace() const;
 	// Check if this ship is entering or leaving hyperspace.
 	bool IsHyperspacing() const;
+	// Check if this ship is hyperspacing, specifically via a jump drive.
+	bool IsUsingJumpDrive() const;
 	// Check if this ship is currently able to enter hyperspace to it target.
-	int CheckHyperspace() const;
-	// Check what type of hyperspce jump this ship is making (0 = not allowed,
-	// 100 = hyperdrive, 150 = scram drive, 200 = jump drive).
-	int HyperspaceType() const;
+	bool IsReadyToJump() const;
 	
 	// Check if the ship is thrusting. If so, the engine sound should be played.
 	bool IsThrusting() const;
 	// Get the points from which engine flares should be drawn.
-	const std::vector<Point> &EnginePoints() const;
+	const std::vector<EnginePoint> &EnginePoints() const;
 	
 	// Mark a ship as destroyed, or bring back a destroyed ship.
 	void Destroy();
@@ -218,7 +230,16 @@ public:
 	// This depends on how much fuel it has and what sort of hyperdrive it uses.
 	int JumpsRemaining() const;
 	// Get the amount of fuel expended per jump.
-	double JumpFuel() const;
+	double JumpFuel(const System *destination = nullptr) const;
+	// Get the cost of making a jump of the given type (if possible).
+	double HyperdriveFuel() const;
+	double JumpDriveFuel() const;
+	// Get the amount of fuel missing for the next jump (smart refuelling)
+	double JumpFuelMissing() const;
+	// Get the heat level at idle.
+	double IdleHeat() const;
+	// Calculate the multiplier for cooling efficiency.
+	double CoolingEfficiency() const;
 	
 	// Access how many crew members this ship has or needs.
 	int Crew() const;
@@ -297,16 +318,20 @@ public:
 	// land on) and a target ship (to move to, and attack if hostile).
 	std::shared_ptr<Ship> GetTargetShip() const;
 	std::shared_ptr<Ship> GetShipToAssist() const;
-	const StellarObject *GetTargetPlanet() const;
+	const StellarObject *GetTargetStellar() const;
 	const System *GetTargetSystem() const;
-	const Planet *GetDestination() const;
+	// Mining target.
+	std::shared_ptr<Minable> GetTargetAsteroid() const;
+	std::shared_ptr<Flotsam> GetTargetFlotsam() const;
 	
 	// Set this ship's targets.
 	void SetTargetShip(const std::shared_ptr<Ship> &ship);
 	void SetShipToAssist(const std::shared_ptr<Ship> &ship);
-	void SetTargetPlanet(const StellarObject *object);
+	void SetTargetStellar(const StellarObject *object);
 	void SetTargetSystem(const System *system);
-	void SetDestination(const Planet *planet);
+	// Mining target.
+	void SetTargetAsteroid(const std::shared_ptr<Minable> &asteroid);
+	void SetTargetFlotsam(const std::shared_ptr<Flotsam> &flotsam);
 	
 	// Manage escorts. When you set this ship's parent, it will automatically
 	// register itself as an escort of that ship, and unregister itself from any
@@ -322,12 +347,12 @@ private:
 	void RemoveEscort(const Ship &ship);
 	// Get the hull amount at which this ship is disabled.
 	double MinimumHull() const;
-	// Get the heat level at idle.
-	double IdleHeat() const;
 	// Add to this ship's hull or shields, and return the amount added. If the
 	// ship is carrying fighters, add to them as well.
 	double AddHull(double rate);
 	double AddShields(double rate);
+	// Find out how much fuel is consumed by the hyperdrive of the given type.
+	double BestFuel(const std::string &type, const std::string &subtype, double defaultFuel) const;
 	// Create one of this ship's explosions, within its mask. The explosions can
 	// either stay over the ship, or spread out if this is the final explosion.
 	void CreateExplosion(std::list<Effect> &effects, bool spread = false);
@@ -348,6 +373,8 @@ private:
 	// Characteristics of the chassis:
 	const Ship *base = nullptr;
 	std::string modelName;
+	std::string pluralModelName;
+	std::string noun;
 	std::string description;
 	// Characteristics of this particular ship:
 	std::string name;
@@ -374,6 +401,9 @@ private:
 	// Cached values for figuring out when anti-missile is in range.
 	double antiMissileRange = 0.;
 	double weaponRadius = 0.;
+	// Cargo and outfit scanning takes time.
+	double cargoScan = 0.;
+	double outfitScan = 0.;
 	
 	Command commands;
 	
@@ -386,11 +416,11 @@ private:
 	const Outfit *explosionWeapon = nullptr;
 	std::map<const Outfit *, int> outfits;
 	CargoHold cargo;
-	std::list<Flotsam> jettisoned;
+	std::list<std::shared_ptr<Flotsam>> jettisoned;
 	
 	std::vector<Bay> bays;
 	
-	std::vector<Point> enginePoints;
+	std::vector<EnginePoint> enginePoints;
 	Armament armament;
 	// While loading, keep track of which outfits already have been equipped.
 	// (That is, they were specified as linked to a given gun or turret point.)
@@ -402,10 +432,11 @@ private:
 	double fuel = 0.;
 	double energy = 0.;
 	double heat = 0.;
-	double heatDissipation = .999;
 	double ionization = 0.;
 	double disruption = 0.;
 	double slowness = 0.;
+	// Acceleration can be created by engines, firing weapons, or weapon impacts.
+	Point acceleration;
 	
 	int crew = 0;
 	int pilotError = 0;
@@ -419,7 +450,8 @@ private:
 	
 	int hyperspaceCount = 0;
 	const System *hyperspaceSystem = nullptr;
-	int hyperspaceType = 0;
+	bool isUsingJumpDrive = false;
+	double hyperspaceFuelCost = 0.;
 	Point hyperspaceOffset;
 	
 	std::map<const Effect *, int> explosionEffects;
@@ -433,7 +465,8 @@ private:
 	std::weak_ptr<Ship> shipToAssist;
 	const StellarObject *targetPlanet = nullptr;
 	const System *targetSystem = nullptr;
-	const Planet *destination = nullptr;
+	std::weak_ptr<Minable> targetAsteroid;
+	std::weak_ptr<Flotsam> targetFlotsam;
 	
 	// Links between escorts and parents.
 	std::vector<std::weak_ptr<const Ship>> escorts;

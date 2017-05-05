@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "ShipInfoDisplay.h"
 
 #include "Color.h"
+#include "Depreciation.h"
 #include "FillShader.h"
 #include "Format.h"
 #include "GameData.h"
@@ -22,24 +23,25 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include <algorithm>
 #include <map>
+#include <sstream>
 
 using namespace std;
 
 
 
-ShipInfoDisplay::ShipInfoDisplay(const Ship &ship)
+ShipInfoDisplay::ShipInfoDisplay(const Ship &ship, const Depreciation &depreciation, int day)
 {
-	Update(ship);
+	Update(ship, depreciation, day);
 }
 
 
 
 // Call this every time the ship changes.
-void ShipInfoDisplay::Update(const Ship &ship)
+void ShipInfoDisplay::Update(const Ship &ship, const Depreciation &depreciation, int day)
 {
 	UpdateDescription(ship);
-	UpdateAttributes(ship);
-	UpdateOutfits(ship);
+	UpdateAttributes(ship, depreciation, day);
+	UpdateOutfits(ship, depreciation, day);
 	
 	maximumHeight = max(descriptionHeight, max(attributesHeight, outfitsHeight));
 }
@@ -142,7 +144,7 @@ void ShipInfoDisplay::UpdateDescription(const Ship &ship)
 
 
 
-void ShipInfoDisplay::UpdateAttributes(const Ship &ship)
+void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const Depreciation &depreciation, int day)
 {
 	bool isGeneric = ship.Name().empty() || ship.GetPlanet();
 	
@@ -152,8 +154,17 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship)
 	
 	const Outfit &attributes = ship.Attributes();
 	
-	attributeLabels.push_back("cost:");
-	attributeValues.push_back(Format::Number(ship.Cost()));
+	int64_t fullCost = ship.Cost();
+	int64_t depreciated = depreciation.Value(ship, day);
+	if(depreciated == fullCost)
+		attributeLabels.push_back("cost:");
+	else
+	{
+		ostringstream out;
+		out << "cost (" << (100 * depreciated) / fullCost << "%):";
+		attributeLabels.push_back(out.str());
+	}
+	attributeValues.push_back(Format::Number(depreciated));
 	attributesHeight += 20;
 	
 	attributeLabels.push_back(string());
@@ -284,9 +295,12 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship)
 	tableLabels.push_back("idle:");
 	energyTable.push_back(Format::Number(
 		60. * (attributes.Get("energy generation")
-			+ attributes.Get("solar collection"))));
+			+ attributes.Get("solar collection")
+			- attributes.Get("cooling energy"))));
+	double efficiency = ship.CoolingEfficiency();
 	heatTable.push_back(Format::Number(
-		60. * (attributes.Get("heat generation") - attributes.Get("cooling"))));
+		60. * (attributes.Get("heat generation")
+			- efficiency * (attributes.Get("cooling") + attributes.Get("active cooling")))));
 	attributesHeight += 20;
 	tableLabels.push_back("moving:");
 	energyTable.push_back(Format::Number(
@@ -328,19 +342,15 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship)
 
 
 
-void ShipInfoDisplay::UpdateOutfits(const Ship &ship)
+void ShipInfoDisplay::UpdateOutfits(const Ship &ship, const Depreciation &depreciation, int day)
 {
 	outfitLabels.clear();
 	outfitValues.clear();
 	outfitsHeight = 20;
-	int outfitsValue = 0;
 	
 	map<string, map<string, int>> listing;
 	for(const auto &it : ship.Outfits())
-	{
 		listing[it.first->Category()][it.first->Name()] += it.second;
-		outfitsValue += it.first->Cost() * it.second;
-	}
 	
 	for(const auto &cit : listing)
 	{
@@ -365,19 +375,20 @@ void ShipInfoDisplay::UpdateOutfits(const Ship &ship)
 	}
 	
 	
+	int64_t totalCost = depreciation.Value(ship, day);
+	int64_t chassisCost = depreciation.Value(GameData::Ships().Get(ship.ModelName()), day);
 	saleLabels.clear();
 	saleValues.clear();
 	saleHeight = 20;
-	int totalValue = ship.Attributes().Cost();
 	
 	saleLabels.push_back("This ship will sell for:");
 	saleValues.push_back(string());
 	saleHeight += 20;
 	saleLabels.push_back("empty hull:");
-	saleValues.push_back(Format::Number(totalValue - outfitsValue));
+	saleValues.push_back(Format::Number(chassisCost));
 	saleHeight += 20;
 	saleLabels.push_back("  + outfits:");
-	saleValues.push_back(Format::Number(outfitsValue));
+	saleValues.push_back(Format::Number(totalCost - chassisCost));
 	saleHeight += 5;
 }
 

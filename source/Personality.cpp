@@ -41,6 +41,10 @@ namespace {
 	static const int VINDICTIVE = (1 << 17);
 	static const int SWARMING = (1 << 18);
 	static const int UNCONSTRAINED = (1 << 19);
+	static const int MINING = (1 << 20);
+	static const int HARVESTS = (1 << 21);
+	static const int APPEASING = (1 << 22);
+	static const int MUTE = (1 << 23);
 	
 	static const map<string, int> TOKEN = {
 		{"pacifist", PACIFIST},
@@ -62,7 +66,11 @@ namespace {
 		{"coward", COWARD},
 		{"vindictive", VINDICTIVE},
 		{"swarming", SWARMING},
-		{"unconstrained", UNCONSTRAINED}
+		{"unconstrained", UNCONSTRAINED},
+		{"mining", MINING},
+		{"harvests", HARVESTS},
+		{"appeasing", APPEASING},
+		{"mute", MUTE}
 	};
 	
 	double DEFAULT_CONFUSION = 10.;
@@ -134,6 +142,27 @@ bool Personality::IsTimid() const
 
 
 
+bool Personality::IsHeroic() const
+{
+	return flags & HEROIC;
+}
+
+
+
+bool Personality::IsNemesis() const
+{
+	return flags & NEMESIS;
+}
+
+
+
+bool Personality::IsFrugal() const
+{
+	return flags & FRUGAL;
+}
+
+
+
 bool Personality::Disables() const
 {
 	return flags & DISABLES;
@@ -148,9 +177,30 @@ bool Personality::Plunders() const
 
 
 
-bool Personality::IsHeroic() const
+bool Personality::IsVindictive() const
 {
-	return flags & HEROIC;
+	return flags & VINDICTIVE;
+}
+
+
+
+bool Personality::IsUnconstrained() const
+{
+	return flags & UNCONSTRAINED;
+}
+
+
+
+bool Personality::IsCoward() const
+{
+	return flags & COWARD;
+}
+
+
+
+bool Personality::IsAppeasing() const
+{
+	return flags & APPEASING;
 }
 
 
@@ -169,37 +219,9 @@ bool Personality::IsEntering() const
 
 
 
-bool Personality::IsNemesis() const
-{
-	return flags & NEMESIS;
-}
-
-
-
-bool Personality::IsSurveillance() const
-{
-	return flags & SURVEILLANCE;
-}
-
-
-
-bool Personality::IsUninterested() const
-{
-	return flags & UNINTERESTED;
-}
-
-
-
 bool Personality::IsWaiting() const
 {
 	return flags & WAITING;
-}
-
-
-
-bool Personality::IsDerelict() const
-{
-	return flags & DERELICT;
 }
 
 
@@ -211,30 +233,37 @@ bool Personality::IsFleeing() const
 
 
 
-bool Personality::IsEscort() const
+bool Personality::IsDerelict() const
 {
-	return flags & ESCORT;
+	return flags & DERELICT;
 }
 
 
 
-bool Personality::IsFrugal() const
+bool Personality::IsUninterested() const
 {
-	return flags & FRUGAL;
+	return flags & UNINTERESTED;
 }
 
 
 
-bool Personality::IsCoward() const
+bool Personality::IsSurveillance() const
 {
-	return flags & COWARD;
+	return flags & SURVEILLANCE;
 }
 
 
 
-bool Personality::IsVindictive() const
+bool Personality::IsMining() const
 {
-	return flags & VINDICTIVE;
+	return flags & MINING;
+}
+
+
+
+bool Personality::Harvests() const
+{
+	return flags & HARVESTS;
 }
 
 
@@ -246,9 +275,16 @@ bool Personality::IsSwarming() const
 
 
 
-bool Personality::IsUnconstrained() const
+bool Personality::IsEscort() const
 {
-	return flags & UNCONSTRAINED;
+	return flags & ESCORT;
+}
+
+
+
+bool Personality::IsMute() const
+{
+	return flags & MUTE;
 }
 
 

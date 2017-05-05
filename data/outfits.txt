@@ -9,6 +9,7 @@
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 outfit "Cooling Ducts"
+	plural "Cooling Ducts"
 	category "Systems"
 	cost 10000
 	thumbnail "outfit/cooling ducts"
@@ -165,6 +166,7 @@ outfit "Hyperdrive"
 	"mass" 20
 	"outfit space" -20
 	"jump speed" .2
+	"jump fuel" 100
 	"hyperdrive" 1
 	description "This mysterious box sits quietly at the heart of your ship, thinking its own inscrutable thoughts. When it comes time to travel between the stars it sets off a nuclear fusion reaction powerful enough to level an entire city, and then somehow tucks the resulting explosion in between the folds of regular space-time like a wasp stinging an oak leaf to lay her eggs inside. Your ship rides the resulting ripple in the fabric of space."
 	description "	They say that fewer than a dozen human beings alive today understand the inner workings of the hyperdrive."
@@ -176,6 +178,7 @@ outfit "Scram Drive"
 	"mass" 30
 	"outfit space" -30
 	"scram drive" .2
+	"jump fuel" 150
 	"hyperdrive" 1
 	description "A Scram Drive is a specially designed hyperdrive that works even if your ship is traveling at a much higher speed, at the expense of using more fuel. If you are being pursued by pirates (or just want to get somewhere in a hurry) that extra bit of speed can make a big difference."
 
@@ -186,6 +189,7 @@ outfit "Jump Drive"
 	"mass" 20
 	"outfit space" -20
 	"jump speed" .3
+	"jump fuel" 200
 	"jump drive" 1
 	description "The workings of the Jump Drive are a total mystery. The best that human scientists have been able to find out is that this device is a containment field for matter in a state that cannot normally exist in this universe; if the drive is opened up, the field collapses and its contents disappear. Therefore, even though a few jump drives have been captured over the years, it has so far proved impossible to reverse engineer them."
 
@@ -196,8 +200,9 @@ outfit "Cargo Scanner"
 	thumbnail "outfit/cargo scanner"
 	"mass" 1
 	"outfit space" -1
-	"cargo scan" 300
-	description "This scanner allows you to scan the cargo holds of the ship you are currently targeting, as long as you are flying close enough to it. Patrol crafts use cargo scanners to detect illegal contraband."
+	"cargo scan power" 9
+	"cargo scan speed" 1
+	description "This scanner allows you to scan the cargo holds of the ship you are currently targeting, as long as you are flying close enough to it. Patrol craft use cargo scanners to detect illegal contraband. Installing more than one increases the scan range and speed."
 
 outfit "Outfit Scanner"
 	category "Systems"
@@ -205,8 +210,9 @@ outfit "Outfit Scanner"
 	thumbnail "outfit/outfit scanner"
 	"mass" 2
 	"outfit space" -2
-	"outfit scan" 500
-	description "This scanner allows you to determine what outfits are installed in the ship you are currently targeting, if you are willing to risk flying close enough to it to get a reading! The Republic Navy uses these scanners to detect when ships are equipped with illegal weaponry."
+	"outfit scan power" 25
+	"outfit scan speed" 1
+	description "This scanner allows you to determine what outfits are installed in the ship you are currently targeting, if you are willing to risk flying close enough to it to get a reading! The Republic Navy uses these scanners to detect when ships are equipped with illegal weaponry. Installing more than one increases the scan range and speed."
 
 outfit "Surveillance Pod"
 	category "Systems"
@@ -214,10 +220,12 @@ outfit "Surveillance Pod"
 	thumbnail "outfit/outfit scanner"
 	"mass" 5
 	"outfit space" -5
-	"outfit scan" 400
-	"cargo scan" 200
+	"outfit scan power" 16
+	"outfit scan speed" 2
+	"cargo scan power" 4
+	"cargo scan speed" 2
 	"atmosphere scan" 100
-	description "This is Republic military technology, a collection of scanners designed to fit perfectly inside one of their surveillance drones. Since the outputs are fairly standard, you could connect it to your own ship's systems if you want."
+	description "This is Republic military technology, a collection of scanners designed to fit perfectly inside one of their surveillance drones. Since the outputs are fairly standard, you could connect it to your own ship's systems if you want. Installing more than one increases the scan range and speed."
 
 
 outfit "Cloaking Device"
@@ -231,16 +239,19 @@ outfit "Cloaking Device"
 	description "You're sure the cloaking device is here somewhere, but you can't see it."
 
 
-outfit "Mass Expansion"
+outfit "Outfits Expansion"
 	category "Systems"
 	cost 50000
 	thumbnail "outfit/blue screwdriver"
 	"mass" 5
 	"outfit space" 15
 	"cargo space" -20
+	"cooling inefficiency" 1
+	"heat dissipation" -.01
 	unplunderable 1
-	description "A mass expansion allows you to sacrifice some cargo space in order to make room for more outfits, in situations where you need just a bit more space to install a particular system. It does not increase your weapon or engine space unfortunately."
-	
+	description "This expansion allows you to sacrifice some cargo space in order to make room for more outfits, in situations where you need just a bit more space to install a particular system. It does not increase your weapon or engine space."
+	description "	Unfortunately, rearranging the interior of your ship in such a fundamental way tends to interfere with its cooling systems."
+
 outfit "Cargo Expansion"
 	category "Systems"
 	cost 30000
@@ -250,7 +261,7 @@ outfit "Cargo Expansion"
 	"outfit space" -20
 	unplunderable 1
 	description "If being able to carry more cargo is more important to you than having advanced weapons or other systems, a cargo expansion will significantly increase the size of your cargo hold."
-	
+
 outfit "Bunk Room"
 	category "Systems"
 	cost 40000
@@ -260,7 +271,7 @@ outfit "Bunk Room"
 	"outfit space" -20
 	unplunderable 1
 	description "If you really want to make space for a few more passengers (or crew members, if you're trying to capture other ships), you can expand the living space of your ship into the area usually reserved for outfits."
-	
+
 outfit "Small Bunk Room"
 	category "Systems"
 	cost 20000
@@ -290,6 +301,7 @@ outfit "Interference Plating"
 	description "If you're in the habit of carrying illegal cargo or outfits, this plating increases the odds that a scan of your ship will fail to detect it. The more of these you install, the better your chances of evading detection. They won't keep anyone from noticing if you're flying an unlicensed ship, however."
 
 
+
 outfit "Laser Rifle"
 	category "Hand to Hand"
 	cost 8000
@@ -300,6 +312,7 @@ outfit "Laser Rifle"
 	description "A laser rifle is a step up from the sidearms that crew members typically carry for defense against pirates: more powerful, and more accurate as well. For each of these rifles that one of your crew is wielding, your odds of capturing another ship or defending your own ship from boarders are increased substantially."
 
 outfit "Fragmentation Grenades"
+	plural "Fragmentation Grenades"
 	category "Hand to Hand"
 	cost 17000
 	thumbnail "outfit/fragmentation grenades"
@@ -319,6 +332,7 @@ outfit "Security Station"
 	description "This is a specially designed barricade, which can be installed in the hallways of your ship as a powerful defense against anyone who boards you in an attempt to take over your ship."
 
 outfit "Nerve Gas"
+	plural "Nerve Gas"
 	category "Hand to Hand"
 	cost 75000
 	thumbnail "outfit/nerve gas"

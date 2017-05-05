@@ -269,11 +269,12 @@ mission "FW Navy Out Of Rastaban"
 
 mission "FW Reconciliation 2A"
 	name "Oathkeepers on Farpoint"
-	description "Travel to <destination>, to meet with the Navy Oathkeepers. Raven's ship will continue to travel with you."
+	description "Travel to <destination> to meet with the Navy Oathkeepers. Raven's ship will continue to travel with you."
 	autosave
 	landing
 	source Valhalla
 	destination Farpoint
+	clearance
 	passengers 2
 	to offer
 		has "FW Reconciliation 2: done"
@@ -353,6 +354,7 @@ mission "FW Reconciliation 2C"
 	landing
 	source Stormhold
 	destination Farpoint
+	clearance
 	passengers 2
 	to offer
 		has "FW Reconciliation 2B: done"
@@ -374,6 +376,7 @@ mission "FW Defend Farpoint"
 	description "Assist the Oathkeepers in defending <planet> from a pirate attack, then land back on the planet."
 	autosave
 	source Farpoint
+	clearance
 	passengers 2
 	to offer
 		has "FW Reconciliation 2C: done"
@@ -503,7 +506,7 @@ event "fw reconciliation break"
 
 mission "FW Reconciliation Break"
 	name "Katya and Ijs to <planet>"
-	description "Bring Katya and Ijs to <destination>, for a well-deserved sabbatical. Then you will be free to spend some time upgrading your ship while you wait for the Senate to select a team of ambassadors."
+	description "Bring Katya and Ijs to <destination> for a well-deserved sabbatical. Then you will be free to spend some time upgrading your ship while you wait for the Senate to select a team of ambassadors."
 	autosave
 	landing
 	source Bourne
@@ -527,7 +530,7 @@ mission "FW Reconciliation Break"
 					goto wait
 			
 			label peace
-			`	"At peace for now," says Ijs, but so far a peace without justice. When the time is ripe, we will strike against the Syndicate."`
+			`	"At peace for now," says Ijs, "but so far a peace without justice. When the time is ripe, we will strike against the Syndicate."`
 				goto wait
 			
 			label volunteer
@@ -635,7 +638,7 @@ mission "FW Embassy 1C"
 mission "FW Syndicate Capture 1"
 	landing
 	name "Raid on Nimbus"
-	description "Travel to <destination>, along with ships from the Oathkeepers, the Deep, and the Free Worlds, to capture Alexander Soylent, a Syndicate executive. Do not allow your escorts to be destroyed."
+	description "Travel to <destination> along with ships from the Oathkeepers, the Deep, and the Free Worlds, to capture Alexander Soylent, a Syndicate executive. Do not allow your escorts to be destroyed."
 	autosave
 	source Earth
 	destination Nimbus
@@ -652,16 +655,16 @@ mission "FW Syndicate Capture 1"
 			`	You make an excuse to depart, and return to your ship. "Well," says Ijs, "this is it. If we're lucky, they won't see us coming, but no matter what, getting back out of Syndicate space will be a nightmare. Good luck, all."`
 				accept
 	
-	npc save
-		personality heroic
+	npc accompany save
+		personality escort heroic
 		ship "Dreadnought" "F.S. Gibraltar"
 	
-	npc save
+	npc accompany save
 		personality escort heroic waiting
 		government "Navy (Oathkeeper)"
-		ship "Cruiser (Mark II)" "R.S. Hand of Justice"
+		ship "Cruiser (Mark II)" "N.S. Hand of Justice"
 	
-	npc save
+	npc accompany save
 		personality escort heroic waiting
 		government "Republic"
 		ship "Bactrian" "Unbreakable"
@@ -690,12 +693,12 @@ mission "FW Syndicate Capture 1B"
 				accept
 	
 	npc
-		personality heroic
+		personality escort heroic
 		ship "Dreadnought" "F.S. Gibraltar"
 	npc
 		personality escort heroic waiting
 		government "Navy (Oathkeeper)"
-		ship "Cruiser (Mark II)" "R.S. Hand of Justice"
+		ship "Cruiser (Mark II)" "N.S. Hand of Justice"
 		ship "Combat Drone" "Red One"
 		ship "Combat Drone" "Red Two"
 		ship "Combat Drone" "Red Three"
@@ -1197,7 +1200,7 @@ mission "FW Pug 2C: Scram Drive"
 
 
 
-mission "FW Pug 2C:  Jump Drive"
+mission "FW Pug 2C: Jump Drive"
 	landing
 	name "Investigate the Pug"
 	description "Travel to the Deneb system to investigate the Pug; if possible, make contact with them and determine what their goals and desires are."
@@ -1446,7 +1449,7 @@ mission "FW Pug 3: Quarg"
 mission "FW Pug 3A"
 	landing
 	name "Gather the fleet"
-	description "Travel to <destination>, and requisition two Free Worlds Dreadnoughts to join in the battle against the Pug. (But if you want to visit the Quarg or the Deep, do that first.)"
+	description "Travel to <destination> and requisition two Free Worlds Dreadnoughts to join in the battle against the Pug. (But if you want to visit the Quarg or the Deep, do that first.)"
 	autosave
 	source Earth
 	destination Zug
@@ -1834,6 +1837,7 @@ mission "FW Pug 4B: Reinforcements"
 	npc kill
 		personality disables
 		system Markab
+		government Syndicate
 		fleet
 			names "syndicate capital"
 			variant
@@ -2265,7 +2269,7 @@ mission "FW Pug 6"
 
 mission "FW Syndicate Extremists 1"
 	name "Deal with the Syndicate"
-	description "Now that the Pug appear to have been driven off, it's time to get some answers from the Syndicate. Travel with Admiral Danforth back to <destination>, for another meeting with the CEO of the Syndicate."
+	description "Now that the Pug appear to have been driven off, it's time to get some answers from the Syndicate. Travel with Admiral Danforth back to <destination> for another meeting with the CEO of the Syndicate."
 	autosave
 	source Pugglemug
 	destination Foundry

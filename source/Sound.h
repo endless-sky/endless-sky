@@ -21,7 +21,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 // whether it is looping (ends in '~') or not.
 class Sound {
 public:
-	void Load(const std::string &path);
+	bool Load(const std::string &path);
 	
 	unsigned Buffer() const;
 	bool IsLooping() const;

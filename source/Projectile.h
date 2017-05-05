@@ -54,14 +54,6 @@ public:
 	// This is called when a projectile "dies," either of natural causes or
 	// because it hit its target.
 	void MakeSubmunitions(std::list<Projectile> &projectiles) const;
-	// Check if this projectile collides with the given step, with the animation
-	// frame for the given step.
-	double CheckCollision(const Ship &ship, int step) const;
-	// Check if this projectile has a blast radius.
-	bool HasBlastRadius() const;
-	// Check if the given ship is within this projectile's blast radius. (The
-	// projectile will not explode unless it is also within the trigger radius.)
-	bool InBlastRadius(const Ship &ship, int step, double closestHit) const;
 	// This projectile hit something. Create the explosion, if any. This also
 	// marks the projectile as needing deletion.
 	void Explode(std::list<Effect> &effects, double intersection, Point hitVelocity = Point());

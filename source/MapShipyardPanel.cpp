@@ -39,10 +39,11 @@ MapShipyardPanel::MapShipyardPanel(PlayerInfo &player)
 
 
 
-MapShipyardPanel::MapShipyardPanel(const MapPanel &panel)
+MapShipyardPanel::MapShipyardPanel(const MapPanel &panel, bool onlyHere)
 	: MapSalesPanel(panel, false)
 {
 	Init();
+	onlyShowSoldHere = onlyHere;
 }
 
 
@@ -94,7 +95,7 @@ void MapShipyardPanel::Select(int index)
 	else
 	{
 		selected = list[index];
-		selectedInfo.Update(*selected);
+		selectedInfo.Update(*selected, player.StockDepreciation(), player.GetDate().DaysSinceEpoch());
 	}
 }
 
@@ -107,7 +108,7 @@ void MapShipyardPanel::Compare(int index)
 	else
 	{
 		compare = list[index];
-		compareInfo.Update(*compare);
+		compareInfo.Update(*compare, player.StockDepreciation(), player.GetDate().DaysSinceEpoch());
 	}
 }
 
@@ -115,7 +116,7 @@ void MapShipyardPanel::Compare(int index)
 
 double MapShipyardPanel::SystemValue(const System *system) const
 {
-	if(!system || !system->IsInhabited())
+	if(!system || !system->IsInhabited(player.Flagship()))
 		return numeric_limits<double>::quiet_NaN();
 	
 	double value = -.5;
@@ -153,7 +154,7 @@ int MapShipyardPanel::FindItem(const string &text) const
 
 
 
-void MapShipyardPanel::DrawItems() const
+void MapShipyardPanel::DrawItems()
 {
 	list.clear();
 	Point corner = Screen::TopLeft() + Point(0, scroll);
@@ -175,7 +176,7 @@ void MapShipyardPanel::DrawItems() const
 			info += Format::Number(ship->Attributes().Get("hull")) + " hull";
 			
 			bool isForSale = true;
-			if(selectedSystem)
+			if(selectedSystem && player.HasVisited(selectedSystem))
 			{
 				isForSale = false;
 				for(const StellarObject &object : selectedSystem->Objects())
@@ -185,6 +186,8 @@ void MapShipyardPanel::DrawItems() const
 						break;
 					}
 			}
+			if(!isForSale && onlyShowSoldHere)
+				continue;
 			
 			Draw(corner, ship->GetSprite(), isForSale, ship == selected, ship->ModelName(), price, info);
 			list.push_back(ship);

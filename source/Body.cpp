@@ -15,6 +15,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "DataNode.h"
 #include "DataWriter.h"
 #include "Random.h"
+#include "Screen.h"
 #include "Sprite.h"
 #include "SpriteSet.h"
 
@@ -97,8 +98,24 @@ int Body::GetSwizzle() const
 // return the frame from the most recently given step.
 Body::Frame Body::GetFrame(int step) const
 {
-	SetStep(step);
+	SetStep(step, Screen::IsHighResolution());
 	return frame;
+}
+
+
+
+Body::Frame Body::GetFrame(int step, bool isHighDPI) const
+{
+	SetStep(step, isHighDPI);
+	return frame;
+}
+
+
+
+int Body::GetFrameIndex(int step) const
+{
+	SetStep(step, Screen::IsHighResolution());
+	return activeIndex;
 }
 
 
@@ -107,10 +124,9 @@ Body::Frame Body::GetFrame(int step) const
 // return the mask from the most recently given step.
 const Mask &Body::GetMask(int step) const
 {
-	static const Mask empty;
-	
-	SetStep(step);
-	return (mask ? *mask : empty);
+	SetStep(step, currentHighDPI);
+	static const Mask EMPTY;
+	return sprite ? sprite->GetMask(activeIndex) : EMPTY;
 }
 
 
@@ -234,6 +250,7 @@ void Body::SaveSprite(DataWriter &out) const
 void Body::SetSprite(const Sprite *sprite)
 {
 	this->sprite = sprite;
+	currentStep = -1;
 }
 
 
@@ -264,21 +281,22 @@ void Body::AddFrameRate(double framesPerSecond)
 
 
 // Set the current time step.
-void Body::SetStep(int step) const
+void Body::SetStep(int step, bool isHighDPI) const
 {
 	// If the step is negative or there is no sprite, do nothing. This updates
 	// and caches the mask and the frame so that if further queries are made at
 	// this same time step, we don't need to redo the calculations.
-	if(step < 0 || !sprite || !sprite->Frames() || step == currentStep)
+	if(step < 0 || !sprite || !sprite->Frames() || (step == currentStep && isHighDPI == currentHighDPI))
 		return;
 	currentStep = step;
+	currentHighDPI = isHighDPI;
 	
 	// If the sprite only has one frame, no need to animate anything.
 	int frames = sprite->Frames();
 	if(frames <= 1)
 	{
-		frame.first = sprite->Texture();
-		mask = &sprite->GetMask();
+		frame.first = sprite->Texture(0, isHighDPI);
+		activeIndex = 0;
 		return;
 	}
 	
@@ -361,7 +379,7 @@ void Body::SetStep(int step) const
 	// Cache the frame and mask info so as long as the step stays the same, none
 	// of the above calculations need to be redone. This is important for objects
 	// whose masks may be queried many times for collision tests.
-	frame.first = sprite->Texture(firstIndex);
-	frame.second = sprite->Texture(secondIndex);
-	mask = &sprite->GetMask(frame.fade > .5f ? secondIndex : firstIndex);
+	frame.first = sprite->Texture(firstIndex, isHighDPI);
+	frame.second = sprite->Texture(secondIndex, isHighDPI);
+	activeIndex = (frame.fade > .5f ? secondIndex : firstIndex);
 }

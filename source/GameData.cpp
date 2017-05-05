@@ -32,6 +32,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "LineShader.h"
 #include "Minable.h"
 #include "Mission.h"
+#include "Music.h"
 #include "Outfit.h"
 #include "OutlineShader.h"
 #include "Person.h"
@@ -43,6 +44,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Sale.h"
 #include "Set.h"
 #include "Ship.h"
+#include "Sprite.h"
 #include "SpriteQueue.h"
 #include "SpriteSet.h"
 #include "SpriteShader.h"
@@ -53,7 +55,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <algorithm>
 #include <iostream>
 #include <map>
-#include <tuple>
 #include <utility>
 #include <vector>
 
@@ -95,15 +96,20 @@ namespace {
 	Trade trade;
 	map<const System *, map<string, int>> purchases;
 	
+	map<const Sprite *, string> landingMessages;
+	vector<string> ratingLevels;
+	
 	StarField background;
 	
 	map<string, string> tooltips;
+	map<string, string> helpMessages;
+	map<string, string> plugins;
 	
 	SpriteQueue spriteQueue;
 	
 	vector<string> sources;
-	multimap<const Sprite *, pair<string, string>> deferred;
-	multimap<const Sprite *, tuple<string, string, int>> preloaded;
+	map<const Sprite *, vector<string>> deferred;
+	map<const Sprite *, int> preloaded;
 	
 	const Government *playerGovernment = nullptr;
 }
@@ -144,11 +150,15 @@ void GameData::BeginLoad(const char * const *argv)
 	for(const auto &it : images)
 	{
 		string name = Name(it.first);
+		// For landscapes, remember all the source files but don't load them yet.
 		if(name.substr(0, 5) == "land/")
-			deferred.emplace(SpriteSet::Get(name), pair<string, string>(name, it.second));
+			deferred[SpriteSet::Get(name)].push_back(it.second);
 		else
 			spriteQueue.Add(name, it.second);
 	}
+	
+	// Generate a catalog of music files.
+	Music::Init(sources);
 	
 	for(const string &source : sources)
 	{
@@ -187,6 +197,28 @@ void GameData::BeginLoad(const char * const *argv)
 
 
 
+// Check for objects that are referred to but never defined.
+void GameData::CheckReferences()
+{
+	for(const auto &it : effects)
+		if(it.second.Name().empty())
+			Files::LogError("Warning: effect \"" + it.first + "\" is referred to, but never defined.");
+	for(const auto &it : fleets)
+		if(!it.second.GetGovernment())
+			Files::LogError("Warning: fleet \"" + it.first + "\" is referred to, but never defined.");
+	for(const auto &it : governments)
+		if(it.second.GetName().empty())
+			Files::LogError("Warning: government \"" + it.first + "\" is referred to, but never defined.");
+	for(const auto &it : outfits)
+		if(it.second.Name().empty())
+			Files::LogError("Warning: outfit \"" + it.first + "\" is referred to, but never defined.");
+	for(const auto &it : systems)
+		if(it.second.Name().empty())
+			Files::LogError("Warning: system \"" + it.first + "\" is referred to, but never defined.");
+}
+
+
+
 void GameData::LoadShaders()
 {
 	FontSet::Add(Files::Images() + "font/ubuntu14r.png", 14);
@@ -220,43 +252,46 @@ double GameData::Progress()
 // done with all landscapes to speed up the program's startup.
 void GameData::Preload(const Sprite *sprite)
 {
-	auto loadedRange = preloaded.equal_range(sprite);
-	if(loadedRange.first != loadedRange.second)
-	{
-		int priority = get<2>(loadedRange.first->second);
-		for(auto &it : preloaded)
-			if(get<2>(it.second) < priority)
-				++get<2>(it.second);
-		for( ; loadedRange.first != loadedRange.second; ++loadedRange.first)
-			get<2>(loadedRange.first->second) = 0;
-	}
-	
-	auto range = deferred.equal_range(sprite);
-	if(range.first == range.second)
+	// Make sure this sprite actually is one that uses deferred loading.
+	auto dit = deferred.find(sprite);
+	if(!sprite || dit == deferred.end())
 		return;
 	
-	// Remove the oldest thing in the priority queue if it has grown big enough.
-	vector<multimap<const Sprite *, tuple<string, string, int>>::iterator> toErase;
-	for(auto it = preloaded.begin(); it != preloaded.end(); ++it)
-		if(++get<2>(it->second) >= 20)
-			toErase.push_back(it);
-	while(!toErase.empty())
+	// If this sprite is one of the currently loaded ones, there is no need to
+	// load it again. But, make note of the fact that it is the most recently
+	// asked-for sprite.
+	map<const Sprite *, int>::iterator pit = preloaded.find(sprite);
+	if(pit != preloaded.end())
 	{
-		const auto &next = *toErase.back();
-		deferred.emplace(next.first, make_pair(get<0>(next.second), get<1>(next.second)));
-		spriteQueue.Unload(get<0>(toErase.back()->second));
-		preloaded.erase(toErase.back());
-		toErase.pop_back();
+		for(pair<const Sprite * const, int> &it : preloaded)
+			if(it.second < pit->second)
+				++it.second;
+		
+		pit->second = 0;
+		return;
 	}
 	
-	// Load this new sprite.
-	for(auto it = range.first; it != range.second; ++it)
+	// This sprite is not currently preloaded. Check to see whether we already
+	// have the maximum number of sprites loaded, in which case the oldest one
+	// must be unloaded to make room for this one.
+	const string &name = sprite->Name();
+	pit = preloaded.begin();
+	while(pit != preloaded.end())
 	{
-		spriteQueue.Add(it->second.first, it->second.second);
-		preloaded.emplace(sprite, make_tuple(it->second.first, it->second.second, 0));
+		++pit->second;
+		if(pit->second >= 20)
+		{
+			spriteQueue.Unload(name);
+			pit = preloaded.erase(pit);
+		}
+		else
+			++pit;
 	}
 	
-	deferred.erase(range.first, range.second);
+	// Now, load all the files for this sprite.
+	preloaded[sprite] = 0;
+	for(const string &path : dit->second)
+		spriteQueue.Add(name, path);
 }
 
 
@@ -279,18 +314,12 @@ const vector<string> &GameData::Sources()
 // Revert any changes that have been made to the universe.
 void GameData::Revert()
 {
-	for(auto &it : fleets)
-		it.second = *defaultFleets.Get(it.first);
-	for(auto &it : governments)
-		it.second = *defaultGovernments.Get(it.first);
-	for(auto &it : planets)
-		it.second = *defaultPlanets.Get(it.first);
-	for(auto &it : systems)
-		it.second = *defaultSystems.Get(it.first);
-	for(auto &it : shipSales)
-		it.second = *defaultShipSales.Get(it.first);
-	for(auto &it : outfitSales)
-		it.second = *defaultOutfitSales.Get(it.first);
+	fleets.Revert(defaultFleets);
+	governments.Revert(defaultGovernments);
+	planets.Revert(defaultPlanets);
+	systems.Revert(defaultSystems);
+	shipSales.Revert(defaultShipSales);
+	outfitSales.Revert(defaultOutfitSales);
 	for(auto &it : persons)
 		it.second.GetShip()->Restore();
 	
@@ -430,6 +459,8 @@ void GameData::Change(const DataNode &node)
 {
 	if(node.Token(0) == "fleet" && node.Size() >= 2)
 		fleets.Get(node.Token(1))->Load(node);
+	else if(node.Token(0) == "galaxy" && node.Size() >= 2)
+		galaxies.Get(node.Token(1))->Load(node);
 	else if(node.Token(0) == "government" && node.Size() >= 2)
 		governments.Get(node.Token(1))->Load(node);
 	else if(node.Token(0) == "outfitter" && node.Size() >= 2)
@@ -444,6 +475,8 @@ void GameData::Change(const DataNode &node)
 		systems.Get(node.Token(1))->Link(systems.Get(node.Token(2)));
 	else if(node.Token(0) == "unlink" && node.Size() >= 3)
 		systems.Get(node.Token(1))->Unlink(systems.Get(node.Token(2)));
+	else
+		node.PrintTrace("Invalid \"event\" data:");
 }
 
 
@@ -608,9 +641,41 @@ const vector<Trade::Commodity> &GameData::SpecialCommodities()
 
 
 
+// Custom messages to be shown when trying to land on certain stellar objects.
+bool GameData::HasLandingMessage(const Sprite *sprite)
+{
+	return landingMessages.count(sprite);
+}
+
+
+
+const string &GameData::LandingMessage(const Sprite *sprite)
+{
+	static const string EMPTY;
+	auto it = landingMessages.find(sprite);
+	return (it == landingMessages.end() ? EMPTY : it->second);
+}
+
+
+
+// Strings for combat rating levels.
+const vector<string> &GameData::CombatRatings()
+{
+	return ratingLevels;
+}
+
+
+
 const StarField &GameData::Background()
 {
 	return background;
+}
+
+
+
+void GameData::SetHaze(const Sprite *sprite)
+{
+	background.SetHaze(sprite);
 }
 
 
@@ -619,7 +684,36 @@ const string &GameData::Tooltip(const string &label)
 {
 	static const string EMPTY;
 	auto it = tooltips.find(label);
+	// Special case: the "cost" and "sells for" labels include the percentage of
+	// the full price, so they will not match exactly.
+	if(it == tooltips.end() && !label.compare(0, 4, "cost"))
+		it = tooltips.find("cost:");
+	if(it == tooltips.end() && !label.compare(0, 9, "sells for"))
+		it = tooltips.find("sells for:");
 	return (it == tooltips.end() ? EMPTY : it->second);
+}
+
+
+
+string GameData::HelpMessage(const string &name)
+{
+	static const string EMPTY;
+	auto it = helpMessages.find(name);
+	return Command::ReplaceNamesWithKeys(it == helpMessages.end() ? EMPTY : it->second);
+}
+
+
+
+const map<string, string> &GameData::HelpTemplates()
+{
+	return helpMessages;
+}
+
+
+
+const map<string, string> &GameData::PluginAboutText()
+{
+	return plugins;
 }
 
 
@@ -641,6 +735,27 @@ void GameData::LoadSources()
 	{
 		if(Files::Exists(path + "data") || Files::Exists(path + "images") || Files::Exists(path + "sounds"))
 			sources.push_back(path);
+	}
+	
+	// Load the plugin data, if any.
+	for(auto it = sources.begin() + 1; it != sources.end(); ++it)
+	{
+		// Get the name of the folder containing the plugin.
+		size_t pos = it->rfind('/', it->length() - 2) + 1;
+		string name = it->substr(pos, it->length() - 1 - pos);
+		
+		// Load the about text and the icon, if any.
+		plugins[name] = Files::Read(*it + "about.txt");
+		
+		if(Files::Exists(*it + "icon.png"))
+			spriteQueue.Add(name, *it + "icon.png");
+		else if(Files::Exists(*it + "icon.jpg"))
+			spriteQueue.Add(name, *it + "icon.jpg");
+		
+		if(Files::Exists(*it + "icon@2x.png"))
+			spriteQueue.Add(name, *it + "icon@2x.png");
+		else if(Files::Exists(*it + "icon@2x.jpg"))
+			spriteQueue.Add(name, *it + "icon@2x.jpg");
 	}
 }
 
@@ -704,14 +819,29 @@ void GameData::LoadFile(const string &path, bool debugMode)
 			systems.Get(node.Token(1))->Load(node, planets);
 		else if(key == "trade")
 			trade.Load(node);
-		else if(key == "tip" && node.Size() >= 2)
+		else if(key == "landing message" && node.Size() >= 2)
 		{
-			string &text = tooltips[node.Token(1)];
+			for(const DataNode &child : node)
+				landingMessages[SpriteSet::Get(child.Token(0))] = node.Token(1);
+		}
+		else if(key == "combat ratings")
+		{
+			ratingLevels.clear();
+			for(const DataNode &child : node)
+				ratingLevels.push_back(child.Token(0));
+		}
+		else if((key == "tip" || key == "help") && node.Size() >= 2)
+		{
+			string &text = (key == "tip" ? tooltips : helpMessages)[node.Token(1)];
 			text.clear();
 			for(const DataNode &child : node)
 			{
 				if(!text.empty())
-					text += "\n\t";
+				{
+					text += '\n';
+					if(child.Token(0)[0] != '\t')
+						text += '\t';
+				}
 				text += child.Token(0);
 			}
 		}
@@ -783,6 +913,10 @@ void GameData::PrintShipTable()
 		<< "e_gen" << '\t' << "e_use" << '\t' << "h_gen" << '\t' << "h_max" << '\n';
 	for(auto &it : ships)
 	{
+		// Skip variants.
+		if(it.second.ModelName() != it.first)
+			continue;
+		
 		const Ship &ship = it.second;
 		cout << it.first << '\t';
 		cout << ship.Cost() << '\t';
@@ -796,9 +930,9 @@ void GameData::PrintShipTable()
 		cout << attributes.Get("bunks") << '\t';
 		cout << attributes.Get("fuel capacity") << '\t';
 		
-		cout << attributes.Get("outfit space") << '\t';
-		cout << attributes.Get("weapon capacity") << '\t';
-		cout << attributes.Get("engine capacity") << '\t';
+		cout << ship.BaseAttributes().Get("outfit space") << '\t';
+		cout << ship.BaseAttributes().Get("weapon capacity") << '\t';
+		cout << ship.BaseAttributes().Get("engine capacity") << '\t';
 		cout << 60. * attributes.Get("thrust") / attributes.Get("drag") << '\t';
 		cout << 3600. * attributes.Get("thrust") / attributes.Get("mass") << '\t';
 		cout << 60. * attributes.Get("turn") / attributes.Get("mass") << '\t';

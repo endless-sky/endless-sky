@@ -19,14 +19,18 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "DataFile.h"
 #include "DataNode.h"
 #include "Dialog.h"
+#include "Files.h"
 #include "Font.h"
 #include "FrameTimer.h"
 #include "GameData.h"
+#include "ImageBuffer.h"
 #include "MenuPanel.h"
 #include "Panel.h"
 #include "PlayerInfo.h"
 #include "Preferences.h"
 #include "Screen.h"
+#include "SpriteSet.h"
+#include "SpriteShader.h"
 #include "UI.h"
 
 #include "gl_header.h"
@@ -47,6 +51,8 @@ using namespace std;
 
 void PrintHelp();
 void PrintVersion();
+void SetIcon(SDL_Window *window);
+void AdjustViewport(SDL_Window *window);
 int DoError(string message, SDL_Window *window = nullptr, SDL_GLContext context = nullptr);
 void Cleanup(SDL_Window *window, SDL_GLContext context);
 Conversation LoadConversation();
@@ -100,39 +106,27 @@ int main(int argc, char *argv[])
 		
 		Preferences::Load();
 		Uint32 flags = SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE | SDL_WINDOW_SHOWN | SDL_WINDOW_ALLOW_HIGHDPI;
-		if(Preferences::Has("fullscreen"))
+		bool isFullscreen = Preferences::Has("fullscreen");
+		if(isFullscreen)
 			flags |= SDL_WINDOW_FULLSCREEN_DESKTOP;
+		else if(Preferences::Has("maximized"))
+			flags |= SDL_WINDOW_MAXIMIZED;
 		
 		// Make the window just slightly smaller than the monitor resolution.
 		int maxWidth = mode.w;
 		int maxHeight = mode.h;
-		// Restore this after toggling fullscreen.
-		int restoreWidth = 0;
-		int restoreHeight = 0;
 		if(maxWidth < 640 || maxHeight < 480)
 			return DoError("Monitor resolution is too small!");
 		
+		// Decide how big the window should be.
+		int windowWidth = (maxWidth - 100);
+		int windowHeight = (maxHeight - 100);
 		if(Screen::RawWidth() && Screen::RawHeight())
 		{
-			// Never allow the saved screen width to be leaving less than 100
-			// pixels free around the window. This avoids the problem where you
-			// maximize without going full-screen, and next time the window pops
-			// up you can't access the resize control because it is offscreen.
-			Screen::SetRaw(
-				min(Screen::RawWidth(), (maxWidth - 100)),
-				min(Screen::RawHeight(), (maxHeight - 100)));
-			if(flags & SDL_WINDOW_FULLSCREEN_DESKTOP)
-			{
-				restoreWidth = Screen::RawWidth();
-				restoreHeight = Screen::RawHeight();
-				Screen::SetRaw(maxWidth, maxHeight);
-			}
+			// Load the previously saved window dimensions.
+			windowWidth = min(windowWidth, Screen::RawWidth());
+			windowHeight = min(windowHeight, Screen::RawHeight());
 		}
-		else
-			Screen::SetRaw(maxWidth - 100, maxHeight - 100);
-		// Make sure the zoom factor is not set too high for the full UI to fit.
-		if(Screen::Height() < 700)
-			Screen::SetZoom(100);
 		
 		// Create the window.
 		SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
@@ -144,7 +138,7 @@ int main(int argc, char *argv[])
 		
 		SDL_Window *window = SDL_CreateWindow("Endless Sky",
 			SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
-			Screen::RawWidth(), Screen::RawHeight(), flags);
+			windowWidth, windowHeight, flags);
 		if(!window)
 			return DoError("Unable to create window!");
 		
@@ -192,17 +186,16 @@ int main(int argc, char *argv[])
 		glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
 		
 		GameData::LoadShaders();
-		
-		{
-			// Check whether this is a high-DPI window.
-			int width = 0;
-			int height = 0;
-			SDL_GL_GetDrawableSize(window, &width, &height);
-			Screen::SetHighDPI(width > Screen::RawWidth() && height > Screen::RawHeight());
-			
-			// Fix a possible race condition leading to the wrong window dimensions.
-			glViewport(0, 0, width, height);
-		}
+		// Make sure the screen size and viewport are set correctly.
+		AdjustViewport(window);
+#ifndef __APPLE__
+		// On OS X, setting the window icon will cause that same icon to be used
+		// in the dock and the application switcher. That's not something we
+		// want, because the .icns icon that is used automatically is prettier.
+		SetIcon(window);
+#endif
+		if(!isFullscreen)
+			SDL_GetWindowSize(window, &windowWidth, &windowHeight);
 		
 		
 		UI gamePanels;
@@ -232,8 +225,11 @@ int main(int argc, char *argv[])
 				"government they belong to. So, all human ships will be the same color, which "
 				"may be confusing. Consider upgrading your graphics driver (or your OS)."));
 		
-		FrameTimer timer(60);
+		int frameRate = 60;
+		FrameTimer timer(frameRate);
 		bool isPaused = false;
+		// If fast forwarding, keep track of whether the current frame should be drawn.
+		int skipFrame = 0;
 		while(!menuPanels.IsDone())
 		{
 			// Handle any events that occurred in this frame.
@@ -244,12 +240,7 @@ int main(int argc, char *argv[])
 				
 				// The caps lock key slows the game down (to make it easier to
 				// see and debug things that are happening quickly).
-				if(debugMode && (event.type == SDL_KEYDOWN || event.type == SDL_KEYUP)
-						&& event.key.keysym.sym == SDLK_CAPSLOCK)
-				{
-					timer.SetFrameRate((event.key.keysym.mod & KMOD_CAPS) ? 10 : 60);
-				}
-				else if(debugMode && event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_BACKQUOTE)
+				if(debugMode && event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_BACKQUOTE)
 				{
 					isPaused = !isPaused;
 				}
@@ -266,64 +257,71 @@ int main(int argc, char *argv[])
 				}
 				else if(event.type == SDL_WINDOWEVENT && event.window.event == SDL_WINDOWEVENT_SIZE_CHANGED)
 				{
-					if(event.window.data1 != Screen::RawWidth() || event.window.data2 != Screen::RawHeight())
-					{
-						int width = event.window.data1;
-						int height = event.window.data2;
-						
-						// If the window's dimensions are odd, if possible
-						// resize it to have even dimensions. If it is
-						// maximized, resizing will not be possible.
-						bool isMaximized = (SDL_GetWindowFlags(window) & SDL_WINDOW_MAXIMIZED);
-						bool isOdd = (width | height) & 1;
-						if(!isMaximized && isOdd)
-							SDL_SetWindowSize(window, width & ~1, height & ~1);
-						else
-						{
-							// We either can't resize the window, or don't have to.
-							// So, just inform Screen and OpenGL of the new size.
-							SDL_GL_GetDrawableSize(window, &width, &height);
-							Screen::SetRaw(width & ~1, height & ~1);
-							glViewport(0, 0, width & ~1, height & ~1);
-						}
-					}
+					// The window has been resized. Adjust the raw screen size
+					// and the OpenGL viewport to match.
+					AdjustViewport(window);
+					if(!isFullscreen)
+						SDL_GetWindowSize(window, &windowWidth, &windowHeight);
 				}
 				else if(event.type == SDL_KEYDOWN
 						&& (Command(event.key.keysym.sym).Has(Command::FULLSCREEN)
 						|| (event.key.keysym.sym == SDLK_RETURN && (event.key.keysym.mod & KMOD_ALT))))
 				{
-					if(restoreWidth)
+					// Toggle full-screen mode. This will generate a window size
+					// change event, so no need to adjust the viewport here.
+					isFullscreen = !isFullscreen;
+					if(!isFullscreen)
 					{
 						SDL_SetWindowFullscreen(window, 0);
-						Screen::SetRaw(restoreWidth, restoreHeight);
-						SDL_SetWindowSize(window, Screen::RawWidth(), Screen::RawHeight());
-						restoreWidth = 0;
-						restoreHeight = 0;
+						SDL_SetWindowSize(window, windowWidth, windowHeight);
 					}
 					else
-					{
-						restoreWidth = Screen::RawWidth();
-						restoreHeight = Screen::RawHeight();
-						Screen::SetRaw(maxWidth, maxHeight);
 						SDL_SetWindowFullscreen(window, SDL_WINDOW_FULLSCREEN_DESKTOP);
-					}
-					int width, height;
-					SDL_GL_GetDrawableSize(window, &width, &height);
-					glViewport(0, 0, width, height);
 				}
 				else if(activeUI.Handle(event))
 				{
 					// No need to do anything more!
 				}
 			}
-			Font::ShowUnderlines(SDL_GetModState() & KMOD_ALT);
+			SDL_Keymod mod = SDL_GetModState();
+			Font::ShowUnderlines(mod & KMOD_ALT);
 			
 			// Tell all the panels to step forward, then draw them.
 			((!isPaused && menuPanels.IsEmpty()) ? gamePanels : menuPanels).StepAll();
+			
+			// Caps lock slows the frame rate in debug mode, but raises it in
+			// normal mode. Slowing eases in and out over a couple of frames.
+			bool fastForward = false;
+			if(mod & KMOD_CAPS)
+			{
+				if(debugMode)
+				{
+					if(frameRate > 10)
+					{
+						frameRate = max(frameRate - 5, 10);
+						timer.SetFrameRate(frameRate);
+					}
+				}
+				else
+				{
+					fastForward = true;
+					skipFrame = (skipFrame + 1) % 3;
+					if(skipFrame)
+						continue;
+				}
+			}
+			else if(frameRate < 60)
+			{
+				frameRate = min(frameRate + 5, 60);
+				timer.SetFrameRate(frameRate);
+			}
+			
 			Audio::Step();
-			// That may have cleared out the menu, in which case we should draw
-			// the game panels instead:
+			// Events in this frame may have cleared out the menu, in which case
+			// we should draw the game panels instead:
 			(menuPanels.IsEmpty() ? gamePanels : menuPanels).DrawAll();
+			if(fastForward)
+				SpriteShader::Draw(SpriteSet::Get("ui/fast forward"), Screen::TopLeft() + Point(10., 10.));
 			
 			SDL_GL_SwapWindow(window);
 			timer.Wait();
@@ -333,12 +331,13 @@ int main(int argc, char *argv[])
 		if(player.GetPlanet())
 			player.Save();
 		
-		// The Preferences class reads the screen dimensions, so update them if
-		// the window is full screen:
-		bool isFullscreen = (restoreWidth != 0);
+		// Remember the window state.
+		bool isMaximized = (SDL_GetWindowFlags(window) & SDL_WINDOW_MAXIMIZED);
+		Preferences::Set("maximized", isMaximized);		
 		Preferences::Set("fullscreen", isFullscreen);
-		if(isFullscreen)
-			Screen::SetRaw(restoreWidth, restoreHeight);
+		// The Preferences class reads the screen dimensions, so update them to
+		// match the actual window size.
+		Screen::SetRaw(windowWidth, windowHeight);
 		Preferences::Save();
 		
 		Cleanup(window, context);
@@ -376,11 +375,68 @@ void PrintHelp()
 void PrintVersion()
 {
 	cerr << endl;
-	cerr << "Endless Sky 0.9.3" << endl;
+	cerr << "Endless Sky 0.9.6" << endl;
 	cerr << "License GPLv3+: GNU GPL version 3 or later: <https://gnu.org/licenses/gpl.html>" << endl;
 	cerr << "This is free software: you are free to change and redistribute it." << endl;
 	cerr << "There is NO WARRANTY, to the extent permitted by law." << endl;
 	cerr << endl;
+}
+
+
+
+void SetIcon(SDL_Window *window)
+{
+	// Load the icon file.
+	ImageBuffer *buffer = ImageBuffer::Read(Files::Resources() + "icon.png");
+	if(!buffer)
+		return;
+	if(!buffer->Pixels() || !buffer->Width() || !buffer->Height())
+	{
+		delete buffer;
+		return;
+	}
+	
+	// Convert the icon to an SDL surface.
+	SDL_Surface *surface = SDL_CreateRGBSurfaceFrom(buffer->Pixels(), buffer->Width(), buffer->Height(),
+		32, 4 * buffer->Width(), 0x00FF0000, 0x0000FF00, 0x000000FF, 0xFF000000);
+	if(surface)
+	{
+		SDL_SetWindowIcon(window, surface);
+		SDL_FreeSurface(surface);
+	}
+	// Free the image buffer.
+	delete buffer;
+}
+
+
+
+void AdjustViewport(SDL_Window *window)
+{
+	// Get the window's size in screen coordinates.
+	int width, height;
+	SDL_GetWindowSize(window, &width, &height);
+	
+	// Round the window size up to a multiple of 2, even if this
+	// means one pixel of the display will be clipped.
+	int roundWidth = (width + 1) & ~1;
+	int roundHeight = (height + 1) & ~1;
+	Screen::SetRaw(roundWidth, roundHeight);
+	
+	// Find out the drawable dimensions. If this is a high- DPI display, this
+	// may be larger than the window.
+	int drawWidth, drawHeight;
+	SDL_GL_GetDrawableSize(window, &drawWidth, &drawHeight);
+	Screen::SetHighDPI(drawWidth > width || drawHeight > height);	
+	
+	// Set the viewport to go off the edge of the window, if necessary, to get
+	// everything pixel-aligned.
+	drawWidth = (drawWidth * roundWidth) / width;
+	drawHeight = (drawHeight * roundHeight) / height;
+	glViewport(0, 0, drawWidth, drawHeight);
+	
+	// Make sure the zoom factor is not set too high for the full UI to fit.
+	if(Screen::Height() < 700)
+		Screen::SetZoom(100);
 }
 
 

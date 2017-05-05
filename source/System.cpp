@@ -21,6 +21,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Minable.h"
 #include "Planet.h"
 #include "Random.h"
+#include "SpriteSet.h"
 
 #include <cmath>
 
@@ -125,6 +126,8 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 			position.Set(child.Value(1), child.Value(2));
 		else if(child.Token(0) == "government" && child.Size() >= 2)
 			government = GameData::Governments().Get(child.Token(1));
+		else if(child.Token(0) == "music" && child.Size() >= 2)
+			music = child.Token(1);
 		else if(child.Token(0) == "link")
 		{
 			if(resetLinks)
@@ -133,7 +136,7 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 				links.clear();
 			}
 			if(child.Size() >= 2)
-				links.push_back(GameData::Systems().Get(child.Token(1)));
+				links.insert(GameData::Systems().Get(child.Token(1)));
 		}
 		else if(child.Token(0) == "habitable" && child.Size() >= 2)
 			habitable = child.Value(1);
@@ -158,6 +161,8 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 					asteroids.emplace_back(GameData::Minables().Get(name), count, energy);
 			}
 		}
+		else if(child.Token(0) == "haze" && child.Size() >= 2)
+			haze = SpriteSet::Get(child.Token(1));
 		else if(child.Token(0) == "trade" && child.Size() >= 3)
 			trade[child.Token(1)].SetBase(child.Value(2));
 		else if(child.Token(0) == "fleet")
@@ -246,13 +251,13 @@ void System::UpdateNeighbors(const Set<System> &systems)
 	// even if it is farther away than the maximum distance.
 	for(const System *system : links)
 		if(!(system->Position().Distance(position) <= NEIGHBOR_DISTANCE))
-			neighbors.push_back(system);
+			neighbors.insert(system);
 	
 	// Any other star system that is within the neighbor distance is also a
 	// neighbor. This will include any nearby linked systems.
 	for(const auto &it : systems)
 		if(&it.second != this && it.second.Position().Distance(position) <= NEIGHBOR_DISTANCE)
-			neighbors.push_back(&it.second);
+			neighbors.insert(&it.second);
 }
 
 
@@ -260,15 +265,11 @@ void System::UpdateNeighbors(const Set<System> &systems)
 // Modify a system's links.
 void System::Link(System *other)
 {
-	if(find(links.begin(), links.end(), other) == links.end())
-		links.push_back(other);
-	if(find(other->links.begin(), other->links.end(), this) == other->links.end())
-		other->links.push_back(this);
+	links.insert(other);
+	other->links.insert(this);
 	
-	if(find(neighbors.begin(), neighbors.end(), other) == neighbors.end())
-		neighbors.push_back(other);
-	if(find(other->neighbors.begin(), other->neighbors.end(), this) == other->neighbors.end())
-		other->neighbors.push_back(this);
+	neighbors.insert(other);
+	other->neighbors.insert(this);
 }
 
 
@@ -323,8 +324,17 @@ const Government *System::GetGovernment() const
 
 
 
+
+// Get the name of the ambient audio to play in this system.
+const string &System::MusicName() const
+{
+	return music;
+}
+
+
+
 // Get a list of systems you can travel to through hyperspace from here.
-const vector<const System *> &System::Links() const
+const set<const System *> &System::Links() const
 {
 	return links;
 }
@@ -334,7 +344,7 @@ const vector<const System *> &System::Links() const
 // Get a list of systems you can "see" from here, whether or not there is a
 // direct hyperspace link to them. This is also the set of systems that you
 // can travel to from here via the jump drive.
-const vector<const System *> &System::Neighbors() const
+const set<const System *> &System::Neighbors() const
 {
 	return neighbors;
 }
@@ -393,11 +403,15 @@ double System::AsteroidBelt() const
 
 
 // Check if this system is inhabited.
-bool System::IsInhabited() const
+bool System::IsInhabited(const Ship *ship) const
 {
 	for(const StellarObject &object : objects)
-		if(object.GetPlanet() && object.GetPlanet()->HasSpaceport())
-			return true;
+		if(object.GetPlanet())
+		{
+			const Planet &planet = *object.GetPlanet();
+			if(!planet.IsWormhole() && planet.HasSpaceport() && planet.IsAccessible(ship))
+				return true;
+		}
 	
 	return false;
 }
@@ -408,8 +422,12 @@ bool System::IsInhabited() const
 bool System::HasFuelFor(const Ship &ship) const
 {
 	for(const StellarObject &object : objects)
-		if(object.GetPlanet() && object.GetPlanet()->HasSpaceport() && object.GetPlanet()->CanLand(ship))
-			return true;
+		if(object.GetPlanet())
+		{
+			const Planet &planet = *object.GetPlanet();
+			if(!planet.IsWormhole() && planet.HasSpaceport() && planet.CanLand(ship))
+				return true;
+		}
 	
 	return false;
 }
@@ -448,11 +466,26 @@ const vector<System::Asteroid> &System::Asteroids() const
 
 
 
+// Get the background haze sprite for this system.
+const Sprite *System::Haze() const
+{
+	return haze;
+}
+
+
+
 // Get the price of the given commodity in this system.
 int System::Trade(const string &commodity) const
 {
 	auto it = trade.find(commodity);
 	return (it == trade.end()) ? 0 : it->second.price;
+}
+
+
+
+bool System::HasTrade() const
+{
+	return !trade.empty();
 }
 
 

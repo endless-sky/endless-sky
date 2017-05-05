@@ -235,6 +235,7 @@ fleet "Small Kor Sestor"
 	government "Kor Sestor"
 	names "kor sestor"
 	fighters "kor sestor fighter"
+	commodities Plastic Equipment Industrial Electronics "Heavy Metals"
 	personality
 		heroic
 	variant 5
@@ -294,6 +295,7 @@ fleet "Large Kor Sestor"
 	government "Kor Sestor"
 	names "kor sestor"
 	fighters "kor sestor fighter"
+	commodities Plastic Equipment Industrial Electronics "Heavy Metals"
 	personality
 		heroic
 	variant 8
@@ -408,6 +410,7 @@ fleet "Small Kor Mereti"
 	government "Kor Mereti"
 	names "kor mereti"
 	fighters "kor mereti"
+	commodities Plastic Equipment Industrial Electronics "Heavy Metals"
 	personality
 		heroic
 	variant 1
@@ -458,6 +461,7 @@ fleet "Large Kor Mereti"
 	government "Kor Mereti"
 	names "kor mereti"
 	fighters "kor mereti"
+	commodities Plastic Equipment Industrial Electronics "Heavy Metals"
 	personality
 		heroic
 	variant 5
@@ -556,13 +560,28 @@ fleet "Large Kor Mereti"
 	variant 5
 		"Model 128" 2
 
+fleet "Kor Mereti Miners"
+	government "Kor Mereti"
+	names "kor mereti"
+	cargo 0
+	personality
+		mining harvests
+	variant 10
+		"Model 8"
+	variant 3
+		"Model 8" 2
+	variant 1
+		"Model 8" 3
+
 
 outfitter "Korath Basics"
+	"Korath Piercer Rack"
+	"Korath Mine Rack"
 	"Command Center"
 	"Small Bunk Room"
 	"Bunk Room"
 	"Fuel Pod"
 	"Ramscoop"
-	"Mass Expansion"
+	"Outfits Expansion"
 	"Cargo Expansion"
 	"Local Map"

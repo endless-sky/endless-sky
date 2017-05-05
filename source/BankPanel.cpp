@@ -20,7 +20,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Interface.h"
 #include "PlayerInfo.h"
 #include "Point.h"
-#include "Preferences.h"
 #include "Table.h"
 #include "UI.h"
 
@@ -62,19 +61,7 @@ BankPanel::BankPanel(PlayerInfo &player)
 // This is called each frame when the bank is active.
 void BankPanel::Step()
 {
-	// If the user has not yet been shown the help message, display it.
-	if(!Preferences::Has("help: bank"))
-	{
-		Preferences::Set("help: bank");
-		GetUI()->Push(new Dialog(
-			"This is the bank. "
-			"Here, you can apply for new mortgages, if your income and credit history allows it. "
-			"The bank is also a good place to get an overview of your daily expenses: "
-			"mortgage payments, crew salaries, etc.\n"
-			"\tPaying off a mortgage early means you pay less interest to the bank, "
-			"but it is sometimes wiser to instead use your money to buy a bigger ship "
-			"which can earn you more income."));
-	}
+	DoHelp("bank");
 }
 
 
@@ -185,8 +172,15 @@ void BankPanel::Draw()
 		totalPayment += salaries;
 		
 		table.Draw("Crew Salaries");
-		// For crew salaries, only the "payment" field needs to be shown.
-		table.Advance(3);
+		// Check whether the player owes back salaries.
+		if(player.Accounts().SalariesOwed())
+		{
+			table.Draw(Format::Number(player.Accounts().SalariesOwed()));
+			table.Draw("(overdue)");
+			table.Advance(1);
+		}
+		else
+			table.Advance(3);
 		table.Draw(salaries);
 		table.Advance();
 	}
@@ -267,6 +261,7 @@ bool BankPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 			else
 				++i;
 		}
+		player.Accounts().PaySalaries(player.Accounts().SalariesOwed());
 		qualify = player.Accounts().Prequalify();
 	}
 	else
@@ -278,7 +273,7 @@ bool BankPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 
 
 // Handle mouse clicks.
-bool BankPanel::Click(int x, int y)
+bool BankPanel::Click(int x, int y, int clicks)
 {
 	// Check if the click was on one of the rows of the table that represents a
 	// mortgage or other current debt you have.

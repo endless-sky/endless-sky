@@ -150,7 +150,8 @@ outfitter "Wanderer Basics"
 	"Fuel Pod"
 	"Wanderer Ramscoop"
 	"Cargo Expansion"
-	"Mass Expansion"
+	"Outfits Expansion"
+	"Small Bunk Room"
 	"Local Map"
 	"Hyperdrive"
 
@@ -158,7 +159,7 @@ outfitter "Wanderer Advanced"
 	"Sunbeam"
 	"Thunderhead Missile"
 	"Thunderhead Launcher"
-	"Thunderhead"
+	"Thunderhead Storage Array"
 	"Small Biochemical Cell"
 	"Large Biochemical Cell"
 	"Yellow Sun Reactor"
@@ -176,7 +177,9 @@ outfitter "Wanderer Advanced"
 	"Fuel Pod"
 	"Wanderer Ramscoop"
 	"Cargo Expansion"
-	"Mass Expansion"
+	"Outfits Expansion"
+	"Small Bunk Room"
+	"Bunk Room"
 	"Local Map"
 	"Hyperdrive"
 
@@ -468,9 +471,7 @@ event "wanderers: unfettered invasion starts"
 	"reputation: Hai (Unfettered)" <?= -100
 	government "Hai (Unfettered)"
 		"attitude toward"
-			"Hai" -.1
-			"Wanderer" -.1
-			"Pug" -.1
+			"Wanderer" -.01
 	outfitter "Wanderer Advanced"
 		"Wanderer Anti-Missile"
 	planet "Varu K'est"
@@ -780,3 +781,98 @@ event "wanderers: spera anatrusk colony"
 		description `	Hidden deep in a canyon, the Wanderers have begun establishing a military base here.`
 		spaceport `The Wanderers have hollowed out hangars and caves in the soft sandstone walls of this canyon and have begun to build a military base where they can store supplies and repair their ships while trying to decide how best to deal with the new challenges that face them in Korath space.`
 		spaceport `	Oddly enough, they have also found enough time to plant a large garden on a terrace near the base of the canyon, where they are experimenting to find out which plant species will best grow in this arid environment. The Wanderer drive to understand and transform the local ecology is strong, indeed.`
+
+event "wanderers: hurricane mass production"
+	fleet "Wanderer Defense"
+		government "Wanderer"
+		names "wanderer"
+		personality
+			heroic
+		variant 5
+			"Hurricane"
+		variant 2
+			"Hurricane (Turret)"
+		variant 2
+			"Hurricane (Tough)"
+		variant 3
+			"Hurricane"
+			"Derecho"
+			"Tempest"
+		variant 2
+			"Hurricane"
+			"Tempest" 2
+		variant 3
+			"Hurricane (Turret)"
+			"Derecho (Turret)"
+			"Tempest (Heavy)"
+		variant 2
+			"Hurricane (Tough)"
+			"Tempest (Missile)" 2
+		variant 4
+			"Derecho"
+			"Tempest"
+		variant 3
+			"Derecho (Turret)"
+			"Tempest (Missile)"
+		variant 2
+			"Derecho (Tough)"
+			"Tempest (Heavy)"
+		variant 4
+			"Derecho"
+			"Strong Wind" 2
+		variant 3
+			"Derecho (Tough)"
+			"Autumn Leaf"
+			"Summer Leaf" 2
+		variant 2
+			"Derecho (Turret)"
+			"Tempest (Heavy)"
+			"Tempest"
+		variant 6
+			"Tempest"
+			"Summer Leaf"
+			"Autumn Leaf"
+		variant 4
+			"Tempest (Heavy)"
+			"Strong Wind"
+		variant 1
+			"Tempest (Heavy)"
+			"Tempest"
+			"Tempest (Missile)"
+		variant 2
+			"Tempest (Heavy)"
+			"Tempest"
+		variant 1
+			"Tempest (Missile)" 2
+		variant 3
+			"Strong Wind"
+			"Summer Leaf" 2
+		variant 2
+			"Strong Wind" 2
+		variant 2
+			"Strong Wind"
+			"Autumn Leaf"
+		variant
+			"Strong Wind" 3
+		variant 2
+			"Autumn Leaf" 3
+		variant
+			"Strong Wind"
+			"Autumn Leaf"
+			"Summer Leaf"
+		variant
+			"Autumn Leaf"
+			"Summer Leaf" 2
+		variant
+			"Summer Leaf" 4
+	shipyard "Wanderer Advanced"
+		"Hurricane"
+
+event "wanderers: desi seledrak"
+	system "Solifar"
+		government "Wanderer"
+	planet "Desi Seledrak"
+		attributes wanderer
+		description `Plumes of soot and ash rise from a cluster of several dozen volcanoes on this planet's main continent, shrouding the planet in a thick layer of clouds and choking out the sunlight. The ruins of several Korath cities and the geometric grids of cleared land surrounding them show that this was once a farming world, but now few plants are able to survive and kilometer-high glaciers have begun creeping down from the poles.`
+		description `	With some help from the Mereti drones, the Wanderers have set up factories here that are pumping carbon dioxide and methane to warm the atmosphere. In a few decades, the glaciers may start to recede.`
+		spaceport `This odd settlement was built half by the Wanderers and half by the Mereti drones. The layout of the streets is completely chaotic, and they have planted rows of trees and bushes everywhere: some inside greenhouses, and some hardier species out in the open air. The settlement is near the equator, but it is still not particularly warm.`

@@ -14,7 +14,10 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Color.h"
 #include "Command.h"
+#include "Dialog.h"
 #include "FillShader.h"
+#include "GameData.h"
+#include "Preferences.h"
 #include "Screen.h"
 #include "UI.h"
 
@@ -101,6 +104,10 @@ bool Panel::ZoneClick(const Point &point)
 	for(const Zone &zone : zones)
 		if(zone.Contains(point))
 		{
+			// If the panel is in editing mode, make sure it knows that a mouse
+			// click has broken it out of that mode, so it doesn't interpret a
+			// button press and a text character entered.
+			EndEditing();
 			zone.Click();
 			return true;
 		}
@@ -117,7 +124,7 @@ bool Panel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 
 
 
-bool Panel::Click(int x, int y)
+bool Panel::Click(int x, int y, int clicks)
 {
 	return false;
 }
@@ -226,6 +233,26 @@ int Panel::Modifier()
 		modifier *= 5;
 	
 	return modifier;
+}
+
+
+
+// Display the given help message if it has not yet been shown. Return true
+// if the message was displayed.
+bool Panel::DoHelp(const string &name) const
+{
+	string preference = "help: " + name;
+	if(Preferences::Has(preference))
+		return false;
+	
+	const string &message = GameData::HelpMessage(name);
+	if(message.empty())
+		return false;
+	
+	Preferences::Set(preference);
+	ui->Push(new Dialog(message));
+	
+	return true;
 }
 
 

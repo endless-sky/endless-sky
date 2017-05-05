@@ -17,7 +17,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "ClickZone.h"
 
-#include <map>
+#include <set>
 #include <string>
 #include <vector>
 
@@ -34,15 +34,16 @@ public:
 	MapSalesPanel(PlayerInfo &player, bool isOutfitters);
 	MapSalesPanel(const MapPanel &panel, bool isOutfitters);
 	
-	void Draw();
-	bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command);
-	bool Click(int x, int y);
-	bool Hover(int x, int y);
-	bool Drag(double dx, double dy);
-	bool Scroll(double dx, double dy);
+	virtual void Draw() override;
 	
 	
 protected:
+	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command) override;
+	virtual bool Click(int x, int y, int clicks) override;
+	virtual bool Hover(int x, int y) override;
+	virtual bool Drag(double dx, double dy) override;
+	virtual bool Scroll(double dx, double dy) override;
+	
 	virtual const Sprite *SelectedSprite() const = 0;
 	virtual const Sprite *CompareSprite() const = 0;
 	virtual const ItemInfoDisplay &SelectedInfo() const = 0;
@@ -54,20 +55,20 @@ protected:
 	virtual double SystemValue(const System *system) const = 0;
 	virtual int FindItem(const std::string &text) const = 0;
 	
-	virtual void DrawItems() const = 0;
+	virtual void DrawItems() = 0;
 	
 	void DrawKey() const;
 	void DrawPanel() const;
-	void DrawButtons();
 	void DrawInfo() const;
-
-	bool DrawHeader(Point &corner, const std::string &category) const;
+	
+	bool DrawHeader(Point &corner, const std::string &category);
 	void DrawSprite(const Point &corner, const Sprite *sprite) const;
 	void Draw(Point &corner, const Sprite *sprite, bool isForSale, bool isSelected,
-		const std::string &name, const std::string &price, const std::string &info) const;
+		const std::string &name, const std::string &price, const std::string &info);
 	
 	void DoFind(const std::string &text);
 	void ScrollTo(int index);
+	void ClickCategory(const std::string &name);
 	
 	
 protected:
@@ -78,20 +79,20 @@ protected:
 	
 protected:
 	double scroll = 0.;
-	mutable double maxScroll = 0.;
-
+	double maxScroll = 0.;
+	
 	const std::vector<std::string> &categories;
+	bool onlyShowSoldHere = false;
 	
 	
 private:
 	bool isDragging = false;
 	bool isOutfitters = false;
 	
-	mutable bool hidPrevious = true;
-	std::map<std::string, bool> hideCategory;
-	mutable std::vector<ClickZone<std::string>> categoryZones;
+	bool hidPrevious = true;
+	std::set<std::string> &collapsed;
 	
-	mutable std::vector<ClickZone<int>> zones;
+	std::vector<ClickZone<int>> zones;
 	int selected = -1;
 	int compare = -1;
 	

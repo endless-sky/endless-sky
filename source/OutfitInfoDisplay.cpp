@@ -13,23 +13,28 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "OutfitInfoDisplay.h"
 
 #include "Color.h"
+#include "Depreciation.h"
 #include "Format.h"
 #include "Outfit.h"
+#include "PlayerInfo.h"
 
 #include <algorithm>
 #include <map>
 #include <set>
+#include <sstream>
 
 using namespace std;
 
 namespace {
 	static const set<string> ATTRIBUTES_TO_SCALE = {
+		"active cooling",
 		"afterburner energy",
 		"afterburner fuel",
 		"afterburner heat",
 		"cloaking energy",
 		"cloaking fuel",
 		"cooling",
+		"cooling energy",
 		"energy generation",
 		"heat generation",
 		"hull repair rate",
@@ -40,6 +45,7 @@ namespace {
 		"shield generation",
 		"shield energy",
 		"shield heat",
+		"solar collection",
 		"thrusting energy",
 		"thrusting heat",
 		"turn",
@@ -47,25 +53,28 @@ namespace {
 		"turning heat"
 	};
 	
-	static const set<string> BOOLEAN_ATTRIBUTES = {
-		"unplunderable"
+	static const map<string, string> BOOLEAN_ATTRIBUTES = {
+		{"unplunderable", "This outfit cannot be plundered."},
+		{"installable", "This is not an installable item."},
+		{"hyperdrive", "Allows you to make hyperjumps."},
+		{"jump drive", "Lets you jump to any nearby system."}
 	};
 }
 
 
 
-OutfitInfoDisplay::OutfitInfoDisplay(const Outfit &outfit)
+OutfitInfoDisplay::OutfitInfoDisplay(const Outfit &outfit, const PlayerInfo &player, bool canSell)
 {
-	Update(outfit);
+	Update(outfit, player, canSell);
 }
 
 
 
 // Call this every time the ship changes.
-void OutfitInfoDisplay::Update(const Outfit &outfit)
+void OutfitInfoDisplay::Update(const Outfit &outfit, const PlayerInfo &player, bool canSell)
 {
 	UpdateDescription(outfit.Description());
-	UpdateRequirements(outfit);
+	UpdateRequirements(outfit, player, canSell);
 	UpdateAttributes(outfit);
 	
 	maximumHeight = max(descriptionHeight, max(requirementsHeight, attributesHeight));
@@ -87,15 +96,41 @@ void OutfitInfoDisplay::DrawRequirements(const Point &topLeft) const
 
 
 
-void OutfitInfoDisplay::UpdateRequirements(const Outfit &outfit)
+void OutfitInfoDisplay::UpdateRequirements(const Outfit &outfit, const PlayerInfo &player, bool canSell)
 {
 	requirementLabels.clear();
 	requirementValues.clear();
 	requirementsHeight = 20;
 	
-	requirementLabels.push_back("cost:");
-	requirementValues.push_back(Format::Number(outfit.Cost()));
+	int day = player.GetDate().DaysSinceEpoch();
+	int64_t cost = outfit.Cost();
+	int64_t buyValue = player.StockDepreciation().Value(&outfit, day);
+	int64_t sellValue = player.FleetDepreciation().Value(&outfit, day);
+	
+	if(buyValue == cost)
+		requirementLabels.push_back("cost:");
+	else
+	{
+		ostringstream out;
+		out << "cost (" << (100 * buyValue) / cost << "%):";
+		requirementLabels.push_back(out.str());
+	}
+	requirementValues.push_back(Format::Number(buyValue));
 	requirementsHeight += 20;
+	
+	if(canSell && sellValue != buyValue)
+	{
+		if(sellValue == cost)
+			requirementLabels.push_back("sells for:");
+		else
+		{
+			ostringstream out;
+			out << "sells for (" << (100 * sellValue) / cost << "%):";
+			requirementLabels.push_back(out.str());
+		}
+		requirementValues.push_back(Format::Number(sellValue));
+		requirementsHeight += 20;
+	}
 	
 	static const string names[] = {
 		"outfit space needed:", "outfit space",
@@ -141,9 +176,10 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		else if(ATTRIBUTES_TO_SCALE.count(it.first))
 			scale = 60.;
 		
-		if(BOOLEAN_ATTRIBUTES.count(it.first)) 
+		auto bit = BOOLEAN_ATTRIBUTES.find(it.first);
+		if(bit != BOOLEAN_ATTRIBUTES.end()) 
 		{
-			attributeLabels.push_back("This outfit is " + it.first + ".");
+			attributeLabels.push_back(bit->second);
 			attributeValues.push_back(" ");
 			attributesHeight += 20;
 		}

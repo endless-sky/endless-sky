@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "BoardingPanel.h"
 
 #include "CargoHold.h"
+#include "Depreciation.h"
 #include "Dialog.h"
 #include "FillShader.h"
 #include "Font.h"
@@ -20,14 +21,15 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Format.h"
 #include "GameData.h"
 #include "Government.h"
-#include "InfoPanel.h"
 #include "Information.h"
 #include "Interface.h"
 #include "Messages.h"
 #include "PlayerInfo.h"
+#include "Preferences.h"
 #include "Random.h"
 #include "Ship.h"
 #include "ShipEvent.h"
+#include "ShipInfoPanel.h"
 #include "System.h"
 #include "UI.h"
 
@@ -53,8 +55,7 @@ namespace {
 // Constructor.
 BoardingPanel::BoardingPanel(PlayerInfo &player, const shared_ptr<Ship> &victim)
 	: player(player), you(player.FlagshipPtr()), victim(victim),
-	attackOdds(*you, *victim), defenseOdds(*victim, *you),
-	initialCrew(you->Crew())
+	attackOdds(*you, *victim), defenseOdds(*victim, *you)
 {
 	// The escape key should close this panel rather than bringing up the main menu.
 	SetInterruptible(false);
@@ -199,15 +200,6 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 		// When closing the panel, mark the player dead if their ship was captured.
 		if(playerDied)
 			player.Die(true);
-		// Handle any death benefits that are owed.
-		if(deathBenefits)
-		{
-			Messages::Add(("You must pay " + Format::Number(deathBenefits)
-				+ " credits in death benefits for the ")
-				+ ((casualties > 1) ? "families of your dead crew members."
-					: "family of your dead crew member."));
-			player.Accounts().AddDeathBenefits(deathBenefits);
-		}
 		GetUI()->Pop(this);
 	}
 	else if(playerDied)
@@ -244,7 +236,7 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 		if(count == plunder[selected].Count())
 		{
 			plunder.erase(plunder.begin() + selected);
-			selected = min(selected, static_cast<int>(plunder.size()));
+			selected = min<int>(selected, plunder.size());
 		}
 		else
 			plunder[selected].Take(count);
@@ -360,19 +352,18 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 			}
 			else if(!victim->Crew())
 			{
-				casualties = initialCrew - you->Crew();
 				messages.push_back("You have succeeded in capturing this ship.");
 				victim->WasCaptured(you);
 				if(!victim->JumpsRemaining() && you->CanRefuel(*victim))
-					you->TransferFuel(victim->JumpFuel(), &*victim);
+					you->TransferFuel(victim->JumpFuelMissing(), &*victim);
 				player.AddShip(victim);
+				for(const Ship::Bay &bay : victim->Bays())
+					if(bay.ship)
+					{
+						player.AddShip(bay.ship);
+						player.HandleEvent(ShipEvent(you, bay.ship, ShipEvent::CAPTURE), GetUI());
+					}
 				isCapturing = false;
-				
-				// If you suffered any casualties, you need to split the value
-				// of the ship with their bereaved families. You get two shares,
-				// and each dead crew member gets one.
-				int64_t bonus = (victim->Cost() * casualties) / (casualties + 2);
-				deathBenefits += bonus;
 				
 				// Report this ship as captured in case any missions care.
 				ShipEvent event(you, victim, ShipEvent::CAPTURE);
@@ -381,7 +372,7 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 		}
 	}
 	else if(command.Has(Command::INFO))
-		GetUI()->Push(new InfoPanel(player, true));
+		GetUI()->Push(new ShipInfoPanel(player));
 	
 	// Trim the list of status messages.
 	while(messages.size() > 5)
@@ -393,7 +384,7 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 
 
 // Handle mouse clicks.
-bool BoardingPanel::Click(int x, int y)
+bool BoardingPanel::Click(int x, int y, int clicks)
 {
 	// Was the click inside the plunder list?
 	if(x >= -330 && x < 20 && y >= -180 && y < 60)
@@ -425,7 +416,7 @@ bool BoardingPanel::Drag(double dx, double dy)
 // The scroll wheel can be used to scroll the plunder list.
 bool BoardingPanel::Scroll(double dx, double dy)
 {
-	return Drag(dx, dy * 50.);
+	return Drag(0., dy * Preferences::ScrollSpeed());
 }
 
 
@@ -500,7 +491,7 @@ BoardingPanel::Plunder::Plunder(const string &commodity, int count, int unitValu
 
 // Constructor (outfit installed in the victim ship).
 BoardingPanel::Plunder::Plunder(const Outfit *outfit, int count)
-	: name(outfit->Name()), outfit(outfit), count(count), unitValue(outfit->Cost())
+	: name(outfit->Name()), outfit(outfit), count(count), unitValue(outfit->Cost() * Depreciation::Full())
 {
 	UpdateStrings();
 }
@@ -577,7 +568,7 @@ int BoardingPanel::Plunder::CanTake(int freeSpace) const
 	if(freeSpace <= 0)
 		return 0;
 	
-	return min(count, static_cast<int>(freeSpace / mass));
+	return min<int>(count, freeSpace / mass);
 }
 
 

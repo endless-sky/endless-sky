@@ -115,7 +115,7 @@ ship "Korath World-Ship"
 		"mass" 1735
 		"drag" 21
 		"heat dissipation" .4
-		"fuel capacity" 600
+		"fuel capacity" 1000
 		"cargo space" 264
 		"outfit space" 778
 		"weapon capacity" 314
@@ -140,9 +140,9 @@ ship "Korath World-Ship"
 		"Steering (Planetary Class)"
 		"Hyperdrive"
 	
-	engine -37 343
-	engine 0 343
-	engine 37 343
+	engine -37 343 .8
+	engine 0 343 .9
+	engine 37 343 .8
 	turret -76 -157 "Korath Grab-Strike"
 	turret 76 -157 "Korath Banisher"
 	turret -59 -135 "Korath Warder"
@@ -159,23 +159,96 @@ ship "Korath World-Ship"
 	"final explode" "final explosion large"
 	description "Korath World-Ships are massive nomadic habitats that hold all that is left of their people."
 
-
-
 ship "Korath World-Ship" "Korath World-Ship B"
 	sprite "ship/world-ship b"
 	turret -76 -219 "Korath Grab-Strike"
 	turret 76 -219 "Korath Grab-Strike"
 	turret -75 -112 "Korath Banisher"
-	turret 0 -92 "Korath Warder"
 	turret 75 -112 "Korath Banisher"
+	turret 0 -92 "Korath Warder"
 	turret -83 165 "Korath Warder"
 	turret 83 165 "Korath Warder"
 	turret 0 277 "Korath Banisher"
 
-
-
 ship "Korath World-Ship" "Korath World-Ship C"
 	sprite "ship/world-ship c"
+	turret -45 -247 "Korath Warder"
+	turret 45 -247 "Korath Grab-Strike"
+	turret -47 -140 "Korath Grab-Strike"
+	turret 47 -140 "Korath Banisher"
+	turret -70 53 "Korath Warder"
+	turret 70 53 "Korath Banisher"
+	turret -91 286 "Korath Banisher"
+	turret 91 286 "Korath Warder"
+
+ship "Korath World-Ship" "Korath World-Ship A (Jump)"
+	outfits
+		"Korath Grab-Strike" 2
+		"Korath Banisher" 3
+		"Korath Warder" 3
+		
+		"Triple Plasma Core"
+		"Systems Core (Large)"
+		"Large Heat Shunt" 2
+		"Ramscoop"
+		"Intrusion Countermeasures" 6
+		
+		"Thruster (Planetary Class)"
+		"Steering (Planetary Class)"
+		"Jump Drive"
+	
+	turret -76 -157 "Korath Grab-Strike"
+	turret 76 -157 "Korath Banisher"
+	turret -59 -135 "Korath Warder"
+	turret 59 -135 "Korath Grab-Strike"
+	turret -61 -6 "Korath Banisher"
+	turret 61 -6 "Korath Warder"
+	turret -66 210 "Korath Warder"
+	turret 66 210 "Korath Banisher"
+
+ship "Korath World-Ship" "Korath World-Ship B (Jump)"
+	sprite "ship/world-ship b"
+	outfits
+		"Korath Grab-Strike" 2
+		"Korath Banisher" 3
+		"Korath Warder" 3
+		
+		"Triple Plasma Core"
+		"Systems Core (Large)"
+		"Large Heat Shunt" 2
+		"Ramscoop"
+		"Intrusion Countermeasures" 6
+		
+		"Thruster (Planetary Class)"
+		"Steering (Planetary Class)"
+		"Jump Drive"
+	
+	turret -76 -219 "Korath Grab-Strike"
+	turret 76 -219 "Korath Grab-Strike"
+	turret -75 -112 "Korath Banisher"
+	turret 75 -112 "Korath Banisher"
+	turret 0 -92 "Korath Warder"
+	turret -83 165 "Korath Warder"
+	turret 83 165 "Korath Warder"
+	turret 0 277 "Korath Banisher"
+
+ship "Korath World-Ship" "Korath World-Ship C (Jump)"
+	sprite "ship/world-ship c"
+	outfits
+		"Korath Grab-Strike" 2
+		"Korath Banisher" 3
+		"Korath Warder" 3
+		
+		"Triple Plasma Core"
+		"Systems Core (Large)"
+		"Large Heat Shunt" 2
+		"Ramscoop"
+		"Intrusion Countermeasures" 6
+		
+		"Thruster (Planetary Class)"
+		"Steering (Planetary Class)"
+		"Jump Drive"
+	
 	turret -45 -247 "Korath Warder"
 	turret 45 -247 "Korath Grab-Strike"
 	turret -47 -140 "Korath Grab-Strike"
@@ -262,7 +335,7 @@ ship "Kar Ik Vot 349" "Kar Ik Vot 349 (Offense)"
 		"Systems Core (Large)"
 		"Systems Core (Medium)"
 		"Large Heat Shunt" 5
-		"Mass Expansion"
+		"Outfits Expansion"
 		"Control Transceiver"
 		
 		"Thruster (Planetary Class)"
@@ -292,7 +365,7 @@ ship "Kar Ik Vot 349" "Kar Ik Vot 349 (Defense)"
 		"Systems Core (Large)"
 		"Systems Core (Medium)"
 		"Large Heat Shunt" 3
-		"Mass Expansion"
+		"Outfits Expansion"
 		"Control Transceiver"
 		
 		"Thruster (Stellar Class)"
@@ -320,7 +393,7 @@ ship "Kar Ik Vot 349" "Kar Ik Vot 349 (Trapper)"
 		"Systems Core (Medium)"
 		"Large Heat Shunt" 3
 		"Small Heat Shunt"
-		"Mass Expansion" 4
+		"Outfits Expansion" 4
 		"Control Transceiver"
 		
 		"Thruster (Planetary Class)"
@@ -420,7 +493,7 @@ ship "Tek Far 71 - Lek" "Tek Far 71 - Lek (Close Quarters)"
 		"Systems Core (Medium)"
 		"Large Heat Shunt" 2
 		"Small Heat Shunt"
-		"Mass Expansion"
+		"Outfits Expansion"
 		"Control Transceiver"
 		
 		"Thruster (Lunar Class)"
@@ -510,7 +583,7 @@ ship "Tek Far 78 - Osk" "Tek Far 78 - Osk (Close Quarters)"
 		"Triple Plasma Core"
 		"Systems Core (Medium)"
 		"Large Heat Shunt" 3
-		"Mass Expansion"
+		"Outfits Expansion"
 		"Control Transceiver"
 		
 		"Thruster (Lunar Class)"
@@ -760,6 +833,50 @@ ship "Far Osk 27"
 	description "Because it is piloted by a computer and has no need for a cockpit or life support systems, the FS27 fighter is able to carry far more weaponry than any comparable human ship."
 
 
+ship "Model 8"
+	sprite "ship/model 8"
+	attributes
+		category "Interceptor"
+		"cost" 3725000
+		"shields" 5450
+		"hull" 3320
+		"automaton" 1
+		"mass" 110
+		"drag" 3.2
+		"heat dissipation" 1.5
+		"fuel capacity" 200
+		"cargo space" 29
+		"outfit space" 220
+		"weapon capacity" 49
+		"engine capacity" 60
+		"self destruct" .60
+		"ramscoop" 3
+		weapon
+			"blast radius" 100
+			"shield damage" 1200
+			"hull damage" 600
+			"hit force" 1800
+	outfits
+		"Korath Slicer"
+		
+		"Generator (Furnace Class)"
+		"Generator (Candle Class)"
+		"Systems Core (Small)"
+		"Reasoning Node"
+		
+		"Thruster (Comet Class)"
+		"Steering (Lunar Class)"
+		Hyperdrive
+	
+	engine -11 49
+	engine 11 49
+	gun 9 -36 "Korath Slicer"
+	gun -11 -15
+	explode "tiny explosion" 30
+	explode "small explosion" 10
+	"final explode" "final explosion small"
+	description "The primary role of the smallest Kor Mereti drones is asteroid mining, but their lasers can also be employed as offensive weapons when necessary."
+
 
 ship "Model 16"
 	sprite "ship/model 16"
@@ -908,10 +1025,10 @@ ship "Model 64"
 	engine -19 159
 	engine 19 159
 	gun 0 -159 "Korath Minelayer"
-	turret -35 -69 "Korath Disruptor"
 	turret 20 -74 "Korath Slicer Turret"
-	turret 34 77 "Korath Disruptor"
 	turret -29 71 "Korath Slicer Turret"
+	turret -35 -69 "Korath Disruptor"
+	turret 34 77 "Korath Disruptor"
 	explode "tiny explosion" 100
 	explode "small explosion" 70
 	explode "medium explosion" 50

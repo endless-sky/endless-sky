@@ -48,9 +48,9 @@ ship "Aerie"
 	engine 10 91
 	gun -13 -79 "Heavy Laser"
 	gun 13 -79 "Heavy Laser"
+	turret 0 0 "Heavy Anti-Missile Turret"
 	turret -17 14 "Heavy Laser Turret"
 	turret 17 14 "Heavy Laser Turret"
-	turret 0 0 "Heavy Anti-Missile Turret"
 	fighter -42 -2
 	fighter 42 2
 	explode "tiny explosion" 10
@@ -63,6 +63,7 @@ ship "Aerie"
 
 
 ship "Argosy"
+	plural "Argosies"
 	sprite "ship/argosy"
 	attributes
 		category "Light Freighter"
@@ -98,14 +99,14 @@ ship "Argosy"
 		"Greyhound Plasma Steering"
 		"Hyperdrive"
 		
-	engine -16 82
-	engine 16 82
+	engine -20 91
+	engine 20 91
 	gun -22 -37 "Energy Blaster"
 	gun 22 -37 "Energy Blaster"
 	gun -23 -37 "Meteor Missile Launcher"
 	gun 23 -37 "Meteor Missile Launcher"
-	turret 0 -8 "Blaster Turret"
-	turret 0 12 "Blaster Turret"
+	turret 0 -12 "Blaster Turret"
+	turret 0 8 "Blaster Turret"
 	explode "tiny explosion" 10
 	explode "small explosion" 25
 	explode "medium explosion" 25
@@ -403,11 +404,11 @@ ship "Behemoth"
 	gun -27 -83
 	gun 27 -83
 	turret -34 -64 "Heavy Laser Turret"
-	turret 24 78 "Heavy Laser Turret"
+	turret 34 -64 "Heavy Anti-Missile Turret"
 	turret -58 11 "Heavy Laser Turret"
 	turret 58 11 "Heavy Laser Turret"
 	turret -24 78 "Heavy Anti-Missile Turret"
-	turret 34 -64 "Heavy Anti-Missile Turret"
+	turret 24 78 "Heavy Laser Turret"
 	explode "small explosion" 15
 	explode "medium explosion" 25
 	explode "large explosion" 35
@@ -630,10 +631,10 @@ ship "Bulk Freighter"
 	gun -20 -175 "Sidewinder Missile Launcher"
 	gun 20 -175 "Sidewinder Missile Launcher"
 	turret -12 -155 "Laser Turret"
-	turret 30 175 "Laser Turret"
-	turret 0 5 "Laser Turret"
 	turret 12 -155 "Heavy Anti-Missile Turret"
+	turret 0 5 "Laser Turret"
 	turret -30 175 "Heavy Anti-Missile Turret"
+	turret 30 175 "Laser Turret"
 	explode "small explosion" 15
 	explode "medium explosion" 25
 	explode "large explosion" 35
@@ -687,18 +688,18 @@ ship "Carrier"
 		
 	engine -35 200
 	engine 35 200
-	gun -25 -166 "Particle Cannon"
-	gun 25 -166 "Particle Cannon"
 	gun -16 -176 "Particle Cannon"
 	gun 16 -176 "Particle Cannon"
-	gun -25 -166 "Meteor Missile Launcher"
-	gun 25 -166 "Meteor Missile Launcher"
 	gun -16 -176 "Meteor Missile Launcher"
 	gun 16 -176 "Meteor Missile Launcher"
-	turret 0 15 "Heavy Laser Turret"
+	gun -25 -166 "Particle Cannon"
+	gun 25 -166 "Particle Cannon"
+	gun -25 -166 "Meteor Missile Launcher"
+	gun 25 -166 "Meteor Missile Launcher"
 	turret 0 -114 "Heavy Laser Turret"
-	turret 0 157 "Heavy Laser Turret"
+	turret 0 15 "Heavy Laser Turret"
 	turret 0 103 "Heavy Anti-Missile Turret"
+	turret 0 157 "Heavy Laser Turret"
 	fighter -37 -65
 	fighter 37 -65
 	fighter -46 40
@@ -756,8 +757,8 @@ ship "Class C Freighter"
 	engine -22 198
 	engine 22 198
 	turret -12 -155 "Heavy Laser Turret"
-	turret 30 175 "Heavy Laser Turret"
 	turret 12 -155 "Heavy Anti-Missile Turret"
+	turret 30 175 "Heavy Laser Turret"
 	turret -30 175 "Heavy Anti-Missile Turret"
 	drone -66 -115 left
 	drone -66 -65 left
@@ -817,10 +818,10 @@ ship "Clipper"
 		
 	engine -20 45
 	engine 20 45
-	gun -12 -7 "Beam Laser"
-	gun 12 -7 "Beam Laser"
 	gun -23 -19 "Javelin Pod"
 	gun 23 -19 "Javelin Pod"
+	gun -12 -7 "Beam Laser"
+	gun 12 -7 "Beam Laser"
 	explode "tiny explosion" 15
 	explode "small explosion" 20
 	explode "medium explosion" 10
@@ -903,10 +904,10 @@ ship "Corvette"
 		
 	engine -11 118
 	engine 11 118
-	gun -14 -60 "Heavy Laser"
-	gun 14 -60 "Heavy Laser"
 	gun -12 -68 "Heavy Laser"
 	gun 12 -68 "Heavy Laser"
+	gun -14 -60 "Heavy Laser"
+	gun 14 -60 "Heavy Laser"
 	turret 0 -11 "Heavy Laser Turret"
 	turret 0 74 "Heavy Laser Turret"
 	explode "tiny explosion" 18
@@ -962,10 +963,10 @@ ship "Cruiser"
 		
 	engine -29 156
 	engine 29 156
-	gun -41 -52 "Particle Cannon"
-	gun 41 -52 "Particle Cannon"
 	gun -31 -63 "Particle Cannon"
 	gun 31 -63 "Particle Cannon"
+	gun -41 -52 "Particle Cannon"
+	gun 41 -52 "Particle Cannon"
 	gun -20 -44 "Sidewinder Missile Launcher"
 	gun 20 -44 "Sidewinder Missile Launcher"
 	turret 0 -40 "Heavy Laser Turret"
@@ -1128,10 +1129,10 @@ ship "Falcon"
 	gun 17 -88 "Plasma Cannon"
 	gun -17 -88 "Torpedo Launcher"
 	gun 17 -88 "Torpedo Launcher"
-	turret -57 40 "Quad Blaster Turret"
-	turret 57 40 "Quad Blaster Turret"
 	turret -16 -24 "Quad Blaster Turret"
 	turret 16 -24 "Quad Blaster Turret"
+	turret -57 40 "Quad Blaster Turret"
+	turret 57 40 "Quad Blaster Turret"
 	explode "tiny explosion" 40
 	explode "small explosion" 55
 	explode "medium explosion" 60
@@ -1142,6 +1143,7 @@ ship "Falcon"
 
 
 ship "Finch"
+	plural "Finches"
 	sprite "ship/finch"
 	attributes
 		category "Fighter"
@@ -1218,10 +1220,10 @@ ship "Firebird"
 		
 	engine -33 65
 	engine 33 65
-	gun -39 -13 "Heavy Laser"
-	gun 39 -13 "Heavy Laser"
 	gun -28 -27 "Heavy Laser"
 	gun 28 -27 "Heavy Laser"
+	gun -39 -13 "Heavy Laser"
+	gun 39 -13 "Heavy Laser"
 	turret -5 3 "Heavy Laser Turret"
 	turret 5 3 "Heavy Laser Turret"
 	explode "tiny explosion" 18
@@ -1229,7 +1231,7 @@ ship "Firebird"
 	explode "medium explosion" 24
 	explode "large explosion" 8
 	"final explode" "final explosion medium"
-	description "The Betelgeuse Shipyards Firebird is a warship with a long and storied past; Firebirds fought on both sides of the Alpha Wars nearly half a millennium ago, and although the equipment and systems have been upgraded continuously since then, the basic design remains almost the same. The Firebird is also a very rugged ship and easy to repair; supposedly a few of the Firebirds that fought in those wars are still in service today."
+	description "The Betelgeuse Shipyards Firebird is a warship with a long and storied past; Firebirds fought on both sides of the Alpha Wars over half a millennium ago, and although the equipment and systems have been upgraded continuously since then, the basic design remains almost the same. The Firebird is also a very rugged ship and easy to repair; supposedly a few of the Firebirds that fought in those wars are still in service today."
 
 
 
@@ -1382,6 +1384,7 @@ ship "Frigate"
 
 
 ship "Fury"
+	plural "Furies"
 	sprite "ship/fury"
 	attributes
 		category "Interceptor"
@@ -1848,10 +1851,10 @@ ship "Leviathan"
 		
 	engine -25 125
 	engine 25 125
-	gun -51 -21 "Particle Cannon"
-	gun 51 -21 "Particle Cannon"
 	gun -39 -33 "Particle Cannon"
 	gun 39 -33 "Particle Cannon"
+	gun -51 -21 "Particle Cannon"
+	gun 51 -21 "Particle Cannon"
 	turret -15 -50 "Quad Blaster Turret"
 	turret 15 -50 "Quad Blaster Turret"
 	turret -25 10 "Quad Blaster Turret"
@@ -1916,1555 +1919,8 @@ ship "Manta"
 
 
 
-ship "Marauder Arrow"
-	sprite "ship/marrows"
-	attributes
-		category "Interceptor"
-		"cost" 1320000
-		"shields" 2300
-		"hull" 500
-		"required crew" 2
-		"bunks" 5
-		"mass" 145
-		"drag" 2.7
-		"heat dissipation" .85
-		"fuel capacity" 400
-		"cargo space" 5
-		"outfit space" 210
-		"weapon capacity" 55
-		"engine capacity" 80
-		"self destruct" .25
-		weapon
-			"blast radius" 27
-			"shield damage" 265
-			"hull damage" 135
-			"hit force" 400
-	outfits
-		"Heavy Laser" 2
-		"Quad Blaster Turret"
-		
-		"Dwarf Core"
-		"LP072a Battery Pack"
-		"D14-RN Shield Generator"
-		"Cooling Ducts"
-		"Laser Rifle" 5
-		
-		"A250 Atomic Thruster"
-		"A255 Atomic Steering"
-		"Hyperdrive"
-		
-	engine -8 57
-	engine 8 57
-	gun -6 -36 "Heavy Laser"
-	gun 6 -36 "Heavy Laser"
-	turret 0 15 "Quad Blaster Turret"
-	explode "tiny explosion" 12
-	explode "small explosion" 18
-	explode "medium explosion" 6
-	"final explode" "final explosion small"
-	description "This Arrow has had numerous modifications to its hull and internal systems to make more room for outfits - mostly with combat in mind. More shields, weapons, engines, outfit space, and a turret mount nearly push this ship into the Light Warship category, and definitely make it one of the heaviest Interceptors you're likely to find."
-
-
-
-ship "Marauder Arrow" "Marauder Arrow (Engines)"
-	sprite "ship/marrowe"
-	attributes
-		category "Interceptor"
-		"cost" 1500000
-		"shields" 2300
-		"hull" 500
-		"required crew" 2
-		"bunks" 5
-		"mass" 145
-		"drag" 2.7
-		"heat dissipation" .85
-		"fuel capacity" 400
-		"cargo space" 5
-		"outfit space" 210
-		"weapon capacity" 55
-		"engine capacity" 100
-		"self destruct" .25
-		weapon
-			"blast radius" 27
-			"shield damage" 265
-			"hull damage" 135
-			"hit force" 400
-	outfits
-		"Heavy Laser" 2
-		"Anti-Missile Turret"
-		
-		"Dwarf Core"
-		"Supercapacitor"
-		"D14-RN Shield Generator"
-		"Laser Rifle" 5
-		
-		"A370 Atomic Thruster"
-		"A375 Atomic Steering"
-		"Hyperdrive"
-		
-	engine -10 57
-	engine 10 57
-	gun -6 -36 "Heavy Laser"
-	gun 6 -36 "Heavy Laser"
-	turret 0 15 "Anti-Missile Turret"
-	explode "tiny explosion" 12
-	explode "small explosion" 18
-	explode "medium explosion" 6
-	"final explode" "final explosion small"
-	description "With a third engine mount, you remark that this Arrow seems more like a missile. The beefed-up engines, a little extra outfit capacity, extra shield emitters, and thicker hull plating make this vessel a very competent Interceptor."
-
-
-
-ship "Marauder Arrow" "Marauder Arrow (Weapons)"
-	sprite "ship/marroww"
-	attributes
-		category "Interceptor"
-		"cost" 1500000
-		"shields" 2300
-		"hull" 500
-		"required crew" 2
-		"bunks" 5
-		"mass" 145
-		"drag" 2.7
-		"heat dissipation" .85
-		"fuel capacity" 400
-		"cargo space" 5
-		"outfit space" 210
-		"weapon capacity" 60
-		"engine capacity" 80
-		"self destruct" .25
-		weapon
-			"blast radius" 27
-			"shield damage" 265
-			"hull damage" 135
-			"hit force" 400
-	outfits
-		"Energy Blaster" 4
-		"Heavy Laser Turret"
-		
-		"Dwarf Core"
-		"LP036a Battery Pack"
-		"D14-RN Shield Generator"
-		"Water Coolant System"
-		"Laser Rifle" 5
-		
-		"A250 Atomic Thruster"
-		"A255 Atomic Steering"
-		"Hyperdrive"
-		
-	engine -8 57
-	engine 8 57
-	gun -6 -36 "Energy Blaster"
-	gun 6 -36 "Energy Blaster"
-	gun -7 -34 "Energy Blaster"
-	gun 7 -34 "Energy Blaster"
-	turret 0 15
-	explode "tiny explosion" 12
-	explode "small explosion" 18
-	explode "medium explosion" 6
-	"final explode" "final explosion small"
-	description "The weapons systems on this Arrow have been enhanced almost to the point of competing with Lionheart's Headhunter. The ship can still outrun all but the fastest ships, if things get a little too hairy."
-
-
-
-ship "Marauder Bounder"
-	sprite "ship/mbounders"
-	attributes
-		category "Interceptor"
-		"cost" 1250000
-		"shields" 2500
-		"hull" 700
-		"required crew" 2
-		"bunks" 18
-		"mass" 145
-		"drag" 3.7
-		"heat dissipation" .8
-		"fuel capacity" 900
-		"cargo space" 20
-		"outfit space" 240
-		"weapon capacity" 80
-		"engine capacity" 115
-		"self destruct" .25
-		weapon
-			"blast radius" 35
-			"shield damage" 350
-			"hull damage" 175
-			"hit force" 500
-	outfits
-		"Particle Cannon"
-		"Quad Blaster Turret" 2
-
-		"Dwarf Core"
-		"LP072a Battery Pack"
-		"S-270 Regenerator"
-		"Mass Expansion"
-		"Water Coolant System"
-		"Security Station"
-		"Laser Rifle" 18
-		
-		"A250 Atomic Thruster"
-		"A255 Atomic Steering"
-		"Afterburner"
-		"Hyperdrive"
-		
-	engine -12 44
-	engine 12 44
-	gun 0 -85 "Particle Cannon"
-	turret -38 7 "Quad Blaster Turret"
-	turret 38 7 "Quad Blaster Turret"
-	explode "tiny explosion" 10
-	explode "small explosion" 20
-	explode "medium explosion" 15
-	"final explode" "final explosion small"
-	description "This Megaparsec Bounder has been modified from a courier-scout into a heavy escort Interceptor - currently the largest in the class. A little extra outfit space, reinforced turret mounts, a new gun port in front of the pilot, and additional shield emitters bring this former Transport into combat with fearsome speed and armament."
-
-
-
-ship "Marauder Bounder" "Marauder Bounder (Engines)"
-	sprite "ship/mboundere"
-	attributes
-		category "Interceptor"
-		"cost" 1400000
-		"shields" 2500
-		"hull" 700
-		"required crew" 2
-		"bunks" 18
-		"mass" 145
-		"drag" 3.7
-		"heat dissipation" .8
-		"fuel capacity" 900
-		"cargo space" 20
-		"outfit space" 240
-		"weapon capacity" 80
-		"engine capacity" 130
-		"self destruct" .25
-		weapon
-			"blast radius" 35
-			"shield damage" 350
-			"hull damage" 175
-			"hit force" 500
-	outfits
-		"Heavy Laser"
-		"Quad Blaster Turret" 2
-		
-		"Dwarf Core"
-		"LP072a Battery Pack"
-		"S-270 Regenerator"
-		"Water Coolant System"
-		"Mass Expansion"
-		"Laser Rifle" 18
-		
-		"A370 Atomic Thruster"
-		"A375 Atomic Steering"
-		"Hyperdrive"
-		
-	engine -12 58
-	engine 0 51
-	engine 12 58
-	gun 0 -85 "Heavy Laser"
-	turret -38 7 "Quad Blaster Turret"
-	turret 38 7 "Quad Blaster Turret"
-	explode "tiny explosion" 10
-	explode "small explosion" 20
-	explode "medium explosion" 15
-	"final explode" "final explosion small"
-	description "The previous owner of this Bounder has modified an already fast courier-scout into an even faster heavy escort Interceptor with some truly enormous engines, making it incredibly fast for its size."
-
-
-
-ship "Marauder Bounder" "Marauder Bounder (Weapons)"
-	sprite "ship/mbounderw"
-	attributes
-		category "Interceptor"
-		"cost" 1400000
-		"shields" 2500
-		"hull" 700
-		"required crew" 2
-		"bunks" 18
-		"mass" 145
-		"drag" 3.7
-		"heat dissipation" .8
-		"fuel capacity" 900
-		"cargo space" 20
-		"outfit space" 240
-		"weapon capacity" 100
-		"engine capacity" 115
-		"self destruct" .25
-		weapon
-			"blast radius" 35
-			"shield damage" 350
-			"hull damage" 175
-			"hit force" 500
-	outfits
-		"Modified Blaster" 2
-		"Heavy Laser Turret" 2
-		
-		"Dwarf Core"
-		"LP072a Battery Pack"
-		"S-270 Regenerator"
-		"Water Coolant System"
-		"Mass Expansion"
-		"Security Station"
-		"Laser Rifle" 18
-		
-		"A250 Atomic Thruster"
-		"A255 Atomic Steering"
-		"Hyperdrive"
-		
-	engine -15 44
-	engine 15 44
-	gun 7 -77 "Modified Blaster"
-	gun -7 -77 "Modified Blaster"
-	turret -37 4 "Heavy Laser Turret"
-	turret 37 4 "Heavy Laser Turret"
-	explode "tiny explosion" 10
-	explode "small explosion" 20
-	explode "medium explosion" 15
-	"final explode" "final explosion small"
-	description "Simultaneously the deadliest and most graceful Interceptor in the galaxy, this once Bounder courier-scout has been equipped with incredibly powerful weapons for a ship of its size."
-
-
-
-ship "Marauder Falcon"
-	sprite "ship/mfalcons"
-	attributes
-		category "Heavy Warship"
-		"cost" 13900000
-		"shields" 14100
-		"hull" 4100
-		"required crew" 43
-		"bunks" 80
-		"mass" 560
-		"drag" 6.7
-		"heat dissipation" .8
-		"fuel capacity" 600
-		"cargo space" 60
-		"outfit space" 580
-		"weapon capacity" 265
-		"engine capacity" 165
-		"self destruct" .15
-		weapon
-			"blast radius" 170
-			"shield damage" 1750
-			"hull damage" 900
-			"hit force" 2750
-	outfits
-		"Plasma Cannon" 4
-		"Modified Blaster Turret" 4
-		
-		"Fusion Reactor"
-		"LP288a Battery Pack"
-		"D67-TM Shield Generator"
-		"Large Radar Jammer"
-		"Liquid Helium Cooler"
-		"Mass Expansion" 3
-		"Laser Rifle" 80
-		
-		"A520 Atomic Thruster"
-		"A525 Atomic Steering"
-		"Hyperdrive"
-
-	engine -16 143
-	engine 16 143
-	gun -16 -89 "Plasma Cannon"
-	gun 16 -89 "Plasma Cannon"
-	gun -16 -89 "Plasma Cannon"
-	gun 16 -89 "Plasma Cannon"
-	turret -57 32.5 "Modified Blaster Turret"
-	turret 57 32.5 "Modified Blaster Turret"
-	turret -16 -25 "Modified Blaster Turret"
-	turret 16 -25 "Modified Blaster Turret"
-	explode "tiny explosion" 40
-	explode "small explosion" 55
-	explode "medium explosion" 60
-	explode "large explosion" 40
-	"final explode" "final explosion large"
-	description "This Tarazed Falcon has been heavily modified by some very dedicated craftsmen.  The hull is riddled with extra shield emitters and expanded equipment bays, adding bulk and definitely voiding the warranty."
-
-
-
-ship "Marauder Falcon" "Marauder Falcon (Engines)"
-	sprite "ship/mfalcone"
-	attributes
-		category "Heavy Warship"
-		"cost" 15900000
-		"shields" 14100
-		"hull" 4100
-		"required crew" 43
-		"bunks" 80
-		"mass" 560
-		"drag" 6.7
-		"heat dissipation" .8
-		"fuel capacity" 600
-		"cargo space" 60
-		"outfit space" 580
-		"weapon capacity" 265
-		"engine capacity" 220
-		"self destruct" .1
-		weapon
-			"blast radius" 170
-			"shield damage" 1750
-			"hull damage" 900
-			"hit force" 2750
-	outfits
-		"Electron Beam" 4
-		"Blaster Turret" 2
-		"Modified Blaster Turret" 2
-		
-		"Fusion Reactor"
-		"LP144a Battery Pack"
-		"D41-HY Shield Generator"
-		"Large Radar Jammer"
-		"Liquid Helium Cooler"
-		"Mass Expansion" 3
-		"Laser Rifle" 80
-		
-		"A860 Atomic Thruster"
-		"A865 Atomic Steering"
-		"Hyperdrive"
-	
-	engine -21 138
-	engine 0 144
-	engine 21 138
-	gun -16 -88 "Electron Beam"
-	gun 16 -88 "Electron Beam"
-	gun -16 -88 "Electron Beam"
-	gun 16 -88 "Electron Beam"
-	turret -57 32.5 "Blaster Turret"
-	turret 57 32.5 "Blaster Turret"
-	turret -16 -24 "Modified Blaster Turret"
-	turret 16 -24 "Modified Blaster Turret"
-	explode "tiny explosion" 40
-	explode "small explosion" 55
-	explode "medium explosion" 60
-	explode "large explosion" 40
-	"final explode" "final explosion large"
-	description "Whoever modified this Falcon clearly valued speed above all else. Major sections of the hull have been reconfigured to accommodate the largest possible engines. If hot-rodding across the galaxy in a 1000 ton warship that handles like a Flivver is your dream, look no further."
-
-
-
-
-ship "Marauder Falcon" "Marauder Falcon (Weapons)"
-	sprite "ship/mfalconw"
-	attributes
-		category "Heavy Warship"
-		"cost" 15900000
-		"shields" 14100
-		"hull" 4100
-		"required crew" 43
-		"bunks" 80
-		"mass" 560
-		"drag" 6.7
-		"heat dissipation" .8
-		"fuel capacity" 600
-		"cargo space" 60
-		"outfit space" 580
-		"weapon capacity" 300
-		"engine capacity" 165
-		"self destruct" .1
-		weapon
-			"blast radius" 170
-			"shield damage" 1750
-			"hull damage" 900
-			"hit force" 2750
-	outfits
-		"Plasma Cannon" 6
-		"Quad Blaster Turret" 4
-		
-		"Fusion Reactor"
-		"LP144a Battery Pack"
-		"D41-HY Shield Generator"
-		"Large Radar Jammer"
-		"Liquid Helium Cooler"
-		"Mass Expansion" 3
-		"Laser Rifle" 80
-		
-		"A370 Atomic Thruster"
-		"A525 Atomic Steering"
-		"Hyperdrive"
-	
-	engine -16 142
-	engine 16 142
-	gun -18.5 -88 "Plasma Cannon"
-	gun 18.5 -88 "Plasma Cannon"
-	gun -21.5 -77 "Plasma Cannon"
-	gun 21.5 -77 "Plasma Cannon"
-	gun -18.5 -88 "Plasma Cannon"
-	gun 18.5 -88 "Plasma Cannon"
-	turret -57 32.5 "Quad Blaster Turret"
-	turret 57 32.5 "Quad Blaster Turret"
-	turret -16 -25 "Quad Blaster Turret"
-	turret 16 -25 "Quad Blaster Turret"
-	explode "tiny explosion" 40
-	explode "small explosion" 55
-	explode "medium explosion" 60
-	explode "large explosion" 40
-	"final explode" "final explosion large"
-	description "Whoever modified this Falcon clearly believed that firepower was everything. Two additional gun ports have been integrated into the hull, and the ship's interior space has been reconfigured to accommodate nearly any set of weapons you can imagine."
-
-
-
-ship "Marauder Firebird"
-	sprite "ship/mfirebirds"
-	attributes
-		category "Medium Warship"
-		"cost" 4100000
-		"shields" 7000
-		"hull" 3000
-		"required crew" 10
-		"bunks" 25
-		"mass" 350
-		"drag" 4.5
-		"heat dissipation" .6
-		"fuel capacity" 400
-		"cargo space" 20
-		"outfit space" 450
-		"weapon capacity" 175
-		"engine capacity" 110
-		"self destruct" .25
-		weapon
-			"blast radius" 110
-			"shield damage" 1100
-			"hull damage" 550
-			"hit force" 1650
-	outfits
-		"Plasma Cannon" 4
-		"Heavy Laser Turret"
-		"Heavy Anti-Missile Turret"
-		
-		"Fusion Reactor"
-		"Supercapacitor"
-		"S-970 Regenerator"
-		"Liquid Helium Cooler"
-		"Mass Expansion"
-		"Laser Rifle" 25
-		
-		"A250 Atomic Thruster"
-		"A525 Atomic Steering"
-		"Hyperdrive"
-	
-	engine -32 62
-	engine 32 62
-	gun -38 -18 "Plasma Cannon"
-	gun 38 -18 "Plasma Cannon"
-	gun -27 -32 "Plasma Cannon"
-	gun 27 -32 "Plasma Cannon"
-	turret -5 3 "Heavy Laser Turret"
-	turret 5 3 "Heavy Anti-Missile Turret"
-	explode "tiny explosion" 18
-	explode "small explosion" 36
-	explode "medium explosion" 24
-	explode "large explosion" 8
-	"final explode" "final explosion medium"
-	description "By the looks of the modification that have taken place, you suspect that this ship contains no original parts. With extra shield emitters, hull plating, and outfit space, this half-millennium young ship is finding new life with its heavy modification."
-
-
-
-ship "Marauder Firebird" "Marauder Firebird (Engines)"
-	sprite "ship/mfirebirde"
-	attributes
-		category "Medium Warship"
-		"cost" 4500000
-		"shields" 7000
-		"hull" 3000
-		"required crew" 10
-		"bunks" 25
-		"mass" 350
-		"drag" 4.5
-		"heat dissipation" .6
-		"fuel capacity" 400
-		"cargo space" 20
-		"outfit space" 450
-		"weapon capacity" 175
-		"engine capacity" 130
-		"self destruct" .15
-		weapon
-			"blast radius" 110
-			"shield damage" 1100
-			"hull damage" 550
-			"hit force" 1650
-	outfits
-		"Plasma Cannon" 4
-		"Quad Blaster Turret"
-		"Anti-Missile Turret"
-		
-		"Fusion Reactor"
-		"LP036a Battery Pack"
-		"Supercapacitor"
-		"S-970 Regenerator"
-		"Liquid Helium Cooler"
-		"Mass Expansion"
-		"Security Station"
-		"Laser Rifle" 24
-		
-		"A370 Atomic Thruster"
-		"A525 Atomic Steering"
-		"Hyperdrive"
-	
-	engine -34 62
-	engine 0 74
-	engine 34 62
-	gun -38 -18 "Plasma Cannon"
-	gun 38 -18 "Plasma Cannon"
-	gun -26.5 -33 "Plasma Cannon"
-	gun 26.5 -33 "Plasma Cannon"
-	turret -5 3 "Quad Blaster Turret"
-	turret 5 3 "Anti-Missile Turret"
-	explode "tiny explosion" 18
-	explode "small explosion" 36
-	explode "medium explosion" 24
-	explode "large explosion" 8
-	"final explode" "final explosion medium"
-	description "One of the biggest complaints about Betelgeuse's venerable classic from younger pilots is that it's heavy and slow. A previous owner of this ship also believed so, and has fitted another engine port, in addition to setting aside more space for outfits and giving the old ship some new hull plating and shield emitters."
-
-
-
-ship "Marauder Firebird" "Marauder Firebird (Weapons)"
-	sprite "ship/mfirebirdw"
-	attributes
-		category "Medium Warship"
-		"cost" 4500000
-		"shields" 7000
-		"hull" 3000
-		"required crew" 10
-		"bunks" 25
-		"mass" 350
-		"drag" 4.5
-		"heat dissipation" .6
-		"fuel capacity" 400
-		"cargo space" 20
-		"outfit space" 450
-		"weapon capacity" 210
-		"engine capacity" 110
-		"self destruct" .15
-		weapon
-			"blast radius" 110
-			"shield damage" 1100
-			"hull damage" 550
-			"hit force" 1650
-	outfits
-		"Particle Cannon" 4
-		"Quad Blaster Turret" 2
-		
-		"Fusion Reactor"
-		"Supercapacitor"
-		"S-970 Regenerator"
-		"Liquid Helium Cooler"
-		"Mass Expansion"
-		"Security Station"
-		"Laser Rifle" 24
-		
-		"A250 Atomic Thruster"
-		"A525 Atomic Steering"
-		"Hyperdrive"
-	
-	engine -32 62
-	engine 32 62
-	gun -38 -18 "Particle Cannon"
-	gun 38 -18 "Particle Cannon"
-	gun -27 -32 "Particle Cannon"
-	gun 27 -32 "Particle Cannon"
-	turret -5 3 "Quad Blaster Turret"
-	turret 5 3 "Quad Blaster Turret"
-	explode "tiny explosion" 18
-	explode "small explosion" 36
-	explode "medium explosion" 24
-	explode "large explosion" 8
-	"final explode" "final explosion medium"
-	description "This Medium Warship with one of the heaviest armaments possible just got heavier. With more outfit space, giant gun ports, extra hull plating, and more shield emitters - this blast from the past will make its targets history."
-
-
-
-ship "Marauder Fury"
-	sprite "ship/mfury"
-	attributes
-		category "Interceptor"
-		"cost" 750000
-		"shields" 3000
-		"hull" 600
-		"required crew" 1
-		"bunks" 3
-		"mass" 100
-		"drag" 1.9
-		"heat dissipation" .85
-		"fuel capacity" 500
-		"cargo space" 15
-		"outfit space" 240
-		"weapon capacity" 80
-		"engine capacity" 100
-		"ramscoop" 2
-		weapon
-			"blast radius" 36
-			"shield damage" 360
-			"hull damage" 180
-			"hit force" 520
-	outfits
-		"Beam Laser" 4
-		"Sidewinder Missile Launcher" 2
-		"Sidewinder Missile" 100
-		
-		"Dwarf Core"
-		"LP072a Battery Pack"
-		"Supercapacitor" 2
-		"S-270 Regenerator"
-		"Water Coolant System"
-		"Security Station" 3
-		
-		"A250 Atomic Thruster"
-		"A375 Atomic Steering"
-		"Hyperdrive"
-		
-	engine -21 42
-	engine 0 48
-	engine 21 42
-	gun -12 -33 "Beam Laser"
-	gun 12 -33 "Beam Laser"
-	gun -20 -25 "Beam Laser"
-	gun 20 -25 "Beam Laser"
-	gun -43.5 2 "Sidewinder Missile Launcher"
-	gun 43.5 2 "Sidewinder Missile Launcher"
-	explode "tiny explosion" 10
-	explode "small explosion" 20
-	"final explode" "final explosion small"
-	description "You're sure there's a Southbound Fury under all the extra modifications. This ship appears to be one man's insane quest to make the most powerful single pilot warship ever. Upon closer inspection, you're inclined to believe he may have succeeded."
-
-
-
-ship "Marauder Leviathan"
-	sprite "ship/mleviathans"
-	attributes
-		category "Heavy Warship"
-		"cost" 10800000
-		"shields" 16000
-		"hull" 5500
-		"required crew" 48
-		"bunks" 69
-		"mass" 640
-		"drag" 7.6
-		"heat dissipation" .5
-		"fuel capacity" 500
-		"cargo space" 40
-		"outfit space" 680
-		"weapon capacity" 265
-		"engine capacity" 140
-		"self destruct" .15
-		weapon
-			"blast radius" 90
-			"shield damage" 900
-			"hull damage" 450
-			"hit force" 1500
-	outfits
-		"Particle Cannon" 4
-		"Quad Blaster Turret" 2
-		"Heavy Laser Turret" 2
-		
-		"Fusion Reactor"
-		"LP144a Battery Pack"
-		"D94-YV Shield Generator"
-		"Large Radar Jammer"
-		"Liquid Helium Cooler"
-		"Mass Expansion" 2
-		"Laser Rifle" 69
-		
-		"A370 Atomic Thruster"
-		"A525 Atomic Steering"
-		"Ionic Afterburner"
-		"Hyperdrive"
-	
-	engine -25 125
-	engine 25 125
-	gun -50 -26 "Particle Cannon"
-	gun 50 -26 "Particle Cannon"
-	gun -38 -34 "Particle Cannon"
-	gun 38 -34 "Particle Cannon"
-	turret -15 -50 "Quad Blaster Turret"
-	turret 15 -50 "Quad Blaster Turret"
-	turret -25 10 "Heavy Laser Turret"
-	turret 25 10 "Heavy Laser Turret"
-	explode "tiny explosion" 18
-	explode "small explosion" 36
-	explode "medium explosion" 24
-	explode "large explosion" 8
-	"final explode" "final explosion large"
-	description "The Betelgeuse Shipyards Leviathan has been in service for a long time, and captains have had some very interesting ideas about how to modify them for optimum performance. This one has had the hull surface completely stripped off and replaced with a surface containing more shield projectors per square meter."
-
-
-
-ship "Marauder Leviathan" "Marauder Leviathan (Engines)"
-	sprite "ship/mleviathane"
-	attributes
-		category "Heavy Warship"
-		"cost" 12000000
-		"shields" 16000
-		"hull" 5500
-		"required crew" 47
-		"bunks" 68
-		"mass" 640
-		"drag" 7.6
-		"heat dissipation" .5
-		"fuel capacity" 500
-		"cargo space" 40
-		"outfit space" 680
-		"weapon capacity" 265
-		"engine capacity" 220
-		"self destruct" .1
-		weapon
-			"blast radius" 90
-			"shield damage" 900
-			"hull damage" 450
-			"hit force" 1500
-	outfits
-		"Electron Beam" 4
-		"Quad Blaster Turret" 4
-		
-		"Fusion Reactor"
-		"LP144a Battery Pack"
-		"D94-YV Shield Generator"
-		"Large Radar Jammer"
-		"Liquid Helium Cooler"
-		"Liquid Nitrogen Cooler"
-		"Mass Expansion" 2
-		"Laser Rifle" 69
-		
-		"A860 Atomic Thruster"
-		"A865 Atomic Steering"
-		"Hyperdrive"
-	
-	engine -27 125
-	engine 27 125
-	gun -50 -23 "Electron Beam"
-	gun 50 -23 "Electron Beam"
-	gun -38 -34 "Electron Beam"
-	gun 38 -34 "Electron Beam"
-	turret -16 -48 "Quad Blaster Turret"
-	turret 16 -48 "Quad Blaster Turret"
-	turret -25 10 "Quad Blaster Turret"
-	turret 25 10 "Quad Blaster Turret"
-	explode "tiny explosion" 18
-	explode "small explosion" 36
-	explode "medium explosion" 24
-	explode "large explosion" 8
-	"final explode" "final explosion large"
-	description "As if the Leviathan isn't a terrifying enough ship already, this one has been heavily modified with special attention paid to the engine capacity, enabling it to bring its guns to bear even faster."
-
-
-
-ship "Marauder Leviathan" "Marauder Leviathan (Weapons)"
-	sprite "ship/mleviathanw"
-	attributes
-		category "Heavy Warship"
-		"cost" 12000000
-		"shields" 16000
-		"hull" 5500
-		"required crew" 47
-		"bunks" 68
-		"mass" 640
-		"drag" 7.6
-		"heat dissipation" .5
-		"fuel capacity" 500
-		"cargo space" 40
-		"outfit space" 680
-		"weapon capacity" 300
-		"engine capacity" 140
-		"self destruct" .1
-		weapon
-			"blast radius" 90
-			"shield damage" 900
-			"hull damage" 450
-			"hit force" 1500
-	outfits
-		"Particle Cannon" 4
-		"Heavy Laser Turret" 4
-
-		"Fusion Reactor"
-		"LP144a Battery Pack"
-		"D94-YV Shield Generator"
-		"Large Radar Jammer"
-		"Liquid Helium Cooler"
-		"Mass Expansion" 2
-		"Laser Rifle" 69
-
-		"A370 Atomic Thruster"
-		"A525 Atomic Steering"
-		"Ionic Afterburner"
-		"Hyperdrive"
-	
-	engine -25 125
-	engine 25 125
-	gun -50 -45 "Particle Cannon"
-	gun 50 -45 "Particle Cannon"
-	gun -39 -52 "Particle Cannon"
-	gun 39 -52 "Particle Cannon"
-	turret -15 -50 "Heavy Laser Turret"
-	turret 15 -50 "Heavy Laser Turret"
-	turret -25 10 "Heavy Laser Turret"
-	turret 25 10 "Heavy Laser Turret"
-	explode "tiny explosion" 18
-	explode "small explosion" 36
-	explode "medium explosion" 24
-	explode "large explosion" 8
-	"final explode" "final explosion large"
-	description "This Leviathan once belonged to an infamous pirate captain whose name has been lost to the ages. It's had so much custom work done to it that can hardly even be considered the same ship. The weapons capacity, in particular has been massively increased."
-
-
-
-ship "Marauder Manta"
-	sprite "ship/mmantas"
-	attributes
-		category "Medium Warship"
-		"cost" 3740000
-		"shields" 6500
-		"hull" 1750
-		"required crew" 7
-		"bunks" 11
-		"mass" 195
-		"drag" 4.7
-		"heat dissipation" .8
-		"fuel capacity" 400
-		"cargo space" 10
-		"outfit space" 390
-		"weapon capacity" 155
-		"engine capacity" 110
-		"self destruct" .25
-		weapon
-			"blast radius" 90
-			"shield damage" 900
-			"hull damage" 450
-			"hit force" 1350
-	outfits
-		"Plasma Cannon" 2
-		"Particle Cannon" 2
-		"Meteor Missile Launcher" 2
-		"Meteor Missile" 70
-		"Quad Blaster Turret"
-		
-		"Dwarf Core"
-		"LP144a Battery Pack"
-		"D14-RN Shield Generator"
-		"Liquid Nitrogen Cooler"
-		"Security Station" 3
-		"Laser Rifle" 8
-		
-		"A250 Atomic Thruster"
-		"A525 Atomic Steering"
-		"Hyperdrive"
-	
-	engine -33 38
-	engine 33 38
-	gun -20 -30 "Particle Cannon"
-	gun 20 -30 "Particle Cannon"
-	gun -27 -30 "Particle Cannon"
-	gun 27 -30 "Particle Cannon"
-	gun -66 -30 "Meteor Missile Launcher"
-	gun 66 -30 "Meteor Missile Launcher"
-	turret 0 -29 "Quad Blaster Turret"
-	explode "tiny explosion" 10
-	explode "small explosion" 20
-	explode "medium explosion" 15
-	"final explode" "final explosion medium"
-	description `After the Syndicate released their Vanguard Heavy Warship, the Manta fell somewhat out of favor, lacking the ability to mount any anti-missile systems. The owner of this Manta rectified that, added some extra armor plating and shield emitters, and rearranged some of the internals to yield a little more outfit space. Dry tonnage alone keeps it in the Medium Warship category.`
-
-
-
-ship "Marauder Manta" "Marauder Manta (Engines)"
-	sprite "ship/mmantae"
-	attributes
-		category "Medium Warship"
-		"cost" 4000000
-		"shields" 6500
-		"hull" 1750
-		"required crew" 7
-		"bunks" 11
-		"mass" 195
-		"drag" 4.7
-		"heat dissipation" .8
-		"fuel capacity" 400
-		"cargo space" 10
-		"outfit space" 390
-		"weapon capacity" 155
-		"engine capacity" 130
-		"self destruct" .15
-		weapon
-			"blast radius" 90
-			"shield damage" 900
-			"hull damage" 450
-			"hit force" 1350
-	outfits
-		"Plasma Cannon" 4
-		"Meteor Missile Launcher" 2
-		"Meteor Missile" 70
-		"Quad Blaster Turret"
-		
-		"Dwarf Core"
-		"LP144a Battery Pack"
-		"D14-RN Shield Generator"
-		"Liquid Nitrogen Cooler"
-		"Laser Rifle" 11
-		
-		"A370 Atomic Thruster"
-		"A525 Atomic Steering"
-		"Hyperdrive"
-	
-	engine -33.5 38
-	engine 0 76
-	engine 33.5 38
-	gun -20 -30 "Plasma Cannon"
-	gun 20 -30 "Plasma Cannon"
-	gun -27 -30 "Plasma Cannon"
-	gun 27 -30 "Plasma Cannon"
-	gun -66 -30 "Meteor Missile Launcher"
-	gun 66 -30 "Meteor Missile Launcher"
-	turret 0 -29 "Quad Blaster Turret"
-	explode "tiny explosion" 10
-	explode "small explosion" 20
-	explode "medium explosion" 15
-	"final explode" "final explosion medium"
-	description `A previous owner of this Manta has gone to great lengths to make sure they could bring all six gun ports to bear in a hurry and chase down smaller warships. Style was not lost on that captain, and a forked tail yielded a little more space for shield projectors in an area that would have been destabilized by engine exhaust. It almost makes it to "Heavy Warship," but dry tonnage keeps it in the Medium Warship category.`
-
-
-
-ship "Marauder Manta" "Marauder Manta (Weapons)"
-	sprite "ship/mmantaw"
-	attributes
-		category "Medium Warship"
-		"cost" 4000000
-		"shields" 6500
-		"hull" 1750
-		"required crew" 7
-		"bunks" 11
-		"mass" 195
-		"drag" 4.7
-		"heat dissipation" .8
-		"fuel capacity" 400
-		"cargo space" 10
-		"outfit space" 390
-		"weapon capacity" 175
-		"engine capacity" 110
-		"self destruct" .15
-		weapon
-			"blast radius" 90
-			"shield damage" 900
-			"hull damage" 450
-			"hit force" 1350
-	outfits
-		"Particle Cannon" 2
-		"Proton Gun" 2
-		"Meteor Missile Launcher" 2
-		"Meteor Missile" 70
-		"Heavy Anti-Missile Turret"
-		
-		"Fission Reactor"
-		"LP072a Battery Pack"
-		"LP036a Battery Pack"
-		"Supercapacitor"
-		"D14-RN Shield Generator"
-		"Liquid Nitrogen Cooler"
-		"Laser Rifle" 11
-		
-		"A250 Atomic Thruster"
-		"A375 Atomic Steering"
-		"Hyperdrive"
-		
-	engine -33.5 38
-	engine 33.5 38
-	gun -20 -35 "Particle Cannon"
-	gun 20 -35 "Particle Cannon"
-	gun -27 -35 "Proton Gun"
-	gun 27 -35 "Proton Gun"
-	gun -66 -34 "Meteor Missile Launcher"
-	gun 66 -34 "Meteor Missile Launcher"
-	turret 0 -29 "Heavy Anti-Missile Turret"
-	explode "tiny explosion" 10
-	explode "small explosion" 20
-	explode "medium explosion" 15
-	"final explode" "final explosion medium"
-	description `This Manta has undergone extensive modification, featuring extra gun ports, hull plating, and shield emitters. You wonder where the modifier intended the power systems to go, but you're sure you'll find space for them somewhere. It almost makes it to "Heavy Warship," but dry tonnage keeps it in the Medium Warship category.`
-
-
-
-ship "Marauder Quicksilver"
-	sprite "ship/mquicksilvers"
-	attributes
-		category "Light Warship"
-		"cost" 1200000
-		"shields" 3500
-		"hull" 900
-		"required crew" 4
-		"bunks" 7
-		"mass" 140
-		"drag" 2.7
-		"heat dissipation" .8
-		"fuel capacity" 400
-		"cargo space" 5
-		"outfit space" 265
-		"weapon capacity" 65
-		"engine capacity" 75
-		"self destruct" .25
-		weapon
-			"blast radius" 45
-			"shield damage" 450
-			"hull damage" 225
-			"hit force" 650
-	outfits
-		"Heavy Laser" 2
-		"Heavy Anti-Missile Turret"
-		
-		"Fission Reactor"
-		"LP036a Battery Pack"
-		"S-270 Regenerator"
-		"Liquid Nitrogen Cooler"
-		"Security Station" 3
-		"Laser Rifle"
-		
-		"A250 Atomic Thruster"
-		"A375 Atomic Steering"
-		"Hyperdrive"
-	
-	engine -16 52
-	engine 16 52
-	gun -7 -39 "Heavy Laser"
-	gun 7 -39 "Heavy Laser"
-	turret 0 15 "Heavy Anti-Missile Turret"
-	explode "tiny explosion" 12
-	explode "small explosion" 16
-	"final explode" "final explosion small"
-	description "This Megaparsec Quicksilver is a bit of a Hotrod, being a little faster, with extra shield projectors, hull plating, and an extra bunk. This aftermarket model also features a turret mount,  perhaps in an answer to Lionheart's Headhunter. The shop that built this ship is sure to see more customers."
-
-
-
-ship "Marauder Quicksilver" "Marauder Quicksilver (Engines)"
-	sprite "ship/mquicksilvere"
-	attributes
-		category "Light Warship"
-		"cost" 1320000
-		"shields" 3500
-		"hull" 900
-		"required crew" 4
-		"bunks" 7
-		"mass" 140
-		"drag" 2.7
-		"heat dissipation" .8
-		"fuel capacity" 400
-		"cargo space" 5
-		"outfit space" 265
-		"weapon capacity" 65
-		"engine capacity" 115
-		"self destruct" .15
-		weapon
-			"blast radius" 45
-			"shield damage" 450
-			"hull damage" 225
-			"hit force" 650
-	outfits
-		"Pulse Cannon" 2
-		"Anti-Missile Turret"
-		
-		"Fission Reactor"
-		"S-270 Regenerator"
-		"LP036a Battery Pack"
-		"Liquid Nitrogen Cooler"
-		"Security Station" 2
-		"Laser Rifle" 5
-		
-		"A370 Atomic Thruster"
-		"A375 Atomic Steering"
-		"Hyperdrive"
-	
-	engine -16 52
-	engine 0 52
-	engine 16 52
-	gun -7 -39 "Pulse Cannon"
-	gun 7 -39 "Pulse Cannon"
-	turret 0 15 "Anti-Missile Turret"
-	explode "tiny explosion" 12
-	explode "small explosion" 16
-	"final explode" "final explosion small"
-	description "This Quicksilver has even more space available for engine use - and even another thruster port! It's also got a few extra shield projectors, more hull plating and another bunk. This aftermarket model also features a turret mount, perhaps in response to Lionheart's Headhunter. Whoever modified this ship wanted to chase their prey down with vicious speed."
-
-
-
-ship "Marauder Quicksilver" "Marauder Quicksilver (Weapons)"
-	sprite "ship/mquicksilverw"
-	attributes
-		category "Light Warship"
-		"cost" 1320000
-		"shields" 3500
-		"hull" 900
-		"required crew" 4
-		"bunks" 7
-		"mass" 140
-		"drag" 2.7
-		"heat dissipation" .8
-		"fuel capacity" 400
-		"cargo space" 5
-		"outfit space" 265
-		"weapon capacity" 80
-		"engine capacity" 75
-		"self destruct" .15
-		weapon
-			"blast radius" 45
-			"shield damage" 450
-			"hull damage" 225
-			"hit force" 650
-	outfits
-		"Heavy Laser" 2
-		"Heavy Laser Turret"
-		
-		"Fission Reactor"
-		"LP036a Battery Pack"
-		"S-270 Regenerator"
-		"Liquid Nitrogen Cooler"
-		"Security Station" 4
-		"Laser Rifle"
-		
-		"A250 Atomic Thruster"
-		"A255 Atomic Steering"
-		"Hyperdrive"
-	
-	engine -17 54
-	engine 17 54
-	turret 0 15
-	gun -7 -39 "Heavy Laser"
-	gun 7 -39 "Heavy Laser"
-	turret 0 15 "Heavy Laser Turret"
-	explode "tiny explosion" 12
-	explode "small explosion" 16
-	"final explode" "final explosion small"
-	description "This Quicksilver has even bigger gun ports. It's also got a few extra shield emitters, more hull plating, and an extra bunk. Outfitted right, this aftermarket model could be even faster than a stock model, bringing a couple of extra cannons and a turret to the fight, to mimic Lionheart's Headhunter perhaps a little more menacingly."
-
-
-
-ship "Marauder Raven"
-	sprite "ship/mravens"
-	attributes
-		category "Light Warship"
-		"cost" 2250000
-		"shields" 5200
-		"hull" 1600
-		"required crew" 7
-		"bunks" 14
-		"mass" 145
-		"drag" 3.7
-		"heat dissipation" .8
-		"fuel capacity" 500
-		"cargo space" 20
-		"outfit space" 310
-		"weapon capacity" 105
-		"engine capacity" 110
-		"self destruct" .25
-		weapon
-			"blast radius" 65
-			"shield damage" 650
-			"hull damage" 350
-			"hit force" 1000
-	outfits
-		"Heavy Laser" 4
-		"Heavy Laser Turret"
-		
-		"Breeder Reactor"
-		"Supercapacitor" 3
-		"S-270 Regenerator"
-		"Liquid Nitrogen Cooler"
-		"Mass Expansion"
-		
-		"A250 Atomic Thruster"
-		"A375 Atomic Steering"
-		"Afterburner"
-		"Hyperdrive"
-	
-	engine -12 45
-	engine 12 45
-	gun -10 -33 "Heavy Laser"
-	gun 10 -33 "Heavy Laser"
-	gun -16 -28 "Heavy Laser"
-	gun 16 -28 "Heavy Laser"
-	turret 0 -19 "Heavy Laser Turret"
-	explode "medium explosion" 24
-	explode "large explosion" 16
-	explode "tiny explosion" 28
-	explode "small explosion" 40
-	"final explode" "final explosion small"
-	description "The modifier of this Raven has given more heft to an agile and elegant vessel. They've added a turret and some apparently flimsy bulkheads over extra shield emitters and outfit space. If it weren't for the wingtips, you would barely recognize Lionheart's ship under the patchwork that you expect has made an already deadly warship even more so."
-
-
-
-ship "Marauder Raven" "Marauder Raven (Engines)"
-	sprite "ship/mravene"
-	attributes
-		category "Light Warship"
-		"cost" 2500000
-		"shields" 5200
-		"hull" 1600
-		"required crew" 7
-		"bunks" 14
-		"mass" 145
-		"drag" 3.7
-		"heat dissipation" .8
-		"fuel capacity" 500
-		"cargo space" 20
-		"outfit space" 310
-		"weapon capacity" 105
-		"engine capacity" 130
-		"self destruct" .15
-		weapon
-			"blast radius" 65
-			"shield damage" 650
-			"hull damage" 350
-			"hit force" 1000
-	outfits
-		"Heavy Laser" 4
-		"Heavy Laser Turret"
-		
-		"Breeder Reactor"
-		"Supercapacitor"
-		"S-270 Regenerator"
-		"Liquid Nitrogen Cooler"
-		"Mass Expansion"
-		
-		"A370 Atomic Thruster"
-		"A375 Atomic Steering"
-		"Hyperdrive"
-	
-	engine -12 45
-	engine 0 43
-	engine 12 45
-	gun -10 -33 "Heavy Laser"
-	gun 10 -33 "Heavy Laser"
-	gun -16 -28 "Heavy Laser"
-	gun 16 -28 "Heavy Laser"
-	turret 0 -19 "Heavy Laser Turret"
-	explode "medium explosion" 24
-	explode "large explosion" 16
-	explode "tiny explosion" 28
-	explode "small explosion" 40
-	"final explode" "final explosion small"
-	description "Lionheart's elegant Raven has gained popularity with pirates because of its agility. This one appears to have been modified for even more of the latter, at the expense of the former, and You only recognize it as a Raven by the wingtips. A third engine bay, more outfit space, additional shield emitters, and a turret make this already deadly warship appear even more frightening."
-
-
-
-ship "Marauder Raven" "Marauder Raven (Weapons)"
-	sprite "ship/mravenw"
-	attributes
-		category "Light Warship"
-		"cost" 2500000
-		"shields" 5200
-		"hull" 1600
-		"required crew" 7
-		"bunks" 14
-		"mass" 145
-		"drag" 3.7
-		"heat dissipation" .8
-		"fuel capacity" 500
-		"cargo space" 20
-		"outfit space" 310
-		"weapon capacity" 135
-		"engine capacity" 110
-		"self destruct" .15
-		weapon
-			"blast radius" 65
-			"shield damage" 650
-			"hull damage" 350
-			"hit force" 1000
-	outfits
-		"Plasma Cannon" 2
-		"Pulse Cannon" 2
-		"Heavy Laser Turret"
-		
-		"Breeder Reactor"
-		"Supercapacitor" 2
-		"S-270 Regenerator"
-		"Liquid Nitrogen Cooler"
-		"Mass Expansion"
-		
-		"A250 Atomic Thruster"
-		"A375 Atomic Steering"
-		"Hyperdrive"
-	
-	engine -12 45
-	engine 12 45
-	gun -11 -33 "Plasma Cannon"
-	gun 11 -33 "Plasma Cannon"
-	gun -17 -28 "Pulse Cannon"
-	gun 17 -28 "Pulse Cannon"
-	turret 0 -19 "Heavy Laser Turret"
-	explode "medium explosion" 24
-	explode "large explosion" 16
-	explode "tiny explosion" 28
-	explode "small explosion" 40
-	"final explode" "final explosion small"
-	description "A former owner of this ship apparently didn't like the lithe Raven, and has added so much more weapons, shield, and outfit capacity to it that you only recognize it by the wingtips. Besides adding a turret, this ship has enormous gun ports, making you wonder how much more deadly you could make a Light Warship."
-
-
-
-ship "Marauder Splinter"
-	sprite "ship/msplinters"
-	attributes
-		category "Medium Warship"
-		"cost" 3400000
-		"shields" 5700
-		"hull" 1950
-		"required crew" 14
-		"bunks" 22
-		"mass" 275
-		"drag" 4.0
-		"heat dissipation" .7
-		"fuel capacity" 600
-		"cargo space" 40
-		"outfit space" 450
-		"weapon capacity" 165
-		"engine capacity" 110
-		"self destruct" .25
-		weapon
-			"blast radius" 60
-			"shield damage" 600
-			"hull damage" 300
-			"hit force" 900
-	outfits
-		"Plasma Cannon" 2
-		"Heavy Laser Turret" 2
-		"Heavy Anti-Missile Turret"
-		
-		"Fusion Reactor"
-		"LP036a Battery Pack"
-		"D67-TM Shield Generator"
-		"Liquid Nitrogen Cooler"
-		"Laser Rifle" 22
-		
-		"A250 Atomic Thruster"
-		"A525 Atomic Steering"
-		"Hyperdrive"
-	
-	engine -14 112
-	engine 14 112
-	gun -15 -82 "Plasma Cannon"
-	gun 15 -82 "Plasma Cannon"
-	turret -17 -28 "Heavy Laser Turret"
-	turret 0 -28 "Heavy Anti-Missile Turret"
-	turret 17 -28 "Heavy Laser Turret"
-	explode "tiny explosion" 18
-	explode "small explosion" 36
-	explode "medium explosion" 24
-	explode "large explosion" 8
-	"final explode" "final explosion medium"
-	description "The Splinter is the largest warship produced by Megaparsec. Apparently someone wanted a bit more out of it, and has covered large sections of the hull with extra shield emitters and hull plating. Much of the stock cargo space has been converted to outfit, weapons and engines space, coupled with streamlining of existing internal systems make this light Medium Warship an agile and flexible war machine."
-
-
-
-ship "Marauder Splinter" "Marauder Splinter (Engines)"
-	sprite "ship/msplintere"
-	attributes
-		category "Medium Warship"
-		"cost" 3750000
-		"shields" 5700
-		"hull" 1950
-		"required crew" 14
-		"bunks" 22
-		"mass" 275
-		"drag" 4.0
-		"heat dissipation" .7
-		"fuel capacity" 600
-		"cargo space" 40
-		"outfit space" 450
-		"weapon capacity" 165
-		"engine capacity" 130
-		"self destruct" .15
-		weapon
-			"blast radius" 60
-			"shield damage" 600
-			"hull damage" 300
-			"hit force" 900
-	outfits
-		"Plasma Cannon" 2
-		"Quad Blaster Turret" 2
-		"Heavy Anti-Missile Turret"
-		
-		"Fusion Reactor"
-		"LP036a Battery Pack"
-		"D67-TM Shield Generator"
-		"Liquid Nitrogen Cooler"
-		"Water Coolant System"
-		"Security Station"
-		"Laser Rifle" 21
-		
-		"A370 Atomic Thruster"
-		"A525 Atomic Steering"
-		"Hyperdrive"
-	
-	engine -15 114
-	engine 0 118
-	engine 15 114
-	gun -15 -82 "Plasma Cannon"
-	gun 15 -82 "Plasma Cannon"
-	turret -17 -28 "Quad Blaster Turret"
-	turret 0 -28 "Heavy Anti-Missile Turret"
-	turret 17 -28 "Quad Blaster Turret"
-	explode "tiny explosion" 18
-	explode "small explosion" 36
-	explode "medium explosion" 24
-	explode "large explosion" 8
-	"final explode" "final explosion medium"
-	description "In a sub-kiloton warship, you're not likely to find one faster or more deadly than this one. Large sections of the hull have been covered with extra hull plating and shield emitters. Much of the cargo space has been converted to outfit space, a great deal of which is at the rear of the ship, which features a new engine port."
-
-
-
-ship "Marauder Splinter" "Marauder Splinter (Weapons)"
-	sprite "ship/msplinterw"
-	attributes
-		category "Medium Warship"
-		"cost" 3750000
-		"shields" 5700
-		"hull" 1950
-		"required crew" 14
-		"bunks" 22
-		"mass" 275
-		"drag" 4.0
-		"heat dissipation" .7
-		"fuel capacity" 600
-		"cargo space" 40
-		"outfit space" 450
-		"weapon capacity" 180
-		"engine capacity" 110
-		"self destruct" .15
-		weapon
-			"blast radius" 60
-			"shield damage" 600
-			"hull damage" 300
-			"hit force" 900
-	outfits
-		"Plasma Cannon" 4
-		"Quad Blaster Turret" 2
-		"Heavy Anti-Missile Turret"
-		
-		"Fusion Reactor"
-		"LP036a Battery Pack"
-		"D23-QP Shield Generator"
-		"Liquid Nitrogen Cooler"
-		"Security Station" 2
-		"Laser Rifle" 20
-		
-		"A250 Atomic Thruster"
-		"A525 Atomic Steering"
-		"Hyperdrive"
-	
-	engine -14 112
-	engine 14 112
-	gun -15 -82 "Plasma Cannon"
-	gun 15 -82 "Plasma Cannon"
-	gun -7.5 -98 "Plasma Cannon"
-	gun 7.5 -98 "Plasma Cannon"
-	turret -17 -28 "Quad Blaster Turret"
-	turret 0 -28 "Heavy Anti-Missile Turret"
-	turret 17 -28 "Quad Blaster Turret"
-	explode "tiny explosion" 18
-	explode "small explosion" 36
-	explode "medium explosion" 24
-	explode "large explosion" 8
-	"final explode" "final explosion medium"
-	description "This Splinter has had extensive modification to its weapons space, with two new forward hard points on either side of the bridge. Large sections of the hull are covered with extra shield emitters and hull plating. Much of the stock cargo space has been converted to space for outfits, weapons and engines, coupled with streamlining of existing internal systems make the prospect of meeting this flexible war machine in an uninhabited system seem pretty unappealing."
-
-
-
 ship "Modified Argosy"
+	plural "Modified Argosies"
 	sprite "ship/modified argosy"
 	attributes
 		category "Light Warship"
@@ -3499,14 +1955,14 @@ ship "Modified Argosy"
 		"X3200 Ion Steering"
 		"Hyperdrive"
 		
-	engine -16 82
-	engine 16 82
+	engine -20 91
+	engine 20 91
 	gun -22 -37 "Heavy Laser"
 	gun 22 -37 "Heavy Laser"
 	gun -23 -37 "Heavy Laser"
 	gun 23 -37 "Heavy Laser"
-	turret 0 -8 "Heavy Laser Turret"
-	turret 0 12 "Heavy Laser Turret"
+	turret 0 -12 "Heavy Laser Turret"
+	turret 0 8 "Heavy Laser Turret"
 	explode "tiny explosion" 10
 	explode "small explosion" 25
 	explode "medium explosion" 30
@@ -4353,16 +2809,16 @@ ship "Vanguard"
 		"X4200 Ion Steering"
 		"Hyperdrive"
 	
-	engine -15 145
-	engine 15 145
-	gun 0 -140 "Proton Gun"
-	gun -18 -140 "Proton Gun"
-	gun 18 -140 "Proton Gun"
-	gun -20 -55 "Proton Gun"
-	gun 20 -55 "Proton Gun"
-	gun -30 -55 "Proton Gun"
-	gun 30 -55 "Proton Gun"
-	turret 0 30 "Anti-Missile Turret"
+	engine -15 130
+	engine 15 130
+	gun 0 -132 "Proton Gun"
+	gun -22 -122 "Proton Gun"
+	gun 22 -122 "Proton Gun"
+	gun -21 -45 "Proton Gun"
+	gun 21 -45 "Proton Gun"
+	gun -31 -45 "Proton Gun"
+	gun 31 -45 "Proton Gun"
+	turret 0 40 "Anti-Missile Turret"
 	explode "tiny explosion" 18
 	explode "small explosion" 36
 	explode "medium explosion" 24

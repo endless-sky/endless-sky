@@ -14,6 +14,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "DataNode.h"
 #include "DataWriter.h"
+#include "Depreciation.h"
 #include "GameData.h"
 #include "Mission.h"
 #include "Outfit.h"
@@ -361,12 +362,12 @@ int CargoHold::Transfer(const Outfit *outfit, int amount, CargoHold *to)
 	// its space is limited (i.e. size is not set to -1).
 	amount = min(amount, Get(outfit));
 	if(size >= 0 && mass)
-		amount = max(amount, static_cast<int>(-max(Free(), 0) / mass));
+		amount = max<int>(amount, -max(Free(), 0) / mass);
 	if(to)
 	{
 		amount = max(amount, -to->Get(outfit));
 		if(to->size >= 0 && mass)
-			amount = min(amount, static_cast<int>(max(to->Free(), 0) / mass));
+			amount = min<int>(amount, max(to->Free(), 0) / mass);
 	}
 	if(!amount)
 		return 0;
@@ -521,28 +522,25 @@ void CargoHold::AddMissionCargo(const Mission *mission)
 
 
 
-// Remove all the cargo and passengers associated with the given mission.
+// Remove all the cargo and passengers (if any) associated with the given mission.
 void CargoHold::RemoveMissionCargo(const Mission *mission)
 {
-	auto it = missionCargo.find(mission);
-	if(it != missionCargo.end())
-		missionCargo.erase(it);
-	
-	auto pit = passengers.find(mission);
-	if(pit != passengers.end())
-		passengers.erase(pit);
+	missionCargo.erase(mission);
+	passengers.erase(mission);
 }
 
 
 	
 // Get the total value of all this cargo, in the given system.
-int CargoHold::Value(const System *system) const
+int64_t CargoHold::Value(const System *system) const
 {
-	int value = 0;
+	int64_t value = 0;
 	for(const auto &it : commodities)
 		value += system->Trade(it.first) * it.second;
+	// For outfits, assume they're fully depreciated, since that will always be
+	// the case unless the player bought into cargo for some reason.
 	for(const auto &it : outfits)
-		value += it.first->Cost() * it.second;
+		value += it.first->Cost() * it.second * Depreciation::Full();
 	return value;
 }
 

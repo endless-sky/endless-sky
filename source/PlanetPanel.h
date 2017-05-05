@@ -44,12 +44,14 @@ protected:
 	
 	
 private:
+	void TakeOffIfReady();
 	void TakeOff();
 	
 	
 private:
 	PlayerInfo &player;
 	std::function<void()> callback = nullptr;
+	bool requestedLaunch = false;
 	
 	const Planet &planet;
 	const System &system;

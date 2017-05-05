@@ -9,6 +9,7 @@
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 outfit "Nanotech Battery"
+	plural "Nanotech Batteries"
 	category "Power"
 	cost 3000000
 	thumbnail "outfit/unknown"
@@ -85,6 +86,7 @@ effect "quarg anti-missile"
 
 
 outfit "Intrusion Countermeasures"
+	plural "Intrusion Countermeasures"
 	category "Hand to Hand"
 	thumbnail "outfit/unknown"
 	"capture defense" 60

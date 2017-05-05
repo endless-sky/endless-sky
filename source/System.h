@@ -17,6 +17,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Set.h"
 #include "StellarObject.h"
 
+#include <set>
 #include <string>
 #include <vector>
 
@@ -27,6 +28,7 @@ class Government;
 class Minable;
 class Planet;
 class Ship;
+class Sprite;
 
 
 
@@ -85,13 +87,15 @@ public:
 	const Point &Position() const;
 	// Get this system's government.
 	const Government *GetGovernment() const;
+	// Get the name of the ambient audio to play in this system.
+	const std::string &MusicName() const;
 	
 	// Get a list of systems you can travel to through hyperspace from here.
-	const std::vector<const System *> &Links() const;
+	const std::set<const System *> &Links() const;
 	// Get a list of systems you can "see" from here, whether or not there is a
 	// direct hyperspace link to them. This is also the set of systems that you
 	// can travel to from here via the jump drive.
-	const std::vector<const System *> &Neighbors() const;
+	const std::set<const System *> &Neighbors() const;
 	
 	// Move the stellar objects to their positions on the given date.
 	void SetDate(const Date &date);
@@ -102,7 +106,7 @@ public:
 	// Get the radius of the asteroid belt.
 	double AsteroidBelt() const;
 	// Check if this system is inhabited.
-	bool IsInhabited() const;
+	bool IsInhabited(const Ship *ship) const;
 	// Check if ships of the given government can refuel in this system.
 	bool HasFuelFor(const Ship &ship) const;
 	// Check whether you can buy or sell ships in this system.
@@ -112,9 +116,12 @@ public:
 	
 	// Get the specification of how many asteroids of each type there are.
 	const std::vector<Asteroid> &Asteroids() const;
+	// Get the background haze sprite for this system.
+	const Sprite *Haze() const;
 	
 	// Get the price of the given commodity in this system.
 	int Trade(const std::string &commodity) const;
+	bool HasTrade() const;
 	// Update the economy. Returns the amount of trade goods this system exports.
 	void StepEconomy();
 	void SetSupply(const std::string &commodity, double tons);
@@ -150,9 +157,11 @@ private:
 	std::string name;
 	Point position;
 	const Government *government = nullptr;
+	std::string music;
+	
 	// Hyperspace links to other systems.
-	std::vector<const System *> links;
-	std::vector<const System *> neighbors;
+	std::set<const System *> links;
+	std::set<const System *> neighbors;
 	
 	// Stellar objects, listed in such an order that an object's parents are
 	// guaranteed to appear before it (so that if we traverse the vector in
@@ -160,6 +169,7 @@ private:
 	// proper position before that object is updated).
 	std::vector<StellarObject> objects;
 	std::vector<Asteroid> asteroids;
+	const Sprite *haze;
 	std::vector<FleetProbability> fleets;
 	double habitable = 1000.;
 	double asteroidBelt = 1500.;

@@ -13,6 +13,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef ESCORT_DISPLAY_H_
 #define ESCORT_DISPLAY_H_
 
+#include "Point.h"
+
 #include <cstdint>
 #include <list>
 #include <string>
@@ -28,17 +30,21 @@ class Sprite;
 class EscortDisplay {
 public:
 	void Clear();
-	void Add(const Ship &ship, bool isHere, bool fleetIsJumping);
+	void Add(const Ship &ship, bool isHere, bool fleetIsJumping, bool isSelected);
 	
 	// The display starts in the lower left corner of the screen and takes up
 	// all but the top 450 pixels of the screen.
 	void Draw() const;
 	
+	// Check if the given point is a click on an escort icon. If so, return the
+	// stack of ships represented by the icon. Otherwise, return an empty stack.
+	const std::vector<const Ship *> &Click(const Point &point) const;
+	
 	
 private:
 	class Icon {
 	public:
-		Icon(const Ship &ship, bool isHere, bool fleetIsJumping);
+		Icon(const Ship &ship, bool isHere, bool fleetIsJumping, bool isSelected);
 		
 		// Sorting operator.
 		bool operator<(const Icon &other) const;
@@ -48,13 +54,14 @@ private:
 		
 		const Sprite *sprite;
 		bool isHere;
-		bool isReadyToJump;
+		bool notReadyToJump;
 		bool cannotJump;
-		int stackSize;
+		bool isSelected;
 		int64_t cost;
 		std::string system;
 		std::vector<double> low;
 		std::vector<double> high;
+		std::vector<const Ship *> ships;
 	};
 	
 	
@@ -64,6 +71,8 @@ private:
 	
 private:
 	mutable std::list<Icon> icons;
+	mutable std::vector<std::vector<const Ship *>> stacks;
+	mutable std::vector<Point> zones; 
 };
 
 

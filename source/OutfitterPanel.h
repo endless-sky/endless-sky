@@ -35,19 +35,19 @@ class Point;
 // configured in such a way that it cannot fly (e.g. no engines or steering).
 class OutfitterPanel : public ShopPanel {
 public:
-	OutfitterPanel(PlayerInfo &player);
+	explicit OutfitterPanel(PlayerInfo &player);
 	
 	virtual void Step() override;
 	
 	
 protected:
 	virtual int TileSize() const override;
-	virtual int DrawPlayerShipInfo(const Point &point) const override;
+	virtual int DrawPlayerShipInfo(const Point &point) override;
 	virtual bool HasItem(const std::string &name) const override;
-	virtual void DrawItem(const std::string &name, const Point &point, int scrollY) const override;
+	virtual void DrawItem(const std::string &name, const Point &point, int scrollY) override;
 	virtual int DividerOffset() const override;
 	virtual int DetailWidth() const override;
-	virtual int DrawDetails(const Point &center) const override;
+	virtual int DrawDetails(const Point &center) override;
 	virtual bool CanBuy() const override;
 	virtual void Buy() override;
 	virtual void FailBuy() const override;
@@ -55,6 +55,7 @@ protected:
 	virtual void Sell() override;
 	virtual void FailSell() const override;
 	virtual bool FlightCheck() override;
+	virtual void DrawKey();
 	
 	
 private:
@@ -70,11 +71,14 @@ private:
 	
 	
 private:
-	// This is how many of each outfit we have sold to this particular outfitter
-	// in this particular shopping session (so that you can buy back things this
-	// outfitter does not normally carry that you sold by accident).
-	std::map<const Outfit *, int> &available;
+	// Record whether we've checked if the player needs ammo refilled.
 	bool checkedRefill = false;
+	// Allow toggling whether outfits that are for sale are shown. If turned
+	// off, only outfits in the currently selected ships are shown.
+	bool showForSale = true;
+	// Remember what ships are selected if the player switches to cargo.
+	Ship *previousShip = nullptr;
+	std::set<Ship *> previousShips;
 	
 	Sale<Outfit> outfitter;
 };

@@ -41,7 +41,7 @@ public:
 protected:
 	// Overrides from Panel.
 	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command) override;
-	virtual bool Click(int x, int y) override;
+	virtual bool Click(int x, int y, int clicks) override;
 	virtual bool Drag(double dx, double dy) override;
 	virtual bool Scroll(double dx, double dy) override;
 	
@@ -123,12 +123,6 @@ private:
 	CaptureOdds defenseOdds;
 	// These messages are shown to report the results of hand to hand combat.
 	std::vector<std::string> messages;
-	
-	// If you lose crew, you must pay "death benefits." This is a mechanism to
-	// make capturing ships less absurdly lucrative.
-	int64_t initialCrew;
-	int64_t casualties = 0;
-	int64_t deathBenefits = 0;
 };
 
 

@@ -167,9 +167,10 @@ void Dialog::Draw()
 		Point stringPos(
 			inputPos.X() - (WIDTH - 20) * .5 + 5.,
 			inputPos.Y() - .5 * font.Height());
-		font.Draw(input, stringPos, bright);
+		string truncated = font.TruncateFront(input, WIDTH - 30);
+		font.Draw(truncated, stringPos, bright);
 		
-		Point barPos(stringPos.X() + font.Width(input) + 2., inputPos.Y());
+		Point barPos(stringPos.X() + font.Width(truncated) + 2., inputPos.Y());
 		FillShader::Fill(barPos, Point(1., 16.), dim);
 	}
 }
@@ -182,7 +183,11 @@ bool Dialog::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 	if((it != KEY_MAP.end() || (key >= ' ' && key <= '~')) && !isMission && (intFun || stringFun))
 	{
 		int ascii = (it != KEY_MAP.end()) ? it->second : key;
-		char c = ((mod & (KMOD_SHIFT | KMOD_CAPS)) ? SHIFT[ascii] : ascii);
+		char c = ((mod & KMOD_SHIFT) ? SHIFT[ascii] : ascii);
+		// Caps lock should shift letters, but not any other keys.
+		if((mod & KMOD_CAPS) && c >= 'a' && c <= 'z')
+			c += 'A' - 'a';
+		
 		if(stringFun)
 			input += c;
 		// Integer input should not allow leading zeros.
@@ -199,7 +204,7 @@ bool Dialog::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 		okIsActive = !canCancel;
 	else if(key == SDLK_RIGHT)
 		okIsActive = true;
-	else if(key == SDLK_RETURN || key == SDLK_KP_ENTER || key == 'a' || key == 'd')
+	else if(key == SDLK_RETURN || key == SDLK_KP_ENTER || (isMission && (key == 'a' || key == 'd')))
 	{
 		// Shortcuts for "accept" and "decline."
 		if(key == 'a')
@@ -221,7 +226,7 @@ bool Dialog::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 
 
 
-bool Dialog::Click(int x, int y)
+bool Dialog::Click(int x, int y, int clicks)
 {
 	Point clickPos(x, y);
 	

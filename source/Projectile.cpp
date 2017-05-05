@@ -20,6 +20,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Ship.h"
 #include "Sprite.h"
 
+#include <algorithm>
 #include <cmath>
 
 using namespace std;
@@ -104,12 +105,14 @@ bool Projectile::Move(list<Effect> &effects)
 	if(--lifetime <= 0)
 	{
 		if(lifetime > -100)
+		{
 			for(const auto &it : weapon->DieEffects())
 				for(int i = 0; i < it.second; ++i)
 				{
 					effects.push_back(*it.first);
 					effects.back().Place(position, velocity, angle);
 				}
+		}
 		
 		return false;
 	}
@@ -141,22 +144,38 @@ bool Projectile::Move(list<Effect> &effects)
 		CheckLock(*target);
 	if(target && homing && hasLock)
 	{
-		Point d = position - target->Position();
+		// Vector d is the direction we want to turn towards.
+		Point d = target->Position() - position;
+		Point unit = d.Unit();
 		double drag = weapon->Drag();
 		double trueVelocity = drag ? accel / drag : velocity.Length();
 		double stepsToReach = d.Length() / trueVelocity;
-		bool isFacingAway = d.Dot(angle.Unit()) > 0.;
+		bool isFacingAway = d.Dot(angle.Unit()) < 0.;
 		
 		// At the highest homing level, compensate for target motion.
 		if(homing >= 4)
 		{
-			// Adjust the target's position based on where it will be when we
-			// reach it (assuming we're pointed right towards it).
-			d -= stepsToReach * target->Velocity();
-			stepsToReach = d.Length() / trueVelocity;
+			if(unit.Dot(target->Velocity()) < 0.)
+			{
+				// If the target is moving toward this projectile, the intercept
+				// course is where the target and the projectile have the same
+				// velocity normal to the distance between them.
+				Point normal(unit.Y(), -unit.X());
+				double vN = normal.Dot(target->Velocity());
+				double vT = sqrt(max(0., trueVelocity * trueVelocity - vN * vN));
+				d = vT * unit + vN * normal;
+			}
+			else
+			{
+				// Adjust the target's position based on where it will be when we
+				// reach it (assuming we're pointed right towards it).
+				d += stepsToReach * target->Velocity();
+				stepsToReach = d.Length() / trueVelocity;
+			}
+			unit = d.Unit();
 		}
 		
-		double cross = d.Unit().Cross(angle.Unit());
+		double cross = angle.Unit().Cross(unit);
 		
 		// The very dumbest of homing missiles lose their target if pointed
 		// away from it.
@@ -215,45 +234,6 @@ void Projectile::MakeSubmunitions(list<Projectile> &projectiles) const
 	for(const auto &it : weapon->Submunitions())
 		for(int i = 0; i < it.second; ++i)
 			projectiles.emplace_back(*this, it.first);
-}
-
-
-
-// Check if this projectile collides with the given step, with the animation
-// frame for the given step.
-double Projectile::CheckCollision(const Ship &ship, int step) const
-{
-	const Mask &mask = ship.GetMask(step);
-	Point offset = position - ship.Position();
-	
-	double radius = weapon->TriggerRadius();
-	if(radius > 0. && mask.WithinRange(offset, angle, radius))
-		return 0.;
-	
-	return mask.Collide(offset, velocity, ship.Facing());
-}
-
-
-
-// Check if this projectile has a blast radius.
-bool Projectile::HasBlastRadius() const
-{
-	return (weapon->BlastRadius() > 0.);
-}
-
-
-
-// Check if the given ship is within this projectile's blast radius. (The
-// projectile will not explode unless it is also within the trigger radius.)
-bool Projectile::InBlastRadius(const Ship &ship, int step, double closestHit) const
-{
-	// "Invisible" ships can be killed by weapons with blast radii.
-	Point offset = position + closestHit * velocity - ship.Position();
-	if(offset.Length() <= weapon->BlastRadius())
-		return true;
-	
-	const Mask &mask = ship.GetMask(step);
-	return mask.WithinRange(offset, ship.Facing(), weapon->BlastRadius());
 }
 
 

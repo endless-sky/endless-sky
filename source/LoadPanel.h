@@ -15,10 +15,13 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Panel.h"
 
+#include "Point.h"
 #include "SavedGame.h"
 
+#include <ctime>
 #include <map>
 #include <string>
+#include <utility>
 #include <vector>
 
 class PlayerInfo;
@@ -38,7 +41,7 @@ public:
 protected:
 	// Only override the ones you need; the default action is to return false.
 	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command) override;
-	virtual bool Click(int x, int y) override;
+	virtual bool Click(int x, int y, int clicks) override;
 	virtual bool Hover(int x, int y) override;
 	virtual bool Drag(double dx, double dy) override;
 	virtual bool Scroll(double dx, double dy) override;
@@ -63,10 +66,13 @@ private:
 	SavedGame loadedInfo;
 	UI &gamePanels;
 	
-	std::map<std::string, std::vector<std::string>> files;
+	std::map<std::string, std::vector<std::pair<std::string, std::time_t>>> files;
 	std::string selectedPilot;
 	std::string selectedFile;
 	
+	Point hoverPoint;
+	int hoverCount = 0;
+	bool hasHover = false;
 	bool sideHasFocus = false;
 	double sideScroll = 0;
 	double centerScroll = 0;

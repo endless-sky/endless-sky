@@ -23,9 +23,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Information.h"
 #include "Interface.h"
 #include "LineShader.h"
-#include "MapDetailPanel.h"
-#include "MapOutfitterPanel.h"
-#include "MapShipyardPanel.h"
 #include "Mission.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
@@ -122,20 +119,7 @@ MissionPanel::MissionPanel(const MapPanel &panel)
 
 void MissionPanel::Step()
 {
-	if(!Preferences::Has("help: jobs"))
-	{
-		Preferences::Set("help: jobs");
-		GetUI()->Push(new Dialog(
-			"Taking on jobs is a safe way to earn money. "
-			"Special missions are offered in the Space Port; "
-			"more mundane jobs are posted on the Job Board. "
-			"Most special missions are only offered once: "
-			"if you turn one down, it will not be offered to you again.\n"
-			"\tThe payment for a job depends on how far you must travel and how much you are carrying. "
-			"Jobs that have a time limit pay extra, but you are paid nothing if you miss the deadline.\n"
-			"\tAs you gain a combat reputation, new jobs will become available, "
-			"including escorting convoys and bounty hunting."));
-	}
+	DoHelp("jobs");
 }
 
 
@@ -146,7 +130,7 @@ void MissionPanel::Draw()
 	
 	Color routeColor(.2, .1, 0., 0.);
 	const System *system = selectedSystem;
-	while(distance.Distance(system) > 0)
+	while(distance.Days(system) > 0)
 	{
 		const System *next = distance.Route(system);
 		
@@ -187,15 +171,7 @@ void MissionPanel::Draw()
 	if(acceptedIt != accepted.end() && acceptedIt->Destination())
 		DrawMissionSystem(*acceptedIt, IsSatisfied(*acceptedIt) ? currentColor : blockedColor);
 	
-	// Draw the buttons to switch to other map modes.
-	Information info;
-	info.SetCondition("is missions");
-	if(ZoomIsMax())
-		info.SetCondition("max zoom");
-	if(ZoomIsMin())
-		info.SetCondition("min zoom");
-	const Interface *interface = GameData::Interfaces().Get("map buttons");
-	interface->Draw(info, this);
+	DrawButtons("is missions");
 }
 
 
@@ -203,12 +179,7 @@ void MissionPanel::Draw()
 // Only override the ones you need; the default action is to return false.
 bool MissionPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 {
-	if(key == 'd' || key == SDLK_ESCAPE || (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
-	{
-		GetUI()->Pop(this);
-		return true;
-	}
-	else if(key == 'a' && CanAccept())
+	if(key == 'a' && CanAccept())
 	{
 		Accept();
 		return true;
@@ -219,21 +190,6 @@ bool MissionPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 			GetUI()->Push(new Dialog(this, &MissionPanel::AbortMission,
 				"Abort mission \"" + acceptedIt->Name() + "\"?"));
 		return true;
-	}
-	else if(key == 'p' || key == SDLK_PAGEUP || key == SDLK_PAGEDOWN)
-	{
-		GetUI()->Pop(this);
-		GetUI()->Push(new MapDetailPanel(*this));
-	}
-	else if(key == 'o')
-	{
-		GetUI()->Pop(this);
-		GetUI()->Push(new MapOutfitterPanel(*this));
-	}
-	else if(key == 's')
-	{
-		GetUI()->Pop(this);
-		GetUI()->Push(new MapShipyardPanel(*this));
 	}
 	else if(key == SDLK_LEFT && availableIt == available.end())
 	{
@@ -282,24 +238,8 @@ bool MissionPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 			} while(!acceptedIt->IsVisible());
 		}
 	}
-	else if(command.Has(Command::MAP))
-	{
-		GetUI()->Pop(this);
-		GetUI()->Push(new MapDetailPanel(*this));
-		return true;
-	}
-	else if(key == 'f')
-	{
-		GetUI()->Push(new Dialog(
-			this, &MissionPanel::DoFind, "Search for:"));
-		return true;
-	}
-	else if(key == '+' || key == '=')
-		ZoomMap();
-	else if(key == '-')
-		UnzoomMap();
 	else
-		return false;
+		return MapPanel::KeyDown(key, mod, command);
 	
 	if(availableIt != available.end())
 		selectedSystem = availableIt->Destination()->GetSystem();
@@ -313,7 +253,7 @@ bool MissionPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 
 
 
-bool MissionPanel::Click(int x, int y)
+bool MissionPanel::Click(int x, int y, int clicks)
 {
 	dragSide = 0;
 	
@@ -404,11 +344,15 @@ bool MissionPanel::Click(int x, int y)
 			if(acceptedIt != accepted.end() && !acceptedIt->IsVisible())
 				continue;
 			
-			if(availableIt != available.end() && availableIt->Destination()->GetSystem() == system)
+			if(availableIt != available.end() && availableIt->Destination()->IsInSystem(system))
 				break;
-			if(acceptedIt != accepted.end() && acceptedIt->Destination()->GetSystem() == system)
+			if(acceptedIt != accepted.end() && acceptedIt->Destination()->IsInSystem(system))
 				break;
 		}
+		// Make sure invisible missions are never selected, even if there were
+		// no other missions in this system.
+		if(acceptedIt != accepted.end() && !acceptedIt->IsVisible())
+			acceptedIt = accepted.end();
 	}
 	
 	return true;
@@ -460,16 +404,9 @@ bool MissionPanel::Hover(int x, int y)
 bool MissionPanel::Scroll(double dx, double dy)
 {
 	if(dragSide)
-		return Drag(0., dy * 50.);
+		return Drag(0., dy * Preferences::ScrollSpeed());
 	
 	return MapPanel::Scroll(dx, dy);
-}
-
-
-
-void MissionPanel::DoFind(const string &text)
-{
-	Find(text);
 }
 
 
@@ -538,12 +475,8 @@ void MissionPanel::DrawSelectedSystem() const
 	if(it != plan.end())
 		jumps = plan.end() - it;
 	else if(distance.HasRoute(selectedSystem))
-	{
-		// Figure out how many jumps (not how much fuel) getting to the selected
-		// system will take.
-		for(const System *system = selectedSystem; system != player.GetSystem(); system = distance.Route(system))
-			++jumps;
-	}
+		jumps = distance.Days(selectedSystem);
+	
 	if(jumps == 1)
 		text += " (1 jump away)";
 	else if(jumps > 0)
@@ -656,17 +589,8 @@ void MissionPanel::DrawMissionInfo()
 	else if(acceptedIt != accepted.end())
 		info.SetCondition("can abort");
 	
-	int cargoFree = -player.Cargo().Used();
-	int bunksFree = -player.Cargo().Passengers();
-	for(const shared_ptr<Ship> &ship : player.Ships())
-		if(ship->GetSystem() == player.GetSystem() && !ship->IsDisabled() && !ship->IsParked())
-		{
-			cargoFree += ship->Attributes().Get("cargo space") - ship->Cargo().Used();
-			int crew = (ship.get() == player.Flagship()) ? ship->Crew() : ship->RequiredCrew();
-			bunksFree += ship->Attributes().Get("bunks") - crew - ship->Cargo().Passengers();
-		}
-	info.SetString("cargo free", to_string(cargoFree) + " tons");
-	info.SetString("bunks free", to_string(bunksFree) + " bunks");
+	info.SetString("cargo free", to_string(player.Cargo().Free()) + " tons");
+	info.SetString("bunks free", to_string(player.Cargo().Bunks()) + " bunks");
 	
 	info.SetString("today", player.GetDate().ToString());
 	
@@ -732,7 +656,7 @@ void MissionPanel::Accept()
 		const Planet *planet = toAccept.Destination();
 		const System *system = planet->GetSystem();
 		for(auto it = available.begin(); it != available.end(); ++it)
-			if(it->Destination() && it->Destination()->GetSystem() == system)
+			if(it->Destination() && it->Destination()->IsInSystem(system))
 			{
 				availableIt = it;
 				if(it->Destination() == planet)
@@ -781,6 +705,8 @@ void MissionPanel::AbortMission()
 		player.RemoveMission(Mission::FAIL, toAbort, GetUI());
 		if(acceptedIt == accepted.end() && !accepted.empty())
 			--acceptedIt;
+		if(acceptedIt != accepted.end() && !acceptedIt->IsVisible())
+			acceptedIt = accepted.end();
 	}
 }
 
@@ -804,10 +730,10 @@ bool MissionPanel::FindMissionForSystem(const System *system)
 	acceptedIt = accepted.end();
 
 	for(availableIt = available.begin(); availableIt != available.end(); ++availableIt)
-		if(availableIt->Destination()->GetSystem() == system)
+		if(availableIt->Destination()->IsInSystem(system))
 			return true;
 	for(acceptedIt = accepted.begin(); acceptedIt != accepted.end(); ++acceptedIt)
-		if(acceptedIt->IsVisible() && acceptedIt->Destination()->GetSystem() == system)
+		if(acceptedIt->IsVisible() && acceptedIt->Destination()->IsInSystem(system))
 			return true;
 
 	return false;

@@ -161,7 +161,7 @@ Point Interface::GetSize(const string &name) const
 
 
 
-Rectangle Interface::GetBox(const std::string &name) const
+Rectangle Interface::GetBox(const string &name) const
 {
 	auto it = points.find(name);
 	if(it == points.end())
@@ -286,7 +286,7 @@ void Interface::Element::DrawAt(const Point &anchor, const Information &info, Pa
 
 // Set the conditions that control when this element is visible and active.
 // An empty string means it is always visible or active.
-void Interface::Element::SetConditions(const std::string &visible, const std::string &active)
+void Interface::Element::SetConditions(const string &visible, const string &active)
 {
 	visibleIf = visible;
 	activeIf = active;
@@ -416,7 +416,9 @@ void Interface::ImageElement::Draw(const Rectangle &rect, const Information &inf
 	if(isOutline)
 	{
 		Color color = (isColored ? info.GetOutlineColor() : Color(1., 1.));
-		OutlineShader::Draw(sprite, rect.Center(), rect.Dimensions(), color, info.GetSpriteUnit(name));
+		Point unit = info.GetSpriteUnit(name);
+		int frame = info.GetSpriteFrame(name);
+		OutlineShader::Draw(sprite, rect.Center(), rect.Dimensions(), color, unit, frame);
 	}
 	else
 		SpriteShader::Draw(sprite, rect.Center(), rect.Width() / sprite->Width());

@@ -10,7 +10,7 @@
 
 mission "Pact Recon 0"
 	name "Pirate Reconnaissance"
-	description "Fly through the Alniyat, Han, Atria, and Lesath systems, then report to <destination>, so the Southern Defense Pact can analyze your logs of pirate activity (if any)."
+	description "Fly through the Alniyat, Han, Atria, and Lesath systems, then report to <destination> so the Southern Defense Pact can analyze your logs of pirate activity (if any)."
 	waypoint "Alniyat"
 	waypoint "Han"
 	waypoint "Atria"
@@ -67,7 +67,7 @@ mission "Pact Recon 0"
 mission "Pact Recon 1"
 	landing
 	name "Pirate Reconnaissance"
-	description "Fly through the Wei, Alnasl, Eber, and Alpha Arae systems, then report to <destination>, so the Southern Defense Pact can analyze your logs of pirate activity (if any)."
+	description "Fly through the Wei, Alnasl, Eber, and Alpha Arae systems, then report to <destination> so the Southern Defense Pact can analyze your logs of pirate activity (if any)."
 	waypoint "Wei"
 	waypoint "Alnasl"
 	waypoint "Eber"
@@ -94,7 +94,7 @@ mission "Pact Recon 1"
 mission "Pact Recon 2"
 	landing
 	name "Pirate Reconnaissance"
-	description "Fly through the Men, Antares, Shaula, and Nunki systems, then report to <destination>, so the Southern Defense Pact can analyze your logs of pirate activity (if any)."
+	description "Fly through the Men, Antares, Shaula, and Nunki systems, then report to <destination> so the Southern Defense Pact can analyze your logs of pirate activity (if any)."
 	waypoint "Men"
 	waypoint "Antares"
 	waypoint "Shaula"
@@ -392,7 +392,7 @@ mission "FW Recon 3"
 
 mission "FW Recon 3B"
 	name "Free Worlds Reconnaissance"
-	description "Return to <destination>, with information on the Navy base on <origin>."
+	description "Return to <destination> with information on the Navy base on <origin>."
 	landing
 	source
 		planet "New Wales"
@@ -848,7 +848,7 @@ mission "FW Katya 3"
 
 mission "FW Katya 4"
 	name "Katya and Mr. Eyes"
-	description "Stop on <destination>, and check the planet for signs of nuclear testing."
+	description "Stop on <destination> and check the planet for signs of nuclear testing."
 	source Rand
 	destination Oblivion
 	blocked "You need bunks for both Katya and Eyes in order to continue this mission."
@@ -1089,7 +1089,7 @@ mission "FW Katya 6C"
 mission "FW Katya 7"
 	landing
 	name "The Hunt Continues"
-	description "Take Katya and Eyes to <destination>, to check for signs of underwater testing."
+	description "Take Katya and Eyes to <destination> to check for signs of underwater testing."
 	source "New Iceland"
 	destination Deep
 	passengers 2
@@ -1155,7 +1155,7 @@ mission "FW Katya 7B"
 mission "FW Katya 7C"
 	landing
 	name "Bring Eyes to <planet>"
-	description "While Katya is undercover on <origin>, bring Mr. Eyes to <destination>, to report to the Free Worlds."
+	description "While Katya is undercover on <origin>, bring Mr. Eyes to <destination> to report to the Free Worlds."
 	source Clink
 	destination Zug
 	passengers 1
@@ -1508,13 +1508,13 @@ mission "FW Escort 3"
 		set "fw intro escort failed"
 	
 	on visit
-		dialog "You have reached <planet>, but you left the <npc> behind! Better depart and wait for them to arrive in this star system."
+		dialog `Tomek Voigt messages you and says, "Please escort the <npc> back here as soon as possible! Their crew is counting on you."`
 
 
 
 mission "FW Escort Second Chance"
 	name "Second Chance"
-	description "Return to <destination>, to meet up with Tomek Voigt and see if he will forgive you for failing the escort mission he gave you."
+	description "Return to <destination> to meet up with Tomek Voigt and see if he will forgive you for failing the escort mission he gave you."
 	minor
 	source
 		near Sabik 1 1000
@@ -1681,6 +1681,8 @@ mission "FW Commitment"
 		has "FW Katya 7C: done"
 	to fail
 		has "chosen sides"
+	to complete
+		never
 	
 	on offer
 		conversation
@@ -1707,7 +1709,8 @@ mission "Rescue Katya 1"
 	source Bourne
 	destination Clink
 	to offer
-		has "FW Commitment: done"
+		has "FW Commitment: offered"
+		not "chosen sides"
 	on fail
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	

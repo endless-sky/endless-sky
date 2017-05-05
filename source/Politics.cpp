@@ -23,6 +23,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "System.h"
 
 #include <algorithm>
+#include <cmath>
 
 using namespace std;
 
@@ -99,8 +100,12 @@ void Politics::Offend(const Government *gov, int eventType, int count)
 				provoked.insert(other);
 			}
 		}
-		else if(count * weight)
+		else if(abs(weight) >= .05 && count * weight)
 		{
+			// Weights less than 5% should never cause permanent reputation
+			// changes. This is to allow two governments to be hostile or
+			// friendly without the player's behavior toward one of them
+			// influencing their reputation with the other.
 			double penalty = (count * weight) * other->PenaltyFor(eventType);
 			if(eventType & ShipEvent::ATROCITY)
 				reputationWith[other] = min(0., reputationWith[other]);
@@ -181,9 +186,12 @@ void Politics::BribePlanet(const Planet *planet, bool fullAccess)
 
 
 
-void Politics::DominatePlanet(const Planet *planet)
+void Politics::DominatePlanet(const Planet *planet, bool dominate)
 {
-	dominatedPlanets.insert(planet);
+	if(dominate)
+		dominatedPlanets.insert(planet);
+	else
+		dominatedPlanets.erase(planet);
 }
 
 
@@ -200,8 +208,7 @@ string Politics::Fine(PlayerInfo &player, const Government *gov, int scan, const
 {
 	// Do nothing if you have already been fined today, or if you evade
 	// detection.
-	auto it = fined.find(gov);
-	if(it != fined.end() || Random::Real() > security || !gov->GetFineFraction())
+	if(fined.count(gov) || Random::Real() > security || !gov->GetFineFraction())
 		return "";
 	
 	string reason;
@@ -227,7 +234,7 @@ string Politics::Fine(PlayerInfo &player, const Government *gov, int scan, const
 				for(const Mission &mission : player.Missions())
 				{
 					// Append the illegalCargoMessage from each applicable mission, if available
-					std::string illegalCargoMessage = mission.IllegalCargoMessage();
+					string illegalCargoMessage = mission.IllegalCargoMessage();
 					if(!illegalCargoMessage.empty())
 					{
 						reason = ".\n\t";
@@ -245,6 +252,8 @@ string Politics::Fine(PlayerInfo &player, const Government *gov, int scan, const
 				if(it.second)
 				{
 					int64_t fine = it.first->Get("illegal");
+					if(it.first->Get("atrocity") > 0.)
+						fine = -1;
 					if((fine > maxFine && maxFine >= 0) || fine < 0)
 					{
 						maxFine = fine;
@@ -261,8 +270,8 @@ string Politics::Fine(PlayerInfo &player, const Government *gov, int scan, const
 			reason = "atrocity";
 		else
 			reason = "After scanning your ship, the " + gov->GetName()
-				+ " captain hails you with a grim expression on his face. He says, \"You are guilty of "
-				+ reason + " The penalty for your actions is death. Goodbye.\"";
+				+ " captain hails you with a grim expression on his face. He says, "
+				"\"I'm afraid we're going to have to put you to death " + reason + " Goodbye.\"";
 	}
 	else if(maxFine > 0)
 	{

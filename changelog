@@ -1,3 +1,251 @@
+Version 0.9.6:
+  * Bug fixes:
+    * Coalition jobs will now "repeat" instead of only being offered once. (@mootootwo)
+    * Typo fixes. (@Alkallid, @Bladewood, @KiLEdEnNis, @MessyMix, @Pointedstick, @SolraBizna, @warp-core)
+    * Fixed a bug that caused wildly inaccurate depreciation values on some computers.
+    * Fixed a crash due to responding to mouse clicks when the player's flagship is dead.
+    * Fixed a bug where "surveillance" ships never succeed in scanning.
+    * Saved games on planets that were created by events now load correctly.
+    * Fixed incorrect accelerator hints being displayed in the info panel.
+    * Hopefully fixed the bug of the "last" sound not loading properly on some Windows systems.
+    * "Entering" ships no longer forget their destination if the game is reloaded.
+    * Clicking and dragging now only selects ships if no other panel was open when clicking.
+    * Fixed a bug that kept the "Sad Archie" mission from working in 0.9.5.
+    * Fixed depreciation not being applied to auto-sold fighters and outfits.
+    * Made it so you can't hail wormholes, even if they're marked as "inhabited."
+    * If you're in an uninhabited system, fixed how commodity prices in other systems show up in the map.
+    * Made it so the first TMBR mission doesn't get offered on pirate worlds.
+    * Fixed derelict ships that had been captured reappearing.
+    * Fixed the NPC message showing multiple times if you capture a ship you needed to "evade."
+    * The selected planet is now cleared in the map if you change your destination via the jump key.
+    * Fixed shipyard and outfitter maps showing what's available in unexplored systems.
+  * Game content:
+    * Updated the scanner descriptions to describe the benefit of multiple scanners. (@Pointedstick)
+    * Drug running missions now only get offered in human space. (@jafdy)
+    * Added hail messages for friendly pirates. (@Amazinite)
+    * The Coalition intro mission no longer assumes you have already met the Hai. (@toilethinges)
+    * New landscape images. (@jafdy, @striker, @harro.eu)
+    * Added messages when you succeed in destroying each "scattered remnant" Korath fleet. (@Amazinite)
+    * Made the "Defend Spera Anatrusk" battle a little bit easier.
+    * Added images for all the Coalition outfits and unique sounds for all their weapons.
+    * Korath exile worlds no longer fine you for illegal cargo.
+    * The TMBR missions can no longer interrupt missions from the main story line.
+    * The first part of the Syndicate Capture mission now requires your escorts to accompany you.
+    * Fixed an incorrectly set "habitable" zone in the Dokdobaru system.
+    * Switched back to the full-resolution icon on Mac OS X (rather than the "window icon").
+    * Added "autosave" tags to key missions in the Wanderer story line.
+    * Reduced the Unfettered jump drive payoff to be more in line with the drive's depreciated value.
+  * Game mechanics:
+    * Made depreciation happen about three times slower.
+    * Eliminated death benefits, since depreciation does a better job of balancing capture and plunder.
+    * Drag now applies to the acceleration from firing weapons and being hit by them.
+    * Escorts now ignore orders (except "hold position") if you're jumping or in another system.
+    * You can now select a planet in the map to have the autopilot land there when it reaches that system.
+    * You can now hail dominated planets to release them from paying tribute to you.
+    * Auto-aiming now takes "random velocity" into account, making the Bombardment Turret more accurate.
+  * User interface:
+    * Added a preference to highlight your flagship to make it easier to distinguish from other ships.
+    * When naming a new ship, added a button to have the game propose a random civilian name.
+    * The zooming of the main view now pauses whenever it is not active.
+    * In the main menu, the "New Pilot" shortcut now only works if no pilot is loaded.
+    * Escort target brackets no longer show up for escorts that have not taken off yet.
+    * Reduced the number of scanning warnings that display at the same time.
+    * Added messages that tell you if someone succeeds in scanning your cargo or outfits.
+    * The "fail" noise no longer plays over and over if you hold the jump key while out of fuel.
+    * Ships exiting wormholes no longer make the "exiting hyperspace" noise.
+  * Under the hood:
+    * The help messages for new players are now configurable via a text file.
+
+Version 0.9.5:
+  * Bug fixes:
+    * Typo fixes. (@Amazinite, @Bladewood, @doches, @Elyssaen, @jafdy, @gecko-locator)
+    * More typo fixes (@KiLEdEnNis, @MillerNerd, @Pointedstick, @retrue, @warp-core, @Wrzlprnft)
+    * Fixed the hardpoint locations on the Vanguard. (@jafdy)
+    * Republic and Syndicate ships no longer attack each other in the "reconciliation" plot. (@jafdy)
+    * Fixed a mistake in the scanner warning message for the new scanner mechanics. (@Elyssaen)
+    * Automatic variables are now updated before checking if a mission can complete. (@Elyssaen)
+    * On high DPI displays, the viewport no longer shrinks to half size when resizing the window.
+    * Fixed a bug where ships with fuel but no hyperdrive could attempt to "board" themselves.
+    * Ships will no longer try to land on a wormhole to refuel.
+    * It's no longer possible to bring up the map and change your jump destination while jumping.
+    * Fixed a memory leak in the "fog" images in the map panel.
+    * Clicking "Back to Menu" in the preferences now works even if editing a key binding.
+    * The flight check in the outfitter no longer includes disabled ships.
+    * Wormholes are no longer listed as "ports" you can visit in the map.
+    * You can no longer hail a ship that is in the process of landing or has landed.
+    * Fixed a bug where the escort AI stopped pathfinding after stopping to refuel.
+    * Fixed typos in the Electron Beam / Turret missions that made both missions get offered.
+    * "Not enough passenger space" is no longer displayed if required crew is greater than bunks.
+    * "Phantom" systems are no longer left in saved games from previously used plugins.
+  * Game content:
+    * Added sprites for all the Pug outfits. (@comnom)
+    * Escort missions now always go to or from a dangerous region of space. (@Pointedstick)
+    * Added "regional flavor" jobs in certain parts of human space. (@Pointedstick)
+    * New outfits that increase ammo capacity. (@Amazinite)
+    * Added a ton of new hail messages. (@Pointedstick)
+    * Added distinctive hails for the militia ships, separate from the Free Worlds. (@Amazinite)
+    * New commodity names for cargo missions. (@Pointedstick)
+    * More ship names, particularly for civilians and pirates. (@Pointedstick)
+    * New civilian hails involving different made-up song and band names. (@Pointedstick)
+    * New "person" representing @Pointedstick in-game. (@Pointedstick, @Wrzlprnft)
+    * In Hai space, human fleets now sometimes use Hai technology. (@Amazinite)
+    * Rebalanced the cost and attributes of the Hai engines. (@Amazinite)
+    * Changed the outfits on the Marauder Fury. (@LocalGod79)
+    * Tweaked the Marauder engine flares using the new ability to specify flare scale. (@Wrzlprnft)
+    * Skeins are now included in the post-Dreadnought Free Worlds fleets. (@LocalGod79)
+    * Tweaked the Firebird's description of when the Alpha Wars happened. (@warp-core)
+    * Fixed a missing passenger (Freya) in one of the last Free Worlds missions. (@jafdy)
+    * New faction south of human space, the Coalition, with 16 new ships and about 70 star systems.
+    * Added first contact missions and distinctive, large-scale jobs for Coalition space.
+    * Added the next segment of the Wanderer story line, dealing with the Korath automata.
+    * Added a "Model 8" Kor Mereti drone for mining asteroids.
+    * Added occasional mining fleets in human systems with high-value asteroids.
+    * Boosted the price of the Pulse Cannon and Pulse Turret.
+    * Made sure you have permission to land on Farpoint in the reconciliation plot line.
+    * The Unfettered jump drive missions now stop getting offered once they invade Wanderer space.
+    * Fixed the Earth's description of how its population compares to other human worlds.
+    * Replaced some ugly landscapes with some prettier ones from unsplash.com.
+    * Replaced some ring planet sprites that I wasn't happy with.
+    * The one planet you can land on in Korath exile space is no longer treated as inhabited.
+    * The Conservatory side missions will no longer be offered after the Bloodsea missions.
+    * The Syndicate reinforcements against the Pug now show up as Syndicate ships, not Escorts.
+    * Cleaned up the text of the Smuggler's Den mission.
+    * Pirates in the North now occasionally use Bactrians.
+    * Shortened the weirdly elongated cockpit on the Shuttle.
+    * Fixed some hardpoints on the Argosy that did not match the sprite.
+    * Added a sprite for a red giant star.
+    * Re-rendered the Jump Drive outfit sprite in orthographic perspective, to match all the others.
+    * Quarg ships now have ramscoops built in so they don't get stranded.
+    * Added an ambient sound for human space stations, just to test the MP3 streaming.
+    * Fixed the order of the gun hardpoints on the Mark II Cruiser.
+    * Updated the outfits on the "alien weapons" Osprey variant.
+    * Removed the lists of special outfits and alien ships; they're now in the all-content plugin.
+    * The mission on Hope now correctly states the crew complement of a Gunboat.
+    * Added five new landscapes using NASA pictures from Mars.
+    * Attacking "Navy Intelligence" ships now angers the Republic.
+    * The Syndicate can no longer be bribed during the FW story when you are fighting them.
+    * Replaced some over-used landscapes with under-used ones.
+  * Game mechanics:
+    * Ammo is now auto-sold when selling the new ammo capacity outfits. (@kozbot)
+    * Ships and outfits now depreciate over time. When selling, you always sell the least depreciated.
+    * Harvested minerals (anything with installable < 0) do not depreciate.
+    * Added a "mining" personality that attacks asteroids, and "harvests" that picks up flotsam.
+    * Added an "appeasing" personality that dumps cargo to get pirates to leave the ship alone.
+    * Scanning a ship now takes time; you must hold down the scan key.
+    * Adding multiple scanners makes scanning take less time and increases its range.
+    * Added support for streaming MP3s from the disk for ambient sounds or music.
+    * Each planet and system can now specify the "music" to play when you are there.
+    * Added a new, much more efficient collision detection algorithm, to speed up big battles.
+    * The game now ensures that all "landing" missions are offered, even if one causes a "launch."
+    * Added an "active cooling" attribute for a cooling system that ramps up as heat level increases.
+    * It's now possible to specify the plural form of an outfit or ship name, for irregular plurals.
+    * NPC crews now replenish each time you leave a planet, so you can't wear them down by attrition.
+    * "Entering" fleets with no jump capabilities no longer spawn in neighboring systems.
+    * You can no longer repeatedly buy and sell a ship to make all its outfits appear "in stock."
+    * Made it possible to limit what commodity types a fleet may carry (e.g. the Korath drones).
+    * Added an "atrocity" outfit attribute that makes owning it an atrocity.
+    * An "attitude toward" another government of less than .05 means no reputation changes carry over.
+    * Combat ratings now go up to level 21.
+    * Each star system can now specify what "haze" image it uses.
+    * The target-picking AI now prioritizes armed ships over unarmed ones.
+    * Automatic mission clearance now applies to stopovers as well as the destination.
+    * The "random" condition now changes every time it's checked, so you can use it in conversations.
+    * Events can now mark individual planets as "unvisited" without affecting the whole system.
+    * Fixed the flicker when taking off from a planet.
+  * User interface:
+    * Modified the alarm sound to have less background buzz. (@DingusShingleton)
+    * The conversation panel now allows you to use the numeric keypad. (@kozbot)
+    * Solar collection is now displayed per second, not per frame, in the outfitter. (@Elyssaen)
+    * Added an icon for the Windows binary. (@CH-de)
+    * Made it possible to zoom the main view in or out (between 25% and 200%) independent of the UI.
+    * Click on escorts (or escort icons) to select them (or shift-click to select multiple).
+    * Fleet commands are now issued only to selected escorts (if any).
+    * Number keys can be assigned as hotkeys to particular groups of escorts (control + key).
+    * You can right click a target or location to issue move or attack commands to your escorts.
+    * Split the preferences panel into separate pages for keys, settings, and plugins.
+    * If a plugin has an icon or an about.txt, those are now shown in the plugins list.
+    * Zoom preferences can now be adjusted with the scroll wheel instead of clicking to cycle.
+    * Overheated targets now blink grey to show that they're only half disabled.
+    * Switched to a less cartoony icon, particularly for use by the Mac OS X application.
+    * The game now sets the "window icon" to show in the corner of the window and in the switcher.
+    * Put a limit on how many messages will display at the bottom of the screen.
+    * Added a message telling you when autopilot is engaged or disengaged.
+    * Added expand / collapse arrows to the shipyard and outfitter category names.
+    * The shipyard and outfitter maps can now be filtered to only show the selected system's items.
+    * Shift + clicking a category name in the shops now expands or collapses all categories.
+    * Collapsed categories are now remembered rather than resetting to expanded every time.
+    * The zoom level is now remembered when you close the map.
+    * Tripled the scroll speed in the shipyard and outfitter (and added a setting to adjust speed).
+    * Double clicking is now distinguished from two clicks with a long time in between them.
+    * Added a key binding to toggle your escorts' ammo usage (off, on, or frugal) on the fly.
+    * It's now possible to resize the window to odd dimensions.
+    * Widened the planetary orbits map widget to make space for longer planet and system names.
+    * The trade panel is no longer accessible if a system does not define any commodity prices.
+    * If a system has no price for a specific commodity, it displays as "----" in the trade panel.
+    * Fixed some UI graphics that were blurry due to lines being off by half a pixel.
+    * Fixed numbers very close to 1B getting displayed as 1000.00M.
+    * The "fog" in the map now updates each time you open the map panel.
+    * Updated the "cost" and "sells for" tooltips to include a description of depreciation.
+    * Added a warning message explaining that you can't board a ship while cloaked.
+    * Non-installable outfits now show "This is not an installable item" in the outfit info.
+  * Under the hood:
+    * Added RPM package names to the developer read-me. (@Pointedstick)
+    * Fixed a typo in the RPM package list. (@TJesionowski)
+    * Allow additional CPPPATHs to be specified in an environment variable. (@Barthalion)
+    * Updating the XCode file to include the new classes added in 0.9.5. (@Isaacssv552)
+    * Added Thumbs.db to the .gitignore file. (@Amazinite)
+    * Stranded escorts now remember where they're going so they don't waste a ton of CPU pathfinding.
+    * Added more image decoding threads to speed up the game's load time.
+    * Beginner help messages are now defined in a text file instead of in the code.
+    * Fixed some places where having an escort with no sprite could crash the game.
+    * New, cleaner code for tracking clickable zones (buttons, etc.) in the UI.
+    * Stripped the non-standard color profiles from some of the PNG files.
+    * Changed how game data is reloaded, so governments left over from plugins won't stick around.
+    * The "--ships" spreadsheet output now shows total space, not remaining space.
+    * Moved the Marauder ships to a separate data file.
+    * Fixed some variables that didn't need to be marked "mutable" now that Draw() is not const.
+    * The star field "haze" will now display correctly even with very large monitors.
+    * Cleaned up and simplified the Audio code.
+    * Fixed some data file lines that were using spaces instead of tabs.
+    * Cleaned up some unnecessary namespace prefixes.
+    * Replaced some asserts with reasonable fall-back behavior that avoids quitting the program.
+    * Fixed some things that Google's cpplint warns about, mostly making constructors explicit.
+    * Cleaned up the AI code by storing a reference to the ship list instead of passing it around.
+    * Simplified the code for deferred landscape image loading.
+
+Version 0.9.4:
+  * Bug fixes:
+    * Unfettered jump drive mission no longer get offered on Vara Ke'sok. (@Amazinite)
+    * Typo fixes. (@Waladil, @Pointedstick, @oo13)
+    * Fixed a crash that could occur when disowning a ship.
+    * Changed how window resizing is handled to fix a hang in Windows when maximizing.
+    * The saved game now remembers which missions are "failed," so reloading won't cancel fails.
+    * Fixed various bugs with how orphaned fighters get assigned to carriers.
+  * Game content:
+    * More variety in the ship names. (@Pointedstick)
+    * Fixed an issue where both the Electron Turret and the Electron Beam mission could be completed.
+    * Raised the prices of the Behemoth and the Mule.
+    * Hai Trackers now use optical and infrared tracking, so small ships can dodge them.
+    * Fixed how the sound for the Pug Zapper is played.
+    * Reduced the probability on all but the highest tier Marauder jobs the player qualifies for.
+    * Tweaked the probabilities for the "There Might Be Riots" missions.
+  * Game mechanics:
+    * Missions can now fail if you are scanned, by specifying "stealth" cargo. (@Pointedstick)
+    * Systems created by game events are now linked properly to the rest of the map.
+    * A "nemesis" ship will now seek other targets if no player ships are available to attack.
+    * Wanderer ships will now travel through the Eye.
+    * Engine hardpoints now have adjustable zoom factors for bigger or smaller flares.
+    * Hostile fleets are now more likely to enter a system from the direction of a system they control.
+    * Put a cap on how much mortgage debt the player can take on, to avoid absurdly large mortgages.
+  * User interface:
+    * Ships with lots of outfits or more than 12 weapons now display properly in the info panel.
+    * Snapshot names displayed in the load panel are now truncated if they are too long.
+    * Added custom messages when you try to land on certain unusual stellar objects (like lava planets).
+  * Under the hood:
+    * Added support in the Font class for truncating strings (and adding ellipses).
+    * Interface definitions can now include named "boxes" for custom content to be drawn in.
+    * Cleaned up the code for rendering the Info Panel UI.
+
 Version 0.9.3:
   * Bug fixes:
     * Fixed a bug that kept you from completely clearing your travel plan. (@MarcelineVQ)
