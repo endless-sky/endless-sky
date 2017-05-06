@@ -13383,6 +13383,7 @@ system Lesath
 
 system Limen
 	pos -791.99 -12.2491
+	government Republic
 	habitable 1715
 	belt 1463
 	link Orbona
@@ -15909,6 +15910,7 @@ system Oblate
 
 system Orbona
 	pos -735.99 -97.2491
+	government Republic
 	habitable 2859.44
 	belt 1507
 	link Limen
@@ -20814,6 +20816,7 @@ system Tejat
 
 system Terminus
 	pos -727.99 -23.2491
+	government Republic
 	habitable 425.92
 	belt 1221
 	link Limen
