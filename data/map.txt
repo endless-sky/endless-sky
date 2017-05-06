@@ -13381,6 +13381,57 @@ system Lesath
 		distance 2628.29
 		period 1301.48
 
+system Limen
+	pos -791.99 -12.2491
+	habitable 1715
+	belt 1463
+	link Orbona
+	link Terminus
+	link Mora
+	asteroids "large metal" 1 2.7552
+	trade Clothing 271
+	trade Electronics 793
+	trade Equipment 615
+	trade Food 386
+	trade "Heavy Metals" 941
+	trade Industrial 847
+	trade "Luxury Goods" 1034
+	trade Medical 802
+	trade Metal 497
+	trade Plastic 378
+	fleet "Small Southern Merchants" 4000
+	fleet "Large Southern Merchants" 8000
+	fleet "Small Southern Pirates" 1000
+	fleet "Large Southern Pirates" 2000
+	fleet "Human Miners" 1000
+	object
+		sprite star/f5
+		period 10
+	object
+		sprite planet/venus
+		distance 238.96
+		period 35.6793
+	object
+		sprite planet/lava3
+		distance 445.21
+		period 90.7351
+	object
+		sprite planet/gas2
+		distance 1297.5
+		period 451.429
+		object
+			sprite planet/europa
+			distance 210
+			period 18.4393
+	object
+		sprite planet/uranus
+		distance 2331.5
+		period 1087.38
+		object
+			sprite planet/dust5
+			distance 212
+			period 13.1879
+
 system Lolami
 	pos -628 -10
 	government Republic
@@ -15306,6 +15357,7 @@ system Mora
 	belt 1176
 	link "Delta Velorum"
 	link "Tania Australis"
+	link Limen
 	asteroids "medium rock" 54 1.9305
 	asteroids "large rock" 33 1.9877
 	asteroids "medium metal" 3 1.287
@@ -15854,6 +15906,75 @@ system Oblate
 		sprite planet/gas0
 		distance 4260.49
 		period 2465.86
+
+system Orbona
+	pos -735.99 -97.2491
+	habitable 2859.44
+	belt 1507
+	link Limen
+	asteroids "small rock" 22 3.99
+	asteroids "medium rock" 34 3.57
+	asteroids "large rock" 2 4.08
+	asteroids "small metal" 26 4.26
+	asteroids "medium metal" 45 1.92
+	asteroids "large metal" 4 4.35
+	minables platinum 19 4.40315
+	minables tungsten 36 5.42935
+	minables gold 28 4.7943
+	trade Clothing 345
+	trade Electronics 851
+	trade Equipment 677
+	trade Food 459
+	trade "Heavy Metals" 892
+	trade Industrial 890
+	trade "Luxury Goods" 992
+	trade Medical 871
+	trade Metal 415
+	trade Plastic 466
+	fleet "Small Southern Pirates" 1200
+	fleet "Large Southern Pirates" 3200
+	fleet "Human Miners" 1500
+	object
+		sprite star/giant
+		distance 20.2539
+		period 9.71046
+	object
+		sprite star/k0
+		distance 98.7461
+		period 9.71046
+		offset 180
+	object
+		sprite planet/ice6
+		distance 447.836
+		period 70.8921
+		object
+			sprite planet/desert4
+			distance 149
+			period 22.8635
+	object
+		sprite planet/desert3
+		distance 862.846
+		period 189.592
+	object
+		sprite planet/ice1
+		distance 1210.49
+		period 315.035
+		object
+			sprite planet/rock3
+			distance 175
+			period 19.7858
+	object
+		sprite planet/ocean1
+		distance 1594.3
+		period 476.182
+	object
+		sprite planet/gas4
+		distance 2057.86
+		period 698.3
+		object
+			sprite planet/dust1
+			distance 273
+			period 15.9089
 
 system Orvala
 	pos -334 303
@@ -20690,6 +20811,56 @@ system Tejat
 			sprite planet/rhea
 			distance 438
 			period 22.9367
+
+system Terminus
+	pos -727.99 -23.2491
+	habitable 425.92
+	belt 1221
+	link Limen
+	asteroids "small rock" 29 4.046
+	asteroids "medium rock" 15 4.726
+	asteroids "large rock" 52 3.944
+	asteroids "small metal" 53 3.128
+	asteroids "medium metal" 91 3.74
+	asteroids "large metal" 31 3.502
+	minables lead 9 5.03787
+	minables titanium 17 5.69095
+	minables tungsten 4 5.80964
+	trade Clothing 323
+	trade Electronics 877
+	trade Equipment 661
+	trade Food 440
+	trade "Heavy Metals" 868
+	trade Industrial 842
+	trade "Luxury Goods" 963
+	trade Medical 865
+	trade Metal 421
+	trade Plastic 402
+	fleet "Small Southern Pirates" 2000
+	fleet "Large Southern Pirates" 5000
+	object
+		sprite star/k5-old
+		period 10
+	object
+		sprite planet/gas11
+		distance 284.16
+		period 92.8411
+	object
+		sprite planet/desert4
+		distance 666.8
+		period 333.725
+	object
+		sprite planet/jupiter
+		distance 1040.64
+		period 650.649
+		object
+			sprite planet/rhea
+			distance 243
+			period 11.9034
+	object
+		sprite planet/gas6
+		distance 2077.64
+		period 1835.49
 
 system Torbab
 	pos -949.587 490.051
