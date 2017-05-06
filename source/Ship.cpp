@@ -1060,7 +1060,7 @@ bool Ship::Move(list<Effect> &effects, list<shared_ptr<Flotsam>> &flotsam)
 	else if(commands.Has(Command::JUMP) && IsReadyToJump())
 	{
 		hyperspaceSystem = GetTargetSystem();
-		isUsingJumpDrive = !currentSystem->Links().count(hyperspaceSystem);
+		isUsingJumpDrive = !attributes.Get("hyperdrive") || !currentSystem->Links().count(targetSystem);
 		hyperspaceFuelCost = JumpFuel(hyperspaceSystem);
 	}
 	
