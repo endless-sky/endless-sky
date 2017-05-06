@@ -574,7 +574,8 @@ void MapPanel::DrawTravelPlan()
 		bool isJump = !isHyper && previous->Neighbors().count(next);
 		bool isWormhole = false;
 		for(const StellarObject &object : previous->Objects())
-			isWormhole |= (object.GetPlanet() && object.GetPlanet()->WormholeDestination(previous) == next);
+			isWormhole |= (object.GetPlanet() && player.HasVisited(object.GetPlanet())
+				&& object.GetPlanet()->WormholeDestination(previous) == next);
 		
 		if(!isHyper && !isJump && !isWormhole)
 			break;
