@@ -286,6 +286,12 @@ government "Quarg"
 		"Pirate" -.01
 	"hostile hail" "hostile quarg"
 
+government "Remnant"
+	swizzle 0
+	color .89 .38 .62
+	
+	"player reputation" 1
+
 government "Republic"
 	swizzle 0
 	color .91 .42 .09

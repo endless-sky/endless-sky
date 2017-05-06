@@ -2044,6 +2044,46 @@ system Adhara
 		distance 2411.01
 		period 1829.46
 
+system Aescolanus
+	pos -15 340
+	government Uninhabited
+	habitable 233.28
+	belt 1323
+	haze _menu/haze-red
+	trade Clothing 262
+	trade Electronics 835
+	trade Equipment 421
+	trade Food 248
+	trade "Heavy Metals" 882
+	trade Industrial 719
+	trade "Luxury Goods" 1235
+	trade Medical 715
+	trade Metal 410
+	trade Plastic 289
+	object
+		sprite star/m4
+		period 10
+	object
+		sprite planet/desert4
+		distance 111.24
+		period 30.7265
+	object
+		sprite planet/dust3
+		distance 308.68
+		period 142.031
+	object
+		sprite planet/gas8
+		distance 636.84
+		period 420.888
+	object
+		sprite planet/desert9
+		distance 912.88
+		period 722.34
+	object "Ember Wormhole"
+		sprite planet/wormhole-red
+		distance 2279.29
+		period 2849.84
+
 system "Al Dhanab"
 	pos -177 207
 	government Syndicate
@@ -4127,6 +4167,69 @@ system Antares
 		distance 2778.76
 		period 2744.94
 
+system Antevorta
+	pos -36.1297 446.242
+	government Uninhabited
+	habitable 320
+	belt 1994
+	haze _menu/haze-red
+	link Ossipago
+	link Cardea
+	link Convector
+	link Insitor
+	asteroids "small rock" 1 1.6272
+	asteroids "medium rock" 14 1.2816
+	asteroids "large rock" 1 1.1088
+	asteroids "small metal" 1 1.1664
+	asteroids "medium metal" 6 1.4544
+	asteroids "large metal" 1 1.3248
+	minables silicon 4 2.09623
+	trade Clothing 288
+	trade Electronics 813
+	trade Equipment 544
+	trade Food 238
+	trade "Heavy Metals" 812
+	trade Industrial 660
+	trade "Luxury Goods" 1369
+	trade Medical 697
+	trade Metal 338
+	trade Plastic 469
+	object
+		sprite star/wr
+		period 10
+	object
+		sprite planet/desert8
+		distance 152.41
+		period 42.0732
+	object
+		sprite planet/io
+		distance 449.3
+		period 212.956
+	object
+		sprite planet/lava7
+		distance 622.34
+		period 347.158
+	object
+		sprite planet/cloud8
+		distance 1538.34
+		period 1349.16
+	object
+		sprite planet/gas2
+		distance 3887.63
+		period 5420.16
+		object
+			sprite planet/dust3
+			distance 178
+			period 14.3895
+		object
+			sprite planet/dust0
+			distance 262
+			period 25.6961
+		object
+			sprite planet/dust1
+			distance 391
+			period 46.8468
+
 system Ap'arak
 	pos -164.62 -781.858
 	government Wanderer
@@ -4243,6 +4346,69 @@ system Arcturus
 		sprite planet/oberon
 		distance 3311.92
 		period 4261.91
+
+system Arculus
+	pos 308.87 393.242
+	government Remnant
+	habitable 625
+	belt 1536
+	haze _menu/haze-red
+	link Edusa
+	link Cinxia
+	link Pantica
+	asteroids "medium rock" 2 0.60666667
+	asteroids "large metal" 1 1.3416667
+	trade Clothing 346
+	trade Electronics 733
+	trade Equipment 676
+	trade Food 512
+	trade "Heavy Metals" 933
+	trade Industrial 780
+	trade "Luxury Goods" 1006
+	trade Medical 510
+	trade Metal 417
+	trade Plastic 498
+	fleet "Large Remnant" 1500
+	fleet "Small Remnant" 1000
+	object
+		sprite star/g5-old
+		period 10
+	object
+		sprite planet/rock13
+		distance 209.29
+		period 48.4443
+	object
+		sprite planet/rock16
+		distance 490.5
+		period 173.811
+		object
+			sprite planet/desert4
+			distance 122
+			period 18.3911
+	object Viminal
+		sprite planet/ocean2
+		distance 923.75
+		period 449.212
+		object
+			sprite planet/io
+			distance 162
+			period 17.8986
+	object
+		sprite planet/gas8
+		distance 1734.39
+		period 1155.69
+		object
+			sprite planet/tethys
+			distance 200
+			period 15.0564
+		object
+			sprite planet/miranda
+			distance 273
+			period 24.0116
+		object
+			sprite planet/ice7
+			distance 431
+			period 47.6313
 
 system Arneb
 	pos -523 -580
@@ -5651,6 +5817,70 @@ system "Broken Bowl"
 			distance 297
 			period 13.0737
 
+system Caeculus
+	pos 162.87 343.242
+	government Uninhabited
+	habitable 320
+	belt 1797
+	haze _menu/haze-red
+	link Stercutus
+	asteroids "small rock" 3 0.5704
+	asteroids "medium rock" 6 0.828
+	asteroids "large rock" 1 0.7176
+	asteroids "small metal" 23 1.288
+	asteroids "medium metal" 14 0.8556
+	asteroids "large metal" 37 0.6072
+	minables silicon 19 1.02332
+	trade Clothing 220
+	trade Electronics 792
+	trade Equipment 626
+	trade Food 403
+	trade "Heavy Metals" 1043
+	trade Industrial 872
+	trade "Luxury Goods" 1041
+	trade Medical 508
+	trade Metal 272
+	trade Plastic 289
+	object
+		sprite star/wr
+		period 10
+	object
+		sprite planet/dust6
+		distance 127.09
+		period 32.037
+	object
+		sprite planet/desert9
+		distance 341.05
+		period 140.835
+	object
+		sprite planet/gas5
+		distance 993.81
+		period 700.551
+		object
+			sprite planet/rock14
+			distance 258
+			period 13.7809
+		object
+			sprite planet/dust0
+			distance 350
+			period 21.7746
+	object
+		sprite planet/rock3
+		distance 1683.81
+		period 1544.99
+	object
+		sprite planet/jupiter
+		distance 2187.82
+		period 2288.24
+		object
+			sprite planet/rhea
+			distance 273
+			period 14.1744
+		object
+			sprite planet/ice0
+			distance 380
+			period 23.2775
+
 system Canopus
 	pos -421 -225
 	government Republic
@@ -5887,6 +6117,70 @@ system Cardax
 			sprite planet/rock0
 			distance 244
 			period 13.4426
+
+system Cardea
+	pos -89.1297 417.242
+	government Uninhabited
+	habitable 851.84
+	belt 1725
+	haze _menu/haze-red
+	link Nenia
+	link Antevorta
+	asteroids "small rock" 2 1.071
+	asteroids "medium rock" 34 1.2138
+	asteroids "large rock" 26 0.7497
+	asteroids "small metal" 9 1.6422
+	asteroids "medium metal" 18 1.071
+	asteroids "large metal" 4 1.7493
+	minables silicon 14 1.35096
+	minables titanium 14 2.06963
+	trade Clothing 321
+	trade Electronics 842
+	trade Equipment 476
+	trade Food 299
+	trade "Heavy Metals" 782
+	trade Industrial 702
+	trade "Luxury Goods" 1306
+	trade Medical 758
+	trade Metal 339
+	trade Plastic 385
+	object
+		sprite star/k5-old
+		distance 47.5
+		period 12.6901
+		offset 180
+	object
+		sprite star/k5
+		distance 47.5
+		period 12.6901
+	object
+		sprite planet/desert7
+		distance 260.94
+		period 57.7686
+	object
+		sprite planet/rock2
+		distance 629.55
+		period 216.484
+	object
+		sprite planet/miranda
+		distance 969.79
+		period 413.902
+	object
+		sprite planet/neptune
+		distance 1490.63
+		period 788.743
+		object
+			sprite planet/callisto
+			distance 227
+			period 17.0401
+	object "Ember Threshold"
+		sprite planet/wormhole-red
+		distance 2500
+		period 1713.14
+	object "Ember Wormhole"
+		sprite planet/wormhole-red
+		distance 3252.92
+		period 2542.68
 
 system Castor
 	pos -452 -17
@@ -6383,6 +6677,56 @@ system Chy'chra
 			distance 614
 			period 80.0847
 
+system Cinxia
+	pos 265.87 415.242
+	government Remnant
+	habitable 425.92
+	belt 1713
+	haze _menu/haze-red
+	link Arculus
+	link Perfica
+	link Farinus
+	link Pantica
+	trade Clothing 297
+	trade Electronics 724
+	trade Equipment 691
+	trade Food 519
+	trade "Heavy Metals" 935
+	trade Industrial 769
+	trade "Luxury Goods" 1022
+	trade Medical 516
+	trade Metal 354
+	trade Plastic 417
+	fleet "Large Remnant" 1200
+	fleet "Small Remnant" 900
+	object
+		sprite star/k5-old
+		period 10
+	object Caelian
+		sprite planet/cloud3
+		distance 279.25
+		period 90.4452
+		object
+			sprite planet/dust1
+			distance 135
+			period 17.2478
+	object
+		sprite planet/ice6
+		distance 745.09
+		period 394.193
+	object
+		sprite planet/lava0
+		distance 922.93
+		period 543.437
+	object
+		sprite planet/gas9
+		distance 2326.18
+		period 2174.51
+		object
+			sprite planet/rhea
+			distance 270
+			period 16.6355
+
 system Companion
 	pos -1032.59 709.051
 	government Coalition
@@ -6438,6 +6782,71 @@ system Companion
 			sprite planet/dust3
 			distance 283
 			period 13.4397
+
+system Convector
+	pos -14.1297 379.242
+	government Uninhabited
+	habitable 4131.68
+	belt 1961
+	haze _menu/haze-red
+	link Antevorta
+	asteroids "small rock" 7 1.805
+	asteroids "medium rock" 15 1.3236667
+	asteroids "large rock" 3 1.3236667
+	asteroids "medium metal" 1 1.805
+	minables iron 2 2.42901
+	minables silicon 2 1.8316
+	trade Clothing 235
+	trade Electronics 819
+	trade Equipment 536
+	trade Food 204
+	trade "Heavy Metals" 792
+	trade Industrial 603
+	trade "Luxury Goods" 1443
+	trade Medical 691
+	trade Metal 367
+	trade Plastic 485
+	object
+		sprite star/giant
+		distance 13.0749
+		period 7.27748
+	object
+		sprite star/k0-old
+		distance 97.9251
+		period 7.27748
+		offset 180
+	object
+		sprite planet/cloud1
+		distance 311.885
+		period 34.2759
+	object
+		sprite planet/desert9
+		distance 749.895
+		period 127.79
+	object
+		sprite planet/rock6
+		distance 941.385
+		period 179.741
+	object
+		sprite planet/rock5
+		distance 1178.23
+		period 251.674
+	object
+		sprite planet/gas11
+		distance 1600.52
+		period 398.461
+		object
+			sprite planet/rock3
+			distance 270
+			period 14.6327
+	object
+		sprite planet/gas16
+		distance 6592.96
+		period 3331.32
+		object
+			sprite planet/dust5
+			distance 206
+			period 15.5632
 
 system "Cor Caroli"
 	pos -682 201
@@ -7705,6 +8114,54 @@ system Eblumab
 			distance 228
 			period 14.7087
 
+system Edusa
+	pos 273.87 347.242
+	government Uninhabited
+	habitable 2372.76
+	belt 1167
+	haze _menu/haze-red
+	link Arculus
+	asteroids "small rock" 2 0.74013333
+	asteroids "medium rock" 1 1.5530667
+	asteroids "large rock" 4 1.274
+	asteroids "large metal" 1 0.7644
+	minables silicon 2 1.59549
+	trade Clothing 378
+	trade Electronics 713
+	trade Equipment 592
+	trade Food 526
+	trade "Heavy Metals" 876
+	trade Industrial 833
+	trade "Luxury Goods" 1010
+	trade Medical 521
+	trade Metal 336
+	trade Plastic 475
+	fleet "Large Remnant" 3000
+	fleet "Small Remnant" 2000
+	object
+		sprite star/giant
+		period 10
+	object
+		sprite planet/ice4
+		distance 211.61
+		period 25.2777
+	object
+		sprite planet/desert10
+		distance 423.82
+		period 71.6482
+	object
+		sprite planet/rock19
+		distance 680.82
+		period 145.875
+	object
+		sprite planet/dust4
+		distance 981.71
+		period 252.585
+	object "Remnant Wormhole"
+		sprite planet/wormhole-red
+		distance 3465.15
+		period 1675.01
+
 system "Ehma Ti"
 	pos 39.1085 -749.244
 	government "Hai (Unfettered)"
@@ -8940,6 +9397,74 @@ system Farbutero
 			sprite planet/luna
 			distance 457
 			period 32.222
+
+system Farinus
+	pos 202.87 440.242
+	government Uninhabited
+	habitable 745.92
+	belt 1149
+	haze _menu/haze-red
+	link Cinxia
+	link Perfica
+	asteroids "large rock" 6 0.8316
+	asteroids "small metal" 1 0.6633
+	trade Clothing 223
+	trade Electronics 695
+	trade Equipment 661
+	trade Food 529
+	trade "Heavy Metals" 961
+	trade Industrial 814
+	trade "Luxury Goods" 1019
+	trade Medical 558
+	trade Metal 342
+	trade Plastic 354
+	fleet "Large Remnant" 9000
+	fleet "Small Remnant" 7000
+	object
+		sprite star/k5-old
+		distance 36.894
+		period 11.6805
+	object
+		sprite star/m0
+		distance 49.106
+		period 11.6805
+		offset 180
+	object
+		sprite planet/rock9
+		distance 195.066
+		period 39.9012
+	object
+		sprite planet/mars
+		distance 524.316
+		period 175.834
+		object
+			sprite planet/dust4
+			distance 133
+			period 20.499
+	object
+		sprite planet/gas17
+		distance 1311.33
+		period 695.472
+		object
+			sprite planet/callisto
+			distance 227
+			period 14.6121
+		object
+			sprite planet/dust5
+			distance 351
+			period 28.0953
+		object
+			sprite planet/dust1
+			distance 494
+			period 46.9098
+	object
+		sprite planet/jupiter
+		distance 2113.37
+		period 1422.91
+		object
+			sprite planet/dust0
+			distance 399
+			period 41.9524
 
 system Faronektu
 	pos 292.431 -309.812
@@ -11382,6 +11907,58 @@ system "Imo Dep"
 			sprite planet/dust0
 			distance 399
 			period 41.9524
+
+system Insitor
+	pos -28.1296 400.242
+	government Uninhabited
+	habitable 553.28
+	belt 1170
+	haze _menu/haze-red
+	link Antevorta
+	asteroids "small rock" 1 2.5442667
+	trade Clothing 306
+	trade Electronics 848
+	trade Equipment 490
+	trade Food 305
+	trade "Heavy Metals" 861
+	trade Industrial 701
+	trade "Luxury Goods" 1308
+	trade Medical 717
+	trade Metal 383
+	trade Plastic 385
+	object
+		sprite star/m0
+		distance 43.8496
+		period 18.0359
+		offset 180
+	object
+		sprite star/m4
+		distance 60.1504
+		period 18.0359
+	object
+		sprite planet/rock19
+		distance 247.76
+		period 66.3186
+	object
+		sprite planet/rock12
+		distance 511.01
+		period 196.441
+	object
+		sprite planet/ice2
+		distance 735.45
+		period 339.17
+	object
+		sprite planet/mars
+		distance 1745.14
+		period 1239.75
+		object
+			sprite planet/dust4
+			distance 151
+			period 24.7983
+	object "Ember Wormhole"
+		sprite planet/wormhole-red
+		distance 4713.14
+		period 5502.41
 
 system "Io Lowe"
 	pos -94.7566 -527.728
@@ -15644,6 +16221,82 @@ system Naper
 			distance 286
 			period 23.8403
 
+system Nenia
+	pos -39.1297 467.242
+	government Uninhabited
+	habitable 2340
+	belt 1343
+	haze _menu/haze-red
+	link Ossipago
+	link Cardea
+	asteroids "small rock" 4 1.4352
+	asteroids "medium rock" 10 2.3
+	asteroids "large rock" 3 2.0608
+	asteroids "small metal" 2 2.3
+	asteroids "large metal" 3 1.2328
+	minables aluminum 7 1.96731
+	minables platinum 2 1.43013
+	minables titanium 5 1.78627
+	minables silicon 27 0.74013333
+	minables iron 18 1.5530667
+	minables silver 4 1.274
+	trade Clothing 310
+	trade Electronics 804
+	trade Equipment 425
+	trade Food 257
+	trade "Heavy Metals" 718
+	trade Industrial 765
+	trade "Luxury Goods" 1315
+	trade Medical 835
+	trade Metal 265
+	trade Plastic 465
+	fleet "Void Sprites" 500
+	object
+		sprite star/f5-old
+		distance 31.5171
+		period 10.5992
+	object
+		sprite star/g5-old
+		distance 86.4829
+		period 10.5992
+		offset 180
+	object
+		sprite planet/desert6
+		distance 249.723
+		period 32.6317
+	object Nasqueron
+		sprite planet/gas8
+		distance 880.683
+		period 216.113
+		object
+			sprite planet/rock3
+			distance 259
+			period 14.701
+		object
+			sprite planet/dust3
+			distance 385
+			period 26.6433
+	object
+		sprite planet/desert1
+		distance 1626.29
+		period 542.313
+		object
+			sprite planet/rhea
+			distance 165
+			period 18.3981
+	object Slylandro
+		sprite planet/gas11
+		distance 3003.29
+		period 1360.97
+		object
+			sprite planet/dust4
+			distance 249
+			period 12.9592
+		object
+			sprite planet/ice8
+			distance 353
+			period 21.8746
+
 system Nihal
 	pos -262 -121
 	government Republic
@@ -16043,6 +16696,118 @@ system Orvala
 			distance 202
 			period 14.1511
 
+system Ossipago
+	pos 6.87033 429.242
+	government Uninhabited
+	habitable 1948.28
+	belt 1803
+	haze _menu/haze-red
+	link Antevorta
+	link Nenia
+	asteroids "small rock" 24 1.596
+	asteroids "medium rock" 2 1.1704
+	asteroids "large rock" 13 2.0925333
+	asteroids "small metal" 1 1.6492
+	asteroids "medium metal" 2 1.0108
+	asteroids "large metal" 4 2.0748
+	minables aluminum 1 3.41287
+	minables lead 1 2.51849
+	minables platinum 1 3.35669
+	trade Clothing 288
+	trade Electronics 770
+	trade Equipment 481
+	trade Food 198
+	trade "Heavy Metals" 775
+	trade Industrial 748
+	trade "Luxury Goods" 1322
+	trade Medical 768
+	trade Metal 263
+	trade Plastic 505
+	object
+		sprite star/f5-old
+		distance 11.9736
+		period 9.06221
+	object
+		sprite star/m4
+		distance 88.0264
+		period 9.06221
+		offset 180
+	object
+		sprite planet/rock13
+		distance 249.516
+		period 35.7176
+	object
+		sprite planet/dust0
+		distance 448.756
+		period 86.149
+	object
+		sprite planet/rock12
+		distance 1044.4
+		period 305.867
+	object
+		sprite planet/ice4
+		distance 1274.65
+		period 412.4
+	object
+		sprite planet/gas10
+		distance 3584.65
+		period 1944.93
+		object
+			sprite planet/rock17
+			distance 221
+			period 17.2936
+
+system Pantica
+	pos 303.87 445.242
+	government Remnant
+	habitable 486.68
+	belt 1203
+	haze _menu/haze-red
+	link Arculus
+	link Cinxia
+	asteroids "small rock" 4 1.1498667
+	asteroids "medium rock" 18 0.79053333
+	asteroids "large rock" 2 1.386
+	asteroids "small metal" 6 1.1806667
+	asteroids "medium metal" 2 1.1909333
+	asteroids "large metal" 30 1.2422667
+	minables aluminum 1 2.10029
+	trade Clothing 299
+	trade Electronics 693
+	trade Equipment 712
+	trade Food 541
+	trade "Heavy Metals" 914
+	trade Industrial 728
+	trade "Luxury Goods" 989
+	trade Medical 545
+	trade Metal 454
+	trade Plastic 469
+	fleet "Large Remnant" 1000
+	fleet "Small Remnant" 700
+	object
+		sprite star/k0-old
+		period 10
+	object
+		sprite planet/lava1
+		distance 140.44
+		period 30.1769
+	object Aventine
+		sprite planet/ocean0
+		distance 542.45
+		period 229.075
+	object
+		sprite planet/gas9
+		distance 1268.21
+		period 818.889
+		object
+			sprite planet/lava0
+			distance 248
+			period 14.6443
+	object
+		sprite planet/gas8
+		distance 1879.46
+		period 1477.37
+
 system Peacock
 	pos -307 350
 	government Republic
@@ -16189,6 +16954,63 @@ system Pelubta
 			distance 338
 			period 37.6521
 
+system Peragenor
+	pos 86.8703 356.242
+	government Uninhabited
+	habitable 1080
+	belt 1920
+	haze _menu/haze-red
+	link Stercutus
+	asteroids "medium rock" 1 2.646
+	asteroids "large rock" 4 1.755
+	asteroids "medium metal" 7 2.403
+	asteroids "large metal" 2 2.754
+	trade Clothing 307
+	trade Electronics 757
+	trade Equipment 574
+	trade Food 471
+	trade "Heavy Metals" 880
+	trade Industrial 810
+	trade "Luxury Goods" 1011
+	trade Medical 512
+	trade Metal 271
+	trade Plastic 373
+	object
+		sprite star/g0-old
+		period 10
+	object
+		sprite planet/europa
+		distance 170.29
+		period 27.0478
+	object
+		sprite planet/rock4
+		distance 355.18
+		period 81.4743
+	object
+		sprite planet/desert9
+		distance 952.27
+		period 357.675
+	object
+		sprite planet/gas1
+		distance 1762.56
+		period 900.666
+		object
+			sprite planet/ice7
+			distance 249
+			period 15.7042
+		object
+			sprite planet/miranda
+			distance 384
+			period 30.0755
+		object
+			sprite planet/ice0
+			distance 496
+			period 44.1507
+	object "Remnant Wormhole"
+		sprite planet/wormhole-red
+		distance 2300
+		period 1342.58
+
 system Peresedersi
 	pos 81.4305 -154.812
 	government Uninhabited
@@ -16228,6 +17050,55 @@ system Peresedersi
 		sprite planet/lava7
 		distance 2248.08
 		period 1297.38
+
+system Perfica
+	pos 185.87 419.242
+	government Uninhabited
+	habitable 1080
+	belt 1160
+	haze _menu/haze-red
+	link Cinxia
+	link Farinus
+	asteroids "small rock" 1 0.35466667
+	asteroids "small metal" 5 0.44333333
+	asteroids "medium metal" 9 0.55733333
+	asteroids "large metal" 11 0.836
+	minables iron 6 0.847372
+	trade Clothing 256
+	trade Electronics 680
+	trade Equipment 631
+	trade Food 491
+	trade "Heavy Metals" 938
+	trade Industrial 834
+	trade "Luxury Goods" 1027
+	trade Medical 546
+	trade Metal 338
+	trade Plastic 368
+	fleet "Large Remnant" 8000
+	fleet "Small Remnant" 5000
+	object
+		sprite star/g0-old
+		period 10
+	object
+		sprite planet/ice5
+		distance 227.29
+		period 41.7079
+	object
+		sprite planet/dust6
+		distance 446.3
+		period 114.759
+	object
+		sprite planet/cloud6
+		distance 826.99
+		period 289.467
+	object
+		sprite planet/desert4
+		distance 1757.75
+		period 896.982
+	object
+		sprite planet/gas4
+		distance 2712.71
+		period 1719.7
 
 system Persian
 	pos -203 331
@@ -18629,6 +19500,63 @@ system Schedar
 			distance 298
 			period 25.3563
 
+system Segesta
+	pos 111.87 294.242
+	government Uninhabited
+	habitable 425.92
+	belt 1120
+	haze _menu/haze-red
+	link Stercutus
+	asteroids "small rock" 6 1.9116
+	asteroids "medium rock" 6 1.4094
+	asteroids "large rock" 2 1.6686
+	asteroids "small metal" 4 0.9882
+	asteroids "medium metal" 1 1.1664
+	asteroids "large metal" 4 1.0044
+	minables aluminum 4 2.76923
+	minables gold 2 2.69091
+	trade Clothing 223
+	trade Electronics 862
+	trade Equipment 482
+	trade Food 267
+	trade "Heavy Metals" 965
+	trade Industrial 754
+	trade "Luxury Goods" 1209
+	trade Medical 664
+	trade Metal 406
+	trade Plastic 295
+	object
+		sprite star/k5-old
+		period 10
+	object
+		sprite planet/venus
+		distance 333
+		period 117.777
+		object
+			sprite planet/dust5
+			distance 178
+			period 27.0988
+	object
+		sprite planet/forest2
+		distance 918.01
+		period 539.097
+		object
+			sprite planet/rock0
+			distance 171
+			period 21.3838
+	object
+		sprite planet/gas2
+		distance 1408.25
+		period 1024.27
+		object
+			sprite planet/tethys
+			distance 194
+			period 16.3726
+	object "Ember Wormhole"
+		sprite planet/wormhole-red
+		distance 2749.5
+		period 2794.32
+
 system Seginus
 	pos -557 356
 	government Republic
@@ -20243,6 +21171,64 @@ system "Steep Roof"
 			distance 498
 			period 47.4807
 
+system Stercutus
+	pos 140.87 320.242
+	government Uninhabited
+	habitable 945
+	belt 1492
+	haze _menu/haze-red
+	link Caeculus
+	link Peragenor
+	link Segesta
+	asteroids "large rock" 1 0.77203333
+	trade Clothing 216
+	trade Electronics 829
+	trade Equipment 591
+	trade Food 370
+	trade "Heavy Metals" 996
+	trade Industrial 821
+	trade "Luxury Goods" 1069
+	trade Medical 536
+	trade Metal 299
+	trade Plastic 294
+	object
+		sprite star/g5-old
+		distance 31.1534
+		period 11.4822
+	object
+		sprite star/m0
+		distance 60.8466
+		period 11.4822
+		offset 180
+	object
+		sprite planet/cloud6
+		distance 244.937
+		period 49.8798
+	object
+		sprite planet/titan
+		distance 466.297
+		period 131.02
+	object
+		sprite planet/gas11
+		distance 1449.31
+		period 717.934
+		object
+			sprite planet/rock7
+			distance 235
+			period 11.8817
+		object
+			sprite planet/ice0
+			distance 332
+			period 19.9519
+		object
+			sprite planet/rock3
+			distance 438
+			period 30.2335
+	object
+		sprite planet/gas14
+		distance 2557.67
+		period 1683.1
+
 system Suhail
 	pos -774 -338
 	government Republic
@@ -20860,8 +21846,8 @@ system Terminus
 			sprite planet/rhea
 			distance 243
 			period 11.9034
-	object
-		sprite planet/gas6
+	object "Ember Threshold"
+		sprite planet/wormhole-red
 		distance 2077.64
 		period 1835.49
 
@@ -22814,6 +23800,12 @@ planet Avalon
 	description `	Deep in the jungles near the equator, small mammals are working hard to avoid being eaten by the great lizards, and to survive for long enough that they will be able to evolve into the dominant life form.`
 	security 0
 
+planet Aventine
+	attributes remnant
+	landscape land/mountain18-harro
+	description `This is not a particularly warm world, but it is the best that the first Remnant refugees were able to find when they explored the Ember Waste. It is here that they built their capital, in a deep valley that is almost always shrouded in clouds. In meadows farther up the mountain slopes, a few particularly hardy food crops are grown, but for the most part the Remnant relies on artificial greenhouses or cultured yeast for protein supplements. Remnant cuisine is unlikely to ever become a draw for tourists, even if their isolation here is broken.`
+	spaceport `The oldest buildings in the Remnant capital city harken back to classic human architecture, with stone facades and columns reminiscent of ancient Rome. But as you walk outward toward the more recent additions, the buildings become less and less recognizably human, with curved organic shapes and hundreds of overhanging walkways and balconies. It is as if the layers left behind by centuries of habitation are a frozen record of the slow transition of Remnant culture into something bizarre and almost alien.`
+
 planet "Bank of Blugtad"
 	attributes arach wealthy urban
 	landscape land/valley8
@@ -22968,6 +23960,12 @@ planet Burthen
 	tribute 500
 		threshold 4000
 		fleet "Small Syndicate" 7
+
+planet Caelian
+	attributes remnant
+	landscape land/sky7
+	description `When the first members of the Remnant discovered this region of space, Caelian was the only habitable world they found with enough insolation to be able to operate solar-powered factories and bioreactors. The first settlements were scattered widely, with the houses hidden underground in order to be less visible from space, because they feared that the Alphas would overrun human space and eventually find their way into the Waste. Centuries later, when they learned that the Alpha Wars had ended, they began to expand the factories and settlements more openly.`
+	spaceport `Nearly all members of the Remnant are dark-skinned, either from exposure to high levels of ultraviolet radiation or because that is what their first ancestors who came here looked like. So, they walk around this spaceport village without much fear of the scorching desert sun, bringing supplies back and forth to the houses and to the flat clay pavement of the landing zone. Aside from some camels that the settlers brought with them, there are very few animals here.`
 
 planet Calda
 	attributes paradise tourism rich
@@ -23376,6 +24374,11 @@ planet "Elek Kartanu"
 	landscape land/lava2
 	description `You have no idea what has happened to this planet, and you are not sure you want to know. The atmosphere is unusually hot and wet for a planet this distance from its sun, and the ocean levels seem to have dropped significantly in the recent past, leaving barnacles and bleached coral exposed to the air all around the shorelines. The wind is frenzied and full of wild energy, and the fog moves like a living creature.`
 	security 0
+
+planet "Ember Threshold"
+	attributes "requires: quantum keystone"
+
+planet "Ember Wormhole"
 
 planet "Esayaku Fen"
 	attributes korath
@@ -24647,6 +25650,11 @@ planet "New Washington"
 		threshold 2000
 		fleet "Large Militia" 3
 
+planet Nasqueron
+	landscape land/nasa8
+	attributes "requires: gaslining"
+	description `Beneath Nasqueron's cloudy surface is a complex and thriving ecosystem of gas-dwelling organisms, from the massive void sprites all the way down to bacteria that inhabit tiny water droplets suspended in the air. Although the void sprites mostly feed on these organisms, it appears that in order to grow into their adult form or to give birth to young, they also need rare minerals that they can only find by feeding on asteroids, far beyond the planet's atmosphere.`
+
 planet Newhome
 	attributes hai textiles
 	landscape land/myrabella7
@@ -24897,6 +25905,9 @@ planet Relic
 	tribute 700
 		threshold 3000
 		fleet "Small Republic" 25
+
+planet "Remnant Wormhole"
+	attributes "requires: quantum keystone"
 
 planet "Remote Blue"
 	attributes kimek urban
@@ -25263,6 +26274,11 @@ planet Skymoot
 	tribute 400
 		threshold 2000
 		fleet "Large Militia" 6
+
+planet Slylandro
+	landscape land/nasa9
+	attributes "requires: gaslining"
+	description `Far beneath the swirling blue surface of Slylandro's atmosphere, void sprites and other strange creatures float about. As improbable as it may seem, the void sprites must have somehow evolved the capability to manipulate gravity fields, because every once in a while one of them will rise up from the surface powered by an antigravity field similar to the landing repulsors used by human ships. When they do so, the decrease in atmospheric pressure causes them to nearly double in size.`
 
 planet "Smuggler's Den"
 	attributes pirate station
@@ -25760,6 +26776,12 @@ planet "Vibrant Water"
 	description `	Near the equator, the Saryds farm several species of engineered algae.`
 	spaceport `Very little of the industry on Vibrant Water takes place on land. The spaceport is built on a high bluff overlooking the sea, frequently visited by barges carrying goods from the floating factories and refineries out in the midst of the algae farms. Surrounding the port are fields of wind turbines positioned to catch the ocean breeze.`
 	"required reputation" 15
+
+planet Viminal
+	attributes remnant
+	landscape land/snow3
+	description `This cold and dreary world would certainly not be attractive to any modern settlers, but to those who were fleeing the chaos of the Alpha Wars it had the undeniable advantage of being isolated and undiscovered. Today the main reason for the continuing Remnant presence here is that this is the only world they have found where the "key stones" needed to enable ships to travel through certain wormholes in the Ember Waste can be found.`
+	spaceport `The spaceport is an enormous dome, built of the same resilient and semi-organic material as the hulls of Remnant ships. An opening at one end of the dome allows ships to fly in and out. Inside, the air is still cold, but at least you are sheltered from the violent winds that sweep across the rest of the planet's surface. Some of the locals, accustomed to the cold, walk about in their shirtsleeves as if this were a balmy summer day.`
 
 planet Vinci
 	attributes paradise factory
