@@ -560,7 +560,8 @@ void Engine::Step(bool isActive)
 			info.SetBar("target hull", 0.);
 		}
 	}
-	if(target && !target->IsDestroyed() && (flagship->CargoScanFraction() || flagship->OutfitScanFraction()))
+	if(target && !target->IsDestroyed() && target->GetSystem() == currentSystem 
+		&& (flagship->CargoScanFraction() || flagship->OutfitScanFraction()))
 	{
 		double width = max(target->Width(), target->Height());
 		Point pos = target->Position() - center;
