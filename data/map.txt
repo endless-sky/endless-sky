@@ -5436,7 +5436,7 @@ system Blubipad
 system Blugtad
 	pos -771.587 680.051
 	government Coalition
-	habitable 62
+	habitable 625
 	haze _menu/haze-gray5
 	belt 1841
 	link Gupta
