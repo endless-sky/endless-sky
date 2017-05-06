@@ -1071,12 +1071,12 @@ void Engine::CalculateStep()
 				object.GetPlanet()->DeployDefense(ships);
 			
 			Point position = object.Position() - newCenter;
-			if(checkClicks && !isRightClick && object.GetPlanet()
+			if(checkClicks && !isRightClick && object.GetPlanet() && object.GetPlanet()->IsAccessible(flagship)
 					&& (clickPoint - position).Length() < object.Radius())
 			{
 				if(&object == player.Flagship()->GetTargetStellar())
 				{
-					if(!object.GetPlanet()->CanLand())
+					if(!object.GetPlanet()->CanLand(*flagship))
 						Messages::Add("The authorities on " + object.GetPlanet()->Name() +
 							" refuse to let you land.");
 					else
