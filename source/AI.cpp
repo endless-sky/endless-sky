@@ -2096,7 +2096,8 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 	{
 		const System *system = player.TravelPlan().back();
 		for(const StellarObject &object : ship.GetSystem()->Objects())
-			if(object.GetPlanet() && object.GetPlanet()->WormholeDestination(ship.GetSystem()) == system)
+			if(object.GetPlanet() && object.GetPlanet()->WormholeDestination(ship.GetSystem()) == system
+				&& player.HasVisited(object.GetPlanet()) && player.HasVisited(system))
 			{
 				isWormhole = true;
 				ship.SetTargetStellar(&object);
