@@ -1556,7 +1556,7 @@ mission "Migrant Workers 1"
 	name "Migrant Workers"
 	description "Bring this group of migrant workers to <planet>."
 	minor
-	passengers 6
+	passengers 6 7
 	source
 		attributes "dirt belt"
 		attributes "farming"
