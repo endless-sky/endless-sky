@@ -213,7 +213,7 @@ outfit "Chipmunk Plasma Thruster"
 	"flare sprite" "effect/plasma flare/tiny"
 		"frame rate" 5
 	"flare sound" "plasma tiny"
-	description "This is the smallest of the plasma propulsion systems produced by Delta V Corporation, suitable for very light fighters and interceptors. Plasma thrusters are more compact than ion drives, but also use more energy and generate more heat."
+	description "This is the smallest of the plasma propulsion systems produced by Delta V Corporation, suitable for very light fighters and interceptors."
 	description "	Plasma engines are a bit more powerful than ion engines of the same size, but they are less energy efficient and produce more heat."
 
 outfit "Greyhound Plasma Thruster"
