@@ -163,6 +163,9 @@ public:
 	// Scan the target, if able and commanded to. Return a ShipEvent bitmask
 	// giving the types of scan that succeeded.
 	int Scan();
+	// Find out what fraction of the scan is complete.
+	double CargoScanFraction() const;
+	double OutfitScanFraction() const;
 	
 	// Fire any weapons that are ready to fire. If an anti-missile is ready,
 	// instead of firing here this function returns true and it can be fired if

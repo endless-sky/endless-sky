@@ -50,6 +50,8 @@ namespace {
 	const vector<string> BAY_SIDE = {"inside", "over", "under"};
 	const vector<string> BAY_FACING = {"forward", "left", "right", "back"};
 	const vector<Angle> BAY_ANGLE = {Angle(0.), Angle(-90.), Angle(90.), Angle(180.)};
+	
+	static const double SCAN_TIME = 60.;
 }
 
 
@@ -760,6 +762,15 @@ bool Ship::Move(list<Effect> &effects, list<shared_ptr<Flotsam>> &flotsam)
 	int requiredCrew = RequiredCrew();
 	isDisabled = isOverheated || hull < MinimumHull() || (!crew && requiredCrew);
 	
+	// Whenever not actively scanning, the amount of scan information the ship
+	// has "decays" over time. For a scanner with a speed of 1, one second of
+	// uninterrupted scanning is required to successfully scan its target.
+	// Only apply the decay if not already done scanning the target.
+	if(cargoScan < SCAN_TIME)
+		cargoScan = max(0., cargoScan - 1.);
+	if(outfitScan < SCAN_TIME)
+		outfitScan = max(0., outfitScan - 1.);
+	
 	// Update ship supply levels.
 	if(!isDisabled)
 	{
@@ -1384,15 +1395,6 @@ shared_ptr<Ship> Ship::Board(bool autoPlunder)
 // giving the types of scan that succeeded.
 int Ship::Scan()
 {
-	// Whenever not actively scanning, the amount of scan information the ship
-	// has "decays" over time. For a scanner with a speed of 1, one second of
-	// uninterrupted scanning is required to successfully scan its target.
-	// Only apply the decay if not already done scanning the target.
-	static const double SCAN_TIME = 60.;
-	if(cargoScan < SCAN_TIME)
-		cargoScan = max(0., cargoScan - 1.);
-	if(outfitScan < SCAN_TIME)
-		outfitScan = max(0., outfitScan - 1.);
 	if(!commands.Has(Command::SCAN) || CannotAct())
 		return 0;
 	
@@ -1478,6 +1480,21 @@ int Ship::Scan()
 	}
 	
 	return result;
+}
+
+
+
+// Find out what fraction of the scan is complete.
+double Ship::CargoScanFraction() const
+{
+	return cargoScan / SCAN_TIME;
+}
+
+
+
+double Ship::OutfitScanFraction() const
+{
+	return outfitScan / SCAN_TIME;
 }
 
 

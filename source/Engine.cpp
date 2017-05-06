@@ -412,7 +412,10 @@ void Engine::Step(bool isActive)
 		{
 			if(!it->GetGovernment() || it->GetSystem() != currentSystem || it->Cloaking() == 1.)
 				continue;
-		
+			// Don't show status for dead ships.
+			if(it->IsDestroyed())
+				continue;
+			
 			bool isEnemy = it->GetGovernment()->IsEnemy();
 			if(isEnemy || it->GetGovernment()->IsPlayer() || it->GetPersonality().IsEscort())
 			{
@@ -557,6 +560,13 @@ void Engine::Step(bool isActive)
 			info.SetBar("target hull", 0.);
 		}
 	}
+	if(target && !target->IsDestroyed() && (flagship->CargoScanFraction() || flagship->OutfitScanFraction()))
+	{
+		double width = max(target->Width(), target->Height());
+		Point pos = target->Position() - center;
+		statuses.emplace_back(pos, flagship->OutfitScanFraction(), flagship->CargoScanFraction(),
+			10. + max(20., width * .5), 2, Angle(pos).Degrees() + 180.);
+	}
 	// Handle any events that change the selected ships.
 	if(groupSelect >= 0)
 	{
@@ -642,18 +652,21 @@ void Engine::Draw() const
 	
 	for(const auto &it : statuses)
 	{
-		if(it.hull <= 0.)
-			continue;
-		
-		static const Color color[4] = {
+		static const Color color[6] = {
 			Color(0., .5, 0., .25),
 			Color(.5, .15, 0., .25),
+			Color(.5, .5, .5, .25),
 			Color(.45, .5, 0., .25),
-			Color(.5, .3, 0., .25)
+			Color(.5, .3, 0., .25),
+			Color(.7, .7, .7, .25)
 		};
-		RingShader::Draw(it.position * zoom, it.radius * zoom + 3., 1.5, it.shields, color[it.isEnemy]);
-		double dashes = 20. * min(1., zoom);
-		RingShader::Draw(it.position * zoom, it.radius * zoom, 1.5, it.hull, color[2 + it.isEnemy], dashes);
+		Point pos = it.position * zoom;
+		double radius = it.radius * zoom;
+		if(it.outer > 0.)
+			RingShader::Draw(pos, radius + 3., 1.5, it.outer, color[it.type], 0., it.angle);
+		double dashes = (it.type >= 2) ? 0. : 20. * min(1., zoom);
+		if(it.inner > 0.)
+			RingShader::Draw(pos, radius, 1.5, it.inner, color[3 + it.type], dashes, it.angle);
 	}
 	
 	// Draw the flagship highlight, if any.
@@ -1674,7 +1687,7 @@ void Engine::DoGrudge(const shared_ptr<Ship> &target, const Government *attacker
 
 
 
-Engine::Status::Status(const Point &position, double shields, double hull, double radius, bool isEnemy)
-	: position(position), shields(shields), hull(hull), radius(radius), isEnemy(isEnemy)
+Engine::Status::Status(const Point &position, double outer, double inner, double radius, int type, double angle)
+	: position(position), outer(outer), inner(inner), radius(radius), type(type), angle(angle)
 {
 }

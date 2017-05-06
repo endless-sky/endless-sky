@@ -97,13 +97,14 @@ private:
 	
 	class Status {
 	public:
-		Status(const Point &position, double shields, double hull, double radius, bool isEnemy);
+		Status(const Point &position, double outer, double inner, double radius, int type, double angle = 0.);
 		
 		Point position;
-		double shields;
-		double hull;
+		double outer;
+		double inner;
 		double radius;
-		bool isEnemy;
+		int type;
+		double angle;
 	};
 	
 	
