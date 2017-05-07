@@ -303,6 +303,16 @@ void MainPanel::ShowScanDialog(const ShipEvent &event)
 					<< (it.second == 1 ? " ton of " : " tons of ")
 					<< it.first << "\n";
 			}
+		for(const auto &it : target->Cargo().Outfits())
+			if(it.second)
+			{
+				if(first)
+					out << "This " + target->Noun() + " is carrying:\n";
+				first = false;
+		
+				out << "\t" << it.second << " "
+					<< (it.second == 1 ? it.first->Name(): it.first->PluralName()) << "\n";
+			}
 		if(first)
 			out << "This " + target->Noun() + " is not carrying any cargo.\n";
 	}

@@ -73,6 +73,10 @@ BoardingPanel::BoardingPanel(PlayerInfo &player, const shared_ptr<Ship> &victim)
 	for(const auto &it : victim->Outfits())
 		if(!it.first->Get("unplunderable") && it.second)
 			plunder.emplace_back(it.first, it.second);
+
+	// Outfits stored in cargo can always be plundered.
+	for(const auto &it : victim->Cargo().Outfits())
+		plunder.emplace_back(it.first, it.second);	
 	
 	// Some "ships" do not represent something the player could actually pilot.
 	if(!victim->IsCapturable())
