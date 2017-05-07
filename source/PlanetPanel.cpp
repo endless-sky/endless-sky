@@ -20,13 +20,13 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "GameData.h"
 #include "FontSet.h"
 #include "HiringPanel.h"
-#include "InfoPanel.h"
 #include "Interface.h"
 #include "MapDetailPanel.h"
 #include "MissionPanel.h"
 #include "OutfitterPanel.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
+#include "PlayerInfoPanel.h"
 #include "Ship.h"
 #include "ShipyardPanel.h"
 #include "SpaceportPanel.h"
@@ -191,7 +191,7 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 	}
 	else if(command.Has(Command::INFO))
 	{
-		GetUI()->Push(new InfoPanel(player));
+		GetUI()->Push(new PlayerInfoPanel(player));
 		return true;
 	}
 	else

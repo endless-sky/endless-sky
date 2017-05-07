@@ -21,7 +21,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Format.h"
 #include "GameData.h"
 #include "Government.h"
-#include "InfoPanel.h"
 #include "Information.h"
 #include "Interface.h"
 #include "Messages.h"
@@ -30,6 +29,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Random.h"
 #include "Ship.h"
 #include "ShipEvent.h"
+#include "ShipInfoPanel.h"
 #include "System.h"
 #include "UI.h"
 
@@ -355,7 +355,7 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 				messages.push_back("You have succeeded in capturing this ship.");
 				victim->WasCaptured(you);
 				if(!victim->JumpsRemaining() && you->CanRefuel(*victim))
-					you->TransferFuel(victim->JumpFuel(), &*victim);
+					you->TransferFuel(victim->JumpFuelMissing(), &*victim);
 				player.AddShip(victim);
 				for(const Ship::Bay &bay : victim->Bays())
 					if(bay.ship)
@@ -372,7 +372,7 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 		}
 	}
 	else if(command.Has(Command::INFO))
-		GetUI()->Push(new InfoPanel(player, true));
+		GetUI()->Push(new ShipInfoPanel(player));
 	
 	// Trim the list of status messages.
 	while(messages.size() > 5)

@@ -176,7 +176,7 @@ mission "FW Prisoner Parole"
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	npc accompany save
-		government "Escort"
+		government "Free Worlds"
 		personality timid escort
 		ship "Falcon (Heavy)" "F.S. Starry Warrior"
 		ship "Blackbird" "Flight of Fancy"
@@ -216,7 +216,7 @@ mission "FW Prisoner Parole 2"
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	npc accompany save
-		government "Escort"
+		government "Free Worlds"
 		personality timid escort
 		ship "Falcon (Heavy)" "F.S. Starry Warrior"
 		ship "Blackbird" "Flight of Fancy"
@@ -1487,7 +1487,7 @@ mission "FW Pirates 4"
 
 event "battle for Thule"
 	system Men
-		fleet "Small Southern Pirate" 10000
+		fleet "Small Southern Pirates" 10000
 
 
 

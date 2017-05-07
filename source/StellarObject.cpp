@@ -90,7 +90,7 @@ const string &StellarObject::LandingMessage() const
 
 
 // Get the color to be used for displaying this object.
-const Color &StellarObject::TargetColor() const
+const Color &StellarObject::TargetColor(const Ship *ship) const
 {
 	static const Color planetColor[6] = {
 		Color(1., 1., 1., 1.),
@@ -100,8 +100,9 @@ const Color &StellarObject::TargetColor() const
 		Color(.8, .3, 1., 1.),
 		Color(0., .8, 0., 1.)
 	};
-	int index = !IsStar() + (GetPlanet() != nullptr);
-	if(GetPlanet())
+	bool isAccessible = (planet && planet->IsAccessible(ship));
+	int index = !IsStar() + isAccessible;
+	if(isAccessible)
 	{
 		if(!GetPlanet()->CanLand())
 			index = 3;

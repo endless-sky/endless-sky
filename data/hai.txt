@@ -211,6 +211,7 @@ outfitter "Hai Basics"
 	`"Basrem" Atomic Thruster`
 	`"Basrem" Atomic Steering`
 	"Local Map"
+	"Quantum Keystone"
 
 outfitter "Hai Intermediate"
 	"Pulse Cannon"
@@ -240,6 +241,7 @@ outfitter "Hai Intermediate"
 	`"Biroo" Atomic Thruster`
 	`"Biroo" Atomic Steering`
 	"Local Map"
+	"Quantum Keystone"
 
 outfitter "Hai Advanced"
 	"Pulse Cannon"
@@ -278,6 +280,7 @@ outfitter "Hai Advanced"
 	`"Bufaer" Atomic Thruster`
 	`"Bufaer" Atomic Steering`
 	"Local Map"
+	"Quantum Keystone"
 
 phrase "hai"
 	word

@@ -18,10 +18,12 @@ using namespace std;
 
 
 
-void Information::SetSprite(const string &name, const Sprite *sprite, const Point &unit)
+void Information::SetSprite(const string &name, const Sprite *sprite, const Point &unit, int frame)
 {
 	sprites[name] = sprite;
 	spriteUnits[name] = unit;
+	if(frame)
+		spriteFrames[name] = frame;
 }
 
 
@@ -42,6 +44,14 @@ const Point &Information::GetSpriteUnit(const string &name) const
 	
 	auto it = spriteUnits.find(name);
 	return (it == spriteUnits.end()) ? up : it->second;
+}
+
+
+
+int Information::GetSpriteFrame(const string &name) const
+{
+	auto it = spriteFrames.find(name);
+	return (it == spriteFrames.end()) ? 0 : it->second;
 }
 
 
