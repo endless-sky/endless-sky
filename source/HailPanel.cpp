@@ -244,7 +244,7 @@ bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 	}
 	else if(key == 'h' && hasLanguage && ship)
 	{
-		if(shipIsEnemy)
+		if(shipIsEnemy || ship->IsDisabled())
 			return false;
 		if(playerNeedsHelp)
 		{
