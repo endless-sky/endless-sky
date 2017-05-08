@@ -389,7 +389,7 @@ outfit "A370 Atomic Thruster"
 	"flare sprite" "effect/atomic flare/medium"
 		"frame rate" 12
 	"flare sound" "atomic medium"
-	description "This thruster is small enough to fit in a light warship or freighter, but powerful enough to move any but the largest of ships. Naturally, such performance comes at an exorbitant price."
+	description "This thruster is small enough to fit in a light warship or freighter, but powerful enough to move all but the largest of ships. Naturally, such performance comes at an exorbitant price."
 
 outfit "A520 Atomic Thruster"
 	category "Engines"
