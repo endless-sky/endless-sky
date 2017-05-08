@@ -1681,6 +1681,8 @@ mission "FW Commitment"
 		has "FW Katya 7C: done"
 	to fail
 		has "chosen sides"
+	to complete
+		never
 	
 	on offer
 		conversation
@@ -1707,7 +1709,8 @@ mission "Rescue Katya 1"
 	source Bourne
 	destination Clink
 	to offer
-		has "FW Commitment: done"
+		has "FW Commitment: offered"
+		not "chosen sides"
 	on fail
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	

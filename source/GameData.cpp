@@ -197,6 +197,28 @@ void GameData::BeginLoad(const char * const *argv)
 
 
 
+// Check for objects that are referred to but never defined.
+void GameData::CheckReferences()
+{
+	for(const auto &it : effects)
+		if(it.second.Name().empty())
+			Files::LogError("Warning: effect \"" + it.first + "\" is referred to, but never defined.");
+	for(const auto &it : fleets)
+		if(!it.second.GetGovernment())
+			Files::LogError("Warning: fleet \"" + it.first + "\" is referred to, but never defined.");
+	for(const auto &it : governments)
+		if(it.second.GetName().empty())
+			Files::LogError("Warning: government \"" + it.first + "\" is referred to, but never defined.");
+	for(const auto &it : outfits)
+		if(it.second.Name().empty())
+			Files::LogError("Warning: outfit \"" + it.first + "\" is referred to, but never defined.");
+	for(const auto &it : systems)
+		if(it.second.Name().empty())
+			Files::LogError("Warning: system \"" + it.first + "\" is referred to, but never defined.");
+}
+
+
+
 void GameData::LoadShaders()
 {
 	FontSet::Add(Files::Images() + "font/ubuntu14r.png", 14);
@@ -437,6 +459,8 @@ void GameData::Change(const DataNode &node)
 {
 	if(node.Token(0) == "fleet" && node.Size() >= 2)
 		fleets.Get(node.Token(1))->Load(node);
+	else if(node.Token(0) == "galaxy" && node.Size() >= 2)
+		galaxies.Get(node.Token(1))->Load(node);
 	else if(node.Token(0) == "government" && node.Size() >= 2)
 		governments.Get(node.Token(1))->Load(node);
 	else if(node.Token(0) == "outfitter" && node.Size() >= 2)
@@ -451,6 +475,8 @@ void GameData::Change(const DataNode &node)
 		systems.Get(node.Token(1))->Link(systems.Get(node.Token(2)));
 	else if(node.Token(0) == "unlink" && node.Size() >= 3)
 		systems.Get(node.Token(1))->Unlink(systems.Get(node.Token(2)));
+	else
+		node.PrintTrace("Invalid \"event\" data:");
 }
 
 

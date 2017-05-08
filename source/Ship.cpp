@@ -46,10 +46,12 @@ const vector<string> Ship::CATEGORIES = {
 };
 
 namespace {
-	const string BAY_TYPE[2] = {"drone", "fighter"};
-	const string BAY_SIDE[3] = {"inside", "over", "under"};
-	const string BAY_FACING[4] = {"forward", "left", "right", "back"};
-	const Angle BAY_ANGLE[4] = {Angle(0.), Angle(-90.), Angle(90.), Angle(180.)};
+	const vector<string> BAY_TYPE = {"drone", "fighter"};
+	const vector<string> BAY_SIDE = {"inside", "over", "under"};
+	const vector<string> BAY_FACING = {"forward", "left", "right", "back"};
+	const vector<Angle> BAY_ANGLE = {Angle(0.), Angle(-90.), Angle(90.), Angle(180.)};
+	
+	static const double SCAN_TIME = 60.;
 }
 
 
@@ -85,6 +87,8 @@ void Ship::Load(const DataNode &node)
 			name = child.Token(1);
 		else if(child.Token(0) == "plural" && child.Size() >= 2)
 			pluralModelName = child.Token(1);
+		else if(child.Token(0) == "noun" && child.Size() >= 2)
+			noun = child.Token(1);
 		else if(child.Token(0) == "attributes")
 			baseAttributes.Load(child);
 		else if(child.Token(0) == "engine" && child.Size() >= 3)
@@ -148,10 +152,10 @@ void Ship::Load(const DataNode &node)
 			bays.emplace_back(child.Value(1), child.Value(2), child.Token(0) == "fighter");
 			for(int i = 3; i < child.Size(); ++i)
 			{
-				for(unsigned j = 1; j < sizeof(BAY_SIDE) / sizeof(BAY_SIDE[0]); ++j)
+				for(unsigned j = 1; j < BAY_SIDE.size(); ++j)
 					if(child.Token(i) == BAY_SIDE[j])
 						bays.back().side = j;
-				for(unsigned j = 1; j < sizeof(BAY_FACING) / sizeof(BAY_FACING[0]); ++j)
+				for(unsigned j = 1; j < BAY_FACING.size(); ++j)
 					if(child.Token(i) == BAY_FACING[j])
 						bays.back().facing = j;
 			}
@@ -253,13 +257,17 @@ void Ship::FinishLoading()
 	// definition stored safely in the ship model, which will not be destroyed
 	// until GameData is when the program quits.
 	if(GameData::Ships().Has(modelName))
-		explosionWeapon = &GameData::Ships().Get(modelName)->BaseAttributes();
+	{
+		const Ship *model = GameData::Ships().Get(modelName);
+		explosionWeapon = &model->BaseAttributes();
+		pluralModelName = model->pluralModelName;
+		noun = model->noun;
+	}
 	
 	// If this ship has a base class, copy any attributes not defined here.
 	// Exception: uncapturable and "never disabled" flags don't carry over.
 	if(base && base != this)
 	{
-		pluralModelName = base->pluralModelName;
 		if(!GetSprite())
 			reinterpret_cast<Body &>(*this) = *base;
 		if(baseAttributes.Attributes().empty())
@@ -382,6 +390,8 @@ void Ship::Save(DataWriter &out) const
 		out.Write("name", name);
 		if(pluralModelName != modelName + 's')
 			out.Write("plural", pluralModelName);
+		if(!noun.empty())
+			out.Write("noun", noun);
 		SaveSprite(out);
 		
 		if(neverDisabled)
@@ -493,6 +503,15 @@ const string &Ship::PluralModelName() const
 
 
 
+// Get the generic noun (e.g. "ship") to be used when describing this ship.
+const string &Ship::Noun() const
+{
+	static const string SHIP = "ship";
+	return noun.empty() ? SHIP : noun;
+}
+
+
+
 // Get this ship's description.
 const string &Ship::Description() const
 {
@@ -546,7 +565,6 @@ void Ship::Place(Point position, Point velocity, Angle angle)
 	isInvisible = !HasSprite();
 	jettisoned.clear();
 	hyperspaceCount = 0;
-	hyperspaceType = 0;
 	forget = 1;
 	targetShip.reset();
 	shipToAssist.reset();
@@ -744,6 +762,15 @@ bool Ship::Move(list<Effect> &effects, list<shared_ptr<Flotsam>> &flotsam)
 	int requiredCrew = RequiredCrew();
 	isDisabled = isOverheated || hull < MinimumHull() || (!crew && requiredCrew);
 	
+	// Whenever not actively scanning, the amount of scan information the ship
+	// has "decays" over time. For a scanner with a speed of 1, one second of
+	// uninterrupted scanning is required to successfully scan its target.
+	// Only apply the decay if not already done scanning the target.
+	if(cargoScan < SCAN_TIME)
+		cargoScan = max(0., cargoScan - 1.);
+	if(outfitScan < SCAN_TIME)
+		outfitScan = max(0., outfitScan - 1.);
+	
 	// Update ship supply levels.
 	if(!isDisabled)
 	{
@@ -757,7 +784,8 @@ bool Ship::Move(list<Effect> &effects, list<shared_ptr<Flotsam>> &flotsam)
 		energy += scale * attributes.Get("solar collection");
 		
 		double coolingEfficiency = CoolingEfficiency();
-		energy += attributes.Get("energy generation") - ionization;
+		energy += attributes.Get("energy generation") - attributes.Get("energy consumption");
+		energy -= ionization;
 		energy = max(0., energy);
 		heat += attributes.Get("heat generation");
 		heat -= coolingEfficiency * attributes.Get("cooling");
@@ -862,19 +890,18 @@ bool Ship::Move(list<Effect> &effects, list<shared_ptr<Flotsam>> &flotsam)
 		// Don't apply external acceleration while jumping.
 		acceleration = Point();
 		
-		fuel -= (hyperspaceSystem != nullptr) * hyperspaceType * .01;
-		
 		// Enter hyperspace.
-		int direction = (hyperspaceSystem != nullptr) - (hyperspaceSystem == nullptr);
+		int direction = hyperspaceSystem ? 1 : -1;
 		hyperspaceCount += direction;
 		static const int HYPER_C = 100;
 		static const double HYPER_A = 2.;
 		static const double HYPER_D = 1000.;
-		bool hasJumpDrive = (hyperspaceType == 200);
+		if(hyperspaceSystem)
+			fuel -= hyperspaceFuelCost / HYPER_C;
 		
 		// Create the particle effects for the jump drive. This may create 100
 		// or more particles per ship per turn at the peak of the jump.
-		if(hasJumpDrive && !forget)
+		if(isUsingJumpDrive && !forget)
 			CreateSparks(effects, "jump drive", hyperspaceCount * Width() * Height() * .000006);
 		
 		if(hyperspaceCount == HYPER_C)
@@ -912,7 +939,7 @@ bool Ship::Move(list<Effect> &effects, list<shared_ptr<Flotsam>> &flotsam)
 					}
 			}
 			
-			if(hasJumpDrive)
+			if(isUsingJumpDrive)
 			{
 				position = target + Angle::Random().Unit() * 300. * (Random::Real() + 1.);
 				return true;
@@ -928,7 +955,7 @@ bool Ship::Move(list<Effect> &effects, list<shared_ptr<Flotsam>> &flotsam)
 			// sudden shift in direction at the end.
 			velocity = velocity.Length() * angle.Unit();
 		}
-		if(!hasJumpDrive)
+		if(!isUsingJumpDrive)
 		{
 			velocity += (HYPER_A * direction) * angle.Unit();
 			if(!hyperspaceSystem)
@@ -1030,11 +1057,11 @@ bool Ship::Move(list<Effect> &effects, list<shared_ptr<Flotsam>> &flotsam)
 	}
 	else if(commands.Has(Command::LAND) && CanLand())
 		landingPlanet = GetTargetStellar()->GetPlanet();
-	else if(commands.Has(Command::JUMP))
+	else if(commands.Has(Command::JUMP) && IsReadyToJump())
 	{
-		hyperspaceType = CheckHyperspace();
-		if(hyperspaceType)
-			hyperspaceSystem = GetTargetSystem();
+		hyperspaceSystem = GetTargetSystem();
+		isUsingJumpDrive = !attributes.Get("hyperdrive") || !currentSystem->Links().count(hyperspaceSystem);
+		hyperspaceFuelCost = JumpFuel(hyperspaceSystem);
 	}
 	
 	if(pilotError)
@@ -1331,7 +1358,7 @@ shared_ptr<Ship> Ship::Board(bool autoPlunder)
 		if(!victim->JumpsRemaining() && CanRefuel(*victim))
 		{
 			helped = true;
-			TransferFuel(victim->JumpFuel(), victim.get());
+			TransferFuel(victim->JumpFuelMissing(), victim.get());
 		}
 		if(helped)
 		{
@@ -1368,15 +1395,6 @@ shared_ptr<Ship> Ship::Board(bool autoPlunder)
 // giving the types of scan that succeeded.
 int Ship::Scan()
 {
-	// Whenever not actively scanning, the amount of scan information the ship
-	// has "decays" over time. For a scanner with a speed of 1, one second of
-	// uninterrupted scanning is required to successfully scan its target.
-	// Only apply the decay if not already done scanning the target.
-	static const double SCAN_TIME = 60.;
-	if(cargoScan < SCAN_TIME)
-		cargoScan = max(0., cargoScan - 1.);
-	if(outfitScan < SCAN_TIME)
-		outfitScan = max(0., outfitScan - 1.);
 	if(!commands.Has(Command::SCAN) || CannotAct())
 		return 0;
 	
@@ -1440,23 +1458,43 @@ int Ship::Scan()
 		Audio::Play(Audio::Get("scan"), Position());
 	
 	if(startedScanning && government->IsPlayer())
-		Messages::Add("Attempting to scan the ship \"" + target->Name() + "\".", false);
+	{
+		if(!target->Name().empty())
+			Messages::Add("Attempting to scan the " + target->Noun() + " \"" + target->Name() + "\".", false);
+		else
+			Messages::Add("Attempting to scan the selected " + target->Noun() + ".", false);
+	}
 	else if(startedScanning && target->GetGovernment()->IsPlayer())
-		Messages::Add("The " + government->GetName() + " ship \""
+		Messages::Add("The " + government->GetName() + " " + Noun() + " \""
 			+ Name() + "\" is attempting to scan you.", false);
 	
-	if(target->GetGovernment()->IsPlayer() && (result & ShipEvent::SCAN_CARGO))
+	if(target->GetGovernment()->IsPlayer() && !government->IsPlayer() && (result & ShipEvent::SCAN_CARGO))
 	{
-		Messages::Add("The " + government->GetName() + " ship \""
+		Messages::Add("The " + government->GetName() + " " + Noun() + " \""
 			+ Name() + "\" completed its scan of your cargo.");
 	}
-	if(target->GetGovernment()->IsPlayer() && (result & ShipEvent::SCAN_OUTFITS))
+	if(target->GetGovernment()->IsPlayer() && !government->IsPlayer() && (result & ShipEvent::SCAN_OUTFITS))
 	{
-		Messages::Add("The " + government->GetName() + " ship \""
+		Messages::Add("The " + government->GetName() + " " + Noun() + " \""
 			+ Name() + "\" completed its scan of your outfits.");
 	}
 	
 	return result;
+}
+
+
+
+// Find out what fraction of the scan is complete.
+double Ship::CargoScanFraction() const
+{
+	return cargoScan / SCAN_TIME;
+}
+
+
+
+double Ship::OutfitScanFraction() const
+{
+	return outfitScan / SCAN_TIME;
 }
 
 
@@ -1614,15 +1652,6 @@ double Ship::Cloaking() const
 
 
 
-// Get the system that the ship is currently jumping to. This returns null
-// if the ship has already jumped, i.e. it is leaving hyperspace.
-const System *Ship::HyperspaceSystem() const
-{
-	return hyperspaceSystem;
-}
-
-
-
 bool Ship::IsEnteringHyperspace() const
 {
 	return hyperspaceSystem;
@@ -1637,38 +1666,42 @@ bool Ship::IsHyperspacing() const
 
 
 
+// Check if this ship is hyperspacing, specifically via a jump drive.
+bool Ship::IsUsingJumpDrive() const
+{
+	return IsHyperspacing() && isUsingJumpDrive;
+}
+
+
+
 // Check if this ship is currently able to enter hyperspace to it target.
-int Ship::CheckHyperspace() const
+bool Ship::IsReadyToJump() const
 {
 	// You can't jump if you're waiting for someone else or are already jumping.
-	if(commands.Has(Command::WAIT) || hyperspaceCount)
-		return 0;
+	if(IsDisabled() || commands.Has(Command::WAIT) || hyperspaceCount || !targetSystem)
+		return false;
 	
-	// Find out where we're going and how we're getting there,
-	const System *destination = GetTargetSystem();
-	int type = HyperspaceType();
+	// Check if the target system is valid and there is enough fuel to jump.
+	double fuelCost = JumpFuel(targetSystem);
+	if(!fuelCost || fuel < fuelCost)
+		return false;
 	
-	// You can't jump to a system with no link to it.
-	if(!type)
-		return 0;
-	
-	if(fuel < type)
-		return 0;
-	
-	Point direction = destination->Position() - currentSystem->Position();
+	Point direction = targetSystem->Position() - currentSystem->Position();
+	bool isJump = !attributes.Get("hyperdrive") || !currentSystem->Links().count(targetSystem);
+	double scramThreshold = attributes.Get("scram drive");
 	
 	// The ship can only enter hyperspace if it is traveling slowly enough
 	// and pointed in the right direction.
-	if(type == 150)
+	if(!isJump && scramThreshold)
 	{
 		double deviation = fabs(direction.Unit().Cross(velocity));
-		if(deviation > attributes.Get("scram drive"))
-			return 0;
+		if(deviation > scramThreshold)
+			return false;
 	}
 	else if(velocity.Length() > attributes.Get("jump speed"))
-		return 0;
+		return false;
 	
-	if(type != 200)
+	if(!isJump)
 	{
 		// Figure out if we're within one turn step of facing this system.
 		bool left = direction.Cross(angle.Unit()) < 0.;
@@ -1676,42 +1709,10 @@ int Ship::CheckHyperspace() const
 		bool stillLeft = direction.Cross(turned.Unit()) < 0.;
 	
 		if(left == stillLeft)
-			return 0;
+			return false;
 	}
 	
-	return type;
-}
-
-
-
-// Check what type of hyperspce jump this ship is making (0 = not allowed,
-// 100 = hyperdrive, 150 = scram drive, 200 = jump drive).
-int Ship::HyperspaceType() const
-{
-	if(IsDisabled())
-		return 0;
-	const System *destination = GetTargetSystem();
-	if(!destination)
-		return 0;
-	
-	// Check what equipment this ship has.
-	bool hasHyperdrive = attributes.Get("hyperdrive");
-	bool hasScramDrive = attributes.Get("scram drive");
-	bool hasJumpDrive = attributes.Get("jump drive");
-	
-	// Figure out what sort of jump we're making. 100 = normal hyperspace,
-	// 150 = scram drive, 200 = jump drive.
-	if(hasHyperdrive || hasScramDrive)
-		for(const System *link : currentSystem->Links())
-			if(link == destination)
-				return hasScramDrive ? 150 : 100;
-	
-	if(hasJumpDrive)
-		for(const System *link : currentSystem->Neighbors())
-			if(link == destination)
-				return 200;
-	
-	return 0;
+	return true;
 }
 
 
@@ -1797,7 +1798,7 @@ void Ship::Recharge(bool atSpaceport)
 
 bool Ship::CanRefuel(const Ship &other) const
 {
-	return (fuel - other.JumpFuel() >= JumpFuel());
+	return (fuel - JumpFuel(targetSystem) >= other.JumpFuelMissing());
 }
 
 
@@ -1901,20 +1902,66 @@ int Ship::JumpsRemaining() const
 {
 	// Make sure this ship has some sort of hyperdrive, and if so return how
 	// many jumps it can make.
-	double jumpFuel = JumpFuel();
+	double jumpFuel = JumpFuel(targetSystem);
 	return jumpFuel ? fuel / jumpFuel : 0.;
 }
 
 
 
-double Ship::JumpFuel() const
+double Ship::JumpFuel(const System *destination) const
 {
-	int type = HyperspaceType();
-	if(type)
-		return type;
-	return attributes.Get("jump drive") ? 200. :
-		attributes.Get("scram drive") ? 150. : 
-		attributes.Get("hyperdrive") ? 100. : 0.;
+	// If no destination is given, return the maximum fuel per jump.
+	if(!destination)
+		return max(JumpDriveFuel(), HyperdriveFuel());
+	
+	// Figure out what sort of jump we're making.
+	if(attributes.Get("hyperdrive") && currentSystem->Links().count(destination))
+		return HyperdriveFuel();
+	
+	if(attributes.Get("jump drive") && currentSystem->Neighbors().count(destination))
+		return JumpDriveFuel();
+	
+	// If the given system is not a possible destination, return 0.
+	return 0.;
+}
+
+
+
+// Get the cost of making a jump of the given type (if possible).
+double Ship::HyperdriveFuel() const
+{
+	// Don't bother searching through the outfits if there is no hyperdrive.
+	if(!attributes.Get("hyperdrive"))
+		return JumpDriveFuel();
+	
+	if(attributes.Get("scram drive"))
+		return BestFuel("hyperdrive", "scram drive", 150.);
+	
+	return BestFuel("hyperdrive", "", 100.);
+}
+
+
+
+double Ship::JumpDriveFuel() const
+{
+	// Don't bother searching through the outfits if there is no jump drive.
+	if(!attributes.Get("jump drive"))
+		return 0.;
+	
+	return BestFuel("jump drive", "", 200.);
+}
+
+
+
+double Ship::JumpFuelMissing() const
+{
+	// Used for smart refuelling: transfer only as much as really needed
+	// includes checking if fuel cap is high enough at all
+	double jumpFuel = JumpFuel(targetSystem);
+	if(!jumpFuel || fuel > jumpFuel || jumpFuel > attributes.Get("fuel capacity"))
+		return 0.;
+	
+	return jumpFuel - fuel;
 }
 
 
@@ -2576,6 +2623,33 @@ double Ship::AddShields(double rate)
 		}
 	}
 	return added;
+}
+
+
+
+// Find out how much fuel is consumed by the hyperdrive of the given type.
+double Ship::BestFuel(const string &type, const string &subtype, double defaultFuel) const
+{
+	// Find the outfit that provides the least costly hyperjump.
+	double best = 0.;
+	// Make it possible for a hyperdrive to be integrated into a ship.
+	if(baseAttributes.Get(type) && (subtype.empty() || baseAttributes.Get(subtype)))
+	{
+		best = baseAttributes.Get("jump fuel");
+		if(!best)
+			best = defaultFuel;
+	}
+	// Search through all the outfits.
+	for(const auto &it : outfits)
+		if(it.first->Get(type) && (subtype.empty() || it.first->Get(subtype)))
+		{
+			double fuel = it.first->Get("jump fuel");
+			if(!fuel)
+				fuel = defaultFuel;
+			if(!best || fuel < best)
+				best = fuel;
+		}
+	return best;
 }
 
 

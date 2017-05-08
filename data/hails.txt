@@ -271,7 +271,7 @@ phrase "friendly civilian"
 	word
 		" "
 	word
-		"at Tarazed stadium!"
+		"at Tarazed Stadium!"
 		"at the amphitheater on Skymoot!"
 		"at a concert hall in New Sydney!"
 		"in a nightclub on Splashdown!"

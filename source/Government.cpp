@@ -30,7 +30,6 @@ namespace {
 
 // Default constructor.
 Government::Government()
-	: name("Uninhabited")
 {
 	// Default penalties:
 	penaltyFor[ShipEvent::ASSIST] = -0.1;

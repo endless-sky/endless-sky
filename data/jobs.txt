@@ -985,7 +985,7 @@ mission "Escort (Extra Large, Core, Dangerous Destination)"
 
 mission "Escort (Extra Large, Core, Dangerous Origin)"
 	name "Escort to <planet>"
-	description "The captain of the <npc> will pay you <payment> to escort them safely into a dangerous region of space to reach <destination> by <date>."
+	description "The captain of the <npc> will pay you <payment> to escort them safely out of this dangerous region of space to reach <destination> by <date>."
 	repeat
 	job
 	deadline 10

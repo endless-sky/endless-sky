@@ -38,6 +38,7 @@ DataNode::DataNode(const DataNode *parent)
 DataNode::DataNode(const DataNode &other)
 	: children(other.children), tokens(other.tokens)
 {
+	Reparent();
 }
 
 
@@ -47,6 +48,7 @@ DataNode &DataNode::operator=(const DataNode &other)
 {
 	children = other.children;
 	tokens = other.tokens;
+	Reparent();
 	return *this;
 }
 
@@ -231,4 +233,16 @@ int DataNode::PrintTrace(const string &message) const
 	
 	// Tell the caller what indentation level we're at now.
 	return indent;
+}
+
+
+
+// Adjust the parent pointers when a copy is made of a DataNode.
+void DataNode::Reparent()
+{
+	for(DataNode &child : children)
+	{
+		child.parent = this;
+		child.Reparent();
+	}
 }

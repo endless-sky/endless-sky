@@ -59,6 +59,10 @@ ShopPanel::ShopPanel(PlayerInfo &player, bool isOutfitter)
 
 void ShopPanel::Step()
 {
+	// If the player has acquired a second ship for the first time, explain to
+	// them how to reorder the ships in their fleet.
+	if(player.Ships().size() > 1)
+		DoHelp("multiple ships");
 	// Perform autoscroll to bring item details into view.
 	if(scrollDetailsIntoView && selectedBottomY > 0.)
 	{
@@ -83,6 +87,7 @@ void ShopPanel::Draw()
 	DrawSidebar();
 	DrawButtons();
 	DrawMain();
+	DrawKey();
 	
 	shipInfo.DrawTooltips();
 	outfitInfo.DrawTooltips();
@@ -371,8 +376,9 @@ void ShopPanel::DrawMain()
 	nextY -= 40 + TILE_SIZE;
 	
 	// What amount would mainScroll have to equal to make nextY equal the
-	// bottom of the screen?
-	maxMainScroll = max(0., nextY + mainScroll - Screen::Height() / 2 - TILE_SIZE / 2);
+	// bottom of the screen? (Also leave space for the "key" at the bottom.)
+	maxMainScroll = max(0., nextY + mainScroll - Screen::Height() / 2 - TILE_SIZE / 2 + 40.);
+	mainScroll = min(mainScroll, maxMainScroll);
 	
 	PointerShader::Draw(Point(Screen::Right() - 10 - SIDE_WIDTH, Screen::Top() + 10),
 		Point(0., -1.), 10., 10., 5., Color(mainScroll > 0 ? .8 : .2, 0.));
@@ -417,6 +423,12 @@ void ShopPanel::FailSell() const
 bool ShopPanel::CanSellMultiple() const
 {
 	return true;
+}
+
+
+
+void ShopPanel::DrawKey()
+{
 }
 
 

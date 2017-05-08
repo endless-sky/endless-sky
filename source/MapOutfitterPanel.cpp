@@ -129,7 +129,7 @@ double MapOutfitterPanel::SystemValue(const System *system) const
 		if(it->second == selected)
 			return 1.;
 	
-	if(!system->IsInhabited())
+	if(!system->IsInhabited(player.Flagship()))
 		return numeric_limits<double>::quiet_NaN();
 	
 	double value = -.5;

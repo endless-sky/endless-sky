@@ -14,7 +14,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Color.h"
 #include "Command.h"
-#include "Dialog.h"
 #include "FillShader.h"
 #include "Font.h"
 #include "FontSet.h"
@@ -26,7 +25,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Messages.h"
 #include "Outfit.h"
 #include "PlayerInfo.h"
-#include "Preferences.h"
 #include "System.h"
 #include "UI.h"
 
@@ -87,11 +85,7 @@ TradingPanel::~TradingPanel()
 	
 void TradingPanel::Step()
 {
-	if(!Preferences::Has("help: trading"))
-	{
-		Preferences::Set("help: trading");
-		GetUI()->Push(new Dialog(GameData::HelpMessage("trading")));
-	}
+	DoHelp("trading");
 }
 
 

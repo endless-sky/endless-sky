@@ -931,15 +931,15 @@ Mission Mission::Instantiate(const PlayerInfo &player) const
 		auto it = destinations.begin();
 		auto bestIt = it;
 		for(++it; it != destinations.end(); ++it)
-			if(distance.Distance(*it) < distance.Distance(*bestIt))
+			if(distance.Days(*it) < distance.Days(*bestIt))
 				bestIt = it;
 		
 		source = *bestIt;
 		destinations.erase(bestIt);
-		jumps += distance.Distance(*bestIt);
+		jumps += distance.Days(*bestIt);
 	}
 	DistanceMap distance(source);
-	jumps += distance.Distance(result.destination->GetSystem());
+	jumps += distance.Days(result.destination->GetSystem());
 	int payload = result.cargoSize + 10 * result.passengers;
 	
 	// Set the deadline, if requested.

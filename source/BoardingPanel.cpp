@@ -64,13 +64,14 @@ BoardingPanel::BoardingPanel(PlayerInfo &player, const shared_ptr<Ship> &victim)
 	// system and add them to the list of plunder.
 	const System &system = *player.GetSystem();
 	for(const auto &it : victim->Cargo().Commodities())
-		plunder.emplace_back(it.first, it.second, system.Trade(it.first));
+		if(it.second)
+			plunder.emplace_back(it.first, it.second, system.Trade(it.first));
 	
 	// You cannot plunder hand to hand weapons, because they are kept in the
 	// crew's quarters, not mounted on the exterior of the ship. Certain other
 	// outfits are also unplunderable, like mass expansions.
 	for(const auto &it : victim->Outfits())
-		if(!it.first->Get("unplunderable"))
+		if(!it.first->Get("unplunderable") && it.second)
 			plunder.emplace_back(it.first, it.second);
 	
 	// Some "ships" do not represent something the player could actually pilot.
@@ -355,7 +356,7 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 				messages.push_back("You have succeeded in capturing this ship.");
 				victim->WasCaptured(you);
 				if(!victim->JumpsRemaining() && you->CanRefuel(*victim))
-					you->TransferFuel(victim->JumpFuel(), &*victim);
+					you->TransferFuel(victim->JumpFuelMissing(), &*victim);
 				player.AddShip(victim);
 				for(const Ship::Bay &bay : victim->Bays())
 					if(bay.ship)

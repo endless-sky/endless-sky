@@ -41,6 +41,19 @@ mission "First Contact: Hai"
 			`	You talk for a while longer, but do not gain much additional information except that several of their worlds are willing to sell Hai technology even to human beings. You thank them both for stopping to talk with you, and the Hai responds, "We are always glad to welcome new friends. May peace dwell in your heart until we meet again."`
 				decline
 
+mission "Discovered Hai Space"
+	landing
+	invisible
+	source
+		government "Hai"
+	on offer
+		event "label hai space"
+		fail
+
+event "label hai space"
+	galaxy "label hai"
+		sprite "label/hai"
+
 
 
 mission "First Contact: Unfettered"
