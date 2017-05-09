@@ -242,7 +242,7 @@ outfit "Crucible-Class Thruster"
 	"thrust" 18.0
 	"thrusting energy" 2.65
 	"thrusting heat" 2.5
-	"flare sprite" "effect/remnant small flare"
+	"flare sprite" "effect/remnant flare/remnant small flare"
 		"frame rate" 5
 	"flare sound" "plasma tiny"
 	description "TBD"
@@ -257,7 +257,7 @@ outfit "Forge-Class Thruster"
 	"thrust" 37.0
 	"thrusting energy" 5.15
 	"thrusting heat" 5.0
-	"flare sprite" "effect/remnant medium flare"
+	"flare sprite" "effect/remnant flare/remnant medium flare"
 		"frame rate" 4
 	"flare sound" "plasma small"
 	description "TBD"
@@ -272,7 +272,7 @@ outfit "Smelter-Class Thruster"
 	"thrust" 76.8
 	"thrusting energy" 10.10
 	"thrusting heat" 10.2
-	"flare sprite" "effect/remnant large flare"
+	"flare sprite" "effect/remnant flare/remnant large flare"
 		"frame rate" 3
 	"flare sound" "plasma medium"
 	description "TBD"
