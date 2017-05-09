@@ -1674,6 +1674,14 @@ bool Ship::IsUsingJumpDrive() const
 
 
 
+// Check if this ship will use the jump drive to make its next jump
+bool Ship::WillUseJumpDrive() const
+{
+	return IsEnteringHyperspace() && isUsingJumpDrive;
+}
+
+
+
 // Check if this ship is currently able to enter hyperspace to it target.
 bool Ship::IsReadyToJump() const
 {
