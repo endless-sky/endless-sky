@@ -123,12 +123,6 @@ private:
 	CaptureOdds defenseOdds;
 	// These messages are shown to report the results of hand to hand combat.
 	std::vector<std::string> messages;
-	
-	// If you lose crew, you must pay "death benefits." This is a mechanism to
-	// make capturing ships less absurdly lucrative.
-	int64_t initialCrew;
-	int64_t casualties = 0;
-	int64_t deathBenefits = 0;
 };
 
 

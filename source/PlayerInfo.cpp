@@ -115,15 +115,17 @@ void PlayerInfo::Load(const string &path)
 		else if(child.Token(0) == "date" && child.Size() >= 4)
 			date = Date(child.Value(1), child.Value(2), child.Value(3));
 		else if(child.Token(0) == "system" && child.Size() >= 2)
-			system = GameData::Systems().Find(child.Token(1));
+			system = GameData::Systems().Get(child.Token(1));
 		else if(child.Token(0) == "planet" && child.Size() >= 2)
-			planet = GameData::Planets().Find(child.Token(1));
+			planet = GameData::Planets().Get(child.Token(1));
 		else if(child.Token(0) == "travel" && child.Size() >= 2)
 		{
 			const System *next = GameData::Systems().Find(child.Token(1));
 			if(next)
 				travelPlan.push_back(next);
 		}
+		else if(child.Token(0) == "travel destination" && child.Size() >= 2)
+			travelDestination = GameData::Planets().Find(child.Token(1));
 		else if(child.Token(0) == "reputation with")
 		{
 			for(const DataNode &grand : child)
@@ -252,28 +254,6 @@ void PlayerInfo::Load(const string &path)
 			}
 	}
 	
-	// As a result of game data changes (e.g. unloading a mod) it's possible for
-	// the player to end up in an undefined system or planet. In that case, move
-	// them to the starting system to avoid crashing.
-	if(planet && !system)
-		system = planet->GetSystem();
-	if(!planet || planet->Name().empty() || !system || system->Name().empty())
-	{
-		system = GameData::Start().GetSystem();
-		planet = GameData::Start().GetPlanet();
-	}
-	
-	// For any ship that did not store what system it is in or what planet it is
-	// on, place it with the player. (In practice, every ship ought to have
-	// specified its location, but this is to avoid null locations.)
-	for(shared_ptr<Ship> &ship : ships)
-	{
-		if(!ship->GetSystem() || ship->GetSystem()->Name().empty())
-			ship->SetSystem(system);
-		if(ship->GetSystem() == system)
-			ship->SetPlanet(planet);
-	}
-	
 	// If no depreciation record was loaded, every item in the player's fleet
 	// will count as non-depreciated.
 	if(!depreciation.IsLoaded())
@@ -353,7 +333,29 @@ void PlayerInfo::ApplyChanges()
 	GameData::ReadEconomy(economy);
 	economy = DataNode();
 	
-	// government changes may have changed the player's ship swizzles
+	// As a result of game data changes (e.g. unloading a mod) it's possible for
+	// the player to end up in an undefined system or planet. In that case, move
+	// them to the starting system to avoid crashing.
+	if(planet && !system)
+		system = planet->GetSystem();
+	if(!planet || planet->Name().empty() || !system || system->Name().empty())
+	{
+		system = GameData::Start().GetSystem();
+		planet = GameData::Start().GetPlanet();
+	}
+	
+	// For any ship that did not store what system it is in or what planet it is
+	// on, place it with the player. (In practice, every ship ought to have
+	// specified its location, but this is to avoid null locations.)
+	for(shared_ptr<Ship> &ship : ships)
+	{
+		if(!ship->GetSystem() || ship->GetSystem()->Name().empty())
+			ship->SetSystem(system);
+		if(ship->GetSystem() == system)
+			ship->SetPlanet(planet);
+	}
+	
+	// Government changes may have changed the player's ship swizzles.
 	for(shared_ptr<Ship> &ship : ships)
 		ship->SetGovernment(GameData::PlayerGovernment());
 
@@ -397,6 +399,9 @@ void PlayerInfo::ApplyChanges()
 		if(planet)
 			GameData::GetPolitics().DominatePlanet(planet);
 	}
+	
+	// Make sure all data defined in this saved game is valid.
+	GameData::CheckReferences();
 }
 
 
@@ -726,7 +731,7 @@ const vector<shared_ptr<Ship>> &PlayerInfo::Ships() const
 
 
 // Add a captured ship to your fleet.
-void PlayerInfo::AddShip(shared_ptr<Ship> &ship)
+void PlayerInfo::AddShip(const shared_ptr<Ship> &ship)
 {
 	ships.push_back(ship);
 	ship->SetIsSpecial();
@@ -903,6 +908,8 @@ void PlayerInfo::Land(UI *ui)
 	
 	// Mark this planet as visited.
 	Visit(planet);
+	if(planet == travelDestination)
+		travelDestination = nullptr;
 	
 	// Remove any ships that have been destroyed or captured.
 	map<string, int> lostCargo;
@@ -968,7 +975,7 @@ void PlayerInfo::Land(UI *ui)
 			RemoveMission(Mission::FAIL, mission, ui);
 		else if(mission.CanComplete(*this))
 			RemoveMission(Mission::COMPLETE, mission, ui);
-		else if(mission.Destination() == GetPlanet())
+		else if(mission.Destination() == GetPlanet() && !freshlyLoaded)
 			mission.Do(Mission::VISIT, *this, ui);
 	}
 	// One mission's actions may influence another mission, so loop through one
@@ -1062,7 +1069,6 @@ bool PlayerInfo::TakeOff(UI *ui)
 	availableMissions.clear();
 	doneMissions.clear();
 	stock.clear();
-	stockDepreciation = Depreciation();
 	
 	// Special persons who appeared last time you left the planet, can appear
 	// again.
@@ -1136,6 +1142,7 @@ bool PlayerInfo::TakeOff(UI *ui)
 	// carry it in. Any excess ships will need to be sold.
 	int shipsSold[2] = {0, 0};
 	int64_t income = 0;
+	int day = date.DaysSinceEpoch();
 	for(auto it = ships.begin(); it != ships.end(); )
 	{
 		shared_ptr<Ship> &ship = *it;
@@ -1162,7 +1169,9 @@ bool PlayerInfo::TakeOff(UI *ui)
 		if(!fit)
 		{
 			++shipsSold[isFighter];
-			income += ship->Cost();
+			int64_t cost = depreciation.Value(*ship, day);
+			stockDepreciation.Buy(*ship, day, &depreciation);
+			income += cost;
 			it = ships.erase(it);
 		}
 		else
@@ -1246,12 +1255,16 @@ bool PlayerInfo::TakeOff(UI *ui)
 			// Compute the total value for each type of excess outfit.
 			if(!outfit.second)
 				continue;
-			outfitIncome += outfit.first->Cost() * outfit.second;
+			int64_t cost = depreciation.Value(outfit.first, day, outfit.second);
+			for(int i = 0; i < outfit.second; ++i)
+				stockDepreciation.Buy(outfit.first, day, &depreciation);
+			outfitIncome += cost;
 		}
 	}
 	accounts.AddCredits(commodityIncome);
 	accounts.AddCredits(outfitIncome);
 	cargo.Clear();
+	stockDepreciation = Depreciation();
 	if(sold)
 	{
 		// Report how much excess cargo was sold, and what profit you earned.
@@ -1276,11 +1289,13 @@ void PlayerInfo::UpdateCargoCapacities()
 {
 	int size = 0;
 	int bunks = 0;
+	flagship = FlagshipPtr();
 	for(const shared_ptr<Ship> &ship : ships)
 		if(ship->GetSystem() == system && !ship->IsParked() && !ship->IsDisabled())
 		{
 			size += ship->Attributes().Get("cargo space");
-			bunks += ship->Attributes().Get("bunks") - ship->Crew();
+			int crew = (ship == flagship ? ship->Crew() : ship->RequiredCrew());
+			bunks += ship->Attributes().Get("bunks") - crew;
 		}
 	cargo.SetSize(size);
 	cargo.SetBunks(bunks);
@@ -1564,7 +1579,7 @@ bool PlayerInfo::HasSeen(const System *system) const
 		if(mission.Waypoints().count(system))
 			return true;
 		for(const Planet *planet : mission.Stopovers())
-			if(planet->GetSystem() == system)
+			if(planet->IsInSystem(system))
 				return true;
 	}
 	
@@ -1575,7 +1590,7 @@ bool PlayerInfo::HasSeen(const System *system) const
 		if(mission.Waypoints().count(system))
 			return true;
 		for(const Planet *planet : mission.Stopovers())
-			if(planet->GetSystem() == system)
+			if(planet->IsInSystem(system))
 				return true;
 	}
 	
@@ -1612,11 +1627,11 @@ bool PlayerInfo::KnowsName(const System *system) const
 		return true;
 	
 	for(const Mission &mission : availableJobs)
-		if(mission.Destination()->GetSystem() == system)
+		if(mission.Destination()->IsInSystem(system))
 			return true;
 	
 	for(const Mission &mission : missions)
-		if(mission.IsVisible() && mission.Destination()->GetSystem() == system)
+		if(mission.IsVisible() && mission.Destination()->IsInSystem(system))
 			return true;
 	
 	return false;
@@ -1653,10 +1668,7 @@ void PlayerInfo::Unvisit(const System *system)
 	if(!system)
 		return;
 	
-	auto it = visitedSystems.find(system);
-	if(it != visitedSystems.end())
-		visitedSystems.erase(it);
-	
+	visitedSystems.erase(system);
 	for(const StellarObject &object : system->Objects())
 		if(object.GetPlanet())
 			Unvisit(object.GetPlanet());
@@ -1669,9 +1681,7 @@ void PlayerInfo::Unvisit(const Planet *planet)
 	if(!planet)
 		return;
 	
-	auto it = visitedPlanets.find(planet);
-	if(it != visitedPlanets.end())
-		visitedPlanets.erase(it);
+	visitedPlanets.erase(planet);
 }
 
 
@@ -1708,6 +1718,22 @@ void PlayerInfo::PopTravel()
 		Visit(travelPlan.back());
 		travelPlan.pop_back();
 	}
+}
+
+
+
+// Get the planet to land on at the end of the travel path.
+const Planet *PlayerInfo::TravelDestination() const
+{
+	return travelDestination;
+}
+
+
+
+// Set the planet to land on at the end of the travel path.
+void PlayerInfo::SetTravelDestination(const Planet *planet)
+{
+	travelDestination = planet;
 }
 
 
@@ -2109,6 +2135,9 @@ void PlayerInfo::Save(const string &path) const
 		out.Write("clearance");
 	for(const System *system : travelPlan)
 		out.Write("travel", system->Name());
+	if(travelDestination)
+		out.Write("travel destination", travelDestination->Name());
+	
 	out.Write("reputation with");
 	out.BeginChild();
 	{

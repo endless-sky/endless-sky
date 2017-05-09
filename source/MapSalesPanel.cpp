@@ -329,7 +329,7 @@ void MapSalesPanel::DrawSprite(const Point &corner, const Sprite *sprite) const
 	if(sprite)
 	{
 		Point iconOffset(.5 * ICON_HEIGHT, .5 * ICON_HEIGHT);
-		double scale = min(.5, (ICON_HEIGHT - 2.) / sprite->Height());
+		double scale = min(.5, min((ICON_HEIGHT - 2.) / sprite->Height(), (ICON_HEIGHT - 2.) / sprite->Width()));
 		SpriteShader::Draw(sprite, corner + iconOffset, scale, swizzle);
 	}
 }

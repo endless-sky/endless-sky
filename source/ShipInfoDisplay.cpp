@@ -248,16 +248,15 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const Depreciation &dep
 	
 	// Find out how much outfit, engine, and weapon space the chassis has.
 	map<string, double> chassis;
-	static const string names[] = {
+	static const vector<string> NAMES = {
 		"outfit space free:", "outfit space",
 		"    weapon capacity:", "weapon capacity",
 		"    engine capacity:", "engine capacity",
 		"gun ports free:", "gun ports",
 		"turret mounts free:", "turret mounts"
 	};
-	static const int NAMES =  sizeof(names) / sizeof(names[0]);
-	for(int i = 1; i < NAMES; i += 2)
-		chassis[names[i]] = attributes.Get(names[i]);
+	for(unsigned i = 1; i < NAMES.size(); i += 2)
+		chassis[NAMES[i]] = attributes.Get(NAMES[i]);
 	for(const auto &it : ship.Outfits())
 		for(auto &cit : chassis)
 			cit.second -= it.second * it.first->Get(cit.first);
@@ -265,11 +264,11 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const Depreciation &dep
 	attributeLabels.push_back(string());
 	attributeValues.push_back(string());
 	attributesHeight += 10;
-	for(int i = 0; i < NAMES; i += 2)
+	for(unsigned i = 0; i < NAMES.size(); i += 2)
 	{
-		attributeLabels.push_back(names[i]);
-		attributeValues.push_back(Format::Number(attributes.Get(names[i + 1]))
-			+ " / " + Format::Number(chassis[names[i + 1]]));
+		attributeLabels.push_back(NAMES[i]);
+		attributeValues.push_back(Format::Number(attributes.Get(NAMES[i + 1]))
+			+ " / " + Format::Number(chassis[NAMES[i + 1]]));
 		attributesHeight += 20;
 	}
 	
@@ -296,11 +295,12 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const Depreciation &dep
 	energyTable.push_back(Format::Number(
 		60. * (attributes.Get("energy generation")
 			+ attributes.Get("solar collection")
+			- attributes.Get("energy consumption")
 			- attributes.Get("cooling energy"))));
+	double efficiency = ship.CoolingEfficiency();
 	heatTable.push_back(Format::Number(
 		60. * (attributes.Get("heat generation")
-			- attributes.Get("cooling")
-			- attributes.Get("active cooling"))));
+			- efficiency * (attributes.Get("cooling") + attributes.Get("active cooling")))));
 	attributesHeight += 20;
 	tableLabels.push_back("moving:");
 	energyTable.push_back(Format::Number(

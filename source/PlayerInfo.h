@@ -119,7 +119,7 @@ public:
 	// Get the full list of ships the player owns.
 	const std::vector<std::shared_ptr<Ship>> &Ships() const;
 	// Add a captured ship to your fleet.
-	void AddShip(std::shared_ptr<Ship> &ship);
+	void AddShip(const std::shared_ptr<Ship> &ship);
 	// Buy or sell a ship.
 	void BuyShip(const Ship *model, const std::string &name);
 	void SellShip(const Ship *selected);
@@ -189,6 +189,9 @@ public:
 	std::vector<const System *> &TravelPlan();
 	// Remove the first or last system from the travel plan.
 	void PopTravel();
+	// Get or set the planet to land on at the end of the travel path.
+	const Planet *TravelDestination() const;
+	void SetTravelDestination(const Planet *planet);
 	
 	// Toggle which secondary weapon the player has selected.
 	const Outfit *SelectedWeapon() const;
@@ -278,6 +281,7 @@ private:
 	std::set<const System *> visitedSystems;
 	std::set<const Planet *> visitedPlanets;
 	std::vector<const System *> travelPlan;
+	const Planet *travelDestination = nullptr;
 	
 	const Outfit *selectedWeapon = nullptr;
 	

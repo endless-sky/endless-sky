@@ -28,7 +28,7 @@ mission "Coalition: First Contact"
 				`	"How do you know my language?"`
 			`	The spider speaks, and the box around its neck translates. "Our nearest and most recent neighbor you are. The Heliarchs in their great wisdom, all things that come to pass in our region of space, they are aware of."`
 			label next
-			`	Speaking through its own translation box, the beetle says, "To the seat of the Heliarch government must you go. Once to the Heliarch you have become known, in many ways to our society, contribute you may."`
+			`	Speaking through its own translation box, the beetle says, "To the seat of the Heliarch government must you go. Once to the Heliarchs you have become known, in many ways to our society, contribute you may."`
 			`	The centaur pulls out a map printed on a thin sheet of plastic. You recognize it as a star map of this region. Lines mark out three different territories, and where they meet are three star systems colored yellow. The centaur points to the southernmost of the three. "Where you must go, here it is," it says.`
 			choice
 				`	"Thank you. I will go there."`
@@ -61,6 +61,15 @@ mission "Coalition: First Contact"
 			`	The spider says, "In separate boxes, they each species keep. And in subtle ways, your development and discoveries they limit. And on your technology, restrictions they place."`
 			`	The beetle says, "Or, wrong are we? And the jump drive that brought you here, a gift from the Quarg it is? They its secret no longer hoard?" You tell it that the Quarg do indeed refuse to give jump drives to humans, and it says, "Then, prisoners indeed you are."`
 			label next
+			branch hai
+				has "First Contact: Hai: offered"
+			choice
+				`	"I suppose you may be right about the Quarg."`
+					goto end
+				`	"Perhaps the Quarg will change their minds in the future."`
+			`	The giant beetle considers you gravely. "Hope, we can only," it says.`
+					goto end
+			label hai
 			choice
 				`	"I suppose you may be right about the Quarg."`
 					goto end
@@ -69,6 +78,23 @@ mission "Coalition: First Contact"
 			label end
 			`	You talk with them for a while longer, and learn that the centaurs are called "Saryds," and are the oldest of the three species. The beetles are the "Kimek," and come next, and the spiders are called "Arachi," and were the last of the three to discover spaceflight.`
 			`	They tell you that the best way to learn more about them is to visit their worlds, and to see for yourself how the three species live in friendship and equality. They also offer to give you jobs to do in their territory, so that you may become a "valuable contributor" to their society.`
+
+mission "Discovered Coalition Space"
+	landing
+	invisible
+	source
+		government "Heliarch"
+	on offer
+		event "label coalition space"
+		fail
+
+event "label coalition space"
+	galaxy "label saryds"
+		sprite "label/saryds"
+	galaxy "label kimek"
+		sprite "label/kimek"
+	galaxy "label arachi"
+		sprite "label/arachi"
 
 
 

@@ -64,6 +64,7 @@ protected:
 	virtual void FailSell() const;
 	virtual bool FlightCheck() = 0;
 	virtual bool CanSellMultiple() const;
+	virtual void DrawKey();
 	
 	// Only override the ones you need; the default action is to return false.
 	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command) override;
@@ -111,10 +112,10 @@ protected:
 	const Ship *selectedShip = nullptr;
 	const Outfit *selectedOutfit = nullptr;
 	
-	double mainScroll = 0;
-	double sideScroll = 0;
-	int maxMainScroll = 0;
-	int maxSideScroll = 0;
+	double mainScroll = 0.;
+	double sideScroll = 0.;
+	double maxMainScroll = 0.;
+	double maxSideScroll = 0.;
 	bool dragMain = true;
 	int mainDetailHeight = 0;
 	int sideDetailHeight = 0;

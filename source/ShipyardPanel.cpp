@@ -12,18 +12,62 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "ShipyardPanel.h"
 
+#include "Color.h"
 #include "Dialog.h"
+#include "Font.h"
+#include "FontSet.h"
 #include "Format.h"
 #include "GameData.h"
+#include "Phrase.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
 #include "Point.h"
 #include "Screen.h"
 #include "Ship.h"
+#include "SpriteSet.h"
+#include "SpriteShader.h"
 #include "System.h"
 #include "UI.h"
 
 using namespace std;
+
+namespace {
+	// The name entry dialog should include a "Random" button to choose a random
+	// name using the civilian ship name generator.
+	class NameDialog : public Dialog {
+	public:
+		NameDialog(ShipyardPanel *panel, void (ShipyardPanel::*fun)(const string &), const string &message)
+			: Dialog(panel, fun, message) {}
+		
+		virtual void Draw() override
+		{
+			Dialog::Draw();
+			
+			randomPos = cancelPos - Point(80., 0.);
+			SpriteShader::Draw(SpriteSet::Get("ui/dialog cancel"), randomPos);
+
+			const Font &font = FontSet::Get(14);
+			static const string label = "Random";
+			Point labelPos = randomPos - .5 * Point(font.Width(label), font.Height());
+			font.Draw(label, labelPos, *GameData::Colors().Get("medium"));
+		}
+		
+	protected:
+		virtual bool Click(int x, int y, int clicks) override
+		{
+			Point off = Point(x, y) - randomPos;
+			if(fabs(off.X()) < 40. && fabs(off.Y()) < 20.)
+			{
+				input = GameData::Phrases().Get("civilian")->Get();
+				return true;
+			}
+			return Dialog::Click(x, y, clicks);
+		}
+		
+	private:
+		Point randomPos;
+	};
+}
 
 
 
@@ -137,8 +181,13 @@ void ShipyardPanel::Buy()
 			" If that is okay with you, go ahead and enter a name for your brand new ";
 	else
 		message = "Enter a name for your brand new ";
-	message += selectedShip->ModelName() + "!";
-	GetUI()->Push(new Dialog(this, &ShipyardPanel::BuyShip, message));
+	
+	if(modifier == 1)
+		message += selectedShip->ModelName() + "! (Or leave it blank to use a randomly chosen name.)";
+	else
+		message += selectedShip->PluralModelName() + "! (Or leave it blank to use randomly chosen names.)";
+	
+	GetUI()->Push(new NameDialog(this, &ShipyardPanel::BuyShip, message));
 }
 
 
@@ -253,23 +302,22 @@ void ShipyardPanel::BuyShip(const string &name)
 	if(licenseCost)
 	{
 		player.Accounts().AddCredits(-licenseCost);
-		for(const string &name : selectedShip->Licenses())
-			if(player.GetCondition("license: " + name) <= 0)
-				player.Conditions()["license: " + name] = true;
+		for(const string &licenseName : selectedShip->Licenses())
+			if(player.GetCondition("license: " + licenseName) <= 0)
+				player.Conditions()["license: " + licenseName] = true;
 	}
-	
-	string shipName = name;
-	if(shipName.empty())
-		shipName = player.FirstName() + "'s " + selectedShip->ModelName();
-	if(modifier > 1)
-		shipName += ' ';
 	
 	for(int i = 1; i <= modifier; ++i)
 	{
-		if(modifier > 1)
-			player.BuyShip(selectedShip, shipName + to_string(i));
-		else
-			player.BuyShip(selectedShip, shipName);
+		// If no name is given, choose a random name. Otherwise, if buying
+		// multiple ships, append a number to the given ship name.
+		string shipName = name;
+		if(name.empty())
+			shipName = GameData::Phrases().Get("civilian")->Get();
+		else if(modifier > 1)
+			shipName += " " + to_string(i);
+		
+		player.BuyShip(selectedShip, shipName);
 	}
 	
 	playerShip = &*player.Ships().back();

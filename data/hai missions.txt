@@ -41,6 +41,19 @@ mission "First Contact: Hai"
 			`	You talk for a while longer, but do not gain much additional information except that several of their worlds are willing to sell Hai technology even to human beings. You thank them both for stopping to talk with you, and the Hai responds, "We are always glad to welcome new friends. May peace dwell in your heart until we meet again."`
 				decline
 
+mission "Discovered Hai Space"
+	landing
+	invisible
+	source
+		government "Hai"
+	on offer
+		event "label hai space"
+		fail
+
+event "label hai space"
+	galaxy "label hai"
+		sprite "label/hai"
+
 
 
 mission "First Contact: Unfettered"
@@ -190,7 +203,7 @@ mission "Unfettered Jump Drive 1"
 				`	(No.)`
 					defer
 				`	(Yes.)`
-			`	As soon as you approach the crowd, one of them steps forward and says, "Five million credits, and the friendship of the true Hai people. This is our offer, for the jump drive."`
+			`	As soon as you approach the crowd, one of them steps forward and says, "One million credits, and the friendship of the true Hai people. This is our offer, for the jump drive."`
 			choice
 				`	"Sure, I will accept that deal."`
 					goto end
@@ -224,7 +237,7 @@ mission "Unfettered Jump Drive 1"
 	on accept
 		outfit "Jump Drive" -1
 		outfit "Hyperdrive" 1
-		payment 5000000
+		payment 1000000
 		"reputation: Hai (Unfettered)" >?= 10
 
 
@@ -250,7 +263,7 @@ mission "Unfettered Jump Drive 2"
 				`	(No.)`
 					defer
 				`	(Yes.)`
-			`	When you approach the crowd, one of them says, "Greetings, human friend. We have made you known to all our brothers and sisters as one of the few creatures who have chosen to help the true Hai to gain their freedom. If you give us another jump drive, we will pay you another five million credits, and make you one of our emissaries to collect the payments with which our frail brothers seek to buy peace. Will you accept this exchange?"`
+			`	When you approach the crowd, one of them says, "Greetings, human friend. We have made you known to all our brothers and sisters as one of the few creatures who have chosen to help the true Hai to gain their freedom. If you give us another jump drive, we will pay you another million credits, and make you one of our emissaries to collect the payments with which our frail brothers seek to buy peace. Will you accept this exchange?"`
 			choice
 				`	"Sorry, I need this jump drive right now, but I will come back later and sell it to you."`
 					defer
@@ -266,78 +279,9 @@ mission "Unfettered Jump Drive 2"
 	on accept
 		outfit "Jump Drive" -1
 		outfit "Hyperdrive" 1
-		payment 5000000
+		payment 1000000
 		"reputation: Hai (Unfettered)" >?= 20
 		fail "Unfettered Jump Drive 1"
-
-
-
-mission "Unfettered Tribute 1"
-	name "Hai Tribute to <planet>"
-	description "Collect a tribute payment of <tons> of food from <stopovers>, and bring it to the Unfettered on <destination>. Your share of the tribute will be <payment>."
-	job
-	repeat
-	to offer
-		has "Unfettered Jump Drive 2: offered"
-		random < 80
-	cargo "food (tribute)" 25 2 .05
-	on complete
-		payment 5000 1600
-		dialog "You drop off the tribute to the Unfettered, and they pay you <payment>."
-	source
-		attributes "unfettered"
-	stopover
-		distance 3 4
-		attributes "hai"
-	on stopover
-		dialog
-			`When you inform the Hai that you are here to receive a tribute payment for the Unfettered, they load the cargo onto your ship with a rather surprising swiftness and cheerfulness.`
-
-
-
-mission "Unfettered Tribute 2"
-	name "Hai Tribute to <planet>"
-	description "Collect a tribute payment of <tons> of food from <stopovers>, and bring it to the Unfettered on <destination>. Your share of the tribute will be <payment>."
-	job
-	repeat
-	to offer
-		has "Unfettered Jump Drive 2: offered"
-		random < 60
-	cargo "food (tribute)" 35 2 .05
-	on complete
-		payment 7000 2000
-		dialog "You drop off the tribute to the Unfettered, and they pay you <payment>."
-	source
-		attributes "unfettered"
-	stopover
-		distance 4 5
-		attributes "hai"
-	on stopover
-		dialog
-			`The Hai dockworkers load the tribute for the Unfettered onto your ship. One of them says to you, "Thank you. This is far better than watching our kinfolk starve."`
-
-
-
-mission "Unfettered Tribute 3"
-	name "Hai Tribute to <planet>"
-	description "Collect a tribute payment of <tons> of food from <stopovers>, and bring it to the Unfettered on <destination>. Your share of the tribute will be <payment>."
-	job
-	repeat
-	to offer
-		has "Unfettered Jump Drive 2: offered"
-		random < 40
-	cargo "food (tribute)" 45 2 .05
-	on complete
-		payment 9000 2400
-		dialog "You drop off the tribute to the Unfettered, and they pay you <payment>."
-	source
-		attributes "unfettered"
-	stopover
-		distance 5 6
-		attributes "hai"
-	on stopover
-		dialog
-			`As the Hai load the tribute onto your ship, one of them says, "Tell our brothers and sisters that if they will only repent, they will be welcome to come home."`
 
 
 
@@ -362,7 +306,7 @@ mission "Unfettered Jump Drive 3"
 				`	(No.)`
 					defer
 				`	(Yes.)`
-			`	You meet up with some local Unfettered leaders, and they again pay you five million credits and arrange for your jump drive to be swapped out of your ship. "If you bring more, we will continue to pay you," they say.`
+			`	You meet up with some local Unfettered leaders, and they again pay you a million credits and arrange for your jump drive to be swapped out of your ship. "If you bring more, we will continue to pay you," they say.`
 			choice
 				`	"Can you tell me what you are using the jump drives for?"`
 				`	"Thank you, I will certainly bring more of them when I am able."`
@@ -399,7 +343,7 @@ mission "Unfettered Jump Drive 3"
 	on accept
 		outfit "Jump Drive" -1
 		outfit "Hyperdrive" 1
-		payment 5000000
+		payment 1000000
 		"reputation: Hai (Unfettered)" >?= 30
 		fail "Unfettered Jump Drive 2"
 
@@ -424,13 +368,13 @@ mission "Unfettered Jump Drive 4"
 				`	(No.)`
 					defer
 				`	(Yes.)`
-			`	As usual, they are more than willing to pay you five million credits for your jump drive, but you do not gain any additional information by talking with them.`
+			`	As usual, they are more than willing to pay you a million credits for your jump drive, but you do not gain any additional information by talking with them.`
 				accept
 	
 	on accept
 		outfit "Jump Drive" -1
 		outfit "Hyperdrive" 1
-		payment 5000000
+		payment 1000000
 		"reputation: Hai (Unfettered)" >?= 40
 		fail "Unfettered Jump Drive 3"
 		fail "Unfettered Jump Drive 4"

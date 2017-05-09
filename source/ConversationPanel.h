@@ -117,7 +117,7 @@ private:
 	std::map<std::string, std::string> subs;
 	
 	// Maximum scroll amount.
-	int maxScroll = 0.;
+	double maxScroll = 0.;
 	
 	// If specified, this is a star system to display with a special big pointer
 	// when the player brings up the map. (Typically a mission destination.)

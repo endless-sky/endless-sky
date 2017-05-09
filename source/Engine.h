@@ -97,13 +97,14 @@ private:
 	
 	class Status {
 	public:
-		Status(const Point &position, double shields, double hull, double radius, bool isEnemy);
+		Status(const Point &position, double outer, double inner, double radius, int type, double angle = 0.);
 		
 		Point position;
-		double shields;
-		double hull;
+		double outer;
+		double inner;
 		double radius;
-		bool isEnemy;
+		int type;
+		double angle;
 	};
 	
 	
@@ -136,6 +137,9 @@ private:
 	std::vector<std::pair<const Outfit *, int>> ammo;
 	int jumpCount = 0;
 	const System *jumpInProgress[2] = {nullptr, nullptr};
+	const Sprite *highlightSprite = nullptr;
+	Point highlightUnit;
+	int highlightFrame = 0;
 	
 	int step = 0;
 	

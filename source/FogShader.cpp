@@ -179,12 +179,12 @@ void FogShader::Draw(const Point &center, double zoom, const PlayerInfo &player)
 		// opposite direction. Once these two passes are done, each value is equal
 		for(int y = 1; y < rows; ++y)
 			for(int x = 1; x < columns; ++x)
-				buffer[x + y * columns] = min(static_cast<int>(buffer[x + y * columns]), min(
+				buffer[x + y * columns] = min<int>(buffer[x + y * columns], min(
 					ORTH + min(buffer[(x - 1) + y * columns], buffer[x + (y - 1) * columns]),
 					DIAG + min(buffer[(x - 1) + (y - 1) * columns], buffer[(x + 1) + (y - 1) * columns])));
 		for(int y = rows - 2; y >= 0; --y)
 			for(int x = columns - 2; x >= 0; --x)
-				buffer[x + y * columns] = min(static_cast<int>(buffer[x + y * columns]), min(
+				buffer[x + y * columns] = min<int>(buffer[x + y * columns], min(
 					ORTH + min(buffer[(x + 1) + y * columns], buffer[x + (y + 1) * columns]),
 					DIAG + min(buffer[(x - 1) + (y + 1) * columns], buffer[(x + 1) + (y + 1) * columns])));
 	

@@ -419,6 +419,20 @@ bool Files::Exists(const string &filePath)
 
 
 
+time_t Files::Timestamp(const std::string &filePath)
+{
+#if defined _WIN32
+	struct _stat buf;
+	_wstat(ToUTF16(filePath).c_str(), &buf);
+#else
+	struct stat buf;
+	stat(filePath.c_str(), &buf);
+#endif
+	return buf.st_mtime;
+}
+
+
+
 void Files::Copy(const string &from, const string &to)
 {
 #if defined _WIN32

@@ -10,6 +10,7 @@
 
 mission "Coalition: Ringworld Workers 1"
 	job
+	repeat
 	name "Workers to the <planet>"
 	description "Transport this crew of <bunks> workers to the Heliarch <planet>, where they will help in the efforts to maintain and expand the ringworld. Payment will be <payment>."
 	passengers 5 8 .2
@@ -28,6 +29,7 @@ mission "Coalition: Ringworld Workers 1"
 
 mission "Coalition: Ringworld Workers 2"
 	job
+	repeat
 	name "Workers to the <planet>"
 	description "Transport this crew of <bunks> workers to the Heliarch <planet>, where they will help in the efforts to maintain and expand the ringworld. Payment will be <payment>."
 	passengers 5 5 .1
@@ -46,6 +48,7 @@ mission "Coalition: Ringworld Workers 2"
 
 mission "Coalition: Ringworld Workers 3"
 	job
+	repeat
 	name "Workers to the <planet>"
 	description "Transport this crew of <bunks> workers to the Heliarch <planet>, where they will help in the efforts to maintain and expand the ringworld. Payment will be <payment>."
 	passengers 5 3 .04
@@ -65,6 +68,7 @@ mission "Coalition: Ringworld Workers 3"
 
 mission "Coalition: Ringworld Volunteers 1"
 	job
+	repeat
 	name "Volunteers to the <planet>"
 	description "The government will pay you <payment> to bring these <bunks> volunteer workers to the <planet>, where they will assist in the construction effort in return for room and board."
 	passengers 5 3 .3
@@ -83,6 +87,7 @@ mission "Coalition: Ringworld Volunteers 1"
 
 mission "Coalition: Ringworld Volunteers 2"
 	job
+	repeat
 	name "Volunteers to the <planet>"
 	description "The government will pay you <payment> to bring these <bunks> volunteer workers to the <planet>, where they will assist in the construction effort in return for room and board."
 	passengers 5 10 .5
@@ -101,6 +106,7 @@ mission "Coalition: Ringworld Volunteers 2"
 
 mission "Coalition: Ringworld Volunteers 3"
 	job
+	repeat
 	name "Volunteers to the <planet>"
 	description "The government will pay you <payment> to bring these <bunks> volunteer workers to the <planet>, where they will assist in the construction effort in return for room and board."
 	passengers 5 4 .2
@@ -120,6 +126,7 @@ mission "Coalition: Ringworld Volunteers 3"
 
 mission "Coalition: Ringworld Materials 1"
 	job
+	repeat
 	name "Materials to the <planet>"
 	description "Deliver these <tons> of construction materials to the Heliarch <planet> by <date>. Payment will be <payment>."
 	deadline
@@ -139,6 +146,7 @@ mission "Coalition: Ringworld Materials 1"
 
 mission "Coalition: Ringworld Materials 2"
 	job
+	repeat
 	name "Materials to the <planet>"
 	description "Deliver these <tons> of construction materials to the Heliarch <planet> by <date>. Payment will be <payment>."
 	deadline
@@ -158,6 +166,7 @@ mission "Coalition: Ringworld Materials 2"
 
 mission "Coalition: Ringworld Materials 3"
 	job
+	repeat
 	name "Materials to the <planet>"
 	description "Deliver these <tons> of construction materials to the Heliarch <planet> by <date>. Payment will be <payment>."
 	deadline
@@ -178,6 +187,7 @@ mission "Coalition: Ringworld Materials 3"
 
 mission "Coalition: Ringworld Supplies 1"
 	job
+	repeat
 	name "Supplies to the <planet>"
 	description "This shipment of <tons> of supplies is a donation from the government of <origin> to help support the Heliarch <planet>. You will be paid <payment> on delivery."
 	cargo random 5 10 .2
@@ -196,6 +206,7 @@ mission "Coalition: Ringworld Supplies 1"
 
 mission "Coalition: Ringworld Supplies 2"
 	job
+	repeat
 	name "Supplies to the <planet>"
 	description "This shipment of <tons> of supplies is a donation from the government of <origin> to help support the Heliarch <planet>. You will be paid <payment> on delivery."
 	cargo random 5 10 .15
@@ -214,6 +225,7 @@ mission "Coalition: Ringworld Supplies 2"
 
 mission "Coalition: Ringworld Supplies 3"
 	job
+	repeat
 	name "Supplies to the <planet>"
 	description "This shipment of <tons> of supplies is a donation from the government of <origin> to help support the Heliarch <planet>. You will be paid <payment> on delivery."
 	cargo random 5 10 .1
@@ -233,6 +245,7 @@ mission "Coalition: Ringworld Supplies 3"
 
 mission "Coalition: Heliarch Candidate"
 	job
+	repeat
 	name "Candidate to the <planet>"
 	description "You will be paid <payment> for transporting this candidate for elevation to the rank of Heliarch to the <planet> by <date>."
 	passengers 1
@@ -253,6 +266,7 @@ mission "Coalition: Heliarch Candidate"
 
 mission "Coalition: Interpreters 1"
 	job
+	repeat
 	name "Interpreters to <planet>"
 	description "Bring these <bunks> Heliarch agents, trained as interpreters and mediators, to <destination>. Payment is <payment>."
 	passengers 2 3 .5
@@ -271,6 +285,7 @@ mission "Coalition: Interpreters 1"
 
 mission "Coalition: Interpreters 2"
 	job
+	repeat
 	name "Interpreters to <planet>"
 	description "Bring these <bunks> Heliarch agents, trained as interpreters and mediators, to <destination>. Payment is <payment>."
 	passengers 2 5 .5
@@ -289,6 +304,7 @@ mission "Coalition: Interpreters 2"
 
 mission "Coalition: Interpreters 3"
 	job
+	repeat
 	name "Interpreters to <planet>"
 	description "Bring these <bunks> Heliarch agents, trained as interpreters and mediators, to <destination>. Payment is <payment>."
 	passengers 2 10 .5
@@ -308,8 +324,9 @@ mission "Coalition: Interpreters 3"
 
 mission "Coalition: Peacekeepers 1"
 	job
+	repeat
 	name "Peacekeepers to <planet>"
-	description "Transport this corps of <bunks> peacekeepers to <destination>, to investigate reports of Resistance activity. Payment is <payment>."
+	description "Transport this corps of <bunks> peacekeepers to <destination> to investigate reports of Resistance activity. Payment is <payment>."
 	passengers 10 10 .2
 	to offer
 		has "known to the heliarchs"
@@ -326,8 +343,9 @@ mission "Coalition: Peacekeepers 1"
 
 mission "Coalition: Peacekeepers 2"
 	job
+	repeat
 	name "Peacekeepers to <planet>"
-	description "Transport this corps of <bunks> peacekeepers to <destination>, to investigate reports of Resistance activity. Payment is <payment>."
+	description "Transport this corps of <bunks> peacekeepers to <destination> to investigate reports of Resistance activity. Payment is <payment>."
 	passengers 10 5 .1
 	to offer
 		has "known to the heliarchs"
@@ -345,8 +363,9 @@ mission "Coalition: Peacekeepers 2"
 
 mission "Coalition: Saryd Interspecies 1"
 	job
+	repeat
 	name "Saryds to <planet>"
-	description "As part of the Interspecies Exchange Program, transport these <bunks> volunteer settlers to <destination>. The government will pay their transport fee of <payment>."
+	description "As part of the Interspecies Exchange Program, these <bunks> volunteer settlers need transportation to <destination>. The government will pay their transport fee of <payment>."
 	passengers 4 2 .1
 	to offer
 		has "known to the heliarchs"
@@ -363,8 +382,9 @@ mission "Coalition: Saryd Interspecies 1"
 
 mission "Coalition: Saryd Interspecies 2"
 	job
+	repeat
 	name "Saryds to <planet>"
-	description "As part of the Interspecies Exchange Program, transport these <bunks> volunteer settlers to <destination>. The government will pay their transport fee of <payment>."
+	description "As part of the Interspecies Exchange Program, these <bunks> volunteer settlers need transportation to <destination>. The government will pay their transport fee of <payment>."
 	passengers 4 4 .1
 	to offer
 		has "known to the heliarchs"
@@ -381,8 +401,9 @@ mission "Coalition: Saryd Interspecies 2"
 
 mission "Coalition: Kimek Interspecies 1"
 	job
+	repeat
 	name "Kimek to <planet>"
-	description "As part of the Interspecies Exchange Program, transport these <bunks> volunteer settlers to <destination>. The government will pay their transport fee of <payment>."
+	description "As part of the Interspecies Exchange Program, these <bunks> volunteer settlers need transportation to <destination>. The government will pay their transport fee of <payment>."
 	passengers 4 2 .1
 	to offer
 		has "known to the heliarchs"
@@ -399,8 +420,9 @@ mission "Coalition: Kimek Interspecies 1"
 
 mission "Coalition: Kimek Interspecies 2"
 	job
+	repeat
 	name "Kimek to <planet>"
-	description "As part of the Interspecies Exchange Program, transport these <bunks> volunteer settlers to <destination>. The government will pay their transport fee of <payment>."
+	description "As part of the Interspecies Exchange Program, these <bunks> volunteer settlers need transportation to <destination>. The government will pay their transport fee of <payment>."
 	passengers 4 4 .1
 	to offer
 		has "known to the heliarchs"
@@ -417,8 +439,9 @@ mission "Coalition: Kimek Interspecies 2"
 
 mission "Coalition: Arach Interspecies 1"
 	job
+	repeat
 	name "Arachi to <planet>"
-	description "As part of the Interspecies Exchange Program, transport these <bunks> volunteer settlers to <destination>. The government will pay their transport fee of <payment>."
+	description "As part of the Interspecies Exchange Program, these <bunks> volunteer settlers need transportation to <destination>. The government will pay their transport fee of <payment>."
 	passengers 4 2 .1
 	to offer
 		has "known to the heliarchs"
@@ -435,8 +458,9 @@ mission "Coalition: Arach Interspecies 1"
 
 mission "Coalition: Arach Interspecies 2"
 	job
+	repeat
 	name "Arachi to <planet>"
-	description "As part of the Interspecies Exchange Program, transport these <bunks> volunteer settlers to <destination>. The government will pay their transport fee of <payment>."
+	description "As part of the Interspecies Exchange Program, these <bunks> volunteer settlers need transportation to <destination>. The government will pay their transport fee of <payment>."
 	passengers 4 4 .1
 	to offer
 		has "known to the heliarchs"
@@ -454,6 +478,7 @@ mission "Coalition: Arach Interspecies 2"
 
 mission "Coalition: Transfer 1"
 	job
+	repeat
 	name "Transfer to <planet>"
 	description "As a part of the Full Employment Program, these <bunks> workers need transportation to <destination>. The government will pay their transport fee of <payment>."
 	passengers 2 10 .3
@@ -474,6 +499,7 @@ mission "Coalition: Transfer 1"
 
 mission "Coalition: Transfer 2"
 	job
+	repeat
 	name "Transfer to <planet>"
 	description "As a part of the Full Employment Program, these <bunks> workers need transportation to <destination>. The government will pay their transport fee of <payment>."
 	passengers 2 10 .2
@@ -494,6 +520,7 @@ mission "Coalition: Transfer 2"
 
 mission "Coalition: Transfer 3"
 	job
+	repeat
 	name "Transfer to <planet>"
 	description "As a part of the Full Employment Program, these <bunks> workers need transportation to <destination>. The government will pay their transport fee of <payment>."
 	passengers 2 10 .1
@@ -515,6 +542,7 @@ mission "Coalition: Transfer 3"
 
 mission "Coalition: Tourists Out 1"
 	job
+	repeat
 	name "Vacationers to <planet>"
 	description "These <bunks> tourists will pay you <payment> to bring them to <destination>. Payment is void if they do not arrive by <date>."
 	deadline
@@ -536,6 +564,7 @@ mission "Coalition: Tourists Out 1"
 
 mission "Coalition: Tourists Out 2"
 	job
+	repeat
 	name "Vacationers to <planet>"
 	description "These <bunks> tourists will pay you <payment> to bring them to <destination>. Payment is void if they do not arrive by <date>."
 	deadline
@@ -557,6 +586,7 @@ mission "Coalition: Tourists Out 2"
 
 mission "Coalition: Tourists Out 3"
 	job
+	repeat
 	name "Vacationers to <planet>"
 	description "These <bunks> tourists will pay you <payment> to bring them to <destination>. Payment is void if they do not arrive by <date>."
 	deadline
@@ -579,6 +609,7 @@ mission "Coalition: Tourists Out 3"
 
 mission "Coalition: Tourists Home 1"
 	job
+	repeat
 	name "Vacationers to <planet>"
 	description "These <bunks> tourists will pay you <payment> to bring them home to <destination>. Payment is void if they do not arrive by <date>."
 	deadline
@@ -600,6 +631,7 @@ mission "Coalition: Tourists Home 1"
 
 mission "Coalition: Tourists Home 2"
 	job
+	repeat
 	name "Vacationers to <planet>"
 	description "These <bunks> tourists will pay you <payment> to bring them home to <destination>. Payment is void if they do not arrive by <date>."
 	deadline
@@ -621,6 +653,7 @@ mission "Coalition: Tourists Home 2"
 
 mission "Coalition: Tourists Home 3"
 	job
+	repeat
 	name "Vacationers to <planet>"
 	description "These <bunks> tourists will pay you <payment> to bring them home to <destination>. Payment is void if they do not arrive by <date>."
 	deadline
@@ -643,8 +676,9 @@ mission "Coalition: Tourists Home 3"
 
 mission "Coalition: Fast Courier 1"
 	job
+	repeat
 	name "Fast courier to <planet>"
-	description "Deliver <cargo> to <destination>, by <date>. The payment is <payment>."
+	description "Deliver <cargo> to <destination> by <date>. The payment is <payment>."
 	deadline 5 1
 	cargo random 2 20 .6
 	to offer
@@ -663,8 +697,9 @@ mission "Coalition: Fast Courier 1"
 
 mission "Coalition: Fast Courier 2"
 	job
+	repeat
 	name "Fast courier to <planet>"
-	description "Deliver <cargo> to <destination>, by <date>. The payment is <payment>."
+	description "Deliver <cargo> to <destination> by <date>. The payment is <payment>."
 	deadline 5 1
 	cargo random 2 30 .6
 	to offer
@@ -683,8 +718,9 @@ mission "Coalition: Fast Courier 2"
 
 mission "Coalition: Fast Courier 3"
 	job
+	repeat
 	name "Fast courier to <planet>"
-	description "Deliver <cargo> to <destination>, by <date>. The payment is <payment>."
+	description "Deliver <cargo> to <destination> by <date>. The payment is <payment>."
 	deadline 5 1
 	cargo random 2 40 .6
 	to offer
@@ -704,6 +740,7 @@ mission "Coalition: Fast Courier 3"
 
 mission "Coalition: Cargo 1"
 	job
+	repeat
 	name "Cargo to <planet>"
 	description "Deliver <cargo> to <destination>. Payment is <payment>."
 	cargo random 4 6 .3
@@ -723,6 +760,7 @@ mission "Coalition: Cargo 1"
 
 mission "Coalition: Cargo 2"
 	job
+	repeat
 	name "Cargo to <planet>"
 	description "Deliver <cargo> to <destination>. Payment is <payment>."
 	cargo random 4 8 .3
@@ -742,6 +780,7 @@ mission "Coalition: Cargo 2"
 
 mission "Coalition: Cargo 3"
 	job
+	repeat
 	name "Cargo to <planet>"
 	description "Deliver <cargo> to <destination>. Payment is <payment>."
 	cargo random 4 11 .3
@@ -761,6 +800,7 @@ mission "Coalition: Cargo 3"
 
 mission "Coalition: Cargo 4"
 	job
+	repeat
 	name "Cargo to <planet>"
 	description "Deliver <cargo> to <destination>. Payment is <payment>."
 	cargo random 4 15 .3
@@ -781,6 +821,7 @@ mission "Coalition: Cargo 4"
 
 mission "Coalition: Bulk 1"
 	job
+	repeat
 	name "Bulk cargo to <planet>"
 	description "Deliver <cargo> to <destination>. Payment is <payment>."
 	cargo random 20 6 .1
@@ -800,6 +841,7 @@ mission "Coalition: Bulk 1"
 
 mission "Coalition: Bulk 2"
 	job
+	repeat
 	name "Bulk cargo to <planet>"
 	description "Deliver <cargo> to <destination>. Payment is <payment>."
 	cargo random 30 9 .1
@@ -819,6 +861,7 @@ mission "Coalition: Bulk 2"
 
 mission "Coalition: Bulk 3"
 	job
+	repeat
 	name "Bulk cargo to <planet>"
 	description "Deliver <cargo> to <destination>. Payment is <payment>."
 	cargo random 40 15 .1
@@ -838,6 +881,7 @@ mission "Coalition: Bulk 3"
 
 mission "Coalition: Bulk 4"
 	job
+	repeat
 	name "Bulk cargo to <planet>"
 	description "Deliver <cargo> to <destination>. Payment is <payment>."
 	cargo random 50 25 .1
@@ -858,8 +902,9 @@ mission "Coalition: Bulk 4"
 
 mission "Coalition: Rush 1"
 	job
+	repeat
 	name "Rush Delivery to <planet>"
-	description "<destination>, needs a shipment of <cargo> by <date>. Payment will be <payment>."
+	description "<destination> needs a shipment of <cargo> by <date>. Payment will be <payment>."
 	deadline
 	cargo random 10 8 .2
 	to offer
@@ -878,8 +923,9 @@ mission "Coalition: Rush 1"
 
 mission "Coalition: Rush 2"
 	job
+	repeat
 	name "Rush Delivery to <planet>"
-	description "<destination>, needs a shipment of <cargo> by <date>. Payment will be <payment>."
+	description "<destination> needs a shipment of <cargo> by <date>. Payment will be <payment>."
 	deadline
 	cargo random 10 12 .2
 	to offer
@@ -898,8 +944,9 @@ mission "Coalition: Rush 2"
 
 mission "Coalition: Rush 3"
 	job
+	repeat
 	name "Rush Delivery to <planet>"
-	description "<destination>, needs a shipment of <cargo> by <date>. Payment will be <payment>."
+	description "<destination> needs a shipment of <cargo> by <date>. Payment will be <payment>."
 	deadline
 	cargo random 10 18 .2
 	to offer
@@ -919,6 +966,7 @@ mission "Coalition: Rush 3"
 
 mission "Coalition: Doctors"
 	job
+	repeat
 	name "Doctors to <planet>"
 	description "The government will pay you <payment> to bring this team of <bunks> doctors to <destination>, to address a viral outbreak. They must arrive by <date>."
 	deadline 8 1
@@ -940,6 +988,7 @@ mission "Coalition: Doctors"
 
 mission "Coalition: Cadets 1"
 	job
+	repeat
 	name "Cadets to <planet>"
 	description "These <bunks> new recruits need transport to the Academy on <destination>. Payment is <payment>."
 	passengers 10 10 .5
@@ -958,6 +1007,7 @@ mission "Coalition: Cadets 1"
 
 mission "Coalition: Cadets 2"
 	job
+	repeat
 	name "Cadets to <planet>"
 	description "These <bunks> new recruits need transport to the Academy on <destination>. Payment is <payment>."
 	passengers 10 10 .4
@@ -977,6 +1027,7 @@ mission "Coalition: Cadets 2"
 
 mission "Coalition: To Games 1"
 	job
+	repeat
 	name "Spectators to <planet>"
 	description "These <bunks> passengers will pay <payment> for transportation to <planet> in time for the Coalition Games (by <date>)."
 	deadline
@@ -996,6 +1047,7 @@ mission "Coalition: To Games 1"
 
 mission "Coalition: To Games 2"
 	job
+	repeat
 	name "Spectators to <planet>"
 	description "These <bunks> passengers will pay <payment> for transportation to <planet> in time for the Coalition Games (by <date>)."
 	deadline
@@ -1015,6 +1067,7 @@ mission "Coalition: To Games 2"
 
 mission "Coalition: To Games 3"
 	job
+	repeat
 	name "Spectators to <planet>"
 	description "These <bunks> passengers will pay <payment> for transportation to <planet> in time for the Coalition Games (by <date>)."
 	deadline
@@ -1035,6 +1088,7 @@ mission "Coalition: To Games 3"
 
 mission "Coalition: From Games 1"
 	job
+	repeat
 	name "Passengers to <planet>"
 	description "Transport <bunks> passengers, who were on <origin> for the Coalition Games, back to their home world of <destination>. Payment is <payment>."
 	passengers 4 4 .2
@@ -1055,6 +1109,7 @@ mission "Coalition: From Games 1"
 
 mission "Coalition: From Games 2"
 	job
+	repeat
 	name "Passengers to <planet>"
 	description "Transport <bunks> passengers, who were on <origin> for the Coalition Games, back to their home world of <destination>. Payment is <payment>."
 	passengers 4 4 .1
@@ -1075,6 +1130,7 @@ mission "Coalition: From Games 2"
 
 mission "Coalition: From Games 3"
 	job
+	repeat
 	name "Passengers to <planet>"
 	description "Transport <bunks> passengers, who were on <origin> for the Coalition Games, back to their home world of <destination>. Payment is <payment>."
 	passengers 4 4 .05

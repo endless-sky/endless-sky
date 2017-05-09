@@ -105,6 +105,8 @@ bool MapDetailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command
 {
 	if((key == SDLK_TAB || command.Has(Command::JUMP)) && player.Flagship())
 	{
+		// Clear the selected planet, if any.
+		selectedPlanet = nullptr;
 		// Toggle to the next link connected to the "source" system. If the
 		// shift key is down, the source is the end of the travel plan; otherwise
 		// it is one step before the end.
@@ -126,7 +128,7 @@ bool MapDetailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command
 		// Depending on whether the flagship has a jump drive, the possible links
 		// we can travel along are different:
 		bool hasJumpDrive = player.Flagship()->Attributes().Get("jump drive");
-		const vector<const System *> &links = hasJumpDrive ? source->Neighbors() : source->Links();
+		const set<const System *> &links = hasJumpDrive ? source->Neighbors() : source->Links();
 		
 		// For each link we can travel from this system, check whether the link
 		// is closer to the current angle (while still being larger) than any
@@ -244,6 +246,9 @@ bool MapDetailPanel::Click(int x, int y, int clicks)
 				selectedPlanet = it.first;
 			}
 		}
+		if(selectedPlanet && player.Flagship())
+			player.SetTravelDestination(selectedPlanet);
+		
 		return true;
 	}
 	else if(y >= Screen::Bottom() - 40 && x >= Screen::Right() - 335 && x < Screen::Right() - 265)
@@ -258,7 +263,7 @@ bool MapDetailPanel::Click(int x, int y, int clicks)
 	}
 	
 	MapPanel::Click(x, y, clicks);
-	if(selectedPlanet && selectedPlanet->GetSystem() != selectedSystem)
+	if(selectedPlanet && !selectedPlanet->IsInSystem(selectedSystem))
 		selectedPlanet = nullptr;
 	return true;
 }
@@ -413,12 +418,11 @@ void MapDetailPanel::DrawInfo()
 		set<const Planet *> shown;
 		const Sprite *planetSprite = SpriteSet::Get("ui/map planet");
 		for(const StellarObject &object : selectedSystem->Objects())
-			if(object.GetPlanet() && !object.GetPlanet()->IsWormhole())
+			if(object.GetPlanet())
 			{
 				// Allow the same "planet" to appear multiple times in one system.
 				const Planet *planet = object.GetPlanet();
-				auto it = shown.find(planet);
-				if(it != shown.end())
+				if(planet->IsWormhole() || !planet->IsAccessible(player.Flagship()) || shown.count(planet))
 					continue;
 				shown.insert(planet);
 				
@@ -488,13 +492,16 @@ void MapDetailPanel::DrawInfo()
 		string price;
 		
 		bool hasVisited = player.HasVisited(selectedSystem);
-		if(hasVisited && selectedSystem->IsInhabited())
+		if(hasVisited && selectedSystem->IsInhabited(player.Flagship()))
 		{
 			int value = selectedSystem->Trade(commodity.name);
 			int localValue = (player.GetSystem() ? player.GetSystem()->Trade(commodity.name) : 0);
+			// Don't "compare" prices if the current system is uninhabited and
+			// thus has no prices to compare to.
+			bool noCompare = (!player.GetSystem() || !player.GetSystem()->IsInhabited(player.Flagship()));
 			if(!value)
 				price = "----";
-			else if(!player.GetSystem() || player.GetSystem() == selectedSystem || !localValue)
+			else if(noCompare || player.GetSystem() == selectedSystem || !localValue)
 				price = to_string(value);
 			else
 			{
@@ -604,10 +611,10 @@ void MapDetailPanel::DrawOrbits()
 			continue;
 		
 		Point pos = orbitCenter + object.Position() * scale;
-		if(object.GetPlanet())
+		if(object.GetPlanet() && object.GetPlanet()->IsAccessible(player.Flagship()))
 			planets[object.GetPlanet()] = pos;
 		
-		RingShader::Draw(pos, object.Radius() * scale + 1., 0., object.TargetColor());
+		RingShader::Draw(pos, object.Radius() * scale + 1., 0., object.TargetColor(player.Flagship()));
 	}
 	
 	// Draw the name of the selected planet.

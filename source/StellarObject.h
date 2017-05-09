@@ -18,6 +18,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 class Color;
 class Planet;
+class Ship;
 
 
 
@@ -54,7 +55,7 @@ public:
 	const std::string &LandingMessage() const;
 	
 	// Get the color to be used for displaying this object.
-	const Color &TargetColor() const;
+	const Color &TargetColor(const Ship *ship) const;
 	// Check if this is a star.
 	bool IsStar() const;
 	// Check if this is a station.

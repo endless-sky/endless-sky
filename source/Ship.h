@@ -114,6 +114,8 @@ public:
 	// Get the name of this model of ship.
 	const std::string &ModelName() const;
 	const std::string &PluralModelName() const;
+	// Get the generic noun (e.g. "ship") to be used when describing this ship.
+	const std::string &Noun() const;
 	// Get this ship's description.
 	const std::string &Description() const;
 	// Get this ship's cost.
@@ -162,6 +164,9 @@ public:
 	// Scan the target, if able and commanded to. Return a ShipEvent bitmask
 	// giving the types of scan that succeeded.
 	int Scan();
+	// Find out what fraction of the scan is complete.
+	double CargoScanFraction() const;
+	double OutfitScanFraction() const;
 	
 	// Fire any weapons that are ready to fire. If an anti-missile is ready,
 	// instead of firing here this function returns true and it can be fired if
@@ -194,11 +199,10 @@ public:
 	bool IsEnteringHyperspace() const;
 	// Check if this ship is entering or leaving hyperspace.
 	bool IsHyperspacing() const;
+	// Check if this ship is hyperspacing, specifically via a jump drive.
+	bool IsUsingJumpDrive() const;
 	// Check if this ship is currently able to enter hyperspace to it target.
-	int CheckHyperspace() const;
-	// Check what type of hyperspce jump this ship is making (0 = not allowed,
-	// 100 = hyperdrive, 150 = scram drive, 200 = jump drive).
-	int HyperspaceType() const;
+	bool IsReadyToJump() const;
 	
 	// Check if the ship is thrusting. If so, the engine sound should be played.
 	bool IsThrusting() const;
@@ -230,9 +234,16 @@ public:
 	// This depends on how much fuel it has and what sort of hyperdrive it uses.
 	int JumpsRemaining() const;
 	// Get the amount of fuel expended per jump.
-	double JumpFuel() const;
+	double JumpFuel(const System *destination = nullptr) const;
+	// Get the cost of making a jump of the given type (if possible).
+	double HyperdriveFuel() const;
+	double JumpDriveFuel() const;
+	// Get the amount of fuel missing for the next jump (smart refuelling)
+	double JumpFuelMissing() const;
 	// Get the heat level at idle.
 	double IdleHeat() const;
+	// Calculate the multiplier for cooling efficiency.
+	double CoolingEfficiency() const;
 	
 	// Access how many crew members this ship has or needs.
 	int Crew() const;
@@ -311,9 +322,8 @@ public:
 	// land on) and a target ship (to move to, and attack if hostile).
 	std::shared_ptr<Ship> GetTargetShip() const;
 	std::shared_ptr<Ship> GetShipToAssist() const;
-	const StellarObject *GetTargetPlanet() const;
+	const StellarObject *GetTargetStellar() const;
 	const System *GetTargetSystem() const;
-	const Planet *GetDestination() const;
 	// Mining target.
 	std::shared_ptr<Minable> GetTargetAsteroid() const;
 	std::shared_ptr<Flotsam> GetTargetFlotsam() const;
@@ -321,9 +331,8 @@ public:
 	// Set this ship's targets.
 	void SetTargetShip(const std::shared_ptr<Ship> &ship);
 	void SetShipToAssist(const std::shared_ptr<Ship> &ship);
-	void SetTargetPlanet(const StellarObject *object);
+	void SetTargetStellar(const StellarObject *object);
 	void SetTargetSystem(const System *system);
-	void SetDestination(const Planet *planet);
 	// Mining target.
 	void SetTargetAsteroid(const std::shared_ptr<Minable> &asteroid);
 	void SetTargetFlotsam(const std::shared_ptr<Flotsam> &flotsam);
@@ -347,6 +356,8 @@ private:
 	double AddHull(double rate);
 	double AddShields(double rate);
 	double AddSkirmisherShields(double rate);
+	// Find out how much fuel is consumed by the hyperdrive of the given type.
+	double BestFuel(const std::string &type, const std::string &subtype, double defaultFuel) const;
 	// Create one of this ship's explosions, within its mask. The explosions can
 	// either stay over the ship, or spread out if this is the final explosion.
 	void CreateExplosion(std::list<Effect> &effects, bool spread = false);
@@ -368,6 +379,7 @@ private:
 	const Ship *base = nullptr;
 	std::string modelName;
 	std::string pluralModelName;
+	std::string noun;
 	std::string description;
 	// Characteristics of this particular ship:
 	std::string name;
@@ -430,10 +442,11 @@ private:
 	double fuel = 0.;
 	double energy = 0.;
 	double heat = 0.;
-	double heatDissipation = .999;
 	double ionization = 0.;
 	double disruption = 0.;
 	double slowness = 0.;
+	// Acceleration can be created by engines, firing weapons, or weapon impacts.
+	Point acceleration;
 	
 	int crew = 0;
 	int pilotError = 0;
@@ -447,7 +460,8 @@ private:
 	
 	int hyperspaceCount = 0;
 	const System *hyperspaceSystem = nullptr;
-	int hyperspaceType = 0;
+	bool isUsingJumpDrive = false;
+	double hyperspaceFuelCost = 0.;
 	Point hyperspaceOffset;
 	
 	std::map<const Effect *, int> explosionEffects;
@@ -461,7 +475,6 @@ private:
 	std::weak_ptr<Ship> shipToAssist;
 	const StellarObject *targetPlanet = nullptr;
 	const System *targetSystem = nullptr;
-	const Planet *destination = nullptr;
 	std::weak_ptr<Minable> targetAsteroid;
 	std::weak_ptr<Flotsam> targetFlotsam;
 	

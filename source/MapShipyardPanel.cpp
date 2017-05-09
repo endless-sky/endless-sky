@@ -116,7 +116,7 @@ void MapShipyardPanel::Compare(int index)
 
 double MapShipyardPanel::SystemValue(const System *system) const
 {
-	if(!system || !system->IsInhabited())
+	if(!system || !system->IsInhabited(player.Flagship()))
 		return numeric_limits<double>::quiet_NaN();
 	
 	double value = -.5;
@@ -176,7 +176,7 @@ void MapShipyardPanel::DrawItems()
 			info += Format::Number(ship->Attributes().Get("hull")) + " hull";
 			
 			bool isForSale = true;
-			if(selectedSystem)
+			if(selectedSystem && player.HasVisited(selectedSystem))
 			{
 				isForSale = false;
 				for(const StellarObject &object : selectedSystem->Objects())

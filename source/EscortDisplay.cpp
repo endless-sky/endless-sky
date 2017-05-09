@@ -15,6 +15,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Color.h"
 #include "Font.h"
 #include "FontSet.h"
+#include "GameData.h"
 #include "LineShader.h"
 #include "Point.h"
 #include "OutlineShader.h"
@@ -55,13 +56,13 @@ void EscortDisplay::Draw() const
 	zones.clear();
 	
 	// Draw escort status.
-	static const Font &font = FontSet::Get(14);
+	const Font &font = FontSet::Get(14);
 	Point pos = Point(Screen::Left() + 20., Screen::Bottom());
-	static const Color hereColor(.8, 1.);
-	static const Color elsewhereColor(.4, .4, .6, 1.);
-	static const Color notReadyToJumpColor(.9, .8, 0., 1.);
-	static const Color selectedColor(.2, .8, 0., 1.);
-	static const Color cannotJumpColor(.9, .2, 0., 1.);
+	const Color &elsewhereColor = *GameData::Colors().Get("escort elsewhere");
+	const Color &cannotJumpColor = *GameData::Colors().Get("escort blocked");
+	const Color &notReadyToJumpColor = *GameData::Colors().Get("escort not ready");
+	const Color &selectedColor = *GameData::Colors().Get("escort selected");
+	const Color &hereColor = *GameData::Colors().Get("escort present");
 	for(const Icon &escort : icons)
 	{
 		if(!escort.sprite)
@@ -164,7 +165,7 @@ const vector<const Ship *> &EscortDisplay::Click(const Point &point) const
 EscortDisplay::Icon::Icon(const Ship &ship, bool isHere, bool fleetIsJumping, bool isSelected)
 	: sprite(ship.GetSprite()),
 	isHere(isHere && !ship.IsDisabled()),
-	notReadyToJump(fleetIsJumping && !ship.IsHyperspacing() && !ship.CheckHyperspace()),
+	notReadyToJump(fleetIsJumping && !ship.IsHyperspacing() && !ship.IsReadyToJump()),
 	cannotJump(fleetIsJumping && !ship.IsHyperspacing() && !ship.JumpsRemaining()),
 	isSelected(isSelected),
 	cost(ship.Cost()),

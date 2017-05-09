@@ -15,6 +15,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Panel.h"
 
+#include "Angle.h"
 #include "Point.h"
 
 #include <cstdint>
@@ -54,7 +55,7 @@ private:
 	std::shared_ptr<Ship> ship = nullptr;
 	const Planet *planet = nullptr;
 	const Sprite *sprite = nullptr;
-	Point unit;
+	Angle facing;
 	
 	std::string header;
 	std::string message;

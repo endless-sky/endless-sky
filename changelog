@@ -1,7 +1,65 @@
+Version 0.9.6:
+  * Bug fixes:
+    * Coalition jobs will now "repeat" instead of only being offered once. (@mootootwo)
+    * Typo fixes. (@Alkallid, @Bladewood, @KiLEdEnNis, @MessyMix, @Pointedstick, @SolraBizna, @warp-core)
+    * Fixed a bug that caused wildly inaccurate depreciation values on some computers.
+    * Fixed a crash due to responding to mouse clicks when the player's flagship is dead.
+    * Fixed a bug where "surveillance" ships never succeed in scanning.
+    * Saved games on planets that were created by events now load correctly.
+    * Fixed incorrect accelerator hints being displayed in the info panel.
+    * Hopefully fixed the bug of the "last" sound not loading properly on some Windows systems.
+    * "Entering" ships no longer forget their destination if the game is reloaded.
+    * Clicking and dragging now only selects ships if no other panel was open when clicking.
+    * Fixed a bug that kept the "Sad Archie" mission from working in 0.9.5.
+    * Fixed depreciation not being applied to auto-sold fighters and outfits.
+    * Made it so you can't hail wormholes, even if they're marked as "inhabited."
+    * If you're in an uninhabited system, fixed how commodity prices in other systems show up in the map.
+    * Made it so the first TMBR mission doesn't get offered on pirate worlds.
+    * Fixed derelict ships that had been captured reappearing.
+    * Fixed the NPC message showing multiple times if you capture a ship you needed to "evade."
+    * The selected planet is now cleared in the map if you change your destination via the jump key.
+    * Fixed shipyard and outfitter maps showing what's available in unexplored systems.
+  * Game content:
+    * Updated the scanner descriptions to describe the benefit of multiple scanners. (@Pointedstick)
+    * Drug running missions now only get offered in human space. (@jafdy)
+    * Added hail messages for friendly pirates. (@Amazinite)
+    * The Coalition intro mission no longer assumes you have already met the Hai. (@toilethinges)
+    * New landscape images. (@jafdy, @striker, @harro.eu)
+    * Added messages when you succeed in destroying each "scattered remnant" Korath fleet. (@Amazinite)
+    * Made the "Defend Spera Anatrusk" battle a little bit easier.
+    * Added images for all the Coalition outfits and unique sounds for all their weapons.
+    * Korath exile worlds no longer fine you for illegal cargo.
+    * The TMBR missions can no longer interrupt missions from the main story line.
+    * The first part of the Syndicate Capture mission now requires your escorts to accompany you.
+    * Fixed an incorrectly set "habitable" zone in the Dokdobaru system.
+    * Switched back to the full-resolution icon on Mac OS X (rather than the "window icon").
+    * Added "autosave" tags to key missions in the Wanderer story line.
+    * Reduced the Unfettered jump drive payoff to be more in line with the drive's depreciated value.
+  * Game mechanics:
+    * Made depreciation happen about three times slower.
+    * Eliminated death benefits, since depreciation does a better job of balancing capture and plunder.
+    * Drag now applies to the acceleration from firing weapons and being hit by them.
+    * Escorts now ignore orders (except "hold position") if you're jumping or in another system.
+    * You can now select a planet in the map to have the autopilot land there when it reaches that system.
+    * You can now hail dominated planets to release them from paying tribute to you.
+    * Auto-aiming now takes "random velocity" into account, making the Bombardment Turret more accurate.
+  * User interface:
+    * Added a preference to highlight your flagship to make it easier to distinguish from other ships.
+    * When naming a new ship, added a button to have the game propose a random civilian name.
+    * The zooming of the main view now pauses whenever it is not active.
+    * In the main menu, the "New Pilot" shortcut now only works if no pilot is loaded.
+    * Escort target brackets no longer show up for escorts that have not taken off yet.
+    * Reduced the number of scanning warnings that display at the same time.
+    * Added messages that tell you if someone succeeds in scanning your cargo or outfits.
+    * The "fail" noise no longer plays over and over if you hold the jump key while out of fuel.
+    * Ships exiting wormholes no longer make the "exiting hyperspace" noise.
+  * Under the hood:
+    * The help messages for new players are now configurable via a text file.
+
 Version 0.9.5:
   * Bug fixes:
     * Typo fixes. (@Amazinite, @Bladewood, @doches, @Elyssaen, @jafdy, @gecko-locator)
-    * More typo fixes (@KiLEdEnNis, @MillerNerd, @PointedStick, @retrue, @warp-core, @Wrzlprnft)
+    * More typo fixes (@KiLEdEnNis, @MillerNerd, @Pointedstick, @retrue, @warp-core, @Wrzlprnft)
     * Fixed the hardpoint locations on the Vanguard. (@jafdy)
     * Republic and Syndicate ships no longer attack each other in the "reconciliation" plot. (@jafdy)
     * Fixed a mistake in the scanner warning message for the new scanner mechanics. (@Elyssaen)
@@ -113,7 +171,7 @@ Version 0.9.5:
     * Put a limit on how many messages will display at the bottom of the screen.
     * Added a message telling you when autopilot is engaged or disengaged.
     * Added expand / collapse arrows to the shipyard and outfitter category names.
-    * The shipyard an outfitter maps can now be filtered to only show the selected system's items.
+    * The shipyard and outfitter maps can now be filtered to only show the selected system's items.
     * Shift + clicking a category name in the shops now expands or collapses all categories.
     * Collapsed categories are now remembered rather than resetting to expanded every time.
     * The zoom level is now remembered when you close the map.
