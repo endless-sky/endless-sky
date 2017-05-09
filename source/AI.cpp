@@ -129,17 +129,6 @@ void AI::UpdateKeys(PlayerInfo &player, Command &clickCommands, bool isActive)
 		keyStuck.Clear();
 	}
 	const Ship *flagship = player.Flagship();
-	if(keyStuck.Has(Command::JUMP) && !player.HasTravelPlan())
-	{
-		keyStuck.Clear(Command::JUMP);
-		const Planet *planet = player.TravelDestination();
-		if(planet && planet->IsInSystem(flagship->GetSystem()))
-		{
-			// The MovePlayer() code will already have targeted this planet.
-			Messages::Add("Autopilot: landing on " + planet->Name() + ".");
-			keyStuck |= Command::LAND;
-		}
-	}
 	
 	if(!isActive || !flagship || flagship->IsDestroyed())
 		return;
@@ -2476,6 +2465,18 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 		Point distance = ship.GetTargetShip()->Position() - ship.Position();
 		if(distance.Unit().Dot(ship.Facing().Unit()) >= .8)
 			command.SetTurn(TurnToward(ship, TargetAim(ship)));
+	}
+	
+	if(keyStuck.Has(Command::JUMP) && !player.HasTravelPlan())
+	{
+		// The player completed their travel plan, which may have indicated a destination within the final system
+		keyStuck.Clear(Command::JUMP);
+		const Planet *planet = player.TravelDestination();
+		if(planet && planet->IsInSystem(ship.GetSystem()))
+		{
+			Messages::Add("Autopilot: landing on " + planet->Name() + ".");
+			keyStuck |= Command::LAND;
+		}
 	}
 	
 	// Clear "stuck" keys if actions can't be performed.
