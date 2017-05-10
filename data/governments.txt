@@ -339,6 +339,20 @@ government "Test Dummy"
 	swizzle 3
 	"player reputation" -1000
 
+government "Unidentified"
+	swizzle 6
+	color .78 .36 .36
+	
+	"player reputation" -1000
+	"attitude toward"
+		"Hai" -.1
+		"Hai (Unfettered)" -.1
+		"Wanderer" -.1
+		"Quarg" -.1
+		"Navy (Oathkeeper)" -.1
+		"Republic" -.1
+	"fine" 0
+
 government "Uninhabited"
 	color .3 .3 .3
 

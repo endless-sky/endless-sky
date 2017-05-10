@@ -429,3 +429,428 @@ mission "Unfettered returning home"
 		dialog
 			`You need not have worried about the reception the Unfettered youth would receive here on Hai-home. Scarcely minutes after you hesitantly contact the Hai government, a happy crowd has gathered around your ship. When he steps out of the hatchway, he looks stunned at being welcomed so warmly. One of the Hai governors thanks you for transporting him, and pays you <payment>.`
 		"reputation: Hai" += 10
+
+
+
+mission "Language: Wanderer 1A"
+	name "Meet Eruk on <destination>"
+	description "Eruk, a Hai technologist, has asked you to meet him on <destination>."
+	landing
+	source
+		government Republic "Free Worlds" Syndicate Hai
+	destination Greenwater
+	to offer
+		has "Wanderers Conversation: offered"
+		random < 2
+	on offer 
+		conversation
+			`Just after you land, while you are inspecting your ship's hull for damage, your communicator bleeps to inform you of a message. After spotting a bit of carbon scouring from an interceptor that passed too close you head back into your ship to read the message.`
+			`	It's from Eruk, the Hai technologist that gave you your translation machine. "Captain <last>, could you come and meet me on <destination> at some point? I have an idea, but I need to get over to Wanderer space, and I would rather not have to go on an Unfettered transport."`
+			`	"Sayari thinks that if I come with you they may at least hear me out before throwing me off the planet. It will also help build up trust with the Wanderers in the long run, I hope."`
+			`	It's a short message, but Eruk seams excited about something so you should probably visit him when you're passing that way.`
+				accept
+
+
+
+mission "Language: Wanderer 1B"
+	landing
+	name "Travel to <destination> with Eruk"
+	description "Eruk wants to study the Wanderer language, take him and some equipment to <destination> to find out if the Wanderers will let him stay while he completes his work."
+	blocked "You need 11 tonnes of cargo space and a free bunk to accept this mission. Come back when you have made some more room."
+	source Greenwater
+	destination "Vara K'chrai"
+	cargo "Eruks equipment" 11
+	passengers 1
+	to offer
+		has "Language: Wanderer 1A: done"
+	on offer
+		conversation
+			`As soon as you open the hatch you get knocked over as Eruk rushes into your ship. He seems to want to get going as soon as possible. You also notice he hasn't got any luggage.`
+			choice
+				`	"Ow, my head."`
+					goto hit
+				`	"Traveling light?"`
+					goto forgot
+				`	"I think you have forgotten your luggage."`
+					goto remind
+
+			label hit
+			`	"Forgot everything," he says, rushing out and knocking you over again as he goes past.`
+				goto return
+
+			label forgot
+			`	He turns around and you narrowly avoid getting hit again as he rushes out.`
+				goto return
+
+			label remind
+			`	"Yes, I have," he says turning around and nearly hitting you again as he rushes out.`
+				goto return
+
+			label return
+			`	A short time later Eruk returns driving a small flatbed truck piled high with boxes, you wonder what kind of suspension the Hai use that can withstand that load. He seems to have calmed down a bit as he manages to avoid running anyone down.`
+			`	"<first>, do you have space for me and some equipment?"`
+			choice
+				`	"How much is 'some' equipment?"`
+					goto yes
+				`	"I don't think I want to help you with this."`
+			`	Eruk looks very disappointed, "Are you sure?"`
+			choice
+				`	"Fine, but how much stuff you have there?"`
+				`	"I'm sure."`
+					decline
+
+			label yes
+			`	"Only about ten tons. I think." You wave some dockworkers over and ask them to start loading it onto your ship.`
+			`	Eruk seems a bit lost, so you start guiding him towards his cabin. "Captain, I should explain." He sounds tired. "Right now, for a Wanderer to talk to you, they need to be able to speak in our language and the speaking machine has to translate it for you to understand. It's roundabout and rather prone to mistakes, so I was thinking, if I had a full translation between the Hai and Wanderer language and if it was well defined I could extrapolate it to translate into your language too." He's perked up a little. "What do you think?"`
+			choice
+				`	"I think it's a great idea!"`
+					accept
+				`	"I'm not sure that the Wanderers will let you stay.`
+
+			`	"Well can we try?"`
+			`	"I guess it's worth a try. They seem friendly enough."`
+				accept
+	on complete
+		payment 200000
+
+
+
+mission "Language: Wanderer break"
+	landing
+	source "Vara K'chrai"
+	destination Earth
+	to offer
+		has "Language: Wanderer 1B: done"
+	on offer
+		event "eruk collects wanderer data" 366
+		conversation
+			`When you are coming into landing on Vara K'chrai, you radio ahead and ask Sayari, the Hai ambassador, and Iktat Ret, the Wanderer envoy, to meet you when you land.`
+			`	When you step out of your ship you find a larger group of Wanderers, some armed, than you where you expecting. Ret comes hurrying up behind them. "Sorry <first>, one of the ships in orbit detectid a Hai [stowaway, passenger] on-board your ship. We..." Ret stops talking when Eruk appears behind you.`
+			choice
+				`	(Let Eruk explain)`
+					goto explain
+				`	(Try to explain)`
+
+			`	"Eruk had an idea, he wants to improve his speaking machine to handle your language." Eruk stops you and starts explaining himself.`
+
+			label explain
+			`	He tells the Wanderers everything he told you and more. It seems he has thought of everything from data sets to time frames and processing power to memory space. When he finishes, the Wanderers start to talk among themselves in their own chirping, clicking language getting louder and faster all the time.`
+			`	Ret moves towards you, Sayari and Eruk. "They can't [decide, agree] what to do, some think we should [stop, decline] his request and send him back to Hai space and others think we should [support?, care?, help?] him outright, the rest have every view inbetween."`
+			choice
+				`	(Wait it out)`
+					goto wait
+				`	"Can't you make the decision?"`
+
+			`	"No, I only have [authority, command] concerning Human [visitors, travelers]. They came to deal with any Hai so they make the decision." It looks like you have no choice but to wait for them to finish.`
+
+			label wait
+			`	When the hubub has quieted down a little one of the unarmed Wanderers steps out of the croud and proclames (rather grandly) "Hai Eruk and Human <first>, you are to go before the Assembly to determine the validity of Hai Eruk's request of the Wanderers. Hai Eruk you will be kept under guard until such time it is deemed unnecessary." And with that most of the Wanderers fly off leaving just Ret, the two armed guards, Sayari and Eruk on your ship's landing pad.`
+			`	"What where you thinking?!" Sayari says, rounding on Eruk.`
+			`	"I needed someone to get me here, and I  knew you woulden't agree to it so I asked Captian <last> to bring me here."`
+			choice
+				`	(keep out of it)`
+					goto "keeping out"
+				`	"Eruk said you agreed to it."`
+					goto sayari
+				`	"You lied to me!"`
+					goto eruk
+
+			label "keeping out"
+			`	"So instead you go behind my back, undermine our position and shater any work towards a closer relationship betwen the Hai and the Wanderers. You would jeopardise everything I have worked for to meet your ends?"`
+			`	"<first>, why did you bring him here?" You are thankful that she isn't shouting at you.`
+			`	"Eruk said you agreed to it."`
+
+			label sayari
+			`	"Did he now? Well I hope he's proud of the diplomatic incident he caused." Sayari says, storming off.`
+				goto ret
+
+			label eruk
+			`	Eruk looks appolgetic and is about to speak before Sayari interupts. "You lied for your own gain? I thought you where brought up better than this!" Sayari says, storming off.`
+
+			label ret
+			`	Ret looks surprised but recovers quickly "You should head over to the Assembly building," he says pointing at a building that looks vaguely like a giant birds nest, "I won't be [allowed, permitted] to stay, so I need to find you an interpreter." Ret flies off as well.`
+			`	Eruk starts walking away from your ship and towards the Assembly building with the Wanderer guards following close behind.`
+			choice
+				`	(follow him)`
+					goto assembly
+				`	(try to comfort him)`
+
+			`	You hurry after him, but when you catch up he simply angrily waves you away. You resign yourself to simply following him.`
+
+			label assembly
+			`	When you reach the Assembly building, you notice large numbers of Wanderers flying into it to through an open roof. You can't help but notice that there are no visible doors on the side of the building.`
+			`	Eruk sighs and goes to sit down on a nearby wall while you start to walk around the edge of the building looking for a door.`
+			`	After going nearly the entire way round the building you find Iktat Ret and another slightly smaller Wanderer standing by the only door you've seen thus far. Eruk is also with them, but he doesn't seem to be any happier than before.`
+			`	"<first>, this is my child Iktat Kri. [He?, She?] will be able to [understand, interpret] for you."`
+			`	You realise that you've never seen a female Wanderer, but maybe Wanderer society does not differentiate between male and female in the same way Hai and Human societies do, and the quite opposite of what is done in the Syndicate.`
+			`	Iktat Ret wishes Eruk luck before indicating that you should follow Iktat Kri inside.`
+			`	Inside the building looks even more like a bird's nest, with hundreds of balconies scattered chaotically around the inside of the large bowl-shaped structure. All of the balconies are full apart from a few at the very top of the bowl, but even these are filled quickly as the last couple of Wanderers fly in.`
+			`	The half-dozen or so lowest balconies are filled with some very old looking Wanderers, that must be the actual Wanderer government officials as you can't help but feel that any debate between the number of Wanderer that are currently occupying the building would take so long that it would be completely pointless.`
+			`	Once all the Wanderers have settled down and the last rustling of wings has ceased, one of the old Wanderers sitting in front of you leans forward and asks Eruk, with Iktat Kri translating, to tell them about his proposition.`
+			`	Eruk once again explains what he wants to do and how he needs the Wanderers help to do it.`
+			`	When he's finished the wanderer turns to you and asks "<first>, what is your [thought, opinion] on this?"`
+			choice
+				`	"I think this would facilitate better trade and relationship between your species and our two species."`
+				`	"This would be an excellent first step towards interspecies communication and peace."`
+				`	"I do not feel that I am qualified to make a judgement.`
+
+			`	"A [exceptional, excellent] point. Thank you <first>."`
+			`	The Wanderer officials occupying the lowest balconies start talking in their own language in what appears to be a debate, but whatever it is it seems much more organised than what you had to deal with on your landing pad.`
+			`	Iktat Kri explains that the debate is held in public so as to allow any Wanderer who is interested to listen, and in some cases, to raise points of their own.`
+			` Eruk pulls you away from Iktat Kri slightly and says quietly to you,"If this goes through, I'll need to stay in Wanderer space for a year or so to collect the data that I need. Would you be able to come back afterwards to pick me up and take me back to Greenwater?"`
+			choice
+				`	"I will do if I can."`
+
+			`	Just as Eruk thanks you, the Wanderers quieten down again as if they have come to a decision. The same Wanderer as before speaks to Eruk, "We have decided to [assist, help] to improve your..." he hesitates, "speaking machine. We will offer you any [required, necessary] help that you need. You can stay with ambassador Sayari, you will not be guarded, and a interpreter will be [listed, assigned] to you." The speech over, the Wanderers start flocking into the air r to continue their day-to-day business.`
+			`	Eruk turns to you now a much happier Hai, and hands you a 200,000 credit chip. He thanks you excitedly as Iktat Ret lands near you, before setting off on foot with Iktat Kri and Eruk who is now talking enthusiastically about how he wants to start the next day. With the excitement over you decide to head back to your ship.`
+				decline
+
+
+
+mission "Language: Wanderer break: visit"
+	landing
+	source "Vara K'chrai"
+	to offer
+		has "Language: Wanderer break: offered"
+		not "event: eruk collects wanderer data"
+	on offer
+		conversation
+			`You remember that the Hai technologist, Eruk, is currently working here. Would you like to visit him while you are here?`
+			choice
+				`	(Yes)`
+					goto yes
+				`	(no)`
+					defer
+
+			label yes
+			`	You head over to the Hai Embassy to see if he is avalible.`
+			`	As you are walking up to it, Eruk comes out to meet you. He seems very content with his work as he invites you inside and offers you a cup of tea.`
+			`	As you settle down to drink your tea, Eruk asks, "So what brings you here, <first>?"`
+			choice
+				`	"I wanted to find out how your work was getting on."`
+					goto work
+				`	"How are you liking living with the Wanderers?"`
+					goto wanderers
+
+			label work
+			`	"It's going very well, thank you. Everything is going to plan. I should hopefully finish on time, because the Wanderers have been so helpful, they've given me everything I need and even transported me to other planets. Iktat Kri has stayed on as my interpreter."`
+			`	"The strangest thing about the Wanderer language is their complete lack of any gender specific words. Their language doesn't contain any words for 'son' or 'daughter' or 'father' or 'mother' instead, they refer to others as 'children' and 'parents' at all times. They don't even have 'he' and 'she', but other than that their language is actually quite straightforward, much easier to sort out then your own."`
+			choice
+				`	"How are you liking living with the Wanderers?"`
+					goto "wanderers 2"
+				`	"Thank you for the tea, it's been nice seeing you."`
+					goto end
+
+			label wanderers
+			`	"It can get slightly frustrating how they built all their cities for flying in when you can't fly. And Sayari likes to keep an eye on me, I think she's worried that I'll cause another diplomatic incident."`
+			`	"I have had some fairly funny moments when my speaking machine didn't quite translate between Hai and Wanderer correctly and accidentally said some very... strange things. They seem to be taking it in their stride though, for which I am grateful for."`
+				choice
+				`	"I wanted to find out how your work was getting on."`
+					goto "work 2"
+				`	"Thank you for the tea, it's been nice seeing you."`
+					goto end
+
+			label "work 2"
+			`	"It's going very well, thank you. Everything is going to plan. I should finish on time, because the Wanderers have been so helpful, they've given me everything I need and even transported me to other planets. Iktat Kri has stayed on as my interpreter.`
+			`	"The strangest thing about the Wanderer language is their complete lack of any gender specific words. Their language doesn't contain any words for 'son' or 'daughter' or 'father' or 'mother' instead they refer to others as 'children' and 'parents' at all times. They don't even have 'he' and 'she', but other than that their language is actually quite straightforward, much easier to sort out then your own."`
+			`	"Thank you for the tea, it's been nice seeing you."`
+				goto end
+
+			label "wanderers 2"
+			`	"It can get slightly frustrating how they built all their cities for flying in when you can't fly. And Sayari likes to keep an eye on me, I think she's worried that I'll cause another diplomatic incident."`
+			`	"I have had some fairly funny moments when my speaking machine didn't quite translate between Hai and Wanderer correctly and accidentally said some very... strange things. They seem to be taking it in their stride though, for which I am grateful for."`
+			`	"Thank you for the tea, it's been nice seeing you."`
+				goto end
+
+			label end
+			`	Finishing your tea, you get up. Eruk thanks you for visiting and wishes you good luck in whatever venture you are in the middle of.`
+				decline
+
+
+
+ship "Korath Raider" "Korath Raider (Overclocked)"
+	sprite "ship/raider"
+	attributes
+		category "Heavy Warship"
+		"cost" 0
+		"shields" 81000
+		"hull" 9000
+		"required crew" 0
+		"bunks" 0
+		"mass" 720
+		"drag" 8
+		"heat dissipation" .5
+		"fuel capacity" 800
+		"outfit space" 721
+		"weapon capacity" 284
+		"engine capacity" 159
+		"automaton" 1
+		"self destruct" 1
+		weapon
+			"blast radius" 1000
+			"shield damage" 11000
+			"hull damage" 5500
+			"hit force" 54000
+	outfits
+		"Korath Disruptor" 4
+		"Korath Grab-Strike" 2
+		"Korath Slicer Turret" 4
+		"Korath Warder" 2
+		
+		"Triple Plasma Core" 4
+		"Systems Core (Large)" 4
+		"Large Heat Shunt" 10
+		
+		"Thruster (Stellar Class)" 2
+		"Steering (Stellar Class)" 2
+		"Jump Drive" 1
+	
+	engine -20 130
+	engine 20 130
+	turret -34 -143 "Korath Disruptor"
+	turret -34 -143 "Korath Slicer Turret"
+	turret 34 -143 "Korath Disruptor"
+	turret 34 -143 "Korath Slicer Turret"
+	turret -8 -145 "Korath Disruptor"
+	turret -8 -145 "Korath Slicer Turret"
+	turret 8 -145 "Korath Disruptor"
+	turret 8 -145 "Korath Slicer Turret"
+	turret 0 35 "Korath Grab-Strike"
+	turret 0 35 "Korath Warder"
+	turret 0 90 "Korath Grab-Strike"
+	turret 0 90 "Korath Warder"
+
+	explode "tiny explosion" 3
+	"final explode" "nuke explosion" 3
+
+
+
+mission "Language: Wanderer 2A"
+	landing
+	name "Go back to see Eruk on Vara K'chrai"
+	description "It's been more than a year since you left Eruk on <destination>,so you should go back and see how he's getting on."
+	destination "Vara K'chrai"
+	to offer
+		has "event: eruk collects wanderer data" 
+	on offer
+		conversation
+			`It has been a year since you left Eruk on Vara K'chrai. If you get a chance you should visit him to find out how his work is going and if you need to give him a lift back to Greenwater.`
+				accept
+
+	on complete
+		dialog
+			`As you are coming in to land you notice the Redacted is in orbit as well, the ship that has been following you recently. It identifies as an independent vessel, but a Korath Raider is not a typical ship in most of the galaxy, leaving you wondering what it is doing following you around.`
+
+	npc
+		personality timid unconstrained entering
+		government Independent
+		ship "Korath Raider (Overclocked)" "Redacted"
+
+
+
+mission "Language: Wanderer 2B"
+	landing
+	name "Take Eruk back to <destination>"
+	description "Eruk has finished his data collecting and now needs to be taken back to <destination> to analyse the data and upgrade the software on his speaking machines."
+	blocked "You need 21 tonnes of cargo space and a free bunk to accept this mission. Come back when you have made some more room"
+	source "Vara K'chrai"
+	destination Greenwater
+	cargo "Eruks equipment" 21
+	passengers 1
+	autosave
+	to offer
+		has "event: eruk collects wanderer data" 
+	on offer
+		"reputation: Unidentified" = -1000
+		conversation
+			`Coming out of your ship you notice that the Redacted is not a few pads over like the last few times you have landed. You shove it to the back of your mind as you head over to the Hai embassy, where Eruk has been staying over the past year.`
+			`	Outside the embassy there is a pair of that Wanderer trucks being loaded up, though you can't see any sign of Eruk. At the front door you stand aside to let a pair of Wanderers carrying what appears to be a large crate of data drives stride out followed by Eruk carrying a large clipboard.`
+			`	"Ah, <first>, I assume you are prepared to transport me back to Greenwater."`
+			choice
+				`	"yes, of course."`
+					goto yes
+				`	"Sorry, I don't think I can at the moment."`
+			`	"Don't worry about it <first>, the Wanderers have already said they would lend me one of their ships with a Jump Drive to get me back to Hai space."`
+			`	Back at your ship you notice that Eruk's equipment being loaded onto one of the Wanderers Strong Wind warships.`
+				decline
+
+			label yes
+			`	"Ecellent, excellent. I'll tell them to start loading up immediately."`
+				accept
+
+	npc evade
+		personality nemesis unconstrained entering
+		government Unidentified
+		ship "Korath Raider (Overclocked)" "Redacted"
+
+	npc evade
+		personality nemesis unconstrained
+		government Unidentified
+		system "Pug Iyik"
+		ship "Korath Raider (Overclocked)" "Redacted"
+
+	npc evade
+		personality nemesis unconstrained
+		government Unidentified
+		system "Aya'k'k"
+		ship "Korath Raider (Overclocked)" "Redacted"
+
+	npc evade
+		personality nemesis unconstrained
+		government Unidentified
+		system "Prakacha'a"
+		ship "Korath Raider (Overclocked)" "Redacted"
+
+	npc evade
+		personality nemesis unconstrained
+		government Unidentified
+		system "Mintaka"
+		ship "Korath Raider (Overclocked)" "Redacted"
+
+	npc evade
+		personality nemesis unconstrained
+		government Unidentified
+		system "Lom Tahr"
+		ship "Korath Raider (Overclocked)" "Redacted"
+
+	on visit "Some of the unidentified ships are still in orbit. You will have to take off again to try and lose them."
+
+	on complete
+		payment 1000000
+		conversation
+			`Eruk seems to be a bit rattled from the attacks you had on your way here. "I can't think who would want me dead for the work I've been doing. Hopefully, they won't be able to find me, now you've got me safely here." He looks very worried. "I should have this software sorted in a couple of months, so when I do, I'll send a message telling you how to update. Also, here's a bit of a bonus for keeping me alive." he hands you a 1 million credit chip. "If I ever need you again, I'll give you a call." and with that, he walks off.'`
+		event "language: Wanderer direct" 60
+
+
+
+mission "Language: Wanderer 2B attacked"
+	landing
+	invisible
+	to offer
+		has "Language: Wanderer 2A: done"
+	on enter
+		conversation
+			branch with
+				has "Language: Wanderer 2B: active"
+
+			`The ship carrying Eruk, the Kach'cha takes off immediately before you. Coming out of the planets atmosphere you see it getting ready to jump, you also see the Redacted coming up fast behind it. At close range it opens fire with weapons much more powerful then a ship it size has any right to possess, the Kach'cha is disabled almost immediately. The Redacted then does something you have never seen any ship do before, it proceeds to ram the Kach'cha, utterly destroying both ships in the process.`
+				decline
+
+			label with
+			`As you're leaving the atmosphere your sensors pick up the Redacted rushing towards you at high speed as if it intends to ram you. Unfortunately for it, it collides with a Deep River that was coming out of the atmosphere alongside you heavily damaging both ships in the process. The Redacted seems to have some kind of internal self-destruct set as it very quickly explodes turning the two ships into nothing more than an expanding cloud of debris.`
+			`	As if that wasn't enough you can see another ship entering the system bearing the same name but not using any identifier that you are aware of. Based on the suicidal attack of the last ship it seems like a very good idea to get to Greenwater as fast as possible.`
+				decline
+
+
+
+mission "Language: Wanderer end"
+	landing
+	invisible
+	to offer
+		has "event: language: Wanderer direct"
+	on offer
+		conversation
+			`You've received a message from Eruk, "<first>, I've done it. If you load up the attached file onto your speaking machine it will update it to be able to directly translate into the Wanderer language." Unfortunately, he appears to have forgotten to attach the file.`
+			`A short while later you receive a second message from Eruk, "<first>, sorry, I appear to have forgotten to attach the file. I've attached it to this message instead." He still hasn't remembered to attach the file.`
+			`A third message from Eruk comes with a single attached file and no actual message. Loading this up onto your speaking machine you find that it does update it to handle the Wanderer language.`
+				decline
