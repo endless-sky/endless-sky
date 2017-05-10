@@ -105,8 +105,11 @@ public:
 	double HabitableZone() const;
 	// Get the radius of the asteroid belt.
 	double AsteroidBelt() const;
-	// Get the number of stars in this system
+	// Get the number of ____ in this system
 	int StarCount() const;
+	int PlanetCount() const;
+	int MoonCount() const;
+	int StationCount() const;
 	// Check if this system is inhabited.
 	bool IsInhabited(const Ship *ship) const;
 	// Check if ships of the given government can refuel in this system.
@@ -176,6 +179,9 @@ private:
 	double habitable = 1000.;
 	double asteroidBelt = 1500.;
 	int starCount = 0;
+	int planetCount = 0;
+	int moonCount = 0;
+	int stationCount = 0;
 	
 	// Commodity prices.
 	std::map<std::string, Price> trade;
