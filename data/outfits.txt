@@ -60,6 +60,7 @@ outfit "D14-RN Shield Generator"
 outfit "Skirmisher Shield Generator"
 	category "Systems"
 	cost 20000
+	thumbnail "outfit/skirmisher_shield"
 	"mass" 5
 	"outfit space" -15
 	"skirmisher shield generation" 1.0
