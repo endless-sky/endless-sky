@@ -402,6 +402,14 @@ double System::AsteroidBelt() const
 
 
 
+// Get the number of stars in the system
+int System::StarCount() const
+{
+	return starCount;
+}
+
+
+
 // Check if this system is inhabited.
 bool System::IsInhabited(const Ship *ship) const
 {
@@ -578,6 +586,8 @@ void System::LoadObject(const DataNode &node, Set<Planet> &planets, int parent)
 				object.isStation = !child.Token(1).compare(0, 14, "planet/station");
 				object.isMoon = (!object.isStation && parent >= 0 && !objects[parent].IsStar());
 			}
+			else
+				++starCount;
 		}
 		else if(child.Token(0) == "distance" && child.Size() >= 2)
 			object.distance = child.Value(1);
