@@ -65,7 +65,7 @@ outfit "Skirmisher Shield Generator"
 	"outfit space" -15
 	"skirmisher shield generation" 1.0
 	"skirmisher shield energy" 2.0
-	description "A specialized shield that charges quickly when out of combat. This shield scales negativly with the ships maximum shield capacity"
+	description "A specialized shield that charges quickly when out of combat. This shield scales negatively with the ships maximum shield capacity"
 
 
 outfit "D23-QP Shield Generator"
