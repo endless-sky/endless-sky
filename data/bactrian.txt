@@ -464,3 +464,70 @@ mission "Bactrian Unlock [3-alt]"
 			
 			`	"It's yours to keep. I hope you have good luck with your travels, and have fun using the Bactrian. It's a mighty fine ship to fly." Lieutenant Paris starts walking over to the Star Queen, leaving you alone to ponder the possibilities that await.`
 				decline
+
+
+
+ship "Bactrian"
+	sprite "ship/bactrian"
+	licenses
+		"City-Ship"
+	attributes
+		category "Heavy Warship"
+		"cost" 17600000
+		"shields" 17500
+		"hull" 8600
+		"required crew" 70
+		"bunks" 245
+		"mass" 940
+		"drag" 16.1
+		"heat dissipation" .4
+		"fuel capacity" 700
+		"cargo space" 530
+		"outfit space" 740
+		"weapon capacity" 300
+		"engine capacity" 180
+		weapon
+			"blast radius" 260
+			"shield damage" 2600
+			"hull damage" 1300
+			"hit force" 3900
+	outfits
+		"Sidewinder Missile Launcher" 2
+		"Sidewinder Missile" 100
+		"Torpedo Launcher" 2
+		"Torpedo" 60
+		"Heavy Laser Turret" 4
+		"Heavy Anti-Missile Turret" 2
+		
+		"Fusion Reactor"
+		"LP144a Battery Pack"
+		"D94-YV Shield Generator"
+		"Large Radar Jammer"
+		"Ramscoop"
+		
+		"X4700 Ion Thruster"
+		"X5200 Ion Steering"
+		"Hyperdrive"
+		
+	engine -18 230
+	engine 18 230
+	gun -15 -226 "Torpedo Launcher"
+	gun 15 -226 "Torpedo Launcher"
+	gun -40 -133 "Sidewinder Missile Launcher"
+	gun -45 -128 "Sidewinder Missile Launcher"
+	turret -22 -148 "Heavy Laser Turret"
+	turret 26 -80 "Heavy Anti-Missile Turret"
+	turret -41 -20 "Heavy Laser Turret"
+	turret 32 -7 "Heavy Laser Turret"
+	turret 53 82 "Heavy Laser Turret"
+	turret -37 186 "Heavy Anti-Missile Turret"
+	fighter -38 -26
+	fighter 35 36
+	fighter -47 97
+	explode "small explosion" 25
+	explode "medium explosion" 35
+	explode "large explosion" 45
+	explode "huge explosion" 30
+	"final explode" "final explosion large"
+	description "The Lionheart Bactrian is the last of the great city-ships, a design hearkening back to the early days of space colonization when a long-distance vessel needed to be a self-contained world, able to survive for weeks at a time without encountering an inhabited planet. It is not only a freighter, but a carrier, and a capable warship either at short range or at a distance."
+	description "	Naturally, this versatility also makes it extremely expensive, and the Bactrian is normally only for sale to citizens who have been vetted by the local government of the Deep."
