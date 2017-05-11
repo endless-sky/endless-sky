@@ -63,6 +63,8 @@ outfit "Blaster Turret"
 	"required crew" 1
 	weapon
 		sprite "projectile/blaster"
+		"hardpoint sprite" "hardpoint/blaster turret"
+		"hardpoint offset" 9.
 		sound "blaster"
 		"hit effect" "blaster impact"
 		"inaccuracy" 3
@@ -86,6 +88,8 @@ outfit "Modified Blaster Turret"
 	"required crew" 1
 	weapon
 		sprite "projectile/mod blaster"
+		"hardpoint sprite" "hardpoint/mod blaster turret"
+		"hardpoint offset" 9.
 		sound "mod blaster"
 		"hit effect" "blaster impact"
 		"inaccuracy" 4
@@ -109,6 +113,8 @@ outfit "Quad Blaster Turret"
 	"required crew" 1
 	weapon
 		sprite "projectile/blaster"
+		"hardpoint sprite" "hardpoint/quad blaster turret"
+		"hardpoint offset" 9.
 		sound "blaster"
 		"hit effect" "blaster impact"
 		"inaccuracy" 3
@@ -202,6 +208,8 @@ outfit "Laser Turret"
 	weapon
 		sprite "projectile/2x laser"
 			"frame rate" 1
+		"hardpoint sprite" "hardpoint/laser turret"
+		"hardpoint offset" 7.
 		sound "laser"
 		"hit effect" "beam laser impact"
 		"inaccuracy" .5
@@ -226,6 +234,8 @@ outfit "Heavy Laser Turret"
 	weapon
 		sprite "projectile/2x heavy laser"
 			"frame rate" 1
+		"hardpoint sprite" "hardpoint/heavy laser turret"
+		"hardpoint offset" 8.
 		sound "heavy laser"
 		"hit effect" "heavy laser impact"
 		"inaccuracy" .4
@@ -250,6 +260,8 @@ outfit "Electron Turret"
 	weapon
 		sprite "projectile/2x electron"
 			"frame rate" 60
+		"hardpoint sprite" "hardpoint/electron turret"
+		"hardpoint offset" 8.
 		sound "electron beam"
 		"hit effect" "electron impact"
 		"inaccuracy" .3
@@ -271,6 +283,8 @@ outfit "Anti-Missile Turret"
 	"weapon capacity" -16
 	"turret mounts" -1
 	weapon
+		"hardpoint sprite" "hardpoint/anti-missile"
+		"hardpoint offset" 4.
 		"hit effect" "small anti-missile"
 		"anti-missile" 5
 		"velocity" 150
@@ -289,6 +303,8 @@ outfit "Heavy Anti-Missile Turret"
 	"weapon capacity" -30
 	"turret mounts" -1
 	weapon
+		"hardpoint sprite" "hardpoint/heavy anti-missile"
+		"hardpoint offset" 5.
 		"hit effect" "large anti-missile"
 		"anti-missile" 8
 		"velocity" 200
@@ -393,6 +409,8 @@ outfit "Plasma Turret"
 	weapon
 		sprite "projectile/plasma"
 			"frame rate" 3
+		"hardpoint sprite" "hardpoint/plasma turret"
+		"hardpoint offset" 15.
 		sound "plasma"
 		"hit effect" "plasma explosion"
 		"inaccuracy" 2
@@ -861,5 +879,4 @@ outfit "gbullet"
 		"shield damage" 3
 		"hull damage" 6
 		"hit force" 0.15
-		"missile strength" 1
 		"hit effect" "bullet impact"

@@ -63,6 +63,19 @@ mission "First Contact: Wanderer"
 			`	The same alien speaks again, pantomiming your ship flying into the sky and then returning, and then points to your airlock and mimics your rodent-ear gesture for the Hai. You think it is telling you to go find one of the Hai who can serve as an interpreter, and bring them back here.`
 				accept
 
+mission "Discovered Wanderer Space"
+	landing
+	invisible
+	source
+		government "Wanderer"
+	on offer
+		event "label wanderer space"
+		fail
+
+event "label wanderer space"
+	galaxy "label wanderers"
+		sprite "label/wanderers"
+
 mission "Wanderers: Hai Diplomat"
 	description "Travel to Hai-home to pick up a diplomat who can help you communicate with the Wanderers."
 	landing
@@ -909,7 +922,7 @@ ship "Carrier" "Carrier (Alpha)"
 		"Small Heat Shunt" 2
 		"Wanderer Ramscoop"
 		"Fuel Pod"
-		"Mass Expansion" 4
+		"Outfits Expansion" 4
 		"Laser Rifle" 120
 		
 		"Thruster (Planetary Class)"
@@ -1990,6 +2003,11 @@ event "battle for sich'ka'ara ends"
 		fleet "Wanderer Defense" 800
 		fleet "Large Unfettered" 400
 		fleet "Small Unfettered" 400
+	system "Prakacha'a"
+		government "Hai (Unfettered)"
+		fleet "Wanderer Defense" 2000
+		fleet "Large Unfettered" 600
+		fleet "Small Unfettered" 600
 	planet "Kort Vek'kri"
 		attributes unfettered
 		spaceport `The Unfettered clearly do not know quite what to make of the Wanderer research station here that they have recently captured. Animals that were once part of various experiments are now wandering loose, and the Unfettered are making only sporadic efforts to keep them well-fed. Every once in a while one of them, driven by sheer hunger, tries to smash its way into one of the crates of military rations that the Unfettered have stacked up in the shade near the main landing pad.`

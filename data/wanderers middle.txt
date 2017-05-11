@@ -133,15 +133,15 @@ mission "Wanderers: Nova Remnants"
 	waypoint "Peresedersi"
 	on enter "Peresedersi"
 		dialog
-			"You fire up your ships sensors and collect the data that the Wanderers asked for on this system's sun."
+			"You fire up your ship's sensors and collect the data that the Wanderers asked for on this system's sun."
 	waypoint "Kasikfar"
 	on enter "Kasikfar"
 		dialog
-			"You fire up your ships sensors and collect the data that the Wanderers asked for on this system's sun."
+			"You fire up your ship's sensors and collect the data that the Wanderers asked for on this system's sun."
 	waypoint "Fasitopfar"
 	on enter "Fasitopfar"
 		dialog
-			"You fire up your ships sensors and collect the data that the Wanderers asked for on this system's sun."
+			"You fire up your ship's sensors and collect the data that the Wanderers asked for on this system's sun."
 	to offer
 		has "Wanderers: Surveying 1: done"
 	on complete
@@ -894,7 +894,7 @@ mission "Wanderers: Mind 2"
 	blocked "To take this mission, you will need a bunk and two tons of cargo space free."
 	on offer
 		conversation
-			`On <planet> you are met by a Wanderer named Meto Pa'aret. He explains that he is in charge of the artificial intelligence lab, and he wants to travel with you along with the "Mind" that is being entrusted to your care. "We have already [altered, reconfigured] one of the climate [simulation, prediction] Minds for this new purpose," he says. "It now contains [stores, databases, libraries] of historical and cultural information, things we hope will help the alien [consciousness, intelligence] to [understand, sympathize with] us and realize our intentions are [peaceful, forthright]."`
+			`On <origin> you are met by a Wanderer named Meto Pa'aret. He explains that he is in charge of the artificial intelligence lab, and he wants to travel with you along with the "Mind" that is being entrusted to your care. "We have already [altered, reconfigured] one of the climate [simulation, prediction] Minds for this new purpose," he says. "It now contains [stores, databases, libraries] of historical and cultural information, things we hope will help the alien [consciousness, intelligence] to [understand, sympathize with] us and realize our intentions are [peaceful, forthright]."`
 			choice
 				`	"Are you sure that's wise, giving the Kor Mereti access to so much information about the Wanderers?"`
 				`	"How likely do you think this is to work?"`
@@ -1023,6 +1023,8 @@ event "wanderers: kor mereti friendly"
 			"Kor Mereti" 0
 	"reputation: Kor Mereti" >?= 1
 	"reputation:  Kor Mereti " = -1000
+	planet "Rekat Moraski"
+		"required reputation" 1000
 
 mission "Wanderers: Mind 6"
 	landing
@@ -1071,8 +1073,6 @@ event "wanderers: kor mereti transformation"
 	system Chimitarp
 		fleet "Small Kor Mereti" 200
 		fleet "Large Kor Mereti" 400
-	planet "Rekat Moraski"
-		"required reputation" 1000
 	planet "Korbatri Eska"
 		description `The cities on this world have been hit by an astonishing variety of weapons. Some were leveled by massive explosions, while others show signs of strafing by low-flying ships or of orbital bombardment. Outside the cities, the land is fruitful and varied: forests, mountains, oceans, desert, and tundra.`
 		description `	Far from the ruined cities, the Kor Mereti have begun building a sort of village of their own: a sprawling complex of greenhouses containing a wide variety of plant samples.`
@@ -1089,7 +1089,7 @@ mission "Wanderers: Mind 7"
 	on offer
 		event "wanderers: kor mereti transformation"
 		conversation
-			`The Wanderers back on <planet> are in a frenzy to know the outcome of the battle. Pa'aret tells you, "Less than a second after the Mind [made contact, merged] with the Mereti, it severed the [backdoor, failsafe] connection. So we have no [information, visibility] on what the Mind is doing or whether the Mereti [received, welcomed] it."`
+			`The Wanderers back on <origin> are in a frenzy to know the outcome of the battle. Pa'aret tells you, "Less than a second after the Mind [made contact, merged] with the Mereti, it severed the [backdoor, failsafe] connection. So we have no [information, visibility] on what the Mind is doing or whether the Mereti [received, welcomed] it."`
 			choice
 				`	"Most of the drones started fighting on our side. That seems like a good sign."`
 				`	"They've sealed up access to the Mind. There is no way we can get it back now."`
@@ -1237,7 +1237,7 @@ mission "Wanderers: Mentors 3"
 		has "Wanderers: Mentors 2: done"
 	on offer
 		conversation
-			`When you last left <planet>, there were less than a dozen buildings in the greenhouse facility. It has now grown to the size of a major spaceport, including some towers that are dozens of stories high. Some plants now grow on open-air terraces; others are in domed enclosures tall enough to house fully-grown trees. The larger domes also have birds flying about inside them, and some larger land animals as well. Everything is built of gleaming steel and glass and filled with lush vegetation; from high above the facility looks like a scattered handful of diamonds and emeralds.`
+			`When you last left <origin>, there were less than a dozen buildings in the greenhouse facility. It has now grown to the size of a major spaceport, including some towers that are dozens of stories high. Some plants now grow on open-air terraces; others are in domed enclosures tall enough to house fully-grown trees. The larger domes also have birds flying about inside them, and some larger land animals as well. Everything is built of gleaming steel and glass and filled with lush vegetation; from high above the facility looks like a scattered handful of diamonds and emeralds.`
 			`	The freighter you were escorting was full of professors and researchers, who are clearly not used to any sort of military discipline or to living in a dangerous region of space: the moment the freighter lands they fly off toward the greenhouse without bothering to wait for instructions from their supposed manager. Several of them are already engaged in conversation with the drones, while others are exploring the different rooms of the facility, examining plants and probing soil with their talons.`
 			`	The team's manager, already looking a bit overwhelmed, flies over to talk with you. "What are we [expected, requested] to do next?" he asks.`
 			choice
@@ -1764,6 +1764,86 @@ mission "Wanderers: Sestor Search: Varu K'prai"
 		conversation
 			`The entire spaceport on <planet> has been razed to the ground. Teams of Wanderers are sifting through the rubble to recover the bodies of those who were killed here. Apparently the Kor Sestor fleet destroyed the spaceport and every Wanderer ship it found in this system, and then occupied the system for several days, destroying or driving away any scout ships that entered the system.`
 			`	The Wanderers don't know what happened next, but the drones are no longer here, so they must have moved on to a different system.`
+				decline
+
+
+
+mission "Wanderers: Sestor Search: Human Spaceport"
+	landing
+	invisible
+	source
+		government Republic "Free Worlds" Syndicate Neutral
+		attributes north
+	to offer
+		has "Wanderers: Sestor Search: active"
+	on offer
+		conversation
+			`As you bring your ship in for landing at an empty pad, you notice the captain of an adjacent Behemoth inspecting his ship, which is raked with projectile punctures.`
+			choice
+				`	(Approach the captain and try to find out what happened.)`
+					goto approach
+				`	(Ignore him.)`
+					decline
+			
+			label approach
+			`	You get a better view of the Behemoth - the "Heart of Gold", as indicated on the ship's stern - as you walk up to it. The rear of the ship is badly hammered, and black scorch marks streak forward across the hull. You can't help but notice that at several projectile entry points along the hull, the metal is bent smoothly inwards, almost as if the penetrator seared or melted its way through the ship's armor. The captain of the Behemoth looks up from his inspection. Seeing you, he says, "We were lucky to get out of that one alive!"`
+			choice
+				`	"How did your ship end up in such a state?"`
+				`	"Was this beauty the victim of a pirate attack?"`
+				
+			`	"I'm not quite sure," the captain says. "We were shot at by a fleet of hostile ships that our computer couldn't identify. They didn't look at all like a run-of-the-mill pirate ship, though, and they were kitted out with tech I've never seen before."`
+			choice
+				`	"How many ships were there? What did they look like?"`
+				`	"Where did this fight take place?"`
+					goto where
+				`	"You should be glad you're still in one piece."`
+					goto glad1
+					
+			`	"Well," the pilot says, "we had hired a beefy Leviathan escort to Farpoint in the Alnitak system. When we were going in for landing, two of these hostile ships jumped in from the northwest, the direction of all the anarchist colonies in this area. The ships weren't big, but they were tough: our four heavy laser turrets weren't enough to produce even a dent in their shields. They made short work of the Leviathan, and nearly disabled our ship, too. It was lucky I decided that jumping would be faster than landing. We warped out of the system while in atmosphere, saving the ship, but now I'm in debt to all my crew because I couldn't meet a rush delivery deadline."`
+			choice
+				`	"You're lucky as hell to be here today."`
+					goto glad
+				`	"Thanks for the information. I think that these hostile ships are the ones I'm looking for."`
+					goto thanks
+					
+			label where
+			`	"Well," the pilot says, "we were doing a large cargo run to Farpoint in the Alnitak system, when two of these hostile ships jumped in from the northwest, the direction of all the anarchist colonies in this area. I had to jump the ship in atmosphere to stop us from getting shredded by their strange melting weaponry. I immediately reported the attack to a desk clerk at the Navy base in the neighboring system Saiph, but their servers show no logs of any unidentified ships beyond Farpoint, so I guess they turned around after scouting out the Alnitak system."`
+			choice
+				`	"You're lucky as hell to be here today."`
+					goto glad
+				`	"Thanks for the information. I think that these hostile ships are the ones I'm hunting."`
+					goto thanks
+			
+			label glad1
+			`	"I am! The attacking ships weren't big, but they were tough: our four heavy laser turrets couldn't even produce a dent in their shields," the captain says. "We even hired a beefy Leviathan to protect us from the pirate raids as we travelled to Farpoint, but when these hostile ships jumped in from the northwest, they made short work of our escort and nearly disabled our ship, too. I had to jump out of the system while in atmosphere to save the ship, but now I'm in debt to all my crew because I didn't meet a rush delivery deadline."`
+			choice
+				`	"You really are lucky as hell to be here today."`
+					goto glad
+				`	"Thanks for the information. I think that these hostile ships are the ones I'm looking for."`
+					goto thanks
+			
+			label thanks
+			`	"No problem, kiddo," the captain says, although he looks awed that you are even attempting to fight such powerful ships. "Remember, northwest of Farpoint. If they're anarchists of any sort, they'll be hiding in one of those pirate systems up there. Take care of yourself out there; those are some dangerous ships that jumped us." With that, he bids you farewell.`
+					decline
+					
+			label glad
+			`	"Yeah, those ships would have obliterated us if we hadn't jumped pronto." The pilot looks at you, then asks quizzically, "Say, do you know anything about those ships?"`
+			choice
+				`	"Yeah, those were Korath ships that attacked you."`
+				`	"Maybe. I have a feeling that they're the alien ships that I'm hunting."`
+				`	"I don't want to jump to any conclusions."`
+					goto no
+					
+			`	"Aliens?" The pilot's face reddens, and his eyes narrow in anger. "Like those detestable squirrels, you mean? Told me they were peaceful, but when I went further north, I nearly had my ship torn to pieces!" You try to tell him that the Hai are a separate species from the Korath, but he clearly does not want to hear any more, so you decide to bring the conversation to an end.`
+				goto end
+				
+			label no
+			`	The pilot seems disappointed in your response, so you decide to bring the conversation to an end.`
+				goto end
+				
+			label end
+			`	"Thank you for your time," you say to the captain.`
+			`	The pilot sobers up again, and says, "No problem. Remember, northwest of Farpoint. If they're anarchists of any sort, they'll be hiding in one of those pirate systems up there. Take care of yourself out there; those were dangerous ships we faced." With that, he bids you farewell.`
 				decline
 
 
@@ -2403,7 +2483,7 @@ mission "Wanderers: Sestor: Kill Southern Remnant"
 			choice
 				`	"Of course, I would be glad to."`
 					goto end
-				`	"Of course. But first, what the hell was that bomb you had me drop on <planet>? It cracked the whole planet open."`
+				`	"Of course. But first, what the hell was that bomb you had me drop on Zenith? It cracked the whole planet open."`
 
 			`	Danforth sighs. "Unfortunately," he says, "I am not permitted to tell you what that weapon was or how we acquired it. And already news agencies throughout the Republic are questioning our use of such a terrible weapon. I wish we had been able to defeat the Kor Sestor fleet without resorting to such extreme measures, but we had no choice."`
 
@@ -3091,3 +3171,32 @@ mission "Wanderers: Sestor: Final"
 			`You inform the Wanderers that the Korath exiles are now producing war drones. "This is [unfortunate, regrettable]," says Sobari Tele'ek. "Clearly they [anticipate, expect] further conflict in the future."`
 			`	Tema'a Iriket says, "Perhaps they are [afraid of, threatened by] us and seek only to have the means to [defend, protect] themselves. The important thing is that the drones in this [territory, area] have been [neutralized, pacified] and we can now focus on our true work."`
 			`	From there, the conversation shifts to an excited discussion about what worlds they will settle on next and what their next steps should be in building relationships with the Kor Efret and the Kor Mereti collective. The exiles may become a threat some time in the future, but for now the Wanderers are eager to pursue their peacetime calling in this new territory that the Eye has led them to.`
+
+mission "Wanderers: Sestor: Patch"
+	landing
+	invisible
+	to offer
+		has "event: wanderers: sestor eliminated"
+	on offer
+		event "wanderers: sestor planets unrestricted"
+		fail
+
+event "wanderers: sestor planets unrestricted"
+	planet "Drekag Firask"
+		"required reputation" 0
+		spaceport clear
+	planet "Sestor Ikfar"
+		"required reputation" 0
+		spaceport clear
+	planet "Devru Kaska"
+		"required reputation" 0
+		spaceport clear
+	planet "Sebra Skira"
+		"required reputation" 0
+		spaceport clear
+	planet "Keneska Fek"
+		"required reputation" 0
+		spaceport clear
+	planet "Sopi Lefarkata"
+		"required reputation" 0
+		spaceport clear

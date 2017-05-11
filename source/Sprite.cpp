@@ -44,8 +44,10 @@ void Sprite::AddFrame(int frame, ImageBuffer *image, Mask *mask, bool is2x)
 	if(!image || frame < 0)
 		return;
 	
-	width = max(width, static_cast<float>(image->Width() / (1 + is2x)));
-	height = max(height, static_cast<float>(image->Height() / (1 + is2x)));
+	// If this is an @2x buffer, cut its dimensions in half. Then, if the
+	// dimensions are larger than the current sprite dimensions, store them.
+	width = max<float>(width, image->Width() >> is2x);
+	height = max<float>(height, image->Height() >> is2x);
 	
 	vector<uint32_t> &textureIndex = (is2x ? textures2x : textures);
 	if(textureIndex.size() <= static_cast<unsigned>(frame))

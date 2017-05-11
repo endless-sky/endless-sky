@@ -9,94 +9,45 @@
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 mission "Human Vacation [1]"
-	name "Human Vacationer to <planet>"
+	name "Human vacationer to <planet>"
 	job
 	repeat
 	description "This human wants to vacation on the Hai world of <destination>, and will pay you <payment>."
 	passengers 1
 	to offer
-		random < 60
+		random < 50
 	source
 		government "Hai"
 	destination
 		distance 2 7
 		attributes "human tourism"
 	on complete
-		payment 8000 200
+		payment 8000 150
 		dialog "You wish your <passengers> the best of luck on <planet>, and collect your payment of <payment>."
 
 mission "Human Vacation [2]"
-	name "Human Vacationers to <planet>"
+	name "Human vacationers to <planet>"
 	job
 	repeat
 	description "These <bunks> humans want to vacation on the Hai world of <destination>, and will pay you <payment>."
 	passengers 2 12 .8
 	to offer
-		random < 40
+		random < 20
 	source
 		government "Hai"
 	destination
 		distance 2 7
 		attributes "human tourism"
 	on complete
-		payment 5000 200
-		dialog "You wish your <passengers> the best of luck on <planet>, and collect your payment of <payment>."
-
-mission "Human Vacation [3]"
-	name "Human Vacationers to <planet>"
-	job
-	repeat
-	description "These <bunks> humans want to vacation on the Hai world of <destination>, and will pay you <payment>."
-	passengers 2 12 .8
-	to offer
-		random < 30
-	source
-		government "Hai"
-	destination
-		distance 2 7
-		attributes "human tourism"
-	on complete
-		payment 5000 200
-		dialog "You wish your <passengers> the best of luck on <planet>, and collect your payment of <payment>."
-
-mission "Human Vacation [4]"
-	name "Human Vacationers to <planet>"
-	job
-	repeat
-	description "These <bunks> humans want to vacation on the Hai world of <destination>, and will pay you <payment>."
-	passengers 2 12 .8
-	to offer
-		random < 30
-	source
-		government "Hai"
-	destination
-		distance 2 7
-		attributes "human tourism"
-	on complete
-		payment 5000 200
+		payment 5000 150
 		dialog "You wish your <passengers> the best of luck on <planet>, and collect your payment of <payment>."
 
 mission "Hai Vacation [1]"
-	name "Hai Vacationer to <planet>"
+	name "Hai vacationer to <planet>"
 	job
 	repeat
 	description "This Hai wants to vacation on the strange Hai world of <destination>, and will pay you <payment>."
 	passengers 1
-	source
-		government "Hai"
-	destination
-		distance 2 7
-		attributes "hai tourism"
-	on complete
-		payment 6000 200
-		dialog "You wish your <passengers> the best of luck on <planet>, and collect your payment of <payment>."
-
-mission "Hai Vacation [2]"
-	name "Hai Vacationers to <planet>"
-	job
-	repeat
-	description "These <bunks> Hai want to vacation on the strange Hai world of <destination>, and will pay you <payment>."
-	passengers 2 12 .8
 	to offer
 		random < 70
 	source
@@ -105,11 +56,11 @@ mission "Hai Vacation [2]"
 		distance 2 7
 		attributes "hai tourism"
 	on complete
-		payment 4000 200
+		payment 6000 150
 		dialog "You wish your <passengers> the best of luck on <planet>, and collect your payment of <payment>."
 
-mission "Hai Vacation [3]"
-	name "Hai Vacationers to <planet>"
+mission "Hai Vacation [2]"
+	name "Hai vacationers to <planet>"
 	job
 	repeat
 	description "These <bunks> Hai want to vacation on the strange Hai world of <destination>, and will pay you <payment>."
@@ -122,26 +73,83 @@ mission "Hai Vacation [3]"
 		distance 2 7
 		attributes "hai tourism"
 	on complete
-		payment 4000 200
+		payment 4000 150
 		dialog "You wish your <passengers> the best of luck on <planet>, and collect your payment of <payment>."
 
-mission "Hai Vacation [4]"
-	name "Hai Vacationers to <planet>"
+mission "Hai Vacation [3]"
+	name "Hai vacationers to <planet>"
 	job
 	repeat
 	description "These <bunks> Hai want to vacation on the strange Hai world of <destination>, and will pay you <payment>."
 	passengers 2 12 .8
 	to offer
-		random < 40
+		random < 30
 	source
 		government "Hai"
 	destination
 		distance 2 7
 		attributes "hai tourism"
 	on complete
-		payment 4000 200
+		payment 4000 150
 		dialog "You wish your <passengers> the best of luck on <planet>, and collect your payment of <payment>."
 
+mission "Hai Vacation [4]"
+	name "Hai vacationers to <planet>"
+	job
+	repeat
+	description "These <bunks> Hai want to vacation on the strange Hai world of <destination>, and will pay you <payment>."
+	passengers 2 12 .8
+	to offer
+		random < 20
+	source
+		government "Hai"
+	destination
+		distance 2 7
+		attributes "hai tourism"
+	on complete
+		payment 4000 150
+		dialog "You wish your <passengers> the best of luck on <planet>, and collect your payment of <payment>."
+
+
+mission "Wealthy Hai [1]"
+	name "Wealthy Hai to <planet>"
+	job
+	repeat
+	description "This wealthy family of <bunks> Hai will pay <payment> for a smooth and fast journey to <planet> by <date>."
+	passengers 2 4 .8
+	deadline
+	to offer
+		random < 70
+	on offer
+		require "Quantum Keystone"
+	source
+		government "Hai"
+	destination
+		government "Hai"
+		distance 4 8
+	on complete
+		payment 10000 250
+		dialog "You wish your <passengers> the best of luck on <planet>, and collect your payment of <payment>."
+
+mission "Wealthy Hai [2]"
+	name "Wealthy Hai to <planet>"
+	job
+	repeat
+	description "This wealthy family of <bunks> Hai will pay <payment> for a smooth and fast journey to <planet> by <date>."
+	passengers 2 4 .8
+	deadline
+	to offer
+		random < 30
+	on offer
+		require "Quantum Keystone"
+	source
+		government "Hai"
+	destination
+		government "Hai"
+		distance 4 8
+	on complete
+		payment 10000 250
+		dialog "You wish your <passengers> the best of luck on <planet>, and collect your payment of <payment>."
 
 
 mission "Hai Festival [1]"
@@ -160,7 +168,7 @@ mission "Hai Festival [1]"
 		distance 2 7
 		government "Hai"
 	on complete
-		payment 10000 250
+		payment 10000 200
 		dialog "Luckily your <passengers> didn't cause too much trouble on the trip. After collecting their things, they pay you <payment> and make their way to the festival."
 
 mission "Hai Festival [2]"
@@ -179,7 +187,7 @@ mission "Hai Festival [2]"
 		distance 2 7
 		government "Hai"
 	on complete
-		payment 10000 250
+		payment 10000 200
 		dialog "Luckily your <passengers> didn't cause too much trouble on the trip. After collecting their things, they pay you <payment> and make their way to the festival."
 
 mission "Hai Festival [3]"
@@ -198,7 +206,7 @@ mission "Hai Festival [3]"
 		distance 2 7
 		government "Hai"
 	on complete
-		payment 10000 250
+		payment 10000 200
 		dialog "Luckily your <passengers> didn't cause too much trouble on the trip. After collecting their things, they pay you <payment> and make their way to the festival."
 
 
@@ -223,7 +231,7 @@ mission "Unfettered Aid [0]"
 		dialog `The Hai dockworkers load the food for the Unfettered onto your ship. One of them says to you, "Thank you. This is far better than watching our kinfolk starve."`
 	on complete
 		payment 5000 1600
-		dialog "You drop off the aid (or as they like to refer to it as, "tribute") for the Unfettered, and they pay you <payment>."
+		dialog `You drop off the aid (or as they like to refer to it, "tribute") for the Unfettered, and they pay you <payment>.`
 
 mission "Unfettered Aid [1]"
 	name "Aid shipment to Unfettered"
@@ -245,7 +253,7 @@ mission "Unfettered Aid [1]"
 		dialog `As the Hai load the food onto your ship, one of them says, "Tell our brothers and sisters that if they will only repent, they will be welcome to come home."`
 	on complete
 		payment 6000 1800
-		dialog "You drop off the aid (or as they like to refer to it as, "tribute") for the Unfettered, and they pay you <payment>."
+		dialog `You drop off the aid (or as they like to refer to it, "tribute") for the Unfettered, and they pay you <payment>.`
 
 mission "Unfettered Aid [2]"
 	name "Aid shipment to Unfettered"
@@ -267,7 +275,7 @@ mission "Unfettered Aid [2]"
 		dialog `The Hai dockworkers load the food for the Unfettered onto your ship. One of them says to you, "Tell our brothers and sisters that if they will only repent, they will be welcome to come home."`
 	on complete
 		payment 7000 2000
-		dialog "You drop off the aid (or as they like to refer to it as, "tribute") for the Unfettered, and they pay you <payment>."
+		dialog `You drop off the aid (or as they like to refer to it, "tribute") for the Unfettered, and they pay you <payment>.`
 
 mission "Unfettered Tribute 1"
 	name "Hai Tribute to <planet>"
@@ -579,22 +587,6 @@ mission "Escort to Human Space (Extra Large)"
 
 
 
-mission "Hai Passengers [0]"
-	name "Passenger transport to <planet>"
-	job
-	repeat
-	description "Bring <fare> to <destination>. Payment is <payment>."
-	passengers 1 10 .7
-	source
-		government "Hai"
-	destination
-		distance 2 7
-		government "Hai"
-	on complete
-		payment
-		payment 2000
-		dialog "You wish your <passengers> the best of luck on <planet>, and collect your payment of <payment>."
-
 mission "Hai Passengers [1]"
 	name "Passenger transport to <planet>"
 	job
@@ -646,25 +638,6 @@ mission "Hai Passengers [3]"
 		payment
 		dialog "You wish your <passengers> the best of luck on <planet>, and collect your payment of <payment>."
 
-mission "Hai Passengers [4]"
-	name "Passenger transport to <planet>"
-	job
-	repeat
-	description "These <bunks> passengers want to escape the pollution and crime on <origin> and settle on <destination>. Payment is <payment>."
-	passengers 2 10 .7
-	to offer
-		random < 50
-	source
-		attributes "urban"
-		government "Hai"
-	destination
-		distance 2 7
-		government "Hai"
-	on complete
-		payment
-		payment 2000
-		dialog "You wish your <passengers> the best of luck on <planet>, and collect your payment of <payment>."
-
 mission "Hai Family [0]"
 	name "Transport family to <planet>"
 	job
@@ -691,7 +664,7 @@ mission "Hai Family [1]"
 	description "This family of <bunks> is relocating to <destination>. They will pay you <payment> to take them there."
 	passengers 2 4 .5
 	to offer
-		random < 50
+		random < 40
 		"passenger space" > 10
 	source
 		government "Hai"
@@ -703,51 +676,13 @@ mission "Hai Family [1]"
 		payment 6000
 		dialog "The family you have been transporting departs your ship after paying you <payment>."
 
-mission "Hai Family [2]"
-	name "Transport family to <planet>"
-	job
-	repeat
-	description "This family of <bunks> is relocating to <destination>. They will pay you <payment> to take them there."
-	passengers 2 4 .5
-	to offer
-		random < 40
-		"passenger space" > 10
-	source
-		government "Hai"
-	destination
-		distance 6 24
-		government "Hai"
-	on complete
-		payment
-		payment 8000
-		dialog "The family you have been transporting departs your ship after paying you <payment>."
-
-mission "Hai Family [3]"
-	name "Transport family to <planet>"
-	job
-	repeat
-	description "This family of <bunks> is relocating to <destination>. They will pay you <payment> to take them there."
-	passengers 2 4 .5
-	to offer
-		random < 30
-		"passenger space" > 10
-	source
-		government "Hai"
-	destination
-		distance 8 32
-		government "Hai"
-	on complete
-		payment
-		payment 10000
-		dialog "The family you have been transporting departs your ship after paying you <payment>."
-
 mission "Transport Hai miners to <planet>"
 	job
 	repeat
 	description "This family of <bunks> miners is hoping to find work on <destination>, and they will pay you <payment> to take them there."
 	passengers 3 3 .6
 	to offer
-		random < 50
+		random < 40
 	source
 		government "Hai"
 	destination
@@ -765,7 +700,7 @@ mission "Transport Hai farmers to <planet>"
 	description "This family of <bunks> farmers is hoping to find work on <destination>, and they will pay you <payment> to take them there."
 	passengers 3 3 .6
 	to offer
-		random < 50
+		random < 40
 	source
 		government "Hai"
 	destination
@@ -783,7 +718,7 @@ mission "Transport Hai mill workers to <planet>"
 	description "This family of <bunks> mill workers is hoping to find work on <destination>, and they will pay you <payment> to take them there."
 	passengers 3 3 .6
 	to offer
-		random < 50
+		random < 40
 	source
 		government "Hai"
 	destination
@@ -801,7 +736,7 @@ mission "Transport Hai workers to <planet>"
 	description "This family of <bunks> factory workers is hoping to find work on <destination>, and they will pay you <payment> to take them there."
 	passengers 3 3 .6
 	to offer
-		random < 80
+		random < 70
 	source
 		government "Hai"
 	destination
@@ -821,6 +756,8 @@ mission "Hai Cargo [0]"
 	repeat
 	description "Deliver <cargo> to <destination>. Payment is <payment>."
 	cargo random 8 4 .1
+	to offer
+		random < 90
 	source
 		government "Hai"
 	destination
@@ -837,7 +774,7 @@ mission "Hai Cargo [1]"
 	description "Deliver <cargo> to <destination>. Payment is <payment>."
 	cargo random 8 4 .1
 	to offer
-		random < 90
+		random < 70
 	source
 		government "Hai"
 	destination
@@ -854,7 +791,7 @@ mission "Hai Cargo [2]"
 	description "Deliver <cargo> to <destination>. Payment is <payment>."
 	cargo random 8 4 .1
 	to offer
-		random < 80
+		random < 60
 	source
 		attributes mining textiles factory farming fishing oil
 		government "Hai"
@@ -872,7 +809,7 @@ mission "Hai Cargo [3]"
 	description "Deliver <cargo> to <destination>. Payment is <payment>."
 	cargo random 8 4 .1
 	to offer
-		random < 70
+		random < 50
 	source
 		attributes mining textiles factory farming fishing oil
 		government "Hai"
@@ -891,7 +828,7 @@ mission "Hai Cargo [4]"
 	description "Deliver <cargo> to <destination>. Payment is <payment>."
 	cargo random 8 4 .1
 	to offer
-		random < 60
+		random < 40
 	source
 		attributes mining textiles factory farming fishing oil
 		government "Hai"
@@ -964,7 +901,7 @@ mission "Hai Large Bulk Delivery [0]"
 	description "Deliver <cargo> to <destination>. Payment is <payment>."
 	cargo random 50 3 .02
 	to offer
-		random < 70
+		random < 60
 		"cargo space" > 160
 	source
 		government "Hai"
@@ -983,7 +920,7 @@ mission "Hai Large Bulk Delivery [1]"
 	description "Deliver <cargo> to <destination>. Payment is <payment>."
 	cargo random 50 3 .02
 	to offer
-		random < 60
+		random < 50
 		"cargo space" > 160
 	source
 		government "Hai"
@@ -1002,7 +939,7 @@ mission "Hai Large Bulk Delivery [2]"
 	description "Deliver <cargo> to <destination>. Payment is <payment>."
 	cargo random 50 3 .02
 	to offer
-		random < 50
+		random < 40
 		"cargo space" > 160
 	source
 		attributes mining textiles factory farming fishing oil
@@ -1023,7 +960,7 @@ mission "Hai Rush Delivery [0]"
 	description "Deliver <cargo> to <destination> by <date>. Payment is <payment>."
 	cargo random 8 3 .1
 	to offer
-		random < 90
+		random < 70
 	source
 		government "Hai"
 	destination
@@ -1042,7 +979,7 @@ mission "Hai Rush Delivery [1]"
 	description "Deliver <cargo> to <destination> by <date>. Payment is <payment>."
 	cargo random 8 3 .1
 	to offer
-		random < 80
+		random < 60
 	source
 		government "Hai"
 	destination
@@ -1061,7 +998,7 @@ mission "Hai Rush Delivery [2]"
 	description "Deliver <cargo> to <destination> by <date>. Payment is <payment>."
 	cargo random 8 3 .1
 	to offer
-		random < 70
+		random < 50
 	source
 		attributes mining textiles factory farming fishing oil
 		government "Hai"
@@ -1081,7 +1018,7 @@ mission "Hai Rush Delivery [3]"
 	description "Deliver <cargo> to <destination> by <date>. Payment is <payment>."
 	cargo random 8 3 .1
 	to offer
-		random < 60
+		random < 40
 	source
 		attributes mining textiles factory farming fishing oil
 		government "Hai"
@@ -1101,7 +1038,7 @@ mission "Hai Large Rush Delivery [0]"
 	description "Deliver <cargo> to <destination> by <date>. Payment is <payment>."
 	cargo random 30 8 .1
 	to offer
-		random < 90
+		random < 80
 		"cargo space" > 80
 	source
 		government "Hai"
@@ -1121,7 +1058,7 @@ mission "Hai Large Rush Delivery [1]"
 	description "Deliver <cargo> to <destination> by <date>. Payment is <payment>."
 	cargo random 30 8 .1
 	to offer
-		random < 80
+		random < 60
 		"cargo space" > 80
 	source
 		government "Hai"
@@ -1141,7 +1078,7 @@ mission "Hai Large Rush Delivery [2]"
 	description "Deliver <cargo> to <destination> by <date>. Payment is <payment>."
 	cargo random 30 8 .1
 	to offer
-		random < 70
+		random < 40
 		"cargo space" > 80
 	source
 		attributes mining textiles factory farming fishing oil
@@ -1162,7 +1099,7 @@ mission "Hai Large Rush Delivery [3]"
 	description "Deliver <cargo> to <destination> by <date>. Payment is <payment>."
 	cargo random 30 8 .1
 	to offer
-		random < 60
+		random < 30
 		"cargo space" > 80
 	source
 		attributes mining textiles factory farming fishing oil

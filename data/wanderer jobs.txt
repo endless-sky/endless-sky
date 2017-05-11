@@ -145,7 +145,7 @@ mission "Wanderer Scientists (Pollution) [0]"
 		government "Wanderer"
 	on complete
 		payment 15000 180
-		dialog "You wish the scientists the best of luck on <planet> as they carry their scientific equipment off of your ship and hand you your payment."
+		dialog "You wish the scientists the best of luck on <planet> as they carry their scientific equipment off of your ship and hand you your payment of <payment>."
 
 mission "Wanderer Scientists (Pollution) [1]"
 	name "Spike in pollution on <planet>"
@@ -166,7 +166,7 @@ mission "Wanderer Scientists (Pollution) [1]"
 		government "Wanderer"
 	on complete
 		payment 20000 180
-		dialog "You wish the scientists the best of luck on <planet> as they carry their scientific equipment off of your ship and hand you your payment."
+		dialog "You wish the scientists the best of luck on <planet> as they carry their scientific equipment off of your ship and hand you your payment of <payment>."
 
 mission "Wanderer Scientists (Phenomenon) [0]"
 	name "Natural phenomenon on <planet>"
@@ -186,7 +186,7 @@ mission "Wanderer Scientists (Phenomenon) [0]"
 		government "Wanderer"
 	on complete
 		payment 15000 180
-		dialog "You wish the scientists the best of luck on <planet> as they carry their scientific equipment off of your ship and hand you your payment."
+		dialog "You wish the scientists the best of luck on <planet> as they carry their scientific equipment off of your ship and hand you your payment of <payment>."
 
 mission "Wanderer Scientists (Phenomenon) [1]"
 	name "Natural phenomenon on <planet>"
@@ -206,7 +206,7 @@ mission "Wanderer Scientists (Phenomenon) [1]"
 		government "Wanderer"
 	on complete
 		payment 20000 180
-		dialog "You wish the scientists the best of luck on <planet> as they carry their scientific equipment off of your ship and hand you your payment."
+		dialog "You wish the scientists the best of luck on <planet> as they carry their scientific equipment off of your ship and hand you your payment of <payment>."
 
 mission "Wanderer Biologists [0]"
 	name "New animal found on <planet>"
@@ -226,7 +226,7 @@ mission "Wanderer Biologists [0]"
 	on complete
 		payment
 		payment 15000
-		dialog "You wish the biologists the best of luck on <planet> as they carry their scientific equipment off of your ship and hand you your payment."
+		dialog "You wish the biologists the best of luck on <planet> as they carry their scientific equipment off of your ship and hand you your payment of <payment>."
 
 mission "Wanderer Biologists [1]"
 	name "New animal found on <planet>"
@@ -246,7 +246,7 @@ mission "Wanderer Biologists [1]"
 	on complete
 		payment
 		payment 20000
-		dialog "You wish the biologists the best of luck on <planet> as they carry their scientific equipment off of your ship and hand you your payment."
+		dialog "You wish the biologists the best of luck on <planet> as they carry their scientific equipment off of your ship and hand you your payment of <payment>."
 
 mission "Wanderer Botanists [0]"
 	name "New plant found on <planet>"
@@ -266,7 +266,7 @@ mission "Wanderer Botanists [0]"
 	on complete
 		payment
 		payment 15000
-		dialog "You wish the botanists the best of luck on <planet> as they carry their scientific equipment off of your ship and hand you your payment."
+		dialog "You wish the botanists the best of luck on <planet> as they carry their scientific equipment off of your ship and hand you your payment of <payment>."
 
 mission "Wanderer Botanists [1]"
 	name "New plant found on <planet>"
@@ -286,7 +286,7 @@ mission "Wanderer Botanists [1]"
 	on complete
 		payment
 		payment 20000
-		dialog "You wish the botanists the best of luck on <planet> as they carry their scientific equipment off of your ship and hand you your payment."
+		dialog "You wish the botanists the best of luck on <planet> as they carry their scientific equipment off of your ship and hand you your payment of <payment>."
 
 mission "Wanderer Harvest [0]"
 	name "Food harvest on <planet>"
@@ -306,7 +306,7 @@ mission "Wanderer Harvest [0]"
 	on complete
 		payment
 		payment 15000
-		dialog "You wish the Wanderers the best of luck on <planet> and collect your payment."
+		dialog "You wish the Wanderers the best of luck on <planet> and collect your payment of <payment>."
 
 mission "Wanderer Harvest [1]"
 	name "Food harvest on <planet>"
@@ -326,10 +326,10 @@ mission "Wanderer Harvest [1]"
 	on complete
 		payment
 		payment 20000
-		dialog "You wish the Wanderers the best of luck on <planet> and collect your payment."
+		dialog "You wish the Wanderers the best of luck on <planet> and collect your payment of <payment>."
 
 mission "Wanderer Invasive Species [0]"
-	name "Invasive species on <planet>"
+	name "Quarantine an invasive species"
 	job
 	repeat
 	description `These <bunks> Wanderers need to get to <stopovers> with their <cargo> by <date> to contain an invasive animal species. Return the Wanderers to <origin> with the animals for a payment of <payment>.`
@@ -351,7 +351,7 @@ mission "Wanderer Invasive Species [0]"
 		dialog `After releasing the animals, the <bunks> Wanderers each thank you for assisting them in returning the animals to <planet> and hand you <payment>.`
 
 mission "Wanderer Invasive Species [1]"
-	name "Invasive species on <planet>"
+	name "Quarantine an invasive species"
 	job
 	repeat
 	description `These <bunks> Wanderers need to get to <stopovers> with their <cargo> by <date> to contain an invasive plant species. Return the Wanderers to <origin> with the animals for a payment of <payment>.`

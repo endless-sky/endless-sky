@@ -135,7 +135,6 @@ string Account::Step(int64_t assets, int64_t salaries)
 	
 	// Keep track of what payments were made and whether any could not be made.
 	salariesOwed += salaries;
-	bool hasDebts = !mortgages.empty() || salariesOwed;
 	bool paid = true;
 	
 	// Crew salaries take highest priority.
@@ -146,7 +145,7 @@ string Account::Step(int64_t assets, int64_t salaries)
 		{
 			// If you can't pay the full salary amount, still pay some of it and
 			// remember how much back wages you owe to your crew.
-			salariesPaid = max(credits, static_cast<int64_t>(0));
+			salariesPaid = max<int64_t>(credits, 0);
 			salariesOwed -= salariesPaid;
 			credits -= salariesPaid;
 			paid = false;
@@ -197,15 +196,12 @@ string Account::Step(int64_t assets, int64_t salaries)
 	// Keep track of your net worth over the last HISTORY days.
 	if(history.size() > HISTORY)
 		history.erase(history.begin());
-	history.push_back(credits + assets);
+	history.push_back(credits + assets - salariesOwed);
 	
-	// If you owed any debts today, adjust your credit score based on whether
-	// you were able to pay them all.
-	if(hasDebts)
-	{
-		creditScore += paid ? 1 : -5;
-		creditScore = max(200, min(800, creditScore));
-	}
+	// If you failed to pay any debt, your credit score drops. Otherwise, even
+	// if you have no debts, it increases. (Because, having no debts at all
+	// makes you at least as credit-worthy as someone who pays debts on time.)
+	creditScore = max(200, min(800, creditScore + (paid ? 1 : -5)));
 	
 	// If you didn't make any payments, no need to continue further.
 	if(!(salariesPaid + mortgagesPaid + finesPaid))
@@ -231,6 +227,22 @@ string Account::Step(int64_t assets, int64_t salaries)
 				" in fines." : " credits in fines.");
 	}
 	return out.str();
+}
+
+
+
+int64_t Account::SalariesOwed() const
+{
+	return salariesOwed;
+}
+
+
+
+void Account::PaySalaries(int64_t amount)
+{
+	amount = min(min(amount, salariesOwed), credits);
+	credits -= amount;
+	salariesOwed -= amount;
 }
 
 
@@ -275,7 +287,7 @@ int64_t Account::Prequalify() const
 	// Put a limit on new debt that the player can take out, as a fraction of
 	// their net worth, to avoid absurd mortgages being offered when the player
 	// has just captured some very lucrative ships.
-	return max(static_cast<int64_t>(0), min(
+	return max<int64_t>(0, min(
 		NetWorth() / 3 + 500000 - liabilities,
 		Mortgage::Maximum(YearlyRevenue(), creditScore, payments)));
 }

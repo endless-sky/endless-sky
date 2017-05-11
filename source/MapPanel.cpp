@@ -157,7 +157,7 @@ void MapPanel::DrawMiniMap(const PlayerInfo &player, double alpha, const System 
 		font.Draw(name, from + Point(6., -.5 * font.Height()), lineColor);
 		
 		Color color = Color(.5 * alpha, 0.);
-		if(player.HasVisited(system) && system->IsInhabited() && gov)
+		if(player.HasVisited(system) && system->IsInhabited(player.Flagship()) && gov)
 			color = Color(
 				alpha * gov->GetColor().Get()[0],
 				alpha * gov->GetColor().Get()[1],
@@ -180,7 +180,7 @@ void MapPanel::DrawMiniMap(const PlayerInfo &player, double alpha, const System 
 			
 			gov = link->GetGovernment();
 			Color color = Color(.5 * alpha, 0.);
-			if(player.HasVisited(link) && link->IsInhabited() && gov)
+			if(player.HasVisited(link) && link->IsInhabited(player.Flagship()) && gov)
 				color = Color(
 					alpha * gov->GetColor().Get()[0],
 					alpha * gov->GetColor().Get()[1],
@@ -194,7 +194,7 @@ void MapPanel::DrawMiniMap(const PlayerInfo &player, double alpha, const System 
 			if(!mission.IsVisible())
 				continue;
 			
-			if(mission.Destination()->GetSystem() == system)
+			if(mission.Destination()->IsInSystem(system))
 			{
 				bool blink = false;
 				if(mission.Deadline())
@@ -214,7 +214,7 @@ void MapPanel::DrawMiniMap(const PlayerInfo &player, double alpha, const System 
 				if(waypoint == system)
 					DrawPointer(from, angle, waypointColor, false);
 			for(const Planet *stopover : mission.Stopovers())
-				if(stopover->GetSystem() == system)
+				if(stopover->IsInSystem(system))
 					DrawPointer(from, angle, waypointColor, false);
 		}
 	}
@@ -433,7 +433,7 @@ void MapPanel::Select(const System *system)
 	else if(shift)
 	{
 		DistanceMap localDistance(player, plan.front());
-		if(localDistance.Distance(system) <= 0)
+		if(localDistance.Days(system) <= 0)
 			return;
 		
 		auto it = plan.begin();
@@ -443,7 +443,7 @@ void MapPanel::Select(const System *system)
 			system = localDistance.Route(system);
 		}
 	}
-	else if(distance.Distance(system) > 0)
+	else if(distance.Days(system) > 0)
 	{
 		plan.clear();
 		if(!isJumping)
@@ -538,97 +538,79 @@ int MapPanel::Search(const string &str, const string &sub)
 
 void MapPanel::DrawTravelPlan()
 {
+	if(!playerSystem)
+		return;
+	
 	Color defaultColor(.5, .4, 0., 0.);
 	Color outOfFlagshipFuelRangeColor(.55, .1, .0, 0.);
 	Color withinFleetFuelRangeColor(.2, .5, .0, 0.);
 	Color wormholeColor(0.5, 0.2, 0.9, 1.);
 	
-	Ship *ship = player.Flagship();
-	bool hasHyper = ship ? ship->Attributes().Get("hyperdrive") : false;
-	bool hasJump = ship ? ship->Attributes().Get("jump drive") : false;
-	
-	// Find out how much fuel your ship and your escorts use per jump.
-	double flagshipCapacity = 0.;
-	if(ship)
-		flagshipCapacity = ship->Attributes().Get("fuel capacity") * ship->Fuel();
-	double flagshipJumpFuel = 0.;
-	if(ship)
-		flagshipJumpFuel = hasHyper ? ship->Attributes().Get("scram drive") ? 150. : 100. : 200.;
-	double escortCapacity = 0.;
-	double escortJumpFuel = 1.;
-	bool escortHasJump = false;
-	// Skip your flagship, parked ships, and fighters.
+	// At each point in the path, we'll keep track of how many ships in the
+	// fleet are able to make it this far.
+	Ship *flagship = player.Flagship();
+	bool stranded = false;
+	bool hasEscort = false;
+	map<const Ship *, double> fuel;
 	for(const shared_ptr<Ship> &it : player.Ships())
-		if(it.get() != ship && !it->IsParked() && !it->CanBeCarried())
+		if(!it->IsParked() && !it->CanBeCarried() && it->GetSystem() == flagship->GetSystem())
 		{
-			double capacity = it->Attributes().Get("fuel capacity") * it->Fuel();
-			double jumpFuel = it->Attributes().Get("hyperdrive") ?
-				it->Attributes().Get("scram drive") ? 150. : 100. : 200.;
-			if(escortJumpFuel < 100. || capacity / jumpFuel < escortCapacity / escortJumpFuel)
+			if(it->IsDisabled())
 			{
-				escortCapacity = capacity;
-				escortJumpFuel = jumpFuel;
-				escortHasJump = it->Attributes().Get("jump drive");
+				stranded = true;
+				continue;
 			}
+			
+			fuel[it.get()] = it->Fuel() * it->Attributes().Get("fuel capacity");
+			hasEscort |= (it.get() != flagship);
 		}
+	stranded |= !hasEscort;
 	
-	// Draw your current travel plan.
-	if(!playerSystem)
-		return;
 	const System *previous = playerSystem;
 	for(int i = player.TravelPlan().size() - 1; i >= 0; --i)
 	{
 		const System *next = player.TravelPlan()[i];
-		
-		// Figure out what kind of jump this is, and check if the player is able
-		// to make jumps of that kind.
-		bool isHyper = 
-			(find(previous->Links().begin(), previous->Links().end(), next)
-				!= previous->Links().end());
-		bool isJump = isHyper ||
-			(find(previous->Neighbors().begin(), previous->Neighbors().end(), next)
-				!= previous->Neighbors().end());
+		bool isHyper = previous->Links().count(next);
+		bool isJump = !isHyper && previous->Neighbors().count(next);
 		bool isWormhole = false;
-		if(!((isHyper && hasHyper) || (isJump && hasJump)))
-		{
-			for(const StellarObject &object : previous->Objects())
-				isWormhole |= (object.GetPlanet() && object.GetPlanet()->WormholeDestination(previous) == next);
-			if(!isWormhole)
-				break;
-		}
+		for(const StellarObject &object : previous->Objects())
+			isWormhole |= (object.GetPlanet() && player.HasVisited(object.GetPlanet())
+				&& player.HasVisited(previous) && player.HasVisited(next)
+				&& object.GetPlanet()->WormholeDestination(previous) == next);
+		
+		if(!isHyper && !isJump && !isWormhole)
+			break;
+		
+		// Wormholes cost nothing to grow through. If this is not a wormhole,
+		// check how much fuel every ship will expend to go through it.
+		if(!isWormhole)
+			for(auto &it : fuel)
+				if(it.second >= 0.)
+				{
+					double cost = isJump ? it.first->JumpDriveFuel() : it.first->HyperdriveFuel();
+					if(!cost || cost > it.second)
+					{
+						it.second = -1.;
+						stranded = true;
+					}
+					else
+						it.second -= cost;
+				}
+		
+		// Color the path green if all ships can make it. Color it yellow if
+		// the flagship can make it, and red if the flagship cannot.
+		Color drawColor = outOfFlagshipFuelRangeColor;
+		if(isWormhole)
+			drawColor = wormholeColor;
+		else if(!stranded)
+			drawColor = withinFleetFuelRangeColor;
+		else if(fuel[flagship] >= 0.)
+			drawColor = defaultColor;
 		
 		Point from = Zoom() * (next->Position() + center);
 		Point to = Zoom() * (previous->Position() + center);
 		Point unit = (from - to).Unit() * 7.;
-		from -= unit;
-		to += unit;
-		
-		if(isWormhole)
-		{
-			// Wormholes cost no fuel to travel through.
-		}
-		else if(!isHyper)
-		{
-			if(!escortHasJump)
-				escortCapacity = 0.;
-			flagshipCapacity -= 200.;
-			escortCapacity -= 200.;
-		}
-		else
-		{
-			flagshipCapacity -= flagshipJumpFuel;
-			escortCapacity -= escortJumpFuel;
-		}
-		
-		Color drawColor = outOfFlagshipFuelRangeColor;
-		if(isWormhole)
-			drawColor = wormholeColor;
-		else if(flagshipCapacity >= 0. && escortCapacity >= 0.)
-			drawColor = withinFleetFuelRangeColor;
-		else if(flagshipCapacity >= 0. || escortCapacity >= 0.)
-			drawColor = defaultColor;
-		
-		LineShader::Draw(from, to, 3., drawColor);
+		LineShader::Draw(from - unit, to + unit, 3., drawColor);
 		
 		previous = next;
 	}
@@ -652,6 +634,10 @@ void MapPanel::DrawWormholes()
 			if(object.GetPlanet() && object.GetPlanet()->IsWormhole() && player.HasVisited(object.GetPlanet()))
 			{
 				const System *next = object.GetPlanet()->WormholeDestination(previous);
+				// Only draw a wormhole if both systems have been visited.
+				if(!player.HasVisited(previous) || !player.HasVisited(next))
+					continue;
+				
 				drawn[previous] = next;
 				Point from = Zoom() * (previous->Position() + center);
 				Point to = Zoom() * (next->Position() + center);
@@ -734,7 +720,7 @@ void MapPanel::DrawSystems()
 		Color color = UninhabitedColor();
 		if(!player.HasVisited(&system))
 			color = UnexploredColor();
-		else if(system.IsInhabited() || commodity == SHOW_SPECIAL)
+		else if(system.IsInhabited(player.Flagship()) || commodity == SHOW_SPECIAL)
 		{
 			if(commodity >= SHOW_SPECIAL)
 			{
@@ -812,6 +798,8 @@ void MapPanel::DrawSystems()
 					if(object.GetPlanet())
 					{
 						const Planet *planet = object.GetPlanet();
+						if(!planet->IsAccessible(player.Flagship()))
+							continue;
 						canLand |= planet->CanLand() && planet->HasSpaceport();
 						isInhabited |= planet->IsInhabited();
 						hasDominated &= (!planet->IsInhabited()

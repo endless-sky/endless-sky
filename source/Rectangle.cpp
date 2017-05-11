@@ -171,7 +171,7 @@ bool Rectangle::Contains(const Point &point) const
 
 
 
-// Check if the given rectangle is inside this one. If one of its edge is
+// Check if the given rectangle is inside this one. If one of its edges is
 // touching the edge of this one, that still counts.
 bool Rectangle::Contains(const Rectangle &other) const
 {

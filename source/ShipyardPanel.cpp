@@ -181,7 +181,12 @@ void ShipyardPanel::Buy()
 			" If that is okay with you, go ahead and enter a name for your brand new ";
 	else
 		message = "Enter a name for your brand new ";
-	message += selectedShip->ModelName() + "!";
+	
+	if(modifier == 1)
+		message += selectedShip->ModelName() + "! (Or leave it blank to use a randomly chosen name.)";
+	else
+		message += selectedShip->PluralModelName() + "! (Or leave it blank to use randomly chosen names.)";
+	
 	GetUI()->Push(new NameDialog(this, &ShipyardPanel::BuyShip, message));
 }
 
@@ -297,23 +302,22 @@ void ShipyardPanel::BuyShip(const string &name)
 	if(licenseCost)
 	{
 		player.Accounts().AddCredits(-licenseCost);
-		for(const string &name : selectedShip->Licenses())
-			if(player.GetCondition("license: " + name) <= 0)
-				player.Conditions()["license: " + name] = true;
+		for(const string &licenseName : selectedShip->Licenses())
+			if(player.GetCondition("license: " + licenseName) <= 0)
+				player.Conditions()["license: " + licenseName] = true;
 	}
-	
-	string shipName = name;
-	if(shipName.empty())
-		shipName = player.FirstName() + "'s " + selectedShip->ModelName();
-	if(modifier > 1)
-		shipName += ' ';
 	
 	for(int i = 1; i <= modifier; ++i)
 	{
-		if(modifier > 1)
-			player.BuyShip(selectedShip, shipName + to_string(i));
-		else
-			player.BuyShip(selectedShip, shipName);
+		// If no name is given, choose a random name. Otherwise, if buying
+		// multiple ships, append a number to the given ship name.
+		string shipName = name;
+		if(name.empty())
+			shipName = GameData::Phrases().Get("civilian")->Get();
+		else if(modifier > 1)
+			shipName += " " + to_string(i);
+		
+		player.BuyShip(selectedShip, shipName);
 	}
 	
 	playerShip = &*player.Ships().back();

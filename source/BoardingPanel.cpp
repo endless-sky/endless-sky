@@ -21,7 +21,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Format.h"
 #include "GameData.h"
 #include "Government.h"
-#include "InfoPanel.h"
 #include "Information.h"
 #include "Interface.h"
 #include "Messages.h"
@@ -30,6 +29,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Random.h"
 #include "Ship.h"
 #include "ShipEvent.h"
+#include "ShipInfoPanel.h"
 #include "System.h"
 #include "UI.h"
 
@@ -64,13 +64,14 @@ BoardingPanel::BoardingPanel(PlayerInfo &player, const shared_ptr<Ship> &victim)
 	// system and add them to the list of plunder.
 	const System &system = *player.GetSystem();
 	for(const auto &it : victim->Cargo().Commodities())
-		plunder.emplace_back(it.first, it.second, system.Trade(it.first));
+		if(it.second)
+			plunder.emplace_back(it.first, it.second, system.Trade(it.first));
 	
 	// You cannot plunder hand to hand weapons, because they are kept in the
 	// crew's quarters, not mounted on the exterior of the ship. Certain other
 	// outfits are also unplunderable, like mass expansions.
 	for(const auto &it : victim->Outfits())
-		if(!it.first->Get("unplunderable"))
+		if(!it.first->Get("unplunderable") && it.second)
 			plunder.emplace_back(it.first, it.second);
 	
 	// Some "ships" do not represent something the player could actually pilot.
@@ -236,7 +237,7 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 		if(count == plunder[selected].Count())
 		{
 			plunder.erase(plunder.begin() + selected);
-			selected = min(selected, static_cast<int>(plunder.size()));
+			selected = min<int>(selected, plunder.size());
 		}
 		else
 			plunder[selected].Take(count);
@@ -355,8 +356,14 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 				messages.push_back("You have succeeded in capturing this ship.");
 				victim->WasCaptured(you);
 				if(!victim->JumpsRemaining() && you->CanRefuel(*victim))
-					you->TransferFuel(victim->JumpFuel(), &*victim);
+					you->TransferFuel(victim->JumpFuelMissing(), &*victim);
 				player.AddShip(victim);
+				for(const Ship::Bay &bay : victim->Bays())
+					if(bay.ship)
+					{
+						player.AddShip(bay.ship);
+						player.HandleEvent(ShipEvent(you, bay.ship, ShipEvent::CAPTURE), GetUI());
+					}
 				isCapturing = false;
 				
 				// Report this ship as captured in case any missions care.
@@ -366,7 +373,7 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 		}
 	}
 	else if(command.Has(Command::INFO))
-		GetUI()->Push(new InfoPanel(player, true));
+		GetUI()->Push(new ShipInfoPanel(player));
 	
 	// Trim the list of status messages.
 	while(messages.size() > 5)
@@ -562,7 +569,7 @@ int BoardingPanel::Plunder::CanTake(int freeSpace) const
 	if(freeSpace <= 0)
 		return 0;
 	
-	return min(count, static_cast<int>(freeSpace / mass));
+	return min<int>(count, freeSpace / mass);
 }
 
 

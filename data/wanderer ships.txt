@@ -294,7 +294,7 @@ ship "Tempest" "Tempest (Heavy)"
 		"White Sun Reactor"
 		"Red Sun Reactor"
 		"Dark Storm Shielding"
-		"Mass Expansion"
+		"Outfits Expansion"
 		"Wanderer Ramscoop"
 		
 		"Type 3 Radiant Thruster"
@@ -414,7 +414,7 @@ ship "Derecho" "Derecho (Tough)"
 		"Yellow Sun Reactor"
 		"Dark Storm Shielding" 2
 		"Wanderer Ramscoop"
-		"Mass Expansion"
+		"Outfits Expansion"
 		
 		"Type 4 Radiant Thruster"
 		"Type 4 Radiant Steering" 2
@@ -494,7 +494,7 @@ ship "Hurricane" "Hurricane (Turret)"
 		"Blue Sun Reactor" 2
 		"Dark Storm Shielding" 2
 		"Wanderer Heat Sink"
-		"Mass Expansion" 2
+		"Outfits Expansion" 2
 		"Wanderer Ramscoop"
 		
 		"Type 4 Radiant Thruster"
@@ -514,7 +514,7 @@ ship "Hurricane" "Hurricane (Tough)"
 		"White Sun Reactor"
 		"Dark Storm Shielding" 4
 		"Wanderer Ramscoop"
-		"Mass Expansion" 2
+		"Outfits Expansion" 2
 		
 		"Type 4 Radiant Thruster"
 		"Type 1 Radiant Thruster"
@@ -592,7 +592,7 @@ ship "Deep River" "Deep River 0"
 	sprite "ship/deep river 0"
 	attributes
 		category "Heavy Freighter"
-		"cost" 8300000
+		"cost" 18300000
 		"shields" 17600
 		"hull" 47500
 		"required crew" 13
@@ -605,17 +605,12 @@ ship "Deep River" "Deep River 0"
 		"outfit space" 363
 		"weapon capacity" 177
 		"engine capacity" 83
-		weapon
-			"blast radius" 280
-			"shield damage" 2800
-			"hull damage" 1400
-			"hit force" 4200
 
 ship "Deep River" "Deep River 1"
 	sprite "ship/deep river 1"
 	attributes
 		category "Heavy Freighter"
-		"cost" 10300000
+		"cost" 18300000
 		"shields" 17600
 		"hull" 47500
 		"required crew" 13
@@ -628,17 +623,12 @@ ship "Deep River" "Deep River 1"
 		"outfit space" 363
 		"weapon capacity" 177
 		"engine capacity" 83
-		weapon
-			"blast radius" 280
-			"shield damage" 2800
-			"hull damage" 1400
-			"hit force" 4200
 
 ship "Deep River" "Deep River 2"
 	sprite "ship/deep river 2"
 	attributes
 		category "Heavy Freighter"
-		"cost" 12300000
+		"cost" 18300000
 		"shields" 17600
 		"hull" 47500
 		"required crew" 13
@@ -651,17 +641,12 @@ ship "Deep River" "Deep River 2"
 		"outfit space" 363
 		"weapon capacity" 177
 		"engine capacity" 83
-		weapon
-			"blast radius" 280
-			"shield damage" 2800
-			"hull damage" 1400
-			"hit force" 4200
 
 ship "Deep River" "Deep River 3"
 	sprite "ship/deep river 3"
 	attributes
 		category "Heavy Freighter"
-		"cost" 14300000
+		"cost" 18300000
 		"shields" 17600
 		"hull" 47500
 		"required crew" 13
@@ -674,17 +659,12 @@ ship "Deep River" "Deep River 3"
 		"outfit space" 363
 		"weapon capacity" 177
 		"engine capacity" 83
-		weapon
-			"blast radius" 280
-			"shield damage" 2800
-			"hull damage" 1400
-			"hit force" 4200
 
 ship "Deep River" "Deep River 4"
 	sprite "ship/deep river 4"
 	attributes
 		category "Heavy Freighter"
-		"cost" 16300000
+		"cost" 18300000
 		"shields" 17600
 		"hull" 47500
 		"required crew" 13
@@ -697,11 +677,6 @@ ship "Deep River" "Deep River 4"
 		"outfit space" 363
 		"weapon capacity" 177
 		"engine capacity" 83
-		weapon
-			"blast radius" 280
-			"shield damage" 2800
-			"hull damage" 1400
-			"hit force" 4200
 
 ship "Deep River Transport"
 	sprite "ship/deep river"

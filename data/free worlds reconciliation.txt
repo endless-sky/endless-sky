@@ -656,13 +656,13 @@ mission "FW Syndicate Capture 1"
 				accept
 	
 	npc accompany save
-		personality heroic
+		personality escort heroic
 		ship "Dreadnought" "F.S. Gibraltar"
 	
 	npc accompany save
 		personality escort heroic waiting
 		government "Navy (Oathkeeper)"
-		ship "Cruiser (Mark II)" "R.S. Hand of Justice"
+		ship "Cruiser (Mark II)" "N.S. Hand of Justice"
 	
 	npc accompany save
 		personality escort heroic waiting
@@ -693,12 +693,12 @@ mission "FW Syndicate Capture 1B"
 				accept
 	
 	npc
-		personality heroic
+		personality escort heroic
 		ship "Dreadnought" "F.S. Gibraltar"
 	npc
 		personality escort heroic waiting
 		government "Navy (Oathkeeper)"
-		ship "Cruiser (Mark II)" "R.S. Hand of Justice"
+		ship "Cruiser (Mark II)" "N.S. Hand of Justice"
 		ship "Combat Drone" "Red One"
 		ship "Combat Drone" "Red Two"
 		ship "Combat Drone" "Red Three"

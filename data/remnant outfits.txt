@@ -1,0 +1,315 @@
+# Copyright (c) 2017 by Michael Zahniser
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+
+# Weapons:
+
+outfit "Inhibitor Cannon"
+	category "Guns"
+	cost 471000
+	thumbnail "outfit/unknown"
+	"mass" 16
+	"outfit space" -16
+	"weapon capacity" -16
+	"gun ports" -1
+	weapon
+		sprite "projectile/inhibitor"
+			"frame rate" 10
+			"no repeat"
+		sound "particle"
+		"hit effect" "inhibitor impact" 3
+		"inaccuracy" .5
+		"velocity" 36
+		"random velocity" .5
+		"lifetime" 24
+		"reload" 13
+		"cluster"
+		"firing energy" 26
+		"firing heat" 45.5
+		"firing force" 13
+		"shield damage" 26
+		"hull damage" 19.5
+		"hit force" 39
+		"slowing damage" .5
+	description "TBD"
+
+effect "inhibitor impact"
+	sprite "effect/inhibitor impact"
+		"frame rate" 30
+		"no repeat"
+	"lifetime" 11
+	"velocity scale" -.05
+	"random angle" 360
+	"random velocity" 6
+	"random frame rate" 15
+
+
+outfit "Thrasher Cannon"
+	category "Guns"
+	cost 218000
+	thumbnail "outfit/unknown"
+	"mass" 10
+	"outfit space" -10
+	"weapon capacity" -10
+	"gun ports" -1
+	weapon
+		sprite "projectile/thrasher"
+			"frame rate" 10
+			"random start frame"
+			"no repeat"
+		sound "particle"
+		"hit effect" "thrasher impact"
+		"inaccuracy" 9
+		"velocity" 10
+		"lifetime" 36
+		"reload" 20
+		"firing energy" 36
+		"firing heat" 27
+		"shield damage" 38
+		"hull damage" 46
+	description "TBD"
+
+effect "thrasher impact"
+	sprite "effect/thrasher impact"
+		"frame rate" 30
+		"no repeat"
+	"lifetime" 11
+	"velocity scale" -.1
+	"random angle" 360
+	"random spin" 30
+	"random velocity" 3
+
+
+outfit "Thrasher Turret"
+	category "Turrets"
+	cost 980000
+	thumbnail "outfit/unknown"
+	"mass" 49
+	"outfit space" -49
+	"weapon capacity" -49
+	"required crew" 1
+	"turret mounts" -1
+	weapon
+		sprite "projectile/thrasher"
+			"frame rate" 10
+			"random start frame"
+			"no repeat"
+		sound "particle"
+		"hit effect" "thrasher impact"
+		"inaccuracy" 6
+		"velocity" 10
+		"lifetime" 36
+		"reload" 5
+		"firing energy" 36
+		"firing heat" 27
+		"shield damage" 38
+		"hull damage" 46
+	description "TBD"
+
+
+outfit "Point Defense Turret"
+	category "Turrets"
+	cost 1120000
+	thumbnail "outfit/unknown"
+	"mass" 33
+	"outfit space" -33
+	"weapon capacity" -33
+	"turret mounts" -1
+	weapon
+		"fire effect" "point defense fire"
+		"die effect" "point defense hit"
+		"die effect" "point defense die"
+		"anti-missile" 20
+		"velocity" 270
+		"lifetime" 1
+		"reload" 10
+		"firing energy" 62
+		"firing heat" 18
+	description "TBD"
+
+effect "point defense fire"
+	sprite "effect/point defense fire"
+		"frame rate" 17
+		"no repeat"
+	"velocity scale" .5
+	lifetime 10
+
+effect "point defense hit"
+	sprite "effect/point defense hit"
+		"frame rate" 13
+		"no repeat"
+	lifetime 10
+	"velocity scale" .2
+
+effect "point defense die"
+	sprite "effect/point defense die"
+		"frame rate" 20
+		"no repeat"
+	lifetime 15
+	"velocity scale" .2
+
+
+
+# Systems:
+
+outfit "Crystal Capacitor"
+	category "Power"
+	cost 280000
+	thumbnail "outfit/unknown"
+	"mass" 12
+	"outfit space" -12
+	"energy capacity" 3400
+	description "TBD"
+
+
+outfit "Millennium Cell"
+	category "Power"
+	cost 767000
+	thumbnail "outfit/unknown"
+	"mass" 29
+	"outfit space" -29
+	"energy generation" 3.5
+	"heat generation" 6.0
+	description "TBD"
+
+outfit "Epoch Cell"
+	category "Power"
+	cost 3060000
+	thumbnail "outfit/unknown"
+	"mass" 98
+	"outfit space" -98
+	"energy generation" 12.2
+	"heat generation" 19.8
+	description "TBD"
+
+outfit "Aeon Cell"
+	category "Power"
+	cost 6600000
+	thumbnail "outfit/unknown"
+	"mass" 160
+	"outfit space" -160
+	"energy generation" 21.1
+	"heat generation" 31.5
+	description "TBD"
+
+
+outfit "Thermoelectric Cooler"
+	category "Systems"
+	cost 160000
+	thumbnail "outfit/unknown"
+	"mass" 4
+	"outfit space" -4
+	"active cooling" 7
+	"cooling energy" .4
+	description "TBD"
+
+outfit "Emergency Ramscoop"
+	category "Systems"
+	cost "72000"
+	thumbnail "outfit/unknown"
+	"mass" 4
+	"outfit space" -4
+	"ramscoop" 0.5
+	description "TBD"
+
+
+outfit "Quantum Key Stone"
+	category "Systems"
+	cost 240000
+	thumbnail "outfit/keystone"
+	"mass" 1
+	"outfit space" -1
+	"quantum keystone" 1
+	description "This precious artifact attunes a ship's quantum oscillations in a way that allows it to travel through certain otherwise impassible wormholes in the Ember Waste. The stones are rare and valuable, because they can only be mined from one location in the Waste."
+
+
+
+# Engines:
+
+outfit "Crucible-Class Thruster"
+	category "Engines"
+	"cost" 200000
+	thumbnail "outfit/unknown"
+	"mass" 20
+	"outfit space" -20
+	"engine capacity" -20
+	"thrust" 18.0
+	"thrusting energy" 2.65
+	"thrusting heat" 2.5
+	"flare sprite" "effect/remnant small flare"
+		"frame rate" 5
+	"flare sound" "plasma tiny"
+	description "TBD"
+
+outfit "Forge-Class Thruster"
+	category "Engines"
+	"cost" 441000
+	thumbnail "outfit/unknown"
+	"mass" 39
+	"outfit space" -39
+	"engine capacity" -39
+	"thrust" 37.0
+	"thrusting energy" 5.15
+	"thrusting heat" 5.0
+	"flare sprite" "effect/remnant medium flare"
+		"frame rate" 4
+	"flare sound" "plasma small"
+	description "TBD"
+
+outfit "Smelter-Class Thruster"
+	category "Engines"
+	"cost" 984000
+	thumbnail "outfit/unknown"
+	"mass" 76
+	"outfit space" -76
+	"engine capacity" -76
+	"thrust" 76.8
+	"thrusting energy" 10.10
+	"thrusting heat" 10.2
+	"flare sprite" "effect/remnant large flare"
+		"frame rate" 3
+	"flare sound" "plasma medium"
+	description "TBD"
+
+
+outfit "Crucible-Class Steering"
+	category "Engines"
+	"cost" 172000
+	thumbnail "outfit/unknown"
+	"mass" 14
+	"outfit space" -14
+	"engine capacity" -14
+	"turn" 448.0
+	"turning energy" 1.32
+	"turning heat" 1.4
+	description "TBD"
+
+outfit "Forge-Class Steering"
+	category "Engines"
+	"cost" 393000
+	thumbnail "outfit/unknown"
+	"mass" 28
+	"outfit space" -28
+	"engine capacity" -28
+	"turn" 952.0
+	"turning energy" 2.64
+	"turning heat" 3.0
+	description "TBD"
+
+outfit "Smelter-Class Steering"
+	category "Engines"
+	"cost" 880000
+	thumbnail "outfit/unknown"
+	"mass" 55
+	"outfit space" -55
+	"engine capacity" -55
+	"turn" 1980.0
+	"turning energy" 5.21
+	"turning heat" 6.2
+	description "TBD"

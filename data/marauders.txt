@@ -62,7 +62,7 @@ ship "Marauder Arrow" "Marauder Arrow (Engines)"
 	sprite "ship/marrowe"
 	attributes
 		category "Interceptor"
-		"cost" 1500000
+		"cost" 1320000
 		"shields" 2300
 		"hull" 500
 		"required crew" 2
@@ -76,11 +76,6 @@ ship "Marauder Arrow" "Marauder Arrow (Engines)"
 		"weapon capacity" 55
 		"engine capacity" 100
 		"self destruct" .25
-		weapon
-			"blast radius" 27
-			"shield damage" 265
-			"hull damage" 135
-			"hit force" 400
 	outfits
 		"Heavy Laser" 2
 		"Anti-Missile Turret"
@@ -111,7 +106,7 @@ ship "Marauder Arrow" "Marauder Arrow (Weapons)"
 	sprite "ship/marroww"
 	attributes
 		category "Interceptor"
-		"cost" 1500000
+		"cost" 1320000
 		"shields" 2300
 		"hull" 500
 		"required crew" 2
@@ -125,11 +120,6 @@ ship "Marauder Arrow" "Marauder Arrow (Weapons)"
 		"weapon capacity" 60
 		"engine capacity" 80
 		"self destruct" .25
-		weapon
-			"blast radius" 27
-			"shield damage" 265
-			"hull damage" 135
-			"hit force" 400
 	outfits
 		"Energy Blaster" 4
 		"Heavy Laser Turret"
@@ -189,7 +179,7 @@ ship "Marauder Bounder"
 		"Dwarf Core"
 		"LP072a Battery Pack"
 		"S-270 Regenerator"
-		"Mass Expansion"
+		"Outfits Expansion"
 		"Water Coolant System"
 		"Security Station"
 		"Laser Rifle" 18
@@ -216,7 +206,7 @@ ship "Marauder Bounder" "Marauder Bounder (Engines)"
 	sprite "ship/mboundere"
 	attributes
 		category "Interceptor"
-		"cost" 1400000
+		"cost" 1250000
 		"shields" 2500
 		"hull" 700
 		"required crew" 2
@@ -230,11 +220,6 @@ ship "Marauder Bounder" "Marauder Bounder (Engines)"
 		"weapon capacity" 80
 		"engine capacity" 130
 		"self destruct" .25
-		weapon
-			"blast radius" 35
-			"shield damage" 350
-			"hull damage" 175
-			"hit force" 500
 	outfits
 		"Heavy Laser"
 		"Quad Blaster Turret" 2
@@ -243,7 +228,7 @@ ship "Marauder Bounder" "Marauder Bounder (Engines)"
 		"LP072a Battery Pack"
 		"S-270 Regenerator"
 		"Water Coolant System"
-		"Mass Expansion"
+		"Outfits Expansion"
 		"Laser Rifle" 18
 		
 		"A370 Atomic Thruster"
@@ -268,7 +253,7 @@ ship "Marauder Bounder" "Marauder Bounder (Weapons)"
 	sprite "ship/mbounderw"
 	attributes
 		category "Interceptor"
-		"cost" 1400000
+		"cost" 1250000
 		"shields" 2500
 		"hull" 700
 		"required crew" 2
@@ -282,11 +267,6 @@ ship "Marauder Bounder" "Marauder Bounder (Weapons)"
 		"weapon capacity" 100
 		"engine capacity" 115
 		"self destruct" .25
-		weapon
-			"blast radius" 35
-			"shield damage" 350
-			"hull damage" 175
-			"hit force" 500
 	outfits
 		"Modified Blaster" 2
 		"Heavy Laser Turret" 2
@@ -295,7 +275,7 @@ ship "Marauder Bounder" "Marauder Bounder (Weapons)"
 		"LP072a Battery Pack"
 		"S-270 Regenerator"
 		"Water Coolant System"
-		"Mass Expansion"
+		"Outfits Expansion"
 		"Security Station"
 		"Laser Rifle" 18
 		
@@ -349,7 +329,7 @@ ship "Marauder Falcon"
 		"D67-TM Shield Generator"
 		"Large Radar Jammer"
 		"Liquid Helium Cooler"
-		"Mass Expansion" 3
+		"Outfits Expansion" 3
 		"Laser Rifle" 80
 		
 		"A520 Atomic Thruster"
@@ -379,7 +359,7 @@ ship "Marauder Falcon" "Marauder Falcon (Engines)"
 	sprite "ship/mfalcone"
 	attributes
 		category "Heavy Warship"
-		"cost" 15900000
+		"cost" 13900000
 		"shields" 14100
 		"hull" 4100
 		"required crew" 43
@@ -393,11 +373,6 @@ ship "Marauder Falcon" "Marauder Falcon (Engines)"
 		"weapon capacity" 265
 		"engine capacity" 220
 		"self destruct" .1
-		weapon
-			"blast radius" 170
-			"shield damage" 1750
-			"hull damage" 900
-			"hit force" 2750
 	outfits
 		"Electron Beam" 4
 		"Blaster Turret" 2
@@ -408,7 +383,7 @@ ship "Marauder Falcon" "Marauder Falcon (Engines)"
 		"D41-HY Shield Generator"
 		"Large Radar Jammer"
 		"Liquid Helium Cooler"
-		"Mass Expansion" 3
+		"Outfits Expansion" 3
 		"Laser Rifle" 80
 		
 		"A860 Atomic Thruster"
@@ -440,7 +415,7 @@ ship "Marauder Falcon" "Marauder Falcon (Weapons)"
 	sprite "ship/mfalconw"
 	attributes
 		category "Heavy Warship"
-		"cost" 15900000
+		"cost" 13900000
 		"shields" 14100
 		"hull" 4100
 		"required crew" 43
@@ -454,11 +429,6 @@ ship "Marauder Falcon" "Marauder Falcon (Weapons)"
 		"weapon capacity" 300
 		"engine capacity" 165
 		"self destruct" .1
-		weapon
-			"blast radius" 170
-			"shield damage" 1750
-			"hull damage" 900
-			"hit force" 2750
 	outfits
 		"Plasma Cannon" 6
 		"Quad Blaster Turret" 4
@@ -468,7 +438,7 @@ ship "Marauder Falcon" "Marauder Falcon (Weapons)"
 		"D41-HY Shield Generator"
 		"Large Radar Jammer"
 		"Liquid Helium Cooler"
-		"Mass Expansion" 3
+		"Outfits Expansion" 3
 		"Laser Rifle" 80
 		
 		"A370 Atomic Thruster"
@@ -528,7 +498,7 @@ ship "Marauder Firebird"
 		"Supercapacitor"
 		"S-970 Regenerator"
 		"Liquid Helium Cooler"
-		"Mass Expansion"
+		"Outfits Expansion"
 		"Laser Rifle" 25
 		
 		"A250 Atomic Thruster"
@@ -556,7 +526,7 @@ ship "Marauder Firebird" "Marauder Firebird (Engines)"
 	sprite "ship/mfirebirde"
 	attributes
 		category "Medium Warship"
-		"cost" 4500000
+		"cost" 4100000
 		"shields" 7000
 		"hull" 3000
 		"required crew" 10
@@ -570,11 +540,6 @@ ship "Marauder Firebird" "Marauder Firebird (Engines)"
 		"weapon capacity" 175
 		"engine capacity" 130
 		"self destruct" .15
-		weapon
-			"blast radius" 110
-			"shield damage" 1100
-			"hull damage" 550
-			"hit force" 1650
 	outfits
 		"Plasma Cannon" 4
 		"Quad Blaster Turret"
@@ -585,7 +550,7 @@ ship "Marauder Firebird" "Marauder Firebird (Engines)"
 		"Supercapacitor"
 		"S-970 Regenerator"
 		"Liquid Helium Cooler"
-		"Mass Expansion"
+		"Outfits Expansion"
 		"Security Station"
 		"Laser Rifle" 24
 		
@@ -615,7 +580,7 @@ ship "Marauder Firebird" "Marauder Firebird (Weapons)"
 	sprite "ship/mfirebirdw"
 	attributes
 		category "Medium Warship"
-		"cost" 4500000
+		"cost" 4100000
 		"shields" 7000
 		"hull" 3000
 		"required crew" 10
@@ -629,11 +594,6 @@ ship "Marauder Firebird" "Marauder Firebird (Weapons)"
 		"weapon capacity" 210
 		"engine capacity" 110
 		"self destruct" .15
-		weapon
-			"blast radius" 110
-			"shield damage" 1100
-			"hull damage" 550
-			"hit force" 1650
 	outfits
 		"Particle Cannon" 4
 		"Quad Blaster Turret" 2
@@ -642,7 +602,7 @@ ship "Marauder Firebird" "Marauder Firebird (Weapons)"
 		"Supercapacitor"
 		"S-970 Regenerator"
 		"Liquid Helium Cooler"
-		"Mass Expansion"
+		"Outfits Expansion"
 		"Security Station"
 		"Laser Rifle" 24
 		
@@ -756,7 +716,7 @@ ship "Marauder Leviathan"
 		"D94-YV Shield Generator"
 		"Large Radar Jammer"
 		"Liquid Helium Cooler"
-		"Mass Expansion" 2
+		"Outfits Expansion" 2
 		"Laser Rifle" 69
 		
 		"A370 Atomic Thruster"
@@ -787,7 +747,7 @@ ship "Marauder Leviathan" "Marauder Leviathan (Engines)"
 	sprite "ship/mleviathane"
 	attributes
 		category "Heavy Warship"
-		"cost" 12000000
+		"cost" 10800000
 		"shields" 16000
 		"hull" 5500
 		"required crew" 47
@@ -801,11 +761,6 @@ ship "Marauder Leviathan" "Marauder Leviathan (Engines)"
 		"weapon capacity" 265
 		"engine capacity" 220
 		"self destruct" .1
-		weapon
-			"blast radius" 90
-			"shield damage" 900
-			"hull damage" 450
-			"hit force" 1500
 	outfits
 		"Electron Beam" 4
 		"Quad Blaster Turret" 4
@@ -816,7 +771,7 @@ ship "Marauder Leviathan" "Marauder Leviathan (Engines)"
 		"Large Radar Jammer"
 		"Liquid Helium Cooler"
 		"Liquid Nitrogen Cooler"
-		"Mass Expansion" 2
+		"Outfits Expansion" 2
 		"Laser Rifle" 69
 		
 		"A860 Atomic Thruster"
@@ -846,7 +801,7 @@ ship "Marauder Leviathan" "Marauder Leviathan (Weapons)"
 	sprite "ship/mleviathanw"
 	attributes
 		category "Heavy Warship"
-		"cost" 12000000
+		"cost" 10800000
 		"shields" 16000
 		"hull" 5500
 		"required crew" 47
@@ -860,11 +815,6 @@ ship "Marauder Leviathan" "Marauder Leviathan (Weapons)"
 		"weapon capacity" 300
 		"engine capacity" 140
 		"self destruct" .1
-		weapon
-			"blast radius" 90
-			"shield damage" 900
-			"hull damage" 450
-			"hit force" 1500
 	outfits
 		"Particle Cannon" 4
 		"Heavy Laser Turret" 4
@@ -874,7 +824,7 @@ ship "Marauder Leviathan" "Marauder Leviathan (Weapons)"
 		"D94-YV Shield Generator"
 		"Large Radar Jammer"
 		"Liquid Helium Cooler"
-		"Mass Expansion" 2
+		"Outfits Expansion" 2
 		"Laser Rifle" 69
 
 		"A370 Atomic Thruster"
@@ -963,7 +913,7 @@ ship "Marauder Manta" "Marauder Manta (Engines)"
 	sprite "ship/mmantae"
 	attributes
 		category "Medium Warship"
-		"cost" 4000000
+		"cost" 3740000
 		"shields" 6500
 		"hull" 1750
 		"required crew" 7
@@ -977,11 +927,6 @@ ship "Marauder Manta" "Marauder Manta (Engines)"
 		"weapon capacity" 155
 		"engine capacity" 130
 		"self destruct" .15
-		weapon
-			"blast radius" 90
-			"shield damage" 900
-			"hull damage" 450
-			"hit force" 1350
 	outfits
 		"Plasma Cannon" 4
 		"Meteor Missile Launcher" 2
@@ -1020,7 +965,7 @@ ship "Marauder Manta" "Marauder Manta (Weapons)"
 	sprite "ship/mmantaw"
 	attributes
 		category "Medium Warship"
-		"cost" 4000000
+		"cost" 3740000
 		"shields" 6500
 		"hull" 1750
 		"required crew" 7
@@ -1034,11 +979,6 @@ ship "Marauder Manta" "Marauder Manta (Weapons)"
 		"weapon capacity" 175
 		"engine capacity" 110
 		"self destruct" .15
-		weapon
-			"blast radius" 90
-			"shield damage" 900
-			"hull damage" 450
-			"hit force" 1350
 	outfits
 		"Particle Cannon" 2
 		"Proton Gun" 2
@@ -1129,7 +1069,7 @@ ship "Marauder Quicksilver" "Marauder Quicksilver (Engines)"
 	sprite "ship/mquicksilvere"
 	attributes
 		category "Light Warship"
-		"cost" 1320000
+		"cost" 1200000
 		"shields" 3500
 		"hull" 900
 		"required crew" 4
@@ -1143,11 +1083,6 @@ ship "Marauder Quicksilver" "Marauder Quicksilver (Engines)"
 		"weapon capacity" 65
 		"engine capacity" 115
 		"self destruct" .15
-		weapon
-			"blast radius" 45
-			"shield damage" 450
-			"hull damage" 225
-			"hit force" 650
 	outfits
 		"Pulse Cannon" 2
 		"Anti-Missile Turret"
@@ -1180,7 +1115,7 @@ ship "Marauder Quicksilver" "Marauder Quicksilver (Weapons)"
 	sprite "ship/mquicksilverw"
 	attributes
 		category "Light Warship"
-		"cost" 1320000
+		"cost" 1200000
 		"shields" 3500
 		"hull" 900
 		"required crew" 4
@@ -1194,11 +1129,6 @@ ship "Marauder Quicksilver" "Marauder Quicksilver (Weapons)"
 		"weapon capacity" 80
 		"engine capacity" 75
 		"self destruct" .15
-		weapon
-			"blast radius" 45
-			"shield damage" 450
-			"hull damage" 225
-			"hit force" 650
 	outfits
 		"Heavy Laser" 2
 		"Heavy Laser Turret"
@@ -1258,7 +1188,7 @@ ship "Marauder Raven"
 		"Supercapacitor" 3
 		"S-270 Regenerator"
 		"Liquid Nitrogen Cooler"
-		"Mass Expansion"
+		"Outfits Expansion"
 		
 		"A250 Atomic Thruster"
 		"A375 Atomic Steering"
@@ -1285,7 +1215,7 @@ ship "Marauder Raven" "Marauder Raven (Engines)"
 	sprite "ship/mravene"
 	attributes
 		category "Light Warship"
-		"cost" 2500000
+		"cost" 2250000
 		"shields" 5200
 		"hull" 1600
 		"required crew" 7
@@ -1299,11 +1229,6 @@ ship "Marauder Raven" "Marauder Raven (Engines)"
 		"weapon capacity" 105
 		"engine capacity" 130
 		"self destruct" .15
-		weapon
-			"blast radius" 65
-			"shield damage" 650
-			"hull damage" 350
-			"hit force" 1000
 	outfits
 		"Heavy Laser" 4
 		"Heavy Laser Turret"
@@ -1312,7 +1237,7 @@ ship "Marauder Raven" "Marauder Raven (Engines)"
 		"Supercapacitor"
 		"S-270 Regenerator"
 		"Liquid Nitrogen Cooler"
-		"Mass Expansion"
+		"Outfits Expansion"
 		
 		"A370 Atomic Thruster"
 		"A375 Atomic Steering"
@@ -1339,7 +1264,7 @@ ship "Marauder Raven" "Marauder Raven (Weapons)"
 	sprite "ship/mravenw"
 	attributes
 		category "Light Warship"
-		"cost" 2500000
+		"cost" 2250000
 		"shields" 5200
 		"hull" 1600
 		"required crew" 7
@@ -1353,11 +1278,6 @@ ship "Marauder Raven" "Marauder Raven (Weapons)"
 		"weapon capacity" 135
 		"engine capacity" 110
 		"self destruct" .15
-		weapon
-			"blast radius" 65
-			"shield damage" 650
-			"hull damage" 350
-			"hit force" 1000
 	outfits
 		"Plasma Cannon" 2
 		"Pulse Cannon" 2
@@ -1367,7 +1287,7 @@ ship "Marauder Raven" "Marauder Raven (Weapons)"
 		"Supercapacitor" 2
 		"S-270 Regenerator"
 		"Liquid Nitrogen Cooler"
-		"Mass Expansion"
+		"Outfits Expansion"
 		
 		"A250 Atomic Thruster"
 		"A375 Atomic Steering"
@@ -1447,7 +1367,7 @@ ship "Marauder Splinter" "Marauder Splinter (Engines)"
 	sprite "ship/msplintere"
 	attributes
 		category "Medium Warship"
-		"cost" 3750000
+		"cost" 3400000
 		"shields" 5700
 		"hull" 1950
 		"required crew" 14
@@ -1461,11 +1381,6 @@ ship "Marauder Splinter" "Marauder Splinter (Engines)"
 		"weapon capacity" 165
 		"engine capacity" 130
 		"self destruct" .15
-		weapon
-			"blast radius" 60
-			"shield damage" 600
-			"hull damage" 300
-			"hit force" 900
 	outfits
 		"Plasma Cannon" 2
 		"Quad Blaster Turret" 2
@@ -1504,7 +1419,7 @@ ship "Marauder Splinter" "Marauder Splinter (Weapons)"
 	sprite "ship/msplinterw"
 	attributes
 		category "Medium Warship"
-		"cost" 3750000
+		"cost" 3400000
 		"shields" 5700
 		"hull" 1950
 		"required crew" 14
@@ -1518,11 +1433,6 @@ ship "Marauder Splinter" "Marauder Splinter (Weapons)"
 		"weapon capacity" 180
 		"engine capacity" 110
 		"self destruct" .15
-		weapon
-			"blast radius" 60
-			"shield damage" 600
-			"hull damage" 300
-			"hit force" 900
 	outfits
 		"Plasma Cannon" 4
 		"Quad Blaster Turret" 2

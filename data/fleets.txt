@@ -1054,6 +1054,7 @@ fleet "Navy Surveillance"
 fleet "Small Deep"
 	government "Republic"
 	names "deep"
+	fighters "deep fighter"
 	cargo 0
 	personality
 		heroic
@@ -1188,6 +1189,90 @@ fleet "Large Deep"
 	variant 1
 		"Star Queen"
 		"Raven (Afterburner)" 2
+
+fleet "Small Deep Military"
+	government "Republic"
+	names "deep"
+	fighters "deep fighter"
+	cargo 0
+	personality
+		heroic
+	variant 4
+		"Aerie"
+		"Dagger" 2
+	variant 3
+		"Raven"
+	variant 1
+		"Raven (Heavy)"
+	variant 1
+		"Raven (Afterburner)"
+	variant 3
+		"Headhunter"
+	variant 2
+		"Headhunter (Particle)"
+	variant 4
+		"Corvette"
+	variant 2
+		"Corvette (Speedy)"
+	variant 2
+		"Corvette (Missile)"
+
+fleet "Large Deep Military"
+	government "Republic"
+	names "deep"
+	fighters "deep fighter"
+	cargo 0
+	personality
+		heroic
+	variant 5
+		"Aerie"
+		"Dagger" 2
+		"Corvette"
+	variant 2
+		"Aerie"
+		"Dagger" 2
+		"Corvette (Missile)"
+	variant 2
+		"Aerie"
+		"Dagger" 2
+		"Corvette (Speedy)"
+	variant 3
+		"Aerie"
+		"Dagger" 2
+		"Raven"
+	variant 1
+		"Aerie"
+		"Dagger" 2
+		"Raven (Heavy)"
+	variant 1
+		"Aerie"
+		"Dagger" 2
+		"Raven (Afterburner)"
+	variant 4
+		"Raven" 2
+	variant 2
+		"Raven (Heavy)" 2
+	variant 3
+		"Headhunter" 2
+	variant 2
+		"Headhunter (Particle)" 2
+	variant 3
+		"Aerie" 2
+		"Dagger" 4
+	variant 8
+		"Corvette"
+		"Raven"
+	variant 4
+		"Corvette (Speedy)"
+		"Raven (Afterburner)"
+	variant 4
+		"Corvette (Missile)"
+		"Raven (Heavy)"
+	variant 5
+		"Corvette" 2
+	variant 3
+		"Corvette (Speedy)"
+		"Corvette (Missile)"
 
 fleet "Small Oathkeeper"
 	government "Navy (Oathkeeper)"
@@ -1779,37 +1864,111 @@ fleet "pirate raid"
 	personality
 		nemesis plunders harvests
 		confusion 20
-	variant 10
-		Sparrow 3
-	variant 10
-		Sparrow 4
-	variant 10
-		Hawk 2
-	variant 10
-		Hawk
-		Sparrow 2
-	variant 10
-		Fury
-		Sparrow 2
-	variant 10
-		Hawk
-		Fury
-		Sparrow
-	variant 10
-		Fury 3
-	variant 10
-		Fury 2
-		Sparrow
+	variant 3
+		"Argosy (Blaster)"
 	variant 2
-		Firebird
+		"Argosy (Laser)"
 	variant 2
-		Quicksilver
+		"Argosy (Turret)"
 	variant 1
+		"Modified Argosy"
+	variant 1
+		"Modified Argosy (Heavy)"
+	variant 1
+		"Modified Argosy (Blaster)"
+	variant 2
+		"Clipper (Speedy)"
+	variant 1
+		"Clipper (Heavy)"
+		"Hawk (Rocket)"
+	variant 1
+		"Clipper (Speedy)"
+		"Hawk (Speedy)"
+	variant 6
+		"Hawk (Speedy)" 3
+	variant 1
+		"Argosy (Blaster)"
+		"Hawk (Rocket)"
+	variant 1
+		"Argosy (Laser)"
+		"Hawk (Speedy)"
+	variant 1
+		"Argosy (Turret)"
+		"Hawk (Speedy)"
+	variant 1
+		"Argosy (Missile)"
+		"Hawk (Rocket)"
+	variant 1
+		"Modified Argosy (Heavy)"
+		"Hawk (Speedy)" 2
+	variant 1
+		"Modified Argosy (Blaster)"
 		"Raven (Afterburner)" 2
+	variant 2
+		"Falcon"
 	variant 1
-		Leviathan
+		"Falcon (Heavy)"
 	variant 1
-		Falcon
+		"Falcon (Laser)"
+	variant 5
+		"Quicksilver (Proton)" 3
+	variant 2
+		"Quicksilver" 3
+	variant 3
+		"Splinter"
+		"Quicksilver (Proton)"
+	variant 3
+		"Splinter (Laser)"
+		"Quicksilver"
+	variant 4
+		"Manta (Proton)"
+	variant 2
+		"Manta"
+	variant 2
+		"Splinter" 2
+	variant 1
+		"Splinter (Laser)" 2
+	variant 2
+		"Firebird"
+	variant 1
+		"Firebird (Plasma)"
+	variant 4
+		"Firebird"
+	variant 2
+		"Firebird (Plasma)"
+	variant 3
+		"Firebird"
+		"Corvette"
+	variant 1
+		"Firebird (Plasma)"
+		"Corvette (Speedy)"
+	variant 2
+		"Firebird"
+		"Berserker" 2
+	variant 1
+		"Firebird (Plasma)"
+		"Fury (Missile)"
+	variant 8
+		"Raven (Afterburner)" 2
+	variant 2
+		"Raven (Heavy)" 2
+	variant 1
+		"Headhunter (Particle)" 3
+	variant 2
+		"Leviathan"
+		"Firebird"
+	variant 2
+		"Leviathan (Laser)"
+		"Firebird"
+	variant 2
+		"Leviathan (Heavy)"
+		"Firebird (Plasma)"
+	variant 1
+		"Berserker" 3
+	variant 8
+		"Berserker (Afterburner)" 3
+	variant 2
+		"Berserker (Afterburner)" 2
 
 fleet "Syndicate Extremists"
 	government "Syndicate (Extremist)"
