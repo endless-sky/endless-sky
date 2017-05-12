@@ -72,7 +72,12 @@ BoardingPanel::BoardingPanel(PlayerInfo &player, const shared_ptr<Ship> &victim)
 	// outfits are also unplunderable, like mass expansions.
 	for(const auto &it : victim->Outfits())
 		if(!it.first->Get("unplunderable") && it.second)
-			plunder.emplace_back(it.first, it.second);
+			plunder.emplace_back(it.first, it.second, "equipped");
+
+	// Outfits stored in cargo can always be plundered.
+	for(const auto &it : victim->Cargo().Outfits())
+		if(it.second)
+			plunder.emplace_back(it.first, it.second, "cargo");	
 	
 	// Some "ships" do not represent something the player could actually pilot.
 	if(!victim->IsCapturable())
@@ -221,13 +226,19 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 					for( ; count && you->Attributes().CanAdd(*outfit); --count)
 					{
 						you->AddOutfit(outfit, 1);
-						victim->AddOutfit(outfit, -1);
+						if(plunder[selected].Location() == "equipped")
+							victim->AddOutfit(outfit, -1);
+						else
+							victim->Cargo().Remove(outfit, 1);	
 					}
 					break;
 				}
 			// Transfer as many as possible of these outfits to your cargo hold.
 			count = cargo.Add(outfit, count);
-			victim->AddOutfit(outfit, -count);
+			if(plunder[selected].Location() == "equipped")
+				victim->AddOutfit(outfit, -count);
+			else
+				victim->Cargo().Remove(outfit, count);	
 		}
 		else
 			count = victim->Cargo().Transfer(plunder[selected].Name(), count, &cargo);
@@ -491,8 +502,9 @@ BoardingPanel::Plunder::Plunder(const string &commodity, int count, int unitValu
 
 
 // Constructor (outfit installed in the victim ship).
-BoardingPanel::Plunder::Plunder(const Outfit *outfit, int count)
-	: name(outfit->Name()), outfit(outfit), count(count), unitValue(outfit->Cost() * Depreciation::Full())
+BoardingPanel::Plunder::Plunder(const Outfit *outfit, int count, string location)
+	: name(outfit->Name()), outfit(outfit), count(count), unitValue(outfit->Cost() * Depreciation::Full()),
+	location(location)
 {
 	UpdateStrings();
 }
@@ -521,6 +533,14 @@ int BoardingPanel::Plunder::Count() const
 int64_t BoardingPanel::Plunder::UnitValue() const
 {
 	return unitValue;
+}
+
+
+
+// Get the location of the outfit to be plundered.
+const string &BoardingPanel::Plunder::Location() const
+{
+	return location;
 }
 
 

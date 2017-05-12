@@ -63,7 +63,7 @@ private:
 	public:
 		// Plunder can be either outfits or commodities.
 		Plunder(const std::string &commodity, int count, int unitValue);
-		Plunder(const Outfit *outfit, int count);
+		Plunder(const Outfit *outfit, int count, std::string location);
 		
 		// Sort by value per ton of mass.
 		bool operator<(const Plunder &other) const;
@@ -74,6 +74,8 @@ private:
 		// Get the value of each unit of this plunder item.
 		int64_t UnitValue() const;
 		
+		// Get the location of the outfit to be plundered.
+		const std::string &Location() const;
 		// Get the name of this item. If it is a commodity, this is its name.
 		const std::string &Name() const;
 		// Get the mass, in the format "<count> x <unit mass>". If this is a
@@ -100,6 +102,7 @@ private:
 		const Outfit *outfit;
 		int count;
 		int64_t unitValue;
+		std::string location;
 		std::string size;
 		std::string value;
 	};
