@@ -386,6 +386,19 @@ const vector<StellarObject> &System::Objects() const
 
 
 
+// Get the stellar object (if any) for the given planet.
+const StellarObject *System::FindStellar(const Planet *planet) const
+{
+	if(planet)
+		for(const StellarObject &object : objects)
+			if(object.GetPlanet() == planet)
+				return &object;
+	
+	return nullptr;
+}
+
+
+
 // Get the habitable zone's center.
 double System::HabitableZone() const
 {

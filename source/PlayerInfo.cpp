@@ -2136,7 +2136,7 @@ void PlayerInfo::Save(const string &path) const
 	for(const System *system : travelPlan)
 		out.Write("travel", system->Name());
 	if(travelDestination)
-		out.Write("travel destination", travelDestination->Name());
+		out.Write("travel destination", travelDestination->TrueName());
 	
 	out.Write("reputation with");
 	out.BeginChild();

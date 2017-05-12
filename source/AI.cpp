@@ -2145,9 +2145,6 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 						bestDestination = planet;
 				}
 		}
-		// Special case: the player has manually specified a destination.
-		if(player.TravelDestination() && player.TravelDestination()->IsInSystem(system))
-			bestDestination = player.TravelDestination();
 		
 		// Inform the player of any destinations in the system they are jumping to.
 		if(!destinations.empty())
@@ -2172,11 +2169,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 		// If any destination was found, find the corresponding stellar object
 		// and set it as your ship's target planet.
 		if(bestDestination)
-		{
-			for(const StellarObject &object : system->Objects())
-				if(object.GetPlanet() == bestDestination)
-					ship.SetTargetStellar(&object);
-		}
+			ship.SetTargetStellar(system->FindStellar(bestDestination));
 	}
 	wasHyperspacing = ship.IsEnteringHyperspace();
 	
@@ -2476,6 +2469,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 		{
 			Messages::Add("Autopilot: landing on " + planet->Name() + ".");
 			keyStuck |= Command::LAND;
+			ship.SetTargetStellar(ship.GetSystem()->FindStellar(planet));
 		}
 	}
 	
