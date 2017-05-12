@@ -111,17 +111,21 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 		// others don't have that jump method, they are being carried as fighters.
 		// That is, content creators should avoid creating fleets with a mix of jump
 		// drives and hyperdrives.
-		int jumpType = 0;
+		bool hasJump = false;
+		bool hasHyper = false;
 		for(const Ship *ship : variant.ships)
-			jumpType = max(jumpType,
-				 ship->Attributes().Get("jump drive") ? 200 :
-				 ship->Attributes().Get("hyperdrive") ? 100 : 0);
-		if(jumpType)
 		{
-			// Don't try to make a fleet "enter" from another system if none of the
-			// ships have jump drives.
+			if(ship->Attributes().Get("jump drive"))
+				hasJump = true;
+			if(ship->Attributes().Get("hyperdrive"))
+				hasHyper = true;
+		}
+		// Don't try to make a fleet "enter" from another system if none of the
+		// ships have jump drives.
+		if(hasJump || hasHyper)
+		{
 			bool isWelcomeHere = !system.GetGovernment()->IsEnemy(government);
-			for(const System *neighbor : (jumpType == 200 ? system.Neighbors() : system.Links()))
+			for(const System *neighbor : (hasJump ? system.Neighbors() : system.Links()))
 			{
 				// If this ship is not "welcome" in the current system, prefer to have
 				// it enter from a system that is friendly to it. (This is for realism,
@@ -129,7 +133,7 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 				if(isWelcomeHere || neighbor->GetGovernment()->IsEnemy(government))
 					linkVector.push_back(neighbor);
 				else
-					linkVector.insert(linkVector.end(), 4, neighbor);
+					linkVector.insert(linkVector.end(), 8, neighbor);
 			}
 		}
 	
