@@ -402,7 +402,7 @@ double System::AsteroidBelt() const
 
 
 
-// Get the number of stars in the system
+// Get the number of stars in the system.
 int System::StarCount() const
 {
 	return starCount;
@@ -410,7 +410,7 @@ int System::StarCount() const
 
 
 
-// Get the number of planets in the system
+// Get the number of planets in the system.
 int System::PlanetCount() const
 {
 	return planetCount;
@@ -418,7 +418,7 @@ int System::PlanetCount() const
 
 
 
-// Get the number of moons in the system
+// Get the number of moons in the system.
 int System::MoonCount() const
 {
 	return moonCount;
@@ -426,10 +426,26 @@ int System::MoonCount() const
 
 
 
-// Get the number of space stations in the system
+// Get the number of space stations in the system.
 int System::StationCount() const
 {
 	return stationCount;
+}
+
+
+
+// Get the number of inhabited objects in the system.
+int System::InhabitedCount() const
+{
+	int inhabitedCount = 0;
+	for(const StellarObject &object : objects)
+		if(object.GetPlanet())
+		{
+			if(object.GetPlanet()->IsInhabited())
+				++inhabitedCount;
+		}
+	
+	return inhabitedCount;
 }
 
 

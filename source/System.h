@@ -105,11 +105,12 @@ public:
 	double HabitableZone() const;
 	// Get the radius of the asteroid belt.
 	double AsteroidBelt() const;
-	// Get the number of ____ in this system
+	// Get the number of the type of object in this system.
 	int StarCount() const;
 	int PlanetCount() const;
 	int MoonCount() const;
 	int StationCount() const;
+	int InhabitedCount() const;
 	// Check if this system is inhabited.
 	bool IsInhabited(const Ship *ship) const;
 	// Check if ships of the given government can refuel in this system.
