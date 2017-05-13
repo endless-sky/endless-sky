@@ -132,7 +132,7 @@ outfit "Small Thrust Module"
 	"thrust" 6.6
 	"thrusting energy" 0.46
 	"thrusting heat" 3.5
-	"flare sprite" "effect/coalition flare/coalition small flare"
+	"flare sprite" "effect/coalition flare/small"
 		"frame rate" 4.8
 	"flare sound" "atomic tiny"
 	description "This tiny thruster produces a considerable amount of thrust... but also a considerable amount of heat."
@@ -147,7 +147,7 @@ outfit "Large Thrust Module"
 	"thrust" 26.2
 	"thrusting energy" 1.7
 	"thrusting heat" 12.5
-	"flare sprite" "effect/coalition flare/coalition large flare"
+	"flare sprite" "effect/coalition flare/large"
 		"frame rate" 3.5
 	"flare sound" "atomic small"
 	description "Coalition engineers prefer to focus on perfecting a few versatile designs rather than producing a wide range of them. This thruster is quite efficient, but large ships will need several of them stacked together to produce sufficient thrust."
