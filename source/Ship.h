@@ -23,6 +23,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Outfit.h"
 #include "Personality.h"
 #include "Point.h"
+#include "PlayerInfo.h"
 
 #include <list>
 #include <map>
@@ -153,7 +154,7 @@ public:
 	// Move this ship. A ship may create effects as it moves, in particular if
 	// it is in the process of blowing up. If this returns false, the ship
 	// should be deleted.
-	bool Move(std::list<Effect> &effects, std::list<std::shared_ptr<Flotsam>> &flotsam);
+	bool Move(std::list<Effect> &effects, std::list<std::shared_ptr<Flotsam>> &flotsam, PlayerInfo &player);
 	// Launch any ships that are ready to launch.
 	void Launch(std::list<std::shared_ptr<Ship>> &ships);
 	// Check if this ship is boarding another ship. If it is, it either plunders
@@ -452,6 +453,7 @@ private:
 	const Planet *landingPlanet = nullptr;
 	
 	int hyperspaceCount = 0;
+	int jumpCount = 0;
 	const System *hyperspaceSystem = nullptr;
 	bool isUsingJumpDrive = false;
 	double hyperspaceFuelCost = 0.;

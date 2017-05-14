@@ -31,6 +31,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <cmath>
 #include <iostream>
 
+#define PI 3.141592653589793238462643383279
+
 using namespace std;
 
 const vector<string> Ship::CATEGORIES = {
@@ -702,7 +704,7 @@ const Command &Ship::Commands() const
 // Move this ship. A ship may create effects as it moves, in particular if
 // it is in the process of blowing up. If this returns false, the ship
 // should be deleted.
-bool Ship::Move(list<Effect> &effects, list<shared_ptr<Flotsam>> &flotsam)
+bool Ship::Move(list<Effect> &effects, list<shared_ptr<Flotsam>> &flotsam, PlayerInfo &player)
 {
 	// Check if this ship has been in a different system from the player for so
 	// long that it should be "forgotten." Also eliminate ships that have no
@@ -896,8 +898,8 @@ bool Ship::Move(list<Effect> &effects, list<shared_ptr<Flotsam>> &flotsam)
 		static const int HYPER_C = 100;
 		static const double HYPER_A = 2.;
 		static const double HYPER_D = 1000.;
-		bool hasMultiJump = attributes.Get("multi jump");
-		int nextCost = JumpFuel(targetSystem);
+		int nextCost = 0;
+		int multiJump = attributes.Get("multi jump");
 		if(hyperspaceSystem)
 			fuel -= hyperspaceFuelCost / HYPER_C;
 		
@@ -909,23 +911,44 @@ bool Ship::Move(list<Effect> &effects, list<shared_ptr<Flotsam>> &flotsam)
 		if(hyperspaceCount == HYPER_C)
 		{
 			currentSystem = hyperspaceSystem;
-			if (hasMultiJump && nextCost && fuel >= nextCost)
+			hyperspaceSystem = nullptr;
+			targetSystem = nullptr;
+			if (multiJump > jumpCount && government->IsPlayer() && player.Flagship()->currentSystem == currentSystem && player.HasTravelPlan())
 			{
+				player.PopTravel();
+				if (player.HasTravelPlan())
+				{
+					targetSystem = player.TravelPlan().back();
+					nextCost = JumpFuel(targetSystem);
+				}
+			}
+			if (targetSystem && nextCost && fuel >= nextCost)
+			{
+				jumpCount++;
 				hyperspaceSystem = GetTargetSystem();
 				isUsingJumpDrive = !attributes.Get("hyperdrive") || !currentSystem->Links().count(hyperspaceSystem);
 				hyperspaceFuelCost = JumpFuel(hyperspaceSystem);
 				if (!isUsingJumpDrive)
 				{
 					Point targetVector = hyperspaceSystem->Position() - currentSystem->Position();
-					angle = atan(targetVector.Y()/targetVector.X());
-					velocity = velocity.Length() * angle.Unit();
+					double shift = atan(targetVector.Y()/targetVector.X()) * 180 / PI;
+					shift += shift < 0 ? 90 : -90;
+					if (shift > 180)
+						shift = -1 * (shift - 180);
+					if (shift < -180)
+						shift = -1 * (shift + 180);
+					angle = shift;
+					velocity = (velocity.Length() - (jumpCount > 1 ? HYPER_A * HYPER_C : 0)) * angle.Unit();
 				}
 				hyperspaceCount = 0;
 			}
 			else
 			{
-				hyperspaceSystem = nullptr;
-				targetSystem = nullptr;
+				if (jumpCount > 0)
+				{
+					velocity = (velocity.Length() - HYPER_A * HYPER_C) * angle.Unit();
+					jumpCount = 0;
+				}
 				// Check if the target planet is in the destination system or not.
 				const Planet *planet = (targetPlanet ? targetPlanet->GetPlanet() : nullptr);
 				if(!planet || planet->IsWormhole() || !planet->IsInSystem(currentSystem))

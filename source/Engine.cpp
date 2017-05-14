@@ -968,7 +968,7 @@ void Engine::CalculateStep()
 		bool wasHyperspacing = (*it)->IsHyperspacing();
 		// Give the ship the list of effects so that it can draw explosions,
 		// ion sparks, jump drive flashes, etc.
-		if(!(*it)->Move(effects, flotsam))
+		if(!(*it)->Move(effects, flotsam, player))
 		{
 			// If Move() returns false, it means the ship should be removed from
 			// play. That may be because it was destroyed, because it is an
