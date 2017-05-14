@@ -914,9 +914,10 @@ bool Ship::Move(list<Effect> &effects, list<shared_ptr<Flotsam>> &flotsam, Playe
 			hyperspaceSystem = nullptr;
 			targetSystem = nullptr;
 			// Check if eligible for a multi-jump.
-			if (multiJump > jumpCount && government->IsPlayer() && player.Flagship()->currentSystem == currentSystem && player.HasTravelPlan())
+			if (multiJump > jumpCount && government->IsPlayer() && player.HasTravelPlan())
 			{
-				player.PopTravel();
+				if (!player.Flagship()->GetTargetSystem() && player.Flagship()->name == name)
+					player.PopTravel();
 				if (player.HasTravelPlan())
 				{
 					targetSystem = player.TravelPlan().back();
@@ -947,6 +948,10 @@ bool Ship::Move(list<Effect> &effects, list<shared_ptr<Flotsam>> &flotsam, Playe
 				else
 					fuel -= hyperspaceFuelCost * 3 / 4;
 				hyperspaceCount -= HYPER_C / 4;
+				// Have all ships exit hyperspace at the same distance so that
+				// your escorts always stay with you.
+				position = Point() - (HYPER_C * HYPER_C * HYPER_C * HYPER_A + HYPER_D) * angle.Unit();
+				position += hyperspaceOffset;
 			}
 			else
 			{
