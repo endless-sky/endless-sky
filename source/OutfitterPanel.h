@@ -55,7 +55,7 @@ protected:
 	virtual void Sell() override;
 	virtual void FailSell() const override;
 	virtual bool FlightCheck() override;
-	virtual void DrawKey();
+	virtual void DrawKey() override;
 	
 	
 private:
