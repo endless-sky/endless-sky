@@ -900,6 +900,7 @@ bool Ship::Move(list<Effect> &effects, list<shared_ptr<Flotsam>> &flotsam, Playe
 		static const double HYPER_D = 1000.;
 		int nextCost = 0;
 		int multiJump = attributes.Get("multi jump");
+		bool willUseJumpDrive = false;
 		if(hyperspaceSystem)
 			fuel -= hyperspaceFuelCost / HYPER_C;
 		
@@ -920,9 +921,10 @@ bool Ship::Move(list<Effect> &effects, list<shared_ptr<Flotsam>> &flotsam, Playe
 				{
 					targetSystem = player.TravelPlan().back();
 					nextCost = JumpFuel(targetSystem);
+					willUseJumpDrive = !attributes.Get("hyperdrive") || !currentSystem->Links().count(targetSystem);
 				}
 			}
-			if (targetSystem && nextCost && fuel >= nextCost)
+			if (targetSystem && nextCost && fuel >= nextCost && (willUseJumpDrive == isUsingJumpDrive))
 			{
 				jumpCount++;
 				hyperspaceSystem = GetTargetSystem();
@@ -937,16 +939,22 @@ bool Ship::Move(list<Effect> &effects, list<shared_ptr<Flotsam>> &flotsam, Playe
 					if (targetVector.Y() < 0 && targetVector.Y() * targetVector.X() < 0)
 						shift *= -1;
 					angle = shift;
-					velocity = (velocity.Length() - (jumpCount > 1 ? HYPER_A * HYPER_C : 0)) * angle.Unit();
+					velocity = (velocity.Length() - (didDrive ? HYPER_A * HYPER_C : 0)) * angle.Unit();
+					hyperspaceCount -= HYPER_C / 2;
+					didDrive = true;
 				}
-				hyperspaceCount = 0;
+				else
+					fuel -= hyperspaceFuelCost / 2;
+				hyperspaceCount -= HYPER_C / 2;
 			}
 			else
 			{
 				if (jumpCount > 0)
 				{
-					velocity = (velocity.Length() - HYPER_A * HYPER_C) * angle.Unit();
+					if (didDrive)
+						velocity = (velocity.Length() - HYPER_A * HYPER_C) * angle.Unit();
 					jumpCount = 0;
+					didDrive = false;
 				}
 				// Check if the target planet is in the destination system or not.
 				const Planet *planet = (targetPlanet ? targetPlanet->GetPlanet() : nullptr);

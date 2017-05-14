@@ -454,6 +454,7 @@ private:
 	
 	int hyperspaceCount = 0;
 	int jumpCount = 0;
+	bool didDrive = false;
 	const System *hyperspaceSystem = nullptr;
 	bool isUsingJumpDrive = false;
 	double hyperspaceFuelCost = 0.;
