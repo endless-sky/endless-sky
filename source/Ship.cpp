@@ -26,12 +26,11 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Random.h"
 #include "ShipEvent.h"
 #include "System.h"
+#include "pi.h"
 
 #include <algorithm>
 #include <cmath>
 #include <iostream>
-
-#define PI 3.141592653589793238462643383279
 
 using namespace std;
 
@@ -914,6 +913,7 @@ bool Ship::Move(list<Effect> &effects, list<shared_ptr<Flotsam>> &flotsam, Playe
 			currentSystem = hyperspaceSystem;
 			hyperspaceSystem = nullptr;
 			targetSystem = nullptr;
+			// Check if eligible for a multi-jump.
 			if (multiJump > jumpCount && government->IsPlayer() && player.Flagship()->currentSystem == currentSystem && player.HasTravelPlan())
 			{
 				player.PopTravel();
@@ -924,6 +924,7 @@ bool Ship::Move(list<Effect> &effects, list<shared_ptr<Flotsam>> &flotsam, Playe
 					willUseJumpDrive = !attributes.Get("hyperdrive") || !currentSystem->Links().count(targetSystem);
 				}
 			}
+			// Check if jump is over.
 			if (targetSystem && nextCost && fuel >= nextCost && (willUseJumpDrive == isUsingJumpDrive))
 			{
 				jumpCount++;
@@ -932,13 +933,13 @@ bool Ship::Move(list<Effect> &effects, list<shared_ptr<Flotsam>> &flotsam, Playe
 				hyperspaceFuelCost = JumpFuel(hyperspaceSystem);
 				if (!isUsingJumpDrive)
 				{
-					Point targetVector = currentSystem->Position() - hyperspaceSystem->Position();
+					Point targetVector = hyperspaceSystem->Position() - currentSystem->Position();
 					targetVector = targetVector.Unit();
-					Point zero = Point(0, 1);
-					double shift = acos(targetVector.Dot(zero)) * 180 / PI;
-					if (targetVector.Y() < 0 && targetVector.Y() * targetVector.X() < 0)
+					Point aPoint = angle.Unit();
+					shift = acos(targetVector.Dot(aPoint)) * TO_DEG;
+					// Check if the turn should be left or right.
+					if (aPoint.Y() * targetVector.X() - aPoint.X() * targetVector.Y() > 0)
 						shift *= -1;
-					angle = shift;
 					velocity = (velocity.Length() - (didDrive ? HYPER_A * HYPER_C : 0)) * angle.Unit();
 					hyperspaceCount -= HYPER_C / 2;
 					didDrive = true;
@@ -953,7 +954,7 @@ bool Ship::Move(list<Effect> &effects, list<shared_ptr<Flotsam>> &flotsam, Playe
 				{
 					if (didDrive)
 						velocity = (velocity.Length() - HYPER_A * HYPER_C) * angle.Unit();
-					jumpCount = 0;
+					shift = jumpCount = 0;
 					didDrive = false;
 				}
 				// Check if the target planet is in the destination system or not.
@@ -1006,6 +1007,10 @@ bool Ship::Move(list<Effect> &effects, list<shared_ptr<Flotsam>> &flotsam, Playe
 		if(!isUsingJumpDrive)
 		{
 			velocity += (HYPER_A * direction) * angle.Unit();
+			if (didDrive && hyperspaceCount < (HYPER_C / HYPER_A))
+			{
+				angle += HYPER_A * shift / HYPER_C;
+			}
 			if(!hyperspaceSystem)
 			{
 				// Exit hyperspace far enough from the planet to be able to land.
