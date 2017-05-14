@@ -941,12 +941,12 @@ bool Ship::Move(list<Effect> &effects, list<shared_ptr<Flotsam>> &flotsam, Playe
 					if (aPoint.Y() * targetVector.X() - aPoint.X() * targetVector.Y() > 0)
 						shift *= -1;
 					velocity = (velocity.Length() - (didDrive ? HYPER_A * HYPER_C : 0)) * angle.Unit();
-					hyperspaceCount -= HYPER_C / 2;
+					hyperspaceCount -= HYPER_C * 3 / 4;
 					didDrive = true;
 				}
 				else
-					fuel -= hyperspaceFuelCost / 2;
-				hyperspaceCount -= HYPER_C / 2;
+					fuel -= hyperspaceFuelCost * 3 / 4;
+				hyperspaceCount -= HYPER_C / 4;
 			}
 			else
 			{
@@ -1006,11 +1006,12 @@ bool Ship::Move(list<Effect> &effects, list<shared_ptr<Flotsam>> &flotsam, Playe
 		}
 		if(!isUsingJumpDrive)
 		{
-			velocity += (HYPER_A * direction) * angle.Unit();
 			if (didDrive && hyperspaceCount < (HYPER_C / HYPER_A))
-			{
 				angle += HYPER_A * shift / HYPER_C;
-			}
+			else
+				velocity += (HYPER_A * direction) * angle.Unit();
+			if (didDrive && hyperspaceCount == (HYPER_C / HYPER_A))
+				velocity = (velocity.Length() + HYPER_C) * angle.Unit();
 			if(!hyperspaceSystem)
 			{
 				// Exit hyperspace far enough from the planet to be able to land.
