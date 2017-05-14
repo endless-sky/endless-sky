@@ -78,8 +78,10 @@ BoardingPanel::BoardingPanel(PlayerInfo &player, const shared_ptr<Ship> &victim)
 		int count = 0;
 		// Merge the outfit lists from the ship itself and its cargo bay. If an
 		// outfit exists in both locations, combine the counts.
-		bool shipIsFirst = (cit == victim->Cargo().Outfits().end() || sit->first <= cit->first);
-		bool cargoIsFirst = (sit == victim->Outfits().end() || cit->first <= sit->first);
+		bool shipIsFirst = (cit == victim->Cargo().Outfits().end() || 
+			(sit != victim->Outfits().end() && sit->first <= cit->first));
+		bool cargoIsFirst = (sit == victim->Outfits().end() ||
+			(cit != victim->Cargo().Outfits().end() && cit->first <= sit->first));
 		if(shipIsFirst)
 		{
 			outfit = sit->first;
