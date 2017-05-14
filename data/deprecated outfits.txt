@@ -136,7 +136,7 @@ outfit "NDR-114 Android"
 	cost 80000
 	thumbnail "outfit/android"
 	"required crew" -1
-	"multi jump" 10
+	"multi jump" 2
 	unplunderable 1
 	description "For the price of more than two year's salary, you can replace one of your crew members with a robotic counterpart. Androids possess sufficient intelligence to perform most work, but each ship still needs a human captain. And, due to long-standing convention, robots are not allowed to take part in hand to hand combat."
 

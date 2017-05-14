@@ -930,13 +930,12 @@ bool Ship::Move(list<Effect> &effects, list<shared_ptr<Flotsam>> &flotsam, Playe
 				hyperspaceFuelCost = JumpFuel(hyperspaceSystem);
 				if (!isUsingJumpDrive)
 				{
-					Point targetVector = hyperspaceSystem->Position() - currentSystem->Position();
-					double shift = atan(targetVector.Y()/targetVector.X()) * 180 / PI;
-					shift += shift < 0 ? 90 : -90;
-					if (shift > 180)
-						shift = -1 * (shift - 180);
-					if (shift < -180)
-						shift = -1 * (shift + 180);
+					Point targetVector = currentSystem->Position() - hyperspaceSystem->Position();
+					targetVector = targetVector.Unit();
+					Point zero = Point(0, 1);
+					double shift = acos(targetVector.Dot(zero)) * 180 / PI;
+					if (targetVector.Y() < 0 && targetVector.Y() * targetVector.X() < 0)
+						shift *= -1;
 					angle = shift;
 					velocity = (velocity.Length() - (jumpCount > 1 ? HYPER_A * HYPER_C : 0)) * angle.Unit();
 				}
