@@ -51,8 +51,8 @@ public:
 	bool WasFiring() const;
 	// If this is a burst weapon, get the number of shots left in the burst.
 	int BurstRemaining() const;
-	// Perform one step (i.e. decrement the reload count).
-	void Step();
+	// Perform steps.
+	void Step(int frames = 1);	
 	
 	// Fire this weapon. If it is a turret, it automatically points toward
 	// the given ship's target. If the weapon requires ammunition, it will
