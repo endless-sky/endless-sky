@@ -71,6 +71,7 @@ private:
 	
 	std::map<std::string, int> events;
 	std::map<const Outfit *, int> gifts;
+	std::map<const Outfit *, int> requiredOutfits;
 	int64_t payment = 0;
 	int64_t paymentMultiplier = 0;
 	
