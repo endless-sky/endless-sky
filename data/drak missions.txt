@@ -76,3 +76,12 @@ mission "Drak guarding Sayaiban"
 			label end
 			`	The presence inside your head seems to fall away, and you are left talking to thin air.`
 				decline
+
+mission "Drak guarding Void Sprites"
+	invisible
+	landing
+	npc kill
+		government Drak
+		personality heroic vindictive staying
+		system Nenia
+		ship "Archon (Cloaked)" "Sleeping Dragon"
