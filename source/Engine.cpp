@@ -828,13 +828,14 @@ void Engine::EnterSystem()
 	if(!flagship)
 		return;
 	
-	const System *system = flagship->GetSystem();
-	Audio::PlayMusic(system->MusicName());
-	GameData::SetHaze(system->Haze());
-	
 	doEnter = true;
 	player.IncrementDate();
 	const Date &today = player.GetDate();
+	
+	const System *system = flagship->GetSystem();
+	Audio::PlayMusic(system->MusicName());
+	GameData::SetHaze(system->Haze());	
+	
 	Messages::Add("Entering the " + system->Name() + " system on "
 		+ today.ToString() + (system->IsInhabited(flagship) ?
 			"." : ". No inhabited planets detected."));
