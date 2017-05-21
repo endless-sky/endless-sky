@@ -3331,6 +3331,20 @@ event "syndicate tech available"
 
 
 
+event "Tarazed Graffias non-neutrality"
+	system "Tarazed"
+		government "Free Worlds"
+	system "Dabih"
+		government "Free Worlds"
+	system "Albireo"
+		government "Free Worlds"
+	system "Girtab"
+		government "Free Worlds"
+	system Graffias
+		government "Republic"
+
+
+
 event "geminus rebuilt"
 	planet Geminus
 		description `Geminus, although not the most hospitable of worlds, is a young enough planet that large stores of iron, titanium, and other metals are easily accessible near the surface. The constant volcanic activity leaves the planet perpetually shrouded in a twilight haze of ash and fog.`

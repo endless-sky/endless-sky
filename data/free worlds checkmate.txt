@@ -2627,6 +2627,7 @@ mission "FWC End"
 		event "syndicate tech available"
 		set "main plot completed"
 		set "free worlds plot completed"
+		event "Tarazed Graffias non-neutrality" 7
 		conversation
 			`You arrive in the Parliament building just as Alondo and Katya have finished meeting with them. "Good news," says Katya. "We're all officially pardoned. And you, Captain <last>, have become something of a hero."`
 			`	"Better yet," says Alondo, "the war with the Republic is over. We agreed to limiting our territory to its current size, and to a very minor tax to cover the cost of Navy protection if the aliens attack again or some other major catastrophe strikes. In return, the Free Worlds have been granted autonomy from the Republic."`

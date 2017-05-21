@@ -2509,6 +2509,7 @@ mission "FW Syndicate Extremists 1C"
 		payment 5000000
 		set "main plot completed"
 		set "free worlds plot completed"
+		event "Tarazed Graffias non-neutrality" 7
 		conversation
 			`On Earth, you return to something of a hero's welcome, far different from the first time you were here on a diplomatic mission. A crowd of locals gathers in the spaceport to watch your ship land. With the Free Worlds having been instrumental in defeating the aliens, and absolved of any guilt in the terrorist attacks, it seems that most people here are ready to see you as a hero rather than a criminal.`
 			`	You discover that Parliament has made a treaty with the Free Worlds, agreeing that the Free Worlds will be allowed autonomy in the region they currently control as long as they do not seek to expand their territory further. As of now, your war against the Republic is officially over.`
