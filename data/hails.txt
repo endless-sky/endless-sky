@@ -1822,6 +1822,10 @@ phrase "friendly"
 	word
 		"."
 
+phrase "friendly disabled"
+	word
+		"Our ship has been disabled! Please come board our ship and patch us up!"
+		
 # Shakespearean insults.
 phrase "hostile disabled"
 	word
