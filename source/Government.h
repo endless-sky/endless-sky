@@ -116,6 +116,7 @@ private:
 	double fine = 1.;
 	const Conversation *deathSentence = nullptr;
 	const Phrase *friendlyHail = nullptr;
+	const Phrase *friendlyDisabledHail = nullptr;
 	const Phrase *hostileHail = nullptr;
 	const Phrase *hostileDisabledHail = nullptr;
 	std::string language;

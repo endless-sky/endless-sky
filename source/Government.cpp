@@ -101,6 +101,8 @@ void Government::Load(const DataNode &node)
 			deathSentence = GameData::Conversations().Get(child.Token(1));
 		else if(child.Token(0) == "friendly hail" && child.Size() >= 2)
 			friendlyHail = GameData::Phrases().Get(child.Token(1));
+		else if(child.Token(0) == "friendly disabled hail" && child.Size() >= 2)
+			friendlyDisabledHail = GameData::Phrases().Get(child.Token(1));
 		else if(child.Token(0) == "hostile hail" && child.Size() >= 2)
 			hostileHail = GameData::Phrases().Get(child.Token(1));
 		else if(child.Token(0) == "hostile disabled hail" && child.Size() >= 2)
@@ -113,7 +115,9 @@ void Government::Load(const DataNode &node)
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
 	
-	// Default to the standard hostile disabled hail messages.
+	// Default to the standard disabled hail messages.
+	if(!friendlyDisabledHail)
+		friendlyDisabledHail = GameData::Phrases().Get("friendly disabled");
 	if(!hostileDisabledHail)
 		hostileDisabledHail = GameData::Phrases().Get("hostile disabled");
 }
@@ -210,12 +214,9 @@ string Government::GetHail(bool isDisabled) const
 	const Phrase *phrase = nullptr;
 	
 	if(IsEnemy())
-		if(isDisabled)
-			phrase = hostileDisabledHail;
-		else
-			phrase = hostileHail;
+		phrase = isDisabled ? hostileDisabledHail : hostileHail;
 	else
-		phrase = friendlyHail;
+		phrase = isDisabled ? friendlyDisabledHail : friendlyHail;
 		
 	return phrase ? phrase->Get() : "";
 }
