@@ -55,12 +55,16 @@ HailPanel::HailPanel(PlayerInfo &player, const shared_ptr<Ship> &ship)
 		message = "(There is no response to your hail.)";
 	else if(!hasLanguage)
 		message = "(An alien voice says something in a language you do not recognize.)";
-	else if(gov->IsEnemy() && !ship->IsDisabled())
+	// Update default hail responses based on the hailed ship's government and status condition.
+	else if(gov->IsEnemy())
 	{
-		SetBribe(gov->GetBribeFraction());
-		if(bribe)
-			message = "If you want us to leave you alone, it'll cost you "
-				+ Format::Number(bribe) + " credits.";
+		if(!ship->IsDisabled())
+		{
+			SetBribe(gov->GetBribeFraction());
+			if(bribe)
+				message = "If you want us to leave you alone, it'll cost you "
+					+ Format::Number(bribe) + " credits.";
+		}
 	}
 	else if(!gov->IsEnemy() && ship->IsDisabled())
 	{
