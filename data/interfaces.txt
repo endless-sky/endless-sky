@@ -370,7 +370,7 @@ interface "planet"
 		align right
 		pad 10 0
 	
-	visible if "is inhabited"
+	visible if "has jobs"
 	sprite "ui/planet dialog button"
 		center -400 150
 	button j "_Job Board"
@@ -379,6 +379,8 @@ interface "planet"
 		size 18
 		align left
 		pad 10 0
+	
+	visible if "has crew"
 	sprite "ui/planet dialog button"
 		center 280 210
 	button h "_Hire Crew"

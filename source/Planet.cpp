@@ -62,6 +62,12 @@ void Planet::Load(const DataNode &node, const Set<Sale<Ship>> &ships, const Set<
 			for(int i = 1; i < child.Size(); ++i)
 				attributes.insert(child.Token(i));
 		}
+		else if(child.Token(0) == "language" && child.Size() >= 2)
+		{
+			if(child.Token(1) == "clear")
+				language.clear();
+			language = child.Token(1);
+		}
 		else if(child.Token(0) == "description" && child.Size() >= 2)
 		{
 			if(resetDescription)
@@ -202,8 +208,8 @@ const string &Planet::Noun() const
 
 
 
-// Check whether there is a spaceport (which implies there is also trading,
-// jobs, banking, and hiring).
+// Check whether there is a spaceport (which implies that by default
+// there is also trading, jobs, banking, and hiring).
 bool Planet::HasSpaceport() const
 {
 	return !spaceport.empty();
@@ -227,7 +233,39 @@ bool Planet::IsInhabited() const
 }
 
 
-	
+
+// Check if this planet has trading (i.e. is inhabited and does not have "no trading" attribute)
+bool Planet::HasTrading() const
+{
+	return IsInhabited() && GetSystem()->HasTrade() && !attributes.count("no trading");
+}
+
+
+
+// Check if this planet has a job board (i.e. is inhabited and does not have "no jobs" attribute)
+bool Planet::HasJobs() const
+{
+	return IsInhabited() && !attributes.count("no jobs");
+}
+
+
+
+// Check if this planet has a bank (i.e. is inhabited and does not have "no banking" attribute)
+bool Planet::HasBanking() const
+{
+	return IsInhabited() && !attributes.count("no banking");
+}
+
+
+
+// Check if this planet has a bank (i.e. is inhabited and does not have "no crew" attribute)
+bool Planet::HasCrew() const
+{
+	return IsInhabited() && !attributes.count("no crew");
+}
+
+
+
 // Check if this planet has a shipyard.
 bool Planet::HasShipyard() const
 {
@@ -405,6 +443,15 @@ bool Planet::CanLand(const Ship &ship) const
 bool Planet::CanLand() const
 {
 	return GameData::GetPolitics().CanLand(this);
+}
+
+
+
+bool Planet::CanSpeakLanguage(const PlayerInfo &player) const
+{
+	if (language.empty())
+		return true; // No language requirement.
+	return player.GetCondition("language: " + language) > 0;
 }
 
 

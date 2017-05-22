@@ -49,6 +49,18 @@ private:
 	
 	
 private:
+	
+	// Shared condition checks used in Draw, KeyDown/Click.
+	bool CanShowDepart() const;
+	bool CanShowTrading(bool hasAccess = false) const;
+	bool CanShowBanking(bool hasAccess = false) const;
+	bool CanShowJobs(bool hasAccess = false) const;
+	bool CanShowCrew(bool hasAccess = false) const;
+	bool CanShowSpaceport(bool hasAccess = false) const;
+	bool CanShowShipyard(bool hasAccess = false) const;
+	bool CanShowOutfitter(bool hasAccess = false) const;
+	
+	
 	PlayerInfo &player;
 	std::function<void()> callback = nullptr;
 	bool requestedLaunch = false;
