@@ -26730,7 +26730,7 @@ planet "Varu Ek'lak'lai"
 planet "Varu K'est"
 	attributes wanderer military
 	landscape land/canyon5
-	description `Varu K'est is a spare, ancient planet of arid plateaus and deep, meandering canyons, with too little rainfall to support any but the hardiest of shrubs. The Wanderers have converted nearly all their villages on this planet into military bases in order to oppose the encroaching Hai raiders, and have also been forced to postpone their attempts at improving the local ecology.`
+	description `Varu K'est is a sparse, ancient planet of arid plateaus and deep, meandering canyons, with too little rainfall to support any but the hardiest of shrubs. The Wanderers have converted nearly all their villages on this planet into military bases in order to oppose the encroaching Hai raiders, and have also been forced to postpone their attempts at improving the local ecology.`
 	spaceport `The spaceport is a massive shipyard, with facilities for repairing the few warships that the Wanderers possess as well as creating new ships and weapons. Dozens of battle-scarred ships are parked in the hangars here, a stark contrast to the ports in the more peaceful regions of the Wanderer territory.`
 	shipyard "Wanderer Basics"
 	"required reputation" 15
