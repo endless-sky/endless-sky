@@ -258,7 +258,7 @@ bool Planet::HasBanking() const
 
 
 
-// Check if this planet has a bank (i.e. is inhabited and does not have "no crew" attribute)
+// Check if this planet has crew (i.e. is inhabited and does not have "no crew" attribute)
 bool Planet::HasCrew() const
 {
 	return IsInhabited() && !attributes.count("no crew");
@@ -449,9 +449,15 @@ bool Planet::CanLand() const
 
 bool Planet::CanSpeakLanguage(const PlayerInfo &player) const
 {
-	if (language.empty())
-		return true; // No language requirement.
-	return player.GetCondition("language: " + language) > 0;
+	string planetLanguage = language;
+	if(planetLanguage.empty())
+	{
+		// Default to requring the language of the local government, if any.
+		planetLanguage = GetGovernment()->Language();
+		if(planetLanguage.empty())
+			return true; // No language requirement.
+	}
+	return player.GetCondition("language: " + planetLanguage) > 0;
 }
 
 
