@@ -37,7 +37,7 @@ outfit "Inhibitor Cannon"
 		"hull damage" 19.5
 		"hit force" 39
 		"slowing damage" .5
-	description "TBD"
+	description `Nearly a century ago, a Remnant scout exploring space north of the Ember Waste came under fire from an alien fleet armed with weapons that interfered with the scout's engines. The story says that the Remnant captain calmly told her crew, "We aren't going home until we steal that weapon." That alien technology became the basis of the Inhibitor Cannon.`
 
 effect "inhibitor impact"
 	sprite "effect/inhibitor impact"
@@ -73,7 +73,7 @@ outfit "Thrasher Cannon"
 		"firing heat" 27
 		"shield damage" 38
 		"hull damage" 46
-	description "TBD"
+	description "This weapon was originally developed in an attempt to reverse engineer a long-range energy projectile favored by an alien species that the Remnant encountered nearby. In the process they discovered that by adding more energy to the projectiles they could do a lot more damage in exchange for shorter range, and the Thrasher Cannon was born."
 
 effect "thrasher impact"
 	sprite "effect/thrasher impact"
@@ -110,7 +110,7 @@ outfit "Thrasher Turret"
 		"firing heat" 27
 		"shield damage" 38
 		"hull damage" 46
-	description "TBD"
+	description "This turret mounts four Thrasher Cannons on a single rotating base. The resulting weapon deals a very satisfying amount of damage when fired from close range, especially against a slow-moving target."
 
 
 outfit "Point Defense Turret"
@@ -131,7 +131,7 @@ outfit "Point Defense Turret"
 		"reload" 10
 		"firing energy" 62
 		"firing heat" 18
-	description "TBD"
+	description "Not long after the Remnant settled on Aventine, they began to discover caches of alien technology in vaults deep under the mountains, guarded by ancient but still-functioning point-defense systems. The Remnant learned how to duplicate those defense systems, and they are now considered to be much more useful than most of the items that they were guarding."
 
 effect "point defense fire"
 	sprite "effect/point defense fire"
@@ -165,7 +165,7 @@ outfit "Crystal Capacitor"
 	"mass" 12
 	"outfit space" -12
 	"energy capacity" 3400
-	description "TBD"
+	description "These crystals, mined on the Remnant planet Viminal, can store a surprising amount of power in a compact form. Crystals pure enough to be used in such a manner are hard to find, however, and therefore rather pricy."
 
 
 outfit "Millennium Cell"
@@ -176,7 +176,7 @@ outfit "Millennium Cell"
 	"outfit space" -29
 	"energy generation" 3.5
 	"heat generation" 6.0
-	description "TBD"
+	description "This quite compact radiothermal generator uses isotopes so radioactive, and so tightly packed together, that it could almost be classified as a nuclear reactor."
 
 outfit "Epoch Cell"
 	category "Power"
@@ -186,7 +186,7 @@ outfit "Epoch Cell"
 	"outfit space" -98
 	"energy generation" 12.2
 	"heat generation" 19.8
-	description "TBD"
+	description "Efficient Remnant technology ensures that nearly all the heat produced by this generator's radioisotopes is converted into electricity instead of becoming waste heat."
 
 outfit "Aeon Cell"
 	category "Power"
@@ -196,7 +196,7 @@ outfit "Aeon Cell"
 	"outfit space" -160
 	"energy generation" 21.1
 	"heat generation" 31.5
-	description "TBD"
+	description "The early Remnant engineers did not trust the finicky and unpredictable nuclear reactors that were then in use in human space, so they instead focused on perfecting the art of radioisotope thermoelectric power."
 
 
 outfit "Thermoelectric Cooler"
@@ -207,16 +207,16 @@ outfit "Thermoelectric Cooler"
 	"outfit space" -4
 	"active cooling" 7
 	"cooling energy" .4
-	description "TBD"
+	description "This cooler is actually just one of the power-generating elements of a Millennium Cell, but wired so it can run in reverse: consuming electricity in order to transfer heat from a ship's systems to its exterior."
 
 outfit "Emergency Ramscoop"
 	category "Systems"
-	cost "72000"
+	cost 72000
 	thumbnail "outfit/unknown"
 	"mass" 4
 	"outfit space" -4
 	"ramscoop" 0.5
-	description "TBD"
+	description "The Ember Waste is the sort of place where only a very foolish captain would travel without some sort of device for replenishing hyperspace fuel. This ramscoop is not particularly powerful, but it allows a ship to explore without fear of getting stranded."
 
 
 outfit "Quantum Key Stone"
@@ -245,7 +245,7 @@ outfit "Crucible-Class Thruster"
 	"flare sprite" "effect/remnant small flare"
 		"frame rate" 5
 	"flare sound" "plasma tiny"
-	description "TBD"
+	description "These small but powerful engines are driven by ionized gas propelled at a sizable fraction of the speed of light."
 
 outfit "Forge-Class Thruster"
 	category "Engines"
@@ -260,7 +260,7 @@ outfit "Forge-Class Thruster"
 	"flare sprite" "effect/remnant medium flare"
 		"frame rate" 4
 	"flare sound" "plasma small"
-	description "TBD"
+	description "The Remnant has taken the basic ion thruster design that has been used by humanity since the dawn of spaceflight and made it significantly more powerful... but also more power-hungry."
 
 outfit "Smelter-Class Thruster"
 	category "Engines"
@@ -275,7 +275,7 @@ outfit "Smelter-Class Thruster"
 	"flare sprite" "effect/remnant large flare"
 		"frame rate" 3
 	"flare sound" "plasma medium"
-	description "TBD"
+	description "It is not unheard of for a Remnant ship's engines to draw even more power than its weapon systems: an indication, perhaps, of their preference for avoiding battle when possible."
 
 
 outfit "Crucible-Class Steering"
@@ -288,7 +288,7 @@ outfit "Crucible-Class Steering"
 	"turn" 448.0
 	"turning energy" 1.32
 	"turning heat" 1.4
-	description "TBD"
+	description "This steering system is tiny enough to fit even an interceptor, but the Remnant mostly use them to provide an extra bit of maneuverability for their larger ships"
 
 outfit "Forge-Class Steering"
 	category "Engines"
@@ -300,7 +300,7 @@ outfit "Forge-Class Steering"
 	"turn" 952.0
 	"turning energy" 2.64
 	"turning heat" 3.0
-	description "TBD"
+	description "This unusually power-hungry steering system packs a lot of power into a relatively small space. It seems that engine technology has progressed more rapidly for the Remnant than it has for the rest of humanity."
 
 outfit "Smelter-Class Steering"
 	category "Engines"
@@ -312,4 +312,4 @@ outfit "Smelter-Class Steering"
 	"turn" 1980.0
 	"turning energy" 5.21
 	"turning heat" 6.2
-	description "TBD"
+	description "It's unclear whether the Remnant's powerful engine systems are purely their own invention, or whether they are partly inspired by alien technology."
