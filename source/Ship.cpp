@@ -62,10 +62,13 @@ void Ship::Load(const DataNode &node)
 	{
 		modelName = node.Token(1);
 		pluralModelName = modelName + 's';
+		variantName = node.Token(1);
 	}
 	if(node.Size() >= 3)
+	{
 		base = GameData::Ships().Get(modelName);
-	
+		variantName = node.Token(2);
+	}
 	government = GameData::PlayerGovernment();
 	equipped.clear();
 	
@@ -341,7 +344,7 @@ void Ship::FinishLoading()
 	{
 		if(it.first->Name().empty())
 		{
-			cerr << "Unrecognized outfit in " << modelName << " \"" << name << "\"" << endl;
+			cerr << "Unrecognized outfit in " << variantName << " \"" << name << "\"" << endl;
 			continue;
 		}
 		attributes.Add(*it.first, it.second);
@@ -499,6 +502,13 @@ const string &Ship::ModelName() const
 const string &Ship::PluralModelName() const
 {
 	return pluralModelName;
+}
+
+
+
+const string &Ship::VariantName() const
+{
+	return variantName;
 }
 
 
