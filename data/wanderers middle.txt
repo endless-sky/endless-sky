@@ -773,6 +773,17 @@ event "Rename Korath Exiles"
 		government "Korath Exiles"
 
 
+#Patching in for older saves.
+mission "Rename Korath Exiles patch"
+	landing
+	invisible
+	to offer
+		has "Wanderers: Kor Efret 4: offered"
+	on offer
+		event "Rename Korath Exiles"
+		fail
+
+
 
 mission "Wanderers: Kor Efret 4"
 	landing
