@@ -448,6 +448,32 @@ outfit "Flamethrower"
 		"firing fuel" .25
 		"firing heat" 2
 	description "A crude but impressive-looking weapon, the Flamethrower ignites your hyperspace fuel and directs a stream of it towards your adversaries. The damage it does is relatively minor, but it can be useful for causing a target that is already operating near its thermal capacity to overheat, temporarily taking it out of the fight."
+	
+outfit "Flamethrower Turret"
+	category "Turrets"
+	cost 200000
+	thumbnail "outfit/flamethrower"
+	"mass" 24
+	"outfit space" -24
+	"weapon capacity" -24
+	"turret mounts" -1
+	"required crew" 1
+	weapon
+		sprite "effect/explosion/small"
+			"frame rate" 60
+			"no repeat"
+		sound "flamethrower"
+		icon "icon/flamethrower"
+		"submunition" "Flamethrower Projectile"
+		"inaccuracy" 12
+		"velocity" 10
+		"lifetime" 5
+		"reload" .5
+		"firing energy" .2
+		"firing fuel" .5
+		"firing heat" 1.5
+	description "A Flamethrower Turrets is a pair of flamethrowers mounted on a turret, designed to hit nearby fighters. While its fuel usage is significant, most fighters are unable to handle the heat."
+
 
 outfit "Flamethrower Projectile"
 	weapon
