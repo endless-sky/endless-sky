@@ -136,6 +136,8 @@ void Weapon::LoadWeapon(const DataNode &node)
 				damage[DISRUPTION_DAMAGE] = child.Value(1);
 			else if(child.Token(0) == "slowing damage")
 				damage[SLOWING_DAMAGE] = child.Value(1);
+			else if(child.Token(0) == "fuel damage")
+				damage[FUEL_DAMAGE] = child.Value(1);
 			else if(child.Token(0) == "hit force")
 				hitForce = child.Value(1);
 			else if(child.Token(0) == "piercing")

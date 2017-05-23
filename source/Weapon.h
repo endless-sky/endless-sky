@@ -96,6 +96,7 @@ public:
 	double IonDamage() const;
 	double DisruptionDamage() const;
 	double SlowingDamage() const;
+	double FuelDamage() const;
 	
 	double Piercing() const;
 	
@@ -170,12 +171,13 @@ private:
 	static const int ION_DAMAGE = 3;
 	static const int DISRUPTION_DAMAGE = 4;
 	static const int SLOWING_DAMAGE = 5;
-	mutable double damage[6] = {0., 0., 0., 0., 0., 0.};
+	static const int FUEL_DAMAGE = 6;
+	mutable double damage[7] = {0., 0., 0., 0., 0., 0., 0.};
 	
 	double piercing = 0.;
 	
 	// Cache the calculation of these values, for faster access.
-	mutable bool calculatedDamage[6] = {false, false, false, false, false, false};
+	mutable bool calculatedDamage[7] = {false, false, false, false, false, false, false};
 	mutable double totalLifetime = -1.;
 };
 
@@ -225,6 +227,7 @@ inline double Weapon::HeatDamage() const { return TotalDamage(HEAT_DAMAGE); }
 inline double Weapon::IonDamage() const { return TotalDamage(ION_DAMAGE); }
 inline double Weapon::DisruptionDamage() const { return TotalDamage(DISRUPTION_DAMAGE); }
 inline double Weapon::SlowingDamage() const { return TotalDamage(SLOWING_DAMAGE); }
+inline double Weapon::FuelDamage() const { return TotalDamage(FUEL_DAMAGE);}
 
 
 

@@ -2079,6 +2079,7 @@ int Ship::TakeDamage(const Projectile &projectile, bool isBlast)
 	double ionDamage = weapon.IonDamage();
 	double disruptionDamage = weapon.DisruptionDamage();
 	double slowingDamage = weapon.SlowingDamage();
+	double fuelDamage = weapon.FuelDamage();
 	bool wasDisabled = IsDisabled();
 	bool wasDestroyed = IsDestroyed();
 	
@@ -2094,6 +2095,19 @@ int Ship::TakeDamage(const Projectile &projectile, bool isBlast)
 	ionization += ionDamage * (1. - .5 * shieldFraction);
 	disruption += disruptionDamage * (1. - .5 * shieldFraction);
 	slowness += slowingDamage * (1. - .5 * shieldFraction);
+	// fuel
+	if((fuel > 0.) && (fuelDamage > 0.))
+	{
+		fuel -= fuelDamage * (1. - .5 * shieldFraction);
+		if(fuel < 0.)
+			fuel = 0.;
+	}
+	if((fuel < attributes.Get("fuel capacity")) && (fuelDamage < 0.))
+	{
+		fuel -= fuelDamage * (1.);
+		if(fuel > attributes.Get("fuel capacity"))
+			fuel = attributes.Get("fuel capacity");
+	}
 	
 	if(hitForce)
 	{
