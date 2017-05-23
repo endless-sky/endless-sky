@@ -3344,6 +3344,18 @@ event "Tarazed Graffias non-neutrality"
 		government "Republic"
 
 
+#Patching the non-neutrality event into older saves as well.
+mission "Tarazed Graffias non-neutrality patch"
+	landing
+	invisible
+	to offer
+		has "free worlds plot completed"
+	on offer
+		event "Tarazed Graffias non-neutrality" 7
+		fail
+
+
+
 
 event "geminus rebuilt"
 	planet Geminus
