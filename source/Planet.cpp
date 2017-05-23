@@ -62,6 +62,17 @@ void Planet::Load(const DataNode &node, const Set<Sale<Ship>> &ships, const Set<
 			for(int i = 1; i < child.Size(); ++i)
 				attributes.insert(child.Token(i));
 		}
+		else if(child.Token(0) == "attributes add" && child.Size() >= 2)
+		{
+			for(int i = 1; i < child.Size(); ++i)
+				// std::set::insert checks whether the element already exists, and if so, the element is not inserted
+				attributes.insert(child.Token(i));
+		}
+		else if(child.Token(0) == "attributes remove" && child.Size() >= 2)
+		{
+			for(int i = 1; i < child.Size(); ++i)
+				attributes.erase(child.Token(i));
+		}
 		else if(child.Token(0) == "description" && child.Size() >= 2)
 		{
 			if(resetDescription)
