@@ -1573,6 +1573,8 @@ mission "FW Bounty 1"
 		"combat rating" > 200
 		random <= 25
 		not "chosen sides"
+	to fail
+		has "chosen sides"
 	
 	on offer
 		conversation
@@ -1611,6 +1613,8 @@ mission "FW Bounty 2"
 		has "FW Bounty 1: done"
 		random <= 30
 		not "chosen sides"
+	to fail
+		has "chosen sides"
 	
 	on offer
 		conversation
@@ -1644,6 +1648,8 @@ mission "FW Bounty 3"
 		has "FW Bounty 2: done"
 		random <= 30
 		not "chosen sides"
+	to fail
+		has "chosen sides"
 	
 	on offer
 		conversation
