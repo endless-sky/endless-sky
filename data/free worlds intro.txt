@@ -1601,6 +1601,8 @@ mission "FW Bounty 1"
 	on complete
 		payment 200000
 		dialog `The militia officer who asked you to hunt down the "Rat Pack" arrives at your ship soon after you land and thanks you profusely. "Now we won't have to worry about them bothering ships in this sector anymore." She pays you <payment> and says she'll tell other militia leaders how helpful you were.`
+	on fail
+		dialog `You abandon hunting the "Rat Pack" since you are now a member of the Free Worlds militia.`
 
 
 
@@ -1636,6 +1638,8 @@ mission "FW Bounty 2"
 	on complete
 		payment 200000
 		dialog `The militia officer who asked you to hunt down the <npc> meets you in the spaceport and pays you <payment>. "Once again, thank you for assisting us," he says.`
+	on fail
+		dialog `You abandon hunting the <npc> since you are now a member of the Free Worlds militia.`
 
 
 
@@ -1671,6 +1675,8 @@ mission "FW Bounty 3"
 		"assisted free worlds" ++
 		payment 300000
 		dialog `The militia officer who asked you to hunt down the <npc> contacts you soon after you land. "You've done us a great service," he says. "I'll be telling the Council how helpful you were." He hands you a payment of <payment>.`
+	on fail
+		dialog `You abandon hunting the <npc> since you are now a member of the Free Worlds militia.`
 
 
 
