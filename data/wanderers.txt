@@ -349,7 +349,222 @@ phrase "friendly wanderer"
 		"ecosystems."
 		"biospheres."
 
+phrase "friendly wanderer"
+	word
+		"You are "
+	word
+		"a welcome "
+		"an honored "
+	word
+		"[visitor, traveller] "
+		"guest "
+	word
+		""
+		"to us"
+		"to our people"
+		"to the Wanderers"
+	word
+		", "
+		" - "
+	word
+		"so long as "
+		"as long as "
+		"[providing, given] "
+	word
+		"you respect our ways."
+		"you respect our worlds."
+		"you respect our ecosystems."
+		"you show respect for our ways."
+		"you show respect for our worlds."
+		"you show respect for our ecosystems."
+		"you live sustainably."
+		"you [consume, devour] no more than you need."
+		"you cause no harm."
+		"you come in peace."
 
+phrase "friendly wanderer"
+	word
+		"We mean "
+		"We [intend, plan] "
+		"We come "
+	word
+		"to "
+		" only to "
+		"[simply, solely] to "
+	word
+		"[repair, fix] "
+		"restore "
+		"heal "
+		"[shape, remake] "
+		"[transform, renew] "
+		"revitalize "
+		"take care of "
+		"breathe [life, hope] "
+	word
+		"what has been "
+		"what others have "
+		"what those who came before have "
+	word
+		"[harmed, abused]."
+		"broken."
+		"[brutalized, mistreated]."
+		"[wasted, spent]."
+		"killed."
+		"rendered [lifeless, barren]."
+		"ruined."
+		"[consumed, devoured]."
+		"exploited."
+		"poisoned."
+		"wrecked."
+			
+phrase "hostile wanderer"
+	word
+		"We do not wish to "
+		"We do not want to "
+		"We wish not to "
+		"It gives us no [joy, pleasure] to "	
+	word
+		"harm you"
+		"destroy you"
+		"kill you"
+		"[end, terminate] you"
+		"be [violent, destructive]"
+	word
+		", "
+	word
+		"but we must "
+		"but we will "
+	word
+		"[protect, shepherd] "
+		"defend "
+		"guard "
+		"preserve "
+	word
+		"our "
+	word
+		"[space, territory]."
+		"[territory, responsibility]."
+		"worlds."
+		"planets."
+		"lands."
+		"ecoystems."
+		"biospheres."
+		"people."
+		"[calling, work]."
+		"ways."
+		
+phrase "hostile wanderer"
+	word
+		"Your "
+	word
+		"actions "
+		"deeds "
+		"crimes "
+	word
+		"are "
+	word
+		"those of [consumers, devourers]. "
+		"those of destroyers. "
+		"those of [murderers, exploiters]. "
+		"shameless. "
+		"unforgivable. "
+		"against nature. "
+	word
+		"You will not "
+		"You shall not "
+		"You cannot be allowed to "
+	word
+		"prevail."
+		"succeed."
+		"win."
+		"continue."
+		"remain."
+		
+phrase "hostile wanderer"
+	word
+		"You "
+		"[Murderers, exploiters] "
+	word
+		"have no place "
+		"do not belong "
+		"are not welcome "
+	word
+		"here. "
+		"in our [space, territory]. "
+		"amongst us. "
+	word
+		"Leave"
+		"Begone"
+		"Remove yourself"
+	word
+		", "
+	word
+		"so we may continue our [calling, work]."
+		"and we may continue our [calling, work]."
+		"and we will not pursue you."
+		"and we will allow you to live."
+		"or we will destroy you."
+		"or we will be forced to kill you."
+		"or we will be forced to [end, terminate] you."
+		"and never return."
+		"and learn [wisdom, balance]."
+		
+phrase "hostile disabled wanderer"
+	word
+		"It is not too late "
+		"There is still time "
+		"You still have an opportunity "
+	word
+		"to "
+	word
+		"leave."
+		"leave in peace."
+		"surrender."
+		"desist."
+		"make [amends, reparations]."
+		"make [amends, reparations] for your crimes."
+		"make things right with us."
+		"learn [wisdom, balance]."
+		"end this violence."
+		"end this destruction."
+		"put a stop to this."
+		
+phrase "hostile disabled wanderer"
+	word
+		"We "
+		"The [leaders, elders] "
+	word
+		"were wrong to trust you, "
+		"were mistaken in trusting you, "
+		"should never have welcomed you, "
+	word
+		"[alien, outsider]."
+		"human."
+		"[murderer, exploiter]."
+		
+phrase "hostile disabled wanderer"
+	word
+		"Our people "
+		"Our young ones "
+		"We "
+	word
+		"do not deserve this "
+		"should not suffer this "
+	word
+		"violence. "
+		"betrayal. "
+		"[harm, abuse]. "
+	word 
+		"You must "
+		"Please "
+	word
+		"desist."
+		"stop."
+		"stop this."
+		"leave."
+		"begone."
+		"remove yourself."
+		"have mercy."
 
 event "wanderers: first tech increase"
 	system "Ik'kara'ka"
