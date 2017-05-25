@@ -1946,6 +1946,18 @@ Command AI::AutoFire(const Ship &ship, bool secondary) const
 				&& target != currentTarget)
 			enemies.push_back(target);
 	
+	//For ships tagged spareDisabled, do not fire any weapons that will hit a disabled ship.
+    	if(spareDisabled == true && currentTarget != NULL)
+            for(auto blockingShip : enemies)
+                if(blockingShip != currentTarget && blockingShip->IsDisabled() == true)
+                        for(const Hardpoint &weapon : ship.Weapons())
+                        {
+                            Point start = ship.Position() + ship.Facing().Rotate(weapon.GetPoint());
+                            start += ship.GetPersonality().Confusion();
+                            if(blockingShip->GetMask().Collide(start - blockingShip->Position(), currentTarget->Position() - start, blockingShip->Facing()) < 1.0)
+                                return command;
+                        }
+                        
 	for(const Hardpoint &weapon : ship.Weapons())
 	{
 		++index;
