@@ -66,7 +66,7 @@ HailPanel::HailPanel(PlayerInfo &player, const shared_ptr<Ship> &ship)
 					+ Format::Number(bribe) + " credits.";
 		}
 	}
-	else if(!gov->IsEnemy() && ship->IsDisabled())
+	else if(ship->IsDisabled())
 	{
 		const Ship *flagship = player.Flagship();
 		if(!flagship->JumpsRemaining() || flagship->IsDisabled())
