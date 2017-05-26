@@ -1492,9 +1492,10 @@ mission "FW Pug 3B"
 	
 	on offer
 		"salary: Free Worlds" = 6000
+		event "Tarazed non-neutrality" 30
 		conversation
 			`Freya meets you soon after you land. "I've heard the news," she says. "I talked to the Senate, and they think that I should travel with you during your assault on the Pug, in case I can help figure out their technology, maybe even how to restore the hyperspace links. And they say they need Alondo back here to do diplomatic visits and help keep people from panicking."`
-			`	"I guess that makes sense," says Alondo.`
+			`	"I guess that makes sense," says Alondo "I hope to also get a chance to visit Wayfarer, seeing as we are not at war with the Republic any more there is no reason for them not to join us officially."`
 			`	"Also," says Freya, "the Senate approved a raise for you, <first>. Your new salary will be six thousand credits a day. I hope that means you'll be able to go into battle against the Pug with the strongest ship possible, because I suspect we'll need all the firepower we can get."`
 			`	Alondo wishes you the best of luck and leaves to catch a transport to Bourne, while Freya takes you to the spaceport and introduces you to the captains of the two Dreadnoughts that have volunteered to fight the Pug. She also asks you all sorts of technical questions: what sort of propulsion and energy sources the Pug seem to use, what their weapon capabilities are, and whether you saw any sign of the technology that was used to destroy the hyperspace links. You have a hard time answering her, but are glad that she will be with you this time to see the aliens firsthand.`
 				accept
@@ -2509,7 +2510,7 @@ mission "FW Syndicate Extremists 1C"
 		payment 5000000
 		set "main plot completed"
 		set "free worlds plot completed"
-		event "Tarazed Graffias non-neutrality" 7
+		event "Graffias non-neutrality" 14
 		conversation
 			`On Earth, you return to something of a hero's welcome, far different from the first time you were here on a diplomatic mission. A crowd of locals gathers in the spaceport to watch your ship land. With the Free Worlds having been instrumental in defeating the aliens, and absolved of any guilt in the terrorist attacks, it seems that most people here are ready to see you as a hero rather than a criminal.`
 			`	You discover that Parliament has made a treaty with the Free Worlds, agreeing that the Free Worlds will be allowed autonomy in the region they currently control as long as they do not seek to expand their territory further. As of now, your war against the Republic is officially over.`

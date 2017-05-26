@@ -3331,7 +3331,7 @@ event "syndicate tech available"
 
 
 
-event "Tarazed Graffias non-neutrality"
+event "Tarazed non-neutrality"
 	system "Tarazed"
 		government "Free Worlds"
 	system "Dabih"
@@ -3340,18 +3340,31 @@ event "Tarazed Graffias non-neutrality"
 		government "Free Worlds"
 	system "Girtab"
 		government "Free Worlds"
+
+event "Graffias non-neutrality"
 	system Graffias
 		government "Republic"
 
 
-#Patching the non-neutrality event into older saves as well.
-mission "Tarazed Graffias non-neutrality patch"
+#Patching the non-neutrality events into older saves as well.
+mission "Tarazed non-neutrality patch"
+	landing
+	invisible
+	to offer
+		or
+			has "FW Pug 3B: offered"
+			has "free worlds plot completed"
+	on offer
+		event "Tarazed non-neutrality" 30
+		fail
+
+mission "Graffias non-neutrality patch"
 	landing
 	invisible
 	to offer
 		has "free worlds plot completed"
 	on offer
-		event "Tarazed Graffias non-neutrality" 7
+		event "Graffias non-neutrality" 14
 		fail
 
 
