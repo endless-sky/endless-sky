@@ -12,6 +12,8 @@ ship "Starling" # 300
 	sprite "ship/starling"
 	attributes
 		category "Light Warship"
+		licenses
+			Remnant
 		cost 8800000
 		"shields" 8800
 		"hull" 4900
@@ -130,6 +132,8 @@ ship "Albatross" # 656
 	sprite "ship/albatross"
 	attributes
 		category "Heavy Warship"
+		licenses
+			Remnant
 		cost 20000000
 		"shields" 34200
 		"hull" 12600

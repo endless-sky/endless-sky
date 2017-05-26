@@ -63,3 +63,31 @@ fleet "Large Remnant"
 	variant 2
 		"Albatross (Heavy)"
 		"Albatross (Turret)"
+
+
+
+shipyard "Remnant"
+	"Starling"
+	"Albatross"
+
+shipyard "Remnant Gascraft"
+	"Gascraft"
+
+outfitter "Remnant"
+	"Inhibitor Cannon"
+	"Thrasher Cannon"
+	"Thrasher Turret"
+	"Point Defense Turret"
+	"Crystal Capacitor"
+	"Millennium Cell"
+	"Epoch Cell"
+	"Aeon Cell"
+	"Thermoelectric Cooler"
+	"Emergency Ramscoop"
+	"Quantum Key Stone"
+	"Crucible-Class Thruster"
+	"Forge-Class Thruster"
+	"Smelter-Class Thruster"
+	"Crucible-Class Steering"
+	"Forge-Class Steering"
+	"Smelter-Class Steering"
