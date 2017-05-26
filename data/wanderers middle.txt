@@ -753,6 +753,7 @@ mission "Wanderers: Kor Efret 3"
 
 
 event "Rename Korath Exiles"
+	"reputation: Korath Exiles" = "reputation: Korath"
 	system "Kor Ak'Mari"
 		government "Korath Exiles"
 	system "Kor En'lakfar"
