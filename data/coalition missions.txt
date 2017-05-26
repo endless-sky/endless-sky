@@ -126,3 +126,14 @@ mission "Coalition: Contributor"
 			`	"For the sake of peace it is," says the Saryd. "The Heliarch military, well trained to use weapons only for defense and only for justice, they are. And to place the needs of the Coalition over the ambitions of their own native species, each one committed is. No such discipline do civilians have."`
 			label end
 			`	Apparently nothing is for sale here, but they assure you that many Coalition worlds will now grant you access to their shipyards and outfitters.`
+
+mission "Coalition License"
+	invisible
+	landing
+	name "Bug, you shouldn't see this"
+	to offer
+		has "Coalition: Contributor: done"
+		not "license: Coalition"
+	on offer
+		set "license: Coalition"
+		fail
