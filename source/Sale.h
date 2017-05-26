@@ -41,7 +41,7 @@ void Sale<Item>::Load(const DataNode &node, const Set<Item> &items)
 {
 	for(const DataNode &child : node)
 	{
-		const string &token = child.Token(0);
+		const std::string &token = child.Token(0);
 		bool remove = (token == "clear" || token == "remove");
 		if(remove && child.Size() == 1)
 			this->clear();
