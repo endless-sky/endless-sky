@@ -42,7 +42,7 @@ void Planet::Load(const DataNode &node, const Set<Sale<Ship>> &ships, const Set<
 	
 	// If this planet has been loaded before, these sets of items should be
 	// reset instead of appending to them:
-	set<string> shouldOverwrite = {"attributes", "description", "shipyard"};
+	set<string> shouldOverwrite = {"attributes", "description", "spaceport"};
 	
 	for(const DataNode &child : node)
 	{
