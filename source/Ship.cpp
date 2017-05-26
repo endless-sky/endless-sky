@@ -660,7 +660,7 @@ void Ship::SetHail(const Phrase &phrase)
 
 string Ship::GetHail() const
 {
-	return hail ? hail->Get() : government ? government->GetHail() : "";
+	return hail ? hail->Get() : government ? government->GetHail(isDisabled) : "";
 }
 
 

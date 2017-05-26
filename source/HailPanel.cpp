@@ -55,11 +55,10 @@ HailPanel::HailPanel(PlayerInfo &player, const shared_ptr<Ship> &ship)
 		message = "(There is no response to your hail.)";
 	else if(!hasLanguage)
 		message = "(An alien voice says something in a language you do not recognize.)";
+	// Update default hail responses based on the hailed ship's government and status condition.
 	else if(gov->IsEnemy())
 	{
-		if(ship->IsDisabled())
-			message = GameData::Phrases().Get("hostile disabled")->Get();
-		else
+		if(!ship->IsDisabled())
 		{
 			SetBribe(gov->GetBribeFraction());
 			if(bribe)
@@ -72,8 +71,6 @@ HailPanel::HailPanel(PlayerInfo &player, const shared_ptr<Ship> &ship)
 		const Ship *flagship = player.Flagship();
 		if(!flagship->JumpsRemaining() || flagship->IsDisabled())
 			message = "Sorry, we can't help you, because our ship is disabled.";
-		else
-			message = "Our ship has been disabled! Please come board our ship and patch us up!";
 	}
 	else
 	{
