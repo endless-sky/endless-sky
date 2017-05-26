@@ -3369,7 +3369,6 @@ mission "Graffias non-neutrality patch"
 
 
 
-
 event "geminus rebuilt"
 	planet Geminus
 		description `Geminus, although not the most hospitable of worlds, is a young enough planet that large stores of iron, titanium, and other metals are easily accessible near the surface. The constant volcanic activity leaves the planet perpetually shrouded in a twilight haze of ash and fog.`
