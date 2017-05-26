@@ -23626,6 +23626,7 @@ planet "Ablub's Invention"
 	spaceport `The day-night cycle here is at least three times as long as any of the Coalition's species are habituated to, so the entire city enters a "false nighttime" in the middle of the day, shuttering all the windows so that the locals can rest and reset their biological clocks. And in the middle of the night, the city is brightly lit for a "false day."`
 	spaceport `	The local work schedule has adapted to this unusual cycle, with the two true daytime periods serving the equivalent of the human work week, and the false daytime treated as a weekend, a time for socializing or working at home.`
 	"required reputation" 25
+	outfitter "Coalition Advanced"
 
 planet Ada
 	attributes paradise mining
@@ -23654,6 +23655,9 @@ planet Ahr
 	description `The homeworld of the Arach people, Ahr is a metropolitan world with nearly nine billion inhabitants, enough that they cannot all be fed by what this world produces. The government maintains a storehouse with a month's supply of food in each major metropolitan center, as well as a collection of bioreactors, built according to Kimek designs, that can produce a tasteless but nutritious paste as emergency rations in the unlikely event that shipments of food from off-world are somehow disrupted for a prolonged period of time.`
 	spaceport `A constant line of cargo barges and trucks streams through this spaceport city, collecting goods to be distributed to the outlying suburbs and neighboring cities. Inside the main terminal, members of all three Coalition species mix freely, but the Heliarch agents and interpreters here are all Arach.`
 	spaceport `	Carts carrying passengers and cargo whiz past at frightening speeds, expertly navigating to dodge the pedestrians.`
+	shipyard "Coalition Basics"
+	shipyard "Arach"
+	outfitter "Coalition Advanced"
 
 planet Albatross
 	attributes pirate
@@ -23793,6 +23797,7 @@ planet "Ashy Reach"
 	description `The thin, unbreathable atmosphere and low gravity mean that Ashy Reach will never become popular as a residential world, but it serves a useful role as a hub for shipping and commercial exchange. There is only one settlement here, built around the spaceport, and consisting mostly of pressurized underground caverns. Outside the settlement, the planet's surface is drab and almost lifeless.`
 	spaceport `Only a handful of towers, most of them windowless, protrude above the planet's surface at the center of the spaceport settlement. The hangars and warehouses are all underground. The surface is visible through a few thick acrylic polymer windows on the lower levels of the towers. Lit by the glow of the gas giant that this moon orbits, the towers form a surreal landscape, like a city abandoned and only halfway formed.`
 	"required reputation" 15
+	outfitter "Coalition Basics"
 
 planet Avalon
 	landscape land/sea17-harro
@@ -23814,6 +23819,9 @@ planet "Bank of Blugtad"
 	description `This idyllic planet is home to almost as many Arachi as their homeworld in the neighboring system. It is also home to House Plumtab, the Arach guild in charge of banks and finance. Because pretty much every other sector of the Arach economy depends on loans from House Plumtab and trades stock on their equity exchanges, this House is quite influential throughout Arach space.`
 	spaceport `The central concourse of the spaceport is reminiscent of a major stock exchange on a human world, with video screens everywhere displaying constantly fluctuating line graphs and lists of numbers and symbols. The only difference is that the graphs run top to bottom, rather than left to right.`
 	spaceport `	Every once in a while, one of the Arachi will cause a minor pedestrian traffic jam by abruptly stopping to look at one of the displays.`
+	shipyard "Coalition Basics"
+	shipyard "Arach"
+	outfitter "Coalition Advanced"
 
 planet "Belug's Plunge"
 	attributes arach mining research
@@ -23821,6 +23829,7 @@ planet "Belug's Plunge"
 	description `Although it is in Arach territory, Belug's Plunge is a cold enough planet that most of the native population is Saryds rather than Arachi. Most of the industry here focuses on mining metals and exotic elements to be used in building new extensions to the Rings. There is also a Saryd materials research lab trying to learn how to duplicate the advanced composites used by the Quarg. But Belug's Plunge is best known for the Academy, where cadets for the Heliarch defense forces are trained.`
 	spaceport `The central spaceport terminal is a large chamber with a hushed atmosphere reminiscent of a library's reading room. In small nooks along the periphery, small groups are engaged in quiet conversation. Most cargo is carried by robotic carts, wheeling around on a floor so smooth that the only time they make noise is when they politely speak up to warn people to get out of their way.`
 	spaceport `	Occasionally a group of cadets wearing yellow baldrics marches through, stepping as lightly as they can to avoid disturbing the quiet.`
+	outfitter "Coalition Advanced"
 
 planet "Big Sky"
 	attributes "dirt belt" farming
@@ -23877,12 +23886,16 @@ planet "Blubipad's Workshop"
 	landscape land/forest2
 	description `Dozens of small cities dot the valleys and hilltops of this warm and pleasant forest world. Due to a high tech manufacturing industry, there is plenty of work here for all the inhabitants, who hail from planets throughout Coalition space. With broad streets, ample parks, and gleaming skyscrapers, the cities bear witness to the very best of what Coalition society can accomplish when the three species work together.`
 	spaceport `The spaceport here has become a popular destination for tourists interested in exotic foods. The blend of smells drifting from the many restaurants, cafes, and open-air markets is almost overwhelming, and not always pleasant to your human senses; the Kimek, in particular, appear to consider food that has already been partly broken down by decomposition to be a delicacy.`
+	outfitter "Coalition Basics"
 
 planet "Blue Interior"
 	attributes kimek tourism urban
 	landscape land/water0
 	description `Blue Interior is a strikingly beautiful earthlike world, covered mostly in oceans but with regions of rainforest, desert, mountains, and frozen tundra. Billions of Kimek live here, and there are also large Saryd and Arach populations in the cities whose climates are most agreeable to them. The Coalition often presents this world as a model of how their three species can benefit from sharing space with each other.`
 	spaceport `This is a truly cosmopolitan spaceport, with members of all three Coalition species mixing freely, conversing and doing business with each other. There are also a large number of Heliarch interpreters and mediators mingling with the crowds, helping those interactions to go as smoothly as possible.`
+	shipyard "Coalition Basics"
+	shipyard "Kimek"
+	outfitter "Coalition Advanced"
 
 planet Bluestone
 	attributes core oil research frontier
@@ -23927,12 +23940,16 @@ planet "Brass Second"
 	landscape land/sky9
 	description `This is a farming world. In the century prior to their discovery of space flight, billions of Kimek starved in a series of increasingly severe global famines. Fourteen thousand years later, their culture is still haunted by fear of not having enough food, and in response they have developed enough farms in their region of space to feed a population three times their size. Much of the food that they produce each year is either put into storage or simply recycled back into fertilizer for next year's crop.`
 	spaceport `The farms on Brass Second operate on a colossal scale. The spaceport is not the sort of rustic farmers' market typical of other farming worlds; it is a major commercial enterprise, complete with cargo-loading robots, climate-controlled warehouses, and a supply chain management system that ensures that fresh produce works its way to the head of the shipping queue in time for it to reach its destination unspoiled.`
+	outfitter "Coalition Basics"
 
 planet "Bright Echo"
 	attributes saryd tourism urban
 	landscape land/dmottl1
 	description `This is the first world that the Saryds colonized outside of their own solar system. Although somewhat colder than their native planet, it developed into a thriving metropolitan world. The original settlers planned out in exacting detail how every part of the planet's land mass should be used, in order to satisfy their aesthetic ideal of blending residential areas with parks and farms. Large areas have also been set aside as undeveloped wilderness.`
 	spaceport `The spaceport is in what, by Saryd standards, is a major city, with scattered skyscrapers surrounded by forests and grassy park land along with smaller dwellings and occasional factories or power plants. The city is built on either side of one of this continent's largest rivers, a few kilometers downstream from a dam and hydroelectric plant. Here, the river cuts through a deep gorge, and the graceful bridges that cross the gorge are often shrouded in mist.`
+	shipyard "Coalition Basics"
+	shipyard "Saryd"
+	outfitter "Coalition Basics"
 
 planet "Buccaneer Bay"
 	attributes pirate
@@ -24071,6 +24088,11 @@ planet "Chosen Nexus"
 	description `	It has now been many millennia since the Quarg were driven out and free travel began between the members of the Coalition, and Chosen Nexus now has nearly as many Arach and Kimek inhabitants as native Saryds.`
 	spaceport `This is a truly cosmopolitan spaceport, a city where the distinctive architectures of the Coalition's species are blended together and where the food or lodgings unique to each of them can easily be found. Cargo drones hover over the landing pads, constantly loading and unloading the merchant ships that are parked here as their captains arrange to buy or sell cargo.`
 	spaceport `	Mingling among the crowds, Heliarch representatives wearing golden bands as a mark of their authority serve both as translators and as peacekeepers.`
+	shipyard "Coalition Basics"
+	shipyard "Arach"
+	shipyard "Kimek"
+	shipyard "Saryd"
+	outfitter "Coalition Advanced"
 
 planet Clark
 	attributes "dirt belt" forest factory
@@ -24345,6 +24367,7 @@ planet "Dwelling of Speloog"
 	description `With a wide band of tropical rainforests around its equator, this planet's climate is ideal for the Arach. Several billion of them live here, and many of the workers assisting with the expansion of the Heliarch ringworlds come from this planet.`
 	spaceport `The air in the spaceport facility is uncomfortably damp, and you imagine that you can see a thin sheen of moss or algae on nearly every surface here that receives any sunlight. Except for the largest cargo bays, all the rooms smell faintly of mildew.`
 	spaceport `	One entire wing of the spaceport is dedicated to the Heliarch recruitment office for construction workers, and the waiting room is packed; many Coalition citizens are excited at the chance to help build something that will last thousands of years.`
+	outfitter "Coalition Basics"
 
 planet Earth
 	attributes "near earth" urban tourism
@@ -24426,6 +24449,7 @@ planet "Far Garden"
 	description `Saryd culture places high value on connection to the natural world and to settings suitable for silent reflection. This is one of their most populous worlds, but even in the cities more land is set aside for parks and wild spaces than for buildings.`
 	description `	Farther out from the city, the Saryds live in communal buildings that each house up to a dozen families, surrounded by gardens and cultivated forests. Unlike on many human worlds, here the most remote real estate locations are often the most valuable.`
 	spaceport `This spaceport is, in some ways, quite similar to the ports on human agricultural worlds, with large warehouses and open-air markets and heavy trucks bringing in piles of produce from the farms to be shipped offworld. The fact that it is inhabited by utterly alien creatures, each with six or eight limbs, makes the sight somewhat surreal.`
+	outfitter "Coalition Basics"
 
 planet "Far Home"
 	attributes saryd tourism urban
@@ -24434,6 +24458,11 @@ planet "Far Home"
 	description `	This world is also home to the annual Coalition Games, where athletes from throughout Coalition space compete. The winners become eligible for immediate elevation to Heliarch rank.`
 	spaceport `The spaceport is a large city on the edge of a temperate forest. The city's layout, with green space and parks woven throughout it, is clearly a Saryd design, but the architecture borrows equally from all three cultures. As with the other ports where interspecies interactions are frequent, hundreds of Heliarch representatives wander around to mediate conversations and prevent misunderstandings.`
 	spaceport `	Once a year, when the Games begin, the spaceport city grows to nearly four times its usual population.`
+	shipyard "Coalition Basics"
+	shipyard "Arach"
+	shipyard "Kimek"
+	shipyard "Saryd"
+	outfitter "Coalition Advanced"
 
 planet "Far'en Lai"
 	attributes uninhabited
@@ -24804,6 +24833,9 @@ planet "Hammer of Debrugt"
 	description `House Chamgar claims that their advances in aerospace and weapon technology were instrumental in driving the Quarg out of Coalition space about six millennia ago. Given how much more advanced the Saryds and Kimek were at the time, their claims are likely an exaggeration. But, there is no doubt that in the present day the home of House Chamgar has developed into an industrial world as productive as any in Coalition space, partly because this world is rich enough in natural resources that there is little need to import raw materials from elsewhere.`
 	spaceport `The spaceport is a multi-tiered, gravity-defying structure reaching hundreds of meters above the ground, with steel and glass arches, cantilevered platforms, and luxury-class docking bays on its upper levels. On the ground level surrounding the facility are landing pads for heavy cargo ships, along with the associated warehouses and repair shops.`
 	"required reputation" 25
+	shipyard "Coalition Basics"
+	shipyard "Arach"
+	outfitter "Coalition Advanced"
 
 planet Harmony
 	attributes south farming religious frontier
@@ -25070,6 +25102,9 @@ planet "Ki Patek Ka"
 	landscape land/fields1
 	description `This is the Kimek home world. Before they developed spaceflight, billions of Kimek died either from famine or from civil wars brought on by overpopulation. Today, every major city still has "hunger towers": kilometer-high skyscrapers where yeast and bacterial cultures are grown in massive vats in order to provide a bland but stable source of emergency rations if the crops and the food shipments from off-world should ever fail.`
 	spaceport `Nearly all the land mass on Ki Patek Ka is covered in cities; the only undeveloped land is the high mountain peaks and the ice caps near the poles. The spaceport alone is larger than most human cities, stretching from horizon to horizon, with a ship taking off or landing every few seconds. The sheer number of people here - mostly Kimek, but a fair number of Saryds and Arachi as well - is overwhelming.`
+	shipyard "Coalition Basics"
+	shipyard "Kimek"
+	outfitter "Coalition Advanced"
 
 planet "Korati Efreti"
 	attributes station efret
@@ -25278,6 +25313,9 @@ planet "Market of Gupta"
 	landscape land/mountain16-striker
 	description `This mountain world is the home base of House Mallob, the powerful Arach guild in charge of commerce and shipping. All the Arach starships that are currently in use were designed here, and many of them are manufactured here as well. The motto of House Mallob's shipyards is "strong as the mountains, spacious as the skies," referring to their focus on durable hulls and high cargo capacity.`
 	spaceport `This spaceport serves as the primary repair and service center for the Arach merchant marine. At any given time hundreds of ships may be in dry-dock here to have new equipment installed or their engines or internal systems tuned for better efficiency. Meanwhile, thousands of analysts and software experts work to plan out delivery routes, schedules, and supply chains for the merchant fleets to ensure that goods are always delivered where they will be most needed, and will earn the best profit. House Mallob's finances and organizational structure are legendary for their complexity.`
+	shipyard "Coalition Basics"
+	shipyard "Arach"
+	outfitter "Coalition Advanced"
 
 planet Mars
 	attributes "near earth" tourism farming
@@ -25378,6 +25416,8 @@ planet "Midway Emerald"
 	landscape land/forest3
 	description `Wealthy Kimek prefer to live as close as possible to the centers of power, and in Coalition space the center of power is the Heliarch ringworlds. The dwellings here are a bit more luxurious and less densely packed than on other Kimek worlds, and the total population is less than two billion. Outside the cities, this is a hot forest world, without much local industry or natural resources.`
 	spaceport `The relative opulence of this spaceport means that the walkways and doorways are big enough to be comfortable not only for the diminutive Kimek, but for the Arachi and even the Saryds as well, and the three species mingle here in roughly even numbers. The spaceport even has a few gardens and parks, as a concession to the Saryd need for quiet and beautiful spaces.`
+	shipyard "Coalition Basics"
+	outfitter "Coalition Basics"
 
 planet Millrace
 	attributes "near earth" factory urban
@@ -25919,6 +25959,8 @@ planet "Remote Blue"
 	description `Most Kimek are proud to be members of the Coalition, but those who are either suspicious of the other species or simply want to be as far away from the Heliarch ringworlds as possible when the Quarg return with retribution, choose to live here. As a result, despite its remote location this world supports a population of over eight billion. Many of the cities have defensive gun emplacements on their outskirts, yet another sign of the local paranoia.`
 	spaceport `There are almost no non-Kimek in this spaceport, and as an alien visitor from beyond Coalition space you receive a considerable amount of scrutiny. Several of the local restaurants outright refuse to serve any species but the Kimek, claiming that their patrons would lose their appetites if forced to witness the disgusting eating habits of other species. (The Kimek generally eat their food by vomiting digestive fluid onto it, waiting for it to dissolve, and then slurping up the soupy mixture.)`
 	"required reputation" 15
+	shipyard "Kimek"
+	outfitter "Coalition Advanced"
 
 planet Reunion
 	attributes "near earth" urban factory
@@ -25995,6 +26037,8 @@ planet "Rusty Second"
 	description `The combination of a dry, temperate climate and its prestigious location near the Heliarch ringworlds make Rusty Second a highly desirable home for wealthy Kimek. Nothing is cheap here, and there is very little local industry aside from the banks, shipping conglomerations, and other corporations whose senior management offices are located here.`
 	spaceport `Although this is a Kimek world, the spaceport and the surrounding city more closely resembles Saryd architecture. This port was developed in the days when the Kimek had first made contact with the other species of the Coalition, and were still in awe of the technological sophistication of the Saryds.`
 	spaceport `	The original architecture also borrowed heavily from the Quarg, but anything reminiscent of them was stripped away after the Coalition's rebellion succeeded.`
+	shipyard "Coalition Basics"
+	outfitter "Coalition Basics"
 
 planet "Sabira Eseskrai"
 	attributes korath
@@ -26016,6 +26060,7 @@ planet "Sandy Two"
 	landscape land/badlands1
 	description `This world is relatively hot and dry by human standards, but nearly ideal for the Kimek, and more than fifteen billion of them live here in cities where the skyscrapers are so densely packed that many of the streets never receive direct sunlight. The residential areas tend to be spread out along the banks of rivers, so the cities are linear, with factories and other industry on their fringes. Access to limitless skilled labor makes it cheap to manufacture almost anything here.`
 	spaceport `The spaceport facility is on an island in the center of a river, surrounded by a city so large that the rows of skyscrapers stretch all the way to the horizon. Civilian aircraft, boats, and cargo trucks swarm around the spaceport, bringing goods and people to and from the residences and the outlying factories.`
+	outfitter "Coalition Basics"
 
 planet "Sapira Mereti"
 	attributes korath
@@ -26038,6 +26083,9 @@ planet Saros
 	landscape land/valley12-harro
 	description `The homeworld of the Saryds still bears some scars from the adolescence of their species, particularly in its lack of biodiversity. But over thousands of years, they have returned significant portions of the planet to their original wilderness state. The planet's population currently stands at just over two billion, in part due to the fact that Saryds live very long lives and many of them choose to dedicate their lives to serving society in other ways rather than raising children.`
 	spaceport `The main spaceport is on the outskirts of a large city near the planet's equator, supposedly not far from the place where the Saryds launched their first rockets to explore their own solar system. It has all the standard accoutrements of a tourist trap, including stall after stall of vendors selling food or articles of clothing, and mobs of wide-eyed visitors wandering about and generally getting in the way of the merchant captains trying to conduct actual business here.`
+	shipyard "Coalition Basics"
+	shipyard "Saryd"
+	outfitter "Coalition Advanced"
 
 planet "Sasirka Gatru"
 	attributes korath
@@ -26076,6 +26124,7 @@ planet "Second Viridian"
 	description `More than ten billion Kimek live here, most of them living in one of several arcologies near the equator: massive structures that each nearly a kilometer tall and may house over half a billion individuals. As a result, despite the large population most of the land is either undeveloped or used for farming.`
 	description `	The Kimek arcologies are said to be able to recycle more than 99% of the waste produced in them each day, which is what makes it feasible for so many Kimek to live in such close proximity.`
 	spaceport `The spaceport facility is a kilometer-tall pyramid honeycombed with tunnels wide enough for a pair of bulk freighters to pass each other with plenty of room to spare. There is no single central warehouse district or meeting area. Instead, each cluster of docking bays is surrounded by its own storage facilities, food courts, and concourses.`
+	outfitter "Coalition Basics"
 
 planet "Secret Sky"
 	attributes saryd research
@@ -26399,6 +26448,7 @@ planet "Stronghold of Flugbu"
 	spaceport `The spaceport here is a single massive compound, a relic of its military past, with hangars of all different sizes along its periphery and gun emplacements that may still be operational even though there has been little need for them in thousands of years. A fleet of Heliarch military ships is stationed here, as well, but their role is mostly ceremonial.`
 	spaceport `	The hallways of the compound are packed with members of all three Coalition species, most of whom walk quietly and purposefully without stopping to speak with each other.`
 	"required reputation" 25
+	outfitter "Coalition Advanced"
 
 planet Sundive
 	attributes core farming research frontier
@@ -26811,6 +26861,7 @@ planet "Warm Slope"
 	landscape land/forest1
 	description `This is an ideal world, by Saryd standards: rugged, hilly, mostly forested, with oceans and land masses in equal proportions. It serves mostly as a residential world, because this system's heavy industry is focused on the automated factories on its sister world of Ceaseless Toil.`
 	spaceport `The spaceport is part of a city built into one of the slopes of a large mountain, with the landing pads and spaceport facilities near the peak. Saryds, Arachi, and Kimek mingle freely here and converse with the aid of interpreters or translation devices as they amble up and down the steep city streets.`
+	outfitter "Coalition Basics"
 
 planet "Warm Wind"
 	attributes saryd tourism
