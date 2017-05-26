@@ -339,7 +339,7 @@ void OutfitterPanel::Buy()
 
 void OutfitterPanel::FailBuy() const
 {
-	if(!selectedOutfit || !playerShip)
+	if(!selectedOutfit)
 		return;
 	
 	int64_t cost = player.StockDepreciation().Value(selectedOutfit, day);
@@ -375,6 +375,23 @@ void OutfitterPanel::FailBuy() const
 			"but this " + planet->Noun() + " does not sell them."));
 		return;
 	}
+	
+	if(selectedOutfit->Get("map"))
+	{
+		GetUI()->Push(new Dialog("You have already mapped all the systems shown by this map, "
+			"so there is no reason to buy another."));
+		return;
+	}
+	
+	if(HasLicense(selectedOutfit->Name()))
+	{
+		GetUI()->Push(new Dialog("You already have one of these licenses, "
+			"so there is no reason to buy another."));
+		return;
+	}
+	
+	if(!playerShip)
+		return;
 	
 	double outfitNeeded = -selectedOutfit->Get("outfit space");
 	double outfitSpace = playerShip->Attributes().Get("outfit space");
@@ -450,20 +467,6 @@ void OutfitterPanel::FailBuy() const
 			"because it would reduce one of your ship's attributes to a negative amount. "
 			"For example, perhaps it uses up more cargo space than you have left, "
 			"or has a constant energy draw greater than what your ship produces."));
-		return;
-	}
-	
-	if(selectedOutfit->Get("map"))
-	{
-		GetUI()->Push(new Dialog("You have already mapped all the systems shown by this map, "
-			"so there is no reason to buy another."));
-		return;
-	}
-	
-	if(HasLicense(selectedOutfit->Name()))
-	{
-		GetUI()->Push(new Dialog("You already have one of these licenses, "
-			"so there is no reason to buy another."));
 		return;
 	}
 }
