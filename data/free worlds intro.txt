@@ -234,8 +234,20 @@ mission "FW Recon 0"
 		near Aldhibain 1 10
 	destination Glaze
 	to offer
-		random < 35
 		has "event: initial deployment 4"
+		or
+			and
+				"assisted free worlds" == 0
+				random < 35
+			and
+				"assisted free worlds" == 1
+				random < 40
+			and
+				"assisted free worlds" == 2
+				random < 40
+			and
+				"assisted free worlds" == 3
+				random < 65
 	passengers 1
 	to fail
 		has "chosen sides"
@@ -446,7 +458,19 @@ mission "FW Katya 1"
 	description "Stop by <destination>, pick up two passengers and some cargo, and distract the Republic from a more important cargo exchange going on simultaneously."
 	minor
 	to offer
-		random < 30
+		or
+			and
+				"assisted free worlds" == 0
+				random < 10
+			and
+				"assisted free worlds" == 1
+				random < 20
+			and
+				"assisted free worlds" == 2
+				random < 50
+			and
+				"assisted free worlds" == 3
+				random < 80
 	to fail
 		has "chosen sides"
 	source
@@ -519,6 +543,8 @@ mission "FW Katya 1"
 	
 			`	"Fearsome creatures." She walks away, leaving you even more confused.`
 				decline
+	on decline
+		event "FW Katya Alt 2: ready" 21
 
 
 
@@ -648,11 +674,17 @@ mission "FW Katya Alt 2"
 	blocked "You have reached <origin>, but you have no bunks free for Mr. Eyes. Return here when you have a bunk available, or abort one of your other missions to make room for this one."
 	passengers 1
 	to offer
-		has "FW Katya 1: offered"
-		not "FW Katya 1: done"
-		not "FW Katya 1: active"
-		has "assisted free worlds"
-		random < 50
+		has "event: FW Katya Alt 2: ready"
+		or
+			and
+				"assisted free worlds" == 1
+				random < 50
+			and
+				"assisted free worlds" == 2
+				random < 50
+			and
+				"assisted free worlds" == 3
+				random < 80
 	to fail
 		has "chosen sides"
 	on offer
@@ -1202,8 +1234,16 @@ mission "FW Escort 1"
 		government "Free Worlds"
 	destination Wayfarer
 	to offer
-		has "assisted free worlds"
-		random < 40
+		or
+			and
+				"assisted free worlds" == 1
+				random < 30
+			and
+				"assisted free worlds" == 2
+				random < 50
+			and
+				"assisted free worlds" == 3
+				random < 70
 	to fail
 		has "chosen sides"
 	
@@ -1571,7 +1611,19 @@ mission "FW Bounty 1"
 		government "Free Worlds"
 	to offer
 		"combat rating" > 200
-		random <= 25
+		or
+			and
+				"assisted free worlds" == 0
+				random < 20
+			and
+				"assisted free worlds" == 1
+				random < 25
+			and
+				"assisted free worlds" == 2
+				random < 40
+			and
+				"assisted free worlds" == 3
+				random < 65
 		not "chosen sides"
 	
 	on offer
@@ -1609,7 +1661,19 @@ mission "FW Bounty 2"
 		government "Free Worlds"
 	to offer
 		has "FW Bounty 1: done"
-		random <= 30
+		or
+			and
+				"assisted free worlds" == 0
+				random < 25
+			and
+				"assisted free worlds" == 1
+				random < 30
+			and
+				"assisted free worlds" == 2
+				random < 45
+			and
+				"assisted free worlds" == 3
+				random < 65
 		not "chosen sides"
 	
 	on offer
@@ -1642,7 +1706,19 @@ mission "FW Bounty 3"
 		government "Free Worlds"
 	to offer
 		has "FW Bounty 2: done"
-		random <= 30
+		or
+			and
+				"assisted free worlds" == 0
+				random < 30
+			and
+				"assisted free worlds" == 1
+				random < 35
+			and
+				"assisted free worlds" == 2
+				random < 50
+			and
+				"assisted free worlds" == 3
+				random < 65
 		not "chosen sides"
 	
 	on offer
