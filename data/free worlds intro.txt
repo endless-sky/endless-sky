@@ -674,7 +674,7 @@ mission "FW Katya Alt 2"
 	blocked "You have reached <origin>, but you have no bunks free for Mr. Eyes. Return here when you have a bunk available, or abort one of your other missions to make room for this one."
 	passengers 1
 	to offer
-		has "FW Katya Alt 2: ready"
+		has "event: FW Katya Alt 2: ready"
 		or
 			and
 				"assisted free worlds" == 1
