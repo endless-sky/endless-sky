@@ -12,6 +12,8 @@ ship "Arach Courier"
 	sprite "ship/arach courier"
 	attributes
 		category "Light Freighter"
+		licenses
+			Coalition
 		"cost" 723000
 		"shields" 1200
 		"hull" 2000
@@ -54,6 +56,8 @@ ship "Arach Freighter"
 	sprite "ship/arach freighter"
 	attributes
 		category "Light Freighter"
+		licenses
+			Coalition
 		"cost" 4580000
 		"shields" 3400
 		"hull" 8500
@@ -101,6 +105,8 @@ ship "Arach Hulk"
 	sprite "ship/arach hulk"
 	attributes
 		category "Heavy Freighter"
+		licenses
+			Coalition
 		"cost" 9978000
 		"shields" 5700
 		"hull" 13800
@@ -152,6 +158,8 @@ ship "Arach Spindle"
 	sprite "ship/arach spindle"
 	attributes
 		category "Heavy Freighter"
+		licenses
+			Coalition
 		"cost" 6652000
 		"shields" 5000
 		"hull" 9700
@@ -201,6 +209,8 @@ ship "Arach Transport"
 	sprite "ship/arach transport"
 	attributes
 		category "Light Freighter"
+		licenses
+			Coalition
 		"cost" 2772000
 		"shields" 2300
 		"hull" 4800
@@ -248,6 +258,8 @@ ship "Heliarch Interdictor"
 	sprite "ship/heliarch interdictor"
 	attributes
 		category "Medium Warship"
+		licenses
+			Heliarch
 		"cost" 35487000
 		"shields" 65300
 		"hull" 54600
@@ -321,6 +333,8 @@ ship "Heliarch Neutralizer"
 	sprite "ship/heliarch neutralizer"
 	attributes
 		category "Light Warship"
+		licenses
+			Heliarch
 		"cost" 18847000
 		"shields" 36400
 		"hull" 32800
@@ -426,6 +440,8 @@ ship "Heliarch Punisher"
 	sprite "ship/heliarch punisher"
 	attributes
 		category "Heavy Warship"
+		licenses
+			Heliarch
 		"cost" 58487000
 		"shields" 108000
 		"hull" 85000
@@ -561,6 +577,8 @@ ship "Kimek Briar"
 	sprite "ship/kimek briar"
 	attributes
 		category "Transport"
+		licenses
+			Coalition
 		"cost" 1532000
 		"shields" 3600
 		"hull" 1700
@@ -604,6 +622,8 @@ ship "Kimek Spire"
 	sprite "ship/kimek spire"
 	attributes
 		category "Transport"
+		licenses
+			Coalition
 		"cost" 9375000
 		"shields" 14200
 		"hull" 4900
@@ -655,6 +675,8 @@ ship "Kimek Thistle"
 	sprite "ship/kimek thistle"
 	attributes
 		category "Transport"
+		licenses
+			Coalition
 		"cost" 2904000
 		"shields" 7500
 		"hull" 2800
@@ -701,6 +723,8 @@ ship "Kimek Thorn"
 	sprite "ship/kimek thorn"
 	attributes
 		category "Transport"
+		licenses
+			Coalition
 		"cost" 440000
 		"shields" 1400
 		"hull" 800
@@ -743,6 +767,8 @@ ship "Saryd Runabout"
 	sprite "ship/saryd runabout"
 	attributes
 		category "Light Freighter"
+		licenses
+			Coalition
 		"cost" 942000
 		"shields" 2000
 		"hull" 1400
@@ -783,6 +809,8 @@ ship "Saryd Sojourner"
 	sprite "ship/saryd sojourner"
 	attributes
 		category "Heavy Freighter"
+		licenses
+			Coalition
 		"cost" 11075000
 		"shields" 13000
 		"hull" 7700
@@ -835,6 +863,8 @@ ship "Saryd Traveler"
 	sprite "ship/saryd traveler"
 	attributes
 		category "Heavy Freighter"
+		licenses
+			Coalition
 		"cost" 3385000
 		"shields" 6500
 		"hull" 4000
@@ -885,6 +915,8 @@ ship "Saryd Visitor"
 	sprite "ship/saryd visitor"
 	attributes
 		category "Light Freighter"
+		licenses
+			Coalition
 		"cost" 1982000
 		"shields" 4000
 		"hull" 2400
