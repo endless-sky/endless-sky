@@ -689,6 +689,24 @@ bool ShopPanel::Scroll(double dx, double dy)
 
 
 
+int64_t ShopPanel::LicenseCost(const Outfit *outfit) const
+{
+	const Sale<Outfit> &available = player.GetPlanet()->Outfitter();
+	
+	int64_t cost = 0;
+	for(const string &name : outfit->Licenses())
+		if(!player.GetCondition("license: " + name))
+		{
+			const Outfit *license = GameData::Outfits().Find(name + " License");
+			if(!license || !license->Cost() || !available.Has(license))
+				return -1;
+			cost += license->Cost();
+		}
+	return cost;
+}
+
+
+
 ShopPanel::Zone::Zone(Point center, Point size, const Ship *ship, double scrollY)
 	: ClickZone(center, size, ship), scrollY(scrollY)
 {

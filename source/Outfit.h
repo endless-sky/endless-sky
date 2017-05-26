@@ -49,6 +49,8 @@ public:
 	const std::string &Category() const;
 	const std::string &Description() const;
 	int64_t Cost() const;
+	// Get the licenses needed to buy or operate this ship.
+	const std::vector<std::string> &Licenses() const;
 	// Get the image to display in the outfitter when buying this item.
 	const Sprite *Thumbnail() const;
 	
@@ -82,6 +84,8 @@ private:
 	std::string description;
 	const Sprite *thumbnail = nullptr;
 	int64_t cost = 0;
+	// Licenses needed to purchase this item.
+	std::vector<std::string> licenses;
 	
 	std::map<std::string, double> attributes;
 	

@@ -39,7 +39,7 @@ ShipInfoDisplay::ShipInfoDisplay(const Ship &ship, const Depreciation &depreciat
 // Call this every time the ship changes.
 void ShipInfoDisplay::Update(const Ship &ship, const Depreciation &depreciation, int day)
 {
-	UpdateDescription(ship);
+	UpdateDescription(ship.Description(), ship.Attributes().Licenses(), true);
 	UpdateAttributes(ship, depreciation, day);
 	UpdateOutfits(ship, depreciation, day);
 	
@@ -107,39 +107,6 @@ void ShipInfoDisplay::DrawSale(const Point &topLeft) const
 	
 	Color color = *GameData::Colors().Get("medium");
 	FillShader::Fill(topLeft + Point(.5 * WIDTH, saleHeight + 8.), Point(WIDTH - 20., 1.), color);
-}
-
-
-
-void ShipInfoDisplay::UpdateDescription(const Ship &ship)
-{
-	const vector<string> &licenses = ship.Licenses();
-	if(licenses.empty())
-		ItemInfoDisplay::UpdateDescription(ship.Description());
-	else
-	{
-		string text = ship.Description() + "\tTo purchase this ship you must have ";
-		for(unsigned i = 0; i < licenses.size(); ++i)
-		{
-			bool isVoweled = false;
-			for(const char &c : "aeiou")
-				if(*licenses[i].begin() == c || *licenses[i].begin() == toupper(c))
-					isVoweled = true;
-			if(i)
-			{
-				if(licenses.size() > 2)
-					text += ", ";
-				else
-					text += " ";
-			}
-			if(i && i == licenses.size() - 1)
-				text += "and ";
-			text += (isVoweled ? "an " : "a ") + licenses[i] + " License";
-
-		}
-		text += ".";
-		ItemInfoDisplay::UpdateDescription(text);
-	}
 }
 
 

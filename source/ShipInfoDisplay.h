@@ -52,7 +52,6 @@ public:
 	
 	
 private:
-	void UpdateDescription(const Ship &ship);
 	void UpdateAttributes(const Ship &ship, const Depreciation &depreciation, int day);
 	void UpdateOutfits(const Ship &ship, const Depreciation &depreciation, int day);
 	

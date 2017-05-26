@@ -212,8 +212,14 @@ bool OutfitterPanel::CanBuy() const
 	if(mapSize > 0 && HasMapped(mapSize))
 		return false;
 	
-	// If you have this in your cargo hold, installing it is free.
+	// Determine what you will have to pay to buy this outfit.
 	int64_t cost = player.StockDepreciation().Value(selectedOutfit, day);
+	// Check that the player has any necessary licenses.
+	int64_t licenseCost = LicenseCost(selectedOutfit);
+	if(licenseCost < 0)
+		return false;
+	cost += licenseCost;
+	// If you have this in your cargo hold, installing it is free.
 	if(cost > player.Accounts().Credits() && !isInCargo)
 		return false;
 	
@@ -237,6 +243,15 @@ bool OutfitterPanel::CanBuy() const
 
 void OutfitterPanel::Buy()
 {
+	int64_t licenseCost = LicenseCost(selectedOutfit);
+	if(licenseCost)
+	{
+		player.Accounts().AddCredits(-licenseCost);
+		for(const string &licenseName : selectedOutfit->Licenses())
+			if(!player.GetCondition("license: " + licenseName))
+				player.Conditions()["license: " + licenseName] = true;
+	}
+	
 	int modifier = Modifier();
 	for(int i = 0; i < modifier && CanBuy(); ++i)
 	{
@@ -335,6 +350,21 @@ void OutfitterPanel::FailBuy() const
 		GetUI()->Push(new Dialog("You cannot buy this outfit, because it costs "
 			+ Format::Number(cost) + " credits, and you only have "
 			+ Format::Number(credits) + "."));
+		return;
+	}
+	// Check that the player has any necessary licenses.
+	int64_t licenseCost = LicenseCost(selectedOutfit);
+	if(licenseCost < 0)
+	{
+		GetUI()->Push(new Dialog(
+			"You cannot buy this outfit, because it requires a license that you don't have."));
+		return;
+	}
+	if(!isInCargo && cost + licenseCost > credits)
+	{
+		GetUI()->Push(new Dialog(
+			"You don't have enough money to buy this outfit, because it will cost you an extra "
+			+ Format::Number(licenseCost) + " credits to buy the necessary licenses."));
 		return;
 	}
 	
@@ -703,7 +733,7 @@ bool OutfitterPanel::ShipCanSell(const Ship *ship, const Outfit *outfit)
 }
 
 
-	
+
 void OutfitterPanel::DrawOutfit(const Outfit &outfit, const Point &center, bool isSelected, bool isOwned)
 {
 	const Sprite *thumbnail = outfit.Thumbnail();

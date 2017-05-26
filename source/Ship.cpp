@@ -73,7 +73,6 @@ void Ship::Load(const DataNode &node)
 	// to override one ship definition with another.
 	bool hasEngine = false;
 	bool hasArmament = false;
-	bool hasLicenses = false;
 	bool hasBays = false;
 	bool hasExplode = false;
 	bool hasFinalExplode = false;
@@ -127,16 +126,6 @@ void Ship::Load(const DataNode &node)
 				armament.AddGunPort(hardpoint, outfit);
 			else
 				armament.AddTurret(hardpoint, outfit);
-		}
-		else if(child.Token(0) == "licenses")
-		{
-			if(!hasLicenses)
-			{
-				licenses.clear();
-				hasLicenses = true;
-			}
-			for(const DataNode &grand : child)
-				licenses.push_back(grand.Token(0));
 		}
 		else if(child.Token(0) == "never disabled")
 			neverDisabled = true;
@@ -532,14 +521,6 @@ int64_t Ship::Cost() const
 int64_t Ship::ChassisCost() const
 {
 	return baseAttributes.Cost();
-}
-
-
-
-// Get the licenses needed to buy or operate this ship.
-const vector<string> &Ship::Licenses() const
-{
-	return licenses;
 }
 
 
