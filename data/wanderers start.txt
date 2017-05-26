@@ -242,6 +242,7 @@ mission "Visit Wanderers Again"
 	
 	on accept
 		set "language: Wanderer"
+		set "license: Wanderer Outfits"
 		event "wanderer technology available"
 
 event "wanderer technology available" #Name unchanged for compatibility
