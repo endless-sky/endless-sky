@@ -271,7 +271,19 @@ event "wanderer technology available"
 		outfitter "Wanderer Basics"
 	government "Wanderer"
 		"friendly hail" "friendly wanderer"
+		"hostile hail" "hostile wanderer"
+		"hostile disabled hail" "hostile disabled wanderer"
 
+# Compatibility patch for users pre-0.9.7 who don't have hostile Wanderer hails.
+mission "Wanderer Hail Patch"
+	landing
+	invisible
+	to offer
+		has "event: wanderer technology available"
+	on offer
+		event "wanderer technology available"
+		fail
+		
 mission "Wanderers Conversation"
 	landing
 	source "Vara K'chrai"
