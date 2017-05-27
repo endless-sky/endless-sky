@@ -258,6 +258,7 @@ mission "Wanderer Hail Patch"
 	to offer
 		has "event: wanderer technology available"
 	on offer
+		set "license: Wanderer Outfits"
 		event "wanderer technology available"
 		fail
 		

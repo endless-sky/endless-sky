@@ -131,7 +131,6 @@ mission "Coalition: Contributor"
 mission "Coalition License Patch"
 	invisible
 	landing
-	name "Bug, you shouldn't see this"
 	to offer
 		has "Coalition: Contributor: done"
 		not "license: Coalition"
