@@ -35,7 +35,7 @@ outfit "Large Collector Module"
 outfit "Small Reactor Module"
 	category "Power"
 	licenses
-		Coalition
+		Heliarch
 	cost 5497000
 	thumbnail "outfit/small reactor module"
 	"mass" 42
@@ -47,7 +47,7 @@ outfit "Small Reactor Module"
 outfit "Large Reactor Module"
 	category "Power"
 	licenses
-		Coalition
+		Heliarch
 	cost 17754000
 	thumbnail "outfit/large reactor module"
 	"mass" 98
