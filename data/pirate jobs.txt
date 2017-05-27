@@ -2630,6 +2630,10 @@ mission "Fake Identity [0]"
 			"reputation: Republic" < -50
 			"reputation: Syndicate" < -50
 			"reputation: Free Worlds" < -50
+	to fail
+		or
+			"reputation: Pirate" <= 0
+			has "chosen Sides"
 	on visit
 		dialog `You land on <planet> and locate Crow, but when asked about the 10 million credits, you find that you do not have enough. Return with 10 million credits in order to get your fake ID.`
 	on complete
@@ -2665,6 +2669,10 @@ mission "Fake Identity [1]"
 			"reputation: Republic" < -100
 			"reputation: Syndicate" < -100
 			"reputation: Free Worlds" < -100
+	to fail
+		or
+			"reputation: Pirate" <= 0
+			has "chosen Sides"
 	on visit
 		dialog `You land on <planet> and locate Crow, but when asked about the 20 million credits, you find that you do not have enough. Return with 20 million credits in order to get your fake ID.`
 	on complete
@@ -2700,6 +2708,10 @@ mission "Fake Identity [2]"
 			"reputation: Republic" < -200
 			"reputation: Syndicate" < -200
 			"reputation: Free Worlds" < -200
+	to fail
+		or
+			"reputation: Pirate" <= 0
+			has "chosen Sides"
 	on visit
 		dialog `You land on <planet> and locate Crow, but when asked about the 30 million credits, you find that you do not have enough. Return with 30 million credits in order to get your fake ID.`
 	on complete
