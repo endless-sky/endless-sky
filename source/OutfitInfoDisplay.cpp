@@ -35,6 +35,7 @@ namespace {
 		"cloaking fuel",
 		"cooling",
 		"cooling energy",
+		"energy consumption",
 		"energy generation",
 		"heat generation",
 		"hull repair rate",
@@ -53,8 +54,11 @@ namespace {
 		"turning heat"
 	};
 	
-	static const set<string> BOOLEAN_ATTRIBUTES = {
-		"unplunderable"
+	static const map<string, string> BOOLEAN_ATTRIBUTES = {
+		{"unplunderable", "This outfit cannot be plundered."},
+		{"installable", "This is not an installable item."},
+		{"hyperdrive", "Allows you to make hyperjumps."},
+		{"jump drive", "Lets you jump to any nearby system."}
 	};
 }
 
@@ -129,23 +133,22 @@ void OutfitInfoDisplay::UpdateRequirements(const Outfit &outfit, const PlayerInf
 		requirementsHeight += 20;
 	}
 	
-	static const string names[] = {
+	static const vector<string> NAMES = {
 		"outfit space needed:", "outfit space",
 		"weapon capacity needed:", "weapon capacity",
 		"engine capacity needed:", "engine capacity",
 		"gun ports needed:", "gun ports",
 		"turret mounts needed:", "turret mounts"
 	};
-	static const int NAMES =  sizeof(names) / sizeof(names[0]);
-	for(int i = 0; i + 1 < NAMES; i += 2)
-		if(outfit.Get(names[i + 1]))
+	for(unsigned i = 0; i + 1 < NAMES.size(); i += 2)
+		if(outfit.Get(NAMES[i + 1]))
 		{
 			requirementLabels.push_back(string());
 			requirementValues.push_back(string());
 			requirementsHeight += 10;
 		
-			requirementLabels.push_back(names[i]);
-			requirementValues.push_back(Format::Number(-outfit.Get(names[i + 1])));
+			requirementLabels.push_back(NAMES[i]);
+			requirementValues.push_back(Format::Number(-outfit.Get(NAMES[i + 1])));
 			requirementsHeight += 20;
 		}
 }
@@ -173,16 +176,11 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		else if(ATTRIBUTES_TO_SCALE.count(it.first))
 			scale = 60.;
 		
-		if(BOOLEAN_ATTRIBUTES.count(it.first)) 
+		auto bit = BOOLEAN_ATTRIBUTES.find(it.first);
+		if(bit != BOOLEAN_ATTRIBUTES.end()) 
 		{
-			attributeLabels.push_back("This outfit is " + it.first + ".");
-			attributeValues.push_back("");
-			attributesHeight += 20;
-		}
-		else if(it.first == "installable" && it.second < 0)
-		{
-			attributeLabels.push_back("This is not an installable item.");
-			attributeValues.push_back("");
+			attributeLabels.push_back(bit->second);
+			attributeValues.push_back(" ");
 			attributesHeight += 20;
 		}
 		else
@@ -296,25 +294,25 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		attributeValues.push_back(skill[max(0, min(4, homing))]);
 		attributesHeight += 20;
 	}
-	static const string percentNames[] = {
+	static const vector<string> PERCENT_NAMES = {
 		"tracking:",
 		"optical tracking:",
 		"infrared tracking:",
 		"radar tracking:",
 		"piercing:"
 	};
-	double percentValues[] = {
+	vector<double> percentValues = {
 		outfit.Tracking(),
 		outfit.OpticalTracking(),
 		outfit.InfraredTracking(),
 		outfit.RadarTracking(),
 		outfit.Piercing()
 	};
-	for(unsigned i = 0; i < sizeof(percentValues) / sizeof(percentValues[0]); ++i)
+	for(unsigned i = 0; i < PERCENT_NAMES.size(); ++i)
 		if(percentValues[i])
 		{
 			int percent = 100. * percentValues[i] + .5;
-			attributeLabels.push_back(percentNames[i]);
+			attributeLabels.push_back(PERCENT_NAMES[i]);
 			attributeValues.push_back(Format::Number(percent) + "%");
 			attributesHeight += 20;
 		}
@@ -323,7 +321,7 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 	attributeValues.push_back(string());
 	attributesHeight += 10;
 	
-	static const string names[] = {
+	static const vector<string> OTHER_NAMES = {
 		"shield damage / shot:",
 		"hull damage / shot:",
 		"heat damage / shot:",
@@ -338,7 +336,7 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		"missile strength:",
 		"anti-missile:",
 	};
-	double values[] = {
+	vector<double> values = {
 		outfit.ShieldDamage(),
 		outfit.HullDamage(),
 		outfit.HeatDamage(),
@@ -353,11 +351,10 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		static_cast<double>(outfit.MissileStrength()),
 		static_cast<double>(outfit.AntiMissile())
 	};
-	static const int NAMES = sizeof(names) / sizeof(names[0]);
-	for(int i = (isContinuous ? 9 : 0); i < NAMES; ++i)
+	for(unsigned i = (isContinuous ? 9 : 0); i < OTHER_NAMES.size(); ++i)
 		if(values[i])
 		{
-			attributeLabels.push_back(names[i]);
+			attributeLabels.push_back(OTHER_NAMES[i]);
 			attributeValues.push_back(Format::Number(values[i]));
 			attributesHeight += 20;
 		}

@@ -40,11 +40,17 @@ public:
 	void Add(const DataNode &node);
 	bool Add(const std::string &firstToken, const std::string &secondToken);
 	bool Add(const std::string &name, const std::string &op, int value);
+	bool Add(const std::string &name, const std::string &op, const std::string &strValue);
 	
 	// Check if the given condition values satisfy this set of conditions.
 	bool Test(const std::map<std::string, int> &conditions) const;
 	// Modify the given set of conditions.
 	void Apply(std::map<std::string, int> &conditions) const;
+	
+	
+private:
+	// Check if the passed token is numeric or a string which has to be replaced, and return its value
+	double TokenValue(int numValue, const std::string &strValue, const std::map<std::string, int> &conditions) const;
 	
 	
 private:
@@ -63,6 +69,8 @@ private:
 		int (*fun)(int, int);
 		// Constant value specified in the expression.
 		int value;
+		// Allow for dynamic values.
+		std::string strValue;
 	};
 	
 	

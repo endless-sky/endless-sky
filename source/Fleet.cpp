@@ -31,14 +31,6 @@ using namespace std;
 
 
 
-Fleet::Fleet()
-{
-	government = GameData::Governments().Get("Merchant");
-	names = GameData::Phrases().Get("civilian");
-}
-
-
-
 void Fleet::Load(const DataNode &node)
 {
 	if(node.Size() >= 2)
@@ -94,58 +86,13 @@ const Government *Fleet::GetGovernment() const
 
 void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Planet *planet) const
 {
-	if(!total || !government || variants.empty())
+	if(!total || variants.empty())
 		return;
 	
 	// Pick a fleet variant to instantiate.
 	const Variant &variant = ChooseVariant();
 	if(variant.ships.empty())
 		return;
-	
-	// Where this fleet can come from depends on whether it is friendly to any
-	// planets in this system and whether it has jump drives.
-	vector<const System *> linkVector;
-	// Find out what the "best" jump method the fleet has is. Assume that if the
-	// others don't have that jump method, they are being carried as fighters.
-	// That is, content creators should avoid creating fleets with a mix of jump
-	// drives and hyperdrives.
-	int jumpType = 0;
-	for(const Ship *ship : variant.ships)
-		jumpType = max(jumpType,
-			 ship->Attributes().Get("jump drive") ? 200 :
-			 ship->Attributes().Get("hyperdrive") ? 100 : 0);
-	if(jumpType)
-	{
-		// Don't try to make a fleet "enter" from another system if none of the
-		// ships have jump drives.
-		bool isWelcomeHere = !system.GetGovernment()->IsEnemy(government);
-		for(const System *neighbor : (jumpType == 200 ? system.Neighbors() : system.Links()))
-		{
-			// If this ship is not "welcome" in the current system, prefer to have
-			// it enter from a system that is friendly to it. (This is for realism,
-			// so attack fleets don't come from what ought to be a safe direction.)
-			if(isWelcomeHere || neighbor->GetGovernment()->IsEnemy(government))
-				linkVector.push_back(neighbor);
-			else
-				linkVector.insert(linkVector.end(), 4, neighbor);
-		}
-	}
-	
-	// Find all the inhabited planets this fleet could take off from.
-	vector<const Planet *> planetVector;
-	if(!personality.IsSurveillance())
-		for(const StellarObject &object : system.Objects())
-			if(object.GetPlanet() && object.GetPlanet()->HasSpaceport()
-					&& !object.GetPlanet()->GetGovernment()->IsEnemy(government))
-				planetVector.push_back(object.GetPlanet());
-	
-	// If there is nowhere for this fleet to come from, don't create it.
-	size_t options = linkVector.size() + planetVector.size();
-	if(!options)
-		return;
-	
-	// Choose a random planet or star system to come from.
-	size_t choice = Random::Int(options);
 	
 	// Figure out what system the ship is starting in, where it is going, and
 	// what position it should start from in the system.
@@ -154,12 +101,76 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 	Point position;
 	double radius = 0.;
 	
-	// If a planet is chosen, also pick a system to travel to after taking off.
-	if(choice >= linkVector.size())
+	// Only pick a random entry point for this ship if a source planet was not specified.
+	if(!planet)
 	{
-		planet = planetVector[choice - linkVector.size()];
-		if(!linkVector.empty())
-			target = linkVector[Random::Int(linkVector.size())];
+		// Where this fleet can come from depends on whether it is friendly to any
+		// planets in this system and whether it has jump drives.
+		vector<const System *> linkVector;
+		// Find out what the "best" jump method the fleet has is. Assume that if the
+		// others don't have that jump method, they are being carried as fighters.
+		// That is, content creators should avoid creating fleets with a mix of jump
+		// drives and hyperdrives.
+		int jumpType = 0;
+		for(const Ship *ship : variant.ships)
+			jumpType = max(jumpType,
+				 ship->Attributes().Get("jump drive") ? 200 :
+				 ship->Attributes().Get("hyperdrive") ? 100 : 0);
+		if(jumpType)
+		{
+			// Don't try to make a fleet "enter" from another system if none of the
+			// ships have jump drives.
+			bool isWelcomeHere = !system.GetGovernment()->IsEnemy(government);
+			for(const System *neighbor : (jumpType == 200 ? system.Neighbors() : system.Links()))
+			{
+				// If this ship is not "welcome" in the current system, prefer to have
+				// it enter from a system that is friendly to it. (This is for realism,
+				// so attack fleets don't come from what ought to be a safe direction.)
+				if(isWelcomeHere || neighbor->GetGovernment()->IsEnemy(government))
+					linkVector.push_back(neighbor);
+				else
+					linkVector.insert(linkVector.end(), 4, neighbor);
+			}
+		}
+	
+		// Find all the inhabited planets this fleet could take off from.
+		vector<const Planet *> planetVector;
+		if(!personality.IsSurveillance())
+			for(const StellarObject &object : system.Objects())
+				if(object.GetPlanet() && object.GetPlanet()->HasSpaceport()
+						&& !object.GetPlanet()->GetGovernment()->IsEnemy(government))
+					planetVector.push_back(object.GetPlanet());
+	
+		// If there is nowhere for this fleet to come from, don't create it.
+		size_t options = linkVector.size() + planetVector.size();
+		if(!options)
+		{
+			// Prefer to launch from inhabited planets, but launch from
+			// uninhabited ones if there is no other option.
+			for(const StellarObject &object : system.Objects())
+				if(object.GetPlanet() && !object.GetPlanet()->GetGovernment()->IsEnemy(government))
+					planetVector.push_back(object.GetPlanet());
+			options = planetVector.size();
+			if(!options)
+				return;
+		}
+		
+		// Choose a random planet or star system to come from.
+		size_t choice = Random::Int(options);
+	
+		// If a planet is chosen, also pick a system to travel to after taking off.
+		if(choice >= linkVector.size())
+		{
+			planet = planetVector[choice - linkVector.size()];
+			if(!linkVector.empty())
+				target = linkVector[Random::Int(linkVector.size())];
+		}
+		else
+		{
+			// We are entering this system via hyperspace, not taking off from a planet.
+			radius = 1000.;
+			source = linkVector[choice];
+		}
 	}
 	
 	// Find the stellar object for the given planet, and place the ships there.
@@ -172,12 +183,6 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 				radius = object.Radius();
 				break;
 			}
-	}
-	else if(choice < linkVector.size())
-	{
-		// We are entering this system via hyperspace, not taking off from a planet.
-		radius = 1000.;
-		source = linkVector[choice];
 	}
 	
 	// Place all the ships in the chosen fleet variant.
@@ -220,7 +225,7 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 // Place a fleet in the given system, already "in action."
 void Fleet::Place(const System &system, list<shared_ptr<Ship>> &ships, bool carried) const
 {
-	if(!total || !government || variants.empty())
+	if(!total || variants.empty())
 		return;
 	
 	// Pick a fleet variant to instantiate.
@@ -262,18 +267,23 @@ void Fleet::Place(const System &system, list<shared_ptr<Ship>> &ships, bool carr
 // Do the randomization to make a ship enter or be in the given system.
 void Fleet::Enter(const System &system, Ship &ship)
 {
-	if(!system.Links().size())
+	if(system.Links().empty())
 	{
 		Place(system, ship);
 		return;
 	}
 	
-	const System *source = system.Links()[Random::Int(system.Links().size())];
+	// Choose which system this ship is coming from.
+	int choice = Random::Int(system.Links().size());
+	set<const System *>::const_iterator it = system.Links().begin();
+	while(choice--)
+		++it;
+	
 	Angle angle = Angle::Random();
 	Point pos = angle.Unit() * Random::Real() * 1000.;
 	
 	ship.Place(pos, angle.Unit(), angle);
-	ship.SetSystem(source);
+	ship.SetSystem(*it);
 	ship.SetTargetSystem(&system);
 }
 
@@ -363,7 +373,9 @@ vector<shared_ptr<Ship>> Fleet::Instantiate(const Variant &variant) const
 		shared_ptr<Ship> ship(new Ship(*model));
 		
 		bool isFighter = ship->CanBeCarried();
-		ship->SetName(((isFighter && fighterNames) ? fighterNames : names)->Get());
+		const Phrase *phrase = ((isFighter && fighterNames) ? fighterNames : names);
+		if(phrase)
+			ship->SetName(phrase->Get());
 		ship->SetGovernment(government);
 		ship->SetPersonality(personality);
 		

@@ -1287,7 +1287,7 @@ ship "Freighter" "Freighter (Hai)"
 		"Outfits Expansion"
 		"Greyhound Plasma Thruster"
 		"X3200 Ion Steering"
-		"Scram Drive"
+		"Hyperdrive"
 	turret "Pulse Turret"
 	turret "Laser Turret"
 	turret "Bullfrog Anti-Missile"
@@ -1371,7 +1371,7 @@ ship "Behemoth" "Behemoth (Hai)"
 		`"Benga" Atomic Thruster`
 		`"Biroo" Atomic Steering`
 		`"Benga" Atomic Steering`
-		"Scram Drive"
+		"Hyperdrive"
 
 
 

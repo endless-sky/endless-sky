@@ -36,6 +36,9 @@ help "jobs"
 	`The payment for a job depends on how far you must travel and how much you are carrying. Jobs that have a time limit pay extra, but you are paid nothing if you miss the deadline.`
 	`As you gain a combat reputation, new jobs will become available, including escorting convoys and bounty hunting.`
 
+help "multiple ships"
+	`Now that you have more than one ship, while landed on a planet you can reorder the ships in your fleet by clicking and dragging them in the shipyard, outfitter, or player info panel. You will use the first ship in the list as your flagship, unless it is a fighter or an unpiloted drone. In the player info panel you can also "park" a ship on a planet if you want to travel somewhere without it coming with you.`
+
 help "navigation"
 	`Welcome to the sky! To travel to another star system, press <View star map> to view your map, and click on the system you want to travel to. Your hyperdrive can only travel along the "links" shown on your map. After selecting a destination, close your map and press <Initiate hyperspace jump> to jump to that system.`
 	`Your ship does not jump until you release the jump key. Once you have escorts, you can hold the key to get them ready to jump, then release it to have them all jump simultaneously.`

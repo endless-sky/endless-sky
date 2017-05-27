@@ -563,7 +563,7 @@ mission "FW Southern Prisoners - Release"
 		event "fw safe passage ends" 7
 	
 	npc accompany save
-		government "Escort"
+		government "Free Worlds"
 		personality timid escort
 		ship "Blackbird" "F.S. Charity"
 		ship "Blackbird" "F.S. Good Hope"
@@ -628,7 +628,7 @@ mission "FW Southern Prisoners - Released"
 				launch
 	
 	npc accompany save
-		government "Escort"
+		government "Free Worlds"
 		personality timid escort
 		ship "Blackbird" "F.S. Charity"
 		ship "Blackbird" "F.S. Good Hope"

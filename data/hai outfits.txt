@@ -41,6 +41,8 @@ outfit "Pulse Turret"
 	"required crew" 1
 	weapon
 		sprite "projectile/pulse"
+		"hardpoint sprite" "hardpoint/pulse turret"
+		"hardpoint offset" 7.
 		sound "pulse"
 		"hit effect" "pulse impact"
 		"inaccuracy" 1
@@ -77,7 +79,7 @@ outfit "Ion Cannon"
 		"shield damage" 168
 		"hull damage" 60
 		"ion damage" 5
-	description "Ion cannons do not do as much damage as some other weapons, but they disrupt the electrical systems on any ship they hit, draining its energy. If a ship has sizeable battery reserves, this may not have any effect, but for a ship running at near its energy generation capacity an ion strike can take it out of the battle for a few seconds while it recovers."
+	description "Ion cannons do not inflict as much damage as some other weapons, but they disrupt the electrical systems on any ship they hit, draining its energy. If a ship has sizable battery reserves, this may not have any effect, but for a ship running at near its energy generation capacity an ion strike can take it out of the battle for a few seconds while it recovers."
 
 outfit "Railgun Slug"
 	category "Ammunition"
@@ -85,7 +87,7 @@ outfit "Railgun Slug"
 	thumbnail "outfit/railslug"
 	"mass" 0.02
 	"railgun slug capacity" -1
-	description "The standard ammunition of Hai Railguns; their shape and powerful flux capacitor carrying an immense static charge causes this slug's trajectory to bend slightly to their target, and allows them to damage the target's hull a little, even with the presence of shields. Needless to say, once a target's shields are down, this slug is effective at punching crippling holes in the hull."
+	description "These railgun slugs incorporate energy-discharging capacitors that deal a small amount of hull damage even when the target's shields are functioning, and they can punch crippling holes in the hull of a ship whose shields are down."
 
 outfit "Railgun"
 	category "Secondary Weapons"
@@ -114,7 +116,7 @@ outfit "Railgun"
 		"hit force" 44
 		"stream"
 		"submunition" "rslug" 1
-	description "The Hai created this weapon for their Flea drones, providing mobile long range support for their close quarters Pond Strider carrier. This particular incarnation of a rail weapon imparts a massive static electric charge to the projectile's flux capacitor, and motivates the slug with electric repulsion. Once in flight, the projectile's charge will bend trajectory very slightly, and allows it to damage the hull a little bit through shields."
+	description "The Hai created this compact weapon for their Flea drones, providing mobile long range support for the close quarters Pond Strider carrier."
 
 outfit "rslug"
 	weapon
@@ -188,7 +190,7 @@ outfit "Hai Tracker Pod"
 		"hull damage" 160
 		"hit force" 50
 		"missile strength" 16
-	description "Trackers are a fast, powerful, and accurate homing weapon. Their only weakness is their large turning radius: if a Tracker misses its target, it takes a long time to turn around."
+	description "Trackers are fast, powerful, and accurate homing weapons. Their only weakness is their large turning radius: if a Tracker misses its target, it takes a long time to turn around."
 
 outfit "Bullfrog Anti-Missile"
 	category "Turrets"
@@ -199,6 +201,8 @@ outfit "Bullfrog Anti-Missile"
 	"weapon capacity" -10
 	"turret mounts" -1
 	weapon
+		"hardpoint sprite" "hardpoint/anti-missile hai"
+		"hardpoint offset" 3.
 		"hit effect" "small anti-missile"
 		"anti-missile" 12
 		"velocity" 150
@@ -218,6 +222,8 @@ outfit "Chameleon Anti-Missile"
 	"weapon capacity" -22
 	"turret mounts" -1
 	weapon
+		"hardpoint sprite" "hardpoint/heavy anti-missile hai"
+		"hardpoint offset" 4.
 		"hit effect" "large anti-missile"
 		"anti-missile" 16
 		"velocity" 200
@@ -236,7 +242,7 @@ outfit "Hai Corundum Regenerator"
 	"outfit space" -16
 	"shield generation" .7
 	"shield energy" .7
-	"energy generation" -.3
+	"energy consumption" .3
 	"shield heat" 3
 	description "Hai shield regenerators work by subtly modifying the geometry and harmonics of your shield matrix in order to make your shields more malleable and therefore much easier to recharge. Unfortunately, this system requires a constant power source, and generates a fair bit of heat while regenerating."
 
@@ -249,7 +255,7 @@ outfit "Hai Diamond Regenerator"
 	"shield generation" 2.5
 	"shield energy" 2.5
 	"shield heat" 9
-	"energy generation" -.9
+	"energy consumption" .9
 	description "The Hai Diamond Shield Regenerator is an advanced type of shield recharging technology. Unfortunately, its power needs are quite high, and the shifts it makes to your shield matrix causes intense heat at the regenerator when your shields are charging. The Hai usually employ Williwaw Cooling when they use this regenerator."
 
 outfit "Hai Williwaw Cooling"
@@ -261,6 +267,17 @@ outfit "Hai Williwaw Cooling"
 	"cooling" 9.5
 	description "While Hai technology is fairly heat efficient, occasionally they outfit their ships such that they sporadically overheat and shut down. When that happens, they install these."
 
+
+outfit "Quantum Keystone"
+	category "Systems"
+	cost 12000
+	thumbnail "outfit/keystone"
+	"mass" 1
+	"outfit space" -1
+	"quantum keystone" 1
+	description "This chunk of rock from the mountains on the Hai homeworld is apparently nothing more than a good luck charm, but the Hai have decorated their ships with them since the height of their empire. More superstitious Hai claim that the stones somehow reduce the nausea induced by hyperspace jumps by making travel between star systems easier."
+
+
 outfit "Hai Chasm Batteries"
 	plural "Hai Chasm Batteries"
 	category "Power"
@@ -269,7 +286,7 @@ outfit "Hai Chasm Batteries"
 	"mass" 5
 	"outfit space" -5
 	"energy capacity" 491
-	description "Power storage technology is thousands of years old. This is the smallest Hai battery pack."
+	description "Hai power storage technology is thousands of years old, but remarkably simple and robust. This is the smallest Hai battery pack."
 
 outfit "Hai Fissure Batteries"
 	plural "Hai Fissure Batteries"
@@ -320,7 +337,7 @@ outfit "Boulder Reactor"
 	"outfit space" -90
 	"energy generation" 17.3
 	"heat generation" 34
-	description "The Hai built spacefaring fusion generators centuries ago, but they never really required anything more powerful, so their design remained relatively unchanged after it was miniaturized enough for their capital warships."
+	description "The Hai designed these miniaturized fusion generators back when their territory was being raided by the Korath. In these relatively peaceful times, they have seen no need to update the design."
 
 outfit "Geode Reactor"
 	category "Power"
@@ -385,7 +402,7 @@ outfit `"Basrem" Atomic Thruster`
 	"flare sprite" "effect/atomic flare/tiny"
 		"frame rate" 14
 	"flare sound" "atomic tiny"
-	description "Unbeknownst to the scientists of the Deep, the Hai have been using atomic engines for many millennia. Hai atomic engines are still much more energy hungry than other engines, but are more efficient than their human counterparts."
+	description "Unbeknownst to the scientists of the Deep, the Hai have been using atomic engine technology for many millennia. Hai atomic engines are still much more energy hungry than other engines, but exhibit greater efficiency than their human counterparts."
 
 outfit `"Benga" Atomic Thruster`
 	category "Engines"
@@ -493,7 +510,7 @@ outfit `"Bondir" Atomic Steering`
 	"turn" 1758
 	"turning energy" 3.2
 	"turning heat" 8.2
-	description "Reserved for special use on only a small number of Hai ships, these engines are one of the most expensive outfits that one could buy. Considerably more efficient than any other engine of the same size, Hai atomic engines are a go to choice for anyone in need of a high turn speed."
+	description "Reserved for special use on only a small number of Hai ships, these engines are one of the most expensive outfits that one could buy. Considerably more efficient than any other engine of the same size, Hai atomic engines are a go-to choice for anyone in need of a high turn speed."
 
 outfit `"Bufaer" Atomic Steering`
 	category "Engines"
@@ -505,4 +522,4 @@ outfit `"Bufaer" Atomic Steering`
 	"turn" 3043
 	"turning energy" 5.2
 	"turning heat" 13.8
-	description "Nine out of every ten human captains interviewed in Hai space as to whose atomic engines they prefer say that they would choose Hai atomic engines over those of Deep Sky any day; that is if they could afford such expensive engines."
+	description "Nine out of ten human captains interviewed in Hai space say that they would choose Hai atomic engines over those of Deep Sky any day... that is, if they could afford such expensive engines."

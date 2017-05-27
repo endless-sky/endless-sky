@@ -79,6 +79,23 @@ mission "Coalition: First Contact"
 			`	You talk with them for a while longer, and learn that the centaurs are called "Saryds," and are the oldest of the three species. The beetles are the "Kimek," and come next, and the spiders are called "Arachi," and were the last of the three to discover spaceflight.`
 			`	They tell you that the best way to learn more about them is to visit their worlds, and to see for yourself how the three species live in friendship and equality. They also offer to give you jobs to do in their territory, so that you may become a "valuable contributor" to their society.`
 
+mission "Discovered Coalition Space"
+	landing
+	invisible
+	source
+		government "Heliarch"
+	on offer
+		event "label coalition space"
+		fail
+
+event "label coalition space"
+	galaxy "label saryds"
+		sprite "label/saryds"
+	galaxy "label kimek"
+		sprite "label/kimek"
+	galaxy "label arachi"
+		sprite "label/arachi"
+
 
 
 mission "Coalition: Contributor"

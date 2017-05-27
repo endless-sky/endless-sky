@@ -196,7 +196,7 @@ string Account::Step(int64_t assets, int64_t salaries)
 	// Keep track of your net worth over the last HISTORY days.
 	if(history.size() > HISTORY)
 		history.erase(history.begin());
-	history.push_back(credits + assets);
+	history.push_back(credits + assets - salariesOwed);
 	
 	// If you failed to pay any debt, your credit score drops. Otherwise, even
 	// if you have no debts, it increases. (Because, having no debts at all
@@ -227,6 +227,22 @@ string Account::Step(int64_t assets, int64_t salaries)
 				" in fines." : " credits in fines.");
 	}
 	return out.str();
+}
+
+
+
+int64_t Account::SalariesOwed() const
+{
+	return salariesOwed;
+}
+
+
+
+void Account::PaySalaries(int64_t amount)
+{
+	amount = min(min(amount, salariesOwed), credits);
+	credits -= amount;
+	salariesOwed -= amount;
 }
 
 

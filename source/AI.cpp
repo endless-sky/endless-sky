@@ -535,7 +535,7 @@ void AI::Step(const PlayerInfo &player)
 			else if(parent && !(it->IsYours() ? thisIsLaunching : parent->Commands().Has(Command::DEPLOY)))
 			{
 				it->SetTargetShip(parent);
-				MoveTo(*it, command, parent->Position(), 40., .8);
+				MoveTo(*it, command, parent->Position(), parent->Velocity(), 40., .8);
 				command |= Command::BOARD;
 				it->SetCommands(command);
 				continue;
@@ -565,7 +565,7 @@ void AI::Step(const PlayerInfo &player)
 				it->SetShipToAssist(shared_ptr<Ship>());
 			else if(!it->IsBoarding())
 			{
-				MoveTo(*it, command, shipToAssist->Position(), 40., .8);
+				MoveTo(*it, command, shipToAssist->Position(), shipToAssist->Velocity(), 40., .8);
 				command |= Command::BOARD;
 			}
 			it->SetCommands(command);
@@ -826,7 +826,7 @@ bool AI::FollowOrders(Ship &ship, Command &command) const
 	// If your parent is jumping or absent, that overrides your orders unless
 	// your orders are to hold position.
 	shared_ptr<Ship> parent = ship.GetParent();
-	if(parent && type != Orders::HOLD_POSITION)
+	if(parent && type != Orders::HOLD_POSITION && type != Orders::MOVE_TO)
 	{
 		if(parent->GetSystem() != ship.GetSystem())
 			return false;
@@ -836,7 +836,7 @@ bool AI::FollowOrders(Ship &ship, Command &command) const
 	
 	shared_ptr<Ship> target = it->second.target.lock();
 	if(type == Orders::MOVE_TO && ship.Position().Distance(it->second.point) > 20.)
-		MoveTo(ship, command, it->second.point, 10., .1);
+		MoveTo(ship, command, it->second.point, Point(), 10., .1);
 	else if(type == Orders::HOLD_POSITION || type == Orders::MOVE_TO)
 	{
 		if(ship.Velocity().Length() > .001 || !ship.GetTargetShip())
@@ -870,7 +870,7 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 		Point extrapolated = target->Position() + 120. * (target->Velocity() - ship.Velocity());
 		if(extrapolated.Length() >= MAX_DISTANCE_FROM_CENTER)
 		{
-			MoveTo(ship, command, Point(), 40., .8);
+			MoveTo(ship, command, Point(), Point(), 40., .8);
 			if(ship.Velocity().Dot(ship.Position()) > 0.)
 				command |= Command::FORWARD;
 			return;
@@ -891,7 +891,7 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 		{
 			if(ship.IsBoarding())
 				return;
-			MoveTo(ship, command, target->Position(), 40., .8);
+			MoveTo(ship, command, target->Position(), target->Velocity(), 40., .8);
 			command |= Command::BOARD;
 		}
 		else
@@ -932,7 +932,7 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 		
 		vector<int> systemWeights;
 		int totalWeight = 0;
-		const vector<const System *> &links = ship.Attributes().Get("jump drive")
+		const set<const System *> &links = ship.Attributes().Get("jump drive")
 			? ship.GetSystem()->Neighbors() : ship.GetSystem()->Links();
 		if(jumps)
 		{
@@ -959,6 +959,15 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 				planets.push_back(&object);
 				totalWeight += planetWeight;
 			}
+		// If there are no ports to land on and this ship cannot jump, consider
+		// landing on uninhabited planets.
+		if(!totalWeight)
+			for(const StellarObject &object : ship.GetSystem()->Objects())
+				if(object.GetPlanet() && object.GetPlanet()->CanLand(ship))
+				{
+					planets.push_back(&object);
+					totalWeight += planetWeight;
+				}
 		if(!totalWeight)
 		{
 			// If there is nothing this ship can land on, have it just go to the
@@ -969,15 +978,16 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 			planets.push_back(&ship.GetSystem()->Objects().front());
 		}
 		
+		set<const System *>::const_iterator it = links.begin();
 		int choice = Random::Int(totalWeight);
 		if(choice < systemTotalWeight)
 		{
-			for(unsigned i = 0; i < systemWeights.size(); ++i)
+			for(unsigned i = 0; i < systemWeights.size(); ++i, ++it)
 			{
 				choice -= systemWeights[i];
 				if(choice < 0)
 				{
-					ship.SetTargetSystem(links[i]);
+					ship.SetTargetSystem(*it);
 					break;
 				}
 			}
@@ -1035,7 +1045,9 @@ void AI::MoveEscort(Ship &ship, Command &command) const
 		Refuel(ship, command);
 	else if(!parentIsHere && !isStaying)
 	{
-		if(!ship.HyperspaceType() && !ship.GetTargetStellar())
+		// Check whether the ship has a target system and is able to jump to it.
+		bool hasJump = (ship.GetTargetSystem() && ship.JumpFuel(ship.GetTargetSystem()));
+		if(!hasJump && !ship.GetTargetStellar())
 		{
 			// If we're stranded and haven't decided where to go, figure out a
 			// path to the parent ship's system.
@@ -1085,7 +1097,7 @@ void AI::MoveEscort(Ship &ship, Command &command) const
 		else
 		{
 			PrepareForHyperspace(ship, command);
-			if(parent.IsEnteringHyperspace() || parent.CheckHyperspace())
+			if(parent.IsEnteringHyperspace() || parent.IsReadyToJump())
 				command |= Command::JUMP;
 		}
 	}
@@ -1174,29 +1186,31 @@ bool AI::MoveToPlanet(Ship &ship, Command &command)
 		return false;
 	
 	const Point &target = ship.GetTargetStellar()->Position();
-	return MoveTo(ship, command, target, ship.GetTargetStellar()->Radius(), 1.);
+	return MoveTo(ship, command, target, Point(), ship.GetTargetStellar()->Radius(), 1.);
 }
 
 
 
-bool AI::MoveTo(Ship &ship, Command &command, const Point &target, double radius, double slow)
+// Instead of moving to a point with a fixed location, move to a moving point (Ship = position + velocity)
+bool AI::MoveTo(Ship &ship, Command &command, const Point &targetPosition, const Point &targetVelocity, double radius, double slow)
 {
 	const Point &position = ship.Position();
 	const Point &velocity = ship.Velocity();
 	const Angle &angle = ship.Facing();
-	Point distance = target - position;
+	Point dp = targetPosition - position;
+	Point dv = targetVelocity - velocity;
 	
-	double speed = velocity.Length();
+	double speed = dv.Length();
 	
-	bool isClose = (distance.Length() < radius);
+	bool isClose = (dp.Length() < radius);
 	if(isClose && speed < slow)
 		return true;
 	
 	bool shouldReverse = false;
-	distance = target - StoppingPoint(ship, shouldReverse);
-	bool isFacing = (distance.Unit().Dot(angle.Unit()) > .8);
+	dp = targetPosition - StoppingPoint(ship, targetVelocity, shouldReverse);
+	bool isFacing = (dp.Unit().Dot(angle.Unit()) > .8);
 	if(!isClose || (!isFacing && !shouldReverse))
-		command.SetTurn(TurnToward(ship, distance));
+		command.SetTurn(TurnToward(ship, dp));
 	if(isFacing)
 		command |= Command::FORWARD;
 	else if(shouldReverse)
@@ -1207,7 +1221,7 @@ bool AI::MoveTo(Ship &ship, Command &command, const Point &target, double radius
 
 
 
-bool AI::Stop(Ship &ship, Command &command, double maxSpeed)
+bool AI::Stop(Ship &ship, Command &command, double maxSpeed, const Point direction)
 {
 	const Point &velocity = ship.Velocity();
 	const Angle &angle = ship.Facing();
@@ -1242,6 +1256,20 @@ bool AI::Stop(Ship &ship, Command &command, double maxSpeed)
 		double reverseTime = (180. - degreesToTurn) / ship.TurnRate();
 		reverseTime += speed / reverseAcceleration;
 		
+		// If you want to end up facing a specific direction, add the extra turning time.
+		if(direction)
+		{
+			// Time to turn from facing backwards to target:
+			double degreesFromBackwards = TO_DEG * acos(min(1., max(-1., direction.Unit().Dot(-velocity.Unit()))));
+			double turnFromBackwardsTime = degreesFromBackwards / ship.TurnRate();
+			forwardTime += turnFromBackwardsTime;
+			
+			// Time to turn from facing forwards to target:
+			double degreesFromForward = TO_DEG * acos(min(1., max(-1., direction.Unit().Dot(angle.Unit()))));
+			double turnFromForwardTime = degreesFromForward / ship.TurnRate();
+			reverseTime += turnFromForwardTime;
+		}
+		
 		if(reverseTime < forwardTime)
 		{
 			command.SetTurn(TurnToward(ship, velocity));
@@ -1262,18 +1290,22 @@ bool AI::Stop(Ship &ship, Command &command, double maxSpeed)
 
 void AI::PrepareForHyperspace(Ship &ship, Command &command)
 {
-	int type = ship.HyperspaceType();
-	if(!type)
+	bool hasHyperdrive = ship.Attributes().Get("hyperdrive");
+	double scramThreshold = ship.Attributes().Get("scram drive");
+	bool hasJumpDrive = ship.Attributes().Get("jump drive");
+	if(!hasHyperdrive && !hasJumpDrive)
 		return;
 	
+	bool isJump = !hasHyperdrive || !ship.GetSystem()->Links().count(ship.GetTargetSystem());
+	
 	Point direction = ship.GetTargetSystem()->Position() - ship.GetSystem()->Position();
-	if(type == 150)
+	if(!isJump && scramThreshold)
 	{
 		direction = direction.Unit();
 		Point normal(-direction.Y(), direction.X());
 		
 		double deviation = ship.Velocity().Dot(normal);
-		if(fabs(deviation) > ship.Attributes().Get("scram drive"))
+		if(fabs(deviation) > scramThreshold)
 		{
 			// Need to maneuver; not ready to jump
 			if((ship.Facing().Unit().Dot(normal) < 0) == (deviation < 0))
@@ -1291,19 +1323,19 @@ void AI::PrepareForHyperspace(Ship &ship, Command &command)
 				double correctionWhileTurning = fabs(1 - cos) * ship.Acceleration() / turnRateRadians;
 				// (Note that this will always underestimate because thrust happens before turn)
 				
-				if(fabs(deviation) - correctionWhileTurning > ship.Attributes().Get("scram drive"))
+				if(fabs(deviation) - correctionWhileTurning > scramThreshold)
 					// Want to thrust from an even sharper angle
 					direction = -deviation * normal;
 			}
 		}
 		command.SetTurn(TurnToward(ship, direction));
 	}
-	// If we are moving too fast, point in the right direction.
-	else if(Stop(ship, command, ship.Attributes().Get("jump speed")))
-	{
-		if(type != 200)
-			command.SetTurn(TurnToward(ship, direction));
-	}
+	// If we're a jump drive, just stop.
+	else if(isJump)
+		Stop(ship, command, ship.Attributes().Get("jump speed"));
+	// Else stop in the fastest way to end facing in the right direction
+	else if(Stop(ship, command, ship.Attributes().Get("jump speed"), direction))
+		command.SetTurn(TurnToward(ship, direction));
 }
 
 
@@ -1325,7 +1357,7 @@ void AI::Swarm(Ship &ship, Command &command, const Ship &target)
 	if(rendezvousTime != rendezvousTime || rendezvousTime > 600.)
 		rendezvousTime = 600.;
 	direction += rendezvousTime * target.Velocity();
-	MoveTo(ship, command, target.Position() + direction, 50., 2.);
+	MoveTo(ship, command, target.Position() + direction, Point(), 50., 2.);
 }
 
 
@@ -1365,14 +1397,14 @@ void AI::KeepStation(Ship &ship, Command &command, const Ship &target)
 	double positionAngle = Angle(rendezvous).Degrees();
 	positionTime += AngleDiff(currentAngle, positionAngle) / turn;
 	positionTime += (rendezvous.Unit() * maxV - ship.Velocity()).Length() / accel;
-	// If you are very close,stop trying to adjust:
+	// If you are very close, stop trying to adjust:
 	positionTime *= positionWeight * positionWeight;
 	
 	// Time it will take (roughly) to adjust your velocity to match the target:
 	double velocityTime = velocityDelta.Length() / accel;
 	double velocityAngle = Angle(velocityDelta).Degrees();
 	velocityTime += AngleDiff(currentAngle, velocityAngle) / turn;
-	// If you are very close,stop trying to adjust:
+	// If you are very close, stop trying to adjust:
 	velocityTime *= velocityWeight * velocityWeight;
 	
 	// Focus on matching position or velocity depending on which will take longer.
@@ -1661,6 +1693,8 @@ bool AI::DoHarvesting(Ship &ship, Command &command)
 {
 	// If the ship has no target to pick up, do nothing.
 	shared_ptr<Flotsam> target = ship.GetTargetFlotsam();
+	if(target && ship.Cargo().Free() < target->UnitSize())
+		target.reset();
 	if(!target)
 	{
 		// Only check for new targets every 10 frames, on average.
@@ -1671,6 +1705,8 @@ bool AI::DoHarvesting(Ship &ship, Command &command)
 		double bestTime = 600.;
 		for(const shared_ptr<Flotsam> &it : flotsam)
 		{
+			if(ship.Cargo().Free() < it->UnitSize())
+				continue;
 			// Only pick up flotsam that is nearby and that you are facing toward.
 			Point p = it->Position() - ship.Position();
 			double range = p.Length();
@@ -1773,16 +1809,17 @@ void AI::DoScatter(Ship &ship, Command &command)
 
 
 
-Point AI::StoppingPoint(const Ship &ship, bool &shouldReverse)
+// Instead of coming to a full stop, adjust to a target velocity vector
+Point AI::StoppingPoint(const Ship &ship, const Point &targetVelocity, bool &shouldReverse)
 {
 	const Point &position = ship.Position();
-	const Point &velocity = ship.Velocity();
+	Point velocity = ship.Velocity() - targetVelocity;
 	const Angle &angle = ship.Facing();
 	double acceleration = ship.Acceleration();
 	double turnRate = ship.TurnRate();
 	shouldReverse = false;
 	
-	// If I were to turn around and stop now, where would that put me?
+	// If I were to turn around and stop now the relative movement, where would that put me?
 	double v = velocity.Length();
 	if(!v)
 		return position;
@@ -2073,7 +2110,8 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 	{
 		const System *system = player.TravelPlan().back();
 		for(const StellarObject &object : ship.GetSystem()->Objects())
-			if(object.GetPlanet() && object.GetPlanet()->WormholeDestination(ship.GetSystem()) == system)
+			if(object.GetPlanet() && object.GetPlanet()->WormholeDestination(ship.GetSystem()) == system
+				&& player.HasVisited(object.GetPlanet()) && player.HasVisited(system))
 			{
 				isWormhole = true;
 				ship.SetTargetStellar(&object);
@@ -2085,7 +2123,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 	if(ship.IsEnteringHyperspace() && !wasHyperspacing)
 	{
 		// Check if there's a particular planet there we want to visit.
-		const System *system = ship.HyperspaceSystem();
+		const System *system = ship.GetTargetSystem();
 		set<const Planet *> destinations;
 		Date deadline;
 		const Planet *bestDestination = nullptr;
@@ -2260,7 +2298,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 			int count = 0;
 			const StellarObject *next = nullptr;
 			for(const StellarObject &object : ship.GetSystem()->Objects())
-				if(object.GetPlanet())
+				if(object.GetPlanet() && object.GetPlanet()->IsAccessible(&ship))
 				{
 					++count;
 					if(found)
@@ -2274,7 +2312,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 			if(!next)
 			{
 				for(const StellarObject &object : ship.GetSystem()->Objects())
-					if(object.GetPlanet())
+					if(object.GetPlanet() && object.GetPlanet()->IsAccessible(&ship))
 					{
 						next = &object;
 						break;
@@ -2299,7 +2337,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 			if(!target)
 			{
 				for(const StellarObject &object : ship.GetSystem()->Objects())
-					if(object.GetPlanet())
+					if(object.GetPlanet() && object.GetPlanet()->IsAccessible(&ship))
 					{
 						++count;
 						types.insert(object.GetPlanet()->Noun());
@@ -2468,7 +2506,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 			keyStuck.Clear();
 			Audio::Play(Audio::Get("fail"));
 		}
-		else if(!ship.HyperspaceType())
+		else if(!ship.JumpFuel(ship.GetTargetSystem()))
 		{
 			Messages::Add("You cannot jump to the selected system.");
 			keyStuck.Clear();
@@ -2496,7 +2534,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 			keyStuck.Clear(Command::BOARD);
 		else
 		{
-			MoveTo(ship, command, target->Position(), 40., .8);
+			MoveTo(ship, command, target->Position(), target->Velocity(), 40., .8);
 			command |= Command::BOARD;
 		}
 	}
@@ -2545,6 +2583,9 @@ void AI::IssueOrders(const PlayerInfo &player, const Orders &newOrders, const st
 {
 	string who;
 	
+	// Find out what the target of these orders is.
+	const Ship *newTarget = newOrders.target.lock().get();
+	
 	// Figure out what ships we are giving orders to.
 	vector<const Ship *> ships;
 	if(player.SelectedShips().empty())
@@ -2591,13 +2632,19 @@ void AI::IssueOrders(const PlayerInfo &player, const Orders &newOrders, const st
 	// their orders will be cleared instead. The only command that does not
 	// toggle is a move command; it always counts as a new command.
 	bool hasMismatch = isMoveOrder;
+	bool gaveOrder = false;
 	for(const Ship *ship : ships)
 	{
+		// Never issue orders to a ship to target itself.
+		if(ship == newTarget)
+			continue;
+		
+		gaveOrder = true;
 		hasMismatch |= !orders.count(ship);
 		
 		Orders &existing = orders[ship];
 		hasMismatch |= (existing.type != newOrders.type);
-		hasMismatch |= (existing.target.lock() != newOrders.target.lock());
+		hasMismatch |= (existing.target.lock().get() != newTarget);
 		existing = newOrders;
 		
 		if(isMoveOrder)
@@ -2611,6 +2658,8 @@ void AI::IssueOrders(const PlayerInfo &player, const Orders &newOrders, const st
 			existing.point += offset;
 		}
 	}
+	if(!gaveOrder)
+		return;
 	if(hasMismatch)
 		Messages::Add(who + description);
 	else

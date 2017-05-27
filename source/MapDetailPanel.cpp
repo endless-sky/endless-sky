@@ -128,7 +128,7 @@ bool MapDetailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command
 		// Depending on whether the flagship has a jump drive, the possible links
 		// we can travel along are different:
 		bool hasJumpDrive = player.Flagship()->Attributes().Get("jump drive");
-		const vector<const System *> &links = hasJumpDrive ? source->Neighbors() : source->Links();
+		const set<const System *> &links = hasJumpDrive ? source->Neighbors() : source->Links();
 		
 		// For each link we can travel from this system, check whether the link
 		// is closer to the current angle (while still being larger) than any
@@ -418,11 +418,11 @@ void MapDetailPanel::DrawInfo()
 		set<const Planet *> shown;
 		const Sprite *planetSprite = SpriteSet::Get("ui/map planet");
 		for(const StellarObject &object : selectedSystem->Objects())
-			if(object.GetPlanet() && !object.GetPlanet()->IsWormhole())
+			if(object.GetPlanet())
 			{
 				// Allow the same "planet" to appear multiple times in one system.
 				const Planet *planet = object.GetPlanet();
-				if(shown.count(planet))
+				if(planet->IsWormhole() || !planet->IsAccessible(player.Flagship()) || shown.count(planet))
 					continue;
 				shown.insert(planet);
 				
@@ -492,13 +492,13 @@ void MapDetailPanel::DrawInfo()
 		string price;
 		
 		bool hasVisited = player.HasVisited(selectedSystem);
-		if(hasVisited && selectedSystem->IsInhabited())
+		if(hasVisited && selectedSystem->IsInhabited(player.Flagship()))
 		{
 			int value = selectedSystem->Trade(commodity.name);
 			int localValue = (player.GetSystem() ? player.GetSystem()->Trade(commodity.name) : 0);
 			// Don't "compare" prices if the current system is uninhabited and
 			// thus has no prices to compare to.
-			bool noCompare = (!player.GetSystem() || !player.GetSystem()->IsInhabited());
+			bool noCompare = (!player.GetSystem() || !player.GetSystem()->IsInhabited(player.Flagship()));
 			if(!value)
 				price = "----";
 			else if(noCompare || player.GetSystem() == selectedSystem || !localValue)
@@ -611,10 +611,10 @@ void MapDetailPanel::DrawOrbits()
 			continue;
 		
 		Point pos = orbitCenter + object.Position() * scale;
-		if(object.GetPlanet())
+		if(object.GetPlanet() && object.GetPlanet()->IsAccessible(player.Flagship()))
 			planets[object.GetPlanet()] = pos;
 		
-		RingShader::Draw(pos, object.Radius() * scale + 1., 0., object.TargetColor());
+		RingShader::Draw(pos, object.Radius() * scale + 1., 0., object.TargetColor(player.Flagship()));
 	}
 	
 	// Draw the name of the selected planet.

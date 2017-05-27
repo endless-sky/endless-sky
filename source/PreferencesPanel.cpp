@@ -411,6 +411,7 @@ void PreferencesPanel::DrawSettings()
 		VIEW_ZOOM_FACTOR,
 		"Show status overlays",
 		"Highlight player's flagship",
+		"Rotate flagship in HUD",
 		"Show planet labels",
 		"Show mini-map",
 		"",

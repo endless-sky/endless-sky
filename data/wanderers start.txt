@@ -63,6 +63,19 @@ mission "First Contact: Wanderer"
 			`	The same alien speaks again, pantomiming your ship flying into the sky and then returning, and then points to your airlock and mimics your rodent-ear gesture for the Hai. You think it is telling you to go find one of the Hai who can serve as an interpreter, and bring them back here.`
 				accept
 
+mission "Discovered Wanderer Space"
+	landing
+	invisible
+	source
+		government "Wanderer"
+	on offer
+		event "label wanderer space"
+		fail
+
+event "label wanderer space"
+	galaxy "label wanderers"
+		sprite "label/wanderers"
+
 mission "Wanderers: Hai Diplomat"
 	description "Travel to Hai-home to pick up a diplomat who can help you communicate with the Wanderers."
 	landing

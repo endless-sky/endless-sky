@@ -112,14 +112,21 @@ Body::Frame Body::GetFrame(int step, bool isHighDPI) const
 
 
 
+int Body::GetFrameIndex(int step) const
+{
+	SetStep(step, Screen::IsHighResolution());
+	return activeIndex;
+}
+
+
+
 // Get the mask for the given time step. If no time step is given, this will
 // return the mask from the most recently given step.
 const Mask &Body::GetMask(int step) const
 {
-	static const Mask empty;
-	
 	SetStep(step, currentHighDPI);
-	return (mask ? *mask : empty);
+	static const Mask EMPTY;
+	return sprite ? sprite->GetMask(activeIndex) : EMPTY;
 }
 
 
@@ -289,7 +296,7 @@ void Body::SetStep(int step, bool isHighDPI) const
 	if(frames <= 1)
 	{
 		frame.first = sprite->Texture(0, isHighDPI);
-		mask = &sprite->GetMask();
+		activeIndex = 0;
 		return;
 	}
 	
@@ -374,5 +381,5 @@ void Body::SetStep(int step, bool isHighDPI) const
 	// whose masks may be queried many times for collision tests.
 	frame.first = sprite->Texture(firstIndex, isHighDPI);
 	frame.second = sprite->Texture(secondIndex, isHighDPI);
-	mask = &sprite->GetMask(frame.fade > .5f ? secondIndex : firstIndex);
+	activeIndex = (frame.fade > .5f ? secondIndex : firstIndex);
 }
