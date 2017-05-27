@@ -798,7 +798,6 @@ mission "Wanderers: Kor Efret 4"
 	to offer
 		has "Wanderers: Kor Efret 3: done"
 	on offer
-		event "Rename Korath Exiles"
 		conversation
 			`When you land back on the planet, Rek and several of the Korath meet you at your ship. "They would like to thank you for your assistance in defending their home," says Rek, "and they apologize for being so dismissive of the Wanderer plans to defeat the drones. They still think that hacking or corrupting the Mereti network is impossible, though."`
 			choice
