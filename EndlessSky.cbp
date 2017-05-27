@@ -313,6 +313,8 @@
 		<Unit filename="source/WinApp.rc">
 			<Option compilerVar="WINDRES" />
 		</Unit>
+		<Unit filename="source/WinConsole.cpp" />
+		<Unit filename="source/WinConsole.h" />
 		<Unit filename="source/WrappedText.cpp" />
 		<Unit filename="source/WrappedText.h" />
 		<Unit filename="source/gl_header.h" />

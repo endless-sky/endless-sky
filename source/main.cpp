@@ -32,6 +32,9 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "SpriteSet.h"
 #include "SpriteShader.h"
 #include "UI.h"
+#ifdef _WIN32
+#include "WinConsole.h"
+#endif
 
 #include "gl_header.h"
 #include <SDL2/SDL.h>
@@ -61,6 +64,11 @@ Conversation LoadConversation();
 
 int main(int argc, char *argv[])
 {
+#ifdef _WIN32
+	if(argc > 1) 
+		WinConsole::Init();
+#endif
+	
 	Conversation conversation;
 	bool debugMode = false;
 	for(const char *const *it = argv + 1; *it; ++it)
