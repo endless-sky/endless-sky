@@ -11,7 +11,7 @@
 outfit "Small Collector Module"
 	category "Power"
 	licenses
-			Coalition
+		Coalition
 	cost 60000
 	thumbnail "outfit/small collector module"
 	"mass" 8
@@ -23,7 +23,7 @@ outfit "Small Collector Module"
 outfit "Large Collector Module"
 	category "Power"
 	licenses
-			Coalition
+		Coalition
 	cost 300000
 	thumbnail "outfit/large collector module"
 	"mass" 28
@@ -35,7 +35,7 @@ outfit "Large Collector Module"
 outfit "Small Reactor Module"
 	category "Power"
 	licenses
-			Coalition
+		Coalition
 	cost 5497000
 	thumbnail "outfit/small reactor module"
 	"mass" 42
@@ -47,7 +47,7 @@ outfit "Small Reactor Module"
 outfit "Large Reactor Module"
 	category "Power"
 	licenses
-			Coalition
+		Coalition
 	cost 17754000
 	thumbnail "outfit/large reactor module"
 	"mass" 98
@@ -59,7 +59,7 @@ outfit "Large Reactor Module"
 outfit "Small Battery Module"
 	category "Power"
 	licenses
-			Coalition
+		Coalition
 	cost 44000
 	thumbnail "outfit/small battery module"
 	"mass" 4
@@ -70,7 +70,7 @@ outfit "Small Battery Module"
 outfit "Large Battery Module"
 	category "Power"
 	licenses
-			Coalition
+		Coalition
 	cost 340000
 	thumbnail "outfit/large battery module"
 	"mass" 18
@@ -82,7 +82,7 @@ outfit "Large Battery Module"
 outfit "Small Shield Module"
 	category "Systems"
 	licenses
-			Coalition
+		Coalition
 	cost 84000
 	thumbnail "outfit/small shield module"
 	"mass" 11
@@ -95,7 +95,7 @@ outfit "Small Shield Module"
 outfit "Large Shield Module"
 	category "Systems"
 	licenses
-			Coalition
+		Coalition
 	cost 553000
 	thumbnail "outfit/large shield module"
 	"mass" 39
@@ -108,7 +108,7 @@ outfit "Large Shield Module"
 outfit "Small Repair Module"
 	category "Systems"
 	licenses
-			Coalition
+		Coalition
 	cost 64000
 	thumbnail "outfit/small repair module"
 	"mass" 6
@@ -121,7 +121,7 @@ outfit "Small Repair Module"
 outfit "Large Repair Module"
 	category "Systems"
 	licenses
-			Coalition
+		Coalition
 	cost 553000
 	thumbnail "outfit/large repair module"
 	"mass" 21
@@ -134,7 +134,7 @@ outfit "Large Repair Module"
 outfit "Cooling Module"
 	category "Systems"
 	licenses
-			Coalition
+		Coalition
 	cost 160000
 	thumbnail "outfit/cooling module"
 	"mass" 5
@@ -147,7 +147,7 @@ outfit "Cooling Module"
 outfit "Small Thrust Module"
 	category "Engines"
 	licenses
-			Coalition
+		Coalition
 	"cost" 66000
 	thumbnail "outfit/small thrust module"
 	"mass" 9
@@ -164,7 +164,7 @@ outfit "Small Thrust Module"
 outfit "Large Thrust Module"
 	category "Engines"
 	licenses
-			Coalition
+		Coalition
 	"cost" 292000
 	thumbnail "outfit/large thrust module"
 	"mass" 32
@@ -181,7 +181,7 @@ outfit "Large Thrust Module"
 outfit "Small Steering Module"
 	category "Engines"
 	licenses
-			Coalition
+		Coalition
 	"cost" 60000
 	thumbnail "outfit/small steering module"
 	"mass" 7
@@ -195,7 +195,7 @@ outfit "Small Steering Module"
 outfit "Large Steering Module"
 	category "Engines"
 	licenses
-			Coalition
+		Coalition
 	"cost" 269000
 	thumbnail "outfit/large steering module"
 	"mass" 25
