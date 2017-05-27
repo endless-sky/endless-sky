@@ -11,7 +11,7 @@
 outfit "Bombardment Cannon"
 	category "Guns"
 	licenses
-			Heliarch
+		Heliarch
 	cost 437000
 	thumbnail "outfit/bombardment cannon"
 	"mass" 12
@@ -38,7 +38,7 @@ outfit "Bombardment Cannon"
 outfit "Bombardment Turret"
 	category "Turrets"
 	licenses
-			Heliarch
+		Heliarch
 	cost 1845000
 	thumbnail "outfit/bombardment turret"
 	"mass" 43
@@ -79,7 +79,7 @@ effect "bombardment impact"
 outfit "Finisher Pod"
 	category "Secondary Weapons"
 	licenses
-			Heliarch
+		Heliarch
 	cost 1370000
 	thumbnail "outfit/finisher pod"
 	"mass" 16
@@ -183,7 +183,7 @@ effect "finisher fragment"
 outfit "Heliarch Attractor"
 	category "Turrets"
 	licenses
-			Heliarch
+		Heliarch
 	cost 2187000
 	thumbnail "outfit/heliarch attractor"
 	"mass" 49
@@ -225,7 +225,7 @@ effect "attractor impact"
 outfit "Heliarch Repulsor"
 	category "Turrets"
 	licenses
-			Heliarch
+		Heliarch
 	cost 2549000
 	thumbnail "outfit/heliarch repulsor"
 	"mass" 56
@@ -268,7 +268,7 @@ effect "repulsor impact"
 outfit "Ion Rain Gun"
 	category "Guns"
 	licenses
-			Heliarch
+		Heliarch
 	cost 798000
 	thumbnail "outfit/ion rain gun"
 	"mass" 17
