@@ -526,5 +526,6 @@ void LoadPanel::DeleteSave()
 		selectedFile = it->second.front().first;
 		selectedPilot = pilot;
 		loadedInfo.Load(Files::Saves() + selectedFile);
+		sideHasFocus = false;
 	}
 }
