@@ -116,19 +116,7 @@ void MissionAction::Load(const DataNode &node, const string &missionName)
 	{
 		if(child.Token(0) == "dialog")
 		{
-			for(int i = 1; i < child.Size(); ++i)
-			{
-				if(!dialogText.empty())
-					dialogText += "\n\t";
-				dialogText += child.Token(i);
-			}
-			for(const DataNode &grand : child)
-				for(int i = 0; i < grand.Size(); ++i)
-				{
-					if(!dialogText.empty())
-						dialogText += "\n\t";
-					dialogText += grand.Token(i);
-				}
+			dialogText.Load(child);
 		}
 		else if(child.Token(0) == "conversation" && child.HasChildren())
 			conversation.Load(child);
@@ -174,26 +162,8 @@ void MissionAction::Save(DataWriter &out) const
 		out.Write("on", trigger, system);
 	out.BeginChild();
 	{
-		if(!dialogText.empty())
-		{
-			out.Write("dialog");
-			out.BeginChild();
-			{
-				// Break the text up into paragraphs.
-				size_t begin = 0;
-				while(true)
-				{
-					size_t pos = dialogText.find("\n\t", begin);
-					if(pos == string::npos)
-						pos = dialogText.length();
-					out.Write(dialogText.substr(begin, pos - begin));
-					if(pos == dialogText.length())
-						break;
-					begin = pos + 2;
-				}
-			}
-			out.EndChild();
-		}
+		if(!dialogText.IsEmpty())
+			dialogText.Save(out);
 		if(!conversation.IsEmpty())
 			conversation.Save(out);
 		
@@ -260,14 +230,14 @@ void MissionAction::Do(PlayerInfo &player, UI *ui, const System *destination) co
 			panel->SetCallback(&player, &PlayerInfo::MissionCallback);
 		ui->Push(panel);
 	}
-	else if(!dialogText.empty() && ui)
+	else if(!dialogText.IsEmpty() && ui)
 	{
 		map<string, string> subs;
 		subs["<first>"] = player.FirstName();
 		subs["<last>"] = player.LastName();
 		if(player.Flagship())
 			subs["<ship>"] = player.Flagship()->Name();
-		string text = Format::Replace(dialogText, subs);
+		string text = Format::Replace(dialogText.Text(), subs);
 		
 		if(isOffer)
 			ui->Push(new Dialog(text, player, destination));
@@ -325,8 +295,8 @@ MissionAction MissionAction::Instantiate(map<string, string> &subs, int jumps, i
 		subs["<payment>"] = Format::Number(result.payment)
 			+ (result.payment == 1 ? " credit" : " credits");
 	
-	if(!dialogText.empty())
-		result.dialogText = Format::Replace(dialogText, subs);
+	if(!dialogText.IsEmpty())
+		result.dialogText = dialogText.Instantiate(subs);
 	
 	if(stockConversation)
 		result.conversation = stockConversation->Substitute(subs);
