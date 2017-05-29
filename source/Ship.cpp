@@ -849,6 +849,10 @@ bool Ship::Move(list<Effect> &effects, list<shared_ptr<Flotsam>> &flotsam)
 					Jettison(it.first, Random::Binomial(it.second, .25));
 				for(const auto &it : cargo.Outfits())
 					Jettison(it.first, Random::Binomial(it.second, .25));
+				// Ammunition has a 5% chance to survive as flotsam
+				for(const auto &it : outfits)
+					if(it.first->Category() == "Ammunition")
+						Jettison(it.first, Random::Binomial(it.second, .05));
 				for(shared_ptr<Flotsam> &it : jettisoned)
 					it->Place(*this);
 				flotsam.splice(flotsam.end(), jettisoned);
