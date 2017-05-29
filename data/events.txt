@@ -521,45 +521,7 @@ event "southern carriers 1"
 		"X1050 Ion Engines"
 	fleet "Small Free Worlds"
 		fighters "free worlds fighters"
-		variant 8
-			"Hawk"
-			"Sparrow"
-		variant 4
-			"Hawk"
-			"Fury"
-		variant 2
-			"Hawk"
-			"Fury (Missile)"
-		variant 2
-			"Hawk"
-			"Fury (Laser)"
-		variant 4
-			"Fury" 2
-		variant 2
-			"Fury (Laser)"
-			"Fury (Missile)"
-		variant 10
-			"Sparrow" 2
-		variant 2
-			"Hawk"
-		variant 1
-			"Hawk (Rocket)"
-		variant 1
-			"Hawk (Speedy)"
-		variant 2
-			"Sparrow"
-		variant 2
-			"Osprey"
-		variant 4
-			"Hawk"
-			"Sparrow" 2
-		variant 2
-			"Hawk (Rocket)"
-			"Sparrow" 2
-		variant 2
-			"Hawk (Speedy)"
-			"Sparrow" 2
-		variant 1
+		add variant 1
 			"Nest"
 			"Finch" 2
 
@@ -575,156 +537,30 @@ event "southern carriers 2"
 		"X1050 Ion Engines"
 	fleet "Large Southern Merchants"
 		fighters "free worlds fighter"
-		variant 20
-			"Freighter"
-			"Hawk"
-		variant 10
-			"Freighter (Fancy)"
-			"Hawk"
-		variant 30
-			"Freighter" 2
-			"Sparrow" 2
-		variant 10
-			"Freighter (Fancy)"
-			"Freighter"
-			"Sparrow" 2
-		variant 30
-			"Argosy"
-		variant 20
-			"Argosy (Laser)"
-		variant 15
-			"Argosy (Missile)"
-		variant 25
-			"Argosy (Blaster)"
-		variant 15
-			"Argosy (Turret)"
-		variant 10
-			"Bastion"
-			"Freighter" 3
-		variant 10
-			"Bastion (Heavy)"
-			"Freighter (Fancy)" 3
-		variant 10
-			"Bastion (Laser)"
-			"Freighter" 3
-		variant 20
-			"Bastion"
-			"Argosy"
-		variant 10
-			"Bastion (Heavy)"
-			"Argosy (Missile)"
-		variant 10
-			"Bastion (Laser)"
-			"Argosy (Laser)"
-		variant 10
-			"Bastion"
-			"Freighter" 3
-			"Star Barge" 4
-			"Fury"
-			"Sparrow" 2
-		variant 3
-			"Bastion (Heavy)"
-			"Freighter (Fancy)" 3
-			"Star Barge (Armed)" 4
-			"Fury (Missile)"
-			"Sparrow" 2
-		variant 20
-			"Argosy" 2
-		variant 10
-			"Argosy (Blaster)"
-			"Argosy (Laser)"
-		variant 10
-			"Argosy (Turret)"
-			"Argosy (Missile)"
-		variant 10
-			"Blackbird"
-			"Sparrow" 2
-		variant 2
-			"Bactrian"
-			"Dagger" 3
-		variant 12
-			"Hauler III"
-			"Hauler II"
-			"Hauler"
-		variant 8
-			"Hauler II"
-			"Hauler" 2
-		variant 6
-			"Hauler III"
-			"Berserker" 2
-		variant 15
+		add variant 15
 			"Hauler III"
 			"Nest"
 			"Finch" 2
-		variant 15
+		add variant 15
 			"Argosy"
 			"Hauler II"
 			"Nest"
 			"Finch" 2
-		variant 5
+		add variant 5
 			"Hauler III" 3
 			"Roost"
 			"Finch" 4
-		variant 5
+		add variant 5
 			"Roost" 3
 			"Finch" 6
 			"Boxwing" 6
 
 	fleet "Small Independent"
 		fighters "free worlds fighter"
-		variant 8
-			"Sparrow"
-		variant 3
-			"Hawk"
-		variant 2
-			"Hawk (Speedy)"
-		variant 2
-			"Hawk (Rocket)"
-		variant 5
-			"Fury"
-		variant 2
-			"Fury (Laser)"
-		variant 1
-			"Fury (Missile)"
-		variant 2
-			"Sparrow" 2
-		variant 1
-			"Hawk"
-			"Sparrow"
-		variant 1
-			"Hawk (Speedy)"
-			"Sparrow"
-		variant 1
-			"Fury" 3
-		variant 1
-			"Fury (Missile)" 3
-		variant 1
-			"Fury"
-			"Hawk"
-		variant 1
-			"Hawk"
-			"Fury"
-			"Sparrow"
-		variant 1
-			"Hawk (Rocket)"
-			"Fury (Missile)"
-			"Sparrow"
-		variant 1
-			"Sparrow" 3
-		variant 1
-			"Hawk" 2
-		variant 1
-			"Hawk (Speedy)" 2
-		variant 2
-			"Clipper"
-		variant 1
-			"Clipper (Heavy)"
-		variant 1
-			"Clipper (Speedy)"
-		variant 1
+		add variant 1
 			"Nest"
 			"Barb" 2
-		variant 1
+		add variant 1
 			"Nest"
 			"Barb"
 			"Boxwing"
