@@ -42,25 +42,31 @@ void Fleet::Load(const DataNode &node)
 	
 	for(const DataNode &child : node)
 	{
-		if(child.Token(0) == "government" && child.Size() >= 2)
+		const string &key = child.Token(0);
+		bool hasValue = (child.Size() >= 2);
+		// Special case: "add variant" means to add a variant without clearing
+		// what is already here.
+		bool add = (key == "add" && hasValue && child.Token(1) == "variant");
+		
+		if(key == "government" && hasValue)
 			government = GameData::Governments().Get(child.Token(1));
-		else if(child.Token(0) == "names" && child.Size() >= 2)
+		else if(key == "names" && hasValue)
 			names = GameData::Phrases().Get(child.Token(1));
-		else if(child.Token(0) == "fighters" && child.Size() >= 2)
+		else if(key == "fighters" && hasValue)
 			fighterNames = GameData::Phrases().Get(child.Token(1));
-		else if(child.Token(0) == "cargo" && child.Size() >= 2)
+		else if(key == "cargo" && hasValue)
 			cargo = static_cast<int>(child.Value(1));
-		else if(child.Token(0) == "commodities" && child.Size() >= 2)
+		else if(key == "commodities" && hasValue)
 		{
 			commodities.clear();
 			for(int i = 1; i < child.Size(); ++i)
 				commodities.push_back(child.Token(i));
 		}
-		else if(child.Token(0) == "personality")
+		else if(key == "personality")
 			personality.Load(child);
-		else if(child.Token(0) == "variant")
+		else if(key == "variant" || add)
 		{
-			if(resetVariants)
+			if(resetVariants && !add)
 			{
 				resetVariants = false;
 				variants.clear();
@@ -324,13 +330,17 @@ int64_t Fleet::Strength() const
 
 Fleet::Variant::Variant(const DataNode &node)
 {
-	weight = (node.Size() < 2) ? 1 : static_cast<int>(node.Value(1));
+	weight = 1;
+	if(node.Token(0) == "variant" && node.Size() >= 2)
+		weight = node.Value(1);
+	else if(node.Token(0) == "add" && node.Size() >= 3)
+		weight = node.Value(2);
 	
 	for(const DataNode &child : node)
 	{
 		int n = 1;
-		if(child.Size() > 1 && child.Value(1) >= 1.)
-			n = static_cast<int>(child.Value(1));
+		if(child.Size() >= 2 && child.Value(1) >= 1.)
+			n = child.Value(1);
 		ships.insert(ships.end(), n, GameData::Ships().Get(child.Token(0)));
 	}
 }

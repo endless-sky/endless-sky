@@ -55,7 +55,7 @@ public:
 	// how far along the projectile's path it should be clipped.
 	double Collide(const Projectile &projectile, int step, double closestHit, Point *hitVelocity = nullptr);
 	
-	// Get the list of mainable asteroids.
+	// Get the list of minable asteroids.
 	const std::list<std::shared_ptr<Minable>> &Minables() const;
 	
 	
