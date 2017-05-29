@@ -10,10 +10,10 @@
 
 ship "Earth Shaper"
 	sprite "ship/earth shaper"
-	licenses
-		Wanderer
 	attributes
 		category "Light Freighter"
+		licenses
+			Wanderer
 		"cost" 500000
 		"hull" 3300
 		"mass" 30
@@ -47,10 +47,10 @@ ship "Earth Shaper"
 
 ship "Flycatcher"
 	sprite "ship/flycatcher"
-	licenses
-		Wanderer
 	attributes
 		category "Drone"
+		licenses
+			Wanderer
 		"cost" 830000
 		"hull" 4700
 		"mass" 40
@@ -84,10 +84,10 @@ ship "Flycatcher"
 
 ship "Summer Leaf"
 	sprite "ship/summer leaf"
-	licenses
-		Wanderer
 	attributes
 		category "Light Warship"
+		licenses
+			Wanderer
 		"cost" 9500000
 		"shields" 14400
 		"hull" 6700
@@ -131,10 +131,10 @@ ship "Summer Leaf"
 
 ship "Autumn Leaf"
 	sprite "ship/autumn leaf"
-	licenses
-		Wanderer
 	attributes
 		category "Light Warship"
+		licenses
+			Wanderer
 		"cost" 12500000
 		"shields" 18700
 		"hull" 7400
@@ -180,10 +180,10 @@ ship "Autumn Leaf"
 
 ship "Strong Wind"
 	sprite "ship/strong wind"
-	licenses
-		"Wanderer Military"
 	attributes
 		category "Medium Warship"
+		licenses
+			"Wanderer Military"
 		"cost" 16100000
 		"shields" 28500
 		"hull" 19600
@@ -233,10 +233,10 @@ ship "Strong Wind"
 
 ship "Tempest"
 	sprite "ship/tempest"
-	licenses
-		"Wanderer Military"
 	attributes
 		category "Medium Warship"
+		licenses
+			"Wanderer Military"
 		"cost" 19700000
 		"shields" 42100
 		"hull" 25900
@@ -329,10 +329,10 @@ ship "Tempest" "Tempest (Missile)"
 
 ship "Derecho"
 	sprite "ship/derecho"
-	licenses
-		"Wanderer Military"
 	attributes
 		category "Heavy Warship"
+		licenses
+			"Wanderer Military"
 		"cost" 30500000
 		"shields" 53200
 		"hull" 32700
@@ -429,10 +429,10 @@ ship "Derecho" "Derecho (Tough)"
 
 ship "Hurricane"
 	sprite "ship/hurricane"
-	licenses
-		"Wanderer Military"
 	attributes
 		category "Heavy Warship"
+		licenses
+			"Wanderer Military"
 		"cost" 39100000
 		"shields" 72400
 		"hull" 46500
@@ -538,10 +538,10 @@ ship "Hurricane" "Hurricane (Tough)"
 
 ship "Deep River"
 	sprite "ship/deep river"
-	licenses
-		Wanderer
 	attributes
 		category "Heavy Freighter"
+		licenses
+			Wanderer
 		"cost" 18300000
 		"shields" 17600
 		"hull" 47500
@@ -680,10 +680,10 @@ ship "Deep River" "Deep River 4"
 
 ship "Deep River Transport"
 	sprite "ship/deep river"
-	licenses
-		Wanderer
 	attributes
 		category "Heavy Freighter"
+		licenses
+			Wanderer
 		"cost" 18300000
 		"shields" 17600
 		"hull" 47500

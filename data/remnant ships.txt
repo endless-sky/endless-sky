@@ -12,6 +12,8 @@ ship "Starling" # 300
 	sprite "ship/starling"
 	attributes
 		category "Light Warship"
+		licenses
+			Remnant
 		cost 8800000
 		"shields" 8800
 		"hull" 4900
@@ -130,6 +132,8 @@ ship "Albatross" # 656
 	sprite "ship/albatross"
 	attributes
 		category "Heavy Warship"
+		licenses
+			Remnant
 		cost 20000000
 		"shields" 34200
 		"hull" 12600
@@ -257,3 +261,40 @@ ship "Albatross" "Albatross (Heavy)" # 656
 	turret
 	turret
 	turret "Thrasher Turret"
+
+
+
+ship Gascraft
+	sprite ship/gascraft
+	attributes
+		category Transport
+		cost 530000
+		"shields" 800
+		"hull" 1500
+		"required crew" 1
+		"bunks" 1
+		"mass" 80
+		"drag" 1.7
+		"heat dissipation" 0.9
+		"fuel capacity" 700
+		"cargo space" 8
+		"outfit space" 108
+		"engine capacity" 42
+		"shield generation" 0.6
+		"shield energy" 0.4
+		"hull repair rate" 1.2
+		"hull energy" 0.9
+		"gaslining" 1
+	outfits
+		"Millennium Cell"
+		"Crystal Capacitor"
+		"Emergency Ramscoop"
+		"Quantum Key Stone"
+		
+		"Crucible-Class Thruster"
+		"Crucible-Class Steering"
+		"Hyperdrive"
+	
+	engine 0 30 1.4
+	explode "tiny explosion" 8
+	explode "small explosion" 7

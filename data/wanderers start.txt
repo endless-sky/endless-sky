@@ -242,36 +242,26 @@ mission "Visit Wanderers Again"
 	
 	on accept
 		set "language: Wanderer"
+		set "license: Wanderer Outfits"
 		event "wanderer technology available"
 
-event "wanderer technology available"
-	planet "Vara K'chrai"
-		outfitter "Wanderer Advanced"
-	planet "Vara Rakak"
-		outfitter "Wanderer Advanced"
-	planet "Varu K'est"
-		outfitter "Wanderer Advanced"
-	planet "Varu Mer'ek"
-		outfitter "Wanderer Advanced"
-	planet "Var' Kayi"
-		outfitter "Wanderer Advanced"
-	planet "Vara Ke'stai"
-		outfitter "Wanderer Basics"
-	planet "Vara Kehi'ki"
-		outfitter "Wanderer Basics"
-	planet "Varu Ek'lak'lai"
-		outfitter "Wanderer Basics"
-	planet "Varu K'prai"
-		outfitter "Wanderer Basics"
-	planet "Varu Tek'kai"
-		outfitter "Wanderer Basics"
-	planet "Varu Tev'kei"
-		outfitter "Wanderer Basics"
-	planet "Var' Kar'i'i"
-		outfitter "Wanderer Basics"
+event "wanderer technology available" #Name unchanged for compatibility
 	government "Wanderer"
 		"friendly hail" "friendly wanderer"
+		"hostile hail" "hostile wanderer"
+		"hostile disabled hail" "hostile disabled wanderer"
 
+# Compatibility patch for users pre-0.9.7 who don't have hostile Wanderer hails.
+mission "Wanderer Hail Patch"
+	landing
+	invisible
+	to offer
+		has "event: wanderer technology available"
+	on offer
+		set "license: Wanderer Outfits"
+		event "wanderer technology available"
+		fail
+		
 mission "Wanderers Conversation"
 	landing
 	source "Vara K'chrai"

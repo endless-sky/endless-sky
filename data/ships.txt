@@ -646,11 +646,11 @@ ship "Bulk Freighter"
 
 ship "Carrier"
 	sprite "ship/carrier"
-	licenses
-		Navy
-		Carrier
 	attributes
 		category "Heavy Warship"
+		licenses
+			Navy
+			Carrier
 		"cost" 15200000
 		"shields" 21400
 		"hull" 8300
@@ -832,10 +832,10 @@ ship "Clipper"
 
 ship "Combat Drone"
 	sprite "ship/combat drone"
-	licenses
-		Navy
 	attributes
 		category "Drone"
+		licenses
+			Navy
 		"cost" 83000
 		"hull" 700
 		"mass" 20
@@ -921,11 +921,11 @@ ship "Corvette"
 
 ship "Cruiser"
 	sprite "ship/cruiser"
-	licenses
-		Navy
-		Cruiser
 	attributes
 		category "Heavy Warship"
+		licenses
+			Navy
+			Cruiser
 		"cost" 11200000
 		"shields" 19600
 		"hull" 6400
@@ -1329,10 +1329,10 @@ ship "Freighter"
 
 ship "Frigate"
 	sprite "ship/frigate"
-	licenses
-		Navy
 	attributes
 		category "Medium Warship"
+		licenses
+			Navy
 		"cost" 5200000
 		"shields" 8000
 		"hull" 2500
@@ -1431,10 +1431,10 @@ ship "Fury"
 
 ship "Gunboat"
 	sprite "ship/gunboat"
-	licenses
-		Navy
 	attributes
 		category "Light Warship"
+		licenses
+			Navy
 		"cost" 3200000
 		"shields" 5800
 		"hull" 1400
@@ -2239,10 +2239,10 @@ ship "Quicksilver"
 
 ship "Rainmaker"
 	sprite "ship/rainmaker"
-	licenses
-		Navy
 	attributes
 		category "Light Warship"
+		licenses
+			Navy
 		"cost" 1580000
 		"shields" 3500
 		"hull" 1200
@@ -2491,10 +2491,10 @@ ship "Shuttle"
 
 ship "Skein"
 	sprite "ship/skein"
-	licenses
-		"Militia Carrier"
 	attributes
 		category "Medium Warship"
+		licenses
+			"Militia Carrier"
 		"cost" 3500000
 		"shields" 3300
 		"hull" 6700
@@ -2742,10 +2742,10 @@ ship "Star Queen"
 
 ship "Surveillance Drone"
 	sprite "ship/surveillance drone"
-	licenses
-		Navy
 	attributes
 		category "Drone"
+		licenses
+			Navy
 		"cost" 50000
 		"hull" 300
 		"mass" 15

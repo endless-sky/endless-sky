@@ -706,7 +706,7 @@ fleet "Large Human Merchants (Hai)"
 		"Hauler II" 2
 		"Water Bug"
 	variant 1
-		"Waterbug" 2
+		"Water Bug" 2
 		"Firebird (Hai Weapons)" 1
 	variant 3
 		"Aphid" 3

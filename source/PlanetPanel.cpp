@@ -334,21 +334,21 @@ bool PlanetPanel::CanShowTrading(bool hasAccess) const
 
 bool PlanetPanel::CanShowJobs(bool hasAccess) const
 {
-	return player.Flagship() && planet.HasJobs() && planet.CanSpeakLanguage(player) && hasAccess;
+	return player.Flagship() && planet.HasJobs() && hasAccess;
 }
 
 
 
 bool PlanetPanel::CanShowBanking(bool hasAccess) const
 {
-	return planet.HasBanking() && planet.CanSpeakLanguage(player) && hasAccess;
+	return planet.HasBanking() && hasAccess;
 }
 
 
 
 bool PlanetPanel::CanShowCrew(bool hasAccess) const
 {
-	return player.Flagship() && planet.HasCrew() && planet.CanSpeakLanguage(player) && hasAccess;
+	return player.Flagship() && planet.HasCrew() && hasAccess;
 }
 
 

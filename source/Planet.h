@@ -81,7 +81,6 @@ public:
 	bool HasShipyard() const;
 	// Get the list of ships in the shipyard.
 	const Sale<Ship> &Shipyard() const;
-	
 	// Check if this planet has an outfitter.
 	bool HasOutfitter() const;
 	// Get the list of outfits available from the outfitter.
@@ -121,7 +120,6 @@ public:
 	// but do so with a less convoluted syntax:
 	bool CanLand(const Ship &ship) const;
 	bool CanLand() const;
-	bool CanSpeakLanguage(const PlayerInfo &player) const;
 	bool CanUseServices() const;
 	void Bribe(bool fullAccess = true) const;
 	
@@ -139,10 +137,9 @@ private:
 	std::string music;
 	
 	std::set<std::string> attributes;
-	std::string language;
 	
-	std::vector<const Sale<Ship> *> shipSales;
-	std::vector<const Sale<Outfit> *> outfitSales;
+	std::set<const Sale<Ship> *> shipSales;
+	std::set<const Sale<Outfit> *> outfitSales;
 	// The lists above will be converted into actual ship lists when they are
 	// first asked for:
 	mutable Sale<Ship> shipyard;

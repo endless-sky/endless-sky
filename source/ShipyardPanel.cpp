@@ -157,7 +157,7 @@ bool ShipyardPanel::CanBuy() const
 	int64_t cost = player.StockDepreciation().Value(*selectedShip, day);
 	
 	// Check that the player has any necessary licenses.
-	int64_t licenseCost = LicenseCost();
+	int64_t licenseCost = LicenseCost(&selectedShip->Attributes());
 	if(licenseCost < 0)
 		return false;
 	cost += licenseCost;
@@ -169,7 +169,7 @@ bool ShipyardPanel::CanBuy() const
 
 void ShipyardPanel::Buy()
 {
-	int64_t licenseCost = LicenseCost();
+	int64_t licenseCost = LicenseCost(&selectedShip->Attributes());
 	if(licenseCost < 0)
 		return;
 	
@@ -200,7 +200,7 @@ void ShipyardPanel::FailBuy() const
 	int64_t cost = player.StockDepreciation().Value(*selectedShip, day);
 	
 	// Check that the player has any necessary licenses.
-	int64_t licenseCost = LicenseCost();
+	int64_t licenseCost = LicenseCost(&selectedShip->Attributes());
 	if(licenseCost < 0)
 	{
 		GetUI()->Push(new Dialog("Buying this ship requires a special license. "
@@ -298,11 +298,11 @@ bool ShipyardPanel::CanSellMultiple() const
 
 void ShipyardPanel::BuyShip(const string &name)
 {
-	int64_t licenseCost = LicenseCost();
+	int64_t licenseCost = LicenseCost(&selectedShip->Attributes());
 	if(licenseCost)
 	{
 		player.Accounts().AddCredits(-licenseCost);
-		for(const string &licenseName : selectedShip->Licenses())
+		for(const string &licenseName : selectedShip->Attributes().Licenses())
 			if(player.GetCondition("license: " + licenseName) <= 0)
 				player.Conditions()["license: " + licenseName] = true;
 	}
@@ -342,20 +342,4 @@ void ShipyardPanel::SellShip()
 	if(playerShip)
 		playerShips.insert(playerShip);
 	player.UpdateCargoCapacities();
-}
-
-
-
-int64_t ShipyardPanel::LicenseCost() const
-{
-	int64_t cost = 0;
-	for(const string &name : selectedShip->Licenses())
-		if(player.GetCondition("license: " + name) <= 0)
-		{
-			const Outfit *outfit = GameData::Outfits().Get(name + " License");
-			if(!outfit->Cost())
-				return -1;
-			cost += outfit->Cost();
-		}
-	return cost;
 }

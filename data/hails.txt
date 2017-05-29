@@ -1780,7 +1780,7 @@ phrase "friendly pirate"
 		" You'll find some on the nearest planet not oppressed by the man."
 		" You'll find some where ever the man does not go."
 
-phrase "friendly"
+phrase "friendly pirate"
 	word
 		"It surprises me"
 		"It surprises us"
@@ -1822,6 +1822,10 @@ phrase "friendly"
 	word
 		"."
 
+phrase "friendly disabled"
+	word
+		"Our ship has been disabled! Please come board our ship and patch us up!"
+		
 # Shakespearean insults.
 phrase "hostile disabled"
 	word

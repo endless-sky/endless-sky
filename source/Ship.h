@@ -120,8 +120,6 @@ public:
 	// Get this ship's cost.
 	int64_t Cost() const;
 	int64_t ChassisCost() const;
-	// Get the licenses needed to buy or operate this ship.
-	const std::vector<std::string> &Licenses() const;
 	
 	// When creating a new ship, you must set the following:
 	void Place(Point position = Point(), Point velocity = Point(), Angle angle = Angle());
@@ -381,9 +379,6 @@ private:
 	std::string description;
 	// Characteristics of this particular ship:
 	std::string name;
-	
-	// Licenses needed to operate this ship.
-	std::vector<std::string> licenses;
 	
 	int forget = 0;
 	bool isInSystem = true;
