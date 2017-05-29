@@ -194,6 +194,11 @@ void Hardpoint::Fire(Ship &ship, list<Projectile> &projectiles, list<Effect> &ef
 		// the projectile dies (to avoid over-correcting).
 		if(!(steps < outfit->TotalLifetime()))
 			steps = outfit->TotalLifetime();
+
+		// Add some inaccuracy in guessing the number of steps
+		double inaccuracy = outfit->Inaccuracy();
+		if(inaccuracy)
+			steps += inaccuracy * Random::Normal();
 		
 		// Aim toward where the target will be at the calculated rendezvous time.
 		angle = Angle(p + steps * v) - aim;
