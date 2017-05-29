@@ -74,6 +74,7 @@ mission "Pookie, Part 2"
 	to offer
 		has "Pookie, Part 1: done"
 	on offer
+		log "Ferried a dog called Pookie to Hestia. Might need to hire a professional cleaner to clean up the dog vomit."
 		conversation
 			`You called ahead while your ship was landing and agreed to meet Pookie's aunt at the spaceport. She told you, "Meet me outside the shop with the ridiculous sheepskin coats." The shop is not hard to find; the mannequins in the window look like feral sheep with overgrown wool in bad need of grooming.`
 			"	The only person standing outside the shop is a tall woman in a suit who is busy making furious marks on some sort of document with a red pen. She has a small poodle on a leash; it is busy nipping the heels of everyone who walks by."

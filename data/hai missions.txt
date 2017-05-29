@@ -13,6 +13,7 @@ mission "First Contact: Hai"
 	source
 		attributes "hai"
 	on offer
+		log "Made contact with a species north of human space, through a wormhole. They call themselves the Hai, and seem to be peaceful. But they warn of renegades in the north of their space."
 		conversation
 			`This planet is populated by an alien species that resemble giant, intelligent squirrels. However, the most surprising aspect of the spaceport is not the aliens, but the fact that human merchants and other civilians are walking among them and are clearly at home here. Would you like to find someone who can tell you what is going on here?`
 			choice
@@ -61,6 +62,7 @@ mission "First Contact: Unfettered"
 	source
 		attributes "unfettered"
 	on offer
+		log "Made contact with a faction of Hai called the Unfettered, who call themselves the true Hai. If they are to be believed, the other Hai were pacified somehow by the Drak long ago."
 		conversation
 			`The Hai here appear to be at war with the rest of their species. Do you want to approach one of them and ask why?`
 			choice
@@ -141,6 +143,7 @@ mission "Ask the Hai about the Unfettered"
 	to offer
 		has "First Contact: Unfettered: offered"
 	on offer
+		log "Spoke to the Hai about their side of the Unfettered's story. If they are to be believed, the ancient Hai lost much of their territory to infighting, and since learned to live in stability and balance."
 		conversation
 			`The Unfettered Hai told you that they are the "true Hai," and seem to think that the other Hai are oppressing them. Would you like to look for someone here who can tell you the other side of the story?`
 			choice
@@ -197,6 +200,7 @@ mission "Unfettered Jump Drive 1"
 	source
 		attributes "unfettered"
 	on offer
+		log "Sold a Jump Drive to the Unfettered for much more than it's worth. There's clearly an opportunity for profit here."
 		conversation
 			`The Unfettered have clearly noticed that you have a jump drive installed; a large crowd of them has gathered around your ship. Do you want to talk with them, and perhaps arrange a sale of your jump drive?`
 			choice
@@ -393,6 +397,7 @@ mission "Unfettered returning home"
 		has "Unfettered Tribute 3: done"
 		random < 40
 	on offer
+		log "Helped a juvenile Hai in Unfettered space seek refuge in Hai-home. Despite the ongoing hostilities, he seems he got a pretty warm welcome."
 		conversation
 			`During the night, you hear a gentle scratching sound on your ship's main hatch. Do you investigate?`
 			choice

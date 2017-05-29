@@ -56,6 +56,7 @@ mission "Kestrel Testing"
 		ship "Unknown Ship Type" "Tarazed Prototype"
 	
 	on complete
+		log "Helped Charles Atinoda at Tarazed test a new warship they're working on. He seems a little unhinged, but the prototype is impressive."
 		payment 2000000
 		conversation
 			`Atinoda meets up with you soon after you land. "I see that you survived," he says. "Was it a difficult fight?"`
@@ -188,6 +189,7 @@ mission "Kestrel Available"
 		has "kestrel available"
 	destination Wayfarer
 	on offer
+		log "Got a message from Charles Atinoda at Tarazed. The 'Kestrel' I helped them design is available to buy."
 		conversation
 			scene ship/kestrel
 			`You receive a message from Charles Atinoda, the ship designer at Tarazed Corporation: "Captain <last>, we are pleased to inform you that our latest warship is now available for sale here on Wayfarer. We've taken all your feedback into account in the final design. Thank you again!"`
