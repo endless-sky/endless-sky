@@ -465,7 +465,7 @@ ship "Pug Arfecta"
 		"hull energy" 5
 		"heat generation" 10
 		"energy capacity" 10000
-		"cloaking fuel" -.2
+		"cloaking fuel" -.22
 		weapon
 			"blast radius" 320
 			"shield damage" 9000
