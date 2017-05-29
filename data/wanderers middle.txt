@@ -3035,59 +3035,53 @@ event "wanderers: exiles hostile"
 
 event "wanderers: exiles have drones"
 	fleet "Korath Home"
-		variant 12
-			"Korath World-Ship"
-		variant 12
-			"Korath World-Ship B"
-		variant 12
-			"Korath World-Ship C"
-		variant 2
+		add variant 2
 			"Tek Far 71 - Lek"
 			"Far Lek 14" 6
-		variant 2
+		add variant 2
 			"Tek Far 71 - Lek (Close Quarters)"
 			"Far Lek 14" 4
-		variant 2
+		add variant 2
 			"Tek Far 78 - Osk (Close Quarters)"
 			"Far Osk 27" 5
-		variant 2
+		add variant 2
 			"Tek Far 78 - Osk"
 			"Far Osk 27" 2
-		variant 3
+		add variant 3
 			"Tek Far 109"
 			"Far Lek 14" 9
 			"Far Osk 27" 7
-		variant 3
+		add variant 3
 			"Met Par Tek 53" 3
-		variant 2
+		add variant 2
 			"Met Par Tek 53 (Sniper)" 3
-		variant
+		add variant
 			"Kar Ik Vot 349"
-		variant
+		add variant
 			"Kar Ik Vot 349 (Defense)"
-		variant
+		add variant
 			"Kar Ik Vot 349 (Offense)"
-		variant
+		add variant
 			"Kar Ik Vot 349 (Trapper)"
-		variant 1
+		add variant 1
 			"Model 512"
-		variant 2
+		add variant 2
 			"Model 512"
 			"Model 256"
-		variant 2
+		add variant 2
 			"Model 256"
-		variant 2
+		add variant 2
 			"Model 256"
 			"Model 64" 2
-		variant 2
+		add variant 2
 			"Model 128" 2
-		variant 2
+		add variant 2
 			"Model 64"
 			"Model 32" 3
-		variant 3
+		add variant 3
 			"Model 64" 2
 			"Model 32" 3
-		variant 4
+		add variant 4
 			"Model 32"
 			"Model 16" 5
 
