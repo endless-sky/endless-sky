@@ -2353,15 +2353,29 @@ int Ship::TakeDamage(const Projectile &projectile, bool isBlast)
 {
 	int type = 0;
 	
+	double damageScaling = 1.;
 	const Weapon &weapon = projectile.GetWeapon();
-	double shieldDamage = weapon.ShieldDamage();
-	double hullDamage = weapon.HullDamage();
-	double hitForce = weapon.HitForce();
-	double fuelDamage = weapon.FuelDamage();
-	double heatDamage = weapon.HeatDamage();
-	double ionDamage = weapon.IonDamage();
-	double disruptionDamage = weapon.DisruptionDamage();
-	double slowingDamage = weapon.SlowingDamage();
+	if(isBlast && weapon.IsDamageScaled())
+	{
+		// Scale blast damage based on the distance from the blast
+		// origin and if the projectile uses a trigger radius. The
+		// point of contact must be measured on the sprite outline.
+		// scale = (1 + (tr / (2 * br))^2) / (1 + r^4)^2
+		double blastRadius = max(1., weapon.BlastRadius());
+		double radiusRatio = weapon.TriggerRadius() / blastRadius;
+		double k = !radiusRatio ? 1. : (1. + .25 * radiusRatio * radiusRatio);
+		double d = GetMask().Range(projectile.Position() - position, angle);
+		double rSquared = d * d / (blastRadius * blastRadius);
+		damageScaling *= k / ((1. + rSquared * rSquared) * (1. + rSquared * rSquared));
+	}
+	double shieldDamage = weapon.ShieldDamage() * damageScaling;
+	double hullDamage = weapon.HullDamage() * damageScaling;
+	double hitForce = weapon.HitForce() * damageScaling;
+	double fuelDamage = weapon.FuelDamage() * damageScaling;
+	double heatDamage = weapon.HeatDamage() * damageScaling;
+	double ionDamage = weapon.IonDamage() * damageScaling;
+	double disruptionDamage = weapon.DisruptionDamage() * damageScaling;
+	double slowingDamage = weapon.SlowingDamage() * damageScaling;
 	bool wasDisabled = IsDisabled();
 	bool wasDestroyed = IsDestroyed();
 	
@@ -2389,7 +2403,7 @@ int Ship::TakeDamage(const Projectile &projectile, bool isBlast)
 		Point d = position - projectile.Position();
 		double distance = d.Length();
 		if(distance)
-			ApplyForce((hitForce / distance) * d);
+			ApplyForce((hitForce * damageScaling / distance) * d);
 	}
 	
 	// Recalculate the disabled ship check.
