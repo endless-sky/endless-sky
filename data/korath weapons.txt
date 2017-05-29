@@ -532,7 +532,7 @@ outfit "Korath Slicer"
 		"firing heat" 17.8
 		"shield damage" 6.3
 		"hull damage" 16.7
-	description "This massive beam weapon is relatively ineffective against shields, but cuts through hull armor like it's made of paper."
+	description "This massive beam weapon is relatively ineffective against shields, but cuts through hull armor like a hot knife through butter."
 
 outfit "Korath Slicer Turret"
 	category "Turrets"
