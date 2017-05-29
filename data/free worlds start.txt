@@ -41,7 +41,7 @@ mission "Liberate Kornephoros"
 		event "prepare for battle of Kornephoros"
 	
 	npc
-		personality heroic disables
+		personality escort heroic disables
 		government "Free Worlds"
 		fleet
 			names "free worlds capital"
@@ -56,7 +56,7 @@ mission "Liberate Kornephoros"
 				"Hawk" 2
 				"Hawk (Rocket)" 1
 	npc
-		personality heroic disables
+		personality escort heroic disables
 		government "Free Worlds"
 		system Zubenelgenubi
 		fleet

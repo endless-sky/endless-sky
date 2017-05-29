@@ -96,7 +96,8 @@ mission "FWC Attack Kaus Borealis"
 		event "fwc capture kaus borealis"
 	
 	npc
-		personality heroic
+		personality escort heroic
+		government "Free Worlds"
 		fleet
 			names "free worlds capital"
 			fighters "free worlds fighters"
@@ -263,7 +264,8 @@ mission "FWC Cebalrai 1B"
 		event "fwc capture cebalrai"
 	
 	npc
-		personality heroic
+		personality escort heroic
+		government "Free Worlds"
 		fleet
 			names "free worlds capital"
 			variant
@@ -513,7 +515,8 @@ mission "FWC Diplomacy 1B"
 				accept
 	
 	npc accompany save
-		personality timid
+		personality escort timid
+		government "Free Worlds"
 		ship "Argosy" "F.S. Big Brother"
 
 	on visit
@@ -555,7 +558,8 @@ mission "FWC Diplomacy 1C"
 				launch
 	
 	npc
-		personality timid
+		personality escort timid waiting
+		government "Free Worlds"
 		ship "Argosy" "F.S. Big Brother"
 
 	npc
@@ -909,7 +913,8 @@ mission "FWC Checkmate 1B"
 		event "fwc capture menkent"
 
 	npc
-		personality heroic
+		personality escort heroic
+		government "Free Worlds"
 		fleet
 			names "free worlds capital"
 			fighters "free worlds fighters"
@@ -1031,7 +1036,8 @@ mission "FWC Checkmate Escorts"
 		has "FWC Pug 4: done"
 	
 	npc kill
-		personality heroic disables
+		personality escort heroic disables
+		government "Escort"
 		fleet
 			names "free worlds capital"
 			variant
@@ -1108,7 +1114,7 @@ mission "FWC Pug 1"
 				launch
 	
 	npc
-		personality waiting heroic
+		personality escort heroic waiting
 		government "Free Worlds"
 		fleet
 			names "free worlds small"
@@ -1623,7 +1629,8 @@ mission "FWC Pug 3B"
 				launch
 	
 	npc
-		personality heroic
+		personality escort heroic
+		government "Free Worlds"
 		fleet
 			names "free worlds capital"
 			fighters "free worlds fighters"
@@ -1740,7 +1747,7 @@ mission "FWC Pug 3D: Reinforcements"
 	
 	npc kill
 		government "Navy (Oathkeeper)"
-		personality heroic waiting
+		personality escort heroic waiting
 		fleet
 			names "republic capital"
 			fighters "republic fighter"
@@ -1758,7 +1765,7 @@ mission "FWC Pug 3D: Reinforcements"
 				"Gunboat (Mark II)" 3
 	npc kill
 		government Republic
-		personality heroic waiting
+		personality escort heroic waiting
 		fleet
 			names "republic capital"
 			fighters "republic fighter"
@@ -1775,7 +1782,8 @@ mission "FWC Pug 3D: Reinforcements"
 				"Combat Drone" 6
 				"Gunboat" 2
 	npc kill
-		personality heroic waiting
+		personality escort heroic waiting
+		government "Free Worlds"
 		fleet
 			names "free worlds capital"
 			variant
@@ -2363,7 +2371,7 @@ mission "FWC Pug 5C"
 	npc
 		government Republic
 		system Sol
-		personality heroic waiting
+		personality escort heroic waiting
 		fleet
 			names "republic capital"
 			fighters "republic fighter"
@@ -2437,7 +2445,7 @@ mission "FWC Pug 6"
 	
 	npc
 		government Republic
-		personality heroic
+		personality escort heroic
 		fleet
 			names "republic capital"
 			fighters "republic fighter"
@@ -2476,7 +2484,7 @@ mission "FWC Pug 6"
 				"Rainmaker (Mark II)" 2
 	npc
 		government "Navy (Oathkeeper)"
-		personality heroic
+		personality escort heroic
 		system Cebalrai
 		fleet
 			names "republic capital"
@@ -2509,7 +2517,7 @@ mission "FWC Pug 6"
 				"Combat Drone" 6
 				"Gunboat (Mark II)" 3
 	npc
-		personality heroic
+		personality escort heroic
 		system Cebalrai
 		government "Free Worlds"
 		fleet

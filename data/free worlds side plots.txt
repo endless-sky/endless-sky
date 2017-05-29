@@ -515,6 +515,8 @@ mission "FW Stack Core 1B"
 				accept
 	
 	npc accompany save
+		government Merchant
+		personality escort timid
 		fleet
 			names "civilian"
 			cargo 3
