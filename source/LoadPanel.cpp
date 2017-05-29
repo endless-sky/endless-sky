@@ -138,7 +138,8 @@ void LoadPanel::Draw()
 		{
 			const string &file = it.first;
 			Rectangle zone(point + Point(110., 7.), Point(230., 20.));
-			bool isHovering = (hasHover && zone.Contains(hoverPoint));
+			double alpha = min(1., max(0., min(.1 * (113. - point.Y()), .1 * (point.Y() - -167.))));
+			bool isHovering = (alpha && hasHover && zone.Contains(hoverPoint));
 			bool isHighlighted = (file == selectedFile || isHovering);
 			if(isHovering)
 			{
@@ -148,7 +149,6 @@ void LoadPanel::Draw()
 					hoverText = TimestampString(it.second);
 			}
 			
-			double alpha = min(1., max(0., min(.1 * (113. - point.Y()), .1 * (point.Y() - -167.))));
 			if(file == selectedFile)
 				FillShader::Fill(zone.Center(), zone.Dimensions(), Color(.1 * alpha, 0.));
 			size_t pos = file.find('~') + 1;
