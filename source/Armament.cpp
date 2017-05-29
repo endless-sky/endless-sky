@@ -192,16 +192,16 @@ bool Armament::FireAntiMissile(int index, Ship &ship, const Projectile &projecti
 
 
 
-// Update the reload counters.
-void Armament::Step(const Ship &ship)
+// Update the reload counters for a given number of frames.
+void Armament::Step(const Ship &ship, int frames)
 {
 	for(Hardpoint &hardpoint : hardpoints)
-		hardpoint.Step();
+		hardpoint.Step(frames);
 	
 	for(auto &it : streamReload)
 	{
 		int count = ship.OutfitCount(it.first);
-		it.second -= count;
+		it.second -= frames * count;
 		// Always reload to the quickest firing interval.
 		it.second = max(it.second, 1 - count);
 	}

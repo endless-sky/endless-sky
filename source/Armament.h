@@ -65,7 +65,7 @@ public:
 	bool FireAntiMissile(int index, Ship &ship, const Projectile &projectile, std::list<Effect> &effects);
 	
 	// Update the reload counters.
-	void Step(const Ship &ship);
+	void Step(const Ship &ship, int frames = 1);
 	
 	// Calculate how long it will take a projectile to reach a target given the
 	// target's relative position and velocity and the velocity of the
