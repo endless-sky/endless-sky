@@ -21,6 +21,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Information.h"
 #include "Interface.h"
 #include "LineShader.h"
+#include "LogbookPanel.h"
 #include "Messages.h"
 #include "MissionPanel.h"
 #include "PlayerInfo.h"
@@ -82,9 +83,11 @@ void ShipInfoPanel::Draw()
 			interfaceInfo.SetCondition("enable dump");
 	}
 	if(player.Ships().size() > 1)
-		interfaceInfo.SetCondition("four buttons");
+		interfaceInfo.SetCondition("five buttons");
 	else
-		interfaceInfo.SetCondition("two buttons");
+		interfaceInfo.SetCondition("three buttons");
+	if(!player.Logbook().empty())
+		interfaceInfo.SetCondition("enable logbook");
 	
 	// Draw the interface.
 	const Interface *interface = GameData::Interfaces().Get("info panel");
@@ -187,6 +190,8 @@ bool ShipInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 	}
 	else if(command.Has(Command::INFO | Command::MAP) || key == 'm')
 		GetUI()->Push(new MissionPanel(player));
+	else if(key == 'l' && !player.Logbook().empty())
+		GetUI()->Push(new LogbookPanel(player));
 	else
 		return false;
 	

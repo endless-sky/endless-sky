@@ -18,6 +18,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "GameData.h"
 #include "Information.h"
 #include "Interface.h"
+#include "LogbookPanel.h"
 #include "MissionPanel.h"
 #include "PlayerInfo.h"
 #include "Preferences.h"
@@ -156,7 +157,9 @@ void PlayerInfoPanel::Draw()
 			}
 		}
 	}
-	interfaceInfo.SetCondition("two buttons");
+	interfaceInfo.SetCondition("three buttons");
+	if(!player.Logbook().empty())
+		interfaceInfo.SetCondition("enable logbook");
 	
 	// Draw the interface.
 	const Interface *interface = GameData::Interfaces().Get("info panel");
@@ -246,6 +249,8 @@ bool PlayerInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comman
 	}
 	else if(command.Has(Command::INFO | Command::MAP) || key == 'm')
 		GetUI()->Push(new MissionPanel(player));
+	else if(key == 'l' && !player.Logbook().empty())
+		GetUI()->Push(new LogbookPanel(player));
 	else
 		return false;
 	

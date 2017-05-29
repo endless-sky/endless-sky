@@ -171,6 +171,21 @@ void PlayerInfo::Load(const string &path)
 						harvested.insert(item);
 				}
 		}
+		else if(child.Token(0) == "logbook")
+		{
+			for(const DataNode &grand : child)
+				if(grand.Size() >= 3)
+				{
+					Date date(grand.Value(0), grand.Value(1), grand.Value(2));
+					string text;
+					for(const DataNode &great : grand)
+					{
+						text += great.Token(0);
+						text += '\n';
+					}
+					logbook.emplace(date, text);
+				}
+		}
 		else if(child.Token(0) == "mission")
 		{
 			missions.push_back(Mission());
@@ -1287,6 +1302,21 @@ bool PlayerInfo::TakeOff(UI *ui)
 
 
 
+// Get the player's logbook.
+const multimap<Date, string> &PlayerInfo::Logbook() const
+{
+	return logbook;
+}
+
+
+
+void PlayerInfo::AddLogEntry(const std::string &text)
+{
+	logbook.emplace(date, text);
+}
+
+
+
 // Call this when leaving the outfitter, shipyard, or hiring panel, to update
 // the information on how much space is available.
 void PlayerInfo::UpdateCargoCapacities()
@@ -2278,6 +2308,29 @@ void PlayerInfo::Save(const string &path) const
 	for(const Planet *planet : visitedPlanets)
 		if(!planet->TrueName().empty())
 			out.Write("visited planet", planet->TrueName());
+	
+	out.Write("logbook");
+	out.BeginChild();
+	for(const auto &it : logbook)
+	{
+		out.Write(it.first.Day(), it.first.Month(), it.first.Year());
+		out.BeginChild();
+		// Break the text up into paragraphs.
+		size_t begin = 0;
+		while(begin < it.second.length())
+		{
+			// Find the next line break.
+			size_t pos = it.second.find('\n', begin);
+			// Text should always end with a line break, but just in case:
+			if(pos == string::npos)
+				pos = it.second.length();
+			out.Write(it.second.substr(begin, pos - begin));
+			// Skip the actual newline character when writing the text out.
+			begin = pos + 1;
+		}
+		out.EndChild();
+	}
+	out.EndChild();
 }
 
 

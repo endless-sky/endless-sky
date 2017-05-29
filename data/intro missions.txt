@@ -18,6 +18,7 @@ mission "Intro [0]"
 	destination "New Greenland"
 	
 	on offer
+		log "Finally scraped together enough money for a down payment on a starship. The interest on the mortgage is exorbitant."
 		conversation
 			`With some trepidation, you give the shipyard owner your money and take your new ship for a test drive, piloting it out of the shipyard and onto a spare landing pad by the spaceport. Then you get out and look the ship over a bit more closely. You are busy polishing out a few rust spots with a piece of steel wool when an old man in grease-stained coveralls walks up.`
 			`	"Nothing quite like buying your very first starship," he says.`
@@ -58,6 +59,9 @@ mission "Intro [0]"
 			`	"I'm looking forward to traveling with you, Captain <last>," says James.`
 			`	As you're helping him wheel his luggage aboard and showing him his bunk, he says, "Before we take off, you might head on over to the trading center and stock up on medical goods; we can sell those for a good profit on <planet>. Or take a look at the outfitter if you like, but they don't sell much here compared to on the big manufacturing worlds."`
 				accept
+	
+	on accept
+		log "Getting some basic instructions on making a living as a merchant from an old captain named James."
 	
 	on complete
 		payment 10000
@@ -163,6 +167,7 @@ mission "Intro [3 Transport]"
 	
 	on complete
 		payment 30000
+		log "Dropped James off on Hestia after running a few missions with him. Met a few spoiled tourists and got to visit Earth along the way."
 		conversation "end of intro missions"
 
 
@@ -291,6 +296,7 @@ mission "Intro [3 Freighter]"
 	
 	on complete
 		payment 30000
+		log "Dropped James off on Hestia after running a few missions with him. Ship still smells like fish."
 		conversation "end of intro missions"
 
 
@@ -416,6 +422,7 @@ mission "Intro [3 Interceptor]"
 	
 	on complete
 		payment 30000
+		log "Dropped James off on Hestia after running a few missions with him. Escort duty is a risky business."
 		conversation "end of intro missions"
 
 

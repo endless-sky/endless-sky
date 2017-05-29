@@ -142,6 +142,10 @@ public:
 	// Load the cargo back into your ships. This may require selling excess.
 	bool TakeOff(UI *ui);
 	
+	// Get the player's logbook.
+	const std::multimap<Date, std::string> &Logbook() const;
+	void AddLogEntry(const std::string &text);
+	
 	// Get mission information.
 	const std::list<Mission> &Missions() const;
 	const std::list<Mission> &AvailableJobs() const;
@@ -265,6 +269,8 @@ private:
 	std::map<const Ship *, int> groups;
 	CargoHold cargo;
 	std::map<std::string, int64_t> costBasis;
+	
+	std::multimap<Date, std::string> logbook;
 	
 	std::list<Mission> missions;
 	// These lists are populated when you land on a planet, and saved so that
