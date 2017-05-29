@@ -551,7 +551,7 @@ ship "Deep River"
 		"drag" 9.4
 		"heat dissipation" .6
 		"fuel capacity" 500
-		"cargo space" 760
+		"cargo space" 1140
 		"outfit space" 363
 		"weapon capacity" 177
 		"engine capacity" 83
@@ -619,7 +619,7 @@ ship "Deep River" "Deep River 1"
 		"drag" 7.8
 		"heat dissipation" .6
 		"fuel capacity" 500
-		"cargo space" 152
+		"cargo space" 228
 		"outfit space" 363
 		"weapon capacity" 177
 		"engine capacity" 83
@@ -637,7 +637,7 @@ ship "Deep River" "Deep River 2"
 		"drag" 8.2
 		"heat dissipation" .6
 		"fuel capacity" 500
-		"cargo space" 304
+		"cargo space" 456
 		"outfit space" 363
 		"weapon capacity" 177
 		"engine capacity" 83
@@ -655,7 +655,7 @@ ship "Deep River" "Deep River 3"
 		"drag" 8.6
 		"heat dissipation" .6
 		"fuel capacity" 500
-		"cargo space" 456
+		"cargo space" 684
 		"outfit space" 363
 		"weapon capacity" 177
 		"engine capacity" 83
@@ -673,7 +673,7 @@ ship "Deep River" "Deep River 4"
 		"drag" 9.0
 		"heat dissipation" .6
 		"fuel capacity" 500
-		"cargo space" 608
+		"cargo space" 912
 		"outfit space" 363
 		"weapon capacity" 177
 		"engine capacity" 83
@@ -693,7 +693,7 @@ ship "Deep River Transport"
 		"drag" 9.4
 		"heat dissipation" .6
 		"fuel capacity" 500
-		"cargo space" 40
+		"cargo space" 74
 		"outfit space" 321
 		"weapon capacity" 114
 		"engine capacity" 83
