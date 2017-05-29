@@ -933,7 +933,7 @@ event "plasma turret available"
 	outfitter "Kraz Advanced"
 		"Plasma Turret"
 	fleet "Large Free Worlds"
-		addvariant 3
+		add variant 3
 			"Falcon (Plasma)"
 
 
