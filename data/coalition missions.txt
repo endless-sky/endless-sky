@@ -18,7 +18,7 @@ mission "Coalition: First Contact"
 	on offer
 		"reputation: Coalition" += 10
 		"reputation: Heliarch" += 10
-		log "Made contact with the Coalition, an alliance of giant beetles, giant spiders and centaurs in the galactic south. They're ruled by 'Heliarchs', and they overthrew the Quarg. Seems they see them as oppressors."
+		log `Made contact with the Coalition, an alliance of giant beetles, giant spiders, and centaurs in the galactic south. They're ruled by a group known as "the Heliarchs." They overthrew the Quarg millenia ago, who they seem to see as galactic oppressors.`
 		conversation
 			`This planet seems to be inhabited by at least three different sentient species. First are giant beetles, about a meter tall, who scurry quickly toward your ship and swarm around it, gawking at you, as soon as you land. The second species, even more disturbing than the beetles, are giant spiders. And the third species are centaurs. Not just something vaguely resembling centaurs; they look like they could have stepped right off the page of a story book from ancient Earth.`
 			`	One of the spiders walks up to you, stretching its legs to raise its face and many eyes to the level of your own face, and says something to you in a gloopy sort of burbling language that you don't understand. The beetles, meanwhile, are talking to each other in a different language, all clicks and chittering. And the centaur stands quietly at a distance and keeps glancing back toward the spaceport as if waiting for someone.`
