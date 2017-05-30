@@ -457,7 +457,7 @@ mission "Wanderers: Pug Assistance 1"
 		has "Wanderers: Quarg Assistance 2: done"
 	on offer
 		conversation
-			`When you arrive at the Wanderer settlement with three Quarg warships in tow, you are met with a mix of gratitude and apprehension. The senior leaders insist on meeting with you immediately, and you explain how your dropped Rek off in Kor Efret space and then visited the Quarg to ask for their assistance. Tele'ek asks you, "These Quarg, what are their [intentions, inclinations] toward us? And do they understand that we seek to [heal, renew] these worlds, not to steal them from the Korath?"`
+			`When you arrive at the Wanderer settlement with three Quarg warships in tow, you are met with a mix of gratitude and apprehension. The senior leaders insist on meeting with you immediately, and you explain how you delivered Rek to Kor Efret space and then visited the Quarg to ask for their assistance. Tele'ek asks you, "These Quarg, what are their [intentions, inclinations] toward us? And do they understand that we seek to [heal, renew] these worlds, not to steal them from the Korath?"`
 			choice
 				`	"The Quarg avoid conflict unless absolutely necessary. If you show that you are peaceful, they will come to trust you."`
 					goto peace
