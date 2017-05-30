@@ -109,7 +109,7 @@ mission "Coalition: Contributor"
 		government "Coalition"
 	destination "Ring of Friendship"
 	on offer
-		log "Given the license to purchase Coalition most technology for doing a couple dozen jobs for them. It turns out that their weapons and other military-grade outfits are only available to the Heliarchs, not to civilians or aliens."
+		log "Given the license to purchase most Coalition technology for doing a couple dozen jobs for them. It turns out that their weapons and other military-grade outfits are only available to the Heliarchs, not to civilians or aliens."
 		conversation
 			`A Heliarch agent contacts you soon after you land, and says, "In many useful ways, among us you have been working. The Heliarchs you should petition, and your rights and status among us they may elevate." The agent instructs you to return to the <planet> and petition the Heliarch rulers there.`
 				accept
