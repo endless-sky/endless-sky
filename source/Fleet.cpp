@@ -75,6 +75,11 @@ void Fleet::Load(const DataNode &node)
 			variants.emplace_back(child);
 			total += variants.back().weight;
 		}
+		else if(child.Token(0) == "variant add")
+		{
+			variants.emplace_back(child);
+			total += variants.back().weight;
+		}
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
