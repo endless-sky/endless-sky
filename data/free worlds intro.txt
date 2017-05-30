@@ -59,6 +59,7 @@ mission "Pact Recon 0"
 	
 	on complete
 		payment 25000
+		log `Did some work for the Southern Mutual Defense Pact scanning systems for pirate activity under their "Thousand Eyes" initiative. A militia officer by the name of Freya Winters told me the Pact would be in touch.`
 		dialog
 			`A different female militia officer approaches you when you land on <planet>, and gives you <payment> in exchange for your scanner logs of the southern systems. "My name is Freya Winters," she says. "I'll be in touch when we've got a new assignment for you."`
 
@@ -222,6 +223,9 @@ mission "Pact Questioning"
 			label quit
 			`	"Understood," he says. "Thank you for your time." He makes no effort to detain you. As you walk away, you glance over your shoulder a few times to make sure you are not being watched or followed, but see no one.`
 				decline
+				
+	on decline
+		log `Was questioned by a Navy officer for my work with the Pact. He was strangely friendly, but a little off putting.`
 
 
 
@@ -300,6 +304,9 @@ mission "FW Recon 1"
 					accept
 				`	"Sorry, I don't want to assist rebels."`
 					decline
+					
+	on decline
+		log `Was asked to assist the Free Worlds by a militia officer. Declined the offer because I'm not about to be part of a rebellion.`
 	
 	npc "scan outfits"
 		government Republic
@@ -327,6 +334,7 @@ mission "FW Recon 1"
 			`	You cut the comlink and breathe a sigh of relief that the conversation is over.`
 	
 	on complete
+		log `Scanned a Navy Cruiser for the Free Worlds. These Cruisers look like they have some impressive equipment installed.`
 		dialog `Soon after you land, the militia officer comes to your ship and pays you <payment> in exchange for your sensor logs regarding <npc>. He says, "If you would be interested in continuing to work for us, meet me in the spaceport bar in an hour."`
 		payment 10000
 
@@ -444,6 +452,7 @@ mission "FW Recon 3B"
 				"Gunboat"
 	
 	on visit
+		set "followed by gunboat"
 		dialog `A minute after you land, a Republic gunboat, <npc>, lands directly next to you. JJ does not approach you. You notice from your ship's logs that this gunboat has been following you ever since you left <origin>; before you can hand over the information, you will need to escape its pursuit.`
 	
 	on complete
@@ -451,6 +460,22 @@ mission "FW Recon 3B"
 		dialog `JJ meets you as soon as you land, and you pass off your information and photos to him. He pays you <payment> and says, "I'll be sure to let the Free Worlds council know how helpful you have been."`
 		payment 80000
 
+mission "logbook: didn't evade gunboat"
+	invisible
+	to offer
+		has "followed by gunboat"
+	on offer
+		log `While doing a recon mission for the Free Worlds I was followed by a Navy gunboat. Working for the Free Worlds might turn into a dangerous job if tension keeps building.`
+		fail
+
+mission "logbook: evaded gunboat"
+	invisible
+	to offer
+		not "followed by gunboat"
+		has "FW Recon 3B: done"
+	on offer
+		log `Did more work for JJ, the militia officer who asked me to scan a Navy Cruiser. `
+		fail
 
 
 mission "FW Katya 1"
@@ -530,6 +555,7 @@ mission "FW Katya 1"
 				accept
 	
 			label `karate`
+			set "karate chop"
 			`	You dodge sideways and spin quickly. As you do so you hear a loud click, but the gun does not fire. With one hand you knock aside the gun. With the other you land a karate chop which, if you had studied karate, would've shattered her collarbone and left her reeling in pain. But since you have not studied karate, instead your blow bounces harmlessly off her surprisingly muscular shoulder.`
 			`	Your assailant turns out to be wearing a Free Worlds uniform and a disappointed expression. "Well aren't you a dumb reckless bastard!" she says, "I'd hoped for something better from you. First of all, if this gun were loaded, your brains would be splattered all over the sidewalk. And second, you fight like a girl. I have no use for hotheads like you." She stalks off, leaving you very confused. It would appear that you've just failed some sort of test.`
 			choice
@@ -545,6 +571,26 @@ mission "FW Katya 1"
 				decline
 	on decline
 		event "FW Katya Alt 2: ready" 21
+
+mission "logbook: karate chop decline"
+	invisible
+	to offer
+		has "karate chop"
+		has "FW Katya 1: offered"
+	on offer
+		log `I karate chopped a militia officer who was holding a gun to the back of my head. Luckily the gun wasn't loaded, but the karate chop didn't work as expected. (I knew I should have studied karate while on New Boston...)`
+		fail
+
+mission "logbook: no karate chop decline"
+	invisible
+	to offer
+		not "karate chop"
+		has "FW Katya 1: offered"
+		not "FW Katya 1: active"
+		not "FW Katya 1: done"
+	on offer
+		log `A militia officer tried to recruit me to help the Free Worlds by holding a gun to the back of my head! The Navy better do something about this before someone gets hurt.`
+		fail
 
 
 
@@ -570,6 +616,7 @@ mission "FW Katya 1B"
 	
 	on complete
 		payment 100000
+		log `Accepted some work from a militia officer named Katya to deliver 10 tons of medical cargo from Glory to Skymoot to distract the Navy from finding the actual cargo. It turns out that the secret cargo was the two "tourists" that I was transporting all along! These Free Worlds people are pretty smart.`
 		conversation
 			`When you land on <planet>, before your engines have even had a chance to cool, Katya comes aboard your ship. When she sees your passengers, she breaks into a wide grin. "Lynn!" she says, running up and hugging the woman who introduced herself as "Sarah." Then she turns to "Marty" and says, "And Henry! So good to see you both. Captain <last>, allow me to introduce you to Professor Lynn Anderson, one of the galaxy's premier planetary scientists, and her husband Henry, a former Navy intelligence officer."`
 			choice
@@ -615,6 +662,7 @@ mission "FW Katya 1C"
 				die
 			
 			label flee
+			set "ran from navy"
 			`	You slam the hatch shut in their faces, quickly fire up your engines, and flee for the sky. Before you have even broken out of the atmosphere, your communicator picks up a broadcast message marking you as a wanted criminal. Also, your radar informs you that several Navy vessels are on your tail.`
 				launch
 			
@@ -661,6 +709,24 @@ mission "FW Katya 1C"
 	
 	on accept
 		"reputation: Republic" = -10
+
+mission "logbook: runin with navy"
+	invisible
+	to offer
+		has "FW Katya 1C: offered"
+		not "FW Katya 1: active"
+		not "FW Katya 1: done"
+	on offer
+		log `While delivering medical cargo to the Free Worlds, I was searched by a Navy officer. They were waiting for me, so clearly they noticed the cargo being loaded on Glory.`
+		fail
+
+mission "logbook: ran from navy"
+	invisible
+	to offer
+		has "ran from navy"
+	on offer
+		log `Ran from a Navy officer who was trying to search my cargo and now I'm getting shot at by Navy warships! Working for the Free Worlds turned out not to be the best of ideas I've had.`
+		fail
 
 
 
@@ -747,6 +813,7 @@ mission "FW Katya 2B"
 	to fail
 		has "chosen sides"
 	on offer
+		log `Met a vigilante nuclear power plant inspector who wants to help the Free Worlds. I didn't even know those existed, but now I do. The galaxy is a crazy place.`
 		conversation
 			`As soon as you land and open your ship's hatch, a man wearing sunglasses and a ridiculous hat and carrying a large metal suitcase runs past you and into your ship, casting a quick furtive glance behind him to see if anyone is following.`
 			choice
@@ -871,6 +938,7 @@ mission "FW Katya 3"
 				accept
 	
 	on complete
+		log `Somehow disabled and looted a Navy surveillance drone and made it out in one piece. Katya and Eyes will be using the "salvaged" surveillance pod to find the culprit of the bombings.`
 		outfit "Surveillance Pod" -1
 		conversation
 			`	You hand over the "salvaged" equipment to Mr. Eyes and Katya. Eyes begins fiddling with it, and soon discovers how to work the atmospheric scanner. "This is really nice stuff!" he says, enthusiastically.`
@@ -1049,6 +1117,7 @@ mission "FW Katya 5C"
 	
 	on complete
 		payment 100000
+		log `We brought Brother Greg from Harmony to Greenrock to find information on who could have done the bombing and where they would have tested it. I never would have guess that monks and pirates would have such a good relationship with eachother.`
 		conversation
 			`	When you land on <planet>, as Brother Greg is gathering his luggage, Katya hands you another credit chip for <payment>. "Thanks for risking your life with the pirates," she says. "You've got real guts."`
 			`	You return to the monastery and share your new information with Mr. Eyes. His reaction is the same as Katya's. "No way the Navy has nukes," he says. "Some other secret branch of the government, maybe, but not the Navy. That would offend their sense of honor."`
@@ -1139,6 +1208,12 @@ mission "FW Katya 7"
 					accept
 				`	"Sorry, I've got some other missions I need to run instead of continuing this wild goose chase."`
 					decline
+					
+	on accept
+		log `Katya, Eyes, and I have checked three worlds for far for signs of nuclear testing, but with no luck. Our next stop is Deep.`
+		
+	on decline
+		log `Katya, Eyes, and I have checked three worlds for far for signs of nuclear testing, but with no luck. I've had enough, so I am going my own way now.`
 
 
 
@@ -1215,6 +1290,7 @@ mission "FW Katya 7C"
 	on complete
 		"assisted free worlds" ++
 		payment 250000
+		log `Eyes' equipment gave a positive reading on Clink. Katya will be staying on Clink as a janitor to try and find out more about the nuclear testing.`
 		conversation
 			`	Eyes has been really quiet for the whole journey; you're sure that he's worried about Katya. When you land, he hands you <payment> and says, "Thank you for all your help, Captain. I hope that this leads to justice being done."`
 			`	He starts to walk off, then comes back. "By the way, Katya wanted to keep this a secret, but I think you should know." He points to the credit chips he just handed you. "Katya's been funding this out of her own pocket. That's the last of her savings that she just paid you."`
@@ -1537,9 +1613,13 @@ mission "FW Escort 3"
 		
 			`	"Glad to hear it," he says. "The crew of that freighter is depending on you. I know I don't have to tell you what will happen to them if the pirates board them before you get there."`
 				accept
+				
+	on decline
+		log `Did a few escort jobs for the Free Worlds and one of their officers, Tomek, asked me to do a special combat mission for him. Combat is something they should be asking their militia to do; they signed up for that, I didn't.`
 	
 	on complete
 		payment 200000
+		log `Did a few escort jobs for the Free Worlds and one of their officers, Tomek, asked me to do a special combat mission for him. I accepted, and things went well. The pay was good too: 200,000 credits. Doing Free Worlds jobs for a living could be a viable option.`
 		dialog
 			`	Voigt is immensely relieved to see the <npc> returned safely home. "You have done us a great service today, Captain," he says, as he hands you credit chips for <payment>. "I'll be sure to let the Council know how helpful you have been."`
 		"assisted free worlds" ++
@@ -1740,6 +1820,7 @@ mission "FW Bounty 3"
 	on complete
 		"assisted free worlds" ++
 		payment 300000
+		log `Killed a number of pirates for the Free Worlds, including an Osprey with some strange alien weapons. The officer I spoke to said he would tell the Free Worlds Council about me.`
 		dialog `The militia officer who asked you to hunt down the <npc> contacts you soon after you land. "You've done us a great service," he says. "I'll be telling the Council how helpful you were." He hands you a payment of <payment>.`
 
 
@@ -1761,6 +1842,7 @@ mission "FW Commitment"
 		never
 	
 	on offer
+		log `I've been given an offer to join the Free Worlds at a starting salary of 300 credits per day. This could be a dangerous job to take, but maybe it is for a worthy cause.`
 		conversation
 			`Soon after you land, a courier arrives at your ship and hands you a formal looking letter. It reads:`
 			``
@@ -2015,6 +2097,7 @@ mission "Defend Sabik"
 				"Sparrow" 1
 	
 	on complete
+		log `Officially joined the Free Worlds and had to fight a Navy fleet in Sabik. We somehow managed to drive them off. There's no turning back now.`
 		dialog `The Navy has been driven off, but at a great cost. You should probably visit the spaceport and see if Tomek is there, or someone else who can tell you what to do next.`
 
 mission "FWCarrier License"
