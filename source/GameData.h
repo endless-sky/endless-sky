@@ -55,6 +55,8 @@ class System;
 class GameData {
 public:
 	static void BeginLoad(const char * const *argv);
+	// Check for objects that are referred to but never defined.
+	static void CheckReferences();
 	static void LoadShaders();
 	static double Progress();
 	// Begin loading a sprite that was previously deferred. Currently this is
@@ -106,6 +108,9 @@ public:
 	// Custom messages to be shown when trying to land on certain stellar objects.
 	static bool HasLandingMessage(const Sprite *sprite);
 	static const std::string &LandingMessage(const Sprite *sprite);
+	
+	// Strings for combat rating levels.
+	static const std::vector<std::string> &CombatRatings();
 	
 	static const StarField &Background();
 	static void SetHaze(const Sprite *sprite);

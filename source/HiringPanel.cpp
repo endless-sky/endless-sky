@@ -12,13 +12,11 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "HiringPanel.h"
 
-#include "Dialog.h"
 #include "FillShader.h"
 #include "GameData.h"
 #include "Information.h"
 #include "Interface.h"
 #include "PlayerInfo.h"
-#include "Preferences.h"
 #include "Ship.h"
 #include "UI.h"
 
@@ -36,11 +34,7 @@ HiringPanel::HiringPanel(PlayerInfo &player)
 
 void HiringPanel::Step()
 {
-	if(!Preferences::Has("help: hiring"))
-	{
-		Preferences::Set("help: hiring");
-		GetUI()->Push(new Dialog(GameData::HelpMessage("hiring")));
-	}
+	DoHelp("hiring");
 }
 
 

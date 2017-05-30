@@ -124,9 +124,35 @@ void ItemInfoDisplay::ClearHover()
 
 
 
-void ItemInfoDisplay::UpdateDescription(const string &text)
+void ItemInfoDisplay::UpdateDescription(const string &text, const vector<string> &licenses, bool isShip)
 {
-	description.Wrap(text);
+	if(licenses.empty())
+		description.Wrap(text);
+	else
+	{
+		static const string NOUN[2] = {"outfit", "ship"};
+		string fullText = text + "\tTo purchase this " + NOUN[isShip] + " you must have ";
+		for(unsigned i = 0; i < licenses.size(); ++i)
+		{
+			bool isVoweled = false;
+			for(const char &c : "aeiou")
+				if(*licenses[i].begin() == c || *licenses[i].begin() == toupper(c))
+					isVoweled = true;
+			if(i)
+			{
+				if(licenses.size() > 2)
+					fullText += ", ";
+				else
+					fullText += " ";
+			}
+			if(i && i == licenses.size() - 1)
+				fullText += "and ";
+			fullText += (isVoweled ? "an " : "a ") + licenses[i] + " License";
+
+		}
+		fullText += ".\n";
+		description.Wrap(fullText);
+	}
 	
 	// Pad by 10 pixels on the top and bottom.
 	descriptionHeight = description.Height() + 20;

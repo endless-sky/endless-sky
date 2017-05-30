@@ -41,6 +41,19 @@ mission "First Contact: Hai"
 			`	You talk for a while longer, but do not gain much additional information except that several of their worlds are willing to sell Hai technology even to human beings. You thank them both for stopping to talk with you, and the Hai responds, "We are always glad to welcome new friends. May peace dwell in your heart until we meet again."`
 				decline
 
+mission "Discovered Hai Space"
+	landing
+	invisible
+	source
+		government "Hai"
+	on offer
+		event "label hai space"
+		fail
+
+event "label hai space"
+	galaxy "label hai"
+		sprite "label/hai"
+
 
 
 mission "First Contact: Unfettered"
@@ -82,7 +95,7 @@ mission "First Contact: Unfettered"
 				`	"Where was your territory? Why have I never heard of you before?"`
 				`	"What do you mean, the Hai were altered?"`
 	
-			`	"This is our story," it says. "Once, many worlds beyond wormhole were ours. Once, million years now gone. We needed more worlds. A species that does not expand becomes like brackish water, like stunted tree. But dragonfolk in the south had created hyperdrive, and human monkeys had begun banging rocks together in what the Drak said was very intelligent fashion. So we were forbidden from taking more worlds."`
+			`	"This is our story," it says. "Once, many worlds beyond wormhole were ours. Once, hundred thousand years now gone. We needed more worlds. A species that does not expand becomes like brackish water, like stunted tree. But dragonfolk in the south had created hyperdrive, and human monkeys had begun banging rocks together in what the Drak said was very intelligent fashion. So we were forbidden from taking more worlds."`
 			`	"'Dragonfolk?'" you ask. "I've never heard of them."`
 			`	"Sheragi," it says, "they are extinct. Only their dumb ancestors survive, just as monkeys will outlast the thinking humans."`
 			`	"How were you altered?" you ask.`
@@ -90,7 +103,7 @@ mission "First Contact: Unfettered"
 			choice
 				`	"Did you try to resist the Drak?"`
 					goto resist
-				`	"How do you know this, if it happened millions of years ago?"`
+				`	"How do you know this, if it happened a hundred thousand years ago?"`
 					goto know
 			
 			label resist
@@ -269,75 +282,6 @@ mission "Unfettered Jump Drive 2"
 		payment 1000000
 		"reputation: Hai (Unfettered)" >?= 20
 		fail "Unfettered Jump Drive 1"
-
-
-
-mission "Unfettered Tribute 1"
-	name "Hai Tribute to <planet>"
-	description "Collect a tribute payment of <tons> of food from <stopovers>, and bring it to the Unfettered on <destination>. Your share of the tribute will be <payment>."
-	job
-	repeat
-	to offer
-		has "Unfettered Jump Drive 2: offered"
-		random < 80
-	cargo "food (tribute)" 25 2 .05
-	on complete
-		payment 5000 1600
-		dialog "You drop off the tribute to the Unfettered, and they pay you <payment>."
-	source
-		attributes "unfettered"
-	stopover
-		distance 3 4
-		attributes "hai"
-	on stopover
-		dialog
-			`When you inform the Hai that you are here to receive a tribute payment for the Unfettered, they load the cargo onto your ship with a rather surprising swiftness and cheerfulness.`
-
-
-
-mission "Unfettered Tribute 2"
-	name "Hai Tribute to <planet>"
-	description "Collect a tribute payment of <tons> of food from <stopovers>, and bring it to the Unfettered on <destination>. Your share of the tribute will be <payment>."
-	job
-	repeat
-	to offer
-		has "Unfettered Jump Drive 2: offered"
-		random < 60
-	cargo "food (tribute)" 35 2 .05
-	on complete
-		payment 7000 2000
-		dialog "You drop off the tribute to the Unfettered, and they pay you <payment>."
-	source
-		attributes "unfettered"
-	stopover
-		distance 4 5
-		attributes "hai"
-	on stopover
-		dialog
-			`The Hai dockworkers load the tribute for the Unfettered onto your ship. One of them says to you, "Thank you. This is far better than watching our kinfolk starve."`
-
-
-
-mission "Unfettered Tribute 3"
-	name "Hai Tribute to <planet>"
-	description "Collect a tribute payment of <tons> of food from <stopovers>, and bring it to the Unfettered on <destination>. Your share of the tribute will be <payment>."
-	job
-	repeat
-	to offer
-		has "Unfettered Jump Drive 2: offered"
-		random < 40
-	cargo "food (tribute)" 45 2 .05
-	on complete
-		payment 9000 2400
-		dialog "You drop off the tribute to the Unfettered, and they pay you <payment>."
-	source
-		attributes "unfettered"
-	stopover
-		distance 5 6
-		attributes "hai"
-	on stopover
-		dialog
-			`As the Hai load the tribute onto your ship, one of them says, "Tell our brothers and sisters that if they will only repent, they will be welcome to come home."`
 
 
 

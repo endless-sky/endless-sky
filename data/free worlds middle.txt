@@ -531,7 +531,7 @@ mission "FW Southern Battle 3"
 
 mission "FW Southern Prisoners - Release"
 	name "Return Navy Prisoners"
-	description "As a goodwill gesture, return the Navy prisoners to <destination>, rather than imprisoning them on Clink. Your safe passage ends on <day>."
+	description "As a goodwill gesture, return the Navy prisoners to <destination> rather than imprisoning them on Clink. Your safe passage ends on <day>."
 	source Dancer
 	clearance
 	destination "New Iceland"
@@ -690,7 +690,7 @@ mission "FW Southern Break"
 
 mission "FW Southern Break Ends"
 	name "Return to <planet>"
-	description "Travel as quickly as possible to <destination>, to rejoin the main Free Worlds fleet."
+	description "Travel as quickly as possible to <destination> to rejoin the main Free Worlds fleet."
 	landing
 	source
 		near Rastaban 1 1000
@@ -756,6 +756,7 @@ mission "FW Northern 1"
 		fleet "Large Republic"
 	
 	on complete
+		event "fw northern expansion"
 		dialog
 			`As soon as you land, Alondo rushes out of your ship to meet with the governor of <planet> and "get these papers signed before they change their minds." He tells you to meet him back in the spaceport in an hour.`
 
@@ -772,7 +773,6 @@ mission "FW Northern 2"
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
-		event "fw northern expansion"
 		conversation
 			`You wait in the spaceport bar for a while. Your Free Worlds uniform has drawn a good deal of attention from the locals: a few of them waved to you when you came in, or gave other subtle signs of approval, but no one is sitting with you. They probably want to avoid getting into trouble with the Republic if the Free Worlds is not able to hold this planet.`
 			`	Finally Alondo arrives. "Come on," he says. "Let's talk outside." He seems tired, but not frightened.`
@@ -885,7 +885,7 @@ mission "FW Northern 2D"
 mission "FW Northern 3"
 	landing
 	name "Freya to Zug"
-	description "Bring Freya to <destination>, to help with ramping up Dreadnought production."
+	description "Bring Freya to <destination> to help with ramping up Dreadnought production."
 	source "New Tibet"
 	destination "Zug"
 	to offer
@@ -933,7 +933,7 @@ mission "FW Northern 3"
 
 mission "FW Northern 3B"
 	name "Dreadnoughts to <planet>"
-	description "Escort two more Dreadnoughts to <destination>, to help defend the front against any Navy incursions."
+	description "Escort two more Dreadnoughts to <destination> to help defend the front against any Navy incursions."
 	autosave
 	source "Zug"
 	destination "Clark"
@@ -984,7 +984,7 @@ mission "FW Northern 3B"
 mission "FW Northern 4"
 	landing
 	name "Meet Convoy"
-	description "Travel to <destination>, to escort a convoy of medical supplies. Watch out for Republic attacks."
+	description "Travel to <destination> to escort a convoy of medical supplies. Watch out for Republic attacks."
 	autosave
 	source "Clark"
 	destination "New Kansas"
@@ -1237,7 +1237,7 @@ mission "FW Alphas 1.2"
 
 mission "FW Alphas 1.1A"
 	name "Danforth to <planet>"
-	description "Escort Admiral Danforth's ship to <destination>, so that he can leave Free space without being accidentally attacked."
+	description "Escort Admiral Danforth's ship to <destination> so that he can leave Free space without being accidentally attacked."
 	autosave
 	source Poisonwood
 	destination "New Tibet"
@@ -1305,7 +1305,7 @@ mission "FW Death of Nguyen"
 mission "FW Alphas 1.2A"
 	landing
 	name "Return to the Front"
-	description "Travel to <destination>, to bolster the defenses there."
+	description "Travel to <destination> to bolster the defenses there."
 	source Poisonwood
 	destination "New Tibet"
 	to offer
@@ -1432,7 +1432,7 @@ mission "FW Bloodsea 1.1A"
 mission "FW Bloodsea 1.1B"
 	landing
 	name "Supplies to <planet>"
-	description "Escort these two freighters to <destination>, to help build a new spaceport. This may just be an excuse for pirates to attack you."
+	description "Escort these two freighters to <destination> to help build a new spaceport. This may just be an excuse for pirates to attack you."
 	autosave
 	source Deep
 	destination Bloodsea
@@ -2095,7 +2095,7 @@ mission "FW Liberate Delta Sagittarii"
 				`	"Yes, I helped them get access to some better ramscoop technology from the Deep."`
 					goto yes
 				`	"No, I haven't had any dealings with them."`
-			`	"That's odd," says JJ, "I thought they said you helped them to get their hands on the catalytic ramscoop. But anyway,  they've agreed to make an initial strike and fade attack on the Navy fleet to soften them up, before our own fleet gets there."`
+			`	"That's odd," says JJ, "I thought they said you helped them to get their hands on the catalytic ramscoop. But anyway, they've agreed to make an initial strike and fade attack on the Navy fleet to soften them up, before our own fleet gets there."`
 				goto plan
 			label yes
 			`	"Ah yes," says JJ, "an excellent piece of corporate espionage. A little shady and underhanded, of course, which is why we let the Wolf Pack handle things like that rather than doing it through official channels. But anyway, they've agreed to make an initial strike and fade attack on the Navy fleet to soften them up, before our own fleet gets there."`

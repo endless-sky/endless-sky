@@ -65,7 +65,12 @@ void ConditionSet::Load(const DataNode &node)
 void ConditionSet::Save(DataWriter &out) const
 {
 	for(const Expression &expression : expressions)
-		out.Write(expression.name, expression.op, expression.value);
+	{
+		if(!expression.value && !expression.strValue.empty())
+			out.Write(expression.name, expression.op, expression.strValue);
+		else
+			out.Write(expression.name, expression.op, expression.value);
+	}
 	for(const ConditionSet &child : children)
 	{
 		out.Write(child.isOr ? "or" : "and");
@@ -99,8 +104,16 @@ void ConditionSet::Add(const DataNode &node)
 	}
 	else if(node.Size() == 3)
 	{
-		if(!Add(node.Token(0), node.Token(1), node.Value(2)))
-			node.PrintTrace("Unrecognized condition expression:");
+		if(node.IsNumber(2))
+		{
+			if(!Add(node.Token(0), node.Token(1), node.Value(2)))
+				node.PrintTrace("Unrecognized condition expression:");
+		}
+		else
+		{
+			if(!Add(node.Token(0), node.Token(1), node.Token(2)))
+				node.PrintTrace("Unrecognized condition expression:");
+		}
 	}
 	else if(node.Size() == 1 && node.Token(0) == "never")
 		expressions.emplace_back("", "!=", 0);
@@ -154,23 +167,29 @@ bool ConditionSet::Add(const string &name, const string &op, int value)
 
 
 
+// Add a binary operator line to the list of expressions with a string as value
+bool ConditionSet::Add(const string &name, const string &op, const string &strValue)
+{
+	// If the operator is recognized, map it to a binary function.
+	BinFun fun = Op(op);
+	if(!fun)
+		return false;
+	
+	expressions.emplace_back(name, op, 0);
+	expressions.back().strValue = strValue;
+	return true;
+}
+
+
+
 // Check if the given condition values satisfy this set of conditions.
 bool ConditionSet::Test(const map<string, int> &conditions) const
 {
 	for(const Expression &expression : expressions)
 	{
-		// Special case: if the name of the condition is "random," that means to
-		// generate a random number from 0 to 99 each time it is queried.
-		int value = 0;
-		if(expression.name == "random")
-			value = Random::Int(100);
-		else
-		{
-			auto it = conditions.find(expression.name);
-			if(it != conditions.end())
-				value = it->second;
-		}
-		bool result = expression.fun(value, expression.value);
+		int firstValue = TokenValue(0, expression.name, conditions);
+		int secondValue = TokenValue(expression.value, expression.strValue, conditions);
+		bool result = expression.fun(firstValue, secondValue);
 		// If this is a set of "and" conditions, bail out as soon as one of them
 		// returns false. If it is an "or", bail out if anything returns true.
 		if(result == isOr)
@@ -196,13 +215,33 @@ void ConditionSet::Apply(map<string, int> &conditions) const
 	for(const Expression &expression : expressions)
 	{
 		int &c = conditions[expression.name];
-		c = expression.fun(c, expression.value);
+		int value = TokenValue(expression.value, expression.strValue, conditions);
+		c = expression.fun(c, value);
 	}
 	// Note: "and" and "or" make no sense for "Apply()," so a condition set that
 	// is meant to be applied rather than tested should never include them. But
 	// just in case, apply anything included in a nested condition:
 	for(const ConditionSet &child : children)
 		child.Apply(conditions);
+}
+
+
+
+// Check if the passed token is numeric or a string which has to be replaced, and return its value
+double ConditionSet::TokenValue(int numValue, const string &strValue, const map<string, int> &conditions) const
+{
+	int value = numValue;
+	// Special case: if the string of the token is "random," that means to
+	// generate a random number from 0 to 99 each time it is queried.
+	if(strValue == "random")
+		value = Random::Int(100);
+	else
+	{
+		auto it = conditions.find(strValue);
+		if(it != conditions.end())
+			value = it->second;
+	}
+	return value;
 }
 
 

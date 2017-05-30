@@ -43,6 +43,10 @@ public:
 	// Step forward one day, and return a string summarizing payments made.
 	std::string Step(int64_t assets, int64_t salaries);
 	
+	// Overdue crew salaries:
+	int64_t SalariesOwed() const;
+	void PaySalaries(int64_t amount);
+	
 	// Liabilities:
 	const std::vector<Mortgage> &Mortgages() const;
 	void AddMortgage(int64_t principal);

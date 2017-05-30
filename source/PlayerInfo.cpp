@@ -171,6 +171,21 @@ void PlayerInfo::Load(const string &path)
 						harvested.insert(item);
 				}
 		}
+		else if(child.Token(0) == "logbook")
+		{
+			for(const DataNode &grand : child)
+				if(grand.Size() >= 3)
+				{
+					Date date(grand.Value(0), grand.Value(1), grand.Value(2));
+					string text;
+					for(const DataNode &great : grand)
+					{
+						text += great.Token(0);
+						text += '\n';
+					}
+					logbook.emplace(date, text);
+				}
+		}
 		else if(child.Token(0) == "mission")
 		{
 			missions.push_back(Mission());
@@ -399,6 +414,9 @@ void PlayerInfo::ApplyChanges()
 		if(planet)
 			GameData::GetPolitics().DominatePlanet(planet);
 	}
+	
+	// Make sure all data defined in this saved game is valid.
+	GameData::CheckReferences();
 }
 
 
@@ -574,6 +592,10 @@ void PlayerInfo::IncrementDate()
 	string message = accounts.Step(assets, Salaries());
 	if(!message.empty())
 		Messages::Add(message);
+	
+	// Reset the reload counters for all your ships.
+	for(const shared_ptr<Ship> &ship : ships)
+		ship->GetArmament().FinishLoading();
 }
 
 
@@ -728,7 +750,7 @@ const vector<shared_ptr<Ship>> &PlayerInfo::Ships() const
 
 
 // Add a captured ship to your fleet.
-void PlayerInfo::AddShip(shared_ptr<Ship> &ship)
+void PlayerInfo::AddShip(const shared_ptr<Ship> &ship)
 {
 	ships.push_back(ship);
 	ship->SetIsSpecial();
@@ -972,7 +994,7 @@ void PlayerInfo::Land(UI *ui)
 			RemoveMission(Mission::FAIL, mission, ui);
 		else if(mission.CanComplete(*this))
 			RemoveMission(Mission::COMPLETE, mission, ui);
-		else if(mission.Destination() == GetPlanet())
+		else if(mission.Destination() == GetPlanet() && !freshlyLoaded)
 			mission.Do(Mission::VISIT, *this, ui);
 	}
 	// One mission's actions may influence another mission, so loop through one
@@ -1280,17 +1302,34 @@ bool PlayerInfo::TakeOff(UI *ui)
 
 
 
+// Get the player's logbook.
+const multimap<Date, string> &PlayerInfo::Logbook() const
+{
+	return logbook;
+}
+
+
+
+void PlayerInfo::AddLogEntry(const std::string &text)
+{
+	logbook.emplace(date, text);
+}
+
+
+
 // Call this when leaving the outfitter, shipyard, or hiring panel, to update
 // the information on how much space is available.
 void PlayerInfo::UpdateCargoCapacities()
 {
 	int size = 0;
 	int bunks = 0;
+	flagship = FlagshipPtr();
 	for(const shared_ptr<Ship> &ship : ships)
 		if(ship->GetSystem() == system && !ship->IsParked() && !ship->IsDisabled())
 		{
 			size += ship->Attributes().Get("cargo space");
-			bunks += ship->Attributes().Get("bunks") - ship->Crew();
+			int crew = (ship == flagship ? ship->Crew() : ship->RequiredCrew());
+			bunks += ship->Attributes().Get("bunks") - crew;
 		}
 	cargo.SetSize(size);
 	cargo.SetBunks(bunks);
@@ -1574,7 +1613,7 @@ bool PlayerInfo::HasSeen(const System *system) const
 		if(mission.Waypoints().count(system))
 			return true;
 		for(const Planet *planet : mission.Stopovers())
-			if(planet->GetSystem() == system)
+			if(planet->IsInSystem(system))
 				return true;
 	}
 	
@@ -1585,7 +1624,7 @@ bool PlayerInfo::HasSeen(const System *system) const
 		if(mission.Waypoints().count(system))
 			return true;
 		for(const Planet *planet : mission.Stopovers())
-			if(planet->GetSystem() == system)
+			if(planet->IsInSystem(system))
 				return true;
 	}
 	
@@ -1622,11 +1661,11 @@ bool PlayerInfo::KnowsName(const System *system) const
 		return true;
 	
 	for(const Mission &mission : availableJobs)
-		if(mission.Destination()->GetSystem() == system)
+		if(mission.Destination()->IsInSystem(system))
 			return true;
 	
 	for(const Mission &mission : missions)
-		if(mission.IsVisible() && mission.Destination()->GetSystem() == system)
+		if(mission.IsVisible() && mission.Destination()->IsInSystem(system))
 			return true;
 	
 	return false;
@@ -1663,10 +1702,7 @@ void PlayerInfo::Unvisit(const System *system)
 	if(!system)
 		return;
 	
-	auto it = visitedSystems.find(system);
-	if(it != visitedSystems.end())
-		visitedSystems.erase(it);
-	
+	visitedSystems.erase(system);
 	for(const StellarObject &object : system->Objects())
 		if(object.GetPlanet())
 			Unvisit(object.GetPlanet());
@@ -1679,9 +1715,7 @@ void PlayerInfo::Unvisit(const Planet *planet)
 	if(!planet)
 		return;
 	
-	auto it = visitedPlanets.find(planet);
-	if(it != visitedPlanets.end())
-		visitedPlanets.erase(it);
+	visitedPlanets.erase(planet);
 }
 
 
@@ -2136,7 +2170,7 @@ void PlayerInfo::Save(const string &path) const
 	for(const System *system : travelPlan)
 		out.Write("travel", system->Name());
 	if(travelDestination)
-		out.Write("travel destination", travelDestination->Name());
+		out.Write("travel destination", travelDestination->TrueName());
 	
 	out.Write("reputation with");
 	out.BeginChild();
@@ -2274,6 +2308,29 @@ void PlayerInfo::Save(const string &path) const
 	for(const Planet *planet : visitedPlanets)
 		if(!planet->TrueName().empty())
 			out.Write("visited planet", planet->TrueName());
+	
+	out.Write("logbook");
+	out.BeginChild();
+	for(const auto &it : logbook)
+	{
+		out.Write(it.first.Day(), it.first.Month(), it.first.Year());
+		out.BeginChild();
+		// Break the text up into paragraphs.
+		size_t begin = 0;
+		while(begin < it.second.length())
+		{
+			// Find the next line break.
+			size_t pos = it.second.find('\n', begin);
+			// Text should always end with a line break, but just in case:
+			if(pos == string::npos)
+				pos = it.second.length();
+			out.Write(it.second.substr(begin, pos - begin));
+			// Skip the actual newline character when writing the text out.
+			begin = pos + 1;
+		}
+		out.EndChild();
+	}
+	out.EndChild();
 }
 
 

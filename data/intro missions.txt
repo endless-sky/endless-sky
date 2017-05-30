@@ -18,6 +18,7 @@ mission "Intro [0]"
 	destination "New Greenland"
 	
 	on offer
+		log "Finally scraped together enough money for a down payment on a starship. The interest on the mortgage is exorbitant."
 		conversation
 			`With some trepidation, you give the shipyard owner your money and take your new ship for a test drive, piloting it out of the shipyard and onto a spare landing pad by the spaceport. Then you get out and look the ship over a bit more closely. You are busy polishing out a few rust spots with a piece of steel wool when an old man in grease-stained coveralls walks up.`
 			`	"Nothing quite like buying your very first starship," he says.`
@@ -58,6 +59,9 @@ mission "Intro [0]"
 			`	"I'm looking forward to traveling with you, Captain <last>," says James.`
 			`	As you're helping him wheel his luggage aboard and showing him his bunk, he says, "Before we take off, you might head on over to the trading center and stock up on medical goods; we can sell those for a good profit on <planet>. Or take a look at the outfitter if you like, but they don't sell much here compared to on the big manufacturing worlds."`
 				accept
+	
+	on accept
+		log "Getting some basic instructions on making a living as a merchant from an old captain named James."
 	
 	on complete
 		payment 10000
@@ -163,6 +167,7 @@ mission "Intro [3 Transport]"
 	
 	on complete
 		payment 30000
+		log "Dropped James off on Hestia after running a few missions with him. Met a few spoiled tourists and got to visit Earth along the way."
 		conversation "end of intro missions"
 
 
@@ -246,7 +251,7 @@ mission "Intro [2 Freighter]"
 		payment 35000
 		conversation
 			`By now, your entire ship smells like brine and raw fish, but as best you can tell the fish is still fresh enough to eat. The dock workers on <planet> offload it without comment, and give you your payment of <payment>.`
-			`	"If you can line them up right," says James, "rush deliveries can be your best source of income as a freighter captain. And keep your eye out for missions with large amounts of cargo, too, because your barge's hold is definitely big enough to handle them. And  if you've got any cargo space to spare and you know what the prices are going to be at your destination, be sure to stock up on something you can sell for a profit."`
+			`	"If you can line them up right," says James, "rush deliveries can be your best source of income as a freighter captain. And keep your eye out for missions with large amounts of cargo, too, because your barge's hold is definitely big enough to handle them. And if you've got any cargo space to spare and you know what the prices are going to be at your destination, be sure to stock up on something you can sell for a profit."`
 			choice
 				`	"What would you recommend if I want to do more than just carry cargo?"`
 					goto more
@@ -291,6 +296,7 @@ mission "Intro [3 Freighter]"
 	
 	on complete
 		payment 30000
+		log "Dropped James off on Hestia after running a few missions with him. Ship still smells like fish."
 		conversation "end of intro missions"
 
 
@@ -416,6 +422,7 @@ mission "Intro [3 Interceptor]"
 	
 	on complete
 		payment 30000
+		log "Dropped James off on Hestia after running a few missions with him. Escort duty is a risky business."
 		conversation "end of intro missions"
 
 

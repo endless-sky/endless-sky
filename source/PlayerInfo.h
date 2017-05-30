@@ -119,7 +119,7 @@ public:
 	// Get the full list of ships the player owns.
 	const std::vector<std::shared_ptr<Ship>> &Ships() const;
 	// Add a captured ship to your fleet.
-	void AddShip(std::shared_ptr<Ship> &ship);
+	void AddShip(const std::shared_ptr<Ship> &ship);
 	// Buy or sell a ship.
 	void BuyShip(const Ship *model, const std::string &name);
 	void SellShip(const Ship *selected);
@@ -141,6 +141,10 @@ public:
 	void Land(UI *ui);
 	// Load the cargo back into your ships. This may require selling excess.
 	bool TakeOff(UI *ui);
+	
+	// Get the player's logbook.
+	const std::multimap<Date, std::string> &Logbook() const;
+	void AddLogEntry(const std::string &text);
 	
 	// Get mission information.
 	const std::list<Mission> &Missions() const;
@@ -265,6 +269,8 @@ private:
 	std::map<const Ship *, int> groups;
 	CargoHold cargo;
 	std::map<std::string, int64_t> costBasis;
+	
+	std::multimap<Date, std::string> logbook;
 	
 	std::list<Mission> missions;
 	// These lists are populated when you land on a planet, and saved so that

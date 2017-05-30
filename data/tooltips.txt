@@ -68,6 +68,9 @@ tip "drone bays:"
 tip "energy capacity:"
 	`How much energy this ship can store. This allows you to temporarily use more power than your generators produce.`
 
+tip "energy consumption:"
+	`Energy consumed per second while in flight.`
+	
 tip "energy generation:"
 	`Energy generated per second. If your ship has weapons other than beam weapons, you will probably also need batteries to store energy in.`
 
@@ -127,6 +130,9 @@ tip "jump drive:"
 
 tip "jump speed:"
 	`How slow the ship must be moving to make a jump.`
+
+tip "jump fuel:"
+	`How much fuel is consumed when you jump between systems using this drive.`
 
 tip "map:"
 	`How many star systems are included in this map.`
@@ -279,7 +285,7 @@ tip "charging shields:"
 	`Energy consumed and heat generated when this ship is recharging its shields. This is in addition to the "idle" amount.`
 
 tip "max:"
-	`Total energy and heat capacity. Energy capacity allows a ship to temporarily draw more energy than it produces. Heat capacity is the highest your heat generation rate can be without eventually causing your ship to overheat.`
+	`Energy storage capacity and maximum safe level for heat generation. Energy capacity allows a ship to temporarily draw more energy than it produces. The heat maximum is the highest your heat generation can be without eventually causing your ship to overheat.`
 
 
 

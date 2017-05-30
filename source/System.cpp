@@ -112,84 +112,150 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 		return;
 	name = node.Token(1);
 	
-	// If this is truly a change and not just being called by Load(), these sets
-	// of objects will be entirely replaced by any new ones, rather than adding
-	// the new ones on to the end of the list:
-	bool resetLinks = !links.empty();
-	bool resetAsteroids = !asteroids.empty();
-	bool resetFleets = !fleets.empty();
-	bool resetObjects = !objects.empty();
+	// For the following keys, if this data node defines a new value for that
+	// key, the old values should be cleared (unless using the "add" keyword).
+	set<string> shouldOverwrite = {"link", "asteroids", "fleet", "object"};
 	
 	for(const DataNode &child : node)
 	{
-		if(child.Token(0) == "pos" && child.Size() >= 3)
-			position.Set(child.Value(1), child.Value(2));
-		else if(child.Token(0) == "government" && child.Size() >= 2)
-			government = GameData::Governments().Get(child.Token(1));
-		else if(child.Token(0) == "music" && child.Size() >= 2)
-			music = child.Token(1);
-		else if(child.Token(0) == "link")
+		// Check for the "add" or "remove" keyword.
+		bool add = (child.Token(0) == "add");
+		bool remove = (child.Token(0) == "remove");
+		if((add || remove) && child.Size() < 2)
 		{
-			if(resetLinks)
-			{
-				resetLinks = false;
+			child.PrintTrace("Skipping " + child.Token(0) + " with no key given:");
+			continue;
+		}
+		
+		// Get the key and value (if any).
+		const string &key = child.Token((add || remove) ? 1 : 0);
+		int valueIndex = (add || remove) ? 2 : 1;
+		bool hasValue = (child.Size() > valueIndex);
+		const string &value = child.Token(hasValue ? valueIndex : 0);
+		
+		// Check for conditions that require clearing this key's current value.
+		// "remove <key>" means to clear the key's previous contents.
+		// "remove <key> <value>" means to remove just that value from the key.
+		bool removeAll = (remove && !hasValue);
+		// If this is the first entry for the given key, and we are not in "add"
+		// or "remove" mode, its previous value should be cleared.
+		bool overwriteAll = (!add && !remove && shouldOverwrite.count(key));
+		overwriteAll |= (!add && !remove && key == "minables" && shouldOverwrite.count("asteroids"));
+		// Clear the data of the given type.
+		if(removeAll || overwriteAll)
+		{
+			// Clear the data of the given type.
+			if(key == "government")
+				government = nullptr;
+			else if(key == "music")
+				music.clear();
+			else if(key == "link")
 				links.clear();
-			}
-			if(child.Size() >= 2)
-				links.push_back(GameData::Systems().Get(child.Token(1)));
-		}
-		else if(child.Token(0) == "habitable" && child.Size() >= 2)
-			habitable = child.Value(1);
-		else if(child.Token(0) == "belt" && child.Size() >= 2)
-			asteroidBelt = child.Value(1);
-		else if(child.Token(0) == "asteroids" || child.Token(0) == "minables")
-		{
-			if(resetAsteroids)
-			{
-				resetAsteroids = false;
+			else if(key == "asteroids" || key == "minables")
 				asteroids.clear();
-			}
-			if(child.Size() >= 4)
+			else if(key == "haze")
+				haze = nullptr;
+			else if(key == "trade")
+				trade.clear();
+			else if(key == "fleet")
+				haze = nullptr;
+			else if(key == "object")
 			{
-				const string &name = child.Token(1);
-				int count = child.Value(2);
-				double energy = child.Value(3);
-				
-				if(child.Token(0) == "asteroids")
-					asteroids.emplace_back(name, count, energy);
-				else
-					asteroids.emplace_back(GameData::Minables().Get(name), count, energy);
-			}
-		}
-		else if(child.Token(0) == "haze" && child.Size() >= 2)
-			haze = SpriteSet::Get(child.Token(1));
-		else if(child.Token(0) == "trade" && child.Size() >= 3)
-			trade[child.Token(1)].SetBase(child.Value(2));
-		else if(child.Token(0) == "fleet")
-		{
-			if(resetFleets)
-			{
-				resetFleets = false;
-				fleets.clear();
-			}
-			if(child.Size() >= 3)
-				fleets.emplace_back(GameData::Fleets().Get(child.Token(1)), child.Value(2));
-		}
-		else if(child.Token(0) == "object")
-		{
-			if(resetObjects)
-			{
+				// Make sure any planets that were linked to this system know
+				// that they are no longer here.
 				for(StellarObject &object : objects)
 					if(object.GetPlanet())
-					{
-						Planet *planet = planets.Get(object.GetPlanet()->Name());
-						planet->RemoveSystem(this);
-					}
-				resetObjects = false;
+						planets.Get(object.GetPlanet()->TrueName())->RemoveSystem(this);
+				
 				objects.clear();
 			}
-			LoadObject(child, planets);
+			
+			// If not in "overwrite" mode, move on to the next node.
+			if(overwriteAll)
+				shouldOverwrite.erase(key == "minables" ? "asteroids" : key);
+			else
+				continue;
 		}
+		
+		// Handle the attributes which can be "removed."
+		if(!hasValue && key != "object")
+		{
+			child.PrintTrace("Expected key to have a value:");
+			continue;
+		}
+		else if(key == "link")
+		{
+			if(remove)
+				links.erase(GameData::Systems().Get(value));
+			else
+				links.insert(GameData::Systems().Get(value));
+		}
+		else if(key == "asteroids")
+		{
+			if(remove)
+			{
+				for(auto it = asteroids.begin(); it != asteroids.end(); ++it)
+					if(it->Name() == value)
+					{
+						asteroids.erase(it);
+						break;
+					}
+			}
+			else if(child.Size() >= 4)
+				asteroids.emplace_back(value, child.Value(valueIndex + 1), child.Value(valueIndex + 2));
+		}
+		else if(key == "minables")
+		{
+			const Minable *type = GameData::Minables().Get(value);
+			if(remove)
+			{
+				for(auto it = asteroids.begin(); it != asteroids.end(); ++it)
+					if(it->Type() == type)
+					{
+						asteroids.erase(it);
+						break;
+					}
+			}
+			else if(child.Size() >= 4)
+				asteroids.emplace_back(type, child.Value(valueIndex + 1), child.Value(valueIndex + 2));
+		}
+		else if(key == "fleet")
+		{
+			const Fleet *fleet = GameData::Fleets().Get(value);
+			if(remove)
+			{
+				for(auto it = fleets.begin(); it != fleets.end(); ++it)
+					if(it->Get() == fleet)
+					{
+						fleets.erase(it);
+						break;
+					}
+			}
+			else
+				fleets.emplace_back(fleet, child.Value(valueIndex + 1));
+		}
+		// Handle the attributes which cannot be "removed."
+		else if(remove)
+		{
+			child.PrintTrace("Cannot \"remove\" a specific value from the given key:");
+			continue;
+		}
+		else if(key == "pos" && child.Size() >= 3)
+			position.Set(child.Value(valueIndex), child.Value(valueIndex + 1));
+		else if(key == "government")
+			government = GameData::Governments().Get(value);
+		else if(key == "music")
+			music = value;
+		else if(key == "habitable")
+			habitable = child.Value(valueIndex);
+		else if(key == "belt")
+			asteroidBelt = child.Value(valueIndex);
+		else if(key == "haze")
+			haze = SpriteSet::Get(value);
+		else if(key == "trade" && child.Size() >= 3)
+			trade[value].SetBase(child.Value(valueIndex + 1));
+		else if(key == "object")
+			LoadObject(child, planets);
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
@@ -251,13 +317,13 @@ void System::UpdateNeighbors(const Set<System> &systems)
 	// even if it is farther away than the maximum distance.
 	for(const System *system : links)
 		if(!(system->Position().Distance(position) <= NEIGHBOR_DISTANCE))
-			neighbors.push_back(system);
+			neighbors.insert(system);
 	
 	// Any other star system that is within the neighbor distance is also a
 	// neighbor. This will include any nearby linked systems.
 	for(const auto &it : systems)
 		if(&it.second != this && it.second.Position().Distance(position) <= NEIGHBOR_DISTANCE)
-			neighbors.push_back(&it.second);
+			neighbors.insert(&it.second);
 }
 
 
@@ -265,15 +331,11 @@ void System::UpdateNeighbors(const Set<System> &systems)
 // Modify a system's links.
 void System::Link(System *other)
 {
-	if(find(links.begin(), links.end(), other) == links.end())
-		links.push_back(other);
-	if(find(other->links.begin(), other->links.end(), this) == other->links.end())
-		other->links.push_back(this);
+	links.insert(other);
+	other->links.insert(this);
 	
-	if(find(neighbors.begin(), neighbors.end(), other) == neighbors.end())
-		neighbors.push_back(other);
-	if(find(other->neighbors.begin(), other->neighbors.end(), this) == other->neighbors.end())
-		other->neighbors.push_back(this);
+	neighbors.insert(other);
+	other->neighbors.insert(this);
 }
 
 
@@ -338,7 +400,7 @@ const string &System::MusicName() const
 
 
 // Get a list of systems you can travel to through hyperspace from here.
-const vector<const System *> &System::Links() const
+const set<const System *> &System::Links() const
 {
 	return links;
 }
@@ -348,7 +410,7 @@ const vector<const System *> &System::Links() const
 // Get a list of systems you can "see" from here, whether or not there is a
 // direct hyperspace link to them. This is also the set of systems that you
 // can travel to from here via the jump drive.
-const vector<const System *> &System::Neighbors() const
+const set<const System *> &System::Neighbors() const
 {
 	return neighbors;
 }
@@ -390,6 +452,19 @@ const vector<StellarObject> &System::Objects() const
 
 
 
+// Get the stellar object (if any) for the given planet.
+const StellarObject *System::FindStellar(const Planet *planet) const
+{
+	if(planet)
+		for(const StellarObject &object : objects)
+			if(object.GetPlanet() == planet)
+				return &object;
+	
+	return nullptr;
+}
+
+
+
 // Get the habitable zone's center.
 double System::HabitableZone() const
 {
@@ -407,11 +482,15 @@ double System::AsteroidBelt() const
 
 
 // Check if this system is inhabited.
-bool System::IsInhabited() const
+bool System::IsInhabited(const Ship *ship) const
 {
 	for(const StellarObject &object : objects)
-		if(object.GetPlanet() && !object.GetPlanet()->IsWormhole() && object.GetPlanet()->HasSpaceport())
-			return true;
+		if(object.GetPlanet())
+		{
+			const Planet &planet = *object.GetPlanet();
+			if(!planet.IsWormhole() && planet.HasSpaceport() && planet.IsAccessible(ship))
+				return true;
+		}
 	
 	return false;
 }
@@ -422,9 +501,12 @@ bool System::IsInhabited() const
 bool System::HasFuelFor(const Ship &ship) const
 {
 	for(const StellarObject &object : objects)
-		if(object.GetPlanet() && object.GetPlanet()->HasSpaceport() 
-				&& !object.GetPlanet()->IsWormhole() && object.GetPlanet()->CanLand(ship))
-			return true;
+		if(object.GetPlanet())
+		{
+			const Planet &planet = *object.GetPlanet();
+			if(!planet.IsWormhole() && planet.HasSpaceport() && planet.CanLand(ship))
+				return true;
+		}
 	
 	return false;
 }

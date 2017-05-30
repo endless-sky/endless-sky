@@ -62,6 +62,8 @@ private:
 	std::string trigger;
 	std::string system;
 	
+	std::string logText;
+	
 	std::string dialogText;
 	
 	const Conversation *stockConversation = nullptr;

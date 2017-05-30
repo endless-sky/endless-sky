@@ -44,23 +44,24 @@ PlanetLabel::PlanetLabel(const Point &position, const StellarObject &object, con
 	: position(position * zoom), radius(object.Radius() * zoom)
 {
 	const Planet &planet = *object.GetPlanet();
-	color = object.TargetColor();
 	name = planet.Name();
-	if(!planet.IsWormhole())
+	if(planet.IsWormhole())
+		color = Color(.8, .3, 1., 1.);
+	else if(planet.GetGovernment())
 	{
-		if(planet.GetGovernment())
+		government = "(" + planet.GetGovernment()->GetName() + ")";
+		if(planet.CanLand())
 		{
-			government = "(" + planet.GetGovernment()->GetName() + ")";
-			if(planet.CanLand())
-			{
-				color = planet.GetGovernment()->GetColor();
-				color = Color(color.Get()[0] * .5 + .3, color.Get()[1] * .5 + .3, color.Get()[2] * .5 + .3);
-			}
-			else
-				hostility = 3 + 2 * planet.GetGovernment()->IsEnemy();
+			color = planet.GetGovernment()->GetColor();
+			color = Color(color.Get()[0] * .5 + .3, color.Get()[1] * .5 + .3, color.Get()[2] * .5 + .3);
 		}
 		else
-			government = "(No government)";
+			hostility = 3 + 2 * planet.GetGovernment()->IsEnemy();
+	}
+	else
+	{
+		color = Color(.3, .3, .3, 1.);
+		government = "(No government)";
 	}
 	double alpha = min(.5, max(0., .6 - (position.Length() - radius) * .001 * zoom));
 	color = Color(color.Get()[0] * alpha, color.Get()[1] * alpha, color.Get()[2] * alpha, 0.);

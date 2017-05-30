@@ -21,14 +21,15 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "GameData.h"
 #include "Government.h"
 #include "HailPanel.h"
-#include "InfoPanel.h"
 #include "LineShader.h"
 #include "MapDetailPanel.h"
 #include "Messages.h"
 #include "Planet.h"
 #include "PlanetPanel.h"
 #include "PlayerInfo.h"
+#include "PlayerInfoPanel.h"
 #include "Preferences.h"
+#include "Random.h"
 #include "Screen.h"
 #include "StellarObject.h"
 #include "System.h"
@@ -62,7 +63,7 @@ void MainPanel::Step()
 	}
 	else if(show.Has(Command::INFO))
 	{
-		GetUI()->Push(new InfoPanel(player));
+		GetUI()->Push(new PlayerInfoPanel(player));
 		isActive = false;
 	}
 	else if(show.Has(Command::HAIL))
@@ -78,26 +79,19 @@ void MainPanel::Step()
 		player.Land(GetUI());
 		isActive = false;
 	}
-	if(isActive && player.Flagship() && player.Flagship()->IsTargetable()
-			&& !Preferences::Has("help: navigation"))
+	const Ship *flagship = player.Flagship();
+	if(flagship)
 	{
-		Preferences::Set("help: navigation");
-		GetUI()->Push(new Dialog(GameData::HelpMessage("navigation")));
-		isActive = false;
-	}
-	if(isActive && player.Flagship() && player.Flagship()->IsDestroyed()
-			&& !Preferences::Has("help: dead"))
-	{
-		Preferences::Set("help: dead");
-		GetUI()->Push(new Dialog(GameData::HelpMessage("dead")));
-		isActive = false;
-	}
-	if(isActive && player.Flagship() && player.Flagship()->IsDisabled()
-			&& !player.Flagship()->IsDestroyed() && !Preferences::Has("help: disabled"))
-	{
-		Preferences::Set("help: disabled");
-		GetUI()->Push(new Dialog(GameData::HelpMessage("disabled")));
-		isActive = false;
+		// Check if any help messages should be shown.
+		if(isActive && flagship->IsTargetable())
+			isActive = !DoHelp("navigation");
+		if(isActive && flagship->IsDestroyed())
+			isActive = !DoHelp("dead");
+		if(isActive && flagship->IsDisabled())
+			isActive = !DoHelp("disabled");
+		bool canRefuel = player.GetSystem()->IsInhabited(flagship);
+		if(isActive && !flagship->IsHyperspacing() && !flagship->JumpsRemaining() && !canRefuel)
+			isActive = !DoHelp("stranded");
 	}
 	
 	engine.Step(isActive);
@@ -133,13 +127,6 @@ void MainPanel::Step()
 					isActive = false;
 				}
 			}
-		}
-		if((event.Type() & ShipEvent::JUMP) && player.Flagship() && !player.Flagship()->JumpsRemaining()
-				&& !player.GetSystem()->IsInhabited() && !Preferences::Has("help: stranded"))
-		{
-			Preferences::Set("help: stranded");
-			GetUI()->Push(new Dialog(GameData::HelpMessage("stranded")));
-			isActive = false;
 		}
 	}
 	
@@ -309,19 +296,31 @@ void MainPanel::ShowScanDialog(const ShipEvent &event)
 			if(it.second)
 			{
 				if(first)
-					out << "This ship is carrying:\n";
+					out << "This " + target->Noun() + " is carrying:\n";
 				first = false;
 		
 				out << "\t" << it.second
 					<< (it.second == 1 ? " ton of " : " tons of ")
 					<< it.first << "\n";
 			}
+		for(const auto &it : target->Cargo().Outfits())
+			if(it.second)
+			{
+				if(first)
+					out << "This " + target->Noun() + " is carrying:\n";
+				first = false;
+		
+				out << "\t" << it.second << " "
+					<< (it.second == 1 ? it.first->Name(): it.first->PluralName()) << "\n";
+			}
 		if(first)
-			out << "This ship is not carrying any cargo.\n";
+			out << "This " + target->Noun() + " is not carrying any cargo.\n";
 	}
-	if(event.Type() & ShipEvent::SCAN_OUTFITS)
+	if((event.Type() & ShipEvent::SCAN_OUTFITS) && target->Attributes().Get("inscrutable"))
+		out << "Your scanners cannot make any sense of this " + target->Noun() + "'s interior.";
+	else if(event.Type() & ShipEvent::SCAN_OUTFITS)
 	{
-		out << "This ship is equipped with:\n";
+		out << "This " + target->Noun() + " is equipped with:\n";
 		for(const auto &it : target->Outfits())
 			if(it.first && it.second)
 				out << "\t" << it.second << " "
@@ -350,7 +349,7 @@ void MainPanel::ShowScanDialog(const ShipEvent &event)
 			}
 		if(!count.empty())
 		{
-			out << "This ship is carrying:\n";
+			out << "This " + target->Noun() + " is carrying:\n";
 			for(const auto &it : count)
 				if(it.second > 0)
 					out << "\t" << it.second << " " << it.first << "\n";
@@ -369,7 +368,7 @@ bool MainPanel::ShowHailPanel()
 		return false;
 	
 	shared_ptr<Ship> target = flagship->GetTargetShip();
-	if((SDL_GetModState() & KMOD_SHIFT) && flagship->GetTargetPlanet())
+	if((SDL_GetModState() & KMOD_SHIFT) && flagship->GetTargetStellar())
 		target.reset();
 	
 	if(flagship->IsEnteringHyperspace())
@@ -383,23 +382,37 @@ bool MainPanel::ShowHailPanel()
 		// not. If it's in system and jumping, report that.
 		if(target->Zoom() < 1. || target->IsDestroyed() || target->GetSystem() != player.GetSystem()
 				|| target->Cloaking() == 1.)
-			Messages::Add("Unable to hail target ship.");
+			Messages::Add("Unable to hail target " + target->Noun() + ".");
 		else if(target->IsEnteringHyperspace())
-			Messages::Add("Unable to send hail: ship is entering hyperspace.");
+			Messages::Add("Unable to send hail: " + target->Noun() + " is entering hyperspace.");
 		else
 		{
 			GetUI()->Push(new HailPanel(player, target));
 			return true;
 		}
 	}
-	else if(flagship->GetTargetPlanet())
+	else if(flagship->GetTargetStellar())
 	{
-		const Planet *planet = flagship->GetTargetPlanet()->GetPlanet();
+		const Planet *planet = flagship->GetTargetStellar()->GetPlanet();
 		if(planet && planet->IsWormhole())
-			Messages::Add("The gaping hole in the fabric of the universe does not respond to your hail.");
+		{
+			static const vector<string> messages = {
+				"The gaping hole in the fabric of the universe does not respond to your hail.",
+				"Wormholes do not understand the language of finite beings like yourself.",
+				"You stare into the swirling abyss, but with appalling bad manners it refuses to stare back.",
+				"All the messages you try to send disappear into the wormhole without a trace.",
+				"The spatial anomaly pointedly ignores your attempts to engage it in conversation.",
+				"Like most wormholes, this one does not appear to be very talkative.",
+				"The wormhole says nothing, but silently beckons you to explore its mysteries.",
+				"You can't talk to wormholes. Maybe you should try landing on it instead.",
+				"Your words cannot travel through wormholes, but maybe your starship can.",
+				"Unable to send hail: this unfathomable void is not inhabited."
+			};
+			Messages::Add(messages[Random::Int(messages.size())]);
+		}
 		else if(planet && planet->IsInhabited())
 		{
-			GetUI()->Push(new HailPanel(player, flagship->GetTargetPlanet()));
+			GetUI()->Push(new HailPanel(player, flagship->GetTargetStellar()));
 			return true;
 		}
 		else
