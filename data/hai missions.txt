@@ -13,7 +13,6 @@ mission "First Contact: Hai"
 	source
 		attributes "hai"
 	on offer
-		log "Made contact with a species of giant, intelligent squirrels north of human space. They call themselves the Hai, and seem to be peaceful, but they warn of renegades in the northern region of their space."
 		conversation
 			`This planet is populated by an alien species that resemble giant, intelligent squirrels. However, the most surprising aspect of the spaceport is not the aliens, but the fact that human merchants and other civilians are walking among them and are clearly at home here. Would you like to find someone who can tell you what is going on here?`
 			choice
@@ -41,6 +40,9 @@ mission "First Contact: Hai"
 			`	"Yes," it says, "but be careful. The north is the territory of some renegade Hai: bandits and pirates, living off what they steal from the rest of us. If you travel among them, you will not be safe."`
 			`	You talk for a while longer, but do not gain much additional information except that several of their worlds are willing to sell Hai technology even to human beings. You thank them both for stopping to talk with you, and the Hai responds, "We are always glad to welcome new friends. May peace dwell in your heart until we meet again."`
 				decline
+	
+	on decline
+		log "Made contact with a species of giant, intelligent squirrels north of human space. They call themselves the Hai, and seem to be peaceful, but they warn of renegades in the northern region of their space."
 
 mission "Discovered Hai Space"
 	landing
@@ -62,7 +64,6 @@ mission "First Contact: Unfettered"
 	source
 		attributes "unfettered"
 	on offer
-		log "Made contact with a faction of Hai who call themselves the Unfettered, claiming to be the true Hai. If they are to be believed, the other Hai were pacified by the Drak long ago."
 		conversation
 			`The Hai here appear to be at war with the rest of their species. Do you want to approach one of them and ask why?`
 			choice
@@ -133,6 +134,9 @@ mission "First Contact: Unfettered"
 			label sell
 			`	"Bring us a jump drive," it says, "and we will count you among our friends. Bring us more, and we may even consider you worthy of a share of the plunder, when we take back what is ours."`
 				decline
+				
+	on decline
+		log "Made contact with a faction of Hai who call themselves the Unfettered, claiming to be the true Hai. If they are to be believed, the other Hai were pacified by the Drak long ago."
 
 
 
@@ -143,7 +147,6 @@ mission "Ask the Hai about the Unfettered"
 	to offer
 		has "First Contact: Unfettered: offered"
 	on offer
-		log "Spoke with an elder Hai about their side of the story of the Hai. If they are to be believed, the ancient Hai lost much of their territory to infighting, and have since learned to live in stability and balance."
 		conversation
 			`The Unfettered Hai told you that they are the "true Hai," and seem to think that the other Hai are oppressing them. Would you like to look for someone here who can tell you the other side of the story?`
 			choice
@@ -181,7 +184,16 @@ mission "Ask the Hai about the Unfettered"
 					decline
 			`	He thinks about the question for a while, then says, "Sometimes we make a fire for cooking food. The fire consumes much wood, and the flames are tall, too wild and hot to cook food well. Then the wood becomes coals that burn slowly with no flames or smoke, and when you gather them they are good for roasting meat or even baking bread. Perhaps each species must consume many worlds and many resources before learning to burn slowly, and the wisdom of the Drak is to allow them to do so. But when they find balance, as we did, they no longer need so much space."`
 			`	You thank him for taking time to speak with you, and say goodbye.`
+			set "spoke with hai"
 				decline
+				
+mission "logbook: spoke with hai about unfettered"
+	invisible
+	to offer
+		has "spoke with hai"
+	on offer
+		log "Spoke with an elder Hai about their side of the story of the Hai. If they are to be believed, the ancient Hai lost much of their territory to infighting, and have since learned to live in stability and balance."
+		fail
 
 
 
@@ -200,7 +212,6 @@ mission "Unfettered Jump Drive 1"
 	source
 		attributes "unfettered"
 	on offer
-		log "Sold a jump drive to the Unfettered for much more than it's worth. There is clearly an opportunity for profit here."
 		conversation
 			`The Unfettered have clearly noticed that you have a jump drive installed; a large crowd of them has gathered around your ship. Do you want to talk with them, and perhaps arrange a sale of your jump drive?`
 			choice
@@ -243,6 +254,7 @@ mission "Unfettered Jump Drive 1"
 		outfit "Hyperdrive" 1
 		payment 1000000
 		"reputation: Hai (Unfettered)" >?= 10
+		log "Sold a jump drive to the Unfettered for much more than it's worth. There is clearly an opportunity for profit here."
 
 
 
@@ -397,7 +409,6 @@ mission "Unfettered returning home"
 		has "Unfettered Tribute 3: done"
 		random < 40
 	on offer
-		log "Helped a juvenile Hai in Unfettered space seek refuge on Hai-home. Despite the ongoing hostilities, it seems he received a pretty warm welcome."
 		conversation
 			`During the night, you hear a gentle scratching sound on your ship's main hatch. Do you investigate?`
 			choice
@@ -431,6 +442,7 @@ mission "Unfettered returning home"
 	
 	on complete
 		payment 100000
+		log "Helped a juvenile Hai in Unfettered space seek refuge on Hai-home. Despite the ongoing hostilities, it seems he received a pretty warm welcome."
 		dialog
 			`You need not have worried about the reception the Unfettered youth would receive here on Hai-home. Scarcely minutes after you hesitantly contact the Hai government, a happy crowd has gathered around your ship. When he steps out of the hatchway, he looks stunned at being welcomed so warmly. One of the Hai governors thanks you for transporting him, and pays you <payment>.`
 		"reputation: Hai" += 10
