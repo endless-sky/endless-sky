@@ -36,7 +36,7 @@ mission "Drak guarding Sayaiban"
 		system Sayaiban
 		ship "Archon" "Watchful Gravetender"
 	on enter Sayaiban
-		log "Explored an uninhabited system deep in Korath space, and encountered an Archon who spoke inside your head. Seems this Sayaiban system is home to a 'swarm intelligence' the Korath created. Best steer clear of here."
+		log `Explored an uninhabited system deep in Korath space, and encountered an Archon who spoke telepathically to me. Seems this Sayaiban system is home to a "swarm intelligence" the Korath created. Best steer clear of it.`
 		set "spoke with archon"
 		conversation
 			`A voice says, "This system is off limits. You should leave."`
