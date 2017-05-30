@@ -1448,52 +1448,6 @@ phrase "friendly free worlds"
 	word
 		"! Join the Free Worlds!"
 
-phrase "friendly pug"
-	word
-		"We"
-		"The Pug"
-		"Our mission is to"
-		"Our calling is to"
-		"Our species will"
-		"We intend to"
-		"We only desire to"
-	word
-		" "
-	word
-		"bring"
-		"promote"
-		"advance"
-		"ensure"
-		"create"
-		"develop"
-		"stimulate"
-		"support"
-		"uphold"
-		"assist in bringing"
-		"aid the cause of"
-		"work for"
-		"bring about"
-	word
-		" "
-	word
-		"peace"
-		"healing"
-		"justice"
-		"freedom"
-		"an end of conflict"
-		"an end to violence"
-		"an end to warfare"
-		"prosperity"
-		"reconciliation"
-		"friendship"
-		"unity"
-		"the end of violence"
-	word
-		"."
-		" in the galaxy."
-		" through-out the universe."
-		" among all sentient beings."
-
 phrase "friendly pirate"
 	word
 		"We're"
@@ -2483,13 +2437,6 @@ phrase "hostile bounty"
 		"off beam."
 		"mislead."
 
-# From the "Southern Television broadcast interruption."
-phrase "hostile quarg"
-	word
-		"All your weapons of evil must be destroyed."
-		"You have only a short time to learn to live together in peace."
-		"You must live in peace... or leave the galaxy."
-
 
 phrase "hostile bounty hunter"
 	word
@@ -2629,53 +2576,6 @@ phrase "hostile bounty hunter"
 		"."
 		"!"
 
-phrase "hostile pug"
-	word
-		"You"
-	word
-		" "
-	word
-		"have made"
-		"are making"
-		"have committed"
-		"are guilty of"
-		"are perpetrating"
-		"have chosen"
-		"are acting out"
-		"are perpetuating"
-	word
-		" "
-	word
-		"a regrettable"
-		"an understandable"
-		"an unfortunate"
-		"a serious"
-		"a grave"
-		"an extreme"
-		"an ill-advised"
-		"an absurd"
-		"a foolish"
-		"a stupid"
-		"a crazy"
-		"a preposterous"
-		"an unwise"
-		"a bad"
-	word
-		" "
-	word
-		"mistake"
-		"error"
-		"lapse in judgement"
-		"choice"
-		"decision"
-		"blunder"
-		"miscalculation"
-		"misstep"
-		"fault"
-		"misdeed"
-	word
-		"."
-		
 phrase "hostile syndicate"
 	word
 		"We defend the Syndicate"
