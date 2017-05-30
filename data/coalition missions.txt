@@ -18,7 +18,6 @@ mission "Coalition: First Contact"
 	on offer
 		"reputation: Coalition" += 10
 		"reputation: Heliarch" += 10
-		log "Made contact with the Coalition, an alliance of giant beetles, giant spiders and centaurs in the galactic south. They're ruled by 'Heliarchs', and they overthrew the Quarg. Seems they see them as oppressors."
 		conversation
 			`This planet seems to be inhabited by at least three different sentient species. First are giant beetles, about a meter tall, who scurry quickly toward your ship and swarm around it, gawking at you, as soon as you land. The second species, even more disturbing than the beetles, are giant spiders. And the third species are centaurs. Not just something vaguely resembling centaurs; they look like they could have stepped right off the page of a story book from ancient Earth.`
 			`	One of the spiders walks up to you, stretching its legs to raise its face and many eyes to the level of your own face, and says something to you in a gloopy sort of burbling language that you don't understand. The beetles, meanwhile, are talking to each other in a different language, all clicks and chittering. And the centaur stands quietly at a distance and keeps glancing back toward the spaceport as if waiting for someone.`
@@ -43,6 +42,7 @@ mission "Coalition: First Contact"
 		"reputation: Coalition" += 10
 		"reputation: Heliarch" += 10
 		set "known to the heliarchs"
+		log `Made contact with the Coalition, an alliance of giant beetles, giant spiders, and centaurs in the galactic south. They're ruled by a group known as "the Heliarchs." They overthrew the Quarg millenia ago, who they seem to see as galactic oppressors.`
 		conversation
 			`Your first view of the landing area confirms beyond a doubt that this is a Quarg ringworld, not just an imitation of one. The interior architecture is unmistakable. But no Quarg are present here, only the three species of the Coalition. Soon after you land, a delegation approaches your ship: again, one of each species, but these are wearing golden circlets around their heads. The circlets are not merely decorative, but seem to contain some electronics as well.`
 			`	Again, the centaur speaks first. "To our territory, to welcome you we are glad," it says.`
@@ -109,7 +109,6 @@ mission "Coalition: Contributor"
 		government "Coalition"
 	destination "Ring of Friendship"
 	on offer
-		log "After doing a few dozen jobs for the Coalition, they're finally wiling to let me purchase some of their technology. Doesn't sound like they'll sell me any of their weapons, though."
 		conversation
 			`A Heliarch agent contacts you soon after you land, and says, "In many useful ways, among us you have been working. The Heliarchs you should petition, and your rights and status among us they may elevate." The agent instructs you to return to the <planet> and petition the Heliarch rulers there.`
 				accept
@@ -117,6 +116,7 @@ mission "Coalition: Contributor"
 		"reputation: Coalition" += 10
 		"reputation: Heliarch" += 10
 		set "license: Coalition"
+		log "Given the license to purchase most Coalition technology for doing a couple dozen jobs for them. It turns out that their weapons and other military-grade outfits are only available to the Heliarchs, not to civilians or aliens."
 		conversation
 			`Once again, when you exit your ship you are met by a member of each of the three Coalition species, wearing the golden circlets that mark them as Heliarchs. "Told we have been," says the Saryd, "that among us with great diligence and commitment, small tasks you have performed."`
 			`	The Kimek says, "Those who in our society's prosperity have invested, with our society's technology may be trusted."`
