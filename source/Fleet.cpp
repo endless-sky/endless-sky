@@ -44,9 +44,10 @@ void Fleet::Load(const DataNode &node)
 	{
 		const string &key = child.Token(0);
 		bool hasValue = (child.Size() >= 2);
-		// Special case: "add variant" means to add a variant without clearing
-		// what is already here.
+		// Special case: "add/remove variant" means to add or remove a variant without
+		// clearing the rest of the existing definition.
 		bool add = (key == "add" && hasValue && child.Token(1) == "variant");
+		bool remove = (key == "remove" && hasValue && child.Token(1) == "variant");
 		
 		if(key == "government" && hasValue)
 			government = GameData::Governments().Get(child.Token(1));
@@ -74,6 +75,27 @@ void Fleet::Load(const DataNode &node)
 			}
 			variants.emplace_back(child);
 			total += variants.back().weight;
+		}
+		else if(remove)
+		{
+			// If given a full ship definition of one of this fleet's variant members, remove the variant.
+			vector<Variant>::const_iterator pos = variants.begin();
+			bool didRemove = false;
+			while(pos != variants.end())
+			{
+				Variant toRemove = Variant(child);
+				if(toRemove.ships.size() == pos->ships.size() &&
+					is_permutation(pos->ships.begin(), pos->ships.end(), toRemove.ships.begin()))
+				{
+					total -= pos->weight;
+					variants.erase(pos);
+					didRemove = true;
+					break;
+				}
+				++pos;
+			}
+			if(!didRemove)
+				child.PrintTrace("Did not find matching variant for specified operation:");
 		}
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
@@ -333,7 +355,7 @@ Fleet::Variant::Variant(const DataNode &node)
 	weight = 1;
 	if(node.Token(0) == "variant" && node.Size() >= 2)
 		weight = node.Value(1);
-	else if(node.Token(0) == "add" && node.Size() >= 3)
+	else if((node.Token(0) == "add" || node.Token(0) == "remove") && node.Size() >= 3)
 		weight = node.Value(2);
 	
 	for(const DataNode &child : node)
