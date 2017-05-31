@@ -129,7 +129,7 @@ private:
 
 private:
 	void IssueOrders(const PlayerInfo &player, const Orders &newOrders, const std::string &description);
-	
+	void ConvertPositioningOrder(Ship &ship);
 	
 private:
 	// Data from the game engine.
