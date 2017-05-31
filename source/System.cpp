@@ -158,7 +158,7 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 			else if(key == "trade")
 				trade.clear();
 			else if(key == "fleet")
-				haze = nullptr;
+				fleets.clear();
 			else if(key == "object")
 			{
 				// Make sure any planets that were linked to this system know
