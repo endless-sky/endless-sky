@@ -159,29 +159,6 @@ outfit "Catalytic Ramscoop"
 	"ramscoop" 7
 	description "Ramscoop technology has been almost unchanged for centuries, because with nearly every system in human space settled there has not been a pressing need for ships to generate their own fuel. But with the Free Worlds war making travel once again more difficult, some engineers in the Deep recently invented a much-improved ramscoop for use in their merchant fleets."
 
-outfit "Hyperdrive"
-	category "Systems"
-	cost 50000
-	thumbnail "outfit/hyperdrive"
-	"mass" 20
-	"outfit space" -20
-	"jump speed" .2
-	"jump fuel" 100
-	"hyperdrive" 1
-	description "This mysterious box sits quietly at the heart of your ship, thinking its own inscrutable thoughts. When it comes time to travel between the stars it sets off a nuclear fusion reaction powerful enough to level an entire city, and then somehow tucks the resulting explosion in between the folds of regular space-time like a wasp stinging an oak leaf to lay her eggs inside. Your ship rides the resulting ripple in the fabric of space."
-	description "	They say that fewer than a dozen human beings alive today understand the inner workings of the hyperdrive."
-
-outfit "Scram Drive"
-	category "Systems"
-	cost 90000
-	thumbnail "outfit/hyperdrive"
-	"mass" 30
-	"outfit space" -30
-	"scram drive" .2
-	"jump fuel" 150
-	"hyperdrive" 1
-	description "A Scram Drive is a specially designed hyperdrive that works even if your ship is traveling at a much higher speed, at the expense of using more fuel. If you are being pursued by pirates (or just want to get somewhere in a hurry) that extra bit of speed can make a big difference."
-
 
 outfit "Cargo Scanner"
 	category "Systems"
