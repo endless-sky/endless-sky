@@ -198,11 +198,11 @@ void AI::UpdateKeys(PlayerInfo &player, Command &clickCommands, bool isActive)
 			}
 		}
 		
-		// Jump commands cancel in-progress MOVE_TO orders.
+		// Jump commands force-convert in-progress MOVE_TO orders into HOLD_POSITION .
 		if(keyStuck.Has(Command::JUMP) && it->second.type == Orders::MOVE_TO)
 		{
-			it = orders.erase(it);
-			continue;
+			newOrders.type = Orders::HOLD_POSITION;
+			it->second = newOrders;
 		}
 		++it;
 	}
