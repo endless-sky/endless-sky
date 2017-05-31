@@ -197,6 +197,13 @@ void AI::UpdateKeys(PlayerInfo &player, Command &clickCommands, bool isActive)
 				continue;
 			}
 		}
+		
+		// Jump commands cancel in-progress MOVE_TO orders.
+		if(keyStuck.Has(Command::JUMP) && it->second.type == Orders::MOVE_TO)
+		{
+			it = orders.erase(it);
+			continue;
+		}
 		++it;
 	}
 }
