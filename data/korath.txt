@@ -223,11 +223,11 @@ fleet "Kor Efret Home"
 	cargo 3
 	personality
 		timid
-	variant
+	variant 12
 		"Korath World-Ship"
-	variant
+	variant 12
 		"Korath World-Ship B"
-	variant
+	variant 12
 		"Korath World-Ship C"
 
 
