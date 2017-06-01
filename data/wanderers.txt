@@ -628,38 +628,19 @@ event "wanderers: first tech increase"
 		fleet "Wanderer Defense" 3000
 		fleet "Wanderer Flycatchers" 1200
 	fleet "Wanderer Defense"
-		government "Wanderer"
-		names "wanderer"
-		personality
-			heroic
-		variant 3
-			"Strong Wind"
-			"Summer Leaf" 2
-		variant
-			"Summer Leaf" 5
-		variant 2
-			"Strong Wind" 2
-		variant 2
-			"Strong Wind"
-			"Summer Leaf"
-		variant
-			"Strong Wind"
-			"Summer Leaf" 3
-		variant
-			"Strong Wind" 3
-		variant 2
+		add variant 2
 			"Autumn Leaf" 2
-		variant 2
+		add variant 2
 			"Strong Wind"
 			"Autumn Leaf" 2
-		variant
+		add variant
 			"Strong Wind"
 			"Autumn Leaf"
 			"Summer Leaf"
-		variant
+		add variant
 			"Autumn Leaf"
 			"Summer Leaf" 2
-		variant 2
+		add variant 2
 			"Autumn Leaf"
 			"Summer Leaf"
 	shipyard "Wanderer Basics"
@@ -724,47 +705,45 @@ event "wanderers: unfettered invasion starts"
 
 event "wanderers: tempest mass production"
 	fleet "Wanderer Defense"
-		government "Wanderer"
-		names "wanderer"
-		personality
-			heroic
-		variant 6
+		add variant 6
 			"Tempest"
 			"Summer Leaf"
 			"Autumn Leaf"
-		variant 4
+		add variant 4
 			"Tempest (Heavy)"
 			"Strong Wind"
-		variant 1
+		add variant 1
 			"Tempest (Heavy)"
 			"Tempest"
 			"Tempest (Missile)"
-		variant 2
+		add variant 2
 			"Tempest (Heavy)"
 			"Tempest"
-		variant 1
+		add variant 1
 			"Tempest (Missile)" 2
-		variant 3
-			"Strong Wind"
-			"Summer Leaf" 2
-		variant 2
-			"Strong Wind" 2
-		variant 2
+		add variant 2
 			"Strong Wind"
 			"Autumn Leaf"
-		variant
-			"Strong Wind" 3
-		variant 2
+		add variant 2
 			"Autumn Leaf" 3
-		variant
+		add variant 1
+			"Summer Leaf" 4
+		remove variant
+			"Summer Leaf" 5
+		remove variant
 			"Strong Wind"
+			"Summer Leaf"
+		remove variant
+			"Strong Wind"
+			"Summer Leaf" 3
+		remove variant
+			"Autumn Leaf" 2
+		remove variant
+			"Strong Wind"
+			"Autumn Leaf" 2
+		remove variant
 			"Autumn Leaf"
 			"Summer Leaf"
-		variant
-			"Autumn Leaf"
-			"Summer Leaf" 2
-		variant
-			"Summer Leaf" 4
 	shipyard "Wanderer Advanced"
 		"Tempest"
 	outfitter "Wanderer Advanced"
@@ -940,67 +919,26 @@ event "wanderers: the eye opens"
 
 event "wanderers: derecho mass production"
 	fleet "Wanderer Defense"
-		government "Wanderer"
-		names "wanderer"
-		personality
-			heroic
-		variant 4
+		add variant 4
 			"Derecho"
 			"Tempest"
-		variant 3
+		add variant 3
 			"Derecho (Turret)"
 			"Tempest (Missile)"
-		variant 2
+		add variant 2
 			"Derecho (Tough)"
 			"Tempest (Heavy)"
-		variant 4
+		add variant 4
 			"Derecho"
 			"Strong Wind" 2
-		variant 3
+		add variant 3
 			"Derecho (Tough)"
 			"Autumn Leaf"
 			"Summer Leaf" 2
-		variant 2
+		add variant 2
 			"Derecho (Turret)"
 			"Tempest (Heavy)"
 			"Tempest"
-		variant 6
-			"Tempest"
-			"Summer Leaf"
-			"Autumn Leaf"
-		variant 4
-			"Tempest (Heavy)"
-			"Strong Wind"
-		variant 1
-			"Tempest (Heavy)"
-			"Tempest"
-			"Tempest (Missile)"
-		variant 2
-			"Tempest (Heavy)"
-			"Tempest"
-		variant 1
-			"Tempest (Missile)" 2
-		variant 3
-			"Strong Wind"
-			"Summer Leaf" 2
-		variant 2
-			"Strong Wind" 2
-		variant 2
-			"Strong Wind"
-			"Autumn Leaf"
-		variant
-			"Strong Wind" 3
-		variant 2
-			"Autumn Leaf" 3
-		variant
-			"Strong Wind"
-			"Autumn Leaf"
-			"Summer Leaf"
-		variant
-			"Autumn Leaf"
-			"Summer Leaf" 2
-		variant
-			"Summer Leaf" 4
 	shipyard "Wanderer Advanced"
 		"Derecho"
 	outfitter "Wanderer Advanced"
@@ -1025,87 +963,26 @@ event "wanderers: spera anatrusk colony"
 
 event "wanderers: hurricane mass production"
 	fleet "Wanderer Defense"
-		government "Wanderer"
-		names "wanderer"
-		personality
-			heroic
-		variant 5
+		add variant 5
 			"Hurricane"
-		variant 2
+		add variant 2
 			"Hurricane (Turret)"
-		variant 2
+		add variant 2
 			"Hurricane (Tough)"
-		variant 3
+		add variant 3
 			"Hurricane"
 			"Derecho"
 			"Tempest"
-		variant 2
+		add variant 2
 			"Hurricane"
 			"Tempest" 2
-		variant 3
+		add variant 3
 			"Hurricane (Turret)"
 			"Derecho (Turret)"
 			"Tempest (Heavy)"
-		variant 2
+		add variant 2
 			"Hurricane (Tough)"
 			"Tempest (Missile)" 2
-		variant 4
-			"Derecho"
-			"Tempest"
-		variant 3
-			"Derecho (Turret)"
-			"Tempest (Missile)"
-		variant 2
-			"Derecho (Tough)"
-			"Tempest (Heavy)"
-		variant 4
-			"Derecho"
-			"Strong Wind" 2
-		variant 3
-			"Derecho (Tough)"
-			"Autumn Leaf"
-			"Summer Leaf" 2
-		variant 2
-			"Derecho (Turret)"
-			"Tempest (Heavy)"
-			"Tempest"
-		variant 6
-			"Tempest"
-			"Summer Leaf"
-			"Autumn Leaf"
-		variant 4
-			"Tempest (Heavy)"
-			"Strong Wind"
-		variant 1
-			"Tempest (Heavy)"
-			"Tempest"
-			"Tempest (Missile)"
-		variant 2
-			"Tempest (Heavy)"
-			"Tempest"
-		variant 1
-			"Tempest (Missile)" 2
-		variant 3
-			"Strong Wind"
-			"Summer Leaf" 2
-		variant 2
-			"Strong Wind" 2
-		variant 2
-			"Strong Wind"
-			"Autumn Leaf"
-		variant
-			"Strong Wind" 3
-		variant 2
-			"Autumn Leaf" 3
-		variant
-			"Strong Wind"
-			"Autumn Leaf"
-			"Summer Leaf"
-		variant
-			"Autumn Leaf"
-			"Summer Leaf" 2
-		variant
-			"Summer Leaf" 4
 	shipyard "Wanderer Advanced"
 		"Hurricane"
 
