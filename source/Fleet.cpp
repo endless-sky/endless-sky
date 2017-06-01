@@ -355,7 +355,7 @@ Fleet::Variant::Variant(const DataNode &node)
 	weight = 1;
 	if(node.Token(0) == "variant" && node.Size() >= 2)
 		weight = node.Value(1);
-	else if((node.Token(0) == "add" || node.Token(0) == "remove") && node.Size() >= 3)
+	else if(node.Token(0) == "add" && node.Size() >= 3)
 		weight = node.Value(2);
 	
 	for(const DataNode &child : node)
