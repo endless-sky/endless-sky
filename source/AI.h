@@ -30,6 +30,7 @@ class Minable;
 class Ship;
 class ShipEvent;
 class StellarObject;
+class System;
 class PlayerInfo;
 
 
@@ -50,7 +51,7 @@ template <class Type>
 	
 	// Fleet commands from the player.
 	void IssueShipTarget(const PlayerInfo &player, const std::shared_ptr<Ship> &target);
-	void IssueMoveTarget(const PlayerInfo &player, const Point &target);
+	void IssueMoveTarget(const PlayerInfo &player, const Point &target, const System *moveToSystem);
 	// Commands issued via the keyboard (mostly, to the flagship).
 	void UpdateKeys(PlayerInfo &player, Command &clickCommands, bool isActive);
 	
@@ -124,6 +125,7 @@ private:
 		int type = 0;
 		std::weak_ptr<Ship> target;
 		Point point;
+		const System * targetSystem;
 	};
 
 
