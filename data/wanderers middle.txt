@@ -3149,7 +3149,7 @@ mission "Wanderers: Sestor: Final"
 			choice
 				`	"Sure, I would be glad to."`
 					accept
-				`	"Could the stolen equipment make it possible for them to build a drone army of their own?"`
+				`	"Could the stolen equipment make it possible for them to build a drone fleet of their own?"`
 			`	"That is what we are afraid of," says Tele'ek. You agree to travel to the territory of the exiles and see if there is any evidence that they are building war drones there.`
 				accept
 	npc
