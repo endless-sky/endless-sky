@@ -159,6 +159,18 @@ outfit "Catalytic Ramscoop"
 	"ramscoop" 7
 	description "Ramscoop technology has been almost unchanged for centuries, because with nearly every system in human space settled there has not been a pressing need for ships to generate their own fuel. But with the Free Worlds war making travel once again more difficult, some engineers in the Deep recently invented a much-improved ramscoop for use in their merchant fleets."
 
+outfit "Graviton Booster System"
+	category "Systems"
+	"cost" 140000
+	thumbnail "outfit/reverse thruster"
+	"mass" 10
+	"outfit space" -10
+	"reverse thrust" .0001
+	"reverse thrusting energy" 10
+	"reverse thrusting heat" 18
+	"afterburner effect" "jump drive"
+	description `Informally dubbed "the southern Scram", the G.B.S. boosts the graviton engines already present on your ship, enabling captains to "drop anchor" and achieve a relative station holding position in solar system.  Some captains of especially large ships use it achieve jump velocity faster than turning around using their primary thrusters.`
+
 outfit "Hyperdrive"
 	category "Systems"
 	cost 50000

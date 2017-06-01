@@ -1670,6 +1670,13 @@ event "Thule becomes independent"
 		description `Smuggler's Den was formerly known as Grendel Station, back when it was an operating refinery. After that, it was taken over by pirates, and became a haven for all manner of smugglers and privateers. Now, at least in theory it is an independent station, no longer allied with the pirates. In practice, you suspect a fair amount of piracy still goes on here.`
 		description `The repair shops here can make a variety of legal and illegal modifications to your ship, and in the shipyard you can buy refurbished starships... if it does not trouble your conscience to think about the likely fates of their previous owners.`
 		spaceport `It is a strange but indisputable fact that anarchists smell worse than ordinary human beings. In this day and age, where even the cheapest shuttlecraft at least has a sonic shower, there is no logical explanation for it, except that anarchist tendencies must somehow go hand in hand with a tendency to reject society's norms around hygiene. Here in a space station, with nothing but recycled air to breathe, the effect is overpowering.`
+		outfitter clear
+		outfitter "Independent Advanced"
+		outfitter "Delta V Advanced"
+		outfitter "Kraz Advanced"
+		outfitter "Common Outfits"
+		outfitter "Ammo North"
+		outfitter "Ammo South"
 
 
 
@@ -1681,6 +1688,12 @@ event "fw suppressed Bloodsea"
 		fleet "Small Southern Pirates" 4000
 		fleet "Large Southern Pirates" 8000
 
+	planet Bloodsea
+		outfitter clear
+		outfitter "Independent Basics"
+		outfitter "Basic Outfits"
+		outfitter "Ammo North"
+		outfitter "Ammo South"
 
 
 event "fw abandoned Bloodsea"
@@ -1699,6 +1712,15 @@ event "fw suppressed Greenrock"
 		fleet "Large Free Worlds" 800
 		fleet "Small Southern Pirates" 3000
 		fleet "Large Southern Pirates" 5000
+	planet Greenrock
+		outfitter clear
+		outfitter "Independent Basics"
+		outfitter "Common Outfits"
+		outfitter "Ammo North"
+		outfitter "Ammo South"
+		outfitter "Delta V Basics"
+		outfitter "Kraz Basics"
+		outfitter "Syndicate Basics"
 
 
 
