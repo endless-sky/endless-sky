@@ -26592,7 +26592,7 @@ planet Trinket
 	outfitter "Delta V Basics"
 	outfitter "Ammo North"
 	outfitter "Ammo South"
-	outfitter "Pirate Outfits"
+	outfitter "Independent Basics"
 	bribe 0.02
 	security 0.4
 	tribute 500
