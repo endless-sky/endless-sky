@@ -209,8 +209,8 @@ bool Projectile::Move(list<Effect> &effects)
 	
 	if(accel)
 	{
-		velocity += accel * angle.Unit();
 		velocity *= 1. - weapon->Drag();
+		velocity += accel * angle.Unit();
 	}
 	
 	position += velocity;
