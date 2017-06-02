@@ -79,20 +79,18 @@ void Fleet::Load(const DataNode &node)
 		else if(remove)
 		{
 			// If given a full ship definition of one of this fleet's variant members, remove the variant.
-			vector<Variant>::const_iterator pos = variants.begin();
 			bool didRemove = false;
-			while(pos != variants.end())
+			for(auto it = variants.begin(); it != variants.end(); ++it)
 			{
 				Variant toRemove = Variant(child);
-				if(toRemove.ships.size() == pos->ships.size() &&
-					is_permutation(pos->ships.begin(), pos->ships.end(), toRemove.ships.begin()))
+				if(toRemove.ships.size() == it->ships.size() &&
+					is_permutation(it->ships.begin(), it->ships.end(), toRemove.ships.begin()))
 				{
-					total -= pos->weight;
-					variants.erase(pos);
+					total -= it->weight;
+					variants.erase(it);
 					didRemove = true;
 					break;
 				}
-				++pos;
 			}
 			if(!didRemove)
 				child.PrintTrace("Did not find matching variant for specified operation:");
