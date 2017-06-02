@@ -1625,6 +1625,8 @@ mission "FW Bounty 1"
 				"assisted free worlds" == 3
 				random < 65
 		not "chosen sides"
+	to fail
+		has "chosen sides"
 	
 	on offer
 		conversation
@@ -1651,6 +1653,30 @@ mission "FW Bounty 1"
 	on complete
 		payment 200000
 		dialog `The militia officer who asked you to hunt down the "Rat Pack" arrives at your ship soon after you land and thanks you profusely. "Now we won't have to worry about them bothering ships in this sector anymore." She pays you <payment> and says she'll tell other militia leaders how helpful you were.`
+	on fail
+		conversation
+			branch "Free Worlds"
+				or
+					has "Rescue Katya 1: active"
+					has "joined the free worlds"
+				
+			`You receive a sealed message from a courier who bears a Free Worlds insignia. You open it and read:`
+			``
+			`Captain <last>:`
+			`	Since you have decided to actively oppose the Free Worlds and our independence, we must retract the reward being offered to hunt the "Rat Pack" pirates. It disappoints us that you have chosen this path, but as members of the Free Worlds, we must respect your decision as a free individual.`
+			`	However, let this message also serve as a notification: do not enter Free Worlds territory without permission, or you will be fired upon.`
+			``
+			``
+			`	Though the message bears no signature, you can't help but feel that it came from someone you have now disappointed, someone who was beginning to like working with you.`
+				decline
+			
+			label "Free Worlds"
+			`You receive a call from the Free Worlds militia member who asked you to hunt down the "Rat Pack". "Hello, Captain <last>", she says. "My superiors have indicated you are on some sort of high-priority mission for the Council. I'd rather not have you delay their task, so I've asked a different merchant captain to eliminate the 'Rat Pack'."`
+			choice
+				`	"Sorry I can't be of more help,"`
+				`	"I really must get going."`
+				`	"They were too strong for me, anyway."`
+					decline
 
 
 
@@ -1675,6 +1701,8 @@ mission "FW Bounty 2"
 				"assisted free worlds" == 3
 				random < 65
 		not "chosen sides"
+	to fail
+		has "chosen sides"
 	
 	on offer
 		conversation
@@ -1696,6 +1724,30 @@ mission "FW Bounty 2"
 	on complete
 		payment 200000
 		dialog `The militia officer who asked you to hunt down the <npc> meets you in the spaceport and pays you <payment>. "Once again, thank you for assisting us," he says.`
+	on fail
+		conversation
+			branch "Free Worlds"
+				or
+					has "Rescue Katya 1: active"
+					has "joined the free worlds"
+				
+			`You receive a sealed message from a courier who bears a Free Worlds insignia. You open it and read:`
+			``
+			`Captain <last>:`
+			`	Since you have decided to actively oppose the Free Worlds and our independence, we must retract the reward being offered to hunt the <npc>. It disappoints us that you have chosen this path, but as members of the Free Worlds, we must respect your decision as a free individual.`
+			`	However, let this message also serve as a notification: do not enter Free Worlds territory without permission, or you will be fired upon.`
+			``
+			``
+			`	Though the message bears no signature, you can't help but feel that it came from someone you have now disappointed, someone who was beginning to like working with you.`
+				decline
+			
+			label "Free Worlds"
+			`You receive a call from the Free Worlds militia member who asked you to hunt down the <npc>. "Hello, Captain <last>", he says. "My superiors have indicated you are on some sort of high-priority mission for the Council. I'd rather not have you delay their task, so I've asked a different merchant captain to eliminate the <npc>."`
+			choice
+				`	"Sorry I can't be of more help,"`
+				`	"I really must get going."`
+				`	"It was too strong for me, anyway."`
+					decline
 
 
 
@@ -1720,6 +1772,8 @@ mission "FW Bounty 3"
 				"assisted free worlds" == 3
 				random < 65
 		not "chosen sides"
+	to fail
+		has "chosen sides"
 	
 	on offer
 		conversation
@@ -1741,6 +1795,30 @@ mission "FW Bounty 3"
 		"assisted free worlds" ++
 		payment 300000
 		dialog `The militia officer who asked you to hunt down the <npc> contacts you soon after you land. "You've done us a great service," he says. "I'll be telling the Council how helpful you were." He hands you a payment of <payment>.`
+	on fail
+		conversation
+			branch "Free Worlds"
+				or
+					has "Rescue Katya 1: active"
+					has "joined the free worlds"
+				
+			`You receive a sealed message from a courier who bears a Free Worlds insignia. You open it and read:`
+			``
+			`Captain <last>:`
+			`	Since you have decided to actively oppose the Free Worlds and our independence, we must retract the reward being offered to hunt the <npc>. It disappoints us that you have chosen this path, but as members of the Free Worlds, we must respect your decision as a free individual.`
+			`	However, let this message also serve as a notification: do not enter Free Worlds territory without permission, or you will be fired upon.`
+			``
+			``
+			`	Though the message bears no signature, you can't help but feel that it came from someone you have now disappointed, someone who was beginning to like working with you.`
+				decline
+			
+			label "Free Worlds"
+			`You receive a call from the Free Worlds militia member who asked you to hunt down the <npc>. "Hello, Captain <last>", he says. "My superiors have indicated you are on some sort of high-priority mission for the Council. I'd rather not have you delay their task, so I've asked a different merchant captain to eliminate the <npc>."`
+			choice
+				`	"Sorry I can't be of more help,"`
+				`	"I really must get going."`
+				`	"It was too strong for me anyway."`
+					decline
 
 
 
