@@ -49,6 +49,9 @@ mission "FW Epilogue: Ijs and Katya"
 			`	Your dinner arrives, and you spend a pleasant evening eating together and reminiscing about old times. Back in the days of the civil war, neither Katya and Ijs were people who smiled or laughed easily, but now they have an entirely different air about them, peaceful and contented. It's heartening to see that they, at least, have found a happy ending together after all the chaos you lived through.`
 			`	Suddenly you realize that around you, the restaurant workers are sweeping the floors and putting chairs up on tables: it's closing time, and you are the last ones there. "Well <first>," says Ijs, "it was good of you to stop by, and I wish you the best in your journeys among the stars. Give our regards to the others if you see them." You wish them well, and return to your ship.`
 				decline
+				
+	on decline
+		log `Stopped by Winter to see Ijs and Katya at the Conservatory. They both seem to be having good lives now that the war is over and we can all focus on more peaceful things.`
 
 
 
@@ -86,6 +89,9 @@ mission "FW Epilogue: Alondo"
 			`	He is quiet for a moment, and then says, "I guess that's why I'm still here in the thick of things, instead of just settling down somewhere and leaving public life behind. I don't believe society or government just naturally becomes good or stays good without effort. So I'm here to speak up when we start to stray from our original vision."`
 			`	You sit and talk with each other for quite a while longer, reminiscing about old times. Then, you wish him well in his work, and he tells you to stop by and say hello any time you're in the area. You head back to your ship.`
 				decline
+				
+	on decline
+		log `Stopped by Bourne to talk to Alondo. He told me that he is hard at work keeping the government on the track of achieving justice and equality like the Free Worlds set out to do so long ago.`
 
 
 
@@ -137,6 +143,9 @@ mission "FW Epilogue: Freya"
 			`	"I know, I know," she says. "I complain, but really there's nowhere else I would rather be. Even if everything we're discovering here is nothing more than what they intended for us to discover, it's still the most interesting work I could possibly be doing right now. So, don't feel sorry for me. Really."`
 			`	You talk for a while longer, and she tells you she'll be sure to be in touch if they ever get to the root of the Pug's motivation. "Until then," she says, "good luck in your travels. I hope the galaxy never runs out of ways to surprise you."`
 				decline
+				
+	on decline
+		log `Spoke with Freya on Pugglemug. She has her hands full with all the technology that the Pug left behind. I wonder what kind of secrets we may unlock when we finally understand the Pug "puzzles."`
 
 
 
@@ -176,3 +185,6 @@ mission "FW Epilogue: Danforth"
 			`	Then he leans forward and says, more quietly, "Of course, you and I both know the pirates aren't the main threat. Raven is off infiltrating Syndicate worlds even as we speak, and several of my other best intelligence officers, too. The Syndicate wants us to believe that they've weeded out all the rotten apples from their ranks, but we're keeping an eye on them, all the same."`
 			`	After you talk for a while longer, Danforth wishes you luck and sends you on your way. "I'll be in touch if we ever need your assistance in the future," he says.`
 				decline
+				
+	on decline
+		log `Had a talk with Admiral Danforth on Farpoint. The pirates aren't causing too much trouble for the old man. He also told me that Raven is currently weeding out the rest of the extremists from the Syndicate. (I probably shouldn't be putting likely classified information in a log like this, but who's going to know but me?)`
