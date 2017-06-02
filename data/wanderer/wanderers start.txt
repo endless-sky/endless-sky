@@ -2002,64 +2002,26 @@ event "battle for sich'ka'ara ends"
 		attributes unfettered
 		spaceport `The Unfettered clearly do not know quite what to make of the Wanderer research station here that they have recently captured. Animals that were once part of various experiments are now wandering loose, and the Unfettered are making only sporadic efforts to keep them well-fed. Every once in a while one of them, driven by sheer hunger, tries to smash its way into one of the crates of military rations that the Unfettered have stacked up in the shade near the main landing pad.`
 	fleet "Large Unfettered"
-		variant 2
-			"Shield Beetle"
-			"Lightning Bug (Pulse)" 2
-		variant 2
-			"Shield Beetle (Tracker)"
-			"Lightning Bug" 2
-		variant 1
-			"Shield Beetle"
-			"Lightning Bug (Pulse)"
-		variant 1
-			"Shield Beetle (Tracker)"
-			"Lightning Bug"
-		variant 3
-			"Shield Beetle (Tracker)"
-			"Shield Beetle"
-		variant 1
-			"Shield Beetle (Tracker)" 2
-		variant 1
-			"Shield Beetle" 2
-		variant 1
-			"Lightning Bug" 5
-		variant 3
-			"Shield Beetle (Pulse)"
-			"Lightning Bug (Pulse)" 2
-		variant 2
-			"Shield Beetle (Pulse)"
-			"Shield Beetle"
-		variant 2
-			"Shield Beetle (Pulse)"
-			"Shield Beetle (Tracker)"
-		variant
-			"Shield Beetle (Pulse)"
-			"Shield Beetle"
-			"Lightning Bug (Pulse)" 2
-		variant
-			"Shield Beetle (Pulse)"
-			"Shield Beetle (Tracker)"
-			"Lightning Bug" 2
-		variant 3
+		add variant 3
 			"Solifuge"
 			"Violin Spider" 3
 			"Violin Spider (Pulse)" 3
-		variant 1
+		add variant 1
 			"Solifuge (Pulse)"
 			"Solifuge (Tracker)"
 			"Violin Spider" 6
 			"Violin Spider (Pulse)" 6
-		variant 2
+		add variant 2
 			"Shield Beetle (Pulse)"
 			"Solifuge"
 			"Violin Spider" 3
 			"Violin Spider (Pulse)" 3
-		variant 1
+		add variant 1
 			"Shield Beetle"
 			"Solifuge (Tracker)"
 			"Violin Spider" 2
 			"Violin Spider (Pulse)" 4
-		variant 2
+		add variant 2
 			"Solifuge (Pulse)"
 			"Violin Spider" 4
 			"Violin Spider (Pulse)" 2
