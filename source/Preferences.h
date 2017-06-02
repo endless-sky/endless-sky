@@ -25,6 +25,11 @@ public:
 	static bool Has(const std::string &name);
 	static void Set(const std::string &name, bool on = true);
 	
+	// Toogle the automatic harvesting/mining preferences, cycling between "uninterested," "harvest,"
+	// and "active mining."
+	static void ToggleEscortHarvesting();
+	static std::string EscortHarvesting();
+	
 	// Toogle the ammo usage preferences, cycling between "never," "frugally,"
 	// and "always."
 	static void ToggleAmmoUsage();

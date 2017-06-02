@@ -28,6 +28,10 @@ namespace {
 	map<string, bool> settings;
 	int scrollSpeed = 60;
 	
+	// Strings for automatic harvesting/mining:
+	static const string ESCORT_HARVEST = "Escorts harvest flotsam";
+	static const string ESCORT_MINING = "Escorts target asteroids";
+	
 	// Strings for ammo expenditure:
 	static const string EXPEND_AMMO = "Escorts expend ammo";
 	static const string FRUGAL_ESCORTS = "Escorts use ammo frugally";
@@ -103,6 +107,23 @@ void Preferences::Set(const string &name, bool on)
 
 
 
+void Preferences::ToggleEscortHarvesting()
+{
+	bool harvest = Has(ESCORT_HARVEST);
+	bool mining = Has(ESCORT_MINING);
+	Preferences::Set(ESCORT_HARVEST, !mining);
+	Preferences::Set(ESCORT_MINING, harvest && !mining);
+}
+
+
+
+string Preferences::EscortHarvesting()
+{
+	return Has(ESCORT_HARVEST) ? Has(ESCORT_MINING) ? "mine asteroids" : "harvest flotsam" : "uninterested";
+}
+
+
+
 void Preferences::ToggleAmmoUsage()
 {
 	bool expend = Has(EXPEND_AMMO);
@@ -117,6 +138,8 @@ string Preferences::AmmoUsage()
 {
 	return Has(EXPEND_AMMO) ? Has(FRUGAL_ESCORTS) ? "frugally" : "always" : "never";
 }
+
+
 
 // Scroll speed preference.
 int Preferences::ScrollSpeed()
