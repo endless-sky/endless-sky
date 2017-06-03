@@ -2544,7 +2544,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 	else if(keyHeld.Has(Command::SCAN))
 		command |= Command::SCAN;
 	
-	AimTurrets(ship, command, !Preferences::Has("Focus turret fire"));
+	AimTurrets(ship, command, !Preferences::Has("Turrets focus fire"));
 	bool hasGuns = Preferences::Has("Automatic firing") && !ship.IsBoarding()
 		&& !(keyStuck | keyHeld).Has(Command::LAND | Command::JUMP | Command::BOARD)
 		&& (!ship.GetTargetShip() || ship.GetTargetShip()->GetGovernment()->IsEnemy());
