@@ -315,7 +315,7 @@ ship "Bastion"
 		"cost" 3560000
 		"shields" 6700
 		"hull" 4200
-		"required crew" 32
+		"required crew" 15
 		"bunks" 47
 		"mass" 580
 		"drag" 10.3
@@ -872,14 +872,14 @@ ship "Corvette"
 	attributes
 		category "Medium Warship"
 		"cost" 4400000
-		"shields" 6100
-		"hull" 1200
+		"shields" 6500
+		"hull" 1000
 		"required crew" 8
 		"bunks" 32
 		"mass" 150
-		"drag" 3.5
+		"drag" 3.2
 		"heat dissipation" .7
-		"fuel capacity" 500
+		"fuel capacity" 600
 		"cargo space" 40
 		"outfit space" 420
 		"weapon capacity" 150
@@ -895,7 +895,7 @@ ship "Corvette"
 		
 		"NT-200 Nucleovoltaic"
 		"LP072a Battery Pack"
-		"D67-TM Shield Generator"
+		"D94-YV Shield Generator"
 		"Large Radar Jammer"
 		
 		"X3700 Ion Thruster"
@@ -1187,16 +1187,16 @@ ship "Firebird"
 	sprite "ship/firebird"
 	attributes
 		category "Medium Warship"
-		"cost" 3700000
-		"shields" 6400
-		"hull" 2800
+		"cost" 3500000
+		"shields" 5800
+		"hull" 3400
 		"required crew" 7
 		"bunks" 22
 		"mass" 290
 		"drag" 4.5
 		"heat dissipation" .6
 		"fuel capacity" 400
-		"cargo space" 50
+		"cargo space" 60
 		"outfit space" 400
 		"weapon capacity" 160
 		"engine capacity" 100
@@ -1979,13 +1979,13 @@ ship "Mule"
 		"cost" 4580000
 		"shields" 5400
 		"hull" 4400
-		"required crew" 6
-		"bunks" 43
+		"required crew" 10
+		"bunks" 27
 		"mass" 320
-		"drag" 5.7
+		"drag" 5.9
 		"heat dissipation" .5
 		"fuel capacity" 600
-		"cargo space" 270
+		"cargo space" 120
 		"outfit space" 450
 		"weapon capacity" 210
 		"engine capacity" 110
@@ -2090,7 +2090,7 @@ ship "Osprey"
 		"cost" 4400000
 		"shields" 7200
 		"hull" 1600
-		"required crew" 9
+		"required crew" 11
 		"bunks" 24
 		"mass" 270
 		"drag" 6.1
@@ -2098,7 +2098,7 @@ ship "Osprey"
 		"fuel capacity" 600
 		"cargo space" 40
 		"outfit space" 450
-		"weapon capacity" 180
+		"weapon capacity" 200
 		"engine capacity" 130
 		weapon
 			"blast radius" 80
@@ -2599,10 +2599,10 @@ ship "Splinter"
 	sprite "ship/splinter"
 	attributes
 		category "Medium Warship"
-		"cost" 3100000
+		"cost" 3000000
 		"shields" 5200
 		"hull" 1700
-		"required crew" 12
+		"required crew" 5
 		"bunks" 21
 		"mass" 250
 		"drag" 4.0
@@ -2623,7 +2623,7 @@ ship "Splinter"
 		
 		"RT-I Radiothermal"
 		"LP144a Battery Pack"
-		"D67-TM Shield Generator"
+		"D41-HY Shield Generator"
 		"Small Radar Jammer" 2
 		"Water Coolant System"
 		
