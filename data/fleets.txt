@@ -2532,3 +2532,305 @@ fleet "Marauder fleet X"
 		"Marauder Quicksilver"
 		"Marauder Arrow"
 		"Marauder Bounder"
+
+#very aprox 1M
+fleet "Very Small Mercenary"
+	government Escort
+	names "bounty hunter"
+	variant 1
+		Sparrow
+	variant 4
+		Wasp
+	variant 3
+		"Wasp (Proton)"
+	variant 8
+		Fury
+	variant 6
+		"Fury (Missile)"
+	variant 7
+		Berserker
+	variant 6
+		"Berserker (Afterburner)"
+	variant 9
+		Hawk
+	variant 5
+		"Fury (Laser)"
+	variant 2
+		"Hawk (Rocket)"
+
+#aprox 4M
+fleet "Small Mercenary Syndicate"
+	government Escort
+	names "syndicate small"
+	variant 4
+		Wasp 3
+		"Wasp (Proton)" 3
+	variant 8
+		Quicksilver 2
+	variant 10
+		"Quicksilver (Proton)" 1
+		"Wasp (Proton)" 3
+	variant 10
+		Quicksilver 1
+		Wasp 3
+	variant 1
+		Manta 1
+	variant 1
+		"Manta (Proton)" 1
+	variant 8
+		"Quicksilver (Proton)" 2
+	variant 5
+		Wasp 6
+	variant 5
+		"Wasp (Proton)" 6
+	variant 1
+		Splinter 1
+
+#aprox 9M
+fleet "Medium Mercenary Syndicate"
+	government Escort
+	names "syndicate small"
+	variant 3
+		Splinter 2
+	variant 2
+		Manta 2
+	variant 2
+		"Manta (Proton)" 2
+	variant 5
+		Quicksilver 4
+	variant 5
+		"Quicksilver (Proton)" 5
+	variant 4
+		Quicksilver 2
+		"Quicksilver (Proton)" 3
+	variant 8
+		"Splinter (Laser)" 1
+		Quicksilver 2
+	variant 7
+		"Splinter (Laser)" 1
+		"Quicksilver (Proton)" 2
+	variant 4
+		Manta 1
+		Quicksilver 2
+	variant 3
+		"Manta (Proton)" 1
+		"Quicksilver (Proton)" 2
+
+#aprox 20M
+fleet "Large Mercenary Syndicate"
+	government Escort
+	names "syndicate capital"
+	variant 1
+		Vanguard 2
+	variant 1
+		"Vanguard (Particle)" 2
+	variant 3
+		Protector 2
+	variant 2
+		"Protector (Laser)" 2
+	variant
+		"Splinter (Laser)" 3
+	variant 6
+		Splinter 4
+	variant 7
+		Manta 4
+	variant 6
+		"Manta (Proton)" 4
+	variant 4
+		Protector 1
+		Manta 2
+	variant 8
+		Vanguard 1
+		"Manta (Proton)" 2
+	variant 5
+		"Protector (Laser)" 1
+		Splinter 2
+
+#aprox 20M
+fleet "Swarm Mercenary Syndicate"
+	government Escort
+	names "syndicate small"
+	variant 10
+		Wasp 30
+	variant 7
+		"Wasp (Proton)" 30
+	variant 10
+		Quicksilver 10
+	variant 8
+		"Quicksilver (Proton)" 10
+	variant 5
+		Wasp 15
+		"Wasp (Proton)" 15
+	variant 4
+		Quicksilver 5
+		Wasp 15
+	variant 3
+		"Quicksilver (Proton)" 5
+		"Wasp (Proton)" 15
+
+#aprox 2M
+fleet "Small Mercenary North"
+	government Escort
+	names "bounty hunter"
+	variant 3
+		Berserker 2
+	variant 5
+		Berserker 3
+	variant 5
+		"Berserker (Afterburner)" 2
+	variant 3
+		"Berserker (Afterburner)" 3
+	variant 1
+		Headhunter 1
+	variant 1
+		Raven 1
+
+#aprox 6M
+fleet "Medium Mercenary North"
+	government Escort
+	names "bounty hunter"
+	variant 6
+		Headhunter 2
+	variant 5
+		Raven 2
+	variant 3
+		"Headhunter (Particle)" 2
+	variant 2
+		"Raven (Afterburner)" 2
+	variant 1
+		"Raven (Heavy)" 1
+	variant 8
+		Headhunter 1
+		Berserker 3
+	variant 5
+		"Headhunter (Particle)" 1
+		Berserker 2
+	variant 6
+		Raven
+		Berserker 3
+	variant 5
+		"Raven (Afterburner)" 1
+		"Berserker (Afterburner)" 2
+	variant 1
+		Firebird 1
+	variant 2
+		Corvette 1
+
+#aprox 20M
+fleet "Large Mercenary North"
+	government Escort
+	names "bounty hunter"
+	variant 4
+		"Leviathan (Laser)" 1
+	variant 4
+		Leviathan 1
+	variant 2
+		"Leviathan (Heavy)" 1
+		"Raven (Heavy)" 1
+	variant 8
+		"Firebird (Plasma)" 2
+	variant 7
+		"Firebird (Missile)" 3
+	variant 4
+		Corvette 3
+	variant 3
+		Firebird 1
+		"Firebird (Plasma)" 1
+		"Firebird (Missile)" 1
+	variant 4
+		"Raven (Heavy)" 4
+	variant 1
+		"Corvette (Speedy)" 2
+	variant 1
+		"Corvette (Missile)" 1
+		"Raven (Afterburner)" 4
+
+#aprox 4M
+fleet "Small Mercenary South"
+	government Escort
+	names "bounty hunter"
+	variant 6
+		Fury 5
+	variant 4
+		"Fury (Missile)" 5
+	variant 5
+		"Fury (Laser)" 4
+	variant 4
+		"Clipper (Heavy)" 2
+	variant 6
+		Clipper 3
+	variant 1
+		Sparrow 9
+	variant 5
+		Hawk 4
+	variant 3
+		"Hawk (Rocket)" 3
+	variant 3
+		"Fury (Laser)" 1
+		Fury 4
+
+#aprox 10M
+fleet "Medium Mercenary South"
+	government Escort
+	names "bounty hunter"
+	variant 3
+		"Bastion (Laser)" 1
+	variant 6
+		"Bastion (Heavy)" 1
+	variant 4
+		"Osprey (Missile)" 1
+	variant 3
+		Osprey 1
+	variant 2
+		"Osprey (Laser)" 1
+	variant 5
+		Bastion 2
+
+#aprox 20M
+fleet "Large Mercenary South"
+	government Escort
+	names "bounty hunter"
+	variant 8
+		"Falcon (Heavy)" 1
+	variant 1
+		Falcon 1
+		Bastion 1
+	variant 2
+		"Falcon (Laser)" 1
+		Bastion 1
+	variant 1
+		Bastion 4
+	variant 6
+		"Bastion (Heavy)" 2
+	variant 4
+		"Bastion (Laser)" 1
+		"Osprey (Laser)" 1
+	variant 3
+		"Osprey (Missile)" 2
+	variant 5
+		"Osprey (Laser)" 2
+	variant 8
+		Osprey 2
+	variant 7
+		"Bastion (Laser)" 2
+
+#aprox 20M
+fleet "Swarm Mercenary South"
+	government Escort
+	names "bounty hunter"
+	variant 6
+		"Fury (Laser)" 18
+	variant 7
+		Hawk 20
+	variant 5
+		Fury 26
+	variant 3
+		"Fury (Missile)" 20
+	variant 2
+		Sparrow 45
+	variant 2
+		"Hawk (Rocket)" 15
+	variant 10
+		Clipper 15
+	variant 7
+		"Clipper (Heavy)" 11
