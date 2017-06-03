@@ -2693,26 +2693,24 @@ ship "Star Queen"
 	attributes
 		category "Transport"
 		"cost" 5500000
-		"shields" 4100
-		"hull" 2200
-		"required crew" 43
-		"bunks" 112
-		"mass" 230
-		"drag" 5.5
+		"shields" 4400
+		"hull" 1800
+		"required crew" 32
+		"bunks" 96
+		"mass" 200
+		"drag" 4.8
 		"heat dissipation" .65
-		"fuel capacity" 500
-		"cargo space" 60
-		"outfit space" 360
-		"weapon capacity" 120
-		"engine capacity" 100
+		"fuel capacity" 600
+		"cargo space" 65
+		"outfit space" 355
+		"weapon capacity" 100
+		"engine capacity" 120
 		weapon
 			"blast radius" 60
 			"shield damage" 600
 			"hull damage" 300
 			"hit force" 900
 	outfits
-		"Sidewinder Missile Launcher" 3
-		"Sidewinder Missile" 150
 		"Heavy Anti-Missile Turret" 2
 		
 		"NT-200 Nucleovoltaic"
@@ -2722,13 +2720,13 @@ ship "Star Queen"
 		
 		"X3700 Ion Thruster"
 		"X3200 Ion Steering"
-		"Hyperdrive"
+		"Scram Drive"
 		
 	engine -18 116
 	engine 18 116
-	gun 0 -116 "Sidewinder Missile Launcher"
-	gun -22 -80 "Sidewinder Missile Launcher"
-	gun 22 -80 "Sidewinder Missile Launcher"
+	gun 0 -116
+	gun -22 -80
+	gun 22 -80
 	turret -28 -9 "Heavy Anti-Missile Turret"
 	turret 28 -9 "Heavy Anti-Missile Turret"
 	explode "tiny explosion" 10
