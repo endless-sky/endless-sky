@@ -55,6 +55,7 @@ outfit "Bombardment Turret"
 		sound "bombardment"
 		"hit effect" "bombardment impact"
 		"inaccuracy" 4
+		"turret turn" 6
 		"velocity" 6
 		"random velocity" 1
 		"lifetime" 150
@@ -200,6 +201,7 @@ outfit "Heliarch Attractor"
 		sound "heliarch attractor"
 		"hit effect" "attractor impact"
 		"inaccuracy" 2
+		"turret turn" 3.5
 		"velocity" 640
 		"lifetime" 1
 		"reload" 1
@@ -242,6 +244,7 @@ outfit "Heliarch Repulsor"
 		sound "heliarch repulsor"
 		"hit effect" "repulsor impact"
 		"inaccuracy" 3
+		"turret turn" 2.5
 		"velocity" 560
 		"lifetime" 1
 		"reload" 1

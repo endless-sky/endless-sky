@@ -65,6 +65,7 @@ outfit "Sunbeam Turret"
 		sound "sunbeam"
 		"hit effect" "sunbeam impact"
 		"inaccuracy" .2
+		"turret turn" 3
 		"velocity" 540
 		"lifetime" 1
 		"reload" 1
@@ -95,6 +96,7 @@ outfit "Dual Sunbeam Turret"
 		sound "sunbeam"
 		"hit effect" "sunbeam impact"
 		"inaccuracy" .2
+		"turret turn" 2
 		"velocity" 540
 		"lifetime" 1
 		"reload" 1

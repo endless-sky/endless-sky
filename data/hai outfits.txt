@@ -46,6 +46,7 @@ outfit "Pulse Turret"
 		sound "pulse"
 		"hit effect" "pulse impact"
 		"inaccuracy" 1
+		"turret turn" 4
 		"velocity" 15
 		"lifetime" 30
 		"reload" 10

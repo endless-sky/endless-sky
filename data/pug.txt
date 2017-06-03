@@ -61,6 +61,7 @@ outfit "Pug Zapper Turret"
 		sound "zapper"
 		"hit effect" "skylance impact"
 		"inaccuracy" .3
+		"turret turn" 3
 		"velocity" 320
 		"lifetime" 1
 		"reload" 1
@@ -171,6 +172,7 @@ outfit "Pug Gridfire Turret"
 		"velocity" 1440
 		"lifetime" 1
 		"reload" 20
+		"turret turn" 20
 		"firing energy" 800
 		"firing heat" 400
 		"shield damage" 600

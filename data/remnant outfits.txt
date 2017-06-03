@@ -109,6 +109,7 @@ outfit "Thrasher Turret"
 		sound "particle"
 		"hit effect" "thrasher impact"
 		"inaccuracy" 6
+		"turret turn" 3
 		"velocity" 10
 		"lifetime" 36
 		"reload" 5
