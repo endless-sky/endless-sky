@@ -830,7 +830,7 @@ ship "Far Osk 27"
 	gun 13 -8
 	explode "tiny explosion" 25
 	explode "small explosion" 15
-	description "Because it is piloted by a computer and has no need for a cockpit or life support systems, the FS27 fighter is able to carry far more weaponry than any comparable human ship."
+	description "Because it is piloted by a computer and has no need for a cockpit or life support systems, the FO27 fighter is able to carry far more weaponry than any comparable human ship."
 
 
 ship "Model 8"
