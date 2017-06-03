@@ -88,6 +88,10 @@ void Outfit::Load(const DataNode &node)
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
+	
+	// Legacy support for turrets that don't specify a turn rate:
+	if(IsWeapon() && attributes.count("turret mounts") && !TurretTurn() && !AntiMissile())
+		SetTurretTurn(4.);
 }
 
 

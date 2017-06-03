@@ -38,12 +38,13 @@ public:
 	// projectiles of this weapon should originate. This point must be
 	// rotated to take the ship's current facing direction into account.
 	const Point &GetPoint() const;
-	// Get the convergence angle adjustment of this weapon (if it's a gun).
+	// Get the angle that this weapon is aimed at, relative to the ship.
 	const Angle &GetAngle() const;
 	// Shortcuts for querying weapon characteristics.
 	bool IsTurret() const;
 	bool IsHoming() const;
 	bool IsAntiMissile() const;
+	bool CanAim() const;
 	
 	// Check if this weapon is ready to fire.
 	bool IsReady() const;
@@ -54,6 +55,9 @@ public:
 	// Perform one step (i.e. decrement the reload count).
 	void Step();
 	
+	// Adjust this weapon's aim by the given amount, relative to its maximum
+	// "turret turn" rate.
+	void Aim(double amount);
 	// Fire this weapon. If it is a turret, it automatically points toward
 	// the given ship's target. If the weapon requires ammunition, it will
 	// be subtracted from the given ship.

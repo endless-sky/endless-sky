@@ -791,6 +791,9 @@ bool Ship::Move(list<Effect> &effects, list<shared_ptr<Flotsam>> &flotsam)
 			
 			heat = max(0., heat);
 		}
+		
+		// If not disabled, also adjust turret aim.
+		armament.Aim(commands);
 	}
 	
 	if(!isInvisible)

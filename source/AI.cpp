@@ -287,6 +287,7 @@ void AI::Step(const PlayerInfo &player)
 	step = (step + 1) & 31;
 	int targetTurn = 0;
 	int minerCount = 0;
+	bool opportunisticEscorts = !Preferences::Has("Turrets focus fire");
 	for(const auto &it : ships)
 	{
 		// Skip any carried fighters or drones that are somehow in the list.
@@ -450,7 +451,8 @@ void AI::Step(const PlayerInfo &player)
 					|| (target->IsDisabled() && personality.Disables()))
 				it->SetTargetShip(FindTarget(*it));
 			
-			command |= AutoFire(*it);
+			AimTurrets(*it, command, it->IsYours() ? opportunisticEscorts : personality.IsOpportunistic());
+			AutoFire(*it, command);
 		}
 		if(isPresent && personality.Harvests() && DoHarvesting(*it, command))
 		{
@@ -1342,7 +1344,7 @@ void AI::CircleAround(Ship &ship, Command &command, const Ship &target)
 void AI::Swarm(Ship &ship, Command &command, const Ship &target)
 {
 	Point direction = target.Position() - ship.Position();
-	double rendezvousTime = Armament::RendezvousTime(direction, target.Velocity(), ship.MaxVelocity());
+	double rendezvousTime = RendezvousTime(direction, target.Velocity(), ship.MaxVelocity());
 	if(rendezvousTime != rendezvousTime || rendezvousTime > 600.)
 		rendezvousTime = 600.;
 	direction += rendezvousTime * target.Velocity();
@@ -1379,7 +1381,7 @@ void AI::KeepStation(Ship &ship, Command &command, const Ship &target)
 	double velocityWeight = velocitySize / (velocitySize + VELOCITY_DEADBAND);
 	
 	// Time it will take (roughly) to move to the target ship:
-	double positionTime = Armament::RendezvousTime(positionDelta, target.Velocity(), maxV);
+	double positionTime = RendezvousTime(positionDelta, target.Velocity(), maxV);
 	if(positionTime != positionTime || positionTime > MAX_TIME)
 		positionTime = MAX_TIME;
 	Point rendezvous = positionDelta + target.Velocity() * positionTime;
@@ -1513,7 +1515,7 @@ void AI::PickUp(Ship &ship, Command &command, const Body &target)
 	double vMax = ship.MaxVelocity();
 	
 	// Estimate where the target will be by the time we reach it.
-	double time = Armament::RendezvousTime(p, v, vMax);
+	double time = RendezvousTime(p, v, vMax);
 	if(std::isnan(time))
 		time = p.Length() / vMax;
 	double degreesToTurn = TO_DEG * acos(min(1., max(-1., p.Unit().Dot(ship.Facing().Unit()))));
@@ -1536,7 +1538,8 @@ void AI::DoSurveillance(Ship &ship, Command &command) const
 	if(target && ship.GetGovernment()->IsEnemy(target->GetGovernment()))
 	{
 		MoveIndependent(ship, command);
-		command |= AutoFire(ship);
+		AimTurrets(ship, command, ship.GetPersonality().IsOpportunistic());
+		AutoFire(ship, command);
 		return;
 	}
 	
@@ -1666,7 +1669,7 @@ void AI::DoMining(Ship &ship, Command &command)
 	if(target)
 	{
 		MoveToAttack(ship, command, *target);
-		command |= AutoFire(ship, *target);
+		AutoFire(ship, command, *target);
 		return;
 	}
 	
@@ -1705,7 +1708,7 @@ bool AI::DoHarvesting(Ship &ship, Command &command)
 			// Estimate how long it would take to intercept this flotsam.
 			Point v = it->Velocity() - ship.Velocity();
 			double vMax = ship.MaxVelocity();
-			double time = Armament::RendezvousTime(p, v, vMax);
+			double time = RendezvousTime(p, v, vMax);
 			if(std::isnan(time))
 				continue;
 			
@@ -1864,7 +1867,7 @@ Point AI::TargetAim(const Ship &ship, const Body &target)
 		Point start = ship.Position() + ship.Facing().Rotate(weapon.GetPoint());
 		Point p = target.Position() - start + ship.GetPersonality().Confusion();
 		Point v = target.Velocity() - ship.Velocity();
-		double steps = Armament::RendezvousTime(p, v, outfit->Velocity() + .5 * outfit->RandomVelocity());
+		double steps = RendezvousTime(p, v, outfit->Velocity() + .5 * outfit->RandomVelocity());
 		if(!(steps == steps))
 			continue;
 		
@@ -1880,12 +1883,126 @@ Point AI::TargetAim(const Ship &ship, const Body &target)
 
 
 
-// Fire whichever of the given ship's weapons can hit a hostile target.
-Command AI::AutoFire(const Ship &ship, bool secondary) const
+// Aim the given ship's turrets.
+void AI::AimTurrets(const Ship &ship, Command &command, bool opportunistic) const
 {
-	Command command;
+	// First, get the set of potential targets.
+	vector<const Ship *> enemies;
+	const Ship *currentTarget = ship.GetTargetShip().get();
+	// If the ship has a target selected, that ship is always in the running as
+	// something to aim at, even if it is too far away.
+	if(currentTarget)
+		enemies.push_back(currentTarget);
+	if(opportunistic)
+	{
+		// Find the maximum range of any of this ship's turrets.
+		double maxRange = 0.;
+		for(const Hardpoint &weapon : ship.Weapons())
+			if(weapon.CanAim())
+				maxRange = max(maxRange, weapon.GetOutfit()->Range());
+		// If this ship has no turrets, bail out.
+		if(!maxRange)
+			return;
+		// Extend the weapon range slightly to account for velocity differences.
+		maxRange *= 1.5;
+		
+		// Now, find all enemy ships within that radius.
+		// TODO: This could use CollisionSet::Circle() for increased efficiency.
+		const Government *gov = ship.GetGovernment();
+		for(const shared_ptr<Ship> &target : ships)
+			if(target->IsTargetable() && gov->IsEnemy(target->GetGovernment())
+					&& !(target->IsHyperspacing() && target->Velocity().Length() > 10.)
+					&& target->GetSystem() == ship.GetSystem()
+					&& target->Position().Distance(ship.Position()) < maxRange
+					&& target.get() != currentTarget
+					&& !target->IsDisabled())
+				enemies.push_back(target.get());
+	}
+	
+	// If there are no enemies to aim at, turrets should sweep back and forth
+	// at random, with the sweep centered on the "outward-facing" angle.
+	if(enemies.empty())
+	{
+		for(const Hardpoint &hardpoint : ship.Weapons())
+			if(hardpoint.CanAim())
+			{
+				// Get the index of this weapon.
+				int index = &hardpoint - &ship.Weapons().front();
+				// First, check if this turret is currently in motion. If not,
+				// it only has a small chance of beginning to move.
+				double previous = ship.Commands().Aim(index);
+				if(!previous && (Random::Int(60)))
+					continue;
+				
+				Angle centerAngle = Angle(hardpoint.GetPoint());
+				double bias = (centerAngle - hardpoint.GetAngle()).Degrees() / 180.;
+				double acceleration = Random::Real() - Random::Real() + bias;
+				command.SetAim(index, previous + .1 * acceleration);
+			}
+		return;
+	}
+	// Each hardpoint should aim at the target that it is "closest" to hitting.
+	for(const Hardpoint &hardpoint : ship.Weapons())
+		if(hardpoint.CanAim())
+		{
+			// This is where this projectile fires from. Add some randomness
+			// based on how skilled the pilot is.
+			Point start = ship.Position() + ship.Facing().Rotate(hardpoint.GetPoint());
+			start += ship.GetPersonality().Confusion();
+			// Get the turret's current facing, in absolute coordinates:
+			Angle aim = ship.Facing() + hardpoint.GetAngle();
+			// Get this projectile's average velocity.
+			const Outfit *outfit = hardpoint.GetOutfit();
+			double vp = outfit->Velocity() + .5 * outfit->RandomVelocity();
+			// Loop through each ship this hardpoint could shoot at. Find the
+			// one that is the "best" in terms of how many frames it will take
+			// to aim at it and for a projectile to hit it.
+			double bestScore = 1000.;
+			double bestAngle = 0.;
+			for(const Ship *target : enemies)
+			{
+				Point p = target->Position() - start;
+				Point v = target->Velocity() - ship.Velocity();
+				// By the time this action is performed, the ships will have moved
+				// forward one time step.
+				p += v;
+				
+				// Find out how long it would take for this projectile to reach
+				// the target.
+				double rendezvousTime = RendezvousTime(p, v, vp);
+				// Determine where the target will be at that point.
+				p += v * rendezvousTime;
+				
+				// Determine how much the turret must turn to face that vector.
+				double degrees = (Angle(p) - aim).Degrees();
+				double turnTime = fabs(degrees) / outfit->TurretTurn();
+				// All ships that are within weapons range have the same basic
+				// weight. Outside that range, give them lower priority.
+				rendezvousTime = max(0., rendezvousTime - outfit->Lifetime());
+				// Always prefer ships that you are able to hit.
+				double score = turnTime + (180. / outfit->TurretTurn()) * rendezvousTime;
+				if(score < bestScore)
+				{
+					bestScore = score;
+					bestAngle = degrees;
+				}
+			}
+			if(bestAngle)
+			{
+				// Get the index of this weapon.
+				int index = &hardpoint - &ship.Weapons().front();
+				command.SetAim(index, bestAngle / outfit->TurretTurn());
+			}
+		}
+}
+
+
+
+// Fire whichever of the given ship's weapons can hit a hostile target.
+void AI::AutoFire(const Ship &ship, Command &command, bool secondary) const
+{
 	if(ship.GetPersonality().IsPacifist())
-		return command;
+		return;
 	int index = -1;
 	
 	bool beFrugal = (ship.IsYours() && !escortsUseAmmo);
@@ -1979,16 +2096,13 @@ Command AI::AutoFire(const Ship &ship, bool secondary) const
 		double vp = outfit->Velocity() + .5 * outfit->RandomVelocity();
 		double lifetime = outfit->TotalLifetime();
 		
-		if(currentTarget && (weapon.IsHoming() || weapon.IsTurret()))
+		// If this is a homing weapon, we already checked above that it has a target.
+		if(weapon.IsHoming())
 		{
 			bool hasBoarded = Has(ship, currentTarget, ShipEvent::BOARD);
 			if(currentTarget->IsDisabled() && spareDisabled && !hasBoarded && !disabledOverride)
 				continue;
-			// Don't fire turrets at targets that are accelerating or decelerating
-			// rapidly due to hyperspace jumping.
-			if(weapon.IsTurret() && currentTarget->IsHyperspacing() && currentTarget->Velocity().Length() > 10.)
-				continue;
-			// Don't fire secondary weapons as targets that have started jumping.
+			// Don't fire secondary weapons at targets that have started jumping.
 			if(outfit->Icon() && currentTarget->IsEnteringHyperspace())
 				continue;
 			
@@ -2006,17 +2120,15 @@ Command AI::AutoFire(const Ship &ship, bool secondary) const
 			if(weapon.IsHoming())
 				v = currentTarget->Velocity();
 			// Calculate how long it will take the projectile to reach its target.
-			double steps = Armament::RendezvousTime(p, v, vp);
+			double steps = RendezvousTime(p, v, vp);
 			if(steps == steps && steps <= lifetime)
 			{
 				command.SetFire(index);
 				continue;
 			}
-		}
-		// Don't fire homing weapons with no target.
-		if(weapon.IsHoming())
 			continue;
-		
+		}
+		// For non-homing weapons:
 		for(const shared_ptr<const Ship> &target : enemies)
 		{
 			// Don't shoot ships we want to plunder.
@@ -2043,16 +2155,12 @@ Command AI::AutoFire(const Ship &ship, bool secondary) const
 			}
 		}
 	}
-	
-	return command;
 }
 
 
 
-Command AI::AutoFire(const Ship &ship, const Body &target) const
+void AI::AutoFire(const Ship &ship, Command &command, const Body &target) const
 {
-	Command command;
-	
 	int index = -1;
 	for(const Hardpoint &weapon : ship.Weapons())
 	{
@@ -2085,7 +2193,44 @@ Command AI::AutoFire(const Ship &ship, const Body &target) const
 		if(mask.Collide(-p, v, target.Facing()) < 1.)
 			command.SetFire(index);
 	}
-	return command;
+}
+
+
+
+// Get the amount of time it would take the given weapon to reach the given
+// target, assuming it can be fired in any direction (i.e. turreted). For
+// non-turreted weapons this can be used to calculate the ideal direction to
+// point the ship in.
+double AI::RendezvousTime(const Point &p, const Point &v, double vp)
+{
+	// How many steps will it take this projectile
+	// to intersect the target?
+	// (p.x + v.x*t)^2 + (p.y + v.y*t)^2 = vp^2*t^2
+	// p.x^2 + 2*p.x*v.x*t + v.x^2*t^2
+	//    + p.y^2 + 2*p.y*v.y*t + v.y^2t^2
+	//    - vp^2*t^2 = 0
+	// (v.x^2 + v.y^2 - vp^2) * t^2
+	//    + (2 * (p.x * v.x + p.y * v.y)) * t
+	//    + (p.x^2 + p.y^2) = 0
+	double a = v.Dot(v) - vp * vp;
+	double b = 2. * p.Dot(v);
+	double c = p.Dot(p);
+	double discriminant = b * b - 4 * a * c;
+	if(discriminant < 0.)
+		return numeric_limits<double>::quiet_NaN();
+
+	discriminant = sqrt(discriminant);
+
+	// The solutions are b +- discriminant.
+	// But it's not a solution if it's negative.
+	double r1 = (-b + discriminant) / (2. * a);
+	double r2 = (-b - discriminant) / (2. * a);
+	if(r1 >= 0. && r2 >= 0.)
+		return min(r1, r2);
+	else if(r1 >= 0. || r2 >= 0.)
+		return max(r1, r2);
+
+	return numeric_limits<double>::quiet_NaN();
 }
 
 
@@ -2399,11 +2544,12 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 	else if(keyHeld.Has(Command::SCAN))
 		command |= Command::SCAN;
 	
+	AimTurrets(ship, command, !Preferences::Has("Focus turret fire"));
 	bool hasGuns = Preferences::Has("Automatic firing") && !ship.IsBoarding()
 		&& !(keyStuck | keyHeld).Has(Command::LAND | Command::JUMP | Command::BOARD)
 		&& (!ship.GetTargetShip() || ship.GetTargetShip()->GetGovernment()->IsEnemy());
 	if(hasGuns)
-		command |= AutoFire(ship, false);
+		AutoFire(ship, command, false);
 	hasGuns |= keyHeld.Has(Command::PRIMARY);
 	if(keyHeld)
 	{

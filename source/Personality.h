@@ -49,6 +49,7 @@ public:
 	bool IsUnconstrained() const;
 	bool IsCoward() const;
 	bool IsAppeasing() const;
+	bool IsOpportunistic() const;
 	
 	// Mission NPC states:
 	bool IsStaying() const;

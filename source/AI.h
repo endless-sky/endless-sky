@@ -97,10 +97,17 @@ private:
 	// returns the direction to the target.
 	static Point TargetAim(const Ship &ship);
 	static Point TargetAim(const Ship &ship, const Body &target);
+	// Aim the given ship's turrets.
+	void AimTurrets(const Ship &ship, Command &command, bool opportunistic = false) const;
 	// Fire whichever of the given ship's weapons can hit a hostile target.
 	// Return a bitmask giving the weapons to fire.
-	Command AutoFire(const Ship &ship, bool secondary = true) const;
-	Command AutoFire(const Ship &ship, const Body &target) const;
+	void AutoFire(const Ship &ship, Command &command, bool secondary = true) const;
+	void AutoFire(const Ship &ship, Command &command, const Body &target) const;
+	
+	// Calculate how long it will take a projectile to reach a target given the
+	// target's relative position and velocity and the velocity of the
+	// projectile. If it cannot hit the target, this returns NaN.
+	static double RendezvousTime(const Point &p, const Point &v, double vp);
 	
 	void MovePlayer(Ship &ship, const PlayerInfo &player);
 	

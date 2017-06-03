@@ -31,120 +31,124 @@ void Weapon::LoadWeapon(const DataNode &node)
 	
 	for(const DataNode &child : node)
 	{
-		if(child.Token(0) == "sprite" && child.Size() >= 2)
+		const string &key = child.Token(0);
+		if(key == "stream")
+			isStreamed = true;
+		else if(key == "cluster")
+			isClustered = true;
+		else if(child.Size() < 2)
+			child.PrintTrace("Skipping weapon attribute with no value specified:");
+		else if(key == "sprite")
 			sprite.LoadSprite(child);
-		else if(child.Token(0) == "hardpoint sprite" && child.Size() >= 2)
+		else if(key == "hardpoint sprite")
 			hardpointSprite.LoadSprite(child);
-		else if(child.Token(0) == "sound" && child.Size() >= 2)
+		else if(key == "sound")
 			sound = Audio::Get(child.Token(1));
-		else if(child.Token(0) == "ammo" && child.Size() >= 2)
+		else if(key == "ammo")
 			ammo = GameData::Outfits().Get(child.Token(1));
-		else if(child.Token(0) == "icon" && child.Size() >= 2)
+		else if(key == "icon")
 			icon = SpriteSet::Get(child.Token(1));
-		else if(child.Token(0) == "fire effect" && child.Size() >= 2)
+		else if(key == "fire effect")
 		{
 			int count = (child.Size() >= 3) ? child.Value(2) : 1;
 			fireEffects[GameData::Effects().Get(child.Token(1))] += count;
 		}
-		else if(child.Token(0) == "live effect" && child.Size() >= 2)
+		else if(key == "live effect")
 		{
 			int count = (child.Size() >= 3) ? child.Value(2) : 1;
 			liveEffects[GameData::Effects().Get(child.Token(1))] += count;
 		}
-		else if(child.Token(0) == "hit effect" && child.Size() >= 2)
+		else if(key == "hit effect")
 		{
 			int count = (child.Size() >= 3) ? child.Value(2) : 1;
 			hitEffects[GameData::Effects().Get(child.Token(1))] += count;
 		}
-		else if(child.Token(0) == "die effect" && child.Size() >= 2)
+		else if(key == "die effect")
 		{
 			int count = (child.Size() >= 3) ? child.Value(2) : 1;
 			dieEffects[GameData::Effects().Get(child.Token(1))] += count;
 		}
-		else if(child.Token(0) == "submunition" && child.Size() >= 2)
+		else if(key == "submunition")
 		{
 			int count = (child.Size() >= 3) ? child.Value(2) : 1;
 			submunitions[GameData::Outfits().Get(child.Token(1))] += count;
 		}
-		else if(child.Token(0) == "stream")
-			isStreamed = true;
-		else if(child.Token(0) == "cluster")
-			isClustered = true;
-		else if(child.Size() >= 2)
-		{
-			if(child.Token(0) == "lifetime")
-				lifetime = max(0., child.Value(1));
-			else if(child.Token(0) == "random lifetime")
-				randomLifetime = max(0., child.Value(1));
-			else if(child.Token(0) == "reload")
-				reload = max(1., child.Value(1));
-			else if(child.Token(0) == "burst reload")
-				burstReload = max(1., child.Value(1));
-			else if(child.Token(0) == "burst count")
-				burstCount = max(1., child.Value(1));
-			else if(child.Token(0) == "homing")
-				homing = child.Value(1);
-			else if(child.Token(0) == "missile strength")
-				missileStrength = max(0., child.Value(1));
-			else if(child.Token(0) == "anti-missile")
-				antiMissile = max(0., child.Value(1));
-			else if(child.Token(0) == "velocity")
-				velocity = child.Value(1);
-			else if(child.Token(0) == "random velocity")
-				randomVelocity = child.Value(1);
-			else if(child.Token(0) == "acceleration")
-				acceleration = child.Value(1);
-			else if(child.Token(0) == "drag")
-				drag = child.Value(1);
-			else if(child.Token(0) == "hardpoint offset")
-				hardpointOffset = child.Value(1);
-			else if(child.Token(0) == "turn")
-				turn = child.Value(1);
-			else if(child.Token(0) == "inaccuracy")
-				inaccuracy = child.Value(1);
-			else if(child.Token(0) == "tracking")
-				tracking = max(0., min(1., child.Value(1)));
-			else if(child.Token(0) == "optical tracking")
-				opticalTracking = max(0., min(1., child.Value(1)));
-			else if(child.Token(0) == "infrared tracking")
-				infraredTracking = max(0., min(1., child.Value(1)));
-			else if(child.Token(0) == "radar tracking")
-				radarTracking = max(0., min(1., child.Value(1)));
-			else if(child.Token(0) == "firing energy")
-				firingEnergy = child.Value(1);
-			else if(child.Token(0) == "firing force")
-				firingForce = child.Value(1);
-			else if(child.Token(0) == "firing fuel")
-				firingFuel = child.Value(1);
-			else if(child.Token(0) == "firing heat")
-				firingHeat = child.Value(1);
-			else if(child.Token(0) == "split range")
-				splitRange = child.Value(1);
-			else if(child.Token(0) == "trigger radius")
-				triggerRadius = child.Value(1);
-			else if(child.Token(0) == "blast radius")
-				blastRadius = child.Value(1);
-			else if(child.Token(0) == "shield damage")
-				damage[SHIELD_DAMAGE] = child.Value(1);
-			else if(child.Token(0) == "hull damage")
-				damage[HULL_DAMAGE] = child.Value(1);
-			else if(child.Token(0) == "heat damage")
-				damage[HEAT_DAMAGE] = child.Value(1);
-			else if(child.Token(0) == "ion damage")
-				damage[ION_DAMAGE] = child.Value(1);
-			else if(child.Token(0) == "disruption damage")
-				damage[DISRUPTION_DAMAGE] = child.Value(1);
-			else if(child.Token(0) == "slowing damage")
-				damage[SLOWING_DAMAGE] = child.Value(1);
-			else if(child.Token(0) == "hit force")
-				hitForce = child.Value(1);
-			else if(child.Token(0) == "piercing")
-				piercing = max(0., min(1., child.Value(1)));
-			else
-				child.PrintTrace("Unrecognized weapon attribute: \"" + child.Token(0) + "\":");
-		}
 		else
-			child.PrintTrace("Skipping unrecognized attribute:");
+		{
+			double value = child.Value(1);
+			if(key == "lifetime")
+				lifetime = max(0., value);
+			else if(key == "random lifetime")
+				randomLifetime = max(0., value);
+			else if(key == "reload")
+				reload = max(1., value);
+			else if(key == "burst reload")
+				burstReload = max(1., value);
+			else if(key == "burst count")
+				burstCount = max(1., value);
+			else if(key == "homing")
+				homing = value;
+			else if(key == "missile strength")
+				missileStrength = max(0., value);
+			else if(key == "anti-missile")
+				antiMissile = max(0., value);
+			else if(key == "velocity")
+				velocity = value;
+			else if(key == "random velocity")
+				randomVelocity = value;
+			else if(key == "acceleration")
+				acceleration = value;
+			else if(key == "drag")
+				drag = value;
+			else if(key == "hardpoint offset")
+				hardpointOffset = value;
+			else if(key == "turn")
+				turn = value;
+			else if(key == "inaccuracy")
+				inaccuracy = value;
+			else if(key == "turret turn")
+				turretTurn = value;
+			else if(key == "tracking")
+				tracking = max(0., min(1., value));
+			else if(key == "optical tracking")
+				opticalTracking = max(0., min(1., value));
+			else if(key == "infrared tracking")
+				infraredTracking = max(0., min(1., value));
+			else if(key == "radar tracking")
+				radarTracking = max(0., min(1., value));
+			else if(key == "firing energy")
+				firingEnergy = value;
+			else if(key == "firing force")
+				firingForce = value;
+			else if(key == "firing fuel")
+				firingFuel = value;
+			else if(key == "firing heat")
+				firingHeat = value;
+			else if(key == "split range")
+				splitRange = value;
+			else if(key == "trigger radius")
+				triggerRadius = value;
+			else if(key == "blast radius")
+				blastRadius = value;
+			else if(key == "shield damage")
+				damage[SHIELD_DAMAGE] = value;
+			else if(key == "hull damage")
+				damage[HULL_DAMAGE] = value;
+			else if(key == "heat damage")
+				damage[HEAT_DAMAGE] = value;
+			else if(key == "ion damage")
+				damage[ION_DAMAGE] = value;
+			else if(key == "disruption damage")
+				damage[DISRUPTION_DAMAGE] = value;
+			else if(key == "slowing damage")
+				damage[SLOWING_DAMAGE] = value;
+			else if(key == "hit force")
+				hitForce = value;
+			else if(key == "piercing")
+				piercing = max(0., min(1., value));
+			else
+				child.PrintTrace("Unrecognized weapon attribute: \"" + key + "\":");
+		}
 	}
 	// Sanity check:
 	if(burstReload > reload)
@@ -274,6 +278,15 @@ double Weapon::TotalLifetime() const
 double Weapon::Range() const
 {
 	return Velocity() * TotalLifetime();
+}
+
+
+
+// Legacy support: allow turret outfits with no turn rate to specify a
+// default turnrate.
+void Weapon::SetTurretTurn(double rate)
+{
+	turretTurn = rate;
 }
 
 

@@ -99,6 +99,13 @@ bool Hardpoint::IsAntiMissile() const
 
 
 
+bool Hardpoint::CanAim() const
+{
+	return outfit && outfit->TurretTurn();
+}
+
+
+
 // Check if this weapon is ready to fire.
 bool Hardpoint::IsReady() const
 {
@@ -146,6 +153,18 @@ void Hardpoint::Step()
 
 
 
+// Adjust this weapon's aim by the given amount, relative to its maximum
+// "turret turn" rate.
+void Hardpoint::Aim(double amount)
+{
+	if(!outfit)
+		return;
+	
+	angle += outfit->TurretTurn() * amount;
+}
+
+
+
 // Fire this weapon. If it is a turret, it automatically points toward
 // the given ship's target. If the weapon requires ammunition, it will
 // be subtracted from the given ship.
@@ -159,45 +178,6 @@ void Hardpoint::Fire(Ship &ship, list<Projectile> &projectiles, list<Effect> &ef
 	// offset of (.5 * velocity) and that velocity includes the velocity of the
 	// ship that fired them.
 	Point start = ship.Position() + aim.Rotate(point) - .5 * ship.Velocity();
-	
-	shared_ptr<const Ship> target = ship.GetTargetShip();
-	// If you are boarding your target, do not fire on it.
-	if(ship.IsBoarding() || ship.Commands().Has(Command::BOARD))
-		target.reset();
-	
-	// If this is a fixed gun, or it if is a turret but you have no target
-	// selected, it should fire straight forward, angled in slightly to cause
-	// the shots to converge (gun harmonization).
-	if(!isTurret || !target || !target->IsTargetable())
-	{
-		// If this is a turret and it is not tracking a target, reset its angle
-		// to the proper convergence angle.
-		if(isTurret)
-		{
-			double d = outfit->Range();
-			// Projectiles with a range of zero should fire straight forward. A
-			// special check is needed to avoid divide by zero errors.
-			angle = Angle(d <= 0. ? 0. : -asin(point.X() / d) * TO_DEG);
-		}
-	}
-	else
-	{
-		// Take the ship's targeting confusion into account. This is mainly an
-		// effect to make turrets look less unnaturally precise.
-		Point p = target->Position() - start + ship.GetPersonality().Confusion();
-		Point v = target->Velocity() - ship.Velocity();
-		double steps = Armament::RendezvousTime(p, v, outfit->Velocity() + .5 * outfit->RandomVelocity());
-		
-		// Special case: RendezvousTime() may return NaN. But in that case, this
-		// comparison will return false. Check to see if this turret can hit the
-		// target, and if not fire straight toward where the target will be when
-		// the projectile dies (to avoid over-correcting).
-		if(!(steps < outfit->TotalLifetime()))
-			steps = outfit->TotalLifetime();
-		
-		// Aim toward where the target will be at the calculated rendezvous time.
-		angle = Angle(p + steps * v) - aim;
-	}
 	
 	// Apply the aim and hardpoint offset.
 	aim += angle;
@@ -260,10 +240,10 @@ bool Hardpoint::FireAntiMissile(Ship &ship, const Projectile &projectile, list<E
 void Hardpoint::Install(const Outfit *outfit)
 {
 	// If the given outfit is not a valid weapon, this hardpoint becomes empty.
-	// Otherwise, check that the type of the weapon (gun or turret) is right.
-	if(!outfit || !outfit->IsWeapon())
+	// Also check that the type of the weapon (gun or turret) is right.
+	if(!outfit || !outfit->IsWeapon() || (isTurret == !outfit->Get("turret mounts")))
 		Uninstall();
-	else if(!outfit->Get("turret mounts") || isTurret)
+	else
 	{
 		// Reset all the reload counters.
 		this->outfit = outfit;
@@ -271,13 +251,21 @@ void Hardpoint::Install(const Outfit *outfit)
 		burstReload = 0.;
 		burstCount = outfit->BurstCount();
 		
-		// Find the point of convergence of shots fired from this gun. That is,
-		// find the angle where the projectile's X offset will be zero when it
-		// reaches the very end of its range.
-		double d = outfit->Range();
-		// Projectiles with a range of zero should fire straight forward. A
-		// special check is needed to avoid divide by zero errors.
-		angle = Angle(d <= 0. ? 0. : -asin(point.X() / d) * TO_DEG);
+		// For fixed weapons, apply "gun harmonization," pointing them slightly
+		// inward so the projectiles will converge. For turrets, start them out
+		// pointing outward from the center of the ship.
+		if(!isTurret)
+		{
+			// Find the point of convergence of shots fired from this gun. That is,
+			// find the angle where the projectile's X offset will be zero when it
+			// reaches the very end of its range.
+			double d = outfit->Range();
+			// Projectiles with a range of zero should fire straight forward. A
+			// special check is needed to avoid divide by zero errors.
+			angle = Angle(d <= 0. ? 0. : -asin(point.X() / d) * TO_DEG);
+		}
+		else
+			angle = Angle(point);
 	}
 }
 
