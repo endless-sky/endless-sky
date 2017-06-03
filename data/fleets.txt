@@ -742,7 +742,7 @@ fleet "Small Free Worlds"
 	names "free worlds small"
 	cargo 1
 	personality
-		heroic disables frugal
+		heroic disables frugal opportunistic
 	variant 8
 		"Hawk"
 		"Sparrow"
@@ -787,7 +787,7 @@ fleet "Large Free Worlds"
 	names "free worlds capital"
 	cargo 1
 	personality
-		heroic disables frugal
+		heroic disables frugal opportunistic
 	variant 10
 		"Bastion"
 	variant 5
@@ -982,7 +982,7 @@ fleet "Small Republic"
 	names "republic small"
 	cargo 0
 	personality
-		heroic
+		heroic opportunistic
 	variant 6
 		"Rainmaker" 2
 	variant 5
@@ -1003,7 +1003,7 @@ fleet "Large Republic"
 	fighters "republic fighter"
 	cargo 0
 	personality
-		heroic
+		heroic opportunistic
 	variant 5
 		"Frigate" 2
 		"Rainmaker"
@@ -1044,7 +1044,7 @@ fleet "Navy Surveillance"
 	fighters "republic fighter"
 	cargo 0
 	personality
-		surveillance
+		surveillance opportunistic
 	variant 10
 		"Cruiser"
 		"Surveillance Drone" 4
@@ -1279,7 +1279,7 @@ fleet "Small Oathkeeper"
 	names "republic small"
 	cargo 0
 	personality
-		heroic
+		heroic opportunistic
 	variant 6
 		"Rainmaker" 2
 	variant 5
@@ -1300,7 +1300,7 @@ fleet "Large Oathkeeper"
 	fighters "republic fighter"
 	cargo 0
 	personality
-		heroic
+		heroic opportunistic
 	variant 5
 		"Frigate" 2
 		"Rainmaker"
@@ -2041,7 +2041,7 @@ fleet "Quarg"
 	names "quarg"
 	cargo 3
 	personality
-		forbearing
+		forbearing opportunistic
 	variant
 		"Quarg Skylark"
 	variant
@@ -2052,7 +2052,7 @@ fleet "Large Quarg"
 	names "quarg"
 	cargo 1
 	personality
-		forbearing
+		forbearing opportunistic
 	variant 2
 		"Quarg Skylark" 2
 		"Quarg Wardragon"

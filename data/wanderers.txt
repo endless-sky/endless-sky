@@ -92,7 +92,7 @@ fleet "Wanderer Defense"
 	government "Wanderer"
 	names "wanderer"
 	personality
-		heroic
+		heroic opportunistic
 	variant 3
 		"Strong Wind"
 		"Summer Leaf" 2

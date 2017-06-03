@@ -13,7 +13,7 @@ fleet "Small Hai"
 	names "hai"
 	cargo 3
 	personality
-		disables
+		disables opportunistic
 	variant 3
 		"Water Bug"
 		"Lightning Bug (Pulse)" 2
@@ -55,7 +55,7 @@ fleet "Large Hai"
 	names "hai"
 	cargo 3
 	personality
-		disables
+		disables opportunistic
 	variant 2
 		"Shield Beetle"
 		"Lightning Bug (Pulse)" 2
@@ -170,6 +170,7 @@ fleet "Unfettered Raid"
 	government "Hai (Unfettered)"
 	names "hai"
 	personality
+		disables
 		plunders
 	variant
 		"Shield Beetle (Jump)" 3
