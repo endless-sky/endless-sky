@@ -57,6 +57,9 @@ mission "Pact Recon 0"
 			`	"Great!" she says. "Right now, we need more eyes on a few systems on the edge of Southern space. All you need to do is fly through those systems, then report to our base on Glaze. I'll mark the target systems on your map."`
 				accept
 	
+	on accept
+		log "Volunteered to help the Southern Mutual Defense Pact keep tabs on pirate activity in their region of space. Pirate attacks seem to be getting worse because the Navy doesn't bother to patrol down here anymore."
+	
 	on complete
 		payment 25000
 		dialog
@@ -162,6 +165,7 @@ mission "Pact Questioning"
 		random < 15
 	
 	on offer
+		log "Apparently the Navy is suspicious of anyone who worked with the Southern Mutual Defense Pact; got questioned about it by an officer. It was unclear what his rank or position in the Navy was."
 		conversation
 			`As you are walking through the spaceport, a middle-aged man in a Navy uniform walks up to you and says, "Excuse me, Captain <last>. Could I speak with you for a few minutes?"`
 			choice
@@ -300,6 +304,9 @@ mission "FW Recon 1"
 					accept
 				`	"Sorry, I don't want to assist rebels."`
 					decline
+	
+	on accept
+		log "Volunteered to do some recon work for the Free Worlds, as long as there is nothing illegal involved."
 	
 	npc "scan outfits"
 		government Republic
@@ -450,6 +457,7 @@ mission "FW Recon 3B"
 		"assisted free worlds" ++
 		dialog `JJ meets you as soon as you land, and you pass off your information and photos to him. He pays you <payment> and says, "I'll be sure to let the Free Worlds council know how helpful you have been."`
 		payment 80000
+		log "Gave the Free Worlds some photos and information on the Navy base on New Wales. Jean-Jacques, the militia contact, was very grateful for the help."
 
 
 
@@ -545,6 +553,10 @@ mission "FW Katya 1"
 				decline
 	on decline
 		event "FW Katya Alt 2: ready" 21
+		log "Was held up at gunpoint by a militia woman in some sort of ill-conceived Free Worlds recruitment test."
+	
+	on accept
+		log "Agreed to run interference for the Free Worlds by pretending to be a smuggler while actually carrying harmless medical supplies. It seems like this might be a ploy to make the Navy look bad."
 
 
 
@@ -793,6 +805,9 @@ mission "FW Katya 2B"
 			label plan
 			`	"First," he says, "we need to go to Geminus, where the attack happened. I can explain more when we get there. In the meantime, I should also warn you that I seem to have terrible luck with pirates showing up wherever I go. It's almost like someone has put a price on my head." He grins.`
 				accept
+	
+	on accept
+		log `Met up with a friend of Katya's named Mr. Eyes, who calls himself a "vigilante nuclear power plant inspector." He thinks he can help hunt down the people who bombed Geminus and Martini, to prove that the Free Worlds were not behind it.`
 
 
 
@@ -869,6 +884,9 @@ mission "FW Katya 3"
 			`	"Great!" says Katya. "All we have to do is disable a drone, board it, yank out the surveillance equipment, and bring it back here to test it out."`
 			`	Ijs says, "Captain, we should warn you: when you attack a drone, any Republic folks in that system will get mad at you. But once you jump out of the system, they'll calm down again."`
 				accept
+	
+	on accept
+		log "Katya's plan for hunting down the nuclear terrorists involves stealing the sensor equipment from a Navy surveillance drone. Supposedly taking equipment from a drone counts as a salvage operation as long as none of its owners are present, due to a legal loophole in an old act of Parliament."
 	
 	on complete
 		outfit "Surveillance Pod" -1
@@ -1196,6 +1214,7 @@ mission "FW Katya 7C"
 	to fail
 		has "chosen sides"
 	on offer
+		log "Found evidence of nuclear testing on Clink, a mining moon on the edge of Free Worlds territory. It's strange that the perpetrators left such clear evidence behind; the Navy's drones will certainly have discovered it before we did. Katya stayed behind to try to infiltrate the mining compound and collect more information."
 		conversation
 			`You land some distance from the mining settlement, and Mr. Eyes goes into the airlock in a pressure suit, cycling it to bring in some of the moon's thin atmosphere for him to test. "Firing up my instruments now," he says through the comm link. There is a long pause, and then he starts spouting a long string of creative profanity. Katya runs over to the airlock window to see what is happening.`
 			`	Finally, Eyes calms down enough to say, "It's a match! Not only has there been a recent test here, but the signature matches the one we took on Geminus. This is it."`
@@ -1296,6 +1315,9 @@ mission "FW Escort 1"
 		
 			`	"Great!" he says. "You'll be escorting six freighters. If they all make it safely there and back, your payment will be four hundred thousand credits."`
 				accept
+	
+	on accept
+		log "Serving as an escort for a Free Worlds supply convoy to Tarazed. It sounds like pirates have been specifically targeting their convoys, recently."
 	
 	on fail
 		set "fw intro escort failed"
@@ -1543,6 +1565,7 @@ mission "FW Escort 3"
 		dialog
 			`	Voigt is immensely relieved to see the <npc> returned safely home. "You have done us a great service today, Captain," he says, as he hands you credit chips for <payment>. "I'll be sure to let the Council know how helpful you have been."`
 		"assisted free worlds" ++
+		log "Helped rescue a Free Worlds freighter that had been disabled by pirates. Earned the gratitude of Tomek Voigt, the council member in charge of the supply convoys."
 	
 	on fail
 		set "fw intro escort failed"
@@ -1635,6 +1658,9 @@ mission "FW Bounty 1"
 					decline
 			`	"Excellent," she says. "They call themselves the 'Rat Pack,' and you'll recognize them because most of their ships are named after various vermin, although for some unknown reason their flagship is just named 'Cluny.' They were last seen in the Seginus system, just east of Free space. Thank you in advance for your help."`
 				accept
+	on accept
+		log "Hunting down a fleet of pirates called the Rat Pack, who have been giving the Free Worlds trouble lately."
+	
 	npc kill
 		personality heroic staying nemesis
 		government Bounty
@@ -1741,6 +1767,7 @@ mission "FW Bounty 3"
 		"assisted free worlds" ++
 		payment 300000
 		dialog `The militia officer who asked you to hunt down the <npc> contacts you soon after you land. "You've done us a great service," he says. "I'll be telling the Council how helpful you were." He hands you a payment of <payment>.`
+		log "Earned a good reputation with the Free Worlds militia by taking on missions to hunt down some dangerous pirates."
 
 
 
@@ -1761,6 +1788,7 @@ mission "FW Commitment"
 		never
 	
 	on offer
+		log "Got invited to join the Free Worlds. It's a valuable opportunity, but it would also be a fast way to become an enemy of the Republic."
 		conversation
 			`Soon after you land, a courier arrives at your ship and hands you a formal looking letter. It reads:`
 			``
@@ -1877,6 +1905,9 @@ mission "Rescue Katya 2"
 			label fail
 			`	You have no choice but to head back to <planet> without Katya. The Council is going to be very disappointed.`
 				launch
+	
+	on accept
+		log "The Navy has invaded Kornephoros, while Katya was still undercover on Clink. No sign of where she is. She may have been taken as a prisoner."
 
 
 
@@ -1913,6 +1944,9 @@ mission "Defend Sabik"
 		"salary: Free Worlds" = 300
 		event "start of hostilities"
 		event "joined the free worlds"
+	
+	on accept
+		log "Officially joined the Free Worlds. Helping to defend Sabik, which is now under attack by the Navy. This Free Worlds work may mean getting involved in a lot more battles like this one."
 	
 	npc evade
 		personality waiting heroic
