@@ -83,6 +83,7 @@ void ShopPanel::Draw()
 	// Clear the list of clickable zones.
 	zones.clear();
 	categoryZones.clear();
+	delete listZone;
 	
 	DrawSidebar();
 	DrawButtons();
@@ -170,6 +171,10 @@ void ShopPanel::DrawSidebar()
 		point.X() += ICON_TILE;
 	}
 	point.Y() += ICON_TILE;
+
+	listZone = new ClickZone<std::string>(Point(Screen::Right() - SIDE_WIDTH/2, (point.Y() + Screen::Top())/2),
+			Point(SIDE_WIDTH, point.Y() - Screen::Top()),
+			"ListZone");
 	
 	if(playerShip)
 	{
@@ -603,7 +608,9 @@ bool ShopPanel::Click(int x, int y, int clicks)
 				selectedShip = zone.GetShip();
 			}
 			else
+			{
 				selectedOutfit = zone.GetOutfit();
+			}
 			
 			scrollDetailsIntoView = true;
 			// Reset selectedBottomY so that Step() waits for it to be updated
@@ -612,7 +619,13 @@ bool ShopPanel::Click(int x, int y, int clicks)
 			mainScroll = max(0., mainScroll + zone.ScrollY());
 			return true;
 		}
-		
+	if(listZone->Contains(point))
+	{
+	// check whether click is inside the ship field, but outside any ship fields
+		playerShips.clear();
+		playerShip = nullptr;
+
+	}
 	return true;
 }
 

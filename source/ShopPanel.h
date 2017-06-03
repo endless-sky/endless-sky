@@ -126,6 +126,7 @@ protected:
 	
 	std::vector<Zone> zones;
 	std::vector<ClickZone<std::string>> categoryZones;
+	ClickZone<std::string> *listZone = nullptr;
 	
 	std::map<std::string, std::set<std::string>> catalog;
 	const std::vector<std::string> &categories;
