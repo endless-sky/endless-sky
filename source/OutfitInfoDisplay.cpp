@@ -280,6 +280,13 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		attributeValues.push_back(Format::Number(60. / outfit.Reload()));
 	attributesHeight += 20;
 	
+	double turretTurn = outfit.TurretTurn() * 60.;
+	if(turretTurn)
+	{
+		attributeLabels.push_back("turret turn rate:");
+		attributeValues.push_back(Format::Number(turretTurn));
+		attributesHeight += 20;
+	}
 	int homing = outfit.Homing();
 	if(homing)
 	{
