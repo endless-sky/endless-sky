@@ -198,11 +198,11 @@ bool MainPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 		Preferences::ToggleAmmoUsage();
 		Messages::Add("Your escorts will now expend ammo: " + Preferences::AmmoUsage() + ".");
 	}
-	else if(key == '-')
+	else if(key == '-' && !command)
 		Preferences::ZoomViewOut();
-	else if(key == '=')
+	else if(key == '=' && !command)
 		Preferences::ZoomViewIn();
-	else if(key >= '0' && key <= '9')
+	else if(key >= '0' && key <= '9' && !command)
 		engine.SelectGroup(key - '0', mod & KMOD_SHIFT, mod & (KMOD_CTRL | KMOD_GUI));
 	else
 		return false;
