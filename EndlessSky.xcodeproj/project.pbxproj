@@ -14,13 +14,12 @@
 		62A405BA1D47DA4D0054F6A0 /* FogShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 62A405B81D47DA4D0054F6A0 /* FogShader.cpp */; };
 		62C3111A1CE172D000409D91 /* Flotsam.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 62C311181CE172D000409D91 /* Flotsam.cpp */; };
 		6A5716331E25BE6F00585EB2 /* CollisionSet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A5716311E25BE6F00585EB2 /* CollisionSet.cpp */; };
+		6AE4630C1EC7F8D2000927A0 /* libpng16.16.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AE4630B1EC7F8D2000927A0 /* libpng16.16.dylib */; };
 		A90C15D91D5BD55700708F3A /* Minable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A90C15D71D5BD55700708F3A /* Minable.cpp */; };
 		A90C15DC1D5BD56800708F3A /* Rectangle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A90C15DA1D5BD56800708F3A /* Rectangle.cpp */; };
 		A93931F019880EFC00C2A87B /* SDL2.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = A9CC52A01950CA16004E4E22 /* SDL2.framework */; };
 		A93931FB1988135200C2A87B /* libturbojpeg.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A93931FA1988135200C2A87B /* libturbojpeg.0.dylib */; };
-		A93931FD1988136B00C2A87B /* libpng14.14.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A93931FC1988136B00C2A87B /* libpng14.14.dylib */; };
 		A93931FE1988136E00C2A87B /* libturbojpeg.0.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = A93931FA1988135200C2A87B /* libturbojpeg.0.dylib */; };
-		A93931FF1988136F00C2A87B /* libpng14.14.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = A93931FC1988136B00C2A87B /* libpng14.14.dylib */; };
 		A94408A51982F3E600610427 /* endless-sky.iconset in Resources */ = {isa = PBXBuildFile; fileRef = A94408A41982F3E600610427 /* endless-sky.iconset */; };
 		A966A5AB1B964E6300DFF69C /* Person.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A966A5A91B964E6300DFF69C /* Person.cpp */; };
 		A96863A01AE6FD0E004FE1FE /* Account.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A96862CD1AE6FD0A004FE1FE /* Account.cpp */; };
@@ -153,7 +152,6 @@
 			dstSubfolderSpec = 10;
 			files = (
 				A9BDFB571E00BD6A00A6B27E /* libmad.0.2.1.dylib in CopyFiles */,
-				A93931FF1988136F00C2A87B /* libpng14.14.dylib in CopyFiles */,
 				A93931FE1988136E00C2A87B /* libturbojpeg.0.dylib in CopyFiles */,
 				A93931F019880EFC00C2A87B /* SDL2.framework in CopyFiles */,
 			);
@@ -176,12 +174,12 @@
 		62C311191CE172D000409D91 /* Flotsam.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Flotsam.h; path = source/Flotsam.h; sourceTree = "<group>"; };
 		6A5716311E25BE6F00585EB2 /* CollisionSet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CollisionSet.cpp; path = source/CollisionSet.cpp; sourceTree = "<group>"; };
 		6A5716321E25BE6F00585EB2 /* CollisionSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CollisionSet.h; path = source/CollisionSet.h; sourceTree = "<group>"; };
+		6AE4630B1EC7F8D2000927A0 /* libpng16.16.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libpng16.16.dylib; path = ../../../usr/local/lib/libpng16.16.dylib; sourceTree = "<group>"; };
 		A90C15D71D5BD55700708F3A /* Minable.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Minable.cpp; path = source/Minable.cpp; sourceTree = "<group>"; };
 		A90C15D81D5BD55700708F3A /* Minable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Minable.h; path = source/Minable.h; sourceTree = "<group>"; };
 		A90C15DA1D5BD56800708F3A /* Rectangle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Rectangle.cpp; path = source/Rectangle.cpp; sourceTree = "<group>"; };
 		A90C15DB1D5BD56800708F3A /* Rectangle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Rectangle.h; path = source/Rectangle.h; sourceTree = "<group>"; };
 		A93931FA1988135200C2A87B /* libturbojpeg.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libturbojpeg.0.dylib; path = "/opt/libjpeg-turbo/lib/libturbojpeg.0.dylib"; sourceTree = "<absolute>"; };
-		A93931FC1988136B00C2A87B /* libpng14.14.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libpng14.14.dylib; path = /usr/local/lib/libpng14.14.dylib; sourceTree = "<absolute>"; };
 		A94408A41982F3E600610427 /* endless-sky.iconset */ = {isa = PBXFileReference; lastKnownFileType = folder.iconset; name = "endless-sky.iconset"; path = "icons/endless-sky.iconset"; sourceTree = "<group>"; };
 		A966A5A91B964E6300DFF69C /* Person.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Person.cpp; path = source/Person.cpp; sourceTree = "<group>"; };
 		A966A5AA1B964E6300DFF69C /* Person.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Person.h; path = source/Person.h; sourceTree = "<group>"; };
@@ -430,9 +428,9 @@
 			files = (
 				A9BDFB561E00B94700A6B27E /* libmad.0.2.1.dylib in Frameworks */,
 				A9A5297619996CC3002D7C35 /* OpenAL.framework in Frameworks */,
+				6AE4630C1EC7F8D2000927A0 /* libpng16.16.dylib in Frameworks */,
 				A9D40D1A195DFAA60086EE52 /* OpenGL.framework in Frameworks */,
 				A93931FB1988135200C2A87B /* libturbojpeg.0.dylib in Frameworks */,
-				A93931FD1988136B00C2A87B /* libpng14.14.dylib in Frameworks */,
 				A9CC52A11950CA16004E4E22 /* SDL2.framework in Frameworks */,
 				A9CC526D1950C9F6004E4E22 /* Cocoa.framework in Frameworks */,
 			);
@@ -715,9 +713,9 @@
 		A9CC526B1950C9F6004E4E22 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6AE4630B1EC7F8D2000927A0 /* libpng16.16.dylib */,
 				A9A5297519996CC3002D7C35 /* OpenAL.framework */,
 				A93931FA1988135200C2A87B /* libturbojpeg.0.dylib */,
-				A93931FC1988136B00C2A87B /* libpng14.14.dylib */,
 				A9BDFB551E00B94700A6B27E /* libmad.0.2.1.dylib */,
 				A9D40D19195DFAA60086EE52 /* OpenGL.framework */,
 				A9CC52A01950CA16004E4E22 /* SDL2.framework */,
