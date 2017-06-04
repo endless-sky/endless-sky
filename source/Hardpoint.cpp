@@ -75,6 +75,23 @@ const Angle &Hardpoint::GetAngle() const
 
 
 
+// Get the angle this weapon ought to point at for ideal gun harmonization.
+Angle Hardpoint::HarmonizedAngle() const
+{
+	if(!outfit)
+		return Angle();
+	
+	// Find the point of convergence of shots fired from this gun. That is,
+	// find the angle where the projectile's X offset will be zero when it
+	// reaches the very end of its range.
+	double d = outfit->Range();
+	// Projectiles with a range of zero should fire straight forward. A
+	// special check is needed to avoid divide by zero errors.
+	return Angle(d <= 0. ? 0. : -asin(point.X() / d) * TO_DEG);
+}
+
+
+
 // Find out if this is a turret hardpoint (whether or not it has a turret installed).
 bool Hardpoint::IsTurret() const
 {
@@ -255,15 +272,7 @@ void Hardpoint::Install(const Outfit *outfit)
 		// inward so the projectiles will converge. For turrets, start them out
 		// pointing outward from the center of the ship.
 		if(!isTurret)
-		{
-			// Find the point of convergence of shots fired from this gun. That is,
-			// find the angle where the projectile's X offset will be zero when it
-			// reaches the very end of its range.
-			double d = outfit->Range();
-			// Projectiles with a range of zero should fire straight forward. A
-			// special check is needed to avoid divide by zero errors.
-			angle = Angle(d <= 0. ? 0. : -asin(point.X() / d) * TO_DEG);
-		}
+			angle = HarmonizedAngle();
 		else
 			angle = Angle(point);
 	}

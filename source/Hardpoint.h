@@ -40,6 +40,8 @@ public:
 	const Point &GetPoint() const;
 	// Get the angle that this weapon is aimed at, relative to the ship.
 	const Angle &GetAngle() const;
+	// Get the angle this weapon ought to point at for ideal gun harmonization.
+	Angle HarmonizedAngle() const;
 	// Shortcuts for querying weapon characteristics.
 	bool IsTurret() const;
 	bool IsHoming() const;

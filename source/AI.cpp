@@ -1893,7 +1893,7 @@ void AI::AimTurrets(const Ship &ship, Command &command, bool opportunistic) cons
 	// something to aim at, even if it is too far away.
 	if(currentTarget)
 		enemies.push_back(currentTarget);
-	if(opportunistic)
+	if(opportunistic || !currentTarget)
 	{
 		// Find the maximum range of any of this ship's turrets.
 		double maxRange = 0.;
@@ -1919,8 +1919,21 @@ void AI::AimTurrets(const Ship &ship, Command &command, bool opportunistic) cons
 				enemies.push_back(target.get());
 	}
 	
-	// If there are no enemies to aim at, turrets should sweep back and forth
-	// at random, with the sweep centered on the "outward-facing" angle.
+	// If there are no enemies to aim at, opportunistic turrets should sweep
+	// back and forth at random, with the sweep centered on the "outward-facing"
+	// angle. Focused turrets should just point forward.
+	if(enemies.empty() && !opportunistic)
+	{
+		for(const Hardpoint &hardpoint : ship.Weapons())
+			if(hardpoint.CanAim())
+			{
+				// Get the index of this weapon.
+				int index = &hardpoint - &ship.Weapons().front();
+				double offset = (hardpoint.HarmonizedAngle() - hardpoint.GetAngle()).Degrees();
+				command.SetAim(index, offset / hardpoint.GetOutfit()->TurretTurn());
+			}
+		return;
+	}
 	if(enemies.empty())
 	{
 		for(const Hardpoint &hardpoint : ship.Weapons())
