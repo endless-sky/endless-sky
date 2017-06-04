@@ -469,9 +469,9 @@ mission "Bactrian Unlock [3-alt]"
 
 ship "Bactrian"
 	sprite "ship/bactrian"
-	licenses
-		"City-Ship"
 	attributes
+		licenses
+			"City-Ship"
 		category "Heavy Warship"
 		"cost" 17600000
 		"shields" 17500
