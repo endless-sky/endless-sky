@@ -196,7 +196,6 @@ trade
 		"epoxy resin"
 		"gasoline"
 		"high-tensile fibers"
-		"jet fuel"
 		"lacquer"
 		"laquer thinner"
 		"methanal formaldehyde"
