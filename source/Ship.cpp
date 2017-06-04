@@ -26,6 +26,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Random.h"
 #include "ShipEvent.h"
 #include "System.h"
+#include "pi.h"
 
 #include <algorithm>
 #include <cmath>
@@ -683,7 +684,7 @@ const Command &Ship::Commands() const
 // Move this ship. A ship may create effects as it moves, in particular if
 // it is in the process of blowing up. If this returns false, the ship
 // should be deleted.
-bool Ship::Move(list<Effect> &effects, list<shared_ptr<Flotsam>> &flotsam)
+bool Ship::Move(list<Effect> &effects, list<shared_ptr<Flotsam>> &flotsam, PlayerInfo &player)
 {
 	// Check if this ship has been in a different system from the player for so
 	// long that it should be "forgotten." Also eliminate ships that have no
@@ -884,6 +885,9 @@ bool Ship::Move(list<Effect> &effects, list<shared_ptr<Flotsam>> &flotsam)
 		static const int HYPER_C = 100;
 		static const double HYPER_A = 2.;
 		static const double HYPER_D = 1000.;
+		int nextCost = 0;
+		int multiJump = attributes.Get("multi jump");
+		bool willUseJumpDrive = false;
 		if(hyperspaceSystem)
 			fuel -= hyperspaceFuelCost / HYPER_C;
 		
@@ -897,55 +901,110 @@ bool Ship::Move(list<Effect> &effects, list<shared_ptr<Flotsam>> &flotsam)
 			currentSystem = hyperspaceSystem;
 			hyperspaceSystem = nullptr;
 			targetSystem = nullptr;
-			// Check if the target planet is in the destination system or not.
-			const Planet *planet = (targetPlanet ? targetPlanet->GetPlanet() : nullptr);
-			if(!planet || planet->IsWormhole() || !planet->IsInSystem(currentSystem))
-				targetPlanet = nullptr;
-			// Check if your parent has a target planet in this system.
-			shared_ptr<Ship> parent = GetParent();
-			if(!targetPlanet && parent && parent->targetPlanet)
+			// Check if eligible for a multi-jump.
+			if (multiJump > jumpCount && government->IsPlayer() && player.HasTravelPlan())
 			{
-				planet = parent->targetPlanet->GetPlanet();
-				if(planet && !planet->IsWormhole() && planet->IsInSystem(currentSystem))
-					targetPlanet = parent->targetPlanet;
+				if (!player.Flagship()->GetTargetSystem() && player.Flagship()->name == name)
+					player.PopTravel();
+				if (player.HasTravelPlan())
+				{
+					targetSystem = player.TravelPlan().back();
+					nextCost = JumpFuel(targetSystem);
+					willUseJumpDrive = !attributes.Get("hyperdrive") || !currentSystem->Links().count(targetSystem);
+				}
 			}
-			direction = -1;
-			
-			// If you have a target planet in the destination system, exit
-			// hyperpace aimed at it. Otherwise, target the first planet that
-			// has a spaceport.
-			Point target;
-			if(targetPlanet)
-				target = targetPlanet->Position();
+			// Check if jump is over.
+			if (targetSystem && nextCost && fuel >= nextCost && (willUseJumpDrive == isUsingJumpDrive))
+			{
+				jumpCount++;
+				hyperspaceSystem = GetTargetSystem();
+				isUsingJumpDrive = !attributes.Get("hyperdrive") || !currentSystem->Links().count(hyperspaceSystem);
+				hyperspaceFuelCost = JumpFuel(hyperspaceSystem);
+				if (!isUsingJumpDrive)
+				{
+					Point targetVector = hyperspaceSystem->Position() - currentSystem->Position();
+					targetVector = targetVector.Unit();
+					Point aPoint = angle.Unit();
+					shift = acos(targetVector.Dot(aPoint)) * TO_DEG;
+					// Check if the turn should be left or right.
+					if (aPoint.Y() * targetVector.X() - aPoint.X() * targetVector.Y() > 0)
+						shift *= -1;
+					velocity = (velocity.Length() - (didDrive ? HYPER_A * HYPER_C : 0)) * angle.Unit();
+					hyperspaceCount -= HYPER_C * 3 / 4;
+					didDrive = true;
+				}
+				else
+					fuel -= hyperspaceFuelCost * 3 / 4;
+				hyperspaceCount -= HYPER_C / 4;
+				// Have all ships exit hyperspace at the same distance so that
+				// your escorts always stay with you.
+				position = Point() - (HYPER_C * HYPER_C * HYPER_C * HYPER_A + HYPER_D) * angle.Unit();
+				position += hyperspaceOffset;
+			}
 			else
 			{
-				for(const StellarObject &object : currentSystem->Objects())
-					if(object.GetPlanet() && object.GetPlanet()->HasSpaceport())
-					{
-						target = object.Position();
-						break;
-					}
+				if (jumpCount > 0)
+				{
+					if (didDrive)
+						velocity = (velocity.Length() - HYPER_A * HYPER_C) * angle.Unit();
+					shift = jumpCount = 0;
+					didDrive = false;
+				}
+				// Check if the target planet is in the destination system or not.
+				const Planet *planet = (targetPlanet ? targetPlanet->GetPlanet() : nullptr);
+				if(!planet || planet->IsWormhole() || !planet->IsInSystem(currentSystem))
+					targetPlanet = nullptr;
+				// Check if your parent has a target planet in this system.
+				shared_ptr<Ship> parent = GetParent();
+				if(!targetPlanet && parent && parent->targetPlanet)
+				{
+					planet = parent->targetPlanet->GetPlanet();
+					if(planet && !planet->IsWormhole() && planet->IsInSystem(currentSystem))
+						targetPlanet = parent->targetPlanet;
+				}
+				direction = -1;
+				
+				// If you have a target planet in the destination system, exit
+				// hyperpace aimed at it. Otherwise, target the first planet that
+				// has a spaceport.
+				Point target;
+				if(targetPlanet)
+					target = targetPlanet->Position();
+				else
+				{
+					for(const StellarObject &object : currentSystem->Objects())
+						if(object.GetPlanet() && object.GetPlanet()->HasSpaceport())
+						{
+							target = object.Position();
+							break;
+						}
+				}
+				
+				if(isUsingJumpDrive)
+				{
+					position = target + Angle::Random().Unit() * 300. * (Random::Real() + 1.);
+					return true;
+				}
+				
+				// Have all ships exit hyperspace at the same distance so that
+				// your escorts always stay with you.
+				double distance = (HYPER_C * HYPER_C) * .5 * HYPER_A + HYPER_D;
+				position = (target - distance * angle.Unit());
+				position += hyperspaceOffset;
+				// Make sure your velocity is in exactly the direction you are
+				// traveling in, so that when you decelerate there will not be a
+				// sudden shift in direction at the end.
+				velocity = velocity.Length() * angle.Unit();
 			}
-			
-			if(isUsingJumpDrive)
-			{
-				position = target + Angle::Random().Unit() * 300. * (Random::Real() + 1.);
-				return true;
-			}
-			
-			// Have all ships exit hyperspace at the same distance so that
-			// your escorts always stay with you.
-			double distance = (HYPER_C * HYPER_C) * .5 * HYPER_A + HYPER_D;
-			position = (target - distance * angle.Unit());
-			position += hyperspaceOffset;
-			// Make sure your velocity is in exactly the direction you are
-			// traveling in, so that when you decelerate there will not be a
-			// sudden shift in direction at the end.
-			velocity = velocity.Length() * angle.Unit();
 		}
 		if(!isUsingJumpDrive)
 		{
-			velocity += (HYPER_A * direction) * angle.Unit();
+			if (didDrive && hyperspaceCount < (HYPER_C / HYPER_A))
+				angle += HYPER_A * shift / HYPER_C;
+			else
+				velocity += (HYPER_A * direction) * angle.Unit();
+			if (didDrive && hyperspaceCount == (HYPER_C / HYPER_A))
+				velocity = (velocity.Length() + HYPER_C) * angle.Unit();
 			if(!hyperspaceSystem)
 			{
 				// Exit hyperspace far enough from the planet to be able to land.
