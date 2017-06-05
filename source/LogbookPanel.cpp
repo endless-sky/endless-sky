@@ -36,7 +36,6 @@ namespace {
 	const double WIDTH = SIDEBAR_WIDTH + TEXT_WIDTH;
 	const double LINE_HEIGHT = 25.;
 	const double GAP = 30.;
-	const double BUTTON_HEIGHT = 26.;
 }
 
 
