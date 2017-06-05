@@ -808,8 +808,10 @@ bool Ship::Move(list<Effect> &effects, list<shared_ptr<Flotsam>> &flotsam)
 			fuel -= attributes.Get("cloaking fuel");
 			energy -= attributes.Get("cloaking energy");
 		}
+		// If your ship cannot sustain the cloaking field, it fades much
+		// faster than if you properly power down your cloak generator.
 		else if(cloakingSpeed)
-			cloak = max(0., cloak - cloakingSpeed);
+			cloak = max(0., cloak - cloakingSpeed - (commands.Has(Command::CLOAK) ? cloak * .1 : 0.));
 		else
 			cloak = 0.;
 	}
