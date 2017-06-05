@@ -256,6 +256,9 @@ void PlanetPanel::TakeOffIfReady()
 	// ships or changing outfits.
 	const Ship *flagship = player.Flagship();
 	
+	// Outfit changes or flagship reassignment may void a travel plan.
+	const bool invalidTravel = player.HasInvalidTravelPlan();
+	
 	// Are you overbooked? Don't count fireable flagship crew. If your
 	// ship can't hold the required crew, count it as having no fireable
 	// crew rather than a negative number.
@@ -274,7 +277,7 @@ void PlanetPanel::TakeOffIfReady()
 			fighterCount += (category == "Fighter") - it->BaysFree(true);
 		}
 	
-	if(fighterCount > 0 || droneCount > 0 || cargoToSell > 0 || overbooked > 0)
+	if(fighterCount > 0 || droneCount > 0 || cargoToSell > 0 || overbooked > 0 || invalidTravel)
 	{
 		ostringstream out;
 		if(missionCargoToSell > 0 || overbooked > 0)
@@ -295,6 +298,11 @@ void PlanetPanel::TakeOffIfReady()
 				out << (missionCargoToSell > 1 ? " tons" : " ton");
 				out << " of your mission cargo.";
 			}
+		}
+		else if(invalidTravel)
+		{
+			out << "If you take off now, your current travel plan will be cleared as parts of it are now inaccessible.\n";
+			out << "This may be due to changing your flagship or its installed outfits, or some unknown galactic event.";
 		}
 		else
 		{

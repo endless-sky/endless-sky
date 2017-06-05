@@ -1303,6 +1303,12 @@ bool PlayerInfo::TakeOff(UI *ui)
 		Messages::Add(out.str());
 	}
 	
+	// Invalid travel plans result from a loss of required flagship attributes or outfits.
+	if(HasInvalidTravelPlan())
+		travelPlan.clear();
+	if(travelDestination && !travelDestination->IsAccessible(flagship.get()))
+		travelDestination = nullptr;
+	
 	return true;
 }
 
@@ -1787,6 +1793,47 @@ void PlayerInfo::Unvisit(const Planet *planet)
 bool PlayerInfo::HasTravelPlan() const
 {
 	return !travelPlan.empty();
+}
+
+
+
+// Verify the player's travel plan is still valid, in case the
+// flagship was changed and/or any needed outfits were removed.
+bool PlayerInfo::HasInvalidTravelPlan() const
+{
+	if(!travelPlan.empty())
+	{
+		// Player may have explicitly defined a multi-stop route, so rather than re-route only to the endpoint,
+		// verify the accessibility of all waypoints used and void it if any are now inaccessible/unreachable.
+		bool hasJumpDrive = flagship->Attributes().Get("jump drive");
+		for(auto it = travelPlan.begin(); it != travelPlan.end();)
+		{
+			const System *currentSystem = *it;
+			const System *nextSystem = *++it;
+			if(it != travelPlan.end())
+			{
+				bool isWormholeTravel = false;
+				for(const StellarObject &object : currentSystem->Objects())
+					if(object.GetPlanet() && object.GetPlanet()->WormholeDestination(currentSystem) == nextSystem
+						&& HasVisited(object.GetPlanet()) && HasVisited(nextSystem))
+					{
+						// Assess any travel through restricted wormholes.
+						if(!object.GetPlanet()->IsAccessible(flagship.get()))
+							return true;
+						else
+						{
+							isWormholeTravel = true;
+							break;
+						}
+					}
+				// Verify hyperspace lane for non-wormhole & non-jumpdrive travel.
+				if(!(isWormholeTravel || hasJumpDrive) && !currentSystem->Links().count(nextSystem))
+					return true;
+			}
+		}
+	}
+	
+	return false;
 }
 
 

@@ -195,6 +195,8 @@ public:
 	
 	// Access the player's travel plan.
 	bool HasTravelPlan() const;
+	// Determine if the current travel plan is invalid.
+	bool HasInvalidTravelPlan() const;
 	const std::vector<const System *> &TravelPlan() const;
 	std::vector<const System *> &TravelPlan();
 	// Remove the first or last system from the travel plan.
@@ -241,7 +243,7 @@ public:
 	
 	
 private:
-	// Don't anyone else to copy this class, because pointers won't get
+	// Don't allow anyone else to copy this class, because pointers won't get
 	// transferred properly.
 	PlayerInfo(const PlayerInfo &) = default;
 	PlayerInfo &operator=(const PlayerInfo &) = default;
