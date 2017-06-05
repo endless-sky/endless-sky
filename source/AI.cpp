@@ -1891,7 +1891,7 @@ void AI::AimTurrets(const Ship &ship, Command &command, bool opportunistic) cons
 	const Ship *currentTarget = ship.GetTargetShip().get();
 	// If the ship has a target selected, that ship is always in the running as
 	// something to aim at, even if it is too far away.
-	if(currentTarget)
+	if(currentTarget && currentTarget->IsTargetable())
 		enemies.push_back(currentTarget);
 	if(opportunistic || !currentTarget)
 	{
