@@ -2416,7 +2416,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 		// explaining why they cannot land there.
 		string message;
 		for(const StellarObject &object : ship.GetSystem()->Objects())
-			if(!object.GetPlanet() && object.HasSprite())
+			if((!object.GetPlanet() || !object.GetPlanet()->IsAccessible(&ship)) && object.HasSprite())
 			{
 				double distance = ship.Position().Distance(object.Position());
 				if(distance < object.Radius())
