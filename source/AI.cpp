@@ -833,11 +833,11 @@ bool AI::FollowOrders(Ship &ship, Command &command) const
 		ship.SetTargetSystem(to);
 		return false;
 	}
+	else if(type == Orders::MOVE_TO && ship.Position().Distance(it->second.point) > 20.)
+		MoveTo(ship, command, it->second.point, Point(), 10., .1);
 	else if(type == Orders::HOLD_POSITION || type == Orders::MOVE_TO)
 	{
-		if(it->second.point && ship.Position().Distance(it->second.point) > 20.)
-			MoveTo(ship, command, it->second.point, Point(), 10., .1);
-		else if(ship.Velocity().Length() > .001 || !ship.GetTargetShip())
+		if(ship.Velocity().Length() > .001 || !ship.GetTargetShip())
 			Stop(ship, command);
 		else
 			command.SetTurn(TurnToward(ship, TargetAim(ship)));
