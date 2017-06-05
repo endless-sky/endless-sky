@@ -1078,105 +1078,40 @@ event "fw safe passage ends"
 
 event "navy using mark ii ships"
 	fleet "Small Republic"
-		remove variant
-			"Rainmaker" 2
-		add variant 4
+		add variant 12
 			"Rainmaker (Mark II)" 2
-		add variant 2
-			"Rainmaker" 2
-		remove variant
-			"Gunboat"
-			"Rainmaker"
-		add variant 4
+		add variant 12
 			"Gunboat (Mark II)"
 			"Rainmaker (Mark II)"
-		add variant 1
-			"Gunboat"
-			"Rainmaker"
-		remove variant
-			"Frigate"
-		add variant 3
+		add variant 9
 			"Frigate (Mark II)"
-		add variant 1
-			"Frigate"
-		remove variant
-			"Gunboat" 2
-		add variant 2
+		add variant 6
 			"Gunboat (Mark II)" 2
-		add variant 1
-			"Gunboat" 2
-		remove variant
-			"Rainmaker" 3
-		add variant 1
+		add variant 3
 			"Rainmaker (Mark II)" 3
-		remove variant
-			"Gunboat"
-		add variant 4
+		add variant 12
 			"Gunboat (Mark II)"
-		add variant 2
-			"Gunboat"
 		remove variant
 			"Protector"
 	
 	fleet "Large Republic"
-		remove variant
-			"Frigate" 2
-			"Rainmaker"
-			"Gunboat"
-		add variant 4
+		add variant 12
 			"Frigate (Mark II)" 2
 			"Rainmaker (Mark II)"
 			"Gunboat (Mark II)"
-		add variant 1
-			"Frigate" 2
-			"Rainmaker"
-			"Gunboat"
-		remove variant
-			"Cruiser"
-			"Combat Drone" 4
-		add variant 2
+		add variant 6
 			"Cruiser (Mark II)"
 			"Combat Drone" 4
-		add variant 1
-			"Cruiser"
-			"Combat Drone" 4
-		remove variant
-			"Cruiser"
-			"Combat Drone" 4
-			"Frigate"
-			"Rainmaker"
-		add variant 2
+		add variant 6
 			"Cruiser (Mark II)"
 			"Combat Drone" 4
 			"Frigate (Mark II)"
 			"Rainmaker (Mark II)"
-		add variant 1
-			"Cruiser"
-			"Combat Drone" 4
-			"Frigate"
-			"Rainmaker"
-		remove variant
-			"Carrier"
-			"Lance" 4
-			"Combat Drone" 6
-		add variant 2
+		add variant 6
 			"Carrier (Mark II)"
 			"Lance" 4
 			"Combat Drone" 6
-		add variant 1
-			"Carrier"
-			"Lance" 4
-			"Combat Drone" 6
-		remove variant
-			"Carrier"
-			"Lance" 4
-			"Combat Drone" 6
-			"Cruiser"
-			"Combat Drone" 4
-			"Frigate" 2
-			"Rainmaker" 2
-			"Gunboat" 2
-		add variant 1
+		add variant 3
 			"Carrier (Mark II)"
 			"Lance" 4
 			"Combat Drone" 6
@@ -1185,19 +1120,11 @@ event "navy using mark ii ships"
 			"Frigate (Mark II)" 2
 			"Rainmaker (Mark II)" 2
 			"Gunboat (Mark II)" 2
-		remove variant
-			"Cruiser"
-			"Combat Drone" 4
-			"Frigate" 2
-		add variant 1
+		add variant 3
 			"Cruiser (Mark II)"
 			"Combat Drone" 4
 			"Frigate (Mark II)" 2
-		remove variant
-			"Frigate"
-			"Rainmaker" 2
-			"Gunboat"
-		add variant 1
+		add variant 3
 			"Frigate (Mark II)"
 			"Rainmaker (Mark II)" 2
 			"Gunboat (Mark II)"
