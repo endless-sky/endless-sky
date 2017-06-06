@@ -356,6 +356,9 @@ tip "firing fuel / second:"
 tip "shots / second:"
 	`How many projectiles per second this weapon fires. Weapons that fire continuously do not require batteries if the ship's energy generation is higher than the weapon's energy consumption.`
 
+tip "turret turn rate:"
+	`How fast this turret turns to track its targets, in degrees per second.`
+
 tip "homing:"
 	`How well this projectile tracks its target. Weapons with better homing can adjust to the target's speed to plot a more effective intercept course.`
 
