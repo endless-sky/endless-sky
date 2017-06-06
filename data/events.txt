@@ -1078,65 +1078,40 @@ event "fw safe passage ends"
 
 event "navy using mark ii ships"
 	fleet "Small Republic"
-		variant 4
+		add variant 12
 			"Rainmaker (Mark II)" 2
-		variant 2
-			"Rainmaker" 2
-		variant 4
+		add variant 12
 			"Gunboat (Mark II)"
 			"Rainmaker (Mark II)"
-		variant 1
-			"Gunboat"
-			"Rainmaker"
-		variant 3
+		add variant 9
 			"Frigate (Mark II)"
-		variant 1
-			"Frigate"
-		variant 2
+		add variant 6
 			"Gunboat (Mark II)" 2
-		variant 1
-			"Gunboat" 2
-		variant 1
+		add variant 3
 			"Rainmaker (Mark II)" 3
-		variant 4
+		add variant 12
 			"Gunboat (Mark II)"
-		variant 2
-			"Gunboat"
-
+		remove variant
+			"Protector"
+	
 	fleet "Large Republic"
-		variant 4
+		add variant 12
 			"Frigate (Mark II)" 2
 			"Rainmaker (Mark II)"
 			"Gunboat (Mark II)"
-		variant 1
-			"Frigate" 2
-			"Rainmaker"
-			"Gunboat"
-		variant 2
+		add variant 6
 			"Cruiser (Mark II)"
 			"Combat Drone" 4
-		variant 1
-			"Cruiser"
-			"Combat Drone" 4
-		variant 2
+		add variant 6
 			"Cruiser (Mark II)"
 			"Combat Drone" 4
 			"Frigate (Mark II)"
 			"Rainmaker (Mark II)"
-		variant 1
-			"Cruiser"
-			"Combat Drone" 4
-			"Frigate"
-			"Rainmaker"
-		variant 2
+		add variant 6
 			"Carrier (Mark II)"
 			"Lance" 4
 			"Combat Drone" 6
-		variant 1
-			"Carrier"
-			"Lance" 4
-			"Combat Drone" 6
-		variant 1
+		add variant 3
 			"Carrier (Mark II)"
 			"Lance" 4
 			"Combat Drone" 6
@@ -1145,11 +1120,11 @@ event "navy using mark ii ships"
 			"Frigate (Mark II)" 2
 			"Rainmaker (Mark II)" 2
 			"Gunboat (Mark II)" 2
-		variant 1
+		add variant 3
 			"Cruiser (Mark II)"
 			"Combat Drone" 4
 			"Frigate (Mark II)" 2
-		variant 1
+		add variant 3
 			"Frigate (Mark II)"
 			"Rainmaker (Mark II)" 2
 			"Gunboat (Mark II)"
