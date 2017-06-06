@@ -76,14 +76,11 @@ const string &StellarObject::Name() const
 // explaining why (e.g. too hot, too cold, etc.).
 const string &StellarObject::LandingMessage() const
 {
-	static const string EMPTY;
-	if(planet)
-		return EMPTY;
-	
 	// Check if there's a custom message for this sprite type.
 	if(GameData::HasLandingMessage(GetSprite()))
 		return GameData::LandingMessage(GetSprite());
 	
+	static const string EMPTY;
 	return (message ? *message : EMPTY);
 }
 
