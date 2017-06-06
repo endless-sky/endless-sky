@@ -1308,7 +1308,7 @@ void Engine::CalculateStep()
 		}
 	}
 	else if(doClick && isRightClick)
-		ai.IssueMoveTarget(player, clickPoint + newCenter);
+		ai.IssueMoveTarget(player, clickPoint + newCenter, player.GetSystem());
 	
 	if(alarmTime)
 		--alarmTime;

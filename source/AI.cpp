@@ -97,11 +97,12 @@ void AI::IssueShipTarget(const PlayerInfo &player, const std::shared_ptr<Ship> &
 
 
 
-void AI::IssueMoveTarget(const PlayerInfo &player, const Point &target)
+void AI::IssueMoveTarget(const PlayerInfo &player, const Point &target, const System *moveToSystem)
 {
 	Orders newOrders;
 	newOrders.type = Orders::MOVE_TO;
 	newOrders.point = target;
+	newOrders.targetSystem = moveToSystem;
 	IssueOrders(player, newOrders, "moving to the given location.");
 }
 
@@ -826,7 +827,15 @@ bool AI::FollowOrders(Ship &ship, Command &command) const
 	}
 	
 	shared_ptr<Ship> target = it->second.target.lock();
-	if(type == Orders::MOVE_TO && ship.Position().Distance(it->second.point) > 20.)
+	if(type == Orders::MOVE_TO && it->second.targetSystem && ship.GetSystem() != it->second.targetSystem)
+	{
+		// The desired position is in a different system.
+		DistanceMap distance(ship, it->second.targetSystem);
+		const System *to = distance.Route(ship.GetSystem());
+		ship.SetTargetSystem(to);
+		return false;
+	}
+	else if(type == Orders::MOVE_TO && ship.Position().Distance(it->second.point) > 20.)
 		MoveTo(ship, command, it->second.point, Point(), 10., .1);
 	else if(type == Orders::HOLD_POSITION || type == Orders::MOVE_TO)
 	{
