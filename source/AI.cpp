@@ -198,6 +198,13 @@ void AI::UpdateKeys(PlayerInfo &player, Command &clickCommands, bool isActive)
 				continue;
 			}
 		}
+		
+		// Jump commands force-convert in-progress MOVE_TO orders into HOLD_POSITION .
+		if(keyStuck.Has(Command::JUMP) && it->second.type == Orders::MOVE_TO)
+		{
+			newOrders.type = Orders::HOLD_POSITION;
+			it->second = newOrders;
+		}
 		++it;
 	}
 }
@@ -578,6 +585,9 @@ void AI::Step(const PlayerInfo &player)
 		{
 			// If this is an escort and it has orders to follow, no need for the
 			// AI to figure out what action it must perform.
+			// Update Hold/MoveTo positioning orders if we have reached the position
+			// or are not near the desired position.
+			ConvertPositioningOrder(*it);
 		}
 		// Hostile "escorts" (i.e. NPCs that are trailing you) only revert to
 		// escort behavior when in a different system from you. Otherwise,
@@ -818,7 +828,7 @@ bool AI::FollowOrders(Ship &ship, Command &command) const
 	// If your parent is jumping or absent, that overrides your orders unless
 	// your orders are to hold position.
 	shared_ptr<Ship> parent = ship.GetParent();
-	if(parent && type != Orders::HOLD_POSITION && type != Orders::MOVE_TO)
+	if(parent && type != Orders::HOLD_POSITION)
 	{
 		if(parent->GetSystem() != ship.GetSystem())
 			return false;
@@ -2831,5 +2841,25 @@ void AI::IssueOrders(const PlayerInfo &player, const Orders &newOrders, const st
 		Messages::Add(who + "no longer " + description);
 		for(const Ship *ship : ships)
 			orders.erase(ship);
+	}
+}
+
+
+
+void AI::ConvertPositioningOrder(Ship &ship)
+{
+	auto it = orders.find(&ship);
+	Orders &existing = orders[it->first];
+	if(existing.type == Orders::MOVE_TO)
+	{
+		// If we are nearly stopped on our desired point, convert to a HOLD_POSITION order.
+		if(ship.Position().Distance(existing.point) < 20. && ship.Velocity().Length() < .001)
+			existing.type = Orders::HOLD_POSITION;
+	}
+	else if(existing.type == Orders::HOLD_POSITION)
+	{
+		// If we have a defined target point and we are far from it, MOVE_TO it.
+		if(existing.point && ship.Position().Distance(existing.point) > 20.)
+			existing.type = Orders::MOVE_TO;
 	}
 }
