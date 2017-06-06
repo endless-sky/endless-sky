@@ -798,8 +798,13 @@ bool Ship::Move(list<Effect> &effects, list<shared_ptr<Flotsam>> &flotsam)
 	
 	if(!isInvisible)
 	{
+		// If you are forced to decloak (e.g. by running out of fuel) you can't
+		// initiate cloaking again until you are fully decloaked.
+		if(!cloak)
+			cloakDisruption = max(0., cloakDisruption - 1.);
+		
 		double cloakingSpeed = attributes.Get("cloak");
-		bool canCloak = (!isDisabled && cloakingSpeed > 0.
+		bool canCloak = (!isDisabled && cloakingSpeed > 0. && !cloakDisruption
 			&& fuel >= attributes.Get("cloaking fuel")
 			&& energy >= attributes.Get("cloaking energy"));
 		if(commands.Has(Command::CLOAK) && canCloak)
@@ -809,7 +814,14 @@ bool Ship::Move(list<Effect> &effects, list<shared_ptr<Flotsam>> &flotsam)
 			energy -= attributes.Get("cloaking energy");
 		}
 		else if(cloakingSpeed)
+		{
 			cloak = max(0., cloak - cloakingSpeed);
+			// If you're trying to cloak but are unable to (too little energy or
+			// fuel) you're forced to decloak fully for one frame before you can
+			// engage cloaking again.
+			if(commands.Has(Command::CLOAK))
+				cloakDisruption = max(cloakDisruption, 1.);
+		}
 		else
 			cloak = 0.;
 	}
