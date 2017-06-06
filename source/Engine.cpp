@@ -421,7 +421,7 @@ void Engine::Step(bool isActive)
 		else if(zoom > zoomTarget)
 			zoom = max(zoomTarget, zoom * .97);
 	}
-		
+	
 	// Draw a highlight to distinguish the flagship from other ships.
 	if(flagship && !flagship->IsDestroyed() && Preferences::Has("Highlight player's flagship"))
 	{
@@ -431,7 +431,7 @@ void Engine::Step(bool isActive)
 	}
 	else
 		highlightSprite = nullptr;
-		
+	
 	// Any of the player's ships that are in system are assumed to have
 	// landed along with the player.
 	if(flagship && flagship->GetPlanet() && isActive)
@@ -1525,7 +1525,19 @@ void Engine::HandleMouseClicks()
 {
 	// Mouse clicks can't be issued if your flagship is dead.
 	Ship *flagship = player.Flagship();
-	if(!doClick || !flagship)
+	if(!flagship)
+		return;
+	
+	// Handle escort travel orders sent via the Map.
+	if(player.HasEscortMoveToPair())
+	{
+		pair<const Point, const System *> issuedEscortMoveTo = player.GetEscortMoveToPair();
+		ai.IssueMoveTarget(player, issuedEscortMoveTo.first, issuedEscortMoveTo.second);
+		player.SetEscortMoveToPair(Point());
+	}
+	
+	// If there is no other click event, bail out.
+	if(!doClick)
 		return;
 	
 	// Check for clicks on stellar objects. Only left clicks apply, and the

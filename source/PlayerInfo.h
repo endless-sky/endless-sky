@@ -229,6 +229,10 @@ public:
 	void Harvest(const Outfit *type);
 	const std::set<std::pair<const System *, const Outfit *>> &Harvested() const;
 	
+	std::pair<const Point, const System *> GetEscortMoveToPair();
+	void SetEscortMoveToPair(const Point &targetPosition, const System *targetSystem = nullptr);
+	bool HasEscortMoveToPair() const;
+	
 	// Get or set what coloring is currently selected in the map.
 	int MapColoring() const;
 	void SetMapColoring(int index);
@@ -305,6 +309,8 @@ private:
 	std::set<const Planet *> visitedPlanets;
 	std::vector<const System *> travelPlan;
 	const Planet *travelDestination = nullptr;
+	Point escortMoveToPoint;
+	const System *escortMoveToSystem = nullptr;
 	
 	const Outfit *selectedWeapon = nullptr;
 	

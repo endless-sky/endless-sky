@@ -42,6 +42,8 @@ protected:
 	// Only override the ones you need; the default action is to return false.
 	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command) override;
 	virtual bool Click(int x, int y, int clicks) override;
+	// Prepare a MOVE_TO order for the selected escorts.
+	virtual bool RClick(int x, int y) override;
 	
 	
 private:
@@ -56,6 +58,9 @@ private:
 private:
 	int governmentY = 0;
 	int tradeY = 0;
+	
+	// Used to draw orbits and convert right-clicks into MOVE_TO positions.
+	double scale = .03;
 	
 	std::map<const Planet *, int> planetY;
 	std::map<const Planet *, Point> planets;

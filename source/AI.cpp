@@ -162,7 +162,9 @@ void AI::IssueMoveTarget(const PlayerInfo &player, const Point &target, const Sy
 	newOrders.type = Orders::MOVE_TO;
 	newOrders.point = target;
 	newOrders.targetSystem = moveToSystem;
-	IssueOrders(player, newOrders, "moving to the given location.");
+	string description = "moving to the given location";
+	description += player.GetSystem() == moveToSystem ? "." : (" in the " + moveToSystem->Name() + " system.");
+	IssueOrders(player, newOrders, description);
 }
 
 
@@ -1061,9 +1063,27 @@ bool AI::FollowOrders(Ship &ship, Command &command) const
 	{
 		// The desired position is in a different system.
 		DistanceMap distance(ship, it->second.targetSystem);
-		const System *to = distance.Route(ship.GetSystem());
-		ship.SetTargetSystem(to);
-		return false;
+		const System *from = ship.GetSystem();
+		const System *to = distance.Route(from);
+		// This system may be entirely inaccessible, or behind an accessible wormhole.
+		if(to && !to->Neighbors().count(from))
+		{
+			for(const StellarObject &object : from->Objects())
+				if(object.GetPlanet() && object.GetPlanet()->WormholeDestination(from) == to)
+				{
+					ship.SetTargetStellar(&object);
+					ship.SetTargetSystem(nullptr);
+					break;
+				}
+		}
+		else
+			ship.SetTargetSystem(to);
+		
+		// Travel there even if your parent is not planning to travel.
+		if(to)
+			MoveIndependent(ship, command);
+		else
+			return false;
 	}
 	else if(type == Orders::MOVE_TO && ship.Position().Distance(it->second.point) > 20.)
 		MoveTo(ship, command, it->second.point, Point(), 10., .1);
@@ -1265,6 +1285,7 @@ void AI::MoveEscort(Ship &ship, Command &command) const
 	// "parent" to land (because the parent may not be planning on landing).
 	if(systemHasFuel && !ship.JumpsRemaining())
 		Refuel(ship, command);
+	// Parent may have issued a MOVE_TO command to another system.
 	else if(!parentIsHere && !isStaying)
 	{
 		if(ship.GetTargetStellar())

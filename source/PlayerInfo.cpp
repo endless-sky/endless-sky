@@ -2049,6 +2049,28 @@ const set<pair<const System *, const Outfit *>> &PlayerInfo::Harvested() const
 
 
 
+pair<const Point, const System *> PlayerInfo::GetEscortMoveToPair()
+{
+	return make_pair(escortMoveToPoint, escortMoveToSystem);
+}
+
+
+
+bool PlayerInfo::HasEscortMoveToPair() const
+{
+	return escortMoveToSystem && escortMoveToPoint.Length();
+}
+
+
+
+void PlayerInfo::SetEscortMoveToPair(const Point &targetPosition, const System *targetSystem)
+{
+	escortMoveToSystem = targetSystem;
+	escortMoveToPoint = targetPosition;
+}
+
+
+
 // Get what coloring is currently selected in the map.
 int PlayerInfo::MapColoring() const
 {

@@ -14,6 +14,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Color.h"
 #include "Command.h"
+#include "Dialog.h"
 #include "Font.h"
 #include "FontSet.h"
 #include "Format.h"
@@ -275,6 +276,33 @@ bool MapDetailPanel::Click(int x, int y, int clicks)
 	MapPanel::Click(x, y, clicks);
 	if(selectedPlanet && !selectedPlanet->IsInSystem(selectedSystem))
 		selectedPlanet = nullptr;
+	return true;
+}
+
+
+
+bool MapDetailPanel::RClick(int x, int y)
+{
+	if(!selectedSystem)
+		return true;
+	else if(x >= Screen::Right() - 240 && y >= Screen::Top() + 10 && y <= Screen::Top() + 270)
+	{
+		const Point orbitCenter(Screen::TopRight() + Point(-120., 160.));
+		if((Point(x, y) - orbitCenter).Length() > 130)
+			return true;
+		
+		// Only issue movement orders if the player is in flight.
+		if(player.GetPlanet())
+			GetUI()->Push(new Dialog("You cannot issue fleet movement orders while docked."));
+		else if(!player.HasVisited(selectedSystem))
+			GetUI()->Push(new Dialog("You must visit this system before you can move your fleet there."));
+		else
+		{
+			Point destinationPos = (Point(x, y) - orbitCenter) / scale;
+			player.SetEscortMoveToPair(destinationPos, selectedSystem);
+		}
+	}
+	
 	return true;
 }
 
@@ -586,7 +614,7 @@ void MapDetailPanel::DrawOrbits()
 		maxDistance = max(maxDistance, object.Position().Length() + object.Radius());
 	
 	// 2400 -> 120.
-	double scale = .03;
+	scale = .03;
 	maxDistance *= scale;
 	
 	if(maxDistance > 115.)
