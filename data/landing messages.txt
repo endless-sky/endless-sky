@@ -54,3 +54,4 @@
 "landing message" "You are not sure what this is, but it's not something you can land on."
 	"planet/wisp"
 	"planet/wormhole"
+	"planet/wormhole-red"
