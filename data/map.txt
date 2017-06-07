@@ -26475,7 +26475,7 @@ planet Sundrinker
 planet Sunracer
 	attributes core urban factory farming fishing frontier
 	landscape land/myrabella8
-	description `Sunracer is home of Megaparsec, Inc., a shipyard that specializes in designing fast, lightweight ships. It is a well-settled planet with a population of nearly half a billion, and a diverse economy that includes farming and fishing in addition to the shipyards.`
+	description `Sunracer is home of Megaparsec Inc., a shipyard that specializes in designing fast, lightweight ships. It is a well-settled planet with a population of nearly half a billion, and a diverse economy that includes farming and fishing in addition to the shipyards.`
 	description `	Outside the cities, large regions of undeveloped land still remain. Hovercraft racing is a major local sport, and some massive and elaborate courses have been constructed in the wilderness.`
 	spaceport `On Sunracer, the spaceport and shipyard are one and the same. As you walk among the landing pads and hangars, it is not immediately clear which ships are visiting starships undergoing minor repairs, and which are new ones under construction. A series of enormous cranes tower over one section of landing pads. From them hang hull fragments, engines, and even a few small ships, each being swung from one location within the shipyard to another. Meanwhile, forklifts and flatbed trucks are weaving between the buildings in every direction.`
 	shipyard "Basic Ships"
