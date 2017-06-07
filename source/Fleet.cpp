@@ -31,6 +31,13 @@ using namespace std;
 
 
 
+Fleet::Fleet()
+{
+	government = GameData::Governments().Get("Merchant");
+	names = GameData::Phrases().Get("civilian");
+}
+
+
 void Fleet::Load(const DataNode &node)
 {
 	if(node.Size() >= 2)
