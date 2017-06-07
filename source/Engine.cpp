@@ -855,6 +855,39 @@ void Engine::EnterSystem()
 				planet->Bribe(mission.HasFullClearance());
 		}
 	
+	// If the system contains a mission destination or waypoint,
+	// show a message
+	for(const Mission &mission : player.Missions())
+	{
+		// No message about a mission the player should not be aware of
+		if(!mission.IsVisible())
+			continue;
+		
+		const Planet *destination = mission.Destination();
+		if(destination->GetSystem() == system)
+		{
+			// Don't notify about incomplete bounties
+			bool npcsComplete = true;
+			for(const NPC &npc : mission.NPCs())
+				if(!npc.HasSucceeded(player.GetSystem()))
+				{
+					npcsComplete = false;
+					break;
+				}
+			
+			if(npcsComplete)
+				Messages::Add("You have a stop to make on "
+							  + destination->Name() + ".");
+		}
+		else
+		{
+			for(const Planet *stopover : mission.Stopovers())
+				if(stopover->GetSystem() == system)
+					Messages::Add("You have a stop to make on " +
+								  stopover->Name());
+		}
+	}
+
 	asteroids.Clear();
 	for(const System::Asteroid &a : system->Asteroids())
 	{
