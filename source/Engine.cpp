@@ -1011,7 +1011,7 @@ void Engine::CalculateStep()
 	}
 	
 	if(!wasHyperspacing && flagship && flagship->IsEnteringHyperspace())
-		Audio::Play(Audio::Get(flagship->IsUsingJumpDrive() ? "jump drive" : "hyperdrive"));
+		Audio::Play(Audio::Get(flagship->WillUseJumpDrive() ? "jump drive" : "hyperdrive"));
 	
 	if(flagship && player.GetSystem() != flagship->GetSystem())
 	{

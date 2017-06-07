@@ -198,7 +198,9 @@ public:
 	bool IsHyperspacing() const;
 	// Check if this ship is hyperspacing, specifically via a jump drive.
 	bool IsUsingJumpDrive() const;
-	// Check if this ship is currently able to enter hyperspace to it target.
+	// Check if this ship is ready to hyperspace via a jump drive
+	bool WillUseJumpDrive() const;
+	// Check if this ship is currently able to enter hyperspace to its target.
 	bool IsReadyToJump() const;
 	
 	// Check if the ship is thrusting. If so, the engine sound should be played.
