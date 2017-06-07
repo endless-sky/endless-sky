@@ -1,0 +1,673 @@
+# Copyright (c) 2014-2016 by Michael Zahniser
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+
+
+# EVENTS
+event "watching watcher"
+	system Algieba
+		fleet "Small Republic" 1400
+		fleet "Large Republic" 5000
+		fleet "Small Southern Merchants" 480
+		fleet "Small Northern Merchants" 960
+		fleet "Large Southern Merchants" 720
+		fleet "Large Northern Merchants" 1200
+		fleet "Navy Surveillance" 4800
+		fleet "Drug Runners" 6000
+
+event "watcher watchout"
+	system Algieba
+		fleet "Small Republic" 1200
+		fleet "Large Republic" 4300
+		fleet "Small Southern Merchants" 440
+		fleet "Small Northern Merchants" 880
+		fleet "Large Southern Merchants" 660
+		fleet "Large Northern Merchants" 1100
+		fleet "Navy Surveillance" 7800
+		fleet "Drug Runners" 9600
+	planet Watcher
+		attributes "dirt belt" research moon military
+		landscape land/hills4
+		description `Watcher is a small moon, the only world in this system that sustains any indigenous life. Because of the low gravity, humans have not yet built a permanent settlement here, but it has become host to a small military outpost to deter poaching of its low-gravity life forms. There are forests here where the trees grow over two hundred meters tall.`
+		"required reputation" 10
+		security 0.6
+		tribute 100
+			threshold 3500
+			fleet "Small Republic" 8
+
+event "lab on watcher"
+	system Algieba
+		trade Food 500
+		trade Clothing 354 
+		trade Metal 264
+		trade Plastic 454
+		trade Equipment 642
+		trade Medical 593
+		trade Industrial 649
+		trade Electronics 729
+		trade "Heavy Metals" 1065
+		trade "Luxury Goods" 1338
+	planet Watcher
+		attributes "dirt belt" research moon military
+		landscape land/hills4
+		description `Watcher is a small moon, the only world in this system that sustains any indigenous life. Because of the low gravity, there are forests here where the trees grow over two hundred meters tall.`
+		description `	The Navy has built a small surveillance outpost to deter poaching, and a small permanent settlement has begun sprouting around the new University of Hermes Frank Moore Research Laboratory.`
+		spaceport `The spaceport is little more than a few poured concrete slabs near the outpost and laboratory. A small general store acts as the tiny moon's marketplace.`
+		"required reputation" 10
+		security 0.6
+		tribute 300
+			threshold 3500
+			fleet "Small Republic" 8
+			fleet "Small Deep" 4
+
+event "knockout gas available"
+	outfitter "Lovelace Advanced"
+		"Knockout Gas"
+
+
+
+# FLEETS
+fleet "Drug Runners"
+	government "Pirate"
+	names "pirate"
+	cargo 3 5
+	personality
+		timid plunders
+	variant 5
+		"Argosy"
+	variant 3
+		"Argosy (Blaster)"
+	variant 2
+		"Argosy (Laser)"
+	variant 2
+		"Argosy (Missile)"
+	variant 2
+		"Argosy (Turret)"
+	variant 1
+		"Modified Argosy"
+	variant 1
+		"Modified Argosy (Heavy)"
+	variant 1
+		"Modified Argosy (Laser)"
+	variant 1
+		"Modified Argosy (Missile)"
+	variant 4
+		"Clipper"
+	variant 2
+		"Clipper (Heavy)"
+	variant 2
+		"Clipper (Speedy)"
+	variant 2
+		"Clipper"
+		"Hawk"
+	variant 1
+		"Clipper (Heavy)"
+		"Hawk (Rocket)"
+	variant 1
+		"Clipper (Speedy)"
+		"Hawk (Speedy)"
+	variant 3
+		"Argosy"
+		"Hawk"
+	variant 1
+		"Argosy (Blaster)"
+		"Hawk (Rocket)"
+	variant 1
+		"Argosy (Laser)"
+		"Hawk (Speedy)"
+	variant 1
+		"Argosy (Turret)"
+		"Hawk (Speedy)"
+	variant 1
+		"Argosy (Missile)"
+		"Hawk (Rocket)"
+	variant 1
+		"Modified Argosy"
+		"Sparrow" 2
+	variant 1
+		"Modified Argosy (Heavy)"
+		"Sparrow" 2
+	variant 1
+		"Modified Argosy (Laser)"
+		"Sparrow" 2
+	variant 1
+		"Modified Argosy (Missile)" 2
+	variant 8
+		"Bastion (Cargo)"
+	variant 3
+		"Modified Argosy (Heavy)" 2
+	variant 4
+		"Bastion (Cargo)"
+		"Modified Argosy (Heavy)" 2
+
+
+
+# JOBS
+mission "Researchers to Watcher"
+	name "Bring researchers to the lab on Watcher"
+	job
+	repeat
+	description "This team of <bunks> researchers is traveling to the Frank Moore Laboratory. They will pay you <payment> to take them there."
+	passengers 2 8 .3
+	to offer
+		random < 50
+		has "event: lab on watcher"
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		attributes "research" "urban"
+		near Algieba 2 35
+	destination Watcher
+	on complete
+		payment
+		payment 3000
+		"research teams" ++
+		dialog "The research team you have been transporting departs your ship after paying you <payment>."
+
+
+
+# MISSIONS
+mission "Expedition to Watcher 1"
+	name "Expedition to Watcher"
+	description "Transport a team of scientists to <planet> to gather biological specimens."
+	minor
+	source Hermes
+	destination Watcher
+	to offer
+		"passenger space" >= 4
+	passengers 4
+
+	on offer
+		conversation
+			`Several scientists approach you and ask if you would be willing to take them to the uninhabited moon <planet> and then back home from there. "We're collecting biological specimens - we'll need you to reserve ten tons of cargo space."`
+			choice
+				`	"Sounds good. Welcome aboard."`
+					accept
+				`	"What are you paying?"`
+				`	"Sorry, I'm not heading that way."`
+					defer
+			`	"In our research grant, we budgeted for thirty-two thousand credits. I know it's not much, but..." One of the younger scientists, perhaps in his mid-thirties, excitedly interrupts, "We have reason to believe there might be novel compounds useful in anesthesia. I mean, this could be a huge medical breakthrough!"`
+			choice
+				`	"You sold me. Let's go."`
+					accept
+				`	"Sorry, but that's not worth my time."`
+					decline
+
+mission "Expedition to Watcher 2"
+	landing
+	name "Expedition to Watcher"
+	description "Transport the scientists and their cargo of biological specimens back home to <planet>."
+	source Watcher
+	destination Hermes
+	to offer
+		has "Expedition to Watcher 1: done"
+	passengers 4
+	cargo "biological specimens" 10
+	blocked "You have reached <origin>, but you need <capacity> for the scientists' cargo. Return here when you have the required space free."
+
+	on offer
+		event "watching watcher"
+		conversation
+			`You land on a relatively flat patch of land and help the scientists load your ship with all sorts of plants, many of which are both very large and surprisingly delicate. These plants could obviously never support their own weight on most other planets. Even the tallest trees here bend in the wind like the grass did back on New Boston.`
+			`	As you begin readying your ship to return to orbit, your radar picks up the signal of several other ships taking off from the tiny moon's surface. Their signatures are easy to read: pirates.`
+				launch
+	npc
+		personality nemesis timid plunders
+		government Pirate
+		fleet "Drug Runners"
+	npc
+		personality nemesis timid plunders
+		government Pirate
+		fleet "Drug Runners"
+	npc
+		personality nemesis timid plunders
+		government Pirate
+		fleet "Drug Runners"
+
+	on complete
+		payment 32000
+		dialog `The scientists thank you for bringing them to Watcher and pay you <payment>. Although many of the specimens have already been crushed by the forces of gravity, they assure you that they had fully expected this outcome.`
+
+mission "Poachers 1"
+	name "Poachers on Watcher"
+	description "Pick up Frank Moore on <destination>."
+	minor
+	source
+		near Capella 2 5
+		government "Republic"
+	destination Hermes
+	to offer
+		has "Expedition to Watcher 2: done"
+		random < 40
+	to fail
+		has "chosen sides"
+	cargo "research equipment" 3
+
+	on offer
+		conversation
+			`As you enjoy your drink at the spaceport bar, a Naval officer in his mid-to-late thirties approaches you. He looks distinctly familiar, though you can't figure out why. "Are you Captain <last>? I was told I might find you here." Without waiting for a reply, he sits down next to you. "Commander Henry Moore. My brother Frank is a research scientist working out on Hermes, and you recently brought him..."`
+			`	"To Watcher, yeah. I thought you reminded me of someone. You're brothers?"`
+			`	"Yes, Frank's my little brother." He smiles nervously.`
+			`	"So how can I help you?"`
+			`	"My brother... wants to hire you for another trip out to Watcher, to set up some... equipment." He's clearly hiding something. Poorly.`
+			choice
+				`	"Why didn't he contact me directly?"`
+					goto question
+				`	"Spit it out. What aren't you telling me?"`
+					goto question
+				`	"Okay, where do I pick him up?"`
+					goto equip
+				`	"Sorry, I'm not heading back toward Hermes any time soon."`
+					defer
+			label equip
+			`	"Okay, where do I pick him up?" you ask cheerfully, trying to put the officer at ease.`
+			`	"He's still on Hermes. But his... I mean the equipment he needs, his research equipment, is here. Not much, just a couple tons. So you'll take that to Hermes, pick up my brother, go to Watcher..." His voice trails off.`
+			choice
+				`	"Why would his equipment be here?"`
+					goto question
+				`	"Sounds good."`
+					goto taker
+			label question
+			`	Your question leaves the officer looking deflated. "I'm not cut out for this cloak-and-dagger nonsense," he mutters to himself. He looks you straight in the eye, and suddenly seems full of the confidence you would expect of a Naval officer. "It's surveillance gear. There's been an uptick in pirate attacks in the Algieba system. The brass knows they're poaching something on the surface of Watcher; some kind of flower, I think. Psychoactive, opiate-like effects. The pirates are taking it somewhere, refining it, smuggling it out to half a dozen systems, and making a fortune. The cargo is several tons of surveillance drones; microscopic taggers. The idea is to disperse them so that when the pirates next load up on these flowers or whatever, they'll also get a bunch of drones that we can use to track to their refinery. You and Frank are supposed to act as cover, keep the pirates from guessing what we're up to." He shakes his head in exasperation. "It's always this James Bond garbage with NavInt. Double-crosses and politics and plausible deniability. It's ridiculous." He sighs and shrugs. "You in or not?"`
+			choice
+				`	(Accept)`
+					goto taker
+				`	(Decline)`
+					decline
+			label taker
+			`	"All right, sounds good."`
+			`	"Great." Commander Moore stands up and straightens his jacket before extending his hand. "Say hi to Fangie for me," he says with smile, shaking your hand.`
+				accept
+
+mission "Poachers 2"
+	landing
+	name "Poachers on Watcher"
+	description "Take Frank and the research equipment to <destination>."
+	source Hermes
+	destination Watcher
+	passengers 1
+	cargo "research equipment" 3
+	to offer
+		has "Poachers 1: done"
+	to fail
+		has "chosen sides"
+	on offer
+		conversation
+			`Frank greets you at the spaceport, as excited as you remember him. "Oh, man. I am so thrilled to be going back to Watcher. And this time on the Navy's dime!"`
+			`	A middle-aged woman you remember from the original expedition smiles and greets you as well. "I understand you are bringing our... research equipment to Watcher. Would you be willing to bring some more biological samples back with you? It wouldn't require any more space than the research equipment we're leaving there, and we can pay a bit better for it this time - we applied for a new grant as soon as Dr. Moore told us about... as soon as he told us."`
+			`	Rolling his eyes, Frank says "As soon as I told you about the Navy's super-secret plan to spy on the pirates. Jeez, yes. Anyway, we can give you twenty thousand for three tons. That's a pretty sweet deal, right? So, can we bring back some more of those awesome ferns?"`
+			choice
+				`	"At that price? Absolutely."`
+					accept
+				`	"The Navy's what now?"`
+			`"That research equipment? It's three tons of microscopic surveillance drones. We're supposed to dump 'em out the airlock on descent to the planet. They're like spores, except they have their own servos, so they can stay aloft much longer than mushroom spunk. Something about the pirates we ran into last time; apparently, they're as interested in Watcher's ferns as we are. Mostly for the same reasons, probably. So, we got a deal?"`
+			choice
+				`	"Sure."`
+					accept
+				`	"This is all getting a bit too shady for me."`
+					decline
+
+mission "Poachers 3"
+	landing
+	name "Poachers on Watcher"
+	description "Return Frank and his ferns to <planet>."
+	source Watcher
+	destination Hermes
+	passengers 1
+	cargo "psychoactive ferns" 3
+	to offer
+		has "Poachers 2: done"
+	to fail
+		has "chosen sides"
+	on offer
+		conversation
+			`While you descend, Frank disperses the research equipment into the lower atmosphere. You then spend the next several hours helping him cut and load your ship with more huge, delicate fern fronds.`
+				accept
+	npc
+		personality nemesis waiting
+		government Pirate
+		fleet "Small Southern Pirates" 2
+
+	on complete
+		payment
+		payment 60000
+		dialog
+			`You wish Frank good luck with his research on the psychoactive ferns. Between the Navy and Dr. Moore's university, you walk away with an extra <payment> in your account.`
+
+mission "Outpost on Watcher 1"
+	landing
+	name "Commander Moore's mystery delivery"
+	description "Visit Commander Moore on <planet> before <date>."
+	deadline 14
+	source
+		government Republic
+		attributes "near Earth" paradise north deep
+	destination
+		distance 2 6
+		near Algieba 2 6
+		government Republic
+		attributes factory
+	to offer
+		not "chosen sides"
+		has "event: war begins"
+		has "Poachers 3: done"
+		random < 35
+	to fail
+		has "chosen sides"
+	on offer
+		dialog
+			`You receive a message from Naval Commander Henry Moore. "The Navy has a delivery job if you're interested. I can't give you any details right now, but I can only hold on to this job for another two weeks. If you're interested, come visit me on <planet> before <day>."`
+	on fail
+		event "watcher watchout" 180
+	on decline
+		event "watcher watchout" 180
+
+mission "Outpost on Watcher 2"
+	landing
+	name "Outpost on Watcher"
+	description "Escort a convoy of civilian contractors to Watcher"
+	source
+		government Republic
+	destination Watcher
+	passengers 1
+	to offer
+		has "Outpost on Watcher 1: done"
+	to fail
+		has "chosen sides"
+	on offer
+		conversation
+			`Commander Moore greets you at the spaceport. He seems to have aged significantly since last you saw him. "Glad you could make it, Captain <last>. I was not looking forward to vetting an unknown."`
+			`	"Not a problem," you reply. "So what's the job?"`
+			`	"We're setting up an outpost on Watcher. Ordinarily, this is a job we'd do ourselves, but with this whole 'Free Worlds' fiasco... we're using a merchant captain to ferry civilian contractors to set up a military base on an uninhabited moon." Despite his exasperation, there is no hostility in his voice. "We're not expecting any trouble, but the Navy won't even spare me a gunboat as an escort. That's where you come in, assuming you're willing to play shepherd."`
+			choice
+				`	"Sure."`
+					goto also
+				`	"I don't think so."`
+			branch free
+				has "FW Recon 2: done"
+			`	"You understand that this outpost is getting built with or without your help, right?"`
+				goto second
+			label free
+			`	"Listen, <first>, NavInt knows you've been doing work for the so-called Free Worlds. They said I couldn't trust you, but I think you're just a good Samaritan, helping people out however you can."`
+			label second
+			`	"Are you sure you don't want some extra pocket change and the goodwill of the Republic Navy? Or did you really come here to waste my time?"`
+			choice
+				`	"Well, when you put it like that..."`
+					goto also
+				`	"I am sorry to have bothered you, Commander."`
+					decline
+			label also
+			`	"Great. You'll be escorting three ships to Watcher: two haulers and a heavy shuttle. Oh, and Lieutenant Fletcher will be riding with you. She'll be overseeing the construction, but there isn't enough room for her on the shuttle with the workers. She'll pay you when you arrive."`
+				accept
+	npc accompany save
+		government Merchant
+		personality escort timid
+		fleet
+			names "civilian"
+			variant
+				"Hauler II" 2
+				"Heavy Shuttle"
+	npc
+		government Pirate
+		personality plunders
+		system Algieba
+		fleet "Drug Runners"
+
+	on visit
+		dialog
+			"You've arrived on <planet>, but you left the convoy behind. Better depart and wait for them to arrive in this star system."
+
+	on complete
+		event "watcher watchout" 90
+		payment
+		payment 75000
+		dialog
+			`Lieutenant Fletcher hands you <payment> for the safe transport of the convoy. "Hopefully we'll have this outpost up and running in a few months. You should drop by," she says with a smile.`
+	on decline
+		event "watcher watchout" 180
+	on fail
+		event "watcher watchout" 270
+
+mission "Laboratory on Watcher 1"
+	name "Build a research lab on Watcher"
+	description "Pick up prefab building materials on <planet> and deliver them to Watcher."
+	source Hermes
+	destination
+		near Algieba 2 10
+		attributes factory
+	to offer
+		has "event: watcher watchout"
+		"cargo space" > 260
+		"passenger space" > 24
+	passengers 24
+	on offer
+		conversation
+			`Shortly after landing, a young woman in a lab coat approaches you. "Captain <last>? My name is Christina Gonzales; I work with Doctor Moore over at the university. Now that the military has an outpost on Watcher, we were thinking it might be a good time to build a small research laboratory there. Would you be interested in helping us set it up?"`
+			choice
+				`	"Sure, how can I help?"`
+				`	"Sorry, I'm a bit busy at the moment."`
+					defer
+				`	"No, but thank you."`
+					event "lab on watcher" 365
+					decline
+			`	"We have two dozen construction workers here that need transportation and an order for 260 tons of prefab building materials waiting on <planet> for delivery. We'll be able to pay you 600000. Is that okay?"`
+			choice
+				`	"Sounds good."`
+					accept
+				`	"Sorry, but no."`
+					event "lab on watcher" 365
+					decline
+	on fail
+		event "lab on watcher" 365
+
+mission "Laboratory on Watcher 2"
+	landing
+	name "Build a research lab on Watcher"
+	description "Deliver prefab building materials and construction workers to Watcher."
+	source
+		government Republic "Free Worlds" Neutral Syndicate
+	destination Watcher
+	to offer
+		has "Laboratory on Watcher 1: done"
+	passengers 24
+	cargo "prefabricated building materials" 260
+	blocked "You have reached <origin>, but you need <capacity> for the building materials and space for the <bunks> construction workers. Return here when you have the required space free."
+	on offer
+		conversation
+			`You supervise as the prefabricated modules are loaded onto your ship.`
+				accept
+	on complete
+		payment 600000
+		event "lab on watcher" 180
+		dialog "The construction workers unload the materials for the new research lab, which they estimate should be completed within the next six months or so. The foreman hands you the <payment> promised you by the university."
+	on fail
+		event "lab on watcher" 365
+
+mission "Knockout Gas 1
+	name "Top Secret Research"
+	landing
+	description "Bring some top secret research to the home of Lovelace Labs, <destination>."
+	cargo "research material" 15
+	to offer
+		has "Laboratory on Watcher 2: done"
+		"research teams" >= 4
+	source Watcher
+	destination Ada
+	cargo "opioid compoounds" 25
+	on offer
+		conversation
+			`Shortly after landing, you receive a message from Dr. Gonzales, from the research lab. "Captain <last>, what fantastic timing! Do you have time to drop by the lab to discuss a possible delivery job?"
+			choice
+				`	(Accept)`
+				`	(Decline)`
+					event "knockout gas available" 75
+					decline
+			`	As you take the short stroll from your ship to the research laboratory, you marvel at just how quickly Watcher has gone from uninhabitted moon to top-notch research facility. The amount of money that must be pouring into the research facilities boggles your mind, and you momentarily wonder which of the corporations hold the most strings. Certainly Lovelace has their hand in the ring - their ties to the University of Hermes are well-known. Rumors throughout the Dirt Belt hold that the Navy has their thumb in the pie as well. But many people seem convinced that Megaparsec, the Syndicate, Lionheart, and even the governments of the Deep are all engaged in a little "friendly" espionage out here on Watcher.`
+			branch both
+				has "Poachers 3: done"
+			`	You try to push the politics to the side of your mind as you are greeted at the entrance to the laboratory by Dr. Gonzales. "Good to see you again Captain <last>. As she leads you back to her office, she begins filling you in on more of the details: "We've been working with Lovelace Laboratories and have managed to isolate some of the opioid compounds in the Custodis cyathea rupertis. More intriguing, however, is that we believe we have found a way to weaponize these compounds, giving us a gas that could safely knock out a man in mere seconds."`
+			`	"Unfortunately," she continues, "Lovelace Labs isn't the only group interested in such a compound. We have already gotten some veiled threats from a few... interested parties. Because of the trouble with the Free Worlds, the Navy is unwilling to spare any ships for a delivery run, even though Lovelace expects the Navy to be their primary client for the final product. So it won't be easy," she concludes, "but if you can get it to Lovelace, they've agreed to give you 'first dibs' on the eventual product in addition to 90,000 credits."`
+				goto either
+			label both
+			`	You try to push the politics to the side of your mind as you are greeted at the entrance to the laboratory by Doctors Gonzales and Moore.`
+			`	Frank rushes forward to greet you. "<first>, it's so good to see you again! Can you believe they named this place after me?"`
+			`	Smiling, Christina retorts, "The nepotism is strong with this one."`
+			`	They lead you back to their offices, bantering the whole way. Once there, they have you sit and Dr. Moore begins filling you in on more of the details: "We've been working with Lovelace Laboratories and have managed to isolate some of the opioid compounds in the Custodis cyathea rupertis. What's more, a good friend of mine on Lovelace believes he can weaponize these compounds, giving us a gas that could knock out a man in mere seconds. Safely!"`
+			`	"Unfortunately," Dr. Gonzales continues, "Lovelace Labs isn't the only group interested in such a compound. We have already gotten some veiled threats from a few... interested parties. Because of the trouble with the Free Worlds, the Navy is unwilling to spare any ships for a delivery run, even though Lovelace expects the Navy to be their primary client for the final product."`
+			`	"So it won't be easy," concludes Frank, "but if you can get it to Lovelace, they've agreed to give you 'first dibs' on the eventual product in addition to 90,000 credits."`
+				goto either
+			label either
+			`	Dr. Gonzalez looks at you expectantly. "Can we count on you?"`
+			choice
+				`	(Accept.)`
+					accept
+				`	(Decline.)`
+					decline
+	npc
+		government Pirate
+		personality plunders waiting
+		system Algieba
+		fleet "Drug Runners"
+	npc
+		government Pirate
+		personality plunders waiting
+		system Talita
+		fleet "Drug Runners"
+	npc
+		government Pirate
+		personality plunders waiting
+		system Capella
+		fleet "Drug Runners"
+	on complete
+		payment 90000
+		event "knockout gas available" 30
+		dialog
+			`Some representatives of Lovelace Labs unload their chemical compounds from your ship and hand you your payment of <payment>. "We'll let you know when we have some new products available.`
+
+mission "Knockout Gas 2"
+	landing
+	to offer
+		has "event: knockout gas available"
+		has "Knockout Gas 1: done"
+	destination Ada
+	on offer
+		conversation
+			`You receive a message from Lovelace Labs: "We are pleased to inform you that we have developed some knock-out gas that is now available for purchase. It should make commandeering pirate ships significantly easier for you. Please accept our sincerest thanks."`
+				decline
+
+mission "Bootleggers 1"
+	name "Drug runners on Trinket"
+	description "Bring Lt. Debra Kinder to <destination>."
+	minor
+	passengers 1
+	to offer
+		not "chosen sides"
+		has "Poachers 3: done"
+		not "Outpost on Watcher 1: active"
+		not "Outpost on Watcher 2: active"
+	source
+		government "Republic"
+		attributes "military"
+	destination Bourne
+	on offer
+		conversation
+			`Walking through the spaceport, you are approached by a young woman in a Naval uniform. "Captain <last>? Lieutenant Debra Kinder. Commander Moore tells me that you are to thank for helping us track down the poachers from Watcher. Unfortunately, we tracked them to Tinker, behind enemy lines."
+			branch double
+				has "FW Recon 3: done"
+			`	"We want to bring these criminals to justice, but with this war going on..." she trails off.`
+				goto offer
+			label double
+			`	"Commander Moore is still vouching for you with NavInt, despite the fact that you've been working with the Southern Alliance.`
+			label offer
+			`	"I need independent transport to <destination> so I can discuss the possibility of extradition with the so-called authorities there. The Navy can offer <payment> for this service. Can I count on you?"`
+			choice
+				`	(Accept.)`
+					accept
+				`	(Decline.)`
+					decline
+	on complete
+		payment 1000 150
+		dialog
+			`Lt. Kinder goes off to discuss the poacher situation with the leadership of the Free Worlds. "With any luck, I'll need an escort ship. If you're interested, stop by the space port before leaving."`
+
+mission "Bootleggers 2"
+	name "Drug runners on Trinket"
+	description "Escort Lt. Kinder and the <npc> to Trinket to apprehend the bootleggers, then deliver them to their fate on <destination>."
+	minor
+	passengers 1
+	source Bourne
+	stopover Trinket
+	destination "Huginn Station"
+	to offer
+		has "Bootleggers 1: done"
+	npc
+		government Pirate
+		personality nemesis staying
+		system Sargas
+		fleet "Drug Runners"
+	npc
+		government Pirate
+		personality nemesis staying
+		system Algieba
+		fleet "Drug Runners"
+	npc accompany save
+		government Militia
+		personality escort timid
+		fleet
+			names "militia"
+			variant
+				"Bastion"
+			variant
+				"Bastion (Heavy)"
+			variant
+				"Bastion (Laser)"
+	on offer
+		dialog
+			`Lieutenant Kinder greets you in the spaceport. "The <npc> is going to quarterback the extraction on Trinket, then transport the prisoners to <destination>, and the Navy is willing to pay you <payment>. You willing to be our escort?"`
+	on stopover
+		dialog
+			`The militia captain you've been escorting coordinates with the authorities on Trinket. After a brief siege and police shootout, the prisoners are placed aboard the <npc>. Their next stop: the prison at Huginn Station.`
+	on visit
+		dialog
+			`You've arrived on <planet>, but you left the <npc> behind. Better depart and wait for them to arrive in this star system.`
+	on complete
+		payment 250000 275
+		dialog
+			`The <npc> unloads the prisoners. Lt. Kinder thanks you for your assistance, and pays you <payment>.`
+
+
+
+# OUTFITS
+outfit "Knockout Gas"
+	category "Hand to Hand"
+	cost 400000
+	thumbnail "outfit/nerve gas"
+	"capture attack" 2.1
+	"capture defense" .5
+	description "Researchers from Lovelace Labs have found a way to weaponize the chemical compounds derived from some of the psychoactive plants of Watcher. Though not quite as powerful as nerve gas, knockout gas is considerably more humane."
+
+
+
+# VARIANTS
+ship "Bastion" "Bastion (Cargo)"
+	outfits
+		"A525 Atomic Steering"
+		"A370 Atomic Thruster"
+		"Meteor Missile Launcher" 4
+		"Meteor Missile" 140
+		"Modified Blaster Turret" 3
+		"Scram Drive"
+		"Breeder Reactor"
+		"LP072a Battery Pack"
+		"D94-YV Shield Generator"
+		"Fuel Pod"
+		"Ramscoop"
+		"Cargo Expansion" 2
+		"Interference Plating" 2
+		"Security Station" 3
+		"Laser Rifle" 35
