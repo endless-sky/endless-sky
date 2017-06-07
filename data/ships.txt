@@ -1642,6 +1642,61 @@ ship "Hauler III"
 
 
 
+ship "Hauler Z"
+	sprite "ship/hauler z"
+	attributes
+		category "Light Warship"
+		"cost" 530000
+		"shields" 2100
+		"hull" 2200
+		"required crew" 3
+		"bunks" 12
+		"mass" 140
+		"drag" 9.5
+		"heat dissipation" .6
+		"fuel capacity" 400
+		"cargo space" 0
+		"outfit space" 350
+		"weapon capacity" 140
+		"engine capacity" 80
+		weapon
+			"blast radius" 40
+			"shield damage" 400
+			"hull damage" 200
+			"hit force" 600
+	outfits
+		"Meteor Missile Launcher" 2
+		"Meteor Missile" 70
+		"Quad Blaster Turret" 2
+		"Heavy Anti-Missile Turret" 2
+		
+		"S3 Thermionic"
+		"LP072a Battery Pack"
+		"D23-QP Shield Generator"
+		"Small Radar Jammer"
+		"Liquid Nitrogen Cooler"
+		
+		"Greyhound Plasma Thruster"
+		"Impala Plasma Steering"
+		"Hyperdrive"
+		
+	engine -45 87
+	engine 45 87
+	gun -15 -56
+	gun 15 -56
+	turret -26 -14 "Quad Blaster Turret"
+	turret 26 -14 "Heavy Anti-Missile Turret"
+	turret -19 42 "Heavy Anti-Missile Turret"
+	turret 19 42 "Quad Blaster Turret"
+	explode "tiny explosion" 30
+	explode "small explosion" 45
+	explode "medium explosion" 10
+	"final explode" "final explosion small"
+	description "The Hauler Z is the smallest thinkable Hauler. Introduced only two years after the Hauler freighter, the ship's name derives from the fact that this warship has zero cargo space. In the decades following its release, the Hauler Z saw widespread service in the first Republic military. This ship has recently returned to prominence in the South, fueled in part by the militia's need for a dedicated light warship to suppress the growing pirate presence in the sector."
+	description "	Because of its great combat ability, the Hauler Z is extremely cost effective, delivering an inordinate amount of firepower for an affordable price. Some small convoys utilize the Hauler Z as a cheap and robust defensive platform to fend off attacks. Larger convoys often rely on the newer Bastion series."
+	
+
+
 ship "Hawk"
 	sprite "ship/hawk"
 	attributes
