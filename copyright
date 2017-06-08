@@ -166,7 +166,7 @@ License: public-domain
  From NASA, and therefore in the public domain because they were created by
  government employees while doing work for the government.
 
-Files: images/planet/fwg*
+Files: images/planet/*-fwg*
 Copyright: Frederick Goy IV (https://github.com/comnom)
 License: CC-BY-SA-4.0
 Comment: Derived from public domain NASA images.
