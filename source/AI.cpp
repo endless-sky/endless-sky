@@ -185,13 +185,13 @@ void AI::UpdateKeys(PlayerInfo &player, Command &clickCommands, bool isActive)
 		newOrders.target = player.FlagshipPtr();
 		IssueOrders(player, newOrders, "gathering around your flagship.");
 	}
-	// Get rid of any invalid orders.
+	// Get rid of any invalid orders. Carried ships will retain orders in case they are deployed.
 	for(auto it = orders.begin(); it != orders.end(); )
 	{
 		if(it->second.type & Orders::REQUIRES_TARGET)
 		{
 			shared_ptr<Ship> ship = it->second.target.lock();
-			if(!ship || !ship->IsTargetable() || ship->GetSystem() != it->first->GetSystem()
+			if(!ship || !ship->IsTargetable() || (it->first->GetSystem() && ship->GetSystem() != it->first->GetSystem())
 					|| (ship->IsDisabled() && it->second.type == Orders::ATTACK))
 			{
 				it = orders.erase(it);
