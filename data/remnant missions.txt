@@ -1,0 +1,63 @@
+# Copyright (c) 2017 by Michael Zahniser
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+
+mission "First Contact: Remnant"
+	landing
+	invisible
+	source
+		government "Remnant"
+	on offer
+		conversation
+			`Although they are unusually tall and dark-skinned, the people here appear to be human. You wouldn't know it from the architecture, however: the buildings with their curved, twisted surfaces and ramifying arches look more alien than any human dwelling you have seen before.`
+			`	Stranger still, no one is speaking: the usual background murmur of voices that you would associate with a spaceport is absent here. Instead, the locals are communicating in a rapid and graceful sign language, their hands tracing arcs through the air almost faster than your eyes can follow.`
+			`	A few of them approach your ship and one of them greets you out loud, but instead of speaking he sings the words in a high, monotone chant: "Do you comprehend the ancestral tongue?"`
+			choice
+				`	(Say, "Yes, I do.")`
+				`	(Try to chant, "Yes, I do.")`
+					goto chant
+
+			`	Their expressions are inscrutable; you aren't sure if they even understood you or not. They turn away from you for a second and converse in sign language.`
+				goto blood
+			label chant
+			`	You sing, "Yes, I do," trying to match the leader's pitch. As you do so, several of them hum notes that harmonize with you.`
+			label blood
+			`	Two of them walk up to you. One is carrying a small device that looks like a handheld scanner. The other unwraps a small foil package, pulls out a lancet, and jabs his finger with it. A dark, red drop of blood wells up. He presses his finger onto a port on the scanner, then hands you another one of the packets. "We kindly request that you identify yourself," he chants. Several of the others hum along with him.`
+			choice
+				`	(Give them a blood sample.)`
+					goto yes
+				`	(Refuse to give them a sample.)`
+					goto no
+				`	(Run back to my ship and escape from here.)`
+
+			`	You run into your airlock, slam the door shut, and blast off from the planet. Already, several of their ships are moving to intercept you. It seems that you are no longer welcome in this region of space...`
+				launch
+
+			label no
+			`	You try to pull away, but the man's hand snakes out and grabs you by the wrist. Before you are even able to react he jabs your finger and shoves it onto the scanner. "You are in our space," he sings. "You will abide by our rules." No longer a monotone, his song is a jarring and atonal melody.`
+			label yes
+			`	Several of them gather around the one with the scanner as if waiting to see what the results will be. As you watch them you notice that all of them, even the women, have their hair cropped short. Also, their clothing looks like nothing that has ever been in fashion at any point in human history that you know of.`
+			`	Finally the scanner beeps, and a yellow light flashes. You can almost feel the tension leaving the air as the crowd relaxes. "So you are pure. You are human," chants one of the women. "You are one of us."`
+			choice
+				`	"Of course I'm human. But what are human beings doing out here?"`
+				`	"Who are you?"`
+
+			`	Several of them burst into song, singing together in harmony, "We are the hidden ones. We are the Remnant. In time of great chaos to this place we came, lest all true-born humans be killed or enslaved, by those who evolved not, but unwisely were made."`
+			`	As they continue to sing, you begin to piece together their story. They are the descendants of people who fled to this region of space through an unstable wormhole at the peak of the first Alpha War, which means they have been here for more than half a millennium. That doesn't explain why their culture is so radically different, though.`
+			`	Eventually they invite you to a dinner. Their food has strange and complex flavors, not all of them pleasant, but you do your best to be polite and pretend to enjoy it all. After the meal, they entertain you by singing songs, some of which you recognize as classical Earth music. It appears that people in this culture use sign language for day to day communication, and use their voices only for making music.`
+			`	When you return to your ship, you do a search on videos of historical dialects of human sign language. None of them bear even a passing resemblance to the language of these people who call themselves the Remnant.`
+				decline
+	on accept
+		"reputation: Remnant" <?= -10
+	
+	npc kill
+		government "Remnant"
+		personality heroic coward
+		fleet "Large Remnant"
+		fleet "Large Remnant"
