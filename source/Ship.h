@@ -214,6 +214,8 @@ public:
 	void Restore();
 	// Check if this ship has been destroyed.
 	bool IsDestroyed() const;
+	// Repair this ship (e.g. because it has landed).
+	void Repair(bool atSpaceport = true);
 	// Recharge and repair this ship (e.g. because it has landed).
 	void Recharge(bool atSpaceport = true);
 	// Check if this ship is able to give the given ship enough fuel to jump.
@@ -247,6 +249,7 @@ public:
 	// Access how many crew members this ship has or needs.
 	int Crew() const;
 	int RequiredCrew() const;
+	int FillCrew() const;
 	void AddCrew(int count);
 	// Check if this is a ship that can be used as a flagship.
 	bool CanBeFlagship() const;
@@ -441,6 +444,9 @@ private:
 	Point acceleration;
 	
 	int crew = 0;
+	// Crew number as assigned by NPC specification. A value of -1 indicates no
+	// assignment.
+	int assignedCrew = -1;
 	int pilotError = 0;
 	int pilotOkay = 0;
 	

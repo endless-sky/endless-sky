@@ -187,9 +187,9 @@ void Engine::Place()
 					continue;
 				// Avoid the exploit where the player can wear down an NPC's
 				// crew by attrition over the course of many days.
-				ship->AddCrew(max(0, ship->RequiredCrew() - ship->Crew()));
+				ship->AddCrew(max(0, ship->FillCrew() - ship->Crew()));
 				if(!ship->IsDisabled())
-					ship->Recharge();
+					ship->Repair();
 				
 				if(ship->CanBeCarried())
 				{
