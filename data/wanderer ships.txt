@@ -14,6 +14,7 @@ ship "Earth Shaper"
 		category "Light Freighter"
 		licenses
 			Wanderer
+		tags alien wanderer freighter "atmosphere scan"
 		"cost" 500000
 		"hull" 3300
 		"mass" 30
@@ -51,6 +52,7 @@ ship "Flycatcher"
 		category "Drone"
 		licenses
 			Wanderer
+		tags alien wanderer
 		"cost" 830000
 		"hull" 4700
 		"mass" 40
@@ -88,6 +90,7 @@ ship "Summer Leaf"
 		category "Light Warship"
 		licenses
 			Wanderer
+		tags alien wanderer warship
 		"cost" 9500000
 		"shields" 14400
 		"hull" 6700
@@ -135,6 +138,7 @@ ship "Autumn Leaf"
 		category "Light Warship"
 		licenses
 			Wanderer
+		tags alien wanderer warship
 		"cost" 12500000
 		"shields" 18700
 		"hull" 7400
@@ -184,6 +188,7 @@ ship "Strong Wind"
 		category "Medium Warship"
 		licenses
 			"Wanderer Military"
+		tags alien wanderer warship
 		"cost" 16100000
 		"shields" 28500
 		"hull" 19600
@@ -237,6 +242,7 @@ ship "Tempest"
 		category "Medium Warship"
 		licenses
 			"Wanderer Military"
+		tags alien wanderer warship
 		"cost" 19700000
 		"shields" 42100
 		"hull" 25900
@@ -333,6 +339,7 @@ ship "Derecho"
 		category "Heavy Warship"
 		licenses
 			"Wanderer Military"
+		tags alien wanderer warship
 		"cost" 30500000
 		"shields" 53200
 		"hull" 32700
@@ -433,6 +440,7 @@ ship "Hurricane"
 		category "Heavy Warship"
 		licenses
 			"Wanderer Military"
+		tags alien wanderer warship
 		"cost" 39100000
 		"shields" 72400
 		"hull" 46500
@@ -542,6 +550,7 @@ ship "Deep River"
 		category "Heavy Freighter"
 		licenses
 			Wanderer
+		tags alien wanderer freighter
 		"cost" 18300000
 		"shields" 17600
 		"hull" 47500
@@ -684,6 +693,7 @@ ship "Deep River Transport"
 		category "Heavy Freighter"
 		licenses
 			Wanderer
+		tags alien wanderer transport
 		"cost" 18300000
 		"shields" 17600
 		"hull" 47500

@@ -12,6 +12,7 @@ outfit "Small Collector Module"
 	category "Power"
 	licenses
 		Coalition
+	tags alien coalition
 	cost 60000
 	thumbnail "outfit/small collector module"
 	"mass" 8
@@ -24,6 +25,7 @@ outfit "Large Collector Module"
 	category "Power"
 	licenses
 		Coalition
+	tags alien coalition
 	cost 300000
 	thumbnail "outfit/large collector module"
 	"mass" 28
@@ -36,6 +38,7 @@ outfit "Small Reactor Module"
 	category "Power"
 	licenses
 		Heliarch
+	tags alien coalition heliarch
 	cost 5497000
 	thumbnail "outfit/small reactor module"
 	"mass" 42
@@ -48,6 +51,7 @@ outfit "Large Reactor Module"
 	category "Power"
 	licenses
 		Heliarch
+	tags alien coalition heliarch
 	cost 17754000
 	thumbnail "outfit/large reactor module"
 	"mass" 98
@@ -60,6 +64,7 @@ outfit "Small Battery Module"
 	category "Power"
 	licenses
 		Coalition
+	tags alien coalition
 	cost 44000
 	thumbnail "outfit/small battery module"
 	"mass" 4
@@ -71,6 +76,7 @@ outfit "Large Battery Module"
 	category "Power"
 	licenses
 		Coalition
+	tags alien coalition
 	cost 340000
 	thumbnail "outfit/large battery module"
 	"mass" 18
@@ -83,6 +89,7 @@ outfit "Small Shield Module"
 	category "Systems"
 	licenses
 		Coalition
+	tags alien coalition
 	cost 84000
 	thumbnail "outfit/small shield module"
 	"mass" 11
@@ -96,6 +103,7 @@ outfit "Large Shield Module"
 	category "Systems"
 	licenses
 		Coalition
+	tags alien coalition
 	cost 553000
 	thumbnail "outfit/large shield module"
 	"mass" 39
@@ -109,6 +117,7 @@ outfit "Small Repair Module"
 	category "Systems"
 	licenses
 		Coalition
+	tags alien coalition
 	cost 64000
 	thumbnail "outfit/small repair module"
 	"mass" 6
@@ -122,6 +131,7 @@ outfit "Large Repair Module"
 	category "Systems"
 	licenses
 		Coalition
+	tags alien coalition
 	cost 553000
 	thumbnail "outfit/large repair module"
 	"mass" 21
@@ -135,6 +145,7 @@ outfit "Cooling Module"
 	category "Systems"
 	licenses
 		Coalition
+	tags alien coalition
 	cost 160000
 	thumbnail "outfit/cooling module"
 	"mass" 5
@@ -148,6 +159,7 @@ outfit "Small Thrust Module"
 	category "Engines"
 	licenses
 		Coalition
+	tags alien coalition
 	"cost" 66000
 	thumbnail "outfit/small thrust module"
 	"mass" 9
@@ -165,6 +177,7 @@ outfit "Large Thrust Module"
 	category "Engines"
 	licenses
 		Coalition
+	tags alien coalition
 	"cost" 292000
 	thumbnail "outfit/large thrust module"
 	"mass" 32
@@ -182,6 +195,7 @@ outfit "Small Steering Module"
 	category "Engines"
 	licenses
 		Coalition
+	tags alien coalition
 	"cost" 60000
 	thumbnail "outfit/small steering module"
 	"mass" 7
@@ -196,6 +210,7 @@ outfit "Large Steering Module"
 	category "Engines"
 	licenses
 		Coalition
+	tags alien coalition
 	"cost" 269000
 	thumbnail "outfit/large steering module"
 	"mass" 25

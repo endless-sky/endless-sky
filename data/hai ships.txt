@@ -12,6 +12,7 @@ ship "Aphid"
 	sprite "ship/hai aphid"
 	attributes
 		category "Light Freighter"
+		tags alien hai freighter
 		"cost" 570000
 		"shields" 1700
 		"hull" 1400
@@ -62,6 +63,7 @@ ship "Flea"
 	sprite "ship/hai flea"
 	attributes
 		category "Drone"
+		tags alien hai
 		"cost" 122400
 		"shields" 200
 		"hull" 700
@@ -93,6 +95,7 @@ ship "Lightning Bug"
 	sprite "ship/hai lightning bug"
 	attributes
 		category "Light Warship"
+		tags alien hai warship
 		"cost" 3200000
 		"shields" 6700
 		"hull" 1700
@@ -149,6 +152,7 @@ ship "Pond Strider"
 	sprite "ship/hai pond strider"
 	attributes
 		category "Medium Warship"
+		tags alien hai warship
 		"cost" 5250000
 		"shields" 10000
 		"hull" 3000
@@ -210,6 +214,7 @@ ship "Shield Beetle"
 	sprite "ship/hai shield beetle"
 	attributes
 		category "Heavy Warship"
+		tags alien hai warship
 		"cost" 17900000
 		"shields" 32000
 		"hull" 9800
@@ -351,6 +356,7 @@ ship "Solifuge"
 		category "Heavy Warship"
 		licenses
 			"Unfettered Militia"
+		tags alien hai unfettered warship
 		"cost" 22800000
 		"shields" 37800
 		"hull" 11000
@@ -510,6 +516,7 @@ ship "Violin Spider"
 	sprite "ship/hai violin spider"
 	attributes
 		category "Fighter"
+		tags alien hai unfettered
 		"cost" 139000
 		"shields" 1400
 		"hull" 600
@@ -556,6 +563,7 @@ ship "Water Bug"
 	sprite "ship/hai water bug"
 	attributes
 		category "Heavy Freighter"
+		tags alien hai freighter
 		"cost" 6500000
 		"shields" 7900
 		"hull" 4500

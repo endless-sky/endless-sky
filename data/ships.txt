@@ -12,6 +12,7 @@ ship "Aerie"
 	sprite "ship/aerie"
 	attributes
 		category "Medium Warship"
+		tags human lionheart warship
 		"cost" 3500000
 		"shields" 5700
 		"hull" 1900
@@ -67,6 +68,7 @@ ship "Argosy"
 	sprite "ship/argosy"
 	attributes
 		category "Light Freighter"
+		tags human southbound freighter
 		"cost" 1960000
 		"shields" 4200
 		"hull" 2600
@@ -121,6 +123,7 @@ ship "Arrow"
 	sprite "ship/arrow"
 	attributes
 		category "Transport"
+		tags human syndicate transport
 		"cost" 1200000
 		"shields" 2000
 		"hull" 400
@@ -170,6 +173,7 @@ ship "Bactrian"
 	sprite "ship/bactrian"
 	attributes
 		category "Heavy Warship"
+		tags human lionheart warship
 		"cost" 17600000
 		"shields" 17500
 		"hull" 8600
@@ -234,6 +238,7 @@ ship "Barb"
 	sprite "ship/barb"
 	attributes
 		category "Fighter"
+		tags human syndicate
 		"cost" 50000
 		"shields" 800
 		"hull" 200
@@ -312,6 +317,7 @@ ship "Bastion"
 	sprite "ship/bastion"
 	attributes
 		category "Medium Warship"
+		tags human southbound warship
 		"cost" 3560000
 		"shields" 6700
 		"hull" 4200
@@ -368,6 +374,7 @@ ship "Behemoth"
 	sprite "ship/behemoth"
 	attributes
 		category "Heavy Freighter"
+		tags human betelgeuse freighter
 		"cost" 10800000
 		"shields" 7600
 		"hull" 6300
@@ -422,6 +429,7 @@ ship "Berserker"
 	sprite "ship/berserker"
 	attributes
 		category "Interceptor"
+		tags human betelgeuse
 		"cost" 520000
 		"shields" 2200
 		"hull" 500
@@ -468,6 +476,7 @@ ship "Blackbird"
 	sprite "ship/blackbird"
 	attributes
 		category "Transport"
+		tags human tarazed transport
 		"cost" 2230000
 		"shields" 4400
 		"hull" 900
@@ -515,6 +524,7 @@ ship "Bounder"
 	sprite "ship/bounder"
 	attributes
 		category "Transport"
+		tags human megaparsec transport
 		"cost" 1140000
 		"shields" 2200
 		"hull" 700
@@ -560,6 +570,7 @@ ship "Boxwing"
 	sprite "ship/boxwing"
 	attributes
 		category "Fighter"
+		tags human
 		cost 369000
 		"shields" 400
 		"hull" 800
@@ -594,6 +605,7 @@ ship "Bulk Freighter"
 	sprite "ship/bulk freighter"
 	attributes
 		category "Heavy Freighter"
+		tags human syndicate freighter
 		"cost" 9400000
 		"shields" 4000
 		"hull" 7600
@@ -651,6 +663,7 @@ ship "Carrier"
 		licenses
 			Navy
 			Carrier
+		tags human "republic navy" warship
 		"cost" 15200000
 		"shields" 21400
 		"hull" 8300
@@ -724,6 +737,7 @@ ship "Class C Freighter"
 	sprite "ship/bulk freighter"
 	attributes
 		category "Heavy Warship"
+		tags human syndicate warship
 		"cost" 11400000
 		"shields" 13500
 		"hull" 7600
@@ -785,6 +799,7 @@ ship "Clipper"
 	sprite "ship/clipper"
 	attributes
 		category "Light Freighter"
+		tags human southbound freighter
 		"cost" 900000
 		"shields" 2700
 		"hull" 800
@@ -836,6 +851,7 @@ ship "Combat Drone"
 		category "Drone"
 		licenses
 			Navy
+		tags human "republic navy"
 		"cost" 83000
 		"hull" 700
 		"mass" 20
@@ -871,6 +887,7 @@ ship "Corvette"
 	sprite "ship/corvette"
 	attributes
 		category "Medium Warship"
+		tags human lionheart warship
 		"cost" 4400000
 		"shields" 6100
 		"hull" 1200
@@ -926,6 +943,7 @@ ship "Cruiser"
 		licenses
 			Navy
 			Cruiser
+		tags human "republic navy" warship
 		"cost" 11200000
 		"shields" 19600
 		"hull" 6400
@@ -991,6 +1009,7 @@ ship "Dagger"
 	sprite "ship/dagger"
 	attributes
 		category "Fighter"
+		tags human lionheart
 		"cost" 129000
 		"shields" 1000
 		"hull" 300
@@ -1030,6 +1049,7 @@ ship "Dreadnought"
 	sprite "ship/dreadnought"
 	attributes
 		category "Heavy Warship"
+		tags human southbound warship
 		"cost" 11900000
 		"shields" 18100
 		"hull" 7300
@@ -1089,6 +1109,7 @@ ship "Falcon"
 	sprite "ship/falcon"
 	attributes
 		category "Heavy Warship"
+		tags human tarazed warship
 		"cost" 10900000
 		"shields" 12800
 		"hull" 3700
@@ -1147,6 +1168,7 @@ ship "Finch"
 	sprite "ship/finch"
 	attributes
 		category "Fighter"
+		tags human tarazed
 		"cost" 126000
 		"shields" 1100
 		"hull" 200
@@ -1187,6 +1209,7 @@ ship "Firebird"
 	sprite "ship/firebird"
 	attributes
 		category "Medium Warship"
+		tags human betelgeuse warship
 		"cost" 3700000
 		"shields" 6400
 		"hull" 2800
@@ -1239,6 +1262,7 @@ ship "Flivver"
 	sprite "ship/flivver"
 	attributes
 		category "Transport"
+		tags human lionheart transport
 		"cost" 180000
 		"shields" 1400
 		"hull" 200
@@ -1283,6 +1307,7 @@ ship "Freighter"
 	sprite "ship/freighter"
 	attributes
 		category "Light Freighter"
+		tags human syndicate freighter
 		"cost" 730000
 		"shields" 2000
 		"hull" 2000
@@ -1333,6 +1358,7 @@ ship "Frigate"
 		category "Medium Warship"
 		licenses
 			Navy
+		tags human "republic navy" warship
 		"cost" 5200000
 		"shields" 8000
 		"hull" 2500
@@ -1388,6 +1414,7 @@ ship "Fury"
 	sprite "ship/fury"
 	attributes
 		category "Interceptor"
+		tags human southbound
 		"cost" 490000
 		"shields" 2000
 		"hull" 400
@@ -1435,6 +1462,7 @@ ship "Gunboat"
 		category "Light Warship"
 		licenses
 			Navy
+		tags human "republic navy" warship
 		"cost" 3200000
 		"shields" 5800
 		"hull" 1400
@@ -1484,6 +1512,7 @@ ship "Hauler"
 	sprite "ship/hauler i"
 	attributes
 		category "Light Freighter"
+		tags human freighter
 		"cost" 1430000
 		"shields" 2500
 		"hull" 3700
@@ -1538,6 +1567,7 @@ ship "Hauler II"
 	sprite "ship/hauler ii"
 	attributes
 		category "Heavy Freighter"
+		tags human freighter
 		"cost" 2340000
 		"shields" 2900
 		"hull" 5200
@@ -1592,6 +1622,7 @@ ship "Hauler III"
 	sprite "ship/hauler iii"
 	attributes
 		category "Heavy Freighter"
+		tags human freighter
 		"cost" 3260000
 		"shields" 3300
 		"hull" 6700
@@ -1646,6 +1677,7 @@ ship "Hawk"
 	sprite "ship/hawk"
 	attributes
 		category "Interceptor"
+		tags human tarazed
 		"cost" 670000
 		"shields" 2500
 		"hull" 500
@@ -1690,6 +1722,7 @@ ship "Headhunter"
 	sprite "ship/headhunter"
 	attributes
 		category "Light Warship"
+		tags human lionheart warship
 		"cost" 1850000
 		"shields" 3800
 		"hull" 700
@@ -1737,6 +1770,7 @@ ship "Heavy Shuttle"
 	sprite "ship/heavy shuttle"
 	attributes
 		category "Transport"
+		tags human betelgeuse transport
 		"cost" 320000
 		"shields" 700
 		"hull" 700
@@ -1778,6 +1812,7 @@ ship "Lance"
 	sprite "ship/lance"
 	attributes
 		category "Fighter"
+		tags human "republic navy"
 		"cost" 93000
 		"shields" 800
 		"hull" 400
@@ -1818,6 +1853,7 @@ ship "Leviathan"
 	sprite "ship/leviathan"
 	attributes
 		category "Heavy Warship"
+		tags human betelgeuse warship
 		"cost" 9800000
 		"shields" 14400
 		"hull" 5000
@@ -1872,6 +1908,7 @@ ship "Manta"
 	sprite "ship/manta"
 	attributes
 		category "Medium Warship"
+		tags human megaparsec warship
 		"cost" 3400000
 		"shields" 5900
 		"hull" 1500
@@ -1924,6 +1961,7 @@ ship "Modified Argosy"
 	sprite "ship/modified argosy"
 	attributes
 		category "Light Warship"
+		tags human southbound pirate warship
 		"cost" 1960000
 		"shields" 4800
 		"hull" 1900
@@ -1976,6 +2014,7 @@ ship "Mule"
 	sprite "ship/mule"
 	attributes
 		category "Medium Warship"
+		tags human lionheart warship
 		"cost" 4580000
 		"shields" 5400
 		"hull" 4400
@@ -2031,6 +2070,7 @@ ship "Nest"
 	sprite "ship/nest"
 	attributes
 		category "Medium Warship"
+		tags human southbound warship
 		"cost" 2500000
 		"shields" 2500
 		"hull" 3700
@@ -2087,6 +2127,7 @@ ship "Osprey"
 	sprite "ship/osprey"
 	attributes
 		category "Medium Warship"
+		tags human tarazed warship
 		"cost" 4400000
 		"shields" 7200
 		"hull" 1600
@@ -2140,6 +2181,7 @@ ship "Protector"
 	sprite "ship/protector"
 	attributes
 		category "Heavy Warship"
+		tags human syndicate warship
 		"cost" 5500000
 		"shields" 9500
 		"hull" 6500
@@ -2196,6 +2238,7 @@ ship "Quicksilver"
 	sprite "ship/quicksilver"
 	attributes
 		category "Light Warship"
+		tags human megaparsec warship
 		"cost" 1090000
 		"shields" 3000
 		"hull" 800
@@ -2243,6 +2286,7 @@ ship "Rainmaker"
 		category "Light Warship"
 		licenses
 			Navy
+		tags human "republic navy" warship
 		"cost" 1580000
 		"shields" 3500
 		"hull" 1200
@@ -2294,6 +2338,7 @@ ship "Raven"
 	sprite "ship/raven"
 	attributes
 		category "Light Warship"
+		tags human lionheart warship
 		"cost" 1800000
 		"shields" 4700
 		"hull" 1400
@@ -2342,6 +2387,7 @@ ship "Roost"
 	sprite "ship/roost"
 	attributes
 		category "Medium Warship"
+		tags human southbound warship
 		"cost" 3000000
 		"shields" 2900
 		"hull" 5200
@@ -2400,6 +2446,7 @@ ship "Scout"
 	sprite "ship/scout"
 	attributes
 		category "Transport"
+		tags human lionheart transport
 		"cost" 850000
 		"shields" 1200
 		"hull" 400
@@ -2452,6 +2499,7 @@ ship "Shuttle"
 		"random start frame"
 	attributes
 		category "Transport"
+		tags human betelgeuse transport
 		"cost" 180000
 		"shields" 500
 		"hull" 600
@@ -2495,6 +2543,7 @@ ship "Skein"
 		category "Medium Warship"
 		licenses
 			"Militia Carrier"
+		tags human southbounds warship
 		"cost" 3500000
 		"shields" 3300
 		"hull" 6700
@@ -2555,6 +2604,7 @@ ship "Sparrow"
 	sprite "ship/sparrow"
 	attributes
 		category "Interceptor"
+		tags human tarazed
 		"cost" 225000
 		"shields" 1200
 		"hull" 300
@@ -2599,6 +2649,7 @@ ship "Splinter"
 	sprite "ship/splinter"
 	attributes
 		category "Medium Warship"
+		tags human megaparsec warship
 		"cost" 3100000
 		"shields" 5200
 		"hull" 1700
@@ -2651,6 +2702,7 @@ ship "Star Barge"
 	sprite "ship/star barge"
 	attributes
 		category "Light Freighter"
+		tags human syndicate freighter
 		"cost" 210000
 		"shields" 600
 		"hull" 1000
@@ -2692,6 +2744,7 @@ ship "Star Queen"
 	sprite "ship/star queen"
 	attributes
 		category "Transport"
+		tags human transport
 		"cost" 5500000
 		"shields" 4100
 		"hull" 2200
@@ -2746,6 +2799,7 @@ ship "Surveillance Drone"
 		category "Drone"
 		licenses
 			Navy
+		tags human "republic navy"
 		"cost" 50000
 		"hull" 300
 		"mass" 15
@@ -2778,6 +2832,7 @@ ship "Vanguard"
 	sprite "ship/vanguard"
 	attributes
 		category "Heavy Warship"
+		tags human syndicate warship
 		"cost" 7200000
 		"shields" 9800
 		"hull" 6000
@@ -2832,6 +2887,7 @@ ship "Wasp"
 	sprite "ship/wasp"
 	attributes
 		category "Interceptor"
+		tags human syndicate
 		"cost" 400000
 		"shields" 1500
 		"hull" 500

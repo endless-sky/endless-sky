@@ -12,6 +12,7 @@ ship "Marauder Arrow"
 	sprite "ship/marrows"
 	attributes
 		category "Interceptor"
+		tags human syndicate marauder transport
 		"cost" 1320000
 		"shields" 2300
 		"hull" 500
@@ -62,6 +63,7 @@ ship "Marauder Arrow" "Marauder Arrow (Engines)"
 	sprite "ship/marrowe"
 	attributes
 		category "Interceptor"
+		tags human syndicate marauder transport
 		"cost" 1320000
 		"shields" 2300
 		"hull" 500
@@ -106,6 +108,7 @@ ship "Marauder Arrow" "Marauder Arrow (Weapons)"
 	sprite "ship/marroww"
 	attributes
 		category "Interceptor"
+		tags human syndicate marauder transport
 		"cost" 1320000
 		"shields" 2300
 		"hull" 500
@@ -153,6 +156,7 @@ ship "Marauder Bounder"
 	sprite "ship/mbounders"
 	attributes
 		category "Interceptor"
+		tags human megaparsec marauder transport
 		"cost" 1250000
 		"shields" 2500
 		"hull" 700
@@ -206,6 +210,7 @@ ship "Marauder Bounder" "Marauder Bounder (Engines)"
 	sprite "ship/mboundere"
 	attributes
 		category "Interceptor"
+		tags human megaparsec marauder transport
 		"cost" 1250000
 		"shields" 2500
 		"hull" 700
@@ -253,6 +258,7 @@ ship "Marauder Bounder" "Marauder Bounder (Weapons)"
 	sprite "ship/mbounderw"
 	attributes
 		category "Interceptor"
+		tags human megaparsec marauder transport
 		"cost" 1250000
 		"shields" 2500
 		"hull" 700
@@ -301,6 +307,7 @@ ship "Marauder Falcon"
 	sprite "ship/mfalcons"
 	attributes
 		category "Heavy Warship"
+		tags human tarazed marauder warship
 		"cost" 13900000
 		"shields" 14100
 		"hull" 4100
@@ -359,6 +366,7 @@ ship "Marauder Falcon" "Marauder Falcon (Engines)"
 	sprite "ship/mfalcone"
 	attributes
 		category "Heavy Warship"
+		tags human tarazed marauder warship
 		"cost" 13900000
 		"shields" 14100
 		"hull" 4100
@@ -415,6 +423,7 @@ ship "Marauder Falcon" "Marauder Falcon (Weapons)"
 	sprite "ship/mfalconw"
 	attributes
 		category "Heavy Warship"
+		tags human tarazed marauder warship
 		"cost" 13900000
 		"shields" 14100
 		"hull" 4100
@@ -470,6 +479,7 @@ ship "Marauder Firebird"
 	sprite "ship/mfirebirds"
 	attributes
 		category "Medium Warship"
+		tags human betelgeuse marauder warship
 		"cost" 4100000
 		"shields" 7000
 		"hull" 3000
@@ -526,6 +536,7 @@ ship "Marauder Firebird" "Marauder Firebird (Engines)"
 	sprite "ship/mfirebirde"
 	attributes
 		category "Medium Warship"
+		tags human betelgeuse marauder warship
 		"cost" 4100000
 		"shields" 7000
 		"hull" 3000
@@ -580,6 +591,7 @@ ship "Marauder Firebird" "Marauder Firebird (Weapons)"
 	sprite "ship/mfirebirdw"
 	attributes
 		category "Medium Warship"
+		tags human betelgeuse marauder warship
 		"cost" 4100000
 		"shields" 7000
 		"hull" 3000
@@ -632,6 +644,7 @@ ship "Marauder Fury"
 	sprite "ship/mfury"
 	attributes
 		category "Interceptor"
+		tags human southbound marauder
 		"cost" 750000
 		"shields" 3000
 		"hull" 600
@@ -687,6 +700,7 @@ ship "Marauder Leviathan"
 	sprite "ship/mleviathans"
 	attributes
 		category "Heavy Warship"
+		tags human betelgeuse marauder warship
 		"cost" 10800000
 		"shields" 16000
 		"hull" 5500
@@ -747,6 +761,7 @@ ship "Marauder Leviathan" "Marauder Leviathan (Engines)"
 	sprite "ship/mleviathane"
 	attributes
 		category "Heavy Warship"
+		tags human betelgeuse marauder warship
 		"cost" 10800000
 		"shields" 16000
 		"hull" 5500
@@ -801,6 +816,7 @@ ship "Marauder Leviathan" "Marauder Leviathan (Weapons)"
 	sprite "ship/mleviathanw"
 	attributes
 		category "Heavy Warship"
+		tags human betelgeuse marauder warship
 		"cost" 10800000
 		"shields" 16000
 		"hull" 5500
@@ -855,6 +871,7 @@ ship "Marauder Manta"
 	sprite "ship/mmantas"
 	attributes
 		category "Medium Warship"
+		tags human megaparsec marauder warship
 		"cost" 3740000
 		"shields" 6500
 		"hull" 1750
@@ -913,6 +930,7 @@ ship "Marauder Manta" "Marauder Manta (Engines)"
 	sprite "ship/mmantae"
 	attributes
 		category "Medium Warship"
+		tags human megaparsec marauder warship
 		"cost" 3740000
 		"shields" 6500
 		"hull" 1750
@@ -965,6 +983,7 @@ ship "Marauder Manta" "Marauder Manta (Weapons)"
 	sprite "ship/mmantaw"
 	attributes
 		category "Medium Warship"
+		tags human megaparsec marauder warship
 		"cost" 3740000
 		"shields" 6500
 		"hull" 1750
@@ -1019,6 +1038,7 @@ ship "Marauder Quicksilver"
 	sprite "ship/mquicksilvers"
 	attributes
 		category "Light Warship"
+		tags human megaparsec marauder warship
 		"cost" 1200000
 		"shields" 3500
 		"hull" 900
@@ -1069,6 +1089,7 @@ ship "Marauder Quicksilver" "Marauder Quicksilver (Engines)"
 	sprite "ship/mquicksilvere"
 	attributes
 		category "Light Warship"
+		tags human megaparsec marauder warship
 		"cost" 1200000
 		"shields" 3500
 		"hull" 900
@@ -1115,6 +1136,7 @@ ship "Marauder Quicksilver" "Marauder Quicksilver (Weapons)"
 	sprite "ship/mquicksilverw"
 	attributes
 		category "Light Warship"
+		tags human megaparsec marauder warship
 		"cost" 1200000
 		"shields" 3500
 		"hull" 900
@@ -1161,6 +1183,7 @@ ship "Marauder Raven"
 	sprite "ship/mravens"
 	attributes
 		category "Light Warship"
+		tags human lionheart marauder warship
 		"cost" 2250000
 		"shields" 5200
 		"hull" 1600
@@ -1215,6 +1238,7 @@ ship "Marauder Raven" "Marauder Raven (Engines)"
 	sprite "ship/mravene"
 	attributes
 		category "Light Warship"
+		tags human lionheart marauder warship
 		"cost" 2250000
 		"shields" 5200
 		"hull" 1600
@@ -1264,6 +1288,7 @@ ship "Marauder Raven" "Marauder Raven (Weapons)"
 	sprite "ship/mravenw"
 	attributes
 		category "Light Warship"
+		tags human lionheart marauder warship
 		"cost" 2250000
 		"shields" 5200
 		"hull" 1600
@@ -1313,6 +1338,7 @@ ship "Marauder Splinter"
 	sprite "ship/msplinters"
 	attributes
 		category "Medium Warship"
+		tags human megaparsec marauder warship
 		"cost" 3400000
 		"shields" 5700
 		"hull" 1950
@@ -1367,6 +1393,7 @@ ship "Marauder Splinter" "Marauder Splinter (Engines)"
 	sprite "ship/msplintere"
 	attributes
 		category "Medium Warship"
+		tags human megaparsec marauder warship
 		"cost" 3400000
 		"shields" 5700
 		"hull" 1950
@@ -1419,6 +1446,7 @@ ship "Marauder Splinter" "Marauder Splinter (Weapons)"
 	sprite "ship/msplinterw"
 	attributes
 		category "Medium Warship"
+		tags human megaparsec marauder warship
 		"cost" 3400000
 		"shields" 5700
 		"hull" 1950
