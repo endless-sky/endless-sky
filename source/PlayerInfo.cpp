@@ -2070,16 +2070,37 @@ void PlayerInfo::UpdateAutoConditions()
 	auto last = conditions.lower_bound("ships:!");
 	if(first != last)
 		conditions.erase(first, last);
+		
+	// Clear any existing tags: conditions.
+	first = conditions.lower_bound("tag: ");
+	last = conditions.lower_bound("tag:!");
+	if(first != last)
+		conditions.erase(first, last);
+	first = conditions.lower_bound("fleet tag: ");
+	last = conditions.lower_bound("fleet tag:!");
+	if(first != last)
+		conditions.erase(first, last);
+		
 	// Store special conditions for cargo and passenger space.
 	conditions["cargo space"] = 0;
 	conditions["passenger space"] = 0;
+	
+	// Set outfit tags for your flagship in conditions.
+	if(flagship)
+		for(const auto &at : flagship->Attributes().Tags())
+			conditions["tag: " + at.first] += at.second;	
+			
 	for(const shared_ptr<Ship> &ship : ships)
 		if(!ship->IsParked() && !ship->IsDisabled() && ship->GetSystem() == system)
 		{
 			conditions["cargo space"] += ship->Attributes().Get("cargo space");
 			conditions["passenger space"] += ship->Attributes().Get("bunks") - ship->RequiredCrew();
 			++conditions["ships: " + ship->Attributes().Category()];
-		}
+			
+			// Set outfit tags for your fleet in conditions.
+			for(const auto &at : ship->Attributes().Tags())
+					conditions["fleet tag: " + at.first] += at.second;
+		}		
 }
 
 
