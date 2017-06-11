@@ -2000,7 +2000,7 @@ void AI::AimTurrets(const Ship &ship, Command &command, bool opportunistic) cons
 				double turnTime = fabs(degrees) / outfit->TurretTurn();
 				// All ships that are within weapons range have the same basic
 				// weight. Outside that range, give them lower priority.
-				rendezvousTime = max(0., rendezvousTime - outfit->Lifetime());
+				rendezvousTime = max(0., rendezvousTime - outfit->TotalLifetime());
 				// Always prefer ships that you are able to hit.
 				double score = turnTime + (180. / outfit->TurretTurn()) * rendezvousTime;
 				if(score < bestScore)
