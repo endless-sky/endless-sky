@@ -4356,8 +4356,8 @@ system Arculus
 	link Edusa
 	link Cinxia
 	link Pantica
-	asteroids "medium rock" 2 0.60666667
-	asteroids "large metal" 1 1.3416667
+	asteroids "medium rock" 2 0.606667
+	asteroids "large metal" 1 1.34167
 	trade Clothing 346
 	trade Electronics 733
 	trade Equipment 676
@@ -6791,8 +6791,8 @@ system Convector
 	haze _menu/haze-red
 	link Antevorta
 	asteroids "small rock" 7 1.805
-	asteroids "medium rock" 15 1.3236667
-	asteroids "large rock" 3 1.3236667
+	asteroids "medium rock" 15 1.32367
+	asteroids "large rock" 3 1.32367
 	asteroids "medium metal" 1 1.805
 	minables iron 2 2.42901
 	minables silicon 2 1.8316
@@ -8121,8 +8121,8 @@ system Edusa
 	belt 1167
 	haze _menu/haze-red
 	link Arculus
-	asteroids "small rock" 2 0.74013333
-	asteroids "medium rock" 1 1.5530667
+	asteroids "small rock" 2 0.740133
+	asteroids "medium rock" 1 1.55307
 	asteroids "large rock" 4 1.274
 	asteroids "large metal" 1 0.7644
 	minables silicon 2 1.59549
@@ -11915,7 +11915,7 @@ system Insitor
 	belt 1170
 	haze _menu/haze-red
 	link Antevorta
-	asteroids "small rock" 1 2.5442667
+	asteroids "small rock" 1 2.54427
 	trade Clothing 306
 	trade Electronics 848
 	trade Equipment 490
@@ -16237,8 +16237,8 @@ system Nenia
 	minables aluminum 7 1.96731
 	minables platinum 2 1.43013
 	minables titanium 5 1.78627
-	minables silicon 27 0.74013333
-	minables iron 18 1.5530667
+	minables silicon 27 0.740133
+	minables iron 18 1.55307
 	minables silver 4 1.274
 	trade Clothing 310
 	trade Electronics 804
@@ -16706,7 +16706,7 @@ system Ossipago
 	link Nenia
 	asteroids "small rock" 24 1.596
 	asteroids "medium rock" 2 1.1704
-	asteroids "large rock" 13 2.0925333
+	asteroids "large rock" 13 2.09253
 	asteroids "small metal" 1 1.6492
 	asteroids "medium metal" 2 1.0108
 	asteroids "large metal" 4 2.0748
@@ -16765,12 +16765,12 @@ system Pantica
 	haze _menu/haze-red
 	link Arculus
 	link Cinxia
-	asteroids "small rock" 4 1.1498667
-	asteroids "medium rock" 18 0.79053333
+	asteroids "small rock" 4 1.14987
+	asteroids "medium rock" 18 0.790533
 	asteroids "large rock" 2 1.386
-	asteroids "small metal" 6 1.1806667
-	asteroids "medium metal" 2 1.1909333
-	asteroids "large metal" 30 1.2422667
+	asteroids "small metal" 6 1.18067
+	asteroids "medium metal" 2 1.19093
+	asteroids "large metal" 30 1.24227
 	minables aluminum 1 2.10029
 	trade Clothing 299
 	trade Electronics 693
@@ -17059,9 +17059,9 @@ system Perfica
 	haze _menu/haze-red
 	link Cinxia
 	link Farinus
-	asteroids "small rock" 1 0.35466667
-	asteroids "small metal" 5 0.44333333
-	asteroids "medium metal" 9 0.55733333
+	asteroids "small rock" 1 0.354667
+	asteroids "small metal" 5 0.443333
+	asteroids "medium metal" 9 0.557333
 	asteroids "large metal" 11 0.836
 	minables iron 6 0.847372
 	trade Clothing 256
@@ -21180,7 +21180,7 @@ system Stercutus
 	link Caeculus
 	link Peragenor
 	link Segesta
-	asteroids "large rock" 1 0.77203333
+	asteroids "large rock" 1 0.772033
 	trade Clothing 216
 	trade Electronics 829
 	trade Equipment 591
@@ -23625,8 +23625,8 @@ planet "Ablub's Invention"
 	description `This ancient and quiet world, orbiting a dim red sun, is home to the microchip foundries of House Idriss, the Arach guild that specializes in computers and advanced electronics. Outside of the cities, which are clustered around the equator, Ablub's Invention is uninhabited except by the native lifeforms, including strange, spindly-legged quadrupeds, awkward birds with leathery wings, and amphibians with webbed feet and long, whiskered snouts.`
 	spaceport `The day-night cycle here is at least three times as long as any of the Coalition's species are habituated to, so the entire city enters a "false nighttime" in the middle of the day, shuttering all the windows so that the locals can rest and reset their biological clocks. And in the middle of the night, the city is brightly lit for a "false day."`
 	spaceport `	The local work schedule has adapted to this unusual cycle, with the two true daytime periods serving the equivalent of the human work week, and the false daytime treated as a weekend, a time for socializing or working at home.`
-	"required reputation" 25
 	outfitter "Coalition Advanced"
+	"required reputation" 25
 
 planet Ada
 	attributes paradise mining
@@ -23656,7 +23656,7 @@ planet Ahr
 	spaceport `A constant line of cargo barges and trucks streams through this spaceport city, collecting goods to be distributed to the outlying suburbs and neighboring cities. Inside the main terminal, members of all three Coalition species mix freely, but the Heliarch agents and interpreters here are all Arach.`
 	spaceport `	Carts carrying passengers and cargo whiz past at frightening speeds, expertly navigating to dodge the pedestrians.`
 	shipyard "Coalition Basics"
-	shipyard "Arach"
+	shipyard Arach
 	outfitter "Coalition Advanced"
 
 planet Albatross
@@ -23796,8 +23796,8 @@ planet "Ashy Reach"
 	landscape land/canyon2
 	description `The thin, unbreathable atmosphere and low gravity mean that Ashy Reach will never become popular as a residential world, but it serves a useful role as a hub for shipping and commercial exchange. There is only one settlement here, built around the spaceport, and consisting mostly of pressurized underground caverns. Outside the settlement, the planet's surface is drab and almost lifeless.`
 	spaceport `Only a handful of towers, most of them windowless, protrude above the planet's surface at the center of the spaceport settlement. The hangars and warehouses are all underground. The surface is visible through a few thick acrylic polymer windows on the lower levels of the towers. Lit by the glow of the gas giant that this moon orbits, the towers form a surreal landscape, like a city abandoned and only halfway formed.`
-	"required reputation" 15
 	outfitter "Coalition Basics"
+	"required reputation" 15
 
 planet Avalon
 	landscape land/sea17-harro
@@ -23810,8 +23810,8 @@ planet Aventine
 	landscape land/mountain18-harro
 	description `This is not a particularly warm world, but it is the best that the first Remnant refugees were able to find when they explored the Ember Waste. It is here that they built their capital, in a deep valley that is almost always shrouded in clouds. In meadows farther up the mountain slopes, a few particularly hardy food crops are grown, but for the most part the Remnant relies on artificial greenhouses or cultured yeast for protein supplements. Remnant cuisine is unlikely to ever become a draw for tourists, even if their isolation here is broken.`
 	spaceport `The oldest buildings in the Remnant capital city harken back to classic human architecture, with stone facades and columns reminiscent of ancient Rome. But as you walk outward toward the more recent additions, the buildings become less and less recognizably human, with curved organic shapes and hundreds of overhanging walkways and balconies. It is as if the layers left behind by centuries of habitation are a frozen record of the slow transition of Remnant culture into something bizarre and almost alien.`
-	shipyard "Remnant"
-	outfitter "Remnant"
+	shipyard Remnant
+	outfitter Remnant
 
 planet "Bank of Blugtad"
 	attributes arach wealthy urban
@@ -23820,7 +23820,7 @@ planet "Bank of Blugtad"
 	spaceport `The central concourse of the spaceport is reminiscent of a major stock exchange on a human world, with video screens everywhere displaying constantly fluctuating line graphs and lists of numbers and symbols. The only difference is that the graphs run top to bottom, rather than left to right.`
 	spaceport `	Every once in a while, one of the Arachi will cause a minor pedestrian traffic jam by abruptly stopping to look at one of the displays.`
 	shipyard "Coalition Basics"
-	shipyard "Arach"
+	shipyard Arach
 	outfitter "Coalition Advanced"
 
 planet "Belug's Plunge"
@@ -23894,7 +23894,7 @@ planet "Blue Interior"
 	description `Blue Interior is a strikingly beautiful earthlike world, covered mostly in oceans but with regions of rainforest, desert, mountains, and frozen tundra. Billions of Kimek live here, and there are also large Saryd and Arach populations in the cities whose climates are most agreeable to them. The Coalition often presents this world as a model of how their three species can benefit from sharing space with each other.`
 	spaceport `This is a truly cosmopolitan spaceport, with members of all three Coalition species mixing freely, conversing and doing business with each other. There are also a large number of Heliarch interpreters and mediators mingling with the crowds, helping those interactions to go as smoothly as possible.`
 	shipyard "Coalition Basics"
-	shipyard "Kimek"
+	shipyard Kimek
 	outfitter "Coalition Advanced"
 
 planet Bluestone
@@ -23948,7 +23948,7 @@ planet "Bright Echo"
 	description `This is the first world that the Saryds colonized outside of their own solar system. Although somewhat colder than their native planet, it developed into a thriving metropolitan world. The original settlers planned out in exacting detail how every part of the planet's land mass should be used, in order to satisfy their aesthetic ideal of blending residential areas with parks and farms. Large areas have also been set aside as undeveloped wilderness.`
 	spaceport `The spaceport is in what, by Saryd standards, is a major city, with scattered skyscrapers surrounded by forests and grassy park land along with smaller dwellings and occasional factories or power plants. The city is built on either side of one of this continent's largest rivers, a few kilometers downstream from a dam and hydroelectric plant. Here, the river cuts through a deep gorge, and the graceful bridges that cross the gorge are often shrouded in mist.`
 	shipyard "Coalition Basics"
-	shipyard "Saryd"
+	shipyard Saryd
 	outfitter "Coalition Basics"
 
 planet "Buccaneer Bay"
@@ -23985,8 +23985,8 @@ planet Caelian
 	landscape land/sky7
 	description `When the first members of the Remnant discovered this region of space, Caelian was the only habitable world they found with enough insolation to be able to operate solar-powered factories and bioreactors. The first settlements were scattered widely, with the houses hidden underground in order to be less visible from space, because they feared that the Alphas would overrun human space and eventually find their way into the Waste. Centuries later, when they learned that the Alpha Wars had ended, they began to expand the factories and settlements more openly.`
 	spaceport `Nearly all members of the Remnant are dark-skinned, either from exposure to high levels of ultraviolet radiation or because that is what their first ancestors who came here looked like. So, they walk around this spaceport village without much fear of the scorching desert sun, bringing supplies back and forth to the houses and to the flat clay pavement of the landing zone. Aside from some camels that the settlers brought with them, there are very few animals here.`
-	shipyard "Remnant"
-	outfitter "Remnant"
+	shipyard Remnant
+	outfitter Remnant
 
 planet Calda
 	attributes paradise tourism rich
@@ -24089,9 +24089,9 @@ planet "Chosen Nexus"
 	spaceport `This is a truly cosmopolitan spaceport, a city where the distinctive architectures of the Coalition's species are blended together and where the food or lodgings unique to each of them can easily be found. Cargo drones hover over the landing pads, constantly loading and unloading the merchant ships that are parked here as their captains arrange to buy or sell cargo.`
 	spaceport `	Mingling among the crowds, Heliarch representatives wearing golden bands as a mark of their authority serve both as translators and as peacekeepers.`
 	shipyard "Coalition Basics"
-	shipyard "Arach"
-	shipyard "Kimek"
-	shipyard "Saryd"
+	shipyard Arach
+	shipyard Kimek
+	shipyard Saryd
 	outfitter "Coalition Advanced"
 
 planet Clark
@@ -24392,9 +24392,9 @@ planet Echo
 	landscape land/desert2
 	description `This is a small Quarg outpost, which you suspect was built mostly to keep an eye on Tarazed Corporation and their alien-influenced research on the planet below. Like most Quarg worlds, the gravity is much too low here for it to be a feasible human colony, and although there is an atmosphere, it is too thin for a human being to breathe. Supposedly the Quarg have lungs designed for a continuous one way airflow, like a bird's lungs, rather than the ordinary in and out flow of human lungs; this is what enables them to survive on low-gravity, low-atmosphere worlds.`
 	spaceport `This outpost was really not designed with human beings in mind. The indoor air is not pressurized, so even there you need an oxygen mask to be able to breathe comfortably. And all the rooms and hallways are taller and narrower than you are used to. The station feels like a maze, full of winding passageways with no clear order or pattern to them, although perhaps the order would be readily apparent if you had an alien mind.`
+	government Quarg
 	bribe 0
 	security 0.9
-	government Quarg
 
 planet "Elek Kartanu"
 	attributes korath
@@ -24459,9 +24459,9 @@ planet "Far Home"
 	spaceport `The spaceport is a large city on the edge of a temperate forest. The city's layout, with green space and parks woven throughout it, is clearly a Saryd design, but the architecture borrows equally from all three cultures. As with the other ports where interspecies interactions are frequent, hundreds of Heliarch representatives wander around to mediate conversations and prevent misunderstandings.`
 	spaceport `	Once a year, when the Games begin, the spaceport city grows to nearly four times its usual population.`
 	shipyard "Coalition Basics"
-	shipyard "Arach"
-	shipyard "Kimek"
-	shipyard "Saryd"
+	shipyard Arach
+	shipyard Kimek
+	shipyard Saryd
 	outfitter "Coalition Advanced"
 
 planet "Far'en Lai"
@@ -24832,10 +24832,10 @@ planet "Hammer of Debrugt"
 	landscape land/myrabella5
 	description `House Chamgar claims that their advances in aerospace and weapon technology were instrumental in driving the Quarg out of Coalition space about six millennia ago. Given how much more advanced the Saryds and Kimek were at the time, their claims are likely an exaggeration. But, there is no doubt that in the present day the home of House Chamgar has developed into an industrial world as productive as any in Coalition space, partly because this world is rich enough in natural resources that there is little need to import raw materials from elsewhere.`
 	spaceport `The spaceport is a multi-tiered, gravity-defying structure reaching hundreds of meters above the ground, with steel and glass arches, cantilevered platforms, and luxury-class docking bays on its upper levels. On the ground level surrounding the facility are landing pads for heavy cargo ships, along with the associated warehouses and repair shops.`
-	"required reputation" 25
 	shipyard "Coalition Basics"
-	shipyard "Arach"
+	shipyard Arach
 	outfitter "Coalition Advanced"
+	"required reputation" 25
 
 planet Harmony
 	attributes south farming religious frontier
@@ -25103,7 +25103,7 @@ planet "Ki Patek Ka"
 	description `This is the Kimek home world. Before they developed spaceflight, billions of Kimek died either from famine or from civil wars brought on by overpopulation. Today, every major city still has "hunger towers": kilometer-high skyscrapers where yeast and bacterial cultures are grown in massive vats in order to provide a bland but stable source of emergency rations if the crops and the food shipments from off-world should ever fail.`
 	spaceport `Nearly all the land mass on Ki Patek Ka is covered in cities; the only undeveloped land is the high mountain peaks and the ice caps near the poles. The spaceport alone is larger than most human cities, stretching from horizon to horizon, with a ship taking off or landing every few seconds. The sheer number of people here - mostly Kimek, but a fair number of Saryds and Arachi as well - is overwhelming.`
 	shipyard "Coalition Basics"
-	shipyard "Kimek"
+	shipyard Kimek
 	outfitter "Coalition Advanced"
 
 planet "Korati Efreti"
@@ -25112,9 +25112,9 @@ planet "Korati Efreti"
 	description `This small Korath station is positioned at the Lagrangian point in between this system's sun and the planet that the Quarg had been mining for material to build the ringworld. The station is dwarfed by the ringworld, but nonetheless manages to make a statement: re-asserting the territorial rights of the Korath in the face of an alien species that chose to build a settlement in one of their systems.`
 	spaceport `As the Korath civil war became more and more brutal, the safest home for those who wanted to avoid the fighting was right here in the shadow of the Quarg. This small station is still home to well over a thousand Korath, and they are constantly on the move from one section to another, their boots ringing loudly on the metal floors.`
 	spaceport `	The Korath studiously avoid staring at you or even making eye contact, but you get the sense that many of them are quite curious about who you are and what you are doing here.`
+	government "Kor Efret"
 	bribe 0.1
 	security 0.5
-	government "Kor Efret"
 
 planet "Korbatri Eska"
 	attributes korath
@@ -25314,7 +25314,7 @@ planet "Market of Gupta"
 	description `This mountain world is the home base of House Mallob, the powerful Arach guild in charge of commerce and shipping. All the Arach starships that are currently in use were designed here, and many of them are manufactured here as well. The motto of House Mallob's shipyards is "strong as the mountains, spacious as the skies," referring to their focus on durable hulls and high cargo capacity.`
 	spaceport `This spaceport serves as the primary repair and service center for the Arach merchant marine. At any given time hundreds of ships may be in dry-dock here to have new equipment installed or their engines or internal systems tuned for better efficiency. Meanwhile, thousands of analysts and software experts work to plan out delivery routes, schedules, and supply chains for the merchant fleets to ensure that goods are always delivered where they will be most needed, and will earn the best profit. House Mallob's finances and organizational structure are legendary for their complexity.`
 	shipyard "Coalition Basics"
-	shipyard "Arach"
+	shipyard Arach
 	outfitter "Coalition Advanced"
 
 planet Mars
@@ -25488,6 +25488,11 @@ planet Mystery
 	landscape land/canyon05
 	description `The Saryd culture's fascination with the movement of the stars and planets can perhaps be attributed to the fact that their homeworld is orbited by two moons, which cause a complex and seemingly unpredictable cycle of tides as well as a variety of subtle effects on the circadian rhythms of the creatures that evolved on Saros. Saryd homes on other worlds often have night lighting cycles designed to mimic the moons of their homeworld.`
 	"required reputation" 15
+
+planet Nasqueron
+	attributes "requires: gaslining"
+	landscape land/nasa8
+	description `Beneath Nasqueron's cloudy surface is a complex and thriving ecosystem of gas-dwelling organisms, from the massive void sprites all the way down to bacteria that inhabit tiny water droplets suspended in the air. Although the void sprites mostly feed on these organisms, it appears that in order to grow into their adult form or to give birth to young, they also need rare minerals that they can only find by feeding on asteroids, far beyond the planet's atmosphere.`
 
 planet "Nearby Jade"
 	attributes kimek farming urban
@@ -25693,11 +25698,6 @@ planet "New Washington"
 	tribute 200
 		threshold 2000
 		fleet "Large Militia" 3
-
-planet Nasqueron
-	landscape land/nasa8
-	attributes "requires: gaslining"
-	description `Beneath Nasqueron's cloudy surface is a complex and thriving ecosystem of gas-dwelling organisms, from the massive void sprites all the way down to bacteria that inhabit tiny water droplets suspended in the air. Although the void sprites mostly feed on these organisms, it appears that in order to grow into their adult form or to give birth to young, they also need rare minerals that they can only find by feeding on asteroids, far beyond the planet's atmosphere.`
 
 planet Newhome
 	attributes hai textiles
@@ -25958,9 +25958,9 @@ planet "Remote Blue"
 	landscape land/water5
 	description `Most Kimek are proud to be members of the Coalition, but those who are either suspicious of the other species or simply want to be as far away from the Heliarch ringworlds as possible when the Quarg return with retribution, choose to live here. As a result, despite its remote location this world supports a population of over eight billion. Many of the cities have defensive gun emplacements on their outskirts, yet another sign of the local paranoia.`
 	spaceport `There are almost no non-Kimek in this spaceport, and as an alien visitor from beyond Coalition space you receive a considerable amount of scrutiny. Several of the local restaurants outright refuse to serve any species but the Kimek, claiming that their patrons would lose their appetites if forced to witness the disgusting eating habits of other species. (The Kimek generally eat their food by vomiting digestive fluid onto it, waiting for it to dissolve, and then slurping up the soupy mixture.)`
-	"required reputation" 15
-	shipyard "Kimek"
+	shipyard Kimek
 	outfitter "Coalition Advanced"
+	"required reputation" 15
 
 planet Reunion
 	attributes "near earth" urban factory
@@ -26084,7 +26084,7 @@ planet Saros
 	description `The homeworld of the Saryds still bears some scars from the adolescence of their species, particularly in its lack of biodiversity. But over thousands of years, they have returned significant portions of the planet to their original wilderness state. The planet's population currently stands at just over two billion, in part due to the fact that Saryds live very long lives and many of them choose to dedicate their lives to serving society in other ways rather than raising children.`
 	spaceport `The main spaceport is on the outskirts of a large city near the planet's equator, supposedly not far from the place where the Saryds launched their first rockets to explore their own solar system. It has all the standard accoutrements of a tourist trap, including stall after stall of vendors selling food or articles of clothing, and mobs of wide-eyed visitors wandering about and generally getting in the way of the merchant captains trying to conduct actual business here.`
 	shipyard "Coalition Basics"
-	shipyard "Saryd"
+	shipyard Saryd
 	outfitter "Coalition Advanced"
 
 planet "Sasirka Gatru"
@@ -26329,8 +26329,8 @@ planet Skymoot
 		fleet "Large Militia" 6
 
 planet Slylandro
-	landscape land/nasa9
 	attributes "requires: gaslining"
+	landscape land/nasa9
 	description `Far beneath the swirling blue surface of Slylandro's atmosphere, void sprites and other strange creatures float about. As improbable as it may seem, the void sprites must have somehow evolved the capability to manipulate gravity fields, because every once in a while one of them will rise up from the surface powered by an antigravity field similar to the landing repulsors used by human ships. When they do so, the decrease in atmospheric pressure causes them to nearly double in size.`
 
 planet "Smuggler's Den"
@@ -26447,8 +26447,8 @@ planet "Stronghold of Flugbu"
 	description `The Stronghold of Flugbu was used a military base during the War of Independence. Now it is a manufacturing world, specializing not in large machines but small, intricate components. It is also home to House Bebliss, the secretive guild that specializes in communication, translation, and encryption. House Bebliss is essential to the Coalition economy because they maintain the hyperspace communication network, but there are also rumors that they may have ties to the Resistance.`
 	spaceport `The spaceport here is a single massive compound, a relic of its military past, with hangars of all different sizes along its periphery and gun emplacements that may still be operational even though there has been little need for them in thousands of years. A fleet of Heliarch military ships is stationed here, as well, but their role is mostly ceremonial.`
 	spaceport `	The hallways of the compound are packed with members of all three Coalition species, most of whom walk quietly and purposefully without stopping to speak with each other.`
-	"required reputation" 25
 	outfitter "Coalition Advanced"
+	"required reputation" 25
 
 planet Sundive
 	attributes core farming research frontier
@@ -26848,8 +26848,8 @@ planet Viminal
 	landscape land/snow3
 	description `This cold and dreary world would certainly not be attractive to any modern settlers, but to those who were fleeing the chaos of the Alpha Wars it had the undeniable advantage of being isolated and undiscovered. Today the main reason for the continuing Remnant presence here is that this is the only world they have found where the "key stones" needed to enable ships to travel through certain wormholes in the Ember Waste can be found.`
 	spaceport `The spaceport is an enormous dome, built of the same resilient and semi-organic material as the hulls of Remnant ships. An opening at one end of the dome allows ships to fly in and out. Inside, the air is still cold, but at least you are sheltered from the violent winds that sweep across the rest of the planet's surface. Some of the locals, accustomed to the cold, walk about in their shirtsleeves as if this were a balmy summer day.`
-	shipyard "Remnant"
-	outfitter "Remnant"
+	shipyard Remnant
+	outfitter Remnant
 
 planet Vinci
 	attributes paradise factory
