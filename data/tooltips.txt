@@ -208,6 +208,9 @@ tip "shields:"
 
 tip "solar collection:"
 	`Produces a variable amount of energy depending on how far this ship is from the star at the center of the system.`
+	
+tip "solar heat generation:"
+	`Produces a variable amount of heat per second depending on how far this ship is from the star at the center of the system.`
 
 tip "max speed:"
 	`The fastest this ship can travel when using ordinary thrusters (as opposed to an afterburner).`

@@ -939,8 +939,8 @@ void GameData::PrintShipTable()
 		
 		double energy = attributes.Get("thrusting energy")
 			+ attributes.Get("turning energy");
-		double heat = attributes.Get("heat generation") - attributes.Get("cooling")
-			+ attributes.Get("thrusting heat") + attributes.Get("turning heat");
+		double heat = attributes.Get("heat generation") + attributes.Get("solar heat generation")
+			- attributes.Get("cooling") + attributes.Get("thrusting heat") + attributes.Get("turning heat");
 		for(const auto &oit : ship.Outfits())
 			if(oit.first->IsWeapon() && oit.first->Reload())
 			{
