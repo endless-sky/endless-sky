@@ -9,23 +9,23 @@ Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 */
-	
+
 #ifndef LOCATION_FILTER_H_
 #define LOCATION_FILTER_H_
-	
+
 #include <list>
 #include <set>
 #include <string>
-	
+
 class DataNode;
 class DataWriter;
 class Government;
 class Planet;
 class Ship;
 class System;
-	
-	
-	
+
+
+
 // This class represents a set of constraints on a randomly chosen planet or
 // system. For example, it can require that the planet used for a mission have
 // a certain attribute or be owned by a certain government, or be a certain
@@ -44,8 +44,8 @@ public:
 	bool Matches(const Planet *planet, const System *origin = nullptr) const;
 	bool Matches(const System *system, const System *origin = nullptr) const;
 	bool Matches(const Ship &ship) const;
-
-
+	
+	
 private:
 	// The planet must satisfy these conditions:
 	std::set<const Planet *> planets;
