@@ -124,15 +124,15 @@ void LocationFilter::Load(const DataNode &node)
 		}
 		else if(child.Token(0) == "attributes blacklist")
 		{
-            attributesBlacklist.push_back(set<string>());
-            for(int i = 1; i < child.Size(); ++i)
-                attributesBlacklist.back().insert(child.Token(i));
+			attributesBlacklist.push_back(set<string>());
+			for(int i = 1; i < child.Size(); ++i)
+				attributesBlacklist.back().insert(child.Token(i));
 			for(const DataNode &grand : child)
 				for(int i = 0; i < grand.Size(); ++i)
 					attributesBlacklist.back().insert(grand.Token(i));
             // Don't allow empty attribute blacklist sets; that's probably a typo
-            if(attributesBlacklist.back().empty())
-                attributesBlacklist.pop_back();
+			if(attributesBlacklist.back().empty())
+				attributesBlacklist.pop_back();
 		}
 		else if(child.Token(0) == "near" && child.Size() >= 2)
 		{
