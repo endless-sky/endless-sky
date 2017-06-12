@@ -291,6 +291,8 @@ government "Remnant"
 	color .89 .38 .62
 	
 	"player reputation" 1
+	"attitude toward"
+		"Korath" -.01
 
 government "Republic"
 	swizzle 0

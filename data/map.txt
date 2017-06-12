@@ -5841,6 +5841,7 @@ system Caeculus
 	trade Medical 508
 	trade Metal 272
 	trade Plastic 289
+	fleet "Korath Raid" 20000
 	object
 		sprite star/wr
 		period 10
@@ -6699,6 +6700,7 @@ system Cinxia
 	trade Plastic 417
 	fleet "Large Remnant" 1200
 	fleet "Small Remnant" 900
+	fleet "Korath Raid" 30000
 	object
 		sprite star/k5-old
 		period 10
@@ -6726,6 +6728,66 @@ system Cinxia
 			sprite planet/rhea
 			distance 270
 			period 16.6355
+
+system Coluber
+	pos 149.504 197.389
+	government Uninhabited
+	habitable 659.2
+	belt 1590
+	haze _menu/haze-red
+	link Parca
+	link Levana
+	link Lucina
+	asteroids "small rock" 4 2.1021
+	asteroids "medium rock" 21 1.8291
+	asteroids "large rock" 22 4.0131
+	asteroids "small metal" 11 3.7947
+	asteroids "medium metal" 1 2.3751
+	asteroids "large metal" 124 1.7199
+	trade Clothing 315
+	trade Electronics 713
+	trade Equipment 394
+	trade Food 319
+	trade "Heavy Metals" 791
+	trade Industrial 780
+	trade "Luxury Goods" 1098
+	trade Medical 798
+	trade Metal 475
+	trade Plastic 362
+	fleet "Korath Raid" 10000
+	object
+		sprite star/k5-old
+		distance 40.6966
+		period 19.2131
+		offset 180
+	object
+		sprite star/m4
+		distance 74.3034
+		period 19.2131
+	object
+		sprite planet/ice4
+		distance 248.663
+		period 61.0899
+	object
+		sprite planet/desert7
+		distance 439.103
+		period 143.351
+	object
+		sprite planet/fog0
+		distance 814.743
+		period 362.312
+		object
+			sprite planet/dust4
+			distance 202
+			period 21.179
+	object
+		sprite planet/rock10
+		distance 1208.18
+		period 654.26
+	object
+		sprite planet/gas16
+		distance 2354.54
+		period 1779.96
 
 system Companion
 	pos -1032.59 709.051
@@ -13958,6 +14020,73 @@ system Lesath
 		distance 2628.29
 		period 1301.48
 
+system Levana
+	pos 203.504 247.389
+	government Uninhabited
+	habitable 2798.68
+	belt 1202
+	haze _menu/haze-red
+	link Coluber
+	asteroids "medium rock" 3 10.005
+	asteroids "large rock" 1 10.5125
+	asteroids "small metal" 9 8.99
+	asteroids "medium metal" 13 9.57
+	asteroids "large metal" 31 10.15
+	minables lead 2 14.9761
+	minables uranium 8 17.5229
+	trade Clothing 285
+	trade Electronics 740
+	trade Equipment 465
+	trade Food 426
+	trade "Heavy Metals" 802
+	trade Industrial 726
+	trade "Luxury Goods" 1007
+	trade Medical 736
+	trade Metal 407
+	trade Plastic 222
+	fleet "Korath Raid" 10000
+	object
+		sprite star/giant
+		distance 17.197
+		period 9.08241
+		offset 180
+	object
+		sprite star/k5
+		distance 95.803
+		period 9.08241
+	object
+		sprite planet/dust1
+		distance 215.093
+		period 23.8519
+	object
+		sprite planet/venus
+		distance 438.933
+		period 69.5314
+	object
+		sprite planet/desert1
+		distance 665.023
+		period 129.67
+	object
+		sprite planet/cloud1
+		distance 922.583
+		period 211.881
+	object
+		sprite planet/neptune
+		distance 3359.19
+		period 1472.09
+		object
+			sprite planet/rock17
+			distance 213
+			period 15.4882
+		object
+			sprite planet/dust0
+			distance 310
+			period 27.1941
+		object
+			sprite planet/luna
+			distance 391
+			period 38.521
+
 system Limen
 	pos -791.99 -12.2491
 	government Republic
@@ -14197,6 +14326,61 @@ system "Lone Cloud"
 		sprite planet/io
 		distance 2146.74
 		period 2604.9
+
+system Lucina
+	pos 175.504 176.389
+	government Uninhabited
+	habitable 320
+	belt 1466
+	haze _menu/haze-red
+	link Parca
+	link Coluber
+	asteroids "small rock" 1 4.59
+	asteroids "medium rock" 9 4.7175
+	asteroids "large rock" 1 3.06
+	asteroids "small metal" 1 5.1425
+	asteroids "medium metal" 2 5.525
+	asteroids "large metal" 1 2.125
+	minables aluminum 1 7.35341
+	minables lead 1 6.63722
+	trade Clothing 333
+	trade Electronics 656
+	trade Equipment 227
+	trade Food 170
+	trade "Heavy Metals" 768
+	trade Industrial 818
+	trade "Luxury Goods" 1206
+	trade Medical 863
+	trade Metal 524
+	trade Plastic 410
+	fleet "Korath Raid" 20000
+	object
+		sprite star/m0
+		period 10
+	object
+		sprite planet/rock15
+		distance 166.96
+		period 48.2396
+	object "Far Monad"
+		sprite planet/ocean4
+		distance 366.05
+		period 156.601
+	object
+		sprite planet/uranus
+		distance 993.3
+		period 700.012
+		object
+			sprite planet/io
+			distance 208
+			period 12.8165
+	object
+		sprite planet/gas11
+		distance 2721.26
+		period 3174.24
+		object
+			sprite planet/dust1
+			distance 263
+			period 14.0673
 
 system Lurata
 	pos -279 463
@@ -16808,6 +16992,78 @@ system Pantica
 		distance 1879.46
 		period 1477.37
 
+system Parca
+	pos 150.504 151.389
+	government Uninhabited
+	habitable 760
+	belt 1315
+	haze _menu/haze-red
+	link Coluber
+	link Lucina
+	asteroids "small rock" 41 4.408
+	asteroids "medium rock" 19 5.5216
+	asteroids "large rock" 1 2.9232
+	asteroids "medium metal" 3 3.1088
+	asteroids "large metal" 3 4.64
+	minables copper 5 5.37985
+	minables lead 3 5.71958
+	trade Clothing 355
+	trade Electronics 665
+	trade Equipment 321
+	trade Food 244
+	trade "Heavy Metals" 858
+	trade Industrial 838
+	trade "Luxury Goods" 1188
+	trade Medical 872
+	trade Metal 531
+	trade Plastic 445
+	fleet "Korath Raid" 10000
+	object
+		sprite star/g5-old
+		distance 18.2961
+		period 15.1673
+		offset 180
+	object
+		sprite star/m8
+		distance 84.7039
+		period 15.1673
+	object
+		sprite planet/miranda
+		distance 216.344
+		period 46.1711
+	object
+		sprite planet/gas14
+		distance 587.834
+		period 206.793
+		object
+			sprite planet/rock3
+			distance 219
+			period 13.1985
+	object
+		sprite planet/desert4
+		distance 928.524
+		period 410.528
+	object
+		sprite planet/gas5
+		distance 1622.01
+		period 947.84
+	object
+		sprite planet/gas13
+		distance 3818.85
+		period 3424.15
+		object
+			sprite planet/rhea
+			distance 305
+			period 15.037
+		object
+			sprite planet/callisto
+			distance 424
+			period 24.6467
+		object
+			sprite planet/io
+			distance 545
+			period 35.9174
+
 system Peacock
 	pos -307 350
 	government Republic
@@ -17076,6 +17332,7 @@ system Perfica
 	trade Plastic 368
 	fleet "Large Remnant" 8000
 	fleet "Small Remnant" 5000
+	fleet "Korath Raid" 30000
 	object
 		sprite star/g0-old
 		period 10
@@ -21191,6 +21448,7 @@ system Stercutus
 	trade Medical 536
 	trade Metal 299
 	trade Plastic 294
+	fleet "Korath Raid" 20000
 	object
 		sprite star/g5-old
 		distance 31.1534
@@ -24463,6 +24721,10 @@ planet "Far Home"
 	shipyard Kimek
 	shipyard Saryd
 	outfitter "Coalition Advanced"
+
+planet "Far Monad"
+	landscape land/water0
+	description `The weather on Far Monad is actually rather pleasant. If it were not a lonely planet orbiting a dying sun in a region of space that few species visit and none claim for their own, it could have become a fruitful farming world or perhaps even a metropolitan center.`
 
 planet "Far'en Lai"
 	attributes uninhabited
