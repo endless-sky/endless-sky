@@ -102,6 +102,14 @@ void LocationFilter::Load(const DataNode &node)
 				for(int i = 0; i < grand.Size(); ++i)
 					governments.insert(GameData::Governments().Get(grand.Token(i)));
 		}
+		else if(child.Token(0) == "government blacklist")
+		{
+			for(int i = 1; i < child.Size(); ++i)
+				governmentsBlacklist.insert(GameData::Governments().Get(child.Token(i)));
+			for(const DataNode &grand : child)
+				for(int i = 0; i < grand.Size(); ++i)
+					governmentsBlacklist.insert(GameData::Governments().Get(grand.Token(i)));
+		}
 		else if(child.Token(0) == "attributes")
 		{
 			attributes.push_back(set<string>());
@@ -113,6 +121,18 @@ void LocationFilter::Load(const DataNode &node)
 			// Don't allow empty attribute sets; that's probably a typo.
 			if(attributes.back().empty())
 				attributes.pop_back();
+		}
+		else if(child.Token(0) == "attributes blacklist")
+		{
+            attributesBlacklist.push_back(set<string>());
+            for(int i = 1; i < child.Size(); ++i)
+                attributesBlacklist.back().insert(child.Token(i));
+			for(const DataNode &grand : child)
+				for(int i = 0; i < grand.Size(); ++i)
+					attributesBlacklist.back().insert(grand.Token(i));
+            // Don't allow empty attribute blacklist sets; that's probably a typo
+            if(attributesBlacklist.back().empty())
+                attributesBlacklist.pop_back();
 		}
 		else if(child.Token(0) == "near" && child.Size() >= 2)
 		{
@@ -174,6 +194,16 @@ void LocationFilter::Save(DataWriter &out) const
 			}
 			out.EndChild();
 		}
+		if(!governmentsBlacklist.empty())
+		{
+			out.Write("government blacklist");
+			out.BeginChild();
+			{
+				for(const Government *government : governmentsBlacklist)
+					out.Write(government->GetName());
+			}
+			out.EndChild();
+		}
 		for(const auto &it : attributes)
 		{
 			out.Write("attributes");
@@ -181,6 +211,19 @@ void LocationFilter::Save(DataWriter &out) const
 			{
 				for(const string &name : it)
 					out.Write(name);
+			}
+			out.EndChild();
+		}
+		if(!attributesBlacklist.empty())
+		{
+			out.Write("attributes blacklist");
+			out.BeginChild();
+			{
+				for(const auto &it : attributesBlacklist)
+				{
+					for(const string &name : it)
+						out.Write(name);
+				}
 			}
 			out.EndChild();
 		}
@@ -195,7 +238,7 @@ void LocationFilter::Save(DataWriter &out) const
 // Check if this filter contains any specifications.
 bool LocationFilter::IsEmpty() const
 {
-	return planets.empty() && attributes.empty() && systems.empty() && governments.empty()
+	return planets.empty() && attributes.empty() && attributesBlacklist.empty() && systems.empty() && governments.empty() && governmentsBlacklist.empty()
 		&& !center && originMaxDistance < 0;
 }
 
@@ -209,10 +252,38 @@ bool LocationFilter::Matches(const Planet *planet, const System *origin) const
 	
 	if(!planets.empty() && !planets.count(planet))
 		return false;
-	for(const set<string> &attr : attributes)
-		if(!SetsIntersect(attr, planet->Attributes()))
+	if(!attributes.empty() && !attributesBlacklist.empty())
+	{
+		bool mismatchAttr = false;
+		bool matchBlacklist = false;
+		if(!attributes.empty())
+		{
+			for(const set<string> &attr : attributes)
+				if(!SetsIntersect(attr, planet->Attributes()))
+					mismatchAttr = true;
+		}
+		if(!attributesBlacklist.empty())
+		{
+			for(const set<string> &attr : attributesBlacklist)
+				if(SetsIntersect(attr, planet->Attributes()))
+					matchBlacklist = true;
+		}
+		if(mismatchAttr || matchBlacklist)
 			return false;
-	
+			
+	}
+	else if(!attributes.empty())
+	{
+		for(const set<string> &attr : attributes)
+			if(!SetsIntersect(attr, planet->Attributes()))
+				return false;
+	}
+	else if(!attributesBlacklist.empty())
+	{
+		for(const set<string> &attr : attributesBlacklist)
+			if(SetsIntersect(attr, planet->Attributes()))
+				return false;
+	}
 	return Matches(planet->GetSystem(), origin);
 }
 
@@ -225,6 +296,8 @@ bool LocationFilter::Matches(const System *system, const System *origin) const
 	if(!systems.empty() && !systems.count(system))
 		return false;
 	if(!governments.empty() && !governments.count(system->GetGovernment()))
+		return false;
+	if(!governmentsBlacklist.empty() && governmentsBlacklist.count(system->GetGovernment()))
 		return false;
 	
 	if(center)
@@ -252,6 +325,8 @@ bool LocationFilter::Matches(const Ship &ship) const
 	if(!systems.empty() && !systems.count(ship.GetSystem()))
 		return false;
 	if(!governments.empty() && !governments.count(ship.GetGovernment()))
+		return false;
+	if(!governmentsBlacklist.empty() && governmentsBlacklist.count(ship.GetGovernment()))
 		return false;
 	
 	if(center)
