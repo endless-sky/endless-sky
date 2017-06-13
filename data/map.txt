@@ -62,6 +62,9 @@ galaxy "label kimek"
 galaxy "label arachi"
 	pos -750 615
 
+galaxy "label waste"
+	pos 80 315
+
 system "1 Axis"
 	pos -1274.63 267.214
 	government Coalition
