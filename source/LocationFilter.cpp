@@ -30,7 +30,7 @@ namespace {
 	{
 		// Quickest way to find out if two sets contain common elements: iterate
 		// through both of them in sorted order.
-        auto ait = a.begin();
+        	auto ait = a.begin();
 		auto bit = b.begin();
 		std::string attribute = "";
 		while(ait != a.end() && bit != b.end())
