@@ -27,32 +27,32 @@ using namespace std;
 
 namespace {
 	bool SetsIntersect(const set<string> &a, const set<string> &b)
-    {
-        // Quickest way to find out if two sets contain common elements: iterate
-        // through both of them in sorted order.
+	{
+		// Quickest way to find out if two sets contain common elements: iterate
+		// through both of them in sorted order.
         auto ait = a.begin();
-        auto bit = b.begin();
-        std::string attribute = "";
-        while(ait != a.end() && bit != b.end())
-        {
-            bool wantsMatch = ait->c_str()[0] != '!';
-            int comp = ait->compare(*bit);
-            if(wantsMatch && !comp)
-                return true;
-            else if (!wantsMatch)
-            {
+		auto bit = b.begin();
+		std::string attribute = "";
+		while(ait != a.end() && bit != b.end())
+		{
+			bool wantsMatch = ait->c_str()[0] != '!';
+			int comp = ait->compare(*bit);
+			if(wantsMatch && !comp)
+				return true;
+			else if (!wantsMatch)
+			{
 				attribute = ait->substr(1, ait->length() - 1);
 				if(b.count(attribute) == 0)
 					return true;
 				++ait;
-            }
-            else if(comp < 0)
-                ++ait;
-            else
-                ++bit;
-        }
-        return false;
-    }
+			}
+			else if(comp < 0)
+				++ait;
+			else
+				++bit;
+		}
+		return false;
+	}
 	
 	// Check if the given system is within the given distance of the center.
 	int Distance(const System *center, const System *system, int maximum)
