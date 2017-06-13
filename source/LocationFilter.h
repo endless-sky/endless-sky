@@ -23,9 +23,9 @@ class Government;
 class Planet;
 class Ship;
 class System;
-	
-	
-	
+
+
+
 // This class represents a set of constraints on a randomly chosen planet or
 // system. For example, it can require that the planet used for a mission have
 // a certain attribute or be owned by a certain government, or be a certain
