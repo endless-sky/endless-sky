@@ -193,27 +193,40 @@ bool PlayerInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comman
 	}
 	else if(key == SDLK_UP || key == SDLK_DOWN)
 	{
-		// Use the arrow keys to select a different ship.
-		int direction = (key == SDLK_DOWN) - (key == SDLK_UP);
-		// Special case: up when nothing is selected selects the last ship.
-		if(key == SDLK_UP && selectedIndex < 0)
-			selectedIndex = player.Ships().size();
-		// Move the selection up or down one space.
-		selectedIndex += direction;
-		// Down arrow when the last ship is selected deselects all.
-		if(static_cast<unsigned>(selectedIndex) >= player.Ships().size())
-			selectedIndex = -1;
+		if(selectedIndex < 0)
+		{
+			// If no ship was selected, moving up or down selects the first or
+			// last ship, and the scroll jumps to the first or last page.
+			if(key == SDLK_UP)
+			{
+				selectedIndex = player.Ships().size() - 1;
+				Scroll(player.Ships().size());
+			}
+			else
+			{
+				selectedIndex = 0;
+				Scroll(-player.Ships().size());
+			}
+		}
+		else
+		{
+			// Move the selection up or down one space.
+			selectedIndex += (key == SDLK_DOWN) - (key == SDLK_UP);
+			// Down arrow when the last ship is selected deselects all.
+			if(static_cast<unsigned>(selectedIndex) >= player.Ships().size())
+				selectedIndex = -1;
+			
+			// Update the scroll if necessary to keep the selected ship on screen.
+			int scrollDirection = ((selectedIndex >= scroll + LINES_PER_PAGE) - (selectedIndex < scroll));
+			if(selectedIndex >= 0 && Scroll((LINES_PER_PAGE - 2) * scrollDirection))
+				hoverIndex = -1;
+		}
 		// Update the selection.
 		bool hasMod = (SDL_GetModState() & (KMOD_SHIFT | KMOD_CTRL | KMOD_GUI));
 		if(!hasMod)
 			allSelected.clear();
 		if(selectedIndex >= 0)
 			allSelected.insert(selectedIndex);
-		
-		// Update the scroll if necessary to keep the selected ship on screen.
-		int scrollDirection = ((selectedIndex >= scroll + LINES_PER_PAGE) - (selectedIndex < scroll));
-		if(Scroll((LINES_PER_PAGE - 2) * scrollDirection))
-			hoverIndex = -1;
 	}
 	else if(canEdit && key == 'P' && !allSelected.empty())
 	{
