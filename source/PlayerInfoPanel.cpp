@@ -211,9 +211,13 @@ bool PlayerInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comman
 			allSelected.insert(selectedIndex);
 		
 		// Update the scroll if necessary to keep the selected ship on screen.
-		int scrollDirection = ((selectedIndex >= scroll + LINES_PER_PAGE) - (selectedIndex < scroll));
-		if(Scroll((LINES_PER_PAGE - 2) * scrollDirection))
-			hoverIndex = -1;
+		int scrollDirection = 1;
+		while(scrollDirection && selectedIndex >= 0)
+		{
+			scrollDirection = ((selectedIndex >= scroll + LINES_PER_PAGE) - (selectedIndex < scroll));
+			if(Scroll((LINES_PER_PAGE - 2) * scrollDirection))
+				hoverIndex = -1;
+		}
 	}
 	else if(canEdit && key == 'P' && !allSelected.empty())
 	{
