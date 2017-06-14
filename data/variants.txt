@@ -1542,7 +1542,7 @@ ship "Bactrian" "Bactrian (Hai Engines)"
 		"D67-TM Shield Generator"
 		"Hai Williwaw Cooling" 3
 		"Ramscoop"
-		"Outfits Expansion"
+		"Outfits Expansion" 2
 		`"Bufaer" Atomic Thruster`
 		`"Bufaer" Atomic Steering`
 		"Hyperdrive"
