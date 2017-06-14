@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "HailPanel.h"
 
 #include "DrawList.h"
+#include "Font.h"
 #include "FontSet.h"
 #include "Format.h"
 #include "GameData.h"
@@ -43,8 +44,9 @@ HailPanel::HailPanel(PlayerInfo &player, const shared_ptr<Ship> &ship)
 	SetInterruptible(false);
 	
 	const Government *gov = ship->GetGovernment();
+	const Font &font = FontSet::Get(14);
 	if(!ship->Name().empty())
-		header = gov->GetName() + " " + ship->Noun() + " \"" + ship->Name() + "\":";
+		header = font.Truncate(gov->GetName() + " " + ship->Noun() + " \"" + ship->Name(), 330) + "\":";
 	else
 		header = ship->ModelName() + " (" + gov->GetName() + "): ";
 	// Drones are always unpiloted, so they never respond to hails.

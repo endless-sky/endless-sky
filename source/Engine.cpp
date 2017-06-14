@@ -520,10 +520,11 @@ void Engine::Step(bool isActive)
 	}
 	else
 	{
+		const Font &font = FontSet::Get(14);
 		if(target->GetSystem() == player.GetSystem() && target->Cloaking() < 1.)
 			targetUnit = target->Facing().Unit();
 		info.SetSprite("target sprite", target->GetSprite(), targetUnit, target->GetFrameIndex(step));
-		info.SetString("target name", target->Name());
+		info.SetString("target name", font.TruncateFront(target->Name(), 150));
 		info.SetString("target type", target->ModelName());
 		if(!target->GetGovernment())
 			info.SetString("target government", "No Government");
