@@ -127,7 +127,7 @@ void LocationFilter::Load(const DataNode &node)
 			for(const DataNode &grand : child)
 				for(int i = 0; i < grand.Size(); ++i)
 					attributes.back().insert(grand.Token(i));
-			// Don't allow empty attribute or blacklist sets; that's probably a typo.
+			// Don't allow empty attribute sets; that's probably a typo.
 			if(attributes.back().empty())
 				attributes.pop_back();
 		}
