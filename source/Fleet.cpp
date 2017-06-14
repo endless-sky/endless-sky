@@ -411,7 +411,8 @@ vector<shared_ptr<Ship>> Fleet::Instantiate(const Variant &variant) const
 		if(phrase)
 			ship->SetName(phrase->Get());
 		ship->SetGovernment(government);
-		ship->SetPersonality(personality);
+		if (!ship->HasIndividualPersonality())
+			ship->SetPersonality(personality);
 		
 		placed.push_back(ship);
 	}

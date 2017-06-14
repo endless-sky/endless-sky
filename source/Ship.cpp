@@ -84,6 +84,11 @@ void Ship::Load(const DataNode &node)
 			LoadSprite(child);
 		else if(child.Token(0) == "name" && child.Size() >= 2)
 			name = child.Token(1);
+		else if(child.Token(0) == "personality")
+		{
+			personality.Load(child);
+			hasIndividualPersonality = true;
+		}
 		else if(child.Token(0) == "plural" && child.Size() >= 2)
 			pluralModelName = child.Token(1);
 		else if(child.Token(0) == "noun" && child.Size() >= 2)
@@ -254,7 +259,7 @@ void Ship::FinishLoading()
 	}
 	
 	// If this ship has a base class, copy any attributes not defined here.
-	// Exception: uncapturable and "never disabled" flags don't carry over.
+	// Exception: uncapturable, "never disabled" flags and individual personality don't carry over.
 	if(base && base != this)
 	{
 		if(!GetSprite())
@@ -381,6 +386,8 @@ void Ship::Save(DataWriter &out) const
 			out.Write("plural", pluralModelName);
 		if(!noun.empty())
 			out.Write("noun", noun);
+		if(hasIndividualPersonality)
+			personality.Save(out);
 		SaveSprite(out);
 		
 		if(neverDisabled)
@@ -634,6 +641,13 @@ bool Ship::IsParked() const
 const Personality &Ship::GetPersonality() const
 {
 	return personality;
+}
+
+
+
+bool Ship::HasIndividualPersonality() const
+{
+	return hasIndividualPersonality;
 }
 
 
