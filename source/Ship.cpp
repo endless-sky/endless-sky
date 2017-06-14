@@ -88,6 +88,8 @@ void Ship::Load(const DataNode &node)
 			pluralModelName = child.Token(1);
 		else if(child.Token(0) == "noun" && child.Size() >= 2)
 			noun = child.Token(1);
+		else if(child.Token(0) == "swizzle" && child.Size() >= 2)
+			customSwizzle = max(0, min(8, static_cast<int>(child.Value(1))));
 		else if(child.Token(0) == "attributes")
 			baseAttributes.Load(child);
 		else if(child.Token(0) == "engine" && child.Size() >= 3)
@@ -259,6 +261,8 @@ void Ship::FinishLoading()
 	{
 		if(!GetSprite())
 			reinterpret_cast<Body &>(*this) = *base;
+		if(customSwizzle == -1)
+			customSwizzle = base->CustomSwizzle();
 		if(baseAttributes.Attributes().empty())
 			baseAttributes = base->baseAttributes;
 		if(bays.empty() && !base->bays.empty())
@@ -387,6 +391,8 @@ void Ship::Save(DataWriter &out) const
 			out.Write("never disabled");
 		if(!isCapturable)
 			out.Write("uncapturable");
+		if(customSwizzle >= 0)
+			out.Write("swizzle", customSwizzle);
 		
 		out.Write("attributes");
 		out.BeginChild();
@@ -549,8 +555,7 @@ void Ship::Place(Point position, Point velocity, Angle angle)
 	forget = 1;
 	targetShip.reset();
 	shipToAssist.reset();
-	if(government)
-		SetSwizzle(government->GetSwizzle());
+	SetSwizzle(customSwizzle >= 0 ? customSwizzle : government->GetSwizzle());
 }
 
 
@@ -583,7 +588,7 @@ void Ship::SetPlanet(const Planet *planet)
 void Ship::SetGovernment(const Government *government)
 {
 	if(government)
-		SetSwizzle(government->GetSwizzle());
+		SetSwizzle(customSwizzle >= 0 ? customSwizzle : government->GetSwizzle());
 	this->government = government;
 }
 
@@ -1717,6 +1722,13 @@ bool Ship::IsReadyToJump() const
 	return true;
 }
 
+
+
+// Get this ship's custom swizzle.
+int Ship::CustomSwizzle() const
+{
+	return customSwizzle;
+}
 
 
 // Check if the ship is thrusting. If so, the engine sound should be played.
