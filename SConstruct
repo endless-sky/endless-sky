@@ -17,6 +17,8 @@ if 'CPPPATH' in os.environ:
 if 'SCHROOT_CHROOT_NAME' in os.environ and 'steamrt' in os.environ['SCHROOT_CHROOT_NAME']:
 	env.Append(LINKFLAGS = ["-static-libstdc++"])
 
+AddOption('--comp-dir', dest='comp-dir', type='string', nargs=1, action='store', default='master', help='Compilation directory')
+
 opts = Variables()
 opts.Add(PathVariable("PREFIX", "Directory to install under", "/usr/local", PathVariable.PathIsDirCreate))
 opts.Add(PathVariable("DESTDIR", "Destination root directory", "", PathVariable.PathAccept))
@@ -60,9 +62,9 @@ env["CC"] = os.getenv("CC") or env["CC"]
 env["CXX"] = os.getenv("CXX") or env["CXX"]
 env["ENV"].update(x for x in os.environ.items() if x[0].startswith("CCC_"))
 
-VariantDir("build/" + env["mode"], "source", duplicate = 0)
+VariantDir("build/" + env["mode"] + "/" + GetOption('comp-dir'), "source", duplicate = 0)
 
-sky = env.Program("endless-sky", Glob("build/" + env["mode"] + "/*.cpp"))
+sky = env.Program("endless-sky", Glob("build/" + env["mode"] + "/" + GetOption('comp-dir') + "/*.cpp"))
 
 
 # Install the binary:
