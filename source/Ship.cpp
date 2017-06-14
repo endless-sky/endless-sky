@@ -753,7 +753,9 @@ bool Ship::Move(list<Effect> &effects, list<shared_ptr<Flotsam>> &flotsam)
 		outfitScan = max(0., outfitScan - 1.);
 	
 	// Update ship supply levels.
-	if(!isDisabled)
+	if(isDisabled)
+		PauseAnimation();
+	else
 	{
 		// Ramscoops work much better when close to the system center. Even if a
 		// ship has no ramscoop, it can harvest a tiny bit of fuel by flying
