@@ -90,7 +90,10 @@ void Ship::Load(const DataNode &node)
 		else if(key == "noun" && child.Size() >= 2)
 			noun = child.Token(1);
 		else if(key == "swizzle" && child.Size() >= 2)
-			customSwizzle = max(0, min(8, static_cast<int>(child.Value(1))));
+		{
+			customSwizzle = max(-1, static_cast<int>(child.Value(1)));
+			customSwizzle = (customSwizzle > 8) ? -1 : customSwizzle;
+		}
 		else if(key == "attributes")
 			baseAttributes.Load(child);
 		else if(key == "engine" && child.Size() >= 3)
@@ -556,7 +559,8 @@ void Ship::Place(Point position, Point velocity, Angle angle)
 	forget = 1;
 	targetShip.reset();
 	shipToAssist.reset();
-	SetSwizzle(customSwizzle >= 0 ? customSwizzle : government->GetSwizzle());
+	if(government)
+		SetSwizzle(customSwizzle >= 0 ? customSwizzle : government->GetSwizzle());
 }
 
 
