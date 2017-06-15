@@ -90,10 +90,7 @@ void Ship::Load(const DataNode &node)
 		else if(key == "noun" && child.Size() >= 2)
 			noun = child.Token(1);
 		else if(key == "swizzle" && child.Size() >= 2)
-		{
-			customSwizzle = max(-1, static_cast<int>(child.Value(1)));
-			customSwizzle = (customSwizzle > 8) ? -1 : customSwizzle;
-		}
+			customSwizzle = child.Value(1);
 		else if(key == "attributes")
 			baseAttributes.Load(child);
 		else if(key == "engine" && child.Size() >= 3)
