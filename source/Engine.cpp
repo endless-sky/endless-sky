@@ -524,7 +524,7 @@ void Engine::Step(bool isActive)
 		if(target->GetSystem() == player.GetSystem() && target->Cloaking() < 1.)
 			targetUnit = target->Facing().Unit();
 		info.SetSprite("target sprite", target->GetSprite(), targetUnit, target->GetFrameIndex(step));
-		info.SetString("target name", font.TruncateFront(target->Name(), 150));
+		info.SetString("target name", font.TruncateMiddle(target->Name(), 150));
 		info.SetString("target type", target->ModelName());
 		if(!target->GetGovernment())
 			info.SetString("target government", "No Government");

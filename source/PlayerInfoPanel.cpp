@@ -473,7 +473,7 @@ void PlayerInfoPanel::DrawFleet(const Rectangle &bounds)
 		zones.emplace_back(table.GetCenterPoint(), table.GetRowSize(), index);
 		
 		// Indent the ship name if it is a fighter or drone.
-		table.Draw(font.Truncate(ship.CanBeCarried() ? "    " + ship.Name() : ship.Name(), 219));
+		table.Draw(font.TruncateMiddle(ship.CanBeCarried() ? "    " + ship.Name() : ship.Name(), 217));
 		table.Draw(ship.ModelName());
 		
 		const System *system = ship.GetSystem();

@@ -238,7 +238,7 @@ bool ShipyardPanel::CanSell() const
 void ShipyardPanel::Sell()
 {
 	static const int MAX_LIST = 20;
-	static const int DIALOG_MAX_WIDTH = 250;
+	static const int MAX_NAME_WIDTH = 250 - 30;
 	
 	int count = playerShips.size();
 	int initialCount = count;
@@ -257,7 +257,7 @@ void ShipyardPanel::Sell()
 		else
 		{
 			while(count-- > 1)
-				message += ",\n" + font.TruncateFront((*it++)->Name(), DIALOG_MAX_WIDTH - 33);
+				message += ",\n" + font.TruncateMiddle((*it++)->Name(), MAX_NAME_WIDTH);
 			message += ",\nand ";
 		}
 		message += (*it)->Name();
@@ -267,7 +267,7 @@ void ShipyardPanel::Sell()
 		auto it = playerShips.begin();
 		message += (*it++)->Name() + ",\n";
 		for(int i = 1; i < MAX_LIST - 1; ++i)
-			message += font.TruncateFront((*it++)->Name() + ",\n", DIALOG_MAX_WIDTH - 33);
+			message += font.TruncateMiddle((*it++)->Name(), MAX_NAME_WIDTH) + ",\n";
 		
 		message += "and " + Format::Number(count - (MAX_LIST - 1)) + " other ships";
 	}
