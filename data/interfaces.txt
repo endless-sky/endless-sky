@@ -801,6 +801,7 @@ interface "info panel"
 	button l "_Logbook..."
 		center 255 305
 		dimensions 90 30
+	active
 	
 	visible if "five buttons"
 	button n "_Next"
