@@ -1122,7 +1122,13 @@ void Engine::CalculateStep()
 			it = projectiles.erase(it);
 		}
 		else
+		{
+			// Missiles have a chance to target nearby ships if they have no target,
+			// or have failed to lock their current target for a
+			if(it->MissileStrength())
+				it->AcquireTarget(shipCollisions);
 			++it;
+		}
 	}
 	projectiles.splice(projectiles.end(), newProjectiles);
 	

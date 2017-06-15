@@ -20,6 +20,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <list>
 #include <memory>
 
+class CollisionSet;
 class Effect;
 class Government;
 class Outfit;
@@ -69,11 +70,12 @@ public:
 	// Find out which ship this projectile is targeting. Note: this pointer is
 	// not guaranteed to be dereferenceable, so only use it for comparing.
 	const Ship *Target() const;
+	void AcquireTarget(const CollisionSet &possibleTargets);
 	
 	
 private:
 	void CheckLock(const Ship &target);
-	
+	double LockStrength(const Ship &target) const;
 	
 private:
 	const Outfit *weapon = nullptr;
@@ -83,6 +85,7 @@ private:
 	const Government *targetGovernment = nullptr;
 	
 	int lifetime = 0;
+	int lockLifetime = 0;
 	bool hasLock = true;
 };
 

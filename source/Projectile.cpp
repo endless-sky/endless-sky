@@ -12,7 +12,9 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Projectile.h"
 
+#include "CollisionSet.h"
 #include "Effect.h"
+#include "Government.h"
 #include "Mask.h"
 #include "Outfit.h"
 #include "pi.h"
@@ -58,6 +60,9 @@ Projectile::Projectile(const Ship &parent, Point position, Angle angle, const Ou
 	// If a random lifetime is specified, add a random amount up to that amount.
 	if(weapon->RandomLifetime())
 		lifetime += Random::Int(weapon->RandomLifetime() + 1);
+
+	// Set the amount of time without a target needed to trigger target acquisition.
+	lockLifetime = 10;
 }
 
 
@@ -86,6 +91,9 @@ Projectile::Projectile(const Projectile &parent, const Outfit *weapon)
 	// If a random lifetime is specified, add a random amount up to that amount.
 	if(weapon->RandomLifetime())
 		lifetime += Random::Int(weapon->RandomLifetime() + 1);
+	
+	// Set the amount of time without a target needed to trigger target acquisition.
+	lockLifetime = 10;
 }
 
 
@@ -134,6 +142,7 @@ bool Projectile::Move(list<Effect> &effects)
 			targetShip.reset();
 			cachedTarget = nullptr;
 			target = nullptr;
+			lockLifetime = 0;
 		}
 	}
 	
@@ -144,6 +153,9 @@ bool Projectile::Move(list<Effect> &effects)
 		CheckLock(*target);
 	if(target && homing && hasLock)
 	{
+		// The longer a lock has been held, the less likely the ship will retarget.
+		++lockLifetime;
+		
 		// Vector d is the direction we want to turn towards.
 		Point d = target->Position() - position;
 		Point unit = d.Unit();
@@ -203,6 +215,9 @@ bool Projectile::Move(list<Effect> &effects)
 	// If a weapon is homing but has no target, do not turn it.
 	else if(homing)
 		turn = 0.;
+	
+	if(!hasLock)
+		--lockLifetime;
 	
 	if(turn)
 		angle += Angle(turn);
@@ -287,6 +302,59 @@ const Ship *Projectile::Target() const
 
 
 
+// Inspect ships within the projectile's remaining range to see if any draw the target lock.
+void Projectile::AcquireTarget(const CollisionSet &possibleTargets)
+{
+	// Retargeting only makes sense if this projectile is a missile with homing ability.
+	if(weapon->Homing() && weapon->MissileStrength() && !Random::Int(5) && lifetime > 30)
+	{
+		// Only missiles that have no current target, or have failed to lock their current
+		// target for a substantial portion of time, should try to retarget.
+		const Ship *target = cachedTarget;
+		shared_ptr<Ship> newTarget;
+		const bool shouldRetarget = (lockLifetime < 1 || !target);
+		if(shouldRetarget)
+		{
+			// Target the "closest" hostile ship, as identified by the missile's tracking.
+			const double remainingRange = lifetime * weapon->Velocity();
+			double closest = remainingRange;
+			for(const Body *body : possibleTargets.Circle(position, remainingRange))
+			{
+				// Ships must already be hostile to be targeted.
+				Ship *ship = reinterpret_cast<Ship *>(&body);
+				if(ship && this->GetGovernment()->IsEnemy(body->GetGovernment()))
+				{
+					// Prefer targets in front of the missile, especially if the missile is slow-turning.
+					const Point tp = body->Position();
+					double range = position.Distance(tp);
+					// const bool isInFront = (tp - position).Dot(angle.Unit()) > .6;
+					// range -= 1000. * isInFront / (1. + weapon->Turn());
+					range -= 1000. * (tp - position).Dot(angle.Unit()) / (1. + weapon->Turn());
+					
+					// Prefer easily-locked targets (lockStrength ranges 0-3).
+					const double lockStrength = LockStrength(*ship);
+					range -= 100. * lockStrength;
+					
+					if(range < closest)
+					{
+						newTarget = ship->shared_from_this();
+						closest = range;
+					}
+				}
+			}
+		}
+		
+		if(newTarget)
+		{
+			cachedTarget = target;
+			targetGovernment = target->GetGovernment();
+			lockLifetime = 10;
+		}
+	}
+}
+
+
+
 void Projectile::CheckLock(const Ship &target)
 {
 	double base = hasLock ? 1. : .5;
@@ -320,4 +388,32 @@ void Projectile::CheckLock(const Ship &target)
 		double probability = weapon->RadarTracking() / (1. + target.Attributes().Get("radar jamming"));
 		hasLock |= Check(probability, base);
 	}
+}
+
+
+
+// Return an indicator of how easily this target can be locked by this missile.
+double Projectile::LockStrength(const Ship &target) const
+{
+	double lockStrength = 0;
+	if(weapon->OpticalTracking())
+	{
+		double weight = target.Mass() * target.Mass();
+		// double probability = weapon->OpticalTracking() * weight / (200000. + weight);
+		lockStrength += weapon->OpticalTracking() * weight / (200000. + weight);
+	}
+	
+	if(weapon->InfraredTracking())
+	{
+		// double probability = weapon->InfraredTracking() * min(1., target.Heat() + .1);
+		lockStrength += weapon->InfraredTracking() * min(1., target.Heat() + .1);
+	}
+	
+	if(weapon->RadarTracking())
+	{
+		// double probability = weapon->RadarTracking() / (1. + target.Attributes().Get("radar jamming"));
+		lockStrength += weapon->RadarTracking() / (1. + target.Attributes().Get("radar jamming"));
+	}
+	
+	return lockStrength;
 }
