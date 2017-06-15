@@ -80,17 +80,23 @@ void Ship::Load(const DataNode &node)
 	bool hasDescription = false;
 	for(const DataNode &child : node)
 	{
-		if(child.Token(0) == "sprite")
+		const string &key = child.Token(0);
+		if(key == "sprite")
 			LoadSprite(child);
-		else if(child.Token(0) == "name" && child.Size() >= 2)
+		else if(key == "name" && child.Size() >= 2)
 			name = child.Token(1);
-		else if(child.Token(0) == "plural" && child.Size() >= 2)
+		else if(key == "plural" && child.Size() >= 2)
 			pluralModelName = child.Token(1);
-		else if(child.Token(0) == "noun" && child.Size() >= 2)
+		else if(key == "noun" && child.Size() >= 2)
 			noun = child.Token(1);
-		else if(child.Token(0) == "attributes")
+		else if(key == "swizzle" && child.Size() >= 2)
+		{
+			customSwizzle = max(-1, static_cast<int>(child.Value(1)));
+			customSwizzle = (customSwizzle > 8) ? -1 : customSwizzle;
+		}
+		else if(key == "attributes")
 			baseAttributes.Load(child);
-		else if(child.Token(0) == "engine" && child.Size() >= 3)
+		else if(key == "engine" && child.Size() >= 3)
 		{
 			if(!hasEngine)
 			{
@@ -100,7 +106,7 @@ void Ship::Load(const DataNode &node)
 			enginePoints.emplace_back(.5 * child.Value(1), .5 * child.Value(2),
 				(child.Size() > 3 ? child.Value(3) : 1.));
 		}
-		else if(child.Token(0) == "gun" || child.Token(0) == "turret")
+		else if(key == "gun" || key == "turret")
 		{
 			if(!hasArmament)
 			{
@@ -122,23 +128,23 @@ void Ship::Load(const DataNode &node)
 			}
 			if(outfit)
 				++equipped[outfit];
-			if(child.Token(0) == "gun")
+			if(key == "gun")
 				armament.AddGunPort(hardpoint, outfit);
 			else
 				armament.AddTurret(hardpoint, outfit);
 		}
-		else if(child.Token(0) == "never disabled")
+		else if(key == "never disabled")
 			neverDisabled = true;
-		else if(child.Token(0) == "uncapturable")
+		else if(key == "uncapturable")
 			isCapturable = false;
-		else if((child.Token(0) == "fighter" || child.Token(0) == "drone") && child.Size() >= 3)
+		else if((key == "fighter" || key == "drone") && child.Size() >= 3)
 		{
 			if(!hasBays)
 			{
 				bays.clear();
 				hasBays = true;
 			}
-			bays.emplace_back(child.Value(1), child.Value(2), child.Token(0) == "fighter");
+			bays.emplace_back(child.Value(1), child.Value(2), key == "fighter");
 			for(int i = 3; i < child.Size(); ++i)
 			{
 				for(unsigned j = 1; j < BAY_SIDE.size(); ++j)
@@ -149,7 +155,7 @@ void Ship::Load(const DataNode &node)
 						bays.back().facing = j;
 			}
 		}
-		else if(child.Token(0) == "explode" && child.Size() >= 2)
+		else if(key == "explode" && child.Size() >= 2)
 		{
 			if(!hasExplode)
 			{
@@ -161,7 +167,7 @@ void Ship::Load(const DataNode &node)
 			explosionEffects[GameData::Effects().Get(child.Token(1))] += count;
 			explosionTotal += count;
 		}
-		else if(child.Token(0) == "final explode" && child.Size() >= 2)
+		else if(key == "final explode" && child.Size() >= 2)
 		{
 			if(!hasFinalExplode)
 			{
@@ -171,7 +177,7 @@ void Ship::Load(const DataNode &node)
 			int count = (child.Size() >= 3) ? child.Value(2) : 1;
 			finalExplosions[GameData::Effects().Get(child.Token(1))] += count;
 		}
-		else if(child.Token(0) == "outfits")
+		else if(key == "outfits")
 		{
 			if(!hasOutfits)
 			{
@@ -184,30 +190,30 @@ void Ship::Load(const DataNode &node)
 				outfits[GameData::Outfits().Get(grand.Token(0))] += count;
 			}
 		}
-		else if(child.Token(0) == "cargo")
+		else if(key == "cargo")
 			cargo.Load(child);
-		else if(child.Token(0) == "crew" && child.Size() >= 2)
+		else if(key == "crew" && child.Size() >= 2)
 			crew = static_cast<int>(child.Value(1));
-		else if(child.Token(0) == "fuel" && child.Size() >= 2)
+		else if(key == "fuel" && child.Size() >= 2)
 			fuel = child.Value(1);
-		else if(child.Token(0) == "shields" && child.Size() >= 2)
+		else if(key == "shields" && child.Size() >= 2)
 			shields = child.Value(1);
-		else if(child.Token(0) == "hull" && child.Size() >= 2)
+		else if(key == "hull" && child.Size() >= 2)
 			hull = child.Value(1);
-		else if(child.Token(0) == "position" && child.Size() >= 3)
+		else if(key == "position" && child.Size() >= 3)
 			position = Point(child.Value(1), child.Value(2));
-		else if(child.Token(0) == "system" && child.Size() >= 2)
+		else if(key == "system" && child.Size() >= 2)
 			currentSystem = GameData::Systems().Get(child.Token(1));
-		else if(child.Token(0) == "planet" && child.Size() >= 2)
+		else if(key == "planet" && child.Size() >= 2)
 		{
 			zoom = 0.;
 			landingPlanet = GameData::Planets().Get(child.Token(1));
 		}
-		else if(child.Token(0) == "destination system" && child.Size() >= 2)
+		else if(key == "destination system" && child.Size() >= 2)
 			targetSystem = GameData::Systems().Get(child.Token(1));
-		else if(child.Token(0) == "parked")
+		else if(key == "parked")
 			isParked = true;
-		else if(child.Token(0) == "description" && child.Size() >= 2)
+		else if(key == "description" && child.Size() >= 2)
 		{
 			if(!hasDescription)
 			{
@@ -217,7 +223,7 @@ void Ship::Load(const DataNode &node)
 			description += child.Token(1);
 			description += '\n';
 		}
-		else if(child.Token(0) != "actions")
+		else if(key != "actions")
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
 	
@@ -259,6 +265,8 @@ void Ship::FinishLoading()
 	{
 		if(!GetSprite())
 			reinterpret_cast<Body &>(*this) = *base;
+		if(customSwizzle == -1)
+			customSwizzle = base->CustomSwizzle();
 		if(baseAttributes.Attributes().empty())
 			baseAttributes = base->baseAttributes;
 		if(bays.empty() && !base->bays.empty())
@@ -387,6 +395,8 @@ void Ship::Save(DataWriter &out) const
 			out.Write("never disabled");
 		if(!isCapturable)
 			out.Write("uncapturable");
+		if(customSwizzle >= 0)
+			out.Write("swizzle", customSwizzle);
 		
 		out.Write("attributes");
 		out.BeginChild();
@@ -550,7 +560,7 @@ void Ship::Place(Point position, Point velocity, Angle angle)
 	targetShip.reset();
 	shipToAssist.reset();
 	if(government)
-		SetSwizzle(government->GetSwizzle());
+		SetSwizzle(customSwizzle >= 0 ? customSwizzle : government->GetSwizzle());
 }
 
 
@@ -583,7 +593,7 @@ void Ship::SetPlanet(const Planet *planet)
 void Ship::SetGovernment(const Government *government)
 {
 	if(government)
-		SetSwizzle(government->GetSwizzle());
+		SetSwizzle(customSwizzle >= 0 ? customSwizzle : government->GetSwizzle());
 	this->government = government;
 }
 
@@ -1717,6 +1727,13 @@ bool Ship::IsReadyToJump() const
 	return true;
 }
 
+
+
+// Get this ship's custom swizzle.
+int Ship::CustomSwizzle() const
+{
+	return customSwizzle;
+}
 
 
 // Check if the ship is thrusting. If so, the engine sound should be played.

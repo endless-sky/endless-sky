@@ -406,7 +406,7 @@ void ShopPanel::DrawShip(const Ship &ship, const Point &center, bool isSelected)
 	if(sprite)
 	{
 		float zoom = min(1.f, zoomSize / max(sprite->Width(), sprite->Height()));
-		int swizzle = GameData::PlayerGovernment()->GetSwizzle();
+		int swizzle = ship.CustomSwizzle() >= 0 ? ship.CustomSwizzle() : GameData::PlayerGovernment()->GetSwizzle();
 		
 		SpriteShader::Draw(sprite, center, zoom, swizzle);
 	}
