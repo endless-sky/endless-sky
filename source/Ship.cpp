@@ -1869,6 +1869,13 @@ void Ship::WasCaptured(const shared_ptr<Ship> &capturer)
 	for(const Bay &bay : bays)
 		if(bay.ship)
 			bay.ship->WasCaptured(capturer);
+	// If a flagship is captured, its escorts become independent.
+	for(const auto &it : escorts)
+	{
+		shared_ptr<Ship> escort = it.lock();
+		if(escort)
+			escort->parent.reset();
+	}
 }
 
 
@@ -2547,7 +2554,7 @@ shared_ptr<Ship> Ship::GetParent() const
 
 
 
-const vector<weak_ptr<const Ship>> &Ship::GetEscorts() const
+const vector<weak_ptr<Ship>> &Ship::GetEscorts() const
 {
 	return escorts;
 }
@@ -2556,7 +2563,7 @@ const vector<weak_ptr<const Ship>> &Ship::GetEscorts() const
 
 // Add escorts to this ship. Escorts look to the parent ship for movement
 // cues and try to stay with it when it lands or goes into hyperspace.
-void Ship::AddEscort(const Ship &ship)
+void Ship::AddEscort(Ship &ship)
 {
 	escorts.push_back(ship.shared_from_this());
 }

@@ -341,12 +341,12 @@ public:
 	// previous parent it had.
 	void SetParent(const std::shared_ptr<Ship> &ship);
 	std::shared_ptr<Ship> GetParent() const;
-	const std::vector<std::weak_ptr<const Ship>> &GetEscorts() const;
+	const std::vector<std::weak_ptr<Ship>> &GetEscorts() const;
 	
 	
 private:
 	// Add or remove a ship from this ship's list of escorts.
-	void AddEscort(const Ship &ship);
+	void AddEscort(Ship &ship);
 	void RemoveEscort(const Ship &ship);
 	// Get the hull amount at which this ship is disabled.
 	double MinimumHull() const;
@@ -471,7 +471,7 @@ private:
 	std::weak_ptr<Flotsam> targetFlotsam;
 	
 	// Links between escorts and parents.
-	std::vector<std::weak_ptr<const Ship>> escorts;
+	std::vector<std::weak_ptr<Ship>> escorts;
 	std::weak_ptr<Ship> parent;
 };
 
