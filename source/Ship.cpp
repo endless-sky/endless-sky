@@ -2873,6 +2873,21 @@ const System *Ship::GetTargetSystem() const
 
 
 
+// Persistent targets for mission NPCs.
+const Planet *Ship::GetTravelDestination() const
+{
+	return travelDestination;
+}
+
+
+
+const System *Ship::GetDestinationSystem() const
+{
+	return destinationSystem;
+}
+
+
+
 // Mining target.
 shared_ptr<Minable> Ship::GetTargetAsteroid() const
 {
@@ -2919,6 +2934,21 @@ void Ship::SetTargetStellar(const StellarObject *object)
 void Ship::SetTargetSystem(const System *system)
 {
 	targetSystem = system;
+}
+
+
+
+// Persistent targets for mission NPCs.
+void Ship::SetTravelDestination(const Planet *planet)
+{
+	travelDestination = planet;
+}
+
+
+
+void Ship::SetDestinationSystem(const System *system)
+{
+	destinationSystem = system;
 }
 
 

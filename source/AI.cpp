@@ -249,6 +249,29 @@ AI::AI(const List<Ship> &ships, const List<Minable> &minables, const List<Flotsa
 
 
 	
+// NPC commands from mission events (e.g. "on enter") or from game state instantiation.
+void AI::IssueNPCTravelOrders(const Ship &ship, const System *moveToSystem, const Planet *targetPlanet)
+{
+	Orders newOrders;
+	if(moveToSystem && ship.GetSystem() != moveToSystem)
+	{
+		newOrders.type = Orders::TRAVEL_TO;
+		newOrders.targetSystem = moveToSystem;
+		if(targetPlanet)
+			newOrders.targetPlanet = targetPlanet;
+	}
+	else if(targetPlanet && targetPlanet->IsInSystem(ship.GetSystem()))
+	{
+		newOrders.type = Orders::LAND_ON;
+		newOrders.targetPlanet = targetPlanet;
+	}
+	// Replace the NPC's existing orders with these updated orders.
+	Orders &existing = orders[&ship];
+	existing = newOrders;
+}
+
+
+
 // Fleet commands from the player.
 void AI::IssueShipTarget(const PlayerInfo &player, const shared_ptr<Ship> &target)
 {
@@ -1182,11 +1205,12 @@ bool AI::FollowOrders(Ship &ship, Command &command) const
 		return false;
 	
 	int type = it->second.type;
+	const bool isTravelOrder = (type == Orders::MOVE_TO || type == Orders::TRAVEL_TO);
 	
 	// If your parent is jumping or absent, that overrides your orders unless
 	// your orders are to hold position.
 	shared_ptr<Ship> parent = ship.GetParent();
-	if(parent && type != Orders::HOLD_POSITION && type != Orders::MOVE_TO)
+	if(parent && type != Orders::HOLD_POSITION && !isTravelOrder)
 	{
 		if(parent->GetSystem() != ship.GetSystem())
 			return false;
@@ -1195,7 +1219,7 @@ bool AI::FollowOrders(Ship &ship, Command &command) const
 	}
 	
 	shared_ptr<Ship> target = it->second.target.lock();
-	if(type == Orders::MOVE_TO && it->second.targetSystem && ship.GetSystem() != it->second.targetSystem)
+	if(isTravelOrder && it->second.targetSystem && ship.GetSystem() != it->second.targetSystem)
 	{
 		// The desired position is in a different system. Find the best
 		// way to reach that system (via wormhole or jumping). This may
@@ -1211,6 +1235,13 @@ bool AI::FollowOrders(Ship &ship, Command &command) const
 			Stop(ship, command);
 		else
 			command.SetTurn(TurnToward(ship, TargetAim(ship)));
+	}
+	else if(type == Orders::LAND_ON && it->second.targetPlanet)
+	{
+		// LAND_ON would not be issued unless the planet was in this system.
+		ship.SetTargetStellar(ship.GetSystem()->FindStellar(it->second.targetPlanet));
+		command |= Command::LAND;
+		return false;
 	}
 	else if(!target)
 	{
@@ -1424,7 +1455,7 @@ void AI::MoveEscort(Ship &ship, Command &command) const
 	// "parent" to land (because the parent may not be planning on landing).
 	if(systemHasFuel && !ship.JumpsRemaining())
 		Refuel(ship, command);
-	else if(!parentIsHere && !isStaying)
+	else if(!parentIsHere && (!isStaying || ship.GetDestinationSystem()))
 	{
 		if(ship.GetTargetStellar())
 		{
@@ -1438,9 +1469,9 @@ void AI::MoveEscort(Ship &ship, Command &command) const
 		
 		if(!ship.GetTargetStellar() && !ship.GetTargetSystem())
 		{
-			// Route to the parent ship's system and check whether
-			// the ship should land (refuel or wormhole) or jump.
-			SelectRoute(ship, parent.GetSystem());
+			// Route to the destination (either the parent ship's system or a system
+			// marked by the NPC's mission definition) by landing or jumping.
+			SelectRoute(ship, ship.GetDestinationSystem() ? ship.GetDestinationSystem() : parent.GetSystem());
 		}
 		
 		// Perform the action that this ship previously decided on.
@@ -1477,9 +1508,11 @@ void AI::MoveEscort(Ship &ship, Command &command) const
 		Stop(ship, command, .2);
 	else if(parent.Commands().Has(Command::JUMP) && parent.GetTargetSystem() && !isStaying)
 	{
+		// If the npc/escort does not already have a travel target, follow the parent.
 		DistanceMap distance(ship, parent.GetTargetSystem());
 		const System *dest = distance.Route(ship.GetSystem());
-		ship.SetTargetSystem(dest);
+		if(!ship.GetDestinationSystem())
+			ship.SetTargetSystem(dest);
 		if(!dest)
 			// This ship has no route to the parent's destination system, so protect it until it jumps away.
 			KeepStation(ship, command, parent);

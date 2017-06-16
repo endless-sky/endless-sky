@@ -20,6 +20,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "GameData.h"
 #include "Government.h"
 #include "Messages.h"
+#include "Planet.h"
 #include "PlayerInfo.h"
 #include "Random.h"
 #include "Ship.h"
@@ -83,6 +84,20 @@ void NPC::Load(const DataNode &node)
 			}
 			else
 				location.Load(child);
+		}
+		else if(child.Token(0) == "destination")
+		{
+			if(child.Size() >= 2)
+				targetSystem = GameData::Systems().Get(child.Token(1));
+			else
+				needsTravelTarget = true;
+		}
+		else if(child.Token(0) == "land")
+		{
+			if(child.Size() >= 2)
+				landingTarget = GameData::Planets().Get(child.Token(1));
+			else
+				needsLandingTarget = true;
 		}
 		else if(child.Token(0) == "succeed" && child.Size() >= 2)
 			succeedIf = child.Value(1);
@@ -196,6 +211,11 @@ void NPC::Save(DataWriter &out) const
 		if(government)
 			out.Write("government", government->GetName());
 		personality.Save(out);
+		
+		if(targetSystem)
+			out.Write("destination", targetSystem->Name());
+		if(landingTarget)
+			out.Write("land", landingTarget->Name());
 		
 		if(!dialogText.empty())
 		{
@@ -435,6 +455,13 @@ NPC NPC::Instantiate(map<string, string> &subs, const System *origin, const Syst
 		ship->SetPersonality(result.personality);
 		if(result.personality.IsDerelict())
 			ship->Disable();
+		
+		if(landingTarget)
+			ship->SetTravelDestination(landingTarget);
+		if(targetSystem)
+			ship->SetDestinationSystem(targetSystem);
+		if(needsTravelTarget)
+			ship->SetDestinationSystem(destination);
 		
 		if(personality.IsEntering())
 			Fleet::Enter(*result.system, *ship);

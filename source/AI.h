@@ -27,6 +27,7 @@ class Body;
 class Flotsam;
 class Government;
 class Minable;
+class Planet;
 class PlayerInfo;
 class Ship;
 class ShipEvent;
@@ -48,6 +49,9 @@ template <class Type>
 	using List = std::list<std::shared_ptr<Type>>;
 	// Constructor, giving the AI access to various object lists.
 	AI(const List<Ship> &ships, const List<Minable> &minables, const List<Flotsam> &flotsam);
+	
+	// NPC commands from mission events.
+	void IssueNPCTravelOrders(const Ship &ship, const System *moveToSystem, const Planet *targetPlanet);
 	
 	// Fleet commands from the player.
 	void IssueShipTarget(const PlayerInfo &player, const std::shared_ptr<Ship> &target);
@@ -147,6 +151,8 @@ private:
 	public:
 		static const int HOLD_POSITION = 0x000;
 		static const int MOVE_TO = 0x001;
+		static const int TRAVEL_TO = 0x002;
+		static const int LAND_ON = 0x003;
 		static const int KEEP_STATION = 0x100;
 		static const int GATHER = 0x101;
 		static const int ATTACK = 0x102;
@@ -159,6 +165,7 @@ private:
 		std::weak_ptr<Ship> target;
 		Point point;
 		const System *targetSystem = nullptr;
+		const Planet *targetPlanet = nullptr;
 	};
 
 
@@ -189,8 +196,8 @@ private:
 	// Pressing "land" rapidly toggles targets; pressing it once re-engages landing.
 	int landKeyInterval = 0;
 	
-	// Current orders for the player's ships. Because this map only applies to
-	// player ships, which are never deleted except when landed, it can use
+	// Current orders for the player's ships or NPCs. Because this map only applies
+	// to special ships, which are never deleted except when landed, it can use
 	// ordinary pointers instead of weak pointers.
 	std::map<const Ship *, Orders> orders;
 	

@@ -26,6 +26,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 class DataNode;
 class DataWriter;
 class Government;
+class Planet;
 class PlayerInfo;
 class Ship;
 class ShipEvent;
@@ -73,6 +74,12 @@ private:
 	LocationFilter location;
 	const System *system = nullptr;
 	bool isAtDestination = false;
+	
+	// NPCs may have been given a destination system or planet.
+	const System *targetSystem = nullptr;
+	const Planet *landingTarget = nullptr;
+	bool needsTravelTarget = false;
+	bool needsLandingTarget = false;
 	
 	// Dialog or conversation to show when all requirements for this NPC are met:
 	std::string dialogText;
