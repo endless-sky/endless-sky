@@ -171,17 +171,8 @@ void NPC::Save(DataWriter &out) const
 			out.BeginChild();
 			{
 				// Break the text up into paragraphs.
-				size_t begin = 0;
-				while(true)
-				{
-					size_t pos = dialogText.find("\n\t", begin);
-					if(pos == string::npos)
-						pos = dialogText.length();
-					out.Write(dialogText.substr(begin, pos - begin));
-					if(pos == dialogText.length())
-						break;
-					begin = pos + 2;
-				}
+				for(const string &line : Format::Split(dialogText, "\n\t"))
+					out.Write(line);
 			}
 			out.EndChild();
 		}

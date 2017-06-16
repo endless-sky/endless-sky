@@ -2342,18 +2342,10 @@ void PlayerInfo::Save(const string &path) const
 	{
 		out.Write(it.first.Day(), it.first.Month(), it.first.Year());
 		out.BeginChild();
-		// Break the text up into paragraphs.
-		size_t begin = 0;
-		while(begin < it.second.length())
 		{
-			// Find the next line break.
-			size_t pos = it.second.find('\n', begin);
-			// Text should always end with a line break, but just in case:
-			if(pos == string::npos)
-				pos = it.second.length();
-			out.Write(it.second.substr(begin, pos - begin));
-			// Skip the actual newline character when writing the text out.
-			begin = pos + 1;
+			// Break the text up into paragraphs.
+			for(const string &line : Format::Split(it.second, "\n"))
+				out.Write(line);
 		}
 		out.EndChild();
 	}
