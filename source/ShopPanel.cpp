@@ -397,8 +397,8 @@ void ShopPanel::DrawShip(const Ship &ship, const Point &center, bool isSelected)
 	float zoomSize = SHIP_SIZE - 60.f;
 	
 	// Draw the ship name.
-	const string &name = ship.Name().empty() ? ship.ModelName() : ship.Name();
 	const Font &font = FontSet::Get(14);
+	const string &name = ship.Name().empty() ? ship.ModelName() : font.TruncateMiddle(ship.Name(), SIDE_WIDTH - 61);
 	Point offset(-.5f * font.Width(name), -.5f * SHIP_SIZE + 10.f);
 	font.Draw(name, center + offset, *GameData::Colors().Get("bright"));
 	
