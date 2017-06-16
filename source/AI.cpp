@@ -609,7 +609,7 @@ void AI::Step(const PlayerInfo &player)
 			else
 				MoveEscort(*it, command);
 		}
-		if(parent->IsDisabled())
+		else if(parent->IsDisabled())
 		{
 			// Your parent is disabled, and is in this system. If you have enemy
 			// targets present, fight them. Otherwise, repair your parent.
