@@ -396,6 +396,12 @@ void AI::Step(const PlayerInfo &player)
 		const Personality &personality = it->GetPersonality();
 		shared_ptr<Ship> parent = it->GetParent();
 		shared_ptr<const Ship> target = it->GetTargetShip();
+		// If your parent is destroyed, you are no longer an escort.
+		if(parent && parent->IsDestroyed())
+		{
+			parent.reset();
+			it->SetParent(parent);
+		}
 		
 		if(isPresent && personality.IsSwarming())
 		{
@@ -564,7 +570,6 @@ void AI::Step(const PlayerInfo &player)
 			continue;
 		}
 		
-		bool isPlayerEscort = it->IsYours();
 		if(mustRecall || isStranded)
 		{
 			// Stopping to let fighters board or to be refueled takes priority
@@ -584,7 +589,7 @@ void AI::Step(const PlayerInfo &player)
 		// the behavior depends on what the parent is doing, whether there
 		// are hostile targets nearby, and whether the escort has any
 		// immediate needs (like refueling).
-		else if(!parent || parent->IsDestroyed() || (parent->IsDisabled() && !isPlayerEscort))
+		else if(!parent)
 			MoveIndependent(*it, command);
 		else if(parent->GetSystem() != it->GetSystem())
 		{
@@ -594,9 +599,26 @@ void AI::Step(const PlayerInfo &player)
 				MoveEscort(*it, command);
 		}
 		// From here down, we're only dealing with ships that have a "parent"
-		// which is in the same system as them. If you're an enemy of your
-		// "parent," you don't take orders from them.
-		else if(personality.IsStaying() || parent->GetGovernment()->IsEnemy(gov))
+		// which is in the same system as them.
+		else if(parent->GetGovernment()->IsEnemy(gov))
+		{
+			// If your parent is your enemy, move toward them until you have
+			// selected a target to fight. Then, fight it.
+			if(target)
+				MoveIndependent(*it, command);
+			else
+				MoveEscort(*it, command);
+		}
+		if(parent->IsDisabled())
+		{
+			// Your parent is disabled, and is in this system. If you have enemy
+			// targets present, fight them. Otherwise, repair your parent.
+			if(target)
+				MoveIndependent(*it, command);
+			else
+				it->SetShipToAssist(parent);
+		}
+		else if(personality.IsStaying())
 			MoveIndependent(*it, command);
 		// This is a friendly escort. If the parent is getting ready to
 		// jump, always follow.
@@ -911,15 +933,6 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 			if(!ship.GetGovernment()->IsPlayer())
 				command |= Command::SCAN;
 		}
-		return;
-	}
-	
-	// If this ship is moving independently because it has a target, not because
-	// it has no parent, don't let it make travel plans.
-	if(ship.GetParent() && !ship.GetPersonality().IsStaying())
-	{
-		if(!ship.JumpsRemaining())
-			Refuel(ship, command);
 		return;
 	}
 	
