@@ -444,6 +444,17 @@ void Files::Copy(const string &from, const string &to)
 
 
 
+void Files::Move(const string &from, const string &to)
+{
+#if defined _WIN32
+	MoveFileExW(ToUTF16(from).c_str(), ToUTF16(to).c_str(), MOVEFILE_REPLACE_EXISTING);
+#else
+	rename(from.c_str(), to.c_str());
+#endif
+}
+
+
+
 void Files::Delete(const string &filePath)
 {
 #if defined _WIN32

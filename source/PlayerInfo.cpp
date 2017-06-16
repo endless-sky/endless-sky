@@ -325,7 +325,7 @@ void PlayerInfo::Save() const
 			};
 			for(int i = 0; i < 3; ++i)
 				if(Files::Exists(files[i + 1]))
-					Files::Copy(files[i + 1], files[i]);
+					Files::Move(files[i + 1], files[i]);
 		}
 	}
 		
