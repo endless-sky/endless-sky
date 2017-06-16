@@ -604,7 +604,7 @@ void AI::Step(const PlayerInfo &player)
 		{
 			// If your parent is your enemy, move toward them until you have
 			// selected a target to fight. Then, fight it.
-			if(target)
+			if(target || !parent->IsTargetable())
 				MoveIndependent(*it, command);
 			else
 				MoveEscort(*it, command);
