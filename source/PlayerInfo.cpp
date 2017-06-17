@@ -239,17 +239,30 @@ void PlayerInfo::Load(const string &path)
 		else if(child.Token(0) == "logbook")
 		{
 			for(const DataNode &grand : child)
+			{
 				if(grand.Size() >= 3)
 				{
 					Date date(grand.Value(0), grand.Value(1), grand.Value(2));
 					string text;
 					for(const DataNode &great : grand)
 					{
+						if(!text.empty())
+							text += "\n\t";
 						text += great.Token(0);
-						text += '\n';
 					}
 					logbook.emplace(date, text);
 				}
+				else if(grand.Size() >= 2)
+				{
+					string &text = specialLogs[grand.Token(0)][grand.Token(1)];
+					for(const DataNode &great : grand)
+					{
+						if(!text.empty())
+							text += "\n\t";
+						text += great.Token(0);
+					}
+				}
+			}
 		}
 	}
 	// Based on the ships that were loaded, calculate the player's capacity for
@@ -1324,6 +1337,30 @@ void PlayerInfo::AddLogEntry(const std::string &text)
 
 
 
+const map<string, map<string, string>> &PlayerInfo::SpecialLogs() const
+{
+	return specialLogs;
+}
+
+
+
+void PlayerInfo::AddSpecialLog(const string &type, const string &name, const string &text)
+{
+	string &entry = specialLogs[type][name];
+	if(!entry.empty())
+		entry += "\n\t";
+	entry += text;
+}
+
+
+
+bool PlayerInfo::HasLogs() const
+{
+	return !logbook.empty() || !specialLogs.empty();
+}
+
+
+
 // Call this when leaving the outfitter, shipyard, or hiring panel, to update
 // the information on how much space is available.
 void PlayerInfo::UpdateCargoCapacities()
@@ -2344,11 +2381,23 @@ void PlayerInfo::Save(const string &path) const
 		out.BeginChild();
 		{
 			// Break the text up into paragraphs.
-			for(const string &line : Format::Split(it.second, "\n"))
+			for(const string &line : Format::Split(it.second, "\n\t"))
 				out.Write(line);
 		}
 		out.EndChild();
 	}
+	for(const auto &it : specialLogs)
+		for(const auto &eit : it.second)
+		{
+			out.Write(it.first, eit.first);
+			out.BeginChild();
+			{
+				// Break the text up into paragraphs.
+				for(const string &line : Format::Split(eit.second, "\n\t"))
+					out.Write(line);
+			}
+			out.EndChild();
+		}
 	out.EndChild();
 }
 

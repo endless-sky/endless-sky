@@ -119,8 +119,10 @@ void MissionAction::Load(const DataNode &node, const string &missionName)
 		
 		if(key == "log" || key == "dialog")
 		{
-			string &text = (key == "log" ? logText : dialogText);
-			for(int i = 1; i < child.Size(); ++i)
+			bool isSpecial = (key == "log" && child.Size() >= 3);
+			string &text = (key == "dialog" ? dialogText :
+				isSpecial ? specialLogText[child.Token(1)][child.Token(2)] : logText);
+			for(int i = isSpecial ? 3 : 1; i < child.Size(); ++i)
 			{
 				if(!text.empty())
 					text += "\n\t";
@@ -189,6 +191,18 @@ void MissionAction::Save(DataWriter &out) const
 			}
 			out.EndChild();
 		}
+		for(const auto &it : specialLogText)
+			for(const auto &eit : it.second)
+			{
+				out.Write("log", it.first, eit.first);
+				out.BeginChild();
+				{
+					// Break the text up into paragraphs.
+					for(const string &line : Format::Split(eit.second, "\n\t"))
+						out.Write(line);
+				}
+				out.EndChild();
+			}
 		if(!dialogText.empty())
 		{
 			out.Write("dialog");
@@ -285,6 +299,9 @@ void MissionAction::Do(PlayerInfo &player, UI *ui, const System *destination) co
 	
 	if(!logText.empty())
 		player.AddLogEntry(logText);
+	for(const auto &it : specialLogText)
+		for(const auto &eit : it.second)
+			player.AddSpecialLog(it.first, eit.first, eit.second);
 	
 	// If multiple outfits are being transferred, first remove them before
 	// adding any new ones.
@@ -336,6 +353,9 @@ MissionAction MissionAction::Instantiate(map<string, string> &subs, int jumps, i
 	
 	if(!logText.empty())
 		result.logText = Format::Replace(logText, subs);
+	for(const auto &it : specialLogText)
+		for(const auto &eit : it.second)
+			result.specialLogText[it.first][eit.first] = Format::Replace(eit.second, subs);
 	
 	if(!dialogText.empty())
 		result.dialogText = Format::Replace(dialogText, subs);

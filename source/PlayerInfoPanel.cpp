@@ -158,7 +158,7 @@ void PlayerInfoPanel::Draw()
 		}
 	}
 	interfaceInfo.SetCondition("three buttons");
-	if(!player.Logbook().empty())
+	if(player.HasLogs())
 		interfaceInfo.SetCondition("enable logbook");
 	
 	// Draw the interface.
@@ -262,7 +262,7 @@ bool PlayerInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comman
 	}
 	else if(command.Has(Command::INFO | Command::MAP) || key == 'm')
 		GetUI()->Push(new MissionPanel(player));
-	else if(key == 'l' && !player.Logbook().empty())
+	else if(key == 'l' && player.HasLogs())
 		GetUI()->Push(new LogbookPanel(player));
 	else
 		return false;

@@ -145,6 +145,9 @@ public:
 	// Get the player's logbook.
 	const std::multimap<Date, std::string> &Logbook() const;
 	void AddLogEntry(const std::string &text);
+	const std::map<std::string, std::map<std::string, std::string>> &SpecialLogs() const;
+	void AddSpecialLog(const std::string &type, const std::string &name, const std::string &text);
+	bool HasLogs() const;
 	
 	// Get mission information.
 	const std::list<Mission> &Missions() const;
@@ -271,6 +274,7 @@ private:
 	std::map<std::string, int64_t> costBasis;
 	
 	std::multimap<Date, std::string> logbook;
+	std::map<std::string, std::map<std::string, std::string>> specialLogs;
 	
 	std::list<Mission> missions;
 	// These lists are populated when you land on a planet, and saved so that

@@ -89,7 +89,7 @@ void ShipInfoPanel::Draw()
 		interfaceInfo.SetCondition("five buttons");
 	else
 		interfaceInfo.SetCondition("three buttons");
-	if(!player.Logbook().empty())
+	if(player.HasLogs())
 		interfaceInfo.SetCondition("enable logbook");
 	
 	// Draw the interface.
@@ -193,7 +193,7 @@ bool ShipInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 	}
 	else if(command.Has(Command::INFO | Command::MAP) || key == 'm')
 		GetUI()->Push(new MissionPanel(player));
-	else if(key == 'l' && !player.Logbook().empty())
+	else if(key == 'l' && player.HasLogs())
 		GetUI()->Push(new LogbookPanel(player));
 	else
 		return false;
