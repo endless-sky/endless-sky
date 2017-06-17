@@ -22,7 +22,7 @@ opts.Add(PathVariable("PREFIX", "Directory to install under", "/usr/local", Path
 opts.Add(PathVariable("DESTDIR", "Destination root directory", "", PathVariable.PathAccept))
 opts.Add('comp_dir', 'Compilation directory', 'build')
 opts.Add(EnumVariable("mode", "Compilation mode", "release", allowed_values=("release", "debug", "profile")))
-opts.Add('branch', 'Directory inside mode coresponding to current banch. If git is instlled current branch can be found with, git rev-parse --symbolic-full-name --abbrev-ref HEAD', '.')
+opts.Add('branch', 'Directory inside mode corresponding to current branch. If git is installed current branch can be found with, git rev-parse --symbolic-full-name --abbrev-ref HEAD', '.')
 opts.Update(env)
 
 Help(opts.GenerateHelpText(env))
