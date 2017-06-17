@@ -230,6 +230,8 @@ public:
 	void Restore();
 	// Check if this ship has been destroyed.
 	bool IsDestroyed() const;
+	// Check if this ship has permanently landed.
+	bool HasLanded() const;
 	// Recharge and repair this ship (e.g. because it has landed).
 	void Recharge(bool atSpaceport = true);
 	// Check if this ship is able to give the given ship enough fuel to jump.
@@ -364,7 +366,8 @@ public:
 	void SetTargetSystem(const System *system);
 	// Persistent ship targets.
 	void SetTravelDestination(const Planet *planet);
-	void SetDestinationSystem(const System *system);
+	void SetDestinationSystem(std::vector<const System *> systems, bool doPatrol);
+	void NextDestinationSystem();
 	// Mining target.
 	void SetTargetAsteroid(const std::shared_ptr<Minable> &asteroid);
 	void SetTargetFlotsam(const std::shared_ptr<Flotsam> &flotsam);
@@ -428,6 +431,7 @@ private:
 	bool neverDisabled = false;
 	bool isCapturable = true;
 	bool isInvisible = false;
+	bool hasLanded = false;
 	int customSwizzle = -1;
 	double cloak = 0.;
 	double cloakDisruption = 0.;
@@ -517,8 +521,12 @@ private:
 	std::weak_ptr<Ship> shipToAssist;
 	const StellarObject *targetPlanet = nullptr;
 	const System *targetSystem = nullptr;
+	std::vector<const System *> targetSystems;
+	size_t destinationQueue = 0;
+	bool doPatrol = false;
 	const Planet *travelDestination = nullptr;
 	const System *destinationSystem = nullptr;
+	std::vector<const System *> destinationSystems;
 	std::weak_ptr<Minable> targetAsteroid;
 	std::weak_ptr<Flotsam> targetFlotsam;
 	

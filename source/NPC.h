@@ -18,10 +18,11 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "LocationFilter.h"
 #include "Personality.h"
 
-#include <string>
 #include <list>
 #include <map>
 #include <memory>
+#include <string>
+#include <vector>
 
 class DataNode;
 class DataWriter;
@@ -73,13 +74,16 @@ private:
 	// Start out in a location matching this filter, or in a particular system:
 	LocationFilter location;
 	const System *system = nullptr;
+	const System *destination = nullptr;
 	bool isAtDestination = false;
 	
 	// NPCs may have been given a destination system or planet.
-	const System *targetSystem = nullptr;
+	std::vector<const System *> targetSystems;
 	const Planet *landingTarget = nullptr;
 	bool needsTravelTarget = false;
 	bool needsLandingTarget = false;
+	bool doPatrol = false;
+	size_t destinationQueue = 0;
 	
 	// Dialog or conversation to show when all requirements for this NPC are met:
 	std::string dialogText;

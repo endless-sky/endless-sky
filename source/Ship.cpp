@@ -290,6 +290,8 @@ void Ship::Load(const DataNode &node)
 		}
 		else if(key == "destination system" && child.Size() >= 2)
 			targetSystem = GameData::Systems().Get(child.Token(1));
+		else if(key == "destination queue" && child.Size() >= 2)
+			destinationQueue = child.Value(1);
 		else if(key == "parked")
 			isParked = true;
 		else if(key == "description" && child.Size() >= 2)
@@ -625,6 +627,8 @@ void Ship::Save(DataWriter &out) const
 			out.Write("planet", landingPlanet->Name());
 		if(targetSystem && !targetSystem->Name().empty())
 			out.Write("destination system", targetSystem->Name());
+		if(destinationQueue > 0)
+			out.Write("destination queue", destinationQueue);
 		if(isParked)
 			out.Write("parked");
 	}
@@ -1216,10 +1220,15 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 					SetTargetStellar(nullptr);
 					landingPlanet = nullptr;
 				}
-				else if(!isSpecial || personality.IsFleeing()
-						|| (isSpecial && !isYours && travelDestination && travelDestination == landingPlanet))
+				else if(!isSpecial || personality.IsFleeing())
 				{
 					MarkForRemoval();
+					return;
+				}
+				else if(isSpecial && !isYours && travelDestination && travelDestination == landingPlanet)
+				{
+					MarkForRemoval();
+					hasLanded = true;
 					return;
 				}
 				
@@ -2108,6 +2117,14 @@ bool Ship::IsDestroyed() const
 
 
 
+// Check if this ship has permanently landed.
+bool Ship::HasLanded() const
+{
+	return hasLanded;
+}
+
+
+
 // Recharge and repair this ship (e.g. because it has landed).
 void Ship::Recharge(bool atSpaceport)
 {
@@ -2949,9 +2966,34 @@ void Ship::SetTravelDestination(const Planet *planet)
 
 
 
-void Ship::SetDestinationSystem(const System *system)
+void Ship::SetDestinationSystem(std::vector<const System *> systems, bool doPatrol)
 {
-	destinationSystem = system;
+	
+	if(destinationQueue < systems.size())
+	{
+		this->doPatrol = doPatrol;
+		destinationSystems = systems;
+		destinationSystem = systems[destinationQueue];		
+	}
+	else
+		destinationSystem = nullptr;
+}
+
+
+
+void Ship::NextDestinationSystem()
+{
+	++destinationQueue;
+	if(destinationQueue < destinationSystems.size())
+		destinationSystem = destinationSystems[destinationQueue];
+	// If the NPC should patrol, reset the destination queue.
+	else if(doPatrol && destinationSystems.size() >= 2)
+	{
+		destinationQueue = 0;
+		destinationSystem = destinationSystems[destinationQueue];
+	}
+	else
+		destinationSystem = nullptr;	
 }
 
 

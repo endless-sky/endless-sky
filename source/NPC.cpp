@@ -62,6 +62,8 @@ void NPC::Load(const DataNode &node)
 			succeedIf |= ShipEvent::SCAN_CARGO;
 		else if(node.Token(i) == "scan outfits")
 			succeedIf |= ShipEvent::SCAN_OUTFITS;
+		else if(node.Token(i) == "land")
+			succeedIf |= ShipEvent::LAND;
 		else if(node.Token(i) == "evade")
 			mustEvade = true;
 		else if(node.Token(i) == "accompany")
@@ -85,12 +87,16 @@ void NPC::Load(const DataNode &node)
 			else
 				location.Load(child);
 		}
-		else if(child.Token(0) == "destination")
+		else if(child.Token(0) == "destination" || (child.Token(0) == "patrol" && child.Size() >= 3))
 		{
-			if(child.Size() >= 2)
-				targetSystem = GameData::Systems().Get(child.Token(1));
-			else
+			doPatrol = child.Token(0) == "patrol" ? true : false;
+			if(doPatrol)
+				needsTravelTarget = false;
+			if(child.Size() == 1)
 				needsTravelTarget = true;
+			else
+				for(int i = 1; i < child.Size(); ++i)
+					targetSystems.push_back(GameData::Systems().Get(child.Token(i)));
 		}
 		else if(child.Token(0) == "land")
 		{
@@ -187,8 +193,8 @@ void NPC::Load(const DataNode &node)
 		ship->SetPersonality(personality);
 		ship->SetIsSpecial();
 		ship->FinishLoading(false);
-		if(targetSystem)
-			ship->SetDestinationSystem(targetSystem);
+		if(!targetSystems.empty())
+			ship->SetDestinationSystem(targetSystems, doPatrol);
 		if(landingTarget)
 			ship->SetTravelDestination(landingTarget);
 	}
@@ -216,8 +222,9 @@ void NPC::Save(DataWriter &out) const
 			out.Write("government", government->GetName());
 		personality.Save(out);
 		
-		if(targetSystem)
-			out.Write("destination", targetSystem->Name());
+		for(size_t i = 0; i < targetSystems.size() ; ++i)
+			out.Write(doPatrol ? "patrol" : "destination", targetSystems[i]->Name());
+
 		if(landingTarget)
 			out.Write("land", landingTarget->Name());
 		
@@ -417,7 +424,7 @@ bool NPC::HasFailed() const
 NPC NPC::Instantiate(map<string, string> &subs, const System *origin, const Planet *destinationPlanet) const
 {
 	NPC result;
-	const System *destination = destinationPlanet->GetSystem();
+	result.destination = destinationPlanet->GetSystem();
 	result.government = government;
 	if(!result.government)
 		result.government = GameData::PlayerGovernment();
@@ -426,8 +433,13 @@ NPC NPC::Instantiate(map<string, string> &subs, const System *origin, const Plan
 	result.failIf = failIf;
 	result.mustEvade = mustEvade;
 	result.mustAccompany = mustAccompany;
-	result.targetSystem = needsTravelTarget ? destination : targetSystem;
+	result.targetSystems = targetSystems;
+	result.destinationQueue = destinationQueue;
 	result.landingTarget = needsLandingTarget ? destinationPlanet : landingTarget;
+	result.doPatrol = doPatrol;
+	
+	if(needsTravelTarget)
+		result.targetSystems.push_back(result.destination);
 	
 	// Pick the system for this NPC to start out in.
 	result.system = system;
@@ -465,8 +477,8 @@ NPC NPC::Instantiate(map<string, string> &subs, const System *origin, const Plan
 		
 		if(result.landingTarget)
 			ship->SetTravelDestination(result.landingTarget);
-		if(result.targetSystem)
-			ship->SetDestinationSystem(result.targetSystem);
+		if(!targetSystems.empty())
+			ship->SetDestinationSystem(result.targetSystems, result.doPatrol);
 		
 		if(personality.IsEntering())
 			Fleet::Enter(*result.system, *ship);

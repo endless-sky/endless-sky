@@ -264,7 +264,7 @@ void AI::IssueNPCTravelOrders(Ship &ship, const System *moveToSystem, const Plan
 		}
 		// The NPC has arrived in its destination system and should no longer receive TRAVEL_TO orders.
 		else
-			ship.SetDestinationSystem(nullptr);
+			ship.NextDestinationSystem();
 	}
 	if(targetPlanet && targetPlanet->IsInSystem(ship.GetSystem()))
 	{
@@ -1339,13 +1339,12 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 	}
 	
 	// A ship has restricted movement options if it is 'staying' or is hostile to its parent.
-	const bool shouldStay = !(ship.GetDestinationSystem() || ship.GetTravelDestination())
-			&& ((ship.GetParent() && ship.GetParent()->GetGovernment()->IsEnemy(gov))
-				|| ship.GetPersonality().IsStaying());
+	const bool shouldStay = ship.GetPersonality().IsStaying()
+			|| (ship.GetParent() && ship.GetParent()->GetGovernment()->IsEnemy(gov));
 	// Ships should choose a random system/planet for travel if they do not
 	// already have a system/planet in mind, and are free to move about.
 	const System *origin = ship.GetSystem();
-	if(!ship.GetTargetSystem() && !ship.GetTargetStellar() && !shouldStay)
+	if(!(ship.GetTargetSystem() || ship.GetTargetStellar()) && !shouldStay)
 	{
 		int jumps = ship.JumpsRemaining();
 		// Each destination system has an average priority of 10.
@@ -1439,13 +1438,16 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 	else if(ship.GetTargetStellar())
 	{
 		MoveToPlanet(ship, command);
-		if(!shouldStay && ship.Attributes().Get("fuel capacity")
-				&& ship.GetTargetStellar()->GetPlanet() && ship.GetTargetStellar()->GetPlanet()->CanLand(ship))
+		// Ships should land on their destination planet if they are free to move about.
+		if(!(shouldStay && !(ship.GetDestinationSystem() || ship.GetTravelDestination()))
+				&& ship.Attributes().Get("fuel capacity") && ship.GetTargetStellar()->GetPlanet()
+				&& ship.GetTargetStellar()->GetPlanet()->CanLand(ship))
 			command |= Command::LAND;
 		else if(ship.Position().Distance(ship.GetTargetStellar()->Position()) < 100.)
 			ship.SetTargetStellar(nullptr);
 	}
-	else if(shouldStay && !ship.GetSystem()->Objects().empty())
+	else if(shouldStay && !(ship.GetDestinationSystem() || ship.GetTravelDestination())
+			&& !ship.GetSystem()->Objects().empty())
 	{
 		unsigned i = Random::Int(origin->Objects().size());
 		ship.SetTargetStellar(&origin->Objects()[i]);
