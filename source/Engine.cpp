@@ -302,10 +302,6 @@ void Engine::Place()
 					ship->SetParent(flagship);
 				else
 					ship->SetParent(nullptr);
-				
-				// Missions may have given an NPC a destination system that is not its current system.
-				if(ship->GetDestinationSystem() || ship->GetTravelDestination())
-					ai.IssueNPCTravelOrders(*ship, ship->GetDestinationSystem(), ship->GetTravelDestination());
 			}
 		}
 	

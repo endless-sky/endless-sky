@@ -463,8 +463,8 @@ NPC NPC::Instantiate(map<string, string> &subs, const System *origin, const Plan
 		if(result.personality.IsDerelict())
 			ship->Disable();
 		
-		if(landingTarget)
-			ship->SetTravelDestination(landingTarget);
+		if(result.landingTarget)
+			ship->SetTravelDestination(result.landingTarget);
 		if(result.targetSystem)
 			ship->SetDestinationSystem(result.targetSystem);
 		

@@ -249,18 +249,24 @@ AI::AI(const List<Ship> &ships, const List<Minable> &minables, const List<Flotsa
 
 
 	
-// NPC commands from mission events (e.g. "on enter") or from game state instantiation.
-void AI::IssueNPCTravelOrders(const Ship &ship, const System *moveToSystem, const Planet *targetPlanet)
+// NPC commands from npc mission directives 'destination' and 'land'
+void AI::IssueNPCTravelOrders(Ship &ship, const System *moveToSystem, const Planet *targetPlanet)
 {
 	Orders newOrders;
-	if(moveToSystem && ship.GetSystem() != moveToSystem)
+	if(moveToSystem)
 	{
-		newOrders.type = Orders::TRAVEL_TO;
-		newOrders.targetSystem = moveToSystem;
-		if(targetPlanet)
-			newOrders.targetPlanet = targetPlanet;
+		if(ship.GetSystem() != moveToSystem)
+		{
+			newOrders.type = Orders::TRAVEL_TO;
+			newOrders.targetSystem = moveToSystem;
+			if(targetPlanet)
+				newOrders.targetPlanet = targetPlanet;
+		}
+		// The NPC has arrived in its destination system and should no longer receive TRAVEL_TO orders.
+		else
+			ship.SetDestinationSystem(nullptr);
 	}
-	else if(targetPlanet && targetPlanet->IsInSystem(ship.GetSystem()))
+	if(targetPlanet && targetPlanet->IsInSystem(ship.GetSystem()))
 	{
 		newOrders.type = Orders::LAND_ON;
 		newOrders.targetPlanet = targetPlanet;
@@ -268,6 +274,8 @@ void AI::IssueNPCTravelOrders(const Ship &ship, const System *moveToSystem, cons
 	// Replace the NPC's existing orders with these updated orders.
 	Orders &existing = orders[&ship];
 	existing = newOrders;
+	if(existing.type == 0)
+		orders.erase(&ship);
 }
 
 
@@ -490,6 +498,10 @@ void AI::Step(const PlayerInfo &player)
 			MovePlayer(*it, player);
 			continue;
 		}
+		
+		// Update any orders NPCs may have
+		if(it->IsSpecial() && !it->IsYours() && (it->GetDestinationSystem() || it->GetTravelDestination()))
+			IssueNPCTravelOrders(*it, it->GetDestinationSystem(), it->GetTravelDestination());
 		
 		const Government *gov = it->GetGovernment();
 		const Personality &personality = it->GetPersonality();
@@ -1205,10 +1217,10 @@ bool AI::FollowOrders(Ship &ship, Command &command) const
 		return false;
 	
 	int type = it->second.type;
-	const bool isTravelOrder = (type == Orders::MOVE_TO || type == Orders::TRAVEL_TO);
+	const bool isTravelOrder = (type == Orders::MOVE_TO || type == Orders::TRAVEL_TO || type == Orders::LAND_ON);
 	
 	// If your parent is jumping or absent, that overrides your orders unless
-	// your orders are to hold position.
+	// your orders are to hold position, or a travel directive.
 	shared_ptr<Ship> parent = ship.GetParent();
 	if(parent && type != Orders::HOLD_POSITION && !isTravelOrder)
 	{
@@ -1219,7 +1231,14 @@ bool AI::FollowOrders(Ship &ship, Command &command) const
 	}
 	
 	shared_ptr<Ship> target = it->second.target.lock();
-	if(isTravelOrder && it->second.targetSystem && ship.GetSystem() != it->second.targetSystem)
+	if(type == Orders::LAND_ON && it->second.targetPlanet)
+	{
+		// LAND_ON would not be issued unless the planet was in this system.
+		ship.SetTargetStellar(ship.GetSystem()->FindStellar(it->second.targetPlanet));
+		command |= Command::LAND;
+		MoveIndependent(ship, command);
+	}
+	else if(isTravelOrder && it->second.targetSystem && ship.GetSystem() != it->second.targetSystem)
 	{
 		// The desired position is in a different system. Find the best
 		// way to reach that system (via wormhole or jumping). This may
@@ -1235,13 +1254,6 @@ bool AI::FollowOrders(Ship &ship, Command &command) const
 			Stop(ship, command);
 		else
 			command.SetTurn(TurnToward(ship, TargetAim(ship)));
-	}
-	else if(type == Orders::LAND_ON && it->second.targetPlanet)
-	{
-		// LAND_ON would not be issued unless the planet was in this system.
-		ship.SetTargetStellar(ship.GetSystem()->FindStellar(it->second.targetPlanet));
-		command |= Command::LAND;
-		return false;
 	}
 	else if(!target)
 	{
@@ -1327,8 +1339,9 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 	}
 	
 	// A ship has restricted movement options if it is 'staying' or is hostile to its parent.
-	const bool shouldStay = ship.GetPersonality().IsStaying()
-			|| (ship.GetParent() && ship.GetParent()->GetGovernment()->IsEnemy(gov));
+	const bool shouldStay = !(ship.GetDestinationSystem() || ship.GetTravelDestination())
+			&& ((ship.GetParent() && ship.GetParent()->GetGovernment()->IsEnemy(gov))
+				|| ship.GetPersonality().IsStaying());
 	// Ships should choose a random system/planet for travel if they do not
 	// already have a system/planet in mind, and are free to move about.
 	const System *origin = ship.GetSystem();
@@ -1455,7 +1468,7 @@ void AI::MoveEscort(Ship &ship, Command &command) const
 	// "parent" to land (because the parent may not be planning on landing).
 	if(systemHasFuel && !ship.JumpsRemaining())
 		Refuel(ship, command);
-	else if(!parentIsHere && (!isStaying || ship.GetDestinationSystem()))
+	else if((!parentIsHere && !isStaying) || ship.GetDestinationSystem())
 	{
 		if(ship.GetTargetStellar())
 		{
