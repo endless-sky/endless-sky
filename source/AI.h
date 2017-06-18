@@ -155,7 +155,8 @@ private:
 	bool isLaunching = false;
 	bool isCloaking = false;
 	bool shift = false;
-	
+	bool shiftStuck = false;
+
 	bool escortsAreFrugal = true;
 	bool escortsUseAmmo = true;
 	// Pressing "land" rapidly toggles targets; pressing it once re-engages landing.
