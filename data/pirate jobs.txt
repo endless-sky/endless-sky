@@ -2278,80 +2278,112 @@ mission "Raid on Merchants (South)"
 		payment 150000
 		dialog "After counting up the loot from the destroyed merchant fleet, you are given your cut. <payment>"
 
-mission "Defend from Law Enforcement (North)"
-	name "Defend <system>"
+mission "Northern Pirate Defense"
+	name "Defend <planet>"
 	repeat
-	job
-	description "Local Republic forces are attacking the <system> system! Join in on the fight and earn <payment>."
+	minor
+	description "Local Republic forces are attacking the <destination>! Defeat them to defend anarchy!"
 	to offer
-		random < 30
+		random < 20
+		"reputation: Pirate" >= 0
 	source
 		government "Pirate"
 		attributes "north pirate"
-	npc
-		personality plunders staying
-		government "Pirate"
-		fleet "Small Northern Pirate"
-		fleet "Large Northern Pirate"
-	npc kill
+	npc evade
 		personality heroic staying waiting
 		government "Republic"
 		fleet "Large Republic"
 		fleet "Large Republic"
 		dialog "The Navy fleets have been eliminated. Return to <destination>."
+	npc
+		personality plunders staying
+		government "Pirate"
+		fleet "Large Northern Pirate"
+		fleet "Small Northern Pirate"
+	on offer
+		conversation
+			`Suddenly you hear raised voices and shouting outside: "We are under attack! <planet> is under attack by the militia! We need every combat-worthy ship to join in the defenses!" This could also be an easy way to get yourself killed, and you can't even guarentee that you will be paid for your work.`
+			choice
+				"	(Stay here until the fight is over.)"
+					decline
+				"	(Join the defense fleet.)"
+			"Local pirate forces are preparing to repel the militia attack. You join them, and take off together..."
+				launch
 	on complete
 		payment 350000
-		dialog "The government of <planet> pays you <payment> for helping to drive off the Navy."
+		dialog "Many pirates of <planet> thank you and collectively pay you <payment> for helping to drive off the Navy."
 
-mission "Defend from Law Enforcement (Core)"
-	name "Defend <system>"
+mission "Core Pirate Defense"
+	name "Defend <planet>"
 	repeat
-	job
-	description "Local Syndicate forces are attacking the <system> system! Join in on the fight and earn <payment>."
+	minor
+	description "Local Syndicate forces are attacking the <destination>! Defeat them to defend anarchy!"
 	to offer
-		random < 30
+		random < 20
+		"reputation: Pirate" >= 0
 	source
 		government "Pirate"
 		attributes "core pirate"
+	npc evade
+		personality heroic staying waiting
+		government "Syndicate"
+		fleet "Small Syndicate"
+		fleet "Large Syndicate"
+		fleet "Large Syndicate"
+		dialog "The Syndicate fleets have been eliminated. Return to <destination>."
 	npc
 		personality plunders staying
 		government "Pirate"
 		fleet "Small Core Pirate"
-		fleet "Large Core Pirate"
-	npc kill
-		personality heroic staying waiting
-		government "Syndicate"
-		fleet "Large Syndicate"
-		fleet "Large Syndicate"
-		dialog "The Syndicate fleets have been eliminated. Return to <destination>."
+		fleet "Small Core Pirate"
+	on offer
+		conversation
+			`Suddenly you hear raised voices and shouting outside: "We are under attack! <planet> is under attack by the Syndicate! We need every combat-worthy ship to join in the defenses!" This could also be an easy way to get yourself killed, and you can't even guarentee that you will be paid for your work.`
+			choice
+				"	(Stay here until the fight is over.)"
+					decline
+				"	(Join the defense fleet.)"
+			"Local pirate forces are preparing to repel the Syndicate attack. You join them, and take off together..."
+				launch
 	on complete
 		payment 350000
-		dialog "The government of <planet> pays you <payment> for helping to drive off the Syndicate."
+		dialog "Many pirates of <planet> thank you and collectively pay you <payment> for helping to drive off the Navy."
 
-mission "Defend from Law Enforcement (South)"
-	name "Defend <system>"
+mission "Southern Pirate Defense"
+	name "Defend <planet>"
 	repeat
-	job
-	description "Local Militia forces are attacking the <system> system! Join in on the fight and earn <payment>."
+	minor
+	description "Local militia forces are attacking the <destination>! Defeat them to defend anarchy!"
 	to offer
-		random < 30
+		random < 20
+		"reputation: Pirate" >= 0
 	source
 		government "Pirate"
 		attributes "south pirate"
+	npc evade
+		personality heroic staying waiting
+		government "Militia"
+		fleet "Small Militia"
+		fleet "Large Militia"
+		fleet "Large Militia"
+		dialog "The militia fleets have been eliminated. Return to <destination>."
 	npc
 		personality plunders staying
 		government "Pirate"
 		fleet "Small Southern Pirate"
-		fleet "Large Southern Pirate"
-	npc kill
-		personality heroic staying waiting
-		government "Militia"
-		fleet "Large Militia"
-		fleet "Large Militia"
-		dialog "The Militia fleets have been eliminated. Return to <destination>."
+		fleet "Small Southern Pirate"
+	on offer
+		conversation
+			`Suddenly you hear raised voices and shouting outside: "We are under attack! <planet> is under attack by the militia! We need every combat-worthy ship to join in the defenses!" This could also be an easy way to get yourself killed, and you can't even guarentee that you will be paid for your work.`
+			choice
+				"	(Stay here until the fight is over.)"
+					decline
+				"	(Join the defense fleet.)"
+			"Local pirate forces are preparing to repel the militia attack. You join them, and take off together..."
+				launch
 	on complete
 		payment 350000
-		dialog "The government of <planet> pays you <payment> for helping to drive off the Militia."
+		dialog "Many pirates of <planet> thank you and collectively pay you <payment> for helping to drive off the Navy."
 
 mission "Ransom Situation (North, Safe)"
 	name "Ransom collection at Farpoint"
@@ -2511,7 +2543,7 @@ outfit "Secret Cargo"
 	cost 0
 	thumbnail "outfit/unknown"
 	"mass" 1
-	description "Cargo stolen from a merchant ship."
+	description "Cargo stolen from a merchant ship which has caught the interest of a pirate warlord."
 
 mission "Cargo Theft (North)"
 	name "Convoy at <system>"
