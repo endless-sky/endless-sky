@@ -1763,7 +1763,7 @@ mission "Wanderers: Sestor Search: Varu K'prai"
 	on offer
 		conversation
 			`The entire spaceport on <planet> has been razed to the ground. Teams of Wanderers are sifting through the rubble to recover the bodies of those who were killed here. Apparently the Kor Sestor fleet destroyed the spaceport and every Wanderer ship it found in this system, and then occupied the system for several days, destroying or driving away any scout ships that entered the system.`
-			`	The Wanderers don't know what happened next, but the drones are no longer here, so they must have moved beyond Wanderer space.`
+			`	The Wanderers don't know what happened next, but the drones are no longer here. Perhaps they have moved beyond Wanderer space.`
 				decline
 
 
