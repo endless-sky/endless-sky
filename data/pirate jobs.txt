@@ -1466,7 +1466,7 @@ mission "Mercenary Job (Medium, North, Dangerous Origin)"
 	name "Protection to <planet>"
 	job
 	repeat
-	description "The captain of the <npc> will pay you <payment> to escape local law enforcement and reach <destination> by <date>."
+	description "The captain of the <npc> will pay you <payment> to help them escape local law enforcement and reach <destination> by <date>."
 	deadline 10
 	to offer
 		random < 40
@@ -1593,13 +1593,13 @@ mission "Escort Stolen Vessel (Extra Large, North, Dangerous Path)"
 		personality escort
 		fleet
 			names "pirate"
-			variant 3
+			variant 6
 				"Leviathan"
 				"Hauler II"
-			variant 2
+			variant 4
 				"Leviathan (Laser)"
 				"Hauler"
-			variant 2
+			variant 4
 				"Leviathan (Heavy)"
 				"Freighter"
 			variant 1
@@ -1615,7 +1615,7 @@ mission "Mercenary Job (Medium, Core, Dangerous Origin)"
 	name "Protection to <planet>"
 	job
 	repeat
-	description "The captain of the <npc> will pay you <payment> to escape local law enforcement and reach <destination> by <date>."
+	description "The captain of the <npc> will pay you <payment> to help them escape local law enforcement and reach <destination> by <date>."
 	deadline 10
 	to offer
 		random < 40
@@ -1732,19 +1732,19 @@ mission "Escort Stolen Vessel (Extra Large, Core, Dangerous Path)"
 		personality escort
 		fleet
 			names "pirate"
-			variant 2
+			variant 4
 				"Firebird"
 				"Argosy"
-			variant 1
+			variant 4
 				"Firebird (Plasma)"
 				"Bounder"
-			variant 1
+			variant 4
 				"Firebird (Missile)"
 				"Quicksilver"
 			variant 2
 				"Falcon"
 				"Freighter"
-			variant 1
+			variant 2
 				"Falcon (Laser)"
 				"Freighter"
 			variant 1
@@ -1760,7 +1760,7 @@ mission "Mercenary Job (Medium, South, Dangerous Origin)"
 	name "Protection to <planet>"
 	job
 	repeat
-	description "The captain of the <npc> will pay you <payment> to escape local law enforcement and reach <destination> by <date>."
+	description "The captain of the <npc> will pay you <payment> to help them escape local law enforcement and reach <destination> by <date>."
 	deadline 10
 	to offer
 		random < 40
@@ -1879,19 +1879,19 @@ mission "Escort Stolen Vessel (Extra Large, South, Dangerous Path)"
 		personality escort
 		fleet
 			names "pirate"
-			variant 2
+			variant 4
 				"Bastion"
 				"Blackbird"
-			variant 2
+			variant 4
 				"Bastion (Laser)"
 				"Clipper"
-			variant 2
+			variant 4
 				"Bastion (Heavy)"
 				"Bounder"
-			variant 1
+			variant 2
 				"Falcon"
 				"Hauler"
-			variant 1
+			variant 2
 				"Falcon (Laser)"
 				"Freighter"
 			variant 1
@@ -1903,7 +1903,7 @@ mission "Escort Stolen Vessel (Extra Large, South, Dangerous Path)"
 	on visit
 		dialog "You have reached <planet>, but you left the <npc> behind! Better depart and wait for them to arrive in this star system."
 
-mission "Eliminating Law Enforcement (North, Small) [0]"
+mission "Eliminating Law Enforcement (North, Small)"
 	name "Navy near <system>"
 	repeat
 	job
@@ -1926,7 +1926,7 @@ mission "Eliminating Law Enforcement (North, Small) [0]"
 		payment 250000
 		dialog "The pirates of <planet> gratefully pay you <payment> for eliminating the Navy fleet."
 
-mission "Eliminating Law Enforcement (North, Large) [1]"
+mission "Eliminating Law Enforcement (North, Large)"
 	name "Navy near <system>"
 	repeat
 	job
@@ -1950,7 +1950,7 @@ mission "Eliminating Law Enforcement (North, Large) [1]"
 		payment 400000
 		dialog "The pirates of <planet> gratefully pay you <payment> for eliminating the Navy fleet."
 
-mission "Eliminating Law Enforcement (Core, Small) [0]"
+mission "Eliminating Law Enforcement (Core, Small)"
 	name "Syndicate near <system>"
 	repeat
 	job
@@ -1973,7 +1973,7 @@ mission "Eliminating Law Enforcement (Core, Small) [0]"
 		payment 250000
 		dialog "The pirates of <planet> gratefully pay you <payment> for eliminating the Syndicate fleet."
 
-mission "Eliminating Law Enforcement (Core, Large) [1]"
+mission "Eliminating Law Enforcement (Core, Large)"
 	name "Syndicate near <system>"
 	repeat
 	job
@@ -1997,7 +1997,7 @@ mission "Eliminating Law Enforcement (Core, Large) [1]"
 		payment 400000
 		dialog "The pirates of <planet> gratefully pay you <payment> for eliminating the Syndicate fleet."
 
-mission "Eliminating Law Enforcement (South, Small) [0]"
+mission "Eliminating Law Enforcement (South, Small)"
 	name "Militia near <system>"
 	repeat
 	job
@@ -2020,7 +2020,7 @@ mission "Eliminating Law Enforcement (South, Small) [0]"
 		payment 250000
 		dialog "The pirates of <planet> gratefully pay you <payment> for eliminating the Militia fleet."
 
-mission "Eliminating Law Enforcement (South, Large) [1]"
+mission "Eliminating Law Enforcement (South, Large)"
 	name "Militia near <system>"
 	repeat
 	job
@@ -2044,7 +2044,7 @@ mission "Eliminating Law Enforcement (South, Large) [1]"
 		payment 400000
 		dialog "The pirates of <planet> gratefully pay you <payment> for eliminating the Militia fleet."
 
-mission "Eliminating Competition (North, Small) [0]"
+mission "Eliminating Competition (North, Small)"
 	name "Competition near <system>"
 	description "A small rival gang is causing trouble near the <system> system. Take them out and return to <planet> for a payment of <payment>."
 	repeat
@@ -2069,7 +2069,7 @@ mission "Eliminating Competition (North, Small) [0]"
 		payment 500000
 		dialog "The pirates of <planet> gratefully pay you <payment> for eliminating the rival gang."
 
-mission "Eliminating Competition (North, Large) [1]"
+mission "Eliminating Competition (North, Large)"
 	name "Competition near <system>"
 	description "A large rival gang is gaining too much power near the <system> system. Take them out and return to <planet> for a payment of <payment>."
 	repeat
@@ -2094,7 +2094,7 @@ mission "Eliminating Competition (North, Large) [1]"
 		payment 750000
 		dialog "The pirates of <planet> gratefully pay you <payment> for eliminating the rival gang."
 
-mission "Eliminating Competition (Core, Small) [0]"
+mission "Eliminating Competition (Core, Small)"
 	name "Competition near <system>"
 	description "A small rival gang is causing trouble near the <system> system. Take them out and return to <planet> for a payment of <payment>."
 	repeat
@@ -2119,7 +2119,7 @@ mission "Eliminating Competition (Core, Small) [0]"
 		payment 500000
 		dialog "The pirates of <planet> gratefully pay you <payment> for eliminating the rival gang."
 
-mission "Eliminating Competition (Core, Large) [1]"
+mission "Eliminating Competition (Core, Large)"
 	name "Competition near <system>"
 	description "A large rival gang is gaining too much power near the <system> system. Take them out and return to <planet> for a payment of <payment>."
 	repeat
@@ -2144,7 +2144,7 @@ mission "Eliminating Competition (Core, Large) [1]"
 		payment 750000
 		dialog "The pirates of <planet> gratefully pay you <payment> for eliminating the rival gang."
 
-mission "Eliminating Competition (South, Small) [0]"
+mission "Eliminating Competition (South, Small)"
 	name "Competition near <system>"
 	description "A small rival gang is causing trouble near the <system> system. Take them out and return to <planet> for a payment of <payment>."
 	repeat
@@ -2169,7 +2169,7 @@ mission "Eliminating Competition (South, Small) [0]"
 		payment 500000
 		dialog "The pirates of <planet> gratefully pay you <payment> for eliminating the rival gang."
 
-mission "Eliminating Competition (South, Large) [1]"
+mission "Eliminating Competition (South, Large)"
 	name "Competition near <system>"
 	description "A large rival gang is gaining too much power near the <system> system. Take them out and return to <planet> for a payment of <payment>."
 	repeat
@@ -2549,7 +2549,7 @@ mission "Cargo Theft (North)"
 	name "Convoy at <system>"
 	job
 	repeat
-	description `A merchant convoy has been spotted near the <system> system. Word is that they are carrying important cargo on the <npc>. Plunder it and return to <planet> for payment of <payment>.`
+	description `A merchant convoy has been spotted near the <system> system. A local warlord is interested in having the cargo on the <npc>. Plunder it and return to <planet> for payment of <payment>.`
 	to offer
 		random < 15
 	source
@@ -2582,7 +2582,7 @@ mission "Cargo Theft (Core)"
 	name "Convoy at <system>"
 	job
 	repeat
-	description `A merchant convoy has been spotted near the <system> system. Word is that they are carrying important cargo on the <npc>. Plunder it and return to <planet> for payment of <payment>.`
+	description `A merchant convoy has been spotted near the <system> system. A local warlord is interested in having the cargo on the <npc>. Plunder it and return to <planet> for payment of <payment>.`
 	to offer
 		random < 15
 	source
@@ -2615,7 +2615,7 @@ mission "Cargo Theft (South)"
 	name "Convoy at <system>"
 	job
 	repeat
-	description `A merchant convoy has been spotted near the <system> system. Word is that they are carrying important cargo on the <npc>. Plunder it and return to <planet> for payment of <payment>.`
+	description `A merchant convoy has been spotted near the <system> system. A local warlord is interested in having the cargo on the <npc>. Plunder it and return to <planet> for payment of <payment>.`
 	to offer
 		random < 15
 	source
