@@ -35,7 +35,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "gl_header.h"
 #include <SDL2/SDL.h>
-#ifndef __linux__
+#ifdef __linux__
 namespace X {	
 	// Some X11 class names introduce conflicts in the global namespace.
 	#include <SDL2/SDL_syswm.h>
@@ -413,7 +413,7 @@ void SetIcon(SDL_Window *window)
 	// Free the image buffer.
 	delete buffer;
 	
-#ifndef __linux__
+#ifdef __linux__
 	// If this is an X11 window, set the icon name hint.
 	X::SDL_SysWMinfo info;
 	SDL_GetWindowWMInfo(window, &info);
