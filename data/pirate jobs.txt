@@ -2619,9 +2619,9 @@ mission "Hunted by State [0]"
 	repeat
 	destination Earth
 	source
-		government "Republic" "Syndicate" "Free Worlds" "Neutral"
+		government "Republic" "Syndicate" "Free Worlds" "Neutral" "Pirate"
 	to offer
-		random > 80
+		random > 90
 		or
 			not "chosen sides"
 			has "main plot completed"
@@ -2644,9 +2644,9 @@ mission "Hunted by State [1]"
 	repeat
 	destination Earth
 	source
-		government "Republic" "Syndicate" "Free Worlds" "Neutral"
+		government "Republic" "Syndicate" "Free Worlds" "Neutral" "Pirate"
 	to offer
-		random > 90
+		random > 95
 		or
 			not "chosen sides"
 			has "main plot completed"
