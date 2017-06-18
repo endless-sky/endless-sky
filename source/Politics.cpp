@@ -248,12 +248,18 @@ string Politics::Fine(PlayerInfo &player, const Government *gov, int scan, const
 		}
 		if(!scan || (scan & ShipEvent::SCAN_OUTFITS))
 		{
+			int64_t fine = 0;
 			for(const auto &it : ship->Outfits())
 				if(it.second)
 				{
-					int64_t fine = it.first->Get("illegal");
-					if(it.first->Get("atrocity") > 0.)
+					if(it.first->Get("atrocity") > 0)
 						fine = -1;
+					else
+					{
+						for(int i = 1; i <= it.second; i++)
+							if(Random::Real() <= (1. / (1. + ship->Attributes().Get("scan interference"))))
+								fine += it.first->Get("illegal");
+					}
 					if((fine > maxFine && maxFine >= 0) || fine < 0)
 					{
 						maxFine = fine;
