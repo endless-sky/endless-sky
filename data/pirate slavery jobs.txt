@@ -1,0 +1,1106 @@
+# Copyright (c) 2014 by Michael Zahniser
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+
+mission "Slave Transport [0]: Release Slaves"
+	minor
+	invisible
+	repeat
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+	to offer
+		has "Slave Transport [0]: active"
+		"sold slaves" > 0
+		or
+			"reputation: Republic" > 0
+			"reputation: Syndicate" > 0
+			"reputation: Free Worlds" > 0
+	on offer
+		conversation
+			`Luckily, the security on <planet> did not detect the slaves on your ship. You've sold your passengers into slavery before, so maybe you could release these slaves to the local government and receive a reward.`
+			choice
+				`	(Free the slaves.)`
+				`	(Keep the slaves.)`
+					decline
+			`	You make up a story about how you rescued these slaves from their warlord. The local government praises you for releasing the slaves and rewards you with <payment>.`
+				accept
+	on accept
+		"sold slaves" --
+		"reputation: Merchant" += 6
+		"reputation: Republic" += 6
+		"reputation: Navy (Oathkeeper)" += 6
+		"reputation: Syndicate" += 6
+		"reputation: Militia" += 6
+		"reputation: Free Worlds" += 6
+		"reputation: Pirate" -= 12
+		payment 600000
+		fail "Slave Transport [0]"
+		fail
+
+mission "Slave Transport [1]: Release Slaves"
+	minor
+	invisible
+	repeat
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+	to offer
+		has "Slave Transport [1]: active"
+		"sold slaves" > 0
+		or
+			"reputation: Republic" > 0
+			"reputation: Syndicate" > 0
+			"reputation: Free Worlds" > 0
+	on offer
+		conversation
+			`Luckily, the security on <planet> did not detect the slaves on your ship. You've sold your passengers into slavery before, so maybe you could release these slaves to the local government and receive a reward.`
+			choice
+				`	(Free the slaves.)`
+				`	(Keep the slaves.)`
+					decline
+			`	You make up a story about how you rescued these slaves from their warlord. The local government praises you for releasing the slaves and rewards you with <payment>.`
+				accept
+	on accept
+		"sold slaves" --
+		"reputation: Merchant" += 6
+		"reputation: Republic" += 6
+		"reputation: Navy (Oathkeeper)" += 6
+		"reputation: Syndicate" += 6
+		"reputation: Militia" += 6
+		"reputation: Free Worlds" += 6
+		"reputation: Pirate" -= 12
+		payment 600000
+		fail "Slave Transport [1]"
+		fail
+
+mission "Bulk Slave Transport [0]: Release Slaves"
+	minor
+	invisible
+	repeat
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+	to offer
+		has "Bulk Slave Transport [0]: active"
+		"sold slaves" > 0
+		or
+			"reputation: Republic" > 0
+			"reputation: Syndicate" > 0
+			"reputation: Free Worlds" > 0
+	on offer
+		conversation
+			`Luckily, the security on <planet> did not detect the slaves on your ship. You've sold your passengers into slavery before, so maybe you could release these slaves to the local government and receive a reward.`
+			choice
+				`	(Free the slaves.)`
+				`	(Keep the slaves.)`
+					decline
+			`	You make up a story about how you rescued these slaves from their warlord. The local government praises you for releasing the slaves and rewards you with <payment>.`
+				accept
+	on accept
+		"sold slaves" --
+		"reputation: Merchant" += 60
+		"reputation: Republic" += 60
+		"reputation: Navy (Oathkeeper)" += 60
+		"reputation: Syndicate" += 60
+		"reputation: Militia" += 60
+		"reputation: Free Worlds" += 60
+		"reputation: Pirate" -= 120
+		payment 6000000
+		fail "Bulk Slave Transport [0]"
+		fail
+
+mission "Bulk Slave Transport [1]: Release Slaves"
+	minor
+	invisible
+	repeat
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+	to offer
+		has "Bulk Slave Transport [1]: active"
+		"sold slaves" > 0
+		or
+			"reputation: Republic" > 0
+			"reputation: Syndicate" > 0
+			"reputation: Free Worlds" > 0
+	on offer
+		conversation
+			`Luckily, the security on <planet> did not detect the slaves on your ship. You've sold your passengers into slavery before, so maybe you could release these slaves to the local government and receive a reward.`
+			choice
+				`	(Free the slaves.)`
+				`	(Keep the slaves.)`
+					decline
+			`	You make up a story about how you rescued these slaves from their warlord. The local government praises you for releasing the slaves and rewards you with <payment>.`
+				accept
+	on accept
+		"sold slaves" --
+		"reputation: Merchant" += 60
+		"reputation: Republic" += 60
+		"reputation: Navy (Oathkeeper)" += 60
+		"reputation: Syndicate" += 60
+		"reputation: Militia" += 60
+		"reputation: Free Worlds" += 60
+		"reputation: Pirate" -= 120
+		payment 6000000
+		fail "Bulk Slave Transport [1]"
+		fail
+
+mission "Tourists back [0]: Slavery"
+	minor
+	invisible
+	repeat
+	source
+		government "Pirate"
+	to offer
+		has "Tourists back [0]: active"
+		random < 70
+	on offer
+		conversation
+			`Upon walking into the spaceport, you notice a few pirates looking at you strangely. One of them approaches you.`
+			`	"I hear you've got a passenger on board. You willing to take 100,000 credits to give them over?"`
+			`	(Sell the tourist?)`
+			choice
+				`	(Accept.)`
+				`	(Decline.)`
+					decline
+			`	You accept the pirate's offer to hand over your passenger. The pirate makes his way onto your ship with a few others and hauls the tourist off, who is kicking and screaming as he curses at you.`
+				accept
+	on accept
+		"sold slaves" ++
+		"reputation: Merchant" -= 1
+		"reputation: Republic" -= 1
+		"reputation: Navy (Oathkeeper)" -= 1
+		"reputation: Syndicate" -= 1
+		"reputation: Militia" -= 1
+		"reputation: Free Worlds" -= 1
+		"reputation: Pirate" += 1
+		payment 100000
+		fail "Tourists back [0]"
+		fail
+
+mission "Tourists out [0]: Slavery"
+	minor
+	invisible
+	repeat
+	source
+		government "Pirate"
+	to offer
+		has "Tourists out [0]: active"
+		random < 70
+	on offer
+		conversation
+			`Upon walking into the spaceport, you notice a few pirates looking at you strangely. One of them approaches you.`
+			`	"I hear you've got a passenger on board. You willing to take 100,000 credits to give them over?"`
+			`	(Sell the tourist?)`
+			choice
+				`	(Accept.)`
+				`	(Decline.)`
+					decline
+			`	You accept the pirate's offer to hand over your passenger. The pirate makes his way onto your ship with a few others and hauls the tourist away. Counting your credits, you hear the crying and screaming of your previous passenger slowly get farther away.`
+				accept
+	on accept
+		"sold slaves" ++
+		"reputation: Merchant" -= 1
+		"reputation: Republic" -= 1
+		"reputation: Navy (Oathkeeper)" -= 1
+		"reputation: Syndicate" -= 1
+		"reputation: Militia" -= 1
+		"reputation: Free Worlds" -= 1
+		"reputation: Pirate" += 1
+		payment 100000
+		fail "Tourists out [0]"
+		fail
+
+mission "Tourists out [1]: Slavery"
+	minor
+	invisible
+	repeat
+	source
+		government "Pirate"
+	to offer
+		has "Tourists out [1]: active"
+		random < 70
+	on offer
+		conversation
+			`Upon walking into the spaceport, you notice a few pirates looking at you strangely. One of them approaches you.`
+			`	"I hear you've got some passengers on board. You willing to take 300,000 credits to give them over?"`
+			`	(Sell the tourists?)`
+			choice
+				`	(Accept.)`
+				`	(Decline.)`
+					decline
+			`	You accept the pirate's offer to hand over your passengers. The pirate makes his way onto your ship with a few others and hauls the tourists away. As you count your credits, you think about how this wasn't the vacation that your passengers were expecting.`
+				accept
+	on accept
+		"sold slaves" ++
+		"reputation: Merchant" -= 3
+		"reputation: Republic" -= 3
+		"reputation: Navy (Oathkeeper)" -= 3
+		"reputation: Syndicate" -= 3
+		"reputation: Militia" -= 3
+		"reputation: Free Worlds" -= 3
+		"reputation: Pirate" += 3
+		payment 300000
+		fail "Tourists out [1]"
+		fail
+
+mission "Tourists out [2]: Slavery"
+	minor
+	invisible
+	repeat
+	source
+		government "Pirate"
+	to offer
+		has "Tourists out [2]: active"
+		random < 70
+	on offer
+		conversation
+			`Upon walking into the spaceport, you notice a few pirates looking at you strangely. One of them approaches you.`
+			`	"I hear you've got some passengers on board. You willing to take 300,000 credits to give them over?"`
+			`	(Sell the tourists?)`
+			choice
+				`	(Accept.)`
+				`	(Decline.)`
+					decline
+			`	You accept the pirate's offer to hand over your passengers. The pirate makes his way onto your ship with a few others and hauls the tourists away. You try not to pay much attention to the cries of your former passengers as you return to your ship with the credits.`
+				accept
+	on accept
+		"sold slaves" ++
+		"reputation: Merchant" -= 3
+		"reputation: Republic" -= 3
+		"reputation: Navy (Oathkeeper)" -= 3
+		"reputation: Syndicate" -= 3
+		"reputation: Militia" -= 3
+		"reputation: Free Worlds" -= 3
+		"reputation: Pirate" += 3
+		payment 300000
+		fail "Tourists out [2]"
+		fail
+
+mission "Tourists back [1]: Slavery"
+	minor
+	invisible
+	repeat
+	source
+		government "Pirate"
+	to offer
+		has "Tourists back [1]: active"
+		random < 70
+	on offer
+		conversation
+			`Upon walking into the spaceport, you notice a few pirates looking at you strangely. One of them approaches you.`
+			`	"I hear you've got some passengers on board. You willing to take 300,000 credits to give them over?"`
+			`	(Sell the tourists?)`
+			choice
+				`	(Accept.)`
+				`	(Decline.)`
+					decline
+			`	You accept the pirate's offer to hand over your passengers. The pirate makes his way onto your ship with a few others and hauls the tourists away. As you count your credits, you think about how this wasn't the home that your passengers were expecting to return to.`
+				accept
+	on accept
+		"sold slaves" ++
+		"reputation: Merchant" -= 3
+		"reputation: Republic" -= 3
+		"reputation: Navy (Oathkeeper)" -= 3
+		"reputation: Syndicate" -= 3
+		"reputation: Militia" -= 3
+		"reputation: Free Worlds" -= 3
+		"reputation: Pirate" += 3
+		payment 300000
+		fail "Tourists back [1]"
+		fail
+
+mission "Tourists back [2]: Slavery"
+	minor
+	invisible
+	repeat
+	source
+		government "Pirate"
+	to offer
+		has "Tourists back [2]: active"
+		random < 70
+	on offer
+		conversation
+			`Upon walking into the spaceport, you notice a few pirates looking at you strangely. One of them approaches you.`
+			`	"I hear you've got some passengers on board. You willing to take 300,000 credits to give them over?"`
+			`	(Sell the tourists?)`
+			choice
+				`	(Accept.)`
+				`	(Decline.)`
+					decline
+			`	You accept the pirate's offer to hand over your passengers. The pirate makes his way onto your ship with a few others and hauls the tourists away. You try not to pay much attention to the cries of your former passengers as you return to your ship with the credits.`
+				accept
+	on accept
+		"sold slaves" ++
+		"reputation: Merchant" -= 3
+		"reputation: Republic" -= 3
+		"reputation: Navy (Oathkeeper)" -= 3
+		"reputation: Syndicate" -= 3
+		"reputation: Militia" -= 3
+		"reputation: Free Worlds" -= 3
+		"reputation: Pirate" += 3
+		payment 300000
+		fail "Tourists back [2]"
+		fail
+
+mission "Passengers [0]: Slavery"
+	minor
+	invisible
+	repeat
+	source
+		government "Pirate"
+	to offer
+		has "Passengers [0]: active"
+		random < 70
+	on offer
+		conversation
+			`Upon walking into the spaceport, you notice a few pirates looking at you strangely. One of them approaches you.`
+			`	"I hear you've got some passengers on board. You willing to take 400,000 credits to give them over?"`
+			`	(Sell the passengers?)`
+			choice
+				`	(Accept.)`
+				`	(Decline.)`
+					decline
+			`	You accept the pirate's offer to hand over your passengers. The pirate makes his way onto your ship with a few others and hauls the passengers away. You try not to pay much attention to the cries of your former passengers as you return to your ship with the credits.`
+				accept
+	on accept
+		"sold slaves" ++
+		"reputation: Merchant" -= 4
+		"reputation: Republic" -= 4
+		"reputation: Navy (Oathkeeper)" -= 4
+		"reputation: Syndicate" -= 4
+		"reputation: Militia" -= 4
+		"reputation: Free Worlds" -= 4
+		"reputation: Pirate" += 4
+		payment 400000
+		fail "Passengers [0]"
+		fail
+
+mission "Passengers [1]: Slavery"
+	minor
+	invisible
+	repeat
+	source
+		government "Pirate"
+	to offer
+		has "Passengers [1]: active"
+		random < 70
+	on offer
+		conversation
+			`Upon walking into the spaceport, you notice a few pirates looking at you strangely. One of them approaches you.`
+			`	"I hear you've got some passengers on board. You willing to take 400,000 credits to give them over?"`
+			`	(Sell the passengers?)`
+			choice
+				`	(Accept.)`
+				`	(Decline.)`
+					decline
+			`	You accept the pirate's offer to hand over your passengers. The pirate makes his way onto your ship with a few others and hauls the passengers away. You try not to pay much attention to the cries of your former passengers as you return to your ship with the credits.`
+				accept
+	on accept
+		"sold slaves" ++
+		"reputation: Merchant" -= 4
+		"reputation: Republic" -= 4
+		"reputation: Navy (Oathkeeper)" -= 4
+		"reputation: Syndicate" -= 4
+		"reputation: Militia" -= 4
+		"reputation: Free Worlds" -= 4
+		"reputation: Pirate" += 4
+		payment 400000
+		fail "Passengers [1]"
+		fail
+
+mission "Passengers [2]: Slavery"
+	minor
+	invisible
+	repeat
+	source
+		government "Pirate"
+	to offer
+		has "Passengers [2]: active"
+		random < 70
+	on offer
+		conversation
+			`Upon walking into the spaceport, you notice a few pirates looking at you strangely. One of them approaches you.`
+			`	"I hear you've got some passengers on board. You willing to take 400,000 credits to give them over?"`
+			`	(Sell the passengers?)`
+			choice
+				`	(Accept.)`
+				`	(Decline.)`
+					decline
+			`	You accept the pirate's offer to hand over your passengers. The pirate makes his way onto your ship with a few others and hauls the passengers away. You try not to pay much attention to the cries of your former passengers as you return to your ship with the credits.`
+				accept
+	on accept
+		"sold slaves" ++
+		"reputation: Merchant" -= 4
+		"reputation: Republic" -= 4
+		"reputation: Navy (Oathkeeper)" -= 4
+		"reputation: Syndicate" -= 4
+		"reputation: Militia" -= 4
+		"reputation: Free Worlds" -= 4
+		"reputation: Pirate" += 4
+		payment 400000
+		fail "Passengers [2]"
+		fail
+
+mission "Passengers [3]: Slavery"
+	minor
+	invisible
+	repeat
+	source
+		government "Pirate"
+	to offer
+		has "Passengers [3]: active"
+		random < 70
+	on offer
+		conversation
+			`Upon walking into the spaceport, you notice a few pirates looking at you strangely. One of them approaches you.`
+			`	"I hear you've got some passengers on board. You willing to take 400,000 credits to give them over?"`
+			`	(Sell the passengers?)`
+			choice
+				`	(Accept.)`
+				`	(Decline.)`
+					decline
+			`	You accept the pirate's offer to hand over your passengers. The pirate makes his way onto your ship with a few others and hauls the passengers away. You try not to pay much attention to the cries of your former passengers as you return to your ship with the credits.`
+				accept
+	on accept
+		"sold slaves" ++
+		"reputation: Merchant" -= 4
+		"reputation: Republic" -= 4
+		"reputation: Navy (Oathkeeper)" -= 4
+		"reputation: Syndicate" -= 4
+		"reputation: Militia" -= 4
+		"reputation: Free Worlds" -= 4
+		"reputation: Pirate" += 4
+		payment 400000
+		fail "Passengers [3]"
+		fail
+
+mission "Passengers [4]: Slavery"
+	minor
+	invisible
+	repeat
+	source
+		government "Pirate"
+	to offer
+		has "Passengers [4]: active"
+		random < 70
+	on offer
+		conversation
+			`Upon walking into the spaceport, you notice a few pirates looking at you strangely. One of them approaches you.`
+			`	"I hear you've got some passengers on board. You willing to take 400,000 credits to give them over?"`
+			`	(Sell the passengers?)`
+			choice
+				`	(Accept.)`
+				`	(Decline.)`
+					decline
+			`	You accept the pirate's offer to hand over your passengers. The pirate makes his way onto your ship with a few others and hauls the passengers away. As you count your credits, you think how at least they are away from the pollution of their home planet.`
+				accept
+	on accept
+		"sold slaves" ++
+		"reputation: Merchant" -= 4
+		"reputation: Republic" -= 4
+		"reputation: Navy (Oathkeeper)" -= 4
+		"reputation: Syndicate" -= 4
+		"reputation: Militia" -= 4
+		"reputation: Free Worlds" -= 4
+		"reputation: Pirate" += 4
+		payment 400000
+		fail "Passengers [4]"
+		fail
+
+mission "Family [0]: Slavery"
+	minor
+	invisible
+	repeat
+	source
+		government "Pirate"
+	to offer
+		has "Family [0]: active"
+		random < 70
+	on offer
+		conversation
+			`Upon walking into the spaceport, you notice a few pirates looking at you strangely. One of them approaches you.`
+			`	"I hear you've got some passengers on board. You willing to take 500,000 credits to give them over?"`
+			`	(Sell the family?)`
+			choice
+				`	(Accept.)`
+				`	(Decline.)`
+					decline
+			`	You accept the pirate's offer to hand over your passengers. The pirate makes his way onto your ship with a few others and hauls the family away. As the family passes by you, you try to not pay attention to the cries of the child as they are herded away at gun point.`
+				accept
+	on accept
+		"sold slaves" ++
+		"reputation: Merchant" -= 5
+		"reputation: Republic" -= 5
+		"reputation: Navy (Oathkeeper)" -= 5
+		"reputation: Syndicate" -= 5
+		"reputation: Militia" -= 5
+		"reputation: Free Worlds" -= 5
+		"reputation: Pirate" += 5
+		payment 500000
+		fail "Family [0]"
+		fail
+
+mission "Family [1]: Slavery"
+	minor
+	invisible
+	repeat
+	source
+		government "Pirate"
+	to offer
+		has "Family [1]: active"
+		random < 70
+	on offer
+		conversation
+			`Upon walking into the spaceport, you notice a few pirates looking at you strangely. One of them approaches you.`
+			`	"I hear you've got some passengers on board. You willing to take 500,000 credits to give them over?"`
+			`	(Sell the family?)`
+			choice
+				`	(Accept.)`
+				`	(Decline.)`
+					decline
+			`	You accept the pirate's offer to hand over your passengers. The pirate makes his way onto your ship with a few others and hauls the family away. Making your way back to your ship, you count up the credits you've just made.`
+				accept
+	on accept
+		"sold slaves" ++
+		"reputation: Merchant" -= 5
+		"reputation: Republic" -= 5
+		"reputation: Navy (Oathkeeper)" -= 5
+		"reputation: Syndicate" -= 5
+		"reputation: Militia" -= 5
+		"reputation: Free Worlds" -= 5
+		"reputation: Pirate" += 5
+		payment 500000
+		fail "Family [1]"
+		fail
+
+mission "Family [2]: Slavery"
+	minor
+	invisible
+	repeat
+	source
+		government "Pirate"
+	to offer
+		has "Family [2]: active"
+		random < 70
+	on offer
+		conversation
+			`Upon walking into the spaceport, you notice a few pirates looking at you strangely. One of them approaches you.`
+			`	"I hear you've got some passengers on board. You willing to take 500,000 credits to give them over?"`
+			`	(Sell the family?)`
+			choice
+				`	(Accept.)`
+				`	(Decline.)`
+					decline
+			`	You accept the pirate's offer to hand over your passengers. The pirate makes his way onto your ship with a few others and hauls the family away. Counting your credits, you think about how this wasn't the place that your passengers were expecting to relocate to.`
+				accept
+	on accept
+		"sold slaves" ++
+		"reputation: Merchant" -= 5
+		"reputation: Republic" -= 5
+		"reputation: Navy (Oathkeeper)" -= 5
+		"reputation: Syndicate" -= 5
+		"reputation: Militia" -= 5
+		"reputation: Free Worlds" -= 5
+		"reputation: Pirate" += 5
+		payment 500000
+		fail "Family [2]"
+		fail
+
+mission "Family [3]: Slavery"
+	minor
+	invisible
+	repeat
+	source
+		government "Pirate"
+	to offer
+		has "Family [3]: active"
+		random < 70
+	on offer
+		conversation
+			`Upon walking into the spaceport, you notice a few pirates looking at you strangely. One of them approaches you.`
+			`	"I hear you've got some passengers on board. You willing to take 500,000 credits to give them over?"`
+			`	(Sell the family?)`
+			choice
+				`	(Accept.)`
+				`	(Decline.)`
+					decline
+			`	You accept the pirate's offer to hand over your passengers. The pirate makes his way onto your ship with a few others and hauls the family away. You try not to pay much attention to the cries of your former passengers as you return to your ship with the credits.`
+				accept
+	on accept
+		"sold slaves" ++
+		"reputation: Merchant" -= 5
+		"reputation: Republic" -= 5
+		"reputation: Navy (Oathkeeper)" -= 5
+		"reputation: Syndicate" -= 5
+		"reputation: Militia" -= 5
+		"reputation: Free Worlds" -= 5
+		"reputation: Pirate" += 5
+		payment 500000
+		fail "Family [3]"
+		fail
+
+mission "Transport miners to <planet>: Slavery"
+	minor
+	invisible
+	repeat
+	source
+		government "Pirate"
+	to offer
+		has "Transport miners to <planet>: active"
+		random < 70
+	on offer
+		conversation
+			`Upon walking into the spaceport, you notice a few pirates looking at you strangely. One of them approaches you.`
+			`	"I hear you've got some passengers on board. You willing to take 600,000 credits to give them over?"`
+			`	(Sell the miner family?)`
+			choice
+				`	(Accept.)`
+				`	(Decline.)`
+					decline
+			`	You accept the pirate's offer to hand over your passengers. The pirate makes his way onto your ship with a few others and hauls the miners away. As the pirates pass by you with your former passengers, the one that paid you turns to you and says "Thanks for the workers. I'll make sure they're put to good use."`
+				accept
+	on accept
+		"sold slaves" ++
+		"reputation: Merchant" -= 6
+		"reputation: Republic" -= 6
+		"reputation: Navy (Oathkeeper)" -= 6
+		"reputation: Syndicate" -= 6
+		"reputation: Militia" -= 6
+		"reputation: Free Worlds" -= 6
+		"reputation: Pirate" += 6
+		payment 600000
+		fail "Transport miners to <planet>"
+		fail
+
+mission "Transport farmers to <planet>: Slavery"
+	minor
+	invisible
+	repeat
+	source
+		government "Pirate"
+	to offer
+		has "Transport farmers to <planet>: active"
+		random < 70
+	on offer
+		conversation
+			`Upon walking into the spaceport, you notice a few pirates looking at you strangely. One of them approaches you.`
+			`	"I hear you've got some passengers on board. You willing to take 600,000 credits to give them over?"`
+			`	(Sell the farmer family?)`
+			choice
+				`	(Accept.)`
+				`	(Decline.)`
+					decline
+			`	You accept the pirate's offer to hand over your passengers. The pirate makes his way onto your ship with a few others and hauls the farmers away. As the pirates pass by you with your former passengers, the one that paid you turns to you and says "Thanks for the workers. I'll make sure they're put to good use."`
+				accept
+	on accept
+		"sold slaves" ++
+		"reputation: Merchant" -= 6
+		"reputation: Republic" -= 6
+		"reputation: Navy (Oathkeeper)" -= 6
+		"reputation: Syndicate" -= 6
+		"reputation: Militia" -= 6
+		"reputation: Free Worlds" -= 6
+		"reputation: Pirate" += 6
+		payment 600000
+		fail "Transport farmers to <planet>"
+		fail
+
+mission "Transport mill workers to <planet>: Slavery"
+	minor
+	invisible
+	repeat
+	source
+		government "Pirate"
+	to offer
+		has "Transport mill workers to <planet>: active"
+		random < 70
+	on offer
+		conversation
+			`Upon walking into the spaceport, you notice a few pirates looking at you strangely. One of them approaches you.`
+			`	"I hear you've got some passengers on board. You willing to take 600,000 credits to give them over?"`
+			`	(Sell the mill worker family?)`
+			choice
+				`	(Accept.)`
+				`	(Decline.)`
+					decline
+			`	You accept the pirate's offer to hand over your passengers. The pirate makes his way onto your ship with a few others and hauls the mill workers away. As the pirates pass by you with your former passengers, the one that paid you turns to you and says "Thanks for the workers. I'll make sure they're put to good use."`
+				accept
+	on accept
+		"sold slaves" ++
+		"reputation: Merchant" -= 6
+		"reputation: Republic" -= 6
+		"reputation: Navy (Oathkeeper)" -= 6
+		"reputation: Syndicate" -= 6
+		"reputation: Militia" -= 6
+		"reputation: Free Worlds" -= 6
+		"reputation: Pirate" += 6
+		payment 600000
+		fail "Transport mill workers to <planet>"
+		fail
+
+mission "Transport workers to <planet>: Slavery"
+	minor
+	invisible
+	repeat
+	source
+		government "Pirate"
+	to offer
+		has "Transport workers to <planet>: active"
+		random < 70
+	on offer
+		conversation
+			`Upon walking into the spaceport, you notice a few pirates looking at you strangely. One of them approaches you.`
+			`	"I hear you've got some passengers on board. You willing to take 600,000 credits to give them over?"`
+			`	(Sell the worker family?)`
+			choice
+				`	(Accept.)`
+				`	(Decline.)`
+					decline
+			`	You accept the pirate's offer to hand over your passengers. The pirate makes his way onto your ship with a few others and hauls the workers away. As the pirates pass by you with your former passengers, the one that paid you turns to you and says "Thanks for the workers. I'll make sure they're put to good use."`
+				accept
+	on accept
+		"sold slaves" ++
+		"reputation: Merchant" -= 6
+		"reputation: Republic" -= 6
+		"reputation: Navy (Oathkeeper)" -= 6
+		"reputation: Syndicate" -= 6
+		"reputation: Militia" -= 6
+		"reputation: Free Worlds" -= 6
+		"reputation: Pirate" += 6
+		payment 600000
+		fail "Transport workers to <planet>"
+		fail
+
+mission "Colonists [0]: Slavery"
+	minor
+	invisible
+	repeat
+	source
+		government "Pirate"
+	to offer
+		has "Colonists [0]: active"
+		random < 70
+	on offer
+		conversation
+			`Upon walking into the spaceport, you notice a few pirates looking at you strangely. One of them approaches you.`
+			`	"I hear you've got some passengers on board. You willing to take 4,000,000 credits to give them over?"`
+			`	(Sell the colonists?)`
+			choice
+				`	(Accept.)`
+				`	(Decline.)`
+					decline
+			`	You accept the pirate's offer to hand over your passengers. The pirate makes his way onto your ship with a few others and hauls the colonists away. Given how many there are, it takes quite a few minutes to take them away. Some try to fight, but quickly surrender to the guns. After they have all been removed from your ship, the pirates thank you and go on their way.`
+				accept
+	on accept
+		"sold slaves" ++
+		"reputation: Merchant" -= 40
+		"reputation: Republic" -= 40
+		"reputation: Navy (Oathkeeper)" -= 40
+		"reputation: Syndicate" -= 40
+		"reputation: Militia" -= 40
+		"reputation: Free Worlds" -= 40
+		"reputation: Pirate" += 40
+		payment 4000000
+		fail "Colonists [0]"
+		fail
+
+mission "Colonists [1]: Slavery"
+	minor
+	invisible
+	repeat
+	source
+		government "Pirate"
+	to offer
+		has "Colonists [1]: active"
+		random < 70
+	on offer
+		conversation
+			`Upon walking into the spaceport, you notice a few pirates looking at you strangely. One of them approaches you.`
+			`	"I hear you've got some passengers on board. You willing to take 4,000,000 credits to give them over?"`
+			`	(Sell the colonists?)`
+			choice
+				`	(Accept.)`
+				`	(Decline.)`
+					decline
+			`	You accept the pirate's offer to hand over your passengers. The pirate makes his way onto your ship with a few others and hauls the colonists away. Given how many there are, it takes quite a few minutes to take them away. Some try to fight, but quickly surrender to the guns. After they have all been removed from your ship, the pirates thank you and go on their way.`
+				accept
+	on accept
+		"sold slaves" ++
+		"reputation: Merchant" -= 40
+		"reputation: Republic" -= 40
+		"reputation: Navy (Oathkeeper)" -= 40
+		"reputation: Syndicate" -= 40
+		"reputation: Militia" -= 40
+		"reputation: Free Worlds" -= 40
+		"reputation: Pirate" += 40
+		payment 4000000
+		fail "Colonists [1]"
+		fail
+
+mission "Transport scientists: Slavery"
+	minor
+	invisible
+	repeat
+	source
+		government "Pirate"
+	to offer
+		has "Transport scientists: active"
+		random < 70
+	on offer
+		conversation
+			`Upon walking into the spaceport, you notice a few pirates looking at you strangely. One of them approaches you.`
+			`	"I hear you've got some passengers on board. You willing to take 1,000,000 credits to give them over?"`
+			`	(Sell the scientists?)`
+			choice
+				`	(Accept.)`
+				`	(Decline.)`
+					decline
+			`	You accept the pirate's offer to hand over your passengers. The pirate makes his way onto your ship with a few others and hauls the scientists away. The pirates begin messing with some of the scientific tools that the scientists had with them. One of the scientists yells at them not to touch that, and is immediately met with the butt of a laser rifle to the face.`
+				accept
+	on accept
+		"sold slaves" ++
+		"reputation: Merchant" -= 10
+		"reputation: Republic" -= 20
+		"reputation: Navy (Oathkeeper)" -= 20
+		"reputation: Syndicate" -= 10
+		"reputation: Militia" -= 10
+		"reputation: Free Worlds" -= 10
+		"reputation: Pirate" += 10
+		payment 1000000
+		fail "Transport scientists"
+		fail
+
+mission "Newlyweds to <planet>: Slavery"
+	minor
+	invisible
+	repeat
+	source
+		government "Pirate"
+	to offer
+		has "Newlyweds to <planet>: active"
+		random < 70
+	on offer
+		conversation
+			`Upon walking into the spaceport, you notice a few pirates looking at you strangely. One of them approaches you.`
+			`	"I hear you've got some passengers on board. You willing to take 250,000 credits to give them over?"`
+			`	(Sell the newlyweds?)`
+			choice
+				`	(Accept.)`
+				`	(Decline.)`
+					decline
+			`	You accept the pirate's offer to hand over your passengers. The pirate makes his way onto your ship with a few others and hauls off the newlyweds and their wedding gifts. The pirates throw most of the wedding gifts out, keeping only the expensive things like jewelry. "What an interesting place to have a honeymoon," one of the pirates jokes before hauling the crying newlyweds off.`
+				accept
+	on accept
+		"sold slaves" ++
+		"reputation: Merchant" -= 2
+		"reputation: Republic" -= 4
+		"reputation: Navy (Oathkeeper)" -= 4
+		"reputation: Syndicate" -= 2
+		"reputation: Militia" -= 2
+		"reputation: Free Worlds" -= 2
+		"reputation: Pirate" += 2
+		payment 250000
+		fail "Newlyweds to <planet>"
+		fail
+
+mission "Transport partiers [1]: Slavery"
+	minor
+	invisible
+	repeat
+	source
+		government "Pirate"
+	to offer
+		has "Transport partiers [1]: active"
+		random < 70
+	on offer
+		conversation
+			`Upon walking into the spaceport, you notice a few pirates looking at you strangely. One of them approaches you.`
+			`	"I hear you've got some passengers on board. You willing to take 1,000,000 credits to give them over?"`
+			`	(Sell the partiers?)`
+			choice
+				`	(Accept.)`
+				`	(Decline.)`
+					decline
+			`	You accept the pirate's offer to hand over your passengers. The pirate makes his way onto your ship with a few others and hauls off the partiers and their "completely legal pharmaceuticals." Most of the partiers, seemingly buzzed, don't fully realize what is going on as they are escorted off by the group of pirates.`
+				accept
+	on accept
+		"sold slaves" ++
+		"reputation: Merchant" -= 10
+		"reputation: Republic" -= 20
+		"reputation: Navy (Oathkeeper)" -= 20
+		"reputation: Syndicate" -= 10
+		"reputation: Militia" -= 10
+		"reputation: Free Worlds" -= 10
+		"reputation: Pirate" += 10
+		payment 1000000
+		fail "Transport partiers [1]"
+		fail
+
+mission "Transport partiers [2]: Slavery"
+	minor
+	invisible
+	repeat
+	source
+		government "Pirate"
+	to offer
+		has "Transport partiers [2]: active"
+		random < 70
+	on offer
+		conversation
+			`Upon walking into the spaceport, you notice a few pirates looking at you strangely. One of them approaches you.`
+			`	"I hear you've got some passengers on board. You willing to take 900,000 credits to give them over?"`
+			`	(Sell the partiers?)`
+			choice
+				`	(Accept.)`
+				`	(Decline.)`
+					decline
+			`	You accept the pirate's offer to hand over your passengers. The pirate makes his way onto your ship with a few others and hauls off the partiers and their school supplies. Given that the school supplies have no real use, the pirates just throw them off to the side as they escort the students from your ship.`
+				accept
+	on accept
+		"sold slaves" ++
+		"reputation: Merchant" -= 9
+		"reputation: Republic" -= 18
+		"reputation: Navy (Oathkeeper)" -= 18
+		"reputation: Syndicate" -= 9
+		"reputation: Militia" -= 9
+		"reputation: Free Worlds" -= 9
+		"reputation: Pirate" += 9
+		payment 900000
+		fail "Transport partiers [2]"
+		fail
+
+mission "Contract laborers to <planet>: Slavery"
+	minor
+	invisible
+	repeat
+	source
+		government "Pirate"
+	to offer
+		has "Contract laborers to <planet>: active"
+		random < 70
+	on offer
+		conversation
+			`Upon walking into the spaceport, you notice a few pirates looking at you strangely. One of them approaches you.`
+			`	"I hear you've got some passengers on board. You willing to take 2,200,000 credits to give them over?"`
+			`	(Sell the contract laborers?)`
+			choice
+				`	(Accept.)`
+				`	(Decline.)`
+					decline
+			`	You accept the pirate's offer to hand over your passengers. The pirate makes his way onto your ship with a few others and hauls the contract laborers away. You try not to pay much attention to the protests of your former passengers as you return to your ship with the credits.`
+				accept
+	on accept
+		"sold slaves" ++
+		"reputation: Merchant" -= 22
+		"reputation: Republic" -= 44
+		"reputation: Navy (Oathkeeper)" -= 44
+		"reputation: Syndicate" -= 22
+		"reputation: Militia" -= 22
+		"reputation: Free Worlds" -= 22
+		"reputation: Pirate" += 22
+		payment 2200000
+		fail "Contract laborers to <planet>"
+		fail
+
+mission "Transport rich tourists: Slavery"
+	minor
+	invisible
+	repeat
+	source
+		government "Pirate"
+	to offer
+		has "Transport rich tourists: active"
+		random < 70
+	on offer
+		conversation
+			`Upon walking into the spaceport, you notice a few pirates looking at you strangely. One of them approaches you.`
+			`	"I hear you've got some passengers on board. You willing to take 1,500,000 credits to give them over?"`
+			`	(Sell the tourists?)`
+			choice
+				`	(Accept.)`
+				`	(Decline.)`
+					decline
+			`	You accept the pirate's offer to hand over your passengers. The pirate makes his way onto your ship with a few others and hauls the tourists away. You try not to pay much attention to the cries of your former passengers as you return to your ship with the credits.`
+				accept
+	on accept
+		"sold slaves" ++
+		"reputation: Merchant" -= 15
+		"reputation: Republic" -= 30
+		"reputation: Navy (Oathkeeper)" -= 30
+		"reputation: Syndicate" -= 15
+		"reputation: Militia" -= 15
+		"reputation: Free Worlds" -= 15
+		"reputation: Pirate" += 15
+		payment 1500000
+		fail "Transport rich tourists"
+		fail
+
+mission "Transport executive to <planet>: Slavery"
+	minor
+	invisible
+	repeat
+	source
+		government "Pirate"
+	to offer
+		has "Transport executive to <planet>: active"
+		random < 70
+	on offer
+		conversation
+			`Upon walking into the spaceport, you notice a few pirates looking at you strangely. One of them approaches you.`
+			`	"I hear you've got a pretty important passenger on board. You willing to take 1,000,000 credits to give them over?"`
+			`	(Sell the executive?)`
+			choice
+				`	(Accept.)`
+				`	(Decline.)`
+					decline
+			`	You accept the pirate's offer to hand over your passengers. The pirate makes his way onto your ship with a few others and hauls the executive away. As the pirates carry the executive away, he yells back at you. "They'll get you for this! You'll pay, I tell you! You'll pay!"`
+				accept
+	on accept
+		"sold slaves" ++
+		"reputation: Merchant" -= 10
+		"reputation: Republic" -= 10
+		"reputation: Navy (Oathkeeper)" -= 10
+		"reputation: Syndicate" -= 30
+		"reputation: Militia" -= 10
+		"reputation: Free Worlds" -= 10
+		"reputation: Pirate" += 10
+		payment 1000000
+		fail "Transport executive to <planet>"
+		fail
+
+mission "Corporate retreat on <planet>: Slavery"
+	minor
+	invisible
+	repeat
+	source
+		government "Pirate"
+	to offer
+		has "Corporate retreat on <planet>: active"
+		random < 70
+	on offer
+		conversation
+			`Upon walking into the spaceport, you notice a few pirates looking at you strangely. One of them approaches you.`
+			`	"I hear you've got some pretty important passengers on board. You willing to take 2,500,000 credits to give them over?"`
+			`	(Sell the engineers?)`
+			choice
+				`	(Accept.)`
+				`	(Decline.)`
+					decline
+			`	You accept the pirate's offer to hand over your passengers. The pirate makes his way onto your ship with a few others and hauls the engineers away. You try not to pay much attention to the cries of your former passengers as you return to your ship with the credits.`
+				accept
+	on accept
+		"sold slaves" ++
+		"reputation: Merchant" -= 25
+		"reputation: Republic" -= 25
+		"reputation: Navy (Oathkeeper)" -= 25
+		"reputation: Syndicate" -= 50
+		"reputation: Militia" -= 25
+		"reputation: Free Worlds" -= 25
+		"reputation: Pirate" += 25
+		payment 2500000
+		fail "Corporate retreat on <planet>"
+		fail

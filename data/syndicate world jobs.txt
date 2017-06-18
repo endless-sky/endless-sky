@@ -17,6 +17,7 @@ mission "Transport executive to <planet>"
 	passengers 1
 	to offer
 		random < 20
+		"reputation: Syndicate" > 0
 	source
 		government Syndicate
 	destination
@@ -36,6 +37,7 @@ mission "Corporate retreat from <origin>"
 	passengers 7 18
 	to offer
 		random < 20
+		"reputation: Syndicate" > 0
 	source
 		government Syndicate
 	stopover
@@ -55,6 +57,7 @@ mission "Corporate espionage"
 	repeat
 	to offer
 		random < 10
+		"reputation: Syndicate" > 0
 	source
 		government Republic Syndicate Neutral
 	destination
@@ -83,6 +86,7 @@ mission "Document delivery to <planet>"
 	cargo "Confidential documents" 6 12
 	to offer
 		random < 10
+		"reputation: Syndicate" > 0
 	source
 		government Syndicate
 	destination
@@ -101,6 +105,7 @@ mission "Waste recycling on <planet>"
 	cargo "Garbage" 6 40
 	to offer
 		random < 20
+		"reputation: Syndicate" > 0
 	source
 		government Syndicate
 	destination
@@ -122,6 +127,7 @@ mission "Rush fuel Delivery"
 	to offer
 		random < 20
 		"cargo space" > 15
+		"reputation: Syndicate" > 0
 	source
 		government Syndicate
 	destination
@@ -142,6 +148,7 @@ mission "Rush equipment Delivery"
 	cargo "Equipment" 5 20
 	to offer
 		random < 20
+		"reputation: Syndicate" > 0
 	source
 		government Syndicate
 	destination
@@ -167,6 +174,7 @@ mission "Syndicate target practice [0]"
 		random < 20
 		"combat rating" > 5
 		"combat rating" < 50
+		"reputation: Syndicate" > 0
 	npc save disable "scan cargo"
 		personality staying heroic
 		government "Test Dummy"
@@ -195,6 +203,7 @@ mission "Syndicate target practice [1]"
 		random < 20
 		"combat rating" > 50
 		"combat rating" < 200
+		"reputation: Syndicate" > 0
 	npc save disable "scan cargo"
 		personality staying heroic
 		government "Test Dummy"
@@ -222,6 +231,7 @@ mission "Syndicate target practice [2]"
 		random < 20
 		"combat rating" > 150
 		"combat rating" < 1000
+		"reputation: Syndicate" > 0
 	npc save disable "scan cargo"
 		personality staying heroic
 		government "Test Dummy"
@@ -248,6 +258,7 @@ mission "Syndicate target practice [3]"
 	to offer
 		random < 20
 		"combat rating" > 1000
+		"reputation: Syndicate" > 0
 	npc save disable "scan cargo"
 		personality staying heroic
 		government "Test Dummy"
