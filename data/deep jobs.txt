@@ -18,7 +18,6 @@ mission "Deep Mystery Cube [0]"
 	to offer
 		random < 10
 		"combat rating" > 35
-		"reputation: Republic" >= 0
 	source
 		attributes deep
 	destination
@@ -46,7 +45,6 @@ mission "Deep Mystery Cube [1]"
 	to offer
 		random < 10
 		"combat rating" > 35
-		"reputation: Republic" >= 0
 	source
 		attributes deep
 	destination
@@ -74,7 +72,6 @@ mission "Deep Mystery Cube [2]"
 	to offer
 		random < 10
 		"combat rating" > 35
-		"reputation: Republic" >= 0
 	source
 		attributes deep
 	destination
@@ -102,7 +99,6 @@ mission "Deep Mystery Cube [3]"
 	to offer
 		random < 10
 		"combat rating" > 35
-		"reputation: Republic" >= 0
 	source
 		attributes deep
 	destination
@@ -129,7 +125,6 @@ mission "Mystery retrieval"
 	to offer
 		random < 10
 		"combat rating" > 35
-		"reputation: Republic" >= 0
 	source
 		attributes deep
 	stopover
@@ -155,7 +150,6 @@ mission "Transport scientists"
 	repeat
 	to offer
 		random < 15
-		"reputation: Republic" >= 0
 	passengers 5 16
 	source
 		attributes deep
@@ -177,7 +171,6 @@ mission "Escort science vessel"
 	to offer
 		random < 15
 		"combat rating" > 50
-		"reputation: Republic" >= 0
 	source
 		attributes research
 	stopover
@@ -215,7 +208,6 @@ mission "Record academic conference"
 	cargo "recording equipment" 1
 	to offer
 		random < 15
-		"reputation: Republic" >= 0
 	source
 		attributes deep
 	destination

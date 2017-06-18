@@ -17,7 +17,6 @@ mission "Care package to <planet>"
 	cargo "Food" 1
 	to offer
 		random < 10
-		"reputation: Republic" >= 0
 	source
 		attributes paradise
 	destination
@@ -38,7 +37,6 @@ mission "Birthday supplies to <planet>"
 	cargo "Luxury Goods" 1 3
 	to offer
 		random < 10
-		"reputation: Republic" >= 0
 	source
 		attributes paradise
 	destination
@@ -59,7 +57,6 @@ mission "Art delivery to <planet>"
 	cargo "Luxury Goods" 3 8
 	to offer
 		random < 10
-		"reputation: Republic" >= 0
 	source
 		government Republic "Free Worlds" Syndicate Neutral
 		attributes rich
@@ -81,7 +78,6 @@ mission "Newlyweds to <planet>"
 	cargo "wedding gifts" 2 4
 	to offer
 		random < 10
-		"reputation: Republic" >= 0
 	source
 		attributes paradise
 	destination
@@ -102,7 +98,6 @@ mission "Theater props to <planet>"
 	cargo "Luxury Goods" 9 15
 	to offer
 		random < 10
-		"reputation: Republic" >= 0
 	source
 		government Republic "Free Worlds" Syndicate Neutral
 		attributes rich urban
@@ -123,7 +118,6 @@ mission "Fine food to <planet>"
 	cargo "Food" 9 25
 	to offer
 		random < 10
-		"reputation: Republic" >= 0
 	source
 		government Republic "Free Worlds" Syndicate Neutral
 		attributes farming fishing
@@ -147,7 +141,6 @@ mission "Transport partiers [1]"
 		stealth
 	to offer
 		random < 10
-		"reputation: Republic" >= 0
 	source
 		attributes paradise
 	destination
@@ -167,7 +160,6 @@ mission "Transport partiers [2]"
 	cargo "snacks and school supplies" 2 4
 	to offer
 		random < 10
-		"reputation: Republic" >= 0
 	source
 		attributes paradise
 	destination
@@ -184,7 +176,6 @@ mission "Food donations to <planet>"
 	cargo "Food" 7 2 .1
 	to offer
 		random < 10
-		"reputation: Republic" >= 0
 	source
 		attributes paradise
 	destination
@@ -202,7 +193,6 @@ mission "Clothing donations to <planet>"
 	cargo "Clothing" 7 2 .1
 	to offer
 		random < 10
-		"reputation: Republic" >= 0
 	source
 		attributes paradise
 	destination
@@ -220,7 +210,6 @@ mission "Medical aid to <planet>"
 	cargo "Medical" 7 2 .1
 	to offer
 		random < 10
-		"reputation: Republic" >= 0
 	source
 		attributes paradise
 	destination
@@ -238,7 +227,6 @@ mission "Charity goods to <planet>"
 	cargo "Luxury Goods" 7 2 .1
 	to offer
 		random < 10
-		"reputation: Republic" >= 0
 	source
 		attributes paradise
 	destination
@@ -257,7 +245,6 @@ mission "Party goods to <planet>"
 	cargo "Luxury Goods" 10 2 .1
 	to offer
 		random < 10
-		"reputation: Republic" >= 0
 	source
 		attributes paradise
 	stopover
@@ -281,7 +268,6 @@ mission "Estate assets to <planet>"
 	cargo "Luxury Goods" 18 2 .15
 	to offer
 		random < 10
-		"reputation: Republic" >= 0
 	source
 		attributes paradise
 	destination
@@ -300,7 +286,6 @@ mission "Contract laborers to <planet>"
 	passengers 13 30
 	to offer
 		random < 10
-		"reputation: Republic" >= 0
 	source
 		attributes paradise
 	stopover
@@ -321,7 +306,6 @@ mission "Waste disposal on <planet>"
 	cargo "Garbage" 30 2 .03
 	to offer
 		random < 10
-		"reputation: Republic" >= 0
 	source
 		attributes paradise
 	destination
@@ -339,7 +323,6 @@ mission "Transport rich tourists"
 	passengers 8 22
 	to offer
 		random < 10
-		"reputation: Republic" >= 0
 	source
 		attributes paradise
 	destination
@@ -359,7 +342,6 @@ mission "Pleasure cruise security"
 	to offer
 		random < 10
 		"combat rating" > 10
-		"reputation: Republic" >= 0
 	source
 		attributes paradise rich
 	stopover
