@@ -44,8 +44,7 @@ env.Append(LIBS = [
 	"GL",
 	"GLEW",
 	"openal",
-	"pthread",
-	"X11"
+	"pthread"
 ]);
 # libmad is not in the Steam runtime, so link it statically:
 if 'SCHROOT_CHROOT_NAME' in os.environ and 'steamrt_scout_i386' in os.environ['SCHROOT_CHROOT_NAME']:

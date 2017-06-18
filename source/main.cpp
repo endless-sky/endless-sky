@@ -35,12 +35,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "gl_header.h"
 #include <SDL2/SDL.h>
-#ifdef __linux__
-namespace X {	
-	// Some X11 class names introduce conflicts in the global namespace.
-	#include <SDL2/SDL_syswm.h>
-}
-#endif
 
 #include <cstring>
 #include <iostream>
@@ -412,25 +406,6 @@ void SetIcon(SDL_Window *window)
 	}
 	// Free the image buffer.
 	delete buffer;
-	
-#ifdef __linux__
-	// If this is an X11 window, set the icon name hint.
-	X::SDL_SysWMinfo info;
-	SDL_GetWindowWMInfo(window, &info);
-	if(info.subsystem == X::SDL_SYSWM_X11)
-	{
-		X::XClientMessageEvent m;
-		memset(&m, 0, sizeof(m));
-		m.type = ClientMessage;
-		m.display = info.info.x11.display;
-		m.window = info.info.x11.window;
-		m.message_type = (X::Atom)37;
-		m.format = 8;
-		strcpy(m.data.b, "endless-sky");
-		X::XSendEvent(m.display, m.window, false, NoEventMask, (X::XEvent *)&m);
-		X::XFlush(m.display);
-	}
-#endif
 }
 
 
