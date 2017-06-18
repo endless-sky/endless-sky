@@ -249,18 +249,8 @@ void Conversation::Save(DataWriter &out) const
 			for(const auto &it : node.data)
 			{
 				// Break the text up into paragraphs.
-				size_t begin = 0;
-				while(begin < it.first.length())
-				{
-					// Find the next line break.
-					size_t pos = it.first.find('\n', begin);
-					// Text should always end with a line break, but just in case:
-					if(pos == string::npos)
-						pos = it.first.length();
-					out.Write(it.first.substr(begin, pos - begin));
-					// Skip the actual newline character when writing the text out.
-					begin = pos + 1;
-				}
+				for(const string &line : Format::Split(it.first, "\n"))
+					out.Write(line);
 				// Check what node the conversation goes to after this.
 				int index = it.second;
 				if(index > 0 && static_cast<unsigned>(index) >= nodes.size())

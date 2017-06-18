@@ -50,17 +50,7 @@ MenuPanel::MenuPanel(PlayerInfo &player, UI &gamePanels)
 {
 	SetIsFullScreen(true);
 	
-	string data = Files::Read(Files::Resources() + "credits.txt");
-	size_t pos = 0;
-	while(pos < data.size())
-	{
-		size_t end = data.find('\n', pos);
-		if(end == string::npos)
-			end = data.size();
-		
-		credits.push_back(data.substr(pos, end - pos));
-		pos = end + 1;
-	}
+	credits = Format::Split(Files::Read(Files::Resources() + "credits.txt"), "\n");
 }
 
 

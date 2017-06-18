@@ -88,6 +88,7 @@ protected:
 	// Adjust the frame rate.
 	void SetFrameRate(double framesPerSecond);
 	void AddFrameRate(double framesPerSecond);
+	void PauseAnimation();
 	
 	
 protected:
@@ -123,6 +124,7 @@ private:
 	mutable bool randomize = false;
 	bool repeat = true;
 	bool rewind = false;
+	int pause = 0;
 	
 	// Frame info for the current step:
 	mutable int currentStep = -1;

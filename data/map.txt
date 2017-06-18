@@ -62,6 +62,9 @@ galaxy "label kimek"
 galaxy "label arachi"
 	pos -750 615
 
+galaxy "label waste"
+	pos 80 315
+
 system "1 Axis"
 	pos -1274.63 267.214
 	government Coalition
@@ -24520,7 +24523,7 @@ planet "Deep Treasure"
 	attributes saryd oil farming
 	landscape land/sea10-sfiera
 	description `Thick layers of kelp and plankton sediment have gathered on the floors of Deep Treasure's oceans over the eons, leaving behind rich deposits of oil that the Saryds harvest to make plastics and other hydrocarbon products. In the shallower seas, shoals of fish swim among some of the most varied and extensive coral reefs found anywhere in Coalition space.`
-	spaceport `The spaceport is built in a ring along the lower slopes of an extinct volcano that rises from the ocean near Deep Treasure's equator. Landing pads and hangars have been cut into the rock, and below them are a system of docks and oil refineries. The residences are on the volcanoes upper slopes, where they have a clear view of the glittering water stretching out in every direction.`
+	spaceport `The spaceport is built in a ring along the lower slopes of an extinct volcano that rises from the ocean near Deep Treasure's equator. Landing pads and hangars have been cut into the rock, and below them are a system of docks and oil refineries. The residences are on the volcano's upper slopes, where they have a clear view of the glittering water stretching out in every direction.`
 	"required reputation" 15
 
 planet "Deep Water"

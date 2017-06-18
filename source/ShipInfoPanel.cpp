@@ -37,6 +37,9 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 using namespace std;
 
+namespace {
+	static const double WIDTH = 250.;
+}
 
 
 ShipInfoPanel::ShipInfoPanel(PlayerInfo &player, int index)
@@ -86,7 +89,7 @@ void ShipInfoPanel::Draw()
 		interfaceInfo.SetCondition("five buttons");
 	else
 		interfaceInfo.SetCondition("three buttons");
-	if(!player.Logbook().empty())
+	if(player.HasLogs())
 		interfaceInfo.SetCondition("enable logbook");
 	
 	// Draw the interface.
@@ -190,7 +193,7 @@ bool ShipInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 	}
 	else if(command.Has(Command::INFO | Command::MAP) || key == 'm')
 		GetUI()->Push(new MissionPanel(player));
-	else if(key == 'l' && !player.Logbook().empty())
+	else if(key == 'l' && player.HasLogs())
 		GetUI()->Push(new LogbookPanel(player));
 	else
 		return false;
@@ -273,24 +276,25 @@ void ShipInfoPanel::UpdateInfo()
 void ShipInfoPanel::DrawShipStats(const Rectangle &bounds)
 {
 	// Check that the specified area is big enough.
-	if(bounds.Width() < 250.)
+	if(bounds.Width() < WIDTH)
 		return;
 	
 	// Colors to draw with.
 	Color dim = *GameData::Colors().Get("medium");
 	Color bright = *GameData::Colors().Get("bright");
 	const Ship &ship = **shipIt;
+	const Font &font = FontSet::Get(14);
 	
 	// Table attributes.
 	Table table;
 	table.AddColumn(0, Table::LEFT);
-	table.AddColumn(230, Table::RIGHT);
-	table.SetUnderline(0, 230);
+	table.AddColumn(WIDTH - 20, Table::RIGHT);
+	table.SetUnderline(0, WIDTH - 20);
 	table.DrawAt(bounds.TopLeft() + Point(10., 8.));
 	
 	// Draw the ship information.
 	table.Draw("ship:", dim);
-	table.Draw(ship.Name(), bright);
+	table.Draw(font.TruncateMiddle(ship.Name(), WIDTH - 50), bright);
 	
 	table.Draw("model:", dim);
 	table.Draw(ship.ModelName(), bright);
@@ -303,7 +307,7 @@ void ShipInfoPanel::DrawShipStats(const Rectangle &bounds)
 void ShipInfoPanel::DrawOutfits(const Rectangle &bounds, Rectangle &cargoBounds)
 {
 	// Check that the specified area is big enough.
-	if(bounds.Width() < 250.)
+	if(bounds.Width() < WIDTH)
 		return;
 	
 	// Colors to draw with.
@@ -314,8 +318,8 @@ void ShipInfoPanel::DrawOutfits(const Rectangle &bounds, Rectangle &cargoBounds)
 	// Table attributes.
 	Table table;
 	table.AddColumn(0, Table::LEFT);
-	table.AddColumn(230, Table::RIGHT);
-	table.SetUnderline(0, 230);
+	table.AddColumn(WIDTH - 20, Table::RIGHT);
+	table.SetUnderline(0, WIDTH - 20);
 	Point start = bounds.TopLeft() + Point(10., 8.);
 	table.DrawAt(start);
 	
@@ -330,8 +334,8 @@ void ShipInfoPanel::DrawOutfits(const Rectangle &bounds, Rectangle &cargoBounds)
 		// plus at least one outfit.
 		if(table.GetRowBounds().Bottom() + 40. > bounds.Bottom())
 		{
-			start += Point(250., 0.);
-			if(start.X() + 230. > bounds.Right())
+			start += Point(WIDTH, 0.);
+			if(start.X() + WIDTH - 20 > bounds.Right())
 				break;
 			table.DrawAt(start);
 		}
@@ -344,8 +348,8 @@ void ShipInfoPanel::DrawOutfits(const Rectangle &bounds, Rectangle &cargoBounds)
 			// Check if we've gone below the bottom of the bounds.
 			if(table.GetRowBounds().Bottom() > bounds.Bottom())
 			{
-				start += Point(250., 0.);
-				if(start.X() + 230. > bounds.Right())
+				start += Point(WIDTH, 0.);
+				if(start.X() + WIDTH - 20 > bounds.Right())
 					break;
 				table.DrawAt(start);
 				table.Draw(category, bright);
@@ -385,7 +389,7 @@ void ShipInfoPanel::DrawWeapons(const Rectangle &bounds)
 	const Sprite *sprite = ship.GetSprite();
 	double scale = 0.;
 	if(sprite)
-		scale = min(240. / sprite->Width(), 240. / sprite->Height());
+		scale = min((WIDTH - 10) / sprite->Width(), (WIDTH - 10) / sprite->Height());
 	
 	// Figure out the left- and right-most hardpoints on the ship. If they are
 	// too far apart, the scale may need to be reduced.
@@ -497,8 +501,8 @@ void ShipInfoPanel::DrawCargo(const Rectangle &bounds)
 	const CargoHold &cargo = (player.Cargo().Used() ? player.Cargo() : ship.Cargo());
 	Table table;
 	table.AddColumn(0, Table::LEFT);
-	table.AddColumn(230, Table::RIGHT);
-	table.SetUnderline(-5, 235);
+	table.AddColumn(WIDTH - 20, Table::RIGHT);
+	table.SetUnderline(-5, WIDTH - 15);
 	table.DrawAt(bounds.TopLeft() + Point(10., 8.));
 	
 	double endY = bounds.Bottom() - 30. * (cargo.Passengers() != 0);

@@ -55,9 +55,15 @@ mission "First Contact: Remnant"
 				decline
 	on accept
 		"reputation: Remnant" <?= -10
+	on decline
+		event "ember waste label"
 	
 	npc kill
 		government "Remnant"
 		personality heroic coward
 		fleet "Large Remnant"
 		fleet "Large Remnant"
+
+event "ember waste label"
+	galaxy "label waste"
+		sprite label/waste

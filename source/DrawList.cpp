@@ -200,7 +200,7 @@ void DrawList::Push(const Body &body, Point pos, Point blur, double cloak, doubl
 // Get the color swizzle.
 uint32_t DrawList::Item::Swizzle() const
 {
-	return (flags & 7);
+	return (flags & 0xFF);
 }
 
 

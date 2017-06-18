@@ -864,6 +864,7 @@ ship "Cruiser" "Cruiser (Mark II)"
 		"LP144a Battery Pack"
 		"D94-YV Shield Generator"
 		"Liquid Helium Cooler"
+		"Fuel Pod"
 		"A520 Atomic Thruster"
 		"A525 Atomic Steering"
 		"Hyperdrive"
@@ -1542,7 +1543,7 @@ ship "Bactrian" "Bactrian (Hai Engines)"
 		"D67-TM Shield Generator"
 		"Hai Williwaw Cooling" 3
 		"Ramscoop"
-		"Outfits Expansion"
+		"Outfits Expansion" 2
 		`"Bufaer" Atomic Thruster`
 		`"Bufaer" Atomic Steering`
 		"Hyperdrive"
