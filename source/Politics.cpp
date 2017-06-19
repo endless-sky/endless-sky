@@ -109,8 +109,8 @@ void Politics::Offend(const Government *gov, int eventType, int count)
 			double penalty = (count * weight) * other->PenaltyFor(eventType);
 			if(eventType & ShipEvent::ATROCITY)
 				reputationWith[other] = min(0., reputationWith[other]);
-			
 			reputationWith[other] -= penalty;
+			
 		}
 	}
 }
@@ -216,7 +216,7 @@ string Politics::Fine(PlayerInfo &player, const Government *gov, int scan, const
 	for(const shared_ptr<Ship> &ship : player.Ships())
 	{
 		// Check if the ship evades being scanned due to interference plating.
-		if(Random::Real() > 1. / (1. + ship->Attributes().Get("scan interference")))
+		if((Random::Real() > 1. / (1. + ship->Attributes().Get("scan interference"))) && (scan & ShipEvent::SCAN_CARGO))
 			continue;
 		if(target && target != &*ship)
 			continue;
