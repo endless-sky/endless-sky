@@ -256,7 +256,7 @@ string Politics::Fine(PlayerInfo &player, const Government *gov, int scan, const
 						fine = -1;
 					else
 					{
-						for(int i = 1; i <= it.second; i++)
+						for(int i = 0; i < it.second; ++i)
 							if(Random::Real() <= (1. / (1. + ship->Attributes().Get("scan interference"))))
 								fine += it.first->Get("illegal");
 					}
