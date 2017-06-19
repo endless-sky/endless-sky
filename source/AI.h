@@ -51,7 +51,7 @@ template <class Type>
 	AI(const List<Ship> &ships, const List<Minable> &minables, const List<Flotsam> &flotsam);
 	
 	// NPC commands from mission events.
-	void IssueNPCTravelOrders(Ship &ship, const System *moveToSystem, const Planet *targetPlanet);
+	void IssueNPCTravelOrders(Ship &ship, const System *moveToSystem, std::map<const Planet *, bool> targetPlanets);
 	
 	// Fleet commands from the player.
 	void IssueShipTarget(const PlayerInfo &player, const std::shared_ptr<Ship> &target);

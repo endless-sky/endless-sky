@@ -250,7 +250,7 @@ AI::AI(const List<Ship> &ships, const List<Minable> &minables, const List<Flotsa
 
 	
 // NPC commands from npc mission directives 'destination' and 'land'
-void AI::IssueNPCTravelOrders(Ship &ship, const System *moveToSystem, const Planet *targetPlanet)
+void AI::IssueNPCTravelOrders(Ship &ship, const System *moveToSystem, std::map<const Planet *, bool> targetPlanets)
 {
 	Orders newOrders;
 	if(moveToSystem)
@@ -259,18 +259,20 @@ void AI::IssueNPCTravelOrders(Ship &ship, const System *moveToSystem, const Plan
 		{
 			newOrders.type = Orders::TRAVEL_TO;
 			newOrders.targetSystem = moveToSystem;
-			if(targetPlanet)
-				newOrders.targetPlanet = targetPlanet;
 		}
-		// The NPC has arrived in its destination system and should no longer receive TRAVEL_TO orders.
+		// The NPC has arrived in its destination system and should get the
+		// next destination, if there is one.
 		else
 			ship.NextDestinationSystem();
 	}
-	if(targetPlanet && targetPlanet->IsInSystem(ship.GetSystem()))
-	{
-		newOrders.type = Orders::LAND_ON;
-		newOrders.targetPlanet = targetPlanet;
-	}
+	
+	for(auto it = targetPlanets.begin(); it == targetPlanets.end(); ++it)
+		if(it->first->IsInSystem(ship.GetSystem()))
+		{
+			newOrders.type = Orders::LAND_ON;
+			newOrders.targetPlanet = it->first;		
+		}
+	
 	// Replace the NPC's existing orders with these updated orders.
 	Orders &existing = orders[&ship];
 	existing = newOrders;
@@ -500,7 +502,7 @@ void AI::Step(const PlayerInfo &player)
 		}
 		
 		// Update any orders NPCs may have
-		if(it->IsSpecial() && !it->IsYours() && (it->GetDestinationSystem() || it->GetTravelDestination()))
+		if(it->IsSpecial() && !it->IsYours() && (it->GetDestinationSystem() || !it->GetTravelDestination().empty()))
 			IssueNPCTravelOrders(*it, it->GetDestinationSystem(), it->GetTravelDestination());
 		
 		const Government *gov = it->GetGovernment();
@@ -1439,14 +1441,14 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 	{
 		MoveToPlanet(ship, command);
 		// Ships should land on their destination planet if they are free to move about.
-		if(!(shouldStay && !(ship.GetDestinationSystem() || ship.GetTravelDestination()))
+		if(!(shouldStay && !(ship.GetDestinationSystem() || !ship.GetTravelDestination().empty()))
 				&& ship.Attributes().Get("fuel capacity") && ship.GetTargetStellar()->GetPlanet()
 				&& ship.GetTargetStellar()->GetPlanet()->CanLand(ship))
 			command |= Command::LAND;
 		else if(ship.Position().Distance(ship.GetTargetStellar()->Position()) < 100.)
 			ship.SetTargetStellar(nullptr);
 	}
-	else if(shouldStay && !(ship.GetDestinationSystem() || ship.GetTravelDestination())
+	else if(shouldStay && !(ship.GetDestinationSystem() || !ship.GetTravelDestination().empty()) 
 			&& !ship.GetSystem()->Objects().empty())
 	{
 		unsigned i = Random::Int(origin->Objects().size());
@@ -1523,7 +1525,7 @@ void AI::MoveEscort(Ship &ship, Command &command) const
 		Stop(ship, command, .2);
 	else if(parent.Commands().Has(Command::JUMP) && parent.GetTargetSystem() && !isStaying)
 	{
-		// If the npc/escort does not already have a travel target, follow the parent.
+		// If the NPC/escort does not already have a travel target, follow the parent.
 		DistanceMap distance(ship, parent.GetTargetSystem());
 		const System *dest = distance.Route(ship.GetSystem());
 		if(!ship.GetDestinationSystem())

@@ -80,9 +80,11 @@ private:
 	// NPCs may have been given a destination system or planet.
 	std::vector<const System *> targetSystems;
 	const Planet *landingTarget = nullptr;
+	std::vector<const Planet *> landingTargets;
 	bool needsTravelTarget = false;
 	bool needsLandingTarget = false;
 	bool doPatrol = false;
+	bool doVisit = false;
 	size_t destinationQueue = 0;
 	
 	// Dialog or conversation to show when all requirements for this NPC are met:
