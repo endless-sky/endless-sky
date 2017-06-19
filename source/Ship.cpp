@@ -290,8 +290,8 @@ void Ship::Load(const DataNode &node)
 		}
 		else if(key == "destination system" && child.Size() >= 2)
 			targetSystem = GameData::Systems().Get(child.Token(1));
-		else if(key == "destination queue" && child.Size() >= 2)
-			destinationQueue = child.Value(1);
+		else if(key == "waypoint index" && child.Size() >= 2)
+			waypoint = child.Value(1);
 		else if(key == "parked")
 			isParked = true;
 		else if(key == "description" && child.Size() >= 2)
@@ -627,8 +627,8 @@ void Ship::Save(DataWriter &out) const
 			out.Write("planet", landingPlanet->Name());
 		if(targetSystem && !targetSystem->Name().empty())
 			out.Write("destination system", targetSystem->Name());
-		if(destinationQueue > 0)
-			out.Write("destination queue", destinationQueue);
+		if(waypoint > 0)
+			out.Write("waypoint index", waypoint);
 		if(isParked)
 			out.Write("parked");
 	}
@@ -1220,16 +1220,30 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 					SetTargetStellar(nullptr);
 					landingPlanet = nullptr;
 				}
-				else if(!isSpecial || personality.IsFleeing())
-				{
-					MarkForRemoval();
-					return;
-				}
-				else if(isSpecial && !isYours && travelDestination && travelDestination == landingPlanet)
+				// NPCs which are "fleeing" delete themselves on landing,
+				// unless they have an incomplete travel directive.
+				else if(!isSpecial || (personality.IsFleeing() && !HasTravelDirective()))
 				{
 					MarkForRemoval();
 					hasLanded = true;
 					return;
+				}
+				else if(isSpecial && !isYours && !travelDestinations.empty())
+				{
+					// This mission NPC has a directive to land on at least one specific planet.
+					// If this is one of them, this ship may 'land' (permanently), or 'visit'.
+					auto it = travelDestinations.find(landingPlanet);
+					if(it != travelDestinations.end())
+					{
+						if(doVisit)
+							it->second = true;
+						else
+						{
+							MarkForRemoval();
+							hasLanded = true;
+							return;
+						}
+					}
 				}
 				
 				zoom = 0.;
@@ -2125,7 +2139,7 @@ bool Ship::HasLanded() const
 
 
 
-// Recharge and repair this ship (e.g. because it has landed).
+// Recharge and repair this ship (e.g. because it has landed temporarily).
 void Ship::Recharge(bool atSpaceport)
 {
 	if(IsDestroyed())
@@ -2210,8 +2224,9 @@ void Ship::WasCaptured(const shared_ptr<Ship> &capturer)
 	targetFlotsam.reset();
 	hyperspaceSystem = nullptr;
 	landingPlanet = nullptr;
-	travelDestination = nullptr;
 	destinationSystem = nullptr;
+	travelDestinations.clear();
+	waypoints.clear();
 	
 	// This ship behaves like its new parent does.
 	isSpecial = capturer->isSpecial;
@@ -2894,7 +2909,14 @@ const System *Ship::GetTargetSystem() const
 
 
 // Persistent targets for mission NPCs.
-std::map<const Planet *, bool> Ship::GetTravelDestination() const
+const bool Ship::HasTravelDirective() const
+{
+	return !travelDestinations.empty() || destinationSystem;
+}
+
+
+
+const std::map<const Planet *, bool> Ship::GetStopovers() const
 {
 	return travelDestinations;
 }
@@ -2904,6 +2926,15 @@ std::map<const Planet *, bool> Ship::GetTravelDestination() const
 const System *Ship::GetDestinationSystem() const
 {
 	return destinationSystem;
+}
+
+
+
+// Returns true for a mission NPC given a travel directive, when it has arrived
+// in one of its specified destination systems.
+const bool Ship::IsSurveying() const
+{
+	return stayingTime > 0 && currentSystem && currentSystem == destinationSystem;
 }
 
 
@@ -2959,24 +2990,26 @@ void Ship::SetTargetSystem(const System *system)
 
 
 // Persistent targets for mission NPCs.
-void Ship::SetTravelDestination(std::vector<const Planet *> planets, bool doVisit)
+void Ship::SetStopovers(const std::vector<const Planet *> planets, const bool shouldRelaunch)
 {
-	this->doVisit = doVisit;
+	doVisit = shouldRelaunch;
 	
-	for(size_t i = 0; i < planets.size(); ++i)
-		travelDestinations[planets[i]] = false;
+	// Mark each planet as not visited.
+	for(const auto &it : planets)
+		travelDestinations[it] = false;
 }
 
 
 
-void Ship::SetDestinationSystem(std::vector<const System *> systems, bool doPatrol)
+void Ship::SetWaypoints(const std::vector<const System *> waypoints, const bool repeatTravel)
 {
-	
-	if(destinationQueue < systems.size())
+	// Ships loaded from save files may have an existing waypoint that
+	// indicates which systems have already been visited.
+	if(waypoint < waypoints.size())
 	{
-		this->doPatrol = doPatrol;
-		destinationSystems = systems;
-		destinationSystem = systems[destinationQueue];		
+		doPatrol = repeatTravel;
+		this->waypoints = waypoints;
+		destinationSystem = waypoints[waypoint];
 	}
 	else
 		destinationSystem = nullptr;
@@ -2984,19 +3017,62 @@ void Ship::SetDestinationSystem(std::vector<const System *> systems, bool doPatr
 
 
 
-void Ship::NextDestinationSystem()
+const System *Ship::NextWaypoint()
 {
-	++destinationQueue;
-	if(destinationQueue < destinationSystems.size())
-		destinationSystem = destinationSystems[destinationQueue];
-	// If the NPC should patrol, reset the destination queue.
-	else if(doPatrol && destinationSystems.size() >= 2)
+	++waypoint;
+	// If the NPC should patrol and we've reached the end of the patrol
+	// list, reset the waypoint index and perhaps the visit history.
+	if(doPatrol && waypoint == waypoints.size() && waypoints.size() > 1)
 	{
-		destinationQueue = 0;
-		destinationSystem = destinationSystems[destinationQueue];
+		waypoint = 0;
+		if(doVisit)
+			ResetStopovers();
 	}
-	else
-		destinationSystem = nullptr;	
+	
+	destinationSystem = (waypoint < waypoints.size()) ? waypoints[waypoint] : nullptr;
+	return destinationSystem;
+}
+
+
+
+void Ship::EraseWaypoint(const System *system)
+{
+	for(size_t i = 0; i < waypoints.size(); ++i)
+		if(waypoints[i] == system)
+		{
+			waypoints.erase(waypoints.begin() + i);
+			if(waypoint > i)
+				--waypoint;
+			destinationSystem = (waypoint < waypoints.size()) ? waypoints[waypoint] : nullptr;
+			break;
+		}
+}
+
+
+
+// Instruct the ship to stay in its target waypoint for a set amount of time.
+// Default to 2 seconds per StellarObject in the system (6 if patrol).
+void Ship::PrepareSurvey(const int surveyDuration)
+{
+	int surveyTargets = 1;
+	if(destinationSystem)
+		surveyTargets += destinationSystem->Objects().size();
+	
+	stayingTime = (doPatrol ? 3 : 1) * surveyDuration * surveyTargets;
+}
+
+
+
+void Ship::DoSurvey()
+{
+	--stayingTime;
+}
+
+
+
+void Ship::AbortSurvey()
+{
+	stayingTime = 0;
 }
 
 
@@ -3160,4 +3236,15 @@ void Ship::CreateSparks(vector<Visual> &visuals, const string &name, double amou
 		if(GetMask().Contains(point, Angle()))
 			visuals.emplace_back(*effect, angle.Rotate(point) + position, velocity, angle);
 	}
+}
+
+
+
+void Ship::ResetStopovers()
+{
+	if(travelDestinations.empty())
+		return;
+	
+	for(auto &stopover : travelDestinations)
+		stopover.second = false;
 }
