@@ -216,7 +216,8 @@ string Politics::Fine(PlayerInfo &player, const Government *gov, int scan, const
 	for(const shared_ptr<Ship> &ship : player.Ships())
 	{
 		// Check if the ship evades being scanned due to interference plating.
-		if((Random::Real() > 1. / (1. + ship->Attributes().Get("scan interference"))) && (scan & ShipEvent::SCAN_CARGO))
+		double scanResistance = 1. / (1. + ship->Attributes().Get("scan interference"));
+		if((Random::Real() > scanResistance) && (scan & ShipEvent::SCAN_CARGO))
 			continue;
 		if(target && target != &*ship)
 			continue;
@@ -256,9 +257,12 @@ string Politics::Fine(PlayerInfo &player, const Government *gov, int scan, const
 						fine = -1;
 					else
 					{
+						int numDetectedOutfits = 0;
 						for(int i = 0; i < it.second; ++i)
-							if(Random::Real() <= (1. / (1. + ship->Attributes().Get("scan interference"))))
-								fine += it.first->Get("illegal");
+							if(Random::Real() <= scanResistance)
+								++numDetectedOutfits;
+								
+						fine += numDetectedOutfits * it.first->Get("illegal");
 					}
 					if((fine > maxFine && maxFine >= 0) || fine < 0)
 					{
