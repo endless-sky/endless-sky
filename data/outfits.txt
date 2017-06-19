@@ -56,6 +56,18 @@ outfit "D14-RN Shield Generator"
 	"shield energy" .2
 	description "This is the standard shield generator for fighters and interceptors, as well as for many non-combat starships. Although it is possible for a ship to have no shield generator at all, recharging its shield matrix only when landed in a hospitable spaceport, life in deep space is unpredictable enough that most pilots find shield generators to be well worth the space they take up."
 
+
+outfit "Skirmisher Shield Generator"
+	category "Systems"
+	cost 20000
+	thumbnail "outfit/skirmisher shield"
+	"mass" 5
+	"outfit space" -15
+	"skirmisher shield generation" 1.0
+	"skirmisher shield energy" 2.0
+	description "A specialized shield that charges quickly when out of combat. This shield scales negatively with the ships maximum shield capacity"
+
+
 outfit "D23-QP Shield Generator"
 	category "Systems"
 	cost 35000

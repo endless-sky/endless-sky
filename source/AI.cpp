@@ -706,6 +706,8 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 	// range higher than 2000, it will engage ships up to 50% beyond its range.
 	// If a ship has short range weapons and is not heroic, it will engage any
 	// ship that is within 3000 of it.
+	double closest_modifier = 0.0;
+
 	double closest = person.IsHeroic() ? numeric_limits<double>::infinity() :
 		(minRange > 1000.) ? maxRange * 1.5 : 4000.;
 	const System *system = ship.GetSystem();
@@ -768,10 +770,14 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 			range += 1000. * (!isArmed * (1 + !person.Plunders()));
 			// Focus on nearly dead ships.
 			range += 500. * (it->Shields() + it->Hull());
+			double modifier = std::pow(it->Mass(), 0.1);
 			bool isPotentialNemesis = (person.IsNemesis() && it->GetGovernment()->IsPlayer());
-			if((isPotentialNemesis && !hasNemesis) || range < closest)
+			if((isPotentialNemesis && !hasNemesis) ||
+			   (!target && range < closest) ||
+			   (target && (range * modifier < closest * closest_modifier)))
 			{
 				closest = range;
+				closest_modifier = modifier;
 				target = it;
 				isDisabled = it->IsDisabled();
 				hasNemesis = isPotentialNemesis;

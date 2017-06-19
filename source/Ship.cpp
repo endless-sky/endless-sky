@@ -729,6 +729,8 @@ bool Ship::Move(list<Effect> &effects, list<shared_ptr<Flotsam>> &flotsam)
 		jettisoned.front()->Place(*this);
 		flotsam.splice(flotsam.end(), jettisoned, jettisoned.begin());
 	}
+
+    combatCounter++;
 	
 	// When ships recharge, what actually happens is that they can exceed their
 	// maximum capacity for the rest of the turn, but must be clamped to the
@@ -1289,8 +1291,19 @@ bool Ship::Move(list<Effect> &effects, list<shared_ptr<Flotsam>> &flotsam)
 			energy -= shieldEnergy * shieldsAdded / shieldRate;
 			heat += shieldHeat * shieldsAdded / shieldRate;
 		}
-	}
-	
+
+
+		double skirmisherShieldRate = attributes.Get("skirmisher shield generation");
+		if( skirmisherShieldRate > 0.)
+		{
+			double shieldEnergy = attributes.Get("skirmisher shield energy");
+			double shieldHeat = attributes.Get("skirmisher shield heat");
+			double shieldsAdded = AddSkirmisherShields(skirmisherShieldRate * min(1., shieldEnergy ? energy / shieldEnergy : 1.));
+			energy -= shieldEnergy * shieldsAdded / skirmisherShieldRate;
+			heat += shieldHeat * shieldsAdded / skirmisherShieldRate;
+		}
+    }
+
 	// Clear your target if it is destroyed. This is only important for NPCs,
 	// because ordinary ships cease to exist once they are destroyed.
 	target = targetShip.lock();
@@ -1602,6 +1615,9 @@ bool Ship::IsOverheated() const
 	return isOverheated;
 }
 
+bool Ship::IsInCombat() const {
+    return combatCounter < 60 * 5;
+}
 
 
 bool Ship::IsDisabled() const
@@ -2117,6 +2133,9 @@ int Ship::TakeDamage(const Projectile &projectile, bool isBlast)
 	ionization += ionDamage * (1. - .5 * shieldFraction);
 	disruption += disruptionDamage * (1. - .5 * shieldFraction);
 	slowness += slowingDamage * (1. - .5 * shieldFraction);
+
+    combatCounter = 0;
+
 	
 	if(hitForce)
 	{
@@ -2621,7 +2640,60 @@ double Ship::AddHull(double rate)
 	return added;
 }
 
+template<typename T>
+T clamp( T val, std::pair<T,T>range){
+	return std::max( std::min( val, range.second), range.first);
+}
 
+
+template <typename T>
+double normalize( T val, std::pair<T,T> range){
+	auto diff = abs(range.second - range.first);
+	return (val - range.first ) / (double)diff;
+}
+
+template <typename T>
+T lerp( double val, std::pair<T,T> range){
+	T diff = (range.second - range.first);
+	T off = diff * val;
+	return (range.first) + off;
+}
+
+template <typename T, typename R>
+R constexpr remap( T val, std::pair<T,T> range1, std::pair<R,R> range2){
+	double v = normalize( val, range1);
+	return lerp( v, range2);
+}
+
+double Ship::AddSkirmisherShields(double rate)
+{
+	//4 seconds per 1000 shields
+	auto delay_range = std::make_pair<double>(0.0, Attributes().Get("shields")/250);
+	double multiplier = clamp<double>(combatCounter / 60.0, delay_range);
+	multiplier = normalize(multiplier, delay_range);
+	rate *= multiplier;
+
+	double added = min(rate, attributes.Get("shields") - shields);
+	shields += added;
+	rate -= added;
+	for(Bay &bay : bays)
+	{
+		if(!bay.ship)
+			continue;
+		
+		double myGen = bay.ship->Attributes().Get("skirmisher shield generation");
+		double myMax = bay.ship->Attributes().Get("shields");
+		bay.ship->shields = min(myMax, bay.ship->shields + myGen);
+		if(rate > 0. && bay.ship->shields < myMax)
+		{
+			double extra = min(myMax - bay.ship->shields, rate);
+			bay.ship->shields += extra;
+			rate -= extra;
+			added += extra;
+		}
+	}
+	return added;
+}
 
 double Ship::AddShields(double rate)
 {

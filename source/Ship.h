@@ -24,6 +24,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Personality.h"
 #include "Point.h"
 
+#include <chrono>
 #include <list>
 #include <map>
 #include <memory>
@@ -129,7 +130,7 @@ public:
 	void SetGovernment(const Government *government);
 	void SetIsSpecial(bool special = true);
 	bool IsSpecial() const;
-	
+	bool IsInCombat() const;
 	// If a ship belongs to the player, the player can give it commands.
 	void SetIsYours(bool yours = true);
 	bool IsYours() const;
@@ -354,6 +355,7 @@ private:
 	// ship is carrying fighters, add to them as well.
 	double AddHull(double rate);
 	double AddShields(double rate);
+	double AddSkirmisherShields(double rate);
 	// Find out how much fuel is consumed by the hyperdrive of the given type.
 	double BestFuel(const std::string &type, const std::string &subtype, double defaultFuel) const;
 	// Create one of this ship's explosions, within its mask. The explosions can
@@ -387,6 +389,7 @@ private:
 	// "Special" ships cannot be forgotten, and if they land on a planet, they
 	// continue to exist and refuel instead of being deleted.
 	bool isSpecial = false;
+
 	bool isYours = false;
 	bool isParked = false;
 	bool isOverheated = false;
@@ -406,6 +409,10 @@ private:
 	// Cargo and outfit scanning takes time.
 	double cargoScan = 0.;
 	double outfitScan = 0.;
+
+
+    //The number of frames until the ship is considered of combat
+    int combatCounter=0;
 	
 	Command commands;
 	
