@@ -253,7 +253,7 @@ string Politics::Fine(PlayerInfo &player, const Government *gov, int scan, const
 			for(const auto &it : ship->Outfits())
 				if(it.second)
 				{
-					if(it.first->Get("atrocity") > 0)
+					if(it.first->Get("atrocity") > 0.)
 						fine = -1;
 					else
 					{
