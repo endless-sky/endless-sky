@@ -551,21 +551,29 @@ int64_t CargoHold::Value(const System *system) const
 // so bad that it warrants a death sentence.
 int CargoHold::IllegalCargoFine() const
 {
+	int fine = 0;
 	int worst = 0;
 	// Carrying an illegal outfit is only half as bad as having it equipped.
 	for(const auto &it : outfits)
 	{
-		int fine = it.first->Get("illegal");
-		if(fine < 0)
-			return fine;
-		worst = max(worst, fine / 2);
+		if(it.second)
+		{
+			if(it.first->Get("atrocity") > 0.)
+				return -1;
+			fine += it.second * it.first->Get("illegal");
+
+			worst = max(worst, fine / 2);
+		}
 	}
 	
 	for(const auto &it : missionCargo)
 	{
-		int fine = it.first->IllegalCargoFine();
-		if(fine < 0)
-			return fine;
+		if(it.first->IllegalCargoFine() < 0)
+			return -1;
+		if(it.second)
+		{
+			fine += it.second * it.first->IllegalCargoFine();
+		}
 		worst = max(worst, fine);
 	}
 	return worst;
