@@ -206,10 +206,12 @@ bool Politics::HasDominated(const Planet *planet) const
 // Check to see if the player has done anything they should be fined for.
 string Politics::Fine(PlayerInfo &player, const Government *gov, int scan, const Ship *target, double security)
 {
-	// Do nothing if you have already been fined today, or if you evade
-	// detection.
-	if(fined.count(gov) || Random::Real() > security || !gov->GetFineFraction())
+	// Do nothing if you have already been fined today.
+	if(fined.count(gov) || !gov->GetFineFraction())
 		return "";
+		
+	// Authorities might board your ship based on security.
+	bool shouldBoard = Random::Real() > security;
 	
 	string reason;
 	int64_t maxFine = 0;
@@ -217,8 +219,9 @@ string Politics::Fine(PlayerInfo &player, const Government *gov, int scan, const
 	{
 		// Check if the ship evades being scanned due to interference plating.
 		double scanResistance = 1. / (1. + ship->Attributes().Get("scan interference"));
-		if((Random::Real() > scanResistance) && (scan & ShipEvent::SCAN_CARGO))
-			continue;
+		
+		// If you are boarded, scan interference no longer helps. 
+		double cargoStealth = 1. / (1. + ship->Attributes().Get("cargo stealth"));
 		if(target && target != &*ship)
 			continue;
 		if(ship->GetSystem() != player.GetSystem())
@@ -226,28 +229,33 @@ string Politics::Fine(PlayerInfo &player, const Government *gov, int scan, const
 		
 		if(!scan || (scan & ShipEvent::SCAN_CARGO))
 		{
-			int64_t fine = ship->Cargo().IllegalCargoFine();
-			if((fine > maxFine && maxFine >= 0) || fine < 0)
+			if(((scan & ShipEvent::SCAN_CARGO) && (Random::Real() <= scanResistance)) 
+				|| (!scan && shouldBoard && Random::Real() <= cargoStealth))
 			{
-				maxFine = fine;
-				reason = " for carrying illegal cargo.";
-
-				for(const Mission &mission : player.Missions())
+				int64_t fine = ship->Cargo().IllegalCargoFine();
+				if((fine > maxFine && maxFine >= 0) || fine < 0)
 				{
-					// Append the illegalCargoMessage from each applicable mission, if available
-					string illegalCargoMessage = mission.IllegalCargoMessage();
-					if(!illegalCargoMessage.empty())
+					maxFine = fine;
+					reason = " for carrying illegal cargo.";
+
+					for(const Mission &mission : player.Missions())
 					{
-						reason = ".\n\t";
-						reason.append(illegalCargoMessage);
+						// Append the illegalCargoMessage from each applicable mission, if available
+						string illegalCargoMessage = mission.IllegalCargoMessage();
+						if(!illegalCargoMessage.empty())
+						{
+							reason = ".\n\t";
+							reason.append(illegalCargoMessage);
+						}
+						// Fail any missions with illegal cargo and "Stealth" set
+						if(mission.IllegalCargoFine() > 0 && mission.FailIfDiscovered())
+							player.FailMission(mission);
 					}
-					// Fail any missions with illegal cargo and "Stealth" set
-					if(mission.IllegalCargoFine() > 0 && mission.FailIfDiscovered())
-						player.FailMission(mission);
 				}
 			}
 		}
-		if(!scan || (scan & ShipEvent::SCAN_OUTFITS))
+		// If you are scanned, each outfit is rolled for detection. If you are boarded, your cargo hold is only rolled once for detection of contraband.
+		if((!scan && shouldBoard && Random::Real() <= cargoStealth) || (scan & ShipEvent::SCAN_OUTFITS))
 		{
 			int64_t fine = 0;
 			for(const auto &it : ship->Outfits())
@@ -259,7 +267,7 @@ string Politics::Fine(PlayerInfo &player, const Government *gov, int scan, const
 					{
 						int numDetectedOutfits = 0;
 						for(int i = 0; i < it.second; ++i)
-							if(Random::Real() <= scanResistance)
+							if(((scan & ShipEvent::SCAN_OUTFITS) && (Random::Real() <= scanResistance)) || (!scan && shouldBoard))
 								++numDetectedOutfits;
 								
 						fine += numDetectedOutfits * it.first->Get("illegal");
