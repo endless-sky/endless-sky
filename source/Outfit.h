@@ -49,6 +49,11 @@ public:
 	const std::string &Category() const;
 	const std::string &Description() const;
 	int64_t Cost() const;
+	
+	// Get the amount of credits you will be fined if you are caught carrying this outfit
+	const int64_t IllegalCargoFine() const;
+	// Get the multiplier for additional fines if you are caught carrying more than one of this outfit
+	const double MultiFineMultiplier() const;
 	// Get the licenses needed to buy or operate this ship.
 	const std::vector<std::string> &Licenses() const;
 	// Get the image to display in the outfitter when buying this item.
@@ -84,6 +89,8 @@ private:
 	std::string description;
 	const Sprite *thumbnail = nullptr;
 	int64_t cost = 0;
+	int64_t illegalCargoFine = 0;
+	double multiFineMultiplier = 0.;
 	// Licenses needed to purchase this item.
 	std::vector<std::string> licenses;
 	

@@ -83,6 +83,18 @@ void Outfit::Load(const DataNode &node)
 			for(const DataNode &grand : child)
 				licenses.push_back(grand.Token(0));
 		}
+		else if(child.Token(0) == "illegal" && child.Size() >= 2)
+		{
+			if(child.Size() == 2)
+			{
+				illegalCargoFine = child.Value(1);
+			}
+			else
+			{
+				illegalCargoFine = child.Value(1);
+				multiFineMultiplier = child.Value(2);
+			}
+		}
 		else if(child.Size() >= 2)
 			attributes[child.Token(0)] = child.Value(1);
 		else
@@ -250,4 +262,18 @@ const map<const Effect *, int> &Outfit::AfterburnerEffects() const
 const Sprite *Outfit::FlotsamSprite() const
 {
 	return flotsamSprite;
+}
+
+
+
+const int64_t Outfit::IllegalCargoFine() const
+{
+	return illegalCargoFine;
+}
+
+
+
+const double Outfit::MultiFineMultiplier() const
+{
+	return multiFineMultiplier;
 }

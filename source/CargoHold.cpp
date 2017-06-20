@@ -552,17 +552,16 @@ int64_t CargoHold::Value(const System *system) const
 int CargoHold::IllegalCargoFine() const
 {
 	int fine = 0;
-	int worst = 0;
 	// Carrying an illegal outfit is only half as bad as having it equipped.
 	for(const auto &it : outfits)
 	{
+		fine += it.first->IllegalCargoFine();
 		if(it.second)
 		{
 			if(it.first->Get("atrocity") > 0.)
 				return -1;
-			fine += it.second * it.first->Get("illegal");
+			fine += ((it.second - 1) * (it.first->IllegalCargoFine() * it.first->MultiFineMultiplier()));
 
-			worst = max(worst, fine / 2);
 		}
 	}
 	
@@ -574,7 +573,7 @@ int CargoHold::IllegalCargoFine() const
 		{
 			fine += it.second * it.first->IllegalCargoFine();
 		}
-		worst = max(worst, fine);
 	}
-	return worst;
+	fine /= 2;
+	return fine;
 }
