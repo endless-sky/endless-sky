@@ -183,7 +183,7 @@ bool LogbookPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 		{
 			++i;
 			if(i >= contents.size())
-				return true;
+				i = 0;
 		}
 		else if(i)
 		{
@@ -192,6 +192,8 @@ bool LogbookPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 			if(dates[i] && !dates[i].Month())
 				--i;
 		}
+		else
+			i = contents.size() - 1;
 		if(contents[i] != selectedName)
 		{
 			selectedDate = dates[i];
