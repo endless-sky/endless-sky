@@ -26878,9 +26878,9 @@ planet "Triton Station"
 		fleet "Small Republic" 24
 
 planet Trove
-	attributes core mining moon
+	attributes core mining
 	landscape land/badlands3
-	description `Trove is a tiny moon, too small to have a breathable atmosphere. It is home to an experimental "jack mining" operation that has split is surface open in order to gain access to the metal-rich core. Most of the work here is done by machines, but a few people live inside an airtight complex in order to supervise the work and to sell ore and metal to visiting ships.`
+	description `Trove is a tiny world, too small to have a breathable atmosphere. It is home to an experimental "jack mining" operation that has split is surface open in order to gain access to the metal-rich core. Most of the work here is done by machines, but a few people live inside an airtight complex in order to supervise the work and to sell ore and metal to visiting ships.`
 	spaceport `Within the mining complex, you find a small cafeteria with an uninspiring menu, and windows overlooking offices where dozens of people are staring at flickering video screens. Because of the low gravity, everyone moves languidly, as if in a dream. It is nearly silent.`
 	security 0.05
 	tribute 400
