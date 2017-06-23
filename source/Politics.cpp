@@ -210,7 +210,6 @@ string Politics::Fine(PlayerInfo &player, const Government *gov, int scan, const
 	if(fined.count(gov) || !gov->GetFineFraction())
 		return "";
 		
-	// Authorities might board your ship based on security.
 	const bool isCargoScan = (scan & ShipEvent::SCAN_CARGO);
 	const bool isOutfitScan = (scan & ShipEvent::SCAN_OUTFITS);
 	
