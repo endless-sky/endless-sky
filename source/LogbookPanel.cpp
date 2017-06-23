@@ -189,7 +189,7 @@ bool LogbookPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 		{
 			--i;
 			// Skip the entry that is just the currently selected year.
-			if(dates[i] && !dates[i].Month())
+			if(i && dates[i] && !dates[i].Month())
 				--i;
 		}
 		if(contents[i] != selectedName)
