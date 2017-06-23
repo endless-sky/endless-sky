@@ -560,7 +560,7 @@ int CargoHold::IllegalCargoFine() const
 		{
 			if(it.first->Get("atrocity") > 0.)
 				return -1;
-			fine += ((it.second - 1) * (it.first->IllegalCargoFine() * it.first->MultiFineMultiplier()));
+			fine += ((it.second - 1) * it.first->AdditionalCargoFine());
 
 		}
 	}

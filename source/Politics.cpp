@@ -278,7 +278,7 @@ string Politics::Fine(PlayerInfo &player, const Government *gov, int scan, const
 							if((isOutfitScan && (Random::Real() <= scanResistance)) || (!scan && shouldBoard))
 								++numDetectedOutfits;							
 								
-						fine += numDetectedOutfits * (it.first->MultiFineMultiplier() * it.first->IllegalCargoFine());
+						fine += numDetectedOutfits * it.first->AdditionalCargoFine();
 					}
 					if((fine > maxFine && maxFine >= 0) || fine < 0)
 					{

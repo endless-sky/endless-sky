@@ -92,7 +92,7 @@ void Outfit::Load(const DataNode &node)
 			else
 			{
 				illegalCargoFine = child.Value(1);
-				multiFineMultiplier = child.Value(2);
+				additionalCargoFine = child.Value(2);
 			}
 		}
 		else if(child.Size() >= 2)
@@ -273,7 +273,7 @@ const int64_t Outfit::IllegalCargoFine() const
 
 
 
-const double Outfit::MultiFineMultiplier() const
+const int64_t Outfit::AdditionalCargoFine() const
 {
-	return multiFineMultiplier;
+	return additionalCargoFine;
 }
