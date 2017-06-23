@@ -571,7 +571,7 @@ int CargoHold::IllegalCargoFine() const
 			return -1;
 		if(it.second)
 		{
-			fine += it.second * it.first->IllegalCargoFine();
+			fine += (it.second - 1) * it.first->IllegalCargoFine();
 		}
 	}
 	fine /= 2;
