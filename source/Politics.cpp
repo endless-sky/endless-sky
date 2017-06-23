@@ -211,7 +211,6 @@ string Politics::Fine(PlayerInfo &player, const Government *gov, int scan, const
 		return "";
 		
 	// Authorities might board your ship based on security.
-	const bool shouldBoard = Random::Real() <= security;
 	const bool isCargoScan = (scan & ShipEvent::SCAN_CARGO);
 	const bool isOutfitScan = (scan & ShipEvent::SCAN_OUTFITS);
 	
@@ -222,9 +221,6 @@ string Politics::Fine(PlayerInfo &player, const Government *gov, int scan, const
 		// Check if the ship evades being scanned due to interference plating.
 		double scanResistance = 1. / (1. + ship->Attributes().Get("scan interference"));
 		
-		// If you are boarded, scan interference no longer helps. 
-		double cargoStealth = 1. / (1. + ship->Attributes().Get("cargo stealth"));
-		const bool planetScan = (!scan && shouldBoard && Random::Real() <= cargoStealth);
 		if(target && target != &*ship)
 			continue;
 		if(ship->GetSystem() != player.GetSystem())
@@ -233,10 +229,9 @@ string Politics::Fine(PlayerInfo &player, const Government *gov, int scan, const
 		if(!scan || isCargoScan)
 		{
 			int64_t fine = 0;
-			if((isCargoScan && (Random::Real() <= scanResistance)) 
-				|| (!scan && shouldBoard && Random::Real() <= cargoStealth))
+			if((Random::Real() <= scanResistance))
 			{
-				if(planetScan)
+				if(!scan)
 					fine = player.Cargo().IllegalCargoFine();
 				else
 					fine = ship->Cargo().IllegalCargoFine();
@@ -261,8 +256,8 @@ string Politics::Fine(PlayerInfo &player, const Government *gov, int scan, const
 				}
 			}
 		}
-		// If you are scanned, each outfit is rolled for detection. If you are boarded, your cargo hold is only rolled once for detection of contraband.
-		if((!scan && shouldBoard && Random::Real() <= cargoStealth) || (isOutfitScan && Random::Real() <= scanResistance))
+		// If you are scanned, each outfit is rolled for detection. Your cargo hold is only rolled once for detection of contraband.
+		if(!scan || (isOutfitScan && Random::Real() <= scanResistance))
 		{
 			int64_t fine = 0;
 			for(const auto &it : ship->Outfits())
@@ -275,7 +270,7 @@ string Politics::Fine(PlayerInfo &player, const Government *gov, int scan, const
 						int numDetectedOutfits = 0;
 						fine += it.first->IllegalCargoFine();
 						for(int i = 1; i < it.second; ++i)
-							if((isOutfitScan && (Random::Real() <= scanResistance)) || (!scan && shouldBoard))
+							if(((!scan || isOutfitScan) && (Random::Real() <= scanResistance)))
 								++numDetectedOutfits;							
 								
 						fine += numDetectedOutfits * it.first->AdditionalCargoFine();
