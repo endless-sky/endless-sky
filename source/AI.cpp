@@ -2795,7 +2795,7 @@ void AI::IssueOrders(const PlayerInfo &player, const Orders &newOrders, const st
 	if(isMoveOrder)
 	{
 		for(const Ship *ship : ships)
-			if(ship->GetSystem() == player.GetSystem() && !ship->IsDisabled())
+			if(ship->GetSystem() && !ship->IsDisabled())
 			{
 				centerOfGravity += ship->Position();
 				++squadCount;
