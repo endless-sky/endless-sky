@@ -336,6 +336,9 @@ void AI::Step(const PlayerInfo &player)
 				// Don't ask for help from a ship that is already helping someone.
 				if(ship->GetShipToAssist() && ship->GetShipToAssist().get() != it.get())
 					continue;
+				// Don't ask ships that are busy mining or harvesting for help.
+				if(ship->GetTargetAsteroid() || ship->GetTargetFlotsam())
+					continue;
 				// Your escorts only help other escorts, and your flagship never helps.
 				if((otherGov->IsPlayer() && !gov->IsPlayer()) || ship.get() == flagship)
 					continue;
@@ -466,7 +469,7 @@ void AI::Step(const PlayerInfo &player)
 			it->SetCommands(command);
 			continue;
 		}
-		if(isPresent && personality.IsMining() && !target
+		if(isPresent && personality.IsMining() && !target && !it->GetShipToAssist()
 				&& it->Cargo().Free() >= 5 && ++miningTime[&*it] < 3600 && ++minerCount < 9)
 		{
 			DoMining(*it, command);
