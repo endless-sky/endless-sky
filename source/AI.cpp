@@ -720,8 +720,11 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 		if(it->GetSystem() == system && it->IsTargetable() && gov->IsEnemy(it->GetGovernment()))
 		{
 			// If this is a "nemesis" ship and it has found one of the player's
-			// ships to target, it will not go after anything else.
-			if(hasNemesis && !it->GetGovernment()->IsPlayer())
+			// ships to target, it will only consider the player's owned fleet,
+			// or NPCs allied with the player.
+			const bool isPotentialNemesis = person.IsNemesis()
+					&& (it->GetGovernment()->IsPlayer() || it->GetPersonality().IsEscort());
+			if(hasNemesis && !isPotentialNemesis)
 				continue;
 			
 			// Calculate what the range will be a second from now, so that ships
@@ -768,7 +771,6 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 			range += 1000. * (!isArmed * (1 + !person.Plunders()));
 			// Focus on nearly dead ships.
 			range += 500. * (it->Shields() + it->Hull());
-			bool isPotentialNemesis = (person.IsNemesis() && it->GetGovernment()->IsPlayer());
 			if((isPotentialNemesis && !hasNemesis) || range < closest)
 			{
 				closest = range;
