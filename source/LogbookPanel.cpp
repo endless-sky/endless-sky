@@ -190,7 +190,14 @@ bool LogbookPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 			--i;
 			// Skip the entry that is just the currently selected year.
 			if(dates[i] && !dates[i].Month())
-				--i;
+			{
+				// If this is the very top of the list, don't move the selection
+				// up. (That is, you can't select the year heading line.)
+				if(i)
+					--i;
+				else
+					++i;
+			}
 		}
 		if(contents[i] != selectedName)
 		{
@@ -218,7 +225,9 @@ bool LogbookPanel::Click(int x, int y, int clicks)
 			selectedDate = dates[index];
 			selectedName = contents[index];
 			scroll = 0.;
-			Update();
+			// If selecting a different year, select the first month in that
+			// year.
+			Update(false);
 		}
 	}
 	else if(x > WIDTH)
