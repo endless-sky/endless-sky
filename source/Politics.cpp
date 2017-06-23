@@ -257,7 +257,7 @@ string Politics::Fine(PlayerInfo &player, const Government *gov, int scan, const
 			}
 		}
 		// If you are scanned, each outfit is rolled for detection. Your cargo hold is only rolled once for detection of contraband.
-		if(!scan || (isOutfitScan && Random::Real() <= scanResistance))
+		if((!scan || isOutfitScan) && Random::Real() <= scanResistance)
 		{
 			int64_t fine = 0;
 			for(const auto &it : ship->Outfits())
