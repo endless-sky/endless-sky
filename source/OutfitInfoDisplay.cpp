@@ -191,6 +191,12 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		}
 	}
 	
+	if(outfit.IllegalCargoFine() || outfit.AdditionalCargoFine())
+	{
+		attributeLabels.push_back("This outfit is illegal.");
+		attributeValues.push_back(" ");
+		attributesHeight += 20;
+	}
 	if(!outfit.IsWeapon())
 		return;
 	
