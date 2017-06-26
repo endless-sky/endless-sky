@@ -54,15 +54,16 @@ void EscortDisplay::Draw() const
 	icons.sort();
 	stacks.clear();
 	zones.clear();
+	static const Set<Color> &colors = GameData::Colors();
 	
 	// Draw escort status.
 	const Font &font = FontSet::Get(14);
 	Point pos = Point(Screen::Left() + 20., Screen::Bottom());
-	const Color &elsewhereColor = *GameData::Colors().Get("escort elsewhere");
-	const Color &cannotJumpColor = *GameData::Colors().Get("escort blocked");
-	const Color &notReadyToJumpColor = *GameData::Colors().Get("escort not ready");
-	const Color &selectedColor = *GameData::Colors().Get("escort selected");
-	const Color &hereColor = *GameData::Colors().Get("escort present");
+	const Color &elsewhereColor = *colors.Get("escort elsewhere");
+	const Color &cannotJumpColor = *colors.Get("escort blocked");
+	const Color &notReadyToJumpColor = *colors.Get("escort not ready");
+	const Color &selectedColor = *colors.Get("escort selected");
+	const Color &hereColor = *colors.Get("escort present");
 	for(const Icon &escort : icons)
 	{
 		if(!escort.sprite)
@@ -110,12 +111,12 @@ void EscortDisplay::Draw() const
 		
 		// Draw the status bars.
 		static const Color fullColor[5] = {
-			Color(.44, .56, .70, 0), Color(.70, .62, .44, 0),
-			Color(.60, .60, .60, 0), Color(.70, .44, .44, 0), Color(.70, .62, .44, 0)
+			colors.Get("shields")->Additive(1.), colors.Get("hull")->Additive(1.),
+			colors.Get("energy")->Additive(1.), colors.Get("heat")->Additive(1.), colors.Get("fuel")->Additive(1.)
 		};
 		static const Color halfColor[5] = {
-			Color(.22, .28, .35, 0), Color(.35, .31, .22, 0),
-			Color(.30, .30, .30, 0), Color(.35, .22, .22, 0), Color(.35, .31, .22, 0)
+			fullColor[0].Additive(.5), fullColor[1].Additive(.5),
+			fullColor[2].Additive(.5), fullColor[3].Additive(.5), fullColor[4].Additive(.5),
 		};
 		Point from(pos.X() + 15., pos.Y() - 8.5);
 		for(int i = 0; i < 5; ++i)
