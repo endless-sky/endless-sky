@@ -14,7 +14,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "DataNode.h"
 #include "DataWriter.h"
-
 #include "Format.h"
 
 #include <algorithm>
@@ -213,22 +212,19 @@ string Account::Step(int64_t assets, int64_t salaries)
 	
 	// If you made payments of all three types, the punctuation needs to
 	// include commas, so just handle that separately here.
-	string salariesPaidDisplay = Format::Number(salariesPaid),
-	       mortgagesPaidDisplay = Format::Number(mortgagesPaid),
-	       finesPaidDisplay = Format::Number(finesPaid);
 	if(salariesPaid && mortgagesPaid && finesPaid)
-		out << salariesPaidDisplay << " credits in crew salaries, " << mortgagesPaidDisplay
-			<< " in mortgages, and " << finesPaidDisplay << " in fines.";
+		out << Format::Number(salariesPaid) << " credits in crew salaries, " << Format::Number(mortgagesPaid)
+			<< " in mortgages, and " << Format::Number(finesPaid) << " in fines.";
 	else
 	{
 		if(salariesPaid)
-			out << salariesPaidDisplay << ((mortgagesPaid || finesPaid) ?
+			out << Format::Number(salariesPaid) << ((mortgagesPaid || finesPaid) ?
 				" credits in crew salaries and " : " credits in crew salaries.");
 		if(mortgagesPaid)
-			out << mortgagesPaidDisplay << (salariesPaid ? " " : " credits ")
+			out << Format::Number(mortgagesPaid) << (salariesPaid ? " " : " credits ")
 				<< (finesPaid ? "in mortgage payments and " : "in mortgage payments.");
 		if(finesPaid)
-			out << finesPaidDisplay << ((salariesPaid || mortgagesPaid) ?
+			out << Format::Number(finesPaid) << ((salariesPaid || mortgagesPaid) ?
 				" in fines." : " credits in fines.");
 	}
 	return out.str();
