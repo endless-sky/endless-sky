@@ -186,6 +186,10 @@ void ShopPanel::DrawSidebar()
 	
 	static const Color selected(.8, 1.);
 	static const Color unselected(.4, 1.);
+	
+	const bool coloredOutlines = Preferences::Has("Color outlines in Outfitter");
+	const Color &hasInstalled = *GameData::Colors().Get("outfit installed");
+	const Color &cannotInstall = *GameData::Colors().Get("outfit uninstallable");
 	for(const shared_ptr<Ship> &ship : player.Ships())
 	{
 		// Skip any ships that are "absent" for whatever reason.
@@ -207,7 +211,17 @@ void ShopPanel::DrawSidebar()
 		{
 			double scale = ICON_SIZE / max(sprite->Width(), sprite->Height());
 			Point size(sprite->Width() * scale, sprite->Height() * scale);
-			OutlineShader::Draw(sprite, point, size, isSelected ? selected : unselected);
+			if(coloredOutlines && selectedOutfit && playerShips.size() > 1 && isSelected)
+			{
+				if(ship->OutfitCount(selectedOutfit))
+					OutlineShader::Draw(sprite, point, size, hasInstalled);
+				else if(!ship->Attributes().CanAdd(*selectedOutfit))
+					OutlineShader::Draw(sprite, point, size, cannotInstall);
+				else
+					OutlineShader::Draw(sprite, point, size, selected);
+			}
+			else
+				OutlineShader::Draw(sprite, point, size, isSelected ? selected : unselected);
 		}
 		
 		zones.emplace_back(point, Point(ICON_TILE, ICON_TILE), ship.get());
