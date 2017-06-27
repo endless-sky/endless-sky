@@ -1339,6 +1339,22 @@ void Engine::CalculateStep()
 		// If this "projectile" is a ship explosion, it always explodes.
 		if(!gov)
 			closestHit = 0.;
+		else if(projectile.GetWeapon().IsPhasing() && projectile.Target())
+		{
+			// "Phasing" projectiles that have a target will never hit any other ship.
+			shared_ptr<Ship> target = projectile.TargetPtr();
+			if(target && target->GetSystem() == player.GetSystem()
+					&& target->Zoom() == 1. && target->Cloaking() < 1.)
+			{
+				Point offset = projectile.Position() - target->Position();
+				double range = target->GetMask(step).Collide(offset, projectile.Velocity(), target->Facing());
+				if(range < 1.)
+				{
+					closestHit = range;
+					hit = target;
+				}
+			}
+		}
 		else
 		{
 			double triggerRadius = projectile.GetWeapon().TriggerRadius();
@@ -1362,13 +1378,17 @@ void Engine::CalculateStep()
 					hitVelocity = ship->Velocity();
 				}
 			}
-			// Check if the projectile hits an asteroid that is closer than the
-			// ship that it hit (if any).
-			double closestAsteroid = asteroids.Collide(projectile, step, closestHit, &hitVelocity);
-			if(closestAsteroid < closestHit)
+			// "Phasing" projectiles can pass through asteroids.
+			if(!projectile.GetWeapon().IsPhasing())
 			{
-				closestHit = closestAsteroid;
-				hit = nullptr;
+				// Check if the projectile hits an asteroid that is closer than
+				// the ship that it hit (if any).
+				double closestAsteroid = asteroids.Collide(projectile, step, closestHit, &hitVelocity);
+				if(closestAsteroid < closestHit)
+				{
+					closestHit = closestAsteroid;
+					hit = nullptr;
+				}
 			}
 		}
 		
@@ -1381,12 +1401,18 @@ void Engine::CalculateStep()
 			// If this projectile has a blast radius, find all ships within its
 			// radius. Otherwise, only one is damaged.
 			double blastRadius = projectile.GetWeapon().BlastRadius();
+			bool isSafe = projectile.GetWeapon().IsSafe();
 			if(blastRadius)
 			{
-				// Even friendly ships can be hit by the blast.
+				// Even friendly ships can be hit by the blast, unless it is a
+				// "safe" weapon.
 				Point hitPos = projectile.Position() + closestHit * projectile.Velocity();
 				for(Body *body : shipCollisions.Circle(hitPos, blastRadius))
 				{
+					if(isSafe && projectile.Target() != body
+							&& !projectile.GetGovernment()->IsEnemy(body->GetGovernment()))
+						continue;
+					
 					shared_ptr<Ship> ship = reinterpret_cast<Ship *>(body)->shared_from_this();
 					int eventType = ship->TakeDamage(projectile, ship != hit);
 					if(eventType)
@@ -1396,6 +1422,10 @@ void Engine::CalculateStep()
 				// Cloaked ships can be hit be a blast, too.
 				for(Body *body : cloakedCollisions.Circle(hitPos, blastRadius))
 				{
+					if(isSafe && projectile.Target() != body
+							&& !projectile.GetGovernment()->IsEnemy(body->GetGovernment()))
+						continue;
+					
 					shared_ptr<Ship> ship = reinterpret_cast<Ship *>(body)->shared_from_this();
 					int eventType = ship->TakeDamage(projectile, ship != hit);
 					if(eventType)

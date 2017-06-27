@@ -2154,7 +2154,9 @@ void AI::AutoFire(const Ship &ship, Command &command, bool secondary) const
 			// forward one time step.
 			p += v;
 			
-			if(p.Length() < outfit->BlastRadius())
+			// If this weapon has a blast radius, don't fire it if the target is
+			// so close that you'll be hit by the blast.
+			if(!outfit->IsSafe() && p.Length() < outfit->BlastRadius())
 				continue;
 			
 			// If this is a homing weapon, it is not necessary to take the

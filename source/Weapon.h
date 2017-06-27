@@ -90,6 +90,12 @@ public:
 	double BlastRadius() const;
 	double HitForce() const;
 	
+	// A "safe" weapon hits only hostile ships (even if it has a blast radius).
+	// A "phasing" weapon hits only its intended target; it passes through
+	// everything else, including asteroids.
+	bool IsSafe() const;
+	bool IsPhasing() const;
+	
 	// These values include all submunitions:
 	double ShieldDamage() const;
 	double HullDamage() const;
@@ -133,6 +139,8 @@ private:
 	// This stores whether or not the weapon has been loaded.
 	bool isWeapon = false;
 	bool isStreamed = false;
+	bool isSafe = false;
+	bool isPhasing = false;
 	
 	// Attributes.
 	int lifetime = 0;
@@ -225,6 +233,9 @@ inline double Weapon::SplitRange() const { return splitRange; }
 inline double Weapon::TriggerRadius() const { return triggerRadius; }
 inline double Weapon::BlastRadius() const { return blastRadius; }
 inline double Weapon::HitForce() const { return hitForce; }
+
+inline bool Weapon::IsSafe() const { return isSafe; }
+inline bool Weapon::IsPhasing() const { return isPhasing; }
 
 inline double Weapon::ShieldDamage() const { return TotalDamage(SHIELD_DAMAGE); }
 inline double Weapon::HullDamage() const { return TotalDamage(HULL_DAMAGE); }
