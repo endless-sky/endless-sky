@@ -1408,7 +1408,7 @@ int Ship::Scan()
 		return 0;
 	
 	shared_ptr<const Ship> target = GetTargetShip();
-	if(!target)
+	if(!(target && target->IsTargetable()))
 		return 0;
 	
 	// The range of a scanner is proportional to the square root of its power.
