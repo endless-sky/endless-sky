@@ -235,7 +235,12 @@ bool MainPanel::Click(int x, int y, int clicks)
 
 bool MainPanel::RClick(int x, int y)
 {
-	engine.RClick(Point(x, y));
+	const Point radarCenter = Point(Screen::Left() + 128, Screen::Top() + 128);
+	const bool isRadarClick = (Point(x, y) - radarCenter).Length() < 128;
+	if(isRadarClick)
+		engine.RClick(Point(x, y) - radarCenter, isRadarClick);
+	else
+		engine.RClick(Point(x, y));
 	
 	return true;
 }

@@ -801,12 +801,15 @@ void Engine::Click(const Point &from, const Point &to, bool hasShift)
 
 
 
-void Engine::RClick(const Point &point)
+void Engine::RClick(const Point &point, const bool isRadarClick)
 {
 	doClickNextStep = true;
 	hasShift = false;
 	isRightClick = true;
-	clickPoint = point / zoom;
+	if(isRadarClick)
+		clickPoint = point / .025;
+	else
+		clickPoint = point / zoom;
 }
 
 
