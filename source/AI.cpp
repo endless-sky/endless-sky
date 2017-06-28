@@ -468,10 +468,6 @@ void AI::Step(const PlayerInfo &player)
 			continue;
 		}
 		
-		// Update any orders NPCs may have been given in their mission definition.
-		if(it->IsSpecial() && !it->IsYours() && it->HasTravelDirective())
-			IssueNPCOrders(*it, it->GetDestinationSystem(), it->GetStopovers());
-		
 		const Government *gov = it->GetGovernment();
 		const Personality &personality = it->GetPersonality();
 		double health = .5 * it->Shields() + it->Hull();
@@ -569,6 +565,9 @@ void AI::Step(const PlayerInfo &player)
 			it->SetCommands(command);
 			continue;
 		}
+		// Update any orders NPCs may have been given by their associated mission.
+		else if(it->IsSpecial() && !it->IsYours() && it->HasTravelDirective())
+			IssueNPCOrders(*it, it->GetDestinationSystem(), it->GetStopovers());
 		
 		// Special actions when a ship is near death:
 		if(health < 1.)
@@ -1398,14 +1397,21 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 	
 	if(ship.GetTargetSystem() && !ship.IsSurveying())
 	{
-		PrepareForHyperspace(ship, command);
-		// Issuing the JUMP command prompts the escorts to get ready to jump.
-		command |= Command::JUMP;
-		// Issuing the WAIT command will prevent this parent from jumping.
-		// When all its non-carried, in-system escorts that are not disabled and
-		// have the ability to jump are ready, the WAIT command will be omitted.
-		if(!EscortsReadyToJump(ship))
-			command |= Command::WAIT;
+		// Refuel if able to now, but unable to in the destination system.
+		if(!ship.JumpsRemaining() || (ship.JumpsRemaining() == 1 && ship.GetSystem()->HasFuelFor(ship)
+				&& !ship.GetTargetSystem()->HasFuelFor(ship)))
+			Refuel(ship, command);
+		else
+		{
+			PrepareForHyperspace(ship, command);
+			// Issuing the JUMP command prompts the escorts to get ready to jump.
+			command |= Command::JUMP;
+			// Issuing the WAIT command will prevent this parent from jumping.
+			// When all its non-carried, in-system escorts that are not disabled and
+			// have the ability to jump are ready, the WAIT command will be omitted.
+			if(!EscortsReadyToJump(ship))
+				command |= Command::WAIT;
+		}
 	}
 	else if(ship.GetTargetStellar())
 	{
@@ -3640,35 +3646,33 @@ void AI::IssueNPCOrders(Ship &ship, const System *waypoint, const std::map<const
 	const System *from = ship.GetSystem();
 	if(waypoint)
 	{
-		// Can this system be reached?
 		DistanceMap distance(ship, waypoint);
-		if(!distance.Route(from))
+		if(!distance.HasRoute(waypoint))
 			ship.EraseWaypoint(waypoint);
 		else
 		{
-			// Issue a travel order if a reachable system was specified.
 			newOrders.type = Orders::TRAVEL_TO;
 			newOrders.targetSystem = waypoint;
-			if(from == waypoint && isSurveying)
+			if(from == waypoint)
 			{
-				// If already in this system, remain in it for some varied time.
-				// This time is longer if we are on `patrol`, and depends on how
-				// many StellarObjects are in this system.
-				ship.DoSurvey();
-			}
-			else if(from == waypoint)
-			{
-				// The NPC has completed its survey of this system, and can travel.
-				// Get the next destination in the travel directive, if it exists.
-				ship.SetTargetStellar(nullptr);
-				const System *nextSystem = ship.NextWaypoint();
-				if(nextSystem)
-				{
-					newOrders.targetSystem = nextSystem;
-					ship.PrepareSurvey();
-				}
+				// Rather than make immediate jumps from system to system (which make it
+				// impossible for the player to catch up), travelling NPCs "survey" each
+				// waypoint's StellarObjects.
+				if(isSurveying)
+					ship.DoSurvey();
 				else
-					newOrders.type = 0;
+				{
+					// Travel to the next destination, if it exists.
+					ship.SetTargetStellar(nullptr);
+					const System *nextSystem = ship.NextWaypoint();
+					if(nextSystem)
+					{
+						newOrders.targetSystem = nextSystem;
+						ship.PrepareSurvey();
+					}
+					else
+						newOrders.type = 0;
+				}
 			}
 		}
 	}

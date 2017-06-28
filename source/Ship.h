@@ -230,7 +230,8 @@ public:
 	void Restore();
 	// Check if this ship has been destroyed.
 	bool IsDestroyed() const;
-	// Check if this ship has permanently landed.
+	// Land/Check if this ship has permanently landed.
+	void Land();
 	bool HasLanded() const;
 	// Recharge and repair this ship (e.g. because it has landed).
 	void Recharge(bool atSpaceport = true);

@@ -248,7 +248,7 @@ void Engine::Place()
 			for(const shared_ptr<Ship> &ship : npc.Ships())
 			{
 				// Skip ships that have been destroyed.
-				if(ship->IsDestroyed() || ship->IsDisabled())
+				if(ship->IsDestroyed() || ship->IsDisabled() || ship->HasLanded())
 					continue;
 				
 				if(ship->BaysFree(false))
@@ -262,8 +262,8 @@ void Engine::Place()
 			shared_ptr<Ship> npcFlagship;
 			for(const shared_ptr<Ship> &ship : npc.Ships())
 			{
-				// Skip ships that have been destroyed.
-				if(ship->IsDestroyed())
+				// Skip ships that have been destroyed or permanently landed.
+				if(ship->IsDestroyed() || ship->HasLanded())
 					continue;
 				
 				// Avoid the exploit where the player can wear down an NPC's
@@ -503,8 +503,8 @@ void Engine::Step(bool isActive)
 		{
 			if(!it->GetGovernment() || it->GetSystem() != currentSystem || it->Cloaking() == 1.)
 				continue;
-			// Don't show status for dead ships.
-			if(it->IsDestroyed())
+			// Don't show status for dead or permanently landed ships.
+			if(it->IsDestroyed() || it->HasLanded())
 				continue;
 			
 			bool isEnemy = it->GetGovernment()->IsEnemy();
@@ -1352,7 +1352,7 @@ void Engine::MoveShip(const shared_ptr<Ship> &ship)
 	// Give the ship the list of visuals so that it can draw explosions,
 	// ion sparks, jump drive flashes, etc.
 	ship->Move(newVisuals, newFlotsam);
-	// Bail out if the ship just died.
+	// Ships which are dead or landed should report that event.
 	if(ship->ShouldBeRemoved())
 	{
 		// Make sure this ship's destruction was recorded, even if it died from

@@ -627,7 +627,7 @@ void Ship::Save(DataWriter &out) const
 			out.Write("planet", landingPlanet->Name());
 		if(targetSystem && !targetSystem->Name().empty())
 			out.Write("destination system", targetSystem->Name());
-		if(waypoint > 0)
+		if(waypoint > 0 && waypoint <= waypoints.size())
 			out.Write("waypoint index", waypoint);
 		if(isParked)
 			out.Write("parked");
@@ -1424,8 +1424,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 		{
 			if(!target->IsDisabled() && government->IsEnemy(target->government))
 				isBoarding = false;
-			else if(target->IsDestroyed() || target->IsLanding() || target->IsHyperspacing()
-					|| target->GetSystem() != GetSystem())
+			else if(!target->IsTargetable() || target->GetSystem() != GetSystem())
 				isBoarding = false;
 		}
 		if(isBoarding && !pilotError)
@@ -1472,10 +1471,11 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 		}
 	}
 	
-	// Clear your target if it is destroyed. This is only important for NPCs,
-	// because ordinary ships cease to exist once they are destroyed.
+	// Clear your target if it is destroyed or permanently landed. This is only important
+	// for NPCs, because ordinary ships cease to exist once they are destroyed.
 	target = targetShip.lock();
-	if(target && target->IsDestroyed() && target->explosionCount >= target->explosionTotal)
+	if(target && ((target->IsDestroyed() && target->explosionCount >= target->explosionTotal)
+			|| target->HasLanded()))
 		targetShip.reset();
 	
 	// And finally: move the ship!
@@ -1679,7 +1679,8 @@ shared_ptr<Ship> Ship::Board(bool autoPlunder)
 	hasBoarded = false;
 	
 	shared_ptr<Ship> victim = GetTargetShip();
-	if(CannotAct() || !victim || victim->IsDestroyed() || victim->GetSystem() != GetSystem())
+	if(CannotAct() || !victim || victim->IsDestroyed() || victim->HasLanded()
+			|| victim->GetSystem() != GetSystem())
 		return shared_ptr<Ship>();
 	
 	// For a fighter or drone, "board" means "return to ship."
@@ -2131,6 +2132,13 @@ bool Ship::IsDestroyed() const
 
 
 
+void Ship::Land()
+{
+	hasLanded = true;
+}
+
+
+
 // Check if this ship has permanently landed.
 bool Ship::HasLanded() const
 {
@@ -2142,7 +2150,7 @@ bool Ship::HasLanded() const
 // Recharge and repair this ship (e.g. because it has landed temporarily).
 void Ship::Recharge(bool atSpaceport)
 {
-	if(IsDestroyed())
+	if(IsDestroyed() || HasLanded())
 		return;
 	
 	if(atSpaceport)
@@ -3009,7 +3017,14 @@ void Ship::SetWaypoints(const std::vector<const System *> waypoints, const bool 
 	{
 		doPatrol = repeatTravel;
 		this->waypoints = waypoints;
-		destinationSystem = waypoints[waypoint];
+		if(targetSystem && personality.IsEntering())
+		{
+			--waypoint;
+			destinationSystem = targetSystem;
+		}
+		else
+			destinationSystem = waypoints[waypoint];
+		PrepareSurvey();
 	}
 	else
 		destinationSystem = nullptr;

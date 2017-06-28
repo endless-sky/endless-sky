@@ -2303,13 +2303,21 @@ void PlayerInfo::CreateMissions()
 // Visit, Complete, Fail), and remove now-complete or now-failed missions.
 void PlayerInfo::StepMissions(UI *ui)
 {
-	// Check for NPCs that have been destroyed without their destruction
-	// being registered, e.g. by self-destruct:
+	// Check for NPCs that have been destroyed without their destruction being
+	// registered, e.g. by self-destruct, or landed due to the player landing.
 	for(Mission &mission : missions)
 		for(const NPC &npc : mission.NPCs())
 			for(const shared_ptr<Ship> &ship : npc.Ships())
+			{
 				if(ship->IsDestroyed())
 					mission.Do(ShipEvent(nullptr, ship, ShipEvent::DESTROY), *this, ui);
+				else if(ship->GetSystem() == system && !ship->IsDisabled()
+						&& ship->GetStopovers().count(planet) && !ship->GetStopovers().at(planet))
+				{
+					ship->Land();
+					mission.Do(ShipEvent(nullptr, ship, ShipEvent::LAND), *this, ui);
+				}
+			}
 	
 	auto mit = missions.begin();
 	while(mit != missions.end())

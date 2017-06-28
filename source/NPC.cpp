@@ -28,8 +28,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "System.h"
 #include "UI.h"
 
-#include <vector>
-
 using namespace std;
 
 
@@ -304,7 +302,7 @@ const list<shared_ptr<Ship>> NPC::Ships() const
 
 
 
-// Handle the given ShipEvent. (may need updating for ShipEvent::LAND to not re-spawn ships)
+// Handle the given ShipEvent.
 void NPC::Do(const ShipEvent &event, PlayerInfo &player, UI *ui, bool isVisible)
 {
 	// First, check if this ship is part of this NPC. If not, do nothing. If it
@@ -367,12 +365,6 @@ void NPC::Do(const ShipEvent &event, PlayerInfo &player, UI *ui, bool isVisible)
 			ui->Push(new ConversationPanel(player, conversation, nullptr, ship));
 		else if(!dialogText.empty())
 			ui->Push(new Dialog(dialogText));
-	}
-	// Permanently landed NPCs should be removed from the class.
-	if(event.Type() & ShipEvent::LAND)
-	{
-		ship->Destroy();
-		ship.reset();
 	}
 }
 
@@ -442,7 +434,7 @@ bool NPC::IsLeftBehind(const System *playerSystem) const
 
 
 bool NPC::HasFailed() const
-{					
+{
 	for(const auto &it : actions)
 	{
 		if(it.second & failIf)
@@ -452,8 +444,16 @@ bool NPC::HasFailed() const
 		// alive, then that ship being destroyed or landed causes the mission to fail.
 		if((~it.second & succeedIf) && (it.second & (ShipEvent::DESTROY | ShipEvent::LAND)))
 			return true;
+		
+		// If this ship has landed permanently, the NPC has failed if
+		// 1) it must accompany and is not in the destination system, or
+		// 2) it must evade, and is in the destination system.
+		if((it.second & ShipEvent::LAND) && !doVisit && it.first->GetSystem()
+				&& ((mustAccompany && it.first->GetSystem() != destination)
+					|| (mustEvade && it.first->GetSystem() == destination)))
+			return true;
 	}
-
+	
 	return false;
 }
 
