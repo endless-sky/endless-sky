@@ -27,6 +27,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "PlayerInfo.h"
 #include "PointerShader.h"
 #include "Politics.h"
+#include "Preferences.h"
 #include "Radar.h"
 #include "RingShader.h"
 #include "Screen.h"
@@ -283,7 +284,7 @@ bool MapDetailPanel::Click(int x, int y, int clicks)
 
 bool MapDetailPanel::RClick(int x, int y)
 {
-	if(!selectedSystem)
+	if(!selectedSystem || !Preferences::Has("System map sends move orders"))
 		return true;
 	else if(x >= Screen::Right() - 240 && y >= Screen::Top() + 10 && y <= Screen::Top() + 270)
 	{

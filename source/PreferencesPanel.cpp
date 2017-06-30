@@ -446,6 +446,7 @@ void PreferencesPanel::DrawSettings()
 		"Rehire extra crew when lost",
 		SCROLL_SPEED,
 		"Show escort systems on map",
+		"System map sends move orders",
 		"Warning siren"
 	};
 	bool isCategory = true;
