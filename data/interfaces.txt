@@ -418,7 +418,7 @@ interface "planet"
 	visible if "has spaceport"
 	sprite "ui/planet dialog button"
 		center -400 270
-	button p "Space _Port"
+	button p "Space_port"
 		center -400 270
 		dimensions 140 40
 		size 18

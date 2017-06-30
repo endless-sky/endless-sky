@@ -71,7 +71,7 @@ mission "Intro [0]"
 			`	"Yeah, and then spent half an hour in orbit cleaning my cabin while hoping the passengers wouldn't come out of their bunk room and see the mess. Not my proudest moment. Anyway, here's your pay." He hands you <payment>.`
 			`	Then he adds, "If you're okay with giving me a lift for a while longer, sell off any of that cargo you bought and then meet me in the spaceport. I'll see if I can rustle up any interesting work for you to do."`
 			``
-			`	(Click the "Space Port" button to continue this mission.)`
+			`	(Click the "Spaceport" button to continue this mission.)`
 
 
 
@@ -108,7 +108,7 @@ mission "Intro [1 Transport]"
 			`	You say goodbye to them and wish them well, and as agreed they pay you <payment>. You are already well on your way towards paying down your mortgage!`
 			`	As James leaves the ship, he says, "Again, if you're okay with continuing to give me a ride, just meet me in the spaceport."`
 			``
-			`	(As before, click the "Space Port" button to continue this mission.)`
+			`	(As before, click the "Spaceport" button to continue this mission.)`
 
 
 
@@ -215,7 +215,7 @@ mission "Intro [1 Freighter]"
 			label port
 			`	He picks up his suitcase. "If you want to run another mission with me, look for me in the spaceport. I'll see if I can find you something with a bit higher profit margin this time."`
 			``
-			`	(As before, click the "Space Port" button to continue this mission.)`
+			`	(As before, click the "Spaceport" button to continue this mission.)`
 
 
 
@@ -341,7 +341,7 @@ mission "Intro [1 Interceptor]"
 			`The captain of the Horn of Plenty hands you <payment> and thanks you for your escort services. From the expression on his face, you'd guess that he's feeling lucky to still be alive after entrusting the safety of his fleet to a rookie pilot like yourself.`
 			`	After he is gone, James turns to you and says, "Not too bad for your first escort mission. If you've still got a hankering for some dangerous missions, come and find me in the spaceport before you leave." He picks up his suitcase and heads outside.`
 			``
-			`	(As before, click the "Space Port" button to continue this mission. The next mission will involve carrying cargo, so it will only show up if you have all 15 tons of space free.)`
+			`	(As before, click the "Spaceport" button to continue this mission. The next mission will involve carrying cargo, so it will only show up if you have all 15 tons of space free.)`
 
 
 
