@@ -60,10 +60,178 @@ mission "First Contact: Remnant"
 	
 	npc kill
 		government "Remnant"
-		personality heroic coward
+		personality heroic coward disables plunders
 		fleet "Large Remnant"
 		fleet "Large Remnant"
 
 event "ember waste label"
 	galaxy "label waste"
 		sprite label/waste
+
+
+
+mission "Remnant: Defense 1"
+	source "Caelian"
+	name "Defend <planet>"
+	description "Assist in defending <planet> from a Korath raid, then return to the planet."
+	to offer
+		has "First Contact: Remnant: offered"
+		not "Remnant defense delay"
+	on offer
+		conversation
+			`In the relative quiet of this Remnant spaceport, it unusually jarring when an alarm siren begins howling. All around you, people are rushing to get their ships into the air. Even though no one stops to explain to you what is happening, it's pretty clear that this is a planetary defense operation.`
+			choice
+				`	(Assist the defenders.)`
+					launch
+				`	(Stay here, and don't help them.)`
+			`	You remain behind on the planet. You probably just missed out on a great opportunity to earn the gratitude of the Remnant.`
+				defer
+	on defer
+		set "Remnant defense delay"
+		event "remnant defense timer" 20
+	npc
+		personality staying uninterested disables plunders
+		government "Remnant"
+		fleet "Large Remnant"
+	npc evade
+		personality heroic target
+		government "Korath"
+		fleet "Korath Raid"
+		fleet "Korath Raid"
+		fleet "Korath Raid"
+		fleet "Korath Raid"
+		fleet "Korath Raid"
+		fleet "Korath Raid"
+	on visit
+		dialog "There are still Korath raiders circling overhead. You should take off and help the Remnant ships to fight them."
+	on complete
+		payment 200000
+
+event "remnant defense timer"
+	clear "Remnant defense delay"
+
+
+
+mission "Remnant: Defense 2"
+	landing
+	source "Caelian"
+	name "Remnant bounty"
+	description "A Korath ship is flying around Remnant territory. Hunt it down and destroy it, then return to <planet> for payment."
+	to offer
+		has "Remnant: Defense 1: done"
+	on offer
+		conversation
+			`The people here are grateful for your help in fighting off the Korath raid, and they offer you a payment of 200,000 credits. They explain to you (in song, of course; the explanation takes the form of an epic ballad) that these raids have been taking place for nearly a century.`
+			choice
+				`	"Have you done anything to try to stop the Korath from raiding you?"`
+				`	"What do you think the Korath are hoping to accomplish?"`
+					goto motives
+	
+			`	"Of course not," chants one of them. "Why would we give up a good opportunity to plunder new technology?" His voice is such a perfect monotone that you can't tell whether the comment was meant facetiously or not.`
+				goto next
+	
+			label motives
+			`	"Perhaps they seek new territory, or perhaps they are just innately aggressive," chants one person.`
+			`	"Of course," says another, "the fact that our ships dump their cargo when the raiders attack probably makes us a tempting target."`
+			`	A third person explains, "We do that intentionally, to keep luring them back. The technology we gain when we manage to plunder one of their ships more than outweighs the cargo we lose."`
+	
+			label next
+			`	While you're conversing with the group, a uniformed woman walks up and tells them something in sign language. They sign back and point to you. She says to you, "Thank you for your help. A Korath ship that came with the raiders and fled the battle is still lurking around our territory. Would you be willing to hunt it down?"`
+			choice
+				`	"Sure."`
+				`	"Sorry, I don't have time to help you out."`
+					decline
+
+			`	"Thank you," she sings. "It keeps jumping between systems in our territory. Maybe its jump drive was damaged or something, and it can't escape. I'll spread news that you've taken on the bounty for hunting it, so others won't risk their lives fighting it."`
+				accept
+	npc kill
+		personality coward target uninterested skybound
+		government Bounty
+		system
+			distance 1 2
+		fleet
+			names "korath"
+			cargo 3
+			variant
+				"Korath World-Ship B"
+		dialog "You have destroyed the Korath ship that was left over from the raid on <planet>. You can now return there to collect your payment."
+	on complete
+		payment 250000
+		dialog `The same woman meets you when you land on <planet>. "Again, thank you," she says. "I will suggest to others that they might offer you similar bounty hunting jobs in the future." She pays you <payment>.`
+
+
+
+mission "Remnant: Bounty"
+	job
+	repeat
+	name "Remnant bounty"
+	description "Hunt down a Korath ship that is lurking in Remnant territory, then return to <planet> to receive your payment of <payment>."
+	source
+		government "Remnant"
+	to offer
+		has "Remnant: Defense 2: done"
+		random < 60
+	npc kill
+		personality coward target uninterested skybound
+		government Bounty
+		system
+			distance 1 2
+		fleet
+			names "korath"
+			cargo 3
+			variant
+				"Korath Raider (Hyperdrive)"
+		dialog "You have destroyed the Korath ship. You can now return to <planet> to collect your payment."
+	on complete
+		payment 200000
+		dialog "A Remnant military leader thanks you for hunting down the Korath ship <npc>, and gives you the agreed-upon payment of <payment>."
+
+
+
+mission "Remnant: Defense 3"
+	landing
+	name "Remnant surveillance"
+	description "Travel to the Parca system, destroy any Korath ships you find there, then deploy a Remnant surveillance satellite to give them advance warning of Korath raids in the future. Return to <planet> when you are done."
+	to offer
+		"Remnant: Bounty: done" >= 3
+	cargo "surveillance equipment" 13
+	waypoint Parca
+	on offer
+		conversation
+			`A man approaches your ship soon after you collect your latest bounty, and sings, "You have been most helpful in fighting the Korath. Would you be willing to assist us in another way?"`
+			choice
+				`	"Sure, tell me more."`
+				`	"Sorry, I'm not interested in helping you out anymore."`
+					decline
+
+			`	He explains that they hope to gain advance notice of future raids by setting up remote surveillance equipment in the system in the Ember Waste that is closest to Korath space. The equipment will communicate with the Remnant via something called an "entangled particle pair" that does not require a hyperspace relay network. Ironically, this is technology that the Remnant acquired by raiding the Korath decades ago.`
+			`	"I will mark the target system on your map," he says, "and give you the equipment necessary to deploy the surveillance satellite. Please do not deploy it while any Korath ships are watching."`
+				accept
+	on accept
+		event "remnant: surveillance begin"
+	npc kill
+		personality heroic nemesis staying
+		government Korath
+		system Parca
+		fleet "Korath Raid"
+		fleet "Korath Raid"
+		dialog "Now that you are alone, you are able to deploy the Remnant surveillance satellite unobserved. Time to report back to <planet>."
+	on complete
+		event "remnant: surveillance end"
+		payment 400000
+		conversation
+			`When you return to <planet>, the same Remnant man meets you and says that they have begun receiving data from the surveillance satellite that you deployed. "Thank you for your assistance," he sings. He pays you <payment>.`
+			choice
+				`	"You're welcome."`
+					decline
+				`	"You know, a great way to say 'thank you' would be to offer me a license to buy your technology."`
+
+			`	He grins, very slightly. "That is not my decision alone to make," he says, "but I will put in a word for you and see what I can do."`
+
+event "remnant: surveillance begin"
+	system Parca
+		remove fleet "Korath Raid"
+
+event "remnant: surveillance end"
+	system Parca
+		add fleet "Korath Raid" 10000
