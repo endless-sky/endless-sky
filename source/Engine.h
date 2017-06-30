@@ -72,7 +72,7 @@ public:
 	
 	// Select the object the player clicked on.
 	void Click(const Point &from, const Point &to, bool hasShift);
-	void RClick(const Point &point, const bool isRadarClick = false);
+	void RClick(const Point &point);
 	void SelectGroup(int group, bool hasShift, bool hasControl);
 	
 	
