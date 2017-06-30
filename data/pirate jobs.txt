@@ -18,7 +18,7 @@ mission "Cargo Smuggling [0]"
 	to offer
 		or
 			"reputation: Pirate" > -100
-			"combat rating" > 200
+			"combat rating" > 150
 	source
 		government "Pirate"
 	destination
@@ -38,8 +38,8 @@ mission "Cargo Smuggling [1]"
 	to offer
 		random < 90
 		or
-			"reputation: Pirate" > -90
-			"combat rating" > 210
+			"reputation: Pirate" > -100
+			"combat rating" > 150
 	source
 		government "Pirate"
 	destination
@@ -59,8 +59,8 @@ mission "Cargo Smuggling [2]"
 	to offer
 		random < 70
 		or
-			"reputation: Pirate" > -80
-			"combat rating" > 220
+			"reputation: Pirate" > -100
+			"combat rating" > 150
 	source
 		government "Pirate"
 	destination
@@ -80,8 +80,8 @@ mission "Cargo Smuggling [3]"
 	to offer
 		random < 60
 		or
-			"reputation: Pirate" > -70
-			"combat rating" > 230
+			"reputation: Pirate" > -100
+			"combat rating" > 150
 	source
 		government "Pirate"
 	destination
@@ -122,8 +122,8 @@ mission "Drug Running [1]"
 	to offer
 		random < 70
 		or
-			"reputation: Pirate" > -45
-			"combat rating" > 430
+			"reputation: Pirate" > -50
+			"combat rating" > 400
 	source
 		government "Pirate"
 	destination
@@ -143,8 +143,8 @@ mission "Drug Running [2]"
 	to offer
 		random < 60
 		or
-			"reputation: Pirate" > -40
-			"combat rating" > 460
+			"reputation: Pirate" > -50
+			"combat rating" > 400
 	source
 		government "Pirate"
 	destination
@@ -164,8 +164,8 @@ mission "Drug Running [3]"
 	to offer
 		random < 50
 		or
-			"reputation: Pirate" > -35
-			"combat rating" > 490
+			"reputation: Pirate" > -50
+			"combat rating" > 400
 	source
 		government "Pirate"
 	destination
@@ -206,8 +206,8 @@ mission "Bulk Cargo Smuggling [1]"
 	to offer
 		random < 60
 		or
-			"reputation: Pirate" > -45
-			"combat rating" > 450
+			"reputation: Pirate" > -50
+			"combat rating" > 400
 	source
 		government "Pirate"
 	destination
@@ -227,8 +227,8 @@ mission "Bulk Cargo Smuggling [2]"
 	to offer
 		random < 40
 		or
-			"reputation: Pirate" > -40
-			"combat rating" > 500
+			"reputation: Pirate" > -50
+			"combat rating" > 400
 	source
 		government "Pirate"
 	destination
@@ -249,7 +249,7 @@ mission "Bulk Drug Running [0]"
 		random < 50
 		or
 			"reputation: Pirate" > -25
-			"combat rating" > 500
+			"combat rating" > 1100
 	source
 		government "Pirate"
 	destination
@@ -269,8 +269,8 @@ mission "Bulk Drug Running [1]"
 	to offer
 		random < 40
 		or
-			"reputation: Pirate" > -20
-			"combat rating" > 550
+			"reputation: Pirate" > -25
+			"combat rating" > 1100
 	source
 		government "Pirate"
 	destination
@@ -290,8 +290,8 @@ mission "Bulk Drug Running [2]"
 	to offer
 		random < 30
 		or
-			"reputation: Pirate" > -15
-			"combat rating" > 600
+			"reputation: Pirate" > -25
+			"combat rating" > 1100
 	source
 		government "Pirate"
 	destination
@@ -312,9 +312,8 @@ mission "Stealth Cargo Smuggling (North) [0]"
 		stealth
 	to offer
 		random < 40
-		or
-			"reputation: Pirate" > -20
-			"combat rating" > 500
+		"reputation: Pirate" > -10
+		"combat rating" > 1100
 	source
 		government "Pirate"
 		attributes "north pirate"
@@ -361,9 +360,8 @@ mission "Stealth Cargo Smuggling (North) [1]"
 		stealth
 	to offer
 		random < 20
-		or
-			"reputation: Pirate" > -10
-			"combat rating" > 600
+		"reputation: Pirate" > -10
+		"combat rating" > 1100
 	source
 		government "Pirate"
 		attributes "north pirate"
@@ -432,9 +430,8 @@ mission "Stealth Cargo Smuggling (Core) [0]"
 		stealth
 	to offer
 		random < 40
-		or
-			"reputation: Pirate" > -20
-			"combat rating" > 500
+		"reputation: Pirate" > -10
+		"combat rating" > 1100
 	source
 		government "Pirate"
 		attributes "core pirate"
@@ -481,9 +478,8 @@ mission "Stealth Cargo Smuggling (Core) [1]"
 		stealth
 	to offer
 		random < 20
-		or
-			"reputation: Pirate" > -10
-			"combat rating" > 600
+		"reputation: Pirate" > -10
+		"combat rating" > 1100
 	source
 		government "Pirate"
 		attributes "core pirate"
@@ -555,9 +551,8 @@ mission "Stealth Cargo Smuggling (South) [0]"
 		stealth
 	to offer
 		random < 40
-		or
-			"reputation: Pirate" > -20
-			"combat rating" > 500
+		"reputation: Pirate" > -10
+		"combat rating" > 1100
 	source
 		government "Pirate"
 		attributes "south pirate"
@@ -604,9 +599,8 @@ mission "Stealth Cargo Smuggling (South) [1]"
 		stealth
 	to offer
 		random < 20
-		or
-			"reputation: Pirate" > -10
-			"combat rating" > 600
+		"reputation: Pirate" > -10
+		"combat rating" > 1100
 	source
 		government "Pirate"
 		attributes "south pirate"
@@ -678,9 +672,8 @@ mission "Stealth Drug Running (North) [0]"
 		stealth
 	to offer
 		random < 30
-		or
-			"reputation: Pirate" > 0
-			"combat rating" > 700
+		"reputation: Pirate" > 0
+		"combat rating" > 1100
 	source
 		government "Pirate"
 		attributes "north pirate"
@@ -727,9 +720,8 @@ mission "Stealth Drug Running (North) [1]"
 		stealth
 	to offer
 		random < 15
-		or
-			"reputation: Pirate" > 0
-			"combat rating" > 900
+		"reputation: Pirate" > 0
+		"combat rating" > 1100
 	source
 		government "Pirate"
 		attributes "north pirate"
@@ -798,9 +790,8 @@ mission "Stealth Drug Running (Core) [0]"
 		stealth
 	to offer
 		random < 30
-		or
-			"reputation: Pirate" > 0
-			"combat rating" > 700
+		"reputation: Pirate" > 0
+		"combat rating" > 1100
 	source
 		government "Pirate"
 		attributes "core pirate"
@@ -847,9 +838,8 @@ mission "Stealth Drug Running (Core) [1]"
 		stealth
 	to offer
 		random < 15
-		or
-			"reputation: Pirate" > 0
-			"combat rating" > 900
+		"reputation: Pirate" > 0
+		"combat rating" > 1100
 	source
 		government "Pirate"
 		attributes "core pirate"
@@ -921,9 +911,8 @@ mission "Stealth Drug Running (South) [0]"
 		stealth
 	to offer
 		random < 30
-		or
-			"reputation: Pirate" > 0
-			"combat rating" > 700
+		"reputation: Pirate" > 0
+		"combat rating" > 1100
 	source
 		government "Pirate"
 		attributes "south pirate"
@@ -970,9 +959,8 @@ mission "Stealth Drug Running (South) [1]"
 		stealth
 	to offer
 		random < 15
-		or
-			"reputation: Pirate" > 0
-			"combat rating" > 900
+		"reputation: Pirate" > 0
+		"combat rating" > 1100
 	source
 		government "Pirate"
 		attributes "south pirate"
@@ -1044,8 +1032,8 @@ mission "Wanted Passengers [0]"
 		stealth
 	to offer
 		or
-			"reputation: Pirate" > -200
-			"combat rating" > 100
+			"reputation: Pirate" > -100
+			"combat rating" > 400
 	source
 		government "Pirate"
 	destination
@@ -1066,9 +1054,8 @@ mission "Wanted Passengers [1]"
 		stealth
 	to offer
 		random < 75
-		or
-			"reputation: Pirate" > -200
-			"combat rating" > 100
+		"reputation: Pirate" > -50
+		"combat rating" > 1100
 	source
 		government "Pirate"
 	destination
@@ -1089,9 +1076,8 @@ mission "Wanted Passengers [2]"
 		stealth
 	to offer
 		random < 50
-		or
-			"reputation: Pirate" > -200
-			"combat rating" > 100
+		"reputation: Pirate" > -50
+		"combat rating" > 1100
 	source
 		government "Pirate"
 	destination
@@ -1112,9 +1098,8 @@ mission "Wanted Passengers [3]"
 		stealth
 	to offer
 		random < 25
-		or
-			"reputation: Pirate" > -200
-			"combat rating" > 100
+		"reputation: Pirate" > -50
+		"combat rating" > 1100
 	source
 		government "Pirate"
 	destination
@@ -1129,16 +1114,15 @@ mission "Highly Wanted Passenger (North)"
 	job
 	repeat
 	infiltrating
-	description "This criminal is wanted by every law enforcement agency in the galaxy and needs safe transport to <destination>. The payment is high at an amazing <payment>, but transporting such a person could lead to trouble."
+	description "This criminal is wanted by every law enforcement agency in the galaxy and needs safe transport to <destination> with their <cargo>. The payment is high at an amazing <payment>, but transporting such a person could lead to trouble."
 	passengers 1
 	cargo "stolen navy secrets" 1
-		illegal 1000000 `Law enforcement rush their way onto your ship through the airlocks, suited head to toe in armor and armed to the teeth. Your crew is quickly made to surrender and your passenger is hauled off in cuffs. The officers consider detaining you and your crew as well, but eventually decide to only fine you to reduce the trouble they have to go through.`
+		illegal 1000000 `Law enforcement rush their way onto your ship through the airlocks, suited head to toe in armor and armed to the teeth. Your passenger is quickly made to surrender and is hauled off in cuffs. The officers consider detaining you as well, but eventually decide to only fine you to reduce the trouble they have to go through.`
 		stealth
 	to offer
 		random < 15
-		or
-			"reputation: Pirate" > 10
-			"combat rating" > 1000
+		"reputation: Pirate" > 10
+		"combat rating" > 3000
 	source
 		government "Pirate"
 		attributes "north pirate"
@@ -1208,16 +1192,15 @@ mission "Highly Wanted Passenger (Core)"
 	job
 	repeat
 	infiltrating
-	description "This criminal is wanted by every law enforcement agency in the galaxy and needs safe transport to <destination>. The payment is high at an amazing <payment>, but transporting such a person could lead to trouble."
+	description "This criminal is wanted by every law enforcement agency in the galaxy and needs safe transport to <destination> with their <cargo>. The payment is high at an amazing <payment>, but transporting such a person could lead to trouble."
 	passengers 1
 	cargo "stolen banking records" 1
-		illegal 1000000 `Law enforcement rush their way onto your ship through the airlocks, suited head to toe in armor and armed to the teeth. Your crew is quickly made to surrender and your passenger is hauled off in cuffs. The officers consider detaining you and your crew as well, but eventually decide to only fine you to reduce the trouble they have to go through.`
+		illegal 1000000 `Law enforcement rush their way onto your ship through the airlocks, suited head to toe in armor and armed to the teeth. Your passenger is quickly made to surrender and is hauled off in cuffs. The officers consider detaining you as well, but eventually decide to only fine you to reduce the trouble they have to go through.`
 		stealth
 	to offer
 		random < 15
-		or
-			"reputation: Pirate" > 10
-			"combat rating" > 1000
+		"reputation: Pirate" > 10
+		"combat rating" > 3000
 	source
 		government "Pirate"
 		attributes "core pirate"
@@ -1290,16 +1273,15 @@ mission "Highly Wanted Passenger (South)"
 	job
 	repeat
 	infiltrating
-	description "This criminal is wanted by every law enforcement agency in the galaxy and needs safe transport to <destination>. The payment is high at an amazing <payment>, but transporting such a person could lead to trouble."
+	description "This criminal is wanted by every law enforcement agency in the galaxy and needs safe transport to <destination> with their <cargo>. The payment is high at an amazing <payment>, but transporting such a person could lead to trouble."
 	passengers 1
 	cargo "prototype technology" 1
-		illegal 1000000 `Law enforcement rush their way onto your ship through the airlocks, suited head to toe in armor and armed to the teeth. Your crew is quickly made to surrender and your passenger is hauled off in cuffs. The officers consider detaining you and your crew as well, but eventually decide to only fine you to reduce the trouble they have to go through.`
+		illegal 1000000 `Law enforcement rush their way onto your ship through the airlocks, suited head to toe in armor and armed to the teeth. Your passenger is quickly made to surrender and is hauled off in cuffs. The officers consider detaining you as well, but eventually decide to only fine you to reduce the trouble they have to go through.`
 		stealth
 	to offer
 		random < 15
-		or
-			"reputation: Pirate" > 10
-			"combat rating" > 1000
+		"reputation: Pirate" > 10
+		"combat rating" > 3000
 	source
 		government "Pirate"
 		attributes "south pirate"
@@ -1368,15 +1350,17 @@ mission "Highly Wanted Passenger (South)"
 		dialog "You land outside of the main city to avoid any chances of your passenger being seen. They grab their things and make their way off of your ship after paying you <payment>."
 
 mission "Slave Transport [0]"
-	name "Move slaves to <planet>"
+	name "Transfer slaves to <planet>"
 	job
 	repeat
-	description "These pirates need <bunks> slaves moved to <destination> along with <cargo>. Payment is <payment>. Slavery is highly illegal throughout the galaxy, so this may be a dangerous job to take."
+	description "A pirate on <planet> has bought slaves from a local warlord. Transfer these <bunks> slaves and <cargo> to <destination> for <payment>. Slavery is highly illegal throughout the galaxy, so this may be a dangerous job to take."
 	passengers 2 10 .9
-	cargo "shackles and grub" 1
+	cargo "slave food" 1
 		illegal -1
 	to offer
 		random < 25
+		"reputation: Pirate" > 0
+		"combat rating" > 1100
 	source
 		government "Pirate"
 	destination
@@ -1387,15 +1371,17 @@ mission "Slave Transport [0]"
 		dialog "After landing on <planet>, the pirates move the <bunks> slaves from your ship and pay you <payment>."
 
 mission "Slave Transport [1]"
-	name "Move slaves to <planet>"
+	name "Transfer slaves to <planet>"
 	job
 	repeat
-	description "These pirates need <bunks> slaves moved to <destination> along with <cargo>. Payment is <payment>. Slavery is highly illegal throughout the galaxy, so this may be a dangerous job to take."
+	description "A pirate on <planet> has bought slaves from a local warlord. Transfer these <bunks> slaves and <cargo> to <destination> for <payment>. Slavery is highly illegal throughout the galaxy, so this may be a dangerous job to take."
 	passengers 2 10 .9
-	cargo "shackles and grub" 1
+	cargo "slave food" 1
 		illegal -1
 	to offer
 		random < 25
+		"reputation: Pirate" > 0
+		"combat rating" > 1100
 	source
 		government "Pirate"
 	destination
@@ -1406,15 +1392,17 @@ mission "Slave Transport [1]"
 		dialog "After landing on <planet>, the pirates move the <bunks> slaves from your ship and pay you <payment>."
 
 mission "Slave Transport [2]"
-	name "Move slaves to <planet>"
+	name "Transfer slaves to <planet>"
 	job
 	repeat
-	description "These pirates need <bunks> slaves moved to <destination> along with <cargo>. Payment is <payment>. Slavery is highly illegal throughout the galaxy, so this may be a dangerous job to take."
+	description "A pirate on <planet> has bought slaves from a local warlord. Transfer these <bunks> slaves and <cargo> to <destination> for <payment>. Slavery is highly illegal throughout the galaxy, so this may be a dangerous job to take."
 	passengers 2 10 .9
-	cargo "shackles and grub" 1
+	cargo "slave food" 1
 		illegal -1
 	to offer
 		random < 25
+		"reputation: Pirate" > 0
+		"combat rating" > 1100
 	source
 		government "Pirate"
 	destination
@@ -1425,15 +1413,17 @@ mission "Slave Transport [2]"
 		dialog "After landing on <planet>, the pirates move the <bunks> slaves from your ship and pay you <payment>."
 
 mission "Bulk Slave Transport [0]"
-	name "Move slaves to <planet>"
+	name "Transfer slaves to <planet>"
 	job
 	repeat
-	description "These pirates need <bunks> slaves moved to <destination> along with <cargo>. Payment is <payment>. Slavery is highly illegal throughout the galaxy, so this may be a dangerous job to take."
+	description description "A pirate on <planet> has bought slaves from a local warlord. Transfer these <bunks> slaves and <cargo> to <destination> for <payment>. Slavery is highly illegal throughout the galaxy, so this may be a dangerous job to take."
 	passengers 10 4 .1
-	cargo "shackles and grub" 1
+	cargo "slave food" 1
 		illegal -1
 	to offer
 		random < 15
+		"reputation: Pirate" > 0
+		"combat rating" > 3000
 	source
 		government "Pirate"
 	destination
@@ -1444,15 +1434,17 @@ mission "Bulk Slave Transport [0]"
 		dialog "After landing on <planet>, the pirates move the <bunks> slaves from your ship and pay you <payment>."
 
 mission "Bulk Slave Transport [1]"
-	name "Move slaves to <planet>"
+	name "Transfer slaves to <planet>"
 	job
 	repeat
-	description "These pirates need <bunks> slaves moved to <destination> along with <cargo>. Payment is <payment>. Slavery is highly illegal throughout the galaxy, so this may be a dangerous job to take."
+	description description "A pirate on <planet> has bought slaves from a local warlord. Transfer these <bunks> slaves and <cargo> to <destination> for <payment>. Slavery is highly illegal throughout the galaxy, so this may be a dangerous job to take."
 	passengers 10 4 .1
-	cargo "shackles and grub" 1
+	cargo "slave food" 1
 		illegal -1
 	to offer
 		random < 15
+		"reputation: Pirate" > 0
+		"combat rating" > 3000
 	source
 		government "Pirate"
 	destination
@@ -1470,7 +1462,7 @@ mission "Mercenary Job (Medium, North, Dangerous Origin)"
 	deadline 10
 	to offer
 		random < 40
-		"combat rating" > 200
+		"combat rating" > 400
 		"reputation: Pirate" > 0
 	source
 		government Republic "Free Worlds" Syndicate Neutral
@@ -1522,7 +1514,7 @@ mission "Escort Illegal Cargo (Large, North, Dangerous Path)"
 	deadline 12
 	to offer
 		random < 30
-		"combat rating" > 600
+		"combat rating" > 1100
 		"reputation: Pirate" > 0
 	source
 		government Republic "Free Worlds" Syndicate Neutral Pirate
@@ -1569,7 +1561,7 @@ mission "Escort Stolen Vessel (Extra Large, North, Dangerous Path)"
 	deadline 12
 	to offer
 		random < 15
-		"combat rating" > 1000
+		"combat rating" > 3000
 		"reputation: Pirate" > 0
 	source
 		government Republic "Free Worlds" Syndicate Neutral Pirate
@@ -1619,7 +1611,7 @@ mission "Mercenary Job (Medium, Core, Dangerous Origin)"
 	deadline 10
 	to offer
 		random < 40
-		"combat rating" > 200
+		"combat rating" > 400
 		"reputation: Pirate" > 0
 	source
 		government Republic "Free Worlds" Syndicate Neutral
@@ -1665,7 +1657,7 @@ mission "Escort Illegal Cargo (Large, Core, Dangerous Path)"
 	deadline 12
 	to offer
 		random < 30
-		"combat rating" > 600
+		"combat rating" > 1100
 		"reputation: Pirate" > 0
 	source
 		government Republic "Free Worlds" Syndicate Neutral Pirate
@@ -1708,7 +1700,7 @@ mission "Escort Stolen Vessel (Extra Large, Core, Dangerous Path)"
 	deadline 12
 	to offer
 		random < 15
-		"combat rating" > 1000
+		"combat rating" > 3000
 		"reputation: Pirate" > 0
 	source
 		government Republic "Free Worlds" Syndicate Neutral Pirate
@@ -1764,7 +1756,7 @@ mission "Mercenary Job (Medium, South, Dangerous Origin)"
 	deadline 10
 	to offer
 		random < 40
-		"combat rating" > 200
+		"combat rating" > 400
 		"reputation: Pirate" > 0
 	source
 		government Republic "Free Worlds" Syndicate Neutral
@@ -1810,7 +1802,7 @@ mission "Escort Illegal Cargo (Large, South, Dangerous Path)"
 	deadline 12
 	to offer
 		random < 30
-		"combat rating" > 600
+		"combat rating" > 1100
 		"reputation: Pirate" > 0
 	source
 		government Republic "Free Worlds" Syndicate Neutral Pirate
@@ -1855,7 +1847,7 @@ mission "Escort Stolen Vessel (Extra Large, South, Dangerous Path)"
 	deadline 12
 	to offer
 		random < 15
-		"combat rating" > 1000
+		"combat rating" > 3000
 		"reputation: Pirate" > 0
 	source
 		government Republic "Free Worlds" Syndicate Neutral Pirate
@@ -1910,7 +1902,7 @@ mission "Eliminating Law Enforcement (North, Small)"
 	description "A Navy fleet near the <system> system has halted our raids. Destroy them and return to <planet> for a payment of <payment>."
 	to offer
 		random < 25
-		"combat rating" > 500
+		"combat rating" > 1100
 	source
 		government "Pirate"
 		attributes "north pirate"
@@ -1930,10 +1922,10 @@ mission "Eliminating Law Enforcement (North, Large)"
 	name "Navy near <system>"
 	repeat
 	job
-	description "A Navy fleet near the <system> system has halted our raids. Destroy them and return to <planet> for a payment of <payment>."
+	description "A large Navy fleet near the <system> system has halted our raids. Destroy them and return to <planet> for a payment of <payment>."
 	to offer
 		random < 15
-		"combat rating" > 750
+		"combat rating" > 3000
 	source
 		government "Pirate"
 		attributes "north pirate"
@@ -1957,7 +1949,7 @@ mission "Eliminating Law Enforcement (Core, Small)"
 	description "A Syndicate fleet near the <system> system has halted our raids. Destroy them and return to <planet> for a payment of <payment>."
 	to offer
 		random < 25
-		"combat rating" > 500
+		"combat rating" > 1100
 	source
 		government "Pirate"
 		attributes "core pirate"
@@ -1977,10 +1969,10 @@ mission "Eliminating Law Enforcement (Core, Large)"
 	name "Syndicate near <system>"
 	repeat
 	job
-	description "A Syndicate fleet near the <system> system has halted our raids. Destroy them and return to <planet> for a payment of <payment>."
+	description "A large Syndicate fleet near the <system> system has halted our raids. Destroy them and return to <planet> for a payment of <payment>."
 	to offer
 		random < 15
-		"combat rating" > 750
+		"combat rating" > 3000
 	source
 		government "Pirate"
 		attributes "core pirate"
@@ -2001,10 +1993,10 @@ mission "Eliminating Law Enforcement (South, Small)"
 	name "Militia near <system>"
 	repeat
 	job
-	description "A Militia fleet near the <system> system has halted our raids. Destroy them and return to <planet> for a payment of <payment>."
+	description "A militia fleet near the <system> system has halted our raids. Destroy them and return to <planet> for a payment of <payment>."
 	to offer
 		random < 25
-		"combat rating" > 500
+		"combat rating" > 1100
 	source
 		government "Pirate"
 		attributes "south pirate"
@@ -2018,16 +2010,16 @@ mission "Eliminating Law Enforcement (South, Small)"
 		dialog "The fleet has been eliminated. You can claim the bounty payment by returning to <destination>."
 	on complete
 		payment 250000
-		dialog "The pirates of <planet> gratefully pay you <payment> for eliminating the Militia fleet."
+		dialog "The pirates of <planet> gratefully pay you <payment> for eliminating the militia fleet."
 
 mission "Eliminating Law Enforcement (South, Large)"
 	name "Militia near <system>"
 	repeat
 	job
-	description "A Militia fleet near the <system> system has halted our raids. Destroy them and return to <planet> for a payment of <payment>."
+	description "A large militia fleet near the <system> system has halted our raids. Destroy them and return to <planet> for a payment of <payment>."
 	to offer
 		random < 15
-		"combat rating" > 750
+		"combat rating" > 3000
 	source
 		government "Pirate"
 		attributes "south pirate"
@@ -2042,7 +2034,7 @@ mission "Eliminating Law Enforcement (South, Large)"
 		dialog "The fleet has been eliminated. You can claim the bounty payment by returning to <destination>."
 	on complete
 		payment 400000
-		dialog "The pirates of <planet> gratefully pay you <payment> for eliminating the Militia fleet."
+		dialog "The pirates of <planet> gratefully pay you <payment> for eliminating the militia fleet."
 
 mission "Eliminating Competition (North, Small)"
 	name "Competition near <system>"
@@ -2051,7 +2043,7 @@ mission "Eliminating Competition (North, Small)"
 	job
 	to offer
 		random < 20
-		"combat rating" > 350
+		"combat rating" > 400
 	source
 		government "Pirate"
 		attributes "north pirate"
@@ -2071,12 +2063,12 @@ mission "Eliminating Competition (North, Small)"
 
 mission "Eliminating Competition (North, Large)"
 	name "Competition near <system>"
-	description "A large rival gang is gaining too much power near the <system> system. Take them out and return to <planet> for a payment of <payment>."
+	description "A large rival gang is gaining too much power. Their leader is currently near the <system> system. Take them and their escorts out and return to <planet> for a payment of <payment>."
 	repeat
 	job
 	to offer
 		random < 10
-		"combat rating" > 750
+		"combat rating" > 1100
 	source
 		government "Pirate"
 		attributes "north pirate"
@@ -2101,7 +2093,7 @@ mission "Eliminating Competition (Core, Small)"
 	job
 	to offer
 		random < 20
-		"combat rating" > 350
+		"combat rating" > 400
 	source
 		government "Pirate"
 		attributes "core pirate"
@@ -2121,12 +2113,12 @@ mission "Eliminating Competition (Core, Small)"
 
 mission "Eliminating Competition (Core, Large)"
 	name "Competition near <system>"
-	description "A large rival gang is gaining too much power near the <system> system. Take them out and return to <planet> for a payment of <payment>."
+	description "A large rival gang is gaining too much power. Their leader is currently near the <system> system. Take them and their escorts out and return to <planet> for a payment of <payment>."
 	repeat
 	job
 	to offer
 		random < 10
-		"combat rating" > 750
+		"combat rating" > 1100
 	source
 		government "Pirate"
 		attributes "core pirate"
@@ -2151,7 +2143,7 @@ mission "Eliminating Competition (South, Small)"
 	job
 	to offer
 		random < 20
-		"combat rating" > 350
+		"combat rating" > 400
 	source
 		government "Pirate"
 		attributes "south pirate"
@@ -2171,12 +2163,12 @@ mission "Eliminating Competition (South, Small)"
 
 mission "Eliminating Competition (South, Large)"
 	name "Competition near <system>"
-	description "A large rival gang is gaining too much power near the <system> system. Take them out and return to <planet> for a payment of <payment>."
+	description "A large rival gang is gaining too much power. Their leader is currently near the <system> system. Take them and their escorts out and return to <planet> for a payment of <payment>."
 	repeat
 	job
 	to offer
 		random < 10
-		"combat rating" > 750
+		"combat rating" > 1100
 	source
 		government "Pirate"
 		attributes "south pirate"
@@ -2201,7 +2193,8 @@ mission "Raid on Merchants (North)"
 	description "A merchant fleet has been spotted near the <system>. Join in destroying them and return to <planet> for a cut of the loot (<payment>)."
 	to offer
 		random < 50
-		"combat rating" > 100
+		"combat rating" > 150
+		"reputation: Pirate" > 0
 	source
 		government "Pirate"
 		attributes "north pirate"
@@ -2229,7 +2222,8 @@ mission "Raid on Merchants (Core)"
 	description "A merchant fleet has been spotted near the <system>. Join in destroying them and return to <planet> for a cut of the loot (<payment>)."
 	to offer
 		random < 50
-		"combat rating" > 100
+		"combat rating" > 150
+		"reputation: Pirate" > 0
 	source
 		government "Pirate"
 		attributes "core pirate"
@@ -2257,7 +2251,8 @@ mission "Raid on Merchants (South)"
 	description "A merchant fleet has been spotted near the <system>. Join in destroying them and return to <planet> for a cut of the loot (<payment>)."
 	to offer
 		random < 50
-		"combat rating" > 100
+		"combat rating" > 150
+		"reputation: Pirate" > 0
 	source
 		government "Pirate"
 		attributes "south pirate"
@@ -2282,7 +2277,7 @@ mission "Northern Pirate Defense"
 	name "Defend <planet>"
 	repeat
 	minor
-	description "Local Republic forces are attacking the <destination>! Defeat them to defend anarchy!"
+	description "Local Navy forces are attacking the <destination>! Defeat them to defend anarchy!"
 	to offer
 		random < 20
 		"reputation: Pirate" >= 0
@@ -2311,7 +2306,7 @@ mission "Northern Pirate Defense"
 				launch
 	on complete
 		payment 350000
-		dialog "Many pirates of <planet> thank you and collectively pay you <payment> for helping to drive off the Navy."
+		dialog "Many locals of <planet> thank you and collectively pay you <payment> for helping to drive off the Navy."
 
 mission "Core Pirate Defense"
 	name "Defend <planet>"
@@ -2347,7 +2342,7 @@ mission "Core Pirate Defense"
 				launch
 	on complete
 		payment 350000
-		dialog "Many pirates of <planet> thank you and collectively pay you <payment> for helping to drive off the Navy."
+		dialog "Many locals of <planet> thank you and collectively pay you <payment> for helping to drive off the Navy."
 
 mission "Southern Pirate Defense"
 	name "Defend <planet>"
@@ -2383,160 +2378,7 @@ mission "Southern Pirate Defense"
 				launch
 	on complete
 		payment 350000
-		dialog "Many pirates of <planet> thank you and collectively pay you <payment> for helping to drive off the Navy."
-
-mission "Ransom Situation (North, Safe)"
-	name "Ransom collection at Farpoint"
-	job
-	repeat
-	description "Local pirates require a third party to collect ransom. Bring the captured individual to Farpoint and return the ransom to <planet>. Your share of the ransom will be <payment>"
-	passengers 1
-	to offer
-		random < 30
-		"reputation: Republic" > 0
-	source
-		government "Pirate"
-		attributes "north pirate"
-	stopover Farpoint
-	on stopover
-		dialog `Upon landing on Farpoint, you trade off your passenger for their weight in credits. Return to <destination> for payment.`
-	npc
-		personality staying
-		government Republic
-		system Alnitak
-		fleet "Large Republic"
-		fleet "Large Republic"
-	on complete
-		payment 1000000
-		dialog `After giving the ransom money to the pirates of <planet>, they hand you your share of the money. <payment>.`
-
-mission "Ransom Situation (North, Dangerous)"
-	name "Ransom collection at Farpoint"
-	job
-	repeat
-	description "Local pirates require a third party to collect ransom. Bring the captured individual to Farpoint and return the ransom to <planet>. Your share of the ransom will be <payment>"
-	passengers 1
-	to offer
-		random < 30
-		"reputation: Republic" > 0
-	source
-		government "Pirate"
-		attributes "north pirate"
-	waypoint Alnitak
-	on enter Alnitak
-		dialog `Upon entering Alnitak, Navy ships begin firing upon your ship. It's a trap! Take them out!.`
-	npc kill
-		personality staying heroic
-		government "Target: Republic"
-		system Alnitak
-		fleet "Large Republic"
-		fleet "Large Republic"
-		dialog "The fleet has been eliminated. Return to <destination>."
-	on complete
-		payment 1000000
-		dialog `After explaining what occured to the pirates of <planet>, they hand you <payment> for taking out the Navy fleets.`
-
-mission "Ransom Situation (Core, Safe)"
-	name "Ransom collection at Burthen"
-	job
-	repeat
-	description "Local pirates require a third party to collect ransom. Bring the captured individual to Burthen and return the ransom to <planet>. Your share of the ransom will be <payment>"
-	passengers 1
-	to offer
-		random < 30
-		"reputation: Syndicate" > 0
-	source
-		government "Pirate"
-		attributes "core pirate"
-	stopover Burthen
-	on stopover
-		dialog `Upon landing on Burthen, you trade off your passenger for their weight in credits. Return to <destination> for payment.`
-	npc
-		personality staying
-		government Syndicate
-		system "Al Dhanab"
-		fleet "Large Syndicate"
-		fleet "Large Syndicate"
-	on complete
-		payment 1000000
-		dialog `After giving the ransom money to the pirates of <planet>, they hand you your share of the money. <payment>.`
-
-mission "Ransom Situation (Core, Dangerous)"
-	name "Ransom collection at Burthen"
-	job
-	repeat
-	description "Local pirates require a third party to collect ransom. Bring the captured individual to Burthen and return the ransom to <planet>. Your share of the ransom will be <payment>"
-	passengers 1
-	to offer
-		random < 30
-		"reputation: Syndicate" > 0
-	source
-		government "Pirate"
-		attributes "core pirate"
-	waypoint "Al Dhanab"
-	on enter "Al Dhanab"
-		dialog `Upon entering Al Dhanab, Syndicate ships begin firing upon your ship. It's a trap! Take them out!.`
-	npc kill
-		personality staying heroic
-		government "Target: Syndicate"
-		system "Al Dhanab"
-		fleet "Large Syndicate"
-		fleet "Large Syndicate"
-		dialog "The fleet has been eliminated. Return to <destination>."
-	on complete
-		payment 1000000
-		dialog `After explaining what occured to the pirates of <planet>, they hand you <payment> for taking out the Syndicate fleets.`
-
-mission "Ransom Situation (South, Safe)"
-	name "Ransom collection at Twinstar"
-	job
-	repeat
-	description "Local pirates require a third party to collect ransom. Bring the captured individual to Twinstar and return the ransom to <planet>. Your share of the ransom will be <payment>"
-	passengers 1
-	to offer
-		random < 30
-		"reputation: Militia" > 0
-	source
-		government "Pirate"
-		attributes "south pirate"
-	stopover Twinstar
-	on stopover
-		dialog `Upon landing on Twinstar, you trade off your passenger for their weight in credits. Return to <destination> for payment.`
-	npc
-		personality staying
-		government Militia
-		system Alniyat
-		fleet "Large Militia"
-		fleet "Large Militia"
-	on complete
-		payment 1000000
-		dialog `After giving the ransom money to the pirates of <planet>, they hand you your share of the money. <payment>.`
-
-mission "Ransom Situation (South, Dangerous)"
-	name "Ransom collection at Twinstar"
-	job
-	repeat
-	description "Local pirates require a third party to collect ransom. Bring the captured individual to Twinstar and return the ransom to <planet>. Your share of the ransom will be <payment>"
-	passengers 1
-	to offer
-		random < 30
-		"reputation: Militia" > 0
-	source
-		government "Pirate"
-		attributes "south pirate"
-	waypoint Alniyat
-	on enter Alniyat
-		dialog `Upon entering Alniyat, Militia ships begin firing upon your ship. It's a trap! Take them out!.`
-	npc kill
-		personality staying heroic
-		government "Target: Militia"
-		system Alniyat
-		fleet "Large Militia"
-		fleet "Large Militia"
-		dialog "The fleet has been eliminated. Return to <destination>."
-	on complete
-		payment 1000000
-		dialog `After explaining what occured to the pirates of <planet>, they hand you <payment> for taking out the Militia fleets.`
+		dialog "Many locals of <planet> thank you and collectively pay you <payment> for helping to drive off the Navy."
 
 outfit "Secret Cargo"
 	category "Special"
@@ -2546,12 +2388,13 @@ outfit "Secret Cargo"
 	description "Cargo stolen from a merchant ship which has caught the interest of a pirate warlord."
 
 mission "Cargo Theft (North)"
-	name "Convoy at <system>"
+	name "Convoy near <system>"
 	job
 	repeat
 	description `A merchant convoy has been spotted near the <system> system. A local warlord is interested in having the cargo on the <npc>. Plunder it and return to <planet> for payment of <payment>.`
 	to offer
 		random < 15
+		"combat rating" > 3000
 	source
 		government Pirate
 		attributes "north pirate"
@@ -2579,12 +2422,13 @@ mission "Cargo Theft (North)"
 		dialog "The pirates of <planet> take the secret cargo from your cargo hold and pay you <payment>."
 
 mission "Cargo Theft (Core)"
-	name "Convoy at <system>"
+	name "Convoy near <system>"
 	job
 	repeat
 	description `A merchant convoy has been spotted near the <system> system. A local warlord is interested in having the cargo on the <npc>. Plunder it and return to <planet> for payment of <payment>.`
 	to offer
 		random < 15
+		"combat rating" > 3000
 	source
 		government Pirate
 		attributes "core pirate"
@@ -2612,12 +2456,13 @@ mission "Cargo Theft (Core)"
 		dialog "The pirates of <planet> take the secret cargo from your cargo hold and pay you <payment>."
 
 mission "Cargo Theft (South)"
-	name "Convoy at <system>"
+	name "Convoy near <system>"
 	job
 	repeat
 	description `A merchant convoy has been spotted near the <system> system. A local warlord is interested in having the cargo on the <npc>. Plunder it and return to <planet> for payment of <payment>.`
 	to offer
 		random < 15
+		"combat rating" > 3000
 	source
 		government Pirate
 		attributes "south pirate"
