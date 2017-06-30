@@ -969,16 +969,19 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 		}
 		int systemTotalWeight = totalWeight;
 		
-		// Anywhere you can land that has a port has the same weight. Ships will
-		// not land anywhere without a port.
 		vector<const StellarObject *> planets;
-		for(const StellarObject &object : ship.GetSystem()->Objects())
-			if(object.GetPlanet() && object.GetPlanet()->HasSpaceport()
-					&& object.GetPlanet()->CanLand(ship))
-			{
-				planets.push_back(&object);
-				totalWeight += planetWeight;
-			}
+		if(!ship.GetPersonality().IsSkybound())
+		{
+			// Anywhere you can land that has a port has the same weight. Ships will
+			// not land anywhere without a port.
+			for(const StellarObject &object : ship.GetSystem()->Objects())
+				if(object.GetPlanet() && object.GetPlanet()->HasSpaceport()
+						&& object.GetPlanet()->CanLand(ship))
+				{
+					planets.push_back(&object);
+					totalWeight += planetWeight;
+				}
+		}
 		// If there are no ports to land on and this ship cannot jump, consider
 		// landing on uninhabited planets.
 		if(!totalWeight)
@@ -1036,7 +1039,7 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 	else if(ship.GetTargetStellar())
 	{
 		MoveToPlanet(ship, command);
-		if(!shouldStay && ship.Attributes().Get("fuel capacity"))
+		if(!shouldStay && !ship.GetPersonality().IsSkybound() && ship.Attributes().Get("fuel capacity"))
 			command |= Command::LAND;
 		else if(ship.Position().Distance(ship.GetTargetStellar()->Position()) < 100.)
 			ship.SetTargetStellar(nullptr);

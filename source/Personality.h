@@ -58,6 +58,7 @@ public:
 	bool IsFleeing() const;
 	bool IsDerelict() const;
 	bool IsUninterested() const;
+	bool IsSkybound() const;
 	
 	// Non-combat goals:
 	bool IsSurveillance() const;

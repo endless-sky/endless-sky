@@ -47,6 +47,7 @@ namespace {
 	static const int MUTE = (1 << 23);
 	static const int OPPORTUNISTIC = (1 << 24);
 	static const int TARGET = (1 << 25);
+	static const int SKYBOUND = (1 << 26);
 	
 	static const map<string, int> TOKEN = {
 		{"pacifist", PACIFIST},
@@ -74,7 +75,8 @@ namespace {
 		{"appeasing", APPEASING},
 		{"mute", MUTE},
 		{"opportunistic", OPPORTUNISTIC},
-		{"target", TARGET}
+		{"target", TARGET},
+		{"skybound", SKYBOUND}
 	};
 	
 	double DEFAULT_CONFUSION = 10.;
@@ -254,6 +256,13 @@ bool Personality::IsDerelict() const
 bool Personality::IsUninterested() const
 {
 	return flags & UNINTERESTED;
+}
+
+
+
+bool Personality::IsSkybound() const
+{
+	return flags & SKYBOUND;
 }
 
 
