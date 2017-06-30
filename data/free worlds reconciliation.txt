@@ -930,7 +930,7 @@ mission "FW Pug 1 Arabia"
 		has "FW Pug 1: active"
 	
 	on offer
-		log "No one on Arabia knows what has caused hyperspace links int his region of space to suddenly disappear. There are stories of graviton surges and an alien ship, but they may all just be rumors."
+		log "No one on Arabia knows what has caused hyperspace links in this region of space to suddenly disappear. There are stories of graviton surges and an alien ship, but they may all just be rumors."
 		conversation
 			`You land on Arabia and try to find someone who knows what is going on, but everyone seems just as confused as you are. The spaceport authorities say that their sensors picked up a massive graviton surge when the hyperlinks collapsed, but they are not sure whether the surge caused the collapse, or was a result of it.`
 			`	One merchant captain claims that he was in orbit at the time, and he saw a ship unlike anything he'd ever seen before, that appeared and then disappeared in a flash "just like those Quarg ships do." You aren't sure whether or not to believe him.`
