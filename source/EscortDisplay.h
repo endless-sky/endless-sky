@@ -72,7 +72,7 @@ private:
 private:
 	mutable std::list<Icon> icons;
 	mutable std::vector<std::vector<const Ship *>> stacks;
-	mutable std::vector<Point> zones; 
+	mutable std::vector<Point> zones;
 };
 
 

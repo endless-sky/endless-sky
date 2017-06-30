@@ -645,6 +645,7 @@ const list<ShipEvent> &Engine::Events() const
 void Engine::Draw() const
 {
 	GameData::Background().Draw(center, centerVelocity, zoom);
+	static const Set<Color> &colors = GameData::Colors();
 	
 	// Draw any active planet labels.
 	for(const PlanetLabel &label : labels)
@@ -655,12 +656,12 @@ void Engine::Draw() const
 	for(const auto &it : statuses)
 	{
 		static const Color color[6] = {
-			Color(0., .5, 0., .25),
-			Color(.5, .15, 0., .25),
-			Color(.5, .5, .5, .25),
-			Color(.45, .5, 0., .25),
-			Color(.5, .3, 0., .25),
-			Color(.7, .7, .7, .25)
+			*colors.Get("overlay friendly shields"),
+			*colors.Get("overlay hostile shields"),
+			*colors.Get("overlay outfit scan"),
+			*colors.Get("overlay friendly hull"),
+			*colors.Get("overlay hostile hull"),
+			*colors.Get("overlay cargo scan")
 		};
 		Point pos = it.position * zoom;
 		double radius = it.radius * zoom;
@@ -675,7 +676,7 @@ void Engine::Draw() const
 	if(highlightSprite)
 	{
 		Point size(highlightSprite->Width(), highlightSprite->Height());
-		const Color &color = *GameData::Colors().Get("flagship highlight");
+		const Color &color = *colors.Get("flagship highlight");
 		// The flagship is always in the dead center of the screen.
 		OutlineShader::Draw(highlightSprite, Point(), size, color, highlightUnit, highlightFrame);
 	}
@@ -748,8 +749,8 @@ void Engine::Draw() const
 	Point pos(Screen::Right() - 80, Screen::Bottom());
 	const Sprite *selectedSprite = SpriteSet::Get("ui/ammo selected");
 	const Sprite *unselectedSprite = SpriteSet::Get("ui/ammo unselected");
-	Color selectedColor = *GameData::Colors().Get("bright");
-	Color unselectedColor = *GameData::Colors().Get("dim");
+	Color selectedColor = *colors.Get("bright");
+	Color unselectedColor = *colors.Get("dim");
 	for(const pair<const Outfit *, int> &it : ammo)
 	{
 		pos.Y() -= 30.;
@@ -780,7 +781,7 @@ void Engine::Draw() const
 	if(Preferences::Has("Show CPU / GPU load"))
 	{
 		string loadString = to_string(static_cast<int>(load * 100. + .5)) + "% CPU";
-		Color color = *GameData::Colors().Get("medium");
+		Color color = *colors.Get("medium");
 		font.Draw(loadString,
 			Point(-10 - font.Width(loadString), Screen::Height() * -.5 + 5.), color);
 	}

@@ -42,6 +42,13 @@ color "escort not ready" .9 .8 0. 1.
 color "escort blocked" .9 .2 0. 1.
 color "escort selected" .2 .8 0. 1.
 
+color "overlay friendly shields" 0., .5, 0., .25
+color "overlay friendly hull" .45, .5, 0., .25
+color "overlay hostile shields" .5, .15, 0., .25
+color "overlay hostile hull" .5, .3, 0., .25
+color "overlay outfit scan" .5, .5, .5, .25
+color "overlay cargo scan" .7, .7, .7, .25
+
 
 
 interface "menu background"
