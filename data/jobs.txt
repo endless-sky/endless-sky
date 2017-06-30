@@ -1275,7 +1275,7 @@ mission "Bounty Hunting (Big)"
 		government Republic "Free Worlds" Syndicate Neutral
 		attributes rim south north "dirt belt" core frontier
 	npc kill
-		personality heroic staying nemesis
+		personality heroic staying nemesis target
 		government Bounty
 		system
 			distance 1 2
@@ -1314,7 +1314,7 @@ mission "Bounty Hunting (Medium)"
 		government Republic "Free Worlds" Syndicate Neutral
 		attributes rim south north "dirt belt" core frontier
 	npc kill
-		personality heroic staying nemesis
+		personality heroic staying nemesis target
 		government Bounty
 		system
 			distance 1 2
@@ -1349,7 +1349,7 @@ mission "Bounty Hunting (Small)"
 		government Republic "Free Worlds" Syndicate Neutral
 		attributes rim south north "dirt belt" core frontier
 	npc kill
-		personality heroic staying nemesis
+		personality heroic staying nemesis target
 		government Bounty
 		system
 			distance 1 2
@@ -2332,7 +2332,7 @@ mission "Bounty Hunting (Marauder I)"
 		attributes rim south north "dirt belt" core frontier
 	npc kill
 		fleet "Marauder fleet I"
-		personality heroic staying nemesis
+		personality heroic staying nemesis target
 		government Bounty
 		system
 			distance 1 3
@@ -2358,7 +2358,7 @@ mission "Bounty Hunting (Marauder II)"
 		attributes rim south north "dirt belt" core frontier
 	npc kill
 		fleet "Marauder fleet II"
-		personality heroic staying nemesis
+		personality heroic staying nemesis target
 		government Bounty
 		system
 			distance 1 3
@@ -2385,7 +2385,7 @@ mission "Bounty Hunting (Marauder III)"
 		attributes rim south north "dirt belt" core frontier
 	npc kill
 		fleet "Marauder fleet III"
-		personality heroic staying nemesis
+		personality heroic staying nemesis target
 		government Bounty
 		system
 			distance 1 3
@@ -2411,7 +2411,7 @@ mission "Bounty Hunting (Marauder IV)"
 		attributes rim south north "dirt belt" core frontier
 	npc kill
 		fleet "Marauder fleet IV"
-		personality heroic staying nemesis
+		personality heroic staying nemesis target
 		government Bounty
 		system
 			distance 1 3
@@ -2437,7 +2437,7 @@ mission "Bounty Hunting (Marauder V)"
 		attributes rim south north "dirt belt" core frontier
 	npc kill
 		fleet "Marauder fleet V"
-		personality heroic staying nemesis
+		personality heroic staying nemesis target
 		government Bounty
 		system
 			distance 1 3
@@ -2464,7 +2464,7 @@ mission "Bounty Hunting (Marauder VI)"
 		attributes rim south north "dirt belt" core frontier
 	npc kill
 		fleet "Marauder fleet VI"
-		personality heroic staying nemesis
+		personality heroic staying nemesis target
 		government Bounty
 		system
 			distance 1 3
@@ -2486,7 +2486,7 @@ mission "Bounty Hunting (Marauder VII)"
 		attributes rim south north "dirt belt" core frontier
 	npc kill
 		fleet "Marauder fleet VII"
-		personality heroic staying nemesis
+		personality heroic staying nemesis target
 		government Bounty
 		system
 			distance 1 3
@@ -2508,7 +2508,7 @@ mission "Bounty Hunting (Marauder VIII)"
 		attributes rim south north "dirt belt" core frontier
 	npc kill
 		fleet "Marauder fleet VIII"
-		personality heroic staying nemesis
+		personality heroic staying nemesis target
 		government Bounty
 		system
 			distance 1 3
@@ -2530,7 +2530,7 @@ mission "Bounty Hunting (Marauder IX)"
 		attributes rim south north "dirt belt" core frontier
 	npc kill
 		fleet "Marauder fleet IX"
-		personality heroic staying nemesis
+		personality heroic staying nemesis target
 		government Bounty
 		system
 			distance 1 3

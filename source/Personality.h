@@ -67,6 +67,7 @@ public:
 	
 	// Special flags:
 	bool IsEscort() const;
+	bool IsTarget() const;
 	bool IsMute() const;
 	
 	// Current inaccuracy in this ship's targeting:

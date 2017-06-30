@@ -64,6 +64,13 @@ namespace {
 	
 	int RadarType(const Ship &ship, int step)
 	{
+		if(ship.GetPersonality().IsTarget() && !ship.IsDestroyed())
+		{
+			// If a ship is a "target," double-blink it a few times per second.
+			int count = (step / 6) % 7;
+			if(count == 0 || count == 2)
+				return Radar::SPECIAL;
+		}
 		if(ship.IsDisabled() || (ship.IsOverheated() && ((step / 20) % 2)))
 			return Radar::INACTIVE;
 		if(ship.GetGovernment()->IsPlayer() || ship.GetPersonality().IsEscort())
@@ -515,6 +522,7 @@ void Engine::Step(bool isActive)
 		info.SetString("target name", "no target");
 		info.SetString("target type", "");
 		info.SetString("target government", "");
+		info.SetString("mission target", "");
 		info.SetBar("target shields", 0.);
 		info.SetBar("target hull", 0.);
 	}
@@ -530,6 +538,7 @@ void Engine::Step(bool isActive)
 			info.SetString("target government", "No Government");
 		else
 			info.SetString("target government", target->GetGovernment()->GetName());
+		info.SetString("mission target", target->GetPersonality().IsTarget() ? "(mission target)" : "");
 		
 		int targetType = RadarType(*target, step);
 		info.SetOutlineColor(Radar::GetColor(targetType));
