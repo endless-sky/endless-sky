@@ -591,11 +591,11 @@ void PlayerInfo::IncrementDate()
 	{
 		string message = "You receive ";
 		if(total[0])
-			message += to_string(total[0]) + " credits salary";
+			message += Format::Number(total[0]) + " credits salary";
 		if(total[0] && total[1])
 			message += " and ";
 		if(total[1])
-			message += to_string(total[1]) + " credits in tribute";
+			message += Format::Number(total[1]) + " credits in tribute";
 		message += ".";
 		Messages::Add(message);
 		accounts.AddCredits(total[0] + total[1]);
