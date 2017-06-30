@@ -168,7 +168,7 @@ mission "Syndicate target practice [0]"
 		"combat rating" > 5
 		"combat rating" < 50
 	npc save disable "scan cargo"
-		personality staying heroic
+		personality staying heroic target
 		government "Test Dummy"
 		ship "Berserker" "Syndicate Test Vessel"
 
@@ -196,7 +196,7 @@ mission "Syndicate target practice [1]"
 		"combat rating" > 50
 		"combat rating" < 200
 	npc save disable "scan cargo"
-		personality staying heroic
+		personality staying heroic target
 		government "Test Dummy"
 		ship "Quicksilver" "Syndicate Test Vessel"
 		system destination
@@ -223,7 +223,7 @@ mission "Syndicate target practice [2]"
 		"combat rating" > 150
 		"combat rating" < 1000
 	npc save disable "scan cargo"
-		personality staying heroic
+		personality staying heroic target
 		government "Test Dummy"
 		ship "Splinter" "Syndicate Test Vessel"
 		system destination
@@ -249,7 +249,7 @@ mission "Syndicate target practice [3]"
 		random < 20
 		"combat rating" > 1000
 	npc save disable "scan cargo"
-		personality staying heroic
+		personality staying heroic target
 		government "Test Dummy"
 		ship "Vanguard" "Syndicate Test Vessel"
 		system destination
