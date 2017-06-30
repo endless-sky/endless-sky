@@ -235,3 +235,44 @@ event "remnant: surveillance begin"
 event "remnant: surveillance end"
 	system Parca
 		add fleet "Korath Raid" 10000
+
+
+
+mission "Remnant: Key Stones"
+	name "Keystones"
+	description "The manager of the outfitter on <planet>, a Remnant world, has offered to pay you six million credits in exchange for a shipment of fifty Quantum Keystones (which you will have to purchase from the Hai)."
+	source Viminal
+	to offer
+		has "First Contact: Remnant: offered"
+	on offer
+		require "Quantum Keystone"
+		conversation
+			`As you are walking through the spaceport, a man comes up to you and introduces himself as the manager of the local outfitter. He says, "I could not help but notice that you have a Key Stone that looks different from the ones from our mines. Have you found another world where these stones can be mined?"`
+			choice
+				`	"Yes, in the territory of some aliens far to the north of here."`
+					goto hai
+				`	"Yes, but I would prefer not to tell you where."`
+
+			`	"That is understandable," he says. "I am a businessman and I understand how valuable certain trade secrets can be. But perhaps I can interest you in a mutually profitable endeavor?"`
+				goto more
+
+			label hai
+			`	"Intriguing," he sings. "Are they aware of how valuable these stones are?" You tell him about the Hai: that they once had a vast empire that included part of human space, but that was almost a hundred thousand years ago. And, you tell him that to them the Key Stones are just good luck charms. "Perhaps they have forgotten the true use of the Stones," says the man. "This may give us an opportunity for a mutually profitable endeavor."`
+
+			label more
+			`	"Tell me more," you say.`
+			`	He says, "If you could fetch me a large supply of these stones, say fifty of them, I would purchase them from you for a high enough price that you would earn a tidy profit. What do you say?"`
+			choice
+				`	"Sure, I would be glad to accept that deal."`
+				`	"Sorry, I'm really not interested in doing business with you Remnant folks."`
+					decline
+
+			`	After a bit of haggling, he agrees to pay you six million credits in exchange for a cargo of fifty Hai "Keystones." Given how cheap they are to purchase in Hai space, you will be earning a very tidy profit on the deal.`
+				accept
+	
+	on complete
+		outfit "Quantum Keystone" -50
+		payment 6000000
+		conversation
+			`You visit the local outfitter and tell the manager that you have brought a shipment of "Quantum Keystones" to sell to him. He is overjoyed, and gladly pays you six million credits for them. You can't help noticing that based on how much the Key Stones sell for here, he will be earning even more profit than you did, even though you did nearly all the work.`
+			`	"You have made a valuable contribution to our people by doing this," he says. "These stones will allow more of our ships to explore the Ember Waste and discover the secrets that it holds."`
