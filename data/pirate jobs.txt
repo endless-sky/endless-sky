@@ -307,7 +307,7 @@ mission "Stealth Cargo Smuggling (North) [0]"
 	repeat
 	infiltrating
 	description "Run <cargo> to <destination>. Being scanned will result in a 200,000 credit fine and the cargo will be seized. You will need to land away from the spaceport or else you may get caught. Payment is <payment>."
-	cargo "Illegal Cargo" 5 2 .1
+	cargo "Highly Illegal Cargo" 5 2 .1
 		illegal 200000 `After being given a very hefty fine, the illegal cargo is confiscated from your hold. The pirates won't be happy to hear about this.`
 		stealth
 	to offer
@@ -355,7 +355,7 @@ mission "Stealth Cargo Smuggling (North) [1]"
 	repeat
 	infiltrating
 	description "Run <cargo> to <destination>. Being scanned will result in a 300,000 credit fine and the cargo will be seized. You will need to land away from the spaceport or else you may get caught. Payment is <payment>."
-	cargo "Illegal Cargo" 5 2 .1
+	cargo "Highly Illegal Cargo" 5 2 .1
 		illegal 300000 `After being given a very hefty fine, the illegal cargo is confiscated from your hold. The pirates won't be happy to hear about this.`
 		stealth
 	to offer
@@ -425,7 +425,7 @@ mission "Stealth Cargo Smuggling (Core) [0]"
 	repeat
 	infiltrating
 	description "Run <cargo> to <destination>. Being scanned will result in a 200,000 credit fine and the cargo will be seized. You will need to land away from the spaceport or else you may get caught. Payment is <payment>."
-	cargo "Illegal Cargo" 5 2 .1
+	cargo "Highly Illegal Cargo" 5 2 .1
 		illegal 200000 `After being given a very hefty fine, the illegal cargo is confiscated from your hold. The pirates won't be happy to hear about this.`
 		stealth
 	to offer
@@ -473,7 +473,7 @@ mission "Stealth Cargo Smuggling (Core) [1]"
 	repeat
 	infiltrating
 	description "Run <cargo> to <destination>. Being scanned will result in a 300,000 credit fine and the cargo will be seized. You will need to land away from the spaceport or else you may get caught. Payment is <payment>."
-	cargo "Illegal Cargo" 5 2 .1
+	cargo "Highly Illegal Cargo" 5 2 .1
 		illegal 300000 `After being given a very hefty fine, the illegal cargo is confiscated from your hold. The pirates won't be happy to hear about this.`
 		stealth
 	to offer
@@ -546,7 +546,7 @@ mission "Stealth Cargo Smuggling (South) [0]"
 	repeat
 	infiltrating
 	description "Run <cargo> to <destination>. Being scanned will result in a 200,000 credit fine and the cargo will be seized. You will need to land away from the spaceport or else you may get caught. Payment is <payment>."
-	cargo "Illegal Cargo" 5 2 .1
+	cargo "Highly Illegal Cargo" 5 2 .1
 		illegal 200000 `After being given a very hefty fine, the illegal cargo is confiscated from your hold. The pirates won't be happy to hear about this.`
 		stealth
 	to offer
@@ -594,7 +594,7 @@ mission "Stealth Cargo Smuggling (South) [1]"
 	repeat
 	infiltrating
 	description "Run <cargo> to <destination>. Being scanned will result in a 300,000 credit fine and the cargo will be seized. You will need to land away from the spaceport or else you may get caught. Payment is <payment>."
-	cargo "Illegal Cargo" 5 2 .1
+	cargo "Highly Illegal Cargo" 5 2 .1
 		illegal 300000 `After being given a very hefty fine, the illegal cargo is confiscated from your hold. The pirates won't be happy to hear about this.`
 		stealth
 	to offer
@@ -667,7 +667,7 @@ mission "Stealth Drug Running (North) [0]"
 	repeat
 	infiltrating
 	description "Run <cargo> to <destination>. Being scanned will result in a 500,000 credit fine and the cargo will be seized. You will need to land away from the spaceport or else you may get caught. Payment is <payment>."
-	cargo "Illegal Substances" 5 2 .1
+	cargo "Highly Illegal Substances" 5 2 .1
 		illegal 500000 `After being given a very hefty fine, the illegal cargo is confiscated from your hold. The pirates won't be happy to hear about this.`
 		stealth
 	to offer
@@ -715,7 +715,7 @@ mission "Stealth Drug Running (North) [1]"
 	repeat
 	infiltrating
 	description "Run <cargo> to <destination>. Being scanned will result in a 750,000 credit fine and the cargo will be seized. You will need to land away from the spaceport or else you may get caught. Payment is <payment>."
-	cargo "Illegal Substances" 5 2 .1
+	cargo "Highly Illegal Substances" 5 2 .1
 		illegal 750000 `After being given a very hefty fine, the illegal cargo is confiscated from your hold. The pirates won't be happy to hear about this.`
 		stealth
 	to offer
@@ -785,7 +785,7 @@ mission "Stealth Drug Running (Core) [0]"
 	repeat
 	infiltrating
 	description "Run <cargo> to <destination>. Being scanned will result in a 500,000 credit fine and the cargo will be seized. You will need to land away from the spaceport or else you may get caught. Payment is <payment>."
-	cargo "Illegal Substances" 5 2 .1
+	cargo "Highly Illegal Substances" 5 2 .1
 		illegal 500000 `After being given a very hefty fine, the illegal cargo is confiscated from your hold. The pirates won't be happy to hear about this.`
 		stealth
 	to offer
@@ -833,7 +833,7 @@ mission "Stealth Drug Running (Core) [1]"
 	repeat
 	infiltrating
 	description "Run <cargo> to <destination>. Being scanned will result in a 750,000 credit fine and the cargo will be seized. You will need to land away from the spaceport or else you may get caught. Payment is <payment>."
-	cargo "Illegal Substances" 5 2 .1
+	cargo "Highly Illegal Substances" 5 2 .1
 		illegal 750000 `After being given a very hefty fine, the illegal cargo is confiscated from your hold. The pirates won't be happy to hear about this.`
 		stealth
 	to offer
@@ -906,7 +906,7 @@ mission "Stealth Drug Running (South) [0]"
 	repeat
 	infiltrating
 	description "Run <cargo> to <destination>. Being scanned will result in a 500,000 credit fine and the cargo will be seized. You will need to land away from the spaceport or else you may get caught. Payment is <payment>."
-	cargo "Illegal Substances" 5 2 .1
+	cargo "Highly Illegal Substances" 5 2 .1
 		illegal 500000 `After being given a very hefty fine, the illegal cargo is confiscated from your hold. The pirates won't be happy to hear about this.`
 		stealth
 	to offer
@@ -954,7 +954,7 @@ mission "Stealth Drug Running (South) [1]"
 	repeat
 	infiltrating
 	description "Run <cargo> to <destination>. Being scanned will result in a 750,000 credit fine and the cargo will be seized. You will need to land away from the spaceport or else you may get caught. Payment is <payment>."
-	cargo "Illegal Substances" 5 2 .1
+	cargo "Highly Illegal Substances" 5 2 .1
 		illegal 750000 `After being given a very hefty fine, the illegal cargo is confiscated from your hold. The pirates won't be happy to hear about this.`
 		stealth
 	to offer
@@ -1353,7 +1353,7 @@ mission "Slave Transport [0]"
 	name "Transfer slaves to <planet>"
 	job
 	repeat
-	description "A pirate on <planet> has bought slaves from a local warlord. Transfer these <bunks> slaves and <cargo> to <destination> for <payment>. Slavery is highly illegal throughout the galaxy, so this may be a dangerous job to take."
+	description "A pirate on <planet> has bought slaves from a local warlord. Transfer these <bunks> slaves and <cargo> to <destination> for <payment>. Slavery is punishable by death throughout the galaxy, so this may be a dangerous job to take."
 	passengers 2 10 .9
 	cargo "slave food" 1
 		illegal -1
@@ -1374,7 +1374,7 @@ mission "Slave Transport [1]"
 	name "Transfer slaves to <planet>"
 	job
 	repeat
-	description "A pirate on <planet> has bought slaves from a local warlord. Transfer these <bunks> slaves and <cargo> to <destination> for <payment>. Slavery is highly illegal throughout the galaxy, so this may be a dangerous job to take."
+	description "A pirate on <planet> has bought slaves from a local warlord. Transfer these <bunks> slaves and <cargo> to <destination> for <payment>. Slavery is punishable by death throughout the galaxy, so this may be a dangerous job to take."
 	passengers 2 10 .9
 	cargo "slave food" 1
 		illegal -1
@@ -1395,7 +1395,7 @@ mission "Slave Transport [2]"
 	name "Transfer slaves to <planet>"
 	job
 	repeat
-	description "A pirate on <planet> has bought slaves from a local warlord. Transfer these <bunks> slaves and <cargo> to <destination> for <payment>. Slavery is highly illegal throughout the galaxy, so this may be a dangerous job to take."
+	description "A pirate on <planet> has bought slaves from a local warlord. Transfer these <bunks> slaves and <cargo> to <destination> for <payment>. Slavery is punishable by death throughout the galaxy, so this may be a dangerous job to take."
 	passengers 2 10 .9
 	cargo "slave food" 1
 		illegal -1
@@ -1416,7 +1416,7 @@ mission "Bulk Slave Transport [0]"
 	name "Transfer slaves to <planet>"
 	job
 	repeat
-	description description "A pirate on <planet> has bought slaves from a local warlord. Transfer these <bunks> slaves and <cargo> to <destination> for <payment>. Slavery is highly illegal throughout the galaxy, so this may be a dangerous job to take."
+	description description "A pirate on <planet> has bought slaves from a local warlord. Transfer these <bunks> slaves and <cargo> to <destination> for <payment>. Slavery is punishable by death throughout the galaxy, so this may be a dangerous job to take."
 	passengers 10 4 .1
 	cargo "slave food" 1
 		illegal -1
@@ -1437,7 +1437,7 @@ mission "Bulk Slave Transport [1]"
 	name "Transfer slaves to <planet>"
 	job
 	repeat
-	description description "A pirate on <planet> has bought slaves from a local warlord. Transfer these <bunks> slaves and <cargo> to <destination> for <payment>. Slavery is highly illegal throughout the galaxy, so this may be a dangerous job to take."
+	description description "A pirate on <planet> has bought slaves from a local warlord. Transfer these <bunks> slaves and <cargo> to <destination> for <payment>. Slavery is punishable by death throughout the galaxy, so this may be a dangerous job to take."
 	passengers 10 4 .1
 	cargo "slave food" 1
 		illegal -1
