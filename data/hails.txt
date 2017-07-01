@@ -678,7 +678,6 @@ phrase "friendly civilian"
 		"Finally dropped off some"
 		"Dropped off my cargo of"
 		"Just made a big delivery of"
-		"Recently got rid of"
 	word
 		" "
 	word
@@ -2748,7 +2747,7 @@ phrase "hostile Syndicate"
 		"Thank you for volunteering to be a target ship for Syndicated Weapon Systems!"
 		"Syndicated Systems disapproves of space littering; your ship's wreckage will be recycled after we are finished destroying it."
 		"With authority vested in me by Syndicated Systems corporate charter, section 8, paragraph 22... prepare to die!"
-		"The remains of your soon to be derelict ship will pad my profit margins!"
+		"The remains of your soon-to-be derelict ship will pad my profit margins!"
 
 phrase "hostile militia"
 	word
