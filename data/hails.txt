@@ -2633,6 +2633,50 @@ phrase "hostile bounty"
 		"off beam."
 		"mislead."
 
+
+phrase "friendly quarg"
+	word
+		"We"
+		"The Quarg"
+		"Our people"
+		"You speak to the Quarg, who"
+		"We are those who"
+	word
+		" "
+	word
+		"guide and guard"
+		"watch"
+		"oversee"
+		"look after"
+		"safeguard"
+		"prevent abominable weapons from harming"
+		"ward"
+		"bring succor unto"
+	word
+		" "
+	word
+		"the galaxy"
+		"the young and foolish"
+		"the young races"
+		"the galaxy's children"
+		"those who live"
+	word
+		", "
+	word
+		"as we are sworn to do."
+		"as the Drak guide us."
+		"to uphold the sanctity of life."
+		"as is our geas."
+		"as is our duty."
+		"as we must."
+		"to ensure the growth and prosperity of all."
+		"to prevent mass death and destruction."
+		"for the well-being of the living races."
+		"to set an example for all."
+		"to keep the peace."
+		"to prevent the suffering of all."
+
+
 # From the "Southern Television broadcast interruption."
 phrase "hostile quarg"
 	word
