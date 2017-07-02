@@ -561,12 +561,14 @@ int CargoHold::IllegalCargoFine() const
 			if(it.first->Get("atrocity") > 0.)
 				return -1;
 			fine += ((it.second - 1) * it.first->AdditionalCargoFine());
+			fine /= 2;
 
 		}
 	}
 	
 	for(const auto &it : missionCargo)
 	{
+		fine += it.first->IllegalCargoFine();
 		if(it.first->IllegalCargoFine() < 0)
 			return -1;
 		if(it.second)
@@ -574,6 +576,5 @@ int CargoHold::IllegalCargoFine() const
 			fine += (it.second - 1) * it.first->IllegalCargoFine();
 		}
 	}
-	fine /= 2;
 	return fine;
 }
