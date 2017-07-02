@@ -598,7 +598,7 @@ void Engine::Step(bool isActive)
 			if(!stack.empty())
 				doClick = !player.SelectShips(stack, hasShift);
 			else
-				clickPoint /= zoom;
+				clickPoint /= isRadarClick ? .025 : zoom;
 		}
 	}
 	
@@ -795,8 +795,20 @@ void Engine::Click(const Point &from, const Point &to, bool hasShift)
 	doClickNextStep = true;
 	this->hasShift = hasShift;
 	isRightClick = false;
-	clickPoint = from;
-	clickBox = Rectangle::WithCorners(from / zoom + center, to / zoom + center);
+	
+	// Determine if the left-click was within the radar display.
+	const Point radarCenter = GameData::Interfaces().Get("targets")->GetPoint("radar");
+	static const double radarRadius = GameData::Interfaces().Get("targets")->GetSize("radar").Y() * .5;
+	if((from - radarCenter).Length() <= radarRadius)
+		isRadarClick = true;
+	else
+		isRadarClick = false;
+	
+	clickPoint = isRadarClick ? from - radarCenter : from;
+	if(isRadarClick)
+		clickBox = Rectangle::WithCorners((from - radarCenter) / .025 + center, (to - radarCenter) / .025  + center);
+	else
+		clickBox = Rectangle::WithCorners(from / zoom + center, to / zoom + center);
 }
 
 
