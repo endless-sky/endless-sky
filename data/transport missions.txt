@@ -1690,7 +1690,7 @@ mission "Terraforming 2"
 	description "Return to Rand with a student who thinks she can terraform the planet cheaply."
 	source Glory
 	destination Rand
-	passengers 2
+	passengers 3
 	to offer
 		has "Terraforming 1: done"
 	
