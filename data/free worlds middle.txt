@@ -1143,7 +1143,7 @@ mission "FW Alphas 1.1"
 		ship "Falcon" "F.S. Starry Warrior"
 	npc kill
 		government "Pirate"
-		personality heroic staying
+		personality heroic staying target
 		system Graffias
 		ship "Leviathan (Heavy)" "Dread Lord"
 		ship "Leviathan" "Dominator"
@@ -1234,7 +1234,7 @@ mission "FW Alphas 1.2"
 		ship "Falcon" "F.S. Starry Warrior"
 	npc kill
 		government "Pirate"
-		personality heroic staying
+		personality heroic staying target
 		system Graffias
 		ship "Leviathan (Heavy)" "Dread Lord"
 		ship "Leviathan" "Dominator"
@@ -1707,7 +1707,7 @@ mission "FW Albatross 2A"
 				accept
 	
 	npc kill
-		personality staying plunders disables heroic nemesis
+		personality staying plunders disables heroic nemesis target
 		system Orvala
 		government Pirate
 		ship "Bastion (Heavy)" "Dread"

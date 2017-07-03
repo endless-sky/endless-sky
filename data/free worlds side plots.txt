@@ -306,7 +306,7 @@ mission "FW Wolf Pack 2A"
 	npc kill
 		government Republic
 		system Sarin
-		personality timid staying
+		personality timid staying target
 		ship "Freighter" "Horn of Plenty"
 		ship "Freighter" "Autumn Twilight"
 		ship "Freighter" "Bounty Harvest"
@@ -379,7 +379,7 @@ mission "FW Wolf Pack 3"
 	npc kill
 		government Republic
 		system Gacrux
-		personality timid staying
+		personality timid staying target
 		ship "Bulk Freighter" "Dew of the Morning"
 		ship "Bulk Freighter" "Heaven's Blessing"
 		dialog "The food convoy has been destroyed. You can now return to Solace."
@@ -450,7 +450,7 @@ mission "FW Wolf Pack 4"
 	npc kill
 		government Republic
 		system Mizar
-		personality timid staying
+		personality timid staying target
 		ship "Bactrian" "Golden Fleece"
 		dialog "You have eliminated the Bactrian that was carrying food to the Republic. Time to report back to the Wolf Pack and receive your reward."
 	

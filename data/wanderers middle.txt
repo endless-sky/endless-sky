@@ -1716,7 +1716,7 @@ mission "Wanderers: Sestor: Alnilam Fleet 1"
 	npc kill
 		government "Kor Sestor"
 		system Alnilam
-		personality heroic staying
+		personality heroic staying target
 		fleet
 			names "kor sestor"
 			fighters "kor sestor fighter"
@@ -2043,7 +2043,7 @@ mission "Wanderers: Sestor: Alnilam Fleet 2"
 	npc kill
 		government "Kor Sestor"
 		system Alnilam
-		personality heroic staying
+		personality heroic staying target
 		fleet
 			names "kor sestor"
 			fighters "kor sestor fighter"
@@ -2270,7 +2270,7 @@ mission "Wanderers: Sestor: Scattered Remnant"
 	npc kill
 		system "Alnitak"
 		government "Kor Sestor"
-		personality heroic staying
+		personality heroic staying target
 		fleet
 			names "kor sestor"
 			fighters "kor sestor fighter"
@@ -2283,7 +2283,7 @@ mission "Wanderers: Sestor: Scattered Remnant"
 	npc kill
 		system "Canopus"
 		government "Kor Sestor"
-		personality heroic staying
+		personality heroic staying target
 		fleet
 			names "kor sestor"
 			fighters "kor sestor fighter"
@@ -2296,7 +2296,7 @@ mission "Wanderers: Sestor: Scattered Remnant"
 	npc kill
 		system "Betelgeuse"
 		government "Kor Sestor"
-		personality heroic staying
+		personality heroic staying target
 		fleet
 			names "kor sestor"
 			fighters "kor sestor fighter"
@@ -2317,7 +2317,7 @@ mission "Wanderers: Sestor: Scattered Remnant"
 	npc kill
 		system "Capella"
 		government "Kor Sestor"
-		personality heroic staying
+		personality heroic staying target
 		fleet
 			names "kor sestor"
 			fighters "kor sestor fighter"
@@ -2331,7 +2331,7 @@ mission "Wanderers: Sestor: Scattered Remnant"
 	npc kill
 		system "Mebsuta"
 		government "Kor Sestor"
-		personality heroic staying
+		personality heroic staying target
 		fleet
 			names "kor sestor"
 			fighters "kor sestor fighter"
@@ -2345,7 +2345,7 @@ mission "Wanderers: Sestor: Scattered Remnant"
 	npc kill
 		system "Rigel"
 		government "Kor Sestor"
-		personality heroic staying
+		personality heroic staying target
 		fleet
 			names "kor sestor"
 			fighters "kor sestor fighter"
@@ -2359,7 +2359,7 @@ mission "Wanderers: Sestor: Scattered Remnant"
 	npc kill
 		system "Castor"
 		government "Kor Sestor"
-		personality heroic staying
+		personality heroic staying target
 		fleet
 			names "kor sestor"
 			fighters "kor sestor fighter"
@@ -2371,7 +2371,7 @@ mission "Wanderers: Sestor: Scattered Remnant"
 	npc kill
 		system "Wazn"
 		government "Kor Sestor"
-		personality heroic staying
+		personality heroic staying target
 		fleet
 			names "kor sestor"
 			fighters "kor sestor fighter"
@@ -2383,7 +2383,7 @@ mission "Wanderers: Sestor: Scattered Remnant"
 	npc kill
 		system "Miaplacidus"
 		government "Kor Sestor"
-		personality heroic staying
+		personality heroic staying target
 		fleet
 			names "kor sestor"
 			fighters "kor sestor fighter"
@@ -2394,7 +2394,7 @@ mission "Wanderers: Sestor: Scattered Remnant"
 	npc kill
 		system "Kursa"
 		government "Kor Sestor"
-		personality heroic staying
+		personality heroic staying target
 		fleet
 			names "kor sestor"
 			fighters "kor sestor fighter"
@@ -2409,7 +2409,7 @@ mission "Wanderers: Sestor: Scattered Remnant"
 	npc kill
 		system "Saiph"
 		government "Kor Sestor"
-		personality heroic staying
+		personality heroic staying target
 		fleet
 			names "kor sestor"
 			fighters "kor sestor fighter"

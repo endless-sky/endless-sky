@@ -682,7 +682,7 @@ mission "FW Plasma Testing 1B"
 		ship "Falcon (Plasma)" "Walloping Window-Blind"
 	npc kill
 		government "Pirate"
-		personality plunders staying
+		personality plunders staying target
 		system Ildaria
 		ship "Leviathan (Heavy)" "Red Nile"
 		dialog `The <npc> has been eliminated. Time to return to <destination> and report to Barmy Edward.`

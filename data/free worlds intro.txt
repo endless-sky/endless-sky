@@ -1663,7 +1663,7 @@ mission "FW Bounty 1"
 		log "Hunting down a fleet of pirates called the Rat Pack, who have been giving the Free Worlds trouble lately."
 	
 	npc kill
-		personality heroic staying nemesis
+		personality heroic staying nemesis target
 		government Bounty
 		system
 			near Seginus 1 2
@@ -1713,7 +1713,7 @@ mission "FW Bounty 2"
 			`	He grins. "Your target this time is a retrofitted heavy freighter by the name of Moonless Night that has been stealing large amounts of cargo from our supply convoys. It was last seen in the Delta Sagittarii system. Good luck, Captain."`
 				accept
 	npc kill
-		personality heroic staying nemesis
+		personality heroic staying nemesis target
 		government Bounty
 		system
 			near "Delta Sagittarii" 1 2
@@ -1758,7 +1758,7 @@ mission "FW Bounty 3"
 			`	"Great," he says. "Your target is named the Silverhawk. After we nearly destroyed it, we think it went to the Shaula system to hide out. Which means that you'll probably have to deal with other pirates at the same time. The Silverhawk has weapons that seem to interfere with a ship's electrical systems, draining power from them. Good luck, Captain."`
 				accept
 	npc kill
-		personality heroic staying nemesis
+		personality heroic staying nemesis target
 		government Bounty
 		system "Shaula"
 		ship "Osprey (Alien Weapons)" "Silverhawk"
