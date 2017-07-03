@@ -884,7 +884,7 @@ void Engine::EnterSystem()
 				fleet.Get()->Place(*system, ships);
 	
 	const Fleet *raidFleet = system->GetGovernment()->RaidFleet();
-	if(raidFleet && raidFleet->GetGovernment())
+	if(raidFleet && raidFleet->GetGovernment() && raidFleet->GetGovernment()->IsEnemy())
 	{
 		// Find out how attractive the player's fleet is to pirates. Aside from a
 		// heavy freighter, no single ship should attract extra pirate attention.
