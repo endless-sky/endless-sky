@@ -2073,7 +2073,7 @@ mission "FW Defend New Tibet"
 				`	"Why would the Syndicate attack the Republic?"`
 				`	"Why did you wait so long to report this?"`
 					goto wait
-			`	They both seem surprised at you asking a question. "I'm not sure," says Sawyer, "but the Syndicate's profits have more than doubled since this war began. Maybe they knew they would benefit from it more than anyone."`
+			`	They both seem surprised at you asking a question. Sawyer says, "War is good for business, especially if you're in the business of making weapons. The Syndicate's profits have more than doubled since this conflict began."`
 			`	"What led you to report this?" asks Raven.`
 			label wait
 			`	He says, "It was when I heard that there had been another major battle. Up until then I had been telling myself that the worst of the damage was done. But after that battle, I knew that millions more could die because of our crime, and that I had the power to stop it."`
