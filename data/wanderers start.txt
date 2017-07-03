@@ -709,7 +709,7 @@ mission "Wanderers: Alpha Surveillance A"
 	
 	on offer
 		conversation
-			`When you meet Iktat Rek, he hands you a small box containing several small, charcoal black cubes, about two centimeters wide. "These are the [eyes, sensors] of our [communications? surveillance? information?] network," he says. "Until they receive the [request, query] command they generate no [signal, electromagnetic radiation] and almost no heat. But they watch, and [record, remember]. [Sow, scatter, deploy] several of these in each Unfettered system. Then return [weeks] later and [retrieve, download] the information. We will [discuss, decide] what to do next."`
+			`When you meet Iktat Rek, he hands you a small box containing several small, charcoal black cubes, about two centimeters wide. "These are the [eyes, sensors] of our [communications? surveillance? information?] network," he says. "Until they receive the [request, query] command they generate no [signal, electromagnetic radiation] and almost no heat. But they watch, and [record, remember]. [Sow, scatter, deploy] several of these in each Unfettered system. Then you should visit the Hai [center, homeworld] and see if they know anything of the [activities, presence] of the Alphas."`
 			`	You bring the surveillance devices back to your ship. It looks like Rek gave you extra, presumably so that you can deploy enough in each system to have redundancy if some of them fail. It probably wouldn't make a difference to the success of the mission if you kept one for yourself, and based on what Rek said this technology might be very valuable.`
 			choice
 				`	(Use all of them for the mission, as instructed.)`
