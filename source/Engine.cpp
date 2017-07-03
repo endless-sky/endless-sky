@@ -248,7 +248,8 @@ void Engine::Place()
 		// Check whether this ship should take off with you.
 		if(isHere && !ship->IsDisabled()
 				&& (player.GetPlanet()->CanLand(*ship) || ship->GetGovernment()->IsPlayer())
-				&& !(ship->GetPersonality().IsStaying() || ship->GetPersonality().IsWaiting()))
+				&& !(ship->GetPersonality().IsStaying() || ship->GetPersonality().IsWaiting()
+				|| ship->GetPersonality().IsSkybound()))
 		{
 			if(player.GetPlanet())
 				ship->SetPlanet(player.GetPlanet());

@@ -970,18 +970,15 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 		int systemTotalWeight = totalWeight;
 		
 		vector<const StellarObject *> planets;
-		if(!ship.GetPersonality().IsSkybound())
-		{
-			// Anywhere you can land that has a port has the same weight. Ships will
-			// not land anywhere without a port.
-			for(const StellarObject &object : ship.GetSystem()->Objects())
-				if(object.GetPlanet() && object.GetPlanet()->HasSpaceport()
-						&& object.GetPlanet()->CanLand(ship))
-				{
-					planets.push_back(&object);
-					totalWeight += planetWeight;
-				}
-		}
+		// Anywhere you can land that has a port has the same weight. Ships will
+		// not land anywhere without a port.
+		for(const StellarObject &object : ship.GetSystem()->Objects())
+			if(object.GetPlanet() && object.GetPlanet()->HasSpaceport()
+					&& object.GetPlanet()->CanLand(ship))
+			{
+				planets.push_back(&object);
+				totalWeight += planetWeight;
+			}
 		// If there are no ports to land on and this ship cannot jump, consider
 		// landing on uninhabited planets.
 		if(!totalWeight)
@@ -991,18 +988,9 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 					planets.push_back(&object);
 					totalWeight += planetWeight;
 				}
-		if(!totalWeight)
-		{
-			// If there is nothing this ship can land on, have it just go to the
-			// star and hover over it rather than drifting far away.
-			if(ship.GetSystem()->Objects().empty())
-				return;
-			totalWeight = 1;
-			planets.push_back(&ship.GetSystem()->Objects().front());
-		}
 		
 		set<const System *>::const_iterator it = links.begin();
-		int choice = Random::Int(totalWeight);
+		int choice = totalWeight ? Random::Int(totalWeight) : 0;
 		if(choice < systemTotalWeight)
 		{
 			for(unsigned i = 0; i < systemWeights.size(); ++i, ++it)
@@ -1015,7 +1003,7 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 				}
 			}
 		}
-		else
+		else if(planets.size())
 		{
 			choice = (choice - systemTotalWeight) / planetWeight;
 			ship.SetTargetStellar(planets[choice]);
@@ -1044,11 +1032,15 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 		else if(ship.Position().Distance(ship.GetTargetStellar()->Position()) < 100.)
 			ship.SetTargetStellar(nullptr);
 	}
-	else if(shouldStay && ship.GetSystem()->Objects().size())
+	// There is nothing this ship can land on, no place to jump to, and no ship to attack,
+	// so this ship will patrol the available stellar objects.
+	else if(ship.GetSystem()->Objects().size())
 	{
 		unsigned i = Random::Int(ship.GetSystem()->Objects().size());
 		ship.SetTargetStellar(&ship.GetSystem()->Objects()[i]);
 	}
+	else
+		MoveTo(ship, command, Point(), Point(), 40., .8);
 }
 
 
@@ -1085,7 +1077,7 @@ void AI::MoveEscort(Ship &ship, Command &command) const
 				}
 			ship.SetTargetSystem(to);
 			// Check if we need to refuel. Wormhole travel does not require fuel.
-			if(!ship.GetTargetStellar() && (!to || 
+			if(!ship.GetTargetStellar() && (!to ||
 					(from->HasFuelFor(ship) && !to->HasFuelFor(ship) && ship.JumpsRemaining() == 1)))
 				Refuel(ship, command);
 		}
@@ -1160,6 +1152,9 @@ void AI::Refuel(Ship &ship, Command &command)
 
 bool AI::CanRefuel(const Ship &ship, const StellarObject *target)
 {
+	if(ship.GetPersonality().IsSkybound())
+		return false;
+	
 	if(!target)
 		return false;
 	

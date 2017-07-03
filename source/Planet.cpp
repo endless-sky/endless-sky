@@ -443,7 +443,7 @@ bool Planet::IsAccessible(const Ship *ship) const
 // but do so with a less convoluted syntax:
 bool Planet::CanLand(const Ship &ship) const
 {
-	return IsAccessible(&ship) && GameData::GetPolitics().CanLand(ship, this);
+	return IsAccessible(&ship) && GameData::GetPolitics().CanLand(ship, this) && !ship.GetPersonality().IsSkybound();
 }
 
 
