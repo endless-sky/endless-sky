@@ -639,6 +639,7 @@ mission "Wanderers: Jump Drive Source"
 
 mission "Unfettered: Jump Drive Source"
 	landing
+	invisible
 	source
 		attributes "unfettered"
 	to offer
