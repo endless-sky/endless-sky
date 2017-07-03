@@ -1587,10 +1587,11 @@ mission "FW Escort Second Chance"
 		has "fw intro escort failed"
 		not "chosen sides"
 		"assisted free worlds" == 2
+		has "FW Katya 7C: done"
 	
 	on offer
 		conversation
-			`Soon after you exit your ship a man approaches you. "Captain <last>?" he asks. You nod. "My name is Alondo," he says. "I'm a member of the Free Worlds council. Katya and JJ both speak so highly of you that I would like to see you join us, even though you messed up that escort mission."`
+			`Soon after you exit your ship a man approaches you. "Captain <last>?" he asks. You nod. "My name is Alondo," he says. "I'm a member of the Free Worlds council. Katya speaks so highly of you that I would like to see you join us, even though you messed up that escort mission."`
 			choice
 				`	"Yes, I'm very sorry about that."`
 				`	"Sorry, but I decided I don't want to assist the Free Worlds anyway."`
@@ -1826,8 +1827,8 @@ mission "Rescue Katya 1"
 				`	(Not yet.)`
 					defer
 			
-			`	You find the Free Worlds offices and give your name to the person at the front desk. A few minutes later Tomek Voigt, who employed you as an escort captain, comes down the stairs to greet you, accompanied by a man you don't recognize. "Captain <last>," he says, "this is Alondo, another council member, a diplomat by training. We are very happy to formally offer you a job." You shake hands with both of them.`
-			`	That night, the Council takes you out to dinner at a very fancy restaurant. Halfway through the third course of the meal, Tomek's communicator beeps. He reaches over to turn it off, then sees the message and turns pale. A hush falls over the table. "<system> has been captured by the Navy," he announces.`
+			`	You find the Free Worlds offices and give your name to the person at the front desk. A few minutes later Tomek Voigt, who manages supplies and fleet movements for the Council, comes down the stairs to greet you. "I'm so glad you've agreed to join us, Captain <last>," he says.`
+			`	That night you are introduced to the rest of the Council, and they take you out to dinner at a very fancy restaurant. Halfway through the third course of the meal, Tomek's communicator beeps. He reaches over to turn it off, then sees the message and turns pale. A hush falls over the table. "<system> has been captured by the Navy," he announces.`
 			`	After a long silence, JJ asks, "How many casualties?"`
 			`	"None," says Tomek. "The Navy claimed that <system> was the source of the terrorist attack, and after they showed the evidence to the militia commander on Deep he surrendered and yielded control of the system to them without a fight."`
 			choice
