@@ -40,9 +40,11 @@ Version 0.9.7:
     * Fixed scrolling of the fleet list when "looping around" to the first or last ship.
     * Fixed "1 ton" vs. "2 tons" pluralizing incorrectly in the trading panel.
     * Fixed a bug in recursive directory listings on Windows (maybe causing sound loading errors).
+    * Fixed an event that didn't fully succeed in making Varu K'prai show up as "uninhabited."
   * Game content:
     * The Wanderer and Hai jobs are now different from human jobs. (@Amazinite)
-    * New landscape pictures. (#jafdy, Michael Wilson, @harro.eu)
+    * Pirate planets now offer jobs to players who are friendly with pirates. (@Amazinite, @Kryes-Omega)
+    * Names for illegal commodities. (@Bladewood, @Wrzlprnft, @Disiuze, @Pointedstick, @kaylara, @comnom)
     * New hail messages. (@ph2000bis, @BlackVegetable)
     * Clearer instructions on placing the thruster on the asteroid in the terraforming missions. (@Tadrix)
     * Added "station" and "moon" attributes to various planets. (@EndrosG)
@@ -129,7 +131,7 @@ Version 0.9.7:
     * Current crew complement for under-crewed ships is now displayed correctly in the fleet list.
     * Changed the message for a completed scan to make it clearer that the scan may not have succeeded.
     * Autopilot actions are now cleared if they become impossible to perform.
-    * Disabled to shortcuts for deleting snapshots or pilots to make that harder to do by mistake.
+    * Disabled the shortcuts for deleting snapshots or pilots to make that harder to do by mistake.
     * Added a wider variety of random messages for if you try to hail a wormhole.
     * Escorts holding position to be refueled or pick up fighters now takes priority over fleet orders.
     * Fixed a bug that had made it possible to change a ship's weapon hardpoints while in flight.
