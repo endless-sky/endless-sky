@@ -319,7 +319,7 @@ outfit "Crucible-Class Steering"
 	"turn" 448.0
 	"turning energy" 1.32
 	"turning heat" 1.4
-	description "This steering system is tiny enough to fit even an interceptor, but the Remnant mostly use them to provide an extra bit of maneuverability for their larger ships"
+	description "This steering system is tiny enough to fit in even an interceptor, but the Remnant mostly use them to provide an extra bit of maneuverability for their larger ships."
 
 outfit "Forge-Class Steering"
 	category "Engines"
