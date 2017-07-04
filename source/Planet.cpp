@@ -69,7 +69,7 @@ void Planet::Load(const DataNode &node, const Set<Sale<Ship>> &ships, const Set<
 		removeAll |= (!add && !remove && hasValue && value == "clear");
 		// If this is the first entry for the given key, and we are not in "add"
 		// or "remove" mode, its previous value should be cleared.
-		bool overwriteAll = (!add && !remove && shouldOverwrite.count(key));
+		bool overwriteAll = (!add && !remove && !removeAll && shouldOverwrite.count(key));
 		// Clear the data of the given type.
 		if(removeAll || overwriteAll)
 		{
