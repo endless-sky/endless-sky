@@ -412,7 +412,6 @@ void MapDetailPanel::DrawInfo()
 	
 	uiPoint.Y() += 115.;
 	
-	bool isInhabited = false;
 	planetY.clear();
 	if(player.HasVisited(selectedSystem))
 	{
@@ -426,7 +425,6 @@ void MapDetailPanel::DrawInfo()
 				if(planet->IsWormhole() || !planet->IsAccessible(player.Flagship()) || shown.count(planet))
 					continue;
 				shown.insert(planet);
-				isInhabited |= planet->IsInhabited();
 				
 				SpriteShader::Draw(planetSprite, uiPoint);
 				planetY[planet] = uiPoint.Y() - 60;
@@ -494,7 +492,7 @@ void MapDetailPanel::DrawInfo()
 		string price;
 		
 		bool hasVisited = player.HasVisited(selectedSystem);
-		if(hasVisited && isInhabited)
+		if(hasVisited && selectedSystem->IsInhabited(player.Flagship()))
 		{
 			int value = selectedSystem->Trade(commodity.name);
 			int localValue = (player.GetSystem() ? player.GetSystem()->Trade(commodity.name) : 0);

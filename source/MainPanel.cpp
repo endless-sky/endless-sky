@@ -89,7 +89,7 @@ void MainPanel::Step()
 			isActive = !DoHelp("dead");
 		if(isActive && flagship->IsDisabled())
 			isActive = !DoHelp("disabled");
-		bool canRefuel = player.GetSystem()->IsInhabited(flagship);
+		bool canRefuel = player.GetSystem()->HasFuelFor(flagship);
 		if(isActive && !flagship->IsHyperspacing() && !flagship->JumpsRemaining() && !canRefuel)
 			isActive = !DoHelp("stranded");
 	}
