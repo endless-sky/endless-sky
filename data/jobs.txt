@@ -1626,13 +1626,13 @@ mission "Bulk Delivery [2]"
 		dialog "You drop off your cargo of <commodity> and collect your payment of <payment>."
 
 mission "Mixed Transport [0]"
-	name "Rush delivery to <planet>"
+	name "Rush transport to <planet>"
 	job
 	repeat
 	deadline
 	description "Transport <cargo> and <fare> to <destination> by <date>. Payment is <payment>."
-	cargo random 10 20 .5
-	passengers 2 5 .5
+	cargo random 10 20
+	passengers 2 5 
 	to offer
 		random < 50
 		has "ships: Transport"
@@ -1648,13 +1648,13 @@ mission "Mixed Transport [0]"
 		dialog "You drop off your <cargo> and <fare> and collect your payment of <payment>."
 
 mission "Mixed Transport [1]"
-	name "Rush delivery to <planet>"
+	name "Rush transport to <planet>"
 	job
 	repeat
 	deadline
 	description "Transport <cargo> and <fare> to <destination> by <date>. Payment is <payment>."
-	cargo random 25 50
-	passengers 2
+	cargo random 40 50
+	passengers 0 2
 	to offer
 		random < 50
 		has "ships: Light Freighter"
@@ -1670,13 +1670,13 @@ mission "Mixed Transport [1]"
 		dialog "You drop off your <cargo> and <fare> and collect your payment of <payment>."
 
 mission "Mixed Transport [2]"
-	name "Rush delivery to <planet>"
+	name "Rush transport to <planet>"
 	job
 	repeat
 	deadline
 	description "Transport <cargo> and <fare> to <destination> by <date>. Payment is <payment>."
-	cargo random 7 15 .5
-	passengers 1
+	cargo random 5 15
+	passengers 0 1
 	to offer
 		random < 50
 		"combat rating" > 0
@@ -1704,6 +1704,87 @@ mission "Mixed Transport [2]"
 				"Wasp" 3
 			variant
 				"Berserker" 3
+
+mission "Mixed Transport [3]"
+	name "Rush transport to <planet>"
+	job
+	repeat
+	deadline
+	description "Transport <cargo> and <fare> to <destination> by <date>. Payment is <payment>."
+	cargo random 15 20
+	passengers 4 5 
+	to offer
+		random < 10
+		has "ships: Transport"
+		"net worth" < 1000000
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+	destination
+		distance 4 8
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+	on complete
+		payment 0 300
+		payment 4500
+		dialog "You drop off your <cargo> and <fare> and collect your payment of <payment>."
+
+mission "Mixed Transport [4]"
+	name "Rush transport to <planet>"
+	job
+	repeat
+	deadline
+	description "Transport <cargo> and <fare> to <destination> by <date>. Payment is <payment>."
+	cargo random 45 50
+	passengers 1 2
+	to offer
+		random < 10
+		has "ships: Light Freighter"
+		"net worth" < 1000000
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+	destination
+		distance 3 6
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+	on complete
+		payment 0 300
+		payment 4500
+		dialog "You drop off your <cargo> and <fare> and collect your payment of <payment>."
+
+mission "Mixed Transport [5]"
+	name "Rush transport to <planet>"
+	job
+	repeat
+	deadline
+	description "Transport <cargo> and <fare> to <destination> by <date>. Payment is <payment>."
+	cargo random 10 15
+	passengers  1
+	to offer
+		random < 10
+		"combat rating" > 0
+		has "ships: Interceptor"
+		"net worth" < 1000000
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+	destination
+		distance 3 6
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+	on complete
+		payment 0 250
+		payment 9000
+		dialog "You drop off your <cargo> and <fare> and collect your payment of <payment>."
+	npc
+		personality nemesis waiting
+		system destination
+		distance 1
+		government Pirate
+		fleet
+			names "pirate"
+			variant
+				"Sparrow" 4
+			variant
+				"Wasp" 4
+			variant
+				"Berserker" 4
+
 
 mission "Rush Delivery [0]"
 	name "Rush delivery to <planet>"
