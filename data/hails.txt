@@ -3021,3 +3021,17 @@ phrase "hostile free worlds"
 	word
 		"."
 		"!"
+
+# Wormhole Hails
+phrase "wormhole hail"
+	word
+		"The gaping hole in the fabric of the universe does not respond to your hail.",
+		"Wormholes do not understand the language of finite beings like yourself.",
+		"You stare into the swirling abyss, but with appalling bad manners it refuses to stare back.",
+		"All the messages you try to send disappear into the wormhole without a trace.",
+		"The spatial anomaly pointedly ignores your attempts to engage it in conversation.",
+		"Like most wormholes, this one does not appear to be very talkative.",
+		"The wormhole says nothing, but silently beckons you to explore its mysteries.",
+		"You can't talk to wormholes. Maybe you should try landing on it instead.",
+		"Your words cannot travel through wormholes, but maybe your starship can.",
+		"Unable to send hail: this unfathomable void is not inhabited."
