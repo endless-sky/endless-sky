@@ -242,6 +242,13 @@ const Fleet *Government::RaidFleet() const
 
 
 	
+bool Government::IsReputationLocked() const
+{
+	return repLocked;
+}
+
+
+
 // Check if, according to the politics stored by GameData, this government is
 // an enemy of the given government right now.
 bool Government::IsEnemy(const Government *other) const
@@ -315,9 +322,3 @@ void Government::SetReputation(double value) const
 	GameData::GetPolitics().SetReputation(this, value);
 }
 
-
-
-bool Government::IsReputationLocked() const
-{
-	    return repLocked;
-}
