@@ -12,9 +12,9 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "CaptureOdds.h"
 
+#include "Government.h"
 #include "Outfit.h"
 #include "Ship.h"
-#include "Government.h"
 
 #include <algorithm>
 

@@ -59,13 +59,9 @@ void Government::Load(const DataNode &node)
 		else if(child.Token(0) == "player reputation" && child.Size() >= 2)
 			initialPlayerReputation = child.Value(1);
 		else if(child.Token(0) == "crew attack" && child.Size() >= 2)
-		{
 			crewAttack = child.Value(1);
-		}
 		else if(child.Token(0) == "crew defense" && child.Size() >= 2)
-		{
 			crewDefense = child.Value(1);
-		}
 		else if(child.Token(0) == "attitude toward")
 		{
 			for(const DataNode &grand : child)
@@ -332,6 +328,6 @@ double Government::CrewAttack() const
 
 double Government::CrewDefense() const
 {
-	return crewDefense
+	return crewDefense;
 }
 
