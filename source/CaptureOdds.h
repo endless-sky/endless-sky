@@ -14,8 +14,10 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #define CAPTURE_ODDS_H_
 
 #include <vector>
+#include "Government.h"
 
 class Ship;
+class Government;
 
 
 

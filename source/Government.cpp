@@ -58,6 +58,14 @@ void Government::Load(const DataNode &node)
 			color = Color(child.Value(1), child.Value(2), child.Value(3));
 		else if(child.Token(0) == "player reputation" && child.Size() >= 2)
 			initialPlayerReputation = child.Value(1);
+		else if(child.Token(0) == "crew attack" && child.Size() >= 2)
+		{
+			crewAttack = child.Value(1);
+		}
+		else if(child.Token(0) == "crew defense" && child.Size() >= 2)
+		{
+			crewDefense = child.Value(1);
+		}
 		else if(child.Token(0) == "attitude toward")
 		{
 			for(const DataNode &grand : child)
@@ -312,3 +320,18 @@ void Government::SetReputation(double value) const
 {
 	GameData::GetPolitics().SetReputation(this, value);
 }
+
+
+
+int64_t Government::CrewAttack() const
+{
+	return crewAttack;
+}
+
+
+
+int64_t Government::CrewDefense() const
+{
+	return crewDefense
+}
+
