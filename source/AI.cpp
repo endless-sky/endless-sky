@@ -523,15 +523,28 @@ void AI::Step(const PlayerInfo &player)
 				// Handle orphaned fighters and drones.
 				parent.reset();
 				it->SetParent(parent);
+				vector<shared_ptr<Ship>> parentChoices;
+				parentChoices.reserve(ships.size() * .1);
 				for(const auto &other : ships)
-					if(other->GetGovernment() == gov && !other->IsDisabled()
-							&& other->GetSystem() == it->GetSystem() && !other->CanBeCarried() && other->CanCarry(*it.get()))
+				{
+					if(other->GetGovernment() == gov && other->GetSystem() == it->GetSystem() && !other->CanBeCarried())
 					{
-						parent = other;
-						it->SetParent(other);
-						if(other->BaysFree(isFighter))
-							break;
+						if(!other->IsDisabled() && other->CanCarry(*it.get()))
+						{
+							parent = other;
+							it->SetParent(other);
+							if(other->BaysFree(isFighter))
+								break;
+						}
+						else
+							parentChoices.emplace_back(other);
 					}
+				}
+				if(!parent && parentChoices.size())
+				{
+					parent = parentChoices[Random::Int(parentChoices.size())];
+					it->SetParent(parent);
+				}
 			}
 			else if(parent && !(it->IsYours() ? thisIsLaunching : parent->Commands().Has(Command::DEPLOY)))
 			{
