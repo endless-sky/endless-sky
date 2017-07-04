@@ -1658,7 +1658,10 @@ event "wanderers: kor sestor are aimless"
 		landscape land/beach1
 		description `This is one of the only Wanderer worlds that still has large reserves of oil, albeit deep below the ocean surface where mining is difficult. Aside from the drilling companies and refineries, the largest local employer is the local government's safety oversight department, whose inspectors are constantly visiting the drilling platforms and shipping hubs to ensure that all the regulations for preventing oil spills are being followed.`
 		description `	There used to be a thriving spaceport here, but it has been razed to the ground by the Kor Sestor fleet.`
-		spaceport clear
+		remove spaceport
+		remove outfitter
+		remove "required reputation"
+		remove tribute
 	planet Zenith
 		bribe 0
 		"required reputation" 1000
