@@ -103,8 +103,8 @@ public:
 	void SetReputation(double value) const;
 	
 	// Get the government's crew attack/defense values
-	int64_t CrewAttack() const;
-	int64_t CrewDefense() const;
+	double CrewAttack() const;
+	double CrewDefense() const;
 	
 	
 private:
@@ -125,8 +125,8 @@ private:
 	const Phrase *hostileDisabledHail = nullptr;
 	std::string language;
 	const Fleet *raidFleet = nullptr;
-	int64_t crewAttack = 1;
-	int64_t crewDefense = 2;
+	double crewAttack = 1.;
+	double crewDefense = 2.;
 };
 
 

@@ -323,14 +323,14 @@ void Government::SetReputation(double value) const
 
 
 
-int64_t Government::CrewAttack() const
+double Government::CrewAttack() const
 {
 	return crewAttack;
 }
 
 
 
-int64_t Government::CrewDefense() const
+double Government::CrewDefense() const
 {
 	return crewDefense
 }
