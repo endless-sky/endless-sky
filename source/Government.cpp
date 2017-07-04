@@ -321,4 +321,3 @@ void Government::SetReputation(double value) const
 {
 	GameData::GetPolitics().SetReputation(this, value);
 }
-
