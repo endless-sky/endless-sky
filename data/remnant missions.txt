@@ -279,7 +279,7 @@ mission "Remnant: Key Stones"
 
 
 
-mission "Remanant: Void Sprites 1"
+mission "Remnant: Void Sprites 1"
 	name "Space creatures"
 	description "A man on the Remnant homeworld of <planet> asked you to collect data on some strange space creatures in the Nenia system, in another part of the Ember Waste."
 	source Aventine
@@ -340,14 +340,14 @@ mission "Remanant: Void Sprites 1"
 
 
 
-mission "Remanant: Void Sprites 2"
+mission "Remnant: Void Sprites 2"
 	landing
 	name "Scan the void sprites"
 	description "Return to the Nenia system, and use an outfit scanner on one of each of the types of void sprites to see if you can tell how their propulsion works."
 	source Aventine
 	waypoint Nenia
 	to offer
-		has "Remanant: Void Sprites 1: done"
+		has "Remnant: Void Sprites 1: done"
 	on offer
 		conversation
 			`Sure enough, soon after you land the Remnant researcher with the optical prosthesis arrives at your ship. When he looks at the data that you collected using his special scanners, he is disappointed. He chants, "I had hoped the scanners would show us how the creatures are able to generate enough force to fly out of the gravity wells of their planets, but this tells me nothing. Perhaps it would help if you scan them more closely. Could you equip your ship with one of the scanners that are used to inspect the outfits that ships are carrying, and see if that scanner yields additional information?"`
@@ -392,7 +392,7 @@ event "remnant: nenia restored"
 
 
 
-mission "Remanant: Void Sprites 3"
+mission "Remnant: Void Sprites 3"
 	landing
 	name "Visit void sprite planets"
 	description `Purchase a "gascraft" ship from the Remnant world of Viminal, and use it to explore the two gas giants where the void sprites live. Then, return to <planet>.`
@@ -402,7 +402,7 @@ mission "Remanant: Void Sprites 3"
 	stopover Slylandro
 	cargo "scanning equipment" 8
 	to offer
-		has "Remanant: Void Sprites 2: done"
+		has "Remnant: Void Sprites 2: done"
 	on offer
 		conversation
 			`The Remnant researcher seems disappointed that an outfit scan didn't reveal any information about the void sprites, but he is also excited about a new idea for studying them. He says, "I found that our university had several old mothballed ships suitable for exploring the upper atmosphere of a gas giant," he says. "Until I can publish my results I won't have the money to purchase one, but if you buy one you could land on the void sprite worlds and observe them in their natural habitat."`
