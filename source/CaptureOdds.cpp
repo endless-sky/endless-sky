@@ -170,7 +170,7 @@ vector<double> CaptureOdds::Power(const Ship &ship, bool isDefender)
 	
 	// Check for any outfits that assist with attacking or defending:
 	const string attribute = (isDefender ? "capture defense" : "capture attack");
-	const double crewPower = (isDefender ? ship.GetGovernment()->CrewDefense() : ship.GetGovernment()->CrewAttack());
+	const double crewPower = (isDefender ? max(0., ship.GetGovernment()->CrewDefense()) : max(0., ship.GetGovernment()->CrewAttack()));
 	
 	// Each crew member can wield one weapon. They use the most powerful ones
 	// that can be wielded by the remaining crew.
