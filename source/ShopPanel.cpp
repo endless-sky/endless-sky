@@ -501,6 +501,29 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 		return DoScroll(Screen::Bottom());
 	else if(key == SDLK_PAGEDOWN)
 		return DoScroll(Screen::Top());
+	else if(key >= '0' && key <= '9')
+	{
+		int group = key - '0';
+		if(mod & (KMOD_CTRL | KMOD_GUI))
+			player.SetGroup(group, &playerShips);
+		else if(mod & KMOD_SHIFT)
+		{
+			// If every single ship in this group is already selected, shift
+			// plus the group number means to deselect all those ships.
+			set<Ship *> added = player.GetGroup(group);
+			bool allWereSelected = true;
+			for(Ship *ship : added)
+				allWereSelected &= playerShips.erase(ship);
+			
+			if(allWereSelected)
+				added.clear();
+			
+			for(Ship *ship : added)
+				playerShips.insert(ship);
+		}
+		else
+			playerShips = player.GetGroup(group);
+	}
 	else
 		return false;
 	

@@ -1968,7 +1968,7 @@ void PlayerInfo::SelectGroup(int group, bool hasShift)
 
 
 
-void PlayerInfo::SetGroup(int group)
+void PlayerInfo::SetGroup(int group, const set<Ship *> *newShips)
 {
 	int bit = (1 << group);
 	int mask = ~bit;
@@ -1976,12 +1976,36 @@ void PlayerInfo::SetGroup(int group)
 	for(const shared_ptr<Ship> &ship : ships)
 		groups[ship.get()] &= mask;
 	// Then, add all the currently selected ships to the group.
-	for(const weak_ptr<Ship> &ptr : selectedShips)
+	if(newShips)
 	{
-		shared_ptr<Ship> ship = ptr.lock();
-		if(ship)
-			groups[ship.get()] |= bit;
+		for(const Ship *ship : *newShips)
+			groups[ship] |= bit;
 	}
+	else
+	{
+		for(const weak_ptr<Ship> &ptr : selectedShips)
+		{
+			shared_ptr<Ship> ship = ptr.lock();
+			if(ship)
+				groups[ship.get()] |= bit;
+		}
+	}
+}
+
+
+
+set<Ship *> PlayerInfo::GetGroup(int group)
+{
+	int bit = (1 << group);
+	set<Ship *> result;
+	
+	for(const shared_ptr<Ship> &ship : ships)
+	{
+		auto it = groups.find(ship.get());
+		if(it != groups.end() && (it->second & bit))
+			result.insert(ship.get());
+	}
+	return result;
 }
 
 

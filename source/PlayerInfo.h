@@ -212,7 +212,8 @@ public:
 	bool SelectShips(const std::vector<const Ship *> &stack, bool hasShift);
 	void SelectShip(const Ship *ship, bool hasShift);
 	void SelectGroup(int group, bool hasShift);
-	void SetGroup(int group);
+	void SetGroup(int group, const std::set<Ship *> *newShips = nullptr);
+	std::set<Ship *> GetGroup(int group);
 	
 	// Keep track of any outfits that you have sold since landing. These will be
 	// available to buy back until you take off.
