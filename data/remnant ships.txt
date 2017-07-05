@@ -283,8 +283,8 @@ ship Gascraft
 		"heat dissipation" 0.9
 		"fuel capacity" 700
 		"cargo space" 8
-		"outfit space" 108
-		"engine capacity" 42
+		"outfit space" 90
+		"engine capacity" 34
 		"shield generation" 0.6
 		"shield energy" 0.4
 		"hull repair rate" 1.2
@@ -292,7 +292,7 @@ ship Gascraft
 		"gaslining" 1
 	outfits
 		"Millennium Cell"
-		"Crystal Capacitor"
+		"Supercapacitor"
 		"Emergency Ramscoop"
 		"Quantum Key Stone"
 		
@@ -300,6 +300,6 @@ ship Gascraft
 		"Crucible-Class Steering"
 		"Hyperdrive"
 	
-	engine 0 30 1.4
+	engine 0 30
 	explode "tiny explosion" 8
 	explode "small explosion" 7
