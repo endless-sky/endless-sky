@@ -306,7 +306,7 @@ mission "Remanant: Void Sprites 1"
 					goto end
 				`	"Sorry, I'm not interested in helping you."`
 
-			`	"Are you sure," he chants. "We could learn some incredible things."`
+			`	"Are you sure?" he chants. "We could learn some incredible things."`
 			choice
 				`	"No, I'm really not interested."`
 					decline
@@ -481,7 +481,7 @@ mission "Remnant: Technology Available"
 		payment 2000000
 		set "license: Remnant"
 		conversation
-			`An elderly man approaches your ship and introduces him as a local "prefect," presumably some sort of government position. In a song so elaborate that he must have composed and practiced it ahead of time, he informs you that a scientific study on the void sprites has just been published, and as the co-author you are entitled to a payment of two million credits, which he presents to you.`
+			`An elderly man approaches your ship and introduces himself as a local "prefect," presumably some sort of government position. In a song so elaborate that he must have composed and practiced it ahead of time, he informs you that a scientific study on the void sprites has just been published, and as the co-author you are entitled to a payment of two million credits, which he presents to you.`
 			`	"When your name came up in the study," he says, "I asked around and discovered that you have helped us in other ways as well. The other prefects have reached a consensus that you should be considered a valuable friend of the Remnant, and shall henceforth be given permission to purchase our ships and technology."`
 			choice
 				`	"I'm honored. Thank you."`
