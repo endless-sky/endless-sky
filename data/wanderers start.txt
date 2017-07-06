@@ -15,7 +15,6 @@ mission "First Contact: Wanderer (Before Hai)"
 	to offer
 		not "First Contact: Hai: offered"
 	on offer
-		log "Met a species of birdlike people. Tried to talk to them, but could not understand either of the languages that they speak."
 		conversation
 			`All the other worlds belonging to this species have appeared unwilling to let you land, but here you find a slightly warmer welcome. A cloud of small, highly maneuverable patrol ships takes off from the planet as you approach and herds you onto one particular landing pad where, after a few minutes, several of the aliens approach your ship.`
 			`	This species is birdlike, but with bodies nearly as large as yours, and with wings that tower above you. They come swooping down from the sky, circle your ship to inspect it, and then land near the hatch and wait for you to open it. They do not appear to be armed, but their talons are three or four inches long.`
@@ -41,7 +40,7 @@ mission "First Contact: Wanderer"
 	to complete
 		has "Wanderers: Diplomacy: offered"
 	on offer
-		log "Discovered a birdlike alien species to the north of human space. They appear to speak the Hai language in addition to their own, so it might be possible to communicate with them, with the help of a Hai interpreter."
+		log "Discovered a birdlike alien species to the north of human space. They appear to speak the Hai language in addition to their own, so with the help of a Hai interpreter it might be possible to communicate with them."
 		conversation
 			branch revisit
 				has "First Contact: Wanderer (Before Hai): offered"
@@ -692,7 +691,7 @@ mission "Unfettered: Jump Drive Source"
 	to offer
 		has "Wanderers: Jump Drive Source: active"
 	on offer
-		log `Learned from the Unfettered Hai that they have been purchasing jump drives from the Alphas (who they refer to as "unfettered humans.")`
+		log `Learned from the Unfettered Hai that they have been purchasing jump drives from the Alphas (who they refer to as "unfettered humans").`
 		conversation
 			`Following Iktat Rek's suggestion, would you like to sell a jump drive to the Hai and see what information you can get in return?`
 			choice
@@ -1060,7 +1059,7 @@ mission "Wanderers: Alpha Surveillance D"
 		ship "Far Lek 14" "Ralph"
 	
 	on complete
-		log "Succeeded in destroying a Navy Carrier, presumably being operated by the Alphas, that was equipped with Korath fighters and drones. Presumably there is an Alpha base hidden somewhere on the earth-like planet that the carrier was guarding."
+		log "Defeated a Navy Carrier, presumably being operated by the Alphas, that was equipped with Korath fighters and drones. Presumably there is an Alpha base hidden somewhere on the earth-like planet that the carrier was guarding."
 		conversation
 			`When you land back on <planet>, Elias says that he should go and immediately return the tracking device to his Quarg friend. "After that," he says, "we'll need to figure out who can help us to locate and bust open the Alpha base. Meet me in the spaceport when you're ready."`
 
@@ -1817,7 +1816,7 @@ mission "Wanderers Solifuge Recon 1"
 		has "Wanderers Hai Assistance 3: done"
 		not "Wanderers Pond Strider Recon 1: offered"
 	on offer
-		log `Returned to Wanderer space, and discovered that Iktat Rek has begun the "Molt." He is afraid that because the Eye has not yet opened, the Molt will not be viable and it will end up killing him."
+		log `Returned to Wanderer space, and discovered that Iktat Rek has begun the "Molt." He is afraid that because the Eye has not yet opened, the Molt will not be viable and it will end up killing him.`
 		conversation
 			`You have been gone for several weeks, and Iktat Rek's appearance has changed drastically in that time. Nearly half his head is bald, showing scaly grey skin and scattered white under-feathers in place of his usual plumage. Patches on other parts of his body have lost their feathers as well. His appearance is shocking. In a terrestrial animal you would attribute it to a mange... or to a molt.`
 			choice
@@ -2460,7 +2459,7 @@ mission "Wanderers Ap'arak 3"
 	to offer
 		has "Wanderers Ap'arak 2: done"
 	on offer
-		log `The Wanderers have begun producing even larger warships, and have succeeded in driving off yet another Unfettered assault. Afterwards the Pug, who the Wanderers refer to as the "Keepers," finally sent assistance... in the form of two ships, which they claim are powerful enough to keep the entire Unfettered fleet at bay.`
+		log `The Wanderers have begun producing even larger warships, and have succeeded in driving off yet another Unfettered assault. Afterwards the Pug, whom the Wanderers refer to as the "Keepers," finally sent assistance... in the form of two ships, which they claim are powerful enough to keep the entire Unfettered fleet at bay.`
 		conversation
 			`The Wanderers here seem incredulous that they managed to drive off such a powerful Unfettered attack force. As you walk through the spaceport, many of them stop to thank you for your assistance in defending their home.`
 			`	Just as you reach the pavilion where the military leaders are gathering, a shadow falls over you, and you look up to see two ships approaching with the unmistakable horned silhouettes of Pug warships. Throughout the spaceport you hear Wanderer voices raised in excitement, and hundreds of them leap into the air to accompany the Pug ships to the landing pad. Sobari Tele'ek says to you, "It is a [visitation, appearance] of the Keepers! In our hour of [need, desperation] they make themselves known at last." A small delegation of Pug disembarks from the ships and approaches the pavilion on foot.`

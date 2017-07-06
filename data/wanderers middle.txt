@@ -1250,7 +1250,7 @@ mission "Wanderers: Mentors 3"
 	to offer
 		has "Wanderers: Mentors 2: done"
 	on offer
-		log "Brought a group of Wanderer mentors and teachers to one of the Kor Mereti drones, where they will seek to build a relationship with the drones and to help them learn to care for living things and to join in the Wanderer work of healing devastated planets."
+		log "Brought a group of Wanderer mentors and teachers to one of the Kor Mereti worlds, where they will seek to build a relationship with the drones and to help them learn to care for living things and to join in the Wanderer work of healing devastated planets."
 		conversation
 			`When you last left <origin>, there were less than a dozen buildings in the greenhouse facility. It has now grown to the size of a major spaceport, including some towers that are dozens of stories high. Some plants now grow on open-air terraces; others are in domed enclosures tall enough to house fully-grown trees. The larger domes also have birds flying about inside them, and some larger land animals as well. Everything is built of gleaming steel and glass and filled with lush vegetation; from high above the facility looks like a scattered handful of diamonds and emeralds.`
 			`	The freighter you were escorting was full of professors and researchers, who are clearly not used to any sort of military discipline or to living in a dangerous region of space: the moment the freighter lands they fly off toward the greenhouse without bothering to wait for instructions from their supposed manager. Several of them are already engaged in conversation with the drones, while others are exploring the different rooms of the facility, examining plants and probing soil with their talons.`
