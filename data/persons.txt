@@ -111,6 +111,18 @@ person "Cap'n Pester"
 			"new weapons or other outfits."
 			"improved planet descriptions."
 			"more varied hail messages."
+	phrase
+		word
+			`Press "F" on the map screen to search for systems and planets.`
+			`You can open the map screen when being offered a mission.`
+			`Press "Alt" to highlight shortcut keys.`
+			`"Shift+S" will sell all your minerals and commodities on the Trade screen, or outfits in cargo if you have nothing else to sell.`
+			`Press "Shift+[number]" to add your selected escort to a hotkey, and then select by pressing that number again.`
+			`Pressing "Shift+T" will hail the planet you wanted to land on, even if you're fighting a ship.`
+			`Pressing "I" at the Outfitter will install that outfit from your cargo hold.`
+			`Use "Shift" and "Ctrl" to select multiple ships in the Shipyard and Outfitter.`
+			`Right-click ships to send your selected escorts after them.`
+	
 	ship "Quarg Wardragon" "Quarg Wardragon"
 		"never disabled"
 		outfits
