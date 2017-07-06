@@ -2118,10 +2118,10 @@ int Ship::TakeDamage(const Projectile &projectile, bool isBlast)
 	double shieldDamage = weapon.ShieldDamage();
 	double hullDamage = weapon.HullDamage();
 	double hitForce = weapon.HitForce();
-	double heatDamage = weapon.HeatDamage() / (1. + attributes.Get("heat resistance"));
-	double ionDamage = weapon.IonDamage() / (1. + attributes.Get("ion resistance"));
-	double disruptionDamage = weapon.DisruptionDamage() / (1. + attributes.Get("disruption resistance"));
-	double slowingDamage = weapon.SlowingDamage() / (1. + attributes.Get("slowing resistance"));
+	double heatDamage = weapon.HeatDamage();
+	double ionDamage = weapon.IonDamage();
+	double disruptionDamage = weapon.DisruptionDamage();
+	double slowingDamage = weapon.SlowingDamage();
 	bool wasDisabled = IsDisabled();
 	bool wasDestroyed = IsDestroyed();
 
