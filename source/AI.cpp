@@ -1520,10 +1520,23 @@ void AI::Attack(Ship &ship, Command &command, const Ship &target)
 	Point d = target.Position() - ship.Position();
 	if(shortestRange > 1000. && d.Length() < .5 * shortestRange)
 	{
-		command.SetTurn(TurnToward(ship, -d));
-		if(ship.Facing().Unit().Dot(d) <= 0.)
-			command |= Command::FORWARD;
-		return;
+		// If this ship can use reverse thrusters, consider doing so.
+		double reverseSpeed = ship.MaxReverseVelocity();
+		if(reverseSpeed && (reverseSpeed >= min(target.MaxVelocity(), ship.MaxVelocity())
+				|| target.Velocity().Dot(-d.Unit()) <= reverseSpeed))
+		{
+			command.SetTurn(TurnToward(ship, d));
+			if(ship.Facing().Unit().Dot(d) >= 0.)
+				command |= Command::BACK;
+			return;
+		}
+		else
+		{
+			command.SetTurn(TurnToward(ship, -d));
+			if(ship.Facing().Unit().Dot(d) <= 0.)
+				command |= Command::FORWARD;
+			return;
+		}
 	}
 	
 	MoveToAttack(ship, command, target);
@@ -1538,7 +1551,7 @@ void AI::MoveToAttack(Ship &ship, Command &command, const Body &target)
 	// First of all, aim in the direction that will hit this target.
 	command.SetTurn(TurnToward(ship, TargetAim(ship, target)));
 	
-	// Calculate this ship's "turning radius; that is, the smallest circle it
+	// Calculate this ship's "turning radius"; that is, the smallest circle it
 	// can make while at full speed.
 	double stepsInFullTurn = 360. / ship.TurnRate();
 	double circumference = stepsInFullTurn * ship.Velocity().Length();

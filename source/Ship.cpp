@@ -2088,6 +2088,13 @@ double Ship::MaxVelocity() const
 
 
 
+double Ship::MaxReverseVelocity() const
+{
+	return attributes.Get("reverse thrust") / attributes.Get("drag");
+}
+
+
+
 // This ship just got hit by the given projectile. Take damage according to
 // what sort of weapon the projectile it.
 int Ship::TakeDamage(const Projectile &projectile, bool isBlast)
