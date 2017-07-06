@@ -892,6 +892,35 @@ void PlayerInfo::ReorderShip(int fromIndex, int toIndex)
 
 
 
+int PlayerInfo::ReorderShips(const set<int> &fromIndices, int toIndex)
+{
+	if(fromIndices.empty() || static_cast<unsigned>(toIndex) >= ships.size())
+		return -1;
+	
+	// Remove the ships from last to first, so that each removal leaves all the
+	// remaining indices in the set still valid.
+	vector<shared_ptr<Ship>> removed;
+	for(set<int>::const_iterator it = fromIndices.end(); it-- != fromIndices.begin(); )
+	{
+		// Bail out if any invalid indices are encountered.
+		if(static_cast<unsigned>(*it) >= ships.size())
+			return -1;
+		
+		removed.insert(removed.begin(), ships[*it]);
+		ships.erase(ships.begin() + *it);
+		// If this index is before the insertion point, removing it causes the
+		// insertion point to shift back one space.
+		if(*it < toIndex)
+			--toIndex;
+	}
+	ships.insert(ships.begin() + toIndex, removed.begin(), removed.end());
+	flagship.reset();
+	
+	return toIndex;
+}
+
+
+
 // Get cargo information.
 CargoHold &PlayerInfo::Cargo()
 {

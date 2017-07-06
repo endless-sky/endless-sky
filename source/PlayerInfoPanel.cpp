@@ -274,36 +274,42 @@ bool PlayerInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comman
 
 bool PlayerInfoPanel::Click(int x, int y, int clicks)
 {
-	draggingIndex = -1;
+	// Do nothing if the click was not on one of the ships in the fleet list.
+	if(hoverIndex < 0)
+		return true;
+	
 	bool shift = (SDL_GetModState() & KMOD_SHIFT);
 	bool control = (SDL_GetModState() & (KMOD_CTRL | KMOD_GUI));
 	if(canEdit && (shift || control || clicks < 2))
 	{
 		// Only allow changing your flagship when landed.
-		if(hoverIndex >= 0)
+		if(control && allSelected.count(hoverIndex))
+			allSelected.erase(hoverIndex);
+		else
 		{
-			if(shift)
+			isDragging = true;
+			if(allSelected.count(hoverIndex))
+			{
+				// If the click is on an already selected line, start dragging
+				// but do not change the selection.
+			}
+			else if(control)
+				allSelected.insert(hoverIndex);
+			else if(shift)
 			{
 				// Select all the ships between the previous selection and this one.
-				for(int i = max(0, min(selectedIndex, hoverIndex)); i < max(selectedIndex, hoverIndex); ++i)
+				for(int i = max(0, min(selectedIndex, hoverIndex)); i <= max(selectedIndex, hoverIndex); ++i)
 					allSelected.insert(i);
 			}
-			else if(!control)
-			{
-				allSelected.clear();
-				draggingIndex = hoverIndex;
-			}
-			
-			if(control && allSelected.count(hoverIndex))
-				allSelected.erase(hoverIndex);
 			else
 			{
+				allSelected.clear();
 				allSelected.insert(hoverIndex);
-				selectedIndex = hoverIndex;
 			}
+			selectedIndex = hoverIndex;
 		}
 	}
-	else if(hoverIndex >= 0)
+	else
 	{
 		// If not landed, clicking a ship name takes you straight to its info.
 		GetUI()->Pop(this);
@@ -331,19 +337,26 @@ bool PlayerInfoPanel::Drag(double dx, double dy)
 
 bool PlayerInfoPanel::Release(int x, int y)
 {
-	// Drag and drop can be used to reorder the player's ships.
-	// TODO: insert *every* selected ship at this index.
-	if(canEdit && draggingIndex >= 0 && hoverIndex >= 0 && hoverIndex != draggingIndex)
-	{
-		player.ReorderShip(draggingIndex, hoverIndex);
+	if(!isDragging)
+		return true;
+	isDragging = false;
 	
-		// The ship we just dragged should remain selected.
-		selectedIndex = hoverIndex;
-		allSelected.clear();
-		if(selectedIndex >= 0)
-			allSelected.insert(selectedIndex);
-	}
-	draggingIndex = -1;
+	// Do nothing if the block of ships has not been dragged to a valid new
+	// location in the list, or if it's not possible to reorder the list.
+	if(!canEdit || hoverIndex < 0 || hoverIndex == selectedIndex)
+		return true;
+	
+	// Try to move all the selected ships to this location.
+	selectedIndex = player.ReorderShips(allSelected, hoverIndex);
+	if(selectedIndex < 0)
+		return true;
+	
+	// Change the selected indices so they still refer to the block of ships
+	// that just got moved.
+	int lastIndex = selectedIndex + allSelected.size();
+	allSelected.clear();
+	for(int i = selectedIndex; i < lastIndex; ++i)
+		allSelected.insert(i);
 	
 	return true;
 }
@@ -501,13 +514,17 @@ void PlayerInfoPanel::DrawFleet(const Rectangle &bounds)
 	}
 	
 	// Re-ordering ships in your fleet.
-	if(draggingIndex >= 0)
+	if(isDragging)
 	{
 		const Font &font = FontSet::Get(14);
-		const string &name = player.Ships()[draggingIndex]->Name();
-		Point pos(hoverPoint.X() - .5 * font.Width(name), hoverPoint.Y());
-		font.Draw(name, pos + Point(1., 1.), Color(0., 1.));
-		font.Draw(name, pos, bright);
+		Point pos(hoverPoint.X(), hoverPoint.Y());
+		for(int i : allSelected)
+		{
+			const string &name = player.Ships()[i]->Name();
+			font.Draw(name, pos + Point(1., 1.), Color(0., 1.));
+			font.Draw(name, pos, bright);
+			pos.Y() += 20.;
+		}
 	}
 }
 
