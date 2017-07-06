@@ -17,6 +17,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Dialog.h"
 #include "Font.h"
 #include "FontSet.h"
+#include "Format.h"
 #include "FrameTimer.h"
 #include "GameData.h"
 #include "Government.h"
@@ -311,8 +312,14 @@ void MainPanel::ShowScanDialog(const ShipEvent &event)
 					out << "This " + target->Noun() + " is carrying:\n";
 				first = false;
 		
-				out << "\t" << it.second << " "
-					<< (it.second == 1 ? it.first->Name(): it.first->PluralName()) << "\n";
+				out << "\t" << it.second;
+				if(it.first->Get("installable") < 0.)
+				{
+					int tons = ceil(it.second * it.first->Get("mass"));
+					out << (tons == 1 ? " ton of " : " tons of ") << Format::LowerCase(it.first->PluralName());
+				}
+				else	
+					out << " " << (it.second == 1 ? it.first->Name(): it.first->PluralName()) << "\n";
 			}
 		if(first)
 			out << "This " + target->Noun() + " is not carrying any cargo.\n";
