@@ -264,6 +264,47 @@ bool PlayerInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comman
 		GetUI()->Push(new MissionPanel(player));
 	else if(key == 'l' && player.HasLogs())
 		GetUI()->Push(new LogbookPanel(player));
+	else if(key >= '0' && key <= '9')
+	{
+		int group = key - '0';
+		if(mod & (KMOD_CTRL | KMOD_GUI))
+		{
+			// Convert from indices into ship pointers.
+			set<Ship *> selected;
+			for(int i : allSelected)
+				selected.insert(player.Ships()[i].get());
+			player.SetGroup(group, &selected);
+		}
+		else
+		{
+			// Convert ship pointers into indices in the ship list.
+			set<int> added;
+			for(Ship *ship : player.GetGroup(group))
+				for(unsigned i = 0; i < player.Ships().size(); ++i)
+					if(player.Ships()[i].get() == ship)
+						added.insert(i);
+			
+			// If the shift key is not down, replace the current set of selected
+			// ships with the group with the given index.
+			if(!(mod & KMOD_SHIFT))
+				allSelected = added;
+			else
+			{
+				// If every single ship in this group is already selected, shift
+				// plus the group number means to deselect all those ships.
+				bool allWereSelected = true;
+				for(int i : added)
+					allWereSelected &= allSelected.erase(i);
+				
+				if(!allWereSelected)
+					for(int i : added)
+						allSelected.insert(i);
+			}
+			
+			// Any ships are selected now, the first one is the selected index.
+			selectedIndex = (allSelected.empty() ? -1 : *allSelected.begin());
+		}
+	}
 	else
 		return false;
 	
