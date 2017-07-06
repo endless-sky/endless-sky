@@ -26,7 +26,7 @@ mission "Wanderers: Surveying 1"
 	cargo "scientific equipment" 7
 	blocked "The Wanderers have another mission for you, but you will need some cargo space available for scientific equipment."
 	on offer
-		log `The "Eye" wormhole has opened in Wanderer space, but the territory on the other side of the wormhole is Korath space, ravaged by their civil war and still infested with autonomous war machines. Nonetheless, the Wanderers are excited to once again begin their work of healing and repairing damaged worlds."
+		log `The "Eye" wormhole has opened in Wanderer space, but the territory on the other side of the wormhole is Korath space, ravaged by their civil war and still infested with autonomous war machines. Nonetheless, the Wanderers are excited to once again begin their work of healing and repairing damaged worlds.`
 		conversation
 			`The Wanderers have begun building a base here, with freighters landing every few minutes to bring more supplies or people. They have a fair number of weapons and warships to keep the Korath automata at bay, but the majority of the supplies look like scientific tools or possibly equipment for terraforming planets.`
 			`	Soon after you land, you are ushered in to a meeting with several of the senior Wanderer leaders. You recognize the military commander Sobari Tele'ek, but the others are strangers to you. And oddly, in addition to the adults there is a Wanderer child in the meeting, barely more than a meter tall, with iridescent black plumage like a starling.`
