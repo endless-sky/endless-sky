@@ -128,9 +128,6 @@ tip "hull repair rate:"
 tip "illegal:"
 	`Amount of credits you can be fined for carrying this outfit.`
 
-tip "installable:"
-	`If less than zero, this outfit cannot be installed in a ship.`
-
 tip "ion resistance:"
 	`Resistance to weapons that do ion damage. A value of 1 cuts the effect in half, and 2 cuts it to a third of what it would otherwise be.`
 
@@ -253,9 +250,6 @@ tip "turret mounts needed:"
 
 tip "turret mounts free:"
 	`How many turrets can be mounted on this ship. Turrets fire in the direction of the currently selected target, instead of firing straight forward like guns.`
-
-tip "unplunderable:"
-	`This outfit cannot be removed from a ship when boarding it.`
 
 tip "weapon capacity needed:"
 	`Tons of weapon space this outfit takes up.`
