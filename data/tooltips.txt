@@ -56,6 +56,9 @@ tip "cooling:"
 tip "cooling energy:"
 	`When active cooling is running at full strength (because your ship's temperature is approaching the overheating threshold) it will draw this much energy.`
 
+tip "cooling inefficiency"
+	`Interferes with your ship's ability to cool itself."
+
 tip "cost:"
 	`Cost, in credits. If you have sold any used (depreciated) items today, you can buy them back for the same price you sold them for.`
 
@@ -122,9 +125,6 @@ tip "hull heat:"
 tip "hull repair rate:"
 	`Amount of hull strength that can be repaired per second. Repairs usually consume energy and may generate heat as well.`
 
-tip "hyperdrive:"
-	`This outfit allows a ship to make hyperspace jumps, traveling along the links that connect star systems to each other.`
-
 tip "illegal:"
 	`Amount of credits you can be fined for carrying this outfit.`
 
@@ -133,9 +133,6 @@ tip "installable:"
 
 tip "ion resistance:"
 	`Resistance to weapons that do ion damage. A value of 1 cuts the effect in half, and 2 cuts it to a third of what it would otherwise be.`
-
-tip "jump drive:"
-	`This outfit allows a ship to jump to any nearby system, even if there is no hyperspace link to it. A jump drive consumes 200 fuel per jump.`
 
 tip "jump speed:"
 	`How slow the ship must be moving to make a jump.`
