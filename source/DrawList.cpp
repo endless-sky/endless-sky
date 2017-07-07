@@ -94,7 +94,7 @@ bool DrawList::AddProjectile(const Body &body, const Point &adjustedVelocity, do
 
 bool DrawList::AddSwizzled(const Body &body, int swizzle, float normUse)
 {
-	return CullPush(body, body.Position(), body.Velocity(), 0., 1., swizzle,true, normUse);
+	return CullPush(body, body.Position(), body.Velocity(), 0., 1., swizzle, true, normUse);
 }
 
 bool DrawList::AddUnlighted(const Body &body)
@@ -189,7 +189,7 @@ void DrawList::Push(const Body &body, Point pos, Point posGS, Point blur, double
 	item.flags = swizzle 
 		| (static_cast<uint32_t>(frame.fade * Item::FADE_FACTOR) << Item::FADE_SHIFT) 
 		| (static_cast<uint32_t>(normUse * Item::NORMAL_FACTOR) << Item::NORMAL_SHIFT) 
-		| (static_cast<uint32_t>(lighted)<<Item::LIGHT_SHIFT);
+		| (static_cast<uint32_t>(lighted) << Item::LIGHT_SHIFT);
 	
 	// Get unit vectors in the direction of the object's width and height.
 	double width = body.Width();

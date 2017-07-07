@@ -236,7 +236,7 @@ void LightSpriteShader::Add(uint32_t tex0, uint32_t tex1, const float position[2
 		glUniform3fv(lightEmitI, nbLight, lightEmit);
 	}
 	glUniform3fv(lightAmbiantI, 1, lightAmbiant);
-	glUniform1f(angCoeffI,angCoeff);
+	glUniform1f(angCoeffI, angCoeff);
 
 	glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 }

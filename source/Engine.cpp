@@ -1075,18 +1075,18 @@ void Engine::CalculateStep()
 			bool noBlur = object.Width() >= 280.;
 			if(object.IsStar())
 			{
-				draw[calcTickTock].AddStar(object,!noBlur);
+				draw[calcTickTock].AddStar(object, !noBlur);
 				float pos[3] = {float(object.Position().X()), float(object.Position().Y()), 0};
 				float starPw = 1000000.f;
-				float emit[3] = {starPw,starPw,starPw};
-				draw[calcTickTock].AddLightSource(pos,emit);
+				float emit[3] = {starPw, starPw, starPw};
+				draw[calcTickTock].AddLightSource(pos, emit);
 			}
 			else
 			{
 				if(noBlur)
-					draw[calcTickTock].AddUnblurred(object,1.f);
+					draw[calcTickTock].AddUnblurred(object, 1.f);
 				else
-					draw[calcTickTock].Add(object,0.,1.f);
+					draw[calcTickTock].Add(object, 0., 1.f);
 			}
 			
 			double r = max(2., object.Radius() * .03 + .5);
