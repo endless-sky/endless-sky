@@ -134,7 +134,7 @@ void LightSpriteShader::Init()
 			"    float dst = length(lightDir);\n"
 			"    lightColor += (1-angCoeff+angCoeff*dot(lightDir,normal)/dst) * lightEmit[i] / pow(dst,2);\n"
 			"  }\n"
-			"  lightColor = clamp(lightColor, vec3(0.1,0.1,0.1), vec3(1,1,1));\n"
+			"  lightColor = clamp(lightColor, vec3(0.3,0.3,0.3), vec3(1,1,1));\n"
 			"  finalColor = vec4(lightColor*color.xyz,color.w);\n"
 			"}\n";
 	
