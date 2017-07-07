@@ -2265,8 +2265,9 @@ bool Ship::Carry(const shared_ptr<Ship> &ship)
 			// When a fighter rejoins its mothership, its mass is added to the
 			// mothership but so is its accumulated heat.
 			heat += ship->heat;
-			// If this ship collected anything in space, try to unload it into the parent's cargo hold.
-			if(this->Cargo().Free() && !ship->Cargo().IsEmpty())
+			// If this ship collected anything in space, try to unload it into the parent's cargo hold,
+			// except for the player's fleet.
+			if(!this->GetGovernment()->IsPlayer() && this->Cargo().Free() && !ship->Cargo().IsEmpty())
 				ship->Cargo().TransferAll(&this->Cargo());
 			return true;
 		}
