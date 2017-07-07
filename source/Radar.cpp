@@ -12,8 +12,10 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Radar.h"
 
+#include "GameData.h"
 #include "PointerShader.h"
 #include "RingShader.h"
+#include "Set.h"
 
 using namespace std;
 
@@ -28,14 +30,15 @@ static const int SIZE = 7;
 
 namespace {
 	// Colors.
+	static const Set<Color> &colors = GameData::Colors();
 	static const Color color[SIZE] = {
-		Color(.2, 1., 0., 0.), // PLAYER: green
-		Color(.4, .6, 1., 0.), // FRIENDLY: blue
-		Color(.8, .8, .4, 0.), // UNFRIENDLY: yellow
-		Color(1., .6, .4, 0.), // HOSTILE: red
-		Color(.4, .4, .4, 0.), // INACTIVE: grey
-		Color(1., 1., 1., 0.),  // SPECIAL: white
-		Color(.7, 0., 1., 0.)  // ANOMALOUS: magenta
+		*colors.Get("radar player"),
+		*colors.Get("radar friendly"),
+		*colors.Get("radar unfriendly"),
+		*colors.Get("radar hostile"),
+		*colors.Get("radar inactive"),
+		*colors.Get("radar special"),
+		*colors.Get("radar anomalous")
 	};
 }
 
