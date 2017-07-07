@@ -2110,8 +2110,8 @@ void AI::AutoFire(const Ship &ship, Command &command, bool secondary) const
 	double maxRange = 0.;
 	for(const Hardpoint &weapon : ship.Weapons())
 		if(weapon.IsReady()
-				&& !(weapon.IsHoming() && currentTarget && weapon.GetOutfit()->Ammo())
-				&& !(secondary && !weapon.GetOutfit()->Icon())
+				&& !(!currentTarget && weapon.IsHoming() && weapon.GetOutfit()->Ammo())
+				&& !(!secondary && weapon.GetOutfit()->Icon())
 				&& !(beFrugal && weapon.GetOutfit()->Ammo()))
 			maxRange = max(maxRange, weapon.GetOutfit()->Range());
 	// Extend the weapon range slightly to account for velocity differences.
