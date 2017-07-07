@@ -472,7 +472,18 @@ void AI::Step(const PlayerInfo &player)
 		if(isPresent && personality.IsMining() && !target && !it->GetShipToAssist()
 				&& it->Cargo().Free() >= 5 && ++miningTime[&*it] < 3600 && ++minerCount < 9)
 		{
+			if(it->HasBays())
+				command |= Command::DEPLOY;
 			DoMining(*it, command);
+			it->SetCommands(command);
+			continue;
+		}
+		else if(isPresent && !target && it->CanBeCarried() && parent && miningTime[&*parent] < 3601
+				&& parent->GetTargetAsteroid() && parent->GetTargetAsteroid()->Position().Distance(parent->Position()) < 800.)
+		{
+			// Assist your parent in mining its nearby targeted asteroid.
+			MoveToAttack(*it, command, *parent->GetTargetAsteroid());
+			AutoFire(*it, command, *parent->GetTargetAsteroid());
 			it->SetCommands(command);
 			continue;
 		}
