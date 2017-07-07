@@ -17,8 +17,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Shader.h"
 #include "Sprite.h"
 
-#include <vector>
 #include <stdexcept>
+#include <vector>
 
 using namespace std;
 
@@ -56,8 +56,7 @@ namespace {
 	};
 }
 
-const float LightSpriteShader::def_ambiant[3] = {0.2f,0.2f,0.2f};
-int LightSpriteShader::MaxNbLight = 5;
+const float LightSpriteShader::DEF_AMBIENT[3] = {0.2f, 0.2f, 0.2f};
 
 // Initialize the shaders.
 void LightSpriteShader::Init()
@@ -231,7 +230,8 @@ void LightSpriteShader::Add(uint32_t tex0, uint32_t tex1, const float position[2
 	glUniform2fv(posGSI,1,posGS);
 	glUniformMatrix2fv(transformGSI, 1, false, transformGS);
 	glUniform1i(nbLightI, nbLight);
-	if(nbLight > 0){
+	if(nbLight > 0)
+	{
 		glUniform3fv(lightPosI, nbLight, lightPos);
 		glUniform3fv(lightEmitI, nbLight, lightEmit);
 	}
@@ -248,6 +248,12 @@ void LightSpriteShader::Unbind()
 	glUseProgram(0);
 }
 
-bool LightSpriteShader::IsAvailable(){
+bool LightSpriteShader::IsAvailable()
+{
 	return isAvailable;
+}
+
+int LightSpriteShader::MaxNbLights()
+{
+	return 5;
 }

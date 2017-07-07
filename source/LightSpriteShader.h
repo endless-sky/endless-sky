@@ -24,8 +24,7 @@ class Point;
 //the object and the light sources increase
 class LightSpriteShader{
 public:
-	static const float def_ambiant[3];
-	static int MaxNbLight;
+	static const float DEF_AMBIENT[3];
 
 	// Initialize the shaders.
 	static void Init();
@@ -34,11 +33,13 @@ public:
 
 	static void Add(uint32_t tex0, uint32_t tex1, const float position[2], const float transform[4], int swizzle, float clip, float fade, const float blur[2],
 		const float posGS[2], const float transformGS[2],
-		int nbLights = -1, const float lightAmbiant[3]=def_ambiant, const float *lightPos = 0, const float *lightEmit = 0, float angCoeff = 0.f);
+		int nbLights = -1, const float lightAmbiant[3]=DEF_AMBIENT, const float *lightPos = 0, const float *lightEmit = 0, float angCoeff = 0.f);
 
 	static void Unbind();
 
 	static bool IsAvailable();
+	
+	static int MaxNbLights();
 };
 
 

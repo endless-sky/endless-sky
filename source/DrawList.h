@@ -34,7 +34,7 @@ public:
 	// Clear the list, also setting the global time step for animation.
 	void Clear(int step = 0, double zoom = 1.);
 	void SetCenter(const Point &center, const Point &centerVelocity = Point());
-	void setAmbiant(const float amb[3]);
+	void SetAmbient(const float amb[3]);
 	
 	// Add an object based on the Body class.
 	bool Add(const Body &body, double cloak = 0., float normUse = 0.f);
@@ -63,15 +63,16 @@ private:
 	class Item {
 	public:
 		//constants for the flags
-		static const uint32_t swizzle_mask;
-		static const uint32_t fade_mask;
-		static const float fade_factor;
-		static const int fade_shift;
-		static const float normal_factor;
-		static const int normal_shift;
-		static const uint32_t normal_mask;
-		static const uint32_t light_mask;
-		static const int light_shift;
+		static const uint32_t SWIZZLE_MASK;
+		static const uint32_t FADE_MASK;
+		static const float FADE_FACTOR;
+		static const int FADE_SHIFT;
+		static const float NORMAL_FACTOR;
+		static const int NORMAL_SHIFT;
+		static const uint32_t NORMAL_MASK;
+		static const uint32_t LIGHT_MASK;
+		static const int LIGHT_SHIFT;
+		
 		// Get the color swizzle.
 		uint32_t Swizzle() const;
 		
@@ -105,7 +106,7 @@ private:
 	
 	Point center;
 	Point centerVelocity;
-	float lightAmbiant[3];
+	float lightAmbient[3];
 };
 
 

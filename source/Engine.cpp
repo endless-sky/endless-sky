@@ -1073,13 +1073,16 @@ void Engine::CalculateStep()
 		{
 			// Don't apply motion blur to very large planets and stars.
 			bool noBlur = object.Width() >= 280.;
-			if(object.IsStar()){
+			if(object.IsStar())
+			{
 				draw[calcTickTock].AddStar(object,!noBlur);
 				float pos[3] = {float(object.Position().X()), float(object.Position().Y()), 0};
 				float starPw = 1000000.f;
 				float emit[3] = {starPw,starPw,starPw};
 				draw[calcTickTock].AddLightSource(pos,emit);
-			}else{
+			}
+			else
+			{
 				if(noBlur)
 					draw[calcTickTock].AddUnblurred(object,1.f);
 				else
