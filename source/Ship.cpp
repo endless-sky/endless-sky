@@ -2709,6 +2709,11 @@ bool Ship::Carry(const shared_ptr<Ship> &ship)
 			ship->SetParent(shared_from_this());
 			ship->isThrusting = false;
 			ship->commands.Clear();
+			// If this fighter collected anything in space, try to store it (unless this
+			// is a player-owned ship).
+			if(!isYours && cargo.Free() && !ship->Cargo().IsEmpty())
+				ship->Cargo().TransferAll(cargo);
+			
 			// Update the cached mass of the mothership.
 			carriedMass += ship->Mass();
 			return true;
