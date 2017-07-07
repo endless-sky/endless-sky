@@ -660,7 +660,7 @@ void Engine::Draw() const
 	for(const PlanetLabel &label : labels)
 		label.Draw();
 	
-	draw[drawTickTock].Draw();
+	draw[drawTickTock].Draw(true);
 	
 	for(const auto &it : statuses)
 	{
@@ -1072,10 +1072,19 @@ void Engine::CalculateStep()
 		if(object.HasSprite())
 		{
 			// Don't apply motion blur to very large planets and stars.
-			if(object.Width() >= 280.)
-				draw[calcTickTock].AddUnblurred(object);
-			else
-				draw[calcTickTock].Add(object);
+			bool noBlur = object.Width() >= 280.;
+			if(object.IsStar()){
+				draw[calcTickTock].AddStar(object,!noBlur);
+				float pos[3] = {float(object.Position().X()), float(object.Position().Y()), 0};
+				float starPw = 1000000.f;
+				float emit[3] = {starPw,starPw,starPw};
+				draw[calcTickTock].AddLightSource(pos,emit);
+			}else{
+				if(noBlur)
+					draw[calcTickTock].AddUnblurred(object,1.f);
+				else
+					draw[calcTickTock].Add(object,0.,1.f);
+			}
 			
 			double r = max(2., object.Radius() * .03 + .5);
 			radar[calcTickTock].Add(RadarType(object, flagship), object.Position(), r, r - 1.);
@@ -1487,7 +1496,7 @@ void Engine::CalculateStep()
 	// them in a single place.
 	for(auto it = effects.begin(); it != effects.end(); )
 	{
-		draw[calcTickTock].AddUnblurred(*it);
+		draw[calcTickTock].AddEffect(*it);
 		
 		if(!it->Move())
 			it = effects.erase(it);

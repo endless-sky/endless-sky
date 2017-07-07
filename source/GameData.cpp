@@ -48,6 +48,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "SpriteQueue.h"
 #include "SpriteSet.h"
 #include "SpriteShader.h"
+#include "LightSpriteShader.h"
 #include "StarField.h"
 #include "StartConditions.h"
 #include "System.h"
@@ -235,6 +236,7 @@ void GameData::LoadShaders()
 	PointerShader::Init();
 	RingShader::Init();
 	SpriteShader::Init();
+	LightSpriteShader::Init();
 	
 	background.Init(16384, 4096);
 }
