@@ -17,6 +17,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Set.h"
 #include "StellarObject.h"
 
+#include <set>
 #include <string>
 #include <vector>
 
@@ -90,22 +91,24 @@ public:
 	const std::string &MusicName() const;
 	
 	// Get a list of systems you can travel to through hyperspace from here.
-	const std::vector<const System *> &Links() const;
+	const std::set<const System *> &Links() const;
 	// Get a list of systems you can "see" from here, whether or not there is a
 	// direct hyperspace link to them. This is also the set of systems that you
 	// can travel to from here via the jump drive.
-	const std::vector<const System *> &Neighbors() const;
+	const std::set<const System *> &Neighbors() const;
 	
 	// Move the stellar objects to their positions on the given date.
 	void SetDate(const Date &date);
 	// Get the stellar object locations on the most recently set date.
 	const std::vector<StellarObject> &Objects() const;
+	// Get the stellar object (if any) for the given planet.
+	const StellarObject *FindStellar(const Planet *planet) const;
 	// Get the habitable zone's center.
 	double HabitableZone() const;
 	// Get the radius of the asteroid belt.
 	double AsteroidBelt() const;
 	// Check if this system is inhabited.
-	bool IsInhabited() const;
+	bool IsInhabited(const Ship *ship) const;
 	// Check if ships of the given government can refuel in this system.
 	bool HasFuelFor(const Ship &ship) const;
 	// Check whether you can buy or sell ships in this system.
@@ -159,8 +162,8 @@ private:
 	std::string music;
 	
 	// Hyperspace links to other systems.
-	std::vector<const System *> links;
-	std::vector<const System *> neighbors;
+	std::set<const System *> links;
+	std::set<const System *> neighbors;
 	
 	// Stellar objects, listed in such an order that an object's parents are
 	// guaranteed to appear before it (so that if we traverse the vector in

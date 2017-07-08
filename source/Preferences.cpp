@@ -40,6 +40,8 @@ namespace {
 
 void Preferences::Load()
 {
+	// These settings should be on by default. There is no need to specify
+	// values for settings that are off by default.
 	settings["Automatic aiming"] = true;
 	settings["Render motion blur"] = true;
 	settings["Escorts use ammo frugally"] = true;
@@ -49,8 +51,8 @@ void Preferences::Load()
 	settings["Show planet labels"] = true;
 	settings["Show hyperspace flash"] = true;
 	settings["Draw background haze"] = true;
-	settings["Reduce large graphics"] = false;
 	settings["Hide unexplored map regions"] = true;
+	settings["Turrets focus fire"] = true;
 	
 	DataFile prefs(Files::Config() + "preferences.txt");
 	for(const DataNode &node : prefs)

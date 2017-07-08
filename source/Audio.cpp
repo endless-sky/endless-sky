@@ -67,10 +67,8 @@ namespace {
 		unsigned source = 0;
 	};
 	
-	// Tread entry point for loading the sound files.
+	// Thread entry point for loading the sound files.
 	void Load();
-	// Get the "name" of a sound based on its file path.
-	string Name(const string &path);
 	
 	
 	// Mutex to make sure different threads don't modify the audio at the same time.
@@ -79,6 +77,7 @@ namespace {
 	// OpenAL settings.
 	ALCdevice *device = nullptr;
 	ALCcontext *context = nullptr;
+	bool isInitialized = false;
 	double volume = .5;
 	
 	// This queue keeps track of sounds that have been requested to play. Each
@@ -86,6 +85,7 @@ namespace {
 	// sure that all sounds from a given frame start at the same time.
 	map<const Sound *, QueueEntry> queue;
 	map<const Sound *, QueueEntry> deferred;
+	thread::id mainThreadID;
 	
 	// Sound resources that have been loaded from files.
 	map<string, Sound> sounds;
@@ -97,7 +97,7 @@ namespace {
 	unsigned maxSources = 255;
 	
 	// Queue and thread for loading sound files in the background.
-	vector<string> loadQueue;
+	map<string, string> loadQueue;
 	thread loadThread;
 	
 	// The current position of the "listener," i.e. the center of the screen.
@@ -126,6 +126,10 @@ void Audio::Init(const vector<string> &sources)
 	if(!context || !alcMakeContextCurrent(context))
 		return;
 	
+	// If we don't make it to this point, no audio will be played.
+	isInitialized = true;
+	mainThreadID = this_thread::get_id();
+	
 	// The listener is looking "into" the screen. This orientation vector is
 	// used to determine what sounds should be in the right or left speaker.
 	ALfloat zero[3] = {0., 0., 0.};
@@ -140,7 +144,22 @@ void Audio::Init(const vector<string> &sources)
 	
 	// Get all the sound files in the game data and all plugins.
 	for(const string &source : sources)
-		Files::RecursiveList(source + "sounds/", &loadQueue);
+	{
+		string root = source + "sounds/";
+		vector<string> files = Files::RecursiveList(root);
+		for(const string &path : files)
+		{
+			if(!path.compare(path.length() - 4, 4, ".wav"))
+			{
+				// The "name" of the sound is its full path within the "sounds/"
+				// folder, without the ".wav" or "~.wav" suffix.
+				size_t end = path.length() - 4;
+				if(path[end - 1] == '~')
+					--end;
+				loadQueue[path.substr(root.length(), end - root.length())] = path;
+			}
+		}
+	}
 	// Begin loading the files.
 	if(!loadQueue.empty())
 		loadThread = thread(&Load);
@@ -189,7 +208,7 @@ double Audio::Volume()
 void Audio::SetVolume(double level)
 {
 	volume = min(1., max(0., level));
-	if(context)
+	if(isInitialized)
 		alListenerf(AL_GAIN, volume);
 }
 
@@ -210,6 +229,9 @@ const Sound *Audio::Get(const string &name)
 // main one (the one that called Init()).
 void Audio::Update(const Point &listenerPosition)
 {
+	if(!isInitialized)
+		return;
+	
 	listener = listenerPosition;
 	
 	for(const auto &it : deferred)
@@ -231,11 +253,18 @@ void Audio::Play(const Sound *sound)
 // "listener". This will make it softer and change the left / right balance.
 void Audio::Play(const Sound *sound, const Point &position)
 {
-	if(!sound || !sound->Buffer() || !volume)
+	if(!isInitialized || !sound || !sound->Buffer() || !volume)
 		return;
 	
-	unique_lock<mutex> lock(audioMutex);
-	deferred[sound].Add(position - listener);
+	// Place sounds from the main thread directly into the queue. They are from
+	// the UI, and the Engine may not be running right now to call Update().
+	if(this_thread::get_id() == mainThreadID)
+		queue[sound].Add(position - listener);
+	else
+	{
+		unique_lock<mutex> lock(audioMutex);
+		deferred[sound].Add(position - listener);
+	}
 }
 
 
@@ -243,6 +272,9 @@ void Audio::Play(const Sound *sound, const Point &position)
 // Play the given music. An empty string means to play nothing.
 void Audio::PlayMusic(const string &name)
 {
+	if(!isInitialized)
+		return;
+	
 	// Don't worry about thread safety here, since music will always be started
 	// by the main thread.
 	musicFade = 65536;
@@ -257,6 +289,9 @@ void Audio::PlayMusic(const string &name)
 // this function was called.
 void Audio::Step()
 {
+	if(!isInitialized)
+		return;
+	
 	vector<Source> newSources;
 	// For each sound that is looping, see if it is going to continue. For other
 	// sounds, check if they are done playing.
@@ -431,11 +466,14 @@ void Audio::Quit()
 	sounds.clear();
 	
 	// Clean up the music source and buffers.
-	alSourceStop(musicSource);
-	alDeleteSources(1, &musicSource);
-	alDeleteBuffers(MUSIC_BUFFERS, musicBuffers);
-	currentTrack.reset();
-	previousTrack.reset();
+	if(isInitialized)
+	{
+		alSourceStop(musicSource);
+		alDeleteSources(1, &musicSource);
+		alDeleteBuffers(MUSIC_BUFFERS, musicBuffers);
+		currentTrack.reset();
+		previousTrack.reset();
+	}
 	
 	// Close the connection to the OpenAL library.
 	if(context)
@@ -523,8 +561,7 @@ namespace {
 	// Thread entry point for loading sounds.
 	void Load()
 	{
-		set<string> loaded;
-		
+		string name;
 		string path;
 		while(true)
 		{
@@ -534,43 +571,16 @@ namespace {
 				// in the queue. This is a signal that it has been loaded, so we
 				// must not remove it until after loading the file.
 				if(!path.empty() && !loadQueue.empty())
-					loadQueue.pop_back();
+					loadQueue.erase(loadQueue.begin());
 				if(loadQueue.empty())
 					return;
-				path = loadQueue.back();
+				name = loadQueue.begin()->first;
+				path = loadQueue.begin()->second;
 			}
 			
 			// Unlock the mutex for the time-intensive part of the loop.
-			string name = Name(path);
-			if(!name.empty() && !loaded.count(name))
-			{
-				loaded.insert(name);
-				sounds[name].Load(path);
-			}
+			if(!sounds[name].Load(path))
+				Files::LogError("Unable to load sound \"" + name + "\" from path: " + path);
 		}
-	}
-	
-	
-	
-	// Convert a full file path into a name. The name is the path relative to
-	// the "sounds" directory, but not including the ".wav" extension or the "~"
-	// looping indicator.
-	string Name(const string &path)
-	{
-		if(path.length() < 4 || path.compare(path.length() - 4, 4, ".wav"))
-			return string();
-		
-		// Only take the end of the path (after "sounds/").
-		size_t start = path.rfind("sounds/");
-		if(start == string::npos)
-			return string();
-		start += 7;
-		
-		// Remove the extension and the "~", if any.
-		size_t end = path.length() - 4;
-		if(path[end - 1] == '~')
-			--end;
-		
-		return path.substr(start, end - start);
 	}
 }

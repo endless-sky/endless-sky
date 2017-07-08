@@ -38,7 +38,7 @@ void GameEvent::Load(const DataNode &node)
 			systemsToUnvisit.push_back(GameData::Systems().Get(child.Token(1)));
 		else if(child.Token(0) == "unvisit planet" && child.Size() >= 2)
 			planetsToUnvisit.push_back(GameData::Planets().Get(child.Token(1)));
-		else if(child.Token(0) == "system" || child.Token(0) == "planet"
+		else if(child.Token(0) == "system" || child.Token(0) == "planet" || child.Token(0) == "galaxy"
 				|| child.Token(0) == "shipyard" || child.Token(0) == "outfitter"
 				|| child.Token(0) == "fleet" || child.Token(0) == "government"
 				|| child.Token(0) == "link" || child.Token(0) == "unlink")

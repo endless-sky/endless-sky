@@ -29,7 +29,7 @@ namespace {
 	// Depreciation parameters.
 	double FULL_DEPRECIATION = 0.25;
 	double DAILY_DEPRECIATION = 0.99;
-	int MAX_AGE = 360;
+	int MAX_AGE = 1000;
 }
 
 

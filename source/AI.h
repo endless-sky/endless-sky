@@ -29,6 +29,8 @@ class Government;
 class Minable;
 class Ship;
 class ShipEvent;
+class StellarObject;
+class System;
 class PlayerInfo;
 
 
@@ -49,7 +51,7 @@ template <class Type>
 	
 	// Fleet commands from the player.
 	void IssueShipTarget(const PlayerInfo &player, const std::shared_ptr<Ship> &target);
-	void IssueMoveTarget(const PlayerInfo &player, const Point &target);
+	void IssueMoveTarget(const PlayerInfo &player, const Point &target, const System *moveToSystem);
 	// Commands issued via the keyboard (mostly, to the flagship).
 	void UpdateKeys(PlayerInfo &player, Command &clickCommands, bool isActive);
 	
@@ -69,12 +71,13 @@ private:
 	void MoveIndependent(Ship &ship, Command &command) const;
 	void MoveEscort(Ship &ship, Command &command) const;
 	static void Refuel(Ship &ship, Command &command);
+	static bool CanRefuel(const Ship &ship, const StellarObject *target);
 	
 	static double TurnBackward(const Ship &ship);
 	static double TurnToward(const Ship &ship, const Point &vector);
 	static bool MoveToPlanet(Ship &ship, Command &command);
-	static bool MoveTo(Ship &ship, Command &command, const Point &target, double radius, double slow);
-	static bool Stop(Ship &ship, Command &command, double maxSpeed = 0.);
+	static bool MoveTo(Ship &ship, Command &command, const Point &targetPosition, const Point &targetVelocity, double radius, double slow);
+	static bool Stop(Ship &ship, Command &command, double maxSpeed = 0., const Point direction = Point());
 	static void PrepareForHyperspace(Ship &ship, Command &command);
 	static void CircleAround(Ship &ship, Command &command, const Ship &target);
 	static void Swarm(Ship &ship, Command &command, const Ship &target);
@@ -88,17 +91,24 @@ private:
 	void DoCloak(Ship &ship, Command &command);
 	void DoScatter(Ship &ship, Command &command);
 	
-	static Point StoppingPoint(const Ship &ship, bool &shouldReverse);
+	static Point StoppingPoint(const Ship &ship, const Point &targetVelocity, bool &shouldReverse);
 	// Get a vector giving the direction this ship should aim in in order to do
 	// maximum damaged to a target at the given position with its non-turret,
 	// non-homing weapons. If the ship has no non-homing weapons, this just
 	// returns the direction to the target.
 	static Point TargetAim(const Ship &ship);
 	static Point TargetAim(const Ship &ship, const Body &target);
+	// Aim the given ship's turrets.
+	void AimTurrets(const Ship &ship, Command &command, bool opportunistic = false) const;
 	// Fire whichever of the given ship's weapons can hit a hostile target.
 	// Return a bitmask giving the weapons to fire.
-	Command AutoFire(const Ship &ship, bool secondary = true) const;
-	Command AutoFire(const Ship &ship, const Body &target) const;
+	void AutoFire(const Ship &ship, Command &command, bool secondary = true) const;
+	void AutoFire(const Ship &ship, Command &command, const Body &target) const;
+	
+	// Calculate how long it will take a projectile to reach a target given the
+	// target's relative position and velocity and the velocity of the
+	// projectile. If it cannot hit the target, this returns NaN.
+	static double RendezvousTime(const Point &p, const Point &v, double vp);
 	
 	void MovePlayer(Ship &ship, const PlayerInfo &player);
 	
@@ -122,6 +132,7 @@ private:
 		int type = 0;
 		std::weak_ptr<Ship> target;
 		Point point;
+		const System * targetSystem;
 	};
 
 

@@ -10,8 +10,10 @@
 
 outfit "Bombardment Cannon"
 	category "Guns"
+	licenses
+		Heliarch
 	cost 437000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/bombardment cannon"
 	"mass" 12
 	"outfit space" -12
 	"weapon capacity" -12
@@ -20,7 +22,7 @@ outfit "Bombardment Cannon"
 		sprite "projectile/bombardment"
 			"frame rate" 3.2
 			"no repeat"
-		sound "blaster"
+		sound "bombardment"
 		"hit effect" "bombardment impact"
 		"inaccuracy" 4
 		"velocity" 6
@@ -35,8 +37,10 @@ outfit "Bombardment Cannon"
 
 outfit "Bombardment Turret"
 	category "Turrets"
+	licenses
+		Heliarch
 	cost 1845000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/bombardment turret"
 	"mass" 43
 	"outfit space" -43
 	"weapon capacity" -43
@@ -46,9 +50,12 @@ outfit "Bombardment Turret"
 		sprite "projectile/bombardment"
 			"frame rate" 3.2
 			"no repeat"
-		sound "blaster"
+		"hardpoint sprite" "hardpoint/bombardment turret"
+		"hardpoint offset" 10.
+		sound "bombardment"
 		"hit effect" "bombardment impact"
 		"inaccuracy" 4
+		"turret turn" 6
 		"velocity" 6
 		"random velocity" 1
 		"lifetime" 150
@@ -72,8 +79,10 @@ effect "bombardment impact"
 
 outfit "Finisher Pod"
 	category "Secondary Weapons"
+	licenses
+		Heliarch
 	cost 1370000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/finisher pod"
 	"mass" 16
 	"outfit space" -36
 	"weapon capacity" -36
@@ -83,7 +92,7 @@ outfit "Finisher Pod"
 		sprite "projectile/finisher activating"
 			"frame rate" 1
 			"no repeat"
-		sound "torpedo"
+		sound "finisher"
 		ammo "Finisher Torpedo"
 		icon "icon/finisher"
 		"fire effect" "finisher sparks" 8
@@ -103,7 +112,7 @@ outfit "Finisher Pod"
 		"radar tracking" .8
 		"missile strength" 50
 		"submunition" "Active Finisher" 1
-	description `Finisher Torpedoes are one of the Heliarch's most dreaded weapons. In fact, in one way or another most of their other weapons merely exist to hold a ship in place for long enough for a barrage of Finishers to destroy it.`
+	description `Finisher Torpedoes are one of the Heliarchs' most dreaded weapons. In fact, in one way or another most of their other weapons merely exist to hold a ship in place for long enough for a barrage of Finishers to destroy it.`
 
 outfit "Active Finisher"
 	weapon
@@ -129,7 +138,7 @@ outfit "Finisher Torpedo"
 	plural "Finisher Torpedoes"
 	category "Ammunition"
 	cost 32000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/finisher"
 	"mass" .5
 	"finisher capacity" -1
 	description `This extremely powerful but also expensive missile is ammunition for the Heliarch Finisher Pod.`
@@ -174,8 +183,10 @@ effect "finisher fragment"
 
 outfit "Heliarch Attractor"
 	category "Turrets"
+	licenses
+		Heliarch
 	cost 2187000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/heliarch attractor"
 	"mass" 49
 	"outfit space" -49
 	"weapon capacity" -49
@@ -185,9 +196,12 @@ outfit "Heliarch Attractor"
 		sprite "projectile/attractor"
 			"frame rate" 5.2
 			"random start frame"
-		sound "laser"
+		"hardpoint sprite" "hardpoint/heliarch attractor"
+		"hardpoint offset" 9.
+		sound "heliarch attractor"
 		"hit effect" "attractor impact"
 		"inaccuracy" 2
+		"turret turn" 3.5
 		"velocity" 640
 		"lifetime" 1
 		"reload" 1
@@ -212,8 +226,10 @@ effect "attractor impact"
 
 outfit "Heliarch Repulsor"
 	category "Turrets"
+	licenses
+		Heliarch
 	cost 2549000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/heliarch repulsor"
 	"mass" 56
 	"outfit space" -56
 	"weapon capacity" -56
@@ -223,9 +239,12 @@ outfit "Heliarch Repulsor"
 		sprite "projectile/repulsor"
 			"frame rate" 3.2
 			"random start frame"
-		sound "heavy laser"
+		"hardpoint sprite" "hardpoint/heliarch repulsor"
+		"hardpoint offset" 9.
+		sound "heliarch repulsor"
 		"hit effect" "repulsor impact"
 		"inaccuracy" 3
+		"turret turn" 2.5
 		"velocity" 560
 		"lifetime" 1
 		"reload" 1
@@ -251,8 +270,10 @@ effect "repulsor impact"
 
 outfit "Ion Rain Gun"
 	category "Guns"
+	licenses
+		Heliarch
 	cost 798000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/ion rain gun"
 	"mass" 17
 	"outfit space" -17
 	"weapon capacity" -17
@@ -261,7 +282,7 @@ outfit "Ion Rain Gun"
 		sprite "projectile/ion rain"
 			"frame rate" 7
 			"random start frame"
-		sound "particle"
+		sound "ion rain"
 		"hit effect" "ion rain impact"
 		"inaccuracy" 4.5
 		"velocity" 16

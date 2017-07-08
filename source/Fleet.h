@@ -37,8 +37,6 @@ class System;
 // names are chosen based on a given random "phrase" generator.
 class Fleet {
 public:
-	Fleet();
-	
 	void Load(const DataNode &node);
 	
 	// Get the government of this fleet.

@@ -22,10 +22,13 @@ outfit "Korath Grab-Strike"
 		sprite "projectile/grab-strike"
 			"frame rate" 25
 			"random start frame"
+		"hardpoint sprite" "hardpoint/grab-strike"
+		"hardpoint offset" 7.
 		sound "grab-strike"
 		"hit effect" "grab-strike impact"
 		"die effect" "grab-strike impact"
 		"inaccuracy" 1
+		"turret turn" 4
 		"velocity" 10
 		"lifetime" 100
 		"reload" 20
@@ -62,9 +65,12 @@ outfit "Korath Banisher"
 	weapon
 		sprite "projectile/banisher"
 			"frame rate" 60
+		"hardpoint sprite" "hardpoint/banisher"
+		"hardpoint offset" 5.
 		sound "banisher"
 		"hit effect" "banisher impact"
 		"inaccuracy" .4
+		"turret turn" 6
 		"velocity" 590
 		"lifetime" 1
 		"reload" 1
@@ -93,6 +99,8 @@ outfit "Korath Warder"
 	"energy capacity" 50
 	"turret mounts" -1
 	weapon
+		"hardpoint sprite" "hardpoint/warder"
+		"hardpoint offset" 3.
 		"hit effect" "korath warder"
 		"anti-missile" 10
 		"velocity" 350
@@ -196,9 +204,12 @@ outfit "Korath Repeater Turret"
 	weapon
 		sprite "projectile/repeater"
 			"frame rate" 5
+		"hardpoint sprite" "hardpoint/repeater turret"
+		"hardpoint offset" 7.
 		sound "repeater"
 		"hit effect" "repeater impact"
 		"inaccuracy" 3
+		"turret turn" 4
 		"velocity" 13
 		"lifetime" 40
 		"reload" 5
@@ -418,7 +429,7 @@ outfit "Korath Minelayer"
 		"missile strength" 35
 		"shield damage" -3200
 		"hull damage" -2400
-		"hit force" 150
+		"hit force" -150
 		"stream"
 	description "This launcher fires cluster munitions that split into a cloud of stationary mines that each do a considerable amount of damage if a ship crashes into them. However, if a ship hits the mine before it has a chance to deploy, the damage is considerably reduced."
 
@@ -475,9 +486,12 @@ outfit "Korath Disruptor"
 	weapon
 		sprite "projectile/disruptor"
 			"frame rate" 15
+		"hardpoint sprite" "hardpoint/disruptor"
+		"hardpoint offset" 15.
 		sound "disruptor"
 		"hit effect" "disruptor impact"
 		"inaccuracy" 1
+		"turret turn" 4
 		"velocity" 480
 		"lifetime" 1
 		"reload" 1
@@ -536,9 +550,12 @@ outfit "Korath Slicer Turret"
 	weapon
 		sprite "projectile/slicer"
 			"frame rate" 6
+		"hardpoint sprite" "hardpoint/slicer turret"
+		"hardpoint offset" 17.
 		sound "slicer"
 		"hit effect" "slicer impact"
 		"inaccuracy" 0
+		"turret turn" 3
 		"velocity" 520
 		"lifetime" 1
 		"reload" 1.62

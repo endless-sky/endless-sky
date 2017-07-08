@@ -13,7 +13,7 @@ fleet "Small Hai"
 	names "hai"
 	cargo 3
 	personality
-		disables
+		disables opportunistic
 	variant 3
 		"Water Bug"
 		"Lightning Bug (Pulse)" 2
@@ -55,7 +55,7 @@ fleet "Large Hai"
 	names "hai"
 	cargo 3
 	personality
-		disables
+		disables opportunistic
 	variant 2
 		"Shield Beetle"
 		"Lightning Bug (Pulse)" 2
@@ -170,6 +170,7 @@ fleet "Unfettered Raid"
 	government "Hai (Unfettered)"
 	names "hai"
 	personality
+		disables
 		plunders
 	variant
 		"Shield Beetle (Jump)" 3
@@ -206,10 +207,12 @@ outfitter "Hai Basics"
 	"Hai Fissure Batteries"
 	"Supercapacitor"
 	"Cargo Expansion"
+	"Small Bunk Room"
 	"Hai Corundum Regenerator"
 	`"Basrem" Atomic Thruster`
 	`"Basrem" Atomic Steering`
 	"Local Map"
+	"Quantum Keystone"
 
 outfitter "Hai Intermediate"
 	"Pulse Cannon"
@@ -227,8 +230,10 @@ outfitter "Hai Intermediate"
 	"Hai Fissure Batteries"
 	"Hai Gorge Batteries"
 	"Supercapacitor"
-	"Mass Expansion"
+	"Outfits Expansion"
 	"Cargo Expansion"
+	"Small Bunk Room"
+	"Bunk Room"
 	"Hai Corundum Regenerator"
 	`"Basrem" Atomic Thruster`
 	`"Basrem" Atomic Steering`
@@ -237,6 +242,7 @@ outfitter "Hai Intermediate"
 	`"Biroo" Atomic Thruster`
 	`"Biroo" Atomic Steering`
 	"Local Map"
+	"Quantum Keystone"
 
 outfitter "Hai Advanced"
 	"Pulse Cannon"
@@ -258,8 +264,10 @@ outfitter "Hai Advanced"
 	"Hai Ravine Batteries"
 	"Hai Valley Batteries"
 	"Supercapacitor"
-	"Mass Expansion"
+	"Outfits Expansion"
 	"Cargo Expansion"
+	"Small Bunk Room"
+	"Bunk Room"
 	"Hai Corundum Regenerator"
 	"Hai Diamond Regenerator"
 	`"Basrem" Atomic Thruster`
@@ -273,6 +281,7 @@ outfitter "Hai Advanced"
 	`"Bufaer" Atomic Thruster`
 	`"Bufaer" Atomic Steering`
 	"Local Map"
+	"Quantum Keystone"
 
 phrase "hai"
 	word
@@ -460,6 +469,54 @@ phrase "hostile hai"
 		"space."
 		"territory."
 		"worlds."
+	
+phrase "friendly unfettered"
+	word
+		"We "
+	word
+		"welcome"
+		"accept"
+		"tolerate"
+	word
+		" "
+	word
+		"true"
+		"strong"
+		"ambitious"
+	word
+		" "
+	word
+		"races"
+		"people"
+		"individuals"
+	word
+		" that are "
+		" "
+	word
+		"ready to"
+		"willing to"
+		"ready to"
+		"willing to"
+		"prepared to"
+	word
+		" "
+	word
+		"help"
+		"assist"
+		"work with"
+		"support"
+		"follow"
+		"obey"
+	word
+		" the "
+	word
+		"true"
+		"strong"
+		"original"
+		"strong"
+		"unaltered"
+	word
+		" Hai."
 		
 phrase "hostile unfettered"
 	word

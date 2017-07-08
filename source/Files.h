@@ -14,6 +14,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #define FILES_H_
 
 #include <cstdio>
+#include <ctime>
 #include <string>
 #include <vector>
 
@@ -47,7 +48,9 @@ public:
 	static void RecursiveList(std::string directory, std::vector<std::string> *list);
 	
 	static bool Exists(const std::string &filePath);
+	static std::time_t Timestamp(const std::string &filePath);
 	static void Copy(const std::string &from, const std::string &to);
+	static void Move(const std::string &from, const std::string &to);
 	static void Delete(const std::string &filePath);
 	
 	// Get the filename from a path.

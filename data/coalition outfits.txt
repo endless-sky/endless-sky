@@ -10,8 +10,10 @@
 
 outfit "Small Collector Module"
 	category "Power"
+	licenses
+		Coalition
 	cost 60000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/small collector module"
 	"mass" 8
 	"outfit space" -8
 	"solar collection" .8
@@ -20,8 +22,10 @@ outfit "Small Collector Module"
 
 outfit "Large Collector Module"
 	category "Power"
+	licenses
+		Coalition
 	cost 300000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/large collector module"
 	"mass" 28
 	"outfit space" -28
 	"solar collection" 3.3
@@ -30,8 +34,10 @@ outfit "Large Collector Module"
 
 outfit "Small Reactor Module"
 	category "Power"
+	licenses
+		Heliarch
 	cost 5497000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/small reactor module"
 	"mass" 42
 	"outfit space" -42
 	"energy generation" 8.8
@@ -40,8 +46,10 @@ outfit "Small Reactor Module"
 
 outfit "Large Reactor Module"
 	category "Power"
+	licenses
+		Heliarch
 	cost 17754000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/large reactor module"
 	"mass" 98
 	"outfit space" -98
 	"energy generation" 22.3
@@ -50,8 +58,10 @@ outfit "Large Reactor Module"
 
 outfit "Small Battery Module"
 	category "Power"
+	licenses
+		Coalition
 	cost 44000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/small battery module"
 	"mass" 4
 	"outfit space" -4
 	"energy capacity" 900
@@ -59,8 +69,10 @@ outfit "Small Battery Module"
 
 outfit "Large Battery Module"
 	category "Power"
+	licenses
+		Coalition
 	cost 340000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/large battery module"
 	"mass" 18
 	"outfit space" -18
 	"energy capacity" 4500
@@ -69,8 +81,10 @@ outfit "Large Battery Module"
 
 outfit "Small Shield Module"
 	category "Systems"
+	licenses
+		Coalition
 	cost 84000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/small shield module"
 	"mass" 11
 	"outfit space" -11
 	"shield generation" .28
@@ -80,8 +94,10 @@ outfit "Small Shield Module"
 
 outfit "Large Shield Module"
 	category "Systems"
+	licenses
+		Coalition
 	cost 553000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/large shield module"
 	"mass" 39
 	"outfit space" -39
 	"shield generation" 1.3
@@ -91,8 +107,10 @@ outfit "Large Shield Module"
 
 outfit "Small Repair Module"
 	category "Systems"
+	licenses
+		Coalition
 	cost 64000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/small repair module"
 	"mass" 6
 	"outfit space" -6
 	"hull repair rate" .12
@@ -102,8 +120,10 @@ outfit "Small Repair Module"
 
 outfit "Large Repair Module"
 	category "Systems"
+	licenses
+		Coalition
 	cost 553000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/large repair module"
 	"mass" 21
 	"outfit space" -21
 	"hull repair rate" .57
@@ -113,8 +133,10 @@ outfit "Large Repair Module"
 
 outfit "Cooling Module"
 	category "Systems"
+	licenses
+		Coalition
 	cost 160000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/cooling module"
 	"mass" 5
 	"outfit space" -5
 	"active cooling" 21
@@ -124,8 +146,10 @@ outfit "Cooling Module"
 
 outfit "Small Thrust Module"
 	category "Engines"
+	licenses
+		Coalition
 	"cost" 66000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/small thrust module"
 	"mass" 9
 	"outfit space" -9
 	"engine capacity" -9
@@ -139,8 +163,10 @@ outfit "Small Thrust Module"
 
 outfit "Large Thrust Module"
 	category "Engines"
+	licenses
+		Coalition
 	"cost" 292000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/large thrust module"
 	"mass" 32
 	"outfit space" -32
 	"engine capacity" -32
@@ -154,8 +180,10 @@ outfit "Large Thrust Module"
 
 outfit "Small Steering Module"
 	category "Engines"
+	licenses
+		Coalition
 	"cost" 60000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/small steering module"
 	"mass" 7
 	"outfit space" -7
 	"engine capacity" -7
@@ -166,8 +194,10 @@ outfit "Small Steering Module"
 
 outfit "Large Steering Module"
 	category "Engines"
+	licenses
+		Coalition
 	"cost" 269000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/large steering module"
 	"mass" 25
 	"outfit space" -25
 	"engine capacity" -25

@@ -76,21 +76,18 @@ const string &StellarObject::Name() const
 // explaining why (e.g. too hot, too cold, etc.).
 const string &StellarObject::LandingMessage() const
 {
-	static const string EMPTY;
-	if(planet)
-		return EMPTY;
-	
 	// Check if there's a custom message for this sprite type.
 	if(GameData::HasLandingMessage(GetSprite()))
 		return GameData::LandingMessage(GetSprite());
 	
+	static const string EMPTY;
 	return (message ? *message : EMPTY);
 }
 
 
 
 // Get the color to be used for displaying this object.
-const Color &StellarObject::TargetColor() const
+const Color &StellarObject::TargetColor(const Ship *ship) const
 {
 	static const Color planetColor[6] = {
 		Color(1., 1., 1., 1.),
@@ -100,8 +97,9 @@ const Color &StellarObject::TargetColor() const
 		Color(.8, .3, 1., 1.),
 		Color(0., .8, 0., 1.)
 	};
-	int index = !IsStar() + (GetPlanet() != nullptr);
-	if(GetPlanet())
+	bool isAccessible = (planet && planet->IsAccessible(ship));
+	int index = !IsStar() + isAccessible;
+	if(isAccessible)
 	{
 		if(!GetPlanet()->CanLand())
 			index = 3;

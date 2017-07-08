@@ -61,6 +61,7 @@ public:
 	// Get the sprite and mask for the given time step.
 	Frame GetFrame(int step = -1) const;
 	Frame GetFrame(int step, bool isHighDPI) const;
+	int GetFrameIndex(int step = -1) const;
 	const Mask &GetMask(int step = -1) const;
 	
 	// Positional attributes.
@@ -87,6 +88,7 @@ protected:
 	// Adjust the frame rate.
 	void SetFrameRate(double framesPerSecond);
 	void AddFrameRate(double framesPerSecond);
+	void PauseAnimation();
 	
 	
 protected:
@@ -122,12 +124,13 @@ private:
 	mutable bool randomize = false;
 	bool repeat = true;
 	bool rewind = false;
+	int pause = 0;
 	
 	// Frame info for the current step:
 	mutable int currentStep = -1;
 	mutable bool currentHighDPI = false;
-	mutable const Mask *mask = nullptr;
 	mutable Frame frame;
+	mutable int activeIndex = 0;
 };
 
 

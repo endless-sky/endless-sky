@@ -14,6 +14,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Audio.h"
 #include "Color.h"
+#include "Dialog.h"
 #include "Files.h"
 #include "FontSet.h"
 #include "GameData.h"
@@ -39,6 +40,8 @@ namespace {
 	static const string ZOOM_FACTOR = "Main zoom factor";
 	static const string VIEW_ZOOM_FACTOR = "View zoom factor";
 	static const string EXPEND_AMMO = "Escorts expend ammo";
+	static const string TURRET_TRACKING = "Turret tracking";
+	static const string FOCUS_PREFERENCE = "Turrets focus fire";
 	static const string FRUGAL_ESCORTS = "Escorts use ammo frugally";
 	static const string REACTIVATE_HELP = "Reactivate first-time help";
 	static const string SCROLL_SPEED = "Scroll speed";
@@ -131,12 +134,21 @@ bool PreferencesPanel::Click(int x, int y, int clicks)
 		{
 			if(zone.Value() == ZOOM_FACTOR)
 			{
-				int zoom = Screen::Zoom();
-				Screen::SetZoom(zoom == 100 ? 150 : zoom == 150 ? 200 : 100);
+				int currentZoom = Screen::Zoom();
+				int newZoom = currentZoom == 100 ? 150 : currentZoom == 150 ? 200 : 100;
+				Screen::SetZoom(newZoom);
 				// Make sure there is enough vertical space for the full UI.
 				if(Screen::Height() < 700)
+				{
+					// Notify the user why setting the zoom any higher isn't permitted.
+					// Only show this if it's not possible to zoom the view at all,
+					// because otherwise if the user is toggling between 100 and 150 the
+					// dialog will show every time, which is annoying.
+					if(newZoom == 150)
+						GetUI()->Push(new Dialog(
+							"Your screen resolution is too low to support a zoom level above 100%."));
 					Screen::SetZoom(100);
-				
+				}
 				// Convert to raw window coordinates, at the new zoom level.
 				point *= Screen::Zoom() / 100.;
 				point += .5 * Point(Screen::RawWidth(), Screen::RawHeight());
@@ -151,6 +163,8 @@ bool PreferencesPanel::Click(int x, int y, int clicks)
 			}
 			if(zone.Value() == EXPEND_AMMO)
 				Preferences::ToggleAmmoUsage();
+			else if(zone.Value() == TURRET_TRACKING)
+				Preferences::Set(FOCUS_PREFERENCE, !Preferences::Has(FOCUS_PREFERENCE));
 			else if(zone.Value() == REACTIVATE_HELP)
 			{
 				for(const auto &it : GameData::HelpTemplates())
@@ -400,6 +414,8 @@ void PreferencesPanel::DrawSettings()
 		ZOOM_FACTOR,
 		VIEW_ZOOM_FACTOR,
 		"Show status overlays",
+		"Highlight player's flagship",
+		"Rotate flagship in HUD",
 		"Show planet labels",
 		"Show mini-map",
 		"",
@@ -407,6 +423,7 @@ void PreferencesPanel::DrawSettings()
 		"Automatic aiming",
 		"Automatic firing",
 		EXPEND_AMMO,
+		TURRET_TRACKING,
 		"",
 		"Performance",
 		"Show CPU / GPU load",
@@ -462,6 +479,11 @@ void PreferencesPanel::DrawSettings()
 		}
 		else if(setting == EXPEND_AMMO)
 			text = Preferences::AmmoUsage();
+		else if(setting == TURRET_TRACKING)
+		{
+			isOn = true;
+			text = Preferences::Has(FOCUS_PREFERENCE) ? "focused" : "opportunistic";
+		}
 		else if(setting == REACTIVATE_HELP)
 		{
 			// Check how many help messages have been displayed.

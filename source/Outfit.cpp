@@ -78,11 +78,20 @@ void Outfit::Load(const DataNode &node)
 		}
 		else if(child.Token(0) == "cost" && child.Size() >= 2)
 			cost = child.Value(1);
+		else if(child.Token(0) == "licenses")
+		{
+			for(const DataNode &grand : child)
+				licenses.push_back(grand.Token(0));
+		}
 		else if(child.Size() >= 2)
 			attributes[child.Token(0)] = child.Value(1);
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
+	
+	// Legacy support for turrets that don't specify a turn rate:
+	if(IsWeapon() && attributes.count("turret mounts") && !TurretTurn() && !AntiMissile())
+		SetTurretTurn(4.);
 }
 
 
@@ -111,6 +120,14 @@ const string &Outfit::Category() const
 const string &Outfit::Description() const
 {
 	return description;
+}
+
+
+
+// Get the licenses needed to purchase this outfit.
+const vector<string> &Outfit::Licenses() const
+{
+	return licenses;
 }
 
 

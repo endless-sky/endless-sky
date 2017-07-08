@@ -37,28 +37,30 @@ namespace {
 
 
 
-void Sound::Load(const string &path)
+bool Sound::Load(const string &path)
 {
 	if(path.length() < 5 || path.compare(path.length() - 4, 4, ".wav"))
-		return;
+		return false;
 	
 	isLooped = path[path.length() - 5] == '~';
 	
 	File in(path);
 	if(!in)
-		return;
+		return false;
 	uint32_t frequency = 0;
 	uint32_t bytes = ReadHeader(in, frequency);
-	if(bytes)
-	{
-		vector<char> data(bytes);
-		if(fread(&data[0], 1, bytes, in) != bytes)
-			return;
-		
-		if(!buffer)
-			alGenBuffers(1, &buffer);
-		alBufferData(buffer, AL_FORMAT_MONO16, &data.front(), bytes, frequency);
-	}
+	if(!bytes)
+		return false;
+	
+	vector<char> data(bytes);
+	if(fread(&data[0], 1, bytes, in) != bytes)
+		return false;
+	
+	if(!buffer)
+		alGenBuffers(1, &buffer);
+	alBufferData(buffer, AL_FORMAT_MONO16, &data.front(), bytes, frequency);
+	
+	return true;
 }
 
 

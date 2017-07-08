@@ -107,6 +107,7 @@ void PlayerInfo::Load(const string &path)
 	hasFullClearance = false;
 	for(const DataNode &child : file)
 	{
+		// Basic player information and persistent UI settings:
 		if(child.Token(0) == "pilot" && child.Size() >= 3)
 		{
 			firstName = child.Token(1);
@@ -118,6 +119,10 @@ void PlayerInfo::Load(const string &path)
 			system = GameData::Systems().Get(child.Token(1));
 		else if(child.Token(0) == "planet" && child.Size() >= 2)
 			planet = GameData::Planets().Get(child.Token(1));
+		else if(child.Token(0) == "clearance")
+			hasFullClearance = true;
+		else if(child.Token(0) == "launching")
+			shouldLaunch = true;
 		else if(child.Token(0) == "travel" && child.Size() >= 2)
 		{
 			const System *next = GameData::Systems().Find(child.Token(1));
@@ -126,6 +131,15 @@ void PlayerInfo::Load(const string &path)
 		}
 		else if(child.Token(0) == "travel destination" && child.Size() >= 2)
 			travelDestination = GameData::Planets().Find(child.Token(1));
+		else if(child.Token(0) == "map coloring" && child.Size() >= 2)
+			mapColoring = child.Value(1);
+		else if(child.Token(0) == "map zoom" && child.Size() >= 2)
+			mapZoom = child.Value(1);
+		else if(child.Token(0) == "collapsed" && child.Size() >= 2)
+		{
+			for(const DataNode &grand : child)
+				collapsed[child.Token(1)].insert(grand.Token(0));
+		}
 		else if(child.Token(0) == "reputation with")
 		{
 			for(const DataNode &grand : child)
@@ -133,14 +147,22 @@ void PlayerInfo::Load(const string &path)
 					reputationChanges.emplace_back(
 						GameData::Governments().Get(grand.Token(0)), grand.Value(1));
 		}
+		
+		// Records of things you own:
+		else if(child.Token(0) == "ship")
+		{
+			// Ships owned by the player have various special characteristics:
+			ships.push_back(shared_ptr<Ship>(new Ship()));
+			ships.back()->Load(child);
+			ships.back()->SetIsSpecial();
+			ships.back()->SetGovernment(GameData::PlayerGovernment());
+			ships.back()->FinishLoading();
+			ships.back()->SetIsYours();
+		}
+		else if(child.Token(0) == "groups" && child.Size() >= 2 && !ships.empty())
+			groups[ships.back().get()] = child.Value(1);
 		else if(child.Token(0) == "account")
 			accounts.Load(child);
-		else if(child.Token(0) == "visited" && child.Size() >= 2)
-			Visit(GameData::Systems().Find(child.Token(1)));
-		else if(child.Token(0) == "visited planet" && child.Size() >= 2)
-			Visit(GameData::Planets().Find(child.Token(1)));
-		else if(child.Token(0) == "destroyed" && child.Size() >= 2)
-			destroyedPersons.push_back(GameData::Persons().Get(child.Token(1)));
 		else if(child.Token(0) == "cargo")
 			cargo.Load(child);
 		else if(child.Token(0) == "basis")
@@ -159,18 +181,8 @@ void PlayerInfo::Load(const string &path)
 			depreciation.Load(child);
 		else if(child.Token(0) == "stock depreciation")
 			stockDepreciation.Load(child);
-		else if(child.Token(0) == "harvested")
-		{
-			for(const DataNode &grand : child)
-				if(grand.Size() >= 2)
-				{
-					auto item = make_pair(
-						GameData::Systems().Find(grand.Token(0)),
-						GameData::Outfits().Get(grand.Token(1)));
-					if(item.first)
-						harvested.insert(item);
-				}
-		}
+		
+		// Records of things you have done or are doing, or have happened to you:
 		else if(child.Token(0) == "mission")
 		{
 			missions.push_back(Mission());
@@ -192,16 +204,10 @@ void PlayerInfo::Load(const string &path)
 			for(const DataNode &grand : child)
 				conditions[grand.Token(0)] = (grand.Size() >= 2) ? grand.Value(1) : 1;
 		}
-		else if(child.Token(0) == "launching")
-			shouldLaunch = true;
-		else if(child.Token(0) == "map coloring" && child.Size() >= 2)
-			mapColoring = child.Value(1);
-		else if(child.Token(0) == "map zoom" && child.Size() >= 2)
-			mapZoom = child.Value(1);
-		else if(child.Token(0) == "collapsed" && child.Size() >= 2)
+		else if(child.Token(0) == "event")
 		{
-			for(const DataNode &grand : child)
-				collapsed[child.Token(1)].insert(grand.Token(0));
+			gameEvents.push_back(GameEvent());
+			gameEvents.back().Load(child);
 		}
 		else if(child.Token(0) == "changes")
 		{
@@ -210,25 +216,54 @@ void PlayerInfo::Load(const string &path)
 		}
 		else if(child.Token(0) == "economy")
 			economy = child;
-		else if(child.Token(0) == "event")
+		else if(child.Token(0) == "destroyed" && child.Size() >= 2)
+			destroyedPersons.push_back(GameData::Persons().Get(child.Token(1)));
+		
+		// Records of things you have discovered:
+		else if(child.Token(0) == "visited" && child.Size() >= 2)
+			Visit(GameData::Systems().Find(child.Token(1)));
+		else if(child.Token(0) == "visited planet" && child.Size() >= 2)
+			Visit(GameData::Planets().Find(child.Token(1)));
+		else if(child.Token(0) == "harvested")
 		{
-			gameEvents.push_back(GameEvent());
-			gameEvents.back().Load(child);
+			for(const DataNode &grand : child)
+				if(grand.Size() >= 2)
+				{
+					auto item = make_pair(
+						GameData::Systems().Find(grand.Token(0)),
+						GameData::Outfits().Get(grand.Token(1)));
+					if(item.first)
+						harvested.insert(item);
+				}
 		}
-		else if(child.Token(0) == "clearance")
-			hasFullClearance = true;
-		else if(child.Token(0) == "ship")
+		else if(child.Token(0) == "logbook")
 		{
-			// Ships owned by the player have various special characteristics:
-			ships.push_back(shared_ptr<Ship>(new Ship()));
-			ships.back()->Load(child);
-			ships.back()->SetIsSpecial();
-			ships.back()->SetGovernment(GameData::PlayerGovernment());
-			ships.back()->FinishLoading();
-			ships.back()->SetIsYours();
+			for(const DataNode &grand : child)
+			{
+				if(grand.Size() >= 3)
+				{
+					Date date(grand.Value(0), grand.Value(1), grand.Value(2));
+					string text;
+					for(const DataNode &great : grand)
+					{
+						if(!text.empty())
+							text += "\n\t";
+						text += great.Token(0);
+					}
+					logbook.emplace(date, text);
+				}
+				else if(grand.Size() >= 2)
+				{
+					string &text = specialLogs[grand.Token(0)][grand.Token(1)];
+					for(const DataNode &great : grand)
+					{
+						if(!text.empty())
+							text += "\n\t";
+						text += great.Token(0);
+					}
+				}
+			}
 		}
-		else if(child.Token(0) == "groups" && child.Size() >= 2 && !ships.empty())
-			groups[ships.back().get()] = child.Value(1);
 	}
 	// Based on the ships that were loaded, calculate the player's capacity for
 	// cargo and passengers.
@@ -303,7 +338,7 @@ void PlayerInfo::Save() const
 			};
 			for(int i = 0; i < 3; ++i)
 				if(Files::Exists(files[i + 1]))
-					Files::Copy(files[i + 1], files[i]);
+					Files::Move(files[i + 1], files[i]);
 		}
 	}
 		
@@ -399,6 +434,9 @@ void PlayerInfo::ApplyChanges()
 		if(planet)
 			GameData::GetPolitics().DominatePlanet(planet);
 	}
+	
+	// Make sure all data defined in this saved game is valid.
+	GameData::CheckReferences();
 }
 
 
@@ -553,11 +591,11 @@ void PlayerInfo::IncrementDate()
 	{
 		string message = "You receive ";
 		if(total[0])
-			message += to_string(total[0]) + " credits salary";
+			message += Format::Number(total[0]) + " credits salary";
 		if(total[0] && total[1])
 			message += " and ";
 		if(total[1])
-			message += to_string(total[1]) + " credits in tribute";
+			message += Format::Number(total[1]) + " credits in tribute";
 		message += ".";
 		Messages::Add(message);
 		accounts.AddCredits(total[0] + total[1]);
@@ -574,6 +612,10 @@ void PlayerInfo::IncrementDate()
 	string message = accounts.Step(assets, Salaries());
 	if(!message.empty())
 		Messages::Add(message);
+	
+	// Reset the reload counters for all your ships.
+	for(const shared_ptr<Ship> &ship : ships)
+		ship->GetArmament().FinishLoading();
 }
 
 
@@ -728,7 +770,7 @@ const vector<shared_ptr<Ship>> &PlayerInfo::Ships() const
 
 
 // Add a captured ship to your fleet.
-void PlayerInfo::AddShip(shared_ptr<Ship> &ship)
+void PlayerInfo::AddShip(const shared_ptr<Ship> &ship)
 {
 	ships.push_back(ship);
 	ship->SetIsSpecial();
@@ -846,6 +888,35 @@ void PlayerInfo::ReorderShip(int fromIndex, int toIndex)
 	ships.erase(ships.begin() + fromIndex);
 	ships.insert(ships.begin() + toIndex, ship);
 	flagship.reset();
+}
+
+
+
+int PlayerInfo::ReorderShips(const set<int> &fromIndices, int toIndex)
+{
+	if(fromIndices.empty() || static_cast<unsigned>(toIndex) >= ships.size())
+		return -1;
+	
+	// Remove the ships from last to first, so that each removal leaves all the
+	// remaining indices in the set still valid.
+	vector<shared_ptr<Ship>> removed;
+	for(set<int>::const_iterator it = fromIndices.end(); it-- != fromIndices.begin(); )
+	{
+		// Bail out if any invalid indices are encountered.
+		if(static_cast<unsigned>(*it) >= ships.size())
+			return -1;
+		
+		removed.insert(removed.begin(), ships[*it]);
+		ships.erase(ships.begin() + *it);
+		// If this index is before the insertion point, removing it causes the
+		// insertion point to shift back one space.
+		if(*it < toIndex)
+			--toIndex;
+	}
+	ships.insert(ships.begin() + toIndex, removed.begin(), removed.end());
+	flagship.reset();
+	
+	return toIndex;
 }
 
 
@@ -972,7 +1043,7 @@ void PlayerInfo::Land(UI *ui)
 			RemoveMission(Mission::FAIL, mission, ui);
 		else if(mission.CanComplete(*this))
 			RemoveMission(Mission::COMPLETE, mission, ui);
-		else if(mission.Destination() == GetPlanet())
+		else if(mission.Destination() == GetPlanet() && !freshlyLoaded)
 			mission.Do(Mission::VISIT, *this, ui);
 	}
 	// One mission's actions may influence another mission, so loop through one
@@ -1280,17 +1351,58 @@ bool PlayerInfo::TakeOff(UI *ui)
 
 
 
+// Get the player's logbook.
+const multimap<Date, string> &PlayerInfo::Logbook() const
+{
+	return logbook;
+}
+
+
+
+void PlayerInfo::AddLogEntry(const std::string &text)
+{
+	logbook.emplace(date, text);
+}
+
+
+
+const map<string, map<string, string>> &PlayerInfo::SpecialLogs() const
+{
+	return specialLogs;
+}
+
+
+
+void PlayerInfo::AddSpecialLog(const string &type, const string &name, const string &text)
+{
+	string &entry = specialLogs[type][name];
+	if(!entry.empty())
+		entry += "\n\t";
+	entry += text;
+}
+
+
+
+bool PlayerInfo::HasLogs() const
+{
+	return !logbook.empty() || !specialLogs.empty();
+}
+
+
+
 // Call this when leaving the outfitter, shipyard, or hiring panel, to update
 // the information on how much space is available.
 void PlayerInfo::UpdateCargoCapacities()
 {
 	int size = 0;
 	int bunks = 0;
+	flagship = FlagshipPtr();
 	for(const shared_ptr<Ship> &ship : ships)
 		if(ship->GetSystem() == system && !ship->IsParked() && !ship->IsDisabled())
 		{
 			size += ship->Attributes().Get("cargo space");
-			bunks += ship->Attributes().Get("bunks") - ship->Crew();
+			int crew = (ship == flagship ? ship->Crew() : ship->RequiredCrew());
+			bunks += ship->Attributes().Get("bunks") - crew;
 		}
 	cargo.SetSize(size);
 	cargo.SetBunks(bunks);
@@ -1574,7 +1686,7 @@ bool PlayerInfo::HasSeen(const System *system) const
 		if(mission.Waypoints().count(system))
 			return true;
 		for(const Planet *planet : mission.Stopovers())
-			if(planet->GetSystem() == system)
+			if(planet->IsInSystem(system))
 				return true;
 	}
 	
@@ -1585,7 +1697,7 @@ bool PlayerInfo::HasSeen(const System *system) const
 		if(mission.Waypoints().count(system))
 			return true;
 		for(const Planet *planet : mission.Stopovers())
-			if(planet->GetSystem() == system)
+			if(planet->IsInSystem(system))
 				return true;
 	}
 	
@@ -1622,11 +1734,11 @@ bool PlayerInfo::KnowsName(const System *system) const
 		return true;
 	
 	for(const Mission &mission : availableJobs)
-		if(mission.Destination()->GetSystem() == system)
+		if(mission.Destination()->IsInSystem(system))
 			return true;
 	
 	for(const Mission &mission : missions)
-		if(mission.IsVisible() && mission.Destination()->GetSystem() == system)
+		if(mission.IsVisible() && mission.Destination()->IsInSystem(system))
 			return true;
 	
 	return false;
@@ -1663,10 +1775,7 @@ void PlayerInfo::Unvisit(const System *system)
 	if(!system)
 		return;
 	
-	auto it = visitedSystems.find(system);
-	if(it != visitedSystems.end())
-		visitedSystems.erase(it);
-	
+	visitedSystems.erase(system);
 	for(const StellarObject &object : system->Objects())
 		if(object.GetPlanet())
 			Unvisit(object.GetPlanet());
@@ -1679,9 +1788,7 @@ void PlayerInfo::Unvisit(const Planet *planet)
 	if(!planet)
 		return;
 	
-	auto it = visitedPlanets.find(planet);
-	if(it != visitedPlanets.end())
-		visitedPlanets.erase(it);
+	visitedPlanets.erase(planet);
 }
 
 
@@ -1890,7 +1997,7 @@ void PlayerInfo::SelectGroup(int group, bool hasShift)
 
 
 
-void PlayerInfo::SetGroup(int group)
+void PlayerInfo::SetGroup(int group, const set<Ship *> *newShips)
 {
 	int bit = (1 << group);
 	int mask = ~bit;
@@ -1898,12 +2005,36 @@ void PlayerInfo::SetGroup(int group)
 	for(const shared_ptr<Ship> &ship : ships)
 		groups[ship.get()] &= mask;
 	// Then, add all the currently selected ships to the group.
-	for(const weak_ptr<Ship> &ptr : selectedShips)
+	if(newShips)
 	{
-		shared_ptr<Ship> ship = ptr.lock();
-		if(ship)
-			groups[ship.get()] |= bit;
+		for(const Ship *ship : *newShips)
+			groups[ship] |= bit;
 	}
+	else
+	{
+		for(const weak_ptr<Ship> &ptr : selectedShips)
+		{
+			shared_ptr<Ship> ship = ptr.lock();
+			if(ship)
+				groups[ship.get()] |= bit;
+		}
+	}
+}
+
+
+
+set<Ship *> PlayerInfo::GetGroup(int group)
+{
+	int bit = (1 << group);
+	set<Ship *> result;
+	
+	for(const shared_ptr<Ship> &ship : ships)
+	{
+		auto it = groups.find(ship.get());
+		if(it != groups.end() && (it->second & bit))
+			result.insert(ship.get());
+	}
+	return result;
 }
 
 
@@ -2125,6 +2256,10 @@ void PlayerInfo::Save(const string &path) const
 	
 	DataWriter out(path);
 	
+	
+	// Basic player information and persistent UI settings:
+	
+	// Pilot information:
 	out.Write("pilot", firstName, lastName);
 	out.Write("date", date.Day(), date.Month(), date.Year());
 	if(system)
@@ -2133,10 +2268,33 @@ void PlayerInfo::Save(const string &path) const
 		out.Write("planet", planet->Name());
 	if(planet && planet->CanUseServices())
 		out.Write("clearance");
+	// This flag is set if the player must leave the planet immediately upon
+	// loading the game (i.e. because a mission forced them to take off).
+	if(shouldLaunch)
+		out.Write("launching");
 	for(const System *system : travelPlan)
 		out.Write("travel", system->Name());
 	if(travelDestination)
-		out.Write("travel destination", travelDestination->Name());
+		out.Write("travel destination", travelDestination->TrueName());
+	
+	// Save the current setting for the map coloring;
+	out.Write("map coloring", mapColoring);
+	out.Write("map zoom", mapZoom);
+	// Remember what categories are collapsed.
+	for(const auto &it : collapsed)
+	{
+		// Skip panels where nothing was collapsed.
+		if(it.second.empty())
+			continue;
+		
+		out.Write("collapsed", it.first);
+		out.BeginChild();
+		{
+			for(const auto &cit : it.second)
+				out.Write(cit);
+		}
+		out.EndChild();
+	}
 	
 	out.Write("reputation with");
 	out.BeginChild();
@@ -2146,6 +2304,11 @@ void PlayerInfo::Save(const string &path) const
 				out.Write(it.first, it.second.Reputation());
 	}
 	out.EndChild();
+	
+	
+	// Records of things you own:
+	out.Write();
+	out.WriteComment("What you own:");
 		
 	// Save all the data for all the player's ships.
 	for(const shared_ptr<Ship> &ship : ships)
@@ -2157,6 +2320,7 @@ void PlayerInfo::Save(const string &path) const
 	}
 	
 	// Save accounting information, cargo, and cargo cost bases.
+	accounts.Save(out);
 	cargo.Save(out);
 	if(!costBasis.empty())
 	{
@@ -2169,7 +2333,6 @@ void PlayerInfo::Save(const string &path) const
 		}
 		out.EndChild();
 	}
-	accounts.Save(out);
 	
 	if(!stock.empty())
 	{
@@ -2184,17 +2347,11 @@ void PlayerInfo::Save(const string &path) const
 	}
 	depreciation.Save(out, date.DaysSinceEpoch());
 	stockDepreciation.Save(out, date.DaysSinceEpoch());
-	if(!harvested.empty())
-	{
-		out.Write("harvested");
-		out.BeginChild();
-		{
-			for(const auto &it : harvested)
-				if(it.first && it.second)
-					out.Write(it.first->Name(), it.second->Name());
-		}
-		out.EndChild();
-	}
+	
+	
+	// Records of things you have done or are doing, or have happened to you:
+	out.Write();
+	out.WriteComment("What you've done:");
 	
 	// Save all missions (accepted or available).
 	for(const Mission &mission : missions)
@@ -2221,29 +2378,6 @@ void PlayerInfo::Save(const string &path) const
 		}
 		out.EndChild();
 	}
-	// This flag is set if the player must leave the planet immediately upon
-	// loading the game (i.e. because a mission forced them to take off).
-	if(shouldLaunch)
-		out.Write("launching");
-	
-	// Save the current setting for the map coloring;
-	out.Write("map coloring", mapColoring);
-	out.Write("map zoom", mapZoom);
-	// Remember what categories are collapsed.
-	for(const auto &it : collapsed)
-	{
-		// Skip panels where nothing was collapsed.
-		if(it.second.empty())
-			continue;
-		
-		out.Write("collapsed", it.first);
-		out.BeginChild();
-		{
-			for(const auto &cit : it.second)
-				out.Write(cit);
-		}
-		out.EndChild();
-	}
 	
 	// Save pending events, and changes that have happened due to past events.
 	for(const GameEvent &event : gameEvents)
@@ -2265,6 +2399,11 @@ void PlayerInfo::Save(const string &path) const
 		if(it.second.IsDestroyed())
 			out.Write("destroyed", it.first);
 	
+	
+	// Records of things you have discovered:
+	out.Write();
+	out.WriteComment("What you know:");
+	
 	// Save a list of systems the player has visited.
 	for(const System *system : visitedSystems)
 		if(!system->Name().empty())
@@ -2274,6 +2413,45 @@ void PlayerInfo::Save(const string &path) const
 	for(const Planet *planet : visitedPlanets)
 		if(!planet->TrueName().empty())
 			out.Write("visited planet", planet->TrueName());
+	
+	if(!harvested.empty())
+	{
+		out.Write("harvested");
+		out.BeginChild();
+		{
+			for(const auto &it : harvested)
+				if(it.first && it.second)
+					out.Write(it.first->Name(), it.second->Name());
+		}
+		out.EndChild();
+	}
+	
+	out.Write("logbook");
+	out.BeginChild();
+	for(const auto &it : logbook)
+	{
+		out.Write(it.first.Day(), it.first.Month(), it.first.Year());
+		out.BeginChild();
+		{
+			// Break the text up into paragraphs.
+			for(const string &line : Format::Split(it.second, "\n\t"))
+				out.Write(line);
+		}
+		out.EndChild();
+	}
+	for(const auto &it : specialLogs)
+		for(const auto &eit : it.second)
+		{
+			out.Write(it.first, eit.first);
+			out.BeginChild();
+			{
+				// Break the text up into paragraphs.
+				for(const string &line : Format::Split(eit.second, "\n\t"))
+					out.Write(line);
+			}
+			out.EndChild();
+		}
+	out.EndChild();
 }
 
 

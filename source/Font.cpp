@@ -279,6 +279,46 @@ string Font::TruncateFront(const string &str, int width) const
 
 
 
+string Font::TruncateMiddle(const string &str, int width) const
+{
+	int prevChars = str.size();
+	int prevWidth = Width(str);
+	if(prevWidth <= width)
+		return str;
+	
+	width -= Width("...");
+	// As a safety against infinite loops (even though they won't be possible if
+	// this implementation is correct), limit the number of loops to the number
+	// of characters in the string.
+	for(size_t i = 0; i < str.length(); ++i)
+	{
+		// Loop until the previous width we tried was too long and this one is
+		// too short, or vice versa. Each time, the next string length we try is
+		// interpolated from the previous width.
+		int nextChars = (prevChars * width) / prevWidth;
+		bool isSame = (nextChars == prevChars);
+		bool prevWorks = (prevWidth <= width);
+		nextChars += (prevWorks ? isSame : -isSame);
+		
+		int leftChars = nextChars / 2;
+		int rightChars = nextChars - leftChars;
+		int nextWidth = Width(str.substr(0, leftChars) + str.substr(str.size() - rightChars));
+		bool nextWorks = (nextWidth <= width);
+		if(prevWorks != nextWorks && abs(nextChars - prevChars) == 1)
+		{
+			leftChars = min(prevChars,nextChars) / 2;
+			rightChars = min(prevChars, nextChars) - leftChars;
+			return str.substr(0, leftChars) + "..." + str.substr(str.size() - rightChars);
+		}
+		
+		prevChars = nextChars;
+		prevWidth = nextWidth;
+	}
+	return str;
+}
+
+
+
 int Font::Height() const
 {
 	return height;

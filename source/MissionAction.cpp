@@ -114,34 +114,40 @@ void MissionAction::Load(const DataNode &node, const string &missionName)
 	
 	for(const DataNode &child : node)
 	{
-		if(child.Token(0) == "dialog")
+		const string &key = child.Token(0);
+		bool hasValue = (child.Size() >= 2);
+		
+		if(key == "log" || key == "dialog")
 		{
-			for(int i = 1; i < child.Size(); ++i)
+			bool isSpecial = (key == "log" && child.Size() >= 3);
+			string &text = (key == "dialog" ? dialogText :
+				isSpecial ? specialLogText[child.Token(1)][child.Token(2)] : logText);
+			for(int i = isSpecial ? 3 : 1; i < child.Size(); ++i)
 			{
-				if(!dialogText.empty())
-					dialogText += "\n\t";
-				dialogText += child.Token(i);
+				if(!text.empty())
+					text += "\n\t";
+				text += child.Token(i);
 			}
 			for(const DataNode &grand : child)
 				for(int i = 0; i < grand.Size(); ++i)
 				{
-					if(!dialogText.empty())
-						dialogText += "\n\t";
-					dialogText += grand.Token(i);
+					if(!text.empty())
+						text += "\n\t";
+					text += grand.Token(i);
 				}
 		}
-		else if(child.Token(0) == "conversation" && child.HasChildren())
+		else if(key == "conversation" && child.HasChildren())
 			conversation.Load(child);
-		else if(child.Token(0) == "conversation" && child.Size() > 1)
+		else if(key == "conversation" && hasValue)
 			stockConversation = GameData::Conversations().Get(child.Token(1));
-		else if(child.Token(0) == "outfit" && child.Size() >= 2)
+		else if(key == "outfit" && hasValue)
 		{
 			int count = (child.Size() < 3 ? 1 : static_cast<int>(child.Value(2)));
 			gifts[GameData::Outfits().Get(child.Token(1))] = count;
 		}
-		else if(child.Token(0) == "require" && child.Size() >= 2)
+		else if(key == "require" && hasValue)
 			gifts[GameData::Outfits().Get(child.Token(1))] = 0;
-		else if(child.Token(0) == "payment")
+		else if(key == "payment")
 		{
 			if(child.Size() == 1)
 				paymentMultiplier += 150;
@@ -150,12 +156,12 @@ void MissionAction::Load(const DataNode &node, const string &missionName)
 			if(child.Size() >= 3)
 				paymentMultiplier += child.Value(2);
 		}
-		else if(child.Token(0) == "event" && child.Size() >= 2)
+		else if(key == "event" && hasValue)
 		{
 			int days = (child.Size() >= 3 ? child.Value(2) : 0);
 			events[child.Token(1)] = days;
 		}
-		else if(child.Token(0) == "fail")
+		else if(key == "fail")
 			fail.insert(child.Size() >= 2 ? child.Token(1) : missionName);
 		else
 			conditions.Add(child);
@@ -174,23 +180,37 @@ void MissionAction::Save(DataWriter &out) const
 		out.Write("on", trigger, system);
 	out.BeginChild();
 	{
+		if(!logText.empty())
+		{
+			out.Write("log");
+			out.BeginChild();
+			{
+				// Break the text up into paragraphs.
+				for(const string &line : Format::Split(logText, "\n\t"))
+					out.Write(line);
+			}
+			out.EndChild();
+		}
+		for(const auto &it : specialLogText)
+			for(const auto &eit : it.second)
+			{
+				out.Write("log", it.first, eit.first);
+				out.BeginChild();
+				{
+					// Break the text up into paragraphs.
+					for(const string &line : Format::Split(eit.second, "\n\t"))
+						out.Write(line);
+				}
+				out.EndChild();
+			}
 		if(!dialogText.empty())
 		{
 			out.Write("dialog");
 			out.BeginChild();
 			{
 				// Break the text up into paragraphs.
-				size_t begin = 0;
-				while(true)
-				{
-					size_t pos = dialogText.find("\n\t", begin);
-					if(pos == string::npos)
-						pos = dialogText.length();
-					out.Write(dialogText.substr(begin, pos - begin));
-					if(pos == dialogText.length())
-						break;
-					begin = pos + 2;
-				}
+				for(const string &line : Format::Split(dialogText, "\n\t"))
+					out.Write(line);
 			}
 			out.EndChild();
 		}
@@ -277,6 +297,12 @@ void MissionAction::Do(PlayerInfo &player, UI *ui, const System *destination) co
 	else if(isOffer && ui)
 		player.MissionCallback(Conversation::ACCEPT);
 	
+	if(!logText.empty())
+		player.AddLogEntry(logText);
+	for(const auto &it : specialLogText)
+		for(const auto &eit : it.second)
+			player.AddSpecialLog(it.first, eit.first, eit.second);
+	
 	// If multiple outfits are being transferred, first remove them before
 	// adding any new ones.
 	for(const auto &it : gifts)
@@ -324,6 +350,12 @@ MissionAction MissionAction::Instantiate(map<string, string> &subs, int jumps, i
 	if(trigger == "complete" || result.payment)
 		subs["<payment>"] = Format::Number(result.payment)
 			+ (result.payment == 1 ? " credit" : " credits");
+	
+	if(!logText.empty())
+		result.logText = Format::Replace(logText, subs);
+	for(const auto &it : specialLogText)
+		for(const auto &eit : it.second)
+			result.specialLogText[it.first][eit.first] = Format::Replace(eit.second, subs);
 	
 	if(!dialogText.empty())
 		result.dialogText = Format::Replace(dialogText, subs);

@@ -13,7 +13,7 @@ fleet "Heliarch"
 	names "heliarch"
 	cargo 1
 	personality
-		heroic
+		heroic opportunistic
 	variant 40
 		"Heliarch Neutralizer"
 	variant 20
@@ -221,8 +221,9 @@ outfitter "Coalition Basics"
 	"Small Thrust Module"
 	"Small Steering Module"
 	"Cargo Expansion"
-	"Mass Expansion"
+	"Outfits Expansion"
 	"Hyperdrive"
+	"Local Map"
 
 outfitter "Coalition Advanced"
 	"Small Collector Module"
@@ -239,8 +240,9 @@ outfitter "Coalition Advanced"
 	"Small Steering Module"
 	"Large Steering Module"
 	"Cargo Expansion"
-	"Mass Expansion"
+	"Outfits Expansion"
 	"Hyperdrive"
+	"Local Map"
 
 outfitter "Heliarch"
 	"Small Reactor Module"
@@ -252,6 +254,7 @@ outfitter "Heliarch"
 	"Heliarch Attractor"
 	"Heliarch Repulsor"
 	"Ion Rain Gun"
+	"Local Map"
 
 
 shipyard "Arach"

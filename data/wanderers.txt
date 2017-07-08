@@ -92,7 +92,7 @@ fleet "Wanderer Defense"
 	government "Wanderer"
 	names "wanderer"
 	personality
-		heroic
+		heroic opportunistic
 	variant 3
 		"Strong Wind"
 		"Summer Leaf" 2
@@ -150,7 +150,8 @@ outfitter "Wanderer Basics"
 	"Fuel Pod"
 	"Wanderer Ramscoop"
 	"Cargo Expansion"
-	"Mass Expansion"
+	"Outfits Expansion"
+	"Small Bunk Room"
 	"Local Map"
 	"Hyperdrive"
 
@@ -176,7 +177,9 @@ outfitter "Wanderer Advanced"
 	"Fuel Pod"
 	"Wanderer Ramscoop"
 	"Cargo Expansion"
-	"Mass Expansion"
+	"Outfits Expansion"
+	"Small Bunk Room"
+	"Bunk Room"
 	"Local Map"
 	"Hyperdrive"
 
@@ -339,14 +342,255 @@ phrase "friendly wanderer"
 		"wrecked "
 		"abandoned "
 	word
-		"worlds."
-		"planets."
-		"places."
-		"lands."
-		"ecosystems."
-		"biospheres."
+		"worlds"
+		"planets"
+		"places"
+		"lands"
+		"ecosystems"
+		"biospheres"
+	word
+		"."
 
+phrase "friendly wanderer"
+	word
+		"You are "
+	word
+		"a welcome "
+		"an honored "
+	word
+		"[visitor, traveller] "
+		"guest "
+	word
+		""
+		"to us"
+		"to our people"
+		"to the Wanderers"
+	word
+		", "
+		" - "
+	word
+		"so long as "
+		"as long as "
+		"[providing, given] "
+	word
+		"you respect our ways"
+		"you respect our worlds"
+		"you respect our ecosystems"
+		"you show respect for our ways"
+		"you show respect for our worlds"
+		"you show respect for our ecosystems"
+		"you live sustainably"
+		"you [consume, devour] no more than you need"
+		"you cause no harm"
+		"you come in peace"
+	word
+		"."
 
+phrase "friendly wanderer"
+	word
+		"We mean "
+		"We intend "
+		"We plan "
+		"We come "
+	word
+		"to "
+		"only to "
+		"simply to "
+		"solely to "
+	word
+		"[repair, fix] "
+		"restore "
+		"heal "
+		"[shape, remake] "
+		"[transform, renew] "
+		"revitalize "
+		"take care of "
+		"breathe [life, hope] "
+	word
+		"what has been "
+		"what others have "
+		"what those who came before have "
+	word
+		"[harmed, abused]"
+		"broken"
+		"[brutalized, mistreated]"
+		"[wasted, spent]"
+		"killed"
+		"rendered [lifeless, barren]"
+		"ruined"
+		"[consumed, devoured]"
+		"exploited"
+		"poisoned"
+		"wrecked"
+	word
+		"."
+			
+phrase "hostile wanderer"
+	word
+		"We do not wish to "
+		"We do not want to "
+		"We wish not to "
+		"It gives us no [joy, pleasure] to "	
+	word
+		"harm you"
+		"destroy you"
+		"kill you"
+		"[end, terminate] you"
+		"be [violent, destructive]"
+	word
+		", "
+	word
+		"but we must "
+		"but we will "
+	word
+		"[protect, shepherd] "
+		"defend "
+		"guard "
+		"preserve "
+	word
+		"our "
+	word
+		"[space, territory]"
+		"[territory, responsibility]"
+		"worlds"
+		"planets"
+		"lands"
+		"ecoystems"
+		"biospheres"
+		"people"
+		"[calling, work]"
+		"ways"
+	word
+		"."
+		
+phrase "hostile wanderer"
+	word
+		"Your "
+	word
+		"actions "
+		"deeds "
+		"crimes "
+	word
+		"are "
+	word
+		"those of [consumers, devourers]"
+		"those of destroyers"
+		"those of [murderers, exploiters]"
+		"shameless"
+		"unforgivable"
+		"against nature"
+	word
+		". "
+	word
+		"You will not "
+		"You shall not "
+		"You cannot be allowed to "
+	word
+		"prevail"
+		"succeed"
+		"win"
+		"continue"
+		"remain"
+	word
+		"."
+		
+phrase "hostile wanderer"
+	word
+		"You "
+		"[Murderers, exploiters] "
+	word
+		"have no place "
+		"do not belong "
+		"are not welcome "
+	word
+		"here"
+		"in our [space, territory]"
+		"amongst us"
+	word
+		". "
+	word
+		"Leave"
+		"Begone"
+		"Remove yourself"
+	word
+		", "
+	word
+		"so we may continue our [calling, work]"
+		"and we will not pursue you"
+		"and we will allow you to live"
+		"or we will destroy you"
+		"or we will be forced to kill you"
+		"or we will be forced to [end, terminate] you"
+		"and never return"
+		"and learn [wisdom, balance]"
+	word
+		"."
+		
+phrase "hostile disabled wanderer"
+	word
+		"It is not too late "
+		"There is still time "
+		"You still have an opportunity "
+	word
+		"to "
+	word
+		"leave"
+		"leave in peace"
+		"surrender"
+		"desist"
+		"make [amends, reparations]"
+		"make [amends, reparations] for your crimes"
+		"make things right with us"
+		"learn [wisdom, balance]"
+		"end this violence"
+		"end this destruction"
+		"put a stop to this"
+	word
+		"."
+		
+phrase "hostile disabled wanderer"
+	word
+		"We "
+		"The [leaders, elders] "
+	word
+		"were wrong to trust you, "
+		"were mistaken in trusting you, "
+		"should never have welcomed you, "
+	word
+		"[alien, outsider]"
+		"human"
+		"[murderer, exploiter]"
+	word
+		"."
+		"!"
+		
+phrase "hostile disabled wanderer"
+	word
+		"Our people "
+		"Our young ones "
+		"We "
+	word
+		"do not deserve this "
+		"should not suffer this "
+	word
+		"violence"
+		"betrayal"
+		"[harm, abuse]"
+	word
+		". "
+	word 
+		"You must "
+		"Please "
+	word
+		"desist"
+		"stop"
+		"stop this"
+		"leave"
+		"begone"
+		"remove yourself"
+		"have mercy"
+	word
+		"."
 
 event "wanderers: first tech increase"
 	system "Ik'kara'ka"
@@ -384,38 +628,19 @@ event "wanderers: first tech increase"
 		fleet "Wanderer Defense" 3000
 		fleet "Wanderer Flycatchers" 1200
 	fleet "Wanderer Defense"
-		government "Wanderer"
-		names "wanderer"
-		personality
-			heroic
-		variant 3
-			"Strong Wind"
-			"Summer Leaf" 2
-		variant
-			"Summer Leaf" 5
-		variant 2
-			"Strong Wind" 2
-		variant 2
-			"Strong Wind"
-			"Summer Leaf"
-		variant
-			"Strong Wind"
-			"Summer Leaf" 3
-		variant
-			"Strong Wind" 3
-		variant 2
+		add variant 2
 			"Autumn Leaf" 2
-		variant 2
+		add variant 2
 			"Strong Wind"
 			"Autumn Leaf" 2
-		variant
+		add variant
 			"Strong Wind"
 			"Autumn Leaf"
 			"Summer Leaf"
-		variant
+		add variant
 			"Autumn Leaf"
 			"Summer Leaf" 2
-		variant 2
+		add variant 2
 			"Autumn Leaf"
 			"Summer Leaf"
 	shipyard "Wanderer Basics"
@@ -480,47 +705,45 @@ event "wanderers: unfettered invasion starts"
 
 event "wanderers: tempest mass production"
 	fleet "Wanderer Defense"
-		government "Wanderer"
-		names "wanderer"
-		personality
-			heroic
-		variant 6
+		add variant 6
 			"Tempest"
 			"Summer Leaf"
 			"Autumn Leaf"
-		variant 4
+		add variant 4
 			"Tempest (Heavy)"
 			"Strong Wind"
-		variant 1
+		add variant 1
 			"Tempest (Heavy)"
 			"Tempest"
 			"Tempest (Missile)"
-		variant 2
+		add variant 2
 			"Tempest (Heavy)"
 			"Tempest"
-		variant 1
+		add variant 1
 			"Tempest (Missile)" 2
-		variant 3
-			"Strong Wind"
-			"Summer Leaf" 2
-		variant 2
-			"Strong Wind" 2
-		variant 2
+		add variant 2
 			"Strong Wind"
 			"Autumn Leaf"
-		variant
-			"Strong Wind" 3
-		variant 2
+		add variant 2
 			"Autumn Leaf" 3
-		variant
+		add variant 1
+			"Summer Leaf" 4
+		remove variant
+			"Summer Leaf" 5
+		remove variant
 			"Strong Wind"
+			"Summer Leaf"
+		remove variant
+			"Strong Wind"
+			"Summer Leaf" 3
+		remove variant
+			"Autumn Leaf" 2
+		remove variant
+			"Strong Wind"
+			"Autumn Leaf" 2
+		remove variant
 			"Autumn Leaf"
 			"Summer Leaf"
-		variant
-			"Autumn Leaf"
-			"Summer Leaf" 2
-		variant
-			"Summer Leaf" 4
 	shipyard "Wanderer Advanced"
 		"Tempest"
 	outfitter "Wanderer Advanced"
@@ -696,67 +919,26 @@ event "wanderers: the eye opens"
 
 event "wanderers: derecho mass production"
 	fleet "Wanderer Defense"
-		government "Wanderer"
-		names "wanderer"
-		personality
-			heroic
-		variant 4
+		add variant 4
 			"Derecho"
 			"Tempest"
-		variant 3
+		add variant 3
 			"Derecho (Turret)"
 			"Tempest (Missile)"
-		variant 2
+		add variant 2
 			"Derecho (Tough)"
 			"Tempest (Heavy)"
-		variant 4
+		add variant 4
 			"Derecho"
 			"Strong Wind" 2
-		variant 3
+		add variant 3
 			"Derecho (Tough)"
 			"Autumn Leaf"
 			"Summer Leaf" 2
-		variant 2
+		add variant 2
 			"Derecho (Turret)"
 			"Tempest (Heavy)"
 			"Tempest"
-		variant 6
-			"Tempest"
-			"Summer Leaf"
-			"Autumn Leaf"
-		variant 4
-			"Tempest (Heavy)"
-			"Strong Wind"
-		variant 1
-			"Tempest (Heavy)"
-			"Tempest"
-			"Tempest (Missile)"
-		variant 2
-			"Tempest (Heavy)"
-			"Tempest"
-		variant 1
-			"Tempest (Missile)" 2
-		variant 3
-			"Strong Wind"
-			"Summer Leaf" 2
-		variant 2
-			"Strong Wind" 2
-		variant 2
-			"Strong Wind"
-			"Autumn Leaf"
-		variant
-			"Strong Wind" 3
-		variant 2
-			"Autumn Leaf" 3
-		variant
-			"Strong Wind"
-			"Autumn Leaf"
-			"Summer Leaf"
-		variant
-			"Autumn Leaf"
-			"Summer Leaf" 2
-		variant
-			"Summer Leaf" 4
 	shipyard "Wanderer Advanced"
 		"Derecho"
 	outfitter "Wanderer Advanced"
@@ -781,87 +963,26 @@ event "wanderers: spera anatrusk colony"
 
 event "wanderers: hurricane mass production"
 	fleet "Wanderer Defense"
-		government "Wanderer"
-		names "wanderer"
-		personality
-			heroic
-		variant 5
+		add variant 5
 			"Hurricane"
-		variant 2
+		add variant 2
 			"Hurricane (Turret)"
-		variant 2
+		add variant 2
 			"Hurricane (Tough)"
-		variant 3
+		add variant 3
 			"Hurricane"
 			"Derecho"
 			"Tempest"
-		variant 2
+		add variant 2
 			"Hurricane"
 			"Tempest" 2
-		variant 3
+		add variant 3
 			"Hurricane (Turret)"
 			"Derecho (Turret)"
 			"Tempest (Heavy)"
-		variant 2
+		add variant 2
 			"Hurricane (Tough)"
 			"Tempest (Missile)" 2
-		variant 4
-			"Derecho"
-			"Tempest"
-		variant 3
-			"Derecho (Turret)"
-			"Tempest (Missile)"
-		variant 2
-			"Derecho (Tough)"
-			"Tempest (Heavy)"
-		variant 4
-			"Derecho"
-			"Strong Wind" 2
-		variant 3
-			"Derecho (Tough)"
-			"Autumn Leaf"
-			"Summer Leaf" 2
-		variant 2
-			"Derecho (Turret)"
-			"Tempest (Heavy)"
-			"Tempest"
-		variant 6
-			"Tempest"
-			"Summer Leaf"
-			"Autumn Leaf"
-		variant 4
-			"Tempest (Heavy)"
-			"Strong Wind"
-		variant 1
-			"Tempest (Heavy)"
-			"Tempest"
-			"Tempest (Missile)"
-		variant 2
-			"Tempest (Heavy)"
-			"Tempest"
-		variant 1
-			"Tempest (Missile)" 2
-		variant 3
-			"Strong Wind"
-			"Summer Leaf" 2
-		variant 2
-			"Strong Wind" 2
-		variant 2
-			"Strong Wind"
-			"Autumn Leaf"
-		variant
-			"Strong Wind" 3
-		variant 2
-			"Autumn Leaf" 3
-		variant
-			"Strong Wind"
-			"Autumn Leaf"
-			"Summer Leaf"
-		variant
-			"Autumn Leaf"
-			"Summer Leaf" 2
-		variant
-			"Summer Leaf" 4
 	shipyard "Wanderer Advanced"
 		"Hurricane"
 

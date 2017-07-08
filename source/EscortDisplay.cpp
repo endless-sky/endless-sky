@@ -15,6 +15,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Color.h"
 #include "Font.h"
 #include "FontSet.h"
+#include "GameData.h"
 #include "LineShader.h"
 #include "Point.h"
 #include "OutlineShader.h"
@@ -53,15 +54,16 @@ void EscortDisplay::Draw() const
 	icons.sort();
 	stacks.clear();
 	zones.clear();
+	static const Set<Color> &colors = GameData::Colors();
 	
 	// Draw escort status.
-	static const Font &font = FontSet::Get(14);
+	const Font &font = FontSet::Get(14);
 	Point pos = Point(Screen::Left() + 20., Screen::Bottom());
-	static const Color hereColor(.8, 1.);
-	static const Color elsewhereColor(.4, .4, .6, 1.);
-	static const Color notReadyToJumpColor(.9, .8, 0., 1.);
-	static const Color selectedColor(.2, .8, 0., 1.);
-	static const Color cannotJumpColor(.9, .2, 0., 1.);
+	const Color &elsewhereColor = *colors.Get("escort elsewhere");
+	const Color &cannotJumpColor = *colors.Get("escort blocked");
+	const Color &notReadyToJumpColor = *colors.Get("escort not ready");
+	const Color &selectedColor = *colors.Get("escort selected");
+	const Color &hereColor = *colors.Get("escort present");
 	for(const Icon &escort : icons)
 	{
 		if(!escort.sprite)
@@ -109,12 +111,12 @@ void EscortDisplay::Draw() const
 		
 		// Draw the status bars.
 		static const Color fullColor[5] = {
-			Color(.44, .56, .70, 0), Color(.70, .62, .44, 0),
-			Color(.60, .60, .60, 0), Color(.70, .44, .44, 0), Color(.70, .62, .44, 0)
+			colors.Get("shields")->Additive(1.), colors.Get("hull")->Additive(1.),
+			colors.Get("energy")->Additive(1.), colors.Get("heat")->Additive(1.), colors.Get("fuel")->Additive(1.)
 		};
 		static const Color halfColor[5] = {
-			Color(.22, .28, .35, 0), Color(.35, .31, .22, 0),
-			Color(.30, .30, .30, 0), Color(.35, .22, .22, 0), Color(.35, .31, .22, 0)
+			fullColor[0].Additive(.5), fullColor[1].Additive(.5),
+			fullColor[2].Additive(.5), fullColor[3].Additive(.5), fullColor[4].Additive(.5),
 		};
 		Point from(pos.X() + 15., pos.Y() - 8.5);
 		for(int i = 0; i < 5; ++i)
@@ -164,7 +166,7 @@ const vector<const Ship *> &EscortDisplay::Click(const Point &point) const
 EscortDisplay::Icon::Icon(const Ship &ship, bool isHere, bool fleetIsJumping, bool isSelected)
 	: sprite(ship.GetSprite()),
 	isHere(isHere && !ship.IsDisabled()),
-	notReadyToJump(fleetIsJumping && !ship.IsHyperspacing() && !ship.CheckHyperspace()),
+	notReadyToJump(fleetIsJumping && !ship.IsHyperspacing() && !ship.IsReadyToJump()),
 	cannotJump(fleetIsJumping && !ship.IsHyperspacing() && !ship.JumpsRemaining()),
 	isSelected(isSelected),
 	cost(ship.Cost()),

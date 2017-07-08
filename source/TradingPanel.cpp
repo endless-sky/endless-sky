@@ -14,7 +14,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Color.h"
 #include "Command.h"
-#include "Dialog.h"
 #include "FillShader.h"
 #include "Font.h"
 #include "FontSet.h"
@@ -26,7 +25,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Messages.h"
 #include "Outfit.h"
 #include "PlayerInfo.h"
-#include "Preferences.h"
 #include "System.h"
 #include "UI.h"
 
@@ -87,11 +85,7 @@ TradingPanel::~TradingPanel()
 	
 void TradingPanel::Step()
 {
-	if(!Preferences::Has("help: trading"))
-	{
-		Preferences::Set("help: trading");
-		GetUI()->Push(new Dialog(GameData::HelpMessage("trading")));
-	}
+	DoHelp("trading");
 }
 
 
@@ -140,18 +134,19 @@ void TradingPanel::Draw()
 		sellOutfits = (hasOutfits && !hasHarvested);
 		
 		string str = to_string(outfits + missionCargo);
+		str += (outfits + missionCargo == 1) ? " ton of " : " tons of ";
 		if(hasHarvested && missionCargo)
-			str += " tons of mission cargo and other items.";
+			str += "mission cargo and other items.";
 		else if(hasOutfits && missionCargo)
-			str += " tons of outfits and mission cargo.";
+			str += "outfits and mission cargo.";
 		else if(hasOutfits && hasHarvested)
-			str += " tons of outfits and harvested materials.";
+			str += "outfits and harvested materials.";
 		else if(hasOutfits)
-			str += " tons of outfits.";
+			str += "outfits.";
 		else if(hasHarvested)
-			str += " tons of harvested materials.";
+			str += "harvested materials.";
 		else
-			str += " tons of mission cargo.";
+			str += "mission cargo.";
 		font.Draw(str, Point(NAME_X, lastY), unselected);
 	}
 	
@@ -310,14 +305,13 @@ void TradingPanel::Buy(int64_t amount)
 	
 	if(amount > 0)
 	{
-		amount = min(amount, player.Accounts().Credits() / price);
-		amount = min(amount, static_cast<int64_t>(player.Cargo().Free()));
+		amount = min(amount, min<int64_t>(player.Cargo().Free(), player.Accounts().Credits() / price));
 		player.AdjustBasis(type, amount * price);
 	}
 	else
 	{
 		// Selling cargo:
-		amount = max(amount, static_cast<int64_t>(-player.Cargo().Get(type)));
+		amount = max<int64_t>(amount, -player.Cargo().Get(type));
 		
 		int64_t basis = player.GetBasis(type, amount);
 		player.AdjustBasis(type, basis);
