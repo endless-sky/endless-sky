@@ -768,8 +768,7 @@ bool Ship::Move(list<Effect> &effects, list<shared_ptr<Flotsam>> &flotsam)
 		// ship has no ramscoop, it can harvest a tiny bit of fuel by flying
 		// close to the star.
 		double scale = .2 + 1.8 / (.001 * position.Length() + 1);
-		fuel += .03 * scale * (sqrt(attributes.Get("ramscoop")) + .05 * scale);
-		fuel = min(fuel, attributes.Get("fuel capacity"));
+		AddFuel(.03 * scale * (sqrt(attributes.Get("ramscoop")) + .05 * scale));
 		
 		energy += scale * attributes.Get("solar collection");
 		
@@ -1313,47 +1312,63 @@ void Ship::Launch(list<shared_ptr<Ship>> &ships)
 	if(!IsDestroyed() && (!commands.Has(Command::DEPLOY) || zoom != 1. || hyperspaceCount || cloak))
 		return;
 	
+	bool inDanger = !Shields() || IsDisabled() || Hull() < .6;
 	for(Bay &bay : bays)
 		if(bay.ship && !Random::Int(40 + 20 * bay.isFighter))
 		{
 			std::shared_ptr<Ship> &ship = bay.ship;
 
-			//do not launch ships with low shields
-			if( ship->Shields() < .9 && ship->Attributes().Get("shields"))
-			{
+			// Do not launch ships with low health if they can be repaired more, unless our
+			// resources are needed for self-preservation.
+			if(!inDanger && ship->Hull() < .9 && Attributes().Get("hull repair rate") && Hull() > .9)
 				continue;
-			}
-
-			//rearm fighters as they leave the bay
+			if(!inDanger() && ship->Shields() < .9 && Attributes().Get("shield generation") && Shields() > .9)
+				continue;
+			
+			// Re-arm fighters upon launching.
 			set<const Outfit *> toRefill;
-			for(const auto &it : ship->Weapons())
-				if(it.GetOutfit() && it.GetOutfit()->Ammo())
-					toRefill.insert(it.GetOutfit()->Ammo());
-
-			// This is slower than just calculating the proper number to add, but
-			// that does not matter because this is not so time-consuming anyways.
-			for(const Outfit *outfit : toRefill)
+			int ammoWeapons = 0;
+			int fuelWeapons = 0;
+			int weaponCount = 0;
+			for(const auto &hit : ship->Weapons())
 			{
-				while(ship->Attributes().CanAdd(*outfit))
+				if(hit.GetOutfit() && !hit.IsAntiMissile())
 				{
-					if(Cargo().Get(outfit))
-						Cargo().Remove(outfit);
-					ship->AddOutfit(outfit, 1);
+					++weaponCount;
+					if(hit.GetOutfit()->FiringFuel())
+						++fuelWeapons;
+					if(hit.GetOutfit()->Ammo())
+					{
+						++ammoWeapons;
+						toRefill.insert(hit.GetOutfit()->Ammo());
+					}
 				}
 			}
-
-
-			//Refuel the fighter.
-			double toTransfer = std::min(ship->attributes.Get("fuel capacity") - ship->fuel, fuel);
-			fuel -= toTransfer;
-			ship->fuel += toTransfer;
-
-			//if still low or out of fuel don't launch
-			if( ship->Fuel() < 0.25 && ship->attributes.Get("fuel capacity"))
+			
+			// Transfer as much of the parent's ammo as you are able to use.
+			bool hasAmmo = false;
+			for(const Outfit *outfit : toRefill)
 			{
-				continue;
+				int neededAmmo = ship->Attributes().CanAdd(*outfit, Cargo().Get(outfit));
+				if(neededAmmo)
+				{
+					Cargo().Remove(outfit, neededAmmo);
+					ship->AddOutfit(outfit, neededAmmo);
+					hasAmmo = true;
+				}
 			}
-
+			
+			// This ship will refuel naturally based on the carrier's fuel collection,
+			// but the carrier may have reserves to spare.
+			if(ship->Attributes().Get("fuel capacity"))
+				TransferFuel(ship->Attributes().Get("fuel capacity") - ship->fuel, &*ship);
+			
+			// Do not launch an unarmed fighter unless in danger.
+			if(!inDanger && ((weaponCount == fuelWeapons && ship->Fuel() < .75)
+					|| (weaponCount == ammoWeapons && !hasAmmo)
+					|| (weaponCount == ammoWeapons + fuelWeapons && !(hasAmmo || ship->Fuel() > .75))))
+				continue;
+			
 			ships.push_back(bay.ship);
 			double maxV = bay.ship->MaxVelocity();
 			Angle launchAngle = angle + BAY_ANGLE[bay.facing];
@@ -1361,10 +1376,9 @@ void Ship::Launch(list<shared_ptr<Ship>> &ships)
 			bay.ship->Place(position + angle.Rotate(bay.point), v, launchAngle);
 			bay.ship->SetSystem(currentSystem);
 			bay.ship->SetParent(shared_from_this());
-			// Fighters in your ship have the same temperature as your ship
-			// itself, so when they launch they should take their share of heat
-			// with them, so that the fighter and the mothership remain at the
-			// same temperature.
+			// Fighters in your ship have the same temperature as your ship itself, so
+			// when they launch they should take their share of heat with them, so that
+			// the fighter and the mothership remain at the same temperature.
 			bay.ship->heat = heat * bay.ship->Mass() / Mass();
 			heat -= bay.ship->heat;
 			
@@ -2269,6 +2283,8 @@ bool Ship::Carry(const shared_ptr<Ship> &ship)
 			// except for the player's fleet.
 			if(!this->GetGovernment()->IsPlayer() && this->Cargo().Free() && !ship->Cargo().IsEmpty())
 				ship->Cargo().TransferAll(&this->Cargo());
+			// Return any unused fuel to the carrier, in case a launching fighter may need it.
+			ship->TransferFuel(ship->fuel, this);
 			return true;
 		}
 	return false;
@@ -2638,6 +2654,43 @@ double Ship::MinimumHull() const
 
 // Add to this ship's hull or shields, and return the amount added. If the
 // ship is carrying fighters, add to them as well.
+double Ship::AddFuel(double rate)
+{
+	// Restore this ship's fuel until it has 1 jump's worth.
+	double added = min(rate, JumpFuel() - fuel);
+	fuel += added;
+	rate -= added;
+	
+	for(Bay &bay : bays)
+	{
+		if(!bay.ship)
+			continue;
+		
+		// Carried ships cannot collect fuel from any ramscoops they may have installed.
+		double myMax = bay.ship->Attributes().Get("fuel capacity");
+		if(rate > 0. && bay.ship->fuel < myMax)
+		{
+			double extra = min(myMax - bay.ship->fuel, rate);
+			bay.ship->fuel += extra;
+			rate -= extra;
+			added += extra;
+		}
+		else if(rate <= 0.)
+			break;
+	}
+	
+	// All carried ships have reached their fuel capacity, so divert all fuel into reserves.
+	if(rate > 0.)
+	{
+		double extra = min(Attributes().Get("fuel capacity") - fuel, rate);
+		fuel += extra;
+		added += extra;
+	}
+	return added;
+}
+
+
+
 double Ship::AddHull(double rate)
 {
 	double added = min(rate, attributes.Get("hull") - hull);
@@ -2659,6 +2712,8 @@ double Ship::AddHull(double rate)
 			rate -= extra;
 			added += extra;
 		}
+		else if(rate <= 0.)
+			break;
 	}
 	return added;
 }
@@ -2686,6 +2741,8 @@ double Ship::AddShields(double rate)
 			rate -= extra;
 			added += extra;
 		}
+		else if(rate <= 0.)
+			break;
 	}
 	return added;
 }

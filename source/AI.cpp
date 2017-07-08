@@ -1263,8 +1263,9 @@ bool AI::ShouldDock(const Ship &ship, const Ship &parent) const
 	bool useParentHullRepair = !useOwnHullRepair && parent.Attributes().Get("hull repair rate");
 	bool useOwnShieldRepair = maxShields && ship.Attributes().Get("shield generation")
 			&& (maxShields - maxShields * ship.Shields()) / ship.Attributes().Get("shield generation") < MAX_HEAL_TIME;
-	bool canFuel = (ship.Fuel() < .01 && ship.Attributes().Get("fuel capacity")) && parent.Fuel() *
-			parent.Attributes().Get("fuel capacity") > parent.JumpFuel() + ship.Attributes().Get("fuel capacity");
+	bool useParentShieldRepair = maxShields && !useOwnShieldRepair && parent.Attributes().Get("shield generation");
+	bool canFuel = ship.Fuel() < .01 && ship.Attributes().Get("fuel capacity") && (parent.Fuel() *
+			parent.Attributes().Get("fuel capacity") > parent.JumpFuel() + ship.Attributes().Get("fuel capacity"));
 	bool canUnload = ship.Cargo().Size() && !ship.Cargo().IsEmpty() && parent.Cargo().Size() && parent.Cargo().Free();
 	
 	// Assess the current threat level.
@@ -1300,7 +1301,7 @@ bool AI::ShouldDock(const Ship &ship, const Ship &parent) const
 	// need refueling, are not fighting and either have full cargo or need your parent's
 	// repair functions, or are in combat but badly damaged.
 	bool dock = (isArmed && !hasAmmo) || canFuel || (!hasEnemy && canUnload)
-			|| (!hasEnemy && health < .9 && (useParentHullRepair || (maxShields && !useOwnShieldRepair)))
+			|| (!hasEnemy && health < .9 && (useParentHullRepair || useParentShieldRepair))
 			|| (health < .7 && hasEnemy && inCombat);
 	return dock;
 }
