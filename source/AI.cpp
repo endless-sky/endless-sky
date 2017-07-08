@@ -560,19 +560,6 @@ void AI::Step(const PlayerInfo &player)
 		bool isFighter = (category == "Fighter");
 		if(it->CanBeCarried())
 		{
-
-			bool isArmed=false, hasAmmo=false;
-			for(const Hardpoint &weapon : it->Weapons())
-			{
-				const Outfit *outfit = weapon.GetOutfit();
-				if(outfit && !weapon.IsAntiMissile())
-				{
-					isArmed = true;
-					if(!outfit->Ammo() || it->OutfitCount(outfit->Ammo()))
-						hasAmmo = true;
-				}
-			}
-
 			bool hasSpace = (parent && parent->BaysFree(isFighter) && !parent->GetGovernment()->IsEnemy(gov));
 			if(!hasSpace || parent->IsDestroyed() || parent->GetSystem() != it->GetSystem())
 			{
@@ -602,17 +589,8 @@ void AI::Step(const PlayerInfo &player)
 					it->SetParent(parent);
 				}
 			}
-			else if(parent &&
-					( !(it->IsYours() ? thisIsLaunching : parent->Commands().Has(Command::DEPLOY)) ||
-					( isArmed && ! hasAmmo) || 
-					//no enemy nearby so recharge shields in carrier
-					( it->Attributes().Get("shields") &&
-					  it->Shields() < 0.9 &&
-					  (!it->GetTargetShip() || !it->GetTargetShip()->GetGovernment()->IsEnemy(gov))) ||
-					//low on fuel
-					  (!it->Fuel() && it->Attributes().Get("Fuel Capacity")) || 
-					//in combat with low shields
-					( it->Attributes().Get("shields") && it->Shields() < 0.6))) 
+			else if(parent && (!(it->IsYours() ? thisIsLaunching : parent->Commands().Has(Command::DEPLOY))
+								|| ShouldDock(*it, *parent)))
 			{
 				it->SetTargetShip(parent);
 				MoveTo(*it, command, parent->Position(), parent->Velocity(), 40., .8);
@@ -1246,6 +1224,85 @@ bool AI::CanRefuel(const Ship &ship, const StellarObject *target)
 		return false;
 	
 	return true;
+}
+
+
+
+bool AI::ShouldDock(const Ship &ship, const Ship &parent) const
+{
+	static const int MAX_HEAL_TIME = 3600;
+	static const int COMBAT_RANGE = 600;
+	
+	// Boarding your parent was already decided upon.
+	if(ship.Commands().Has(Command::BOARD))
+		return true;
+	
+	// Determine if this ship cannot fight without additional, available ammunition.
+	bool isArmed = false;
+	bool hasAmmo = false;
+	for(const Hardpoint &weapon : ship.Weapons())
+	{
+		const Outfit *outfit = weapon.GetOutfit();
+		if(outfit && !weapon.IsAntiMissile())
+		{
+			isArmed = true;
+			if(!outfit->Ammo() || ship.OutfitCount(outfit->Ammo()) || !parent.OutfitCount(outfit->Ammo()))
+			{
+				hasAmmo = true;
+				break;
+			}
+		}
+	}
+	
+	// Determine if this ship is damaged to the point of needing repair.
+	double maxShields = ship.Attributes().Get("shields");
+	double maxHull = ship.Attributes().Get("hull");
+	double health = !maxShields ? .9 * ship.Hull() : ship.Hull() + .5 * ship.Shields();
+	bool useOwnHullRepair = ship.Attributes().Get("hull repair rate")
+			&& (maxHull - maxHull * ship.Hull()) / ship.Attributes().Get("hull repair rate") < MAX_HEAL_TIME;
+	bool useParentHullRepair = !useOwnHullRepair && parent.Attributes().Get("hull repair rate");
+	bool useOwnShieldRepair = maxShields && ship.Attributes().Get("shield generation")
+			&& (maxShields - maxShields * ship.Shields()) / ship.Attributes().Get("shield generation") < MAX_HEAL_TIME;
+	bool canFuel = (ship.Fuel() < .01 && ship.Attributes().Get("fuel capacity")) && parent.Fuel() *
+			parent.Attributes().Get("fuel capacity") > parent.JumpFuel() + ship.Attributes().Get("fuel capacity");
+	bool canUnload = ship.Cargo().Size() && !ship.Cargo().IsEmpty() && parent.Cargo().Size() && parent.Cargo().Free();
+	
+	// Assess the current threat level.
+	Point toParent = parent.Position() - ship.Position();
+	shared_ptr<const Ship> target = ship.GetTargetShip();
+	bool dangerousRoute = false;
+	bool hasEnemy = false;
+	bool inCombat = false;
+	if(target)
+	{
+		hasEnemy |= target->GetGovernment()->IsEnemy(ship.GetGovernment());
+		Point toTarget = target->Position() - ship.Position();
+		dangerousRoute |= hasEnemy && toTarget.Length() < toParent.Length() && toParent.Unit().Dot(toTarget.Unit()) > .8;
+		inCombat |= toTarget.Length() < COMBAT_RANGE;
+	}
+	
+	// Assess the danger near your parent.
+	shared_ptr<const Ship> parentTarget = parent.GetTargetShip();
+	bool parentInCombat = false;
+	if(parentTarget && parentTarget != target)
+	{
+		parentInCombat |= parentTarget->GetGovernment()->IsEnemy(parent.GetGovernment())
+				&& parentTarget->Position().Distance(parent.Position()) < COMBAT_RANGE;
+		Point toParentTarget = parentTarget->Position() - ship.Position();
+		dangerousRoute |= parentTarget->GetGovernment()->IsEnemy(ship.GetGovernment())
+				&& toParentTarget.Length() < toParent.Length() && toParent.Unit().Dot(toParentTarget.Unit()) > .8;
+	}
+	
+	if(dangerousRoute || parentInCombat)
+		return false;
+	
+	// Dock with your parent if you need its ammunition to fight, use hyperspace fuel and
+	// need refueling, are not fighting and either have full cargo or need your parent's
+	// repair functions, or are in combat but badly damaged.
+	bool dock = (isArmed && !hasAmmo) || canFuel || (!hasEnemy && canUnload)
+			|| (!hasEnemy && health < .9 && (useParentHullRepair || (maxShields && !useOwnShieldRepair)))
+			|| (health < .7 && hasEnemy && inCombat);
+	return dock;
 }
 
 
