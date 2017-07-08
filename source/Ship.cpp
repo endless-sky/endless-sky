@@ -1322,7 +1322,7 @@ void Ship::Launch(list<shared_ptr<Ship>> &ships)
 			// resources are needed for self-preservation.
 			if(!inDanger && ship->Hull() < .9 && Attributes().Get("hull repair rate") && Hull() > .9)
 				continue;
-			if(!inDanger() && ship->Shields() < .9 && Attributes().Get("shield generation") && Shields() > .9)
+			if(!inDanger && ship->Shields() < .9 && Attributes().Get("shield generation") && Shields() > .9)
 				continue;
 			
 			// Re-arm fighters upon launching.
@@ -1349,12 +1349,12 @@ void Ship::Launch(list<shared_ptr<Ship>> &ships)
 			bool hasAmmo = false;
 			for(const Outfit *outfit : toRefill)
 			{
-				int neededAmmo = ship->Attributes().CanAdd(*outfit, Cargo().Get(outfit));
+				hasAmmo |= ship->OutfitCount(outfit);
+				int neededAmmo = ship->Attributes().CanAdd(*outfit, OutfitCount(outfit));
 				if(neededAmmo)
 				{
-					Cargo().Remove(outfit, neededAmmo);
+					AddOutfit(outfit, -neededAmmo);
 					ship->AddOutfit(outfit, neededAmmo);
-					hasAmmo = true;
 				}
 			}
 			
@@ -2285,6 +2285,8 @@ bool Ship::Carry(const shared_ptr<Ship> &ship)
 				ship->Cargo().TransferAll(&this->Cargo());
 			// Return any unused fuel to the carrier, in case a launching fighter may need it.
 			ship->TransferFuel(ship->fuel, this);
+			// Remove the existing BOARD command.
+			ship->commands.Clear(Command::BOARD);
 			return true;
 		}
 	return false;

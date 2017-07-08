@@ -1258,8 +1258,8 @@ bool AI::ShouldDock(const Ship &ship, const Ship &parent) const
 	double maxShields = ship.Attributes().Get("shields");
 	double maxHull = ship.Attributes().Get("hull");
 	double health = !maxShields ? .9 * ship.Hull() : ship.Hull() + .5 * ship.Shields();
-	bool useOwnHullRepair = ship.Attributes().Get("hull repair rate")
-			&& (maxHull - maxHull * ship.Hull()) / ship.Attributes().Get("hull repair rate") < MAX_HEAL_TIME;
+	bool useOwnHullRepair = ship.Hull() == 1 || (ship.Attributes().Get("hull repair rate")
+			&& (maxHull - maxHull * ship.Hull()) / ship.Attributes().Get("hull repair rate") < MAX_HEAL_TIME);
 	bool useParentHullRepair = !useOwnHullRepair && parent.Attributes().Get("hull repair rate");
 	bool useOwnShieldRepair = maxShields && ship.Attributes().Get("shield generation")
 			&& (maxShields - maxShields * ship.Shields()) / ship.Attributes().Get("shield generation") < MAX_HEAL_TIME;
