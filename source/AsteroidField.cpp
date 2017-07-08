@@ -91,7 +91,7 @@ void AsteroidField::Draw(DrawList &draw, const Point &center, double zoom) const
 	for(const Asteroid &asteroid : asteroids)
 		asteroid.Draw(draw, center, zoom);
 	for(const shared_ptr<Minable> &minable : minables)
-		draw.Add(*minable);
+		draw.Add(*minable, 1.f);
 }
 
 
@@ -207,7 +207,7 @@ void AsteroidField::Asteroid::Draw(DrawList &draw, const Point &center, double z
 	// Draw any instances of this asteroid that are on screen.
 	for(double y = startY; y < bottomRight.Y(); y += WRAP)
 		for(double x = startX; x < bottomRight.X(); x += WRAP)
-			draw.Add(*this, Point(x, y));
+			draw.Add(*this, Point(x, y), 1.f);
 }
 
 
