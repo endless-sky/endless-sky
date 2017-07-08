@@ -56,7 +56,7 @@ namespace {
 	};
 }
 
-const float LightSpriteShader::DEF_AMBIENT[3] = {0.2f, 0.2f, 0.2f};
+const float LightSpriteShader::DEF_AMBIENT[3] = {0.5f, 0.5f, 0.5f};
 
 // Initialize the shaders.
 void LightSpriteShader::Init()
@@ -198,7 +198,8 @@ void LightSpriteShader::Bind()
 }
 
 
-void LightSpriteShader::Add(uint32_t tex0, uint32_t tex1, const float position[2], const float transform[4], int swizzle, float clip, float fade, const float blur[2], const float posGS[2], const float transformGS[2], int nbLight, const float lightAmbiant[3], const float *lightPos, const float *lightEmit, float angCoeff){
+void LightSpriteShader::Add(uint32_t tex0, uint32_t tex1, const float position[2], const float transform[4], int swizzle, float clip, float fade, const float blur[2], const float posGS[2], const float transformGS[2], int nbLight, const float lightAmbiant[3], const float *lightPos, const float *lightEmit, float angCoeff)
+{
 	glUniformMatrix2fv(transformI, 1, false, transform);
 	glUniform2fv(positionI, 1, position);
 	glBindTexture(GL_TEXTURE_2D, tex0);

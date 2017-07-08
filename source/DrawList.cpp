@@ -125,7 +125,8 @@ bool DrawList::AddLightSource(const float pos[3], const float emit[3]){
 void DrawList::Draw(bool lights) const
 {
 	bool showBlur = Preferences::Has("Render motion blur");
-	if(!lights || !LightSpriteShader::IsAvailable()){
+	if(!lights || !LightSpriteShader::IsAvailable())
+	{
 	
 		SpriteShader::Bind();
 
@@ -136,7 +137,9 @@ void DrawList::Draw(bool lights) const
 
 		SpriteShader::Unbind();
 		
-	}else{
+	}
+	else
+	{
 	
 		LightSpriteShader::Bind();
 
@@ -273,10 +276,12 @@ void DrawList::Item::Cloak(double cloak)
 	flags |= static_cast<uint32_t>(cloak * FADE_FACTOR) << FADE_SHIFT;
 }
 
-bool DrawList::Item::Lighted() const{
-	return flags&LIGHT_MASK;
+bool DrawList::Item::Lighted() const
+{
+	return flags & LIGHT_MASK;
 }
 
-float DrawList::Item::NormalUse() const{
-	return ( (flags&NORMAL_MASK) >> NORMAL_SHIFT) / NORMAL_FACTOR;
+float DrawList::Item::NormalUse() const
+{
+	return ( (flags & NORMAL_MASK) >> NORMAL_SHIFT) / NORMAL_FACTOR;
 }
