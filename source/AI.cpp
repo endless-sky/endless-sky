@@ -1233,6 +1233,9 @@ bool AI::ShouldDock(const Ship &ship, const Ship &parent) const
 	static const int MAX_HEAL_TIME = 3600;
 	static const int COMBAT_RANGE = 600;
 	
+	if(!parent.BaysFree(ship.Attributes().Category() == "Fighter"))
+		return false;
+	
 	// Boarding your parent was already decided upon.
 	if(ship.Commands().Has(Command::BOARD))
 		return true;
@@ -1257,13 +1260,15 @@ bool AI::ShouldDock(const Ship &ship, const Ship &parent) const
 	// Determine if this ship is damaged to the point of needing repair.
 	double maxShields = ship.Attributes().Get("shields");
 	double maxHull = ship.Attributes().Get("hull");
-	double health = !maxShields ? .9 * ship.Hull() : ship.Hull() + .5 * ship.Shields();
-	bool useOwnHullRepair = ship.Hull() == 1 || (ship.Attributes().Get("hull repair rate")
+	double health = (ship.Hull() * maxHull + ship.Shields() * maxShields) / (maxHull + maxShields);
+	double minHealth = (maxHull > 2000 ? .2 * maxHull : (maxHull > 800 ? 400. : .5 * maxHull)) / (maxHull + maxShields);
+	bool useOwnHullRepair = ship.Hull() > .99 || (ship.Attributes().Get("hull repair rate")
 			&& (maxHull - maxHull * ship.Hull()) / ship.Attributes().Get("hull repair rate") < MAX_HEAL_TIME);
 	bool useParentHullRepair = !useOwnHullRepair && parent.Attributes().Get("hull repair rate");
 	bool useOwnShieldRepair = maxShields && ship.Attributes().Get("shield generation")
 			&& (maxShields - maxShields * ship.Shields()) / ship.Attributes().Get("shield generation") < MAX_HEAL_TIME;
 	bool useParentShieldRepair = maxShields && !useOwnShieldRepair && parent.Attributes().Get("shield generation");
+	
 	bool canFuel = ship.Fuel() < .01 && ship.Attributes().Get("fuel capacity") && (parent.Fuel() *
 			parent.Attributes().Get("fuel capacity") > parent.JumpFuel() + ship.Attributes().Get("fuel capacity"));
 	bool canUnload = ship.Cargo().Size() && !ship.Cargo().IsEmpty() && parent.Cargo().Size() && parent.Cargo().Free();
@@ -1301,8 +1306,9 @@ bool AI::ShouldDock(const Ship &ship, const Ship &parent) const
 	// need refueling, are not fighting and either have full cargo or need your parent's
 	// repair functions, or are in combat but badly damaged.
 	bool dock = (isArmed && !hasAmmo) || canFuel || (!hasEnemy && canUnload)
-			|| (!hasEnemy && health < .9 && (useParentHullRepair || useParentShieldRepair))
-			|| (health < .7 && hasEnemy && inCombat);
+			|| (!hasEnemy && health < .75 && (useParentHullRepair || useParentShieldRepair))
+			|| (health - minHealth < .1 && hasEnemy && inCombat
+				&& (parent.Attributes().Get("shield generation") || parent.Attributes().Get("hull repair rate")));
 	return dock;
 }
 
