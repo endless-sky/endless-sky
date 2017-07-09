@@ -1233,7 +1233,7 @@ bool AI::ShouldDock(const Ship &ship, const Ship &parent) const
 	static const int MAX_HEAL_TIME = 3600;
 	static const int COMBAT_RANGE = 600;
 	
-	if(!parent.BaysFree(ship.Attributes().Category() == "Fighter"))
+	if(!parent.BaysFree(ship.Attributes().Category() == "Fighter") || parent.IsDisabled())
 		return false;
 	
 	// Boarding your parent was already decided upon.
@@ -1269,8 +1269,8 @@ bool AI::ShouldDock(const Ship &ship, const Ship &parent) const
 			&& (maxShields - maxShields * ship.Shields()) / ship.Attributes().Get("shield generation") < MAX_HEAL_TIME;
 	bool useParentShieldRepair = maxShields && !useOwnShieldRepair && parent.Attributes().Get("shield generation");
 	
-	bool canFuel = ship.Fuel() < .01 && ship.Attributes().Get("fuel capacity") && (parent.Fuel() *
-			parent.Attributes().Get("fuel capacity") > parent.JumpFuel() + ship.Attributes().Get("fuel capacity"));
+	bool canFuel = ship.Fuel() < .005 && ship.Attributes().Get("fuel capacity") && (parent.Fuel() *
+			parent.Attributes().Get("fuel capacity") > parent.JumpFuel() + .75 * ship.Attributes().Get("fuel capacity"));
 	bool canUnload = ship.Cargo().Size() && !ship.Cargo().IsEmpty() && parent.Cargo().Size() && parent.Cargo().Free();
 	
 	// Assess the current threat level.

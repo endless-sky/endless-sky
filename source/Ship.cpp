@@ -1312,7 +1312,6 @@ void Ship::Launch(list<shared_ptr<Ship>> &ships)
 	if(!IsDestroyed() && (!commands.Has(Command::DEPLOY) || zoom != 1. || hyperspaceCount || cloak))
 		return;
 	
-	bool inDanger = !Shields() || IsDisabled() || Hull() < .6;
 	for(Bay &bay : bays)
 		if(bay.ship && !Random::Int(40 + 20 * bay.isFighter))
 		{
@@ -1320,6 +1319,7 @@ void Ship::Launch(list<shared_ptr<Ship>> &ships)
 
 			// Do not launch ships with low health if they can be repaired more, unless our
 			// resources are needed for self-preservation.
+			bool inDanger = !Shields() || IsDisabled() || Hull() < .6;
 			if(!inDanger && ship->Hull() < .9 && Attributes().Get("hull repair rate") && Hull() > .9)
 				continue;
 			if(!inDanger && ship->Shields() < .9 && Attributes().Get("shield generation") && Shields() > .9)
@@ -1360,8 +1360,8 @@ void Ship::Launch(list<shared_ptr<Ship>> &ships)
 			
 			// This ship will refuel naturally based on the carrier's fuel collection,
 			// but the carrier may have reserves to spare.
-			if(ship->Attributes().Get("fuel capacity"))
-				TransferFuel(ship->Attributes().Get("fuel capacity") - ship->fuel, &*ship);
+			if(ship->Attributes().Get("fuel capacity") && fuel > JumpFuel())
+				TransferFuel(min(ship->Attributes().Get("fuel capacity") - ship->fuel, fuel - JumpFuel()), &*ship);
 			
 			// Do not launch an unarmed fighter unless in danger.
 			if(!inDanger && ((weaponCount == fuelWeapons && ship->Fuel() < .75)
