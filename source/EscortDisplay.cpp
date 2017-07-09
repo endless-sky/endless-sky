@@ -65,7 +65,7 @@ void EscortDisplay::Draw() const
 	const Color &notReadyToJumpColor = *colors.Get("escort not ready");
 	const Color &selectedColor = *colors.Get("escort selected");
 	const Color &hereColor = *colors.Get("escort present");
-	const Color &hostileColor = colors.Get("radar hostile")->Opaque();
+	const Color &hostileColor = *colors.Get("escort hostile");
 	for(const Icon &escort : icons)
 	{
 		if(!escort.sprite)
@@ -170,7 +170,7 @@ const vector<const Ship *> &EscortDisplay::Click(const Point &point) const
 EscortDisplay::Icon::Icon(const Ship &ship, bool isHere, bool fleetIsJumping, bool isSelected)
 	: sprite(ship.GetSprite()),
 	isHere(isHere && !ship.IsDisabled()),
-	isHostile(ship.GetGovernment() && ship.GetGovernment()->IsEnemy(GameData::PlayerGovernment())),
+	isHostile(ship.GetGovernment() && ship.GetGovernment()->IsEnemy()),
 	notReadyToJump(fleetIsJumping && !ship.IsHyperspacing() && !ship.IsReadyToJump()),
 	cannotJump(fleetIsJumping && !ship.IsHyperspacing() && !ship.JumpsRemaining()),
 	isSelected(isSelected),
