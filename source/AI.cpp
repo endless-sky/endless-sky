@@ -1084,8 +1084,8 @@ void AI::MoveEscort(Ship &ship, Command &command) const
 		// Check whether the ship has a target system and is able to jump to it,
 		// and that the targeted stellar object can be landed on.
 		bool hasJump = (ship.GetTargetSystem() && ship.JumpFuel(ship.GetTargetSystem()));
-		if(ship.GetTargetStellar() && (!ship.GetTargetStellar()->GetPlanet()
-				|| !(ship.GetTargetStellar()->GetPlanet() && ship.GetTargetStellar()->GetPlanet()->CanLand(ship))))
+		if(ship.GetTargetStellar()
+				&& !(ship.GetTargetStellar()->GetPlanet() && ship.GetTargetStellar()->GetPlanet()->CanLand(ship)))
 			ship.SetTargetStellar(nullptr);
 		if(!hasJump && !ship.GetTargetStellar())
 		{
