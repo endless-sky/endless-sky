@@ -1079,7 +1079,7 @@ void Engine::CalculateStep()
 				float pos[3] = {
 						float(object.Position().X()), float(object.Position().Y()), 0
 					};
-				float starPw = 1000000.f;
+				float starPw = 1e6f;
 				float emit[3] = {starPw, starPw, starPw};
 				draw[calcTickTock].AddLightSource(pos, emit);
 			}

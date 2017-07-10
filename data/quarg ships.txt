@@ -10,6 +10,7 @@
 
 ship "Quarg Skylark"
 	sprite "ship/skylark"
+		lights "ship/skylark_light"
 	attributes
 		category "Heavy Warship"
 		"cost" 5900000

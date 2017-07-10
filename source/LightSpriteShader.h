@@ -13,8 +13,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef LIGHT_SPRITE_SHADER_H_
 #define LIGHT_SPRITE_SHADER_H_
 
-class Sprite;
 class Point;
+class Sprite;
 
 #include <cstdint>
 
@@ -33,7 +33,8 @@ public:
 
 	static void Add(uint32_t tex0, uint32_t tex1, const float position[2], const float transform[4], int swizzle, float clip, float fade, const float blur[2],
 		const float posGS[2], const float transformGS[2],
-		int nbLights = -1, const float lightAmbiant[3]=DEF_AMBIENT, const float *lightPos = 0, const float *lightEmit = 0, float angCoeff = 0.f);
+		int nbLights = -1, const float lightAmbiant[3]=DEF_AMBIENT, const float *lightPos = 0, const float *lightEmit = 0, float angCoeff = 0.f,
+		float selfLight = 0.f, uint32_t texL = 0);
 
 	static void Unbind();
 

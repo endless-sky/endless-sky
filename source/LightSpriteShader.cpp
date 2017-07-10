@@ -37,6 +37,7 @@ namespace {
 	GLint lightEmitI;
 	GLint lightAmbiantI;
 	GLint angCoeffI;
+	GLint selfLightI;
 	
 	GLuint vao;
 	GLuint vbo;
@@ -86,7 +87,9 @@ void LightSpriteShader::Init()
 		static const char *fragmentCode =
 			"uniform sampler2D tex0;\n"
 			"uniform sampler2D tex1;\n"
+			"uniform sampler2D texL;\n"
 			"uniform float fade;\n"
+			"uniform float selfLight;\n"
 			"uniform vec2 blur;\n"
 			"uniform mat2 transformGS;\n"
 			"uniform int nbLight;\n"
@@ -134,6 +137,8 @@ void LightSpriteShader::Init()
 			"    float dst = length(lightDir);\n"
 			"    lightColor += (1-angCoeff+angCoeff*dot(lightDir,normal)/dst) * lightEmit[i] / pow(dst,2);\n"
 			"  }\n"
+			"  if(selfLight != 0)\n"
+			"    lightColor += selfLight * texture(texL, fragTexCoord).xyz;\n"
 			"  lightColor = clamp(lightColor, vec3(0.3,0.3,0.3), vec3(1,1,1));\n"
 			"  finalColor = vec4(lightColor*color.xyz,color.w);\n"
 			"}\n";
@@ -152,10 +157,12 @@ void LightSpriteShader::Init()
 		lightEmitI = shader.Uniform("lightEmit");
 		lightAmbiantI = shader.Uniform("lightAmbiant");
 		angCoeffI = shader.Uniform("angCoeff");
+		selfLightI = shader.Uniform("selfLight");
 	
 		glUseProgram(shader.Object());
 		glUniform1i(shader.Uniform("tex0"), 0);
 		glUniform1i(shader.Uniform("tex1"), 1);
+		glUniform1i(shader.Uniform("texL"), 2);
 		glUseProgram(0);
 	} catch(runtime_error& e){
 		isAvailable = false;
@@ -198,7 +205,7 @@ void LightSpriteShader::Bind()
 }
 
 
-void LightSpriteShader::Add(uint32_t tex0, uint32_t tex1, const float position[2], const float transform[4], int swizzle, float clip, float fade, const float blur[2], const float posGS[2], const float transformGS[2], int nbLight, const float lightAmbiant[3], const float *lightPos, const float *lightEmit, float angCoeff)
+void LightSpriteShader::Add(uint32_t tex0, uint32_t tex1, const float position[2], const float transform[4], int swizzle, float clip, float fade, const float blur[2], const float posGS[2], const float transformGS[2], int nbLight, const float lightAmbiant[3], const float *lightPos, const float *lightEmit, float angCoeff, float selfLight, uint32_t texL)
 {
 	glUniformMatrix2fv(transformI, 1, false, transform);
 	glUniform2fv(positionI, 1, position);
@@ -238,6 +245,15 @@ void LightSpriteShader::Add(uint32_t tex0, uint32_t tex1, const float position[2
 	}
 	glUniform3fv(lightAmbiantI, 1, lightAmbiant);
 	glUniform1f(angCoeffI, angCoeff);
+
+	if(selfLight && texL)
+	{
+		glActiveTexture(GL_TEXTURE2);
+		glBindTexture(GL_TEXTURE_2D, texL);
+	}
+	else
+		selfLight = 0.f;
+	glUniform1f(selfLightI, selfLight);
 
 	glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 }

@@ -149,7 +149,8 @@ void DrawList::Draw(bool lights) const
 				item.Swizzle(), item.Clip(), item.Fade(), showBlur ? item.blur : nullptr,
 				item.posGS, item.transformGS, 
 				(item.Lighted()&&lights) ? (lightsPos.size()/3) : -1, lightAmbient, 
-				lightsPos.data(), lightsEmit.data(), item.NormalUse());
+				lightsPos.data(), lightsEmit.data(), item.NormalUse(),
+				1.f, item.texL);
 
 		LightSpriteShader::Unbind();
 		
@@ -179,8 +180,6 @@ bool DrawList::Cull(const Body &body, const Point &position, const Point &blur) 
 	return false;
 }
 
-
-
 void DrawList::Push(const Body &body, Point pos, Point posGS, Point blur, double cloak, double clip, int swizzle, bool lighted, float normUse)
 {
 	Item item;
@@ -188,6 +187,7 @@ void DrawList::Push(const Body &body, Point pos, Point posGS, Point blur, double
 	Body::Frame frame = body.GetFrame(step, isHighDPI);
 	item.tex0 = frame.first;
 	item.tex1 = frame.second;
+	item.texL = frame.light;
 	
 	item.flags = swizzle 
 		| (static_cast<uint32_t>(frame.fade * Item::FADE_FACTOR) << Item::FADE_SHIFT) 

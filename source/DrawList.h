@@ -93,6 +93,7 @@ private:
 		float blur[2];
 		float clip;
 		uint32_t flags;
+		uint32_t texL;
 	};
 	
 	
