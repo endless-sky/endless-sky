@@ -73,7 +73,7 @@ namespace {
 		}
 		if(ship.IsDisabled() || (ship.IsOverheated() && ((step / 20) % 2)))
 			return Radar::INACTIVE;
-		if(ship.GetGovernment()->IsPlayer() || ship.GetPersonality().IsEscort())
+		if(ship.GetGovernment()->IsPlayer() || (ship.GetPersonality().IsEscort() && !ship.GetGovernment()->IsEnemy()))
 			return Radar::PLAYER;
 		if(!ship.GetGovernment()->IsEnemy())
 			return Radar::FRIENDLY;

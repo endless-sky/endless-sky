@@ -16,6 +16,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Font.h"
 #include "FontSet.h"
 #include "GameData.h"
+#include "Government.h"
 #include "LineShader.h"
 #include "Point.h"
 #include "OutlineShader.h"
@@ -64,6 +65,7 @@ void EscortDisplay::Draw() const
 	const Color &notReadyToJumpColor = *colors.Get("escort not ready");
 	const Color &selectedColor = *colors.Get("escort selected");
 	const Color &hereColor = *colors.Get("escort present");
+	const Color &hostileColor = *colors.Get("escort hostile");
 	for(const Icon &escort : icons)
 	{
 		if(!escort.sprite)
@@ -79,7 +81,9 @@ void EscortDisplay::Draw() const
 			font.Draw(escort.system, pos + Point(-10., 10.), elsewhereColor);
 
 		Color color;
-		if(!escort.isHere)
+		if(escort.isHostile)
+			color = hostileColor;
+		else if(!escort.isHere)
 			color = elsewhereColor;
 		else if(escort.cannotJump)
 			color = cannotJumpColor;
@@ -166,6 +170,7 @@ const vector<const Ship *> &EscortDisplay::Click(const Point &point) const
 EscortDisplay::Icon::Icon(const Ship &ship, bool isHere, bool fleetIsJumping, bool isSelected)
 	: sprite(ship.GetSprite()),
 	isHere(isHere && !ship.IsDisabled()),
+	isHostile(ship.GetGovernment() && ship.GetGovernment()->IsEnemy()),
 	notReadyToJump(fleetIsJumping && !ship.IsHyperspacing() && !ship.IsReadyToJump()),
 	cannotJump(fleetIsJumping && !ship.IsHyperspacing() && !ship.JumpsRemaining()),
 	isSelected(isSelected),
@@ -197,6 +202,7 @@ int EscortDisplay::Icon::Height() const
 void EscortDisplay::Icon::Merge(const Icon &other)
 {
 	isHere &= other.isHere;
+	isHostile |= other.isHostile;
 	notReadyToJump |= other.notReadyToJump;
 	cannotJump |= other.cannotJump;
 	isSelected |= other.isSelected;
@@ -236,9 +242,9 @@ void EscortDisplay::MergeStacks() const
 		if(height < maxHeight || !cheapest)
 			break;
 		
-		// Merge together each group of escorts that have this icon annd are in
-		// the same system.
-		map<string, Icon *> merged;
+		// Merge together each group of escorts that have this icon and are in
+		// the same system and have the same attitude towards the player.
+		map<const bool, map<string, Icon *>> merged;
 		
 		// The "cheapest" element in the list may be removed to merge it with an
 		// earlier ship of the same type, so store a copy of its sprite pointer:
@@ -254,10 +260,10 @@ void EscortDisplay::MergeStacks() const
 			
 			// If this is the first escort we've seen so far in its system, it
 			// is the one we will merge all others in this system into.
-			auto mit = merged.find(it->system);
-			if(mit == merged.end())
+			auto mit = merged[it->isHostile].find(it->system);
+			if(mit == merged[it->isHostile].end())
 			{
-				merged[it->system] = &*it;
+				merged[it->isHostile][it->system] = &*it;
 				++it;
 			}
 			else
