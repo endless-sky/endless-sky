@@ -74,7 +74,7 @@ OutfitInfoDisplay::OutfitInfoDisplay(const Outfit &outfit, const PlayerInfo &pla
 // Call this every time the ship changes.
 void OutfitInfoDisplay::Update(const Outfit &outfit, const PlayerInfo &player, bool canSell)
 {
-	UpdateDescription(outfit.Description());
+	UpdateDescription(outfit.Description(), outfit.Licenses(), false);
 	UpdateRequirements(outfit, player, canSell);
 	UpdateAttributes(outfit);
 	
@@ -280,6 +280,13 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		attributeValues.push_back(Format::Number(60. / outfit.Reload()));
 	attributesHeight += 20;
 	
+	double turretTurn = outfit.TurretTurn() * 60.;
+	if(turretTurn)
+	{
+		attributeLabels.push_back("turret turn rate:");
+		attributeValues.push_back(Format::Number(turretTurn));
+		attributesHeight += 20;
+	}
 	int homing = outfit.Homing();
 	if(homing)
 	{

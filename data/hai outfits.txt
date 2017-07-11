@@ -46,6 +46,7 @@ outfit "Pulse Turret"
 		sound "pulse"
 		"hit effect" "pulse impact"
 		"inaccuracy" 1
+		"turret turn" 4
 		"velocity" 15
 		"lifetime" 30
 		"reload" 10
@@ -266,6 +267,17 @@ outfit "Hai Williwaw Cooling"
 	"outfit space" -8
 	"cooling" 9.5
 	description "While Hai technology is fairly heat efficient, occasionally they outfit their ships such that they sporadically overheat and shut down. When that happens, they install these."
+
+
+outfit "Quantum Keystone"
+	category "Systems"
+	cost 12000
+	thumbnail "outfit/keystone"
+	"mass" 1
+	"outfit space" -1
+	"quantum keystone" 1
+	description "This chunk of rock from the mountains on the Hai homeworld is apparently nothing more than a good luck charm, but the Hai have decorated their ships with them since the height of their empire. More superstitious Hai claim that the stones somehow reduce the nausea induced by hyperspace jumps by making travel between star systems easier."
+
 
 outfit "Hai Chasm Batteries"
 	plural "Hai Chasm Batteries"

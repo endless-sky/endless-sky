@@ -50,7 +50,7 @@ private:
 	// You can't exit this dialog if you are in the middle of combat.
 	bool CanExit() const;
 	// Check if you can take the outfit at the given position in the list.
-	bool CanTake(int index = -1) const;
+	bool CanTake() const;
 	// Check if you can initiate hand to hand combat.
 	bool CanCapture() const;
 	// Check if you are in the midst of hand to hand combat.
@@ -87,7 +87,7 @@ private:
 		const Outfit *GetOutfit() const;
 		// Find out how many of these I can take if I have this amount of cargo
 		// space free.
-		int CanTake(int freeSpace) const;
+		bool CanTake(const Ship &ship) const;
 		// Take some or all of this plunder item.
 		void Take(int count);
 		

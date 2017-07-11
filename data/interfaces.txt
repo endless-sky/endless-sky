@@ -41,6 +41,22 @@ color "escort elsewhere" .4 .4 .6 1.
 color "escort not ready" .9 .8 0. 1.
 color "escort blocked" .9 .2 0. 1.
 color "escort selected" .2 .8 0. 1.
+color "escort hostile" 1. .6 .4 1.
+
+color "overlay friendly shields" 0. .5 0. .25
+color "overlay friendly hull" .45 .5 0. .25
+color "overlay hostile shields" .5 .15 0. .25
+color "overlay hostile hull" .5 .3 0. .25
+color "overlay outfit scan" .5 .5 .5 .25
+color "overlay cargo scan" .7 .7 .7 .25
+
+color "radar player" .2 1. 0. 0.
+color "radar friendly" .4 .6 1. 0.
+color "radar unfriendly" .8 .8 .4 0.
+color "radar hostile" 1. .6 .4 0.
+color "radar inactive" .4 .4 .4 0.
+color "radar special" 1. 1. 1. 0.
+color "radar anomalous" .7 0. 1. 0.
 
 
 
@@ -338,6 +354,9 @@ interface "targets" top left
 	string "target government"
 		center 75 435
 		color "medium"
+	string "mission target"
+		center 75 455
+		color "medium"
 
 
 
@@ -411,7 +430,7 @@ interface "planet"
 	visible if "has spaceport"
 	sprite "ui/planet dialog button"
 		center -400 270
-	button p "Space _Port"
+	button p "Space_port"
 		center -400 270
 		dimensions 140 40
 		size 18
@@ -742,11 +761,11 @@ interface "map buttons" bottom right
 interface "info panel"
 	sprite "ui/info panel"
 		center 0 -5
-	visible if "four buttons"
-	sprite "ui/four info buttons"
+	visible if "five buttons"
+	sprite "ui/five info buttons"
 		center 0 305
-	visible if "two buttons"
-	sprite "ui/two info buttons"
+	visible if "three buttons"
+	sprite "ui/three info buttons"
 		center 0 305
 	
 	box "player"
@@ -797,58 +816,63 @@ interface "info panel"
 	button m "_Missions..."
 		center 355 305
 		dimensions 90 30
+	active if "enable logbook"
+	button l "_Logbook..."
+		center 255 305
+		dimensions 90 30
+	active
 	
-	visible if "four buttons"
+	visible if "five buttons"
 	button n "_Next"
-		center 250 305
+		center 145 305
 		dimensions 90 30
 	button p "_Previous"
-		center 150 305
+		center 45 305
 		dimensions 90 30
 	
 	visible if "show park"
 	active if "can park"
 	sprite "ui/dialog cancel"
-		center 55 305
+		center -55 305
 	button P "Park"
-		center 55 305
+		center -55 305
 		dimensions 70 30
 	active
 	
 	visible if "show unpark"
 	sprite "ui/dialog cancel"
-		center 55 305
+		center -55 305
 	button P "Unpark"
-		center 55 305
+		center -55 305
 		dimensions 70 30
 	
 	visible if "show disown"
 	sprite "ui/dialog cancel"
-		center -45 305
+		center -150 305
 	button D "Disown"
-		center -45 305
+		center -150 305
 		dimensions 70 30
 	
 	visible if "show dump"
 	active if "enable dump"
 	sprite "ui/wide button"
-		center 45 305
+		center -65 305
 	button c "Dump _Cargo"
-		center 45 305
+		center -65 305
 		dimensions 90 30
 	active
 	
 	visible if "show park all"
 	sprite "ui/wide button"
-		center 250 305
+		center 145 305
 	button A "Park All"
-		center 250 305
+		center 145 305
 		dimensions 90 30
 	visible if "show unpark all"
 	sprite "ui/wide button"
-		center 250 305
+		center 145 305
 	button A "Unpark All"
-		center 250 305
+		center 145 305
 		dimensions 90 30
 
 

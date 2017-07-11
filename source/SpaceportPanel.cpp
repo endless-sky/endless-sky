@@ -42,6 +42,10 @@ void SpaceportPanel::Step()
 	if(GetUI()->IsTop(this))
 	{
 		Mission *mission = player.MissionToOffer(Mission::SPACEPORT);
+		// Special case: if the player somehow got to the spaceport before all
+		// landing missions were offered, they can still be offered here:
+		if(!mission)
+			mission = player.MissionToOffer(Mission::LANDING);
 		if(mission)
 			mission->Do(Mission::OFFER, player, GetUI());
 		else

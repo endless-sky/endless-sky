@@ -42,25 +42,32 @@ void Fleet::Load(const DataNode &node)
 	
 	for(const DataNode &child : node)
 	{
-		if(child.Token(0) == "government" && child.Size() >= 2)
+		const string &key = child.Token(0);
+		bool hasValue = (child.Size() >= 2);
+		// Special case: "add/remove variant" means to add or remove a variant without
+		// clearing the rest of the existing definition.
+		bool add = (key == "add" && hasValue && child.Token(1) == "variant");
+		bool remove = (key == "remove" && hasValue && child.Token(1) == "variant");
+		
+		if(key == "government" && hasValue)
 			government = GameData::Governments().Get(child.Token(1));
-		else if(child.Token(0) == "names" && child.Size() >= 2)
+		else if(key == "names" && hasValue)
 			names = GameData::Phrases().Get(child.Token(1));
-		else if(child.Token(0) == "fighters" && child.Size() >= 2)
+		else if(key == "fighters" && hasValue)
 			fighterNames = GameData::Phrases().Get(child.Token(1));
-		else if(child.Token(0) == "cargo" && child.Size() >= 2)
+		else if(key == "cargo" && hasValue)
 			cargo = static_cast<int>(child.Value(1));
-		else if(child.Token(0) == "commodities" && child.Size() >= 2)
+		else if(key == "commodities" && hasValue)
 		{
 			commodities.clear();
 			for(int i = 1; i < child.Size(); ++i)
 				commodities.push_back(child.Token(i));
 		}
-		else if(child.Token(0) == "personality")
+		else if(key == "personality")
 			personality.Load(child);
-		else if(child.Token(0) == "variant")
+		else if(key == "variant" || add)
 		{
-			if(resetVariants)
+			if(resetVariants && !add)
 			{
 				resetVariants = false;
 				variants.clear();
@@ -68,6 +75,25 @@ void Fleet::Load(const DataNode &node)
 			}
 			variants.emplace_back(child);
 			total += variants.back().weight;
+		}
+		else if(remove)
+		{
+			// If given a full ship definition of one of this fleet's variant members, remove the variant.
+			bool didRemove = false;
+			for(auto it = variants.begin(); it != variants.end(); ++it)
+			{
+				Variant toRemove = Variant(child);
+				if(toRemove.ships.size() == it->ships.size() &&
+					is_permutation(it->ships.begin(), it->ships.end(), toRemove.ships.begin()))
+				{
+					total -= it->weight;
+					variants.erase(it);
+					didRemove = true;
+					break;
+				}
+			}
+			if(!didRemove)
+				child.PrintTrace("Did not find matching variant for specified operation:");
 		}
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
@@ -111,17 +137,21 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 		// others don't have that jump method, they are being carried as fighters.
 		// That is, content creators should avoid creating fleets with a mix of jump
 		// drives and hyperdrives.
-		int jumpType = 0;
+		bool hasJump = false;
+		bool hasHyper = false;
 		for(const Ship *ship : variant.ships)
-			jumpType = max(jumpType,
-				 ship->Attributes().Get("jump drive") ? 200 :
-				 ship->Attributes().Get("hyperdrive") ? 100 : 0);
-		if(jumpType)
 		{
-			// Don't try to make a fleet "enter" from another system if none of the
-			// ships have jump drives.
+			if(ship->Attributes().Get("jump drive"))
+				hasJump = true;
+			if(ship->Attributes().Get("hyperdrive"))
+				hasHyper = true;
+		}
+		// Don't try to make a fleet "enter" from another system if none of the
+		// ships have jump drives.
+		if(hasJump || hasHyper)
+		{
 			bool isWelcomeHere = !system.GetGovernment()->IsEnemy(government);
-			for(const System *neighbor : (jumpType == 200 ? system.Neighbors() : system.Links()))
+			for(const System *neighbor : (hasJump ? system.Neighbors() : system.Links()))
 			{
 				// If this ship is not "welcome" in the current system, prefer to have
 				// it enter from a system that is friendly to it. (This is for realism,
@@ -129,7 +159,7 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 				if(isWelcomeHere || neighbor->GetGovernment()->IsEnemy(government))
 					linkVector.push_back(neighbor);
 				else
-					linkVector.insert(linkVector.end(), 4, neighbor);
+					linkVector.insert(linkVector.end(), 8, neighbor);
 			}
 		}
 	
@@ -320,13 +350,17 @@ int64_t Fleet::Strength() const
 
 Fleet::Variant::Variant(const DataNode &node)
 {
-	weight = (node.Size() < 2) ? 1 : static_cast<int>(node.Value(1));
+	weight = 1;
+	if(node.Token(0) == "variant" && node.Size() >= 2)
+		weight = node.Value(1);
+	else if(node.Token(0) == "add" && node.Size() >= 3)
+		weight = node.Value(2);
 	
 	for(const DataNode &child : node)
 	{
 		int n = 1;
-		if(child.Size() > 1 && child.Value(1) >= 1.)
-			n = static_cast<int>(child.Value(1));
+		if(child.Size() >= 2 && child.Value(1) >= 1.)
+			n = child.Value(1);
 		ships.insert(ships.end(), n, GameData::Ships().Get(child.Token(0)));
 	}
 }

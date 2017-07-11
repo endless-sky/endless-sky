@@ -101,6 +101,8 @@ public:
 	void SetDate(const Date &date);
 	// Get the stellar object locations on the most recently set date.
 	const std::vector<StellarObject> &Objects() const;
+	// Get the stellar object (if any) for the given planet.
+	const StellarObject *FindStellar(const Planet *planet) const;
 	// Get the habitable zone's center.
 	double HabitableZone() const;
 	// Get the radius of the asteroid belt.

@@ -8,10 +8,12 @@
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
-ship "Starling" # 300
+ship "Starling"
 	sprite "ship/starling"
 	attributes
 		category "Light Warship"
+		licenses
+			Remnant
 		cost 8800000
 		"shields" 8800
 		"hull" 4900
@@ -39,6 +41,7 @@ ship "Starling" # 300
 		"Epoch Cell"
 		"Crystal Capacitor"
 		"Emergency Ramscoop" 2
+		"Quantum Key Stone"
 		
 		"Forge-Class Thruster"
 		"Forge-Class Steering"
@@ -60,7 +63,7 @@ ship "Starling" # 300
 	"final explode" "final explosion small" 1
 	description "TBD"
 
-ship "Starling" "Starling (Heavy)" # 309
+ship "Starling" "Starling (Heavy)"
 	outfits
 		"Thrasher Cannon" 5
 		"Point Defense Turret"
@@ -73,19 +76,20 @@ ship "Starling" "Starling (Heavy)" # 309
 		"Forge-Class Steering"
 		"Hyperdrive"
 
-ship "Starling" "Starling (Sniper)" # 308
+ship "Starling" "Starling (Sniper)"
 	outfits
 		"Inhibitor Cannon" 5
 		
 		"Epoch Cell"
 		"Crystal Capacitor"
 		"Emergency Ramscoop"
+		"Quantum Key Stone"
 		
 		"Forge-Class Thruster"
 		"Smelter-Class Steering"
 		"Hyperdrive"
 
-ship "Starling" "Starling (Hunter)" # 311
+ship "Starling" "Starling (Hunter)"
 	outfits
 		"Inhibitor Cannon" 2
 		"Thrasher Turret"
@@ -105,7 +109,7 @@ ship "Starling" "Starling (Hunter)" # 311
 	gun
 	gun
 
-ship "Starling" "Starling (Thrasher)" # 305
+ship "Starling" "Starling (Thrasher)"
 	outfits
 		"Thrasher Cannon" 3
 		"Thrasher Turret"
@@ -113,6 +117,7 @@ ship "Starling" "Starling (Thrasher)" # 305
 		"Epoch Cell"
 		"Millennium Cell"
 		"Crystal Capacitor"
+		"Quantum Key Stone"
 		
 		"Forge-Class Thruster"
 		"Forge-Class Steering"
@@ -126,10 +131,12 @@ ship "Starling" "Starling (Thrasher)" # 305
 
 
 
-ship "Albatross" # 656
+ship "Albatross"
 	sprite "ship/albatross"
 	attributes
 		category "Heavy Warship"
+		licenses
+			Remnant
 		cost 20000000
 		"shields" 34200
 		"hull" 12600
@@ -156,6 +163,7 @@ ship "Albatross" # 656
 		"Epoch Cell"
 		"Crystal Capacitor"
 		"Thermoelectric Cooler" 2
+		"Quantum Key Stone"
 		
 		"Smelter-Class Thruster"
 		"Smelter-Class Steering"
@@ -182,7 +190,7 @@ ship "Albatross" # 656
 	explode "huge explosion" 10
 	"final explode" "final explosion large" 1
 
-ship "Albatross" "Albatross (Sniper)" # 651
+ship "Albatross" "Albatross (Sniper)"
 	outfits
 		"Inhibitor Cannon" 7
 		"Point Defense Turret" 3
@@ -191,6 +199,7 @@ ship "Albatross" "Albatross (Sniper)" # 651
 		"Epoch Cell"
 		"Crystal Capacitor"
 		"Thermoelectric Cooler" 2
+		"Quantum Key Stone"
 		
 		"Forge-Class Thruster"
 		"Crucible-Class Thruster"
@@ -204,7 +213,7 @@ ship "Albatross" "Albatross (Sniper)" # 651
 	turret
 	turret "Point Defense Turret"
 
-ship "Albatross" "Albatross (Turret)" # 654
+ship "Albatross" "Albatross (Turret)"
 	outfits
 		"Thrasher Turret" 4
 		"Point Defense Turret"
@@ -226,7 +235,7 @@ ship "Albatross" "Albatross (Turret)" # 654
 	turret "Thrasher Turret"
 	turret "Point Defense Turret"
 
-ship "Albatross" "Albatross (Heavy)" # 656
+ship "Albatross" "Albatross (Heavy)"
 	outfits
 		"Inhibitor Cannon" 3
 		"Thrasher Cannon" 4
@@ -257,3 +266,40 @@ ship "Albatross" "Albatross (Heavy)" # 656
 	turret
 	turret
 	turret "Thrasher Turret"
+
+
+
+ship Gascraft
+	sprite ship/gascraft
+	attributes
+		category Transport
+		cost 530000
+		"shields" 800
+		"hull" 1500
+		"required crew" 1
+		"bunks" 1
+		"mass" 80
+		"drag" 1.7
+		"heat dissipation" 0.9
+		"fuel capacity" 700
+		"cargo space" 8
+		"outfit space" 90
+		"engine capacity" 34
+		"shield generation" 0.6
+		"shield energy" 0.4
+		"hull repair rate" 1.2
+		"hull energy" 0.9
+		"gaslining" 1
+	outfits
+		"Millennium Cell"
+		"Supercapacitor"
+		"Emergency Ramscoop"
+		"Quantum Key Stone"
+		
+		"Crucible-Class Thruster"
+		"Crucible-Class Steering"
+		"Hyperdrive"
+	
+	engine 0 30
+	explode "tiny explosion" 8
+	explode "small explosion" 7

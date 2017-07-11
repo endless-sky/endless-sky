@@ -129,8 +129,8 @@ private:
 	
 	std::set<std::string> attributes;
 	
-	std::vector<const Sale<Ship> *> shipSales;
-	std::vector<const Sale<Outfit> *> outfitSales;
+	std::set<const Sale<Ship> *> shipSales;
+	std::set<const Sale<Outfit> *> outfitSales;
 	// The lists above will be converted into actual ship lists when they are
 	// first asked for:
 	mutable Sale<Ship> shipyard;

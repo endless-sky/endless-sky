@@ -73,6 +73,7 @@ public:
 	
 	double Turn() const;
 	double Inaccuracy() const;
+	double TurretTurn() const;
 	
 	double Tracking() const;
 	double OpticalTracking() const;
@@ -89,6 +90,12 @@ public:
 	double BlastRadius() const;
 	double HitForce() const;
 	
+	// A "safe" weapon hits only hostile ships (even if it has a blast radius).
+	// A "phasing" weapon hits only its intended target; it passes through
+	// everything else, including asteroids.
+	bool IsSafe() const;
+	bool IsPhasing() const;
+	
 	// These values include all submunitions:
 	double ShieldDamage() const;
 	double HullDamage() const;
@@ -104,6 +111,10 @@ public:
 	
 	
 protected:
+	// Legacy support: allow turret outfits with no turn rate to specify a
+	// default turnrate.
+	void SetTurretTurn(double rate);
+	
 	const Outfit *ammo = nullptr;
 	
 	
@@ -128,6 +139,8 @@ private:
 	// This stores whether or not the weapon has been loaded.
 	bool isWeapon = false;
 	bool isStreamed = false;
+	bool isSafe = false;
+	bool isPhasing = false;
 	
 	// Attributes.
 	int lifetime = 0;
@@ -148,6 +161,7 @@ private:
 	
 	double turn = 0.;
 	double inaccuracy = 0.;
+	double turretTurn = 0.;
 	
 	double tracking = 0.;
 	double opticalTracking = 0.;
@@ -201,6 +215,7 @@ inline double Weapon::HardpointOffset() const { return hardpointOffset; }
 
 inline double Weapon::Turn() const { return turn; }
 inline double Weapon::Inaccuracy() const { return inaccuracy; }
+inline double Weapon::TurretTurn() const { return turretTurn; }
 
 inline double Weapon::Tracking() const { return tracking; }
 inline double Weapon::OpticalTracking() const { return opticalTracking; }
@@ -218,6 +233,9 @@ inline double Weapon::SplitRange() const { return splitRange; }
 inline double Weapon::TriggerRadius() const { return triggerRadius; }
 inline double Weapon::BlastRadius() const { return blastRadius; }
 inline double Weapon::HitForce() const { return hitForce; }
+
+inline bool Weapon::IsSafe() const { return isSafe; }
+inline bool Weapon::IsPhasing() const { return isPhasing; }
 
 inline double Weapon::ShieldDamage() const { return TotalDamage(SHIELD_DAMAGE); }
 inline double Weapon::HullDamage() const { return TotalDamage(HULL_DAMAGE); }

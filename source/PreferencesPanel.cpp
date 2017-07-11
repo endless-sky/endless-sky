@@ -40,6 +40,8 @@ namespace {
 	static const string ZOOM_FACTOR = "Main zoom factor";
 	static const string VIEW_ZOOM_FACTOR = "View zoom factor";
 	static const string EXPEND_AMMO = "Escorts expend ammo";
+	static const string TURRET_TRACKING = "Turret tracking";
+	static const string FOCUS_PREFERENCE = "Turrets focus fire";
 	static const string FRUGAL_ESCORTS = "Escorts use ammo frugally";
 	static const string REACTIVATE_HELP = "Reactivate first-time help";
 	static const string SCROLL_SPEED = "Scroll speed";
@@ -161,6 +163,8 @@ bool PreferencesPanel::Click(int x, int y, int clicks)
 			}
 			if(zone.Value() == EXPEND_AMMO)
 				Preferences::ToggleAmmoUsage();
+			else if(zone.Value() == TURRET_TRACKING)
+				Preferences::Set(FOCUS_PREFERENCE, !Preferences::Has(FOCUS_PREFERENCE));
 			else if(zone.Value() == REACTIVATE_HELP)
 			{
 				for(const auto &it : GameData::HelpTemplates())
@@ -419,6 +423,7 @@ void PreferencesPanel::DrawSettings()
 		"Automatic aiming",
 		"Automatic firing",
 		EXPEND_AMMO,
+		TURRET_TRACKING,
 		"",
 		"Performance",
 		"Show CPU / GPU load",
@@ -474,6 +479,11 @@ void PreferencesPanel::DrawSettings()
 		}
 		else if(setting == EXPEND_AMMO)
 			text = Preferences::AmmoUsage();
+		else if(setting == TURRET_TRACKING)
+		{
+			isOn = true;
+			text = Preferences::Has(FOCUS_PREFERENCE) ? "focused" : "opportunistic";
+		}
 		else if(setting == REACTIVATE_HELP)
 		{
 			// Check how many help messages have been displayed.

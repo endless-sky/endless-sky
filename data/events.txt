@@ -521,45 +521,7 @@ event "southern carriers 1"
 		"X1050 Ion Engines"
 	fleet "Small Free Worlds"
 		fighters "free worlds fighters"
-		variant 8
-			"Hawk"
-			"Sparrow"
-		variant 4
-			"Hawk"
-			"Fury"
-		variant 2
-			"Hawk"
-			"Fury (Missile)"
-		variant 2
-			"Hawk"
-			"Fury (Laser)"
-		variant 4
-			"Fury" 2
-		variant 2
-			"Fury (Laser)"
-			"Fury (Missile)"
-		variant 10
-			"Sparrow" 2
-		variant 2
-			"Hawk"
-		variant 1
-			"Hawk (Rocket)"
-		variant 1
-			"Hawk (Speedy)"
-		variant 2
-			"Sparrow"
-		variant 2
-			"Osprey"
-		variant 4
-			"Hawk"
-			"Sparrow" 2
-		variant 2
-			"Hawk (Rocket)"
-			"Sparrow" 2
-		variant 2
-			"Hawk (Speedy)"
-			"Sparrow" 2
-		variant 1
+		add variant 1
 			"Nest"
 			"Finch" 2
 
@@ -575,156 +537,30 @@ event "southern carriers 2"
 		"X1050 Ion Engines"
 	fleet "Large Southern Merchants"
 		fighters "free worlds fighter"
-		variant 20
-			"Freighter"
-			"Hawk"
-		variant 10
-			"Freighter (Fancy)"
-			"Hawk"
-		variant 30
-			"Freighter" 2
-			"Sparrow" 2
-		variant 10
-			"Freighter (Fancy)"
-			"Freighter"
-			"Sparrow" 2
-		variant 30
-			"Argosy"
-		variant 20
-			"Argosy (Laser)"
-		variant 15
-			"Argosy (Missile)"
-		variant 25
-			"Argosy (Blaster)"
-		variant 15
-			"Argosy (Turret)"
-		variant 10
-			"Bastion"
-			"Freighter" 3
-		variant 10
-			"Bastion (Heavy)"
-			"Freighter (Fancy)" 3
-		variant 10
-			"Bastion (Laser)"
-			"Freighter" 3
-		variant 20
-			"Bastion"
-			"Argosy"
-		variant 10
-			"Bastion (Heavy)"
-			"Argosy (Missile)"
-		variant 10
-			"Bastion (Laser)"
-			"Argosy (Laser)"
-		variant 10
-			"Bastion"
-			"Freighter" 3
-			"Star Barge" 4
-			"Fury"
-			"Sparrow" 2
-		variant 3
-			"Bastion (Heavy)"
-			"Freighter (Fancy)" 3
-			"Star Barge (Armed)" 4
-			"Fury (Missile)"
-			"Sparrow" 2
-		variant 20
-			"Argosy" 2
-		variant 10
-			"Argosy (Blaster)"
-			"Argosy (Laser)"
-		variant 10
-			"Argosy (Turret)"
-			"Argosy (Missile)"
-		variant 10
-			"Blackbird"
-			"Sparrow" 2
-		variant 2
-			"Bactrian"
-			"Dagger" 3
-		variant 12
-			"Hauler III"
-			"Hauler II"
-			"Hauler"
-		variant 8
-			"Hauler II"
-			"Hauler" 2
-		variant 6
-			"Hauler III"
-			"Berserker" 2
-		variant 15
+		add variant 15
 			"Hauler III"
 			"Nest"
 			"Finch" 2
-		variant 15
+		add variant 15
 			"Argosy"
 			"Hauler II"
 			"Nest"
 			"Finch" 2
-		variant 5
+		add variant 5
 			"Hauler III" 3
 			"Roost"
 			"Finch" 4
-		variant 5
+		add variant 5
 			"Roost" 3
 			"Finch" 6
 			"Boxwing" 6
 
 	fleet "Small Independent"
 		fighters "free worlds fighter"
-		variant 8
-			"Sparrow"
-		variant 3
-			"Hawk"
-		variant 2
-			"Hawk (Speedy)"
-		variant 2
-			"Hawk (Rocket)"
-		variant 5
-			"Fury"
-		variant 2
-			"Fury (Laser)"
-		variant 1
-			"Fury (Missile)"
-		variant 2
-			"Sparrow" 2
-		variant 1
-			"Hawk"
-			"Sparrow"
-		variant 1
-			"Hawk (Speedy)"
-			"Sparrow"
-		variant 1
-			"Fury" 3
-		variant 1
-			"Fury (Missile)" 3
-		variant 1
-			"Fury"
-			"Hawk"
-		variant 1
-			"Hawk"
-			"Fury"
-			"Sparrow"
-		variant 1
-			"Hawk (Rocket)"
-			"Fury (Missile)"
-			"Sparrow"
-		variant 1
-			"Sparrow" 3
-		variant 1
-			"Hawk" 2
-		variant 1
-			"Hawk (Speedy)" 2
-		variant 2
-			"Clipper"
-		variant 1
-			"Clipper (Heavy)"
-		variant 1
-			"Clipper (Speedy)"
-		variant 1
+		add variant 1
 			"Nest"
 			"Barb" 2
-		variant 1
+		add variant 1
 			"Nest"
 			"Barb"
 			"Boxwing"
@@ -739,573 +575,83 @@ event "southern carriers 3"
 		"Skein"
 	fleet "Large Free Worlds"
 		fighters "free worlds fighters"
-		variant 10
-			"Bastion"
-		variant 5
-			"Bastion (Heavy)"
-		variant 5
-			"Bastion (Laser)"
-		variant 8
-			"Osprey"
-			"Fury"
-		variant 4
-			"Osprey (Missile)"
-			"Fury (Missile)"
-		variant 4
-			"Osprey (Laser)"
-			"Fury (Laser)"
-		variant 4
-			"Argosy"
-		variant 3
-			"Argosy (Blaster)"
-		variant 2
-			"Argosy (Laser)"
-		variant 2
-			"Argosy (Missile)"
-		variant 2
-			"Argosy (Turret)"
-		variant 6
-			"Bastion"
-			"Osprey"
-		variant 3
-			"Bastion (Heavy)"
-			"Osprey (Missile)"
-		variant 3
-			"Bastion (Laser)"
-			"Osprey (Laser)"
-		variant 4
-			"Bastion"
-			"Sparrow" 2
-		variant 2
-			"Bastion (Heavy)"
-			"Sparrow" 2
-		variant 2
-			"Bastion (Laser)"
-			"Sparrow" 2
-		variant 2
-			"Falcon"
-		variant 1
-			"Falcon (Heavy)"
-		variant 1
-			"Falcon (Laser)"
-		variant 2
-			"Falcon"
-			"Hawk" 2
-			"Sparrow" 3
-		variant 1
-			"Falcon (Heavy)"
-			"Hawk" 2
-			"Sparrow" 3
-		variant 1
-			"Falcon (Laser)"
-			"Hawk" 2
-			"Sparrow" 3
-		variant 4
-			"Falcon"
-			"Bastion"
-			"Hawk"
-		variant 2
-			"Falcon (Heavy)"
-			"Bastion (Heavy)"
-			"Hawk (Rocket)"
-		variant 2
-			"Falcon (Laser)"
-			"Bastion (Laser)"
-			"Hawk (Speedy)"
-		variant 2
+		add variant 2
 			"Roost"
 			"Finch" 4
-		variant 2
+		add variant 2
 			"Skein"
 			"Finch" 6
-		variant 1
+		add variant 1
 			"Roost" 2
 			"Finch" 6
 			"Boxwing" 2
-		variant 1
+		add variant 1
 			"Skein" 2
 			"Finch" 8
 			"Boxwing" 4
 
 	fleet "Small Southern Pirates"
-		variant 8
-			"Sparrow"
-		variant 3
-			"Hawk"
-		variant 2
-			"Hawk (Speedy)"
-		variant 2
-			"Hawk (Rocket)"
-		variant 5
-			"Fury"
-		variant 1
-			"Fury (Laser)"
-		variant 1
-			"Fury (Gatling)"
-		variant 1
-			"Fury (Missile)"
-		variant 2
-			"Sparrow" 2
-		variant 1
-			"Hawk"
-			"Sparrow"
-		variant 1
-			"Hawk (Speedy)"
-			"Sparrow"
-		variant 1
-			"Fury" 3
-		variant 1
-			"Fury (Missile)" 3
-		variant 1
-			"Fury"
-			"Hawk"
-		variant 1
-			"Hawk"
-			"Fury"
-			"Sparrow"
-		variant 1
-			"Hawk (Rocket)"
-			"Fury (Missile)"
-			"Sparrow"
-		variant 1
-			"Sparrow" 3
-		variant 1
-			"Hawk" 2
-		variant 1
-			"Hawk (Speedy)" 2
-		variant 2
-			"Clipper"
-		variant 1
-			"Clipper (Heavy)"
-		variant 1
-			"Clipper (Speedy)"
-		variant 1
-			"Modified Argosy"
-		variant 1
+		add variant 1
 			"Nest"
 			"Barb" 2
-		variant 1
+		add variant 1
 			"Nest"
 			"Barb (Gatling)" 2
 
 event "southern carriers 4"
 	fleet "Large Northern Merchants"
 		fighters "free worlds fighter"
-		variant 20
-			"Freighter" 2
-			"Firebird"
-		variant 6
-			"Freighter" 2
-			"Berserker" 2
-		variant 3
-			"Freighter" 2
-			"Berserker (Afterburner)" 2
-		variant 10
-			"Freighter" 2
-			"Firebird (Plasma)"
-		variant 10
-			"Freighter" 2
-			"Firebird (Missile)"
-		variant 10
-			"Freighter" 3
-			"Firebird"
-		variant 2
-			"Freighter" 3
-			"Firebird (Plasma)"
-		variant 2
-			"Freighter" 3
-			"Firebird (Missile)"
-		variant 20
-			"Freighter" 2
-			"Corvette"
-		variant 10
-			"Freighter" 2
-			"Corvette (Speedy)"
-		variant 10
-			"Freighter" 2
-			"Corvette (Missile)"
-		variant 10
-			"Freighter" 3
-			"Corvette"
-		variant 3
-			"Freighter" 3
-			"Corvette (Speedy)"
-		variant 3
-			"Freighter" 3
-			"Corvette (Missile)"
-		variant 6
-			"Freighter" 4
-			"Leviathan"
-		variant 6
-			"Freighter" 4
-			"Leviathan (Heavy)"
-		variant 6
-			"Freighter" 4
-			"Leviathan (Laser)"
-		variant 30
-			"Behemoth"
-		variant 10
-			"Behemoth (Speedy)"
-		variant 10
-			"Behemoth" 2
-		variant 4
-			"Behemoth"
-			"Headhunter" 2
-		variant 2
-			"Behemoth"
-			"Headhunter (Particle)" 2
-		variant 4
-			"Bulk Freighter"
-			"Headhunter" 2
-		variant 2
-			"Bulk Freighter"
-			"Headhunter (Particle)" 2
-		variant 10
-			"Bulk Freighter"
-			"Sparrow" 2
-		variant 4
-			"Bulk Freighter (Heavy)"
-			"Sparrow" 2
-		variant 2
-			"Bulk Freighter (Heavy)"
-			"Berserker" 2
-		variant 2
-			"Bulk Freighter (Heavy)"
-			"Berserker (Afterburner)" 2
-		variant 4
-			"Bulk Freighter (Blaster)"
-			"Sparrow" 2
-		variant 10
-			"Behemoth" 2
-			"Firebird" 1
-		variant 10
-			"Freighter" 4
-			"Sparrow" 2
-			"Firebird" 1
-		variant 3
-			"Freighter (Fancy)" 4
-			"Sparrow" 2
-			"Firebird (Plasma)" 1
-		variant 2
-			"Bactrian"
-			"Dagger" 3
-		variant 2
-			"Bactrian"
-			"Lance" 3
-		variant 2
-			"Arrow"
-		variant 1
-			"Star Queen"
-			"Leviathan"
-		variant 1
-			"Star Queen"
-			"Headhunter (Particle)" 3
-		variant 1
-			"Star Queen"
-			"Berserker (Afterburner)" 2
-		variant 1
-			"Star Queen"
-			"Leviathan (Heavy)"
-		variant 1
-			"Star Queen"
-			"Leviathan (Laser)"
-		variant 1
-			"Star Queen"
-			"Firebird" 2
-		variant 1
-			"Star Queen"
-			"Firebird (Plasma)" 2
-		variant 8
-			"Hauler III"
-			"Hauler II"
-		variant 6
-			"Hauler II"
-			"Hauler" 3
-		variant 4
-			"Hauler III" 2
-		variant 4
-			"Hauler III"
-			"Hauler II"
-			"Headhunter" 3
-		variant 2
+		add variant 2
 			"Hauler III"
 			"Hauler II"
 			"Roost (Sidewinder)"
 			"Dagger" 2
 			"Lance" 2
-		variant 2
+		add variant 2
 			"Hauler III"
 			"Hauler II"
 			"Roost (Sidewinder)"
 			"Lance (Gatling)" 2
 			"Lance" 2
-		variant 2
+		add variant 2
 			"Roost" 3
 			"Dagger" 4
 			"Lance" 4
 			"Boxwing" 4
-		variant 2
+		add variant 2
 			"Roost" 3
 			"Lance (Gatling)" 4
 			"Lance" 4
 			"Boxwing" 4
 
 	fleet "Large Southern Pirates"
-		variant 2
-			"Sparrow" 4
-		variant 1
-			"Sparrow (Gatling)" 3
-		variant 5
-			"Argosy"
-		variant 3
-			"Argosy (Blaster)"
-		variant 2
-			"Argosy (Laser)"
-		variant 2
-			"Argosy (Missile)"
-		variant 2
-			"Argosy (Turret)"
-		variant 1
-			"Modified Argosy"
-		variant 1
-			"Modified Argosy (Heavy)"
-		variant 1
-			"Modified Argosy (Blaster)"
-		variant 1
-			"Modified Argosy (Missile)"
-		variant 4
-			"Clipper"
-		variant 2
-			"Clipper (Heavy)"
-		variant 2
-			"Clipper (Speedy)"
-		variant 2
-			"Clipper"
-			"Hawk"
-		variant 1
-			"Clipper (Heavy)"
-			"Hawk (Rocket)"
-		variant 1
-			"Clipper (Speedy)"
-			"Hawk (Speedy)"
-		variant 3
-			"Argosy"
-			"Hawk"
-		variant 1
-			"Argosy (Blaster)"
-			"Hawk (Rocket)"
-		variant 1
-			"Argosy (Laser)"
-			"Hawk (Speedy)"
-		variant 1
-			"Argosy (Turret)"
-			"Hawk (Speedy)"
-		variant 1
-			"Argosy (Missile)"
-			"Hawk (Rocket)"
-		variant 1
-			"Modified Argosy"
-			"Sparrow" 2
-		variant 1
-			"Modified Argosy (Heavy)"
-			"Sparrow" 2
-		variant 1
-			"Modified Argosy (Blaster)"
-			"Sparrow" 2
-		variant 1
-			"Modified Argosy (Missile)" 2
-		variant 4
-			"Bastion"
-		variant 2
-			"Bastion (Heavy)"
-		variant 2
-			"Bastion (Laser)"
-		variant 2
-			"Falcon"
-		variant 1
-			"Falcon (Heavy)"
-		variant 1
-			"Falcon (Laser)"
-		variant 1
+		add variant 1
 			"Roost"
 			"Barb" 4
-		variant 1
+		add variant 1
 			"Roost"
 			"Barb (Gatling)" 4
 
 	fleet "Large Independent"
 		fighters "free worlds fighter"
-		variant 3
-			"Sparrow" 4
-		variant 5
-			"Argosy"
-		variant 3
-			"Argosy (Blaster)"
-		variant 2
-			"Argosy (Laser)"
-		variant 2
-			"Argosy (Missile)"
-		variant 2
-			"Argosy (Turret)"
-		variant 4
-			"Clipper"
-		variant 2
-			"Clipper (Heavy)"
-		variant 2
-			"Clipper (Speedy)"
-		variant 2
-			"Clipper"
-			"Hawk"
-		variant 1
-			"Clipper (Heavy)"
-			"Hawk (Rocket)"
-		variant 1
-			"Clipper (Speedy)"
-			"Hawk (Speedy)"
-		variant 3
-			"Argosy"
-			"Hawk"
-		variant 1
-			"Argosy (Blaster)"
-			"Hawk (Rocket)"
-		variant 1
-			"Argosy (Laser)"
-			"Hawk (Speedy)"
-		variant 1
-			"Argosy (Turret)"
-			"Hawk (Speedy)"
-		variant 1
-			"Argosy (Missile)"
-			"Hawk (Rocket)"
-		variant 4
-			"Bastion"
-		variant 2
-			"Bastion (Heavy)"
-		variant 2
-			"Bastion (Laser)"
-		variant 2
-			"Falcon"
-		variant 1
-			"Falcon (Heavy)"
-		variant 1
-			"Falcon (Laser)"
-		variant 2
+		add variant 2
 			"Roost"
 			"Barb" 4
-		variant 2
+		add variant 2
 			"Roost"
 			"Barb" 2
 			"Boxwing" 2
+
 	fleet "Small Northern Pirates"
-		variant 5
-			"Sparrow"
-		variant 3
-			"Fury"
-		variant 1
-			"Fury (Missile)"
-		variant 1
-			"Fury (Laser)"
-		variant 1
-			"Fury (Gatling)"
-		variant 2
-			"Berserker"
-		variant 2
-			"Berserker (Afterburner)"
-		variant 2
-			"Hawk"
-		variant 1
-			"Hawk (Rocket)"
-		variant 1
-			"Hawk (Speedy)"
-		variant 3
-			"Headhunter"
-		variant 2
-			"Headhunter (Particle)"
-		variant 2
-			"Raven (Afterburner)"
-		variant 1
-			"Raven (Heavy)"
-		variant 2
-			"Corvette"
-		variant 1
-			"Corvette (Missile)"
-		variant 1
-			"Corvette (Speedy)"
-		variant 1
+		add variant 1
 			"Nest"
 			"Lance" 2
+
 	fleet "Large Northern Pirates"
-		variant 4
-			"Firebird"
-		variant 2
-			"Firebird (Missile)"
-		variant 2
-			"Firebird (Plasma)"
-		variant 3
-			"Firebird"
-			"Corvette"
-		variant 1
-			"Firebird (Plasma)"
-			"Corvette (Speedy)"
-		variant 1
-			"Firebird (Missile)"
-			"Corvette (Missile)"
-		variant 1
-			"Firebird (Plasma)"
-			"Corvette (Missile)"
-		variant 1
-			"Firebird (Missile)"
-			"Corvette (Speedy)"
-		variant 2
-			"Firebird"
-			"Fury"
-		variant 2
-			"Firebird"
-			"Berserker" 2
-		variant 1
-			"Firebird (Plasma)"
-			"Fury (Missile)"
-		variant 2
-			"Raven (Afterburner)" 2
-		variant 2
-			"Raven (Heavy)" 2
-		variant 2
-			"Headhunter (Particle)" 2
-		variant 1
-			"Headhunter (Particle)" 3
-		variant 2
-			"Leviathan"
-			"Firebird"
-		variant 2
-			"Leviathan (Laser)"
-			"Firebird"
-		variant 2
-			"Leviathan (Heavy)"
-			"Firebird (Plasma)"
-		variant 2
-			"Leviathan (Heavy)"
-			"Firebird (Missile)"
-		variant 2
-			"Leviathan (Laser)"
-			"Firebird (Missile)"
-		variant 2
-			"Leviathan"
-		variant 1
-			"Leviathan (Laser)"
-		variant 1
-			"Leviathan (Heavy)"
-		variant 1
-			"Berserker" 3
-		variant 1
-			"Berserker (Afterburner)" 3
-		variant 2
-			"Berserker" 2
-		variant 2
-			"Berserker (Afterburner)" 2
-		variant 1
+		add variant 1
 			"Roost"
 			"Lance" 4
-		variant 1
+		add variant 1
 			"Roost"
 			"Lance (Gatling)" 4
 
@@ -1488,26 +834,9 @@ event "recapture of Kornephoros"
 	planet "Deep"
 		spaceport `The spaceport is built on a large island, a now-extinct volcano with an elevation of several kilometers at its center. Most of the large-scale fishing here is done by a single company, Poseidon Industries, who also built and maintain the spaceport. Steep winding roads and sturdy cement homes and warehouses line the mountain slopes, and below you in the harbor several massive trawling vessels are moored. On the outskirts of the spaceport are the ramshackle houses and open-air marketplace used by the smaller, independent fishing families.`
 		security .5
+
 	fleet "Small Republic"
-		government "Republic"
-		names "republic small"
-		cargo 0
-		personality
-			heroic
-		variant 6
-			"Rainmaker" 2
-		variant 5
-			"Gunboat"
-			"Rainmaker"
-		variant 4
-			"Frigate"
-		variant 3
-			"Gunboat" 2
-		variant 1
-			"Rainmaker" 3
-		variant 6
-			"Gunboat"
-		variant 10
+		add variant 10
 			"Protector"
 
 
@@ -1604,35 +933,7 @@ event "plasma turret available"
 	outfitter "Kraz Advanced"
 		"Plasma Turret"
 	fleet "Large Free Worlds"
-		government "Free Worlds"
-		names "free worlds capital"
-		cargo 1
-		personality
-			heroic
-		variant 5
-			"Bastion"
-		variant 4
-			"Osprey"
-			"Fury"
-		variant 2
-			"Argosy"
-		variant 3
-			"Bastion"
-			"Osprey"
-		variant 2
-			"Bastion"
-			"Sparrow" 2
-		variant 1
-			"Falcon"
-		variant 1
-			"Falcon"
-			"Hawk" 2
-			"Sparrow" 3
-		variant 1
-			"Falcon"
-			"Bastion"
-			"Hawk"
-		variant 3
+		add variant 3
 			"Falcon (Plasma)"
 
 
@@ -1777,75 +1078,40 @@ event "fw safe passage ends"
 
 event "navy using mark ii ships"
 	fleet "Small Republic"
-		government "Republic"
-		names "republic small"
-		cargo 0
-		personality
-			heroic
-		variant 4
+		add variant 12
 			"Rainmaker (Mark II)" 2
-		variant 2
-			"Rainmaker" 2
-		variant 4
+		add variant 12
 			"Gunboat (Mark II)"
 			"Rainmaker (Mark II)"
-		variant 1
-			"Gunboat"
-			"Rainmaker"
-		variant 3
+		add variant 9
 			"Frigate (Mark II)"
-		variant 1
-			"Frigate"
-		variant 2
+		add variant 6
 			"Gunboat (Mark II)" 2
-		variant 1
-			"Gunboat" 2
-		variant 1
+		add variant 3
 			"Rainmaker (Mark II)" 3
-		variant 4
+		add variant 12
 			"Gunboat (Mark II)"
-		variant 2
-			"Gunboat"
+		remove variant
+			"Protector"
+	
 	fleet "Large Republic"
-		government "Republic"
-		names "republic capital"
-		fighters "republic fighter"
-		cargo 0
-		personality
-			heroic
-		variant 4
+		add variant 12
 			"Frigate (Mark II)" 2
 			"Rainmaker (Mark II)"
 			"Gunboat (Mark II)"
-		variant 1
-			"Frigate" 2
-			"Rainmaker"
-			"Gunboat"
-		variant 2
+		add variant 6
 			"Cruiser (Mark II)"
 			"Combat Drone" 4
-		variant 1
-			"Cruiser"
-			"Combat Drone" 4
-		variant 2
+		add variant 6
 			"Cruiser (Mark II)"
 			"Combat Drone" 4
 			"Frigate (Mark II)"
 			"Rainmaker (Mark II)"
-		variant 1
-			"Cruiser"
-			"Combat Drone" 4
-			"Frigate"
-			"Rainmaker"
-		variant 2
+		add variant 6
 			"Carrier (Mark II)"
 			"Lance" 4
 			"Combat Drone" 6
-		variant 1
-			"Carrier"
-			"Lance" 4
-			"Combat Drone" 6
-		variant 1
+		add variant 3
 			"Carrier (Mark II)"
 			"Lance" 4
 			"Combat Drone" 6
@@ -1854,11 +1120,11 @@ event "navy using mark ii ships"
 			"Frigate (Mark II)" 2
 			"Rainmaker (Mark II)" 2
 			"Gunboat (Mark II)" 2
-		variant 1
+		add variant 3
 			"Cruiser (Mark II)"
 			"Combat Drone" 4
 			"Frigate (Mark II)" 2
-		variant 1
+		add variant 3
 			"Frigate (Mark II)"
 			"Rainmaker (Mark II)" 2
 			"Gunboat (Mark II)"
@@ -2054,46 +1320,15 @@ event "dreadnought deployment"
 		cargo 1
 		personality
 			heroic
-		variant 5
-			"Bastion"
-		variant 4
-			"Osprey"
-			"Fury"
-		variant 2
-			"Argosy"
-		variant 3
-			"Bastion"
-			"Osprey"
-		variant 2
-			"Bastion"
-			"Sparrow" 2
-		variant 1
-			"Falcon"
-		variant 1
-			"Falcon"
-			"Hawk" 2
-			"Sparrow" 3
-		variant 1
-			"Falcon"
-			"Bastion"
-			"Hawk"
-		variant 3
-			"Falcon (Plasma)"
-		variant 2
+		add variant 4
 			"Dreadnought"
-		variant 1
+		add variant 2
 			"Dreadnought"
 			"Bastion"
-		variant 1
+		add variant 2
 			"Dreadnought"
 			"Argosy"
 			"Fury"
-		variant 3
-			"Skein"
-			"Finch" 6
-		variant 2
-			"Skein" 2
-			"Finch" 12
 
 
 

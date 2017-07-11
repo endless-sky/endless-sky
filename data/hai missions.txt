@@ -95,7 +95,7 @@ mission "First Contact: Unfettered"
 				`	"Where was your territory? Why have I never heard of you before?"`
 				`	"What do you mean, the Hai were altered?"`
 	
-			`	"This is our story," it says. "Once, many worlds beyond wormhole were ours. Once, million years now gone. We needed more worlds. A species that does not expand becomes like brackish water, like stunted tree. But dragonfolk in the south had created hyperdrive, and human monkeys had begun banging rocks together in what the Drak said was very intelligent fashion. So we were forbidden from taking more worlds."`
+			`	"This is our story," it says. "Once, many worlds beyond wormhole were ours. Once, hundred thousand years now gone. We needed more worlds. A species that does not expand becomes like brackish water, like stunted tree. But dragonfolk in the south had created hyperdrive, and human monkeys had begun banging rocks together in what the Drak said was very intelligent fashion. So we were forbidden from taking more worlds."`
 			`	"'Dragonfolk?'" you ask. "I've never heard of them."`
 			`	"Sheragi," it says, "they are extinct. Only their dumb ancestors survive, just as monkeys will outlast the thinking humans."`
 			`	"How were you altered?" you ask.`
@@ -103,7 +103,7 @@ mission "First Contact: Unfettered"
 			choice
 				`	"Did you try to resist the Drak?"`
 					goto resist
-				`	"How do you know this, if it happened millions of years ago?"`
+				`	"How do you know this, if it happened a hundred thousand years ago?"`
 					goto know
 			
 			label resist

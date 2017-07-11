@@ -26,6 +26,7 @@ mission "Wanderers: Surveying 1"
 	cargo "scientific equipment" 7
 	blocked "The Wanderers have another mission for you, but you will need some cargo space available for scientific equipment."
 	on offer
+		log `The "Eye" wormhole has opened in Wanderer space, but the territory on the other side of the wormhole is Korath space, ravaged by their civil war and still infested with autonomous war machines. Nonetheless, the Wanderers are excited to once again begin their work of healing and repairing damaged worlds.`
 		conversation
 			`The Wanderers have begun building a base here, with freighters landing every few minutes to bring more supplies or people. They have a fair number of weapons and warships to keep the Korath automata at bay, but the majority of the supplies look like scientific tools or possibly equipment for terraforming planets.`
 			`	Soon after you land, you are ushered in to a meeting with several of the senior Wanderer leaders. You recognize the military commander Sobari Tele'ek, but the others are strangers to you. And oddly, in addition to the adults there is a Wanderer child in the meeting, barely more than a meter tall, with iridescent black plumage like a starling.`
@@ -181,6 +182,7 @@ mission "Wanderers: Mereti Controller"
 	to offer
 		has "Wanderers: Surveying 1: done"
 	on complete
+		log `Discovered that the "Kor Mereti" drone ships are controlled by some sort of collective and decentralized artificial intelligence, with no obvious weaknesses.`
 		outfit "Reasoning Node" -1
 		conversation
 			scene "outfit/reasoning node"
@@ -206,6 +208,7 @@ mission "Wanderers: Sestor Controller"
 	to offer
 		has "Wanderers: Surveying 1: done"
 	on complete
+		log `The "Kor Sestor" drones turn out to all be controlled remotely, presumably by either an artificial intelligence or by Korath leaders in hiding on one of their worlds. If the control center could be found, it would be possible to gain control of the entire Kor Sestor fleet.`
 		outfit "Control Transceiver" -1
 		conversation
 			scene "outfit/control transceiver"
@@ -304,6 +307,7 @@ mission "Wanderers: Rek To Kor Efret"
 	to offer
 		has "Wanderers: First Mereti Attack: done"
 	on offer
+		log `Iktat Rek has survived the Molt, but in a completely new form. Rek is now female, and is only the size of a Wanderer child, and has chosen the name "Ektasi Rek" for herself, meaning something like "communicator" or "bridge-builder."`
 		conversation
 			`When you enter the meeting room, Sobari Tele'ek is in a heated argument with the Wanderer child who was here earlier, the one who speaks your language. The child is saying, "The Eye has sent us not to a place of [empty, abandoned] worlds but to a place of [living beings?]. To complete our [calling, work] here we must collaborate with those beings, just as we would collaborate with the [ecosystem? personality?] of a planet we sought to repair."`
 			`	"What do you [propose, intend], Firstborn?" asks Tele'ek.`
@@ -367,6 +371,7 @@ mission "Wanderers: Quarg Assistance 1"
 	to offer
 		has "Wanderers: Rek To Kor Efret: done"
 	on offer
+		log "Rek's metamorphosis seems to have given her enhanced ability to understand other languages. She will be staying with the friendly Korath for a while in order to learn how to communicate with them."
 		conversation
 			`Soon after you and Ektasi Rek land in the Kor Efret spaceport, a small group of Korath gathers around you. No doubt they realize that Rek is one of the new aliens settling in their former territory. But when Rek begins trying to communicate with them, their desire to be understood overcomes whatever hostility they might be feeling.`
 			`	Within a few minutes Rek is playing a sort of game with them where she points at different objects, trying to learn their names, and then uses those names in sentences: This is a table. Rek is on the table. Rek stands on the table. The table is under Rek. The color of the table is black. The color of the table is the same as the color of Rek.`
@@ -397,6 +402,7 @@ mission "Wanderers: Quarg Assistance 2"
 	to offer
 		has "Wanderers: Quarg Assistance 1: done"
 	on offer
+		log "The Quarg (or possibly, a faction within the Quarg, or even just a group of Quarg acting on their own) have agreed to send three of their warships to help defend the Wanderer settlement in Korath space. (Or maybe they are sending the ships because they view the Wanderers as invaders and want to keep an eye on them. It is not easy to determine their true intentions.)"
 		conversation
 			`The Quarg do not generally share any information on how their leadership hierarchy works, if such a hierarchy even exists, so your best bet to find help for the Wanderers is just to ask around until you find the right person. You flag down the first Quarg who passes you in the hallway. "How can I help you, human?" it asks.`
 			`	"Well," you say, "I'm here on behalf of a species that has recently settled on one of the abandoned Korath worlds. I'm hoping you can help protect them."`
@@ -457,7 +463,7 @@ mission "Wanderers: Pug Assistance 1"
 		has "Wanderers: Quarg Assistance 2: done"
 	on offer
 		conversation
-			`When you arrive at the Wanderer settlement with three Quarg warships in tow, you are met with a mix of gratitude and apprehension. The senior leaders insist on meeting with you immediately, and you explain how your dropped Rek off in Kor Efret space and then visited the Quarg to ask for their assistance. Tele'ek asks you, "These Quarg, what are their [intentions, inclinations] toward us? And do they understand that we seek to [heal, renew] these worlds, not to steal them from the Korath?"`
+			`When you arrive at the Wanderer settlement with three Quarg warships in tow, you are met with a mix of gratitude and apprehension. The senior leaders insist on meeting with you immediately, and you explain how you delivered Rek to Kor Efret space and then visited the Quarg to ask for their assistance. Tele'ek asks you, "These Quarg, what are their [intentions, inclinations] toward us? And do they understand that we seek to [heal, renew] these worlds, not to steal them from the Korath?"`
 			choice
 				`	"The Quarg avoid conflict unless absolutely necessary. If you show that you are peaceful, they will come to trust you."`
 					goto peace
@@ -502,6 +508,7 @@ mission "Wanderers: Pug Assistance 2"
 	to offer
 		has "Wanderers: Pug Assistance 1: done"
 	on offer
+		log "Visited the Pug to see if they are willing to help the Wanderers fight the Korath automata. But the Pug and the Quarg do not get along with each other, and therefore the Pug are not willing to enter Korath space."
 		conversation
 			`The moment you step off your ship you are surrounded by a group of armed Pug. "Perhaps we have not communicated clearly enough for the human's small brain to comprehend it," says one of them, "but we are uninterested in any further interactions with the human."`
 			choice
@@ -618,6 +625,7 @@ mission "Wanderers: Kor Efret 1"
 	to offer
 		has "Wanderers: Mereti Observation: done"
 	on offer
+		log "The Wanderers think that it might be possible to infect the Kor Mereti communications network with something akin to a computer virus, to either take control of the drones or disable them entirely."
 		conversation
 			`You hand off the communications recordings to the team of scientists, then meet with Tele'ek for a while to discuss the possible weaknesses of the Mereti drones when in combat. "Of course," he says, "it would be far better if we could [subvert, hijack] them rather than destroying them outright. Otherwise the second drone [faction, variant] will gain in power, without the Mereti drones to [cull them, keep them in check]."`
 			`	About an hour later, the scientists contact Tele'ek. You return to their facility, and the lead scientist tells you, "It is as we [suspected, hypothesized]. The Mereti drones function as [components, elements] of a single unified [collective intelligence? gestalt consciousness?]. We will [analyze, deconstruct] their protocols further to see if we can somehow [infect, corrupt] their network."`
@@ -764,6 +772,7 @@ mission "Wanderers: Kor Efret 4"
 	to offer
 		has "Wanderers: Kor Efret 3: done"
 	on offer
+		log "Helped to defend one of the friendly Korath worlds from an attack by Kor Mereti drones. There are Korath scientists on that world who have been working for decades to find a way to hack into the Kor Mereti network, but they do not think it is possible."
 		conversation
 			`When you land back on the planet, Rek and several of the Korath meet you at your ship. "They would like to thank you for your assistance in defending their home," says Rek, "and they apologize for being so dismissive of the Wanderer plans to defeat the drones. They still think that hacking or corrupting the Mereti network is impossible, though."`
 			choice
@@ -859,6 +868,7 @@ mission "Wanderers: Mind 1"
 	to offer
 		has "Wanderers: Kor Mereti Hacking: done"
 	on offer
+		log "Tested a device that the Wanderers thought would be able to force itself into the Kor Mereti network and take control of it. The experiment completely failed, however."
 		conversation
 			`You meet with the Wanderer leaders and tell them that the attempt to hack the Kor Mereti drones has failed. They seem uncertain of what to do next. Some of them want to try to target the Kor Sestor instead; others want to give the scientists another shot.`
 			`	Tema'a Iriket asks you, "Why do you think our [attempt, experiment] failed?"`
@@ -893,6 +903,7 @@ mission "Wanderers: Mind 2"
 	passengers 1
 	blocked "To take this mission, you will need a bunk and two tons of cargo space free."
 	on offer
+		log "The Wanderers have a new plan: to try to either subvert or possibly even befriend the Kor Mereti network by connecting it to a powerful Wanderer artificial intelligence."
 		conversation
 			`On <origin> you are met by a Wanderer named Meto Pa'aret. He explains that he is in charge of the artificial intelligence lab, and he wants to travel with you along with the "Mind" that is being entrusted to your care. "We have already [altered, reconfigured] one of the climate [simulation, prediction] Minds for this new purpose," he says. "It now contains [stores, databases, libraries] of historical and cultural information, things we hope will help the alien [consciousness, intelligence] to [understand, sympathize with] us and realize our intentions are [peaceful, forthright]."`
 			choice
@@ -976,6 +987,7 @@ mission "Wanderers: Mind 5"
 	passengers 4
 	blocked "To take this mission, you will need four bunks and two tons of cargo space free."
 	on offer
+		log "The Wanderers want to install one of their artificial Minds on a space station controlled by the Kor Mereti. Their theory is that if the Mind is physically located within a Kor Mereti station, the drones will be much more likely to accept it as part of their own network instead of reacting to it as an outside intruder."
 		conversation
 			`When you meet with him, Meto Pa'aret tells you, "We have added a [backdoor, failsafe] to the Mind so that we can shut it down or regain control of it remotely if the [attempt? experiment?] fails. So we may lose the Mind, but at least the Mereti will not [turn, use] it against us."`
 			choice
@@ -1128,6 +1140,7 @@ mission "Wanderers: Mind 8"
 	cargo "dead plant" 1
 	blocked "You will need 1 ton of cargo space to receive the next mission."
 	on offer
+		log "The Wanderer ploy has succeeded, but with an unexpected result. The Kor Mereti drones have so thoroughly absorbed the Wanderer Mind into their own consciousness that the drones now believe that they themselves are Wanderers."
 		conversation
 			`As you come in for a landing, you see that the Kor Mereti drones, which up until recently had been ignoring the surfaces of the planets they controlled, are now constructing some sort of facility on <origin>. Sunlight glints off the fresh and spotless buildings, but it is not until you are only a few dozen meters above it that you realize what the facility is.`
 			`	It is a greenhouse.`
@@ -1182,6 +1195,7 @@ mission "Wanderers: Mentors 1"
 	to offer
 		has "Wanderers: Mind 8: done"
 	on offer
+		log "The Wanderers have come to believe that prior to the introduction of their Mind, the Kor Mereti network was not actually a self-aware entity, but that it has now become a sentient being in its own right. And, it is apparently a sentient being with a deep interest in gardening."
 		conversation
 			`It must reveal something interesting about Wanderer psychology that when you return, they are more interested in poking and prodding the dead plant than in hearing your report about the Mereti drones. But once they've sent off a soil sample to be analyzed and can achieve no more until the results come back, they listen to your story.`
 			`	"Our goal was to communicate with them," says Tele'ek, "not to [destroy, erase] their identity and replace it with our own. What have we done?"`
@@ -1236,6 +1250,7 @@ mission "Wanderers: Mentors 3"
 	to offer
 		has "Wanderers: Mentors 2: done"
 	on offer
+		log "Brought a group of Wanderer mentors and teachers to one of the Kor Mereti worlds, where they will seek to build a relationship with the drones and to help them learn to care for living things and to join in the Wanderer work of healing devastated planets."
 		conversation
 			`When you last left <origin>, there were less than a dozen buildings in the greenhouse facility. It has now grown to the size of a major spaceport, including some towers that are dozens of stories high. Some plants now grow on open-air terraces; others are in domed enclosures tall enough to house fully-grown trees. The larger domes also have birds flying about inside them, and some larger land animals as well. Everything is built of gleaming steel and glass and filled with lush vegetation; from high above the facility looks like a scattered handful of diamonds and emeralds.`
 			`	The freighter you were escorting was full of professors and researchers, who are clearly not used to any sort of military discipline or to living in a dangerous region of space: the moment the freighter lands they fly off toward the greenhouse without bothering to wait for instructions from their supposed manager. Several of them are already engaged in conversation with the drones, while others are exploring the different rooms of the facility, examining plants and probing soil with their talons.`
@@ -1301,6 +1316,7 @@ mission "Wanderers: Tour 2"
 	to offer
 		has "Wanderers: Tour 1: done"
 	on offer
+		log "Leading some of the friendly Korath on a tour through Wanderer space, to show them how successful the Wanderers have been at repairing and caring for worlds that have been damaged by war."
 		conversation
 			`Rek is making marvelous progress not only in learning the Korath language, but also in winning their trust. They have built her a Wanderer-style treehouse here to live in, and it seems that she is entertaining a constant stream of new visitors. "What can I help you with?" she asks.`
 			choice
@@ -1476,6 +1492,7 @@ mission "Wanderers: Sestor Scanning"
 	stopover "Drekag Firask"
 	stopover "Firka Tesk"
 	on offer
+		log "Agreed to travel through Kor Sestor space, scanning the planets to try to look for the facility that is remotely controlling the Kor Sestor drones."
 		conversation
 			`The Wanderers are eager to hear the results of your diplomatic mission, and whatever is in Rek's report seems to encourage them. Tele'ek says, "If we can [deal with, neutralize] the Kor Sestor drones as well, all of Korath space will be [open, available] for us and for the Korath survivors. Then there will be no more [barriers, impediments] to peace."`
 			choice
@@ -1658,7 +1675,10 @@ event "wanderers: kor sestor are aimless"
 		landscape land/beach1
 		description `This is one of the only Wanderer worlds that still has large reserves of oil, albeit deep below the ocean surface where mining is difficult. Aside from the drilling companies and refineries, the largest local employer is the local government's safety oversight department, whose inspectors are constantly visiting the drilling platforms and shipping hubs to ensure that all the regulations for preventing oil spills are being followed.`
 		description `	There used to be a thriving spaceport here, but it has been razed to the ground by the Kor Sestor fleet.`
-		spaceport clear
+		remove spaceport
+		remove outfitter
+		remove "required reputation"
+		remove tribute
 	planet Zenith
 		bribe 0
 		"required reputation" 1000
@@ -1677,6 +1697,7 @@ mission "Wanderers: Sestor Search"
 		never
 	destination "Vara K'chrai"
 	on offer
+		log "Someone else seems to have located the Kor Sestor command center before the Wanderers did, and has taken control of the Kor Sestor fleet. Most of the Kor Sestor drones flew through the Eye into the old Wanderer territory, where the Wanderers will probably not be prepared to fight them."
 		event "wanderers: kor sestor are aimless"
 		conversation
 			`You return to the planet expecting the Wanderers to be celebrating their victory, but the leaders have grim news. "The drones we fought were only the [rearguard? remnant?] of the fleet," says Tele'ek. "Dozens of [capital ships?] passed through this system and continued on. With this [heading, destination]." On the holographic projector, he brings up a star map, and points to the system where the Eye is. The wormhole leading back to Wanderer space.`
@@ -1716,7 +1737,7 @@ mission "Wanderers: Sestor: Alnilam Fleet 1"
 	npc kill
 		government "Kor Sestor"
 		system Alnilam
-		personality heroic staying
+		personality heroic staying target
 		fleet
 			names "kor sestor"
 			fighters "kor sestor fighter"
@@ -1763,7 +1784,7 @@ mission "Wanderers: Sestor Search: Varu K'prai"
 	on offer
 		conversation
 			`The entire spaceport on <planet> has been razed to the ground. Teams of Wanderers are sifting through the rubble to recover the bodies of those who were killed here. Apparently the Kor Sestor fleet destroyed the spaceport and every Wanderer ship it found in this system, and then occupied the system for several days, destroying or driving away any scout ships that entered the system.`
-			`	The Wanderers don't know what happened next, but the drones are no longer here, so they must have moved on to a different system.`
+			`	The Wanderers don't know what happened next, but the drones are no longer here. Perhaps they have moved beyond Wanderer space.`
 				decline
 
 
@@ -1892,6 +1913,7 @@ mission "Wanderers: Sestor: Farpoint Attack 1"
 	to offer
 		has "wanderers: found the sestor fleet"
 	on offer
+		log "The Kor Sestor fleet has somehow made its way into northern human space, perhaps using a small number of jump drives to ferry ships back and forth the same way that the Unfettered invaders did. Admiral Danforth says that the system where the Korath ships have gathered is home to a secret Alpha base, so he is concerned that the Kor Sestor drones are under Alpha control."
 		conversation
 			`As you are coming in for a landing, you contact Admiral Danforth and ask to speak with him as soon as possible. He meets you at the landing pad and invites you back to his office, where you explain about the large Kor Sestor fleet that is now gathering to the north of here. He tells you, "For the past several months, Intelligence has been tracking a hidden Alpha base on Zenith and making plans to trap and exterminate them. And now you tell me that Zenith is being guarded by Korath drones. It seems unlikely to be a coincidence."`
 			choice
@@ -2043,7 +2065,7 @@ mission "Wanderers: Sestor: Alnilam Fleet 2"
 	npc kill
 		government "Kor Sestor"
 		system Alnilam
-		personality heroic staying
+		personality heroic staying target
 		fleet
 			names "kor sestor"
 			fighters "kor sestor fighter"
@@ -2069,6 +2091,7 @@ mission "Wanderers: Sestor: Bomb Zenith 1"
 	cargo "unknown device" 2
 	blocked "You will need two tons of cargo space to take on the next mission for Danforth."
 	on offer
+		log "Recruited some Quarg warships to help defend human space from the Kor Sestor drones, which are now presumably under Alpha control. Danforth believes that he has located the Alpha base from which the drones are being controlled; if the base is destroyed the drones ought to become aimless and be easily defeated."
 		conversation
 			`Danforth is still alive, and still holding out against the Alpha-controlled drones. He tells you, "The Alpha base we've been watching on <planet> is buried deep underground. I'm hoping that the Alphas either don't know we're aware of their base's location, or have chosen to remain there anyway because it is so well defended. If the drones are being controlled from there, taking out the base might deactivate the drones."`
 			choice
@@ -2270,7 +2293,7 @@ mission "Wanderers: Sestor: Scattered Remnant"
 	npc kill
 		system "Alnitak"
 		government "Kor Sestor"
-		personality heroic staying
+		personality heroic staying target
 		fleet
 			names "kor sestor"
 			fighters "kor sestor fighter"
@@ -2283,7 +2306,7 @@ mission "Wanderers: Sestor: Scattered Remnant"
 	npc kill
 		system "Canopus"
 		government "Kor Sestor"
-		personality heroic staying
+		personality heroic staying target
 		fleet
 			names "kor sestor"
 			fighters "kor sestor fighter"
@@ -2296,7 +2319,7 @@ mission "Wanderers: Sestor: Scattered Remnant"
 	npc kill
 		system "Betelgeuse"
 		government "Kor Sestor"
-		personality heroic staying
+		personality heroic staying target
 		fleet
 			names "kor sestor"
 			fighters "kor sestor fighter"
@@ -2317,7 +2340,7 @@ mission "Wanderers: Sestor: Scattered Remnant"
 	npc kill
 		system "Capella"
 		government "Kor Sestor"
-		personality heroic staying
+		personality heroic staying target
 		fleet
 			names "kor sestor"
 			fighters "kor sestor fighter"
@@ -2331,7 +2354,7 @@ mission "Wanderers: Sestor: Scattered Remnant"
 	npc kill
 		system "Mebsuta"
 		government "Kor Sestor"
-		personality heroic staying
+		personality heroic staying target
 		fleet
 			names "kor sestor"
 			fighters "kor sestor fighter"
@@ -2345,7 +2368,7 @@ mission "Wanderers: Sestor: Scattered Remnant"
 	npc kill
 		system "Rigel"
 		government "Kor Sestor"
-		personality heroic staying
+		personality heroic staying target
 		fleet
 			names "kor sestor"
 			fighters "kor sestor fighter"
@@ -2359,7 +2382,7 @@ mission "Wanderers: Sestor: Scattered Remnant"
 	npc kill
 		system "Castor"
 		government "Kor Sestor"
-		personality heroic staying
+		personality heroic staying target
 		fleet
 			names "kor sestor"
 			fighters "kor sestor fighter"
@@ -2371,7 +2394,7 @@ mission "Wanderers: Sestor: Scattered Remnant"
 	npc kill
 		system "Wazn"
 		government "Kor Sestor"
-		personality heroic staying
+		personality heroic staying target
 		fleet
 			names "kor sestor"
 			fighters "kor sestor fighter"
@@ -2383,7 +2406,7 @@ mission "Wanderers: Sestor: Scattered Remnant"
 	npc kill
 		system "Miaplacidus"
 		government "Kor Sestor"
-		personality heroic staying
+		personality heroic staying target
 		fleet
 			names "kor sestor"
 			fighters "kor sestor fighter"
@@ -2394,7 +2417,7 @@ mission "Wanderers: Sestor: Scattered Remnant"
 	npc kill
 		system "Kursa"
 		government "Kor Sestor"
-		personality heroic staying
+		personality heroic staying target
 		fleet
 			names "kor sestor"
 			fighters "kor sestor fighter"
@@ -2409,7 +2432,7 @@ mission "Wanderers: Sestor: Scattered Remnant"
 	npc kill
 		system "Saiph"
 		government "Kor Sestor"
-		personality heroic staying
+		personality heroic staying target
 		fleet
 			names "kor sestor"
 			fighters "kor sestor fighter"
@@ -2443,6 +2466,7 @@ mission "Wanderers: Sestor: Bomb Zenith 2"
 	to offer
 		has "Wanderers: Sestor: Bomb Zenith 1: done"
 	on offer
+		log "Dropped some sort of incredibly destructive bomb on the Alpha base on the anarchist world of Zenith. The explosion tore open a hole straight through the planet's crust."
 		event "bombed zenith"
 		conversation
 			`You shove Danforth's device out the airlock at the coordinates he gave you, and immediately fire your ship's repulsors full blast to take you back up into orbit...`
@@ -2575,6 +2599,7 @@ mission "Wanderers: Sestor: Return to Wanderers"
 		has "Wanderers: Sestor: Alnilam Fleet 2: done"
 	on offer
 		fail "Wanderers: Sestor: Drones in Alnilam"
+		log "Succeeded in destroying the last of the Kor Sestor drones that the Alphas brought into human space. Danforth and his Navy base also survived, but he is worried about the political fallout of having to use such a destructive weapon on a populated planet in order to eliminate the Alphas."
 		conversation
 			`Danforth breathes a sigh of relief when you tell him that the last of the Kor Sestor drones have been destroyed. "I am grateful for your help, Captain <last>," he says. "And now that we have finished with that battle, the public relations nightmare over what we did to Zenith begins. We don't need you to get involved in that, though; perhaps you should return to Wanderer space until things cool down a bit around here."`
 				accept
@@ -2668,6 +2693,7 @@ mission "Wanderers: Sestor Alt: Return to Wanderers"
 	to offer
 		has "Wanderers: Sestor Alt: Alnilam 3: done"
 	on offer
+		log "Succeeded in destroying the Kor Sestor fleet and eliminating the Alpha base on the anarchist world of Zenith. He is very grateful that the bomb or super-weapon, whatever it was, did not need to be used."
 		conversation
 			`The Navy officers report the results of the battle on Zenith's surface to Danforth. "So it's over," he says. "Captain <last>, thank you for your assistance. This battle would have gone very differently if you were not here."`
 			`	Now that the Kor Sestor fleet has been dealt with, you should probably return and see how things are going for the Wanderers in Korath space.`
@@ -2743,6 +2769,7 @@ mission "Wanderers: Sestor: Exiles 1"
 	to offer
 		has "Wanderers: Sestor: Scan Drones: done"
 	on offer
+		log "The Kor Sestor drones are still being produced by an automated factory, even though no one is controlling them and they seem to be acting on some sort of mindless autopilot. The Wanderers hope that the Korath exiles will help them to disable the factory."
 		conversation
 			`You give your scanner logs to the Wanderer scientists. A few hours later, you are called in to a meeting of the leaders. Sobari Tele'ek tells you, "Our scientists noted that the most recently constructed drones all have very similar [alloy composition?] and identification numbers. We suspect that means that they are all being produced on a single world, perhaps even a single [factory, facility]."`
 			`	He pulls up a star map and says, "Based on your previous geological scans, we [believe, deduce] that the factory is on this world, Sestor Ikfar. It would be easy enough to [destroy, eliminate] the facility, but Tema'a Iriket has a different proposal."`
@@ -2841,6 +2868,7 @@ mission "Wanderers: Sestor: Exiles 3"
 	to offer
 		has "Wanderers: Sestor: Exiles 2: active"
 	on offer
+		log "Succeeded in communicating with the Korath exiles, by landing on the one habitable planet in their territory. (It seems like the exiles might have a taboo against using weapons on that world.) The exiles agreed to send some ships to help disable the remaining Kor Sestor factory."
 		fail "Wanderers: Sestor: Exiles 2"
 		event "wanderers: exiles peaceful"
 		conversation
@@ -3013,6 +3041,7 @@ mission "Wanderers: Sestor: Factory 3"
 	to offer
 		has "Wanderers: Sestor: Factory 2: done"
 	on offer
+		log "The Korath exiles have kept their bargain with the Wanderers and shut down the final Kor Sestor drone factory, although it may be some time before the last of the existing drones are eliminated."
 		fail "Wanderers: Sestor: Factory Escorts"
 		event "wanderers: sestor shutdown"
 		conversation
@@ -3035,59 +3064,53 @@ event "wanderers: exiles hostile"
 
 event "wanderers: exiles have drones"
 	fleet "Korath Home"
-		variant 12
-			"Korath World-Ship"
-		variant 12
-			"Korath World-Ship B"
-		variant 12
-			"Korath World-Ship C"
-		variant 2
+		add variant 2
 			"Tek Far 71 - Lek"
 			"Far Lek 14" 6
-		variant 2
+		add variant 2
 			"Tek Far 71 - Lek (Close Quarters)"
 			"Far Lek 14" 4
-		variant 2
+		add variant 2
 			"Tek Far 78 - Osk (Close Quarters)"
 			"Far Osk 27" 5
-		variant 2
+		add variant 2
 			"Tek Far 78 - Osk"
 			"Far Osk 27" 2
-		variant 3
+		add variant 3
 			"Tek Far 109"
 			"Far Lek 14" 9
 			"Far Osk 27" 7
-		variant 3
+		add variant 3
 			"Met Par Tek 53" 3
-		variant 2
+		add variant 2
 			"Met Par Tek 53 (Sniper)" 3
-		variant
+		add variant
 			"Kar Ik Vot 349"
-		variant
+		add variant
 			"Kar Ik Vot 349 (Defense)"
-		variant
+		add variant
 			"Kar Ik Vot 349 (Offense)"
-		variant
+		add variant
 			"Kar Ik Vot 349 (Trapper)"
-		variant 1
+		add variant 1
 			"Model 512"
-		variant 2
+		add variant 2
 			"Model 512"
 			"Model 256"
-		variant 2
+		add variant 2
 			"Model 256"
-		variant 2
+		add variant 2
 			"Model 256"
 			"Model 64" 2
-		variant 2
+		add variant 2
 			"Model 128" 2
-		variant 2
+		add variant 2
 			"Model 64"
 			"Model 32" 3
-		variant 3
+		add variant 3
 			"Model 64" 2
 			"Model 32" 3
-		variant 4
+		add variant 4
 			"Model 32"
 			"Model 16" 5
 
@@ -3149,7 +3172,7 @@ mission "Wanderers: Sestor: Final"
 			choice
 				`	"Sure, I would be glad to."`
 					accept
-				`	"Could the stolen equipment make it possible for them to build a drone army of their own?"`
+				`	"Could the stolen equipment make it possible for them to build a drone fleet of their own?"`
 			`	"That is what we are afraid of," says Tele'ek. You agree to travel to the territory of the exiles and see if there is any evidence that they are building war drones there.`
 				accept
 	npc
@@ -3164,6 +3187,7 @@ mission "Wanderers: Sestor: Final"
 				"Tek Far 78 - Osk"
 				"Met Par Tek 53 (Sniper)" 2
 	on complete
+		log "Discovered that when the Korath exiles shut down the Kor Sestor factory, they also took enough technology from the factory to be able to begin producing war drones of their own. It is possible that the exiles have just become a whole lot more dangerous than they used to be."
 		event "wanderers: exiles have drones" 20
 		event "wanderers: sabira eseskrai colony" 30
 		event "wanderers: sestor eliminated" 40

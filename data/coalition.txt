@@ -13,7 +13,7 @@ fleet "Heliarch"
 	names "heliarch"
 	cargo 1
 	personality
-		heroic
+		heroic opportunistic
 	variant 40
 		"Heliarch Neutralizer"
 	variant 20

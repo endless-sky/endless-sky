@@ -994,7 +994,7 @@ mission "Rim Archaeology 1"
 					goto telepath
 			label telepath
 			`	You expect him to laugh at you, but instead he's so shocked that he drops the data pad he's holding. "An Archon?" he says. "How the hell did you get tangled up with one of those?" You tell him the story, and he listens intently.`
-			`	"It's feasible," he says. "We've heard rumors from the Quarg that an alien civilization used to exist in the Rim, a hundred of thousand years ago. No signs of it, of course - any artifacts they left behind have been destroyed by the elements, or perhaps intentionally removed. But if a city were encased in lava, that could preserve signs of it even over such a long time frame."`
+			`	"It's feasible," he says. "We've heard rumors from the Quarg that an alien civilization used to exist in the Rim, a hundred thousand years ago. No signs of it, of course - any artifacts they left behind have been destroyed by the elements, or perhaps intentionally removed. But if a city were encased in lava, that could preserve signs of it even over such a long time frame."`
 			`	Foster makes a few phone calls to cancel his upcoming plans, and then shows up at your ship with a large collection of geological surveying tools. "Let's go check it out," he says.`
 				accept
 	
@@ -1556,6 +1556,7 @@ mission "Migrant Workers 1"
 	name "Migrant Workers"
 	description "Bring this group of migrant workers to <planet>."
 	minor
+	passengers 6 7
 	source
 		attributes "dirt belt"
 		attributes "farming"
@@ -1875,3 +1876,64 @@ mission "A wolf, a goat, and a cabbage"
 		dialog
 			`The man who collects the wolf from you on the landing pad is furious. "I told the shipping company not to put the goat in the same ship as the wolf or the cabbage," he says, "but I guess they tried to save money by subcontracting it all to the same captain."`
 			`	Because you only delivered a third of the cargo safely, he only pays you 33,000 credits.`
+
+
+
+mission "Terminus exploration"
+	name "Missing drone"
+	description "Travel to the Terminus system to see if you can find any sign of a probe drone that had been launched by a team of scientists before they were attacked by pirates and forced to flee."
+	source Bounty
+	waypoint Terminus
+	to offer
+		"combat rating" > 20
+	on offer
+		conversation
+			`As you are exploring the marketplace, a man wearing comically thick glasses comes over to talk to you. "Captain <last>?" he asks. You nod. "I hear that you're not averse to taking on risks," he says. "I'm the lead scientist on a project studying a spatial anomaly in an uninhabited system nearby. We had just launched a probe to study the anomaly more closely when a band of pirates arrived and forced us to flee the system. Would you be willing to travel there and see if you can retrieve the drone's data?"`
+			choice
+				`	"Sure, I would be glad to."`
+					goto end
+				`	"How strong of a threat is the pirate fleet?"`
+				`	"Sorry, I don't have time to help you."`
+					decline
+			`	"Just a couple of interceptors," he says. "We were in a scoutship, with no real weapons to speak of, and none of us on the ship have any combat experience. So, we felt it was safer to run away than to try to fight, even though we were leaving valuable equipment behind."`
+			choice
+				`	"That doesn't sound like much of a threat. I'd be glad to help."`
+				`	"Sorry, I don't want to help with this."`
+					decline
+			label end
+			`	"Thank you so much!" he says. "All I need you to do is board the drone and download its database. Unless the pirates have already stripped out the computer, of course. The drone is in the Terminus system, a few jumps away from here."`
+				accept
+	npc assist
+		system Terminus
+		government Uninhabited
+		personality derelict target
+		ship "Science Drone" "Beagle"
+		dialog `You board the science drone and discover that the pirates have stripped just about everything of value from it: the engines, the sensors, and the fuel cell that powered it. But the computer system is either too deeply integrated into the drone, or too specialized, to be of any value to the pirates. You transfer enough power to the drone's batteries to reactivate it, and are able to retrieve the data that the scientist was looking for. But it's clear that this drone, or what's left of it, is not going anywhere. You'll have to leave it behind.`
+	npc
+		system Terminus
+		government Pirate
+		personality staying
+		fleet "Small Southern Pirates"
+		fleet "Small Southern Pirates"
+	on complete
+		payment 90000
+		conversation
+			`The scientist is overjoyed that you were able to retrieve the data from the drone. Almost in tears, he says, "We were worried that all our planning and fundraising had been for nothing. These measurements will help us to understand that spatial anomaly far better than we do right now." He hands you a credit chip worth <payment>.`
+			choice
+				`	"Can you tell me more about this anomaly you are studying?"`
+				`	"I'm glad I was able to help."`
+					decline
+			`	He says, "It seems to be a partially collapsed wormhole, something that once linked this part of the galaxy to somewhere else. But, we haven't succeeded in sending anything through it. Maybe the wormhole is no longer passable. Or maybe there's some way to make it open more fully. Or maybe only ships that are specially attuned to its energy signature can travel through it. We don't even know if the wormhole is a natural phenomenon or some sort of alien artifact. Honestly, we aren't even sure if it's even a wormhole at all."`
+			`	You thank him for the information, and return to your ship.`
+				decline
+	
+ship "Science Drone"
+	sprite "ship/science drone"
+	attributes
+		category "Drone"
+		hull 200
+		mass 30
+		drag 2
+		"heat dissipation" 1
+	explode "tiny explosion" 5
+	explode "small explosion" 2

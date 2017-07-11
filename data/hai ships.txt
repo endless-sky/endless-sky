@@ -347,10 +347,10 @@ ship "Shield Beetle" "Shield Beetle (Jump, Tracker)"
 	
 ship "Solifuge"
 	sprite "ship/hai solifuge"
-	licenses
-		"Unfettered Militia"
 	attributes
 		category "Heavy Warship"
+		licenses
+			"Unfettered Militia"
 		"cost" 22800000
 		"shields" 37800
 		"hull" 11000

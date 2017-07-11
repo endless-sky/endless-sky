@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "HailPanel.h"
 
 #include "DrawList.h"
+#include "Font.h"
 #include "FontSet.h"
 #include "Format.h"
 #include "GameData.h"
@@ -43,8 +44,9 @@ HailPanel::HailPanel(PlayerInfo &player, const shared_ptr<Ship> &ship)
 	SetInterruptible(false);
 	
 	const Government *gov = ship->GetGovernment();
+	const Font &font = FontSet::Get(14);
 	if(!ship->Name().empty())
-		header = gov->GetName() + " " + ship->Noun() + " \"" + ship->Name() + "\":";
+		header = font.Truncate(gov->GetName() + " " + ship->Noun() + " \"" + ship->Name(), 328) + "\":";
 	else
 		header = ship->ModelName() + " (" + gov->GetName() + "): ";
 	// Drones are always unpiloted, so they never respond to hails.
@@ -55,11 +57,10 @@ HailPanel::HailPanel(PlayerInfo &player, const shared_ptr<Ship> &ship)
 		message = "(There is no response to your hail.)";
 	else if(!hasLanguage)
 		message = "(An alien voice says something in a language you do not recognize.)";
+	// Update default hail responses based on the hailed ship's government and status condition.
 	else if(gov->IsEnemy())
 	{
-		if(ship->IsDisabled())
-			message = GameData::Phrases().Get("hostile disabled")->Get();
-		else
+		if(!ship->IsDisabled())
 		{
 			SetBribe(gov->GetBribeFraction());
 			if(bribe)
@@ -72,8 +73,6 @@ HailPanel::HailPanel(PlayerInfo &player, const shared_ptr<Ship> &ship)
 		const Ship *flagship = player.Flagship();
 		if(!flagship->JumpsRemaining() || flagship->IsDisabled())
 			message = "Sorry, we can't help you, because our ship is disabled.";
-		else
-			message = "Our ship has been disabled! Please come board our ship and patch us up!";
 	}
 	else
 	{
@@ -244,7 +243,7 @@ bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 	}
 	else if(key == 'h' && hasLanguage && ship)
 	{
-		if(shipIsEnemy)
+		if(shipIsEnemy || ship->IsDisabled())
 			return false;
 		if(playerNeedsHelp)
 		{

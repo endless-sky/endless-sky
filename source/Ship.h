@@ -120,8 +120,6 @@ public:
 	// Get this ship's cost.
 	int64_t Cost() const;
 	int64_t ChassisCost() const;
-	// Get the licenses needed to buy or operate this ship.
-	const std::vector<std::string> &Licenses() const;
 	
 	// When creating a new ship, you must set the following:
 	void Place(Point position = Point(), Point velocity = Point(), Angle angle = Angle());
@@ -202,6 +200,8 @@ public:
 	bool IsUsingJumpDrive() const;
 	// Check if this ship is currently able to enter hyperspace to it target.
 	bool IsReadyToJump() const;
+	// Get this ship's custom swizzle.
+	int CustomSwizzle() const;
 	
 	// Check if the ship is thrusting. If so, the engine sound should be played.
 	bool IsThrusting() const;
@@ -341,12 +341,12 @@ public:
 	// previous parent it had.
 	void SetParent(const std::shared_ptr<Ship> &ship);
 	std::shared_ptr<Ship> GetParent() const;
-	const std::vector<std::weak_ptr<const Ship>> &GetEscorts() const;
+	const std::vector<std::weak_ptr<Ship>> &GetEscorts() const;
 	
 	
 private:
 	// Add or remove a ship from this ship's list of escorts.
-	void AddEscort(const Ship &ship);
+	void AddEscort(Ship &ship);
 	void RemoveEscort(const Ship &ship);
 	// Get the hull amount at which this ship is disabled.
 	double MinimumHull() const;
@@ -382,9 +382,6 @@ private:
 	// Characteristics of this particular ship:
 	std::string name;
 	
-	// Licenses needed to operate this ship.
-	std::vector<std::string> licenses;
-	
 	int forget = 0;
 	bool isInSystem = true;
 	// "Special" ships cannot be forgotten, and if they land on a planet, they
@@ -400,7 +397,9 @@ private:
 	bool neverDisabled = false;
 	bool isCapturable = true;
 	bool isInvisible = false;
+	int customSwizzle = -1;
 	double cloak = 0.;
+	double cloakDisruption = 0.;
 	// Cached values for figuring out when anti-missile is in range.
 	double antiMissileRange = 0.;
 	double weaponRadius = 0.;
@@ -472,7 +471,7 @@ private:
 	std::weak_ptr<Flotsam> targetFlotsam;
 	
 	// Links between escorts and parents.
-	std::vector<std::weak_ptr<const Ship>> escorts;
+	std::vector<std::weak_ptr<Ship>> escorts;
 	std::weak_ptr<Ship> parent;
 };
 

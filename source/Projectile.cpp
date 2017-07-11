@@ -209,8 +209,8 @@ bool Projectile::Move(list<Effect> &effects)
 	
 	if(accel)
 	{
-		velocity += accel * angle.Unit();
 		velocity *= 1. - weapon->Drag();
+		velocity += accel * angle.Unit();
 	}
 	
 	position += velocity;
@@ -283,6 +283,13 @@ const Outfit &Projectile::GetWeapon() const
 const Ship *Projectile::Target() const
 {
 	return cachedTarget;
+}
+
+
+
+shared_ptr<Ship> Projectile::TargetPtr() const
+{
+	return targetShip.lock();
 }
 
 

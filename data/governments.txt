@@ -252,9 +252,9 @@ government "Pirate"
 	"player reputation" -10
 	"attitude toward"
 		"Merchant" -.1
-		"Syndicate" -.1
-		"Korath" -.1
-		"Author" -.1
+		"Syndicate" -.01
+		"Korath" -.01
+		"Author" -.01
 	"bribe" .05
 	"fine" 0
 	"friendly hail" "friendly pirate"
@@ -285,6 +285,14 @@ government "Quarg"
 		"Hai" .01
 		"Pirate" -.01
 	"hostile hail" "hostile quarg"
+
+government "Remnant"
+	swizzle 0
+	color .89 .38 .62
+	
+	"player reputation" 1
+	"attitude toward"
+		"Korath" -.01
 
 government "Republic"
 	swizzle 0
@@ -343,3 +351,4 @@ government "Wanderer"
 	language "Wanderer"
 	"friendly hail" "wanderer untranslated"
 	"hostile hail" "wanderer untranslated"
+	"hostile disabled hail" "wanderer untranslated"

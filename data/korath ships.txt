@@ -64,6 +64,31 @@ ship "Korath Raider"
 	"final explode" "final explosion large"
 	description "The Korath Raider is their warship of choice for plundering neighboring species."
 
+ship "Korath Raider" "Korath Raider (Hyperdrive)"
+	sprite "ship/raider"
+	outfits
+		"Korath Grab-Strike" 4
+		"Korath Banisher"
+		"Korath Warder"
+		
+		"Triple Plasma Core"
+		"Systems Core (Medium)"
+		"Large Heat Shunt" 2
+		"Small Heat Shunt"
+		"Ramscoop"
+		"Intrusion Countermeasures" 4
+		
+		"Thruster (Planetary Class)"
+		"Steering (Planetary Class)"
+		"Hyperdrive"
+
+	turret "Korath Grab-Strike"
+	turret "Korath Grab-Strike"
+	turret "Korath Grab-Strike"
+	turret "Korath Grab-Strike"
+	turret "Korath Banisher"
+	turret "Korath Warder"
+
 
 
 ship "Korath Chaser"

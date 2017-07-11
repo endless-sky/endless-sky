@@ -15,6 +15,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include <map>
 #include <string>
+#include <vector>
 
 
 
@@ -35,6 +36,9 @@ public:
 	// Convert a string to title caps or to lower case.
 	static std::string Capitalize(const std::string &str);
 	static std::string LowerCase(const std::string &str);
+	
+	// Split a single string into substrings with the given separator.
+	static std::vector<std::string> Split(const std::string &str, const std::string &separator);
 };
 
 
