@@ -688,9 +688,6 @@ ship "Carrier"
 		"frame time" 12
 		"delay" 8
 		"random start frame"
-	licenses
-		Navy
-		Carrier
 	attributes
 		category "Heavy Warship"
 		"cost" 15200000
@@ -883,8 +880,6 @@ ship "Combat Drone"
 		"frame time" 4
 		"delay" 4
 		"random start frame"
-	licenses
-		Navy
 	attributes
 		category "Drone"
 		"cost" 83000
@@ -978,9 +973,6 @@ ship "Cruiser"
 		"frame time" 12
 		"delay" 8
 		"random start frame"
-	licenses
-		Navy
-		Cruiser
 	attributes
 		category "Heavy Warship"
 		"cost" 11200000
@@ -1410,8 +1402,6 @@ ship "Frigate"
 		"frame time" 12
 		"delay" 8
 		"random start frame"
-	licenses
-		Navy
 	attributes
 		category "Medium Warship"
 		"cost" 5200000
@@ -1518,8 +1508,6 @@ ship "Gunboat"
 		"frame time" 12
 		"delay" 8
 		"random start frame"
-	licenses
-		Navy
 	attributes
 		category "Light Warship"
 		"cost" 3200000
@@ -2374,8 +2362,6 @@ ship "Rainmaker"
 		"frame time" 12
 		"delay" 8
 		"random start frame"
-	licenses
-		Navy
 	attributes
 		category "Light Warship"
 		"cost" 1580000
@@ -2638,8 +2624,6 @@ ship "Skein"
 		"frame time" 9
 		"delay" 10
 		"random start frame"
-	licenses
-		"Militia Carrier"
 	attributes
 		category "Medium Warship"
 		"cost" 3500000
@@ -2901,8 +2885,6 @@ ship "Star Queen"
 
 ship "Surveillance Drone"
 	sprite "ship/surveillance drone"
-	licenses
-		Navy
 	attributes
 		category "Drone"
 		"cost" 50000
