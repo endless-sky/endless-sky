@@ -1177,6 +1177,41 @@ fleet "Large Deep Merchants"
 		"Star Queen"
 		"Raven (Afterburner)" 2
 
+fleet "Deep Miners"
+	government "Merchant"
+	names "deep"
+	fighters "deep fighter"
+	cargo 0
+	personality
+		confusion 20
+		timid frugal mining harvests
+	variant 10
+		Headhunter
+	variant 10
+		"Headhunter (Particle)"
+	variant 8
+		Raven
+	variant 8
+		"Raven (Afterburner)"
+	variant 5
+		"Aerie (Mining)"
+		"Dagger (Mining)" 2
+	variant 5
+		"Aerie (Mining)"
+		"Dagger (Harvesting)" 2
+	variant
+		"Bactrian (Mining)"
+		"Dagger (Harvesting)" 3
+	variant
+		"Bactrian (Harvesting)"
+		"Dagger (Mining)" 3
+	variant 3
+		"Mule (Mining)"
+		"Dagger (Harvesting)"
+	variant 3
+		"Mule (Harvesting)"
+		"Dagger (Mining)"
+
 fleet "Small Deep Security"
 	government "Deep Security"
 	names "deep"
@@ -1557,6 +1592,30 @@ fleet "Large Southern Pirates"
 	variant 1
 		"Falcon (Laser)"
 
+fleet "Southern Pirate Miners"
+	government "Pirate"
+	names "pirate"
+	cargo 0
+	personality
+		confusion 20
+		disables plunders mining harvests
+	variant 5
+		"Sparrow"
+	variant 1
+		"Fury"
+	variant 1
+		"Fury (Gatling)"
+	variant 2
+		"Fury (Laser)"
+	variant 3
+		"Hawk"
+	variant 1
+		"Hawk (Speedy)"
+	variant 2
+		"Clipper (Speedy)"
+	variant 1
+		"Osprey (Laser)"
+
 fleet "Small Independent"
 	government "Independent"
 	names "pirate"
@@ -1747,6 +1806,28 @@ fleet "Large Core Pirates"
 	variant 1
 		"Firebird (Missile)"
 
+fleet "Core Pirate Miners"
+	government "Pirate"
+	names "pirate"
+	cargo 0
+	personality
+		confusion 20
+		disables plunders mining harvests
+	variant 5
+		"Sparrow"
+	variant 1
+		"Quicksilver"
+	variant 2
+		"Fury (Laser)"
+	variant 3
+		"Hawk"
+	variant 1
+		"Hawk (Speedy)"
+	variant 2
+		"Quicksilver (Proton)"
+	variant 1
+		"Headhunter"
+
 fleet "Small Northern Pirates"
 	government "Pirate"
 	names "pirate"
@@ -1863,6 +1944,28 @@ fleet "Large Northern Pirates"
 	variant 1
 		"Bactrian"
 		"Dagger" 3
+
+fleet "Northern Pirate Miners"
+	government "Pirate"
+	names "pirate"
+	cargo 0
+	personality
+		confusion 20
+		disables plunders mining harvests
+	variant 5
+		"Sparrow"
+	variant 1
+		"Fury"
+	variant 2
+		"Fury (Laser)"
+	variant 3
+		"Hawk"
+	variant 1
+		"Hawk (Speedy)"
+	variant 2
+		"Headhunter"
+	variant 1
+		"Raven (Afterburner)"
 
 fleet "pirate raid"
 	government "Pirate"

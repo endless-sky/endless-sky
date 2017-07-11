@@ -125,6 +125,18 @@ fleet "Wanderer Flycatchers"
 		"Flycatcher" 2
 
 
+fleet "Wanderer Miners"
+	government "Wanderer"
+	names "wanderer"
+	cargo 0
+	personality
+		heroic mining harvests
+	variant 10
+		"Summer Leaf"
+	variant 5
+		"Summer Leaf" 2
+
+
 shipyard "Wanderer Basics"
 	"Earth Shaper"
 	"Summer Leaf"
@@ -681,6 +693,12 @@ event "wanderers: first tech increase"
 		add variant 2
 			"Autumn Leaf"
 			"Summer Leaf"
+	fleet "Wanderer Miners"
+		add variant 3
+			"Autumn Leaf"
+		add variant 2
+			"Autumn Leaf"
+			"Summer Leaf"
 	shipyard "Wanderer Basics"
 		"Flycatcher"
 	shipyard "Wanderer Advanced"
@@ -699,6 +717,7 @@ event "wanderers: unfettered invasion starts"
 		fleet "Wanderer Drones" 900
 		fleet "Wanderer Defense" 200
 		fleet "Wanderer Flycatchers" 200
+		fleet "Wanderer Miners" 3000
 		fleet "Small Unfettered" 1200
 		fleet "Large Unfettered" 500
 	system "Chy'chra"
@@ -711,6 +730,7 @@ event "wanderers: unfettered invasion starts"
 		fleet "Wanderer Freight" 900
 		fleet "Wanderer Drones" 800
 		fleet "Wanderer Defense" 200
+		fleet "Wanderer Miners" 2000
 		fleet "Small Unfettered" 1800
 		fleet "Large Unfettered" 800
 	system "Ehma Ti"
@@ -775,6 +795,9 @@ event "wanderers: tempest mass production"
 		remove variant
 			"Autumn Leaf"
 			"Summer Leaf"
+	fleet "Wanderer Miners"
+		add variant
+			"Tempest"
 	shipyard "Wanderer Advanced"
 		"Tempest"
 	outfitter "Wanderer Advanced"
@@ -789,6 +812,7 @@ event "wanderers: more systems lost"
 		government "Hai (Unfettered)"
 		fleet "Large Unfettered" 1200
 		fleet "Small Unfettered" 800
+		fleet "Unfettered Miners" 3000
 	system "Sich'ka'ara"
 		government "Hai (Unfettered)"
 		fleet "Large Unfettered" 400
@@ -960,6 +984,7 @@ event "wanderers: hurricane mass production"
 event "wanderers: desi seledrak"
 	system "Solifar"
 		government "Wanderer"
+		add fleet "Wanderer Miners" 4000
 	planet "Desi Seledrak"
 		attributes "wanderer"
 		description `Plumes of soot and ash rise from a cluster of several dozen volcanoes on this planet's main continent, shrouding the planet in a thick layer of clouds and choking out the sunlight. The ruins of several Korath cities and the geometric grids of cleared land surrounding them show that this was once a farming world, but now few plants are able to survive and kilometer-high glaciers have begun creeping down from the poles.`

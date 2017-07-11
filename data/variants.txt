@@ -8,6 +8,21 @@
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
+ship "Aerie" "Aerie (Mining)"
+	outfits
+		"Heavy Laser" 2
+		"Heavy Laser Turret" 3
+		"LP072a Battery Pack"
+		"Cooling Ducts"
+		Hyperdrive
+		"D23-QP Shield Generator"
+		"Cargo Expansion"
+		"A255 Atomic Steering"
+		"NT-200 Nucleovoltaic"
+		"Impala Plasma Thruster"
+
+
+
 ship "Argosy" "Argosy (Blaster)"
 	outfits
 		"Energy Blaster" 4
@@ -144,6 +159,36 @@ ship "Bactrian" "Bactrian (Hai Weapons)"
 	turret "Heavy Laser Turret"
 
 
+ship "Bactrian" "Bactrian (Harvesting)"
+	outfits
+		"Heavy Laser" 2
+		"Heavy Laser Turret" 4
+		"Anti-Missile Turret" 2
+		"nGVF-BB Fuel Cell"
+		Hyperdrive
+		"LP144a Battery Pack"
+		Ramscoop
+		"A120 Atomic Thruster"
+		"A125 Atomic Steering"
+		"AR120 Reverse Thruster" 2
+		"D94-YV Shield Generator"
+		"A520 Atomic Thruster"
+		"A525 Atomic Steering"
+		"Fusion Reactor"
+		"Large Radar Jammer"
+		"Liquid Nitrogen Cooler"
+	gun "Heavy Laser"
+	gun "Heavy Laser"
+	gun
+	gun
+	turret "Heavy Laser Turret"
+	turret "Anti-Missile Turret"
+	turret "Heavy Laser Turret"
+	turret "Heavy Laser Turret"
+	turret "Anti-Missile Turret"
+	turret "Heavy Laser Turret"
+
+
 ship "Bactrian" "Bactrian (Hired Gun)"
 	outfits
 		"Heavy Laser" 4
@@ -161,6 +206,21 @@ ship "Bactrian" "Bactrian (Hired Gun)"
 		"Hyperdrive"
 
 
+ship "Bactrian" "Bactrian (Mining)"
+	outfits
+		"Heavy Laser" 4
+		"Heavy Laser Turret" 6
+		Hyperdrive
+		"LP144a Battery Pack"
+		Ramscoop
+		"D94-YV Shield Generator"
+		"A520 Atomic Thruster"
+		"A865 Atomic Steering"
+		"Fusion Reactor"
+		"Large Radar Jammer"
+		"Liquid Nitrogen Cooler"
+
+
 
 ship "Barb" "Barb (Gatling)"
 	outfits
@@ -170,6 +230,15 @@ ship "Barb" "Barb (Gatling)"
 		"nGVF-AA Fuel Cell"
 		Supercapacitor 3
 		"D14-RN Shield Generator"
+		"X1050 Ion Engines"
+
+
+ship "Barb" "Barb (Harvesting)"
+	outfits
+		"Heavy Laser"
+		"nGVF-AA Fuel Cell"
+		"Cargo Expansion"
+		Supercapacitor 2
 		"X1050 Ion Engines"
 
 
@@ -336,6 +405,16 @@ ship "Bounder" "Bounder (Hai)"
 		"X3700 Ion Thruster"
 		"X3200 Ion Steering"
 		"Hyperdrive"
+
+
+
+ship "Boxwing" "Boxwing (Harvesting)"
+	outfits
+		"X1700 Ion Thruster"
+		"X1200 Ion Steering"
+		"nGVF-AA Fuel Cell"
+		"Cooling Ducts"
+		"Outfits Expansion"
 
 
 
@@ -658,6 +737,27 @@ ship "Cruiser" "Cruiser (Mark II)"
 
 
 
+ship "Dagger" "Dagger (Harvesting)"
+	outfits
+		"Heavy Laser"
+		"X1700 Ion Thruster"
+		"X1200 Ion Steering"
+		"nGVF-AA Fuel Cell"
+		"Cargo Expansion"
+		Supercapacitor 3
+
+
+ship "Dagger" "Dagger (Mining)"
+	outfits
+		"Heavy Laser"
+		"X1700 Ion Thruster"
+		"X1200 Ion Steering"
+		"LP036a Battery Pack"
+		"nGVF-AA Fuel Cell"
+		"D14-RN Shield Generator"
+
+
+
 ship "Dreadnought" "Dreadnought (Jump)"
 	outfits
 		"Meteor Missile Launcher" 4
@@ -717,6 +817,27 @@ ship "Falcon" "Falcon (Plasma)"
 		"Impala Plasma Thruster"
 		"Impala Plasma Steering"
 		"Hyperdrive"
+
+
+
+ship "Finch" "Finch (Harvesting)"
+	outfits
+		"Heavy Laser"
+		"LP036a Battery Pack"
+		"nGVF-BB Fuel Cell"
+		"Cargo Expansion"
+		"Chipmunk Plasma Thruster"
+		"Chipmunk Plasma Steering"
+
+
+ship "Finch" "Finch (Mining)"
+	outfits
+		"Heavy Laser"
+		"LP036a Battery Pack"
+		"nGVF-BB Fuel Cell"
+		"D14-RN Shield Generator"
+		"A120 Atomic Thruster"
+		"Chipmunk Plasma Steering"
 
 
 
@@ -1089,6 +1210,17 @@ ship "Lance" "Lance (Gatling)"
 		"X1200 Ion Steering"
 
 
+ship "Lance" "Lance (Harvesting)"
+	outfits
+		"Heavy Laser"
+		Supercapacitor
+		"nGVF-AA Fuel Cell"
+		"Cargo Expansion"
+		"D14-RN Shield Generator"
+		"X1700 Ion Thruster"
+		"X1200 Ion Steering"
+
+
 
 ship "Leviathan" "Leviathan (Hai Engines)"
 	outfits
@@ -1300,6 +1432,25 @@ ship "Mule" "Mule (Hai Weapons)"
 		"Hyperdrive"
 
 
+ship "Mule" "Mule (Harvesting)"
+	outfits
+		"Heavy Laser" 2
+		"Heavy Laser Turret" 2
+		"Anti-Missile Turret" 2
+		"LP072a Battery Pack"
+		Hyperdrive
+		"D41-HY Shield Generator"
+		Ramscoop
+		"A370 Atomic Thruster"
+		"A375 Atomic Steering"
+		"AR120 Reverse Thruster" 3
+		"NT-200 Nucleovoltaic"
+	turret "Heavy Laser Turret"
+	turret "Heavy Laser Turret"
+	turret "Anti-Missile Turret"
+	turret "Anti-Missile Turret"
+
+
 ship "Mule" "Mule (Heavy)"
 	outfits
 		"Heavy Laser Turret" 4
@@ -1316,6 +1467,42 @@ ship "Mule" "Mule (Heavy)"
 		"A375 Atomic Steering"
 		"Hyperdrive"
 
+
+ship "Mule" "Mule (Mining)"
+	outfits
+		"Heavy Laser" 2
+		"Heavy Laser Turret" 4
+		"nGVF-AA Fuel Cell"
+		Hyperdrive
+		"Water Coolant System"
+		"LP144a Battery Pack"
+		"D41-HY Shield Generator"
+		"Small Radar Jammer" 2
+		"A370 Atomic Thruster"
+		"A375 Atomic Steering"
+		"Dwarf Core"
+
+
+
+ship "Nest" "Nest (Harvesting)"
+	outfits
+		"Heavy Laser Turret" 2
+		"Anti-Missile Turret" 2
+		"Meteor Missile" 70
+		"Meteor Missile Launcher" 2
+		"LP036a Battery Pack"
+		"LP072a Battery Pack"
+		Hyperdrive
+		"Cargo Expansion"
+		"A250 Atomic Thruster"
+		"D67-TM Shield Generator"
+		"Impala Plasma Steering"
+		"Large Radar Jammer"
+		"S3 Thermionic"
+	turret "Heavy Laser Turret"
+	turret "Heavy Laser Turret"
+	turret "Anti-Missile Turret"
+	turret "Anti-Missile Turret"
 
 
 ship "Nest" "Nest (Sidewinder)"
@@ -1506,6 +1693,26 @@ ship "Raven" "Raven (Heavy)"
 	gun "Meteor Missile Launcher"
 	gun "Meteor Missile Launcher"
 
+
+
+ship "Roost" "Roost (Harvesting)"
+	outfits
+		"Heavy Laser Turret" 2
+		"Anti-Missile Turret" 2
+		"Meteor Missile" 70
+		"Meteor Missile Launcher" 2
+		Hyperdrive
+		"LP144a Battery Pack"
+		"Cargo Expansion"
+		"A250 Atomic Thruster"
+		"D67-TM Shield Generator" 2
+		"Impala Plasma Steering"
+		"Large Radar Jammer"
+		"S3 Thermionic"
+	turret "Heavy Laser Turret"
+	turret "Heavy Laser Turret"
+	turret "Anti-Missile Turret"
+	turret "Anti-Missile Turret"
 
 
 ship "Roost" "Roost (Sidewinder)"

@@ -59,8 +59,21 @@ ship "Aphid" "Aphid (Anti-Missile)"
 		`"Benga" Atomic Steering`
 		"Hyperdrive"
 
+ship "Aphid" "Aphid (Mining)"
+	outfits
+		"Pulse Turret"
+		"Hai Corundum Regenerator"
+		"Hai Williwaw Cooling"
+		"Hai Chasm Batteries" 2
+		"Hai Fissure Batteries"
+		"Pebble Core"
+		`"Benga" Atomic Thruster`
+		`"Benga" Atomic Steering`
+		Hyperdrive
+		Supercapacitor
 
 
+		
 ship "Flea"
 	sprite "ship/hai flea"
 	attributes

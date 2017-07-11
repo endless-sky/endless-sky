@@ -1530,6 +1530,7 @@ event "wanderers: battle in solifar ends"
 		fleet "Wanderer Defense" 1800
 		fleet "Wanderer Drones" 700
 		fleet "Wanderer Flycatchers" 800
+		fleet "Wanderer Miners" 4000
 
 mission "Wanderers: Sestor Attack"
 	landing
@@ -3210,6 +3211,22 @@ event "wanderers: exiles have drones"
 		add variant 4
 			"Model 32"
 			"Model 16" 5
+	fleet "Korath Miners"
+		add variant 40
+			"Model 8"
+		add variant 20
+			"Model 8" 2
+		add variant 10
+			"Model 8" 3
+		add variant 10
+			"Korath Raider"
+			"Korath Chaser" 2
+			"Model 8 (Jump)"
+		add variant 3
+			"Model 16 (Jump Miner)"
+			"Model 8 (Jump)" 2
+		add variant
+			"Model 8 (Jump)" 3
 
 event "wanderers: sestor eliminated"
 	system "Celeborim"

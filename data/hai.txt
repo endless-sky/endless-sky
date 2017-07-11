@@ -104,6 +104,22 @@ fleet "Large Hai"
 		"Shield Beetle (Tracker)"
 		"Lightning Bug" 2
 
+fleet "Hai Miners"
+	government "Hai"
+	names "hai"
+	cargo 0
+	personality
+		disables opportunistic mining harvests
+	variant 20
+		"Aphid (Mining)" 4
+	variant 10
+		"Aphid (Mining)" 2
+		"Lightning Bug (Pulse)"
+	variant 5
+		"Lightning Bug (Pulse)" 2
+	variant
+		"Shield Beetle (Pulse)"
+
 fleet "Small Unfettered"
 	government "Hai (Unfettered)"
 	names "hai"
@@ -180,6 +196,20 @@ fleet "Unfettered Raid"
 	variant
 		"Shield Beetle (Jump)" 1
 		"Shield Beetle (Jump, Tracker)" 2
+
+fleet "Unfettered Miners"
+	government "Hai (Unfettered)"
+	names "hai"
+	cargo 0
+	personality
+		disables plunders mining harvests
+	variant 10
+		"Lightning Bug (Pulse)"
+	variant 5
+		"Lightning Bug (Pulse)" 2
+	variant
+		"Lightning Bug (Pulse)"
+		"Shield Beetle (Pulse)"
 
 shipyard "Hai Basics"
 	"Aphid"
