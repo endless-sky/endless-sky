@@ -28,6 +28,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Person.h"
 #include "Planet.h"
 #include "Politics.h"
+#include "Preferences.h"
 #include "Random.h"
 #include "SavedGame.h"
 #include "Ship.h"
@@ -1176,10 +1177,16 @@ bool PlayerInfo::TakeOff(UI *ui)
 			}
 			else
 			{
-				// Your flagship takes first priority for passengers but last for cargo.
+				// Your flagship takes first priority for passengers but last for cargo,
+				// unless you have chosen to give it special mission cargo.
 				ship->Cargo().SetBunks(ship->Attributes().Get("bunks") - ship->Crew());
 				for(const auto &it : cargo.PassengerList())
 					cargo.TransferPassengers(it.first, it.second, &ship->Cargo());
+				if(Preferences::Has("Special cargo fills flagship first"))
+					for(const auto &it : cargo.MissionCargo())
+						if(it.first->RecommendsAutosave() || it.first->HasPriority() || it.first->IsUnique()
+								|| it.first->IllegalCargoFine() || it.first->FailIfDiscovered())
+							cargo.Transfer(it.first, it.second, &ship->Cargo());
 			}
 		}
 	// Load up your flagship last, so that it will have space free for any
