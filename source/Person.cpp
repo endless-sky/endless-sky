@@ -39,7 +39,7 @@ void Person::Load(const DataNode &node)
 		else if(child.Token(0) == "government" && child.Size() >= 2)
 			government = GameData::Governments().Get(child.Token(1));
 		else if(child.Token(0) == "personality")
-			personality.Load(child);
+			personality.Load(child, true, false);
 		else if(child.Token(0) == "phrase")
 			hail.Load(child);
 		else

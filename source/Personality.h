@@ -31,7 +31,7 @@ class Personality {
 public:
 	Personality();
 	
-	void Load(const DataNode &node);
+	void Load(const DataNode &node, bool reset, bool remove);
 	void Save(DataWriter &out) const;
 	
 	// Who a ship decides to attack:
@@ -70,6 +70,7 @@ public:
 	bool IsEscort() const;
 	bool IsTarget() const;
 	bool IsMute() const;
+	bool IsTarget() const;
 	
 	// Current inaccuracy in this ship's targeting:
 	const Point &Confusion() const;
@@ -80,7 +81,7 @@ public:
 	
 	
 private:
-	void Parse(const std::string &token);
+	void Parse(const std::string &token, bool remove);
 	
 	
 private:

@@ -48,6 +48,8 @@ void Fleet::Load(const DataNode &node)
 		// clearing the rest of the existing definition.
 		bool add = (key == "add" && hasValue && child.Token(1) == "variant");
 		bool remove = (key == "remove" && hasValue && child.Token(1) == "variant");
+		bool addPersonality = (key == "add" && hasValue && child.Token(1) == "personality");
+		bool removePersonality = (key == "remove" && hasValue && child.Token(1) == "personality");
 		
 		if(key == "government" && hasValue)
 			government = GameData::Governments().Get(child.Token(1));
@@ -63,8 +65,12 @@ void Fleet::Load(const DataNode &node)
 			for(int i = 1; i < child.Size(); ++i)
 				commodities.push_back(child.Token(i));
 		}
+		else if(addPersonality)
+			personality.Load(child, false, false);
+		else if(removePersonality)
+			personality.Load(child, false, true);
 		else if(key == "personality")
-			personality.Load(child);
+			personality.Load(child, true, false);
 		else if(key == "variant" || add)
 		{
 			if(resetVariants && !add)
