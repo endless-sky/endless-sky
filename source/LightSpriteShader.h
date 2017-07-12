@@ -13,6 +13,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef LIGHT_SPRITE_SHADER_H_
 #define LIGHT_SPRITE_SHADER_H_
 
+#include "SpriteShader.h"
+
 class Point;
 class Sprite;
 
@@ -41,6 +43,24 @@ public:
 	static bool IsAvailable();
 	
 	static int MaxNbLights();
+
+	class ShaderData: public SpriteShader::ShaderData{
+	public:
+		void InitShader(const char* vertexCode, const char* fragmentCode);
+	
+		void UniformValues(uint32_t tex0, uint32_t tex1, const float position[2], const float transform[4], int swizzle, float clip, float fade, const float blur[2], const float posGS[2], const float transformGS[2], int nbLights = -1, const float lightAmbiant[3]=DEF_AMBIENT, const float *lightPos = 0, const float *lightEmit = 0, float angCoeff = 0.f, float selfLight = 0.f, uint32_t texL = 0);
+
+	
+	private:
+		GLint transformGSI;
+		GLint posGSI;
+		GLint nbLightI;
+		GLint lightPosI;
+		GLint lightEmitI;
+		GLint lightAmbiantI;
+		GLint angCoeffI;
+		GLint selfLightI;
+	};
 };
 
 

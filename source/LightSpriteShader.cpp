@@ -23,41 +23,53 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 using namespace std;
 
 namespace {
-	Shader shader;
-	GLint scaleI;
-	GLint transformI;
-	GLint positionI;
-	GLint blurI;
-	GLint clipI;
-	GLint fadeI;
-	GLint transformGSI;
-	GLint posGSI;
-	GLint nbLightI;
-	GLint lightPosI;
-	GLint lightEmitI;
-	GLint lightAmbiantI;
-	GLint angCoeffI;
-	GLint selfLightI;
 	
-	GLuint vao;
-	GLuint vbo;
-	
+	LightSpriteShader::ShaderData data;
 	bool isAvailable=false;
 
-	static const vector<vector<GLint>> SWIZZLE = {
-		{GL_RED, GL_GREEN, GL_BLUE, GL_ALPHA}, // red + yellow markings (republic)
-		{GL_RED, GL_BLUE, GL_GREEN, GL_ALPHA}, // red + magenta markings
-		{GL_GREEN, GL_RED, GL_BLUE, GL_ALPHA}, // green + yellow (freeholders)
-		{GL_BLUE, GL_RED, GL_GREEN, GL_ALPHA}, // green + cyan
-		{GL_GREEN, GL_BLUE, GL_RED, GL_ALPHA}, // blue + magenta (syndicate)
-		{GL_BLUE, GL_GREEN, GL_RED, GL_ALPHA}, // blue + cyan (merchant)
-		{GL_GREEN, GL_BLUE, GL_BLUE, GL_ALPHA}, // red and black (pirate)
-		{GL_BLUE, GL_ZERO, GL_ZERO, GL_ALPHA},  // red only (cloaked)
-		{GL_ZERO, GL_ZERO, GL_ZERO, GL_ALPHA}  // black only (outline)
-	};
 }
 
 const float LightSpriteShader::DEF_AMBIENT[3] = {0.5f, 0.5f, 0.5f};
+
+
+void LightSpriteShader::ShaderData::InitShader(const char* vertexCode, const char* fragmentCode)
+{
+	SpriteShader::ShaderData::InitShader(vertexCode, fragmentCode);
+
+	transformGSI = shader.Uniform("transformGS");
+	posGSI = shader.Uniform("posGS");
+	nbLightI = shader.Uniform("nbLight");
+	lightPosI = shader.Uniform("lightPos");
+	lightEmitI = shader.Uniform("lightEmit");
+	lightAmbiantI = shader.Uniform("lightAmbiant");
+	angCoeffI = shader.Uniform("angCoeff");
+	selfLightI = shader.Uniform("selfLight");
+}
+
+void LightSpriteShader::ShaderData::UniformValues(uint32_t tex0, uint32_t tex1, const float position[2], const float transform[4], int swizzle, float clip, float fade, const float blur[2], const float posGS[2], const float transformGS[2], int nbLight, const float lightAmbiant[3], const float *lightPos, const float *lightEmit, float angCoeff, float selfLight, uint32_t texL)
+{
+	SpriteShader::ShaderData::UniformValues(tex0, tex1, position, transform, swizzle, clip, fade, blur);
+
+	glUniform2fv(posGSI, 1, posGS);
+	glUniformMatrix2fv(transformGSI, 1, false, transformGS);
+	glUniform1i(nbLightI, nbLight);
+	if(nbLight > 0)
+	{
+		glUniform3fv(lightPosI, nbLight, lightPos);
+		glUniform3fv(lightEmitI, nbLight, lightEmit);
+	}
+	glUniform3fv(lightAmbiantI, 1, lightAmbiant);
+	glUniform1f(angCoeffI, angCoeff);
+
+	if(selfLight && texL)
+	{
+		glActiveTexture(GL_TEXTURE2);
+		glBindTexture(GL_TEXTURE_2D, texL);
+	}
+	else
+		selfLight = 0.f;
+	glUniform1f(selfLightI, selfLight);
+}
 
 // Initialize the shaders.
 void LightSpriteShader::Init()
@@ -142,127 +154,44 @@ void LightSpriteShader::Init()
 			"  lightColor = clamp(lightColor, vec3(0.3,0.3,0.3), vec3(1,1,1));\n"
 			"  finalColor = vec4(lightColor*color.xyz,color.w);\n"
 			"}\n";
+			
+		data.InitShader(vertexCode, fragmentCode);
 	
-		shader = Shader(vertexCode, fragmentCode);
-		scaleI = shader.Uniform("scale");
-		transformI = shader.Uniform("transform");
-		positionI = shader.Uniform("position");
-		blurI = shader.Uniform("blur");
-		clipI = shader.Uniform("clip");
-		fadeI = shader.Uniform("fade");
-		transformGSI = shader.Uniform("transformGS");
-		posGSI = shader.Uniform("posGS");
-		nbLightI = shader.Uniform("nbLight");
-		lightPosI = shader.Uniform("lightPos");
-		lightEmitI = shader.Uniform("lightEmit");
-		lightAmbiantI = shader.Uniform("lightAmbiant");
-		angCoeffI = shader.Uniform("angCoeff");
-		selfLightI = shader.Uniform("selfLight");
-	
-		glUseProgram(shader.Object());
-		glUniform1i(shader.Uniform("tex0"), 0);
-		glUniform1i(shader.Uniform("tex1"), 1);
-		glUniform1i(shader.Uniform("texL"), 2);
+		glUseProgram(data.GetShader().Object());
+		glUniform1i(data.GetShader().Uniform("tex0"), 0);
+		glUniform1i(data.GetShader().Uniform("tex1"), 1);
+		glUniform1i(data.GetShader().Uniform("texL"), 2);
 		glUseProgram(0);
-	} catch(runtime_error& e){
+
+	} 
+	catch(runtime_error& e)
+	{
 		isAvailable = false;
 		return;
 	}
-	// Generate the vertex data for drawing sprites.
-	glGenVertexArrays(1, &vao);
-	glBindVertexArray(vao);
 	
-	glGenBuffers(1, &vbo);
-	glBindBuffer(GL_ARRAY_BUFFER, vbo);
-	
-	GLfloat vertexData[] = {
-		-.5f, -.5f,
-		-.5f,  .5f,
-		 .5f, -.5f,
-		 .5f,  .5f
-	};
-	glBufferData(GL_ARRAY_BUFFER, sizeof(vertexData), vertexData, GL_STATIC_DRAW);
-	
-	glEnableVertexAttribArray(shader.Attrib("vert"));
-	glVertexAttribPointer(shader.Attrib("vert"), 2, GL_FLOAT, GL_FALSE, 2 * sizeof(GLfloat), nullptr);
-	
-	// unbind the VBO and VAO
-	glBindBuffer(GL_ARRAY_BUFFER, 0);
-	glBindVertexArray(0);
-	
+	data.InitVAO();
+
 	isAvailable = true;
 }
 
 
 void LightSpriteShader::Bind()
 {
-	glUseProgram(shader.Object());
-	glBindVertexArray(vao);
-	glActiveTexture(GL_TEXTURE0);
-	
-	GLfloat scale[2] = {2.f / Screen::Width(), -2.f / Screen::Height()};
-	glUniform2fv(scaleI, 1, scale);
+	data.Bind();
 }
 
 
 void LightSpriteShader::Add(uint32_t tex0, uint32_t tex1, const float position[2], const float transform[4], int swizzle, float clip, float fade, const float blur[2], const float posGS[2], const float transformGS[2], int nbLight, const float lightAmbiant[3], const float *lightPos, const float *lightEmit, float angCoeff, float selfLight, uint32_t texL)
 {
-	glUniformMatrix2fv(transformI, 1, false, transform);
-	glUniform2fv(positionI, 1, position);
-	glBindTexture(GL_TEXTURE_2D, tex0);
-	
-	// Bounds check for the swizzle value:
-	if(static_cast<size_t>(swizzle) >= SWIZZLE.size())
-		swizzle = 0;
-	const GLint *swizzleValues = SWIZZLE[swizzle].data();
-	
-	if(fade && tex1)
-	{
-		glActiveTexture(GL_TEXTURE1);
-		glBindTexture(GL_TEXTURE_2D, tex1);
-		glTexParameteriv(GL_TEXTURE_2D, GL_TEXTURE_SWIZZLE_RGBA, swizzleValues);
-		glActiveTexture(GL_TEXTURE0);
-	}
-	else
-		fade = 0.f;
-	
-	// Set the color swizzle.
-	glTexParameteriv(GL_TEXTURE_2D, GL_TEXTURE_SWIZZLE_RGBA, swizzleValues);
-	
-	// Set the clipping.
-	glUniform1f(clipI, 1.f - clip);
-	glUniform1f(fadeI, fade);
-	const float noBlur[2] = {0.f, 0.f};
-	glUniform2fv(blurI, 1, blur ? blur : noBlur);
-
-	glUniform2fv(posGSI,1,posGS);
-	glUniformMatrix2fv(transformGSI, 1, false, transformGS);
-	glUniform1i(nbLightI, nbLight);
-	if(nbLight > 0)
-	{
-		glUniform3fv(lightPosI, nbLight, lightPos);
-		glUniform3fv(lightEmitI, nbLight, lightEmit);
-	}
-	glUniform3fv(lightAmbiantI, 1, lightAmbiant);
-	glUniform1f(angCoeffI, angCoeff);
-
-	if(selfLight && texL)
-	{
-		glActiveTexture(GL_TEXTURE2);
-		glBindTexture(GL_TEXTURE_2D, texL);
-	}
-	else
-		selfLight = 0.f;
-	glUniform1f(selfLightI, selfLight);
-
+	data.UniformValues(tex0, tex1, position, transform, swizzle, clip, fade, blur, posGS, transformGS, nbLight, lightAmbiant, lightPos, lightEmit, angCoeff, selfLight, texL);
 	glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 }
 
 
 void LightSpriteShader::Unbind()
 {
-	glBindVertexArray(0);
-	glUseProgram(0);
+	data.Unbind();
 }
 
 bool LightSpriteShader::IsAvailable()
