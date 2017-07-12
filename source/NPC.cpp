@@ -171,8 +171,17 @@ void NPC::Save(DataWriter &out) const
 			out.BeginChild();
 			{
 				// Break the text up into paragraphs.
-				for(const string &line : Format::Split(dialogText, "\n\t"))
-					out.Write(line);
+				size_t begin = 0;
+				while(true)
+				{
+					size_t pos = dialogText.find("\n\t", begin);
+					if(pos == string::npos)
+						pos = dialogText.length();
+					out.Write(dialogText.substr(begin, pos - begin));
+					if(pos == dialogText.length())
+						break;
+					begin = pos + 2;
+				}
 			}
 			out.EndChild();
 		}
@@ -320,19 +329,10 @@ bool NPC::IsLeftBehind(const System *playerSystem) const
 
 bool NPC::HasFailed() const
 {
-	static const int mustLiveFor = ShipEvent::SCAN_CARGO | ShipEvent::SCAN_OUTFITS | ShipEvent::BOARD;
-						
 	for(const auto &it : actions)
-	{
 		if(it.second & failIf)
 			return true;
 	
-		// If we still need to perform an action that requires the NPC ship be
-		// alive, then that ship being destroyed should cause the mission to fail.
-		if((~it.second & succeedIf & mustLiveFor) && (it.second & ShipEvent::DESTROY))
-			return true;
-	}
-
 	return false;
 }
 

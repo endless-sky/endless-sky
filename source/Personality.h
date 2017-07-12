@@ -58,7 +58,6 @@ public:
 	bool IsFleeing() const;
 	bool IsDerelict() const;
 	bool IsUninterested() const;
-	bool IsSkybound() const;
 	
 	// Non-combat goals:
 	bool IsSurveillance() const;
@@ -68,7 +67,6 @@ public:
 	
 	// Special flags:
 	bool IsEscort() const;
-	bool IsTarget() const;
 	bool IsMute() const;
 	
 	// Current inaccuracy in this ship's targeting:
