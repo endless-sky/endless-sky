@@ -30,6 +30,7 @@ class DataWriter;
 class Personality {
 public:
 	Personality();
+	Personality(double confusionMult);
 	
 	// Operators:
 	Personality &operator+=(const Personality &rhs);

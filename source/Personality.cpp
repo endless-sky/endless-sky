@@ -92,10 +92,18 @@ Personality::Personality()
 
 
 
+Personality::Personality(double confusionMult)
+	: flags(DISABLES), aimMultiplier(1.)
+{
+	confusionMultiplier = confusionMult;
+}
+
+
+
 Personality &Personality::operator+=(const Personality &rhs)
 {
 	flags |= rhs.flags;
-	confusionMultiplier = rhs.confusionMultiplier;
+	confusionMultiplier += rhs.confusionMultiplier;
 	return *this;
 }
 
@@ -104,7 +112,7 @@ Personality &Personality::operator+=(const Personality &rhs)
 Personality &Personality::operator-=(const Personality &rhs)
 {
 	flags &= ~(rhs.flags);
-	confusionMultiplier = rhs.confusionMultiplier;
+	confusionMultiplier -= rhs.confusionMultiplier;
 	return *this;
 }
 

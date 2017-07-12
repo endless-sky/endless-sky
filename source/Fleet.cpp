@@ -66,8 +66,9 @@ void Fleet::Load(const DataNode &node)
 		}
 		else if(changePersonality)
 		{
-			Personality changes;
+			Personality changes = Personality(0.);
 			changes.Load(child);
+			
 			if(key == "add")
 				personality += changes;
 			else
