@@ -280,9 +280,20 @@ void Body::AddFrameRate(double framesPerSecond)
 
 
 
+void Body::PauseAnimation()
+{
+	++pause;
+}
+
+
+
 // Set the current time step.
 void Body::SetStep(int step, bool isHighDPI) const
 {
+	// If the animation is paused, reduce the step by however many frames it has
+	// been paused for.
+	step -= pause;
+	
 	// If the step is negative or there is no sprite, do nothing. This updates
 	// and caches the mask and the frame so that if further queries are made at
 	// this same time step, we don't need to redo the calculations.

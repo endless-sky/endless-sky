@@ -488,7 +488,7 @@ bool System::IsInhabited(const Ship *ship) const
 		if(object.GetPlanet())
 		{
 			const Planet &planet = *object.GetPlanet();
-			if(!planet.IsWormhole() && planet.HasSpaceport() && planet.IsAccessible(ship))
+			if(!planet.IsWormhole() && planet.IsInhabited() && planet.IsAccessible(ship))
 				return true;
 		}
 	

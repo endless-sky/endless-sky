@@ -10,9 +10,9 @@
 
 fleet "Small Remnant"
 	government "Remnant"
-	names "civilian"
+	names "remnant"
 	personality
-		heroic
+		heroic disables plunders appeasing
 	variant 8
 		"Starling"
 	variant 6
@@ -36,9 +36,9 @@ fleet "Small Remnant"
 
 fleet "Large Remnant"
 	government "Remnant"
-	names "civilian"
+	names "remnant"
 	personality
-		heroic
+		heroic disables plunders appeasing
 	variant 6
 		"Albatross"
 		"Starling" 2
@@ -63,6 +63,72 @@ fleet "Large Remnant"
 	variant 2
 		"Albatross (Heavy)"
 		"Albatross (Turret)"
+
+
+
+phrase "remnant"
+	word
+		"Great"
+		"Tall"
+		"Dusky"
+		"Late"
+		"Frozen"
+		"Sunlit"
+		"Calm"
+		"Dread"
+		"Low"
+		"Sharp"
+		"Long"
+		"Weary"
+		"Elder"
+		"Young"
+		"Red"
+		"Green"
+		"New"
+		"Far"
+	word
+		" "
+	word
+		"Hill"
+		"Song"
+		"Wonder"
+		"Journey"
+		"Fortress"
+		"Breeze"
+		"Road"
+		"Season"
+		"Sky"
+		"Ocean"
+		"Ember"
+		"Spire"
+		"City"
+		"Memory"
+		"Thread"
+		"Lattice"
+		"Anchor"
+		"Beam"
+		"Forest"
+	word
+		" "
+	word
+		"Dancing"
+		"Leaping"
+		"Plunging"
+		"Falling"
+		"Afire"
+		"Aglow"
+		"Nearby"
+		"Yonder"
+		"Spoken"
+		"Awakened"
+		"Remade"
+		"Begun"
+		"Ended"
+		"Found"
+		"Resting"
+		"Lost"
+		"Changed"
+		"Alive"
 
 
 
@@ -97,3 +163,6 @@ outfitter "Remnant"
 	"Bunk Room"
 	"Local Map"
 	"Hyperdrive"
+	"Fuel Pod"
+	"Cargo Scanner"
+	"Outfit Scanner"

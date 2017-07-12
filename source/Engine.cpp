@@ -64,9 +64,16 @@ namespace {
 	
 	int RadarType(const Ship &ship, int step)
 	{
+		if(ship.GetPersonality().IsTarget() && !ship.IsDestroyed())
+		{
+			// If a ship is a "target," double-blink it a few times per second.
+			int count = (step / 6) % 7;
+			if(count == 0 || count == 2)
+				return Radar::SPECIAL;
+		}
 		if(ship.IsDisabled() || (ship.IsOverheated() && ((step / 20) % 2)))
 			return Radar::INACTIVE;
-		if(ship.GetGovernment()->IsPlayer() || ship.GetPersonality().IsEscort())
+		if(ship.GetGovernment()->IsPlayer() || (ship.GetPersonality().IsEscort() && !ship.GetGovernment()->IsEnemy()))
 			return Radar::PLAYER;
 		if(!ship.GetGovernment()->IsEnemy())
 			return Radar::FRIENDLY;
@@ -515,20 +522,23 @@ void Engine::Step(bool isActive)
 		info.SetString("target name", "no target");
 		info.SetString("target type", "");
 		info.SetString("target government", "");
+		info.SetString("mission target", "");
 		info.SetBar("target shields", 0.);
 		info.SetBar("target hull", 0.);
 	}
 	else
 	{
+		const Font &font = FontSet::Get(14);
 		if(target->GetSystem() == player.GetSystem() && target->Cloaking() < 1.)
 			targetUnit = target->Facing().Unit();
 		info.SetSprite("target sprite", target->GetSprite(), targetUnit, target->GetFrameIndex(step));
-		info.SetString("target name", target->Name());
+		info.SetString("target name", font.TruncateMiddle(target->Name(), 150));
 		info.SetString("target type", target->ModelName());
 		if(!target->GetGovernment())
 			info.SetString("target government", "No Government");
 		else
 			info.SetString("target government", target->GetGovernment()->GetName());
+		info.SetString("mission target", target->GetPersonality().IsTarget() ? "(mission target)" : "");
 		
 		int targetType = RadarType(*target, step);
 		info.SetOutlineColor(Radar::GetColor(targetType));
@@ -560,7 +570,7 @@ void Engine::Step(bool isActive)
 			info.SetBar("target hull", 0.);
 		}
 	}
-	if(target && !target->IsDestroyed() && target->GetSystem() == currentSystem 
+	if(target && target->IsTargetable() && target->GetSystem() == currentSystem
 		&& (flagship->CargoScanFraction() || flagship->OutfitScanFraction()))
 	{
 		double width = max(target->Width(), target->Height());
@@ -644,6 +654,7 @@ const list<ShipEvent> &Engine::Events() const
 void Engine::Draw() const
 {
 	GameData::Background().Draw(center, centerVelocity, zoom);
+	static const Set<Color> &colors = GameData::Colors();
 	
 	// Draw any active planet labels.
 	for(const PlanetLabel &label : labels)
@@ -654,12 +665,12 @@ void Engine::Draw() const
 	for(const auto &it : statuses)
 	{
 		static const Color color[6] = {
-			Color(0., .5, 0., .25),
-			Color(.5, .15, 0., .25),
-			Color(.5, .5, .5, .25),
-			Color(.45, .5, 0., .25),
-			Color(.5, .3, 0., .25),
-			Color(.7, .7, .7, .25)
+			*colors.Get("overlay friendly shields"),
+			*colors.Get("overlay hostile shields"),
+			*colors.Get("overlay outfit scan"),
+			*colors.Get("overlay friendly hull"),
+			*colors.Get("overlay hostile hull"),
+			*colors.Get("overlay cargo scan")
 		};
 		Point pos = it.position * zoom;
 		double radius = it.radius * zoom;
@@ -674,7 +685,7 @@ void Engine::Draw() const
 	if(highlightSprite)
 	{
 		Point size(highlightSprite->Width(), highlightSprite->Height());
-		const Color &color = *GameData::Colors().Get("flagship highlight");
+		const Color &color = *colors.Get("flagship highlight");
 		// The flagship is always in the dead center of the screen.
 		OutlineShader::Draw(highlightSprite, Point(), size, color, highlightUnit, highlightFrame);
 	}
@@ -747,8 +758,8 @@ void Engine::Draw() const
 	Point pos(Screen::Right() - 80, Screen::Bottom());
 	const Sprite *selectedSprite = SpriteSet::Get("ui/ammo selected");
 	const Sprite *unselectedSprite = SpriteSet::Get("ui/ammo unselected");
-	Color selectedColor = *GameData::Colors().Get("bright");
-	Color unselectedColor = *GameData::Colors().Get("dim");
+	Color selectedColor = *colors.Get("bright");
+	Color unselectedColor = *colors.Get("dim");
 	for(const pair<const Outfit *, int> &it : ammo)
 	{
 		pos.Y() -= 30.;
@@ -779,7 +790,7 @@ void Engine::Draw() const
 	if(Preferences::Has("Show CPU / GPU load"))
 	{
 		string loadString = to_string(static_cast<int>(load * 100. + .5)) + "% CPU";
-		Color color = *GameData::Colors().Get("medium");
+		Color color = *colors.Get("medium");
 		font.Draw(loadString,
 			Point(-10 - font.Width(loadString), Screen::Height() * -.5 + 5.), color);
 	}
@@ -873,7 +884,7 @@ void Engine::EnterSystem()
 				fleet.Get()->Place(*system, ships);
 	
 	const Fleet *raidFleet = system->GetGovernment()->RaidFleet();
-	if(raidFleet && raidFleet->GetGovernment())
+	if(raidFleet && raidFleet->GetGovernment() && raidFleet->GetGovernment()->IsEnemy())
 	{
 		// Find out how attractive the player's fleet is to pirates. Aside from a
 		// heavy freighter, no single ship should attract extra pirate attention.
@@ -1338,6 +1349,22 @@ void Engine::CalculateStep()
 		// If this "projectile" is a ship explosion, it always explodes.
 		if(!gov)
 			closestHit = 0.;
+		else if(projectile.GetWeapon().IsPhasing() && projectile.Target())
+		{
+			// "Phasing" projectiles that have a target will never hit any other ship.
+			shared_ptr<Ship> target = projectile.TargetPtr();
+			if(target && target->GetSystem() == player.GetSystem()
+					&& target->Zoom() == 1. && target->Cloaking() < 1.)
+			{
+				Point offset = projectile.Position() - target->Position();
+				double range = target->GetMask(step).Collide(offset, projectile.Velocity(), target->Facing());
+				if(range < 1.)
+				{
+					closestHit = range;
+					hit = target;
+				}
+			}
+		}
 		else
 		{
 			double triggerRadius = projectile.GetWeapon().TriggerRadius();
@@ -1361,13 +1388,17 @@ void Engine::CalculateStep()
 					hitVelocity = ship->Velocity();
 				}
 			}
-			// Check if the projectile hits an asteroid that is closer than the
-			// ship that it hit (if any).
-			double closestAsteroid = asteroids.Collide(projectile, step, closestHit, &hitVelocity);
-			if(closestAsteroid < closestHit)
+			// "Phasing" projectiles can pass through asteroids.
+			if(!projectile.GetWeapon().IsPhasing())
 			{
-				closestHit = closestAsteroid;
-				hit = nullptr;
+				// Check if the projectile hits an asteroid that is closer than
+				// the ship that it hit (if any).
+				double closestAsteroid = asteroids.Collide(projectile, step, closestHit, &hitVelocity);
+				if(closestAsteroid < closestHit)
+				{
+					closestHit = closestAsteroid;
+					hit = nullptr;
+				}
 			}
 		}
 		
@@ -1380,12 +1411,18 @@ void Engine::CalculateStep()
 			// If this projectile has a blast radius, find all ships within its
 			// radius. Otherwise, only one is damaged.
 			double blastRadius = projectile.GetWeapon().BlastRadius();
+			bool isSafe = projectile.GetWeapon().IsSafe();
 			if(blastRadius)
 			{
-				// Even friendly ships can be hit by the blast.
+				// Even friendly ships can be hit by the blast, unless it is a
+				// "safe" weapon.
 				Point hitPos = projectile.Position() + closestHit * projectile.Velocity();
 				for(Body *body : shipCollisions.Circle(hitPos, blastRadius))
 				{
+					if(isSafe && projectile.Target() != body
+							&& !projectile.GetGovernment()->IsEnemy(body->GetGovernment()))
+						continue;
+					
 					shared_ptr<Ship> ship = reinterpret_cast<Ship *>(body)->shared_from_this();
 					int eventType = ship->TakeDamage(projectile, ship != hit);
 					if(eventType)
@@ -1395,6 +1432,10 @@ void Engine::CalculateStep()
 				// Cloaked ships can be hit be a blast, too.
 				for(Body *body : cloakedCollisions.Circle(hitPos, blastRadius))
 				{
+					if(isSafe && projectile.Target() != body
+							&& !projectile.GetGovernment()->IsEnemy(body->GetGovernment()))
+						continue;
+					
 					shared_ptr<Ship> ship = reinterpret_cast<Ship *>(body)->shared_from_this();
 					int eventType = ship->TakeDamage(projectile, ship != hit);
 					if(eventType)

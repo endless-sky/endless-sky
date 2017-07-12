@@ -252,9 +252,9 @@ government "Pirate"
 	"player reputation" -10
 	"attitude toward"
 		"Merchant" -.1
-		"Syndicate" -.1
-		"Korath" -.1
-		"Author" -.1
+		"Syndicate" -.01
+		"Korath" -.01
+		"Author" -.01
 	"bribe" .05
 	"fine" 0
 	"friendly hail" "friendly pirate"

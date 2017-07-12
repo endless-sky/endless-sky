@@ -134,18 +134,19 @@ void TradingPanel::Draw()
 		sellOutfits = (hasOutfits && !hasHarvested);
 		
 		string str = to_string(outfits + missionCargo);
+		str += (outfits + missionCargo == 1) ? " ton of " : " tons of ";
 		if(hasHarvested && missionCargo)
-			str += " tons of mission cargo and other items.";
+			str += "mission cargo and other items.";
 		else if(hasOutfits && missionCargo)
-			str += " tons of outfits and mission cargo.";
+			str += "outfits and mission cargo.";
 		else if(hasOutfits && hasHarvested)
-			str += " tons of outfits and harvested materials.";
+			str += "outfits and harvested materials.";
 		else if(hasOutfits)
-			str += " tons of outfits.";
+			str += "outfits.";
 		else if(hasHarvested)
-			str += " tons of harvested materials.";
+			str += "harvested materials.";
 		else
-			str += " tons of mission cargo.";
+			str += "mission cargo.";
 		font.Draw(str, Point(NAME_X, lastY), unselected);
 	}
 	

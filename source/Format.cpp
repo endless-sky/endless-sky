@@ -233,3 +233,23 @@ string Format::LowerCase(const string &str)
 		c = tolower(c);
 	return result;
 }
+
+
+
+// Split a single string into substrings with the given separator.
+vector<string> Format::Split(const string &str, const string &separator)
+{
+	vector<string> result;
+	size_t begin = 0;
+	while(true)
+	{
+		size_t pos = str.find(separator, begin);
+		if(pos == string::npos)
+			pos = str.length();
+		result.emplace_back(str, begin, pos - begin);
+		begin = pos + separator.size();
+		if(begin >= str.length())
+			break;
+	}
+	return result;
+}

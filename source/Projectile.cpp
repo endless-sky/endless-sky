@@ -287,6 +287,13 @@ const Ship *Projectile::Target() const
 
 
 
+shared_ptr<Ship> Projectile::TargetPtr() const
+{
+	return targetShip.lock();
+}
+
+
+
 void Projectile::CheckLock(const Ship &target)
 {
 	double base = hasLock ? 1. : .5;

@@ -798,7 +798,7 @@ void MapPanel::DrawSystems()
 					if(object.GetPlanet())
 					{
 						const Planet *planet = object.GetPlanet();
-						if(!planet->IsAccessible(player.Flagship()))
+						if(planet->IsWormhole() || !planet->IsAccessible(player.Flagship()))
 							continue;
 						canLand |= planet->CanLand() && planet->HasSpaceport();
 						isInhabited |= planet->IsInhabited();

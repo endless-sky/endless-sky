@@ -100,6 +100,7 @@ mission "FW Diplomacy 1C"
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
+		log "Stopped on Earth with Alondo to talk to Parliament and try to head off another bloody battle. But, they were not willing to negotiate."
 		conversation
 			`You drop off Alondo and wish him luck. Hours pass, and you begin to worry that he has been taken prisoner or killed. But finally he returns, looking very discouraged. "It makes no sense," he says. "The tax revenue they get from those three worlds doesn't come close to covering the cost of defending them. They should be glad to let them go."`
 			choice
@@ -184,6 +185,7 @@ mission "FW Southern Recon 1B"
 		has "FW Southern Recon 1: done"
 	
 	on offer
+		log "It looks like the Navy has begun using some more powerful beam weapons and torpedoes. Tasked with plundering one of the electron beam weapons so Freya can get a closer look at it."
 		event "gunboats in Alnasl"
 		conversation
 			`Freya thanks you for performing the scouting mission, and you give her a copy of your ship's logs to analyze. As she looks through them, almost immediately something catches her eye. "Looks like the Navy is fielding some new weapons," she says. "Some higher-yield torpedoes, and a beam weapon even more powerful than heavy lasers. Those beam weapons in particular worry me."`
@@ -334,6 +336,7 @@ mission "FW Southern Battle 2"
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
+		log "Preparing for another major battle with the Navy, this time in the Rastaban system, which just recently expressed an interest in joining the Free Worlds but has not been able to do so due to the Navy presence. The Free Worlds will be using a new model of warship, the Dreadnought, in this battle."
 		event "battle for Rastaban"
 		conversation
 			`When you meet up with Freya in the cafe, she looks like she hasn't slept in several days. "I can't believe we're headed for another major battle," she says. "I keep hoping the Navy will just pull back and not force us to fight them."`
@@ -487,6 +490,7 @@ mission "FW Southern Battle 3"
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
+		log "The Navy has been driven out of the Rastaban system. That will allow the people on Dancer, New Portland, and New India to join the Free Worlds."
 		conversation
 			`As soon as you land on <origin>, you contact Freya and let her know that the system is yours. "That's great news," she says. "Now we need to make sure they've pulled back from the neighboring systems, too. Take a few ships and sweep through Delta Sagittarii and Albaldah and make sure they're clear. Leave the rest of the fleet on Dancer to handle the prisoners and repairs."`
 			choice
@@ -585,6 +589,7 @@ mission "FW Southern Prisoners - Release"
 	on complete
 		karma ++
 		set "fw delivered prisoners"
+		log "Was given the choice of what to do with the Navy prisoners from the battle for Rastaban, and decided to parole and release them rather than imprisoning them. Hopefully that will earn some goodwill from the Navy in the future."
 
 
 
@@ -602,6 +607,7 @@ mission "FW Southern Prisoners - Keep"
 		karma --
 		set "fw delivered prisoners"
 		event "fw prison on Clink"
+		log "Was given the choice of what to do with the Navy prisoners from the battle for Rastaban, and decided to imprison them on Clink. Hopefully that will weaken the Navy, a little bit."
 
 
 
@@ -675,6 +681,7 @@ mission "FW Southern Break"
 		has "fw delivered prisoners"
 	
 	on offer
+		log "Once again there is no immediate work to be done for the Free Worlds. This would be a good time to earn some money for an upgraded ship, if possible."
 		event "fw occupying the north" 50
 		conversation
 			`You land on Dancer and report to Alondo and Freya that the prisoner transfer is complete. "What do we do now?" you ask.`
@@ -724,6 +731,7 @@ mission "FW Northern 1"
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
+		log "Three more planets have decided to defect to the Free Worlds: Clark, New Tibet, and New Holland."
 		conversation
 			`When you land on Dancer, the Free Worlds fleet appears to be preparing for another battle: missiles and torpedoes are being loaded onto ships and crew members are running around. You eventually find Freya and Alondo, and ask them what is going on.`
 			`	"Another three worlds have secretly told us they are ready to defect," says Alondo, "and this time around we want to get there before the Navy does."`
@@ -895,6 +903,7 @@ mission "FW Northern 3"
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
+		log "The shipyard on Zug is still trying to ramp up Dreadnought production. So far only a few ships have been built, but Freya will be helping to speed up the process."
 		conversation
 			`As you approach <origin>, Freya quickly locates two Navy surveillance stations and contacts Alondo, asking him to send some Free Worlds personnel to destroy them. Then you land, and Alondo comes aboard your ship to discuss your next steps in person.`
 			`	"There's a good chance we've taken care of all the sensors in this sector," says Freya, "so we can start moving our fleets around here without tipping the Navy off. And I just heard from Southbound Shipyards that they've got two more Dreadnoughts ready for service."`
@@ -915,6 +924,7 @@ mission "FW Northern 3"
 				accept
 	
 	on complete
+		log "Agreed to become a member of the Free Worlds council, taking Tomek's spot."
 		"salary: Free Worlds" = 2500
 		conversation
 			`As you are landing on <planet>, Freya says, "I miss Katya. It's hard being the only woman on the Council."`
@@ -1092,6 +1102,7 @@ mission "FW Alphas 1.1"
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
+		log "The Republic world of Poisonwood in the south has apparently been taken over by Alpha warlords. It is such a dire threat that despite the war, the Navy Oathkeepers have agreed to fight alongside the Free Worlds to liberate the planet."
 		event "alphas capture Poisonwood"
 		conversation
 			`You land the convoy safely on <origin>, but everyone seems to be busy with whatever new crisis it is that Alondo alluded to; no one approaches you to help unload the ships. Eventually you track down Alondo and ask what is going on, and why there is a neutral Navy ship in orbit. "We just received word that Poisonwood has been captured by pirates, while all of our fleets were busy guarding the front," says Alondo. You recall that Poisonwood has remained loyal to the Republic, even though they are deep inside Free Worlds territory.`
@@ -1132,7 +1143,7 @@ mission "FW Alphas 1.1"
 		ship "Falcon" "F.S. Starry Warrior"
 	npc kill
 		government "Pirate"
-		personality heroic staying
+		personality heroic staying target
 		system Graffias
 		ship "Leviathan (Heavy)" "Dread Lord"
 		ship "Leviathan" "Dominator"
@@ -1192,6 +1203,7 @@ mission "FW Alphas 1.2"
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
+		log "The Republic world of Poisonwood in the south has apparently been taken over by Alpha warlords. Hopefully the Free Worlds will be able to liberate the planet and capture or kill the Alpha leaders."
 		event "alphas capture Poisonwood"
 		conversation
 			`You land the convoy safely on <origin>, but everyone seems to be busy with whatever new crisis it is that Alondo alluded to; no one approaches you to help unload the ships. Eventually you track down Alondo and ask what is going on. "We just received word that Poisonwood has been captured by pirates, while all of our fleets were busy elsewhere," says Alondo. You recall that Poisonwood has remained loyal to the Republic, even though they are deep inside Free Worlds territory.`
@@ -1222,7 +1234,7 @@ mission "FW Alphas 1.2"
 		ship "Falcon" "F.S. Starry Warrior"
 	npc kill
 		government "Pirate"
-		personality heroic staying
+		personality heroic staying target
 		system Graffias
 		ship "Leviathan (Heavy)" "Dread Lord"
 		ship "Leviathan" "Dominator"
@@ -1255,6 +1267,7 @@ mission "FW Alphas 1.1A"
 		dialog "You have reached <planet>, but you left the <npc> behind! Better depart and wait for them to arrive in this star system."
 	
 	on offer
+		log "With the help of the Oathkeepers, liberated Poisonwood from the Alpha invaders."
 		event "death of nguyen" 35
 		conversation
 			`When you meet up with Nguyen, he still looks very worried. "We think we killed them all," he says, "but we can't be sure. Also, we recovered some instruments for genetic manipulation from the factory. The Alphas can't breed normally, because if their offspring inherit some of the Alpha mutations but not others, the result is rarely viable, and even those that live long enough to be born don't have all the Alpha traits. So, they rely on artificial insemination instead."`
@@ -1314,6 +1327,7 @@ mission "FW Alphas 1.2A"
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
+		log "Liberated Poisonwood from the Alpha invaders. Had to bombard them from orbit, and many civilians were killed in the process, but at least the planet is free again."
 		event "Poisonwood reverts to Republic"
 		conversation
 			`The ships in orbit are eliminated, but there are still the Alphas and their servants here on the ground to take care of. Your escorts unload the troops, who spread throughout the city and quickly determine that, as far as the locals know, the Alphas are all holed up in a large factory on the outskirts of town. The locals also inform you that the Alphas have taken dozens of prisoners and are holding them in the factory.`
@@ -1375,6 +1389,7 @@ mission "FW Bloodsea 1.1"
 	passengers 1
 	
 	on offer
+		log "The local leaders on the lawless world of Bloodsea have said that they will join the Free Worlds, and stop supporting piracy, in exchange for the equipment to build a more modern spaceport. However, they may just be trying to steal the construction materials; it might be simpler to just attack and conquer them."
 		conversation
 			`The local leaders are unwilling to meet aboard your ship, and Alondo is afraid you will be ambushed if you venture too far away from it, so eventually they agree to set up a tent on the landing pad next to yours and meet there. Outside, a storm is raging, the rain mixing with salt spray from the blood-red ocean nearby.`
 			`	As you talk, it becomes clear that the inhabitants of Bloodsea are ashamed of how destitute and undeveloped their world is. Several of them have visited the island spaceport on Deep, and after dancing around the issue for a while, they make a request: if the Free Worlds builds them a real, modern island spaceport, they will join the Free Worlds.`
@@ -1475,6 +1490,7 @@ mission "FW Bloodsea 1.1B"
 		event "dreadnought deployment" 40
 		event "bloodsea joins free worlds"
 		event "bloodsea spaceport completed" 100
+		log "Brought the construction supplies that the people of Bloodsea requested, and they have agreed to join the Free Worlds."
 		conversation
 			`A few of the locals on Bloodsea appear surprised that you actually brought the supplies for a new spaceport, and that you arrived with all the supplies intact. But after meeting up with Alondo, they agree to hold their side of the bargain: from now on, Bloodsea will be a part of the Free Worlds, with all the rights and responsibilities that implies. And that means that they will refuse to knowingly harbor any pirate fleets or other known criminals.`
 			`	Alondo tells you that he will catch a ride back with the freighters when they return. "But, you'll probably want to head out sooner," he says, "because I've got some good news for you. Freya just contacted me, to say that they're now ready to start selling Dreadnoughts to certain select members of the Free Worlds, including you. That also means she's done with her work on Zug, so she'll need you to give her a lift from there."`
@@ -1557,6 +1573,7 @@ mission "FW Bloodsea 1.2A"
 		ship "Bastion (Heavy)" "Punisher"
 	
 	on complete
+		log "Conquered Bloodsea in the name of the Free Worlds. With enough militia ships patrolling their star system, they ought to think twice before returning to piracy."
 		set "fw bloodsea done"
 		event "dreadnoughts for sale"
 		event "dreadnought deployment" 40
@@ -1579,6 +1596,8 @@ mission "FW Dreadnoughts Ready"
 		has "fw bloodsea done"
 	on fail
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+	on offer
+		log "Freya has announced that Dreadnoughts are now for sale on Zug. Finally the Free Worlds have a warship that can stand up to Navy capital ships."
 
 
 
@@ -1688,7 +1707,7 @@ mission "FW Albatross 2A"
 				accept
 	
 	npc kill
-		personality staying plunders disables heroic nemesis
+		personality staying plunders disables heroic nemesis target
 		system Orvala
 		government Pirate
 		ship "Bastion (Heavy)" "Dread"
@@ -1719,6 +1738,7 @@ mission "FW Albatross 2B"
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
+		log "The people of Albatross, another anarchist world, have agreed to join the Free Worlds in gratitude for having been liberated from Ryk Bartlett, a warlord who was extorting them for protection money."
 		event "albatross joins free worlds"
 		conversation
 			`When the elders on Albatross learn that you have destroyed Ryk Bartlett and freed them from his rule, they grudgingly agree to join the Free Worlds, "at least on a trial basis." You hope that you will be able to live up to the promises you have given them.`
@@ -1748,6 +1768,7 @@ mission "FW Rand 1"
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
+		log "Another two planets, Rand and Oblivion, have expressed an interest in joining the Free Worlds. They are rather far from the rest of Free Worlds territory, however, so JJ is worried that it would create an indefensible tactical position."
 		event "battle for zeta aquilae"
 		conversation
 			`When you land on Dancer, Freya has just received some exciting news. "It turns out taking out Bartlett had some unexpected side effects," she says. "Bartlett has been dogging the systems on the northwestern fringe of the Dirt Belt for years, and had a lot of enemies. The governments of Rand and Oblivion are so grateful to you for eliminating him that they've reached out to us to begin the process of joining the Free Worlds! And several other worlds in that region are interested now, too."`
@@ -1826,6 +1847,7 @@ mission "FW Rand 1B"
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
+		log "The Navy has invaded Rastaban and Delta Sagittarii, effectively slicing through Free Worlds territory and splitting up the Free Worlds fleet."
 		conversation
 			`You meet up with the governor of Rand, and sign the papers to make her planet a part of the Free Worlds. The nearby systems are reporting no Navy interference: they seem to have been allowed to switch allegiances without any attempt by the Republic to stop them. Of course, that might partly be because these are mining planets, not as necessary to the Republic's survival as the farming worlds on the other end of the Dirt Belt.`
 			`	Freya leaves the meeting to check up on her surveillance network, and rushes back into the room a few minutes later. JJ takes one look at the expression on her face and quickly excuses himself from the table. You join him outside in the hallway, and he asks Freya what's going on.`
@@ -1922,6 +1944,7 @@ mission "FW Defend New Tibet"
 		has "FW Rand 1B: done"
 	
 	on offer
+		log "As a member of the Council, must make the deciding vote on a difficult decision. A defector from the Syndicate is claiming to have proof that the Syndicate was behind the bombings of Martini and Gemini. If that is true, the Republic may agree to make peace with the Free Worlds. But, refusing to return the defector to the Syndicate would certainly earn their enmity."
 		conversation
 			`The fleet in orbit around Wayfarer is pitifully small, surely not enough to take on more than a couple of Navy capital ships. JJ orders one of their communication officers to try to establish a secure link to Bourne or to any Free Worlds post on the other side of the Navy blockade. After about ten minutes, the officer returns and says, "Sir, we're receiving communications from New Tibet. You need to talk to them."`
 			`	"Our fleet is there?" asks JJ.`
@@ -2050,7 +2073,7 @@ mission "FW Defend New Tibet"
 				`	"Why would the Syndicate attack the Republic?"`
 				`	"Why did you wait so long to report this?"`
 					goto wait
-			`	They both seem surprised at you asking a question. "I'm not sure," says Sawyer, "but the Syndicate's profits have more than doubled since this war began. Maybe they knew they would benefit from it more than anyone."`
+			`	They both seem surprised at you asking a question. Sawyer says, "War is good for business, especially if you're in the business of making weapons. The Syndicate's profits have more than doubled since this conflict began."`
 			`	"What led you to report this?" asks Raven.`
 			label wait
 			`	He says, "It was when I heard that there had been another major battle. Up until then I had been telling myself that the worst of the damage was done. But after that battle, I knew that millions more could die because of our crime, and that I had the power to stop it."`

@@ -128,6 +128,7 @@ public:
 	void RenameShip(const Ship *selected, const std::string &name);
 	// Change the order of the given ship in the list.
 	void ReorderShip(int fromIndex, int toIndex);
+	int ReorderShips(const std::set<int> &fromIndices, int toIndex);
 	
 	// Get cargo information.
 	CargoHold &Cargo();
@@ -145,6 +146,9 @@ public:
 	// Get the player's logbook.
 	const std::multimap<Date, std::string> &Logbook() const;
 	void AddLogEntry(const std::string &text);
+	const std::map<std::string, std::map<std::string, std::string>> &SpecialLogs() const;
+	void AddSpecialLog(const std::string &type, const std::string &name, const std::string &text);
+	bool HasLogs() const;
 	
 	// Get mission information.
 	const std::list<Mission> &Missions() const;
@@ -209,7 +213,8 @@ public:
 	bool SelectShips(const std::vector<const Ship *> &stack, bool hasShift);
 	void SelectShip(const Ship *ship, bool hasShift);
 	void SelectGroup(int group, bool hasShift);
-	void SetGroup(int group);
+	void SetGroup(int group, const std::set<Ship *> *newShips = nullptr);
+	std::set<Ship *> GetGroup(int group);
 	
 	// Keep track of any outfits that you have sold since landing. These will be
 	// available to buy back until you take off.
@@ -271,6 +276,7 @@ private:
 	std::map<std::string, int64_t> costBasis;
 	
 	std::multimap<Date, std::string> logbook;
+	std::map<std::string, std::map<std::string, std::string>> specialLogs;
 	
 	std::list<Mission> missions;
 	// These lists are populated when you land on a planet, and saved so that

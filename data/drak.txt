@@ -119,6 +119,7 @@ outfit "Drak Antimatter Cannon"
 		"submunition" "Drak Antimatter Fragment" 3
 		"hit effect" "antimatter dust" 10
 		"hit effect" "nuke explosion"
+		"safe"
 		"reload" 187
 		"firing energy" 5610
 		"firing heat" 1870
@@ -135,6 +136,7 @@ outfit "Drak Antimatter Fragment"
 		"live effect" "antimatter dust" 249
 		"hit effect" "antimatter dust" 10
 		"hit effect" "nuke explosion"
+		"safe"
 		"inaccuracy" 1
 		"lifetime" 499
 		"hit force" 1000

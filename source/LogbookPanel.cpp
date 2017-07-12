@@ -36,6 +36,9 @@ namespace {
 	const double WIDTH = SIDEBAR_WIDTH + TEXT_WIDTH;
 	const double LINE_HEIGHT = 25.;
 	const double GAP = 30.;
+	static const string MONTH[] = {
+		"  January", "  February", "  March", "  April", "  May", "  June",
+		"  July", "  August", "  September", "  October", "  November", "  December"};
 }
 
 
@@ -45,7 +48,10 @@ LogbookPanel::LogbookPanel(PlayerInfo &player)
 {
 	SetInterruptible(false);
 	if(!player.Logbook().empty())
-		selected = (--player.Logbook().end())->first;
+	{
+		selectedDate = (--player.Logbook().end())->first;
+		selectedName = MONTH[selectedDate.Month() - 1];
+	}
 	Update();
 }
 
@@ -102,7 +108,7 @@ void LogbookPanel::Draw()
 	Point pos = Screen::TopLeft() + Point(PAD, PAD);
 	for(size_t i = 0; i < contents.size(); ++i)
 	{
-		if(dates[i].Month() == selected.Month())
+		if(selectedDate ? dates[i].Month() == selectedDate.Month() : selectedName == contents[i])
 		{
 			FillShader::Fill(pos + highlightOffset - Point(1., 0.), highlightSize + Point(0., 2.), lineColor);
 			FillShader::Fill(pos + highlightOffset, highlightSize, backColor);
@@ -110,10 +116,6 @@ void LogbookPanel::Draw()
 		font.Draw(contents[i], pos + textOffset, dates[i].Month() ? medium : bright);
 		pos.Y() += LINE_HEIGHT;
 	}
-	
-	// This should never happen, but bail out if there is no text to draw.
-	if(begin == end)
-		return;
 	
 	// Parameters for drawing the main text:
 	WrappedText wrap;
@@ -123,16 +125,34 @@ void LogbookPanel::Draw()
 	
 	// Draw the main text.
 	pos = Screen::TopLeft() + Point(SIDEBAR_WIDTH + PAD, PAD + .5 * (LINE_HEIGHT - font.Height()) - scroll);
-	for(auto it = end; it-- != begin; )
+	
+	// Branch based on whether this is an ordinary log month or a special page.
+	auto pit = player.SpecialLogs().find(selectedName);
+	if(selectedDate && begin != end)
 	{
-		string date = it->first.ToString();
-		double dateWidth = font.Width(date);
-		font.Draw(date, pos + Point(TEXT_WIDTH - dateWidth - 2. * PAD, textOffset.Y()), dim);
-		pos.Y() += LINE_HEIGHT;
+		for(auto it = begin; it != end; ++it)
+		{
+			string date = it->first.ToString();
+			double dateWidth = font.Width(date);
+			font.Draw(date, pos + Point(TEXT_WIDTH - dateWidth - 2. * PAD, textOffset.Y()), dim);
+			pos.Y() += LINE_HEIGHT;
 		
-		wrap.Wrap(it->second);
-		wrap.Draw(pos, medium);
-		pos.Y() += wrap.Height() + GAP;
+			wrap.Wrap(it->second);
+			wrap.Draw(pos, medium);
+			pos.Y() += wrap.Height() + GAP;
+		}
+	}
+	else if(!selectedDate && pit != player.SpecialLogs().end())
+	{
+		for(const auto &it : pit->second)
+		{
+			font.Draw(it.first, pos + textOffset, bright);
+			pos.Y() += LINE_HEIGHT;
+		
+			wrap.Wrap(it.second);
+			wrap.Draw(pos, medium);
+			pos.Y() += wrap.Height() + GAP;
+		}
 	}
 	
 	maxScroll = max(0., scroll + pos.Y() - Screen::Bottom());
@@ -153,26 +173,39 @@ bool LogbookPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 	{
 		// Find the index of the currently selected line.
 		size_t i = 0;
-		for( ; i < dates.size(); ++i)
-			if(dates[i].Month() == selected.Month())
+		for( ; i < contents.size(); ++i)
+			if(contents[i] == selectedName)
 				break;
+		if(i == contents.size())
+			return true;
 		
 		if(key == SDLK_DOWN)
 		{
 			++i;
-			if(i >= dates.size())
+			if(i >= contents.size())
 				return true;
 		}
 		else if(i)
 		{
 			--i;
-			if(!i)
-				return true;
-			if(!dates[i].Month())
-				--i;
+			// Skip the entry that is just the currently selected year.
+			if(dates[i] && !dates[i].Month())
+			{
+				// If this is the very top of the list, don't move the selection
+				// up. (That is, you can't select the year heading line.)
+				if(i)
+					--i;
+				else
+					++i;
+			}
 		}
-		selected = dates[i];
-		Update();
+		if(contents[i] != selectedName)
+		{
+			selectedDate = dates[i];
+			selectedName = contents[i];
+			scroll = 0.;
+			Update(key == SDLK_UP);
+		}
 	}
 	
 	return true;
@@ -189,9 +222,12 @@ bool LogbookPanel::Click(int x, int y, int clicks)
 		size_t index = (y - PAD) / LINE_HEIGHT;
 		if(index < contents.size())
 		{
-			selected = dates[index];
+			selectedDate = dates[index];
+			selectedName = contents[index];
 			scroll = 0.;
-			Update();
+			// If selecting a different year, select the first month in that
+			// year.
+			Update(false);
 		}
 	}
 	else if(x > WIDTH)
@@ -218,15 +254,18 @@ bool LogbookPanel::Scroll(double dx, double dy)
 
 
 
-void LogbookPanel::Update()
+void LogbookPanel::Update(bool selectLast)
 {
 	contents.clear();
 	dates.clear();
+	for(const auto &it : player.SpecialLogs())
+	{
+		contents.emplace_back(it.first);
+		dates.emplace_back();
+	}
 	// The logbook should never be opened if it has no entries, but just in case:
 	if(player.Logbook().empty())
 	{
-		contents.emplace_back("[No entries]");
-		dates.emplace_back(selected);
 		begin = end = player.Logbook().end();
 		return;
 	}
@@ -237,30 +276,36 @@ void LogbookPanel::Update()
 	for(const auto &it : player.Logbook())
 	{
 		years.insert(it.first.Year());
-		if(it.first.Year() == selected.Year() && it.first.Month() >= 1 && it.first.Month() <= 12)
+		if(it.first.Year() == selectedDate.Year() && it.first.Month() >= 1 && it.first.Month() <= 12)
 			months.insert(it.first.Month());
 	}
 	
 	// Generate the table of contents.
-	for(auto yit = years.end(); yit-- != years.begin(); )
+	for(int year : years)
 	{
-		contents.emplace_back(to_string(*yit));
-		dates.emplace_back(0, 0, *yit);
-		if(*yit == selected.Year())
-			for(auto mit = months.end(); mit-- != months.begin(); )
+		contents.emplace_back(to_string(year));
+		dates.emplace_back(0, 0, year);
+		if(selectedDate && year == selectedDate.Year())
+			for(int month : months)
 			{
-				static const string MONTH[] = {
-					"January", "February", "March", "April", "May", "June",
-					"July", "August", "September", "October", "November", "Dec"};
-				contents.emplace_back("  " + MONTH[*mit - 1]);
-				dates.emplace_back(0, *mit, *yit);
+				contents.emplace_back(MONTH[month - 1]);
+				dates.emplace_back(0, month, year);
 			}
+	}
+	// If a special category is selected, bail out here.
+	if(!selectedDate)
+	{
+		begin = end = player.Logbook().end();
+		return;
 	}
 	
 	// Make sure a month is selected, within the current year.
-	if(!selected.Month())
-		selected = Date(0, *--months.end(), selected.Year());
+	if(!selectedDate.Month())
+	{
+		selectedDate = Date(0, selectLast ? *--months.end() : *months.begin(), selectedDate.Year());
+		selectedName = MONTH[selectedDate.Month() - 1];
+	}
 	// Get the range of entries that include the selected month.
-	begin = player.Logbook().lower_bound(Date(0, selected.Month(), selected.Year()));
-	end = player.Logbook().lower_bound(Date(32, selected.Month(), selected.Year()));
+	begin = player.Logbook().lower_bound(Date(0, selectedDate.Month(), selectedDate.Year()));
+	end = player.Logbook().lower_bound(Date(32, selectedDate.Month(), selectedDate.Year()));
 }
