@@ -78,6 +78,10 @@ public:
 	// Personality to use for ships defending a planet from domination:
 	static Personality Defender();
 	
+	// Operator overloading:
+	Personality &operator+=(const Personality &rhs);
+	Personality &operator-=(const Personality &rhs);
+	
 	
 private:
 	void Parse(const std::string &token);
