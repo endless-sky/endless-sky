@@ -31,6 +31,10 @@ class Personality {
 public:
 	Personality();
 	
+	// Operators:
+	Personality &operator+=(const Personality &rhs);
+	Personality &operator-=(const Personality &rhs);
+	
 	void Load(const DataNode &node);
 	void Save(DataWriter &out) const;
 	
@@ -77,10 +81,6 @@ public:
 	
 	// Personality to use for ships defending a planet from domination:
 	static Personality Defender();
-	
-	// Operator overloading:
-	Personality &operator+=(const Personality &rhs);
-	Personality &operator-=(const Personality &rhs);
 	
 	
 private:

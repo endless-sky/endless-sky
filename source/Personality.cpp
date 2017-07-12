@@ -92,6 +92,24 @@ Personality::Personality()
 
 
 
+Personality &Personality::operator+=(const Personality &rhs)
+{
+	flags |= rhs.flags;
+	confusionMultiplier = rhs.confusionMultiplier;
+	return *this;
+}
+
+
+
+Personality &Personality::operator-=(const Personality &rhs)
+{
+	flags &= ~(rhs.flags);
+	confusionMultiplier = rhs.confusionMultiplier;
+	return *this;
+}
+
+
+
 void Personality::Load(const DataNode &node)
 {
 	flags = 0;
@@ -356,22 +374,4 @@ void Personality::Parse(const string &token)
 	auto it = TOKEN.find(token);
 	if(it != TOKEN.end())
 		flags |= it->second;
-}
-
-
-
-Personality &Personality::operator+=(const Personality &rhs)
-{
-	flags |= rhs.flags;
-	confusionMultiplier += rhs.confusionMultiplier;
-	return *this;
-}
-
-
-
-Personality &Personality::operator-=(const Personality &rhs)
-{
-	flags &= ~(rhs.flags);
-	confusionMultiplier -= rhs.confusionMultiplier;
-	return *this;
 }
