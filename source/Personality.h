@@ -30,6 +30,7 @@ class DataWriter;
 class Personality {
 public:
 	Personality();
+	Personality(double confusionMult);
 	
 	void Load(const DataNode &node);
 	void Save(DataWriter &out) const;
