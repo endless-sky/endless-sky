@@ -92,14 +92,6 @@ Personality::Personality()
 
 
 
-Personality::Personality(double confusionMult)
-	: flags(DISABLES), aimMultiplier(1.)
-{
-	confusionMultiplier = confusionMult;
-}
-
-
-
 void Personality::Load(const DataNode &node)
 {
 	flags = 0;
