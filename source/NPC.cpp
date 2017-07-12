@@ -84,7 +84,7 @@ void NPC::Load(const DataNode &node)
 		else if(child.Token(0) == "government" && child.Size() >= 2)
 			government = GameData::Governments().Get(child.Token(1));
 		else if(child.Token(0) == "personality")
-			personality.Load(child);
+			personality.Load(child, true, false);
 		else if(child.Token(0) == "dialog")
 		{
 			for(int i = 1; i < child.Size(); ++i)
@@ -171,17 +171,8 @@ void NPC::Save(DataWriter &out) const
 			out.BeginChild();
 			{
 				// Break the text up into paragraphs.
-				size_t begin = 0;
-				while(true)
-				{
-					size_t pos = dialogText.find("\n\t", begin);
-					if(pos == string::npos)
-						pos = dialogText.length();
-					out.Write(dialogText.substr(begin, pos - begin));
-					if(pos == dialogText.length())
-						break;
-					begin = pos + 2;
-				}
+				for(const string &line : Format::Split(dialogText, "\n\t"))
+					out.Write(line);
 			}
 			out.EndChild();
 		}
