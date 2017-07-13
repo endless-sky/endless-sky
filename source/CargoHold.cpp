@@ -468,8 +468,9 @@ void CargoHold::TransferAll(CargoHold *to)
 		else
 			++mit;
 	}
-	for(const auto &it : outfits)
-		Transfer(it.first, it.second, to);
+	const std::vector<const Outfit *> outfitOrder = GetOutfitOrder();
+	for(const auto &outfit : outfitOrder)
+		Transfer(outfit, outfits[outfit], to);
 	for(const auto &it : commodities)
 		Transfer(it.first, it.second, to);
 }
@@ -569,4 +570,28 @@ int CargoHold::IllegalCargoFine() const
 		worst = max(worst, fine);
 	}
 	return worst;
+}
+
+
+
+// Retrieve vector of pointers to the outfits, sorted descending by size.
+const vector<const Outfit *> CargoHold::GetOutfitOrder() const
+{
+	vector<const Outfit *> sortedOutfits;
+	if(!outfits.size())
+		return sortedOutfits;
+	
+	for(const auto &outfit : outfits)
+		sortedOutfits.emplace_back(outfit.first);
+	sort(sortedOutfits.begin(), sortedOutfits.end(),
+		[] (const Outfit *lhs, const Outfit *rhs)
+		{
+			if(lhs->Get("mass") == rhs->Get("mass"))
+				return lhs->Name() < rhs->Name();
+			else
+				return lhs->Get("mass") > rhs->Get("mass");
+		}
+	);
+	
+	return sortedOutfits;
 }

@@ -16,6 +16,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <cstdint>
 #include <map>
 #include <string>
+#include <vector>
 
 class DataNode;
 class DataWriter;
@@ -103,6 +104,9 @@ public:
 	// so bad that it warrants a death sentence.
 	int IllegalCargoFine() const;
 	
+	
+private:
+	const std::vector<const Outfit *> GetOutfitOrder() const;
 	
 private:
 	// Use -1 to indicate unlimited capacity.
