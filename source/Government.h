@@ -50,11 +50,11 @@ public:
 	const Color &GetColor() const;
 	
 	// Get the government's tribute hails
-	const Phrase *TributeDeniedHail() const;
+	const Phrase *TributeIgnoredHail() const;
 	const Phrase *TributePresentHail() const;
 	const Phrase *TributeInProgressHail() const;
-	const Phrase *TributeAcceptedHail() const;
-	const Phrase *TributeGrantedHail() const;
+	const Phrase *TributeCombatHail() const;
+	const Phrase *TributeSurrenderedHail() const;
 	
 	// Get the government's initial disposition toward other governments or
 	// toward the player.
@@ -110,6 +110,7 @@ public:
 	void SetReputation(double value) const;
 	
 	
+	
 private:
 	unsigned id;
 	std::string name;
@@ -126,11 +127,11 @@ private:
 	const Phrase *friendlyDisabledHail = nullptr;
 	const Phrase *hostileHail = nullptr;
 	const Phrase *hostileDisabledHail = nullptr;
-	const Phrase *tributeDeniedHail = nullptr;
+	const Phrase *tributeIgnoredHail = nullptr;
 	const Phrase *tributePresentHail = nullptr;
 	const Phrase *tributeInProgressHail = nullptr;
-	const Phrase *tributeAcceptedHail = nullptr;
-	const Phrase *tributeGrantedHail = nullptr;
+	const Phrase *tributeCombatHail = nullptr;
+	const Phrase *tributeSurrenderedHail = nullptr;
 	std::string language;
 	const Fleet *raidFleet = nullptr;
 };

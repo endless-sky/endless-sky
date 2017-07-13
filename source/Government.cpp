@@ -111,16 +111,16 @@ void Government::Load(const DataNode &node)
 			language = child.Token(1);
 		else if(child.Token(0) == "raid" && child.Size() >= 2)
 			raidFleet = GameData::Fleets().Get(child.Token(1));
-		else if(child.Token(0) == "tribute denied hail" && child.Size() >= 2)
-			tributeDeniedHail = GameData::Phrases().Get(child.Token(1));
-		else if(child.Token(0) == "tribute present hail" && child.Size() >= 2)
+		else if(child.Token(0) == "tribute ignored message" && child.Size() >= 2)
+			tributeIgnoredHail = GameData::Phrases().Get(child.Token(1));
+		else if(child.Token(0) == "tribute present message" && child.Size() >= 2)
 			tributePresentHail = GameData::Phrases().Get(child.Token(1));
-		else if(child.Token(0) == "tribute in progress hail" && child.Size() >= 2)
+		else if(child.Token(0) == "tribute in progress message" && child.Size() >= 2)
 			tributeInProgressHail = GameData::Phrases().Get(child.Token(1));
-		else if(child.Token(0) == "tribute accepted hail" && child.Size() >= 2)
-			tributeAcceptedHail = GameData::Phrases().Get(child.Token(1));
-		else if(child.Token(0) == "tribute granted hail" && child.Size() >= 2)
-			tributeGrantedHail = GameData::Phrases().Get(child.Token(1));
+		else if(child.Token(0) == "tribute battle message" && child.Size() >= 2)
+			tributeCombatHail = GameData::Phrases().Get(child.Token(1));
+		else if(child.Token(0) == "tribute surrendered message" && child.Size() >= 2)
+			tributeSurrenderedHail = GameData::Phrases().Get(child.Token(1));
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
@@ -130,16 +130,16 @@ void Government::Load(const DataNode &node)
 		friendlyDisabledHail = GameData::Phrases().Get("friendly disabled");
 	if(!hostileDisabledHail)
 		hostileDisabledHail = GameData::Phrases().Get("hostile disabled");
-	if(!tributeDeniedHail)
-		tributeDeniedHail = GameData::Phrases().Get("tribute denied hail");
-	if(!tributeAcceptedHail)
-		tributeAcceptedHail = GameData::Phrases().Get("tribute accepted hail");
+	if(!tributeIgnoredHail)
+		tributeIgnoredHail = GameData::Phrases().Get("tribute ignored message");
+	if(!tributeCombatHail)
+		tributeCombatHail = GameData::Phrases().Get("tribute battle message");
 	if(!tributePresentHail)
-		tributePresentHail = GameData::Phrases().Get("tribute present hail");
+		tributePresentHail = GameData::Phrases().Get("tribute present message");
 	if(!tributeInProgressHail)
-		tributeInProgressHail = GameData::Phrases().Get("tribute in progress hail");
-	if(!tributeGrantedHail)
-		tributeGrantedHail = GameData::Phrases().Get("tribute granted hail");
+		tributeInProgressHail = GameData::Phrases().Get("tribute in progress message");
+	if(!tributeSurrenderedHail)
+		tributeSurrenderedHail = GameData::Phrases().Get("tribute surrendered message");
 }
 
 
@@ -169,9 +169,9 @@ const Color &Government::GetColor() const
 
 
 // Get the government's tribute-related hails
-const Phrase *Government::TributeDeniedHail() const
+const Phrase *Government::TributeIgnoredHail() const
 {
-	return tributeDeniedHail;
+	return tributeIgnoredHail;
 }
 
 
@@ -190,16 +190,16 @@ const Phrase *Government::TributeInProgressHail() const
 
 
 
-const Phrase *Government::TributeAcceptedHail() const
+const Phrase *Government::TributeCombatHail() const
 {
-	return tributeAcceptedHail;
+	return tributeCombatHail;
 }
 
 
 
-const Phrase *Government::TributeGrantedHail() const
+const Phrase *Government::TributeSurrenderedHail() const
 {
-	return tributeGrantedHail;
+	return tributeSurrenderedHail;
 }
 
 
