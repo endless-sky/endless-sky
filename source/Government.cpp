@@ -254,7 +254,7 @@ const string Government::GetTributeHail(int condition) const
 		tributeCombatHail,
 		tributeSurrenderedHail
 	};
-	if(condition < 0 || condition > phrases.size())
+	if(condition < 0 || condition > (int)phrases.size())
 		return phrases[0]->Get();
 	
 	return phrases[condition]->Get();
