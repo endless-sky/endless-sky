@@ -101,6 +101,11 @@ void LocationFilter::Load(const DataNode &node)
 				for(int i = 0; i < grand.Size(); ++i)
 					systems.insert(GameData::Systems().Get(grand.Token(i)));
 		}
+		
+		// Apply the 'government' and 'attribute' filters. For attributes, the entire list is passed through
+		// SetsIntersect(), and OR's all conditions on a given line. Governments, however, do not use
+		// that function at all; therefore, all elements in the government blacklist are AND'ed together,
+		// regardless of how many lines you put in your filter.
 		else if(child.Token(0) == "government")
 		{
 			for(int i = 1; i < child.Size(); ++i)
@@ -188,12 +193,12 @@ void LocationFilter::Save(DataWriter &out) const
 			out.Write("government");
 			out.BeginChild();
 			{
-				if(!governmentsBlacklist.empty())
-					for(const Government *government : governmentsBlacklist)
-						out.Write("!" + government->GetName());
-				else
+				if(!governments.empty())
 					for(const Government *government : governments)
 						out.Write(government->GetName());
+				else
+					for(const Government *government : governmentsBlacklist)
+						out.Write("!" + government->GetName());
 			}
 			out.EndChild();
 		}
