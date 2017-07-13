@@ -475,8 +475,8 @@ string Planet::DemandTribute(PlayerInfo &player) const
 {
 	static const int TRIBUTE_PRESENT = 0;
 	static const int TRIBUTE_IGNORED = 1;
-	static const int TRIBUTE_BATTLE = 2;
-	static const int TRIBUTE_IN_PROGRESS = 3;
+	static const int TRIBUTE_IN_PROGRESS = 2;
+	static const int TRIBUTE_BATTLE = 3;
 	static const int TRIBUTE_SURRENDERED = 4;
 	map<string, string> subs;
 	subs["<tribute>"] = Format::Number(tribute) + " credits";
