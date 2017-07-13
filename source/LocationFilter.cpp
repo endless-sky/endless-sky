@@ -106,7 +106,7 @@ void LocationFilter::Load(const DataNode &node)
 			for(int i = 1; i < child.Size(); ++i)
 			{
 				if(child.Token(i).c_str()[0] == '!')
-					governmentBlacklist = GameData::Governments().Get(child.Token(i).substr(1, child.Token(i).length() - 1));
+					governmentsBlacklist.insert(GameData::Governments().Get(child.Token(i).substr(1, child.Token(i).length() - 1)));
 				else
 					governments.insert(GameData::Governments().Get(child.Token(i)));
 			}
@@ -114,12 +114,10 @@ void LocationFilter::Load(const DataNode &node)
 				for(int i = 0; i < grand.Size(); ++i)
 				{
 					if(grand.Token(i).c_str()[0] == '!')
-						governmentBlacklist = GameData::Governments().Get(grand.Token(i).substr(1, grand.Token(i).length() - 1));
+						governmentsBlacklist.insert(GameData::Governments().Get(grand.Token(i).substr(1, grand.Token(i).length() - 1)));
 					else
 						governments.insert(GameData::Governments().Get(grand.Token(i)));
 				}
-			if(!governments.empty() && governmentBlacklist)
-				child.PrintTrace("Mission has both a government and a government blacklist specified.");
 		}
 		else if(child.Token(0) == "attributes")
 		{
@@ -183,16 +181,15 @@ void LocationFilter::Save(DataWriter &out) const
 			}
 			out.EndChild();
 		}
-		if(!governments.empty() || governmentBlacklist)
+		if(!governments.empty() || !governmentsBlacklist.empty())
 		{
 			out.Write("government");
 			out.BeginChild();
 			{
-				if(governmentBlacklist)
-					out.Write(governmentBlacklist->GetName());
-				else
-					for(const Government *government : governments)
-						out.Write(government->GetName());
+				for(const Government *government : governments)
+					out.Write(government->GetName());
+				for(const Government *government : governmentsBlacklist)
+					out.Write("!" + government->GetName());
 			}
 			out.EndChild();
 		}
@@ -217,8 +214,8 @@ void LocationFilter::Save(DataWriter &out) const
 // Check if this filter contains any specifications.
 bool LocationFilter::IsEmpty() const
 {
-	return planets.empty() && attributes.empty() && systems.empty() && governments.empty()
-		&& !center && (originMaxDistance < 0) && !governmentBlacklist;
+	return planets.empty() && attributes.empty() && systems.empty() && governments.empty() && governmentsBlacklist.empty()
+		&& !center && originMaxDistance < 0;
 }
 
 
@@ -248,7 +245,7 @@ bool LocationFilter::Matches(const System *system, const System *origin) const
 		return false;
 	if(!governments.empty() && !governments.count(system->GetGovernment()))
 		return false;
-	if(governmentBlacklist && system->GetGovernment() == governmentBlacklist)
+	if(!governmentsBlacklist.empty() && governmentsBlacklist.count(system->GetGovernment()))
 		return false;
 	
 	if(center)
@@ -277,7 +274,7 @@ bool LocationFilter::Matches(const Ship &ship) const
 		return false;
 	if(!governments.empty() && !governments.count(ship.GetGovernment()))
 		return false;
-	if(governmentBlacklist && ship.GetGovernment() == governmentBlacklist)
+	if(!governmentsBlacklist.empty() && governmentsBlacklist.count(ship.GetGovernment()))
 		return false;
 	
 	if(center)

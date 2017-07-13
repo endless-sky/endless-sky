@@ -55,7 +55,7 @@ private:
 	// The system must satisfy these conditions:
 	std::set<const System *> systems;
 	std::set<const Government *> governments;
-	const Government *governmentBlacklist = nullptr;
+	std::set<const Government *> governmentsBlacklist;
 	const System *center = nullptr;
 	int centerMinDistance = 0;
 	int centerMaxDistance = 1;
