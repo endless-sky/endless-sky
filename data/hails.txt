@@ -3035,3 +3035,24 @@ phrase "wormhole hail"
 		"You can't talk to wormholes. Maybe you should try landing on it instead."
 		"Your words cannot travel through wormholes, but maybe your starship can."
 		"Unable to send hail: this unfathomable void is not inhabited."
+		
+# Tribute Hails
+phrase "tribute denied hail"
+	word
+		"Please don't joke about that sort of thing."
+		
+phrase "tribute present hail"
+	word
+		"We are already paying you as much as we can afford."
+		
+phrase "tribute in progress hail"
+	word
+		"We're not ready to surrender yet."
+
+phrase "tribute accepted hail"
+	word
+		"Our defense fleet will make short work of you."
+		
+phrase "tribute granted hail"
+	word
+		"We surrender. We will pay you <tribute> per day to leave us alone."
