@@ -118,6 +118,8 @@ void LocationFilter::Load(const DataNode &node)
 					else
 						governments.insert(GameData::Governments().Get(grand.Token(i)));
 				}
+			if(!governments.empty() && !governmentsBlacklist.empty())
+				child.PrintTrace("Mission has both a government and a government blacklist specified.");
 		}
 		else if(child.Token(0) == "attributes")
 		{
@@ -186,10 +188,12 @@ void LocationFilter::Save(DataWriter &out) const
 			out.Write("government");
 			out.BeginChild();
 			{
-				for(const Government *government : governments)
-					out.Write(government->GetName());
-				for(const Government *government : governmentsBlacklist)
-					out.Write("!" + government->GetName());
+				if(!governmentsBlacklist.empty())
+					for(const Government *government : governmentsBlacklist)
+						out.Write(government->GetName());
+				else
+					for(const Government *government : governments)
+						out.Write(government->GetName());
 			}
 			out.EndChild();
 		}
@@ -214,8 +218,8 @@ void LocationFilter::Save(DataWriter &out) const
 // Check if this filter contains any specifications.
 bool LocationFilter::IsEmpty() const
 {
-	return planets.empty() && attributes.empty() && systems.empty() && governments.empty() && governmentsBlacklist.empty()
-		&& !center && originMaxDistance < 0;
+	return planets.empty() && attributes.empty() && systems.empty() && governments.empty()
+		&& !center && (originMaxDistance < 0) && governmentsBlacklist.empty();
 }
 
 
