@@ -3036,23 +3036,23 @@ phrase "wormhole hail"
 		"Your words cannot travel through wormholes, but maybe your starship can."
 		"Unable to send hail: this unfathomable void is not inhabited."
 		
-# Tribute Hails
-phrase "tribute denied hail"
+# Tribute messages
+phrase "tribute ignored message"
 	word
 		"Please don't joke about that sort of thing."
 		
-phrase "tribute present hail"
+phrase "tribute present message"
 	word
 		"We are already paying you as much as we can afford."
 		
-phrase "tribute in progress hail"
+phrase "tribute in progress message"
 	word
 		"We're not ready to surrender yet."
 
-phrase "tribute accepted hail"
+phrase "tribute battle message"
 	word
 		"Our defense fleet will make short work of you."
 		
-phrase "tribute granted hail"
+phrase "tribute surrendered message"
 	word
 		"We surrender. We will pay you <tribute> per day to leave us alone."
