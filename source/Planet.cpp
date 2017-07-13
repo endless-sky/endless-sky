@@ -475,6 +475,10 @@ string Planet::DemandTribute(PlayerInfo &player) const
 {
 	map<string, string> subs;
 	subs["<tribute>"] = Format::Number(tribute) + " credits";
+	subs["<first>"] = player.FirstName();
+	subs["<last>"] = player.LastName();
+	subs["<origin>"] = Name();
+	subs["<ship>"] = player.Flagship()->Name();
 	static const Phrase *tributeHail = nullptr;
 	if(player.GetCondition("tribute: " + name))
 	{
