@@ -190,7 +190,7 @@ void LocationFilter::Save(DataWriter &out) const
 			{
 				if(!governmentsBlacklist.empty())
 					for(const Government *government : governmentsBlacklist)
-						out.Write(government->GetName());
+						out.Write("!" + government->GetName());
 				else
 					for(const Government *government : governments)
 						out.Write(government->GetName());
