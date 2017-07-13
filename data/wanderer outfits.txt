@@ -166,7 +166,7 @@ outfit "Thunderhead Launcher"
 		"reload" 75
 		"firing energy" 18
 		"firing heat" 36
-		"acceleration" 1.2
+		"acceleration" 1.1
 		"drag" .1
 		"turn" 2
 		"homing" 4

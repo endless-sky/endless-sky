@@ -472,7 +472,18 @@ void AI::Step(const PlayerInfo &player)
 		if(isPresent && personality.IsMining() && !target && !it->GetShipToAssist()
 				&& it->Cargo().Free() >= 5 && ++miningTime[&*it] < 3600 && ++minerCount < 9)
 		{
+			if(it->HasBays())
+				command |= Command::DEPLOY;
 			DoMining(*it, command);
+			it->SetCommands(command);
+			continue;
+		}
+		else if(isPresent && !target && it->CanBeCarried() && parent && miningTime[&*parent] < 3601
+				&& parent->GetTargetAsteroid() && parent->GetTargetAsteroid()->Position().Distance(parent->Position()) < 800.)
+		{
+			// Assist your parent in mining its nearby targeted asteroid.
+			MoveToAttack(*it, command, *parent->GetTargetAsteroid());
+			AutoFire(*it, command, *parent->GetTargetAsteroid());
 			it->SetCommands(command);
 			continue;
 		}
@@ -838,7 +849,7 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 	if(!target && person.IsVindictive())
 	{
 		target = ship.GetTargetShip();
-		if(target && target->Cloaking() == 1.)
+		if(target && (target->Cloaking() == 1. || target->GetSystem() != ship.GetSystem()))
 			target.reset();
 	}
 	
@@ -1081,8 +1092,12 @@ void AI::MoveEscort(Ship &ship, Command &command) const
 		Refuel(ship, command);
 	else if(!parentIsHere && !isStaying)
 	{
-		// Check whether the ship has a target system and is able to jump to it.
+		// Check whether the ship has a target system and is able to jump to it,
+		// and that the targeted stellar object can be landed on.
 		bool hasJump = (ship.GetTargetSystem() && ship.JumpFuel(ship.GetTargetSystem()));
+		if(ship.GetTargetStellar()
+				&& !(ship.GetTargetStellar()->GetPlanet() && ship.GetTargetStellar()->GetPlanet()->CanLand(ship)))
+			ship.SetTargetStellar(nullptr);
 		if(!hasJump && !ship.GetTargetStellar())
 		{
 			// If we're stranded and haven't decided where to go, figure out a

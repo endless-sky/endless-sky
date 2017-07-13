@@ -54,6 +54,7 @@ private:
 		
 		const Sprite *sprite;
 		bool isHere;
+		bool isHostile;
 		bool notReadyToJump;
 		bool cannotJump;
 		bool isSelected;

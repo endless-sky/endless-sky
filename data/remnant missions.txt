@@ -79,7 +79,7 @@ mission "Remnant: Defense 1"
 		not "Remnant defense delay"
 	on offer
 		conversation
-			`In the relative quiet of this Remnant spaceport, it unusually jarring when an alarm siren begins howling. All around you, people are rushing to get their ships into the air. Even though no one stops to explain to you what is happening, it's pretty clear that this is a planetary defense operation.`
+			`In the relative quiet of this Remnant spaceport, it's unusually jarring when an alarm siren begins howling. All around you, people are rushing to get their ships into the air. Even though no one stops to explain to you what is happening, it's pretty clear that this is a planetary defense operation.`
 			choice
 				`	(Assist the defenders.)`
 					launch
