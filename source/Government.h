@@ -110,7 +110,6 @@ public:
 	void SetReputation(double value) const;
 	
 	
-	
 private:
 	unsigned id;
 	std::string name;
