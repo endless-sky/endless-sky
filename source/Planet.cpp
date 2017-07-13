@@ -482,12 +482,12 @@ string Planet::DemandTribute(PlayerInfo &player) const
 	static const Phrase *tributeHail = nullptr;
 	if(player.GetCondition("tribute: " + name))
 	{
-		tributeHail = GetGovernment()->GetTributeHail(1);
+		tributeHail = GetGovernment()->GetTributeHail(0);
 		return Format::Replace(tributeHail->Get(), subs);
 	}
 	if(!tribute || !defenseFleet || !defenseCount || player.GetCondition("combat rating") < defenseThreshold)
 	{
-		tributeHail = GetGovernment()->GetTributeHail(2);
+		tributeHail = GetGovernment()->GetTributeHail(1);
 		return Format::Replace(tributeHail->Get(), subs);
 	}
 	
@@ -498,7 +498,7 @@ string Planet::DemandTribute(PlayerInfo &player) const
 		isDefending = true;
 		GameData::GetPolitics().Offend(defenseFleet->GetGovernment(), ShipEvent::PROVOKE);
 		GameData::GetPolitics().Offend(GetGovernment(), ShipEvent::PROVOKE);
-		tributeHail = GetGovernment()->GetTributeHail(3);
+		tributeHail = GetGovernment()->GetTributeHail(2);
 		return Format::Replace(tributeHail->Get(), subs);
 	}
 	
@@ -514,11 +514,11 @@ string Planet::DemandTribute(PlayerInfo &player) const
 	
 	if(!isDefeated)
 	{
-		tributeHail = GetGovernment()->GetTributeHail(4);
+		tributeHail = GetGovernment()->GetTributeHail(3);
 		return Format::Replace(tributeHail->Get(), subs);
 	}
 	
-	tributeHail = GetGovernment()->GetTributeHail(5);
+	tributeHail = GetGovernment()->GetTributeHail(4);
 	player.Conditions()["tribute: " + name] = tribute;
 	GameData::GetPolitics().DominatePlanet(this);
 	return Format::Replace(tributeHail->Get(), subs);

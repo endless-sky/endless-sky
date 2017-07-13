@@ -169,31 +169,17 @@ const Color &Government::GetColor() const
 
 
 // Get the government's tribute-related hails
-const Phrase *Government::GetTributeHail(int condition)
+const Phrase *Government::GetTributeHail(int condition) const
 {
-	switch(condition)
-	{
-		case 1:
-		{
-			return tributePresentHail;
-		}
-		case 2:
-		{
-			return tributeIgnoredHail;
-		}
-		case 3:
-		{
-			return tributeCombatHail;
-		}
-		case 4:
-		{
-			return tributeInProgressHail;
-		}
-		default:
-		{
-			return tributeSurrenderedHail;
-		}
-	}
+	static const vector<const Phrase *> phrases = {
+	tributePresentHail,
+	tributeIgnoredHail,
+	tributeInProgressHail,
+	tributeCombatHail,
+	tributeSurrenderedHail
+	};
+	
+	return phrases[condition];
 }
 
 
