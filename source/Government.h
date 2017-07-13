@@ -50,11 +50,7 @@ public:
 	const Color &GetColor() const;
 	
 	// Get the government's tribute hails
-	const Phrase *TributeIgnoredHail() const;
-	const Phrase *TributePresentHail() const;
-	const Phrase *TributeInProgressHail() const;
-	const Phrase *TributeCombatHail() const;
-	const Phrase *TributeSurrenderedHail() const;
+	const Phrase *GetTributeHail(int condition);
 	
 	// Get the government's initial disposition toward other governments or
 	// toward the player.

@@ -169,37 +169,31 @@ const Color &Government::GetColor() const
 
 
 // Get the government's tribute-related hails
-const Phrase *Government::TributeIgnoredHail() const
+const Phrase *Government::GetTributeHail(int condition)
 {
-	return tributeIgnoredHail;
-}
-
-
-
-const Phrase *Government::TributePresentHail() const
-{
-	return tributePresentHail;
-}
-
-
-
-const Phrase *Government::TributeInProgressHail() const
-{
-	return tributeInProgressHail;
-}
-
-
-
-const Phrase *Government::TributeCombatHail() const
-{
-	return tributeCombatHail;
-}
-
-
-
-const Phrase *Government::TributeSurrenderedHail() const
-{
-	return tributeSurrenderedHail;
+	switch(condition)
+	{
+		case 1:
+		{
+			return tributePresentHail;
+		}
+		case 2:
+		{
+			return tributeIgnoredHail;
+		}
+		case 3:
+		{
+			return tributeCombatHail;
+		}
+		case 4:
+		{
+			return tributeInProgressHail;
+		}
+		default:
+		{
+			return tributeSurrenderedHail;
+		}
+	}
 }
 
 
