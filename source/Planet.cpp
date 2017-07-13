@@ -473,6 +473,11 @@ void Planet::Bribe(bool fullAccess) const
 // Demand tribute, and get the planet's response.
 string Planet::DemandTribute(PlayerInfo &player) const
 {
+	static const int TRIBUTE_PRESENT = 0;
+	static const int TRIBUTE_IGNORED = 1;
+	static const int TRIBUTE_BATTLE = 2;
+	static const int TRIBUTE_IN_PROGRESS = 3;
+	static const int TRIBUTE_SURRENDERED = 4;
 	map<string, string> subs;
 	subs["<tribute>"] = Format::Number(tribute) + " credits";
 	subs["<first>"] = player.FirstName();
@@ -482,12 +487,12 @@ string Planet::DemandTribute(PlayerInfo &player) const
 	static string tributeHail = "";
 	if(player.GetCondition("tribute: " + name))
 	{
-		tributeHail = GetGovernment()->GetTributeHail(0);
+		tributeHail = GetGovernment()->GetTributeHail(TRIBUTE_PRESENT);
 		return Format::Replace(tributeHail, subs);
 	}
 	if(!tribute || !defenseFleet || !defenseCount || player.GetCondition("combat rating") < defenseThreshold)
 	{
-		tributeHail = GetGovernment()->GetTributeHail(1);
+		tributeHail = GetGovernment()->GetTributeHail(TRIBUTE_IGNORED);
 		return Format::Replace(tributeHail, subs);
 	}
 	
@@ -498,7 +503,7 @@ string Planet::DemandTribute(PlayerInfo &player) const
 		isDefending = true;
 		GameData::GetPolitics().Offend(defenseFleet->GetGovernment(), ShipEvent::PROVOKE);
 		GameData::GetPolitics().Offend(GetGovernment(), ShipEvent::PROVOKE);
-		tributeHail = GetGovernment()->GetTributeHail(2);
+		tributeHail = GetGovernment()->GetTributeHail(TRIBUTE_BATTLE);
 		return Format::Replace(tributeHail, subs);
 	}
 	
@@ -514,11 +519,11 @@ string Planet::DemandTribute(PlayerInfo &player) const
 	
 	if(!isDefeated)
 	{
-		tributeHail = GetGovernment()->GetTributeHail(3);
+		tributeHail = GetGovernment()->GetTributeHail(TRIBUTE_IN_PROGRESS);
 		return Format::Replace(tributeHail, subs);
 	}
 	
-	tributeHail = GetGovernment()->GetTributeHail(4);
+	tributeHail = GetGovernment()->GetTributeHail(TRIBUTE_SURRENDERED);
 	player.Conditions()["tribute: " + name] = tribute;
 	GameData::GetPolitics().DominatePlanet(this);
 	return Format::Replace(tributeHail, subs);

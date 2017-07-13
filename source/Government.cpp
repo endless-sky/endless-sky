@@ -248,11 +248,11 @@ const string Government::GetTributeHail(int condition) const
 {
 
 	static const vector<const Phrase *> phrases = {
-	tributePresentHail,
-	tributeIgnoredHail,
-	tributeInProgressHail,
-	tributeCombatHail,
-	tributeSurrenderedHail
+		tributePresentHail,
+		tributeIgnoredHail,
+		tributeInProgressHail,
+		tributeCombatHail,
+		tributeSurrenderedHail
 	};
 	if(condition < 0 || condition > phrases.size())
 		return phrases[0]->Get();
