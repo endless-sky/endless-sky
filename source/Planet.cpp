@@ -473,7 +473,6 @@ void Planet::Bribe(bool fullAccess) const
 // Demand tribute, and get the planet's response.
 string Planet::DemandTribute(PlayerInfo &player) const
 {
-	
 	map<string, string> subs;
 	subs["<tribute>"] = Format::Number(tribute) + " credits";
 	static const Phrase *tributeHail = nullptr;
@@ -515,7 +514,6 @@ string Planet::DemandTribute(PlayerInfo &player) const
 		return Format::Replace(tributeHail->Get(), subs);
 	}
 	
-
 	tributeHail = GetGovernment()->TributeGrantedHail();
 	player.Conditions()["tribute: " + name] = tribute;
 	GameData::GetPolitics().DominatePlanet(this);
