@@ -49,9 +49,6 @@ public:
 	// Get the color to use for displaying this government on the map.
 	const Color &GetColor() const;
 	
-	// Get the government's tribute hails
-	const Phrase *GetTributeHail(int condition) const;
-	
 	// Get the government's initial disposition toward other governments or
 	// toward the player.
 	double AttitudeToward(const Government *other) const;
@@ -72,6 +69,9 @@ public:
 	// Get a hail message (which depends on whether this is an enemy government
 	// and if the ship is disabled).
 	std::string GetHail(bool isDisabled) const;
+	// Get the government's tribute hails
+	const std::string GetTributeHail(int condition) const;
+	
 	// Find out if this government speaks a different language.
 	const std::string &Language() const;
 	// Pirate raids in this government's systems use this fleet definition. If

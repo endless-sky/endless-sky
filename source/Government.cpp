@@ -168,22 +168,6 @@ const Color &Government::GetColor() const
 
 
 
-// Get the government's tribute-related hails
-const Phrase *Government::GetTributeHail(int condition) const
-{
-	static const vector<const Phrase *> phrases = {
-	tributePresentHail,
-	tributeIgnoredHail,
-	tributeInProgressHail,
-	tributeCombatHail,
-	tributeSurrenderedHail
-	};
-	
-	return phrases[condition];
-}
-
-
-
 // Get the government's initial disposition toward other governments or
 // toward the player.
 double Government::AttitudeToward(const Government *other) const
@@ -255,6 +239,25 @@ string Government::GetHail(bool isDisabled) const
 		phrase = isDisabled ? friendlyDisabledHail : friendlyHail;
 		
 	return phrase ? phrase->Get() : "";
+}
+
+
+
+// Get the government's tribute-related hails
+const string *Government::GetTributeHail(int condition) const
+{
+
+	static const vector<const Phrase *> phrases = {
+	tributePresentHail,
+	tributeIgnoredHail,
+	tributeInProgressHail,
+	tributeCombatHail,
+	tributeSurrenderedHail
+	};
+	if(condition < 0 || condition > phrases.size())
+		return phrases[0]->Get();
+	
+	return phrases[condition]->Get();
 }
 
 

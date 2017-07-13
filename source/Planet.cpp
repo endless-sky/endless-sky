@@ -479,16 +479,16 @@ string Planet::DemandTribute(PlayerInfo &player) const
 	subs["<last>"] = player.LastName();
 	subs["<origin>"] = Name();
 	subs["<ship>"] = player.Flagship()->Name();
-	static const Phrase *tributeHail = nullptr;
+	static const string tributeHail = "";
 	if(player.GetCondition("tribute: " + name))
 	{
 		tributeHail = GetGovernment()->GetTributeHail(0);
-		return Format::Replace(tributeHail->Get(), subs);
+		return Format::Replace(tributeHail, subs);
 	}
 	if(!tribute || !defenseFleet || !defenseCount || player.GetCondition("combat rating") < defenseThreshold)
 	{
 		tributeHail = GetGovernment()->GetTributeHail(1);
-		return Format::Replace(tributeHail->Get(), subs);
+		return Format::Replace(tributeHail, subs);
 	}
 	
 	// The player is scary enough for this planet to take notice. Check whether
@@ -499,7 +499,7 @@ string Planet::DemandTribute(PlayerInfo &player) const
 		GameData::GetPolitics().Offend(defenseFleet->GetGovernment(), ShipEvent::PROVOKE);
 		GameData::GetPolitics().Offend(GetGovernment(), ShipEvent::PROVOKE);
 		tributeHail = GetGovernment()->GetTributeHail(2);
-		return Format::Replace(tributeHail->Get(), subs);
+		return Format::Replace(tributeHail, subs);
 	}
 	
 	// The player has already demanded tribute. Have they killed off the entire
@@ -515,13 +515,13 @@ string Planet::DemandTribute(PlayerInfo &player) const
 	if(!isDefeated)
 	{
 		tributeHail = GetGovernment()->GetTributeHail(3);
-		return Format::Replace(tributeHail->Get(), subs);
+		return Format::Replace(tributeHail, subs);
 	}
 	
 	tributeHail = GetGovernment()->GetTributeHail(4);
 	player.Conditions()["tribute: " + name] = tribute;
 	GameData::GetPolitics().DominatePlanet(this);
-	return Format::Replace(tributeHail->Get(), subs);
+	return Format::Replace(tributeHail, subs);
 }
 
 
