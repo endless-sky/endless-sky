@@ -244,7 +244,7 @@ string Government::GetHail(bool isDisabled) const
 
 
 // Get the government's tribute-related hails
-const string *Government::GetTributeHail(int condition) const
+const string Government::GetTributeHail(int condition) const
 {
 
 	static const vector<const Phrase *> phrases = {

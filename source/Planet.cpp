@@ -479,7 +479,7 @@ string Planet::DemandTribute(PlayerInfo &player) const
 	subs["<last>"] = player.LastName();
 	subs["<origin>"] = Name();
 	subs["<ship>"] = player.Flagship()->Name();
-	static const string tributeHail = "";
+	static string tributeHail = "";
 	if(player.GetCondition("tribute: " + name))
 	{
 		tributeHail = GetGovernment()->GetTributeHail(0);
