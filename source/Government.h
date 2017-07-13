@@ -49,6 +49,13 @@ public:
 	// Get the color to use for displaying this government on the map.
 	const Color &GetColor() const;
 	
+	// Get the government's tribute hails
+	const Phrase *TributeDeniedHail() const;
+	const Phrase *TributePresentHail() const;
+	const Phrase *TributeInProgressHail() const;
+	const Phrase *TributeAcceptedHail() const;
+	const Phrase *TributeGrantedHail() const;
+	
 	// Get the government's initial disposition toward other governments or
 	// toward the player.
 	double AttitudeToward(const Government *other) const;
@@ -119,6 +126,11 @@ private:
 	const Phrase *friendlyDisabledHail = nullptr;
 	const Phrase *hostileHail = nullptr;
 	const Phrase *hostileDisabledHail = nullptr;
+	const Phrase *tributeDeniedHail = nullptr;
+	const Phrase *tributePresentHail = nullptr;
+	const Phrase *tributeInProgressHail = nullptr;
+	const Phrase *tributeAcceptedHail = nullptr;
+	const Phrase *tributeGrantedHail = nullptr;
 	std::string language;
 	const Fleet *raidFleet = nullptr;
 };

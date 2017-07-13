@@ -111,15 +111,35 @@ void Government::Load(const DataNode &node)
 			language = child.Token(1);
 		else if(child.Token(0) == "raid" && child.Size() >= 2)
 			raidFleet = GameData::Fleets().Get(child.Token(1));
+		else if(child.Token(0) == "tribute denied hail" && child.Size() >= 2)
+			tributeDeniedHail = GameData::Phrases().Get(child.Token(1));
+		else if(child.Token(0) == "tribute present hail" && child.Size() >= 2)
+			tributePresentHail = GameData::Phrases().Get(child.Token(1));
+		else if(child.Token(0) == "tribute in progress hail" && child.Size() >= 2)
+			tributeInProgressHail = GameData::Phrases().Get(child.Token(1));
+		else if(child.Token(0) == "tribute accepted hail" && child.Size() >= 2)
+			tributeAcceptedHail = GameData::Phrases().Get(child.Token(1));
+		else if(child.Token(0) == "tribute granted hail" && child.Size() >= 2)
+			tributeGrantedHail = GameData::Phrases().Get(child.Token(1));
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
 	
-	// Default to the standard disabled hail messages.
+	// Default to the standard disabled and tribute hail messages.
 	if(!friendlyDisabledHail)
 		friendlyDisabledHail = GameData::Phrases().Get("friendly disabled");
 	if(!hostileDisabledHail)
 		hostileDisabledHail = GameData::Phrases().Get("hostile disabled");
+	if(!tributeDeniedHail)
+		tributeDeniedHail = GameData::Phrases().Get("tribute denied hail");
+	if(!tributeAcceptedHail)
+		tributeAcceptedHail = GameData::Phrases().Get("tribute accepted hail");
+	if(!tributePresentHail)
+		tributePresentHail = GameData::Phrases().Get("tribute present hail");
+	if(!tributeInProgressHail)
+		tributeInProgressHail = GameData::Phrases().Get("tribute in progress hail");
+	if(!tributeGrantedHail)
+		tributeGrantedHail = GameData::Phrases().Get("tribute granted hail");
 }
 
 
@@ -144,6 +164,42 @@ int Government::GetSwizzle() const
 const Color &Government::GetColor() const
 {
 	return color;
+}
+
+
+
+// Get the government's tribute-related hails
+const Phrase *Government::TributeDeniedHail() const
+{
+	return tributeDeniedHail;
+}
+
+
+
+const Phrase *Government::TributePresentHail() const
+{
+	return tributePresentHail;
+}
+
+
+
+const Phrase *Government::TributeInProgressHail() const
+{
+	return tributeInProgressHail;
+}
+
+
+
+const Phrase *Government::TributeAcceptedHail() const
+{
+	return tributeAcceptedHail;
+}
+
+
+
+const Phrase *Government::TributeGrantedHail() const
+{
+	return tributeGrantedHail;
 }
 
 
@@ -267,7 +323,7 @@ bool Government::IsPlayer() const
 
 // Commit the given "offense" against this government (which may not
 // actually consider it to be an offense). This may result in temporary
-// hostilities (if the even type is PROVOKE), or a permanent change to your
+// hostilities (if the event type is PROVOKE), or a permanent change to your
 // reputation.
 void Government::Offend(int eventType, int count) const
 {
