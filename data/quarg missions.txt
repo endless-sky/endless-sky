@@ -38,7 +38,7 @@ mission "First Contact: Quarg"
 				`	"What do you mean?"`
 			
 			label quarg
-			`	"We the Quarg are unique of all the species in the galaxy. Our species began on the moon of a great gas giant, on a planet most small, that gathered about itself very little air. We cannot step many steps on the worlds that the Hai, the Korath, the others species desire. And the worlds like our home, you could not breathe their so thin air, for our lungs are very subtle. And we are an old race, and do not kill for sport or whimsy, so the Drak gave us the gift, that we may go among the other races and settle where we please, and make friends of all, because none dare be our enemy."`
+			`	"We the Quarg are unique of all the species in the galaxy. Our species began on the moon of a great gas giant, on a planet most small, that gathered about itself very little air. We cannot step many steps on the worlds that the Hai, the Korath, the other species desire. And the worlds like our home, you could not breathe their so thin air, for our lungs are very subtle. And we are an old race, and do not kill for sport or whimsy, so the Drak gave us the gift, that we may go among the other races and settle where we please, and make friends of all, because none dare be our enemy."`
 			choice
 				`	"Who are the Drak?"`
 					goto drak
