@@ -778,6 +778,7 @@ bool Ship::Move(list<Effect> &effects, list<shared_ptr<Flotsam>> &flotsam)
 		energy -= ionization;
 		energy = max(0., energy);
 		heat += attributes.Get("heat generation");
+		heat += scale * attributes.Get("solar heat generation");
 		heat -= coolingEfficiency * attributes.Get("cooling");
 		heat = max(0., heat);
 		
@@ -2001,7 +2002,9 @@ double Ship::IdleHeat() const
 	// heat = heat * diss + heatGen - cool - activeCool * heat / (100 * mass)
 	// heat = heat * (diss - activeCool / (100 * mass)) + (heatGen - cool)
 	// heat * (1 - diss + activeCool / (100 * mass)) = (heatGen - cool)
-	double production = max(0., attributes.Get("heat generation") - cooling);
+	double scale = .2 + 1.8 / (.001 * position.Length() + 1);
+	double production = max(0., attributes.Get("heat generation") 
+							+ scale * attributes.Get("solar heat generation") - cooling);
 	double dissipation = .001 * attributes.Get("heat dissipation") + activeCooling / (100. * Mass());
 	return production / dissipation;
 }

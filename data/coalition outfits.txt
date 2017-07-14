@@ -17,7 +17,7 @@ outfit "Small Collector Module"
 	"mass" 8
 	"outfit space" -8
 	"solar collection" .8
-	"heat generation" .4
+	"solar heat generation" .2
 	description "Solar power is the mainstay of the Coalition's merchant marine. The design of these panels has been refined over the millennia, growing ever more efficient."
 
 outfit "Large Collector Module"
@@ -29,7 +29,7 @@ outfit "Large Collector Module"
 	"mass" 28
 	"outfit space" -28
 	"solar collection" 3.3
-	"heat generation" 1.5
+	"solar heat generation" .75
 	description "One of these solar panels is enough to meet the energy needs of a medium-sized Coalition civilian ship, especially given the energy efficiency of their engines and the fact that under their laws only Heliarch ships are allowed to have weapons."
 
 outfit "Small Reactor Module"

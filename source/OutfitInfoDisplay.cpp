@@ -47,6 +47,7 @@ namespace {
 		"shield energy",
 		"shield heat",
 		"solar collection",
+		"solar heat generation",
 		"thrusting energy",
 		"thrusting heat",
 		"turn",
