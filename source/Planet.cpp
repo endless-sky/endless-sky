@@ -16,7 +16,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Format.h"
 #include "GameData.h"
 #include "Government.h"
-#include "Phrase.h"
 #include "PlayerInfo.h"
 #include "Politics.h"
 #include "Random.h"
