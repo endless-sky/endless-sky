@@ -145,7 +145,7 @@ mission "Remnant: Defense 2"
 			`	"Thank you," she sings. "It keeps jumping between systems in our territory. Maybe its jump drive was damaged or something, and it can't escape. I'll spread news that you've taken on the bounty for hunting it, so others won't risk their lives fighting it."`
 				accept
 	npc kill
-		personality coward target uninterested skybound
+		personality coward target uninterested skybound waiting
 		government Bounty
 		system
 			distance 1 2
@@ -172,7 +172,7 @@ mission "Remnant: Bounty"
 		has "Remnant: Defense 2: done"
 		random < 60
 	npc kill
-		personality coward target uninterested skybound
+		personality coward target uninterested skybound waiting
 		government Bounty
 		system
 			distance 1 2
