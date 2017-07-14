@@ -173,6 +173,12 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		double scale = 1.;
 		if(it.first == "thrust" || it.first == "reverse thrust" || it.first == "afterburner thrust")
 			scale = 60. * 60.;
+		// As resisted ion/etc. damage decays with *= .99, it follows a geometric series with convergence
+		// to 100 times the initial value. The 'value' of resisting 1 point is therefore eventually 100.
+		else if(it.first == "ion resistance" || 
+				it.first == "slowing resistance" || 
+				it.first == "disruption resistance")
+			scale = 60. * 100.;
 		else if(ATTRIBUTES_TO_SCALE.count(it.first))
 			scale = 60.;
 		

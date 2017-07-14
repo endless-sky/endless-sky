@@ -437,6 +437,10 @@ private:
 	double ionization = 0.;
 	double disruption = 0.;
 	double slowness = 0.;
+	double ionResistance = 0.;
+	double disruptionResistance = 0.;
+	double slowingResistance = 0.;
+	double piercingResistance = 0.;
 	// Acceleration can be created by engines, firing weapons, or weapon impacts.
 	Point acceleration;
 	

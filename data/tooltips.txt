@@ -63,8 +63,8 @@ tip "cost:"
 	`Cost, in credits. If you have sold any used (depreciated) items today, you can buy them back for the same price you sold them for.`
 
 tip "disruption resistance:"
-	`Resistance to weapons that have a disruption effect. A value of 1 cuts the effect in half, and 2 cuts it to a third of what it would otherwise be.`
-
+	`The amount of disruption damage, per second, that your ship will resist.`
+	
 tip "drag:"
 	`Limits the maximum speed of a ship.`
 
@@ -129,7 +129,7 @@ tip "illegal:"
 	`Amount of credits you can be fined for carrying this outfit.`
 
 tip "ion resistance:"
-	`Resistance to weapons that do ion damage. A value of 1 cuts the effect in half, and 2 cuts it to a third of what it would otherwise be.`
+	`The amount of ion damage, per second, that your ship will resist.`
 
 tip "jump speed:"
 	`How slow the ship must be moving to make a jump.`
@@ -167,6 +167,9 @@ tip "radar jamming:"
 tip "ramscoop:"
 	`Replenishes fuel by harvesting the stellar wind. Ramscoops are more effective when closer to a star. If you add more than one ramscoop, each additional one is less effective: you need four ramscoops to achieve double the recharge rate that one ramscoop provides.`
 
+tip "piercing resistance:"
+	`The amount of piercing hull damage, per second, that your ship will resist.`	
+	
 tip "required crew / bunks:"
 	`How many crew members are required to operate this ship, and how many total bunks are available. Extra bunks can be used for passengers or extra crew.`
 
@@ -210,7 +213,7 @@ tip "shields:"
 	`Total shield strength. Most weapons cannot damage your hull until your shields are depleted. Some weapon effects, such as heat damage, become more severe once shields are down.`
 
 tip "slowing resistance:"
-	`Resistance to weapons that have a slowing effect. A value of 1 cuts the effect in half, and 2 cuts it to a third of what it would otherwise be.`
+	`The amount of slowing damage, per second, that your ship will resist.`
 
 tip "solar collection:"
 	`Produces a variable amount of energy depending on how far this ship is from the star at the center of the system.`
@@ -218,6 +221,9 @@ tip "solar collection:"
 tip "max speed:"
 	`The fastest this ship can travel when using ordinary thrusters (as opposed to an afterburner).`
 
+tip "slowing resistance:"
+	`The amount of slowing damage, per second, that your ship will resist.`
+	
 tip "acceleration:"
 	`How quickly this ship gains speed. The higher a ship's mass (including the mass of any cargo or fighters it is carrying), the slower it accelerates.`
 
