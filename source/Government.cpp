@@ -113,7 +113,7 @@ void Government::Load(const DataNode &node)
 			raidFleet = GameData::Fleets().Get(child.Token(1));
 		else if(child.Token(0) == "tribute ignored message" && child.Size() >= 2)
 			tributeIgnoredHail = GameData::Phrases().Get(child.Token(1));
-		else if(child.Token(0) == "tribute relinquised message" && child.Size() >= 2)
+		else if(child.Token(0) == "tribute relinquished message" && child.Size() >= 2)
 			tributeRelinquishedHail = GameData::Phrases().Get(child.Token(1));
 		else if(child.Token(0) == "tribute in progress message" && child.Size() >= 2)
 			tributeInProgressHail = GameData::Phrases().Get(child.Token(1));
