@@ -1369,7 +1369,6 @@ mission "Wanderers Invaded 0"
 		has "event: wanderers: unfettered invasion starts"
 		not "Wanderers Invaded 1: offered"
 	on offer
-		log "The Unfettered have established a beachhead on one of the Wanderer worlds and are now apparently using what few jump drives they possess to shuttle more and more warships into Wanderer space. War has begun in earnest."
 		conversation
 			`The Wanderers on <origin> are in a panic. Apparently the Unfettered have finally succeeded in capturing one of the Wanderer planets, and are now amassing a war fleet there. You should probably check with Iktat Rek and see if he needs your help to drive the Unfettered back.`
 				accept
@@ -1386,6 +1385,7 @@ mission "Wanderers Invaded 1"
 	to offer
 		has "event: wanderers: unfettered invasion starts"
 	on offer
+		log "The Unfettered have established a beachhead on one of the Wanderer worlds and are now apparently using what few jump drives they possess to shuttle more and more warships into Wanderer space. War has begun in earnest."
 		conversation
 			`Iktat Rek looks more harried and anxious than you have ever seen him: his feathers, normally perfectly preened, stick out at odd angles in patches on his face and shoulders, and he paces back and forth restlessly as you converse. "We have begun building warships," he says, "but do not yet have the [strength, numbers] to resist the invaders. We must retreat to a more [narrow? defensible?] position. Will you assist us in the evacuation?"`
 			choice
