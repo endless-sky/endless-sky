@@ -3071,7 +3071,7 @@ phrase "pirate tribute in progress"
 		
 phrase "pirate tribute surrender"
 	word
-		"We surrender to you, great Warlord <last>. You will receive <tribute> per day from our spoils for your greatness."
+		"We surrender to you, great warlord <last>. You will receive <tribute> per day from our spoils for your greatness."
 		
 phrase "pirate tribute relinquished"
 	word
