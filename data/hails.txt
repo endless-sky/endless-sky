@@ -3056,3 +3056,23 @@ phrase "tribute battle message"
 phrase "tribute surrendered message"
 	word
 		"We surrender. We will pay you <tribute> per day to leave us alone."
+		
+phrase "pirate tribute ignored"
+	word
+		"We're not going to waste our time on a nobody like you."
+		
+phrase "pirate tribute battle"
+	word
+		"<last>, you have taunted us for the last time! Prepare to die!"
+		
+phrase "pirate tribute in progress"
+	word
+		"The warriors of <origin> will not give up so easily!"
+		
+phrase "pirate tribute surrender"
+	word
+		"We have no choice but to surrender to you, mighty warlord <last>. We will pay you <tribute> per day, so you will not bother us again."
+		
+phrase "pirate tribute relinquished"
+	word
+		"We are under the thumb of a warlord no longer!"
