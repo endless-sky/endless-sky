@@ -3041,9 +3041,9 @@ phrase "tribute ignored message"
 	word
 		"Please don't joke about that sort of thing."
 		
-phrase "tribute present message"
+phrase "tribute relinquished message"
 	word
-		"We are already paying you as much as we can afford."
+		"Thank you for granting us our freedom!"
 		
 phrase "tribute in progress message"
 	word
