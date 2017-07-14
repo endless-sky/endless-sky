@@ -114,7 +114,7 @@ void Government::Load(const DataNode &node)
 		else if(child.Token(0) == "tribute ignored message" && child.Size() >= 2)
 			tributeIgnoredHail = GameData::Phrases().Get(child.Token(1));
 		else if(child.Token(0) == "tribute relinquised message" && child.Size() >= 2)
-			tributeRelinquisedHail = GameData::Phrases().Get(child.Token(1));
+			tributeRelinquishedHail = GameData::Phrases().Get(child.Token(1));
 		else if(child.Token(0) == "tribute in progress message" && child.Size() >= 2)
 			tributeInProgressHail = GameData::Phrases().Get(child.Token(1));
 		else if(child.Token(0) == "tribute battle message" && child.Size() >= 2)
@@ -135,7 +135,7 @@ void Government::Load(const DataNode &node)
 	if(!tributeCombatHail)
 		tributeCombatHail = GameData::Phrases().Get("tribute battle message");
 	if(!tributeRelinquishedHail)
-		tributeRelinquishedHail = GameData::Phrases().Get("tribute relinquised message");
+		tributeRelinquishedHail = GameData::Phrases().Get("tribute relinquished message");
 	if(!tributeInProgressHail)
 		tributeInProgressHail = GameData::Phrases().Get("tribute in progress message");
 	if(!tributeSurrenderedHail)
