@@ -952,31 +952,30 @@ mission "Wanderers: Alpha Surveillance C (Pug)"
 ship "Carrier" "Carrier (Alpha)"
 	outfits
 		"Ion Cannon" 2
-		"Korath Fire-Lance" 2
-		"Pulse Cannon" 3
+		"Hai Tracker Pod" 4
+		"Hai Tracker" 224
 		"Korath Disruptor" 2
 		"Korath Slicer Turret" 2
 		
 		"Triple Plasma Core"
 		"Systems Core (Large)"
-		"Large Heat Shunt" 2
-		"Small Heat Shunt" 2
+		"Large Heat Shunt" 3
+		"Small Heat Shunt"
 		"Wanderer Ramscoop"
-		"Fuel Pod"
 		"Outfits Expansion" 4
 		"Laser Rifle" 120
 		
-		"Thruster (Planetary Class)"
+		`"Bondir" Atomic Thruster`
 		"Steering (Stellar Class)"
 		"Jump Drive"
 	
-	gun "Korath Fire-Lance"
-	gun "Korath Fire-Lance"
+	gun "Hai Tracker Pod"
+	gun "Hai Tracker Pod"
 	gun "Ion Cannon"
 	gun "Ion Cannon"
-	gun "Pulse Cannon"
-	gun "Pulse Cannon"
-	gun "Pulse Cannon"
+	gun "Hai Tracker Pod"
+	gun "Hai Tracker Pod"
+	gun
 	gun
 	turret "Korath Disruptor"
 	turret "Korath Slicer Turret"
