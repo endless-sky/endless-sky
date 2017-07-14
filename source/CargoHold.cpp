@@ -586,10 +586,7 @@ const vector<const Outfit *> CargoHold::GetOutfitOrder() const
 	sort(sortedOutfits.begin(), sortedOutfits.end(),
 		[] (const Outfit *lhs, const Outfit *rhs)
 		{
-			if(lhs->Get("mass") == rhs->Get("mass"))
-				return lhs->Name() < rhs->Name();
-			else
-				return lhs->Get("mass") > rhs->Get("mass");
+			return lhs->Get("mass") > rhs->Get("mass");
 		}
 	);
 	
