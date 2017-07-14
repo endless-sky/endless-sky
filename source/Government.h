@@ -123,7 +123,7 @@ private:
 	const Phrase *hostileHail = nullptr;
 	const Phrase *hostileDisabledHail = nullptr;
 	const Phrase *tributeIgnoredHail = nullptr;
-	const Phrase *tributePresentHail = nullptr;
+	const Phrase *tributeRelinquishedHail = nullptr;
 	const Phrase *tributeInProgressHail = nullptr;
 	const Phrase *tributeCombatHail = nullptr;
 	const Phrase *tributeSurrenderedHail = nullptr;

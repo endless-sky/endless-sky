@@ -472,7 +472,6 @@ void Planet::Bribe(bool fullAccess) const
 // Demand tribute, and get the planet's response.
 string Planet::DemandTribute(PlayerInfo &player) const
 {
-	static const int TRIBUTE_PRESENT = 0;
 	static const int TRIBUTE_IGNORED = 1;
 	static const int TRIBUTE_IN_PROGRESS = 2;
 	static const int TRIBUTE_BATTLE = 3;
@@ -484,11 +483,6 @@ string Planet::DemandTribute(PlayerInfo &player) const
 	subs["<origin>"] = Name();
 	subs["<ship>"] = player.Flagship()->Name();
 	string tributeHail = "";
-	if(player.GetCondition("tribute: " + name))
-	{
-		tributeHail = GetGovernment()->GetTributeHail(TRIBUTE_PRESENT);
-		return Format::Replace(tributeHail, subs);
-	}
 	if(!tribute || !defenseFleet || !defenseCount || player.GetCondition("combat rating") < defenseThreshold)
 	{
 		tributeHail = GetGovernment()->GetTributeHail(TRIBUTE_IGNORED);

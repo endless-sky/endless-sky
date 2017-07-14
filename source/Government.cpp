@@ -113,8 +113,8 @@ void Government::Load(const DataNode &node)
 			raidFleet = GameData::Fleets().Get(child.Token(1));
 		else if(child.Token(0) == "tribute ignored message" && child.Size() >= 2)
 			tributeIgnoredHail = GameData::Phrases().Get(child.Token(1));
-		else if(child.Token(0) == "tribute present message" && child.Size() >= 2)
-			tributePresentHail = GameData::Phrases().Get(child.Token(1));
+		else if(child.Token(0) == "tribute relinquised message" && child.Size() >= 2)
+			tributeRelinquisedHail = GameData::Phrases().Get(child.Token(1));
 		else if(child.Token(0) == "tribute in progress message" && child.Size() >= 2)
 			tributeInProgressHail = GameData::Phrases().Get(child.Token(1));
 		else if(child.Token(0) == "tribute battle message" && child.Size() >= 2)
@@ -134,8 +134,8 @@ void Government::Load(const DataNode &node)
 		tributeIgnoredHail = GameData::Phrases().Get("tribute ignored message");
 	if(!tributeCombatHail)
 		tributeCombatHail = GameData::Phrases().Get("tribute battle message");
-	if(!tributePresentHail)
-		tributePresentHail = GameData::Phrases().Get("tribute present message");
+	if(!tributeRelinquishedHail)
+		tributeRelinquishedHail = GameData::Phrases().Get("tribute relinquised message");
 	if(!tributeInProgressHail)
 		tributeInProgressHail = GameData::Phrases().Get("tribute in progress message");
 	if(!tributeSurrenderedHail)
@@ -248,7 +248,7 @@ const string Government::GetTributeHail(int condition) const
 {
 
 	static const vector<const Phrase *> phrases = {
-		tributePresentHail,
+		tributeRelinquishedHail,
 		tributeIgnoredHail,
 		tributeInProgressHail,
 		tributeCombatHail,
