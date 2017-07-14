@@ -245,7 +245,7 @@ bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 		{
 			GameData::GetPolitics().DominatePlanet(planet, false);
 			player.Conditions().erase("tribute: " + planet->Name());
-			message = Format::Replace(planet->GetGovernment()->GetTributeHail(TRIBUTE_RELINQUISHED), relSubs);
+			message = Format::Replace(planet->GetGovernment()->GetTributeMessage(TRIBUTE_RELINQUISHED), relSubs);
 		}
 		else
 			message = planet->DemandTribute(player);
