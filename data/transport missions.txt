@@ -98,6 +98,7 @@ mission "Pookie, Part 2"
 				accept
 	on complete
 		payment 80000
+		log "Ferried a dog called Pookie to Hestia. Might need to hire a professional cleaner to clean up the dog vomit."
 		dialog "In the past few days, Pookie has barked incessantly and thrown up several times despite being fed perfectly on schedule, and the room you've been keeping her in will likely smell like dog urine for months. You are all too happy to return her to her owner, who pays you <payment>."
 
 
@@ -198,6 +199,7 @@ mission "Smuggler's Den, Part 2"
 			`	"Don't worry about it," you say. You return to your ship and tell the bad news to Maria.`
 				accept
 	on complete
+		log "Helped a young couple, Joe and Maria, and their daughter Jesse escape from Smuggler's Den as pirate crew members and find a better life on Millrace."
 		event "smuggler's den: payment" 365
 		conversation
 			`	You help Joe and Maria, and their daughter Jesse, to carry their few belongings down to the immigration desk, where a clerk lists the job openings available and asks them each to fill out a skill survey. Maria says, "Captain <last>, I don't know how to thank you, but I promise you that once we've got steady jobs, we'll save up and pay you our fare for transporting us here."`
@@ -216,6 +218,7 @@ mission "Smuggler's Den: Payment"
 	
 	on offer
 		payment 35000
+		log `Received 35000 credits from Joe and Maria, as they now have a steady job. It's good to know that they are better off than they would have been as pirates.`
 		conversation
 			`When you land, you are surprised to find a message waiting for you from Joe and Maria, the young couple you transported from Smuggler's Den to Millrace a year ago to help them and their baby escape their lives as pirate crew members. "Dear Captain <last>," they write, "we promised you we would save up enough money to pay you back for transporting us. Attached is <payment>. Thank you for giving us a chance at a new life." They've also enclosed a picture of themselves and their baby Jesse, who is now more than a year old.`
 				decline
@@ -481,6 +484,9 @@ mission "Deep Archaeology 1"
 			label yes
 			`	"Thank you," he says. "Trust me, this could give us some very important information. I'll need you to drop me off on Vinci first, to meet with some scientists. We can then meet up back on Vinci once you have the samples."`
 				accept
+				
+	on accept
+		log `Accepted a shady job from someone who claims to be an archaeologist to vandalize a historical church on Midgard. Hopefully this doesn't turn out bad for me.`
 
 
 
@@ -549,6 +555,7 @@ mission "Deep Archaeology 3"
 	
 	on complete
 		payment 200000
+		log `The wood sample from the church I gave to the archaeologist turned out to be very strange, as carbon dating suggests that the church was, at the latest, built around 1700, long before the creation of the hyperdrive.`
 		conversation
 			`You return to the lab where you dropped off the anonymous archaeologist. Soon after you arrive, he appears and eagerly collects the two samples, giving you a payment of <payment> for your troubles. "But please," he says, "stick around long enough to learn the results." He hands the two envelopes to a lab technologist, and says, "Here you go, John, Take a look and let us know what you find."`
 			`	After the lab tech leaves, he explains, "You see, the ratio of Carbon 12 to Carbon 14 varies from world to world, so accurate dating can only be done if you have a control sample to compare against. Only a handful of archaeological studies have been done in the Deep, and those were sloppy - they used the standard tables of Earth's carbon ratios instead of determining the local concentrations."`
@@ -627,6 +634,7 @@ mission "Deep Archaeology 5"
 	
 	on complete
 		payment 300000
+		log `In an attempt to locate more signs of ancient settlments on Midgard, we attracted the hostile attention of some ships from the Deep. Albert Foster the archaeologist believes that the people of the Deep were brought there on alien ships long ago, and that the government of the Deep is trying to hide this fact.`
 		conversation
 			`You breathe a sigh of relief as you land safely in the spaceport on <planet>. "Okay, what was that all about?" you ask.`
 			`	"I honestly don't know," says Albert. "I can tell you what I suspect, though. The history books don't actually say when the Deep was first settled. The first documented expedition to the Deep was in the 24th century, and they found several human colonies already established in the region, claiming to date back to the very dawn of space flight. But I think the first settlers were brought there long before that. Brought there on alien ships."`
@@ -682,6 +690,7 @@ mission "There Might Be Riots 1"
 	on complete
 		payment
 		payment 100000
+		log `Helped to transport a band known as "There Might Be Riots" to their concert on Wayfarer. Their music is bizzare, but they pay well.`
 		conversation
 			`You drop off the band "There Might Be Riots" on <destination>. Along the way, you got to hear some of their music, which is mostly characterized by frenzied instrumentals, a very energetic brass section, and bizarre lyrics. One day while you were in transit, they nearly drove you insane by playing their catchy but nonsensical song "Henhouse In Your Soul" for four hours straight, but other than that they have been good passengers, and their stage manager gives you an incredibly generous payment of <payment>.`
 			`	"We've already got a gig lined up for tonight," says Ulrich. "Want to come? We'll give you free tickets." Given how well they just paid you, it might be worth going just to build a relationship with the band, even if not for the music itself.`
@@ -762,6 +771,24 @@ mission "There Might Be Riots part 2"
 				set "met hai before TMBR"
 			`	"It sounds like you were visiting Hai space," you say, and you describe the aliens who live beyond the wormhole. "Yeah, that would be them," says Ulrich. "I'd love to go back there some time, but for now we have commitments closer to home." You help them to unload their stuff, and say goodbye for now.`
 				accept
+
+mission "logbook: met TMBR before hai"
+	invisible
+	to offer
+		not "met hai before TMBR"
+		has "There Might Be Riots part 2: done"
+	on offer
+		log `Ulrich from There Might Be Riots talked about giant squirrel-like aliens. Maybe I can find where they are and bring the band there for an extended "drug vacation."`
+		fail
+		
+mission "logbook: met hai before TMBR"
+	invisible
+	to offer
+		has "met hai before TMBR"
+		has "There Might Be Riots part 2: done"
+	on offer
+		log `Told There Might Be Riots about the Hai. Maybe I can bring them to Hai space in the future, possibly for an extended "drug vacation."`
+		fail
 
 
 
@@ -889,6 +916,7 @@ mission "There Might Be Riots part 3B"
 	
 	on complete
 		payment 500000
+		log `Dropped There Might Be Riots off in Hai space after nearly getting killed by a couple dozen combat drones. Ulrich told me a story about hearing a voice in his head while meditating in a Rim system with "some cloudy star" in it. Whether this was real or a interesting psychedelic trip is a mystery. Only one way to find out.`
 		conversation
 			`You drop off There Might Be Riots on Allhome. Ulrich is looking around the spaceport in wide-eyed excitement. "This is it, guys!" he says. "We're back in the land of the peaceful squirrels. Captain <last>, I don't know how to thank you, but here's a start." He hands you <payment>.`
 			`	As the rest of the band begins unloading their things, Ulrich adds speaking more quietly, "And, in good minstrel fashion I will pay you not just with money, but with a story.`
@@ -953,6 +981,7 @@ mission "Sad Archie"
 			`	Then you wake up and find yourself back in your ship, in the Ildaria system. Weird.`
 	
 	on complete
+		log `Experienced a strange dream while sleeping in Ildaria that turned out to be strikingly close to reality. It involved dragon-like creatures who lived on Zug evacuating a city being covered in lava, and eventually wiping themselves out in a war. Either Ulrich wasn't crazy or there's something in my ship's water.`
 		conversation
 			`On a whim, as you're landing on Zug you pull up a geological map of the planet and find that the geography you dreamt of while drifting in the Ildaria system was surprisingly close to the real thing. There's even a massive basalt outcropping right where you saw a lava flow burying a city. There's no way your ship's sensors can tell what's underneath it, though.`
 
@@ -1010,6 +1039,24 @@ mission "Rim Archaeology 1"
 			`	When the scan reaches about thirty meters below the surface, suddenly the view changes...`
 			scene "scene/geoscan"
 			`	"Great burning suns!" says Foster. "There is something down there! Roads in a triangular grid. That ain't no human city." You both stare at the monitor for a minute, then Foster says, "I'm going to need to pull some permits. Meet me in the spaceport in an hour if you're willing to help pick up some of the other stuff we'll need."`
+
+mission "logbook: sad archie before sayaiban"
+	invisible
+	to offer
+		not "spoke with archon"
+		has "Rim Archaeology 1: done"
+	on offer
+		log `Talked to Albert Foster about my dream with the dragon-people, and now he has me convinced I was spoken to by a telepathic space alien called an Archon. Albert has found some sort of ancient city on Zug and will be excavating it soon. Hopefully this isn't one big drug trip.`
+		fail
+		
+mission "logbook: sayaiban before sad archie"
+	invisible
+	to offer
+		has "spoke with archon"
+		has "Rim Archaeology 1: done"
+	on offer
+		log `Talked to Albert Foster about my dream with the dragon-people, and he says that it was an Archon that spoke to me in Ildaria. Albert has found some sort of ancient city on Zug and will be excavating it soon. Could there really be an invisible Archon in Ildaria?`
+		fail
 
 
 
@@ -1203,6 +1250,7 @@ mission "Rim Archaeology 5A"
 	
 	on complete
 		payment 400000
+		log `Successfully fended off an attack on Albert's digging site from a number of would-be grave robbers. Surprisingly, the Quarg joined in on defending the site, and will be defending it until Albert is done. This site must be very important to the Quarg for them to see that it is handled respectfully.`
 		event "rim archaeology results" 97
 		conversation
 			`A plume of smoke is rising from the dig site. Fearing the worst, you land and find out that a missile fired by one of the pirates destroyed one of the huts where the workers were living, but fortunately no one was inside it at the time. Foster is shaken but still committed to finishing the work. "It will be months before we've excavated enough to be able to publish any findings," he says, "but Yarthis has told me that the Quarg will be stationing a Wardragon here for the remainder of the project, to prevent any further foul play." Foster gives you one last payment: four hundred thousand credits for your help driving off the pirates. "And I'll be sure to give you credit for your help when the news goes public," he says.`
@@ -1237,6 +1285,7 @@ mission "Rim Archaeology 6"
 	to offer
 		has "event: rim archaeology results"
 	on offer
+		log `Albert has published an initial report on the dig, revealing that the Rim was once inhabited by an alien race known as the Sheragi. The news about it is all over human space, and since Albert listed my name as one of those who helped the discovery I'll likely be recognized often in the coming days.`
 		conversation
 			`When you give your name to the spaceport traffic controller, he says, "Wait, you're Captain <first> <last>? You're all over the news right now!"`
 			`	You land and find that Albert Foster has published an initial report on the dig on Zug. The ruins under the lava flow did indeed turn out to be an alien city. The houses are built on a gargantuan scale, with most of the doorways at least ten meters tall. What's more, some of the buildings have no exterior doors on the street level, just doors facing balconies or inner courtyards, which supports the theory that the inhabitants were capable of flight. Most of the artifacts left behind are just everyday items, and in fact the technology seems less advanced than present human society, but scientists are studying the artifacts eagerly to glean hints about how these aliens lived.`
@@ -1396,6 +1445,9 @@ mission "Hallucination"
 				`	(Sure, sounds like fun!)`
 			`	The room begins to spin, and strange things happen...`
 				launch
+	
+	on accept
+		log `I ntkih I tsuj okot soem srdgu nad onw Im egisen eolsrfw lnfgyi donrua nda htonsigo em I tkhni hits wsa a llaeyr bda deai and mI borlabpy renve going to eakt ugsdr angai.`
 	
 	npc kill
 		government "Bad Trip"
@@ -1618,6 +1670,7 @@ mission "Humanitarian 1"
 	on complete
 		payment
 		payment 50000
+		log `Delivered 20 tons of vaccines to a pirate world to help fight a flu epidemic. Pirates might be terrible people, but that doesn't mean that innocent people on their worlds need to die.`
 		dialog
 			 `After several shady characters have offered to buy the vaccines off you, or threatened to rob you, "Raven Hunter" finally shows up and collects them. He thanks you, and pays you <payment>.`
 
@@ -1781,6 +1834,7 @@ mission "Terraforming 3"
 	
 	on complete
 		payment 20000
+		log `Alaric, Eric, and Amy, three scientists (if you can call them that) interested in terraforming Rand, have just led me to strap an ion thruster onto an asteroid and aim it at the planet. I can now say for a fact that I have caused an asteroid to slam into the side of a planet, and it was a good thing.`
 		dialog
 			`When you land, the sky already seems noticeably darker than before. Eric runs up to your ship. "You did it!" he says, excited. "A perfect hit. Now we just have to wait and see what the results are. Meet us in the spaceport bar again in a few hours, and Amy will have her initial measurements ready." He hands you a credit chip for <payment>.`
 

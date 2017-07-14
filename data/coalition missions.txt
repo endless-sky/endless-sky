@@ -42,6 +42,7 @@ mission "Coalition: First Contact"
 		"reputation: Coalition" += 10
 		"reputation: Heliarch" += 10
 		set "known to the heliarchs"
+		log `Made contact with the Coalition, an alliance of giant beetles, giant spiders, and centaurs in the galactic south. They're ruled by a group known as "the Heliarchs." They overthrew the Quarg millenia ago, who they seem to see as galactic oppressors.`
 		conversation
 			`Your first view of the landing area confirms beyond a doubt that this is a Quarg ringworld, not just an imitation of one. The interior architecture is unmistakable. But no Quarg are present here, only the three species of the Coalition. Soon after you land, a delegation approaches your ship: again, one of each species, but these are wearing golden circlets around their heads. The circlets are not merely decorative, but seem to contain some electronics as well.`
 			`	Again, the centaur speaks first. "To our territory, to welcome you we are glad," it says.`
@@ -115,6 +116,7 @@ mission "Coalition: Contributor"
 		"reputation: Coalition" += 10
 		"reputation: Heliarch" += 10
 		set "license: Coalition"
+		log "Given the license to purchase most Coalition technology for doing a couple dozen jobs for them. It turns out that their weapons and other military-grade outfits are only available to the Heliarchs, not to civilians or aliens."
 		conversation
 			`Once again, when you exit your ship you are met by a member of each of the three Coalition species, wearing the golden circlets that mark them as Heliarchs. "Told we have been," says the Saryd, "that among us with great diligence and commitment, small tasks you have performed."`
 			`	The Kimek says, "Those who in our society's prosperity have invested, with our society's technology may be trusted."`
