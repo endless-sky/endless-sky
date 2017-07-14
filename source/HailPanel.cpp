@@ -226,6 +226,15 @@ void HailPanel::Draw()
 bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 {
 	static const int TRIBUTE_RELINQUISHED = 0;
+	map<string, string> relSubs;
+	if(planet)
+	{
+		relSubs["<first>"] = player.FirstName();
+		relSubs["<last>"] = player.LastName();
+		relSubs["<ship>"] = player.Flagship()->Name();
+		relSubs["<origin>"] = planet->Name();
+		relSubs["<gov>"] = planet->GetGovernment()->GetName();
+	}
 	bool shipIsEnemy = (ship && ship->GetGovernment()->IsEnemy());
 	
 	if(key == 'd' || key == SDLK_ESCAPE || key == SDLK_RETURN || (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
@@ -236,7 +245,7 @@ bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 		{
 			GameData::GetPolitics().DominatePlanet(planet, false);
 			player.Conditions().erase("tribute: " + planet->Name());
-			message = planet->GetGovernment()->GetTributeHail(TRIBUTE_RELINQUISHED);
+			message = Format::Replace(planet->GetGovernment()->GetTributeHail(TRIBUTE_RELINQUISHED), relSubs);
 		}
 		else
 			message = planet->DemandTribute(player);
