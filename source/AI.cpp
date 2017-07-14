@@ -753,6 +753,10 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 					&& (it->GetGovernment()->IsPlayer() || it->GetPersonality().IsEscort());
 			if(hasNemesis && !isPotentialNemesis)
 				continue;
+			if(!ship.IsYours() && it->GetPersonality().IsMarked())
+				continue;
+			if(!it->IsYours() && ship.GetPersonality().IsMarked())
+				continue;
 			
 			// Calculate what the range will be a second from now, so that ships
 			// will prefer targets that they are headed toward.
@@ -993,19 +997,16 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 		}
 		int systemTotalWeight = totalWeight;
 		
+		// Anywhere you can land that has a port has the same weight. Ships will
+		// not land anywhere without a port.
 		vector<const StellarObject *> planets;
-		if(!ship.GetPersonality().IsSkybound())
-		{
-			// Anywhere you can land that has a port has the same weight. Ships will
-			// not land anywhere without a port.
-			for(const StellarObject &object : ship.GetSystem()->Objects())
-				if(object.GetPlanet() && object.GetPlanet()->HasSpaceport()
-						&& object.GetPlanet()->CanLand(ship))
-				{
-					planets.push_back(&object);
-					totalWeight += planetWeight;
-				}
-		}
+		for(const StellarObject &object : ship.GetSystem()->Objects())
+			if(object.GetPlanet() && object.GetPlanet()->HasSpaceport()
+					&& object.GetPlanet()->CanLand(ship))
+			{
+				planets.push_back(&object);
+				totalWeight += planetWeight;
+			}
 		// If there are no ports to land on and this ship cannot jump, consider
 		// landing on uninhabited planets.
 		if(!totalWeight)
@@ -1063,7 +1064,7 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 	else if(ship.GetTargetStellar())
 	{
 		MoveToPlanet(ship, command);
-		if(!shouldStay && !ship.GetPersonality().IsSkybound() && ship.Attributes().Get("fuel capacity")
+		if(!shouldStay && ship.Attributes().Get("fuel capacity")
 				&& ship.GetTargetStellar()->GetPlanet() && ship.GetTargetStellar()->GetPlanet()->CanLand(ship))
 			command |= Command::LAND;
 		else if(ship.Position().Distance(ship.GetTargetStellar()->Position()) < 100.)
@@ -1976,7 +1977,9 @@ void AI::AimTurrets(const Ship &ship, Command &command, bool opportunistic) cons
 					&& target->GetSystem() == ship.GetSystem()
 					&& target->Position().Distance(ship.Position()) < maxRange
 					&& target.get() != currentTarget
-					&& !target->IsDisabled())
+					&& !target->IsDisabled()
+					&& (ship.IsYours() || !target->GetPersonality().IsMarked())
+					&& (target->IsYours() || !ship.GetPersonality().IsMarked()))
 				enemies.push_back(target.get());
 	}
 	
@@ -2142,7 +2145,9 @@ void AI::AutoFire(const Ship &ship, Command &command, bool secondary) const
 				&& !(target->IsHyperspacing() && target->Velocity().Length() > 10.)
 				&& target->GetSystem() == ship.GetSystem()
 				&& target->Position().Distance(ship.Position()) < maxRange
-				&& target != currentTarget)
+				&& target != currentTarget
+				&& (ship.IsYours() || !target->GetPersonality().IsMarked())
+				&& (target->IsYours() || !ship.GetPersonality().IsMarked()))
 			enemies.push_back(target);
 	
 	for(const Hardpoint &weapon : ship.Weapons())
