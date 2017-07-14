@@ -112,15 +112,15 @@ void Government::Load(const DataNode &node)
 		else if(child.Token(0) == "raid" && child.Size() >= 2)
 			raidFleet = GameData::Fleets().Get(child.Token(1));
 		else if(child.Token(0) == "tribute ignored message" && child.Size() >= 2)
-			tributeIgnoredHail = GameData::Phrases().Get(child.Token(1));
+			tributeIgnoredMessage = GameData::Phrases().Get(child.Token(1));
 		else if(child.Token(0) == "tribute relinquished message" && child.Size() >= 2)
-			tributeRelinquishedHail = GameData::Phrases().Get(child.Token(1));
+			tributeRelinquishedMessage = GameData::Phrases().Get(child.Token(1));
 		else if(child.Token(0) == "tribute in progress message" && child.Size() >= 2)
-			tributeInProgressHail = GameData::Phrases().Get(child.Token(1));
+			tributeInProgressMessage = GameData::Phrases().Get(child.Token(1));
 		else if(child.Token(0) == "tribute battle message" && child.Size() >= 2)
-			tributeCombatHail = GameData::Phrases().Get(child.Token(1));
+			tributeBattleMessage = GameData::Phrases().Get(child.Token(1));
 		else if(child.Token(0) == "tribute surrendered message" && child.Size() >= 2)
-			tributeSurrenderedHail = GameData::Phrases().Get(child.Token(1));
+			tributeSurrenderedMessage = GameData::Phrases().Get(child.Token(1));
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
@@ -130,16 +130,16 @@ void Government::Load(const DataNode &node)
 		friendlyDisabledHail = GameData::Phrases().Get("friendly disabled");
 	if(!hostileDisabledHail)
 		hostileDisabledHail = GameData::Phrases().Get("hostile disabled");
-	if(!tributeIgnoredHail)
-		tributeIgnoredHail = GameData::Phrases().Get("tribute ignored message");
-	if(!tributeCombatHail)
-		tributeCombatHail = GameData::Phrases().Get("tribute battle message");
-	if(!tributeRelinquishedHail)
-		tributeRelinquishedHail = GameData::Phrases().Get("tribute relinquished message");
-	if(!tributeInProgressHail)
-		tributeInProgressHail = GameData::Phrases().Get("tribute in progress message");
-	if(!tributeSurrenderedHail)
-		tributeSurrenderedHail = GameData::Phrases().Get("tribute surrendered message");
+	if(!tributeIgnoredMessage)
+		tributeIgnoredMessage = GameData::Phrases().Get("tribute ignored message");
+	if(!tributeBattleMessage)
+		tributeBattleMessage = GameData::Phrases().Get("tribute battle message");
+	if(!tributeRelinquishedMessage)
+		tributeRelinquishedMessage = GameData::Phrases().Get("tribute relinquished message");
+	if(!tributeInProgressMessage)
+		tributeInProgressMessage = GameData::Phrases().Get("tribute in progress message");
+	if(!tributeSurrenderedMessage)
+		tributeSurrenderedMessage = GameData::Phrases().Get("tribute surrendered message");
 }
 
 
@@ -243,16 +243,16 @@ string Government::GetHail(bool isDisabled) const
 
 
 
-// Get the government's tribute-related hails
-const string Government::GetTributeHail(int condition) const
+// Get the government's tribute-related messages.
+const string Government::GetTributeMessage(int condition) const
 {
 
 	static const vector<const Phrase *> phrases = {
-		tributeRelinquishedHail,
-		tributeIgnoredHail,
-		tributeInProgressHail,
-		tributeCombatHail,
-		tributeSurrenderedHail
+		tributeRelinquishedMessage,
+		tributeIgnoredMessage,
+		tributeInProgressMessage,
+		tributeBattleMessage,
+		tributeSurrenderedMessage
 	};
 	if(condition < 0 || condition > (int)phrases.size())
 		return phrases[0]->Get();
