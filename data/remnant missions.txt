@@ -14,6 +14,8 @@ mission "First Contact: Remnant"
 	source
 		government "Remnant"
 	on offer
+		log "Factions" "Remnant" `Half a millennium ago, during the Alpha Wars, a group of humans fleeing the conflict and looking for a safer place to live discovered a wormhole into a region of space known as the Ember Waste. They built settlements there, and chose to call themselves the Remnant. Although they no longer fear the Alphas as much as they once did, they still have not rejoined human society.`
+			`Since their colonies were first formed, the Remnant's culture has changed drastically. They communicate in sign language, using their voices only for singing. Their food and architecture and much of their technology is strange, and much of it has been borrowed or stolen from nearby alien species.`
 		conversation
 			`Although they are unusually tall and dark-skinned, the people here appear to be human. You wouldn't know it from the architecture, however: the buildings with their curved, twisted surfaces and ramifying arches look more alien than any human dwelling you have seen before.`
 			`	Stranger still, no one is speaking: the usual background murmur of voices that you would associate with a spaceport is absent here. Instead, the locals are communicating in a rapid and graceful sign language, their hands tracing arcs through the air almost faster than your eyes can follow.`
@@ -158,6 +160,7 @@ mission "Remnant: Defense 2"
 	on complete
 		payment 250000
 		dialog `The same woman meets you when you land on <planet>. "Again, thank you," she says. "I will suggest to others that they might offer you similar bounty hunting jobs in the future." She pays you <payment>.`
+		log "Factions" "Remnant" `Recently, Korath ships have begun raiding Remnant worlds. The Remnant have decided not to try to discourage these raids, because they are a perfect opportunity to steal jump drives and other valuable alien technology from the Korath.`
 
 
 
@@ -441,6 +444,8 @@ mission "Remnant: Void Sprites 3"
 			`	After collecting some atmospheric samples for good measure, you prepare to return to <planet>. Hopefully the Archon will calm down once it sees that you have not attacked or disturbed the Sprites on either of these planets.`
 	on complete
 		event "remnant: void sprite research" 20
+		log "Factions" "Void Sprites" `The "void sprites" are space-dwelling lifeforms. They are apparently not sentient. They evolved in the atmosphere of a gas giant, but have some biological mechanism for altering or reflecting gravity that allows them to fly into outer space, in the same way that human ships use antigravity to escape a planet's gravity well. The void sprites are not particularly powerful or dangerous creatures, but they are guarded by a Drak Archon.`
+		log "Factions" "Archons" `Archons are partly biological, but do not seem to be naturally evolved creatures. Some of their biological characteristics may have been based on the "void sprites" that inhabit the Ember Waste.`
 		conversation
 			`The Remnant researcher is ecstatic when he sees all the data you collected. "I will begin assembling this into a research paper immediately!" he sings. "It may be months before it is published, but when it is you will be named as a co-author, and I will share the payment with you."`
 			choice

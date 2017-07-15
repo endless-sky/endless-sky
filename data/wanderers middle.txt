@@ -146,6 +146,7 @@ mission "Wanderers: Nova Remnants"
 	to offer
 		has "Wanderers: Surveying 1: done"
 	on complete
+		log "Factions" "Archons" `Archons are partly biological, partly technological, and partly something that human language has no words for. They are extremely powerful. The Archons are somehow affiliated with the Drak, yet separate from them.`
 		conversation
 			`You contact the cosmologist Erukt Isi'ithi and give him a copy of your ship's scans of the supernova remnants. To you, the scanner results are inscrutable, but clearly to him they tell a story, and not one he is happy with: his body shakes violently and the pupils of his eyes shrink to pinpoints as he looks at the data.`
 			`	"These stars died an [untimely, unnatural] death," he says. "I wonder what the role of these Archon [beings, entities] was. Is the [destabilization, destruction] of these stars a crime the Korath committed, for which the Archons punished them? Or did the Korath commit some other crime, and the Archons [ripped, tore] these stars apart as punishment?"`
@@ -403,6 +404,7 @@ mission "Wanderers: Quarg Assistance 2"
 		has "Wanderers: Quarg Assistance 1: done"
 	on offer
 		log "The Quarg (or possibly, a faction within the Quarg, or even just a group of Quarg acting on their own) have agreed to send three of their warships to help defend the Wanderer settlement in Korath space. (Or maybe they are sending the ships because they view the Wanderers as invaders and want to keep an eye on them. It is not easy to determine their true intentions.)"
+		log "Factions" "Wanderers" `According to the Quarg, the Wanderers are not native to this galaxy, but were brought here from somehwere else (presumably by the Pug).`
 		conversation
 			`The Quarg do not generally share any information on how their leadership hierarchy works, if such a hierarchy even exists, so your best bet to find help for the Wanderers is just to ask around until you find the right person. You flag down the first Quarg who passes you in the hallway. "How can I help you, human?" it asks.`
 			`	"Well," you say, "I'm here on behalf of a species that has recently settled on one of the abandoned Korath worlds. I'm hoping you can help protect them."`
@@ -509,6 +511,8 @@ mission "Wanderers: Pug Assistance 2"
 		has "Wanderers: Pug Assistance 1: done"
 	on offer
 		log "Visited the Pug to see if they are willing to help the Wanderers fight the Korath automata. But the Pug and the Quarg do not get along with each other, and therefore the Pug are not willing to enter Korath space."
+		log "Factions" "Archons" `For reasons that are not entirely clear, the Pug are hostile toward the Archons, yet also view them as being worthy of pity.`
+		log "Factions" "Pug" `The Pug say that their species is split up into separate groups or "teams" that each focus on interacting with a different sentient species. They view those other species as "projects" that they are working on.`
 		conversation
 			`The moment you step off your ship you are surrounded by a group of armed Pug. "Perhaps we have not communicated clearly enough for the human's small brain to comprehend it," says one of them, "but we are uninterested in any further interactions with the human."`
 			choice
@@ -773,6 +777,7 @@ mission "Wanderers: Kor Efret 4"
 		has "Wanderers: Kor Efret 3: done"
 	on offer
 		log "Helped to defend one of the friendly Korath worlds from an attack by Kor Mereti drones. There are Korath scientists on that world who have been working for decades to find a way to hack into the Kor Mereti network, but they do not think it is possible."
+		log "Factions" "Archons" `When the Korath civil war reached a point where they had nearly driven themselves extinct, the Drak Archons stepped in and offered the surviving Korath an ultimatum: they must either give up their advanced weaponry and live peaceably under the protection of the Quarg, or be banished to some lifeless star systems near the galactic core. Those who chose banishment apparently took with them the secret of how to build jump drives, which has enabled them to raid other species and steal from them.`
 		conversation
 			`When you land back on the planet, Rek and several of the Korath meet you at your ship. "They would like to thank you for your assistance in defending their home," says Rek, "and they apologize for being so dismissive of the Wanderer plans to defeat the drones. They still think that hacking or corrupting the Mereti network is impossible, though."`
 			choice
