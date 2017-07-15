@@ -2047,7 +2047,7 @@ mission "FWC Pug 4B: Quarg"
 	on complete
 		log "Learned from the Quarg that they have long been aware of the presence of the Pug in the Deneb system. Apparently the Pug are from another galaxy and possess such advanced technology that even the Quarg do not dare to interfere with them."
 		log "However, the Pug are known to treat warfare like a game, intentionally using weaker technology when fighting less advanced species in order to give them a fair chance at winning the battle. So, fighting them will not be a lost cause, but the Quarg are unwilling to provide any assistance."
-		log "Factions" "Pug" `The Quarg claim that the Pug are powerful enough that they could defeat even the Quarg, or even the Drak, if they chose to. But the Pug treat warfare like a game. When battling another species, the Quarg will limit themselves to ships and weapons that are weak enough that the other species has a chance of defeating them.`
+		log "Factions" "Pug" `The Quarg claim that the Pug are powerful enough that they could defeat even the Quarg, or even the Drak, if they chose to. But the Pug treat warfare like a game. When battling another species, the Pug will limit themselves to ships and weapons that are weak enough that the other species has a chance of defeating them.`
 		conversation
 			`You land on the Quarg station, but neither of you knows what to do next. How do you locate a Quarg diplomat? Do they even have such a thing? As you and Freya stand in the hangar looking somewhat lost, one of the Quarg approaches you and says, "These ones have questions?"`
 			`	Freya says, "We've been attacked by aliens who call themselves the Pug. We're wondering what you know about them."`
