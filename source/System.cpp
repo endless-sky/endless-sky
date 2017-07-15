@@ -22,6 +22,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Planet.h"
 #include "Random.h"
 #include "SpriteSet.h"
+#include "Sprite.h"
 
 #include <cmath>
 
@@ -303,6 +304,155 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 				object.message = &UNINHABITEDPLANET;
 		}
 	}
+	
+	// Calculate efficiency of ramscoops and solar panels.
+	std::list<double> ramscoopModifiers;
+	std::list<double> solarPanelModifiers;
+	
+	// Get list of modifiers associated with each star in the system and remember how many.
+	int starCount = 0;
+	for(StellarObject &object : objects)
+    {
+        if(!object.IsStar())
+            continue;
+
+        string starName = object.GetSprite()->Name();
+        
+        // Add the correct value to the lists. 
+        static const double A0BRIGHTNESS = 1.8;
+        static const double A0WIND = 0.8;
+        static const double A5BRIGHTNESS = 1.6;
+        static const double A5WIND = 0.85;
+        static const double B5BRIGHTNESS = 2.0;
+        static const double B5WIND = 0.75;
+        static const double F0BRIGHTNESS = 1.5;
+        static const double F0WIND = 0.9;
+        static const double F5BRIGHTNESS = 1.2;
+        static const double F5WIND = 0.95;
+        static const double G0BRIGHTNESS = 1.0;
+        static const double G0WIND = 1.0;
+        static const double G5BRIGHTNESS = 0.9;
+        static const double G5WIND = 0.9;
+        static const double GIANTBRIGHTNESS = 1.3;
+        static const double GIANTWIND = 2.0;
+        static const double K0BRIGHTNESS = 0.85;
+        static const double K0WIND = 0.8;
+        static const double K5BRIGHTNESS = 0.8;
+        static const double K5WIND = 0.7;
+        static const double M0BRIGHTNESS = 0.7;
+        static const double M0WIND = 0.6;
+        static const double M4BRIGHTNESS = 0.6;
+        static const double M4WIND = 0.5;
+        static const double M8BRIGHTNESS = 0.5;
+        static const double M8WIND = 0.4;
+        static const double NOVABRIGHTNESS = 0.5;
+        static const double NOVAWIND = 4.0;
+        static const double WRBRIGHTNESS = 2.0;
+        static const double WRWIND = 4.0;
+        
+        if(starName == "star/a0")
+        {
+            ramscoopModifiers.push_back(A0WIND);
+            solarPanelModifiers.push_back(A0BRIGHTNESS);
+        }
+        else if(starName == "star/a5")
+        {
+            ramscoopModifiers.push_back(A5WIND);
+            solarPanelModifiers.push_back(A5BRIGHTNESS);
+        }
+        else if(starName == "star/b5")
+        {
+            ramscoopModifiers.push_back(B5WIND);
+            solarPanelModifiers.push_back(B5BRIGHTNESS);
+        }
+        else if(starName == "star/f0")
+        {
+            ramscoopModifiers.push_back(F0WIND);
+            solarPanelModifiers.push_back(F0BRIGHTNESS);
+        }
+        else if(starName == "star/f5" || starName == "star/f5-old")
+        {
+            ramscoopModifiers.push_back(F5WIND);
+            solarPanelModifiers.push_back(F5BRIGHTNESS);
+        }
+        else if(starName == "star/g0" || starName == "star/g0-old")
+        {
+            ramscoopModifiers.push_back(G0WIND);
+            solarPanelModifiers.push_back(G0BRIGHTNESS);
+        }
+        else if(starName == "star/g5" || starName == "star/g5-old")
+        {
+            ramscoopModifiers.push_back(G5WIND);
+            solarPanelModifiers.push_back(G5BRIGHTNESS);
+        }
+        else if(starName == "star/giant")
+        {
+            ramscoopModifiers.push_back(GIANTWIND);
+            solarPanelModifiers.push_back(GIANTBRIGHTNESS);
+        }
+        else if(starName == "star/k0" || starName == "star/k0-old")
+        {
+            ramscoopModifiers.push_back(K0WIND);
+            solarPanelModifiers.push_back(K0BRIGHTNESS);
+        }
+        else if(starName == "star/k5" || starName == "star/k5-old")
+        {
+            ramscoopModifiers.push_back(K5WIND);
+            solarPanelModifiers.push_back(K5BRIGHTNESS);
+        }
+        else if(starName == "star/m0")
+        {
+            ramscoopModifiers.push_back(M0WIND);
+            solarPanelModifiers.push_back(M0BRIGHTNESS);
+        }else if(starName == "star/m4")
+        {
+            ramscoopModifiers.push_back(M4WIND);
+            solarPanelModifiers.push_back(M4BRIGHTNESS);
+        }else if(starName == "star/m8")
+        {
+            ramscoopModifiers.push_back(M8WIND);
+            solarPanelModifiers.push_back(M8BRIGHTNESS);
+        }
+        else if(starName == "star/nova")
+        {
+            ramscoopModifiers.push_back(NOVAWIND);
+            solarPanelModifiers.push_back(NOVABRIGHTNESS);
+        }
+        else if(starName == "star/wr")
+        {
+            ramscoopModifiers.push_back(WRWIND);
+            solarPanelModifiers.push_back(WRBRIGHTNESS);
+        }
+        else
+        {
+            ramscoopModifiers.push_back(1);
+            solarPanelModifiers.push_back(1);
+            // TOTO(Jeremy) get rid of this message statement.
+            Messages::Add("there is an unacounted for star type!");
+            Messages::Add(starName);
+        }
+        
+        starCount++;
+	}
+	ramscoopModifiers.sort();
+	solarPanelModifiers.sort();
+	
+	// Sum up modifiers (currently using 1/n to normalize the sum).
+	ramscoopEffectiveness = 0;
+	solarPanelEffectiveness = 0;
+	for(int i = 0; i < starCount; i++)
+    {
+        ramscoopEffectiveness += (ramscoopModifiers.back()/(i + 1));
+        solarPanelEffectiveness += (solarPanelModifiers.back()/(i + 1));
+        
+        ramscoopModifiers.pop_back();
+        solarPanelModifiers.pop_back();
+    }
+    
+    // Make sure that the effectiveness modifiers are not game brakeingly low or high.
+    ramscoopEffectiveness = std::max(0.25, ramscoopEffectiveness);
+    solarPanelEffectiveness = std::max(0.5, solarPanelEffectiveness);
+    solarPanelEffectiveness = std::min(2.0, solarPanelEffectiveness);
 }
 
 
@@ -628,6 +778,22 @@ double System::Danger() const
 		if(fleet.Get()->GetGovernment()->IsEnemy())
 			danger += static_cast<double>(fleet.Get()->Strength()) / fleet.Period();
 	return danger;
+}
+
+
+
+// Get the modifier for ramscoop effectiveness.
+double System::RamscoopEffectiveness() const
+{
+    return ramscoopEffectiveness;
+}
+
+
+
+// Get the modifier for solar panel effectiveness.
+double System::SolarPanelEffectiveness() const
+{
+    return solarPanelEffectiveness;
 }
 
 

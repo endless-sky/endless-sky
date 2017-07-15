@@ -136,6 +136,10 @@ public:
 	// in per frame).
 	double Danger() const;
 	
+	// Get the effectiveness of ramscoops and solar panels in this system.
+	double RamscoopEffectiveness() const;
+	double SolarPanelEffectiveness() const;
+	
 	
 private:
 	void LoadObject(const DataNode &node, Set<Planet> &planets, int parent = -1);
@@ -178,6 +182,10 @@ private:
 	
 	// Commodity prices.
 	std::map<std::string, Price> trade;
+		
+	// Effectiveness of ramscoop and solar panels in this system.
+	double ramscoopEffectiveness;
+	double solarPanelEffectiveness; 
 };
 
 
