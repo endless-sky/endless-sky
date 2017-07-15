@@ -968,7 +968,7 @@ void GameData::PrintWeaponTable()
 	for(auto &it : outfits)
 	{
 		// Skip non-weapons and submunitions.
-		if(!it.second.IsWeapon() || !it.second.Reload())
+		if(!it.second.IsWeapon() || it.second.Category().empty())
 			continue;
 		
 		const Outfit &outfit = it.second;
