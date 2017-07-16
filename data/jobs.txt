@@ -1483,6 +1483,64 @@ mission "Core Pirate Attack"
 		payment 200000
 		dialog "The government of <planet> pays you <payment> for helping to drive off the pirates."
 
+mission "Renegade Drones 1"
+	name "Neutralize broken Drone"
+	repeat
+	description "Destroy or disable the malfunctioning Navy drone."
+	minor
+	to offer
+		not "Renegade Drones 1: active"
+		random < 20
+		"combat rating" > 200
+	clearance
+	source "Pilot"
+	destination "Pilot"
+	on offer
+		conversation
+			`Walking past a group of Navy soldiers, you hear one shout out: "Not again, another drone seems to have a malfunction and attacks ships in orbit. Who's turn is it to shoot it down?"`
+			`Nobody answers.`
+			`What do you want to do?`
+			choice
+				`	(Raise your hand and offer to shoot it down.)`
+					goto yes
+				`	(Ignore them and walk on.)`
+					decline
+			label yes
+			`You raise your hand and one of the soldiers notices you.`
+			`"You? Why not. Try not to hurt yourself."`
+			`You got the job.`
+				accept
+	npc evade
+		government "Renegade"
+		personality heroic target vindictive nemesis marked
+			confusion 30
+		fleet
+			names "republic fighter"
+			variant
+				"Combat Drone" 1
+	on complete
+		payment 20000
+		dialog `A Navy soldier approaches you. "Well done!", and with a firm hand shake she hands you <payment>.`
+
+government "Renegade"
+	swizzle 0
+	"player reputation" -1000
+	"attitude toward"
+		# Broken drones don't like anybody
+		"Merchant" -.1
+		"Pirate" -.1
+		"Bounty Hunter" -.1
+		"Republic" -.5
+		"Navy Intelligence" -.5
+		"Navy (Oathkeeper)" -.5
+	"penalty for"
+		assist 0
+		disable 0
+		board 0
+		capture 0
+		destroy 0
+		atrocity 0
+
 mission "Cargo [0]"
 	name "Delivery to <planet>"
 	job
