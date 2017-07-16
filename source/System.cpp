@@ -261,9 +261,13 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
 	
-	// Set planet messages based on what zone they are in.
+	// Set planet messages based on what zone they are in, and calculate the luminosity
+	// and stellar wind values for the stars in the system.
 	for(StellarObject &object : objects)
 	{
+		if(object.IsStar())
+            AddStar(object.GetSprite()->Name());
+		
 		if(object.message || object.planet)
 			continue;
 		
@@ -305,147 +309,7 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 		}
 	}
 	
-	// Calculate efficiency of ramscoops and solar panels.
-	std::list<double> stellarWindModifiers;
-	std::list<double> luminosityModifiers;
-	
-	// Get list of modifiers associated with each star in the system and remember how many.
-	int starCount = 0;
-	for(StellarObject &object : objects)
-    {
-        if(!object.IsStar())
-            continue;
-
-        string starName = object.GetSprite()->Name();
-        
-        // Add the correct value to the lists. 
-        static const double A0BRIGHTNESS = 1.8;
-        static const double A0WIND = 0.8;
-        static const double A5BRIGHTNESS = 1.6;
-        static const double A5WIND = 0.85;
-        static const double B5BRIGHTNESS = 2.0;
-        static const double B5WIND = 0.75;
-        static const double F0BRIGHTNESS = 1.5;
-        static const double F0WIND = 0.9;
-        static const double F5BRIGHTNESS = 1.2;
-        static const double F5WIND = 0.95;
-        static const double G0BRIGHTNESS = 1.0;
-        static const double G0WIND = 1.0;
-        static const double G5BRIGHTNESS = 0.9;
-        static const double G5WIND = 0.9;
-        static const double GIANTBRIGHTNESS = 1.3;
-        static const double GIANTWIND = 2.0;
-        static const double K0BRIGHTNESS = 0.85;
-        static const double K0WIND = 0.8;
-        static const double K5BRIGHTNESS = 0.8;
-        static const double K5WIND = 0.7;
-        static const double M0BRIGHTNESS = 0.7;
-        static const double M0WIND = 0.6;
-        static const double M4BRIGHTNESS = 0.6;
-        static const double M4WIND = 0.5;
-        static const double M8BRIGHTNESS = 0.5;
-        static const double M8WIND = 0.4;
-        static const double NOVABRIGHTNESS = 0.5;
-        static const double NOVAWIND = 4.0;
-        static const double WRBRIGHTNESS = 2.0;
-        static const double WRWIND = 4.0;
-        
-        if(starName == "star/a0")
-        {
-            stellarWindModifiers.push_back(A0WIND);
-            luminosityModifiers.push_back(A0BRIGHTNESS);
-        }
-        else if(starName == "star/a5")
-        {
-            stellarWindModifiers.push_back(A5WIND);
-            luminosityModifiers.push_back(A5BRIGHTNESS);
-        }
-        else if(starName == "star/b5")
-        {
-            stellarWindModifiers.push_back(B5WIND);
-            luminosityModifiers.push_back(B5BRIGHTNESS);
-        }
-        else if(starName == "star/f0")
-        {
-            stellarWindModifiers.push_back(F0WIND);
-            luminosityModifiers.push_back(F0BRIGHTNESS);
-        }
-        else if(starName == "star/f5" || starName == "star/f5-old")
-        {
-            stellarWindModifiers.push_back(F5WIND);
-            luminosityModifiers.push_back(F5BRIGHTNESS);
-        }
-        else if(starName == "star/g0" || starName == "star/g0-old")
-        {
-            stellarWindModifiers.push_back(G0WIND);
-            luminosityModifiers.push_back(G0BRIGHTNESS);
-        }
-        else if(starName == "star/g5" || starName == "star/g5-old")
-        {
-            stellarWindModifiers.push_back(G5WIND);
-            luminosityModifiers.push_back(G5BRIGHTNESS);
-        }
-        else if(starName == "star/giant")
-        {
-            stellarWindModifiers.push_back(GIANTWIND);
-            luminosityModifiers.push_back(GIANTBRIGHTNESS);
-        }
-        else if(starName == "star/k0" || starName == "star/k0-old")
-        {
-            stellarWindModifiers.push_back(K0WIND);
-            luminosityModifiers.push_back(K0BRIGHTNESS);
-        }
-        else if(starName == "star/k5" || starName == "star/k5-old")
-        {
-            stellarWindModifiers.push_back(K5WIND);
-            luminosityModifiers.push_back(K5BRIGHTNESS);
-        }
-        else if(starName == "star/m0")
-        {
-            stellarWindModifiers.push_back(M0WIND);
-            luminosityModifiers.push_back(M0BRIGHTNESS);
-        }else if(starName == "star/m4")
-        {
-            stellarWindModifiers.push_back(M4WIND);
-            luminosityModifiers.push_back(M4BRIGHTNESS);
-        }else if(starName == "star/m8")
-        {
-            stellarWindModifiers.push_back(M8WIND);
-            luminosityModifiers.push_back(M8BRIGHTNESS);
-        }
-        else if(starName == "star/nova")
-        {
-            stellarWindModifiers.push_back(NOVAWIND);
-            luminosityModifiers.push_back(NOVABRIGHTNESS);
-        }
-        else if(starName == "star/wr")
-        {
-            stellarWindModifiers.push_back(WRWIND);
-            luminosityModifiers.push_back(WRBRIGHTNESS);
-        }
-        else
-        {
-            stellarWindModifiers.push_back(1);
-            luminosityModifiers.push_back(1);
-        }
-        ++starCount;
-	}
-	stellarWindModifiers.sort();
-	luminosityModifiers.sort();
-	
-	// Sum up modifiers (currently using 1/n to normalize the sum).
-	stellarWindStrength = 0;
-	luminosity = 0;
-	for(int i = 0; i < starCount; i++)
-    {
-        stellarWindStrength += (stellarWindModifiers.back()/(i + 1));
-        luminosity += (luminosityModifiers.back()/(i + 1));
-        
-        stellarWindModifiers.pop_back();
-        luminosityModifiers.pop_back();
-    }
-    
-    // Make sure that the effectiveness modifiers are not game brakeingly low or high.
+    // Make sure that the stellarWindStrength and luminosity are not game brakeingly low or high.
     stellarWindStrength = std::max(0.25, stellarWindStrength);
     luminosity = std::max(0.5, luminosity);
     luminosity = std::min(2.0, luminosity);
@@ -831,6 +695,84 @@ void System::LoadObject(const DataNode &node, Set<Planet> &planets, int parent)
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
+}
+
+
+
+// Update stellarWindStrength and luminosity to include the star's effects in the system.
+void System::AddStar(const std::string starName)
+{
+    static const double A0_LUMINOSITY = 1.8;
+    static const double A0_WIND = 0.8;
+    static const double A5_LUMINOSITY = 1.6;
+    static const double A5_WIND = 0.85;
+    static const double B5_LUMINOSITY = 2.0;
+    static const double B5_WIND = 0.75;
+    static const double F0_LUMINOSITY = 1.5;
+    static const double F0_WIND = 0.9;
+    static const double F5_LUMINOSITY = 1.2;
+    static const double F5_WIND = 0.95;
+    static const double G0_LUMINOSITY = 1.0;
+    static const double G0_WIND = 1.0;
+    static const double G5_LUMINOSITY = 0.9;
+    static const double G5_WIND = 0.9;
+    static const double GIANT_LUMINOSITY = 1.3;
+    static const double GIANT_WIND = 2.0;
+    static const double K0_LUMINOSITY = 0.85;
+    static const double K0_WIND = 0.8;
+    static const double K5_LUMINOSITY = 0.8;
+    static const double K5_WIND = 0.7;
+    static const double M0_LUMINOSITY = 0.7;
+    static const double M0_WIND = 0.6;
+    static const double M4_LUMINOSITY = 0.6;
+    static const double M4_WIND = 0.5;
+    static const double M8_LUMINOSITY = 0.5;
+    static const double M8_WIND = 0.4;
+    static const double NOVA_LUMINOSITY = 0.5;
+    static const double NOVA_WIND = 4.0;
+    static const double WR_LUMINOSITY = 2.0;
+    static const double WR_WIND = 4.0;
+    
+    if(starName == "star/a0")
+        ApplyNewStar(A0_WIND, A0_LUMINOSITY);
+    else if(starName == "star/a5")
+        ApplyNewStar(A5_WIND, A5_LUMINOSITY);
+    else if(starName == "star/b5")
+        ApplyNewStar(B5_WIND, B5_LUMINOSITY);
+    else if(starName == "star/f0")
+        ApplyNewStar(F0_WIND, F0_LUMINOSITY);
+    else if(starName == "star/f5" || starName == "star/f5-old")
+        ApplyNewStar(F5_WIND, F5_LUMINOSITY);
+    else if(starName == "star/g0" || starName == "star/g0-old")
+        ApplyNewStar(G0_WIND, G0_LUMINOSITY);
+    else if(starName == "star/g5" || starName == "star/g5-old")
+        ApplyNewStar(G5_WIND, G5_LUMINOSITY);
+    else if(starName == "star/giant")
+        ApplyNewStar(GIANT_WIND, GIANT_LUMINOSITY);
+    else if(starName == "star/k0" || starName == "star/k0-old")
+        ApplyNewStar(K0_WIND, K0_LUMINOSITY);
+    else if(starName == "star/k5" || starName == "star/k5-old")
+        ApplyNewStar(K5_WIND, K5_LUMINOSITY);
+    else if(starName == "star/m0")
+        ApplyNewStar(M0_WIND, M0_LUMINOSITY);
+    else if(starName == "star/m4")
+        ApplyNewStar(M4_WIND, M4_LUMINOSITY);
+    else if(starName == "star/m8")
+        ApplyNewStar(M8_WIND, M8_LUMINOSITY);
+    else if(starName == "star/nova")
+        ApplyNewStar(NOVA_WIND, NOVA_LUMINOSITY);
+    else if(starName == "star/wr")
+        ApplyNewStar(WR_WIND, WR_LUMINOSITY);
+    else
+        ApplyNewStar(1.0, 1.0);
+}
+
+
+
+void System::ApplyNewStar(double starWind, double starLuminosity)
+{
+    stellarWindStrength += starWind;
+    luminosity += starLuminosity;
 }
 
 

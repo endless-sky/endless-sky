@@ -143,6 +143,12 @@ public:
 	
 private:
 	void LoadObject(const DataNode &node, Set<Planet> &planets, int parent = -1);
+
+    // Update stellarWindStrength and luminosity to include the star's effects in the system.
+	void AddStar(const std::string starName);
+	// Helper function for AddStar() that does the actual value 
+	// incrementation of luminosity and stellarWindStrength.
+	void ApplyNewStar(double starWind, double starLuminosity);
 	
 	
 private:
@@ -185,7 +191,7 @@ private:
 		
 	// Effectiveness of ramscoop and solar panels in this system.
 	double stellarWindStrength;
-	double luminosity; 
+	double luminosity;
 };
 
 
