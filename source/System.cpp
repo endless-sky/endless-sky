@@ -21,8 +21,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Minable.h"
 #include "Planet.h"
 #include "Random.h"
-#include "SpriteSet.h"
 #include "Sprite.h"
+#include "SpriteSet.h"
 
 #include <cmath>
 
@@ -306,8 +306,8 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 	}
 	
 	// Calculate efficiency of ramscoops and solar panels.
-	std::list<double> ramscoopModifiers;
-	std::list<double> solarPanelModifiers;
+	std::list<double> stellarWindModifiers;
+	std::list<double> luminosityModifiers;
 	
 	// Get list of modifiers associated with each star in the system and remember how many.
 	int starCount = 0;
@@ -352,107 +352,103 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
         
         if(starName == "star/a0")
         {
-            ramscoopModifiers.push_back(A0WIND);
-            solarPanelModifiers.push_back(A0BRIGHTNESS);
+            stellarWindModifiers.push_back(A0WIND);
+            luminosityModifiers.push_back(A0BRIGHTNESS);
         }
         else if(starName == "star/a5")
         {
-            ramscoopModifiers.push_back(A5WIND);
-            solarPanelModifiers.push_back(A5BRIGHTNESS);
+            stellarWindModifiers.push_back(A5WIND);
+            luminosityModifiers.push_back(A5BRIGHTNESS);
         }
         else if(starName == "star/b5")
         {
-            ramscoopModifiers.push_back(B5WIND);
-            solarPanelModifiers.push_back(B5BRIGHTNESS);
+            stellarWindModifiers.push_back(B5WIND);
+            luminosityModifiers.push_back(B5BRIGHTNESS);
         }
         else if(starName == "star/f0")
         {
-            ramscoopModifiers.push_back(F0WIND);
-            solarPanelModifiers.push_back(F0BRIGHTNESS);
+            stellarWindModifiers.push_back(F0WIND);
+            luminosityModifiers.push_back(F0BRIGHTNESS);
         }
         else if(starName == "star/f5" || starName == "star/f5-old")
         {
-            ramscoopModifiers.push_back(F5WIND);
-            solarPanelModifiers.push_back(F5BRIGHTNESS);
+            stellarWindModifiers.push_back(F5WIND);
+            luminosityModifiers.push_back(F5BRIGHTNESS);
         }
         else if(starName == "star/g0" || starName == "star/g0-old")
         {
-            ramscoopModifiers.push_back(G0WIND);
-            solarPanelModifiers.push_back(G0BRIGHTNESS);
+            stellarWindModifiers.push_back(G0WIND);
+            luminosityModifiers.push_back(G0BRIGHTNESS);
         }
         else if(starName == "star/g5" || starName == "star/g5-old")
         {
-            ramscoopModifiers.push_back(G5WIND);
-            solarPanelModifiers.push_back(G5BRIGHTNESS);
+            stellarWindModifiers.push_back(G5WIND);
+            luminosityModifiers.push_back(G5BRIGHTNESS);
         }
         else if(starName == "star/giant")
         {
-            ramscoopModifiers.push_back(GIANTWIND);
-            solarPanelModifiers.push_back(GIANTBRIGHTNESS);
+            stellarWindModifiers.push_back(GIANTWIND);
+            luminosityModifiers.push_back(GIANTBRIGHTNESS);
         }
         else if(starName == "star/k0" || starName == "star/k0-old")
         {
-            ramscoopModifiers.push_back(K0WIND);
-            solarPanelModifiers.push_back(K0BRIGHTNESS);
+            stellarWindModifiers.push_back(K0WIND);
+            luminosityModifiers.push_back(K0BRIGHTNESS);
         }
         else if(starName == "star/k5" || starName == "star/k5-old")
         {
-            ramscoopModifiers.push_back(K5WIND);
-            solarPanelModifiers.push_back(K5BRIGHTNESS);
+            stellarWindModifiers.push_back(K5WIND);
+            luminosityModifiers.push_back(K5BRIGHTNESS);
         }
         else if(starName == "star/m0")
         {
-            ramscoopModifiers.push_back(M0WIND);
-            solarPanelModifiers.push_back(M0BRIGHTNESS);
+            stellarWindModifiers.push_back(M0WIND);
+            luminosityModifiers.push_back(M0BRIGHTNESS);
         }else if(starName == "star/m4")
         {
-            ramscoopModifiers.push_back(M4WIND);
-            solarPanelModifiers.push_back(M4BRIGHTNESS);
+            stellarWindModifiers.push_back(M4WIND);
+            luminosityModifiers.push_back(M4BRIGHTNESS);
         }else if(starName == "star/m8")
         {
-            ramscoopModifiers.push_back(M8WIND);
-            solarPanelModifiers.push_back(M8BRIGHTNESS);
+            stellarWindModifiers.push_back(M8WIND);
+            luminosityModifiers.push_back(M8BRIGHTNESS);
         }
         else if(starName == "star/nova")
         {
-            ramscoopModifiers.push_back(NOVAWIND);
-            solarPanelModifiers.push_back(NOVABRIGHTNESS);
+            stellarWindModifiers.push_back(NOVAWIND);
+            luminosityModifiers.push_back(NOVABRIGHTNESS);
         }
         else if(starName == "star/wr")
         {
-            ramscoopModifiers.push_back(WRWIND);
-            solarPanelModifiers.push_back(WRBRIGHTNESS);
+            stellarWindModifiers.push_back(WRWIND);
+            luminosityModifiers.push_back(WRBRIGHTNESS);
         }
         else
         {
-            ramscoopModifiers.push_back(1);
-            solarPanelModifiers.push_back(1);
-            // TOTO(Jeremy) get rid of this message statement.
-            Messages::Add("there is an unacounted for star type!");
-            Messages::Add(starName);
+            stellarWindModifiers.push_back(1);
+            luminosityModifiers.push_back(1);
         }
-        
-        starCount++;
+        ++starCount;
 	}
-	ramscoopModifiers.sort();
-	solarPanelModifiers.sort();
+	stellarWindModifiers.sort();
+	luminosityModifiers.sort();
 	
 	// Sum up modifiers (currently using 1/n to normalize the sum).
-	ramscoopEffectiveness = 0;
-	solarPanelEffectiveness = 0;
+	stellarWindStrength = 0;
+	luminosity = 0;
 	for(int i = 0; i < starCount; i++)
     {
-        ramscoopEffectiveness += (ramscoopModifiers.back()/(i + 1));
-        solarPanelEffectiveness += (solarPanelModifiers.back()/(i + 1));
+        stellarWindStrength += (stellarWindModifiers.back()/(i + 1));
+        luminosity += (luminosityModifiers.back()/(i + 1));
         
-        ramscoopModifiers.pop_back();
-        solarPanelModifiers.pop_back();
+        stellarWindModifiers.pop_back();
+        luminosityModifiers.pop_back();
     }
     
     // Make sure that the effectiveness modifiers are not game brakeingly low or high.
-    ramscoopEffectiveness = std::max(0.25, ramscoopEffectiveness);
-    solarPanelEffectiveness = std::max(0.5, solarPanelEffectiveness);
-    solarPanelEffectiveness = std::min(2.0, solarPanelEffectiveness);
+    stellarWindStrength = std::max(0.25, stellarWindStrength);
+    luminosity = std::max(0.5, luminosity);
+    luminosity = std::min(2.0, luminosity);
 }
 
 
@@ -783,17 +779,17 @@ double System::Danger() const
 
 
 // Get the modifier for ramscoop effectiveness.
-double System::RamscoopEffectiveness() const
+double System::GetStellarWindStrength() const
 {
-    return ramscoopEffectiveness;
+    return stellarWindStrength;
 }
 
 
 
 // Get the modifier for solar panel effectiveness.
-double System::SolarPanelEffectiveness() const
+double System::GetLuminosity() const
 {
-    return solarPanelEffectiveness;
+    return luminosity;
 }
 
 

@@ -765,17 +765,17 @@ bool Ship::Move(list<Effect> &effects, list<shared_ptr<Flotsam>> &flotsam)
 	else
 	{
 		// Ramscoops and solar panels work better in some systems than others.
-		double ramscoopModifier = GetSystem()->RamscoopEffectiveness();
-		double solarPanelModifier = GetSystem()->SolarPanelEffectiveness();
+		double solarWindStrength = GetSystem()->GetStellarWindStrength();
+		double systemLuminosity = GetSystem()->GetLuminosity();
 		
 		// Ramscoops and solar panels work much better when close to the system center. Even if a
 		// ship has no ramscoop, it can harvest a tiny bit of fuel by flying
-		// close to the star.		
+		// close to the star.
 		double scale = .2 + 1.8 / (.001 * position.Length() + 1);
-		fuel += .03 * scale * (sqrt(attributes.Get("ramscoop")) + .05 * scale) * ramscoopModifier;
+		fuel += .03 * scale * (sqrt(attributes.Get("ramscoop")) + .05 * scale) * solarWindStrength;
 		fuel = min(fuel, attributes.Get("fuel capacity"));
 		
-		energy += scale * attributes.Get("solar collection") * solarPanelModifier;
+		energy += scale * attributes.Get("solar collection") * systemLuminosity;
 		
 		double coolingEfficiency = CoolingEfficiency();
 		energy += attributes.Get("energy generation") - attributes.Get("energy consumption");

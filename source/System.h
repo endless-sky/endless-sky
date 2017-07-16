@@ -137,8 +137,8 @@ public:
 	double Danger() const;
 	
 	// Get the effectiveness of ramscoops and solar panels in this system.
-	double RamscoopEffectiveness() const;
-	double SolarPanelEffectiveness() const;
+	double GetStellarWindStrength() const;
+	double GetLuminosity() const;
 	
 	
 private:
@@ -184,8 +184,8 @@ private:
 	std::map<std::string, Price> trade;
 		
 	// Effectiveness of ramscoop and solar panels in this system.
-	double ramscoopEffectiveness;
-	double solarPanelEffectiveness; 
+	double stellarWindStrength;
+	double luminosity; 
 };
 
 
