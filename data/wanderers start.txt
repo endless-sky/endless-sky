@@ -118,6 +118,7 @@ mission "Wanderers: Diplomacy"
 	to offer
 		has "First Contact: Wanderer: offered"
 	on offer
+		log "People" "Sayari" `Ambassador Sayari, a Hai, served as their envoy to the human government a century ago (although no public records of this exist in human space). She has now been assigned by the Hai to be their diplomat to the Wanderers, and to serve as a translator as well.`
 		conversation
 			`As you are approaching Hai-home, you contact the Hai government and ask if they would be willing to provide an ambassador to help you communicate with the aliens to the north, who seem to speak the Hai language. They immediately direct you to a private government hangar, where a diplomat meets you. She holds out a paw to greet you, and says, "My name is Sayari. I was the envoy to the human government, a century ago." To the best of your knowledge, the Republic has never mentioned the Hai or publicly acknowledged receiving an envoy from them.`
 			choice
@@ -219,6 +220,10 @@ mission "Human Cultural Archives"
 				`	"How will I convince them to give me a copy of their data?"`
 			`	Your question seems to utterly confuse him. "Information," he says. "It is what you call a non-rival good, is it not? When I give information, I do not lose it. Sharing it costs me nothing. The librarians, surely they will understand this. Have no fear."`
 				accept
+	on visit
+		dialog
+			`The station has a small museum gift shop that sells a copy of the entire archive on a data card. It only costs 40 credits, but because you have done a horrible job at managing your finances you do not have even that much cash on hand right now.`
+			`	Go earn some money, then return here.`
 	on complete
 		payment -40
 
@@ -235,10 +240,6 @@ mission "Cultural Data to Greenwater"
 		conversation
 			`You had wondered how you would get a copy of the entire cultural archive, but it turns out to be easier than expected. The station has a small museum gift shop, which sells a copy of the archives on a data card. ("The perfect gift for the budding historian in your family! Hold all of human history in the palm of your hand. On sale now for only 39.99!") Given that a cheap data card costs a fraction of a credit, it's a bit of a rip-off, but you gladly buy one to take back to Eruk.`
 				accept
-	on visit
-		dialog
-			`The station has a small museum gift shop that sells a copy of the entire archive on a data card. It only costs 40 credits, but because you have done a horrible job at managing your finances you do not have even that much cash on hand right now.`
-			`	Go earn some money, then return here.`
 
 
 
@@ -295,6 +296,7 @@ mission "Wanderers Conversation"
 		log "Spoke with a Wanderer ambassador named Iktat Rek, using the translation device. Received permission to purchase some of their technology, but not their ships."
 		log "Factions" "Wanderers" `The Wanderers believe that their purpose in the universe is to "repair" planets whose biospheres have been ravaged by other species either through mismanagement or as a result of war. They came to their current territory through a wormhole that they call "the Eye," and they say that once their work here is done the Eye will open and lead them to a new territory and new worlds for them to care for.`
 			`It is possible that the worlds they currently inhabit were formerly part of Hai territory. That might explain why the Unfettered believe they have a right to take that territory back.`
+		log "People" "Iktat Rek" `Rek is a Wanderer ambassador, an new and unusual profession among a species that until recently has had not contact with aliens except for the occasional Unfettered Hai raid. His job is to help the Wanderers develop a deeper relationship with humans.`
 		conversation
 			`With the help of your new translation device, you are able to contact the Wanderer government. They welcome you back and tell you that a Wanderer named "Iktat Rek" has been appointed as the official envoy to deal with human visitors, and he should be arriving at your landing pad shortly.`
 			`	Rek is slightly larger than most of the Wanderers you have seen, with muted white and brown plumage and a calm, dignified bearing. "It is very [rare, exceptional] in our history that we have to [deal with, cope with] other species," he says, "and now we find ourselves dealing with two at once." He is speaking the Hai language, and the translation device does its best to render his words in your own language.`
@@ -999,6 +1001,7 @@ mission "Wanderers: Alpha Surveillance D"
 	
 	on offer
 		log "Met a human named Elias Hanover who is friends with the Quarg and who has been given permission to use Quarg technology to track the Alpha ship that is selling jump drives to the Unfettered."
+		log "People" "Elias Hanover" `Elias has been living with the Quarg in Hai space for a long time, and they trust him enough to give him access to some of their restricted technology.`
 		"reputation: Alpha" <?= -1
 		conversation
 			`You are met in the spaceport by a bearded, middle-aged human man and a Quarg with exceptionally wrinkly skin. The Quarg says, "I hear that you need help against the Alphas. My friend Elias here has lived among us for a long time, and has told me much about the Alphas, their wars and their depredations."`
@@ -1222,6 +1225,7 @@ mission "Wanderers: Alpha Surveillance H"
 	
 	on offer
 		log "Was taken captive, along with Elias Hanover, by some nameless Republic officers who thought Elias was an Alpha. They discovered that he is not one, although he appears to have some of the same genetically engineered advantages that the Alphas have."
+		log "People" "Elias Hanover" `Certain Navy officers believe that Elias may actually be more than five centuries old, and that he may be a genetically modified individual, perhaps specifically designed to have capabilities similar to the Alphas so that he can fight against them.`
 		conversation
 			`You wake up with a pounding headache and the groggy, hung-over feeling of having been shot with a military grade stun gun. You are strapped into a metal chair with at least a dozen electrodes connected to your head and body. Elias is in a similar chair facing you. A technician stands behind a bank of computer displays in one corner, with the nameless officer looking on.`
 			choice
@@ -1478,6 +1482,7 @@ mission "Wanderers Invaded 2"
 	to offer
 		has "Wanderers Invaded 1B: done"
 	on offer
+		log "People" "Sobari Tele'ek" `Tele'ek is a Wanderer military commander. It is not clear what his rank is or whether or not the Wanderer military is even organized enough for individuals to have ranks, but he has been placed in charge of holding back the Hai while the remaining Wanderer worlds near the front are evacuated.`
 		conversation
 			scene "scene/tempest"
 			`The ships in this corner of the spaceport are indeed a new design, stockier and less streamlined than most Wanderer ships. Sobari Tele'ek, who turns out to be a military commander, greets you and says, "For the first time in ten thousand years, we have made ships [designed, intended] for war. How do you [view, judge] them?"`

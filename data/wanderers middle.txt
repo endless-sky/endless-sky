@@ -27,6 +27,7 @@ mission "Wanderers: Surveying 1"
 	blocked "The Wanderers have another mission for you, but you will need some cargo space available for scientific equipment."
 	on offer
 		log `The "Eye" wormhole has opened in Wanderer space, but the territory on the other side of the wormhole is Korath space, ravaged by their civil war and still infested with autonomous war machines. Nonetheless, the Wanderers are excited to once again begin their work of healing and repairing damaged worlds.`
+		log "People" "Sobari Tele'ek" `Tele'ek became part of the expeditionary force that was formed to explore the territory beyond the Eye once it opened.`
 		conversation
 			`The Wanderers have begun building a base here, with freighters landing every few minutes to bring more supplies or people. They have a fair number of weapons and warships to keep the Korath automata at bay, but the majority of the supplies look like scientific tools or possibly equipment for terraforming planets.`
 			`	Soon after you land, you are ushered in to a meeting with several of the senior Wanderer leaders. You recognize the military commander Sobari Tele'ek, but the others are strangers to you. And oddly, in addition to the adults there is a Wanderer child in the meeting, barely more than a meter tall, with iridescent black plumage like a starling.`
@@ -78,6 +79,7 @@ mission "Wanderers: Surveying 2"
 	cargo "scientific equipment" 7
 	blocked "The Wanderers have another mission for you, but you will need some cargo space available for scientific equipment."
 	on offer
+		log "People" "Tema'a Iriket" `Iriket is a Wanderer specializing in terraforming, who has been selected to survey the worlds beyond the Eye and to make plans for how each one can be made to flourish once more. She is far more interested in the terraforming work than in dealing with the threat of the Korath war machines.`
 		conversation
 			`When you land, a Wanderer named Tema'a Iriket meets you, and identifies herself as the head of the terraforming team. She is excited to see your data on the nearby planets. "For each of these worlds," she says, "we must decide what [treatment, strategy] will best enable it to flourish once more. Even if a world is near to the [territory, domain] of the [dangerous, hostile] robots, we may be able to begin its [healing, transformation] from a distance."`
 			choice
@@ -309,6 +311,8 @@ mission "Wanderers: Rek To Kor Efret"
 		has "Wanderers: First Mereti Attack: done"
 	on offer
 		log `Iktat Rek has survived the Molt, but in a completely new form. Rek is now female, and is only the size of a Wanderer child, and has chosen the name "Ektasi Rek" for herself, meaning something like "communicator" or "bridge-builder."`
+		log "People" "Iktat Rek" `Rek underwent the Molt, a mysterious process in which the body of a Wanderer who is exposed to novel stimuli transforms into a completely new species while still maintaining that individual's memories and personality. The new Rek is a female and goes by the name "Ektasi Rek."`
+		log "People" "Ektasi Rek" `Ektasi Rek is the first Wanderer in millennia to undergo the Molt, changing into a completely different species with new capabilities. As more Wanderers go through the Molt, the Wanderers as a whole will have to decide which of these mutations represents the best way for their species to survive and flourish in Korath space.`
 		conversation
 			`When you enter the meeting room, Sobari Tele'ek is in a heated argument with the Wanderer child who was here earlier, the one who speaks your language. The child is saying, "The Eye has sent us not to a place of [empty, abandoned] worlds but to a place of [living beings?]. To complete our [calling, work] here we must collaborate with those beings, just as we would collaborate with the [ecosystem? personality?] of a planet we sought to repair."`
 			`	"What do you [propose, intend], Firstborn?" asks Tele'ek.`
@@ -373,6 +377,7 @@ mission "Wanderers: Quarg Assistance 1"
 		has "Wanderers: Rek To Kor Efret: done"
 	on offer
 		log "Rek's metamorphosis seems to have given her enhanced ability to understand other languages. She will be staying with the friendly Korath for a while in order to learn how to communicate with them."
+		log "People" "Ektasi Rek" `Rek's Molt has given her enhanced ability not only to understand alien speech, but to mimic the sound of it as well.`
 		conversation
 			`Soon after you and Ektasi Rek land in the Kor Efret spaceport, a small group of Korath gathers around you. No doubt they realize that Rek is one of the new aliens settling in their former territory. But when Rek begins trying to communicate with them, their desire to be understood overcomes whatever hostility they might be feeling.`
 			`	Within a few minutes Rek is playing a sort of game with them where she points at different objects, trying to learn their names, and then uses those names in sentences: This is a table. Rek is on the table. Rek stands on the table. The table is under Rek. The color of the table is black. The color of the table is the same as the color of Rek.`
@@ -909,6 +914,7 @@ mission "Wanderers: Mind 2"
 	blocked "To take this mission, you will need a bunk and two tons of cargo space free."
 	on offer
 		log "The Wanderers have a new plan: to try to either subvert or possibly even befriend the Kor Mereti network by connecting it to a powerful Wanderer artificial intelligence."
+		log "People" "Meto Pa'aret" `Pa'aret runs a Wanderer artificial intelligence laboratory. He is in charge of the effort to establish a connection between the Wanderers and the Kor Mereti collective by introducing a Wanderer "artificial Mind" into the collective.`
 		conversation
 			`On <origin> you are met by a Wanderer named Meto Pa'aret. He explains that he is in charge of the artificial intelligence lab, and he wants to travel with you along with the "Mind" that is being entrusted to your care. "We have already [altered, reconfigured] one of the climate [simulation, prediction] Minds for this new purpose," he says. "It now contains [stores, databases, libraries] of historical and cultural information, things we hope will help the alien [consciousness, intelligence] to [understand, sympathize with] us and realize our intentions are [peaceful, forthright]."`
 			choice
