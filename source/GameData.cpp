@@ -964,7 +964,9 @@ void GameData::PrintWeaponTable()
 {
 	cout << "name" << '\t' << "cost" << '\t' << "space" << '\t' << "range" << '\t'
 		<< "energy/s" << '\t' << "heat/s" << '\t' << "shield/s" << '\t' << "hull/s" << '\t'
-		<< "homing" << '\t' << "strength" << '\n';
+		<< "homing" << '\t' << "strength" << '\t' << "turn/s" << '\t' << "heatdmg/s" << '\t'
+		<< "ion/s" << '\t' << "disruption/s" << '\t' << "slowing/s" << '\t'
+		<< "%piercing" << '\n';
 	for(auto &it : outfits)
 	{
 		// Skip non-weapons and submunitions.
@@ -991,6 +993,21 @@ void GameData::PrintWeaponTable()
 		cout << outfit.Homing() << '\t';
 		double strength = outfit.MissileStrength() + outfit.AntiMissile();
 		cout << strength << '\n';
+		
+		double turretTurn = outfit.TurretTurn() * 60.;
+		cout << turretTurn << '\t';
+		
+		double heatDmg = outfit.HeatDamage() * 60. / outfit.Reload();
+		cout << heatDmg << '\t';
+		double ion = outfit.IonDamage() * 6000. / outfit.Reload();
+		cout << ion << '\t';
+		double disruption = outfit.DisruptionDamage() * 6000. / outfit.Reload();
+		cout << disruption << '\t';
+		double slowing = outfit.SlowingDamage() * 6000. / outfit.Reload();
+		cout << slowing << '\t';
+		
+		double piercing = outfit.Piercing() * 100.;
+		cout << piercing << '\n';
 	}
 	cout.flush();
 }
