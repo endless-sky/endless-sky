@@ -482,11 +482,11 @@ string Planet::DemandTribute(PlayerInfo &player) const
 	subs["<last>"] = player.LastName();
 	subs["<origin>"] = Name();
 	subs["<ship>"] = player.Flagship()->Name();
-	string tributeHail = "";
+	string tributeMessage = "";
 	if(!tribute || !defenseFleet || !defenseCount || player.GetCondition("combat rating") < defenseThreshold)
 	{
-		tributeHail = GetGovernment()->GetTributeMessage(TRIBUTE_IGNORED);
-		return Format::Replace(tributeHail, subs);
+		tributeMessage = GetGovernment()->GetTributeMessage(TRIBUTE_IGNORED);
+		return Format::Replace(tributeMessage, subs);
 	}
 	
 	// The player is scary enough for this planet to take notice. Check whether
@@ -496,8 +496,8 @@ string Planet::DemandTribute(PlayerInfo &player) const
 		isDefending = true;
 		GameData::GetPolitics().Offend(defenseFleet->GetGovernment(), ShipEvent::PROVOKE);
 		GameData::GetPolitics().Offend(GetGovernment(), ShipEvent::PROVOKE);
-		tributeHail = GetGovernment()->GetTributeMessage(TRIBUTE_BATTLE);
-		return Format::Replace(tributeHail, subs);
+		tributeMessage = GetGovernment()->GetTributeMessage(TRIBUTE_BATTLE);
+		return Format::Replace(tributeMessage, subs);
 	}
 	
 	// The player has already demanded tribute. Have they killed off the entire
@@ -512,14 +512,14 @@ string Planet::DemandTribute(PlayerInfo &player) const
 	
 	if(!isDefeated)
 	{
-		tributeHail = GetGovernment()->GetTributeMessage(TRIBUTE_IN_PROGRESS);
-		return Format::Replace(tributeHail, subs);
+		tributeMessage = GetGovernment()->GetTributeMessage(TRIBUTE_IN_PROGRESS);
+		return Format::Replace(tributeMessage, subs);
 	}
 	
-	tributeHail = GetGovernment()->GetTributeMessage(TRIBUTE_SURRENDERED);
+	tributeMessage = GetGovernment()->GetTributeMessage(TRIBUTE_SURRENDERED);
 	player.Conditions()["tribute: " + name] = tribute;
 	GameData::GetPolitics().DominatePlanet(this);
-	return Format::Replace(tributeHail, subs);
+	return Format::Replace(tributeMessage, subs);
 }
 
 
