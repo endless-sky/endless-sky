@@ -992,7 +992,7 @@ void GameData::PrintWeaponTable()
 		
 		cout << outfit.Homing() << '\t';
 		double strength = outfit.MissileStrength() + outfit.AntiMissile();
-		cout << strength << '\n';
+		cout << strength << '\t';
 		
 		double turretTurn = outfit.TurretTurn() * 60.;
 		cout << turretTurn << '\t';
