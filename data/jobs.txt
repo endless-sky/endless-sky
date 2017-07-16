@@ -1483,46 +1483,64 @@ mission "Core Pirate Attack"
 		payment 200000
 		dialog "The government of <planet> pays you <payment> for helping to drive off the pirates."
 
-mission "Renegade Drones 1"
+mission "Renegade Drones Intro"
 	name "Neutralize broken Drone"
-	repeat
 	description "Destroy or disable the malfunctioning Navy drone."
+	deadline 1
 	minor
 	to offer
-		not "Renegade Drones 1: active"
-		not "Renegade Drones 2: active"
-		not "Renegade Drones 3: active"
 		random < 20
 		"combat rating" > 200
-	clearance
 	source "Pilot"
-	destination "Pilot"
 	on offer
 		conversation
-			`Walking past a group of Navy soldiers, you hear one shout out: "Not again, another drone seems to have a malfunction and attacks ships in orbit. Who's turn is it to shoot it down?"`
-			`Nobody answers.`
-			`What do you want to do?`
+			`Walking past a group of new Navy recruits, you hear one say, "One more of our drones seems to have malfunctioned in orbit, attacking any ship on its scanners. We need to take care of it before our commanding officers find out about this. Whose turn is it this time?"`
 			choice
 				`	(Raise your hand and offer to shoot it down.)`
 					goto yes
 				`	(Ignore them and walk on.)`
-					decline
+					defer
 			label yes
 			`You raise your hand and one of the soldiers notices you.`
-			`"You? Why not. Try not to hurt yourself."`
-			`You got the job.`
-				accept
+			`	"You? Why not. Try not to hurt yourself."`
+			`	You got the job.`
+				launch
 	npc evade
 		government "Renegade"
-		personality heroic target vindictive nemesis marked
+		personality waiting heroic target vindictive marked
 			confusion 30
 		fleet
 			names "republic fighter"
 			variant
 				"Combat Drone" 1
 	on complete
-		payment 20000
-		dialog `A Navy soldier approaches you. "Well done!", and with a firm hand shake she hands you <payment>.`
+		payment 5000
+		dialog `One of the Navy recruits approaches you. She says, "Well done!" and with a firm handshake she gives you <payment>.`
+
+mission "Renegade Drones 1"
+	name "Defeat a renegade drone"
+	description "Another of the Navy recruits' practice drones has gone haywire. Defeat it and return to <destination>."
+	job
+	repeat
+	to offer
+		random < 20
+		has "Renegade Drones Intro: done"
+	source
+		near "Elnath" 2
+	destination "Pilot"
+	npc evade
+		government "Renegade"
+		personality waiting heroic target vindictive marked
+			confusion 30
+		system "Elnath"
+		fleet
+			names "republic fighter"
+			variant
+				"Combat Drone" 1
+	on complete
+		payment 5000
+		dialog `After you land, a Navy recruit hands you <payment>.`
+
 
 mission "Renegade Drones 2"
 	name "Neutralize broken Drones"
@@ -1536,9 +1554,7 @@ mission "Renegade Drones 2"
 		random < 10
 		"Renegade Drones 1: done" > 3
 		"combat rating" > 600
-	clearance
 	source "Pilot"
-	destination "Pilot"
 	on offer
 		conversation
 			`Walking through the space port, you are approached by a Navy officer. "Captain <last>?" she asks. You nod. "I've heard you're quite good at shooting things from the sky. A group of drones we've tested experienced a malfunction. Now they rampage through the system attacking everything getting in their way. Unfortunately, we lack personnel at the moment. Would you be willing to help us out and shoot down the malfunctioning drones?"`
@@ -1557,7 +1573,7 @@ mission "Renegade Drones 2"
 				"Combat Drone" 10
 	npc evade
 		government "Renegade"
-		personality waiting heroic vindicitive target
+		personality waiting heroic target vindicitive
 			confusion 30
 		fleet
 			names "republic fighter"
@@ -1586,12 +1602,10 @@ mission "Renegade Drones 3"
 		random < 5
 		"Renegade Drones 2: done" > 3
 		"combat rating" > 1200
-	clearance
 	source "Pilot"
-	destination "Pilot"
 	on offer
 		conversation
-			`You abruptly turn around when a rough but very distinct voice calls your name: "Captain <last>! Been looking for you." You stand in front a senior Navi Captain. "One says, you have quite some experience with drones going berzerk. Apparently, those guys from the lab meant it a little bit to well with the artificial intelligence in our newest drone model. It seems it started wondering, why it should work for us. Would you be willing to, let's say, correct their mistake?"`
+			`You abruptly turn around when a rough but very distinct voice calls your name: "Captain <last>! Been looking for you." You stand in front of a senior Navy captain. "One says, you have quite some experience with drones going berserk. Apparently, those guys from the lab meant it a little bit too well with the artificial intelligence in our newest drone model. It seems it started wondering, why it should work for us. Would you be willing to, let's say, correct their mistake?"`
 			choice
 				`	"Preventing the rise of the machines? Would be hard to say no."`
 					goto yes
@@ -1607,15 +1621,15 @@ mission "Renegade Drones 3"
 		fleet
 			names "female names"
 			variant
-				"Heavy Combat Drone" 20
+				"Combat Drone (Heavy)" 20
 	npc evade
 		government "Renegade"
-		personality waiting heroic vindictive target
+		personality waiting heroic target vindictive
 			confusion 0
 		fleet
 			names "male names"
 			variant
-				"Heavy Combat Drone" 50
+				"Combat Drone (Heavy)" 50
 	npc
 		government "Republic"
 		personality waiting heroic uninterested
@@ -1627,24 +1641,79 @@ mission "Renegade Drones 3"
 		payment 400000
 		dialog "Collecting your payment of <payment>, you still wonder if it was the right choice to destroy an emerging intelligence."
 
+ship "Combat Drone" "Combat Drone (Heavy)"
+        attributes
+                category "Drone"
+                licenses
+                        Navy
+                "cost" 160000
+                "shields" 200
+                "hull" 600
+                "mass" 25
+                "drag" .65
+                "heat dissipation" .85
+                "outfit space" 72
+                "weapon capacity" 15
+                "engine capacity" 30
+                "automaton" 1
+                weapon
+                        "blast radius" 5
+                        "shield damage" 50
+                        "hull damage" 25
+                        "hit force" 75
+        outfits
+                "Heavy Laser"
+
+                "D14-RN Shield Generator"
+
+                "Supercapacitor"
+                "nGVF-AA Fuel Cell"
+
+                "X1050 Ion Engines"
+
+        gun 0 -29 "Heavy Laser"
+
 government "Renegade"
 	swizzle 0
 	"player reputation" -1000
 	"attitude toward"
 		# Broken drones don't like anybody
-		"Merchant" -.1
-		"Pirate" -.1
-		"Bounty Hunter" -.1
-		"Republic" -.5
-		"Navy Intelligence" -.5
-		"Navy (Oathkeeper)" -.5
-	"penalty for"
-		assist 0
-		disable 0
-		board 0
-		capture 0
-		destroy 0
-		atrocity 0
+		"Merchant" -.01
+		"Pirate" -.01
+		"Bounty Hunter" -.01
+		"Republic" -.01
+		"Navy Intelligence" -.01
+		"Navy (Oathkeeper)" -.01
+		"Alpha" -.01
+		"Author" -.01
+		"Bounty" -.01
+		"Coalition" -.01
+		"Deep" -.01
+		"Drak" -.01
+		"Escort" -.01
+		"Free Worlds" -.01
+		"Hai" -.01
+		"Hai (Unfettered)" -.01
+		"Heliarch" -.01
+		"Independent" -.01
+		"Indigenous Lifeform" -.01
+		"Korath" -.01
+		"Korath Nanobots" -.01
+		"Kor Efret" -.01
+		"Kor Mereti" -.01
+		"Kor Sestor" -.01
+		"Militia" -.01
+		"Neutral" -.01
+		"Parrot" -.01
+		"Pug" -.01
+		"Quarg" -.01
+		"Remnant" -.01
+		"Syndicate" -.01
+		"Syndicate (Extremist)" -.01
+		"Test Dummy" -.01
+		"Uninhabited" -.01
+		"Wanderer" -.01
+
 
 mission "Cargo [0]"
 	name "Delivery to <planet>"

@@ -872,21 +872,18 @@ mission "There Might Be Riots part 3B"
 		government "Team Red"
 		personality heroic nemesis
 		fleet
-			names "republic fighter"
 			variant
 				"Combat Drone" 15
 	npc
 		government "Team Red"
 		personality waiting heroic
 		fleet
-			names "republic fighter"
 			variant
 				"Combat Drone" 20
 	npc
 		government "Team Blue"
 		personality waiting heroic
 		fleet
-			names "republic fighter"
 			variant
 				"Combat Drone" 35
 	

@@ -867,45 +867,6 @@ ship "Combat Drone"
 
 
 
-ship "Heavy Combat Drone"
-        sprite "ship/combat drone"
-        attributes
-                category "Drone"
-                licenses
-                        Navy
-                "cost" 160000
-                "shields" 200
-                "hull" 600
-                "mass" 25
-                "drag" .65
-                "heat dissipation" .85
-                "outfit space" 72
-                "weapon capacity" 15
-                "engine capacity" 30
-                "automaton" 1
-                weapon
-                        "blast radius" 5
-                        "shield damage" 50
-                        "hull damage" 25
-                        "hit force" 75
-        outfits
-                "Heavy Laser"
-
-                "D14-RN Shield Generator"
-
-                "Supercapacitor"
-                "nGVF-AA Fuel Cell"
-
-                "X1050 Ion Engines"
-
-        engine -9 29
-        engine 9 29
-        gun 0 -29 "Heavy Laser"
-        explode "tiny explosion" 15
-        description "One evening at a party on Pilot, an engineer imagined, what if a Combat Drone carried a Heavy Laser? Nobody objected and so the Heavy Combat Drone came in existance."
-
-
-
 ship "Corvette"
 	sprite "ship/corvette"
 	attributes
