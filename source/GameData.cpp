@@ -966,7 +966,7 @@ void GameData::PrintWeaponTable()
 		<< "energy/s" << '\t' << "heat/s" << '\t' << "shield/s" << '\t' << "hull/s" << '\t'
 		<< "homing" << '\t' << "strength" << '\t' << "turn/s" << '\t' << "heatdmg/s" << '\t'
 		<< "ion/s" << '\t' << "disruption/s" << '\t' << "slowing/s" << '\t'
-		<< "%piercing" << '\n';
+		<< "piercing" << '\n';
 	for(auto &it : outfits)
 	{
 		// Skip non-weapons and submunitions.
@@ -1006,8 +1006,7 @@ void GameData::PrintWeaponTable()
 		double slowing = outfit.SlowingDamage() * 6000. / outfit.Reload();
 		cout << slowing << '\t';
 		
-		double piercing = outfit.Piercing() * 100.;
-		cout << piercing << '\n';
+		cout << outfit.Piercing() << '\n';
 	}
 	cout.flush();
 }
