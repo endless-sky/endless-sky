@@ -70,7 +70,7 @@ public:
 	// and if the ship is disabled).
 	std::string GetHail(bool isDisabled) const;
 	// Get the government's tribute messages.
-	const std::string GetTributeMessage(int condition) const;
+	std::string GetTributeMessage(int condition) const;
 	
 	// Find out if this government speaks a different language.
 	const std::string &Language() const;
