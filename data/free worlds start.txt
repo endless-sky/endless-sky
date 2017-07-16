@@ -346,7 +346,7 @@ mission "FW Syndicate Diplomacy 1B"
 	
 	on offer
 		log "Visited the Syndicate and worked out a deal where they promised to stay neutral. They are expecting to profit from selling weapons to both sides in this war. Also discovered that Katya is in the Republic's custody and is accused of terrorist activity."
-		log "People" "Katya Reynolds" `Katya was on Clink when the Navy invaded the Kornephoros system, as was taken captive by them and imprisoned as a war criminal.`
+		log "People" "Katya Reynolds" `Katya was on Clink when the Navy invaded the Kornephoros system, and was taken captive by them and imprisoned as a war criminal.`
 		conversation
 			`As you land, Alondo says to you, "Let me do the talking, please." You are met almost immediately by two men in suits, who escort you to a room in the Syndicate headquarters. Six men are sitting on one side of a large mahogany conference table; they gesture for the two of you to be seated on the other side.`
 			`	You introduce yourselves. "Thank you for meeting with us," says Alondo.`
