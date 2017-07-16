@@ -246,21 +246,17 @@ string Government::GetHail(bool isDisabled) const
 // Get the government's tribute-related messages.
 string Government::GetTributeMessage(int condition) const
 {
-	const int TRIBUTE_RELINQUISHED = 0;
-	const int TRIBUTE_IGNORED = 1;
-	const int TRIBUTE_IN_PROGRESS = 2;
-	const int TRIBUTE_BATTLE = 3;
+	const vector<const Phrase *> phrases = {
+		tributeRelinquishedMessage,
+		tributeIgnoredMessage,
+		tributeInProgressMessage,
+		tributeBattleMessage,
+		tributeSurrenderedMessage
+	};
+	if(condition < 0 || condition > (int)phrases.size())
+		return phrases[0]->Get();
 	
-	if(condition == TRIBUTE_RELINQUISHED)
-		return tributeRelinquishedMessage->Get();
-	else if(condition == TRIBUTE_IGNORED)
-		return tributeIgnoredMessage->Get();
-	else if(condition == TRIBUTE_IN_PROGRESS)
-		return tributeInProgressMessage->Get();
-	else if(condition == TRIBUTE_BATTLE)
-		return tributeBattleMessage->Get();
-	else 
-		return tributeSurrenderedMessage->Get();
+	return phrases[condition]->Get();
 }
 
 
