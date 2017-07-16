@@ -1490,6 +1490,7 @@ mission "Renegade Drones 1"
 	minor
 	to offer
 		not "Renegade Drones 1: active"
+		not "Renegade Drones 2: active"
 		random < 20
 		"combat rating" > 200
 	clearance
@@ -1521,6 +1522,55 @@ mission "Renegade Drones 1"
 	on complete
 		payment 20000
 		dialog `A Navy soldier approaches you. "Well done!", and with a firm hand shake she hands you <payment>.`
+
+mission "Renegade Drones 2"
+	name "Neutralize broken Drones"
+	repeat
+	description "Destroy or disable the malfunctioning Navy drones."
+	minor
+	to offer
+		not "Renegade Drones 1: active"
+		not "Renegade Drones 2: active"
+		random < 10
+		"Renegade Drones 1: done" > 3
+		"combat rating" > 600
+	clearance
+	source "Pilot"
+	destination "Pilot"
+	on offer
+		conversation
+			`Walking through the space port, you are approached by a Navy officer. "Captain <last>?" she asks. You nod. "I've heard you're quite good at shooting things from the sky. A group of drones we've tested experienced a malfunction. Now they rampage through the system attacking everything getting in their way. Unfortunately, we lack personnel at the moment. Would you be willing to help us out and shoot down the malfunctioning drones?"`
+			choice
+				`	"Sure, I always welcome targeting practice."`
+					accept
+				`	"No, sorry, I'm busy right now."`
+					decline
+	npc evade
+		government "Renegade"
+		personality heroic target vindictive nemesis
+			confusion 30
+		fleet
+			names "republic fighter"
+			variant
+				"Combat Drone" 10
+	npc evade
+		government "Renegade"
+		personality waiting heroic vindicitive target
+			confusion 30
+		fleet
+			names "republic fighter"
+			variant
+				"Combat Drone" 30
+	npc
+		personality heroic staying uninterested
+		government "Republic"
+		fleet
+			names "republic fighter"
+			variant
+				"Combat Drone" 20
+	on complete
+		payment 200000
+		dialog "You got the drones under control and collect your payment of <payment>."
 
 government "Renegade"
 	swizzle 0
