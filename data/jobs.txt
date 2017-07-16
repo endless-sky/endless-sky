@@ -1529,7 +1529,7 @@ mission "Renegade Drones 1"
 		near "Elnath" 2
 	destination "Pilot"
 	npc evade
-		government "Renegade"
+		government "Bounty"
 		personality waiting heroic target vindictive marked
 			confusion 30
 		system "Elnath"
@@ -1564,7 +1564,7 @@ mission "Renegade Drones 2"
 				`	"No, sorry, I'm busy right now."`
 					decline
 	npc evade
-		government "Renegade"
+		government "Bounty"
 		personality heroic target vindictive nemesis
 			confusion 30
 		fleet
@@ -1572,7 +1572,7 @@ mission "Renegade Drones 2"
 			variant
 				"Combat Drone" 10
 	npc evade
-		government "Renegade"
+		government "Bounty"
 		personality waiting heroic target vindicitive
 			confusion 30
 		fleet
@@ -1581,7 +1581,7 @@ mission "Renegade Drones 2"
 				"Combat Drone" 30
 	npc
 		personality heroic staying uninterested
-		government "Republic"
+		government "Support"
 		fleet
 			names "republic fighter"
 			variant
@@ -1615,7 +1615,7 @@ mission "Renegade Drones 3"
 			`"Great! A group of Combat Drones will support you."`
 				accept
 	npc evade
-		government "Renegade"
+		government "Bounty"
 		personality heroic target nemesis
 			confusion 0
 		fleet
@@ -1623,7 +1623,7 @@ mission "Renegade Drones 3"
 			variant
 				"Combat Drone (Heavy)" 20
 	npc evade
-		government "Renegade"
+		government "Bounty"
 		personality waiting heroic target vindictive
 			confusion 0
 		fleet
@@ -1631,7 +1631,7 @@ mission "Renegade Drones 3"
 			variant
 				"Combat Drone (Heavy)" 50
 	npc
-		government "Republic"
+		government "Support"
 		personality waiting heroic uninterested
 		fleet
 			names "republic fighter"
@@ -1673,47 +1673,11 @@ ship "Combat Drone" "Combat Drone (Heavy)"
 
         gun 0 -29 "Heavy Laser"
 
-government "Renegade"
+government "Support"
 	swizzle 0
-	"player reputation" -1000
+	"player reputation" 1
 	"attitude toward"
-		# Broken drones don't like anybody
-		"Merchant" -.01
-		"Pirate" -.01
-		"Bounty Hunter" -.01
-		"Republic" -.01
-		"Navy Intelligence" -.01
-		"Navy (Oathkeeper)" -.01
-		"Alpha" -.01
-		"Author" -.01
 		"Bounty" -.01
-		"Coalition" -.01
-		"Deep" -.01
-		"Drak" -.01
-		"Escort" -.01
-		"Free Worlds" -.01
-		"Hai" -.01
-		"Hai (Unfettered)" -.01
-		"Heliarch" -.01
-		"Independent" -.01
-		"Indigenous Lifeform" -.01
-		"Korath" -.01
-		"Korath Nanobots" -.01
-		"Kor Efret" -.01
-		"Kor Mereti" -.01
-		"Kor Sestor" -.01
-		"Militia" -.01
-		"Neutral" -.01
-		"Parrot" -.01
-		"Pug" -.01
-		"Quarg" -.01
-		"Remnant" -.01
-		"Syndicate" -.01
-		"Syndicate (Extremist)" -.01
-		"Test Dummy" -.01
-		"Uninhabited" -.01
-		"Wanderer" -.01
-
 
 mission "Cargo [0]"
 	name "Delivery to <planet>"
