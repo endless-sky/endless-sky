@@ -173,6 +173,11 @@ mission "FW Epilogue: Danforth"
 			label end
 			`	"Are the pirates giving you any trouble?" you ask.`
 			`	"A bit," he says. "We still have far too many pirates in this sector, in part due to the Free Worlds driving them out of the south. The pirates grew stronger and more bold as the war dragged on, when all our fleets were busy elsewhere, but now we're beginning to get them under control again."`
-			`	Then he leans forward and says, more quietly, "Of course, you and I both know the pirates aren't the main threat. Raven is off infiltrating Syndicate worlds even as we speak, and several of my other best intelligence officers, too. The Syndicate wants us to believe that they've weeded out all the rotten apples from their ranks, but we're keeping an eye on them, all the same."`
+			branch reconciliation
+				has "FW Defend New Tibet: done"
+			`	After you talk for a while longer, Danforth wishes you luck and sends you on your way. "I'll be in touch if we ever need your assistance in the future," he says.`
+				decline
+			label reconciliation
+			`	Then he leans forward and says, more quietly, "Of course, you and I both know the pirates aren't the main threat. Raven is off infiltrating Syndicate worlds even as we speak, along with several of my other best intelligence officers. The Syndicate wants us to believe that they've weeded out all the rotten apples from their ranks, but we're keeping an eye on them, all the same."`
 			`	After you talk for a while longer, Danforth wishes you luck and sends you on your way. "I'll be in touch if we ever need your assistance in the future," he says.`
 				decline
