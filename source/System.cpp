@@ -265,9 +265,9 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 	// and stellar wind values for the stars in the system.
 	for(StellarObject &object : objects)
 	{
-		if(object.IsStar())
+        if(object.IsStar())
             AddStar(object.GetSprite()->Name());
-		
+        
 		if(object.message || object.planet)
 			continue;
 		
@@ -308,8 +308,8 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 				object.message = &UNINHABITEDPLANET;
 		}
 	}
-	
-    // Make sure that the stellarWindStrength and luminosity are not game brakeingly low or high.
+
+    // Make sure that the stellarWindStrength and luminosity are reasonable.
     stellarWindStrength = std::max(0.25, stellarWindStrength);
     luminosity = std::max(0.5, luminosity);
     luminosity = std::min(2.0, luminosity);

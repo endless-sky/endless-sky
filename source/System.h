@@ -137,20 +137,20 @@ public:
 	double Danger() const;
 	
 	// Get the effectiveness of ramscoops and solar panels in this system.
-	double GetStellarWindStrength() const;
-	double GetLuminosity() const;
+    double GetStellarWindStrength() const;
+    double GetLuminosity() const;
 	
 	
 private:
 	void LoadObject(const DataNode &node, Set<Planet> &planets, int parent = -1);
 
     // Update stellarWindStrength and luminosity to include the star's effects in the system.
-	void AddStar(const std::string starName);
-	// Helper function for AddStar() that does the actual value 
-	// incrementation of luminosity and stellarWindStrength.
-	void ApplyNewStar(double starWind, double starLuminosity);
-	
-	
+    void AddStar(const std::string starName);
+    // Helper function for AddStar() that does the actual value 
+    // incrementation of luminosity and stellarWindStrength.
+    void ApplyNewStar(double starWind, double starLuminosity);
+
+
 private:
 	class Price {
 	public:
@@ -190,8 +190,8 @@ private:
 	std::map<std::string, Price> trade;
 		
 	// Effectiveness of ramscoop and solar panels in this system.
-	double stellarWindStrength;
-	double luminosity;
+    double stellarWindStrength;
+    double luminosity;
 };
 
 
