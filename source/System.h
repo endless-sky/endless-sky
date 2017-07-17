@@ -189,7 +189,8 @@ private:
 	// Commodity prices.
 	std::map<std::string, Price> trade;
 		
-	// Effectiveness of ramscoop and solar panels in this system.
+	// Physical attributes of the space in the system. They effect things
+	// such as ramscoops and solar panels.
     double stellarWindStrength;
     double luminosity;
 };
