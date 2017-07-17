@@ -790,7 +790,7 @@ mission "FW Katya 2B"
 				`	"How does that even work?"`
 				`	"Is that even legal?"`
 			
-			`	"I go from world to world checking out plant emissions, to see if they're leaking isotopes into the air, the sea, or the groundwater. And if they are I sic the Department of Atomic Safety on them. The Syndicate hates my guts right now."`
+			`	"I go from world to world checking out plant emissions, to see if they're leaking isotopes into the air, the sea, or the groundwater. And if they are I sic the Department of Atomic Safety on them. The Syndicate have probably placed quite the sum of money on my head."`
 			`	"So, what has Katya asked you to do for the Free Worlds?" you ask.`
 			`	"Isn't it obvious?" he says. "We're going to hunt down certain naughty people who have been developing nuclear weapons, and the Free Worlds will turn them over to the Republic. Then the Republic will know that the Free Worlds weren't behind the attacks, and we'll stop this whole mess before it devolves into a civil war."`
 			choice
