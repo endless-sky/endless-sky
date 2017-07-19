@@ -9,4 +9,4 @@
 /obj/Release/
 /obj/Win32/
 /bin/
-
+.winmake
