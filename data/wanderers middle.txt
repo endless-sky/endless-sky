@@ -231,12 +231,11 @@ event "wanderers: kaliptari battle begins"
 
 event "wanderers: kaliptari battle ends"
 	system Kaliptari
-		fleet "Large Quarg" 2000
-		fleet "Small Kor Mereti" 8000
-		fleet "Large Kor Mereti" 3600
-		fleet "Wanderer Defense" 1000
-		fleet "Wanderer Drones" 500
-		fleet "Wanderer Flycatchers" 500
+		add fleet "Large Quarg" 2000
+		add fleet "Small Kor Mereti" 8000
+		add fleet "Large Kor Mereti" 3600
+		add fleet "Wanderer Defense" 1000
+		add fleet "Wanderer Drones" 500
 
 mission "Wanderers: First Mereti Attack"
 	landing
@@ -1094,11 +1093,10 @@ mission "Wanderers: Mind 6"
 
 event "wanderers: kor mereti transformation"
 	system Chimitarp
-		fleet "Small Kor Mereti" 200
-		fleet "Large Kor Mereti" 400
+		add fleet "Small Kor Mereti" 250
+		add fleet "Large Kor Mereti" 450
 	planet "Korbatri Eska"
-		description `The cities on this world have been hit by an astonishing variety of weapons. Some were leveled by massive explosions, while others show signs of strafing by low-flying ships or of orbital bombardment. Outside the cities, the land is fruitful and varied: forests, mountains, oceans, desert, and tundra.`
-		description `	Far from the ruined cities, the Kor Mereti have begun building a sort of village of their own: a sprawling complex of greenhouses containing a wide variety of plant samples.`
+		add description `	Far from the ruined cities, the Kor Mereti have begun building a sort of village of their own: a sprawling complex of greenhouses containing a wide variety of plant samples.`
 
 mission "Wanderers: Mind 7"
 	landing
@@ -1662,30 +1660,18 @@ event "wanderers: kor sestor are aimless"
 		fleet "Large Kor Mereti" 900
 		fleet "Large Kor Sestor" 5000
 	system Eshkoshtar
-		fleet "Small Kor Mereti" 800
-		fleet "Large Kor Mereti" 1600
-		fleet "Kor Mereti Miners" 3000
+		remove fleet "Large Kor Sestor"
 	system Salipastart
-		fleet "Small Kor Mereti" 800
-		fleet "Large Kor Mereti" 1600
-		fleet "Kor Mereti Miners" 3000
+		remove fleet "Large Kor Sestor"
 	system Mekislepti
-		fleet "Small Kor Mereti" 1000
-		fleet "Large Kor Mereti" 3000
-		fleet "Kor Mereti Miners" 2000
+		remove fleet "Large Kor Sestor"
 	system Similisti
-		fleet "Large Kor Mereti" 1600
-		fleet "Small Kor Mereti" 600
-		fleet "Kor Mereti Miners" 1600
+		remove fleet "Large Kor Sestor"
 	system Faronektu
-		fleet "Small Kor Mereti" 1200
-		fleet "Large Kor Mereti" 2000
-		fleet "Kor Mereti Miners" 2000
+		remove fleet "Large Kor Sestor"
 	planet "Varu K'prai"
-		attributes wanderer oil
 		landscape land/beach1
-		description `This is one of the only Wanderer worlds that still has large reserves of oil, albeit deep below the ocean surface where mining is difficult. Aside from the drilling companies and refineries, the largest local employer is the local government's safety oversight department, whose inspectors are constantly visiting the drilling platforms and shipping hubs to ensure that all the regulations for preventing oil spills are being followed.`
-		description `	There used to be a thriving spaceport here, but it has been razed to the ground by the Kor Sestor fleet.`
+		add description `	There used to be a thriving spaceport here, but it has been razed to the ground by the Kor Sestor fleet.`
 		remove spaceport
 		remove outfitter
 		remove "required reputation"
@@ -3039,8 +3025,8 @@ event "wanderers: sestor shutdown"
 		fleet "Small Kor Sestor" 3200
 		fleet "Large Kor Sestor" 4800
 	system "Mesuket"
-		fleet "Large Kor Mereti" 900
-		fleet "Large Kor Sestor" 10000
+		remove fleet "Large Kor Sestor"
+		add fleet "Large Kor Sestor" 10000
 
 mission "Wanderers: Sestor: Factory 3"
 	landing
@@ -3148,7 +3134,7 @@ event "wanderers: sestor eliminated"
 		government "Uninhabited"
 		fleet "Large Kor Mereti" 2000
 	system "Mesuket"
-		fleet "Large Kor Mereti" 900
+		remove fleet "Large Kor Sestor"
 
 event "wanderers: sabira eseskrai colony"
 	system "Skeruto"
@@ -3158,9 +3144,9 @@ event "wanderers: sabira eseskrai colony"
 		fleet "Wanderer Drones" 800
 		fleet "Kor Efret Home" 800
 	system "Furmeliki"
-		fleet "Large Quarg" 1000
-		fleet "Kor Efret Home" 800
+		add fleet "Kor Efret Home" 800
 	planet "Sabira Eseskrai"
+		add attributes wanderer
 		description `Long ago, this planet was home to several Korath oil mining settlements, but now all that remains visible are the tops of a few dozen of the tallest buildings. Everything else has been buried by sandstorms.`
 		description `	Due to a recent shift in climate the deserts have begun shrinking once more, with local vegetation growing to cover more and more land each year. The Wanderers, working together with the Kor Efreti, have founded a settlement here and begun working to accelerate the process of rejuvenating the wastelands.`
 		spaceport `This small settlement is populated by a roughly equal number of Korath and Wanderer settlers. Since most of them do not speak each other's language, the two groups do not mingle much, and communicate mostly via gestures and drawings. It's not much, but it's at least a start for the two species to begin learning from each other.`
