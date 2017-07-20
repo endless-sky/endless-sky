@@ -434,9 +434,8 @@ event "Sich'ka'ara empty"
 
 event "Sich'ka'ara restored"
 	system "Sich'ka'ara"
-		fleet "Wanderer Freight" 600
-		fleet "Wanderer Drones" 3000
-		fleet "Wanderer Defense" 2000
+		add fleet "Wanderer Freight" 600
+		add fleet "Wanderer Defense" 2000
 
 
 
@@ -573,19 +572,14 @@ event "wanderer / unfettered peace"
 		"attitude toward"
 			"Wanderer" 0
 	system "Ehma Ti"
-		fleet "Small Unfettered" 500
-		fleet "Large Unfettered" 500
-		fleet "Unfettered Tribute" 1000
+		remove fleet "Unfettered Raid"
+		add fleet "Unfettered Tribute" 1000
 	system "Chy'chra"
-		fleet "Wanderer Freight" 1500
-		fleet "Wanderer Drones" 1000
-		fleet "Wanderer Defense" 300
-		fleet "Unfettered Tribute" 2000
+		remove fleet "Unfettered Raid"
+		add fleet "Unfettered Tribute" 2000
 	system "Prakacha'a"
-		fleet "Wanderer Freight" 400
-		fleet "Wanderer Drones" 400
-		fleet "Wanderer Defense" 400
-		fleet "Unfettered Tribute" 2000
+		remove fleet "Unfettered Raid"
+		add fleet "Unfettered Tribute" 2000
 
 
 
@@ -2060,10 +2054,9 @@ mission "Wanderers Defend Sich'ka'ara"
 
 event "battle for sich'ka'ara ends"
 	system "Sich'ka'ara"
-		fleet "Wanderer Freight" 900
-		fleet "Wanderer Defense" 400
-		fleet "Wanderer Flycatchers" 300
-		fleet "Large Unfettered" 400
+		add fleet "Wanderer Freight" 900
+		add fleet "Wanderer Defense" 400
+		add fleet "Large Unfettered" 400
 	system "Chirr'ay'akai"
 		government "Hai (Unfettered)"
 		fleet "Wanderer Defense" 800
@@ -2347,11 +2340,10 @@ event "battle for ap'arak"
 
 event "battle for ap'arak ends"
 	system "Ap'arak"
-		fleet "Wanderer Freight" 2000
-		fleet "Wanderer Drones" 4000
-		fleet "Wanderer Defense" 600
-		fleet "Wanderer Flycatchers" 400
-		fleet "Large Unfettered" 700
+		add fleet "Wanderer Freight" 2000
+		add fleet "Wanderer Drones" 4000
+		add fleet "Wanderer Defense" 600
+		add fleet "Large Unfettered" 700
 
 mission "Wanderers Ap'arak 2"
 	landing
