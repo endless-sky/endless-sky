@@ -574,8 +574,12 @@ void AI::Step(const PlayerInfo &player)
 				if(escort && escort->CanBeCarried() && escort->GetSystem() == it->GetSystem()
 						&& !escort->IsDisabled())
 				{
-					mustRecall = true;
-					break;
+					const string &category = escort->Attributes().Category();
+					if(it->BaysFree(category == "Fighter"))
+					{
+						mustRecall = true;
+						break;
+					}
 				}
 			}
 		
