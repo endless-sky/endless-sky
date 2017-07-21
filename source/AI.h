@@ -20,6 +20,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <list>
 #include <map>
 #include <memory>
+#include <vector>
 
 class Angle;
 class AsteroidField;
@@ -79,6 +80,8 @@ private:
 	bool HasHelper(const Ship &ship, const bool needsFuel);
 	// Pick a new target for the given ship.
 	std::shared_ptr<Ship> FindTarget(const Ship &ship) const;
+	// Obtain a list of ships matching the desired hostility.
+	std::vector<std::shared_ptr<Ship>> GetShipsList(const Ship &ship, bool targetEnemies, double maxRange = -1.) const;
 	
 	bool FollowOrders(Ship &ship, Command &command) const;
 	void MoveIndependent(Ship &ship, Command &command) const;
@@ -211,6 +214,7 @@ private:
 	
 	std::map<const Government *, int64_t> enemyStrength;
 	std::map<const Government *, int64_t> allyStrength;
+	std::map<const Government *, std::vector<std::shared_ptr<Ship>>> governmentRosters;
 };
 
 
