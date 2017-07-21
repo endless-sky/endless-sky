@@ -61,7 +61,8 @@ ship "Starling"
 	explode "small explosion" 20
 	explode "medium explosion" 10
 	"final explode" "final explosion small" 1
-	description "TBD"
+	description "One of the strangest and most useful things that the Remnant discovered in the abandoned worlds of the Ember Waste is alien cloaking technology. They designed their scout ships to be able to cloak when needed, in order to explore alien territory without being seen... or to escape in a hurry after stealing something particularly valuable from those aliens."
+	description "	The cloaking technology is built into the Starling's hull; it cannot be removed or transferred to another ship."
 
 ship "Starling" "Starling (Heavy)"
 	outfits
@@ -189,6 +190,7 @@ ship "Albatross"
 	explode "large explosion" 40
 	explode "huge explosion" 10
 	"final explode" "final explosion large" 1
+	description "Once they left human space, it became apparent to the Remnant that they would need to build their own shipyards in order to defend themselves if they were discovered by the Alphas or any other unfriendly faction. Using new composite materials that they discovered, they built ships very different from anything seen in human space."
 
 ship "Albatross" "Albatross (Sniper)"
 	outfits
@@ -303,3 +305,4 @@ ship Gascraft
 	engine 0 30
 	explode "tiny explosion" 8
 	explode "small explosion" 7
+	description "Centuries ago, the Remnant built these ships in order to explore the upper atmosphere of nearby gas giants. The Archons took issue with the Remnant's research methods, and the studies were unable to be completed. The remaining gascraft have been gathering dust in storage for centuries while the Remnant waits to see if the anger of the Archons will subside."
