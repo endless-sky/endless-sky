@@ -639,9 +639,10 @@ void System::LoadObject(const DataNode &node, Set<Planet> &planets, int parent)
 	StellarObject &object = objects.back();
 	object.parent = parent;
 	
-	if(node.Size() >= 2)
+	bool isAdded = (node.Token(0) == "add");
+	if(node.Size() >= 2 + isAdded)
 	{
-		Planet *planet = planets.Get(node.Token(1));
+		Planet *planet = planets.Get(node.Token(1 + isAdded));
 		object.planet = planet;
 		planet->SetSystem(this);
 	}
