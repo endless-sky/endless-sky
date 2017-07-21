@@ -146,10 +146,7 @@ private:
 
 	// Update stellarWindStrength and luminosity to include the star's effects in the system.
 	void AddStar(const std::string starName);
-	// Helper function for AddStar() that does the actual value 
-	// incrementation of luminosity and stellarWindStrength.
-	void ApplyNewStar(double starWind, double starLuminosity);
-
+	
 
 private:
 	class Price {
@@ -191,8 +188,8 @@ private:
 		
 	// Physical attributes of the space in the system. They effect things
 	// such as ramscoops and solar panels.
-	double stellarWindStrength;
-	double luminosity;
+	double stellarWindStrength = 0;
+	double luminosity = 0;
 };
 
 

@@ -1,0 +1,89 @@
+# Copyright (c) 2015 by Michael Zahniser
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+
+star a0
+	luminosity 1.8
+	wind 0.8
+
+star a5
+	luminosity 1.6
+	wind 0.85
+
+star b5
+	luminosity 2.0
+	wind 0.75
+
+star f0
+	luminosity 1.5
+	wind 0.9
+
+star f5
+	luminosity 1.2
+	wind 0.95
+
+star f5-old
+	luminosity 1.2
+	wind .95
+
+star g0
+	luminosity 1.0
+	wind 1.0
+
+star g0-old
+	luminosity 1.0
+	wind 1.0
+
+star g5
+	luminosity 0.9
+	wind 0.9
+
+star g5-old
+	luminosity 0.9
+	wind 0.9
+
+star giant
+	luminosity 1.3
+	wind 2.0
+
+star k0
+	luminosity 0.85
+	wind 0.8
+
+star k0-old
+	luminosity 0.85 
+	wind 0.8
+
+star k5
+	luminosity 0.8
+	wind 0.7
+
+star k5-old
+	luminosity 0.8
+	wind 0.7
+
+star m0
+	luminosity 0.7
+	wind 0.6
+
+star m4 
+	luminosity 0.6
+	wind 0.5
+
+star m8
+	luminosity 0.5
+	wind 0.4
+
+star nova
+	luminosity 0.5
+	wind 4.0
+
+star wr
+	luminosity 2.0
+	wind 4.0
