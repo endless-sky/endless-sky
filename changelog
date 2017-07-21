@@ -81,7 +81,7 @@ Version 0.9.7:
       * Names for illegal commodities. (@Bladewood, @Wrzlprnft, @Disiuze, @Pointedstick, @kaylara, @comnom)
       * New hail messages. (@ph2000bis, @BlackVegetable)
       * Clearer instructions on placing the thruster on the asteroid in the terraforming missions. (@Tadrix)
-      * Added some new landscape images. (@jafdy, @Iridium Ore, @spfldsatellite)
+      * Added some new landscape images. (@jafdy, @IridiumOre, @spfldsatellite)
       * Added a bunch of new hails from the Wanderers. (@Elyssaen)
       * Various fixes to the time scales in the histories of different alien species.
       * It's no longer possible to get pirates to be friendly except by attacking merchants.
@@ -188,7 +188,7 @@ Version 0.9.7:
     * Condition expressions now support "random" on either side of the expression. (@EndrosG)
     * Reordering some hardpoint definitions for consistency. (@warp-core)
     * Simplified events that change fleet definitions, using the new "remove" keyword. (@jafdy, @tehhowch)
-    * Fixed submunitions getting included in the --weapons output. (@comnon)
+    * Fixed submunitions getting included in the --weapons output. (@comnom)
     * Added startup warnings for undefined systems, outfits, governments, etc.
     * Data parsing errors now include the name of the data file, to make debugging easier.
     * Switching from planet.GetSystem() to planet.IsInSystem() where possible, to support wormholes.
