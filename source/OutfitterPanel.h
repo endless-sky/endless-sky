@@ -54,6 +54,9 @@ protected:
 	virtual bool CanSell() const override;
 	virtual void Sell() override;
 	virtual void FailSell() const override;
+	virtual bool CanRemove() const override;
+	virtual void Remove() override;
+	virtual void FailRemove() const override;
 	virtual bool FlightCheck() override;
 	virtual void DrawKey();
 	
