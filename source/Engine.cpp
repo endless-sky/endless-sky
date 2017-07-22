@@ -59,6 +59,8 @@ namespace {
 			return Radar::PLAYER;
 		if(object.GetPlanet()->CanLand())
 			return Radar::FRIENDLY;
+		if(!object.GetPlanet()->GetGovernment()->IsEnemy())
+			return Radar::UNFRIENDLY;
 		return Radar::HOSTILE;
 	}
 	
