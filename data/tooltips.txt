@@ -56,7 +56,7 @@ tip "cooling:"
 tip "cooling energy:"
 	`When active cooling is running at full strength (because your ship's temperature is approaching the overheating threshold) it will draw this much energy.`
 
-tip "cooling inefficiency"
+tip "cooling inefficiency:"
 	`Interferes with your ship's ability to cool itself.`
 
 tip "cost:"
