@@ -249,3 +249,11 @@ ship Archon "Archon (Cloaked)"
 		"heat generation" 17
 		"ramscoop" 100
 		"cloak" .04
+	turret "Drak Anti-Missile Field"
+	turret "Drak Anti-Missile Field"
+	turret "Drak Draining Field"
+	turret "Drak Turret"
+	turret "Drak Turret"
+	turret "Drak Turret"
+	turret "Drak Distancer"
+	turret "Drak Distancer"
