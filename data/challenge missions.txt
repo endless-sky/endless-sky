@@ -1,0 +1,122 @@
+# Copyright (c) 2014 by Michael Zahniser
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+
+
+
+mission "bronzeman bet"
+	landing
+	name "Collect on your bet."
+	description "You should pay your old 'friend' on New Boston a visit and collect the money he owes you."
+	destination "New Boston"
+	to offer
+		challengeMode == 1
+		not saveFileTampered
+		or
+			year > 3014
+			and
+				year = 3014
+				month > 2
+			and
+				year = 3014
+				month = 2
+				day >= 17
+	on offer
+		conversation
+			`Looking over your calendar, you realize that you've survived your first three months. You should return to New Boston to collect on the bet you made with your old 'friend'.`
+			choice
+				`	Yeah, that's right! Time to get paid.`
+					accept
+				`	Nah, forget that guy. The money isn't worth having to talk to him again.`
+					decline
+	on complete
+		payment 50000
+		conversation
+			`	You return to the shipyard where he works. After a bit of time spent looking - half of it at all the ships you can't afford - you see him standing around chatting. Doesn't he ever do anything useful? You walk over and catch his eye.`
+			`	"Wow, you're still alive. That's a surprise..."`
+			`	"Yep, I won the bet. Now about that <payment>..."`
+			`	"Yeah, yeah." He taps on his datapad for a moment and it spits out a credit chit, which he grudgingly hands to you. "Here."`
+			`	You transfer the credits and hand it back to him. At least he paid!`
+
+
+
+mission "ironman bet"
+	landing
+	name "Collect on your bet."
+	description "You should pay your old 'friend' on New Boston a visit and collect the money he owes you."
+	destination "New Boston"
+	to offer
+		challengeMode == 2
+		not saveFileTampered
+		or
+			year > 3014
+			and
+				year = 3014
+				month > 2
+			and
+				year = 3014
+				month = 2
+				day >= 17
+	on offer
+		conversation
+			`Looking over your calendar, you realize that you've survived your first three months. You should return to New Boston to collect on the bet you made with your old 'friend'.`
+			choice
+				`	Yeah, that's right! Time to get paid.`
+					accept
+				`	Nah, forget that guy. The money isn't worth seeing his face again.`
+					decline
+	on complete
+		payment 100000
+		conversation
+			`	You return to the shipyard where he works. After a bit of time spent looking - half of it at all the ships you'll someday be able to afford - you see him standing around chatting. Doesn't he ever do anything useful? You walk over and catch his eye.`
+			`	"Wow, you're still alive. I gotta say, I didn't think you could do it!"`
+			`	"Yep, I won the bet. I think you owe me <payment>."`
+			`	"Yeah, yeah." He taps on his datapad for a moment and it spits out a credit chit, which he hands to you. "Hey... do you want to get a drink before you go?"`
+			`	You transfer the credits and hand it back to him. "Nope. Later!"`
+
+
+
+mission "challengeMode cheater"
+	landing
+	name "Collect on your bet."
+	description "You should pay your old 'friend' on New Boston a visit and collect the money he owes you."
+	destination "New Boston"
+	to offer
+		has challengeMode
+		has saveFileTampered
+		not "bronzeman bet: done"
+		not "ironman bet: done"
+		or
+			year > 3014
+			and
+				year = 3014
+				month > 2
+			and
+				year = 3014
+				month = 2
+				day >= 17
+	to complete
+		never
+	on offer
+		conversation
+			`Looking over your calendar, you realize that you've survived your first three months. You should return to New Boston to collect on the bet you made with your old 'friend'.`
+			choice
+				`	Yeah, that's right! Time to get paid.`
+					accept
+				`	Nah, forget that guy. The money isn't worth seeing his face again.`
+					decline
+	on visit
+		fail
+		conversation
+			`	You return to the shipyard where he works. After a bit of time spent looking - half of it at all the ships you'll someday be able to afford - you see him standing around chatting. Doesn't he ever do anything useful? You walk over and catch his eye.`
+			`	"Wow, you're still alive. I gotta say, I didn't think you could do it!"`
+			`	"Yep, I won the bet. I think you owe me some money."`
+			`	"Yeah, yeah." He taps on his datapad for a moment and it spits out a credit chit, which he hands to you. "Hey... do you want to get a drink before you go?"`
+			`	Before you can transfer the credits a guy standing nearby whispers something in his ear. His face grows angry and he raises a fist at you. "You cheated!"`
+			`	You run, and barely manage to lose them in a crowd.`

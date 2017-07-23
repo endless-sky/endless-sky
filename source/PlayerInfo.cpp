@@ -104,6 +104,8 @@ void PlayerInfo::Load(const string &path)
 	filePath = path;
 	DataFile file(path);
 	
+	const DataNode *pHashNode = nullptr; // a pointer to the "hash" node, if any
+	const DataNode *pRngSeedNode = nullptr; // pointer to the "rngSeed" node, if any
 	hasFullClearance = false;
 	for(const DataNode &child : file)
 	{
@@ -264,7 +266,35 @@ void PlayerInfo::Load(const string &path)
 				}
 			}
 		}
+		else if(child.Token(0) == "rngState")
+		{
+			pRngSeedNode = &child; // used below, if we're in a challenge mode
+		}
+		else if(child.Token(0) == "hash")
+		{
+			pHashNode = &child; // used below, if we're in a challenge mode
+		}
 	}
+	
+	// If we're in a challenge mode...
+	if(GetChallengeMode() != ChallengeMode::None)
+	{
+		// Check whether the save file was tampered with.
+		bool hashMatch = false;
+		if(pHashNode != nullptr)
+		{
+			// Hash the file, ignoring the hash node itself, and check whether it matches.
+			auto shouldHashNode = [pHashNode](const DataNode &p) { return &p != pHashNode; };
+			hashMatch = file.GetHash(shouldHashNode) == pHashNode->Token(1);
+		}
+		if(!hashMatch)
+			conditions["saveFileTampered"] = 1;
+		
+		// Also, restore the random number seed.
+		if(pRngSeedNode != nullptr)
+			Random::SetState(pRngSeedNode->Token(1));
+	}
+	
 	// Based on the ships that were loaded, calculate the player's capacity for
 	// cargo and passengers.
 	UpdateCargoCapacities();
@@ -316,13 +346,15 @@ void PlayerInfo::LoadRecent()
 // Save this player. The file name is based on the player's name.
 void PlayerInfo::Save() const
 {
-	// Don't save dead players.
-	if(isDead)
+	// Don't save dead players except in ironman mode
+	enum ChallengeMode challengeMode = GetChallengeMode();
+	if(isDead && challengeMode != ChallengeMode::Iron)
 		return;
 	
 	// Remember that this was the most recently saved player.
 	Files::Write(Files::Config() + "recent.txt", filePath + '\n');
 	
+	// Rotate the autosave slots
 	if(filePath.rfind(".txt") == filePath.length() - 4)
 	{
 		// Only update the backups if this save will have a newer date.
@@ -331,14 +363,17 @@ void PlayerInfo::Save() const
 		{
 			string root = filePath.substr(0, filePath.length() - 4);
 			string files[4] = {
-				root + "~~previous-3.txt",
-				root + "~~previous-2.txt",
+				filePath,
 				root + "~~previous-1.txt",
-				filePath
+				root + "~~previous-2.txt",
+				root + "~~previous-3.txt"
 			};
-			for(int i = 0; i < 3; ++i)
-				if(Files::Exists(files[i + 1]))
-					Files::Move(files[i + 1], files[i]);
+			int autosaveSlots = challengeMode == ChallengeMode::Iron   ? 1 :
+			                    challengeMode == ChallengeMode::Bronze ? 2 :
+			                    4;
+			for(int i = autosaveSlots - 1; i > 0; --i)
+				if(Files::Exists(files[i - 1]))
+					Files::Move(files[i - 1], files[i]);
 		}
 	}
 		
@@ -487,6 +522,9 @@ void PlayerInfo::Die(bool allShipsDie)
 	isDead = true;
 	if(allShipsDie)
 		ships.clear();
+	// save the game if the player dies in ironman
+	if(GetChallengeMode() == ChallengeMode::Iron)
+		Save();
 }
 
 
@@ -2452,6 +2490,12 @@ void PlayerInfo::Save(const string &path) const
 			out.EndChild();
 		}
 	out.EndChild();
+	
+	// Random seed and save file hash
+	out.Write();
+	out.WriteComment("Internal game data");
+	out.Write("rngState", Random::GetState());
+	out.Write("hash", out.GetHash());
 }
 
 
@@ -2475,4 +2519,11 @@ void PlayerInfo::SelectShip(const shared_ptr<Ship> &ship, bool *first)
 			*first = false;
 		}
 	}
+}
+
+
+
+PlayerInfo::ChallengeMode PlayerInfo::GetChallengeMode() const
+{
+	return static_cast<PlayerInfo::ChallengeMode>(GetCondition("challengeMode"));
 }

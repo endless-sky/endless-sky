@@ -105,7 +105,7 @@ public:
 	// must leave the planet immediately (without time to do anything else).
 	bool ShouldLaunch() const;
 	
-	// Access the player's accountign information.
+	// Access the player's accounting information.
 	const Account &Accounts() const;
 	Account &Accounts();
 	// Calculate the daily salaries for crew, not counting crew on "parked" ships.
@@ -236,6 +236,11 @@ public:
 	void SetMapZoom(int level);
 	// Get the set of collapsed categories for the named panel.
 	std::set<std::string> &Collapsed(const std::string &name);
+	
+	// Enum describing the type of challenge the player has undertaken
+	enum ChallengeMode { None = 0, Bronze, Iron };
+	// Get the challenge mode, if any.
+	ChallengeMode GetChallengeMode() const;
 	
 	
 private:

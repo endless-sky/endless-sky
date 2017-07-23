@@ -13,6 +13,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Random.h"
 
 #include <random>
+#include <sstream>
+#include <string>
 
 #ifndef __linux__
 #include <mutex>
@@ -111,4 +113,29 @@ double Random::Normal()
 	lock_guard<mutex> lock(workaroundMutex);
 #endif
 	return normal(gen);
+}
+
+
+
+// Get the state of the random number generator.
+std::string Random::GetState()
+{
+#ifndef __linux__
+	lock_guard<mutex> lock(workaroundMutex);
+#endif
+	std::ostringstream buffer;
+	buffer << gen;
+	return buffer.str();
+}
+
+
+
+// Set the state of the random number generator.
+void Random::SetState(const std::string &state)
+{
+#ifndef __linux__
+	lock_guard<mutex> lock(workaroundMutex);
+#endif
+	std::istringstream buffer(state);
+	buffer >> gen;
 }

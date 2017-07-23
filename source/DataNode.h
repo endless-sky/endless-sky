@@ -13,6 +13,9 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef DATA_NODE_H_
 #define DATA_NODE_H_
 
+#include "SHA1.h"
+
+#include <functional>
 #include <list>
 #include <string>
 #include <vector>
@@ -55,13 +58,25 @@ public:
 	// Print a message followed by a "trace" of this node and its parents.
 	int PrintTrace(const std::string &message = "") const;
 	
+	// Computes a hash of this DataNode and its descendants, if they match the
+	// given predicate. If 'includeThis' is false, only descendants are hashed.
+	// If the predicate is null, all nodes are hashed.
+	std::string GetHash(bool includeThis, const std::function<bool(const DataNode &)> &predicate = nullptr) const;
+	
 	
 private:
+	// Recursively adds this node to a hash.
+	void RecursivelyHash(SHA1 &sha, bool includeThis, const std::function<bool(const DataNode &)> &predicate) const;
 	// Adjust the parent pointers when a copy is made of a DataNode.
 	void Reparent();
 	
 	
 private:
+	// constant values used to compute the hash of a data file
+	static const char * const HashSeed;
+	static constexpr const char IndentHash = '\x01', DedentHash = '\x02';
+	friend class DataWriter; // DataWriter needs these constants to compute the hash of output
+	
 	// These are "child" nodes found on subsequent lines with deeper indentation.
 	std::list<DataNode> children;
 	// These are the tokens found in this particular line of the data file.

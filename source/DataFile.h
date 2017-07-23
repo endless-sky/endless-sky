@@ -16,8 +16,9 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "DataNode.h"
 
 #include <istream>
+#include <functional>
 #include <list>
-
+#include <string>
 
 
 // A class which represents a hierarchical data file. Each line of the file that
@@ -36,9 +37,13 @@ public:
 	void Load(const std::string &path);
 	void Load(std::istream &in);
 	
-	// Functions for iterating through all DataNodes in this file.
+	// Functions for iterating through all top-level DataNodes in this file.
 	std::list<DataNode>::const_iterator begin() const;
 	std::list<DataNode>::const_iterator end() const;
+	
+	// Compute a hash of the file content. This is the same hash that would be
+	// returned by calling DataNode::GetHash on the root node.
+	std::string GetHash(const std::function<bool(const DataNode &)> &predicate = nullptr) const;
 	
 	
 private:

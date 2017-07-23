@@ -27,9 +27,11 @@ const string DataWriter::space = " ";
 
 // Constructor, specifying the file to save.
 DataWriter::DataWriter(const string &path)
-	: path(path), before(&indent)
+	: path(path), indentLevel(0), nextIndentLevel(0), before(&indent)
 {
 	out.precision(8);
+	// seed the hash so it's not so easily predictable from the file content
+	hash.Add(DataNode::HashSeed);
 }
 
 
@@ -76,7 +78,9 @@ void DataWriter::Write()
 // Increase the indentation level.
 void DataWriter::BeginChild()
 {
+	// we compute 'indent' here rather than in EnsureIndent so it's correct for comments
 	indent += '\t';
+	nextIndentLevel++;
 }
 
 
@@ -85,6 +89,7 @@ void DataWriter::BeginChild()
 void DataWriter::EndChild()
 {
 	indent.erase(indent.length() - 1);
+	nextIndentLevel--;
 }
 
 
@@ -100,6 +105,8 @@ void DataWriter::WriteComment(const string &str)
 // Write a token, given as a character string.
 void DataWriter::WriteToken(const char *a)
 {
+	EnsureIndent();
+	
 	// Figure out what kind of quotation marks need to be used for this string.
 	bool hasSpace = !*a;
 	bool hasQuote = false;
@@ -121,6 +128,8 @@ void DataWriter::WriteToken(const char *a)
 	// The next token written will not be the first one on this line, so it only
 	// needs to have a single space before it.
 	before = &space;
+	
+	hash.Add(a);
 }
 
 
@@ -129,4 +138,18 @@ void DataWriter::WriteToken(const char *a)
 void DataWriter::WriteToken(const string &a)
 {
 	WriteToken(a.c_str());
+}
+
+
+
+// Ensure than the indentation level is set and hashed. We do this here rather
+// than immediately when BeginChild or EndChild is called so that code that
+// does Begin, Write, End, Begin, Write, End produces the same output and hash
+// as code that does Begin, Write, Write, End.
+void DataWriter::EnsureIndent()
+{
+	for(; nextIndentLevel > indentLevel; indentLevel++)
+		hash.Add(DataNode::IndentHash);
+	for(; nextIndentLevel < indentLevel; indentLevel--)
+		hash.Add(DataNode::DedentHash);
 }
