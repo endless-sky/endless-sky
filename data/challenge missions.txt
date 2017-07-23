@@ -21,11 +21,11 @@ mission "bronzeman bet"
 		or
 			year > 3014
 			and
-				year = 3014
+				year == 3014
 				month > 2
 			and
-				year = 3014
-				month = 2
+				year == 3014
+				month == 2
 				day >= 17
 	on offer
 		conversation
@@ -41,7 +41,7 @@ mission "bronzeman bet"
 			`	You return to the shipyard where he works. After a bit of time spent looking - half of it at all the ships you can't afford - you see him standing around chatting. Doesn't he ever do anything useful? You walk over and catch his eye.`
 			`	"Wow, you're still alive. That's a surprise..."`
 			`	"Yep, I won the bet. Now about that <payment>..."`
-			`	"Yeah, yeah." He taps on his datapad for a moment and it spits out a credit chit, which he grudgingly hands to you. "Here."`
+			`	"Yeah, yeah." He taps on his datapad for a moment and it spits out a credit chip, which he grudgingly hands to you. "Here."`
 			`	You transfer the credits and hand it back to him. At least he paid!`
 
 
@@ -57,11 +57,11 @@ mission "ironman bet"
 		or
 			year > 3014
 			and
-				year = 3014
+				year == 3014
 				month > 2
 			and
-				year = 3014
-				month = 2
+				year == 3014
+				month == 2
 				day >= 17
 	on offer
 		conversation
@@ -77,7 +77,7 @@ mission "ironman bet"
 			`	You return to the shipyard where he works. After a bit of time spent looking - half of it at all the ships you'll someday be able to afford - you see him standing around chatting. Doesn't he ever do anything useful? You walk over and catch his eye.`
 			`	"Wow, you're still alive. I gotta say, I didn't think you could do it!"`
 			`	"Yep, I won the bet. I think you owe me <payment>."`
-			`	"Yeah, yeah." He taps on his datapad for a moment and it spits out a credit chit, which he hands to you. "Hey... do you want to get a drink before you go?"`
+			`	"Yeah, yeah." He taps on his datapad for a moment and it spits out a credit chip, which he hands to you. "Hey... do you want to get a drink before you go?"`
 			`	You transfer the credits and hand it back to him. "Nope. Later!"`
 
 
@@ -95,11 +95,11 @@ mission "challengeMode cheater"
 		or
 			year > 3014
 			and
-				year = 3014
+				year == 3014
 				month > 2
 			and
-				year = 3014
-				month = 2
+				year == 3014
+				month == 2
 				day >= 17
 	to complete
 		never
@@ -117,6 +117,6 @@ mission "challengeMode cheater"
 			`	You return to the shipyard where he works. After a bit of time spent looking - half of it at all the ships you'll someday be able to afford - you see him standing around chatting. Doesn't he ever do anything useful? You walk over and catch his eye.`
 			`	"Wow, you're still alive. I gotta say, I didn't think you could do it!"`
 			`	"Yep, I won the bet. I think you owe me some money."`
-			`	"Yeah, yeah." He taps on his datapad for a moment and it spits out a credit chit, which he hands to you. "Hey... do you want to get a drink before you go?"`
+			`	"Yeah, yeah." He taps on his datapad for a moment and it spits out a credit chip, which he hands to you. "Hey... do you want to get a drink before you go?"`
 			`	Before you can transfer the credits a guy standing nearby whispers something in his ear. His face grows angry and he raises a fist at you. "You cheated!"`
 			`	You run, and barely manage to lose them in a crowd.`

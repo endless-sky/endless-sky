@@ -14,8 +14,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #define SHA1_H_
 
 #include <stdint.h>
-#include <vector>
 #include <string>
+#include <vector>
 
 class SHA1 {
 public:

@@ -79,7 +79,7 @@ void LoadPanel::Draw()
 	Information info;
 	if(loadedInfo.IsLoaded())
 	{
-		info.SetString("pilot", loadedInfo.Name());
+		info.SetString("pilot", !loadedInfo.IsDead() ? loadedInfo.Name() : loadedInfo.Name() + " [dead]");
 		if(loadedInfo.ShipSprite())
 		{
 			info.SetSprite("ship sprite", loadedInfo.ShipSprite());
@@ -107,8 +107,9 @@ void LoadPanel::Draw()
 		info.SetCondition("snapshot selected");
 	if(loadedInfo.IsLoaded())
 		info.SetCondition("pilot loaded");
-	if(!player.IsLoaded() || player.GetChallengeMode() != PlayerInfo::ChallengeMode::Iron ||
-	   selectedPilot != player.Identifier())
+	if(!loadedInfo.IsDead() &&
+	   (!player.IsLoaded() || player.GetChallengeMode() != PlayerInfo::ChallengeMode::Iron ||
+	    selectedPilot != player.Identifier()))
 	{
 		info.SetCondition("can load");
 	}
@@ -223,8 +224,12 @@ bool LoadPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 	}
 	else if((key == 'l' || key == 'e') && !selectedPilot.empty())
 	{
-		if(!player.IsLoaded() || player.GetChallengeMode() != PlayerInfo::ChallengeMode::Iron ||
-		   selectedPilot != player.Identifier())
+		if(loadedInfo.IsDead())
+		{
+			GetUI()->Push(new Dialog("You can't load a dead pilot."));
+		}
+		else if(!player.IsLoaded() || player.GetChallengeMode() != PlayerInfo::ChallengeMode::Iron ||
+		        selectedPilot != player.Identifier())
 		{
 			// Is the selected file a snapshot or the pilot's main file?
 			string fileName = selectedFile.substr(selectedFile.rfind('/') + 1);

@@ -80,7 +80,7 @@ void DataWriter::BeginChild()
 {
 	// we compute 'indent' here rather than in EnsureIndent so it's correct for comments
 	indent += '\t';
-	nextIndentLevel++;
+	++nextIndentLevel;
 }
 
 
@@ -89,7 +89,7 @@ void DataWriter::BeginChild()
 void DataWriter::EndChild()
 {
 	indent.erase(indent.length() - 1);
-	nextIndentLevel--;
+	--nextIndentLevel;
 }
 
 
@@ -148,8 +148,8 @@ void DataWriter::WriteToken(const string &a)
 // as code that does Begin, Write, Write, End.
 void DataWriter::EnsureIndent()
 {
-	for(; nextIndentLevel > indentLevel; indentLevel++)
+	for(; nextIndentLevel > indentLevel; ++indentLevel)
 		hash.Add(DataNode::IndentHash);
-	for(; nextIndentLevel < indentLevel; indentLevel--)
+	for(; nextIndentLevel < indentLevel; --indentLevel)
 		hash.Add(DataNode::DedentHash);
 }

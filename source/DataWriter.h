@@ -13,9 +13,9 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef DATA_WRITER_H_
 #define DATA_WRITER_H_
 
+#include "SHA1.h"
 #include <string>
 #include <sstream>
-#include "SHA1.h"
 
 class DataNode;
 

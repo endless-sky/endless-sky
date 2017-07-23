@@ -104,8 +104,10 @@ void PlayerInfo::Load(const string &path)
 	filePath = path;
 	DataFile file(path);
 	
-	const DataNode *pHashNode = nullptr; // a pointer to the "hash" node, if any
-	const DataNode *pRngSeedNode = nullptr; // pointer to the "rngSeed" node, if any
+	// we'll save pointers to the "hash" and "rngSeed" nodes, if any
+	const DataNode *pHashNode = nullptr;
+	const DataNode *pRngSeedNode = nullptr;
+	
 	hasFullClearance = false;
 	for(const DataNode &child : file)
 	{
@@ -123,6 +125,8 @@ void PlayerInfo::Load(const string &path)
 			planet = GameData::Planets().Get(child.Token(1));
 		else if(child.Token(0) == "clearance")
 			hasFullClearance = true;
+		else if(child.Token(0) == "dead")
+			isDead = true;
 		else if(child.Token(0) == "launching")
 			shouldLaunch = true;
 		else if(child.Token(0) == "travel" && child.Size() >= 2)
@@ -268,11 +272,11 @@ void PlayerInfo::Load(const string &path)
 		}
 		else if(child.Token(0) == "rngState")
 		{
-			pRngSeedNode = &child; // used below, if we're in a challenge mode
+			pRngSeedNode = &child;
 		}
 		else if(child.Token(0) == "hash")
 		{
-			pHashNode = &child; // used below, if we're in a challenge mode
+			pHashNode = &child;
 		}
 	}
 	
@@ -346,7 +350,7 @@ void PlayerInfo::LoadRecent()
 // Save this player. The file name is based on the player's name.
 void PlayerInfo::Save() const
 {
-	// Don't save dead players except in ironman mode
+	// Don't save dead players except in ironman mode.
 	enum ChallengeMode challengeMode = GetChallengeMode();
 	if(isDead && challengeMode != ChallengeMode::Iron)
 		return;
@@ -2289,7 +2293,9 @@ void PlayerInfo::Autosave() const
 
 void PlayerInfo::Save(const string &path) const
 {
-	if(!planet || !system)
+	// Disallow saving outside of a planet or system, unless the player is dead.
+	// (This method is only called while dead if a player dies in ironman mode.)
+	if((!planet || !system) && !IsDead())
 		return;
 	
 	DataWriter out(path);
@@ -2306,6 +2312,8 @@ void PlayerInfo::Save(const string &path) const
 		out.Write("planet", planet->Name());
 	if(planet && planet->CanUseServices())
 		out.Write("clearance");
+	if(IsDead())
+		out.Write("dead");
 	// This flag is set if the player must leave the planet immediately upon
 	// loading the game (i.e. because a mission forced them to take off).
 	if(shouldLaunch)
