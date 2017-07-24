@@ -32,6 +32,15 @@ public:
 	
 	static double Real();
 	
+	// Functions for getting random numbers that are "just for effect", meaning
+	// that calling them doesn't change the RNG used for more important game
+	// state. Examples are random pitch changes in sound effects and the
+	// generation of the background star field at program startup.
+	static uint32_t EffectInt();
+	static uint32_t EffectInt(uint32_t modulus);
+
+	static double EffectReal();
+	
 	// Slower functions for getting random numbers from a given distribution.
 	// Do not use these functions in time-critical code.
 	

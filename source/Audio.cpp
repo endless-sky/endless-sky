@@ -519,7 +519,7 @@ namespace {
 		// Give each source a small, random pitch variation. Otherwise, multiple
 		// instances of the same sound playing at slightly different times
 		// overlap and create a "grinding" interference sound.
-		alSourcef(source, AL_PITCH, 1. + (Random::Real() - Random::Real()) * .04);
+		alSourcef(source, AL_PITCH, 1. + (Random::EffectReal() - Random::EffectReal()) * .04);
 		alSourcef(source, AL_GAIN, 1.);
 		alSourcef(source, AL_REFERENCE_DISTANCE, 1.);
 		alSourcef(source, AL_ROLLOFF_FACTOR, 1.);

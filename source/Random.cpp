@@ -26,11 +26,11 @@ using namespace std;
 namespace {
 #ifndef __linux__
 	mutex workaroundMutex;
-	mt19937_64 gen;
+	mt19937_64 gen, effectGen;
 	uniform_int_distribution<uint32_t> uniform;
 	uniform_real_distribution<double> real;
 #else
-	thread_local mt19937_64 gen;
+	thread_local mt19937_64 gen, effectGen;
 	thread_local uniform_int_distribution<uint32_t> uniform;
 	thread_local uniform_real_distribution<double> real;
 #endif
@@ -76,6 +76,36 @@ double Random::Real()
 	lock_guard<mutex> lock(workaroundMutex);
 #endif
 	return real(gen);
+}
+
+
+
+uint32_t Random::EffectInt()
+{
+#ifndef __linux__
+	lock_guard<mutex> lock(workaroundMutex);
+#endif
+	return uniform(effectGen);
+}
+
+
+
+uint32_t Random::EffectInt(uint32_t modulus)
+{
+#ifndef __linux__
+	lock_guard<mutex> lock(workaroundMutex);
+#endif
+	return uniform(effectGen) % modulus;
+}
+
+
+
+double Random::EffectReal()
+{
+#ifndef __linux__
+	lock_guard<mutex> lock(workaroundMutex);
+#endif
+	return real(effectGen);
 }
 
 
