@@ -116,7 +116,7 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 	
 	// For the following keys, if this data node defines a new value for that
 	// key, the old values should be cleared (unless using the "add" keyword).
-	set<string> shouldOverwrite = {"link", "asteroids", "fleet", "object"};
+	set<string> shouldOverwrite = {"link", "asteroids", "fleet", "object", "wind", "luminosity"};
 		
 	for(const DataNode &child : node)
 	{
@@ -161,6 +161,10 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 				trade.clear();
 			else if(key == "fleet")
 				fleets.clear();
+			else if(key == "wind")
+				overrideStellarWind = false;
+			else if(key == "luminosity")
+				overrideLuminosity = false;
 			else if(key == "object")
 			{
 				// Make sure any planets that were linked to this system know
@@ -236,6 +240,26 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 			else
 				fleets.emplace_back(fleet, child.Value(valueIndex + 1));
 		}
+		else if(key == "wind")
+		{
+			overrideStellarWind = true;
+			if(add)
+				stellarWindStrength += child.Value(valueIndex);
+			else if(remove)
+				stellarWindStrength -= child.Value(valueIndex);
+			else
+				stellarWindStrength = child.Value(valueIndex);
+		}
+		else if(key == "luminosity")
+		{
+			overrideLuminosity = true;
+			if(add)
+				luminosity += child.Value(valueIndex);
+			else if(remove)
+				luminosity -= child.Value(valueIndex);
+			else
+				luminosity = child.Value(valueIndex);
+		}
 		// Handle the attributes which cannot be "removed."
 		else if(remove)
 		{
@@ -264,8 +288,10 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 	
 	// Reset stellarWindStrength and luminosity before recalculating their values in
 	// the following loop.
-	stellarWindStrength = 0;
-	luminosity = 0;
+	if(!overrideStellarWind)
+		stellarWindStrength = 0;
+	if(!overrideLuminosity)
+		luminosity = 0;
 	
 	// Set planet messages based on what zone they are in, and calculate the luminosity
 	// and stellar wind values for the stars in the system.
@@ -316,10 +342,15 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 				object.message = &UNINHABITEDPLANET;
 		}
 	}
+	
 	// Make sure that the stellarWindStrength and luminosity are reasonable.
-	stellarWindStrength = std::max(0.25, stellarWindStrength);
-	luminosity = std::max(0.5, luminosity);
-	luminosity = std::min(2.0, luminosity);
+	if(!overrideStellarWind)
+		stellarWindStrength = std::max(0.25, stellarWindStrength);
+	if(!overrideLuminosity)
+	{
+		luminosity = std::max(0.5, luminosity);
+		luminosity = std::min(2.0, luminosity);
+	}
 }
 
 
@@ -710,9 +741,11 @@ void System::LoadObject(const DataNode &node, Set<Planet> &planets, int parent)
 void System::AddStar(const string starName)
 {
 	const StarType *starType = GameData::Stars().Get(starName.substr(5));
-
-	stellarWindStrength += starType->GetStellarWind();
-	luminosity += starType->GetLuminosity();
+	
+	if(!overrideStellarWind)
+		stellarWindStrength += starType->GetStellarWind();
+	if(!overrideLuminosity)
+		luminosity += starType->GetLuminosity();
 }
 
 

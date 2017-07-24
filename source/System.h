@@ -190,6 +190,11 @@ private:
 	// such as ramscoops and solar panels.
 	double stellarWindStrength = 0;
 	double luminosity = 0;
+	
+	// For remembering whether stellarWindStrength or luminosity were manually
+	// overwritten in this system.
+	bool overrideStellarWind = false;
+	bool overrideLuminosity = false;
 };
 
 
