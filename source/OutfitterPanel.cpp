@@ -604,7 +604,7 @@ void OutfitterPanel::FailSell() const
 
 
 
-bool OutfitterPanel::CanRemove() const
+bool OutfitterPanel::CanUninstall() const
 {
 	if(!planet || !selectedOutfit)
 		return false;
@@ -626,7 +626,7 @@ bool OutfitterPanel::CanRemove() const
 			else
 			{
 				// Not all of the ship's ammo necessarily needs to
-				// be removed along with remove the outfit, but this
+				// be removed along with uninstalling the outfit, but this
 				// is not a straightforward check and requires modifying
 				// the ship's attributes outfit after removing the outfit.
 				continue;
@@ -641,9 +641,9 @@ bool OutfitterPanel::CanRemove() const
 
 
 
-void OutfitterPanel::Remove()
+void OutfitterPanel::Uninstall()
 {
-	// Find the ships that have the most of this outfit to remove.
+	// Find the ships that have the most of this outfit to uninstall.
 	int most = 0;
 	vector<Ship *> shipsToOutfit;
 	for(Ship *ship : playerShips)
@@ -678,7 +678,7 @@ void OutfitterPanel::Remove()
 		const Outfit *ammo = selectedOutfit->Ammo();
 		if(ammo && ship->OutfitCount(ammo))
 		{
-			// Determine how many of this ammo must be removed/sold to also remove the launcher.
+			// Determine how many of this ammo must be uninstalled/sold to also remove the launcher.
 			// Those that can be stored will be stored, and the remainder will be sold.
 			int mustSell = 0;
 			for(const auto &it : ship->Attributes().Attributes())
@@ -688,7 +688,7 @@ void OutfitterPanel::Remove()
 			if(mustSell)
 			{
 				// Transfer as many of the outfits into the player's cargohold as possible.
-				// If 10 need to be removed, and there is space for 4, Transfer returns -4.
+				// If 10 need to be uninstalled, and there is space for 4, Transfer returns -4.
 				ship->AddOutfit(ammo, -mustSell);
 				mustSell += player.Cargo().Transfer(ammo, -mustSell);
 				int64_t price = player.FleetDepreciation().Value(ammo, day, mustSell);
@@ -701,7 +701,7 @@ void OutfitterPanel::Remove()
 
 
 
-void OutfitterPanel::FailRemove() const
+void OutfitterPanel::FailUninstall() const
 {
 	if(!planet || !selectedOutfit)
 		return;
@@ -719,10 +719,10 @@ void OutfitterPanel::FailRemove() const
 				break;
 			}
 		if(!hasOutfit)
-			GetUI()->Push(new Dialog("You do not have any of these outfits to remove."));
+			GetUI()->Push(new Dialog("You do not have any of these outfits to uninstall."));
 		else if(player.Cargo().Free() < selectedOutfit->Get("mass"))
 		{
-			GetUI()->Push(new Dialog("You cannot remove this outfit and place it in your cargo bay,"
+			GetUI()->Push(new Dialog("You cannot uninstall this outfit and place it in your cargo bay,"
 				" because you do not have sufficient cargo space to hold it."));
 		}
 		else
@@ -734,19 +734,19 @@ void OutfitterPanel::FailRemove() const
 						for(const auto &sit : ship->Outfits())
 							if(sit.first->Get(it.first) < 0.)
 							{
-								GetUI()->Push(new Dialog("You cannot remove this outfit, "
+								GetUI()->Push(new Dialog("You cannot uninstall this outfit, "
 									"because that would cause your ship's \"" + it.first +
 									"\" value to be reduced to less than zero. "
-									"To remove this outfit, you must sell or remove the " +
+									"To uninstall this outfit, you must sell or uninstall the " +
 									sit.first->Name() + " outfit first."));
 								return;
 							}
-						GetUI()->Push(new Dialog("You cannot remove this outfit, "
+						GetUI()->Push(new Dialog("You cannot uninstall this outfit, "
 							"because that would cause your ship's \"" + it.first +
 							"\" value to be reduced to less than zero."));
 						return;
 					}
-			GetUI()->Push(new Dialog("You cannot remove this outfit, "
+			GetUI()->Push(new Dialog("You cannot uninstall this outfit, "
 				"because something else in your ship depends on it."));
 		}
 	}

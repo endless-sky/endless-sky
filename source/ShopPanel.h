@@ -62,9 +62,9 @@ protected:
 	virtual bool CanSell() const = 0;
 	virtual void Sell() = 0;
 	virtual void FailSell() const;
-	virtual bool CanRemove() const;
-	virtual void Remove();
-	virtual void FailRemove() const;
+	virtual bool CanUninstall() const;
+	virtual void Uninstall();
+	virtual void FailUninstall() const;
 	virtual bool FlightCheck() = 0;
 	virtual bool CanSellMultiple() const;
 	virtual void DrawKey();

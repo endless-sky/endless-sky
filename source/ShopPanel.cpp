@@ -420,20 +420,20 @@ void ShopPanel::FailSell() const
 
 
 
-bool ShopPanel::CanRemove() const
+bool ShopPanel::CanUninstall() const
 {
 	return false;
 }
 
 
 
-void ShopPanel::Remove()
+void ShopPanel::Uninstall()
 {
 }
 
 
 
-void ShopPanel::FailRemove() const
+void ShopPanel::FailUninstall() const
 {
 }
 
@@ -472,16 +472,16 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 			player.UpdateCargoCapacities();
 		}
 	}
-	else if(key == 'r' && selectedOutfit)
+	else if((key == 'r' || key == 'u') && selectedOutfit)
 	{
-		if(!CanRemove())
-			FailRemove();
+		if(!CanUninstall())
+			FailUninstall();
 		else
 		{
 			int modifier = CanSellMultiple() ? Modifier() : 1;
-			for(int i = 0; i < modifier && CanRemove(); ++i)
+			for(int i = 0; i < modifier && CanUninstall(); ++i)
 			{
-				Remove();
+				Uninstall();
 				player.UpdateCargoCapacities();
 			}
 		}
