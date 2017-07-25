@@ -64,7 +64,7 @@ namespace {
 	
 	int RadarType(const Ship &ship, int step)
 	{
-		if(ship.GetPersonality().IsTarget() && !ship.IsDestroyed())
+		if(ship.GetPersonality().IsTarget() && !ship.IsDestroyed() && Preferences::Has("Highlight mission targets"))
 		{
 			// If a ship is a "target," double-blink it a few times per second.
 			int count = (step / 6) % 7;
