@@ -153,7 +153,7 @@ mission "Wanderers: Translation Machine"
 		log `Was able to communicate with the birdlike "Wanderers" with the help of a Hai ambassador. It turns out that they have been under attack by the Unfettered Hai for some time, and have learned the Hai language by taking captives.`
 		log "Factions" "Wanderers" `The Wanderers are a bird-like species who inhabit a small region of space adjacent to the Hai. They have been under attack by the "Unfettered" Hai for some time. The Wanderers claim to be peaceful, and most of their ships are not designed for military use.`
 		conversation
-			`Once again, the Wanderers allow you to land, but with a large flock of of their light warships surrounding you to herd you into a particular landing zone. A small delegation of Wanderers meets you and Sayari, whom they greet hesitantly in the Hai language. She responds, and a heated exchange follows. You do not understand any of what they are saying.`
+			`Once again, the Wanderers allow you to land, but with a large flock of their light warships surrounding you to herd you into a particular landing zone. A small delegation of Wanderers meets you and Sayari, whom they greet hesitantly in the Hai language. She responds, and a heated exchange follows. You do not understand any of what they are saying.`
 			choice
 				`	(Ask her what they are talking about.)`
 				`	(Wait for a break in the conversation.)`
