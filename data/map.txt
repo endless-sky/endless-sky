@@ -24728,6 +24728,7 @@ planet "Far Home"
 planet "Far Monad"
 	landscape land/water0
 	description `The weather on Far Monad is actually rather pleasant. If it were not a lonely planet orbiting a dying sun in a region of space that few species visit and none claim for their own, it could have become a fruitful farming world or perhaps even a metropolitan center.`
+	security 0
 
 planet "Far'en Lai"
 	attributes uninhabited
