@@ -134,7 +134,7 @@ outfit "Point Defense Turret"
 		"fire effect" "point defense fire"
 		"die effect" "point defense hit"
 		"die effect" "point defense die"
-		"anti-missile" 20
+		"anti-missile" 42
 		"velocity" 270
 		"lifetime" 1
 		"reload" 10
