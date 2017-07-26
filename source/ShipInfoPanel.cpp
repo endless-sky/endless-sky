@@ -738,7 +738,7 @@ void ShipInfoPanel::Disown()
 	const Ship *ship = shipIt->get();
 	if(shipIt != player.Ships().begin())
 		--shipIt;
-	else
+	else if(player.Ships().size() > 2)
 		++shipIt;
 	
 	player.DisownShip(ship);
