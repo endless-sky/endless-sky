@@ -50,6 +50,8 @@ public:
 	// Call this once all the outfits have been loaded to make sure they are all
 	// set up properly (even the ones that were pre-assigned to a hardpoint).
 	void FinishLoading();
+	// Reload all weapons (because a day passed in-game).
+	void ReloadAll();
 	
 	// Swap the weapons in the given two hardpoints.
 	void Swap(int first, int second);
