@@ -50,8 +50,8 @@ namespace {
 	
 	bool IsStranded(const Ship &ship)
 	{
-		return ship.GetSystem() && !ship.GetSystem()->HasFuelFor(ship) && ship.JumpFuel()
-			&& ship.Attributes().Get("fuel capacity") && !ship.JumpsRemaining();
+		return ship.GetSystem() && !ship.IsEnteringHyperspace() && !ship.GetSystem()->HasFuelFor(ship)
+			&& ship.JumpFuel() && ship.Attributes().Get("fuel capacity") && !ship.JumpsRemaining();
 	}
 	
 	bool CanBoard(const Ship &ship, const Ship &target)
@@ -406,7 +406,7 @@ void AI::Step(const PlayerInfo &player)
 			it->SetParent(parent);
 		}
 		
-		if(isPresent && personality.IsSwarming())
+		if(isPresent && personality.IsSwarming() && !isStranded)
 		{
 			parent.reset();
 			it->SetParent(parent);
@@ -445,7 +445,7 @@ void AI::Step(const PlayerInfo &player)
 			continue;
 		}
 		
-		if(isPresent && personality.IsSurveillance())
+		if(isPresent && personality.IsSurveillance() && !isStranded)
 		{
 			DoSurveillance(*it, command);
 			it->SetCommands(command);
@@ -469,7 +469,7 @@ void AI::Step(const PlayerInfo &player)
 			it->SetCommands(command);
 			continue;
 		}
-		if(isPresent && personality.IsMining() && !target && !it->GetShipToAssist()
+		if(isPresent && personality.IsMining() && !target && !it->GetShipToAssist() && !isStranded
 				&& it->Cargo().Free() >= 5 && ++miningTime[&*it] < 3600 && ++minerCount < 9)
 		{
 			if(it->HasBays())
@@ -478,7 +478,7 @@ void AI::Step(const PlayerInfo &player)
 			it->SetCommands(command);
 			continue;
 		}
-		else if(isPresent && !target && it->CanBeCarried() && parent && miningTime[&*parent] < 3601
+		else if(isPresent && !target && it->CanBeCarried() && parent && miningTime[&*parent] < 3601 && !isStranded
 				&& parent->GetTargetAsteroid() && parent->GetTargetAsteroid()->Position().Distance(parent->Position()) < 800.)
 		{
 			// Assist your parent in mining its nearby targeted asteroid.
@@ -596,9 +596,9 @@ void AI::Step(const PlayerInfo &player)
 			{
 				MoveTo(*it, command, shipToAssist->Position(), shipToAssist->Velocity(), 40., .8);
 				command |= Command::BOARD;
+				it->SetCommands(command);
+				continue;
 			}
-			it->SetCommands(command);
-			continue;
 		}
 		
 		if(mustRecall || isStranded)
