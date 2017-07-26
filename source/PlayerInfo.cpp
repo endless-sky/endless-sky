@@ -1162,6 +1162,15 @@ bool PlayerInfo::TakeOff(UI *ui)
 		bool shouldHaveParent = (ship != flagship && !ship->IsParked() && !ship->CanBeCarried());
 		ship->SetParent(shouldHaveParent ? flagship : shared_ptr<Ship>());
 	}
+	// Make sure your flagship is not included in the escort selection.
+	for(auto it = selectedShips.begin(); it != selectedShips.end(); )
+	{
+		shared_ptr<Ship> ship = it->lock();
+		if(!ship || ship == flagship)
+			it = selectedShips.erase(it);
+		else
+			++it;
+	}
 	
 	// Recharge any ships that can be recharged.
 	bool hasSpaceport = planet->HasSpaceport() && planet->CanUseServices();
