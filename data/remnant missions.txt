@@ -406,6 +406,7 @@ mission "Remnant: Void Sprites 3"
 	stopover Nasqueron
 	stopover Slylandro
 	cargo "scanning equipment" 8
+	blocked "The Remnant researcher has another job for you, but you're going to have to free up some cargo space in order to take it on."
 	to offer
 		has "Remnant: Void Sprites 2: done"
 	on offer
