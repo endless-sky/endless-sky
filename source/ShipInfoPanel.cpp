@@ -738,8 +738,6 @@ void ShipInfoPanel::Disown()
 	const Ship *ship = shipIt->get();
 	if(shipIt != player.Ships().begin())
 		--shipIt;
-	else
-		++shipIt;
 	
 	player.DisownShip(ship);
 	UpdateInfo();
