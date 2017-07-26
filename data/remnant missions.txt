@@ -195,6 +195,8 @@ mission "Remnant: Defense 3"
 	landing
 	name "Remnant surveillance"
 	description "Travel to the Parca system, destroy any Korath ships you find there, then deploy a Remnant surveillance satellite to give them advance warning of Korath raids in the future. Return to <planet> when you are done."
+	source
+		government "Remnant"
 	to offer
 		"Remnant: Bounty: done" >= 3
 	cargo "surveillance equipment" 13
