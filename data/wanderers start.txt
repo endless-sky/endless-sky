@@ -676,6 +676,8 @@ mission "Wanderers: Jump Drive Source"
 	
 	to complete
 		has "Unfettered: Jump Drive Source: offered"
+	on visit
+		dialog `You have not yet tried to sell the Unfettered Hai a Jump Drive. Return here after doing so.`
 	on complete
 		conversation
 			`You report to Iktat Rek. "Most [intriguing, disturbing]," he says. "If what you say of these Alpha humans is [correct, unbiased], they are a dangerous foe. And in exchange for so many jump drives, no doubt the Unfettered have [supplied, furnished] them with many weapons." He pauses to think for a minute, then says, "You must track them. There is a Wanderer [device, technology] that can help you. But I must ask our [elders, government] for permission before giving you access to it. I will meet you back in the spaceport soon."`
