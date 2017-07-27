@@ -794,10 +794,12 @@ void MapPanel::DrawSystems()
 				bool hasDominated = true;
 				bool isInhabited = false;
 				bool canLand = false;
+				bool hasSpaceport = false;
 				for(const StellarObject &object : system.Objects())
 					if(object.GetPlanet())
 					{
 						const Planet *planet = object.GetPlanet();
+						hasSpaceport |= !planet->IsWormhole() && planet->HasSpaceport();
 						if(planet->IsWormhole() || !planet->IsAccessible(player.Flagship()))
 							continue;
 						canLand |= planet->CanLand() && planet->HasSpaceport();
@@ -805,8 +807,12 @@ void MapPanel::DrawSystems()
 						hasDominated &= (!planet->IsInhabited()
 							|| GameData::GetPolitics().HasDominated(planet));
 					}
-				hasDominated &= isInhabited;
-				color = ReputationColor(reputation, canLand, canLand && hasDominated);
+				hasDominated &= (isInhabited && canLand);
+				// Some systems may count as "inhabited" but not contain any
+				// planets with spaceports. Color those as if they're
+				// uninhabited to make it clear that no fuel is available there.
+				if(hasSpaceport || hasDominated)
+					color = ReputationColor(reputation, canLand, hasDominated);
 			}
 		}
 		
