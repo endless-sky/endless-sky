@@ -69,7 +69,7 @@ namespace {
 			// If a ship is a "target," double-blink it a few times per second.
 			int count = (step / 6) % 7;
 			if(count == 0 || count == 2)
-				return Radar::SPECIAL;
+				return Radar::BLINK;
 		}
 		if(ship.IsDisabled() || (ship.IsOverheated() && ((step / 20) % 2)))
 			return Radar::INACTIVE;
