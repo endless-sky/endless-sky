@@ -27,6 +27,7 @@ mission "Wanderers: Surveying 1"
 	blocked "The Wanderers have another mission for you, but you will need some cargo space available for scientific equipment."
 	on offer
 		log `The "Eye" wormhole has opened in Wanderer space, but the territory on the other side of the wormhole is Korath space, ravaged by their civil war and still infested with autonomous war machines. Nonetheless, the Wanderers are excited to once again begin their work of healing and repairing damaged worlds.`
+		log "People" "Sobari Tele'ek" `Tele'ek became part of the expeditionary force that was formed to explore the territory beyond the Eye once it opened.`
 		conversation
 			`The Wanderers have begun building a base here, with freighters landing every few minutes to bring more supplies or people. They have a fair number of weapons and warships to keep the Korath automata at bay, but the majority of the supplies look like scientific tools or possibly equipment for terraforming planets.`
 			`	Soon after you land, you are ushered in to a meeting with several of the senior Wanderer leaders. You recognize the military commander Sobari Tele'ek, but the others are strangers to you. And oddly, in addition to the adults there is a Wanderer child in the meeting, barely more than a meter tall, with iridescent black plumage like a starling.`
@@ -78,6 +79,7 @@ mission "Wanderers: Surveying 2"
 	cargo "scientific equipment" 7
 	blocked "The Wanderers have another mission for you, but you will need some cargo space available for scientific equipment."
 	on offer
+		log "People" "Tema'a Iriket" `Iriket is a Wanderer specializing in terraforming, who has been selected to survey the worlds beyond the Eye and to make plans for how each one can be made to flourish once more. She is far more interested in the terraforming work than in dealing with the threat of the Korath war machines.`
 		conversation
 			`When you land, a Wanderer named Tema'a Iriket meets you, and identifies herself as the head of the terraforming team. She is excited to see your data on the nearby planets. "For each of these worlds," she says, "we must decide what [treatment, strategy] will best enable it to flourish once more. Even if a world is near to the [territory, domain] of the [dangerous, hostile] robots, we may be able to begin its [healing, transformation] from a distance."`
 			choice
@@ -146,6 +148,7 @@ mission "Wanderers: Nova Remnants"
 	to offer
 		has "Wanderers: Surveying 1: done"
 	on complete
+		log "Factions" "Archons" `Archons are partly biological, partly technological, and partly something that human language has no words for. They are extremely powerful. The Archons are somehow affiliated with the Drak, yet separate from them.`
 		conversation
 			`You contact the cosmologist Erukt Isi'ithi and give him a copy of your ship's scans of the supernova remnants. To you, the scanner results are inscrutable, but clearly to him they tell a story, and not one he is happy with: his body shakes violently and the pupils of his eyes shrink to pinpoints as he looks at the data.`
 			`	"These stars died an [untimely, unnatural] death," he says. "I wonder what the role of these Archon [beings, entities] was. Is the [destabilization, destruction] of these stars a crime the Korath committed, for which the Archons punished them? Or did the Korath commit some other crime, and the Archons [ripped, tore] these stars apart as punishment?"`
@@ -228,12 +231,11 @@ event "wanderers: kaliptari battle begins"
 
 event "wanderers: kaliptari battle ends"
 	system Kaliptari
-		fleet "Large Quarg" 2000
-		fleet "Small Kor Mereti" 8000
-		fleet "Large Kor Mereti" 3600
-		fleet "Wanderer Defense" 1000
-		fleet "Wanderer Drones" 500
-		fleet "Wanderer Flycatchers" 500
+		add fleet "Large Quarg" 2000
+		add fleet "Small Kor Mereti" 8000
+		add fleet "Large Kor Mereti" 3600
+		add fleet "Wanderer Defense" 1000
+		add fleet "Wanderer Drones" 500
 
 mission "Wanderers: First Mereti Attack"
 	landing
@@ -308,6 +310,8 @@ mission "Wanderers: Rek To Kor Efret"
 		has "Wanderers: First Mereti Attack: done"
 	on offer
 		log `Iktat Rek has survived the Molt, but in a completely new form. Rek is now female, and is only the size of a Wanderer child, and has chosen the name "Ektasi Rek" for herself, meaning something like "communicator" or "bridge-builder."`
+		log "People" "Iktat Rek" `Rek underwent the Molt, a mysterious process in which the body of a Wanderer who is exposed to novel stimuli transforms into a completely new species while still maintaining that individual's memories and personality. The new Rek is a female and goes by the name "Ektasi Rek."`
+		log "People" "Ektasi Rek" `Ektasi Rek is the first Wanderer in millennia to undergo the Molt, changing into a completely different species with new capabilities. As more Wanderers go through the Molt, the Wanderers as a whole will have to decide which of these mutations represents the best way for their species to survive and flourish in Korath space.`
 		conversation
 			`When you enter the meeting room, Sobari Tele'ek is in a heated argument with the Wanderer child who was here earlier, the one who speaks your language. The child is saying, "The Eye has sent us not to a place of [empty, abandoned] worlds but to a place of [living beings?]. To complete our [calling, work] here we must collaborate with those beings, just as we would collaborate with the [ecosystem? personality?] of a planet we sought to repair."`
 			`	"What do you [propose, intend], Firstborn?" asks Tele'ek.`
@@ -372,6 +376,7 @@ mission "Wanderers: Quarg Assistance 1"
 		has "Wanderers: Rek To Kor Efret: done"
 	on offer
 		log "Rek's metamorphosis seems to have given her enhanced ability to understand other languages. She will be staying with the friendly Korath for a while in order to learn how to communicate with them."
+		log "People" "Ektasi Rek" `Rek's Molt has given her enhanced ability not only to understand alien speech, but to mimic the sound of it as well.`
 		conversation
 			`Soon after you and Ektasi Rek land in the Kor Efret spaceport, a small group of Korath gathers around you. No doubt they realize that Rek is one of the new aliens settling in their former territory. But when Rek begins trying to communicate with them, their desire to be understood overcomes whatever hostility they might be feeling.`
 			`	Within a few minutes Rek is playing a sort of game with them where she points at different objects, trying to learn their names, and then uses those names in sentences: This is a table. Rek is on the table. Rek stands on the table. The table is under Rek. The color of the table is black. The color of the table is the same as the color of Rek.`
@@ -403,6 +408,7 @@ mission "Wanderers: Quarg Assistance 2"
 		has "Wanderers: Quarg Assistance 1: done"
 	on offer
 		log "The Quarg (or possibly, a faction within the Quarg, or even just a group of Quarg acting on their own) have agreed to send three of their warships to help defend the Wanderer settlement in Korath space. (Or maybe they are sending the ships because they view the Wanderers as invaders and want to keep an eye on them. It is not easy to determine their true intentions.)"
+		log "Factions" "Wanderers" `According to the Quarg, the Wanderers are not native to this galaxy, but were brought here from somehwere else (presumably by the Pug).`
 		conversation
 			`The Quarg do not generally share any information on how their leadership hierarchy works, if such a hierarchy even exists, so your best bet to find help for the Wanderers is just to ask around until you find the right person. You flag down the first Quarg who passes you in the hallway. "How can I help you, human?" it asks.`
 			`	"Well," you say, "I'm here on behalf of a species that has recently settled on one of the abandoned Korath worlds. I'm hoping you can help protect them."`
@@ -509,6 +515,8 @@ mission "Wanderers: Pug Assistance 2"
 		has "Wanderers: Pug Assistance 1: done"
 	on offer
 		log "Visited the Pug to see if they are willing to help the Wanderers fight the Korath automata. But the Pug and the Quarg do not get along with each other, and therefore the Pug are not willing to enter Korath space."
+		log "Factions" "Archons" `For reasons that are not entirely clear, the Pug are hostile toward the Archons, yet also view them as being worthy of pity.`
+		log "Factions" "Pug" `The Pug say that their species is split up into separate groups or "teams" that each focus on interacting with a different sentient species. They view those other species as "projects" that they are working on.`
 		conversation
 			`The moment you step off your ship you are surrounded by a group of armed Pug. "Perhaps we have not communicated clearly enough for the human's small brain to comprehend it," says one of them, "but we are uninterested in any further interactions with the human."`
 			choice
@@ -773,6 +781,7 @@ mission "Wanderers: Kor Efret 4"
 		has "Wanderers: Kor Efret 3: done"
 	on offer
 		log "Helped to defend one of the friendly Korath worlds from an attack by Kor Mereti drones. There are Korath scientists on that world who have been working for decades to find a way to hack into the Kor Mereti network, but they do not think it is possible."
+		log "Factions" "Archons" `When the Korath civil war reached a point where they had nearly driven themselves extinct, the Drak Archons stepped in and offered the surviving Korath an ultimatum: they must either give up their advanced weaponry and live peaceably under the protection of the Quarg, or be banished to some lifeless star systems near the galactic core. Those who chose banishment apparently took with them the secret of how to build jump drives, which has enabled them to raid other species and steal from them.`
 		conversation
 			`When you land back on the planet, Rek and several of the Korath meet you at your ship. "They would like to thank you for your assistance in defending their home," says Rek, "and they apologize for being so dismissive of the Wanderer plans to defeat the drones. They still think that hacking or corrupting the Mereti network is impossible, though."`
 			choice
@@ -904,6 +913,7 @@ mission "Wanderers: Mind 2"
 	blocked "To take this mission, you will need a bunk and two tons of cargo space free."
 	on offer
 		log "The Wanderers have a new plan: to try to either subvert or possibly even befriend the Kor Mereti network by connecting it to a powerful Wanderer artificial intelligence."
+		log "People" "Meto Pa'aret" `Pa'aret runs a Wanderer artificial intelligence laboratory. He is in charge of the effort to establish a connection between the Wanderers and the Kor Mereti collective by introducing a Wanderer "artificial Mind" into the collective.`
 		conversation
 			`On <origin> you are met by a Wanderer named Meto Pa'aret. He explains that he is in charge of the artificial intelligence lab, and he wants to travel with you along with the "Mind" that is being entrusted to your care. "We have already [altered, reconfigured] one of the climate [simulation, prediction] Minds for this new purpose," he says. "It now contains [stores, databases, libraries] of historical and cultural information, things we hope will help the alien [consciousness, intelligence] to [understand, sympathize with] us and realize our intentions are [peaceful, forthright]."`
 			choice
@@ -1083,11 +1093,10 @@ mission "Wanderers: Mind 6"
 
 event "wanderers: kor mereti transformation"
 	system Chimitarp
-		fleet "Small Kor Mereti" 200
-		fleet "Large Kor Mereti" 400
+		add fleet "Small Kor Mereti" 250
+		add fleet "Large Kor Mereti" 450
 	planet "Korbatri Eska"
-		description `The cities on this world have been hit by an astonishing variety of weapons. Some were leveled by massive explosions, while others show signs of strafing by low-flying ships or of orbital bombardment. Outside the cities, the land is fruitful and varied: forests, mountains, oceans, desert, and tundra.`
-		description `	Far from the ruined cities, the Kor Mereti have begun building a sort of village of their own: a sprawling complex of greenhouses containing a wide variety of plant samples.`
+		add description `	Far from the ruined cities, the Kor Mereti have begun building a sort of village of their own: a sprawling complex of greenhouses containing a wide variety of plant samples.`
 
 mission "Wanderers: Mind 7"
 	landing
@@ -1651,30 +1660,18 @@ event "wanderers: kor sestor are aimless"
 		fleet "Large Kor Mereti" 900
 		fleet "Large Kor Sestor" 5000
 	system Eshkoshtar
-		fleet "Small Kor Mereti" 800
-		fleet "Large Kor Mereti" 1600
-		fleet "Kor Mereti Miners" 3000
+		remove fleet "Large Kor Sestor"
 	system Salipastart
-		fleet "Small Kor Mereti" 800
-		fleet "Large Kor Mereti" 1600
-		fleet "Kor Mereti Miners" 3000
+		remove fleet "Large Kor Sestor"
 	system Mekislepti
-		fleet "Small Kor Mereti" 1000
-		fleet "Large Kor Mereti" 3000
-		fleet "Kor Mereti Miners" 2000
+		remove fleet "Large Kor Sestor"
 	system Similisti
-		fleet "Large Kor Mereti" 1600
-		fleet "Small Kor Mereti" 600
-		fleet "Kor Mereti Miners" 1600
+		remove fleet "Large Kor Sestor"
 	system Faronektu
-		fleet "Small Kor Mereti" 1200
-		fleet "Large Kor Mereti" 2000
-		fleet "Kor Mereti Miners" 2000
+		remove fleet "Large Kor Sestor"
 	planet "Varu K'prai"
-		attributes wanderer oil
 		landscape land/beach1
-		description `This is one of the only Wanderer worlds that still has large reserves of oil, albeit deep below the ocean surface where mining is difficult. Aside from the drilling companies and refineries, the largest local employer is the local government's safety oversight department, whose inspectors are constantly visiting the drilling platforms and shipping hubs to ensure that all the regulations for preventing oil spills are being followed.`
-		description `	There used to be a thriving spaceport here, but it has been razed to the ground by the Kor Sestor fleet.`
+		add description `	There used to be a thriving spaceport here, but it has been razed to the ground by the Kor Sestor fleet.`
 		remove spaceport
 		remove outfitter
 		remove "required reputation"
@@ -3028,8 +3025,8 @@ event "wanderers: sestor shutdown"
 		fleet "Small Kor Sestor" 3200
 		fleet "Large Kor Sestor" 4800
 	system "Mesuket"
-		fleet "Large Kor Mereti" 900
-		fleet "Large Kor Sestor" 10000
+		remove fleet "Large Kor Sestor"
+		add fleet "Large Kor Sestor" 10000
 
 mission "Wanderers: Sestor: Factory 3"
 	landing
@@ -3137,7 +3134,7 @@ event "wanderers: sestor eliminated"
 		government "Uninhabited"
 		fleet "Large Kor Mereti" 2000
 	system "Mesuket"
-		fleet "Large Kor Mereti" 900
+		remove fleet "Large Kor Sestor"
 
 event "wanderers: sabira eseskrai colony"
 	system "Skeruto"
@@ -3147,9 +3144,9 @@ event "wanderers: sabira eseskrai colony"
 		fleet "Wanderer Drones" 800
 		fleet "Kor Efret Home" 800
 	system "Furmeliki"
-		fleet "Large Quarg" 1000
-		fleet "Kor Efret Home" 800
+		add fleet "Kor Efret Home" 800
 	planet "Sabira Eseskrai"
+		add attributes wanderer
 		description `Long ago, this planet was home to several Korath oil mining settlements, but now all that remains visible are the tops of a few dozen of the tallest buildings. Everything else has been buried by sandstorms.`
 		description `	Due to a recent shift in climate the deserts have begun shrinking once more, with local vegetation growing to cover more and more land each year. The Wanderers, working together with the Kor Efreti, have founded a settlement here and begun working to accelerate the process of rejuvenating the wastelands.`
 		spaceport `This small settlement is populated by a roughly equal number of Korath and Wanderer settlers. Since most of them do not speak each other's language, the two groups do not mingle much, and communicate mostly via gestures and drawings. It's not much, but it's at least a start for the two species to begin learning from each other.`

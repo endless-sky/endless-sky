@@ -759,6 +759,8 @@ mission "FW Katya 2B"
 	to fail
 		has "chosen sides"
 	on offer
+		log "People" "Katya Reynolds" `A former member of Parliament representing the impoverished Dirt Belt worlds, Katya is now a leader in the Free Worlds movement. She is well-known for standing up for the "common people" when they are being overlooked or mistreated by the government or by corporations.`
+		log "People" "Ijs Springborn" `Also known as "Mr. Eyes," Ijs worked for years as a self-appointed "vigilante nuclear power plant inspector," trying to catch and report environmental abuses that the government officials were turning a blind eye to. He has now agreed to join the Free Worlds movement.`
 		conversation
 			`As soon as you land and open your ship's hatch, a man wearing sunglasses and a ridiculous hat and carrying a large metal suitcase runs past you and into your ship, casting a quick furtive glance behind him to see if anyone is following.`
 			choice
@@ -908,6 +910,7 @@ mission "FW Katya 4"
 	to fail
 		has "chosen sides"
 	on offer
+		log "People" "Katya Reynolds" `Katya grew up on Hope, a Dirt Belt world that is no longer inhabited because of a supervolcano eruption that triggered a new ice age. Despite her distrust of the Republic she has high regard for the Navy because they were the ones, acting without clearance from Parliament, who helped the settlers on Hope to evacuate safely.`
 		conversation
 			`You join Katya and Mr. Eyes in the restaurant, and order your meals. They are both in high spirits. While you are waiting for the food to arrive, Mr. Eyes raises his glass of wine and says, "A toast, to Captain <last> and our marvelous new toy. May it bring us good information and swift justice."`
 			`	"We're thinking that while we're in the area, we should stop on <planet> next," says Katya, "and then work our way toward the Rim."`
@@ -1000,6 +1003,7 @@ mission "FW Katya 5B"
 	to fail
 		has "chosen sides"
 	on offer
+		log "Factions" "Pirates" `Pirate ships are often crewed by children, the equivalent of street gangs or child soldiers. Many lawless worlds are so poor that joining a pirate gang is one of the only attractive options for earning a living.`
 		conversation
 			`Katya and Eyes lead you to the monastery. As you are approaching, you meet a monk who is wearing a long black robe and kneeling in a small vegetable garden, pulling weeds. When he looks up and sees you, he leaps to his feet and runs over. "Katya! And Ijs! Welcome back!" Then he turns to you. "I'm David," he says.`
 			choice
@@ -1853,6 +1857,10 @@ mission "Rescue Katya 1"
 	on accept
 		set "chosen sides"
 		event "capture of Kornephoros"
+		log "People" "Alondo Gruyere" `Alondo grew up on Bourne, the relatively prosperous planet on the edge of the Rim that is now the capital of the Free Worlds. He served as a Republic diplomat for years before becoming convinced that Parliament was just using him the "pacify" the less developed worlds in the South with empty promises. He joined the Southern Defense Pact in the early days, before it became the Free Worlds, and is now a member of the Council.`
+		log "People" "Tomek Voigt" `Tomek is a young and ambitious militia commander. His brilliant tactical leadership and charismatic personality gained him quite a following in the Dirt Belt region even before the Free Worlds came into existence. He was asked to join the Council in part because of his popularity with the local militias throughout the region.`
+		log "People" "Freya Winters" `Freya is an engineer, specializing in surveillance equipment but with a wide range of talents. She organized the "thousand eyes" program run by the Southern Defense Pact, which was an attempt to reduce the power of the pirate fleets in the region by tracking their fleet movements. Despite her relative lack of interest in politics, she was asked to join the Free Worlds Council because of her expertise in optimizing the distribution and management of resources.`
+		log "People" "Jean-Jacques Soleau" `Known to most people simply as "JJ," Jean-Jacques grew up in the Dirt Belt and served in the Navy for years before quitting in frustration over the fact that the Navy was no longer defending his home region of space. He now serves on the Free Worlds Council, where he is tasked with coordinating actions between the local militias and shaping them into a single fighting force that can act in concert with each other.`
 
 
 

@@ -57,6 +57,7 @@ color "radar hostile" 1. .6 .4 0.
 color "radar inactive" .4 .4 .4 0.
 color "radar special" 1. 1. 1. 0.
 color "radar anomalous" .7 0. 1. 0.
+color "radar blink" 1. 1. 1. 0.
 
 
 

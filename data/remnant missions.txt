@@ -14,6 +14,8 @@ mission "First Contact: Remnant"
 	source
 		government "Remnant"
 	on offer
+		log "Factions" "Remnant" `Half a millennium ago, during the Alpha Wars, a group of humans fleeing the conflict and looking for a safer place to live discovered a wormhole into a region of space known as the Ember Waste. They built settlements there, and chose to call themselves the Remnant. Although they no longer fear the Alphas as much as they once did, they still have not rejoined human society.`
+			`Since their colonies were first formed, the Remnant's culture has changed drastically. They communicate in sign language, using their voices only for singing. Their food and architecture and much of their technology is strange, and much of it has been borrowed or stolen from nearby alien species.`
 		conversation
 			`Although they are unusually tall and dark-skinned, the people here appear to be human. You wouldn't know it from the architecture, however: the buildings with their curved, twisted surfaces and ramifying arches look more alien than any human dwelling you have seen before.`
 			`	Stranger still, no one is speaking: the usual background murmur of voices that you would associate with a spaceport is absent here. Instead, the locals are communicating in a rapid and graceful sign language, their hands tracing arcs through the air almost faster than your eyes can follow.`
@@ -145,8 +147,8 @@ mission "Remnant: Defense 2"
 			`	"Thank you," she sings. "It keeps jumping between systems in our territory. Maybe its jump drive was damaged or something, and it can't escape. I'll spread news that you've taken on the bounty for hunting it, so others won't risk their lives fighting it."`
 				accept
 	npc kill
-		personality coward target uninterested skybound
-		government Bounty
+		personality coward target uninterested marked waiting
+		government Korath
 		system
 			distance 1 2
 		fleet
@@ -158,6 +160,7 @@ mission "Remnant: Defense 2"
 	on complete
 		payment 250000
 		dialog `The same woman meets you when you land on <planet>. "Again, thank you," she says. "I will suggest to others that they might offer you similar bounty hunting jobs in the future." She pays you <payment>.`
+		log "Factions" "Remnant" `Recently, Korath ships have begun raiding Remnant worlds. The Remnant have decided not to try to discourage these raids, because they are a perfect opportunity to steal jump drives and other valuable alien technology from the Korath.`
 
 
 
@@ -172,8 +175,8 @@ mission "Remnant: Bounty"
 		has "Remnant: Defense 2: done"
 		random < 60
 	npc kill
-		personality coward target uninterested skybound
-		government Bounty
+		personality coward target uninterested marked waiting
+		government Korath
 		system
 			distance 1 2
 		fleet
@@ -192,6 +195,8 @@ mission "Remnant: Defense 3"
 	landing
 	name "Remnant surveillance"
 	description "Travel to the Parca system, destroy any Korath ships you find there, then deploy a Remnant surveillance satellite to give them advance warning of Korath raids in the future. Return to <planet> when you are done."
+	source
+		government "Remnant"
 	to offer
 		"Remnant: Bounty: done" >= 3
 	cargo "surveillance equipment" 13
@@ -257,7 +262,7 @@ mission "Remnant: Key Stones"
 				goto more
 
 			label hai
-			`	"Intriguing," he sings. "Are they aware of how valuable these stones are?" You tell him about the Hai: that they once had a vast empire that included part of human space, but that was almost a hundred thousand years ago. And, you tell him that to them the Key Stones are just good luck charms. "Perhaps they have forgotten the true use of the Stones," says the man. "This may give us an opportunity for a mutually profitable endeavor."`
+			`	"Intriguing," he sings. "Are they aware of how valuable these stones are?" You tell him about the Hai, that they are an old species and that to them the Key Stones are just good luck charms. "Perhaps they have forgotten the true use of the Stones," says the man. "This may give us an opportunity for a mutually profitable endeavor."`
 
 			label more
 			`	"Tell me more," you say.`
@@ -401,6 +406,7 @@ mission "Remnant: Void Sprites 3"
 	stopover Nasqueron
 	stopover Slylandro
 	cargo "scanning equipment" 8
+	blocked "The Remnant researcher has another job for you, but you're going to have to free up some cargo space in order to take it on."
 	to offer
 		has "Remnant: Void Sprites 2: done"
 	on offer
@@ -441,6 +447,8 @@ mission "Remnant: Void Sprites 3"
 			`	After collecting some atmospheric samples for good measure, you prepare to return to <planet>. Hopefully the Archon will calm down once it sees that you have not attacked or disturbed the Sprites on either of these planets.`
 	on complete
 		event "remnant: void sprite research" 20
+		log "Factions" "Void Sprites" `The "void sprites" are space-dwelling lifeforms. They are apparently not sentient. They evolved in the atmosphere of a gas giant, but have some biological mechanism for altering or reflecting gravity that allows them to fly into outer space, in the same way that human ships use antigravity to escape a planet's gravity well. The void sprites are not particularly powerful or dangerous creatures, but they are guarded by a Drak Archon.`
+		log "Factions" "Archons" `Archons are partly biological, but do not seem to be naturally evolved creatures. Some of their biological characteristics may have been based on the "void sprites" that inhabit the Ember Waste.`
 		conversation
 			`The Remnant researcher is ecstatic when he sees all the data you collected. "I will begin assembling this into a research paper immediately!" he sings. "It may be months before it is published, but when it is you will be named as a co-author, and I will share the payment with you."`
 			choice
@@ -448,7 +456,7 @@ mission "Remnant: Void Sprites 3"
 				`	"I'm glad I could help you out. I'll look forward to hearing from you."`
 					decline
 
-			`	He begins singing you a song about the Archons. The song says that the Archons are servants of the mysterious Drak, who no one has seen but who the Quarg claim to speak to and take orders from. "That's all our histories say," he sings, "but what interests me is the biological similarities between the Archons and the void sprites. We do not think the Archons are naturally evolved creatures. Perhaps their creators incorporated elements of void sprite biology into them when they were made. Or perhaps the Archons just feel an affinity with them because they are both space-faring organisms."`
+			`	He begins singing you a song about the Archons. The song says that the Archons are servants of the mysterious Drak, whom no one has seen but whom the Quarg claim to speak to and take orders from. "That's all our histories say," he sings, "but what interests me is the biological similarities between the Archons and the void sprites. We do not think the Archons are naturally evolved creatures. Perhaps their creators incorporated elements of void sprite biology into them when they were made. Or perhaps the Archons just feel an affinity with them because they are both space-faring organisms."`
 			choice
 				`	"Well, I'll look forward to hearing the results of your research when it is done."`
 					decline

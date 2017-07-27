@@ -70,6 +70,8 @@ public:
 	// Install a weapon here (assuming it is empty). This is only for
 	// Armament to call internally.
 	void Install(const Outfit *outfit);
+	// Reload this weapon.
+	void Reload();
 	// Uninstall the outfit from this port (if it has one).
 	void Uninstall();
 	

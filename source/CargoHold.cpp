@@ -22,8 +22,28 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include <algorithm>
 #include <cmath>
+#include <vector>
 
 using namespace std;
+
+namespace {
+	// Retrieve vector of pointers to the outfits, sorted descending by size.
+	vector<const Outfit *> OrderOutfitsBySize(const map<const Outfit *, int> &outfits)
+	{
+		vector<const Outfit *> sortedOutfits;
+		for(const auto &it : outfits)
+			sortedOutfits.emplace_back(it.first);
+		
+		sort(sortedOutfits.begin(), sortedOutfits.end(),
+			[] (const Outfit *lhs, const Outfit *rhs)
+			{
+				return lhs->Get("mass") > rhs->Get("mass");
+			}
+		);
+		
+		return sortedOutfits;
+	}
+}
 
 
 
@@ -468,8 +488,9 @@ void CargoHold::TransferAll(CargoHold *to)
 		else
 			++mit;
 	}
-	for(const auto &it : outfits)
-		Transfer(it.first, it.second, to);
+	const std::vector<const Outfit *> outfitOrder = OrderOutfitsBySize(outfits);
+	for(const auto &outfit : outfitOrder)
+		Transfer(outfit, outfits[outfit], to);
 	for(const auto &it : commodities)
 		Transfer(it.first, it.second, to);
 }
