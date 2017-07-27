@@ -262,7 +262,7 @@ mission "Remnant: Key Stones"
 				goto more
 
 			label hai
-			`	"Intriguing," he sings. "Are they aware of how valuable these stones are?" You tell him about the Hai: that they once had a vast empire that included part of human space, but that was almost a hundred thousand years ago. And, you tell him that to them the Key Stones are just good luck charms. "Perhaps they have forgotten the true use of the Stones," says the man. "This may give us an opportunity for a mutually profitable endeavor."`
+			`	"Intriguing," he sings. "Are they aware of how valuable these stones are?" You tell him about the Hai, that they are an old species and that to them the Key Stones are just good luck charms. "Perhaps they have forgotten the true use of the Stones," says the man. "This may give us an opportunity for a mutually profitable endeavor."`
 
 			label more
 			`	"Tell me more," you say.`
