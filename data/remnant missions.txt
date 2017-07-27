@@ -456,7 +456,7 @@ mission "Remnant: Void Sprites 3"
 				`	"I'm glad I could help you out. I'll look forward to hearing from you."`
 					decline
 
-			`	He begins singing you a song about the Archons. The song says that the Archons are servants of the mysterious Drak, who no one has seen but who the Quarg claim to speak to and take orders from. "That's all our histories say," he sings, "but what interests me is the biological similarities between the Archons and the void sprites. We do not think the Archons are naturally evolved creatures. Perhaps their creators incorporated elements of void sprite biology into them when they were made. Or perhaps the Archons just feel an affinity with them because they are both space-faring organisms."`
+			`	He begins singing you a song about the Archons. The song says that the Archons are servants of the mysterious Drak, whom no one has seen but whom the Quarg claim to speak to and take orders from. "That's all our histories say," he sings, "but what interests me is the biological similarities between the Archons and the void sprites. We do not think the Archons are naturally evolved creatures. Perhaps their creators incorporated elements of void sprite biology into them when they were made. Or perhaps the Archons just feel an affinity with them because they are both space-faring organisms."`
 			choice
 				`	"Well, I'll look forward to hearing the results of your research when it is done."`
 					decline
