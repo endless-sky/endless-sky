@@ -47,23 +47,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 using namespace std;
 
 namespace {
-	int RadarType(const StellarObject &object, const Ship *flagship)
-	{
-		if(object.IsStar())
-			return Radar::SPECIAL;
-		if(!object.GetPlanet() || !object.GetPlanet()->IsAccessible(flagship))
-			return Radar::INACTIVE;
-		if(object.GetPlanet()->IsWormhole())
-			return Radar::ANOMALOUS;
-		if(GameData::GetPolitics().HasDominated(object.GetPlanet()))
-			return Radar::PLAYER;
-		if(object.GetPlanet()->CanLand())
-			return Radar::FRIENDLY;
-		if(!object.GetPlanet()->GetGovernment()->IsEnemy())
-			return Radar::UNFRIENDLY;
-		return Radar::HOSTILE;
-	}
-	
 	int RadarType(const Ship &ship, int step)
 	{
 		if(ship.GetPersonality().IsTarget() && !ship.IsDestroyed())
@@ -121,7 +104,7 @@ Engine::Engine(PlayerInfo &player)
 			draw[calcTickTock].Add(object);
 			
 			double r = max(2., object.Radius() * .03 + .5);
-			radar[calcTickTock].Add(RadarType(object, flagship), object.Position(), r, r - 1.);
+			radar[calcTickTock].Add(object.RadarType(flagship), object.Position(), r, r - 1.);
 		}
 	
 	// Add all neighboring systems to the radar.
@@ -1080,7 +1063,7 @@ void Engine::CalculateStep()
 				draw[calcTickTock].Add(object);
 			
 			double r = max(2., object.Radius() * .03 + .5);
-			radar[calcTickTock].Add(RadarType(object, flagship), object.Position(), r, r - 1.);
+			radar[calcTickTock].Add(object.RadarType(flagship), object.Position(), r, r - 1.);
 			
 			if(object.GetPlanet())
 				object.GetPlanet()->DeployDefense(ships);
