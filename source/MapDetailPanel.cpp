@@ -617,7 +617,7 @@ void MapDetailPanel::DrawOrbits()
 		
 		const float *rgb = Radar::GetColor(object.RadarType(player.Flagship())).Get();
 		// Darken and saturate the color, and make it opaque.
-		Color color(max(0.f, rgb[0] - .1f), max(0.f, rgb[1] - .1f), max(0.f, rgb[2] - .1f), 1.f);
+		Color color(max(0., rgb[0] * 1.2 - .2), max(0., rgb[1] * 1.2 - .2), max(0., rgb[2] * 1.2 - .2), 1.);
 		RingShader::Draw(pos, object.Radius() * scale + 1., 0., color);
 	}
 	
