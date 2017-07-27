@@ -436,7 +436,8 @@ void PreferencesPanel::DrawSettings()
 		REACTIVATE_HELP,
 		SCROLL_SPEED,
 		"Warning siren",
-		"Hide unexplored map regions"
+		"Hide unexplored map regions",
+		"Special cargo fills flagship first"
 	};
 	bool isCategory = true;
 	for(const string &setting : SETTINGS)
