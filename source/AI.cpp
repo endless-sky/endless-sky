@@ -50,8 +50,8 @@ namespace {
 	
 	bool IsStranded(const Ship &ship)
 	{
-		return ship.GetSystem() && !ship.GetSystem()->HasFuelFor(ship) && ship.JumpFuel()
-			&& ship.Attributes().Get("fuel capacity") && !ship.JumpsRemaining();
+		return ship.GetSystem() && !ship.IsEnteringHyperspace() && !ship.GetSystem()->HasFuelFor(ship)
+			&& ship.JumpFuel() && ship.Attributes().Get("fuel capacity") && !ship.JumpsRemaining();
 	}
 	
 	bool CanBoard(const Ship &ship, const Ship &target)
@@ -302,6 +302,7 @@ void AI::Step(const PlayerInfo &player)
 		}
 		
 		const Government *gov = it->GetGovernment();
+		const Personality &personality = it->GetPersonality();
 		double health = .5 * it->Shields() + it->Hull();
 		bool isPresent = (it->GetSystem() == player.GetSystem());
 		bool isStranded = IsStranded(*it);
@@ -396,17 +397,93 @@ void AI::Step(const PlayerInfo &player)
 				command |= Command::CLOAK;
 		}
 		
-		const Personality &personality = it->GetPersonality();
-		shared_ptr<Ship> parent = it->GetParent();
-		shared_ptr<const Ship> target = it->GetTargetShip();
 		// If your parent is destroyed, you are no longer an escort.
+		shared_ptr<Ship> parent = it->GetParent();
 		if(parent && parent->IsDestroyed())
 		{
 			parent.reset();
 			it->SetParent(parent);
 		}
 		
-		if(isPresent && personality.IsSwarming())
+		// Special actions when a ship is near death:
+		if(health < 1.)
+		{
+			if(parent && personality.IsCoward())
+			{
+				// Cowards abandon their fleets.
+				parent.reset();
+				it->SetParent(parent);
+			}
+			if(personality.IsAppeasing() && it->Cargo().Used())
+			{
+				double &threshold = appeasmentThreshold[it.get()];
+				if(1. - health > threshold)
+				{
+					// "Appeasing" ships will dump some fraction of their cargo.
+					int toDump = 11 + (1. - health) * .5 * it->Cargo().Size();
+					for(const auto &commodity : it->Cargo().Commodities())
+					{
+						it->Jettison(commodity.first, min(commodity.second, toDump));
+						toDump -= commodity.second;
+						if(toDump <= 0)
+							break;
+					}
+					Messages::Add(it->GetGovernment()->GetName() + " ship \"" + it->Name()
+						+ "\": Please, just take my cargo and leave me alone.");
+					threshold = (1. - health) + .1;
+				}
+			}
+		}
+		
+		// Pick a target and automatically fire weapons.
+		shared_ptr<const Ship> target = it->GetTargetShip();
+		if(isPresent)
+		{
+			// Each ship only switches targets twice a second, so that it can
+			// focus on damaging one particular ship.
+			targetTurn = (targetTurn + 1) & 31;
+			if(targetTurn == step || !target || !target->IsTargetable() || target->IsDestroyed()
+					|| (target->IsDisabled() && personality.Disables()))
+				it->SetTargetShip(FindTarget(*it));
+			
+			AimTurrets(*it, command, it->IsYours() ? opportunisticEscorts : personality.IsOpportunistic());
+			AutoFire(*it, command);
+		}
+		
+		// If recruited to assist a ship, follow through on the commitment
+		// instead of ignoring it due to other personality traits.
+		shared_ptr<Ship> shipToAssist = it->GetShipToAssist();
+		if(shipToAssist)
+		{
+			if(shipToAssist->IsDestroyed() || shipToAssist->GetSystem() != it->GetSystem()
+					|| shipToAssist->IsLanding() || shipToAssist->IsHyperspacing()
+					|| (!shipToAssist->IsDisabled() && shipToAssist->JumpsRemaining())
+					|| shipToAssist->GetGovernment()->IsEnemy(gov))
+			{
+				shipToAssist.reset();
+				it->SetShipToAssist(shipToAssist);
+			}
+			else if(!it->IsBoarding())
+			{
+				MoveTo(*it, command, shipToAssist->Position(), shipToAssist->Velocity(), 40., .8);
+				command |= Command::BOARD;
+			}
+			
+			if(shipToAssist)
+			{
+				it->SetTargetShip(shipToAssist);
+				it->SetCommands(command);
+				continue;
+			}
+		}
+		
+		double targetDistance = numeric_limits<double>::infinity();
+		target = it->GetTargetShip();
+		if(target)
+			targetDistance = target->Position().Distance(it->Position());
+		
+		// Behave in accordance with personality traits.
+		if(isPresent && personality.IsSwarming() && !isStranded)
 		{
 			parent.reset();
 			it->SetParent(parent);
@@ -441,35 +518,25 @@ void AI::Step(const PlayerInfo &player)
 				Swarm(*it, command, *target);
 			else if(it->Zoom() == 1.)
 				Refuel(*it, command);
+			
 			it->SetCommands(command);
 			continue;
 		}
 		
-		if(isPresent && personality.IsSurveillance())
+		if(isPresent && personality.IsSurveillance() && !isStranded)
 		{
 			DoSurveillance(*it, command);
 			it->SetCommands(command);
 			continue;
 		}
-		// Pick a target and automatically fire weapons.
-		if(isPresent)
-		{
-			// Each ship only switches targets twice a second, so that it can
-			// focus on damaging one particular ship.
-			targetTurn = (targetTurn + 1) & 31;
-			if(targetTurn == step || !target || !target->IsTargetable() || target->IsDestroyed()
-					|| (target->IsDisabled() && personality.Disables()))
-				it->SetTargetShip(FindTarget(*it));
-			
-			AimTurrets(*it, command, it->IsYours() ? opportunisticEscorts : personality.IsOpportunistic());
-			AutoFire(*it, command);
-		}
+		
 		if(isPresent && personality.Harvests() && DoHarvesting(*it, command))
 		{
 			it->SetCommands(command);
 			continue;
 		}
-		if(isPresent && personality.IsMining() && !target && !it->GetShipToAssist()
+		
+		if(isPresent && personality.IsMining() && !target && !isStranded
 				&& it->Cargo().Free() >= 5 && ++miningTime[&*it] < 3600 && ++minerCount < 9)
 		{
 			if(it->HasBays())
@@ -478,7 +545,7 @@ void AI::Step(const PlayerInfo &player)
 			it->SetCommands(command);
 			continue;
 		}
-		else if(isPresent && !target && it->CanBeCarried() && parent && miningTime[&*parent] < 3601
+		else if(isPresent && !target && it->CanBeCarried() && parent && miningTime[&*parent] < 3601 && !isStranded
 				&& parent->GetTargetAsteroid() && parent->GetTargetAsteroid()->Position().Distance(parent->Position()) < 800.)
 		{
 			// Assist your parent in mining its nearby targeted asteroid.
@@ -487,41 +554,6 @@ void AI::Step(const PlayerInfo &player)
 			it->SetCommands(command);
 			continue;
 		}
-		
-		// Special actions when a ship is near death:
-		if(health < 1.)
-		{
-			if(parent && personality.IsCoward())
-			{
-				// Cowards abandon their fleets.
-				parent.reset();
-				it->SetParent(parent);
-			}
-			if(personality.IsAppeasing() && it->Cargo().Used())
-			{
-				double &threshold = appeasmentThreshold[it.get()];
-				if(1. - health > threshold)
-				{
-					// "Appeasing" ships will dump some fraction of their cargo.
-					int toDump = 11 + (1. - health) * .5 * it->Cargo().Size();
-					for(const auto &commodity : it->Cargo().Commodities())
-					{
-						it->Jettison(commodity.first, min(commodity.second, toDump));
-						toDump -= commodity.second;
-						if(toDump <= 0)
-							break;
-					}
-					Messages::Add(it->GetGovernment()->GetName() + " ship \"" + it->Name()
-						+ "\": Please, just take my cargo and leave me alone.");
-					threshold = (1. - health) + .1;
-				}
-			}
-		}
-		
-		double targetDistance = numeric_limits<double>::infinity();
-		target = it->GetTargetShip();
-		if(target)
-			targetDistance = target->Position().Distance(it->Position());
 		
 		// Handle fighters:
 		const string &category = it->Attributes().Category();
@@ -583,24 +615,7 @@ void AI::Step(const PlayerInfo &player)
 				}
 			}
 		
-		shared_ptr<Ship> shipToAssist = it->GetShipToAssist();
-		if(shipToAssist)
-		{
-			it->SetTargetShip(shipToAssist);
-			if(shipToAssist->IsDestroyed() || shipToAssist->GetSystem() != it->GetSystem()
-					|| shipToAssist->IsLanding() || shipToAssist->IsHyperspacing()
-					|| (!shipToAssist->IsDisabled() && shipToAssist->JumpsRemaining())
-					|| shipToAssist->GetGovernment()->IsEnemy(gov))
-				it->SetShipToAssist(shared_ptr<Ship>());
-			else if(!it->IsBoarding())
-			{
-				MoveTo(*it, command, shipToAssist->Position(), shipToAssist->Velocity(), 40., .8);
-				command |= Command::BOARD;
-			}
-			it->SetCommands(command);
-			continue;
-		}
-		
+		// Construct movement / navigation commands as appropriate for the ship.
 		if(mustRecall || isStranded)
 		{
 			// Stopping to let fighters board or to be refueled takes priority
@@ -1603,9 +1618,8 @@ void AI::DoSurveillance(Ship &ship, Command &command) const
 		ship.SetTargetShip(shared_ptr<Ship>());
 	if(target && ship.GetGovernment()->IsEnemy(target->GetGovernment()))
 	{
+		// Automatic aiming and firing already occurred.
 		MoveIndependent(ship, command);
-		AimTurrets(ship, command, ship.GetPersonality().IsOpportunistic());
-		AutoFire(ship, command);
 		return;
 	}
 	
