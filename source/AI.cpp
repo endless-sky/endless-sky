@@ -1849,7 +1849,7 @@ void AI::DoCloak(Ship &ship, Command &command)
 		
 		// If this ship has started cloaking, it must get at least 40% repaired
 		// or 40% farther away before it begins decloaking again.
-		double hysteresis = ship.Cloaking() ? 1.4 : 1.;
+		double hysteresis = ship.Commands().Has(Command::CLOAK) ? 1.4 : 1.;
 		double cloakIsFree = !ship.Attributes().Get("cloaking fuel");
 		if(ship.Hull() + .5 * ship.Shields() < hysteresis
 				&& (cloakIsFree || nearestEnemy < 2000. * hysteresis))
