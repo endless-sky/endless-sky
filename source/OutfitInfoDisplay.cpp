@@ -33,6 +33,7 @@ namespace {
 		{"afterburner heat", 60.},
 		{"cloaking energy", 60.},
 		{"cloaking fuel", 60.},
+		{"cloaking heat", 60.},
 		{"cooling", 60.},
 		{"cooling energy", 60.},
 		{"energy consumption", 60.},
