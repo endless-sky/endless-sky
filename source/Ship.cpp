@@ -1369,20 +1369,20 @@ void Ship::Launch(list<shared_ptr<Ship>> &ships)
 					|| (weaponCount == ammoWeapons + fuelWeapons && !(hasAmmo || ship->Fuel() > .75))))
 				continue;
 			
-			ships.push_back(bay.ship);
-			double maxV = bay.ship->MaxVelocity();
+			ships.push_back(ship);
+			double maxV = ship->MaxVelocity();
 			Angle launchAngle = angle + BAY_ANGLE[bay.facing];
 			Point v = velocity + (.3 * maxV) * launchAngle.Unit() + (.2 * maxV) * Angle::Random().Unit();
-			bay.ship->Place(position + angle.Rotate(bay.point), v, launchAngle);
-			bay.ship->SetSystem(currentSystem);
-			bay.ship->SetParent(shared_from_this());
+			ship->Place(position + angle.Rotate(bay.point), v, launchAngle);
+			ship->SetSystem(currentSystem);
+			ship->SetParent(shared_from_this());
 			// Fighters in your ship have the same temperature as your ship itself, so
 			// when they launch they should take their share of heat with them, so that
 			// the fighter and the mothership remain at the same temperature.
-			bay.ship->heat = heat * bay.ship->Mass() / Mass();
-			heat -= bay.ship->heat;
+			ship->heat = heat * ship->Mass() / Mass();
+			heat -= ship->heat;
 			
-			bay.ship.reset();
+			ship.reset();
 		}
 }
 
