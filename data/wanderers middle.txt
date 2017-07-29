@@ -2110,6 +2110,8 @@ mission "Wanderers: Sestor: Bomb Zenith 1"
 				launch
 	on complete
 		fail "Wanderers: Sestor: Farpoint Attack 2"
+	to fail
+		has "Wanderers: Sestor: Farpoint Attack 2: done"
 
 
 
@@ -2609,6 +2611,7 @@ mission "Wanderers: Sestor Alt: Alnilam 1"
 	description "Rather than bombing Zenith, destroy any Kor Sestor drones that are left over in the Alnilam system, then report back to Admiral Danforth on Farpoint."
 	autosave
 	source "Farpoint"
+	waypoint "Alnilam"
 	to offer
 		not "event: bombed zenith"
 		has "Wanderers: Sestor: Farpoint Attack 2: done"
@@ -2616,10 +2619,12 @@ mission "Wanderers: Sestor Alt: Alnilam 1"
 			not "Wanderers: Sestor: Alnilam Fleet 1: done"
 			not "Wanderers: Sestor: Alnilam Fleet 2: done"
 	on offer
-		fail "Wanderers: Sestor: Bomb Zenith 1"
 		conversation
-			`Danforth is impressed that you were able to eliminate the Kor Sestor fleet. "The weapon I gave you was a last resort, and one that I would be ashamed to use," he says. "I have no ships to give you until we have had time to make repairs, but if you are able to destroy whatever Kor Sestor ships remain in the <system> system on your own, return here and I will send my troop transports with you to destroy the Alpha base the old-fashioned way."`
+			`Danforth is impressed that you were able to eliminate the attacking Kor Sestor fleet. "The weapon I gave you was a last resort, and one that I would be ashamed to use," he says. "I have no ships to give you until we have had time to make repairs, but if you are able to destroy whatever Kor Sestor ships remain in the Alnilam system on your own, return here and I will send my troop transports with you to destroy the Alpha base the old-fashioned way."`
 				accept
+	to complete
+		has "Wanderers: Sestor: Alnilam Fleet 1: done"
+		has "Wanderers: Sestor: Alnilam Fleet 2: done"
 
 
 
