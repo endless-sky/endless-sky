@@ -836,9 +836,25 @@ void Engine::EnterSystem()
 		+ today.ToString() + (system->IsInhabited(flagship) ?
 			"." : ". No inhabited planets detected."));
 	
+	// Preload landscapes, and determine if any of the stellarobjects are wormholes.
+	bool hasWormhole = false;
 	for(const StellarObject &object : system->Objects())
+	{
 		if(object.GetPlanet())
 			GameData::Preload(object.GetPlanet()->Landscape());
+		if(!hasWormhole && object.GetPlanet() && object.GetPlanet()->IsWormhole())
+			hasWormhole = true;
+	}
+	
+	// The player may have used a wormhole that was not in his or her existing travel plan.
+	if(hasWormhole && player.HasTravelPlan())
+	{
+		// If the next system in the travel plan is not this system, or reachable
+		// from this system, then the travel plan is invalid and must be cleared.
+		const System *to = player.TravelPlan().back();
+		if(system != to && system->Neighbors().count(to) == 0)
+			player.TravelPlan().clear();
+	}
 	
 	GameData::SetDate(today);
 	GameData::StepEconomy();
