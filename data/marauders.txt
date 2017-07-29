@@ -285,8 +285,8 @@ ship "Marauder Bounder" "Marauder Bounder (Weapons)"
 		
 	engine -15 44
 	engine 15 44
-	gun 7 -77 "Modified Blaster"
 	gun -7 -77 "Modified Blaster"
+	gun 7 -77 "Modified Blaster"
 	turret -37 4 "Heavy Laser Turret"
 	turret 37 4 "Heavy Laser Turret"
 	explode "tiny explosion" 10
@@ -342,10 +342,10 @@ ship "Marauder Falcon"
 	gun 16 -89 "Plasma Cannon"
 	gun -16 -89 "Plasma Cannon"
 	gun 16 -89 "Plasma Cannon"
-	turret -57 32.5 "Modified Blaster Turret"
-	turret 57 32.5 "Modified Blaster Turret"
 	turret -16 -25 "Modified Blaster Turret"
 	turret 16 -25 "Modified Blaster Turret"
+	turret -57 32.5 "Modified Blaster Turret"
+	turret 57 32.5 "Modified Blaster Turret"
 	explode "tiny explosion" 40
 	explode "small explosion" 55
 	explode "medium explosion" 60
@@ -397,10 +397,10 @@ ship "Marauder Falcon" "Marauder Falcon (Engines)"
 	gun 16 -88 "Electron Beam"
 	gun -16 -88 "Electron Beam"
 	gun 16 -88 "Electron Beam"
-	turret -57 32.5 "Blaster Turret"
-	turret 57 32.5 "Blaster Turret"
 	turret -16 -24 "Modified Blaster Turret"
 	turret 16 -24 "Modified Blaster Turret"
+	turret -57 32.5 "Blaster Turret"
+	turret 57 32.5 "Blaster Turret"
 	explode "tiny explosion" 40
 	explode "small explosion" 55
 	explode "medium explosion" 60
@@ -449,14 +449,14 @@ ship "Marauder Falcon" "Marauder Falcon (Weapons)"
 	engine 16 142
 	gun -18.5 -88 "Plasma Cannon"
 	gun 18.5 -88 "Plasma Cannon"
-	gun -21.5 -77 "Plasma Cannon"
-	gun 21.5 -77 "Plasma Cannon"
 	gun -18.5 -88 "Plasma Cannon"
 	gun 18.5 -88 "Plasma Cannon"
-	turret -57 32.5 "Quad Blaster Turret"
-	turret 57 32.5 "Quad Blaster Turret"
+	gun -21.5 -77 "Plasma Cannon"
+	gun 21.5 -77 "Plasma Cannon"
 	turret -16 -25 "Quad Blaster Turret"
 	turret 16 -25 "Quad Blaster Turret"
+	turret -57 32.5 "Quad Blaster Turret"
+	turret 57 32.5 "Quad Blaster Turret"
 	explode "tiny explosion" 40
 	explode "small explosion" 55
 	explode "medium explosion" 60
@@ -507,10 +507,10 @@ ship "Marauder Firebird"
 	
 	engine -32 62
 	engine 32 62
-	gun -38 -18 "Plasma Cannon"
-	gun 38 -18 "Plasma Cannon"
 	gun -27 -32 "Plasma Cannon"
 	gun 27 -32 "Plasma Cannon"
+	gun -38 -18 "Plasma Cannon"
+	gun 38 -18 "Plasma Cannon"
 	turret -5 3 "Heavy Laser Turret"
 	turret 5 3 "Heavy Anti-Missile Turret"
 	explode "tiny explosion" 18
@@ -561,10 +561,10 @@ ship "Marauder Firebird" "Marauder Firebird (Engines)"
 	engine -34 62
 	engine 0 74
 	engine 34 62
-	gun -38 -18 "Plasma Cannon"
-	gun 38 -18 "Plasma Cannon"
 	gun -26.5 -33 "Plasma Cannon"
 	gun 26.5 -33 "Plasma Cannon"
+	gun -38 -18 "Plasma Cannon"
+	gun 38 -18 "Plasma Cannon"
 	turret -5 3 "Quad Blaster Turret"
 	turret 5 3 "Anti-Missile Turret"
 	explode "tiny explosion" 18
@@ -612,10 +612,10 @@ ship "Marauder Firebird" "Marauder Firebird (Weapons)"
 	
 	engine -32 62
 	engine 32 62
-	gun -38 -18 "Particle Cannon"
-	gun 38 -18 "Particle Cannon"
 	gun -27 -32 "Particle Cannon"
 	gun 27 -32 "Particle Cannon"
+	gun -38 -18 "Particle Cannon"
+	gun 38 -18 "Particle Cannon"
 	turret -5 3 "Quad Blaster Turret"
 	turret 5 3 "Quad Blaster Turret"
 	explode "tiny explosion" 18
@@ -726,10 +726,10 @@ ship "Marauder Leviathan"
 	
 	engine -25 125
 	engine 25 125
-	gun -50 -26 "Particle Cannon"
-	gun 50 -26 "Particle Cannon"
 	gun -38 -34 "Particle Cannon"
 	gun 38 -34 "Particle Cannon"
+	gun -50 -26 "Particle Cannon"
+	gun 50 -26 "Particle Cannon"
 	turret -15 -50 "Quad Blaster Turret"
 	turret 15 -50 "Quad Blaster Turret"
 	turret -25 10 "Heavy Laser Turret"
@@ -780,10 +780,10 @@ ship "Marauder Leviathan" "Marauder Leviathan (Engines)"
 	
 	engine -27 125
 	engine 27 125
-	gun -50 -23 "Electron Beam"
-	gun 50 -23 "Electron Beam"
 	gun -38 -34 "Electron Beam"
 	gun 38 -34 "Electron Beam"
+	gun -50 -23 "Electron Beam"
+	gun 50 -23 "Electron Beam"
 	turret -16 -48 "Quad Blaster Turret"
 	turret 16 -48 "Quad Blaster Turret"
 	turret -25 10 "Quad Blaster Turret"
@@ -834,10 +834,10 @@ ship "Marauder Leviathan" "Marauder Leviathan (Weapons)"
 	
 	engine -25 125
 	engine 25 125
-	gun -50 -45 "Particle Cannon"
-	gun 50 -45 "Particle Cannon"
 	gun -39 -52 "Particle Cannon"
 	gun 39 -52 "Particle Cannon"
+	gun -50 -45 "Particle Cannon"
+	gun 50 -45 "Particle Cannon"
 	turret -15 -50 "Heavy Laser Turret"
 	turret 15 -50 "Heavy Laser Turret"
 	turret -25 10 "Heavy Laser Turret"
@@ -894,12 +894,12 @@ ship "Marauder Manta"
 	
 	engine -33 38
 	engine 33 38
-	gun -20 -30 "Particle Cannon"
-	gun 20 -30 "Particle Cannon"
-	gun -27 -30 "Particle Cannon"
-	gun 27 -30 "Particle Cannon"
 	gun -66 -30 "Meteor Missile Launcher"
 	gun 66 -30 "Meteor Missile Launcher"
+	gun -27 -30 "Particle Cannon"
+	gun 27 -30 "Particle Cannon"
+	gun -20 -30 "Particle Cannon"
+	gun 20 -30 "Particle Cannon"
 	turret 0 -29 "Quad Blaster Turret"
 	explode "tiny explosion" 10
 	explode "small explosion" 20
@@ -946,12 +946,12 @@ ship "Marauder Manta" "Marauder Manta (Engines)"
 	engine -33.5 38
 	engine 0 76
 	engine 33.5 38
-	gun -20 -30 "Plasma Cannon"
-	gun 20 -30 "Plasma Cannon"
-	gun -27 -30 "Plasma Cannon"
-	gun 27 -30 "Plasma Cannon"
 	gun -66 -30 "Meteor Missile Launcher"
 	gun 66 -30 "Meteor Missile Launcher"
+	gun -27 -30 "Plasma Cannon"
+	gun 27 -30 "Plasma Cannon"
+	gun -20 -30 "Plasma Cannon"
+	gun 20 -30 "Plasma Cannon"
 	turret 0 -29 "Quad Blaster Turret"
 	explode "tiny explosion" 10
 	explode "small explosion" 20
@@ -1000,12 +1000,12 @@ ship "Marauder Manta" "Marauder Manta (Weapons)"
 		
 	engine -33.5 38
 	engine 33.5 38
-	gun -20 -35 "Particle Cannon"
-	gun 20 -35 "Particle Cannon"
-	gun -27 -35 "Proton Gun"
-	gun 27 -35 "Proton Gun"
 	gun -66 -34 "Meteor Missile Launcher"
 	gun 66 -34 "Meteor Missile Launcher"
+	gun -27 -35 "Proton Gun"
+	gun 27 -35 "Proton Gun"
+	gun -20 -35 "Particle Cannon"
+	gun 20 -35 "Particle Cannon"
 	turret 0 -29 "Heavy Anti-Missile Turret"
 	explode "tiny explosion" 10
 	explode "small explosion" 20
@@ -1451,10 +1451,10 @@ ship "Marauder Splinter" "Marauder Splinter (Weapons)"
 	
 	engine -14 112
 	engine 14 112
-	gun -15 -82 "Plasma Cannon"
-	gun 15 -82 "Plasma Cannon"
 	gun -7.5 -98 "Plasma Cannon"
 	gun 7.5 -98 "Plasma Cannon"
+	gun -15 -82 "Plasma Cannon"
+	gun 15 -82 "Plasma Cannon"
 	turret -17 -28 "Quad Blaster Turret"
 	turret 0 -28 "Heavy Anti-Missile Turret"
 	turret 17 -28 "Quad Blaster Turret"
