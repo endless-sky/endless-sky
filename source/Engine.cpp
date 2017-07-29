@@ -39,6 +39,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "SpriteSet.h"
 #include "SpriteShader.h"
 #include "StarField.h"
+#include "StartConditions.h"
 #include "System.h"
 
 #include <algorithm>
@@ -902,7 +903,7 @@ void Engine::EnterSystem()
 	
 	// Help message for new players. Show this message for the first four days,
 	// since the new player ships can make at most four jumps before landing.
-	if(today <= Date(21, 11, 3013))
+	if(today <= GameData::Start().GetDate() + 4)
 	{
 		Messages::Add(GameData::HelpMessage("basics 1"));
 		Messages::Add(GameData::HelpMessage("basics 2"));
