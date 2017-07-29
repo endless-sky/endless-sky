@@ -49,6 +49,9 @@ tip "cloaking energy:"
 
 tip "cloaking fuel:"
 	`Fuel per second required to maintain cloaking.`
+	
+tip "cloaking heat:"
+	`Heat generated per second while cloaked.`
 
 tip "cooling:"
 	`Reduces heat by this amount per second. This is for when your ship's built-in heat dissipation is not sufficient to keep it from overheating.`
