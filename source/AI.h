@@ -64,6 +64,7 @@ template <class Type>
 	
 	
 private:
+	void AskForHelp(const std::shared_ptr<Ship> &ship, bool &isStranded, const Ship *flagship);
 	// Pick a new target for the given ship.
 	std::shared_ptr<Ship> FindTarget(const Ship &ship) const;
 	

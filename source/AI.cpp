@@ -312,66 +312,9 @@ void AI::Step(const PlayerInfo &player)
 			if(it->IsDestroyed() || it->GetPersonality().IsDerelict())
 				continue;
 			
-			bool hasEnemy = false;
-			Ship *firstAlly = nullptr;
-			bool selectNext = false;
-			Ship *nextAlly = nullptr;
-			for(const auto &ship : ships)
-			{
-				// Never ask yourself for help.
-				if(ship.get() == it.get())
-					continue;
-				if(ship->IsDisabled() || !ship->IsTargetable() || ship->GetSystem() != it->GetSystem())
-					continue;
-				// Fighters and drones can't offer assistance.
-				if(ship->CanBeCarried())
-					continue;
-				
-				const Government *otherGov = ship->GetGovernment();
-				// If any enemies of this ship are in system, it cannot call for help.
-				if(otherGov->IsEnemy(gov) && isPresent)
-				{
-					hasEnemy = true;
-					break;
-				}
-				// Don't ask for help from a ship that is already helping someone.
-				if(ship->GetShipToAssist() && ship->GetShipToAssist().get() != it.get())
-					continue;
-				// Don't ask ships that are busy mining or harvesting for help.
-				if(ship->GetTargetAsteroid() || ship->GetTargetFlotsam())
-					continue;
-				// Your escorts only help other escorts, and your flagship never helps.
-				if((otherGov->IsPlayer() && !gov->IsPlayer()) || ship.get() == flagship)
-					continue;
-				// Your escorts should not help each other if already under orders.
-				if(otherGov->IsPlayer() && gov->IsPlayer() && orders.count(ship.get()))
-					continue;
-				
-				if(it->IsDisabled() ? (otherGov == gov) : (!otherGov->IsEnemy(gov)))
-				{
-					if(isStranded && !ship->CanRefuel(*it))
-						continue;
-					
-					if(!firstAlly)
-						firstAlly = &*ship;
-					else if(ship == it)
-						selectNext = true;
-					else if(selectNext && !nextAlly)
-						nextAlly = &*ship;
-				}
-			}
+			if(!Random::Int(30))
+				AskForHelp(it, isStranded, flagship);
 			
-			isStranded = false;
-			if(!hasEnemy)
-			{
-				if(!nextAlly)
-					nextAlly = firstAlly;
-				if(nextAlly)
-				{
-					nextAlly->SetShipToAssist(it);
-					isStranded = true;
-				}
-			}
 			if(it->IsDisabled())
 			{
 				// Ships other than escorts should deploy fighters if disabled.
@@ -699,6 +642,62 @@ void AI::Step(const PlayerInfo &player)
 		DoScatter(*it, command);
 		
 		it->SetCommands(command);
+	}
+}
+
+
+
+void AI::AskForHelp(const std::shared_ptr<Ship> &it, bool &isStranded, const Ship *flagship)
+{
+	const Government *gov = it->GetGovernment();
+	bool hasEnemy = false;
+	bool isPresent = it->GetSystem() == flagship->GetSystem();
+	vector<shared_ptr<Ship>> canAsk;
+	for(const auto &ship : ships)
+	{
+		// Never ask yourself for help.
+		if(ship == it)
+			continue;
+		if(ship->IsDisabled() || !ship->IsTargetable() || ship->GetSystem() != it->GetSystem())
+			continue;
+		// Fighters and drones can't offer assistance.
+		if(ship->CanBeCarried())
+			continue;
+		
+		const Government *otherGov = ship->GetGovernment();
+		// If any enemies of this ship are in system, it cannot call for help.
+		if(otherGov->IsEnemy(gov) && isPresent)
+		{
+			hasEnemy = true;
+			break;
+		}
+		// Don't ask for help from a ship that is already helping someone.
+		if(ship->GetShipToAssist() && ship->GetShipToAssist().get() != it.get())
+			continue;
+		// Don't ask for help from ships that are busy mining or harvesting.
+		if(ship->GetTargetAsteroid() || ship->GetTargetFlotsam())
+			continue;
+		// Your escorts only help other escorts, and your flagship never helps.
+		if((otherGov->IsPlayer() && !gov->IsPlayer()) || ship.get() == flagship)
+			continue;
+		// Your escorts should not help each other if already under orders.
+		if(otherGov->IsPlayer() && gov->IsPlayer() && orders.count(ship.get()))
+			continue;
+		
+		if(it->IsDisabled() ? (otherGov == gov) : (!otherGov->IsEnemy(gov)))
+		{
+			if(isStranded && !ship->CanRefuel(*it))
+				continue;
+			
+			canAsk.emplace_back(ship);
+		}
+	}
+	
+	isStranded = false;
+	if(!hasEnemy && canAsk.size())
+	{
+		canAsk[Random::Int(canAsk.size())]->SetShipToAssist(it);
+		isStranded = true;
 	}
 }
 
