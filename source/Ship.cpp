@@ -816,7 +816,7 @@ bool Ship::Move(list<Effect> &effects, list<shared_ptr<Flotsam>> &flotsam)
 		bool canCloak = (!isDisabled && cloakingSpeed > 0. && !cloakDisruption
 			&& fuel >= attributes.Get("cloaking fuel")
 			&& energy >= attributes.Get("cloaking energy")
-			&& heat < ((.9 * Mass()) - attributes.Get("cloaking heat")));
+			&& heat < (90. * Mass()) - attributes.Get("cloaking heat"));
 		if(commands.Has(Command::CLOAK) && canCloak)
 		{
 			cloak = min(1., cloak + cloakingSpeed);
