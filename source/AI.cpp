@@ -1107,9 +1107,10 @@ void AI::MoveEscort(Ship &ship, Command &command) const
 	// Check if the parent has a target planet that is in the parent's system.
 	const Planet *parentPlanet = (parent.GetTargetStellar() ? parent.GetTargetStellar()->GetPlanet() : nullptr);
 	bool planetIsHere = (parentPlanet && parentPlanet->IsInSystem(parent.GetSystem()));
+	bool systemHasFuel = ship.GetSystem()->HasFuelFor(ship);
 	// If an escort is out of fuel, they should refuel without waiting for the
 	// "parent" to land (because the parent may not be planning on landing).
-	if(hasFuelCapacity && !ship.JumpsRemaining() && ship.GetSystem()->HasFuelFor(ship))
+	if(hasFuelCapacity && systemHasFuel && !ship.JumpsRemaining())
 		Refuel(ship, command);
 	else if(!parentIsHere && !isStaying)
 	{
@@ -1132,11 +1133,14 @@ void AI::MoveEscort(Ship &ship, Command &command) const
 					ship.SetTargetStellar(&object);
 					break;
 				}
-			ship.SetTargetSystem(to);
-			// Check if we need to refuel. Wormhole travel does not require fuel.
-			if(!ship.GetTargetStellar() && (!to || 
-					(from->HasFuelFor(ship) && !to->HasFuelFor(ship) && ship.JumpsRemaining() == 1)))
-				Refuel(ship, command);
+			// Only set a target system if there is no wormhole route to that system.
+			if(!ship.GetTargetStellar())
+			{
+				ship.SetTargetSystem(to);
+				// Check if we need to refuel. Wormhole travel does not require fuel.
+				if(to && systemHasFuel && !to->HasFuelFor(ship) && ship.JumpsRemaining() == 1)
+					Refuel(ship, command);
+			}
 		}
 		// Perform the action that this ship previously decided on.
 		if(ship.GetTargetStellar())
@@ -1149,6 +1153,12 @@ void AI::MoveEscort(Ship &ship, Command &command) const
 			PrepareForHyperspace(ship, command);
 			command |= Command::JUMP;
 		}
+		else if(hasFuelCapacity && systemHasFuel && ship.Fuel() < 1.)
+			// Refuel so that when the parent returns, this ship is ready to rendezvous with it.
+			Refuel(ship, command);
+		else
+			// This ship has no route to the parent's system, so park at the system's center.
+			MoveTo(ship, command, Point(), Point(), 40., 0.);
 	}
 	else if(parent.Commands().Has(Command::LAND) && parentIsHere && planetIsHere && parentPlanet->CanLand(ship))
 	{
@@ -1164,7 +1174,10 @@ void AI::MoveEscort(Ship &ship, Command &command) const
 		DistanceMap distance(ship, parent.GetTargetSystem());
 		const System *dest = distance.Route(ship.GetSystem());
 		ship.SetTargetSystem(dest);
-		if(!dest || (ship.GetSystem()->HasFuelFor(ship) && !dest->HasFuelFor(ship) && ship.JumpsRemaining() == 1))
+		if(!dest)
+			// This ship has no route to the parent's destination system, so protect it until it jumps away.
+			KeepStation(ship, command, parent);
+		else if(systemHasFuel && !dest->HasFuelFor(ship) && ship.JumpsRemaining() == 1)
 			Refuel(ship, command);
 		else
 		{
@@ -1836,7 +1849,7 @@ void AI::DoCloak(Ship &ship, Command &command)
 		
 		// If this ship has started cloaking, it must get at least 40% repaired
 		// or 40% farther away before it begins decloaking again.
-		double hysteresis = ship.Cloaking() ? 1.4 : 1.;
+		double hysteresis = ship.Commands().Has(Command::CLOAK) ? 1.4 : 1.;
 		double cloakIsFree = !ship.Attributes().Get("cloaking fuel");
 		if(ship.Hull() + .5 * ship.Shields() < hysteresis
 				&& (cloakIsFree || nearestEnemy < 2000. * hysteresis))
