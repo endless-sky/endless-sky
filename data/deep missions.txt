@@ -1,0 +1,1024 @@
+# Copyright (c) 2017 by Michael Zahniser
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+
+# Given the current skeleton, the following would need to be done in order to unlock the Bactrian:
+#	10 mystery cube jobs
+#	3 transport scientist jobs
+#	3 escort science vessel jobs
+#	3 record academic conference jobs
+#	2 convoy missions
+#	The current TMBR string + the 3 missions added by this
+#	The Deep: Mystery Cubes string added by this
+#	The Deep Archaeology string
+#	The Deep: Singularity string added by this
+#	The Deep: Remnant string added by this
+#	The Remnant intro missions (kind of optional, as the player may choose to plunder Remnant tech, but this would ruin future storylines for the player; do you really want the Bactrian that much?)
+#	The Deep: Star Queen Rescue string added by this
+
+
+###########################################################
+#    The following is a skeleton for different mission    #
+# that will be filled in once the storyboard is finalized #
+###########################################################
+
+# Only need to do 2 of 3 convoy missions
+# Escort convoys of freighters to and from different regions of space to gather materials for experiments that the Deep is conducting.
+mission "Deep: Syndicate Convoy" # Korath-based tech
+	minor
+	name `Pickup from Hephaestus`
+	description `Escort a convoy of freighters to <stopovers> where they will pick up materials for scientific experiments. Then return the convoy to <destination> for a payment of <payment>.`
+	source
+		attributes deep
+	stopovers Hephaestus
+	to offer
+		random < 30
+		"mystery cube" >= 10
+		"Transport scientists: done" >= 3
+		"Escort science vessel: done" >= 3
+		"Record academic conference: done" >= 3
+	on offer
+		conversation
+			``
+	
+	npc accompany save
+		personality timid escort
+		government Merchant
+		fleet
+			names civilian
+			variant
+				"Mule"
+				"Bulk Freighter" 2
+	npc
+		personality nemesis waiting
+		system
+			distance 3
+		government Pirate
+		fleet "Large Northern Pirates"
+	npc
+		personality nemesis waiting
+		system
+			distance 5
+		government Pirate
+		fleet "Large Northern Pirates"
+	npc
+		personality nemesis waiting
+		system
+			distance 7
+		government Pirate
+		fleet "Small Northern Pirates"
+	npc
+		system destination
+		personality nemesis staying
+		government Pirate
+		fleet "Large Northern Pirates"
+	
+	on stopover
+		conversation
+			``
+	
+	on complete
+		"deep convoy" ++
+		payment 720000
+		conversation
+			``
+
+mission "Deep: Tarazed Convoy" # Quarg-based tech
+	minor
+	name `Pickup from Tarazed`
+	description `Escort a convoy of freighters to <stopovers> where they will pick up materials for scientific experiments. Then return the convoy to <destination> for a payment of <payment>.`
+	source
+		attributes deep
+	stopovers Tarazed
+	to offer
+		random < 30
+		"mystery cube" >= 10
+		"Transport scientists: done" >= 3
+		"Escort science vessel: done" >= 3
+		"Record academic conference: done" >= 3
+	on offer
+		conversation
+			``
+	
+	npc accompany save
+		personality timid escort
+		government Merchant
+		fleet
+			names civilian
+			variant
+				"Behemoth" 2
+				"Mule"
+	npc
+		personality nemesis waiting
+		system
+			distance 3
+		government Pirate
+		fleet "Large Northern Pirates"
+	npc
+		personality nemesis waiting
+		system
+			distance 5
+		government Pirate
+		fleet "Large Northern Pirates"
+	npc
+		personality nemesis waiting
+		system
+			distance 7
+		government Pirate
+		fleet "Small Northern Pirates"
+	npc
+		system destination
+		personality nemesis staying
+		government Pirate
+		fleet "Large Northern Pirates"
+	
+	on stopover
+		conversation
+			``
+	
+	on complete
+		"deep convoy" ++
+		payment 1020000
+		conversation
+			``
+
+mission "Deep: Kraz Convoy" # Some crazy stuff that Edward has made
+	minor
+	name `Pickup from Kraz`
+	description `Escort a convoy of freighters to <stopovers> where they will pick up materials for scientific experiments. Then return the convoy to <destination> for a payment of <payment>.`
+	source
+		attributes deep
+	stopovers Kraz
+	to offer
+		random < 30
+		"mystery cube" >= 10
+		"Transport scientists: done" >= 3
+		"Escort science vessel: done" >= 3
+		"Record academic conference: done" >= 3
+	on offer
+		conversation
+			``
+	
+	npc accompany save
+		personality timid escort
+		government Merchant
+		fleet
+			names civilian
+			variant
+				"Behemoth" 2
+				"Bulk Freighter"
+	npc
+		personality nemesis waiting
+		system
+			distance 3
+		government Pirate
+		fleet "Large Northern Pirates"
+	npc
+		personality nemesis waiting
+		system
+			distance 5
+		government Pirate
+		fleet "Large Northern Pirates"
+	npc
+		personality nemesis waiting
+		system
+			distance 7
+		government Pirate
+		fleet "Small Northern Pirates"
+	npc
+		system destination
+		personality nemesis staying
+		government Pirate
+		fleet "Large Northern Pirates"
+	
+	on stopover
+		conversation
+			``
+	
+	on complete
+		"deep convoy" ++
+		payment 1260000
+		conversation
+			``
+
+# What exactly could they be? 
+# Why would you be burying them in random places, giving them to beggars, leaving them in abandoned towers, and leaving them by the sides of roads? These seem like very scattered locations. 
+# Presumably they are retrieved, as otherwise they'd start to pile up as more merchants took those types of jobs. 
+# And why would bounty hunters chase the player for these cubes?
+
+# Lore about the mysterious cubes:
+# The cubes are some sort of recording or sensor device; strikingly similar to the devices given to the player during Alpha Surveillance. (Actually called micro-sats.)
+# What could the be recording? Fleet movements. Anomalies. Cloaked ships?
+# Most likely tracking at the very least fleet movements, allowing the Deep Security to know where pirates are. This is why bounty hunters attempt to destroy ships transporting these cubes. 
+# The cubes likely record far more than just fleet movements, but this is what the player is told.
+# Deep: Mystery Cubes missions will involve first 
+mission "Deep: Mystery Cubes"
+	minor
+	name ``
+	description ``
+	source
+		attributes deep
+	destination
+	to offer
+		"random" < 40
+		"deep convoy" >= 1
+	on offer
+		conversation
+			``
+
+# Start by walking through the spaceport and the player hears a TMBR song.
+# Look where it's coming from and find a bunch of Deep scientists rocking out to it while they board a Scout or Bounder (from the escort science vessel job).
+# Walk up to scientists and ask them about TMBR
+# One of them talks about how they couldn't go to the concert that happened in Syndicate space, but the one on the Lovelace planet was awesome
+# Another talks about how they haven't been spotted for days/weeks/months
+# The player can say how they know where TMBR are.
+# A required string
+# Land on a Deep planet and hear TMBR playing; scientists ask you to find them and bring them to Asgard where the scientists will be traveling
+
+# Characters: Maria, Garrison, Isaac, Hannah, Laura
+mission "Deep: TMBR 0"
+	minor
+	name ``
+	description ``
+	source
+		near Naos 1 100
+		attributes deep
+	destination Allhome
+	to offer
+		random < 60
+		"mystery cube" >= 10
+		"Transport scientists: done" >= 3
+		"Escort science vessel: done" >= 3
+		"Record academic conference: done" >= 3
+		"There Might Be Riots part 3B: done"
+	on offer
+		conversation
+			``
+
+# Land on Allhome where you left TMBR. Ask around and find out that TMBR are chilling on a different planet
+mission "Deep: TMBR 1"
+	landing
+	name ``
+	description ``
+	destination
+		distance 2 10
+		government Hai
+	to offer
+		"Deep: TMBR 0: done"
+	on offer
+		conversation
+			``
+				accept
+
+# Pick up TMBR and bring them to Asgard where the scientists are currently at. The scientists thank you for allowing them to listen to TMBR live
+mission "Deep: TMBR 2"
+	landing
+	name ``
+	description ``
+	destination Asgard
+	to offer
+		"Deep: TMBR 1: done"
+	on offer
+		conversation
+			``
+				accept
+
+	on complete
+		payment 400000
+		conversation
+			``
+
+###########################################################
+###########################################################
+###########################################################
+
+# The player gets called into somewhere and is asked about their work for Albert. They get questioned on what Albert told them, and seeing as how the player has been helping the Deep lately, the Deep tell the player some of their folklore.
+# "Over the centuries the exact date of when the Deep was established have been lost, but folklore says that the first humans arrived here in the mid 1300s before the time of the Black Death."
+mission "Deep: Singularity"
+	minor
+	name ``
+	description ``
+	source 
+	to offer
+		"deep convoy" >= 2
+		has "Deep: Mystery Cubes: done"
+		has "Deep: TMBR 2: done"
+	on offer
+		conversation
+			``
+
+# The scientist from Terminus exploration are from the Deep and have caught word that you have been helping out; they call you in to help continue their research of the anomaly in Terminus
+# These scientists ask you if you know of the Hai, to which the player responds yes. They ask you to retrieve some Quantum Keystones from the Hai for them to study, as they believe there may be some link between them and the wormhole.
+# During the conversation, if the player has made contact with the Remnant already, they may mention this. Upon doing so, a condition is set which changes future conversations and situations slightly.
+
+# Gonna name the scientist with the thick glasses Ivan.
+mission "Deep: Remnant 0"
+	minor
+	name ``
+	description ``
+	source 
+	to offer
+		"deep convoy" >= 2
+		has "Deep: Mystery Cubes: done"
+		has "Deep: TMBR 2: done"
+		has "Terminus exploration: done"
+	on offer
+		conversation
+			`We need some stones`
+			branch remnant
+				has "First Contact: Remnant: offered"
+			choice
+				`Okay`
+					accept
+				`Sorry, no.`
+					decline
+			
+			label remnant
+			choice
+				`I know what's on the other side of the wormhole and what the stones do`
+				`Sorry, no.`
+					decline
+			apply
+				set "knew of stones before scientists"
+			branch friendly
+				has "event: ember waste label"
+			`They appeared human and attacked me when I ran from them.`
+				goto end
+			
+			label friendly
+			`They are a friendly group of humans who fled during the Alpha Wars.`
+			
+			label end
+			`Interesting. Please bring some keystones to us so we can try to understand why this is.`
+			choice
+				`Okay`
+					accept
+				`Sorry no`
+					decline
+
+	on complete
+		outfit "Quantum Keystone" -10
+		event "keystone research" 27
+		payment
+		conversation
+			`Thank you for the stones. We'll get back to you once we've studied them more.`
+			
+event "keystone research"
+
+mission "Deep: Remnant: Keystone Research"
+	landing
+	source 
+		government Republic "Free Worlds" Syndicate Neutral Independent
+	destination Valhalla
+	to offer
+		has "event: keystone research"
+	on offer
+		conversation
+			`Please see us on <destination>. We're done researching.`
+				accept
+		
+
+# [A] branch is where you haven't had contact with the Remnant before this string
+# [B] branch is where you have had contact with the Remnant before this string
+
+mission "Deep: Remnant 1A"
+	landing
+	name ``
+	description ``
+	source Valhalla
+	waypoint Terminus
+	to offer
+		has "Deep: Remnant: Keystone Research: done"
+		not "knew of stones before scientists"
+	on offer
+		conversation
+			`So it looks like these stones somehow allow entry into the wormhole. Please explore the entire region for us.`
+				accept
+	
+	to complete
+		has "First Contact: Remnant: offered"
+	
+	on visit
+		dialog `You haven't explored enough.`
+	
+mission "Deep: Remnant 2A"
+	landing
+	name ``
+	description ``
+	destination ``
+	to offer
+		has "Deep: Remnant 1A: done"
+	on offer
+		conversation
+			`Guess what, there's people there.`
+			branch friendly
+				has "event: ember waste label"
+			`They appeared human and attacked me when I ran.`
+			`Do you think you could steal some of their tech for us to study?`
+			choice
+				`Okay`
+					accept
+				`Too risky`
+					decline
+			
+			label friendly
+			`They are a friendly group of humans who fled during the Alpha Wars.`
+			`Could you try and get access to some of their technology and bring it to us?`
+				accept
+				
+	to complete
+		has "Deep: Remnant Engines: done"
+				
+mission "Deep: Remnant 1B"
+	landing
+	name ``
+	description ``
+	source Valhalla
+	to offer
+		has "Deep: Remnant: Keystone Research: done"
+		has "knew of stones before scientists"
+	on offer
+		conversation
+			`These stones are interesting, and it does seem that they allow access to this strange region of space.`
+			branch friendly
+				has "event: ember waste label"
+			`So you said they attacked you? Could you steal some of their tech for us to study?`
+			choice
+				`Okay`
+					accept
+				`Too risky`
+					decline
+			
+			label friendly
+			`So you said they were friendly? Could you bring us some of their technology?`
+			branch license
+				has "license: Remnant"
+			`They won't sell me their tech`
+			`Maybe you can try to do some work for them and see if they will offer it to you.`
+			`Okay`
+				accept
+			
+			label license
+			`They allow me to buy their tech, so I shall bring some.`
+				accept
+				
+	to complete
+		has "Deep: Remnant Engines: done"
+
+mission "Deep: Remnant: Engines"
+	landing
+	invisible
+	source Valhalla
+	to offer
+		has "Deep: Remnant: Keystone Research: done"
+	on visit
+		dialog `You have landed on <planet>, but you do not have the two smallest Remnant engines.`
+	on complete
+		payment
+		outfit "Crucible-Class Thruster" -1
+		outfit "Crucible-Class Steering" -1
+
+mission "Deep: Remnant: Generators"
+	landing
+	name ``
+	description ``
+	source Valhalla
+	to offer
+		has "Deep: Remnant: Engines: done"
+	on offer
+		conversation
+			`This is interesting tech. Very similar to ion thrusters, but much better.`
+			`Please bring us one of their reactors next.`
+				accept
+	
+	on visit
+		dialog `Get it, fool.`
+	
+	on complete
+		payment
+		outfit "Millennium Cell" -1
+
+mission "Deep: Remnant: Inhibitor Cannon"
+	landing
+	name ``
+	description ``
+	source
+	to offer
+		has "Deep: Remnant: Generators: done"
+	on offer
+		conversation
+			`So efficient. Much thermoelectric.`
+			`Weapon next. How about that Inhibitor Cannon.`
+				accept
+	
+	on visit
+		dialog `Do things right for once.`
+	
+	on complete
+		payment
+		outfit "Inhibitor Cannon" -1
+
+mission "Deep: Remnant Surveillance"
+	landing
+	name ``
+	description ``
+	source
+	stopovers Caelian Arculus Aventine
+	to offer
+		has "Deep: Remnant: Inhibitor Cannon: done"
+	on offer
+		conversation
+			`Damn, this a fine gun.`
+			`Thanks for all the help. This has been very insightful. We'll be busy with this tech for months.`
+			branch friendly
+				"reputation: Remnant" >= 1
+			`Thanks for all your work. You da best.`
+				decline
+				
+			label friendly
+			`Now how about those ships. Place some mystery cubes on their planets plz.`
+				accept
+	
+	on decline
+		set "Deep: Remnant Research: done"
+	
+	on stopover Caelian
+		dialog ``
+	on stopover Arculus
+		dialog ``
+	on stopover Aventine
+		dialog ``
+	
+	on visit
+		dialog `You haven't placed a cube on all the Remnant worlds.`
+	
+	on complete
+		payment
+		set "Deep: Remnant Research: done"
+		conversation
+			`Thanks man. You da best.`
+
+###########################################################
+###########################################################
+###########################################################
+
+mission "Deep: Star Queen Rescue 0"
+	minor
+	name "Locate Missing Scientists"
+	description "A Deep Star Queen transporting top scientists has gone missing. It was last seen near the Betelgeuse system in the Far North. Find its whereabouts and return it to <destination> if possible."
+	source
+		attributes deep
+	destination Valhalla
+	waypoint Betelgeuse
+	to offer
+		random < 25
+		has "Deep: Remnant Research: done"
+		has "Deep: Singularity: done"
+
+	on offer
+		conversation
+			`While you are watching one of the telescreens in a restaurant located in the spaceport, you are approached by a man and a woman, both wearing Deep Security uniforms.`
+			`	"Hello <first> <last>. Do you have time to talk?" the man asks.`
+			choice
+				`	"I do. What do you need?"`
+				`	"Sorry, but I'm busy right now."`
+					defer
+					
+			`	"We were wondering if you would be able to help us. We have a record of you having assisted in a number of humanitarian ventures before."`
+			`	The woman pulls out a tablet of some sort and begins reading from it. "Helping to terraform Rand, rescuing miners on a Syndicate world, transporting a few scientists conducting research on Hope..." She continues on to mention a few more situations that you were involved in and finally ends on you helping Joe and Maria off of Smuggler's Den, although she doesn't mention them by name.`
+			`	The man begins speaking to you after the woman stops. "Rather impressive work, I might say."`
+			choice
+				`	"Wait, you have a record on me?"`
+				`	"What do you need me to do?"`
+					goto mission
+	
+			`	"The Deep keeps a record on a lot of things, especially when we notice a certain individual doing a lot of humanitarian deeds."`
+			branch plot
+				has "main plot completed"
+			`	The man begins to tell you about the mission:`
+				goto mission
+	
+			label plot
+			`	"Besides," the woman chimes in, "what do you expect after having been involved in the war?" The man begins to tell you about the mission:`
+	
+			label mission
+			`	"We need you to find a Star Queen that recently went missing in the Far North region and return to <destination> once you have located it. Aboard the ship were a number of top scientists intending to do research on the Wolf-Rayet star in Gorvi. Due to its proximity to the northern anarchist worlds, very little research has been conducted on it."`
+			`	"We received word yesterday that just after the Star Queen and its escorts refueled on Prime, a large pirate fleet entered the system. The escorts were sadly destroyed." He chokes up a bit. "The pirates boarded and took control of the Star Queen. We lost all communications with the vessel, so we're in the dark as to where it went from there." He takes a moment to collect himself after telling you the situation.`
+			choice
+				`	"I would be glad to help. I'll prepare my ship immediately."`
+					accept
+				`	"Why do you seem so sad about the situation?"`
+					goto sad
+				`	"What will I receive in exchange for helping you?"`
+				`	"Why can't you locate it yourself?"`
+					goto locate
+	
+			`	"We will pay you <payment> if you are able to at least find where the Star Queen is, but there may be more for you if you are able to return it."`
+				goto end
+			
+			label sad
+			`	The man pauses before answering you, as if trying to choose his words carefully. "I personally know many of the scientists on board that Star Queen, and I just know that someone's going to wind up dead in this situation. It isn't every day that someone you know gets held captive by pirates... This whole thing is just stressful for me."`
+				goto end
+	
+			label locate
+			`	"The Star Queen was being escorted by a large number of warships that should not have been easy to overwhelm, but given that the pirates somehow managed to do so, we need someone to forge ahead and find the Star Queen as soon as possible. In the mean time, we will assemble a proper rescue fleet. In a situation like this, every minute matters, and if someone like you can find the Star Queen quickly then that means that there is a higher chance everyone can come out of this alive."`
+	
+			label end
+			choice
+				`	"Okay, I'm willing to help."`
+					accept
+				`	"Sorry, but this doesn't sound worth it to me."`
+					decline
+
+	on enter Arneb
+		set "found star queen"
+		dialog `As you enter Arneb, your scanners pick up the Star Queen landing on Haven. Unfortunately, there are also a large number of pirate vessels headed in your direction. You should report back to the Deep Security officer on <destination> for further instruction.`
+	
+	on visit
+		dialog `You have landed on Valhalla, but you have not located the Star Queen! Find it somewhere in the Far North.`
+	
+	to complete
+		has "found star queen"
+	
+	on complete
+		payment 100000
+
+
+
+mission "Deep: Star Queen Rescue 0: Prime"
+	landing
+	source Prime
+	to offer
+		has "Deep: Star Queen Rescue 0: active"
+		not "found star queen"
+
+	on offer
+		conversation
+			`The Star Queen is not in this system, so you attempt to find somebody who may have some information. After visiting several shops, you find a merchant who was clearing cargo through customs as the Star Queen departed. As she shares her experience, you can't help but be glad the Deep Security officer is not with you, as to hear this tale unfold would surely have shaken him further.`
+			`	According to the merchant, a large pirate fleet jumped in, eviscerated the escorts, and escaped north towards Rigel with the hostage Star Queen. You can only hope the trail is not already cold.`
+				decline
+
+
+
+mission "Deep: Star Queen Rescue 0: Farpoint"
+	landing
+	source Farpoint
+	to offer
+		has "Deep: Star Queen Rescue 0: active"
+		not "found star queen"
+
+	on offer
+		conversation
+			`After speaking with a Navy officer for a few minutes, you find out that the Star Queen came through here over a week ago, escorted by several large pirate ships. The Navy did not want to risk the lives of those on the Star Queen by engaging the pirate fleet, so they let it continue north from here.`
+			`	The spaceport clearly shows preparations for a rescue mission, but due to the destruction of a number of Navy capital ships by the Star Queen's captors in the days preceding its abduction, they have been ordered to wait for additional ammunition and reinforcements.`
+			`	The Navy officer ends by hinting that the Star Queen is likely to be in Alnilam or Arneb, as those systems are the farthest from anyone looking to find or rescue the ship.`
+				decline
+
+
+
+mission "Deep: Star Queen Rescue 0: Pirates"
+	invisible
+	landing
+	destination Valhalla
+	to offer
+		has "Deep: Star Queen Rescue 0: active"
+	to fail
+		or
+			has "Deep: Star Queen Rescue 3A: done"
+			has "Deep: Star Queen Rescue 3B: offered"
+	npc kill
+		personality nemesis staying
+		system Arneb
+		government Pirate
+		ship "Leviathan (Laser)" "His Right Hand"
+		ship "Leviathan (Laser)" "His Left Hand"
+
+
+
+mission "Deep: Star Queen Rescue 0: Haven"
+	landing
+	source Haven
+	to offer
+		has "Deep: Star Queen Rescue 0: active"
+
+	on offer
+		conversation
+			`You spend a few hours scanning the surface of the planet in an attempt to find the Star Queen, but nothing comes up. It will likely require military-grade scanners in order to find the ship, which Deep Security ships undoubtedly have.`
+				decline
+
+
+
+mission "Deep: Star Queen Rescue 1"
+	name "Secure the Scientists"
+	description "Escort the <npc> to <destination> to retrieve the Star Queen. Escorts will be waiting for you on Memory in the Zosma system and Farpoint in the Alnitak system."
+	landing
+	destination Haven
+	clearance
+	to offer
+		has "Deep: Star Queen Rescue 0: done"
+
+	on offer
+		conversation
+			`You return to Valhalla and find the man that you met earlier in the spaceport talking with a large group of people in Deep Security uniforms.`
+			`	As you approach them, the man stops talking with the group after noticing you. "Captain <last>! Have you located the Star Queen?"`
+			choice
+				`	"Yes, it is located on <destination>, but is heavily defended."`
+			
+			branch destroyed
+				has "Deep: Star Queen Rescue 0: Pirates: done"
+			`	You mention the multiple heavy warships that you saw in the system, and the fact that there are probably many more waiting on Haven.`
+				goto next
+			
+			label destroyed
+			`	You mention the multiple heavy warships that you took out in the system, but that there may be many more waiting on Haven.`
+			
+			label next
+			`	After hearing this news, many of the faces in the group turn grim as they realize that they will need to fight to retrieve the Star Queen.`
+			`	"We will need to get a rescue fleet ready. Guards, ready your ships!" The group responds with a collective "Sir, yes sir!" before running off to their ships.`
+			`	Before leaving for his own ship, the man walks up to you and hands you 100,000 credits.`
+			`	"That's for finding the Star Queen. Now, Captain <last>, would you be willing to help us? If the Star Queen is as heavily defended as you say it is then we're going to need every ship we can get."`
+			choice
+				`	"I'd be glad to."`
+				`	"I would rather let the professionals handle things. Good luck."`
+					decline
+			
+			`	"Thank you so much. The plan is to rendezvous with a number of warships on Memory and then head to Alnitak. My superiors received word from the admiral on Farpoint that there are a number of Navy ships at the ready to avenge the ships they lost, so I expect we'll pick up some help there when we refuel. After the fleet is mustered, we go to Arneb." He smiles briefly, adding, "Just make sure that the <npc> makes it onto the planet. She'll be carrying the landing crew, along with myself."`
+			`	The communications device on his belt squawks, and he quickly responds, giving orders to the fleet that will be joining you on the mission. Before you can return to your ship, he says, "Also, since we'll be going into battle together, I might as well introduce myself. I'm Security Lieutenant Shane Paris. Good luck fighting; we'll meet you in orbit."`
+				accept
+	
+	npc save accompany
+		government Republic
+		personality heroic escort
+		ship "Mule (Heavy)" "D.S.S. Faraday"
+	
+	on visit
+		dialog `You have landed on Haven, but you left the <npc> behind! Wait for the <npc> to enter the system before landing.`
+
+
+
+mission "Deep: Star Queen Rescue 1: Pirates"
+	invisible
+	landing
+	to offer
+		has "Deep: Star Queen Rescue 0: done"
+	to fail
+		or
+			has "Deep: Star Queen Rescue 3A: done"
+			has "Deep: Star Queen Rescue 3B: offered"
+	npc kill
+		personality nemesis staying
+		system Arneb
+		government Pirate
+		ship "Firebird (Plasma)" "The Court Jester"
+		ship "Firebird (Plasma)" "The Knighted One"
+		ship "Headhunter (Particle)" "Cerberus"
+		ship "Headhunter (Particle)" "Charon"
+
+
+
+mission "Deep: Star Queen Rescue 1: Recruit Escorts"
+	name "Deep Security escorts on <planet>"
+	description "Lieutenant Paris mentioned an escort squadron of Deep Security ships was preparing to join you on your mission. Meet up with them on <destination>, if you want to."
+	landing
+	to offer
+		has "Deep: Star Queen Rescue 0: done"
+
+	source Valhalla
+	destination Memory
+	to fail
+		has "Deep: Star Queen Rescue 1: done"
+
+
+
+mission "Deep: Star Queen Rescue 1: Escorts"
+	invisible
+	landing
+	source Memory
+	to offer
+		has "Deep: Star Queen Rescue 1: Recruit Escorts: done"
+	to fail
+		or
+			has "Deep: Star Queen Rescue 3A: offered"
+			has "Deep: Star Queen Rescue 3B: offered"
+	
+	npc kill
+		government Republic
+		personality heroic escort
+		fleet
+			names "deep"
+			variant
+				"Aerie" 3
+				"Dagger" 6
+
+	on offer
+		conversation
+			`As you land, you notice a group of Deep Security warships - three Aeries and their fighter squadrons - loading munitions just outside of the spaceport. Before you can make it into the spaceport, one of the pilots waves you over for a brief conversation: aside from a few trivial items left on their preflight checklist, the warships are ready to launch and join in on the rescue mission.`
+				accept
+
+
+
+mission "Deep: Star Queen Rescue 1: Recruit Reinforcements"
+	name "Republic Navy escorts on <planet>"
+	description "Lieutenant Paris mentioned that some Navy officers were interested in avenging the loss of their comrades. Meet up with them on <destination>, if you want to."
+	landing
+	to offer
+		has "Deep: Star Queen Rescue 0: done"
+
+	source Valhalla
+	destination Farpoint
+	to fail
+		has "Deep: Star Queen Rescue 1: done"
+
+
+
+mission "Deep: Star Queen Rescue 1: Reinforcements"
+	invisible
+	landing
+	source Farpoint
+	to offer
+		has "Deep: Star Queen Rescue 1: Recruit Reinforcements: done"
+	to fail
+		or
+			has "Deep: Star Queen Rescue 3A: offered"
+			has "Deep: Star Queen Rescue 3B: offered"
+
+	npc kill
+		government Republic
+		personality heroic escort
+		fleet
+			names "republic capital"
+			fighters "republic fighter"
+			variant
+				"Cruiser" 2
+				"Combat Drone" 8
+	
+	on offer
+		conversation
+			`While refueling at the Farpoint naval base, you are approached by two Navy officers who recognize you as Captain <last>. They tell you that Lieutenant Paris contacted them a few days ago, indicating that the rescue fleet was en route and would be reaching the Alnitak system shortly. They inform you that they have requisitioned two Cruisers to assist in the Star Queen's retrieval, and depart for their ships.`
+				accept
+
+
+
+mission "Deep: Star Queen Rescue 2"
+	landing
+	name "Return to <planet>"
+	description "Now that you have secured the Star Queen, escort it safely to <destination>."
+	destination Valhalla
+	to offer
+		has "Deep: Star Queen Rescue 1: done"
+
+	on offer
+		conversation
+			`The remaining fleet quickly enters the atmosphere of Haven and begins scanning the surface. After about an hour of flying, you receive a transmission that the Star Queen has been found, along with its coordinates.`
+			`	You watch from afar as the Mule lands outside a hangar in some sort of pirate facility. The Mule immediately unloads what looks to be at least four dozen armed soldiers who quickly surround and breach the hangar. After about ten minutes, the hangar doors slide open to reveal the Star Queen, still intact. You hear chatter over the radio saying that most of the crew and scientists are still inside.`
+			`	"Good job, everyone," you hear Lieutenant Paris say over the comms. "Now we just need to make it back to <destination> in one piece." Just as he says that and the Star Queen and Mule begin activating their repulsor engines, a heavy laser beam pierces the sky, slicing the Mule in half while its shields are down. Soldiers begin scrambling into the Star Queen, which quickly takes off into space along with the rest of the fleet. You turn your repulsor engines to full and begin flying up into space behind them.`
+				launch
+	
+	on enter
+		dialog "As your repulsor engines roar, you notice a large pirate ship looming over the planet. Even from the underside, it is undeniably a Bactrian, but as to how a pirate could ever attain one is a mystery."
+		dialog `	You receive a transmission from Lieutenant Paris. "I don't know how they have a Bactrian, but I suggest we jump out of here immediately and make it back to the Deep alive."`
+	
+	npc save accompany
+		personality timid escort
+		government Republic
+		ship "Star Queen" "D.S.S. Alcubierre"
+	
+	on visit
+		dialog `You have landed on Valhalla, but you left the <npc> behind! Wait for it to enter the system before landing.`
+	
+	on complete
+		payment 100000
+
+
+
+ship "Bactrian" "Bactrian (Cosmic Devil)"
+	"never disabled"
+	outfits
+		"Heavy Laser Turret" 4
+		"Heavy Anti-Missile Turret" 2
+		"Torpedo Launcher" 4
+		"Torpedo" 120
+		"Fusion Reactor"
+		"Fission Reactor"
+		"LP288a Battery Pack"
+		"D94-YV Shield Generator" 2
+		"Liquid Helium Cooler" 2
+		"Large Radar Jammer" 2
+		"A520 Atomic Thruster"
+		"A525 Atomic Steering"
+		Hyperdrive
+
+		
+
+mission "Deep: Star Queen Rescue 2: Pirate Bactrian"
+	landing
+	invisible
+	destination Valhalla
+	to offer
+		has "Deep: Star Queen Rescue 1: done"
+	npc kill
+		government Pirate
+		personality staying nemesis waiting
+		ship "Bactrian (Cosmic Devil)" "Cosmic Devil"
+		dialog `The Bactrian "<npc>" has been destroyed. Now the pirates here will have a harder time attacking the Republic.`
+
+
+
+mission "Deep: Star Queen Rescue 2: More Pirates"
+	landing
+	invisible
+	to offer
+		has "Deep: Star Queen Rescue 1: done"
+	to fail
+		or
+			has "Deep: Star Queen Rescue 3A: done"
+			has "Deep: Star Queen Rescue 3B: offered"
+	npc kill
+		government Pirate
+		personality staying nemesis waiting
+		ship "Leviathan (Laser)" "Eve"
+		ship "Leviathan (Laser)" "Cain"
+
+
+
+mission "Deep: Star Queen Rescue 3A"
+	name "Take down the Devil"
+	description "You have returned the scientists, but the pirates still have a Bactrian. Eliminate it and return to <destination>."
+	landing
+	destination Valhalla
+	waypoint Arneb
+	to offer
+		has "Deep: Star Queen Rescue 2: done"
+		not "Deep: Star Queen Rescue: Pirate Bactrian: done"
+		not "Deep: Star Queen Rescue 3B: offered"
+
+	on offer
+		conversation
+			`As you land near the Star Queen, you can see the passengers of the ship being escorted off of it. A medical team is examining each passenger while a Deep Security officer asks them questions and jots down the responses. Sadly, you also notice a number of body bags next to the ship, likely from scientists or crew that were found dead on the ship.`
+			`	Lieutenant Paris is waiting for you outside of your ship, and hands you another 100,000 credits when you walk up to him.`
+			`	"Thanks for all the help, Captain <last>. We couldn't have done it without you."`
+			`	Paris looks back to the Star Queen, and you can overhear talk on the status of the passengers and crew. "Sarah, Nicole, Abby..." the list of names goes on for about two dozen more, most of which sound female. "...and Benjamin are all either missing or were found dead on board. The surviving crew tells us that only a few were killed initially, either during boarding or by being thrown out the airlock on the way to Haven. Most of the others were either killed or dragged off after they had reached their destination at a facility of some sort, its purpose unidentifiable to the crew."`
+			`	The entire time you noticed Paris holding back tears, his face becoming more and more strained with each passing name. After they are done listing the dead or missing, he talks to you in a rather strained voice. "I want you to return to Arneb and take out every single one of those pirates that are left. Especially the Bactrian. We try to keep Bactrians out of unworthy hands, so whenever a pirate gets ahold of one we make sure we destroy it immediately. Seeing as how we're going to be busy here for a while, you need to destroy it."`
+			choice
+				`	"I'll make sure it gets done, Lieutenant."`
+					goto accept
+				`	"I'm sorry, but I don't have the power to defeat a Bactrian. You're going to need to do it yourself."`
+			
+			`	"I see... Good luck on your travels, Captain <last>." Lieutenant Paris starts walking over to the Star Queen, leaving you alone next to your ship.`
+				decline
+			
+			label accept
+			`	"Thank you, <first>." Lieutenant Paris starts walking over to the Star Queen, leaving you alone next to your ship.`
+				accept
+	
+	on visit
+		dialog "You landed on Valhalla, but you didn't kill the Bactrian! Return to Arneb and make sure that the Bactrian is destroyed and forever out of pirate hands."
+	
+	to complete
+		has "Deep: Star Queen Rescue 2: Pirate Bactrian: done"
+	
+	on complete
+		set "license: City-Ship"
+		conversation
+			`When you return to Valhalla, the Star Queen is no longer on the landing pad and the spaceport seems to be running normally. Shortly after landing, you find Lieutenant Paris at the same restaurant in which he first found you. Before saying a word to you, he hands you a license.`
+			`	"Thank you. I've said it before, but there's really no way I can thank you enough."`
+			`	You look down at the license that Paris just handed you and notice that it's a city-ship license, one that will allow you to purchase the Bactrian. "I think it's only fair that you be able to purchase one after having to fight one to the death. It's really the least I could do for you."`
+			choice
+				`	"Thank you so much! I'll make sure that this gets put to good use."`
+				`	"Really? You shouldn't have."`
+			
+			`	"It's yours to keep. I hope you have good luck with your travels, and have fun using the Bactrian. It's a mighty fine ship to fly." Lieutenant Paris pays his bill and leaves, as you ponder the possibilities that await.`
+
+
+
+mission "Deep: Star Queen Rescue 3B"
+	landing
+	to offer
+		has "Deep: Star Queen Rescue 2: done"
+		has "Deep: Star Queen Rescue 2: Pirate Bactrian: done"
+		not "Deep: Star Queen Rescue 3A: offered"
+
+	on offer
+		set "license: City-Ship"
+		conversation
+			`As you land near the Star Queen, you can see the passengers of the ship being escorted off of it. A medical team is examining each passenger while a Deep Security officer asks them questions and jots down the responses. Sadly, you also notice a number of body bags next to the ship, likely from scientists or crew that were found dead on the ship.`
+			`	Lieutenant Paris is waiting for you outside of your ship, and hands you another 100,000 credits when you walk up to him.`
+			`	"Thanks for all the help, Captain <last>. We couldn't have done it without you."`
+			`	Paris looks back to the Star Queen, and you can overhear talk on the status of the passengers and crew. "Sarah, Nicole, Abby..." the list of names goes on for about two dozen more, most of which sound female. "...and Benjamin are all either missing or were found dead on board. The surviving crew tells us that only a few were killed initially, either during boarding or by being thrown out the airlock on the way to Haven. Most of the others were either killed or dragged off after they had reached their destination at a facility of some sort, its purpose unidentifiable to the crew."`
+			`	The entire time you noticed Paris holding back tears, his face becoming more and more strained with each passing name. After they are done listing the dead or missing, he turns to you and hands you a license.`
+			`	"Thank you. I've said it before, but there's really no way I can thank you enough."`
+			`	You look down at the license that Paris just handed you and notice that it's a city-ship license, one that will allow you to purchase the Bactrian. "I think it's only fair that you be able to purchase one after having to fight one to the death. It's really the least I could do for you."`
+			choice
+				`	"Thank you so much! I'll make sure that this gets put to good use."`
+				`	"Really? You shouldn't have."`
+			
+			`	"It's yours to keep. I hope you have good luck with your travels, and have fun using the Bactrian. It's a mighty fine ship to fly." Lieutenant Paris starts walking over to the Star Queen, leaving you alone to ponder the possibilities that await.`
+				decline
+
+

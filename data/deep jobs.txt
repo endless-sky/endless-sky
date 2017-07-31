@@ -26,6 +26,7 @@ mission "Deep Mystery Cube [0]"
 	on accept
 		dialog "You pick up the mystery package in an unmarked and uninhabited warehouse. It is a small black cube about two centimeters to a side, surprisingly heavy for its size, with no markings of any kind. Odd."
 	on complete
+		"mystery cube" ++
 		payment 5000 1000
 		dialog `As instructed, you leave the mystery cube by the side of the road a few miles away from the spaceport. "This has to be legal, or they couldn't post it to the job board," you remind yourself as you collect the payment of <payment>.`
 	npc
@@ -53,6 +54,7 @@ mission "Deep Mystery Cube [1]"
 	on accept
 		dialog "You pick up the mystery package in an unmarked and uninhabited warehouse. It is a small black cube about two centimeters to a side, surprisingly heavy for its size, with no markings of any kind. Odd."
 	on complete
+		"mystery cube" ++
 		payment 5000 1000
 		dialog `As instructed, you leave the mystery cube behind a rickety-looking wooden tower. "This has to be legal, or they couldn't post it to the job board," you remind yourself as you collect the payment of <payment>.`
 	npc
@@ -80,6 +82,7 @@ mission "Deep Mystery Cube [2]"
 	on accept
 		dialog "You pick up the mystery package in an unmarked and uninhabited warehouse. It is a small black cube about two centimeters to a side, surprisingly heavy for its size, with no markings of any kind. Odd."
 	on complete
+		"mystery cube" ++
 		payment 5000 1000
 		dialog `As instructed, you bury the cube out in the middle of nowhere before landing in the spaceport. "This has to be legal, or they couldn't post it to the job board," you remind yourself as you collect the payment of <payment>.`
 	npc
@@ -107,6 +110,7 @@ mission "Deep Mystery Cube [3]"
 	on accept
 		dialog "You pick up the mystery package in an unmarked and uninhabited warehouse. It is a small black cube about two centimeters to a side, surprisingly heavy for its size, with no markings of any kind. Odd."
 	on complete
+		"mystery cube" ++
 		payment 5000 1000
 		dialog `As instructed, you hand the cube to the first beggar woman you see planetside. She accepts it without a word. "This has to be legal, or they couldn't post it to the job board," you remind yourself as you collect the payment of <payment>.`
 	npc
@@ -133,6 +137,7 @@ mission "Mystery retrieval"
 	on stopover
 		dialog "As instructed, you open a storage locker near your landing site and pick up the mystery package: a small black cube about two centimeters to a side, surprisingly heavy for its size, with no markings of any kind. Odd."
 	on complete
+		"mystery cube" ++
 		payment 5000 1000
 		dialog `You drop off the cube at a warehouse, as instructed. Nobody comes around to collect it, but nonetheless your bank account immediately notifies you that the agreed-upon payment of <payment> has been deposited. You wonder how they knew.`
 	npc
