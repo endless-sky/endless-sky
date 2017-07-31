@@ -10,6 +10,7 @@
 
 outfit "Cooling Ducts"
 	plural "Cooling Ducts"
+	tags human
 	category "Systems"
 	cost 10000
 	thumbnail "outfit/cooling ducts"
@@ -20,6 +21,7 @@ outfit "Cooling Ducts"
 
 outfit "Water Coolant System"
 	category "Systems"
+	tags human
 	cost 25000
 	thumbnail "outfit/water cooling"
 	"mass" 10
@@ -29,6 +31,7 @@ outfit "Water Coolant System"
 
 outfit "Liquid Nitrogen Cooler"
 	category "Systems"
+	tags human
 	cost 60000
 	thumbnail "outfit/liquid nitrogen"
 	"mass" 20
@@ -38,6 +41,7 @@ outfit "Liquid Nitrogen Cooler"
 
 outfit "Liquid Helium Cooler"
 	category "Systems"
+	tags human
 	cost 150000
 	thumbnail "outfit/liquid helium"
 	"mass" 40
@@ -48,6 +52,7 @@ outfit "Liquid Helium Cooler"
 
 outfit "D14-RN Shield Generator"
 	category "Systems"
+	tags human
 	cost 20000
 	thumbnail "outfit/tiny shield"
 	"mass" 15
@@ -58,6 +63,7 @@ outfit "D14-RN Shield Generator"
 
 outfit "D23-QP Shield Generator"
 	category "Systems"
+	tags human
 	cost 35000
 	thumbnail "outfit/small shield"
 	"mass" 22
@@ -68,6 +74,7 @@ outfit "D23-QP Shield Generator"
 
 outfit "D41-HY Shield Generator"
 	category "Systems"
+	tags human
 	cost 65000
 	thumbnail "outfit/medium shield"
 	"mass" 30
@@ -78,6 +85,7 @@ outfit "D41-HY Shield Generator"
 
 outfit "D67-TM Shield Generator"
 	category "Systems"
+	tags human
 	cost 120000
 	thumbnail "outfit/large shield"
 	"mass" 45
@@ -88,6 +96,7 @@ outfit "D67-TM Shield Generator"
 
 outfit "D94-YV Shield Generator"
 	category "Systems"
+	tags human
 	cost 200000
 	thumbnail "outfit/huge shield"
 	"mass" 60
@@ -98,6 +107,7 @@ outfit "D94-YV Shield Generator"
 
 outfit "S-270 Regenerator"
 	category "Systems"
+	tags human syndicate
 	cost 220000
 	thumbnail "outfit/small regenerator"
 	"mass" 12
@@ -110,6 +120,7 @@ outfit "S-270 Regenerator"
 
 outfit "S-970 Regenerator"
 	category "Systems"
+	tags human syndicate
 	cost 800000
 	thumbnail "outfit/large regenerator"
 	"mass" 37
@@ -123,6 +134,7 @@ outfit "S-970 Regenerator"
 
 outfit "Small Radar Jammer"
 	category "Systems"
+	tags human
 	cost 70000
 	thumbnail "outfit/small radar jammer"
 	"mass" 4
@@ -132,6 +144,7 @@ outfit "Small Radar Jammer"
 
 outfit "Large Radar Jammer"
 	category "Systems"
+	tags human
 	cost 490000
 	thumbnail "outfit/large radar jammer"
 	"mass" 14
@@ -142,6 +155,7 @@ outfit "Large Radar Jammer"
 
 outfit "Ramscoop"
 	category "Systems"
+	tags human
 	cost 60000
 	thumbnail "outfit/ramscoop"
 	"mass" 10
@@ -152,6 +166,7 @@ outfit "Ramscoop"
 
 outfit "Catalytic Ramscoop"
 	category "Systems"
+	tags human "deep sky"
 	cost 320000
 	thumbnail "outfit/catalytic ramscoop"
 	"mass" 16
@@ -173,6 +188,7 @@ outfit "Hyperdrive"
 
 outfit "Scram Drive"
 	category "Systems"
+	tags human
 	cost 90000
 	thumbnail "outfit/hyperdrive"
 	"mass" 30
@@ -184,6 +200,7 @@ outfit "Scram Drive"
 
 outfit "Jump Drive"
 	category "Systems"
+	tags alien
 	cost 1000000
 	thumbnail "outfit/jump drive"
 	"mass" 20
@@ -196,6 +213,7 @@ outfit "Jump Drive"
 
 outfit "Cargo Scanner"
 	category "Systems"
+	tags human
 	cost 8000
 	thumbnail "outfit/cargo scanner"
 	"mass" 1
@@ -206,6 +224,7 @@ outfit "Cargo Scanner"
 
 outfit "Outfit Scanner"
 	category "Systems"
+	tags human
 	cost 24000
 	thumbnail "outfit/outfit scanner"
 	"mass" 2
@@ -216,6 +235,7 @@ outfit "Outfit Scanner"
 
 outfit "Surveillance Pod"
 	category "Systems"
+	tags human
 	cost 42000
 	thumbnail "outfit/outfit scanner"
 	"mass" 5
@@ -230,6 +250,7 @@ outfit "Surveillance Pod"
 
 outfit "Cloaking Device"
 	category "Systems"
+	tags alien "cloak"
 	cost 1200000
 	"mass" 10
 	"outfit space" -10
@@ -293,6 +314,7 @@ outfit "Fuel Pod"
 
 outfit "Interference Plating"
 	category "Systems"
+	tags human pirate
 	cost 50000
 	thumbnail "outfit/interference plating"
 	"mass" 4
@@ -300,10 +322,9 @@ outfit "Interference Plating"
 	"scan interference" .5
 	description "If you're in the habit of carrying illegal cargo or outfits, this plating increases the odds that a scan of your ship will fail to detect it. The more of these you install, the better your chances of evading detection. They won't keep anyone from noticing if you're flying an unlicensed ship, however."
 
-
-
 outfit "Laser Rifle"
 	category "Hand to Hand"
+	tags human
 	cost 8000
 	thumbnail "outfit/laser rifle"
 	"capture attack" .6
@@ -313,6 +334,7 @@ outfit "Laser Rifle"
 
 outfit "Fragmentation Grenades"
 	plural "Fragmentation Grenades"
+	tags human pirate
 	category "Hand to Hand"
 	cost 17000
 	thumbnail "outfit/fragmentation grenades"
@@ -323,6 +345,7 @@ outfit "Fragmentation Grenades"
 
 outfit "Security Station"
 	category "Hand to Hand"
+	tags human
 	cost 42000
 	thumbnail "outfit/security station"
 	"mass" 2
@@ -333,6 +356,7 @@ outfit "Security Station"
 
 outfit "Nerve Gas"
 	plural "Nerve Gas"
+	tags human pirate
 	category "Hand to Hand"
 	cost 75000
 	thumbnail "outfit/nerve gas"

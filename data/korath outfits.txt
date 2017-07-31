@@ -11,6 +11,7 @@
 outfit "Generator (Candle Class)"
 	plural "Generators (Candle Class)"
 	category "Power"
+	tags alien korath
 	cost 493000
 	thumbnail "outfit/small korath generator"
 	"mass" 23
@@ -22,6 +23,7 @@ outfit "Generator (Candle Class)"
 outfit "Generator (Furnace Class)"
 	plural "Generators (Furnace Class)"
 	category "Power"
+	tags alien korath
 	cost 925000
 	thumbnail "outfit/medium korath generator"
 	"mass" 39
@@ -33,6 +35,7 @@ outfit "Generator (Furnace Class)"
 outfit "Generator (Inferno Class)"
 	plural "Generators (Inferno Class)"
 	category "Power"
+	tags alien korath
 	cost 1877000
 	thumbnail "outfit/large korath generator"
 	"mass" 71
@@ -43,6 +46,7 @@ outfit "Generator (Inferno Class)"
 
 outfit "Plasma Core"
 	category "Power"
+	tags alien korath
 	cost 4188000
 	thumbnail "outfit/plasma core"
 	"mass" 54
@@ -53,6 +57,7 @@ outfit "Plasma Core"
 
 outfit "Double Plasma Core"
 	category "Power"
+	tags alien korath
 	cost 9321000
 	thumbnail "outfit/double plasma core"
 	"mass" 93
@@ -63,6 +68,7 @@ outfit "Double Plasma Core"
 
 outfit "Triple Plasma Core"
 	category "Power"
+	tags alien korath
 	cost 20460000
 	thumbnail "outfit/triple plasma core"
 	"mass" 169
@@ -75,6 +81,7 @@ outfit "Triple Plasma Core"
 
 outfit "Small Heat Shunt"
 	category "Systems"
+	tags alien korath
 	cost 180000
 	thumbnail "outfit/small heat shunt"
 	"mass" 7
@@ -84,6 +91,7 @@ outfit "Small Heat Shunt"
 
 outfit "Large Heat Shunt"
 	category "Systems"
+	tags alien korath
 	cost 790000
 	thumbnail "outfit/large heat shunt"
 	"mass" 24
@@ -94,6 +102,7 @@ outfit "Large Heat Shunt"
 
 outfit "Systems Core (Small)"
 	plural "Systems Cores (Small)"
+	tags alien korath
 	category "Systems"
 	cost 1452000
 	thumbnail "outfit/small systems core"
@@ -109,6 +118,7 @@ outfit "Systems Core (Small)"
 
 outfit "Systems Core (Medium)"
 	plural "Systems Cores (Medium)"
+	tags alien korath
 	category "Systems"
 	cost 3630000
 	thumbnail "outfit/medium systems core"
@@ -124,6 +134,7 @@ outfit "Systems Core (Medium)"
 
 outfit "Systems Core (Large)"
 	plural "Systems Cores (Large)"
+	tags alien korath
 	category "Systems"
 	cost 9075000
 	thumbnail "outfit/large systems core"
@@ -139,6 +150,7 @@ outfit "Systems Core (Large)"
 
 outfit "Command Center"
 	category "Systems"
+	tags alien korath
 	cost 437000
 	thumbnail "outfit/command center"
 	"mass" 8
@@ -150,6 +162,7 @@ outfit "Command Center"
 
 outfit "Reasoning Node"
 	category "Systems"
+	tags alien korath "kor mereti"
 	cost "23000"
 	thumbnail "outfit/reasoning node"
 	"mass" 1
@@ -158,6 +171,7 @@ outfit "Reasoning Node"
 
 outfit "Control Transceiver"
 	category "Systems"
+	tags alien korath "kor sestor"
 	cost "7000"
 	thumbnail "outfit/control transceiver"
 	"mass" 1
@@ -169,6 +183,7 @@ outfit "Control Transceiver"
 outfit "Thruster (Asteroid Class)"
 	plural "Thrusters (Asteroid Class)"
 	category "Engines"
+	tags alien korath
 	"cost" 113000
 	thumbnail "outfit/tiny korath thruster"
 	"mass" 14
@@ -185,6 +200,7 @@ outfit "Thruster (Asteroid Class)"
 outfit "Thruster (Comet Class)"
 	plural "Thrusters (Comet Class)"
 	category "Engines"
+	tags alien korath
 	"cost" 249000
 	thumbnail "outfit/small korath thruster"
 	"mass" 24
@@ -201,6 +217,7 @@ outfit "Thruster (Comet Class)"
 outfit "Thruster (Lunar Class)"
 	plural "Thrusters (Lunar Class)"
 	category "Engines"
+	tags alien korath
 	"cost" 539000
 	thumbnail "outfit/medium korath thruster"
 	"mass" 40
@@ -217,6 +234,7 @@ outfit "Thruster (Lunar Class)"
 outfit "Thruster (Planetary Class)"
 	plural "Thrusters (Planetary Class)"
 	category "Engines"
+	tags alien korath
 	"cost" 1216000
 	thumbnail "outfit/large korath thruster"
 	"mass" 69
@@ -233,6 +251,7 @@ outfit "Thruster (Planetary Class)"
 outfit "Thruster (Stellar Class)"
 	plural "Thrusters (Stellar Class)"
 	category "Engines"
+	tags alien korath
 	"cost" 2733000
 	thumbnail "outfit/huge korath thruster"
 	"mass" 118
@@ -249,6 +268,7 @@ outfit "Thruster (Stellar Class)"
 outfit "Steering (Asteroid Class)"
 	plural "Steerings (Asteroid Class)"
 	category "Engines"
+	tags alien korath
 	"cost" 95000
 	thumbnail "outfit/tiny korath steering"
 	"mass" 10
@@ -262,6 +282,7 @@ outfit "Steering (Asteroid Class)"
 outfit "Steering (Comet Class)"
 	plural "Steerings (Comet Class)"
 	category "Engines"
+	tags alien korath
 	"cost" 221000
 	thumbnail "outfit/small korath steering"
 	"mass" 18
@@ -275,6 +296,7 @@ outfit "Steering (Comet Class)"
 outfit "Steering (Lunar Class)"
 	plural "Steerings (Lunar Class)"
 	category "Engines"
+	tags alien korath
 	"cost" 473000
 	thumbnail "outfit/medium korath steering"
 	"mass" 30
@@ -288,6 +310,7 @@ outfit "Steering (Lunar Class)"
 outfit "Steering (Planetary Class)"
 	plural "Steerings (Planetary Class)"
 	category "Engines"
+	tags alien korath
 	"cost" 1077000
 	thumbnail "outfit/large korath steering"
 	"mass" 52
@@ -301,6 +324,7 @@ outfit "Steering (Planetary Class)"
 outfit "Steering (Stellar Class)"
 	plural "Steerings (Stellar Class)"
 	category "Engines"
+	tags alien korath
 	"cost" 2435000
 	thumbnail "outfit/huge korath steering"
 	"mass" 89

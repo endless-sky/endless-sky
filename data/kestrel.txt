@@ -212,6 +212,7 @@ ship "Unknown Ship Type"
 	sprite ship/kestrel
 	attributes
 		category "Heavy Warship"
+		tags human tarazed warship
 		"cost" 10300000
 		"shields" 17400
 		"hull" 6200
@@ -264,6 +265,7 @@ ship "Kestrel"
 	sprite ship/kestrel
 	attributes
 		category "Heavy Warship"
+		tags human tarazed warship
 		"cost" 10300000
 		"shields" 17400
 		"hull" 6200

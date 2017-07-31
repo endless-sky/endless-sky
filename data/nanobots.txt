@@ -10,6 +10,7 @@
 
 ship "Nanobot"
 	attributes
+		tags alien korath
 		"hull" 100
 		"automaton" 1
 		"mass" 10
@@ -33,6 +34,7 @@ ship "Nanobot"
 
 outfit "Nano Strike"
 	category "Guns"
+	tags alien korath weapon
 	thumbnail "outfit/unknown"
 	"mass" 5
 	"outfit space" -5

@@ -14,6 +14,7 @@ ship "Starling"
 		category "Light Warship"
 		licenses
 			Remnant
+		tags alien remnant warship cloak
 		cost 8800000
 		"shields" 8800
 		"hull" 4900
@@ -138,6 +139,7 @@ ship "Albatross"
 		category "Heavy Warship"
 		licenses
 			Remnant
+		tags alien remnant warship
 		cost 20000000
 		"shields" 34200
 		"hull" 12600

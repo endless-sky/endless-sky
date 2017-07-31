@@ -10,6 +10,7 @@
 
 outfit "Drak Distancer"
 	category "Turrets"
+	tags alien drak
 	cost 1000000
 	thumbnail "outfit/unknown"
 	"mass" 64
@@ -34,6 +35,7 @@ effect "distancer flare"
 
 outfit "Drak Draining Field"
 	category "Turrets"
+	tags alien drak weapon
 	cost 1000000
 	thumbnail "outfit/unknown"
 	"mass" 84
@@ -54,6 +56,7 @@ outfit "Drak Draining Field"
 
 outfit "Drak Anti-Missile Field"
 	category "Turrets"
+	tags alien drak weapon anti-missile
 	cost 1000000
 	thumbnail "outfit/unknown"
 	"mass" 66
@@ -71,6 +74,7 @@ outfit "Drak Anti-Missile Field"
 
 outfit "Drak Turret"
 	category "Turrets"
+	tags alien drak weapon
 	cost 1000000
 	thumbnail "outfit/unknown"
 	"mass" 48
@@ -105,6 +109,7 @@ effect "drak bolt impact"
 
 outfit "Drak Antimatter Cannon"
 	category "Guns"
+	tags alien drak weapon
 	cost 10000000
 	thumbnail "outfit/unknown"
 	"mass" 96
@@ -171,6 +176,7 @@ ship Archon
 	"never disabled"
 	attributes
 		category "Heavy Warship"
+		tags alien drak warship
 		"cost" 1000000000
 		"shields" 4000000
 		"hull" 1000000

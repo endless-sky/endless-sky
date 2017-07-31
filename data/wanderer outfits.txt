@@ -12,6 +12,7 @@ outfit "Sunbeam"
 	category "Guns"
 	licenses
 		"Wanderer Outfits"
+	tags alien wanderer weapon
 	cost 1390000
 	thumbnail "outfit/sunbeam"
 	"mass" 34
@@ -49,6 +50,7 @@ outfit "Sunbeam Turret"
 	category "Turrets"
 	licenses
 		"Wanderer Outfits"
+	tags alien wanderer weapons
 	cost 1970000
 	thumbnail "outfit/sunbeam turret"
 	"mass" 46
@@ -80,6 +82,7 @@ outfit "Dual Sunbeam Turret"
 	category "Turrets"
 	licenses
 		"Wanderer Outfits"
+	tags alien wanderer weapon
 	cost 3720000
 	thumbnail "outfit/dual sunbeam turret"
 	"mass" 83
@@ -111,6 +114,7 @@ outfit "Wanderer Anti-Missile"
 	category "Turrets"
 	licenses
 		"Wanderer Outfits"
+	tags alien wanderer anti-missile
 	cost 850000
 	thumbnail "outfit/wanderer anti-missile"
 	"mass" 24
@@ -141,6 +145,7 @@ outfit "Thunderhead Launcher"
 	category "Secondary Weapons"
 	licenses
 		"Wanderer Outfits"
+	tags alien wanderer weapon
 	cost 450000
 	thumbnail "outfit/thunderhead launcher"
 	"mass" 14
@@ -177,6 +182,7 @@ outfit "Thunderhead Launcher"
 
 outfit "Thunderhead Missile"
 	category "Ammunition"
+	tags alien wanderer
 	cost 1800
 	thumbnail "outfit/thunderhead"
 	mass .3
@@ -208,6 +214,7 @@ outfit "Thunderhead Storage Array"
 	category "Ammunition"
 	licenses
 		"Wanderer Outfits"
+	tags alien wanderer
 	cost 36000
 	thumbnail "outfit/thunderhead storage"
 	"mass" 2
@@ -220,6 +227,7 @@ outfit "Small Biochemical Cell"
 	category "Power"
 	licenses
 		"Wanderer Outfits"
+	tags alien wanderer
 	cost 230000
 	thumbnail "outfit/small biochemical"
 	"mass" 17
@@ -233,6 +241,7 @@ outfit "Large Biochemical Cell"
 	category "Power"
 	licenses
 		"Wanderer Outfits"
+	tags alien wanderer
 	cost 940000
 	thumbnail "outfit/large biochemical"
 	"mass" 63
@@ -246,6 +255,7 @@ outfit "Red Sun Reactor"
 	category "Power"
 	licenses
 		"Wanderer Outfits"
+	tags alien wanderer
 	cost 3800000
 	thumbnail "outfit/red sun"
 	"mass" 47
@@ -259,6 +269,7 @@ outfit "Yellow Sun Reactor"
 	category "Power"
 	licenses
 		"Wanderer Outfits"
+	tags alien wanderer
 	cost 7500000
 	thumbnail "outfit/yellow sun"
 	"mass" 82
@@ -272,6 +283,7 @@ outfit "White Sun Reactor"
 	category "Power"
 	licenses
 		"Wanderer Outfits"
+	tags alien wanderer
 	cost 13900000
 	thumbnail "outfit/white sun"
 	"mass" 127
@@ -285,6 +297,7 @@ outfit "Blue Sun Reactor"
 	category "Power"
 	licenses
 		"Wanderer Outfits"
+	tags alien wanderer
 	cost 21500000
 	thumbnail "outfit/blue sun"
 	"mass" 152
@@ -299,6 +312,7 @@ outfit "Bright Cloud Shielding"
 	category "Systems"
 	licenses
 		"Wanderer Outfits"
+	tags alien wanderer
 	cost 220000
 	thumbnail "outfit/bright cloud"
 	"mass" 19
@@ -311,6 +325,7 @@ outfit "Dark Storm Shielding"
 	category "Systems"
 	licenses
 		"Wanderer Outfits"
+	tags alien wanderer
 	cost 800000
 	thumbnail "outfit/dark storm"
 	"mass" 41
@@ -323,6 +338,7 @@ outfit "Wanderer Ramscoop"
 	category "Systems"
 	licenses
 		"Wanderer Outfits"
+	tags alien wanderer ramscoop
 	cost 460000
 	thumbnail "outfit/wanderer ramscoop"
 	"mass" 7
@@ -335,6 +351,7 @@ outfit "Wanderer Heat Sink"
 	category "Systems"
 	licenses
 		"Wanderer Outfits"
+	tags alien wanderer
 	cost 94000
 	thumbnail "outfit/wanderer heat sink"
 	"mass" 12
@@ -347,6 +364,7 @@ outfit "Type 1 Radiant Thruster"
 	category "Engines"
 	licenses
 		"Wanderer Outfits"
+	tags alien wanderer
 	"cost" 135000
 	thumbnail "outfit/tiny radiant thruster"
 	"mass" 12
@@ -365,6 +383,7 @@ outfit "Type 2 Radiant Thruster"
 	category "Engines"
 	licenses
 		"Wanderer Outfits"
+	tags alien wanderer
 	"cost" 390000
 	thumbnail "outfit/small radiant thruster"
 	"mass" 27
@@ -383,6 +402,7 @@ outfit "Type 3 Radiant Thruster"
 	category "Engines"
 	licenses
 		"Wanderer Outfits"
+	tags alien wanderer
 	"cost" 750000
 	thumbnail "outfit/medium radiant thruster"
 	"mass" 42
@@ -401,6 +421,7 @@ outfit "Type 4 Radiant Thruster"
 	category "Engines"
 	licenses
 		"Wanderer Outfits"
+	tags alien wanderer
 	"cost" 1370000
 	thumbnail "outfit/large radiant thruster"
 	"mass" 65
@@ -419,6 +440,7 @@ outfit "Type 1 Radiant Steering"
 	category "Engines"
 	licenses
 		"Wanderer Outfits"
+	tags alien wanderer
 	"cost" 115000
 	thumbnail "outfit/tiny radiant steering"
 	"mass" 9
@@ -434,6 +456,7 @@ outfit "Type 2 Radiant Steering"
 	category "Engines"
 	licenses
 		"Wanderer Outfits"
+	tags alien wanderer
 	"cost" 325000
 	thumbnail "outfit/small radiant steering"
 	"mass" 20
@@ -449,6 +472,7 @@ outfit "Type 3 Radiant Steering"
 	category "Engines"
 	licenses
 		"Wanderer Outfits"
+	tags alien wanderer
 	"cost" 590000
 	thumbnail "outfit/medium radiant steering"
 	"mass" 30
@@ -464,6 +488,7 @@ outfit "Type 4 Radiant Steering"
 	category "Engines"
 	licenses
 		"Wanderer Outfits"
+	tags alien wanderer
 	"cost" 1100000
 	thumbnail "outfit/large radiant steering"
 	"mass" 47

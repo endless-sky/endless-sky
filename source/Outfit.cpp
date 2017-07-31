@@ -83,6 +83,9 @@ void Outfit::Load(const DataNode &node)
 			for(const DataNode &grand : child)
 				licenses.push_back(grand.Token(0));
 		}
+		else if(child.Token(0) == "tags" && child.Size() >= 2)
+			for(int i = 1; i < child.Size(); ++i)
+				tags[child.Token(i)] = 1;
 		else if(child.Size() >= 2)
 			attributes[child.Token(0)] = child.Value(1);
 		else
@@ -155,6 +158,13 @@ const map<string, double> &Outfit::Attributes() const
 
 
 
+const map<string, double> &Outfit::Tags() const
+{
+	return tags;
+}
+
+
+
 // Determine whether the given number of instances of the given outfit can
 // be added to a ship with the attributes represented by this instance. If
 // not, return the maximum number that can be added.
@@ -184,6 +194,8 @@ void Outfit::Add(const Outfit &other, int count)
 		if(fabs(attributes[at.first]) < EPS)
 			attributes[at.first] = 0.;
 	}
+	for(const auto &it : other.tags)
+		tags[it.first] += it.second * count;
 	
 	for(const auto &it : other.flareSprites)
 	{
@@ -221,6 +233,13 @@ void Outfit::Reset(const string &attribute, double value)
 	attributes[attribute] = value;
 }
 
+
+// Copy tags from another outfit: used to set the base tags of one
+// ship to its base class values.
+void Outfit::CopyTags(const Outfit &base)
+{
+	tags = base.tags;
+}
 
 	
 // Get this outfit's engine flare sprite, if any.

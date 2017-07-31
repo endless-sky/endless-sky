@@ -12,6 +12,7 @@ ship "Quarg Skylark"
 	sprite "ship/skylark"
 	attributes
 		category "Heavy Warship"
+		tags alien quarg warship
 		"cost" 5900000
 		"shields" 120000
 		"hull" 70000
@@ -59,6 +60,7 @@ ship "Quarg Wardragon"
 	sprite "ship/wardragon"
 	attributes
 		category "Heavy Warship"
+		tags alien quarg warship
 		"cost" 5900000
 		"shields" 160000
 		"hull" 50000

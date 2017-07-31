@@ -14,6 +14,7 @@ outfit "Inhibitor Cannon"
 	category "Guns"
 	licenses
 		Remnant
+	tags alien remnant weapon
 	cost 471000
 	thumbnail "outfit/unknown"
 	"mass" 16
@@ -56,6 +57,7 @@ outfit "Thrasher Cannon"
 	category "Guns"
 	licenses
 		Remnant
+	tags alien remnant
 	cost 218000
 	thumbnail "outfit/unknown"
 	"mass" 10
@@ -94,6 +96,7 @@ outfit "Thrasher Turret"
 	category "Turrets"
 	licenses
 		Remnant
+	tags alien remnant
 	cost 980000
 	thumbnail "outfit/unknown"
 	"mass" 49
@@ -124,6 +127,7 @@ outfit "Point Defense Turret"
 	category "Turrets"
 	licenses
 		Remnant
+	tags alien anti-missile
 	cost 1120000
 	thumbnail "outfit/unknown"
 	"mass" 33
@@ -171,6 +175,7 @@ outfit "Crystal Capacitor"
 	category "Power"
 	licenses
 		Remnant
+	tags alien remnant
 	cost 280000
 	thumbnail "outfit/unknown"
 	"mass" 12
@@ -183,6 +188,7 @@ outfit "Millennium Cell"
 	category "Power"
 	licenses
 		Remnant
+	tags alien remnant
 	cost 767000
 	thumbnail "outfit/unknown"
 	"mass" 29
@@ -195,6 +201,7 @@ outfit "Epoch Cell"
 	category "Power"
 	licenses
 		Remnant
+	tags alien remnant
 	cost 3060000
 	thumbnail "outfit/unknown"
 	"mass" 98
@@ -207,6 +214,7 @@ outfit "Aeon Cell"
 	category "Power"
 	licenses
 		Remnant
+	tags alien remnant
 	cost 6600000
 	thumbnail "outfit/unknown"
 	"mass" 160
@@ -220,6 +228,7 @@ outfit "Thermoelectric Cooler"
 	category "Systems"
 	licenses
 		Remnant
+	tags alien remnant
 	cost 160000
 	thumbnail "outfit/unknown"
 	"mass" 4
@@ -233,6 +242,8 @@ outfit "Emergency Ramscoop"
 	licenses
 		Remnant
 	cost 72000
+	tags alien remnant ramscoop
+	cost "72000"
 	thumbnail "outfit/unknown"
 	"mass" 4
 	"outfit space" -4
@@ -259,6 +270,7 @@ outfit "Crucible-Class Thruster"
 	category "Engines"
 	licenses
 		Remnant
+	tags alien remnant
 	"cost" 200000
 	thumbnail "outfit/unknown"
 	"mass" 20
@@ -276,6 +288,7 @@ outfit "Forge-Class Thruster"
 	category "Engines"
 	licenses
 		Remnant
+	tags alien remnant
 	"cost" 441000
 	thumbnail "outfit/unknown"
 	"mass" 39
@@ -293,6 +306,7 @@ outfit "Smelter-Class Thruster"
 	category "Engines"
 	licenses
 		Remnant
+	tags alien remnant
 	"cost" 984000
 	thumbnail "outfit/unknown"
 	"mass" 76
@@ -311,6 +325,7 @@ outfit "Crucible-Class Steering"
 	category "Engines"
 	licenses
 		Remnant
+	tags alien remnant
 	"cost" 172000
 	thumbnail "outfit/unknown"
 	"mass" 14
@@ -325,6 +340,7 @@ outfit "Forge-Class Steering"
 	category "Engines"
 	licenses
 		Remnant
+	tags alien remnant
 	"cost" 393000
 	thumbnail "outfit/unknown"
 	"mass" 28
@@ -339,6 +355,7 @@ outfit "Smelter-Class Steering"
 	category "Engines"
 	licenses
 		Remnant
+	tags alien remnant
 	"cost" 880000
 	thumbnail "outfit/unknown"
 	"mass" 55

@@ -20,6 +20,7 @@ effect "seeker impact"
 
 outfit "Pug Zapper"
 	category "Guns"
+	tags alien pug weapon
 	cost 290000
 	thumbnail "outfit/pug zapper"
 	"mass" 25
@@ -45,6 +46,7 @@ outfit "Pug Zapper"
 
 outfit "Pug Zapper Turret"
 	category "Turrets"
+	tags alien pug weapon
 	cost 860000
 	thumbnail "outfit/pug zapper turret"
 	"mass" 66
@@ -73,6 +75,7 @@ outfit "Pug Zapper Turret"
 
 outfit "Pug Seeker"
 	category "Guns"
+	tags alien pug weapon
 	cost 540000
 	thumbnail "outfit/pug seeker"
 	"mass" 34
@@ -105,6 +108,7 @@ outfit "Pug Seeker"
 
 outfit "Pug Anti-Missile"
 	category "Turrets"
+	tags alien pug anti-missile
 	cost 350000
 	thumbnail "outfit/pug anti-missile"
 	"mass" 41
@@ -125,6 +129,7 @@ outfit "Pug Anti-Missile"
 
 outfit "Tier 3 Anti-Missile"
 	category "Turrets"
+	tags alien pug "tier 3 pug" anti-missile
 	cost 12000000
 	thumbnail "outfit/unknown"
 	"mass" 67
@@ -159,6 +164,7 @@ effect "tier 3 anti-missile die"
 
 outfit "Pug Gridfire Turret"
 	category "Turrets"
+	tags alien pug "tier 3 pug" weapon
 	cost 24000000
 	thumbnail "outfit/unknown"
 	"mass" 83
@@ -210,6 +216,7 @@ effect "gridfire cloud"
 
 outfit "Pug Akfar Thruster"
 	category "Engines"
+	tags alien pug
 	"cost" 608000
 	thumbnail "outfit/pug akfar thruster"
 	"mass" 43
@@ -225,6 +232,7 @@ outfit "Pug Akfar Thruster"
 
 outfit "Pug Akfar Steering"
 	category "Engines"
+	tags alien pug
 	"cost" 472000
 	thumbnail "outfit/pug akfar steering"
 	"mass" 33
@@ -237,6 +245,7 @@ outfit "Pug Akfar Steering"
 
 outfit "Pug Cormet Thruster"
 	category "Engines"
+	tags alien pug
 	"cost" 1050000
 	thumbnail "outfit/pug cormet thruster"
 	"mass" 60
@@ -252,6 +261,7 @@ outfit "Pug Cormet Thruster"
 
 outfit "Pug Cormet Steering"
 	category "Engines"
+	tags alien pug
 	"cost" 880000
 	thumbnail "outfit/pug cormet steering"
 	"mass" 46
@@ -264,6 +274,7 @@ outfit "Pug Cormet Steering"
 
 outfit "Pug Lohmar Thruster"
 	category "Engines"
+	tags alien pug
 	"cost" 1740000
 	thumbnail "outfit/pug lohmar thruster"
 	"mass" 84
@@ -279,6 +290,7 @@ outfit "Pug Lohmar Thruster"
 
 outfit "Pug Lohmar Steering"
 	category "Engines"
+	tags alien pug
 	"cost" 1580000
 	thumbnail "outfit/pug lohmar steering"
 	"mass" 64
@@ -293,6 +305,7 @@ outfit "Pug Lohmar Steering"
 outfit "Pug Biodefenses"
 	plural "Pug Biodefenses"
 	category "Hand to Hand"
+	tags alien pug
 	cost 100000
 	thumbnail "outfit/pug biodefenses"
 	"capture defense" 250
@@ -304,6 +317,7 @@ ship "Pug Zibruka"
 	sprite "ship/pug zibruka"
 	attributes
 		category "Light Warship"
+		tags alien pug warship
 		"cost" 1900000
 		"shields" 4000
 		"hull" 1000
@@ -348,6 +362,7 @@ ship "Pug Enfolta"
 	sprite "ship/pug enfolta"
 	attributes
 		category "Medium Warship"
+		tags alien pug warship
 		"cost" 6300000
 		"shields" 6800
 		"hull" 1700
@@ -397,6 +412,7 @@ ship "Pug Maboro"
 	sprite "ship/pug maboro"
 	attributes
 		category "Heavy Warship"
+		tags alien pug warship
 		"cost" 9500000
 		"shields" 12600
 		"hull" 2700
@@ -448,6 +464,7 @@ ship "Pug Arfecta"
 	sprite "ship/pug arfecta"
 	attributes
 		category "Medium Warship"
+		tags alien pug "tier 3 pug" warship
 		"cost" 90000000
 		"shields" 98000
 		"hull" 80000

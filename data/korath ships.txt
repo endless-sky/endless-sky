@@ -12,6 +12,7 @@ ship "Korath Raider"
 	sprite "ship/raider"
 	attributes
 		category "Heavy Warship"
+		tags alien korath warship
 		"cost" 16570000
 		"shields" 27000
 		"hull" 9000
@@ -95,6 +96,7 @@ ship "Korath Chaser"
 	sprite "ship/chaser"
 	attributes
 		category "Fighter"
+		tags alien korath
 		"cost" 671000
 		"shields" 2300
 		"hull" 900
@@ -132,6 +134,7 @@ ship "Korath World-Ship"
 	sprite "ship/world-ship a"
 	attributes
 		category "Heavy Freighter"
+		tags alien korath freighter
 		cost 27690000
 		shields 47000
 		hull 34000
@@ -289,6 +292,7 @@ ship "Kar Ik Vot 349"
 	sprite "ship/kar ik vot 349"
 	attributes
 		category "Heavy Warship"
+		tags alien korath "kor sestor" warship
 		"cost" 41280000
 		"shields" 57200
 		"hull" 65400
@@ -443,6 +447,7 @@ ship "Tek Far 71 - Lek"
 	sprite "ship/tek far 71 lek"
 	attributes
 		category "Medium Warship"
+		tags alien korath "kor sestor" warship
 		"cost" 22870000
 		"shields" 25400
 		"hull" 29500
@@ -535,6 +540,7 @@ ship "Tek Far 78 - Osk"
 	sprite "ship/tek far 78 osk"
 	attributes
 		category "Medium Warship"
+		tags alien korath "kor sestor" warship
 		"cost" 25630000
 		"shields" 27600
 		"hull" 34100
@@ -626,6 +632,7 @@ ship "Tek Far 109"
 	sprite "ship/tek far 109"
 	attributes
 		category "Medium Warship"
+		tags alien korath "kor sestor" warship
 		"cost" 18290000
 		"shields" 17900
 		"hull" 15800
@@ -696,6 +703,7 @@ ship "Met Par Tek 53"
 	sprite "ship/met par tek 53"
 	attributes
 		category "Light Warship"
+		tags alien korath "kor sestor" warship
 		"cost" 14480000
 		"shields" 15100
 		"hull" 22200
@@ -784,6 +792,7 @@ ship "Far Lek 14"
 	sprite "ship/far lek 14"
 	attributes
 		category "Drone"
+		tags alien korath "kor sestor"
 		"cost" 573000
 		"shields" 900
 		"hull" 1600
@@ -823,6 +832,7 @@ ship "Far Osk 27"
 	sprite "ship/far osk 27"
 	attributes
 		category "Fighter"
+		tags alien korath "kor sestor"
 		"cost" 761000
 		"shields" 1500
 		"hull" 2400
@@ -862,6 +872,7 @@ ship "Model 8"
 	sprite "ship/model 8"
 	attributes
 		category "Interceptor"
+		tags alien korath "kor mereti"
 		"cost" 3725000
 		"shields" 5450
 		"hull" 3320
@@ -907,6 +918,7 @@ ship "Model 16"
 	sprite "ship/model 16"
 	attributes
 		category "Light Warship"
+		tags alien korath "kor mereti" warship
 		"cost" 8449000
 		"shields" 15700
 		"hull" 9800
@@ -959,6 +971,7 @@ ship "Model 32"
 	sprite "ship/model 32"
 	attributes
 		category "Light Warship"
+		tags alien korath "kor mereti" warship
 		"cost" 12765000
 		"shields" 27900
 		"hull" 13400
@@ -1012,6 +1025,7 @@ ship "Model 64"
 	sprite "ship/model 64"
 	attributes
 		category "Medium Warship"
+		tags alien korath "kor mereti" warship
 		"cost" 19552000
 		"shields" 41700
 		"hull" 18000
@@ -1066,6 +1080,7 @@ ship "Model 128"
 	sprite "ship/model 128"
 	attributes
 		category "Medium Warship"
+		tags alien korath "kor mereti" warship
 		"cost" 24073000
 		"shields" 57000
 		"hull" 23100
@@ -1122,6 +1137,7 @@ ship "Model 256"
 	sprite "ship/model 256"
 	attributes
 		category "Heavy Warship"
+		tags alien korath "kor mereti" warship
 		"cost" 34920000
 		"shields" 71700
 		"hull" 28700
@@ -1179,6 +1195,7 @@ ship "Model 512"
 	sprite "ship/model 512"
 	attributes
 		category "Heavy Warship"
+		tags alien korath "kor mereti" warship
 		"cost" 40375000
 		"shields" 86400
 		"hull" 34200

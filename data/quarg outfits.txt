@@ -10,6 +10,7 @@
 
 outfit "Nanotech Battery"
 	plural "Nanotech Batteries"
+	tags alien quarg
 	category "Power"
 	cost 3000000
 	thumbnail "outfit/unknown"
@@ -19,6 +20,7 @@ outfit "Nanotech Battery"
 
 outfit "Antimatter Core"
 	category "Power"
+	tags alien quarg
 	cost 100000000
 	thumbnail "outfit/unknown"
 	"mass" 80
@@ -29,6 +31,7 @@ outfit "Antimatter Core"
 
 outfit "Quarg Skylance"
 	category "Turrets"
+	tags alien quarg weapon
 	cost 18000000
 	thumbnail "outfit/unknown"
 	"mass" 60
@@ -62,6 +65,7 @@ effect "skylance impact"
 
 outfit "Quarg Anti-Missile"
 	category "Turrets"
+	tags alien quarg anti-missile
 	cost 6000000
 	thumbnail "outfit/unknown"
 	"mass" 40
@@ -88,6 +92,7 @@ effect "quarg anti-missile"
 outfit "Intrusion Countermeasures"
 	plural "Intrusion Countermeasures"
 	category "Hand to Hand"
+	tags alien quarg
 	thumbnail "outfit/unknown"
 	"capture defense" 60
 	"unplunderable" 1
@@ -95,6 +100,7 @@ outfit "Intrusion Countermeasures"
 
 outfit "Medium Graviton Thruster"
 	category "Engines"
+	tags alien quarg
 	"cost" 20000000
 	thumbnail "outfit/unknown"
 	"mass" 70
@@ -107,6 +113,7 @@ outfit "Medium Graviton Thruster"
 
 outfit "Medium Graviton Steering"
 	category "Engines"
+	tags alien quarg
 	"cost" 16000000
 	thumbnail "outfit/unknown"
 	"mass" 50
@@ -118,6 +125,7 @@ outfit "Medium Graviton Steering"
 
 outfit "Quantum Shield Generator"
 	category "Systems"
+	tags alien quarg
 	cost 30000000
 	thumbnail "outfit/unknown"
 	"mass" 120

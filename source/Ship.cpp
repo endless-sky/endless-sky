@@ -254,6 +254,7 @@ void Ship::FinishLoading()
 		explosionWeapon = &model->BaseAttributes();
 		pluralModelName = model->pluralModelName;
 		noun = model->noun;
+		baseAttributes.CopyTags(model->baseAttributes);
 	}
 	
 	// If this ship has a base class, copy any attributes not defined here.

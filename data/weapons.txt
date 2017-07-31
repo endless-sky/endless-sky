@@ -10,6 +10,7 @@
 
 outfit "Energy Blaster"
 	category "Guns"
+	tags human weapon
 	cost 16000
 	thumbnail "outfit/blaster"
 	"mass" 5
@@ -32,6 +33,7 @@ outfit "Energy Blaster"
 
 outfit "Modified Blaster"
 	category "Guns"
+	tags human weapon
 	cost 35000
 	thumbnail "outfit/mod blaster"
 	"mass" 6
@@ -54,6 +56,7 @@ outfit "Modified Blaster"
 
 outfit "Blaster Turret"
 	category "Turrets"
+	tags human weapon
 	cost 100000
 	thumbnail "outfit/blaster turret"
 	"mass" 15
@@ -80,6 +83,7 @@ outfit "Blaster Turret"
 
 outfit "Modified Blaster Turret"
 	category "Turrets"
+	tags human weapon
 	cost 170000
 	thumbnail "outfit/mod blaster turret"
 	"mass" 18
@@ -106,6 +110,7 @@ outfit "Modified Blaster Turret"
 
 outfit "Quad Blaster Turret"
 	category "Turrets"
+	tags human weapon
 	cost 230000
 	thumbnail "outfit/quad blaster turret"
 	"mass" 25
@@ -132,6 +137,7 @@ outfit "Quad Blaster Turret"
 
 outfit "Beam Laser"
 	category "Guns"
+	tags human weapon
 	cost 29000
 	thumbnail "outfit/laser"
 	"mass" 8
@@ -155,6 +161,7 @@ outfit "Beam Laser"
 
 outfit "Heavy Laser"
 	category "Guns"
+	tags human weapon
 	cost 60000
 	thumbnail "outfit/heavy laser"
 	"mass" 15
@@ -178,6 +185,7 @@ outfit "Heavy Laser"
 
 outfit "Electron Beam"
 	category "Guns"
+	tags human weapon "deep sky"
 	cost 170000
 	thumbnail "outfit/electron beam"
 	"mass" 21
@@ -201,6 +209,7 @@ outfit "Electron Beam"
 
 outfit "Laser Turret"
 	category "Turrets"
+	tags human weapon
 	cost 140000
 	thumbnail "outfit/laser turret"
 	"mass" 22
@@ -228,6 +237,7 @@ outfit "Laser Turret"
 
 outfit "Heavy Laser Turret"
 	category "Turrets"
+	tags human weapon
 	cost 320000
 	thumbnail "outfit/heavy laser turret"
 	"mass" 40
@@ -255,6 +265,7 @@ outfit "Heavy Laser Turret"
 
 outfit "Electron Turret"
 	category "Turrets"
+	tags human weapon "deep sky"
 	cost 720000
 	thumbnail "outfit/electron turret"
 	"mass" 54
@@ -282,6 +293,7 @@ outfit "Electron Turret"
 
 outfit "Anti-Missile Turret"
 	category "Turrets"
+	tags human anti-missile lovelace
 	cost 60000
 	thumbnail "outfit/anti-missile"
 	"mass" 16
@@ -302,6 +314,7 @@ outfit "Anti-Missile Turret"
 
 outfit "Heavy Anti-Missile Turret"
 	category "Turrets"
+	tags human anti-missile lovelace
 	cost 150000
 	thumbnail "outfit/heavy anti-missile"
 	"mass" 30
@@ -322,6 +335,7 @@ outfit "Heavy Anti-Missile Turret"
 
 outfit "Particle Cannon"
 	category "Guns"
+	tags human weapon
 	cost 220000
 	thumbnail "outfit/particle cannon"
 	"mass" 30
@@ -346,6 +360,7 @@ outfit "Particle Cannon"
 
 outfit "Proton Gun"
 	category "Guns"
+	tags human syndicate weapon
 	cost 150000
 	thumbnail "outfit/proton gun"
 	"mass" 28
@@ -380,6 +395,7 @@ outfit "Proton Fragment"
 
 outfit "Plasma Cannon"
 	category "Guns"
+	tags human weapon
 	cost 190000
 	thumbnail "outfit/plasma cannon"
 	"mass" 25
@@ -405,6 +421,7 @@ outfit "Plasma Cannon"
 
 outfit "Plasma Turret"
 	category "Turrets"
+	tags human weapon
 	cost 520000
 	thumbnail "outfit/plasma turret"
 	"mass" 60
@@ -434,6 +451,7 @@ outfit "Plasma Turret"
 
 outfit "Flamethrower"
 	category "Secondary Weapons"
+	tags human weapon kraz
 	cost 190000
 	thumbnail "outfit/flamethrower"
 	"mass" 9
@@ -471,6 +489,7 @@ outfit "Flamethrower Projectile"
 
 outfit "Meteor Missile"
 	category "Ammunition"
+	tags human
 	cost 500
 	thumbnail "outfit/meteor"
 	"mass" .2
@@ -479,6 +498,7 @@ outfit "Meteor Missile"
 
 outfit "Meteor Missile Box"
 	plural "Meteor Missile Boxes"
+	tags human
 	category "Ammunition"
 	cost 9000
 	thumbnail "outfit/meteor storage"
@@ -490,6 +510,7 @@ outfit "Meteor Missile Box"
 
 outfit "Meteor Missile Launcher"
 	category "Secondary Weapons"
+	tags human weapon
 	cost 15000
 	thumbnail "outfit/meteor launcher"
 	"mass" 3
@@ -526,6 +547,7 @@ outfit "Meteor Missile Launcher"
 
 outfit "Sidewinder Missile"
 	category "Ammunition"
+	tags human lovelace
 	cost 800
 	thumbnail "outfit/sidewinder"
 	"mass" .2
@@ -534,6 +556,7 @@ outfit "Sidewinder Missile"
 
 outfit "Sidewinder Missile Rack"
 	category "Ammunition"
+	tags human lovelace
 	cost 20000
 	thumbnail "outfit/sidewinder storage"
 	"mass" 2
@@ -544,6 +567,7 @@ outfit "Sidewinder Missile Rack"
 
 outfit "Sidewinder Missile Launcher"
 	category "Secondary Weapons"
+	tags human weapon lovelace
 	cost 60000
 	thumbnail "outfit/sidewinder launcher"
 	"mass" 4
@@ -581,6 +605,7 @@ outfit "Sidewinder Missile Launcher"
 
 outfit "Javelin"
 	category "Ammunition"
+	tags human
 	cost 50
 	thumbnail "outfit/javelin"
 	"mass" .04
@@ -589,6 +614,7 @@ outfit "Javelin"
 
 outfit "Javelin Storage Crate"
 	category "Ammunition"
+	tags human
 	cost 5000
 	thumbnail "outfit/javelin storage"
 	"mass" 2
@@ -599,6 +625,7 @@ outfit "Javelin Storage Crate"
 
 outfit "Javelin Pod"
 	category "Secondary Weapons"
+	tags human weapon
 	cost 20000
 	thumbnail "outfit/javelin pod"
 	"mass" 4
@@ -626,6 +653,7 @@ outfit "Javelin Pod"
 
 outfit "Torpedo"
 	plural "Torpedoes"
+	tags human
 	category "Ammunition"
 	cost 1400
 	thumbnail "outfit/torpedo"
@@ -635,6 +663,7 @@ outfit "Torpedo"
 
 outfit "Torpedo Storage Rack"
 	category "Ammunition"
+	tags human
 	cost 21000
 	thumbnail "outfit/torpedo storage"
 	"mass" 3
@@ -645,6 +674,7 @@ outfit "Torpedo Storage Rack"
 
 outfit "Torpedo Launcher"
 	category "Secondary Weapons"
+	tags human weapon
 	cost 80000
 	thumbnail "outfit/torpedo launcher"
 	"mass" 13
@@ -682,6 +712,7 @@ outfit "Torpedo Launcher"
 outfit "Typhoon Torpedo"
 	plural "Typhoon Torpedoes"
 	category "Ammunition"
+	tags human "deep sky"
 	cost 2700
 	thumbnail "outfit/typhoon"
 	"mass" .5
@@ -690,6 +721,7 @@ outfit "Typhoon Torpedo"
 
 outfit "Typhoon Storage Tube"
 	category "Ammunition"
+	tags human "deep sky"
 	cost 40500
 	thumbnail "outfit/typhoon storage"
 	"mass" 2.5
@@ -700,6 +732,7 @@ outfit "Typhoon Storage Tube"
 
 outfit "Typhoon Launcher"
 	category "Secondary Weapons"
+	tags human "deep sky" weapon
 	cost 260000
 	thumbnail "outfit/typhoon launcher"
 	"mass" 20
@@ -736,6 +769,7 @@ outfit "Typhoon Launcher"
 
 outfit "Heavy Rocket"
 	category "Ammunition"
+	tags human
 	cost 2000
 	thumbnail "outfit/rocket"
 	"mass" .5
@@ -744,6 +778,7 @@ outfit "Heavy Rocket"
 
 outfit "Heavy Rocket Rack"
 	category "Ammunition"
+	tags human
 	cost 20000
 	thumbnail "outfit/rocket storage"
 	"mass" 2
@@ -754,6 +789,7 @@ outfit "Heavy Rocket Rack"
 
 outfit "Heavy Rocket Launcher"
 	category "Secondary Weapons"
+	tags human weapon
 	cost 40000
 	thumbnail "outfit/rocket launcher"
 	"mass" 10
@@ -787,6 +823,7 @@ outfit "Heavy Rocket Launcher"
 
 outfit "Nuclear Missile"
 	category "Secondary Weapons"
+	tags human weapon
 	cost 1000000
 	thumbnail "outfit/nuke"
 	"mass" 10
@@ -829,6 +866,7 @@ outfit "Nuclear Missile"
 outfit "Gatling Gun Ammo"
 	plural "Gatling Gun Ammo"
 	category "Ammunition"
+	tags human pirate
 	cost 2
 	thumbnail "outfit/bullet"
 	"mass" .002
@@ -838,6 +876,7 @@ outfit "Gatling Gun Ammo"
 outfit "Bullet Boxes"
 	plural "Bullet Boxes"
 	category "Ammunition"
+	tags human pirate
 	cost 3000
 	thumbnail "outfit/bullet storage"
 	"mass" 2
@@ -848,6 +887,7 @@ outfit "Bullet Boxes"
 
 outfit "Gatling Gun"
 	category "Secondary Weapons"
+	tags human pirate weapon
 	cost 20000
 	thumbnail "outfit/gat"
 	"mass" 2
