@@ -18,6 +18,7 @@
 !define /file PROGRAM_VERSION git_desc.txt
 
 # Libraries
+!include nsDialogs.nsh
 !include LogicLib.nsh
 
 # Name of installer (Windows title bar)
@@ -36,8 +37,17 @@ InstallDirRegKey HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${PRO
 # For writing to program files folder
 RequestExecutionLevel admin
 
+# Variables
+Var Dialog
+Var CheckBox
+Var UserDataCheckBox
+
+# Pages
 Page directory directory_pre directory_show directory_leave
 Page instfiles
+UninstPage uninstConfirm
+UninstPage custom un.removeUserDataPage un.removeUserDataLeave ": User Data"
+UninstPage instfiles
 
 
 # For systems with UAC disabled
@@ -165,6 +175,9 @@ Section "uninstall"
 	RMDir "$SMPROGRAMS\${PROGRAM_NAME}"
 	Delete "$DESKTOP\${PROGRAM_NAME}.lnk"
 	
+	# Delete user data if selected
+	Call un.removeUserData
+	
 	# Delete uninstaller last
 	Delete "$INSTDIR\uninstall.exe"
 	
@@ -201,6 +214,36 @@ Function get_uninstall_string
 		"Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\${PROGRAM_NAME}" \
 		"UninstallString"
 	Exch $R0
+FunctionEnd
+
+
+Function un.removeUserDataPage
+	nsDialogs::Create 1018
+	Pop $Dialog
+	
+	${If} $Dialog == error
+		Abort
+	${EndIf}
+	
+	${NSD_CreateLabel} 0 0 100% 24u "Check the box below to delete all saved games, plugins, and modifications for the current user."
+	Pop $0
+	
+	${NSD_CreateCheckBox} 0 25u 100% 12u "Permanently delete user data"
+	Pop $CheckBox
+	
+	nsDialogs::Show
+FunctionEnd
+
+
+Function un.removeUserDataLeave
+	${NSD_GetState} $CheckBox $UserDataCheckBox
+FunctionEnd
+
+
+Function un.removeUserData
+	${If} $UserDataCheckBox == ${BST_CHECKED}
+		RMDir /r "$APPDATA\endless-sky"
+	${EndIf}
 FunctionEnd
 
 
