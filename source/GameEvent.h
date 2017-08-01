@@ -49,6 +49,8 @@ private:
 	Date date;
 	ConditionSet conditionsToApply;
 	std::list<DataNode> changes;
+	std::string logText;
+	std::map<std::string, std::map<std::string, std::string>> specialLogText;
 	std::vector<const System *> systemsToUnvisit; 
 	std::vector<const Planet *> planetsToUnvisit; 
 };

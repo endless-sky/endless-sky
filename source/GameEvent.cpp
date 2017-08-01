@@ -14,6 +14,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "DataNode.h"
 #include "DataWriter.h"
+#include "Format.h"
 #include "GameData.h"
 #include "Government.h"
 #include "PlayerInfo.h"
@@ -43,6 +44,24 @@ void GameEvent::Load(const DataNode &node)
 				|| child.Token(0) == "fleet" || child.Token(0) == "government"
 				|| child.Token(0) == "link" || child.Token(0) == "unlink")
 			changes.push_back(child);
+		else if(child.Token(0) == "log")
+		{
+			bool isSpecial = child.Size() >= 3;
+			string &text = isSpecial ? specialLogText[child.Token(1)][child.Token(2)] : logText;
+			for(int i = isSpecial ? 3 : 1; i < child.Size(); ++i)
+			{
+				if(!text.empty())
+					text += "\n\t";
+				text += child.Token(i);
+			}
+			for(const DataNode &grand : child)
+				for(int i = 0; i < grand.Size(); ++i)
+				{
+					if(!text.empty())
+						text += "\n\t";
+					text += grand.Token(i);
+				}
+		}
 		else
 			conditionsToApply.Add(child);
 	}
@@ -50,6 +69,7 @@ void GameEvent::Load(const DataNode &node)
 
 
 
+// Store this pending event in the player's savegame.
 void GameEvent::Save(DataWriter &out) const
 {
 	out.Write("event");
@@ -68,6 +88,30 @@ void GameEvent::Save(DataWriter &out) const
 		
 		for(const DataNode &change : changes)
 			out.Write(change);
+		
+		if(!logText.empty())
+		{
+			out.Write("log");
+			out.BeginChild();
+			{
+				// Break the text up into paragraphs.
+				for(const string &line : Format::Split(logText, "\n\t"))
+					out.Write(line);
+			}
+			out.EndChild();
+		}
+		for(const auto &type : specialLogText)
+			for(const auto &entry : type.second)
+			{
+				out.Write("log", entry.first, entry.first);
+				out.BeginChild();
+				{
+					// Break the text up into paragraphs.
+					for(const string &line : Format::Split(entry.second, "\n\t"))
+						out.Write(line);
+				}
+				out.EndChild();
+			}
 	}
 	out.EndChild();
 }
@@ -99,6 +143,11 @@ void GameEvent::Apply(PlayerInfo &player)
 	conditionsToApply.Apply(player.Conditions());
 	player.AddChanges(changes);
 	
+	if(!logText.empty())
+		player.AddLogEntry(logText);
+	for(const auto &type : specialLogText)
+		for(const auto &entry : type.second)
+			player.AddSpecialLog(type.first, entry.first, entry.second);
 	for(const auto &it : GameData::Governments())
 	{
 		int rep = it.second.Reputation();
