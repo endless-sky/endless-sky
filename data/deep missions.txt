@@ -9,40 +9,66 @@
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 # Given the current skeleton, the following would need to be done in order to unlock the Bactrian:
-#	10 mystery cube jobs
-#	3 transport scientist jobs
-#	3 escort science vessel jobs
-#	3 record academic conference jobs
-#	2 convoy missions
-#	The current TMBR string + the 3 missions added by this
-#	The Deep: Mystery Cubes string added by this
-#	The Deep Archaeology string
-#	The Deep: Singularity string added by this
-#	The Deep: Remnant string added by this
-#	The Remnant intro missions (kind of optional, as the player may choose to plunder Remnant tech, but this would ruin future storylines for the player; do you really want the Bactrian that much?)
-#	The Deep: Star Queen Rescue string added by this
+#
+#	Deep "intro:"
+#		10 mystery cube jobs
+#		3 transport scientist jobs
+#		3 escort science vessel jobs
+#		3 record academic conference jobs
+#
+#	Deep "start:"
+#		At least one of three convoy missions added by this
+#		The current TMBR string + the 3 missions added by this 
+#			(optional if the player instead does all three of the convoy missions)
+#		The Deep: Mystery Cubes string added by this
+#
+#	Deep "middle:"
+#		The Deep Archaeology string
+#		The Deep: Singularity string added by this
+#		The Deep: Remnant string added by this (second half of the string is optional)
+#		Discover the Remnant (and finish their intro missions to complete the rest of the Deep: Remnant string, or attack the Remnant to plunder their outfits instead)
+#
+#	Deep "end:"
+#		The Deep: Scientist Rescue string added by this
+#
+#	To Do:
+#		Write Deep: Mystery Cubes
+#		Write Deep: Singularity
+#		Rewrite Deep: Scientist Rescue to account for the player's previous actions assisting the Deep and to account for the new characters that the player will now know which are involved in the situation.
+#		Add logs where necessary
+#		Play test
 
-
-###########################################################
-#    The following is a skeleton for different mission    #
-# that will be filled in once the storyboard is finalized #
-###########################################################
-
-# Only need to do 2 of 3 convoy missions
-# Escort convoys of freighters to and from different regions of space to gather materials for experiments that the Deep is conducting.
-mission "Deep: Syndicate Convoy" # Korath-based tech
+mission "Deep: Syndicate Convoy"
 	minor
 	name `Pickup from Hephaestus`
-	description `Escort a convoy of freighters to <stopovers> where they will pick up materials for scientific experiments. Then return the convoy to <destination> for a payment of <payment>.`
+	description `Escort a convoy of freighters to <stopovers> where they will pick up materials for scientific experiments. Then return the convoy to <destination> by <date> for payment (<payment>).`
 	source
 		attributes deep
-	stopovers Hephaestus
+		near Gomeisa 2
+	stopover Hephaestus
+	deadline
 	to offer
-		random < 30
 		"mystery cube" >= 10
+		or
+			random < 30
+			and
+				"deep convoy" == 1
+				random < 40
+			and
+				"deep convoy" == 2
+				random < 50
+		
 	on offer
 		conversation
-			``
+			`You are approached by a man in a Deep Security uniform who asks you if you would be willing to escort a few freighters to <stopovers> and back by <date>. "We would normally have DS ships do it," he says, "but we're short on available ships given certain circumstances."`
+			choice
+				`	"Sure, I can do that."`
+				`	"Sorry, but I will not be traveling in that direction any time soon."`
+					decline
+			
+			`	"Good. Before you leave, know that there may be pirate forces waiting for you in Tania Australis, Merak, and Altair. You can try to avoid them, but make sure you get the freighters back on time."`
+			`	The Deep Security officer wishes you good luck and walks off, leaving you wonder how he knows where pirate fleets might be waiting for you.`
+				accept
 	
 	npc accompany save
 		personality timid escort
@@ -53,21 +79,18 @@ mission "Deep: Syndicate Convoy" # Korath-based tech
 				"Mule"
 				"Bulk Freighter" 2
 	npc
-		personality nemesis waiting
-		system
-			distance 3
+		personality nemesis staying
+		system "Tania Australis"
 		government Pirate
 		fleet "Large Northern Pirates"
 	npc
-		personality nemesis waiting
-		system
-			distance 5
+		personality nemesis staying
+		system Merak
 		government Pirate
 		fleet "Large Northern Pirates"
 	npc
-		personality nemesis waiting
-		system
-			distance 7
+		personality nemesis staying
+		system Altair
 		government Pirate
 		fleet "Small Northern Pirates"
 	npc
@@ -77,28 +100,45 @@ mission "Deep: Syndicate Convoy" # Korath-based tech
 		fleet "Large Northern Pirates"
 	
 	on stopover
-		conversation
-			``
+		dialog `The location where the freighters land to pick up their cargo is on the night side of <planet>. The Syndicate employees who load the freighters do not allow you to see what is inside the cargo, but advise you to leave quickly after the cargo is done being loaded.`
 	
 	on complete
 		"deep convoy" ++
 		payment 720000
-		conversation
-			``
+		dialog `When you return to <planet> with the freighters, you are greeted by a Deep Security officer who hands you <payment> and thanks you for accepting the job on such a short notice. "We'll make sure to contact you in the future should we need your help."`
 
-mission "Deep: Tarazed Convoy" # Quarg-based tech
+
+
+mission "Deep: Tarazed Convoy"
 	minor
 	name `Pickup from Tarazed`
-	description `Escort a convoy of freighters to <stopovers> where they will pick up materials for scientific experiments. Then return the convoy to <destination> for a payment of <payment>.`
+	description `Escort a convoy of freighters to <stopovers> where they will pick up materials for scientific experiments. Then return the convoy to <destination> by <date> for payment (<payment>).`
 	source
 		attributes deep
-	stopovers Tarazed
+		near Gomeisa 2
+	stopover Tarazed
+	deadline
 	to offer
-		random < 30
 		"mystery cube" >= 10
+		or
+			random < 30
+			and
+				"deep convoy" == 1
+				random < 40
+			and
+				"deep convoy" == 2
+				random < 50
 	on offer
 		conversation
-			``
+			`As you are walking through the spaceport, a woman in a Deep Security uniform stops you. "You are Captain <last>, correct?" You nod. "Would you be willing to transport a handful of freighters to <stopovers> where they will pick up some cargo then return them here by <date>? Normally this kind of job would be done by Deep Security, but we have no ships to spare at the moment."`
+			choice
+				`	"Sure, I can do that."`
+				`	"Sorry, but I will not be traveling in that direction any time soon."`
+					decline
+			
+			`	"Thank you, Captain. Before you go, I need to inform you that you may encounter pirate fleets near Tania Australis, Muphrid, and Ascella, and you may have to go through those systems if you are to return the freighters on time, so be prepared."`
+			`	The Deep Security officer wishes you good luck and walks off, leaving you wonder how she knows where pirate fleets might be waiting for you.`
+				accept
 	
 	npc accompany save
 		personality timid escort
@@ -106,24 +146,21 @@ mission "Deep: Tarazed Convoy" # Quarg-based tech
 		fleet
 			names civilian
 			variant
-				"Behemoth" 2
-				"Mule"
+				"Freighter" 3
+				"Mule" 2
 	npc
-		personality nemesis waiting
-		system
-			distance 3
+		personality nemesis staying
+		system "Tania Australis"
 		government Pirate
 		fleet "Large Northern Pirates"
 	npc
-		personality nemesis waiting
-		system
-			distance 5
+		personality nemesis staying
+		system Muphrid
 		government Pirate
 		fleet "Large Northern Pirates"
 	npc
-		personality nemesis waiting
-		system
-			distance 7
+		personality nemesis staying
+		system Ascella
 		government Pirate
 		fleet "Small Northern Pirates"
 	npc
@@ -133,28 +170,45 @@ mission "Deep: Tarazed Convoy" # Quarg-based tech
 		fleet "Large Northern Pirates"
 	
 	on stopover
-		conversation
-			``
+		dialog `You and the freighters are directed to park in a private hangar owned by the Tarazed Corporation. While watching the cargo crates get loaded on to the freighters, you notice that the crates have labels on them which read "only to be viewed by authorized personnel" in large red letters.`
 	
 	on complete
 		"deep convoy" ++
 		payment 1020000
-		conversation
-			``
+		dialog `When you return to <planet> with the freighters, you are greeted by a Deep Security officer who hands you <payment> and thanks you for accepting the job on such a short notice. "We'll make sure to contact you in the future should we need your help."
 
-mission "Deep: Kraz Convoy" # Some crazy stuff that Edward has made
+
+
+mission "Deep: Kraz Convoy"
 	minor
 	name `Pickup from Kraz`
-	description `Escort a convoy of freighters to <stopovers> where they will pick up materials for scientific experiments. Then return the convoy to <destination> for a payment of <payment>.`
+	description `Escort a convoy of freighters to <stopovers> where they will pick up materials for scientific experiments. Then return the convoy to <destination> by <date> for payment (<payment>).`
 	source
 		attributes deep
-	stopovers Kraz
+		near Gomeisa 2
+	stopover Kraz
+	deadline
 	to offer
-		random < 30
 		"mystery cube" >= 10
+		or
+			random < 30
+			and
+				"deep convoy" == 1
+				random < 40
+			and
+				"deep convoy" == 2
+				random < 50
 	on offer
 		conversation
-			``
+			`A Deep Security officer approaches you when you enter the spaceport and asks if you would be able to do a job for the Deep. "We're short on Deep Security ships at the moment, but we need three Behemoths escorted to <stopovers> where they will pick up cargo, then escorted back here by <date>."
+			choice
+				`	"Sure, I can do that."`
+				`	"Sorry, but I will not be traveling in that direction any time soon."`
+					decline
+			
+			`	"Much appreciated, Captain. And for your well being as well as that of the cargo's, you must know that there may be pirates waiting in Algieba, Cor Caroli, and Wei. Behemoths are tough ships so you should be able to travel through those systems and not slow yourself down by taking alternative routes."`
+			`	The Deep Security officer wishes you good luck and walks off, leaving you wonder how she knows where pirate fleets might be waiting for you.`
+				accept
 	
 	npc accompany save
 		personality timid escort
@@ -162,24 +216,20 @@ mission "Deep: Kraz Convoy" # Some crazy stuff that Edward has made
 		fleet
 			names civilian
 			variant
-				"Behemoth" 2
-				"Bulk Freighter"
+				"Behemoth" 3
 	npc
-		personality nemesis waiting
-		system
-			distance 3
+		personality nemesis staying
+		system Algieba
 		government Pirate
 		fleet "Large Northern Pirates"
 	npc
-		personality nemesis waiting
-		system
-			distance 5
+		personality nemesis staying
+		system "Cor Caroli"
 		government Pirate
 		fleet "Large Northern Pirates"
 	npc
-		personality nemesis waiting
-		system
-			distance 7
+		personality nemesis staying
+		system Wei
 		government Pirate
 		fleet "Small Northern Pirates"
 	npc
@@ -189,14 +239,14 @@ mission "Deep: Kraz Convoy" # Some crazy stuff that Edward has made
 		fleet "Large Northern Pirates"
 	
 	on stopover
-		conversation
-			``
+		dialog `When you arrive, Kraz Cybernetics already has the cargo waiting by the spaceport to be loaded on to the Behemoths. After a few hours of loading the massive freighters, the spaceprt crew gives you the all clear signal while the freighter captains get ready to depart.`
 	
 	on complete
 		"deep convoy" ++
 		payment 1260000
-		conversation
-			``
+		dialog `When you return to <planet> with the freighters, you are greeted by a Deep Security officer who hands you <payment> and thanks you for accepting the job on such a short notice. "We'll make sure to contact you in the future should we need your help."
+
+
 
 # What exactly could they be? 
 # Why would you be burying them in random places, giving them to beggars, leaving them in abandoned towers, and leaving them by the sides of roads? These seem like very scattered locations. 
@@ -208,7 +258,8 @@ mission "Deep: Kraz Convoy" # Some crazy stuff that Edward has made
 # What could the be recording? Fleet movements. Anomalies. Cloaked ships?
 # Most likely tracking at the very least fleet movements, allowing the Deep Security to know where pirates are. This is why bounty hunters attempt to destroy ships transporting these cubes. 
 # The cubes likely record far more than just fleet movements, but this is what the player is told.
-# Deep: Mystery Cubes missions will involve first 
+# Deep: Mystery Cubes missions will involve first... I have no idea.
+# I'm thinking about having one of the missions involve going to Carbuncle Station
 mission "Deep: Mystery Cubes"
 	minor
 	name ``
@@ -223,20 +274,12 @@ mission "Deep: Mystery Cubes"
 		conversation
 			``
 
-# Start by walking through the spaceport and the player hears a TMBR song.
-# Look where it's coming from and find a bunch of Deep scientists rocking out to it while they board a Scout or Bounder (from the escort science vessel job).
-# Walk up to scientists and ask them about TMBR
-# One of them talks about how they couldn't go to the concert that happened in Syndicate space, but the one on the Lovelace planet was awesome
-# Another talks about how they haven't been spotted for days/weeks/months
-# The player can say how they know where TMBR are.
-# A required string
-# Land on a Deep planet and hear TMBR playing; scientists ask you to find them and bring them to Asgard where the scientists will be traveling
 
-# Characters: Maria, Garrison, Isaac, Hannah, Laura
+
 mission "Deep: TMBR 0"
 	minor
-	name ``
-	description ``
+	name `Travel to <planet>`
+	description `Travel to <destination> where you last left the band "There Might Be Riots."`
 	source
 		near Naos 1 100
 		attributes deep
@@ -247,15 +290,50 @@ mission "Deep: TMBR 0"
 		"Escort science vessel: done" >= 3
 		"Record academic conference: done" >= 3
 		"There Might Be Riots part 3B: done"
+		not "Deep: Remnant 0"
+		not "Deep: Singularity"
 	on offer
 		conversation
-			``
+			`When you enter the <planet> spaceport, you hear what is undoubtedly a "There Might Be Riots" song playing loud enough for anyone in the spaceport to hear. You look around and find that the source of the music is the external speakers of a Bounder that is surrounded by a few people dancing.`
+			choice
+				`	(Dance with them.)`
+				`	(Ignore them.)`
+					defer
+					
+			`	You grow nearer to the Bounder and count five people dancing in total: three women and two men. One of the woman dancing notices you walking over. "It looks like someone else is about to join the party!" This is met by a collective cheer from the rest of the dancers.`
+			`	A few minutes of dancing later, one of the people introduces himself to you as Garrison. He lists off the names of the rest of the people with him; Isaac, Maria, Hannah, and Larua, then explains that they are all Deep scientists. They are currently enjoying a short vacation listening to their favorite band before they must travel to Asgard to continue their work for the Deep.`
+			`	"How do you know about 'There Might Be Riots?'" Hannah asks you.`
+			choice
+				`	"I've met them."`
+					goto met
+				`	"I just like to listen to their music."`
+			
+			`	One of the other scientists, Issac, looks right at you and stares. After a few moments he says "I know you. I'm fairly sure I saw you on the 'Songs for the End of Civilization' broadcast from Pilot." The rest of the scientists start agreeing with him as they look at you closer.`
+			
+			label met
+			`	"You know 'There Might Be Riots?' You are so lucky!" say Maria.`
+			`	"I couldn't even see them during their 'Trouble on the Tarmac Tour,' but you've met them! That's insane." Laura cries out.`
+			`	"Which makes me wonder," Hannah chimes in. "Do you know where the band is? They've been missing for a while now, ever since that broadcast on Pilot. I've heard rumors that the Republic detained them, but since you're here then you must know where they are."`
+			choice
+				`	"I know where they are, and rest assured that they're safe."`
+				`	"Sorry, I don't know where they are. I need to leave now."`
+					decline
+			`	The group falls silent until Maria asks "Do you think you could bring them to us for a live concert?"`
+			choice
+				`	"I'd love to."`
+				`	"No thanks. I have better things to do."`
+					decline
+			
+			`	All five scientists burst out in a cheer, clearly excited that they will be able to see their favorite band live. After the cheering dies down, Laura says "We must get going now, Captain. We'll be on Asgard for the next few months, so if you find 'There Might Be Riots,' please bring them there." Each member of the group says goodbye to you as they board their Bounder and leave for Asgard.`
+			`	If you are going to look for the band "There Might Be Riots," you should go to <destination> where you last saw them.`
+				accept
 
-# Land on Allhome where you left TMBR. Ask around and find out that TMBR are chilling on a different planet
+
+
 mission "Deep: TMBR 1"
 	landing
-	name ``
-	description ``
+	name `Travel to <planet>`
+	description `Travel to <destination>, where one of the humans living among the Hai says that they last saw the band "There Might Be Riots."`
 	destination
 		distance 2 10
 		government Hai
@@ -263,20 +341,23 @@ mission "Deep: TMBR 1"
 		"Deep: TMBR 0: done"
 	on offer
 		conversation
-			``
+			`It takes you a while, but after a few hours of asking around you finally find someone who knows where the band are. "I saw them on <destination>," the human says. "They were throwing a pretty narly concert just last week. I haven't heard of them playing anywhere else, so they might still be there."`
 				accept
 
-# Pick up TMBR and bring them to Asgard where the scientists are currently at. The scientists thank you for allowing them to listen to TMBR live
+
+
 mission "Deep: TMBR 2"
 	landing
-	name ``
+	name `Transport band to <planet>`
 	description ``
 	destination Asgard
+	passengers 8
 	to offer
 		"Deep: TMBR 1: done"
 	on offer
 		conversation
-			``
+			`You find "There Might Be Riots" playing a gig right in the spaceport of <planet>. Judging my the large amount of Hai in the audience, they seem to have amassed quite the following in Hai space.`
+			`	"O Captain my Captain <last>! What brings you here?"`
 				accept
 
 	on complete
@@ -284,9 +365,7 @@ mission "Deep: TMBR 2"
 		conversation
 			``
 
-###########################################################
-###########################################################
-###########################################################
+
 
 # The player gets called into somewhere and is asked about their work for Albert. They get questioned on what Albert told them, and seeing as how the player has been helping the Deep lately, the Deep tell the player some of their folklore.
 # "Over the centuries the exact date of when the Deep was established have been lost, but folklore says that the first humans arrived here in the mid 1300s before the time of the Black Death."
@@ -296,12 +375,18 @@ mission "Deep: Singularity"
 	description ``
 	source 
 	to offer
-		"deep convoy" >= 2
 		has "Deep: Mystery Cubes: done"
-		has "Deep: TMBR 2: done"
+		or
+			"deep convoy" == 3
+			has "Deep: TMBR 2: done"
+		or
+			"deep convoy" >= 2
+			has "Deep: Remnant Research: done"
 	on offer
 		conversation
 			``
+
+
 
 mission "Deep: Remnant 0"
 	minor
@@ -311,10 +396,12 @@ mission "Deep: Remnant 0"
 		attributes deep
 		near "Epsilon Leonis" 1 100
 	to offer
-		"deep convoy" >= 2
+		"deep convoy" >= 1
 		has "Deep: Mystery Cubes: done"
-		has "Deep: TMBR 2: done"
 		has "Terminus exploration: done"
+		or
+			"deep convoy" == 3
+			has "Deep: TMBR 2: done"
 	on offer
 		conversation
 			`While wandering through the spaceport, you are approached by a man who you instantly recognize as the scientist whos drone you recovered data from in Terminus thanks to his comically thick glasses. He introduces himself to you as Ivan and mentions how he heard you have been assisting others within the Deep.`
@@ -361,8 +448,10 @@ mission "Deep: Remnant 0"
 		conversation # Maria will be introduced in Deep: TMBR
 			`Upon returning to <planet>, you learn that Ivan has left for his research lab on Valhalla, but Maria, who turns out to also be on the team working on the spacial anomaly, is here to retrieve the keystones. She hands you <payment>, enough to pay for half of the cost of the stones.`
 			`	"Thank you for buying these keystones for us. It may take us a month or two to fully study them. We will make sure to contact you when we are in need of your assistance again."`
-			
+
 event "deep: keystone research"
+
+
 
 mission "Deep: Remnant: Keystone Research"
 	landing
@@ -376,6 +465,8 @@ mission "Deep: Remnant: Keystone Research"
 	on offer
 		dialog
 			`You recieve a message from Ivan, the scientists working on the spacial anomaly in Terminus. "Captain, we have finished studying the Quantum Keystones, and they do in fact allow access through the wormhole. Please contact me on <destination> if you wish to continue helping us with our research."`
+
+
 
 mission "Deep: Remnant 1A"
 	landing
@@ -415,7 +506,9 @@ mission "Deep: Remnant 1A"
 	to complete
 		has "First Contact: Remnant: offered"
 		has "discovered void sprites"
-	
+
+
+
 mission "Deep: Remnant 2A"
 	landing
 	name `Scanning Remnant`
@@ -467,6 +560,8 @@ mission "Deep: Remnant 2A"
 		event "deep: scan log research" 21
 		dialog
 			`The team is visibly excited when you return with the scanner logs. "Give us a few weeks to look these over," Ivan says, "then we will contact you about what we want you to do next."`
+
+
 
 mission "Deep: Remnant 1B"
 	landing
@@ -523,6 +618,8 @@ event "reset arculus"
 
 event "deep: scan log research"
 
+
+
 mission "Deep: Remnant Technology"
 	landing
 	name `Travel to <planet>`
@@ -538,6 +635,8 @@ mission "Deep: Remnant Technology"
 	
 	on decline
 		set "Deep: Remnant Research: done" # Allows the player to decline this and any mission beyond this point and still get a chance to unlock the Bactrian, but not doing the other half of the Deep: Remnant chain could ruin future situations for the player.
+
+
 
 mission "Deep: Remnant: Engines"
 	landing
@@ -604,6 +703,8 @@ mission "Deep: Remnant: Engines"
 		outfit "Forge-Class Thruster" -1
 		outfit "Forge-Class Steering" -1
 
+
+
 mission "Deep: Remnant: Generators"
 	landing
 	name `Fetching Generators`
@@ -632,6 +733,8 @@ mission "Deep: Remnant: Generators"
 		payment 383500
 		outfit "Millennium Cell" -1
 
+
+
 mission "Deep: Remnant: Inhibitor Cannon"
 	landing
 	name `Fetching Cannons`
@@ -659,6 +762,8 @@ mission "Deep: Remnant: Inhibitor Cannon"
 	on complete
 		payment 235500
 		outfit "Inhibitor Cannon" -1
+
+
 
 mission "Deep: Remnant Surveillance"
 	landing
@@ -706,23 +811,23 @@ mission "Deep: Remnant Surveillance"
 		set "Deep: Remnant Research: done"
 		dialog `When you return to Valhalla, you are unable to find Ivan. Instead you meet Maria who hands you the <payment>. "Ivan told me to give this to you, Captain. Thanks again for helping us out so much. We couldn't have done it without you."`
 
-###########################################################
-###########################################################
-###########################################################
 
-mission "Deep: Star Queen Rescue Timer"
+
+mission "Deep: Scientist Rescue Timer"
 	landing
 	invisible
 	to offer
 		has "Deep: Remnant Research: done"
 		has "Deep: Singularity: done"
 	on offer
-		event "deep: star queen rescue timer" 90
+		event "deep: scientist rescue timer" 90
 		fail
 
-event "deep: star queen rescue timer"
+event "deep: scientist rescue timer"
 
-mission "Deep: Star Queen Rescue 0"
+
+
+mission "Deep: Scientist Rescue 0"
 	minor
 	name "Locate Missing Scientists"
 	description "A Deep Star Queen transporting top scientists has gone missing. It was last seen near the Betelgeuse system in the Far North. Find its whereabouts and return it to <destination> if possible."
@@ -731,7 +836,7 @@ mission "Deep: Star Queen Rescue 0"
 	destination Valhalla
 	waypoint Betelgeuse
 	to offer
-		has "event: deep: star queen rescue timer"
+		has "event: deep: scientist rescue timer"
 
 	on offer
 		conversation
@@ -803,11 +908,11 @@ mission "Deep: Star Queen Rescue 0"
 
 
 
-mission "Deep: Star Queen Rescue 0: Prime"
+mission "Deep: Scientist Rescue 0: Prime"
 	landing
 	source Prime
 	to offer
-		has "Deep: Star Queen Rescue 0: active"
+		has "Deep: Scientist Rescue 0: active"
 		not "found star queen"
 
 	on offer
@@ -818,11 +923,11 @@ mission "Deep: Star Queen Rescue 0: Prime"
 
 
 
-mission "Deep: Star Queen Rescue 0: Farpoint"
+mission "Deep: Scientist Rescue 0: Farpoint"
 	landing
 	source Farpoint
 	to offer
-		has "Deep: Star Queen Rescue 0: active"
+		has "Deep: Scientist Rescue 0: active"
 		not "found star queen"
 
 	on offer
@@ -834,16 +939,16 @@ mission "Deep: Star Queen Rescue 0: Farpoint"
 
 
 
-mission "Deep: Star Queen Rescue 0: Pirates"
+mission "Deep: Scientist Rescue 0: Pirates"
 	invisible
 	landing
 	destination Valhalla
 	to offer
-		has "Deep: Star Queen Rescue 0: active"
+		has "Deep: Scientist Rescue 0: active"
 	to fail
 		or
-			has "Deep: Star Queen Rescue 3A: done"
-			has "Deep: Star Queen Rescue 3B: offered"
+			has "Deep: Scientist Rescue 3A: done"
+			has "Deep: Scientist Rescue 3B: offered"
 	npc kill
 		personality nemesis staying
 		system Arneb
@@ -853,11 +958,11 @@ mission "Deep: Star Queen Rescue 0: Pirates"
 
 
 
-mission "Deep: Star Queen Rescue 0: Haven"
+mission "Deep: Scientist Rescue 0: Haven"
 	landing
 	source Haven
 	to offer
-		has "Deep: Star Queen Rescue 0: active"
+		has "Deep: Scientist Rescue 0: active"
 
 	on offer
 		conversation
@@ -866,14 +971,14 @@ mission "Deep: Star Queen Rescue 0: Haven"
 
 
 
-mission "Deep: Star Queen Rescue 1"
+mission "Deep: Scientist Rescue 1"
 	name "Secure the Scientists"
 	description "Escort the <npc> to <destination> to retrieve the Star Queen. Escorts will be waiting for you on Memory in the Zosma system and Farpoint in the Alnitak system."
 	landing
 	destination Haven
 	clearance
 	to offer
-		has "Deep: Star Queen Rescue 0: done"
+		has "Deep: Scientist Rescue 0: done"
 
 	on offer
 		conversation
@@ -883,7 +988,7 @@ mission "Deep: Star Queen Rescue 1"
 				`	"Yes, it is located on <destination>, but is heavily defended."`
 			
 			branch destroyed
-				has "Deep: Star Queen Rescue 0: Pirates: done"
+				has "Deep: Scientist Rescue 0: Pirates: done"
 			`	You mention the multiple heavy warships that you saw in the system, and the fact that there are probably many more waiting on Haven.`
 				goto next
 			
@@ -914,15 +1019,15 @@ mission "Deep: Star Queen Rescue 1"
 
 
 
-mission "Deep: Star Queen Rescue 1: Pirates"
+mission "Deep: Scientist Rescue 1: Pirates"
 	invisible
 	landing
 	to offer
-		has "Deep: Star Queen Rescue 0: done"
+		has "Deep: Scientist Rescue 0: done"
 	to fail
 		or
-			has "Deep: Star Queen Rescue 3A: done"
-			has "Deep: Star Queen Rescue 3B: offered"
+			has "Deep: Scientist Rescue 3A: done"
+			has "Deep: Scientist Rescue 3B: offered"
 	npc kill
 		personality nemesis staying
 		system Arneb
@@ -934,30 +1039,30 @@ mission "Deep: Star Queen Rescue 1: Pirates"
 
 
 
-mission "Deep: Star Queen Rescue 1: Recruit Escorts"
+mission "Deep: Scientist Rescue 1: Recruit Escorts"
 	name "Deep Security escorts on <planet>"
 	description "Lieutenant Paris mentioned an escort squadron of Deep Security ships was preparing to join you on your mission. Meet up with them on <destination>, if you want to."
 	landing
 	to offer
-		has "Deep: Star Queen Rescue 0: done"
+		has "Deep: Scientist Rescue 0: done"
 
 	source Valhalla
 	destination Memory
 	to fail
-		has "Deep: Star Queen Rescue 1: done"
+		has "Deep: Scientist Rescue 1: done"
 
 
 
-mission "Deep: Star Queen Rescue 1: Escorts"
+mission "Deep: Scientist Rescue 1: Escorts"
 	invisible
 	landing
 	source Memory
 	to offer
-		has "Deep: Star Queen Rescue 1: Recruit Escorts: done"
+		has "Deep: Scientist Rescue 1: Recruit Escorts: done"
 	to fail
 		or
-			has "Deep: Star Queen Rescue 3A: offered"
-			has "Deep: Star Queen Rescue 3B: offered"
+			has "Deep: Scientist Rescue 3A: offered"
+			has "Deep: Scientist Rescue 3B: offered"
 	
 	npc kill
 		government Republic
@@ -975,30 +1080,30 @@ mission "Deep: Star Queen Rescue 1: Escorts"
 
 
 
-mission "Deep: Star Queen Rescue 1: Recruit Reinforcements"
+mission "Deep: Scientist Rescue 1: Recruit Reinforcements"
 	name "Republic Navy escorts on <planet>"
 	description "Lieutenant Paris mentioned that some Navy officers were interested in avenging the loss of their comrades. Meet up with them on <destination>, if you want to."
 	landing
 	to offer
-		has "Deep: Star Queen Rescue 0: done"
+		has "Deep: Scientist Rescue 0: done"
 
 	source Valhalla
 	destination Farpoint
 	to fail
-		has "Deep: Star Queen Rescue 1: done"
+		has "Deep: Scientist Rescue 1: done"
 
 
 
-mission "Deep: Star Queen Rescue 1: Reinforcements"
+mission "Deep: Scientist Rescue 1: Reinforcements"
 	invisible
 	landing
 	source Farpoint
 	to offer
-		has "Deep: Star Queen Rescue 1: Recruit Reinforcements: done"
+		has "Deep: Scientist Rescue 1: Recruit Reinforcements: done"
 	to fail
 		or
-			has "Deep: Star Queen Rescue 3A: offered"
-			has "Deep: Star Queen Rescue 3B: offered"
+			has "Deep: Scientist Rescue 3A: offered"
+			has "Deep: Scientist Rescue 3B: offered"
 
 	npc kill
 		government Republic
@@ -1017,13 +1122,13 @@ mission "Deep: Star Queen Rescue 1: Reinforcements"
 
 
 
-mission "Deep: Star Queen Rescue 2"
+mission "Deep: Scientist Rescue 2"
 	landing
 	name "Return to <planet>"
 	description "Now that you have secured the Star Queen, escort it safely to <destination>."
 	destination Valhalla
 	to offer
-		has "Deep: Star Queen Rescue 1: done"
+		has "Deep: Scientist Rescue 1: done"
 
 	on offer
 		conversation
@@ -1068,12 +1173,12 @@ ship "Bactrian" "Bactrian (Cosmic Devil)"
 
 		
 
-mission "Deep: Star Queen Rescue 2: Pirate Bactrian"
+mission "Deep: Scientist Rescue 2: Pirate Bactrian"
 	landing
 	invisible
 	destination Valhalla
 	to offer
-		has "Deep: Star Queen Rescue 1: done"
+		has "Deep: Scientist Rescue 1: done"
 	npc kill
 		government Pirate
 		personality staying nemesis waiting
@@ -1082,15 +1187,15 @@ mission "Deep: Star Queen Rescue 2: Pirate Bactrian"
 
 
 
-mission "Deep: Star Queen Rescue 2: More Pirates"
+mission "Deep: Scientist Rescue 2: More Pirates"
 	landing
 	invisible
 	to offer
-		has "Deep: Star Queen Rescue 1: done"
+		has "Deep: Scientist Rescue 1: done"
 	to fail
 		or
-			has "Deep: Star Queen Rescue 3A: done"
-			has "Deep: Star Queen Rescue 3B: offered"
+			has "Deep: Scientist Rescue 3A: done"
+			has "Deep: Scientist Rescue 3B: offered"
 	npc kill
 		government Pirate
 		personality staying nemesis waiting
@@ -1099,16 +1204,16 @@ mission "Deep: Star Queen Rescue 2: More Pirates"
 
 
 
-mission "Deep: Star Queen Rescue 3A"
+mission "Deep: Scientist Rescue 3A"
 	name "Take down the Devil"
 	description "You have returned the scientists, but the pirates still have a Bactrian. Eliminate it and return to <destination>."
 	landing
 	destination Valhalla
 	waypoint Arneb
 	to offer
-		has "Deep: Star Queen Rescue 2: done"
-		not "Deep: Star Queen Rescue: Pirate Bactrian: done"
-		not "Deep: Star Queen Rescue 3B: offered"
+		has "Deep: Scientist Rescue 2: done"
+		not "Deep: Scientist Rescue: Pirate Bactrian: done"
+		not "Deep: Scientist Rescue 3B: offered"
 
 	on offer
 		conversation
@@ -1133,7 +1238,7 @@ mission "Deep: Star Queen Rescue 3A"
 		dialog "You landed on Valhalla, but you didn't kill the Bactrian! Return to Arneb and make sure that the Bactrian is destroyed and forever out of pirate hands."
 	
 	to complete
-		has "Deep: Star Queen Rescue 2: Pirate Bactrian: done"
+		has "Deep: Scientist Rescue 2: Pirate Bactrian: done"
 	
 	on complete
 		set "license: City-Ship"
@@ -1149,12 +1254,12 @@ mission "Deep: Star Queen Rescue 3A"
 
 
 
-mission "Deep: Star Queen Rescue 3B"
+mission "Deep: Scientist Rescue 3B"
 	landing
 	to offer
-		has "Deep: Star Queen Rescue 2: done"
-		has "Deep: Star Queen Rescue 2: Pirate Bactrian: done"
-		not "Deep: Star Queen Rescue 3A: offered"
+		has "Deep: Scientist Rescue 2: done"
+		has "Deep: Scientist Rescue 2: Pirate Bactrian: done"
+		not "Deep: Scientist Rescue 3A: offered"
 
 	on offer
 		set "license: City-Ship"
