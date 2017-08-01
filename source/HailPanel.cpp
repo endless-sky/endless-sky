@@ -39,8 +39,8 @@ using namespace std;
 
 
 
-HailPanel::HailPanel(PlayerInfo &player, const shared_ptr<Ship> &ship)
-	: player(player), ship(ship), sprite(ship->GetSprite()), facing(ship->Facing())
+HailPanel::HailPanel(PlayerInfo &player, const shared_ptr<Ship> &ship, function<void(const Government *)> callback)
+	: player(player), ship(ship), callback(callback), sprite(ship->GetSprite()), facing(ship->Facing())
 {
 	SetInterruptible(false);
 	
@@ -218,10 +218,9 @@ void HailPanel::Draw()
 	draw.Draw();
 	
 	// Draw the current message.
-	WrappedText wrap;
+	WrappedText wrap(FontSet::Get(14));
 	wrap.SetAlignment(WrappedText::JUSTIFIED);
 	wrap.SetWrapWidth(330);
-	wrap.SetFont(FontSet::Get(14));
 	wrap.Wrap(message);
 	wrap.Draw(Point(-50., -50.), *GameData::Colors().Get("medium"));
 }
@@ -233,7 +232,11 @@ bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 	bool shipIsEnemy = (ship && ship->GetGovernment()->IsEnemy());
 	
 	if(key == 'd' || key == SDLK_ESCAPE || key == SDLK_RETURN || (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
+	{
+		if(callback)
+			callback(bribed);
 		GetUI()->Pop(this);
+	}
 	else if(key == 't' && hasLanguage && planet)
 	{
 		if(GameData::GetPolitics().HasDominated(planet))
@@ -286,12 +289,17 @@ bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 		{
 			if(ship)
 			{
-				ship->GetGovernment()->Bribe();
+				// Record the successful bribe, for the callback function.
+				bribed = ship->GetGovernment();
+				bribed->Bribe();
 				Messages::Add("You bribed a " + ship->GetGovernment()->GetName() + " ship "
 					+ Format::Number(bribe) + " credits to refrain from attacking you today.");
 			}
 			else
 			{
+				// Bribing a planet for landing clearance does not disable
+				// the tracking functions on any in-flight missiles that ships
+				// belonging to the planet's government may have fired.
 				planet->Bribe();
 				Messages::Add("You bribed the authorities on " + planet->Name() + " "
 					+ Format::Number(bribe) + " credits to permit you to land.");
