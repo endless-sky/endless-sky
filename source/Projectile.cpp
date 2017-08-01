@@ -253,6 +253,14 @@ void Projectile::Kill()
 
 
 
+// Disable the target tracking of this projectile, e.g. its parent government was bribed by its target.
+void Projectile::DisableTracking()
+{
+	targetShip.reset();
+}
+
+
+
 // Find out if this is a missile, and if so, how strong it is (i.e. what
 // chance an anti-missile shot has of destroying it).
 int Projectile::MissileStrength() const

@@ -59,6 +59,8 @@ public:
 	double Clip() const;
 	// This projectile was killed, e.g. by an anti-missile system.
 	void Kill();
+	// This projectile should no longer try to track its target.
+	void DisableTracking();
 	
 	// Find out if this is a missile, and if so, how strong it is (i.e. what
 	// chance an anti-missile shot has of destroying it).

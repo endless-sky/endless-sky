@@ -81,6 +81,8 @@ public:
 	void RClick(const Point &point);
 	void SelectGroup(int group, bool hasShift, bool hasControl);
 	
+	// Missiles launched by the bribed government should no longer actively track the player's ships.
+	void DisableTracking(const Government *bribed);
 	
 private:
 	void EnterSystem();

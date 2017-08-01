@@ -1009,6 +1009,17 @@ void Engine::SelectGroup(int group, bool hasShift, bool hasControl)
 
 
 
+// Missiles belonging to this faction should no longer target the player.
+void Engine::DisableTracking(const Government *bribed)
+{
+	for(Projectile &missile : projectiles)
+		if(missile.Target() && missile.Target()->IsYours()
+				&& missile.GetGovernment() == bribed)
+			missile.DisableTracking();
+}
+
+
+
 void Engine::EnterSystem()
 {
 	ai.Clean();
