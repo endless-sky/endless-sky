@@ -902,6 +902,21 @@ ship "Model 8"
 	"final explode" "final explosion small"
 	description "The primary role of the smallest Kor Mereti drones is asteroid mining, but their lasers can also be employed as offensive weapons when necessary."
 
+ship "Model 8" "Model 8 (Minelayer)"
+	outfits
+		Hyperdrive
+		"Generator (Candle Class)"
+		"Generator (Furnace Class)"
+		"Systems Core (Small)"
+		"Reasoning Node"
+		"Thruster (Asteroid Class)"
+		"Steering (Lunar Class)"
+		"Korath Minelayer"
+		"Korath Mine" 26
+		"Korath Mine Rack"
+	
+	gun "Korath Minelayer"
+	gun 
 
 ship "Model 16"
 	sprite "ship/model 16"

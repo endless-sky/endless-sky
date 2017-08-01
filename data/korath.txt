@@ -456,6 +456,12 @@ fleet "Small Kor Mereti"
 		"Model 32"
 	variant 5
 		"Model 64"
+	variant 4
+		"Model 16" 3
+		"Model 8 (Minelayer)" 5
+	variant 1
+		"Model 8" 5
+		"Model 8 (Minelayer)" 3
 
 fleet "Large Kor Mereti"
 	government "Kor Mereti"
@@ -559,6 +565,18 @@ fleet "Large Kor Mereti"
 		"Model 64"
 	variant 5
 		"Model 128" 2
+	variant 3
+		"Model 64"
+		"Model 32" 2
+		"Model 16" 4
+		"Model 8 (Minelayer)" 10
+	variant 6
+		"Model 64"
+		"Model 16" 3
+		"Model 8 (Minelayer)" 5
+	variant 1
+		"Model 8" 9
+		"Model 8 (Minelayer)" 7
 
 fleet "Kor Mereti Miners"
 	government "Kor Mereti"
