@@ -843,7 +843,7 @@ void ShopPanel::SideSelect(Ship *ship)
 		for(shared_ptr<Ship> other : player.Ships())
 		{
 			// Skip any ships that are "absent" for whatever reason.
-			if(other->GetSystem() != player.GetSystem())
+			if(other->GetSystem() != player.GetSystem() || other->IsDisabled())
 				continue;
 			
 			if(other.get() == ship || other.get() == playerShip)
