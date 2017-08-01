@@ -411,7 +411,7 @@ ship "Solifuge"
 	explode "large explosion" 50
 	explode "huge explosion" 20
 	"final explode" "final explosion large"
-	description `Impressed by the Alpha's "Giftbringer", the Unfettered endeavoured to build their own fighter carrier to take more advantage of their supply of Jump Drives.`
+	description `Impressed after seeing their green allies' carrier, "Giftbringer", the Unfettered decided it was time they expanded their fleet. They built the Solifuge carrier to take better advantage of the Jump Drives available. A capable warship by itself, the Solifuge also brings with it a small fleet of its own, without need of extra Jump Drives.`
 
 ship "Solifuge" "Solifuge (Pulse)"
 	outfits
