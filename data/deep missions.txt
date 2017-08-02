@@ -41,7 +41,7 @@
 mission "Deep: Syndicate Convoy"
 	minor
 	name `Pickup from Hephaestus`
-	description `Escort a convoy of freighters to <stopovers> where they will pick up materials for scientific experiments. Then return the convoy to <destination> by <date> for payment (<payment>).`
+	description `Escort a convoy of freighters to <stopovers> where they will pick up materials needed for scientific experiments. Return the convoy to <destination> by <date> for payment (<payment>).`
 	source
 		attributes deep
 		near Gomeisa 2
@@ -50,17 +50,17 @@ mission "Deep: Syndicate Convoy"
 	to offer
 		"mystery cube" >= 10
 		or
-			random < 30
+			random < 20
 			and
 				"deep convoy" == 1
-				random < 40
+				random < 30
 			and
 				"deep convoy" == 2
-				random < 50
+				random < 40
 		
 	on offer
 		conversation
-			`You are approached by a man in a Deep Security uniform who asks you if you would be willing to escort a few freighters to <stopovers> and back by <date>. "We would normally have DS ships do it," he says, "but we're short on available ships given certain circumstances."`
+			`You are approached by a man in a Deep Security uniform who asks you if you would be willing to escort a few freighters to <stopovers> and back by <date>. "We would normally have our own fleet do it," he says, "but we're short on available ships given certain circumstances."`
 			choice
 				`	"Sure, I can do that."`
 				`	"Sorry, but I will not be traveling in that direction any time soon."`
@@ -100,7 +100,7 @@ mission "Deep: Syndicate Convoy"
 		fleet "Large Northern Pirates"
 	
 	on stopover
-		dialog `The location where the freighters land to pick up their cargo is on the night side of <planet>. The Syndicate employees who load the freighters do not allow you to see what is inside the cargo, but advise you to leave quickly after the cargo is done being loaded.`
+		dialog `When you arrive at the pickup location it is already night on this side of <planet>. The Syndicate employees who load the freighters do not allow you to see what is inside the cargo, and advise you to leave quickly once the cargo is loaded.`
 	
 	on complete
 		"deep convoy" ++
@@ -112,7 +112,7 @@ mission "Deep: Syndicate Convoy"
 mission "Deep: Tarazed Convoy"
 	minor
 	name `Pickup from Tarazed`
-	description `Escort a convoy of freighters to <stopovers> where they will pick up materials for scientific experiments. Then return the convoy to <destination> by <date> for payment (<payment>).`
+	description `Escort a convoy of freighters to <stopovers> where they will pick up materials needed for scientific experiments. Return the convoy to <destination> by <date> for payment (<payment>).`
 	source
 		attributes deep
 		near Gomeisa 2
@@ -121,22 +121,22 @@ mission "Deep: Tarazed Convoy"
 	to offer
 		"mystery cube" >= 10
 		or
-			random < 30
+			random < 20
 			and
 				"deep convoy" == 1
-				random < 40
+				random < 30
 			and
 				"deep convoy" == 2
-				random < 50
+				random < 40
 	on offer
 		conversation
-			`As you are walking through the spaceport, a woman in a Deep Security uniform stops you. "You are Captain <last>, correct?" You nod. "Would you be willing to transport a handful of freighters to <stopovers> where they will pick up some cargo then return them here by <date>? Normally this kind of job would be done by Deep Security, but we have no ships to spare at the moment."`
+			`As you are walking through the spaceport, a woman in a Deep Security uniform stops you. "You are Captain <last>, correct?" You nod. "Would you be willing to transport a handful of freighters to <stopovers> to pick up some cargo? We'd need them to return them by <date>? Normally this kind of job would be done by Deep Security, but we have no ships to spare at the moment."`
 			choice
 				`	"Sure, I can do that."`
 				`	"Sorry, but I will not be traveling in that direction any time soon."`
 					decline
 			
-			`	"Thank you, Captain. Before you go, I need to inform you that you may encounter pirate fleets near Tania Australis, Muphrid, and Ascella, and you may have to go through those systems if you are to return the freighters on time, so be prepared."`
+			`	"Thank you, Captain. Before you go, I need to inform you that you may encounter pirate fleets near Tania Australis, Muphrid, and Ascella, and you might not have time to go around them."`
 			`	The Deep Security officer wishes you good luck and walks off, leaving you wonder how she knows where pirate fleets might be waiting for you.`
 				accept
 	
@@ -170,7 +170,7 @@ mission "Deep: Tarazed Convoy"
 		fleet "Large Northern Pirates"
 	
 	on stopover
-		dialog `You and the freighters are directed to park in a private hangar owned by the Tarazed Corporation. While watching the cargo crates get loaded on to the freighters, you notice that the crates have labels on them which read "only to be viewed by authorized personnel" in large red letters.`
+		dialog `You and the freighters are directed to park in a private hangar owned by the Tarazed Corporation. While watching the cargo crates get loaded on to the freighters, you notice that the crates have labels on them which read "To be opened by addressee only" in large red letters.`
 	
 	on complete
 		"deep convoy" ++
@@ -182,7 +182,7 @@ mission "Deep: Tarazed Convoy"
 mission "Deep: Kraz Convoy"
 	minor
 	name `Pickup from Kraz`
-	description `Escort a convoy of freighters to <stopovers> where they will pick up materials for scientific experiments. Then return the convoy to <destination> by <date> for payment (<payment>).`
+	description `Escort a convoy of freighters to <stopovers> where they will pick up materials needed for scientific experiments. Return the convoy to <destination> by <date> for payment (<payment>).`
 	source
 		attributes deep
 		near Gomeisa 2
@@ -191,16 +191,16 @@ mission "Deep: Kraz Convoy"
 	to offer
 		"mystery cube" >= 10
 		or
-			random < 30
+			random < 20
 			and
 				"deep convoy" == 1
-				random < 40
+				random < 30
 			and
 				"deep convoy" == 2
-				random < 50
+				random < 40
 	on offer
 		conversation
-			`A Deep Security officer approaches you when you enter the spaceport and asks if you would be able to do a job for the Deep. "We're short on Deep Security ships at the moment, but we need three Behemoths escorted to <stopovers> where they will pick up cargo, then escorted back here by <date>."
+			`A Deep Security officer approaches you when you enter the spaceport and asks if you would be able to do a job for the Deep. "We're short on Deep Security ships at the moment, but we need three Behemoths escorted to <stopovers>. After they pick up the cargo, bring them back here by <date>."
 			choice
 				`	"Sure, I can do that."`
 				`	"Sorry, but I will not be traveling in that direction any time soon."`
@@ -222,24 +222,28 @@ mission "Deep: Kraz Convoy"
 		system Algieba
 		government Pirate
 		fleet "Large Northern Pirates"
+		fleet "Small Northern Pirates"
 	npc
 		personality nemesis staying
 		system "Cor Caroli"
 		government Pirate
 		fleet "Large Northern Pirates"
+		fleet "Small Northern Pirates"
 	npc
 		personality nemesis staying
 		system Wei
 		government Pirate
+		fleet "Large Northern Pirates"
 		fleet "Small Northern Pirates"
 	npc
 		system destination
 		personality nemesis staying
 		government Pirate
 		fleet "Large Northern Pirates"
+		fleet "Small Northern Pirates"
 	
 	on stopover
-		dialog `When you arrive, Kraz Cybernetics already has the cargo waiting by the spaceport to be loaded on to the Behemoths. After a few hours of loading the massive freighters, the spaceprt crew gives you the all clear signal while the freighter captains get ready to depart.`
+		dialog `When you arrive, Kraz Cybernetics already has the cargo waiting by the spaceport. After a few hours of loading the massive freighters, the spaceport crew gives you the 'all clear' signal, and the Behemoth captains get ready to depart.`
 	
 	on complete
 		"deep convoy" ++
@@ -391,7 +395,7 @@ mission "Deep: Singularity"
 mission "Deep: Remnant 0"
 	minor
 	name `Fetching Keystones`
-	description `Buy 10 Quantum Keystones from Hai space and return them to <destination> so that Ivan may research them and their link to the spacial anomaly in Terminus.`
+	description `Buy 10 Quantum Keystones from Hai space and return them to <destination>, where Ivan and his team will research them and their link to the spatial anomaly in Terminus.`
 	source
 		attributes deep
 		near "Epsilon Leonis" 1 100
@@ -404,51 +408,53 @@ mission "Deep: Remnant 0"
 			has "Deep: TMBR 2: done"
 	on offer
 		conversation
-			`While wandering through the spaceport, you are approached by a man who you instantly recognize as the scientist whos drone you recovered data from in Terminus thanks to his comically thick glasses. He introduces himself to you as Ivan and mentions how he heard you have been assisting others within the Deep.`
-			`	"I was hoping you would be able to continue assisting us in our research on the spatial anomaly in Terminus. Thanks to the data that you retrieved, we have been able to deduce that the anomaly is in fact some sort of wormhole, but it is far too unstable for anything to travel through it."`
-			`	"I must ask you, do you know of the Hai?" You nod. "Splendid! Then you will be able to help. One of the scientists on my team grew up in Hai space, and suggested that the so called Quantum Keystones which the Hai sell might have something to do with the wormhole, for there are some stories told in Hai space of these stones being able to unlock previously impassible pathways. May you retrieve ten of them for us so that we may be able to discover if these stones do allow access into the wormhole?"`
+			`While wandering through the spaceport, you are approached by a man you instantly recognize as the scientist whose drone you recovered data from in Terminus, thanks to his comically thick glasses. He introduces himself as Ivan and mentions he heard how helpful you have been to others within the Deep.`
+			`	"I was hoping you would continue assisting us in our research on the spatial anomaly in Terminus. Thanks to the data you retrieved, we have deduced that the anomaly is in fact some sort of wormhole, but it is far too unstable to support sending anything through it."`
+			`	"I must ask you, do you know of the Hai?" You nod. "Splendid! Then you will be able to help. One of the scientists on my team grew up in their territory, and suggested that the so called "Quantum Keystones" which they sell might have something to do with the wormhole. He recalls hearing some Hai folktales of these stones unlocking previously impassible pathways, soothing the minds and bodies of those who possessed them. Would you kindly retrieve ten of them for us, so that we may be able to discover if these legends are true, and they allow access into the wormhole?"`
 			branch remnant
 				has "First Contact: Remnant: offered"
 			choice
 				`	"I would be glad to help."`
-				`	"Sorry, but Hai space is way too far away for me to travel to."`
+				`	"Sorry, but Hai space is too far for me."`
 					decline
 					
-			`	"Thank you again, Captain!" he says very enthusiastically. "We are low on funds and will not be able to recieve more unless we prove that our research has lead to a discovery, but we should be able to pay for half the cost of the stones once you return."`
+			`	"Thank you again, Captain!" he says very enthusiastically. "I'd have traveled myself, but I must confess we are low on funds and will not receive more unless we make some sort of discovery. We will be able to pay for half the cost of the stones once you return."`
 				accept
 			
 			label remnant
 			choice
-				`	"I already know what is on the other side of the wormhole. In fact, the Quantum Keystones do allow entry into the spacial anomaly."`
-				`	"Sorry, but Hai space is way too far away for me to travel to."`
+				`	"I already know what is on the other side of the wormhole. In fact, installing a single Quantum Keystone is enough to enter into the spatial anomaly."`
+				`	"Sorry, but Hai space is too far for me right now."`
 					decline
 			apply
 				set "knew of stones before scientists"
 			`	Ivan looks like he is about to fall over with joy after you mention having entered the wormhole. "Really? Please, tell me what you found!"`
 			branch friendly
 				has "event: ember waste label"
-			`	You tell Ivan all that you saw on the other side of the wormhole, and how you found human like beings who attacked you after you ran from them.`
+			`	You tell Ivan all that you saw on the other side of the wormhole, and how you found strange-looking humans who communicate in song and sign language, seemed obsessed with blood, and attacked you after you wouldn't let them have some of yours.`
 				goto end
 			
 			label friendly
-			`	You tell Ivan about how the region of space that the wormhole leads to is known as the Ember Waste, and that it is inhabited by a group of friendly humans who fled human space during the Alpha Wars and have advanced independently of humanity for centuries.`
+			`	You tell Ivan about how the region of space beyond the wormhole is known as the "Ember Waste" and that it is inhabited by a group of friendly humans who fled there during the Alpha Wars. These humans have advanced independently from the rest of humanity for centuries. You mention their strange culture, sharing what you can remember about the songs the Remnant people sang.`
 			
 			label end
-			`	"This is very interesting, and would turn out to be an amazing discovery if true. Please, bring us the Quantum Keystones so that we might try to understand why they allow entry into the wormhole, and later we may attempt to learn more about these beings that you describe."`
+			`	"This is very interesting, and would turn out to be an amazing discovery if true. Please, bring us the Quantum Keystones so that we might try to understand the properties which allow entry into the wormhole's threshold. Later we will learn more about these inhabitants you describe."`
 			choice
 				`	"I would be glad to help."`
 					accept
 				`	"Sorry, I don't want to help with this."`
 					decline
-
+	
+	on visit
+		dialog `You do not have the 10 Quantum Keystones that Ivan asked you to purchase in Hai space. You should return here after obtaining them.`
+	
 	on complete
 		outfit "Quantum Keystone" -10
 		event "deep: keystone research" 47
 		payment 60000
-		conversation # Maria will be introduced in Deep: TMBR
-			`Upon returning to <planet>, you learn that Ivan has left for his research lab on Valhalla, but Maria, who turns out to also be on the team working on the spacial anomaly, is here to retrieve the keystones. She hands you <payment>, enough to pay for half of the cost of the stones.`
-			`	"Thank you for buying these keystones for us. It may take us a month or two to fully study them. We will make sure to contact you when we are in need of your assistance again."`
-
+		conversation # Maria will be introduced in Deep: TMBR. She could be postdoc / partner scientist etc.
+			`Upon returning to <planet>, you learn that Ivan has left for his research lab on Valhalla, but his research assistant Maria is waiting to retrieve the keystones. She hands you <payment>, enough to pay for half of the cost of the stones.`
+			`	"Thank you for buying these keystones for us. It may take us a month or two to fully study them. We will contact you when we are in need of your assistance again."`
 event "deep: keystone research"
 
 
@@ -456,7 +462,7 @@ event "deep: keystone research"
 mission "Deep: Remnant: Keystone Research"
 	landing
 	name `Travel to <planet>`
-	description `Meet up with Ivan on <destination> to learn about how his research on the Quantum Keystones has revealed.`
+	description `Meet up with Ivan on <destination> to learn about his research on the Quantum Keystones you brought him.`
 	source 
 		government Republic "Free Worlds" Syndicate Neutral Independent
 	destination Valhalla
@@ -464,14 +470,14 @@ mission "Deep: Remnant: Keystone Research"
 		has "event: deep: keystone research"
 	on offer
 		dialog
-			`You recieve a message from Ivan, the scientists working on the spacial anomaly in Terminus. "Captain, we have finished studying the Quantum Keystones, and they do in fact allow access through the wormhole. Please contact me on <destination> if you wish to continue helping us with our research."`
+			`You receive a message from Ivan, the scientist working on the spatial anomaly in Terminus. "Captain, we have finished studying the Quantum Keystones, and they do in fact allow access through the wormhole. Please meet with me on <destination> if you wish to continue helping us with our research."`
 
 
 
 mission "Deep: Remnant 1A"
 	landing
 	name `Exploring the Unknown`
-	description `Explore the region of space beyond the wormhole in Terminus. Return to <destination> after exploring as much as you can.`
+	description `Explore the region of space beyond the Terminus wormhole. Return to <destination> after exploring everything you can reach.`
 	source Valhalla
 	waypoint Terminus
 	to offer
@@ -479,12 +485,12 @@ mission "Deep: Remnant 1A"
 		not "knew of stones before scientists"
 	on offer
 		conversation
-			`You contact Ivan after you land and he sends you directions to his research lab, which is located on the outskirts of the spaceport city. When you arrive you are greeted by Ivan, Maria, and a number of other scientists on the team. Ivan begins to inform you on what their research has revealed.`
+			`You contact Ivan after you land and he sends you directions to his research lab on the outskirts of the spaceport city. When you arrive you are greeted by Ivan, Maria, and a number of other scientists on the team, and Ivan eagerly informs you on what their research has revealed.`
 			`	"We've analyzed the Quantum Keystones, and surprisingly they do allow entry into the wormhole in Terminus. It would appear that the stones stabilize the wormhole as the ship passes through it, or maybe it is stabilizing the ship in some way and not the wormhole. We'll need much more time to fully understand the true mechanism that is at play here. Whatever the case is, one stone is required for each ship to pass through the wormhole."`
-			`	"We sent a single ship through the wormhole then returned immediately, as we have no idea what dangers may lurk in the region of space that this wormhole leads to. Would you be willing to explore the region for us? You may want to bring a ramscoop, as we are unsure if there will be anywhere to refuel."`
+			`	"We sent a single drone through the wormhole to test that it was passable, and programmed it to return immediately in case the region beyond is hostile or dangerous. Would you be willing to explore the region for us? You may want to install a ramscoop, as we are unsure if there will be anywhere for your ship to refuel."`
 			choice
 				`	"I'm always willing to go on an adventure."`
-				`	"This sounds too risky for me. You're going to need to find someone else to do the job."`
+				`	"This sounds too risky. You're going to need to find someone else to go exploring."`
 					decline
 			
 			`	"Splendid! We will give you a single Quantum Keystone in order to travel through the wormhole. Return here once you have finished exploring."`
@@ -494,11 +500,13 @@ mission "Deep: Remnant 1A"
 		outfit "Quantum Keystone" 1
 	
 	on enter Arculus
-		dialog `This region of space appears to be inhabited. You should attempt to find out more about the beings living here so that you may tell Ivan.`
+		dialog `This region of space appears to be inhabited. You should attempt to find out more about the beings living here.`
 	
 	on enter Nenia # Forces the player to check the Ember Waste, but the player could have taken a keystone and seen for themself that they could enter the Ember Waste while the group was doing research, therefore making this mission extraneous. Any possible solutions? Create a C branch for if the player did not know of the Remnant at the time of speaking with Ivan but later learned about them when Ivan was studying the stones?
 		set "discovered void sprites"
-		dialog `This system is full of strange space-dwelling creatures that appear to be eating asteroids orbiting the star. If this is so close to the wormhole then one can only wonder what can be founder deeper into this region of space.`
+		dialog
+			`This system is full of strange, space-dwelling creatures that appear to be eating asteroids. The sight of their mouthparts chewing rock into dust is sure to be a recurring nightmare for any captain who visits this system. You make a note to avoid flying too close, in case they mistake your ship for their next meal.`
+			`	With these strange creatures so close to the wormhole, one can only wonder what lies deeper in this region of space.`
 	
 	on visit
 		dialog `You have landed on <planet>, but you have not explored enough of the space beyond the wormhole. Return to the wormhole and continue exploring the region for anything of interest.`
@@ -520,18 +528,18 @@ mission "Deep: Remnant 2A"
 	on offer
 		conversation
 			`When you return, Ivan and the rest of the scientists wait eagerly for you to explain what you discovered.`
-			`	You start off by telling them about the strange space-dwelling creatures you found floating aroumd in the system of Nenia which fed on the asteroids in the system, and how they were flying off of the gas giants in the system, suggesting that they spend part of their life cycle in the atmosphere of a gas giant and part of it in space.`
+			`	You begin by recounting your experience with the strange space-dwelling creatures you found in the Nenia system. Ivan's eyes go wide when you mention the ease with which they fed on asteroids, and how they seemed to effortlessly escape from the gravity of local gas giants.`
 			
 			branch friendly
 				has "event: ember waste label"
-			`	You then tell them about the human beings that you discovered which attacked you when you tried to run from them after they requested a blood sample from you.`
+			`	You then tell them about the strange-looking humans who communicated in song and sign language, seemed obsessed with blood, and attacked you after you wouldn't let them have some of yours.`
 				goto next
 				
 			label friendly
 			`	You then tell them about the Remnant, a group of friendly humans who fled human space during the Alpha Wars and have advanced independently of humanity for centuries, and how they call the region of space the "Ember Waste."`
 			
 			label next
-			`	The group of scientists looks captivated the entire time, almost like kindergarteners listening to a fairy tale. After you finish talking, they begin to chatter among themselves, seeming to be most interested in the human beings which inhabit the region. They seem to agree that they need to learn more about these humans, and more specifically about the technology which they have developed.`
+			`	The group of scientists looks captivated the entire time, almost like kindergarten children listening to a fairy tale. When you finish talking, they immediately chatter among themselves, seeming to be most interested in the human beings which inhabit the region. They seem to agree that they need to learn more about these humans, and more specifically about the technology which they have developed.`
 			`	They eventually come to the conclusion that you should return to this region of space and scan the ships of these humans so that they can learn more about them.`
 			choice
 				`	"Okay, I'm willing to do it."`
@@ -554,6 +562,7 @@ mission "Deep: Remnant 2A"
 	
 	on fail
 		event "reset arculus"
+		# add a backup mission? if the Remnant is hostile, scanning could be difficult.
 	
 	on complete
 		event "reset arculus"
@@ -1277,5 +1286,3 @@ mission "Deep: Scientist Rescue 3B"
 			
 			`	"It's yours to keep. I hope you have good luck with your travels, and have fun using the Bactrian. It's a mighty fine ship to fly." Lieutenant Paris starts walking over to the Star Queen, leaving you alone to ponder the possibilities that await.`
 				decline
-
-
