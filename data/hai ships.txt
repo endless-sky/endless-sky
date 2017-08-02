@@ -45,7 +45,7 @@ ship "Aphid"
 	explode "tiny explosion" 10
 	explode "small explosion" 20
 	explode "medium explosion" 15
-	description "The Aphid is the lightest ship designed by the Hai. Similar to the Human Star Barge, it carries only a single turret in case of emergencies, and has excellent cargo capacity for it's size."
+	description "The Aphid is the lightest ship designed by the Hai. Similar to the human Star Barge, it can carry only a single turret for defense in case of emergencies, and has excellent cargo capacity for it's size."
 
 ship "Aphid" "Aphid (Anti-Missile)"
 	outfits
@@ -87,7 +87,7 @@ ship "Flea"
 	engine 0 27
 	gun 0 -27 "Railgun"
 	explode "tiny explosion" 15
-	description `The Flea is a light combat ship designed to help contain Unfettered aggression, while keeping a minimum risk to Hai life using remote control rather than pilots.`
+	description `The Flea is a light combat drone designed to help contain Unfettered aggression, while causing a minimal risk to Hai life using remote control rather than pilots.`
 
 ship "Lightning Bug"
 	sprite "ship/hai lightning bug"
@@ -262,7 +262,7 @@ ship "Shield Beetle"
 	explode "large explosion" 50
 	explode "huge explosion" 20
 	"final explode" "final explosion large"
-	description "The Shield Beetle is the peaceful Hai's only heavy warship. It is a versatile warship used by the Hai to guard their merchant convoys, and serves as a their main defender against Unfettered aggression from the North."
+	description "For many millenia now, the Shield Beetle has been the only heavy warship at the disposal of the Hai. It is a versatile warship used by the Hai to guard their merchant convoys, and serves as a their main defender against Unfettered aggression from the North."
 
 ship "Shield Beetle" "Shield Beetle (Tracker)"
 	outfits
@@ -411,7 +411,7 @@ ship "Solifuge"
 	explode "large explosion" 50
 	explode "huge explosion" 20
 	"final explode" "final explosion large"
-	description `Impressed after seeing their green allies' carrier, "Giftbringer", the Unfettered decided it was time they expanded their fleet. They built the Solifuge carrier to take better advantage of their Jump Drive supply. A capable warship by itself, the Solifuge also carries with it a small fleet of its own, without needing to use extra drives.`
+	description `Impressed after seeing the Alphas' carrier, "Giftbringer," the Unfettered decided it was time they expanded their fleet. They built the Solifuge carrier to take better advantage of their Jump Drive supply. A capable warship by itself, the Solifuge also carries with it a small fleet of its own, without needing to use extra drives.`
 
 ship "Solifuge" "Solifuge (Pulse)"
 	outfits
@@ -541,7 +541,7 @@ ship "Violin Spider"
 	turret 0 5
 	explode "tiny explosion" 15
 	explode "small explosion" 5
-	description `The Unfettered's fighter has both a gun and a turret mount, allowing it greater versatility in equipment than most other ships of it's size. This versatility, however, makes it more expensive to produce.`
+	description `The Unfettered's fighter has both a gun port and a turret mount, allowing it greater versatility in equipment than most other ships of it's size. This versatility, however, makes it more expensive to produce.`
 
 ship "Violin Spider" "Violin Spider (Pulse)"
 	outfits
