@@ -26,6 +26,7 @@
 #		The Deep Archaeology string
 #		The Deep: Singularity string added by this
 #		The Deep: Remnant string added by this (second half of the string is optional)
+#		Discover the Hai (might already be covered by Deep: TMBR)
 #		Discover the Remnant (and finish their intro missions to complete the rest of the Deep: Remnant string, or attack the Remnant to plunder their outfits instead)
 #
 #	Deep "end:"
@@ -252,18 +253,17 @@ mission "Deep: Kraz Convoy"
 
 
 
-# What exactly could they be? 
-# Why would you be burying them in random places, giving them to beggars, leaving them in abandoned towers, and leaving them by the sides of roads? These seem like very scattered locations. 
-# Presumably they are retrieved, as otherwise they'd start to pile up as more merchants took those types of jobs. 
-# And why would bounty hunters chase the player for these cubes?
-
 # Lore about the mysterious cubes:
-# The cubes are some sort of recording or sensor device; strikingly similar to the devices given to the player during Alpha Surveillance. (Actually called micro-sats.)
-# What could the be recording? Fleet movements. Anomalies. Cloaked ships?
-# Most likely tracking at the very least fleet movements, allowing the Deep Security to know where pirates are. This is why bounty hunters attempt to destroy ships transporting these cubes. 
-# The cubes likely record far more than just fleet movements, but this is what the player is told.
+# These cubes, called sensor cubes, are used by the Deep to track fleet movements above the planet which they are placed on, most importantly the movements of pirate fleets.
+# The Deep uses merchants to place the cubes to try and make them more inconspicuous
+# Information gathered from these cubes is used by Deep Security and is on rare occasions handed over to the Republic or Navy (DS is an independent police force and therefore is under no jurisdiction to have to hand over all its info to the Navy).
+# For some reason, pirates know of this and send bounty hunters after anyone they know are in possesion of these cubes, stealing them before destroying the merchant.
+# Cubes are asked to be retrieved by merchants for reasons unknown; malfunctions? just old sensors? One can only wonder.
+
 # Deep: Mystery Cubes missions will involve first... I have no idea.
 # I'm thinking about having one of the missions involve going to Carbuncle Station
+# Maybe something to do with assisting Deep Security in tracking down a warlord (DS would still be low on ships during this time for whatever reason)
+# Might have to get the Navy involved
 mission "Deep: Mystery Cubes"
 	minor
 	name ``
@@ -293,7 +293,7 @@ mission "Deep: TMBR 0"
 		"Transport scientists: done" >= 3
 		"Escort science vessel: done" >= 3
 		"Record academic conference: done" >= 3
-		"There Might Be Riots part 3B: done"
+		has "There Might Be Riots part 3B: done"
 		not "Deep: Remnant 0"
 		not "Deep: Singularity"
 	on offer
@@ -305,7 +305,7 @@ mission "Deep: TMBR 0"
 					defer
 					
 			`	You grow nearer to the Bounder and count five people dancing in total: three women and two men. One of the woman dancing notices you walking over. "It looks like someone else is about to join the party!" This is met by a collective cheer from the rest of the dancers.`
-			`	A few minutes of dancing later, one of the people introduces himself to you as Garrison. He lists off the names of the rest of the people with him; Isaac, Maria, Hannah, and Larua, then explains that they are all Deep scientists. They are currently enjoying a short vacation listening to their favorite band before they must travel to Asgard to continue their work for the Deep.`
+			`	A few minutes of dancing later, one of the people introduces himself to you as Garrison. He lists off the names of the rest of the people with him; Isaac, Maria, Hannah, and Larua, then explains that they are all Deep scientists. They are currently enjoying a short vacation listening to their favorite band before they must travel to Midgard to continue their work for the Deep.`
 			`	"How do you know about 'There Might Be Riots?'" Hannah asks you.`
 			choice
 				`	"I've met them."`
@@ -328,7 +328,7 @@ mission "Deep: TMBR 0"
 				`	"No thanks. I have better things to do."`
 					decline
 			
-			`	All five scientists burst out in a cheer, clearly excited that they will be able to see their favorite band live. After the cheering dies down, Laura says "We must get going now, Captain. We'll be on Asgard for the next few months, so if you find 'There Might Be Riots,' please bring them there." Each member of the group says goodbye to you as they board their Bounder and leave for Asgard.`
+			`	All five scientists burst out in a cheer, clearly excited that they will be able to see their favorite band live. After the cheering dies down, Laura says "We must get going now, Captain. We'll be on Midgard for the next few months, so if you find 'There Might Be Riots,' please bring them there." Each member of the group says goodbye to you as they board their Bounder and leave for Midgard.`
 			`	If you are going to look for the band "There Might Be Riots," you should go to <destination> where you last saw them.`
 				accept
 
@@ -342,7 +342,7 @@ mission "Deep: TMBR 1"
 		distance 2 10
 		government Hai
 	to offer
-		"Deep: TMBR 0: done"
+		has "Deep: TMBR 0: done"
 	on offer
 		conversation
 			`It takes you a while, but after a few hours of asking around you finally find someone who knows where the band are. "I saw them on <destination>," the human says. "They were throwing a pretty narly concert just last week. I haven't heard of them playing anywhere else, so they might still be there."`
@@ -353,33 +353,45 @@ mission "Deep: TMBR 1"
 mission "Deep: TMBR 2"
 	landing
 	name `Transport band to <planet>`
-	description ``
-	destination Asgard
+	description `Give the band "There Might Be Riots" a ride to <destination> so that they can perform for the Deep scientists.`
+	destination Midgard
+	blocked "You have reached <origin>, but you'll need at least four free cargo space and eight free bunks to continue this mission. Return here when you have the required space free."
+	cargo "musical equipment" 4
 	passengers 8
 	to offer
-		"Deep: TMBR 1: done"
+		has "Deep: TMBR 1: done"
 	on offer
 		conversation
 			`You find "There Might Be Riots" playing a gig right in the spaceport of <planet>. Judging my the large amount of Hai in the audience, they seem to have amassed quite the following in Hai space.`
-			`	Ulrich spots you as you approach the stage. "Captain <last>! What brings you here?"`
+			`	You wait for the band to finish their concert before speaking with Ulrich. They play a few songs you haven't heard before; the band must have written a few while staying in Hai space. Once the concert ends and Ulrich walks off the makeshift stage that has been set up on a landing pad, you walk over to him.`
+			`	"Captain <last>! It's been a while. We've been having a great time with the peaceful squirrels ever since you dropped us off here. It's the craziest experience we've ever had." Ulrich goes on to explain a number of adventures that the band has been on since they came to Hai space, and how they were all surprised that even in such a peaceful place like this there are still wars. He then ends with "What brings you here?" 
+			`	You explain to Ulrich the situation of the Deep scientists who are huge fans of "There Might Be Riots" and wish to see the band live, and how there are rumors floating around in human space as to the fate of the band after the broadcast on Pilot. "Oh yeah, I hadn't thought about what our fans would think after just disappearing like that. Maybe it's time to go back to the land of the humans."`
+			`	Ulrich gathers up the rest of the band and they pack up their supplies. You chart a course for <destination> as the band load their musical equipment on your ship and get ready for the long ride back to human space.`
 				accept
 
 	on complete
 		payment 400000
 		conversation
-			``
+			`You quickly draw a crowd around your ship after "There Might Be Riots" step off and begin setting up their equipment. While the band gets ready, you contact the spaceport authorities and have them notify Garisson, Isaac, Hannah, Maria, and Laura that the band is currently in the spaceport.`
+			`	The crowd gets larger and largerover time, and judging by the increased number of ships landing, word must have gotten out quickly that "There Might Be Riots" are back.`
+			`	Just as the concert begins with the band playing as loud as ever, you spot the scientists all in the front row, smiling and cheering as the music roars. The band starts off with one of the songs you heard them play in Hai space, and since none of the audience members are singing along it's clear that it is new to them.`
+			`	During an intermission, you invite the scientists onto your ship to personally meet the band. The thrill in the eyes of each of the scientists is astounding as they meet the members of "There Might Be Riots."`
+			`	Before the intermission ends, each of the scientists thank you personally for bringing the band to Midgard, and Isaac even hands you <payment>. "It's the least we could give you," he adds. As the scientists start to depart your ship to listen to the rest of the concert, Hannah kisses you on the cheek without a word before running off with the crowd.`
 
 
 
 # The player gets called into somewhere and is asked about their work for Albert. They get questioned on what Albert told them, and seeing as how the player has been helping the Deep lately, the Deep tell the player some of their folklore.
 # "Over the centuries the exact date of when the Deep was established have been lost, but folklore says that the first humans arrived here in the mid 1300s before the time of the Black Death."
+# Not sure what these missions would entail. Would likely involve some of the scientists from Deep: TMBR, since they left to work on Midgard, where the singularity is. Also want to involve Lt. Paris in some way, who will be first introduced in Deep: Mystery Cubes
 mission "Deep: Singularity"
 	minor
 	name ``
 	description ``
-	source 
+	source
+		attributes deep
 	to offer
 		has "Deep: Mystery Cubes: done"
+		has "Deep Archaeology 5: done"
 		or
 			"deep convoy" == 3
 			has "Deep: TMBR 2: done"
@@ -400,9 +412,9 @@ mission "Deep: Remnant 0"
 		attributes deep
 		near "Epsilon Leonis" 1 100
 	to offer
-		"deep convoy" >= 1
 		has "Deep: Mystery Cubes: done"
 		has "Terminus exploration: done"
+		has "First Contact: Hai: offered"
 		or
 			"deep convoy" == 3
 			has "Deep: TMBR 2: done"
@@ -706,7 +718,7 @@ mission "Deep: Remnant Technology"
 		has "event: deep: scan log research"
 	on offer
 		payment 250000
-		dialog `You recieve a message from Ivan after you land. "Thanks for all the help so far. We brought our findings so far to the Deep government and they gave us more funding! We've transfered 250,000 credits to your account for your recent help. Please meet us on <destination> if you want to assist us more.`
+		dialog `You recieve a message from Ivan after you land. "Thanks for all your help recently. We brought our findings to the Deep government and they gave us more funding! We've transfered 250,000 credits to your account and informed the Deep government of your recent help in this immense discovery. Please meet us on <destination> if you wish to assist us further. The help would be appreciated, but it is no longer required for us to continue our work."`
 	
 	on decline
 		set "Deep: Remnant Research: done" # Allows the player to decline this and any mission beyond this point and still get a chance to unlock the Bactrian, but not doing the other half of the Deep: Remnant chain could ruin future situations for the player.
@@ -820,7 +832,7 @@ mission "Deep: Remnant: Inhibitor Cannon"
 	on offer
 		conversation
 			`Again the Remnant technology is removed from your ship and placed in the research lab. This time they pay you 383,500 credits. The scientists once again take a few hours to analyze the outfit before telling you their findings.`
-			`	"This Millennium Cell is little more than a radiothermal generator. Not exactly the best kind of generator if you're looking for lots of power. A fusion generator does far better in that realm. But for a radiothermal generator it runs surprisingly cold. We may have to take it apart to find out why that is."`
+			`	"This Millennium Cell is little more than a radiothermal generator. Not exactly the best kind of generator if you're looking for lots of power. A fusion generator does far better in that realm. But for a radiothermal generator it produces remarkably little heat. We may have to take it apart to find out why that is."`
 			`	"Next we want to see how their weapons technology has advanced. Their Inhibitor Cannons seem very interesting to me. Could you retrieve just one of them?"`
 			choice
 				`	"I'd be glad to."`
