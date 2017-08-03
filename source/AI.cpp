@@ -695,7 +695,7 @@ void AI::AskForHelp(Ship &ship, bool &isStranded, const Ship *flagship)
 				continue;
 			
 			// Prefer fast ships over slow ones.
-			canHelp.insert(canHelp.cend(), 1 + .3 * helper->MaxVelocity(), helper.get());
+			canHelp.insert(canHelp.end(), 1 + .3 * helper->MaxVelocity(), helper.get());
 		}
 		
 		if(!hasEnemy && canHelp.size())

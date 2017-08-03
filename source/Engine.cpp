@@ -1292,7 +1292,7 @@ void Engine::CalculateStep()
 			
 			double size = sqrt(ship->Width() + ship->Height()) * .14 + .5;
 			bool isYourTarget = (flagship && ship == flagship->GetTargetShip());
-			hasHostiles |= (!ship.IsDisabled() && ship->GetGovernment()->IsEnemy()
+			hasHostiles |= (!ship->IsDisabled() && ship->GetGovernment()->IsEnemy()
 				&& ship->GetTargetShip() && ship->GetTargetShip()->GetGovernment()->IsPlayer());
 			int type = RadarType(*ship, step);
 			radar[calcTickTock].Add(isYourTarget ? Radar::SPECIAL : type, ship->Position(), size);
