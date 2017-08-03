@@ -171,15 +171,15 @@ outfit "Crystal Capacitor"
 	category "Power"
 	licenses
 		Remnant
-	cost 93000
+	cost 113000
 	thumbnail "outfit/unknown"
 	"mass" 12
 	"outfit space" -12
 	"energy capacity" 3400
 	"energy consumption" .4
 	"heat generation" .4
-	description "These crystals, mined on the Remnant planet Viminal, can store a surprising amount of power in a compact form. Crystals pure enough to be used in such a manner are hard to find, however, and therefore rather pricy."
-	description "	Also, the capacitors tend to leak small amounts of energy, in the form of exess heat."
+	description "These crystals, mined on the Remnant planet Viminal, can store a surprising amount of power in a compact form. Crystals pure enough to be used in such a manner are hard to find, however."
+	description "	Also, the capacitors tend to leak small amounts of energy, in the form of excess heat."
 
 
 outfit "Millennium Cell"
