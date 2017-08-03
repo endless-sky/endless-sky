@@ -56,9 +56,12 @@ public:
 	// Get the amount that your reputation changes for the given offense. The
 	// given value should be a combination of one or more ShipEvent values.
 	double PenaltyFor(int eventType) const;
-	// In order to successfully bribe this government you must pay them this
+	// In order to bribe this government you must pay them at least this
 	// fraction of your fleet's value. (Zero means they cannot be bribed.)
 	double GetBribeFraction() const;
+	// Some governments are not as trustworthy as others, and attempting to
+	// bribe them may fail. (Zero means that a bribe will not fail.)
+	double GetBribeFailureRate() const;
 	// This government will fine you the given fraction of the maximum fine for
 	// carrying illegal cargo or outfits. Zero means they will not fine you.
 	double GetFineFraction() const;
@@ -117,6 +120,7 @@ private:
 	double initialPlayerReputation = 0.;
 	std::map<int, double> penaltyFor;
 	double bribe = 0.;
+	double bribeFailure = 0.;
 	double fine = 1.;
 	const Conversation *deathSentence = nullptr;
 	const Phrase *friendlyHail = nullptr;

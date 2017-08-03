@@ -25,6 +25,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Planet.h"
 #include "PlayerInfo.h"
 #include "Politics.h"
+#include "Random.h"
 #include "Ship.h"
 #include "Sprite.h"
 #include "StellarObject.h"
@@ -65,7 +66,7 @@ HailPanel::HailPanel(PlayerInfo &player, const shared_ptr<Ship> &ship, function<
 		{
 			SetBribe(gov->GetBribeFraction());
 			if(bribe)
-				message = "If you want us to leave you alone, it'll cost you "
+				message = "If you want us to leave you alone, it'll cost you at least "
 					+ Format::Number(bribe) + " credits.";
 		}
 	}
@@ -147,7 +148,7 @@ HailPanel::HailPanel(PlayerInfo &player, const StellarObject *object)
 		{
 			SetBribe(planet->GetBribeFraction());
 			if(bribe)
-				message = "If you want to land here, it'll cost you "
+				message = "If you want to land here, it'll cost you at least "
 					+ Format::Number(bribe) + " credits.";
 			else
 				message = "I'm afraid we can't permit you to land here.";
@@ -287,26 +288,53 @@ bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 			message = "Sorry, but you don't have enough money to be worth my while.";
 		else if(bribe)
 		{
-			if(ship)
+			// Attempt to bribe the hailed target.
+			const Government *gov = ship ? ship->GetGovernment() : nullptr;
+			bool failedBribe = Random::Real() < (ship ? gov->GetBribeFailureRate() : planet->GetBribeFailureRate());
+			player.Accounts().AddCredits(-bribe);
+			
+			if(failedBribe)
 			{
-				// Record the successful bribe, for the callback function.
-				bribed = ship->GetGovernment();
-				bribed->Bribe();
-				Messages::Add("You bribed a " + ship->GetGovernment()->GetName() + " ship "
-					+ Format::Number(bribe) + " credits to refrain from attacking you today.");
+				double fraction = 0.;
+				string toast = "You attempted to bribe ";
+				if(ship)
+				{
+					toast += "a " + gov->GetName() + " " + ship->Noun();
+					fraction = gov->GetBribeFraction();
+				}
+				else
+				{
+					toast += "the authorities on " + planet->Name();
+					fraction = planet->GetBribeFraction();
+				}
+				toast += " with " + Format::Number(bribe) + " credits, but they only took your money.";
+				Messages::Add(toast);
+				// Calculate the new bribe amount, and update the displayed message.
+				bribe *= 1 + 2 * fraction;
+				message = "It's a pleasure doing business with you. Such a pleasure, in fact, that you need to pay at least "
+					+ Format::Number(bribe) + " more credits " + (ship ? " for us to leave you alone." : " to land here.");
 			}
 			else
 			{
-				// Bribing a planet for landing clearance does not disable
-				// the tracking functions on any in-flight missiles that ships
-				// belonging to the planet's government may have fired.
-				planet->Bribe();
-				Messages::Add("You bribed the authorities on " + planet->Name() + " "
-					+ Format::Number(bribe) + " credits to permit you to land.");
+				if(ship)
+				{
+					// Record the successful bribe, for the callback function.
+					bribed = gov;
+					gov->Bribe();
+					Messages::Add("You bribed a " + gov->GetName() + " " + ship->Noun() + " "
+						+ Format::Number(bribe) + " credits to refrain from attacking you today.");
+				}
+				else
+				{
+					// Bribing a planet for landing clearance does not disable
+					// the tracking functions on any in-flight missiles that ships
+					// belonging to the planet's government may have fired.
+					planet->Bribe();
+					Messages::Add("You bribed the authorities on " + planet->Name() + " "
+						+ Format::Number(bribe) + " credits to permit you to land.");
+				}
+				message = "It's a pleasure doing business with you.";
 			}
-			
-			player.Accounts().AddCredits(-bribe);
-			message = "It's a pleasure doing business with you.";
 		}
 		else
 			message = "I do not want your money.";

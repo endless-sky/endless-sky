@@ -158,7 +158,11 @@ void Planet::Load(const DataNode &node, const Set<Sale<Ship>> &ships, const Set<
 		else if(key == "required reputation")
 			requiredReputation = child.Value(valueIndex);
 		else if(key == "bribe")
+		{
 			bribe = child.Value(valueIndex);
+			if(child.Size() > ++valueIndex)
+				bribeFailure = child.Value(valueIndex);
+		}
 		else if(key == "security")
 			security = child.Value(valueIndex);
 		else if(key == "tribute")
@@ -344,11 +348,19 @@ double Planet::RequiredReputation() const
 
 
 
-// This is what fraction of your fleet's value you must pay as a bribe in
-// order to land on this planet. (If zero, you cannot bribe it.)
+// This is the minimum fraction of your fleet's value you must pay as a bribe
+// in order to land on this planet. (If zero, you cannot bribe it.)
 double Planet::GetBribeFraction() const
 {
 	return bribe;
+}
+
+
+
+// Bribes may not always work on the first try.
+double Planet::GetBribeFailureRate() const
+{
+	return bribeFailure;
 }
 
 

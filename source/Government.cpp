@@ -100,7 +100,11 @@ void Government::Load(const DataNode &node)
 				}
 		}
 		else if(child.Token(0) == "bribe" && child.Size() >= 2)
+		{
 			bribe = child.Value(1);
+			if(child.Size() >= 3)
+				bribeFailure = child.Value(2);
+		}
 		else if(child.Token(0) == "fine" && child.Size() >= 2)
 			fine = child.Value(1);
 		else if(child.Token(0) == "death sentence" && child.Size() >= 2)
@@ -195,6 +199,13 @@ double Government::PenaltyFor(int eventType) const
 double Government::GetBribeFraction() const
 {
 	return bribe;
+}
+
+
+
+double Government::GetBribeFailureRate() const
+{
+	return bribeFailure;
 }
 
 
@@ -332,4 +343,3 @@ double Government::CrewDefense() const
 {
 	return crewDefense;
 }
-

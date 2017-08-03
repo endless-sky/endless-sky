@@ -81,9 +81,12 @@ public:
 	const Government *GetGovernment() const;
 	// You need this good a reputation with this system's government to land here.
 	double RequiredReputation() const;
-	// This is what fraction of your fleet's value you must pay as a bribe in
-	// order to land on this planet. (If zero, you cannot bribe it.)
+	// This is the minimum fraction of your fleet's value you must pay as a bribe
+	// in order to land on this planet. (If zero, you cannot bribe it.)
 	double GetBribeFraction() const;
+	// Some planets are not as trustworthy as others, and attempting to
+	// bribe them may fail. (Zero means that a bribe will not fail.)
+	double GetBribeFailureRate() const;
 	// This is how likely the planet's authorities are to notice if you are
 	// doing something illegal.
 	double Security() const;
@@ -141,6 +144,7 @@ private:
 	const Government *government = nullptr;
 	double requiredReputation = 0.;
 	double bribe = 0.01;
+	double bribeFailure = 0.;
 	double security = .25;
 	bool inhabited;
 	
