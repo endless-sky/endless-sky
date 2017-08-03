@@ -171,12 +171,15 @@ outfit "Crystal Capacitor"
 	category "Power"
 	licenses
 		Remnant
-	cost 280000
+	cost 93000
 	thumbnail "outfit/unknown"
 	"mass" 12
 	"outfit space" -12
 	"energy capacity" 3400
+	"energy consumption" .4
+	"heat generation" .4
 	description "These crystals, mined on the Remnant planet Viminal, can store a surprising amount of power in a compact form. Crystals pure enough to be used in such a manner are hard to find, however, and therefore rather pricy."
+	description "	Also, the capacitors tend to leak small amounts of energy, in the form of exess heat."
 
 
 outfit "Millennium Cell"
@@ -187,7 +190,7 @@ outfit "Millennium Cell"
 	thumbnail "outfit/unknown"
 	"mass" 29
 	"outfit space" -29
-	"energy generation" 3.5
+	"energy generation" 3.6
 	"heat generation" 6.0
 	description "This quite compact radiothermal generator uses isotopes so radioactive, and so tightly packed together, that it could almost be classified as a nuclear reactor."
 
@@ -199,7 +202,7 @@ outfit "Epoch Cell"
 	thumbnail "outfit/unknown"
 	"mass" 98
 	"outfit space" -98
-	"energy generation" 12.2
+	"energy generation" 12.7
 	"heat generation" 19.8
 	description "Efficient Remnant technology ensures that nearly all the heat produced by this generator's radioisotopes is converted into electricity instead of becoming waste heat."
 
@@ -211,7 +214,7 @@ outfit "Aeon Cell"
 	thumbnail "outfit/unknown"
 	"mass" 160
 	"outfit space" -160
-	"energy generation" 21.1
+	"energy generation" 21.9
 	"heat generation" 31.5
 	description "The early Remnant engineers did not trust the finicky and unpredictable nuclear reactors that were then in use in human space, so they instead focused on perfecting the art of radioisotope thermoelectric power."
 
