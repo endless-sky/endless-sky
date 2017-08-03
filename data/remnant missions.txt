@@ -56,8 +56,8 @@ mission "First Contact: Remnant"
 	on accept
 		"reputation: Remnant" <?= -10
 		log "Refused to give a blood sample to a group of strange-looking humans that live south of the Core. Upon takeoff, their ships attacked."
-		log "Factions" "Remnant" `A group of unusual-looking humans that live in a secluded section of the galaxy. They are openly hostile to those who refuse to submit blood samples.`
-			`The buildings of the Remnant people seem to be alien in origin, and they communicate amongst each other primarily with sign language. When they do use their voices, they sing or chant, rather than speak.`
+		log "Factions" "Remnant" `The Remnant are a group of unusual-looking humans that live in a secluded section of the galaxy. It is unclear how long they have lived apart from the rest of humanity, but they have been free of human influences for long enough that their culture is wildly different from any found in human record. Their buildings seem to be alien in origin, and they communicate amongst each other primarily with sign language. When they do use their voices they sing or chant, rather than speak.`
+			`The Remnant seem fearful - or at least especially wary - of contact with humans. Visitors that do not undergo medical examination are not allowed to remain in their territory.`
 	on decline
 		event "ember waste label"
 		log "Met a group of strange-looking humans that live in a secluded section of the galaxy south of the Core. After submitting a blood sample, they became very friendly."
