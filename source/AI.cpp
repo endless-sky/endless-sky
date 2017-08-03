@@ -2424,7 +2424,8 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 				&& object.GetPlanet()->WormholeDestination(ship.GetSystem()) == system && player.HasVisited(system))
 			{
 				isWormhole = true;
-				ship.SetTargetStellar(&object);
+				if(!ship.GetTargetStellar() || keyStuck.Has(Command::JUMP))
+					ship.SetTargetStellar(&object);
 				break;
 			}
 		if(!isWormhole)
@@ -2600,6 +2601,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 			bool found = false;
 			int count = 0;
 			const StellarObject *next = nullptr;
+			// Select the next landable in the list after the currently selected object.
 			for(const StellarObject &object : ship.GetSystem()->Objects())
 				if(object.GetPlanet() && object.GetPlanet()->IsAccessible(&ship))
 				{
@@ -2614,6 +2616,8 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 				}
 			if(!next)
 			{
+				// No landable objects were found after the current object.
+				// Pick the first landable object in the list.
 				for(const StellarObject &object : ship.GetSystem()->Objects())
 					if(object.GetPlanet() && object.GetPlanet()->IsAccessible(&ship))
 					{
@@ -2692,7 +2696,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 	}
 	else if(keyDown.Has(Command::JUMP))
 	{
-		if(!ship.GetTargetSystem())
+		if(!ship.GetTargetSystem() && !isWormhole)
 		{
 			double bestMatch = -2.;
 			const auto &links = (ship.Attributes().Get("jump drive") ?
@@ -2708,7 +2712,13 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 				}
 			}
 		}
-		if(ship.GetTargetSystem())
+		else if(isWormhole)
+		{
+			// The player is guaranteed to have a travel plan for isWormhole to be true.
+			Messages::Add("Landing on a local wormhole to navigate to the "
+					+ player.TravelPlan().back()->Name() + " system.");
+		}
+		if(ship.GetTargetSystem() && !isWormhole)
 		{
 			string name = "selected star";
 			if(player.KnowsName(ship.GetTargetSystem()))
@@ -2784,7 +2794,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 	
 	if(keyStuck.Has(Command::JUMP) && !player.HasTravelPlan())
 	{
-		// The player completed their travel plan, which may have indicated a destination within the final system
+		// The player completed their travel plan, which may have indicated a destination within the final system.
 		keyStuck.Clear(Command::JUMP);
 		const Planet *planet = player.TravelDestination();
 		if(planet && planet->IsInSystem(ship.GetSystem()) && planet->IsAccessible(&ship))
