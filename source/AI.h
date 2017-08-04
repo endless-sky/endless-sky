@@ -176,6 +176,7 @@ private:
 	std::map<std::weak_ptr<const Ship>, int, Comp> playerActions;
 	std::map<const Ship *, std::weak_ptr<Ship>> helperList;
 	std::map<const Ship *, int> swarmCount;
+	std::map<const Ship *, int> fenceCount;
 	std::map<const Ship *, Angle> miningAngle;
 	std::map<const Ship *, int> miningTime;
 	std::map<const Ship *, double> appeasmentThreshold;

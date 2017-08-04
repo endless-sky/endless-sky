@@ -73,6 +73,9 @@ namespace {
 	}
 	
 	static const double MAX_DISTANCE_FROM_CENTER = 10000.;
+	// Constance for the invisible fence timer.
+	static const int FENCE_DECAY = 4;
+	static const int FENCE_MAX = 600;
 }
 
 
@@ -266,6 +269,7 @@ void AI::Step(const PlayerInfo &player)
 					}
 			}
 	}
+	
 	for(const auto &it : ships)
 	{
 		const Government *gov = it->GetGovernment();
@@ -283,7 +287,25 @@ void AI::Step(const PlayerInfo &player)
 			if(ogov->AttitudeToward(gov) > 0. && oit->Position().Distance(it->Position()) < 2000.)
 				strength += oit->Cost();
 		}
-	}		
+	}
+	
+	// Update the counts of how long ships have been outside the "invisible fence."
+	// If a ship ceases to exist, this also ensures that it will be removed from
+	// the fence count map after a few seconds.
+	for(auto it = fenceCount.begin(); it != fenceCount.end(); )
+	{
+		it->second -= FENCE_DECAY;
+		if(it->second < 0)
+			it = fenceCount.erase(it);
+		else
+			++it;
+	}
+	for(const auto &it : ships)
+		if(it->Position().Length() >= MAX_DISTANCE_FROM_CENTER)
+		{
+			int &value = fenceCount[&*it];
+			value = min(FENCE_MAX, value + FENCE_DECAY + 1);
+		}
 	
 	const Ship *flagship = player.Flagship();
 	step = (step + 1) & 31;
@@ -825,6 +847,13 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 				continue;
 			if(!it->IsYours() && ship.GetPersonality().IsMarked())
 				continue;
+			if(!person.IsUnconstrained())
+			{
+				// Makes sure this ship isn't parked outside the invisible fence.
+				auto fit = fenceCount.find(&*it);
+				if(fit != fenceCount.end() && fit->second == FENCE_MAX)
+					continue;
+			}
 			
 			// Calculate what the range will be a second from now, so that ships
 			// will prefer targets that they are headed toward.
