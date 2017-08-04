@@ -225,6 +225,8 @@ int main(int argc, char *argv[])
 				"government they belong to. So, all human ships will be the same color, which "
 				"may be confusing. Consider upgrading your graphics driver (or your OS)."));
 		
+		bool showCursor = true;
+		int cursorTime = 0;
 		int frameRate = 60;
 		FrameTimer timer(frameRate);
 		bool isPaused = false;
@@ -237,6 +239,10 @@ int main(int argc, char *argv[])
 			while(SDL_PollEvent(&event))
 			{
 				UI &activeUI = (menuPanels.IsEmpty() ? gamePanels : menuPanels);
+				
+				// If the mouse moves, reset the cursor movement timeout.
+				if(event.type == SDL_MOUSEMOTION)
+					cursorTime = 0;
 				
 				// The caps lock key slows the game down (to make it easier to
 				// see and debug things that are happening quickly).
@@ -285,6 +291,15 @@ int main(int argc, char *argv[])
 			}
 			SDL_Keymod mod = SDL_GetModState();
 			Font::ShowUnderlines(mod & KMOD_ALT);
+			
+			// Hide the cursor if inactive for ten seconds.
+			++cursorTime;
+			bool shouldShowCursor = (!isFullscreen || cursorTime < 600);
+			if(shouldShowCursor != showCursor)
+			{
+				showCursor = shouldShowCursor;
+				SDL_ShowCursor(showCursor);
+			}
 			
 			// Tell all the panels to step forward, then draw them.
 			((!isPaused && menuPanels.IsEmpty()) ? gamePanels : menuPanels).StepAll();
@@ -482,6 +497,9 @@ int DoError(string message, SDL_Window *window, SDL_GLContext context)
 
 void Cleanup(SDL_Window *window, SDL_GLContext context)
 {
+	// Make sure the cursor is visible.
+	SDL_ShowCursor(true);
+	
 	// Clean up in the reverse order that everything is launched.
 #ifndef _WIN32
 	// Under windows, this cleanup code causes intermittent crashes.
