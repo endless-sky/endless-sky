@@ -502,6 +502,7 @@ string Planet::DemandTribute(PlayerInfo &player) const
 	
 	player.Conditions()["tribute: " + name] = tribute;
 	GameData::GetPolitics().DominatePlanet(this);
+	GameData::GetPolitics().Offend(GetGovernment(), ShipEvent::ATROCITY);
 	return "We surrender. We will pay you " + Format::Number(tribute) + " credits per day to leave us alone.";
 }
 
