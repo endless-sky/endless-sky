@@ -2455,6 +2455,104 @@ event "bombed zenith"
 		description `	The settlements here were never more than tenuous villages operating on the brink of starvation as they sought to make a living in this icy wilderness. Now, many of them have collapsed due to massive earthquakes that came after the Oathkeepers had the planet bombed to destroy an Alpha base.`
 		bribe .04
 		"required reputation" 0
+	system Alnilam
+		object
+			sprite star/f5
+			period 10
+		object
+			sprite planet/desert1
+			distance 224.69
+			period 32.5315
+		object
+			sprite planet/gas7
+			distance 966.7
+			period 290.312
+			object
+				sprite planet/miranda
+				distance 220
+				period 10.5884
+			object
+				sprite planet/luna
+				distance 305
+				period 17.2841
+		object Zenith
+			sprite "planet/zenith hot"
+			distance 1776.59
+			period 723.284
+			object
+				sprite planet/ice8
+				distance 136
+				period 16.5247
+		object
+			sprite planet/gas2
+			distance 2758.68
+			period 1399.52
+			object
+				sprite planet/dust1
+				distance 200
+				period 12.5708
+			object
+				sprite planet/lava0
+				distance 330
+				period 26.6433
+			object
+				sprite planet/dust7
+				distance 440
+				period 41.0201
+			object
+				sprite planet/desert4
+				distance 575
+				period 61.2801
+
+event "zenith cooling"
+	system Alnilam
+		object
+			sprite star/f5
+			period 10
+		object
+			sprite planet/desert1
+			distance 224.69
+			period 32.5315
+		object
+			sprite planet/gas7
+			distance 966.7
+			period 290.312
+			object
+				sprite planet/miranda
+				distance 220
+				period 10.5884
+			object
+				sprite planet/luna
+				distance 305
+				period 17.2841
+		object Zenith
+			sprite "planet/zenith cold"
+			distance 1776.59
+			period 723.284
+			object
+				sprite planet/ice8
+				distance 136
+				period 16.5247
+		object
+			sprite planet/gas2
+			distance 2758.68
+			period 1399.52
+			object
+				sprite planet/dust1
+				distance 200
+				period 12.5708
+			object
+				sprite planet/lava0
+				distance 330
+				period 26.6433
+			object
+				sprite planet/dust7
+				distance 440
+				period 41.0201
+			object
+				sprite planet/desert4
+				distance 575
+				period 61.2801
 
 mission "Wanderers: Sestor: Bomb Zenith 2"
 	landing
@@ -2467,6 +2565,7 @@ mission "Wanderers: Sestor: Bomb Zenith 2"
 	on offer
 		log "Dropped some sort of incredibly destructive bomb on the Alpha base on the anarchist world of Zenith. The explosion tore open a hole straight through the planet's crust."
 		event "bombed zenith"
+		event "zenith cooling" 40
 		conversation
 			`You shove Danforth's device out the airlock at the coordinates he gave you, and immediately fire your ship's repulsors full blast to take you back up into orbit...`
 				launch
