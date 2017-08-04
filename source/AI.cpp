@@ -818,13 +818,16 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 	if(parentTarget && !parentTarget->IsTargetable())
 		parentTarget.reset();
 
-	// Find the closest enemy ship (if there is one). If this ship is "heroic,"
-	// it will attack any ship in system. Otherwise, if all its weapons have a
-	// range higher than 2000, it will engage ships up to 50% beyond its range.
-	// If a ship has short range weapons and is not heroic, it will engage any
-	// ship that is within 3000 of it.
-	double closest = person.IsHeroic() ? numeric_limits<double>::infinity() :
-		(minRange > 1000.) ? maxRange * 1.5 : 4000.;
+	// Find the closest enemy ship (if there is one). If this ship is "unconstrained," it will target
+	// any ship in system. If it is "heroic", it will consider ships within 5000 of it, or the nearby
+	// target of any allies. For a non-"heroic"/"unconstrained" ship, if all weapons have a range
+	// higher than 1000, it will engage ships up to 50% beyond its range. If it has at least one short
+	// range weapon, it will engage targets within 4000.
+	double closest = person.IsUnconstrained() ? numeric_limits<double>::infinity() :
+		(person.IsHeroic() ? 5000. : (minRange > 1000.) ? maxRange * 1.5 : 4000.);
+	std::vector<shared_ptr<Ship>> allyTargets;
+	if(person.IsHeroic())
+		allyTargets.reserve(ships.size() * .2);
 	const System *system = ship.GetSystem();
 	bool isDisabled = false;
 	bool hasNemesis = false;
@@ -834,6 +837,7 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 	if(!person.IsHeroic() && strengthIt != shipStrength.end())
 		maxStrength = 2 * strengthIt->second;
 	for(const auto &it : ships)
+	{
 		if(it->GetSystem() == system && it->IsTargetable() && gov->IsEnemy(it->GetGovernment()))
 		{
 			// If this is a "nemesis" ship and it has found one of the player's
@@ -907,6 +911,16 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 				hasNemesis = isPotentialNemesis;
 			}
 		}
+		else if(person.IsHeroic() && it->GetSystem() == system && !gov->IsEnemy(it->GetGovernment()))
+		{
+			shared_ptr<Ship> allyTarget = it->GetTargetShip();
+			if(allyTarget && allyTarget->IsTargetable() && gov->IsEnemy(allyTarget->GetGovernment())
+					&& (it->Position().Distance(allyTarget->Position()) < 5000.))
+				allyTargets.emplace_back(allyTarget);
+		}
+	}
+	if(!target && allyTargets.size())
+		target = allyTargets[Random::Int(allyTargets.size())];
 	
 	bool cargoScan = ship.Attributes().Get("cargo scan") || ship.Attributes().Get("cargo scan power");
 	bool outfitScan = ship.Attributes().Get("outfit scan") || ship.Attributes().Get("outfit scan power");
