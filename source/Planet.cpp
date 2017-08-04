@@ -495,7 +495,7 @@ string Planet::DemandTribute(PlayerInfo &player) const
 	{
 		isDefending = true;
 		GameData::GetPolitics().Offend(defenseFleet->GetGovernment(), ShipEvent::PROVOKE);
-		GameData::GetPolitics().Offend(GetGovernment(), ShipEvent::PROVOKE);
+		GameData::GetPolitics().Offend(GetGovernment(), ShipEvent::ATROCITY);
 		tributeMessage = GetGovernment()->GetTributeMessage(TRIBUTE_BATTLE);
 		return Format::Replace(tributeMessage, subs);
 	}
