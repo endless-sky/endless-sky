@@ -314,9 +314,9 @@ void Engine::Step(bool isActive)
 	{
 		double zoomTarget = Preferences::ViewZoom();
 		if(zoom < zoomTarget)
-			zoom = min(zoomTarget, zoom * 1.01);
+			zoom = min(zoomTarget, zoom * 1.03);
 		else if(zoom > zoomTarget)
-			zoom = max(zoomTarget, zoom * .99);
+			zoom = max(zoomTarget, zoom * .97);
 	}
 		
 	// Draw a highlight to distinguish the flagship from other ships.
