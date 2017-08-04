@@ -187,7 +187,7 @@ outfit "Millennium Cell"
 	licenses
 		Remnant
 	cost 767000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/millennium cell"
 	"mass" 29
 	"outfit space" -29
 	"energy generation" 3.6
@@ -199,7 +199,7 @@ outfit "Epoch Cell"
 	licenses
 		Remnant
 	cost 3060000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/epoch cell"
 	"mass" 98
 	"outfit space" -98
 	"energy generation" 12.7
@@ -211,7 +211,7 @@ outfit "Aeon Cell"
 	licenses
 		Remnant
 	cost 6600000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/aeon cell"
 	"mass" 160
 	"outfit space" -160
 	"energy generation" 21.9
