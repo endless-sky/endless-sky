@@ -3329,6 +3329,50 @@ phrase "disabled test dummy"
 		"I have a pain in all the diodes down my left side."
 
 
+# "Failed bribe" phrases are displayed on the hailing screen, when talking to a ship or a planet.
+# They feature string substitution, with the following values:
+# <new bribe> -> the amount that is now required
+# <old bribe> -> the amount that was just paid
+phrase "failed ship bribe"
+	word
+		"It's so nice to work with an honest captain."
+		"I can't believe that worked!"
+		"You seem pretty gullible."
+		"Wow, you paid up!"
+		"Credits? What credits? Your last transmission cut off early."
+		"Your pockets would look even better if they were just a little lighter."
+		"Sadly, <old bribe> credits was a little low."
+		"Great, <old bribe> credits will really help pay for this ship. We've got other bills to pay though."
+	word
+		" "
+	word
+		"Tell you what, if you really want us to leave you alone, you need to pay at least <new bribe> credits."
+		"I hope you won't mind paying us <new bribe> credits to leave you alone."
+		"How about <new bribe> credits? That should be enough for us to leave you alone."
+		"You'll need to pay at least <new bribe> credits for your safety."
+		"You should pay <new bribe> credits, that seems like a good price for your safety."
+		"Nothing less than <new bribe> credits will get us to let you go."
+
+phrase "failed planet bribe"
+	word
+		"I can't believe that worked!"
+		"You seem pretty gullible."
+		"Wow, you paid up!"
+		"Credits? What credits? Your last transmission cut off early."
+		"Sadly, <old bribe> credits was a little low."
+		"Spaceport maintenance is expensive."
+	word
+		" "
+	word
+		"Tell you what, if you really want to land here, <new bribe> credits should buy you access."
+		"I hope you won't mind paying us <new bribe> credits to land here."
+		"How about <new bribe> credits? That should be enough for us to let you land."
+		"You'll need to pay at least <new bribe> credits to dock."
+		"You should pay <new bribe> credits, that seems like a good price to land here."
+		"Nothing less than <new bribe> credits will get us to let you land."
+		"The price to land just went up: <new bribe> credits, and no less!"
+
+
 # Wormhole Hails
 phrase "wormhole hail"
 	word

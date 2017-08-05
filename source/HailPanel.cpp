@@ -35,6 +35,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include <algorithm>
 #include <cmath>
+#include <map>
 
 using namespace std;
 
@@ -296,6 +297,8 @@ bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 			if(failedBribe)
 			{
 				double fraction = 0.;
+				map<string, string> subs;
+				subs["<old bribe>"] = Format::Number(bribe);
 				string toast = "You attempted to bribe ";
 				if(ship)
 				{
@@ -307,12 +310,13 @@ bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 					toast += "the authorities on " + planet->Name();
 					fraction = planet->GetBribeFraction();
 				}
-				toast += " with " + Format::Number(bribe) + " credits, but they only took your money.";
+				toast += " with " + subs.at("<old bribe>") + " credits, but they only took your money.";
 				Messages::Add(toast);
 				// Calculate the new bribe amount, and update the displayed message.
 				bribe *= 1 + 2 * fraction;
-				message = "It's a pleasure doing business with you. Such a pleasure, in fact, that you need to pay at least "
-					+ Format::Number(bribe) + " more credits " + (ship ? " for us to leave you alone." : " to land here.");
+				subs["<new bribe>"] = Format::Number(bribe);
+				message = Format::Replace(GameData::Phrases().Get(
+					ship ? "failed ship bribe" : "failed planet bribe")->Get(), subs);
 			}
 			else
 			{
