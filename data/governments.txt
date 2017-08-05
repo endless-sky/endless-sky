@@ -28,7 +28,7 @@ government "Bounty Hunter"
 	color .78 0 0
 
 	"player reputation" -1000
-	"bribe" .2
+	"bribe" .2 .5
 	"fine" 0
 	"hostile hail" "hostile bounty hunter"
 
@@ -75,7 +75,7 @@ government "Free Worlds"
 		"Militia" .3
 		"Pirate" -.4
 		"Neutral" .1
-	"bribe" .1
+	"bribe" .1 .1
 	"friendly hail" "friendly free worlds"
 	"hostile hail" "hostile free worlds"
 	raid "pirate raid"
@@ -88,7 +88,7 @@ government "Hai"
 	"attitude toward"
 		"Hai (Unfettered)" -.5
 		"Merchant" .01
-	"bribe" .02
+	"bribe" .02 .1
 	"fine" 0
 	"friendly hail" "friendly hai"
 	"hostile hail" "hostile hai"
@@ -104,7 +104,7 @@ government "Hai (Unfettered)"
 		"Pug" -.01
 		"Merchant" -.01
 		"Kor Efret" -.01
-	"bribe" .02
+	"bribe" .08 .3
 	"fine" 0
 	"friendly hail" "friendly unfettered"
 	"hostile hail" "hostile unfettered"
@@ -123,7 +123,7 @@ government "Independent"
 	color .78 .36 .36
 	
 	"player reputation" 10
-	"bribe" .05
+	"bribe" .05 .1
 	"fine" 0
 	"friendly hail" "friendly civilian"
 	"hostile hail" "hostile civilian"
@@ -198,7 +198,7 @@ government "Merchant"
 	"attitude toward"
 		"Pirate" -.2
 		"Korath" -.2
-	"bribe" .05
+	"bribe" .05 .1
 	"fine" 0
 	"friendly hail" "friendly civilian"
 	"hostile hail" "hostile civilian"
@@ -211,7 +211,7 @@ government "Militia"
 	"attitude toward"
 		"Merchant" .3
 		"Pirate" -.4
-	"bribe" .1
+	"bribe" .1 .1
 	"friendly hail" "friendly militia"
 	"hostile hail" "hostile militia"
 
@@ -245,7 +245,7 @@ government "Neutral"
 	"attitude toward"
 		"Merchant" .3
 		"Pirate" -.2
-	"bribe" .05
+	"bribe" .05 .1
 	"friendly hail" "friendly civilian"
 	"hostile hail" "hostile civilian"
 	raid "pirate raid"
@@ -266,7 +266,7 @@ government "Pirate"
 		"Korath" -.01
 		"Merchant" -.1
 		"Syndicate" -.01
-	"bribe" .05
+	"bribe" .08 .5
 	"fine" 0
 	"friendly hail" "friendly pirate"
 	"hostile hail" "hostile pirate"
@@ -331,7 +331,7 @@ government "Syndicate"
 		"Merchant" .3
 		"Pirate" -.4
 		"Korath" -.5
-	"bribe" .08
+	"bribe" .08 .2
 	"friendly hail" "friendly syndicate"
 	"hostile hail" "hostile syndicate"
 	raid "pirate raid"

@@ -1776,7 +1776,7 @@ event "fw syndicate welcoming"
 			"Free Worlds" 0
 			"Republic" 0
 			"Navy (Oathkeeper)" 0
-		bribe .08
+		bribe .08 .2
 	system "Algenib"
 		government "Syndicate (Extremist)"
 		fleet "Small Core Pirates" 1500

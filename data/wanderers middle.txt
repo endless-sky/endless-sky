@@ -2457,7 +2457,7 @@ event "bombed zenith"
 	planet "Zenith"
 		description `Zenith is a cold and unpleasant world, where the fog seldom lifts and the sun is rarely seen, where much of the lowlands are flooded each day by the tide, and storms are unpredictable and fierce. It has, however, one major advantage as a place to settle: it is far enough away that the Republic makes no attempt to control it.`
 		description `	The settlements here were never more than tenuous villages operating on the brink of starvation as they sought to make a living in this icy wilderness. Now, many of them have collapsed due to massive earthquakes that came after the Oathkeepers had the planet bombed to destroy an Alpha base.`
-		bribe .04
+		bribe .04 .25
 		"required reputation" 0
 	system "Alnilam"
 		object

@@ -24363,7 +24363,7 @@ planet "Charybdis Station"
 	music ambient/machinery
 	description `Charybdis Station is privately owned by the Syndicate. It is a massive deuterium refinery, with harvester drones constantly flying in and out to scoop hydrogen gas out of the upper atmosphere of the planet below. If you need to repair or refuel in this system, you will need to visit the neighboring world of Delve, instead of this station.`
 	"required reputation" 20
-	bribe 0.05
+	bribe 0.05 .15
 	security 0.6
 	tribute 300
 		threshold 2500
@@ -24476,7 +24476,7 @@ planet Covert
 	outfitter "Ammo South"
 	outfitter "Pirate Outfits"
 	"required reputation" 10
-	bribe 0.1
+	bribe 0.1 .25
 	security 0
 	tribute 1300
 		threshold 3000
@@ -24549,7 +24549,7 @@ planet "Deadman's Cove"
 	outfitter "Ammo North"
 	outfitter "Ammo South"
 	outfitter "Pirate Outfits"
-	bribe 0.03
+	bribe 0.03 .25
 	security 0
 	tribute 600
 		threshold 2500
@@ -24933,7 +24933,7 @@ planet Foundry
 	outfitter "Common Outfits"
 	outfitter "Syndicate Advanced"
 	outfitter "Ammo North"
-	bribe 0.1
+	bribe 0.1 .15
 	security 0.5
 	tribute 2900
 		threshold 5500
@@ -24980,7 +24980,7 @@ planet Furnace
 	outfitter "Syndicate Basics"
 	outfitter "Basic Outfits"
 	outfitter "Ammo North"
-	bribe 0.05
+	bribe 0.05 .15
 	security 0.1
 	tribute 1200
 		threshold 3500
@@ -25116,7 +25116,7 @@ planet Greenrock
 	outfitter "Kraz Basics"
 	outfitter "Syndicate Basics"
 	outfitter "Pirate Outfits"
-	bribe 0.05
+	bribe 0.05 .25
 	security 0
 	tribute 1800
 		threshold 3500
@@ -25175,7 +25175,7 @@ planet Haven
 	outfitter "Ammo North"
 	outfitter "Ammo South"
 	outfitter "Pirate Outfits"
-	bribe 0.03
+	bribe 0.03 .25
 	security 0
 	tribute 700
 		threshold 3000
@@ -25242,7 +25242,7 @@ planet Hephaestus
 	outfitter "Lovelace Basics"
 	outfitter "Syndicate Advanced"
 	outfitter "Ammo North"
-	bribe 0.1
+	bribe 0.1 .15
 	security 0.7
 	tribute 3400
 		threshold 6500
@@ -26087,7 +26087,7 @@ planet "Oberon Station"
 	music ambient/machinery
 	description `Oberon Station is a deuterium refinery owned and operated by the Syndicate, and aside from a few docking bays for visiting ships to use in an emergency, the rest of the station is sealed off to non-employees.`
 	"required reputation" 10
-	bribe 0.03
+	bribe 0.03 .15
 	security 0.4
 	tribute 400
 		threshold 2000
@@ -26547,7 +26547,7 @@ planet Shangri-La
 	outfitter "Common Outfits"
 	outfitter "Ammo North"
 	"required reputation" 5
-	bribe 0.07
+	bribe 0.07 .15
 	security 0.7
 	tribute 1200
 		threshold 4000
@@ -26665,7 +26665,7 @@ planet "Smuggler's Den"
 	outfitter "Ammo North"
 	outfitter "Ammo South"
 	outfitter "Pirate Outfits"
-	bribe 0.06
+	bribe 0.06 .25
 	security 0
 	tribute 400
 		threshold 2000
@@ -26755,7 +26755,7 @@ planet Stormhold
 	outfitter "Ammo North"
 	outfitter "Ammo South"
 	outfitter "Pirate Outfits"
-	bribe 0.03
+	bribe 0.03 .25
 	security 0
 	tribute 500
 		threshold 2000
@@ -26806,7 +26806,7 @@ planet Sunracer
 	outfitter "Syndicate Advanced"
 	outfitter "Lovelace Basics"
 	outfitter "Ammo North"
-	bribe 0.06
+	bribe 0.06 .15
 	security 0.7
 	tribute 1700
 		threshold 5000
@@ -26857,7 +26857,7 @@ planet Thule
 	outfitter "Ammo North"
 	outfitter "Ammo South"
 	outfitter "Pirate Outfits"
-	bribe 0.05
+	bribe 0.05 .25
 	security 0.6
 	tribute 900
 		threshold 2500
@@ -26897,7 +26897,7 @@ planet Tinker
 	outfitter "Ammo North"
 	outfitter "Syndicate Basics"
 	outfitter "Lovelace Basics"
-	bribe 0.04
+	bribe 0.04 .15
 	security 0.4
 	tribute 1100
 		threshold 4000
@@ -27283,7 +27283,7 @@ planet Zenith
 	description `	Several villages have been founded near the equator, and in addition there are an unknown number of private holdings, ranging from underground bunkers to enormous cement fortresses. Because the land is owned by no government and anyone can build a dwelling without permission or paperwork as long as they are willing to fight off any other claimants, the total population of Zenith is unknown.`
 	spaceport `To create a spaceport for Zenith, one enterprising privateer a few centuries ago used a mixture of explosives and heavy machinery to shift the top of one of the tallest mountains down into the neighboring valleys, creating a high plateau that is (usually) above the fog line. There are landing pads both for starships like yours and for airships that carry cargo to and from the settlements elsewhere on the planet. The port is nearly deserted, however; it is clear that they do not do much business here.`
 	outfitter "Ammo North"
-	bribe 0.04
+	bribe 0.04 .25
 	security 0
 	tribute 400
 		threshold 2500
@@ -27307,4 +27307,3 @@ planet Zug
 	tribute 1200
 		threshold 3000
 		fleet "Large Militia" 18
-
