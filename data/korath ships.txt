@@ -1051,8 +1051,8 @@ ship "Model 64"
 	engine 19 159
 	gun 0 -159 "Korath Minelayer"
 	turret 20 -74 "Korath Slicer Turret"
-	turret -29 71 "Korath Slicer Turret"
 	turret -35 -69 "Korath Disruptor"
+	turret -29 71 "Korath Slicer Turret"
 	turret 34 77 "Korath Disruptor"
 	explode "tiny explosion" 100
 	explode "small explosion" 70

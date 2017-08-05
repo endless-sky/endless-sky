@@ -25,6 +25,7 @@ const int Radar::HOSTILE = 3;
 const int Radar::INACTIVE = 4;
 const int Radar::SPECIAL = 5;
 const int Radar::ANOMALOUS = 6;
+const int Radar::BLINK = 7;
 
 
 
@@ -93,7 +94,8 @@ const Color &Radar::GetColor(int type)
 		*GameData::Colors().Get("radar hostile"),
 		*GameData::Colors().Get("radar inactive"),
 		*GameData::Colors().Get("radar special"),
-		*GameData::Colors().Get("radar anomalous")
+		*GameData::Colors().Get("radar anomalous"),
+		*GameData::Colors().Get("radar blink")
 	};
 	
 	if(static_cast<size_t>(type) >= color.size())

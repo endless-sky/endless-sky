@@ -709,17 +709,17 @@ bool Ship::Move(list<Effect> &effects, list<shared_ptr<Flotsam>> &flotsam)
 	// Handle ionization effects, etc.
 	if(ionization)
 	{
-		ionization *= .99;
+		ionization = max(0., .99 * ionization - attributes.Get("ion resistance"));
 		CreateSparks(effects, "ion spark", ionization * .1);
 	}
 	if(disruption)
 	{
-		disruption *= .99;
+		disruption = max(0., .99 * disruption - attributes.Get("disruption resistance"));
 		CreateSparks(effects, "disruption spark", disruption * .1);
 	}
 	if(slowness)
 	{
-		slowness *= .99;
+		slowness = max(0., .99 * slowness - attributes.Get("slowing resistance"));
 		CreateSparks(effects, "slowing spark", slowness * .1);
 	}
 	double slowMultiplier = 1. / (1. + slowness * .05);
@@ -1845,10 +1845,13 @@ void Ship::WasCaptured(const shared_ptr<Ship> &capturer)
 	// is not possible, in which case, share evenly.
 	int totalRequired = capturer->RequiredCrew() + RequiredCrew();
 	int transfer = RequiredCrew();
-	if(totalRequired > capturer->Crew())
-		transfer = max(1, (capturer->Crew() * RequiredCrew()) / totalRequired);
-	capturer->AddCrew(-transfer);
-	AddCrew(transfer);
+	if(transfer)
+	{
+		if(totalRequired > capturer->Crew())
+			transfer = max(1, (capturer->Crew() * RequiredCrew()) / totalRequired);
+		capturer->AddCrew(-transfer);
+		AddCrew(transfer);
+	}
 	
 	// Set the capturer as this ship's parent.
 	SetParent(capturer);
@@ -2098,10 +2101,10 @@ int Ship::TakeDamage(const Projectile &projectile, bool isBlast)
 	double shieldDamage = weapon.ShieldDamage();
 	double hullDamage = weapon.HullDamage();
 	double hitForce = weapon.HitForce();
-	double heatDamage = weapon.HeatDamage() / (1. + attributes.Get("heat resistance"));
-	double ionDamage = weapon.IonDamage() / (1. + attributes.Get("ion resistance"));
-	double disruptionDamage = weapon.DisruptionDamage() / (1. + attributes.Get("disruption resistance"));
-	double slowingDamage = weapon.SlowingDamage() / (1. + attributes.Get("slowing resistance"));
+	double heatDamage = weapon.HeatDamage();
+	double ionDamage = weapon.IonDamage();
+	double disruptionDamage = weapon.DisruptionDamage();
+	double slowingDamage = weapon.SlowingDamage();
 	bool wasDisabled = IsDisabled();
 	bool wasDestroyed = IsDestroyed();
 	

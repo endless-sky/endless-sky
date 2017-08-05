@@ -615,7 +615,7 @@ void PlayerInfo::IncrementDate()
 	
 	// Reset the reload counters for all your ships.
 	for(const shared_ptr<Ship> &ship : ships)
-		ship->GetArmament().FinishLoading();
+		ship->GetArmament().ReloadAll();
 }
 
 
@@ -1161,6 +1161,15 @@ bool PlayerInfo::TakeOff(UI *ui)
 	{
 		bool shouldHaveParent = (ship != flagship && !ship->IsParked() && !ship->CanBeCarried());
 		ship->SetParent(shouldHaveParent ? flagship : shared_ptr<Ship>());
+	}
+	// Make sure your flagship is not included in the escort selection.
+	for(auto it = selectedShips.begin(); it != selectedShips.end(); )
+	{
+		shared_ptr<Ship> ship = it->lock();
+		if(!ship || ship == flagship)
+			it = selectedShips.erase(it);
+		else
+			++it;
 	}
 	
 	// Recharge any ships that can be recharged.
@@ -1841,6 +1850,8 @@ const Planet *PlayerInfo::TravelDestination() const
 void PlayerInfo::SetTravelDestination(const Planet *planet)
 {
 	travelDestination = planet;
+	if(planet->IsInSystem(system) && Flagship())
+		Flagship()->SetTargetStellar(system->FindStellar(planet));
 }
 
 

@@ -148,20 +148,24 @@ void OutfitterPanel::DrawItem(const string &name, const Point &point, int scroll
 			font.Draw(label, labelPos, bright);
 		}
 	}
-	if(!playerShip && player.Cargo().Get(outfit))
-	{
-		string count = "in cargo: " + to_string(player.Cargo().Get(outfit));
-		Point pos = point + Point(
-			OUTFIT_SIZE / 2 - 20 - font.Width(count),
-			OUTFIT_SIZE / 2 - 24);
-		font.Draw(count, pos, bright);
-	}
+	// Don't show the "in stock" amount if the outfit has an unlimited stock or
+	// if it is not something that you can buy.
+	int stock = 0;
+	if(!outfitter.Has(outfit) && outfit->Get("installable") >= 0.)
+		stock = max(0, player.Stock(outfit));
+	int cargo = player.Cargo().Get(outfit);
+	
+	string message;
+	if(cargo && stock)
+		message = "in cargo: " + to_string(cargo) + ", in stock: " + to_string(stock);
+	else if(cargo)
+		message = "in cargo: " + to_string(cargo);
+	else if(stock)
+		message = "in stock: " + to_string(stock);
 	else if(!outfitter.Has(outfit))
+		message = "(not sold here)";
+	if(!message.empty())
 	{
-		// If not showing cargo, outfits in cargo count as "in stock."
-		int count = player.Cargo().Get(outfit) + max(0, player.Stock(outfit));
-		string message = (count > 0 ?
-			"in stock: " + to_string(count) : "(not sold here)");
 		Point pos = point + Point(
 			OUTFIT_SIZE / 2 - 20 - font.Width(message),
 			OUTFIT_SIZE / 2 - 24);
@@ -478,8 +482,7 @@ bool OutfitterPanel::CanSell() const
 	if(!planet || !selectedOutfit)
 		return false;
 	
-	// Only sell from cargo if cargo is being displayed (no ship is selected).
-	if(!playerShip && player.Cargo().Get(selectedOutfit))
+	if(player.Cargo().Get(selectedOutfit))
 		return true;
 	
 	for(const Ship *ship : playerShips)
@@ -493,8 +496,7 @@ bool OutfitterPanel::CanSell() const
 
 void OutfitterPanel::Sell()
 {
-	// Only sell from cargo if cargo is being displayed (no ship is selected).
-	if(!playerShip && player.Cargo().Get(selectedOutfit))
+	if(player.Cargo().Get(selectedOutfit))
 	{
 		player.Cargo().Remove(selectedOutfit);
 		int64_t price = player.FleetDepreciation().Value(selectedOutfit, day);
@@ -564,7 +566,7 @@ void OutfitterPanel::FailSell() const
 		GetUI()->Push(new Dialog("You cannot sell licenses. Once you buy one, it is yours permanently."));
 	else
 	{
-		bool hasOutfit = false;
+		bool hasOutfit = player.Cargo().Get(selectedOutfit);
 		for(const Ship *ship : playerShips)
 			if(ship->OutfitCount(selectedOutfit))
 			{

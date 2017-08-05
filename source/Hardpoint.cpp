@@ -264,9 +264,7 @@ void Hardpoint::Install(const Outfit *outfit)
 	{
 		// Reset all the reload counters.
 		this->outfit = outfit;
-		reload = 0.;
-		burstReload = 0.;
-		burstCount = outfit->BurstCount();
+		Reload();
 		
 		// For fixed weapons, apply "gun harmonization," pointing them slightly
 		// inward so the projectiles will converge. For turrets, start them out
@@ -276,6 +274,16 @@ void Hardpoint::Install(const Outfit *outfit)
 		else
 			angle = Angle(point);
 	}
+}
+
+
+
+// Reload this weapon.
+void Hardpoint::Reload()
+{
+	reload = 0.;
+	burstReload = 0.;
+	burstCount = outfit ? outfit->BurstCount() : 0;
 }
 
 

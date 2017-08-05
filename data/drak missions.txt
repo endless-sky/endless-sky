@@ -36,6 +36,8 @@ mission "Drak guarding Sayaiban"
 		system Sayaiban
 		ship "Archon" "Watchful Gravetender"
 	on enter Sayaiban
+		log "Factions" "Archons" `Archons consider it to be their job to enforce peace and to prevent extinction. If they are unable to prevent a species from driving itself extinct, they will still try to preserve some of what that species created as a memorial to them.`
+			`They are capable of communicating telepathically.`
 		conversation
 			`A voice says, "This system is off limits. You should leave."`
 			`	After a second, you realize that the voice did not come from your communications equipment. In fact, now that you think about it, you're not sure if it was an audible voice, or just something in your head.`

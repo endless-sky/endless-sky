@@ -17,6 +17,7 @@ mission "Wanderer Workers [0]"
 	to offer
 		has "language: Wanderer"
 		random < 70
+		not "event: battle for sich'ka'ara ends"
 	source
 		government "Wanderer"
 	destination
@@ -57,6 +58,7 @@ mission "Wanderer Farmers [0]"
 	to offer
 		has "language: Wanderer"
 		random < 70
+		not "event: battle for sich'ka'ara ends"
 	source
 		government "Wanderer"
 	destination
@@ -77,6 +79,7 @@ mission "Wanderer Farmers [1]"
 	to offer
 		has "language: Wanderer"
 		random < 60
+		not "event: battle for sich'ka'ara ends"
 	source
 		government "Wanderer"
 	destination
@@ -97,6 +100,7 @@ mission "Wanderer Younglings [0]"
 	to offer
 		has "language: Wanderer"
 		random < 60
+		not "event: battle for sich'ka'ara ends"
 	source
 		government "Wanderer"
 	destination
@@ -116,6 +120,7 @@ mission "Wanderer Younglings [1]"
 	to offer
 		has "language: Wanderer"
 		random < 50
+		not "event: battle for sich'ka'ara ends"
 	source
 		government "Wanderer"
 	destination
@@ -137,6 +142,7 @@ mission "Wanderer Scientists (Pollution) [0]"
 	to offer
 		has "language: Wanderer"
 		random < 30
+		not "event: battle for sich'ka'ara ends"
 	source
 		government "Wanderer"
 	destination
@@ -158,6 +164,7 @@ mission "Wanderer Scientists (Pollution) [1]"
 	to offer
 		has "language: Wanderer"
 		random < 20
+		not "event: battle for sich'ka'ara ends"
 	source
 		government "Wanderer"
 	destination
@@ -179,6 +186,7 @@ mission "Wanderer Scientists (Phenomenon) [0]"
 	to offer
 		has "language: Wanderer"
 		random < 30
+		not "event: battle for sich'ka'ara ends"
 	source
 		government "Wanderer"
 	destination
@@ -199,6 +207,7 @@ mission "Wanderer Scientists (Phenomenon) [1]"
 	to offer
 		has "language: Wanderer"
 		random < 20
+		not "event: battle for sich'ka'ara ends"
 	source
 		government "Wanderer"
 	destination
@@ -220,6 +229,7 @@ mission "Wanderer Biologists [0]"
 		random < 60
 	source
 		government "Wanderer"
+		near "Ka'ch'chrai" 100
 	destination
 		distance 2 8
 		government "Wanderer"
@@ -260,6 +270,7 @@ mission "Wanderer Botanists [0]"
 		random < 60
 	source
 		government "Wanderer"
+		near "Ka'ch'chrai" 100
 	destination
 		distance 2 8
 		government "Wanderer"
@@ -299,6 +310,7 @@ mission "Wanderer Harvest [0]"
 		random < 50
 	source
 		government "Wanderer"
+		near "Ka'ch'chrai" 100
 	destination
 		distance 2 8
 		attributes farming
@@ -319,6 +331,7 @@ mission "Wanderer Harvest [1]"
 		random < 40
 	source
 		government "Wanderer"
+		near "Ka'ch'chrai" 100
 	destination
 		distance 2 8
 		attributes farming
@@ -332,13 +345,14 @@ mission "Wanderer Invasive Species [0]"
 	name "Quarantine an invasive species"
 	job
 	repeat
-	description `These <bunks> Wanderers need to get to <stopovers> with their <cargo> by <date> to contain an invasive animal species. Return the Wanderers to <origin> with the animals for a payment of <payment>.`
+	description `These <bunks> Wanderers need to get to <stopovers> with their <cargo> to contain an invasive animal species. Return the Wanderers to <origin> with the animals by <date> for a payment of <payment>.`
 	passengers 4 4 .1
 	cargo "containers" 5 2 .1
 	deadline
 	to offer
 		has "language: Wanderer"
 		random < 30
+		not "event: battle for sich'ka'ara ends"
 	source
 		government "Wanderer"
 	stopover
@@ -354,7 +368,7 @@ mission "Wanderer Invasive Species [1]"
 	name "Quarantine an invasive species"
 	job
 	repeat
-	description `These <bunks> Wanderers need to get to <stopovers> with their <cargo> by <date> to contain an invasive plant species. Return the Wanderers to <origin> with the animals for a payment of <payment>.`
+	description `These <bunks> Wanderers need to get to <stopovers> with their <cargo> to contain an invasive plant species. Return the Wanderers to <origin> with the plants by <date> for a payment of <payment>.`
 	passengers 4 4 .1
 	cargo "containers" 5 2 .1
 	deadline
@@ -363,6 +377,7 @@ mission "Wanderer Invasive Species [1]"
 		random < 30
 	source
 		government "Wanderer"
+		near "Ka'ch'chrai" 100
 	stopover
 		distance 2 8
 		government "Wanderer"
@@ -381,6 +396,7 @@ mission "Wanderer Cargo [0]"
 	to offer
 		has "language: Wanderer"
 		random < 70
+		not "event: battle for sich'ka'ara ends"
 	source
 		government "Wanderer"
 	destination
@@ -402,6 +418,7 @@ mission "Wanderer Cargo [1]"
 		random < 60
 	source
 		government "Wanderer"
+		near "Ka'ch'chrai" 100
 	destination
 		distance 2 8
 		government "Wanderer"
@@ -419,6 +436,7 @@ mission "Wanderer Cargo [2]"
 	to offer
 		has "language: Wanderer"
 		random < 50
+		not "event: battle for sich'ka'ara ends"
 	source
 		government "Wanderer"
 	destination
@@ -477,6 +495,7 @@ mission "Wanderer Rush Delivery [0]"
 	to offer
 		has "language: Wanderer"
 		random < 50
+		not "event: battle for sich'ka'ara ends"
 	source
 		government "Wanderer"
 	destination
@@ -499,6 +518,7 @@ mission "Wanderer Rush Delivery [1]"
 		random < 40
 	source
 		government "Wanderer"
+		near "Ka'ch'chrai" 100
 	destination
 		distance 2 8
 		government "Wanderer"
@@ -556,6 +576,7 @@ mission "Wanderer Bulk Delivery [0]"
 	to offer
 		has "language: Wanderer"
 		random < 50
+		not "event: battle for sich'ka'ara ends"
 	source
 		government "Wanderer"
 	destination
@@ -577,6 +598,7 @@ mission "Wanderer Bulk Delivery [1]"
 		random < 40
 	source
 		government "Wanderer"
+		near "Ka'ch'chrai" 100
 	destination
 		distance 2 8
 		government "Wanderer"

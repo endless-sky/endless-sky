@@ -97,15 +97,26 @@ void Armament::Add(const Outfit *outfit, int count)
 // set up properly (even the ones that were pre-assigned to a hardpoint).
 void Armament::FinishLoading()
 {
+	for(Hardpoint &hardpoint : hardpoints)
+		if(hardpoint.GetOutfit())
+			hardpoint.Install(hardpoint.GetOutfit());
+	
+	ReloadAll();
+}
+
+
+
+// Reload all weapons (because a day passed in-game).
+void Armament::ReloadAll()
+{
 	streamReload.clear();
 	for(Hardpoint &hardpoint : hardpoints)
 		if(hardpoint.GetOutfit())
 		{
-			const Outfit *outfit = hardpoint.GetOutfit();
+			hardpoint.Reload();
 			
-			// Make sure the firing angle is set properly.
-			hardpoint.Install(outfit);
 			// If this weapon is streamed, create a stream counter.
+			const Outfit *outfit = hardpoint.GetOutfit();
 			if(outfit->IsStreamed())
 				streamReload[outfit] = 0;
 		}

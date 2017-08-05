@@ -39,6 +39,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "SpriteSet.h"
 #include "SpriteShader.h"
 #include "StarField.h"
+#include "StartConditions.h"
 #include "System.h"
 
 #include <algorithm>
@@ -47,21 +48,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 using namespace std;
 
 namespace {
-	int RadarType(const StellarObject &object, const Ship *flagship)
-	{
-		if(object.IsStar())
-			return Radar::SPECIAL;
-		if(!object.GetPlanet() || !object.GetPlanet()->IsAccessible(flagship))
-			return Radar::INACTIVE;
-		if(object.GetPlanet()->IsWormhole())
-			return Radar::ANOMALOUS;
-		if(GameData::GetPolitics().HasDominated(object.GetPlanet()))
-			return Radar::PLAYER;
-		if(object.GetPlanet()->CanLand())
-			return Radar::FRIENDLY;
-		return Radar::HOSTILE;
-	}
-	
 	int RadarType(const Ship &ship, int step)
 	{
 		if(ship.GetPersonality().IsTarget() && !ship.IsDestroyed())
@@ -69,7 +55,7 @@ namespace {
 			// If a ship is a "target," double-blink it a few times per second.
 			int count = (step / 6) % 7;
 			if(count == 0 || count == 2)
-				return Radar::SPECIAL;
+				return Radar::BLINK;
 		}
 		if(ship.IsDisabled() || (ship.IsOverheated() && ((step / 20) % 2)))
 			return Radar::INACTIVE;
@@ -119,7 +105,7 @@ Engine::Engine(PlayerInfo &player)
 			draw[calcTickTock].Add(object);
 			
 			double r = max(2., object.Radius() * .03 + .5);
-			radar[calcTickTock].Add(RadarType(object, flagship), object.Position(), r, r - 1.);
+			radar[calcTickTock].Add(object.RadarType(flagship), object.Position(), r, r - 1.);
 		}
 	
 	// Add all neighboring systems to the radar.
@@ -328,9 +314,9 @@ void Engine::Step(bool isActive)
 	{
 		double zoomTarget = Preferences::ViewZoom();
 		if(zoom < zoomTarget)
-			zoom = min(zoomTarget, zoom * 1.01);
+			zoom = min(zoomTarget, zoom * 1.03);
 		else if(zoom > zoomTarget)
-			zoom = max(zoomTarget, zoom * .99);
+			zoom = max(zoomTarget, zoom * .97);
 	}
 		
 	// Draw a highlight to distinguish the flagship from other ships.
@@ -851,9 +837,25 @@ void Engine::EnterSystem()
 		+ today.ToString() + (system->IsInhabited(flagship) ?
 			"." : ". No inhabited planets detected."));
 	
+	// Preload landscapes, and determine if any of the stellarobjects are wormholes.
+	bool hasWormhole = false;
 	for(const StellarObject &object : system->Objects())
+	{
 		if(object.GetPlanet())
 			GameData::Preload(object.GetPlanet()->Landscape());
+		if(!hasWormhole && object.GetPlanet() && object.GetPlanet()->IsWormhole())
+			hasWormhole = true;
+	}
+	
+	// The player may have used a wormhole that was not in his or her existing travel plan.
+	if(hasWormhole && player.HasTravelPlan())
+	{
+		// If the next system in the travel plan is not this system, or reachable
+		// from this system, then the travel plan is invalid and must be cleared.
+		const System *to = player.TravelPlan().back();
+		if(system != to && system->Neighbors().count(to) == 0)
+			player.TravelPlan().clear();
+	}
 	
 	GameData::SetDate(today);
 	GameData::StepEconomy();
@@ -917,7 +919,7 @@ void Engine::EnterSystem()
 	
 	// Help message for new players. Show this message for the first four days,
 	// since the new player ships can make at most four jumps before landing.
-	if(today <= Date(21, 11, 3013))
+	if(today <= GameData::Start().GetDate() + 4)
 	{
 		Messages::Add(GameData::HelpMessage("basics 1"));
 		Messages::Add(GameData::HelpMessage("basics 2"));
@@ -1078,7 +1080,7 @@ void Engine::CalculateStep()
 				draw[calcTickTock].Add(object);
 			
 			double r = max(2., object.Radius() * .03 + .5);
-			radar[calcTickTock].Add(RadarType(object, flagship), object.Position(), r, r - 1.);
+			radar[calcTickTock].Add(object.RadarType(flagship), object.Position(), r, r - 1.);
 			
 			if(object.GetPlanet())
 				object.GetPlanet()->DeployDefense(ships);
@@ -1290,8 +1292,9 @@ void Engine::CalculateStep()
 			
 			double size = sqrt(ship->Width() + ship->Height()) * .14 + .5;
 			bool isYourTarget = (flagship && ship == flagship->GetTargetShip());
+			hasHostiles |= (!ship->IsDisabled() && ship->GetGovernment()->IsEnemy()
+				&& ship->GetTargetShip() && ship->GetTargetShip()->GetGovernment()->IsPlayer());
 			int type = RadarType(*ship, step);
-			hasHostiles |= (type == Radar::HOSTILE);
 			radar[calcTickTock].Add(isYourTarget ? Radar::SPECIAL : type, ship->Position(), size);
 		}
 	if(flagship && showFlagship)

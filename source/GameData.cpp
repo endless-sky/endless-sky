@@ -87,6 +87,7 @@ namespace {
 	Set<Government> defaultGovernments;
 	Set<Planet> defaultPlanets;
 	Set<System> defaultSystems;
+	Set<Galaxy> defaultGalaxies;
 	Set<Sale<Ship>> defaultShipSales;
 	Set<Sale<Outfit>> defaultOutfitSales;
 	
@@ -183,6 +184,7 @@ void GameData::BeginLoad(const char * const *argv)
 	defaultGovernments = governments;
 	defaultPlanets = planets;
 	defaultSystems = systems;
+	defaultGalaxies = galaxies;
 	defaultShipSales = shipSales;
 	defaultOutfitSales = outfitSales;
 	playerGovernment = governments.Get("Escort");
@@ -318,6 +320,7 @@ void GameData::Revert()
 	governments.Revert(defaultGovernments);
 	planets.Revert(defaultPlanets);
 	systems.Revert(defaultSystems);
+	galaxies.Revert(defaultGalaxies);
 	shipSales.Revert(defaultShipSales);
 	outfitSales.Revert(defaultOutfitSales);
 	for(auto &it : persons)
@@ -968,7 +971,7 @@ void GameData::PrintWeaponTable()
 	for(auto &it : outfits)
 	{
 		// Skip non-weapons and submunitions.
-		if(!it.second.IsWeapon() || !it.second.Reload())
+		if(!it.second.IsWeapon() || it.second.Category().empty())
 			continue;
 		
 		const Outfit &outfit = it.second;
