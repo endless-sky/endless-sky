@@ -17,6 +17,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <iostream>
 #include <stdexcept>
 #include <vector>
+#include <string>
 
 using namespace std;
 
@@ -110,7 +111,7 @@ GLuint Shader::Compile(const char *str, GLenum type)
 	glGetShaderiv(object, GL_COMPILE_STATUS, &status);
 	if(status == GL_FALSE)
 	{
-		cerr << version.c_str();
+		cerr << version;
 		cerr.write(str, length);
 		
 		static const int SIZE = 4096;
