@@ -172,7 +172,6 @@ mission "Syndicate target practice [0]"
 		personality staying heroic target
 		government "Test Dummy"
 		ship "Berserker" "Syndicate Test Vessel"
-			sprite "ship/berserker"
 			attributes
 				category "Interceptor"
 				"cost" 520000
@@ -194,23 +193,6 @@ mission "Syndicate target practice [0]"
 					"shield damage" 300
 					"hull damage" 150
 					"hit force" 450
-			outfits
-				"Beam Laser" 4
-				"nGVF-CC Fuel Cell"
-				"LP072a Battery Pack"
-				"D23-QP Shield Generator"
-				"X2700 Ion Thruster"
-				"X3200 Ion Steering"
-				"Hyperdrive"
-			engine -10 45
-			engine 10 45
-			gun -20 12
-			gun 20 12
-			gun -44 10
-			gun 44 10
-			explode "tiny explosion" 10
-			explode "small explosion" 15
-			"final explode" "final explosion small"
 		system destination
 		dialog "You scan the disabled craft and take careful measurements of the battle damage. Time to deliver the results on <planet>."
 	on visit
@@ -243,7 +225,6 @@ mission "Syndicate target practice [1]"
 		personality staying heroic target
 		government "Test Dummy"
 		ship "Quicksilver" "Syndicate Test Vessel"
-			sprite "ship/quicksilver"
 			attributes
 				category "Light Warship"
 				"cost" 1090000
@@ -265,22 +246,6 @@ mission "Syndicate target practice [1]"
 					"shield damage" 400
 					"hull damage" 200
 					"hit force" 600
-			outfits
-				"Particle Cannon" 2
-				"RT-I Radiothermal"
-				"LP036a Battery Pack"
-				"D23-QP Shield Generator"
-				"Cooling Ducts"
-				"Greyhound Plasma Thruster"
-				"Greyhound Plasma Steering"
-				"Hyperdrive"
-			engine -17 54
-			engine 17 54
-			gun -6 -38 "Particle Cannon"
-			gun 6 -38 "Particle Cannon"
-			explode "tiny explosion" 12
-			explode "small explosion" 16
-			"final explode" "final explosion small"
 		system destination
 		dialog "You scan the disabled craft and take careful measurements of the battle damage. Time to deliver the results on <planet>."
 	on visit
@@ -313,7 +278,6 @@ mission "Syndicate target practice [2]"
 		personality staying heroic target
 		government "Test Dummy"
 		ship "Splinter" "Syndicate Test Vessel"
-			sprite "ship/splinter"
 			attributes
 				category "Medium Warship"
 				"cost" 3100000
@@ -335,29 +299,6 @@ mission "Syndicate target practice [2]"
 					"shield damage" 600
 					"hull damage" 300
 					"hit force" 900
-			outfits
-				"Proton Gun" 2
-				"Blaster Turret" 3
-				"RT-I Radiothermal"
-				"LP144a Battery Pack"
-				"D67-TM Shield Generator"
-				"Small Radar Jammer" 2
-				"Water Coolant System"
-				"X3700 Ion Thruster"
-				"X3200 Ion Steering"
-				"Hyperdrive"
-			engine -15 115
-			engine 15 115
-			gun -15 -80 "Proton Gun"
-			gun 15 -80 "Proton Gun"
-			turret -17 -28 "Blaster Turret"
-			turret 0 -28 "Blaster Turret"
-			turret 17 -28 "Blaster Turret"
-			explode "tiny explosion" 18
-			explode "small explosion" 36
-			explode "medium explosion" 24
-			explode "large explosion" 8
-			"final explode" "final explosion medium"
 		system destination
 		dialog "You scan the disabled craft and take careful measurements of the battle damage. Time to deliver the results on <planet>."
 	on visit
@@ -389,7 +330,6 @@ mission "Syndicate target practice [3]"
 		personality staying heroic target
 		government "Test Dummy"
 		ship "Vanguard" "Syndicate Test Vessel"
-			sprite "ship/vanguard"
 			attributes
 				category "Heavy Warship"
 				"cost" 7200000
@@ -411,31 +351,6 @@ mission "Syndicate target practice [3]"
 					"shield damage" 1600
 					"hull damage" 800
 					"hit force" 2400
-			outfits
-				"Proton Gun" 7
-				"Anti-Missile Turret"
-				"Fusion Reactor"
-				"LP072a Battery Pack"
-				"D67-TM Shield Generator"
-				"Liquid Nitrogen Cooler"
-				"X3700 Ion Thruster"
-				"X4200 Ion Steering"
-				"Hyperdrive"
-			engine -15 130
-			engine 15 130
-			gun 0 -132 "Proton Gun"
-			gun -22 -122 "Proton Gun"
-			gun 22 -122 "Proton Gun"
-			gun -21 -45 "Proton Gun"
-			gun 21 -45 "Proton Gun"
-			gun -31 -45 "Proton Gun"
-			gun 31 -45 "Proton Gun"
-			turret 0 42 "Anti-Missile Turret"
-			explode "tiny explosion" 18
-			explode "small explosion" 36
-			explode "medium explosion" 24
-			explode "large explosion" 8
-			"final explode" "final explosion medium"
 		system destination
 		dialog "You scan the disabled craft and take careful measurements of the battle damage. Time to deliver the results on <planet>."
 	on visit

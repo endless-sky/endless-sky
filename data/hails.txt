@@ -3041,7 +3041,7 @@ phrase "Test Dummy"
 		"Warning! Warning!"
 		"Warning! Warning! Alien spacecraft approaching!"
 
-phrase "disabled Test Dummy
+phrase "disabled Test Dummy"
 	word
 		"I'll be back."
 		"All those times... I said 'kill all humans'... I'd always whisper 'except one. You were that one."
