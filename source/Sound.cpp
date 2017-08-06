@@ -16,11 +16,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "File.h"
 
 #ifndef __APPLE__
-	#ifdef _MSC_VER
-		#include <al.h>
-	#else
-		#include <AL/al.h>
-	#endif
+#include <AL/al.h>
 #else
 #include <OpenAL/al.h>
 #endif
