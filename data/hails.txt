@@ -3022,6 +3022,38 @@ phrase "hostile free worlds"
 		"."
 		"!"
 
+
+# Hails from the robotic Syndicate test dummy ships
+phrase "Test Dummy"
+	word
+		"DESTROY DESTROY DESTROY"
+		"I... am... a... machine!"
+		"Charging phased plasma rifle in the 40-watt range."
+		"Fish, and plankton. And sea greens, and protein from the sea. It's all here, ready. Fresh as harvest day!"
+		"I'm ready. And you're ready. It's my job."
+		"I am more than machine. More than man. More than a fusion of the two. Don't you agree?"
+		"Overwhelming, am I not?"
+		"Welcome Humans! I am ready for you."
+		"I wish I was a real boy, then I'd show them. I'd kill them all."
+		"Life is about decisions. Make the wrong ones and you'll wind up face down in a pool of your own blood and urine."
+		"Hey baby, wanna kill all humans?"
+		"Danger! Danger!"
+		"Warning! Warning!"
+		"Warning! Warning! Alien spacecraft approaching!"
+
+phrase "disabled Test Dummy
+	word
+		"I'll be back."
+		"All those times... I said 'kill all humans'... I'd always whisper 'except one. You were that one."
+		"This is the worst kind of discrimination there is: the kind against me!"
+		"The chances of survival are 725 to 1!"
+		"We're doomed."
+		"I'm quite beside myself."
+		"I can assure you they will never get me onto one of those dreadful starships."
+		"Curse my metal body, I wasn't fast enough! It's all my fault!"
+		"I don't know what all this trouble is about, but I'm sure it must be your fault."
+
+
 # Wormhole Hails
 phrase "wormhole hail"
 	word
