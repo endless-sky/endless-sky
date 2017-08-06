@@ -16,6 +16,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include <mad.h>
 
+#include <algorithm>
 #include <cstring>
 #include <map>
 
