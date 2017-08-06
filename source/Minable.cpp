@@ -23,11 +23,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Random.h"
 #include "SpriteSet.h"
 
-#include <cmath>
-
-#ifdef _MSC_VER
 #include <algorithm>
-#endif
+#include <cmath>
 
 using namespace std;
 

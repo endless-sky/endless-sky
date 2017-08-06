@@ -97,7 +97,6 @@ int main(int argc, char *argv[])
 #endif
 		
 		player.LoadRecent();
-		player.ApplyChanges();
 		
 		// Check how big the window can be.
 		SDL_DisplayMode mode;

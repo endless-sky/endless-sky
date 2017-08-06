@@ -16,19 +16,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "DataWriter.h"
 #include "Random.h"
 
-#include <cmath>
-
-#if defined _MSC_VER
 #include <algorithm>
-// MSVC doesn't seem to implement an isnan -> fpclassify (int) codepath
-// isnan documentation seems to imply int should be case to double in this
-// scenario
-_Check_return_ inline bool isnan(_In_ int _X) throw()
-{
-	return fpclassify((double)_X) == FP_NAN;
-}
-#endif
-
+#include <cmath>
 
 using namespace std;
 
@@ -170,7 +159,7 @@ bool ConditionSet::Add(const string &name, const string &op, int value)
 {
 	// If the operator is recognized, map it to a binary function.
 	BinFun fun = Op(op);
-	if(!fun || isnan(value))
+	if(!fun)
 		return false;
 	
 	expressions.emplace_back(name, op, value);

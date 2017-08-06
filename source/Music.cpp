@@ -16,12 +16,9 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include <mad.h>
 
+#include <algorithm>
 #include <cstring>
 #include <map>
-
-#ifdef _MSC_VER
-#include <algorithm>
-#endif
 
 using namespace std;
 
