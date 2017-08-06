@@ -103,24 +103,29 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>..\..\..\glew-2.1.0\include;..\..\..\libjpeg-turbo\;..\..\..\SDL2-devel-2.0.5-VC\SDL2-2.0.5\include\;..\..\..\lpng1630;C:\Program Files (x86)\OpenAL 1.1 SDK\include;..\..\..\libmad-0.15.1b\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>ZLIB_WINAPI</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\..\..\dev64-vs\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>
+      </PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>..\..\..\glew-2.1.0\lib\Release\x64;C:\Program Files (x86)\OpenAL 1.1 SDK\libs\Win64;..\..\..\libjpeg-turbo\release;..\..\..\lpng1630\projects\vstudio\x64\Release;$(ProgramFiles)\Windows Kits\8.1\Lib\winv6.3\um\x64;..\..\..\libmad-0.15.1b\msvc++\Release\;..\..\..\SDL2-devel-2.0.5-VC\SDL2-2.0.5\lib\x64\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>libpng16.lib;legacy_stdio_definitions.lib;winmm.lib;OpenAL32.lib;opengl32.lib;glu32.lib;glew32.lib;libmad.lib;SDL2.lib;SDL2main.lib;jpeg-static.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>..\..\..\dev64-vs\lib\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>libpng16.lib;jpeg-static.lib;zlibstat.lib;legacy_stdio_definitions.lib;winmm.lib;OpenAL32.lib;opengl32.lib;glu32.lib;glew32.lib;libmad.lib;SDL2.lib;SDL2main.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Windows</SubSystem>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <Link>
-      <AdditionalDependencies>libpng16.lib;legacy_stdio_definitions.lib;winmm.lib;OpenAL32.lib;opengl32.lib;glu32.lib;glew32.lib;libmad.lib;SDL2.lib;SDL2main.lib;jpeg-static.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>..\..\..\glew-2.1.0\lib\Release\x64;C:\Program Files (x86)\OpenAL 1.1 SDK\libs\Win64;..\..\..\libjpeg-turbo\release;..\..\..\lpng1630\projects\vstudio\x64\Release;$(ProgramFiles)\Windows Kits\8.1\Lib\winv6.3\um\x64;..\..\..\libmad-0.15.1b\msvc++\Release\;..\..\..\SDL2-devel-2.0.5-VC\SDL2-2.0.5\lib\x64\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>libpng16.lib;jpeg-static.lib;zlibstat.lib;legacy_stdio_definitions.lib;winmm.lib;OpenAL32.lib;opengl32.lib;glu32.lib;glew32.lib;libmad.lib;SDL2.lib;SDL2main.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>..\..\..\dev64-vs\lib\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <SubSystem>Windows</SubSystem>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
     </Link>
     <ClCompile>
-      <AdditionalIncludeDirectories>..\..\..\glew-2.1.0\include;..\..\..\libjpeg-turbo\;..\..\..\SDL2-devel-2.0.5-VC\SDL2-2.0.5\include\;..\..\..\lpng1630;C:\Program Files (x86)\OpenAL 1.1 SDK\include;..\..\..\libmad-0.15.1b\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>ZLIB_WINAPI</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\..\..\dev64-vs\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>
+      </PreprocessorDefinitions>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
