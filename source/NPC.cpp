@@ -280,15 +280,18 @@ bool NPC::HasSucceeded(const System *playerSystem) const
 		for(const shared_ptr<Ship> &ship : ships)
 		{
 			auto it = actions.find(ship.get());
-			bool isImmobile = false;
+			// If a derelict ship has not received any ShipEvents, it is immobile.
+			bool isImmobile = ship->GetPersonality().IsDerelict();
 			// The success status calculation can only be based on recorded
-			// events (and the current system). Both DISABLE and DESTROY
-			// events must be checked, as some ships are be listed "never
-			// disabled", and thus have no record of ShipEvent::DISABLE.
+			// events (and the current system).
 			if(it != actions.end())
 			{
-				isImmobile |= (it->second
+				// A ship that was disabled, captured, or destroyed is considered 'immobile'.
+				isImmobile = (it->second
 					& (ShipEvent::DISABLE | ShipEvent::CAPTURE | ShipEvent::DESTROY));
+				// if this NPC is 'derelict' and has no ASSIST on record, it is immobile.
+				isImmobile |= ship->GetPersonality().IsDerelict()
+					&& !(it->second & ShipEvent::ASSIST);
 			}
 			bool isHere = (!ship->GetSystem() || ship->GetSystem() == playerSystem);
 			if((isHere && !isImmobile) ^ mustAccompany)
