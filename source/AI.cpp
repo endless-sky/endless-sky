@@ -2760,12 +2760,10 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 		command |= Command::SCAN;
 	
 	AimTurrets(ship, command, !Preferences::Has("Turrets focus fire"));
-	bool hasGuns = Preferences::Has("Automatic firing") && !ship.IsBoarding()
-		&& !(keyStuck | keyHeld).Has(Command::LAND | Command::JUMP | Command::BOARD)
-		&& (!ship.GetTargetShip() || ship.GetTargetShip()->GetGovernment()->IsEnemy());
-	if(hasGuns)
+	if(Preferences::Has("Automatic firing") && !ship.IsBoarding()
+			&& !(keyStuck | keyHeld).Has(Command::LAND | Command::JUMP | Command::BOARD)
+			&& (!ship.GetTargetShip() || ship.GetTargetShip()->GetGovernment()->IsEnemy()))
 		AutoFire(ship, command, false);
-	hasGuns |= keyHeld.Has(Command::PRIMARY);
 	if(keyHeld)
 	{
 		if(keyHeld.Has(Command::RIGHT | Command::LEFT))
@@ -2787,10 +2785,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 			{
 				const Outfit *outfit = weapon.GetOutfit();
 				if(outfit && !outfit->Icon())
-				{
 					command.SetFire(index);
-					hasGuns |= !weapon.IsTurret();
-				}
 				++index;
 			}
 		}
@@ -2811,10 +2806,22 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 		if(keyHeld.Has(AutopilotCancelKeys()))
 			keyStuck = keyHeld;
 	}
-	if(hasGuns && Preferences::Has("Automatic aiming") && !command.Turn()
+	bool shouldAutoAim = false;
+	if(Preferences::Has("Automatic aiming") && !command.Turn()
+			&& (Preferences::Has("Automatic firing") || command.Has(Command::PRIMARY))
 			&& ship.GetTargetShip() && ship.GetTargetShip()->GetSystem() == ship.GetSystem()
 			&& ship.GetTargetShip()->IsTargetable()
 			&& !keyStuck.Has(Command::LAND | Command::JUMP | Command::BOARD))
+	{
+		// Check if this ship has any forward-facing weapons.
+		for(const Hardpoint &weapon : ship.Weapons())
+			if(!weapon.CanAim() && weapon.GetOutfit())
+			{
+				shouldAutoAim = true;
+				break;
+			}
+	}
+	if(shouldAutoAim)
 	{
 		Point distance = ship.GetTargetShip()->Position() - ship.Position();
 		if(distance.Unit().Dot(ship.Facing().Unit()) >= .8)
