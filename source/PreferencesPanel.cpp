@@ -33,6 +33,10 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "gl_header.h"
 #include <SDL2/SDL.h>
 
+#ifdef _MSC_VER
+#include <algorithm>
+#endif
+
 using namespace std;
 
 namespace {

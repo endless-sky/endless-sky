@@ -17,6 +17,10 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include <algorithm>
 
+#ifdef _MSC_VER
+#include <functional>
+#endif
+
 using namespace std;
 
 

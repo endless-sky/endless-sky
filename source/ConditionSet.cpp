@@ -18,6 +18,18 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include <cmath>
 
+#if defined _MSC_VER
+#include <algorithm>
+// MSVC doesn't seem to implement an isnan -> fpclassify (int) codepath
+// isnan documentation seems to imply int should be case to double in this
+// scenario
+_Check_return_ inline bool isnan(_In_ int _X) throw()
+{
+	return fpclassify((double)_X) == FP_NAN;
+}
+#endif
+
+
 using namespace std;
 
 namespace {

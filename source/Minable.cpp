@@ -25,6 +25,10 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include <cmath>
 
+#ifdef _MSC_VER
+#include <algorithm>
+#endif
+
 using namespace std;
 
 

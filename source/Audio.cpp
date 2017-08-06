@@ -19,8 +19,13 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Sound.h"
 
 #ifndef __APPLE__
-#include <AL/al.h>
-#include <AL/alc.h>
+	#ifdef _MSC_VER
+		#include <al.h>
+		#include <alc.h>
+	#else
+		#include <AL/al.h>
+		#include <AL/alc.h>
+	#endif
 #else
 #include <OpenAL/al.h>
 #include <OpenAL/alc.h>

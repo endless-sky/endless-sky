@@ -110,7 +110,7 @@ GLuint Shader::Compile(const char *str, GLenum type)
 	glGetShaderiv(object, GL_COMPILE_STATUS, &status);
 	if(status == GL_FALSE)
 	{
-		cerr << version;
+		cerr << version.c_str();
 		cerr.write(str, length);
 		
 		static const int SIZE = 4096;

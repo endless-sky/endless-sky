@@ -19,6 +19,10 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <cstring>
 #include <map>
 
+#ifdef _MSC_VER
+#include <algorithm>
+#endif
+
 using namespace std;
 
 namespace {

@@ -21,8 +21,11 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #endif
 
 #include <sys/stat.h>
+
+#ifndef _MSC_VER
 #include <dirent.h>
 #include <unistd.h>
+#endif
 
 #include <cstdlib>
 #include <fstream>
