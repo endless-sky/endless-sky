@@ -508,6 +508,7 @@ bool Mission::HasFullClearance() const
 // Check if it's possible to offer or complete this mission right now.
 bool Mission::CanOffer(const PlayerInfo &player) const
 {
+	map<string, string> subs;
 	if(location == BOARDING || location == ASSISTING)
 	{
 		if(!player.BoardingShip())
@@ -515,20 +516,26 @@ bool Mission::CanOffer(const PlayerInfo &player) const
 		
 		if(!sourceFilter.Matches(*player.BoardingShip()))
 			return false;
+		
+		subs["<origin>"] = player.BoardingShip()->Name();
+		subs["<originGov>"] = player.BoardingShip()->GetGovernment()->GetName();
 	}
 	else
 	{
 		if(source && source != player.GetPlanet())
 			return false;
-	
+		
 		if(!sourceFilter.Matches(player.GetPlanet()))
 			return false;
+		
+		subs["<origin>"] = player.GetPlanet()->Name();
+		subs["<originGov>"] = player.GetPlanet()->GetGovernment()->GetName();
 	}
 	
-	if(!toOffer.Test(player.Conditions()))
+	if(!toOffer.Substitute(subs).Test(player.Conditions()))
 		return false;
 	
-	if(!toFail.IsEmpty() && toFail.Test(player.Conditions()))
+	if(!toFail.IsEmpty() && toFail.Substitute(subs).Test(player.Conditions()))
 		return false;
 	
 	if(repeat)
@@ -946,26 +953,29 @@ Mission Mission::Instantiate(const PlayerInfo &player) const
 	if(deadlineBase || deadlineMultiplier)
 		result.deadline = player.GetDate() + deadlineBase + deadlineMultiplier * jumps;
 	
-	// Copy the conditions. The offer conditions must be copied too, because they
-	// may depend on a condition that other mission offers might change.
-	result.toOffer = toOffer;
-	result.toComplete = toComplete;
-	result.toFail = toFail;
-	
 	// Generate the substitutions map.
 	map<string, string> subs;
 	subs["<commodity>"] = result.cargo;
 	subs["<tons>"] = to_string(result.cargoSize) + (result.cargoSize == 1 ? " ton" : " tons");
+	subs["<tonsNum>"] = to_string(result.cargoSize);
 	subs["<cargo>"] = subs["<tons>"] + " of " + subs["<commodity>"];
 	subs["<bunks>"] = to_string(result.passengers);
 	subs["<passengers>"] = (result.passengers == 1) ? "passenger" : "passengers";
 	subs["<fare>"] = (result.passengers == 1) ? "a passenger" : (subs["<bunks>"] + " passengers");
 	if(player.GetPlanet())
+	{
 		subs["<origin>"] = player.GetPlanet()->Name();
+		subs["<originGov>"] = player.GetPlanet()->GetGovernment()->GetName();
+	}
 	else if(player.BoardingShip())
+	{
 		subs["<origin>"] = player.BoardingShip()->Name();
+		subs["<originGov>"] = player.BoardingShip()->GetGovernment()->GetName();
+	}
 	subs["<planet>"] = result.destination ? result.destination->Name() : "";
+	subs["<planetGov>"] = result.destination ? result.destination->GetGovernment()->GetName() : "";
 	subs["<system>"] = result.destination ? result.destination->GetSystem()->Name() : "";
+	subs["<systemGov>"] = result.destination ? result.destination->GetSystem()->GetGovernment()->GetName() : "";
 	subs["<destination>"] = subs["<planet>"] + " in the " + subs["<system>"] + " system";
 	subs["<date>"] = result.deadline.ToString();
 	subs["<day>"] = result.deadline.LongString();
@@ -988,6 +998,12 @@ Mission Mission::Instantiate(const PlayerInfo &player) const
 	// Instantiate the NPCs. This also fills in the "<npc>" substitution.
 	for(const NPC &npc : npcs)
 		result.npcs.push_back(npc.Instantiate(subs, player.GetSystem(), result.destination->GetSystem()));
+	
+	// Copy the conditions. The offer conditions must be copied too, because they
+	// may depend on a condition that other mission offers might change.
+	result.toOffer = toOffer.Substitute(subs);
+	result.toComplete = toComplete.Substitute(subs);
+	result.toFail = toFail.Substitute(subs);
 	
 	// Instantiate the actions. The "complete" action is always first so that
 	// the "<payment>" substitution can be filled in.

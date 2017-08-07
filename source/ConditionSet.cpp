@@ -14,6 +14,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "DataNode.h"
 #include "DataWriter.h"
+#include "Format.h"
 #include "Random.h"
 
 #include <algorithm>
@@ -41,6 +42,7 @@ namespace {
 			{"=", [](int a, int b) { return b; }},
 			{"+=", [](int a, int b) { return a + b; }},
 			{"-=", [](int a, int b) { return a - b; }},
+			{"*=", [](int a, int b) { return a * b; }},
 			{"<?=", [](int a, int b) { return min(a, b); }},
 			{">?=", [](int a, int b) { return max(a, b); }}
 		};
@@ -89,6 +91,29 @@ void ConditionSet::Save(DataWriter &out) const
 bool ConditionSet::IsEmpty() const
 {
 	return expressions.empty() && children.empty();
+}
+
+
+
+// Do text replacement throughout this ConditionSet.
+ConditionSet ConditionSet::Substitute(const map<string, string> &subs) const
+{
+	ConditionSet result = *this;
+	DataNode someNode = DataNode();
+	for(Expression &expression : result.expressions)
+	{
+		expression.name = Format::Replace(expression.name, subs);
+		expression.strValue = Format::Replace(expression.strValue, subs);
+		if (expression.value == 0 && expression.strValue.length() > 0 && someNode.IsNumber(expression.strValue) && someNode.Value(expression.strValue) != 0)
+		{
+			expression.value = someNode.Value(expression.strValue);
+			expression.strValue = "";
+		}
+	}
+	for(ConditionSet &child : result.children) {
+		child = child.Substitute(subs);
+	}
+	return result;
 }
 
 

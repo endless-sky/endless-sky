@@ -79,12 +79,19 @@ double DataNode::Value(int index) const
 		PrintTrace("Requested token index (" + to_string(index) + ") is out of bounds:");
 		return 0.;
 	}
-	
+	return Value(tokens[index]);
+}
+
+
+
+// Convert the given string to a numerical value.
+double DataNode::Value(const string &numString) const
+{
 	// Allowed format: "[+-]?[0-9]*[.]?[0-9]*([eE][+-]?[0-9]*)?".
-	const char *it = tokens[index].c_str();
+	const char *it = numString.c_str();
 	if(*it != '-' && *it != '.' && *it != '+' && !(*it >= '0' && *it <= '9'))
 	{
-		PrintTrace("Cannot convert value \"" + tokens[index] + "\" to a number:");
+		PrintTrace("Cannot convert value \"" + numString + "\" to a number:");
 		return 0.;
 	}
 	
@@ -136,11 +143,18 @@ bool DataNode::IsNumber(int index) const
 	// Make sure this token exists and is not empty.
 	if(static_cast<size_t>(index) >= tokens.size() || tokens[index].empty())
 		return false;
-	
+	return IsNumber(tokens[index]);
+}
+
+
+
+// Check if the given string is a number in a format that this class is able to parse.
+bool DataNode::IsNumber(const string &testString) const
+{
 	bool hasDecimalPoint = false;
 	bool hasExponent = false;
 	bool isLeading = true;
-	for(const char *it = tokens[index].c_str(); *it; ++it)
+	for(const char *it = testString.c_str(); *it; ++it)
 	{
 		// If this is the start of the number or the exponent, it is allowed to
 		// be a '-' or '+' sign.

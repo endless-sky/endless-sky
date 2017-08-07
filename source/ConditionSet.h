@@ -36,6 +36,10 @@ public:
 	// Check if there are any entries in this set.
 	bool IsEmpty() const;
 	
+	// Do text replacement throughout this ConditionSet. This returns a new
+	// ConditionSet object with things like the player's name filled in.
+	ConditionSet Substitute(const std::map<std::string, std::string> &subs) const;
+	
 	// Read a single condition from a data node.
 	void Add(const DataNode &node);
 	bool Add(const std::string &firstToken, const std::string &secondToken);
