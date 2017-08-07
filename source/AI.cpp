@@ -2813,8 +2813,8 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 			keyStuck = keyHeld;
 	}
 	bool shouldAutoAim = false;
-	if(Preferences::Has("Automatic aiming") && !command.Turn()
-			&& (Preferences::Has("Automatic firing") || command.Has(Command::PRIMARY))
+	if(Preferences::Has("Automatic aiming") && !command.Turn() && !ship.IsBoarding()
+			&& (Preferences::Has("Automatic firing") || keyHeld.Has(Command::PRIMARY))
 			&& ship.GetTargetShip() && ship.GetTargetShip()->GetSystem() == ship.GetSystem()
 			&& ship.GetTargetShip()->IsTargetable()
 			&& !keyStuck.Has(Command::LAND | Command::JUMP | Command::BOARD))
