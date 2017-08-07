@@ -3044,7 +3044,7 @@ phrase "Test Dummy"
 phrase "disabled Test Dummy"
 	word
 		"I'll be back."
-		"All those times... I said 'kill all humans'... I'd always whisper 'except one.' You were that one."
+		`All those times... I said "kill all humans"... I'd always whisper "except one." You were that one.`
 		"This is the worst kind of discrimination there is: the kind against me!"
 		"The chances of survival are 725 to 1!"
 		"We're doomed."
