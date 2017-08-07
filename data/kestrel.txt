@@ -210,8 +210,8 @@ event "kestrel available: more shields"
 
 ship "Unknown Ship Type"
 	sprite ship/kestrel
-		"frame time" 4
-		"delay" 14
+		"frame time" 5
+		"delay" 12
 		"random start frame"
 	attributes
 		category "Heavy Warship"
@@ -265,8 +265,8 @@ ship "Unknown Ship Type"
 
 ship "Kestrel"
 	sprite ship/kestrel
-		"frame time" 4
-		"delay" 14
+		"frame time" 5
+		"delay" 12
 		"random start frame"
 	attributes
 		category "Heavy Warship"
