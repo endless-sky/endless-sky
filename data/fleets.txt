@@ -774,6 +774,31 @@ fleet "Human Miners"
 	variant 1
 		"Headhunter (Particle)"
 
+fleet "Syndicate Miners"
+	government "Merchant"
+	names "civilian"
+	cargo 0
+	personality
+		confusion 20
+		timid frugal mining harvests
+	variant 5
+		"Sparrow"
+	variant 1
+		"Fury"
+	variant 2
+		"Fury (Laser)"
+	variant 3
+		"Hawk"
+	variant 1
+		"Hawk (Speedy)"
+	variant 2
+		"Headhunter"
+	variant 1
+		"Headhunter (Particle)"
+	variant 3
+		"Prospector"
+		"Harvester" 2
+
 fleet "Small Free Worlds"
 	government "Free Worlds"
 	names "free worlds small"

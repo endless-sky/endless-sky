@@ -509,6 +509,30 @@ outfit "Plasma Cannon"
 		"heat damage" 340
 	description "The Plasma Cannon fires bursts of superheated plasma. In addition to damaging your target, these plasma bursts impart a significant amount of heat, especially to a target whose shields are down."
 
+outfit "Plasma Drill"
+	category "Guns"
+	cost 20000
+	thumbnail "outfit/plasma drill"
+	"mass" 3
+	"outfit space" -3
+	"weapon capacity" -3
+	"gun ports" -1
+	weapon
+		sprite "projectile/plasmab"
+			"frame rate" 4
+		sound "plasmab"
+		"hit effect" "plasma explosion"
+		"inaccuracy" 7
+		"velocity" 2
+		"lifetime" 75
+		"random lifetime" 2
+		"reload" 2
+		"firing energy" .4
+		"firing heat" 1.8
+		"shield damage" .3
+		"hull damage" 3
+	description `The plasma drill is based around the original plasma cannon, scaled down so much though that the range and damage have been greatly reduced. The drill was designed specifically for the Harvester drone, although the demand from solo captains was large enough that the Syndicate released it to be sold individually as well.`
+
 outfit "Plasma Turret"
 	category "Turrets"
 	cost 520000

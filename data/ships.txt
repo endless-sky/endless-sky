@@ -1480,6 +1480,46 @@ ship "Gunboat"
 
 
 
+ship "Harvester"
+	sprite "ship/mining drone"
+	attributes
+		category "Drone"
+		"cost" 100000
+		"shields" 200
+		"hull" 500
+		"mass" 22
+		"drag" .6
+		"heat dissipation" .92
+		"cargo space" 15
+		"outfit space" 56
+		"weapon capacity" 6
+		"engine capacity" 28
+		"automaton" 1
+		weapon
+			"blast radius" 5
+			"shield damage" 50
+			"hull damage" 25
+			"hit force" 75
+	outfits
+		"Plasma Drill" 2
+
+		"nGVF-AA Fuel Cell"
+		"Supercapacitor"
+
+		"X1200 Ion Steering"
+		"X1700 Ion Thruster"
+
+	gun 15.5 -39
+	gun -15.5 -39
+	engine 6.5 37.5
+	engine -6.5 37.5
+	explode "tiny explosion" 10
+	explode "small explosion" 10
+	description "The recent asteroid mining boom prompted companies to expand their horizons, and start sending out larger fleets of vessels outfitted for mining. Unfortunately, paying to retrofit cargo ships, as well as crew them is expensive, as there are very few ships that are able to effectively mine."
+	description "	These issues prompted shipyards to start accommodating for miners, but it wasn't enough. So, after petitioning the Republic to allow civilian drone use, the large corporations finally got the Republic parliament to give them rights to use drones, as long as they weren't equipped with any offensive armament."
+
+
+
 ship "Hauler"
 	sprite "ship/hauler i"
 	attributes
@@ -2133,6 +2173,60 @@ ship "Osprey"
 	explode "tiny explosion" 28
 	"final explode" "final explosion medium"
 	description "After the Blackbird gained surprising popularity as an agile light warship despite its original design as a transport, Tarazed decided to produce a new design specifically intended as a warship. The Osprey was the result. Although it is considered overpriced by most savvy pilots, it is nevertheless a perennial favorite among those who have the extra cash to spend on it."
+
+
+
+ship "Prospector"
+	sprite "ship/mining carrier"
+	attributes
+		category "Heavy Freighter"
+		"cost" 2340000
+		"shields" 2500
+		"hull" 4900
+		"required crew" 13
+		"bunks" 18
+		"mass" 330
+		"drag" 10.5
+		"heat dissipation" .6
+		"fuel capacity" 400
+		"cargo space" 200
+		"outfit space" 280
+		"weapon capacity" 60
+		"engine capacity" 100
+		weapon
+			"blast radius" 80
+			"shield damage" 800
+			"hull damage" 400
+			"hit force" 1200
+	outfits
+		"Quad Blaster Turret"
+		"Heavy Anti-Missile Turret"
+		
+		"S3 Thermionic"
+		"LP072a Battery Pack"
+		"D23-QP Shield Generator"
+		"Small Radar Jammer"
+		"Water Coolant System"
+		
+		"X3700 Ion Thruster"
+		"X3200 Ion Steering"
+		"Hyperdrive"
+		
+	engine 16.5 171
+	engine -16.5 171
+	engine 30.5 156
+	engine -30.5 156
+	turret 0 -83.5
+	turret 0 88
+	drone 26.5 -24.5 under right
+	drone -26.5 -24.5 under left
+	explode "tiny explosion" 10
+	explode "small explosion" 25
+	explode "medium explosion" 30
+	explode "large explosion" 15
+	"final explode" "final explosion medium"
+	description `Along with the release of the Harvester drone, Syndicated Shipyards also released the first civilian drone carrier. Of course, being the only supplier of both drones and drone carriers has it's perks, but the Syndicate says they are "Very humbled to be the first to supply civilian drones."`
+	description `	Rather than making an entirely new ship, the Syndicate enhanced their profitability by going back and redesigning the classic Freighter for mining, allowing them to be built in the same factories with minimal expantion. The Prospector, much like it's cousin the Freighter flies like a brick and is not well suited for mining itself, so it mainly serves as the home base for the mining drones, rather than assisting the mining operation.`
 
 
 

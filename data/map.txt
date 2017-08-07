@@ -1866,7 +1866,7 @@ system Achernar
 	fleet "Large Syndicate" 600
 	fleet "Small Syndicate" 500
 	fleet "Small Core Merchants" 300
-	fleet "Human Miners" 3000
+	fleet "Syndicate Miners" 3000
 	object
 		sprite star/g5
 		period 10
@@ -2123,7 +2123,7 @@ system "Al Dhanab"
 	fleet "Large Syndicate" 800
 	fleet "Small Core Pirates" 2000
 	fleet "Large Core Pirates" 3000
-	fleet "Human Miners" 2000
+	fleet "Syndicate Miners" 2000
 	object
 		sprite star/g0
 		period 10
@@ -3146,7 +3146,7 @@ system Alnair
 	fleet "Large Core Pirates" 4000
 	fleet "Small Syndicate" 4000
 	fleet "Large Syndicate" 6000
-	fleet "Human Miners" 2000
+	fleet "Syndicate Miners" 2000
 	object
 		sprite star/m4
 		period 10
