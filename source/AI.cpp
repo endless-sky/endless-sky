@@ -691,9 +691,9 @@ void AI::AskForHelp(Ship &ship, bool &isStranded, const Ship *flagship)
 			// If any enemies of this ship are in its system, it cannot call for help.
 			const System *system = ship.GetSystem();
 			const Government *otherGov = helper->GetGovernment();
-			if(otherGov->IsEnemy(gov) && system == flagship->GetSystem())
+			if(otherGov->IsEnemy(gov) && flagship && system == flagship->GetSystem())
 			{
-				hasEnemy |= system == helper->GetSystem();
+				hasEnemy |= (system == helper->GetSystem());
 				if(hasEnemy)
 					break;
 			}
@@ -1192,6 +1192,12 @@ void AI::MoveEscort(Ship &ship, Command &command) const
 		Refuel(ship, command);
 	else if(!parentIsHere && !isStaying)
 	{
+		// If this ship has already refuelled, and its parent has left the
+		// system, no need to land on a planet again.
+		if(ship.GetTargetStellar() && ship.Fuel() == 1. && ship.GetTargetStellar()->GetPlanet()
+				&& !ship.GetTargetStellar()->GetPlanet()->IsWormhole())
+			ship.SetTargetStellar(nullptr);
+		
 		// Check whether the ship has a target system and is able to jump to it,
 		// and that the targeted stellar object can be landed on.
 		bool hasJump = (ship.GetTargetSystem() && ship.JumpFuel(ship.GetTargetSystem()));
