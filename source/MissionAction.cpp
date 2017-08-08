@@ -362,7 +362,8 @@ MissionAction MissionAction::Instantiate(map<string, string> &subs, int jumps, i
 	result.gifts = gifts;
 	result.payment = payment + (jumps + 1) * payload * paymentMultiplier;
 	// Fill in the payment amount if this is the "complete" action.
-	if(trigger == "complete")
+	string previousPayment = subs["<payment>"];
+	if(result.payment)
 		subs["<payment>"] = Format::Number(result.payment)
 			+ (result.payment == 1 ? " credit" : " credits");
 	
@@ -383,6 +384,11 @@ MissionAction MissionAction::Instantiate(map<string, string> &subs, int jumps, i
 	result.fail = fail;
 	
 	result.conditions = conditions;
+	
+	// Restore the "<payment>" value from the "on complete" condition, for use
+	// in other parts of this mission.
+	if(result.payment && trigger != "complete")
+		subs["<payment>"] = previousPayment;
 	
 	return result;
 }
