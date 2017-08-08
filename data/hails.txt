@@ -3040,6 +3040,7 @@ phrase "Test Dummy"
 		"Danger! Danger!"
 		"Warning! Warning!"
 		"Warning! Warning! Alien spacecraft approaching!"
+		"We have normality. I repeat, we have normality. Anything you still can't cope with is therefore your own problem."
 
 phrase "disabled Test Dummy"
 	word
@@ -3052,6 +3053,7 @@ phrase "disabled Test Dummy"
 		"I can assure you they will never get me onto one of those dreadful starships."
 		"Curse my metal body, I wasn't fast enough! It's all my fault!"
 		"I don't know what all this trouble is about, but I'm sure it must be your fault."
+		"I have a pain in all the diodes down my left side."
 
 
 # Wormhole Hails
