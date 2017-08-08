@@ -326,7 +326,7 @@ mission "Syndicate target practice [3]"
 		distance 1 3
 		government Syndicate
 	to offer
-		random < 100
+		random < 20
 		"combat rating" > 1000
 		"destroyed Syndicate target ship" < 3
 	npc save disable "scan cargo"
