@@ -64,6 +64,20 @@ You will probably need to adjust the paths to your compiler binaries, and you sh
 You will also need libmingw32.a and libopengl32.a. Those should be included in the MinGW g++ install. If they are not in C:\Program Files\mingw64\x86_64-w64-mingw32\lib\ you will have to adjust the paths in the Code::Blocks file.
 
 
+Windows (Visual Studio):
+
+To build Endless Sky with Visual Studio (64bit) download this prebuilt dependency pack:
+
+<fix-me-url-to-dev64-vs.zip>
+
+Unpack the zip file in the same parent folder that contains the Endless Sky repo.
+
+Example:
+\dev\endless-sky\
+\dev\dev64-vs\
+
+Then open the Visual Studio solution located at endless-sky\vs\2017\endless-sky.sln. Compile the solution in either Debug or Release mode. You will then need to copy all of the .dll files in dev64-vs\bin\ to the output folder endless-sky\vs\2017\x64\Debug\ or endless-sky\vs\2017\x64\Release\.
+
 
 Mac OS X:
 
