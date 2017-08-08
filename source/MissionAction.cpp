@@ -361,9 +361,8 @@ MissionAction MissionAction::Instantiate(map<string, string> &subs, int jumps, i
 	}
 	result.gifts = gifts;
 	result.payment = payment + (jumps + 1) * payload * paymentMultiplier;
-	// Fill in the payment amount if this is the "complete" action (which comes
-	// before all the others in the list).
-	if(trigger == "complete" || result.payment)
+	// Fill in the payment amount if this is the "complete" action.
+	if(trigger == "complete")
 		subs["<payment>"] = Format::Number(result.payment)
 			+ (result.payment == 1 ? " credit" : " credits");
 	
