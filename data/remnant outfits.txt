@@ -263,7 +263,7 @@ outfit "Crucible-Class Thruster"
 	licenses
 		Remnant
 	"cost" 200000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/small remnant thruster"
 	"mass" 20
 	"outfit space" -20
 	"engine capacity" -20
@@ -280,7 +280,7 @@ outfit "Forge-Class Thruster"
 	licenses
 		Remnant
 	"cost" 441000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/medium remnant thruster"
 	"mass" 39
 	"outfit space" -39
 	"engine capacity" -39
@@ -297,7 +297,7 @@ outfit "Smelter-Class Thruster"
 	licenses
 		Remnant
 	"cost" 984000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/large remnant thruster"
 	"mass" 76
 	"outfit space" -76
 	"engine capacity" -76
@@ -315,7 +315,7 @@ outfit "Crucible-Class Steering"
 	licenses
 		Remnant
 	"cost" 172000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/small remnant steering"
 	"mass" 14
 	"outfit space" -14
 	"engine capacity" -14
@@ -329,7 +329,7 @@ outfit "Forge-Class Steering"
 	licenses
 		Remnant
 	"cost" 393000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/medium remnant steering"
 	"mass" 28
 	"outfit space" -28
 	"engine capacity" -28
@@ -343,7 +343,7 @@ outfit "Smelter-Class Steering"
 	licenses
 		Remnant
 	"cost" 880000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/large remnant steering"
 	"mass" 55
 	"outfit space" -55
 	"engine capacity" -55
