@@ -171,12 +171,15 @@ outfit "Crystal Capacitor"
 	category "Power"
 	licenses
 		Remnant
-	cost 280000
+	cost 113000
 	thumbnail "outfit/unknown"
 	"mass" 12
 	"outfit space" -12
 	"energy capacity" 3400
-	description "These crystals, mined on the Remnant planet Viminal, can store a surprising amount of power in a compact form. Crystals pure enough to be used in such a manner are hard to find, however, and therefore rather pricy."
+	"energy consumption" .4
+	"heat generation" .4
+	description "These crystals, mined on the Remnant planet Viminal, can store a surprising amount of power in a compact form. Crystals pure enough to be used in such a manner are hard to find, however."
+	description "	Also, the capacitors tend to leak small amounts of energy, in the form of excess heat."
 
 
 outfit "Millennium Cell"
@@ -184,10 +187,10 @@ outfit "Millennium Cell"
 	licenses
 		Remnant
 	cost 767000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/millennium cell"
 	"mass" 29
 	"outfit space" -29
-	"energy generation" 3.5
+	"energy generation" 3.6
 	"heat generation" 6.0
 	description "This quite compact radiothermal generator uses isotopes so radioactive, and so tightly packed together, that it could almost be classified as a nuclear reactor."
 
@@ -196,10 +199,10 @@ outfit "Epoch Cell"
 	licenses
 		Remnant
 	cost 3060000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/epoch cell"
 	"mass" 98
 	"outfit space" -98
-	"energy generation" 12.2
+	"energy generation" 12.7
 	"heat generation" 19.8
 	description "Efficient Remnant technology ensures that nearly all the heat produced by this generator's radioisotopes is converted into electricity instead of becoming waste heat."
 
@@ -208,10 +211,10 @@ outfit "Aeon Cell"
 	licenses
 		Remnant
 	cost 6600000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/aeon cell"
 	"mass" 160
 	"outfit space" -160
-	"energy generation" 21.1
+	"energy generation" 21.9
 	"heat generation" 31.5
 	description "The early Remnant engineers did not trust the finicky and unpredictable nuclear reactors that were then in use in human space, so they instead focused on perfecting the art of radioisotope thermoelectric power."
 
@@ -260,7 +263,7 @@ outfit "Crucible-Class Thruster"
 	licenses
 		Remnant
 	"cost" 200000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/small remnant thruster"
 	"mass" 20
 	"outfit space" -20
 	"engine capacity" -20
@@ -277,7 +280,7 @@ outfit "Forge-Class Thruster"
 	licenses
 		Remnant
 	"cost" 441000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/medium remnant thruster"
 	"mass" 39
 	"outfit space" -39
 	"engine capacity" -39
@@ -294,7 +297,7 @@ outfit "Smelter-Class Thruster"
 	licenses
 		Remnant
 	"cost" 984000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/large remnant thruster"
 	"mass" 76
 	"outfit space" -76
 	"engine capacity" -76
@@ -312,7 +315,7 @@ outfit "Crucible-Class Steering"
 	licenses
 		Remnant
 	"cost" 172000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/small remnant steering"
 	"mass" 14
 	"outfit space" -14
 	"engine capacity" -14
@@ -326,7 +329,7 @@ outfit "Forge-Class Steering"
 	licenses
 		Remnant
 	"cost" 393000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/medium remnant steering"
 	"mass" 28
 	"outfit space" -28
 	"engine capacity" -28
@@ -340,7 +343,7 @@ outfit "Smelter-Class Steering"
 	licenses
 		Remnant
 	"cost" 880000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/large remnant steering"
 	"mass" 55
 	"outfit space" -55
 	"engine capacity" -55

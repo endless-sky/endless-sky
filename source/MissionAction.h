@@ -19,6 +19,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <map>
 #include <set>
 #include <string>
+#include <utility>
 
 class DataNode;
 class DataWriter;
@@ -70,7 +71,7 @@ private:
 	const Conversation *stockConversation = nullptr;
 	Conversation conversation;
 	
-	std::map<std::string, int> events;
+	std::map<std::string, std::pair<int, int>> events;
 	std::map<const Outfit *, int> gifts;
 	int64_t payment = 0;
 	int64_t paymentMultiplier = 0;

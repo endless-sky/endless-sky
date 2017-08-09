@@ -15,6 +15,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Command.h"
 #include "Ship.h"
 
+#include <algorithm>
 #include <cmath>
 #include <limits>
 

@@ -316,7 +316,7 @@ void MainPanel::ShowScanDialog(const ShipEvent &event)
 				if(it.first->Get("installable") < 0.)
 				{
 					int tons = ceil(it.second * it.first->Get("mass"));
-					out << (tons == 1 ? " ton of " : " tons of ") << Format::LowerCase(it.first->PluralName());
+					out << (tons == 1 ? " ton of " : " tons of ") << Format::LowerCase(it.first->PluralName()) << "\n";
 				}
 				else	
 					out << " " << (it.second == 1 ? it.first->Name(): it.first->PluralName()) << "\n";
