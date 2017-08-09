@@ -1,4 +1,7 @@
 /endless-sky
+/endless-sk*exe
+/endless-sk*pdb
+/*.dll
 /build/
 /.sconsign.dblite
 .DS_Store
@@ -9,4 +12,5 @@
 /obj/Release/
 /obj/Win32/
 /bin/
-
+vs/*/.vs/*
+vs/*/*.vcxproj.user
