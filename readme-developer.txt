@@ -79,7 +79,7 @@ Example:
 
 3) Open the Visual Studio solution located at 'endless-sky\vs\2017\endless-sky.sln'
 
-4) Compile the solution in either Release or Debug mode. A Release compile will result in machine optimations which will improve in-game performance.
+4) Compile the solution in either Release or Debug mode. A Release compile will result in machine optimizations which will improve in-game performance compared to the Debug compile.
 Successful compilation may require changing the Windows SDK version in the Project -> Properties submenu, to match the locally available SDK version. As an alternative to retargeting, newer Visual Studio installers can be used to obtain the missing Windows 8.1 SDK.
 
 5) Copy all of the .dll files from the 'dev64-vs\bin\' directory into the folder containing the freshly-made executable (default location is the main 'endless-sky' folder).
