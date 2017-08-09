@@ -66,17 +66,23 @@ You will also need libmingw32.a and libopengl32.a. Those should be included in t
 
 Windows (Visual Studio):
 
-To build Endless Sky with Visual Studio (64bit) download this prebuilt dependency pack:
+To build 64-bit Endless Sky using Microsoft's Visual Studio
 
+1) Download the 64-bit development libraries, prebuilt specifically for use with Visual Studio:
 <fix-me-url-to-dev64-vs.zip>
 
-Unpack the zip file in the same parent folder that contains the Endless Sky repo.
+2) Unpack the zip file's contents into the same parent folder that contains your download of the Endless Sky repository.
 
 Example:
 \dev\endless-sky\
 \dev\dev64-vs\
 
-Then open the Visual Studio solution located at endless-sky\vs\2017\endless-sky.sln. Compile the solution in either Debug or Release mode. You will then need to copy all of the .dll files in dev64-vs\bin\ to the output folder endless-sky\vs\2017\x64\Debug\ or endless-sky\vs\2017\x64\Release\.
+3) Open the Visual Studio solution located at 'endless-sky\vs\2017\endless-sky.sln'
+
+4) Compile the solution in either Release or Debug mode. A Release compile will result in machine optimations which will improve in-game performance.
+Successful compilation may require changing the Windows SDK version in the Project -> Properties submenu, to match the locally available SDK version. As an alternative to retargeting, newer Visual Studio installers can be used to obtain the missing Windows 8.1 SDK.
+
+5) Copy all of the .dll files from the 'dev64-vs\bin\' directory into the folder containing the freshly-made executable (default location is the main 'endless-sky' folder).
 
 
 Mac OS X:
