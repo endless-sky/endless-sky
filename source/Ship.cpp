@@ -1795,7 +1795,8 @@ void Ship::Recharge(bool atSpaceport)
 	pilotError = 0;
 	pilotOkay = 0;
 	
-	if(!personality.IsDerelict())
+	// All ships landed at a friendly spaceport can be repaired fully.
+	if(!personality.IsDerelict() || atSpaceport)
 	{
 		if(atSpaceport || attributes.Get("shield generation"))
 			shields = attributes.Get("shields");
