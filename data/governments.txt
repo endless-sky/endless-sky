@@ -340,7 +340,7 @@ government "Syndicate (Extremist)"
 government "Test Dummy"
 	swizzle 3
 	"player reputation" -1000
-	"hostile hail" "Test Dummy"
+	"hostile hail" "test dummy"
 	"hostile disabled hail" "disabled test dummy"
 
 government "Uninhabited"
