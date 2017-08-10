@@ -139,7 +139,7 @@ public:
 	
 	// Access the ship's personality, which affects how the AI behaves.
 	const Personality &GetPersonality() const;
-	void SetPersonality(const Personality &other);
+	void SetPersonality(const Personality &other, const int actions = 0);
 	// Get a random hail message, or set the object used to generate them. If no
 	// object is given the government's default will be used.
 	void SetHail(const Phrase &phrase);

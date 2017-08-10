@@ -645,10 +645,13 @@ const Personality &Ship::GetPersonality() const
 
 
 
-void Ship::SetPersonality(const Personality &other)
+void Ship::SetPersonality(const Personality &other, const int actions)
 {
 	personality = other;
-	if(personality.IsDerelict())
+	// If this ship is derelict but has been repaired, do not automatically
+	// disable it. If it was disabled after the repair, its shields and hull
+	// will reflect its current status.
+	if(personality.IsDerelict() && !(actions & ShipEvent::ASSIST))
 	{
 		shields = 0.;
 		hull = min(hull, .5 * MinimumHull());
