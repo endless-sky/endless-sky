@@ -15,7 +15,7 @@ outfit "Inhibitor Cannon"
 	licenses
 		Remnant
 	cost 471000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/inhibitor cannon"
 	"mass" 16
 	"outfit space" -16
 	"weapon capacity" -16
@@ -57,7 +57,7 @@ outfit "Thrasher Cannon"
 	licenses
 		Remnant
 	cost 218000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/thrasher cannon"
 	"mass" 10
 	"outfit space" -10
 	"weapon capacity" -10
@@ -95,7 +95,7 @@ outfit "Thrasher Turret"
 	licenses
 		Remnant
 	cost 980000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/thrasher turret"
 	"mass" 49
 	"outfit space" -49
 	"weapon capacity" -49
@@ -125,7 +125,7 @@ outfit "Point Defense Turret"
 	licenses
 		Remnant
 	cost 1120000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/point defense"
 	"mass" 33
 	"outfit space" -33
 	"weapon capacity" -33
