@@ -341,7 +341,7 @@ government "Test Dummy"
 	swizzle 3
 	"player reputation" -1000
 	"hostile hail" "Test Dummy"
-	"hostile disabled hail" "disabled Test Dummy"
+	"hostile disabled hail" "disabled test dummy"
 
 government "Uninhabited"
 	color .3 .3 .3

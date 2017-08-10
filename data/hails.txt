@@ -3042,7 +3042,7 @@ phrase "Test Dummy"
 		"Warning! Warning! Alien spacecraft approaching!"
 		"We have normality. I repeat, we have normality. Anything you still can't cope with is therefore your own problem."
 
-phrase "disabled Test Dummy"
+phrase "disabled test dummy"
 	word
 		"I'll be back."
 		`All those times I said "kill all humans"... I'd always whisper "except one." You were that one.`
