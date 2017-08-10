@@ -3024,7 +3024,7 @@ phrase "hostile free worlds"
 
 
 # Hails from the robotic Syndicate test dummy ships
-phrase "Test Dummy"
+phrase "test dummy"
 	word
 		"DESTROY DESTROY DESTROY"
 		"I... am... a... machine!"
