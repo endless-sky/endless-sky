@@ -20,9 +20,9 @@ ship "Starling"
 		"required crew" 6
 		"bunks" 15
 		"mass" 270
-		"drag" 4.2
+		"drag" 3.8
 		"heat dissipation" 0.7
-		"fuel capacity" 600
+		"fuel capacity" 900
 		"cargo space" 36
 		"outfit space" 312
 		"weapon capacity" 83
@@ -144,8 +144,8 @@ ship "Albatross"
 		"required crew" 44
 		"bunks" 75
 		"cargo space" 124
-		"mass" 690
-		"drag" 10.6
+		"mass" 610
+		"drag" 8.6
 		"heat dissipation" 0.6
 		"fuel capacity" 600
 		"engine capacity" 142
