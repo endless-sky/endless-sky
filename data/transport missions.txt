@@ -1652,7 +1652,8 @@ mission "Humanitarian 2"
 				`	"Well, it sounds like they're getting exactly what they deserve. And, I have no intention of risking my life to land on a pirate world."`
 					decline
 				`	"Well, even so, no one deserves to starve to death. I'll help them."`
-					accept
+			`	"Thank you," he says. "We'll load the food into your cargo hold immediately. The sooner you can drop it off on <planet>, the better."`
+				accept
 	
 	on complete
 		payment
