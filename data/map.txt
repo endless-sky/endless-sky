@@ -6787,8 +6787,8 @@ system Coluber
 		sprite planet/rock10
 		distance 1208.18
 		period 654.26
-	object
-		sprite planet/gas16
+	object "Ember Reaches"
+		sprite planet/wormhole-red
 		distance 2354.54
 		period 1779.96
 
@@ -6904,14 +6904,10 @@ system Convector
 			sprite planet/rock3
 			distance 270
 			period 14.6327
-	object
-		sprite planet/gas16
+	object "Ember Reaches"
+		sprite planet/wormhole-red
 		distance 6592.96
 		period 3331.32
-		object
-			sprite planet/dust5
-			distance 206
-			period 15.5632
 
 system "Cor Caroli"
 	pos -682 201
@@ -24662,6 +24658,9 @@ planet "Elek Kartanu"
 	landscape land/lava2
 	description `You have no idea what has happened to this planet, and you are not sure you want to know. The atmosphere is unusually hot and wet for a planet this distance from its sun, and the ocean levels seem to have dropped significantly in the recent past, leaving barnacles and bleached coral exposed to the air all around the shorelines. The wind is frenzied and full of wild energy, and the fog moves like a living creature.`
 	security 0
+
+planet "Ember Reaches"
+	attributes "requires: quantum keystone"
 
 planet "Ember Threshold"
 	attributes "requires: quantum keystone"
