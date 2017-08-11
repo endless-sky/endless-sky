@@ -106,6 +106,8 @@ outfit "Thrasher Turret"
 			"frame rate" 10
 			"random start frame"
 			"no repeat"
+		"hardpoint sprite" "hardpoint/thrasher turret"
+		"hardpoint offset" 6.
 		sound "particle"
 		"hit effect" "thrasher impact"
 		"inaccuracy" 6
@@ -131,6 +133,7 @@ outfit "Point Defense Turret"
 	"weapon capacity" -33
 	"turret mounts" -1
 	weapon
+		"hardpoint sprite" "hardpoint/point defense"
 		"fire effect" "point defense fire"
 		"die effect" "point defense hit"
 		"die effect" "point defense die"
