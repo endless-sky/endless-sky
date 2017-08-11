@@ -172,7 +172,7 @@ outfit "Crystal Capacitor"
 	licenses
 		Remnant
 	cost 113000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/crystal capacitor"
 	"mass" 12
 	"outfit space" -12
 	"energy capacity" 3400
@@ -224,7 +224,7 @@ outfit "Thermoelectric Cooler"
 	licenses
 		Remnant
 	cost 160000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/thermoelectric cooler"
 	"mass" 4
 	"outfit space" -4
 	"active cooling" 7
@@ -236,7 +236,7 @@ outfit "Emergency Ramscoop"
 	licenses
 		Remnant
 	cost 72000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/emergency ramscoop"
 	"mass" 4
 	"outfit space" -4
 	"ramscoop" 0.5
