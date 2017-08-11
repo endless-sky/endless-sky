@@ -243,7 +243,7 @@ void Ship::Load(const DataNode &node)
 
 // When loading a ship, some of the outfits it lists may not have been
 // loaded yet. So, wait until everything has been loaded, then call this.
-void Ship::FinishLoading()
+void Ship::FinishLoading(bool isNewInstance)
 {
 	// All copies of this ship should save pointers to the "explosion" weapon
 	// definition stored safely in the ship model, which will not be destroyed
@@ -359,18 +359,22 @@ void Ship::FinishLoading()
 	for(const Hardpoint &weapon : armament.Get())
 		weaponRadius = max(weaponRadius, weapon.GetPoint().Length());
 	
-	// Recharge, but don't recharge crew or fuel if not in the parent's system.
-	// Do not recharge if this ship's starting state was saved.
-	if(!hull)
+	if(isNewInstance)
 	{
-		shared_ptr<const Ship> parent = GetParent();
-		Recharge(!parent || currentSystem == parent->currentSystem);
+		// This ship is being instantiated for the first time. Make sure its
+		// crew, fuel, etc. are all refilled.
+		Recharge(true);
+		
+		// But, if this is a derelict, it should start out disabled.
+		if(personality.IsDerelict())
+		{
+			shields = 0.;
+			hull = min(hull, .5 * MinimumHull());
+		}
 	}
-	else
-	{
-		isDisabled = true;
-		isDisabled = IsDisabled();
-	}
+	// Recalculate the "isDisabled" flag based on this ship's hull and crew.
+	isDisabled = true;
+	isDisabled = IsDisabled();
 }
 
 
@@ -648,12 +652,6 @@ const Personality &Ship::GetPersonality() const
 void Ship::SetPersonality(const Personality &other)
 {
 	personality = other;
-	if(personality.IsDerelict())
-	{
-		shields = 0.;
-		hull = min(hull, .5 * MinimumHull());
-		isDisabled = true;
-	}
 }
 
 
@@ -1795,15 +1793,13 @@ void Ship::Recharge(bool atSpaceport)
 	pilotError = 0;
 	pilotOkay = 0;
 	
-	if(!personality.IsDerelict())
-	{
-		if(atSpaceport || attributes.Get("shield generation"))
-			shields = attributes.Get("shields");
-		if(atSpaceport || attributes.Get("hull repair rate"))
-			hull = attributes.Get("hull");
-		if(atSpaceport || attributes.Get("energy generation"))
-			energy = attributes.Get("energy capacity");
-	}
+	if(atSpaceport || attributes.Get("shield generation"))
+		shields = attributes.Get("shields");
+	if(atSpaceport || attributes.Get("hull repair rate"))
+		hull = attributes.Get("hull");
+	if(atSpaceport || attributes.Get("energy generation"))
+		energy = attributes.Get("energy capacity");
+	
 	heat = IdleHeat();
 	ionization = 0.;
 	disruption = 0.;

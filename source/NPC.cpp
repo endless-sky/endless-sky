@@ -136,10 +136,10 @@ void NPC::Load(const DataNode &node)
 	// Since a ship's government is not serialized, set it now.
 	for(const shared_ptr<Ship> &ship : ships)
 	{
-		ship->FinishLoading();
 		ship->SetGovernment(government);
 		ship->SetPersonality(personality);
 		ship->SetIsSpecial();
+		ship->FinishLoading(false);
 	}
 }
 
@@ -374,10 +374,7 @@ NPC NPC::Instantiate(map<string, string> &subs, const System *origin, const Syst
 	
 	// Convert fleets into instances of ships.
 	for(const shared_ptr<Ship> &ship : ships)
-	{
 		result.ships.push_back(make_shared<Ship>(*ship));
-		result.ships.back()->FinishLoading();
-	}
 	auto shipIt = stockShips.begin();
 	auto nameIt = shipNames.begin();
 	for( ; shipIt != stockShips.end() && nameIt != shipNames.end(); ++shipIt, ++nameIt)
@@ -395,6 +392,7 @@ NPC NPC::Instantiate(map<string, string> &subs, const System *origin, const Syst
 		ship->SetGovernment(result.government);
 		ship->SetIsSpecial();
 		ship->SetPersonality(result.personality);
+		result.ships.back()->FinishLoading(true);
 		
 		if(personality.IsEntering())
 			Fleet::Enter(*result.system, *ship);

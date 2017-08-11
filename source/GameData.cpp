@@ -175,9 +175,9 @@ void GameData::BeginLoad(const char * const *argv)
 	UpdateNeighbors();
 	// And, update the ships with the outfits we've now finished loading.
 	for(auto &it : ships)
-		it.second.FinishLoading();
+		it.second.FinishLoading(true);
 	for(const auto &it : persons)
-		it.second.GetShip()->FinishLoading();
+		it.second.GetShip()->FinishLoading(true);
 	
 	// Store the current state, to revert back to later.
 	defaultFleets = fleets;

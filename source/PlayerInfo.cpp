@@ -158,7 +158,7 @@ void PlayerInfo::Load(const string &path)
 			ships.back()->Load(child);
 			ships.back()->SetIsSpecial();
 			ships.back()->SetGovernment(GameData::PlayerGovernment());
-			ships.back()->FinishLoading();
+			ships.back()->FinishLoading(false);
 			ships.back()->SetIsYours();
 		}
 		else if(child.Token(0) == "groups" && child.Size() >= 2 && !ships.empty())
