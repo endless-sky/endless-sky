@@ -1103,17 +1103,13 @@ bool Ship::Move(list<Effect> &effects, list<shared_ptr<Flotsam>> &flotsam)
 			// Check if we are able to apply this thrust.
 			double cost = attributes.Get((thrustCommand > 0.) ?
 				"thrusting energy" : "reverse thrusting energy");
-			if(energy < cost)
-				thrustCommand = 0.;
-			else
+			if(energy >= cost)
 			{
 				// If a reverse thrust is commanded and the capability does not
 				// exist, ignore it (do not even slow under drag).
 				isThrusting = (thrustCommand > 0.);
 				double thrust = attributes.Get(isThrusting ? "thrust" : "reverse thrust");
-				if(!thrust)
-					thrustCommand = 0.;
-				else
+				if(thrust)
 				{
 					energy -= cost;
 					heat += attributes.Get(isThrusting ? "thrusting heat" : "reverse thrusting heat");
@@ -1127,9 +1123,7 @@ bool Ship::Move(list<Effect> &effects, list<shared_ptr<Flotsam>> &flotsam)
 			double thrust = attributes.Get("afterburner thrust");
 			double cost = attributes.Get("afterburner fuel");
 			double energyCost = attributes.Get("afterburner energy");
-			if(!thrust || fuel < cost || energy < energyCost)
-				applyAfterburner = false;
-			else
+			if(thrust && fuel >= cost && energy >= energyCost)
 			{
 				heat += attributes.Get("afterburner heat");
 				fuel -= cost;
