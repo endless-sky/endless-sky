@@ -138,7 +138,7 @@ void NPC::Load(const DataNode &node)
 	{
 		ship->FinishLoading();
 		ship->SetGovernment(government);
-		ship->SetPersonality(personality);
+		ship->SetPersonality(personality, actions[ship.get()]);
 		ship->SetIsSpecial();
 	}
 }
