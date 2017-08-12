@@ -293,7 +293,7 @@ mission "FW Recon 1"
 	
 	on offer
 		conversation
-			`	When you walk into the spaceport bar, a man in a militia uniform flags you down, and says, "Excuse me, Captain <last>. Would you be willing to do a small service for the Free Worlds?"`
+			`When you walk into the spaceport bar, a man in a militia uniform flags you down, and says, "Excuse me, Captain <last>. Would you be willing to do a small service for the Free Worlds?"`
 			choice
 				`	"Perhaps. What do you want me to do?"`
 				`	"Sorry, I want no part in your rebellion."`
@@ -893,7 +893,7 @@ mission "FW Katya 3"
 	on complete
 		outfit "Surveillance Pod" -1
 		conversation
-			`	You hand over the "salvaged" equipment to Mr. Eyes and Katya. Eyes begins fiddling with it, and soon discovers how to work the atmospheric scanner. "This is really nice stuff!" he says, enthusiastically.`
+			`You hand over the "salvaged" equipment to Mr. Eyes and Katya. Eyes begins fiddling with it, and soon discovers how to work the atmospheric scanner. "This is really nice stuff!" he says, enthusiastically.`
 			`	Katya says, "We found a halfway decent restaurant in the spaceport village. If you want to keep working with us, meet us there this evening."`
 
 
@@ -1072,7 +1072,7 @@ mission "FW Katya 5C"
 	on complete
 		payment 100000
 		conversation
-			`	When you land on <planet>, as Brother Greg is gathering his luggage, Katya hands you another credit chip for <payment>. "Thanks for risking your life with the pirates," she says. "You've got real guts."`
+			`When you land on <planet>, as Brother Greg is gathering his luggage, Katya hands you another credit chip for <payment>. "Thanks for risking your life with the pirates," she says. "You've got real guts."`
 			`	You return to the monastery and share your new information with Mr. Eyes. His reaction is the same as Katya's. "No way the Navy has nukes," he says. "Some other secret branch of the government, maybe, but not the Navy. That would offend their sense of honor."`
 			`	"Still," says Katya, "if there was such a program and the weapons were stolen from it, that would explain why Intelligence has not named a suspect yet. They would have to reveal the program's existence."`
 			`	Eyes shakes his head. "This isn't a productive line of investigation," he says. "If it was some local terrorists, we've got some hope of tracking them down. If it's some shadowy government organization, there's no way we can find them. So, the local terrorist angle is the only one worth pursuing."`
@@ -1239,7 +1239,7 @@ mission "FW Katya 7C"
 		"assisted free worlds" ++
 		payment 250000
 		conversation
-			`	Eyes has been really quiet for the whole journey; you're sure that he's worried about Katya. When you land, he hands you <payment> and says, "Thank you for all your help, Captain. I hope that this leads to justice being done."`
+			`Eyes has been really quiet for the whole journey; you're sure that he's worried about Katya. When you land, he hands you <payment> and says, "Thank you for all your help, Captain. I hope that this leads to justice being done."`
 			`	He starts to walk off, then comes back. "By the way, Katya wanted to keep this a secret, but I think you should know." He points to the credit chips he just handed you. "Katya's been funding this out of her own pocket. That's the last of her savings that she just paid you."`
 			choice
 				`	"I had no idea."`
@@ -1311,7 +1311,7 @@ mission "FW Escort 1"
 	
 	on offer
 		conversation
-			`	As you are walking through the spaceport, a man in a militia uniform approaches you. "Captain <last>?" he asks. You nod. "I'm the Free Worlds quartermaster here on <origin>," he says. "We're looking for ships to help escort a supply convoy that is traveling to <planet> and back. Our last few convoys have been attacked by pirates, and we suspect this one will be as well. Are you interested?"`
+			`As you are walking through the spaceport, a man in a militia uniform approaches you. "Captain <last>?" he asks. You nod. "I'm the Free Worlds quartermaster here on <origin>," he says. "We're looking for ships to help escort a supply convoy that is traveling to <planet> and back. Our last few convoys have been attacked by pirates, and we suspect this one will be as well. Are you interested?"`
 			choice
 				`	"Sure, I'd be glad to assist."`
 				`	"Sorry, I'm busy with another mission at this moment."`
@@ -1384,13 +1384,13 @@ mission "FW Escort 1B"
 	
 	on offer
 		conversation
-			`	Your convoy of freighters reaches <origin> intact, despite numerous encounters with pirates. The merchant captains sell their trade goods and stock up with weapons and ship outfits that will be used to build new ships for the Free Worlds. Of course, now that you are carrying such valuable cargo, the pirate attacks are likely to get even worse...`
+			`Your convoy of freighters reaches <origin> intact, despite numerous encounters with pirates. The merchant captains sell their trade goods and stock up with weapons and ship outfits that will be used to build new ships for the Free Worlds. Of course, now that you are carrying such valuable cargo, the pirate attacks are likely to get even worse...`
 				accept
 	
 	on complete
 		payment 400000
 		conversation
-			`	You are met at the spaceport by Tomek Voigt, one of the members of the Free Worlds council. He thanks you and the other escort captains for your service, and pays you each <payment>. "The convoy is heading out again immediately," he says, "so meet me in the spaceport if you are willing to volunteer for escort duty again."`
+			`You are met at the spaceport by Tomek Voigt, one of the members of the Free Worlds council. He thanks you and the other escort captains for your service, and pays you each <payment>. "The convoy is heading out again immediately," he says, "so meet me in the spaceport if you are willing to volunteer for escort duty again."`
 	
 	on fail
 		set "fw intro escort failed"
@@ -1448,7 +1448,7 @@ mission "FW Escort 2"
 	
 	on offer
 		conversation
-			`	A few of the escort pilots, yourself included, have stuck around for another mission. Tomek meets you in the spaceport and says, "Same deal as before, and same payment. Plus, please believe that all of you are known to the Council, and your bravery will not be forgotten. We can't afford to lose any of these freighters. Who's willing to help escort them?"`
+			`A few of the escort pilots, yourself included, have stuck around for another mission. Tomek meets you in the spaceport and says, "Same deal as before, and same payment. Plus, please believe that all of you are known to the Council, and your bravery will not be forgotten. We can't afford to lose any of these freighters. Who's willing to help escort them?"`
 			choice
 				`	(Volunteer.)`
 				`	(Go find some other work to do.)`
@@ -1520,13 +1520,13 @@ mission "FW Escort 2B"
 	
 	on offer
 		conversation
-			`	Once again, the convoy stocks up on weapons and outfits and begins preparing for the return journey. You can't help worrying that the longer these convoys keep running, the more pirates will discover their route and begin setting ambushes for them.`
+			`Once again, the convoy stocks up on weapons and outfits and begins preparing for the return journey. You can't help worrying that the longer these convoys keep running, the more pirates will discover their route and begin setting ambushes for them.`
 				accept
 	
 	on complete
 		payment 400000
 		conversation
-			`	Again, Tomek Voigt meets you at the spaceport, thanks you all for your courage and dedication, and pays you <payment>. Then, he pulls you aside and says, "Captain <last>, if you're interested in helping us further, please meet me in the spaceport bar."`
+			`Again, Tomek Voigt meets you at the spaceport, thanks you all for your courage and dedication, and pays you <payment>. Then, he pulls you aside and says, "Captain <last>, if you're interested in helping us further, please meet me in the spaceport bar."`
 	
 	on fail
 		set "fw intro escort failed"
@@ -1555,7 +1555,7 @@ mission "FW Escort 3"
 	
 	on offer
 		conversation
-			`	When you walk into the bar, Voigt looks very glad to see you. "Here's the deal," he says. "One of our freighters, the <npc>, was just disabled in the Lesath system. We need you to fly there immediately, repair it, and bring it back here before it can be captured by the pirates. Do you think you're up to the task?"`
+			`When you walk into the bar, Voigt looks very glad to see you. "Here's the deal," he says. "One of our freighters, the <npc>, was just disabled in the Lesath system. We need you to fly there immediately, repair it, and bring it back here before it can be captured by the pirates. Do you think you're up to the task?"`
 			choice
 				`	"Sure!"`
 				`	"Sorry, I'm just a merchant captain. The Free Worlds shouldn't be asking me to do combat missions."`
@@ -1932,7 +1932,7 @@ mission "Defend Sabik"
 	
 	on offer
 		conversation
-			`	When you land on <planet>, you discover that Tomek has already found transportation here; he meets you almost as soon as your ship lands. When you step out of the hatch alone, without Katya, he turns away in grief. "I'm sorry," you say, "I couldn't locate her. The whole place is under guard."`
+			`When you land on <planet>, you discover that Tomek has already found transportation here; he meets you almost as soon as your ship lands. When you step out of the hatch alone, without Katya, he turns away in grief. "I'm sorry," you say, "I couldn't locate her. The whole place is under guard."`
 			`	"Very well," he says, "we'll have to hope that she's still hidden there somewhere. In the meantime, we need to make your allegiance official so that you can fight alongside us if it comes to that."`
 			`	He is carrying a paintbrush and a very large can of green paint. "Would you like to do the honors?" he asks.`
 			choice

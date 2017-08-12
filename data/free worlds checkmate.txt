@@ -1826,7 +1826,7 @@ mission "FWC Pug 4"
 	
 	on offer
 		conversation
-			`	Your fleet lands on <planet>, and to your surprise the locals say that soon before your fleet arrived, all the Pug who were present on the planet departed; clearly they expected your arrival and had no desire to become your prisoners. You only have a few hours to take stock of the situation before the Navy informs you that they have detected another Pug fleet incoming...`
+			`Your fleet lands on <planet>, and to your surprise the locals say that soon before your fleet arrived, all the Pug who were present on the planet departed; clearly they expected your arrival and had no desire to become your prisoners. You only have a few hours to take stock of the situation before the Navy informs you that they have detected another Pug fleet incoming...`
 				launch
 	
 	on complete
