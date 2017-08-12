@@ -2823,7 +2823,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 	{
 		// Check if this ship has any forward-facing weapons.
 		for(const Hardpoint &weapon : ship.Weapons())
-			if(!weapon.CanAim() && weapon.GetOutfit())
+			if(!weapon.CanAim() && !weapon.IsTurret() && weapon.GetOutfit())
 			{
 				shouldAutoAim = true;
 				break;
