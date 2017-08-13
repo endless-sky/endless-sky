@@ -335,9 +335,9 @@ mission "Deep: Mystery Cubes 0"
 					decline
 			
 			label situation
-			`	"Excellent. I'm sure that you are aware that much of Deep Security is currently preoccupied, hence why we have been procuring merchants to escort many of the Deep's convoys. The reason this is the case is that we have been attempting to detain a particularly meddlesome pirate warlord who goes by the name of Beelzebub. From what we can ascertain, Beelzebub was either born in the Deep or has contacts in the Deep, which is making tracking them down rather difficult, as they seem to know our every move. That is where you and a few other merchants come in."`
+			`	"Excellent. I'm sure that you are aware that much of Deep Security is currently preoccupied, hence why we have been procuring merchants to escort many of the Deep's convoys. The reason this is the case is that we have been attempting to detain a particularly meddlesome pirate warlord who goes by the name of Beelzebub. From what we can ascertain, Beelzebub was either born in the Deep or has contacts in the Deep, which is making tracking him down rather difficult, as he seems to know our every move. That is where you and a few other merchants come in."`
 			`	Paris reaches into his pocket and pulls out a bag which he then hands to you. Inside of the bag are at least two dozen of the mysterious cubes that you have transported in the past, only with one distinct difference; these cubes have a thick red streak running down the middle of the cube.`
-			`	"The Deep requires that you place these on a number of worlds in the Dirt Belt which I will mark on your map for you. Place at least four of these devices around the spaceport of each marked planet, then come to <destination> where I will collect any remaining cubes that you may have. If a Deep Security ship did this then it would likely catch the attention of any pirates in the system and that information would make its way to Beelzebub, but random merchants should be inconspicuous enough to throw Beelzebub off or trail. Is that clear?"`
+			`	"The Deep requires that you place these on a number of worlds in the Dirt Belt which I will mark on your map for you. Place at least four of these devices around the spaceport of each marked planet, then come to <destination> where I will collect any remaining cubes that you may have. If a Deep Security ship did this then it would likely catch the attention of any pirates in the system and that information would make its way to Beelzebub, but random merchants should be inconspicuous enough to throw Beelzebub off our trail. Is that clear?"`
 			choice
 				`	"Crystal clear, Lieutenant. I will prepare to leave shortly."`
 					accept
@@ -427,7 +427,7 @@ mission "Deep: Mystery Cubes 2"
 				`	"Why are you involving us in this?"`
 				`	"Are we part of a plan to take Beelzebub down?"`
 			
-			`	"Beelzebub is perhaps the most wanted warlord by the Republic since the 28th century. With both Navy and Deep technology now in the hands of this criminal, every available ship will be required to take them down. The primary purpose for bringing you all here was to determine if any of you were connected to Beelzebub, possibly leading to Beelzebub being able to locate the cubes, but seeing as how you are all in the clear we are now hoping that you would be willing to assist us in trapping Beelzebub. The six of your fleets combined would certainly make up for anything that the Navy has lost in the attack."`
+			`	"Beelzebub is perhaps the most wanted warlord by the Republic since the 28th century. With both Navy and Deep technology now in the hands of this criminal, every available ship will be required to take him down. The primary purpose for bringing you all here was to determine if any of you were connected to Beelzebub, possibly leading to him being able to locate the cubes, but seeing as how you are all in the clear we are now hoping that you would be willing to assist us in trapping Beelzebub. The six of your fleets combined would certainly make up for anything that the Navy has lost in the attack."`
 			`	"How much will we be paid?" one of the other merchant captains asks. "At minimum, 1,000,000 credits," the admiral replies. The captain who asked instantly agrees to help, quickly followed by two others.`
 			choice
 				`	"I'll help as well."`
@@ -440,8 +440,8 @@ mission "Deep: Mystery Cubes 2"
 			
 			label accept
 			`	In the end, only one of the merchant captains declines. She is escorted out of the room as the admiral begins to explain how each merchant captain will be helping.`
-			`	"We assume that Beelzebub knows where we will be, but we know where Beelzebub is as well. The stolen Cruisers and the remaining pirate fleet that attacked our base moved toward the Core. Given the heinous crime that Beelzebub has just committed, they will undoubtedly be attempting to get as far away from the law as possible. That leaves us only two possible places that Beelzebub will go: Buccaner Bay or the anarchist colonies of the Far North, the latter of which being far more appealing for a warlord.`
-			`	The admiral goes on to explain how multiple blockades will be set up across the galaxy in an attempt to either capture Beelzebub or box them in. At the same time, any spare Navy and Deep Security fleets will be scanning the galaxy from the Dirt Belt toward the Paradise Worlds and the Core in an attempt to weed the warlord out of hiding and toward the blockades.`
+			`	"We assume that Beelzebub knows where we will be, but we know where he is as well. The stolen Cruisers and the remaining pirate fleet that attacked our base moved toward the Core. Given the heinous crime that Beelzebub has just committed, he will undoubtedly be attempting to get as far away from the law as possible. That leaves us only two possible places that Beelzebub will go: Buccaner Bay or the anarchist colonies of the Far North, the latter of which being far more appealing for a warlord.`
+			`	The admiral goes on to explain how multiple blockades will be set up across the galaxy in an attempt to either capture Beelzebub or box him in. At the same time, any spare Navy and Deep Security fleets will be scanning the galaxy from the Dirt Belt toward the Paradise Worlds and the Core in an attempt to weed the warlord out of hiding and toward the blockades.`
 			`	"Captain <last>, you will be stationed on <destination> with Lieutenant Paris and a small Navy fleet. Please gather your things and travel there immediately."`
 				accept
 	
@@ -453,7 +453,6 @@ mission "Deep: Mystery Cubes 2"
 			variant
 				"Mule"
 				"Raven" 2
-	
 	npc accompany save
 		personality heroic opportunistic escort
 		government Republic
@@ -464,6 +463,35 @@ mission "Deep: Mystery Cubes 2"
 				"Gunboat" 2
 		
 
+
+mission "Deep: Mystery Cubes 3: Escorts"
+	landing
+	invisible
+	to offer
+		has "Deep: Mystery Cubes 2: done"
+	to fail
+		has "Deep: Mystery Cubes 4: done"
+	npc
+		personality heroic escort
+		government Republic
+		fleet
+			names deep
+			fighters "deep fighter"
+			variant
+				"Mule"
+				"Raven" 2
+				"Lance"	
+	npc
+		personality heroic opportunistic escort
+		government Republic
+		fleet
+			names "republic capital"
+			fighters "republic fighter"
+			variant
+				"Cruiser"
+				"Gunboat" 2
+				"Combat Drone" 4
+	
 
 mission "Deep: Mystery Cubes 3"
 	landing
@@ -489,45 +517,23 @@ mission "Deep: Mystery Cubes 3"
 			`	One of the Navy crew members gets a ball out of their cabin and a small game of football starts inside of an open landing pad. Other crew members try to pass the time by reading or writing. Everyone comes to a standstill though once the ground begins to shake; an earthquake. A Navy member calls out to everyone. "Don't worry, this is a small one. We get earthquakes like this a lot on Gemstone." The earthquake eventually ends, and you decide to go into your ship to rest.`
 			
 			label mirfak
-			`	Suddenly, your communication device beeps and you begin to hear Lieutenant Paris' voice. "The blockade in Mirfak has just been attacked, I repeat the blockade in Mirfak has just been attacked. Reports are that the blockade has sustained heavy losses as two Cruisers were among the fleet of pirates."
+			`	Suddenly, your communication device beeps and you begin to hear Lieutenant Paris' voice. "The blockade in Mirfak has just been attacked, I repeat the blockade in Mirfak has just been attacked. Reports are that the blockade has sustained heavy losses as a single Cruiser was among the fleet of pirates."
 			`	"Should we go help them?" someone else says. "We were given our orders and we're going to follow them unless told otherwise." The comms fall quiet as the waiting continues."`
 			``
 			`	A few hours pass without any new information. The atmosphere feels tense as everyone anxiously waits. Without warning, one of the Ravens takes off and the communications device begins blaring with chatter. "A pirate fleet just jumped into the system containing two Navy Cruisers!" All the captains and their crew scatter for their ships, ready to fight.` 
 				launch
-
-	npc
-		personality heroic
-		government Republic
-		fleet
-			names deep
-			fighters "deep fighter"
-			variant
-				"Mule"
-				"Raven" 2
-				"Lance"
-				
-	npc
-		personality heroic opportunistic
-		government Republic
-		fleet
-			names "republic capital"
-			fighters "republic fighter"
-			variant
-				"Cruiser"
-				"Gunboat" 2
-				"Combat Drone" 4
 	
 	npc kill
-		personality staying heroic
+		personality staying heroic marked
+		government Pirate
 		fleet
-			names "pirate"
+			names pirate
 			variant
 				"Cruiser" 2
 				"Fury (Laser)" 3
-		dialog `All attacking pirates have been destroyed.`
 
 
-# The player lands after being attacked and the groups are called to convene on Farpoint. At Farpoint, a Navy admiral gives a sitrep; the stolen vessels are all accounted for (all destroyed, save for one), but the warlord seems to have escaped. Either Beelzebub ran up into the Far North in the confusion or is in the Core. The Navy and DS will continue working, but the merchants are no longer needed as Beelzebub doesn't have the Cruisers to fight with anymore and Deep Security has begun sweeping the galaxy for the modified sensor cubes.
+
 mission "Deep: Mystery Cubes 4"
 	landing
 	name `Rendezvous on <planet>`
@@ -537,13 +543,102 @@ mission "Deep: Mystery Cubes 4"
 		has "Deep: Mystery Cubes 4: done"
 	on offer
 		conversation
-			``
+			`Despite the pirates having Navy Cruisers in their possession, they were still unable to break through the blockade. After landing, Paris makes contact with mission control and informs them that the Nihal blockade has been attacked. In the time that you were fighting, a blockade in Matar was also attacked, but no Cruisers were present.`
+			`	"What are your orders, admiral?" Lieutenant Paris asks.`
+			`	"There are three Cruisers accounted for but still no sign of Beelzebub. The fleets sweeping the galaxy have almost reached the blockades, meaning we'll catch this warlord soon enough. After the Navy fleet sweeping toward your blockade enters the system, I want you to gather your team and come to <destination>. Beelzebub may be planning an attack on the blockade there with the final three Cruisers."`
+			`	Paris ends the conversation with an "Understood sir," and then contacts the captain of the Navy fleet that the admiral ordered to wait on. Paris informs the rest of the blockade team that they should be ready to leave for <destination> in a few hours.`
 				accept
+				
+	npc
+		personality heroic opportunistic escort entering
+		government Republic
+		fleet
+			names "republic capital"
+			fighters "republic fighter"
+			variant
+				"Carrier"
+				"Combat Drone" 6
+				"Dagger" 4
+	npc
+		personality staying
+		government Merchant
+		fleet
+			names civilian
+			variant
+				"Bastion"
+				"Manta" 2
+	npc
+		personality staying heroic
+		government Republic
+		fleet
+			names "republic capital"
+			fighters "republic fighter"
+			variant
+				"Cruiser"
+				"Combat Drone" 4
+				"Frigate"
+	npc
+		personality staying heroic
+		government Republic
+		fleet
+			names deep
+			fighters "deep fighter"
+			variant
+				"Aerie" 2
+				"Dagger" 4
+				"Corvette (Speedy)"
+	npc
+		personality heroic
+		government Republic
+		system Sol
+		fleet
+			names "republic capital"
+			fighters "republic fighter"
+			variant
+				"Carrier"
+				"Cruiser" 2
+				"Combat Drone" 14
+				"Lance" 4
+				"Frigate" 2
+	npc evade
+		personality staying heroic marked
+		government Pirate
+		fleet
+			names pirate
+			variant
+				"Cruiser" 3
+				"Marauder Leviathan"
+				"Headhunter (Particle)" 3
+				"Firebird (Plasma)"
+				"Marauder Firebird (Weapons)" 2
+				"Corvette (Missile)" 2
+				
+	on enter Alnitak
+		dialog `Alnitak is in chaos when you enter the system. An outnumbered defense fleet is fighting a group of pirate ships, and among the pirates you spot three Cruisers.`
 
+	on visit
+		dialog `You have landed on <planet>, but there are still pirates attacking the system. Destroy all of the pirates in order to complete this mission.`
+	
+	on enter Hassaleh
+		set "deep: passed through north"
+	
 	on complete
 		payment 1000000
 		conversation
-			``
+			`As you come in for a landing, you can see that a number of buildings have taken fire from the pirate fleet above. White tents have been set up for tending to the wounded and multiple ships are in the process of being repaired. You are directed to a building that has sustained no damage in which a number of Navy officers, the admiral you met on Luna, Lieutenant Paris, and the remaining merchant captains who agreed to help have convened. After you enter the room and get settled down, the admiral begins to speak.`
+			`	"Here's the sitrep. Beelzebub's ship was spotted entering the system, followed by the rest of the pirate fleet. His ship seemed to disappear in the confusion, so we have no idea where he went. Either Beelzebub is currently hiding on the anarchist worlds or made a dash for the Core, in which case the chase goes on."`
+			branch core
+				has "deep: passed through north"
+				goto next
+			
+			label core
+			`	"Beelzebub can't have gone to the Core," Paris butts in. "We traveled here through the uninhabited systems. We would have seen Beelzebub had he gone that way."`
+			`	"That's good news then. All we have to do is wait Beelzebub out until he decides to poke his little head back out."`
+			
+			label next
+			`	"Luckily, all six stolen Cruisers are accounted for, albeit destroyed. Deep Security forces have also begun to collect the stolen sensor cubes. We can confirm that Beelzebub was watching our every move, since the cubes are being found all over the Paradise Worlds and Core. They should all be retreived within the next week." The admiral then turns to the merchant captains. "Now that Beelzebub doesn't have the upper hand anymore, you are no longer needed and may leavve now. <payment> will be transfered to each of your accounts for your services."`
+			`	"Thank you, admiral," one of the captains replies.`
+			`	"No, thank you. All of you. You didn't have to accept this dangerous job but you did, and I speak for the whole Navy when I say that we are grateful for that."`
 
 
 
@@ -703,7 +798,7 @@ mission "Deep: Remnant 0"
 		conversation
 			`While wandering through the spaceport, you are approached by a man you instantly recognize as the scientist whose drone you recovered data from in Terminus, thanks to his comically thick glasses. He introduces himself as Ivan and mentions he heard how helpful you have been to others within the Deep.`
 			`	"I was hoping you would continue assisting us in our research on the spatial anomaly in Terminus. Thanks to the data you retrieved, we have deduced that the anomaly is in fact some sort of wormhole, but it is far too unstable to support sending anything through it."`
-			`	"I must ask you, do you know of the Hai?" You nod. "Splendid! Then you will be able to help. One of the scientists on my team grew up in their territory, and suggested that the so called "Quantum Keystones" which they sell might have something to do with the wormhole. He recalls hearing some Hai folktales of these stones unlocking previously impassible pathways, soothing the minds and bodies of those who possessed them. Would you kindly retrieve ten of them for us, so that we may be able to discover if these legends are true, and they allow access into the wormhole?"`
+			`	"I must ask you, do you know of the Hai?" You nod. "Splendid! Then you will be able to help. One of the scientists on my team grew up in their territory, and suggested that the so called 'Quantum Keystones' which they sell might have something to do with the wormhole. He recalls hearing some Hai folktales of these stones making travel between the stars easier. Given that it would be immensely difficult to stabalize the wormhole with our current knowledge, it may be that these stones will make access into the wormhole easier. Would you kindly retrieve ten of them for us, so that we may be able to discover if these legends are true, and they allow access into the wormhole?"`
 			branch remnant
 				has "First Contact: Remnant: offered"
 			choice
@@ -854,7 +949,7 @@ mission "Deep: Remnant 2A"
 					decline
 					
 	on accept
-		event "clear arculus"
+		event "deep: clear arculus"
 	
 	npc "scan outfits"
 		government Remnant
@@ -867,10 +962,10 @@ mission "Deep: Remnant 2A"
 		dialog `You have finished scanning the Remnant ships in the system. You may now return to <destination> with the scanner logs.`
 	
 	on fail
-		event "reset arculus"
+		event "deep: reset arculus"
 	
 	on complete
-		event "reset arculus"
+		event "deep: reset arculus"
 		event "deep: scan log research" 21
 		dialog
 			`The team is visibly excited when you return with the scanner logs. "Give us a few weeks to look these over," Ivan says. "Then we will contact you about what we want you to do next."`
@@ -899,7 +994,7 @@ mission "Deep: Remnant 1B"
 					decline
 					
 	on accept
-		event "clear arculus"
+		event "deep: clear arculus"
 	
 	npc "scan outfits"
 		government Remnant
@@ -912,10 +1007,10 @@ mission "Deep: Remnant 1B"
 		dialog `You have finished scanning the Remnant ships in the system. You may now return to <destination> with the scanner logs.`
 	
 	on fail
-		event "reset arculus"
+		event "deep: reset arculus"
 	
 	on complete
-		event "reset arculus"
+		event "deep: reset arculus"
 		event "deep: scan log research" 21
 		dialog
 			`The team is visibly excited when you return with the scanner logs. "Give us a few weeks to look these over," Ivan says. "Then we will contact you about what we want you to do next."`
@@ -959,7 +1054,7 @@ mission "Deep: Remnant 1C"
 					decline
 					
 	on accept
-		event "clear arculus"
+		event "deep: clear arculus"
 	
 	npc "scan outfits"
 		government Remnant
@@ -972,22 +1067,22 @@ mission "Deep: Remnant 1C"
 		dialog `You have finished scanning the Remnant ships in the system. You may now return to <destination> with the scanner logs.`
 	
 	on fail
-		event "reset arculus"
+		event "deep: reset arculus"
 	
 	on complete
-		event "reset arculus"
+		event "deep: reset arculus"
 		event "deep: scan log research" 21
 		dialog
 			`The team is visibly excited when you return with the scanner logs. "Give us a few weeks to look these over," Ivan says. "Then we will contact you about what we want you to do next."`
 
 
 
-event "clear arculus"
+event "deep: clear arculus"
 	system Arculus
 		remove fleet "Large Remnant"
 		remove fleet "Small Remnant"
 		
-event "reset arculus"
+event "deep: reset arculus"
 	system Arculus
 		add fleet "Large Remnant" 1500
 		add fleet "Small Remnant" 1000
@@ -1545,20 +1640,21 @@ mission "Deep: Scientist Rescue 2"
 
 
 ship "Bactrian" "Bactrian (Cosmic Devil)"
-	"never disabled"
 	outfits
-		"Heavy Laser Turret" 4
-		"Heavy Anti-Missile Turret" 2
-		"Torpedo Launcher" 4
-		"Torpedo" 120
-		"Fusion Reactor"
-		"Fission Reactor"
-		"LP288a Battery Pack"
-		"D94-YV Shield Generator" 2
-		"Liquid Helium Cooler" 2
-		"Large Radar Jammer" 2
-		"A520 Atomic Thruster"
-		"A525 Atomic Steering"
+		"Inhibitor Cannon" 2
+		"Thrasher Turret" 4
+		"Point Defense Turret"
+		"Heavy Anti-Missile Turret"
+		"Boulder Reactor" 2
+		"Hai Ravine Batteries"
+		"Hai Chasm Batteries"
+		"Hai Diamond Regenerator"
+		"Liquid Helium Cooler"
+		"Outfits Expansion" 4
+		"Quantum Keystone"
+		"Ramscoop"
+		`"Bondir" Atomic Thruster`
+		`"Bufaer" Atomic Steering`
 		Hyperdrive
 
 		
