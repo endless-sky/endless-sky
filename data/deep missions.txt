@@ -8,30 +8,6 @@
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
-# Given the current skeleton, the following would need to be done in order to unlock the Bactrian:
-#
-#	Deep "intro:"
-#		10 mystery cube jobs
-#		3 transport scientist jobs
-#		3 escort science vessel jobs
-#		3 record academic conference jobs
-#
-#	Deep "start:"
-#		At least one of three convoy missions added by this
-#		The current TMBR string + the 3 missions added by this 
-#			(optional if the player instead does all three of the convoy missions)
-#		The Deep: Mystery Cubes string added by this
-#
-#	Deep "middle:"
-#		The Deep Archaeology string
-#		The Deep: Singularity string added by this
-#		The Deep: Remnant string added by this (second half of the string is optional)
-#		Discover the Hai (might already be covered by Deep: TMBR)
-#		Discover the Remnant (and finish their intro missions to complete the rest of the Deep: Remnant string, or attack the Remnant to plunder their outfits instead)
-#
-#	Deep "end:"
-#		The Deep: Scientist Rescue string added by this
-#
 #	To Do:
 #		Write Deep: Singularity
 #		Rewrite Deep: Scientist Rescue to account for the player's previous actions assisting the Deep and to account for the new characters that the player will now know which are involved in the situation.
@@ -285,7 +261,6 @@ mission "Deep: Kraz Convoy"
 
 
 
-# This string involves trying to hunt down said warlord, but it will be mostly unsuccessful; the warlord's tracks run cold in the Far North (no cubes up there) suggesting they either ran up into the anarchist worlds or ran east toward the Core.
 mission "Deep: Mystery Cubes 0"
 	minor
 	name `Gaining an Edge`
@@ -301,6 +276,7 @@ mission "Deep: Mystery Cubes 0"
 	stopover "New Switzerland"
 	stopover "Tundra"
 	stopover "Arabia"
+	cargo "mystery cubes" 1
 	to offer
 		or
 			and
@@ -356,7 +332,7 @@ mission "Deep: Mystery Cubes 0"
 		dialog `You have placed cubes on the last of the planets that Paris has asked you to. When you look into the bag you find that there are three left. Go to <destination> to give the remaining cubes to Paris.`
 		
 	on complete
-		event "deep: warlord detected" 17
+		event "deep: warlord detected" 20 30
 		payment 640000
 		conversation
 			`You find Lieutenant Paris waiting for you in the spaceport. You hand him the bag of remaining cubes, and he hands you <payment> for helping.`
@@ -657,8 +633,8 @@ mission "Deep: TMBR 0"
 		"Escort science vessel: done" >= 3
 		"Record academic conference: done" >= 3
 		has "There Might Be Riots part 3B: done"
-		not "Deep: Remnant 0"
-		not "Deep: Singularity"
+		not "Deep: Remnant 0: offered"
+		not "Deep: Singularity 2: offered"
 	on offer
 		conversation
 			`When you enter the <planet> spaceport, you hear what is undoubtedly a "There Might Be Riots" song, playing loudly enough for everyone in the spaceport to hear. A quick glance around reveals the source of the noise to be the external speakers of a nearby Bounder and several people dancing.`
@@ -700,7 +676,7 @@ mission "Deep: TMBR 0"
 				decline
 			
 	to complete
-		has "Deep: TMBR 1: done"
+		has "Deep: TMBR 2: offered"
 
 
 
@@ -708,13 +684,13 @@ mission "Deep: TMBR 1"
 	name `Reunite with the band`
 	description `A human on <origin> indicated she saw "There Might Be Riots" perform on <destination> last week. Hopefully they are still there.`
 	source
+		near "Fah Soom" 1 10
 		government Hai
-	destination
-		distance 2 10
-		government Hai
-		attributes "human tourism" "hai tourism"
+		attributes "human tourism"
+	destination Greenwater
 	to offer
 		has "Deep: TMBR 0: active"
+		not "Deep: TMBR 2: offered"
 		random < 30
 	on offer
 		conversation
@@ -731,8 +707,9 @@ mission "Deep: TMBR 2"
 	blocked "You have reached <origin>, but you'll need at least four free cargo space and eight free bunks to continue this mission. Return here when you have the required space free."
 	cargo "musical equipment" 4
 	passengers 8
+	source Greenwater
 	to offer
-		has "Deep: TMBR 1: done"
+		has "Deep: TMBR 0: active"
 	on offer
 		conversation
 			`You find "There Might Be Riots" playing a gig right in the spaceport of <origin>. Judging by the large number of Hai in the audience, they seem to have amassed quite the following, even in Hai space.`
@@ -758,23 +735,86 @@ mission "Deep: TMBR 2"
 # "Over the centuries the exact date of when the Deep was established have been lost, but folklore says that the first humans arrived here in the mid 1300s before the time of the Black Death."
 # Not sure what these missions would entail. Would likely involve some of the scientists from Deep: TMBR, since they left to work on Midgard, where the singularity is. Also want to involve Lt. Paris in some way, who will be first introduced in Deep: Mystery Cubes
 
-# At this point in time the player would have helped out the Deep quite a bit, possibly including discovering the Remnant for the Deep.
-mission "Deep: Singularity"
+# The player is detained by Deep Security and asked a few questions about their work for Albert Foster before being released.
+mission "Deep: Singularity 0"
+	landing
+	source
+		attributes deep
+	to offer
+		has "Deep Archaeology 5: done"
+	on offer
+		conversation
+			``
+			branch helped # For if the player helped the Deep before finishing Deep Archaeology; essentially makes this mission a blend between dialog from 0 (didn't help before) and 1
+				has "Deep: Mystery Cubes 4: done"
+			``
+				goto next
+			
+			label helped
+			apply
+				set "deep: helped before archaeology"
+			``
+			
+			label next
+			``
+				decline
+
+
+
+# The Deep contacts the player to talk with them about helping the Deep recently, and says that they'll forget about the Albert Foster incident since the player clearly means the Deep no harm.
+mission "Deep: Singularity 1"
+	minor
+	name ``
+	description ``
+	source
+		government Republic "Free Worlds" Syndicate Neutral
+	destination Midgard
+	to offer
+		has "Deep: Mystery Cubes 4: done"
+		has "Deep: Singularity 0: offered"
+		not "deep: helped before archaeology"
+		or
+			"deep convoy" == 3
+			has "Deep: TMBR 2: done"
+			has "Deep: Remnant Research: done"
+	on offer
+		dialog ``
+	
+	on complete
+		conversation
+			``
+
+
+
+# I'm lost as to what I should do for this mission. Whatever the case is, I want no combat to win (i.e. npc kill), and for the player to meet with some of the scientists from Deep: TMBR
+mission "Deep: Singularity 2"
 	minor
 	name ``
 	description ``
 	source
 		attributes deep
+	destination
 	to offer
-		has "Deep: Mystery Cubes 4: done"
-		has "Deep Archaeology 5: done"
+		random < 20
 		or
-			"deep convoy" == 3
-			has "Deep: TMBR 2: done"
-		or
-			"deep convoy" >= 2
-			has "Deep: Remnant Research: done"
+			has "Deep: Singularity 1: done"
+			and
+				has "Deep: Mystery Cubes 4: done"
+				has "deep: helped before archaeology"
+				or
+					"deep convoy" == 3
+					has "Deep: TMBR 2: done"
+					has "Deep: Remnant Research: done"
 	on offer
+		conversation
+			``
+			choice
+				``
+					accept
+				``
+					decline
+			
+	on complete
 		conversation
 			``
 
@@ -788,11 +828,12 @@ mission "Deep: Remnant 0"
 		attributes deep
 		near "Epsilon Leonis" 1 100
 	to offer
+		random < 40
 		has "Deep: Mystery Cubes 4: done"
 		has "Terminus exploration: done"
 		has "First Contact: Hai: offered"
 		or
-			"deep convoy" == 3
+			"deep convoy" >= 2
 			has "Deep: TMBR 2: done"
 	on offer
 		conversation
@@ -861,7 +902,7 @@ mission "Deep: Remnant: Keystone Research"
 	name `Travel to <planet>`
 	description `Meet up with Ivan on <destination> to learn about his research on the Quantum Keystones you brought him.`
 	source 
-		government Republic "Free Worlds" Syndicate Neutral Independent
+		government Republic "Free Worlds" Syndicate Neutral
 	destination Valhalla
 	to offer
 		has "event: deep: keystone research"
@@ -870,9 +911,6 @@ mission "Deep: Remnant: Keystone Research"
 			`You receive a message from Ivan, the scientist working on the spatial anomaly in Terminus. "Captain, we have finished studying the Quantum Keystones, and they do in fact allow access through the wormhole. Please meet with me on <destination> if you wish to continue helping us with our research."`
 
 
-# A branch: Didn't know of the Remnant before and still don't know
-# B branch: Knew of the Remnant before
-# C branch: Didn't know of the Remnant before but know now
 
 mission "Deep: Remnant 1A"
 	landing
@@ -1096,7 +1134,7 @@ mission "Deep: Remnant Technology"
 	name `Travel to <planet>`
 	description `Meet up with Ivan on <destination> to learn what he wants you to do next.`
 	source 
-		government Republic "Free Worlds" Syndicate Neutral Independent
+		government Republic "Free Worlds" Syndicate Neutral
 	destination Valhalla
 	to offer
 		has "event: deep: scan log research"
@@ -1183,7 +1221,7 @@ mission "Deep: Remnant: Engines"
 
 mission "Deep: Remnant: Generators"
 	landing
-	name `Fetching Generators`
+	name `Fetching a Generator`
 	description `Acquire a Millennium Cell generator from the Remnant and bring it to <destination>.`
 	source Valhalla
 	to offer
@@ -1216,7 +1254,7 @@ mission "Deep: Remnant: Generators"
 
 mission "Deep: Remnant: Inhibitor Cannon"
 	landing
-	name `Fetching Cannons`
+	name `Fetching a Cannon`
 	description `Acquire an Inhibitor Cannon from the Remnant and bring the weapon to <destination>.`
 	source Valhalla
 	to offer
@@ -1322,7 +1360,6 @@ mission "Deep: Scientist Rescue 0"
 	waypoint Betelgeuse
 	to offer
 		has "event: deep: scientist rescue timer"
-
 	on offer
 		conversation
 			`While you are watching one of the telescreens in a restaurant located in the spaceport, you are approached by a man and a woman, both wearing Deep Security uniforms.`
@@ -1399,7 +1436,6 @@ mission "Deep: Scientist Rescue 0: Prime"
 	to offer
 		has "Deep: Scientist Rescue 0: active"
 		not "found star queen"
-
 	on offer
 		conversation
 			`The Star Queen is not in this system, so you attempt to find somebody who may have some information. After visiting several shops, you find a merchant who was clearing cargo through customs as the Star Queen departed. As she shares her experience, you can't help but be glad the Deep Security officer is not with you, as to hear this tale unfold would surely have shaken him further.`
@@ -1414,7 +1450,6 @@ mission "Deep: Scientist Rescue 0: Farpoint"
 	to offer
 		has "Deep: Scientist Rescue 0: active"
 		not "found star queen"
-
 	on offer
 		conversation
 			`After speaking with a Navy officer for a few minutes, you find out that the Star Queen came through here over a week ago, escorted by several large pirate ships. The Navy did not want to risk the lives of those on the Star Queen by engaging the pirate fleet, so they let it continue north from here.`
@@ -1448,7 +1483,6 @@ mission "Deep: Scientist Rescue 0: Haven"
 	source Haven
 	to offer
 		has "Deep: Scientist Rescue 0: active"
-
 	on offer
 		conversation
 			`You spend a few hours scanning the surface of the planet in an attempt to find the Star Queen, but nothing comes up. It will likely require military-grade scanners in order to find the ship, which Deep Security ships undoubtedly have.`
@@ -1464,7 +1498,6 @@ mission "Deep: Scientist Rescue 1"
 	clearance
 	to offer
 		has "Deep: Scientist Rescue 0: done"
-
 	on offer
 		conversation
 			`You return to Valhalla and find the man that you met earlier in the spaceport talking with a large group of people in Deep Security uniforms.`
@@ -1528,11 +1561,10 @@ mission "Deep: Scientist Rescue 1: Recruit Escorts"
 	name "Deep Security escorts on <planet>"
 	description "Lieutenant Paris mentioned an escort squadron of Deep Security ships was preparing to join you on your mission. Meet up with them on <destination>, if you want to."
 	landing
-	to offer
-		has "Deep: Scientist Rescue 0: done"
-
 	source Valhalla
 	destination Memory
+	to offer
+		has "Deep: Scientist Rescue 0: done"
 	to fail
 		has "Deep: Scientist Rescue 1: done"
 
@@ -1548,7 +1580,10 @@ mission "Deep: Scientist Rescue 1: Escorts"
 		or
 			has "Deep: Scientist Rescue 3A: offered"
 			has "Deep: Scientist Rescue 3B: offered"
-	
+	on offer
+		conversation
+			`As you land, you notice a group of Deep Security warships - three Aeries and their fighter squadrons - loading munitions just outside of the spaceport. Before you can make it into the spaceport, one of the pilots waves you over for a brief conversation: aside from a few trivial items left on their preflight checklist, the warships are ready to launch and join in on the rescue mission.`
+				accept
 	npc kill
 		government Republic
 		personality heroic escort
@@ -1558,22 +1593,16 @@ mission "Deep: Scientist Rescue 1: Escorts"
 				"Aerie" 3
 				"Dagger" 6
 
-	on offer
-		conversation
-			`As you land, you notice a group of Deep Security warships - three Aeries and their fighter squadrons - loading munitions just outside of the spaceport. Before you can make it into the spaceport, one of the pilots waves you over for a brief conversation: aside from a few trivial items left on their preflight checklist, the warships are ready to launch and join in on the rescue mission.`
-				accept
-
 
 
 mission "Deep: Scientist Rescue 1: Recruit Reinforcements"
 	name "Republic Navy escorts on <planet>"
 	description "Lieutenant Paris mentioned that some Navy officers were interested in avenging the loss of their comrades. Meet up with them on <destination>, if you want to."
 	landing
-	to offer
-		has "Deep: Scientist Rescue 0: done"
-
 	source Valhalla
 	destination Farpoint
+	to offer
+		has "Deep: Scientist Rescue 0: done"
 	to fail
 		has "Deep: Scientist Rescue 1: done"
 
@@ -1589,7 +1618,10 @@ mission "Deep: Scientist Rescue 1: Reinforcements"
 		or
 			has "Deep: Scientist Rescue 3A: offered"
 			has "Deep: Scientist Rescue 3B: offered"
-
+	on offer
+		conversation
+			`While refueling at the Farpoint naval base, you are approached by two Navy officers who recognize you as Captain <last>. They tell you that Lieutenant Paris contacted them a few days ago, indicating that the rescue fleet was en route and would be reaching the Alnitak system shortly. They inform you that they have requisitioned two Cruisers to assist in the Star Queen's retrieval, and depart for their ships.`
+				accept
 	npc kill
 		government Republic
 		personality heroic escort
@@ -1599,11 +1631,6 @@ mission "Deep: Scientist Rescue 1: Reinforcements"
 			variant
 				"Cruiser" 2
 				"Combat Drone" 8
-	
-	on offer
-		conversation
-			`While refueling at the Farpoint naval base, you are approached by two Navy officers who recognize you as Captain <last>. They tell you that Lieutenant Paris contacted them a few days ago, indicating that the rescue fleet was en route and would be reaching the Alnitak system shortly. They inform you that they have requisitioned two Cruisers to assist in the Star Queen's retrieval, and depart for their ships.`
-				accept
 
 
 
@@ -1691,16 +1718,15 @@ mission "Deep: Scientist Rescue 2: More Pirates"
 
 
 mission "Deep: Scientist Rescue 3A"
+	landing
 	name "Take down the Devil"
 	description "You have returned the scientists, but the pirates still have a Bactrian. Eliminate it and return to <destination>."
-	landing
 	destination Valhalla
 	waypoint Arneb
 	to offer
 		has "Deep: Scientist Rescue 2: done"
 		not "Deep: Scientist Rescue: Pirate Bactrian: done"
 		not "Deep: Scientist Rescue 3B: offered"
-
 	on offer
 		conversation
 			`As you land near the Star Queen, you can see the passengers of the ship being escorted off of it. A medical team is examining each passenger while a Deep Security officer asks them questions and jots down the responses. Sadly, you also notice a number of body bags next to the ship, likely from scientists or crew that were found dead on the ship.`
@@ -1742,11 +1768,11 @@ mission "Deep: Scientist Rescue 3A"
 
 mission "Deep: Scientist Rescue 3B"
 	landing
+	invisible
 	to offer
 		has "Deep: Scientist Rescue 2: done"
 		has "Deep: Scientist Rescue 2: Pirate Bactrian: done"
 		not "Deep: Scientist Rescue 3A: offered"
-
 	on offer
 		set "license: City-Ship"
 		conversation
