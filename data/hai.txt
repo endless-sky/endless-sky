@@ -109,14 +109,14 @@ fleet "Hai Miners"
 	names "hai"
 	cargo 0
 	personality
-		disables opportunistic mining harvests
+		disables mining harvests
 	variant 20
-		"Aphid (Mining)" 4
-	variant 10
 		"Aphid (Mining)" 2
+	variant 10
+		"Aphid (Mining)"
 		"Lightning Bug (Pulse)"
 	variant 5
-		"Lightning Bug (Pulse)" 2
+		"Lightning Bug (Pulse)"
 	variant
 		"Shield Beetle (Pulse)"
 

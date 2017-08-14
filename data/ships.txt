@@ -1513,8 +1513,8 @@ ship "Harvester"
 	engine 6.5 37.5
 	engine -6.5 37.5
 	explode "tiny explosion" 15
-	description "The recent asteroid mining boom prompted companies to expand their horizons, and start sending out larger fleets of vessels outfitted for mining. Unfortunately, paying to retrofit cargo ships as well as crew them is expensive, as there are very few ships that are able to effectively mine."
-	description "	After petitioning the Republic to allow civilian drone use, the large mining corporations, led by Southbound Shipyards finally got the Republic parliament to give them rights to use drones, as long as they weren't armed with anything other than industrial equipment. Southbound quickly released the first civilian drone, the Harvester, which had clearly been in the works for some time."
+	description `Rather than attempt to retrofit freighters to be nimble enough to catch and destroy asteroids, Southbound Shipyards developed a remote-operated drone able to be licensed for public and corporate use due to its minuscule armament.`
+	description `While not very popular with private pilots, the Scavenger-Harvester combination proved very popular among corporations seeking to capitalize on recent spikes in mineral futures.`
 
 
 
@@ -2425,7 +2425,7 @@ ship "Scavenger"
 	explode "medium explosion" 25
 	explode "large explosion" 10
 	"final explode" "final explosion medium"
-	description `Along with the release of the Harvester drone, Southbound Shipyards also released the first civilian drone carrier. The Scavenger, much like other heavy freighters, flies like a brick and is not well suited for mining itself. Instead, it serves as the home base for the mining drones to drop off mined materials, rather than assisting the mining operation itself.`
+	description `To pair with the Harvester drone, Southbound Shipyards released the first civilian drone carrier, the Scavenger. Like most other freighters, it is not well known for its maneuverability or armament, but rather its cargo space. The automated cargo transfer mechanisms are particularly useful for in-flight unloading of the drones' harvest.`
 
 
 

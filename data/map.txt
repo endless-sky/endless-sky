@@ -2190,7 +2190,7 @@ system Albaldah
 	fleet "Small Militia" 1400
 	fleet "Large Militia" 2400
 	fleet Quarg 3000
-	fleet "Southern	Miners" 3000
+	fleet "Southern Miners" 3000
 	object
 		sprite star/k5
 		distance 42.7246
