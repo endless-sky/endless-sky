@@ -20,8 +20,9 @@ ship "Earth Shaper"
 		"drag" .9
 		"heat dissipation" .9
 		"fuel capacity" 300
-		"cargo space" 27
-		"outfit space" 59
+		"cargo space" 21
+		"outfit space" 62
+		"weapon capacity" 4
 		"engine capacity" 26
 		"atmosphere scan" 100
 		"automaton" 1
@@ -31,12 +32,15 @@ ship "Earth Shaper"
 			"hull damage" 150
 			"hit force" 250
 	outfits
+		"Sunflare"
+		
 		"Small Biochemical Cell"
 		
 		"Type 1 Radiant Thruster"
 		"Type 1 Radiant Steering"
 		"Hyperdrive"
 		
+	gun 0 -39 "Sunflare"
 	engine -9 30
 	engine 9 30
 	explode "tiny explosion" 20
