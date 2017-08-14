@@ -1866,7 +1866,7 @@ system Achernar
 	fleet "Large Syndicate" 600
 	fleet "Small Syndicate" 500
 	fleet "Small Core Merchants" 300
-	fleet "Syndicate Miners" 3000
+	fleet "Human Miners" 3000
 	object
 		sprite star/g5
 		period 10
@@ -1938,7 +1938,7 @@ system Acrux
 	fleet "Large Militia" 1200
 	fleet "Small Southern Pirates" 1000
 	fleet "Large Southern Pirates" 2400
-	fleet "Human Miners" 5000
+	fleet "Southern Miners" 5000
 	object
 		sprite star/k0
 		distance 17.9429
@@ -2123,7 +2123,7 @@ system "Al Dhanab"
 	fleet "Large Syndicate" 800
 	fleet "Small Core Pirates" 2000
 	fleet "Large Core Pirates" 3000
-	fleet "Syndicate Miners" 2000
+	fleet "Human Miners" 2000
 	object
 		sprite star/g0
 		period 10
@@ -2190,7 +2190,7 @@ system Albaldah
 	fleet "Small Militia" 1400
 	fleet "Large Militia" 2400
 	fleet Quarg 3000
-	fleet "Human Miners" 3000
+	fleet "Southern	Miners" 3000
 	object
 		sprite star/k5
 		distance 42.7246
@@ -2492,7 +2492,7 @@ system Aldhibain
 	fleet "Large Militia" 1000
 	fleet "Small Southern Pirates" 800
 	fleet "Large Southern Pirates" 2000
-	fleet "Human Miners" 3000
+	fleet "Southern Miners" 3000
 	object
 		sprite star/k0
 		period 10
@@ -2968,7 +2968,7 @@ system Alkaid
 	fleet "Large Southern Merchants" 5000
 	fleet "Small Southern Pirates" 2400
 	fleet "Large Southern Pirates" 5000
-	fleet "Human Miners" 3000
+	fleet "Southern Miners" 3000
 	object
 		sprite star/g0
 		period 10
@@ -3146,7 +3146,7 @@ system Alnair
 	fleet "Large Core Pirates" 4000
 	fleet "Small Syndicate" 4000
 	fleet "Large Syndicate" 6000
-	fleet "Syndicate Miners" 2000
+	fleet "Human Miners" 2000
 	object
 		sprite star/m4
 		period 10
@@ -4323,7 +4323,7 @@ system Arcturus
 	fleet "Small Southern Merchants" 700
 	fleet "Large Southern Merchants" 3000
 	fleet "Small Militia" 10000
-	fleet "Human Miners" 5000
+	fleet "Southern Miners" 5000
 	object
 		sprite star/k5
 		period 10
@@ -4499,7 +4499,7 @@ system Ascella
 	fleet "Large Southern Merchants" 1000
 	fleet "Small Militia" 4000
 	fleet "Small Southern Pirates" 3000
-	fleet "Human Miners" 1600
+	fleet "Southern Miners" 1600
 	object
 		sprite star/k5
 		distance 43.5
@@ -4682,7 +4682,7 @@ system Atria
 	fleet "Small Southern Pirates" 3000
 	fleet "Large Southern Pirates" 5000
 	fleet "Small Militia" 8000
-	fleet "Human Miners" 2000
+	fleet "Southern Miners" 2000
 	object
 		sprite star/m0
 		period 10
@@ -5198,7 +5198,7 @@ system "Beta Lupi"
 	fleet "Large Southern Pirates" 2500
 	fleet "Small Militia" 2000
 	fleet "Large Militia" 5000
-	fleet "Human Miners" 3000
+	fleet "Southern Miners" 3000
 	object
 		sprite star/g5
 		period 10
@@ -5509,7 +5509,7 @@ system Boral
 	fleet "Large Northern Merchants" 8000
 	fleet "Small Southern Pirates" 1500
 	fleet "Small Militia" 10000
-	fleet "Human Miners" 2000
+	fleet "Southern Miners" 2000
 	object
 		sprite star/m0
 		period 10
@@ -6954,7 +6954,7 @@ system "Cor Caroli"
 	fleet "Small Southern Pirates" 2000
 	fleet "Small Republic" 10000
 	fleet "Small Militia" 7000
-	fleet "Human Miners" 3000
+	fleet "Southern Miners" 3000
 	object
 		sprite star/g0
 		period 10
@@ -7442,7 +7442,7 @@ system "Delta Sagittarii"
 	fleet "Large Southern Merchants" 3000
 	fleet "Small Southern Pirates" 3000
 	fleet "Small Militia" 7000
-	fleet "Human Miners" 3000
+	fleet "Southern Miners" 3000
 	object
 		sprite star/k5
 		period 10
@@ -7507,7 +7507,7 @@ system "Delta Velorum"
 	fleet "Small Southern Pirates" 2000
 	fleet "Large Southern Pirates" 5000
 	fleet "Small Republic" 12000
-	fleet "Human Miners" 2000
+	fleet "Southern Miners" 2000
 	object
 		sprite star/g0
 		period 10
@@ -7843,7 +7843,7 @@ system Dschubba
 	fleet "Large Southern Pirates" 4000
 	fleet "Small Militia" 3000
 	fleet "Large Militia" 5000
-	fleet "Human Miners" 2000
+	fleet "Southern Miners" 2000
 	object
 		sprite star/k5
 		distance 18.9364
@@ -10389,7 +10389,7 @@ system "Gamma Corvi"
 	fleet "Small Militia" 1000
 	fleet "Large Militia" 2000
 	fleet "Small Southern Pirates" 10000
-	fleet "Human Miners" 5000
+	fleet "Southern Miners" 5000
 	object
 		sprite star/g0
 		distance 39.0165
@@ -10841,7 +10841,7 @@ system Graffias
 	fleet "Small Southern Merchants" 1000
 	fleet "Large Southern Merchants" 4000
 	fleet "Small Southern Pirates" 5000
-	fleet "Human Miners" 2000
+	fleet "Southern Miners" 2000
 	object
 		sprite star/k0
 		distance 59.5
@@ -13638,7 +13638,7 @@ system Kornephoros
 	fleet "Small Southern Pirates" 3000
 	fleet "Small Militia" 2000
 	fleet "Large Militia" 4000
-	fleet "Human Miners" 3000
+	fleet "Southern Miners" 3000
 	object
 		sprite star/k0
 		distance 57.5
@@ -14147,7 +14147,7 @@ system Limen
 	fleet "Small Southern Pirates" 1000
 	fleet "Large Southern Pirates" 2000
 	fleet "Deep Miners" 3000
-	fleet "Human Miners" 2000
+	fleet "Southern Miners" 2000
 	object
 		sprite star/f5
 		period 10
@@ -15357,7 +15357,7 @@ system Menkent
 	fleet "Small Southern Merchants" 500
 	fleet "Large Southern Merchants" 1500
 	fleet "Small Republic" 3000
-	fleet "Human Miners" 2000
+	fleet "Southern Miners" 2000
 	object
 		sprite star/f5
 		distance 27.7778
@@ -16183,7 +16183,7 @@ system Mora
 	fleet "Small Southern Pirates" 2000
 	fleet "Large Southern Pirates" 3000
 	fleet "Small Republic" 20000
-	fleet "Human Miners" 2000
+	fleet "Southern Miners" 2000
 	object
 		sprite star/k5
 		period 10
@@ -16415,7 +16415,7 @@ system Naper
 	fleet "Large Southern Merchants" 3000
 	fleet "Small Militia" 5000
 	fleet "Small Southern Pirates" 1000
-	fleet "Human Miners" 3000
+	fleet "Southern Miners" 3000
 	object
 		sprite star/f5
 		period 10
@@ -17141,7 +17141,7 @@ system Peacock
 	fleet "Small Militia" 8000
 	fleet "Small Southern Pirates" 4000
 	fleet "Large Southern Pirates" 10000
-	fleet "Human Miners" 3000
+	fleet "Southern Miners" 3000
 	object
 		sprite star/m0
 		period 10
@@ -19094,7 +19094,7 @@ system Rutilicus
 	fleet "Small Southern Merchants" 600
 	fleet "Large Southern Merchants" 2000
 	fleet "Small Militia" 6000
-	fleet "Human Miners" 3000
+	fleet "Southern Miners" 3000
 	object
 		sprite star/g5
 		period 10
@@ -19381,7 +19381,7 @@ system Sadr
 	fleet Quarg 9000
 	fleet "Small Southern Pirates" 5000
 	fleet "Large Southern Pirates" 9000
-	fleet "Human Miners" 2000
+	fleet "Southern Miners" 2000
 	object
 		sprite star/a5
 		distance 5.86016
@@ -22335,7 +22335,7 @@ system Turais
 	fleet "Large Southern Merchants" 6000
 	fleet "Small Southern Pirates" 3000
 	fleet "Large Southern Pirates" 7000
-	fleet "Human Miners" 2000
+	fleet "Southern Miners" 2000
 	object
 		sprite star/k5
 		period 10
@@ -22645,7 +22645,7 @@ system Unukalhai
 	fleet "Small Southern Pirates" 3000
 	fleet "Small Militia" 4000
 	fleet "Large Militia" 10000
-	fleet "Human Miners" 3000
+	fleet "Southern Miners" 3000
 	object
 		sprite star/g5
 		period 10
@@ -23469,7 +23469,7 @@ system "Yed Prior"
 	fleet "Large Southern Pirates" 3000
 	fleet "Small Militia" 3000
 	fleet "Large Militia" 5000
-	fleet "Human Miners" 1600
+	fleet "Southern Miners" 1600
 	object
 		sprite star/k0
 		period 10
@@ -23902,7 +23902,7 @@ system Zubeneschamali
 	fleet "Large Militia" 5000
 	fleet "Small Southern Pirates" 2000
 	fleet "Large Southern Pirates" 3000
-	fleet "Human Miners" 2000
+	fleet "Southern Miners" 2000
 	object
 		sprite star/g5
 		distance 62

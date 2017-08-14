@@ -774,7 +774,7 @@ fleet "Human Miners"
 	variant 1
 		"Headhunter (Particle)"
 
-fleet "Syndicate Miners"
+fleet "Southern Miners"
 	government "Merchant"
 	names "civilian"
 	cargo 0
@@ -796,7 +796,7 @@ fleet "Syndicate Miners"
 	variant 1
 		"Headhunter (Particle)"
 	variant 3
-		"Prospector"
+		"Scavenger"
 		"Harvester" 2
 
 fleet "Small Free Worlds"
