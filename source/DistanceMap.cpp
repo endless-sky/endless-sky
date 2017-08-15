@@ -154,7 +154,7 @@ void DistanceMap::Init(const System *center, const Ship *ship)
 			hyperspaceFuel = 0.;
 		
 		// If this ship has no mode of hyperspace travel, bail out.
-		if(!hyperspaceFuel && !jumpFuel)
+		if(!hyperspaceFuel && !jumpFuel && !player)
 			return;
 	}
 	
