@@ -202,7 +202,7 @@ mission "Deep: Kraz Convoy"
 				random < 40
 	on offer
 		conversation
-			`A Deep Security officer approaches you when you enter the spaceport and asks if you would be able to do a job for the Deep. "We're short on Deep Security ships at the moment, but we need three Behemoths escorted to <stopovers>. After they pick up the cargo, bring them back here by <date>."
+			`A Deep Security officer approaches you when you enter the spaceport and asks if you would be able to do a job for the Deep. "We're short on Deep Security ships at the moment, but we need three Behemoths escorted to <stopovers>. After they pick up the cargo, bring them back here by <date>."`
 			choice
 				`	"Sure, I can do that."`
 				`	"Sorry, but I will not be traveling in that direction any time soon."`
@@ -292,11 +292,11 @@ mission "Deep: Mystery Cubes 0"
 		conversation
 			branch paris
 				has "Deep: Kraz Convoy: done"
-			`A Deep Security officer calls your name and approaches you just before you enter the spaceport's central market. "Greetings, Captain <last>, I'm Lieutenant Paris. Would you be interested in conducting some more work for the Deep? We are currently in need of a few extra ships to assist in an ongoing situation."`
+			`A Deep Security officer calls your name and approaches you as you enter the spaceport's central market. "Greetings, Captain <last>, I'm Lieutenant Paris. Would you be interested in conducting some more work for the Deep? We are currently in need of a few extra ships to assist in an ongoing situation."`
 				goto choice
 			
 			label paris
-			`A Deep Security officer calls your name just before you enter the spaceport's central market. As he approaches, you notice that it is Lieutenant Paris, the same officer who asked you to escort a convoy to Kraz. "Greetings, Captain <last>. I hope that you have been well since we last met. Would you be interested in conducting some more work for the Deep? We are currently in need of a few extra ships to assist in an ongoing situation."`
+			`A Deep Security officer calls your name as you enter the spaceport's central market. As he approaches, you notice that it is Lieutenant Paris, the same officer who asked you to escort a convoy to Kraz. "Greetings, Captain <last>. I hope that you have been well since we last met. Would you be interested in conducting some more work for the Deep? We are currently in need of a few extra ships to assist in an ongoing situation."`
 			
 			label choice
 			choice
@@ -311,7 +311,7 @@ mission "Deep: Mystery Cubes 0"
 					decline
 			
 			label situation
-			`	"Excellent. I'm sure that you are aware that much of Deep Security is currently preoccupied, hence why we have been procuring merchants to escort many of the Deep's convoys. The reason this is the case is that we have been attempting to detain a particularly meddlesome pirate warlord who goes by the name of Beelzebub. From what we can ascertain, Beelzebub was either born in the Deep or has contacts in the Deep, which is making tracking him down rather difficult, as he seems to know our every move. That is where you and a few other merchants come in."`
+			`	"Excellent. I'm sure that you are aware that much of Deep Security is currently preoccupied, hence why we have been procuring merchants to escort many of the Deep's convoys. The reason this is the case is that we have been attempting to detain a particularly meddlesome pirate warlord who goes by the name of 'Beelzebub'. From what we can ascertain, Beelzebub was either born in the Deep or has contacts in the Deep, which is making tracking him down rather difficult, as he seems to know our every move. That is where you and a few other merchants come in."`
 			`	Paris reaches into his pocket and pulls out a bag which he then hands to you. Inside of the bag are at least two dozen of the mysterious cubes that you have transported in the past, only with one distinct difference; these cubes have a thick red streak running down the middle of the cube.`
 			`	"The Deep requires that you place these on a number of worlds in the Dirt Belt which I will mark on your map for you. Place at least four of these devices around the spaceport of each marked planet, then come to <destination> where I will collect any remaining cubes that you may have. If a Deep Security ship did this then it would likely catch the attention of any pirates in the system and that information would make its way to Beelzebub, but random merchants should be inconspicuous enough to throw Beelzebub off our trail. Is that clear?"`
 			choice
@@ -339,7 +339,7 @@ mission "Deep: Mystery Cubes 0"
 			
 			branch interested
 				has "deep: interested in cubes"
-			label interested
+			
 			choice
 				`	"Is there anything else that you need me to do?"`
 					goto next
@@ -349,15 +349,19 @@ mission "Deep: Mystery Cubes 0"
 			label interested
 			choice
 				`	"Is there anything else that you need me to do?"`
+					goto next
 				`	"Are you able to tell me what the cubes are for now?"`
-					goto cubes
+			
+			label cubes
+			apply
+				set "deep: interested in cubes"
+			`	Paris takes a moment to pause before responding. "They're sensor devices. They are used to track the movement of pirate fleets, but they are almost useless alone; dozens could be needed in a single system to track entire fleets. The ones that I gave you were fine-tuned though, designed to only detect the ship that we know that Beelzebub is using. That is all that I am allowed to tell you, at least for the time being."`
+			
+			choice
+				`	"Is there anything else that you need me to do?"`
 			
 			label next
 			`	"Not at the moment, Captain, but I'll contact you should anything else arise."`
-				decline
-			
-			label cubes
-			`	Paris takes a moment to pause before responding. "They're sensor devices. They are used to track the movement of pirate fleets, but they are almost useless alone; dozens could be needed in a single system to track entire fleets. The ones that I gave you were fine tuned though, designed to only detect the ship that we know that Beelzebub is using. That is all that I am allowed to tell you, at least for the time being."`
 
 
 
@@ -386,43 +390,43 @@ mission "Deep: Mystery Cubes 2"
 	on offer
 		conversation
 			`The Republic still use the facility on Earth's moon as a minor Navy shipyard, even in its old age. Many of the landing pads are currently filled by Navy capital ships or Deep Security ships. This must be the main base of operations at the moment for tracking Beelzebub.`
-			`	Upon landing, you are escorted by pair of men in Navy uniforms past the tourist areas and into the back of the facility to an elevator. One of your esorts uses a keycard to open the elevator and ushers you in. The elevator opens up many floors below the spaceport to an area of the facility that looks far newer than what is on the surface.`
-			`	You are kept in what looks like a waiting room along with five others. After a bit of talking, you find out that these are the other merchant captains who helped place the cubes across different regions of human space.`
-			`	An hour of waiting passes, and Lieutenant Paris walks into the room followed by a Navy admiral. "I hope you are all enjoying your stay," the admiral remarks. "We've checked each of your records, and it would appear that you are all clear of any crimes that would connect you to public enemy number one, 'Beelzebub.' How, then, is it that most of the cubes were mysteriously disabled shortly after pirate fleets entered the system?"`
+			`	Upon landing, you are escorted by pair of men in Navy uniforms past the tourist areas and into the back of the facility to an elevator. One of your escorts uses a keycard to open the elevator, ushering you in. The elevator opens up many floors below the spaceport, to an area of the facility that looks far newer than that on the surface.`
+			`	You are kept in what looks like a waiting room along with five others. After a bit of talking, you find out that these are the other merchant captains who helped place the cubes across different regions of known space.`
+			`	An hour of waiting passes, and Lieutenant Paris walks into the room followed by a Navy admiral. "I hope you are all enjoying your stay," the admiral remarks. "We've checked each of your records, and it would appear that you are all clear of any crimes that would connect you to public enemy number one, 'Beelzebub.' How, then, is it that most of the cubes you placed were mysteriously disabled shortly after pirates entered the systems?"`
 			`	The admiral looks to each of the captains in the room, seemingly waiting for a response.`
 			choice
 				`	(Say nothing.)`
 					goto next
 				`	"Maybe they know how to detect the cubes."`
 			
-			`	"If that is possible then a group of no-good anarchists have figured out how to detect something that even the Navy can not." The admiral turns to Paris, who nods as if to back up the admirals claims that the Navy is unable to detect the Deep's mysterious cubes.`
+			`	"If that is possible then a group of no-good anarchists have figured out how to detect something that even the Navy can not." The admiral turns to Paris, who nods as if to back up the his claims that the Navy is unable to detect the mysterious cubes.`
 			label next
-			`	"Allow me to explain the situation. Roughly two weeks after the last of the sensor cubes that you ladies and gentlemen placed were in position, we spotted Beelzebub's ship in the northern region of the Dirt Belt. Navy ships from the nearest base were dispatched to apprehend the vessel, which turned out to be nothing more than a decoy." While previously the admiral was speaking calmly, he begins to raise his voice. "That very same day, with a number of our ships off-world, a pirate fleet managed to assault the base and capture a handful of docked Cruisers, while simultaneously disabling many of the cubes across the Dirt Belt and Core."`
-			`	Paris begins to fill in the rest of the story. "The cubes that Deep Security had you position on multiple worlds were surveillance devices - sensor cubes, as we call them - designed to track Beelzebub's ship and notify us when the ship was located. It can be presumed that Beelzebub now has access to these cubes and has undoubtedly converted them to work in their favor. It may take us weeks to retrieve them, but at the moment it can be assumed that Beelzebub knows where we will be."`
+			`	He continues, "Allow me to explain the situation. Roughly two weeks after the last of your 'deliveries' were activated, the sensors identified Beelzebub's ship in the northern reaches of the Dirt Belt. We dispatched half of the nearest Navy garrison to apprehend the vessel, only to arrive and find a convoy of Star Barges instead."`
+			`	"Worse, while our ships were in pursuit of the decoys, a pirate fleet managed to assault their home base and captured a handful of docked Cruisers. And, amidst the chaos, most of the cubes you placed in the Dirt Belt and Core were disabled!"`
+			`	Before the admiral can work himself up further, Paris intercedes with the rest of the story. "The cubes that Deep Security had you position on multiple worlds were surveillance devices - sensor cubes, as we call them - designed to track Beelzebub's ship and notify us when the ship was located. It can be presumed that Beelzebub now has access to these cubes and has undoubtedly converted them to work in their favor. It may take us weeks to retrieve them, but at the moment it can be assumed that Beelzebub knows where we will be."`
 			choice
 				`	"Why are you involving us in this?"`
 				`	"Are we part of a plan to take Beelzebub down?"`
 			
 			`	"Beelzebub is perhaps the most wanted warlord by the Republic since the 28th century. With both Navy and Deep technology now in the hands of this criminal, every available ship will be required to take him down. The primary purpose for bringing you all here was to determine if any of you were connected to Beelzebub, possibly leading to him being able to locate the cubes, but seeing as how you are all in the clear we are now hoping that you would be willing to assist us in trapping Beelzebub. The six of your fleets combined would certainly make up for anything that the Navy has lost in the attack."`
-			`	"How much will we be paid?" one of the other merchant captains asks. "At minimum, 1,000,000 credits," the admiral replies. The captain who asked instantly agrees to help, quickly followed by two others.`
+			`	"How much will we be paid?" one of the other merchant captains asks. "At minimum, one million credits," the admiral replies. The captain who asked instantly agrees to help, as do two others.`
 			choice
 				`	"I'll help as well."`
 					goto accept
 				`	"Sorry, but I am not interested in helping."`
 			
-			`	Only one of the other merchant captains declines as well. You are both escorted out of the room, and as you leave the admiral begins to explain to the other four captains how they will be helping.`
-			`	The trip back up the elevator is silent until the doors open and a flood of conversations hits you as you step back out into the spaceport.`
+			`	Only one other merchant captains declines, and you both are escorted out of the room, into the waiting elevator. The trip back to the surface is silent, and your escort dismisses you both with a simple 'Goodbye.'`
 				decline
 			
 			label accept
-			`	In the end, only one of the merchant captains declines. She is escorted out of the room as the admiral begins to explain how each merchant captain will be helping.`
-			`	"We assume that Beelzebub knows where we will be, but we know where he is as well. The stolen Cruisers and the remaining pirate fleet that attacked our base moved toward the Core. Given the heinous crime that Beelzebub has just committed, he will undoubtedly be attempting to get as far away from the law as possible. That leaves us only two possible places that Beelzebub will go: Buccaner Bay or the anarchist colonies of the Far North, the latter of which being far more appealing for a warlord.`
-			`	The admiral goes on to explain how multiple blockades will be set up across the galaxy in an attempt to either capture Beelzebub or box him in. At the same time, any spare Navy and Deep Security fleets will be scanning the galaxy from the Dirt Belt toward the Paradise Worlds and the Core in an attempt to weed the warlord out of hiding and toward the blockades.`
+			`	In the end, only one of the merchant captains declines. She is escorted out of the room, and the admiral explains each merchant captain's new role.`
+			`	"We assume that Beelzebub knows where we will be, but we know where he is as well - the stolen Cruisers and the pirate fleet that attacked our base moved toward the Core. Given the severity of the crime that Beelzebub has just committed, he will undoubtedly attempt to get as far away from the law as possible. That leaves us only two possible destinations: Buccaneer Bay, or the anarchist colonies of the Far North. Our best guess is that the colonies are the more appealing option for a warlord.`
+			`	The admiral goes on to explain how multiple blockades will be set up across the galaxy in an attempt to either capture Beelzebub or box him in. At the same time, any spare Navy and Deep Security fleets will be scanning the galaxy from the Dirt Belt toward the Paradise Worlds and the Core in an attempt to flush the warlord out of hiding and into the blockades.`
 			`	"Captain <last>, you will be stationed on <destination> with Lieutenant Paris and a small Navy fleet. Please gather your things and travel there immediately."`
 				accept
 	
 	npc accompany save
-		personality heroic escort
+		personality heroic opportunistic escort
 		government Republic
 		fleet
 			names deep
@@ -437,7 +441,7 @@ mission "Deep: Mystery Cubes 2"
 			variant
 				"Cruiser"
 				"Gunboat" 2
-		
+
 
 
 mission "Deep: Mystery Cubes 3: Escorts"
@@ -448,7 +452,7 @@ mission "Deep: Mystery Cubes 3: Escorts"
 	to fail
 		has "Deep: Mystery Cubes 4: done"
 	npc
-		personality heroic escort
+		personality heroic escort vindictive
 		government Republic
 		fleet
 			names deep
@@ -456,9 +460,9 @@ mission "Deep: Mystery Cubes 3: Escorts"
 			variant
 				"Mule"
 				"Raven" 2
-				"Lance"	
+				"Dagger"	
 	npc
-		personality heroic opportunistic escort
+		personality heroic opportunistic escort vindictive
 		government Republic
 		fleet
 			names "republic capital"
@@ -477,8 +481,8 @@ mission "Deep: Mystery Cubes 3"
 		has "Deep: Mystery Cubes 2: done"
 	on offer
 		conversation
-			`The <planet> spaceport has multiple landing pads large enough to park even the largest of Navy capital ships. Paris explains to you that at one time this world was used as a major Navy base, but has since been replaced by Farpoint closer to the Far North anarchist worlds.`
-			`	Once every ship is parked, the captains have a short meeting on an empty landing pad. "Don't expect this job to be fun," Lieutenant Paris states. "We could be waiting around here for days before anything happens, and we need to stay in system that entire time."`
+			`Several of the <planet> spaceport landing pads are suitable for even the largest of Navy capital ships. Paris explains to you that at one time this world was used as a major Navy base, but has since been replaced by Farpoint closer to the Far North anarchist worlds.`
+			`	Once every ship is parked, a captains' briefing is held on an empty landing pad. "Don't expect this job to be fun," Lieutenant Paris states. "We could be waiting around here for days before anything happens, and we need to stay in system the entire time."`
 			choice
 				`	"What do we do while we wait?"`
 			`	"For now, you can walk around the spaceport and see what there might be to do, but don't stray too far, otherwise you might never get back to your ship in time." Paris hands you a communication device. "This way you can be notified when something happens regardless of where you are."`
@@ -486,21 +490,21 @@ mission "Deep: Mystery Cubes 3"
 				`	(Wander the spaceport.)`
 				`	(Stay near my ship.)`
 					goto ship
-			`	Other than the occasional whining of a train's whistle, the spaceport of <planet> is not particularly exciting. You try to pass the time by talking to a few tourists, most of which getting ready to go rock climbing. While walking through the resturaunt district of the spaceport, the ground begins to shake slightly. Many of the locals don't even seem to react to the earthquake, and eventually it subsides. Once you have walked through the entire spaceport and seen all that it has to offer, you begin to make your way back to your ship.`
+			`	Other than the occasional whining of a train whistle, the spaceport of <planet> is not particularly exciting. You try to pass the time by talking to a few tourists, most of which are getting ready to go rock climbing. While walking through the restaurant district, the ground begins to shake slightly. Many of the locals don't even react to the earthquake, and eventually it subsides. Once you have walked through the entire spaceport and seen all that it has to offer, you begin to make your way back to your ship.`
 				goto mirfak
 				
 			label ship
 			`	One of the Navy crew members gets a ball out of their cabin and a small game of football starts inside of an open landing pad. Other crew members try to pass the time by reading or writing. Everyone comes to a standstill though once the ground begins to shake; an earthquake. A Navy member calls out to everyone. "Don't worry, this is a small one. We get earthquakes like this a lot on Gemstone." The earthquake eventually ends, and you decide to go into your ship to rest.`
 			
 			label mirfak
-			`	Suddenly, your communication device beeps and you begin to hear Lieutenant Paris' voice. "The blockade in Mirfak has just been attacked, I repeat the blockade in Mirfak has just been attacked. Reports are that the blockade has sustained heavy losses as a single Cruiser was among the fleet of pirates."
+			`	Suddenly, your communication device beeps and you begin to hear Lieutenant Paris' voice. "The blockade in Mirfak has just been attacked, I repeat the blockade in Mirfak has just been attacked. Reports are that the blockade has sustained heavy losses as a single Cruiser was among the fleet of pirates."`
 			`	"Should we go help them?" someone else says. "We were given our orders and we're going to follow them unless told otherwise." The comms fall quiet as the waiting continues."`
 			``
-			`	A few hours pass without any new information. The atmosphere feels tense as everyone anxiously waits. Without warning, one of the Ravens takes off and the communications device begins blaring with chatter. "A pirate fleet just jumped into the system containing two Navy Cruisers!" All the captains and their crew scatter for their ships, ready to fight.` 
+			`	A few anxious hours pass, with no new information. Without warning though, one of the Ravens takes off and your communications device begins blaring. "A pirate fleet just jumped into the system containing two Navy Cruisers!" All the captains and their crew scatter for their ships, ready to fight.`
 				launch
 	
 	npc kill
-		personality staying heroic marked
+		personality staying heroic unconstrained marked
 		government Pirate
 		fleet
 			names pirate
@@ -510,23 +514,24 @@ mission "Deep: Mystery Cubes 3"
 
 
 
+# Could add `deadline 1` to DMC3 to test if player defended Maelstrom successfully or not (e.g. in one day).
 mission "Deep: Mystery Cubes 4"
 	landing
 	name `Rendezvous on <planet>`
-	description `Travel to <destination> where the `
+	description `Travel to <destination> with reinforcements for its blockade.`
 	destination Farpoint
 	to offer
 		has "Deep: Mystery Cubes 4: done"
 	on offer
 		conversation
 			`Despite the pirates having Navy Cruisers in their possession, they were still unable to break through the blockade. After landing, Paris makes contact with mission control and informs them that the Nihal blockade has been attacked. In the time that you were fighting, a blockade in Matar was also attacked, but no Cruisers were present.`
-			`	"What are your orders, admiral?" Lieutenant Paris asks.`
-			`	"There are three Cruisers accounted for but still no sign of Beelzebub. The fleets sweeping the galaxy have almost reached the blockades, meaning we'll catch this warlord soon enough. After the Navy fleet sweeping toward your blockade enters the system, I want you to gather your team and come to <destination>. Beelzebub may be planning an attack on the blockade there with the final three Cruisers."`
+			`	"What are your orders, Admiral?" Lieutenant Paris asks.`
+			`	"Three Cruisers are accounted for, but still no sign of Beelzebub. The fleets sweeping the galaxy have almost reached the blockades, meaning we'll catch this warlord soon enough. After the Navy fleet sweeping toward your blockade enters the system, I want you to gather your team and come to <destination>. Beelzebub may be planning an attack on the blockade there with the final three Cruisers."`
 			`	Paris ends the conversation with an "Understood sir," and then contacts the captain of the Navy fleet that the admiral ordered to wait on. Paris informs the rest of the blockade team that they should be ready to leave for <destination> in a few hours.`
 				accept
 				
 	npc
-		personality heroic opportunistic escort entering
+		personality heroic opportunistic escort 
 		government Republic
 		fleet
 			names "republic capital"
@@ -536,16 +541,18 @@ mission "Deep: Mystery Cubes 4"
 				"Combat Drone" 6
 				"Dagger" 4
 	npc
-		personality staying
+		personality staying vindictive
 		government Merchant
+		system destination
 		fleet
 			names civilian
 			variant
 				"Bastion"
 				"Manta" 2
 	npc
-		personality staying heroic
+		personality staying heroic opportunistic vindictive
 		government Republic
+		system destination
 		fleet
 			names "republic capital"
 			fighters "republic fighter"
@@ -554,8 +561,9 @@ mission "Deep: Mystery Cubes 4"
 				"Combat Drone" 4
 				"Frigate"
 	npc
-		personality staying heroic
+		personality staying heroic opportunistic vindictive
 		government Republic
+		system destination
 		fleet
 			names deep
 			fighters "deep fighter"
@@ -564,7 +572,7 @@ mission "Deep: Mystery Cubes 4"
 				"Dagger" 4
 				"Corvette (Speedy)"
 	npc
-		personality heroic
+		personality heroic opportunistic vindictive
 		government Republic
 		system Sol
 		fleet
@@ -579,6 +587,7 @@ mission "Deep: Mystery Cubes 4"
 	npc evade
 		personality staying heroic marked
 		government Pirate
+		system destination
 		fleet
 			names pirate
 			variant
@@ -590,10 +599,10 @@ mission "Deep: Mystery Cubes 4"
 				"Corvette (Missile)" 2
 				
 	on enter Alnitak
-		dialog `Alnitak is in chaos when you enter the system. An outnumbered defense fleet is fighting a group of pirate ships, and among the pirates you spot three Cruisers.`
+		dialog `Alnitak is in chaos when you enter the system. An outnumbered defense fleet is fighting a group of pirate ships, and among the pirates you spot the three missing Cruisers.`
 
 	on visit
-		dialog `You have landed on <planet>, but there are still pirates attacking the system. Destroy all of the pirates in order to complete this mission.`
+		dialog `You have landed on <planet>, but there are still pirates attacking the system. Defeat all of the pirates in order to complete this mission.`
 	
 	on enter Hassaleh
 		set "deep: passed through north"
@@ -601,19 +610,17 @@ mission "Deep: Mystery Cubes 4"
 	on complete
 		payment 1000000
 		conversation
-			`As you come in for a landing, you can see that a number of buildings have taken fire from the pirate fleet above. White tents have been set up for tending to the wounded and multiple ships are in the process of being repaired. You are directed to a building that has sustained no damage in which a number of Navy officers, the admiral you met on Luna, Lieutenant Paris, and the remaining merchant captains who agreed to help have convened. After you enter the room and get settled down, the admiral begins to speak.`
+			`As you come in for a landing, you can see that a number of buildings have taken fire from the pirate fleet above. White tents have been set up for tending to the wounded and multiple ships are in the process of being repaired. You are directed to an unscathed building in which a number of Navy officers, the admiral you met on Luna, Lieutenant Paris, and your fellow merchant captains have convened. After you enter the room and get settled down, the admiral begins to speak.`
 			`	"Here's the sitrep. Beelzebub's ship was spotted entering the system, followed by the rest of the pirate fleet. His ship seemed to disappear in the confusion, so we have no idea where he went. Either Beelzebub is currently hiding on the anarchist worlds or made a dash for the Core, in which case the chase goes on."`
 			branch core
-				has "deep: passed through north"
-				goto next
+				not "deep: passed through north"
 			
-			label core
 			`	"Beelzebub can't have gone to the Core," Paris butts in. "We traveled here through the uninhabited systems. We would have seen Beelzebub had he gone that way."`
 			`	"That's good news then. All we have to do is wait Beelzebub out until he decides to poke his little head back out."`
 			
-			label next
-			`	"Luckily, all six stolen Cruisers are accounted for, albeit destroyed. Deep Security forces have also begun to collect the stolen sensor cubes. We can confirm that Beelzebub was watching our every move, since the cubes are being found all over the Paradise Worlds and Core. They should all be retreived within the next week." The admiral then turns to the merchant captains. "Now that Beelzebub doesn't have the upper hand anymore, you are no longer needed and may leavve now. <payment> will be transfered to each of your accounts for your services."`
-			`	"Thank you, admiral," one of the captains replies.`
+			label core
+			`	"Luckily, all six stolen Cruisers are accounted for, albeit destroyed. Deep Security forces have also begun to collect the stolen sensor cubes. We can confirm that Beelzebub was watching our every move, since the cubes are being found all over the Paradise Worlds and Core. They should all be retrieved within the next week." The admiral then turns to the merchant captains. "Now that Beelzebub doesn't have the upper hand anymore, you are no longer needed. As promised, <payment> will be transfered to each of your accounts for your services."`
+			`	"Thank you, Admiral," one of the captains replies.`
 			`	"No, thank you. All of you. You didn't have to accept this dangerous job but you did, and I speak for the whole Navy when I say that we are grateful for that."`
 
 
@@ -839,7 +846,7 @@ mission "Deep: Remnant 0"
 		conversation
 			`While wandering through the spaceport, you are approached by a man you instantly recognize as the scientist whose drone you recovered data from in Terminus, thanks to his comically thick glasses. He introduces himself as Ivan and mentions he heard how helpful you have been to others within the Deep.`
 			`	"I was hoping you would continue assisting us in our research on the spatial anomaly in Terminus. Thanks to the data you retrieved, we have deduced that the anomaly is in fact some sort of wormhole, but it is far too unstable to support sending anything through it."`
-			`	"I must ask you, do you know of the Hai?" You nod. "Splendid! Then you will be able to help. One of the scientists on my team grew up in their territory, and suggested that the so called 'Quantum Keystones' which they sell might have something to do with the wormhole. He recalls hearing some Hai folktales of these stones making travel between the stars easier. Given that it would be immensely difficult to stabalize the wormhole with our current knowledge, it may be that these stones will make access into the wormhole easier. Would you kindly retrieve ten of them for us, so that we may be able to discover if these legends are true, and they allow access into the wormhole?"`
+			`	"I must ask you, do you know of the Hai?" You nod. "Splendid! Then you will be able to help. One of the scientists on my team grew up in their territory, and suggested that the so called 'Quantum Keystones' which they sell might have something to do with the wormhole. He recalls hearing some Hai folktales of these stones making travel between the stars easier. Given that it would be immensely difficult to stabilize the wormhole with our current knowledge, it may be that these stones will make access into the wormhole easier. Would you kindly retrieve ten of them for us, so that we may be able to discover if these legends are true, and they allow access into the wormhole?"`
 			branch remnant
 				has "First Contact: Remnant: offered"
 			choice
@@ -1022,7 +1029,7 @@ mission "Deep: Remnant 1B"
 	on offer
 		conversation
 			`You contact Ivan after you land and he sends you directions to his research lab, located on the outskirts of the city. When you arrive you hardly have time to greet Ivan, Maria, and the others before Ivan begins discussing what they have learned from the Quantum Keystones.`
-			`	"As you mentioned before, a single Keystone is sufficient to enter the wormhole. We've determined that there is a stabilization effect, either on the ship or the wormhole, that allows matter to cross the threshold. However, we'll need much more time to fully understand the true mechanism." Ivan asks, "Last time, you mentioned that there were humans living in this space, the... the 'Remainder?`"`
+			`	"As you mentioned before, a single Keystone is sufficient to enter the wormhole. We've determined that there is a stabilization effect, either on the ship or the wormhole, that allows matter to cross the threshold. However, we'll need much more time to fully understand the true mechanism." Ivan asks, "Last time, you mentioned that there were humans living in this space, the... the 'Remainder?'"`
 			`	"Remnant."`
 			`	"Right, that was it. Well, we've decided that we need to know more about their ships and technology - perhaps they have some alternative method of interacting with these unstable wormholes that can accelerate our understanding. Would you kindly bring us some outfit scanning logs from their ships?"`
 			choice
