@@ -55,7 +55,7 @@ namespace {
 		
 		static const System *previousCenter = center;
 		static DistanceMap distance(center, -1, maximum);
-		int previousMaximum = maximum;
+		static int previousMaximum = maximum;
 		
 		if(center != previousCenter || maximum > previousMaximum)
 		{

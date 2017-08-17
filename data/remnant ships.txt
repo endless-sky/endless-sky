@@ -20,9 +20,9 @@ ship "Starling"
 		"required crew" 6
 		"bunks" 15
 		"mass" 270
-		"drag" 4.2
+		"drag" 3.8
 		"heat dissipation" 0.7
-		"fuel capacity" 600
+		"fuel capacity" 900
 		"cargo space" 36
 		"outfit space" 312
 		"weapon capacity" 83
@@ -34,6 +34,11 @@ ship "Starling"
 		"cloak" .02
 		"cloaking energy" 5
 		"cloaking fuel" .1
+		weapon
+			"blast radius" 80
+			"shield damage" 800
+			"hull damage" 400
+			"hit force" 1200
 	outfits
 		"Inhibitor Cannon" 3
 		"Point Defense Turret"
@@ -144,8 +149,8 @@ ship "Albatross"
 		"required crew" 44
 		"bunks" 75
 		"cargo space" 124
-		"mass" 690
-		"drag" 10.6
+		"mass" 610
+		"drag" 8.6
 		"heat dissipation" 0.6
 		"fuel capacity" 600
 		"engine capacity" 142
@@ -155,6 +160,11 @@ ship "Albatross"
 		"shield energy" 4.6
 		"hull repair rate" 1.5
 		"hull energy" 1.2
+		weapon
+			"blast radius" 360
+			"shield damage" 3600
+			"hull damage" 1800
+			"hit force" 5400
 	outfits
 		"Inhibitor Cannon" 6
 		"Thrasher Turret" 2

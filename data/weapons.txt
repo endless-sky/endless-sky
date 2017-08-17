@@ -224,7 +224,7 @@ outfit "Laser Turret"
 		"firing heat" 2.4
 		"shield damage" 2
 		"hull damage" 2.6
-	description "Laser Turrets are hated by fighter pilots because it is entirely impossible to dodge them once you are within their reach. This turret carries a pair of lasers and can swivel instantly to fire on new targets as they approach. Laser Turrets are especially useful when mounted on slow-moving freighters to fend off packs of small pirate vessels."
+	description "Laser Turrets are hated by fighter pilots because it is nearly impossible to dodge them once you are within their reach. This turret carries a pair of lasers and can swivel almost instantly to fire on new targets as they approach. Laser Turrets are especially useful when mounted on slow-moving freighters to fend off packs of small pirate vessels."
 
 outfit "Heavy Laser Turret"
 	category "Turrets"

@@ -549,6 +549,8 @@ void MapPanel::DrawTravelPlan()
 	// At each point in the path, we'll keep track of how many ships in the
 	// fleet are able to make it this far.
 	Ship *flagship = player.Flagship();
+	if(!flagship)
+		return;
 	bool stranded = false;
 	bool hasEscort = false;
 	map<const Ship *, double> fuel;

@@ -316,7 +316,7 @@ void MainPanel::ShowScanDialog(const ShipEvent &event)
 				if(it.first->Get("installable") < 0.)
 				{
 					int tons = ceil(it.second * it.first->Get("mass"));
-					out << (tons == 1 ? " ton of " : " tons of ") << Format::LowerCase(it.first->PluralName());
+					out << (tons == 1 ? " ton of " : " tons of ") << Format::LowerCase(it.first->PluralName()) << "\n";
 				}
 				else	
 					out << " " << (it.second == 1 ? it.first->Name(): it.first->PluralName()) << "\n";
@@ -402,12 +402,14 @@ bool MainPanel::ShowHailPanel()
 	else if(flagship->GetTargetStellar())
 	{
 		const Planet *planet = flagship->GetTargetStellar()->GetPlanet();
-		if(planet && planet->IsWormhole())
+		if(!planet)
+			Messages::Add("Unable to send hail.");
+		else if(planet->IsWormhole())
 		{
 			static const Phrase *wormholeHail = GameData::Phrases().Get("wormhole hail");
 			Messages::Add(wormholeHail->Get());
 		}
-		else if(planet && planet->IsInhabited())
+		else if(planet->IsInhabited())
 		{
 			GetUI()->Push(new HailPanel(player, flagship->GetTargetStellar()));
 			return true;

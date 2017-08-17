@@ -71,8 +71,6 @@ public:
 	// are multiple pilots with the same name it may have a digit appended.)
 	std::string Identifier() const;
 	
-	// Apply any "changes" saved in this player info to the global game state.
-	void ApplyChanges();
 	// Apply the given changes and store them in the player's saved game file.
 	void AddChanges(std::list<DataNode> &changes);
 	// Add an event that will happen at the given date.
@@ -243,6 +241,9 @@ private:
 	// transferred properly.
 	PlayerInfo(const PlayerInfo &) = default;
 	PlayerInfo &operator=(const PlayerInfo &) = default;
+	
+	// Apply any "changes" saved in this player info to the global game state.
+	void ApplyChanges();
 	
 	// New missions are generated each time you land on a planet.
 	void UpdateAutoConditions();

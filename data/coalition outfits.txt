@@ -76,7 +76,7 @@ outfit "Large Battery Module"
 	"mass" 18
 	"outfit space" -18
 	"energy capacity" 4500
-	description "This battery pack stores enough power to allow a Heliarch ship to continue maneuvering even when its solar panels are only producing a fraction of their peak output."
+	description "This battery pack stores enough power to allow a Coalition ship to continue maneuvering even when its solar panels are only producing a fraction of their peak output."
 
 
 outfit "Small Shield Module"

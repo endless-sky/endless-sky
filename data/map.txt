@@ -6787,8 +6787,8 @@ system Coluber
 		sprite planet/rock10
 		distance 1208.18
 		period 654.26
-	object
-		sprite planet/gas16
+	object "Ember Reaches"
+		sprite planet/wormhole-red
 		distance 2354.54
 		period 1779.96
 
@@ -6904,14 +6904,10 @@ system Convector
 			sprite planet/rock3
 			distance 270
 			period 14.6327
-	object
-		sprite planet/gas16
+	object "Ember Reaches"
+		sprite planet/wormhole-red
 		distance 6592.96
 		period 3331.32
-		object
-			sprite planet/dust5
-			distance 206
-			period 15.5632
 
 system "Cor Caroli"
 	pos -682 201
@@ -24663,6 +24659,9 @@ planet "Elek Kartanu"
 	description `You have no idea what has happened to this planet, and you are not sure you want to know. The atmosphere is unusually hot and wet for a planet this distance from its sun, and the ocean levels seem to have dropped significantly in the recent past, leaving barnacles and bleached coral exposed to the air all around the shorelines. The wind is frenzied and full of wild energy, and the fog moves like a living creature.`
 	security 0
 
+planet "Ember Reaches"
+	attributes "requires: quantum keystone"
+
 planet "Ember Threshold"
 	attributes "requires: quantum keystone"
 
@@ -26881,7 +26880,7 @@ planet "Triton Station"
 planet Trove
 	attributes core mining
 	landscape land/badlands3
-	description `Trove is a tiny world, too small to have a breathable atmosphere. It is home to an experimental "jack mining" operation that has split is surface open in order to gain access to the metal-rich core. Most of the work here is done by machines, but a few people live inside an airtight complex in order to supervise the work and to sell ore and metal to visiting ships.`
+	description `Trove is a tiny world, too small to have a breathable atmosphere. It is home to an experimental "jack mining" operation that has split its surface open in order to gain access to the metal-rich core. Most of the work here is done by machines, but a few people live inside an airtight complex in order to supervise the work and to sell ore and metal to visiting ships.`
 	spaceport `Within the mining complex, you find a small cafeteria with an uninspiring menu, and windows overlooking offices where dozens of people are staring at flickering video screens. Because of the low gravity, everyone moves languidly, as if in a dream. It is nearly silent.`
 	security 0.05
 	tribute 400

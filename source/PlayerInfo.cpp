@@ -52,6 +52,8 @@ void PlayerInfo::Clear()
 	*this = PlayerInfo();
 	
 	Random::Seed(time(nullptr));
+	GameData::Revert();
+	Messages::Reset();
 }
 
 
@@ -156,7 +158,7 @@ void PlayerInfo::Load(const string &path)
 			ships.back()->Load(child);
 			ships.back()->SetIsSpecial();
 			ships.back()->SetGovernment(GameData::PlayerGovernment());
-			ships.back()->FinishLoading();
+			ships.back()->FinishLoading(false);
 			ships.back()->SetIsYours();
 		}
 		else if(child.Token(0) == "groups" && child.Size() >= 2 && !ships.empty())
@@ -293,6 +295,9 @@ void PlayerInfo::Load(const string &path)
 	// will count as non-depreciated.
 	if(!depreciation.IsLoaded())
 		depreciation.Init(ships, date.DaysSinceEpoch());
+	
+	// Modify the game data with any changes that were loaded from this file.
+	ApplyChanges();
 }
 
 
@@ -354,89 +359,6 @@ string PlayerInfo::Identifier() const
 {
 	string name = Files::Name(filePath);
 	return (name.length() < 4) ? "" : name.substr(0, name.length() - 4);
-}
-
-
-
-// Apply any "changes" saved in this player info to the global game state.
-void PlayerInfo::ApplyChanges()
-{
-	for(const auto &it : reputationChanges)
-		it.first->SetReputation(it.second);
-	reputationChanges.clear();
-	AddChanges(dataChanges);
-	GameData::ReadEconomy(economy);
-	economy = DataNode();
-	
-	// As a result of game data changes (e.g. unloading a mod) it's possible for
-	// the player to end up in an undefined system or planet. In that case, move
-	// them to the starting system to avoid crashing.
-	if(planet && !system)
-		system = planet->GetSystem();
-	if(!planet || planet->Name().empty() || !system || system->Name().empty())
-	{
-		system = GameData::Start().GetSystem();
-		planet = GameData::Start().GetPlanet();
-	}
-	
-	// For any ship that did not store what system it is in or what planet it is
-	// on, place it with the player. (In practice, every ship ought to have
-	// specified its location, but this is to avoid null locations.)
-	for(shared_ptr<Ship> &ship : ships)
-	{
-		if(!ship->GetSystem() || ship->GetSystem()->Name().empty())
-			ship->SetSystem(system);
-		if(ship->GetSystem() == system)
-			ship->SetPlanet(planet);
-	}
-	
-	// Government changes may have changed the player's ship swizzles.
-	for(shared_ptr<Ship> &ship : ships)
-		ship->SetGovernment(GameData::PlayerGovernment());
-
-	// Make sure all stellar objects are correctly positioned. This is needed
-	// because EnterSystem() is not called the first time through.
-	GameData::SetDate(GetDate());
-	// SetDate() clears any bribes from yesterday, so restore any auto-clearance.
-	for(const Mission &mission : Missions())
-		if(mission.ClearanceMessage() == "auto")
-		{
-			mission.Destination()->Bribe(mission.HasFullClearance());
-			for(const Planet *planet : mission.Stopovers())
-				planet->Bribe(mission.HasFullClearance());
-		}
-	if(system)
-		GameData::GetPolitics().Bribe(system->GetGovernment());
-	
-	// It is sometimes possible for the player to be landed on a planet where
-	// they do not have access to any services. So, this flag is used to specify
-	// that in this case, the player has access to the planet's services.
-	if(planet && hasFullClearance)
-		planet->Bribe();
-	hasFullClearance = false;
-	
-	// Check if any special persons have been destroyed.
-	while(!destroyedPersons.empty())
-	{
-		if(destroyedPersons.back()->GetShip())
-			destroyedPersons.back()->GetShip()->Destroy();
-		destroyedPersons.pop_back();
-	}
-	
-	// Check which planets you have dominated.
-	static const string prefix = "tribute: ";
-	for(auto it = conditions.lower_bound(prefix); it != conditions.end(); ++it)
-	{
-		if(it->first.compare(0, prefix.length(), prefix))
-			break;
-		
-		const Planet *planet = GameData::Planets().Find(it->first.substr(prefix.length()));
-		if(planet)
-			GameData::GetPolitics().DominatePlanet(planet);
-	}
-	
-	// Make sure all data defined in this saved game is valid.
-	GameData::CheckReferences();
 }
 
 
@@ -1301,8 +1223,6 @@ bool PlayerInfo::TakeOff(UI *ui)
 	// Any ordinary cargo left behind can be sold.
 	int64_t sold = cargo.Used();
 	income = 0;
-	int64_t commodityIncome = 0;
-	int64_t outfitIncome = 0;
 	int64_t totalBasis = 0;
 	if(sold)
 	{
@@ -1313,7 +1233,7 @@ bool PlayerInfo::TakeOff(UI *ui)
 			
 			// Figure out how much income you get for selling this cargo.
 			int64_t value = commodity.second * system->Trade(commodity.first);
-			commodityIncome += value;
+			income += value;
 			
 			int original = originalTotals[commodity.first];
 			auto it = costBasis.find(commodity.first);
@@ -1335,17 +1255,15 @@ bool PlayerInfo::TakeOff(UI *ui)
 			int64_t cost = depreciation.Value(outfit.first, day, outfit.second);
 			for(int i = 0; i < outfit.second; ++i)
 				stockDepreciation.Buy(outfit.first, day, &depreciation);
-			outfitIncome += cost;
+			income += cost;
 		}
 	}
-	accounts.AddCredits(commodityIncome);
-	accounts.AddCredits(outfitIncome);
+	accounts.AddCredits(income);
 	cargo.Clear();
 	stockDepreciation = Depreciation();
 	if(sold)
 	{
 		// Report how much excess cargo was sold, and what profit you earned.
-		income = commodityIncome + outfitIncome;
 		ostringstream out;
 		out << "You sold " << sold << " tons of excess cargo for " << Format::Number(income) << " credits";
 		if(totalBasis && totalBasis != income)
@@ -1850,6 +1768,8 @@ const Planet *PlayerInfo::TravelDestination() const
 void PlayerInfo::SetTravelDestination(const Planet *planet)
 {
 	travelDestination = planet;
+	if(planet->IsInSystem(system) && Flagship())
+		Flagship()->SetTargetStellar(system->FindStellar(planet));
 }
 
 
@@ -2153,6 +2073,89 @@ void PlayerInfo::SetMapZoom(int level)
 set<string> &PlayerInfo::Collapsed(const string &name)
 {
 	return collapsed[name];
+}
+
+
+
+// Apply any "changes" saved in this player info to the global game state.
+void PlayerInfo::ApplyChanges()
+{
+	for(const auto &it : reputationChanges)
+		it.first->SetReputation(it.second);
+	reputationChanges.clear();
+	AddChanges(dataChanges);
+	GameData::ReadEconomy(economy);
+	economy = DataNode();
+	
+	// As a result of game data changes (e.g. unloading a mod) it's possible for
+	// the player to end up in an undefined system or planet. In that case, move
+	// them to the starting system to avoid crashing.
+	if(planet && !system)
+		system = planet->GetSystem();
+	if(!planet || planet->Name().empty() || !system || system->Name().empty())
+	{
+		system = GameData::Start().GetSystem();
+		planet = GameData::Start().GetPlanet();
+	}
+	
+	// For any ship that did not store what system it is in or what planet it is
+	// on, place it with the player. (In practice, every ship ought to have
+	// specified its location, but this is to avoid null locations.)
+	for(shared_ptr<Ship> &ship : ships)
+	{
+		if(!ship->GetSystem() || ship->GetSystem()->Name().empty())
+			ship->SetSystem(system);
+		if(ship->GetSystem() == system)
+			ship->SetPlanet(planet);
+	}
+	
+	// Government changes may have changed the player's ship swizzles.
+	for(shared_ptr<Ship> &ship : ships)
+		ship->SetGovernment(GameData::PlayerGovernment());
+
+	// Make sure all stellar objects are correctly positioned. This is needed
+	// because EnterSystem() is not called the first time through.
+	GameData::SetDate(GetDate());
+	// SetDate() clears any bribes from yesterday, so restore any auto-clearance.
+	for(const Mission &mission : Missions())
+		if(mission.ClearanceMessage() == "auto")
+		{
+			mission.Destination()->Bribe(mission.HasFullClearance());
+			for(const Planet *planet : mission.Stopovers())
+				planet->Bribe(mission.HasFullClearance());
+		}
+	if(system)
+		GameData::GetPolitics().Bribe(system->GetGovernment());
+	
+	// It is sometimes possible for the player to be landed on a planet where
+	// they do not have access to any services. So, this flag is used to specify
+	// that in this case, the player has access to the planet's services.
+	if(planet && hasFullClearance)
+		planet->Bribe();
+	hasFullClearance = false;
+	
+	// Check if any special persons have been destroyed.
+	while(!destroyedPersons.empty())
+	{
+		if(destroyedPersons.back()->GetShip())
+			destroyedPersons.back()->GetShip()->Destroy();
+		destroyedPersons.pop_back();
+	}
+	
+	// Check which planets you have dominated.
+	static const string prefix = "tribute: ";
+	for(auto it = conditions.lower_bound(prefix); it != conditions.end(); ++it)
+	{
+		if(it->first.compare(0, prefix.length(), prefix))
+			break;
+		
+		const Planet *planet = GameData::Planets().Find(it->first.substr(prefix.length()));
+		if(planet)
+			GameData::GetPolitics().DominatePlanet(planet);
+	}
+	
+	// Make sure all data defined in this saved game is valid.
+	GameData::CheckReferences();
 }
 
 

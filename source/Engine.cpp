@@ -39,6 +39,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "SpriteSet.h"
 #include "SpriteShader.h"
 #include "StarField.h"
+#include "StartConditions.h"
 #include "System.h"
 
 #include <algorithm>
@@ -313,9 +314,9 @@ void Engine::Step(bool isActive)
 	{
 		double zoomTarget = Preferences::ViewZoom();
 		if(zoom < zoomTarget)
-			zoom = min(zoomTarget, zoom * 1.01);
+			zoom = min(zoomTarget, zoom * 1.03);
 		else if(zoom > zoomTarget)
-			zoom = max(zoomTarget, zoom * .99);
+			zoom = max(zoomTarget, zoom * .97);
 	}
 		
 	// Draw a highlight to distinguish the flagship from other ships.
@@ -836,9 +837,25 @@ void Engine::EnterSystem()
 		+ today.ToString() + (system->IsInhabited(flagship) ?
 			"." : ". No inhabited planets detected."));
 	
+	// Preload landscapes, and determine if any of the stellarobjects are wormholes.
+	bool hasWormhole = false;
 	for(const StellarObject &object : system->Objects())
+	{
 		if(object.GetPlanet())
 			GameData::Preload(object.GetPlanet()->Landscape());
+		if(!hasWormhole && object.GetPlanet() && object.GetPlanet()->IsWormhole())
+			hasWormhole = true;
+	}
+	
+	// The player may have used a wormhole that was not in his or her existing travel plan.
+	if(hasWormhole && player.HasTravelPlan())
+	{
+		// If the next system in the travel plan is not this system, or reachable
+		// from this system, then the travel plan is invalid and must be cleared.
+		const System *to = player.TravelPlan().back();
+		if(system != to && system->Neighbors().count(to) == 0)
+			player.TravelPlan().clear();
+	}
 	
 	GameData::SetDate(today);
 	GameData::StepEconomy();
@@ -902,7 +919,7 @@ void Engine::EnterSystem()
 	
 	// Help message for new players. Show this message for the first four days,
 	// since the new player ships can make at most four jumps before landing.
-	if(today <= Date(21, 11, 3013))
+	if(today <= GameData::Start().GetDate() + 4)
 	{
 		Messages::Add(GameData::HelpMessage("basics 1"));
 		Messages::Add(GameData::HelpMessage("basics 2"));
@@ -1177,8 +1194,11 @@ void Engine::CalculateStep()
 					commodity = (*it)->CommodityType();
 			}
 			if(!commodity.empty())
-				message = name + (amount == 1 ? "a ton" : Format::Number(amount) + " tons")
+			{
+				double amountInTons = it->Count() * it->UnitSize();
+				message = name + (amountInTons == 1. ? "a ton" : Format::Number(amountInTons) + " tons")
 					+ " of " + Format::LowerCase(commodity) + ".";
+			}
 			if(!message.empty())
 			{
 				int free = collector->Cargo().Free();
@@ -1275,8 +1295,9 @@ void Engine::CalculateStep()
 			
 			double size = sqrt(ship->Width() + ship->Height()) * .14 + .5;
 			bool isYourTarget = (flagship && ship == flagship->GetTargetShip());
+			hasHostiles |= (!ship->IsDisabled() && ship->GetGovernment()->IsEnemy()
+				&& ship->GetTargetShip() && ship->GetTargetShip()->GetGovernment()->IsPlayer());
 			int type = RadarType(*ship, step);
-			hasHostiles |= (type == Radar::HOSTILE);
 			radar[calcTickTock].Add(isYourTarget ? Radar::SPECIAL : type, ship->Position(), size);
 		}
 	if(flagship && showFlagship)

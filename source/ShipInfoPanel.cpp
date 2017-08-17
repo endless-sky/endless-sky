@@ -182,12 +182,12 @@ bool ShipInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 			else if(commodities)
 			{
 				GetUI()->Push(new Dialog(this, &ShipInfoPanel::Dump,
-					"Are you sure you want to jettison all this ship's regular cargo?"));
+					"Are you sure you want to jettison all of this ship's regular cargo?"));
 			}
 			else
 			{
 				GetUI()->Push(new Dialog(this, &ShipInfoPanel::Dump,
-					"Are you sure you want to jettison all this ship's spare outfit cargo?"));
+					"Are you sure you want to jettison all of this ship's cargo?"));
 			}
 		}
 	}

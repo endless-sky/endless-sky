@@ -103,7 +103,7 @@ public:
 	void Load(const DataNode &node);
 	// When loading a ship, some of the outfits it lists may not have been
 	// loaded yet. So, wait until everything has been loaded, then call this.
-	void FinishLoading();
+	void FinishLoading(bool isNewInstance);
 	// Save a full description of this ship, as currently configured.
 	void Save(DataWriter &out) const;
 	

@@ -19,6 +19,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Outfit.h"
 #include "SpriteSet.h"
 
+#include <algorithm>
+
 using namespace std;
 
 

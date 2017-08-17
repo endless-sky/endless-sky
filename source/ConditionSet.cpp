@@ -16,6 +16,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "DataWriter.h"
 #include "Random.h"
 
+#include <algorithm>
 #include <cmath>
 
 using namespace std;
@@ -158,7 +159,7 @@ bool ConditionSet::Add(const string &name, const string &op, int value)
 {
 	// If the operator is recognized, map it to a binary function.
 	BinFun fun = Op(op);
-	if(!fun || isnan(value))
+	if(!fun)
 		return false;
 	
 	expressions.emplace_back(name, op, value);

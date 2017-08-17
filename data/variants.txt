@@ -554,8 +554,8 @@ ship "Splinter" "Splinter (Laser)"
 		"Impala Plasma Steering"
 		"Hyperdrive"
 	turret "Heavy Laser Turret"
-	turret "Heavy Laser Turret"
 	turret "Heavy Anti-Missile Turret"
+	turret "Heavy Laser Turret"
 
 
 
