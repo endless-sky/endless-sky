@@ -105,15 +105,15 @@ void MapPanel::Draw()
 		Color black(0., 1.);
 		Color red(1., 0., 0., 1.);
 		
-		string errormsg = "You have no";
-		if(player.HasSeen(selectedSystem))
-			errormsg += " available route to this system.";
+		string errorMessage;
+		if(player.HasVisited(selectedSystem))
+			errorMessage = "You have no available route to this system.";
 		else
-			errormsg += "t yet mapped a route to this system.";
+			errorMessage = "You have not yet mapped a route to this system.";
 		
-		Point point(-font.Width(errormsg) / 2, Screen::Top() + 40);
-		font.Draw(errormsg, point + Point(1, 1), black);
-		font.Draw(errormsg, point, red);
+		Point point(-font.Width(errorMessage) / 2, Screen::Top() + 40);
+		font.Draw(errorMessage, point + Point(1, 1), black);
+		font.Draw(errorMessage, point, red);
 	}
 }
 
