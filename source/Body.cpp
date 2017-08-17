@@ -53,9 +53,20 @@ bool Body::HasSprite() const
 }
 
 
+bool Body::HasLightSprite() const
+{
+	return (lightSprite && lightSprite->Frames());
+}
+
 
 // Access the underlying Sprite object.
 const Sprite *Body::GetSprite() const
+{
+	return sprite;
+}
+
+
+const Sprite *Body::GetLightSprite() const
 {
 	return sprite;
 }
@@ -214,6 +225,8 @@ void Body::LoadSprite(const DataNode &node)
 		}
 		else if(child.Token(0) == "rewind")
 			rewind = true;
+		else if(child.Token(0) == "lights" && child.Size() >= 2)
+			lightSprite = SpriteSet::Get(child.Token(1));
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
@@ -240,6 +253,8 @@ void Body::SaveSprite(DataWriter &out) const
 			out.Write("no repeat");
 		if(rewind)
 			out.Write("rewind");
+		if(lightSprite)
+			out.Write("lights", lightSprite->Name());
 	}
 	out.EndChild();
 }
@@ -253,6 +268,13 @@ void Body::SetSprite(const Sprite *sprite)
 	currentStep = -1;
 }
 
+
+
+void Body::SetLightSprite(const Sprite *lightSprite)
+{
+	this->lightSprite = lightSprite;
+	currentStep = -1;
+}
 
 
 // Set the color swizzle.
@@ -308,6 +330,7 @@ void Body::SetStep(int step, bool isHighDPI) const
 	{
 		frame.first = sprite->Texture(0, isHighDPI);
 		activeIndex = 0;
+		frame.light = HasLightSprite() ? lightSprite->Texture(0,isHighDPI) : 0;
 		return;
 	}
 	
@@ -393,4 +416,13 @@ void Body::SetStep(int step, bool isHighDPI) const
 	frame.first = sprite->Texture(firstIndex, isHighDPI);
 	frame.second = sprite->Texture(secondIndex, isHighDPI);
 	activeIndex = (frame.fade > .5f ? secondIndex : firstIndex);
+	if(HasLightSprite())
+	{
+		if(lightSprite->Frames() != frames)
+			frame.light = lightSprite->Texture(0, isHighDPI);
+		else	
+			frame.light = lightSprite->Texture(firstIndex, isHighDPI);
+	}
+	else
+		frame.light = 0;
 }

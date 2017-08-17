@@ -17,6 +17,9 @@ class Sprite;
 class Point;
 
 #include <cstdint>
+#include <vector>
+
+#include "Shader.h"
 
 
 
@@ -27,6 +30,9 @@ class Point;
 // parameters based on an object's rotation, animation frame, etc.
 class SpriteShader {
 public:
+
+	static const std::vector<std::vector<GLint>> SWIZZLE;
+
 	// Initialize the shaders.
 	static void Init();
 	
@@ -36,6 +42,37 @@ public:
 	static void Bind();
 	static void Add(uint32_t tex0, uint32_t tex1, const float position[2], const float transform[4], int swizzle = 0, float clip = 1., float fade = 0., const float blur[2] = nullptr);
 	static void Unbind();
+
+public:
+
+	class ShaderData{
+	public:
+		void InitShader(const char* vertexCode, const char* fragmentCode);
+		void InitVAO();
+
+		Shader& GetShader();
+		GLuint GetVAO();
+
+		void UniformValues(uint32_t tex0, uint32_t tex1, const float position[2], const float transform[4], int swizzle, float clip, float fade, const float blur[2]);
+
+		void Bind();
+		void Unbind();	
+	
+	protected:
+		Shader shader;
+		
+	private:
+		GLint scaleI;
+		GLint transformI;
+		GLint positionI;
+		GLint blurI;
+		GLint clipI;
+		GLint fadeI;
+		GLuint vao;
+		GLuint vbo;
+	};
+
+
 };
 
 

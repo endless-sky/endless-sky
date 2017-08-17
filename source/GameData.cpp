@@ -29,6 +29,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "GameEvent.h"
 #include "Government.h"
 #include "Interface.h"
+#include "LightSpriteShader.h"
 #include "LineShader.h"
 #include "Minable.h"
 #include "Mission.h"
@@ -237,6 +238,7 @@ void GameData::LoadShaders()
 	PointerShader::Init();
 	RingShader::Init();
 	SpriteShader::Init();
+	LightSpriteShader::Init();
 	
 	background.Init(16384, 4096);
 }

@@ -38,6 +38,7 @@ public:
 		uint32_t first = 0;
 		uint32_t second = 0;
 		float fade = 0.f;
+		uint32_t light = 0;
 	};
 	
 	
@@ -49,8 +50,10 @@ public:
 	
 	// Check that this Body has a sprite and that the sprite has at least one frame.
 	bool HasSprite() const;
+	bool HasLightSprite() const;
 	// Access the underlying Sprite object.
 	const Sprite *GetSprite() const;
+	const Sprite *GetLightSprite() const;
 	// Get the dimensions of the sprite.
 	double Width() const;
 	double Height() const;
@@ -80,6 +83,8 @@ public:
 	void SaveSprite(DataWriter &out) const;
 	// Set the sprite.
 	void SetSprite(const Sprite *sprite);
+	// Set the light sprite.
+	void SetLightSprite(const Sprite *lightSprite);
 	// Set the color swizzle.
 	void SetSwizzle(int swizzle);
 	
@@ -113,6 +118,7 @@ private:
 private:
 	// Animation parameters.
 	const Sprite *sprite = nullptr;
+	const Sprite *lightSprite = nullptr;
 	// Allow objects based on this one to adjust their frame rate and swizzle.
 	int swizzle = 0;
 	

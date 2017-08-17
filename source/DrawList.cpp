@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "DrawList.h"
 
 #include "Body.h"
+#include "LightSpriteShader.h"
 #include "Preferences.h"
 #include "Screen.h"
 #include "Sprite.h"
@@ -23,12 +24,26 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 using namespace std;
 
+const uint32_t DrawList::Item::SWIZZLE_MASK = 0xFF;
+const uint32_t DrawList::Item::FADE_MASK = 0xFF00;
+const float DrawList::Item::FADE_FACTOR = 256.0f;
+const int DrawList::Item::FADE_SHIFT = 8;
+const uint32_t DrawList::Item::NORMAL_MASK = 0xFF<<16;
+const float DrawList::Item::NORMAL_FACTOR = 255.0f;
+const int DrawList::Item::NORMAL_SHIFT = 16;
+const uint32_t DrawList::Item::LIGHT_MASK = 1<<24;
+const int  DrawList::Item::LIGHT_SHIFT = 24;
 
+DrawList::DrawList(){
+	std::copy(LightSpriteShader::DEF_AMBIENT, LightSpriteShader::DEF_AMBIENT+3, lightAmbient);
+}
 
 // Clear the list.
 void DrawList::Clear(int step, double zoom)
 {
 	items.clear();
+	lightsPos.clear();
+	lightsEmit.clear();
 	this->step = step;
 	this->zoom = zoom;
 	isHighDPI = (Screen::IsHighResolution() ? zoom > .5 : zoom > 1.);
@@ -43,85 +58,103 @@ void DrawList::SetCenter(const Point &center, const Point &centerVelocity)
 }
 
 
+void DrawList::SetAmbient(const float ambient[3]){
+	std::copy(ambient, ambient+3, lightAmbient);
+}
+
 
 // Add an object based on the Body class.
-bool DrawList::Add(const Body &body, double cloak)
+bool DrawList::Add(const Body &body, double cloak, float normUse)
 {
-	Point position = body.Position() - center;
-	Point blur = body.Velocity() - centerVelocity;
-	if(Cull(body, position, blur) || cloak >= 1.)
+	if(cloak >= 1.)
+		return false;
+	return CullPush(body, body.Position(), body.Velocity(), cloak, 1., body.GetSwizzle(), true, normUse);
+}
+
+bool DrawList::Add(const Body &body, Point position, float normUse)
+{
+	return CullPush(body, position, body.Velocity(), 0., 1., body.GetSwizzle(), true, normUse);
+}
+
+bool DrawList::AddUnblurred(const Body &body, float normUse)
+{
+	return CullPush(body, body.Position(), centerVelocity, 0., 1., body.GetSwizzle(), true, normUse);
+}
+
+bool DrawList::AddProjectile(const Body &body, const Point &adjustedVelocity, double clip, bool lighted, float normUse)
+{
+	Point position = body.Position() + .5 * body.Velocity();
+	if(clip <= 0.)
 		return false;
 	
-	Push(body, position, blur, cloak, 1., body.GetSwizzle());
-	return true;
+	return CullPush(body, position, adjustedVelocity, 0., clip, body.GetSwizzle(), lighted, normUse);
 }
 
 
 
-bool DrawList::Add(const Body &body, Point position)
+bool DrawList::AddSwizzled(const Body &body, int swizzle, float normUse)
 {
-	position -= center;
-	Point blur = body.Velocity() - centerVelocity;
-	if(Cull(body, position, blur))
-		return false;
-	
-	Push(body, position, blur, 0., 1., body.GetSwizzle());
-	return true;
+	return CullPush(body, body.Position(), body.Velocity(), 0., 1., swizzle, true, normUse);
+}
+
+bool DrawList::AddUnlighted(const Body &body)
+{
+	return CullPush(body, body.Position(), body.Velocity(), 0., 1., body.GetSwizzle(), false);
+}
+
+bool DrawList::AddEffect(const Body& body){
+	return CullPush(body, body.Position(), centerVelocity, 0., 1., body.GetSwizzle(), false);
+}
+
+bool DrawList::AddStar(const Body& body, bool blur){	
+	return CullPush(body, body.Position(), blur ? body.Velocity() : centerVelocity, 0., 1., body.GetSwizzle(), false);
 }
 
 
-
-bool DrawList::AddUnblurred(const Body &body)
-{
-	Point position = body.Position() - center;
-	Point blur;
-	if(Cull(body, position, blur))
-		return false;
-	
-	Push(body, position, blur, 0., 1., body.GetSwizzle());
+bool DrawList::AddLightSource(const float pos[3], const float emit[3]){
+	if(lightsPos.size()/3 >= (unsigned int)(LightSpriteShader::MaxNbLights())) return false;
+	for(int i=0; i<3; i++)
+	{
+		lightsPos.push_back(pos[i]);
+		lightsEmit.push_back(emit[i]);
+	}
 	return true;
 }
-
-
-
-bool DrawList::AddProjectile(const Body &body, const Point &adjustedVelocity, double clip)
-{
-	Point position = body.Position() + .5 * body.Velocity() - center;
-	Point blur = adjustedVelocity - centerVelocity;
-	if(Cull(body, position, blur) || clip <= 0.)
-		return false;
-	
-	Push(body, position, blur, 0., clip, body.GetSwizzle());
-	return true;
-}
-
-
-
-bool DrawList::AddSwizzled(const Body &body, int swizzle)
-{
-	Point position = body.Position() - center;
-	Point blur = body.Velocity() - centerVelocity;
-	if(Cull(body, position, blur))
-		return false;
-	
-	Push(body, position, blur, 0., 1., swizzle);
-	return true;
-}
-
-
 
 // Draw all the items in this list.
-void DrawList::Draw() const
+void DrawList::Draw(bool lights) const
 {
 	bool showBlur = Preferences::Has("Render motion blur");
-	SpriteShader::Bind();
+	if(!lights || !LightSpriteShader::IsAvailable())
+	{
+	
+		SpriteShader::Bind();
 
-	for(const Item &item : items)
-		SpriteShader::Add(
-			item.tex0, item.tex1, item.position, item.transform,
-			item.Swizzle(), item.Clip(), item.Fade(), showBlur ? item.blur : nullptr);
+		for(const Item &item : items)
+			SpriteShader::Add(
+				item.tex0, item.tex1, item.position, item.transform,
+				item.Swizzle(), item.Clip(), item.Fade(), showBlur ? item.blur : nullptr);
 
-	SpriteShader::Unbind();
+		SpriteShader::Unbind();
+		
+	}
+	else
+	{
+	
+		LightSpriteShader::Bind();
+
+		for(const Item &item : items)
+			LightSpriteShader::Add(
+				item.tex0, item.tex1, item.position, item.transform,
+				item.Swizzle(), item.Clip(), item.Fade(), showBlur ? item.blur : nullptr,
+				item.posGS, item.transformGS, 
+				(item.Lighted()&&lights) ? (lightsPos.size()/3) : -1, lightAmbient, 
+				lightsPos.data(), lightsEmit.data(), item.NormalUse(),
+				1.f, item.texL);
+
+		LightSpriteShader::Unbind();
+		
+	}
 }
 
 
@@ -147,16 +180,19 @@ bool DrawList::Cull(const Body &body, const Point &position, const Point &blur) 
 	return false;
 }
 
-
-
-void DrawList::Push(const Body &body, Point pos, Point blur, double cloak, double clip, int swizzle)
+void DrawList::Push(const Body &body, Point pos, Point posGS, Point blur, double cloak, double clip, int swizzle, bool lighted, float normUse)
 {
 	Item item;
 	
 	Body::Frame frame = body.GetFrame(step, isHighDPI);
 	item.tex0 = frame.first;
 	item.tex1 = frame.second;
-	item.flags = swizzle | (static_cast<uint32_t>(frame.fade * 256.f) << 8);
+	item.texL = frame.light;
+	
+	item.flags = swizzle 
+		| (static_cast<uint32_t>(frame.fade * Item::FADE_FACTOR) << Item::FADE_SHIFT) 
+		| (static_cast<uint32_t>(normUse * Item::NORMAL_FACTOR) << Item::NORMAL_SHIFT) 
+		| (static_cast<uint32_t>(lighted) << Item::LIGHT_SHIFT);
 	
 	// Get unit vectors in the direction of the object's width and height.
 	double width = body.Width();
@@ -175,8 +211,14 @@ void DrawList::Push(const Body &body, Point pos, Point blur, double cloak, doubl
 	}
 	item.position[0] = static_cast<float>(pos.X() * zoom);
 	item.position[1] = static_cast<float>(pos.Y() * zoom);
+	item.posGS[0] = posGS.X();
+	item.posGS[1] = posGS.Y();
 	
 	// (0, -1) means a zero-degree rotation (since negative Y is up).
+	item.transformGS[0] = -uw.Y();
+	item.transformGS[1] = uw.X();
+	item.transformGS[2] = -uh.X();
+	item.transformGS[3] = -uh.Y();
 	uw *= zoom;
 	uh *= zoom;
 	item.transform[0] = -uw.Y();
@@ -194,13 +236,21 @@ void DrawList::Push(const Body &body, Point pos, Point blur, double cloak, doubl
 	
 	items.push_back(item);
 }
+bool DrawList::CullPush(const Body &body, Point posGS, Point vel, double cloak, double clip, int swizzle, bool lighted, float normUse){
+	Point posRel = posGS - center;
+	Point blur = vel - centerVelocity;
+	if(Cull(body, posRel, blur))
+		return false;
+	Push(body, posRel, posGS, blur, cloak, clip, swizzle, lighted, normUse);
+	return true;
+}
 
 
 		
 // Get the color swizzle.
 uint32_t DrawList::Item::Swizzle() const
 {
-	return (flags & 0xFF);
+	return (flags & SWIZZLE_MASK);
 }
 
 
@@ -214,7 +264,7 @@ float DrawList::Item::Clip() const
 
 float DrawList::Item::Fade() const
 {
-	return (flags >> 8) / 256.f;
+	return ( (flags & FADE_MASK) >> FADE_SHIFT) / FADE_FACTOR;
 }
 
 
@@ -222,6 +272,16 @@ float DrawList::Item::Fade() const
 void DrawList::Item::Cloak(double cloak)
 {
 	tex1 = SpriteSet::Get("ship/cloaked")->Texture();
-	flags &= 0xFF;
-	flags |= static_cast<uint32_t>(cloak * 256.f) << 8;
+	flags &= ~FADE_MASK;
+	flags |= static_cast<uint32_t>(cloak * FADE_FACTOR) << FADE_SHIFT;
+}
+
+bool DrawList::Item::Lighted() const
+{
+	return flags & LIGHT_MASK;
+}
+
+float DrawList::Item::NormalUse() const
+{
+	return ( (flags & NORMAL_MASK) >> NORMAL_SHIFT) / NORMAL_FACTOR;
 }
