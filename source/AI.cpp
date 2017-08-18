@@ -2257,7 +2257,7 @@ void AI::AutoFire(const Ship &ship, Command &command, bool secondary) const
 	vector<shared_ptr<const Ship>> enemies;
 	if(currentTarget)
 		enemies.push_back(currentTarget);
-	for(auto target : ships)
+	for(const auto &target : ships)
 		if(target->IsTargetable() && gov->IsEnemy(target->GetGovernment())
 				&& !(target->IsHyperspacing() && target->Velocity().Length() > 10.)
 				&& target->GetSystem() == ship.GetSystem()

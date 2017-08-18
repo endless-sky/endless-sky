@@ -336,7 +336,7 @@ void ShipyardPanel::SellShip()
 		player.SellShip(ship);
 	playerShips.clear();
 	playerShip = nullptr;
-	for(shared_ptr<Ship> ship : player.Ships())
+	for(const shared_ptr<Ship> &ship : player.Ships())
 		if(ship->GetSystem() == player.GetSystem() && !ship->IsDisabled())
 		{
 			playerShip = ship.get();

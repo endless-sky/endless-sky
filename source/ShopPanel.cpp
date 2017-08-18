@@ -134,14 +134,14 @@ void ShopPanel::DrawSidebar()
 		Screen::Top() + SIDE_WIDTH / 2 - sideScroll + 40 - 93);
 	
 	int shipsHere = 0;
-	for(shared_ptr<Ship> ship : player.Ships())
+	for(const shared_ptr<Ship> &ship : player.Ships())
 		shipsHere += !(ship->GetSystem() != player.GetSystem() || ship->IsDisabled());
 	if(shipsHere < 4)
 		point.X() += .5 * ICON_TILE * (4 - shipsHere);
 	
 	static const Color selected(.8, 1.);
 	static const Color unselected(.4, 1.);
-	for(shared_ptr<Ship> ship : player.Ships())
+	for(const shared_ptr<Ship> &ship : player.Ships())
 	{
 		// Skip any ships that are "absent" for whatever reason.
 		if(ship->GetSystem() != player.GetSystem() || ship->IsDisabled())
@@ -840,7 +840,7 @@ void ShopPanel::SideSelect(Ship *ship)
 	if(shift)
 	{
 		bool on = false;
-		for(shared_ptr<Ship> other : player.Ships())
+		for(const shared_ptr<Ship> &other : player.Ships())
 		{
 			// Skip any ships that are "absent" for whatever reason.
 			if(other->GetSystem() != player.GetSystem() || other->IsDisabled())

@@ -1170,7 +1170,7 @@ void Engine::CalculateStep()
 			}
 			string commodity;
 			string message;
-			int amount = 0;
+			double amount = 0.;
 			if((*it)->OutfitType())
 			{
 				const Outfit *outfit = (*it)->OutfitType();
@@ -1181,10 +1181,11 @@ void Engine::CalculateStep()
 					{
 						commodity = outfit->Name();
 						player.Harvest(outfit);
+						amount *= (*it)->UnitSize();
 					}
 					else
 						message = name + Format::Number(amount) + " "
-							+ (amount == 1 ? outfit->Name() : outfit->PluralName()) + ".";
+							+ (amount == 1. ? outfit->Name() : outfit->PluralName()) + ".";
 				}
 			}
 			else
@@ -1195,8 +1196,7 @@ void Engine::CalculateStep()
 			}
 			if(!commodity.empty())
 			{
-				double amountInTons = (*it)->Count() * (*it)->UnitSize();
-				message = name + (amountInTons == 1. ? "a ton" : Format::Number(amountInTons) + " tons")
+				message = name + (amount == 1. ? "a ton" : Format::Number(amount) + " tons")
 					+ " of " + Format::LowerCase(commodity) + ".";
 			}
 			if(!message.empty())
