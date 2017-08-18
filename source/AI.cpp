@@ -568,7 +568,7 @@ void AI::Step(const PlayerInfo &player)
 		}
 		bool mustRecall = false;
 		if(it->HasBays() && !(it->IsYours() ? thisIsLaunching : it->Commands().Has(Command::DEPLOY)) && !target)
-			for(const weak_ptr<const Ship> &ptr : it->GetEscorts())
+			for(const weak_ptr<Ship> &ptr : it->GetEscorts())
 			{
 				shared_ptr<const Ship> escort = ptr.lock();
 				if(escort && escort->CanBeCarried() && escort->GetSystem() == it->GetSystem()
@@ -1151,7 +1151,7 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 		PrepareForHyperspace(ship, command);
 		bool mustWait = false;
 		if(ship.BaysFree(false) || ship.BaysFree(true))
-			for(const weak_ptr<const Ship> &escort : ship.GetEscorts())
+			for(const weak_ptr<Ship> &escort : ship.GetEscorts())
 			{
 				shared_ptr<const Ship> locked = escort.lock();
 				mustWait |= locked && locked->CanBeCarried() && !locked->IsDisabled();

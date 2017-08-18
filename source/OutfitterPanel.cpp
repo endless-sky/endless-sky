@@ -50,7 +50,7 @@ namespace {
 OutfitterPanel::OutfitterPanel(PlayerInfo &player)
 	: ShopPanel(player, true)
 {
-	for(const pair<string, Outfit> &it : GameData::Outfits())
+	for(const pair<const string, Outfit> &it : GameData::Outfits())
 		catalog[it.second.Category()].insert(it.first);
 	
 	if(player.GetPlanet())
