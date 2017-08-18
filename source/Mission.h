@@ -137,7 +137,7 @@ public:
 	
 	
 private:
-	void Enter(const System *system, PlayerInfo &player, UI *u);
+	void Enter(const System *system, PlayerInfo &player, UI *ui);
 	const System *PickSystem(const LocationFilter &filter, const PlayerInfo &player) const;
 	const Planet *PickPlanet(const LocationFilter &filter, const PlayerInfo &player) const;
 	
