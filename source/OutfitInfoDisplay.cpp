@@ -19,6 +19,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "PlayerInfo.h"
 
 #include <algorithm>
+#include <cmath>
 #include <map>
 #include <set>
 #include <sstream>
@@ -323,7 +324,7 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 	for(unsigned i = 0; i < PERCENT_NAMES.size(); ++i)
 		if(percentValues[i])
 		{
-			int percent = 100. * percentValues[i] + .5;
+			int percent = lround(100. * percentValues[i]);
 			attributeLabels.push_back(PERCENT_NAMES[i]);
 			attributeValues.push_back(Format::Number(percent) + "%");
 			attributesHeight += 20;

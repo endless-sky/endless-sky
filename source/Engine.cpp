@@ -775,7 +775,7 @@ void Engine::Draw() const
 	
 	if(Preferences::Has("Show CPU / GPU load"))
 	{
-		string loadString = to_string(static_cast<int>(load * 100. + .5)) + "% CPU";
+		string loadString = to_string(lround(load * 100.)) + "% CPU";
 		Color color = *colors.Get("medium");
 		font.Draw(loadString,
 			Point(-10 - font.Width(loadString), Screen::Height() * -.5 + 5.), color);

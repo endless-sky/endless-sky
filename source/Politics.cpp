@@ -276,7 +276,7 @@ string Politics::Fine(PlayerInfo &player, const Government *gov, int scan, const
 	else if(maxFine > 0)
 	{
 		// Scale the fine based on how lenient this government is.
-		maxFine = maxFine * gov->GetFineFraction() + .5;
+		maxFine = lround(maxFine * gov->GetFineFraction());
 		reason = "The " + gov->GetName() + " authorities fine you "
 			+ Format::Number(maxFine) + " credits" + reason;
 		player.Accounts().AddFine(maxFine);

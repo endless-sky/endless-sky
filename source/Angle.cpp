@@ -64,7 +64,7 @@ Angle::Angle()
 
 // Convert an angle in degrees into an Angle object.
 Angle::Angle(double degrees)
-	: angle(static_cast<int64_t>(degrees * DEG_TO_STEP + .5) & MASK)
+	: angle(lround(degrees * DEG_TO_STEP) & MASK)
 {
 }
 
