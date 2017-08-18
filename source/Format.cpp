@@ -79,7 +79,7 @@ string Format::Number(double value)
 		int digit = rounded % 10;
 		if(nonzero | digit)
 		{
-			result += digit + '0';
+			result += static_cast<char>(digit + '0');
 			nonzero = true;
 		}
 		rounded /= 10;
