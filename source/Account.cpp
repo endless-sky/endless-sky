@@ -24,7 +24,7 @@ using namespace std;
 namespace {
 	// For tracking the player's average income, store daily net worth over this
 	// number of days.
-	static const unsigned HISTORY = 100;
+	const unsigned HISTORY = 100;
 }
 
 

@@ -42,17 +42,17 @@ namespace {
 		"(very high)"
 	};
 	
-	static const int MIN_X = -310;
-	static const int MAX_X = 190;
+	const int MIN_X = -310;
+	const int MAX_X = 190;
 	
-	static const int NAME_X = -290;
-	static const int PRICE_X = -150;
-	static const int LEVEL_X = -110;
-	static const int BUY_X = 0;
-	static const int SELL_X = 60;
-	static const int HOLD_X = 120;
+	const int NAME_X = -290;
+	const int PRICE_X = -150;
+	const int LEVEL_X = -110;
+	const int BUY_X = 0;
+	const int SELL_X = 60;
+	const int HOLD_X = 120;
 	
-	static const int FIRST_Y = 80;
+	const int FIRST_Y = 80;
 }
 
 

@@ -25,7 +25,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 using namespace std;
 
 namespace {
-	static const double WRAP = 4096.;
+	const double WRAP = 4096.;
 }
 
 

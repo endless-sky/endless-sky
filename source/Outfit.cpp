@@ -23,7 +23,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 using namespace std;
 
 namespace {
-	static const double EPS = 0.0000000001;
+	const double EPS = 0.0000000001;
 }
 
 const vector<string> Outfit::CATEGORIES = {

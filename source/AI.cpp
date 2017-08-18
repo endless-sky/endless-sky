@@ -72,10 +72,10 @@ namespace {
 		return min(a, 360. - a);
 	}
 	
-	static const double MAX_DISTANCE_FROM_CENTER = 10000.;
+	const double MAX_DISTANCE_FROM_CENTER = 10000.;
 	// Constance for the invisible fence timer.
-	static const int FENCE_DECAY = 4;
-	static const int FENCE_MAX = 600;
+	const int FENCE_DECAY = 4;
+	const int FENCE_MAX = 600;
 }
 
 

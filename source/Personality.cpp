@@ -21,35 +21,35 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 using namespace std;
 
 namespace {
-	static const int PACIFIST = (1 << 0);
-	static const int FORBEARING = (1 << 1);
-	static const int TIMID = (1 << 2);
-	static const int DISABLES = (1 << 3);
-	static const int PLUNDERS = (1 << 4);
-	static const int HEROIC = (1 << 5);
-	static const int STAYING = (1 << 6);
-	static const int ENTERING = (1 << 7);
-	static const int NEMESIS = (1 << 8);
-	static const int SURVEILLANCE = (1 << 9);
-	static const int UNINTERESTED = (1 << 10);
-	static const int WAITING = (1 << 11);
-	static const int DERELICT = (1 << 12);
-	static const int FLEEING = (1 << 13);
-	static const int ESCORT = (1 << 14);
-	static const int FRUGAL = (1 << 15);
-	static const int COWARD = (1 << 16);
-	static const int VINDICTIVE = (1 << 17);
-	static const int SWARMING = (1 << 18);
-	static const int UNCONSTRAINED = (1 << 19);
-	static const int MINING = (1 << 20);
-	static const int HARVESTS = (1 << 21);
-	static const int APPEASING = (1 << 22);
-	static const int MUTE = (1 << 23);
-	static const int OPPORTUNISTIC = (1 << 24);
-	static const int TARGET = (1 << 25);
-	static const int MARKED = (1 << 26);
+	const int PACIFIST = (1 << 0);
+	const int FORBEARING = (1 << 1);
+	const int TIMID = (1 << 2);
+	const int DISABLES = (1 << 3);
+	const int PLUNDERS = (1 << 4);
+	const int HEROIC = (1 << 5);
+	const int STAYING = (1 << 6);
+	const int ENTERING = (1 << 7);
+	const int NEMESIS = (1 << 8);
+	const int SURVEILLANCE = (1 << 9);
+	const int UNINTERESTED = (1 << 10);
+	const int WAITING = (1 << 11);
+	const int DERELICT = (1 << 12);
+	const int FLEEING = (1 << 13);
+	const int ESCORT = (1 << 14);
+	const int FRUGAL = (1 << 15);
+	const int COWARD = (1 << 16);
+	const int VINDICTIVE = (1 << 17);
+	const int SWARMING = (1 << 18);
+	const int UNCONSTRAINED = (1 << 19);
+	const int MINING = (1 << 20);
+	const int HARVESTS = (1 << 21);
+	const int APPEASING = (1 << 22);
+	const int MUTE = (1 << 23);
+	const int OPPORTUNISTIC = (1 << 24);
+	const int TARGET = (1 << 25);
+	const int MARKED = (1 << 26);
 	
-	static const map<string, int> TOKEN = {
+	const map<string, int> TOKEN = {
 		{"pacifist", PACIFIST},
 		{"forbearing", FORBEARING},
 		{"timid", TIMID},
@@ -79,7 +79,7 @@ namespace {
 		{"marked", MARKED}
 	};
 	
-	double DEFAULT_CONFUSION = 10.;
+	const double DEFAULT_CONFUSION = 10.;
 }
 
 

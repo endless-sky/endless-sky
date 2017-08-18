@@ -105,7 +105,7 @@ namespace {
 	
 	// MP3 streaming:
 	unsigned musicSource = 0;
-	static const size_t MUSIC_BUFFERS = 3;
+	const size_t MUSIC_BUFFERS = 3;
 	unsigned musicBuffers[MUSIC_BUFFERS];
 	shared_ptr<Music> currentTrack;
 	shared_ptr<Music> previousTrack;

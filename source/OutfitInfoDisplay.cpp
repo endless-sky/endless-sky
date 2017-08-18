@@ -26,7 +26,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 using namespace std;
 
 namespace {
-	static const map<string, double> SCALE = {
+	const map<string, double> SCALE = {
 		{"active cooling", 60.},
 		{"afterburner energy", 60.},
 		{"afterburner fuel", 60.},
@@ -62,7 +62,7 @@ namespace {
 		{"slowing resistance", 60. * 100.}
 	};
 	
-	static const map<string, string> BOOLEAN_ATTRIBUTES = {
+	const map<string, string> BOOLEAN_ATTRIBUTES = {
 		{"unplunderable", "This outfit cannot be plundered."},
 		{"installable", "This is not an installable item."},
 		{"hyperdrive", "Allows you to make hyperjumps."},

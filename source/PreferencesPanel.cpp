@@ -39,14 +39,14 @@ using namespace std;
 
 namespace {
 	// Settings that require special handling.
-	static const string ZOOM_FACTOR = "Main zoom factor";
-	static const string VIEW_ZOOM_FACTOR = "View zoom factor";
-	static const string EXPEND_AMMO = "Escorts expend ammo";
-	static const string TURRET_TRACKING = "Turret tracking";
-	static const string FOCUS_PREFERENCE = "Turrets focus fire";
-	static const string FRUGAL_ESCORTS = "Escorts use ammo frugally";
-	static const string REACTIVATE_HELP = "Reactivate first-time help";
-	static const string SCROLL_SPEED = "Scroll speed";
+	const string ZOOM_FACTOR = "Main zoom factor";
+	const string VIEW_ZOOM_FACTOR = "View zoom factor";
+	const string EXPEND_AMMO = "Escorts expend ammo";
+	const string TURRET_TRACKING = "Turret tracking";
+	const string FOCUS_PREFERENCE = "Turrets focus fire";
+	const string FRUGAL_ESCORTS = "Escorts use ammo frugally";
+	const string REACTIVATE_HELP = "Reactivate first-time help";
+	const string SCROLL_SPEED = "Scroll speed";
 }
 
 

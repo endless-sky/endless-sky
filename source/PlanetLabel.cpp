@@ -30,12 +30,12 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 using namespace std;
 
 namespace {
-	static const double LINE_ANGLE[4] = {60., 120., 300., 240.};
-	static const double LINE_LENGTH = 60.;
-	static const double INNER_SPACE = 10.;
-	static const double LINE_GAP = 1.7;
-	static const double GAP = 6.;
-	static const double MIN_DISTANCE = 30.;
+	const double LINE_ANGLE[4] = {60., 120., 300., 240.};
+	const double LINE_LENGTH = 60.;
+	const double INNER_SPACE = 10.;
+	const double LINE_GAP = 1.7;
+	const double GAP = 6.;
+	const double MIN_DISTANCE = 30.;
 }
 
 

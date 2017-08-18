@@ -40,9 +40,9 @@ using namespace std;
 
 namespace {
 	// Width of the conversation text.
-	static const int WIDTH = 540;
+	const int WIDTH = 540;
 	// Margin on either side of the text.
-	static const int MARGIN = 20;
+	const int MARGIN = 20;
 }
 
 

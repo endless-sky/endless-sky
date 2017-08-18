@@ -27,8 +27,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 using namespace std;
 
 namespace {
-	static const string &WORMHOLE = "wormhole";
-	static const string &PLANET = "planet";
+	const string WORMHOLE = "wormhole";
+	const string PLANET = "planet";
 }
 
 
