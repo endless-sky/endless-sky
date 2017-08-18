@@ -551,7 +551,7 @@ void AI::Step(const PlayerInfo &player)
 							parentChoices.emplace_back(other);
 					}
 				}
-				if(!parent && parentChoices.size())
+				if(!parent && !parentChoices.empty())
 				{
 					parent = parentChoices[Random::Int(parentChoices.size())];
 					it->SetParent(parent);
@@ -722,7 +722,7 @@ void AI::AskForHelp(Ship &ship, bool &isStranded, const Ship *flagship)
 			canHelp.insert(canHelp.end(), 1 + .3 * helper->MaxVelocity(), helper.get());
 		}
 		
-		if(!hasEnemy && canHelp.size())
+		if(!hasEnemy && !canHelp.empty())
 		{
 			Ship *helper = canHelp[Random::Int(canHelp.size())];
 			helper->SetShipToAssist((&ship)->shared_from_this());
@@ -1169,7 +1169,7 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 		else if(ship.Position().Distance(ship.GetTargetStellar()->Position()) < 100.)
 			ship.SetTargetStellar(nullptr);
 	}
-	else if(shouldStay && ship.GetSystem()->Objects().size())
+	else if(shouldStay && !ship.GetSystem()->Objects().empty())
 	{
 		unsigned i = Random::Int(ship.GetSystem()->Objects().size());
 		ship.SetTargetStellar(&ship.GetSystem()->Objects()[i]);

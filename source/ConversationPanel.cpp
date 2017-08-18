@@ -221,7 +221,7 @@ bool ConversationPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comm
 			if(FORBIDDEN.find(c) == string::npos)
 				name += c;
 		}
-		else if((key == SDLK_DELETE || key == SDLK_BACKSPACE) && name.size())
+		else if((key == SDLK_DELETE || key == SDLK_BACKSPACE) && !name.empty())
 			name.erase(name.size() - 1);
 		else if(key == '\t' || ((key == SDLK_RETURN || key == SDLK_KP_ENTER) && otherName.empty()))
 			choice = !choice;

@@ -432,7 +432,7 @@ void GameData::StepEconomy()
 	for(auto &it : systems)
 	{
 		System &system = it.second;
-		if(system.Links().size())
+		if(!system.Links().empty())
 			for(const Trade::Commodity &commodity : trade.Commodities())
 			{
 				double supply = system.Supply(commodity.name);
