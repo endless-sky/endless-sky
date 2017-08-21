@@ -1,7 +1,7 @@
 import os
 
 # Load any environment variables that alter the build.
-env = Environment()
+env = Environment(ENV = os.environ)
 if 'CCFLAGS' in os.environ:
 	env.Append(CCFLAGS = os.environ['CCFLAGS'])
 if 'CXXFLAGS' in os.environ:
