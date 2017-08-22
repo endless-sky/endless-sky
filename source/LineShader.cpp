@@ -61,7 +61,7 @@ void LineShader::Init()
 		
 		"void main() {\n"
 		"  float alpha = min(tscale - abs(tpos.x * (2 * tscale) - tscale), 1 - abs(tpos.y));\n"
-		"  gl_FragColor = color * alpha;\n"
+		"  finalColor = color * alpha;\n"
 		"}\n";
 	
 	shader = Shader(vertexCode, fragmentCode);

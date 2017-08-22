@@ -77,7 +77,7 @@ void RingShader::Init()
 		"  float len = length(coord);\n"
 		"  float lenFalloff = width - abs(len - radius);\n"
 		"  float alpha = clamp(min(arcFalloff, lenFalloff), 0, 1);\n"
-		"  gl_FragColor = color * alpha;\n"
+		"  finalColor = color * alpha;\n"
 		"}\n";
 	
 	shader = Shader(vertexCode, fragmentCode);

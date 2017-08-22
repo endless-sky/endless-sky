@@ -60,7 +60,7 @@ namespace {
 		
 		// Multiply the texture by the user-specified color (including alpha).
 		"void main() {\n"
-		"  gl_FragColor = texture(tex, texCoord).a * color;\n"
+		"  finalColor = texture(tex, texCoord).a * color;\n"
 		"}\n";
 	
 	static const int KERN = 2;

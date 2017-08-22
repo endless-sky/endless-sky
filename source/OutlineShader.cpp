@@ -75,7 +75,7 @@ void OutlineShader::Init()
 		"      sum += h * h + v * v;\n"
 		"    }\n"
 		"  }\n"
-		"  gl_FragColor = color * sqrt(sum / 144);\n"
+		"  finalColor = color * sqrt(sum / 144);\n"
 		"}\n";
 	
 	shader = Shader(vertexCode, fragmentCode);

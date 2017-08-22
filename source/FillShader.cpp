@@ -51,7 +51,7 @@ void FillShader::Init()
 		"uniform vec4 color = vec4(1, 1, 1, 1);\n"
 		
 		"void main() {\n"
-		"  gl_FragColor = color;\n"
+		"  finalColor = color;\n"
 		"}\n";
 	
 	shader = Shader(vertexCode, fragmentCode);

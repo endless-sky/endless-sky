@@ -67,7 +67,7 @@ void PointerShader::Init()
 		"  taper *= taper * .5 * size.x;\n"
 		"  float alpha = clamp(.8 * min(coord.x, coord.y) - taper, 0, 1);\n"
 		"  alpha *= clamp(1.8 * (1. - height), 0, 1);\n"
-		"  gl_FragColor = color * alpha;\n"
+		"  finalColor = color * alpha;\n"
 		"}\n";
 	
 	shader = Shader(vertexCode, fragmentCode);

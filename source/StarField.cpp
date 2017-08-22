@@ -199,7 +199,7 @@ void StarField::SetUpGraphics()
 		
 		"void main() {\n"
 		"  float alpha = fragmentAlpha * (1. - abs(coord.x) - abs(coord.y));\n"
-		"  gl_FragColor = vec4(1, 1, 1, 1) * alpha;\n"
+		"  finalColor = vec4(1, 1, 1, 1) * alpha;\n"
 		"}\n";
 	
 	shader = Shader(vertexCode, fragmentCode);

@@ -81,9 +81,9 @@ void SpriteShader::Init()
 		"  if(blur.x == 0 && blur.y == 0)\n"
 		"  {\n"
 		"    if(fade != 0)\n"
-		"      gl_FragColor = mix(texture(tex0, fragTexCoord), texture(tex1, fragTexCoord), fade);\n"
+		"      finalColor = mix(texture(tex0, fragTexCoord), texture(tex1, fragTexCoord), fade);\n"
 		"    else\n"
-		"      gl_FragColor = texture(tex0, fragTexCoord);\n"
+		"      finalColor = texture(tex0, fragTexCoord);\n"
 		"    return;\n"
 		"  }\n"
 		"  const float divisor = range * (range + 2) + 1;\n"
@@ -97,7 +97,7 @@ void SpriteShader::Init()
 		"    else\n"
 		"      color += scale * texture(tex0, coord);\n"
 		"  }\n"
-		"  gl_FragColor = color;\n"
+		"  finalColor = color;\n"
 		"}\n";
 	
 	shader = Shader(vertexCode, fragmentCode);
