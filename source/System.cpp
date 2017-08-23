@@ -105,6 +105,23 @@ int System::FleetProbability::Period() const
 
 
 
+void System::FleetProbability::AddPeriod(int period)
+{
+	int current = this->period;
+	if(period > 0)
+		this->period = 1. / (1. / current + 1. / period);
+}
+
+
+
+void System::FleetProbability::SetPeriod(int period)
+{
+	if(period > 0)
+		this->period = period;
+}
+
+
+
 // Load a system's description.
 void System::Load(const DataNode &node, Set<Planet> &planets)
 {
@@ -118,18 +135,19 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 	
 	for(const DataNode &child : node)
 	{
-		// Check for the "add" or "remove" keyword.
+		// Check for the "add", "remove", or "set period" keyword.
 		bool add = (child.Token(0) == "add");
 		bool remove = (child.Token(0) == "remove");
-		if((add || remove) && child.Size() < 2)
+		bool setPeriod = (child.Token(0) == "set period");
+		if((add || remove || setPeriod) && child.Size() < 2)
 		{
 			child.PrintTrace("Skipping " + child.Token(0) + " with no key given:");
 			continue;
 		}
 		
 		// Get the key and value (if any).
-		const string &key = child.Token((add || remove) ? 1 : 0);
-		int valueIndex = (add || remove) ? 2 : 1;
+		const string &key = child.Token((add || remove || setPeriod) ? 1 : 0);
+		int valueIndex = (add || remove || setPeriod) ? 2 : 1;
 		bool hasValue = (child.Size() > valueIndex);
 		const string &value = child.Token(hasValue ? valueIndex : 0);
 		
@@ -230,6 +248,26 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 						fleets.erase(it);
 						break;
 					}
+			}
+			else if(add || setPeriod)
+			{
+				// Merge this added fleet's period into an existing, identical
+				// fleet's period, or replace that fleet's period entirely.
+				bool matched = false;
+				for(FleetProbability &fit : fleets)
+					if(fit.Get() == fleet)
+					{
+						if(add)
+							fit.AddPeriod(child.Value(valueIndex + 1));
+						else
+							fit.SetPeriod(child.Value(valueIndex + 1));
+						matched = true;
+						break;
+					}
+				
+				// No matching fleet was found, so create it.
+				if(!matched)
+					fleets.emplace_back(fleet, child.Value(valueIndex + 1));
 			}
 			else
 				fleets.emplace_back(fleet, child.Value(valueIndex + 1));
