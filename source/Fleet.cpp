@@ -65,9 +65,9 @@ void Fleet::Load(const DataNode &node)
 		}
 		else if(key == "personality")
 			personality.Load(child);
-		else if(key == "variant" || add)
+		else if(key == "variant")
 		{
-			if(resetVariants && !add)
+			if(resetVariants)
 			{
 				resetVariants = false;
 				variants.clear();
@@ -76,13 +76,31 @@ void Fleet::Load(const DataNode &node)
 			variants.emplace_back(child);
 			total += variants.back().weight;
 		}
+		else if(add)
+		{
+			// Increase the weight of the given variant if it already exists
+			// rather than create an additional duplicate entry.
+			Variant toAdd = Variant(child);
+			bool matched = false;
+			for(Variant &vit : variants)
+				if(toAdd.ships.size() == vit.ships.size() &&
+					is_permutation(vit.ships.begin(), vit.ships.end(), toAdd.ships.begin()))
+				{
+					matched = true;
+					vit.weight += toAdd.weight;
+					break;
+				}
+			
+			if(!matched)
+				variants.emplace_back(toAdd);
+			total += toAdd.weight;
+		}
 		else if(remove)
 		{
 			// If given a full ship definition of one of this fleet's variant members, remove the variant.
 			bool didRemove = false;
+			Variant toRemove = Variant(child);
 			for(auto it = variants.begin(); it != variants.end(); ++it)
-			{
-				Variant toRemove = Variant(child);
 				if(toRemove.ships.size() == it->ships.size() &&
 					is_permutation(it->ships.begin(), it->ships.end(), toRemove.ships.begin()))
 				{
@@ -91,7 +109,7 @@ void Fleet::Load(const DataNode &node)
 					didRemove = true;
 					break;
 				}
-			}
+			
 			if(!didRemove)
 				child.PrintTrace("Did not find matching variant for specified operation:");
 		}
