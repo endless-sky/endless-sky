@@ -94,7 +94,10 @@ void Ship::Load(const DataNode &node)
 		else if(key == "attributes")
 			baseAttributes.Load(child);
 		else if(key == "add attributes")
+		{
+			addAttributes = true;
 			attributes.Load(child);
+		}
 		else if(key == "engine" && child.Size() >= 3)
 		{
 			if(!hasEngine)
@@ -331,8 +334,15 @@ void Ship::FinishLoading(bool isNewInstance)
 	baseAttributes.Reset("gun ports", armament.GunCount());
 	baseAttributes.Reset("turret mounts", armament.TurretCount());
 	
-	attributes.Add(baseAttributes);
+	if(addAttributes)
+	{
+		// Store attributes from an "add attributes" node in the ship's
+		// baseAttributes so they can be written to the save file.
+		baseAttributes.Add(attributes);
+		addAttributes = false;
+	}
 	// Add the attributes of all your outfits to the ship's base attributes.
+	attributes = baseAttributes;
 	for(const auto &it : outfits)
 	{
 		if(it.first->Name().empty())
