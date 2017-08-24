@@ -142,3 +142,14 @@ double Flotsam::UnitSize() const
 {
 	return outfit ? outfit->Get("mass") : 1;
 }
+
+
+
+// Remove "units" from the flotsam.
+void Flotsam::Remove(int amount)
+{
+	if(amount < this->count)
+		this->count -= amount;
+	else
+		this->count = 0;
+}

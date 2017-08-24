@@ -62,6 +62,9 @@ public:
 	// less than this amount of space, it can't pick up anything here.
 	double UnitSize() const;
 	
+	// Remove "units" from the flotsam.
+	void Remove(int amount);
+	
 	
 private:
 	Angle spin;
