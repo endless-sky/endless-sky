@@ -93,6 +93,8 @@ void Ship::Load(const DataNode &node)
 			customSwizzle = child.Value(1);
 		else if(key == "attributes")
 			baseAttributes.Load(child);
+		else if(key == "add attributes")
+			attributes.Load(child);
 		else if(key == "engine" && child.Size() >= 3)
 		{
 			if(!hasEngine)
@@ -329,8 +331,8 @@ void Ship::FinishLoading(bool isNewInstance)
 	baseAttributes.Reset("gun ports", armament.GunCount());
 	baseAttributes.Reset("turret mounts", armament.TurretCount());
 	
+	attributes.Add(baseAttributes);
 	// Add the attributes of all your outfits to the ship's base attributes.
-	attributes = baseAttributes;
 	for(const auto &it : outfits)
 	{
 		if(it.first->Name().empty())
