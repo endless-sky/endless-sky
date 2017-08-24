@@ -127,7 +127,16 @@ void NPC::Load(const DataNode &node)
 			{
 				fleets.push_back(Fleet());
 				fleets.back().Load(child);
+				if(child.Size() >= 2)
+				{
+					// Copy the custom fleet in lieu of reparsing the same DataNode.
+					size_t numAdded = child.Value(1);
+					for(size_t i = 1; i < numAdded; ++i)
+						fleets.push_back(fleets.back());
+				}
 			}
+			else if(child.Size() >= 3 && child.Value(2) > 1.)
+				stockFleets.insert(stockFleets.end(), child.Value(2), GameData::Fleets().Get(child.Token(1)));
 			else if(child.Size() >= 2)
 				stockFleets.push_back(GameData::Fleets().Get(child.Token(1)));
 		}
