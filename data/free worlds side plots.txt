@@ -458,7 +458,7 @@ mission "FW Wolf Pack 4"
 		government Republic
 		system Mizar
 		personality heroic staying
-		fleet "Large Republic"
+		fleet
 			names "republic capital"
 			fighters "republic fighter"
 			cargo 0
