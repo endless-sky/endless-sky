@@ -1234,7 +1234,7 @@ void AI::MoveEscort(Ship &ship, Command &command) const
 			MoveToPlanet(ship, command);
 			command |= Command::LAND;
 		}
-		else if(ship.GetTargetSystem())
+		else if(ship.GetTargetSystem() && ship.JumpsRemaining())
 		{
 			PrepareForHyperspace(ship, command);
 			command |= Command::JUMP;
@@ -1244,7 +1244,7 @@ void AI::MoveEscort(Ship &ship, Command &command) const
 			Refuel(ship, command);
 		else
 			// This ship has no route to the parent's system, so park at the system's center.
-			MoveTo(ship, command, Point(), Point(), 40., 0.);
+			MoveTo(ship, command, Point(), Point(), 40., 0.1);
 	}
 	else if(parent.Commands().Has(Command::LAND) && parentIsHere && planetIsHere && parentPlanet->CanLand(ship))
 	{
@@ -1265,6 +1265,8 @@ void AI::MoveEscort(Ship &ship, Command &command) const
 			KeepStation(ship, command, parent);
 		else if(systemHasFuel && !dest->HasFuelFor(ship) && ship.JumpsRemaining() == 1)
 			Refuel(ship, command);
+		else if(!ship.JumpsRemaining())
+			MoveTo(ship, command, Point(), Point(), 40., 0.1);
 		else
 		{
 			PrepareForHyperspace(ship, command);
