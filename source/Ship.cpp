@@ -2291,8 +2291,8 @@ void Ship::Jettison(const string &commodity, int tons)
 	heat *= shipMass / (shipMass + tons);
 	
 	static const int perBox = 5;
-	for( ; tons >= perBox; tons -= perBox)
-		jettisoned.emplace_back(new Flotsam(commodity, perBox));
+	for( ; tons > 0; tons -= perBox)
+		jettisoned.emplace_back(new Flotsam(commodity, (perBox < tons) ? perBox : tons));
 }
 
 
