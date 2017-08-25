@@ -114,6 +114,8 @@ void NPC::Load(const DataNode &node)
 				for(const DataNode &grand : child)
 					if(grand.Token(0) == "actions" && grand.Size() >= 2)
 						actions[ships.back().get()] = grand.Value(1);
+				if(child.Size() > 2 && ships.back()->Name().length() < 1)
+					ships.back()->SetName(child.Token(2));
 			}
 			else if(child.Size() >= 2)
 			{
