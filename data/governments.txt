@@ -293,6 +293,7 @@ government "Remnant"
 	"player reputation" 1
 	"attitude toward"
 		"Korath" -.01
+	raid "Korath Raid"
 
 government "Republic"
 	swizzle 0
