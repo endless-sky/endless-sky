@@ -1207,13 +1207,18 @@ void Engine::CalculateStep()
 				Messages::Add(message);
 			}
 			
-			// This flotsam will dissapear if it's fully moved to the cargo hold.
-			// No other ships will collect from this flotsam in this step.
 			(*it)->Remove(amount);
 			if((*it)->Count() == 0)
 			{
+				// Flotsam was fully moved to the cargo hold.
 				it = flotsam.erase(it);
 				continue;
+			}
+			else
+			{
+				// Flotsam was collected, partially stripped, and then thrown back out.
+				// No other ships will collect from this flotsam in this step.
+				(*it)->Place(*collector);
 			}
 		}
 		
