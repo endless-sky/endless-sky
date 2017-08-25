@@ -392,7 +392,7 @@ NPC NPC::Instantiate(map<string, string> &subs, const System *origin, const Syst
 		ship->SetGovernment(result.government);
 		ship->SetIsSpecial();
 		ship->SetPersonality(result.personality);
-		result.ships.back()->FinishLoading(true);
+		ship->FinishLoading(true);
 		
 		if(personality.IsEntering())
 			Fleet::Enter(*result.system, *ship);
