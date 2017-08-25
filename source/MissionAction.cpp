@@ -25,6 +25,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Ship.h"
 #include "UI.h"
 
+#include <cstdlib>
 #include <vector>
 
 using namespace std;
@@ -364,7 +365,7 @@ MissionAction MissionAction::Instantiate(map<string, string> &subs, int jumps, i
 	// Fill in the payment amount if this is the "complete" action.
 	string previousPayment = subs["<payment>"];
 	if(result.payment)
-		subs["<payment>"] = Format::Number(result.payment)
+		subs["<payment>"] = Format::Number(abs(result.payment))
 			+ (result.payment == 1 ? " credit" : " credits");
 	
 	if(!logText.empty())
