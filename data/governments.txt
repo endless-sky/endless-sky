@@ -78,6 +78,7 @@ government "Hai"
 	"player reputation" 0
 	"attitude toward"
 		"Hai (Unfettered)" -.5
+		"Merchant" .01
 	"bribe" .02
 	"fine" 0
 	"friendly hail" "friendly hai"
@@ -251,10 +252,11 @@ government "Pirate"
 	
 	"player reputation" -10
 	"attitude toward"
+		"Author" -.01
+		"Hai" -.01
+		"Korath" -.01
 		"Merchant" -.1
 		"Syndicate" -.01
-		"Korath" -.01
-		"Author" -.01
 	"bribe" .05
 	"fine" 0
 	"friendly hail" "friendly pirate"
