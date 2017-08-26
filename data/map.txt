@@ -25443,7 +25443,7 @@ planet "Leviathan Station"
 	attributes deep station
 	landscape land/space2
 	music ambient/machinery
-	description `Leviathan station is the Deep's most productive deuterium harvesting station. Built nearly four hundred years ago, the station was one of the first to fuel the massive cargo caravans sent out from the Deep back when this was one of the only regions of the galaxy with a prosperous economy and a democratic government. Today it remains under government control, because the citizens of the Deep are wary of any private corporation controlling the industry that makes space travel possible.`
+	description `Leviathan station is the Deep's most productive deuterium harvesting station. Built nearly four hundred years ago, the station was one of the first to fuel the massive cargo caravans sent out from the Deep back when this was one of the only regions of the galaxy with a prosperous economy and a democratic government. Today it remains under government control, because the citizens of the Deep are wary of any private corporation controlling the industry that makes interstellar travel possible.`
 	spaceport `This is a refinery, not a tourist destination. You were allowed to dock here, and the massive cafeteria used by the local workers is available to you if you want to eat, but beyond that no one seems particularly interested in entertaining you or interacting with you.`
 	spaceport `	On the other hand, you get some small satisfaction from knowing that you refueled your ship with deuterium that just yesterday was most likely still floating around in the upper cloud banks of the gas giant below.`
 	"required reputation" 10
