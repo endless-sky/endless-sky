@@ -293,7 +293,7 @@ outfit "Forge-Class Thruster"
 	"flare sprite" "effect/remnant medium flare"
 		"frame rate" 4
 	"flare sound" "plasma small"
-	description "The Remnant has taken the basic ion thruster design that has been used by humanity since the dawn of spaceflight and made it significantly more powerful... but also more power-hungry."
+	description "The Remnant has taken the basic ion thruster design that has been used by humanity since the dawn of interstellar travel and made it significantly more powerful... but also more power-hungry."
 
 outfit "Smelter-Class Thruster"
 	category "Engines"
