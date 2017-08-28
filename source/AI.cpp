@@ -885,7 +885,7 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 				range += 5000. * it->IsDisabled();
 			else
 			{
-				bool hasBoarded = Has(ship, it, ShipEvent::BOARD);
+				bool hasBoarded = Has(ship, it, ShipEvent::BOARD) || !ship.Cargo().Free();
 				// Don't plunder unless there are no "live" enemies nearby.
 				range += 2000. * (2 * it->IsDisabled() - !hasBoarded);
 			}
@@ -897,7 +897,7 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 					isArmed = true;
 					break;
 				}
-			// Prefer to go after armed targets, expecially if you're not a pirate.
+			// Prefer to go after armed targets, especially if you're not a pirate.
 			range += 1000. * (!isArmed * (1 + !person.Plunders()));
 			// Focus on nearly dead ships.
 			range += 500. * (it->Shields() + it->Hull());
@@ -2239,7 +2239,7 @@ void AI::AutoFire(const Ship &ship, Command &command, bool secondary) const
 		currentTarget.reset();
 	
 	// Only fire on disabled targets if you don't want to plunder them.
-	bool spareDisabled = (ship.GetPersonality().Disables() || ship.GetPersonality().Plunders());
+	bool spareDisabled = (ship.GetPersonality().Disables() || (ship.GetPersonality().Plunders() && ship.Cargo().Free()));
 	
 	// Find the longest range of any of your non-homing weapons. Homing weapons
 	// that don't consume ammo may also fire in non-homing mode.
