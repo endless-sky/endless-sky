@@ -214,6 +214,7 @@ mission "FW Southern Recon 1B"
 
 
 mission "FW Southern Recon 1B (Turret)"
+	landing
 	invisible
 	source Trinket
 	destination Trinket
