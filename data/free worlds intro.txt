@@ -676,6 +676,8 @@ mission "FW Katya 1C"
 
 
 
+event "FW Katya Alt 2: ready"
+
 mission "FW Katya Alt 2"
 	name "Transport Mr. Eyes"
 	description "Katya Reynolds asked you to travel to <destination>, where her friend Mr. Eyes is waiting for you."
