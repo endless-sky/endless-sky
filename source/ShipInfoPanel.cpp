@@ -549,7 +549,14 @@ void ShipInfoPanel::DrawCargo(const Rectangle &bounds)
 			
 			bool isSingular = (it.second == 1 || it.first->Get("installable") < 0.);
 			table.Draw(isSingular ? it.first->Name() : it.first->PluralName(), dim);
-			table.Draw(to_string(it.second), bright);
+			
+			// Show the size in the format "<count> x <unit mass>".
+			// If the mass is 1, only the count is reported.
+			string size = to_string(it.second);
+			double mass = it.first->Get("mass");
+			if(mass != 1.)
+				size += " x " + Format::Number(mass);
+			table.Draw(size, bright);
 			
 			// Truncate the list if there is not enough space.
 			if(table.GetRowBounds().Bottom() >= endY)
