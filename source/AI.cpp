@@ -3010,6 +3010,10 @@ void AI::IssueOrders(const PlayerInfo &player, const Orders &newOrders, const st
 		if(ship == newTarget)
 			continue;
 		
+		// Never issue orders that target a ship in another system.
+		if(newTarget && ship->GetSystem() != newTarget->GetSystem())
+			continue;
+		
 		gaveOrder = true;
 		hasMismatch |= !orders.count(ship);
 		
