@@ -2774,18 +2774,18 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 		AutoFire(ship, command, false);
 	if(keyHeld)
 	{
+		if(keyHeld.Has(Command::FORWARD))
+			command |= Command::FORWARD;
 		if(keyHeld.Has(Command::RIGHT | Command::LEFT))
 			command.SetTurn(keyHeld.Has(Command::RIGHT) - keyHeld.Has(Command::LEFT));
-		else if(keyHeld.Has(Command::BACK))
+		if(keyHeld.Has(Command::BACK))
 		{
-			if(ship.Attributes().Get("reverse thrust"))
+			if(!keyHeld.Has(Command::FORWARD) && ship.Attributes().Get("reverse thrust"))
 				command |= Command::BACK;
-			else
+			else if (!keyHeld.Has(Command::RIGHT | Command::LEFT))
 				command.SetTurn(TurnBackward(ship));
 		}
 		
-		if(keyHeld.Has(Command::FORWARD))
-			command |= Command::FORWARD;
 		if(keyHeld.Has(Command::PRIMARY))
 		{
 			int index = 0;
