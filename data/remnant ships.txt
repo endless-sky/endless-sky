@@ -138,6 +138,7 @@ ship "Starling" "Starling (Thrasher)"
 
 
 ship "Albatross"
+	plural "Albatrosses"
 	sprite "ship/albatross"
 	attributes
 		category "Heavy Warship"
