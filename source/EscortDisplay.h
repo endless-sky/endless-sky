@@ -49,7 +49,7 @@ private:
 		// Sorting operator.
 		bool operator<(const Icon &other) const;
 		
-		int Height() const;
+		int Height(bool withSystem = false) const;
 		void Merge(const Icon &other);
 		
 		const Sprite *sprite;

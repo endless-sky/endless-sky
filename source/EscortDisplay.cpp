@@ -66,20 +66,40 @@ void EscortDisplay::Draw() const
 	const Color &selectedColor = *colors.Get("escort selected");
 	const Color &hereColor = *colors.Get("escort present");
 	const Color &hostileColor = *colors.Get("escort hostile");
+	int hiddenEscorts = 0;
+	string currentSystem;
 	for(const Icon &escort : icons)
 	{
 		if(!escort.sprite)
 			continue;
 		
-		pos.Y() -= escort.Height();
-		// Show only as many escorts as we have room for on screen.
+		if(hiddenEscorts)
+		{
+			hiddenEscorts += escort.ships.size();
+			continue;
+		}
+		
+		bool withSystem = (!escort.isHere && currentSystem != escort.system);
+		pos.Y() -= escort.Height(withSystem);
 		if(pos.Y() <= Screen::Top() + 450.)
-			break;
+		{
+			// Show only as many escorts as we have room for on screen.
+			if(pos.X() > -200)
+			{
+				hiddenEscorts = escort.ships.size();
+				pos.Y() += escort.Height(withSystem);
+				continue;
+			}
+			pos = Point(pos.X() + 110., Screen::Bottom() - escort.Height(withSystem));
+		}
 		
 		// Draw the system name for any escort not in the current system.
-		if(!escort.system.empty())
-			font.Draw(escort.system, pos + Point(-10., 10.), elsewhereColor);
-
+		if(withSystem)
+		{
+			currentSystem = escort.system;
+			font.Draw(currentSystem, pos + Point(-10., 12.), elsewhereColor);
+		}
+		
 		Color color;
 		if(escort.isHostile)
 			color = hostileColor;
@@ -149,6 +169,14 @@ void EscortDisplay::Draw() const
 			}
 		}
 	}
+	
+	// Report the number of escorts not shown.
+	if(hiddenEscorts)
+	{
+		Color dim = *GameData::Colors().Get("medium");
+		string hidden = to_string(hiddenEscorts) + " more " + (hiddenEscorts == 1 ? "escort" : "escorts");
+		font.Draw(hidden, Point(Screen::Left() + 10., Screen::Top() + 425.), dim);
+	}
 }
 
 
@@ -184,17 +212,22 @@ EscortDisplay::Icon::Icon(const Ship &ship, bool isHere, bool fleetIsJumping, bo
 
 
 
-// Sorting operator. It comes sooner if it costs more.
+// Sorting operator.
+// It comes sooner if it's here, then by system name, then if it costs more.
 bool EscortDisplay::Icon::operator<(const Icon &other) const
 {
+	if(isHere != other.isHere)
+		return isHere;
+	if(system != other.system);
+		return system < other.system;
 	return (cost > other.cost);
 }
 
 
 
-int EscortDisplay::Icon::Height() const
+int EscortDisplay::Icon::Height(bool withSystem) const
 {
-	return 30 + 15 * !system.empty();
+	return 30 + 15 * withSystem;
 }
 
 
@@ -228,27 +261,31 @@ void EscortDisplay::MergeStacks() const
 	set<const Sprite *> unstackable;
 	while(true)
 	{
-		Icon *cheapest = nullptr;
+		Icon *lastStackable = nullptr;
 		
 		int height = 0;
+		set<string> systems;
 		for(Icon &icon : icons)
 		{
-			if(!unstackable.count(icon.sprite) && (!cheapest || *cheapest < icon))
-				cheapest = &icon;
+			if(!unstackable.count(icon.sprite) && (!lastStackable || *lastStackable < icon))
+				lastStackable = &icon;
 			
-			height += icon.Height();
+			bool withSystem = (!icon.isHere && systems.find(icon.system) == systems.end());
+			height += icon.Height(withSystem);
+			if(withSystem)
+				systems.insert(icon.system);
 		}
 		
-		if(height < maxHeight || !cheapest)
+		if(height < maxHeight || !lastStackable)
 			break;
 		
 		// Merge together each group of escorts that have this icon and are in
 		// the same system and have the same attitude towards the player.
 		map<const bool, map<string, Icon *>> merged;
 		
-		// The "cheapest" element in the list may be removed to merge it with an
+		// The "lastStackable" element in the list may be removed to merge it with an
 		// earlier ship of the same type, so store a copy of its sprite pointer:
-		const Sprite *sprite = cheapest->sprite;
+		const Sprite *sprite = lastStackable->sprite;
 		list<Icon>::iterator it = icons.begin();
 		while(it != icons.end())
 		{
