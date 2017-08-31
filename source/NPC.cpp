@@ -243,6 +243,10 @@ void NPC::Do(const ShipEvent &event, PlayerInfo &player, UI *ui, bool isVisible)
 	bool hasSucceeded = HasSucceeded(player.GetSystem());
 	bool hasFailed = HasFailed();
 	
+	// Scan events only count if originated by the player.
+	if(!event.ActorGovernment()->IsPlayer())
+		type &= ~(ShipEvent::SCAN_CARGO | ShipEvent::SCAN_OUTFITS);
+	
 	// Apply this event to the ship and any ships it is carrying.
 	actions[ship.get()] |= type;
 	for(const Ship::Bay &bay : ship->Bays())
