@@ -1097,13 +1097,34 @@ bool Ship::Move(list<Effect> &effects, list<shared_ptr<Flotsam>> &flotsam)
 		velocity *= 1. - attributes.Get("drag") / mass;
 	else if(!pilotError)
 	{
+		if(commands.Turn())
+		{
+			// Check if we are able to turn.
+			double cost = attributes.Get("turning energy");
+			if(energy < cost * fabs(commands.Turn()))
+				commands.SetTurn(commands.Turn() * energy / (cost * fabs(commands.Turn())));
+			
+			if(commands.Turn())
+			{
+				// If turning at a fraction of the full rate (either from lack of
+				// energy or because of tracking a target), only consume a fraction
+				// of the turning energy and produce a fraction of the heat.
+				double scale = fabs(commands.Turn());
+				energy -= scale * cost;
+				heat += scale * attributes.Get("turning heat");
+				angle += commands.Turn() * TurnRate() * slowMultiplier;
+			}
+		}
 		double thrustCommand = commands.Has(Command::FORWARD) - commands.Has(Command::BACK);
 		if(thrustCommand)
 		{
 			// Check if we are able to apply this thrust.
 			double cost = attributes.Get((thrustCommand > 0.) ?
 				"thrusting energy" : "reverse thrusting energy");
-			if(energy >= cost)
+			if(energy < cost)
+				thrustCommand *= energy / cost;
+			
+			if(thrustCommand)
 			{
 				// If a reverse thrust is commanded and the capability does not
 				// exist, ignore it (do not even slow under drag).
@@ -1111,8 +1132,9 @@ bool Ship::Move(list<Effect> &effects, list<shared_ptr<Flotsam>> &flotsam)
 				double thrust = attributes.Get(isThrusting ? "thrust" : "reverse thrust");
 				if(thrust)
 				{
-					energy -= cost;
-					heat += attributes.Get(isThrusting ? "thrusting heat" : "reverse thrusting heat");
+					double scale = fabs(thrustCommand);
+					energy -= scale * cost;
+					heat += scale * attributes.Get(isThrusting ? "thrusting heat" : "reverse thrusting heat");
 					acceleration += angle.Unit() * (thrustCommand * thrust / mass);
 				}
 			}
@@ -1141,19 +1163,6 @@ bool Ship::Move(list<Effect> &effects, list<shared_ptr<Flotsam>> &flotsam)
 								effects.back().Place(pos + velocity, velocity - 6. * angle.Unit(), angle);
 							}
 					}
-			}
-		}
-		if(commands.Turn())
-		{
-			// Check if we are able to turn.
-			double cost = attributes.Get("turning energy");
-			if(energy < cost)
-				commands.SetTurn(0.);
-			else
-			{
-				energy -= cost;
-				heat += attributes.Get("turning heat");
-				angle += commands.Turn() * TurnRate() * slowMultiplier;
 			}
 		}
 	}
