@@ -19,6 +19,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Government.h"
 #include "LineShader.h"
 #include "Point.h"
+#include "Preferences.h"
 #include "OutlineShader.h"
 #include "Screen.h"
 #include "Ship.h"
@@ -48,7 +49,7 @@ void EscortDisplay::Add(const Ship &ship, bool isHere, bool fleetIsJumping, bool
 
 
 // The display starts in the lower left corner of the screen and takes up
-// all but the top 450 pixels of the screen. It shows aditional columns
+// all but the top 450 pixels of the screen. It can show additional columns
 // up to the center of the screen.
 void EscortDisplay::Draw() const
 {
@@ -82,10 +83,9 @@ void EscortDisplay::Draw() const
 		if(pos.Y() <= Screen::Top() + 450.)
 		{
 			// Show only as many escorts as we have room for on screen.
-			if(pos.X() > -200)
+			if(!Preferences::Has("Show more escorts") || pos.X() > -200)
 			{
 				hiddenEscorts = escort.ships.size();
-				pos.Y() += escort.Height();
 				continue;
 			}
 			pos = Point(pos.X() + 110., Screen::Bottom() - escort.Height());
