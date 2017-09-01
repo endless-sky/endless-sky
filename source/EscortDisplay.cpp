@@ -48,11 +48,11 @@ void EscortDisplay::Add(const Ship &ship, bool isHere, bool fleetIsJumping, bool
 
 
 // The display starts in the lower left corner of the screen and takes up
-// all but the top 450 pixels of the screen.
+// all but the top 450 pixels of the screen. It shows aditional columns
+// up to the center of the screen.
 void EscortDisplay::Draw() const
 {
 	MergeStacks();
-	icons.sort();
 	stacks.clear();
 	zones.clear();
 	static const Set<Color> &colors = GameData::Colors();
@@ -67,7 +67,6 @@ void EscortDisplay::Draw() const
 	const Color &hereColor = *colors.Get("escort present");
 	const Color &hostileColor = *colors.Get("escort hostile");
 	int hiddenEscorts = 0;
-	string currentSystem;
 	for(const Icon &escort : icons)
 	{
 		if(!escort.sprite)
@@ -79,25 +78,23 @@ void EscortDisplay::Draw() const
 			continue;
 		}
 		
-		bool withSystem = (!escort.isHere && currentSystem != escort.system);
-		pos.Y() -= escort.Height(withSystem);
+		pos.Y() -= escort.Height();
 		if(pos.Y() <= Screen::Top() + 450.)
 		{
 			// Show only as many escorts as we have room for on screen.
 			if(pos.X() > -200)
 			{
 				hiddenEscorts = escort.ships.size();
-				pos.Y() += escort.Height(withSystem);
+				pos.Y() += escort.Height();
 				continue;
 			}
-			pos = Point(pos.X() + 110., Screen::Bottom() - escort.Height(withSystem));
+			pos = Point(pos.X() + 110., Screen::Bottom() - escort.Height());
 		}
 		
 		// Draw the system name for any escort not in the current system.
-		if(withSystem)
+		if(escort.withSystem)
 		{
-			currentSystem = escort.system;
-			font.Draw(currentSystem, pos + Point(-10., 12.), elsewhereColor);
+			font.Draw(escort.system, pos + Point(-10., 12.), elsewhereColor);
 		}
 		
 		Color color;
@@ -202,6 +199,7 @@ EscortDisplay::Icon::Icon(const Ship &ship, bool isHere, bool fleetIsJumping, bo
 	notReadyToJump(fleetIsJumping && !ship.IsHyperspacing() && !ship.IsReadyToJump()),
 	cannotJump(fleetIsJumping && !ship.IsHyperspacing() && !ship.JumpsRemaining()),
 	isSelected(isSelected),
+	withSystem(false),
 	cost(ship.Cost()),
 	system((!isHere && ship.GetSystem()) ? ship.GetSystem()->Name() : ""),
 	low{ship.Shields(), ship.Hull(), ship.Energy(), ship.Heat(), ship.Fuel()},
@@ -225,7 +223,7 @@ bool EscortDisplay::Icon::operator<(const Icon &other) const
 
 
 
-int EscortDisplay::Icon::Height(bool withSystem) const
+int EscortDisplay::Icon::Height() const
 {
 	return 30 + 15 * withSystem;
 }
@@ -257,58 +255,68 @@ void EscortDisplay::MergeStacks() const
 	if(icons.empty())
 		return;
 	
+	// Sort by system name, then biggest cost.
+	icons.sort();
+	
+	// Mark icons that show system name.
+	string currentSystem;
+	for(Icon &icon : icons)
+	{
+		icon.withSystem = (!icon.isHere && icon.system != currentSystem);
+		if(icon.withSystem)
+			currentSystem = icon.system;
+	}
+	
 	int maxHeight = Screen::Height() - 450;
-	set<const Sprite *> unstackable;
+	set<Icon *> processed;
 	while(true)
 	{
-		Icon *lastStackable = nullptr;
-		
 		int height = 0;
-		set<string> systems;
 		for(Icon &icon : icons)
-		{
-			if(!unstackable.count(icon.sprite) && (!lastStackable || *lastStackable < icon))
-				lastStackable = &icon;
-			
-			bool withSystem = (!icon.isHere && systems.find(icon.system) == systems.end());
-			height += icon.Height(withSystem);
-			if(withSystem)
-				systems.insert(icon.system);
-		}
+			height += icon.Height();
 		
-		if(height < maxHeight || !lastStackable)
+		// Icons fit a single column, stop merging.
+		if(height < maxHeight)
 			break;
 		
-		// Merge together each group of escorts that have this icon and are in
-		// the same system and have the same attitude towards the player.
-		map<const bool, map<string, Icon *>> merged;
-		
-		// The "lastStackable" element in the list may be removed to merge it with an
-		// earlier ship of the same type, so store a copy of its sprite pointer:
-		const Sprite *sprite = lastStackable->sprite;
-		list<Icon>::iterator it = icons.begin();
-		while(it != icons.end())
+		// Start merging backwards, from the end of the list.
+		bool merged = false;
+		auto stackable = icons.end();
+		while(!merged)
 		{
-			if(it->sprite != sprite)
-			{
-				++it;
+			--stackable;
+			if(stackable == icons.begin())
+				break;
+			
+			if(processed.count(&(*stackable)))
 				continue;
+			
+			// Merge with other escorts.
+			auto stack = stackable;
+			while(stack != icons.begin())
+			{
+				--stack;
+				
+				// Same system? Icons are ordered by system first so we stop merging
+				// when we encounter a different system.
+				if(stack->isHere != stackable->isHere || stack->system != stackable->system)
+					break;
+				
+				// Same sprite and attitude?
+				if(stack->sprite != stackable->sprite || stack->isHostile != stackable->isHostile)
+					continue;
+				
+				stack->Merge(*stackable);
+				icons.erase(stackable);
+				stackable = stack;
+				merged = true;
 			}
 			
-			// If this is the first escort we've seen so far in its system, it
-			// is the one we will merge all others in this system into.
-			auto mit = merged[it->isHostile].find(it->system);
-			if(mit == merged[it->isHostile].end())
-			{
-				merged[it->isHostile][it->system] = &*it;
-				++it;
-			}
-			else
-			{
-				mit->second->Merge(*it);
-				it = icons.erase(it);	
-			}
+			processed.insert(&(*stackable));
 		}
-		unstackable.insert(sprite);
+		
+		// Nothing else can be merged.
+		if(!merged)
+			break;
 	}
 }

@@ -33,7 +33,8 @@ public:
 	void Add(const Ship &ship, bool isHere, bool fleetIsJumping, bool isSelected);
 	
 	// The display starts in the lower left corner of the screen and takes up
-	// all but the top 450 pixels of the screen.
+	// all but the top 450 pixels of the screen. It shows aditional columns
+	// up to the center of the screen.
 	void Draw() const;
 	
 	// Check if the given point is a click on an escort icon. If so, return the
@@ -49,7 +50,7 @@ private:
 		// Sorting operator.
 		bool operator<(const Icon &other) const;
 		
-		int Height(bool withSystem = false) const;
+		int Height() const;
 		void Merge(const Icon &other);
 		
 		const Sprite *sprite;
@@ -58,6 +59,7 @@ private:
 		bool notReadyToJump;
 		bool cannotJump;
 		bool isSelected;
+		bool withSystem;
 		int64_t cost;
 		std::string system;
 		std::vector<double> low;
