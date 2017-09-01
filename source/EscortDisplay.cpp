@@ -216,7 +216,7 @@ bool EscortDisplay::Icon::operator<(const Icon &other) const
 {
 	if(isHere != other.isHere)
 		return isHere;
-	if(system != other.system);
+	if(system != other.system)
 		return system < other.system;
 	return (cost > other.cost);
 }
