@@ -687,6 +687,7 @@ void Engine::Draw() const
 		Screen::Bottom() - 20. * messages.size());
 	auto it = messages.begin();
 	double firstY = Screen::Top() - font.Height();
+	int visibleMessages = 0;
 	if(messagePoint.Y() < firstY)
 	{
 		int skip = (firstY - messagePoint.Y()) / 20.;
@@ -699,6 +700,8 @@ void Engine::Draw() const
 		Color color(alpha, 0.);
 		font.Draw(it->message, messagePoint, color);
 		messagePoint.Y() += 20.;
+		if(visibleMessages || alpha > 0.f)
+			++visibleMessages;
 	}
 	
 	// Draw crosshairs around anything that is targeted.
@@ -767,7 +770,7 @@ void Engine::Draw() const
 	}
 	
 	// Draw escort status.
-	escorts.Draw();
+	escorts.Draw(visibleMessages);
 	
 	// Upload any preloaded sprites that are now available. This is to avoid
 	// filling the entire backlog of sprites before landing on a planet.

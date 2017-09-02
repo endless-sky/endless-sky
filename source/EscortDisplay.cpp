@@ -51,7 +51,7 @@ void EscortDisplay::Add(const Ship &ship, bool isHere, bool fleetIsJumping, bool
 // The display starts in the lower left corner of the screen and takes up
 // all but the top 450 pixels of the screen. It can show additional columns
 // up to the center of the screen.
-void EscortDisplay::Draw() const
+void EscortDisplay::Draw(int visibleMessages) const
 {
 	MergeStacks();
 	stacks.clear();
@@ -88,7 +88,7 @@ void EscortDisplay::Draw() const
 				hiddenEscorts = escort.ships.size();
 				continue;
 			}
-			pos = Point(pos.X() + 110., Screen::Bottom() - escort.Height());
+			pos = Point(pos.X() + 110., Screen::Bottom() - escort.Height() - 20. * visibleMessages);
 		}
 		
 		// Draw the system name for any escort not in the current system.
