@@ -140,6 +140,8 @@ void NPC::Load(const DataNode &node)
 			else if(child.Size() >= 2)
 				stockFleets.push_back(GameData::Fleets().Get(child.Token(1)));
 		}
+		else
+			child.PrintTrace("Skipping unrecognized attribute:");
 	}
 	
 	// Since a ship's government is not serialized, set it now.
