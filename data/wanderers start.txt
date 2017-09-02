@@ -1778,12 +1778,7 @@ mission "Wanderers Hai Assistance Fleet"
 		government "Hai"
 		personality heroic staying uninterested frugal
 		system "Wah Ki"
-		fleet "Large Hai"
-		fleet "Large Hai"
-		fleet "Large Hai"
-		fleet "Large Hai"
-		fleet "Large Hai"
-		fleet "Large Hai"
+		fleet "Large Hai" 6
 
 
 
@@ -1909,8 +1904,7 @@ mission "Wanderers Evacuation 1"
 	npc
 		government "Hai (Unfettered)"
 		personality heroic staying
-		fleet "Large Unfettered"
-		fleet "Large Unfettered"
+		fleet "Large Unfettered" 2
 	on visit
 		dialog
 			`You have reached <planet>, but the Wanderer transports have not all arrived yet. You should take off and wait for them to catch up with you.`
@@ -1941,9 +1935,7 @@ mission "Wanderers Evacuation 1B"
 		government "Hai (Unfettered)"
 		personality heroic staying
 		system "Sich'ka'ara"
-		fleet "Large Unfettered"
-		fleet "Large Unfettered"
-		fleet "Large Unfettered"
+		fleet "Large Unfettered" 3
 
 
 
@@ -1979,10 +1971,7 @@ mission "Wanderers Evacuation 1C"
 		government "Hai (Unfettered)"
 		personality heroic staying
 		system "Sich'ka'ara"
-		fleet "Large Unfettered"
-		fleet "Large Unfettered"
-		fleet "Large Unfettered"
-		fleet "Large Unfettered"
+		fleet "Large Unfettered" 4
 
 
 
