@@ -748,7 +748,23 @@ mission "FW Syndicate Capture 1B"
 		system Ankaa
 		government Syndicate
 		personality heroic nemesis staying
-		fleet 3
+		fleet
+			names "syndicate capital"
+			variant
+				"Manta (Nuclear)"
+	npc
+		system Ankaa
+		government Syndicate
+		personality heroic nemesis staying
+		fleet
+			names "syndicate capital"
+			variant
+				"Manta (Nuclear)"
+	npc
+		system Ankaa
+		government Syndicate
+		personality heroic nemesis staying
+		fleet
 			names "syndicate capital"
 			variant
 				"Manta (Nuclear)"
@@ -756,7 +772,23 @@ mission "FW Syndicate Capture 1B"
 		system Scheat
 		government Syndicate
 		personality heroic nemesis staying
-		fleet 3
+		fleet
+			names "syndicate capital"
+			variant
+				"Manta (Nuclear)"
+	npc
+		system Scheat
+		government Syndicate
+		personality heroic nemesis staying
+		fleet
+			names "syndicate capital"
+			variant
+				"Manta (Nuclear)"
+	npc
+		system Scheat
+		government Syndicate
+		personality heroic nemesis staying
+		fleet
 			names "syndicate capital"
 			variant
 				"Manta (Nuclear)"
@@ -764,7 +796,23 @@ mission "FW Syndicate Capture 1B"
 		system Sheratan
 		government Syndicate
 		personality heroic nemesis staying
-		fleet 3
+		fleet
+			names "syndicate capital"
+			variant
+				"Manta (Nuclear)"
+	npc
+		system Sheratan
+		government Syndicate
+		personality heroic nemesis staying
+		fleet
+			names "syndicate capital"
+			variant
+				"Manta (Nuclear)"
+	npc
+		system Sheratan
+		government Syndicate
+		personality heroic nemesis staying
+		fleet
 			names "syndicate capital"
 			variant
 				"Manta (Nuclear)"
@@ -2219,7 +2267,31 @@ mission "FW Syndicate Extremists 1B"
 		government "Syndicate (Extremist)"
 		system Algenib
 		personality staying heroic
-		fleet 4
+		fleet
+			names "syndicate capital"
+			variant
+				"Manta (Nuclear)" 2
+	npc evade
+		government "Syndicate (Extremist)"
+		system Algenib
+		personality staying heroic
+		fleet
+			names "syndicate capital"
+			variant
+				"Manta (Nuclear)" 2
+	npc evade
+		government "Syndicate (Extremist)"
+		system Algenib
+		personality staying heroic
+		fleet
+			names "syndicate capital"
+			variant
+				"Manta (Nuclear)" 2
+	npc evade
+		government "Syndicate (Extremist)"
+		system Algenib
+		personality staying heroic
+		fleet
 			names "syndicate capital"
 			variant
 				"Manta (Nuclear)" 2
