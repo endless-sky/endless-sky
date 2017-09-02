@@ -118,10 +118,10 @@ ship "Cruiser" "Cruiser (Heavy)"
 	gun "Heavy Rocket Launcher"
 	gun "Particle Cannon"
 	gun "Particle Cannon"
+	turret "Quad Blaster Turret"
+	turret "Heavy Laser Turret"
 	turret "Heavy Laser Turret"
 	turret "Heavy Anti-Missile Turret"
-	turret "Heavy Laser Turret"
-	turret "Quad Blaster Turret"
 
 
 
