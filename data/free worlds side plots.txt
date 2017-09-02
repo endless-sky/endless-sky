@@ -122,19 +122,15 @@ mission "FW Conservatory 2B"
 		government Pirate
 		personality plunders
 		system "Yed Prior"
-		fleet "Small Southern Pirates"
-		fleet "Small Southern Pirates"
-		fleet "Large Southern Pirates"
-		fleet "Large Southern Pirates"
+		fleet "Small Southern Pirates" 2
+		fleet "Large Southern Pirates" 2
 	
 	npc
 		government Pirate
 		personality plunders
 		system "Pherkad"
-		fleet "Small Southern Pirates"
-		fleet "Small Southern Pirates"
-		fleet "Large Southern Pirates"
-		fleet "Large Southern Pirates"
+		fleet "Small Southern Pirates" 2
+		fleet "Large Southern Pirates" 2
 	
 	on complete
 		payment 300000
