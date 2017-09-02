@@ -100,7 +100,7 @@ void EscortDisplay::Draw(int visibleMessages) const
 		Color color;
 		if(escort.isHostile)
 			color = hostileColor;
-		else if(!escort.isHere)
+		else if(!escort.isActiveHere)
 			color = elsewhereColor;
 		else if(escort.cannotJump)
 			color = cannotJumpColor;
@@ -194,7 +194,7 @@ const vector<const Ship *> &EscortDisplay::Click(const Point &point) const
 
 EscortDisplay::Icon::Icon(const Ship &ship, bool isHere, bool fleetIsJumping, bool isSelected)
 	: sprite(ship.GetSprite()),
-	isHere(isHere && !ship.IsDisabled()),
+	isActiveHere(isHere && !ship.IsDisabled()),
 	isHostile(ship.GetGovernment() && ship.GetGovernment()->IsEnemy()),
 	notReadyToJump(fleetIsJumping && !ship.IsHyperspacing() && !ship.IsReadyToJump()),
 	cannotJump(fleetIsJumping && !ship.IsHyperspacing() && !ship.JumpsRemaining()),
@@ -214,8 +214,8 @@ EscortDisplay::Icon::Icon(const Ship &ship, bool isHere, bool fleetIsJumping, bo
 // It comes sooner if it's here, then by system name, then if it costs more.
 bool EscortDisplay::Icon::operator<(const Icon &other) const
 {
-	if(isHere != other.isHere)
-		return isHere;
+	if(isActiveHere != other.isActiveHere)
+		return isActiveHere;
 	if(system != other.system)
 		return system < other.system;
 	return (cost > other.cost);
@@ -232,7 +232,7 @@ int EscortDisplay::Icon::Height() const
 
 void EscortDisplay::Icon::Merge(const Icon &other)
 {
-	isHere &= other.isHere;
+	isActiveHere &= other.isActiveHere;
 	isHostile |= other.isHostile;
 	notReadyToJump |= other.notReadyToJump;
 	cannotJump |= other.cannotJump;
@@ -262,7 +262,7 @@ void EscortDisplay::MergeStacks() const
 	string currentSystem;
 	for(Icon &icon : icons)
 	{
-		icon.withSystem = (!icon.isHere && icon.system != currentSystem);
+		icon.withSystem = (!icon.isActiveHere && icon.system != currentSystem);
 		if(icon.withSystem)
 			currentSystem = icon.system;
 	}
@@ -299,7 +299,7 @@ void EscortDisplay::MergeStacks() const
 				
 				// Same system? Icons are ordered by system first so we stop merging
 				// when we encounter a different system.
-				if(stack->isHere != stackable->isHere || stack->system != stackable->system)
+				if(stack->isActiveHere != stackable->isActiveHere || stack->system != stackable->system)
 					break;
 				
 				// Same sprite and attitude?
