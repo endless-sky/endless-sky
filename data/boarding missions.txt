@@ -76,7 +76,7 @@ mission "Assisting Pirates (Weed)"
 	on offer
 		payment 100
 		conversation
-			`The captain of the <origin> gives you <payment> and an offer to smoke a joint of space weed with him on Greenrock."
+			`The captain of the <origin> gives you <payment> along with lucrative offer for space weed. "Only 6000 Credits a Pound!"`
 				decline
 	destination Greenrock
 
@@ -202,7 +202,7 @@ mission "Assisting Navy (Lionheart)"
 	on offer
 		payment 5000
 		conversation
-			`Knowing you risked your life to save the <origin> and help the Navy's cause, the captain gives you <payment> and a message stating, "Buy from Lionheart Shipyards today!."
+			`Knowing you risked your life to save the <origin> and help the Navy's cause, the captain gives you <payment> and a message stating, "Buy from Lionheart Shipyards today!."`
 				decline
 	destination Geminus
 
@@ -216,7 +216,7 @@ mission "Assisting Navy (Atomics)"
 	on offer
 		payment 5000
 		conversation
-			`Knowing you risked your life to save the <origin> and help the Navy's cause, the captain gives you <payment> and a message stating, "Buy Deep Sky Atomics today!."
+			`Knowing you risked your life to save the <origin> and help the Navy's cause, the captain gives you <payment> and a message stating, "Buy Deep Sky Atomics today!."`
 				decline
 	destination Geminus
 	
@@ -271,11 +271,11 @@ mission "Assisting Hai"
 	on offer
 		payment 30000
 		conversation
-			`Knowing you risked your life to save the <origin>, the captain gives you <payment>.`
+			`Aware that you willing endangered your life to save the <origin>, the captain grants you <payment>.`
 				decline
 	destination Hai-home
 
-mission "Assisting Hai"
+mission "Assisting Hai (Gifts)"
 	assisting
 	repeat
 	to offer
@@ -285,7 +285,21 @@ mission "Assisting Hai"
 	on offer
 		payment 30000
 		conversation
-			`Knowing you risked your life to save the <origin>, the captain gives you <payment>.`
+			`Knowing you endangered your life to save the <origin>, the captain gives you <payment> along with a message reading, "Any bringer of gifts is welcome in Hai Space."`
+				decline
+	destination Hai-home
+
+mission "Assisting Hai (Threat)"
+	assisting
+	repeat
+	to offer
+		random < 27
+	source
+		government Hai
+	on offer
+		payment 30000
+		conversation
+			`Knowing you endangered your life to save the <origin>, the captain gives you <payment> along with a message reading, "Thank you for promoting peace and cooperation!."`
 				decline
 	destination Hai-home
 	
