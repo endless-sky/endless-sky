@@ -83,12 +83,13 @@ void EscortDisplay::Draw(int visibleMessages) const
 		if(pos.Y() <= Screen::Top() + 450.)
 		{
 			// Show only as many escorts as we have room for on screen.
-			if(!Preferences::Has("Show more escorts") || pos.X() > -200)
+			Point columnPos = Point(pos.X() + 110., Screen::Bottom() - escort.Height() - 20. * visibleMessages);
+			if(!Preferences::Has("Show more escorts") || columnPos.X() > -90 || columnPos.Y() <= Screen::Top() + 450.)
 			{
 				hiddenEscorts = escort.ships.size();
 				continue;
 			}
-			pos = Point(pos.X() + 110., Screen::Bottom() - escort.Height() - 20. * visibleMessages);
+			pos = columnPos;
 		}
 		
 		// Draw the system name for any escort not in the current system.
