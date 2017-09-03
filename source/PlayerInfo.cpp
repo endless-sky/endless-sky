@@ -934,15 +934,22 @@ void PlayerInfo::Land(UI *ui)
 	for(const shared_ptr<Ship> &ship : ships)
 		ship->UnloadBays();
 	
-	// Recharge any ships that are landed with you on the planet.
+	// Ships that are landed with you on the planet should fully recharge
+	// and pool all their cargo together. Those in remote systems restore
+	// what they can without landing.
 	bool hasSpaceport = planet->HasSpaceport() && planet->CanUseServices();
 	UpdateCargoCapacities();
 	for(const shared_ptr<Ship> &ship : ships)
-		if(ship->GetSystem() == system && !ship->IsDisabled())
+		if(!ship->IsDisabled())
 		{
-			ship->Recharge(hasSpaceport);
-			ship->Cargo().TransferAll(&cargo);
-			ship->SetPlanet(planet);
+			if(ship->GetSystem() == system)
+			{
+				ship->Recharge(hasSpaceport);
+				ship->Cargo().TransferAll(&cargo);
+				ship->SetPlanet(planet);
+			}
+			else
+				ship->Recharge(false);
 		}
 	// Adjust cargo cost basis for any cargo lost due to a ship being destroyed.
 	for(const auto &it : lostCargo)
@@ -1094,12 +1101,19 @@ bool PlayerInfo::TakeOff(UI *ui)
 			++it;
 	}
 	
-	// Recharge any ships that can be recharged.
+	// Recharge any ships that can be recharged, and load available cargo.
 	bool hasSpaceport = planet->HasSpaceport() && planet->CanUseServices();
 	for(const shared_ptr<Ship> &ship : ships)
-		if(!ship->IsParked() && ship->GetSystem() == system && !ship->IsDisabled())
+		if(!ship->IsParked() && !ship->IsDisabled())
 		{
-			ship->Recharge(hasSpaceport);
+			if(ship->GetSystem() != system)
+			{
+				ship->Recharge(false);
+				continue;
+			}
+			else
+				ship->Recharge(hasSpaceport);
+			
 			if(ship != flagship)
 			{
 				ship->Cargo().SetBunks(ship->Attributes().Get("bunks") - ship->RequiredCrew());
