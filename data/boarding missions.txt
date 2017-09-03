@@ -275,6 +275,20 @@ mission "Assisting Hai"
 				decline
 	destination Hai-home
 
+mission "Assisting Hai"
+	assisting
+	repeat
+	to offer
+		random < 27
+	source
+		government Hai
+	on offer
+		payment 30000
+		conversation
+			`Knowing you risked your life to save the <origin>, the captain gives you <payment>.`
+				decline
+	destination Hai-home
+	
 mission "Assisting Unfettered Hai (Bastard)"
 	assisting
 	repeat
@@ -297,9 +311,37 @@ mission "Assisting Unfettered Hai"
 	source
 		government "Hai (Unfettered)"
 	on offer
-		payment 300
+		payment 20000
 		conversation
 			`After assisting the <origin> you find that <payment> credits have been added to your account along with a message reading, "We accept true individuals prepared to support the unaltered Hai."`
+				decline
+	destination Darkcloak
+
+mission "Assisting Unfettered Hai (Strong)"
+	assisting
+	repeat
+	to offer
+		random < 8
+	source
+		government "Hai (Unfettered)"
+	on offer
+		payment 20000
+		conversation
+			`After assisting the <origin> you find that <payment> credits have been added to your account along with a message reading, "We welcome strong individuals such as yourself."`
+				decline
+	destination Darkcloak
+
+mission "Assisting Unfettered Hai (Peace)"
+	assisting
+	repeat
+	to offer
+		random < 8
+	source
+		government "Hai (Unfettered)"
+	on offer
+		payment 20000
+		conversation
+			`After assisting the <origin> you find that <payment> credits have been added to your account along with a message reading, "Peace is for the weak, we are glad you support that message."`
 				decline
 	destination Darkcloak
 	
@@ -374,3 +416,4 @@ mission "Assisting Mereti"
 			`(An alien voice says something in a language you do not recognize.)`
 				decline
 	destination "Rekat Moraski"
+
