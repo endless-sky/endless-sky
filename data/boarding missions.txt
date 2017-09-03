@@ -373,21 +373,6 @@ mission "Assisting Wanderers (Pre-Language)"
 			`After assisting the <origin> you recieve <payment> credits and a message saying, "Keku iy yechu'ei iy veki'ai sat", which you interpret to be one of thanks.`
 				decline
 	destination "Vara K'chrai"
-	
-mission "Assisting Wanderers (Language)"
-	assisting
-	repeat
-	to offer
-		random < 27
-		has "language: Wanderer"
-	source
-		government Wanderer
-	on offer
-		payment 89000
-		conversation
-			`Knowing you risked your life to save the <origin>, the captain gives you <payment>.`
-				decline
-	destination "Vara K'chrai"
 
 mission "Assisting Wanderers (Language)"
 	assisting
@@ -400,22 +385,7 @@ mission "Assisting Wanderers (Language)"
 	on offer
 		payment 89000
 		conversation
-			`[Informed, knowing] that you willing risked your [livelyihood, well being] to save the <origin>, the captain transfers you <payment>.`
-				decline
-	destination "Vara K'chrai"
-
-mission "Assisting Wanderers (Language)"
-	assisting
-	repeat
-	to offer
-		random < 27
-		has "language: Wanderer"
-	source
-		government Wanderer
-	on offer
-		payment 89000
-		conversation
-			`[Informed, knowing] that you willing risked your [livelyihood, well being] to save the <origin>, the captain transfers you <payment>.`
+			`Informed that you risked your livelihood to save the <origin>, the captain transfers you <payment> along with a message stating, "Thank you for [risking, sacrificing] yourself for us."`
 				decline
 	destination "Vara K'chrai"
 	
