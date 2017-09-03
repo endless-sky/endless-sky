@@ -1246,7 +1246,7 @@ void AI::MoveEscort(Ship &ship, Command &command) const
 						break;
 					}
 				}
-				// Is next refuel system?
+				// Stop tallying fuel use once the next system with fuel is located.
 				if(to->HasFuelFor(ship))
 					break;
 				// Try with the next system in the route.
