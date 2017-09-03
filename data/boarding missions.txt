@@ -94,6 +94,34 @@ mission "Assisting Navy (Weirdo)"
 				decline
 	destination Geminus
 	
+mission "Assisting Navy (Lionheart)"
+	assisting
+	repeat
+	to offer
+		random < 5
+	source
+		government Republic
+	on offer
+		payment 5000
+		conversation
+			`Knowing you risked your life to save the <origin> and help the Navy's cause, the captain gives you <payment> and a message stating, "Buy from Lionheart Shipyards today!."
+				decline
+	destination Geminus
+
+mission "Assisting Navy (Atomics)"
+	assisting
+	repeat
+	to offer
+		random < 5
+	source
+		government Republic
+	on offer
+		payment 5000
+		conversation
+			`Knowing you risked your life to save the <origin> and help the Navy's cause, the captain gives you <payment> and a message stating, "Buy Deep Sky Atomics today!."
+				decline
+	destination Geminus
+	
 mission "Assisting Navy"
 	assisting
 	repeat
@@ -106,8 +134,6 @@ mission "Assisting Navy"
 		conversation
 			`Knowing you risked your life to save the <origin> and help the Navy's cause, the captain gives you <payment>.`
 				decline
-	destination Geminus
-
 mission "Assisting Militia"
 	assisting
 	repeat
@@ -175,7 +201,7 @@ mission "Assisting Unfettered Hai"
 	on offer
 		payment 300
 		conversation
-			`After assisting the <origin> you find that <payment> credits have been added to your account along with a message reading,"We accept true individuals prepared to support the unaltered Hai."`
+			`After assisting the <origin> you find that <payment> credits have been added to your account along with a message reading, "We accept true individuals prepared to support the unaltered Hai."`
 				decline
 	destination Darkcloak
 	
@@ -190,7 +216,7 @@ mission "Assisting Wanderers (Pre-Language)"
 	on offer
 		payment 25000
 		conversation
-			`After assisting the <origin> you recieve <payment> credits and a message saying,"Keku iy yechu'ei iy veki'ai sat", which you interpret to be one of thanks.`
+			`After assisting the <origin> you recieve <payment> credits and a message saying, "Keku iy yechu'ei iy veki'ai sat", which you interpret to be one of thanks.`
 				decline
 	destination "Vara K'chrai"
 	
@@ -233,7 +259,7 @@ mission "Assisting Remnant"
 	on offer
 		payment 43000
 		conversation
-			`Knowing you risked your life to save the <origin>, the captain gives you <payment>.`
+			`In return for saving the <origin>, the captain gives you <payment>.`
 				decline
 	destination Aventine
 
