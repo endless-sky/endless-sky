@@ -1211,6 +1211,8 @@ void AI::MoveEscort(Ship &ship, Command &command) const
 			// ship should refuel, land on a wormhole or jump to the next system.
 			DistanceMap distance(ship, parent.GetSystem());
 			const System *from = ship.GetSystem();
+			bool canRefuel = systemHasFuel && hasFuelCapacity && ship.Fuel() < 1.;
+			double fuelCapacity = ship.Attributes().Get("fuel capacity");
 			double requiredFuel = 0.;
 			while(from != parent.GetSystem())
 			{
@@ -1225,7 +1227,8 @@ void AI::MoveEscort(Ship &ship, Command &command) const
 						break;
 					}
 				
-				if(!systemHasFuel || !hasFuelCapacity)
+				// Don't need to check required fuel?
+				if(!canRefuel || requiredFuel >= fuelCapacity)
 					break;
 				
 				// Check how much fuel is required to reach the next refuel system.
@@ -1237,17 +1240,19 @@ void AI::MoveEscort(Ship &ship, Command &command) const
 						requiredFuel += ship.JumpDriveFuel();
 					else
 					{
-						// How do I get to the next system? Refuel just in case...
-						requiredFuel = ship.Attributes().Get("fuel capacity");
+						// This is a failsafe for when DistanceMap decides we can travel to
+						// the next system in a way that this code doesn't know about.
+						requiredFuel = fuelCapacity;
 						break;
 					}
 				}
+				// Is next refuel system?
 				if(to->HasFuelFor(ship))
 					break;
-				
+				// Try with the next system in the route.
 				from = to;
 			}
-			if(systemHasFuel && hasFuelCapacity && ship.Fuel() < min(1., requiredFuel / ship.Attributes().Get("fuel capacity")))
+			if(canRefuel && ship.Fuel() < min(1., requiredFuel / fuelCapacity))
 				Refuel(ship, command);
 			else if(!ship.GetTargetStellar())
 				ship.SetTargetSystem(distance.Route(ship.GetSystem()));
