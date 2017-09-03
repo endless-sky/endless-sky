@@ -337,7 +337,7 @@ mission "Remnant: Void Sprites 1"
 	
 	npc
 		government "Indigenous Lifeform"
-		personality timid mining harvesting staying mute
+		personality timid mining harvests staying mute
 		system Nenia
 		fleet
 			cargo 0
@@ -379,7 +379,7 @@ mission "Remnant: Void Sprites 2"
 					accept
 	npc "scan outfits"
 		government "Indigenous Lifeform"
-		personality timid mining harvesting staying mute
+		personality timid mining harvests staying mute
 		system Nenia
 		fleet
 			cargo 0

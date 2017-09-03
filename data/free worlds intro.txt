@@ -752,8 +752,8 @@ mission "FW Katya 2B"
 	clearance
 	passengers 1
 	npc
-		personality nemesis plunder waiting
 		government Pirate
+		personality nemesis plunders waiting
 		fleet "Small Core Pirates"
 		fleet "Small Core Pirates"
 	to offer
