@@ -80,7 +80,7 @@ mission "Assisting Merchant (Navy)"
 				decline
 	destination Earth	
 	
-mission "Assisting Pirates (Bastard)"
+mission "Assisting Pirates (Thief)"
 	assisting
 	repeat
 	to offer
@@ -261,20 +261,6 @@ mission "Assisting Navy (Atomics)"
 				decline
 	destination Geminus
 
-mission "Assisting Navy (Atomics)"
-	assisting
-	repeat
-	to offer
-		random < 5
-	source
-		government Republic
-	on offer
-		payment 5000
-		conversation
-			`Knowing you risked your life to save the <origin> and help the Navy's cause, the captain gives you <payment> and a message stating, "Buy Deep Sky Atomics today!."`
-				decline
-	destination Geminus
-
 mission "Assisting Navy (Join)"
 	assisting
 	repeat
@@ -336,6 +322,7 @@ mission "Assisting Free Worlds"
 	repeat
 	to offer
 		random < 15
+		has "event: joined the free worlds"
 	source
 		government "Free Worlds"
 	on offer
@@ -350,6 +337,7 @@ mission "Assisting Free Worlds (Safe)"
 	repeat
 	to offer
 		random < 15
+		has "event: joined the free worlds"
 	source
 		government "Free Worlds"
 	on offer
@@ -366,6 +354,7 @@ mission "Assisting Free Worlds (Join)"
 		random < 15
 	source
 		government "Free Worlds"
+		has "event: joined the free worlds"
 	on offer
 		payment 5000
 		conversation
@@ -416,7 +405,7 @@ mission "Assisting Hai (Threat)"
 				decline
 	destination Hai-home
 	
-mission "Assisting Unfettered Hai (Bastard)"
+mission "Assisting Unfettered Hai (Thief)"
 	assisting
 	repeat
 	to offer
@@ -426,7 +415,7 @@ mission "Assisting Unfettered Hai (Bastard)"
 	on offer
 		payment -300000
 		conversation
-			`After assisting the <origin> you find that 300000 credits have been removed from your account by those bastard Hai.`
+			`After assisting the <origin> you find that 300000 credits have been removed from your account with a simple message saying, "Thank you for your contribution."`
 				decline
 	destination Darkcloak
 	
