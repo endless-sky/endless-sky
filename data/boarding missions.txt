@@ -37,3 +37,17 @@ mission "Assisting Hai"
 			`Knowing you risked your life to save the <origin>, the captain gives you <payment>.`
 				decline
 	destination Hai-home
+
+mission "Assisting Wanderers"
+	assisting
+	repeat
+	to offer
+		random < 43
+	source
+		government Wanderers
+	on offer
+		payment 55000
+		conversation
+			`Knowing you risked your life to save the <origin>, the captain gives you <payment>.`
+				decline
+	destination Hai-home
