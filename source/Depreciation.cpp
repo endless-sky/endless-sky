@@ -172,7 +172,7 @@ void Depreciation::Buy(const Ship &ship, int day, Depreciation *source)
 bool Depreciation::Buy(const Outfit *outfit, int day, Depreciation *source, int unlimitedStockDay)
 {
 	if(outfit->Get("installable") < 0.)
-		return false;
+		return true;
 	
 	if(source)
 	{
