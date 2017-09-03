@@ -23,7 +23,120 @@ mission "Assisting Merchant"
 	# A mission with no destination will not be offered, so give it one.
 	# What the destination is doesn't matter, because you always 'decline' this.
 	destination Earth
+	
+mission "Assisting Pirates (Bastard)"
+	assisting
+	repeat
+	to offer
+		random < 62
+	source
+		government Pirate
+	on offer
+		payment -100000
+		conversation
+			`After assisting the <origin> you find that 100000 credits have been removed from your account.`
+				decline
+	destination Greenrock
 
+mission "Assisting Pirates"
+	assisting
+	repeat
+	to offer
+		random < 38
+	source
+		government Pirate
+	on offer
+		payment 100
+		conversation
+			`The captain of the <origin> gives you <payment> for "helping him out of a jam."`
+				decline
+	destination Greenrock
+	
+mission "Assisting Syndicate"
+	assisting
+	repeat
+	to offer
+		random < 15
+	source
+		government Syndicate
+	on offer
+		payment 5000
+		conversation
+			`Knowing you risked your life to save the <origin> and help the Syndicate cause, the captain gives you <payment>.`
+				decline
+	destination Foundry
+
+mission "Assisting Oathkeepers"
+	assisting
+	repeat
+	to offer
+		random < 7
+	source
+		government "Navy (Oathkeeper)"
+	on offer
+		payment 20000
+		conversation
+			`Knowing you risked your life to save the <origin> and help the Oathkeepers' cause, the captain gives you <payment>.`
+				decline
+	destination Farpoint
+
+mission "Assisting Navy (Weirdo)"
+	assisting
+	repeat
+	to offer
+		random < 150
+	source
+		government Republic
+	on offer
+		payment 5000
+		conversation
+			`Knowing you risked your life to save the <origin> and help the Navy's cause, the captain gives you <payment> and a message stating, "Next time we're on the same planet, stop by my berth and I'd be glad to give you a... private tour."`
+				decline
+	destination Geminus
+	
+mission "Assisting Navy"
+	assisting
+	repeat
+	to offer
+		random < 15
+	source
+		government Republic
+	on offer
+		payment 5000
+		conversation
+			`Knowing you risked your life to save the <origin> and help the Navy's cause, the captain gives you <payment>.`
+				decline
+	destination Geminus
+
+mission "Assisting Militia"
+	assisting
+	repeat
+	to offer
+		random < 15
+	source
+		government Militia
+	on offer
+		payment 5000
+		conversation
+			`Knowing you risked your life to save the <origin> and help the Militia's cause, the captain gives you <payment>.`
+				decline
+	destination Girtab
+	
+mission "Assisting Free Worlds"
+	assisting
+	repeat
+	to offer
+		random < 15
+	source
+		government "Free Worlds"
+	on offer
+		payment 5000
+		conversation
+			`Knowing you risked your life to save the <origin> and help the Free Worlds' cause, the captain gives you <payment>.`
+				decline
+	destination Bourne
+	
+#aliens
 mission "Assisting Hai"
 	assisting
 	repeat
@@ -44,10 +157,52 @@ mission "Assisting Wanderers"
 	to offer
 		random < 43
 	source
-		government Wanderers
+		government Wanderer
 	on offer
 		payment 55000
 		conversation
 			`Knowing you risked your life to save the <origin>, the captain gives you <payment>.`
 				decline
-	destination Hai-home
+	destination "Vara K'chrai"
+	
+mission "Assisting Efreti"
+	assisting
+	repeat
+	to offer
+		random < 57
+	source
+		government "Kor Efret"
+	on offer
+		payment 18000
+		conversation
+			`Knowing you risked your life to save the <origin>, the captain gives you <payment>.`
+				decline
+	destination "Laki Nemparu"
+
+mission "Assisting Remnant"
+	assisting
+	repeat
+	to offer
+		random < 34
+	source
+		government Remnant
+	on offer
+		payment 43000
+		conversation
+			`Knowing you risked your life to save the <origin>, the captain gives you <payment>.`
+				decline
+	destination Aventine
+
+mission "Assisting Mereti"
+	assisting
+	repeat
+	to offer
+		random < 90
+	source
+		government "Kor Mereti"
+	on offer
+		payment 0
+		conversation
+			`(An alien voice says something in a language you do not recognize.)`
+				decline
+	destination "Rekat Moraski"
