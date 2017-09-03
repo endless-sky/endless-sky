@@ -214,7 +214,7 @@ mission "Assisting Oathkeepers"
 	source
 		government "Navy (Oathkeeper)"
 	on offer
-		payment 20000
+		payment 7500
 		conversation
 			`Knowing you risked your life to save the <origin> and help the Oathkeepers' cause, the captain gives you <payment>.`
 				decline
