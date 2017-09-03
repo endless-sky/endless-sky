@@ -28,7 +28,7 @@ mission "Assisting Pirates (Bastard)"
 	assisting
 	repeat
 	to offer
-		random < 62
+		random < 12
 	source
 		government Pirate
 	on offer
@@ -42,7 +42,7 @@ mission "Assisting Pirates"
 	assisting
 	repeat
 	to offer
-		random < 38
+		random < 8
 	source
 		government Pirate
 	on offer
@@ -70,7 +70,7 @@ mission "Assisting Oathkeepers"
 	assisting
 	repeat
 	to offer
-		random < 7
+		random < 25
 	source
 		government "Navy (Oathkeeper)"
 	on offer
@@ -84,7 +84,7 @@ mission "Assisting Navy (Weirdo)"
 	assisting
 	repeat
 	to offer
-		random < 150
+		random < 5
 	source
 		government Republic
 	on offer
@@ -151,15 +151,59 @@ mission "Assisting Hai"
 				decline
 	destination Hai-home
 
-mission "Assisting Wanderers"
+mission "Assisting Unfettered Hai (Bastard)"
 	assisting
 	repeat
 	to offer
-		random < 43
+		random < 12
+	source
+		government "Hai (Unfettered)"
+	on offer
+		payment -300000
+		conversation
+			`After assisting the <origin> you find that 300000 credits have been removed from your account by those bastard Hai.`
+				decline
+	destination Darkcloak
+	
+mission "Assisting Unfettered Hai"
+	assisting
+	repeat
+	to offer
+		random < 8
+	source
+		government "Hai (Unfettered)"
+	on offer
+		payment 300
+		conversation
+			`After assisting the <origin> you find that <payment> credits have been added to your account along with a message reading,"We accept true individuals prepared to support the unaltered Hai."`
+				decline
+	destination Darkcloak
+	
+mission "Assisting Wanderers (Pre-Language)"
+	assisting
+	repeat
+	to offer
+		random < 15
+		not "language: Wanderer"
 	source
 		government Wanderer
 	on offer
-		payment 55000
+		payment 25000
+		conversation
+			`After assisting the <origin> you recieve <payment> credits and a message saying,"Keku iy yechu'ei iy veki'ai sat", which you interpret to be one of thanks.`
+				decline
+	destination "Vara K'chrai"
+	
+mission "Assisting Wanderers (Language)"
+	assisting
+	repeat
+	to offer
+		random < 27
+		has "language: Wanderer"
+	source
+		government Wanderer
+	on offer
+		payment 89000
 		conversation
 			`Knowing you risked your life to save the <origin>, the captain gives you <payment>.`
 				decline
@@ -169,13 +213,13 @@ mission "Assisting Efreti"
 	assisting
 	repeat
 	to offer
-		random < 57
+		random < 7
 	source
 		government "Kor Efret"
 	on offer
 		payment 18000
 		conversation
-			`Knowing you risked your life to save the <origin>, the captain gives you <payment>.`
+			`(An alien voice says something in a language you do not recognize.)`
 				decline
 	destination "Laki Nemparu"
 
@@ -197,7 +241,7 @@ mission "Assisting Mereti"
 	assisting
 	repeat
 	to offer
-		random < 90
+		random < 5
 	source
 		government "Kor Mereti"
 	on offer
