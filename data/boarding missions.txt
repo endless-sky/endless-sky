@@ -38,7 +38,7 @@ mission "Assisting Pirates (Bastard)"
 				decline
 	destination Greenrock
 
-mission "Assisting Pirates"
+mission "Assisting Pirates (Setback)"
 	assisting
 	repeat
 	to offer
@@ -48,7 +48,49 @@ mission "Assisting Pirates"
 	on offer
 		payment 100
 		conversation
-			`The captain of the <origin> gives you <payment> for "helping him out of a jam."`
+			`The captain of the <origin> gives you <payment> for "helping him out of a temporary setback."`
+				decline
+	destination Greenrock
+	
+mission "Assisting Pirates (Threat)"
+	assisting
+	repeat
+	to offer
+		random < 8
+	source
+		government Pirate
+	on offer
+		payment 100
+		conversation
+			`The captain of the <origin> gives you <payment> and a message saying, "You better watch who you mention this to, I'll be watching."`
+				decline
+	destination Greenrock
+
+mission "Assisting Pirates (Weed)"
+	assisting
+	repeat
+	to offer
+		random < 8
+	source
+		government Pirate
+	on offer
+		payment 100
+		conversation
+			`The captain of the <origin> gives you <payment> and an offer to smoke a joint of space weed with him on Greenrock."
+				decline
+	destination Greenrock
+
+mission "Assisting Pirates (Threat)"
+	assisting
+	repeat
+	to offer
+		random < 8
+	source
+		government Pirate
+	on offer
+		payment 100
+		conversation
+			`The captain of the <origin> gives you <payment> and a message saying, "You better watch who you mention this to, I'll be watching."`
 				decline
 	destination Greenrock
 	
@@ -66,6 +108,62 @@ mission "Assisting Syndicate"
 				decline
 	destination Foundry
 
+mission "Assisting Syndicate (Protector)"
+	assisting
+	repeat
+	to offer
+		random < 15
+	source
+		government Syndicate
+	on offer
+		payment 5000
+		conversation
+			`Knowing you risked your life to save the <origin> and help the Syndicate cause, the captain gives you <payment> along with a message reading, "Trouble with Pirates? Hire a Syndicate Protector and your troubles will be over."`
+				decline
+	destination Foundry
+
+mission "Assisting Syndicate (Catalog)"
+	assisting
+	repeat
+	to offer
+		random < 15
+	source
+		government Syndicate
+	on offer
+		payment 5000
+		conversation
+			`Knowing you risked your life to save the <origin> and help the Syndicate cause, the captain gives you <payment> and the latest copy of the Syndicated Systems Catalog.`
+				decline
+	destination Foundry
+	
+mission "Assisting Syndicate (Dental)"
+	assisting
+	repeat
+	to offer
+		random < 15
+	source
+		government Syndicate
+	on offer
+		payment 5000
+		conversation
+			`Knowing you risked your life to save the <origin> and help the Syndicate cause, the captain gives you <payment> along with a message reading, "Work for the Syndicate! Our dental plans will keep you smiling!"`
+				decline
+	destination Foundry
+	
+mission "Assisting Syndicate"
+	assisting
+	repeat
+	to offer
+		random < 15
+	source
+		government Syndicate
+	on offer
+		payment 5000
+		conversation
+			`Knowing you risked your life to save the <origin> and help the Syndicate cause, the captain gives you <payment>.`
+				decline
+	destination Foundry
+	
 mission "Assisting Oathkeepers"
 	assisting
 	repeat
