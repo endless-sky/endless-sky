@@ -388,6 +388,36 @@ mission "Assisting Wanderers (Language)"
 			`Knowing you risked your life to save the <origin>, the captain gives you <payment>.`
 				decline
 	destination "Vara K'chrai"
+
+mission "Assisting Wanderers (Language)"
+	assisting
+	repeat
+	to offer
+		random < 27
+		has "language: Wanderer"
+	source
+		government Wanderer
+	on offer
+		payment 89000
+		conversation
+			`[Informed, knowing] that you willing risked your [livelyihood, well being] to save the <origin>, the captain transfers you <payment>.`
+				decline
+	destination "Vara K'chrai"
+
+mission "Assisting Wanderers (Language)"
+	assisting
+	repeat
+	to offer
+		random < 27
+		has "language: Wanderer"
+	source
+		government Wanderer
+	on offer
+		payment 89000
+		conversation
+			`[Informed, knowing] that you willing risked your [livelyihood, well being] to save the <origin>, the captain transfers you <payment>.`
+				decline
+	destination "Vara K'chrai"
 	
 mission "Assisting Efreti"
 	assisting
