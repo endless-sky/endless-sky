@@ -135,20 +135,6 @@ mission "Assisting Pirates (Weed)"
 			`The captain of the <origin> gives you <payment> along with lucrative offer for space weed. "Only 6000 Credits a Pound!"`
 				decline
 	destination Greenrock
-
-mission "Assisting Pirates (Threat)"
-	assisting
-	repeat
-	to offer
-		random < 8
-	source
-		government Pirate
-	on offer
-		payment 100
-		conversation
-			`The captain of the <origin> gives you <payment> and a message saying, "You better watch who you mention this to, I'll be watching."`
-				decline
-	destination Greenrock
 	
 mission "Assisting Syndicate"
 	assisting
