@@ -322,7 +322,6 @@ mission "Assisting Free Worlds"
 	repeat
 	to offer
 		random < 15
-		has "event: joined the free worlds"
 	source
 		government "Free Worlds"
 	on offer
@@ -337,7 +336,6 @@ mission "Assisting Free Worlds (Safe)"
 	repeat
 	to offer
 		random < 15
-		has "event: joined the free worlds"
 	source
 		government "Free Worlds"
 	on offer
@@ -354,7 +352,7 @@ mission "Assisting Free Worlds (Join)"
 		random < 15
 	source
 		government "Free Worlds"
-		has "event: joined the free worlds"
+		not "event: joined the free worlds"
 	on offer
 		payment 5000
 		conversation
