@@ -23,62 +23,6 @@ mission "Assisting Merchant"
 	# A mission with no destination will not be offered, so give it one.
 	# What the destination is doesn't matter, because you always 'decline' this.
 	destination Earth
-
-mission "Assisting Merchant (Hello)"
-	assisting
-	repeat
-	to offer
-		random < 10
-	source
-		government Merchant
-	on offer
-		payment 10000
-		conversation
-			`When you repair the <origin>, the captain thanks you for your assistance and pays you <payment> along with a message saying, "Hello there fellow captain!"`
-				decline
-	destination Earth
-
-mission "Assisting Merchant (Blessing)"
-	assisting
-	repeat
-	to offer
-		random < 10
-	source
-		government Merchant
-	on offer
-		payment 10000
-		conversation
-			`When you repair the <origin>, the captain thanks you for your assistance and pays you <payment> along with a message saying, "May fair winds and bright skies go with you!"`
-				decline
-	destination Earth
-
-mission "Assisting Merchant (Force)"
-	assisting
-	repeat
-	to offer
-		random < 5
-	source
-		government Merchant
-	on offer
-		payment 10000
-		conversation
-			`When you repair the <origin>, the captain thanks you for your assistance and pays you <payment> along with a message saying, "May the Force be with you!"`
-				decline
-	destination Earth
-	
-mission "Assisting Merchant (Navy)"
-	assisting
-	repeat
-	to offer
-		random < 10
-	source
-		government Merchant
-	on offer
-		payment 10000
-		conversation
-			`When you repair the <origin>, the captain thanks you for your assistance and pays you <payment> along with a message saying, "The best way to be safe from pirates is to stick to systems patrolled by the Navy."`
-				decline
-	destination Earth	
 	
 mission "Assisting Pirates (Thief)"
 	assisting
@@ -90,7 +34,7 @@ mission "Assisting Pirates (Thief)"
 	on offer
 		payment -100000
 		conversation
-			`After assisting the <origin> you find that 100000 credits have been removed from your account by those blasted pirates.`
+			`After assisting the <origin> you find that 100000 credits have been removed from your account.`
 				decline
 	destination Greenrock
 
@@ -108,34 +52,6 @@ mission "Assisting Pirates (Setback)"
 				decline
 	destination Greenrock
 	
-mission "Assisting Pirates (Threat)"
-	assisting
-	repeat
-	to offer
-		random < 8
-	source
-		government Pirate
-	on offer
-		payment 100
-		conversation
-			`The captain of the <origin> gives you <payment> and a message saying, "You better watch who you mention this to, I'll be watching."`
-				decline
-	destination Greenrock
-
-mission "Assisting Pirates (Weed)"
-	assisting
-	repeat
-	to offer
-		random < 8
-	source
-		government Pirate
-	on offer
-		payment 100
-		conversation
-			`The captain of the <origin> gives you <payment> along with lucrative offer for space weed. "Only 6000 Credits a Pound!"`
-				decline
-	destination Greenrock
-	
 mission "Assisting Syndicate"
 	assisting
 	repeat
@@ -147,48 +63,6 @@ mission "Assisting Syndicate"
 		payment 5000
 		conversation
 			`Knowing you risked your life to save the <origin> and help the Syndicate cause, the captain gives you <payment>.`
-				decline
-	destination Foundry
-
-mission "Assisting Syndicate (Protector)"
-	assisting
-	repeat
-	to offer
-		random < 15
-	source
-		government Syndicate
-	on offer
-		payment 5000
-		conversation
-			`Knowing you risked your life to save the <origin> and help the Syndicate cause, the captain gives you <payment> along with a message reading, "Trouble with Pirates? Hire a Syndicate Protector and your troubles will be over."`
-				decline
-	destination Foundry
-
-mission "Assisting Syndicate (Catalog)"
-	assisting
-	repeat
-	to offer
-		random < 15
-	source
-		government Syndicate
-	on offer
-		payment 5000
-		conversation
-			`Knowing you risked your life to save the <origin> and help the Syndicate cause, the captain gives you <payment> and the latest copy of the Syndicated Systems Catalog.`
-				decline
-	destination Foundry
-	
-mission "Assisting Syndicate (Dental)"
-	assisting
-	repeat
-	to offer
-		random < 15
-	source
-		government Syndicate
-	on offer
-		payment 5000
-		conversation
-			`Knowing you risked your life to save the <origin> and help the Syndicate cause, the captain gives you <payment> along with a message reading, "Work for the Syndicate! Our dental plans will keep you smiling!"`
 				decline
 	destination Foundry
 	
@@ -218,62 +92,6 @@ mission "Assisting Navy"
 		conversation
 			`Knowing you risked your life to save the <origin> and help the Navy's cause, the captain gives you <payment>.`
 				decline
-				
-mission "Assisting Navy (Weirdo)"
-	assisting
-	repeat
-	to offer
-		random < 5
-	source
-		government Republic
-	on offer
-		payment 5000
-		conversation
-			`Knowing you risked your life to save the <origin> and help the Navy's cause, the captain gives you <payment> and a message stating, "Next time we're on the same planet, stop by my berth and I'd be glad to give you a... private tour."`
-				decline
-	destination Geminus
-	
-mission "Assisting Navy (Lionheart)"
-	assisting
-	repeat
-	to offer
-		random < 5
-	source
-		government Republic
-	on offer
-		payment 5000
-		conversation
-			`Knowing you risked your life to save the <origin> and help the Navy's cause, the captain gives you <payment> and a message stating, "Buy from Lionheart Shipyards today!."`
-				decline
-	destination Geminus
-
-mission "Assisting Navy (Atomics)"
-	assisting
-	repeat
-	to offer
-		random < 5
-	source
-		government Republic
-	on offer
-		payment 5000
-		conversation
-			`Knowing you risked your life to save the <origin> and help the Navy's cause, the captain gives you <payment> and a message stating, "Buy Deep Sky Atomics today!."`
-				decline
-	destination Geminus
-
-mission "Assisting Navy (Join)"
-	assisting
-	repeat
-	to offer
-		random < 5
-	source
-		government Republic
-	on offer
-		payment 5000
-		conversation
-			`Knowing you risked your life to save the <origin> and help the Navy's cause, the captain gives you <payment> and a message stating, "Join the Navy! See the Republic!"`
-				decline
-	destination Geminus
 	
 mission "Assisting Militia"
 	assisting
@@ -286,34 +104,6 @@ mission "Assisting Militia"
 		payment 5000
 		conversation
 			`Knowing you risked your life to save the <origin> and help the Militia's cause, the captain gives you <payment>.`
-				decline
-	destination Girtab
-	
-mission "Assisting Militia (Complain)"
-	assisting
-	repeat
-	to offer
-		random < 15
-	source
-		government Militia
-	on offer
-		payment 5000
-		conversation
-			`Knowing you risked your life to save the <origin> and help the Militia's cause, the captain gives you <payment> and a message saying, "You know we wouldn't get disabled this much if the Navy was here."`
-				decline
-	destination Girtab	
-	
-mission "Assisting Militia (Thank)"
-	assisting
-	repeat
-	to offer
-		random < 15
-	source
-		government Militia
-	on offer
-		payment 5000
-		conversation
-			`Knowing you risked your life to save the <origin> and help the Militia's cause, the captain gives you <payment> and a message saying, "Thanks for the help friend!"`
 				decline
 	destination Girtab
 
@@ -331,20 +121,6 @@ mission "Assisting Free Worlds"
 				decline
 	destination Bourne
 
-mission "Assisting Free Worlds (Safe)"
-	assisting
-	repeat
-	to offer
-		random < 15
-	source
-		government "Free Worlds"
-	on offer
-		payment 5000
-		conversation
-			`Knowing you risked your life to save the <origin> and help the Free Worlds' cause, the captain gives you <payment> along with a message saying, "Be Safe! Be Free!"`
-				decline
-	destination Bourne
-
 mission "Assisting Free Worlds (Join)"
 	assisting
 	repeat
@@ -359,8 +135,7 @@ mission "Assisting Free Worlds (Join)"
 			`Knowing you risked your life to save the <origin> and help the Free Worlds' cause, the captain gives you <payment> along with a message saying, "Join the Free Worlds!"`
 				decline
 	destination Bourne
-	
-#aliens
+
 mission "Assisting Hai"
 	assisting
 	repeat
@@ -374,34 +149,6 @@ mission "Assisting Hai"
 			`Knowing that you endangered your life to save the <origin>, the captain grants you <payment>.`
 				decline
 	destination Hai-home
-
-mission "Assisting Hai (Gifts)"
-	assisting
-	repeat
-	to offer
-		random < 27
-	source
-		government Hai
-	on offer
-		payment 30000
-		conversation
-			`Knowing you endangered your life to save the <origin>, the captain gives you <payment> along with a message reading, "Any bringer of gifts is welcome in Hai Space."`
-				decline
-	destination Hai-home
-
-mission "Assisting Hai (Threat)"
-	assisting
-	repeat
-	to offer
-		random < 27
-	source
-		government Hai
-	on offer
-		payment 30000
-		conversation
-			`Knowing you endangered your life to save the <origin>, the captain gives you <payment> along with a message reading, "Thank you for promoting peace and cooperation!."`
-				decline
-	destination Hai-home
 	
 mission "Assisting Unfettered Hai (Thief)"
 	assisting
@@ -413,11 +160,11 @@ mission "Assisting Unfettered Hai (Thief)"
 	on offer
 		payment -300000
 		conversation
-			`After assisting the <origin> you find that 300000 credits have been removed from your account with a simple message saying, "Thank you for your contribution."`
+			`After assisting the <origin> you find that 300000 credits have been removed from your account.`
 				decline
 	destination Darkcloak
 	
-mission "Assisting Unfettered Hai"
+mission "Assisting Unfettered Hai(redo)"
 	assisting
 	repeat
 	to offer
@@ -427,35 +174,7 @@ mission "Assisting Unfettered Hai"
 	on offer
 		payment 20000
 		conversation
-			`After assisting the <origin> you find that <payment> credits have been added to your account along with a message reading, "We accept true individuals prepared to support the unaltered Hai."`
-				decline
-	destination Darkcloak
-
-mission "Assisting Unfettered Hai (Strong)"
-	assisting
-	repeat
-	to offer
-		random < 8
-	source
-		government "Hai (Unfettered)"
-	on offer
-		payment 20000
-		conversation
-			`After assisting the <origin> you find that <payment> credits have been added to your account along with a message reading, "We welcome strong individuals such as yourself."`
-				decline
-	destination Darkcloak
-
-mission "Assisting Unfettered Hai (Peace)"
-	assisting
-	repeat
-	to offer
-		random < 8
-	source
-		government "Hai (Unfettered)"
-	on offer
-		payment 20000
-		conversation
-			`After assisting the <origin> you find that <payment> credits have been added to your account along with a message reading, "Peace is for the weak, we are glad you support that message."`
+			`After assisting the <origin> you find that <payment> credits have been added to your account.`
 				decline
 	destination Darkcloak
 	
@@ -530,4 +249,3 @@ mission "Assisting Mereti"
 			`(An alien voice says something in a language you do not recognize.)`
 				decline
 	destination "Rekat Moraski"
-
