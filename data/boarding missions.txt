@@ -32,9 +32,9 @@ mission "Assisting Pirates (Thief)"
 	source
 		government Pirate
 	on offer
-		payment -100000
+		payment -1000
 		conversation
-			`After assisting the <origin> you find that 100000 credits have been removed from your account.`
+			`After assisting the <origin> you find that 1000 credits have been removed from your account.`
 				decline
 	destination Greenrock
 
@@ -46,7 +46,7 @@ mission "Assisting Pirates (Setback)"
 	source
 		government Pirate
 	on offer
-		payment 100
+		payment 8000
 		conversation
 			`The captain of the <origin> gives you <payment> for "helping him out of a temporary setback."`
 				decline
@@ -158,13 +158,13 @@ mission "Assisting Unfettered Hai (Thief)"
 	source
 		government "Hai (Unfettered)"
 	on offer
-		payment -300000
+		payment -3000
 		conversation
-			`After assisting the <origin> you find that 300000 credits have been removed from your account.`
+			`After assisting the <origin> you find that 3000 credits have been removed from your account.`
 				decline
 	destination Darkcloak
 	
-mission "Assisting Unfettered Hai(redo)"
+mission "Assisting Unfettered Hai"
 	assisting
 	repeat
 	to offer
@@ -182,7 +182,7 @@ mission "Assisting Wanderers (Pre-Language)"
 	assisting
 	repeat
 	to offer
-		random < 15
+		random < 7
 		not "language: Wanderer"
 	source
 		government Wanderer
@@ -202,7 +202,7 @@ mission "Assisting Wanderers (Language)"
 	source
 		government Wanderer
 	on offer
-		payment 89000
+		payment 50000
 		conversation
 			`Informed that you risked your livelihood to save the <origin>, the captain transfers you <payment> along with a message stating, "Thank you for [risking, sacrificing] yourself for us."`
 				decline
