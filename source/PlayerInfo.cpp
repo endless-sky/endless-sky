@@ -1429,6 +1429,7 @@ Mission *PlayerInfo::BoardingMission(const shared_ptr<Ship> &ship)
 	// Ensure that boarding this NPC again does not create a mission.
 	ship->SetIsSpecial();
 	
+	// Update auto conditions to reflect the player's flagship's free capacity.
 	UpdateAutoConditions(true);
 	boardingMissions.clear();
 	
@@ -1458,10 +1459,13 @@ void PlayerInfo::HandleBlockedMissions(Mission::Location location, UI *ui)
 {
 	if(ships.empty())
 		return;
+	list<Mission> &missionList = availableMissions.empty() ? boardingMissions : availableMissions;
+	if(missionList.empty())
+		return;
 	
 	// If a mission can be offered right now, move it to the start of the list
 	// so we know what mission the callback is referring to, and return it.
-	for(auto it = availableMissions.begin(); it != availableMissions.end(); ++it)
+	for(auto it = missionList.begin(); it != missionList.end(); ++it)
 		if(it->IsAtLocation(location) && it->CanOffer(*this) && !it->HasSpace(*this))
 		{
 			string message = it->BlockedMessage(*this);

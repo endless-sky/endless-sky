@@ -592,6 +592,14 @@ bool Mission::HasSpace(const PlayerInfo &player) const
 
 
 
+// Check if this mission's cargo can fit entirely on the referenced ship.
+bool Mission::HasSpace(const Ship &ship) const
+{
+	return (cargoSize <= ship.Cargo().Free() && passengers <= ship.Cargo().BunksFree());
+}
+
+
+
 bool Mission::CanComplete(const PlayerInfo &player) const
 {
 	if(player.GetPlanet() != destination)
@@ -666,19 +674,32 @@ string Mission::BlockedMessage(const PlayerInfo &player)
 		return "";
 	
 	int extraCrew = 0;
-	if(player.Flagship())
-		extraCrew = player.Flagship()->Crew() - player.Flagship()->RequiredCrew();
+	const Ship *flagship = player.Flagship();
+	// You cannot fire crew in space.
+	if(flagship && player.GetPlanet())
+		extraCrew = flagship->Crew() - flagship->RequiredCrew();
 	
-	int cargoNeeded = cargoSize - (player.Cargo().Free() + player.Cargo().CommoditiesSize());
-	int bunksNeeded = passengers - (player.Cargo().BunksFree() + extraCrew);
+	int cargoNeeded = cargoSize;
+	int bunksNeeded = passengers;
+	if(player.GetPlanet())
+	{
+		cargoNeeded -= (player.Cargo().Free() + player.Cargo().CommoditiesSize());
+		bunksNeeded -= (player.Cargo().BunksFree() + extraCrew);
+	}
+	else
+	{
+		// Boarding a ship, so only use the flagship's space.
+		cargoNeeded -= flagship->Cargo().Free();
+		bunksNeeded -= flagship->Cargo().BunksFree();
+	}
 	if(cargoNeeded < 0 && bunksNeeded < 0)
 		return "";
 	
 	map<string, string> subs;
 	subs["<first>"] = player.FirstName();
 	subs["<last>"] = player.LastName();
-	if(player.Flagship())
-		subs["<ship>"] = player.Flagship()->Name();
+	if(flagship)
+		subs["<ship>"] = flagship->Name();
 	
 	ostringstream out;
 	if(bunksNeeded > 0)
