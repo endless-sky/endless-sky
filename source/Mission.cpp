@@ -565,15 +565,15 @@ bool Mission::CanOffer(const PlayerInfo &player, const shared_ptr<Ship> &boardin
 	}
 	
 	auto it = actions.find(OFFER);
-	if(it != actions.end() && !it->second.CanBeDone(player))
+	if(it != actions.end() && !it->second.CanBeDone(player, boardingShip))
 		return false;
 	
 	it = actions.find(ACCEPT);
-	if(it != actions.end() && !it->second.CanBeDone(player))
+	if(it != actions.end() && !it->second.CanBeDone(player, boardingShip))
 		return false;
 	
 	it = actions.find(DECLINE);
-	if(it != actions.end() && !it->second.CanBeDone(player))
+	if(it != actions.end() && !it->second.CanBeDone(player, boardingShip))
 		return false;
 	
 	return true;
@@ -763,7 +763,7 @@ bool Mission::Do(Trigger trigger, PlayerInfo &player, UI *ui, const shared_ptr<S
 	}
 	// Don't update any conditions if this action exists and can't be completed.
 	auto it = actions.find(trigger);
-	if(it != actions.end() && !it->second.CanBeDone(player))
+	if(it != actions.end() && !it->second.CanBeDone(player, boardingShip))
 		return false;
 	
 	if(trigger == ACCEPT)

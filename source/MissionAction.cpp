@@ -12,6 +12,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "MissionAction.h"
 
+#include "CargoHold.h"
 #include "ConversationPanel.h"
 #include "DataNode.h"
 #include "DataWriter.h"
@@ -59,12 +60,14 @@ namespace {
 		
 		bool didCargo = false;
 		bool didShip = false;
-		int cargoCount = player.Cargo().Get(outfit);
+		// If not landed, transfers must be done into the flagship's CargoHold.
+		CargoHold &cargo = (player.GetPlanet() ? player.Cargo() : flagship->Cargo());
+		int cargoCount = cargo.Get(outfit);
 		if(count < 0 && cargoCount)
 		{
 			int moved = min(cargoCount, -count);
 			count += moved;
-			player.Cargo().Remove(outfit, moved);
+			cargo.Remove(outfit, moved);
 			didCargo = true;
 		}
 		while(count)
@@ -82,10 +85,10 @@ namespace {
 		if(count > 0)
 		{
 			// Ignore cargo size limits.
-			int size = player.Cargo().Size();
-			player.Cargo().SetSize(-1);
-			player.Cargo().Add(outfit, count);
-			player.Cargo().SetSize(size);
+			int size = cargo.Size();
+			cargo.SetSize(-1);
+			cargo.Add(outfit, count);
+			cargo.SetSize(size);
 			didCargo = true;
 			if(ui)
 			{
@@ -284,7 +287,7 @@ int MissionAction::Payment() const
 
 // Check if this action can be completed right now. It cannot be completed
 // if it takes away money or outfits that the player does not have.
-bool MissionAction::CanBeDone(const PlayerInfo &player) const
+bool MissionAction::CanBeDone(const PlayerInfo &player, const shared_ptr<Ship> &boardingShip) const
 {
 	if(player.Accounts().Credits() < -payment)
 		return false;
@@ -295,17 +298,25 @@ bool MissionAction::CanBeDone(const PlayerInfo &player) const
 		if(it.second > 0)
 			continue;
 		
-		// The outfit can be taken from the player's cargo or from the flagship.
-		// If the player is landed, all available cargo is transferred from the
-		// player's ships to the player. If checking mission completion status
-		// in-flight, cargo is present in the player's ships.
-		int available = player.Cargo().Get(it.first);
-		if(!player.GetPlanet())
-			for(const auto &ship : player.Ships())
-				if(ship->GetSystem() == player.GetSystem() && !ship->IsDisabled())
-					available += ship->Cargo().Get(it.first);
-		if(flagship)
-			available += flagship->OutfitCount(it.first);
+		// Outfits may always be taken from the flagship. If landed,
+		// they may also be taken from the collective cargohold of
+		// any in-system, non-disabled escorts (player.Cargo()). If
+		// boarding, only the flagship's cargo space is accessible.
+		int available = flagship ? flagship->OutfitCount(it.first) : 0;
+		if(boardingShip)
+			available += flagship->Cargo().Get(it.first);
+		else
+		{
+			if(player.GetPlanet())
+				available += player.Cargo().Get(it.first);
+			// If not landed, show mission completion status based
+			// on the cargo that would be available if the player
+			// were to immediately land.
+			else
+				for(const auto &ship : player.Ships())
+					if(ship->GetSystem() == player.GetSystem() && !ship->IsDisabled())
+						available += ship->Cargo().Get(it.first);
+		}
 		
 		// If the gift "count" is 0, that means to check that the player has at
 		// least one of these items. This is for backward compatibility before
