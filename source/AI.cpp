@@ -932,7 +932,7 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 	}
 	
 	// Run away if your target is not disabled and you are badly damaged.
-	if(!isDisabled && target && (person.IsFleeing() || 
+	if(!isDisabled && target && !ship.IsYours() && (person.IsFleeing() || 
 			(.5 * ship.Shields() + ship.Hull() < 1.
 				&& !person.IsHeroic() && !person.IsStaying() && !parentIsEnemy)))
 	{
