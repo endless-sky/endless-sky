@@ -738,11 +738,6 @@ mission "Deep: TMBR 2"
 
 
 
-# The player gets called into somewhere and is asked about their work for Albert. They get questioned on what Albert told them, and seeing as how the player has been helping the Deep lately, the Deep tell the player some of their folklore.
-# "Over the centuries the exact date of when the Deep was established have been lost, but folklore says that the first humans arrived here in the mid 1300s before the time of the Black Death."
-# Not sure what these missions would entail. Would likely involve some of the scientists from Deep: TMBR, since they left to work on Midgard, where the singularity is. Also want to involve Lt. Paris in some way, who will be first introduced in Deep: Mystery Cubes
-
-# The player is detained by Deep Security and asked a few questions about their work for Albert Foster before being released.
 mission "Deep: Singularity 0"
 	landing
 	source
@@ -751,28 +746,150 @@ mission "Deep: Singularity 0"
 		has "Deep Archaeology 5: done"
 	on offer
 		conversation
+			`When you land on <origin> and open your ship's main hatch, you are met face to face with two Deep Security officers, neither of which appear armed. "Hello, Captain <last>. We're going to need to ask you some questions. If you would please step off of your ship and follow us without causing any trouble, that would be much appreciated."`
+			choice
+				`	(Follow their orders.)`
+					goto orders
+				`	"Why do you need to question me?"`
+				`	(Close the hatch and flee)`
+					goto flee
+			
+			### Quickly written draft dialog past this point. Will rewrite some of it.
+			
+			`	"Because we want to know what you were doing with Albert Foster."`
+			choice
+				`	(Follow their orders.)`
+				`	(Close the hatch and flee)`
+					goto flee
+			
+			label orders
+			`	You follow the officers to a building located on the eastern edge of the spaceport. You are led to a small, dimly lit room on the second floor that contains nothing but two chairs and a table. You are told to sit in one of the chairs and wait.`
+				goto questioning
+			
+			label flee
+			`	You try and close the hatch but suddenly begin cunvolsing and drop to the floor. Before you black out, you spot one of the officers holding a stun gun.`
 			``
+			`	You wake up sitting in a chair in a dimly lit room. Across the table in front of you is another chair, but it is empty.`
+			
+			label questioning
+			`	Ten minutes pass in silence until a figure enters the room. The figure passes into the light to reveal a tall dark woman in what looks like a Deep Security uniform, but with a number of distinct differences to it.`
+			`	"I hope my men didn't have to struggle too much to get you here."`
+			choice
+				`	"Don't worry, it was just fine."`
+				`	"It wasn't the warmest welcome I've ever recieved."`
+			
+			`	The woman chuckles slightly. "No need to be sarcastic with me. Enough small talk. You know why you're here."`
+			choice
+				`	"I didn't commit any crimes, so you have no right to detain me."`
+				`	"I do?"`
+					goto clueless
+			
+			`	"Indeed no crimes were committed, but we still have the right to detain you for the purpose of keeping the Deep safe. Cause us no trouble during this little meeting and answer my question and you will be on your way in a few minutes time."`
+				goto foster
+			
+			label clueless
+			`	"Well if you don't then let me jog your memory. You took a small chip of wood from a historical church on Midgard - nothing highly criminal, mind you - and returned it to Vinci, where I assume you handed it over to an 'archaeologist' by the name of Albert Foster." By the tone of her voice when she says "archaeologist," it's clear that she dissapproves of the title. "Later you returned to Midgard with Albert Foster in tow, prompting us to run you out of the Deep."`
+			
+			label foster
+			`	"My first question to you is what exactly were you doing with Albert Foster?"`
+			choice
+				`	"We were scanning Midgard with gravitational field mapping equipment and spotted an artificial singularity before we fled."`
+					goto singularity
+				`	"He told me he was researching the Deep and he needed help conducting his research."`
+			
+			`	"And why do you think he needed someone else to do the work for him?"`
+			choice
+				`	"Because he wanted something illegal done."`
+				`	"Because he isn't allowed in the Deep."`
+					goto allowed
+			
+			`	"I already told you that you didn't commit a crime. The reason is that Foster has caused the Deep plenty of trouble in the past, so we don't perticularly enjoy his presence. Now, did Albert make any discoveries due to your assistance?""`
+				goto choice
+			
+			label allowed
+			`	"Precisely. Now, did Albert make any discoveries due to your assistance?"`
+			
+			label choice
+			choice
+				`	"He discovered that the church is far older than should be possible, dating back to at least the early 1700s."`
+				`	"We spotted something on Midgard that he called an 'artificial singularity.'"`
+					goto singularity
+				
+			`	"Interesting finding, Captain. Is there anything else that he discovered?"`
+			choice
+				`	"No."`
+				`	"Yes. We used gravitational mapping equipment on Midgard and we found what looked like an artificial singularity."`
+					goto singularity
+				
+			`	The woman does not respond for a few seconds, then blurts out, "Don't lie to me, Captain. Otherwise I can make this experience very unenjoyable for you."`
+			choice
+				`	"Alright. We discovered an artificial singularity on Midgard."`
+			
+			label singularity
 			branch helped # For if the player helped the Deep before finishing Deep Archaeology; essentially makes this mission a blend between dialog from 0 (didn't help before) and 1
 				has "Deep: Mystery Cubes 4: done"
-			``
+			`	The woman's mouth turns into a sly smile as she leans back in her chair. "Thank you for the information. That is all that we will need you for. You will be escorted back outside momentarily. Enjoy the rest of your day, Captain."`
 				goto next
 			
 			label helped
 			apply
 				set "deep: helped before archaeology"
-			``
+			`	The woman's mouth turns into a sly smile as she leans back in her chair. "Thank you for the information, Captain. Before I let you go, I'd like to thank you for the work you've done for the Deep. I was interested to hear that the same Captain who helped us trap Beelzebub also helped Albert Foster. Don't worry, we all make stupid mistakes. We'll scratch this one off your record."`
+			`	"You clearly mean no harm to the Deep, so I'll give you the privilege of asking me any question you might have after this encounter."`
+			choice
+				`	"When was the Deep really settled?"`
+				`	"Is there really an artificial singularity on Midgard?"`
+					label singularity?
+				`	"I don't have any questions."`
+					goto none
+				
+			`	"The exact date has been lost to time, but folklore states that the first humans arrived here in the mid-1300s before the time of the Black Death plague on ancient Earth."`
+			choice
+				`	"Were the original humans of the Deep really brought here by aliens?"`
+				`	"I don't have any more questions."`
+					goto none
+				
+			`	"That's a question for the people who were originally brought here." The woman flashes another sly smile.`
+			choice
+				`	"Is there really an artificial singularity on Midgard?"`
+				`	"I don't have any more questions."`
+					goto none
+				
+			`	"Those gravitational mapping devices can be so finicky sometimes. I'm sure it was nothing."`
+				goto none
+			
+			label singularity?
+			`	"Those gravitational mapping devices can be so finicky sometimes. I'm sure it was nothing."`
+			choice
+				`	"When was the Deep really settled?"`
+				`	"I don't have any questions."`
+					goto none
+				
+			`	"The exact date has been lost to time, but folklore states that the first humans arrived here in the mid-1300s before the time of the Black Death plague on ancient Earth."`
+			choice
+				`	"Were the original humans of the Deep really brought here by aliens?"`
+				`	"I don't have any more questions."`
+					goto none
+				
+			`	"That's a question for the people who were originally brought here." The woman flashes another sly smile.`
+				
+			label none
+			`	"If that is all then this meeting is over. You will be escorted back outside momentarily. Enjoy the rest of your day, Captain."`
 			
 			label next
-			``
+			`	The woman gets up and exits the room. The same two men that brought you here step into the room and ask that you follow them. They lead you outside of the building and lock the door behind you as leave the building and step out into the spaceport.`
 				decline
+			
+	on decline
+		event "deep: singularity delay" 29
 
 
 
-# The Deep contacts the player to talk with them about helping the Deep recently, and says that they'll forget about the Albert Foster incident since the player clearly means the Deep no harm.
+# Assuming the player had not already helped the Deep at the time of being offered Deep: Singularity 0, then Deep: Singularity 1 will be offered after the player has helped enough. The player is told that the Deep will forget about the Albert Foster incident and is allowed to ask the questions that they may have missed in Singularity 0.
 mission "Deep: Singularity 1"
 	minor
-	name ``
-	description ``
+	name `Mysteryious Message`
+	description `Travel to <destination>.`
 	source
 		government Republic "Free Worlds" Syndicate Neutral
 	destination Midgard
@@ -785,15 +902,16 @@ mission "Deep: Singularity 1"
 			has "Deep: TMBR 2: done"
 			has "Deep: Remnant Research: done"
 	on offer
-		dialog ``
+		dialog `Upon landing, you recieve an encrypted message from an unknown sender. "Hello, Captain <last>. Your recent assistance of the Deep is much appreaciated. I'd like to speak with you on <destination> if you are interested." The message is not signed.`
 	
 	on complete
 		conversation
 			``
 
 
+event "deep: singularity delay"
 
-# I'm lost as to what I should do for this mission. Whatever the case is, I want no combat to win (i.e. npc kill), and for the player to meet with some of the scientists from Deep: TMBR
+# I'm lost as to what I should do for this mission. Whatever the case is, I want no combat to win (i.e. npc kill), and for the player to meet with some of the scientists from Deep: TMBR, as well as Lt. Paris.
 mission "Deep: Singularity 2"
 	minor
 	name ``
@@ -802,11 +920,11 @@ mission "Deep: Singularity 2"
 		attributes deep
 	destination
 	to offer
-		random < 20
+		random < 40
+		has "event: deep: singularity delay"
 		or
-			has "Deep: Singularity 1: done"
+			has "Deep: Singularity 1: offered"
 			and
-				has "Deep: Mystery Cubes 4: done"
 				has "deep: helped before archaeology"
 				or
 					"deep convoy" == 3
