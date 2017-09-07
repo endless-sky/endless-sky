@@ -1248,6 +1248,7 @@ void AI::MoveEscort(Ship &ship, Command &command) const
 	}
 	else if(parent.Commands().Has(Command::LAND) && parentIsHere && planetIsHere && parentPlanet->CanLand(ship))
 	{
+		ship.SetTargetSystem(nullptr);
 		ship.SetTargetStellar(parent.GetTargetStellar());
 		MoveToPlanet(ship, command);
 		if(parent.IsLanding() || parent.CanLand())
