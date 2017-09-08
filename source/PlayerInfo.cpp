@@ -310,7 +310,7 @@ void PlayerInfo::LoadRecent()
 	while(!recentPath.empty() && recentPath.back() <= ' ')
 		recentPath.pop_back();
 	
-	if(recentPath.empty())
+	if(recentPath.empty() || !Files::Exists(recentPath))
 		Clear();
 	else
 		Load(recentPath);
