@@ -59,8 +59,10 @@ DistanceMap::DistanceMap(const PlayerInfo &player, const System *center)
 // Calculate the path for the given ship to get to the given system. The
 // ship will use a jump drive or hyperdrive depending on what it has. The
 // pathfinding will stop once a path to the destination is found.
-DistanceMap::DistanceMap(const Ship &ship, const System *destination)
-	: source(ship.GetSystem())
+// If a player is given, the ship will only use hyperspace paths known
+// to the player and traverse systems visited by the player.
+DistanceMap::DistanceMap(const Ship &ship, const System *destination, const PlayerInfo *player)
+	: player(player), source(ship.GetSystem())
 {
 	if(!source || !destination)
 		return;
@@ -204,6 +206,10 @@ void DistanceMap::Init(const System *center, const Ship *ship)
 					
 					Add(link, top);
 				}
+		
+		// Restrict system traversal to systems the player has visited.
+		if(ship && player && ship != player->Flagship() && !player->HasVisited(top.next))
+			continue;
 		
 		// Bail out if the maximum number of systems is reached.
 		if(hyperspaceFuel && !Propagate(top, false))
