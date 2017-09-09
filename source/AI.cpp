@@ -2486,7 +2486,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 				continue;
 			
 			if(mission.Destination() && mission.Destination()->IsInSystem(system)
-					&& mission.Destination()->CanLand(ship))
+					&& mission.Destination()->IsAccessible(&ship))
 			{
 				destinations.insert(mission.Destination());
 				++count;
@@ -2500,7 +2500,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 			}
 			// Also check for stopovers in the destination system.
 			for(const Planet *planet : mission.Stopovers())
-				if(planet->IsInSystem(system) && planet->CanLand(ship))
+				if(planet->IsInSystem(system) && planet->IsAccessible(&ship))
 				{
 					destinations.insert(planet);
 					++count;
