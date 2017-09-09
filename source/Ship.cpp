@@ -974,7 +974,7 @@ bool Ship::Move(list<Effect> &effects, list<shared_ptr<Flotsam>> &flotsam)
 				// is, about acos(.8) from the proper angle). So:
 				// Stopping distance = .5*a*(v/a)^2 + (150/turn)*v.
 				// Exit distance = HYPER_D + .25 * v^2 = stopping distance.
-				double exitV = MaxVelocity();
+				double exitV = max(HYPER_A, MaxVelocity());
 				double a = (.5 / Acceleration() - .25);
 				double b = 150. / TurnRate();
 				double discriminant = b * b - 4. * a * -HYPER_D;
