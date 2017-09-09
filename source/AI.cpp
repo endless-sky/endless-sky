@@ -695,7 +695,7 @@ void AI::AskForHelp(Ship &ship, bool &isStranded, const Ship *flagship)
 			const Government *otherGov = helper->GetGovernment();
 			if(otherGov->IsEnemy(gov) && flagship && system == flagship->GetSystem())
 			{
-				hasEnemy |= (system == helper->GetSystem());
+				hasEnemy |= (system == helper->GetSystem() && !helper->IsDisabled());
 				if(hasEnemy)
 					break;
 			}
