@@ -67,8 +67,7 @@ mission "First Contact: Remnant"
 	npc kill
 		government "Remnant"
 		personality heroic coward disables plunders
-		fleet "Large Remnant"
-		fleet "Large Remnant"
+		fleet "Large Remnant" 2
 
 event "ember waste label"
 	galaxy "label waste"
@@ -102,12 +101,7 @@ mission "Remnant: Defense 1"
 	npc evade
 		personality heroic target
 		government "Korath"
-		fleet "Korath Raid"
-		fleet "Korath Raid"
-		fleet "Korath Raid"
-		fleet "Korath Raid"
-		fleet "Korath Raid"
-		fleet "Korath Raid"
+		fleet "Korath Raid" 6
 	on visit
 		dialog "There are still Korath raiders circling overhead. You should take off and help the Remnant ships to fight them."
 	on complete
@@ -222,8 +216,7 @@ mission "Remnant: Defense 3"
 		personality heroic nemesis staying
 		government Korath
 		system Parca
-		fleet "Korath Raid"
-		fleet "Korath Raid"
+		fleet "Korath Raid" 2
 		dialog "Now that you are alone, you are able to deploy the Remnant surveillance satellite unobserved. Time to report back to <planet>."
 	on complete
 		event "remnant: surveillance end"

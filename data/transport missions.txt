@@ -1916,8 +1916,7 @@ mission "Terminus exploration"
 		system Terminus
 		government Pirate
 		personality staying
-		fleet "Small Southern Pirates"
-		fleet "Small Southern Pirates"
+		fleet "Small Southern Pirates" 2
 	on complete
 		payment 90000
 		conversation

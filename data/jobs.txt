@@ -1393,13 +1393,11 @@ mission "Southern Pirate Attack"
 		personality heroic staying target
 		government Pirate
 		fleet "Small Southern Pirates"
-		fleet "Large Southern Pirates"
-		fleet "Large Southern Pirates"
+		fleet "Large Southern Pirates" 2
 	npc
 		personality heroic staying
 		government Militia
-		fleet "Small Militia"
-		fleet "Small Militia"
+		fleet "Small Militia" 2
 	on offer
 		conversation
 			`Suddenly you hear raised voices and shouting outside: "We are under attack! <planet> is under attack by pirates! We need every combat-worthy ship to join in the defenses!" The authorities will probably pay you quite well if you assist them, but this could also be an easy way to get yourself killed.`
@@ -1428,13 +1426,11 @@ mission "Northern Pirate Attack"
 		personality heroic staying target
 		government Pirate
 		fleet "Small Northern Pirates"
-		fleet "Large Northern Pirates"
-		fleet "Large Northern Pirates"
+		fleet "Large Northern Pirates" 2
 	npc
 		personality heroic staying
 		government Republic
-		fleet "Small Republic"
-		fleet "Small Republic"
+		fleet "Small Republic" 2
 	on offer
 		conversation
 			`Suddenly you hear raised voices and shouting outside: "We are under attack! <planet> is under attack by pirates! We need every combat-worthy ship to join in the defenses!" The authorities will probably pay you quite well if you assist them, but this could also be an easy way to get yourself killed.`
@@ -1463,13 +1459,11 @@ mission "Core Pirate Attack"
 		personality heroic staying target
 		government Pirate
 		fleet "Small Core Pirates"
-		fleet "Large Core Pirates"
-		fleet "Large Core Pirates"
+		fleet "Large Core Pirates" 2
 	npc
 		personality heroic staying
 		government Syndicate
-		fleet "Small Syndicate"
-		fleet "Small Syndicate"
+		fleet "Small Syndicate" 2
 	on offer
 		conversation
 			`Suddenly you hear raised voices and shouting outside: "We are under attack! <planet> is under attack by pirates! We need every combat-worthy ship to join in the defenses!" The authorities will probably pay you quite well if you assist them, but this could also be an easy way to get yourself killed.`
@@ -2558,4 +2552,3 @@ mission "Marauder Hunted"
 		government "Bounty Hunter"
 		system
 			distance 5 5
-

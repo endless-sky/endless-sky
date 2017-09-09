@@ -340,9 +340,7 @@ mission "FW Syndicate Diplomacy 1B"
 		personality heroic
 		government Republic
 		system Sol
-		fleet "Small Republic"
-		fleet "Small Republic"
-		fleet "Small Republic"
+		fleet "Small Republic" 3
 	
 	on offer
 		log "Visited the Syndicate and worked out a deal where they promised to stay neutral. They are expecting to profit from selling weapons to both sides in this war. Also discovered that Katya is in the Republic's custody and is accused of terrorist activity."
@@ -408,9 +406,7 @@ mission "FW Syndicate Diplomacy 1C"
 		personality heroic
 		government Republic
 		system Rutilicus
-		fleet "Small Republic"
-		fleet "Small Republic"
-		fleet "Small Republic"
+		fleet "Small Republic" 3
 	
 	on offer
 		conversation
@@ -863,8 +859,7 @@ mission "FW Supply Convoy 1"
 		government "Pirate"
 		personality plunders staying
 		system "Sabik"
-		fleet "Small Southern Pirates"
-		fleet "Small Southern Pirates"
+		fleet "Small Southern Pirates" 2
 	
 	on complete
 		dialog
@@ -1188,8 +1183,7 @@ mission "FW Pirates 2"
 	npc
 		personality heroic escort
 		government "Free Worlds"
-		fleet "Small Free Worlds"
-		fleet "Small Free Worlds"
+		fleet "Small Free Worlds" 2
 		fleet "Large Free Worlds"
 	
 	on complete
@@ -1241,18 +1235,15 @@ mission "FW Pirates 3.1"
 		government "Free Worlds"
 		system Antares
 		fleet "Small Free Worlds"
-		fleet "Large Free Worlds"
-		fleet "Large Free Worlds"
+		fleet "Large Free Worlds" 2
 	
 	npc kill
 		personality plunders staying
 		government "Pirate"
 		system Antares
-		fleet "Small Southern Pirates"
-		fleet "Small Southern Pirates"
+		fleet "Small Southern Pirates" 2
 		fleet "Small Northern Pirates"
-		fleet "Large Southern Pirates"
-		fleet "Large Southern Pirates"
+		fleet "Large Southern Pirates" 2
 		fleet "Large Core Pirates"
 		fleet "Large Northern Pirates"
 	
@@ -1364,33 +1355,19 @@ mission "FW Pirates 3.2A"
 	npc
 		personality heroic escort
 		government "Free Worlds"
-		fleet "Small Free Worlds"
-		fleet "Small Free Worlds"
-		fleet "Small Free Worlds"
-		fleet "Large Free Worlds"
-		fleet "Large Free Worlds"
-		fleet "Large Free Worlds"
+		fleet "Small Free Worlds" 3
+		fleet "Large Free Worlds" 3
 	
 	npc kill
 		personality plunders staying
 		government "Pirate"
 		system Shaula
-		fleet "Small Southern Pirates"
-		fleet "Small Southern Pirates"
-		fleet "Small Southern Pirates"
-		fleet "Large Southern Pirates"
-		fleet "Large Southern Pirates"
-		fleet "Large Southern Pirates"
-		fleet "Small Core Pirates"
-		fleet "Small Core Pirates"
-		fleet "Large Core Pirates"
-		fleet "Large Core Pirates"
-		fleet "Large Core Pirates"
+		fleet "Small Southern Pirates" 3
+		fleet "Large Southern Pirates" 3
+		fleet "Small Core Pirates" 2
+		fleet "Large Core Pirates" 3
 		fleet "Small Northern Pirates"
-		fleet "Large Northern Pirates"
-		fleet "Large Northern Pirates"
-		fleet "Large Northern Pirates"
-		fleet "Large Northern Pirates"
+		fleet "Large Northern Pirates" 4
 	
 	on complete
 		event "fw suppressed Greenrock"
@@ -1474,12 +1451,8 @@ mission "FW Pirates 4"
 		personality heroic
 		government "Free Worlds"
 		system Alniyat
-		fleet "Small Free Worlds"
-		fleet "Small Free Worlds"
-		fleet "Large Free Worlds"
-		fleet" Large Free Worlds"
-		fleet" Large Free Worlds"
-		fleet" Large Free Worlds"
+		fleet "Small Free Worlds" 2
+		fleet "Large Free Worlds" 4
 	
 	npc
 		personality heroic
