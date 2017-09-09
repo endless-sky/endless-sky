@@ -1211,51 +1211,38 @@ void AI::MoveEscort(Ship &ship, Command &command) const
 			// ship should refuel, land on a wormhole or jump to the next system.
 			DistanceMap distance(ship, parent.GetSystem());
 			const System *from = ship.GetSystem();
-			bool canRefuel = systemHasFuel && hasFuelCapacity && ship.Fuel() < 1.;
-			double fuelCapacity = ship.Attributes().Get("fuel capacity");
-			double requiredFuel = 0.;
-			while(from != parent.GetSystem())
+			
+			// Check how much fuel is required to reach the next refuel system.
+			if(systemHasFuel && hasFuelCapacity && ship.Fuel() < 1.)
 			{
 				const System *to = distance.Route(from);
-				bool useWormhole = false;
+				while(to && !to->HasFuelFor(ship))
+					to = distance.Route(to);
+				
+				// Refuel.
+				if(!to || ship.Fuel() < distance.RequiredFuel(from, to) / ship.Attributes().Get("fuel capacity"))
+					Refuel(ship, command);
+			}
+			
+			if(!ship.GetTargetStellar())
+			{
+				const System *to = distance.Route(from);
+				
+				// Land on wormhole.
 				for(const StellarObject &object : from->Objects())
-					if(object.GetPlanet() && object.GetPlanet()->WormholeDestination(from) == to)
-					{
-						useWormhole = true;
-						if(from == ship.GetSystem())
-							ship.SetTargetStellar(&object);
-						break;
-					}
-				
-				// Don't need to check required fuel?
-				if(!canRefuel || requiredFuel >= fuelCapacity)
-					break;
-				
-				// Check how much fuel is required to reach the next refuel system.
-				if(!useWormhole)
 				{
-					if(from->Links().count(to))
-						requiredFuel += ship.HyperdriveFuel();
-					else if(from->Neighbors().count(to))
-						requiredFuel += ship.JumpDriveFuel();
-					else
+					const Planet *planet = object.GetPlanet();
+					if(planet && planet->IsWormhole() && planet->CanLand(ship) && planet->WormholeDestination(from) == to)
 					{
-						// This is a failsafe for when DistanceMap decides we can travel to
-						// the next system in a way that this code doesn't know about.
-						requiredFuel = fuelCapacity;
+						ship.SetTargetStellar(&object);
 						break;
 					}
 				}
-				// Stop tallying fuel use once the next system with fuel is located.
-				if(to->HasFuelFor(ship))
-					break;
-				// Try with the next system in the route.
-				from = to;
+				
+				// Jump to the next system.
+				if(!ship.GetTargetStellar())
+					ship.SetTargetSystem(to);
 			}
-			if(canRefuel && ship.Fuel() < min(1., requiredFuel / fuelCapacity))
-				Refuel(ship, command);
-			else if(!ship.GetTargetStellar())
-				ship.SetTargetSystem(distance.Route(ship.GetSystem()));
 		}
 		
 		// Perform the action that this ship previously decided on.

@@ -107,6 +107,17 @@ set<const System *> DistanceMap::Systems() const
 
 
 
+int DistanceMap::RequiredFuel(const System *system1, const System *system2) const
+{
+	auto it1 = route.find(system1);
+	auto it2 = route.find(system2);
+	if(it1 == route.end() || it2 == route.end())
+		return -1;
+	return abs(it1->second.fuel - it2->second.fuel);
+}
+
+
+
 DistanceMap::Edge::Edge(const System *system)
 	: next(system)
 {
