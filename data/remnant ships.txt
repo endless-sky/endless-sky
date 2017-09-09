@@ -283,6 +283,7 @@ ship "Albatross" "Albatross (Heavy)"
 
 
 ship Gascraft
+	plural Gascraft
 	sprite ship/gascraft
 	attributes
 		category Transport

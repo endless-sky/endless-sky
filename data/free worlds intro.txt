@@ -608,8 +608,7 @@ mission "FW Katya 1C"
 	npc kill
 		personality nemesis
 		government "Republic"
-		fleet "Small Republic"
-		fleet "Small Republic"
+		fleet "Small Republic" 2
 	
 	on offer
 		conversation
@@ -754,8 +753,7 @@ mission "FW Katya 2B"
 	npc
 		government Pirate
 		personality nemesis plunders waiting
-		fleet "Small Core Pirates"
-		fleet "Small Core Pirates"
+		fleet "Small Core Pirates" 2
 	to offer
 		has "FW Katya 2: done"
 	to fail
@@ -1307,8 +1305,7 @@ mission "FW Escort 1"
 	npc
 		personality plunders waiting
 		government Pirate
-		fleet "Large Southern Pirates"
-		fleet "Large Southern Pirates"
+		fleet "Large Southern Pirates" 2
 		system "Tarazed"
 	
 	on offer
@@ -1380,8 +1377,7 @@ mission "FW Escort 1B"
 	npc
 		personality plunders waiting
 		government Pirate
-		fleet "Large Southern Pirates"
-		fleet "Large Southern Pirates"
+		fleet "Large Southern Pirates" 2
 		system "Sabik"
 	
 	on offer
@@ -1443,9 +1439,7 @@ mission "FW Escort 2"
 	npc
 		personality plunders waiting
 		government Pirate
-		fleet "Large Southern Pirates"
-		fleet "Large Southern Pirates"
-		fleet "Large Southern Pirates"
+		fleet "Large Southern Pirates" 3
 		system "Tarazed"
 	
 	on offer
@@ -1499,25 +1493,20 @@ mission "FW Escort 2B"
 	npc
 		personality plunders staying
 		government Pirate
-		fleet "Large Southern Pirates"
-		fleet "Large Southern Pirates"
-		fleet "Small Southern Pirates"
-		fleet "Small Southern Pirates"
+		fleet "Large Southern Pirates" 2
+		fleet "Small Southern Pirates" 2
 		system "Alpha Arae"
 	npc
 		personality plunders staying
 		government Pirate
-		fleet "Large Southern Pirates"
-		fleet "Large Southern Pirates"
-		fleet "Small Southern Pirates"
-		fleet "Small Southern Pirates"
+		fleet "Large Southern Pirates" 2
+		fleet "Small Southern Pirates" 2
 		system "Lesath"
 	npc
 		personality plunders waiting
 		government Pirate
 		fleet "Large Southern Pirates"
-		fleet "Small Southern Pirates"
-		fleet "Small Southern Pirates"
+		fleet "Small Southern Pirates" 2
 		system "Sabik"
 	
 	on offer
@@ -1977,17 +1966,7 @@ mission "Defend Sabik"
 		personality heroic
 		government Republic
 		system Kornephoros
-		fleet
-			names "republic capital"
-			fighters "republic fighter"
-			variant
-				"Carrier"
-				"Lance" 4
-				"Combat Drone" 6
-				"Frigate" 2
-				"Gunboat" 3
-				"Rainmaker" 3
-		fleet
+		fleet 2
 			names "republic capital"
 			fighters "republic fighter"
 			variant

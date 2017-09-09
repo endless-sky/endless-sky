@@ -1431,8 +1431,7 @@ mission "Wanderers: Tour 5"
 		system "Ap'arak"
 		government "Hai (Unfettered)"
 		personality staying heroic
-		fleet "Large Unfettered"
-		fleet "Large Unfettered"
+		fleet "Large Unfettered" 2
 
 
 
@@ -1710,8 +1709,7 @@ mission "Wanderers: Sestor Search"
 		government "Wanderer"
 		personality derelict uninterested
 		fleet "Wanderer Defense"
-		fleet "Wanderer Freight"
-		fleet "Wanderer Freight"
+		fleet "Wanderer Freight" 2
 	npc
 		system "Aya'k'k"
 		government "Kor Sestor"
@@ -2048,8 +2046,7 @@ mission "Wanderers: Sestor: Quarg Help 2"
 		government "Kor Sestor"
 		personality heroic staying
 		system "Alnitak"
-		fleet "Large Kor Sestor"
-		fleet "Large Kor Sestor"
+		fleet "Large Kor Sestor" 2
 
 
 
@@ -2950,8 +2947,7 @@ mission "Wanderers: Sestor: Exiles 2"
 		government "Korath"
 		system "Kor Nor'peli"
 		personality heroic staying
-		fleet "Korath Home"
-		fleet "Korath Home"
+		fleet "Korath Home" 2
 		fleet "Korath Raid"
 
 
