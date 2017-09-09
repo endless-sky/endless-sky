@@ -404,7 +404,6 @@ mission "Escort to Human Space (Small)"
 	to offer
 		random < 70
 		"combat rating" > 5
-		"combat rating" <= 60
 	source
 		government "Hai"
 		near "Heia Due" 0 2
@@ -448,7 +447,6 @@ mission "Escort to Human Space (Medium)"
 	to offer
 		random < 40
 		"combat rating" > 20
-		"combat rating" <= 100
 	source
 		government "Hai"
 		near "Heia Due" 0 2

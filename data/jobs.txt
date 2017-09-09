@@ -1345,7 +1345,7 @@ mission "Bounty Hunting (Small)"
 	job
 	to offer
 		"combat rating" > 300
-		random < 20
+		random < 40
 	source
 		government Republic "Free Worlds" Syndicate Neutral
 		attributes rim south north "dirt belt" core frontier
