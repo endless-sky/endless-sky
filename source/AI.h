@@ -70,9 +70,9 @@ private:
 	// Pick a new target for the given ship.
 	std::shared_ptr<Ship> FindTarget(const Ship &ship) const;
 	
-	bool FollowOrders(Ship &ship, Command &command) const;
+	bool FollowOrders(Ship &ship, Command &command, const PlayerInfo &player) const;
 	void MoveIndependent(Ship &ship, Command &command) const;
-	void MoveEscort(Ship &ship, Command &command) const;
+	void MoveEscort(Ship &ship, Command &command, const PlayerInfo &player) const;
 	static void Refuel(Ship &ship, Command &command);
 	static bool CanRefuel(const Ship &ship, const StellarObject *target);
 	

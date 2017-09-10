@@ -41,7 +41,9 @@ public:
 	// Calculate the path for the given ship to get to the given system. The
 	// ship will use a jump drive or hyperdrive depending on what it has. The
 	// pathfinding will stop once a path to the destination is found.
-	DistanceMap(const Ship &ship, const System *destination);
+	// If a player is given, the ship will only use hyperspace paths known
+	// to the player and traverse systems visited by the player.
+	DistanceMap(const Ship &ship, const System *destination, const PlayerInfo *player = nullptr);
 	
 	// Find out if the given system is reachable.
 	bool HasRoute(const System *system) const;
@@ -77,7 +79,7 @@ private:
 	// Depending on the capabilities of the given ship, use hyperspace paths,
 	// jump drive paths, or both to find the shortest route. Bail out if the
 	// source system or the maximum count is reached.
-	void Init(const System *center, const Ship *ship = nullptr);
+	void Init();
 	// Add the given links to the map. Return false if an end condition is hit.
 	bool Propagate(Edge edge, bool useJump);
 	// Check if we already have a better path to the given system.
@@ -97,6 +99,8 @@ private:
 	std::priority_queue<Edge> edges;
 	const PlayerInfo *player = nullptr;
 	const System *source = nullptr;
+	const System *center = nullptr;
+	const Ship *ship = nullptr;
 	int maxCount = -1;
 	int maxDistance = -1;
 	// How much fuel is used for travel. If either value is zero, it means that
@@ -104,6 +108,8 @@ private:
 	int hyperspaceFuel = 100;
 	int jumpFuel = 0;
 	bool useWormholes = true;
+	// Restrict system traversal to systems the player has visited.
+	bool onlyVisited = false;
 };
 
 

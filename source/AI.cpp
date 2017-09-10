@@ -593,7 +593,7 @@ void AI::Step(const PlayerInfo &player)
 			else
 				command.SetTurn(TurnToward(*it, TargetAim(*it)));
 		}
-		else if(FollowOrders(*it, command))
+		else if(FollowOrders(*it, command, player))
 		{
 			// If this is an escort and it has orders to follow, no need for the
 			// AI to figure out what action it must perform.
@@ -610,7 +610,7 @@ void AI::Step(const PlayerInfo &player)
 			if(personality.IsStaying() || !it->Attributes().Get("fuel capacity"))
 				MoveIndependent(*it, command);
 			else
-				MoveEscort(*it, command);
+				MoveEscort(*it, command, player);
 		}
 		// From here down, we're only dealing with ships that have a "parent"
 		// which is in the same system as them.
@@ -621,7 +621,7 @@ void AI::Step(const PlayerInfo &player)
 			if(target || !parent->IsTargetable())
 				MoveIndependent(*it, command);
 			else
-				MoveEscort(*it, command);
+				MoveEscort(*it, command, player);
 		}
 		else if(parent->IsDisabled())
 		{
@@ -637,16 +637,16 @@ void AI::Step(const PlayerInfo &player)
 		// This is a friendly escort. If the parent is getting ready to
 		// jump, always follow.
 		else if(parent->Commands().Has(Command::JUMP) && it->JumpsRemaining())
-			MoveEscort(*it, command);
+			MoveEscort(*it, command, player);
 		// Timid ships always stay near their parent.
 		else if(personality.IsTimid() && parent->Position().Distance(it->Position()) > 500.)
-			MoveEscort(*it, command);
+			MoveEscort(*it, command, player);
 		// Otherwise, attack targets depending on how heroic you are.
 		else if(target && (targetDistance < 2000. || personality.IsHeroic()))
 			MoveIndependent(*it, command);
 		// This ship does not feel like fighting.
 		else
-			MoveEscort(*it, command);
+			MoveEscort(*it, command, player);
 		
 		// Apply the afterburner if you're in a heated battle and it will not
 		// use up your last jump worth of fuel.
@@ -961,7 +961,7 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 
 
 
-bool AI::FollowOrders(Ship &ship, Command &command) const
+bool AI::FollowOrders(Ship &ship, Command &command, const PlayerInfo &player) const
 {
 	auto it = orders.find(&ship);
 	if(it == orders.end())
@@ -984,7 +984,7 @@ bool AI::FollowOrders(Ship &ship, Command &command) const
 	if(type == Orders::MOVE_TO && it->second.targetSystem && ship.GetSystem() != it->second.targetSystem)
 	{
 		// The desired position is in a different system.
-		DistanceMap distance(ship, it->second.targetSystem);
+		DistanceMap distance(ship, it->second.targetSystem, ship.IsYours() ? &player : nullptr);
 		const System *to = distance.Route(ship.GetSystem());
 		ship.SetTargetSystem(to);
 		return false;
@@ -1178,7 +1178,7 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 
 
 
-void AI::MoveEscort(Ship &ship, Command &command) const
+void AI::MoveEscort(Ship &ship, Command &command, const PlayerInfo &player) const
 {
 	const Ship &parent = *ship.GetParent();
 	bool hasFuelCapacity = ship.Attributes().Get("fuel capacity") && ship.JumpFuel();
@@ -1210,7 +1210,7 @@ void AI::MoveEscort(Ship &ship, Command &command) const
 		{
 			// If we're stranded and haven't decided where to go, figure out a
 			// path to the parent ship's system.
-			DistanceMap distance(ship, parent.GetSystem());
+			DistanceMap distance(ship, parent.GetSystem(), ship.IsYours() ? &player : nullptr);
 			const System *from = ship.GetSystem();
 			const System *to = distance.Route(from);
 			for(const StellarObject &object : from->Objects())
@@ -1258,7 +1258,7 @@ void AI::MoveEscort(Ship &ship, Command &command) const
 		Stop(ship, command, .2);
 	else if(parent.Commands().Has(Command::JUMP) && parent.GetTargetSystem() && !isStaying)
 	{
-		DistanceMap distance(ship, parent.GetTargetSystem());
+		DistanceMap distance(ship, parent.GetTargetSystem(), ship.IsYours() ? &player : nullptr);
 		const System *dest = distance.Route(ship.GetSystem());
 		ship.SetTargetSystem(dest);
 		if(!dest)
