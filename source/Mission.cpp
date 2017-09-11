@@ -698,6 +698,11 @@ bool Mission::Do(Trigger trigger, PlayerInfo &player, UI *ui)
 		if(!stopovers.empty())
 			return false;
 	}
+	// Don't update any conditions if this action can't be completed.
+	auto it = actions.find(trigger);
+	if(!it->second.CanBeDone(player))
+		return false;
+	
 	if(trigger == ACCEPT)
 	{
 		++player.Conditions()[name + ": offered"];
@@ -718,17 +723,13 @@ bool Mission::Do(Trigger trigger, PlayerInfo &player, UI *ui)
 	if(trigger == OFFER && location == JOB)
 		ui = nullptr;
 	
-	auto it = actions.find(trigger);
-	if(it == actions.end())
-	{
-		// If a mission has no "on offer" field, it is automatically accepted.
-		if(trigger == OFFER && location != JOB)
-			player.MissionCallback(Conversation::ACCEPT);
-		return true;
-	}
-	
-	if(!it->second.CanBeDone(player))
-		return false;
+	// If this trigger has actions tied to it, perform them. Otherwise, check
+	// if this is a non-job mission that just got offered and if so,
+	// automatically accept it.
+	if(it != actions.end())
+		it->second.Do(player, ui, destination ? destination->GetSystem() : nullptr);
+	else if(trigger == OFFER && location != JOB)
+		player.MissionCallback(Conversation::ACCEPT);
 	
 	// Perform any actions tied to this event.
 	it->second.Do(player, ui, destination ? destination->GetSystem() : nullptr);
