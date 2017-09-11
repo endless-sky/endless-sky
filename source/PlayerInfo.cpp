@@ -940,17 +940,20 @@ void PlayerInfo::Land(UI *ui)
 	bool hasSpaceport = planet->HasSpaceport() && planet->CanUseServices();
 	UpdateCargoCapacities();
 	for(const shared_ptr<Ship> &ship : ships)
+	{
 		if(!ship->IsDisabled())
 		{
 			if(ship->GetSystem() == system)
 			{
 				ship->Recharge(hasSpaceport);
-				ship->Cargo().TransferAll(&cargo);
 				ship->SetPlanet(planet);
 			}
 			else
 				ship->Recharge(false);
 		}
+		if(!ship->IsDestroyed())
+			ship->Cargo().TransferAll(&cargo);
+	}
 	// Adjust cargo cost basis for any cargo lost due to a ship being destroyed.
 	for(const auto &it : lostCargo)
 		AdjustBasis(it.first, -(costBasis[it.first] * it.second) / (cargo.Get(it.first) + it.second));
