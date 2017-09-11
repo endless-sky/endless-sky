@@ -265,8 +265,6 @@ bool MissionAction::CanBeDone(const PlayerInfo &player) const
 		
 		// The outfit can be taken from the player's cargo or from the flagship.
 		int available = player.Cargo().Get(it.first);
-		for(const auto &ship : player.Ships())
-			available += ship->Cargo().Get(it.first);
 		if(flagship)
 			available += flagship->OutfitCount(it.first);
 		
