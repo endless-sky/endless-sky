@@ -34,7 +34,7 @@ public:
 	static void Draw(const Sprite *sprite, const Point &position, float zoom = 1., int swizzle = 0);
 	
 	static void Bind();
-	static void Add(uint32_t tex0, uint32_t tex1, const float position[2], const float transform[4], int swizzle = 0, float clip = 1., float fade = 0., const float blur[2] = nullptr);
+  static void Add(uint32_t tex0, uint32_t tex1, uint32_t bumptex0, uint32_t bumptex1, const float position[2], const float transform[4], int swizzle = 0, float clip = 1., float fade = 0., const float blur[2] = nullptr);
 	static void Unbind();
 };
 

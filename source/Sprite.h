@@ -36,7 +36,7 @@ public:
 	
 	const std::string &Name() const;
 	
-	void AddFrame(int frame, ImageBuffer *image, Mask *mask, bool is2x);
+	void AddFrame(int frame, ImageBuffer *image, Mask *mask, bool is_bump, bool is2x);
 	// Free up all textures loaded for this sprite.
 	void Unload();
 	
@@ -49,15 +49,19 @@ public:
 	Point Center() const;
 	
 	uint32_t Texture(int frame = 0) const;
+	uint32_t Bumpmap(int frame = 0) const;
 	uint32_t Texture(int frame, bool isHighDPI) const;
+	uint32_t Bumpmap(int frame, bool isHighDPI) const;
 	const Mask &GetMask(int frame = 0) const;
 	
 	
 private:
 	std::string name;
-	
 	std::vector<uint32_t> textures;
 	std::vector<uint32_t> textures2x;
+	std::vector<uint32_t> bumpmaps;
+	std::vector<uint32_t> bumpmaps2x;
+
 	std::vector<Mask> masks;
 	
 	float width;

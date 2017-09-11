@@ -39,7 +39,7 @@ const string &Sprite::Name() const
 
 
 
-void Sprite::AddFrame(int frame, ImageBuffer *image, Mask *mask, bool is2x)
+void Sprite::AddFrame(int frame, ImageBuffer *image, Mask *mask, bool is_bump, bool is2x)
 {
 	if(!image || frame < 0)
 		return;
@@ -48,8 +48,7 @@ void Sprite::AddFrame(int frame, ImageBuffer *image, Mask *mask, bool is2x)
 	// dimensions are larger than the current sprite dimensions, store them.
 	width = max<float>(width, image->Width() >> is2x);
 	height = max<float>(height, image->Height() >> is2x);
-	
-	vector<uint32_t> &textureIndex = (is2x ? textures2x : textures);
+	vector<uint32_t> &textureIndex = (is_bump ? (is2x ? bumpmaps2x : bumpmaps) : (is2x ? textures2x : textures));
 	if(textureIndex.size() <= static_cast<unsigned>(frame))
 		textureIndex.resize(frame + 1, 0);
 	if(!textureIndex[frame])
@@ -96,6 +95,16 @@ void Sprite::Unload()
 		glDeleteTextures(textures2x.size(), &textures2x.front());
 		textures2x.clear();
 	}
+	if(!bumpmaps.empty())
+	{
+		glDeleteTextures(bumpmaps.size(), &bumpmaps.front());
+		bumpmaps.clear();
+	}
+	if(!bumpmaps2x.empty())
+	{
+		glDeleteTextures(bumpmaps2x.size(), &bumpmaps2x.front());
+		bumpmaps2x.clear();
+	}
 	
 	masks.clear();
 	width = 0.f;
@@ -139,6 +148,13 @@ uint32_t Sprite::Texture(int frame) const
 
 
 
+uint32_t Sprite::Bumpmap(int frame) const
+{
+	return Bumpmap(frame, Screen::IsHighResolution());
+}
+
+
+
 uint32_t Sprite::Texture(int frame, bool isHighDPI) const
 {
 	if(isHighDPI && !textures2x.empty())
@@ -152,6 +168,19 @@ uint32_t Sprite::Texture(int frame, bool isHighDPI) const
 
 
 	
+uint32_t Sprite::Bumpmap(int frame, bool isHighDPI) const
+{
+	if(isHighDPI && !bumpmaps2x.empty())
+		return bumpmaps2x[frame % bumpmaps2x.size()];
+
+	if(bumpmaps.empty())
+		return 0;
+
+	return bumpmaps[frame % bumpmaps.size()];
+}
+
+
+
 const Mask &Sprite::GetMask(int frame) const
 {
 	static const Mask empty;

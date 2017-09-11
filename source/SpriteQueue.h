@@ -54,7 +54,7 @@ private:
 private:
 	class Item {
 	public:
-		Item(Sprite *sprite, const std::string &name, const std::string &path, int frame, bool is2x);
+		Item(Sprite *sprite, const std::string &name, const std::string &path, int frame, bool is2x, bool is_bump);
 		
 		Sprite *sprite;
 		std::string name;
@@ -63,6 +63,7 @@ private:
 		Mask *mask;
 		int frame;
 		bool is2x;
+		bool is_bump;
 	};
 	
 	
@@ -75,6 +76,8 @@ private:
 	int added;
 	std::map<std::string, int> count;
 	std::map<std::string, int> count2x;
+	std::map<std::string, int> bcount;
+	std::map<std::string, int> bcount2x;
 	
 	mutable std::queue<Item> toLoad;
 	mutable std::mutex loadMutex;

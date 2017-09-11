@@ -65,6 +65,9 @@ private:
 	public:
 		uint32_t tex0;
 		uint32_t tex1;
+		uint32_t bump0;
+		uint32_t bump1;
+
 		float position[2];
 		float transform[4];
 		float blur[2];

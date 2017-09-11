@@ -307,6 +307,7 @@ void Body::SetStep(int step, bool isHighDPI) const
 	if(frames <= 1)
 	{
 		frame.first = sprite->Texture(0, isHighDPI);
+		frame.firstbump = sprite->Bumpmap(0, isHighDPI);
 		activeIndex = 0;
 		return;
 	}
@@ -392,5 +393,7 @@ void Body::SetStep(int step, bool isHighDPI) const
 	// whose masks may be queried many times for collision tests.
 	frame.first = sprite->Texture(firstIndex, isHighDPI);
 	frame.second = sprite->Texture(secondIndex, isHighDPI);
+	frame.firstbump = sprite->Bumpmap(firstIndex, isHighDPI);
+	frame.secondbump = sprite->Bumpmap(secondIndex, isHighDPI);
 	activeIndex = (frame.fade > .5f ? secondIndex : firstIndex);
 }

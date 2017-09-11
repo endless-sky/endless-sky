@@ -889,6 +889,10 @@ string GameData::Name(const string &path)
 	if(end > 3 && path[end - 3] == '@' && path[end - 2] == '2' && path[end - 1] == 'x')
 		end -= 3;
 	
+	// Check if the name ends in "-bump". If so, that's not part of the name.
+	if(end > 5 && path.compare(end-5, 5, "-bump") == 0)
+		end -= 5;
+
 	// Skip any numbers at the end of the name.
 	int pos = end;
 	while(pos--)

@@ -8,8 +8,8 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 PARTICULAR PURPOSE.  See the GNU General Public License for more details.
-*/
 
+*/
 #include "SpriteQueue.h"
 
 #include "ImageBuffer.h"
@@ -28,6 +28,12 @@ namespace {
 	{
 		size_t len = path.length();
 		return (len > 7 && path[len - 7] == '@' && path[len - 6] == '2' && path[len - 5] == 'x');
+	}
+
+	bool IsBump(const string &path)
+	{
+		size_t len = path.length();
+		return (len > 9 && (path.compare(len-9, 5, "-bump") == 0));
 	}
 }
 
@@ -67,8 +73,9 @@ void SpriteQueue::Add(const string &name, const string &path)
 			return;
 		
 		bool is2x = Is2x(path);
-		int &frame = (is2x ? count2x[name] : count[name]);
-		toRead.emplace(sprite, name, path, frame++, is2x);
+		bool is_bump = IsBump(path);
+		int &frame = (is_bump?(is2x ? bcount2x[name] : bcount[name]):(is2x ? count2x[name] : count[name]));
+		toRead.emplace(sprite, name, path, frame++, is_bump, is2x);
 		++added;
 	}
 	readCondition.notify_one();
@@ -83,6 +90,8 @@ void SpriteQueue::Unload(const string &name)
 		lock_guard<mutex> lock(readMutex);
 		count2x[name] = 0;
 		count[name] = 0;
+		bcount2x[name] = 0;
+		bcount[name] = 0;
 	}
 	
 	unique_lock<mutex> lock(loadMutex);
@@ -148,14 +157,13 @@ void SpriteQueue::operator()()
 				lock.lock();
 				continue;
 			}
-			// Don't ever create masks for @2x sprites; just use the ordinary
-			// sprite masks instead.
-			if(!item.is2x && (!item.name.compare(0, 5, "ship/") || !item.name.compare(0, 9, "asteroid/")))
+			// Don't ever create masks for @2x sprites or bumpmaps; just use the
+			// ordinary sprite masks instead.
+			if(!item.is_bump && !item.is2x && (!item.name.compare(0, 5, "ship/") || !item.name.compare(0, 9, "asteroid/")))
 			{
 				item.mask = new Mask;
 				item.mask->Create(item.image);
 			}
-			
 			// Don't bother to copy the path, now that we've loaded the file.
 			item.name.clear();
 			item.path.clear();
@@ -190,10 +198,9 @@ double SpriteQueue::DoLoad(unique_lock<mutex> &lock) const
 	{
 		Item item = toLoad.front();
 		toLoad.pop();
-		
 		lock.unlock();
 		
-		item.sprite->AddFrame(item.frame, item.image, item.mask, item.is2x);
+		item.sprite->AddFrame(item.frame, item.image, item.mask, item.is_bump, item.is2x);
 		
 		lock.lock();
 		++completed;
@@ -210,7 +217,7 @@ double SpriteQueue::DoLoad(unique_lock<mutex> &lock) const
 
 
 
-SpriteQueue::Item::Item(Sprite *sprite, const string &name, const string &path, int frame, bool is2x)
-	: sprite(sprite), name(name), path(path), image(nullptr), mask(nullptr), frame(frame), is2x(is2x)
+SpriteQueue::Item::Item(Sprite *sprite, const string &name, const string &path, int frame, bool is_bump, bool is2x)
+	: sprite(sprite), name(name), path(path), image(nullptr), mask(nullptr), frame(frame), is_bump(is_bump), is2x(is2x)
 {
 }

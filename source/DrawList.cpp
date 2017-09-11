@@ -118,7 +118,7 @@ void DrawList::Draw() const
 
 	for(const Item &item : items)
 		SpriteShader::Add(
-			item.tex0, item.tex1, item.position, item.transform,
+			item.tex0, item.tex1, item.bump0, item.bump1, item.position, item.transform,
 			item.Swizzle(), item.Clip(), item.Fade(), showBlur ? item.blur : nullptr);
 
 	SpriteShader::Unbind();
@@ -156,6 +156,8 @@ void DrawList::Push(const Body &body, Point pos, Point blur, double cloak, doubl
 	Body::Frame frame = body.GetFrame(step, isHighDPI);
 	item.tex0 = frame.first;
 	item.tex1 = frame.second;
+	item.bump0 = frame.firstbump;
+	item.bump1 = frame.secondbump;
 	item.flags = swizzle | (static_cast<uint32_t>(frame.fade * 256.f) << 8);
 	
 	// Get unit vectors in the direction of the object's width and height.

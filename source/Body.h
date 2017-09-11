@@ -37,6 +37,8 @@ public:
 	public:
 		uint32_t first = 0;
 		uint32_t second = 0;
+		uint32_t firstbump = 0;
+		uint32_t secondbump = 0;
 		float fade = 0.f;
 	};
 	
