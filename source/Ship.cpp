@@ -2741,3 +2741,42 @@ void Ship::CreateSparks(list<Effect> &effects, const string &name, double amount
 		}
 	}
 }
+
+
+
+// Check for problems that prevent the ship from flying.
+vector<string> Ship::FlightCheck() const
+{
+	vector<string> warnings;
+	
+	double energy = attributes.Get("energy generation") - attributes.Get("energy consumption");
+	energy += attributes.Get("solar collection");
+	energy += attributes.Get("energy capacity");
+	if(energy < 0.)
+		warnings.push_back("no energy");
+	
+	if(!attributes.Get("thrust") && !attributes.Get("reverse thrust")
+			&& !attributes.Get("afterburner thrust"))
+		warnings.push_back("no thrusters");
+	
+	if(attributes.Get("thrusting energy") > energy)
+		warnings.push_back("no thruster energy");
+	
+	if(!attributes.Get("turn"))
+		warnings.push_back("no steering");
+	
+	if(attributes.Get("turning energy") > energy)
+		warnings.push_back("no steering energy");
+	
+	// Check energy balance with solar collection at infinite distance from a star (only 20% of
+	// maximum solar collection).
+	double energyLoss = .8 * attributes.Get("solar collection");
+	energy -= energyLoss;
+	if(energyLoss > 0. && (attributes.Get("thrusting energy") > energy || attributes.Get("turning energy") > energy))
+		warnings.push_back("solar power warning");
+	
+	if(IdleHeat() >= 100. * Mass())
+		warnings.push_back("overheating");
+	
+	return warnings;
+}
