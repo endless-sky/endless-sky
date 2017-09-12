@@ -163,7 +163,7 @@ mission "Ask the Hai about the Unfettered"
 			label war
 			`	He says, "I would not call it war. We launch no raids on them. We only defend when they attack. And, we supply them with food and other things needful for life. They are not our enemies, they are just those who do not fit in. You have surely seen what our society is like: safe, stable, predictable, deliberate. It suits most of us well. But there are those..."`
 			label raids
-			`	He pauses. "No, I am telling this unfairly. I will start again. Hundreds of years ago, when I was young, our territory was raided by aliens from the east, who came in massive warships and plundered our worlds. In those days there were some Hai who were brave enough to risk their lives to defend us. The raids lasted for decades, then abruptly stopped.`
+			`	He pauses. "No, I am telling this unfairly. I will start again. Hundreds of years ago, when I was young, our territory was raided by aliens from the east, who came in massive warships and plundered our worlds. In those days there were some Hai who were brave enough to risk their lives to defend us. The raids lasted for decades, then abruptly stopped."`
 			`	"Most of those who had fought the invaders were glad to return to ordinary life, but there were some for whom life now seemed bland and meaningless without the excitement and chaos of war. They started colonies in the systems to the north, and fought amongst themselves, and mismanaged the land, and grew in numbers. And now their worlds cannot feed them all, and they invade us and tell stories to put blame on us for their failures."`
 			choice
 				`	"Shouldn't they be treated with gratitude for defending you against the raiders?"`
