@@ -698,9 +698,9 @@ bool Mission::Do(Trigger trigger, PlayerInfo &player, UI *ui)
 		if(!stopovers.empty())
 			return false;
 	}
-	// Don't update any conditions if this action can't be completed.
+	// Don't update any conditions if this action exists and can't be completed.
 	auto it = actions.find(trigger);
-	if(!it->second.CanBeDone(player))
+	if(it != actions.end() && !it->second.CanBeDone(player))
 		return false;
 	
 	if(trigger == ACCEPT)
@@ -730,9 +730,6 @@ bool Mission::Do(Trigger trigger, PlayerInfo &player, UI *ui)
 		it->second.Do(player, ui, destination ? destination->GetSystem() : nullptr);
 	else if(trigger == OFFER && location != JOB)
 		player.MissionCallback(Conversation::ACCEPT);
-	
-	// Perform any actions tied to this event.
-	it->second.Do(player, ui, destination ? destination->GetSystem() : nullptr);
 	
 	return true;
 }
