@@ -289,6 +289,33 @@ tip "max:"
 
 
 
+# Flight checks:
+tip "flight check:"
+	`List of tasks that should be performed by pilots and aircrew prior to takeoff. Ships unfit to fly should be parked.`
+
+tip "flight check: no energy"
+	`Insufficient energy is being generated or stored. Install energy sources or batteries.`
+
+tip "flight check: no thrusters"
+	`Unable to move. Install a propulsion system.`
+
+tip "flight check: no thruster energy"
+	`Insufficient energy for propulsion. Install energy sources or batteries.`
+
+tip "flight check: no steering"
+	`Unable to turn. Install a steering system.`
+
+tip "flight check: no steering energy"
+	`Insufficient energy for steering. Install energy sources or batteries.`
+
+tip "flight check: solar power warning"
+	`Insufficient energy for propulsion or steering when far away from a star due to solar power loss. Install energy sources or batteries.`
+
+tip "flight check: overheating"
+	`Overheating when idle. Install a cooling system.`
+
+
+
 # Outfit categories:
 tip "Guns:"
 	`Weapons that are fixed in place (firing in the direction your ship is pointed) and that require no ammunition).`

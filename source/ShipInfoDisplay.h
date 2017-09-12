@@ -60,6 +60,8 @@ private:
 	std::vector<std::string> tableLabels;
 	std::vector<std::string> energyTable;
 	std::vector<std::string> heatTable;
+	std::string flightCheckValue;
+	std::string flightCheckTooltip;
 	
 	std::vector<std::string> outfitLabels;
 	std::vector<std::string> outfitValues;
