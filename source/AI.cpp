@@ -2202,12 +2202,13 @@ void AI::AimTurrets(const Ship &ship, Command &command, bool opportunistic) cons
 // Fire whichever of the given ship's weapons can hit a hostile target.
 void AI::AutoFire(const Ship &ship, Command &command, bool secondary) const
 {
-	if(ship.GetPersonality().IsPacifist())
+	const Personality &person = ship.GetPersonality();
+	if(person.IsPacifist())
 		return;
 	int index = -1;
 	
 	bool beFrugal = (ship.IsYours() && !escortsUseAmmo);
-	if(ship.GetPersonality().IsFrugal() || (ship.IsYours() && escortsAreFrugal && escortsUseAmmo))
+	if(person.IsFrugal() || (ship.IsYours() && escortsAreFrugal && escortsUseAmmo))
 	{
 		// Frugal ships only expend ammunition if they have lost 50% of shields
 		// or hull, or if they are outgunned.
@@ -2242,7 +2243,7 @@ void AI::AutoFire(const Ship &ship, Command &command, bool secondary) const
 		currentTarget.reset();
 	
 	// Only fire on disabled targets if you don't want to plunder them.
-	bool spareDisabled = (ship.GetPersonality().Disables() || (ship.GetPersonality().Plunders() && ship.Cargo().Free()));
+	bool spareDisabled = (person.Disables() || (person.Plunders() && ship.Cargo().Free()));
 	
 	// Find the longest range of any of your non-homing weapons. Homing weapons
 	// that don't consume ammo may also fire in non-homing mode.
@@ -2258,7 +2259,7 @@ void AI::AutoFire(const Ship &ship, Command &command, bool secondary) const
 	
 	// Find all enemy ships within range of at least one weapon.
 	vector<shared_ptr<const Ship>> enemies;
-	if(currentTarget)
+	if(currentTarget && currentTarget->IsTargetable())
 		enemies.push_back(currentTarget);
 	for(const auto &target : ships)
 		if(target->IsTargetable() && gov->IsEnemy(target->GetGovernment())
@@ -2267,7 +2268,7 @@ void AI::AutoFire(const Ship &ship, Command &command, bool secondary) const
 				&& target->Position().Distance(ship.Position()) < maxRange
 				&& target != currentTarget
 				&& (ship.IsYours() || !target->GetPersonality().IsMarked())
-				&& (target->IsYours() || !ship.GetPersonality().IsMarked()))
+				&& (target->IsYours() || !person.IsMarked()))
 			enemies.push_back(target);
 	
 	for(const Hardpoint &weapon : ship.Weapons())
@@ -2294,14 +2295,14 @@ void AI::AutoFire(const Ship &ship, Command &command, bool secondary) const
 			fuel -= weapon.GetOutfit()->FiringFuel();
 			// If the ship is not ever leaving this system, it does not need to
 			// reserve any fuel.
-			bool isStaying = ship.GetPersonality().IsStaying();
+			bool isStaying = person.IsStaying();
 			if(!secondary || fuel < (isStaying ? 0. : ship.JumpFuel()))
 				continue;
 		}
 		// Figure out where this weapon will fire from, but add some randomness
 		// depending on how accurate this ship's pilot is.
 		Point start = ship.Position() + ship.Facing().Rotate(weapon.GetPoint());
-		start += ship.GetPersonality().Confusion();
+		start += person.Confusion();
 		
 		const Outfit *outfit = weapon.GetOutfit();
 		double vp = outfit->Velocity() + .5 * outfit->RandomVelocity();
@@ -2771,10 +2772,11 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 	else if(keyHeld.Has(Command::SCAN))
 		command |= Command::SCAN;
 	
+	const shared_ptr<const Ship> target = ship.GetTargetShip();
 	AimTurrets(ship, command, !Preferences::Has("Turrets focus fire"));
 	if(Preferences::Has("Automatic firing") && !ship.IsBoarding()
 			&& !(keyStuck | keyHeld).Has(Command::LAND | Command::JUMP | Command::BOARD)
-			&& (!ship.GetTargetShip() || ship.GetTargetShip()->GetGovernment()->IsEnemy()))
+			&& (!target || target->GetGovernment()->IsEnemy()))
 		AutoFire(ship, command, false);
 	if(keyHeld)
 	{
@@ -2821,8 +2823,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 	bool shouldAutoAim = false;
 	if(Preferences::Has("Automatic aiming") && !command.Turn() && !ship.IsBoarding()
 			&& (Preferences::Has("Automatic firing") || keyHeld.Has(Command::PRIMARY))
-			&& ship.GetTargetShip() && ship.GetTargetShip()->GetSystem() == ship.GetSystem()
-			&& ship.GetTargetShip()->IsTargetable()
+			&& target && target->GetSystem() == ship.GetSystem() && target->IsTargetable()
 			&& !keyStuck.Has(Command::LAND | Command::JUMP | Command::BOARD))
 	{
 		// Check if this ship has any forward-facing weapons.
@@ -2835,7 +2836,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 	}
 	if(shouldAutoAim)
 	{
-		Point distance = ship.GetTargetShip()->Position() - ship.Position();
+		Point distance = target->Position() - ship.Position();
 		if(distance.Unit().Dot(ship.Facing().Unit()) >= .8)
 			command.SetTurn(TurnToward(ship, TargetAim(ship)));
 	}
@@ -2904,7 +2905,6 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 	}
 	else if(keyStuck.Has(Command::BOARD))
 	{
-		shared_ptr<const Ship> target = ship.GetTargetShip();
 		if(!CanBoard(ship, *target))
 			keyStuck.Clear(Command::BOARD);
 		else
