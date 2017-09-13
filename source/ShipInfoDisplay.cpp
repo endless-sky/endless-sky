@@ -95,16 +95,13 @@ void ShipInfoDisplay::DrawAttributes(const Point &topLeft) const
 		table.Draw(heatTable[i], valueColor);
 	}
 	
-	if(!flightCheckValue.empty())
-	{
-		table.DrawGap(10.);
-		CheckHover(table, FLIGHT_CHECK_LABEL);
-		table.Draw(FLIGHT_CHECK_LABEL, labelColor);
-		table.Advance();
-		table.Draw(flightCheckValue, valueColor);
-		if(hasHover && hover == FLIGHT_CHECK_LABEL)
-			hoverText.Wrap(flightCheckTooltip);
-	}
+	table.DrawGap(10.);
+	CheckHover(table, FLIGHT_CHECK_LABEL);
+	table.Draw(FLIGHT_CHECK_LABEL, labelColor);
+	table.Advance();
+	table.Draw(flightCheckValue, valueColor);
+	if(hasHover && hover == FLIGHT_CHECK_LABEL)
+		hoverText.Wrap(flightCheckTooltip);
 }
 
 
@@ -320,25 +317,17 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const Depreciation &dep
 	attributesHeight += 30;
 	
 	// Flight check warnings
-	if(ship.IsYours())
+	vector<string> warnings = ship.FlightCheck();
+	flightCheckValue = warnings.empty() ? "complete" :
+		warnings.size() == 1 ? "1 warning" :
+		to_string(warnings.size()) + " warnings";
+	flightCheckTooltip = GameData::Tooltip(FLIGHT_CHECK_LABEL);
+	for(const string &warning : warnings)
 	{
-		vector<string> warnings = ship.FlightCheck();
-		flightCheckValue = warnings.empty() ? "complete" :
-			warnings.size() == 1 ? "1 warning" :
-			to_string(warnings.size()) + " warnings";
-		flightCheckTooltip = GameData::Tooltip(FLIGHT_CHECK_LABEL);
-		for(const string &warning : warnings)
-		{
-			string warningTooltip = GameData::Tooltip(FLIGHT_CHECK_LABEL + " " + warning);
-			flightCheckTooltip += "\n" + (warningTooltip.empty() ? warning : warningTooltip);
-		}
-		attributesHeight += 30;
+		string warningTooltip = GameData::Tooltip(FLIGHT_CHECK_LABEL + " " + warning);
+		flightCheckTooltip += "\n" + (warningTooltip.empty() ? warning : warningTooltip);
 	}
-	else
-	{
-		flightCheckValue.clear();
-		flightCheckTooltip.clear();
-	}
+	attributesHeight += 30;
 }
 
 
