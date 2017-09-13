@@ -1375,6 +1375,7 @@ ship "Hallucination"
 		"jump fuel" 100
 		"jump speed" 1
 		"jump drive" 1
+		"automaton" 1
 		"thrust" 30
 		"turn" 500
 		"energy generation" 1
