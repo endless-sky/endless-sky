@@ -122,7 +122,8 @@ protected:
 	int mainDetailHeight = 0;
 	int sideDetailHeight = 0;
 	bool scrollDetailsIntoView = false;
-	double selectedBottomY = 0.;
+	double selectedTopY = 0.;
+	bool sameSelectedTopY = false;
 	
 	std::vector<Zone> zones;
 	std::vector<ClickZone<std::string>> categoryZones;
