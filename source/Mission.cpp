@@ -933,8 +933,8 @@ Mission Mission::Instantiate(const PlayerInfo &player) const
 				bestIt = it;
 		
 		source = *bestIt;
-		destinations.erase(bestIt);
 		jumps += distance.Days(*bestIt);
+		destinations.erase(bestIt);
 	}
 	DistanceMap distance(source);
 	jumps += distance.Days(result.destination->GetSystem());
