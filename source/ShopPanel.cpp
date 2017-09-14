@@ -657,6 +657,12 @@ bool ShopPanel::Click(int x, int y, int clicks)
 			return true;
 		}
 		
+	// Deselect selected item when you click on other areas of the main panel.
+	if(dragMain)
+	{
+		selectedShip = nullptr;
+		selectedOutfit = nullptr;
+	}
 	return true;
 }
 
