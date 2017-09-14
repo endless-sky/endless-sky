@@ -369,7 +369,12 @@ void AI::Step(const PlayerInfo &player)
 		shared_ptr<Ship> parent = it->GetParent();
 		if(parent && parent->IsDestroyed())
 		{
-			parent.reset();
+			// NPCs that lose their fleet leader follow the next most senior ship
+			// (which is the player, unless the NPC is "uninterested").
+			if(it->IsSpecial())
+				parent = parent->GetParent();
+			else
+				parent.reset();
 			it->SetParent(parent);
 		}
 		

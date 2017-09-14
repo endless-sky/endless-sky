@@ -173,6 +173,7 @@ void Engine::Place()
 				ship->UnloadBays();
 			}
 			
+			map<int64_t, shared_ptr<Ship>> addedNPCs;
 			for(const shared_ptr<Ship> &ship : npc.Ships())
 			{
 				// Skip ships that have been destroyed.
@@ -200,8 +201,24 @@ void Engine::Place()
 						continue;
 				}
 				
+				addedNPCs.emplace(ship->Cost(), ship);
 				ships.push_back(ship);
-				if(!ship->GetPersonality().IsUninterested())
+			}
+			// Only the fleet leader of an NPC tracks or does not track
+			// the player, while the rest of the NPC track it. The fleet
+			// leader is the most expensive ship remaining in the NPC.
+			shared_ptr<Ship> npcFlagship;
+			if(!addedNPCs.empty())
+				npcFlagship = (*addedNPCs.rbegin()).second;
+			for(const shared_ptr<Ship> &ship : npc.Ships())
+			{
+				// Do not alter the parent of destroyed or carried ships.
+				if(ship->IsDestroyed() || !ship->GetSystem())
+					continue;
+				
+				if(npcFlagship && ship != npcFlagship)
+					ship->SetParent(npcFlagship);
+				else if(!ship->GetPersonality().IsUninterested())
 					ship->SetParent(flagship);
 			}
 		}
