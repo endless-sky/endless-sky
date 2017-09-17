@@ -10,6 +10,9 @@
 
 ship "Aerie"
 	sprite "ship/aerie"
+		"frame time" 5
+		"delay" 12
+		"random start frame"
 	attributes
 		category "Medium Warship"
 		"cost" 3500000
@@ -65,6 +68,9 @@ ship "Aerie"
 ship "Argosy"
 	plural "Argosies"
 	sprite "ship/argosy"
+		"frame time" 4
+		"delay" 14
+		"random start frame"
 	attributes
 		category "Light Freighter"
 		"cost" 1960000
@@ -119,6 +125,9 @@ ship "Argosy"
 
 ship "Arrow"
 	sprite "ship/arrow"
+		"frame time" 4
+		"delay" 16
+		"random start frame"
 	attributes
 		category "Transport"
 		"cost" 1200000
@@ -168,6 +177,9 @@ ship "Arrow"
 
 ship "Bactrian"
 	sprite "ship/bactrian"
+		"frame time" 6
+		"delay" 10
+		"random start frame"
 	attributes
 		category "Heavy Warship"
 		"cost" 17600000
@@ -232,6 +244,9 @@ ship "Bactrian"
 
 ship "Barb"
 	sprite "ship/barb"
+		"frame time" 3
+		"delay" 16
+		"random start frame"
 	attributes
 		category "Fighter"
 		"cost" 50000
@@ -272,6 +287,9 @@ ship "Barb"
 
 ship "Barb" "Barb (Proton)"
 	sprite "ship/barbp"
+		"frame time" 3
+		"delay" 16
+		"random start frame"
 	attributes
 		category "Fighter"
 		"cost" 50000
@@ -310,6 +328,9 @@ ship "Barb" "Barb (Proton)"
 
 ship "Bastion"
 	sprite "ship/bastion"
+		"frame time" 5
+		"delay" 12
+		"random start frame"
 	attributes
 		category "Medium Warship"
 		"cost" 3560000
@@ -366,6 +387,9 @@ ship "Bastion"
 
 ship "Behemoth"
 	sprite "ship/behemoth"
+		"frame time" 5
+		"delay" 15
+		"random start frame"
 	attributes
 		category "Heavy Freighter"
 		"cost" 10800000
@@ -420,6 +444,9 @@ ship "Behemoth"
 
 ship "Berserker"
 	sprite "ship/berserker"
+		"frame time" 3
+		"delay" 16
+		"random start frame"
 	attributes
 		category "Interceptor"
 		"cost" 520000
@@ -466,6 +493,9 @@ ship "Berserker"
 
 ship "Blackbird"
 	sprite "ship/blackbird"
+		"frame time" 4
+		"delay" 15
+		"random start frame"
 	attributes
 		category "Transport"
 		"cost" 2230000
@@ -513,6 +543,9 @@ ship "Blackbird"
 
 ship "Bounder"
 	sprite "ship/bounder"
+		"frame time" 4
+		"delay" 16
+		"random start frame"
 	attributes
 		category "Transport"
 		"cost" 1140000
@@ -558,6 +591,9 @@ ship "Bounder"
 
 ship "Boxwing"
 	sprite "ship/boxwing"
+		"frame time" 3
+		"delay" 16
+		"random start frame"
 	attributes
 		category "Fighter"
 		cost 369000
@@ -592,6 +628,9 @@ ship "Boxwing"
 
 ship "Bulk Freighter"
 	sprite "ship/bulk freighter"
+		"frame time" 4
+		"delay" 21
+		"random start frame"
 	attributes
 		category "Heavy Freighter"
 		"cost" 9400000
@@ -646,6 +685,9 @@ ship "Bulk Freighter"
 
 ship "Carrier"
 	sprite "ship/carrier"
+		"frame time" 5
+		"delay" 12
+		"random start frame"
 	attributes
 		category "Heavy Warship"
 		licenses
@@ -722,6 +764,9 @@ ship "Carrier"
 
 ship "Class C Freighter"
 	sprite "ship/bulk freighter"
+		"frame time" 4
+		"delay" 21
+		"random start frame"
 	attributes
 		category "Heavy Warship"
 		"cost" 11400000
@@ -783,6 +828,9 @@ ship "Class C Freighter"
 
 ship "Clipper"
 	sprite "ship/clipper"
+		"frame time" 4
+		"delay" 14
+		"random start frame"
 	attributes
 		category "Light Freighter"
 		"cost" 900000
@@ -832,6 +880,9 @@ ship "Clipper"
 
 ship "Combat Drone"
 	sprite "ship/combat drone"
+		"frame time" 3
+		"delay" 11
+		"random start frame"
 	attributes
 		category "Drone"
 		licenses
@@ -869,6 +920,9 @@ ship "Combat Drone"
 
 ship "Corvette"
 	sprite "ship/corvette"
+		"frame time" 4
+		"delay" 12
+		"random start frame"
 	attributes
 		category "Medium Warship"
 		"cost" 4400000
@@ -921,6 +975,9 @@ ship "Corvette"
 
 ship "Cruiser"
 	sprite "ship/cruiser"
+		"frame time" 5
+		"delay" 12
+		"random start frame"
 	attributes
 		category "Heavy Warship"
 		licenses
@@ -989,6 +1046,9 @@ ship "Cruiser"
 
 ship "Dagger"
 	sprite "ship/dagger"
+		"frame time" 3
+		"delay" 12
+		"random start frame"
 	attributes
 		category "Fighter"
 		"cost" 129000
@@ -1028,6 +1088,9 @@ ship "Dagger"
 
 ship "Dreadnought"
 	sprite "ship/dreadnought"
+		"frame time" 5
+		"delay" 12
+		"random start frame"
 	attributes
 		category "Heavy Warship"
 		"cost" 11900000
@@ -1087,6 +1150,9 @@ ship "Dreadnought"
 
 ship "Falcon"
 	sprite "ship/falcon"
+		"frame time" 5
+		"delay" 13
+		"random start frame"
 	attributes
 		category "Heavy Warship"
 		"cost" 10900000
@@ -1145,6 +1211,9 @@ ship "Falcon"
 ship "Finch"
 	plural "Finches"
 	sprite "ship/finch"
+		"frame time" 3
+		"delay" 12
+		"random start frame"
 	attributes
 		category "Fighter"
 		"cost" 126000
@@ -1185,6 +1254,9 @@ ship "Finch"
 
 ship "Firebird"
 	sprite "ship/firebird"
+		"frame time" 4
+		"delay" 13
+		"random start frame"
 	attributes
 		category "Medium Warship"
 		"cost" 3700000
@@ -1237,6 +1309,9 @@ ship "Firebird"
 
 ship "Flivver"
 	sprite "ship/flivver"
+		"frame time" 3
+		"delay" 20
+		"random start frame"
 	attributes
 		category "Transport"
 		"cost" 180000
@@ -1281,6 +1356,9 @@ ship "Flivver"
 
 ship "Freighter"
 	sprite "ship/freighter"
+		"frame time" 4
+		"delay" 20
+		"random start frame"
 	attributes
 		category "Light Freighter"
 		"cost" 730000
@@ -1329,6 +1407,9 @@ ship "Freighter"
 
 ship "Frigate"
 	sprite "ship/frigate"
+		"frame time" 4
+		"delay" 13
+		"random start frame"
 	attributes
 		category "Medium Warship"
 		licenses
@@ -1386,6 +1467,9 @@ ship "Frigate"
 ship "Fury"
 	plural "Furies"
 	sprite "ship/fury"
+		"frame time" 3
+		"delay" 17
+		"random start frame"
 	attributes
 		category "Interceptor"
 		"cost" 490000
@@ -1431,6 +1515,9 @@ ship "Fury"
 
 ship "Gunboat"
 	sprite "ship/gunboat"
+		"frame time" 3
+		"delay" 15
+		"random start frame"
 	attributes
 		category "Light Warship"
 		licenses
@@ -1482,6 +1569,9 @@ ship "Gunboat"
 
 ship "Hauler"
 	sprite "ship/hauler i"
+		"frame time" 4
+		"delay" 15
+		"random start frame"
 	attributes
 		category "Light Freighter"
 		"cost" 1430000
@@ -1536,6 +1626,9 @@ ship "Hauler"
 
 ship "Hauler II"
 	sprite "ship/hauler ii"
+		"frame time" 4
+		"delay" 15
+		"random start frame"
 	attributes
 		category "Heavy Freighter"
 		"cost" 2340000
@@ -1590,6 +1683,9 @@ ship "Hauler II"
 
 ship "Hauler III"
 	sprite "ship/hauler iii"
+		"frame time" 4
+		"delay" 15
+		"random start frame"
 	attributes
 		category "Heavy Freighter"
 		"cost" 3260000
@@ -1644,6 +1740,9 @@ ship "Hauler III"
 
 ship "Hawk"
 	sprite "ship/hawk"
+		"frame time" 3
+		"delay" 15
+		"random start frame"
 	attributes
 		category "Interceptor"
 		"cost" 670000
@@ -1688,6 +1787,9 @@ ship "Hawk"
 
 ship "Headhunter"
 	sprite "ship/headhunter"
+		"frame time" 3
+		"delay" 15
+		"random start frame"
 	attributes
 		category "Light Warship"
 		"cost" 1850000
@@ -1735,6 +1837,9 @@ ship "Headhunter"
 
 ship "Heavy Shuttle"
 	sprite "ship/heavy shuttle"
+		"frame time" 4
+		"delay" 15
+		"random start frame"
 	attributes
 		category "Transport"
 		"cost" 320000
@@ -1776,6 +1881,9 @@ ship "Heavy Shuttle"
 
 ship "Lance"
 	sprite "ship/lance"
+		"frame time" 3
+		"delay" 16
+		"random start frame"
 	attributes
 		category "Fighter"
 		"cost" 93000
@@ -1816,6 +1924,9 @@ ship "Lance"
 
 ship "Leviathan"
 	sprite "ship/leviathan"
+		"frame time" 5
+		"delay" 13
+		"random start frame"
 	attributes
 		category "Heavy Warship"
 		"cost" 9800000
@@ -1870,6 +1981,9 @@ ship "Leviathan"
 
 ship "Manta"
 	sprite "ship/manta"
+		"frame time" 4
+		"delay" 12
+		"random start frame"
 	attributes
 		category "Medium Warship"
 		"cost" 3400000
@@ -1922,6 +2036,9 @@ ship "Manta"
 ship "Modified Argosy"
 	plural "Modified Argosies"
 	sprite "ship/modified argosy"
+		"frame time" 4
+		"delay" 14
+		"random start frame"
 	attributes
 		category "Light Warship"
 		"cost" 1960000
@@ -1974,6 +2091,9 @@ ship "Modified Argosy"
 
 ship "Mule"
 	sprite "ship/mule"
+		"frame time" 5
+		"delay" 12
+		"random start frame"
 	attributes
 		category "Medium Warship"
 		"cost" 4580000
@@ -2029,6 +2149,9 @@ ship "Mule"
 
 ship "Nest"
 	sprite "ship/nest"
+		"frame time" 4
+		"delay" 14
+		"random start frame"
 	attributes
 		category "Medium Warship"
 		"cost" 2500000
@@ -2085,6 +2208,9 @@ ship "Nest"
 
 ship "Osprey"
 	sprite "ship/osprey"
+		"frame time" 4
+		"delay" 13
+		"random start frame"
 	attributes
 		category "Medium Warship"
 		"cost" 4400000
@@ -2138,6 +2264,9 @@ ship "Osprey"
 
 ship "Protector"
 	sprite "ship/protector"
+		"frame time" 5
+		"delay" 12
+		"random start frame"
 	attributes
 		category "Heavy Warship"
 		"cost" 5500000
@@ -2194,6 +2323,9 @@ ship "Protector"
 
 ship "Quicksilver"
 	sprite "ship/quicksilver"
+		"frame time" 4
+		"delay" 12
+		"random start frame"
 	attributes
 		category "Light Warship"
 		"cost" 1090000
@@ -2239,6 +2371,9 @@ ship "Quicksilver"
 
 ship "Rainmaker"
 	sprite "ship/rainmaker"
+		"frame time" 4
+		"delay" 12
+		"random start frame"
 	attributes
 		category "Light Warship"
 		licenses
@@ -2292,6 +2427,9 @@ ship "Rainmaker"
 
 ship "Raven"
 	sprite "ship/raven"
+		"frame time" 4
+		"delay" 13
+		"random start frame"
 	attributes
 		category "Light Warship"
 		"cost" 1800000
@@ -2340,6 +2478,9 @@ ship "Raven"
 
 ship "Roost"
 	sprite "ship/roost"
+		"frame time" 4
+		"delay" 14
+		"random start frame"
 	attributes
 		category "Medium Warship"
 		"cost" 3000000
@@ -2398,6 +2539,9 @@ ship "Roost"
 
 ship "Scout"
 	sprite "ship/scout"
+		"frame time" 4
+		"delay" 14
+		"random start frame"
 	attributes
 		category "Transport"
 		"cost" 850000
@@ -2491,6 +2635,9 @@ ship "Shuttle"
 
 ship "Skein"
 	sprite "ship/skein"
+		"frame time" 4
+		"delay" 14
+		"random start frame"
 	attributes
 		category "Medium Warship"
 		licenses
@@ -2553,6 +2700,9 @@ ship "Skein"
 
 ship "Sparrow"
 	sprite "ship/sparrow"
+		"frame time" 3
+		"delay" 15
+		"random start frame"
 	attributes
 		category "Interceptor"
 		"cost" 225000
@@ -2597,6 +2747,9 @@ ship "Sparrow"
 
 ship "Splinter"
 	sprite "ship/splinter"
+		"frame time" 4
+		"delay" 13
+		"random start frame"
 	attributes
 		category "Medium Warship"
 		"cost" 3100000
@@ -2649,6 +2802,9 @@ ship "Splinter"
 
 ship "Star Barge"
 	sprite "ship/star barge"
+		"frame time" 4
+		"delay" 16
+		"random start frame"
 	attributes
 		category "Light Freighter"
 		"cost" 210000
@@ -2690,6 +2846,9 @@ ship "Star Barge"
 
 ship "Star Queen"
 	sprite "ship/star queen"
+		"frame time" 5
+		"delay" 15
+		"random start frame"
 	attributes
 		category "Transport"
 		"cost" 5500000
@@ -2776,6 +2935,9 @@ ship "Surveillance Drone"
 
 ship "Vanguard"
 	sprite "ship/vanguard"
+		"frame time" 5
+		"delay" 12
+		"random start frame"
 	attributes
 		category "Heavy Warship"
 		"cost" 7200000
@@ -2830,6 +2992,9 @@ ship "Vanguard"
 
 ship "Wasp"
 	sprite "ship/wasp"
+		"frame time" 3
+		"delay" 15
+		"random start frame"
 	attributes
 		category "Interceptor"
 		"cost" 400000

@@ -272,6 +272,9 @@ person "Captain Nate"
 
 	ship Vanguard "Pointedstick"
 		sprite "ship/pointedstick_vanguard"
+			"frame time" 5
+			"delay" 12
+			"random start frame"
 		"never disabled"
 		attributes
 			category "Heavy Warship"
