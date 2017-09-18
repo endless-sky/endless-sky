@@ -40,6 +40,9 @@ using namespace std;
 namespace {
 	// Settings that require special handling.
 	const string ZOOM_FACTOR = "Main zoom factor";
+	const int ZOOM_FACTOR_MIN = 100;
+	const int ZOOM_FACTOR_MAX = 200;
+	const int ZOOM_FACTOR_INCREMENT = 10;
 	const string VIEW_ZOOM_FACTOR = "View zoom factor";
 	const string EXPEND_AMMO = "Escorts expend ammo";
 	const string TURRET_TRACKING = "Turret tracking";
@@ -136,20 +139,20 @@ bool PreferencesPanel::Click(int x, int y, int clicks)
 		{
 			if(zone.Value() == ZOOM_FACTOR)
 			{
-				int currentZoom = Screen::Zoom();
-				int newZoom = currentZoom == 100 ? 150 : currentZoom == 150 ? 200 : 100;
+				int newZoom = Screen::Zoom() + ZOOM_FACTOR_INCREMENT;
+				if(newZoom > ZOOM_FACTOR_MAX)
+					newZoom = ZOOM_FACTOR_MIN;
 				Screen::SetZoom(newZoom);
 				// Make sure there is enough vertical space for the full UI.
 				if(Screen::Height() < 700)
 				{
 					// Notify the user why setting the zoom any higher isn't permitted.
-					// Only show this if it's not possible to zoom the view at all,
-					// because otherwise if the user is toggling between 100 and 150 the
-					// dialog will show every time, which is annoying.
-					if(newZoom == 150)
+					// Only show this if it's not possible to zoom the view at all, as
+					// otherwise the dialog will show every time, which is annoying.
+					if(newZoom == ZOOM_FACTOR_MIN + ZOOM_FACTOR_INCREMENT)
 						GetUI()->Push(new Dialog(
 							"Your screen resolution is too low to support a zoom level above 100%."));
-					Screen::SetZoom(100);
+					Screen::SetZoom(ZOOM_FACTOR_MIN);
 				}
 				// Convert to raw window coordinates, at the new zoom level.
 				point *= Screen::Zoom() / 100.;
@@ -226,16 +229,16 @@ bool PreferencesPanel::Scroll(double dx, double dy)
 	if(hoverPreference == ZOOM_FACTOR)
 	{
 		int zoom = Screen::Zoom();
-		if(dy < 0. && zoom > 100)
-			zoom -= 50;
-		if(dy > 0. && zoom < 200)
-			zoom += 50;
+		if(dy < 0. && zoom > ZOOM_FACTOR_MIN)
+			zoom -= ZOOM_FACTOR_INCREMENT;
+		if(dy > 0. && zoom < ZOOM_FACTOR_MAX)
+			zoom += ZOOM_FACTOR_INCREMENT;
 		
 		Screen::SetZoom(zoom);
 		// Make sure there is enough vertical space for the full UI.
-		while(Screen::Height() < 700 && zoom > 100)
+		while(Screen::Height() < 700 && zoom > ZOOM_FACTOR_MIN)
 		{
-			zoom -= 50;
+			zoom -= ZOOM_FACTOR_INCREMENT;
 			Screen::SetZoom(zoom);
 		}
 		
