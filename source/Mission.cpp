@@ -749,20 +749,36 @@ const list<NPC> &Mission::NPCs() const
 // about it. This may affect the mission status or display a message.
 void Mission::Do(const ShipEvent &event, PlayerInfo &player, UI *ui)
 {
-	if(event.TargetGovernment()->IsPlayer() && !hasFailed
-			&& (event.Type() & ShipEvent::DESTROY))
+	if(event.TargetGovernment()->IsPlayer() && !hasFailed)
 	{
 		bool failed = false;
-		for(const auto &it : event.Target()->Cargo().MissionCargo())
-			failed |= (it.first == this);
-		for(const auto &it : event.Target()->Cargo().PassengerList())
-			failed |= (it.first == this);
+		string message = "Your ship '" + event.Target()->Name() + "' has been ";
+		if(event.Type() & ShipEvent::DESTROY)
+		{
+			// Destroyed ships carrying mission cargo result in failed missions.
+			for(const auto &it : event.Target()->Cargo().MissionCargo())
+				failed |= (it.first == this);
+			for(const auto &it : event.Target()->Cargo().PassengerList())
+				failed |= (it.first == this);
+			if(failed)
+				message += "lost. ";
+		}
+		else if(event.Type() & ShipEvent::BOARD)
+		{
+			// Fail missions whose cargo or passengers are stolen by a boarding vessel.
+			for(const auto &it : event.Actor()->Cargo().MissionCargo())
+				failed |= (it.first == this);
+			for(const auto &it : event.Actor()->Cargo().PassengerList())
+				failed |= (it.first == this);
+			if(failed)
+				message += "plundered. ";
+		}
 		
 		if(failed)
 		{
 			hasFailed = true;
 			if(isVisible)
-				Messages::Add("Ship lost. Mission failed: \"" + displayName + "\".");
+				Messages::Add(message + "Mission failed: \"" + displayName + "\".");
 		}
 	}
 	

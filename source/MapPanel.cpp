@@ -522,7 +522,7 @@ bool MapPanel::IsSatisfied(const PlayerInfo &player, const Mission &mission)
 		if(!npc.HasSucceeded(player.GetSystem()))
 			return false;
 	
-	return mission.Waypoints().empty() && mission.Stopovers().empty();
+	return mission.Waypoints().empty() && mission.Stopovers().empty() && !mission.HasFailed(player);
 }
 
 
