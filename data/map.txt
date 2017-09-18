@@ -26709,7 +26709,7 @@ planet Stormhold
 planet "Stronghold of Flugbu"
 	attributes arach factory
 	landscape land/mountain11-sfiera
-	description `The Stronghold of Flugbu was used a military base during the War of Independence. Now it is a manufacturing world, specializing not in large machines but small, intricate components. It is also home to House Bebliss, the secretive guild that specializes in communication, translation, and encryption. House Bebliss is essential to the Coalition economy because they maintain the hyperspace communication network, but there are also rumors that they may have ties to the Resistance.`
+	description `The Stronghold of Flugbu was used as a military base during the War of Independence. Now it is a manufacturing world, specializing not in large machines but small, intricate components. It is also home to House Bebliss, the secretive guild that specializes in communication, translation, and encryption. House Bebliss is essential to the Coalition economy because they maintain the hyperspace communication network, but there are also rumors that they may have ties to the Resistance.`
 	spaceport `The spaceport here is a single massive compound, a relic of its military past, with hangars of all different sizes along its periphery and gun emplacements that may still be operational even though there has been little need for them in thousands of years. A fleet of Heliarch military ships is stationed here, as well, but their role is mostly ceremonial.`
 	spaceport `	The hallways of the compound are packed with members of all three Coalition species, most of whom walk quietly and purposefully without stopping to speak with each other.`
 	outfitter "Coalition Advanced"
