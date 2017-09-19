@@ -1139,7 +1139,8 @@ bool Ship::Move(list<Effect> &effects, list<shared_ptr<Flotsam>> &flotsam)
 				}
 			}
 		}
-		bool applyAfterburner = commands.Has(Command::AFTERBURNER) && !CannotAct();
+		bool applyAfterburner = (commands.Has(Command::AFTERBURNER) || (commands.Has(Command::FORWARD)
+				&& !attributes.Get("thrust"))) && !CannotAct();
 		if(applyAfterburner)
 		{
 			double thrust = attributes.Get("afterburner thrust");
@@ -2075,7 +2076,8 @@ double Ship::TurnRate() const
 
 double Ship::Acceleration() const
 {
-	return attributes.Get("thrust") / Mass();
+	return (attributes.Get("thrust") ? attributes.Get("thrust")
+			: attributes.Get("afterburner thrust")) / Mass();
 }
 
 
@@ -2085,7 +2087,8 @@ double Ship::MaxVelocity() const
 	// v * drag / mass == thrust / mass
 	// v * drag == thrust
 	// v = thrust / drag
-	return attributes.Get("thrust") / attributes.Get("drag");
+	return (attributes.Get("thrust") ? attributes.Get("thrust")
+			: attributes.Get("afterburner thrust")) / attributes.Get("drag");
 }
 
 
