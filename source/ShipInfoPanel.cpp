@@ -28,6 +28,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "PlayerInfoPanel.h"
 #include "Rectangle.h"
 #include "Ship.h"
+#include "ShipWarnings.h"
 #include "Sprite.h"
 #include "SpriteShader.h"
 #include "Table.h"
@@ -65,6 +66,8 @@ ShipInfoPanel::ShipInfoPanel(PlayerInfo &player, int index)
 
 void ShipInfoPanel::Draw()
 {
+	warningTooltip.Zones().clear();
+	
 	// Dim everything behind this panel.
 	DrawBackdrop();
 	
@@ -108,6 +111,9 @@ void ShipInfoPanel::Draw()
 	
 	// If the player hovers their mouse over a ship attribute, show its tooltip.
 	info.DrawTooltips();
+	warningTooltip.CheckZones();
+	warningTooltip.Draw();
+	++blinkStep;
 }
 
 
@@ -231,6 +237,7 @@ bool ShipInfoPanel::Hover(int x, int y)
 {
 	Point point(x, y);
 	info.Hover(point);
+	warningTooltip.SetHoverPoint(point);
 	return Hover(point);
 }
 
@@ -486,6 +493,14 @@ void ShipInfoPanel::DrawWeapons(const Rectangle &bounds)
 		font.Draw(name, pos + Point(1., 1.), Color(0., 1.));
 		font.Draw(name, pos, bright);
 	}
+	
+	// Draw ship warnings
+	ShipWarnings warnings(ship);
+	int blink = (blinkStep / 6) % 7;
+	Point warningsCenter = bounds.Center() + Point(0., .5 * (bounds.Height() - font.Height()));
+	warnings.Draw(warningsCenter, blink == 0 || blink == 2);
+	for(const auto &zone : warnings.TooltipZones(warningsCenter))
+		warningTooltip.Zones().push_back(zone);
 }
 
 

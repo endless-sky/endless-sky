@@ -17,6 +17,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "ClickZone.h"
 #include "ShipInfoDisplay.h"
+#include "TextTooltip.h"
 
 #include <map>
 #include <memory>
@@ -95,6 +96,9 @@ private:
 	// Track whether a commodity or plundered outfit is selected to jettison.
 	std::string selectedCommodity;
 	const Outfit *selectedPlunder = nullptr;
+	
+	TextTooltip warningTooltip;
+	int blinkStep = 0;
 };
 
 
