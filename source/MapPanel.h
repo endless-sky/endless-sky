@@ -19,8 +19,11 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "DistanceMap.h"
 #include "Point.h"
 
+#include <list>
 #include <map>
+#include <memory>
 #include <string>
+#include <vector>
 
 class Angle;
 class Government;
@@ -52,7 +55,7 @@ public:
 	
 	
 public:
-	explicit MapPanel(PlayerInfo &player, int commodity = SHOW_REPUTATION, const System *special = nullptr);
+	explicit MapPanel(PlayerInfo &player, int commodity = SHOW_REPUTATION, const System *special = nullptr, const std::list<std::shared_ptr<Ship>> &allShips = std::list<std::shared_ptr<Ship>>());
 	
 	virtual void Draw() override;
 	
@@ -111,6 +114,8 @@ protected:
 	std::map<const Government *, double> closeGovernments;
 	// Systems in which your escorts are located.
 	std::map<const System *, bool> escortSystems;
+	// Map of where the player knows ships' location.
+	std::map<const System *, std::vector<std::shared_ptr<const Ship>>> shipSystems;
 	
 	
 private:

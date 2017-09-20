@@ -14,6 +14,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Color.h"
 #include "Command.h"
+#include "Engine.h"
 #include "Font.h"
 #include "FontSet.h"
 #include "Format.h"
@@ -74,8 +75,8 @@ namespace {
 
 
 
-MapDetailPanel::MapDetailPanel(PlayerInfo &player, const System *system)
-	: MapPanel(player, system ? MapPanel::SHOW_REPUTATION : player.MapColoring(), system)
+MapDetailPanel::MapDetailPanel(PlayerInfo &player, const System *system, const list<shared_ptr<Ship>> &allShips)
+	: MapPanel(player, system ? MapPanel::SHOW_REPUTATION : player.MapColoring(), system, allShips)
 {
 }
 
@@ -469,7 +470,7 @@ void MapDetailPanel::DrawOrbits()
 	if(maxDistance > 115.)
 		scale *= 115. / maxDistance;
 	
-	// Draw the orbits.
+	// Draw the orbits of the system's StellarObjects.
 	static const Color habitColor[7] = {
 		Color(.4, .2, .2, 1.),
 		Color(.3, .3, 0., 1.),
@@ -517,17 +518,68 @@ void MapDetailPanel::DrawOrbits()
 		RingShader::Draw(pos, object.Radius() * scale + 1., 0., color);
 	}
 	
-	// Draw the selection ring on top of everything else.
-	for(const StellarObject &object : selectedSystem->Objects())
-		if(selectedPlanet && object.GetPlanet() == selectedPlanet)
-			RingShader::Draw(orbitCenter + object.Position() * scale,
-				object.Radius() * scale + 5., object.Radius() * scale + 4.,
-				habitColor[6]);
-	
 	// Draw the name of the selected planet.
-	const string &name = selectedPlanet ? selectedPlanet->Name() : selectedSystem->Name();
+	const string &name = font.TruncateMiddle((selectedPlanet ? selectedPlanet->Name()
+			: selectedSystem->Name()), 150);
 	Point namePos(Screen::Right() - .5 * font.Width(name) - 100., Screen::Top() + 7.);
 	font.Draw(name, namePos, *GameData::Colors().Get("medium"));
+	
+	// Draw any known ships in this system.
+	DrawShips(orbitCenter, scale);
+	
+	// Draw the selection ring on top of everything else.
+	if(selectedPlanet)
+		for(const StellarObject &object : selectedSystem->Objects())
+			if(object.GetPlanet() == selectedPlanet)
+			{
+				RingShader::Draw(orbitCenter + object.Position() * scale,
+					object.Radius() * scale + 5., object.Radius() * scale + 4.,
+					habitColor[6]);
+				break;
+			}
+}
+
+
+
+// Draw pointers for the selected system's ships if the player owns / escorts at least one of them.
+void MapDetailPanel::DrawShips(const Point &center, const double &scale)
+{
+	const auto &it = shipSystems.find(selectedSystem);
+	if(it == shipSystems.end())
+		return;
+	
+	for(const shared_ptr<const Ship> &ship : it->second)
+	{
+		if(ship->GetPlanet())
+			continue;
+		
+		Point facing = ship->Facing().Unit();
+		Point pos = center + scale * ship->Position();
+		// Ship sprite radii range from 18 (Combat Drone) to 180 (World-Ship).
+		// Scale the pointer by the sprite size, into this range (6 - 15).
+		double size = 5. + .056 * ship->Radius();
+		
+		// If ships move outside the planetary orbits, draw
+		// the pointers at the edge, dimming with distance.
+		double alpha = 1.;
+		if((pos - center).Length() > 115.)
+		{
+			alpha = 115. / (pos - center).Length();
+			pos = alpha * (pos - center) + center;
+		}
+		
+		// Use the ship's radar colors, after darkening and saturating them.
+		// Ships beyond the widget radius are more translucent.
+		const float *rgb = Radar::GetColor(Engine::RadarType(*ship, step)).Get();
+		const Color color(max(0., rgb[0] * 1.2 - .2) * alpha,
+				max(0., rgb[1] * 1.2 - .2) * alpha,
+				max(0., rgb[2] * 1.2 - .2) * alpha, alpha);
+		static const Color back(0., .85);
+		// Each pointer is edged in black, with the flagship's being largest.
+		double edge = ship.get() == player.Flagship() ? 4. : 2.;
+		PointerShader::Draw(pos, facing, size + edge, size + edge, .5 * (size + edge), back);
+		PointerShader::Draw(pos, facing, size, size, .5 * size, color);
+	}
 }
 
 

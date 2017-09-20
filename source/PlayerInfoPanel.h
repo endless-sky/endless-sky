@@ -17,11 +17,14 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "ClickZone.h"
 
+#include <list>
+#include <memory>
 #include <set>
 #include <vector>
 
 class PlayerInfo;
 class Rectangle;
+class Ship;
 
 
 
@@ -30,7 +33,7 @@ class Rectangle;
 // their fleet (including changing which one is the flagship).
 class PlayerInfoPanel : public Panel {
 public:
-	explicit PlayerInfoPanel(PlayerInfo &player);
+	explicit PlayerInfoPanel(PlayerInfo &player, const std::list<std::shared_ptr<Ship>> &allShips = std::list<std::shared_ptr<Ship>>());
 	
 	virtual void Step() override;
 	virtual void Draw() override;
@@ -59,6 +62,8 @@ private:
 	
 private:
 	PlayerInfo &player;
+	// Every ship currently in-flight or known to the game.
+	const std::list<std::shared_ptr<Ship>> allShips;
 	
 	std::vector<ClickZone<int>> zones;
 	// Keep track of which ship the mouse is hovering over, which ship was most

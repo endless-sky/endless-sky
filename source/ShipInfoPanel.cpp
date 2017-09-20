@@ -22,6 +22,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Interface.h"
 #include "LineShader.h"
 #include "LogbookPanel.h"
+#include "MapPanel.h"
 #include "Messages.h"
 #include "MissionPanel.h"
 #include "OutlineShader.h"
@@ -43,8 +44,8 @@ namespace {
 }
 
 
-ShipInfoPanel::ShipInfoPanel(PlayerInfo &player, int index)
-	: player(player), shipIt(player.Ships().begin()), canEdit(player.GetPlanet())
+ShipInfoPanel::ShipInfoPanel(PlayerInfo &player, int index, const list<shared_ptr<Ship>> &allShips)
+	: player(player), shipIt(player.Ships().begin()), allShips(allShips), canEdit(player.GetPlanet())
 {
 	SetInterruptible(false);
 	
@@ -134,7 +135,7 @@ bool ShipInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 	else if(key == 'i')
 	{
 		GetUI()->Pop(this);
-		GetUI()->Push(new PlayerInfoPanel(player));
+		GetUI()->Push(new PlayerInfoPanel(player, allShips));
 	}
 	else if(key == 'R')
 		GetUI()->Push(new Dialog(this, &ShipInfoPanel::Rename, "Change this ship's name?"));
@@ -193,7 +194,7 @@ bool ShipInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 		}
 	}
 	else if(command.Has(Command::INFO | Command::MAP) || key == 'm')
-		GetUI()->Push(new MissionPanel(player));
+		GetUI()->Push(new MissionPanel(MapPanel(player, player.MapColoring(), nullptr, allShips)));
 	else if(key == 'l' && player.HasLogs())
 		GetUI()->Push(new LogbookPanel(player));
 	else

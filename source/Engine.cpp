@@ -50,27 +50,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 using namespace std;
 
 namespace {
-	int RadarType(const Ship &ship, int step)
-	{
-		if(ship.GetPersonality().IsTarget() && !ship.IsDestroyed())
-		{
-			// If a ship is a "target," double-blink it a few times per second.
-			int count = (step / 6) % 7;
-			if(count == 0 || count == 2)
-				return Radar::BLINK;
-		}
-		if(ship.IsDisabled() || (ship.IsOverheated() && ((step / 20) % 2)))
-			return Radar::INACTIVE;
-		if(ship.IsYours() || (ship.GetPersonality().IsEscort() && !ship.GetGovernment()->IsEnemy()))
-			return Radar::PLAYER;
-		if(!ship.GetGovernment()->IsEnemy())
-			return Radar::FRIENDLY;
-		const auto &target = ship.GetTargetShip();
-		if(target && target->IsYours())
-			return Radar::HOSTILE;
-		return Radar::UNFRIENDLY;
-	}
-	
 	template <class Type>
 	void Prune(vector<Type> &objects)
 	{
@@ -994,6 +973,36 @@ void Engine::SelectGroup(int group, bool hasShift, bool hasControl)
 	groupSelect = group;
 	this->hasShift = hasShift;
 	this->hasControl = hasControl;
+}
+
+
+
+int Engine::RadarType(const Ship &ship, int step)
+{
+	if(ship.GetPersonality().IsTarget() && !ship.IsDestroyed())
+	{
+		// If a ship is a "target," double-blink it a few times per second.
+		int count = (step / 6) % 7;
+		if(count == 0 || count == 2)
+			return Radar::BLINK;
+	}
+	if(ship.IsDisabled() || (ship.IsOverheated() && ((step / 20) % 2)))
+		return Radar::INACTIVE;
+	if(ship.IsYours() || (ship.GetPersonality().IsEscort() && !ship.GetGovernment()->IsEnemy()))
+		return Radar::PLAYER;
+	if(!ship.GetGovernment()->IsEnemy())
+		return Radar::FRIENDLY;
+	const auto &target = ship.GetTargetShip();
+	if(target && target->IsYours())
+		return Radar::HOSTILE;
+	return Radar::UNFRIENDLY;
+}
+
+
+
+const list<shared_ptr<Ship>> &Engine::Ships() const
+{
+	return ships;
 }
 
 

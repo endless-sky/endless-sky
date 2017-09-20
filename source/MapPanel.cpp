@@ -68,6 +68,34 @@ namespace {
 		}
 	}
 	
+	// Find player ships and ships with personality escort. For systems with these
+	// ships, also find any other NPCs. Used to help color systems based on known ship locations.
+	void SetDrawnShips(const PlayerInfo &player, const list<shared_ptr<Ship>> &ships, map<const System *, vector<shared_ptr<const Ship>>> &locations)
+	{
+		if(!ships.empty())
+		{
+			for(const shared_ptr<const Ship> &ship : player.Ships())
+				if(ship->GetSystem() && !ship->IsParked())
+					locations[ship->GetSystem()].emplace_back(ship);
+			for(const Mission &mission : player.Missions())
+				for(const NPC &npc : mission.NPCs())
+					for(const shared_ptr<const Ship> &ship : npc.Ships())
+						if(ship->GetSystem() && !ship->IsDestroyed() && ship->GetPersonality().IsEscort())
+							locations[ship->GetSystem()].emplace_back(ship);
+			
+			// Check through every ship in the passed Engine::Ships list to determine
+			// if any are in systems under observation by the player.
+			for(const auto &ship : ships)
+				if(ship->GetSystem() && !ship->IsYours() && !ship->IsDestroyed() && ship->Cloaking() < 1.
+						&& !ship->GetPersonality().IsEscort())
+				{
+					auto it = locations.find(ship->GetSystem());
+					if(it != locations.end())
+						it->second.emplace_back(ship);
+				}
+		}
+	}
+	
 	const Color black(0., 1.);
 	const Color red(1., 0., 0., 1.);
 }
@@ -80,7 +108,7 @@ const double MapPanel::LINK_OFFSET = 7.;
 
 
 
-MapPanel::MapPanel(PlayerInfo &player, int commodity, const System *special)
+MapPanel::MapPanel(PlayerInfo &player, int commodity, const System *special, const list<shared_ptr<Ship>> &allShips)
 	: player(player), distance(player),
 	playerSystem(player.GetSystem()),
 	selectedSystem(special ? special : player.GetSystem()),
@@ -95,6 +123,9 @@ MapPanel::MapPanel(PlayerInfo &player, int commodity, const System *special)
 	// Recalculate escort positions every time the map is opened, as they may
 	// be changing systems even if the player does not.
 	TallyEscorts(player.Ships(), escortSystems);
+	
+	// Parse the list of ships into those which can be drawn in the orbits scene.
+	SetDrawnShips(player, allShips, shipSystems);
 	
 	if(selectedSystem)
 		center = Point(0., 0.) - selectedSystem->Position();

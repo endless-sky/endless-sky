@@ -19,6 +19,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Information.h"
 #include "Interface.h"
 #include "LogbookPanel.h"
+#include "MapPanel.h"
 #include "MissionPanel.h"
 #include "PlayerInfo.h"
 #include "Preferences.h"
@@ -95,8 +96,8 @@ namespace {
 
 
 
-PlayerInfoPanel::PlayerInfoPanel(PlayerInfo &player)
-	: player(player), canEdit(player.GetPlanet())
+PlayerInfoPanel::PlayerInfoPanel(PlayerInfo &player, const list<shared_ptr<Ship>> &allShips)
+	: player(player), allShips(allShips), canEdit(player.GetPlanet())
 {
 	SetInterruptible(false);
 }
@@ -182,7 +183,7 @@ bool PlayerInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comman
 		if(!player.Ships().empty())
 		{
 			GetUI()->Pop(this);
-			GetUI()->Push(new ShipInfoPanel(player, selectedIndex));
+			GetUI()->Push(new ShipInfoPanel(player, selectedIndex, allShips));
 		}
 	}
 	else if(key == SDLK_PAGEUP || key == SDLK_PAGEDOWN)
@@ -307,7 +308,7 @@ bool PlayerInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comman
 				player.ParkShip(it.get(), !allParked);
 	}
 	else if(command.Has(Command::INFO | Command::MAP) || key == 'm')
-		GetUI()->Push(new MissionPanel(player));
+		GetUI()->Push(new MissionPanel(MapPanel(player, player.MapColoring(), nullptr, allShips)));
 	else if(key == 'l' && player.HasLogs())
 		GetUI()->Push(new LogbookPanel(player));
 	else if(key >= '0' && key <= '9')
@@ -400,7 +401,7 @@ bool PlayerInfoPanel::Click(int x, int y, int clicks)
 	{
 		// If not landed, clicking a ship name takes you straight to its info.
 		GetUI()->Pop(this);
-		GetUI()->Push(new ShipInfoPanel(player, hoverIndex));
+		GetUI()->Push(new ShipInfoPanel(player, hoverIndex, allShips));
 	}
 	
 	return true;

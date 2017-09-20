@@ -18,6 +18,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "ClickZone.h"
 #include "ShipInfoDisplay.h"
 
+#include <list>
 #include <map>
 #include <memory>
 #include <set>
@@ -27,6 +28,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 class Outfit;
 class PlayerInfo;
 class Rectangle;
+class Ship;
 
 
 
@@ -35,7 +37,7 @@ class Rectangle;
 // hardpoints. In flight, this panel allows them to jettison cargo.
 class ShipInfoPanel : public Panel {
 public:
-	explicit ShipInfoPanel(PlayerInfo &player, int index = -1);
+	explicit ShipInfoPanel(PlayerInfo &player, int index = -1, const std::list<std::shared_ptr<Ship>> &allShips = std::list<std::shared_ptr<Ship>>());
 	
 	virtual void Draw() override;
 	
@@ -74,6 +76,8 @@ private:
 	PlayerInfo &player;
 	// This is the currently selected ship.
 	std::vector<std::shared_ptr<Ship>>::const_iterator shipIt;
+	// Every ship currently in-flight or known to the game.
+	const std::list<std::shared_ptr<Ship>> allShips;
 	
 	// Information about the currently selected ship.
 	ShipInfoDisplay info;

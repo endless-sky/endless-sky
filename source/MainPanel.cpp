@@ -67,12 +67,12 @@ void MainPanel::Step()
 	// Display any requested panels.
 	if(show.Has(Command::MAP))
 	{
-		GetUI()->Push(new MapDetailPanel(player));
+		GetUI()->Push(new MapDetailPanel(player, nullptr, engine.Ships()));
 		isActive = false;
 	}
 	else if(show.Has(Command::INFO))
 	{
-		GetUI()->Push(new PlayerInfoPanel(player));
+		GetUI()->Push(new PlayerInfoPanel(player, engine.Ships()));
 		isActive = false;
 	}
 	else if(show.Has(Command::HAIL))
