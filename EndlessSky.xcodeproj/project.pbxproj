@@ -144,6 +144,8 @@
 		A9CC526D1950C9F6004E4E22 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9CC526C1950C9F6004E4E22 /* Cocoa.framework */; };
 		A9CC52A11950CA16004E4E22 /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9CC52A01950CA16004E4E22 /* SDL2.framework */; };
 		A9D40D1A195DFAA60086EE52 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9D40D19195DFAA60086EE52 /* OpenGL.framework */; };
+		A9D40D1A195DFAA60086EE53 /* ShipWarnings.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A9D40D19195DFAA60086EE53 /* ShipWarnings.cpp */; };
+		A9D40D1A195DFAA60086EE55 /* TextTooltip.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A9D40D19195DFAA60086EE55 /* TextTooltip.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -424,6 +426,10 @@
 		A9CC52711950C9F6004E4E22 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		A9CC52A01950CA16004E4E22 /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = /Library/Frameworks/SDL2.framework; sourceTree = "<absolute>"; };
 		A9D40D19195DFAA60086EE52 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
+		A9D40D19195DFAA60086EE53 /* ShipWarnings.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ShipWarnings.cpp; path = source/ShipWarnings.cpp; sourceTree = "<group>"; };
+		A9D40D19195DFAA60086EE54 /* ShipWarnings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShipWarnings.h; path = source/ShipWarnings.h; sourceTree = "<group>"; };
+		A9D40D19195DFAA60086EE55 /* TextTooltip.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TextTooltip.cpp; path = source/TextTooltip.cpp; sourceTree = "<group>"; };
+		A9D40D19195DFAA60086EE56 /* TextTooltip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TextTooltip.h; path = source/TextTooltip.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -652,6 +658,8 @@
 				A968637B1AE6FD0D004FE1FE /* ShipInfoDisplay.h */,
 				A98150801EA9634A00428AD6 /* ShipInfoPanel.cpp */,
 				A98150811EA9634A00428AD6 /* ShipInfoPanel.h */,
+				A9D40D19195DFAA60086EE53 /* ShipWarnings.cpp */,
+				A9D40D19195DFAA60086EE54 /* ShipWarnings.h */,
 				A968637C1AE6FD0D004FE1FE /* ShipyardPanel.cpp */,
 				A968637D1AE6FD0D004FE1FE /* ShipyardPanel.h */,
 				A968637E1AE6FD0D004FE1FE /* ShopPanel.cpp */,
@@ -678,6 +686,8 @@
 				A96863931AE6FD0D004FE1FE /* System.h */,
 				A96863941AE6FD0D004FE1FE /* Table.cpp */,
 				A96863951AE6FD0D004FE1FE /* Table.h */,
+				A9D40D19195DFAA60086EE55 /* TextTooltip.cpp */,
+				A9D40D19195DFAA60086EE56 /* TextTooltip.h */,
 				A96863961AE6FD0D004FE1FE /* Trade.cpp */,
 				A96863971AE6FD0D004FE1FE /* Trade.h */,
 				A96863981AE6FD0D004FE1FE /* TradingPanel.cpp */,
@@ -947,6 +957,8 @@
 				A96863CE1AE6FD0E004FE1FE /* LoadPanel.cpp in Sources */,
 				A96863A41AE6FD0E004FE1FE /* Armament.cpp in Sources */,
 				A96863F01AE6FD0E004FE1FE /* Screen.cpp in Sources */,
+				A9D40D1A195DFAA60086EE53 /* ShipWarnings.cpp in Sources */,
+				A9D40D1A195DFAA60086EE55 /* TextTooltip.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
