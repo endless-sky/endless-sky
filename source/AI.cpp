@@ -72,6 +72,22 @@ namespace {
 		return min(a, 360. - a);
 	}
 	
+	// Determine if the ship has any usable weapons.
+	bool IsArmed(const Ship &ship)
+	{
+		for(const Hardpoint &weapon : ship.Weapons())
+		{
+			const Outfit *outfit = weapon.GetOutfit();
+			if(outfit && !weapon.IsAntiMissile())
+			{
+				if(outfit->Ammo() && !ship.OutfitCount(outfit->Ammo()))
+					continue;
+				return true;
+			}
+		}
+		return false;
+	}
+	
 	const double MAX_DISTANCE_FROM_CENTER = 10000.;
 	// Constance for the invisible fence timer.
 	const int FENCE_DECAY = 4;
@@ -510,7 +526,7 @@ void AI::Step(const PlayerInfo &player)
 		if(isPresent && personality.IsMining() && !target && !isStranded)
 		{
 			// Miners with free cargo space and available mining time should mine.
-			if(it->Cargo().Free() >= 5 && ++miningTime[&*it] < 3600 && ++minerCount < maxMinerCount)
+			if(it->Cargo().Free() >= 5 && IsArmed(*it) && ++miningTime[&*it] < 3600 && ++minerCount < maxMinerCount)
 			{
 				if(it->HasBays())
 					command |= Command::DEPLOY;
@@ -522,7 +538,7 @@ void AI::Step(const PlayerInfo &player)
 			// carry ore, and the asteroid is near enough that the parent can harvest the ore.
 			const shared_ptr<Minable> &minable = parent ? parent->GetTargetAsteroid() : nullptr;
 			if(it->CanBeCarried() && parent && miningTime[&*parent] < 3601 && minable
-					&& minable->Position().Distance(parent->Position()) < 400.)
+					&& minable->Position().Distance(parent->Position()) < 600.)
 			{
 				// Remember this asteroid so that turrets can be aimed at it.
 				it->SetTargetAsteroid(minable);
@@ -899,16 +915,8 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 				// Don't plunder unless there are no "live" enemies nearby.
 				range += 2000. * (2 * it->IsDisabled() - !hasBoarded);
 			}
-			// Check if this target has any weapons (not counting anti-missiles).
-			bool isArmed = false;
-			for(const auto &ait : it->Weapons())
-				if(ait.GetOutfit() && !ait.GetOutfit()->AntiMissile())
-				{
-					isArmed = true;
-					break;
-				}
 			// Prefer to go after armed targets, especially if you're not a pirate.
-			range += 1000. * (!isArmed * (1 + !person.Plunders()));
+			range += 1000. * (!IsArmed(*it) * (1 + !person.Plunders()));
 			// Focus on nearly dead ships.
 			range += 500. * (it->Shields() + it->Hull());
 			if((isPotentialNemesis && !hasNemesis) || range < closest)
