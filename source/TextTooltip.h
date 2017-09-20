@@ -22,7 +22,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 
 // Class that a will display a text tooltip after hovering a label for 60 frames.
-// It can auto scale the width.
 class TextTooltip {
 public:
 	TextTooltip();
