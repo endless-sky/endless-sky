@@ -311,6 +311,7 @@ void AI::Step(const PlayerInfo &player)
 	step = (step + 1) & 31;
 	int targetTurn = 0;
 	int minerCount = 0;
+	const int maxMinerCount = minables.empty() ? 0 : 9;
 	bool opportunisticEscorts = !Preferences::Has("Turrets focus fire");
 	for(const auto &it : ships)
 	{
@@ -498,32 +499,38 @@ void AI::Step(const PlayerInfo &player)
 			continue;
 		}
 		
+		// Ships that harvest flotsam prioritize it over stopping to be refueled.
 		if(isPresent && personality.Harvests() && DoHarvesting(*it, command))
 		{
 			it->SetCommands(command);
 			continue;
 		}
 		
-		if(isPresent && personality.IsMining() && !target && !isStranded
-				&& it->Cargo().Free() >= 5 && ++miningTime[&*it] < 3600 && ++minerCount < 9)
+		// Attacking a hostile ship and stopping to be refueled are more important than mining.
+		if(isPresent && personality.IsMining() && !target && !isStranded)
 		{
-			if(it->HasBays())
-				command |= Command::DEPLOY;
-			DoMining(*it, command);
-			it->SetCommands(command);
-			continue;
-		}
-		else if(isPresent && !target && it->CanBeCarried() && parent && miningTime[&*parent] < 3601 && !isStranded
-				&& parent->GetTargetAsteroid() && parent->GetTargetAsteroid()->Position().Distance(parent->Position()) < 800.)
-		{
-			// Assist your parent in mining its nearby targeted asteroid
-			// since you do not have the cargo space needed to mine for yourself.
-			const shared_ptr<Minable> &minable = parent->GetTargetAsteroid();
-			it->SetTargetAsteroid(minable);
-			MoveToAttack(*it, command, *minable);
-			AutoFire(*it, command, *minable);
-			it->SetCommands(command);
-			continue;
+			// Miners with free cargo space and available mining time should mine.
+			if(it->Cargo().Free() >= 5 && ++miningTime[&*it] < 3600 && ++minerCount < maxMinerCount)
+			{
+				if(it->HasBays())
+					command |= Command::DEPLOY;
+				DoMining(*it, command);
+				it->SetCommands(command);
+				continue;
+			}
+			// Fighters and drones should assist their parent's mining operation if they cannot
+			// carry ore, and the asteroid is near enough that the parent can harvest the ore.
+			const shared_ptr<Minable> &minable = parent ? parent->GetTargetAsteroid() : nullptr;
+			if(it->CanBeCarried() && parent && miningTime[&*parent] < 3601 && minable
+					&& minable->Position().Distance(parent->Position()) < 400.)
+			{
+				// Remember this asteroid so that turrets can be aimed at it.
+				it->SetTargetAsteroid(minable);
+				MoveToAttack(*it, command, *minable);
+				AutoFire(*it, command, *minable);
+				it->SetCommands(command);
+				continue;
+			}
 		}
 		
 		// Handle fighters:
