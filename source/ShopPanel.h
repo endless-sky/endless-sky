@@ -19,6 +19,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "OutfitInfoDisplay.h"
 #include "Point.h"
 #include "ShipInfoDisplay.h"
+#include "TextTooltip.h"
 
 #include <map>
 #include <set>
@@ -133,6 +134,9 @@ protected:
 	
 	ShipInfoDisplay shipInfo;
 	OutfitInfoDisplay outfitInfo;
+	
+	int blinkStep = 0;
+	TextTooltip warningTooltip;
 	
 	
 private:

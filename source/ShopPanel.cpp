@@ -26,6 +26,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Preferences.h"
 #include "Screen.h"
 #include "Ship.h"
+#include "ShipWarnings.h"
 #include "Sprite.h"
 #include "SpriteSet.h"
 #include "SpriteShader.h"
@@ -72,6 +73,7 @@ void ShopPanel::Step()
 		else
 			scrollDetailsIntoView = false;
 	}
+	++blinkStep;
 }
 
 
@@ -83,6 +85,7 @@ void ShopPanel::Draw()
 	// Clear the list of clickable zones.
 	zones.clear();
 	categoryZones.clear();
+	warningTooltip.Zones().clear();
 	
 	DrawSidebar();
 	DrawButtons();
@@ -91,6 +94,8 @@ void ShopPanel::Draw()
 	
 	shipInfo.DrawTooltips();
 	outfitInfo.DrawTooltips();
+	warningTooltip.CheckZones();
+	warningTooltip.Draw();
 	
 	if(dragShip && dragShip->GetSprite())
 	{
@@ -163,6 +168,8 @@ void ShopPanel::DrawSidebar()
 			double scale = ICON_SIZE / max(sprite->Width(), sprite->Height());
 			Point size(sprite->Width() * scale, sprite->Height() * scale);
 			OutlineShader::Draw(sprite, point, size, isSelected ? selected : unselected);
+			if(ShipWarnings(*ship.get()).Warnings())
+				font.Draw("*", Point(point.X() - ICON_SIZE / 2, point.Y() - ICON_SIZE / 2), isSelected ? selected : unselected);
 		}
 		
 		zones.emplace_back(point, Point(ICON_TILE, ICON_TILE), ship.get());
@@ -390,6 +397,8 @@ void ShopPanel::DrawMain()
 
 void ShopPanel::DrawShip(const Ship &ship, const Point &center, bool isSelected)
 {
+	const Color &bright = *GameData::Colors().Get("bright");
+
 	const Sprite *back = SpriteSet::Get(
 		isSelected ? "ui/shipyard selected" : "ui/shipyard unselected");
 	SpriteShader::Draw(back, center);
@@ -400,7 +409,7 @@ void ShopPanel::DrawShip(const Ship &ship, const Point &center, bool isSelected)
 	const Font &font = FontSet::Get(14);
 	const string &name = ship.Name().empty() ? ship.ModelName() : font.TruncateMiddle(ship.Name(), SIDE_WIDTH - 61);
 	Point offset(-.5f * font.Width(name), -.5f * SHIP_SIZE + 10.f);
-	font.Draw(name, center + offset, *GameData::Colors().Get("bright"));
+	font.Draw(name, center + offset, bright);
 	
 	const Sprite *sprite = ship.GetSprite();
 	if(sprite)
@@ -410,6 +419,14 @@ void ShopPanel::DrawShip(const Ship &ship, const Point &center, bool isSelected)
 		
 		SpriteShader::Draw(sprite, center, zoom, swizzle);
 	}
+	
+	// Draw flight check warnings.
+	ShipWarnings warnings(ship);
+	int blink = (blinkStep / 6) % 7;
+	offset = Point(0., .5 * (SHIP_SIZE - font.Height()));
+	warnings.Draw(center + offset, blink == 0 || blink == 2);
+	for(const auto &zone : warnings.TooltipZones(center + offset))
+		warningTooltip.Zones().push_back(zone);
 }
 
 
@@ -656,6 +673,7 @@ bool ShopPanel::Hover(int x, int y)
 		outfitInfo.Hover(point);
 	}
 	
+	warningTooltip.SetHoverPoint(point);
 	dragMain = (x < Screen::Right() - SIDE_WIDTH);
 	return true;
 }
