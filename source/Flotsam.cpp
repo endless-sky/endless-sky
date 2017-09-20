@@ -20,7 +20,13 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Ship.h"
 #include "SpriteSet.h"
 
+#include <cmath>
+
 using namespace std;
+
+
+
+const int Flotsam::TONS_PER_BOX = 5;
 
 
 
@@ -29,6 +35,9 @@ Flotsam::Flotsam(const string &commodity, int count)
 	: commodity(commodity), count(count)
 {
 	lifetime = Random::Int(300) + 360;
+	// Scale lifetime in proportion to the expected amount per box.
+	if(count != TONS_PER_BOX)
+		lifetime = sqrt(count / TONS_PER_BOX) * lifetime;
 }
 
 

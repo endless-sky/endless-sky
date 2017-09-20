@@ -2290,9 +2290,8 @@ void Ship::Jettison(const string &commodity, int tons)
 	double shipMass = Mass();
 	heat *= shipMass / (shipMass + tons);
 	
-	static const int perBox = 5;
-	for( ; tons > 0; tons -= perBox)
-		jettisoned.emplace_back(new Flotsam(commodity, (perBox < tons) ? perBox : tons));
+	for( ; tons > 0; tons -= Flotsam::TONS_PER_BOX)
+		jettisoned.emplace_back(new Flotsam(commodity, (Flotsam::TONS_PER_BOX < tons) ? Flotsam::TONS_PER_BOX : tons));
 }
 
 
@@ -2310,7 +2309,7 @@ void Ship::Jettison(const Outfit *outfit, int count)
 	double shipMass = Mass();
 	heat *= shipMass / (shipMass + count * mass);
 	
-	const int perBox = (mass <= 0.) ? count : (mass > 5.) ? 1 : static_cast<int>(5. / mass);
+	const int perBox = (mass <= 0.) ? count : (mass > Flotsam::TONS_PER_BOX) ? 1 : static_cast<int>(Flotsam::TONS_PER_BOX / mass);
 	while(count > 0)
 	{
 		jettisoned.emplace_back(new Flotsam(outfit, (perBox < count) ? perBox : count));
