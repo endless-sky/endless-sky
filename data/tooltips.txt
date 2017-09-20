@@ -292,7 +292,7 @@ tip "max:"
 # Ship warnings:
 tip "flight check: no energy"
 	`Insufficient energy is being generated or stored.`
-	`Install energy sources or batteries`
+	`Install energy sources or batteries.`
 
 tip "flight check: no thrusters"
 	`Unable to move.`
