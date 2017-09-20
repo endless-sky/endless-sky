@@ -72,6 +72,21 @@ namespace {
 		return min(a, 360. - a);
 	}
 	
+	// Determine if all able, non-carried escorts are ready to jump with this
+	// ship. Carried escorts are waited for in AI::Step.
+	bool EscortsReadyToJump(const Ship &ship)
+	{
+		for(const weak_ptr<Ship> &escort : ship.GetEscorts())
+		{
+			shared_ptr<const Ship> locked = escort.lock();
+			if(locked && !locked->IsDisabled() && !locked->CanBeCarried()
+					&& locked->GetSystem() == ship.GetSystem()
+					&& locked->JumpFuel() && !locked->IsReadyToJump())
+				return false;
+		}
+		return true;
+	}
+	
 	const double MAX_DISTANCE_FROM_CENTER = 10000.;
 	// Constance for the invisible fence timer.
 	const int FENCE_DECAY = 4;
@@ -1149,26 +1164,12 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 	if(ship.GetTargetSystem())
 	{
 		PrepareForHyperspace(ship, command);
-		// Wait for any non-carried escorts that are yet not ready to jump.
-		// Mandatory waiting for carryable escorts is completed in AI::Step.
-		bool mustWait = false;
-		for(const weak_ptr<Ship> &escort : ship.GetEscorts())
-		{
-			shared_ptr<const Ship> locked = escort.lock();
-			if(locked && !locked->IsDisabled() && !locked->CanBeCarried()
-					&& locked->GetSystem() == ship.GetSystem()
-					&& locked->JumpFuel() && !locked->IsReadyToJump())
-			{
-				mustWait = true;
-				break;
-			}
-		}
 		// Issuing the JUMP command prompts the escorts to get ready to jump.
 		command |= Command::JUMP;
 		// Issuing the WAIT command will prevent this parent from jumping.
 		// When all its non-carried, in-system escorts that are not disabled and
 		// have the ability to jump are ready, the WAIT command will be omitted.
-		if(mustWait)
+		if(!EscortsReadyToJump(ship))
 			command |= Command::WAIT;
 	}
 	else if(ship.GetTargetStellar())
@@ -1249,6 +1250,10 @@ void AI::MoveEscort(Ship &ship, Command &command) const
 		{
 			PrepareForHyperspace(ship, command);
 			command |= Command::JUMP;
+			// If this ship is a parent to members of its fleet,
+			// it should wait for them before jumping.
+			if(!EscortsReadyToJump(ship))
+				command |= Command::WAIT;
 		}
 		else if(hasFuelCapacity && systemHasFuel && ship.Fuel() < 1.)
 			// Refuel so that when the parent returns, this ship is ready to rendezvous with it.
@@ -1283,7 +1288,13 @@ void AI::MoveEscort(Ship &ship, Command &command) const
 		{
 			PrepareForHyperspace(ship, command);
 			if(parent.IsEnteringHyperspace() || parent.IsReadyToJump())
+			{
 				command |= Command::JUMP;
+				// If this ship is a parent to members of its fleet,
+				// it should wait for them before jumping.
+				if(!EscortsReadyToJump(ship))
+					command |= Command::WAIT;
+			}
 		}
 	}
 	else
