@@ -289,30 +289,34 @@ tip "max:"
 
 
 
-# Flight checks:
-tip "flight check:"
-	`List of tasks that should be performed by pilots and aircrew prior to takeoff. Ships unfit to fly should be parked.`
-
+# Ship warnings:
 tip "flight check: no energy"
-	`- insufficient energy is being generated or stored, install energy sources or batteries`
+	`Insufficient energy is being generated or stored.`
+	`Install energy sources or batteries`
 
 tip "flight check: no thrusters"
-	`- unable to move, install a propulsion system`
+	`Unable to move.`
+	`Install a propulsion system.`
 
 tip "flight check: no thruster energy"
-	`- insufficient energy for propulsion, install energy sources or batteries`
+	`Insufficient energy for propulsion.`
+	`Install energy sources or batteries.`
 
 tip "flight check: no steering"
-	`- unable to turn, install a steering system`
+	`Unable to turn.`
+	`Install a steering system.`
 
 tip "flight check: no steering energy"
-	`- insufficient energy for steering, install energy sources or batteries`
+	`Insufficient energy for steering.`
+	`Install energy sources or batteries.`
 
 tip "flight check: solar power warning"
-	`- insufficient energy for propulsion or steering when far away from a star due to solar power loss, install energy sources or batteries`
+	`Insufficient solar power when far away from a star.`
+	`Install energy sources or batteries.`
 
 tip "flight check: overheating"
-	`- overheating when idle, install a cooling system`
+	`Overheating when idle.`
+	`Install a cooling system.`
 
 
 
