@@ -516,9 +516,12 @@ void AI::Step(const PlayerInfo &player)
 		else if(isPresent && !target && it->CanBeCarried() && parent && miningTime[&*parent] < 3601 && !isStranded
 				&& parent->GetTargetAsteroid() && parent->GetTargetAsteroid()->Position().Distance(parent->Position()) < 800.)
 		{
-			// Assist your parent in mining its nearby targeted asteroid.
-			MoveToAttack(*it, command, *parent->GetTargetAsteroid());
-			AutoFire(*it, command, *parent->GetTargetAsteroid());
+			// Assist your parent in mining its nearby targeted asteroid
+			// since you do not have the cargo space needed to mine for yourself.
+			const shared_ptr<Minable> &minable = parent->GetTargetAsteroid();
+			it->SetTargetAsteroid(minable);
+			MoveToAttack(*it, command, *minable);
+			AutoFire(*it, command, *minable);
 			it->SetCommands(command);
 			continue;
 		}
@@ -1835,12 +1838,15 @@ void AI::DoMining(Ship &ship, Command &command)
 	double miningRadius = ship.GetSystem()->AsteroidBelt() * pow(2., angle.Unit().X());
 	
 	shared_ptr<Minable> target = ship.GetTargetAsteroid();
-	if(!target)
+	if(!target || target->Velocity().Length() > ship.MaxVelocity())
 	{
 		for(const shared_ptr<Minable> &minable : minables)
 		{
 			Point offset = minable->Position() - ship.Position();
-			if(offset.Length() < 800. && offset.Unit().Dot(ship.Facing().Unit()) > .7)
+			// Target only nearby minables that are within 45deg of the current heading
+			// and not moving faster than the ship can catch.
+			if(offset.Length() < 800. && offset.Unit().Dot(ship.Facing().Unit()) > .7
+					&& minable->Velocity().Dot(offset.Unit()) < ship.MaxVelocity())
 			{
 				target = minable;
 				ship.SetTargetAsteroid(target);
@@ -1850,9 +1856,15 @@ void AI::DoMining(Ship &ship, Command &command)
 	}
 	if(target)
 	{
-		MoveToAttack(ship, command, *target);
-		AutoFire(ship, command, *target);
-		return;
+		// If the asteroid has moved well out of reach, stop tracking it.
+		if(target->Position().Distance(ship.Position()) > 1600.)
+			ship.SetTargetAsteroid(nullptr);
+		else
+		{
+			MoveToAttack(ship, command, *target);
+			AutoFire(ship, command, *target);
+			return;
+		}
 	}
 	
 	Point heading = Angle(30.).Rotate(ship.Position().Unit() * miningRadius) - ship.Position();
@@ -2103,6 +2115,45 @@ void AI::AimTurrets(const Ship &ship, Command &command, bool opportunistic) cons
 				enemies.push_back(target.get());
 	}
 	
+	// If this ship is mining and has no ships to target, its turrets should assist.
+	if(enemies.empty() && ship.GetTargetAsteroid())
+	{
+		const shared_ptr<Minable> &target = ship.GetTargetAsteroid();
+		for(const Hardpoint &hardpoint : ship.Weapons())
+			if(hardpoint.CanAim())
+			{
+				// This is where this projectile fires from. Add some randomness
+				// based on how skilled the pilot is.
+				Point start = ship.Position() + ship.Facing().Rotate(hardpoint.GetPoint());
+				start += ship.GetPersonality().Confusion();
+				// Get the turret's current facing, in absolute coordinates:
+				Angle aim = ship.Facing() + hardpoint.GetAngle();
+				// Get this projectile's average velocity.
+				const Outfit *outfit = hardpoint.GetOutfit();
+				double vp = outfit->Velocity() + .5 * outfit->RandomVelocity();
+				
+				Point p = target->Position() - start;
+				Point v = target->Velocity();
+				// Only take the ship's velocity into account if this weapon
+				// does not have its own acceleration.
+				if(!outfit->Acceleration())
+					v -= ship.Velocity();
+				// By the time this action is performed, the bodies will have moved
+				// forward one time step.
+				p += v;
+				
+				// Find out how long it would take for this projectile to reach
+				// the target.
+				double rendezvousTime = RendezvousTime(p, v, vp);
+				p += v * rendezvousTime;
+				
+				// Aim the hardpoint's outfit at the estimated collision position.
+				double degrees = (Angle(p) - aim).Degrees();
+				int index = &hardpoint - &ship.Weapons().front();
+				command.SetAim(index, degrees / outfit->TurretTurn());
+			}
+		return;
+	}
 	// If there are no enemies to aim at, opportunistic turrets should sweep
 	// back and forth at random, with the sweep centered on the "outward-facing"
 	// angle. Focused turrets should just point forward.
@@ -2392,11 +2443,15 @@ void AI::AutoFire(const Ship &ship, Command &command, const Body &target) const
 		start += ship.GetPersonality().Confusion();
 		
 		const Outfit *outfit = weapon.GetOutfit();
-		double vp = outfit->Velocity();
+		double vp = outfit->Velocity() + .5 * outfit->RandomVelocity();
 		double lifetime = outfit->TotalLifetime();
 		
 		Point p = target.Position() - start;
-		Point v = target.Velocity() - ship.Velocity();
+		Point v = target.Velocity();
+		// Only take the ship's velocity into account if this weapon
+		// does not have its own acceleration.
+		if(!outfit->Acceleration())
+			v -= ship.Velocity();
 		// By the time this action is performed, the ships will have moved
 		// forward one time step.
 		p += v;
