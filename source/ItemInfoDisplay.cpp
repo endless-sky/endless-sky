@@ -24,10 +24,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 using namespace std;
 
-namespace {
-	const int HOVER_TIME = 60;
-}
-
 
 
 ItemInfoDisplay::ItemInfoDisplay()
@@ -35,10 +31,6 @@ ItemInfoDisplay::ItemInfoDisplay()
 	description.SetAlignment(WrappedText::JUSTIFIED);
 	description.SetWrapWidth(WIDTH - 20);
 	description.SetFont(FontSet::Get(14));
-	
-	hoverText.SetAlignment(WrappedText::JUSTIFIED);
-	hoverText.SetWrapWidth(WIDTH - 20);
-	hoverText.SetFont(FontSet::Get(14));
 }
 
 
@@ -90,20 +82,9 @@ void ItemInfoDisplay::DrawAttributes(const Point &topLeft) const
 
 void ItemInfoDisplay::DrawTooltips() const
 {
-	if(!hoverCount || hoverCount-- < HOVER_TIME || !hoverText.Height())
-		return;
-	
-	Point textSize(hoverText.WrapWidth(), hoverText.Height() - hoverText.ParagraphBreak());
-	Point boxSize = textSize + Point(20., 20.);
-	
-	Point topLeft = hoverPoint;
-	if(topLeft.X() + boxSize.X() > Screen::Right())
-		topLeft.X() -= boxSize.X();
-	if(topLeft.Y() + boxSize.Y() > Screen::Bottom())
-		topLeft.Y() -= boxSize.Y();
-	
-	FillShader::Fill(topLeft + .5 * boxSize, boxSize, Color(.2, 1.));
-	hoverText.Draw(topLeft + Point(10., 10.), Color(.5, 0.));
+	tooltip.CheckZones();
+	tooltip.Draw();
+	tooltip.Zones().clear();
 }
 
 
@@ -111,7 +92,7 @@ void ItemInfoDisplay::DrawTooltips() const
 // Update the location where the mouse is hovering.
 void ItemInfoDisplay::Hover(const Point &point)
 {
-	hoverPoint = point;
+	tooltip.SetHoverPoint(point);
 	hasHover = true;
 }
 
@@ -119,6 +100,7 @@ void ItemInfoDisplay::Hover(const Point &point)
 
 void ItemInfoDisplay::ClearHover()
 {
+	tooltip.Clear();
 	hasHover = false;
 }
 
@@ -198,16 +180,5 @@ void ItemInfoDisplay::CheckHover(const Table &table, const string &label) const
 	if(!hasHover)
 		return;
 	
-	Point distance = hoverPoint - table.GetCenterPoint();
-	Point radius = .5 * table.GetRowSize();
-	if(abs(distance.X()) < radius.X() && abs(distance.Y()) < radius.Y())
-	{
-		hoverCount += 2 * (label == hover);
-		hover = label;
-		if(hoverCount >= HOVER_TIME)
-		{
-			hoverCount = HOVER_TIME;
-			hoverText.Wrap(GameData::Tooltip(label));
-		}
-	}
+	tooltip.Zones().emplace_back(table.GetRowBounds(), label);
 }
