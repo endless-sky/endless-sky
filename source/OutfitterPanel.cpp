@@ -27,6 +27,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Point.h"
 #include "Screen.h"
 #include "Ship.h"
+#include "ShipWarnings.h"
 #include "Sprite.h"
 #include "SpriteSet.h"
 #include "SpriteShader.h"
@@ -615,11 +616,11 @@ bool OutfitterPanel::FlightCheck()
 		if(ship->GetSystem() != player.GetSystem() || ship->IsDisabled())
 			continue;
 		
-		vector<string> warnings = ship->FlightCheck();
-		if(!warnings.empty())
+		ShipWarnings flightCheck(*ship.get(), ShipWarnings::FLIGHT_CHECK_MASK);
+		if(flightCheck.Warnings())
 		{
 			GetUI()->Push(new ConversationPanel(player,
-				*GameData::Conversations().Get("flight check: " + warnings[0]), nullptr, ship.get()));
+				*GameData::Conversations().Get(flightCheck.WarningLabels().at(0)), nullptr, ship.get()));
 			return false;			
 		}
 	}

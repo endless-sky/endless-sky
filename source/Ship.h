@@ -343,9 +343,6 @@ public:
 	std::shared_ptr<Ship> GetParent() const;
 	const std::vector<std::weak_ptr<Ship>> &GetEscorts() const;
 	
-	// Check for problems that prevent the ship from flying.
-	std::vector<std::string> FlightCheck() const;
-	
 	
 private:
 	// Add or remove a ship from this ship's list of escorts.
