@@ -105,6 +105,7 @@ void MapDetailPanel::Draw()
 	
 	DrawInfo();
 	DrawOrbits();
+	DrawSelection();
 	DrawKey();
 }
 
@@ -466,10 +467,10 @@ void MapDetailPanel::DrawInfo()
 		fillText = selectedPlanet->Description();
 	if(!fillText.empty())
 	{
-		static const int X_OFFSET = 240;
 		static const int WIDTH = 500;
+		const Sprite *orbitSprite = SpriteSet::Get("ui/orbits select and key");
 		const Sprite *panelSprite = SpriteSet::Get("ui/description panel");
-		Point pos(Screen::Right() - X_OFFSET - .5 * panelSprite->Width(),
+		Point pos(Screen::Right() - orbitSprite->Width() - .5 * panelSprite->Width(),
 				Screen::Top() + .5 * panelSprite->Height());
 		SpriteShader::Draw(panelSprite, pos);
 		
@@ -477,7 +478,7 @@ void MapDetailPanel::DrawInfo()
 		text.SetAlignment(WrappedText::JUSTIFIED);
 		text.SetWrapWidth(WIDTH - 20);
 		text.Wrap(fillText);
-		text.Draw(Point(Screen::Right() - X_OFFSET - WIDTH, Screen::Top() + 20), medium);
+		text.Draw(Point(Screen::Right() - orbitSprite->Width() - WIDTH, Screen::Top() + 20), medium);
 	}
 	
 	DrawButtons("is ports");
@@ -488,7 +489,8 @@ void MapDetailPanel::DrawInfo()
 // Draw the planet orbits in the currently selected system, on the current day.
 void MapDetailPanel::DrawOrbits()
 {
-	const Sprite *orbitSprite = SpriteSet::Get("ui/orbits and key");
+	// Draw the planet orbits in the currently selected system.
+	const Sprite *orbitSprite = SpriteSet::Get("ui/orbits select and key");
 	SpriteShader::Draw(orbitSprite, Screen::TopRight() + .5 * Point(-orbitSprite->Width(), orbitSprite->Height()));
 	Point orbitCenter = Screen::TopRight() + Point(-120., 160.);
 	
@@ -633,6 +635,82 @@ void MapDetailPanel::DrawShips(const Point &center, const double &scale)
 
 
 
+// Draw the sprites associated with the selected ship, planet, or the
+// system's stars if nothing is selected.
+void MapDetailPanel::DrawSelection() const
+{
+	Point selectionPos = Screen::TopRight() + Point(-75., 365.);
+	static const double MAX_ICON_HEIGHT = 136.;
+	const StellarObject *planet = !selectedPlanet ? nullptr
+			: selectedPlanet->GetSystem()->FindStellar(selectedPlanet);
+	
+	if(selectedShip && selectedShip->HasSprite())
+	{
+		const Sprite *iconSprite = selectedShip->GetSprite();
+		// Scale to fit the sprite inside the box and its shield / hull rings.
+		double scale = min(1., MAX_ICON_HEIGHT / max(iconSprite->Height(), iconSprite->Width()));
+		SpriteShader::Draw(iconSprite, selectionPos, scale, selectedShip->GetSwizzle());
+		
+		// Draw the ship's hardpoint sprites (pointing forward only).
+		for(const Hardpoint &hardpoint : selectedShip->Weapons())
+			if(hardpoint.GetOutfit() && hardpoint.GetOutfit()->HardpointSprite().HasSprite())
+				SpriteShader::Draw(
+					hardpoint.GetOutfit()->HardpointSprite().GetSprite(),
+					selectionPos + 2 * scale * hardpoint.GetPoint(),
+					scale
+				);
+		
+		// Draw the ship's shields and hull as rings, as the targets interface does in-flight.
+		bool isFoe = selectedShip->GetGovernment()->IsEnemy();
+		static const Color *overlays[4] = {
+			GameData::Colors().Get("overlay friendly shields"),
+			GameData::Colors().Get("overlay hostile shields"),
+			GameData::Colors().Get("overlay friendly hull"),
+			GameData::Colors().Get("overlay hostile hull")
+		};
+		RingShader::Draw(selectionPos, .5 * MAX_ICON_HEIGHT + 3., 1.5, selectedShip->Shields(), *overlays[isFoe], 0.);
+		RingShader::Draw(selectionPos, .5 * MAX_ICON_HEIGHT, 1.5, selectedShip->Hull(), *overlays[2 + isFoe], 20.);
+	}
+	else if(planet && planet->HasSprite())
+	{
+		const Sprite *iconSprite = planet->GetSprite();
+		double scale = min(.5, MAX_ICON_HEIGHT / max(iconSprite->Height(), iconSprite->Width()));
+		SpriteShader::Draw(iconSprite, selectionPos, scale);
+	}
+	else if(selectedSystem)
+	{
+		// Draw the sun(s).
+		map<const StellarObject *, pair<const Sprite *, Point>> drawnStars;
+		for(const StellarObject &object : selectedSystem->Objects())
+			if(object.IsStar() && object.HasSprite())
+				drawnStars.emplace(&object, make_pair(object.GetSprite(), object.Position()));
+		
+		if(!drawnStars.empty())
+		{
+			// Calculate the total scale to center the star group within the box.
+			Point cg(0., 0.);
+			for(const auto &star : drawnStars)
+				cg += star.second.second;
+			cg /= drawnStars.size();
+			
+			double maxOffset = 0.;
+			for(auto &star : drawnStars)
+			{
+				star.second.second -= cg;
+				maxOffset = max(maxOffset, 2 * cg.Distance(star.second.second)
+						+ .5 * (star.second.first->Height() + star.second.first->Width()));
+			}
+			double scale = min(1., MAX_ICON_HEIGHT / max(maxOffset, (*drawnStars.begin()).first->Radius()));
+			
+			// Scale the star's position offset and draw the scaled sprite.
+			for(const auto &star : drawnStars)
+				SpriteShader::Draw(star.second.first, selectionPos + scale * star.second.second, scale);
+		}
+	}
+}
+
+
+
 // Draw the legend, correlating between a system's color and the value of the
 // selected "commodity," which may be reputation level, outfitter size, etc.
 void MapDetailPanel::DrawKey() const
@@ -641,7 +719,7 @@ void MapDetailPanel::DrawKey() const
 	const Color &medium = *GameData::Colors().Get("medium");
 	const Font &font = FontSet::Get(14);
 	
-	Point pos = Screen::TopRight() + Point(-110., 310.);
+	Point pos = Screen::TopRight() + Point(-110., 470.);
 	Point headerOff(-5., -.5 * font.Height());
 	Point textOff(10., -.5 * font.Height());
 	

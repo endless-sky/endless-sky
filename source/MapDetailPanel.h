@@ -52,6 +52,7 @@ private:
 	void DrawInfo();
 	void DrawOrbits();
 	void DrawShips(const Point &center, const double &scale);
+	void DrawSelection() const;
 	void DrawKey() const;
 	
 	// Set the commodity coloring, and update the player info as well.
