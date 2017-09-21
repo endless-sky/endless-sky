@@ -479,3 +479,8 @@ outfit "Wanderer Outfits License"
 	category "Special"
 	thumbnail "outfit/license"
 	description "Spoke with a Wanderer ambassador named Iktat Rek using the translation device and received permission to purchase some of their technology, but not their ships."
+
+outfit "Wanderer License"
+	category "Special"
+	thumbnail "outfit/license"
+	description "Managed to broker a temporary ceasefire between the Unfettered Hai and the Wanderers. Was granted access to purchase the non-military Wanderer ships, as a reward."
