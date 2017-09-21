@@ -474,3 +474,8 @@ outfit "Type 4 Radiant Steering"
 	"turning heat" 4.5
 	"cooling" 6.7
 	description "This is the largest steering system that the Wanderers sell."
+
+outfit "Wanderer Outfits License"
+	category "Special"
+	thumbnail "outfit/license"
+	description "Spoke with a Wanderer ambassador named Iktat Rek using the translation device and received permission to purchase some of their technology, but not their ships."
