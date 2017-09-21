@@ -484,3 +484,8 @@ outfit "Wanderer License"
 	category "Special"
 	thumbnail "outfit/license"
 	description "Managed to broker a temporary ceasefire between the Unfettered Hai and the Wanderers. Was granted access to purchase the non-military Wanderer ships, as a reward."
+
+outfit "Wanderer Military License"
+	category "Special"
+	thumbnail "outfit/license"
+	description "Received permission to purchase warships from the Wanderers, including a new one called the Tempest."
