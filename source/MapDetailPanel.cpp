@@ -219,6 +219,7 @@ bool MapDetailPanel::Click(int x, int y, int clicks)
 				if(y >= it.second && y < it.second + 110)
 				{
 					selectedPlanet = it.first;
+					selectedShip = nullptr;
 					if(y >= it.second + 30 && y < it.second + 110)
 					{
 						// Figure out what row of the planet info was clicked.
@@ -244,8 +245,11 @@ bool MapDetailPanel::Click(int x, int y, int clicks)
 	}
 	else if(x >= Screen::Right() - 240 && y <= Screen::Top() + 270)
 	{
+		// The player clicked within the orbits scene. Select either a
+		// planet or a ship, depending which is closest.
 		Point click = Point(x, y);
 		selectedPlanet = nullptr;
+		selectedShip = nullptr;
 		double distance = numeric_limits<double>::infinity();
 		for(const auto &it : planets)
 		{
@@ -255,6 +259,24 @@ bool MapDetailPanel::Click(int x, int y, int clicks)
 				distance = d;
 				selectedPlanet = it.first;
 			}
+		}
+		shared_ptr<Ship> newTargetShip;
+		for(const auto &shipIt : drawnShips)
+		{
+			double d = click.Distance(shipIt.second);
+			if(d < distance)
+			{
+				distance = d;
+				selectedShip = shipIt.first.get();
+				newTargetShip = const_cast<Ship *>(&*shipIt.first)->shared_from_this();
+			}
+		}
+		// Set the clicked ship as the player's new targeted ship.
+		if(selectedShip)
+		{
+			selectedPlanet = nullptr;
+			if(player.Flagship() && newTargetShip.get() != player.Flagship())
+				player.Flagship()->SetTargetShip(newTargetShip);
 		}
 		if(selectedPlanet && player.Flagship())
 			player.SetTravelDestination(selectedPlanet);
@@ -275,6 +297,8 @@ bool MapDetailPanel::Click(int x, int y, int clicks)
 	MapPanel::Click(x, y, clicks);
 	if(selectedPlanet && !selectedPlanet->IsInSystem(selectedSystem))
 		selectedPlanet = nullptr;
+	if(selectedShip && selectedShip->GetSystem() != selectedSystem)
+		selectedShip = nullptr;
 	return true;
 }
 
@@ -424,20 +448,35 @@ void MapDetailPanel::DrawInfo()
 		uiPoint.Y() += 20.;
 	}
 	
-	if(selectedPlanet && !selectedPlanet->Description().empty()
+	// Display the selected ship or planet's description, if known.
+	string fillText;
+	if(selectedShip)
+	{
+		const Government *gov = selectedShip->GetGovernment();
+		fillText += selectedShip->ModelName() + ": '" + selectedShip->Name() + "'\n";
+		fillText += selectedShip->IsYours() ? (selectedShip == player.Flagship()
+				? "You are flying this ship.\n" : "This is a member of your fleet.\n")
+				: "Allegiance: " + gov->GetName() + (gov->IsEnemy() ? " (hostile)\n" : "\n");
+		fillText += "\n\n";
+		fillText += "\t" + (!selectedShip->Description().empty() ? selectedShip->Description()
+				: GameData::Ships().Get(selectedShip->ModelName())->Description());
+	}
+	else if(selectedPlanet && !selectedPlanet->Description().empty()
 			&& player.HasVisited(selectedPlanet) && !selectedPlanet->IsWormhole())
+		fillText = selectedPlanet->Description();
+	if(!fillText.empty())
 	{
 		static const int X_OFFSET = 240;
 		static const int WIDTH = 500;
 		const Sprite *panelSprite = SpriteSet::Get("ui/description panel");
 		Point pos(Screen::Right() - X_OFFSET - .5 * panelSprite->Width(),
-			Screen::Top() + .5 * panelSprite->Height());
+				Screen::Top() + .5 * panelSprite->Height());
 		SpriteShader::Draw(panelSprite, pos);
 		
 		WrappedText text(font);
 		text.SetAlignment(WrappedText::JUSTIFIED);
 		text.SetWrapWidth(WIDTH - 20);
-		text.Wrap(selectedPlanet->Description());
+		text.Wrap(fillText);
 		text.Draw(Point(Screen::Right() - X_OFFSET - WIDTH, Screen::Top() + 20), medium);
 	}
 	
@@ -518,16 +557,16 @@ void MapDetailPanel::DrawOrbits()
 		RingShader::Draw(pos, object.Radius() * scale + 1., 0., color);
 	}
 	
-	// Draw the name of the selected planet.
-	const string &name = font.TruncateMiddle((selectedPlanet ? selectedPlanet->Name()
-			: selectedSystem->Name()), 150);
+	// Draw the name of the selected ship / planet in the orbits scene label.
+	const string &name = font.TruncateMiddle(selectedShip ? selectedShip->Name()
+			: (selectedPlanet ? selectedPlanet->Name() : selectedSystem->Name()), 150);
 	Point namePos(Screen::Right() - .5 * font.Width(name) - 100., Screen::Top() + 7.);
 	font.Draw(name, namePos, *GameData::Colors().Get("medium"));
 	
 	// Draw any known ships in this system.
 	DrawShips(orbitCenter, scale);
 	
-	// Draw the selection ring on top of everything else.
+	// Draw the planet selection ring on top of everything else.
 	if(selectedPlanet)
 		for(const StellarObject &object : selectedSystem->Objects())
 			if(object.GetPlanet() == selectedPlanet)
@@ -544,6 +583,9 @@ void MapDetailPanel::DrawOrbits()
 // Draw pointers for the selected system's ships if the player owns / escorts at least one of them.
 void MapDetailPanel::DrawShips(const Point &center, const double &scale)
 {
+	// The player may have selected a new system with no known ships present.
+	drawnShips.clear();
+	
 	const auto &it = shipSystems.find(selectedSystem);
 	if(it == shipSystems.end())
 		return;
@@ -567,6 +609,8 @@ void MapDetailPanel::DrawShips(const Point &center, const double &scale)
 			alpha = 115. / (pos - center).Length();
 			pos = alpha * (pos - center) + center;
 		}
+		// Allow clicking this ship to display its information.
+		drawnShips[ship] = pos;
 		
 		// Use the ship's radar colors, after darkening and saturating them.
 		// Ships beyond the widget radius are more translucent.
@@ -579,6 +623,11 @@ void MapDetailPanel::DrawShips(const Point &center, const double &scale)
 		double edge = ship.get() == player.Flagship() ? 4. : 2.;
 		PointerShader::Draw(pos, facing, size + edge, size + edge, .5 * (size + edge), back);
 		PointerShader::Draw(pos, facing, size, size, .5 * size, color);
+		
+		// Draw the selection ring around the ship now, using
+		// the already-computed size and color information.
+		if(selectedShip && ship.get() == selectedShip)
+			RingShader::Draw(pos, size, size - 1., color);
 	}
 }
 

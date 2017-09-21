@@ -101,6 +101,7 @@ protected:
 	const System *playerSystem;
 	const System *selectedSystem;
 	const Planet *selectedPlanet = nullptr;
+	const Ship *selectedShip = nullptr;
 	// A system associated with a dialog or conversation.
 	const System *specialSystem;
 	

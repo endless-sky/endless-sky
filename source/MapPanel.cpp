@@ -127,6 +127,23 @@ MapPanel::MapPanel(PlayerInfo &player, int commodity, const System *special, con
 	// Parse the list of ships into those which can be drawn in the orbits scene.
 	SetDrawnShips(player, allShips, shipSystems);
 	
+	// If the player has a targeted ship and is using the orbits scene to inspect ships,
+	// start the map on the target ship's system, with it selected (if possible).
+	if(!specialSystem && player.Flagship() && player.Flagship()->GetTargetShip())
+	{
+		const shared_ptr<const Ship> &targetShip = player.Flagship()->GetTargetShip();
+		const System *targetSystem = targetShip->GetSystem();
+		if(targetSystem && shipSystems.count(targetSystem))
+		{
+			const vector<shared_ptr<const Ship>> &shipList = shipSystems.at(targetSystem);
+			if(find(shipList.begin(), shipList.end(), targetShip) != shipList.end())
+			{
+				selectedShip = targetShip.get();
+				selectedSystem = targetSystem;
+			}
+		}
+	}
+	
 	if(selectedSystem)
 		center = Point(0., 0.) - selectedSystem->Position();
 }
