@@ -334,3 +334,74 @@ person "Captain Nate"
 		explode "medium explosion" 24
 		explode "large explosion" 8
 		"final explode" "final explosion large"
+
+
+
+person "Tranquility"
+	government "Merchant"
+	personality
+		timid
+	ship "Lampyrid-Class Transport"
+		sprite "ship/lampyrid"
+		attributes
+			category "Heavy Freighter"
+			cost 2760000
+			"shields" 5400
+			"hull" 4400
+			"required crew" 5
+			"bunks" 14
+			"mass" 240
+			"drag" 8.5
+			"heat dissipation" .7
+			"fuel capacity" 700
+			"cargo space" 160
+			"outfit space" 260
+			"engine capacity" 105
+			weapon
+				"blast radius" 100
+				"shield damage" 1000
+				"hull damage" 500
+				"hit force" 1500
+		outfits
+			"S3 Thermionic"
+			"LP036a Battery Pack"
+			"D67-TM Shield Generator"
+			"Large Radar Jammer"
+			"Ramscoop"
+		
+			"Impala Plasma Thruster"
+			"Impala Plasma Steering"
+			"Hyperdrive"
+		
+		engine -64 28 0.7
+		engine 0 80 1.8
+		engine 0 100 1.2
+		engine 64 28 0.7
+		explode "tiny explosion" 10
+		explode "small explosion" 25
+		explode "medium explosion" 30
+		explode "large explosion" 15
+		"final explode" "final explosion medium" 1
+	phrase
+		word
+			"They tell ya never to hit a man with a closed fist, but it is on occasion hilarious."
+			"The human body can be drained of blood in 8.6 seconds given adequate vacuuming systems."
+			"I remember too much, and... some of its made up, and... some of it can't be quantified, and... there's secrets."
+			"I reattached a girl's leg. Her whole leg. She named her hamster after me."
+			"No power in the 'verse can stop me."
+			"Hey, I've been in a firefight before! Well, I was in a fire. Actually, I was fired from a fry-cook opportunity."
+			"I can kill you with my brain."
+			"My food is problematic."
+			"Any well-bred petty crook knows that the small, concealable weapons go to the far left of the place setting."
+			"You can't take the sky from me."
+			"They don't like it when you shoot at 'em. I worked that out myself."
+			"Woo! This kind of flying really wakes up a guy!"
+			"I am a leaf on the wind. Watch how I soar."
+			"If you can't do somethin' smart... do somethin' right."
+			"Did something just fly off my gorram ship?"
+			"We are just too pretty for God to let us die."
+			"If I ever kill you, you'll be awake, you'll be facing me, and you'll be armed."
+			"We're all doomed! Who's flying this thing!? Oh right, that would be me."
+			"I swear by my pretty floral bonnet, I will end you."
+			"Just once I'd like things to go according to the gorram plan."
+			"I'm a dangerous-minded man on a ship loaded with hurt."
