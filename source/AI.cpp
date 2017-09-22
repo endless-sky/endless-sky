@@ -1706,12 +1706,9 @@ void AI::PickUp(Ship &ship, Command &command, const Body &target)
 		command |= Command::FORWARD;
 	
 	// Use the afterburner if it will not cause you to miss your target.
-	double distance = p.Length();
+	double squareDistance = p.LengthSquared();
 	if(command.Has(Command::FORWARD) && ShouldUseAfterburner(ship))
-		if(dp > .9999 || (distance > 1000. && dp > .9)
-				|| (distance > 500. && dp > .975)
-				|| (distance > 250. && dp > .995)
-				|| (distance > 100. && dp > .999))
+		if(dp > max(.9, min(.9999, 1. - squareDistance / 10000000.)))
 			command |= Command::AFTERBURNER;
 }
 
