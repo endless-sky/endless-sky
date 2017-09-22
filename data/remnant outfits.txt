@@ -226,7 +226,7 @@ outfit "Thermoelectric Cooler"
 	category "Systems"
 	licenses
 		Remnant
-	cost 160000
+	cost 100000
 	thumbnail "outfit/thermoelectric cooler"
 	"mass" 4
 	"outfit space" -4
