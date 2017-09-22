@@ -1715,9 +1715,14 @@ void AI::PickUp(Ship &ship, Command &command, const Body &target)
 
 void AI::DoSurveillance(Ship &ship, Command &command) const
 {
-	const shared_ptr<Ship> &target = ship.GetTargetShip();
-	if(target && (!target->IsTargetable() || target->GetSystem() != ship.GetSystem()))
-		ship.SetTargetShip(shared_ptr<Ship>());
+	// Since DoSurveillance is called after target-seeking and firing, if this
+	// ship has a target, that target is guaranteed to be targetable.
+	shared_ptr<Ship> target = ship.GetTargetShip();
+	if(target && (target->GetSystem() != ship.GetSystem() || target->IsEnteringHyperspace()))
+	{
+		target.reset();
+		ship.SetTargetShip(target);
+	}
 	if(target && ship.GetGovernment()->IsEnemy(target->GetGovernment()))
 	{
 		// Automatic aiming and firing already occurred.
@@ -1747,13 +1752,12 @@ void AI::DoSurveillance(Ship &ship, Command &command) const
 		else
 			command |= Command::LAND;
 	}
-	else if(ship.GetTargetShip() && ship.GetTargetShip()->IsTargetable()
-			&& ship.GetTargetShip()->GetSystem() == ship.GetSystem())
+	else if(target)
 	{
+		// If the pointer to the target ship exists, it is targetable and in-system.
 		bool mustScanCargo = cargoScan && !Has(ship, target, ShipEvent::SCAN_CARGO);
 		bool mustScanOutfits = outfitScan && !Has(ship, target, ShipEvent::SCAN_OUTFITS);
-		bool isInSystem = (ship.GetSystem() == target->GetSystem() && !target->IsEnteringHyperspace());
-		if(!isInSystem || (!mustScanCargo && !mustScanOutfits))
+		if(!mustScanCargo && !mustScanOutfits)
 			ship.SetTargetShip(shared_ptr<Ship>());
 		else
 		{
@@ -1779,9 +1783,10 @@ void AI::DoSurveillance(Ship &ship, Command &command) const
 				if(it->GetGovernment() != ship.GetGovernment() && it->IsTargetable()
 						&& it->GetSystem() == ship.GetSystem())
 				{
-					if(Has(ship, it, ShipEvent::SCAN_CARGO) && Has(ship, it, ShipEvent::SCAN_OUTFITS))
+					if((!cargoScan || Has(ship, it, ShipEvent::SCAN_CARGO))
+							&& (!outfitScan || Has(ship, it, ShipEvent::SCAN_OUTFITS)))
 						continue;
-				
+					
 					targetShips.push_back(it);
 				}
 		
@@ -1790,13 +1795,12 @@ void AI::DoSurveillance(Ship &ship, Command &command) const
 				if(!object.IsStar() && object.Radius() < 130.)
 					targetPlanets.push_back(&object);
 		
-		bool canJump = (ship.JumpsRemaining() != 0);
-		if(jumpDrive && canJump)
-			for(const System *link : ship.GetSystem()->Neighbors())
+		if(ship.JumpsRemaining() && (jumpDrive || hyperdrive))
+		{
+			const set<const System *> &links = jumpDrive ? ship.GetSystem()->Neighbors() : ship.GetSystem()->Links();
+			for(const System *link : links)
 				targetSystems.push_back(link);
-		else if(hyperdrive && canJump)
-			for(const System *link : ship.GetSystem()->Links())
-				targetSystems.push_back(link);
+		}
 		
 		unsigned total = targetShips.size() + targetPlanets.size() + targetSystems.size();
 		if(!total)
