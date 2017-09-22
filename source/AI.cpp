@@ -1719,7 +1719,10 @@ void AI::DoSurveillance(Ship &ship, Command &command) const
 	// ship has a target, that target is guaranteed to be targetable.
 	shared_ptr<Ship> target = ship.GetTargetShip();
 	if(target && (target->GetSystem() != ship.GetSystem() || target->IsEnteringHyperspace()))
+	{
 		target.reset();
+		ship.SetTargetShip(target);
+	}
 	if(target && ship.GetGovernment()->IsEnemy(target->GetGovernment()))
 	{
 		// Automatic aiming and firing already occurred.
