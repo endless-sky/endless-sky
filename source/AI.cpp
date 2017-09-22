@@ -648,16 +648,6 @@ void AI::Step(const PlayerInfo &player)
 		else
 			MoveEscort(*it, command);
 		
-		// Apply the afterburner if you're in a heated battle and it will not
-		// use up your last jump worth of fuel.
-		if(it->Attributes().Get("afterburner thrust") && target && !target->IsDisabled()
-				&& target->IsTargetable() && target->GetSystem() == it->GetSystem())
-		{
-			double fuel = it->Fuel() * it->Attributes().Get("fuel capacity");
-			if(fuel - it->Attributes().Get("afterburner fuel") >= it->JumpFuel())
-				if(command.Has(Command::FORWARD) && targetDistance < 1000.)
-					command |= Command::AFTERBURNER;
-		}
 		// Your own ships cloak on your command; all others do it when the
 		// AI considers it appropriate.
 		if(!it->IsYours())
@@ -1686,6 +1676,10 @@ void AI::MoveToAttack(Ship &ship, Command &command, const Body &target)
 	if((ship.Facing().Unit().Dot(d) >= 0. && d.Length() > diameter)
 			|| (ship.Velocity().Dot(d) < 0. && ship.Facing().Unit().Dot(d.Unit()) >= .9))
 		command |= Command::FORWARD;
+	
+	// Use an equipped afterburner if possible.
+	if(command.Has(Command::FORWARD) && d.Length() < 1000. && ShouldUseAfterburner(ship))
+		command |= Command::AFTERBURNER;
 }
 
 
@@ -1707,8 +1701,41 @@ void AI::PickUp(Ship &ship, Command &command, const Body &target)
 	
 	// Move toward the target.
 	command.SetTurn(TurnToward(ship, p));
-	if(p.Unit().Dot(ship.Facing().Unit()) > .7)
+	double dp = p.Unit().Dot(ship.Facing().Unit());
+	if(dp > .7)
 		command |= Command::FORWARD;
+	
+	// Use the afterburner if it will not cause you to miss your target.
+	double squareDistance = p.LengthSquared();
+	if(command.Has(Command::FORWARD) && ShouldUseAfterburner(ship))
+		if(dp > max(.9, min(.9999, 1. - squareDistance / 10000000.)))
+			command |= Command::AFTERBURNER;
+}
+
+
+
+// Determine if using an afterburner does not use up reserve fuel, cause undue
+// energy strain, or undue thermal loads if almost overheated.
+bool AI::ShouldUseAfterburner(Ship &ship)
+{
+	if(!ship.Attributes().Get("afterburner thrust"))
+		return false;
+	
+	double fuel = ship.Fuel() * ship.Attributes().Get("fuel capacity");
+	double neededFuel = ship.Attributes().Get("afterburner fuel");
+	double energy = ship.Energy() * ship.Attributes().Get("energy capacity");
+	double neededEnergy = ship.Attributes().Get("afterburner energy");
+	if(energy == 0.)
+		energy = ship.Attributes().Get("energy generation")
+				+ 0.2 * ship.Attributes().Get("solar collection")
+				- ship.Attributes().Get("energy consumption");
+	double outputHeat = ship.Attributes().Get("afterburner heat") / (100 * ship.Mass());
+	if((!neededFuel || fuel - neededFuel > ship.JumpFuel())
+			&& (!neededEnergy || neededEnergy / energy < 0.25)
+			&& (!outputHeat || ship.Heat() + outputHeat < .9))
+		return true;
+	
+	return false;
 }
 
 
