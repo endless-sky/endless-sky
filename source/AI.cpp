@@ -1895,7 +1895,10 @@ bool AI::DoHarvesting(Ship &ship, Command &command)
 	// If the ship has no target to pick up, do nothing.
 	shared_ptr<Flotsam> target = ship.GetTargetFlotsam();
 	if(target && ship.Cargo().Free() < target->UnitSize())
+	{
 		target.reset();
+		ship.SetTargetFlotsam(target);
+	}
 	if(!target)
 	{
 		// Only check for new targets every 10 frames, on average.
@@ -1934,6 +1937,9 @@ bool AI::DoHarvesting(Ship &ship, Command &command)
 		
 		ship.SetTargetFlotsam(target);
 	}
+	// Deploy any carried ships to improve maneuverability.
+	if(ship.HasBays())
+		command |= Command::DEPLOY;
 	
 	PickUp(ship, command, *target);
 	return true;
@@ -2134,15 +2140,22 @@ void AI::AimTurrets(const Ship &ship, Command &command, bool opportunistic) cons
 	if(enemies.empty() && ship.GetTargetAsteroid())
 	{
 		const shared_ptr<Minable> &target = ship.GetTargetAsteroid();
+		// Only aim at the asteroid if it is in front of the ship, and the
+		// ship is moving towards it, to minimize the risk of destroying it
+		// while not positioned to harvest the ore.
+		Point pHat = (target->Position() - ship.Position()).Unit();
+		const Angle &facing = ship.Facing();
+		if(pHat.Dot(facing.Unit()) < .8 || ship.Velocity().Unit().Dot(pHat) < 0.)
+			return;
 		for(const Hardpoint &hardpoint : ship.Weapons())
 			if(hardpoint.CanAim())
 			{
 				// This is where this projectile fires from. Add some randomness
 				// based on how skilled the pilot is.
-				Point start = ship.Position() + ship.Facing().Rotate(hardpoint.GetPoint());
+				Point start = ship.Position() + facing.Rotate(hardpoint.GetPoint());
 				start += ship.GetPersonality().Confusion();
 				// Get the turret's current facing, in absolute coordinates:
-				Angle aim = ship.Facing() + hardpoint.GetAngle();
+				Angle aim = facing + hardpoint.GetAngle();
 				// Get this projectile's average velocity.
 				const Outfit *outfit = hardpoint.GetOutfit();
 				double vp = outfit->Velocity() + .5 * outfit->RandomVelocity();
