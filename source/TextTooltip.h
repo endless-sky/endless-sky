@@ -22,6 +22,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 
 // Class that a will display a text tooltip after hovering a label for 60 frames.
+// By overriding UpdateText() you can change how the label is interpreted.
 class TextTooltip {
 public:
 	TextTooltip();
@@ -39,6 +40,10 @@ public:
 	void CheckZones();
 	
 	WrappedText &Text();
+	// Called when the label changes to update the tooltip text.
+	// The default implementation supports multiple labels separated by '\n'.
+	// The tooltip texts of the labels are concatenated with '\n'.
+	virtual void UpdateText();
 	
 	int HoverCount() const;
 	

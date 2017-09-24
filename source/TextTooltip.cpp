@@ -20,6 +20,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Screen.h"
 #include "WrappedText.h"
 
+#include <sstream>
+
 using namespace std;
 
 namespace {
@@ -93,14 +95,7 @@ void TextTooltip::SetLabel(const std::string &label)
 		return;
 	
 	hoverLabel = label;
-	if(label.empty())
-		return;
-	
-	string text = GameData::Tooltip(hoverLabel);
-	if(text.empty())
-		text = "Missing tooltip: \"" + label + "\"";
-	
-	tooltipText.Wrap(text);
+	UpdateText();
 }
 
 
@@ -137,6 +132,33 @@ WrappedText &TextTooltip::Text()
 {
 	return tooltipText;
 }
+
+
+
+// Called when the label changes to update the tooltip text.
+// The default implementation supports multiple labels separated by '\n'.
+// The tooltip texts of the labels are concatenated with '\n'.
+void TextTooltip::UpdateText()
+{
+	if(hoverLabel.empty())
+		return;
+	
+	string tooltips;
+	string label;
+	istringstream labels(hoverLabel);
+	while(getline(labels, label))
+	{
+		string tooltip = GameData::Tooltip(label);
+		if(tooltip.empty())
+			tooltip = "Missing tooltip with label \"" + label + "\".";
+		
+		if(!tooltips.empty())
+			tooltips += "\n";
+		tooltips += tooltip;
+	}
+	tooltipText.Wrap(tooltips);
+}
+
 
 
 int TextTooltip::HoverCount() const
