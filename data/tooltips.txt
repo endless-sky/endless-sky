@@ -290,33 +290,29 @@ tip "max:"
 
 
 # Ship warnings:
-tip "flight check: no energy"
-	`Insufficient energy is being generated or stored.`
-	`Install energy sources or batteries.`
+tip "ship warning: no energy!"
+	`No energy available! Install power generators or batteries.`
 
-tip "flight check: no thrusters"
-	`Unable to move.`
-	`Install a propulsion system.`
+tip "ship warning: no steering!"
+	`No steering! This ship can't turn.`
 
-tip "flight check: no thruster energy"
-	`Insufficient energy for propulsion.`
-	`Install energy sources or batteries.`
+tip "ship warning: no thruster!"
+	`No thruster, reverse thruster, or afterburner! This ship can't move.`
 
-tip "flight check: no steering"
-	`Unable to turn.`
-	`Install a steering system.`
+tip "ship warning: overheating!"
+	`Overheating at idle!`
 
-tip "flight check: no steering energy"
-	`Insufficient energy for steering.`
-	`Install energy sources or batteries.`
+tip "ship warning: afterburner only"
+	`This ship can only move by burning fuel with the afterburner.`
 
-tip "flight check: solar power warning"
-	`Insufficient solar power when far away from a star.`
-	`Install energy sources or batteries.`
+tip "ship warning: battery only"
+	`Only battery power is available, this ship will be stranded if the battery wears out.`
 
-tip "flight check: overheating"
-	`Overheating when idle.`
-	`Install a cooling system.`
+tip "ship warning: limited movement"
+	`The available energy is insufficient for full thrusting or steering.`
+
+tip "ship warning: solar power"
+	`No energy production when far away from the star due to solar power collection losses.`
 
 
 

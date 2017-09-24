@@ -113,7 +113,6 @@ void ShipInfoPanel::Draw()
 	info.DrawTooltips();
 	warningTooltip.CheckZones();
 	warningTooltip.Draw();
-	++blinkStep;
 }
 
 
@@ -496,10 +495,9 @@ void ShipInfoPanel::DrawWeapons(const Rectangle &bounds)
 	
 	// Draw ship warnings
 	ShipWarnings warnings(ship);
-	int blink = (blinkStep / 6) % 7;
-	Point warningsCenter = bounds.Center() + Point(0., .5 * (bounds.Height() - font.Height()));
-	warnings.Draw(warningsCenter, blink == 0 || blink == 2);
-	for(const auto &zone : warnings.TooltipZones(warningsCenter))
+	Point center = bounds.Center() + Point(0., .5 * (bounds.Height() - warnings.IconSize()));
+	warnings.Draw(center);
+	for(const auto &zone : warnings.TooltipZones(center))
 		warningTooltip.Zones().push_back(zone);
 }
 

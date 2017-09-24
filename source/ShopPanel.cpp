@@ -73,7 +73,6 @@ void ShopPanel::Step()
 		else
 			scrollDetailsIntoView = false;
 	}
-	++blinkStep;
 }
 
 
@@ -168,11 +167,21 @@ void ShopPanel::DrawSidebar()
 			double scale = ICON_SIZE / max(sprite->Width(), sprite->Height());
 			Point size(sprite->Width() * scale, sprite->Height() * scale);
 			OutlineShader::Draw(sprite, point, size, isSelected ? selected : unselected);
-			if(ShipWarnings(*ship.get()).Warnings())
-				font.Draw("*", Point(point.X() - ICON_SIZE / 2, point.Y() - ICON_SIZE / 2), isSelected ? selected : unselected);
 		}
 		
 		zones.emplace_back(point, Point(ICON_TILE, ICON_TILE), ship.get());
+		
+		// Draw the first ship warning.
+		ShipWarnings warnings(*ship.get());
+		if(warnings.Warnings())
+		{
+			warnings.SetPackWarnings(1);
+			const double offset = .5 * (ICON_TILE - warnings.IconSize());
+			const Point center(point.X() + offset, point.Y() + offset);
+			warnings.Draw(center);
+			for(const auto &zone : warnings.TooltipZones(center))
+				warningTooltip.Zones().push_back(zone);
+		}
 		
 		point.X() += ICON_TILE;
 	}
@@ -420,11 +429,10 @@ void ShopPanel::DrawShip(const Ship &ship, const Point &center, bool isSelected)
 		SpriteShader::Draw(sprite, center, zoom, swizzle);
 	}
 	
-	// Draw flight check warnings.
+	// Draw ship warnings.
 	ShipWarnings warnings(ship);
-	int blink = (blinkStep / 6) % 7;
-	offset = Point(0., .5 * (SHIP_SIZE - font.Height()));
-	warnings.Draw(center + offset, blink == 0 || blink == 2);
+	offset = Point(0., .5 * (SHIP_SIZE - warnings.IconSize()));
+	warnings.Draw(center + offset);
 	for(const auto &zone : warnings.TooltipZones(center + offset))
 		warningTooltip.Zones().push_back(zone);
 }

@@ -98,7 +98,6 @@ private:
 	const Outfit *selectedPlunder = nullptr;
 	
 	TextTooltip warningTooltip;
-	int blinkStep = 0;
 };
 
 

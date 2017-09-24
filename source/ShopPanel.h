@@ -135,7 +135,6 @@ protected:
 	ShipInfoDisplay shipInfo;
 	OutfitInfoDisplay outfitInfo;
 	
-	int blinkStep = 0;
 	TextTooltip warningTooltip;
 	
 	
