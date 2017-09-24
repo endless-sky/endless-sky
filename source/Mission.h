@@ -160,7 +160,7 @@ private:
 	bool autosave = false;
 	Date deadline;
 	int deadlineBase = 0;
-	int deadlineMultiplier = 0;
+	double deadlineMultiplier = 0.;
 	std::string clearance;
 	LocationFilter clearanceFilter;
 	bool hasFullClearance = true;

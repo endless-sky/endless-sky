@@ -963,7 +963,7 @@ Mission Mission::Instantiate(const PlayerInfo &player) const
 	
 	// Set the deadline, if requested.
 	if(deadlineBase || deadlineMultiplier)
-		result.deadline = player.GetDate() + deadlineBase + deadlineMultiplier * jumps;
+		result.deadline = player.GetDate() + deadlineBase + lround(deadlineMultiplier * jumps);
 	
 	// Copy the conditions. The offer conditions must be copied too, because they
 	// may depend on a condition that other mission offers might change.
