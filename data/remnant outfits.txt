@@ -189,7 +189,7 @@ outfit "Millennium Cell"
 	category "Power"
 	licenses
 		Remnant
-	cost 767000
+	cost 553000
 	thumbnail "outfit/millennium cell"
 	"mass" 29
 	"outfit space" -29
@@ -201,7 +201,7 @@ outfit "Epoch Cell"
 	category "Power"
 	licenses
 		Remnant
-	cost 3060000
+	cost 2123000
 	thumbnail "outfit/epoch cell"
 	"mass" 98
 	"outfit space" -98
@@ -213,7 +213,7 @@ outfit "Aeon Cell"
 	category "Power"
 	licenses
 		Remnant
-	cost 6600000
+	cost 4384000
 	thumbnail "outfit/aeon cell"
 	"mass" 160
 	"outfit space" -160
