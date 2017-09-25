@@ -16,6 +16,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "BankPanel.h"
 #include "Command.h"
+#include "ConversationPanel.h"
 #include "Dialog.h"
 #include "GameData.h"
 #include "FontSet.h"
@@ -28,6 +29,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "PlayerInfo.h"
 #include "PlayerInfoPanel.h"
 #include "Ship.h"
+#include "ShipWarnings.h"
 #include "ShipyardPanel.h"
 #include "SpaceportPanel.h"
 #include "System.h"
@@ -229,6 +231,84 @@ void PlanetPanel::TakeOffIfReady()
 		return;
 	}
 	
+	// Perform flight checks
+	for(auto it = player.Conditions().begin(); it != player.Conditions().end(); )
+		if(it->first.compare(0, 14, "ship warning: ") == 0)
+			it = player.Conditions().erase(it);
+		else
+			++it;
+	bool canUseOutfitter = planet.HasOutfitter() && planet.CanUseServices();
+	for(const auto &it : player.Ships())
+	{
+		// Ship is not taking off.
+		if(!it->GetPlanet() || it->IsParked())
+			continue;
+		
+		ShipWarnings warnings(*it, ShipWarnings::FLIGHT_CHECK_MASK);
+		bool canPark = it.get() != player.Flagship();
+		bool canIgnore = !(warnings.Warnings() & ShipWarnings::SERIOUS_MASK);
+		bool canGoToOutfitter = canUseOutfitter && it->GetSystem() == player.GetSystem();
+		
+		for(const string &label : warnings.WarningLabels())
+		{
+			if(ignoreWarnings[label].count(it))
+				continue;
+			
+			// Flight check conversation to get an action.
+			if(warningShip != it || warningLabel != label || !warningAction)
+			{
+				warningAction = 0;
+				warningShip = it;
+				warningLabel = label;
+				player.Conditions()[label] = 1;
+				if(canPark)
+					player.Conditions()["ship warning: can park"] = 1;
+				if(canIgnore)
+					player.Conditions()["ship warning: can ignore"] = 1;
+				if(canGoToOutfitter)
+					player.Conditions()["ship warning: can go to outfitter"] = 1;
+				
+				ConversationPanel *panel = new ConversationPanel(player,
+					*GameData::Conversations().Get("flight check"), it->GetSystem(), it.get());
+				panel->SetCallback(this, &PlanetPanel::OnFlightCheckAction);
+				GetUI()->Push(panel);
+				return;
+			}
+			warningShip = nullptr;
+			warningLabel.clear();
+			
+			// Action: ignore warning and continue.
+			if(warningAction == Conversation::ACCEPT)
+			{
+				ignoreWarnings[label].insert(it);
+				continue;
+			}
+			
+			// Action: park the ship and continue.
+			if(warningAction == Conversation::DECLINE)
+			{
+				it->SetIsParked();
+				break;
+			}
+			
+			
+			// Action: go to the outfitter.
+			if(warningAction == Conversation::DEPART)
+			{
+				requestedLaunch = false;
+				ignoreWarnings.clear();
+				if(canGoToOutfitter)
+					GetUI()->Push(new OutfitterPanel(player));
+				return;
+			}
+			
+			// Default action: abort the take off.
+			requestedLaunch = false;
+			ignoreWarnings.clear();
+			return;
+		}
+	}
+	
 	// The checks that follow are typically cause by parking or selling
 	// ships or changing outfits.
 	const Ship *flagship = player.Flagship();
@@ -322,4 +402,11 @@ void PlanetPanel::TakeOff()
 			GetUI()->Pop(selectedPanel);
 		GetUI()->Pop(this);
 	}
+}
+
+
+
+void PlanetPanel::OnFlightCheckAction(int action)
+{
+	warningAction = action;
 }

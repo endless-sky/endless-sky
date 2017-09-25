@@ -284,14 +284,6 @@ void ShipyardPanel::Sell()
 
 
 
-bool ShipyardPanel::FlightCheck()
-{
-	// The shipyard does not perform any flight checks.
-	return true;
-}
-
-
-
 bool ShipyardPanel::CanSellMultiple() const
 {
 	return false;

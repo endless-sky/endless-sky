@@ -13,7 +13,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "OutfitterPanel.h"
 
 #include "Color.h"
-#include "ConversationPanel.h"
 #include "Dialog.h"
 #include "DistanceMap.h"
 #include "FillShader.h"
@@ -27,7 +26,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Point.h"
 #include "Screen.h"
 #include "Ship.h"
-#include "ShipWarnings.h"
 #include "Sprite.h"
 #include "SpriteSet.h"
 #include "SpriteShader.h"
@@ -604,27 +602,6 @@ void OutfitterPanel::FailSell() const
 				"because something else in your ship depends on it."));
 		}
 	}
-}
-
-
-
-bool OutfitterPanel::FlightCheck()
-{
-	for(const shared_ptr<Ship> &ship : player.Ships())
-	{
-		// Skip any ships that are "absent" for whatever reason.
-		if(ship->GetSystem() != player.GetSystem() || ship->IsDisabled())
-			continue;
-		
-		ShipWarnings flightCheck(*ship.get(), ShipWarnings::FLIGHT_CHECK_MASK);
-		if(flightCheck.Warnings())
-		{
-			GetUI()->Push(new ConversationPanel(player,
-				*GameData::Conversations().Get(flightCheck.WarningLabels().at(0)), nullptr, ship.get()));
-			return false;			
-		}
-	}
-	return true;
 }
 
 
