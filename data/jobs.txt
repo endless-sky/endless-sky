@@ -1573,134 +1573,6 @@ mission "Cargo [4]"
 
 
 
-mission "Small Mining [0]"
-	name "Mining for <planet>"
-	description "Mine 10 tons of iron from asteroids and deliver it to the factories on <destination>. Payment is <payment>."
-	job
-	repeat
-	to offer
-		random < 40
-	source
-		government Republic "Free Worlds" Syndicate Neutral
-	destination
-		distance 0 4
-		government Republic "Free Worlds" Syndicate Neutral
-		attributes factory
-	on complete
-		outfit Iron -10
-		payment 16000
-		dialog "You drop off your cargo and collect your payment of <payment>."
-
-mission "Small Mining [1]"
-	name "Mining for <planet>"
-	description "Mine 10 tons of aluminum from asteroids and deliver it to the shipyard on <destination>. Payment is <payment>."
-	job
-	repeat
-	to offer
-		random < 35
-	source
-		government Republic "Free Worlds" Syndicate Neutral
-	destination
-		distance 0 3
-		government Republic "Free Worlds" Syndicate Neutral
-		attributes shipyard
-	on complete
-		outfit Aluminum -10
-		payment 22000
-		dialog "You drop off your cargo and collect your payment of <payment>."
-
-mission "Small Mining [2]"
-	name "Mining for <planet>"
-	description "Mine 10 tons of titanium from asteroids and deliver it to the shipyard on <destination>. Payment is <payment>."
-	job
-	repeat
-	to offer
-		random < 30
-	source
-		government Republic "Free Worlds" Syndicate Neutral
-	destination
-		distance 0 3
-		government Republic "Free Worlds" Syndicate Neutral
-		attributes shipyard
-	on complete
-		outfit Titanium -10
-		payment 29000
-		dialog "You drop off your cargo and collect your payment of <payment>."
-
-mission "Small Mining [3]"
-	name "Mining for <planet>"
-	description "Mine 10 tons of copper from asteroids and deliver it to <destination>. Payment is <payment>."
-	job
-	repeat
-	to offer
-		random < 25
-	source
-		government Republic "Free Worlds" Syndicate Neutral
-	destination
-		distance 0 4
-		government Republic "Free Worlds" Syndicate Neutral
-		attributes shipyard factory
-	on complete
-		outfit Copper -10
-		payment 34000
-		dialog "You drop off your cargo and collect your payment of <payment>."
-
-mission "Small Mining [4]"
-	name "Mining for <planet>"
-	description "Mine 10 tons of neodynium from asteroids and deliver it to the shipyard on <destination>. Payment is <payment>."
-	job
-	repeat
-	to offer
-		random < 20
-	source
-		government Republic "Free Worlds" Syndicate Neutral
-	destination
-		distance 0 3
-		government Republic "Free Worlds" Syndicate Neutral
-		attributes shipyard
-	on complete
-		outfit Neodynium -10
-		payment 42000
-		dialog "You drop off your cargo and collect your payment of <payment>."
-
-mission "Small Mining [5]"
-	name "Mining for <planet>"
-	description "Mine 5 tons of tungsten from asteroids and deliver it to the shipyard on <destination>. Payment is <payment>."
-	job
-	repeat
-	to offer
-		random < 15
-	source
-		government Republic "Free Worlds" Syndicate Neutral
-	destination
-		distance 0 3
-		government Republic "Free Worlds" Syndicate Neutral
-		attributes syMajor
-	on complete
-		outfit Tungsten -5
-		payment 25000
-		dialog "You drop off your cargo and collect your payment of <payment>."
-
-mission "Small Mining [6]"
-	name "Mining for <planet>"
-	description "Mine 5 tons of uranium from asteroids and deliver it to the shipyard on <destination>. Payment is <payment>."
-	job
-	repeat
-	to offer
-		random < 15
-	source
-		government Republic "Free Worlds" Syndicate Neutral
-	destination
-		distance 0 3
-		government Republic "Free Worlds" Syndicate Neutral
-		attributes syMajor
-	on complete
-		outfit Uranium -5
-		payment 28000
-		dialog "You drop off your cargo and collect your payment of <payment>."
-
-
-
 mission "Bulk Delivery [0]"
 	name "Bulk delivery to <planet>"
 	job
@@ -1745,7 +1617,7 @@ mission "Bulk Delivery [2]"
 	to offer
 		random < 50
 	source
-		attributes mining textiles factory farming fishing oil
+		attributes "mining" "textiles" "factory" "farming" "fishing" "oil"
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
 	destination
 		distance 4 16
@@ -1754,336 +1626,6 @@ mission "Bulk Delivery [2]"
 		payment
 		payment 4000
 		dialog "You drop off your cargo of <commodity> and collect your payment of <payment>."
-
-
-
-mission "Medium Mining [0]"
-	name "Mining for <planet>"
-	description "Mine 30 tons of iron from asteroids and deliver it to the factories on <destination>. Payment is <payment>."
-	job
-	repeat
-	to offer
-		random < 40
-	source
-		government Republic "Free Worlds" Syndicate Neutral
-	destination
-		distance 0 5
-		government Republic "Free Worlds" Syndicate Neutral
-		attributes factory
-	on complete
-		outfit Iron -30
-		payment 48000
-		dialog "You drop off your cargo and collect your payment of <payment>."
-
-mission "Medium Mining [1]"
-	name "Mining for <planet>"
-	description "Mine 25 tons of aluminum from asteroids and deliver it to the shipyard on <destination>. Payment is <payment>."
-	job
-	repeat
-	to offer
-		random < 35
-	source
-		government Republic "Free Worlds" Syndicate Neutral
-	destination
-		distance 0 4
-		government Republic "Free Worlds" Syndicate Neutral
-		attributes shipyard
-	on complete
-		outfit Aluminum -25
-		payment 55000
-		dialog "You drop off your cargo and collect your payment of <payment>."
-
-mission "Medium Mining [2]"
-	name "Mining for <planet>"
-	description "Mine 20 tons of titanium from asteroids and deliver it to the shipyard on <destination>. Payment is <payment>."
-	job
-	repeat
-	to offer
-		random < 30
-	source
-		government Republic "Free Worlds" Syndicate Neutral
-	destination
-		distance 0 4
-		government Republic "Free Worlds" Syndicate Neutral
-		attributes syMajor
-	on complete
-		outfit Titanium -20
-		payment 58000
-		dialog "You drop off your cargo and collect your payment of <payment>."
-
-mission "Medium Mining [3]"
-	name "Mining for <planet>"
-	description "Mine 20 tons of copper from asteroids and deliver it to <destination>. Payment is <payment>."
-	job
-	repeat
-	to offer
-		random < 25
-	source
-		government Republic "Free Worlds" Syndicate Neutral
-	destination
-		distance 0 5
-		government Republic "Free Worlds" Syndicate Neutral
-		attributes syMajor factory
-	on complete
-		outfit Copper -20
-		payment 68000
-		dialog "You drop off your cargo and collect your payment of <payment>."
-
-mission "Medium Mining [4]"
-	name "Mining for <planet>"
-	description "Mine 20 tons of neodynium from asteroids and deliver it to the shipyard on <destination>. Payment is <payment>."
-	job
-	repeat
-	to offer
-		random < 20
-	source
-		government Republic "Free Worlds" Syndicate Neutral
-	destination
-		distance 0 4
-		government Republic "Free Worlds" Syndicate Neutral
-		attributes syMajor
-	on complete
-		outfit Neodynium -20
-		payment 84000
-		dialog "You drop off your cargo and collect your payment of <payment>."
-
-mission "Medium Mining [5]"
-	name "Mining for <planet>"
-	description "Mine 15 tons of tungsten from asteroids and deliver it to the shipyard on <destination>. Payment is <payment>."
-	job
-	repeat
-	to offer
-		random < 15
-	source
-		government Republic "Free Worlds" Syndicate Neutral
-	destination
-		distance 0 4
-		government Republic "Free Worlds" Syndicate Neutral
-		attributes syMajor
-	on complete
-		outfit Tungsten -15
-		payment 75000
-		dialog "You drop off your cargo and collect your payment of <payment>."
-
-mission "Medium Mining [6]"
-	name "Mining for <planet>"
-	description "Mine 15 tons of uranium from asteroids and deliver it to the shipyard on <destination>. Payment is <payment>."
-	job
-	repeat
-	to offer
-		random < 15
-	source
-		government Republic "Free Worlds" Syndicate Neutral
-	destination
-		distance 0 4
-		government Republic "Free Worlds" Syndicate Neutral
-		attributes syMajor
-	on complete
-		outfit Uranium -15
-		payment 84000
-		dialog "You drop off your cargo and collect your payment of <payment>."
-
-
-
-mission "Large Mining [s]"
-	name "Large mining for <planet>"
-	description "Mine 60 tons of silicon from asteroids and deliver it to the factories on <destination>. Payment is <payment>."
-	job
-	repeat
-	to offer
-		random < 20
-		"cargo space" > 100
-	source
-		government Republic "Free Worlds" Syndicate Neutral
-	destination
-		distance 0 5
-		government Republic "Free Worlds" Syndicate Neutral
-		attributes factory
-	on complete
-		outfit Silicon -60
-		payment 48000
-		dialog "You drop off your cargo and collect your payment of <payment>."
-
-mission "Large Mining [0]"
-	name "Large mining for <planet>"
-	description "Mine 50 tons of iron from asteroids and deliver it to the factories on <destination>. Payment is <payment>."
-	job
-	repeat
-	to offer
-		random < 15
-		"cargo space" > 100
-	source
-		government Republic "Free Worlds" Syndicate Neutral
-	destination
-		distance 0 5
-		government Republic "Free Worlds" Syndicate Neutral
-		attributes factory
-	on complete
-		outfit Iron -50
-		payment 82000
-		dialog "You drop off your cargo and collect your payment of <payment>."
-
-mission "Large Mining [1]"
-	name "Large mining for <planet>"
-	description "Mine 40 tons of aluminum from asteroids and deliver it to the shipyard on <destination>. Payment is <payment>."
-	job
-	repeat
-	to offer
-		random < 10
-		"cargo space" > 100
-	source
-		government Republic "Free Worlds" Syndicate Neutral
-	destination
-		distance 0 5
-		government Republic "Free Worlds" Syndicate Neutral
-		attributes syMajor
-	on complete
-		outfit Aluminum -40
-		payment 90000
-		dialog "You drop off your cargo and collect your payment of <payment>."
-
-
-
-mission "Large Bulk Delivery [0]"
-	name "Large bulk delivery to <planet>"
-	job
-	repeat
-	description "Deliver <cargo> to <destination>. Payment is <payment>."
-	cargo random 40 2 .02
-	to offer
-		random < 70
-		"cargo space" > 160
-	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
-	destination
-		distance 2 8
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
-	on complete
-		payment
-		payment 4000
-		dialog "You drop off your cargo of <commodity> and collect your payment of <payment>."
-
-mission "Large Bulk Delivery [1]"
-	name "Large bulk delivery to <planet>"
-	job
-	repeat
-	description "Deliver <cargo> to <destination>. Payment is <payment>."
-	cargo random 40 2 .02
-	to offer
-		random < 60
-		"cargo space" > 160
-	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
-	destination
-		distance 3 12
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
-	on complete
-		payment
-		payment 6000
-		dialog "You drop off your cargo of <commodity> and collect your payment of <payment>."
-
-mission "Large Bulk Delivery [2]"
-	name "Large bulk delivery to <planet>"
-	job
-	repeat
-	description "Deliver <cargo> to <destination>. Payment is <payment>."
-	cargo random 40 2 .02
-	to offer
-		random < 50
-		"cargo space" > 160
-	source
-		attributes mining textiles factory farming fishing oil
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
-	destination
-		distance 4 16
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
-	on complete
-		payment
-		payment 8000
-		dialog "You drop off your cargo of <commodity> and collect your payment of <payment>."
-
-mission "Large Bulk Delivery [3]"
-	name "Large bulk delivery to <planet>"
-	job
-	repeat
-	description "Deliver <cargo> to the shipyard on <destination>. Payment is <payment>."
-	cargo "Metal" 40 4 .02
-	to offer
-		random < 40
-		"cargo space" > 160
-	source
-		attributes mining
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
-	destination
-		distance 2 8
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
-		attributes syMajor
-	on complete
-		payment
-		payment 4000
-		dialog "You drop off your cargo of <commodity> and collect your payment of <payment>."
-
-mission "Large Bulk Delivery [4]"
-	name "Large bulk delivery to <planet>"
-	job
-	repeat
-	description "Deliver <cargo> to the shipyard on <destination>. Payment is <payment>."
-	cargo "Heavy Metals" 40 4 .02
-	to offer
-		random < 30
-		"cargo space" > 160
-	source
-		attributes mining
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
-	destination
-		distance 3 12
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
-		attributes syMajor
-	on complete
-		payment
-		payment 6000
-		dialog "You drop off your cargo of <commodity> and collect your payment of <payment>."
-
-mission "Large Bulk Delivery [5]"
-	name "Large bulk delivery to <planet>"
-	job
-	repeat
-	description "Deliver <cargo> to the shipyard on <destination>. Payment is <payment>."
-	cargo "Electronics" 40 4 .02
-	to offer
-		random < 20
-		"cargo space" > 160
-	source
-		attributes factory
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
-	destination
-		distance 4 16
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
-		attributes syMajor
-	on complete
-		payment
-		payment 8000
-		dialog "You drop off your cargo of <commodity> and collect your payment of <payment>."
-
-
-
-mission "Recycle garbage"
-	name "Recycle garbage"
-	description "<origin> produces a lot of garbage that needs to be disposed of off-station. Transport <cargo> to the industrial solid waste recycler on <destination>. Payment is <payment>."
-	job
-	repeat
-	to offer
-		random < 70
-	cargo "Garbage" 15 100
-	source
-		attributes station
-	destination
-		attributes factory mining "dirt belt"
-		distance 9 12
-	on complete
-		dialog "You drop off the <commodity> at an especially smelly solid waste recycler and collect your payment of <payment>."
-		payment
-		payment 20000
 
 
 
@@ -2135,7 +1677,7 @@ mission "Rush Delivery [2]"
 	to offer
 		random < 70
 	source
-		attributes mining textiles factory farming fishing oil
+		attributes "mining" "textiles" "factory" "farming" "fishing" "oil"
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
 	destination
 		distance 6 14
@@ -2155,7 +1697,7 @@ mission "Rush Delivery [3]"
 	to offer
 		random < 60
 	source
-		attributes mining textiles factory farming fishing oil
+		attributes "mining" "textiles" "factory" "farming" "fishing" "oil"
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
 	destination
 		distance 7 16
@@ -2164,485 +1706,6 @@ mission "Rush Delivery [3]"
 		payment
 		payment 22000
 		dialog "You drop off your cargo of <commodity> and collect your payment of <payment>."
-
-
-
-mission "Small Rush Mining [0]"
-	name "Rush mining for <planet>"
-	description "Mine 10 tons of iron from asteroids and deliver it to the factories on <destination> by <date>. Payment is <payment>."
-	job
-	repeat
-	deadline 10
-	to offer
-		random < 40
-	source
-		government Republic "Free Worlds" Syndicate Neutral
-	destination
-		distance 0 4
-		government Republic "Free Worlds" Syndicate Neutral
-		attributes factory
-	on complete
-		outfit Iron -10
-		payment 18000
-		dialog "You drop off your cargo and collect your payment of <payment>."
-
-mission "Small Rush Mining [1]"
-	name "Rush mining for <planet>"
-	description "Mine 10 tons of aluminum from asteroids and deliver it to the shipyard on <destination> by <date>. Payment is <payment>."
-	job
-	repeat
-	deadline 10
-	to offer
-		random < 35
-	source
-		government Republic "Free Worlds" Syndicate Neutral
-	destination
-		distance 0 3
-		government Republic "Free Worlds" Syndicate Neutral
-		attributes shipyard
-	on complete
-		outfit Aluminum -10
-		payment 24000
-		dialog "You drop off your cargo and collect your payment of <payment>."
-
-mission "Small Rush Mining [2]"
-	name "Rush mining for <planet>"
-	description "Mine 10 tons of titanium from asteroids and deliver it to the shipyard on <destination> by <date>. Payment is <payment>."
-	job
-	repeat
-	deadline 10
-	to offer
-		random < 30
-	source
-		government Republic "Free Worlds" Syndicate Neutral
-	destination
-		distance 0 3
-		government Republic "Free Worlds" Syndicate Neutral
-		attributes shipyard
-	on complete
-		outfit Titanium -10
-		payment 31000
-		dialog "You drop off your cargo and collect your payment of <payment>."
-
-mission "Small Rush Mining [3]"
-	name "Rush mining for <planet>"
-	description "Mine 10 tons of copper from asteroids and deliver it to <destination> by <date>. Payment is <payment>."
-	job
-	repeat
-	deadline 10
-	to offer
-		random < 25
-	source
-		government Republic "Free Worlds" Syndicate Neutral
-	destination
-		distance 0 4
-		government Republic "Free Worlds" Syndicate Neutral
-		attributes shipyard factory
-	on complete
-		outfit Copper -10
-		payment 36000
-		dialog "You drop off your cargo and collect your payment of <payment>."
-
-mission "Small Rush Mining [4]"
-	name "Rush mining for <planet>"
-	description "Mine 10 tons of neodynium from asteroids and deliver it to the shipyard on <destination> by <date>. Payment is <payment>."
-	job
-	repeat
-	deadline 10
-	to offer
-		random < 20
-	source
-		government Republic "Free Worlds" Syndicate Neutral
-	destination
-		distance 0 3
-		government Republic "Free Worlds" Syndicate Neutral
-		attributes shipyard
-	on complete
-		outfit Neodynium -10
-		payment 44000
-		dialog "You drop off your cargo and collect your payment of <payment>."
-
-mission "Small Rush Mining [5]"
-	name "Rush mining for <planet>"
-	description "Mine 5 tons of tungsten from asteroids and deliver it to the shipyard on <destination> by <date>. Payment is <payment>."
-	job
-	repeat
-	deadline 10
-	to offer
-		random < 15
-	source
-		government Republic "Free Worlds" Syndicate Neutral
-	destination
-		distance 0 3
-		government Republic "Free Worlds" Syndicate Neutral
-		attributes syMajor
-	on complete
-		outfit Tungsten -5
-		payment 27000
-		dialog "You drop off your cargo and collect your payment of <payment>."
-
-mission "Small Rush Mining [6]"
-	name "Rush mining for <planet>"
-	description "Mine 5 tons of uranium from asteroids and deliver it to the shipyard on <destination> by <date>. Payment is <payment>."
-	job
-	repeat
-	deadline 10
-	to offer
-		random < 15
-	source
-		government Republic "Free Worlds" Syndicate Neutral
-	destination
-		distance 0 3
-		government Republic "Free Worlds" Syndicate Neutral
-		attributes syMajor
-	on complete
-		outfit Uranium -5
-		payment 30000
-		dialog "You drop off your cargo and collect your payment of <payment>."
-
-
-
-mission "Large Rush Delivery [0]"
-	name "Large rush delivery to <planet>"
-	job
-	repeat
-	deadline
-	description "Deliver <cargo> to <destination> by <date>. Payment is <payment>."
-	cargo random 20 6 .1
-	to offer
-		random < 90
-		"cargo space" > 80
-	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
-	destination
-		distance 4 10
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
-	on complete
-		payment
-		payment 36000
-		dialog "You drop off your cargo of <commodity> and collect your payment of <payment>."
-
-mission "Large Rush Delivery [1]"
-	name "Large rush delivery to <planet>"
-	job
-	repeat
-	deadline
-	description "Deliver <cargo> to <destination> by <date>. Payment is <payment>."
-	cargo random 20 6 .1
-	to offer
-		random < 80
-		"cargo space" > 80
-	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
-	destination
-		distance 5 12
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
-	on complete
-		payment
-		payment 38000
-		dialog "You drop off your cargo of <commodity> and collect your payment of <payment>."
-
-mission "Large Rush Delivery [2]"
-	name "Large rush delivery to <planet>"
-	job
-	repeat
-	deadline
-	description "Deliver <cargo> to <destination> by <date>. Payment is <payment>."
-	cargo random 20 6 .1
-	to offer
-		random < 70
-		"cargo space" > 80
-	source
-		attributes mining textiles factory farming fishing oil
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
-	destination
-		distance 6 14
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
-	on complete
-		payment
-		payment 40000
-		dialog "You drop off your cargo of <commodity> and collect your payment of <payment>."
-
-mission "Large Rush Delivery [3]"
-	name "Large rush delivery to <planet>"
-	job
-	repeat
-	deadline
-	description "Deliver <cargo> to <destination> by <date>. Payment is <payment>."
-	cargo random 20 6 .1
-	to offer
-		random < 60
-		"cargo space" > 80
-	source
-		attributes mining textiles factory farming fishing oil
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
-	destination
-		distance 7 16
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
-	on complete
-		payment
-		payment 42000
-		dialog "You drop off your cargo of <commodity> and collect your payment of <payment>."
-
-mission "Large Rush Delivery [4]"
-	name "Large rush delivery to <planet>"
-	job
-	repeat
-	description "Deliver <cargo> to the shipyard on <destination>. Payment is <payment>."
-	cargo "Metal" 40 4 .02
-	to offer
-		random < 40
-		"cargo space" > 160
-	source
-		attributes mining
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
-	destination
-		distance 4 8
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
-		attributes syMajor
-	on complete
-		payment
-		payment 60000
-		dialog "You drop off your cargo of <commodity> and collect your payment of <payment>."
-
-mission "Large Rush Delivery [5]"
-	name "Large rush delivery to <planet>"
-	job
-	repeat
-	description "Deliver <cargo> to the shipyard on <destination>. Payment is <payment>."
-	cargo "Heavy Metals" 40 4 .02
-	to offer
-		random < 30
-		"cargo space" > 160
-	source
-		attributes mining
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
-	destination
-		distance 6 12
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
-		attributes syMajor
-	on complete
-		payment
-		payment 65000
-		dialog "You drop off your cargo of <commodity> and collect your payment of <payment>."
-
-mission "Large Rush Delivery [6]"
-	name "Large Rush delivery to <planet>"
-	job
-	repeat
-	description "Deliver <cargo> to the shipyard on <destination>. Payment is <payment>."
-	cargo "Electronics" 40 4 .02
-	to offer
-		random < 20
-		"cargo space" > 160
-	source
-		attributes factory
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
-	destination
-		distance 8 16
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
-		attributes syMajor
-	on complete
-		payment
-		payment 70000
-		dialog "You drop off your cargo of <commodity> and collect your payment of <payment>."
-
-
-
-mission "Medium Rush Mining [0]"
-	name "Rush mining for <planet>"
-	description "Mine 30 tons of iron from asteroids and deliver it to the factories on <destination> by <date>. Payment is <payment>."
-	job
-	repeat
-	deadline 10
-	to offer
-		random < 40
-	source
-		government Republic "Free Worlds" Syndicate Neutral
-	destination
-		distance 0 5
-		government Republic "Free Worlds" Syndicate Neutral
-		attributes factory
-	on complete
-		outfit Iron -30
-		payment 54000
-		dialog "You drop off your cargo and collect your payment of <payment>."
-
-mission "Medium Rush Mining [1]"
-	name "Rush mining for <planet>"
-	description "Mine 25 tons of aluminum from asteroids and deliver it to the shipyard on <destination> by <date>. Payment is <payment>."
-	job
-	repeat
-	deadline 10
-	to offer
-		random < 35
-	source
-		government Republic "Free Worlds" Syndicate Neutral
-	destination
-		distance 0 4
-		government Republic "Free Worlds" Syndicate Neutral
-		attributes shipyard
-	on complete
-		outfit Aluminum -25
-		payment 60000
-		dialog "You drop off your cargo and collect your payment of <payment>."
-
-mission "Medium Rush Mining [2]"
-	name "Rush mining for <planet>"
-	description "Mine 20 tons of titanium from asteroids and deliver it to the shipyard on <destination> by <date>. Payment is <payment>."
-	job
-	repeat
-	deadline 10
-	to offer
-		random < 30
-	source
-		government Republic "Free Worlds" Syndicate Neutral
-	destination
-		distance 0 4
-		government Republic "Free Worlds" Syndicate Neutral
-		attributes syMajor
-	on complete
-		outfit Titanium -20
-		payment 62000
-		dialog "You drop off your cargo and collect your payment of <payment>."
-
-mission "Medium Rush Mining [3]"
-	name "Rush mining for <planet>"
-	description "Mine 20 tons of copper from asteroids and deliver it to <destination> by <date>. Payment is <payment>."
-	job
-	repeat
-	deadline 10
-	to offer
-		random < 25
-	source
-		government Republic "Free Worlds" Syndicate Neutral
-	destination
-		distance 0 5
-		government Republic "Free Worlds" Syndicate Neutral
-		attributes syMajor factory
-	on complete
-		outfit Copper -20
-		payment 72000
-		dialog "You drop off your cargo and collect your payment of <payment>."
-
-mission "Medium Rush Mining [4]"
-	name "Rush mining for <planet>"
-	description "Mine 20 tons of neodynium from asteroids and deliver it to the shipyard on <destination> by <date>. Payment is <payment>."
-	job
-	repeat
-	deadline 10
-	to offer
-		random < 20
-	source
-		government Republic "Free Worlds" Syndicate Neutral
-	destination
-		distance 0 4
-		government Republic "Free Worlds" Syndicate Neutral
-		attributes syMajor
-	on complete
-		outfit Neodynium -20
-		payment 88000
-		dialog "You drop off your cargo and collect your payment of <payment>."
-
-mission "Medium Rush Mining [5]"
-	name "Rush mining for <planet>"
-	description "Mine 15 tons of tungsten from asteroids and deliver it to the shipyard on <destination> by <date>. Payment is <payment>."
-	job
-	repeat
-	deadline 10
-	to offer
-		random < 15
-	source
-		government Republic "Free Worlds" Syndicate Neutral
-	destination
-		distance 0 4
-		government Republic "Free Worlds" Syndicate Neutral
-		attributes syMajor
-	on complete
-		outfit Tungsten -15
-		payment 81000
-		dialog "You drop off your cargo and collect your payment of <payment>."
-
-mission "Medium Rush Mining [6]"
-	name "Rush mining for <planet>"
-	description "Mine 15 tons of uranium from asteroids and deliver it to the shipyard on <destination> by <date>. Payment is <payment>."
-	job
-	repeat
-	deadline 10
-	to offer
-		random < 15
-	source
-		government Republic "Free Worlds" Syndicate Neutral
-	destination
-		distance 0 4
-		government Republic "Free Worlds" Syndicate Neutral
-		attributes syMajor
-	on complete
-		outfit Uranium -15
-		payment 90000
-		dialog "You drop off your cargo and collect your payment of <payment>."
-
-
-
-mission "Large Rush Mining [s]"
-	name "Large rush mining for <planet>"
-	description "Mine 60 tons of silicon from asteroids and deliver it to the factories on <destination> by <date>. Payment is <payment>."
-	job
-	repeat
-	deadline 10
-	to offer
-		random < 20
-		"cargo space" > 100
-	source
-		government Republic "Free Worlds" Syndicate Neutral
-	destination
-		distance 0 5
-		government Republic "Free Worlds" Syndicate Neutral
-		attributes factory
-	on complete
-		outfit Silicon -60
-		payment 60000
-		dialog "You drop off your cargo and collect your payment of <payment>."
-
-mission "Large Rush Mining [0]"
-	name "Large rush mining for <planet>"
-	description "Mine 50 tons of iron from asteroids and deliver it to the factories on <destination> by <date>. Payment is <payment>."
-	job
-	repeat
-	deadline 10
-	to offer
-		random < 15
-		"cargo space" > 100
-	source
-		government Republic "Free Worlds" Syndicate Neutral
-	destination
-		distance 0 5
-		government Republic "Free Worlds" Syndicate Neutral
-		attributes factory
-	on complete
-		outfit Iron -50
-		payment 93000
-		dialog "You drop off your cargo and collect your payment of <payment>."
-
-mission "Large Rush Mining [1]"
-	name "Large rush mining for <planet>"
-	description "Mine 40 tons of aluminum from asteroids and deliver it to the shipyard on <destination> by <date>. Payment is <payment>."
-	job
-	repeat
-	deadline 10
-	to offer
-		random < 10
-		"cargo space" > 100
-	source
-		government Republic "Free Worlds" Syndicate Neutral
-	destination
-		distance 0 5
-		government Republic "Free Worlds" Syndicate Neutral
-		attributes syMajor
-	on complete
-		outfit Aluminum -40
-		payment 100000
-		dialog "You drop off your cargo and collect your payment of <payment>."
 
 
 
@@ -3107,6 +2170,302 @@ mission "Colonists [1]"
 		payment
 		payment 10000
 		dialog "The colonists depart your ship after paying you <payment>."
+
+
+
+mission "Large Bulk Delivery [0]"
+	name "Large bulk delivery to <planet>"
+	job
+	repeat
+	description "Deliver <cargo> to <destination>. Payment is <payment>."
+	cargo random 40 2 .02
+	to offer
+		random < 70
+		"cargo space" > 160
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+	destination
+		distance 2 8
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	on complete
+		payment
+		payment 4000
+		dialog "You drop off your cargo of <commodity> and collect your payment of <payment>."
+
+mission "Large Bulk Delivery [1]"
+	name "Large bulk delivery to <planet>"
+	job
+	repeat
+	description "Deliver <cargo> to <destination>. Payment is <payment>."
+	cargo random 40 2 .02
+	to offer
+		random < 60
+		"cargo space" > 160
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+	destination
+		distance 3 12
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	on complete
+		payment
+		payment 6000
+		dialog "You drop off your cargo of <commodity> and collect your payment of <payment>."
+
+mission "Large Bulk Delivery [2]"
+	name "Large bulk delivery to <planet>"
+	job
+	repeat
+	description "Deliver <cargo> to <destination>. Payment is <payment>."
+	cargo random 40 2 .02
+	to offer
+		random < 50
+		"cargo space" > 160
+	source
+		attributes "mining" "textiles" "factory" "farming" "fishing" "oil"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+	destination
+		distance 4 16
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	on complete
+		payment
+		payment 8000
+		dialog "You drop off your cargo of <commodity> and collect your payment of <payment>."
+
+mission "Large Bulk Delivery [3]"
+	name "Large bulk delivery to <planet>"
+	job
+	repeat
+	description "Deliver <cargo> to the shipyard on <destination>. Payment is <payment>."
+	cargo "Metal" 40 4 .02
+	to offer
+		random < 15
+		"cargo space" > 160
+	source
+		attributes "mining"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+	destination
+		distance 2 8
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes shipyard
+		attributes "military" "factory"
+	on complete
+		payment
+		payment 4000
+		dialog "You drop off your cargo of <commodity> and collect your payment of <payment>."
+
+mission "Large Bulk Delivery [4]"
+	name "Large bulk delivery to <planet>"
+	job
+	repeat
+	description "Deliver <cargo> to the shipyard on <destination>. Payment is <payment>."
+	cargo "Heavy Metals" 40 4 .02
+	to offer
+		random < 10
+		"cargo space" > 160
+	source
+		attributes "mining"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+	destination
+		distance 3 12
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes shipyard
+		attributes "military" "factory"
+	on complete
+		payment
+		payment 6000
+		dialog "You drop off your cargo of <commodity> and collect your payment of <payment>."
+
+mission "Large Bulk Delivery [5]"
+	name "Large bulk delivery to <planet>"
+	job
+	repeat
+	description "Deliver <cargo> to the shipyard on <destination>. Payment is <payment>."
+	cargo "Electronics" 40 4 .02
+	to offer
+		random < 5
+		"cargo space" > 160
+	source
+		attributes "factory"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+	destination
+		distance 4 16
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes shipyard
+		attributes "military" "factory"
+	on complete
+		payment
+		payment 8000
+		dialog "You drop off your cargo of <commodity> and collect your payment of <payment>."
+
+
+
+mission "Large Rush Delivery [0]"
+	name "Large rush delivery to <planet>"
+	job
+	repeat
+	deadline
+	description "Deliver <cargo> to <destination> by <date>. Payment is <payment>."
+	cargo random 20 6 .1
+	to offer
+		random < 90
+		"cargo space" > 80
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+	destination
+		distance 4 10
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	on complete
+		payment
+		payment 36000
+		dialog "You drop off your cargo of <commodity> and collect your payment of <payment>."
+
+mission "Large Rush Delivery [1]"
+	name "Large rush delivery to <planet>"
+	job
+	repeat
+	deadline
+	description "Deliver <cargo> to <destination> by <date>. Payment is <payment>."
+	cargo random 20 6 .1
+	to offer
+		random < 80
+		"cargo space" > 80
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+	destination
+		distance 5 12
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	on complete
+		payment
+		payment 38000
+		dialog "You drop off your cargo of <commodity> and collect your payment of <payment>."
+
+mission "Large Rush Delivery [2]"
+	name "Large rush delivery to <planet>"
+	job
+	repeat
+	deadline
+	description "Deliver <cargo> to <destination> by <date>. Payment is <payment>."
+	cargo random 20 6 .1
+	to offer
+		random < 70
+		"cargo space" > 80
+	source
+		attributes "mining" "textiles" "factory" "farming" "fishing" "oil"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+	destination
+		distance 6 14
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	on complete
+		payment
+		payment 40000
+		dialog "You drop off your cargo of <commodity> and collect your payment of <payment>."
+
+mission "Large Rush Delivery [3]"
+	name "Large rush delivery to <planet>"
+	job
+	repeat
+	deadline
+	description "Deliver <cargo> to <destination> by <date>. Payment is <payment>."
+	cargo random 20 6 .1
+	to offer
+		random < 60
+		"cargo space" > 80
+	source
+		attributes "mining" "textiles" "factory" "farming" "fishing" "oil"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+	destination
+		distance 7 16
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	on complete
+		payment
+		payment 42000
+		dialog "You drop off your cargo of <commodity> and collect your payment of <payment>."
+
+mission "Large Rush Delivery [4]"
+	name "Large rush delivery to <planet>"
+	job
+	repeat
+	description "Deliver <cargo> to the shipyard on <destination>. Payment is <payment>."
+	cargo "Metal" 40 4 .02
+	to offer
+		random < 15
+		"cargo space" > 160
+	source
+		attributes "mining"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+	destination
+		distance 4 8
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes shipyard
+		attributes "military" "factory"
+	on complete
+		payment
+		payment 60000
+		dialog "You drop off your cargo of <commodity> and collect your payment of <payment>."
+
+mission "Large Rush Delivery [5]"
+	name "Large rush delivery to <planet>"
+	job
+	repeat
+	description "Deliver <cargo> to the shipyard on <destination>. Payment is <payment>."
+	cargo "Heavy Metals" 40 4 .02
+	to offer
+		random < 10
+		"cargo space" > 160
+	source
+		attributes "mining"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+	destination
+		distance 6 12
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes shipyard
+		attributes "military" "factory"
+	on complete
+		payment
+		payment 65000
+		dialog "You drop off your cargo of <commodity> and collect your payment of <payment>."
+
+mission "Large Rush Delivery [6]"
+	name "Large Rush delivery to <planet>"
+	job
+	repeat
+	description "Deliver <cargo> to the shipyard on <destination>. Payment is <payment>."
+	cargo "Electronics" 40 4 .02
+	to offer
+		random < 5
+		"cargo space" > 160
+	source
+		attributes "factory"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+	destination
+		distance 8 16
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes shipyard
+		attributes "military" "factory"
+	on complete
+		payment
+		payment 70000
+		dialog "You drop off your cargo of <commodity> and collect your payment of <payment>."
+
+
+
+mission "Recycle garbage"
+	name "Recycle garbage"
+	description "<origin> produces a lot of garbage that needs to be disposed of off-station. Transport <cargo> to the industrial solid waste recycler on <destination>. Payment is <payment>."
+	job
+	repeat
+	to offer
+		random < 70
+	cargo "Garbage" 15 100
+	source
+		attributes station
+	destination
+		attributes "factory" "mining" "dirt belt"
+		distance 9 12
+	on complete
+		dialog "You drop off the <commodity> at an especially smelly solid waste recycler and collect your payment of <payment>."
+		payment
+		payment 20000
 
 
 
