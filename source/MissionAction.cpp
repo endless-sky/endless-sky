@@ -398,6 +398,28 @@ int MissionAction::Payment() const
 
 
 
+// Return the gifts map to allow the mission to determine how many (and which)
+// gifts are needed to complete this action.
+const map<const Outfit *, int> MissionAction::Gifts() const
+{
+	return gifts;
+}
+
+
+
+// Return the space needed to store these gifts in cargo, without regard to the
+// gifting direction.
+double MissionAction::MaxGiftSize() const
+{
+	double total = 0.;
+	for(const pair<const Outfit *, int> &gift : gifts)
+		total += abs(gift.second) * gift.first->Get("mass");
+	
+	return total;
+}
+
+
+
 // Check if this action can be completed right now. It cannot be completed
 // if it takes away money or outfits that the player does not have.
 bool MissionAction::CanBeDone(const PlayerInfo &player) const
@@ -591,6 +613,42 @@ MissionAction MissionAction::Instantiate(map<string, string> &subs, const System
 			amount *= multiplier;
 		}
 	
+	// Add text substitutions for gifted outfits.
+	if(!result.gifts.empty())
+	{
+		//  "Transport <complete: gifts given> to <planet>"
+		//  "Pick up <stopover: gifts received> from <stopovers>"
+		//  "Mine <complete: gift size> of Iron and deliver to <planet>"
+		//  "To complete this mission you must have at least one <complete: gifts required>."
+		double giftSize = result.MaxGiftSize();
+		subs["<" + trigger + ": gift size>"] = Format::Number(giftSize) + (giftSize == 1. ? " ton" : " tons");
+		map<const string, vector<pair<const Outfit *, int>>> giftLists;
+		for(const pair<const Outfit *, int> &gift : gifts)
+		{
+			if(gift.second < 0)
+				giftLists["<" + trigger + ": gifts given>"].emplace_back(gift);
+			else if(gift.second > 0)
+				giftLists["<" + trigger + ": gifts received>"].emplace_back(gift);
+			else
+				giftLists["<" + trigger + ": gifts required>"].emplace_back(gift);
+		}
+		for(const auto &it : giftLists)
+		{
+			size_t done = 0;
+			string &value = subs[it.first];
+			for(const pair<const Outfit *, int> &gift : it.second)
+			{
+				const string &name = abs(gift.second) == 1 ? gift.first->Name() : gift.first->PluralName();
+				const string &giftString = (gift.second ? to_string(abs(gift.second)) + " " : "") + name;
+				if(!done++)
+					value = giftString;
+				else if(done == it.second.size())
+					value += (it.second.size() == 2 ? " and " : ", and ") + giftString;
+				else
+					value += ", " + giftString;
+			}
+		}
+	}
 	result.payment = payment + (jumps + 1) * payload * paymentMultiplier;
 	// Fill in the payment amount if this is the "complete" action.
 	string previousPayment = subs["<payment>"];

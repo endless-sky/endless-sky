@@ -50,6 +50,10 @@ public:
 	
 	int Payment() const;
 	
+	// Determine how many (and which) gifts are needed to complete this action.
+	const std::map<const Outfit *, int> Gifts() const;
+	// The total cargo space needed to hold this action's gifts.
+	double MaxGiftSize() const;
 	// Check if this action can be completed right now. It cannot be completed
 	// if it takes away money or outfits that the player does not have, or should
 	// take place in a system that does not match the specified LocationFilter.
