@@ -76,8 +76,12 @@ private:
 	Conversation conversation;
 	
 	std::map<const GameEvent *, std::pair<int, int>> events;
-	std::map<const Outfit *, int> gifts;
+	
 	std::map<const Outfit *, int> requiredOutfits;
+	std::map<const Outfit *, int> gifts;
+	std::map<const Outfit *, int> giftLimit;
+	std::map<const Outfit *, double> giftProb;
+	
 	int64_t payment = 0;
 	int64_t paymentMultiplier = 0;
 	

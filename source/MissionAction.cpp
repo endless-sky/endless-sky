@@ -25,6 +25,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Ship.h"
 #include "UI.h"
 
+#include <cmath>
 #include <cstdlib>
 #include <vector>
 
@@ -152,8 +153,13 @@ void MissionAction::Load(const DataNode &node, const string &missionName)
 			stockConversation = GameData::Conversations().Get(child.Token(1));
 		else if(key == "outfit" && hasValue)
 		{
+			const Outfit *gift = GameData::Outfits().Get(child.Token(1));
 			int count = (child.Size() < 3 ? 1 : static_cast<int>(child.Value(2)));
-			gifts[GameData::Outfits().Get(child.Token(1))] = count;
+			gifts[gift] = count;
+			if(child.Size() >= 4)
+				giftLimit[gift] = child.Value(3);
+			if(child.Size() >= 5)
+				giftProb[gift] = child.Value(4);
 		}
 		else if(key == "require" && hasValue)
 		{
@@ -426,6 +432,28 @@ MissionAction MissionAction::Instantiate(map<string, string> &subs, const System
 		result.events[it.first] = make_pair(day, day);
 	}
 	result.gifts = gifts;
+	// Select a random number of each gift, if requested.
+	if(!giftProb.empty() || !giftLimit.empty())
+		for(const pair<const Outfit *, int> &gift : gifts)
+		{
+			int &amount = result.gifts[gift.first];
+			const auto &probIt = giftProb.find(gift.first);
+			const auto &limitIt = giftLimit.find(gift.first);
+			// Use positive values during quantity generation.
+			int multiplier = gift.second < 0 ? -1 : 1;
+			if(probIt != giftProb.end())
+				amount = Random::Polya(abs(limitIt->second), fabs(probIt->second)) + abs(gift.second);
+			else if(limitIt != giftLimit.end())
+				amount = abs(gift.second) + Random::Int(abs(limitIt->second) - abs(gift.second) + 1);
+			else
+			{
+				// This gift's transfer amount is unchanged.
+				continue;
+			}
+			// Reset the gift amount negative if needed.
+			amount *= multiplier;
+		}
+	
 	result.payment = payment + (jumps + 1) * payload * paymentMultiplier;
 	// Fill in the payment amount if this is the "complete" action.
 	string previousPayment = subs["<payment>"];
