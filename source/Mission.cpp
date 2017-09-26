@@ -574,10 +574,7 @@ bool Mission::CanComplete(const PlayerInfo &player) const
 	if(!toComplete.Test(player.Conditions()))
 		return false;
 	
-	if(!IsSatisfied(player))
-		return false;
-	
-	return true;
+	return IsSatisfied(player);
 }
 
 
