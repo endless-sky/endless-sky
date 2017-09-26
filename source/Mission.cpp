@@ -1054,9 +1054,24 @@ Mission Mission::Instantiate(const PlayerInfo &player) const
 	
 	// Instantiate the actions. The "complete" action is always first so that the "<payment>"
 	// substitution can be filled in. This will also instantiate any randomly chosen gifts or
-	// gift quantities.
+	// gift quantities, along with their text substitutions.
 	for(const auto &it : actions)
-		result.actions[it.first] = it.second.Instantiate(subs, player.GetSystem(), jumps, payload, result.destination);
+	{
+		// Vary the "origin" and "destination" systems with the trigger to let randomly chosen
+		// gifts consider the properties of stopover systems too. Possible triggers include:
+		// COMPLETE, OFFER, ACCEPT, DECLINE, FAIL, DEFER, VISIT, STOPOVER
+		if(it.first == STOPOVER && !result.stopovers.empty())
+		{
+			set<const Planet *>::const_iterator stopoverIt = result.stopovers.begin();
+			// Randomly pick the used stopover system.
+			advance(stopoverIt, Random::Int(result.stopovers.size()));
+			result.actions[it.first] = it.second.Instantiate(subs, (*stopoverIt)->GetSystem(),
+					jumps, payload, result.destination);
+		}
+		else
+			result.actions[it.first] = it.second.Instantiate(subs, player.GetSystem(),
+					jumps, payload, result.destination);
+	}
 	for(const auto &it : onEnter)
 		result.onEnter[it.first] = it.second.Instantiate(subs, player.GetSystem(), jumps, payload, result.destination);
 	for(const MissionAction &action : genericOnEnter)

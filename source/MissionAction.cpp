@@ -168,9 +168,9 @@ namespace {
 	// Pick a random outfit that's sold near the destination planet, or the
 	// "from" system. Returns nullptr if "from", the destination planet, and
 	// any of their linked systems have no outfitters.
-	const Outfit *PickOutfit(const System *from, const Planet *destination)
+	const Outfit *PickOutfit(const System *from, const Planet *destination, bool isDelivery)
 	{
-		const Sale<Outfit> &remote = destination->Outfitter();
+		Sale<Outfit> remote = destination->Outfitter();
 		Sale<Outfit> local = remote;
 		for(const StellarObject &object : from->Objects())
 			if(object.GetPlanet() && object.GetPlanet() != destination)
@@ -178,25 +178,34 @@ namespace {
 		
 		// If neither the origin or destination has outfits for sale,
 		// consider the outfits sold in each's linked systems.
-		if(local.empty())
+		Sale<Outfit> &available = isDelivery ? local : remote;
+		if(available.empty())
 			for(const System *system : {from, destination->GetSystem()})
 				for(const System *linked : system->Links())
 					for(const StellarObject &object : linked->Objects())
 						if(object.GetPlanet() && !object.GetPlanet()->Outfitter().empty())
-							local.Add(object.GetPlanet()->Outfitter());
+							available.Add(object.GetPlanet()->Outfitter());
 		
-		if(!local.empty())
+		if(!available.empty())
 		{
 			vector<int> weight;
 			int total = 0;
-			// Prefer outfits not available at the destination. High-price
-			// outfits are more strongly considered.
-			for(const Outfit *outfit : local)
-			{
-				weight.emplace_back(pow(2., 2 * (1 - remote.Has(outfit))) * outfit->Cost() * .01 + 1);
-				total += weight.back();
-			}
-			return BiasedRandomChoice(local, weight, total);
+			// Prefer outfits not available at the destination when doing
+			// "deliveries". High-price outfits are more strongly considered.
+			if(isDelivery)
+				for(const Outfit *outfit : local)
+				{
+					weight.emplace_back(pow(2., 2 * (1 - remote.Has(outfit))) * outfit->Cost() * .01 + 1);
+					total += weight.back();
+				}
+			else
+				for(const Outfit *outfit : remote)
+				{
+					weight.emplace_back(pow(2., 2 * (1 - local.Has(outfit))) * outfit->Cost() * .01 + 1);
+					total += weight.back();
+				}
+			
+			return BiasedRandomChoice(available, weight, total);
 		}
 		return nullptr;
 	}
@@ -573,9 +582,15 @@ MissionAction MissionAction::Instantiate(map<string, string> &subs, const System
 	{
 		const Outfit *gift = nullptr;
 		if(request.first == "random minable")
-			gift = PickMinableOutfit(origin, destination->GetSystem());
+		{
+			// If the amount to gift is > 0, swap the system order.
+			if(request.second < 0)
+				gift = PickMinableOutfit(origin, destination->GetSystem());
+			else
+				gift = PickMinableOutfit(destination->GetSystem(), origin);
+		}
 		else if(request.first == "random outfit")
-			gift = PickOutfit(origin, destination);
+			gift = PickOutfit(origin, destination, request.second < 0);
 		
 		if(gift && !gift->Name().empty())
 		{
@@ -623,7 +638,7 @@ MissionAction MissionAction::Instantiate(map<string, string> &subs, const System
 		double giftSize = result.MaxGiftSize();
 		subs["<" + trigger + ": gift size>"] = Format::Number(giftSize) + (giftSize == 1. ? " ton" : " tons");
 		map<const string, vector<pair<const Outfit *, int>>> giftLists;
-		for(const pair<const Outfit *, int> &gift : gifts)
+		for(const pair<const Outfit *, int> &gift : result.gifts)
 		{
 			if(gift.second < 0)
 				giftLists["<" + trigger + ": gifts given>"].emplace_back(gift);
