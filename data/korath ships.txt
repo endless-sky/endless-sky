@@ -48,10 +48,10 @@ ship "Korath Raider"
 	
 	engine -20 130
 	engine 20 130
-	turret -34 -143 "Korath Grab-Strike"
-	turret 34 -143 "Korath Grab-Strike"
 	turret -8 -145 "Korath Grab-Strike"
 	turret 8 -145 "Korath Grab-Strike"
+	turret -34 -143 "Korath Grab-Strike"
+	turret 34 -143 "Korath Grab-Strike"
 	turret 0 35 "Korath Banisher"
 	turret 0 90 "Korath Warder"
 	fighter -75 100
