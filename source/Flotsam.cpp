@@ -37,7 +37,7 @@ Flotsam::Flotsam(const string &commodity, int count)
 	lifetime = Random::Int(300) + 360;
 	// Scale lifetime in proportion to the expected amount per box.
 	if(count != TONS_PER_BOX)
-		lifetime = sqrt(count / TONS_PER_BOX) * lifetime;
+		lifetime = sqrt(count * (1. / TONS_PER_BOX)) * lifetime;
 }
 
 
