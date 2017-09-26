@@ -1052,14 +1052,15 @@ Mission Mission::Instantiate(const PlayerInfo &player) const
 	for(const NPC &npc : npcs)
 		result.npcs.push_back(npc.Instantiate(subs, player.GetSystem(), result.destination->GetSystem()));
 	
-	// Instantiate the actions. The "complete" action is always first so that
-	// the "<payment>" substitution can be filled in.
+	// Instantiate the actions. The "complete" action is always first so that the "<payment>"
+	// substitution can be filled in. This will also instantiate any randomly chosen gifts or
+	// gift quantities.
 	for(const auto &it : actions)
-		result.actions[it.first] = it.second.Instantiate(subs, player.GetSystem(), jumps, payload);
+		result.actions[it.first] = it.second.Instantiate(subs, player.GetSystem(), jumps, payload, result.destination);
 	for(const auto &it : onEnter)
-		result.onEnter[it.first] = it.second.Instantiate(subs, player.GetSystem(), jumps, payload);
+		result.onEnter[it.first] = it.second.Instantiate(subs, player.GetSystem(), jumps, payload, result.destination);
 	for(const MissionAction &action : genericOnEnter)
-		result.genericOnEnter.emplace_back(action.Instantiate(subs, player.GetSystem(), jumps, payload));
+		result.genericOnEnter.emplace_back(action.Instantiate(subs, player.GetSystem(), jumps, payload, result.destination));
 	
 	// Perform substitution in the name and description.
 	result.displayName = Format::Replace(displayName, subs);

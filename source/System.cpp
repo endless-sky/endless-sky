@@ -591,6 +591,20 @@ const vector<System::Asteroid> &System::Asteroids() const
 
 
 
+// Get the number of asteroids containing a given minable outfit in the system.
+const int System::MinableCount(const Outfit *plunder) const
+{
+	int count = 0;
+	// Each minable asteroid can contain multiple minable outfits.
+	for(const System::Asteroid &asteroid : asteroids)
+		if(asteroid.Type())
+			count += asteroid.Type()->Payload().count(plunder) * asteroid.Count();
+
+	return count;
+}
+
+
+
 // Get the background haze sprite for this system.
 const Sprite *System::Haze() const
 {

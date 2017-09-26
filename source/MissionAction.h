@@ -26,6 +26,7 @@ class DataNode;
 class DataWriter;
 class GameEvent;
 class Outfit;
+class Planet;
 class PlayerInfo;
 class System;
 class UI;
@@ -58,8 +59,8 @@ public:
 	void Do(PlayerInfo &player, UI *ui = nullptr, const System *destination = nullptr) const;
 	
 	// "Instantiate" this action by filling in the wildcard text for the actual
-	// destination, payment, cargo, etc.
-	MissionAction Instantiate(std::map<std::string, std::string> &subs, const System *origin, int jumps, int payload) const;
+	// destination, payment, cargo, etc., and picking any needed random outfits.
+	MissionAction Instantiate(std::map<std::string, std::string> &subs, const System *origin, int jumps, int payload, const Planet *destination) const;
 	
 	
 private:
@@ -81,6 +82,11 @@ private:
 	std::map<const Outfit *, int> gifts;
 	std::map<const Outfit *, int> giftLimit;
 	std::map<const Outfit *, double> giftProb;
+	// Randomly selected outfits are chosen during instantiation and
+	// then merged with any existing, specifically-identified outfits.
+	std::map<const std::string, int> randomGifts;
+	std::map<const std::string, int> randomGiftsLimit;
+	std::map<const std::string, double> randomGiftsProb;
 	
 	int64_t payment = 0;
 	int64_t paymentMultiplier = 0;

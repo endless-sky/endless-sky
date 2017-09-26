@@ -26,6 +26,7 @@ class Date;
 class Fleet;
 class Government;
 class Minable;
+class Outfit;
 class Planet;
 class Ship;
 class Sprite;
@@ -124,6 +125,8 @@ public:
 	
 	// Get the specification of how many asteroids of each type there are.
 	const std::vector<Asteroid> &Asteroids() const;
+	// Get the number of asteroids containing the given outfit as plunder.
+	const int MinableCount(const Outfit *plunder) const;
 	// Get the background haze sprite for this system.
 	const Sprite *Haze() const;
 	

@@ -19,10 +19,15 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Format.h"
 #include "GameData.h"
 #include "Messages.h"
+#include "Minable.h"
 #include "Outfit.h"
+#include "Planet.h"
 #include "PlayerInfo.h"
 #include "Random.h"
+#include "Sale.h"
 #include "Ship.h"
+#include "StellarObject.h"
+#include "System.h"
 #include "UI.h"
 
 #include <cmath>
@@ -104,6 +109,97 @@ namespace {
 			message += "flagship.";
 		Messages::Add(message);
 	}
+	
+	// Get every outfit that can be looted from minables.
+	const set<const Outfit *> MinableOutfits()
+	{
+		set<const Outfit *> minedOutfits;
+		for(const auto &minable : GameData::Minables())
+			for(const auto &outfit : minable.second.Payload())
+				minedOutfits.emplace(outfit.first);
+		
+		return minedOutfits;
+	}
+	
+	const Outfit *BiasedRandomChoice(const set<const Outfit *> &choices, const vector<int> &weights, int total)
+	{
+		if(total > 0 && !choices.empty())
+		{
+			// Pick a random outfit based on the supplied weights.
+			int r = Random::Int(total);
+			auto choice = choices.cbegin();
+			for(size_t i = 0; i < weights.size(); ++i)
+			{
+				r -= weights[i];
+				if(r < 0)
+					return *choice;
+				++choice;
+			}
+		}
+		return nullptr;
+	}
+	
+	// Pick a random minable outfit that would make sense to be exported from the first system
+	// to the second. This function only returns nullptr if there are no matching minable outfits.
+	const Outfit *PickMinableOutfit(const System *from, const System *to)
+	{
+		const set<const Outfit *> minableOutfits = MinableOutfits();
+		bool useWeights = (from != to);
+		vector<int> weight;
+		int total = 0;
+		for(const Outfit *outfit : minableOutfits)
+		{
+			// Strongly prefer minables in "from" or its neighbors, to reduce the
+			// chance of picking outfits that are not regionally available.
+			int fromCount = 3 * from->MinableCount(outfit) + 1;
+			int toCount = to->MinableCount(outfit);
+			for(const System *linked : from->Links())
+				fromCount *= 1 + linked->MinableCount(outfit);
+			if(useWeights)
+				for(const System *linked : to->Links())
+					toCount += linked->MinableCount(outfit);
+			
+			weight.emplace_back(max(1, useWeights ? fromCount * 3 - toCount : fromCount));
+			total += weight.back();
+		}
+		return BiasedRandomChoice(minableOutfits, weight, total);
+	}
+	
+	// Pick a random outfit that's sold near the destination planet, or the
+	// "from" system. Returns nullptr if "from", the destination planet, and
+	// any of their linked systems have no outfitters.
+	const Outfit *PickOutfit(const System *from, const Planet *destination)
+	{
+		const Sale<Outfit> &remote = destination->Outfitter();
+		Sale<Outfit> local = remote;
+		for(const StellarObject &object : from->Objects())
+			if(object.GetPlanet() && object.GetPlanet() != destination)
+				local.Add(object.GetPlanet()->Outfitter());
+		
+		// If neither the origin or destination has outfits for sale,
+		// consider the outfits sold in each's linked systems.
+		if(local.empty())
+			for(const System *system : {from, destination->GetSystem()})
+				for(const System *linked : system->Links())
+					for(const StellarObject &object : linked->Objects())
+						if(object.GetPlanet() && !object.GetPlanet()->Outfitter().empty())
+							local.Add(object.GetPlanet()->Outfitter());
+		
+		if(!local.empty())
+		{
+			vector<int> weight;
+			int total = 0;
+			// Prefer outfits not available at the destination. High-price
+			// outfits are more strongly considered.
+			for(const Outfit *outfit : local)
+			{
+				weight.emplace_back(pow(2., 2 * (1 - remote.Has(outfit))) * outfit->Cost() * .01 + 1);
+				total += weight.back();
+			}
+			return BiasedRandomChoice(local, weight, total);
+		}
+		return nullptr;
+	}
 }
 
 
@@ -153,13 +249,28 @@ void MissionAction::Load(const DataNode &node, const string &missionName)
 			stockConversation = GameData::Conversations().Get(child.Token(1));
 		else if(key == "outfit" && hasValue)
 		{
-			const Outfit *gift = GameData::Outfits().Get(child.Token(1));
-			int count = (child.Size() < 3 ? 1 : static_cast<int>(child.Value(2)));
-			gifts[gift] = count;
-			if(child.Size() >= 4)
-				giftLimit[gift] = child.Value(3);
-			if(child.Size() >= 5)
-				giftProb[gift] = child.Value(4);
+			const string &value = child.Token(1);
+			int count = (child.Size() < 3) ? 1 : static_cast<int>(child.Value(2));
+			// Is this a known outfit, or one to be picked?
+			if(value == "random outfit" || value == "random minable")
+			{
+				// Each type of random request can only be used once in a given action.
+				randomGifts[value] = count;
+				if(child.Size() >= 4)
+					randomGiftsLimit[value] = child.Value(3);
+				if(child.Size() >= 5)
+					randomGiftsProb[value] = child.Value(4);
+			}
+			else
+			{
+				// This is a specific outfit, possibly needing a random quantity.
+				const Outfit *gift = GameData::Outfits().Get(value);
+				gifts[gift] = count;
+				if(child.Size() >= 4)
+					giftLimit[gift] = child.Value(3);
+				if(child.Size() >= 5)
+					giftProb[gift] = child.Value(4);
+			}
 		}
 		else if(key == "require" && hasValue)
 		{
@@ -415,7 +526,7 @@ void MissionAction::Do(PlayerInfo &player, UI *ui, const System *destination) co
 
 
 
-MissionAction MissionAction::Instantiate(map<string, string> &subs, const System *origin, int jumps, int payload) const
+MissionAction MissionAction::Instantiate(map<string, string> &subs, const System *origin, int jumps, int payload, const Planet *destination) const
 {
 	MissionAction result;
 	result.trigger = trigger;
@@ -431,26 +542,52 @@ MissionAction MissionAction::Instantiate(map<string, string> &subs, const System
 		int day = it.second.first + Random::Int(it.second.second - it.second.first + 1);
 		result.events[it.first] = make_pair(day, day);
 	}
+	
 	result.gifts = gifts;
+	result.giftProb = giftProb;
+	result.giftLimit = giftLimit;
+	// Fulfill any outfit requests (e.g. pick the "random minable").
+	for(const pair<string, int> &request : randomGifts)
+	{
+		const Outfit *gift = nullptr;
+		if(request.first == "random minable")
+			gift = PickMinableOutfit(origin, destination->GetSystem());
+		else if(request.first == "random outfit")
+			gift = PickOutfit(origin, destination);
+		
+		if(gift && !gift->Name().empty())
+		{
+			// The transfer quantity may also be randomly picked.
+			const auto &probIt = randomGiftsProb.find(request.first);
+			if(probIt != randomGiftsProb.end())
+				result.giftProb.emplace(gift, probIt->second);
+			
+			const auto &limitIt = randomGiftsLimit.find(request.first);
+			if(limitIt != randomGiftsLimit.end())
+				result.giftLimit.emplace(gift, limitIt->second);
+			
+			result.gifts[gift] += request.second;
+		}
+	}
 	// Select a random number of each gift, if requested.
-	if(!giftProb.empty() || !giftLimit.empty())
-		for(const pair<const Outfit *, int> &gift : gifts)
+	if(!result.giftProb.empty() || !result.giftLimit.empty())
+		for(const pair<const Outfit *, int> &gift : result.gifts)
 		{
 			int &amount = result.gifts[gift.first];
-			const auto &probIt = giftProb.find(gift.first);
-			const auto &limitIt = giftLimit.find(gift.first);
+			const auto &probIt = result.giftProb.find(gift.first);
+			const auto &limitIt = result.giftLimit.find(gift.first);
 			// Use positive values during quantity generation.
 			int multiplier = gift.second < 0 ? -1 : 1;
-			if(probIt != giftProb.end())
+			if(probIt != result.giftProb.end())
 				amount = Random::Polya(abs(limitIt->second), fabs(probIt->second)) + abs(gift.second);
-			else if(limitIt != giftLimit.end())
+			else if(limitIt != result.giftLimit.end())
 				amount = abs(gift.second) + Random::Int(abs(limitIt->second) - abs(gift.second) + 1);
 			else
 			{
 				// This gift's transfer amount is unchanged.
 				continue;
 			}
-			// Reset the gift amount negative if needed.
+			// Preserve the original transfer direction.
 			amount *= multiplier;
 		}
 	
