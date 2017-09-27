@@ -135,29 +135,34 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 	
 	for(const DataNode &child : node)
 	{
-		// Check for the "add", "remove", or "set period" keyword.
+		// Check for the "add", "remove", or "set" keyword.
 		bool add = (child.Token(0) == "add");
 		bool remove = (child.Token(0) == "remove");
-		bool setPeriod = (child.Token(0) == "set period");
-		if((add || remove || setPeriod) && child.Size() < 2)
+		bool setTo = (child.Token(0) == "set");
+		if((add || remove || setTo) && child.Size() < 2)
 		{
 			child.PrintTrace("Skipping " + child.Token(0) + " with no key given:");
 			continue;
 		}
 		
 		// Get the key and value (if any).
-		const string &key = child.Token((add || remove || setPeriod) ? 1 : 0);
-		int valueIndex = (add || remove || setPeriod) ? 2 : 1;
+		const string &key = child.Token((add || remove || setTo) ? 1 : 0);
+		int valueIndex = (add || remove || setTo) ? 2 : 1;
 		bool hasValue = (child.Size() > valueIndex);
 		const string &value = child.Token(hasValue ? valueIndex : 0);
 		
+		if(setTo && key != "fleet")
+		{
+			child.PrintTrace("Skipping unsupported use of `set` with key " + key + ":");
+			continue;
+		}
 		// Check for conditions that require clearing this key's current value.
 		// "remove <key>" means to clear the key's previous contents.
 		// "remove <key> <value>" means to remove just that value from the key.
 		bool removeAll = (remove && !hasValue);
 		// If this is the first entry for the given key, and we are not in "add"
 		// or "remove" mode, its previous value should be cleared.
-		bool overwriteAll = (!add && !remove && shouldOverwrite.count(key));
+		bool overwriteAll = (!add && !remove && !setTo && shouldOverwrite.count(key));
 		overwriteAll |= (!add && !remove && key == "minables" && shouldOverwrite.count("asteroids"));
 		// Clear the data of the given type.
 		if(removeAll || overwriteAll)
@@ -249,7 +254,7 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 						break;
 					}
 			}
-			else if(add || setPeriod)
+			else if(add || setTo)
 			{
 				// Merge this added fleet's period into an existing, identical
 				// fleet's period, or replace that fleet's period entirely.
