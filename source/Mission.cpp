@@ -568,16 +568,31 @@ bool Mission::HasSpace(const PlayerInfo &player) const
 
 bool Mission::CanComplete(const PlayerInfo &player) const
 {
-	if(player.GetPlanet() != destination || !waypoints.empty() || !stopovers.empty())
+	if(player.GetPlanet() != destination)
 		return false;
 	
 	if(!toComplete.Test(player.Conditions()))
 		return false;
 	
+	return IsSatisfied(player);
+}
+
+
+
+// This function dictates whether missions on the player's map are shown in
+// bright or dim text colors.
+bool Mission::IsSatisfied(const PlayerInfo &player) const
+{
+	if(!waypoints.empty() || !stopovers.empty())
+		return false;
+	
+	// Determine if any fines or outfits that must be transferred, can.
 	auto it = actions.find(COMPLETE);
 	if(it != actions.end() && !it->second.CanBeDone(player))
 		return false;
 	
+	// NPCs which must be accompanied or evaded must be present (or not),
+	// and any needed scans, boarding, or assisting must also be completed.
 	for(const NPC &npc : npcs)
 		if(!npc.HasSucceeded(player.GetSystem()))
 			return false;

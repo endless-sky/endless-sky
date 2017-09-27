@@ -43,9 +43,6 @@ public:
 	void Save(DataWriter &out) const;
 	
 	int Payment() const;
-	// Tell this object what the default payment for this mission turned out to
-	// be. It will ignore this information if it is not giving default payment.
-	void SetDefaultPayment(int credits);
 	
 	// Check if this action can be completed right now. It cannot be completed
 	// if it takes away money or outfits that the player does not have.
