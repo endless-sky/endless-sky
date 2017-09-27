@@ -122,7 +122,7 @@ public:
 	int64_t ChassisCost() const;
 	
 	// When creating a new ship, you must set the following:
-	void Place(Point position = Point(), Point velocity = Point(), Angle angle = Angle());
+	void Place(Point position = Point(), Point velocity = Point(), Angle angle = Angle(), bool isNew = true);
 	void SetName(const std::string &name);
 	void SetSystem(const System *system);
 	void SetPlanet(const Planet *planet);

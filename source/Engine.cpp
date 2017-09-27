@@ -819,9 +819,8 @@ void Engine::SelectGroup(int group, bool hasShift, bool hasControl)
 void Engine::EnterSystem()
 {
 	ai.Clean();
-	grudge.clear();
 	
-	const Ship *flagship = player.Flagship();
+	Ship *flagship = player.Flagship();
 	if(!flagship)
 		return;
 	
@@ -837,26 +836,19 @@ void Engine::EnterSystem()
 		+ today.ToString() + (system->IsInhabited(flagship) ?
 			"." : ". No inhabited planets detected."));
 	
-	// Preload landscapes, and determine if any of the stellarobjects are wormholes.
-	bool hasWormhole = false;
+	// Preload landscapes and determine if the player used a wormhole.
+	const StellarObject *usedWormhole = nullptr;
 	for(const StellarObject &object : system->Objects())
-	{
 		if(object.GetPlanet())
+		{
 			GameData::Preload(object.GetPlanet()->Landscape());
-		if(!hasWormhole && object.GetPlanet() && object.GetPlanet()->IsWormhole())
-			hasWormhole = true;
-	}
+			if(object.GetPlanet()->IsWormhole() && !usedWormhole
+					&& flagship->Position().Distance(object.Position()) < 1.)
+				usedWormhole = &object;
+		}
 	
-	// The player may have used a wormhole that was not in his or her existing travel plan.
-	if(hasWormhole && player.HasTravelPlan())
-	{
-		// If the next system in the travel plan is not this system, or reachable
-		// from this system, then the travel plan is invalid and must be cleared.
-		const System *to = player.TravelPlan().back();
-		if(system != to && system->Neighbors().count(to) == 0)
-			player.TravelPlan().clear();
-	}
-	
+	// Advance the positions of every StellarObject and update politics.
+	// Remove expired bribes, clearance, and grace periods from past fines.
 	GameData::SetDate(today);
 	GameData::StepEconomy();
 	// SetDate() clears any bribes from yesterday, so restore any auto-clearance.
@@ -867,6 +859,23 @@ void Engine::EnterSystem()
 			for(const Planet *planet : mission.Stopovers())
 				planet->Bribe(mission.HasFullClearance());
 		}
+	
+	if(usedWormhole)
+	{
+		// If ships use a wormhole, they are emitted from its center in
+		// its destination system. Player travel causes a date change,
+		// thus the wormhole's new position should be used.
+		flagship->Place(usedWormhole->Position(), flagship->Velocity(), flagship->Facing(), false);
+		if(player.HasTravelPlan())
+		{
+			// Wormhole travel generally invalidates travel plans
+			// unless it was planned. For valid travel plans, the
+			// next system will be this system, or accessible.
+			const System *to = player.TravelPlan().back();
+			if(system != to && !flagship->JumpFuel(to))
+				player.TravelPlan().clear();
+		}
+	}
 	
 	asteroids.Clear();
 	for(const System::Asteroid &a : system->Asteroids())
@@ -913,6 +922,7 @@ void Engine::EnterSystem()
 		}
 	}
 	
+	grudge.clear();
 	projectiles.clear();
 	effects.clear();
 	flotsam.clear();
