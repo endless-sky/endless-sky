@@ -893,7 +893,11 @@ void Engine::EnterSystem()
 		{
 			for(int i = 0; i < 10; ++i)
 				if(static_cast<int>(Random::Int(200) + 1) < attraction)
+				{
 					raidFleet->Place(*system, ships);
+					Messages::Add("Your fleet has attracted the interest of a "
+							+ raidFleet->GetGovernment()->GetName() + " raiding party.");
+				}
 		}
 	}
 	

@@ -111,6 +111,8 @@ public:
 	
 	// Strings for combat rating levels.
 	static const std::vector<std::string> &CombatRatings();
+	// Strings for raid fleet likelihood.
+	static const std::vector<std::string> &RaidFleetRatings();
 	
 	static const StarField &Background();
 	static void SetHaze(const Sprite *sprite);

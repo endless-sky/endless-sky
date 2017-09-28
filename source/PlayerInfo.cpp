@@ -855,7 +855,7 @@ double PlayerInfo::RaidFleetAttraction() const
 	double sum = 0.;
 	for(const shared_ptr<Ship> &ship : Ships())
 	{
-		if(ship->IsParked())
+		if(ship->IsParked() || ship->IsDestroyed())
 			continue;
 		
 		sum += .4 * sqrt(ship->Attributes().Get("cargo space")) - 1.8;

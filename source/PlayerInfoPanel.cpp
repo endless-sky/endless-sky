@@ -449,6 +449,23 @@ void PlayerInfoPanel::DrawPlayer(const Rectangle &bounds)
 		table.Draw("(" + to_string(ratingLevel) + ")", dim);
 	}
 	
+	// Determine the player's raid fleet attraction.
+	static const vector<string> &ATTRACTION = GameData::RaidFleetRatings();
+	if(!ATTRACTION.empty())
+	{
+		table.DrawGap(10);
+		table.DrawUnderline(dim);
+		table.Draw("raid threat level:", bright);
+		table.Advance();
+		table.DrawGap(5);
+		
+		int attraction = player.RaidFleetAttraction();
+		int attractionLevel = attraction <= 2 ? 0
+				: min<int>(ATTRACTION.size() - 1, floor(log2(attraction - 2) + 1.4));
+		table.Draw(ATTRACTION[attractionLevel], dim);
+		table.Draw("(" + Format::Number(--attraction >= 2 ? attraction * .05 : 0) + ")", dim);
+	
+	}
 	// Other special information:
 	auto salary = Match(player, "salary: ", "");
 	sort(salary.begin(), salary.end());
