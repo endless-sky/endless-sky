@@ -107,11 +107,13 @@ bool HiringPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 	if(key == 'h' || key == '=' || key == SDLK_RETURN || key == SDLK_SPACE)
 	{
 		player.Flagship()->AddCrew(min(maxHire, Modifier()));
+		player.SetFlagshipCrew(player.Flagship()->Crew());
 		player.UpdateCargoCapacities();
 	}
 	else if(key == 'f' || key == '-' || key == SDLK_BACKSPACE || key == SDLK_DELETE)
 	{
 		player.Flagship()->AddCrew(-min(maxFire, Modifier()));
+		player.SetFlagshipCrew(player.Flagship()->Crew());
 		player.UpdateCargoCapacities();
 	}
 	
