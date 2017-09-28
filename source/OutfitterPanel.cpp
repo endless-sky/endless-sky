@@ -21,6 +21,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "FontSet.h"
 #include "Format.h"
 #include "GameData.h"
+#include "Hardpoint.h"
 #include "Outfit.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
@@ -33,6 +34,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "UI.h"
 
 #include <limits>
+#include <memory>
 
 class Sprite;
 
@@ -913,14 +915,14 @@ void OutfitterPanel::CheckRefill()
 	
 	int count = 0;
 	map<const Outfit *, int> needed;
-	for(const auto &ship : player.Ships())
+	for(const shared_ptr<Ship> &ship : player.Ships())
 	{
 		if(ship->GetSystem() != player.GetSystem() || ship->IsDisabled())
 			continue;
 		
 		++count;
 		set<const Outfit *> toRefill;
-		for(const auto &it : ship->Weapons())
+		for(const Hardpoint &it : ship->Weapons())
 			if(it.GetOutfit() && it.GetOutfit()->Ammo())
 				toRefill.insert(it.GetOutfit()->Ammo());
 		
@@ -955,33 +957,36 @@ void OutfitterPanel::CheckRefill()
 
 void OutfitterPanel::Refill()
 {
-	for(const auto &ship : player.Ships())
+	for(const shared_ptr<Ship> &ship : player.Ships())
 	{
 		if(ship->GetSystem() != player.GetSystem() || ship->IsDisabled())
 			continue;
 		
 		set<const Outfit *> toRefill;
-		for(const auto &it : ship->Weapons())
+		for(const Hardpoint &it : ship->Weapons())
 			if(it.GetOutfit() && it.GetOutfit()->Ammo())
 				toRefill.insert(it.GetOutfit()->Ammo());
 		
-		// This is slower than just calculating the proper number to add, but
-		// that does not matter because this is not so time-consuming anyways.
 		for(const Outfit *outfit : toRefill)
-			while(ship->Attributes().CanAdd(*outfit) > 0)
+		{
+			int neededAmmo = ship->Attributes().CanAdd(*outfit, numeric_limits<int>::max());
+			if(neededAmmo)
 			{
-				if(player.Cargo().Get(outfit))
-					player.Cargo().Remove(outfit);
-				else if(!(player.Stock(outfit) > 0 || outfitter.Has(outfit)))
-					break;
-				else
+				// Fill first from any stockpiles in cargo.
+				int fromCargo = player.Cargo().Remove(outfit, neededAmmo);
+				neededAmmo -= fromCargo;
+				// Then, buy at reduced (or full) price.
+				int available = outfitter.Has(outfit) ? neededAmmo : 0;
+				if(neededAmmo && (player.Stock(outfit) > 0 || available))
 				{
-					int64_t price = player.StockDepreciation().Value(outfit, day);
+					available = min<int>(neededAmmo, player.Stock(outfit));
+					int64_t price = player.StockDepreciation().Value(outfit, day, available);
 					player.Accounts().AddCredits(-price);
-					player.AddStock(outfit, -1);
+					player.AddStock(outfit, -available);
 				}
-				ship->AddOutfit(outfit, 1);
+				ship->AddOutfit(outfit, available + fromCargo);
 			}
+		}
 	}
 }
 
