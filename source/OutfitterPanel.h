@@ -19,10 +19,12 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include <map>
 #include <string>
+#include <vector>
 
 class Outfit;
 class PlayerInfo;
 class Point;
+class Ship;
 
 
 
@@ -71,7 +73,9 @@ private:
 	std::string LicenseName(const std::string &name) const;
 	void CheckRefill();
 	void Refill();
-	
+	// Shared code for reducing the selected ships to those that have the
+	// same quantity of the selected outfit.
+	const std::vector<Ship *> GetShipsToOutfit(bool isBuy = false) const;
 	
 private:
 	// Record whether we've checked if the player needs ammo refilled.

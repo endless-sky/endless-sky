@@ -298,23 +298,8 @@ void OutfitterPanel::Buy()
 		}
 		
 		// Find the ships with the fewest number of these outfits.
-		vector<Ship *> shipsToOutfit;
-		int fewest = numeric_limits<int>::max();
-		for(Ship *ship : playerShips)
-		{
-			if(!ShipCanBuy(ship, selectedOutfit))
-				continue;
+		const vector<Ship *> shipsToOutfit = GetShipsToOutfit(true);
 		
-			int count = ship->OutfitCount(selectedOutfit);
-			if(count < fewest)
-			{
-				shipsToOutfit.clear();
-				fewest = count;
-			}
-			if(count == fewest)
-				shipsToOutfit.push_back(ship);
-		}
-	
 		for(Ship *ship : shipsToOutfit)
 		{
 			if(!CanBuy())
@@ -469,8 +454,7 @@ void OutfitterPanel::FailBuy() const
 	{
 		GetUI()->Push(new Dialog("You cannot install this outfit in your ship, "
 			"because it would reduce one of your ship's attributes to a negative amount. "
-			"For example, perhaps it uses up more cargo space than you have left, "
-			"or has a constant energy draw greater than what your ship produces."));
+			"For example, it may use up more cargo space than you have left."));
 		return;
 	}
 }
@@ -505,23 +489,8 @@ void OutfitterPanel::Sell()
 	}
 	else
 	{
-		int most = 0;
-		vector<Ship *> shipsToOutfit;
-		for(Ship *ship : playerShips)
-		{
-			if(!ShipCanSell(ship, selectedOutfit))
-				continue;
-			
-			int count = ship->OutfitCount(selectedOutfit);
-			if(count > most)
-			{
-				shipsToOutfit.clear();
-				most = count;
-			}
-			
-			if(count == most)
-				shipsToOutfit.push_back(ship);
-		}
+		// Get the ships that have the most of this outfit installed.
+		const vector<Ship *> shipsToOutfit = GetShipsToOutfit();
 		
 		for(Ship *ship : shipsToOutfit)
 		{
@@ -604,6 +573,7 @@ void OutfitterPanel::FailSell() const
 
 
 
+// Return true if at least one selected ship can uninstall the selected outfit.
 bool OutfitterPanel::CanUninstall() const
 {
 	if(!planet || !selectedOutfit)
@@ -617,22 +587,26 @@ bool OutfitterPanel::CanUninstall() const
 	{
 		if(ammo && ship->OutfitCount(ammo))
 		{
-			// Check that we have room for the ammo that
-			// must be removed to uninstall the outfit.
-			double totalMass = ammo->Get("mass") * ship->OutfitCount(ammo)
-				+ selectedOutfit->Get("mass");
-			if(player.Cargo().Free() > totalMass)
+			// If the player has space for outfit & its ammo, stop.
+			if(player.Cargo().Free() > selectedOutfit->Get("mass") + ship->OutfitCount(ammo) * ammo->Get("mass"))
 				return true;
-			else
-			{
-				// Not all of the ship's ammo necessarily needs to
-				// be removed along with uninstalling the outfit, but this
-				// is not a straightforward check and requires modifying
-				// the ship's attributes outfit after removing the outfit.
+			
+			// Determine the ammo count that must be stored.
+			Outfit attributes = ship->Attributes();
+			attributes.Add(*selectedOutfit, -1);
+			int toUninstall = 0;
+			for(const auto &it : attributes.Attributes())
+				if(it.second < 0.)
+					toUninstall = max<int>(toUninstall, it.second / ammo->Get(it.first));
+			
+			// If available cargo space is not sufficient to hold
+			// both outfit and ammo, consider the other selected
+			// ships as they may have fewer ammo to remove.
+			double neededTons = ammo->Get("mass") * toUninstall + selectedOutfit->Get("mass");
+			if(player.Cargo().Free() < neededTons)
 				continue;
-			}
 		}
-		else if(ShipCanSell(ship, selectedOutfit))
+		if(ShipCanSell(ship, selectedOutfit))
 			return true;
 	}
 	
@@ -643,24 +617,8 @@ bool OutfitterPanel::CanUninstall() const
 
 void OutfitterPanel::Uninstall()
 {
-	// Find the ships that have the most of this outfit to uninstall.
-	int most = 0;
-	vector<Ship *> shipsToOutfit;
-	for(Ship *ship : playerShips)
-	{
-		if(!ShipCanSell(ship, selectedOutfit))
-			continue;
-		
-		int count = ship->OutfitCount(selectedOutfit);
-		if(count > most)
-		{
-			shipsToOutfit.clear();
-			most = count;
-		}
-		
-		if(count == most)
-			shipsToOutfit.push_back(ship);
-	}
+	// Get the ships that have the most of this outfit installed.
+	const vector<Ship *> shipsToOutfit = GetShipsToOutfit();
 	
 	double mass = selectedOutfit->Get("mass");
 	for(Ship *ship : shipsToOutfit)
@@ -678,17 +636,18 @@ void OutfitterPanel::Uninstall()
 		const Outfit *ammo = selectedOutfit->Ammo();
 		if(ammo && ship->OutfitCount(ammo))
 		{
-			// Determine how many of this ammo must be uninstalled/sold to also remove the launcher.
-			// Those that can be stored will be stored, and the remainder will be sold.
+			// Determine the number of ammo to uninstall / sell.
+			// Ammo sales should only occur when batch-outfitting.
 			int mustSell = 0;
 			for(const auto &it : ship->Attributes().Attributes())
 				if(it.second < 0.)
 					mustSell = max<int>(mustSell, it.second / ammo->Get(it.first));
 			
+			// Transfer as many of the outfits into the player's
+			// cargohold as possible, and sell the excess.
 			if(mustSell)
 			{
-				// Transfer as many of the outfits into the player's cargohold as possible.
-				// If 10 need to be uninstalled, and there is space for 4, Transfer returns -4.
+				// If 10 need to be uninstalled, but room for only 4, Transfer() returns -4.
 				ship->AddOutfit(ammo, -mustSell);
 				mustSell += player.Cargo().Transfer(ammo, -mustSell);
 				int64_t price = player.FleetDepreciation().Value(ammo, day, mustSell);
@@ -706,9 +665,9 @@ void OutfitterPanel::FailUninstall() const
 	if(!planet || !selectedOutfit)
 		return;
 	else if(selectedOutfit->Get("map"))
-		GetUI()->Push(new Dialog("You cannot unequip maps. Once you buy one, its knowledge is yours permanently."));
+		GetUI()->Push(new Dialog("You cannot unequip maps. Once you obtain one, its knowledge is yours permanently."));
 	else if(HasLicense(selectedOutfit->Name()))
-		GetUI()->Push(new Dialog("You cannot unequip licenses. Once you buy one, its permissions are yours permanently."));
+		GetUI()->Push(new Dialog("You cannot unequip licenses. Once you obtain one, its permissions are yours permanently."));
 	else
 	{
 		bool hasOutfit = false;
@@ -967,7 +926,7 @@ void OutfitterPanel::CheckRefill()
 		
 		for(const Outfit *outfit : toRefill)
 		{
-			int amount = ship->Attributes().CanAdd(*outfit, 1000000);
+			int amount = ship->Attributes().CanAdd(*outfit, numeric_limits<int>::max());
 			if(amount > 0 && (outfitter.Has(outfit) || player.Stock(outfit) > 0 || player.Cargo().Get(outfit)))
 				needed[outfit] += amount;
 		}
@@ -1024,4 +983,32 @@ void OutfitterPanel::Refill()
 				ship->AddOutfit(outfit, 1);
 			}
 	}
+}
+
+
+
+// Determine which ships of the selected ships should be referenced in this
+// iteration of Buy / Sell / Uninstall.
+const vector<Ship *> OutfitterPanel::GetShipsToOutfit(bool isBuy) const
+{
+	vector<Ship *> shipsToOutfit;
+	int compareValue = isBuy ? numeric_limits<int>::max() : 0;
+	int compareMod = 2 * isBuy - 1;
+	for(Ship *ship : playerShips)
+	{
+		if((isBuy && !ShipCanBuy(ship, selectedOutfit))
+				|| (!isBuy && !ShipCanSell(ship, selectedOutfit)))
+			continue;
+		
+		int count = ship->OutfitCount(selectedOutfit);
+		if(compareMod * count < compareMod * compareValue)
+		{
+			shipsToOutfit.clear();
+			compareValue = count;
+		}
+		if(count == compareValue)
+			shipsToOutfit.push_back(ship);
+	}
+	
+	return shipsToOutfit;
 }
