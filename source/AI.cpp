@@ -2663,7 +2663,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 			Audio::Play(Audio::Get("fail"));
 		
 		const StellarObject *target = ship.GetTargetStellar();
-		if(target && ship.Position().Distance(target->Position()) < target->Radius())
+		if(target && (ship.Position().Distance(target->Position()) < target->Radius() || ship.Zoom() < 1.))
 		{
 			// Special case: if there are two planets in system and you have one
 			// selected, then press "land" again, do not toggle to the other if

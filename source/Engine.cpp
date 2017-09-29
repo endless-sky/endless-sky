@@ -1087,7 +1087,7 @@ void Engine::CalculateStep()
 			
 			Point position = object.Position() - newCenter;
 			if(checkClicks && !isRightClick && object.GetPlanet() && object.GetPlanet()->IsAccessible(flagship)
-					&& (clickPoint - position).Length() < object.Radius())
+					&& (clickPoint - position).Length() < object.Radius() && flagship->Zoom() == 1.)
 			{
 				if(&object == player.Flagship()->GetTargetStellar())
 				{
