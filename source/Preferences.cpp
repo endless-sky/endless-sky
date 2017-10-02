@@ -41,7 +41,8 @@ namespace {
 void Preferences::Load()
 {
 	// These settings should be on by default. There is no need to specify
-	// values for settings that are off by default.
+	// values for settings that are off by default unless they are not
+	// shown in PreferencesPanel.
 	settings["Automatic aiming"] = true;
 	settings["Render motion blur"] = true;
 	settings["Escorts use ammo frugally"] = true;
@@ -53,6 +54,7 @@ void Preferences::Load()
 	settings["Draw background haze"] = true;
 	settings["Hide unexplored map regions"] = true;
 	settings["Turrets focus fire"] = true;
+	settings["Rehire flagship crew on landing"] = false;
 	
 	DataFile prefs(Files::Config() + "preferences.txt");
 	for(const DataNode &node : prefs)

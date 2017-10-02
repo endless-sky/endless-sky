@@ -27,6 +27,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Outfit.h"
 #include "Person.h"
 #include "Planet.h"
+#include "Preferences.h"
 #include "Politics.h"
 #include "Random.h"
 #include "SavedGame.h"
@@ -1054,7 +1055,7 @@ void PlayerInfo::Land(UI *ui)
 	}
 	
 	// Hire crew for the flagship if the user changed it from the default.
-	if(hasSpaceport && flagshipCrew)
+	if(Preferences::Has("Rehire flagship crew on landing") && hasSpaceport && flagshipCrew)
 	{
 		int addedCrew = flagshipCrew - flagship->Crew();
 		if(addedCrew > 0)
