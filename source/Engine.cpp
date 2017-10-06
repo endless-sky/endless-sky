@@ -1082,26 +1082,32 @@ void Engine::CalculateStep()
 			double r = max(2., object.Radius() * .03 + .5);
 			radar[calcTickTock].Add(object.RadarType(flagship), object.Position(), r, r - 1.);
 			
-			if(object.GetPlanet())
-				object.GetPlanet()->DeployDefense(ships);
-			
-			Point position = object.Position() - newCenter;
-			if(checkClicks && !isRightClick && object.GetPlanet() && object.GetPlanet()->IsAccessible(flagship)
-					&& (clickPoint - position).Length() < object.Radius())
+			const Planet *planet = object.GetPlanet();
+			if(planet)
 			{
-				if(&object == player.Flagship()->GetTargetStellar())
+				planet->DeployDefense(ships);
+				
+				// If the player clicked to land on a planet,
+				// do so unless already landing elsewhere.
+				Point position = object.Position() - newCenter;
+				if(checkClicks && !isRightClick && flagship->Zoom() == 1.
+						&& planet->IsAccessible(flagship)
+						&& (clickPoint - position).Length() < object.Radius())
 				{
-					if(!object.GetPlanet()->CanLand(*flagship))
-						Messages::Add("The authorities on " + object.GetPlanet()->Name() +
-							" refuse to let you land.");
-					else
+					if(&object == flagship->GetTargetStellar())
 					{
-						clickCommands |= Command::LAND;
-						Messages::Add("Landing on " + object.GetPlanet()->Name() + ".");
+						if(!planet->CanLand(*flagship))
+							Messages::Add("The authorities on " + planet->Name()
+									+ " refuse to let you land.");
+						else
+						{
+							clickCommands |= Command::LAND;
+							Messages::Add("Landing on " + planet->Name() + ".");
+						}
 					}
+					else
+						player.Flagship()->SetTargetStellar(&object);
 				}
-				else
-					player.Flagship()->SetTargetStellar(&object);
 			}
 		}
 	
