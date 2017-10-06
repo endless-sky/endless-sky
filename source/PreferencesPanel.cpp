@@ -441,7 +441,8 @@ void PreferencesPanel::DrawSettings()
 		REACTIVATE_HELP,
 		SCROLL_SPEED,
 		"Warning siren",
-		"Hide unexplored map regions"
+		"Hide unexplored map regions",
+		"Rehire extra crew when lost"
 	};
 	bool isCategory = true;
 	for(const string &setting : SETTINGS)

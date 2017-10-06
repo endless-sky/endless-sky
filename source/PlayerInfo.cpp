@@ -1055,13 +1055,13 @@ void PlayerInfo::Land(UI *ui)
 	}
 	
 	// Hire crew for the flagship if the user changed it from the default.
-	if(Preferences::Has("Rehire flagship crew on landing") && hasSpaceport && flagshipCrew)
+	if(Preferences::Has("Rehire extra crew when lost") && hasSpaceport && flagshipCrew)
 	{
 		int addedCrew = flagshipCrew - flagship->Crew();
 		if(addedCrew > 0)
 		{
 			flagship->AddCrew(addedCrew);
-			Messages::Add("You hire " + Format::Number(addedCrew) + " crew member"
+			Messages::Add("You hire " + Format::Number(addedCrew) + " extra crew member"
 					+ (addedCrew == 1 ? " to replace the one " : "s to replace the ones ")
 					+ "lost during boarding operations.");
 		}
