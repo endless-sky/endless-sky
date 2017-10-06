@@ -536,38 +536,41 @@ int64_t Ship::ChassisCost() const
 
 
 
-// Non-member methods can use Ship::Place() with the boolean false to only
-// modify this ship's position, angle, and velocity.
-void Ship::Place(Point position, Point velocity, Angle angle, bool isNew)
+void Ship::SetPosition(Point position)
+{
+	this->position = position;
+}
+
+
+
+// Instantiate a newly-created ship in-flight.
+void Ship::Place(Point position, Point velocity, Angle angle)
 {
 	this->position = position;
 	this->velocity = velocity;
 	this->angle = angle;
 	
-	if(isNew)
+	// If landed, place the ship right above the planet.
+	if(landingPlanet)
 	{
-		// If landed, place the ship right above the planet.
-		if(landingPlanet)
-		{
-			landingPlanet = nullptr;
-			zoom = parent.lock() ? (-.2 + -.8 * Random::Real()) : 0.;
-		}
-		else
-			zoom = 1.;
-		// Make sure various special status values are reset.
-		heat = IdleHeat();
-		ionization = 0.;
-		disruption = 0.;
-		slowness = 0.;
-		isInvisible = !HasSprite();
-		jettisoned.clear();
-		hyperspaceCount = 0;
-		forget = 1;
-		targetShip.reset();
-		shipToAssist.reset();
-		if(government)
-			SetSwizzle(customSwizzle >= 0 ? customSwizzle : government->GetSwizzle());
+		landingPlanet = nullptr;
+		zoom = parent.lock() ? (-.2 + -.8 * Random::Real()) : 0.;
 	}
+	else
+		zoom = 1.;
+	// Make sure various special status values are reset.
+	heat = IdleHeat();
+	ionization = 0.;
+	disruption = 0.;
+	slowness = 0.;
+	isInvisible = !HasSprite();
+	jettisoned.clear();
+	hyperspaceCount = 0;
+	forget = 1;
+	targetShip.reset();
+	shipToAssist.reset();
+	if(government)
+		SetSwizzle(customSwizzle >= 0 ? customSwizzle : government->GetSwizzle());
 }
 
 

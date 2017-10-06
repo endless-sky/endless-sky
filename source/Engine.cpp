@@ -865,7 +865,7 @@ void Engine::EnterSystem()
 		// If ships use a wormhole, they are emitted from its center in
 		// its destination system. Player travel causes a date change,
 		// thus the wormhole's new position should be used.
-		flagship->Place(usedWormhole->Position(), flagship->Velocity(), flagship->Facing(), false);
+		flagship->SetPosition(usedWormhole->Position());
 		if(player.HasTravelPlan())
 		{
 			// Wormhole travel generally invalidates travel plans
