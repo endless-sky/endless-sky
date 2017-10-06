@@ -536,11 +536,20 @@ int64_t Ship::ChassisCost() const
 
 
 
+void Ship::SetPosition(Point position)
+{
+	this->position = position;
+}
+
+
+
+// Instantiate a newly-created ship in-flight.
 void Ship::Place(Point position, Point velocity, Angle angle)
 {
 	this->position = position;
 	this->velocity = velocity;
 	this->angle = angle;
+	
 	// If landed, place the ship right above the planet.
 	if(landingPlanet)
 	{
