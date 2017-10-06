@@ -111,8 +111,9 @@ public:
 	
 	// Strings for combat rating levels.
 	static const std::vector<std::string> &CombatRatings();
-	// Strings for raid fleet likelihood.
-	static const std::vector<std::string> &RaidFleetRatings();
+	// Strings for piracy threat factors.
+	static const std::vector<std::string> &CargoAttractiveness();
+	static const std::vector<std::string> &ArmamentDeterrence();
 	
 	static const StarField &Background();
 	static void SetHaze(const Sprite *sprite);

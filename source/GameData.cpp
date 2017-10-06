@@ -100,6 +100,7 @@ namespace {
 	map<const Sprite *, string> landingMessages;
 	vector<string> ratingLevels;
 	vector<string> attractionLevels;
+	vector<string> deterrenceLevels;
 	
 	StarField background;
 	
@@ -671,9 +672,16 @@ const vector<string> &GameData::CombatRatings()
 
 
 // Strings for combat rating levels.
-const vector<string> &GameData::RaidFleetRatings()
+const vector<string> &GameData::CargoAttractiveness()
 {
 	return attractionLevels;
+}
+
+
+
+const vector<string> &GameData::ArmamentDeterrence()
+{
+	return deterrenceLevels;
 }
 
 
@@ -842,11 +850,17 @@ void GameData::LoadFile(const string &path, bool debugMode)
 			for(const DataNode &child : node)
 				ratingLevels.push_back(child.Token(0));
 		}
-		else if(key == "raid fleet attraction")
+		else if(key == "cargo attractiveness")
 		{
 			attractionLevels.clear();
 			for(const DataNode &child : node)
 				attractionLevels.push_back(child.Token(0));
+		}
+		else if(key == "armament deterrence")
+		{
+			deterrenceLevels.clear();
+			for(const DataNode &child : node)
+				deterrenceLevels.push_back(child.Token(0));
 		}
 		else if((key == "tip" || key == "help") && node.Size() >= 2)
 		{

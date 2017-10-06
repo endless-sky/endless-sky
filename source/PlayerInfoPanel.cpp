@@ -449,22 +449,35 @@ void PlayerInfoPanel::DrawPlayer(const Rectangle &bounds)
 		table.Draw("(" + to_string(ratingLevel) + ")", dim);
 	}
 	
-	// Determine the player's raid fleet attraction.
-	static const vector<string> &ATTRACTION = GameData::RaidFleetRatings();
-	if(!ATTRACTION.empty())
+	// Display the factors affecting piracy targeting the player.
+	static const vector<string> &ATTRACTION = GameData::CargoAttractiveness();
+	static const vector<string> &DETERRENCE = GameData::ArmamentDeterrence();
+	static const vector<string> THREAT_LEVEL = {
+		"none", "low", "medium", "high", "insane"
+	};
+	if(!ATTRACTION.empty() && !DETERRENCE.empty())
 	{
+		pair<double, double> factors = player.RaidFleetFactors();
+		int attraction = lround(factors.first - factors.second);
+		// Ensure no sqrt/log of negative numbers.
+		factors.first = max(factors.first, .0);
+		factors.second = max(factors.second, .0);
+		double fleets = --attraction < 2 ? 0. : .05 * attraction;
+		int threat = fleets == 0. ? 0 : (fleets < 1. ? 1 : (fleets < 2.5 ? 2 : (fleets < 5. ? 3 : 4)));
+		
 		table.DrawGap(10);
 		table.DrawUnderline(dim);
-		table.Draw("raid threat level:", bright);
-		table.Advance();
+		table.Draw("piracy threat:", bright);
+		table.Draw(THREAT_LEVEL[threat], threat > 2 ? bright : dim);
 		table.DrawGap(5);
 		
-		int attraction = player.RaidFleetAttraction();
-		int attractionLevel = attraction <= 2 ? 0
-				: min<int>(ATTRACTION.size() - 1, floor(log2(attraction - 2) + 1.4));
-		table.Draw(ATTRACTION[attractionLevel], dim);
-		table.Draw("(" + Format::Number(--attraction >= 2 ? attraction * .05 : 0) + ")", dim);
-	
+		int attractionLevel = min<int>(ATTRACTION.size() - 1, max(0., floor(log2(factors.first))));
+		int deterrenceLevel = min<int>(DETERRENCE.size() - 1, max(0., floor(log2(factors.second))));
+		table.Draw("cargo: " + ATTRACTION[attractionLevel], dim);
+		table.Draw("(+" + Format::Number(.1 * lround(10 * sqrt(factors.first))) + ")", dim);
+		table.DrawGap(5);
+		table.Draw("fleet: " + DETERRENCE[deterrenceLevel], dim);
+		table.Draw("(-" + Format::Number(.1 * lround(10 * sqrt(factors.second))) + ")", dim);
 	}
 	// Other special information:
 	auto salary = Match(player, "salary: ", "");

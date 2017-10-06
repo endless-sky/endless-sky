@@ -850,15 +850,16 @@ int PlayerInfo::ReorderShips(const set<int> &fromIndices, int toIndex)
 
 // Find out how attractive the player's fleet is to pirates. Aside from a
 // heavy freighter, no single ship should attract extra pirate attention.
-double PlayerInfo::RaidFleetAttraction() const
+pair<double, double> PlayerInfo::RaidFleetFactors() const
 {
-	double sum = 0.;
+	double attraction = 0.;
+	double deterrence = 0.;
 	for(const shared_ptr<Ship> &ship : Ships())
 	{
 		if(ship->IsParked() || ship->IsDestroyed())
 			continue;
 		
-		sum += .4 * sqrt(ship->Attributes().Get("cargo space")) - 1.8;
+		attraction += .4 * sqrt(ship->Attributes().Get("cargo space")) - 1.8;
 		for(const Hardpoint &hardpoint : ship->Weapons())
 			if(hardpoint.GetOutfit())
 			{
@@ -866,11 +867,11 @@ double PlayerInfo::RaidFleetAttraction() const
 				if(weapon->Ammo() && !ship->OutfitCount(weapon->Ammo()))
 					continue;
 				double damage = weapon->ShieldDamage() + weapon->HullDamage();
-				sum -= .12 * damage / weapon->Reload();
+				deterrence += .12 * damage / weapon->Reload();
 			}
 	}
 	
-	return sum;
+	return make_pair(attraction, deterrence);
 }
 
 

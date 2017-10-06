@@ -886,9 +886,11 @@ void Engine::EnterSystem()
 				fleet.Get()->Place(*system, ships);
 	
 	const Fleet *raidFleet = system->GetGovernment()->RaidFleet();
-	if(raidFleet && raidFleet->GetGovernment() && raidFleet->GetGovernment()->IsEnemy())
+	const Government *raidGovernment = raidFleet ? raidFleet->GetGovernment() : nullptr;
+	if(raidGovernment && raidGovernment->IsEnemy())
 	{
-		int attraction = lround(player.RaidFleetAttraction());
+		pair<double, double> factors = player.RaidFleetFactors();
+		int attraction = lround(factors.first - factors.second);
 		if(attraction > 2)
 		{
 			for(int i = 0; i < 10; ++i)
@@ -896,7 +898,7 @@ void Engine::EnterSystem()
 				{
 					raidFleet->Place(*system, ships);
 					Messages::Add("Your fleet has attracted the interest of a "
-							+ raidFleet->GetGovernment()->GetName() + " raiding party.");
+							+ raidGovernment->GetName() + " raiding party.");
 				}
 		}
 	}
