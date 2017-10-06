@@ -890,17 +890,15 @@ void Engine::EnterSystem()
 	if(raidGovernment && raidGovernment->IsEnemy())
 	{
 		pair<double, double> factors = player.RaidFleetFactors();
-		int attraction = lround(factors.first - factors.second);
-		if(attraction > 2)
-		{
+		double attraction = .005 * (factors.first - factors.second - 2.);
+		if(attraction > 0.)
 			for(int i = 0; i < 10; ++i)
-				if(static_cast<int>(Random::Int(200) + 1) < attraction)
+				if(Random::Real() < attraction)
 				{
 					raidFleet->Place(*system, ships);
 					Messages::Add("Your fleet has attracted the interest of a "
 							+ raidGovernment->GetName() + " raiding party.");
 				}
-		}
 	}
 	
 	projectiles.clear();
