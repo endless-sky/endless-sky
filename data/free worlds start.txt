@@ -822,7 +822,7 @@ mission "FW Supply Convoy 1"
 	
 	on offer
 		conversation
-			`In the spaceport, you meet up with a woman wearing a militia uniform and carrying a clipboard. "Are you Captain <last>?" she asks. You nod. "We have a large shipment of weapons and equipment that needs to go to the militia base on <planet>. Your job is to make sure none of these ships get... lost in transit." She points to a large landing pad where you count ten Star Barges lines up next to each other.`
+			`In the spaceport, you meet up with a woman wearing a militia uniform and carrying a clipboard. "Are you Captain <last>?" she asks. You nod. "We have a large shipment of weapons and equipment that needs to go to the militia base on <planet>. Your job is to make sure none of these ships get... lost in transit." She points to a large landing pad where you count ten Star Barges lined up next to each other.`
 			choice
 				`	"Isn't it risky to transport valuable cargo in such flimsy and vulnerable ships?"`
 					goto risky
