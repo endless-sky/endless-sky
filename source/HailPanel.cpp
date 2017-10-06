@@ -96,16 +96,20 @@ HailPanel::HailPanel(PlayerInfo &player, const shared_ptr<Ship> &ship)
 			canGiveFuel = false;
 			canRepair = false;
 		}
-			
-		if(canGiveFuel || canRepair)
+		
+		if(ship->GetShipToAssist() == player.FlagshipPtr())
+			message = "Hang on, we'll be there in a minute.";
+		else if(canGiveFuel || canRepair)
+		{
 			message = "Looks like you've gotten yourself into a bit of trouble. "
 				"Would you like us to ";
-		if(canGiveFuel && canRepair)
-			message += "patch you up and give you some fuel?";
-		else if(canGiveFuel)
-			message += "give you some fuel?";
-		else if(canRepair)
-			message += "patch you up?";
+			if(canGiveFuel && canRepair)
+				message += "patch you up and give you some fuel?";
+			else if(canGiveFuel)
+				message += "give you some fuel?";
+			else if(canRepair)
+				message += "patch you up?";
+		}
 	}
 	
 	if(message.empty())
@@ -165,7 +169,7 @@ void HailPanel::Draw()
 		{
 			if(ship->GetGovernment()->IsEnemy())
 				info.SetCondition("can bribe");
-			else if(!ship->CanBeCarried())
+			else if(!ship->CanBeCarried() && ship->GetShipToAssist() != player.FlagshipPtr())
 				info.SetCondition("can assist");
 		}
 	}
