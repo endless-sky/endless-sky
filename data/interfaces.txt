@@ -25,6 +25,8 @@ color "fuel" .70 .62 .43 .75
 
 color "flagship highlight" .5 .8 .2 0.
 
+color "drag select" .2 1. 0. 0.
+
 color "available job" .9 .6 0. 1.
 color "available back" .5 .3 0. .5
 color "unavailable job" .5 .3 0. 1.
