@@ -68,6 +68,8 @@ public:
 	
 	const std::map<std::string, int> &Commodities() const;
 	const std::map<const Outfit *, int> &Outfits() const;
+	// Get the contents of this cargohold, as revealed to a cargo scan.
+	const std::string ScanResult(bool listFormat = true) const;
 	// Note: some missions may have cargo that takes up 0 space, but should
 	// still show up on the cargo listing.
 	const std::map<const Mission *, int> &MissionCargo() const;

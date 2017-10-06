@@ -459,8 +459,11 @@ void MapDetailPanel::DrawInfo()
 				? "You are flying this ship.\n" : "This is a member of your fleet.\n")
 				: "Allegiance: " + gov->GetName() + (gov->IsEnemy() ? " (hostile)\n" : "\n");
 		fillText += "\n\n";
-		fillText += "\t" + (!selectedShip->Description().empty() ? selectedShip->Description()
-				: GameData::Ships().Get(selectedShip->ModelName())->Description());
+		fillText += player.KnownCargo(selectedShip) + "\n";
+		fillText += player.KnownOutfits(selectedShip) + "\n\n";
+		if(player.KnowsDescription(selectedShip))
+			fillText += "\t" + (!selectedShip->Description().empty() ? selectedShip->Description()
+					: GameData::Ships().Get(selectedShip->ModelName())->Description());
 	}
 	else if(selectedPlanet && !selectedPlanet->Description().empty()
 			&& player.HasVisited(selectedPlanet) && !selectedPlanet->IsWormhole())

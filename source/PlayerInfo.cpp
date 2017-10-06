@@ -173,6 +173,7 @@ void PlayerInfo::Load(const string &path)
 			ships.back()->SetIsSpecial();
 			ships.back()->FinishLoading(false);
 			ships.back()->SetIsYours();
+			knownShipModelNames.emplace(ships.back()->ModelName());
 		}
 		else if(child.Token(0) == "groups" && child.Size() >= 2 && !ships.empty())
 			groups[ships.back().get()] = child.Value(1);
@@ -269,6 +270,9 @@ void PlayerInfo::Load(const string &path)
 				}
 			}
 		}
+		else if(child.Token(0) == "known ships")
+			for(const DataNode &grand : child)
+				knownShipModelNames.emplace(grand.Token(0));
 	}
 	// Based on the ships that were loaded, calculate the player's capacity for
 	// cargo and passengers.
@@ -700,6 +704,7 @@ void PlayerInfo::AddShip(const shared_ptr<Ship> &ship)
 	ships.push_back(ship);
 	ship->SetIsSpecial();
 	ship->SetIsYours();
+	knownShipModelNames.emplace(ship->ModelName());
 }
 
 
@@ -721,6 +726,7 @@ void PlayerInfo::BuyShip(const Ship *model, const string &name)
 		ships.back()->SetIsSpecial();
 		ships.back()->SetIsYours();
 		ships.back()->SetGovernment(GameData::PlayerGovernment());
+		knownShipModelNames.emplace(ships.back()->ModelName());
 		
 		accounts.AddCredits(-cost);
 		flagship.reset();
@@ -1083,9 +1089,12 @@ bool PlayerInfo::TakeOff(UI *ui)
 	// Recharge any ships that can be recharged, and load available cargo.
 	bool hasSpaceport = planet->HasSpaceport() && planet->CanUseServices();
 	for(const shared_ptr<Ship> &ship : ships)
-		if(!ship->IsParked() && !ship->IsDisabled())
+		if(!ship->IsParked())
 		{
-			if(ship->GetSystem() != system)
+			LearnOutfits(ship);
+			if(ship->IsDisabled())
+				continue;
+			else if(ship->GetSystem() != system)
 			{
 				ship->Recharge(false);
 				continue;
@@ -1110,7 +1119,7 @@ bool PlayerInfo::TakeOff(UI *ui)
 	// Load up your flagship last, so that it will have space free for any
 	// plunder that you happen to acquire.
 	cargo.TransferAll(flagship->Cargo());
-
+	
 	if(cargo.Passengers())
 	{
 		int extra = min(cargo.Passengers(), flagship->Crew() - flagship->RequiredCrew());
@@ -1122,7 +1131,7 @@ bool PlayerInfo::TakeOff(UI *ui)
 			cargo.TransferAll(flagship->Cargo());
 		}
 	}
-
+	
 	int extra = flagship->Crew() + flagship->Cargo().Passengers() - flagship->Attributes().Get("bunks");
 	if(extra > 0)
 	{
@@ -1213,6 +1222,10 @@ bool PlayerInfo::TakeOff(UI *ui)
 		}
 	for(const Mission *mission : missionsToRemove)
 		RemoveMission(Mission::FAIL, *mission, ui);
+	// Now that all cargo is set, learn what each ship is carrying.
+	for(const auto &ship : ships)
+		if(!ship->IsParked())
+			LearnCargo(ship);
 	
 	// Any ordinary cargo left behind can be sold.
 	int64_t sold = cargo.Used();
@@ -1684,6 +1697,97 @@ bool PlayerInfo::KnowsName(const System *system) const
 	return false;
 }
 
+
+
+// Check if a player knows the description of a ship model.
+bool PlayerInfo::KnowsDescription(const Ship *ship) const
+{
+	if(!ship)
+		return false;
+	
+	// Does the player own this kind of ship? Did the player ever board or
+	// scan this kind of ship?
+	if(knownShipModelNames.count(ship->ModelName()))
+		return true;
+	
+	// Can the player buy this ship on any visited planet?
+	const Ship *baseModel = GameData::Ships().Get(ship->ModelName());
+	for(const Planet *planet : visitedPlanets)
+		if(planet->Shipyard().Has(baseModel))
+			return true;
+	
+	return false;
+}
+
+
+
+// Learn the description of a ship (e.g. by buying, boarding, or scanning a ship).
+void PlayerInfo::LearnDescription(const shared_ptr<Ship> &ship)
+{
+	if(!ship)
+		return;
+	
+	knownShipModelNames.emplace(ship->ModelName());
+}
+
+
+
+// If the player has scanned this ship's cargo (or owns it), return the contents.
+const string &PlayerInfo::KnownCargo(const Ship *ship) const
+{
+	static const string EMPTY;
+	
+	const auto &it = knownCargo.find(ship->shared_from_this());
+	return (it == knownCargo.end() ?  EMPTY : it->second);
+}
+
+
+
+// If the player has scanned this ship's outfits (or owns it), return them.
+const string &PlayerInfo::KnownOutfits(const Ship *ship) const
+{
+	static const string EMPTY;
+	
+	const auto &it = knownOutfits.find(ship->shared_from_this());
+	return (it == knownOutfits.end() ? EMPTY : it->second);
+}
+
+
+
+// Store the result of a cargo scan for display via a Dialog on MapDetailPanel.
+void PlayerInfo::LearnCargo(const shared_ptr<Ship> &target)
+{
+	string targetCargo = target->Cargo().ScanResult();
+	knownCargo[target] = (targetCargo.empty() ? "No known cargo." : "Known cargo:\n" + targetCargo);
+}
+
+
+
+// Store the result of an outfits scan for display via a Dialog on MapDetailPanel.
+void PlayerInfo::LearnOutfits(const shared_ptr<Ship> &target)
+{
+	string scanResult;
+	if(target->Attributes().Get("inscrutable") && !target->IsYours())
+		scanResult = "You were unable to learn anything about this " + target->Noun() + "'s equipment.";
+	else
+	{
+		vector<string> contents;
+		for(const auto &it : target->Outfits())
+			if(it.first && it.second)
+				contents.emplace_back(to_string(it.second) + " " + (it.second == 1
+					? it.first->Name() : it.first->PluralName()));
+		if(!contents.empty())
+		{
+			scanResult = "Known outfits:\n";
+			for(const string &line : contents)
+				scanResult += "\t" + line + "\n";
+		}
+		else
+			scanResult = "This " + target->Noun() + " has no equipment installed.";
+	
+	}
+	knownOutfits[target] = scanResult;
+}
 
 
 // Mark the given system as visited, and mark all its neighbors as seen.
@@ -2518,29 +2622,39 @@ void PlayerInfo::Save(const string &path) const
 	
 	out.Write("logbook");
 	out.BeginChild();
-	for(const auto &it : logbook)
 	{
-		out.Write(it.first.Day(), it.first.Month(), it.first.Year());
-		out.BeginChild();
+		for(const auto &it : logbook)
 		{
-			// Break the text up into paragraphs.
-			for(const string &line : Format::Split(it.second, "\n\t"))
-				out.Write(line);
-		}
-		out.EndChild();
-	}
-	for(const auto &it : specialLogs)
-		for(const auto &eit : it.second)
-		{
-			out.Write(it.first, eit.first);
+			out.Write(it.first.Day(), it.first.Month(), it.first.Year());
 			out.BeginChild();
 			{
 				// Break the text up into paragraphs.
-				for(const string &line : Format::Split(eit.second, "\n\t"))
+				for(const string &line : Format::Split(it.second, "\n\t"))
 					out.Write(line);
 			}
 			out.EndChild();
 		}
+		for(const auto &it : specialLogs)
+			for(const auto &eit : it.second)
+			{
+				out.Write(it.first, eit.first);
+				out.BeginChild();
+				{
+					// Break the text up into paragraphs.
+					for(const string &line : Format::Split(eit.second, "\n\t"))
+						out.Write(line);
+				}
+				out.EndChild();
+			}
+	}
+	out.EndChild();
+	
+	out.Write("known ships");
+	out.BeginChild();
+	{
+		for(const string &it : knownShipModelNames)
+			out.Write(it);
+	}
 	out.EndChild();
 }
 

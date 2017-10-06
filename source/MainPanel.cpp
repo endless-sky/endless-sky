@@ -293,74 +293,57 @@ void MainPanel::ShowScanDialog(const ShipEvent &event)
 	ostringstream out;
 	if(event.Type() & ShipEvent::SCAN_CARGO)
 	{
-		bool first = true;
-		for(const auto &it : target->Cargo().Commodities())
-			if(it.second)
-			{
-				if(first)
-					out << "This " + target->Noun() + " is carrying:\n";
-				first = false;
-		
-				out << "\t" << it.second
-					<< (it.second == 1 ? " ton of " : " tons of ")
-					<< it.first << "\n";
-			}
-		for(const auto &it : target->Cargo().Outfits())
-			if(it.second)
-			{
-				if(first)
-					out << "This " + target->Noun() + " is carrying:\n";
-				first = false;
-		
-				out << "\t" << it.second;
-				if(it.first->Get("installable") < 0.)
-				{
-					int tons = ceil(it.second * it.first->Mass());
-					out << (tons == 1 ? " ton of " : " tons of ") << Format::LowerCase(it.first->PluralName()) << "\n";
-				}
-				else	
-					out << " " << (it.second == 1 ? it.first->Name(): it.first->PluralName()) << "\n";
-			}
-		if(first)
+		player.LearnCargo(target);
+		string cargo = target->Cargo().ScanResult();
+		if(!cargo.empty())
+			out << "This " + target->Noun() + " is carrying:\n" << cargo;
+		else
 			out << "This " + target->Noun() + " is not carrying any cargo.\n";
 	}
-	if((event.Type() & ShipEvent::SCAN_OUTFITS) && target->Attributes().Get("inscrutable"))
-		out << "Your scanners cannot make any sense of this " + target->Noun() + "'s interior.";
-	else if(event.Type() & ShipEvent::SCAN_OUTFITS)
+	if((event.Type() & ShipEvent::SCAN_OUTFITS))
 	{
-		out << "This " + target->Noun() + " is equipped with:\n";
-		for(const auto &it : target->Outfits())
-			if(it.first && it.second)
-				out << "\t" << it.second << " "
-					<< (it.second == 1 ? it.first->Name() : it.first->PluralName()) << "\n";
-		
-		map<string, int> count;
-		for(const Ship::Bay &bay : target->Bays())
-			if(bay.ship)
-			{
-				int &value = count[bay.ship->ModelName()];
-				if(value)
-				{
-					// If the name and the plural name are the same string, just
-					// update the count. Otherwise, clear the count for the
-					// singular name and set it for the plural.
-					int &pluralValue = count[bay.ship->PluralModelName()];
-					if(!pluralValue)
-					{
-						value = -1;
-						pluralValue = 1;
-					}
-					++pluralValue;
-				}
-				else
-					++value;
-			}
-		if(!count.empty())
+		player.LearnOutfits(target);
+		if(target->Attributes().Get("inscrutable") && !target->IsYours())
+			out << "Your scanners cannot make any sense of this " + target->Noun() + "'s interior.";
+		else
 		{
-			out << "This " + target->Noun() + " is carrying:\n";
-			for(const auto &it : count)
-				if(it.second > 0)
-					out << "\t" << it.second << " " << it.first << "\n";
+			// The player cannot learn the description of inscrutable targets.
+			player.LearnDescription(target);
+			
+			out << "This " + target->Noun() + " is equipped with:\n";
+			for(const auto &it : target->Outfits())
+				if(it.first && it.second)
+					out << "\t" << it.second << " "
+						<< (it.second == 1 ? it.first->Name() : it.first->PluralName()) << "\n";
+			
+			map<string, int> count;
+			for(const Ship::Bay &bay : target->Bays())
+				if(bay.ship)
+				{
+					int &value = count[bay.ship->ModelName()];
+					if(value)
+					{
+						// If the name and the plural name are the same string, just
+						// update the count. Otherwise, clear the count for the
+						// singular name and set it for the plural.
+						int &pluralValue = count[bay.ship->PluralModelName()];
+						if(!pluralValue)
+						{
+							value = -1;
+							pluralValue = 1;
+						}
+						++pluralValue;
+					}
+					else
+						++value;
+				}
+			if(!count.empty())
+			{
+				out << "This " + target->Noun() + " is carrying:\n";
+				for(const auto &it : count)
+					if(it.second > 0)
+						out << "\t" << it.second << " " << it.first << "\n";
+			}
 		}
 	}
 	GetUI()->Push(new Dialog(out.str()));

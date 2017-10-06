@@ -181,11 +181,17 @@ public:
 	void SetReputationConditions();
 	void CheckReputationConditions();
 	
-	// Check what the player knows about the given system or planet.
+	// Check what the player knows about the given ship, system, or planet.
 	bool HasSeen(const System *system) const;
 	bool HasVisited(const System *system) const;
 	bool HasVisited(const Planet *planet) const;
 	bool KnowsName(const System *system) const;
+	bool KnowsDescription(const Ship *ship) const;
+	void LearnDescription(const std::shared_ptr<Ship> &ship);
+	const std::string &KnownCargo(const Ship *ship) const;
+	const std::string &KnownOutfits(const Ship *ship) const;
+	void LearnCargo(const std::shared_ptr<Ship> &target);
+	void LearnOutfits(const std::shared_ptr<Ship> &target);
 	// Marking a system as visited also "sees" its neighbors.
 	void Visit(const System *system);
 	void Visit(const Planet *planet);
@@ -306,6 +312,10 @@ private:
 	std::set<const Planet *> visitedPlanets;
 	std::vector<const System *> travelPlan;
 	const Planet *travelDestination = nullptr;
+	std::set<std::string> knownShipModelNames;
+	typedef std::owner_less<std::weak_ptr<const Ship>> Comp;
+	std::map<std::weak_ptr<const Ship>, std::string, Comp> knownCargo;
+	std::map<std::weak_ptr<const Ship>, std::string, Comp> knownOutfits;
 	
 	const Outfit *selectedWeapon = nullptr;
 	

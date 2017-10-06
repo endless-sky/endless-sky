@@ -1762,7 +1762,7 @@ void Engine::DoCollection(Flotsam &flotsam)
 	
 	// One of your ships picked up this flotsam. Describe who it was.
 	string name = (!collector->GetParent() ? "You" :
-			"Your ship \"" + collector->Name() + "\"") + " picked up ";
+			"Your " + collector->Noun() + " \"" + collector->Name() + "\"") + " picked up ";
 	// Describe what they collected from this flotsam.
 	string commodity;
 	string message;
@@ -1789,6 +1789,9 @@ void Engine::DoCollection(Flotsam &flotsam)
 		message = name + (amountInTons == 1. ? "a ton" : Format::Number(amountInTons) + " tons")
 			+ " of " + Format::LowerCase(commodity) + ".";
 	}
+	
+	// Update this ship's known cargo.
+	player.LearnCargo(collector->shared_from_this());
 	
 	// Unless something went wrong while forming the message, display it.
 	if(!message.empty())

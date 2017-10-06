@@ -59,6 +59,8 @@ BoardingPanel::BoardingPanel(PlayerInfo &player, const shared_ptr<Ship> &victim)
 {
 	// The escape key should close this panel rather than bringing up the main menu.
 	SetInterruptible(false);
+	// Boarding this ship allows you to know its detailed description.
+	player.LearnDescription(victim);
 	
 	// Figure out how much the victim's commodities are worth in the current
 	// system and add them to the list of plunder.
@@ -227,6 +229,11 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 		// When closing the panel, mark the player dead if their ship was captured.
 		if(playerDied)
 			player.Die(true);
+		
+		// Remember what this ship has left.
+		player.LearnCargo(victim);
+		player.LearnOutfits(victim);
+		
 		GetUI()->Pop(this);
 	}
 	else if(playerDied)

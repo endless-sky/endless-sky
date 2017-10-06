@@ -15,6 +15,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "DataNode.h"
 #include "DataWriter.h"
 #include "Depreciation.h"
+#include "Format.h"
 #include "GameData.h"
 #include "Mission.h"
 #include "Outfit.h"
@@ -324,6 +325,51 @@ const map<string, int> &CargoHold::Commodities() const
 const map<const Outfit *, int> &CargoHold::Outfits() const
 {
 	return outfits;
+}
+
+
+
+// Report the commodity and outfit contents in either a list or sentence.
+const string CargoHold::ScanResult(bool listFormat) const
+{
+	vector<string> contents;
+	string output;
+	
+	for(const auto &it : commodities)
+		if(it.second)
+			contents.emplace_back(to_string(it.second) + (it.second == 1 ? " ton of " : " tons of ") + it.first);
+	for(const auto &it : outfits)
+		if(it.second)
+		{
+			if(it.first->Get("installable") < 0.)
+			{
+				int tons = ceil(it.second * it.first->Mass());
+				contents.emplace_back(to_string(tons) + (tons == 1 ? " ton of " : " tons of ") + Format::LowerCase(it.first->PluralName()));
+			}
+			else
+				contents.emplace_back(to_string(it.second) + " "
+					+ (it.second == 1 ? it.first->Name() : it.first->PluralName()));
+		}
+	
+	if(!contents.empty() && listFormat)
+	{
+		for(string &line : contents)
+			output += "\t" + line + "\n";
+	}
+	else if(!contents.empty())
+	{
+		int numberLines = contents.size();
+		int line = 0;
+		for( ; line < numberLines - 2; ++line)
+			output += contents[line] + ", ";
+		// Oxford comma?
+		if(numberLines >= 2)
+			output += contents[line] + (numberLines > 2 ? ", and "
+					: " and ") + contents[line + 1] + ".";
+		else
+			output += contents[line] + ".";
+	}
+	return output;
 }
 
 
