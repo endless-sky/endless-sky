@@ -153,7 +153,7 @@ void MainPanel::Draw()
 	{
 		if(canDrag)
 		{
-			static const Color dragColor = *GameData::Colors().Get("drag select");
+			const Color &dragColor = *GameData::Colors().Get("drag select");
 			LineShader::Draw(dragSource, Point(dragSource.X(), dragPoint.Y()), .8, dragColor);
 			LineShader::Draw(Point(dragSource.X(), dragPoint.Y()), dragPoint, .8, dragColor);
 			LineShader::Draw(dragPoint, Point(dragPoint.X(), dragSource.Y()), .8, dragColor);
@@ -166,7 +166,7 @@ void MainPanel::Draw()
 	if(Preferences::Has("Show CPU / GPU load"))
 	{
 		string loadString = to_string(lround(load * 100.)) + "% GPU";
-		static const Color color = *GameData::Colors().Get("medium");
+		const Color &color = *GameData::Colors().Get("medium");
 		FontSet::Get(14).Draw(loadString, Point(10., Screen::Height() * -.5 + 5.), color);
 	
 		loadSum += loadTimer.Time();
