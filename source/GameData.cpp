@@ -98,9 +98,7 @@ namespace {
 	map<const System *, map<string, int>> purchases;
 	
 	map<const Sprite *, string> landingMessages;
-	vector<string> ratingLevels;
-	vector<string> attractionLevels;
-	vector<string> deterrenceLevels;
+	map<string, vector<string>> ratings;
 	
 	StarField background;
 	
@@ -663,25 +661,16 @@ const string &GameData::LandingMessage(const Sprite *sprite)
 
 
 
-// Strings for combat rating levels.
-const vector<string> &GameData::CombatRatings()
+// Strings for combat rating levels, etc.
+const string &GameData::Rating(const std::string &type, int level)
 {
-	return ratingLevels;
-}
-
-
-
-// Strings for combat rating levels.
-const vector<string> &GameData::CargoAttractiveness()
-{
-	return attractionLevels;
-}
-
-
-
-const vector<string> &GameData::ArmamentDeterrence()
-{
-	return deterrenceLevels;
+	static const string EMPTY;
+	auto it = ratings.find(type);
+	if(it == ratings.end() || it->second.empty())
+		return EMPTY;
+	
+	level = max(0, min<int>(it->second.size() - 1, level));
+	return it->second[level];
 }
 
 
@@ -844,23 +833,12 @@ void GameData::LoadFile(const string &path, bool debugMode)
 			for(const DataNode &child : node)
 				landingMessages[SpriteSet::Get(child.Token(0))] = node.Token(1);
 		}
-		else if(key == "combat ratings")
+		else if(key == "rating" && node.Size() >= 2)
 		{
-			ratingLevels.clear();
+			vector<string> &list = ratings[node.Token(1)];
+			list.clear();
 			for(const DataNode &child : node)
-				ratingLevels.push_back(child.Token(0));
-		}
-		else if(key == "cargo attractiveness")
-		{
-			attractionLevels.clear();
-			for(const DataNode &child : node)
-				attractionLevels.push_back(child.Token(0));
-		}
-		else if(key == "armament deterrence")
-		{
-			deterrenceLevels.clear();
-			for(const DataNode &child : node)
-				deterrenceLevels.push_back(child.Token(0));
+				list.push_back(child.Token(0));
 		}
 		else if((key == "tip" || key == "help") && node.Size() >= 2)
 		{
