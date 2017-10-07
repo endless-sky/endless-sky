@@ -15,7 +15,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Angle.h"
 #include "DataNode.h"
 #include "DataWriter.h"
-#include "Files.h"
 
 #include <map>
 
@@ -97,7 +96,7 @@ void Personality::Load(const DataNode &node)
 {
 	flags = 0;
 	for(int i = 1; i < node.Size(); ++i)
-		Parse(node.Token(i));
+		Parse(node, i);
 	
 	for(const DataNode &child : node)
 	{
@@ -106,7 +105,7 @@ void Personality::Load(const DataNode &node)
 		else
 		{
 			for(int i = 0; i < child.Size(); ++i)
-				Parse(child.Token(i));
+				Parse(child, i);
 		}
 	}
 }
@@ -352,11 +351,13 @@ Personality Personality::Defender()
 
 
 
-void Personality::Parse(const string &token)
+void Personality::Parse(const DataNode &node, int index)
 {
+	const string &token = node.Token(index);
+	
 	auto it = TOKEN.find(token);
 	if(it != TOKEN.end())
 		flags |= it->second;
 	else
-		Files::LogError("Invalid personality setting:" + token);
+		node.PrintTrace("Invalid personality setting: \"" + token + "\"");
 }
