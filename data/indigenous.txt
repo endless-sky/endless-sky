@@ -95,7 +95,7 @@ fleet "Void Sprites"
 	government "Indigenous Lifeform"
 	cargo 0
 	personality
-		timid mining harvesting mute
+		timid mining harvests mute
 	variant
 		"Void Sprite"
 	variant

@@ -15,6 +15,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Angle.h"
 #include "DataNode.h"
 #include "DataWriter.h"
+#include "Files.h"
 
 #include <map>
 
@@ -356,4 +357,6 @@ void Personality::Parse(const string &token)
 	auto it = TOKEN.find(token);
 	if(it != TOKEN.end())
 		flags |= it->second;
+	else
+		Files::LogError("Invalid personality setting:" + token);
 }
