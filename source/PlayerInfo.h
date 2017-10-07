@@ -114,7 +114,6 @@ public:
 	const Ship *Flagship() const;
 	Ship *Flagship();
 	const std::shared_ptr<Ship> &FlagshipPtr();
-	void SetFlagshipCrew(int flagshipCrew = 0);
 	// Get the full list of ships the player owns.
 	const std::vector<std::shared_ptr<Ship>> &Ships() const;
 	// Add a captured ship to your fleet.
@@ -320,7 +319,7 @@ private:
 	std::map<std::string, std::set<std::string>> collapsed;
 	
 	bool freshlyLoaded = true;
-	int flagshipCrew = 0;
+	int desiredCrew = 0;
 };
 
 

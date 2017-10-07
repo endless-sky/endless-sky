@@ -291,8 +291,6 @@ void PlayerInfo::Load(const string &path)
 				break;
 			}
 	}
-	// Set the rehire crew target.
-	flagshipCrew = Flagship() ? Flagship()->Crew() : 0;
 	
 	// If no depreciation record was loaded, every item in the player's fleet
 	// will count as non-depreciated.
@@ -686,14 +684,6 @@ const shared_ptr<Ship> &PlayerInfo::FlagshipPtr()
 
 
 
-// Set the target crew for the player's flagship.
-void PlayerInfo::SetFlagshipCrew(int flagshipCrew)
-{
-	this->flagshipCrew = flagshipCrew;
-}
-
-
-
 // Access the full list of ships that the player owns.
 const vector<shared_ptr<Ship>> &PlayerInfo::Ships() const
 {
@@ -1054,20 +1044,18 @@ void PlayerInfo::Land(UI *ui)
 			ui->Push(new Dialog(message));
 	}
 	
-	// Hire crew for the flagship if the user changed it from the default.
-	if(Preferences::Has("Rehire extra crew when lost") && hasSpaceport && flagshipCrew)
+	// Hire extra crew back if any were lost in-flight (i.e. boarding) or
+	// some bunks were freed up upon landing (i.e. completed missions).
+	if(Preferences::Has("Rehire extra crew when lost") && hasSpaceport)
 	{
-		int addedCrew = flagshipCrew - flagship->Crew();
-		if(addedCrew > 0)
+		int added = desiredCrew - flagship->Crew();
+		if(added > 0)
 		{
-			flagship->AddCrew(addedCrew);
-			Messages::Add("You hire " + Format::Number(addedCrew) + " extra crew member"
-					+ (addedCrew == 1 ? " to replace the one " : "s to replace the ones ")
-					+ "lost during boarding operations.");
+			flagship->AddCrew(added);
+			Messages::Add("You hire " + to_string(added) + (added == 1
+					? " extra crew member to fill your now-empty bunk."
+					: " extra crew members to fill your now-empty bunks."));
 		}
-		// A new flagship was chosen with a higher crew requirement.
-		else if(flagshipCrew && addedCrew < 0)
-			flagshipCrew = 0;
 	}
 	
 	freshlyLoaded = false;
@@ -1153,7 +1141,8 @@ bool PlayerInfo::TakeOff(UI *ui)
 			else
 			{
 				// Your flagship takes first priority for passengers but last for cargo.
-				ship->Cargo().SetBunks(ship->Attributes().Get("bunks") - ship->Crew());
+				desiredCrew = ship->Crew();
+				ship->Cargo().SetBunks(ship->Attributes().Get("bunks") - desiredCrew);
 				for(const auto &it : cargo.PassengerList())
 					cargo.TransferPassengers(it.first, it.second, &ship->Cargo());
 			}
