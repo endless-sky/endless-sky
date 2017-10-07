@@ -414,7 +414,7 @@ void ShopPanel::DrawShip(const Ship &ship, const Point &center, bool isSelected)
 
 
 
-void ShopPanel::FailSell() const
+void ShopPanel::FailSell(bool toCargo) const
 {
 }
 
@@ -437,6 +437,7 @@ void ShopPanel::DrawKey()
 bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 {
 	scrollDetailsIntoView = false;
+	bool toCargo = selectedOutfit && (key == 'r' || key == 'u');
 	if((key == 'l' || key == 'd' || key == SDLK_ESCAPE
 			|| (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI)))) && FlightCheck())
 	{
@@ -453,15 +454,15 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 			player.UpdateCargoCapacities();
 		}
 	}
-	else if(key == 's')
+	else if(key == 's' || toCargo)
 	{
-		if(!CanSell())
-			FailSell();
+		if(!CanSell(toCargo))
+			FailSell(toCargo);
 		else
 		{
 			int modifier = CanSellMultiple() ? Modifier() : 1;
-			for(int i = 0; i < modifier && CanSell(); ++i)
-				Sell();
+			for(int i = 0; i < modifier && CanSell(toCargo); ++i)
+				Sell(toCargo);
 			player.UpdateCargoCapacities();
 		}
 	}
