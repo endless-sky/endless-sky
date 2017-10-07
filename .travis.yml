@@ -4,7 +4,7 @@ sudo: required
 
 before_install:
     - sudo apt-get -qq update
-    - sudo apt-get install -y -qq libsdl2-dev libpng12-dev libjpeg-turbo8-dev libglew-dev libopenal-dev libgl1-mesa-dev libmad0-dev
+    - sudo apt-get install -y libsdl2-dev libpng12-dev libjpeg-turbo8-dev libglew-dev libopenal-dev libgl1-mesa-dev libmad0-dev libegl1-mesa-dev libgles2-mesa-dev
 
 env:
     - es_run_mode=

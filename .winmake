@@ -150,7 +150,7 @@ clean_release:
 	cmd /c rd $(OBJDIR_RELEASE)
 
 
-# Ouput (linker) instructions
+# Output (linker) instructions
 out_debug: before_debug $(OBJ_DEBUG) $(DEP_DEBUG)
 	$(LD) $(LIBDIR_DEBUG) -o $(OUT_DEBUG) $(OBJ_DEBUG)  $(LDFLAGS_DEBUG) -mwindows $(LIB_DEBUG)
 
