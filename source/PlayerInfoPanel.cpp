@@ -449,6 +449,32 @@ void PlayerInfoPanel::DrawPlayer(const Rectangle &bounds)
 		table.Draw("(" + to_string(ratingLevel) + ")", dim);
 	}
 	
+	// Display the factors affecting piracy targeting the player.
+	static const vector<string> &ATTRACTION = GameData::CargoAttractiveness();
+	static const vector<string> &DETERRENCE = GameData::ArmamentDeterrence();
+	if(!ATTRACTION.empty() && !DETERRENCE.empty())
+	{
+		pair<double, double> factors = player.RaidFleetFactors();
+		double attraction = max(0., .005 * (factors.first - factors.second - 2.));
+		// Ensure no sqrt/log of negative numbers.
+		factors.first = max(factors.first, .0);
+		factors.second = max(factors.second, .0);
+		double prob = 1. - pow(1. - attraction, 10.);
+		
+		table.DrawGap(10);
+		table.DrawUnderline(dim);
+		table.Draw("piracy threat:", bright);
+		table.Draw(Format::Number(lround(100 * prob)) + "%", dim);
+		table.DrawGap(5);
+		
+		int attractionLevel = min<int>(ATTRACTION.size() - 1, max(0., floor(log2(factors.first))));
+		int deterrenceLevel = min<int>(DETERRENCE.size() - 1, max(0., floor(log2(factors.second))));
+		table.Draw("cargo: " + ATTRACTION[attractionLevel], dim);
+		table.Draw("(+" + Format::Number(.1 * lround(10 * sqrt(factors.first))) + ")", dim);
+		table.DrawGap(5);
+		table.Draw("fleet: " + DETERRENCE[deterrenceLevel], dim);
+		table.Draw("(-" + Format::Number(.1 * lround(10 * sqrt(factors.second))) + ")", dim);
+	}
 	// Other special information:
 	auto salary = Match(player, "salary: ", "");
 	sort(salary.begin(), salary.end());
