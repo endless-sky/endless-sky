@@ -19,6 +19,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "OutfitInfoDisplay.h"
 #include "Point.h"
 #include "ShipInfoDisplay.h"
+#include "TextTooltip.h"
 
 #include <map>
 #include <set>
@@ -62,7 +63,6 @@ protected:
 	virtual bool CanSell() const = 0;
 	virtual void Sell() = 0;
 	virtual void FailSell() const;
-	virtual bool FlightCheck() = 0;
 	virtual bool CanSellMultiple() const;
 	virtual void DrawKey();
 	
@@ -133,6 +133,8 @@ protected:
 	
 	ShipInfoDisplay shipInfo;
 	OutfitInfoDisplay outfitInfo;
+	
+	TextTooltip warningTooltip;
 	
 	
 private:

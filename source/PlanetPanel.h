@@ -18,11 +18,14 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "WrappedText.h"
 
 #include <functional>
+#include <map>
 #include <memory>
+#include <set>
 
 class Interface;
 class Planet;
 class PlayerInfo;
+class Ship;
 class System;
 
 
@@ -46,6 +49,7 @@ protected:
 private:
 	void TakeOffIfReady();
 	void TakeOff();
+	void OnFlightCheckAction(int action);
 	
 	
 private:
@@ -64,6 +68,12 @@ private:
 	Panel *selectedPanel = nullptr;
 	
 	WrappedText text;
+	
+	// Flight check.
+	std::shared_ptr<Ship> warningShip;
+	std::string warningLabel;
+	int warningAction;
+	std::map<std::string,std::set<std::shared_ptr<Ship>>> ignoreWarnings;
 };
 
 

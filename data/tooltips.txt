@@ -289,6 +289,33 @@ tip "max:"
 
 
 
+# Ship warnings:
+tip "ship warning: no energy!"
+	`No energy available! Install power generators or batteries.`
+
+tip "ship warning: no steering!"
+	`No steering! This ship can't turn.`
+
+tip "ship warning: no thruster!"
+	`No thruster, reverse thruster, or afterburner! This ship can't move.`
+
+tip "ship warning: overheating!"
+	`Overheating at idle!`
+
+tip "ship warning: afterburner only"
+	`This ship can only move by burning fuel with the afterburner.`
+
+tip "ship warning: battery only"
+	`Only battery power is available, this ship will be stranded if the battery wears out.`
+
+tip "ship warning: limited movement"
+	`The available energy is insufficient for full thrusting or steering.`
+
+tip "ship warning: solar power"
+	`No energy production when far away from the star due to solar power collection losses.`
+
+
+
 # Outfit categories:
 tip "Guns:"
 	`Weapons that are fixed in place (firing in the direction your ship is pointed) and that require no ammunition).`

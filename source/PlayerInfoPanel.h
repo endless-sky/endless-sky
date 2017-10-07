@@ -16,6 +16,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Panel.h"
 
 #include "ClickZone.h"
+#include "TextTooltip.h"
 
 #include <set>
 #include <vector>
@@ -72,6 +73,8 @@ private:
 	Point hoverPoint;
 	bool canEdit = false;
 	bool isDragging = false;
+	
+	TextTooltip warningTooltip;
 };
 
 

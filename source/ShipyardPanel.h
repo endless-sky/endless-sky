@@ -48,7 +48,6 @@ protected:
 	virtual void FailBuy() const override;
 	virtual bool CanSell() const override;
 	virtual void Sell() override;
-	virtual bool FlightCheck() override;
 	virtual bool CanSellMultiple() const override;
 	
 	

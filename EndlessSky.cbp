@@ -278,6 +278,8 @@
 		<Unit filename="source/ShipInfoPanel.h" />
 		<Unit filename="source/ShipInfoDisplay.cpp" />
 		<Unit filename="source/ShipInfoDisplay.h" />
+		<Unit filename="source/ShipWarnings.cpp" />
+		<Unit filename="source/ShipWarnings.h" />
 		<Unit filename="source/ShipyardPanel.cpp" />
 		<Unit filename="source/ShipyardPanel.h" />
 		<Unit filename="source/ShopPanel.cpp" />
@@ -304,6 +306,8 @@
 		<Unit filename="source/System.h" />
 		<Unit filename="source/Table.cpp" />
 		<Unit filename="source/Table.h" />
+		<Unit filename="source/TextTooltip.cpp" />
+		<Unit filename="source/TextTooltip.h" />
 		<Unit filename="source/Trade.cpp" />
 		<Unit filename="source/Trade.h" />
 		<Unit filename="source/TradingPanel.cpp" />

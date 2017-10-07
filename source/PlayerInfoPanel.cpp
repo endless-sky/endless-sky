@@ -25,6 +25,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Rectangle.h"
 #include "Ship.h"
 #include "ShipInfoPanel.h"
+#include "ShipWarnings.h"
 #include "System.h"
 #include "Table.h"
 #include "UI.h"
@@ -167,8 +168,11 @@ void PlayerInfoPanel::Draw()
 	
 	// Draw the player and fleet info sections.
 	zones.clear();
+	warningTooltip.Zones().clear();
 	DrawPlayer(interface->GetBox("player"));
 	DrawFleet(interface->GetBox("fleet"));
+	warningTooltip.CheckZones();
+	warningTooltip.Draw();
 }
 
 
@@ -505,7 +509,7 @@ void PlayerInfoPanel::DrawFleet(const Rectangle &bounds)
 	
 	// Table attributes.
 	Table table;
-	table.AddColumn(0, Table::LEFT);
+	table.AddColumn(table.GetRowSize().Y(), Table::LEFT);
 	table.AddColumn(220, Table::LEFT);
 	table.AddColumn(350, Table::LEFT);
 	table.AddColumn(550, Table::RIGHT);
@@ -533,8 +537,10 @@ void PlayerInfoPanel::DrawFleet(const Rectangle &bounds)
 	const Font &font = FontSet::Get(14);
 	for( ; sit < player.Ships().end(); ++sit)
 	{
+		const Rectangle rowBounds = table.GetRowBounds();
+		
 		// Bail out if we've used out the whole drawing area.
-		if(!bounds.Contains(table.GetRowBounds()))
+		if(!bounds.Contains(rowBounds))
 			break;
 		
 		// Check if this row is selected.
@@ -549,7 +555,7 @@ void PlayerInfoPanel::DrawFleet(const Rectangle &bounds)
 		table.SetColor(isDead ? dead : isElsewhere ? elsewhere : isHovered ? bright : dim);
 		
 		// Store this row's position, to handle hovering.
-		zones.emplace_back(table.GetCenterPoint(), table.GetRowSize(), index);
+		zones.emplace_back(rowBounds.Center(), rowBounds.Dimensions(), index);
 		
 		// Indent the ship name if it is a fighter or drone.
 		table.Draw(font.TruncateMiddle(ship.CanBeCarried() ? "    " + ship.Name() : ship.Name(), 217));
@@ -575,6 +581,18 @@ void PlayerInfoPanel::DrawFleet(const Rectangle &bounds)
 			crewCount = min(crewCount, ship.RequiredCrew());
 		string crew = (ship.IsParked() ? "Parked" : to_string(crewCount));
 		table.Draw(crew);
+		
+		// Show the first whip warning icon.
+		ShipWarnings warnings(ship);
+		if(warnings.Warnings())
+		{
+			warnings.SetPackWarnings(1);
+			warnings.SetIconSize(rowBounds.Height());
+			const Point center(rowBounds.Left() + .5 * warnings.IconSize(), rowBounds.Center().Y());
+			warnings.Draw(center);
+			for(const auto &zone : warnings.TooltipZones(center))
+				warningTooltip.Zones().push_back(zone);
+		}
 		
 		++index;
 	}
@@ -603,6 +621,7 @@ bool PlayerInfoPanel::Hover(const Point &point)
 	for(const auto &zone : zones)
 		if(zone.Contains(hoverPoint))
 			hoverIndex = zone.Value();
+	warningTooltip.SetHoverPoint(point);
 	
 	return true;
 }

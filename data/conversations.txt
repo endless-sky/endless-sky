@@ -19,37 +19,175 @@ conversation "intro"
 	`	The elevator is so well-tuned that you do not even realize it is moving until it has deposited you back in the lobby. But as you leave the bank, you are smiling. This crazy adventure suddenly feels real to you. You are going to do it. You are finally going to get off this planet.`
 	`	Compared to the bank, you feel much more at home in the shipyard, walking among the rusted out hulks and newer ships that gleam in the sunlight. You smell grease and dirt and rocket fuel; wonderful smells. There are three ship models within your price range. Which one you choose will determine your future...`
 
-conversation "flight check: no energy"
-	scene "scene/engine2"
-	`You've heard enough horror stories about the sort of accidents that happen when starship systems malfunction to be completely convinced of the necessity of a pre-flight safety check. As you listen to the complex symphony of hums, rattles, and clicks of "<ship>" warming up, you run through a mental checklist. Computers: check. Life support: check.`
-	`	It is all going smoothly until it comes time to fire up your systems for a test run... and you discover that your generator does not produce enough power to power them. You'll have to either install some batteries, or switch to a more powerful generator.`	
+
+
+# Conversation for when flight checks detect a problem before departure.
+#   "depart" will open the outfitter and abort the take off
+#   "accept" will dismiss the warning and continue
+#   "decline" will park the ship and continue
+#   "defer" and other actions will about the take off
+conversation "flight check"
+	branch noenergy
+		"ship warning: no energy!" == 1
+	branch nosteering
+		"ship warning: no steering!" == 1
+	branch nothruster
+		"ship warning: no thruster!" == 1
+	branch overheating
+		"ship warning: overheating!" == 1
+	branch afterburneronly
+		"ship warning: afterburner only" == 1
+	branch batteryonly
+		"ship warning: battery only" == 1
+	branch limited_movement
+		"ship warning: limited movement" == 1
+	branch solarpower
+		"ship warning: solar power" == 1
 	
-conversation "flight check: no thrusters"
+	label unknown
+	scene "outfit/unknown"
+	`You've heard enough horror stories about the sort of accidents that happen when starship systems malfunction to be completely convinced of the necessity of a pre-flight safety check. As you listen to the complex symphony of hums, rattles, and clicks of "<ship>" warming up, you run through a mental checklist. Computers, life support, engines...`
+	`	Everything seems fine until you notice a warning light with an unreadable label. You skim through all the documentation you can find but learn nothing about it. Heading back to the outfitter should shed more light into what it means.`
+		goto actions
+	
+	label noenergy
+	scene "outfit/small fuel cell"
+	`You've heard enough horror stories about the sort of accidents that happen when starship systems malfunction to be completely convinced of the necessity of a pre-flight safety check. As you listen to the complex symphony of hums, rattles, and clicks of "<ship>" warming up, you run through a mental checklist. Computers, life support, engines...`
+	`	It is all going smoothly until it comes time to fire up your systems for a test run... and you discover that there is not enough energy to power them. You'll have to either install some batteries, or switch to a more powerful generator.`
+		goto actions
+	
+	label nosteering
 	scene "scene/engine2"
-	`You've heard enough horror stories about the sort of accidents that happen when starship systems malfunction to be completely convinced of the necessity of a pre-flight safety check. As you listen to the complex symphony of hums, rattles, and clicks of "<ship>" warming up, you run through a mental checklist. Computers: check. Life support: check.`
-	`	It is all going smoothly until it comes time to fire up the thrusters for a test run... and you realize, much to your embarrassment, that you do not have any thrusters installed. Time to head back to the outfitter and fix that!`
-
-conversation "flight check: no thruster energy"
-	scene "scene/engine2"
-	`You've heard enough horror stories about the sort of accidents that happen when starship systems malfunction to be completely convinced of the necessity of a pre-flight safety check. As you listen to the complex symphony of hums, rattles, and clicks of "<ship>" warming up, you run through a mental checklist. Computers: check. Life support: check.`
-	`	It is all going smoothly until it comes time to fire up the thrusters for a test run... and you discover that your generator does not produce enough power to drive them. You'll have to either install some batteries, or switch to a more powerful generator.`
-
-conversation "flight check: no steering"
-	scene "scene/engine"
-	`You've heard enough horror stories about the sort of accidents that happen when starship systems malfunction to be completely convinced of the necessity of a pre-flight safety check. As you listen to the complex symphony of hums, rattles, and clicks of "<ship>" warming up, you run through a mental checklist. Computers: check. Life support: check.`
+	`You've heard enough horror stories about the sort of accidents that happen when starship systems malfunction to be completely convinced of the necessity of a pre-flight safety check. As you listen to the complex symphony of hums, rattles, and clicks of "<ship>" warming up, you run through a mental checklist. Computers, life support, engines...`
 	`	It is all going smoothly until it comes time to fire up the steering engines for a test run... and you realize, much to your embarrassment, that you do not have any steering installed. Time to head back to the outfitter and fix that!`
-
-conversation "flight check: no steering energy"
-	scene "scene/engine"
-	`You've heard enough horror stories about the sort of accidents that happen when starship systems malfunction to be completely convinced of the necessity of a pre-flight safety check. As you listen to the complex symphony of hums, rattles, and clicks of "<ship>" warming up, you run through a mental checklist. Computers: check. Life support: check.`
-	`	It is all going smoothly until it comes time to fire up the steering engines for a test run... and you discover that your generator does not produce enough power to drive them. You'll have to either install some batteries, or switch to a more powerful generator.`
-
-conversation "flight check: solar power warning"
-	scene "scene/engine2"
-	`You've heard enough horror stories about the sort of accidents that happen when starship systems malfunction to be completely convinced of the necessity of a pre-flight safety check. As you listen to the complex symphony of hums, rattles, and clicks of "<ship>" warming up, you run through a mental checklist. Computers: check. Life support: check. Engines: check.`
-	`	Everything seems fine until you notice an amber warning light: your ship's computers have detected that your solar collectors may not be able to power your thrusters or steering systems too far from a star. You can launch your ship, but you run the risk of becoming derelict if you fly too far from the center of a system.`	
+		goto actions
 	
-conversation "flight check: overheating"
+	label nothruster
 	scene "scene/engine"
-	`You've heard enough horror stories about the sort of accidents that happen when starship systems malfunction to be completely convinced of the necessity of a pre-flight safety check. As you listen to the complex symphony of hums, rattles, and clicks of "<ship>" warming up, you run through a mental checklist. Computers: check. Life support: check.`
+	`You've heard enough horror stories about the sort of accidents that happen when starship systems malfunction to be completely convinced of the necessity of a pre-flight safety check. As you listen to the complex symphony of hums, rattles, and clicks of "<ship>" warming up, you run through a mental checklist. Computers, life support, engines...`
+	`	It is all going smoothly until it comes time to fire up the thrusters for a test run... and you realize, much to your embarrassment, that you do not have any thrusters installed. Time to head back to the outfitter and fix that!`
+		goto actions
+	
+	label overheating
+	scene "outfit/cooling ducts"
+	`You've heard enough horror stories about the sort of accidents that happen when starship systems malfunction to be completely convinced of the necessity of a pre-flight safety check. As you listen to the complex symphony of hums, rattles, and clicks of "<ship>" warming up, you run through a mental checklist. Computers, life support, engines...`
 	`	By the time you reach the end of the checklist, it has grown uncomfortably warm. The air smells like ozone and hot metal, and your cameras are showing a plume of steam or smoke escaping from the hull near the engines. If your systems are running this hot while still in the atmosphere, they're likely to overheat the moment you hit hard vacuum. You are going to have to either install cooling systems, or trade out some components for lower-heat alternatives.`
+		goto actions
+	
+	label afterburneronly
+	scene "outfit/afterburner"
+	`You've heard enough horror stories about the sort of accidents that happen when starship systems malfunction to be completely convinced of the necessity of a pre-flight safety check. As you listen to the complex symphony of hums, rattles, and clicks of "<ship>" warming up, you run through a mental checklist. Computers, life support, engines...`
+	`	It is all going smoothly until it comes time to fire up the thrusters for a test run... and you notice that you only have thrust with the afterburner. You can launch your ship, but every time you thrust you will be using fuel needed to jump systems.`
+		goto actions
+	
+	label batteryonly
+	scene "outfit/small battery"
+	`You've heard enough horror stories about the sort of accidents that happen when starship systems malfunction to be completely convinced of the necessity of a pre-flight safety check. As you listen to the complex symphony of hums, rattles, and clicks of "<ship>" warming up, you run through a mental checklist. Computers, life support, engines...`
+	`	It is all going smoothly until it comes time to fire up your systems for a test run... and you discover that you only have battery power. You can launch your ship, but you will be stranded if the battery wears out before you manage to land and recharge.`
+		goto actions
+	
+	label limited_movement
+	scene "scene/engine"
+	`You've heard enough horror stories about the sort of accidents that happen when starship systems malfunction to be completely convinced of the necessity of a pre-flight safety check. As you listen to the complex symphony of hums, rattles, and clicks of "<ship>" warming up, you run through a mental checklist. Computers, life support, engines...`
+	`	It is all going smoothly until it comes time to fire up the engines and thrusters for a test run... and you discover that your generator does not produce enough power to use them at full strength. You can launch your ship, but won't be able to thrust or turn at full speed until you install some batteries, or switch to a more powerful generator.`
+		goto actions
+	
+	label solarpower
+	scene "outfit/small photovoltaic"
+	`You've heard enough horror stories about the sort of accidents that happen when starship systems malfunction to be completely convinced of the necessity of a pre-flight safety check. As you listen to the complex symphony of hums, rattles, and clicks of "<ship>" warming up, you run through a mental checklist. Computers, life support, engines...`
+	`	Everything seems fine until you notice an amber warning light: your ship's computers have detected that your solar collectors will not produce enough energy to power your systems too far away from a star, and you will be stranded when your battery runs out. You can launch your ship, but you run the risk of becoming derelict if you fly too far from the center of a system.`
+		goto actions
+	
+	label actions
+	branch everything
+		has "ship warning: can park"
+		has "ship warning: can ignore"
+		has "ship warning: can go to outfitter"
+	branch nopark
+		not "ship warning: can park"
+		has "ship warning: can ignore"
+		has "ship warning: can go to outfitter"
+	branch noignore
+		has "ship warning: can park"
+		not "ship warning: can ignore"
+		has "ship warning: can go to outfitter"
+	branch nooutfitter
+		has "ship warning: can park"
+		has "ship warning: can ignore"
+		not "ship warning: can go to outfitter"
+	branch onlypark
+		has "ship warning: can park"
+		not "ship warning: can ignore"
+		not "ship warning: can go to outfitter"
+	branch onlyignore
+		not "ship warning: can park"
+		has "ship warning: can ignore"
+		not "ship warning: can go to outfitter"
+	branch onlyoutfitter
+		not "ship warning: can park"
+		not "ship warning: can ignore"
+		has "ship warning: can go to outfitter"
+	
+	label nothing
+	choice
+		`	You are forced to abort the take off`.
+			defer
+	
+	label everything
+	choice
+		`	You go to the outfitter.`
+			depart
+		`	You abort the take off.`
+			defer
+		`	You park the ship and continue.`
+			decline
+		`	You dismiss the warning and continue.`
+			accept
+	
+	label nopark
+	choice
+		`	You go to the outfitter.`
+			depart
+		`	You abort the take off.`
+			defer
+		`	You dismiss the warning and continue.`
+			accept
+	
+	label noignore
+	choice
+		`	You go to the outfitter.`
+			depart
+		`	You abort the take off.`
+			defer
+		`	You park the ship and continue.`
+			decline
+	
+	label nooutfitter
+	choice
+		`	You abort the take off.`
+			defer
+		`	You park the ship and continue.`
+			decline
+		`	You dismiss the warning and continue.`
+			accept
+	
+	label onlypark
+	choice
+		`	You abort the take off.`
+			defer
+		`	You park the ship and continue.`
+			decline
+	
+	label onlyignore
+	choice
+		`	You abort the take off.`
+			defer
+		`	You dismiss the warning and continue.`
+			accept
+	
+	label onlyoutfitter
+	choice
+		`	You go to the outfitter.`
+			depart
+		`	You abort the take off.`
+			defer

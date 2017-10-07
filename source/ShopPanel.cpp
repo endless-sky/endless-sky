@@ -26,6 +26,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Preferences.h"
 #include "Screen.h"
 #include "Ship.h"
+#include "ShipWarnings.h"
 #include "Sprite.h"
 #include "SpriteSet.h"
 #include "SpriteShader.h"
@@ -83,6 +84,7 @@ void ShopPanel::Draw()
 	// Clear the list of clickable zones.
 	zones.clear();
 	categoryZones.clear();
+	warningTooltip.Zones().clear();
 	
 	DrawSidebar();
 	DrawButtons();
@@ -91,6 +93,8 @@ void ShopPanel::Draw()
 	
 	shipInfo.DrawTooltips();
 	outfitInfo.DrawTooltips();
+	warningTooltip.CheckZones();
+	warningTooltip.Draw();
 	
 	if(dragShip && dragShip->GetSprite())
 	{
@@ -166,6 +170,18 @@ void ShopPanel::DrawSidebar()
 		}
 		
 		zones.emplace_back(point, Point(ICON_TILE, ICON_TILE), ship.get());
+		
+		// Draw the first ship warning.
+		ShipWarnings warnings(*ship.get());
+		if(warnings.Warnings())
+		{
+			warnings.SetPackWarnings(1);
+			const double offset = .5 * (ICON_TILE - warnings.IconSize());
+			const Point center(point.X() + offset, point.Y() + offset);
+			warnings.Draw(center);
+			for(const auto &zone : warnings.TooltipZones(center))
+				warningTooltip.Zones().push_back(zone);
+		}
 		
 		point.X() += ICON_TILE;
 	}
@@ -390,6 +406,8 @@ void ShopPanel::DrawMain()
 
 void ShopPanel::DrawShip(const Ship &ship, const Point &center, bool isSelected)
 {
+	const Color &bright = *GameData::Colors().Get("bright");
+
 	const Sprite *back = SpriteSet::Get(
 		isSelected ? "ui/shipyard selected" : "ui/shipyard unselected");
 	SpriteShader::Draw(back, center);
@@ -400,7 +418,7 @@ void ShopPanel::DrawShip(const Ship &ship, const Point &center, bool isSelected)
 	const Font &font = FontSet::Get(14);
 	const string &name = ship.Name().empty() ? ship.ModelName() : font.TruncateMiddle(ship.Name(), SIDE_WIDTH - 61);
 	Point offset(-.5f * font.Width(name), -.5f * SHIP_SIZE + 10.f);
-	font.Draw(name, center + offset, *GameData::Colors().Get("bright"));
+	font.Draw(name, center + offset, bright);
 	
 	const Sprite *sprite = ship.GetSprite();
 	if(sprite)
@@ -410,6 +428,13 @@ void ShopPanel::DrawShip(const Ship &ship, const Point &center, bool isSelected)
 		
 		SpriteShader::Draw(sprite, center, zoom, swizzle);
 	}
+	
+	// Draw ship warnings.
+	ShipWarnings warnings(ship);
+	offset = Point(0., .5 * (SHIP_SIZE - warnings.IconSize()));
+	warnings.Draw(center + offset);
+	for(const auto &zone : warnings.TooltipZones(center + offset))
+		warningTooltip.Zones().push_back(zone);
 }
 
 
@@ -437,8 +462,8 @@ void ShopPanel::DrawKey()
 bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 {
 	scrollDetailsIntoView = false;
-	if((key == 'l' || key == 'd' || key == SDLK_ESCAPE
-			|| (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI)))) && FlightCheck())
+	if(key == 'l' || key == 'd' || key == SDLK_ESCAPE
+			|| (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
 	{
 		player.UpdateCargoCapacities();
 		GetUI()->Pop(this);
@@ -656,6 +681,7 @@ bool ShopPanel::Hover(int x, int y)
 		outfitInfo.Hover(point);
 	}
 	
+	warningTooltip.SetHoverPoint(point);
 	dragMain = (x < Screen::Right() - SIDE_WIDTH);
 	return true;
 }

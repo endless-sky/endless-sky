@@ -14,6 +14,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #define INFO_DISPLAY_H_
 
 #include "Point.h"
+#include "TextTooltip.h"
 #include "WrappedText.h"
 
 #include <vector>
@@ -66,11 +67,8 @@ protected:
 	int maximumHeight = 0;
 	
 	// For tooltips:
-	Point hoverPoint;
-	mutable std::string hover;
-	mutable int hoverCount = 0;
+	mutable TextTooltip tooltip;
 	bool hasHover = false;
-	mutable WrappedText hoverText;
 };
 
 
