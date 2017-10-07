@@ -53,12 +53,9 @@ protected:
 	virtual bool CanBuy() const override;
 	virtual void Buy() override;
 	virtual void FailBuy() const override;
-	virtual bool CanSell() const override;
-	virtual void Sell() override;
-	virtual void FailSell() const override;
-	virtual bool CanUninstall() const override;
-	virtual void Uninstall() override;
-	virtual void FailUninstall() const override;
+	virtual bool CanSell(bool toCargo = false) const override;
+	virtual void Sell(bool toCargo = false) override;
+	virtual void FailSell(bool toCargo = false) const override;
 	virtual bool FlightCheck() override;
 	virtual void DrawKey();
 	

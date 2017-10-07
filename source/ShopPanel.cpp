@@ -414,26 +414,7 @@ void ShopPanel::DrawShip(const Ship &ship, const Point &center, bool isSelected)
 
 
 
-void ShopPanel::FailSell() const
-{
-}
-
-
-
-bool ShopPanel::CanUninstall() const
-{
-	return false;
-}
-
-
-
-void ShopPanel::Uninstall()
-{
-}
-
-
-
-void ShopPanel::FailUninstall() const
+void ShopPanel::FailSell(bool toCargo) const
 {
 }
 
@@ -474,14 +455,15 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 	}
 	else if((key == 'r' || key == 'u') && selectedOutfit)
 	{
-		if(!CanUninstall())
-			FailUninstall();
+		// "Sell" the outfit into cargo.
+		if(!CanSell(true))
+			FailSell(true);
 		else
 		{
 			int modifier = CanSellMultiple() ? Modifier() : 1;
-			for(int i = 0; i < modifier && CanUninstall(); ++i)
+			for(int i = 0; i < modifier && CanSell(true); ++i)
 			{
-				Uninstall();
+				Sell(true);
 				player.UpdateCargoCapacities();
 			}
 		}

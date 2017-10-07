@@ -463,12 +463,12 @@ void OutfitterPanel::FailBuy() const
 
 
 
-bool OutfitterPanel::CanSell() const
+bool OutfitterPanel::CanSell(bool toCargo) const
 {
 	if(!planet || !selectedOutfit)
 		return false;
 	
-	if(player.Cargo().Get(selectedOutfit))
+	if(!toCargo && player.Cargo().Get(selectedOutfit))
 		return true;
 	
 	for(const Ship *ship : playerShips)
@@ -480,9 +480,9 @@ bool OutfitterPanel::CanSell() const
 
 
 
-void OutfitterPanel::Sell()
+void OutfitterPanel::Sell(bool toCargo)
 {
-	if(player.Cargo().Get(selectedOutfit))
+	if(!toCargo && player.Cargo().Get(selectedOutfit))
 	{
 		player.Cargo().Remove(selectedOutfit);
 		int64_t price = player.FleetDepreciation().Value(selectedOutfit, day);
@@ -500,9 +500,16 @@ void OutfitterPanel::Sell()
 			if(selectedOutfit->Get("required crew"))
 				ship->AddCrew(-selectedOutfit->Get("required crew"));
 			ship->Recharge();
-			int64_t price = player.FleetDepreciation().Value(selectedOutfit, day);
-			player.Accounts().AddCredits(price);
-			player.AddStock(selectedOutfit, 1);
+			if(toCargo && player.Cargo().Add(selectedOutfit))
+			{
+				// Transfer to cargo completed.
+			}
+			else
+			{
+				int64_t price = player.FleetDepreciation().Value(selectedOutfit, day);
+				player.Accounts().AddCredits(price);
+				player.AddStock(selectedOutfit, 1);
+			}
 			
 			const Outfit *ammo = selectedOutfit->Ammo();
 			if(ammo && ship->OutfitCount(ammo))
@@ -516,9 +523,14 @@ void OutfitterPanel::Sell()
 				if(mustSell)
 				{
 					ship->AddOutfit(ammo, -mustSell);
-					int64_t price = player.FleetDepreciation().Value(ammo, day, mustSell);
-					player.Accounts().AddCredits(price);
-					player.AddStock(ammo, mustSell);
+					if(toCargo)
+						mustSell -= player.Cargo().Add(ammo, mustSell);
+					if(mustSell)
+					{
+						int64_t price = player.FleetDepreciation().Value(ammo, day, mustSell);
+						player.Accounts().AddCredits(price);
+						player.AddStock(ammo, mustSell);
+					}
 				}
 			}
 		}
@@ -527,17 +539,18 @@ void OutfitterPanel::Sell()
 
 
 
-void OutfitterPanel::FailSell() const
+void OutfitterPanel::FailSell(bool toCargo) const
 {
+	const string &verb = toCargo ? "uninstall" : "sell";
 	if(!planet || !selectedOutfit)
 		return;
 	else if(selectedOutfit->Get("map"))
-		GetUI()->Push(new Dialog("You cannot sell maps. Once you buy one, it is yours permanently."));
+		GetUI()->Push(new Dialog("You cannot " + verb + " maps. Once you buy one, it is yours permanently."));
 	else if(HasLicense(selectedOutfit->Name()))
-		GetUI()->Push(new Dialog("You cannot sell licenses. Once you buy one, it is yours permanently."));
+		GetUI()->Push(new Dialog("You cannot " + verb + " licenses. Once you buy one, it is yours permanently."));
 	else
 	{
-		bool hasOutfit = player.Cargo().Get(selectedOutfit);
+		bool hasOutfit = !toCargo && player.Cargo().Get(selectedOutfit);
 		for(const Ship *ship : playerShips)
 			if(ship->OutfitCount(selectedOutfit))
 			{
@@ -545,7 +558,7 @@ void OutfitterPanel::FailSell() const
 				break;
 			}
 		if(!hasOutfit)
-			GetUI()->Push(new Dialog("You do not have any of these outfits to sell."));
+			GetUI()->Push(new Dialog("You do not have any of these outfits to " + verb + "."));
 		else
 		{
 			for(const Ship *ship : playerShips)
@@ -555,159 +568,19 @@ void OutfitterPanel::FailSell() const
 						for(const auto &sit : ship->Outfits())
 							if(sit.first->Get(it.first) < 0.)
 							{
-								GetUI()->Push(new Dialog("You cannot sell this outfit, "
+								GetUI()->Push(new Dialog("You cannot " + verb + " this outfit, "
 									"because that would cause your ship's \"" + it.first +
 									"\" value to be reduced to less than zero. "
-									"To sell this outfit, you must sell the " +
+									"To " + verb + " this outfit, you must " + verb + " the " +
 									sit.first->Name() + " outfit first."));
 								return;
 							}
-						GetUI()->Push(new Dialog("You cannot sell this outfit, "
+						GetUI()->Push(new Dialog("You cannot " + verb + " this outfit, "
 							"because that would cause your ship's \"" + it.first +
 							"\" value to be reduced to less than zero."));
 						return;
 					}
-			GetUI()->Push(new Dialog("You cannot sell this outfit, "
-				"because something else in your ship depends on it."));
-		}
-	}
-}
-
-
-
-// Return true if at least one selected ship can uninstall the selected outfit.
-bool OutfitterPanel::CanUninstall() const
-{
-	if(!planet || !selectedOutfit)
-		return false;
-	
-	if(player.Cargo().Free() < selectedOutfit->Get("mass"))
-		return false;
-	
-	const Outfit *ammo = selectedOutfit->Ammo();
-	for(const Ship *ship : playerShips)
-	{
-		if(ammo && ship->OutfitCount(ammo))
-		{
-			// If the player has space for outfit & its ammo, stop.
-			if(player.Cargo().Free() > selectedOutfit->Get("mass") + ship->OutfitCount(ammo) * ammo->Get("mass"))
-				return true;
-			
-			// Determine the ammo count that must be stored.
-			Outfit attributes = ship->Attributes();
-			attributes.Add(*selectedOutfit, -1);
-			int toUninstall = 0;
-			for(const auto &it : attributes.Attributes())
-				if(it.second < 0.)
-					toUninstall = max<int>(toUninstall, it.second / ammo->Get(it.first));
-			
-			// If available cargo space is not sufficient to hold
-			// both outfit and ammo, consider the other selected
-			// ships as they may have fewer ammo to remove.
-			double neededTons = ammo->Get("mass") * toUninstall + selectedOutfit->Get("mass");
-			if(player.Cargo().Free() < neededTons)
-				continue;
-		}
-		if(ShipCanSell(ship, selectedOutfit))
-			return true;
-	}
-	
-	return false;
-}
-
-
-
-void OutfitterPanel::Uninstall()
-{
-	// Get the ships that have the most of this outfit installed.
-	const vector<Ship *> shipsToOutfit = GetShipsToOutfit();
-	
-	double mass = selectedOutfit->Get("mass");
-	for(Ship *ship : shipsToOutfit)
-	{
-		if(player.Cargo().Free() < mass)
-			break;
-		
-		ship->AddOutfit(selectedOutfit, -1);
-		player.Cargo().Add(selectedOutfit);
-		
-		if(selectedOutfit->Get("required crew"))
-			ship->AddCrew(-selectedOutfit->Get("required crew"));
-		ship->Recharge();
-		
-		const Outfit *ammo = selectedOutfit->Ammo();
-		if(ammo && ship->OutfitCount(ammo))
-		{
-			// Determine the number of ammo to uninstall / sell.
-			// Ammo sales should only occur when batch-outfitting.
-			int mustSell = 0;
-			for(const auto &it : ship->Attributes().Attributes())
-				if(it.second < 0.)
-					mustSell = max<int>(mustSell, it.second / ammo->Get(it.first));
-			
-			// Transfer as many of the outfits into the player's
-			// cargohold as possible, and sell the excess.
-			if(mustSell)
-			{
-				// If 10 need to be uninstalled, but room for only 4, Transfer() returns -4.
-				ship->AddOutfit(ammo, -mustSell);
-				mustSell += player.Cargo().Transfer(ammo, -mustSell);
-				int64_t price = player.FleetDepreciation().Value(ammo, day, mustSell);
-				player.Accounts().AddCredits(price);
-				player.AddStock(ammo, mustSell);
-			}
-		}
-	}
-}
-
-
-
-void OutfitterPanel::FailUninstall() const
-{
-	if(!planet || !selectedOutfit)
-		return;
-	else if(selectedOutfit->Get("map"))
-		GetUI()->Push(new Dialog("You cannot unequip maps. Once you obtain one, its knowledge is yours permanently."));
-	else if(HasLicense(selectedOutfit->Name()))
-		GetUI()->Push(new Dialog("You cannot unequip licenses. Once you obtain one, its permissions are yours permanently."));
-	else
-	{
-		bool hasOutfit = false;
-		for(const Ship *ship : playerShips)
-			if(ship->OutfitCount(selectedOutfit))
-			{
-				hasOutfit = true;
-				break;
-			}
-		if(!hasOutfit)
-			GetUI()->Push(new Dialog("You do not have any of these outfits to uninstall."));
-		else if(player.Cargo().Free() < selectedOutfit->Get("mass"))
-		{
-			GetUI()->Push(new Dialog("You cannot uninstall this outfit and place it in your cargo bay,"
-				" because you do not have sufficient cargo space to hold it."));
-		}
-		else
-		{
-			for(const Ship *ship : playerShips)
-				for(const auto &it : selectedOutfit->Attributes())
-					if(ship->Attributes().Get(it.first) < it.second)
-					{
-						for(const auto &sit : ship->Outfits())
-							if(sit.first->Get(it.first) < 0.)
-							{
-								GetUI()->Push(new Dialog("You cannot uninstall this outfit, "
-									"because that would cause your ship's \"" + it.first +
-									"\" value to be reduced to less than zero. "
-									"To uninstall this outfit, you must sell or uninstall the " +
-									sit.first->Name() + " outfit first."));
-								return;
-							}
-						GetUI()->Push(new Dialog("You cannot uninstall this outfit, "
-							"because that would cause your ship's \"" + it.first +
-							"\" value to be reduced to less than zero."));
-						return;
-					}
-			GetUI()->Push(new Dialog("You cannot uninstall this outfit, "
+			GetUI()->Push(new Dialog("You cannot " + verb + " this outfit, "
 				"because something else in your ship depends on it."));
 		}
 	}
@@ -993,7 +866,7 @@ void OutfitterPanel::Refill()
 
 
 // Determine which ships of the selected ships should be referenced in this
-// iteration of Buy / Sell / Uninstall.
+// iteration of Buy / Sell.
 const vector<Ship *> OutfitterPanel::GetShipsToOutfit(bool isBuy) const
 {
 	vector<Ship *> shipsToOutfit;
