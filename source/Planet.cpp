@@ -451,6 +451,13 @@ bool Planet::IsAccessible(const Ship *ship) const
 
 // Below are convenience functions which access the game state in Politics,
 // but do so with a less convoluted syntax:
+bool Planet::HasFuelFor(const Ship &ship) const
+{
+	return !IsWormhole() && HasSpaceport() && CanLand(ship);
+}
+
+
+
 bool Planet::CanLand(const Ship &ship) const
 {
 	return IsAccessible(&ship) && GameData::GetPolitics().CanLand(ship, this);

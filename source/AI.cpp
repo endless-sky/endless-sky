@@ -1212,40 +1212,57 @@ void AI::MoveEscort(Ship &ship, Command &command) const
 		Refuel(ship, command);
 	else if(!parentIsHere && !isStaying)
 	{
-		// If this ship has already refuelled, and its parent has left the
-		// system, no need to land on a planet again.
-		if(ship.GetTargetStellar() && ship.Fuel() == 1. && ship.GetTargetStellar()->GetPlanet()
-				&& !ship.GetTargetStellar()->GetPlanet()->IsWormhole())
-			ship.SetTargetStellar(nullptr);
-		
-		// Check whether the ship has a target system and is able to jump to it,
-		// and that the targeted stellar object can be landed on.
-		bool hasJump = (ship.GetTargetSystem() && ship.JumpFuel(ship.GetTargetSystem()));
-		if(ship.GetTargetStellar()
-				&& !(ship.GetTargetStellar()->GetPlanet() && ship.GetTargetStellar()->GetPlanet()->CanLand(ship)))
-			ship.SetTargetStellar(nullptr);
-		if(!hasJump && !ship.GetTargetStellar())
+		if(ship.GetTargetStellar())
 		{
-			// If we're stranded and haven't decided where to go, figure out a
-			// path to the parent ship's system.
+			const Planet *targetPlanet = ship.GetTargetStellar()->GetPlanet();
+			if(!targetPlanet || !targetPlanet->CanLand(ship))
+				ship.SetTargetStellar(nullptr);
+			// If this ship has already refuelled, and its parent has left the
+			// system, no need to land on a planet again.
+			else if(!targetPlanet->IsWormhole() && ship.Fuel() == 1.)
+				ship.SetTargetStellar(nullptr);
+		}
+		
+		if(!ship.GetTargetStellar() && !ship.GetTargetSystem())
+		{
+			// Figure out a path to the parent ship's system and check whether the
+			// ship should refuel, land on a wormhole or jump to the next system.
 			DistanceMap distance(ship, parent.GetSystem());
 			const System *from = ship.GetSystem();
-			const System *to = distance.Route(from);
-			for(const StellarObject &object : from->Objects())
-				if(object.GetPlanet() && object.GetPlanet()->WormholeDestination(from) == to)
-				{
-					ship.SetTargetStellar(&object);
-					break;
-				}
-			// Only set a target system if there is no wormhole route to that system.
-			if(!ship.GetTargetStellar())
+			
+			// Check how much fuel is required to reach the next refuel system.
+			if(systemHasFuel && hasFuelCapacity && ship.Fuel() < 1.)
 			{
-				ship.SetTargetSystem(to);
-				// Check if we need to refuel. Wormhole travel does not require fuel.
-				if(to && systemHasFuel && !to->HasFuelFor(ship) && ship.JumpsRemaining() == 1)
+				const System *to = distance.Route(from);
+				while(to && !to->HasFuelFor(ship))
+					to = distance.Route(to);
+				
+				// Refuel.
+				if(!to || ship.Fuel() < distance.RequiredFuel(from, to) / ship.Attributes().Get("fuel capacity"))
 					Refuel(ship, command);
 			}
+			
+			if(!ship.GetTargetStellar())
+			{
+				const System *to = distance.Route(from);
+				
+				// Land on wormhole.
+				for(const StellarObject &object : from->Objects())
+				{
+					const Planet *planet = object.GetPlanet();
+					if(planet && planet->IsWormhole() && planet->CanLand(ship) && planet->WormholeDestination(from) == to)
+					{
+						ship.SetTargetStellar(&object);
+						break;
+					}
+				}
+				
+				// Jump to the next system.
+				if(!ship.GetTargetStellar())
+					ship.SetTargetSystem(to);
+			}
 		}
+		
 		// Perform the action that this ship previously decided on.
 		if(ship.GetTargetStellar())
 		{
@@ -1349,7 +1366,7 @@ bool AI::CanRefuel(const Ship &ship, const StellarObject *target)
 	if(!planet->IsInSystem(ship.GetSystem()))
 		return false;
 	
-	if(!planet->HasSpaceport() || planet->IsWormhole() || !planet->CanLand(ship))
+	if(!planet->HasFuelFor(ship))
 		return false;
 	
 	return true;
