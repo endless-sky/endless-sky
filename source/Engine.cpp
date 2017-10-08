@@ -288,8 +288,7 @@ void Engine::Step(bool isActive)
 			doEnter = false;
 			events.emplace_back(flagship, flagship, ShipEvent::JUMP);
 		}
-		if(flagship->IsEnteringHyperspace()
-				|| (flagship->Commands().Has(Command::WAIT) && !flagship->IsHyperspacing()))
+		if(flagship->IsEnteringHyperspace() || flagship->Commands().Has(Command::JUMP))
 		{
 			if(jumpCount < 100)
 				++jumpCount;
