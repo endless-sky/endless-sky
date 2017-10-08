@@ -136,12 +136,14 @@ private:
 		int type = 0;
 		std::weak_ptr<Ship> target;
 		Point point;
-		const System * targetSystem;
+		const System *targetSystem;
 	};
 
 
 private:
 	void IssueOrders(const PlayerInfo &player, const Orders &newOrders, const std::string &description);
+	// Convert order types based on fulfillment status.
+	void UpdateOrders(const Ship &ship);
 	
 	
 private:
