@@ -37,6 +37,7 @@ public:
 	const std::string &Name() const;
 	const std::string &Credits() const;
 	const std::string &GetDate() const;
+	const bool IsDead() const;
 	
 	const std::string &GetSystem() const;
 	const std::string &GetPlanet() const;
@@ -51,6 +52,7 @@ private:
 	std::string name;
 	std::string credits;
 	std::string date;
+	bool isDead;
 	
 	std::string system;
 	std::string planet;

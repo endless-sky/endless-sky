@@ -180,3 +180,11 @@ void DataFile::Load(const char *it, const char *end)
 		}
 	}
 }
+
+
+
+// Compute a hash of the file content.
+std::string DataFile::GetHash(const std::function<bool(const DataNode &)> &predicate) const
+{
+	return root.GetHash(false, predicate); // pass false to skip the "file" tokens added by Load()
+}

@@ -79,7 +79,7 @@ void LoadPanel::Draw()
 	Information info;
 	if(loadedInfo.IsLoaded())
 	{
-		info.SetString("pilot", loadedInfo.Name());
+		info.SetString("pilot", !loadedInfo.IsDead() ? loadedInfo.Name() : loadedInfo.Name() + " [dead]");
 		if(loadedInfo.ShipSprite())
 		{
 			info.SetSprite("ship sprite", loadedInfo.ShipSprite());
@@ -98,11 +98,21 @@ void LoadPanel::Draw()
 	if(!selectedPilot.empty())
 		info.SetCondition("pilot selected");
 	if(!player.IsDead() && player.IsLoaded() && !selectedPilot.empty())
+	{
 		info.SetCondition("pilot alive");
+		if(player.GetChallengeMode() == PlayerInfo::ChallengeMode::None)
+			info.SetCondition("can save");
+	}
 	if(selectedFile.find('~') != string::npos)
 		info.SetCondition("snapshot selected");
 	if(loadedInfo.IsLoaded())
 		info.SetCondition("pilot loaded");
+	if(!loadedInfo.IsDead() &&
+	   (!player.IsLoaded() || player.GetChallengeMode() != PlayerInfo::ChallengeMode::Iron ||
+	    selectedPilot != player.Identifier()))
+	{
+		info.SetCondition("can load");
+	}
 	
 	GameData::Interfaces().Get("menu background")->Draw(info, this);
 	GameData::Interfaces().Get("load menu")->Draw(info, this);
@@ -187,13 +197,20 @@ bool LoadPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 	}
 	else if(key == 'a' && !player.IsDead() && player.IsLoaded())
 	{
-		string wasSelected = selectedPilot;
-		auto it = files.find(selectedPilot);
-		if(it == files.end() || it->second.empty() || it->second.front().first.size() < 4)
-			return false;
-		
-		GetUI()->Push(new Dialog(this, &LoadPanel::SnapshotCallback,
-			"Enter a name for this snapshot, or leave the name empty to use the current date:"));
+		if(player.GetChallengeMode() == PlayerInfo::ChallengeMode::None)
+		{
+			string wasSelected = selectedPilot;
+			auto it = files.find(selectedPilot);
+			if(it == files.end() || it->second.empty() || it->second.front().first.size() < 4)
+				return false;
+			
+			GetUI()->Push(new Dialog(this, &LoadPanel::SnapshotCallback,
+				"Enter a name for this snapshot, or leave the name empty to use the current date:"));
+		}
+		else
+		{
+			GetUI()->Push(new Dialog("Only autosaves are available in a challenge mode."));
+		}
 	}
 	else if(key == 'R' && !selectedFile.empty())
 	{
@@ -205,15 +222,27 @@ bool LoadPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 	}
 	else if((key == 'l' || key == 'e') && !selectedPilot.empty())
 	{
-		// Is the selected file a snapshot or the pilot's main file?
-		string fileName = selectedFile.substr(selectedFile.rfind('/') + 1);
-		if(fileName == selectedPilot + ".txt")
-			LoadCallback();
+		if(loadedInfo.IsDead())
+		{
+			GetUI()->Push(new Dialog("You can't load a dead pilot."));
+		}
+		else if(!player.IsLoaded() || player.GetChallengeMode() != PlayerInfo::ChallengeMode::Iron ||
+		        selectedPilot != player.Identifier())
+		{
+			// Is the selected file a snapshot or the pilot's main file?
+			string fileName = selectedFile.substr(selectedFile.rfind('/') + 1);
+			if(fileName == selectedPilot + ".txt") // If it's the main file...
+				LoadCallback();
+			else
+				GetUI()->Push(new Dialog(this, &LoadPanel::LoadCallback,
+					"If you load this snapshot, it will overwrite your current game. "
+					"Any progress will be lost, unless you have saved other snapshots. "
+					"Are you sure you want to do that?"));
+		}
 		else
-			GetUI()->Push(new Dialog(this, &LoadPanel::LoadCallback,
-				"If you load this snapshot, it will overwrite your current game. "
-				"Any progress will be lost, unless you have saved other snapshots. "
-				"Are you sure you want to do that?"));
+		{
+			GetUI()->Push(new Dialog("Loading saved games is not allowed in ironman mode."));
+		}
 	}
 	else if(key == 'b' || command.Has(Command::MENU) || (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
 		GetUI()->Pop(this);

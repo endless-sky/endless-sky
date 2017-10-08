@@ -166,7 +166,7 @@ interface "load menu"
 		center -285 155
 		dimensions 90 30
 	
-	active if "pilot alive"
+	active if "can save"
 	button a "_Add Snapshot"
 		center -60 155
 		dimensions 120 30
@@ -179,7 +179,7 @@ interface "load menu"
 	button b "_Back to Menu"
 		center 300 155
 		dimensions 120 30
-	active if "pilot loaded"
+	active if "can load"
 	button l "_Load Game"
 		center 435 155
 		dimensions 90 30

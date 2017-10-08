@@ -13,6 +13,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Random.h"
 
 #include <random>
+#include <sstream>
+#include <string>
 
 #ifndef __linux__
 #include <mutex>
@@ -24,11 +26,11 @@ using namespace std;
 namespace {
 #ifndef __linux__
 	mutex workaroundMutex;
-	mt19937_64 gen;
+	mt19937_64 gen, effectGen;
 	uniform_int_distribution<uint32_t> uniform;
 	uniform_real_distribution<double> real;
 #else
-	thread_local mt19937_64 gen;
+	thread_local mt19937_64 gen, effectGen;
 	thread_local uniform_int_distribution<uint32_t> uniform;
 	thread_local uniform_real_distribution<double> real;
 #endif
@@ -78,6 +80,36 @@ double Random::Real()
 
 
 
+uint32_t Random::EffectInt()
+{
+#ifndef __linux__
+	lock_guard<mutex> lock(workaroundMutex);
+#endif
+	return uniform(effectGen);
+}
+
+
+
+uint32_t Random::EffectInt(uint32_t modulus)
+{
+#ifndef __linux__
+	lock_guard<mutex> lock(workaroundMutex);
+#endif
+	return uniform(effectGen) % modulus;
+}
+
+
+
+double Random::EffectReal()
+{
+#ifndef __linux__
+	lock_guard<mutex> lock(workaroundMutex);
+#endif
+	return real(effectGen);
+}
+
+
+
 // Return the expected number of failures before k successes, when the 
 // probability of success is p. The mean value will be k / (1 - p).
 uint32_t Random::Polya(uint32_t k, double p)
@@ -111,4 +143,29 @@ double Random::Normal()
 	lock_guard<mutex> lock(workaroundMutex);
 #endif
 	return normal(gen);
+}
+
+
+
+// Get the state of the random number generator.
+std::string Random::GetState()
+{
+#ifndef __linux__
+	lock_guard<mutex> lock(workaroundMutex);
+#endif
+	std::ostringstream buffer;
+	buffer << gen;
+	return buffer.str();
+}
+
+
+
+// Set the state of the random number generator.
+void Random::SetState(const std::string &state)
+{
+#ifndef __linux__
+	lock_guard<mutex> lock(workaroundMutex);
+#endif
+	std::istringstream buffer(state);
+	buffer >> gen;
 }

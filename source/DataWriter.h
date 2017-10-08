@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef DATA_WRITER_H_
 #define DATA_WRITER_H_
 
+#include "SHA1.h"
 #include <string>
 #include <sstream>
 
@@ -35,7 +36,7 @@ public:
 	
 	// The Write() function can take any number of arguments. Each argument is
 	// converted to a token. Arguments may be strings or numeric values.
-  template <class A, class ...B>
+	template <class A, class ...B>
 	void Write(const A &a, B... others);
 	// Write the entire structure represented by a DataNode, including any
 	// children that it has.
@@ -46,7 +47,7 @@ public:
 	
 	// Begin a new line that is a "child" of the previous line.
 	void BeginChild();
-	// Finish writing a block of child nodes and decrese the indentation.
+	// Finish writing a block of child nodes and decrease the indentation.
 	void EndChild();
 	
 	// Write a comment. It will be at the current indentation level, and will
@@ -57,8 +58,17 @@ public:
 	void WriteToken(const char *a);
 	void WriteToken(const std::string &a);
 	// Write a token of any arithmetic type.
-  template <class A>
+	template <class A>
 	void WriteToken(const A &a);
+	
+	// Get a hash of the data written so far. The value is the same as what
+	// would be returned by DataNode::GetHash for the file content.
+	inline std::string GetHash() const { return hash.GetHashString(); }
+	
+	
+private:
+	// Ensure the indentation level is calculated and hashed.
+	void EnsureIndent();
 	
 	
 private:
@@ -66,6 +76,7 @@ private:
 	std::string path;
 	// Current indentation level.
 	std::string indent;
+	int indentLevel, nextIndentLevel;
 	// Before writing each token, we will write either the indentation string
 	// above, or this string.
 	static const std::string space;
@@ -74,6 +85,8 @@ private:
 	const std::string *before;
 	// Compose the output in memory before writing it to file.
 	std::ostringstream out;
+	// A SHA1 instance used to hash the data written.
+	SHA1 hash;
 };
 
 
@@ -95,9 +108,13 @@ void DataWriter::WriteToken(const A &a)
 {
 	static_assert(std::is_arithmetic<A>::value,
 		"DataWriter cannot output anything but strings and arithmetic types.");
-	
-	out << *before << a;
+	EnsureIndent();
+	std::ostringstream buffer;
+	buffer << a;
+	std::string formatted = buffer.str();
+	out << *before << formatted;
 	before = &space;
+	hash.Add(formatted);
 }
 
 

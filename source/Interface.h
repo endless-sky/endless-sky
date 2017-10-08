@@ -87,7 +87,7 @@ private:
 		// Draw this element in the given rectangle.
 		virtual void Draw(const Rectangle &rect, const Information &info, int state) const;
 		// Add any click handlers needed for this element. This will only be
-		// called if the element is visible and active.
+		// called if the element is visible, but may be called if it's inactive.
 		virtual void Place(const Rectangle &bounds, Panel *panel) const;
 		
 	protected:

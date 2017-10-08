@@ -13,12 +13,20 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "DataNode.h"
 
 #include "Files.h"
+#include "SHA1.h"
 
 #include <algorithm>
 #include <cctype>
 #include <cmath>
 
 using namespace std;
+
+
+
+// An arbitrary string used to seed the hash generator and thereby include some
+// "secret" data that is not present in the output file. Changing this will
+// invalidate the hash of existing saved games, so don't.
+const char * const DataNode::HashSeed = "\xe9\x22\xea\x88\xc7\xf7\x53\xee\x11\x83\x88\xcf\x90\xc5\x89\x2f";
 
 
 
@@ -233,6 +241,47 @@ int DataNode::PrintTrace(const string &message) const
 	
 	// Tell the caller what indentation level we're at now.
 	return indent;
+}
+
+
+
+// Compute a hash of the DataNode and its descendants.
+std::string DataNode::GetHash(bool includeThis, const std::function<bool(const DataNode &)> &predicate) const
+{
+	SHA1 sha = SHA1();
+	// seed the hash so it's not so easily predictable from the text content
+	sha.Add(HashSeed);
+	if(!includeThis || predicate == nullptr || predicate(*this))
+		RecursivelyHash(sha, includeThis, predicate);
+	return sha.GetHashString();
+}
+
+
+
+// A helper function for GetHash, which recursively adds nodes to the hash.
+void DataNode::RecursivelyHash(SHA1 &sha, bool includeThis, const std::function<bool(const DataNode &)> &predicate) const
+{
+	if(includeThis)
+	{
+		for(const string &token : tokens)
+			sha.Add(token);
+	}
+	
+	if(children.begin() != children.end())
+	{
+		// if we ignored the root, don't add the indent and dedent either
+		if(includeThis)
+			sha.Add(IndentHash);
+		
+		for(const DataNode &child : children)
+		{
+			if (predicate == nullptr || predicate(child))
+				child.RecursivelyHash(sha, true, predicate);
+		}
+		
+		if(includeThis)
+			sha.Add(DedentHash);
+	}
 }
 
 

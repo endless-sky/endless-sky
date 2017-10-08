@@ -46,6 +46,8 @@ void SavedGame::Load(const string &path)
 			system = node.Token(1);
 		else if(node.Token(0) == "planet" && node.Size() >= 2)
 			planet = node.Token(1);
+		else if(node.Token(0) == "dead")
+			isDead = true;
 		else if(node.Token(0) == "account")
 		{
 			for(const DataNode &child : node)
@@ -91,6 +93,7 @@ void SavedGame::Clear()
 	name.clear();
 	credits.clear();
 	date.clear();
+	isDead = false;
 	
 	system.clear();
 	planet.clear();
@@ -118,6 +121,13 @@ const string &SavedGame::Credits() const
 const string &SavedGame::GetDate() const
 {
 	return date;
+}
+
+
+
+const bool SavedGame::IsDead() const
+{
+	return isDead;
 }
 
 

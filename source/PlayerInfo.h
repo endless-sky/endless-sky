@@ -237,6 +237,11 @@ public:
 	// Get the set of collapsed categories for the named panel.
 	std::set<std::string> &Collapsed(const std::string &name);
 	
+	// Enum describing the type of challenge the player has undertaken
+	enum ChallengeMode { None = 0, Bronze, Iron };
+	// Get the challenge mode, if any.
+	ChallengeMode GetChallengeMode() const;
+	
 	
 private:
 	// Don't anyone else to copy this class, because pointers won't get
