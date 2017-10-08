@@ -31,7 +31,7 @@ mission "Deep Mystery Cube [0]"
 		dialog `As instructed, you leave the mystery cube by the side of the road a few miles away from the spaceport. "This has to be legal, or they couldn't post it to the job board," you remind yourself as you collect the payment of <payment>.`
 	npc
 		government "Bounty Hunter"
-		personality nemesis disables waiting
+		personality nemesis disables waiting plunders
 		system
 			distance 6 9
 		fleet "Bounty Hunters"
@@ -59,7 +59,7 @@ mission "Deep Mystery Cube [1]"
 		dialog `As instructed, you leave the mystery cube behind a rickety-looking wooden tower. "This has to be legal, or they couldn't post it to the job board," you remind yourself as you collect the payment of <payment>.`
 	npc
 		government "Bounty Hunter"
-		personality nemesis disables waiting
+		personality nemesis disables waiting plunders
 		system
 			distance 6 9
 		fleet "Bounty Hunters"
@@ -87,7 +87,7 @@ mission "Deep Mystery Cube [2]"
 		dialog `As instructed, you bury the cube out in the middle of nowhere before landing in the spaceport. "This has to be legal, or they couldn't post it to the job board," you remind yourself as you collect the payment of <payment>.`
 	npc
 		government "Bounty Hunter"
-		personality nemesis disables waiting
+		personality nemesis disables waiting plunders
 		system
 			distance 6 9
 		fleet "Bounty Hunters"
@@ -115,7 +115,7 @@ mission "Deep Mystery Cube [3]"
 		dialog `As instructed, you hand the cube to the first beggar woman you see planetside. She accepts it without a word. "This has to be legal, or they couldn't post it to the job board," you remind yourself as you collect the payment of <payment>.`
 	npc
 		government "Bounty Hunter"
-		personality nemesis disables waiting
+		personality nemesis disables waiting plunders
 		system
 			distance 6 9
 		fleet "Bounty Hunters"
@@ -142,7 +142,7 @@ mission "Mystery retrieval"
 		dialog `You drop off the cube at a warehouse, as instructed. Nobody comes around to collect it, but nonetheless your bank account immediately notifies you that the agreed-upon payment of <payment> has been deposited. You wonder how they knew.`
 	npc
 		government "Bounty Hunter"
-		personality nemesis disables waiting
+		personality nemesis disables waiting plunders
 		system
 			distance 10 17
 		fleet "Bounty Hunters"

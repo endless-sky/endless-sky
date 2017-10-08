@@ -630,7 +630,7 @@ mission "Deep: TMBR 0"
 		"Record academic conference: done" >= 3
 		has "There Might Be Riots part 3B: done"
 		not "Deep: Remnant 0: offered"
-		not "Deep: Singularity 1: offered"
+		not "Deep: Project Hawking: offered"
 	
 	on offer
 		conversation
@@ -648,7 +648,7 @@ mission "Deep: TMBR 0"
 					goto met
 				`	"I just like to listen to their music."`
 			
-			`	One of the other scientists, Isaac, looks right at you and stares. After a few moments he says, "I know you! You were in the 'Songs for the End of Civilization' broadcast from Pilot!" The rest of the scientists start agreeing with him as they look at you closer.`
+			`	One of the other scientists, an older looking man named Isaac, looks right at you and stares. After a few moments he says, "I know you! You were in the 'Songs for the End of Civilization' broadcast from Pilot!" The rest of the scientists start agreeing with him as they look at you closer.`
 			
 			label met
 			`	"You know 'There Might Be Riots?' You are so lucky!" says Maria.`
@@ -728,7 +728,7 @@ mission "Deep: TMBR 2"
 
 
 
-mission "Deep: Singularity 0A"
+mission "Deep: Interrogation"
 	landing
 	source
 		attributes deep
@@ -889,7 +889,7 @@ mission "Deep: Singularity 0A"
 
 
 
-mission "Deep: Singularity 0B"
+mission "Deep: Questions"
 	landing
 	name `Mysterious Message`
 	description `Travel to <destination> to meet the author of an encrypted message.`
@@ -901,7 +901,7 @@ mission "Deep: Singularity 0B"
 		attributes urban
 	to offer
 		has "event: assisted the deep"
-		has "Deep: Singularity 0A: offered"
+		has "Deep: Interrogation: offered"
 		not "deep: helped before archaeology"
 	
 	on offer
@@ -973,7 +973,7 @@ mission "Deep: Singularity 0B"
 
 
 
-mission "Deep: Singularity 1"
+mission "Deep: Project Hawking"
 	minor
 	name `Research Supplies`
 	description `Fetch research supplies from <stopovers> and return them to <destination> by <date> for "Project Hawking."`
@@ -990,9 +990,9 @@ mission "Deep: Singularity 1"
 		random < 40
 		or
 			and
-				not "Deep: Singularity 0B: active"
+				not "Deep: Questions: active"
 				or
-					has "Deep: Singularity 0B: offered"
+					has "Deep: Questions: offered"
 					has "deep: helped before archaeology"
 			and
 				has "Deep: Mystery Cubes 4: done"
@@ -1084,59 +1084,153 @@ mission "Deep: Singularity 1"
 
 
 
-mission "Deep: Singularity 1: Carbuncle"
+mission "Deep: Project Hawking: Carbuncle"
 	landing
 	invisible
 	source "Carbuncle Station"
 	to offer
-		has "Deep: Singularity 1: active"
+		has "Deep: Project Hawking: active"
 	to fail
-		has "Deep: Singularity 1: done"
+		has "Deep: Project Hawking: done"
 	npc kill
 		government Independent
 		personality waiting
 		ship "Marauder Splinter (Engines)" "Abaddon"
 	on offer
 		conversation
-			``
+			`A majority of Carbuncle Station is restricted to normal visitors. The workers here will not even refuel your ship upon request. It's clear that Lovelace Labs, the owners of this station, have secrets stored within the walls of this station.`
+			`	The scientists explain their presence to the station workers. A woman in a uniform distinct from the rest of the workers begins tapping away at her tablet and confirms that the scientsits are here to pick up supplies for "Project Hawking."`
+			`	"We only have room to bring three of you," she states. After a short discussion, Garrison agrees to stay behind with you. Isaac, Hannah, and Laura are lead to a restricted area of the station while Garrison and you wait by your ship.`
+			choice
+				`	"How should we pass the time while we wait?"`
+				`	"How long will it be before they come back?"`
+					goto wait
+			
+			`	"It shouldn't take long for them to come back, so let's just have a short chat."`
+				goto questions
+			
+			label wait
+			`	"At most ten minutes. In the mean time we can just have a short chat; I find dead air annoyingly awkward."`
+			
+			label questions
+			choice
+				`	"Do you know what Lovelace Labs keeps in this station?"`
+				`	"What is 'Project Hawking'?"`
+					goto project
+			
+			`	"I haven't the faintest idea what they keep here. Even if I did, I'm sure I wouldn't be allowed to tell you. The only thing I know for sure they have here are components for the project we're working on."`
+			`	"Project Hawking?" you ask. Garrison nods.`
+			
+			label project
+			`	"The exact contents of Project Hawking are classified. I'm not able to tell you much aside from the fact that we're doing energy and weapons research. Scientists from the Deep who are highly specialized in a certain field will be asked to work on government projects every so often.`
+			`	"In the field of energy engineering, I'm among the best that the Deep has to offer. I worked on the Dwarf Core." Garrison pauses and chuckles to himself before saying, "I also contributed toward the creation of those comically impractical LP576a battery packs that I have yet to see a single ship using.`
+			`	"Anyhow, because of my past work, the Deep approached me to work on this project. The pay was better than what I was getting before so I accepted it. It was a pleasent surprise to meet my partners as well. Hannah graduated in the same class as me, double majoring in quantum mechanics and ancient history, of all things."`
+			choice
+				`	"What is it that you need from Carbuncle Station that is so secret?"`
+				`	"What about Isaac and Laura?"`
+					goto partners
+			
+			`	"Like I said already, the project is classified. It's not something I would understand, though. It's in Laura's field of expertise. You see, she majored in-"`
+				goto end
+			
+			label partners
+			branch electron
+				has "event: deep sky tech available"
+			`	"Isaac is an older guy. He has been working on laser weaponry for the better part of three decades now. Before this he was working on a seperate project, but the Deep asked that he take time away from that to work on Project Hawking while they try to find a replacement for him, since the project needed someone with better knowledge in laser weaponry than the rest of us.`
+				goto laura
+			
+			label electron
+			`	"Isaac is an older guy. He has been working on laser weaponry for the better part of three decades now. If you've ever tried out an electron beam, you have him to thank for that. And a few others, of course, but one of his findings is really what brought the whole project together.`
+			
+			label laura
+			`	"Laura, on the other hand-"`
+			
+			label end
+			`	Before Garrison can finish speaking, the other three scientists return, helping each other carry a sealed metal box. "We're just going to sit this in the back, if you don't mind," Isaac says. The scientists make themselves cozy in the bunk rooms and get ready to launch.`
 				accept
 
 
 
-mission "Deep: Singularity 1: Prime"
+mission "Deep: Project Hawking: Prime"
 	landing
 	invisible
 	source Prime
 	to offer
-		has "Deep: Singularity 1: active"
+		has "Deep: Project Hawking: active"
 	to fail
-		has "Deep: Singularity 1: done"
+		has "Deep: Project Hawking: done"
 	npc kill
 		government Independent
 		personality waiting
 		ship "Marauder Raven (Engines)" "Krampus"
 	on offer
 		conversation
-			``
+			`In the massive <planet> spaceport building, Isaac directs you to park on a landing pad on the third story close to the warehouse section. "There are some alloys used in the creation of ships that we will need samples of for testing," Isaac explains.`
+			`	The scientists speak with the spaceport authorities, who begin loading several tons of seperate allows into your cargo from a platform above your ship. You sit with Isaac as you wait for them to finish.`
+			choice
+				`	"What are these alloys going to be used for?"`
+				`	"Why do we need to come all the way to Prime to get these alloys?"`
+					goto alloys
+			
+			`	Isaac cocks his head to the side as he looks at you. "We're going to destroy them. Short and simple. We need to see how different ship alloys hold up to the technology we're working on.`
+			
+			label alloys
+			`	"We could have gotten alloys from a shipyard local to the Deep, but Betelgeuse Shipyards gets regular shipments of alloys more commonly used in ships that are sold in the south, so it's the cloest place to get everything we need."`
+			choice
+				`	"Do you enjoy the work you do for the Deep?"`
+				`	"How long have you been working for the Deep?"`
+			
+			label story
+			`	"Let me answer that question in a short story of my life." Isaac clears his throat and buffs up his chest a little as if preparing himself to tell a great epic. He may enjoy talking about himself a little too much...`
+			`	"I was born on Windblain in the Regor system. It's a quiet little world of little interest, but you should give it a vist some time. My family wasn't the most well off when I was a child, so I needed to work hard in my studies, which paid off immensely. Thanks to my exceptional grades in university, I was offered a government job right out of graduation. I've been working directly for the Deep for the past 35 years and counting, and I've loved every minute of it. My younger sister though... well, let's just say she wasn't so focused on being successful in school and ended up on the wrong side of the law."`
+			`	"How about you, kid?"`
+			`	You tell Isaac about your life on New Boston, and how you saved saved up your money working at the textile mill from the age of fifteen until you were able to buy a captain's license and finally leave your home world for a better life among the stars.`
+			`	"We aren't too different then," Isaac remarks. "We both worked hard to get where we are today. Thanks for sharing, <first>."`
+			`	"The cargo is all in, Captain!" Garrison yells down from the platform above. "We're ready to launch when you are!"`
 				accept
 
 
 
-mission "Deep: Singularity 1: Vinci"
+mission "Deep: Project Hawking: Vinci"
 	landing
 	invisible
 	source Vinci
 	to offer
-		has "Deep: Singularity 1: active"
+		has "Deep: Project Hawking: active"
 	to fail
-		has "Deep: Singularity 1: done"
+		has "Deep: Project Hawking: done"
 	npc kill
 		government Independent
 		personality waiting
 		ship "Marauder Arrow (Engines)" "Valac"
 	on offer
 		conversation
-			``
+			`"This might take a while to get ahold of the electronics we need," Isaac says after you land. "Just stick around the spaceport while we're gone."`
+			`	"You guys can handle it, right?" Hannah asks. "I haven't been to Vinci in years. I want to see the virtual reality activities they have in the spaceport arcade now."`
+			`	The other three scientists agree that they can do without Hannah and she immediately runs off in the direction of the spaceport arcade. When you find her, she is busy playing a VR table tennis game against a hologram AI opponent. By the look of things she is an amazing player, and the score is currently tied.`
+			choice
+				`	"You're doing great. Do you play table tennis often?"`
+				`	"You can do it!"`
+				
+			`	Hannah slams the virtual tennis ball with her paddle, causing it to bounce off the table and fly right past the hologram opponent before disinegrating into thin air.`
+			`	"I did pretty good, didn't I? That's my first time playing table tennis, too."`
+			choice
+				`	"Wow. You did great for your first time."`
+				`	"How did you do that good for your first time?"`
+			
+			`	"I'm just a quick learner. Always have been. In university I would do work for my history courses while sitting in a lecture on quantum mechanics and get straight A's in both classes without a problem."
+			choice
+				`	"That's a strange combonation of classes."`
+				`	"What did you learn in ancient history?"`
+					goto history
+			
+			`	"That's what everyone else told me to. It was fun though, and a lot of what I learned in ancient history was just as interesting as what I learned in quantum mechanics."`
+			`	"What did you learn in ancient history?" you ask`
+			
+			label history
+			`	"I could spend weeks on end talking about what I learned in those classes. The most interesting thing I learned has to be my ancestry. Most of my ancestors came from a place on Earth called Scandinavia, and my last name means 'garden' in an ancient language.`
+			`	"It's interesting to know where my ancestors lived over a thousand years ago when humanity was still stuck on Earth. It's amazing that the hyperdrive was invented when it was too, because we could have easily wiped ourselves out if we hadn't. Life still isn't perfect across the galaxy, but it's still far better on average than it was on Earth alone."`
+			`	Hannah looks like she is ready to endlessly about Earth before the hyperdrive was invented, but you are saved by Laura. "We got the electronics we need loaded onto your ship, Captain. Garrison and Isaac are waiting for us to get back to the ship"`
 				accept
 
 
@@ -1155,7 +1249,7 @@ mission "Deep: Remnant 0"
 		has "First Contact: Hai: offered"
 		or
 			"deep convoy" >= 2
-			has "Deep: Singularity 1: done"
+			has "Deep: Project Hawking: done"
 			has "Deep: TMBR 2: done"
 	
 	on offer
@@ -1675,7 +1769,7 @@ mission "Deep: Scientist Rescue Timer"
 	invisible
 	to offer
 		has "Deep: Remnant Research: done"
-		has "Deep: Singularity 1: done"
+		has "Deep: Project Hawking: done"
 	on offer
 		event "deep: scientist rescue timer" 90
 		fail
