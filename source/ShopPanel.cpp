@@ -30,6 +30,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "SpriteSet.h"
 #include "SpriteShader.h"
 #include "UI.h"
+#include "WrappedText.h"
 
 #include <SDL2/SDL.h>
 
@@ -91,6 +92,25 @@ void ShopPanel::Draw()
 	
 	shipInfo.DrawTooltips();
 	outfitInfo.DrawTooltips();
+	
+	if(!warningType.empty())
+	{
+		static const int WIDTH = 250;
+		static const int PAD = 10;
+		const string &text = GameData::Tooltip(warningType);
+		WrappedText wrap(FontSet::Get(14));
+		wrap.SetWrapWidth(WIDTH - 2 * PAD);
+		wrap.Wrap(text);
+		
+		bool isError = (warningType.back() == '!');
+		const Color &textColor = *GameData::Colors().Get("medium");
+		const Color &backColor = *GameData::Colors().Get(isError ? "error back" : "warning back");
+		
+		Point size(WIDTH, wrap.Height() + 2 * PAD);
+		Point anchor = Point(warningPoint.X(), min<double>(warningPoint.Y() + size.Y(), Screen::Bottom()));
+		FillShader::Fill(anchor - .5 * size, size, backColor);
+		wrap.Draw(anchor - size + Point(PAD, PAD), textColor);
+	}
 	
 	if(dragShip && dragShip->GetSprite())
 	{
@@ -163,6 +183,13 @@ void ShopPanel::DrawSidebar()
 			double scale = ICON_SIZE / max(sprite->Width(), sprite->Height());
 			Point size(sprite->Width() * scale, sprite->Height() * scale);
 			OutlineShader::Draw(sprite, point, size, isSelected ? selected : unselected);
+		}
+		
+		string check = ship->FlightCheck();
+		if(!check.empty())
+		{
+			const Sprite *icon = SpriteSet::Get(check.back() == '!' ? "ui/error" : "ui/warning");
+			SpriteShader::Draw(icon, point + .5 * Point(ICON_TILE - icon->Width(), ICON_TILE - icon->Height()));
 		}
 		
 		zones.emplace_back(point, Point(ICON_TILE, ICON_TILE), ship.get());
@@ -438,8 +465,8 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 {
 	scrollDetailsIntoView = false;
 	bool toCargo = selectedOutfit && (key == 'r' || key == 'u');
-	if((key == 'l' || key == 'd' || key == SDLK_ESCAPE
-			|| (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI)))) && FlightCheck())
+	if(key == 'l' || key == 'd' || key == SDLK_ESCAPE
+			|| (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
 	{
 		player.UpdateCargoCapacities();
 		GetUI()->Pop(this);
@@ -656,6 +683,18 @@ bool ShopPanel::Hover(int x, int y)
 		shipInfo.Hover(point);
 		outfitInfo.Hover(point);
 	}
+	
+	warningType.clear();
+	for(const Zone &zone : zones)
+		if(zone.Contains(point) && zone.GetShip())
+		{
+			warningType = zone.GetShip()->FlightCheck();
+			if(!warningType.empty())
+			{
+				warningPoint = zone.TopLeft();
+				break;
+			}
+		}
 	
 	dragMain = (x < Screen::Right() - SIDE_WIDTH);
 	return true;

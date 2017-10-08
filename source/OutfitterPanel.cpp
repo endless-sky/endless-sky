@@ -13,7 +13,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "OutfitterPanel.h"
 
 #include "Color.h"
-#include "ConversationPanel.h"
 #include "Dialog.h"
 #include "DistanceMap.h"
 #include "FillShader.h"
@@ -587,70 +586,6 @@ void OutfitterPanel::FailSell(bool toCargo) const
 				"because something else in your ship depends on it."));
 		}
 	}
-}
-
-
-
-bool OutfitterPanel::FlightCheck()
-{
-	for(const shared_ptr<Ship> &ship : player.Ships())
-	{
-		// Skip any ships that are "absent" for whatever reason.
-		if(ship->GetSystem() != player.GetSystem() || ship->IsDisabled())
-			continue;
-		
-		const Outfit &attributes = ship->Attributes();
-		double energy = attributes.Get("energy generation") - attributes.Get("energy consumption");
-		energy += attributes.Get("solar collection");
-		energy += attributes.Get("energy capacity");
-		if(energy < 0.)
-		{
-			GetUI()->Push(new ConversationPanel(player,
-				*GameData::Conversations().Get("flight check: no energy"), nullptr, ship.get()));
-			return false;			
-		}
-		if(!attributes.Get("thrust") && !attributes.Get("reverse thrust")
-				&& !attributes.Get("afterburner thrust"))
-		{
-			GetUI()->Push(new ConversationPanel(player,
-				*GameData::Conversations().Get("flight check: no thrusters"), nullptr, ship.get()));
-			return false;
-		}
-		if(attributes.Get("thrusting energy") > energy)
-		{
-			GetUI()->Push(new ConversationPanel(player,
-				*GameData::Conversations().Get("flight check: no thruster energy"), nullptr, ship.get()));
-			return false;
-		}
-		if(!attributes.Get("turn"))
-		{
-			GetUI()->Push(new ConversationPanel(player,
-				*GameData::Conversations().Get("flight check: no steering"), nullptr, ship.get()));
-			return false;
-		}
-		if(attributes.Get("turning energy") > energy)
-		{
-			GetUI()->Push(new ConversationPanel(player,
-				*GameData::Conversations().Get("flight check: no steering energy"), nullptr, ship.get()));
-			return false;
-		}
-		// Check energy balance with solar collection at infinite distance from a star (only 20% of
-		// maximum solar collection).
-		energy -= .8 * attributes.Get("solar collection");
-		if(attributes.Get("thrusting energy") > energy || attributes.Get("turning energy") > energy)
-		{
-			GetUI()->Push(new ConversationPanel(player,
-				*GameData::Conversations().Get("flight check: solar power warning"), nullptr, ship.get()));
-			return true;
-		}			
-		if(ship->IdleHeat() >= 100. * ship->Mass())
-		{
-			GetUI()->Push(new ConversationPanel(player,
-				*GameData::Conversations().Get("flight check: overheating"), nullptr, ship.get()));
-			return false;
-		}
-	}
-	return true;
 }
 
 

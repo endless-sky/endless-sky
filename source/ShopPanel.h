@@ -62,7 +62,6 @@ protected:
 	virtual bool CanSell(bool toCargo = false) const = 0;
 	virtual void Sell(bool toCargo = false) = 0;
 	virtual void FailSell(bool toCargo = false) const;
-	virtual bool FlightCheck() = 0;
 	virtual bool CanSellMultiple() const;
 	virtual void DrawKey();
 	
@@ -133,6 +132,9 @@ protected:
 	
 	ShipInfoDisplay shipInfo;
 	OutfitInfoDisplay outfitInfo;
+	
+	Point warningPoint;
+	std::string warningType;
 	
 	
 private:

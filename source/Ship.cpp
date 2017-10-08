@@ -536,6 +536,50 @@ int64_t Ship::ChassisCost() const
 
 
 
+// Check if this ship is configured in such a way that it would be difficult
+// or impossible to fly.
+string Ship::FlightCheck() const
+{
+	double generation = attributes.Get("energy generation") - attributes.Get("energy consumption");
+	double solar = attributes.Get("solar collection");
+	double battery = attributes.Get("energy capacity");
+	double energy = generation + solar + battery;
+	double thrust = attributes.Get("thrust");
+	double reverseThrust = attributes.Get("reverse thrust");
+	double afterburner = attributes.Get("afterburner thrust");
+	double thrustEnergy = attributes.Get("thrusting energy");
+	double turn = attributes.Get("turn");
+	double turnEnergy = attributes.Get("turning energy");
+	
+	// Error conditions:
+	if(IdleHeat() >= 100. * Mass())
+		return "overheating!";
+	if(energy <= 0.)
+		return "no energy!";
+	if(!thrust && !reverseThrust && !afterburner)
+		return "no thruster!";
+	if(!turn)
+		return "no steering!";
+	
+	// Warning conditions:
+	if(!thrust && !reverseThrust)
+		return "afterburner only?";
+	if(!thrust && !afterburner)
+		return "reverse only?";
+	if(!generation && !solar)
+		return "battery only?";
+	if(energy < thrustEnergy)
+		return "limited thrust?";
+	if(energy < turnEnergy)
+		return "limited turn?";
+	if(energy - .8 * solar < .2 * (turnEnergy + thrustEnergy))
+		return "solar power?";
+	
+	return "";
+}
+
+
+
 void Ship::SetPosition(Point position)
 {
 	this->position = position;

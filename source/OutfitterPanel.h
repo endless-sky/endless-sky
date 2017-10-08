@@ -56,7 +56,6 @@ protected:
 	virtual bool CanSell(bool toCargo = false) const override;
 	virtual void Sell(bool toCargo = false) override;
 	virtual void FailSell(bool toCargo = false) const override;
-	virtual bool FlightCheck() override;
 	virtual void DrawKey();
 	
 	

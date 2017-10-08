@@ -415,3 +415,36 @@ tip "missile strength:"
 
 tip "anti-missile:"
 	`How powerful this anti-missile system's shots are. Some missiles are harder to destroy than others.`
+
+
+
+# Flight checks:
+tip "overheating!"
+	`This ship's outfits are producing so much heat that it will overheat the moment it takes off. You must either add more cooling or remove some of the outfits that are producing heat.`
+
+tip "no energy!"
+	`This ship does not have any source of energy to power its systems. You should install some sort of generator.`
+
+tip "no thruster!"
+	`This ship does not have any sort of thruster installed. If it took off, it would be unable to move.`
+
+tip "no steering!"
+	`This ship does not have any steering systems installed. If it took off, it would be unable to turn.`
+
+tip "afterburner only?"
+	`This ship's only thruster is an afterburner. It may be unable to move if the afterburner runs out of fuel.`
+
+tip "reverse only?"
+	`This ship has a reverse thruster but no forward thruster, which could make it very difficult to maneuver.`
+
+tip "battery only?"
+	`This ship has no means of generating energy. If its batteries are depleted, you could end up stranded and unable to move.`
+
+tip "limited thrust?"
+	`This ship's energy supply is not sufficient to run the thrusters at full power. Its top speed and acceleration will be diminished.`
+
+tip "limited turn?"
+	`This ship's energy supply is not sufficient to run the steering at full power. Its turn rate will be diminished.`
+
+tip "solar power?"
+	`This ship is powered entirely by solar energy. If you fly too far from the center of a star system, maneuvering may become difficult because your engines will only have a fraction of the power they require.`
