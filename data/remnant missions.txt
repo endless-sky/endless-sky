@@ -95,12 +95,12 @@ mission "Remnant: Defense 1"
 		set "Remnant defense delay"
 		event "remnant defense timer" 20
 	npc
-		personality staying uninterested disables plunders
 		government "Remnant"
+		personality staying uninterested disables plunders
 		fleet "Large Remnant"
 	npc evade
-		personality heroic target
 		government "Korath"
+		personality heroic plunders harvests target
 		fleet "Korath Raid" 6
 	on visit
 		dialog "There are still Korath raiders circling overhead. You should take off and help the Remnant ships to fight them."
@@ -145,8 +145,8 @@ mission "Remnant: Defense 2"
 			`	"Thank you," she sings. "It keeps jumping between systems in our territory. Maybe its jump drive was damaged or something, and it can't escape. I'll spread news that you've taken on the bounty for hunting it, so others won't risk their lives fighting it."`
 				accept
 	npc kill
-		personality coward target uninterested marked waiting
 		government Korath
+		personality coward target uninterested marked waiting
 		system
 			distance 1 2
 		fleet
@@ -173,8 +173,8 @@ mission "Remnant: Bounty"
 		has "Remnant: Defense 2: done"
 		random < 60
 	npc kill
-		personality coward target uninterested marked waiting
 		government Korath
+		personality coward target uninterested marked waiting
 		system
 			distance 1 2
 		fleet
@@ -213,8 +213,8 @@ mission "Remnant: Defense 3"
 	on accept
 		event "remnant: surveillance begin"
 	npc kill
-		personality heroic nemesis staying
 		government Korath
+		personality heroic nemesis staying
 		system Parca
 		fleet "Korath Raid" 2
 		dialog "Now that you are alone, you are able to deploy the Remnant surveillance satellite unobserved. Time to report back to <planet>."
@@ -330,7 +330,7 @@ mission "Remnant: Void Sprites 1"
 	
 	npc
 		government "Indigenous Lifeform"
-		personality timid mining harvesting staying mute
+		personality timid mining harvests staying mute
 		system Nenia
 		fleet
 			cargo 0
@@ -372,7 +372,7 @@ mission "Remnant: Void Sprites 2"
 					accept
 	npc "scan outfits"
 		government "Indigenous Lifeform"
-		personality timid mining harvesting staying mute
+		personality timid mining harvests staying mute
 		system Nenia
 		fleet
 			cargo 0

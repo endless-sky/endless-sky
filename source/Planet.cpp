@@ -178,6 +178,16 @@ void Planet::Load(const DataNode &node, const Set<Sale<Ship>> &ships, const Set<
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
+	
+	static const vector<string> AUTO_ATTRIBUTES = {"spaceport", "shipyard", "outfitter"};
+	bool autoValues[3] = {!spaceport.empty(), !shipSales.empty(), !outfitSales.empty()};
+	for(unsigned i = 0; i < AUTO_ATTRIBUTES.size(); ++i)
+	{
+		if(autoValues[i])
+			attributes.insert(AUTO_ATTRIBUTES[i]);
+		else
+			attributes.erase(AUTO_ATTRIBUTES[i]);
+	}
 }
 
 

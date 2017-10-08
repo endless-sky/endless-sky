@@ -88,6 +88,7 @@ private:
 	static void Attack(Ship &ship, Command &command, const Ship &target);
 	static void MoveToAttack(Ship &ship, Command &command, const Body &target);
 	static void PickUp(Ship &ship, Command &command, const Body &target);
+	static bool ShouldUseAfterburner(Ship &ship);
 	void DoSurveillance(Ship &ship, Command &command) const;
 	void DoMining(Ship &ship, Command &command);
 	bool DoHarvesting(Ship &ship, Command &command);

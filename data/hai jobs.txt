@@ -410,21 +410,21 @@ mission "Escort to Human Space (Small)"
 	destination
 		attributes north
 	npc
-		personality nemesis waiting
+		government Pirate
+		personality nemesis waiting harvests plunders
 		system Rajak
-		government Pirate
 		fleet "Small Northern Pirates"
 	npc
-		personality nemesis waiting
-		system destination
-		distance 1
 		government Pirate
+		personality nemesis waiting harvests plunders
+		system destination
 		fleet "Small Northern Pirates"
 	npc
-		system destination
-		personality nemesis staying
 		government Pirate
+		personality nemesis staying harvests plunders
+		system destination
 		fleet "Small Northern Pirates"
+	
 	npc accompany save
 		government Merchant
 		personality escort timid
@@ -453,30 +453,26 @@ mission "Escort to Human Space (Medium)"
 	destination
 		attributes north
 	npc
-		personality nemesis waiting
+		government Pirate
+		personality nemesis waiting harvests plunders
 		system Cardax
-		government Pirate
 		fleet "Small Northern Pirates"
 	npc
-		personality nemesis waiting
+		government Pirate
+		personality nemesis waiting harvests plunders
 		system Rigel
-		government Pirate
 		fleet "Small Northern Pirates"
 	npc
-		personality nemesis waiting
+		government Pirate
+		personality nemesis waiting harvests plunders
 		system Rajak
-		government Pirate
 		fleet "Small Northern Pirates"
 	npc
-		system destination
-		personality nemesis staying
 		government Pirate
-		fleet "Small Northern Pirates"
-	npc
+		personality nemesis staying harvests plunders
 		system destination
-		personality nemesis staying
-		government Pirate
-		fleet "Small Northern Pirates"
+		fleet "Small Northern Pirates" 2
+	
 	npc accompany save
 		government Merchant
 		personality escort timid
@@ -505,21 +501,21 @@ mission "Escort to Human Space (Large)"
 	destination
 		attributes north
 	npc
-		personality nemesis waiting
-		system Rajak
 		government Pirate
+		personality nemesis waiting harvests plunders
+		system Rajak
 		fleet "Large Northern Pirates"
 	npc
-		personality nemesis waiting
-		system destination
-		distance 1
 		government Pirate
+		personality nemesis waiting harvests plunders
+		system destination
 		fleet "Small Northern Pirates"
 	npc
-		system destination
-		personality nemesis staying
 		government Pirate
+		personality nemesis staying harvests plunders
+		system destination
 		fleet "Large Northern Pirates"
+	
 	npc accompany save
 		government Merchant
 		personality escort timid
@@ -548,30 +544,27 @@ mission "Escort to Human Space (Extra Large)"
 	destination
 		attributes north
 	npc
-		personality nemesis waiting
+		government Pirate
+		personality nemesis waiting harvests plunders
 		system Rigel
-		government Pirate
 		fleet "Small Northern Pirates"
 	npc
-		personality nemesis waiting
+		government Pirate
+		personality nemesis waiting harvests plunders
 		system Cardax
-		government Pirate
 		fleet "Large Northern Pirates"
 	npc
-		personality nemesis waiting
+		government Pirate
+		personality nemesis waiting harvests plunders
 		system Rajak
-		government Pirate
 		fleet "Large Northern Pirates"
 	npc
-		system destination
-		personality nemesis staying
 		government Pirate
+		personality nemesis staying harvests plunders
+		system destination
 		fleet "Small Northern Pirates"
-	npc
-		system destination
-		personality nemesis staying
-		government Pirate
 		fleet "Large Northern Pirates"
+	
 	npc accompany save
 		government Merchant
 		personality escort timid

@@ -103,7 +103,7 @@ public:
 	// must leave the planet immediately (without time to do anything else).
 	bool ShouldLaunch() const;
 	
-	// Access the player's accountign information.
+	// Access the player's accounting information.
 	const Account &Accounts() const;
 	Account &Accounts();
 	// Calculate the daily salaries for crew, not counting crew on "parked" ships.
@@ -127,6 +127,8 @@ public:
 	// Change the order of the given ship in the list.
 	void ReorderShip(int fromIndex, int toIndex);
 	int ReorderShips(const std::set<int> &fromIndices, int toIndex);
+	// Get the attraction factors of the player's fleet to raid fleets.
+	std::pair<double, double> RaidFleetFactors() const;
 	
 	// Get cargo information.
 	CargoHold &Cargo();
@@ -319,6 +321,7 @@ private:
 	std::map<std::string, std::set<std::string>> collapsed;
 	
 	bool freshlyLoaded = true;
+	int desiredCrew = 0;
 };
 
 

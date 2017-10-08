@@ -264,9 +264,14 @@ bool MissionAction::CanBeDone(const PlayerInfo &player) const
 			continue;
 		
 		// The outfit can be taken from the player's cargo or from the flagship.
-		// This function is only called when the player is landed, so don't
-		// bother to check for cargo in any of the player's ships.
+		// If the player is landed, all available cargo is transferred from the
+		// player's ships to the player. If checking mission completion status
+		// in-flight, cargo is present in the player's ships.
 		int available = player.Cargo().Get(it.first);
+		if(!player.GetPlanet())
+			for(const auto &ship : player.Ships())
+				if(ship->GetSystem() == player.GetSystem() && !ship->IsDisabled())
+					available += ship->Cargo().Get(it.first);
 		if(flagship)
 			available += flagship->OutfitCount(it.first);
 		

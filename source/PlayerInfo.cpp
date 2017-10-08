@@ -22,11 +22,13 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Format.h"
 #include "GameData.h"
 #include "Government.h"
+#include "Hardpoint.h"
 #include "Messages.h"
 #include "Mission.h"
 #include "Outfit.h"
 #include "Person.h"
 #include "Planet.h"
+#include "Preferences.h"
 #include "Politics.h"
 #include "Random.h"
 #include "SavedGame.h"
@@ -38,6 +40,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "UI.h"
 
 #include <algorithm>
+#include <cmath>
 #include <ctime>
 #include <sstream>
 
@@ -847,6 +850,34 @@ int PlayerInfo::ReorderShips(const set<int> &fromIndices, int toIndex)
 
 
 
+// Find out how attractive the player's fleet is to pirates. Aside from a
+// heavy freighter, no single ship should attract extra pirate attention.
+pair<double, double> PlayerInfo::RaidFleetFactors() const
+{
+	double attraction = 0.;
+	double deterrence = 0.;
+	for(const shared_ptr<Ship> &ship : Ships())
+	{
+		if(ship->IsParked() || ship->IsDestroyed())
+			continue;
+		
+		attraction += .4 * sqrt(ship->Attributes().Get("cargo space")) - 1.8;
+		for(const Hardpoint &hardpoint : ship->Weapons())
+			if(hardpoint.GetOutfit())
+			{
+				const Outfit *weapon = hardpoint.GetOutfit();
+				if(weapon->Ammo() && !ship->OutfitCount(weapon->Ammo()))
+					continue;
+				double damage = weapon->ShieldDamage() + weapon->HullDamage();
+				deterrence += .12 * damage / weapon->Reload();
+			}
+	}
+	
+	return make_pair(attraction, deterrence);
+}
+
+
+
 // Get cargo information.
 CargoHold &PlayerInfo::Cargo()
 {
@@ -1043,6 +1074,20 @@ void PlayerInfo::Land(UI *ui)
 			ui->Push(new Dialog(message));
 	}
 	
+	// Hire extra crew back if any were lost in-flight (i.e. boarding) or
+	// some bunks were freed up upon landing (i.e. completed missions).
+	if(Preferences::Has("Rehire extra crew when lost") && hasSpaceport)
+	{
+		int added = desiredCrew - flagship->Crew();
+		if(added > 0)
+		{
+			flagship->AddCrew(added);
+			Messages::Add("You hire " + to_string(added) + (added == 1
+					? " extra crew member to fill your now-empty bunk."
+					: " extra crew members to fill your now-empty bunks."));
+		}
+	}
+	
 	freshlyLoaded = false;
 	flagship.reset();
 }
@@ -1126,7 +1171,8 @@ bool PlayerInfo::TakeOff(UI *ui)
 			else
 			{
 				// Your flagship takes first priority for passengers but last for cargo.
-				ship->Cargo().SetBunks(ship->Attributes().Get("bunks") - ship->Crew());
+				desiredCrew = ship->Crew();
+				ship->Cargo().SetBunks(ship->Attributes().Get("bunks") - desiredCrew);
 				for(const auto &it : cargo.PassengerList())
 					cargo.TransferPassengers(it.first, it.second, &ship->Cargo());
 			}

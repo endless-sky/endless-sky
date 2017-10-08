@@ -63,6 +63,11 @@ public:
 	double UnitSize() const;
 	
 	
+public:
+	// Amount of tons that is expected per box.
+	static const int TONS_PER_BOX;
+	
+	
 private:
 	Angle spin;
 	int lifetime = 0;

@@ -114,6 +114,24 @@ string Format::Number(double value)
 
 
 
+// Format the given value as a number with exactly the given number of
+// decimal places (even if they are all 0).
+string Format::Decimal(double value, int places)
+{
+	double integer;
+	double fraction = fabs(modf(value, &integer));
+	
+	string result = to_string(static_cast<int>(integer)) + ".";
+	while(places--)
+	{
+		fraction = modf(fraction * 10., &integer);
+		result += ('0' + static_cast<int>(integer));
+	}
+	return result;
+}
+
+
+
 // Convert a string into a number. As with the output of Number(), the
 // string can have suffixes like "M", "B", etc.
 double Format::Parse(const string &str)
