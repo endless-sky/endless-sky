@@ -72,6 +72,21 @@ namespace {
 		return min(a, 360. - a);
 	}
 	
+	// Determine if all able, non-carried escorts are ready to jump with this
+	// ship. Carried escorts are waited for in AI::Step.
+	bool EscortsReadyToJump(const Ship &ship)
+	{
+		for(const weak_ptr<Ship> &escort : ship.GetEscorts())
+		{
+			shared_ptr<const Ship> locked = escort.lock();
+			if(locked && !locked->IsDisabled() && !locked->CanBeCarried()
+					&& locked->GetSystem() == ship.GetSystem()
+					&& locked->JumpFuel() && !locked->IsReadyToJump())
+				return false;
+		}
+		return true;
+	}
+	
 	// Determine if the ship has any usable weapons.
 	bool IsArmed(const Ship &ship)
 	{
@@ -1155,16 +1170,13 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 	if(ship.GetTargetSystem())
 	{
 		PrepareForHyperspace(ship, command);
-		bool mustWait = false;
-		if(ship.BaysFree(false) || ship.BaysFree(true))
-			for(const weak_ptr<Ship> &escort : ship.GetEscorts())
-			{
-				shared_ptr<const Ship> locked = escort.lock();
-				mustWait |= locked && locked->CanBeCarried() && !locked->IsDisabled();
-			}
-		
-		if(!mustWait)
-			command |= Command::JUMP;
+		// Issuing the JUMP command prompts the escorts to get ready to jump.
+		command |= Command::JUMP;
+		// Issuing the WAIT command will prevent this parent from jumping.
+		// When all its non-carried, in-system escorts that are not disabled and
+		// have the ability to jump are ready, the WAIT command will be omitted.
+		if(!EscortsReadyToJump(ship))
+			command |= Command::WAIT;
 	}
 	else if(ship.GetTargetStellar())
 	{
@@ -1244,6 +1256,10 @@ void AI::MoveEscort(Ship &ship, Command &command) const
 		{
 			PrepareForHyperspace(ship, command);
 			command |= Command::JUMP;
+			// If this ship is a parent to members of its fleet,
+			// it should wait for them before jumping.
+			if(!EscortsReadyToJump(ship))
+				command |= Command::WAIT;
 		}
 		else if(hasFuelCapacity && systemHasFuel && ship.Fuel() < 1.)
 			// Refuel so that when the parent returns, this ship is ready to rendezvous with it.
@@ -1278,7 +1294,13 @@ void AI::MoveEscort(Ship &ship, Command &command) const
 		{
 			PrepareForHyperspace(ship, command);
 			if(parent.IsEnteringHyperspace() || parent.IsReadyToJump())
+			{
 				command |= Command::JUMP;
+				// If this ship is a parent to members of its fleet,
+				// it should wait for them before jumping.
+				if(!EscortsReadyToJump(ship))
+					command |= Command::WAIT;
+			}
 		}
 	}
 	else
