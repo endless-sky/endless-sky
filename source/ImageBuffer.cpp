@@ -189,7 +189,11 @@ namespace {
 		int width = png_get_image_width(png, info);
 		int height = png_get_image_height(png, info);
 		if(!width || !height)
+		{
+			png_destroy_read_struct(&png, &info, nullptr);
+			delete buffer;
 			return nullptr;
+		}
 		
 		// Adjust settings to make sure the result will be a BGRA file.
 		int colorType = png_get_color_type(png, info);
