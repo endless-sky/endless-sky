@@ -173,11 +173,13 @@ void Engine::Place()
 				ship->UnloadBays();
 			}
 			
+			shared_ptr<Ship> npcFlagship;
 			for(const shared_ptr<Ship> &ship : npc.Ships())
 			{
 				// Skip ships that have been destroyed.
 				if(ship->IsDestroyed())
 					continue;
+				
 				// Avoid the exploit where the player can wear down an NPC's
 				// crew by attrition over the course of many days.
 				ship->AddCrew(max(0, ship->RequiredCrew() - ship->Crew()));
@@ -201,7 +203,16 @@ void Engine::Place()
 				}
 				
 				ships.push_back(ship);
-				if(!ship->GetPersonality().IsUninterested())
+				// The first (alive) ship in an NPC block
+				// serves as the flagship of the group.
+				if(!npcFlagship)
+					npcFlagship = ship;
+				
+				// Only the flagship of an NPC considers the
+				// player: the rest of the NPC track it.
+				if(npcFlagship && ship != npcFlagship)
+					ship->SetParent(npcFlagship);
+				else if(!ship->GetPersonality().IsUninterested())
 					ship->SetParent(flagship);
 			}
 		}

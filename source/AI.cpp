@@ -397,11 +397,14 @@ void AI::Step(const PlayerInfo &player)
 				command |= Command::CLOAK;
 		}
 		
-		// If your parent is destroyed, you are no longer an escort.
 		shared_ptr<Ship> parent = it->GetParent();
 		if(parent && parent->IsDestroyed())
 		{
-			parent.reset();
+			// An NPC that loses its fleet leader should attempt to
+			// follow that leader's parent. For most mission NPCs,
+			// this is the player. Any regular NPCs and mission NPCs
+			// with "personality uninterested" become independent.
+			parent = parent->GetParent();
 			it->SetParent(parent);
 		}
 		
