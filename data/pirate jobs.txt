@@ -2277,7 +2277,7 @@ mission "Northern Pirate Defense"
 		fleet "Small Northern Pirates"
 	on offer
 		conversation
-			`Suddenly you hear raised voices and shouting outside: "We are under attack! <planet> is under attack by the militia! We need every combat-worthy ship to join in the defenses!" This could also be an easy way to get yourself killed, and you can't even guarentee that you will be paid for your work.`
+			`Suddenly you hear raised voices and shouting outside: "We are under attack! <planet> is under attack by the militia! We need every combat-worthy ship to join in the defenses!" This could also be an easy way to get yourself killed, and you can't even guarantee that you will be paid for your work.`
 			choice
 				"	(Stay here until the fight is over.)"
 					decline
@@ -2311,7 +2311,7 @@ mission "Core Pirate Defense"
 		fleet "Small Core Pirates" 2
 	on offer
 		conversation
-			`Suddenly you hear raised voices and shouting outside: "We are under attack! <planet> is under attack by the Syndicate! We need every combat-worthy ship to join in the defenses!" This could also be an easy way to get yourself killed, and you can't even guarentee that you will be paid for your work.`
+			`Suddenly you hear raised voices and shouting outside: "We are under attack! <planet> is under attack by the Syndicate! We need every combat-worthy ship to join in the defenses!" This could also be an easy way to get yourself killed, and you can't even guarantee that you will be paid for your work.`
 			choice
 				"	(Stay here until the fight is over.)"
 					decline
@@ -2345,7 +2345,7 @@ mission "Southern Pirate Defense"
 		fleet "Small Southern Pirates" 2
 	on offer
 		conversation
-			`Suddenly you hear raised voices and shouting outside: "We are under attack! <planet> is under attack by the militia! We need every combat-worthy ship to join in the defenses!" This could also be an easy way to get yourself killed, and you can't even guarentee that you will be paid for your work.`
+			`Suddenly you hear raised voices and shouting outside: "We are under attack! <planet> is under attack by the militia! We need every combat-worthy ship to join in the defenses!" This could also be an easy way to get yourself killed, and you can't even guarantee that you will be paid for your work.`
 			choice
 				"	(Stay here until the fight is over.)"
 					decline

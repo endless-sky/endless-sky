@@ -156,6 +156,8 @@ mission "FW Conservatory 2B"
 mission "FW Wolf Pack 1"
 	name "Ramscoop Technology"
 	description "Travel to <planet> in the Deep, where Free Worlds sympathizers will share details of a new ramscoop technology. (You may have to bribe planets along the way to get permission to refuel.)"
+	source
+		government "Free Worlds"
 	destination Memory
 	clearance
 	minor
@@ -165,8 +167,6 @@ mission "FW Wolf Pack 1"
 		not "event: fw armistice"
 	to fail
 		has "event: fw armistice"
-	source
-		government "Free Worlds"
 	
 	on offer
 		conversation
@@ -546,6 +546,8 @@ mission "FW Stack Core 1B"
 mission "FW Stack Core 1C"
 	landing
 	minor
+	source
+		near Pherkad 1 1000
 	to offer
 		has "event: stack core for sale"
 	
