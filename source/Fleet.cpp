@@ -443,7 +443,7 @@ void Fleet::SetCargo(Ship *ship) const
 			break;
 		
 		int index = Random::Int(GameData::Commodities().size());
-		if(commodities.size())
+		if(!commodities.empty())
 		{
 			// If a list of possible commodities was given, pick one of them at
 			// random and then double-check that it's a valid commodity name.

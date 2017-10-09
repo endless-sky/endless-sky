@@ -83,6 +83,7 @@ ship "Flycatcher"
 
 
 ship "Summer Leaf"
+	plural "Summer Leaves"
 	sprite "ship/summer leaf"
 	attributes
 		category "Light Warship"
@@ -130,6 +131,7 @@ ship "Summer Leaf"
 
 
 ship "Autumn Leaf"
+	plural "Autumn Leaves"
 	sprite "ship/autumn leaf"
 	attributes
 		category "Light Warship"
@@ -576,11 +578,11 @@ ship "Deep River"
 	engine 0 345
 	engine -53 345 .7
 	gun -56 -217
+	gun 56 -217
 	gun -40 -217
+	gun 40 -217
 	gun -18 -217
 	gun 18 -217
-	gun 40 -217
-	gun 56 -217
 	explode "small explosion" 80
 	explode "medium explosion" 60
 	explode "large explosion" 30

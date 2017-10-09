@@ -119,6 +119,7 @@ outfit "Drak Antimatter Cannon"
 		"submunition" "Drak Antimatter Fragment" 3
 		"hit effect" "antimatter dust" 10
 		"hit effect" "nuke explosion"
+		"safe"
 		"reload" 187
 		"firing energy" 5610
 		"firing heat" 1870
@@ -135,6 +136,7 @@ outfit "Drak Antimatter Fragment"
 		"live effect" "antimatter dust" 249
 		"hit effect" "antimatter dust" 10
 		"hit effect" "nuke explosion"
+		"safe"
 		"inaccuracy" 1
 		"lifetime" 499
 		"hit force" 1000
@@ -247,3 +249,11 @@ ship Archon "Archon (Cloaked)"
 		"heat generation" 17
 		"ramscoop" 100
 		"cloak" .04
+	turret "Drak Anti-Missile Field"
+	turret "Drak Anti-Missile Field"
+	turret "Drak Draining Field"
+	turret "Drak Turret"
+	turret "Drak Turret"
+	turret "Drak Turret"
+	turret "Drak Distancer"
+	turret "Drak Distancer"

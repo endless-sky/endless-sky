@@ -33,6 +33,15 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 using namespace std;
 
+namespace {
+	const vector<string> BAY_TYPE = {"drone", "fighter"};
+	const vector<string> BAY_SIDE = {"inside", "over", "under"};
+	const vector<string> BAY_FACING = {"forward", "left", "right", "back"};
+	const vector<Angle> BAY_ANGLE = {Angle(0.), Angle(-90.), Angle(90.), Angle(180.)};
+	
+	const double SCAN_TIME = 60.;
+}
+
 const vector<string> Ship::CATEGORIES = {
 	"Transport",
 	"Light Freighter",
@@ -44,15 +53,6 @@ const vector<string> Ship::CATEGORIES = {
 	"Fighter",
 	"Drone"
 };
-
-namespace {
-	const vector<string> BAY_TYPE = {"drone", "fighter"};
-	const vector<string> BAY_SIDE = {"inside", "over", "under"};
-	const vector<string> BAY_FACING = {"forward", "left", "right", "back"};
-	const vector<Angle> BAY_ANGLE = {Angle(0.), Angle(-90.), Angle(90.), Angle(180.)};
-	
-	static const double SCAN_TIME = 60.;
-}
 
 
 
@@ -243,7 +243,7 @@ void Ship::Load(const DataNode &node)
 
 // When loading a ship, some of the outfits it lists may not have been
 // loaded yet. So, wait until everything has been loaded, then call this.
-void Ship::FinishLoading()
+void Ship::FinishLoading(bool isNewInstance)
 {
 	// All copies of this ship should save pointers to the "explosion" weapon
 	// definition stored safely in the ship model, which will not be destroyed
@@ -359,18 +359,22 @@ void Ship::FinishLoading()
 	for(const Hardpoint &weapon : armament.Get())
 		weaponRadius = max(weaponRadius, weapon.GetPoint().Length());
 	
-	// Recharge, but don't recharge crew or fuel if not in the parent's system.
-	// Do not recharge if this ship's starting state was saved.
-	if(!hull)
+	if(isNewInstance)
 	{
-		shared_ptr<const Ship> parent = GetParent();
-		Recharge(!parent || currentSystem == parent->currentSystem);
+		// This ship is being instantiated for the first time. Make sure its
+		// crew, fuel, etc. are all refilled.
+		Recharge(true);
+		
+		// But, if this is a derelict, it should start out disabled.
+		if(personality.IsDerelict())
+		{
+			shields = 0.;
+			hull = min(hull, .5 * MinimumHull());
+		}
 	}
-	else
-	{
-		isDisabled = true;
-		isDisabled = IsDisabled();
-	}
+	// Recalculate the "isDisabled" flag based on this ship's hull and crew.
+	isDisabled = true;
+	isDisabled = IsDisabled();
 }
 
 
@@ -532,11 +536,64 @@ int64_t Ship::ChassisCost() const
 
 
 
+// Check if this ship is configured in such a way that it would be difficult
+// or impossible to fly.
+string Ship::FlightCheck() const
+{
+	double generation = attributes.Get("energy generation") - attributes.Get("energy consumption");
+	double solar = attributes.Get("solar collection");
+	double battery = attributes.Get("energy capacity");
+	double energy = generation + solar + battery;
+	double thrust = attributes.Get("thrust");
+	double reverseThrust = attributes.Get("reverse thrust");
+	double afterburner = attributes.Get("afterburner thrust");
+	double thrustEnergy = attributes.Get("thrusting energy");
+	double turn = attributes.Get("turn");
+	double turnEnergy = attributes.Get("turning energy");
+	
+	// Error conditions:
+	if(IdleHeat() >= 100. * Mass())
+		return "overheating!";
+	if(energy <= 0.)
+		return "no energy!";
+	if(!thrust && !reverseThrust && !afterburner)
+		return "no thruster!";
+	if(!turn)
+		return "no steering!";
+	
+	// Warning conditions:
+	if(!thrust && !reverseThrust)
+		return "afterburner only?";
+	if(!thrust && !afterburner)
+		return "reverse only?";
+	if(!generation && !solar)
+		return "battery only?";
+	if(energy < thrustEnergy)
+		return "limited thrust?";
+	if(energy < turnEnergy)
+		return "limited turn?";
+	if(energy - .8 * solar < .2 * (turnEnergy + thrustEnergy))
+		return "solar power?";
+	
+	return "";
+}
+
+
+
+void Ship::SetPosition(Point position)
+{
+	this->position = position;
+}
+
+
+
+// Instantiate a newly-created ship in-flight.
 void Ship::Place(Point position, Point velocity, Angle angle)
 {
 	this->position = position;
 	this->velocity = velocity;
 	this->angle = angle;
+	
 	// If landed, place the ship right above the planet.
 	if(landingPlanet)
 	{
@@ -648,12 +705,6 @@ const Personality &Ship::GetPersonality() const
 void Ship::SetPersonality(const Personality &other)
 {
 	personality = other;
-	if(personality.IsDerelict())
-	{
-		shields = 0.;
-		hull = min(hull, .5 * MinimumHull());
-		isDisabled = true;
-	}
 }
 
 
@@ -709,17 +760,17 @@ bool Ship::Move(list<Effect> &effects, list<shared_ptr<Flotsam>> &flotsam)
 	// Handle ionization effects, etc.
 	if(ionization)
 	{
-		ionization *= .99;
+		ionization = max(0., .99 * ionization - attributes.Get("ion resistance"));
 		CreateSparks(effects, "ion spark", ionization * .1);
 	}
 	if(disruption)
 	{
-		disruption *= .99;
+		disruption = max(0., .99 * disruption - attributes.Get("disruption resistance"));
 		CreateSparks(effects, "disruption spark", disruption * .1);
 	}
 	if(slowness)
 	{
-		slowness *= .99;
+		slowness = max(0., .99 * slowness - attributes.Get("slowing resistance"));
 		CreateSparks(effects, "slowing spark", slowness * .1);
 	}
 	double slowMultiplier = 1. / (1. + slowness * .05);
@@ -976,7 +1027,7 @@ bool Ship::Move(list<Effect> &effects, list<shared_ptr<Flotsam>> &flotsam)
 				// is, about acos(.8) from the proper angle). So:
 				// Stopping distance = .5*a*(v/a)^2 + (150/turn)*v.
 				// Exit distance = HYPER_D + .25 * v^2 = stopping distance.
-				double exitV = MaxVelocity();
+				double exitV = max(HYPER_A, MaxVelocity());
 				double a = (.5 / Acceleration() - .25);
 				double b = 150. / TurnRate();
 				double discriminant = b * b - 4. * a * -HYPER_D;
@@ -1099,39 +1150,57 @@ bool Ship::Move(list<Effect> &effects, list<shared_ptr<Flotsam>> &flotsam)
 		velocity *= 1. - attributes.Get("drag") / mass;
 	else if(!pilotError)
 	{
+		if(commands.Turn())
+		{
+			// Check if we are able to turn.
+			double cost = attributes.Get("turning energy");
+			if(energy < cost * fabs(commands.Turn()))
+				commands.SetTurn(commands.Turn() * energy / (cost * fabs(commands.Turn())));
+			
+			if(commands.Turn())
+			{
+				// If turning at a fraction of the full rate (either from lack of
+				// energy or because of tracking a target), only consume a fraction
+				// of the turning energy and produce a fraction of the heat.
+				double scale = fabs(commands.Turn());
+				energy -= scale * cost;
+				heat += scale * attributes.Get("turning heat");
+				angle += commands.Turn() * TurnRate() * slowMultiplier;
+			}
+		}
 		double thrustCommand = commands.Has(Command::FORWARD) - commands.Has(Command::BACK);
+		double thrust = 0.;
 		if(thrustCommand)
 		{
 			// Check if we are able to apply this thrust.
 			double cost = attributes.Get((thrustCommand > 0.) ?
 				"thrusting energy" : "reverse thrusting energy");
 			if(energy < cost)
-				thrustCommand = 0.;
-			else
+				thrustCommand *= energy / cost;
+			
+			if(thrustCommand)
 			{
 				// If a reverse thrust is commanded and the capability does not
 				// exist, ignore it (do not even slow under drag).
 				isThrusting = (thrustCommand > 0.);
-				double thrust = attributes.Get(isThrusting ? "thrust" : "reverse thrust");
-				if(!thrust)
-					thrustCommand = 0.;
-				else
+				thrust = attributes.Get(isThrusting ? "thrust" : "reverse thrust");
+				if(thrust)
 				{
-					energy -= cost;
-					heat += attributes.Get(isThrusting ? "thrusting heat" : "reverse thrusting heat");
+					double scale = fabs(thrustCommand);
+					energy -= scale * cost;
+					heat += scale * attributes.Get(isThrusting ? "thrusting heat" : "reverse thrusting heat");
 					acceleration += angle.Unit() * (thrustCommand * thrust / mass);
 				}
 			}
 		}
-		bool applyAfterburner = commands.Has(Command::AFTERBURNER) && !CannotAct();
+		bool applyAfterburner = (commands.Has(Command::AFTERBURNER) || (thrustCommand > 0. && !thrust))
+				&& !CannotAct();
 		if(applyAfterburner)
 		{
-			double thrust = attributes.Get("afterburner thrust");
+			thrust = attributes.Get("afterburner thrust");
 			double cost = attributes.Get("afterburner fuel");
 			double energyCost = attributes.Get("afterburner energy");
-			if(!thrust || fuel < cost || energy < energyCost)
-				applyAfterburner = false;
-			else
+			if(thrust && fuel >= cost && energy >= energyCost)
 			{
 				heat += attributes.Get("afterburner heat");
 				fuel -= cost;
@@ -1149,19 +1218,6 @@ bool Ship::Move(list<Effect> &effects, list<shared_ptr<Flotsam>> &flotsam)
 								effects.back().Place(pos + velocity, velocity - 6. * angle.Unit(), angle);
 							}
 					}
-			}
-		}
-		if(commands.Turn())
-		{
-			// Check if we are able to turn.
-			double cost = attributes.Get("turning energy");
-			if(energy < cost)
-				commands.SetTurn(0.);
-			else
-			{
-				energy -= cost;
-				heat += attributes.Get("turning heat");
-				angle += commands.Turn() * TurnRate() * slowMultiplier;
 			}
 		}
 	}
@@ -1408,7 +1464,7 @@ int Ship::Scan()
 		return 0;
 	
 	shared_ptr<const Ship> target = GetTargetShip();
-	if(!target)
+	if(!(target && target->IsTargetable()))
 		return 0;
 	
 	// The range of a scanner is proportional to the square root of its power.
@@ -1795,15 +1851,13 @@ void Ship::Recharge(bool atSpaceport)
 	pilotError = 0;
 	pilotOkay = 0;
 	
-	if(!personality.IsDerelict())
-	{
-		if(atSpaceport || attributes.Get("shield generation"))
-			shields = attributes.Get("shields");
-		if(atSpaceport || attributes.Get("hull repair rate"))
-			hull = attributes.Get("hull");
-		if(atSpaceport || attributes.Get("energy generation"))
-			energy = attributes.Get("energy capacity");
-	}
+	if(atSpaceport || attributes.Get("shield generation"))
+		shields = attributes.Get("shields");
+	if(atSpaceport || attributes.Get("hull repair rate"))
+		hull = attributes.Get("hull");
+	if(atSpaceport || attributes.Get("energy generation"))
+		energy = attributes.Get("energy capacity");
+	
 	heat = IdleHeat();
 	ionization = 0.;
 	disruption = 0.;
@@ -1845,10 +1899,13 @@ void Ship::WasCaptured(const shared_ptr<Ship> &capturer)
 	// is not possible, in which case, share evenly.
 	int totalRequired = capturer->RequiredCrew() + RequiredCrew();
 	int transfer = RequiredCrew();
-	if(totalRequired > capturer->Crew())
-		transfer = max(1, (capturer->Crew() * RequiredCrew()) / totalRequired);
-	capturer->AddCrew(-transfer);
-	AddCrew(transfer);
+	if(transfer)
+	{
+		if(totalRequired > capturer->Crew())
+			transfer = max(1, (capturer->Crew() * RequiredCrew()) / totalRequired);
+		capturer->AddCrew(-transfer);
+		AddCrew(transfer);
+	}
 	
 	// Set the capturer as this ship's parent.
 	SetParent(capturer);
@@ -2073,7 +2130,8 @@ double Ship::TurnRate() const
 
 double Ship::Acceleration() const
 {
-	return attributes.Get("thrust") / Mass();
+	double thrust = attributes.Get("thrust");
+	return (thrust ? thrust : attributes.Get("afterburner thrust")) / Mass();
 }
 
 
@@ -2083,7 +2141,8 @@ double Ship::MaxVelocity() const
 	// v * drag / mass == thrust / mass
 	// v * drag == thrust
 	// v = thrust / drag
-	return attributes.Get("thrust") / attributes.Get("drag");
+	double thrust = attributes.Get("thrust");
+	return (thrust ? thrust : attributes.Get("afterburner thrust")) / attributes.Get("drag");
 }
 
 
@@ -2297,9 +2356,8 @@ void Ship::Jettison(const string &commodity, int tons)
 	double shipMass = Mass();
 	heat *= shipMass / (shipMass + tons);
 	
-	static const int perBox = 5;
-	for( ; tons >= perBox; tons -= perBox)
-		jettisoned.emplace_back(new Flotsam(commodity, perBox));
+	for( ; tons > 0; tons -= Flotsam::TONS_PER_BOX)
+		jettisoned.emplace_back(new Flotsam(commodity, (Flotsam::TONS_PER_BOX < tons) ? Flotsam::TONS_PER_BOX : tons));
 }
 
 
@@ -2317,7 +2375,7 @@ void Ship::Jettison(const Outfit *outfit, int count)
 	double shipMass = Mass();
 	heat *= shipMass / (shipMass + count * mass);
 	
-	const int perBox = (mass <= 0.) ? count : (mass > 5.) ? 1 : static_cast<int>(5. / mass);
+	const int perBox = (mass <= 0.) ? count : (mass > Flotsam::TONS_PER_BOX) ? 1 : static_cast<int>(Flotsam::TONS_PER_BOX / mass);
 	while(count > 0)
 	{
 		jettisoned.emplace_back(new Flotsam(outfit, (perBox < count) ? perBox : count));

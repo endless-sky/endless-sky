@@ -8,7 +8,7 @@
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
-"combat ratings"
+rating "combat"
 	"harmless"
 	"mostly harmless"
 	"not entirely helpless"
@@ -31,3 +31,29 @@
 	"agent of mass extinction"
 	"genocidal maniac"
 	"destroyer of worlds"
+
+
+
+rating "cargo attractiveness"
+	"minimal"
+	"slim pickings"
+	"fair amount"
+	"profitable"
+	"quite valuable"
+	"abundant"
+	"bountiful"
+	"tons of plunder"
+	"copious wealth"
+	"untold riches"
+
+rating "armament deterrence"
+	"sitting duck"
+	"minimal weaponry"
+	"puny defenses"
+	"somewhat vulnerable"
+	"well-protected"
+	"reasonably dangerous"
+	"heavily armed"
+	"serious threat"
+	"deadly armament"
+	"unassailable"

@@ -18,6 +18,7 @@ mission "Coalition: First Contact"
 	on offer
 		"reputation: Coalition" += 10
 		"reputation: Heliarch" += 10
+		log "Factions" "Coalition" `The Coalition is an alliance of three different alien species living in peace with each other: the Saryds, the Kimek, and the Arachi. On many Coalition worlds, all three species live together in harmony, which is made easier by the fact that each species prefers a very different climate and thus gravitates to different parts of a planet. They are ruled by individuals known as the Heliarchs.`
 		conversation
 			`This planet seems to be inhabited by at least three different sentient species. First are giant beetles, about a meter tall, who scurry quickly toward your ship and swarm around it, gawking at you, as soon as you land. The second species, even more disturbing than the beetles, are giant spiders. And the third species are centaurs. Not just something vaguely resembling centaurs; they look like they could have stepped right off the page of a story book from ancient Earth.`
 			`	One of the spiders walks up to you, stretching its legs to raise its face and many eyes to the level of your own face, and says something to you in a gloopy sort of burbling language that you don't understand. The beetles, meanwhile, are talking to each other in a different language, all clicks and chittering. And the centaur stands quietly at a distance and keeps glancing back toward the spaceport as if waiting for someone.`
@@ -42,6 +43,7 @@ mission "Coalition: First Contact"
 		"reputation: Coalition" += 10
 		"reputation: Heliarch" += 10
 		set "known to the heliarchs"
+		log "Factions" "Heliarchs" `The Heliarchs are the rulers of Coalitions space: apparently not elected, but instead selected by merit from among the citizens of the Coalition in such a way as to ensure that all three species are equally represented. Thousands of years ago, the Heliarchs led their three species to band together and drive the Quarg out of Coalition space. The Heliarch centers of government are the three Quarg ringworlds that they captured in that war. They are the only ones in Coalition space who are allowed to have weapons on their starships, and they act as a sort of police force, maintaining peace between the Coalition species.`
 		conversation
 			`Your first view of the landing area confirms beyond a doubt that this is a Quarg ringworld, not just an imitation of one. The interior architecture is unmistakable. But no Quarg are present here, only the three species of the Coalition. Soon after you land, a delegation approaches your ship: again, one of each species, but these are wearing golden circlets around their heads. The circlets are not merely decorative, but seem to contain some electronics as well.`
 			`	Again, the centaur speaks first. "To our territory, to welcome you we are glad," it says.`
@@ -115,6 +117,9 @@ mission "Coalition: Contributor"
 		"reputation: Coalition" += 10
 		"reputation: Heliarch" += 10
 		set "license: Coalition"
+		log "Factions" "Saryds" `Saryds are an alien species who look suspiciously similar to the centaurs found in early human mythology. They prefer to live on worlds with as much green space as possible, and even their major cities are full of parks and gardens. Most Saryds live in small communes with up to a few dozen of them per house.`
+		log "Factions" "Kimek" `The Kimek are large insectoid aliens, and are members of the Coalition. They discovered spaceflight after the Saryds, but before the Arachi. They are intensely social creatures, preferring to live together in massive buildings with thousands of inhabitants, and many of their worlds have populations in the tens of billions, far more than any human world.`
+		log "Factions" "Arachi" `The spider-like Arachi were the last of the three Coalition species to discover interstellar travel. Most members of their society owe allegiance to one of the great Arachi "Houses," organizations that are somewhat similar to guilds and that each specialize in one particular form of industry or technology.`
 		conversation
 			`Once again, when you exit your ship you are met by a member of each of the three Coalition species, wearing the golden circlets that mark them as Heliarchs. "Told we have been," says the Saryd, "that among us with great diligence and commitment, small tasks you have performed."`
 			`	The Kimek says, "Those who in our society's prosperity have invested, with our society's technology may be trusted."`

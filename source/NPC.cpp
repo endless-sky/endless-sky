@@ -127,19 +127,30 @@ void NPC::Load(const DataNode &node)
 			{
 				fleets.push_back(Fleet());
 				fleets.back().Load(child);
+				if(child.Size() >= 2)
+				{
+					// Copy the custom fleet in lieu of reparsing the same DataNode.
+					size_t numAdded = child.Value(1);
+					for(size_t i = 1; i < numAdded; ++i)
+						fleets.push_back(fleets.back());
+				}
 			}
+			else if(child.Size() >= 3 && child.Value(2) > 1.)
+				stockFleets.insert(stockFleets.end(), child.Value(2), GameData::Fleets().Get(child.Token(1)));
 			else if(child.Size() >= 2)
 				stockFleets.push_back(GameData::Fleets().Get(child.Token(1)));
 		}
+		else
+			child.PrintTrace("Skipping unrecognized attribute:");
 	}
 	
 	// Since a ship's government is not serialized, set it now.
 	for(const shared_ptr<Ship> &ship : ships)
 	{
-		ship->FinishLoading();
 		ship->SetGovernment(government);
 		ship->SetPersonality(personality);
 		ship->SetIsSpecial();
+		ship->FinishLoading(false);
 	}
 }
 
@@ -242,6 +253,10 @@ void NPC::Do(const ShipEvent &event, PlayerInfo &player, UI *ui, bool isVisible)
 	// Check if this NPC is already in the succeeded state.
 	bool hasSucceeded = HasSucceeded(player.GetSystem());
 	bool hasFailed = HasFailed();
+	
+	// Scan events only count if originated by the player.
+	if(!event.ActorGovernment()->IsPlayer())
+		type &= ~(ShipEvent::SCAN_CARGO | ShipEvent::SCAN_OUTFITS);
 	
 	// Apply this event to the ship and any ships it is carrying.
 	actions[ship.get()] |= type;
@@ -374,10 +389,7 @@ NPC NPC::Instantiate(map<string, string> &subs, const System *origin, const Syst
 	
 	// Convert fleets into instances of ships.
 	for(const shared_ptr<Ship> &ship : ships)
-	{
 		result.ships.push_back(make_shared<Ship>(*ship));
-		result.ships.back()->FinishLoading();
-	}
 	auto shipIt = stockShips.begin();
 	auto nameIt = shipNames.begin();
 	for( ; shipIt != stockShips.end() && nameIt != shipNames.end(); ++shipIt, ++nameIt)
@@ -395,6 +407,7 @@ NPC NPC::Instantiate(map<string, string> &subs, const System *origin, const Syst
 		ship->SetGovernment(result.government);
 		ship->SetIsSpecial();
 		ship->SetPersonality(result.personality);
+		ship->FinishLoading(true);
 		
 		if(personality.IsEntering())
 			Fleet::Enter(*result.system, *ship);

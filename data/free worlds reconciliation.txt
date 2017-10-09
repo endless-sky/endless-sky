@@ -30,6 +30,8 @@ mission "FW Reconciliation 1"
 	
 	on offer
 		log "Decided to rescue the Syndicate defector rather than turning him over to the Syndicate. A Questioner who works with Navy Intelligence has confirmed that he is telling the truth, and a ceasefire has been declared. Also, the Navy has agreed to release Katya now that there is evidence proving her innocence."
+		log "People" "Raven" `Raven, whose full name is unknown, is a Questioner who works for Navy Intelligence. Through some combination of training and natural ability, she is able to reliably detect whether or not someone is telling the truth.`
+		log "Factions" "Navy Intelligence" `It is unclear why the Navy needs their own intelligence force, since the Republic already has a Department of Intelligence that is incredibly powerful and well-funded. Rumors say that one of the main purposes of Navy Intelligence is to watch for human rights abuses being committed by the Republic itself and for other questionable activities that the Department of Intelligence might turn a blind eye toward or even collude with.`
 		event "fw conservatory founded"
 		conversation
 			`On your way to the spaceport, you fill Katya in on the state of the war. She says that Intelligence has been keeping her in a relatively comfortable but totally isolated cell; she's not even sure what world it was on. From the fact that her questioners seemed to be growing increasingly frustrated about the Free Worlds, she knew that you were still managing to resist the Navy, but they did not share any details with her.`
@@ -553,7 +555,7 @@ mission "FW Reconciliation Break"
 	
 	on complete
 		conversation
-			`	You drop Ijs and Katya off on Skymoot, and wish them well. They both seem eager for a chance to relax, enjoy one another's company, and forget about matters of galactic importance for a while. "We'll see you soon, <first>," says Katya. "Just be sure your ship is in good fighting shape when the time comes to bring the Syndicate to justice."`
+			`You drop Ijs and Katya off on Skymoot, and wish them well. They both seem eager for a chance to relax, enjoy one another's company, and forget about matters of galactic importance for a while. "We'll see you soon, <first>," says Katya. "Just be sure your ship is in good fighting shape when the time comes to bring the Syndicate to justice."`
 
 
 
@@ -692,6 +694,7 @@ mission "FW Syndicate Capture 1B"
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
+		"reputation: Syndicate" <?= -100
 		conversation
 			`As you approach the planet, your ships spread out and begin scanning the ocean surface for a yacht matching the description you were given. After a few tense moments of wondering if Soylent is off-world at the moment, you find the ship.`
 			`	With neither deflector shields nor any weaponry that you can see, the yacht clearly poses no threat to an armed starship. The Aerie that Edrick sent launches its two fighters; when they land on the yacht's deck, armed police officers emerge. Meanwhile your fleet is ready to open fire at the first sign of resistance.`
@@ -930,7 +933,7 @@ mission "FW Pug 1 Arabia"
 		has "FW Pug 1: active"
 	
 	on offer
-		log "No one on Arabia knows what has caused hyperspace links int his region of space to suddenly disappear. There are stories of graviton surges and an alien ship, but they may all just be rumors."
+		log "No one on Arabia knows what has caused hyperspace links in this region of space to suddenly disappear. There are stories of graviton surges and an alien ship, but they may all just be rumors."
 		conversation
 			`You land on Arabia and try to find someone who knows what is going on, but everyone seems just as confused as you are. The spaceport authorities say that their sensors picked up a massive graviton surge when the hyperlinks collapsed, but they are not sure whether the surge caused the collapse, or was a result of it.`
 			`	One merchant captain claims that he was in orbit at the time, and he saw a ship unlike anything he'd ever seen before, that appeared and then disappeared in a flash "just like those Quarg ships do." You aren't sure whether or not to believe him.`
@@ -999,16 +1002,8 @@ mission "FW Pug 2"
 		system "Sol"
 		personality heroic uninterested staying
 		government "Republic"
-		fleet "Large Republic"
-		fleet "Large Republic"
-		fleet "Large Republic"
-		fleet "Large Republic"
-		fleet "Large Republic"
-		fleet "Small Republic"
-		fleet "Small Republic"
-		fleet "Small Republic"
-		fleet "Small Republic"
-		fleet "Small Republic"
+		fleet "Large Republic" 5
+		fleet "Small Republic" 5
 
 
 
@@ -1062,16 +1057,8 @@ mission "FW Pug 2A"
 		system "Sol"
 		personality heroic uninterested staying
 		government "Republic"
-		fleet "Large Republic"
-		fleet "Large Republic"
-		fleet "Large Republic"
-		fleet "Large Republic"
-		fleet "Large Republic"
-		fleet "Small Republic"
-		fleet "Small Republic"
-		fleet "Small Republic"
-		fleet "Small Republic"
-		fleet "Small Republic"
+		fleet "Large Republic" 5
+		fleet "Small Republic" 5
 
 
 
@@ -1344,6 +1331,7 @@ mission "FW Pug 3"
 	
 	on offer
 		log "Located the Pug homeworld, and met with some of them. They say that they have annexed the neighboring systems into the Pug Protectorate in order to stop the human civil war. However, their idea of bringing peace seems to involve conquering human space and replacing the Republic with their own government."
+		log "Factions" "Pug" `The Pug are aliens with barrel-shaped bodies, spindly legs, and milky blue blood. They claim to have intervened in the human civil war purely for the sake of preventing more bloodshed and helping humans to live together in peace.`
 		conversation
 			`This is an entirely alien world. The buildings have strangely flowing, tapered shapes not unlike the Pug starships, and from orbit you count dozens of large cities covering a large portion of the land mass. If this were a human world, you would estimate its population at over a billion. You follow one of the Pug ships that is landing, and discover a large spaceport where a surprising number of human merchant ships are parked, in addition to the aliens.`
 			`	Elsewhere they have mostly ignored you, but here your ship is quickly approached by a small group of the pale-skinned, delicate aliens. The Pug are oddly proportioned, with long arms and legs but short, barrel-shaped torsos and large heads, and although they only have two legs, their gait is vaguely insectoid. "You came from outside," one of them says. "You are not pledged to the Protectorate. Do you wish to make your vow of loyalty and peacefulness at this time?"`
@@ -1384,12 +1372,13 @@ mission "FW Pug 3: Deep"
 		has "FW Pug 3A: done"
 	
 	on complete
-		log "The governor of Valhalla, in the Deep, says that the Pug secretly assisted the people of the Deep to fight against the Alphas centuries ago, during the Alpha War. He thinks that the Pug have humanity's best interests at heart, but agrees that they can't be allowed to overthrow the Republic."
+		log "The governor of Valhalla, in the Deep, says that the Pug secretly assisted the people of the Deep to fight against the Alphas centuries ago, during the Alpha Wars. He thinks that the Pug have humanity's best interests at heart, but agrees that they can't be allowed to overthrow the Republic."
+		log "Factions" "Pug" `It is possible that the Pug secretly assisted the humans of the Deep centuries ago by providing them with weapons that helped to turn the tide of the Alpha Wars.`
 		conversation
 			`As you are coming in for a landing, you contact Edrick Flint and see if he's available to talk. A few minutes later, you and Alondo are sitting with him in his office in the government center. "I assume you've heard about the alien invasion?" says Alondo. Edrick nods. "The aliens claimed that they had had dealings with the Deep in the past. Do you know anything about that?"`
 			`	Edrick says, "Can you describe what these aliens look like?"`
 			`	"Pale skin, delicate physique, most of them a little under two meters tall," says Alondo. "Long legs, short torsos. And they probably have blue blood."`
-			`	Edrick pauses for several seconds, then says, "Yes, we had contact with a species that matches that description, back during the Alpha War. Some of the folk traditions about 'elves' that still persist here in the Deep are a result of those encounters."`
+			`	Edrick pauses for several seconds, then says, "Yes, we had contact with a species that matches that description, back during the Alpha Wars. Some of the folk traditions about 'elves' that still persist here in the Deep are a result of those encounters."`
 			choice
 				`	"Do you know what they wanted from humanity, back then?"`
 				`	"What strengths and weaknesses do their ships have?"`
@@ -1421,6 +1410,7 @@ mission "FW Pug 3: Quarg"
 	on complete
 		log "Learned from the Quarg that they have long been aware of the presence of the Pug in the Deneb system. Apparently the Pug are from another galaxy and possess such advanced technology that even the Quarg do not dare to interfere with them."
 		log "However, the Pug are known to treat warfare like a game, intentionally using weaker technology when fighting less advanced species in order to give them a fair chance at winning the battle. So, fighting them will not be a lost cause, but the Quarg are unwilling to provide any assistance."
+		log "Factions" "Pug" `The Quarg claim that the Pug are powerful enough that they could defeat the Quarg, or even the Drak, if they chose to. But the Pug treat warfare like a game. When battling another species, the Pug will limit themselves to ships and weapons that are weak enough that the other species has a chance of defeating them.`
 		conversation
 			`When you land on the station, Alondo says, "From what I understand of Quarg diplomacy, we're just supposed to ask any one of them to direct us to someone who can answer our questions." He walks up to a Quarg who is standing near your docking bay and says, "Excuse me, can you lead us to someone we can talk to?"`
 			`	It nods and gestures for you to follow, and leads you to a nook in one of the main hallways, where another Quarg stands behind a desk. You are struck by how little you know about this species: are you speaking to a tour guide, or to a diplomat? Were you led to this individual because this is the governor of the station, or just because this is one who speaks human languages? The Quarg behind the desk says, "Do you have questions for me?"`
@@ -1658,34 +1648,13 @@ mission "FW Pug 4"
 		personality disables staying
 		system "Delta Capricorni"
 		government Pug
-		fleet
+		fleet 2
 			names "pug"
 			variant
 				"Pug Maboro"
 				"Pug Enfolta"
 				"Pug Zibruka" 2
-		fleet
-			names "pug"
-			variant
-				"Pug Maboro"
-				"Pug Enfolta"
-				"Pug Zibruka" 2
-		fleet
-			names "pug"
-			variant
-				"Pug Enfolta"
-				"Pug Zibruka" 2
-		fleet
-			names "pug"
-			variant
-				"Pug Enfolta"
-				"Pug Zibruka" 2
-		fleet
-			names "pug"
-			variant
-				"Pug Enfolta"
-				"Pug Zibruka" 2
-		fleet
+		fleet 4
 			names "pug"
 			variant
 				"Pug Enfolta"
@@ -1751,17 +1720,7 @@ mission "FW Pug 4A"
 				"Pug Maboro"
 				"Pug Enfolta" 
 				"Pug Zibruka" 2
-		fleet
-			names "pug"
-			variant
-				"Pug Enfolta"
-				"Pug Zibruka" 2
-		fleet
-			names "pug"
-			variant
-				"Pug Enfolta"
-				"Pug Zibruka" 2
-		fleet
+		fleet 3
 			names "pug"
 			variant
 				"Pug Enfolta"
@@ -1820,25 +1779,7 @@ mission "FW Pug 4B: Enemies"
 		personality waiting disables
 		system Deneb
 		government Pug
-		fleet
-			names "pug"
-			variant
-				"Pug Maboro"
-				"Pug Enfolta" 
-				"Pug Zibruka" 2
-		fleet
-			names "pug"
-			variant
-				"Pug Maboro"
-				"Pug Enfolta" 
-				"Pug Zibruka" 2
-		fleet
-			names "pug"
-			variant
-				"Pug Maboro"
-				"Pug Enfolta" 
-				"Pug Zibruka" 2
-		fleet
+		fleet 4
 			names "pug"
 			variant
 				"Pug Maboro"
@@ -1928,19 +1869,7 @@ mission "FW Pug 5"
 		personality staying disables
 		system Altair
 		government Pug
-		fleet
-			names "pug"
-			variant
-				"Pug Maboro"
-				"Pug Enfolta" 
-				"Pug Zibruka" 2
-		fleet
-			names "pug"
-			variant
-				"Pug Maboro"
-				"Pug Enfolta" 
-				"Pug Zibruka" 2
-		fleet
+		fleet 3
 			names "pug"
 			variant
 				"Pug Maboro"
@@ -1967,25 +1896,7 @@ mission "FW Pug 5A: Enemies"
 		personality waiting disables
 		system Deneb
 		government Pug
-		fleet
-			names "pug"
-			variant
-				"Pug Maboro"
-				"Pug Enfolta" 
-				"Pug Zibruka" 2
-		fleet
-			names "pug"
-			variant
-				"Pug Maboro"
-				"Pug Enfolta" 
-				"Pug Zibruka" 2
-		fleet
-			names "pug"
-			variant
-				"Pug Maboro"
-				"Pug Enfolta" 
-				"Pug Zibruka" 2
-		fleet
+		fleet 4
 			names "pug"
 			variant
 				"Pug Maboro"
@@ -2060,14 +1971,7 @@ mission "FW Pug 5B"
 	npc
 		government Republic
 		personality escort disables waiting
-		fleet
-			names "republic capital"
-			fighters "republic fighter"
-			variant
-				"Cruiser (Mark II)"
-				"Combat Drone" 4
-				"Frigate (Mark II)" 2
-		fleet
+		fleet 2
 			names "republic capital"
 			fighters "republic fighter"
 			variant
@@ -2087,27 +1991,7 @@ mission "FW Pug 5B"
 		government Pug
 		personality staying disables
 		system Altair
-		fleet
-			names "pug"
-			variant
-				"Pug Maboro"
-				"Pug Enfolta" 2
-		fleet
-			names "pug"
-			variant
-				"Pug Maboro"
-				"Pug Enfolta" 2
-		fleet
-			names "pug"
-			variant
-				"Pug Maboro"
-				"Pug Enfolta" 2
-		fleet
-			names "pug"
-			variant
-				"Pug Maboro"
-				"Pug Enfolta" 2
-		fleet
+		fleet 5
 			names "pug"
 			variant
 				"Pug Maboro"
@@ -2151,29 +2035,14 @@ mission "FW Pug 6"
 	npc
 		government "Navy (Oathkeeper)"
 		personality disables waiting
-		fleet
+		fleet 2
 			names "republic capital"
 			fighters "republic fighter"
 			variant
 				"Cruiser (Mark II)"
 				"Combat Drone" 4
 				"Frigate (Mark II)" 2
-		fleet
-			names "republic capital"
-			fighters "republic fighter"
-			variant
-				"Carrier (Mark II)"
-				"Lance" 4
-				"Combat Drone" 6
-				"Gunboat (Mark II)" 3
-		fleet
-			names "republic capital"
-			fighters "republic fighter"
-			variant
-				"Cruiser (Mark II)"
-				"Combat Drone" 4
-				"Frigate (Mark II)" 2
-		fleet
+		fleet 2
 			names "republic capital"
 			fighters "republic fighter"
 			variant
@@ -2184,29 +2053,14 @@ mission "FW Pug 6"
 	npc
 		government Republic
 		personality disables
-		fleet
+		fleet 2
 			names "republic capital"
 			fighters "republic fighter"
 			variant
 				"Cruiser"
 				"Combat Drone" 4
 				"Frigate" 2
-		fleet
-			names "republic capital"
-			fighters "republic fighter"
-			variant
-				"Carrier"
-				"Lance" 4
-				"Combat Drone" 6
-				"Gunboat" 3
-		fleet
-			names "republic capital"
-			fighters "republic fighter"
-			variant
-				"Cruiser"
-				"Combat Drone" 4
-				"Frigate" 2
-		fleet
+		fleet 2
 			names "republic capital"
 			fighters "republic fighter"
 			variant
@@ -2217,23 +2071,13 @@ mission "FW Pug 6"
 	npc
 		personality disables waiting
 		government Syndicate
-		fleet
+		fleet 2
 			names "syndicate capital"
 			variant
 				"Splinter (Mark II)"
 				"Manta (Mark II)" 2
 				"Quicksilver (Mark II)" 4
-		fleet
-			names "syndicate capital"
-			variant
-				"Protector" 2
-		fleet
-			names "syndicate capital"
-			variant
-				"Splinter (Mark II)"
-				"Manta (Mark II)" 2
-				"Quicksilver (Mark II)" 4
-		fleet
+		fleet 2
 			names "syndicate capital"
 			variant
 				"Protector" 2
@@ -2241,6 +2085,7 @@ mission "FW Pug 6"
 	on complete
 		log `The Pug have fled, apparently traveling through an artificial wormhole back to whatever galaxy they came from. And, it turns out that many of their cities on "Pugglemug" were only for show: buildings with no inhabitants, and with holograms creating the appearance of a heavily populated world. They left no advanced technology behind, and no sign of what their true intentions were, but it turns out that the fake cities here were designed for human habitation. They must have been planning this departure for a very long time.`
 		log `Now that the Pug are gone, the Navy will be able to use the "graviton reflectors" to repair the broken hyperspace links and to reconnect all of human space.`
+		log "Factions" "Pug" `The Pug disappeared from human space, and left behind more questions than answers. It is possible that the true purpose of their attack was to give human beings a common enemy that would force them to band together and forget their internal struggles.`
 		event "pug territory liberated"
 		event "pug link restoration 1" 10
 		event "pug link restoration 2" 25
@@ -2454,28 +2299,15 @@ mission "FW Syndicate Extremists 1B"
 		government "Syndicate (Extremist)"
 		system Algenib
 		personality staying heroic
-		fleet
+		fleet 3
 			names "syndicate capital"
 			variant
 				"Protector" 2
-		fleet
+		fleet 2
 			names "syndicate capital"
 			variant
 				"Splinter"
 				"Quicksilver" 3
-		fleet
-			names "syndicate capital"
-			variant
-				"Splinter"
-				"Quicksilver" 3
-		fleet
-			names "syndicate capital"
-			variant
-				"Protector" 2
-		fleet
-			names "syndicate capital"
-			variant
-				"Protector" 2
 	
 	npc
 		government "Navy (Oathkeeper)"
@@ -2485,21 +2317,11 @@ mission "FW Syndicate Extremists 1B"
 			names "republic capital"
 			fighters "republic fighter"
 			variant
-				"Carrier (Mark II)"
-				"Lance" 4
-				"Combat Drone" 6
-				"Carrier (Mark II)"
-				"Lance" 4
-				"Combat Drone" 6
-				"Carrier (Mark II)"
-				"Lance" 4
-				"Combat Drone" 6
-				"Cruiser (Mark II)"
-				"Combat Drone" 4
-				"Cruiser (Mark II)"
-				"Combat Drone" 4
-				"Cruiser (Mark II)"
-				"Combat Drone" 4
+				"Carrier (Mark II)" 3
+				"Lance" 12
+				"Combat Drone" 18
+				"Cruiser (Mark II)" 3
+				"Combat Drone" 12
 
 
 

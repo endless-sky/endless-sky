@@ -20,6 +20,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Ship.h"
 
 #include <algorithm>
+#include <cstdlib>
 #include <numeric>
 #include <set>
 

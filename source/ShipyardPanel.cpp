@@ -228,14 +228,14 @@ void ShipyardPanel::FailBuy() const
 
 
 
-bool ShipyardPanel::CanSell() const
+bool ShipyardPanel::CanSell(bool toCargo) const
 {
 	return playerShip;
 }
 
 
 
-void ShipyardPanel::Sell()
+void ShipyardPanel::Sell(bool toCargo)
 {
 	static const int MAX_LIST = 20;
 	static const int MAX_NAME_WIDTH = 250 - 30;
@@ -284,14 +284,6 @@ void ShipyardPanel::Sell()
 
 
 
-bool ShipyardPanel::FlightCheck()
-{
-	// The shipyard does not perform any flight checks.
-	return true;
-}
-
-
-
 bool ShipyardPanel::CanSellMultiple() const
 {
 	return false;
@@ -336,7 +328,7 @@ void ShipyardPanel::SellShip()
 		player.SellShip(ship);
 	playerShips.clear();
 	playerShip = nullptr;
-	for(shared_ptr<Ship> ship : player.Ships())
+	for(const shared_ptr<Ship> &ship : player.Ships())
 		if(ship->GetSystem() == player.GetSystem() && !ship->IsDisabled())
 		{
 			playerShip = ship.get();

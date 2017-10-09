@@ -34,11 +34,11 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 using namespace std;
 
 namespace {
-	static const int WIDTH = 250;
+	const int WIDTH = 250;
 	
 	// Map any conceivable numeric keypad keys to their ASCII values. Most of
 	// these will presumably only exist on special programming keyboards.
-	static const map<SDL_Keycode, char> KEY_MAP = {
+	const map<SDL_Keycode, char> KEY_MAP = {
 		{SDLK_KP_0, '0'},
 		{SDLK_KP_1, '1'},
 		{SDLK_KP_2, '2'},

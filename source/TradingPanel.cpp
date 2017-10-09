@@ -42,17 +42,17 @@ namespace {
 		"(very high)"
 	};
 	
-	static const int MIN_X = -310;
-	static const int MAX_X = 190;
+	const int MIN_X = -310;
+	const int MAX_X = 190;
 	
-	static const int NAME_X = -290;
-	static const int PRICE_X = -150;
-	static const int LEVEL_X = -110;
-	static const int BUY_X = 0;
-	static const int SELL_X = 60;
-	static const int HOLD_X = 120;
+	const int NAME_X = -290;
+	const int PRICE_X = -150;
+	const int LEVEL_X = -110;
+	const int BUY_X = 0;
+	const int SELL_X = 60;
+	const int HOLD_X = 120;
 	
-	static const int FIRST_Y = 80;
+	const int FIRST_Y = 80;
 }
 
 
@@ -134,18 +134,19 @@ void TradingPanel::Draw()
 		sellOutfits = (hasOutfits && !hasHarvested);
 		
 		string str = to_string(outfits + missionCargo);
+		str += (outfits + missionCargo == 1) ? " ton of " : " tons of ";
 		if(hasHarvested && missionCargo)
-			str += " tons of mission cargo and other items.";
+			str += "mission cargo and other items.";
 		else if(hasOutfits && missionCargo)
-			str += " tons of outfits and mission cargo.";
+			str += "outfits and mission cargo.";
 		else if(hasOutfits && hasHarvested)
-			str += " tons of outfits and harvested materials.";
+			str += "outfits and harvested materials.";
 		else if(hasOutfits)
-			str += " tons of outfits.";
+			str += "outfits.";
 		else if(hasHarvested)
-			str += " tons of harvested materials.";
+			str += "harvested materials.";
 		else
-			str += " tons of mission cargo.";
+			str += "mission cargo.";
 		font.Draw(str, Point(NAME_X, lastY), unselected);
 	}
 	

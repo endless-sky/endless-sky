@@ -17,6 +17,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Point.h"
 #include "Screen.h"
 
+#include <algorithm>
 #include <cmath>
 #include <cstdlib>
 #include <cstring>
@@ -24,9 +25,9 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 using namespace std;
 
 namespace {
-	static bool showUnderlines = false;
+	bool showUnderlines = false;
 	
-	static const char *vertexCode =
+	const char *vertexCode =
 		// "scale" maps pixel coordinates to GL coordinates (-1 to 1).
 		"uniform vec2 scale;\n"
 		// The (x, y) coordinates of the top left corner of the glyph.
@@ -49,7 +50,7 @@ namespace {
 		"  gl_Position = vec4((aspect * vert.x + position.x) * scale.x, (vert.y + position.y) * scale.y, 0, 1);\n"
 		"}\n";
 	
-	static const char *fragmentCode =
+	const char *fragmentCode =
 		// The user must supply a texture and a color (white by default).
 		"uniform sampler2D tex;\n"
 		"uniform vec4 color = vec4(1, 1, 1, 1);\n"
@@ -65,7 +66,7 @@ namespace {
 		"  finalColor = texture(tex, texCoord).a * color;\n"
 		"}\n";
 	
-	static const int KERN = 2;
+	const int KERN = 2;
 }
 
 

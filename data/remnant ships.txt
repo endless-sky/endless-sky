@@ -20,9 +20,9 @@ ship "Starling"
 		"required crew" 6
 		"bunks" 15
 		"mass" 270
-		"drag" 4.2
+		"drag" 3.8
 		"heat dissipation" 0.7
-		"fuel capacity" 600
+		"fuel capacity" 900
 		"cargo space" 36
 		"outfit space" 312
 		"weapon capacity" 83
@@ -34,6 +34,11 @@ ship "Starling"
 		"cloak" .02
 		"cloaking energy" 5
 		"cloaking fuel" .1
+		weapon
+			"blast radius" 80
+			"shield damage" 800
+			"hull damage" 400
+			"hit force" 1200
 	outfits
 		"Inhibitor Cannon" 3
 		"Point Defense Turret"
@@ -61,7 +66,8 @@ ship "Starling"
 	explode "small explosion" 20
 	explode "medium explosion" 10
 	"final explode" "final explosion small" 1
-	description "TBD"
+	description "One of the strangest and most useful things that the Remnant discovered in the abandoned worlds of the Ember Waste is alien cloaking technology. They designed their scout ships to be able to cloak when needed, in order to explore alien territory without being seen... or to escape in a hurry after stealing something particularly valuable from those aliens."
+	description "	The cloaking technology is built into the Starling's hull; it cannot be removed or transferred to another ship."
 
 ship "Starling" "Starling (Heavy)"
 	outfits
@@ -132,6 +138,7 @@ ship "Starling" "Starling (Thrasher)"
 
 
 ship "Albatross"
+	plural "Albatrosses"
 	sprite "ship/albatross"
 	attributes
 		category "Heavy Warship"
@@ -143,8 +150,8 @@ ship "Albatross"
 		"required crew" 44
 		"bunks" 75
 		"cargo space" 124
-		"mass" 690
-		"drag" 10.6
+		"mass" 610
+		"drag" 8.6
 		"heat dissipation" 0.6
 		"fuel capacity" 600
 		"engine capacity" 142
@@ -154,6 +161,11 @@ ship "Albatross"
 		"shield energy" 4.6
 		"hull repair rate" 1.5
 		"hull energy" 1.2
+		weapon
+			"blast radius" 360
+			"shield damage" 3600
+			"hull damage" 1800
+			"hit force" 5400
 	outfits
 		"Inhibitor Cannon" 6
 		"Thrasher Turret" 2
@@ -189,6 +201,7 @@ ship "Albatross"
 	explode "large explosion" 40
 	explode "huge explosion" 10
 	"final explode" "final explosion large" 1
+	description "Once they left human space, it became apparent to the Remnant that they would need to build their own shipyards in order to defend themselves if they were discovered by the Alphas or any other unfriendly faction. Using new composite materials that they discovered, they built ships very different from anything seen in human space."
 
 ship "Albatross" "Albatross (Sniper)"
 	outfits
@@ -270,6 +283,7 @@ ship "Albatross" "Albatross (Heavy)"
 
 
 ship Gascraft
+	plural Gascraft
 	sprite ship/gascraft
 	attributes
 		category Transport
@@ -283,8 +297,8 @@ ship Gascraft
 		"heat dissipation" 0.9
 		"fuel capacity" 700
 		"cargo space" 8
-		"outfit space" 108
-		"engine capacity" 42
+		"outfit space" 90
+		"engine capacity" 34
 		"shield generation" 0.6
 		"shield energy" 0.4
 		"hull repair rate" 1.2
@@ -292,7 +306,7 @@ ship Gascraft
 		"gaslining" 1
 	outfits
 		"Millennium Cell"
-		"Crystal Capacitor"
+		"Supercapacitor"
 		"Emergency Ramscoop"
 		"Quantum Key Stone"
 		
@@ -300,6 +314,7 @@ ship Gascraft
 		"Crucible-Class Steering"
 		"Hyperdrive"
 	
-	engine 0 30 1.4
+	engine 0 30
 	explode "tiny explosion" 8
 	explode "small explosion" 7
+	description "Centuries ago, the Remnant built these ships in order to explore the upper atmosphere of nearby gas giants. The Archons took issue with the Remnant's research methods, and the studies were unable to be completed. The remaining gascraft have been gathering dust in storage for centuries while the Remnant waits to see if the anger of the Archons will subside."

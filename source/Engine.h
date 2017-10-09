@@ -111,6 +111,12 @@ private:
 private:
 	PlayerInfo &player;
 	
+	std::list<std::shared_ptr<Ship>> ships;
+	std::list<Projectile> projectiles;
+	std::list<std::shared_ptr<Flotsam>> flotsam;
+	std::list<Effect> effects;
+	AsteroidField asteroids;
+	
 	AI ai;
 	
 	std::thread calcThread;
@@ -143,21 +149,11 @@ private:
 	
 	int step = 0;
 	
-	std::list<std::shared_ptr<Ship>> ships;
-	std::list<Projectile> projectiles;
-	std::list<std::shared_ptr<Flotsam>> flotsam;
-	std::list<Effect> effects;
-	// Keep track of which ships we have not seen for long enough that it is
-	// time to stop tracking their movements.
-	std::map<std::list<Ship>::iterator, int> forget;
-	
 	std::list<ShipEvent> eventQueue;
 	std::list<ShipEvent> events;
 	// Keep track of who has asked for help in fighting whom.
 	std::map<const Government *, std::weak_ptr<const Ship>> grudge;
 	int grudgeTime = 0;
-	
-	AsteroidField asteroids;
 	
 	CollisionSet shipCollisions;
 	CollisionSet cloakedCollisions;

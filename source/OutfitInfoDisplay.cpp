@@ -19,6 +19,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "PlayerInfo.h"
 
 #include <algorithm>
+#include <cmath>
 #include <map>
 #include <set>
 #include <sstream>
@@ -26,35 +27,43 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 using namespace std;
 
 namespace {
-	static const set<string> ATTRIBUTES_TO_SCALE = {
-		"active cooling",
-		"afterburner energy",
-		"afterburner fuel",
-		"afterburner heat",
-		"cloaking energy",
-		"cloaking fuel",
-		"cooling",
-		"cooling energy",
-		"energy consumption",
-		"energy generation",
-		"heat generation",
-		"hull repair rate",
-		"hull energy",
-		"hull heat",
-		"reverse thrusting energy",
-		"reverse thrusting heat",
-		"shield generation",
-		"shield energy",
-		"shield heat",
-		"solar collection",
-		"thrusting energy",
-		"thrusting heat",
-		"turn",
-		"turning energy",
-		"turning heat"
+	const map<string, double> SCALE = {
+		{"active cooling", 60.},
+		{"afterburner energy", 60.},
+		{"afterburner fuel", 60.},
+		{"afterburner heat", 60.},
+		{"cloaking energy", 60.},
+		{"cloaking fuel", 60.},
+		{"cooling", 60.},
+		{"cooling energy", 60.},
+		{"energy consumption", 60.},
+		{"energy generation", 60.},
+		{"heat generation", 60.},
+		{"hull repair rate", 60.},
+		{"hull energy", 60.},
+		{"hull heat", 60.},
+		{"reverse thrusting energy", 60.},
+		{"reverse thrusting heat", 60.},
+		{"shield generation", 60.},
+		{"shield energy", 60.},
+		{"shield heat", 60.},
+		{"solar collection", 60.},
+		{"thrusting energy", 60.},
+		{"thrusting heat", 60.},
+		{"turn", 60.},
+		{"turning energy", 60.},
+		{"turning heat", 60.},
+		
+		{"thrust", 60. * 60.},
+		{"reverse thrust", 60. * 60.},
+		{"afterburner thrust", 60. * 60.},
+		
+		{"ion resistance", 60. * 100.},
+		{"disruption resistance", 60. * 100.},
+		{"slowing resistance", 60. * 100.}
 	};
 	
-	static const map<string, string> BOOLEAN_ATTRIBUTES = {
+	const map<string, string> BOOLEAN_ATTRIBUTES = {
 		{"unplunderable", "This outfit cannot be plundered."},
 		{"installable", "This is not an installable item."},
 		{"hyperdrive", "Allows you to make hyperjumps."},
@@ -170,11 +179,8 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 			continue;
 		
 		string value;
-		double scale = 1.;
-		if(it.first == "thrust" || it.first == "reverse thrust" || it.first == "afterburner thrust")
-			scale = 60. * 60.;
-		else if(ATTRIBUTES_TO_SCALE.count(it.first))
-			scale = 60.;
+		auto sit = SCALE.find(it.first);
+		double scale = (sit == SCALE.end() ? 1. : sit->second);
 		
 		auto bit = BOOLEAN_ATTRIBUTES.find(it.first);
 		if(bit != BOOLEAN_ATTRIBUTES.end()) 
@@ -318,7 +324,7 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 	for(unsigned i = 0; i < PERCENT_NAMES.size(); ++i)
 		if(percentValues[i])
 		{
-			int percent = 100. * percentValues[i] + .5;
+			int percent = lround(100. * percentValues[i]);
 			attributeLabels.push_back(PERCENT_NAMES[i]);
 			attributeValues.push_back(Format::Number(percent) + "%");
 			attributesHeight += 20;

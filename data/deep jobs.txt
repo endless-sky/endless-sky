@@ -29,10 +29,10 @@ mission "Deep Mystery Cube [0]"
 		payment 5000 1000
 		dialog `As instructed, you leave the mystery cube by the side of the road a few miles away from the spaceport. "This has to be legal, or they couldn't post it to the job board," you remind yourself as you collect the payment of <payment>.`
 	npc
+		government "Bounty Hunter"
+		personality nemesis disables waiting
 		system
 			distance 6 9
-		personality nemesis disables waiting
-		government "Bounty Hunter"
 		fleet "Bounty Hunters"
 
 
@@ -56,10 +56,10 @@ mission "Deep Mystery Cube [1]"
 		payment 5000 1000
 		dialog `As instructed, you leave the mystery cube behind a rickety-looking wooden tower. "This has to be legal, or they couldn't post it to the job board," you remind yourself as you collect the payment of <payment>.`
 	npc
+		government "Bounty Hunter"
+		personality nemesis disables waiting
 		system
 			distance 6 9
-		personality nemesis disables waiting
-		government "Bounty Hunter"
 		fleet "Bounty Hunters"
 
 
@@ -83,10 +83,10 @@ mission "Deep Mystery Cube [2]"
 		payment 5000 1000
 		dialog `As instructed, you bury the cube out in the middle of nowhere before landing in the spaceport. "This has to be legal, or they couldn't post it to the job board," you remind yourself as you collect the payment of <payment>.`
 	npc
+		government "Bounty Hunter"
+		personality nemesis disables waiting
 		system
 			distance 6 9
-		personality nemesis disables waiting
-		government "Bounty Hunter"
 		fleet "Bounty Hunters"
 
 
@@ -110,10 +110,10 @@ mission "Deep Mystery Cube [3]"
 		payment 5000 1000
 		dialog `As instructed, you hand the cube to the first beggar woman you see planetside. She accepts it without a word. "This has to be legal, or they couldn't post it to the job board," you remind yourself as you collect the payment of <payment>.`
 	npc
+		government "Bounty Hunter"
+		personality nemesis disables waiting
 		system
 			distance 6 9
-		personality nemesis disables waiting
-		government "Bounty Hunter"
 		fleet "Bounty Hunters"
 
 
@@ -136,10 +136,10 @@ mission "Mystery retrieval"
 		payment 5000 1000
 		dialog `You drop off the cube at a warehouse, as instructed. Nobody comes around to collect it, but nonetheless your bank account immediately notifies you that the agreed-upon payment of <payment> has been deposited. You wonder how they knew.`
 	npc
+		government "Bounty Hunter"
+		personality nemesis disables waiting
 		system
 			distance 10 17
-		personality nemesis disables waiting
-		government "Bounty Hunter"
 		fleet "Bounty Hunters"
 
 
@@ -177,11 +177,12 @@ mission "Escort science vessel"
 		attributes quarg pirate volcanic frontier "dirt belt" north south
 		distance 6 50
 	npc
-		system
-			distance 2 3
 		government Pirate
 		personality nemesis waiting plunders
+		system
+			distance 2 3
 		fleet "pirate raid"
+	
 	npc accompany save
 		government Merchant
 		personality escort timid
@@ -191,6 +192,8 @@ mission "Escort science vessel"
 				"Scout"
 			variant
 				"Bounder"
+			variant
+				"Star Queen"
 	on stopover
 		dialog "The <npc> lands alongside you and teams of scientists wearing crisp white lab coats and serious-looking boots and gloves descend on the test site with all manner of exotic equipment. As they take their measurements, you prepare for the return journey to <planet>."
 	on visit

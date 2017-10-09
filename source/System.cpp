@@ -30,12 +30,12 @@ using namespace std;
 namespace {
 	// Dynamic economy parameters: how much of its production each system keeps
 	// and exports each day:
-	static const double KEEP = .89;
-	static const double EXPORT = .10;
+	const double KEEP = .89;
+	const double EXPORT = .10;
 	// Standard deviation of the daily production of each commodity:
-	static const double VOLUME = 2000.;
+	const double VOLUME = 2000.;
 	// Above this supply amount, price differences taper off:
-	static const double LIMIT = 20000.;
+	const double LIMIT = 20000.;
 }
 
 const double System::NEIGHBOR_DISTANCE = 100.;
@@ -488,7 +488,7 @@ bool System::IsInhabited(const Ship *ship) const
 		if(object.GetPlanet())
 		{
 			const Planet &planet = *object.GetPlanet();
-			if(!planet.IsWormhole() && planet.HasSpaceport() && planet.IsAccessible(ship))
+			if(!planet.IsWormhole() && planet.IsInhabited() && planet.IsAccessible(ship))
 				return true;
 		}
 	
@@ -501,12 +501,8 @@ bool System::IsInhabited(const Ship *ship) const
 bool System::HasFuelFor(const Ship &ship) const
 {
 	for(const StellarObject &object : objects)
-		if(object.GetPlanet())
-		{
-			const Planet &planet = *object.GetPlanet();
-			if(!planet.IsWormhole() && planet.HasSpaceport() && planet.CanLand(ship))
-				return true;
-		}
+		if(object.GetPlanet() && object.GetPlanet()->HasFuelFor(ship))
+			return true;
 	
 	return false;
 }
@@ -639,9 +635,10 @@ void System::LoadObject(const DataNode &node, Set<Planet> &planets, int parent)
 	StellarObject &object = objects.back();
 	object.parent = parent;
 	
-	if(node.Size() >= 2)
+	bool isAdded = (node.Token(0) == "add");
+	if(node.Size() >= 2 + isAdded)
 	{
-		Planet *planet = planets.Get(node.Token(1));
+		Planet *planet = planets.Get(node.Token(1 + isAdded));
 		object.planet = planet;
 		planet->SetSystem(this);
 	}

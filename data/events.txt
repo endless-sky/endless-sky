@@ -20,6 +20,8 @@ mission "remembrance day"
 	to offer
 		has "event: remembrance day"
 	on offer
+		log "Factions" "Alphas" `The Alphas were designed hundreds of years ago as genetically engineered super-soldiers, with no compassion or empathy. They escaped from their masters, enslaved entire planets, and commanded massive fleets of ships. Eventually they were defeated, and were either killed or went into hiding. They can be recognized by their green, photosynthetic skin.`
+			`Alphas can live for centuries, and it is likely that many of them have survived, hiding out on anarchist worlds or somewhere beyond human space. Fortunately, they reproduce much more slowly than ordinary humans do.`
 		conversation
 			`Today, throughout human space, is Remembrance Day, the anniversary of the beginning of the Alpha Wars more than five centuries ago. The Alphas were genetically engineered soldiers, with superhuman agility and intelligence, and a complete lack of compassion or empathy. At the height of the War, dozens of planets had been enslaved by the Alphas.`
 			`	Remembrance Day commemorates the beginning of the war, rather than its end, as a perpetual reminder that the war is not over: although the Alphas were defeated, some of them escaped and remained in hiding, and they and their offspring are presumed to still be present in the galaxy today.`
@@ -137,6 +139,7 @@ mission "event: war begins"
 	to offer
 		has "event: war begins"
 	on offer
+		log "Factions" "Free Worlds" `The Free Worlds is a collection of local governments in the southern galactic arm who have declared independence from the Republic after Parliament refused to address issues they raised about trade tariffs, taxation, and representation. They may be linked to the recent terrorist attacks on the Navy Yard and the galactic stock exchange, although they deny responsibility.`
 		conversation
 			`The moment you step off your ship you realize something is very wrong. The spaceport is eerily quiet, and a large crowd of people is gathered around a video screen in the local bar.`
 			`	You ask what is happening, and someone explains. Recently, a collection of local governments in the southern galactic arm sent the Republic Parliament what amounted to an ultimatum: a refusal to pay taxes until certain reforms were made in trade tariffs, ship licensing, and election of planetary representatives. The coalition calls themselves the "Free Worlds." Parliament outright refused to consider their demands.`
@@ -1273,8 +1276,23 @@ event "fw northern expansion"
 
 event "fw prison on Clink"
 	planet Clink
+		add description `Recently, the Free Worlds have converted Clink into a prison colony for Navy officers and support staff who were captured in the battle for the Rastaban system.`
+
+event "fw prison on Clink closes"
+	planet Clink
 		description `About a decade ago, a mining corporation from Zug planted a colony on Clink for harvesting some rare earth minerals that are present in this moon's crust due to its unusually high rate of asteroid impacts. The atmosphere here is too thin to breathe without a respirator, and because of the low gravity, the dust raised by the mining operations hangs perpetually in the air.`
-		description `Recently, the Free Worlds have converted Clink into a prison colony for Navy officers and support staff who were captured in the battle for the Rastaban system.`
+
+mission "FW Clink Prison Closes"
+	landing
+	invisible
+	to offer
+		has "event: fw prison on Clink"
+		or
+			has "event: fw armistice"
+			has "event: fwc peace with the navy"
+	on offer
+		event "fw prison on Clink closes"
+		fail
 
 
 

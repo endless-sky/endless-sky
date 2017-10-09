@@ -128,7 +128,7 @@ mission "Liberate Kornephoros"
 		dialog "There are still Navy ships patrolling overhead. Staying on <planet> while your allies are dying in orbit would be a very bad idea."
 	
 	on complete
-		log "The Free Worlds have retaken the Kornephoros system, with heavy losses on both sides."
+		log "The Free Worlds have retaken the Kornephoros system, with heavy losses on both sides. And unfortunately, there is no sign of Katya; she may have been taken prisoner by the Navy."
 		conversation
 			`The last of the Navy vessels in orbit has been subdued. As you land, you find that several Free Worlds troop transports have already set down in the spaceport and corralled the remaining Navy officers into a small circle. You would estimate that there are several hundred Navy prisoners. Another transport lands, carrying more prisoners: the Navy troops who had been guarding the mines on Clink.`
 			`	For several hours, nothing changes: the Navy troops are huddled into a small circle, surrounded by guards. When lunchtime comes, some of the guards go to the market and fetch some of the vendors who sell meals out of carts there; they return with the carts and hand out food to the prisoners. Then, another transport lands and Tomek steps out.`
@@ -256,6 +256,8 @@ mission "oathkeepers founded"
 		government "Free Worlds"
 	on offer
 		log "Apparently the paroled Navy prisoners from the battle for Kornephoros plan to keep their promise to not fight against the Free Worlds. They've formed a new Navy regiment guarding the far north of human space."
+		log "Factions" "Oathkeepers" `The "Oathkeepers" are a regiment of Navy officers who were captured by the Free Worlds and paroled on the condition that they take no further part in fighting against the Free Worlds. They are led by William Danforth, a famous Navy admiral. Their stated mission is to protect the Paradise Worlds from the pirates who live on the anarchist worlds in the far north of human space.`
+		log "People" "William Danforth" `Danforth is a famous Navy Admiral who is a folk hero throughout human space due to his fair and honorable behavior and his willingness to use his fleet to assist people in need, even when he has to go against Parliament's orders to do so. He is currently in charge of the Navy regiment who call themselves the "Oathkeepers."`
 		conversation
 			`When you land on <origin>, it seems that everyone in the spaceport is talking about a recent news story: the Navy has just announced the formation of a new regiment, called the Oathkeepers. This regiment is staffed mostly by prisoners you paroled from Kornephoros, who want to honor their oath to take no further part in the conflict against the Free Worlds. They will be headquartered on Farpoint, in the far north, to defend that region of space against pirate incursions.`
 			`	Furthermore, the leader of the Oathkeepers will be Admiral Danforth, an elderly admiral who is something of a folk hero and is spoken of with admiration and respect even here in Free space. Although he was not one of the paroled prisoners, he has become an outspoken advocate for a diplomatic solution to the Free Worlds conflict.`
@@ -338,12 +340,11 @@ mission "FW Syndicate Diplomacy 1B"
 		personality heroic
 		government Republic
 		system Sol
-		fleet "Small Republic"
-		fleet "Small Republic"
-		fleet "Small Republic"
+		fleet "Small Republic" 3
 	
 	on offer
 		log "Visited the Syndicate and worked out a deal where they promised to stay neutral. They are expecting to profit from selling weapons to both sides in this war. Also discovered that Katya is in the Republic's custody and is accused of terrorist activity."
+		log "People" "Katya Reynolds" `Katya was on Clink when the Navy invaded the Kornephoros system, and was taken captive by them and imprisoned as a war criminal.`
 		conversation
 			`As you land, Alondo says to you, "Let me do the talking, please." You are met almost immediately by two men in suits, who escort you to a room in the Syndicate headquarters. Six men are sitting on one side of a large mahogany conference table; they gesture for the two of you to be seated on the other side.`
 			`	You introduce yourselves. "Thank you for meeting with us," says Alondo.`
@@ -405,9 +406,7 @@ mission "FW Syndicate Diplomacy 1C"
 		personality heroic
 		government Republic
 		system Rutilicus
-		fleet "Small Republic"
-		fleet "Small Republic"
-		fleet "Small Republic"
+		fleet "Small Republic" 3
 	
 	on offer
 		conversation
@@ -682,7 +681,7 @@ mission "FW Plasma Testing 1B"
 		ship "Falcon (Plasma)" "Walloping Window-Blind"
 	npc kill
 		government "Pirate"
-		personality plunders staying
+		personality plunders staying target
 		system Ildaria
 		ship "Leviathan (Heavy)" "Red Nile"
 		dialog `The <npc> has been eliminated. Time to return to <destination> and report to Barmy Edward.`
@@ -691,6 +690,7 @@ mission "FW Plasma Testing 1B"
 		dialog "You have reached <planet>, but your mission is not complete - either the Red Nile is not destroyed, or you have left the Walloping Window-Blind behind."
 	
 	on offer
+		log "People" "Edward Tivrusky" `Barmy Edward is the Chief Offensive Engineer at Kraz Cybernetics, known for his inventive and sometimes impractical weapon designs. Supposedly, his engineers gave him the "Barmy" sobriquet after an incident where an experimental epoxy cannon he was working on exploded and glued him to the ceiling.`
 		conversation
 			scene "scene/loc5"
 			`You are met in the spaceport by a junior engineer from Kraz Cybernetics, who leads you to their facility and introduces you to his boss, who is known as "Barmy Edward." Edward is wearing a set of thick welding glasses and smoking a cigarette. "Pleased to meet you," he says, extending a hand that is encased in a heavy leather glove.`
@@ -802,7 +802,7 @@ mission "plasma turret available"
 			scene "outfit/plasma turret"
 			`	Rejoice, Captain! The next time you are on Rust, you will be able to purchase plasma turrets for your very own.`
 			`				Regards,`
-			`						B. Edward`
+			`						B. Edward Tivrusky`
 			`						Chief Offensive Engineer`
 			`						Kraz Cybernetics`
 				decline
@@ -822,7 +822,7 @@ mission "FW Supply Convoy 1"
 	
 	on offer
 		conversation
-			`In the spaceport, you meet up with a woman wearing a militia uniform and carrying a clipboard. "Are you Captain <last>?" she asks. You nod. "We have a large shipment of weapons and equipment that needs to go to the militia base on <planet>. Your job is to make sure none of these ships get... lost in transit." She points to a large landing pad where you count ten Star Barges lines up next to each other.`
+			`In the spaceport, you meet up with a woman wearing a militia uniform and carrying a clipboard. "Are you Captain <last>?" she asks. You nod. "We have a large shipment of weapons and equipment that needs to go to the militia base on <planet>. Your job is to make sure none of these ships get... lost in transit." She points to a large landing pad where you count ten Star Barges lined up next to each other.`
 			choice
 				`	"Isn't it risky to transport valuable cargo in such flimsy and vulnerable ships?"`
 					goto risky
@@ -859,8 +859,7 @@ mission "FW Supply Convoy 1"
 		government "Pirate"
 		personality plunders staying
 		system "Sabik"
-		fleet "Small Southern Pirates"
-		fleet "Small Southern Pirates"
+		fleet "Small Southern Pirates" 2
 	
 	on complete
 		dialog
@@ -993,6 +992,7 @@ mission "FW Senate 1B"
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
+		log "People" "Ijs Springborn" `Ijs is now working to found the Conservatory, a publicly funded Free Worlds university that will have a particular focus on terraforming technology. Their goal is to make terraforming methods efficient enough that even Dirt Belt worlds will be able to afford them.`
 		conversation
 			`Senator Huygens turns out to be an attractive woman in her mid-fifties, with a dour expression on her face. "About time you showed up," is all she says when you introduce yourself.`
 			`	You take one of her suitcases and lead her into your ship to her room. Once you get there, she says, "I'm glad the Council relented and agreed to convene the Senate. I had begun to worry that the democracy we signed up for had become an oligarchy instead."`
@@ -1183,8 +1183,7 @@ mission "FW Pirates 2"
 	npc
 		personality heroic escort
 		government "Free Worlds"
-		fleet "Small Free Worlds"
-		fleet "Small Free Worlds"
+		fleet "Small Free Worlds" 2
 		fleet "Large Free Worlds"
 	
 	on complete
@@ -1236,18 +1235,15 @@ mission "FW Pirates 3.1"
 		government "Free Worlds"
 		system Antares
 		fleet "Small Free Worlds"
-		fleet "Large Free Worlds"
-		fleet "Large Free Worlds"
+		fleet "Large Free Worlds" 2
 	
 	npc kill
 		personality plunders staying
 		government "Pirate"
 		system Antares
-		fleet "Small Southern Pirates"
-		fleet "Small Southern Pirates"
+		fleet "Small Southern Pirates" 2
 		fleet "Small Northern Pirates"
-		fleet "Large Southern Pirates"
-		fleet "Large Southern Pirates"
+		fleet "Large Southern Pirates" 2
 		fleet "Large Core Pirates"
 		fleet "Large Northern Pirates"
 	
@@ -1359,33 +1355,19 @@ mission "FW Pirates 3.2A"
 	npc
 		personality heroic escort
 		government "Free Worlds"
-		fleet "Small Free Worlds"
-		fleet "Small Free Worlds"
-		fleet "Small Free Worlds"
-		fleet "Large Free Worlds"
-		fleet "Large Free Worlds"
-		fleet "Large Free Worlds"
+		fleet "Small Free Worlds" 3
+		fleet "Large Free Worlds" 3
 	
 	npc kill
 		personality plunders staying
 		government "Pirate"
 		system Shaula
-		fleet "Small Southern Pirates"
-		fleet "Small Southern Pirates"
-		fleet "Small Southern Pirates"
-		fleet "Large Southern Pirates"
-		fleet "Large Southern Pirates"
-		fleet "Large Southern Pirates"
-		fleet "Small Core Pirates"
-		fleet "Small Core Pirates"
-		fleet "Large Core Pirates"
-		fleet "Large Core Pirates"
-		fleet "Large Core Pirates"
+		fleet "Small Southern Pirates" 3
+		fleet "Large Southern Pirates" 3
+		fleet "Small Core Pirates" 2
+		fleet "Large Core Pirates" 3
 		fleet "Small Northern Pirates"
-		fleet "Large Northern Pirates"
-		fleet "Large Northern Pirates"
-		fleet "Large Northern Pirates"
-		fleet "Large Northern Pirates"
+		fleet "Large Northern Pirates" 4
 	
 	on complete
 		event "fw suppressed Greenrock"
@@ -1469,12 +1451,8 @@ mission "FW Pirates 4"
 		personality heroic
 		government "Free Worlds"
 		system Alniyat
-		fleet "Small Free Worlds"
-		fleet "Small Free Worlds"
-		fleet "Large Free Worlds"
-		fleet" Large Free Worlds"
-		fleet" Large Free Worlds"
-		fleet" Large Free Worlds"
+		fleet "Small Free Worlds" 2
+		fleet "Large Free Worlds" 4
 	
 	npc
 		personality heroic
@@ -1561,6 +1539,7 @@ mission "FW Pirates 4.1"
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
+		log "People" "Tomek Voigt" `Tomek was removed from the Council and placed under house arrest by the Senate after he disobeyed their orders and tried to launch an attack to capture the Pirate world of Greenrock rather than pursuing the diplomatic solution that the Senate preferred.`
 		conversation
 			`JJ and Freya meet you soon after you land on <origin>. "Congratulations," says JJ, "you're a goddamn hero. Now, what exactly were you planning on doing next?"`
 			choice
@@ -1647,6 +1626,7 @@ mission "FW Refinery 1"
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
+		log "People" "Tomek Voigt" `Tomek was removed from the Council and placed under house arrest by the Senate after he disobeyed their orders and tried to launch an attack to capture the Pirate world of Greenrock rather than pursuing the diplomatic solution that the Senate preferred.`
 		conversation
 			`You arrive back on Longjump to a hero's welcome. People have heard of the battle you fought on Thule and the deal that was forged with the locals there. JJ and Freya greet you too, and congratulate you. But then Freya says, "We need to talk in private."`
 			`	You lead them into your ship, where Freya explains, "Soon after you left for Thule, Tomek took off on his own and raised a fleet for an attack on Greenrock. He thought the Senate's plan of making a deal with the pirate worlds was too cowardly, and that we needed a show of strength instead. But he was defeated by the pirates. His fleet retreated, with heavy losses, and when they landed back on Trinket, Tomek was put under house arrest by order of the Senate."`

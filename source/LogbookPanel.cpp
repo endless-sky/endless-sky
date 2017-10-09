@@ -36,7 +36,7 @@ namespace {
 	const double WIDTH = SIDEBAR_WIDTH + TEXT_WIDTH;
 	const double LINE_HEIGHT = 25.;
 	const double GAP = 30.;
-	static const string MONTH[] = {
+	const string MONTH[] = {
 		"  January", "  February", "  March", "  April", "  May", "  June",
 		"  July", "  August", "  September", "  October", "  November", "  December"};
 }

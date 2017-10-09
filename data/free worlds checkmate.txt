@@ -38,11 +38,7 @@ mission "FWC Scouting 1"
 		personality staying heroic
 		system "Kaus Borealis"
 		government "Republic"
-		fleet "Large Republic"
-		fleet "Large Republic"
-		fleet "Large Republic"
-		fleet "Large Republic"
-		fleet "Large Republic"
+		fleet "Large Republic" 5
 
 
 
@@ -123,33 +119,14 @@ mission "FWC Attack Kaus Borealis"
 		personality staying heroic
 		system "Kaus Borealis"
 		government "Republic"
-		fleet
+		fleet 2
 			names "republic capital"
 			fighters "republic fighter"
 			variant
 				"Carrier (Mark II)"
 				"Lance" 4
 				"Combat Drone" 6
-		fleet
-			names "republic capital"
-			fighters "republic fighter"
-			variant
-				"Carrier (Mark II)"
-				"Lance" 4
-				"Combat Drone" 6
-		fleet
-			names "republic capital"
-			fighters "republic fighter"
-			variant
-				"Cruiser (Mark II)"
-				"Combat Drone" 4
-		fleet
-			names "republic capital"
-			fighters "republic fighter"
-			variant
-				"Cruiser (Mark II)"
-				"Combat Drone" 4
-		fleet
+		fleet 3
 			names "republic capital"
 			fighters "republic fighter"
 			variant
@@ -565,27 +542,14 @@ mission "FWC Diplomacy 1C"
 		personality staying heroic
 		system "Vega"
 		government "Republic"
-		fleet
+		fleet 2
 			names "republic capital"
 			fighters "republic fighter"
 			variant
 				"Carrier (Mark II)"
 				"Lance" 4
 				"Combat Drone" 6
-		fleet
-			names "republic capital"
-			fighters "republic fighter"
-			variant
-				"Carrier (Mark II)"
-				"Lance" 4
-				"Combat Drone" 6
-		fleet
-			names "republic capital"
-			fighters "republic fighter"
-			variant
-				"Cruiser (Mark II)"
-				"Combat Drone" 4
-		fleet
+		fleet 2
 			names "republic capital"
 			fighters "republic fighter"
 			variant
@@ -596,27 +560,14 @@ mission "FWC Diplomacy 1C"
 		personality staying heroic
 		system "Denebola"
 		government "Republic"
-		fleet
+		fleet 2
 			names "republic capital"
 			fighters "republic fighter"
 			variant
 				"Carrier (Mark II)"
 				"Lance" 4
 				"Combat Drone" 6
-		fleet
-			names "republic capital"
-			fighters "republic fighter"
-			variant
-				"Carrier (Mark II)"
-				"Lance" 4
-				"Combat Drone" 6
-		fleet
-			names "republic capital"
-			fighters "republic fighter"
-			variant
-				"Cruiser (Mark II)"
-				"Combat Drone" 4
-		fleet
+		fleet 2
 			names "republic capital"
 			fighters "republic fighter"
 			variant
@@ -688,21 +639,7 @@ mission "FWC Checkmate 1"
 	npc evade
 		personality staying heroic
 		government "Republic"
-		fleet
-			names "republic small"
-			fighters "republic fighter"
-			variant
-				"Frigate (Mark II)"
-				"Gunboat (Mark II)" 2
-				"Rainmaker (Mark II)" 2
-		fleet
-			names "republic small"
-			fighters "republic fighter"
-			variant
-				"Frigate (Mark II)"
-				"Gunboat (Mark II)" 2
-				"Rainmaker (Mark II)" 2
-		fleet
+		fleet 3
 			names "republic small"
 			fighters "republic fighter"
 			variant
@@ -721,13 +658,7 @@ mission "FWC Checkmate 1"
 				"Carrier (Mark II)"
 				"Lance" 4
 				"Combat Drone" 6
-		fleet
-			names "republic capital"
-			fighters "republic fighter"
-			variant
-				"Cruiser (Mark II)"
-				"Combat Drone" 4
-		fleet
+		fleet 2
 			names "republic capital"
 			fighters "republic fighter"
 			variant
@@ -745,19 +676,7 @@ mission "FWC Checkmate 1"
 				"Carrier (Mark II)"
 				"Lance" 4
 				"Combat Drone" 6
-		fleet
-			names "republic capital"
-			fighters "republic fighter"
-			variant
-				"Cruiser (Mark II)"
-				"Combat Drone" 4
-		fleet
-			names "republic capital"
-			fighters "republic fighter"
-			variant
-				"Cruiser (Mark II)"
-				"Combat Drone" 4
-		fleet
+		fleet 3
 			names "republic capital"
 			fighters "republic fighter"
 			variant
@@ -768,27 +687,14 @@ mission "FWC Checkmate 1"
 		personality heroic
 		government "Republic"
 		system Pollux
-		fleet
+		fleet 2
 			names "republic capital"
 			fighters "republic fighter"
 			variant
 				"Carrier (Mark II)"
 				"Lance" 4
 				"Combat Drone" 6
-		fleet
-			names "republic capital"
-			fighters "republic fighter"
-			variant
-				"Cruiser (Mark II)"
-				"Combat Drone" 4
-		fleet
-			names "republic capital"
-			fighters "republic fighter"
-			variant
-				"Carrier (Mark II)"
-				"Lance" 4
-				"Combat Drone" 6
-		fleet
+		fleet 2
 			names "republic capital"
 			fighters "republic fighter"
 			variant
@@ -945,32 +851,20 @@ mission "FWC Checkmate 1B"
 		personality heroic staying
 		government "Republic"
 		system Menkent
-		fleet
+		fleet 2
 			names "republic capital"
 			fighters "republic fighter"
 			variant
 				"Carrier (Mark II)"
 				"Lance" 4
 				"Combat Drone" 6
-		fleet
+		fleet 2
 			names "republic capital"
 			fighters "republic fighter"
 			variant
 				"Cruiser (Mark II)"
 				"Combat Drone" 4
-		fleet
-			names "republic capital"
-			fighters "republic fighter"
-			variant
-				"Carrier (Mark II)"
-				"Lance" 4
-				"Combat Drone" 6
-		fleet
-			names "republic capital"
-			fighters "republic fighter"
-			variant
-				"Cruiser (Mark II)"
-				"Combat Drone" 4
+	
 	npc
 		personality derelict
 		government "Republic"
@@ -1124,19 +1018,7 @@ mission "FWC Pug 1"
 				"Clipper"
 				"Clipper (Heavy)"
 				"Clipper (Speedy)"
-		fleet
-			names "free worlds small"
-			variant
-				"Clipper (Nuclear)"
-		fleet
-			names "free worlds small"
-			variant
-				"Clipper (Nuclear)"
-		fleet
-			names "free worlds small"
-			variant
-				"Clipper (Nuclear)"
-		fleet
+		fleet 4
 			names "free worlds small"
 			variant
 				"Clipper (Nuclear)"
@@ -1153,13 +1035,7 @@ mission "FWC Pug 1"
 	npc evade
 		personality staying disables heroic
 		government Pug
-		fleet
-			names "pug"
-			variant
-				"Pug Maboro"
-				"Pug Enfolta"
-				"Pug Zibruka" 2
-		fleet
+		fleet 2
 			names "pug"
 			variant
 				"Pug Maboro"
@@ -1174,29 +1050,13 @@ mission "FWC Pug 1"
 	npc evade
 		personality entering disables heroic
 		government Pug
-		fleet
+		fleet 2
 			names "pug"
 			variant
 				"Pug Maboro"
 				"Pug Enfolta"
 				"Pug Zibruka" 2
-		fleet
-			names "pug"
-			variant
-				"Pug Maboro"
-				"Pug Enfolta"
-				"Pug Zibruka" 2
-		fleet
-			names "pug"
-			variant
-				"Pug Enfolta"
-				"Pug Zibruka" 2
-		fleet
-			names "pug"
-			variant
-				"Pug Enfolta"
-				"Pug Zibruka" 2
-		fleet
+		fleet 3
 			names "pug"
 			variant
 				"Pug Enfolta"
@@ -1206,13 +1066,7 @@ mission "FWC Pug 1"
 		personality disables heroic
 		government Pug
 		system "Delta Capricorni"
-		fleet
-			names "pug"
-			variant
-				"Pug Maboro"
-				"Pug Enfolta"
-				"Pug Zibruka" 2
-		fleet
+		fleet 2
 			names "pug"
 			variant
 				"Pug Maboro"
@@ -1253,7 +1107,7 @@ mission "FWC Pug 1B"
 				goto next
 			
 			label aliens
-			`	"We have no idea," she says. "But, they appear to have the ability to destroy hyperspace links. That's why our communications went dead; it wasn't the relays we lost, it was the pathways themselves. And, they are apparently able to create new links as well." She points to a galactic map that she had been examining when you came in; several links have been scribbled out and new ones have been drawn in. "This is the star we call Deneb," she says, pointing to a star that, until now, had been inaccessible via hyperspace. This must be where they came from."`
+			`	"We have no idea," she says. "But, they appear to have the ability to destroy hyperspace links. That's why our communications went dead; it wasn't the relays we lost, it was the pathways themselves. And, they are apparently able to create new links as well." She points to a galactic map that she had been examining when you came in; several links have been scribbled out and new ones have been drawn in. "This is the star we call Deneb," she says, pointing to a star that, until now, had been inaccessible via hyperspace. "This must be where they came from."`
 				goto next
 			
 			label next
@@ -1403,6 +1257,7 @@ mission "FWC Pug 2C"
 	
 	on offer
 		log `Visited the homeworld of the Pug, the aliens who have taken over this region of space. They claim that when the Free Worlds fleet was threatening to invade Earth, they had no choice but to interfere to prevent humanity from destroying itself. They say that their plan is to slowly bring more and more human worlds under their "protection," but what they are talking about sounds more like slavery.`
+		log "Factions" "Pug" `The Pug are aliens with barrel-shaped bodies, spindly legs, and milky blue blood. They claim to have intervened in the human civil war purely for the sake of preventing more bloodshed and helping humans to live together in peace.`
 		conversation
 			`This is an entirely alien world. The buildings have strangely flowing, tapered shapes not unlike the Pug starships, and from orbit you count dozens of large cities covering a large portion of the land mass. If this were a human world, you would estimate its population at over a billion. You follow one of the Pug ships that is landing, and discover a large spaceport where a surprising number of human merchant ships are parked, in addition to the aliens.`
 			`	Elsewhere they have mostly ignored you, but here your ship is quickly approached by a small group of the pale-skinned, delicate aliens. The Pug are oddly proportioned, with long arms and legs but short, barrel-shaped torsos and large heads, and although they only have two legs, their gait is vaguely insectoid. "You are the ones who resisted us," one of them says. "You are not pledged to the Protectorate. Do you wish to make your vow of loyalty and peacefulness at this time?"`
@@ -1728,12 +1583,7 @@ mission "FWC Pug 3D"
 				"Pug Maboro"
 				"Pug Enfolta"
 				"Pug Zibruka" 2
-		fleet
-			names "pug"
-			variant
-				"Pug Enfolta"
-				"Pug Zibruka" 2
-		fleet
+		fleet 2
 			names "pug"
 			variant
 				"Pug Enfolta"
@@ -1825,7 +1675,7 @@ mission "FWC Pug 4"
 	
 	on offer
 		conversation
-			`	Your fleet lands on <planet>, and to your surprise the locals say that soon before your fleet arrived, all the Pug who were present on the planet departed; clearly they expected your arrival and had no desire to become your prisoners. You only have a few hours to take stock of the situation before the Navy informs you that they have detected another Pug fleet incoming...`
+			`Your fleet lands on <planet>, and to your surprise the locals say that soon before your fleet arrived, all the Pug who were present on the planet departed; clearly they expected your arrival and had no desire to become your prisoners. You only have a few hours to take stock of the situation before the Navy informs you that they have detected another Pug fleet incoming...`
 				launch
 	
 	on complete
@@ -1841,12 +1691,7 @@ mission "FWC Pug 4"
 				"Pug Maboro"
 				"Pug Enfolta"
 				"Pug Zibruka" 2
-		fleet
-			names "pug"
-			variant
-				"Pug Enfolta"
-				"Pug Zibruka" 2
-		fleet
+		fleet 2
 			names "pug"
 			variant
 				"Pug Enfolta"
@@ -1856,24 +1701,13 @@ mission "FWC Pug 4"
 		personality disables heroic
 		government Pug
 		system Alderamin
-		fleet
+		fleet 2
 			names "pug"
 			variant
 				"Pug Maboro"
 				"Pug Enfolta"
 				"Pug Zibruka" 2
-		fleet
-			names "pug"
-			variant
-				"Pug Maboro"
-				"Pug Enfolta"
-				"Pug Zibruka" 2
-		fleet
-			names "pug"
-			variant
-				"Pug Enfolta"
-				"Pug Zibruka" 2
-		fleet
+		fleet 2
 			names "pug"
 			variant
 				"Pug Enfolta"
@@ -1883,25 +1717,7 @@ mission "FWC Pug 4"
 		personality disables heroic
 		government Pug
 		system Markab
-		fleet
-			names "pug"
-			variant
-				"Pug Maboro"
-				"Pug Enfolta"
-				"Pug Zibruka" 2
-		fleet
-			names "pug"
-			variant
-				"Pug Maboro"
-				"Pug Enfolta"
-				"Pug Zibruka" 2
-		fleet
-			names "pug"
-			variant
-				"Pug Maboro"
-				"Pug Enfolta"
-				"Pug Zibruka" 2
-		fleet
+		fleet 4
 			names "pug"
 			variant
 				"Pug Maboro"
@@ -1912,29 +1728,13 @@ mission "FWC Pug 4"
 		personality disables heroic
 		government Pug
 		system Alpheratz
-		fleet
+		fleet 2
 			names "pug"
 			variant
 				"Pug Maboro"
 				"Pug Enfolta"
 				"Pug Zibruka" 2
-		fleet
-			names "pug"
-			variant
-				"Pug Maboro"
-				"Pug Enfolta"
-				"Pug Zibruka" 2
-		fleet
-			names "pug"
-			variant
-				"Pug Enfolta"
-				"Pug Zibruka" 2
-		fleet
-			names "pug"
-			variant
-				"Pug Enfolta"
-				"Pug Zibruka" 2
-		fleet
+		fleet 3
 			names "pug"
 			variant
 				"Pug Enfolta"
@@ -2046,6 +1846,7 @@ mission "FWC Pug 4B: Quarg"
 	on complete
 		log "Learned from the Quarg that they have long been aware of the presence of the Pug in the Deneb system. Apparently the Pug are from another galaxy and possess such advanced technology that even the Quarg do not dare to interfere with them."
 		log "However, the Pug are known to treat warfare like a game, intentionally using weaker technology when fighting less advanced species in order to give them a fair chance at winning the battle. So, fighting them will not be a lost cause, but the Quarg are unwilling to provide any assistance."
+		log "Factions" "Pug" `The Quarg claim that the Pug are powerful enough that they could defeat the Quarg, or even the Drak, if they chose to. But the Pug treat warfare like a game. When battling another species, the Pug will limit themselves to ships and weapons that are weak enough that the other species has a chance of defeating them.`
 		conversation
 			`You land on the Quarg station, but neither of you knows what to do next. How do you locate a Quarg diplomat? Do they even have such a thing? As you and Freya stand in the hangar looking somewhat lost, one of the Quarg approaches you and says, "These ones have questions?"`
 			`	Freya says, "We've been attacked by aliens who call themselves the Pug. We're wondering what you know about them."`
@@ -2115,32 +1916,7 @@ mission "FWC Pug 4C"
 		personality disables heroic staying
 		government Pug
 		system "Zeta Aquilae"
-		fleet
-			names "pug"
-			variant
-				"Pug Maboro"
-				"Pug Enfolta" 2
-		fleet
-			names "pug"
-			variant
-				"Pug Maboro"
-				"Pug Enfolta" 2
-		fleet
-			names "pug"
-			variant
-				"Pug Maboro"
-				"Pug Enfolta" 2
-		fleet
-			names "pug"
-			variant
-				"Pug Maboro"
-				"Pug Enfolta" 2
-		fleet
-			names "pug"
-			variant
-				"Pug Maboro"
-				"Pug Enfolta" 2
-		fleet
+		fleet 6
 			names "pug"
 			variant
 				"Pug Maboro"
@@ -2168,7 +1944,7 @@ mission "FWC Pug 4C"
 		government Republic
 		system "Zeta Aquilae"
 		personality heroic staying uninterested
-		fleet
+		fleet 2
 			names "republic capital"
 			fighters "republic fighter"
 			variant
@@ -2182,13 +1958,6 @@ mission "FWC Pug 4C"
 				"Cruiser (Mark II)"
 				"Combat Drone" 4
 				"Gunboat (Mark II)" 2
-		fleet
-			names "republic capital"
-			fighters "republic fighter"
-			variant
-				"Cruiser (Mark II)"
-				"Combat Drone" 4
-				"Frigate (Mark II)" 2
 
 
 
@@ -2232,21 +2001,7 @@ mission "FWC Pug 5"
 	npc
 		government "Navy (Oathkeeper)"
 		personality heroic escort
-		fleet
-			names "republic capital"
-			fighters "republic fighter"
-			variant
-				"Carrier (Jump)"
-				"Combat Drone" 6
-				"Dagger" 4
-		fleet
-			names "republic capital"
-			fighters "republic fighter"
-			variant
-				"Carrier (Jump)"
-				"Combat Drone" 6
-				"Dagger" 4
-		fleet
+		fleet 3
 			names "republic capital"
 			fighters "republic fighter"
 			variant
@@ -2258,22 +2013,12 @@ mission "FWC Pug 5"
 		personality disables heroic staying
 		government Pug
 		system Vega
-		fleet
+		fleet 2
 			names "pug"
 			variant
 				"Pug Enfolta"
 				"Pug Zibruka" 4
-		fleet
-			names "pug"
-			variant
-				"Pug Enfolta"
-				"Pug Zibruka" 3
-		fleet
-			names "pug"
-			variant
-				"Pug Enfolta"
-				"Pug Zibruka" 4
-		fleet
+		fleet 2
 			names "pug"
 			variant
 				"Pug Enfolta"
@@ -2316,31 +2061,7 @@ mission "FWC Pug 5B"
 		government Republic
 		system Sol
 		personality heroic staying uninterested
-		fleet
-			names "republic capital"
-			fighters "republic fighter"
-			variant
-				"Carrier (Mark II)"
-				"Lance" 4
-				"Combat Drone" 6
-				"Cruiser (Mark II)"
-				"Combat Drone" 4
-				"Frigate (Mark II)" 2
-				"Gunboat (Mark II)" 2
-				"Rainmaker (Mark II)" 2
-		fleet
-			names "republic capital"
-			fighters "republic fighter"
-			variant
-				"Carrier (Mark II)"
-				"Lance" 4
-				"Combat Drone" 6
-				"Cruiser (Mark II)"
-				"Combat Drone" 4
-				"Frigate (Mark II)" 2
-				"Gunboat (Mark II)" 2
-				"Rainmaker (Mark II)" 2
-		fleet
+		fleet 3
 			names "republic capital"
 			fighters "republic fighter"
 			variant
@@ -2380,31 +2101,7 @@ mission "FWC Pug 5C"
 		government Republic
 		system Sol
 		personality heroic waiting
-		fleet
-			names "republic capital"
-			fighters "republic fighter"
-			variant
-				"Carrier (Mark II)"
-				"Lance" 4
-				"Combat Drone" 6
-				"Cruiser (Mark II)"
-				"Combat Drone" 4
-				"Frigate (Mark II)" 2
-				"Gunboat (Mark II)" 2
-				"Rainmaker (Mark II)" 2
-		fleet
-			names "republic capital"
-			fighters "republic fighter"
-			variant
-				"Carrier (Mark II)"
-				"Lance" 4
-				"Combat Drone" 6
-				"Cruiser (Mark II)"
-				"Combat Drone" 4
-				"Frigate (Mark II)" 2
-				"Gunboat (Mark II)" 2
-				"Rainmaker (Mark II)" 2
-		fleet
+		fleet 3
 			names "republic capital"
 			fighters "republic fighter"
 			variant
@@ -2455,31 +2152,7 @@ mission "FWC Pug 6"
 	npc
 		government Republic
 		personality heroic
-		fleet
-			names "republic capital"
-			fighters "republic fighter"
-			variant
-				"Carrier (Mark II)"
-				"Lance" 4
-				"Combat Drone" 6
-				"Cruiser (Mark II)"
-				"Combat Drone" 4
-				"Frigate (Mark II)" 2
-				"Gunboat (Mark II)" 2
-				"Rainmaker (Mark II)" 2
-		fleet
-			names "republic capital"
-			fighters "republic fighter"
-			variant
-				"Carrier (Mark II)"
-				"Lance" 4
-				"Combat Drone" 6
-				"Cruiser (Mark II)"
-				"Combat Drone" 4
-				"Frigate (Mark II)" 2
-				"Gunboat (Mark II)" 2
-				"Rainmaker (Mark II)" 2
-		fleet
+		fleet 3
 			names "republic capital"
 			fighters "republic fighter"
 			variant
@@ -2495,29 +2168,14 @@ mission "FWC Pug 6"
 		government "Navy (Oathkeeper)"
 		personality heroic
 		system Cebalrai
-		fleet
+		fleet 2
 			names "republic capital"
 			fighters "republic fighter"
 			variant
 				"Cruiser (Mark II)"
 				"Combat Drone" 4
 				"Frigate (Mark II)" 2
-		fleet
-			names "republic capital"
-			fighters "republic fighter"
-			variant
-				"Carrier (Mark II)"
-				"Lance" 4
-				"Combat Drone" 6
-				"Gunboat (Mark II)" 3
-		fleet
-			names "republic capital"
-			fighters "republic fighter"
-			variant
-				"Cruiser (Mark II)"
-				"Combat Drone" 4
-				"Frigate (Mark II)" 2
-		fleet
+		fleet 2
 			names "republic capital"
 			fighters "republic fighter"
 			variant
@@ -2560,6 +2218,7 @@ mission "FWC Pug 6"
 	on complete
 		log `The Pug have fled, apparently traveling through an artificial wormhole back to whatever galaxy they came from. And, it turns out that many of their cities on "Pugglemug" were only for show: buildings with no inhabitants, and with holograms creating the appearance of a heavily populated world. They left no advanced technology behind, and no sign of what their true intentions were, but it turns out that the fake cities here were designed for human habitation. They must have been planning this departure for a very long time.`
 		log `Now that the Pug are gone, the Navy will be able to use the "graviton reflectors" to repair the broken hyperspace links and to reconnect all of human space.`
+		log "Factions" "Pug" `The Pug disappeared from human space, and left behind more questions than answers. It is possible that the true purpose of their attack was to give human beings a common enemy that would force them to band together and forget their internal struggles.`
 		event "fwc pug defeated"
 		event "fwc link restoration 1" 10
 		event "fwc link restoration 2" 18

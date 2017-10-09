@@ -26,6 +26,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "PlayerInfo.h"
 #include "PointerShader.h"
 #include "Politics.h"
+#include "Radar.h"
 #include "RingShader.h"
 #include "Screen.h"
 #include "Ship.h"
@@ -614,7 +615,10 @@ void MapDetailPanel::DrawOrbits()
 		if(object.GetPlanet() && object.GetPlanet()->IsAccessible(player.Flagship()))
 			planets[object.GetPlanet()] = pos;
 		
-		RingShader::Draw(pos, object.Radius() * scale + 1., 0., object.TargetColor(player.Flagship()));
+		const float *rgb = Radar::GetColor(object.RadarType(player.Flagship())).Get();
+		// Darken and saturate the color, and make it opaque.
+		Color color(max(0., rgb[0] * 1.2 - .2), max(0., rgb[1] * 1.2 - .2), max(0., rgb[2] * 1.2 - .2), 1.);
+		RingShader::Draw(pos, object.Radius() * scale + 1., 0., color);
 	}
 	
 	// Draw the name of the selected planet.

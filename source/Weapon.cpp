@@ -19,6 +19,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Outfit.h"
 #include "SpriteSet.h"
 
+#include <algorithm>
+
 using namespace std;
 
 
@@ -36,6 +38,10 @@ void Weapon::LoadWeapon(const DataNode &node)
 			isStreamed = true;
 		else if(key == "cluster")
 			isClustered = true;
+		else if(key == "safe")
+			isSafe = true;
+		else if(key == "phasing")
+			isPhasing = true;
 		else if(child.Size() < 2)
 			child.PrintTrace("Skipping weapon attribute with no value specified:");
 		else if(key == "sprite")

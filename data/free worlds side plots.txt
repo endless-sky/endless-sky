@@ -122,19 +122,15 @@ mission "FW Conservatory 2B"
 		government Pirate
 		personality plunders
 		system "Yed Prior"
-		fleet "Small Southern Pirates"
-		fleet "Small Southern Pirates"
-		fleet "Large Southern Pirates"
-		fleet "Large Southern Pirates"
+		fleet "Small Southern Pirates" 2
+		fleet "Large Southern Pirates" 2
 	
 	npc
 		government Pirate
 		personality plunders
 		system "Pherkad"
-		fleet "Small Southern Pirates"
-		fleet "Small Southern Pirates"
-		fleet "Large Southern Pirates"
-		fleet "Large Southern Pirates"
+		fleet "Small Southern Pirates" 2
+		fleet "Large Southern Pirates" 2
 	
 	on complete
 		payment 300000
@@ -306,7 +302,7 @@ mission "FW Wolf Pack 2A"
 	npc kill
 		government Republic
 		system Sarin
-		personality timid staying
+		personality timid staying target
 		ship "Freighter" "Horn of Plenty"
 		ship "Freighter" "Autumn Twilight"
 		ship "Freighter" "Bounty Harvest"
@@ -379,7 +375,7 @@ mission "FW Wolf Pack 3"
 	npc kill
 		government Republic
 		system Gacrux
-		personality timid staying
+		personality timid staying target
 		ship "Bulk Freighter" "Dew of the Morning"
 		ship "Bulk Freighter" "Heaven's Blessing"
 		dialog "The food convoy has been destroyed. You can now return to Solace."
@@ -450,7 +446,7 @@ mission "FW Wolf Pack 4"
 	npc kill
 		government Republic
 		system Mizar
-		personality timid staying
+		personality timid staying target
 		ship "Bactrian" "Golden Fleece"
 		dialog "You have eliminated the Bactrian that was carrying food to the Republic. Time to report back to the Wolf Pack and receive your reward."
 	
@@ -458,7 +454,7 @@ mission "FW Wolf Pack 4"
 		government Republic
 		system Mizar
 		personality heroic staying
-		fleet "Large Republic"
+		fleet
 			names "republic capital"
 			fighters "republic fighter"
 			cargo 0

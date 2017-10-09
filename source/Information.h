@@ -31,7 +31,7 @@ public:
 	void SetSprite(const std::string &name, const Sprite *sprite, const Point &unit = Point(0., -1.), int frame = 0);
 	const Sprite *GetSprite(const std::string &name) const;
 	const Point &GetSpriteUnit(const std::string &name) const;
-	int GetSpriteFrame(const std::string &namme) const;
+	int GetSpriteFrame(const std::string &name) const;
 	
 	void SetString(const std::string &name, const std::string &value);
 	const std::string &GetString(const std::string &name) const;

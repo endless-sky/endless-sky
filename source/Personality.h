@@ -16,8 +16,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Angle.h"
 #include "Point.h"
 
-#include <string>
-
 class DataNode;
 class DataWriter;
 
@@ -67,6 +65,8 @@ public:
 	
 	// Special flags:
 	bool IsEscort() const;
+	bool IsTarget() const;
+	bool IsMarked() const;
 	bool IsMute() const;
 	
 	// Current inaccuracy in this ship's targeting:
@@ -78,7 +78,7 @@ public:
 	
 	
 private:
-	void Parse(const std::string &token);
+	void Parse(const DataNode &node, int index);
 	
 	
 private:

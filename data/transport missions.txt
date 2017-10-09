@@ -186,7 +186,7 @@ mission "Smuggler's Den, Part 2"
 		has "Smuggler's Den, Part 1: done"
 	on offer
 		conversation
-			`	As soon as you have landed, Joe finds a computer terminal and tries to look up his cousin who works here, but with no success. You go with him to the company office, where after a short wait you are ushered in to meet with a foreman. After Joe introduces himself, the man says, "I'm really sorry to tell you this, but Leroy died in a refinery fire several months ago."`
+			`As soon as you have landed, Joe finds a computer terminal and tries to look up his cousin who works here, but with no success. You go with him to the company office, where after a short wait you are ushered in to meet with a foreman. After Joe introduces himself, the man says, "I'm really sorry to tell you this, but Leroy died in a refinery fire several months ago."`
 			`	Joe is crestfallen. After a long silence, you say, "Sir, do you have any work available for Joe? He and his family were hoping to be able to put down roots here."`
 			`	"I'm sorry," says the foreman, "but we've had a ton of immigrants recently. The waiting list for new jobs is about five months long. They could stay here and hope for the best, but if they need work right away, they would be better off going to one of the Syndicate worlds, like <planet>."`
 			choice
@@ -200,7 +200,7 @@ mission "Smuggler's Den, Part 2"
 	on complete
 		event "smuggler's den: payment" 365
 		conversation
-			`	You help Joe and Maria, and their daughter Jesse, to carry their few belongings down to the immigration desk, where a clerk lists the job openings available and asks them each to fill out a skill survey. Maria says, "Captain <last>, I don't know how to thank you, but I promise you that once we've got steady jobs, we'll save up and pay you our fare for transporting us here."`
+			`You help Joe and Maria, and their daughter Jesse, to carry their few belongings down to the immigration desk, where a clerk lists the job openings available and asks them each to fill out a skill survey. Maria says, "Captain <last>, I don't know how to thank you, but I promise you that once we've got steady jobs, we'll save up and pay you our fare for transporting us here."`
 			`	You wish them the best of luck, and return to your ship.`
 
 event "smuggler's den: payment"
@@ -495,7 +495,7 @@ mission "Deep Archaeology 2"
 	
 	on offer
 		conversation
-			`	You drop off the archaeologist (who still has not told you his name) on <origin>. "Remember," he says, "I only need a tiny splinter. Just make sure it really is from the building and not anything more recent."`
+			`You drop off the archaeologist (who still has not told you his name) on <origin>. "Remember," he says, "I only need a tiny splinter. Just make sure it really is from the building and not anything more recent."`
 				accept
 
 
@@ -511,7 +511,7 @@ mission "Deep Archaeology 3"
 	
 	on offer
 		conversation
-			`	Following the map that the archaeologist gave you, you make your way to a small village in the mountains on <origin>, with two envelopes in your pocket for samples. As you approach the church, you break a dead twig off one of the trees along the path, put it into the first envelope, and pocket it. One sample collected, one more to go.`
+			`Following the map that the archaeologist gave you, you make your way to a small village in the mountains on <origin>, with two envelopes in your pocket for samples. As you approach the church, you break a dead twig off one of the trees along the path, put it into the first envelope, and pocket it. One sample collected, one more to go.`
 			`	The church itself is unlike any building you have seen before, clearly very ancient, build of roughly hewn wood, old and weathered. Surprisingly, the front doors are open, and you hear music coming from inside.`
 			choice
 				`	(Walk into the church.)`
@@ -574,6 +574,7 @@ mission "Deep Archaeology 4"
 	passengers 2
 	
 	on offer
+		log "People" "Albert Foster" `An archaeologist who is famous for using dubious methods: he has been banned from Quarg space for trying to collect an alloy sample from their ringworld, and is rumored to have also been involved in a scheme involving dinosaur fossils and an illegal genetic resequencer. He is currently based on Vinci, on the edge of the Paradise sector.`
 		conversation
 			`You find John the lab tech in one of the spaceport bars, along with the archaeologist, who says, "I suppose I should introduce myself. Albert Foster. You may have heard of me." Indeed, you have: he made headlines about a decade ago by being driven out of Quarg space after trying unsuccessfully to collect an alloy sample from their ringworld.`
 			`	"We've purchased some equipment for gravitational field mapping," he says, "in addition to a very sensitive radar array. We're hoping to map the area around the church, see if there are signs of any ancient settlements. Are you willing to help us?"`
@@ -1237,6 +1238,7 @@ mission "Rim Archaeology 6"
 	to offer
 		has "event: rim archaeology results"
 	on offer
+		log "Factions" "Sheragi" `Recent archaeological discoveries on Zug, a planet in the southern rim of human space, have turned up evidence of a lost alien civilization. The Quarg say that the ruins were left behind by a species called the Sheragi.`
 		conversation
 			`When you give your name to the spaceport traffic controller, he says, "Wait, you're Captain <first> <last>? You're all over the news right now!"`
 			`	You land and find that Albert Foster has published an initial report on the dig on Zug. The ruins under the lava flow did indeed turn out to be an alien city. The houses are built on a gargantuan scale, with most of the doorways at least ten meters tall. What's more, some of the buildings have no exterior doors on the street level, just doors facing balconies or inner courtyards, which supports the theory that the inhabitants were capable of flight. Most of the artifacts left behind are just everyday items, and in fact the technology seems less advanced than present human society, but scientists are studying the artifacts eagerly to glean hints about how these aliens lived.`
@@ -1373,6 +1375,7 @@ ship "Hallucination"
 		"jump fuel" 100
 		"jump speed" 1
 		"jump drive" 1
+		"automaton" 1
 		"thrust" 30
 		"turn" 500
 		"energy generation" 1
@@ -1650,7 +1653,8 @@ mission "Humanitarian 2"
 				`	"Well, it sounds like they're getting exactly what they deserve. And, I have no intention of risking my life to land on a pirate world."`
 					decline
 				`	"Well, even so, no one deserves to starve to death. I'll help them."`
-					accept
+			`	"Thank you," he says. "We'll load the food into your cargo hold immediately. The sooner you can drop it off on <planet>, the better."`
+				accept
 	
 	on complete
 		payment
@@ -1670,7 +1674,7 @@ mission "Terraforming 1"
 	
 	on offer
 		conversation
-			`	You stop in to the spaceport bar for a drink. The bar seems to be frequented mostly by the managers of the mining corporation; you suspect the workers don't earn enough to visit a bar very frequently. In one corner, two of the managers are having a very animated discussion. When they see you, they say, "Hello there, Captain! Interested in taking us on a business trip?"`
+			`You stop in to the spaceport bar for a drink. The bar seems to be frequented mostly by the managers of the mining corporation; you suspect the workers don't earn enough to visit a bar very frequently. In one corner, two of the managers are having a very animated discussion. When they see you, they say, "Hello there, Captain! Interested in taking us on a business trip?"`
 			choice
 				`	"What sort of trip?"`
 				`	"Sorry, I'm just in here for the drinks."`
@@ -1876,3 +1880,63 @@ mission "A wolf, a goat, and a cabbage"
 		dialog
 			`The man who collects the wolf from you on the landing pad is furious. "I told the shipping company not to put the goat in the same ship as the wolf or the cabbage," he says, "but I guess they tried to save money by subcontracting it all to the same captain."`
 			`	Because you only delivered a third of the cargo safely, he only pays you 33,000 credits.`
+
+
+
+mission "Terminus exploration"
+	name "Missing drone"
+	description "Travel to the Terminus system to see if you can find any sign of a probe drone that had been launched by a team of scientists before they were attacked by pirates and forced to flee."
+	source Bounty
+	waypoint Terminus
+	to offer
+		"combat rating" > 20
+	on offer
+		conversation
+			`As you are exploring the marketplace, a man wearing comically thick glasses comes over to talk to you. "Captain <last>?" he asks. You nod. "I hear that you're not averse to taking on risks," he says. "I'm the lead scientist on a project studying a spatial anomaly in an uninhabited system nearby. We had just launched a probe to study the anomaly more closely when a band of pirates arrived and forced us to flee the system. Would you be willing to travel there and see if you can retrieve the drone's data?"`
+			choice
+				`	"Sure, I would be glad to."`
+					goto end
+				`	"How strong of a threat is the pirate fleet?"`
+				`	"Sorry, I don't have time to help you."`
+					decline
+			`	"Just a couple of interceptors," he says. "We were in a scoutship, with no real weapons to speak of, and none of us on the ship have any combat experience. So, we felt it was safer to run away than to try to fight, even though we were leaving valuable equipment behind."`
+			choice
+				`	"That doesn't sound like much of a threat. I'd be glad to help."`
+				`	"Sorry, I don't want to help with this."`
+					decline
+			label end
+			`	"Thank you so much!" he says. "All I need you to do is board the drone and download its database. Unless the pirates have already stripped out the computer, of course. The drone is in the Terminus system, a few jumps away from here."`
+				accept
+	npc assist
+		system Terminus
+		government Uninhabited
+		personality derelict target
+		ship "Science Drone" "Beagle"
+		dialog `You board the science drone and discover that the pirates have stripped just about everything of value from it: the engines, the sensors, and the fuel cell that powered it. But the computer system is either too deeply integrated into the drone, or too specialized, to be of any value to the pirates. You transfer enough power to the drone's batteries to reactivate it, and are able to retrieve the data that the scientist was looking for. But it's clear that this drone, or what's left of it, is not going anywhere. You'll have to leave it behind.`
+	npc
+		system Terminus
+		government Pirate
+		personality staying
+		fleet "Small Southern Pirates" 2
+	on complete
+		payment 90000
+		conversation
+			`The scientist is overjoyed that you were able to retrieve the data from the drone. Almost in tears, he says, "We were worried that all our planning and fundraising had been for nothing. These measurements will help us to understand that spatial anomaly far better than we do right now." He hands you a credit chip worth <payment>.`
+			choice
+				`	"Can you tell me more about this anomaly you are studying?"`
+				`	"I'm glad I was able to help."`
+					decline
+			`	He says, "It seems to be a partially collapsed wormhole, something that once linked this part of the galaxy to somewhere else. But, we haven't succeeded in sending anything through it. Maybe the wormhole is no longer passable. Or maybe there's some way to make it open more fully. Or maybe only ships that are specially attuned to its energy signature can travel through it. We don't even know if the wormhole is a natural phenomenon or some sort of alien artifact. Honestly, we aren't even sure if it's even a wormhole at all."`
+			`	You thank him for the information, and return to your ship.`
+				decline
+	
+ship "Science Drone"
+	sprite "ship/science drone"
+	attributes
+		category "Drone"
+		hull 200
+		mass 30
+		drag 2
+		"heat dissipation" 1
+	explode "tiny explosion" 5
+	explode "small explosion" 2

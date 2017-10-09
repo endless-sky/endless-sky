@@ -33,7 +33,7 @@ namespace {
 	GLuint vao;
 	GLuint vbo;
 
-	static const vector<vector<GLint>> SWIZZLE = {
+	const vector<vector<GLint>> SWIZZLE = {
 		{GL_RED, GL_GREEN, GL_BLUE, GL_ALPHA}, // red + yellow markings (republic)
 		{GL_RED, GL_BLUE, GL_GREEN, GL_ALPHA}, // red + magenta markings
 		{GL_GREEN, GL_RED, GL_BLUE, GL_ALPHA}, // green + yellow (freeholders)

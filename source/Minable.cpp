@@ -23,6 +23,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Random.h"
 #include "SpriteSet.h"
 
+#include <algorithm>
 #include <cmath>
 
 using namespace std;
@@ -136,10 +137,9 @@ bool Minable::Move(list<Effect> &effects, list<shared_ptr<Flotsam>> &flotsam)
 		{
 			// Each payload object has a 25% chance of surviving. This creates
 			// a distribution with occasional very good payoffs.
-			static const int PER_BOX = 5;
-			for(int amount = Random::Binomial(it.second, .25); amount > 0; amount -= PER_BOX)
+			for(int amount = Random::Binomial(it.second, .25); amount > 0; amount -= Flotsam::TONS_PER_BOX)
 			{
-				flotsam.emplace_back(new Flotsam(it.first, min(amount, PER_BOX)));
+				flotsam.emplace_back(new Flotsam(it.first, min(amount, Flotsam::TONS_PER_BOX)));
 				flotsam.back()->Place(*this);
 			}
 		}

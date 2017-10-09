@@ -27,8 +27,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 using namespace std;
 
 namespace {
-	static const string &WORMHOLE = "wormhole";
-	static const string &PLANET = "planet";
+	const string WORMHOLE = "wormhole";
+	const string PLANET = "planet";
 }
 
 
@@ -69,7 +69,7 @@ void Planet::Load(const DataNode &node, const Set<Sale<Ship>> &ships, const Set<
 		removeAll |= (!add && !remove && hasValue && value == "clear");
 		// If this is the first entry for the given key, and we are not in "add"
 		// or "remove" mode, its previous value should be cleared.
-		bool overwriteAll = (!add && !remove && shouldOverwrite.count(key));
+		bool overwriteAll = (!add && !remove && !removeAll && shouldOverwrite.count(key));
 		// Clear the data of the given type.
 		if(removeAll || overwriteAll)
 		{
@@ -177,6 +177,16 @@ void Planet::Load(const DataNode &node, const Set<Sale<Ship>> &ships, const Set<
 		}
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
+	}
+	
+	static const vector<string> AUTO_ATTRIBUTES = {"spaceport", "shipyard", "outfitter"};
+	bool autoValues[3] = {!spaceport.empty(), !shipSales.empty(), !outfitSales.empty()};
+	for(unsigned i = 0; i < AUTO_ATTRIBUTES.size(); ++i)
+	{
+		if(autoValues[i])
+			attributes.insert(AUTO_ATTRIBUTES[i]);
+		else
+			attributes.erase(AUTO_ATTRIBUTES[i]);
 	}
 }
 
@@ -441,6 +451,13 @@ bool Planet::IsAccessible(const Ship *ship) const
 
 // Below are convenience functions which access the game state in Politics,
 // but do so with a less convoluted syntax:
+bool Planet::HasFuelFor(const Ship &ship) const
+{
+	return !IsWormhole() && HasSpaceport() && CanLand(ship);
+}
+
+
+
 bool Planet::CanLand(const Ship &ship) const
 {
 	return IsAccessible(&ship) && GameData::GetPolitics().CanLand(ship, this);
@@ -483,7 +500,7 @@ string Planet::DemandTribute(PlayerInfo &player) const
 	{
 		isDefending = true;
 		GameData::GetPolitics().Offend(defenseFleet->GetGovernment(), ShipEvent::PROVOKE);
-		GameData::GetPolitics().Offend(GetGovernment(), ShipEvent::PROVOKE);
+		GameData::GetPolitics().Offend(GetGovernment(), ShipEvent::ATROCITY);
 		return "Our defense fleet will make short work of you.";
 	}
 	

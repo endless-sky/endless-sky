@@ -79,7 +79,7 @@ string Format::Number(double value)
 		int digit = rounded % 10;
 		if(nonzero | digit)
 		{
-			result += digit + '0';
+			result += static_cast<char>(digit + '0');
 			nonzero = true;
 		}
 		rounded /= 10;
@@ -109,6 +109,24 @@ string Format::Number(double value)
 	// Reverse the string.
 	reverse(result.begin(), result.end());
 	
+	return result;
+}
+
+
+
+// Format the given value as a number with exactly the given number of
+// decimal places (even if they are all 0).
+string Format::Decimal(double value, int places)
+{
+	double integer;
+	double fraction = fabs(modf(value, &integer));
+	
+	string result = to_string(static_cast<int>(integer)) + ".";
+	while(places--)
+	{
+		fraction = modf(fraction * 10., &integer);
+		result += ('0' + static_cast<int>(integer));
+	}
 	return result;
 }
 
