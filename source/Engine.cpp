@@ -792,9 +792,9 @@ void Engine::Click(const Point &from, const Point &to, bool hasShift)
 	isRightClick = false;
 	
 	// Determine if the left-click was within the radar display.
-	const Point radarCenter = GameData::Interfaces().Get("targets")->GetPoint("radar");
-	static const double radarRadius = GameData::Interfaces().Get("targets")->GetSize("radar").Y() * .5;
-	if(Preferences::Has("Interactive radar display") && (from - radarCenter).Length() <= radarRadius)
+	const Point &radarCenter = GameData::Interfaces().Get("targets")->GetPoint("radar");
+	const double &radarDiameter = GameData::Interfaces().Get("targets")->GetSize("radar").Y();
+	if(Preferences::Has("Clickable radar display") && (from - radarCenter).Length() <= .5 * radarDiameter)
 		isRadarClick = true;
 	else
 		isRadarClick = false;
@@ -815,9 +815,9 @@ void Engine::RClick(const Point &point)
 	isRightClick = true;
 	
 	// Determine if the right-click was within the radar display, and if so, rescale.
-	const Point radarCenter = GameData::Interfaces().Get("targets")->GetPoint("radar");
-	static const double radarRadius = GameData::Interfaces().Get("targets")->GetSize("radar").Y() * .5;
-	if(Preferences::Has("Interactive radar display") && (point - radarCenter).Length() <= radarRadius)
+	const Point &radarCenter = GameData::Interfaces().Get("targets")->GetPoint("radar");
+	const double &radarDiameter = GameData::Interfaces().Get("targets")->GetSize("radar").Y();
+	if(Preferences::Has("Clickable radar display") && (point - radarCenter).Length() <= .5 * radarDiameter)
 		clickPoint = (point-radarCenter) / .025;
 	else
 		clickPoint = point / zoom;
