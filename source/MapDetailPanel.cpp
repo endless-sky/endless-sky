@@ -274,13 +274,14 @@ bool MapDetailPanel::Click(int x, int y, int clicks)
 void MapDetailPanel::DrawKey()
 {
 	const Sprite *back = SpriteSet::Get("ui/map key");
-	SpriteShader::Draw(back, Screen::BottomLeft() + .5 * Point(back->Width(), -back->Height()));
+	static int tradeSpriteWidth = SpriteSet::Get("ui/map trade")->Width();
+	SpriteShader::Draw(back, Point(Screen::Left() + tradeSpriteWidth, Screen::Bottom()) + .5 * Point(back->Width(), -back->Height()));
 	
 	Color bright(.6, .6);
 	Color dim(.3, .3);
 	const Font &font = FontSet::Get(14);
 	
-	Point pos(Screen::Left() + 10., Screen::Bottom() - 7. * 20. + 5.);
+	Point pos(Screen::Left() + tradeSpriteWidth + 20., Screen::Bottom() - 7. * 20. + 5.);
 	Point headerOff(-5., -.5 * font.Height());
 	Point textOff(10., -.5 * font.Height());
 	
@@ -472,15 +473,14 @@ void MapDetailPanel::DrawInfo()
 			}
 	}
 	
-	uiPoint.Y() += 45.;
-	tradeY = uiPoint.Y() - 95.;
-	
-	// Trade sprite goes from 310 to 540.
+	// Trade sprite goes to the bottom
 	const Sprite *tradeSprite = SpriteSet::Get("ui/map trade");
+	uiPoint = Screen::BottomLeft() + .5 * Point(tradeSprite->Width(), -tradeSprite->Height());
 	SpriteShader::Draw(tradeSprite, uiPoint);
 	
+	tradeY = uiPoint.Y() - 85;
 	uiPoint.X() -= 90.;
-	uiPoint.Y() -= 97.;
+	uiPoint.Y() -= 87.;
 	for(const Trade::Commodity &commodity : GameData::Commodities())
 	{
 		bool isSelected = false;
