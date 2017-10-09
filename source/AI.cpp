@@ -123,7 +123,7 @@ void AI::IssueShipTarget(const PlayerInfo &player, const std::shared_ptr<Ship> &
 {
 	Orders newOrders;
 	bool isEnemy = target->GetGovernment()->IsEnemy();
-	newOrders.type = (!isEnemy ? Orders::GATHER
+	newOrders.type = (!isEnemy ? Orders::KEEP_STATION
 		: target->IsDisabled() ? Orders::FINISH_OFF : Orders::ATTACK); 
 	newOrders.target = target;
 	string description = (isEnemy ? "focusing fire on" : "following") + (" \"" + target->Name() + "\".");
