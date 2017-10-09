@@ -169,6 +169,7 @@ private:
 	bool hasShift = false;
 	bool hasControl = false;
 	bool isRightClick = false;
+	bool isRadarClick = false;
 	Point clickPoint;
 	Rectangle clickBox;
 	int groupSelect = -1;
