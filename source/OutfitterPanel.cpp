@@ -32,6 +32,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "SpriteShader.h"
 #include "UI.h"
 
+#include <algorithm>
 #include <limits>
 #include <memory>
 
@@ -787,10 +788,9 @@ void OutfitterPanel::Refill()
 				int fromCargo = player.Cargo().Remove(outfit, neededAmmo);
 				neededAmmo -= fromCargo;
 				// Then, buy at reduced (or full) price.
-				int available = outfitter.Has(outfit) ? neededAmmo : 0;
-				if(neededAmmo && (player.Stock(outfit) > 0 || available))
+				int available = outfitter.Has(outfit) ? neededAmmo : max<int>(0, player.Stock(outfit));
+				if(neededAmmo && available > 0)
 				{
-					available = min<int>(neededAmmo, player.Stock(outfit));
 					int64_t price = player.StockDepreciation().Value(outfit, day, available);
 					player.Accounts().AddCredits(-price);
 					player.AddStock(outfit, -available);
