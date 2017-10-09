@@ -1250,6 +1250,8 @@ mission "FW Alphas 1.1A"
 
 mission "FW Death of Nguyen"
 	landing
+	source
+		near Sol 1 1000
 	to offer
 		has "event: death of nguyen"
 	
