@@ -818,7 +818,7 @@ void Engine::RClick(const Point &point)
 	const Point &radarCenter = GameData::Interfaces().Get("targets")->GetPoint("radar");
 	const double &radarDiameter = GameData::Interfaces().Get("targets")->GetSize("radar").Y();
 	if(Preferences::Has("Clickable radar display") && (point - radarCenter).Length() <= .5 * radarDiameter)
-		clickPoint = (point-radarCenter) / .025;
+		clickPoint = (point - radarCenter) / .025;
 	else
 		clickPoint = point / zoom;
 }
