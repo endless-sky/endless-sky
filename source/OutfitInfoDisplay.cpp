@@ -235,6 +235,13 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		attributeValues.push_back(Format::Number(60. * outfit.HeatDamage() / outfit.Reload()));
 		attributesHeight += 20;
 	}
+
+	if(outfit.FuelDamage() && outfit.Reload())
+        {
+                attributeLabels.push_back("fuel damage / second:");
+                attributeValues.push_back(Format::Number(60. * outfit.FuelDamage() / outfit.Reload()));
+                attributesHeight += 20;
+        }
 	
 	if(outfit.IonDamage() && outfit.Reload())
 	{
@@ -338,6 +345,7 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		"shield damage / shot:",
 		"hull damage / shot:",
 		"heat damage / shot:",
+		"fuel damage / shot:",
 		"ion damage / shot:",
 		"slowing damage / shot:",
 		"disruption damage / shot:",
@@ -353,6 +361,7 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		outfit.ShieldDamage(),
 		outfit.HullDamage(),
 		outfit.HeatDamage(),
+		outfit.FuelDamage(),
 		outfit.IonDamage() * 100.,
 		outfit.SlowingDamage() * 100.,
 		outfit.DisruptionDamage() * 100.,
