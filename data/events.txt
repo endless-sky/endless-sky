@@ -2584,6 +2584,44 @@ event "syndicate tech available"
 
 
 
+event "Tarazed non-neutrality"
+	system "Tarazed"
+		government "Free Worlds"
+	system "Dabih"
+		government "Free Worlds"
+	system "Albireo"
+		government "Free Worlds"
+	system "Girtab"
+		government "Free Worlds"
+
+event "Graffias non-neutrality"
+	system Graffias
+		government "Republic"
+
+
+#Patching the non-neutrality events into older saves as well.
+mission "Tarazed non-neutrality patch"
+	landing
+	invisible
+	to offer
+		or
+			has "FW Pug 3B: offered"
+			has "free worlds plot completed"
+	on offer
+		event "Tarazed non-neutrality" 30
+		fail
+
+mission "Graffias non-neutrality patch"
+	landing
+	invisible
+	to offer
+		has "free worlds plot completed"
+	on offer
+		event "Graffias non-neutrality" 14
+		fail
+
+
+
 event "geminus rebuilt"
 	planet Geminus
 		description `Geminus, although not the most hospitable of worlds, is a young enough planet that large stores of iron, titanium, and other metals are easily accessible near the surface. The constant volcanic activity leaves the planet perpetually shrouded in a twilight haze of ash and fog.`
