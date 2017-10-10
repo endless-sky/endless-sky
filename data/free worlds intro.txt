@@ -17,10 +17,12 @@ mission "Pact Recon 0"
 	waypoint "Lesath"
 	source
 		attributes south
+		near Aldhibain 1 10
 	destination Glaze
 	to offer
 		random < 60
 		not "event: war begins"
+		not "Pact Recon 0g: offered"
 	
 	on offer
 		conversation
@@ -28,7 +30,7 @@ mission "Pact Recon 0"
 			choice
 				`	(Approach them and find out what happened.)`
 				`	(Ignore them.)`
-					decline
+					defer
 			`	You overhear enough of the conversation to figure out that the freighter was attacked by pirates. Eventually, they stop talking, and the militia officer, seeing you nearby, walks over to you. "The pirate fleets keep getting stronger every year," she says.`
 			choice
 				`	"Is there something I can do to help?"`
@@ -52,6 +54,8 @@ mission "Pact Recon 0"
 			`	"The Pact is launching a new initiative," she says. "We're calling it the 'Thousand Eyes.' We're asking ship captains to let us access their scanner logs, basically using merchants as a surveillance network. You don't have to fight the pirates, just let us know if you see them. Interested?"`
 			choice
 				`	"Sure, I would be glad to help."`
+				`	"I'm sorry, I don't want to do this right now"`
+					defer
 				`	"Sorry, sounds too risky."`
 					decline
 			`	"Great!" she says. "Right now, we need more eyes on a few systems on the edge of Southern space. All you need to do is fly through those systems, then report to our base on Glaze. I'll mark the target systems on your map."`
@@ -65,7 +69,61 @@ mission "Pact Recon 0"
 		dialog
 			`A different female militia officer approaches you when you land on <planet>, and gives you <payment> in exchange for your scanner logs of the southern systems. "My name is Freya Winters," she says. "I'll be in touch when we've got a new assignment for you."`
 
-
+mission "Pact Recon 0g"
+	name "Pirate Reconnaissance"
+	description "Fly through the Alniyat, Han, Atria, and Lesath systems, then report to <destination> so the Southern Defense Pact can analyze your logs of pirate activity (if any)."
+	waypoint "Alniyat"
+	waypoint "Han"
+	waypoint "Atria"
+	waypoint "Lesath"
+	source Glaze
+	destination Glaze
+	to offer
+		random < 65
+		not "event: war begins"
+		not "Pact Recon 0: offered"
+	
+	on offer
+		conversation
+			`You can't help noticing that the freighter parked next to the <ship> is in very bad shape, its hull pockmarked with blaster scars, as well as larger dents that may be from missiles. The crew is busy welding new hull plating onto it; the captain is having an animated conversation with a young female militia officer.`
+			choice
+				`	(Approach them and find out what happened.)`
+				`	(Ignore them.)`
+					defer
+			`	You overhear enough of the conversation to figure out that the freighter was attacked by pirates. Eventually, they stop talking, and the militia officer, seeing you nearby, walks over to you. "The pirate fleets keep getting stronger every year," she says.`
+			choice
+				`	"Is there something I can do to help?"`
+					goto help
+				`	"I wish I could help, but my ship is not a warship."`
+					goto warship
+			label help
+			`	"There is indeed," she says. "Have you heard of the Southern Mutual Defense Pact?"`
+				goto pact
+			label warship
+			`	"There are other ways you could help us," she says. "Have you heard of the Southern Mutual Defense Pact?"`
+				goto pact
+			label pact
+			choice
+				`	"Yes."`
+					goto eyes
+				`	"No. What is it?"`
+			`	She says, "We're a collection of worlds that have decided that since the Navy doesn't patrol this part of the galaxy anymore, it's up to us to keep the pirates in check. The idea is that if the pirates ever try something big, like capturing an entire planet, that planet can call on the entire Pact to assist them."`
+			`	"Sounds like a good idea," you say.`
+			label eyes
+			`	"The Pact is launching a new initiative," she says. "We're calling it the 'Thousand Eyes.' We're asking ship captains to let us access their scanner logs, basically using merchants as a surveillance network. You don't have to fight the pirates, just let us know if you see them. Interested?"`
+			choice
+				`	"Sure, I would be glad to help."`
+				`	"I'm sorry, I don't want to do this right now"`
+					defer
+				`	"Sorry, sounds too risky."`
+					decline
+			`	"Great!" she says. "Right now, we need more eyes on a few systems on the edge of Southern space. All you need to do is fly through those systems, then report to our base here, on Glaze. I'll mark the target systems on your map."`
+				accept
+	
+	on complete
+		payment 25000
+		dialog
+			`A different female militia officer approaches you when you land on <planet>, and gives you <payment> in exchange for your scanner logs of the southern systems. "My name is Freya Winters," she says. "I'll be in touch when we've got a new assignment for you."`
 
 mission "Pact Recon 1"
 	landing
@@ -81,7 +139,9 @@ mission "Pact Recon 1"
 	to offer
 		random < 40
 		not "event: war begins"
-		has "Pact Recon 0: done"
+		or
+			has "Pact Recon 0: done"
+			has "Pact Recon 0g: done"
 	
 	on offer
 		dialog
