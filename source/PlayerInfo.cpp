@@ -2240,11 +2240,13 @@ void PlayerInfo::UpdateAutoConditions()
 	// Store special conditions for cargo and passenger space.
 	conditions["cargo space"] = 0;
 	conditions["passenger space"] = 0;
+	conditions["weapon capacity"] = 0;
 	for(const shared_ptr<Ship> &ship : ships)
 		if(!ship->IsParked() && !ship->IsDisabled() && ship->GetSystem() == system)
 		{
 			conditions["cargo space"] += ship->Attributes().Get("cargo space");
 			conditions["passenger space"] += ship->Attributes().Get("bunks") - ship->RequiredCrew();
+			conditions["weapon capacity"] += ship->BaseAttributes().Get("weapon capacity");
 			++conditions["ships: " + ship->Attributes().Category()];
 		}
 	
