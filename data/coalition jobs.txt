@@ -12,7 +12,7 @@ mission "Coalition: Ringworld Workers 1"
 	job
 	repeat
 	name "Workers to the <planet>"
-	description "Transport this crew of <bunks> workers to the Heliarch <planet>, where they will help in the efforts to maintain and expand the ringworld. Payment will be <payment>."
+	description "Transport this crew of <bunks> workers to the Heliarch <planet>, where they will help in the efforts to maintain and expand the ringworld. You will be paid <payment> for your assistance."
 	passengers 5 8 .2
 	to offer
 		has "known to the heliarchs"
@@ -31,7 +31,7 @@ mission "Coalition: Ringworld Workers 2"
 	job
 	repeat
 	name "Workers to the <planet>"
-	description "Transport this crew of <bunks> workers to the Heliarch <planet>, where they will help in the efforts to maintain and expand the ringworld. Payment will be <payment>."
+	description "Transport this crew of <bunks> workers to the Heliarch <planet>, where they will help in the efforts to maintain and expand the ringworld. You will be paid <payment> for your assistance."
 	passengers 5 5 .1
 	to offer
 		has "known to the heliarchs"
@@ -50,7 +50,7 @@ mission "Coalition: Ringworld Workers 3"
 	job
 	repeat
 	name "Workers to the <planet>"
-	description "Transport this crew of <bunks> workers to the Heliarch <planet>, where they will help in the efforts to maintain and expand the ringworld. Payment will be <payment>."
+	description "Transport this crew of <bunks> workers to the Heliarch <planet>, where they will help in the efforts to maintain and expand the ringworld. You will be paid <payment> for your assistance."
 	passengers 5 3 .04
 	to offer
 		has "known to the heliarchs"
@@ -128,7 +128,7 @@ mission "Coalition: Ringworld Materials 1"
 	job
 	repeat
 	name "Materials to the <planet>"
-	description "Deliver these <tons> of construction materials to the Heliarch <planet> by <date>. Payment will be <payment>."
+	description "Deliver these <tons> of construction materials to the Heliarch <planet> by <date>. You will be paid <payment> for your assistance."
 	deadline
 	cargo "Construction" 10 3 .02
 	to offer
@@ -142,13 +142,13 @@ mission "Coalition: Ringworld Materials 1"
 		"coalition jobs" ++
 		payment
 		payment 30000
-		dialog `You drop off the construction materials and receive <payment> in payment.`
+		dialog `You drop off the construction materials and receive <payment> as payment.`
 
 mission "Coalition: Ringworld Materials 2"
 	job
 	repeat
 	name "Materials to the <planet>"
-	description "Deliver these <tons> of construction materials to the Heliarch <planet> by <date>. Payment will be <payment>."
+	description "Deliver these <tons> of construction materials to the Heliarch <planet> by <date>. You will be paid <payment> for your assistance."
 	deadline
 	cargo "Construction" 10 4 .02
 	to offer
@@ -162,13 +162,13 @@ mission "Coalition: Ringworld Materials 2"
 		"coalition jobs" ++
 		payment
 		payment 40000
-		dialog `You drop off the construction materials and receive <payment> in payment.`
+		dialog `You drop off the construction materials and receive <payment> as payment.`
 
 mission "Coalition: Ringworld Materials 3"
 	job
 	repeat
 	name "Materials to the <planet>"
-	description "Deliver these <tons> of construction materials to the Heliarch <planet> by <date>. Payment will be <payment>."
+	description "Deliver these <tons> of construction materials to the Heliarch <planet> by <date>. You will be paid <payment> for your assistance."
 	deadline
 	cargo "Construction" 10 5 .02
 	to offer
@@ -182,14 +182,14 @@ mission "Coalition: Ringworld Materials 3"
 		"coalition jobs" ++
 		payment
 		payment 50000
-		dialog `You drop off the construction materials and receive <payment> in payment.`
+		dialog `You drop off the construction materials and receive <payment> as payment.`
 
 
 mission "Coalition: Ringworld Supplies 1"
 	job
 	repeat
 	name "Supplies to the <planet>"
-	description "This shipment of <tons> of supplies is a donation from the government of <origin> to help support the Heliarch <planet>. You will be paid <payment> on delivery."
+	description "This shipment of <tons> of supplies is a donation from the government of <origin> to help support the Heliarch <planet>. Upon delivery, you will be paid <payment> for your assistance."
 	cargo random 5 10 .2
 	to offer
 		has "known to the heliarchs"
@@ -202,13 +202,13 @@ mission "Coalition: Ringworld Supplies 1"
 		"coalition jobs" ++
 		payment
 		payment 2000
-		dialog `You drop off the donation of <commodity> and receive <payment> in payment.`
+		dialog `You drop off the donation of <commodity> and receive <payment> as payment.`
 
 mission "Coalition: Ringworld Supplies 2"
 	job
 	repeat
 	name "Supplies to the <planet>"
-	description "This shipment of <tons> of supplies is a donation from the government of <origin> to help support the Heliarch <planet>. You will be paid <payment> on delivery."
+	description "This shipment of <tons> of supplies is a donation from the government of <origin> to help support the Heliarch <planet>. Upon delivery, you will be paid <payment> for your assistance."
 	cargo random 5 10 .15
 	to offer
 		has "known to the heliarchs"
@@ -221,13 +221,13 @@ mission "Coalition: Ringworld Supplies 2"
 		"coalition jobs" ++
 		payment
 		payment 4000
-		dialog `You drop off the donation of <commodity> and receive <payment> in payment.`
+		dialog `You drop off the donation of <commodity> and receive <payment> as payment.`
 
 mission "Coalition: Ringworld Supplies 3"
 	job
 	repeat
 	name "Supplies to the <planet>"
-	description "This shipment of <tons> of supplies is a donation from the government of <origin> to help support the Heliarch <planet>. You will be paid <payment> on delivery."
+	description "The government of <origin> has planned to donate <tons> of supplies to help support the Heliarch <planet>. Lending your ship to this task will grant a payment of <payment> upon delivery."
 	cargo random 5 10 .1
 	to offer
 		has "known to the heliarchs"
@@ -240,14 +240,14 @@ mission "Coalition: Ringworld Supplies 3"
 		"coalition jobs" ++
 		payment
 		payment 6000
-		dialog `You drop off the donation of <commodity> and receive <payment> in payment.`
+		dialog `You drop off the donation of <commodity> and receive <payment> as payment.`
 
 
 mission "Coalition: Heliarch Candidate"
 	job
 	repeat
 	name "Candidate to the <planet>"
-	description "You will be paid <payment> for transporting this candidate for elevation to the rank of Heliarch to the <planet> by <date>."
+	description "Someone from this planet has been selected for elevation to the rank of Heliarch, but they require transport. They must arrive at the <planet> by <date>. You will be rewarded with <payment> for your assistance."
 	passengers 1
 	deadline 5 1
 	to offer
@@ -261,14 +261,14 @@ mission "Coalition: Heliarch Candidate"
 		"coalition jobs" ++
 		payment
 		payment 50000
-		dialog `Heliarch agents meet your ship as soon as it docks and receive the candidate whom you have been transporting, in a small ceremony. A few minutes later you receive a transfer of <payment>.`
+		dialog `Heliarch agents meet your ship as soon as it docks and receive the candidate whom you have been transporting. They conduct a small ceremony to celebrate the arrival before leaving the docks. A few minutes later you receive a transfer of <payment>.`
 
 
 mission "Coalition: Interpreters 1"
 	job
 	repeat
 	name "Interpreters to <planet>"
-	description "Bring these <bunks> Heliarch agents, trained as interpreters and mediators, to <destination>. Payment is <payment>."
+	description "Bring these <bunks> Heliarch agents, trained as interpreters and mediators, to <destination>. You will receive <payment> for your assistance."
 	passengers 2 3 .5
 	to offer
 		has "known to the heliarchs"
@@ -281,13 +281,13 @@ mission "Coalition: Interpreters 1"
 		"coalition jobs" ++
 		payment
 		payment 5000
-		dialog `You drop off the interpreters on <planet>. A few minutes later you receive a transfer of <payment>.`
+		dialog `Once you arrive at the docks of <planet>, the interpreters stride purposefully off of your ship to begin their duty. A few minutes later you receive a transfer of <payment>.`
 
 mission "Coalition: Interpreters 2"
 	job
 	repeat
 	name "Interpreters to <planet>"
-	description "Bring these <bunks> Heliarch agents, trained as interpreters and mediators, to <destination>. Payment is <payment>."
+	description "Bring these <bunks> Heliarch agents, trained as interpreters and mediators, to <destination>. You will receive <payment> for your assistance."
 	passengers 2 5 .5
 	to offer
 		has "known to the heliarchs"
@@ -300,13 +300,13 @@ mission "Coalition: Interpreters 2"
 		"coalition jobs" ++
 		payment
 		payment 10000
-		dialog `You drop off the interpreters on <planet>. A few minutes later you receive a transfer of <payment>.`
+		dialog `Once you arrive at the docks of <planet>, the interpreters stride purposefully off of your ship to begin their duty. A few minutes later you receive a transfer of <payment>.`
 
 mission "Coalition: Interpreters 3"
 	job
 	repeat
 	name "Interpreters to <planet>"
-	description "Bring these <bunks> Heliarch agents, trained as interpreters and mediators, to <destination>. Payment is <payment>."
+	description "Bring these <bunks> Heliarch agents, trained as interpreters and mediators, to <destination>. You will receive <payment> for your assistance."
 	passengers 2 10 .5
 	to offer
 		has "known to the heliarchs"
@@ -319,14 +319,14 @@ mission "Coalition: Interpreters 3"
 		"coalition jobs" ++
 		payment
 		payment 10000
-		dialog `You drop off the interpreters on <planet>. A few minutes later you receive a transfer of <payment>.`
+		dialog `Once you arrive at the docks of <planet>, the interpreters stride purposefully off of your ship to begin their duty. A few minutes later you receive a transfer of <payment>.`
 
 
 mission "Coalition: Peacekeepers 1"
 	job
 	repeat
 	name "Peacekeepers to <planet>"
-	description "Transport this corps of <bunks> peacekeepers to <destination> to investigate reports of Resistance activity. Payment is <payment>."
+	description "This corps of <bunks> peacekeepers requires transport to <planet> so that they may investigate reports of Resistance activity. You will receive <payment> for your assistance."
 	passengers 10 10 .2
 	to offer
 		has "known to the heliarchs"
@@ -339,13 +339,13 @@ mission "Coalition: Peacekeepers 1"
 		"coalition jobs" ++
 		payment
 		payment 20000
-		dialog `You drop off the peacekeepers on <planet>. A few minutes later you receive a transfer of <payment>.`
+		dialog `Once you arrive at the docks of <planet>, the peacekeepers stride purposefully off of your ship to begin their duty. A few minutes later you receive a transfer of <payment>.`
 
 mission "Coalition: Peacekeepers 2"
 	job
 	repeat
 	name "Peacekeepers to <planet>"
-	description "Transport this corps of <bunks> peacekeepers to <destination> to investigate reports of Resistance activity. Payment is <payment>."
+	description "This corps of <bunks> peacekeepers requires transport to <planet> so that they may investigate reports of Resistance activity. You will receive <payment> for your assistance."
 	passengers 10 5 .1
 	to offer
 		has "known to the heliarchs"
@@ -358,7 +358,7 @@ mission "Coalition: Peacekeepers 2"
 		"coalition jobs" ++
 		payment
 		payment 30000
-		dialog `You drop off the peacekeepers on <planet>. A few minutes later you receive a transfer of <payment>.`
+		dialog `Once you arrive at the docks of <planet>, the peacekeepers stride purposefully off of your ship to begin their duty. A few minutes later you receive a transfer of <payment>.`
 
 
 mission "Coalition: Saryd Interspecies 1"
@@ -378,7 +378,7 @@ mission "Coalition: Saryd Interspecies 1"
 		"coalition jobs" ++
 		payment
 		payment 10000
-		dialog `You drop off the settlers on <planet>. A few minutes later you receive a transfer of <payment>.`
+		dialog `Upon arrival at the docks of <planet>, the settlers exit your ship and begin to examine their surroundings with great curiosity. A few minutes later you receive a transfer of <payment>.`
 
 mission "Coalition: Saryd Interspecies 2"
 	job
@@ -397,7 +397,7 @@ mission "Coalition: Saryd Interspecies 2"
 		"coalition jobs" ++
 		payment
 		payment 15000
-		dialog `You drop off the settlers on <planet>. A few minutes later you receive a transfer of <payment>.`
+		dialog `Upon arrival at the docks of <planet>, the settlers exit your ship and begin to examine their surroundings with great curiosity. A few minutes later you receive a transfer of <payment>.`
 
 mission "Coalition: Kimek Interspecies 1"
 	job
@@ -416,7 +416,7 @@ mission "Coalition: Kimek Interspecies 1"
 		"coalition jobs" ++
 		payment
 		payment 10000
-		dialog `You drop off the settlers on <planet>. A few minutes later you receive a transfer of <payment>.`
+		dialog `Upon arrival at the docks of <planet>, the settlers exit your ship and begin to examine their surroundings with great curiosity. A few minutes later you receive a transfer of <payment>.`
 
 mission "Coalition: Kimek Interspecies 2"
 	job
@@ -435,7 +435,7 @@ mission "Coalition: Kimek Interspecies 2"
 		"coalition jobs" ++
 		payment
 		payment 15000
-		dialog `You drop off the settlers on <planet>. A few minutes later you receive a transfer of <payment>.`
+		dialog `Upon arrival at the docks of <planet>, the settlers exit your ship and begin to examine their surroundings with great curiosity. A few minutes later you receive a transfer of <payment>.`
 
 mission "Coalition: Arach Interspecies 1"
 	job
@@ -454,7 +454,7 @@ mission "Coalition: Arach Interspecies 1"
 		"coalition jobs" ++
 		payment
 		payment 10000
-		dialog `You drop off the settlers on <planet>. A few minutes later you receive a transfer of <payment>.`
+		dialog `Upon arrival at the docks of <planet>, the settlers exit your ship and begin to examine their surroundings with great curiosity. A few minutes later you receive a transfer of <payment>.`
 
 mission "Coalition: Arach Interspecies 2"
 	job
@@ -473,7 +473,7 @@ mission "Coalition: Arach Interspecies 2"
 		"coalition jobs" ++
 		payment
 		payment 15000
-		dialog `You drop off the settlers on <planet>. A few minutes later you receive a transfer of <payment>.`
+		dialog `Upon arrival at the docks of <planet>, the settlers exit your ship and begin to examine their surroundings with great curiosity. A few minutes later you receive a transfer of <payment>.`
 
 
 mission "Coalition: Transfer 1"
@@ -495,7 +495,7 @@ mission "Coalition: Transfer 1"
 		"coalition jobs" ++
 		payment
 		payment 5000
-		dialog `You drop off the workers on <planet>. A few minutes later you receive a transfer of <payment>.`
+		dialog `Upon arrival at the docks of <planet>, the workers exit your ship and briefly examine their surroundings before walking off into the distance. A few minutes later you receive a transfer of <payment>.`
 
 mission "Coalition: Transfer 2"
 	job
@@ -516,7 +516,7 @@ mission "Coalition: Transfer 2"
 		"coalition jobs" ++
 		payment
 		payment 10000
-		dialog `You drop off the workers on <planet>. A few minutes later you receive a transfer of <payment>.`
+		dialog `Upon arrival at the docks of <planet>, the workers exit your ship and briefly examine their surroundings before walking off into the distance. A few minutes later you receive a transfer of <payment>.`
 
 mission "Coalition: Transfer 3"
 	job
@@ -537,7 +537,7 @@ mission "Coalition: Transfer 3"
 		"coalition jobs" ++
 		payment
 		payment 15000
-		dialog `You drop off the workers on <planet>. A few minutes later you receive a transfer of <payment>.`
+		dialog `Upon arrival at the docks of <planet>, the workers exit your ship and briefly examine their surroundings before walking off into the distance. A few minutes later you receive a transfer of <payment>.`
 
 
 mission "Coalition: Tourists Out 1"
@@ -560,7 +560,7 @@ mission "Coalition: Tourists Out 1"
 		"coalition jobs" ++
 		payment
 		payment 20000
-		dialog `The tourists thank you for bringing them to <planet> and pay you <payment>.`
+		dialog `When you arrive on <planet>, the tourists thank you and pay you <payment>. After you have been paid, the tourists wander off of your ship, gazing at their surroundings with unbridled curiosity.`
 
 mission "Coalition: Tourists Out 2"
 	job
@@ -582,7 +582,7 @@ mission "Coalition: Tourists Out 2"
 		"coalition jobs" ++
 		payment
 		payment 30000
-		dialog `The tourists thank you for bringing them to <planet> and pay you <payment>.`
+		dialog `When you arrive on <planet>, the tourists thank you and pay you <payment>. After you have been paid, the tourists wander off of your ship, gazing at their surroundings with unbridled curiosity.`
 
 mission "Coalition: Tourists Out 3"
 	job
@@ -604,7 +604,7 @@ mission "Coalition: Tourists Out 3"
 		"coalition jobs" ++
 		payment
 		payment 40000
-		dialog `The tourists thank you for bringing them to <planet> and pay you <payment>.`
+		dialog `When you arrive on <planet>, the tourists thank you and pay you <payment>. After you have been paid, the tourists wander off of your ship, gazing at their surroundings with unbridled curiosity.`
 
 
 mission "Coalition: Tourists Home 1"
@@ -627,7 +627,7 @@ mission "Coalition: Tourists Home 1"
 		"coalition jobs" ++
 		payment
 		payment 20000
-		dialog `The tourists thank you for bringing them home and pay you <payment>.`
+		dialog `The tourists thank you for bringing them home and pay you <payment>. After paying you, the tourists wander off of the ship, looking tired but seemingly glad to be home.`
 
 mission "Coalition: Tourists Home 2"
 	job
@@ -649,7 +649,7 @@ mission "Coalition: Tourists Home 2"
 		"coalition jobs" ++
 		payment
 		payment 30000
-		dialog `The tourists thank you for bringing them home and pay you <payment>.`
+		dialog `The tourists thank you for bringing them home and pay you <payment>. After paying you, the tourists wander off of the ship, looking tired but seemingly glad to be home.`
 
 mission "Coalition: Tourists Home 3"
 	job
@@ -671,14 +671,14 @@ mission "Coalition: Tourists Home 3"
 		"coalition jobs" ++
 		payment
 		payment 40000
-		dialog `The tourists thank you for bringing them home and pay you <payment>.`
+		dialog `The tourists thank you for bringing them home and pay you <payment>. After paying you, the tourists wander off of the ship, looking tired but seemingly glad to be home.`
 
 
 mission "Coalition: Fast Courier 1"
 	job
 	repeat
 	name "Fast courier to <planet>"
-	description "Deliver <cargo> to <destination> by <date>. The payment is <payment>."
+	description "Deliver <cargo> to <destination> by <date>. You will receive <payment> for your assistance."
 	deadline 5 1
 	cargo random 2 20 .6
 	to offer
@@ -699,7 +699,7 @@ mission "Coalition: Fast Courier 2"
 	job
 	repeat
 	name "Fast courier to <planet>"
-	description "Deliver <cargo> to <destination> by <date>. The payment is <payment>."
+	description "Deliver <cargo> to <destination> by <date>. You will receive <payment> for your assistance."
 	deadline 5 1
 	cargo random 2 30 .6
 	to offer
@@ -720,7 +720,7 @@ mission "Coalition: Fast Courier 3"
 	job
 	repeat
 	name "Fast courier to <planet>"
-	description "Deliver <cargo> to <destination> by <date>. The payment is <payment>."
+	description "Deliver <cargo> to <destination> by <date>. You will receive <payment> for your assistance."
 	deadline 5 1
 	cargo random 2 40 .6
 	to offer
@@ -742,7 +742,7 @@ mission "Coalition: Cargo 1"
 	job
 	repeat
 	name "Cargo to <planet>"
-	description "Deliver <cargo> to <destination>. Payment is <payment>."
+	description "Deliver <cargo> to <destination>. You will receive <payment> for your assistance."
 	cargo random 4 6 .3
 	to offer
 		has "known to the heliarchs"
@@ -762,7 +762,7 @@ mission "Coalition: Cargo 2"
 	job
 	repeat
 	name "Cargo to <planet>"
-	description "Deliver <cargo> to <destination>. Payment is <payment>."
+	description "Deliver <cargo> to <destination>. You will receive <payment> for your assistance."
 	cargo random 4 8 .3
 	to offer
 		has "known to the heliarchs"
@@ -782,7 +782,7 @@ mission "Coalition: Cargo 3"
 	job
 	repeat
 	name "Cargo to <planet>"
-	description "Deliver <cargo> to <destination>. Payment is <payment>."
+	description "Deliver <cargo> to <destination>. You will receive <payment> for your assistance."
 	cargo random 4 11 .3
 	to offer
 		has "known to the heliarchs"
@@ -802,7 +802,7 @@ mission "Coalition: Cargo 4"
 	job
 	repeat
 	name "Cargo to <planet>"
-	description "Deliver <cargo> to <destination>. Payment is <payment>."
+	description "Deliver <cargo> to <destination>. You will receive <payment> for your assistance."
 	cargo random 4 15 .3
 	to offer
 		has "known to the heliarchs"
@@ -823,7 +823,7 @@ mission "Coalition: Bulk 1"
 	job
 	repeat
 	name "Bulk cargo to <planet>"
-	description "Deliver <cargo> to <destination>. Payment is <payment>."
+	description "Deliver <cargo> to <destination>. You will receive <payment> for your assistance."
 	cargo random 20 6 .1
 	to offer
 		has "known to the heliarchs"
@@ -843,7 +843,7 @@ mission "Coalition: Bulk 2"
 	job
 	repeat
 	name "Bulk cargo to <planet>"
-	description "Deliver <cargo> to <destination>. Payment is <payment>."
+	description "Deliver <cargo> to <destination>. You will receive <payment> for your assistance."
 	cargo random 30 9 .1
 	to offer
 		has "known to the heliarchs"
@@ -863,7 +863,7 @@ mission "Coalition: Bulk 3"
 	job
 	repeat
 	name "Bulk cargo to <planet>"
-	description "Deliver <cargo> to <destination>. Payment is <payment>."
+	description "Deliver <cargo> to <destination>. You will receive <payment> for your assistance."
 	cargo random 40 15 .1
 	to offer
 		has "known to the heliarchs"
@@ -883,7 +883,7 @@ mission "Coalition: Bulk 4"
 	job
 	repeat
 	name "Bulk cargo to <planet>"
-	description "Deliver <cargo> to <destination>. Payment is <payment>."
+	description "Deliver <cargo> to <destination>. You will receive <payment> for your assistance."
 	cargo random 50 25 .1
 	to offer
 		has "known to the heliarchs"
@@ -904,7 +904,7 @@ mission "Coalition: Rush 1"
 	job
 	repeat
 	name "Rush Delivery to <planet>"
-	description "<destination> needs a shipment of <cargo> by <date>. Payment will be <payment>."
+	description "<destination> needs a shipment of <cargo> by <date>. You will receive <payment> for your assistance."
 	deadline
 	cargo random 10 8 .2
 	to offer
@@ -925,7 +925,7 @@ mission "Coalition: Rush 2"
 	job
 	repeat
 	name "Rush Delivery to <planet>"
-	description "<destination> needs a shipment of <cargo> by <date>. Payment will be <payment>."
+	description "<destination> needs a shipment of <cargo> by <date>. You will receive <payment> for your assistance."
 	deadline
 	cargo random 10 12 .2
 	to offer
@@ -946,7 +946,7 @@ mission "Coalition: Rush 3"
 	job
 	repeat
 	name "Rush Delivery to <planet>"
-	description "<destination> needs a shipment of <cargo> by <date>. Payment will be <payment>."
+	description "<destination> needs a shipment of <cargo> by <date>. You will receive <payment> for your assistance."
 	deadline
 	cargo random 10 18 .2
 	to offer
@@ -968,7 +968,7 @@ mission "Coalition: Doctors"
 	job
 	repeat
 	name "Doctors to <planet>"
-	description "The government will pay you <payment> to bring this team of <bunks> doctors to <destination>, to address a viral outbreak. They must arrive by <date>."
+	description "The government will pay you <payment> to bring this team of <bunks> doctors to <destination>, so that they may address a viral outbreak. They must arrive by <date>."
 	deadline 8 1
 	passengers 4 10 .4
 	to offer
@@ -990,7 +990,7 @@ mission "Coalition: Cadets 1"
 	job
 	repeat
 	name "Cadets to <planet>"
-	description "These <bunks> new recruits need transport to the Academy on <destination>. Payment is <payment>."
+	description "These <bunks> new recruits need transport to the Academy on <destination>. You will receive <payment> for your assistance."
 	passengers 10 10 .5
 	to offer
 		has "known to the heliarchs"
@@ -1009,7 +1009,7 @@ mission "Coalition: Cadets 2"
 	job
 	repeat
 	name "Cadets to <planet>"
-	description "These <bunks> new recruits need transport to the Academy on <destination>. Payment is <payment>."
+	description "These <bunks> new recruits need transport to the Academy on <destination>. You will receive <payment> for your assistance."
 	passengers 10 10 .4
 	to offer
 		has "known to the heliarchs"
@@ -1043,7 +1043,7 @@ mission "Coalition: To Games 1"
 	on complete
 		"coalition jobs" ++
 		payment 10000 200
-		dialog `The passengers thank you for bringing them to <planet> and pay you <payment>.`
+		dialog `The passengers thank you for bringing them to <planet> and pay you <payment>. They exit your ship with an air of anticipation and excitement.`
 
 mission "Coalition: To Games 2"
 	job
@@ -1063,7 +1063,7 @@ mission "Coalition: To Games 2"
 	on complete
 		"coalition jobs" ++
 		payment 15000 200
-		dialog `The passengers thank you for bringing them to <planet> and pay you <payment>.`
+		dialog `The passengers thank you for bringing them to <planet> and pay you <payment>. They exit your ship with an air of anticipation and excitement.`
 
 mission "Coalition: To Games 3"
 	job
@@ -1083,7 +1083,7 @@ mission "Coalition: To Games 3"
 	on complete
 		"coalition jobs" ++
 		payment 25000 200
-		dialog `The passengers thank you for bringing them to <planet> and pay you <payment>.`
+		dialog `The passengers thank you for bringing them to <planet> and pay you <payment>. They exit your ship with an air of anticipation and excitement.`
 
 
 mission "Coalition: From Games 1"
@@ -1105,7 +1105,7 @@ mission "Coalition: From Games 1"
 		"coalition jobs" ++
 		payment
 		payment 10000
-		dialog `The passengers thank you for bringing them to <planet> and pay you <payment>.`
+		dialog `The passengers thank you for bringing them to <planet> and pay you <payment>. Based on their behaviour, it looks like the Coalition Games were quite entertaining this year.`
 
 mission "Coalition: From Games 2"
 	job
@@ -1126,7 +1126,7 @@ mission "Coalition: From Games 2"
 		"coalition jobs" ++
 		payment
 		payment 15000
-		dialog `The passengers thank you for bringing them to <planet> and pay you <payment>.`
+		dialog `The passengers thank you for bringing them to <planet> and pay you <payment>. Based on their behaviour, it looks like the Coalition Games were quite entertaining this year.`
 
 mission "Coalition: From Games 3"
 	job
@@ -1147,4 +1147,4 @@ mission "Coalition: From Games 3"
 		"coalition jobs" ++
 		payment
 		payment 25000
-		dialog `The passengers thank you for bringing them to <planet> and pay you <payment>.`
+		dialog `The passengers thank you for bringing them to <planet> and pay you <payment>. Based on their behaviour, it looks like the Coalition Games were quite entertaining this year.`
