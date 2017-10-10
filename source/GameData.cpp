@@ -48,6 +48,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "SpriteQueue.h"
 #include "SpriteSet.h"
 #include "SpriteShader.h"
+#include "StarType.h"
 #include "StarField.h"
 #include "StartConditions.h"
 #include "System.h"
@@ -78,6 +79,7 @@ namespace {
 	Set<Phrase> phrases;
 	Set<Planet> planets;
 	Set<Ship> ships;
+	Set<StarType> starTypes;
 	Set<System> systems;
 	
 	Set<Sale<Ship>> shipSales;
@@ -601,6 +603,13 @@ const Set<Ship> &GameData::Ships()
 
 
 
+const Set<StarType> &GameData::Stars()
+{
+	return starTypes;
+}
+
+
+
 const Set<System> &GameData::Systems()
 {
 	return systems;
@@ -822,6 +831,8 @@ void GameData::LoadFile(const string &path, bool debugMode)
 		}
 		else if(key == "shipyard" && node.Size() >= 2)
 			shipSales.Get(node.Token(1))->Load(node, ships);
+		else if(key == "star" && node.Size() >= 2)
+			starTypes.Get(node.Token(1))->Load(node);
 		else if(key == "start")
 			startConditions.Load(node);
 		else if(key == "system" && node.Size() >= 2)

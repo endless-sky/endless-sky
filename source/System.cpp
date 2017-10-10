@@ -21,7 +21,9 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Minable.h"
 #include "Planet.h"
 #include "Random.h"
+#include "Sprite.h"
 #include "SpriteSet.h"
+#include "StarType.h"
 
 #include <cmath>
 
@@ -114,8 +116,8 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 	
 	// For the following keys, if this data node defines a new value for that
 	// key, the old values should be cleared (unless using the "add" keyword).
-	set<string> shouldOverwrite = {"link", "asteroids", "fleet", "object"};
-	
+	set<string> shouldOverwrite = {"link", "asteroids", "fleet", "object", "wind", "luminosity"};
+		
 	for(const DataNode &child : node)
 	{
 		// Check for the "add" or "remove" keyword.
@@ -159,6 +161,10 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 				trade.clear();
 			else if(key == "fleet")
 				fleets.clear();
+			else if(key == "wind")
+				overrideStellarWind = false;
+			else if(key == "luminosity")
+				overrideLuminosity = false;
 			else if(key == "object")
 			{
 				// Make sure any planets that were linked to this system know
@@ -234,6 +240,26 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 			else
 				fleets.emplace_back(fleet, child.Value(valueIndex + 1));
 		}
+		else if(key == "wind")
+		{
+			overrideStellarWind = true;
+			if(add)
+				stellarWindStrength += child.Value(valueIndex);
+			else if(remove)
+				stellarWindStrength -= child.Value(valueIndex);
+			else
+				stellarWindStrength = child.Value(valueIndex);
+		}
+		else if(key == "luminosity")
+		{
+			overrideLuminosity = true;
+			if(add)
+				luminosity += child.Value(valueIndex);
+			else if(remove)
+				luminosity -= child.Value(valueIndex);
+			else
+				luminosity = child.Value(valueIndex);
+		}
 		// Handle the attributes which cannot be "removed."
 		else if(remove)
 		{
@@ -260,9 +286,20 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
 	
-	// Set planet messages based on what zone they are in.
+	// Reset stellarWindStrength and luminosity before recalculating their values in
+	// the following loop.
+	if(!overrideStellarWind)
+		stellarWindStrength = 0;
+	if(!overrideLuminosity)
+		luminosity = 0;
+	
+	// Set planet messages based on what zone they are in, and calculate the luminosity
+	// and stellar wind values for the stars in the system.
 	for(StellarObject &object : objects)
 	{
+		if(object.IsStar())
+			AddStar(object.GetSprite()->Name());
+		
 		if(object.message || object.planet)
 			continue;
 		
@@ -281,7 +318,9 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 		
 		double fraction = root->distance / habitable;
 		if(object.IsStar())
+		{
 			object.message = &STAR;
+		}
 		else if (object.IsStation())
 			object.message = &STATION;
 		else if (object.IsMoon())
@@ -302,6 +341,15 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 			else
 				object.message = &UNINHABITEDPLANET;
 		}
+	}
+	
+	// Make sure that the stellarWindStrength and luminosity are reasonable.
+	if(!overrideStellarWind)
+		stellarWindStrength = std::max(0.25, stellarWindStrength);
+	if(!overrideLuminosity)
+	{
+		luminosity = std::max(0.5, luminosity);
+		luminosity = std::min(2.0, luminosity);
 	}
 }
 
@@ -628,6 +676,22 @@ double System::Danger() const
 
 
 
+// Get the modifier for ramscoop effectiveness.
+double System::GetStellarWindStrength() const
+{
+	return stellarWindStrength;
+}
+
+
+
+// Get the modifier for solar panel effectiveness.
+double System::GetLuminosity() const
+{
+	return luminosity;
+}
+
+
+
 void System::LoadObject(const DataNode &node, Set<Planet> &planets, int parent)
 {
 	int index = objects.size();
@@ -666,6 +730,19 @@ void System::LoadObject(const DataNode &node, Set<Planet> &planets, int parent)
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
+}
+
+
+
+// Update stellarWindStrength and luminosity to include the star's effects in the system.
+void System::AddStar(const string starName)
+{
+	const StarType *starType = GameData::Stars().Get(starName.substr(5));
+	
+	if(!overrideStellarWind)
+		stellarWindStrength += starType->GetStellarWind();
+	if(!overrideLuminosity)
+		luminosity += starType->GetLuminosity();
 }
 
 

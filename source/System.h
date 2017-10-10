@@ -136,11 +136,18 @@ public:
 	// in per frame).
 	double Danger() const;
 	
+	// Get the effectiveness of ramscoops and solar panels in this system.
+	double GetStellarWindStrength() const;
+	double GetLuminosity() const;
+	
 	
 private:
 	void LoadObject(const DataNode &node, Set<Planet> &planets, int parent = -1);
+
+	// Update stellarWindStrength and luminosity to include the star's effects in the system.
+	void AddStar(const std::string starName);
 	
-	
+
 private:
 	class Price {
 	public:
@@ -178,6 +185,16 @@ private:
 	
 	// Commodity prices.
 	std::map<std::string, Price> trade;
+		
+	// Physical attributes of the space in the system. They effect things
+	// such as ramscoops and solar panels.
+	double stellarWindStrength = 0;
+	double luminosity = 0;
+	
+	// For remembering whether stellarWindStrength or luminosity were manually
+	// overwritten in this system.
+	bool overrideStellarWind = false;
+	bool overrideLuminosity = false;
 };
 
 

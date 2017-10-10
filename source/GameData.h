@@ -40,6 +40,7 @@ class Planet;
 class Politics;
 class Ship;
 class Sprite;
+class StarType;
 class StarField;
 class StartConditions;
 class System;
@@ -96,6 +97,7 @@ public:
 	static const Set<Phrase> &Phrases();
 	static const Set<Planet> &Planets();
 	static const Set<Ship> &Ships();
+	static const Set<StarType> &Stars();
 	static const Set<System> &Systems();
 	
 	static const Government *PlayerGovernment();
