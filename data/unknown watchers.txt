@@ -1,0 +1,122 @@
+# Copyright (c) 2016 by Michael Zahniser
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+
+# Once the player has taken quarg technology, they will be watched wherever they go.
+government "Unknown Watchers"
+	swizzle 0
+	color .88 .77 0
+	"player reputation" 1
+	"friendly hail" "encrypted signal"
+	"hostile hail" "encrypted signal"
+
+phrase "encrypted signal"
+	word
+		"[0100010110101101011010100101]"
+		"[white noise]"
+		"[00000010000001100000111000011110001001]"
+		"[static]"
+
+phrase "unknown watcher names"
+	word
+		"Mysterious"
+		"Unusual"
+		"Strange"
+		"Unidentified"
+	word
+		" Drone"
+		" Observer"
+		" Flying Object"
+
+ship "Drone (Anonymous)"
+	sprite "ship/surveillance drone"
+	attributes
+		category "Interceptor"
+		"cost" 15000
+		"hull" 600
+		"mass" 15
+		"drag" .53
+		"heat dissipation" .9
+		"outfit space" 30
+		"weapon capacity" 0
+		"engine capacity" 28
+		"fuel capacity" 1000
+		"jump speed" .3
+		"jump drive" 1
+		"hyperdrive" 1
+		"automaton" 1
+		"energy generation" 1
+		weapon
+			"blast radius" 3
+			"shield damage" 30
+			"hull damage" 15
+			"hit force" 45
+	outfits
+		"Outfit Scanner"
+		"X1700 Ion Thruster"
+		"X1200 Ion Steering"
+	engine -5 29
+	engine 5 29
+	explode "tiny explosion" 15
+	description "This unmarked drone is equipped with outfit scanners and a hyperdrive."
+
+ship "Drone (Anonymous)" "Drone (2450)"
+	sprite "ship/2450Drone"
+	engine 0 27
+
+ship "Drone (Anonymous)" "Drone (Adamas)"
+	sprite "ship/AdamasDrone"
+	engine -9 21.5
+	engine 9 21.5
+
+ship "Drone (Anonymous)" "Drone (Enigma)"
+	sprite "ship/EnigmaDrone"
+	engine -4 25
+	engine 4 25
+
+ship "Drone (Anonymous)" "Drone (UrsaPolaris)"
+	sprite "ship/UrsaPolarisDrone"
+	engine -3 33
+	engine 3 33
+	engine 0 33
+
+fleet "Unknown Watcher"
+	government "Unknown Watchers"
+	names "unknown watcher names"
+	variant
+		"Drone (Anonymous)"
+	variant
+		"Drone (2450)"
+	variant
+		"Drone (Adamas)"
+	variant
+		"Drone (Enigma)"
+	variant
+		"Drone (UrsaPolaris)"
+
+# You have a 50% chance to collect a new observer every time you land.
+# Whenever a new one appears the oldest one "fails" and disappears (if you haven't destroyed it already).
+mission "Quarg Observers 1"
+	landing
+	repeat
+	invisible
+	to offer
+		random < 60
+		has "taken quarg technology"
+	npc board
+		government "Unknown Watchers"
+		fleet  "Unknown Watcher"
+		dialog "You board one of the drones that's been following you and inspect it, but you are not able to determine its origin. It is made from generic technology and it has been broadcasting on an encrypted frequency.  You have no idea who sent it, but you suspect your acquisition of Quarg technology may have drawn attention from any number of different parties."
+	to fail
+		# Checking "> 1" means the player will accumulate a max of 2 annoying drones at a time.
+		"Quarg Observers 1: active" > 1
+	# The destination doesn't matter, since this is invisible and probably never "completed".
+	destination Earth
+	
+

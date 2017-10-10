@@ -113,3 +113,75 @@ mission "First Contact: Kuwaru Efreti"
 			label destroy
 			`	It clicks its teeth together, which might be the Quarg equivalent of laughter. "It was hoped that one faction of robots would destroy the other, and leave less work for us to do, but they are sadly too evenly matched. We instead merely restrain them from expanding, as one isolates a fire one cannot extinguish and waits for it to burn out." You thank it for its time, and the crowd of Quarg that has been gawking at you slowly disperses.`
 				decline
+
+# The first time the player boards a disabled quarg ship, they will trigger this mission.
+# The Quarg give them the chance to remain on "friendly" terms if they do not take any technology.
+# If the player chooses to loot the ship, their Quarg reputation is set to -1000, and the 
+# condition "taken quarg technology" is set, which could be referenced in other missions, 
+# but currently causes the player to be followed and observed by occasional "Unknown Watcher" drones. 
+mission "First Quarg Boarding Action"
+	boarding
+	source 
+		government Quarg
+	on offer 
+		conversation 
+			`	You've been waiting for this moment for a long time. As far as you know, no human has ever disabled and boarded a Quarg ship. Even after the unfathomable amount of punishment that you unleashed upon it, you keep expecting the alien vessel to spring to life and either destroy you or vanish in a shimmer of blue light...but it seems even the Quarg have their limits. The ship is drifting, apparently without power.`
+			`	You lock your ship's boarding clamps into position and inspect the Quarg hull through your instruments, keeping one eye on your long-range scanners for any sign of more Quarg (though considering the way their ships can just materialize out of hyperspace, you don't expect a lot of warning). You identify the alien craft's armaments: fearsome twin beam weapons and powerful missile defense turrets. Of course they aren't fitted onto the standard turret-mounts you're used to seeing on human ships...so removing them without damage may be a challenge. And that's assuming no part of this alien ship explodes in your face.  It looks like the primary beams are at least 60 tons each...you have enough cargo space for those, right?`
+			`	A pit forms in your stomach...maybe this was a bad idea.` 
+			choice 
+				`	(There's no going back now. Keep scanning...look for the best way to slice open the hull.)`
+					goto hull
+				`	(Maybe it would be easier to capture the ship than to rip it apart. Try scanning the inside of the ship for defensive measures.)`
+					goto capture
+				`	(Abandon this insane project. No alien technology is worth your life.)`
+					# defer the mission to be tried again later and boarded ship is destroyed to prevent re-boarding.
+					goto selfdestruct 
+
+			label capture
+			`	You tune your sensors to inspect the living areas of the enemy ship, starting at what you're fairly certain is the airlock. It doesn't take long for your heart to sink at what you're seeing. There are literally hundreds of tiny, independent power sources distributed over the ships' internal surfaces. They appear to power some kind of intrusion countermeasures. Maybe with a thousand marines you would have a prayer of capturing this ship. Maybe.`
+			choice 
+				`	(Ok, keep scanning. Look for a way to open the hull.)`
+					goto hull
+			
+			label hull
+			`	You continue scanning the Quarg ship's hull, looking for the best place to cut it open. There's already significant weapon damage - disabling the ship wasn't easy. You identify a few components: engines, what you think is the shield generator, and some kind of...battery? You activate your salvage cutter. It takes an agonizingly long time; the material is like nothing you've ever tried cutting through before.  You eventually succeed in opening some access holes, only to find that the components are locked in place with some king of energy anchors.  You can't figure out how to cut their power.`
+			`	Suddenly your thoughts are interrupted by a flashing light on your ship's comm. It looks like the Quarg want to talk.`
+			choice
+				`	(Ignore the comm and focus on taking this ship apart.)`
+					goto end
+				`	(Let's hear what they have to say.)`
+					goto listen
+
+			label listen
+			`	You see the image of a Quarg on your view screen, its alien features revealing no hint of its emotions- it's mannerisms seem the same as every other Quarg you've seen. You can only assume this is the captain of the ship.`
+			`	"Human," it addresses you in a measured tone, "Be warned that you are making a serious error. This one understands that it is only natural for a creature such as you to test itself in battle. However, for one such as you to possess Quarg tools or the Drak's gift is taboo. It can only lead to destruction. Your power has already been shown. Withdraw now and leave this system. Then peace will remain between us."`
+			choice 
+				`	(Ignore him. You've come too far to stop now. The very fact that the alien is talking to you means salvaging its technology must be possible.)`
+					goto end
+				`	(Agree and disengage your boarding clamps.)`
+					goto peace
+
+			label peace
+			`	"You have made a wise choice today, Human. Leave this system and the Quarg will remain at peace with you unless you test us again."`
+				goto selfdestruct
+
+			label selfdestruct
+			`	As you disengage your boarding clamps and begin to boost away, you see multiple escape pods jettisoning from the Quarg ship.`
+				# defer the mission to be tried again later and boarded ship is destroyed to prevent re-boarding.
+				depart
+
+			label end
+			`	As the Quarg talks, you run the cross-hairs of your salvage cutter over its hull, praying for some inspiration. Then it hits you. The comm signal! It's not coming from anywhere near where you'd expect the bridge to be, and when you look closer you see that the residual energy patterns in the hull subtly shift around that location. You take aim and pull the trigger. As a new hull breach opens up, you see several Quarg bodies being sucked into the vacuum of space.  The comm signal dies...and so do the energy anchors protecting the ship's components.`
+			`	Mission accomplished! Your regular salvage equipment can take it from here. It's time to grab everything you can carry and get the heck out of Dodge. You've heard that the Quarg can live for hundreds of years...hopefully they don't hold grudges.`
+				# proceed to boarding interface and this mission will never happen again.
+				decline
+
+	on defer
+		# If the player does not follow through with stealing the outfits, set reputation to exactly 1.  
+		"reputation: Quarg" = 1
+	on decline 
+		# If the player does proceed to boarding, set reputation to -1000 and set a variable that can be used for other mission / dialog triggers even if Quarg reputation changes later.  
+		"reputation: Quarg" = -1000
+		set "taken quarg technology"
+	# The destination doesn't matter - this mission is always deferred or declined. 
+	destination Earth
