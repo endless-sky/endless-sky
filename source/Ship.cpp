@@ -1327,7 +1327,7 @@ bool Ship::Move(list<Effect> &effects, list<shared_ptr<Flotsam>> &flotsam)
 		// Recharge is limited by available energy. Extra recharge capacity can
 		// be used on fighters this ship is carrying.
 		double hullRate = attributes.Get("hull repair rate");
-		if(hullRate > 0.)
+		if(hullRate)
 		{
 			double hullEnergy = attributes.Get("hull energy");
 			double hullHeat = attributes.Get("hull heat");
@@ -1337,7 +1337,7 @@ bool Ship::Move(list<Effect> &effects, list<shared_ptr<Flotsam>> &flotsam)
 		}
 		
 		double shieldRate = attributes.Get("shield generation");
-		if(shieldRate > 0.)
+		if(shieldRate)
 		{
 			double shieldEnergy = attributes.Get("shield energy");
 			double shieldHeat = attributes.Get("shield heat");
@@ -2656,7 +2656,7 @@ double Ship::MinimumHull() const
 // ship is carrying fighters, add to them as well.
 double Ship::AddHull(double rate)
 {
-	double added = min(rate, attributes.Get("hull") - hull);
+	double added = max(min(rate, attributes.Get("hull") - hull), -hull);
 	hull += added;
 	rate -= added;
 	
@@ -2683,7 +2683,7 @@ double Ship::AddHull(double rate)
 
 double Ship::AddShields(double rate)
 {
-	double added = min(rate, attributes.Get("shields") - shields);
+	double added = max(min(rate, attributes.Get("shields") - shields), -shields);
 	shields += added;
 	rate -= added;
 	
