@@ -233,6 +233,8 @@ public:
 	double Energy() const;
 	double Heat() const;
 	double Fuel() const;
+	// Get level of toxin on this ship.
+	double Toxin() const;
 	// Get the number of jumps this ship can make before running out of fuel.
 	// This depends on how much fuel it has and what sort of hyperdrive it uses.
 	int JumpsRemaining() const;
@@ -252,6 +254,7 @@ public:
 	int Crew() const;
 	int RequiredCrew() const;
 	void AddCrew(int count);
+	double CrewDisabled() const;
 	// Check if this is a ship that can be used as a flagship.
 	bool CanBeFlagship() const;
 	
@@ -270,6 +273,8 @@ public:
 	// Apply a force to this ship, accelerating it. This might be from a weapon
 	// impact, or from firing a weapon, for example.
 	void ApplyForce(const Point &force);
+	// Reduce active crew based on damage taken.
+	void KillCrew(double crewInjured);
 	
 	// Check if this ship has fighter or drone bays.
 	bool HasBays() const;
@@ -441,6 +446,13 @@ private:
 	double ionization = 0.;
 	double disruption = 0.;
 	double slowness = 0.;
+	
+	double toxin = 0.;
+	double toxinLing = 0.;
+	double toxinRatio = 0.;
+	double radiationLing = 0.;
+	double crewDisabled = 0.;
+
 	// Acceleration can be created by engines, firing weapons, or weapon impacts.
 	Point acceleration;
 	
