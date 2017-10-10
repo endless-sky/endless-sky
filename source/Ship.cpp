@@ -129,6 +129,9 @@ void Ship::Load(const DataNode &node)
 				armament.AddGunPort(hardpoint, outfit);
 			else
 				armament.AddTurret(hardpoint, outfit);
+			// Print a warning for the first hardpoint after 32, i.e. only 1 warning per ship.
+			if(armament.Get().size() == 33)
+				child.PrintTrace("Warning: ship has more than 32 weapon hardpoints. Some weapons may not fire:");
 		}
 		else if(key == "never disabled")
 			neverDisabled = true;
