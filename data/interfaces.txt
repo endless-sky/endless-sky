@@ -452,7 +452,14 @@ interface "planet"
 		size 18
 		align right
 		pad 10 0
-
+	sprite "ui/planet dialog button"
+		center 280 30
+	button s "_Shore _Leave"
+		center 280 30
+		dimensions 140 40
+		size 18
+		align right
+		pad 10 0
 
 
 interface "boarding"
