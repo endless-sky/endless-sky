@@ -628,7 +628,7 @@ mission "Wanderers: Truce Check"
 		not "Wanderers: Jump Drive Source: offered"
 	source
 		government "Wanderer"
-		near "Ka'ch'chrai" 1 10
+		near "Ka'ch'chrai" 1 100
 	destination "Vara K'chrai"
 	on offer
 		conversation
@@ -1367,7 +1367,7 @@ mission "Wanderers Invaded 0"
 	description `Travel to <destination> to ask Iktat Rek if you can assist the Wanderers against the Unfettered invasion.`
 	source
 		government "Wanderer"
-		near "Ka'ch'chrai" 1 10
+		near "Ka'ch'chrai" 1 100
 	destination "Vara K'chrai"
 	to offer
 		has "event: wanderers: unfettered invasion starts"

@@ -1575,7 +1575,7 @@ mission "FW Escort Second Chance"
 	description "Return to <destination> to meet up with Tomek Voigt and see if he will forgive you for failing the escort mission he gave you."
 	minor
 	source
-		near Sabik 1 1000
+		near Sabik 1 100
 		government "Free Worlds"
 	destination Longjump
 	to offer

@@ -795,7 +795,7 @@ mission "FW Plasma Testing 1B"
 mission "plasma turret available"
 	landing
 	source
-		near Kraz 1 1000
+		near Kraz 100
 	to offer
 		has "event: plasma turret available"
 	on offer
@@ -1043,7 +1043,7 @@ mission "FW Flamethrower 1"
 	name "Weapon Testing"
 	description "When you have time, report to <destination>, where Barmy Edward has another weapon he would like you to test."
 	source
-		near Kraz 1 1000
+		near Kraz 1 100
 	destination Rust
 	to offer
 		has "event: plasma turret available"

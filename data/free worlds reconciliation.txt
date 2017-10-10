@@ -564,7 +564,7 @@ mission "FW Reconciliation Break Ends"
 	description "Rejoin Ijs, Katya, and Alondo on <destination>."
 	landing
 	source
-		near "Gamma Corvi" 1 1000
+		near "Gamma Corvi" 1 100
 	destination Bourne
 	to offer
 		has "event: fw reconciliation break"

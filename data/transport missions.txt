@@ -211,7 +211,7 @@ mission "Smuggler's Den: Payment"
 	landing
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
-		near Sol 1 1000
+		near Sol 100
 	to offer
 		has "event: smuggler's den: payment"
 	
@@ -1236,7 +1236,7 @@ mission "Rim Archaeology 6"
 	landing
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Independent" "Neutral"
-		near Sol 1 1000
+		near Sol 100
 		attributes spaceport
 	to offer
 		has "event: rim archaeology results"
@@ -1567,7 +1567,7 @@ mission "Migrant Workers 1"
 	source
 		attributes "dirt belt"
 		attributes "farming"
-		near "Zeta Aquilae" 1 1000
+		near "Zeta Aquilae" 1 100
 	destination Rand
 	to offer
 		random < 5

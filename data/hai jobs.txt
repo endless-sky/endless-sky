@@ -352,7 +352,7 @@ mission "Delivery to Human Space [0]"
 		random < 30
 	source
 		government "Hai"
-		near "Heia Due" 0 2
+		near "Heia Due" 2
 	destination
 		attributes north
 	on complete
@@ -369,7 +369,7 @@ mission "Delivery to Human Space [1]"
 		random < 25
 	source
 		government "Hai"
-		near "Heia Due" 0 2
+		near "Heia Due" 2
 	destination
 		attributes north
 	on complete
@@ -386,7 +386,7 @@ mission "Delivery to Human Space [2]"
 		random < 20
 	source
 		government "Hai"
-		near "Heia Due" 0 2
+		near "Heia Due" 2
 	destination
 		attributes north
 	on complete
@@ -406,7 +406,7 @@ mission "Escort to Human Space (Small)"
 		"combat rating" > 5
 	source
 		government "Hai"
-		near "Heia Due" 0 2
+		near "Heia Due" 2
 	destination
 		attributes north
 	npc
@@ -449,7 +449,7 @@ mission "Escort to Human Space (Medium)"
 		"combat rating" > 20
 	source
 		government "Hai"
-		near "Heia Due" 0 2
+		near "Heia Due" 2
 	destination
 		attributes north
 	npc
@@ -497,7 +497,7 @@ mission "Escort to Human Space (Large)"
 		"combat rating" > 60
 	source
 		government "Hai"
-		near "Heia Due" 0 2
+		near "Heia Due" 2
 	destination
 		attributes north
 	npc
@@ -540,7 +540,7 @@ mission "Escort to Human Space (Extra Large)"
 		"combat rating" > 100
 	source
 		government "Hai"
-		near "Heia Due" 0 2
+		near "Heia Due" 2
 	destination
 		attributes north
 	npc

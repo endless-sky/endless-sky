@@ -650,7 +650,7 @@ mission "FW Southern Break Ends"
 	description "Travel as quickly as possible to <destination> to rejoin the main Free Worlds fleet."
 	landing
 	source
-		near Rastaban 1 1000
+		near Rastaban 1 100
 	destination Dancer
 	to offer
 		has "event: fw occupying the north"
@@ -1251,7 +1251,7 @@ mission "FW Alphas 1.1A"
 mission "FW Death of Nguyen"
 	landing
 	source
-		near Sol 1 1000
+		near Sol 100
 	to offer
 		has "event: death of nguyen"
 	
