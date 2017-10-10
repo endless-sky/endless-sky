@@ -2247,6 +2247,12 @@ void PlayerInfo::UpdateAutoConditions()
 			conditions["passenger space"] += ship->Attributes().Get("bunks") - ship->RequiredCrew();
 			++conditions["ships: " + ship->Attributes().Category()];
 		}
+	
+	// Conditions for your fleet's attractiveness to pirates:
+	pair<double, double> factors = RaidFleetFactors();
+	conditions["cargo attractiveness"] = factors.first;
+	conditions["armament deterrence"] = factors.second;
+	conditions["pirate attraction"] = factors.first - factors.second;
 }
 
 
