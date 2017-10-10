@@ -332,6 +332,9 @@ tip "shield damage / second:"
 tip "hull damage / second:"
 	`Hull damage, converted to damage per second to allow easy comparisons between different weapons.`
 
+tip "fuel damage / second:"
+	`The amount of fuel lost by the target per second when hit by this weapon. If its shields are up, the loss will be cut in half. A negative amount means fuel is added.`
+
 tip "heat damage / second:"
 	`When hitting a target this weapon increases the target's heat by this amount per second, or half this amount if the target's shields are up.`
 
@@ -382,6 +385,9 @@ tip "shield damage / shot:"
 
 tip "hull damage / shot:"
 	`Each shot fired by this weapon does this amount of hull damage.`
+
+tip "fuel damage / second:"
+	`The amount of fuel lost by the target per shot when hit by this weapon. If its shields are up, the loss will be cut in half. A negative amount means fuel is added.`
 
 tip "heat damage / shot:"
 	`Each shot increases the target ship's heat by this amount, or half this amount if its shields are up.`

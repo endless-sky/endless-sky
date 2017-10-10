@@ -823,22 +823,19 @@ bool Ship::Move(list<Effect> &effects, list<shared_ptr<Flotsam>> &flotsam)
 		// close to the star.
 		double scale = .2 + 1.8 / (.001 * position.Length() + 1);
 		fuel += .03 * scale * (sqrt(attributes.Get("ramscoop")) + .05 * scale);
-		fuel = min(fuel, attributes.Get("fuel capacity"));
 		
 		energy += scale * attributes.Get("solar collection");
 		
 		double coolingEfficiency = CoolingEfficiency();
 		energy += attributes.Get("energy generation") - attributes.Get("energy consumption");
 		energy -= ionization;
-		energy = max(0., energy);
 		heat += attributes.Get("heat generation");
 		heat -= coolingEfficiency * attributes.Get("cooling");
-		heat = max(0., heat);
 		
 		// Apply active cooling. The fraction of full cooling to apply equals
 		// your ship's current fraction of its maximum temperature.
 		double activeCooling = coolingEfficiency * attributes.Get("active cooling");
-		if(activeCooling > 0.)
+		if(activeCooling > 0. && heat > 0.)
 		{
 			// Although it's a misuse of this feature, handle the case where
 			// "active cooling" does not require any energy.
@@ -851,13 +848,16 @@ bool Ship::Move(list<Effect> &effects, list<shared_ptr<Flotsam>> &flotsam)
 			}
 			else
 				heat -= activeCooling;
-			
-			heat = max(0., heat);
 		}
 		
 		// If not disabled, also adjust turret aim.
 		armament.Aim(commands);
 	}
+	
+	// These effects and limits apply whether or not the ship is disabled:
+	fuel = max(0., min(fuel, attributes.Get("fuel capacity")));
+	energy = max(0., energy);
+	heat = max(0., heat);
 	
 	if(!isInvisible)
 	{
@@ -1097,7 +1097,7 @@ bool Ship::Move(list<Effect> &effects, list<shared_ptr<Flotsam>> &flotsam)
 			}
 		}
 		// Only refuel if this planet has a spaceport.
-		else if(fuel == attributes.Get("fuel capacity")
+		else if(fuel >= attributes.Get("fuel capacity")
 				|| !landingPlanet || !landingPlanet->HasSpaceport())
 		{
 			zoom = min(1., zoom + .02);
@@ -2160,6 +2160,7 @@ int Ship::TakeDamage(const Projectile &projectile, bool isBlast)
 	double shieldDamage = weapon.ShieldDamage();
 	double hullDamage = weapon.HullDamage();
 	double hitForce = weapon.HitForce();
+	double fuelDamage = weapon.FuelDamage();
 	double heatDamage = weapon.HeatDamage();
 	double ionDamage = weapon.IonDamage();
 	double disruptionDamage = weapon.DisruptionDamage();
@@ -2175,10 +2176,16 @@ int Ship::TakeDamage(const Projectile &projectile, bool isBlast)
 		shieldFraction = min(shieldFraction, shields / shieldDamage);
 	shields -= shieldDamage * shieldFraction;
 	hull -= hullDamage * (1. - shieldFraction);
-	heat += heatDamage * (1. - .5 * shieldFraction);
-	ionization += ionDamage * (1. - .5 * shieldFraction);
-	disruption += disruptionDamage * (1. - .5 * shieldFraction);
-	slowness += slowingDamage * (1. - .5 * shieldFraction);
+	// For the following damage types, the total effect depends on how much is
+	// "leaking" through the shields.
+	double leakage = (1. - .5 * shieldFraction);
+	// Code in Ship::Move() will handle making sure the fuel amount stays in the
+	// allowable range.
+	fuel -= fuelDamage * leakage;
+	heat += heatDamage * leakage;
+	ionization += ionDamage * leakage;
+	disruption += disruptionDamage * leakage;
+	slowness += slowingDamage * leakage;
 	
 	if(hitForce)
 	{
@@ -2199,7 +2206,7 @@ int Ship::TakeDamage(const Projectile &projectile, bool isBlast)
 	// ship that hit it, it is now "provoked" against that government.
 	if(!isBlast && projectile.GetGovernment() && !projectile.GetGovernment()->IsEnemy(government)
 			&& (Shields() < .9 || Hull() < .9 || !personality.IsForbearing())
-			&& !personality.IsPacifist() && (shieldDamage > 0. || hullDamage > 0.))
+			&& !personality.IsPacifist() && weapon.DoesDamage())
 		type |= ShipEvent::PROVOKE;
 	
 	return type;
