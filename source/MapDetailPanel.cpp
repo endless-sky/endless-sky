@@ -94,9 +94,9 @@ void MapDetailPanel::Draw()
 {
 	MapPanel::Draw();
 	
-	DrawKey();
 	DrawInfo();
 	DrawOrbits();
+	DrawKey();
 }
 
 
@@ -233,7 +233,7 @@ bool MapDetailPanel::Click(int x, int y, int clicks)
 				}
 		}
 	}
-	else if(x >= Screen::Right() - 240 && y >= Screen::Top() + 280 && y <= Screen::Top() + 520)
+	else if(x >= Screen::Right() - 240 && y <= Screen::Top() + 270)
 	{
 		Point click = Point(x, y);
 		selectedPlanet = nullptr;
@@ -273,14 +273,11 @@ bool MapDetailPanel::Click(int x, int y, int clicks)
 
 void MapDetailPanel::DrawKey()
 {
-	const Sprite *back = SpriteSet::Get("ui/map key");
-	SpriteShader::Draw(back, Screen::BottomLeft() + .5 * Point(back->Width(), -back->Height()));
-	
 	Color bright(.6, .6);
 	Color dim(.3, .3);
 	const Font &font = FontSet::Get(14);
 	
-	Point pos(Screen::Left() + 10., Screen::Bottom() - 7. * 20. + 5.);
+	Point pos = Screen::TopRight() + Point(-110., 300.);
 	Point headerOff(-5., -.5 * font.Height());
 	Point textOff(10., -.5 * font.Height());
 	
@@ -528,8 +525,9 @@ void MapDetailPanel::DrawInfo()
 	
 	if(selectedPlanet && !selectedPlanet->Description().empty() && player.HasVisited(selectedPlanet))
 	{
+		const Sprite *orbitSprite = SpriteSet::Get("ui/orbits");
 		const Sprite *panelSprite = SpriteSet::Get("ui/description panel");
-		Point pos(Screen::Right() - .5 * panelSprite->Width(),
+		Point pos(Screen::Right() - orbitSprite->Width() - .5 * panelSprite->Width(),
 			Screen::Top() + .5 * panelSprite->Height());
 		SpriteShader::Draw(panelSprite, pos);
 		
@@ -538,7 +536,7 @@ void MapDetailPanel::DrawInfo()
 		text.SetAlignment(WrappedText::JUSTIFIED);
 		text.SetWrapWidth(480);
 		text.Wrap(selectedPlanet->Description());
-		text.Draw(Point(Screen::Right() - 500, Screen::Top() + 20), closeColor);
+		text.Draw(Point(Screen::Right() - orbitSprite->Width() - 500, Screen::Top() + 20), closeColor);
 	}
 	
 	DrawButtons("is ports");
@@ -549,9 +547,9 @@ void MapDetailPanel::DrawInfo()
 void MapDetailPanel::DrawOrbits()
 {
 	// Draw the planet orbits in the currently selected system.
-	const Sprite *orbitSprite = SpriteSet::Get("ui/orbits");
-	Point orbitCenter(Screen::Right() - 120, Screen::Top() + 430);
-	SpriteShader::Draw(orbitSprite, orbitCenter - Point(5., 0.));
+	const Sprite *orbitSprite = SpriteSet::Get("ui/orbits and key");
+	SpriteShader::Draw(orbitSprite, Screen::TopRight() + .5 * Point(-orbitSprite->Width(), orbitSprite->Height()));
+	Point orbitCenter = Screen::TopRight() + Point(-120., 150.);
 	
 	if(!selectedSystem || !player.HasVisited(selectedSystem))
 		return;
@@ -625,7 +623,7 @@ void MapDetailPanel::DrawOrbits()
 	const string &name = selectedPlanet ? selectedPlanet->Name() : selectedSystem->Name();
 	int width = font.Width(name);
 	width = (width / 2) + 75;
-	Point namePos(Screen::Right() - width - 5., Screen::Top() + 293.);
+	Point namePos(Screen::Right() - width - 5., Screen::Top() + 13.);
 	Color nameColor(.6, .6);
 	font.Draw(name, namePos, nameColor);
 }
