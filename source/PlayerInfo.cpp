@@ -2230,6 +2230,7 @@ void PlayerInfo::UpdateAutoConditions()
 	// Set a condition for the player's net worth. Limit it to the range of a 32-bit int.
 	static const int64_t limit = 2000000000;
 	conditions["net worth"] = min(limit, max(-limit, accounts.NetWorth()));
+	conditions["credits"] = min(limit, accounts.Credits());
 	SetReputationConditions();
 	// Clear any existing ships: conditions. (Note: '!' = ' ' + 1.)
 	auto first = conditions.lower_bound("ships: ");
