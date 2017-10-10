@@ -139,6 +139,18 @@ government "Korath"
 	
 	"attitude toward"
 		"Kor Sestor" -.01
+		"Korath Exiles" 1
+	
+	"player reputation" -10
+
+government "Korath Exiles"
+	swizzle 0
+	color .8 .5 .1
+	language "Korath"
+	
+	"attitude toward"
+		"Kor Sestor" -.01
+		"Korath" 1
 	
 	"player reputation" -10
 

@@ -768,6 +768,40 @@ mission "Wanderers: Kor Efret 3"
 
 
 
+event "Rename Korath Exiles"
+	"reputation: Korath Exiles" = "reputation: Korath"
+	system "Kor Ak'Mari"
+		government "Korath Exiles"
+	system "Kor En'lakfar"
+		government "Korath Exiles"
+	system "Kor Fel'tar"
+		government "Korath Exiles"
+	system "Kor Men"
+		government "Korath Exiles"
+	system "Kor Nor'peli"
+		government "Korath Exiles"
+	system "Kor Tar'bei"
+		government "Korath Exiles"
+	system "Kor Zena'i"
+		government "Korath Exiles"
+	fleet "Korath Raid"
+		government "Korath Exiles"
+	fleet "Korath Home"
+		government "Korath Exiles"
+
+
+#Patching in for older saves.
+mission "Rename Korath Exiles patch"
+	landing
+	invisible
+	to offer
+		has "Wanderers: Kor Efret 4: offered"
+	on offer
+		event "Rename Korath Exiles"
+		fail
+
+
+
 mission "Wanderers: Kor Efret 4"
 	landing
 	name "Return to <planet>"
@@ -2914,37 +2948,37 @@ mission "Wanderers: Sestor: Exiles 2"
 			`	Rek makes herself comfortable in one of your bunk rooms, and you prepare for a visit to the territory of the Korath exiles. "We must somehow earn their trust," she says, "so do not fire on any of their ships. Instead we must find a way to communicate with them or a place where they will meet with us peacefully."`
 				accept
 	npc save
-		government "Korath"
+		government "Korath Exiles"
 		system "Kor Fel'tar"
 		personality heroic staying
 		fleet "Korath Home"
 	npc save
-		government "Korath"
+		government "Korath Exiles"
 		system "Kor En'lakfar"
 		personality heroic staying
 		fleet "Korath Raid"
 	npc save
-		government "Korath"
+		government "Korath Exiles"
 		system "Kor Men"
 		personality heroic staying
 		fleet "Korath Raid"
 	npc save
-		government "Korath"
+		government "Korath Exiles"
 		system "Kor Ak'Mari"
 		personality heroic staying
 		fleet "Korath Raid"
 	npc save
-		government "Korath"
+		government "Korath Exiles"
 		system "Kor Zena'i"
 		personality heroic staying
 		fleet "Korath Raid"
 	npc save
-		government "Korath"
+		government "Korath Exiles"
 		system "Kor Tar'bei"
 		personality heroic staying
 		fleet "Korath Home"
 	npc save
-		government "Korath"
+		government "Korath Exiles"
 		system "Kor Nor'peli"
 		personality heroic staying
 		fleet "Korath Home" 2
@@ -2953,7 +2987,7 @@ mission "Wanderers: Sestor: Exiles 2"
 
 
 event "wanderers: exiles peaceful"
-	"reputation: Korath" >?= 1
+	"reputation: Korath Exiles" >?= 1
 
 mission "Wanderers: Sestor: Exiles 3"
 	landing
@@ -2985,7 +3019,7 @@ mission "Wanderers: Sestor: Exiles 3"
 			`	Rek speaks with the Korath again, and then tells you, "They say that three of their 'world-ships' will travel with us to meet with the Wanderer leaders. If they are able to work out favorable terms, and are convinced that the Wanderers have peaceful intentions, they will go with us to the Sestor factory world and shut it down."`
 				accept
 	npc accompany save
-		government "Korath"
+		government "Korath Exiles"
 		personality escort
 		ship "Korath World-Ship A (Jump)" "Seskerat Pratka"
 		ship "Korath World-Ship B (Jump)" "Eskretakfakta"
@@ -3017,7 +3051,7 @@ mission "Wanderers: Sestor: Factory 1"
 			`	You return to your ship, and get ready for the trip to <planet>.`
 				accept
 	npc accompany save
-		government "Korath"
+		government "Korath Exiles"
 		personality escort
 		ship "Korath World-Ship A (Jump)" "Seskerat Pratka"
 		ship "Korath World-Ship B (Jump)" "Eskretakfakta"
@@ -3157,7 +3191,7 @@ mission "Wanderers: Sestor: Factory 3"
 
 
 event "wanderers: exiles hostile"
-	"reputation: Korath" = -1000
+	"reputation: Korath Exiles" = -1000
 
 event "wanderers: exiles have drones"
 	fleet "Korath Home"
@@ -3274,7 +3308,7 @@ mission "Wanderers: Sestor: Final"
 				accept
 	npc
 		system "Kor Fel'tar"
-		government "Korath"
+		government "Korath Exiles"
 		personality heroic staying
 		fleet
 			names "korath"
