@@ -103,7 +103,7 @@ outfit "Medium Graviton Thruster"
 	"thrust" 80
 	"thrusting energy" 20
 	"thrusting heat" 10
-	"flare sprite" "effect/quarg flare/medium graviton flare"
+	"flare sprite" "effect/medium graviton flare"
 
 outfit "Medium Graviton Steering"
 	category "Engines"
