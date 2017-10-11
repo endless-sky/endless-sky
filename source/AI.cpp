@@ -161,7 +161,10 @@ void AI::UpdateKeys(PlayerInfo &player, Command &clickCommands, bool isActive)
 		canceled |= (keyStuck.Has(Command::LAND) && !keyHeld.Has(Command::LAND));
 		canceled |= (keyStuck.Has(Command::BOARD) && !keyHeld.Has(Command::BOARD));
 		if(canceled)
+		{
 			Messages::Add("Disengaging autopilot.");
+			shiftStuck = false;
+		}
 		keyStuck.Clear();
 	}
 	const Ship *flagship = player.Flagship();
@@ -2874,8 +2877,12 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 			string name = "selected star";
 			if(player.KnowsName(ship.GetTargetSystem()))
 				name = ship.GetTargetSystem()->Name();
-			
-			Messages::Add("Engaging autopilot to jump to the " + name + " system.");
+
+			if(shift)
+				Messages::Add("Engaging fleet autopilot to jump to the " + name + " system. Press the jump key to jump with all ready ships.");
+			else	
+				Messages::Add("Engaging autopilot to jump to the " + name + " system.");
+
 		}
 	}
 	else if(keyHeld.Has(Command::SCAN))
@@ -2927,7 +2934,27 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 			command |= Command::AFTERBURNER;
 		
 		if(keyHeld.Has(AutopilotCancelKeys()))
+		{
 			keyStuck = keyHeld;
+
+			if(keyStuck.Has(Command::JUMP))
+			{
+				bool oldShiftStuck = shiftStuck;
+
+				// Remove WAIT command from flag ship so the IsReadyToJump() 
+				// method does not automatically return false.
+				Command shipCommands = ship.Commands();
+				shipCommands.Clear(Command::WAIT);
+				ship.SetCommands(shipCommands);
+				if(!ship.IsReadyToJump() && !ship.IsEnteringHyperspace())
+					shiftStuck = shift;
+
+				if(!shiftStuck && oldShiftStuck)
+				{
+					Messages::Add("Fleet jump disengaged. Normal jump system activated.");
+				}
+			}
+		}
 	}
 	bool shouldAutoAim = false;
 	if(Preferences::Has("Automatic aiming") && !command.Turn() && !ship.IsBoarding()
@@ -2954,6 +2981,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 	{
 		// The player completed their travel plan, which may have indicated a destination within the final system.
 		keyStuck.Clear(Command::JUMP);
+		shiftStuck = false;
 		const Planet *planet = player.TravelDestination();
 		if(planet && planet->IsInSystem(ship.GetSystem()) && planet->IsAccessible(&ship))
 		{
@@ -2967,7 +2995,10 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 	if(keyStuck.Has(Command::LAND) && !ship.GetTargetStellar())
 		keyStuck.Clear(Command::LAND);
 	if(keyStuck.Has(Command::JUMP) && !(ship.GetTargetSystem() || isWormhole))
+	{
 		keyStuck.Clear(Command::JUMP);
+		shiftStuck = false;
+	}
 	if(keyStuck.Has(Command::BOARD) && !ship.GetTargetShip())
 		keyStuck.Clear(Command::BOARD);
 	
@@ -2989,18 +3020,21 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 		{
 			Messages::Add("You do not have a hyperdrive installed.");
 			keyStuck.Clear();
+			shiftStuck = false;
 			Audio::Play(Audio::Get("fail"));
 		}
 		else if(!ship.JumpFuel(ship.GetTargetSystem()))
 		{
 			Messages::Add("You cannot jump to the selected system.");
 			keyStuck.Clear();
+			shiftStuck = false;
 			Audio::Play(Audio::Get("fail"));
 		}
 		else if(!ship.JumpsRemaining() && !ship.IsEnteringHyperspace())
 		{
 			Messages::Add("You do not have enough fuel to make a hyperspace jump.");
 			keyStuck.Clear();
+			shiftStuck = false;
 			if(keyDown.Has(Command::JUMP) || !keyHeld.Has(Command::JUMP))
 				Audio::Play(Audio::Get("fail"));
 		}
@@ -3008,7 +3042,11 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 		{
 			PrepareForHyperspace(ship, command);
 			command |= Command::JUMP;
-			if(keyHeld.Has(Command::JUMP))
+			// Don't jump yet if the player has not initiated fleet autopilot and is holding key.
+			if(keyHeld.Has(Command::JUMP) && !shiftStuck)
+				command |= Command::WAIT;
+			// Don't jump yet if the player has initiated fleet autopilot and is not holding key.
+			if(!keyHeld.Has(Command::JUMP) && shiftStuck)
 				command |= Command::WAIT;
 		}
 	}
