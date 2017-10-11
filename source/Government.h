@@ -75,6 +75,8 @@ public:
 	// it is null, there are no pirate raids.
 	const Fleet *RaidFleet() const;
 	
+	bool IsReputationLocked() const;
+	
 	// Check if, according to the politics stored by GameData, this government is
 	// an enemy of the given government right now.
 	bool IsEnemy(const Government *other) const;
@@ -121,6 +123,7 @@ private:
 	const Phrase *hostileDisabledHail = nullptr;
 	std::string language;
 	const Fleet *raidFleet = nullptr;
+	bool repLocked = false;
 };
 
 

@@ -58,6 +58,8 @@ void Government::Load(const DataNode &node)
 			color = Color(child.Value(1), child.Value(2), child.Value(3));
 		else if(child.Token(0) == "player reputation" && child.Size() >= 2)
 			initialPlayerReputation = child.Value(1);
+		else if(child.Token(0) == "unwavering" && child.Size() >= 2)
+			repLocked = (child.Value(1) > 0);
 		else if(child.Token(0) == "attitude toward")
 		{
 			for(const DataNode &grand : child)
@@ -240,6 +242,13 @@ const Fleet *Government::RaidFleet() const
 
 
 	
+bool Government::IsReputationLocked() const
+{
+	return repLocked;
+}
+
+
+
 // Check if, according to the politics stored by GameData, this government is
 // an enemy of the given government right now.
 bool Government::IsEnemy(const Government *other) const

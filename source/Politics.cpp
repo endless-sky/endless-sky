@@ -110,7 +110,8 @@ void Politics::Offend(const Government *gov, int eventType, int count)
 			if(eventType & ShipEvent::ATROCITY)
 				reputationWith[other] = min(0., reputationWith[other]);
 			
-			reputationWith[other] -= penalty;
+			if(!other->IsReputationLocked() || (eventType & ShipEvent::ATROCITY))
+				reputationWith[other] -= penalty;
 		}
 	}
 }
