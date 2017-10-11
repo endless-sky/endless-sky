@@ -20,7 +20,9 @@ if 'SCHROOT_CHROOT_NAME' in os.environ and 'steamrt' in os.environ['SCHROOT_CHRO
 opts = Variables()
 opts.Add(PathVariable("PREFIX", "Directory to install under", "/usr/local", PathVariable.PathIsDirCreate))
 opts.Add(PathVariable("DESTDIR", "Destination root directory", "", PathVariable.PathAccept))
+opts.Add('comp_dir', 'Compilation directory', 'build')
 opts.Add(EnumVariable("mode", "Compilation mode", "release", allowed_values=("release", "debug", "profile")))
+opts.Add('branch', 'Directory inside mode corresponding to current branch. If git is installed current branch can be found with, git rev-parse --symbolic-full-name --abbrev-ref HEAD', '.')
 opts.Update(env)
 
 Help(opts.GenerateHelpText(env))
@@ -60,9 +62,9 @@ env["CC"] = os.getenv("CC") or env["CC"]
 env["CXX"] = os.getenv("CXX") or env["CXX"]
 env["ENV"].update(x for x in os.environ.items() if x[0].startswith("CCC_"))
 
-VariantDir("build/" + env["mode"], "source", duplicate = 0)
+VariantDir(env["comp_dir"] + "/" + env["mode"] + "/" + env["branch"], "source", duplicate = 0)
 
-sky = env.Program("endless-sky", Glob("build/" + env["mode"] + "/*.cpp"))
+sky = env.Program("endless-sky", Glob(env["comp_dir"] + "/" + env["mode"] + "/" + env["branch"] + "/*.cpp"))
 
 
 # Install the binary:
