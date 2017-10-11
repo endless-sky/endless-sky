@@ -1801,39 +1801,63 @@ bool PlayerInfo::HasTravelPlan() const
 // flagship was changed and/or any needed outfits were removed.
 bool PlayerInfo::HasInvalidTravelPlan() const
 {
-	if(!travelPlan.empty())
+	return InvalidTravelPlanIndex() > -1;
+}
+
+
+
+// Determine the first invalid system in the player's travel plan. Invalid plans
+// result from changes to the flagship's attributes, outfits, or game events.
+int PlayerInfo::InvalidTravelPlanIndex() const
+{
+	if(!travelPlan.empty() && system)
 	{
-		// Player may have explicitly defined a multi-stop route, so rather than re-route only to the endpoint,
-		// verify the accessibility of all waypoints used and void it if any are now inaccessible/unreachable.
-		bool hasJumpDrive = flagship->Attributes().Get("jump drive");
-		for(auto it = travelPlan.begin(); it != travelPlan.end();)
+		int invalidIndex = 0;
+		bool canJump = flagship->Attributes().Get("jump drive");
+		vector<const System *> waypoints = travelPlan;
+		waypoints.emplace_back(system);
+		
+		// The player may have explicitly defined a multi-stop route,
+		// so each waypoint must be reachable from the previous.
+		for(auto it = waypoints.rbegin(); it != waypoints.rend();)
 		{
-			const System *currentSystem = *it;
-			const System *nextSystem = *++it;
-			if(it != travelPlan.end())
+			const System *from = *it;
+			if(++it != waypoints.rend())
 			{
-				bool isWormholeTravel = false;
-				for(const StellarObject &object : currentSystem->Objects())
-					if(object.GetPlanet() && object.GetPlanet()->WormholeDestination(currentSystem) == nextSystem
-						&& HasVisited(object.GetPlanet()) && HasVisited(nextSystem))
+				const System *to = *it;
+				bool isWormhole = false;
+				for(const StellarObject &object : from->Objects())
+				{
+					const Planet *planet = object.GetPlanet();
+					if(planet && planet->IsWormhole() && HasVisited(planet)
+							&& HasVisited(from) && HasVisited(to)
+							&& planet->WormholeDestination(from) == to)
 					{
 						// Assess any travel through restricted wormholes.
-						if(!object.GetPlanet()->IsAccessible(flagship.get()))
-							return true;
+						if(!planet->IsAccessible(flagship.get()))
+							return invalidIndex;
 						else
 						{
-							isWormholeTravel = true;
+							isWormhole = true;
 							break;
 						}
 					}
-				// Verify hyperspace lane for non-wormhole & non-jumpdrive travel.
-				if(!(isWormholeTravel || hasJumpDrive) && !currentSystem->Links().count(nextSystem))
-					return true;
+				}
+				
+				// Waypoints linked via wormhole or hyperspace are valid.
+				if(!isWormhole && !from->Links().count(to))
+				{
+					// If this ship has no jump drive, or these waypoints
+					// are not neighbors, this index is invalid
+					if(!canJump || !from->Neighbors().count(to))
+						return invalidIndex;
+				}
+				++invalidIndex;
 			}
 		}
 	}
 	
-	return false;
+	return -1;
 }
 
 

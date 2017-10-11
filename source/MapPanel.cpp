@@ -842,6 +842,9 @@ void MapPanel::DrawTravelPlan()
 		}
 	stranded |= !hasEscort;
 	
+	int invalidIndex = player.HasInvalidTravelPlan() ?
+			player.TravelPlan().size() - player.InvalidTravelPlanIndex()
+			: numeric_limits<int>::min();
 	const System *previous = playerSystem;
 	for(int i = player.TravelPlan().size() - 1; i >= 0; --i)
 	{
@@ -874,10 +877,15 @@ void MapPanel::DrawTravelPlan()
 						it.second -= cost;
 				}
 		
-		// Color the path green if all ships can make it. Color it yellow if
-		// the flagship can make it, and red if the flagship cannot.
+		// Color the path green if all ships can make it, yellow if the
+		// flagship can make it, and red if the flagship cannot. Any
+		// invalid links in the path, and those following them, pulse white.
+		double invalidMod = .015 * ((7 * i + step) % 50);
+		Color invalidPath(invalidMod, 1.);
 		Color drawColor = outOfFlagshipFuelRangeColor;
-		if(isWormhole)
+		if(i < invalidIndex)
+			drawColor = invalidPath;
+		else if(isWormhole)
 			drawColor = wormholeColor;
 		else if(!stranded)
 			drawColor = withinFleetFuelRangeColor;

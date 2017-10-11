@@ -197,6 +197,8 @@ public:
 	bool HasTravelPlan() const;
 	// Determine if the current travel plan is invalid.
 	bool HasInvalidTravelPlan() const;
+	// Determine the first invalid travel plan system.
+	int InvalidTravelPlanIndex() const;
 	const std::vector<const System *> &TravelPlan() const;
 	std::vector<const System *> &TravelPlan();
 	// Remove the first or last system from the travel plan.
