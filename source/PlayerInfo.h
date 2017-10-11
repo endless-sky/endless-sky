@@ -219,7 +219,7 @@ public:
 	// Keep track of any outfits that you have sold since landing. These will be
 	// available to buy back until you take off.
 	int Stock(const Outfit *outfit) const;
-	void AddStock(const Outfit *outfit, int count);
+	void AddStock(const Outfit *outfit, int count, bool unlimitedStock = false);
 	// Get depreciation information.
 	const Depreciation &FleetDepreciation() const;
 	const Depreciation &StockDepreciation() const;
