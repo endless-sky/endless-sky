@@ -154,7 +154,7 @@ int Flotsam::TransferTo(Ship *collector)
 		collector->Cargo().Add(commodity, count);
 	
 	Point relative = collector->Velocity() - velocity;
-	double proportion = (double)amount / count;
+	double proportion = static_cast<double>(amount) / count;
 	velocity += relative * proportion;
 	
 	count -= amount;
