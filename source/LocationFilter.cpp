@@ -34,9 +34,16 @@ namespace {
 		auto bit = b.begin();
 		while(ait != a.end() && bit != b.end())
 		{
+			bool wantsMatch = ait->c_str()[0] != '!';
 			int comp = ait->compare(*bit);
-			if(!comp)
+			if(wantsMatch && !comp)
 				return true;
+			else if (!wantsMatch)
+			{
+				if(b.count(ait->substr(1, ait->length() - 1)) == 0)
+					return true;
+				++ait;
+			}
 			else if(comp < 0)
 				++ait;
 			else
@@ -94,13 +101,30 @@ void LocationFilter::Load(const DataNode &node)
 				for(int i = 0; i < grand.Size(); ++i)
 					systems.insert(GameData::Systems().Get(grand.Token(i)));
 		}
+		
+		// Apply the 'government' and 'attribute' filters. For attributes, the entire list is passed through
+		// SetsIntersect(), and OR's all conditions on a given line. Governments, however, do not use
+		// that function at all; therefore, all elements in the government blacklist are AND'ed together,
+		// regardless of how many lines you put in your filter.
 		else if(child.Token(0) == "government")
 		{
 			for(int i = 1; i < child.Size(); ++i)
-				governments.insert(GameData::Governments().Get(child.Token(i)));
+			{
+				if(child.Token(i).c_str()[0] == '!')
+					governmentsBlacklist.insert(GameData::Governments().Get(child.Token(i).substr(1, child.Token(i).length() - 1)));
+				else
+					governments.insert(GameData::Governments().Get(child.Token(i)));
+			}
 			for(const DataNode &grand : child)
 				for(int i = 0; i < grand.Size(); ++i)
-					governments.insert(GameData::Governments().Get(grand.Token(i)));
+				{
+					if(grand.Token(i).c_str()[0] == '!')
+						governmentsBlacklist.insert(GameData::Governments().Get(grand.Token(i).substr(1, grand.Token(i).length() - 1)));
+					else
+						governments.insert(GameData::Governments().Get(grand.Token(i)));
+				}
+			if(!governments.empty() && !governmentsBlacklist.empty())
+				child.PrintTrace("Mission has both a government and a government blacklist specified.");
 		}
 		else if(child.Token(0) == "attributes")
 		{
@@ -164,13 +188,17 @@ void LocationFilter::Save(DataWriter &out) const
 			}
 			out.EndChild();
 		}
-		if(!governments.empty())
+		if(!governments.empty() || !governmentsBlacklist.empty())
 		{
 			out.Write("government");
 			out.BeginChild();
 			{
-				for(const Government *government : governments)
-					out.Write(government->GetName());
+				if(!governments.empty())
+					for(const Government *government : governments)
+						out.Write(government->GetName());
+				else
+					for(const Government *government : governmentsBlacklist)
+						out.Write("!" + government->GetName());
 			}
 			out.EndChild();
 		}
@@ -196,7 +224,7 @@ void LocationFilter::Save(DataWriter &out) const
 bool LocationFilter::IsEmpty() const
 {
 	return planets.empty() && attributes.empty() && systems.empty() && governments.empty()
-		&& !center && originMaxDistance < 0;
+		&& !center && (originMaxDistance < 0) && governmentsBlacklist.empty();
 }
 
 
@@ -226,6 +254,8 @@ bool LocationFilter::Matches(const System *system, const System *origin) const
 		return false;
 	if(!governments.empty() && !governments.count(system->GetGovernment()))
 		return false;
+	if(!governmentsBlacklist.empty() && governmentsBlacklist.count(system->GetGovernment()))
+		return false;
 	
 	if(center)
 	{
@@ -252,6 +282,8 @@ bool LocationFilter::Matches(const Ship &ship) const
 	if(!systems.empty() && !systems.count(ship.GetSystem()))
 		return false;
 	if(!governments.empty() && !governments.count(ship.GetGovernment()))
+		return false;
+	if(!governmentsBlacklist.empty() && governmentsBlacklist.count(ship.GetGovernment()))
 		return false;
 	
 	if(center)
