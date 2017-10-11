@@ -1170,11 +1170,10 @@ void Engine::CalculateStep()
 			}
 			string commodity;
 			string message;
-			int amount = 0;
+			int amount = (*it)->TransferTo(collector);
 			if((*it)->OutfitType())
 			{
 				const Outfit *outfit = (*it)->OutfitType();
-				amount = collector->Cargo().Add(outfit, (*it)->Count());
 				if(!name.empty())
 				{
 					if(outfit->Get("installable") < 0.)
@@ -1189,7 +1188,6 @@ void Engine::CalculateStep()
 			}
 			else
 			{
-				amount = collector->Cargo().Add((*it)->CommodityType(), (*it)->Count());
 				if(!name.empty())
 					commodity = (*it)->CommodityType();
 			}
@@ -1207,19 +1205,14 @@ void Engine::CalculateStep()
 				Messages::Add(message);
 			}
 			
-			(*it)->Remove(amount);
-			if((*it)->Count() == 0)
+			if((*it)->Count() <= 0)
 			{
-				// Flotsam was fully moved to the cargo hold.
 				it = flotsam.erase(it);
 				continue;
 			}
-			else
-			{
-				// Flotsam was collected, partially stripped, and then thrown back out.
-				// No other ships will collect from this flotsam in this step.
-				(*it)->Place(*collector);
-			}
+			
+			// Flotsam was partially stipped.
+			// No other ships will collect from this flotsam in this step.
 		}
 		
 		// Draw this flotsam.

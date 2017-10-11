@@ -62,8 +62,9 @@ public:
 	// less than this amount of space, it can't pick up anything here.
 	double UnitSize() const;
 	
-	// Remove "units" from the flotsam.
-	void Remove(int amount);
+	// Transfer contents to the collector ship. The flotsam velocity is
+	// stabilized in proportion to the amount being transferred.
+	int TransferTo(Ship *collector);
 	
 	
 private:

@@ -145,11 +145,18 @@ double Flotsam::UnitSize() const
 
 
 
-// Remove "units" from the flotsam.
-void Flotsam::Remove(int amount)
+// Transfer contents to the collector ship. The flotsam velocity is
+// stabilized in proportion to the amount being transferred.
+int Flotsam::TransferTo(Ship *collector)
 {
-	if(amount < this->count)
-		this->count -= amount;
-	else
-		this->count = 0;
+	int amount = outfit ?
+		collector->Cargo().Add(outfit, count) :
+		collector->Cargo().Add(commodity, count);
+	
+	Point relative = collector->Velocity() - velocity;
+	double proportion = (double)amount / count;
+	velocity += relative * proportion;
+	
+	count -= amount;
+	return amount;
 }
