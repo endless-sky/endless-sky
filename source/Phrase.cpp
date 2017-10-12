@@ -24,6 +24,8 @@ void Phrase::Load(const DataNode &node)
 {
 	if(node.Token(0) != "phrase")
 		return;
+	// Set the name of this phrase, so we know it has been loaded.
+	name = node.Size() >= 2 ? node.Token(1) : "Unnamed Phrase";
 	
 	parts.emplace_back();
 	for(const DataNode &child : node)
@@ -54,6 +56,13 @@ void Phrase::Load(const DataNode &node)
 		if(part.words.empty() && part.phrases.empty())
 			parts.back().pop_back();
 	}
+}
+
+
+
+const string &Phrase::Name() const
+{
+	return name;
 }
 
 

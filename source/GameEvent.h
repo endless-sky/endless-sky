@@ -38,6 +38,7 @@ class GameEvent {
 public:
 	void Load(const DataNode &node);
 	void Save(DataWriter &out) const;
+	bool IsDefined() const;
 	
 	const Date &GetDate() const;
 	void SetDate(const Date &date);
@@ -49,8 +50,8 @@ private:
 	Date date;
 	ConditionSet conditionsToApply;
 	std::list<DataNode> changes;
-	std::vector<const System *> systemsToUnvisit; 
-	std::vector<const Planet *> planetsToUnvisit; 
+	std::vector<const System *> systemsToUnvisit;
+	std::vector<const Planet *> planetsToUnvisit;
 };
 
 

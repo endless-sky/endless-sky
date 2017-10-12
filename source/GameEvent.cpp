@@ -74,6 +74,13 @@ void GameEvent::Save(DataWriter &out) const
 
 
 
+bool GameEvent::IsDefined() const
+{
+	return !conditionsToApply.IsEmpty();
+}
+
+
+
 const Date &GameEvent::GetDate() const
 {
 	return date;

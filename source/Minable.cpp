@@ -33,6 +33,9 @@ using namespace std;
 // Load a definition of a minable object.
 void Minable::Load(const DataNode &node)
 {
+	// Set the name of this minable, so we know it has been loaded.
+	name = node.Size() >= 2 ? node.Token(1) : "Unnamed Minable";
+	
 	for(const DataNode &child : node)
 	{
 		// A full sprite definition (frame rate, etc.) is not needed, because
@@ -52,6 +55,13 @@ void Minable::Load(const DataNode &node)
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
+}
+
+
+
+const string &Minable::Name() const
+{
+	return name;
 }
 
 
