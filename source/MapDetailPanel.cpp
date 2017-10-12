@@ -525,18 +525,19 @@ void MapDetailPanel::DrawInfo()
 	
 	if(selectedPlanet && !selectedPlanet->Description().empty() && player.HasVisited(selectedPlanet))
 	{
-		const Sprite *orbitSprite = SpriteSet::Get("ui/orbits");
+		static const int X_OFFSET = 240;
+		static const int WIDTH = 500;
 		const Sprite *panelSprite = SpriteSet::Get("ui/description panel");
-		Point pos(Screen::Right() - orbitSprite->Width() - .5 * panelSprite->Width(),
+		Point pos(Screen::Right() - X_OFFSET - .5 * panelSprite->Width(),
 			Screen::Top() + .5 * panelSprite->Height());
 		SpriteShader::Draw(panelSprite, pos);
 		
 		WrappedText text;
 		text.SetFont(FontSet::Get(14));
 		text.SetAlignment(WrappedText::JUSTIFIED);
-		text.SetWrapWidth(480);
+		text.SetWrapWidth(WIDTH - 20);
 		text.Wrap(selectedPlanet->Description());
-		text.Draw(Point(Screen::Right() - orbitSprite->Width() - 500, Screen::Top() + 20), closeColor);
+		text.Draw(Point(Screen::Right() - X_OFFSET - WIDTH, Screen::Top() + 20), closeColor);
 	}
 	
 	DrawButtons("is ports");
