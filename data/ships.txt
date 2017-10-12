@@ -174,12 +174,12 @@ ship "Bactrian"
 		"shields" 17500
 		"hull" 8600
 		"required crew" 70
-		"bunks" 245
+		"bunks" 200
 		"mass" 940
 		"drag" 16.1
 		"heat dissipation" .4
 		"fuel capacity" 700
-		"cargo space" 530
+		"cargo space" 480
 		"outfit space" 740
 		"weapon capacity" 300
 		"engine capacity" 180
@@ -2871,3 +2871,117 @@ ship "Wasp"
 	explode "tiny explosion" 20
 	explode "small explosion" 10
 	description "The wasp is a medium-strength interceptor, designed by Syndicated Shipyards to serve as an escort for cargo vessels. Like most Syndicate ships, it is not particularly pretty, but it at least serves the purpose it was made for."
+
+ship "Hepatica"
+	sprite "ship/Hepatica"
+	attributes
+		category "Heavy Freighter"
+		"cost" 17600000
+		"shields" 12300
+		"hull" 7700
+		"required crew" 60
+		"bunks" 170
+		"mass" 940
+		"drag" 16.1
+		"heat dissipation" .4
+		"fuel capacity" 700
+		"cargo space" 720
+		"outfit space" 670
+		"weapon capacity" 210
+		"engine capacity" 170
+		weapon
+			"blast radius" 200
+			"shield damage" 2000
+			"hull damage" 1000
+			"hit force" 3000
+	outfits
+		"Sidewinder Missile Launcher" 4
+		"Sidewinder Missile" 200
+		"Laser Turret" 4
+		"Heavy Anti-Missile Turret" 2
+		
+		"Fusion Reactor"
+		"LP144a Battery Pack"
+		"D94-YV Shield Generator"
+		"Large Radar Jammer"
+		"Ramscoop"
+		
+		"X4700 Ion Thruster"
+		"X5200 Ion Steering"
+		"Hyperdrive"
+	engine -18 230
+	engine 18 230
+	gun -15 -226 "Sidewinder Missile Launcher"
+	gun 15 -226 "Sidewinder Missile Launcher"
+	gun -40 -133 "Sidewinder Missile Launcher"
+	gun -45 -128 "Sidewinder Missile Launcher"
+	turret -22 -148 "Laser Turret"
+	turret 26 -80 "Heavy Anti-Missile Turret"
+	turret -41 -20 "Laser Turret"
+	turret 32 -7 "Laser Turret"
+	turret 53 82 "Laser Turret"
+	turret -37 186 "Heavy Anti-Missile Turret"
+	fighter -38 -26
+	fighter 35 36
+	explode "large explosion" 45
+	explode "huge explosion" 30
+	"final explode" "final explosion large"
+	description “The first of a select few city-ships built by Lionheart Industries for colonization during the early days of colonization/what century was that?/. The Crataegus was used solely for initial colony development as it was dismantled upon arrival and its systems were used to jumpstart the colonies power and manufacturing abilities.”
+
+ship "Crataegus"
+	sprite "ship/Crataegus"
+	attributes
+		category "Transport"
+		"cost" 17600000
+		"shields" 12300
+		"hull" 7700
+		"required crew" 60
+		"bunks" 260
+		"mass" 940
+		"drag" 16.1
+		"heat dissipation" .4
+		"fuel capacity" 700
+		"cargo space" 320
+		"outfit space" 700
+		"weapon capacity" 210
+		"engine capacity" 180
+		weapon
+			"blast radius" 200
+			"shield damage" 2000
+			"hull damage" 1000
+			"hit force" 3000
+	outfits
+		"Sidewinder Missile Launcher" 4
+		"Sidewinder Missile" 200
+		"Laser Turret" 4
+		"Heavy Anti-Missile Turret" 2
+		
+		"Fusion Reactor"
+		"LP144a Battery Pack"
+		"D94-YV Shield Generator"
+		"Large Radar Jammer"
+		"Ramscoop"
+		
+		"X4700 Ion Thruster"
+		"X5200 Ion Steering"
+		"Hyperdrive"
+	engine -18 230
+	engine 18 230
+	gun -15 -226 "Sidewinder Missile Launcher"
+	gun 15 -226 "Sidewinder Missile Launcher"
+	gun -40 -133 "Sidewinder Missile Launcher"
+	gun -45 -128 "Sidewinder Missile Launcher"
+	turret -22 -148 "Laser Turret"
+	turret 26 -80 "Heavy Anti-Missile Turret"
+	turret -41 -20 "Laser Turret"
+	turret 32 -7 "Laser Turret"
+	turret 53 82 "Laser Turret"
+	turret -37 186 "Heavy Anti-Missile Turret"
+	fighter -38 -26
+	fighter 35 36
+	explode "small explosion" 25
+	explode "medium explosion" 35
+	explode "large explosion" 45
+	explode "huge explosion" 30
+	"final explode" "final explosion large"
+	description "This Lionheart city-ship was designed for colonist transport to supplement existing colonies and help boost the population. Its focus as a civilian transport meant the Crataegus had less firepower than its sister ship, the Bactrian. Slight modifications on the original design allowed for reductions in the crew size by automation of the more rudimentary processes. Revitalizing this Lionheart classic has been difficult, though due to its sheer size it ought to find some application as trans-galactic casinoes"
