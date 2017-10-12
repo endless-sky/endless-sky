@@ -2180,7 +2180,7 @@ mission "Large Bulk Delivery [0]"
 	description "Deliver <cargo> to <destination>. Payment is <payment>."
 	cargo random 40 2 .02
 	to offer
-		random < 70
+		random < 65
 		"cargo space" > 160
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
@@ -2199,7 +2199,7 @@ mission "Large Bulk Delivery [1]"
 	description "Deliver <cargo> to <destination>. Payment is <payment>."
 	cargo random 40 2 .02
 	to offer
-		random < 60
+		random < 55
 		"cargo space" > 160
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
@@ -2218,7 +2218,7 @@ mission "Large Bulk Delivery [2]"
 	description "Deliver <cargo> to <destination>. Payment is <payment>."
 	cargo random 40 2 .02
 	to offer
-		random < 50
+		random < 45
 		"cargo space" > 160
 	source
 		attributes "mining" "textiles" "factory" "farming" "fishing" "oil"
@@ -2307,7 +2307,7 @@ mission "Large Rush Delivery [0]"
 	description "Deliver <cargo> to <destination> by <date>. Payment is <payment>."
 	cargo random 20 6 .1
 	to offer
-		random < 90
+		random < 85
 		"cargo space" > 80
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
@@ -2327,7 +2327,7 @@ mission "Large Rush Delivery [1]"
 	description "Deliver <cargo> to <destination> by <date>. Payment is <payment>."
 	cargo random 20 6 .1
 	to offer
-		random < 80
+		random < 75
 		"cargo space" > 80
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
@@ -2347,7 +2347,7 @@ mission "Large Rush Delivery [2]"
 	description "Deliver <cargo> to <destination> by <date>. Payment is <payment>."
 	cargo random 20 6 .1
 	to offer
-		random < 70
+		random < 65
 		"cargo space" > 80
 	source
 		attributes "mining" "textiles" "factory" "farming" "fishing" "oil"
@@ -2368,7 +2368,7 @@ mission "Large Rush Delivery [3]"
 	description "Deliver <cargo> to <destination> by <date>. Payment is <payment>."
 	cargo random 20 6 .1
 	to offer
-		random < 60
+		random < 55
 		"cargo space" > 80
 	source
 		attributes "mining" "textiles" "factory" "farming" "fishing" "oil"

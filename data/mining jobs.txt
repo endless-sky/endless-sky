@@ -11,18 +11,18 @@
 # The payment for mining jobs is the normal sale value, plus the larger of 400
 # credits per ton or 10% of the payload's value.
 
-mission "Small Mining [0]"
+mission "Mining, Small [0]"
 	name "Mine iron for <planet>"
 	description "Mine 10 tons of iron from asteroids and deliver them to the factories on <destination>. Payment is <payment>."
 	job
 	repeat
 	to offer
 		random < 25
-		"Small Mining [0]: active" < 3
+		"Mining, Small [0]: active" < 3
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai" "Wanderer" "Coalition"
 	destination
-		distance 0 3
+		distance 1 3
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai" "Wanderer" "Coalition"
 		attributes "factory"
 	on complete
@@ -31,18 +31,18 @@ mission "Small Mining [0]"
 		payment 16000
 		dialog "You drop off the iron ore and collect your payment of <payment>."
 
-mission "Small Mining [1]"
+mission "Mining, Small [1]"
 	name "Mine aluminum for <planet>"
 	description "Mine 10 tons of aluminum from asteroids and deliver them to the shipyard on <destination>. Payment is <payment>."
 	job
 	repeat
 	to offer
 		random < 25
-		"Small Mining [1]: active" < 3
+		"Mining, Small [1]: active" < 3
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai" "Wanderer" "Coalition"
 	destination
-		distance 0 3
+		distance 1 3
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai" "Wanderer" "Coalition"
 		attributes shipyard
 	on complete
@@ -51,18 +51,18 @@ mission "Small Mining [1]"
 		payment 22000
 		dialog "You drop off the aluminum ore and collect your payment of <payment>."
 
-mission "Small Mining [2]"
+mission "Mining, Small [2]"
 	name "Mine titanium for <planet>"
 	description "Mine 10 tons of titanium from asteroids and deliver them to the shipyard on <destination>. Payment is <payment>."
 	job
 	repeat
 	to offer
 		random < 25
-		"Small Mining [2]: active" < 3
+		"Mining, Small [2]: active" < 3
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai" "Wanderer" "Coalition"
 	destination
-		distance 0 3
+		distance 1 3
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai" "Wanderer" "Coalition"
 		attributes shipyard
 	on complete
@@ -71,18 +71,18 @@ mission "Small Mining [2]"
 		payment 29000
 		dialog "You drop off the titanium ore and collect your payment of <payment>."
 
-mission "Small Mining [3]"
+mission "Mining, Small [3]"
 	name "Mine copper for <planet>"
 	description "Mine 10 tons of copper from asteroids and deliver them to <destination>. Payment is <payment>."
 	job
 	repeat
 	to offer
 		random < 20
-		"Small Mining [3]: active" < 3
+		"Mining, Small [3]: active" < 3
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai" "Wanderer" "Coalition"
 	destination
-		distance 0 4
+		distance 1 4
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai" "Wanderer" "Coalition"
 		attributes shipyard
 		attributes "military" "factory"
@@ -92,18 +92,18 @@ mission "Small Mining [3]"
 		payment 34500
 		dialog "You drop off the copper ore and collect your payment of <payment>."
 
-mission "Small Mining [4]"
+mission "Mining, Small [4]"
 	name "Mine neodymium for <planet>"
 	description "Mine 10 tons of neodymium from asteroids and deliver them to the shipyard on <destination>. Payment is <payment>."
 	job
 	repeat
 	to offer
 		random < 20
-		"Small Mining [4]: active" < 3
+		"Mining, Small [4]: active" < 3
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai" "Wanderer" "Coalition"
 	destination
-		distance 0 3
+		distance 1 3
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai" "Wanderer" "Coalition"
 		attributes shipyard
 	on complete
@@ -112,18 +112,18 @@ mission "Small Mining [4]"
 		payment 43700
 		dialog "You drop off the neodymium ore and collect your payment of <payment>."
 
-mission "Small Mining [5]"
+mission "Mining, Small [5]"
 	name "Mine tungsten for <planet>"
 	description "Mine 5 tons of tungsten from asteroids and deliver them to the shipyard on <destination>. Payment is <payment>."
 	job
 	repeat
 	to offer
 		random < 10
-		"Small Mining [5]: active" < 3
+		"Mining, Small [5]: active" < 3
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai" "Wanderer" "Coalition"
 	destination
-		distance 0 3
+		distance 1 3
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai" "Wanderer" "Heliarch"
 		attributes shipyard
 		attributes "military" "factory"
@@ -133,18 +133,18 @@ mission "Small Mining [5]"
 		payment 25875
 		dialog "You drop off the tungsten ore and collect your payment of <payment>."
 
-mission "Small Mining [6]"
+mission "Mining, Small [6]"
 	name "Mine uranium for <planet>"
 	description "Mine 5 tons of uranium from asteroids and deliver them to the shipyard on <destination>. Payment is <payment>."
 	job
 	repeat
 	to offer
 		random < 10
-		"Small Mining [6]: active" < 3
+		"Mining, Small [6]: active" < 3
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai" "Wanderer" "Coalition"
 	destination
-		distance 0 3
+		distance 1 3
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai" "Wanderer" "Heliarch"
 		attributes shipyard
 		attributes "military" "factory"
@@ -156,20 +156,19 @@ mission "Small Mining [6]"
 
 
 
-mission "Medium Mining [0]"
+mission "Mining, Medium [0]"
 	name "Mine iron for <planet>"
 	description "Mine 30 tons of iron from asteroids and deliver them to the factories on <destination>. Payment is <payment>."
 	job
 	repeat
 	to offer
 		random < 15
-		"completed Fe orders" = "Small Mining [0]: done"
-		"completed Fe orders" += "Small Rush Mining [0]: done"
-		random < "completed iron orders"
+		"completed Fe orders" = "Mining, Small [0]: done" + "Mining, Expedited, Small [0]: done" + "Mining, Medium [0]: done"
+		random < "completed Fe orders"
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai" "Wanderer" "Coalition"
 	destination
-		distance 0 5
+		distance 1 5
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai" "Wanderer" "Coalition"
 		attributes "factory"
 	on complete
@@ -178,20 +177,19 @@ mission "Medium Mining [0]"
 		payment 48000
 		dialog "You drop off the iron ore and collect your payment of <payment>."
 
-mission "Medium Mining [1]"
+mission "Mining, Medium [1]"
 	name "Mine aluminum for <planet>"
 	description "Mine 30 tons of aluminum from asteroids and deliver them to the shipyard on <destination>. Payment is <payment>."
 	job
 	repeat
 	to offer
 		random < 15
-		"completed Al orders" = "Small Mining [1]: done"
-		"completed Al orders" += "Small Rush Mining [1]: done"
+		"completed Al orders" = "Mining, Small [1]: done" + "Mining, Expedited, Small [1]: done" + "Mining, Medium [1]: done"
 		random < "completed Al orders"
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai" "Wanderer" "Coalition"
 	destination
-		distance 0 4
+		distance 1 4
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai" "Wanderer" "Coalition"
 		attributes shipyard
 	on complete
@@ -200,20 +198,19 @@ mission "Medium Mining [1]"
 		payment 66000
 		dialog "You drop off the aluminum ore and collect your payment of <payment>."
 
-mission "Medium Mining [2]"
+mission "Mining, Medium [2]"
 	name "Mine titanium for <planet>"
 	description "Mine 30 tons of titanium from asteroids and deliver them to the shipyard on <destination>. Payment is <payment>."
 	job
 	repeat
 	to offer
 		random < 15
-		"completed Ti orders" = "Small Mining [2]: done"
-		"completed Ti orders" += "Small Rush Mining [2]: done"
+		"completed Ti orders" = "Mining, Small [2]: done" + "Mining, Expedited, Small [2]: done" + "Mining, Medium [2]: done"
 		random < "completed Ti orders"
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai" "Wanderer" "Coalition"
 	destination
-		distance 0 4
+		distance 1 4
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai" "Wanderer" "Coalition"
 		attributes shipyard
 		attributes "military" "factory"
@@ -223,20 +220,19 @@ mission "Medium Mining [2]"
 		payment 87000
 		dialog "You drop off the titanium ore and collect your payment of <payment>."
 
-mission "Medium Mining [3]"
+mission "Mining, Medium [3]"
 	name "Mine copper for <planet>"
 	description "Mine 30 tons of copper from asteroids and deliver them to <destination>. Payment is <payment>."
 	job
 	repeat
 	to offer
 		random < 10
-		"completed Cu orders" = "Small Mining [3]: done"
-		"completed Cu orders" += "Small Rush Mining [3]: done"
+		"completed Cu orders" = "Mining, Small [3]: done" + "Mining, Expedited, Small [3]: done" + "Mining, Medium [3]: done"
 		random < "completed Cu orders"
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai" "Wanderer" "Coalition"
 	destination
-		distance 0 5
+		distance 1 5
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai" "Wanderer" "Coalition"
 		attributes shipyard
 		attributes "military" "factory"
@@ -246,20 +242,19 @@ mission "Medium Mining [3]"
 		payment 103500
 		dialog "You drop off the copper ore and collect your payment of <payment>."
 
-mission "Medium Mining [4]"
+mission "Mining, Medium [4]"
 	name "Mine neodymium for <planet>"
 	description "Mine 30 tons of neodymium from asteroids and deliver them to the shipyard on <destination>. Payment is <payment>."
 	job
 	repeat
 	to offer
 		random < 10
-		"completed Nd orders" = "Small Mining [4]: done"
-		"completed Nd orders" += "Small Rush Mining [4]: done"
+		"completed Nd orders" = "Mining, Small [4]: done" + "Mining, Expedited, Small [4]: done" + "Mining, Medium [4]: done"
 		random < "completed Nd orders"
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai" "Wanderer" "Coalition"
 	destination
-		distance 0 4
+		distance 1 4
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai" "Wanderer" "Coalition"
 		attributes shipyard
 		attributes "military" "factory"
@@ -269,20 +264,19 @@ mission "Medium Mining [4]"
 		payment 131100
 		dialog "You drop off the neodymium ore and collect your payment of <payment>."
 
-mission "Medium Mining [5]"
+mission "Mining, Medium [5]"
 	name "Mine tungsten for <planet>"
 	description "Mine 15 tons of tungsten from asteroids and deliver them to the shipyard on <destination>. Payment is <payment>."
 	job
 	repeat
 	to offer
 		random < 5
-		"completed W orders" = "Small Mining [5]: done"
-		"completed W orders" += "Small Rush Mining [5]: done"
+		"completed W orders" = "Mining, Small [5]: done" + "Mining, Expedited, Small [5]: done" + "Mining, Medium [5]: done"
 		random < "completed W orders"
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai" "Wanderer" "Coalition"
 	destination
-		distance 0 4
+		distance 1 4
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai" "Wanderer" "Heliarch"
 		attributes shipyard
 		attributes "military" "factory"
@@ -292,20 +286,19 @@ mission "Medium Mining [5]"
 		payment 77625
 		dialog "You drop off the tungsten ore and collect your payment of <payment>."
 
-mission "Medium Mining [6]"
+mission "Mining, Medium [6]"
 	name "Mine uranium for <planet>"
 	description "Mine 15 tons of uranium from asteroids and deliver them to the shipyard on <destination>. Payment is <payment>."
 	job
 	repeat
 	to offer
 		random < 5
-		"completed U orders" = "Small Mining [6]: done"
-		"completed U orders" += "Small Rush Mining [6]: done"
+		"completed U orders" = "Mining, Small [6]: done" + "Mining, Expedited, Small [6]: done" + "Mining, Medium [6]: done"
 		random < "completed U orders"
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai" "Wanderer" "Coalition"
 	destination
-		distance 0 4
+		distance 1 4
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai" "Wanderer" "Heliarch"
 		attributes shipyard
 		attributes "military" "factory"
@@ -317,7 +310,7 @@ mission "Medium Mining [6]"
 
 
 
-mission "Large Mining [0]"
+mission "Mining, Large [0]"
 	name "Mine iron for <planet>"
 	description "Mine 150 tons of iron from asteroids and deliver them to the factories on <destination>. Payment is <payment>."
 	job
@@ -329,7 +322,7 @@ mission "Large Mining [0]"
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai" "Wanderer" "Coalition"
 	destination
-		distance 0 5
+		distance 1 5
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai" "Wanderer" "Coalition"
 		attributes "factory"
 	on complete
@@ -338,7 +331,7 @@ mission "Large Mining [0]"
 		payment 240000
 		dialog "You drop off the iron ore and collect your payment of <payment>."
 
-mission "Large Mining [1]"
+mission "Mining, Large [1]"
 	name "Mine aluminum for <planet>"
 	description "Mine 120 tons of aluminum from asteroids and deliver them to the shipyard on <destination>. Payment is <payment>."
 	job
@@ -350,7 +343,7 @@ mission "Large Mining [1]"
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai" "Wanderer" "Coalition"
 	destination
-		distance 0 5
+		distance 1 5
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai" "Wanderer" "Coalition"
 		attributes shipyard
 		attributes "military" "factory"
@@ -360,7 +353,7 @@ mission "Large Mining [1]"
 		payment 264000
 		dialog "You drop off the aluminum ore and collect your payment of <payment>."
 
-mission "Large Mining [Si]"
+mission "Mining, Large [Si]"
 	name "Mine silicon for <planet>"
 	description "Mine 150 tons of silicon from asteroids and deliver them to the factories on <destination>. Payment is <payment>."
 	job
@@ -372,7 +365,7 @@ mission "Large Mining [Si]"
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai" "Wanderer" "Coalition"
 	destination
-		distance 0 5
+		distance 1 5
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai" "Wanderer" "Coalition"
 		attributes "factory"
 	on complete
@@ -384,7 +377,8 @@ mission "Large Mining [Si]"
 
 
 # Rush mining pays a bonus of 800 per ton, or 25% of the payload value.
-mission "Small Rush Mining [0]"
+# "Expedited" used so that all rush mining jobs are checked before non-rush mining jobs.
+mission "Mining, Expedited, Small [0]"
 	name "Urgent iron mining request"
 	description "Mine 10 tons of iron from asteroids and deliver them to the factories on <destination> by <date>. Payment is <payment>."
 	job
@@ -393,11 +387,11 @@ mission "Small Rush Mining [0]"
 	cargo "Rush Order: Iron" 1
 	to offer
 		random < 15
-		"Small Mining [0]: done" > 4
+		"Mining, Small [0]: done" > 4
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai" "Wanderer" "Coalition"
 	destination
-		distance 0 4
+		distance 1 4
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai" "Wanderer" "Coalition"
 		attributes "factory"
 	on complete
@@ -405,9 +399,9 @@ mission "Small Rush Mining [0]"
 		"rush mining deliveries"++
 		outfit "Iron" -10
 		payment 20000 31
-		dialog "You drop off the iron ore and collect your payment of <payment>."
+		dialog "The factory's supervisor thanks you for delivering the iron ore on time and pays you <payment>."
 
-mission "Small Rush Mining [1]"
+mission "Mining, Expedited, Small [1]"
 	name "Urgent aluminum mining request"
 	description "Mine 10 tons of aluminum from asteroids and deliver them to the shipyard on <destination> by <date>. Payment is <payment>."
 	job
@@ -416,11 +410,11 @@ mission "Small Rush Mining [1]"
 	cargo "Rush Order: Aluminum" 1
 	to offer
 		random < 15
-		"Small Mining [1]: done" > 4
+		"Mining, Small [1]: done" > 4
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai" "Wanderer" "Coalition"
 	destination
-		distance 0 3
+		distance 1 3
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai" "Wanderer" "Coalition"
 		attributes shipyard
 	on complete
@@ -428,9 +422,9 @@ mission "Small Rush Mining [1]"
 		"rush mining deliveries"++
 		outfit "Aluminum" -10
 		payment 26000 31
-		dialog "You drop off the aluminum ore and collect your payment of <payment>."
+		dialog "The shipyard's supervisor thanks you for delivering the aluminum ore on time and pays you <payment>."
 
-mission "Small Rush Mining [2]"
+mission "Mining, Expedited, Small [2]"
 	name "Urgent titanium mining request"
 	description "Mine 10 tons of titanium from asteroids and deliver them to the shipyard on <destination> by <date>. Payment is <payment>."
 	job
@@ -439,11 +433,11 @@ mission "Small Rush Mining [2]"
 	cargo "Rush Order: Titanium" 1
 	to offer
 		random < 15
-		"Small Mining [2]: done" > 4
+		"Mining, Small [2]: done" > 4
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai" "Wanderer" "Coalition"
 	destination
-		distance 0 3
+		distance 1 3
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai" "Wanderer" "Coalition"
 		attributes shipyard
 	on complete
@@ -451,9 +445,9 @@ mission "Small Rush Mining [2]"
 		"rush mining deliveries"++
 		outfit "Titanium" -10
 		payment 33000 31
-		dialog "You drop off the titanium ore and collect your payment of <payment>."
+		dialog "The shipyard's supervisor thanks you for delivering the titanium ore on time and pays you <payment>."
 
-mission "Small Rush Mining [3]"
+mission "Mining, Expedited, Small [3]"
 	name "Urgent copper mining request"
 	description "Mine 10 tons of copper from asteroids and deliver them to <destination> by <date>. Payment is <payment>."
 	job
@@ -462,12 +456,11 @@ mission "Small Rush Mining [3]"
 	cargo "Rush Order: Copper" 1
 	to offer
 		random < 10
-		"Small Mining [3]: done" > 4
+		"Mining, Small [3]: done" > 4
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai" "Wanderer" "Coalition"
 	destination
-		"mining deliveries"++
-		distance 0 7
+		distance 1 7
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai" "Wanderer" "Coalition"
 		attributes shipyard
 		attributes "military" "factory"
@@ -478,7 +471,7 @@ mission "Small Rush Mining [3]"
 		payment 38000 31
 		dialog "You drop off the copper ore and collect your payment of <payment>."
 
-mission "Small Rush Mining [4]"
+mission "Mining, Expedited, Small [4]"
 	name "Urgent neodymium mining request"
 	description "Mine 10 tons of neodymium from asteroids and deliver them to the shipyard on <destination> by <date>. Payment is <payment>."
 	job
@@ -487,11 +480,11 @@ mission "Small Rush Mining [4]"
 	cargo "Rush Order: Neodymium" 1
 	to offer
 		random < 10
-		"Small Mining [4]: done" > 4
+		"Mining, Small [4]: done" > 4
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai" "Wanderer" "Coalition"
 	destination
-		distance 0 3
+		distance 1 3
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai" "Wanderer" "Coalition"
 		attributes shipyard
 	on complete
@@ -499,9 +492,9 @@ mission "Small Rush Mining [4]"
 		"rush mining deliveries"++
 		outfit "Neodymium" -10
 		payment 47500 31
-		dialog "You drop off the neodymium ore and collect your payment of <payment>."
+		dialog "The shipyard's supervisor thanks you for delivering the neodymium ore on time and pays you <payment>."
 
-mission "Small Rush Mining [5]"
+mission "Mining, Expedited, Small [5]"
 	name "Urgent tungsten mining request"
 	description "Mine 5 tons of tungsten from asteroids and deliver them to the shipyard on <destination> by <date>. Payment is <payment>."
 	job
@@ -510,7 +503,7 @@ mission "Small Rush Mining [5]"
 	cargo "Rush Order: Tungsten" 1
 	to offer
 		random < 5
-		"Small Mining [5]: done" > 4
+		"Mining, Small [5]: done" > 4
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai" "Wanderer" "Coalition"
 	destination
@@ -523,9 +516,9 @@ mission "Small Rush Mining [5]"
 		"rush mining deliveries"++
 		outfit "Tungsten" -5
 		payment 28125 31
-		dialog "You drop off the tungsten ore and collect your payment of <payment>."
+		dialog "The shipyard's supervisor thanks you for delivering the tungsten ore on time and pays you <payment>."
 
-mission "Small Rush Mining [6]"
+mission "Mining, Expedited, Small [6]"
 	name "Urgent uranium mining request"
 	description "Mine 5 tons of uranium from asteroids and deliver them to the shipyard on <destination> by <date>. Payment is <payment>."
 	job
@@ -534,7 +527,7 @@ mission "Small Rush Mining [6]"
 	cargo "Rush Order: Uranium" 1
 	to offer
 		random < 5
-		"Small Mining [6]: done" > 4
+		"Mining, Small [6]: done" > 4
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai" "Wanderer" "Coalition"
 	destination
@@ -547,11 +540,11 @@ mission "Small Rush Mining [6]"
 		"rush mining deliveries"++
 		outfit "Uranium" -5
 		payment 31250 31
-		dialog "You drop off the uranium ore and collect your payment of <payment>."
+		dialog "The shipyard's supervisor thanks you for delivering the uranium ore on time and pays you <payment>."
 
 
 
-mission "Medium Rush Mining [0]"
+mission "Mining, Expedited, Medium [0]"
 	name "Urgent iron mining request"
 	description "Mine 30 tons of iron from asteroids and deliver them to the factories on <destination> by <date>. Payment is <payment>."
 	job
@@ -561,11 +554,11 @@ mission "Medium Rush Mining [0]"
 	to offer
 		random < 15
 		"rush mining deliveries" > 20
-		"Small Rush Mining [0]: done" > 2
+		"Mining, Expedited, Small [0]: done" > 2
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai" "Wanderer" "Coalition"
 	destination
-		distance 0 5
+		distance 1 5
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai" "Wanderer" "Coalition"
 		attributes "factory"
 	on complete
@@ -573,9 +566,9 @@ mission "Medium Rush Mining [0]"
 		"rush mining deliveries"++
 		outfit "Iron" -30
 		payment 60000 41
-		dialog "You drop off the iron ore and collect your payment of <payment>."
+		dialog "The factory's supervisor thanks you for delivering the iron ore on time and pays you <payment>."
 
-mission "Medium Rush Mining [1]"
+mission "Mining, Expedited, Medium [1]"
 	name "Urgent aluminum mining request"
 	description "Mine 30 tons of aluminum from asteroids and deliver them to the shipyard on <destination> by <date>. Payment is <payment>."
 	job
@@ -585,11 +578,11 @@ mission "Medium Rush Mining [1]"
 	to offer
 		random < 15
 		"rush mining deliveries" > 20
-		"Small Rush Mining [1]: done" > 2
+		"Mining, Expedited, Small [1]: done" > 2
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai" "Wanderer" "Coalition"
 	destination
-		distance 0 4
+		distance 1 4
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai" "Wanderer" "Coalition"
 		attributes shipyard
 	on complete
@@ -597,9 +590,9 @@ mission "Medium Rush Mining [1]"
 		"rush mining deliveries"++
 		outfit "Aluminum" -30
 		payment 78000 41
-		dialog "You drop off the aluminum ore and collect your payment of <payment>."
+		dialog "The shipyard's supervisor thanks you for delivering the aluminum ore on time and pays you <payment>."
 
-mission "Medium Rush Mining [2]"
+mission "Mining, Expedited, Medium [2]"
 	name "Urgent titanium mining request"
 	description "Mine 30 tons of titanium from asteroids and deliver them to the shipyard on <destination> by <date>. Payment is <payment>."
 	job
@@ -609,7 +602,7 @@ mission "Medium Rush Mining [2]"
 	to offer
 		random < 15
 		"rush mining deliveries" > 20
-		"Small Rush Mining [2]: done" > 2
+		"Mining, Expedited, Small [2]: done" > 2
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai" "Wanderer" "Coalition"
 	destination
@@ -622,9 +615,9 @@ mission "Medium Rush Mining [2]"
 		"rush mining deliveries"++
 		outfit "Titanium" -30
 		payment 99000 41
-		dialog "You drop off the titanium ore and collect your payment of <payment>."
+		dialog "The shipyard's supervisor thanks you for delivering the titanium ore on time and pays you <payment>."
 
-mission "Medium Rush Mining [3]"
+mission "Mining, Expedited, Medium [3]"
 	name "Urgent copper mining request"
 	description "Mine 30 tons of copper from asteroids and deliver them to <destination> by <date>. Payment is <payment>."
 	job
@@ -634,7 +627,7 @@ mission "Medium Rush Mining [3]"
 	to offer
 		random < 10
 		"rush mining deliveries" > 20
-		"Small Rush Mining [3]: done" > 2
+		"Mining, Expedited, Small [3]: done" > 2
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai" "Wanderer" "Coalition"
 	destination
@@ -649,7 +642,7 @@ mission "Medium Rush Mining [3]"
 		payment 114000 41
 		dialog "You drop off the copper ore and collect your payment of <payment>."
 
-mission "Medium Rush Mining [4]"
+mission "Mining, Expedited, Medium [4]"
 	name "Urgent neodymium mining request"
 	description "Mine 30 tons of neodymium from asteroids and deliver them to the shipyard on <destination> by <date>. Payment is <payment>."
 	job
@@ -659,7 +652,7 @@ mission "Medium Rush Mining [4]"
 	to offer
 		random < 10
 		"rush mining deliveries" > 20
-		"Small Rush Mining [4]: done" > 2
+		"Mining, Expedited, Small [4]: done" > 2
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai" "Wanderer" "Coalition"
 	destination
@@ -672,9 +665,9 @@ mission "Medium Rush Mining [4]"
 		"rush mining deliveries"++
 		outfit "Neodymium" -30
 		payment 142500 41
-		dialog "You drop off the neodymium ore and collect your payment of <payment>."
+		dialog "The shipyard's supervisor thanks you for delivering the neodymium ore on time and pays you <payment>."
 
-mission "Medium Rush Mining [5]"
+mission "Mining, Expedited, Medium [5]"
 	name "Urgent tungsten mining request"
 	description "Mine 15 tons of tungsten from asteroids and deliver them to the shipyard on <destination> by <date>. Payment is <payment>."
 	job
@@ -684,7 +677,7 @@ mission "Medium Rush Mining [5]"
 	to offer
 		random < 5
 		"rush mining deliveries" > 20
-		"Small Rush Mining [5]: done" > 2
+		"Mining, Expedited, Small [5]: done" > 2
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai" "Wanderer" "Coalition"
 	destination
@@ -697,9 +690,9 @@ mission "Medium Rush Mining [5]"
 		"rush mining deliveries"++
 		outfit "Tungsten" -15
 		payment 84375 41
-		dialog "You drop off the tungsten ore and collect your payment of <payment>."
+		dialog "The shipyard's supervisor thanks you for delivering the tungsten ore on time and pays you <payment>."
 
-mission "Medium Rush Mining [6]"
+mission "Mining, Expedited, Medium [6]"
 	name "Urgent uranium mining request"
 	description "Mine 15 tons of uranium from asteroids and deliver them to the shipyard on <destination> by <date>. Payment is <payment>."
 	job
@@ -709,7 +702,7 @@ mission "Medium Rush Mining [6]"
 	to offer
 		random < 5
 		"rush mining deliveries" > 20
-		"Small Rush Mining [6]: done" > 2
+		"Mining, Expedited, Small [6]: done" > 2
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai" "Wanderer" "Coalition"
 	destination
@@ -722,11 +715,11 @@ mission "Medium Rush Mining [6]"
 		"rush mining deliveries"++
 		outfit "Uranium" -15
 		payment 93750 41
-		dialog "You drop off the uranium ore and collect your payment of <payment>."
+		dialog "The shipyard's supervisor thanks you for delivering the uranium ore on time and pays you <payment>."
 
 
 
-mission "Large Rush Mining [0]"
+mission "Mining, Expedited, Large [0]"
 	name "Large urgent iron mining request"
 	description "Mine 150 tons of iron from asteroids and deliver them to the factories on <destination> by <date>. Payment is <payment>."
 	job
@@ -736,7 +729,7 @@ mission "Large Rush Mining [0]"
 	to offer
 		random < 10
 		"cargo space" > 150
-		"Medium Rush Mining [0]: done" > 5
+		"Mining, Expedited, Medium [0]: done" > 5
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai" "Wanderer" "Coalition"
 	destination
@@ -748,9 +741,9 @@ mission "Large Rush Mining [0]"
 		"rush mining deliveries"++
 		outfit "Iron" -150
 		payment 300000 53
-		dialog "You drop off the iron ore and collect your payment of <payment>."
+		dialog "The factory's supervisor thanks you for delivering the iron ore on time and pays you <payment>."
 
-mission "Large Rush Mining [1]"
+mission "Mining, Expedited, Large [1]"
 	name "Large urgent aluminum mining request"
 	description "Mine 120 tons of aluminum from asteroids and deliver them to the shipyard on <destination> by <date>. Payment is <payment>."
 	job
@@ -760,7 +753,7 @@ mission "Large Rush Mining [1]"
 	to offer
 		random < 10
 		"cargo space" > 120
-		"Medium Rush Mining [1]: done" > 5
+		"Mining, Expedited, Medium [1]: done" > 5
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai" "Wanderer" "Coalition"
 	destination
@@ -773,9 +766,9 @@ mission "Large Rush Mining [1]"
 		"rush mining deliveries"++
 		outfit "Aluminum" -120
 		payment 312000 53
-		dialog "You drop off the aluminum ore and collect your payment of <payment>."
+		dialog "The shipyard's supervisor thanks you for delivering the aluminum ore on time and pays you <payment>."
 
-mission "Large Rush Mining [Si]"
+mission "Mining, Expedited, Large [Si]"
 	name "Large urgent silicon mining request"
 	description "Mine 150 tons of silicon from asteroids and deliver them to the factories on <destination> by <date>. Payment is <payment>."
 	job
@@ -785,7 +778,7 @@ mission "Large Rush Mining [Si]"
 	to offer
 		random < 10
 		"cargo space" > 150
-		"Large Mining [Si]: done" > 5
+		"Mining, Large [Si]: done" > 5
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai" "Wanderer" "Coalition"
 	destination
@@ -797,4 +790,76 @@ mission "Large Rush Mining [Si]"
 		"rush mining deliveries"++
 		outfit "Silicon" -150
 		payment 180000 53
-		dialog "You drop off the silicon ore and collect your payment of <payment>."
+		dialog "The factory's supervisor thanks you for delivering the silicon ore on time and pays you <payment>."
+
+
+
+# Since mission NPCs will fill up on cargo, they should always be given the
+# `uninterested` personality, at least until there is a way to tell an NPC to
+# travel to a planet after it fills up on cargo (rather than follow the player).
+# A random condition is given in the `to fail` to ensure active competition
+# missions actually offer competition for minables. Note that this condition
+# is checked twice before the mission is active when offered.
+
+# Competition for mining jobs in human space. Will not follow the player around.
+mission "Human Mining Competition [0]"
+	invisible
+	landing
+	repeat
+	minor
+	name "Human Miners"
+	source
+		near "Sol" 100
+	to offer
+		"Human Mining Competition [0]: active" < 10
+		"small_mining" = "Mining, Small [0]: active" + 2 * "Mining, Expedited, Small [0]: active"
+		"small_mining" += "Mining, Small [1]: active" + 2 * "Mining, Expedited, Small [1]: active"
+		"small_mining" += "Mining, Small [2]: active" + 2 * "Mining, Expedited, Small [2]: active"
+		"small_mining" += "Mining, Small [3]: active" + 2 * "Mining, Expedited, Small [3]: active"
+		"small_mining" += "Mining, Small [4]: active" + 2 * "Mining, Expedited, Small [4]: active"
+		"small_mining" += "Mining, Small [5]: active" + 2 * "Mining, Expedited, Small [5]: active"
+		"small_mining" += "Mining, Small [6]: active" + 2 * "Mining, Expedited, Small [6]: active"
+		"med_mining" = "Mining, Medium [0]: active" + 2 * "Mining, Expedited, Medium [0]: active"
+		"med_mining" += "Mining, Medium [1]: active" + 2 * "Mining, Expedited, Medium [1]: active"
+		"med_mining" += "Mining, Medium [2]: active" + 2 * "Mining, Expedited, Medium [2]: active"
+		"med_mining" += "Mining, Medium [3]: active" + 2 * "Mining, Expedited, Medium [3]: active"
+		"med_mining" += "Mining, Medium [4]: active" + 2 * "Mining, Expedited, Medium [4]: active"
+		"med_mining" += "Mining, Medium [5]: active" + 2 * "Mining, Expedited, Medium [5]: active"
+		"med_mining" += "Mining, Medium [6]: active" + 2 * "Mining, Expedited, Medium [6]: active"
+		"large_mining" = "Mining, Large [0]: active" + 2 * "Mining, Expedited, Large [0]: active"
+		"large_mining" += "Mining, Large [1]: active" + 2 * "Mining, Expedited, Large [1]: active"
+		"large_mining" += "Mining, Large [Si]: active" + 2 * "Mining, Expedited, Large [Si]: active"
+		"mission_weight" = "small mining" * ( 1 + "med_mining" ) * ( 1 + "large_mining" )
+		random < "mission_weight"
+	to fail
+		random < 25
+	npc kill
+		government "Independent"
+		personality mining harvests uninterested
+		system
+			distance 4
+		fleet "Human Miners"
+	npc kill
+		government "Independent"
+		personality mining harvests uninterested
+		system
+			distance 4
+		fleet "Human Miners"
+	npc kill
+		government "Independent"
+		personality mining harvests uninterested
+		system
+			distance 4
+		fleet "Human Miners"
+	npc kill
+		government "Independent"
+		personality mining harvests uninterested
+		system
+			distance 4
+		fleet "Human Miners"
+	npc kill
+		government "Independent"
+		personality mining harvests uninterested
+		system
+			distance 4
+		fleet "Human Miners"
