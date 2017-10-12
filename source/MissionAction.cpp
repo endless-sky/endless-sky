@@ -164,10 +164,18 @@ void MissionAction::Load(const DataNode &node, const string &missionName)
 			int maxDays = (child.Size() >= 4 ? child.Value(3) : minDays);
 			if(maxDays < minDays)
 				swap(minDays, maxDays);
-			events[child.Token(1)] = make_pair(minDays, maxDays);
+			string eventName = child.Token(1);
+			events[eventName] = make_pair(minDays, maxDays);
+			// Create a GameData reference to this mission name.
+			GameData::Events().Get(eventName);
 		}
 		else if(key == "fail")
-			fail.insert(child.Size() >= 2 ? child.Token(1) : missionName);
+		{
+			string toFail = child.Size() >= 2 ? child.Token(1) : missionName;
+			fail.insert(toFail);
+			// Create a GameData reference to this mission name.
+			GameData::Missions().Get(toFail);
+		}
 		else
 			conditions.Add(child);
 	}
