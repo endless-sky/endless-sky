@@ -255,10 +255,11 @@ mission "Deep: Kraz Convoy"
 mission "Deep: Mystery Cubes 0"
 	minor
 	name `Gaining an Edge`
-	description `Land on the designated system to place the mysterious cubes that Lieutenant Paris has given you, then return to <destination>.`
+	description `Land on the designated systems to place the mysterious cubes that Lieutenant Paris has given you, then return to <destination>.`
 	source
 		attributes deep
 		near Zosma 1 10
+		not attributes station
 	destination Memory
 	stopover "New Sahara"
 	stopover "Bounty"
@@ -357,7 +358,7 @@ mission "Deep: Mystery Cubes 1"
 	name `Travel to <planet>`
 	description `Travel to <destination> to learn more about the situation with the warlord Beelzebub.`
 	source
-		government Republic "Free Worlds" Neutral Syndicate Independent
+		government "Republic" "Free Worlds" "Neutral" "Syndicate" "Independent"
 		near Sol 1 100
 	destination Luna
 	to offer
@@ -465,9 +466,7 @@ mission "Deep: Mystery Cubes 3: Escorts"
 			variant
 				"Combat Drone" 4
 
-# Should there be a mission with a specific DSS belonging to Paris that is `accompany save` and
-# `personality timid escort`? It's possible (though very unlikely) that the escorts above get
-# killed by the DMC3 opponents and naturally spawning pirates.
+
 
 mission "Deep: Mystery Cubes 3"
 	landing
@@ -686,7 +685,7 @@ mission "Deep: TMBR: Hint"
 	description `A human on <origin> indicated she saw "There Might Be Riots" perform on <destination> last week. Hopefully they are still there.`
 	source
 		near "Fah Soom" 1 10
-		government Hai
+		government "Hai"
 		attributes "human tourism"
 	destination Greenwater
 	to offer
@@ -985,7 +984,7 @@ mission "Deep: Project Hawking"
 	description `Fetch research supplies from <stopovers> and return them to <destination> by <date> for "Project Hawking."`
 	source
 		attributes deep
-		attributes outfitter
+		not attributes station
 	destination Midgard
 	clearance
 	stopover "Carbuncle Station"
@@ -1796,6 +1795,7 @@ mission "Deep: Scientist Rescue 0"
 	description "A Star Queen transporting prominent Deep scientists has gone missing. It was last seen near the Betelgeuse system in the Far North. Find its whereabouts and return it to <destination> if possible."
 	source
 		attributes deep
+		not attributes station
 	destination Valhalla
 	waypoint Betelgeuse
 	to offer
@@ -1925,9 +1925,9 @@ mission "Deep: Scientist Rescue 0: Haven Pirates Backup"
 
 
 mission "Deep: Scientist Rescue 1"
+	landing
 	name "Secure the Scientists"
 	description "Escort the <npc> to <destination> to retrieve the Star Queen. Escorts will be waiting for you on Memory in the Zosma system and Farpoint in the Alnitak system."
-	landing
 	destination Haven
 	clearance
 	to offer
@@ -1992,9 +1992,9 @@ mission "Deep: Scientist Rescue 1: Pirates"
 
 
 mission "Deep: Scientist Rescue 1: Recruit Escorts"
+	landing
 	name "Deep Security escorts on <planet>"
 	description "Lieutenant Paris mentioned an escort squadron of Deep Security ships was preparing to join you on your mission. Meet up with them on <destination>, if you want to."
-	landing
 	source Valhalla
 	destination Memory
 	to offer
@@ -2032,9 +2032,9 @@ mission "Deep: Scientist Rescue 1: Escorts"
 
 
 mission "Deep: Scientist Rescue 1: Recruit Reinforcements"
+	landing
 	name "Republic Navy escorts on <planet>"
 	description "Lieutenant Paris mentioned that some Navy officers were interested in avenging the loss of their comrades. Meet up with them on <destination>, if you want to."
-	landing
 	source Valhalla
 	destination Farpoint
 	to offer
