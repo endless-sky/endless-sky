@@ -1,0 +1,1335 @@
+﻿# Copyright (c) 2017 by Rob Grote
+# Endless Sky is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+
+
+mission "bacsearch 1"
+	name "Interesting Bounty"
+	description "Find the person providing the bounty"
+	source
+		attributes deep
+	destination Valhalla
+	to offer
+		has "free worlds plot completed"
+	on offer
+		conversation
+			`While your ship is refueling, you go to the bar to see if you can find some work. After the bartender brings the Juma Jam juice you ordered, you ask,"`
+			`	"Do you know of any special jobs not on the boards right now?"`
+			`	"From what I've heard the Deep just put a bounty out for a nasty pirate fleet and there is a priority shipment from Valhalla to Memory waiting for transport."`
+			choice
+				`	"Where are these Pirates raiding?"`
+					goto piratehunt
+				`	"Do you know what is in the shipment?"`
+					goto cargotomemory
+				`	"Is there anything else?"`
+					goto pipedream
+			label piratehunt
+			apply
+				set bacsearchp
+			`	"A Marauder Leviathan named Revenge of Ra has been attacking ships going to the Paradise Worlds near the Alphard system. The navy hasn't been able to catch them yet. Maybe you could?"`
+			choice
+				`	Do you know of any other jobs?`
+					goto barconvo1
+			label barconvo1
+			`	"There is a shipment from Valhalla to Memory and there is some sort of bounty for ship blueprints."`
+			choice
+				`	"Do you know what is in the shipment?"`
+					goto cargotomemory
+				`	"Do you know who is offering the bounty?"`
+					goto pipedream
+			label barconvo2
+			`	"The navy is having some problems with a local pirate fleet and there is some sort of bounty for ship blueprints."`
+			choice
+				`	"Where are these Pirates raiding?"`
+					goto piratehunt
+				`	"Do you know who is offering the bounty?"`
+					goto pipedream
+			label cargotomemory
+			apply
+				set bacsearchc
+			`	"They are shipping some sort of bacteria or virus from Valhalla to the research labs on Memory."`
+			choice
+				`	"Do you know of any other jobs?"`
+					goto barconvo2
+			label pipedream
+			`	She leans in and says "I have heard some freighter captains talking about a bounty for some ship blueprints. Aside from those three you can find more jobs on the job board."`
+			choice
+				`	"Do you know who is offering the bounty."`
+			`	The bartender says, "From what I've heard its the son of one of the Lionheart CEO's. You could probably find him on Valhalla. He will be wearing the lionheart family crest."`
+			choice
+				`	"Sounds interesting, thanks."`
+					accept
+				`	"No thanks, I don't need your help finding missions."`
+					decline
+	on complete
+		conversation
+			`You head over to the job board to see if you can find Frank. A man in a lionheart suit is talking to some navy officers about the bounty so you wait till they are done. When the officers leave you approach him and introduce yourself, "Hello, I'm <first> are yo..." He cuts you off saying, "Hello, I am Frank do you want to make 10 million credits."`
+			`Ignoring his brusque manner you ask,`
+			choice
+				`	"Are there any strings attached?"`
+					goto question
+				`	"No that sounds too suspicious."`
+			label question
+			`	"Well, I want blueprints for the Lionheart Bactrian but they were lost about 500 years ago during the alpha wars. Legend has it that one the last missions to colonize Almaaz was hijacked by pirates in the north. Personally I think you should go to the Alexandria library and see what you can dig up there. If you can find the schematics reward is yours."`
+			choice
+				`	"Okay I'll let you know when I find it."`
+				`	"That sounds like a wild goose chase."`
+	on accept
+		set "bacsearch 1"
+	on decline
+		dialog "You think to yourself, "Battleships are pretty cool, maybe I should reload...nah"
+
+mission "bacsearch 1b library"
+	landing
+	name "Following the Clues: Library"
+	source Valhalla
+	destination Alexandria
+	to offer
+		has "bacsearch 1: done"
+	to fail
+		has "bacsearch 2"
+
+#~part2
+
+mission "bactrian search 2a"
+	landing
+	name "Following the Clues: Library 2"
+	description "Follow the mission records to Featherweight"
+	source Alexandria
+	destination Featherweight
+	to offer
+		has "bacsearch 1: done"
+		not "bacsearch 2"
+	to fail
+		has "bactrian search: PMB: active"
+	on offer
+		event "pirate moon base lock"
+		conversation
+			`	You arrive at Alexandria station and are stunned by the amount of books and documents you see on just the main floor.`
+			`An automated message greets you, "The information available at the Alexandria store house requires 3,094 floors to store all the physical and ...." You ignore the rest and start looking for a computer terminal. While searching through the files a chipper librarian walks up and asks "Would you like any assistance?"`
+			choice
+				`	"No, I don't need directions, I'll just use the computer."`
+					goto librarymenu0
+				`	"Absolutely this place is a maze, I'm looking for Lionheart Bactrian blueprint."`
+					goto librarians
+				`	Ignore the librarian and start walking down the aisles looking for the B's`
+			`	Your body is found many years later in section "Q" apparently you died from dehydration. Sadly you never found the blueprints.`
+				die
+			label librarians
+			`	"Oh that's so cool, I'm doing my thesis on early colonization of the dirtbelt. You can find everything in the computer or in section 1692 on floor 238. Make sure you look at the testing memo's. Good luck!"`
+			`	You mutter to yourself about how the librarians back home were more helpful.`
+			choice
+				`Search in the computer.`
+					goto compmenu
+				`Go find the bactrian section`
+					goto papermenu
+			label librarymenu0
+			`	It takes you a few moments to get used to the menu. Apparently they haven't gotten around to digitizing all everything as there are also hard copies available.`
+			`	Archive main menu:`
+			choice
+				`	Search the digital archives for "Bactrian."`
+					goto compmenu
+				`	Search the physical archives for "Bactrian."`
+					goto papermenu
+				`	Leave the library`
+					goto leavelibrary
+			label librarymenu
+			`	Archive main menu:`
+			choice
+				`	Search the digital archives for "Bactrian."`
+					goto compmenu
+				`	Search the physical archives for "Bactrian."`
+					goto papermenu
+				`	Leave the library`
+					goto leavelibrary
+			label compmenu
+			`	A list of search results appear:`
+			choice
+				`	Bactrian, Alfonzo Rudolf`
+					goto bacalf
+				`	Bactrian, Camel`
+					goto baccamel
+				`	Bactrian, Deer`
+					goto bacdeer
+				`	Bactrian, Language`
+					goto baclang
+				`	Bactrian, Lionheart`
+					goto baclion
+				`	Leave menu`
+					goto librarymenu
+			label bacalf
+			`	Alfonzo Bactrian served three terms as a senator of the Unified Terran Alliance on Earth from 2355 to 2370. He rose to prominence after writing the Freedom of Speech Act of 2364.`
+			choice
+				`	Go back`
+					goto compmenu
+			label baccamel
+			scene scene/baccamel
+			`	The Bactrian camel (Camelus bactrianus) is a large, even-toed mammel originally from Central Asia of Earth in the Sol system. The Bactrian camel has two humps in contrast to the more common single-humped dromedary camel with a dark brown to sandy beige wooly brown coat. Its shoulder height is from 180 to 230 cm (5.9 to 7.5 ft), head-and-body length is 225–350 cm (7.38–11.48 ft), and it weighs between 300 to 1000 kg (660 to 2,200 lb).`
+			choice
+				`	Go back`
+					goto compmenu
+			label bacdeer
+			scene scene/bacdeer
+			`	The Bactrian deer (Cervus elaphus bactrianus) is a lowland subspecies of red deer that is native to the Central Asian continent of Earth in the Sol system. This deer is usually ashy-gray with yellowish sheen, and a grayish white rump patch. It also has a slightly marked dorsal stripe.`
+			choice
+				`	Go back`
+					goto compmenu
+			label baclang
+			scene scene/baclang #or baclang-orig
+			`	Bactrian was an indo-european based language which was spoken during the middle Iranian period. It was the official language of the Kushan and Hephthalite empires during the 2nd to 7th centuries AD but had become extinct by 900 AD.`
+			choice
+				`	Go back`
+					goto compmenu
+			label baclion
+			scene scene/baclion
+			apply
+				set "Library Search comp"
+			`	The Lionheart Bactrian is the last of the great city-ships, a design hearkening back to the early days of space colonization when a long-distance vessel needed to be a self-contained world, able to survive for weeks at a time without encountering an inhabited planet. It is not only a freighter, but a carrier, and a capable warship either at short range or at a distance. Naturally, this versatility made it extremely expensive and it was only used for colonization.`
+			choice
+				`	Go back`
+					goto compmenu
+
+			label papermenu
+			`	You find your way to section 1692 on floor 238 and see a Bactrian model in the middle of the aisle. It's a 1/10000th scale model with all the bells and whistles of the real thing! One whole wall is devoted to "Mission Records" and on the other has the public commentaries, testing memos, and other articles that were written about the Lionheart Bactrian.`
+			choice
+				`	Inspect the Bactrian model`
+					goto bacmodel
+				`	Look through the mission records`
+					goto bacmisrec
+				`	Read the public commentaries and testing memos`
+					goto bacmemo
+				`	Go back`
+					goto librarymenu
+			label bacmodel
+			`	The impressive 1/10000th scale model was bristling with all the gunports and sensor clusters on surface. The small Firebird and tiny human next made the Bactrian look even bigger. It was just an empty shell though as none of the internal systems were modeled. Perhaps you can find the its schematics the one of other sections.`
+			choice
+				`	Go back`
+					goto papermenu
+			label bacmisrec
+			apply
+				set "Library Search book"
+				#~ too long
+			`	After cross-referencing all the mission records you found one anomaly. Apparently during a colony expansion on Featherweight a Bactrian malfunctioned and crashed into the mountains. Some of the records are black out as classified but from what you can find they never recovered the ship. Perhaps you can find out more.`
+			choice
+				`	Go back`
+					goto papermenu
+			label bacmemo
+			`	As you read through the articles you learn that the Bactrian was one of three sister ships designed as the second generation of city-ships. However, there was a great deal of controversy about these ships.`
+			choice
+				`	Read more about the proponents of colonization`
+					goto bacmemopro
+				`	Read more about the detractors of colonization`
+					goto bacmemocon
+				`	Look through the testing memos`
+					goto bacmemoother
+				`	Go back`
+					goto papermenu
+			label bacmemopro
+			`	Proponents supported continued colonization and suggested there could be more undiscovered human colonies like the deep additionally overcrowding on the central planets could be aleviated by starting new colonies.`
+			choice
+				`	Go back`
+					goto bacmemo
+			label bacmemocon
+			`	A smaller group of detractors, mostly scientists and sociologists, cautioned further colonization. They warned that large regional differences would cause instability and make peacefully governing such large areas very difficult.`
+			choice
+				`	Go back`
+					goto bacmemo
+			label bacmemoother
+			apply
+				set "crataegus unlocked"
+			`	While reading all this ancient drama you find a missplaced article about a vessel called the Crataegus. The article summarized the benefits a large passenger transport has for supplemental colonization over the traditional multipurpose Bactrian. As a reference at the end their article they attached the entire schematic of the Crataegus!`
+			choice
+				`	Go back`
+					goto bacmemo
+
+			label leavelibrary
+			branch lsdone lsnotdone
+				has "Library Search book"
+				has "Library Search comp"
+			label lsdone
+			`	After a whole day of searching you know a lot more about the Bactrian but didn't find its schematics. You don't leave empty handed; Buried in all the paper work you found schematics for the Crataegus, one of the two sister ships of the Bactrian. Maybe you could find someone at Lionheart to build the Crataegus for you.`
+			choice
+				`Return to your ship and tell your crew, "We are going to Featherweight".`
+			`	As you start up the hyperdrive you hear them groaning about the weird people on Featherweight.`
+				accept
+			label lsnotdone
+			`	After a whole day of searching you know a lot more about the Bactrian but didn't find its schematics. There has to be more information here somewhere.`
+			choice
+				`Look through the computer again.`
+					goto librarymenu
+				`Leave to go find the pirates, you can always come back to the library.`
+					depart
+	on accept
+		fail "bacsearch 1b pirates"
+		fail "bactrian search: 2b special"
+		set "bacsearch 2"
+
+#~ fix bacsearch 1b pirates to be in system b4 Almaaz, 2b-a for friendly to north, 2b-b to hostile to north lead to interceptor chase.
+
+mission "bacsearch 1b pirates"
+	landing
+	name "Following the Clues: Pirates"
+	source Valhalla
+	destination Freedom
+	to offer
+		has "bacsearch 1: done"
+		has "reputation: Pirate" < 0"
+	to fail
+		has "bactrian search 2a: active"
+	npc
+		government Merchant
+		system Almaaz
+		personality heroic staying
+		ship "Freighter" "Quandry's Question"
+		
+	on enter Mintaka
+		event "pirate moon base unlock"
+	on enter Almaaz
+		conversation
+			`	Within seconds of exiting hyperspace you are hailed by a Freighter.`
+			`	The captian says, "You know you're entering pirate space, are you looking for a fight?"`
+			choice
+				`	"Yea, Pirates are space scum."`
+					goto killpirates
+				`	"I'm not here to fight, I am searching for city-ships."`
+					goto peacefulsearch
+			label killpirates
+			apply
+				set killpirates
+			`	"These pirates aren't like the pushovers in the south" he replies.`
+				goto ending
+			label peacefulsearch
+			apply
+				set peacepirates
+			`	"Ya mean da old colonization ships?"`
+			choice
+				`	"Specifically the Bactrian, I am looking for its schematics. Do you happen to know where the oldest pirate gangs hideout?"`
+			`	"You could try asking around on Freedom but you probably shouldn't mess with those pirates."`
+			choice
+				`	"Don't worry I'll take care of the pirate."`
+					goto ending
+				`	"Okay thanks for the info."`
+					goto ending
+			label ending
+			`	"Good luck."`
+				accept
+	on complete
+		conversation
+			`	You ask around the spaceport but no one seems willing to talk. You can't tell if its from respect or fear of the pirates.`
+
+mission "bactrian search: hostile"
+	landing
+	invisible
+	source Freedom
+	destination Polaris
+	to offer
+		has killpirates
+	on offer
+		"reputation: Northern Pirates" = -1000
+		fail
+
+mission "bactrian search: friend"
+	landing
+	invisible
+	source Freedom
+	destination Polaris
+	to offer
+		has peacepirates
+	on offer
+		"reputation: Northern Pirates" = 1000
+		fail
+
+mission "bactrian search: 2b-a" #friendly way
+	name "Following the Clues: Pirates"
+	landing
+	source Freedom
+	destination "Pirate Moon Base"
+	to offer
+		has "bacsearch 1b pirates: done"
+		has peacepirates
+	to fail
+		has "bactrian search 2a: done"
+	on offer
+		conversation
+			`	When you get back to your ship there is a message waiting for you.`
+			`	"Head to Unagi if you want to discuss the Bactrian."`
+			`	The sender was registered to a John Smith, which seems unlikely. Also the last time you checked Unagi was uninhabited, you'd better be careful.`
+				accept
+	on enter Unagi
+		conversation
+			`	"As you enter Unagi a set of coordinates appear on your viewscreen. They lead to one of the moons orbiting the gas giant."`
+		fail "bactrian search: 2a"
+
+mission "bactrian search: 2b-b1" #hostile way
+	landing
+	invisible
+	source Freedom
+	waypoint Hatysa
+	destination Haven
+	to offer
+		has "bacsearch 1: done"
+		has killpirates
+	to fail
+		has "bactrian search 2a: done"
+	npc disable
+		government "Northern Pirates"
+		system Almaaz
+		personality heroic nemesis staying
+		ship "Modified Argosy" "Sword of Amon"
+		dialog `Darn, one of the interceptors escaped toward Hatysa.`
+	npc
+		system Almaaz
+		government "Northern Pirates"
+		personality heroic nemesis staying
+		ship "Modified Argosy" "Flames of Silver"
+		ship "Modified Argosy" "Madness Poisoned"
+		ship "Hawk" "Brutal Agony"
+		ship "Hawk" "Rusty Tattoo"
+		ship "Hawk" "Queen of Jezebel"
+		ship "Hawk" "Shadow of Azazel"
+		ship "Hawk" "Knife of Djinn"
+	on enter Hatysa
+		dialog
+			"You see the Interceptor, named Occam's Razor, jumping to hyperspace again toward Arneb."
+
+#~
+mission "bactrian search: Quandry"
+	landing
+	invisible
+	source Haven
+	destination "Pirate Moon Base"
+	to offer
+		has "bactrian search: 2b-b1: done"
+	npc assist
+		system Almaaz
+		government Merchant
+		personality staying derelict
+		ship "Freighter" "Quandry's Question"
+		dialog `"Thanks for helping with the repairs. Be careful of the pirates in Unagi."`
+	on enter Almaaz
+		conversation
+			`	A damage merchant ship, maybe they saw the Occam's Razor.`
+			choice
+				`	"Hello captain did you happen to see a pirate Interceptor flying through here recently?"`
+					goto hint
+			label hint
+			`	"Yes we did, they knocked out our engines before jumping to Unagi. Would you mind helping patch us up so we can get out of here?"`
+			choice
+				`	"Sure thing I can spare a few minutes."`
+					accept
+				`	"Sorry I don't have the time."`
+					decline
+	on enter Mintaka
+		fail
+
+mission "bactrian search: 2b-b2"
+	landing
+	invisible
+	source Haven
+	destination "Pirate Moon Base"
+	clearance
+	to offer
+		has "bactrian search: 2b-b1: done"
+	on offer
+		dialog "As you are landing on Haven you notice an interceptor flying at full power coming around the far side of the star and jump to hyperspace."
+	on enter Alnilam
+		dialog
+			"No sign of the interceptor. You weren't that far behind, maybe it went to Almaaz."
+	on enter Unagi
+		conversation
+			`	You can't find the interceptor on sensors even though you saw it landing on the moon. You suspect some sort of hidden base because there is nowhere for the interceptor to have hidden.`
+			choice
+				`	Hail on all frequencies "I am willing to pay for information".`
+						goto hail
+				`	Fire weapons at the moon to get their attention.`
+						goto epicbattle
+			label epicbattle
+			apply
+				set epicpiratebattle
+			`	After sufficiently blowing up the moon's surface you land to look through the rumble.`
+				accept
+			label hail
+			`	A set of coordinates show up on your viewscreen leading you down to the surface. The only thing left to do is land on the moon.`
+				accept
+
+#~
+
+mission "bactrian search: 2b special guide"
+	landing
+	name "Following the Clues: Pirates"
+	source Valhalla
+	destination Freedom
+	to offer
+		has "bacsearch 1: done"
+		"reputation: Pirates" > 0
+	to fail
+		has "bacsearch 2"
+
+mission "bactrian search: 2b special"
+	invisible
+	landing
+	source Valhalla
+	waypoint Almaaz
+	destination "Pirate Moon Base"
+	to offer
+		has "bacsearch 1: done"
+		"reputation: Pirates" > 0
+	to fail
+		has "bacsearch 2"
+	npc
+		system Almaaz
+		government "Northern Pirates"
+		personality heroic nemesis staying
+		ship "Modified Argosy" "Sword of Amon"
+		ship "Modified Argosy" "Flames of Silver"
+		ship "Modified Argosy" "Madness Poisoned"
+		ship "Hawk" "Brutal Agony"
+		ship "Hawk" "Rusty Tattoo"
+		ship "Hawk" "Shadow of Azazel"
+		ship "Hawk" "Queen of Jezebel"
+		ship "Hawk" "Knife of Djinn"
+	on offer
+		"reputation: Northern Pirates" = 100
+	on enter Almaaz
+		conversation
+			`	Within seconds of exiting hyperspace you are met by a squad of pirate interceptors. The captian of the Sword of Amon hails you, "<first>, yall are tresspass'n in me system" as he gives you a piratey wink.'`
+			choice
+				`You reply, "I'm not here to fight, I am searching for city-ships."`
+			`"Ya mean da old colonization ships?", he asks.`
+			choice
+				`	"Specifically the Bactrian, I am looking for its schematic."`
+			`	"Wow you must be gett'n a pretty hefty paycheck to be spend'n so much time on that wild goose chase."`
+			choice
+				`	"Anyways...Do you know anything about the Bactrian expedition?"`
+			`	"Meet us at Unagi to discuss this further."`
+				accept
+	on enter Unagi
+		dialog `The pirates take you to a moon base in the uninhabited Unagi system. As you approach, a three mile long section of the moon's surface separates revealing large landing docks and an enormous warship. You try to get a sensor sweep of the spaceport and warships but your sensors only register the moon rock. Apparently this moon base is more hidden than you thought.`
+	on complete
+		fail "bactrian search: 2a"
+		set "bacsearch 2"
+
+mission "bactrian search: PMB"
+	landing
+	name "Following the Clues: Pirates 2"
+	description "Follow the pirate information to Featherweight"
+	source "Pirate Moon Base"
+	destination Featherweight
+	to offer
+		not epicpiratebattle
+			or
+				has "bactrian search: 2b special: done"
+				has "bactrian search: 2b-a: done"
+				has "bactrian search: 2b-b2: done"
+	to fail
+		has "bactrian search 2a: done"
+		has "bacsearch 2"
+	on offer
+		conversation
+			`	Upon arrival you are greeted by the leader of the pirate gang.`
+			`	"Welcome to our base" she says, "If you tell anyone about this base, we will hunt you down and kill you." She seems rather serious, maybe this was a mistake.`
+			choice
+				`	"You have my word as a captain."`
+					goto makedeal
+				`	"I'm going to tell everyone about this base it'll be awesome."`
+					goto joke
+				`	"I already informed the navy on my way in."`
+					goto reportlose
+			label reportlose
+			`	You are forcibly conscripted to work at the refueling station in the spaceport. Every day you regret making that joke.`
+				die
+			label joke
+			`	"Haha...a funny man, very funny" She doesn't look very amused.`
+			label makedeal
+			`What do you want? she asks.`
+			choice
+				`	"I saw a large warship on the way in, was that the Bactrian? I'll pay 1 million credits for its schematics."`
+					goto paybactrian?
+				`	"I'm looking for the Bactrian schematics, I can pay 1 million credits."`
+					goto paynohepatica?
+			label paybactrian?
+			`	"No, that's one of her sister models, the Hepatica. That old beauty is nearly 800 years old, we've made some modifications over time. Don't even think about asking for a tour, I'm not letting a sketchy person like you wandering around my ship."`
+			`	You think to yourself, I'm not the one wearing an eyepatch. Thankfully you didn't say that out loud.`
+			`	She stares straight at you with her one good eye. "I don't have the schematics for the Bactrian but I do know where you might find one. But it's going to be a hassle to copy all the data, I'd have to pull some crews off repairs and maintenance. You are going to have to wait awhile to get all that done." Her one eye is starting to make you feel creepy.`
+			choice
+				`	"I will pay two million for both the schematics and the bactrian location. That's as high as I'm going."`
+					goto haggling
+				`	"Would three million for both speed things up."`
+					goto haggling
+			label paynohepatica?
+			`	She stares straight at you with her one good eye. "I don't have the schematics for the Bactrian but I do know where you might find one. But it's going to be a hassle to copy all the data, I'd have to pull some crews off repairs and maintenance. You are going to have to wait awhile to get all that done." Her one eye is starting to make you feel creepy.`
+			choice
+				`	"That's as high as I'm going."`
+					goto haggling2
+				`	"Would two million speed things up?"`
+					goto haggling2
+			label haggling
+			`	"You're not very experienced at haggling are you?" There is a harsh glint in her eye. "I've heard there's a 10 million credit bounty for the Bactrian schematics from someone in the Deep, I'll take five million."`
+			choice
+				`	"If that's what it's going to take, now where am I headed?"`
+					goto payforinfo
+				`	"I'd say you were robbing me blind, but you're a pirate..."`
+					goto piratejoke
+				`	"I don't want to pay that much."`
+					goto attackmoonbasemaybe
+			label payforinfo
+#				payment -5000000
+				set "hepatica unlocked"
+			`	"Go to the Mebutsa system, you will have your data and be refueled within the hour." As she walks away she slides into a piratey slang yelling at her subordinates with ar's and mates. It seems she enjoys being the pirate captain.`
+				accept
+			label attackmoonbasemaybe
+			`	The pirate captian says "If you don't got the dough, you don't get the bread, if you're not going to pay get out" You walk back to your ship wondering what to do next.`
+			choice
+				`	Destroy the pirate base.`
+					goto destroypmb
+				`	Give up on the pirates.`
+					goto giveuppirates
+			label giveuppirates
+			apply
+				set epicpiratebattleNO
+			`	You walk back to you ship, planning your route to the library.`
+				flee
+			label destroypmb
+			`	You walk back to your ship, planning exactly how to blow up this moon.`
+				decline
+			label piratejoke
+#				payment -4800000
+				set "hepatica unlocked"
+			`	She says, "Hahaha, I am starting to like you, okay 4.8 million and it's all yours."`
+			choice
+				`	"You are so generous...now where was the expedition headed?"`
+				`	"That's a terrible discount."`
+			`	"Go to the Mebutsa system, you will have your data and be refueled within the hour." As she walks away she slides into a piratey slang yelling at her subordinates with ar's and mates. It seems she enjoys being the pirate captain.`
+				accept
+			label haggling2
+			`	"You're not very experienced at haggling are you?" There is a harsh glint in her eye. "I've heard there's a 10 million credit bounty for the Bactrian schematics from someone in the Deep, I'll take three million."`
+			choice
+				`	"If that's what it's going to take, now where am I headed?"`
+					goto payforinfo2
+				`	"I'd say you were robbing me blind, but you're a pirate..."`
+					goto piratejoke2
+				`	"I don't want to pay that much."`
+					goto attackmoonbasemaybe
+			label payforinfo2
+#				payment -3000000
+			`	"Go to the Mebutsa system, you will have your data and be refueled within the hour." As she walks away she slides into a piratey slang yelling at her subordinates with ar's and mates. It seems she enjoys being the pirate captain a bit.`
+				accept
+			label piratejoke2
+#				payment -2800000
+			`	She says, "Hahaha, I am starting to like you, okay 2.8 million and it's all yours."`
+			choice
+				`	"You are so generous...now where was the expedition headed?"`
+				`	"That's a terrible discount."`
+			`	"Go to the Mebutsa system, you will have your data and be refueled within the hour." As she walks away she slides into a piratey slang yelling at her subordinates with ar's and mates. It seems she enjoys being the pirate captain a bit.`
+				accept
+	on enter Almaaz
+		event "pirate moon base lock"
+	on fail
+		dialog `You failed to convince the pirates to share thier information, your only chance is to go to the library at Alexandria.`
+	on accept
+		fail "epbconvo"
+		set epicpiratebattleNO
+	on complete
+		fail "bactrian search: 2a"
+		set "bacsearch 2"
+
+#~
+ship "Hepatica" "Modified Hepatica"
+	outfits
+		"Electron Beam" 2
+		"Hai Tracker Pod" 4
+		"Hai Tracker" 400
+		"Electron Turret" 4
+		"Heavy Anti-Missile Turret" 2
+		"Plasma Turret" 2
+		"Triple Plasma Core"
+		"Systems Core (Large)"
+		"Large Heat Shunt" 4
+		"Small Heat Shunt"
+		"Outfits Expansion" 2
+		
+		`"Bondir" Atomic Thruster`
+		"Steering (Stellar Class)"
+	
+	gun "Hai Tracker Pod"
+	gun "Hai Tracker Pod"
+	gun "Electron Beam"
+	gun "Electron Beam"
+	gun "Hai Tracker Pod"
+	gun "Hai Tracker Pod"
+	turret "Electron Turret"
+	turret "Electron Turret"
+	turret "Electron Turret"
+	turret "Electron Turret"
+	turret "Heavy Anti-Missle Turret"
+	turret "Heavy Anti-Missle Turret"
+	turret "Plasma Turret"
+	turret "Plasma Turret"
+
+mission epblanding
+	name "Defeat the pirate fleet"
+	clearance
+	landing
+	source "Pirate Moon Base"
+	destination "Pirate Moon Base"
+	to offer
+		has epicpiratebattle
+		has "bacsearch 1: done"
+		not "bactrian search 2a: done"
+	npc kill
+		system Unagi
+		government "Northern Pirates"
+		personality heroic nemesis staying
+		ship "Modified Hepatica" "Eye of Horus" tag nocapture
+		ship "Marauder Raven" "Blade of Anhur"
+		ship "Marauder Raven" "Arrow of Anat"
+		ship "Marauder Raven" "Apedemak's Roar"
+		ship "Marauder Raven" "Blubber of Montu"
+		ship "Marauder Raven" "Beak of Nekhbet"
+		ship "Marauder Raven" "Reshep the Weak"
+		ship "Marauder Raven" "Yelp of Wepwawet"
+		ship "Osprey" "Beard of Imsety" tag nocapture
+		ship "Osprey" "Cackle of Duamutef" tag nocapture
+		ship "Osprey" "Shriek of Hapi" tag nocapture
+		ship "Osprey" "Gaze of Qebehsenuef" tag nocapture
+		ship "Marauder Falcon" "Hound of Anubis" tag nocapture
+		ship "Marauder Falcon" "Song of Hathor" tag nocapture
+		dialog "Now you should be able to look through the base"
+	on offer
+		conversation
+			`	On your landing approach a pirate fleet launches from the surface. Leroy your co-pilot swears something about being ducks in a puddle while you change course to deal with the pirates.`
+				launch
+
+mission epbconvo
+	name "Defeat the pirate fleet"
+	landing
+	clearance
+	source "Pirate Moon Base"
+	destination "Pirate Moon Base"
+	to offer
+		or
+			has "bactrian search: 2b special: done"
+			has "bactrian search: 2b-a: done"
+			has "bactrian search: 2b-b2: done"
+	to fail
+		or
+			has "bacsearch 2"
+			has epicpiratebattle
+			has epicpiratebattleNO
+	npc kill
+		system Unagi
+		government "Pirate"
+		personality heroic nemesis staying
+#~ ship names
+		ship "Modified Hepatica" "Eye of Horus" tag nocapture
+		ship "Marauder Raven" "Blade of Anhur"
+		ship "Marauder Raven" "Arrow of Anat"
+		ship "Marauder Raven" "Apedemak's Roar"
+		ship "Marauder Raven" "Blubber of Montu"
+		ship "Marauder Raven" "Beak of Nekhbet"
+		ship "Marauder Raven" "Reshep the Weak"
+		ship "Marauder Raven" "Yelp of Wepwawet"
+		ship "Osprey" "Beard of Imsety" tag nocapture
+		ship "Osprey" "Cackle of Duamutef" tag nocapture
+		ship "Osprey" "Shriek of Hapi" tag nocapture
+		ship "Osprey" "Gaze of Qebehsenuef" tag nocapture
+		ship "Marauder Falcon" "Hound of Anubis" tag nocapture
+		ship "Marauder Falcon" "Song of Hathor" tag nocapture
+		dialog "Now that the defense fleet is destroyed you can investigate the moon more."
+
+mission "epbguide"
+	name "Following the Clues: Pirates 2"
+	landing
+	source "Pirate Moon Base"
+	destination Featherweight
+	to offer
+		or
+			has "epblanding: done"
+			has "epbconvo: done"
+	on offer
+		conversation
+			`	As you are landing an angry looking pirate contacts you, "What do you want?"`
+			choice
+				`	"I am searching for the Bactrian city-ship and I heard that you might know where to find it."`
+			`	"We don't have anything like that here. Will you leave if I tell you where to find a crashed Bactrian?`
+			choice
+				`	"Yes, I'll leave."`
+					goto yesleave
+				`	"No, die pirate scum."`
+					goto attackmoonbase
+			label yesleave
+			`	"Go to the Mebutsa system, now leave us alone."`
+				launch
+			label attackmoonbase
+			`	You raze their base, destroying everything then land to search through the rubble. Thankfully in your blind battle rage you missed their main computer and were able to recover a file giving you the location of a crashed Bactrian.`
+				launch
+		set "bacsearch 2"
+	on enter Almaaz
+		event "pirate moon base lock"
+
+
+#~part3
+
+mission "bactrian search 3a-1"
+	name "bac"
+	landing
+	to offer
+		has "bactrian search 2a: done"
+		not "crataegus unlocked"
+	source Featherweight
+	destination Valhalla
+	on offer
+		event "pirate moon base lock"
+		conversation
+			`	According to your records, one of the last Bactrians sent to Featherweight crashed in the mountains near the primary spaceport. It's mysterious why the wreckage wasn't recovered but Featherweight has always been a rather strange place.`
+			choice
+				`	Search the Northeast mountain range.`
+					goto ne
+				`	Search the Western mountain range.`
+					goto west
+			label ne
+			`	There was sensor ping in the first valley but it was only a high concentration of iron ore.`
+			choice
+				`	Search the Western mountian range.`
+					goto west
+			label west
+			`	You find the wreckage in a deep ravine. It's surprising the ship was never recovered.`
+			choice
+				`	Land and start hiking over to the ship.`
+					goto starthiking
+				`	Scan the area again before landing.`
+					goto baccautious
+			label baccautious
+			`	Nothing more shows up on your sensors, except for some wildlife.`
+			label starthiking
+			`	As you land the ship, you step out into the evergreen forest that covers the mountain. You can hear squaks and chittering of the forest as you make your way to the wreckage.`
+			`	On your way to the wreckage you see two medium sized predators, some sort of cross between a porcupine and a tiger, as well as few flocks of iridescent blue birds. The first crack in the hull you find looks to be somewhere near the engine room as one of the enormous exhaust nozzels is laying just off to your right.`
+			choice
+				`	Everyone stay in a group.`
+					goto slowsearch
+				`	Head off towards the bridge while your crew searches the rest of the ship.`
+					goto funsearch
+			label slowsearch
+			`	The ship had been throughly scavenged as you find only a few data hexes throughout the ship. Eventually you reach the bridge.`
+				goto slowsearch2
+			label slowsearch2
+			`	You are waiting for the rest of the search party to arrive when suddenly Leroy Jenkins says "Screw it" and runs onto the bridge. Out of the corner of your eye a large spike tiger flies into Leroy knocking him to the ground and taking a big bite out of this shoulder). immediately everyone starts opening fire and kills the spike tiger.`
+			`	Three of the crew attempt to stabilize Leroy and take him back to the ship. You search the bridge for any data hexes that might have been left over.`
+				goto foundit
+			label funsearch
+			`	After climbing all other the hull you find a hatch. The ship has long since run out of power but you are able to pry the hatch open.`
+			`	You follow the signs on the walls towards the bridge. You duck around a corner as a small blue blur almost hits you in the face. You let out a high pitched girly scream until you realize it was just one of those birds you saw earlier.`
+			choice
+				`	Tell yourself to be a little more cautious.`
+				`	Wait for your crew to catch up with you.`
+					goto slowsearch
+			`	You walk as quiet as you can to the bridge and peer through the door to scan the room. Off to one side are the comms navigation and weapons stations. Then on the back wall you see a large spike tiger sleeping in the corner.`
+			choice
+				`	Unholster your handgun and take a shot.`
+				`	Head back into the hall and wait for your crew.`
+					goto slowsearch2
+			`	You take a few steps into the room and aim...and...miss (you realize that skipping all those practice sessions in the gun range was a really bad idea.)`
+			`	You have to roll to the side to avoid the claws as the big cat comes flying at you.  Backing away you start pulling the trigger as fast as you can. By sheer luck one of your shots hit it in the head and you just sit down trying to catch your breath.`
+			`	A few minutes later your crew shows up and you tell them to start looking for datadisks.`
+				goto foundit
+			label foundit
+			`	You don't find anything useful on the data hexes. But you were able to hook up a generator to the main computer and download the schematics directly from the computer core.`
+			choice
+				`	Look for more treasures on the ship.`
+					goto treasurehunter
+				`	Plot a course back to Valhalla to collect your reward.`
+					launch
+			label treasurehunter
+			`	The ship has been scavenged throughly, you find nothing except some animal carcasses.`
+			choice
+				`	Look for more treasures on the ship.`
+					goto treasurehunterer
+				`	Plot a course back to Valhalla to collect your reward.`
+					launch
+			label treasurehunterer
+			`	The ship has been scavenged throughly, you find nothing except more animal carcasses.`
+			choice
+				`	Look for more treasures on the ship.`
+					goto treasurehunterer
+				`	Plot a course back to Valhalla to collect your reward.`
+					launch
+	on complete
+		event "bactrian for sale" 33
+		conversation
+			`	After landing at the spaceport you find Frank talking to some frieghter captians and walk up saying. "Hello Frank, how are you doing?" He replies "Hello <first>, I've been doing well. Did you find it?"`
+			choice
+				`	"Yes, but I ran into some problems so I want a bit more for the bounty."`
+				`	"Yes I did, here are the schematic."`
+					goto happyending
+			`	"I thought you might, what if I talk to some people and get you the clearance and VIP priority to buy one of the first Bactrians?"`
+			choice
+				`	"That would be awesome, here are the schematics."`
+					goto happyending
+			label happyending
+			`	"Thanks a lot <first>, you can't imagine how happy this is going to make my father for his birthday. Come back in a month and we should have the ship in production by then."`
+
+mission "bactrian search 3a-2"
+	name "bac and cra"
+	landing
+	to offer
+		has "bactrian search 2a: done"
+		has "crataegus unlocked"
+	source Featherweight
+	destination Valhalla
+	on offer
+		event "pirate moon base lock"
+		conversation
+			`	According to your records, one of the last Bactrians sent to Featherweight crashed in the mountains near the primary spaceport. It's mysterious why the wreckage wasn't recovered but Featherweight has always been a rather strange place.`
+			choice
+				`	Search the Northeast mountain range.`
+					goto ne
+				`	Search the Western mountain range.`
+					goto west
+			label ne
+			`	There was sensor ping in the first valley but it was only a high concentration of iron ore.`
+			choice
+				`	Search the Western mountian range.`
+					goto west
+			label west
+			`	You find the wreckage in a deep ravine. It's surprising the ship was never recovered.`
+			choice
+				`	Land and start hiking over to the ship.`
+					goto starthiking
+				`	Scan the area again before landing.`
+					goto baccautious
+			label baccautious
+			`	Nothing more shows up on your sensors, except for some wildlife.`
+			label starthiking
+			`	As you land the ship, you step out into the evergreen forest that covers the mountain. You can hear squaks and chittering of the forest as you make your way to the wreckage.`
+			`	On your way to the wreckage you see two medium sized predators, some sort of cross between a porcupine and a tiger, as well as few flocks of iridescent blue birds. The first crack in the hull you find looks to be somewhere near the engine room as one of the enormous exhaust nozzels is laying just off to your right.`
+			choice
+				`	Everyone stay in a group.`
+					goto slowsearch
+				`	Head off towards the bridge while your crew searches the rest of the ship.`
+					goto funsearch
+			label slowsearch
+			`	The ship had been throughly scavenged as you find only a few data hexes throughout the ship. Eventually you reach the bridge.`
+				goto slowsearch2
+			label slowsearch2
+			`	You are waiting for the rest of the search party to arrive when suddenly Leroy Jenkins says "Screw it" and runs onto the bridge. Out of the corner of your eye a large spike tiger flies into Leroy knocking him to the ground and taking a big bite out of this shoulder). immediately everyone starts opening fire and kills the spike tiger.`
+			`	Three of the crew attempt to stabilize Leroy and take him back to the ship. You search the bridge for any data hexes that might have been left over.`
+				goto foundit
+			label funsearch
+			`	After climbing all other the hull you find a hatch. The ship has long since run out of power but you are able to pry the hatch open.`
+			`	You follow the signs on the walls towards the bridge. You duck around a corner as a small blue blur almost hits you in the face. You let out a high pitched girly scream until you realize it was just one of those birds you saw earlier.`
+			choice
+				`	Tell yourself to be a little more cautious.`
+				`	Wait for your crew to catch up with you.`
+					goto slowsearch
+			`	You walk as quiet as you can to the bridge and peer through the door to scan the room. Off to one side are the comms navigation and weapons stations. Then on the back wall you see a large spike tiger sleeping in the corner.`
+			choice
+				`	Unholster your handgun and take a shot.`
+				`	Head back into the hall and wait for your crew.`
+					goto slowsearch2
+			`	You take a few steps into the room and aim...and...miss (you realize that skipping all those practice sessions in the gun range was a really bad idea.)`
+			`	You have to roll to the side to avoid the claws as the big cat comes flying at you.  Backing away you start pulling the trigger as fast as you can. By sheer luck one of your shots hit it in the head and you just sit down trying to catch your breath.`
+			`	A few minutes later your crew shows up and you tell them to start looking for datadisks.`
+				goto foundit
+			label foundit
+			`	You don't find anything useful on the data hexes. But you were able to hook up a generator to the main computer and download the schematics directly from the computer core.`
+			choice
+				`	Look for more treasures on the ship.`
+					goto treasurehunter
+				`	Plot a course back to Valhalla to collect your reward.`
+					launch
+			label treasurehunter
+			`	The ship has been scavenged throughly, you find nothing except some animal carcasses.`
+			choice
+				`	Look for more treasures on the ship.`
+					goto treasurehunterer
+				`	Plot a course back to Valhalla to collect your reward.`
+					launch
+			label treasurehunterer
+			`	The ship has been scavenged throughly, you find nothing except more animal carcasses.`
+			choice
+				`	Look for more treasures on the ship.`
+					goto treasurehunterer
+				`	Plot a course back to Valhalla to collect your reward.`
+					launch
+	on complete
+		event "crataegus for sale" 33
+		conversation
+			`	After landing at the spaceport you find Frank talking to some frieghter captians and walk up saying. "Hello Frank, how are you doing?" He replies "Hello <first>, I've been doing well. Did you find it?"`
+			choice
+				`	"Yes, but I ran into some problems so I want a bit more for the bounty."`
+				`	"Yes I did, here are the schematic."`
+					goto happyending
+			`	"I thought you might, what if I talk to some people and get you the clearance and VIP priority to buy one of the first Bactrians?"`
+			choice
+				`	"That would be awesome, here are the schematics."`
+					goto happyending
+			label happyending
+			`	"Thanks a lot <first>, you can't imagine how happy this is going to make my father for his birthday. Come back in a month and we should have both ships in production by then."`
+			choice
+				`"I also found the schematics for one of its sister ships the "Crataegus."`
+			`	"You found another one, this is fantastic! I'll take care of the schematics, we will have the ships available in a month or so."`
+
+mission "bactrian search 3b-1"
+	name "bac"
+	landing
+	to offer
+		not "hepatica unlocked"
+		and
+			or
+				has "bactrian search: PMB: done"
+				has "epblanding: done"
+				has "epbconvo: done"
+	source Featherweight
+	destination Valhalla
+	on offer
+		event "pirate moon base lock"
+		conversation
+			`	According to your records, one of the last Bactrians sent to Featherweight crashed in the mountains near the primary spaceport. It's mysterious why the wreckage wasn't recovered but Featherweight has always been a rather strange place.`
+			choice
+				`	Search the Northeast mountain range.`
+					goto ne
+				`	Search the Western mountain range.`
+					goto west
+			label ne
+			`	There was sensor ping in the first valley but it was only a high concentration of iron ore.` #Low altitude scans of the rest of the mountain range revealed nothing
+			choice
+				`	Search the Western mountian range.`
+					goto west
+			label west
+			`	You find the wreckage in a deep ravine. It's surprising the ship was never recovered.`
+			choice
+				`	Land and start hiking over to the ship.`
+					goto starthiking
+				`	Scan the area again before landing.`
+					goto baccautious
+			label baccautious
+			`	Nothing more shows up on your sensors, except for some wildlife.`
+			label starthiking
+			`	As you land the ship, you step out into the evergreen forest that covers the mountain. You can hear squaks and chittering of the forest as you make your way to the wreckage.`
+			`	On your way to the wreckage you see two medium sized predators, some sort of cross between a porcupine and a tiger, as well as few flocks of iridescent blue birds. The first crack in the hull you find looks to be somewhere near the engine room as one of the enormous exhaust nozzels is laying just off to your right.`
+			choice
+				`	Everyone stay in a group.`
+					goto slowsearch
+				`	Head off towards the bridge while your crew searches the rest of the ship.`
+					goto funsearch
+			label slowsearch
+			`	The ship had been throughly scavenged as you find only a few data hexes throughout the ship. Eventually you reach the bridge.`
+				goto slowsearch2
+			label slowsearch2
+			`	You are waiting for the rest of the search party to arrive when suddenly Leroy Jenkins says "Screw it" and runs onto the bridge. Out of the corner of your eye a large spike tiger flies into Leroy knocking him to the ground and taking a big bite out of this shoulder). immediately everyone starts opening fire and kills the spike tiger.`
+			`	Three of the crew attempt to stabilize Leroy and take him back to the ship. You search the bridge for any data hexes that might have been left over.`
+				goto foundit
+			label funsearch
+			`	After climbing all other the hull you find a hatch. The ship has long since run out of power but you are able to pry the hatch open.`
+			`	You follow the signs on the walls towards the bridge. You duck around a corner as a small blue blur almost hits you in the face. You let out a high pitched girly scream until you realize it was just one of those birds you saw earlier.`
+			choice
+				`	Tell yourself to be a little more cautious.`
+				`	Wait for your crew to catch up with you.`
+					goto slowsearch
+			`	You walk as quiet as you can to the bridge and peer through the door to scan the room. Off to one side are the comms navigation and weapons stations. Then on the back wall you see a large spike tiger sleeping in the corner.`
+			choice
+				`	Unholster your handgun and take a shot.`
+				`	Head back into the hall and wait for your crew.`
+					goto slowsearch2
+			`	You take a few steps into the room and aim...and...miss (you realize that skipping all those practice sessions in the gun range was a really bad idea.)`
+			`	You have to roll to the side to avoid the claws as the big cat comes flying at you.  Backing away you start pulling the trigger as fast as you can. By sheer luck one of your shots hit it in the head and you just sit down trying to catch your breath.`
+			`	A few minutes later your crew shows up and you tell them to start looking for datadisks.`
+				goto foundit
+			label foundit
+			`	You don't find anything useful on the data hexes. But you were able to hook up a generator to the main computer and download the schematics directly from the computer core.`
+			choice
+				`	Look for more treasures on the ship.`
+					goto treasurehunter
+				`	Plot a course back to Valhalla to collect your reward.`
+					launch
+			label treasurehunter
+			`	The ship has been scavenged throughly, you find nothing except some animal carcasses.`
+			choice
+				`	Look for more treasures on the ship.`
+					goto treasurehunterer
+				`	Plot a course back to Valhalla to collect your reward.`
+					launch
+			label treasurehunterer
+			`	The ship has been scavenged throughly, you find nothing except more animal carcasses.`
+			choice
+				`	Look for more treasures on the ship.`
+					goto treasurehunterer
+				`	Plot a course back to Valhalla to collect your reward.`
+					launch
+	on accept
+		set "bacsearch 3"
+	on complete
+		event "bactrian for sale" 33
+		conversation
+			`	After landing at the spaceport you find Frank talking to some frieghter captians and walk up saying. "Hello Frank, how are you doing?" He replies "Hello <first>, I've been doing well. Did you find it?"`
+			choice
+				`	"Yes, but I ran into some problems so I want a bit more for the bounty."`
+				`	"Yes I did, here are the schematic."`
+					goto happyending
+			`	"I thought you might, what if I talk to some people and get you the clearance and VIP priority to buy one of the first Bactrians?"`
+			choice
+				`	"That would be awesome, here are the schematics."`
+					goto happyending
+			label happyending
+			`	"Thanks a lot <first>, you can't imagine how happy this is going to make my father for his birthday. Come back in a month and we should have the ship in production by then."`
+
+mission "bactrian search 3b-2"
+	name "bac and hep"
+	landing
+	to offer
+		has "hepatica unlocked"
+		and
+			has "bactrian search: PMB: done"
+	source Featherweight
+	destination Valhalla
+	on offer
+		event "pirate moon base lock"
+		conversation
+			`	According to your records, one of the last Bactrians sent to Featherweight crashed in the mountains near the primary spaceport. It's mysterious why the wreckage wasn't recovered but Featherweight has always been a rather strange place.`
+			choice
+				`	Search the Northeast mountain range.`
+					goto ne
+				`	Search the Western mountain range.`
+					goto west
+			label ne
+			`	There was sensor ping in the first valley but it was only a high concentration of iron ore.` #Low altitude scans of the rest of the mountain range revealed nothing
+			choice
+				`	Search the Western mountian range.`
+					goto west
+			label west
+			`	You find the wreckage in a deep ravine. It's surprising the ship was never recovered.`
+			choice
+				`	Land and start hiking over to the ship.`
+					goto starthiking
+				`	Scan the area again before landing.`
+					goto baccautious
+			label baccautious
+			`	Nothing more shows up on your sensors, except for some wildlife.`
+			label starthiking
+			`	As you land the ship, you step out into the evergreen forest that covers the mountain. You can hear squaks and chittering of the forest as you make your way to the wreckage.`
+			`	On your way to the wreckage you see two medium sized predators, some sort of cross between a porcupine and a tiger, as well as few flocks of iridescent blue birds. The first crack in the hull you find looks to be somewhere near the engine room as one of the enormous exhaust nozzels is laying just off to your right.`
+			choice
+				`	Everyone stay in a group.`
+					goto slowsearch
+				`	Head off towards the bridge while your crew searches the rest of the ship.`
+					goto funsearch
+			label slowsearch
+			`	The ship had been throughly scavenged as you find only a few data hexes throughout the ship. Eventually you reach the bridge.`
+				goto slowsearch2
+			label slowsearch2
+			`	You are waiting for the rest of the search party to arrive when suddenly Leroy Jenkins says "Screw it" and runs onto the bridge. Out of the corner of your eye a large spike tiger flies into Leroy knocking him to the ground and taking a big bite out of this shoulder). immediately everyone starts opening fire and kills the spike tiger.`
+			`	Three of the crew attempt to stabilize Leroy and take him back to the ship. You search the bridge for any data hexes that might have been left over.`
+				goto foundit
+			label funsearch
+			`	After climbing all other the hull you find a hatch. The ship has long since run out of power but you are able to pry the hatch open.`
+			`	You follow the signs on the walls towards the bridge. You duck around a corner as a small blue blur almost hits you in the face. You let out a high pitched girly scream until you realize it was just one of those birds you saw earlier.`
+			choice
+				`	Tell yourself to be a little more cautious.`
+				`	Wait for your crew to catch up with you.`
+					goto slowsearch
+			`	You walk as quiet as you can to the bridge and peer through the door to scan the room. Off to one side are the comms navigation and weapons stations. Then on the back wall you see a large spike tiger sleeping in the corner.`
+			choice
+				`	Unholster your handgun and take a shot.`
+				`	Head back into the hall and wait for your crew.`
+					goto slowsearch2
+			`	You take a few steps into the room and aim...and...miss (you realize that skipping all those practice sessions in the gun range was a really bad idea.)`
+			`	You have to roll to the side to avoid the claws as the big cat comes flying at you.  Backing away you start pulling the trigger as fast as you can. By sheer luck one of your shots hit it in the head and you just sit down trying to catch your breath.`
+			`	A few minutes later your crew shows up and you tell them to start looking for datadisks.`
+				goto foundit
+			label foundit
+			`	You don't find anything useful on the data hexes. But you were able to hook up a generator to the main computer and download the schematics directly from the computer core.`
+			choice
+				`	Look for more treasures on the ship.`
+					goto treasurehunter
+				`	Plot a course back to Valhalla to collect your reward.`
+					launch
+			label treasurehunter
+			`	The ship has been scavenged throughly, you find nothing except some animal carcasses.`
+			choice
+				`	Look for more treasures on the ship.`
+					goto treasurehunterer
+				`	Plot a course back to Valhalla to collect your reward.`
+					launch
+			label treasurehunterer
+			`	The ship has been scavenged throughly, you find nothing except more animal carcasses.`
+			choice
+				`	Look for more treasures on the ship.`
+					goto treasurehunterer
+				`	Plot a course back to Valhalla to collect your reward.`
+					launch
+	on accept
+		set "bacsearch 3"
+	on complete
+		event "hepatica for sale" 33
+		conversation
+			`	After landing at the spaceport you find Frank talking to some frieghter captians and walk up saying. "Hello Frank, how are you doing?" He replies "Hello <first>, I've been doing well. Did you find it?"`
+			choice
+				`	"Yes, but I ran in to some problems and want bit more for the bounty."`
+				`	"I did, here are the schematic."`
+					goto happyending
+			`	"I thought you might, what if I talk to some people and get you the clearance and VIP priority to buy one of the first Bactrians?"`
+			choice
+				`	"That would be awesome, here are the schematics."`
+					goto happyending
+			label happyending
+			`	"Thanks a lot <first>, you can't imagine how happy this is going to make my father for his birthday. Come back in a month and we should have the ships in production by then."`
+			choice
+				`"I also found the schematics for one of its sister ships the "Hepatica."`
+			`	"You found another one, this is fantastic! I'll take care of both schematics, we will have the ships available in a month or so.`
+
+event "pirate moon base lock"
+	system Unagi
+		government Pirate
+		habitable 320
+		remove object
+			sprite planet/gas13
+			distance 2336.98
+			period 2526.2
+			object
+				sprite planet/rock7
+				distance 293
+				period 13.4563
+		add object
+			sprite planet/gas13
+			distance 2336.98
+			period 2526.2
+			object
+				sprite planet/rock7
+				distance 293
+				period 13.4563
+
+planet "Pirate Moon Base"
+	attributes "Northern Pirates"
+	landscape land/mfield3
+	description `This base was developed by an unknown pirate gang. It's secrecy is due to the low quantity of refactory and heavy metals in the moons crust. There is a large subterranian spaceport the pirates used to house their fleet.`
+	spaceport `The spaceport is filled with pirate ships being repaired and refueled. There are also a few large battle ships docked as well.`
+	shipyard "Basic Ships"
+	shipyard "Northern Pirates"
+	shipyard "Deep Sky Advanced"
+	outfitter "Common Outfits"
+	outfitter "Ammo North"
+	outfitter "Delta V Advanced"
+	outfitter "Kraz Basics"
+	outfitter "Pirate Outfits"
+
+shipyard "Lionheart Advanced"
+	remove "Bactrian"
+
+government "QuandryMerchant"
+	swizzle 5
+	
+	"player reputation" 101
+	"friendly hail" "friendly civilian"
+	"hostile hail" "hostile civilian"
+
+government "Northern Pirates"
+	swizzle 6
+	color .78 0 0
+	"player reputation" -200
+	"attitude toward"
+		"Merchant" -.1
+		"Pirate" 1
+		"Syndicate" -.01
+		"Korath" -.01
+		"Author" -.01
+	"bribe" .05
+	"fine" 0
+	"friendly hail" "friendly pirate"
+	"hostile hail" "hostile pirate"
+
+event "bactrian for sale"
+	set "bactrian available"
+	shipyard "Lionheart Advanced"
+		"Bactrian"
+event "hepatica for sale"
+	set "hepatica available"
+	shipyard "Lionheart Advanced"
+		"Bactrian"
+		"Hepatica"
+event "crataegus for sale"
+	set "crataegus available"
+	shipyard "Lionheart Advanced"
+		"Bactrian"
+		"Crataegus"
+
+mission "Bactrian Available"
+	landing
+	invisible
+	to offer
+		has "bactrian available"
+	destination Wayfarer
+	on offer
+		conversation
+			scene ship/bactrian
+			`You receive a message from Clarissa: "Captain <last>, I am contacting on behalf of Frank Lionheart, CEO of Lionheart Shipyards at Valhalla. We are pleased to inform you that the Bactrian is now available for sale in the deep. Have a good day."`
+				decline
+
+mission "Hepatica Available"
+	landing
+	invisible
+	to offer
+		has "hepatica available"
+	destination Wayfarer
+	on offer
+		conversation
+			scene scene/baclion
+			`You receive a message from Clarissa: "Captain <last>, I am contacting on behalf of Frank Lionheart, CEO of Lionheart Shipyards at Valhalla. We are pleased to inform you that the Bactrian and Hepatica are now available for sale in the deep. Have a good day."`
+				decline
+
+mission "Crataegus Available"
+	landing
+	invisible
+	to offer
+		has "crataegus available"
+	destination Wayfarer
+	on offer
+		conversation
+			scene ship/bactrian
+			`You receive a message from Clarissa: "Captain <last>, I am contacting on behalf of Frank Lionheart, CEO of Lionheart Shipyards at Valhalla. We are pleased to inform you that the Bactrian and Crataegus are now available for sale in the deep. Have a good day."`
+				decline
+
+mission "Transport Pathogens to Memory"
+	job
+	description "Deliver Class 1 pathogens to Memory. Payment will be <payment>."
+	cargo "Class 1 Pathogens" 20
+	source Valhalla
+	destination Memory
+	to offer
+		has "bacsearch 1"
+	on accept
+		dialog "You watch as a team of specialists in HAZMAT gear load the cargo aboard your ship."
+	on complete
+		payment 100000
+		dialog "You drop off your cargo of pathogens and collect your payment of <payment>."
+
+mission "Hunt down Revenge of Ra"
+	description "A Marauder vessel named Revenge of Ra has been leading a fleet and attacking merchants near the Alphard system. Destroy the whole fleet and return to Valhalla for payment <payment>."
+	job
+	source Valhalla
+	waypoint Alphard
+	destination Valhalla
+	to offer
+		has "bacsearch 1"
+	on accept
+		dialog "A navy officer gives you priority bounty-hunter papers for this job."
+	npc kill
+		government Bounty
+		system Alphard
+		personality heroic nemesis staying
+		ship "Maurauder Leviathan" "Revenge of Ra"
+		ship "Marauder Raven" "Chains of Anubis"
+		ship "Marauder Raven" "Kherty's Pulverizer"
+		ship "Marauder Raven" "Wepwawet the chaotic"
+		ship "Modified Argosy" "Boon of Mehit"
+		ship "Modified Argosy" "Silo of Menhit"
+		ship "Osprey" "Bennu's Flight"
+		ship "Osprey" "Library of Seshat"
+		ship "Osprey" "Drunk Shezmu"
+		ship "Osprey" "Shu the light"
+		ship "Marauder Falcon" "Rage of Kek"
+		ship "Marauder Falcon" "Roar of Maahas"
+		dialog "Their fleet has been eliminated. You can claim the bounty by returning to <destination>."
+	on complete
+		payment 500000
+		dialog "The government of <planet> gratefully pays you <payment> for eliminating the <npc> and their fleet."
+
