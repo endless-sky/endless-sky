@@ -347,19 +347,19 @@ mission "Deep: Mystery Cubes 0"
 	
 	npc
 		government Pirate
-		personality
+		personality disables plunders harvests
 		system
 			distance 5 10
 		fleet "Large Northern Pirates"
 	npc
 		government Pirate
-		personality
+		personality disables plunders harvests
 		system
 			distance 10 15
 		fleet "Large Northern Pirates"
 	npc
 		government Pirate
-		personality
+		personality disables plunders harvests
 		system
 			distance 15 20
 		fleet "Large Northern Pirates"
