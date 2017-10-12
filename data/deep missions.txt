@@ -18,8 +18,8 @@ mission "Deep: Syndicate Convoy"
 	stopover Hephaestus
 	deadline
 	to offer
-		"combat rating" > 50
-		"mystery cube" >= 10
+		"combat rating" > 65
+		"mystery cube" >= 5
 		not "Deep: Mystery Cubes 4: done"
 		or
 			random < 20
@@ -32,7 +32,7 @@ mission "Deep: Syndicate Convoy"
         
 	on offer
 		conversation
-			`You are approached by a man in a Deep Security uniform who asks you if you would be willing to escort a few freighters to <stopovers> and back by <date>. "We would normally have our own fleet do it," he says, "but we're short on available ships given certain circumstances."`
+			`You are approached by a man in a Deep Security uniform who asks if you would be willing to escort a few freighters to <stopovers> and back by <date>. "We would normally have our own fleet do it," he says, "but we're short on available ships given certain circumstances."`
 			choice
 				`	"Sure, I can do that."`
 				`	"Sorry, but I won't be traveling in that direction any time soon."`
@@ -97,11 +97,11 @@ mission "Deep: Tarazed Convoy"
 	source
 		attributes deep
 		near Gomeisa 2
-	stopover Tarazed
+	stopover Wayfarer
 	deadline
 	to offer
-		"combat rating" > 50
-		"mystery cube" >= 10
+		"combat rating" > 65
+		"mystery cube" >= 5
 		not "Deep: Mystery Cubes 4: done"
 		or
 			random < 20
@@ -120,7 +120,7 @@ mission "Deep: Tarazed Convoy"
 				`	"Sorry, but I won't be traveling in that direction any time soon."`
 					decline
 			
-			`	"Thank you, Captain. Before you go, I need to inform you that you may encounter pirate fleets near Tania Australis, Muphrid, and Ascella, and you might not have time to go around them."`
+			`	"Thank you, Captain. Before you go, I need to inform you that you may encounter pirate fleets near Tania Australis, Muphrid, and Ascella, and you might not have time to go around these systems due to your time constraint."`
 			`	The Deep Security officer wishes you good luck and walks off, leaving you wonder how she knows where pirate fleets might be waiting for you.`
 				accept
 	
@@ -182,11 +182,11 @@ mission "Deep: Kraz Convoy"
 	source
 		attributes deep
 		near Gomeisa 2
-	stopover Kraz
+	stopover Rust
 	deadline
 	to offer
 		"combat rating" > 80
-		"mystery cube" >= 10
+		"mystery cube" >= 5
 		not "Deep: Mystery Cubes 4: done"
 		or
 			random < 20
@@ -255,9 +255,10 @@ mission "Deep: Kraz Convoy"
 mission "Deep: Mystery Cubes 0"
 	minor
 	name `Gaining an Edge`
-	description `Land on <stopovers> to place the mysterious cubes that Lieutenant Paris has given you.`
+	description `Land on the designated system to place the mysterious cubes that Lieutenant Paris has given you, then return to <destination>.`
 	source
 		attributes deep
+		near Zosma 1 10
 	destination Memory
 	stopover "New Sahara"
 	stopover "Bounty"
@@ -296,8 +297,8 @@ mission "Deep: Mystery Cubes 0"
 					decline
 			
 			label situation
-			`	"Excellent. I'm sure that you are aware that much of Deep Security is currently preoccupied, hence why we have been procuring merchants to escort many of the Deep's convoys. The reason this is the case is that we have been attempting to detain a particularly meddlesome pirate warlord who goes by the name of 'Beelzebub'. From what we can ascertain, Beelzebub was either born in the Deep or has contacts in the Deep, which is making tracking him down rather difficult, as he seems to know our every move. That is where you and a few other merchants come in."`
-			`	Paris reaches into his pocket and pulls out a bag which he then hands to you. Inside of the bag are at least two dozen of the mysterious cubes that you have transported in the past, only with one distinct difference; these cubes have a thick red streak running down the middle of the cube.`
+			`	"Excellent. I'm sure that you are aware that much of Deep Security is currently preoccupied, hence why we have been procuring merchants to escort many of the Deep's convoys. The reason this is the case is that we have been attempting to detain a particularly meddlesome pirate warlord who goes by the name of 'Beelzebub'. From what we can ascertain, Beelzebub has extensive knowledge on the inner workings of Deep Security, which is making tracking him down rather difficult, as he seems to know our every move. That is where you and a few other merchants come in."`
+			`	Paris reaches into his pocket and pulls out a bag which he then hands to you. Inside of the bag are at least two dozen of the mysterious cubes that you have transported in the past, only with one distinct difference: a thick red streak running down the middle of the cube.`
 			`	"The Deep requires that you place these on a number of worlds in the Dirt Belt which I will mark on your map for you. Place at least four of these devices around the spaceport of each marked planet, then come to <destination> where I will collect any remaining cubes that you may have. If a Deep Security ship did this then it would likely catch the attention of any pirates in the system and that information would make its way to Beelzebub, but random merchants should be inconspicuous enough to throw Beelzebub off our trail. Is that clear?"`
 			choice
 				`	"Crystal clear, Lieutenant. I will prepare to leave shortly."`
@@ -378,8 +379,8 @@ mission "Deep: Mystery Cubes 2"
 	
 	on offer
 		conversation
-			`Upon landing, you are escorted by pair of men in Navy uniforms past the tourist areas of the moon facility and into the back to an elevator. One of your escorts uses a keycard to open the elevator, ushering you in. The elevator opens up many floors below the spaceport, to an area of the facility that looks far newer than that on the surface.`
-			`	You are kept in what looks like a waiting room along with five others. After a bit of talking, you find out that these are the other merchant captains who helped place the cubes across different regions of known space.`
+			`Upon landing, you are escorted by a pair of men in Navy uniforms past the tourist areas of the Moon facility and into the back to an elevator. One of your escorts uses a keycard to open the elevator, ushering you in. The elevator opens up many floors below the spaceport, to an area of the facility that looks far newer than that on the surface.`
+			`	You are kept in what looks like a waiting room along with five others. After a bit of talking, you find out that these are the other merchant captains who helped place the cubes across different regions of the galaxy.`
 			`	An hour of waiting passes, and Lieutenant Paris walks into the room followed by a Navy admiral. "I hope you are all enjoying your stay," the admiral remarks. "Now. How is it that most of the cubes you placed were mysteriously disabled shortly after pirates entered each system?"`
 			`	The admiral looks to each of the captains in the room, seemingly waiting for a response.`
 			choice
@@ -409,8 +410,11 @@ mission "Deep: Mystery Cubes 2"
 			label accept
 			`	In the end, only one of the merchant captains declines. She is escorted out of the room, and the admiral explains each merchant captain's new role.`
 			`	"We assume that Beelzebub knows where we will be, but we know where he is as well - the stolen Cruisers and the pirate fleet that attacked our base moved toward the Core. Given the severity of the crime that Beelzebub has just committed, he will undoubtedly attempt to get as far away from the law as possible. That leaves us only two possible destinations: Buccaneer Bay, or the anarchist colonies of the Far North. Our best guess is that the colonies are the more appealing option to a warlord.`
-			`	"We'll be setting up multiple blockades around the galaxy in hopes of boxing Beelzebub in as we sweep the galaxy. Captain <last>, you will be stationed on <destination> with Lieutenant Paris and a small Navy fleet. Please gather your things and travel there immediately."`
+			`	"We'll be setting up multiple blockades in hopes of boxing Beelzebub in as a number of fleets sweep the galaxy. Captain <last>, you will be stationed on <destination> with Lieutenant Paris and a small Navy fleet. Please gather your things and travel there immediately."`
 				accept
+			
+	on visit
+		dialog `You have reached <planet>, but some of your escorts have not yet reached the system. Wait for all escorts to enter the system before landing.`
 	
 	npc accompany save
 		government Republic
@@ -435,7 +439,7 @@ mission "Deep: Mystery Cubes 3: Escorts"
 		has "Deep: Mystery Cubes 2: done"
 	to fail
 		has "Deep: Mystery Cubes 4: done"
-	npc
+	npc kill
 		government Republic
 		personality heroic escort vindictive
 		fleet
@@ -445,7 +449,7 @@ mission "Deep: Mystery Cubes 3: Escorts"
 				"Mule"
 				"Raven" 2
 				"Dagger"
-	npc
+	npc kill
 		government Republic
 		personality heroic opportunistic escort vindictive
 		fleet
@@ -453,7 +457,7 @@ mission "Deep: Mystery Cubes 3: Escorts"
 			variant
 				"Cruiser"
 				"Gunboat" 2
-	npc
+	npc kill
 		government Republic
 		personality timid
 		fleet
@@ -491,9 +495,9 @@ mission "Deep: Mystery Cubes 3"
 			
 			label mirfak
 			`	Suddenly, your communication device beeps and you hear Lieutenant Paris' voice, "The blockade in Mirfak has just been attacked, I repeat the blockade in Mirfak has just been attacked. Reports are that the blockade has sustained heavy losses as a single Cruiser was among the fleet of pirates."`
-			`	A rather young-looking recruit asks, "Should we go help them?" to which a senior officer responds, "We were given orders and we're going to follow them unless told otherwise." The comms fall silent, and the waiting resumes."`
+			`	A rather young recruit asks, "Should we go help them?" to which a senior officer responds, "We were given orders and we're going to follow them unless told otherwise." The comms fall silent, and the waiting resumes."`
 			``
-			`	A few anxious hours pass, with no new information. Without warning though, one of the Ravens takes off and your communications device begins blaring. "A pirate fleet just jumped into the system, alongside two Navy Cruisers!" All the captains and their crew scatter for their ships, ready to fight.`
+			`	A few anxious hours pass, with no new information. Without warning though, one of the Ravens takes off and your communications device begins blaring. "A pirate fleet just jumped into the system, alongside two Navy Cruisers painted in pirate colors!" All the captains and their crew scatter for their ships, ready to fight.`
 				launch
 	
 	npc kill
@@ -582,13 +586,14 @@ mission "Deep: Mystery Cubes 4"
 			variant
 				"Cruiser" 3
 				"Marauder Leviathan"
+				"Leviathan (Hai Engines)"
 				"Headhunter (Particle)" 3
-				"Firebird (Plasma)"
+				"Firebird (Plasma)" 2
 				"Marauder Firebird (Weapons)" 2
 				"Corvette (Missile)" 2
 	
 	on enter Alnitak
-		dialog `Alnitak is in chaos when you enter the system. An outnumbered defense fleet is fighting a group of pirate ships, and among the pirates you spot the three missing Cruisers.`
+		dialog `Alnitak is in chaos when you enter the system. An outnumbered defense fleet is fighting a group of pirate ships, and among the pirates you spot the three stolen Cruisers.`
 	on visit
 		dialog `You have landed on <planet>, but there are still pirates attacking the system. Defeat all of the pirates in order to complete this mission.`
 	on enter Hassaleh
@@ -625,9 +630,9 @@ mission "Deep: TMBR 0"
 	deadline 120
 	to offer
 		random < 60
-		"Transport scientists: done" >= 3
-		"Escort science vessel: done" >= 3
-		"Record academic conference: done" >= 3
+		"Transport scientists: done" >= 2
+		"Escort science vessel: done" >= 2
+		"Record academic conference: done" >= 2
 		has "There Might Be Riots part 3B: done"
 		not "Deep: Remnant 0: offered"
 		not "Deep: Project Hawking: offered"
@@ -672,11 +677,11 @@ mission "Deep: TMBR 0"
 			`	The group looks visibly disappointed. A few minutes of talking later, they inform you that they must depart for Midgard and say their farewells.`
 				decline
 	to complete
-		has "Deep: TMBR 2: offered"
+		has "Deep: TMBR 1: offered"
 
 
 
-mission "Deep: TMBR 1"
+mission "Deep: TMBR: Hint"
 	name `Reunite with the band`
 	description `A human on <origin> indicated she saw "There Might Be Riots" perform on <destination> last week. Hopefully they are still there.`
 	source
@@ -686,7 +691,7 @@ mission "Deep: TMBR 1"
 	destination Greenwater
 	to offer
 		has "Deep: TMBR 0: active"
-		not "Deep: TMBR 2: offered"
+		not "Deep: TMBR 1: offered"
 		random < 30
 	
 	on offer
@@ -696,7 +701,7 @@ mission "Deep: TMBR 1"
 
 
 
-mission "Deep: TMBR 2"
+mission "Deep: TMBR 1"
 	landing
 	name `Transport band to <planet>`
 	description `Give the band "There Might Be Riots" a ride to <destination> so that they can perform for the Deep scientists.`
@@ -746,7 +751,7 @@ mission "Deep: Interrogation"
 				`	(Close the hatch and flee)`
 					goto flee
 			
-			`	"Because we want to know what you were doing with Albert Foster."`
+			`	"Because we wish to question you on the nature of your work for Albert Foster. Now please, step off your ship and come with us."`
 			choice
 				`	(Follow their orders.)`
 				`	(Close the hatch and flee.)`
@@ -993,11 +998,8 @@ mission "Deep: Project Hawking"
 	to offer
 		random < 40
 		or
-			and
-				not "Deep: Questions: active"
-				or
-					has "Deep: Questions: offered"
-					has "deep: helped before archaeology"
+			has "Deep: Questions: done"
+			has "deep: helped before archaeology"
 			and
 				has "Deep: Mystery Cubes 4: done"
 				has "Deep Archaeology 1: offered"
@@ -1288,7 +1290,7 @@ mission "Deep: Remnant 0"
 		conversation
 			`While wandering through the spaceport, you are approached by a man you instantly recognize as the scientist whose drone you recovered data from in Terminus, thanks to his comically thick glasses. He introduces himself as Ivan and mentions he heard how helpful you have been to others within the Deep.`
 			`	"I was hoping you would continue assisting us in our research on the spatial anomaly in Terminus. Thanks to the data you retrieved, we have deduced that the anomaly is in fact some sort of wormhole, but it is far too unstable to support sending anything through it.`
-			`	"I must ask you, do you know of the Hai?" You nod. "Splendid! Then you will be able to help. One of the scientists on my team grew up in their territory, and suggested that the so called 'Quantum Keystones' which they sell might have something to do with the wormhole. He recalls hearing some Hai folktales of these stones making travel between the stars easier. Given that it would be immensely difficult to stabilize the wormhole with our current knowledge, it may be that these stones will make access into the wormhole easier. Would you kindly retrieve ten of them for us, so that we may be able to discover if these legends are true, and they allow access into the wormhole?"`
+			`	"I must ask you, do you know of the Hai?" You nod. "Splendid! Then you will be able to help. One of the scientists on my team grew up in their territory, and suggested that the so called 'Quantum Keystones' which they sell might have something to do with the wormhole. He recalls hearing some Hai folktales of these stones making travel between the stars easier, and since the Hai once lived close to where the wormhole is, there may be a relation. Given that it would be immensely difficult to stabilize the wormhole with our current knowledge, it may be that these stones will make access into the wormhole easier. Would you kindly retrieve ten of them for us, so that we may be able to discover if these legends are true?"`
 			branch remnant
 				has "First Contact: Remnant: offered"
 			choice
@@ -1305,7 +1307,7 @@ mission "Deep: Remnant 0"
 				`	"Sorry, but Hai space is too far for me right now."`
 					decline
 			apply
-				set "knew of stones before scientists"
+				set "deep: knew of stones before scientists"
 			`	Ivan looks like he is about to fall over with joy after you mention having entered the wormhole. "Really? Please, tell me what you found!"`
 			branch friendly
 				has "event: ember waste label"
@@ -1369,7 +1371,7 @@ mission "Deep: Remnant 1A"
 	waypoint Terminus
 	to offer
 		has "Deep: Remnant: Keystone Research: done"
-		not "knew of stones before scientists"
+		not "deep: knew of stones before scientists"
 		not "First Contact: Remnant: offered"
 	
 	on offer
@@ -1431,12 +1433,11 @@ mission "Deep: Remnant 2A"
 					accept
 				`	"This seems too risky for me. You'll need to find someone else."`
 					decline
-	on accept
-		event "deep: clear arculus"
 	
 	npc "scan outfits"
 		government Remnant
 		personality staying uninterested target
+		system Arculus
 		fleet
 			names remnant
 			variant
@@ -1459,7 +1460,7 @@ mission "Deep: Remnant 1B"
 	waypoint Arculus
 	to offer
 		has "Deep: Remnant: Keystone Research: done"
-		has "knew of stones before scientists"
+		has "deep: knew of stones before scientists"
 	
 	on offer
 		conversation
@@ -1472,12 +1473,11 @@ mission "Deep: Remnant 1B"
 					accept
 				`	"Sorry, you'll need to find someone else."`
 					decline
-	on accept
-		event "deep: clear arculus"
 	
 	npc "scan outfits"
 		government Remnant
 		personality staying uninterested target
+		system Arculus
 		fleet
 			names remnant
 			variant
@@ -1500,7 +1500,7 @@ mission "Deep: Remnant 1C"
 	waypoint Arculus
 	to offer
 		has "Deep: Remnant: Keystone Research: done"
-		not "knew of stones before scientists"
+		not "deep: knew of stones before scientists"
 		has "First Contact: Remnant: offered"
 	
 	on offer
@@ -1528,12 +1528,11 @@ mission "Deep: Remnant 1C"
 					accept
 				`	"This seems too risky for me. You'll need to find someone else."`
 					decline
-	on accept
-		event "deep: clear arculus"
 	
 	npc "scan outfits"
 		government Remnant
 		personality staying uninterested target
+		system Arculus
 		fleet
 			names remnant
 			variant
