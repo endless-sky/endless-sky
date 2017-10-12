@@ -177,6 +177,8 @@ bool LocationFilter::Matches(const Planet *planet, const System *origin) const
 	for(const set<string> &attr : attributes)
 		if(!SetsIntersect(attr, planet->Attributes()))
 			return false;
+	if(!governments.empty() && !governments.count(planet->GetGovernment()))
+		return false;
 	
 	return Matches(planet->GetSystem(), origin, true);
 }
@@ -294,7 +296,7 @@ bool LocationFilter::Matches(const System *system, const System *origin, bool di
 		return false;
 	if(!systems.empty() && !systems.count(system))
 		return false;
-	if(!governments.empty() && !governments.count(system->GetGovernment()))
+	if(!didPlanet && !governments.empty() && !governments.count(system->GetGovernment()))
 		return false;
 	
 	if(center)
