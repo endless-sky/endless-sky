@@ -32,13 +32,13 @@ mission "Deep: Syndicate Convoy"
         
 	on offer
 		conversation
-			`You are approached by a man in a Deep Security uniform who asks if you would be willing to escort a few freighters to <stopovers> and back by <date>. "We would normally have our own fleet do it," he says, "but we're short on available ships given certain circumstances."`
+			`You are approached by a man in a Deep Security uniform who asks if you would be willing to escort a few freighters to <stopovers> and back by <day>. "We would normally have our own fleet do it," he says, "but we're short on available ships given certain circumstances."`
 			choice
 				`	"Sure, I can do that."`
 				`	"Sorry, but I won't be traveling in that direction any time soon."`
 					decline
 			
-			`	"Good. Before you leave, know that there may be pirate forces waiting for you in Tania Australis, Merak, and Altair. You can try to avoid them, but make sure you get the freighters back on time."`
+			`	"Good. Before you leave, know that there may be pirate forces waiting for you in Alphard, Sirius, and Altair. You can try to avoid them, but make sure you get the freighters back on time."`
 			`	The Deep Security officer wishes you good luck and walks off, leaving you wonder how he knows where pirate fleets might be waiting for you.`
 				accept
 	
@@ -62,18 +62,28 @@ mission "Deep: Syndicate Convoy"
 	npc
 		government Pirate
 		personality nemesis staying
-		system "Tania Australis"
+		system "Alphard"
 		fleet "Large Northern Pirates"
 	npc
 		government Pirate
 		personality nemesis staying
-		system Merak
+		system "Sirius"
 		fleet "Large Northern Pirates"
 	npc
 		government Pirate
 		personality nemesis staying
-		system Altair
+		system "Altair"
 		fleet "Small Northern Pirates"
+	npc
+		government Pirate
+		personality nemesis
+		system "Castor"
+		fleet "Small Northern Pirates"
+	npc
+		government Pirate
+		personality nemesis
+		system "Porrima"
+		fleet "Large Northern Pirates"
 	npc
 		government Pirate
 		personality nemesis staying
@@ -84,7 +94,7 @@ mission "Deep: Syndicate Convoy"
 		dialog `When you arrive at the pickup location it is already night on this side of <planet>. The Syndicate employees who load the freighters do not allow you to see what is inside the cargo, and advise you to leave quickly once the cargo is loaded.`
 	on complete
 		"deep convoy" ++
-		payment 720000
+		payment 500000
 		conversation
 			`When you return to <planet> with the freighters, you are greeted by a Deep Security officer who hands you <payment> and thanks you for accepting the job on such a short notice. "We'll make sure to contact you in the future should we need your help."`
 
@@ -114,13 +124,13 @@ mission "Deep: Tarazed Convoy"
 	
 	on offer
 		conversation
-			`As you are walking through the spaceport, a woman in a Deep Security uniform stops you. "You are Captain <last>, correct?" You nod. "Would you be willing to transport a handful of freighters to <stopovers> to pick up some cargo? We'd need them to return them by <date>? Normally this kind of job would be done by Deep Security, but we have no ships to spare at the moment."`
+			`As you are walking through the spaceport, a woman in a Deep Security uniform stops you. "You are Captain <last>, correct?" You nod. "Would you be willing to transport a handful of freighters to <stopovers> to pick up some cargo? We'd need them to return them by <day>? Normally this kind of job would be done by Deep Security, but we have no ships to spare at the moment."`
 			choice
 				`	"Sure, I can do that."`
 				`	"Sorry, but I won't be traveling in that direction any time soon."`
 					decline
 			
-			`	"Thank you, Captain. Before you go, I need to inform you that you may encounter pirate fleets near Tania Australis, Muphrid, and Ascella, and you might not have time to go around these systems due to your time constraint."`
+			`	"Thank you, Captain. Before you go, I need to inform you that you may encounter pirate fleets near Tania Australis, Muphrid, and Ascella, and you might not have time to go around these systems."`
 			`	The Deep Security officer wishes you good luck and walks off, leaving you wonder how she knows where pirate fleets might be waiting for you.`
 				accept
 	
@@ -152,12 +162,22 @@ mission "Deep: Tarazed Convoy"
 	npc
 		government Pirate
 		personality nemesis staying
-		system Muphrid
+		system "Muphrid"
 		fleet "Large Northern Pirates"
 	npc
 		government Pirate
 		personality nemesis staying
-		system Ascella
+		system "Ascella"
+		fleet "Small Northern Pirates"
+	npc
+		government Pirate
+		personality nemesis
+		system "Sirius"
+		fleet "Large Northern Pirates"
+	npc
+		government Pirate
+		personality nemesis
+		system "Seginus"
 		fleet "Small Northern Pirates"
 	npc
 		government Pirate
@@ -169,7 +189,7 @@ mission "Deep: Tarazed Convoy"
 		dialog `You and the freighters are directed to park in a private hangar owned by the Tarazed Corporation. While watching the cargo crates get loaded on to the freighters, you notice that the crates have labels on them which read "To be opened by addressee only" in large red letters.`
 	on complete
 		"deep convoy" ++
-		payment 1020000
+		payment 650000
 		conversation
 			`When you return to <planet> with the freighters, you are greeted by a Deep Security officer who hands you <payment> and thanks you for accepting the job on such a short notice. "We'll make sure to contact you in the future should we need your help."`
 
@@ -199,7 +219,7 @@ mission "Deep: Kraz Convoy"
 	
 	on offer
 		conversation
-			`A Deep Security officer approaches you when you enter the spaceport and asks if you would be able to do a job for the Deep. "We're short on Deep Security ships at the moment, but we need three Behemoths escorted to <stopovers>. After they pick up the cargo, bring them back here by <date>."`
+			`A Deep Security officer approaches you when you enter the spaceport and asks if you would be able to do a job for the Deep. "We're short on Deep Security ships at the moment, but we need three Behemoths escorted to <stopovers>. After they pick up the cargo, bring them back here by <day>."`
 			choice
 				`	"Sure, I can do that."`
 				`	"Sorry, but I won't be traveling in that direction any time soon."`
@@ -219,7 +239,7 @@ mission "Deep: Kraz Convoy"
 	npc
 		government Pirate
 		personality nemesis staying
-		system Algieba
+		system "Algieba"
 		fleet "Large Northern Pirates"
 		fleet "Small Northern Pirates"
 	npc
@@ -231,9 +251,19 @@ mission "Deep: Kraz Convoy"
 	npc
 		government Pirate
 		personality nemesis staying
-		system Wei
+		system "Wei"
 		fleet "Large Northern Pirates"
 		fleet "Small Northern Pirates"
+	npc
+		government Pirate
+		personality nemesis
+		system "Rutilicus"
+		fleet "Large Northern Pirates"
+	npc
+		government Pirate
+		personality nemesis
+		system destination
+		fleet "Large Northern Pirates"
 	npc
 		government Pirate
 		personality nemesis staying
@@ -245,7 +275,7 @@ mission "Deep: Kraz Convoy"
 		dialog `When you arrive, Kraz Cybernetics already has the cargo waiting by the spaceport. After a few hours of loading the massive freighters, the spaceport crew gives you the 'all clear' signal, and the Behemoth captains get ready to depart.`
 	on complete
 		"deep convoy" ++
-		payment 1260000
+		payment 800000
 		conversation
 			`When you return to <planet> with the freighters, you are greeted by a Deep Security officer who hands you <payment> and thanks you for accepting the job on such a short notice. "We'll make sure to contact you in the future should we need your help."`
 				decline
@@ -314,11 +344,30 @@ mission "Deep: Mystery Cubes 0"
 					accept
 				`	"This feels too secretive for me. I don't want to help anymore."`
 					decline
+	
+	npc
+		government Pirate
+		personality
+		system
+			distance 5 10
+		fleet "Large Northern Pirates"
+	npc
+		government Pirate
+		personality
+		system
+			distance 10 15
+		fleet "Large Northern Pirates"
+	npc
+		government Pirate
+		personality
+		system
+			distance 15 20
+		fleet "Large Northern Pirates"
 	on stopover
 		dialog `You have placed cubes on the last of the planets that Paris has asked you to. When you look into the bag you find that there are three left. Go to <destination> to give the remaining cubes to Paris.`
 	on complete
 		event "deep: warlord detected" 20 30
-		payment 640000
+		payment 500000
 		conversation
 			`You find Lieutenant Paris waiting for you in the spaceport. You hand him the bag of remaining cubes, and he hands you <payment> for helping.`
 			
@@ -722,7 +771,7 @@ mission "Deep: TMBR 1"
 				accept
 	
 	on complete
-		payment 400000
+		payment 250000
 		conversation
 			`Almost as soon as "There Might Be Riots" steps off your ship, a crowd gathers. When it is clear that the band is not simply disembarking, but preparing to perform, the uproar makes you glad that you had not given any advance notification to the locals. As the band gets ready, you contact the spaceport authorities and have them notify Garrison and the other scientists that you have returned. The authorities don't seem too enthused about hosting a concert with no advance warning, but they agree to send your message.`
 			`	The crowd gets larger and larger over time, and judging by the increased number of ships landing, word has quickly spread that "There Might Be Riots" is back.`
@@ -1045,7 +1094,7 @@ mission "Deep: Project Hawking"
 		ship "Marauder Quicksilver (Engines)" "Gusoyn"
 	
 	on complete
-		payment 250000
+		payment 1500000
 		conversation
 			`"Don't go to the spaceport," Garrison says. "We'll be dropping the supplies off elsewhere. He directs you toward the mountains."`
 			branch know
@@ -1934,7 +1983,7 @@ mission "Deep: Scientist Rescue 1"
 		has "Deep: Scientist Rescue 0: done"
 	
 	on offer
-		payment 100000
+		payment 250000
 		conversation
 			`You return to Valhalla and find Lieutenant Paris with a large group of men and women in Deep Security uniforms. As you approach them, the Lieutenant stops speaking to the group after noticing you. "Captain <last>! Have you located the Star Queen?"`
 			choice
@@ -2169,7 +2218,7 @@ mission "Deep: Scientist Rescue 3A"
 		not "Deep: Scientist Rescue 3B: offered"
 	
 	on offer
-		payment 100000
+		payment 2000000
 		conversation
 			`As you land near the Star Queen, you can see the passengers of the ship being escorted off of it. Maria and Hannah come running off the ship in tears over to Garrison, who must have arrived as soon as he heard the news. A medical team is examining each passenger while a Deep Security officer asks questions and jots down the responses. Sadly, you also notice a number of body bags next to the ship, likely from scientists or crew that were found dead on the ship.`
 			`	Lieutenant Paris is waiting for you outside of your ship, and hands you another <payment> when you walk up to him. "Thanks for all the help, Captain <last>. We couldn't have done it without you."`
@@ -2216,7 +2265,7 @@ mission "Deep: Scientist Rescue 3B"
 	
 	on offer
 		set "license: City-Ship"
-		payment 100000
+		payment 2000000
 		conversation
 			`As you land near the Star Queen, you can see the passengers of the ship being escorted off of it. Maria and Hannah come running off the ship in tears over to Garrison, who must have arrived as soon as he heard the news. A medical team is examining each passenger while a Deep Security officer asks questions and jots down the responses. Sadly, you also notice a number of body bags next to the ship, likely from scientists or crew that were found dead on the ship.`
 			`	Lieutenant Paris is waiting for you outside of your ship, and hands you another <payment> when you walk up to him. "Thanks for all the help, Captain <last>. We couldn't have done it without you."`
