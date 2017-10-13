@@ -159,6 +159,10 @@ void ShopPanel::DrawSidebar()
 	if(shipsHere < 4)
 		point.X() += .5 * ICON_TILE * (4 - shipsHere);
 	
+	// Check whether flight check tooltips should be shown.
+	Point mouse = GetUI()->GetMouse();
+	warningType.clear();
+	
 	static const Color selected(.8, 1.);
 	static const Color unselected(.4, 1.);
 	for(const shared_ptr<Ship> &ship : player.Ships())
@@ -185,14 +189,19 @@ void ShopPanel::DrawSidebar()
 			OutlineShader::Draw(sprite, point, size, isSelected ? selected : unselected);
 		}
 		
+		zones.emplace_back(point, Point(ICON_TILE, ICON_TILE), ship.get());
+		
 		string check = ship->FlightCheck();
 		if(!check.empty())
 		{
 			const Sprite *icon = SpriteSet::Get(check.back() == '!' ? "ui/error" : "ui/warning");
 			SpriteShader::Draw(icon, point + .5 * Point(ICON_TILE - icon->Width(), ICON_TILE - icon->Height()));
+			if(zones.back().Contains(mouse))
+			{
+				warningType = check;
+				warningPoint = zones.back().TopLeft();
+			}
 		}
-		
-		zones.emplace_back(point, Point(ICON_TILE, ICON_TILE), ship.get());
 		
 		point.X() += ICON_TILE;
 	}
@@ -700,18 +709,6 @@ bool ShopPanel::Hover(int x, int y)
 		shipInfo.Hover(point);
 		outfitInfo.Hover(point);
 	}
-	
-	warningType.clear();
-	for(const Zone &zone : zones)
-		if(zone.Contains(point) && zone.GetShip())
-		{
-			warningType = zone.GetShip()->FlightCheck();
-			if(!warningType.empty())
-			{
-				warningPoint = zone.TopLeft();
-				break;
-			}
-		}
 	
 	dragMain = (x < Screen::Right() - SIDE_WIDTH);
 	return true;
