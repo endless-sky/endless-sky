@@ -214,6 +214,7 @@ mission "FW Southern Recon 1B"
 
 
 mission "FW Southern Recon 1B (Turret)"
+	landing
 	invisible
 	source Trinket
 	destination Trinket
@@ -402,71 +403,29 @@ mission "FW Southern Battle 2"
 		system Rastaban
 		personality heroic uninterested staying
 		government "Republic"
-		fleet
+		fleet 2
 			names "republic capital"
 			fighters "republic fighter"
 			variant
 				"Carrier (Mark II)"
 				"Lance" 4
 				"Combat Drone" 6
-		fleet
-			names "republic capital"
-			fighters "republic fighter"
-			variant
-				"Carrier (Mark II)"
-				"Lance" 4
-				"Combat Drone" 6
-		fleet
+		fleet 3
 			names "republic capital"
 			fighters "republic fighter"
 			variant
 				"Cruiser (Mark II)"
 				"Combat Drone" 4
-		fleet
-			names "republic capital"
-			fighters "republic fighter"
-			variant
-				"Cruiser (Mark II)"
-				"Combat Drone" 4
-		fleet
-			names "republic capital"
-			fighters "republic fighter"
-			variant
-				"Cruiser (Mark II)"
-				"Combat Drone" 4
-		fleet
+		fleet 3
 			names "republic small"
-			fighters "republic fighter"
 			variant
 				"Rainmaker (Mark II)" 2
-		fleet
+		fleet 2
 			names "republic small"
-			fighters "republic fighter"
-			variant
-				"Rainmaker (Mark II)" 2
-		fleet
-			names "republic small"
-			fighters "republic fighter"
-			variant
-				"Rainmaker (Mark II)" 2
-		fleet
-			names "republic small"
-			fighters "republic fighter"
 			variant
 				"Gunboat (Mark II)" 3
-		fleet
+		fleet 2
 			names "republic small"
-			fighters "republic fighter"
-			variant
-				"Gunboat (Mark II)" 2
-		fleet
-			names "republic small"
-			fighters "republic fighter"
-			variant
-				"Gunboat (Mark II)" 3
-		fleet
-			names "republic small"
-			fighters "republic fighter"
 			variant
 				"Gunboat (Mark II)" 2
 	
@@ -513,20 +472,17 @@ mission "FW Southern Battle 3"
 		government Republic
 		personality fleeing uninterested
 		system "Delta Sagittarii"
-		fleet "Large Republic"
-		fleet "Large Republic"
+		fleet "Large Republic" 2
 	npc
 		government Republic
 		personality fleeing uninterested
 		system "Girtab"
-		fleet "Large Republic"
-		fleet "Large Republic"
+		fleet "Large Republic" 2
 	npc
 		government Republic
 		personality fleeing uninterested
 		system "Albaldah"
-		fleet "Large Republic"
-		fleet "Large Republic"
+		fleet "Large Republic" 2
 	
 	on complete
 		dialog `You've finished patrolling the nearby systems. Now you can meet up with Freya in the spaceport, and hopefully she will have good news about Katya.`
@@ -578,10 +534,7 @@ mission "FW Southern Prisoners - Release"
 		government Republic
 		personality staying uninterested
 		system "Kaus Borealis"
-		fleet "Large Republic"
-		fleet "Large Republic"
-		fleet "Large Republic"
-		fleet "Large Republic"
+		fleet "Large Republic" 4
 	
 	on visit
 		dialog "You have reached <planet>, but you left part of your convoy behind! Better depart and wait for them to arrive in this star system."
@@ -645,10 +598,7 @@ mission "FW Southern Prisoners - Released"
 		government Republic
 		personality staying uninterested
 		system "Kaus Borealis"
-		fleet "Large Republic"
-		fleet "Large Republic"
-		fleet "Large Republic"
-		fleet "Large Republic"
+		fleet "Large Republic" 4
 	
 	on visit
 		dialog "You have reached <planet>, but you left part of your convoy behind! Better depart and wait for them to arrive in this star system."
@@ -700,7 +650,7 @@ mission "FW Southern Break Ends"
 	description "Travel as quickly as possible to <destination> to rejoin the main Free Worlds fleet."
 	landing
 	source
-		near Rastaban 1 1000
+		near Rastaban 1 100
 	destination Dancer
 	to offer
 		has "event: fw occupying the north"
@@ -741,27 +691,22 @@ mission "FW Northern 1"
 	npc
 		government "Free Worlds"
 		personality heroic escort
-		fleet "Large Free Worlds"
-		fleet "Large Free Worlds"
-		fleet "Large Free Worlds"
+		fleet "Large Free Worlds" 3
 	npc
 		government Republic
 		personality fleeing uninterested
 		system "Wei"
-		fleet "Large Republic"
-		fleet "Large Republic"
+		fleet "Large Republic" 2
 	npc
 		government Republic
 		personality fleeing uninterested
 		system "Seginus"
-		fleet "Large Republic"
-		fleet "Large Republic"
+		fleet "Large Republic" 2
 	npc
 		government Republic
 		personality fleeing uninterested
 		system "Alphecca"
-		fleet "Large Republic"
-		fleet "Large Republic"
+		fleet "Large Republic" 2
 	
 	on complete
 		event "fw northern expansion"
@@ -1020,7 +965,7 @@ mission "FW Northern 4.1A"
 	destination "New Tibet"
 	to offer
 		has "FW Northern 4: done"
-		not "FW Northern 4.1B: offered"
+		not "FW Northern 4.2A: offered"
 		karma >= 2
 	on fail
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
@@ -1305,6 +1250,8 @@ mission "FW Alphas 1.1A"
 
 mission "FW Death of Nguyen"
 	landing
+	source
+		near Sol 100
 	to offer
 		has "event: death of nguyen"
 	
@@ -1669,8 +1616,7 @@ mission "FW Albatross 2"
 		system Nunki
 		government Pirate
 		personality staying disables plunders
-		fleet "Small Southern Pirates"
-		fleet "Small Southern Pirates"
+		fleet "Small Southern Pirates" 2
 
 
 
@@ -1717,9 +1663,7 @@ mission "FW Albatross 2A"
 		personality staying plunders disables
 		system Orvala
 		government Pirate
-		fleet "Small Southern Pirates"
-		fleet "Small Southern Pirates"
-		fleet "Small Southern Pirates"
+		fleet "Small Southern Pirates" 3
 
 
 
@@ -1811,15 +1755,7 @@ mission "FW Rand 1"
 		system "Zeta Aquilae"
 		government Republic
 		personality staying heroic
-		fleet
-			names "republic capital"
-			fighters "republic fighter"
-			variant
-				"Carrier (Mark II)"
-				"Lance" 4
-				"Combat Drone" 6
-				"Gunboat (Mark II)"
-		fleet
+		fleet 2
 			names "republic capital"
 			fighters "republic fighter"
 			variant
@@ -2194,19 +2130,14 @@ mission "FW Liberate Delta Sagittarii"
 		personality staying heroic
 		system "Rastaban"
 		government "Free Worlds"
-		fleet "Large Free Worlds"
-		fleet "Large Free Worlds"
-		fleet "Large Free Worlds"
-		fleet "Large Free Worlds"
+		fleet "Large Free Worlds" 4
 	npc
 		personality staying derelict
 		system "Rastaban"
 		government "Republic"
-		fleet "Large Republic"
-		fleet "Large Republic"	
+		fleet "Large Republic" 2
 	npc
 		personality staying heroic
 		system "Rastaban"
 		government "Republic"
-		fleet "Large Republic"
-		fleet "Large Republic"
+		fleet "Large Republic" 2

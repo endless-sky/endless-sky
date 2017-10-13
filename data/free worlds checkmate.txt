@@ -38,11 +38,7 @@ mission "FWC Scouting 1"
 		personality staying heroic
 		system "Kaus Borealis"
 		government "Republic"
-		fleet "Large Republic"
-		fleet "Large Republic"
-		fleet "Large Republic"
-		fleet "Large Republic"
-		fleet "Large Republic"
+		fleet "Large Republic" 5
 
 
 
@@ -123,33 +119,14 @@ mission "FWC Attack Kaus Borealis"
 		personality staying heroic
 		system "Kaus Borealis"
 		government "Republic"
-		fleet
+		fleet 2
 			names "republic capital"
 			fighters "republic fighter"
 			variant
 				"Carrier (Mark II)"
 				"Lance" 4
 				"Combat Drone" 6
-		fleet
-			names "republic capital"
-			fighters "republic fighter"
-			variant
-				"Carrier (Mark II)"
-				"Lance" 4
-				"Combat Drone" 6
-		fleet
-			names "republic capital"
-			fighters "republic fighter"
-			variant
-				"Cruiser (Mark II)"
-				"Combat Drone" 4
-		fleet
-			names "republic capital"
-			fighters "republic fighter"
-			variant
-				"Cruiser (Mark II)"
-				"Combat Drone" 4
-		fleet
+		fleet 3
 			names "republic capital"
 			fighters "republic fighter"
 			variant
@@ -565,27 +542,14 @@ mission "FWC Diplomacy 1C"
 		personality staying heroic
 		system "Vega"
 		government "Republic"
-		fleet
+		fleet 2
 			names "republic capital"
 			fighters "republic fighter"
 			variant
 				"Carrier (Mark II)"
 				"Lance" 4
 				"Combat Drone" 6
-		fleet
-			names "republic capital"
-			fighters "republic fighter"
-			variant
-				"Carrier (Mark II)"
-				"Lance" 4
-				"Combat Drone" 6
-		fleet
-			names "republic capital"
-			fighters "republic fighter"
-			variant
-				"Cruiser (Mark II)"
-				"Combat Drone" 4
-		fleet
+		fleet 2
 			names "republic capital"
 			fighters "republic fighter"
 			variant
@@ -596,27 +560,14 @@ mission "FWC Diplomacy 1C"
 		personality staying heroic
 		system "Denebola"
 		government "Republic"
-		fleet
+		fleet 2
 			names "republic capital"
 			fighters "republic fighter"
 			variant
 				"Carrier (Mark II)"
 				"Lance" 4
 				"Combat Drone" 6
-		fleet
-			names "republic capital"
-			fighters "republic fighter"
-			variant
-				"Carrier (Mark II)"
-				"Lance" 4
-				"Combat Drone" 6
-		fleet
-			names "republic capital"
-			fighters "republic fighter"
-			variant
-				"Cruiser (Mark II)"
-				"Combat Drone" 4
-		fleet
+		fleet 2
 			names "republic capital"
 			fighters "republic fighter"
 			variant
@@ -688,21 +639,7 @@ mission "FWC Checkmate 1"
 	npc evade
 		personality staying heroic
 		government "Republic"
-		fleet
-			names "republic small"
-			fighters "republic fighter"
-			variant
-				"Frigate (Mark II)"
-				"Gunboat (Mark II)" 2
-				"Rainmaker (Mark II)" 2
-		fleet
-			names "republic small"
-			fighters "republic fighter"
-			variant
-				"Frigate (Mark II)"
-				"Gunboat (Mark II)" 2
-				"Rainmaker (Mark II)" 2
-		fleet
+		fleet 3
 			names "republic small"
 			fighters "republic fighter"
 			variant
@@ -721,13 +658,7 @@ mission "FWC Checkmate 1"
 				"Carrier (Mark II)"
 				"Lance" 4
 				"Combat Drone" 6
-		fleet
-			names "republic capital"
-			fighters "republic fighter"
-			variant
-				"Cruiser (Mark II)"
-				"Combat Drone" 4
-		fleet
+		fleet 2
 			names "republic capital"
 			fighters "republic fighter"
 			variant
@@ -745,19 +676,7 @@ mission "FWC Checkmate 1"
 				"Carrier (Mark II)"
 				"Lance" 4
 				"Combat Drone" 6
-		fleet
-			names "republic capital"
-			fighters "republic fighter"
-			variant
-				"Cruiser (Mark II)"
-				"Combat Drone" 4
-		fleet
-			names "republic capital"
-			fighters "republic fighter"
-			variant
-				"Cruiser (Mark II)"
-				"Combat Drone" 4
-		fleet
+		fleet 3
 			names "republic capital"
 			fighters "republic fighter"
 			variant
@@ -768,27 +687,14 @@ mission "FWC Checkmate 1"
 		personality heroic
 		government "Republic"
 		system Pollux
-		fleet
+		fleet 2
 			names "republic capital"
 			fighters "republic fighter"
 			variant
 				"Carrier (Mark II)"
 				"Lance" 4
 				"Combat Drone" 6
-		fleet
-			names "republic capital"
-			fighters "republic fighter"
-			variant
-				"Cruiser (Mark II)"
-				"Combat Drone" 4
-		fleet
-			names "republic capital"
-			fighters "republic fighter"
-			variant
-				"Carrier (Mark II)"
-				"Lance" 4
-				"Combat Drone" 6
-		fleet
+		fleet 2
 			names "republic capital"
 			fighters "republic fighter"
 			variant
@@ -945,32 +851,20 @@ mission "FWC Checkmate 1B"
 		personality heroic staying
 		government "Republic"
 		system Menkent
-		fleet
+		fleet 2
 			names "republic capital"
 			fighters "republic fighter"
 			variant
 				"Carrier (Mark II)"
 				"Lance" 4
 				"Combat Drone" 6
-		fleet
+		fleet 2
 			names "republic capital"
 			fighters "republic fighter"
 			variant
 				"Cruiser (Mark II)"
 				"Combat Drone" 4
-		fleet
-			names "republic capital"
-			fighters "republic fighter"
-			variant
-				"Carrier (Mark II)"
-				"Lance" 4
-				"Combat Drone" 6
-		fleet
-			names "republic capital"
-			fighters "republic fighter"
-			variant
-				"Cruiser (Mark II)"
-				"Combat Drone" 4
+	
 	npc
 		personality derelict
 		government "Republic"
@@ -1124,19 +1018,7 @@ mission "FWC Pug 1"
 				"Clipper"
 				"Clipper (Heavy)"
 				"Clipper (Speedy)"
-		fleet
-			names "free worlds small"
-			variant
-				"Clipper (Nuclear)"
-		fleet
-			names "free worlds small"
-			variant
-				"Clipper (Nuclear)"
-		fleet
-			names "free worlds small"
-			variant
-				"Clipper (Nuclear)"
-		fleet
+		fleet 4
 			names "free worlds small"
 			variant
 				"Clipper (Nuclear)"
@@ -1153,13 +1035,7 @@ mission "FWC Pug 1"
 	npc evade
 		personality staying disables heroic
 		government Pug
-		fleet
-			names "pug"
-			variant
-				"Pug Maboro"
-				"Pug Enfolta"
-				"Pug Zibruka" 2
-		fleet
+		fleet 2
 			names "pug"
 			variant
 				"Pug Maboro"
@@ -1174,29 +1050,13 @@ mission "FWC Pug 1"
 	npc evade
 		personality entering disables heroic
 		government Pug
-		fleet
+		fleet 2
 			names "pug"
 			variant
 				"Pug Maboro"
 				"Pug Enfolta"
 				"Pug Zibruka" 2
-		fleet
-			names "pug"
-			variant
-				"Pug Maboro"
-				"Pug Enfolta"
-				"Pug Zibruka" 2
-		fleet
-			names "pug"
-			variant
-				"Pug Enfolta"
-				"Pug Zibruka" 2
-		fleet
-			names "pug"
-			variant
-				"Pug Enfolta"
-				"Pug Zibruka" 2
-		fleet
+		fleet 3
 			names "pug"
 			variant
 				"Pug Enfolta"
@@ -1206,13 +1066,7 @@ mission "FWC Pug 1"
 		personality disables heroic
 		government Pug
 		system "Delta Capricorni"
-		fleet
-			names "pug"
-			variant
-				"Pug Maboro"
-				"Pug Enfolta"
-				"Pug Zibruka" 2
-		fleet
+		fleet 2
 			names "pug"
 			variant
 				"Pug Maboro"
@@ -1729,12 +1583,7 @@ mission "FWC Pug 3D"
 				"Pug Maboro"
 				"Pug Enfolta"
 				"Pug Zibruka" 2
-		fleet
-			names "pug"
-			variant
-				"Pug Enfolta"
-				"Pug Zibruka" 2
-		fleet
+		fleet 2
 			names "pug"
 			variant
 				"Pug Enfolta"
@@ -1842,12 +1691,7 @@ mission "FWC Pug 4"
 				"Pug Maboro"
 				"Pug Enfolta"
 				"Pug Zibruka" 2
-		fleet
-			names "pug"
-			variant
-				"Pug Enfolta"
-				"Pug Zibruka" 2
-		fleet
+		fleet 2
 			names "pug"
 			variant
 				"Pug Enfolta"
@@ -1857,24 +1701,13 @@ mission "FWC Pug 4"
 		personality disables heroic
 		government Pug
 		system Alderamin
-		fleet
+		fleet 2
 			names "pug"
 			variant
 				"Pug Maboro"
 				"Pug Enfolta"
 				"Pug Zibruka" 2
-		fleet
-			names "pug"
-			variant
-				"Pug Maboro"
-				"Pug Enfolta"
-				"Pug Zibruka" 2
-		fleet
-			names "pug"
-			variant
-				"Pug Enfolta"
-				"Pug Zibruka" 2
-		fleet
+		fleet 2
 			names "pug"
 			variant
 				"Pug Enfolta"
@@ -1884,25 +1717,7 @@ mission "FWC Pug 4"
 		personality disables heroic
 		government Pug
 		system Markab
-		fleet
-			names "pug"
-			variant
-				"Pug Maboro"
-				"Pug Enfolta"
-				"Pug Zibruka" 2
-		fleet
-			names "pug"
-			variant
-				"Pug Maboro"
-				"Pug Enfolta"
-				"Pug Zibruka" 2
-		fleet
-			names "pug"
-			variant
-				"Pug Maboro"
-				"Pug Enfolta"
-				"Pug Zibruka" 2
-		fleet
+		fleet 4
 			names "pug"
 			variant
 				"Pug Maboro"
@@ -1913,29 +1728,13 @@ mission "FWC Pug 4"
 		personality disables heroic
 		government Pug
 		system Alpheratz
-		fleet
+		fleet 2
 			names "pug"
 			variant
 				"Pug Maboro"
 				"Pug Enfolta"
 				"Pug Zibruka" 2
-		fleet
-			names "pug"
-			variant
-				"Pug Maboro"
-				"Pug Enfolta"
-				"Pug Zibruka" 2
-		fleet
-			names "pug"
-			variant
-				"Pug Enfolta"
-				"Pug Zibruka" 2
-		fleet
-			names "pug"
-			variant
-				"Pug Enfolta"
-				"Pug Zibruka" 2
-		fleet
+		fleet 3
 			names "pug"
 			variant
 				"Pug Enfolta"
@@ -2117,32 +1916,7 @@ mission "FWC Pug 4C"
 		personality disables heroic staying
 		government Pug
 		system "Zeta Aquilae"
-		fleet
-			names "pug"
-			variant
-				"Pug Maboro"
-				"Pug Enfolta" 2
-		fleet
-			names "pug"
-			variant
-				"Pug Maboro"
-				"Pug Enfolta" 2
-		fleet
-			names "pug"
-			variant
-				"Pug Maboro"
-				"Pug Enfolta" 2
-		fleet
-			names "pug"
-			variant
-				"Pug Maboro"
-				"Pug Enfolta" 2
-		fleet
-			names "pug"
-			variant
-				"Pug Maboro"
-				"Pug Enfolta" 2
-		fleet
+		fleet 6
 			names "pug"
 			variant
 				"Pug Maboro"
@@ -2170,7 +1944,7 @@ mission "FWC Pug 4C"
 		government Republic
 		system "Zeta Aquilae"
 		personality heroic staying uninterested
-		fleet
+		fleet 2
 			names "republic capital"
 			fighters "republic fighter"
 			variant
@@ -2184,13 +1958,6 @@ mission "FWC Pug 4C"
 				"Cruiser (Mark II)"
 				"Combat Drone" 4
 				"Gunboat (Mark II)" 2
-		fleet
-			names "republic capital"
-			fighters "republic fighter"
-			variant
-				"Cruiser (Mark II)"
-				"Combat Drone" 4
-				"Frigate (Mark II)" 2
 
 
 
@@ -2234,21 +2001,7 @@ mission "FWC Pug 5"
 	npc
 		government "Navy (Oathkeeper)"
 		personality heroic escort
-		fleet
-			names "republic capital"
-			fighters "republic fighter"
-			variant
-				"Carrier (Jump)"
-				"Combat Drone" 6
-				"Dagger" 4
-		fleet
-			names "republic capital"
-			fighters "republic fighter"
-			variant
-				"Carrier (Jump)"
-				"Combat Drone" 6
-				"Dagger" 4
-		fleet
+		fleet 3
 			names "republic capital"
 			fighters "republic fighter"
 			variant
@@ -2260,22 +2013,12 @@ mission "FWC Pug 5"
 		personality disables heroic staying
 		government Pug
 		system Vega
-		fleet
+		fleet 2
 			names "pug"
 			variant
 				"Pug Enfolta"
 				"Pug Zibruka" 4
-		fleet
-			names "pug"
-			variant
-				"Pug Enfolta"
-				"Pug Zibruka" 3
-		fleet
-			names "pug"
-			variant
-				"Pug Enfolta"
-				"Pug Zibruka" 4
-		fleet
+		fleet 2
 			names "pug"
 			variant
 				"Pug Enfolta"
@@ -2318,31 +2061,7 @@ mission "FWC Pug 5B"
 		government Republic
 		system Sol
 		personality heroic staying uninterested
-		fleet
-			names "republic capital"
-			fighters "republic fighter"
-			variant
-				"Carrier (Mark II)"
-				"Lance" 4
-				"Combat Drone" 6
-				"Cruiser (Mark II)"
-				"Combat Drone" 4
-				"Frigate (Mark II)" 2
-				"Gunboat (Mark II)" 2
-				"Rainmaker (Mark II)" 2
-		fleet
-			names "republic capital"
-			fighters "republic fighter"
-			variant
-				"Carrier (Mark II)"
-				"Lance" 4
-				"Combat Drone" 6
-				"Cruiser (Mark II)"
-				"Combat Drone" 4
-				"Frigate (Mark II)" 2
-				"Gunboat (Mark II)" 2
-				"Rainmaker (Mark II)" 2
-		fleet
+		fleet 3
 			names "republic capital"
 			fighters "republic fighter"
 			variant
@@ -2382,31 +2101,7 @@ mission "FWC Pug 5C"
 		government Republic
 		system Sol
 		personality heroic waiting
-		fleet
-			names "republic capital"
-			fighters "republic fighter"
-			variant
-				"Carrier (Mark II)"
-				"Lance" 4
-				"Combat Drone" 6
-				"Cruiser (Mark II)"
-				"Combat Drone" 4
-				"Frigate (Mark II)" 2
-				"Gunboat (Mark II)" 2
-				"Rainmaker (Mark II)" 2
-		fleet
-			names "republic capital"
-			fighters "republic fighter"
-			variant
-				"Carrier (Mark II)"
-				"Lance" 4
-				"Combat Drone" 6
-				"Cruiser (Mark II)"
-				"Combat Drone" 4
-				"Frigate (Mark II)" 2
-				"Gunboat (Mark II)" 2
-				"Rainmaker (Mark II)" 2
-		fleet
+		fleet 3
 			names "republic capital"
 			fighters "republic fighter"
 			variant
@@ -2457,31 +2152,7 @@ mission "FWC Pug 6"
 	npc
 		government Republic
 		personality heroic
-		fleet
-			names "republic capital"
-			fighters "republic fighter"
-			variant
-				"Carrier (Mark II)"
-				"Lance" 4
-				"Combat Drone" 6
-				"Cruiser (Mark II)"
-				"Combat Drone" 4
-				"Frigate (Mark II)" 2
-				"Gunboat (Mark II)" 2
-				"Rainmaker (Mark II)" 2
-		fleet
-			names "republic capital"
-			fighters "republic fighter"
-			variant
-				"Carrier (Mark II)"
-				"Lance" 4
-				"Combat Drone" 6
-				"Cruiser (Mark II)"
-				"Combat Drone" 4
-				"Frigate (Mark II)" 2
-				"Gunboat (Mark II)" 2
-				"Rainmaker (Mark II)" 2
-		fleet
+		fleet 3
 			names "republic capital"
 			fighters "republic fighter"
 			variant
@@ -2497,29 +2168,14 @@ mission "FWC Pug 6"
 		government "Navy (Oathkeeper)"
 		personality heroic
 		system Cebalrai
-		fleet
+		fleet 2
 			names "republic capital"
 			fighters "republic fighter"
 			variant
 				"Cruiser (Mark II)"
 				"Combat Drone" 4
 				"Frigate (Mark II)" 2
-		fleet
-			names "republic capital"
-			fighters "republic fighter"
-			variant
-				"Carrier (Mark II)"
-				"Lance" 4
-				"Combat Drone" 6
-				"Gunboat (Mark II)" 3
-		fleet
-			names "republic capital"
-			fighters "republic fighter"
-			variant
-				"Cruiser (Mark II)"
-				"Combat Drone" 4
-				"Frigate (Mark II)" 2
-		fleet
+		fleet 2
 			names "republic capital"
 			fighters "republic fighter"
 			variant

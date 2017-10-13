@@ -228,14 +228,14 @@ void ShipyardPanel::FailBuy() const
 
 
 
-bool ShipyardPanel::CanSell() const
+bool ShipyardPanel::CanSell(bool toCargo) const
 {
 	return playerShip;
 }
 
 
 
-void ShipyardPanel::Sell()
+void ShipyardPanel::Sell(bool toCargo)
 {
 	static const int MAX_LIST = 20;
 	static const int MAX_NAME_WIDTH = 250 - 30;
@@ -280,14 +280,6 @@ void ShipyardPanel::Sell()
 	
 	message += ((initialCount > 2) ? "\nfor " : " for ") + Format::Number(total) + " credits?";
 	GetUI()->Push(new Dialog(this, &ShipyardPanel::SellShip, message));
-}
-
-
-
-bool ShipyardPanel::FlightCheck()
-{
-	// The shipyard does not perform any flight checks.
-	return true;
 }
 
 

@@ -56,7 +56,10 @@ void NPC::Load(const DataNode &node)
 		else if(node.Token(i) == "evade")
 			mustEvade = true;
 		else if(node.Token(i) == "accompany")
+		{
 			mustAccompany = true;
+			failIf |= ShipEvent::DESTROY;
+		}
 	}
 	
 	for(const DataNode &child : node)
@@ -127,10 +130,21 @@ void NPC::Load(const DataNode &node)
 			{
 				fleets.push_back(Fleet());
 				fleets.back().Load(child);
+				if(child.Size() >= 2)
+				{
+					// Copy the custom fleet in lieu of reparsing the same DataNode.
+					size_t numAdded = child.Value(1);
+					for(size_t i = 1; i < numAdded; ++i)
+						fleets.push_back(fleets.back());
+				}
 			}
+			else if(child.Size() >= 3 && child.Value(2) > 1.)
+				stockFleets.insert(stockFleets.end(), child.Value(2), GameData::Fleets().Get(child.Token(1)));
 			else if(child.Size() >= 2)
 				stockFleets.push_back(GameData::Fleets().Get(child.Token(1)));
 		}
+		else
+			child.PrintTrace("Skipping unrecognized attribute:");
 	}
 	
 	// Since a ship's government is not serialized, set it now.
@@ -243,11 +257,19 @@ void NPC::Do(const ShipEvent &event, PlayerInfo &player, UI *ui, bool isVisible)
 	bool hasSucceeded = HasSucceeded(player.GetSystem());
 	bool hasFailed = HasFailed();
 	
+	// Scan events only count if originated by the player.
+	if(!event.ActorGovernment()->IsPlayer())
+		type &= ~(ShipEvent::SCAN_CARGO | ShipEvent::SCAN_OUTFITS);
+	
 	// Apply this event to the ship and any ships it is carrying.
 	actions[ship.get()] |= type;
 	for(const Ship::Bay &bay : ship->Bays())
 		if(bay.ship)
 			actions[bay.ship.get()] |= type;
+	
+	// If this event was "ASSIST", the ship is now known as not disabled.
+	if(type == ShipEvent::ASSIST)
+		actions[ship.get()] &= ~(ShipEvent::DISABLE);
 	
 	// Check if the success status has changed. If so, display a message.
 	if(HasFailed() && !hasFailed && isVisible)
@@ -268,21 +290,29 @@ bool NPC::HasSucceeded(const System *playerSystem) const
 	if(HasFailed())
 		return false;
 	
-	// Check what system each ship is in, if there is a requirement that we
-	// either evade them, or accompany them. If you are accompanying a ship, it
-	// must not be disabled (so that it can land with you). If trying to evade
-	// it, disabling it is sufficient (you do not have to kill it).
+	// Evaluate the status of each ship in this NPC block. If it has `accompany`,
+	// it cannot be disabled or destroyed, and must be in the player's system.
+	// Destroyed `accompany` are handled in HasFailed(). If the NPC block has
+	// `evade`, the ship can be disabled, destroyed, captured, or not present.
 	if(mustEvade || mustAccompany)
 		for(const shared_ptr<Ship> &ship : ships)
 		{
-			// Special case: if a ship has been captured, it counts as having
-			// been evaded.
 			auto it = actions.find(ship.get());
-			bool isCapturedOrDisabled = ship->IsDisabled();
+			// If a derelict ship has not received any ShipEvents, it is immobile.
+			bool isImmobile = ship->GetPersonality().IsDerelict();
+			// The success status calculation can only be based on recorded
+			// events (and the current system).
 			if(it != actions.end())
-				isCapturedOrDisabled |= (it->second & ShipEvent::CAPTURE);
+			{
+				// A ship that was disabled, captured, or destroyed is considered 'immobile'.
+				isImmobile = (it->second
+					& (ShipEvent::DISABLE | ShipEvent::CAPTURE | ShipEvent::DESTROY));
+				// if this NPC is 'derelict' and has no ASSIST on record, it is immobile.
+				isImmobile |= ship->GetPersonality().IsDerelict()
+					&& !(it->second & ShipEvent::ASSIST);
+			}
 			bool isHere = (!ship->GetSystem() || ship->GetSystem() == playerSystem);
-			if((isHere && !isCapturedOrDisabled) ^ mustAccompany)
+			if((isHere && !isImmobile) ^ mustAccompany)
 				return false;
 		}
 	
@@ -319,17 +349,15 @@ bool NPC::IsLeftBehind(const System *playerSystem) const
 
 
 bool NPC::HasFailed() const
-{
-	static const int mustLiveFor = ShipEvent::SCAN_CARGO | ShipEvent::SCAN_OUTFITS | ShipEvent::BOARD;
-						
+{					
 	for(const auto &it : actions)
 	{
 		if(it.second & failIf)
 			return true;
 	
-		// If we still need to perform an action that requires the NPC ship be
-		// alive, then that ship being destroyed should cause the mission to fail.
-		if((~it.second & succeedIf & mustLiveFor) && (it.second & ShipEvent::DESTROY))
+		// If we still need to perform an action on this NPC, then that ship
+		// being destroyed should cause the mission to fail.
+		if((~it.second & succeedIf) && (it.second & ShipEvent::DESTROY))
 			return true;
 	}
 
@@ -392,7 +420,7 @@ NPC NPC::Instantiate(map<string, string> &subs, const System *origin, const Syst
 		ship->SetGovernment(result.government);
 		ship->SetIsSpecial();
 		ship->SetPersonality(result.personality);
-		result.ships.back()->FinishLoading(true);
+		ship->FinishLoading(true);
 		
 		if(personality.IsEntering())
 			Fleet::Enter(*result.system, *ship);

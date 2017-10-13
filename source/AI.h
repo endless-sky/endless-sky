@@ -88,6 +88,7 @@ private:
 	static void Attack(Ship &ship, Command &command, const Ship &target);
 	static void MoveToAttack(Ship &ship, Command &command, const Body &target);
 	static void PickUp(Ship &ship, Command &command, const Body &target);
+	static bool ShouldUseAfterburner(Ship &ship);
 	void DoSurveillance(Ship &ship, Command &command) const;
 	void DoMining(Ship &ship, Command &command);
 	bool DoHarvesting(Ship &ship, Command &command);
@@ -135,12 +136,14 @@ private:
 		int type = 0;
 		std::weak_ptr<Ship> target;
 		Point point;
-		const System * targetSystem;
+		const System *targetSystem;
 	};
 
 
 private:
 	void IssueOrders(const PlayerInfo &player, const Orders &newOrders, const std::string &description);
+	// Convert order types based on fulfillment status.
+	void UpdateOrders(const Ship &ship);
 	
 	
 private:

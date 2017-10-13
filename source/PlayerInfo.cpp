@@ -22,11 +22,13 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Format.h"
 #include "GameData.h"
 #include "Government.h"
+#include "Hardpoint.h"
 #include "Messages.h"
 #include "Mission.h"
 #include "Outfit.h"
 #include "Person.h"
 #include "Planet.h"
+#include "Preferences.h"
 #include "Politics.h"
 #include "Random.h"
 #include "SavedGame.h"
@@ -38,6 +40,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "UI.h"
 
 #include <algorithm>
+#include <cmath>
 #include <ctime>
 #include <sstream>
 
@@ -310,7 +313,7 @@ void PlayerInfo::LoadRecent()
 	while(!recentPath.empty() && recentPath.back() <= ' ')
 		recentPath.pop_back();
 	
-	if(recentPath.empty())
+	if(recentPath.empty() || !Files::Exists(recentPath))
 		Clear();
 	else
 		Load(recentPath);
@@ -822,8 +825,12 @@ int PlayerInfo::ReorderShips(const set<int> &fromIndices, int toIndex)
 	// Remove the ships from last to first, so that each removal leaves all the
 	// remaining indices in the set still valid.
 	vector<shared_ptr<Ship>> removed;
-	for(set<int>::const_iterator it = fromIndices.end(); it-- != fromIndices.begin(); )
+	for(set<int>::const_iterator it = fromIndices.end(); it != fromIndices.begin(); )
 	{
+		// The "it" pointer doesn't point to the beginning of the list, so it is
+		// safe to decrement it here.
+		--it;
+		
 		// Bail out if any invalid indices are encountered.
 		if(static_cast<unsigned>(*it) >= ships.size())
 			return -1;
@@ -839,6 +846,34 @@ int PlayerInfo::ReorderShips(const set<int> &fromIndices, int toIndex)
 	flagship.reset();
 	
 	return toIndex;
+}
+
+
+
+// Find out how attractive the player's fleet is to pirates. Aside from a
+// heavy freighter, no single ship should attract extra pirate attention.
+pair<double, double> PlayerInfo::RaidFleetFactors() const
+{
+	double attraction = 0.;
+	double deterrence = 0.;
+	for(const shared_ptr<Ship> &ship : Ships())
+	{
+		if(ship->IsParked() || ship->IsDestroyed())
+			continue;
+		
+		attraction += .4 * sqrt(ship->Attributes().Get("cargo space")) - 1.8;
+		for(const Hardpoint &hardpoint : ship->Weapons())
+			if(hardpoint.GetOutfit())
+			{
+				const Outfit *weapon = hardpoint.GetOutfit();
+				if(weapon->Ammo() && !ship->OutfitCount(weapon->Ammo()))
+					continue;
+				double damage = weapon->ShieldDamage() + weapon->HullDamage();
+				deterrence += .12 * damage / weapon->Reload();
+			}
+	}
+	
+	return make_pair(attraction, deterrence);
 }
 
 
@@ -934,15 +969,22 @@ void PlayerInfo::Land(UI *ui)
 	for(const shared_ptr<Ship> &ship : ships)
 		ship->UnloadBays();
 	
-	// Recharge any ships that are landed with you on the planet.
+	// Ships that are landed with you on the planet should fully recharge
+	// and pool all their cargo together. Those in remote systems restore
+	// what they can without landing.
 	bool hasSpaceport = planet->HasSpaceport() && planet->CanUseServices();
 	UpdateCargoCapacities();
 	for(const shared_ptr<Ship> &ship : ships)
-		if(ship->GetSystem() == system && !ship->IsDisabled())
+		if(!ship->IsDisabled())
 		{
-			ship->Recharge(hasSpaceport);
-			ship->Cargo().TransferAll(&cargo);
-			ship->SetPlanet(planet);
+			if(ship->GetSystem() == system)
+			{
+				ship->Recharge(hasSpaceport);
+				ship->Cargo().TransferAll(&cargo);
+				ship->SetPlanet(planet);
+			}
+			else
+				ship->Recharge(false);
 		}
 	// Adjust cargo cost basis for any cargo lost due to a ship being destroyed.
 	for(const auto &it : lostCargo)
@@ -1032,6 +1074,20 @@ void PlayerInfo::Land(UI *ui)
 			ui->Push(new Dialog(message));
 	}
 	
+	// Hire extra crew back if any were lost in-flight (i.e. boarding) or
+	// some bunks were freed up upon landing (i.e. completed missions).
+	if(Preferences::Has("Rehire extra crew when lost") && hasSpaceport)
+	{
+		int added = desiredCrew - flagship->Crew();
+		if(added > 0)
+		{
+			flagship->AddCrew(added);
+			Messages::Add("You hire " + to_string(added) + (added == 1
+					? " extra crew member to fill your now-empty bunk."
+					: " extra crew members to fill your now-empty bunks."));
+		}
+	}
+	
 	freshlyLoaded = false;
 	flagship.reset();
 }
@@ -1094,12 +1150,19 @@ bool PlayerInfo::TakeOff(UI *ui)
 			++it;
 	}
 	
-	// Recharge any ships that can be recharged.
+	// Recharge any ships that can be recharged, and load available cargo.
 	bool hasSpaceport = planet->HasSpaceport() && planet->CanUseServices();
 	for(const shared_ptr<Ship> &ship : ships)
-		if(!ship->IsParked() && ship->GetSystem() == system && !ship->IsDisabled())
+		if(!ship->IsParked() && !ship->IsDisabled())
 		{
-			ship->Recharge(hasSpaceport);
+			if(ship->GetSystem() != system)
+			{
+				ship->Recharge(false);
+				continue;
+			}
+			else
+				ship->Recharge(hasSpaceport);
+			
 			if(ship != flagship)
 			{
 				ship->Cargo().SetBunks(ship->Attributes().Get("bunks") - ship->RequiredCrew());
@@ -1108,7 +1171,8 @@ bool PlayerInfo::TakeOff(UI *ui)
 			else
 			{
 				// Your flagship takes first priority for passengers but last for cargo.
-				ship->Cargo().SetBunks(ship->Attributes().Get("bunks") - ship->Crew());
+				desiredCrew = ship->Crew();
+				ship->Cargo().SetBunks(ship->Attributes().Get("bunks") - desiredCrew);
 				for(const auto &it : cargo.PassengerList())
 					cargo.TransferPassengers(it.first, it.second, &ship->Cargo());
 			}
@@ -1145,7 +1209,7 @@ bool PlayerInfo::TakeOff(UI *ui)
 	for(auto it = ships.begin(); it != ships.end(); )
 	{
 		shared_ptr<Ship> &ship = *it;
-		if(ship->IsParked() || ship->IsDisabled() || ship->GetSystem() != system)
+		if(ship->IsParked() || ship->IsDisabled())
 		{
 			++it;
 			continue;
@@ -1165,7 +1229,7 @@ bool PlayerInfo::TakeOff(UI *ui)
 					break;
 				}
 		}
-		if(!fit)
+		if(!fit && ship->GetSystem() == system)
 		{
 			++shipsSold[isFighter];
 			int64_t cost = depreciation.Value(*ship, day);
@@ -2166,6 +2230,7 @@ void PlayerInfo::UpdateAutoConditions()
 	// Set a condition for the player's net worth. Limit it to the range of a 32-bit int.
 	static const int64_t limit = 2000000000;
 	conditions["net worth"] = min(limit, max(-limit, accounts.NetWorth()));
+	conditions["credits"] = min(limit, accounts.Credits());
 	SetReputationConditions();
 	// Clear any existing ships: conditions. (Note: '!' = ' ' + 1.)
 	auto first = conditions.lower_bound("ships: ");
@@ -2182,6 +2247,12 @@ void PlayerInfo::UpdateAutoConditions()
 			conditions["passenger space"] += ship->Attributes().Get("bunks") - ship->RequiredCrew();
 			++conditions["ships: " + ship->Attributes().Category()];
 		}
+	
+	// Conditions for your fleet's attractiveness to pirates:
+	pair<double, double> factors = RaidFleetFactors();
+	conditions["cargo attractiveness"] = factors.first;
+	conditions["armament deterrence"] = factors.second;
+	conditions["pirate attraction"] = factors.first - factors.second;
 }
 
 

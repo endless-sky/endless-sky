@@ -53,6 +53,9 @@ public:
 	// Get a set containing all the systems.
 	std::set<const System *> Systems() const;
 	
+	// How much fuel is needed to travel between two systems.
+	int RequiredFuel(const System *system1, const System *system2) const;
+	
 	
 private:
 	// For each system, track how much fuel it will take to get there, how many

@@ -20,7 +20,13 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Ship.h"
 #include "SpriteSet.h"
 
+#include <cmath>
+
 using namespace std;
+
+
+
+const int Flotsam::TONS_PER_BOX = 5;
 
 
 
@@ -29,6 +35,9 @@ Flotsam::Flotsam(const string &commodity, int count)
 	: commodity(commodity), count(count)
 {
 	lifetime = Random::Int(300) + 360;
+	// Scale lifetime in proportion to the expected amount per box.
+	if(count != TONS_PER_BOX)
+		lifetime = sqrt(count * (1. / TONS_PER_BOX)) * lifetime;
 }
 
 
@@ -141,4 +150,22 @@ int Flotsam::Count() const
 double Flotsam::UnitSize() const
 {
 	return outfit ? outfit->Get("mass") : 1;
+}
+
+
+
+// Transfer contents to the collector ship. The flotsam velocity is
+// stabilized in proportion to the amount being transferred.
+int Flotsam::TransferTo(Ship *collector)
+{
+	int amount = outfit ?
+		collector->Cargo().Add(outfit, count) :
+		collector->Cargo().Add(commodity, count);
+	
+	Point relative = collector->Velocity() - velocity;
+	double proportion = static_cast<double>(amount) / count;
+	velocity += relative * proportion;
+	
+	count -= amount;
+	return amount;
 }

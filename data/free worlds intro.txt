@@ -608,8 +608,7 @@ mission "FW Katya 1C"
 	npc kill
 		personality nemesis
 		government "Republic"
-		fleet "Small Republic"
-		fleet "Small Republic"
+		fleet "Small Republic" 2
 	
 	on offer
 		conversation
@@ -675,6 +674,8 @@ mission "FW Katya 1C"
 		"reputation: Republic" = -10
 
 
+
+event "FW Katya Alt 2: ready"
 
 mission "FW Katya Alt 2"
 	name "Transport Mr. Eyes"
@@ -750,10 +751,9 @@ mission "FW Katya 2B"
 	clearance
 	passengers 1
 	npc
-		personality nemesis plunder waiting
 		government Pirate
-		fleet "Small Core Pirates"
-		fleet "Small Core Pirates"
+		personality nemesis plunders waiting
+		fleet "Small Core Pirates" 2
 	to offer
 		has "FW Katya 2: done"
 	to fail
@@ -1305,8 +1305,7 @@ mission "FW Escort 1"
 	npc
 		personality plunders waiting
 		government Pirate
-		fleet "Large Southern Pirates"
-		fleet "Large Southern Pirates"
+		fleet "Large Southern Pirates" 2
 		system "Tarazed"
 	
 	on offer
@@ -1378,8 +1377,7 @@ mission "FW Escort 1B"
 	npc
 		personality plunders waiting
 		government Pirate
-		fleet "Large Southern Pirates"
-		fleet "Large Southern Pirates"
+		fleet "Large Southern Pirates" 2
 		system "Sabik"
 	
 	on offer
@@ -1441,9 +1439,7 @@ mission "FW Escort 2"
 	npc
 		personality plunders waiting
 		government Pirate
-		fleet "Large Southern Pirates"
-		fleet "Large Southern Pirates"
-		fleet "Large Southern Pirates"
+		fleet "Large Southern Pirates" 3
 		system "Tarazed"
 	
 	on offer
@@ -1497,25 +1493,20 @@ mission "FW Escort 2B"
 	npc
 		personality plunders staying
 		government Pirate
-		fleet "Large Southern Pirates"
-		fleet "Large Southern Pirates"
-		fleet "Small Southern Pirates"
-		fleet "Small Southern Pirates"
+		fleet "Large Southern Pirates" 2
+		fleet "Small Southern Pirates" 2
 		system "Alpha Arae"
 	npc
 		personality plunders staying
 		government Pirate
-		fleet "Large Southern Pirates"
-		fleet "Large Southern Pirates"
-		fleet "Small Southern Pirates"
-		fleet "Small Southern Pirates"
+		fleet "Large Southern Pirates" 2
+		fleet "Small Southern Pirates" 2
 		system "Lesath"
 	npc
 		personality plunders waiting
 		government Pirate
 		fleet "Large Southern Pirates"
-		fleet "Small Southern Pirates"
-		fleet "Small Southern Pirates"
+		fleet "Small Southern Pirates" 2
 		system "Sabik"
 	
 	on offer
@@ -1584,7 +1575,7 @@ mission "FW Escort Second Chance"
 	description "Return to <destination> to meet up with Tomek Voigt and see if he will forgive you for failing the escort mission he gave you."
 	minor
 	source
-		near Sabik 1 1000
+		near Sabik 1 100
 		government "Free Worlds"
 	destination Longjump
 	to offer
@@ -1857,7 +1848,7 @@ mission "Rescue Katya 1"
 	on accept
 		set "chosen sides"
 		event "capture of Kornephoros"
-		log "People" "Alondo Gruyere" `Alondo grew up on Bourne, the relatively prosperous planet on the edge of the Rim that is now the capital of the Free Worlds. He served as a Republic diplomat for years before becoming convinced that Parliament was just using him the "pacify" the less developed worlds in the South with empty promises. He joined the Southern Defense Pact in the early days, before it became the Free Worlds, and is now a member of the Council.`
+		log "People" "Alondo Gruyere" `Alondo grew up on Bourne, the relatively prosperous planet on the edge of the Rim that is now the capital of the Free Worlds. He served as a Republic diplomat for years before becoming convinced that Parliament was just using him to "pacify" the less developed worlds in the South with empty promises. He joined the Southern Defense Pact in the early days, before it became the Free Worlds, and is now a member of the Council.`
 		log "People" "Tomek Voigt" `Tomek is a young and ambitious militia commander. His brilliant tactical leadership and charismatic personality gained him quite a following in the Dirt Belt region even before the Free Worlds came into existence. He was asked to join the Council in part because of his popularity with the local militias throughout the region.`
 		log "People" "Freya Winters" `Freya is an engineer, specializing in surveillance equipment but with a wide range of talents. She organized the "thousand eyes" program run by the Southern Defense Pact, which was an attempt to reduce the power of the pirate fleets in the region by tracking their fleet movements. Despite her relative lack of interest in politics, she was asked to join the Free Worlds Council because of her expertise in optimizing the distribution and management of resources.`
 		log "People" "Jean-Jacques Soleau" `Known to most people simply as "JJ," Jean-Jacques grew up in the Dirt Belt and served in the Navy for years before quitting in frustration over the fact that the Navy was no longer defending his home region of space. He now serves on the Free Worlds Council, where he is tasked with coordinating actions between the local militias and shaping them into a single fighting force that can act in concert with each other.`
@@ -1975,17 +1966,7 @@ mission "Defend Sabik"
 		personality heroic
 		government Republic
 		system Kornephoros
-		fleet
-			names "republic capital"
-			fighters "republic fighter"
-			variant
-				"Carrier"
-				"Lance" 4
-				"Combat Drone" 6
-				"Frigate" 2
-				"Gunboat" 3
-				"Rainmaker" 3
-		fleet
+		fleet 2
 			names "republic capital"
 			fighters "republic fighter"
 			variant

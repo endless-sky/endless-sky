@@ -8,16 +8,6 @@
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
-effect "seeker impact"
-	sprite "effect/seeker impact"
-		"no repeat"
-		"frame rate" 10
-	"lifetime" 31
-	"random angle" 360
-	"velocity scale" 0.
-	"random spin" 360
-
-
 outfit "Pug Zapper"
 	category "Guns"
 	cost 290000
@@ -71,6 +61,7 @@ outfit "Pug Zapper Turret"
 		"hull damage" 5.8
 	description "Mounted on a turret, this Pug weapon becomes even more devastatingly powerful. However, its energy requirements are higher than most human ships can support."
 
+
 outfit "Pug Seeker"
 	category "Guns"
 	cost 540000
@@ -103,6 +94,16 @@ outfit "Pug Seeker"
 		"missile strength" 40
 	description "You have no idea how this weapon works. It requires no ammunition, but its energy-based projectiles have the ability to home in on a target ship."
 
+effect "seeker impact"
+	sprite "effect/seeker impact"
+		"no repeat"
+		"frame rate" 10
+	"lifetime" 31
+	"random angle" 360
+	"velocity scale" 0.
+	"random spin" 360
+
+
 outfit "Pug Anti-Missile"
 	category "Turrets"
 	cost 350000
@@ -122,6 +123,15 @@ outfit "Pug Anti-Missile"
 		"firing energy" 8
 		"firing heat" 2
 	description "This anti-missile system designed by the Pug draws a lot of energy, but its fast firing rate makes it twice as effective as anything that Lovelace Labs has been able to come up with. A ship with one of these turrets will be very difficult to hit with missiles."
+
+effect "pug anti-missile"
+	sprite "effect/large anti missile"
+		"no repeat"
+		"frame rate" 6
+	sound "pug anti-missile"
+	"lifetime" 11
+	"velocity scale" 1
+
 
 outfit "Tier 3 Anti-Missile"
 	category "Turrets"
@@ -156,6 +166,7 @@ effect "tier 3 anti-missile die"
 	"lifetime" 31
 	"random angle" 360
 	"velocity scale" .4
+
 
 outfit "Pug Gridfire Turret"
 	category "Turrets"
@@ -206,6 +217,7 @@ effect "gridfire cloud"
 	"random angle" 360
 	"random spin" 10
 	"velocity scale" .00001
+
 
 
 outfit "Pug Akfar Thruster"

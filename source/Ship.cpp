@@ -129,6 +129,9 @@ void Ship::Load(const DataNode &node)
 				armament.AddGunPort(hardpoint, outfit);
 			else
 				armament.AddTurret(hardpoint, outfit);
+			// Print a warning for the first hardpoint after 32, i.e. only 1 warning per ship.
+			if(armament.Get().size() == 33)
+				child.PrintTrace("Warning: ship has more than 32 weapon hardpoints. Some weapons may not fire:");
 		}
 		else if(key == "never disabled")
 			neverDisabled = true;
@@ -536,11 +539,64 @@ int64_t Ship::ChassisCost() const
 
 
 
+// Check if this ship is configured in such a way that it would be difficult
+// or impossible to fly.
+string Ship::FlightCheck() const
+{
+	double generation = attributes.Get("energy generation") - attributes.Get("energy consumption");
+	double solar = attributes.Get("solar collection");
+	double battery = attributes.Get("energy capacity");
+	double energy = generation + solar + battery;
+	double thrust = attributes.Get("thrust");
+	double reverseThrust = attributes.Get("reverse thrust");
+	double afterburner = attributes.Get("afterburner thrust");
+	double thrustEnergy = attributes.Get("thrusting energy");
+	double turn = attributes.Get("turn");
+	double turnEnergy = attributes.Get("turning energy");
+	
+	// Error conditions:
+	if(IdleHeat() >= 100. * Mass())
+		return "overheating!";
+	if(energy <= 0.)
+		return "no energy!";
+	if(!thrust && !reverseThrust && !afterburner)
+		return "no thruster!";
+	if(!turn)
+		return "no steering!";
+	
+	// Warning conditions:
+	if(!thrust && !reverseThrust)
+		return "afterburner only?";
+	if(!thrust && !afterburner)
+		return "reverse only?";
+	if(!generation && !solar)
+		return "battery only?";
+	if(energy < thrustEnergy)
+		return "limited thrust?";
+	if(energy < turnEnergy)
+		return "limited turn?";
+	if(energy - .8 * solar < .2 * (turnEnergy + thrustEnergy))
+		return "solar power?";
+	
+	return "";
+}
+
+
+
+void Ship::SetPosition(Point position)
+{
+	this->position = position;
+}
+
+
+
+// Instantiate a newly-created ship in-flight.
 void Ship::Place(Point position, Point velocity, Angle angle)
 {
 	this->position = position;
 	this->velocity = velocity;
 	this->angle = angle;
+	
 	// If landed, place the ship right above the planet.
 	if(landingPlanet)
 	{
@@ -767,22 +823,19 @@ bool Ship::Move(list<Effect> &effects, list<shared_ptr<Flotsam>> &flotsam)
 		// close to the star.
 		double scale = .2 + 1.8 / (.001 * position.Length() + 1);
 		fuel += .03 * scale * (sqrt(attributes.Get("ramscoop")) + .05 * scale);
-		fuel = min(fuel, attributes.Get("fuel capacity"));
 		
 		energy += scale * attributes.Get("solar collection");
 		
 		double coolingEfficiency = CoolingEfficiency();
 		energy += attributes.Get("energy generation") - attributes.Get("energy consumption");
 		energy -= ionization;
-		energy = max(0., energy);
 		heat += attributes.Get("heat generation");
 		heat -= coolingEfficiency * attributes.Get("cooling");
-		heat = max(0., heat);
 		
 		// Apply active cooling. The fraction of full cooling to apply equals
 		// your ship's current fraction of its maximum temperature.
 		double activeCooling = coolingEfficiency * attributes.Get("active cooling");
-		if(activeCooling > 0.)
+		if(activeCooling > 0. && heat > 0.)
 		{
 			// Although it's a misuse of this feature, handle the case where
 			// "active cooling" does not require any energy.
@@ -795,13 +848,16 @@ bool Ship::Move(list<Effect> &effects, list<shared_ptr<Flotsam>> &flotsam)
 			}
 			else
 				heat -= activeCooling;
-			
-			heat = max(0., heat);
 		}
 		
 		// If not disabled, also adjust turret aim.
 		armament.Aim(commands);
 	}
+	
+	// These effects and limits apply whether or not the ship is disabled:
+	fuel = max(0., min(fuel, attributes.Get("fuel capacity")));
+	energy = max(0., energy);
+	heat = max(0., heat);
 	
 	if(!isInvisible)
 	{
@@ -819,6 +875,7 @@ bool Ship::Move(list<Effect> &effects, list<shared_ptr<Flotsam>> &flotsam)
 			cloak = min(1., cloak + cloakingSpeed);
 			fuel -= attributes.Get("cloaking fuel");
 			energy -= attributes.Get("cloaking energy");
+			heat += attributes.Get("cloaking heat");
 		}
 		else if(cloakingSpeed)
 		{
@@ -974,7 +1031,7 @@ bool Ship::Move(list<Effect> &effects, list<shared_ptr<Flotsam>> &flotsam)
 				// is, about acos(.8) from the proper angle). So:
 				// Stopping distance = .5*a*(v/a)^2 + (150/turn)*v.
 				// Exit distance = HYPER_D + .25 * v^2 = stopping distance.
-				double exitV = MaxVelocity();
+				double exitV = max(HYPER_A, MaxVelocity());
 				double a = (.5 / Acceleration() - .25);
 				double b = 150. / TurnRate();
 				double discriminant = b * b - 4. * a * -HYPER_D;
@@ -1041,7 +1098,7 @@ bool Ship::Move(list<Effect> &effects, list<shared_ptr<Flotsam>> &flotsam)
 			}
 		}
 		// Only refuel if this planet has a spaceport.
-		else if(fuel == attributes.Get("fuel capacity")
+		else if(fuel >= attributes.Get("fuel capacity")
 				|| !landingPlanet || !landingPlanet->HasSpaceport())
 		{
 			zoom = min(1., zoom + .02);
@@ -1097,30 +1154,54 @@ bool Ship::Move(list<Effect> &effects, list<shared_ptr<Flotsam>> &flotsam)
 		velocity *= 1. - attributes.Get("drag") / mass;
 	else if(!pilotError)
 	{
+		if(commands.Turn())
+		{
+			// Check if we are able to turn.
+			double cost = attributes.Get("turning energy");
+			if(energy < cost * fabs(commands.Turn()))
+				commands.SetTurn(commands.Turn() * energy / (cost * fabs(commands.Turn())));
+			
+			if(commands.Turn())
+			{
+				// If turning at a fraction of the full rate (either from lack of
+				// energy or because of tracking a target), only consume a fraction
+				// of the turning energy and produce a fraction of the heat.
+				double scale = fabs(commands.Turn());
+				energy -= scale * cost;
+				heat += scale * attributes.Get("turning heat");
+				angle += commands.Turn() * TurnRate() * slowMultiplier;
+			}
+		}
 		double thrustCommand = commands.Has(Command::FORWARD) - commands.Has(Command::BACK);
+		double thrust = 0.;
 		if(thrustCommand)
 		{
 			// Check if we are able to apply this thrust.
 			double cost = attributes.Get((thrustCommand > 0.) ?
 				"thrusting energy" : "reverse thrusting energy");
-			if(energy >= cost)
+			if(energy < cost)
+				thrustCommand *= energy / cost;
+			
+			if(thrustCommand)
 			{
 				// If a reverse thrust is commanded and the capability does not
 				// exist, ignore it (do not even slow under drag).
 				isThrusting = (thrustCommand > 0.);
-				double thrust = attributes.Get(isThrusting ? "thrust" : "reverse thrust");
+				thrust = attributes.Get(isThrusting ? "thrust" : "reverse thrust");
 				if(thrust)
 				{
-					energy -= cost;
-					heat += attributes.Get(isThrusting ? "thrusting heat" : "reverse thrusting heat");
+					double scale = fabs(thrustCommand);
+					energy -= scale * cost;
+					heat += scale * attributes.Get(isThrusting ? "thrusting heat" : "reverse thrusting heat");
 					acceleration += angle.Unit() * (thrustCommand * thrust / mass);
 				}
 			}
 		}
-		bool applyAfterburner = commands.Has(Command::AFTERBURNER) && !CannotAct();
+		bool applyAfterburner = (commands.Has(Command::AFTERBURNER) || (thrustCommand > 0. && !thrust))
+				&& !CannotAct();
 		if(applyAfterburner)
 		{
-			double thrust = attributes.Get("afterburner thrust");
+			thrust = attributes.Get("afterburner thrust");
 			double cost = attributes.Get("afterburner fuel");
 			double energyCost = attributes.Get("afterburner energy");
 			if(thrust && fuel >= cost && energy >= energyCost)
@@ -1141,19 +1222,6 @@ bool Ship::Move(list<Effect> &effects, list<shared_ptr<Flotsam>> &flotsam)
 								effects.back().Place(pos + velocity, velocity - 6. * angle.Unit(), angle);
 							}
 					}
-			}
-		}
-		if(commands.Turn())
-		{
-			// Check if we are able to turn.
-			double cost = attributes.Get("turning energy");
-			if(energy < cost)
-				commands.SetTurn(0.);
-			else
-			{
-				energy -= cost;
-				heat += attributes.Get("turning heat");
-				angle += commands.Turn() * TurnRate() * slowMultiplier;
 			}
 		}
 	}
@@ -2066,7 +2134,8 @@ double Ship::TurnRate() const
 
 double Ship::Acceleration() const
 {
-	return attributes.Get("thrust") / Mass();
+	double thrust = attributes.Get("thrust");
+	return (thrust ? thrust : attributes.Get("afterburner thrust")) / Mass();
 }
 
 
@@ -2076,7 +2145,15 @@ double Ship::MaxVelocity() const
 	// v * drag / mass == thrust / mass
 	// v * drag == thrust
 	// v = thrust / drag
-	return attributes.Get("thrust") / attributes.Get("drag");
+	double thrust = attributes.Get("thrust");
+	return (thrust ? thrust : attributes.Get("afterburner thrust")) / attributes.Get("drag");
+}
+
+
+
+double Ship::MaxReverseVelocity() const
+{
+	return attributes.Get("reverse thrust") / attributes.Get("drag");
 }
 
 
@@ -2091,6 +2168,7 @@ int Ship::TakeDamage(const Projectile &projectile, bool isBlast)
 	double shieldDamage = weapon.ShieldDamage();
 	double hullDamage = weapon.HullDamage();
 	double hitForce = weapon.HitForce();
+	double fuelDamage = weapon.FuelDamage();
 	double heatDamage = weapon.HeatDamage();
 	double ionDamage = weapon.IonDamage();
 	double disruptionDamage = weapon.DisruptionDamage();
@@ -2106,10 +2184,16 @@ int Ship::TakeDamage(const Projectile &projectile, bool isBlast)
 		shieldFraction = min(shieldFraction, shields / shieldDamage);
 	shields -= shieldDamage * shieldFraction;
 	hull -= hullDamage * (1. - shieldFraction);
-	heat += heatDamage * (1. - .5 * shieldFraction);
-	ionization += ionDamage * (1. - .5 * shieldFraction);
-	disruption += disruptionDamage * (1. - .5 * shieldFraction);
-	slowness += slowingDamage * (1. - .5 * shieldFraction);
+	// For the following damage types, the total effect depends on how much is
+	// "leaking" through the shields.
+	double leakage = (1. - .5 * shieldFraction);
+	// Code in Ship::Move() will handle making sure the fuel amount stays in the
+	// allowable range.
+	fuel -= fuelDamage * leakage;
+	heat += heatDamage * leakage;
+	ionization += ionDamage * leakage;
+	disruption += disruptionDamage * leakage;
+	slowness += slowingDamage * leakage;
 	
 	if(hitForce)
 	{
@@ -2130,7 +2214,7 @@ int Ship::TakeDamage(const Projectile &projectile, bool isBlast)
 	// ship that hit it, it is now "provoked" against that government.
 	if(!isBlast && projectile.GetGovernment() && !projectile.GetGovernment()->IsEnemy(government)
 			&& (Shields() < .9 || Hull() < .9 || !personality.IsForbearing())
-			&& !personality.IsPacifist() && (shieldDamage > 0. || hullDamage > 0.))
+			&& !personality.IsPacifist() && weapon.DoesDamage())
 		type |= ShipEvent::PROVOKE;
 	
 	return type;
@@ -2290,9 +2374,8 @@ void Ship::Jettison(const string &commodity, int tons)
 	double shipMass = Mass();
 	heat *= shipMass / (shipMass + tons);
 	
-	static const int perBox = 5;
-	for( ; tons >= perBox; tons -= perBox)
-		jettisoned.emplace_back(new Flotsam(commodity, perBox));
+	for( ; tons > 0; tons -= Flotsam::TONS_PER_BOX)
+		jettisoned.emplace_back(new Flotsam(commodity, (Flotsam::TONS_PER_BOX < tons) ? Flotsam::TONS_PER_BOX : tons));
 }
 
 
@@ -2310,7 +2393,7 @@ void Ship::Jettison(const Outfit *outfit, int count)
 	double shipMass = Mass();
 	heat *= shipMass / (shipMass + count * mass);
 	
-	const int perBox = (mass <= 0.) ? count : (mass > 5.) ? 1 : static_cast<int>(5. / mass);
+	const int perBox = (mass <= 0.) ? count : (mass > Flotsam::TONS_PER_BOX) ? 1 : static_cast<int>(Flotsam::TONS_PER_BOX / mass);
 	while(count > 0)
 	{
 		jettisoned.emplace_back(new Flotsam(outfit, (perBox < count) ? perBox : count));

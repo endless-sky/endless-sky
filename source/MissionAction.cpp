@@ -25,6 +25,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Ship.h"
 #include "UI.h"
 
+#include <cstdlib>
 #include <vector>
 
 using namespace std;
@@ -263,9 +264,14 @@ bool MissionAction::CanBeDone(const PlayerInfo &player) const
 			continue;
 		
 		// The outfit can be taken from the player's cargo or from the flagship.
+		// If the player is landed, all available cargo is transferred from the
+		// player's ships to the player. If checking mission completion status
+		// in-flight, cargo is present in the player's ships.
 		int available = player.Cargo().Get(it.first);
-		for(const auto &ship : player.Ships())
-			available += ship->Cargo().Get(it.first);
+		if(!player.GetPlanet())
+			for(const auto &ship : player.Ships())
+				if(ship->GetSystem() == player.GetSystem() && !ship->IsDisabled())
+					available += ship->Cargo().Get(it.first);
 		if(flagship)
 			available += flagship->OutfitCount(it.first);
 		
@@ -364,7 +370,7 @@ MissionAction MissionAction::Instantiate(map<string, string> &subs, int jumps, i
 	// Fill in the payment amount if this is the "complete" action.
 	string previousPayment = subs["<payment>"];
 	if(result.payment)
-		subs["<payment>"] = Format::Number(result.payment)
+		subs["<payment>"] = Format::Number(abs(result.payment))
 			+ (result.payment == 1 ? " credit" : " credits");
 	
 	if(!logText.empty())

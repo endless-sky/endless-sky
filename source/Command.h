@@ -129,6 +129,7 @@ private:
 private:
 	// The key commands and weapons to fire are stored in a single bitmask, with
 	// 32 bits for key commands and 32 bits for individual weapons.
+	// Ship::Load gives a soft warning for ships with more than 32 weapons.
 	uint64_t state = 0;
 	// Turning amount is stored as a separate double to allow fractional values.
 	double turn = 0.;
