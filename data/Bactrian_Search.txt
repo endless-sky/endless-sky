@@ -692,7 +692,7 @@ mission epblanding
 		dialog "Now you should be able to look through the base"
 	on offer
 		conversation
-			`	On your landing approach a pirate fleet launches from the surface. Leroy your co-pilot swears something about being ducks in a puddle while you change course to deal with the pirates.`
+			`	On your landing approach a pirate fleet launches from the surface. You have to change course or risk being destroyed.`
 				launch
 
 mission epbconvo
