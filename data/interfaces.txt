@@ -359,7 +359,7 @@ interface "targets" top left
 		color "medium"
 	string "target government"
 		center 75 435
-		color "medium"
+		color "medium" government
 	string "mission target"
 		center 75 455
 		color "medium"

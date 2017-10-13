@@ -16,6 +16,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Font.h"
 #include "FontSet.h"
 #include "GameData.h"
+#include "Government.h"
 #include "Information.h"
 #include "LineShader.h"
 #include "OutlineShader.h"
@@ -487,11 +488,23 @@ bool Interface::TextElement::ParseLine(const DataNode &node)
 	if(node.Token(0) == "size" && node.Size() >= 2)
 		fontSize = node.Value(1);
 	else if(node.Token(0) == "color" && node.Size() >= 2)
+	{
 		color[Element::ACTIVE] = GameData::Colors().Get(node.Token(1));
+		if(node.Size() >= 3 && node.Token(2) == "government")
+			useGovernmentColor[Element::ACTIVE] = true;
+	}
 	else if(node.Token(0) == "inactive" && node.Size() >= 2)
+	{
 		color[Element::INACTIVE] = GameData::Colors().Get(node.Token(1));
+		if(node.Size() >= 3 && node.Token(2) == "government")
+			useGovernmentColor[Element::INACTIVE] = true;
+	}
 	else if(node.Token(0) == "hover" && node.Size() >= 2)
+	{
 		color[Element::HOVER] = GameData::Colors().Get(node.Token(1));
+		if(node.Size() >= 3 && node.Token(2) == "government")
+			useGovernmentColor[Element::HOVER] = true;
+	}
 	else
 		return false;
 	
@@ -513,11 +526,19 @@ Point Interface::TextElement::NativeDimensions(const Information &info, int stat
 // Draw this element in the given rectangle.
 void Interface::TextElement::Draw(const Rectangle &rect, const Information &info, int state) const
 {
+	const Color *fontColor = color[state];
+	if(useGovernmentColor[state])
+	{
+		const Government *government = GameData::Governments().Find(GetString(info));
+		if(government)
+			fontColor = &(government->GetColor());
+	}
+
 	// Avoid crashes for malformed interface elements that are not fully loaded.
-	if(!color[state])
+	if(!fontColor)
 		return;
 	
-	FontSet::Get(fontSize).Draw(GetString(info), rect.TopLeft(), *color[state]);
+	FontSet::Get(fontSize).Draw(GetString(info), rect.TopLeft(), *fontColor);
 }
 
 

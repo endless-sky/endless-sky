@@ -152,6 +152,8 @@ private:
 		std::string str;
 		// Color for inactive, active, and hover states.
 		const Color *color[3] = {nullptr, nullptr, nullptr};
+		// Use the government color when the string matches a government name.
+		bool useGovernmentColor[3] = {false, false, false};
 		int fontSize = 14;
 		char buttonKey = '\0';
 		bool isDynamic = false;
