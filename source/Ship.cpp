@@ -80,35 +80,25 @@ void Ship::Load(const DataNode &node)
 	bool hasDescription = false;
 	for(const DataNode &child : node)
 	{
-		bool add = (child.Token(0) == "add");
-		if(add && child.Size() < 2)
+		const string &key = child.Token(0);
+		bool add = (key == "add");
+		if(add && (child.Size() < 2 || child.Token(1) != "attributes"))
 		{
-			child.PrintTrace("Skipping " + child.Token(0) + " with no key given:");
-			continue;
-		}
-		// Get the key and value (if any).
-		const string &key = child.Token(add ? 1 : 0);
-		int valueIndex = add ? 2 : 1;
-		bool hasValue = (child.Size() > valueIndex);
-		const string &value = child.Token(hasValue ? valueIndex : 0);
-		
-		// The only use of 'add' for Ships is to be paired with 'attributes'.
-		if(add && key != "attributes")
-		{
-			child.PrintTrace("Skipping unsupported use of 'add' with '" + key + "':");
+			child.PrintTrace("Skipping invalid use of 'add' with " + (child.Size() < 2
+					? "no key." : "key: " + child.Token(1)));
 			continue;
 		}
 		if(key == "sprite")
 			LoadSprite(child);
-		else if(key == "name" && hasValue)
-			name = value;
-		else if(key == "plural" && hasValue)
-			pluralModelName = value;
-		else if(key == "noun" && hasValue)
-			noun = value;
-		else if(key == "swizzle" && hasValue)
-			customSwizzle = child.Value(valueIndex);
-		else if(key == "attributes")
+		else if(key == "name" && child.Size() >= 2)
+			name = child.Token(1);
+		else if(key == "plural" && child.Size() >= 2)
+			pluralModelName = child.Token(1);
+		else if(key == "noun" && child.Size() >= 2)
+			noun = child.Token(1);
+		else if(key == "swizzle" && child.Size() >= 2)
+			customSwizzle = child.Value(1);
+		else if(key == "attributes" || add)
 		{
 			if(!add)
 				baseAttributes.Load(child);
@@ -177,7 +167,7 @@ void Ship::Load(const DataNode &node)
 						bays.back().facing = j;
 			}
 		}
-		else if(key == "explode" && hasValue)
+		else if(key == "explode" && child.Size() >= 2)
 		{
 			if(!hasExplode)
 			{
@@ -186,10 +176,10 @@ void Ship::Load(const DataNode &node)
 				hasExplode = true;
 			}
 			int count = (child.Size() >= 3) ? child.Value(2) : 1;
-			explosionEffects[GameData::Effects().Get(value)] += count;
+			explosionEffects[GameData::Effects().Get(child.Token(1))] += count;
 			explosionTotal += count;
 		}
-		else if(key == "final explode" && hasValue)
+		else if(key == "final explode" && child.Size() >= 2)
 		{
 			if(!hasFinalExplode)
 			{
@@ -197,7 +187,7 @@ void Ship::Load(const DataNode &node)
 				hasFinalExplode = true;
 			}
 			int count = (child.Size() >= 3) ? child.Value(2) : 1;
-			finalExplosions[GameData::Effects().Get(value)] += count;
+			finalExplosions[GameData::Effects().Get(child.Token(1))] += count;
 		}
 		else if(key == "outfits")
 		{
@@ -214,35 +204,35 @@ void Ship::Load(const DataNode &node)
 		}
 		else if(key == "cargo")
 			cargo.Load(child);
-		else if(key == "crew" && hasValue)
-			crew = static_cast<int>(child.Value(valueIndex));
-		else if(key == "fuel" && hasValue)
-			fuel = child.Value(valueIndex);
-		else if(key == "shields" && hasValue)
-			shields = child.Value(valueIndex);
-		else if(key == "hull" && hasValue)
-			hull = child.Value(valueIndex);
+		else if(key == "crew" && child.Size() >= 2)
+			crew = static_cast<int>(child.Value(1));
+		else if(key == "fuel" && child.Size() >= 2)
+			fuel = child.Value(1);
+		else if(key == "shields" && child.Size() >= 2)
+			shields = child.Value(1);
+		else if(key == "hull" && child.Size() >= 2)
+			hull = child.Value(1);
 		else if(key == "position" && child.Size() >= 3)
 			position = Point(child.Value(1), child.Value(2));
-		else if(key == "system" && hasValue)
-			currentSystem = GameData::Systems().Get(value);
-		else if(key == "planet" && hasValue)
+		else if(key == "system" && child.Size() >= 2)
+			currentSystem = GameData::Systems().Get(child.Token(1));
+		else if(key == "planet" && child.Size() >= 2)
 		{
 			zoom = 0.;
-			landingPlanet = GameData::Planets().Get(value);
+			landingPlanet = GameData::Planets().Get(child.Token(1));
 		}
-		else if(key == "destination system" && hasValue)
-			targetSystem = GameData::Systems().Get(value);
+		else if(key == "destination system" && child.Size() >= 2)
+			targetSystem = GameData::Systems().Get(child.Token(1));
 		else if(key == "parked")
 			isParked = true;
-		else if(key == "description" && hasValue)
+		else if(key == "description" && child.Size() >= 2)
 		{
 			if(!hasDescription)
 			{
 				description.clear();
 				hasDescription = true;
 			}
-			description += value;
+			description += child.Token(1);
 			description += '\n';
 		}
 		else if(key != "actions")
