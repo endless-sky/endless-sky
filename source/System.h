@@ -64,6 +64,8 @@ public:
 		
 		const Fleet *Get() const;
 		int Period() const;
+		void AddPeriod(int period);
+		void SetPeriod(int period);
 		
 	private:
 		const Fleet *fleet;

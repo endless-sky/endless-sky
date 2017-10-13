@@ -105,6 +105,23 @@ int System::FleetProbability::Period() const
 
 
 
+void System::FleetProbability::AddPeriod(int period)
+{
+	int current = this->period;
+	if(period > 0)
+		this->period = 1. / (1. / current + 1. / period);
+}
+
+
+
+void System::FleetProbability::SetPeriod(int period)
+{
+	if(period > 0)
+		this->period = period;
+}
+
+
+
 // Load a system's description.
 void System::Load(const DataNode &node, Set<Planet> &planets)
 {
@@ -118,28 +135,34 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 	
 	for(const DataNode &child : node)
 	{
-		// Check for the "add" or "remove" keyword.
+		// Check for the "add", "remove", or "set" keyword.
 		bool add = (child.Token(0) == "add");
 		bool remove = (child.Token(0) == "remove");
-		if((add || remove) && child.Size() < 2)
+		bool setTo = (child.Token(0) == "set");
+		if((add || remove || setTo) && child.Size() < 2)
 		{
 			child.PrintTrace("Skipping " + child.Token(0) + " with no key given:");
 			continue;
 		}
 		
 		// Get the key and value (if any).
-		const string &key = child.Token((add || remove) ? 1 : 0);
-		int valueIndex = (add || remove) ? 2 : 1;
+		const string &key = child.Token((add || remove || setTo) ? 1 : 0);
+		int valueIndex = (add || remove || setTo) ? 2 : 1;
 		bool hasValue = (child.Size() > valueIndex);
 		const string &value = child.Token(hasValue ? valueIndex : 0);
 		
+		if(setTo && key != "fleet")
+		{
+			child.PrintTrace("Skipping unsupported use of `set` with key " + key + ":");
+			continue;
+		}
 		// Check for conditions that require clearing this key's current value.
 		// "remove <key>" means to clear the key's previous contents.
 		// "remove <key> <value>" means to remove just that value from the key.
 		bool removeAll = (remove && !hasValue);
 		// If this is the first entry for the given key, and we are not in "add"
 		// or "remove" mode, its previous value should be cleared.
-		bool overwriteAll = (!add && !remove && shouldOverwrite.count(key));
+		bool overwriteAll = (!add && !remove && !setTo && shouldOverwrite.count(key));
 		overwriteAll |= (!add && !remove && key == "minables" && shouldOverwrite.count("asteroids"));
 		// Clear the data of the given type.
 		if(removeAll || overwriteAll)
@@ -230,6 +253,26 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 						fleets.erase(it);
 						break;
 					}
+			}
+			else if(add || setTo)
+			{
+				// Merge this added fleet's period into an existing, identical
+				// fleet's period, or replace that fleet's period entirely.
+				bool matched = false;
+				for(FleetProbability &fit : fleets)
+					if(fit.Get() == fleet)
+					{
+						if(add)
+							fit.AddPeriod(child.Value(valueIndex + 1));
+						else
+							fit.SetPeriod(child.Value(valueIndex + 1));
+						matched = true;
+						break;
+					}
+				
+				// No matching fleet was found, so create it.
+				if(!matched)
+					fleets.emplace_back(fleet, child.Value(valueIndex + 1));
 			}
 			else
 				fleets.emplace_back(fleet, child.Value(valueIndex + 1));
