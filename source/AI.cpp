@@ -147,6 +147,7 @@ void AI::IssueMoveTarget(const PlayerInfo &player, const Point &target, const Sy
 void AI::UpdateKeys(PlayerInfo &player, Command &clickCommands, bool isActive)
 {
 	shift = (SDL_GetModState() & KMOD_SHIFT);
+	ctrl = (SDL_GetModState() & KMOD_CTRL);
 	escortsUseAmmo = Preferences::Has("Escorts expend ammo");
 	escortsAreFrugal = Preferences::Has("Escorts use ammo frugally");
 	
@@ -2691,21 +2692,38 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 	else if(keyDown.Has(Command::TARGET))
 	{
 		shared_ptr<const Ship> target = ship.GetTargetShip();
-		bool selectNext = !target || !target->IsTargetable();
+		shared_ptr<Ship> previous;
+		bool selectNext =  !ctrl && (!target || !target->IsTargetable());
 		for(const shared_ptr<Ship> &other : ships)
 		{
 			bool isPlayer = other->GetGovernment()->IsPlayer() || other->GetPersonality().IsEscort();
 			if(other == target)
-				selectNext = true;
-			else if(other.get() != &ship && selectNext && other->IsTargetable() && isPlayer == shift)
 			{
-				ship.SetTargetShip(other);
-				selectNext = false;
-				break;
+				if(ctrl)
+				{
+					ship.SetTargetShip(previous);
+					break;
+				}
+				selectNext = true;
+			}
+			else if(other.get() != &ship && other->IsTargetable() && isPlayer == shift)
+			{
+				if(selectNext)
+				{
+					ship.SetTargetShip(other);
+					selectNext = false;
+					break;
+				}
+				previous = other;
 			}
 		}
-		if(selectNext)
-			ship.SetTargetShip(shared_ptr<Ship>());
+		if(target == ship.GetTargetShip())
+		{
+			if(selectNext)
+				ship.SetTargetShip(shared_ptr<Ship>());
+			else
+				ship.SetTargetShip(previous);
+		}
 	}
 	else if(keyDown.Has(Command::BOARD))
 	{

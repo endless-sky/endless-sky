@@ -161,6 +161,7 @@ private:
 	bool isLaunching = false;
 	bool isCloaking = false;
 	bool shift = false;
+	bool ctrl = false;
 	
 	bool escortsAreFrugal = true;
 	bool escortsUseAmmo = true;
