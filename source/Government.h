@@ -69,6 +69,9 @@ public:
 	// Get a hail message (which depends on whether this is an enemy government
 	// and if the ship is disabled).
 	std::string GetHail(bool isDisabled) const;
+	// Get the government's tribute messages.
+	std::string GetTributeMessage(int condition) const;
+	
 	// Find out if this government speaks a different language.
 	const std::string &Language() const;
 	// Pirate raids in this government's systems use this fleet definition. If
@@ -123,6 +126,11 @@ private:
 	const Phrase *friendlyDisabledHail = nullptr;
 	const Phrase *hostileHail = nullptr;
 	const Phrase *hostileDisabledHail = nullptr;
+	const Phrase *tributeIgnoredMessage = nullptr;
+	const Phrase *tributeRelinquishedMessage = nullptr;
+	const Phrase *tributeInProgressMessage = nullptr;
+	const Phrase *tributeBattleMessage = nullptr;
+	const Phrase *tributeSurrenderedMessage = nullptr;
 	std::string language;
 	const Fleet *raidFleet = nullptr;
 	double crewAttack = 1.;

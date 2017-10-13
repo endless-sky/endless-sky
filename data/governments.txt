@@ -261,6 +261,11 @@ government "Pirate"
 	"fine" 0
 	"friendly hail" "friendly pirate"
 	"hostile hail" "hostile pirate"
+	"tribute ignored message" "pirate tribute ignored"
+	"tribute battle message" "pirate tribute battle"
+	"tribute in progress message" "pirate tribute in progress"
+	"tribute surrendered message" "pirate tribute surrender"
+	"tribute relinquished message" "pirate tribute relinquished"
 	raid "pirate raid"
 
 government "Pug"

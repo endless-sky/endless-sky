@@ -3069,3 +3069,44 @@ phrase "wormhole hail"
 		"You can't talk to wormholes. Maybe you should try landing on it instead."
 		"Your words cannot travel through wormholes, but maybe your starship can."
 		"Unable to send hail: this unfathomable void is not inhabited."
+		
+# Tribute messages
+phrase "tribute ignored message"
+	word
+		"Please don't joke about that sort of thing."
+		
+phrase "tribute relinquished message"
+	word
+		"Thank you for granting us our freedom!"
+		
+phrase "tribute in progress message"
+	word
+		"We're not ready to surrender yet."
+
+phrase "tribute battle message"
+	word
+		"Our defense fleet will make short work of you."
+		
+phrase "tribute surrendered message"
+	word
+		"We surrender. We will pay you <tribute> per day to leave us alone."
+		
+phrase "pirate tribute ignored"
+	word
+		"We're not going to waste our time on a nobody like you."
+		
+phrase "pirate tribute battle"
+	word
+		"Your <ship> is about to become an empty husk floating through space!"
+		
+phrase "pirate tribute in progress"
+	word
+		"Did you think we'd go that easily? We still have plenty of fight left in us!"
+		
+phrase "pirate tribute surrender"
+	word
+		"We surrender to you, great warlord <last>. You will receive <tribute> per day from our spoils for your greatness."
+		
+phrase "pirate tribute relinquished"
+	word
+		"We are under the thumb of a warlord no more! Anarchy forever!"
