@@ -264,6 +264,10 @@ void NPC::Do(const ShipEvent &event, PlayerInfo &player, UI *ui, bool isVisible)
 		if(bay.ship)
 			actions[bay.ship.get()] |= type;
 	
+	// If this event was "ASSIST", the ship is now known as not disabled.
+	if(type == ShipEvent::ASSIST)
+		actions[ship.get()] &= ~(ShipEvent::DISABLE);
+	
 	// Check if the success status has changed. If so, display a message.
 	if(HasFailed() && !hasFailed && isVisible)
 		Messages::Add("Mission failed.");
@@ -283,21 +287,29 @@ bool NPC::HasSucceeded(const System *playerSystem) const
 	if(HasFailed())
 		return false;
 	
-	// Check what system each ship is in, if there is a requirement that we
-	// either evade them, or accompany them. If you are accompanying a ship, it
-	// must not be disabled (so that it can land with you). If trying to evade
-	// it, disabling it is sufficient (you do not have to kill it).
+	// Evaluate the status of each ship in this NPC block. If it has `accompany`,
+	// it cannot be disabled or destroyed, and must be in the player's system.
+	// Destroyed `accompany` are handled in HasFailed(). If the NPC block has
+	// `evade`, the ship can be disabled, destroyed, captured, or not present.
 	if(mustEvade || mustAccompany)
 		for(const shared_ptr<Ship> &ship : ships)
 		{
-			// Special case: if a ship has been captured, it counts as having
-			// been evaded.
 			auto it = actions.find(ship.get());
-			bool isCapturedOrDisabled = ship->IsDisabled();
+			// If a derelict ship has not received any ShipEvents, it is immobile.
+			bool isImmobile = ship->GetPersonality().IsDerelict();
+			// The success status calculation can only be based on recorded
+			// events (and the current system).
 			if(it != actions.end())
-				isCapturedOrDisabled |= (it->second & ShipEvent::CAPTURE);
+			{
+				// A ship that was disabled, captured, or destroyed is considered 'immobile'.
+				isImmobile = (it->second
+					& (ShipEvent::DISABLE | ShipEvent::CAPTURE | ShipEvent::DESTROY));
+				// if this NPC is 'derelict' and has no ASSIST on record, it is immobile.
+				isImmobile |= ship->GetPersonality().IsDerelict()
+					&& !(it->second & ShipEvent::ASSIST);
+			}
 			bool isHere = (!ship->GetSystem() || ship->GetSystem() == playerSystem);
-			if((isHere && !isCapturedOrDisabled) ^ mustAccompany)
+			if((isHere && !isImmobile) ^ mustAccompany)
 				return false;
 		}
 	
