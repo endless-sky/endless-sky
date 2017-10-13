@@ -112,6 +112,7 @@ public:
 	
 	double TotalLifetime() const;
 	double Range() const;
+	double WeightedVelocity() const;
 	
 	
 protected:
@@ -193,6 +194,8 @@ private:
 	mutable double damage[DAMAGE_TYPES] = {0., 0., 0., 0., 0., 0., 0.};
 	
 	double piercing = 0.;
+	
+	double optimalRange = 0.;
 	
 	// Cache the calculation of these values, for faster access.
 	mutable bool calculatedDamage = true;

@@ -83,6 +83,7 @@ void Weapon::LoadWeapon(const DataNode &node)
 		}
 		else
 		{
+<<<<<<< HEAD
 			double value = child.Value(1);
 			if(key == "lifetime")
 				lifetime = max(0., value);
@@ -154,6 +155,8 @@ void Weapon::LoadWeapon(const DataNode &node)
 				hitForce = value;
 			else if(key == "piercing")
 				piercing = max(0., min(1., value));
+			else if((key  == "optimal range")
+				optimalRange = max(0., value);
 			else
 				child.PrintTrace("Unrecognized weapon attribute: \"" + key + "\":");
 		}
@@ -276,16 +279,38 @@ double Weapon::TotalLifetime() const
 		totalLifetime = 0.;
 		for(const auto &it : submunitions)
 			totalLifetime = max(totalLifetime, it.first->TotalLifetime());
-		totalLifetime += lifetime;
+		totalLifetime += lifetime + .5 * randomLifetime;;
 	}
 	return totalLifetime;
 }
 
 
 
+// Calculate the range of a weapon to display in the outfitter panel.
+// Has to take into account the relative velocity a parent munition
+// gives its submunitions.
 double Weapon::Range() const
 {
-	return Velocity() * TotalLifetime();
+	double range = 0.;
+
+	for(const auto &it : submunitions)
+		range = max(range, it.first->Range());
+	range += (Velocity() + .5 * RandomVelocity()) * TotalLifetime();
+
+	return range;
+}
+
+
+
+// Calculate a weighted velocity to inform AI firing decisions.
+double Weapon::WeightedVelocity() const
+{
+	if(optimalRange > 0.)
+		return optimalRange/TotalLifetime();
+	else
+	{
+		return Range()/TotalLifetime();
+	}
 }
 
 
