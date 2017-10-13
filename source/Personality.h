@@ -28,6 +28,11 @@ class DataWriter;
 class Personality {
 public:
 	Personality();
+	Personality(double confusionMult);
+	
+	// Operators:
+	Personality &operator+=(const Personality &rhs);
+	Personality &operator-=(const Personality &rhs);
 	
 	void Load(const DataNode &node);
 	void Save(DataWriter &out) const;
