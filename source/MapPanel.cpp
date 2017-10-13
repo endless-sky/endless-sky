@@ -101,19 +101,16 @@ void MapPanel::Draw()
 	
 	if(!distance.HasRoute(selectedSystem))
 	{
+		static const string UNAVAILABLE = "You have no available route to this system.";
+		static const string UNKNOWN = "You have not yet mapped a route to this system.";
 		const Font &font = FontSet::Get(18);
 		Color black(0., 1.);
 		Color red(1., 0., 0., 1.);
 		
-		string errorMessage;
-		if(player.HasVisited(selectedSystem))
-			errorMessage = "You have no available route to this system.";
-		else
-			errorMessage = "You have not yet mapped a route to this system.";
-		
-		Point point(-font.Width(errorMessage) / 2, Screen::Top() + 40);
-		font.Draw(errorMessage, point + Point(1, 1), black);
-		font.Draw(errorMessage, point, red);
+		const string &message = player.HasVisited(selectedSystem) ? UNAVAILABLE : UNKNOWN;
+		Point point(-font.Width(message) / 2, Screen::Top() + 40);
+		font.Draw(message, point + Point(1, 1), black);
+		font.Draw(message, point, red);
 	}
 }
 
