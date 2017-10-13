@@ -114,14 +114,14 @@ ship "Cruiser" "Cruiser (Heavy)"
 		"Scram Drive"
 	gun "Particle Cannon"
 	gun "Particle Cannon"
-	gun "Heavy Rocket Launcher"
-	gun "Heavy Rocket Launcher"
 	gun "Particle Cannon"
 	gun "Particle Cannon"
+	gun "Heavy Rocket Launcher"
+	gun "Heavy Rocket Launcher"
+	turret "Quad Blaster Turret"
+	turret "Heavy Laser Turret"
 	turret "Heavy Laser Turret"
 	turret "Heavy Anti-Missile Turret"
-	turret "Heavy Laser Turret"
-	turret "Quad Blaster Turret"
 
 
 
@@ -1637,7 +1637,7 @@ ship "Bactrian" "Bactrian (Hired Gun)"
 		"D41-HY Shield Generator"
 		"Liquid Nitrogen Cooler"
 		"Water Coolant System"
-		"Mass Expansion" 2
+		"Outfits Expansion" 2
 		"Large Radar Jammer"
 		"A520 Atomic Thruster"
 		"A525 Atomic Steering"

@@ -544,12 +544,8 @@ bool System::IsInhabited(const Ship *ship) const
 bool System::HasFuelFor(const Ship &ship) const
 {
 	for(const StellarObject &object : objects)
-		if(object.GetPlanet())
-		{
-			const Planet &planet = *object.GetPlanet();
-			if(!planet.IsWormhole() && planet.HasSpaceport() && planet.CanLand(ship))
-				return true;
-		}
+		if(object.GetPlanet() && object.GetPlanet()->HasFuelFor(ship))
+			return true;
 	
 	return false;
 }

@@ -518,11 +518,7 @@ bool MapPanel::IsSatisfied(const Mission &mission) const
 
 bool MapPanel::IsSatisfied(const PlayerInfo &player, const Mission &mission)
 {
-	for(const NPC &npc : mission.NPCs())
-		if(!npc.HasSucceeded(player.GetSystem()))
-			return false;
-	
-	return mission.Waypoints().empty() && mission.Stopovers().empty();
+	return mission.IsSatisfied(player) && !mission.HasFailed(player);
 }
 
 

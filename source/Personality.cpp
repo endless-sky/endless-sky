@@ -94,18 +94,28 @@ Personality::Personality()
 
 void Personality::Load(const DataNode &node)
 {
-	flags = 0;
-	for(int i = 1; i < node.Size(); ++i)
-		Parse(node.Token(i));
+	bool add = (node.Token(0) == "add");
+	bool remove = (node.Token(0) == "remove");
+	if(!(add || remove))
+		flags = 0;
+	for(int i = 1 + (add || remove); i < node.Size(); ++i)
+		Parse(node, i, remove);
 	
 	for(const DataNode &child : node)
 	{
-		if(child.Token(0) == "confusion" && child.Size() >= 2)
-			confusionMultiplier = child.Value(1);
+		if(child.Token(0) == "confusion")
+		{
+			if(add || remove)
+				child.PrintTrace("Cannot \"" + node.Token(0) + "\" a confusion value:");
+			else if(child.Size() < 2)
+				child.PrintTrace("Skipping \"confusion\" tag with no value specified:");
+			else
+				confusionMultiplier = child.Value(1);
+		}
 		else
 		{
 			for(int i = 0; i < child.Size(); ++i)
-				Parse(child.Token(i));
+				Parse(child, i, remove);
 		}
 	}
 }
@@ -351,9 +361,18 @@ Personality Personality::Defender()
 
 
 
-void Personality::Parse(const string &token)
+void Personality::Parse(const DataNode &node, int index, bool remove)
 {
+	const string &token = node.Token(index);
+	
 	auto it = TOKEN.find(token);
 	if(it != TOKEN.end())
-		flags |= it->second;
+	{
+		if(remove)
+			flags &= ~it->second;
+		else
+			flags |= it->second;
+	}
+	else
+		node.PrintTrace("Invalid personality setting: \"" + token + "\"");
 }

@@ -42,12 +42,19 @@ void Fleet::Load(const DataNode &node)
 	
 	for(const DataNode &child : node)
 	{
-		const string &key = child.Token(0);
+		// The "add" and "remove" keywords should never be alone on a line, and
+		// are only valid with "variant" or "personality" definitions.
+		bool add = (child.Token(0) == "add");
+		bool remove = (child.Token(0) == "remove");
 		bool hasValue = (child.Size() >= 2);
-		// Special case: "add/remove variant" means to add or remove a variant without
-		// clearing the rest of the existing definition.
-		bool add = (key == "add" && hasValue && child.Token(1) == "variant");
-		bool remove = (key == "remove" && hasValue && child.Token(1) == "variant");
+		if((add || remove) && (!hasValue || (child.Token(1) != "variant" && child.Token(1) != "personality")))
+		{	
+			child.PrintTrace("Skipping invalid \"" + child.Token(0) + "\" tag:");
+			continue;
+		}
+		
+		// If this line is an add or remove, the key is the token at index 1.
+		const string &key = child.Token(add || remove);
 		
 		if(key == "government" && hasValue)
 			government = GameData::Governments().Get(child.Token(1));
@@ -65,37 +72,36 @@ void Fleet::Load(const DataNode &node)
 		}
 		else if(key == "personality")
 			personality.Load(child);
-		else if(key == "variant")
+		else if(key == "variant" && !remove)
 		{
-			if(resetVariants)
+			if(resetVariants && !add)
 			{
 				resetVariants = false;
 				variants.clear();
 				total = 0;
 			}
+			else if(add)
+			{
+				// Increase the weight of the given variant if it
+				// exists, rather than create a duplicate entry.
+				Variant toAdd = Variant(child);
+				bool matched = false;
+				for(Variant &vit : variants)
+					if(toAdd.ships.size() == vit.ships.size() &&
+						is_permutation(vit.ships.begin(), vit.ships.end(), toAdd.ships.begin()))
+					{
+						matched = true;
+						vit.weight += toAdd.weight;
+						total += toAdd.weight;
+						break;
+					}
+				if(matched)
+					continue;
+			}
 			variants.emplace_back(child);
 			total += variants.back().weight;
 		}
-		else if(add)
-		{
-			// Increase the weight of the given variant if it already exists
-			// rather than create an additional duplicate entry.
-			Variant toAdd = Variant(child);
-			bool matched = false;
-			for(Variant &vit : variants)
-				if(toAdd.ships.size() == vit.ships.size() &&
-					is_permutation(vit.ships.begin(), vit.ships.end(), toAdd.ships.begin()))
-				{
-					matched = true;
-					vit.weight += toAdd.weight;
-					break;
-				}
-			
-			if(!matched)
-				variants.emplace_back(toAdd);
-			total += toAdd.weight;
-		}
-		else if(remove)
+		else if(key == "variant")
 		{
 			// If given a full ship definition of one of this fleet's variant members, remove the variant.
 			bool didRemove = false;

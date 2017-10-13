@@ -21,6 +21,18 @@ outfit "Afterburner"
 	"afterburner effect" "afterburner"
 	description "An afterburner works by dumping hyperspace fuel into your engines and igniting it, producing a large amount of thrust. This can be very useful for dodging missiles or briefly escaping from faster opponents, but you must be careful to avoid using up so much fuel that you do not have enough left for hyperspace travel."
 
+effect "afterburner"
+	sprite "effect/afterburner"
+		"no repeat"
+		"frame rate" 30
+	sound "afterburner"
+	"lifetime" 10
+	"velocity scale" 1.
+	"random velocity" 1.
+	"random angle" 30
+	"random spin" 10
+
+
 outfit "Ionic Afterburner"
 	category "Engines"
 	"cost" 340000
@@ -34,6 +46,19 @@ outfit "Ionic Afterburner"
 	"afterburner heat" 12.0
 	"afterburner effect" "ionic afterburner"
 	description "The ionic afterburner was designed by the Syndicate to compensate for the primary weakness of an ordinary afterburner: namely, that it consumes hyperspace fuel at a prodigious rate. Ionic afterburners instead use a small amount of fuel combined with a large burst of energy from your ship's batteries to achieve the same effect."
+
+effect "ionic afterburner"
+	sprite "effect/ionic afterburner"
+		"no repeat"
+		"frame rate" 30
+	sound "ionic afterburner"
+	"lifetime" 12
+	"velocity scale" 1.
+	"random velocity" 1.
+	"random angle" 360
+	"random spin" 30
+
+
 
 outfit "X1050 Ion Engines"
 	category "Engines"
@@ -52,6 +77,7 @@ outfit "X1050 Ion Engines"
 		"frame rate" 1.2
 	"flare sound" "ion tiny"
 	description `When designing the Barb, the Syndicate took the opportunity to integrate their smallest thruster models to create a more compact steering and thrusting engine. The result is not very useful on anything but a fighter, and is only "adequate" in that role. Still, if engine space is at a premium, this is the smallest set of engines that will still get you there (eventually).`
+
 
 
 outfit "X1700 Ion Thruster"
@@ -134,6 +160,7 @@ outfit "X5700 Ion Thruster"
 	description "The X5700 thruster is intended for only the largest of capital ships. When the Syndicate first began producing them, these engines were considered little more than a publicity stunt, because no ship at the time was large enough to hold one."
 	description "	Ion engines consume less energy than plasma engines and produce less heat, but they also take up more space."
 
+
 outfit "X1200 Ion Steering"
 	category "Engines"
 	"cost" 10000
@@ -198,6 +225,7 @@ outfit "X5200 Ion Steering"
 	"turning heat" 7.3
 	description "The X5200 is a steering system so powerful that only a handful of ships use it. It is standard equipment for Republic cruisers and carriers, ships so large that they are practically a self-contained city."
 	description "	Ion engines consume less energy than plasma engines and produce less heat, but they also take up more space."
+
 
 
 outfit "Chipmunk Plasma Thruster"
@@ -280,6 +308,7 @@ outfit "Tyrant Plasma Thruster"
 	description "The enormous crate that this thruster is sold in comes decorated with a picture of a grinning Tyrannosaurus Rex with an improbable number of teeth. Only a handful of ships are large enough to require an engine of this size... or to have the capacity for one."
 	description "	Plasma engines are a bit more powerful than ion engines of the same size, but they are less energy efficient and produce more heat."
 
+
 outfit "Chipmunk Plasma Steering"
 	category "Engines"
 	"cost" 16000
@@ -344,6 +373,7 @@ outfit "Tyrant Plasma Steering"
 	"turning heat" 14.7
 	description "As with the corresponding thruster, the Tyrant class steering system is so large and powerful that very few ships can make use of it."
 	description "	Plasma engines are a bit more powerful than ion engines of the same size, but they are less energy efficient and produce more heat."
+
 
 
 outfit "A120 Atomic Thruster"
@@ -421,6 +451,7 @@ outfit "A860 Atomic Thruster"
 	"flare sound" "atomic huge"
 	description "The A860 atomic thruster is the most powerful engine sold in human space, and is much more compact than any of the alternatives. But, you may need to upgrade your ship's power and cooling systems to handle it."
 
+
 outfit "A125 Atomic Steering"
 	category "Engines"
 	"cost" 120000
@@ -480,6 +511,7 @@ outfit "A865 Atomic Steering"
 	"turning energy" 6.6
 	"turning heat" 17.5
 	description "Atomic engines are considered by many to be Deep Sky's crowning achievement. Although they are so expensive that relatively few of them are in use, there are few captains who do not dream of one day installing a set of them."
+
 
 outfit "AR120 Reverse Thruster"
 	category "Engines"

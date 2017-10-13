@@ -109,6 +109,7 @@ public:
 	bool IsAccessible(const Ship *ship) const;
 	// Below are convenience functions which access the game state in Politics,
 	// but do so with a less convoluted syntax:
+	bool HasFuelFor(const Ship &ship) const;
 	bool CanLand(const Ship &ship) const;
 	bool CanLand() const;
 	bool CanUseServices() const;

@@ -211,6 +211,7 @@ mission "Smuggler's Den: Payment"
 	landing
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
+		near Sol 100
 	to offer
 		has "event: smuggler's den: payment"
 	
@@ -281,11 +282,10 @@ mission "Expedition to Hope 2"
 	landing
 	name "Expedition to Hope"
 	description "Transport the team of scientists home to <destination>."
-	source
-		Hope
+	source Hope
 	destination
 		distance 2 5
-		govenment Republic "Free Worlds" Neutral
+		government Republic "Free Worlds" Neutral
 	to offer
 		has "Expedition to Hope 1: done"
 	passengers 4
@@ -1085,7 +1085,7 @@ mission "Rim Archaeology 3B"
 	cargo "Laser excavation equipment" 17
 	to offer
 		has "Rim Archaeology 3A: done"
-	blocked "You do not have enough cargo space to carry the equipment for Albert Foster's archaeological dig. Return here when you have at least 17 tons of space free."
+	blocked "You do not have enough cargo space to carry the equipment for Albert Foster's archaeological dig. Return here when you have <capacity>."
 	
 	on offer
 		conversation
@@ -1133,7 +1133,7 @@ mission "Rim Archaeology 4B"
 	passengers 2
 	to offer
 		has "Rim Archaeology 4A: done"
-	blocked "You will need two bunks free to transport the xenobiologist that Albert Foster asked you to fetch. Return here when you have space available."
+	blocked "You will need <capacity> to transport the xenobiologist that Albert Foster asked you to fetch. Return here when you have space available."
 	
 	on offer
 		conversation
@@ -1235,6 +1235,8 @@ mission "Rim Archaeology 6"
 	landing
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Independent" "Neutral"
+		near Sol 100
+		attributes spaceport
 	to offer
 		has "event: rim archaeology results"
 	on offer
@@ -1375,6 +1377,7 @@ ship "Hallucination"
 		"jump fuel" 100
 		"jump speed" 1
 		"jump drive" 1
+		"automaton" 1
 		"thrust" 30
 		"turn" 500
 		"energy generation" 1
@@ -1419,6 +1422,7 @@ mission "Rescue Miners 1"
 	destination
 		attributes core
 		attributes mining
+		distance 1 100
 	passengers 15
 	cargo "emergency supplies" 15
 	to offer
@@ -1562,6 +1566,7 @@ mission "Migrant Workers 1"
 	source
 		attributes "dirt belt"
 		attributes "farming"
+		near "Zeta Aquilae" 1 100
 	destination Rand
 	to offer
 		random < 5
@@ -1671,6 +1676,12 @@ mission "Terraforming 1"
 	destination Glory
 	passengers 2
 	
+	to offer
+		or
+			has "main plot completed"
+			and
+				not "event: pug invasion"
+				not "event: fwc pug invasion"
 	on offer
 		conversation
 			`You stop in to the spaceport bar for a drink. The bar seems to be frequented mostly by the managers of the mining corporation; you suspect the workers don't earn enough to visit a bar very frequently. In one corner, two of the managers are having a very animated discussion. When they see you, they say, "Hello there, Captain! Interested in taking us on a business trip?"`
@@ -1723,7 +1734,7 @@ mission "Terraforming 2"
 mission "Terraforming 3"
 	name "Terraforming Rand"
 	description "Plant a thruster on an asteroid to guide it into a collision with the northern pole of Rand."
-	blocked "You'll need more cargo space in order to take the next mission from Eric and Alaric. Return here when you have at least <capacity>."
+	blocked "You'll need more cargo space in order to take the next mission from Eric and Alaric. Return here when you have <capacity>."
 	cargo "thruster equipment" 10
 	source Rand
 	to offer
@@ -1765,6 +1776,7 @@ mission "Terraforming 3"
 			sprite "asteroid/medium rock/spin"
 				"frame rate" 10
 			attributes
+				"fuel capacity" 1
 				"hull" 10000
 				"mass" 1000
 				"drag" 10
@@ -1916,8 +1928,7 @@ mission "Terminus exploration"
 		system Terminus
 		government Pirate
 		personality staying
-		fleet "Small Southern Pirates"
-		fleet "Small Southern Pirates"
+		fleet "Small Southern Pirates" 2
 	on complete
 		payment 90000
 		conversation
