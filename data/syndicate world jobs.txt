@@ -168,11 +168,10 @@ mission "Syndicate target practice [0]"
 		"combat rating" > 5
 		"combat rating" < 50
 	npc save disable "scan cargo"
-		personality staying heroic target
 		government "Test Dummy"
-		ship "Berserker" "Syndicate Test Vessel"
-
+		personality staying heroic target
 		system destination
+		ship "Berserker Test Dummy" "Syndicate Test Vessel"
 		dialog "You scan the disabled craft and take careful measurements of the battle damage. Time to deliver the results on <planet>."
 	on visit
 		dialog "You forgot to either disable or scan the target dummy ship in <system>! You'll need to head back there and do that before you can return here for payment."
@@ -196,10 +195,10 @@ mission "Syndicate target practice [1]"
 		"combat rating" > 50
 		"combat rating" < 200
 	npc save disable "scan cargo"
-		personality staying heroic target
 		government "Test Dummy"
-		ship "Quicksilver" "Syndicate Test Vessel"
+		personality staying heroic target
 		system destination
+		ship "Quicksilver Test Dummy" "Syndicate Test Vessel"
 		dialog "You scan the disabled craft and take careful measurements of the battle damage. Time to deliver the results on <planet>."
 	on visit
 		dialog "You forgot to either disable or scan the target dummy ship in <system>! You'll need to head back there and do that before you can return here for payment."
@@ -223,10 +222,10 @@ mission "Syndicate target practice [2]"
 		"combat rating" > 150
 		"combat rating" < 1000
 	npc save disable "scan cargo"
-		personality staying heroic target
 		government "Test Dummy"
-		ship "Splinter" "Syndicate Test Vessel"
+		personality staying heroic target
 		system destination
+		ship "Splinter Test Dummy" "Syndicate Test Vessel"
 		dialog "You scan the disabled craft and take careful measurements of the battle damage. Time to deliver the results on <planet>."
 	on visit
 		dialog "You forgot to either disable or scan the target dummy ship in <system>! You'll need to head back there and do that before you can return here for payment."
@@ -249,13 +248,33 @@ mission "Syndicate target practice [3]"
 		random < 20
 		"combat rating" > 1000
 	npc save disable "scan cargo"
-		personality staying heroic target
 		government "Test Dummy"
-		ship "Vanguard" "Syndicate Test Vessel"
+		personality staying heroic target
 		system destination
+		ship "Vanguard Test Dummy" "Syndicate Test Vessel"
 		dialog "You scan the disabled craft and take careful measurements of the battle damage. Time to deliver the results on <planet>."
 	on visit
 		dialog "You forgot to either disable or scan the target dummy ship in <system>! You'll need to head back there and do that before you can return here for payment."
 	on complete
 		payment 100000
 		dialog "You transmit the scan results to a team of eager engineers and collect your payment of <payment>."
+
+ship "Berserker" "Berserker Test Dummy"
+	add attributes
+		"automaton" 1
+		"self destruct" 1
+
+ship "Quicksilver" "Quicksilver Test Dummy"
+	add attributes
+		"automaton" 1
+		"self destruct" 1
+
+ship "Splinter" "Splinter Test Dummy"
+	add attributes
+		"automaton" 1
+		"self destruct" 1
+
+ship "Vanguard" "Vanguard Test Dummy"
+	add attributes
+		"automaton" 1
+		"self destruct" 1
