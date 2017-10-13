@@ -19,7 +19,6 @@ mission "Deep: Syndicate Convoy"
 	deadline
 	to offer
 		"combat rating" > 65
-		"mystery cube" >= 5
 		not "Deep: Mystery Cubes 4: done"
 		or
 			random < 20
@@ -96,7 +95,7 @@ mission "Deep: Syndicate Convoy"
 		"deep convoy" ++
 		payment 500000
 		conversation
-			`When you return to <planet> with the freighters, you are greeted by a Deep Security officer who hands you <payment> and thanks you for accepting the job on such a short notice. "We'll make sure to contact you in the future should we need your help."`
+			`When you return to <planet> with the freighters, you are greeted by a Deep Security officer who hands you <payment> and thanks you for accepting the job on such a short notice. "We'll make sure to contact you in the future should we need your help. If you want to help us further at the moment, I suggest you check the job boards in the Deep for mystery delivery and retrieval jobs."`
 
 
 
@@ -111,7 +110,6 @@ mission "Deep: Tarazed Convoy"
 	deadline
 	to offer
 		"combat rating" > 65
-		"mystery cube" >= 5
 		not "Deep: Mystery Cubes 4: done"
 		or
 			random < 20
@@ -191,7 +189,7 @@ mission "Deep: Tarazed Convoy"
 		"deep convoy" ++
 		payment 650000
 		conversation
-			`When you return to <planet> with the freighters, you are greeted by a Deep Security officer who hands you <payment> and thanks you for accepting the job on such a short notice. "We'll make sure to contact you in the future should we need your help."`
+			`When you return to <planet> with the freighters, you are greeted by a Deep Security officer who hands you <payment> and thanks you for accepting the job on such a short notice. "We'll make sure to contact you in the future should we need your help. If you want to help us further at the moment, I suggest you check the job boards in the Deep for mystery delivery and retrieval jobs."`
 
 
 
@@ -206,7 +204,6 @@ mission "Deep: Kraz Convoy"
 	deadline
 	to offer
 		"combat rating" > 80
-		"mystery cube" >= 5
 		not "Deep: Mystery Cubes 4: done"
 		or
 			random < 20
@@ -277,7 +274,7 @@ mission "Deep: Kraz Convoy"
 		"deep convoy" ++
 		payment 800000
 		conversation
-			`When you return to <planet> with the freighters, you are greeted by a Deep Security officer who hands you <payment> and thanks you for accepting the job on such a short notice. "We'll make sure to contact you in the future should we need your help."`
+			`When you return to <planet> with the freighters, you are greeted by a Deep Security officer who hands you <payment> and thanks you for accepting the job on such a short notice. "We'll make sure to contact you in the future should we need your help. If you want to help us further at the moment, I suggest you check the job boards in the Deep for mystery delivery and retrieval jobs."`
 				decline
 
 
@@ -301,6 +298,7 @@ mission "Deep: Mystery Cubes 0"
 	stopover "Arabia"
 	cargo "mystery cubes" 1
 	to offer
+		"mystery cube" >= 5
 		"combat rating" > 100
 		or
 			and
@@ -1633,8 +1631,8 @@ mission "Deep: Remnant: Engines"
 			`Thanks to the new funding grants from the Deep, the team has moved their research lab into a more advanced facility, closer to the spaceport. "This new location will make transferring cargo from your ship to the lab much easier, something we expect to do a lot of in the next few months," Ivan explains. "A careful study of the outfit scans you collected has indicated that the Remnant technology uses unprecedented advancements and improvements that haven't been seen in any human technology before.`
 			
 			branch friendly
-				has "ember waste label"
-			`	"Even though the Remnant has attacked you, we are very interested in what additional secrets their technology may hold. Are you willing to steal some of their technology and bring it to us for analysis?"`
+				has "event: ember waste label"
+			`	"Even though the Remnant have attacked you, we are very interested in what additional secrets their technology may hold. Are you willing to steal some of their technology and bring it to us for analysis?"`
 			choice
 				`	"Is this really necessary?"`
 				`	"I'd be more than happy to help."`
@@ -1728,7 +1726,7 @@ mission "Deep: Remnant: Inhibitor Cannon"
 	on offer
 		payment 276500
 		conversation
-			`Again, the Remnant technology is removed from your ship and transported to the research lab. You wander into the waiting area, and are paid you <payment>. After several hours, the scientists come to you with their initial findings.`
+			`Again, the Remnant technology is removed from your ship and transported to the research lab. You wander into the waiting area, and are paid <payment>. After several hours, the scientists come to you with their initial findings.`
 			`	"This Millennium Cell is little more than a radiothermal generator. Not exactly the best kind of generator if you're looking for lots of power - our fusion reactors are far better at that - but for a radiothermal generator, it produces remarkably little heat. We'll have to take it apart to find out how they are manipulating the decay heat so effectively, but preparing for that will take some time.`
 			`	"I suppose by now you've seen the Remnant ships in combat more than a few times. The outfit scans showed one of their primary weapons is a modified particle cannon, but we'd need to see the actual weapon in order to understand how the modification works. Would you retrieve an Inhibitor Cannon for us?"`
 			choice
@@ -1754,8 +1752,8 @@ mission "Deep: Remnant Surveillance"
 	description `Land on each of the Remnant worlds (<stopovers>) and place a number of sensor cubes. Then return to <destination> once you are done.`
 	source Valhalla
 	stopover Viminal
-	stopover Arculus
 	stopover Aventine
+	stopover Caelian
 	to offer
 		has "Deep: Remnant: Inhibitor Cannon: done"
 	
@@ -1787,7 +1785,9 @@ mission "Deep: Remnant Surveillance"
 	on complete
 		payment 500000
 		set "Deep: Remnant Research: done"
-		dialog `When you return to <planet>, you are unable to find Ivan. Instead, Maria waves you down and hands you a credits chip. "Ivan told me to give this to you, Captain. Thanks again for helping us out so much. We couldn't have done it without you."`
+		dialog 
+			`When you return to <planet>, you are unable to find Ivan. Instead, Maria waves you down and hands you a credits chip worth <payment>.`
+			`"Ivan told me to give this to you, Captain. Thanks again for helping us out so much. We couldn't have done it without you."`
 
 
 
@@ -1798,18 +1798,20 @@ mission "Deep: Remnant Surveillance - Viminal"
 	to offer
 		has "Deep: Remnant Surveillance: active"
 	on offer
-		dialog `You try to make an effort of not being seen as you decide where to place the cubes. You place one outside of the spaceport dome, burying it in the snow so it is difficult to find. The other you tuck into a dark corner of the spaceport, and as soon as you let it go it blends in surprisingly well with its surroundings.`
-			decline
+		conversation
+			`You try to make an effort of not being seen as you decide where to place the cubes. You place one outside of the spaceport dome, burying it in the snow so it is difficult to find. The other you tuck into a dark corner of the spaceport, and as soon as you let it go it blends in surprisingly well with its surroundings.`
+				decline
 
-mission "Deep: Remnant Surveillance - Arculus"
+mission "Deep: Remnant Surveillance - Caelian"
 	landing
 	invisible
-	source Arculus
+	source Caelian
 	to offer
 		has "Deep: Remnant Surveillance: active"
 	on offer
-		dialog `You place the first of the cubes at the entrance of a now-abandoned underground settlement, in a dark area where it will not be seen. Unable to find a good spot for the second, you decide to leave it in a ditch and cover it in sand. Although you are unable to see anyone, you feel that you are being watched. As the only human visitor you are not exactly inconspicuous, but no one approaches you as you return to your ship.`
-			decline
+		conversation
+			`You place the first of the cubes at the entrance of a now-abandoned underground settlement, in a dark area where it will not be seen. Unable to find a good spot for the second, you decide to leave it in a ditch and cover it in sand. Although you are unable to see anyone, you feel that you are being watched. As the only human visitor you are not exactly inconspicuous, but no one approaches you as you return to your ship.`
+				decline
 
 mission "Deep: Remnant Surveillance - Aventine"
 	landing
@@ -1818,8 +1820,9 @@ mission "Deep: Remnant Surveillance - Aventine"
 	to offer
 		has "Deep: Remnant Surveillance: active"
 	on offer
-		dialog `As you walk through the oldest part of the town, you spot an alleyway that has plenty of nooks in which a cube can be concealed. You decide to place the other one far outside of town, near the top of the valley where the spaceport can still be seen.`
-			decline
+		conversation
+			`As you walk through the oldest part of the town, you spot an alleyway that has plenty of nooks in which a cube can be concealed. You decide to place the other one far outside of town, near the top of the valley where the spaceport can still be seen.`
+				decline
 
 
 
@@ -1954,8 +1957,6 @@ mission "Deep: Scientist Rescue 0: Haven"
 
 
 mission "Deep: Scientist Rescue 0: Haven Pirates Backup"
-# Player killed the Leviathans to land on Haven instead of returning to Valhalla
-# As a base of operations, Haven should be pretty well defended.
 	landing
 	source Haven
 	destination Valhalla
@@ -2000,7 +2001,7 @@ mission "Deep: Scientist Rescue 1"
 			label next
 			`	After hearing this news, many of the faces in the group turn grim as they realize that they will need to fight to retrieve the Star Queen. Paris ponders this information for a moment, then turns back to the group. "Guards, ready your ships!" The group responds with a collective "Sir, yes sir!" before running off to their ships.`
 			`	Before leaving for his own ship, he walks up to you and hands you <payment>.`
-			`	"That you for locating the Star Queen. Now, Captain <last>, would you be willing to help us? If the Star Queen is as heavily defended as you say it is, we are going to need every ship we can get."`
+			`	"Thank you for locating the Star Queen. Now, Captain <last>, would you be willing to help us? If the Star Queen is as heavily defended as you say it is, we are going to need every ship we can get."`
 			choice
 				`	"I'd be glad to."`
 				`	"I would rather let the professionals handle things. Good luck."`
@@ -2017,6 +2018,17 @@ mission "Deep: Scientist Rescue 1"
 	
 	on visit
 		dialog `You have landed on Haven, but you left the <npc> behind! Wait for the <npc> to enter the system before landing.`
+	on accept
+		event "battle in arneb"
+	on fail
+		event "battle in arneb end"
+
+event "battle in arneb"
+	system Arneb
+		remove fleet "Large Northern Pirates"
+		remove fleet "Small northern Pirates"
+		remove fleet "Large Republic"
+		add fleet "Large Republic" 10000
 
 
 
@@ -2120,6 +2132,18 @@ mission "Deep: Scientist Rescue 1: Reinforcements"
 
 
 
+ship "Star Queen" "Star Queen (Unarmed)"
+	outfits
+		"NT-200 Nucleovoltaic"
+		"LP072a Battery Pack"
+		"D94-YV Shield Generator"
+		"Small Radar Jammer" 3
+		"X3700 Ion Thruster"
+		"X3200 Ion Steering"
+		"Hyperdrive"
+
+
+
 mission "Deep: Scientist Rescue 2"
 	landing
 	name "Return to <planet>"
@@ -2144,10 +2168,12 @@ mission "Deep: Scientist Rescue 2"
 	npc save accompany
 		government Republic
 		personality timid escort
-		ship "Star Queen" "D.S.S. Alcubierre"
+		ship "Star Queen (Unarmed)" "D.S.S. Alcubierre"
 	
 	on visit
 		dialog `You have landed on Valhalla, but you left the <npc> behind! Wait for it to enter the system before landing.`
+	on fail
+		event "battle in arneb end"
 
 
 
@@ -2184,7 +2210,7 @@ mission "Deep: Scientist Rescue 2: Pirate Bactrian"
 		ship "Bactrian (Cosmic Devil)" "Cosmic Devil"
 		dialog 
 			`After the Bactrian explodes, you receive a transmission from an unknown source. It suddenly opens on its own and an electronically distorted voice begins speaking to you.`
-			`	"Well done, Captain. Well done. You've destroyed my Bactrian. Or should I say, ONE of my Bactrians. And one of my facilities as well. You will pay for this, Captain. One day."`
+			`	"Well done, Captain. Well done at being a thorn in my side. You will pay for this. One day."`
 			`The transmission cuts out as abruptly as it had started.`
 
 
@@ -2237,12 +2263,17 @@ mission "Deep: Scientist Rescue 3A"
 			`	"Thank you, <first>." Lieutenant Paris starts walking over to the Star Queen, leaving you alone next to your ship.`
 				accept
 	
+	on decline
+		event "battle in arneb end"
 	on visit
 		dialog "You landed on Valhalla, but you didn't kill the Bactrian! Return to Arneb and make sure that the Bactrian is destroyed and forever out of pirate hands."
+	on fail
+		event "battle in arneb end"
 	to complete
 		has "Deep: Scientist Rescue 2: Pirate Bactrian: done"
 	on complete
 		set "license: City-Ship"
+		event "battle in arneb end"
 		conversation
 			`When you return to Valhalla, the Star Queen is no longer on the landing pad and the spaceport seems to be running normally. Shortly after landing, you find Lieutenant Paris at the same restaurant in which he first found you. Before saying a word to you, he hands you a license.`
 			`	"Thank you. I've said it before, but there's really no way I can thank you enough."`
@@ -2265,6 +2296,7 @@ mission "Deep: Scientist Rescue 3B"
 	
 	on offer
 		set "license: City-Ship"
+		event "battle in arneb end"
 		payment 2000000
 		conversation
 			`As you land near the Star Queen, you can see the passengers of the ship being escorted off of it. Maria and Hannah come running off the ship in tears over to Garrison, who must have arrived as soon as he heard the news. A medical team is examining each passenger while a Deep Security officer asks questions and jots down the responses. Sadly, you also notice a number of body bags next to the ship, likely from scientists or crew that were found dead on the ship.`
@@ -2279,3 +2311,10 @@ mission "Deep: Scientist Rescue 3B"
 			
 			`	"It's yours to keep. I hope you have good luck with your travels, and have fun using the Bactrian. It's a mighty fine ship to fly." Lieutenant Paris starts walking over to the Star Queen, leaving you alone to ponder the possibilities that await.`
 				decline
+			
+event "battle in arneb end"
+	system Arneb
+		remove fleet "Large Republic"
+		add fleet "Small Northern Pirates" 400
+		add fleet "Large Northern Pirates" 500
+		add fleet "Large Republic" 15000
