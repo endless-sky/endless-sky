@@ -33,8 +33,9 @@ public:
 	void Add(const Ship &ship, bool isHere, bool fleetIsJumping, bool isSelected);
 	
 	// The display starts in the lower left corner of the screen and takes up
-	// all but the top 450 pixels of the screen.
-	void Draw() const;
+	// all but the top 450 pixels of the screen. It can show additional columns
+	// up to the center of the screen.
+	void Draw(int visibleMessages) const;
 	
 	// Check if the given point is a click on an escort icon. If so, return the
 	// stack of ships represented by the icon. Otherwise, return an empty stack.
@@ -53,11 +54,12 @@ private:
 		void Merge(const Icon &other);
 		
 		const Sprite *sprite;
-		bool isHere;
+		bool isActiveHere;
 		bool isHostile;
 		bool notReadyToJump;
 		bool cannotJump;
 		bool isSelected;
+		bool withSystem;
 		int64_t cost;
 		std::string system;
 		std::vector<double> low;
