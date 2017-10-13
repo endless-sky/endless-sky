@@ -78,7 +78,7 @@ public:
 	
 	
 private:
-	void Parse(const DataNode &node, int index);
+	void Parse(const DataNode &node, int index, bool remove);
 	
 	
 private:
