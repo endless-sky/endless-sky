@@ -45,7 +45,7 @@ ship "Aphid"
 	explode "tiny explosion" 10
 	explode "small explosion" 20
 	explode "medium explosion" 15
-	description "The Aphid is a light freighter designed by the Hai. It has only minimal armament."
+	description "The Aphid is the lightest ship designed by the Hai. Similar to the human Star Barge, it can carry only a single turret for defense in case of emergencies, and has excellent cargo capacity for it's size."
 
 ship "Aphid" "Aphid (Anti-Missile)"
 	outfits
@@ -90,7 +90,7 @@ ship "Flea"
 	engine 0 27
 	gun 0 -27 "Railgun"
 	explode "tiny explosion" 15
-	description `This is a combat drone designed to help contain Unfettered aggression with a minimum risk to Hai life.`
+	description `The Flea is a light combat drone designed to help contain Unfettered aggression, while causing a minimal risk to Hai life using remote control rather than pilots.`
 
 
 
@@ -273,7 +273,7 @@ ship "Shield Beetle"
 	explode "large explosion" 50
 	explode "huge explosion" 20
 	"final explode" "final explosion large"
-	description "The Shield Beetle is a versatile warship used by the Hai to guard their merchant convoys."
+	description "For many millenia now, the Shield Beetle has been the only heavy warship at the disposal of the Hai. It is a versatile warship used by the Hai to guard their merchant convoys, and serves as a their main defender against Unfettered aggression from the North."
 
 ship "Shield Beetle" "Shield Beetle (Tracker)"
 	outfits
@@ -426,7 +426,7 @@ ship "Solifuge"
 	explode "large explosion" 50
 	explode "huge explosion" 20
 	"final explode" "final explosion large"
-	description `Impressed by the Alpha's "Giftbringer", the Unfettered endeavoured to build their own fighter carrier to take more advantage of their supply of Jump Drives.`
+	description `Impressed after seeing the Alphas' carrier, "Giftbringer," the Unfettered decided it was time they expanded their fleet. They built the Solifuge carrier to take better advantage of their Jump Drive supply. A capable warship by itself, the Solifuge also carries with it a small fleet of its own, without needing to use extra drives.`
 
 ship "Solifuge" "Solifuge (Pulse)"
 	outfits
@@ -558,7 +558,7 @@ ship "Violin Spider"
 	turret 0 5
 	explode "tiny explosion" 15
 	explode "small explosion" 5
-	description `The Hai fighter is equipped with what most humans would consider the greatest technology available, but all of that high tech comes at a cost.`
+	description `The Unfettered's fighter has both a gun port and a turret mount, allowing it greater versatility in equipment than most other ships of it's size. This versatility, however, makes it more expensive to produce.`
 
 ship "Violin Spider" "Violin Spider (Pulse)"
 	outfits
@@ -620,7 +620,7 @@ ship "Water Bug"
 	explode "large explosion" 20
 	explode "huge explosion" 5
 	"final explode" "final explosion medium"
-	description "The Water Bug is the primary freight ship used by the Hai."
+	description "The Water Bug is the largest freighter the Hai have, and the most widely used. As well as having an excellent carrying capacity, it can support a fairly large armament, easily holding its own if it runs into trouble."
 
 ship "Water Bug" "Water Bug (Pulse)"
 	outfits
