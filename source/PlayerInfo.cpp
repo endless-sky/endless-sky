@@ -672,12 +672,22 @@ const shared_ptr<Ship> &PlayerInfo::FlagshipPtr()
 {
 	if(!flagship)
 	{
+		// Choose the first unparked, eligible ship to be the flagship.
 		for(const shared_ptr<Ship> &it : ships)
 			if(!it->IsParked() && it->GetSystem() == system && it->CanBeFlagship())
 			{
 				flagship = it;
 				break;
 			}
+		// If all eligible ships are parked, unpark the first eligible one.
+		if(!flagship && ships.size())
+			for(const shared_ptr<Ship> &it : ships)
+				if(it->GetSystem() == system && it->CanBeFlagship())
+				{
+					ParkShip(&*it, false);
+					flagship = it;
+					break;
+				}
 	}
 	
 	static const shared_ptr<Ship> empty;
