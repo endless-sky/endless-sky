@@ -2475,6 +2475,7 @@ mission "Hunted by State [0]"
 		government "Republic" "Syndicate" "Free Worlds" "Neutral" "Pirate"
 	to offer
 		random < 10
+		"combat rating" > 1100
 		or
 			not "chosen sides"
 			has "main plot completed"
@@ -2500,6 +2501,7 @@ mission "Hunted by State [1]"
 		government "Republic" "Syndicate" "Free Worlds" "Neutral" "Pirate"
 	to offer
 		random > 95
+		"combat rating" > 3000
 		or
 			not "chosen sides"
 			has "main plot completed"
