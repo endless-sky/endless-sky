@@ -66,7 +66,7 @@ mission "bacsearch 1"
 	on accept
 		set "bacsearch 1"
 	on decline
-		dialog "You think to yourself, "Battleships are pretty cool, maybe I should reload...nah"
+		dialog "You think to yourself, "Battleships are pretty cool, maybe I should reload..."
 
 mission "bacsearch 1b library"
 	landing
