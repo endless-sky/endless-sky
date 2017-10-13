@@ -151,3 +151,21 @@ double Flotsam::UnitSize() const
 {
 	return outfit ? outfit->Get("mass") : 1;
 }
+
+
+
+// Transfer contents to the collector ship. The flotsam velocity is
+// stabilized in proportion to the amount being transferred.
+int Flotsam::TransferTo(Ship *collector)
+{
+	int amount = outfit ?
+		collector->Cargo().Add(outfit, count) :
+		collector->Cargo().Add(commodity, count);
+	
+	Point relative = collector->Velocity() - velocity;
+	double proportion = static_cast<double>(amount) / count;
+	velocity += relative * proportion;
+	
+	count -= amount;
+	return amount;
+}

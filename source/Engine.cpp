@@ -1203,33 +1203,31 @@ void Engine::CalculateStep()
 			}
 			string commodity;
 			string message;
-			double amount = 0.;
+			int amount = (*it)->TransferTo(collector);
 			if((*it)->OutfitType())
 			{
 				const Outfit *outfit = (*it)->OutfitType();
-				amount = collector->Cargo().Add(outfit, (*it)->Count());
 				if(!name.empty())
 				{
 					if(outfit->Get("installable") < 0.)
 					{
 						commodity = outfit->Name();
 						player.Harvest(outfit);
-						amount *= (*it)->UnitSize();
 					}
 					else
 						message = name + Format::Number(amount) + " "
-							+ (amount == 1. ? outfit->Name() : outfit->PluralName()) + ".";
+							+ (amount == 1 ? outfit->Name() : outfit->PluralName()) + ".";
 				}
 			}
 			else
 			{
-				amount = collector->Cargo().Add((*it)->CommodityType(), (*it)->Count());
 				if(!name.empty())
 					commodity = (*it)->CommodityType();
 			}
 			if(!commodity.empty())
 			{
-				message = name + (amount == 1. ? "a ton" : Format::Number(amount) + " tons")
+				double amountInTons = amount * (*it)->UnitSize();
+				message = name + (amountInTons == 1. ? "a ton" : Format::Number(amountInTons) + " tons")
 					+ " of " + Format::LowerCase(commodity) + ".";
 			}
 			if(!message.empty())
@@ -1240,8 +1238,14 @@ void Engine::CalculateStep()
 				Messages::Add(message);
 			}
 			
-			it = flotsam.erase(it);
-			continue;
+			if((*it)->Count() <= 0)
+			{
+				it = flotsam.erase(it);
+				continue;
+			}
+			
+			// Flotsam was partially stipped.
+			// No other ships will collect from this flotsam in this step.
 		}
 		
 		// Draw this flotsam.
