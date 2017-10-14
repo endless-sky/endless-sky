@@ -206,7 +206,7 @@ void GameData::CheckReferences()
 		if(it.second.Name().empty())
 			Files::LogError("Warning: effect \"" + it.first + "\" is referred to, but never defined.");
 	for(const auto &it : events)
-		if(!it.second.IsDefined())
+		if(it.second.Name().empty())
 			Files::LogError("Warning: event \"" + it.first + "\" is referred to, but never defined.");
 	for(const auto &it : fleets)
 		if(!it.second.GetGovernment())

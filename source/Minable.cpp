@@ -34,7 +34,8 @@ using namespace std;
 void Minable::Load(const DataNode &node)
 {
 	// Set the name of this minable, so we know it has been loaded.
-	name = node.Size() >= 2 ? node.Token(1) : "Unnamed Minable";
+	if(node.Size() >= 2)
+		name = node.Token(1);
 	
 	for(const DataNode &child : node)
 	{

@@ -28,7 +28,10 @@ void GameEvent::Load(const DataNode &node)
 	// If the event has a name, a condition should be automatically created that
 	// represents the fact that this event has occurred.
 	if(node.Size() >= 2)
-		conditionsToApply.Add("set", "event: " + node.Token(1));
+	{
+		name = node.Token(1);
+		conditionsToApply.Add("set", "event: " + name);
+	}
 	
 	for(const DataNode &child : node)
 	{
@@ -74,9 +77,9 @@ void GameEvent::Save(DataWriter &out) const
 
 
 
-bool GameEvent::IsDefined() const
+const string &GameEvent::Name() const
 {
-	return !conditionsToApply.IsEmpty();
+	return name;
 }
 
 
