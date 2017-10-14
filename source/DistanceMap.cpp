@@ -164,9 +164,21 @@ void DistanceMap::Init(const System *center, const Ship *ship)
 		if(hyperspaceFuel == jumpFuel)
 			hyperspaceFuel = 0.;
 		
-		// If this ship has no mode of hyperspace travel, bail out.
-		if(!hyperspaceFuel && !jumpFuel)
-			return;
+		// If this ship has no mode of hyperspace travel, and no local
+		// wormhole to use, bail out.
+		if(!jumpFuel && !hyperspaceFuel)
+		{
+			bool hasWormhole = false;
+			for(const StellarObject &object : ship->GetSystem()->Objects())
+				if(object.GetPlanet() && object.GetPlanet()->IsWormhole())
+				{
+					hasWormhole = true;
+					break;
+				}
+			
+			if(!hasWormhole)
+				return;
+		}
 	}
 	
 	// Find the route with lowest fuel use. If multiple routes use the same fuel,

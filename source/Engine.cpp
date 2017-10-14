@@ -521,6 +521,7 @@ void Engine::Step(bool isActive)
 		info.SetString("mission target", "");
 		info.SetBar("target shields", 0.);
 		info.SetBar("target hull", 0.);
+		targetSwizzle = -1;
 	}
 	else
 	{
@@ -534,6 +535,7 @@ void Engine::Step(bool isActive)
 			info.SetString("target government", "No Government");
 		else
 			info.SetString("target government", target->GetGovernment()->GetName());
+		targetSwizzle = target->GetSwizzle();
 		info.SetString("mission target", target->GetPersonality().IsTarget() ? "(mission target)" : "");
 		
 		int targetType = RadarType(*target, step);
@@ -746,6 +748,17 @@ void Engine::Draw() const
 			double radius = .5 * interface->GetSize("target").X();
 			PointerShader::Draw(center, targetAngle, 10., 10., radius, Color(1.));
 		}
+	}
+	// Draw the faction markers.
+	if(targetSwizzle >= 0 && interfaces[1]->HasPoint("faction markers"))
+	{
+		double width = font.Width(info.GetString("target government"));
+		Point center = interfaces[1]->GetPoint("faction markers");
+		
+		const Sprite *mark[2] = {SpriteSet::Get("ui/faction left"), SpriteSet::Get("ui/faction right")};
+		double dx[2] = {-.5 * (width + mark[0]->Width()), .5 * (width + mark[1]->Width())};
+		for(int i = 0; i < 2; ++i)
+			SpriteShader::Draw(mark[i], center + Point(dx[i], 0.), 1., targetSwizzle);
 	}
 	if(jumpCount && Preferences::Has("Show mini-map"))
 		MapPanel::DrawMiniMap(player, .5 * min(1., jumpCount / 30.), jumpInProgress, step);
@@ -1203,33 +1216,31 @@ void Engine::CalculateStep()
 			}
 			string commodity;
 			string message;
-			double amount = 0.;
+			int amount = (*it)->TransferTo(collector);
 			if((*it)->OutfitType())
 			{
 				const Outfit *outfit = (*it)->OutfitType();
-				amount = collector->Cargo().Add(outfit, (*it)->Count());
 				if(!name.empty())
 				{
 					if(outfit->Get("installable") < 0.)
 					{
 						commodity = outfit->Name();
 						player.Harvest(outfit);
-						amount *= (*it)->UnitSize();
 					}
 					else
 						message = name + Format::Number(amount) + " "
-							+ (amount == 1. ? outfit->Name() : outfit->PluralName()) + ".";
+							+ (amount == 1 ? outfit->Name() : outfit->PluralName()) + ".";
 				}
 			}
 			else
 			{
-				amount = collector->Cargo().Add((*it)->CommodityType(), (*it)->Count());
 				if(!name.empty())
 					commodity = (*it)->CommodityType();
 			}
 			if(!commodity.empty())
 			{
-				message = name + (amount == 1. ? "a ton" : Format::Number(amount) + " tons")
+				double amountInTons = amount * (*it)->UnitSize();
+				message = name + (amountInTons == 1. ? "a ton" : Format::Number(amountInTons) + " tons")
 					+ " of " + Format::LowerCase(commodity) + ".";
 			}
 			if(!message.empty())
@@ -1240,8 +1251,14 @@ void Engine::CalculateStep()
 				Messages::Add(message);
 			}
 			
-			it = flotsam.erase(it);
-			continue;
+			if((*it)->Count() <= 0)
+			{
+				it = flotsam.erase(it);
+				continue;
+			}
+			
+			// Flotsam was partially stipped.
+			// No other ships will collect from this flotsam in this step.
 		}
 		
 		// Draw this flotsam.

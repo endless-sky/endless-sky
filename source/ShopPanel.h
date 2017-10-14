@@ -133,8 +133,8 @@ protected:
 	ShipInfoDisplay shipInfo;
 	OutfitInfoDisplay outfitInfo;
 	
-	Point warningPoint;
-	std::string warningType;
+	mutable Point warningPoint;
+	mutable std::string warningType;
 	
 	
 private:

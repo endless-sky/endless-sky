@@ -137,6 +137,7 @@ private:
 	std::vector<Target> targets;
 	Point targetAngle;
 	Point targetUnit;
+	int targetSwizzle = -1;
 	EscortDisplay escorts;
 	std::vector<Status> statuses;
 	std::vector<PlanetLabel> labels;

@@ -62,6 +62,10 @@ public:
 	// less than this amount of space, it can't pick up anything here.
 	double UnitSize() const;
 	
+	// Transfer contents to the collector ship. The flotsam velocity is
+	// stabilized in proportion to the amount being transferred.
+	int TransferTo(Ship *collector);
+	
 	
 public:
 	// Amount of tons that is expected per box.

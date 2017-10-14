@@ -159,6 +159,10 @@ void ShopPanel::DrawSidebar()
 	if(shipsHere < 4)
 		point.X() += .5 * ICON_TILE * (4 - shipsHere);
 	
+	// Check whether flight check tooltips should be shown.
+	Point mouse = GetUI()->GetMouse();
+	warningType.clear();
+	
 	static const Color selected(.8, 1.);
 	static const Color unselected(.4, 1.);
 	for(const shared_ptr<Ship> &ship : player.Ships())
@@ -185,14 +189,19 @@ void ShopPanel::DrawSidebar()
 			OutlineShader::Draw(sprite, point, size, isSelected ? selected : unselected);
 		}
 		
+		zones.emplace_back(point, Point(ICON_TILE, ICON_TILE), ship.get());
+		
 		string check = ship->FlightCheck();
 		if(!check.empty())
 		{
 			const Sprite *icon = SpriteSet::Get(check.back() == '!' ? "ui/error" : "ui/warning");
 			SpriteShader::Draw(icon, point + .5 * Point(ICON_TILE - icon->Width(), ICON_TILE - icon->Height()));
+			if(zones.back().Contains(mouse))
+			{
+				warningType = check;
+				warningPoint = zones.back().TopLeft();
+			}
 		}
-		
-		zones.emplace_back(point, Point(ICON_TILE, ICON_TILE), ship.get());
 		
 		point.X() += ICON_TILE;
 	}
@@ -546,11 +555,28 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 			if(allWereSelected)
 				added.clear();
 			
+			const System *here = player.GetSystem();
 			for(Ship *ship : added)
-				playerShips.insert(ship);
+				if(!ship->IsDisabled() && ship->GetSystem() == here)
+					playerShips.insert(ship);
+			
+			if(!playerShips.count(playerShip))
+				playerShip = playerShips.empty() ? nullptr : *playerShips.begin();
 		}
 		else
-			playerShips = player.GetGroup(group);
+		{
+			// Change the selection to the desired ships, if they are landed here.
+			playerShips.clear();
+			set<Ship *> wanted = player.GetGroup(group);
+			
+			const System *here = player.GetSystem();
+			for(Ship *ship : wanted)
+				if(!ship->IsDisabled() && ship->GetSystem() == here)
+					playerShips.insert(ship);
+			
+			if(!playerShips.count(playerShip))
+				playerShip = playerShips.empty() ? nullptr : *playerShips.begin();
+		}
 	}
 	else
 		return false;
@@ -683,18 +709,6 @@ bool ShopPanel::Hover(int x, int y)
 		shipInfo.Hover(point);
 		outfitInfo.Hover(point);
 	}
-	
-	warningType.clear();
-	for(const Zone &zone : zones)
-		if(zone.Contains(point) && zone.GetShip())
-		{
-			warningType = zone.GetShip()->FlightCheck();
-			if(!warningType.empty())
-			{
-				warningPoint = zone.TopLeft();
-				break;
-			}
-		}
 	
 	dragMain = (x < Screen::Right() - SIDE_WIDTH);
 	return true;
@@ -843,6 +857,7 @@ void ShopPanel::SideSelect(int count)
 	}
 	
 	
+	const System *here = player.GetSystem();
 	if(count < 0)
 	{
 		while(count)
@@ -851,7 +866,7 @@ void ShopPanel::SideSelect(int count)
 				it = player.Ships().end();
 			--it;
 			
-			if((*it)->GetSystem() == player.GetSystem() && !(*it)->IsDisabled())
+			if((*it)->GetSystem() == here && !(*it)->IsDisabled())
 				++count;
 		}
 	}
@@ -863,7 +878,7 @@ void ShopPanel::SideSelect(int count)
 			if(it == player.Ships().end())
 				it = player.Ships().begin();
 			
-			if((*it)->GetSystem() == player.GetSystem() && !(*it)->IsDisabled())
+			if((*it)->GetSystem() == here && !(*it)->IsDisabled())
 				--count;
 		}
 	}
@@ -880,10 +895,11 @@ void ShopPanel::SideSelect(Ship *ship)
 	if(shift)
 	{
 		bool on = false;
+		const System *here = player.GetSystem();
 		for(const shared_ptr<Ship> &other : player.Ships())
 		{
 			// Skip any ships that are "absent" for whatever reason.
-			if(other->GetSystem() != player.GetSystem() || other->IsDisabled())
+			if(other->GetSystem() != here || other->IsDisabled())
 				continue;
 			
 			if(other.get() == ship || other.get() == playerShip)
