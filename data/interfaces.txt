@@ -360,6 +360,8 @@ interface "targets" top left
 	string "target government"
 		center 75 435
 		color "medium"
+	point "faction markers"
+		center 75 435
 	string "mission target"
 		center 75 455
 		color "medium"

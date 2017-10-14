@@ -521,6 +521,7 @@ void Engine::Step(bool isActive)
 		info.SetString("mission target", "");
 		info.SetBar("target shields", 0.);
 		info.SetBar("target hull", 0.);
+		targetSwizzle = -1;
 	}
 	else
 	{
@@ -534,6 +535,7 @@ void Engine::Step(bool isActive)
 			info.SetString("target government", "No Government");
 		else
 			info.SetString("target government", target->GetGovernment()->GetName());
+		targetSwizzle = target->GetSwizzle();
 		info.SetString("mission target", target->GetPersonality().IsTarget() ? "(mission target)" : "");
 		
 		int targetType = RadarType(*target, step);
@@ -746,6 +748,17 @@ void Engine::Draw() const
 			double radius = .5 * interface->GetSize("target").X();
 			PointerShader::Draw(center, targetAngle, 10., 10., radius, Color(1.));
 		}
+	}
+	// Draw the faction markers.
+	if(targetSwizzle >= 0 && interfaces[1]->HasPoint("faction markers"))
+	{
+		double width = font.Width(info.GetString("target government"));
+		Point center = interfaces[1]->GetPoint("faction markers");
+		
+		const Sprite *mark[2] = {SpriteSet::Get("ui/faction left"), SpriteSet::Get("ui/faction right")};
+		double dx[2] = {-.5 * (width + mark[0]->Width()), .5 * (width + mark[1]->Width())};
+		for(int i = 0; i < 2; ++i)
+			SpriteShader::Draw(mark[i], center + Point(dx[i], 0.), 1., targetSwizzle);
 	}
 	if(jumpCount && Preferences::Has("Show mini-map"))
 		MapPanel::DrawMiniMap(player, .5 * min(1., jumpCount / 30.), jumpInProgress, step);
