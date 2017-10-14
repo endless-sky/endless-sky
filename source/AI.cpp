@@ -150,14 +150,17 @@ namespace {
 		}
 		return false;
 	}
-	// Wrapper for ship-system uses.
+	// Wrapper for ship - target system uses.
 	bool ShouldRefuel(const Ship &ship, const System *to)
 	{
 		if(!to || ship.Fuel() == 1. || !ship.GetSystem()->HasFuelFor(ship))
 			return false;
+		double fuelCapacity = ship.Attributes().Get("fuel capacity");
+		if(!fuelCapacity)
+			return false;
 		double needed = ship.JumpFuel(to);
 		if(needed && to->HasFuelFor(ship))
-			return ship.Fuel() * ship.Attributes().Get("fuel capacity") < needed;
+			return ship.Fuel() * fuelCapacity < needed;
 		else
 		{
 			// If no direct jump route, or the target system has no
