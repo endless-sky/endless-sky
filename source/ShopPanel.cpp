@@ -66,8 +66,8 @@ void ShopPanel::Step()
 	// Perform autoscroll to bring item details into view.
 	if(scrollDetailsIntoView && mainDetailHeight > 0)
 	{
-		int mainTopY = Screen::Height() / -2;
-		int mainBottomY = Screen::Height() / 2 - 40;
+		int mainTopY = Screen::Top();
+		int mainBottomY = Screen::Bottom() - 40;
 		double selectedBottomY = selectedTopY + TileSize() + mainDetailHeight;
 		// Scroll up until the bottoms match.
 		if(selectedBottomY > mainBottomY)
