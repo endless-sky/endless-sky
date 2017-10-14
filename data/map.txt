@@ -24310,7 +24310,7 @@ planet "Charybdis Station"
 	attributes core station
 	landscape land/space0
 	music ambient/machinery
-	description `Charybdis station is privately owned by the Syndicate. It is a massive deuterium refinery, with harvester drones constantly flying in and out to scoop hydrogen gas out of the upper atmosphere of the planet below. If you need to repair or refuel in this system, you will need to visit the neighboring world of Delve, instead of this station.`
+	description `Charybdis Station is privately owned by the Syndicate. It is a massive deuterium refinery, with harvester drones constantly flying in and out to scoop hydrogen gas out of the upper atmosphere of the planet below. If you need to repair or refuel in this system, you will need to visit the neighboring world of Delve, instead of this station.`
 	"required reputation" 20
 	bribe 0.05
 	security 0.6
@@ -25443,7 +25443,7 @@ planet "Leviathan Station"
 	attributes deep station
 	landscape land/space2
 	music ambient/machinery
-	description `Leviathan station is the Deep's most productive deuterium harvesting station. Built nearly four hundred years ago, the station was one of the first to fuel the massive cargo caravans sent out from the Deep back when this was one of the only regions of the galaxy with a prosperous economy and a democratic government. Today it remains under government control, because the citizens of the Deep are wary of any private corporation controlling the industry that makes interstellar travel possible.`
+	description `Leviathan Station is the Deep's most productive deuterium harvesting station. Built nearly four hundred years ago, the station was one of the first to fuel the massive cargo caravans sent out from the Deep back when this was one of the only regions of the galaxy with a prosperous economy and a democratic government. Today it remains under government control, because the citizens of the Deep are wary of any private corporation controlling the industry that makes interstellar travel possible.`
 	spaceport `This is a refinery, not a tourist destination. You were allowed to dock here, and the massive cafeteria used by the local workers is available to you if you want to eat, but beyond that no one seems particularly interested in entertaining you or interacting with you.`
 	spaceport `	On the other hand, you get some small satisfaction from knowing that you refueled your ship with deuterium that just yesterday was most likely still floating around in the upper cloud banks of the gas giant below.`
 	"required reputation" 10
@@ -25721,7 +25721,7 @@ planet "Muninn Station"
 	attributes deep station military
 	landscape land/space7
 	music ambient/machinery
-	description `Muninn station, along with its brother station Huginn, serves as the gateway to the region of space known as the Deep. They both harvest and refine deuterium for use as rocket fuel, and in addition Muninn station is used as a military base for the local defense fleets.`
+	description `Muninn Station, along with its brother station Huginn, serves as the gateway to the region of space known as the Deep. They both harvest and refine deuterium for use as rocket fuel, and in addition Muninn Station is used as a military base for the local defense fleets.`
 	spaceport `Most of the station is closed off to you, but you are told that if you want you may visit the large military mess hall, where hundreds of Navy members and local militia sit and eat or watch the news videos. You would normally expect a military mess hall to be a noisy, rowdy place, but this one is almost eerily silent, with a few quiet conversations going on in the corners but otherwise no noise except the video screens.`
 	"required reputation" 10
 	bribe 0.05
@@ -26031,7 +26031,7 @@ planet "Oberon Station"
 	attributes core station
 	landscape land/station1
 	music ambient/machinery
-	description `Oberon station is a deuterium refinery owned and operated by the Syndicate, and aside from a few docking bays for visiting ships to use in an emergency, the rest of the station is sealed off to non-employees.`
+	description `Oberon Station is a deuterium refinery owned and operated by the Syndicate, and aside from a few docking bays for visiting ships to use in an emergency, the rest of the station is sealed off to non-employees.`
 	"required reputation" 10
 	bribe 0.03
 	security 0.4
