@@ -189,7 +189,7 @@ outfit "Millennium Cell"
 	category "Power"
 	licenses
 		Remnant
-	cost 767000
+	cost 553000
 	thumbnail "outfit/millennium cell"
 	"mass" 29
 	"outfit space" -29
@@ -201,7 +201,7 @@ outfit "Epoch Cell"
 	category "Power"
 	licenses
 		Remnant
-	cost 3060000
+	cost 2123000
 	thumbnail "outfit/epoch cell"
 	"mass" 98
 	"outfit space" -98
@@ -213,7 +213,7 @@ outfit "Aeon Cell"
 	category "Power"
 	licenses
 		Remnant
-	cost 6600000
+	cost 4384000
 	thumbnail "outfit/aeon cell"
 	"mass" 160
 	"outfit space" -160
@@ -226,7 +226,7 @@ outfit "Thermoelectric Cooler"
 	category "Systems"
 	licenses
 		Remnant
-	cost 160000
+	cost 100000
 	thumbnail "outfit/thermoelectric cooler"
 	"mass" 4
 	"outfit space" -4
@@ -273,7 +273,7 @@ outfit "Crucible-Class Thruster"
 	"thrust" 18.0
 	"thrusting energy" 2.65
 	"thrusting heat" 2.5
-	"flare sprite" "effect/remnant small flare"
+	"flare sprite" "effect/remnant flare/small"
 		"frame rate" 5
 	"flare sound" "plasma tiny"
 	description "These small but powerful engines are driven by ionized gas propelled at a sizable fraction of the speed of light."
@@ -290,7 +290,7 @@ outfit "Forge-Class Thruster"
 	"thrust" 37.0
 	"thrusting energy" 5.15
 	"thrusting heat" 5.0
-	"flare sprite" "effect/remnant medium flare"
+	"flare sprite" "effect/remnant flare/medium"
 		"frame rate" 4
 	"flare sound" "plasma small"
 	description "The Remnant has taken the basic ion thruster design that has been used by humanity since the dawn of spaceflight and made it significantly more powerful... but also more power-hungry."
@@ -307,7 +307,7 @@ outfit "Smelter-Class Thruster"
 	"thrust" 76.8
 	"thrusting energy" 10.10
 	"thrusting heat" 10.2
-	"flare sprite" "effect/remnant large flare"
+	"flare sprite" "effect/remnant flare/large"
 		"frame rate" 3
 	"flare sound" "plasma medium"
 	description "It is not unheard of for a Remnant ship's engines to draw even more power than its weapon systems: an indication, perhaps, of their preference for avoiding battle when possible."

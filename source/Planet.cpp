@@ -178,6 +178,16 @@ void Planet::Load(const DataNode &node, const Set<Sale<Ship>> &ships, const Set<
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
+	
+	static const vector<string> AUTO_ATTRIBUTES = {"spaceport", "shipyard", "outfitter"};
+	bool autoValues[3] = {!spaceport.empty(), !shipSales.empty(), !outfitSales.empty()};
+	for(unsigned i = 0; i < AUTO_ATTRIBUTES.size(); ++i)
+	{
+		if(autoValues[i])
+			attributes.insert(AUTO_ATTRIBUTES[i]);
+		else
+			attributes.erase(AUTO_ATTRIBUTES[i]);
+	}
 }
 
 
@@ -441,6 +451,13 @@ bool Planet::IsAccessible(const Ship *ship) const
 
 // Below are convenience functions which access the game state in Politics,
 // but do so with a less convoluted syntax:
+bool Planet::HasFuelFor(const Ship &ship) const
+{
+	return !IsWormhole() && HasSpaceport() && CanLand(ship);
+}
+
+
+
 bool Planet::CanLand(const Ship &ship) const
 {
 	return IsAccessible(&ship) && GameData::GetPolitics().CanLand(ship, this);

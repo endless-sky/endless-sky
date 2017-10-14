@@ -547,9 +547,15 @@ void ShipInfoPanel::DrawCargo(const Rectangle &bounds)
 			if(it.first == selectedPlunder)
 				table.DrawHighlight(backColor);
 			
+			// For outfits, show how many of them you have and their total mass.
 			bool isSingular = (it.second == 1 || it.first->Get("installable") < 0.);
-			table.Draw(isSingular ? it.first->Name() : it.first->PluralName(), dim);
-			table.Draw(to_string(it.second), bright);
+			string name = (isSingular ? it.first->Name() : it.first->PluralName());
+			if(!isSingular)
+				name += " (" + to_string(it.second) + "x)";
+			table.Draw(name, dim);
+			
+			double mass = it.first->Get("mass") * it.second;
+			table.Draw(Format::Number(mass), bright);
 			
 			// Truncate the list if there is not enough space.
 			if(table.GetRowBounds().Bottom() >= endY)

@@ -30,6 +30,8 @@ void Weapon::LoadWeapon(const DataNode &node)
 {
 	isWeapon = true;
 	bool isClustered = false;
+	calculatedDamage = false;
+	doesDamage = false;
 	
 	for(const DataNode &child : node)
 	{
@@ -299,11 +301,16 @@ void Weapon::SetTurretTurn(double rate)
 
 double Weapon::TotalDamage(int index) const
 {
-	if(!calculatedDamage[index])
+	if(!calculatedDamage)
 	{
-		calculatedDamage[index] = true;
-		for(const auto &it : submunitions)
-			damage[index] += it.first->TotalDamage(index) * it.second;
+		for(int i = 0; i < DAMAGE_TYPES; ++i)
+		{
+			for(const auto &it : submunitions)
+				damage[i] += it.first->TotalDamage(i) * it.second;
+			doesDamage |= (damage[i] > 0.);
+		}
+		
+		calculatedDamage = true;
 	}
 	return damage[index];
 }

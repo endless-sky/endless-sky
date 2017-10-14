@@ -137,6 +137,7 @@ private:
 	std::vector<Target> targets;
 	Point targetAngle;
 	Point targetUnit;
+	int targetSwizzle = -1;
 	EscortDisplay escorts;
 	std::vector<Status> statuses;
 	std::vector<PlanetLabel> labels;
@@ -169,6 +170,7 @@ private:
 	bool hasShift = false;
 	bool hasControl = false;
 	bool isRightClick = false;
+	bool isRadarClick = false;
 	Point clickPoint;
 	Rectangle clickBox;
 	int groupSelect = -1;

@@ -274,10 +274,10 @@
 		<Unit filename="source/Ship.h" />
 		<Unit filename="source/ShipEvent.cpp" />
 		<Unit filename="source/ShipEvent.h" />
-		<Unit filename="source/ShipInfoPanel.cpp" />
-		<Unit filename="source/ShipInfoPanel.h" />
 		<Unit filename="source/ShipInfoDisplay.cpp" />
 		<Unit filename="source/ShipInfoDisplay.h" />
+		<Unit filename="source/ShipInfoPanel.cpp" />
+		<Unit filename="source/ShipInfoPanel.h" />
 		<Unit filename="source/ShipyardPanel.cpp" />
 		<Unit filename="source/ShipyardPanel.h" />
 		<Unit filename="source/ShopPanel.cpp" />

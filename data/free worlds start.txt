@@ -340,9 +340,7 @@ mission "FW Syndicate Diplomacy 1B"
 		personality heroic
 		government Republic
 		system Sol
-		fleet "Small Republic"
-		fleet "Small Republic"
-		fleet "Small Republic"
+		fleet "Small Republic" 3
 	
 	on offer
 		log "Visited the Syndicate and worked out a deal where they promised to stay neutral. They are expecting to profit from selling weapons to both sides in this war. Also discovered that Katya is in the Republic's custody and is accused of terrorist activity."
@@ -408,9 +406,7 @@ mission "FW Syndicate Diplomacy 1C"
 		personality heroic
 		government Republic
 		system Rutilicus
-		fleet "Small Republic"
-		fleet "Small Republic"
-		fleet "Small Republic"
+		fleet "Small Republic" 3
 	
 	on offer
 		conversation
@@ -798,6 +794,8 @@ mission "FW Plasma Testing 1B"
 
 mission "plasma turret available"
 	landing
+	source
+		near Kraz 100
 	to offer
 		has "event: plasma turret available"
 	on offer
@@ -826,7 +824,7 @@ mission "FW Supply Convoy 1"
 	
 	on offer
 		conversation
-			`In the spaceport, you meet up with a woman wearing a militia uniform and carrying a clipboard. "Are you Captain <last>?" she asks. You nod. "We have a large shipment of weapons and equipment that needs to go to the militia base on <planet>. Your job is to make sure none of these ships get... lost in transit." She points to a large landing pad where you count ten Star Barges lines up next to each other.`
+			`In the spaceport, you meet up with a woman wearing a militia uniform and carrying a clipboard. "Are you Captain <last>?" she asks. You nod. "We have a large shipment of weapons and equipment that needs to go to the militia base on <planet>. Your job is to make sure none of these ships get... lost in transit." She points to a large landing pad where you count ten Star Barges lined up next to each other.`
 			choice
 				`	"Isn't it risky to transport valuable cargo in such flimsy and vulnerable ships?"`
 					goto risky
@@ -863,8 +861,7 @@ mission "FW Supply Convoy 1"
 		government "Pirate"
 		personality plunders staying
 		system "Sabik"
-		fleet "Small Southern Pirates"
-		fleet "Small Southern Pirates"
+		fleet "Small Southern Pirates" 2
 	
 	on complete
 		dialog
@@ -1045,6 +1042,8 @@ mission "FW Flamethrower 1"
 	landing
 	name "Weapon Testing"
 	description "When you have time, report to <destination>, where Barmy Edward has another weapon he would like you to test."
+	source
+		near Kraz 1 100
 	destination Rust
 	to offer
 		has "event: plasma turret available"
@@ -1188,8 +1187,7 @@ mission "FW Pirates 2"
 	npc
 		personality heroic escort
 		government "Free Worlds"
-		fleet "Small Free Worlds"
-		fleet "Small Free Worlds"
+		fleet "Small Free Worlds" 2
 		fleet "Large Free Worlds"
 	
 	on complete
@@ -1241,18 +1239,15 @@ mission "FW Pirates 3.1"
 		government "Free Worlds"
 		system Antares
 		fleet "Small Free Worlds"
-		fleet "Large Free Worlds"
-		fleet "Large Free Worlds"
+		fleet "Large Free Worlds" 2
 	
 	npc kill
 		personality plunders staying
 		government "Pirate"
 		system Antares
-		fleet "Small Southern Pirates"
-		fleet "Small Southern Pirates"
+		fleet "Small Southern Pirates" 2
 		fleet "Small Northern Pirates"
-		fleet "Large Southern Pirates"
-		fleet "Large Southern Pirates"
+		fleet "Large Southern Pirates" 2
 		fleet "Large Core Pirates"
 		fleet "Large Northern Pirates"
 	
@@ -1364,33 +1359,19 @@ mission "FW Pirates 3.2A"
 	npc
 		personality heroic escort
 		government "Free Worlds"
-		fleet "Small Free Worlds"
-		fleet "Small Free Worlds"
-		fleet "Small Free Worlds"
-		fleet "Large Free Worlds"
-		fleet "Large Free Worlds"
-		fleet "Large Free Worlds"
+		fleet "Small Free Worlds" 3
+		fleet "Large Free Worlds" 3
 	
 	npc kill
 		personality plunders staying
 		government "Pirate"
 		system Shaula
-		fleet "Small Southern Pirates"
-		fleet "Small Southern Pirates"
-		fleet "Small Southern Pirates"
-		fleet "Large Southern Pirates"
-		fleet "Large Southern Pirates"
-		fleet "Large Southern Pirates"
-		fleet "Small Core Pirates"
-		fleet "Small Core Pirates"
-		fleet "Large Core Pirates"
-		fleet "Large Core Pirates"
-		fleet "Large Core Pirates"
+		fleet "Small Southern Pirates" 3
+		fleet "Large Southern Pirates" 3
+		fleet "Small Core Pirates" 2
+		fleet "Large Core Pirates" 3
 		fleet "Small Northern Pirates"
-		fleet "Large Northern Pirates"
-		fleet "Large Northern Pirates"
-		fleet "Large Northern Pirates"
-		fleet "Large Northern Pirates"
+		fleet "Large Northern Pirates" 4
 	
 	on complete
 		event "fw suppressed Greenrock"
@@ -1474,12 +1455,8 @@ mission "FW Pirates 4"
 		personality heroic
 		government "Free Worlds"
 		system Alniyat
-		fleet "Small Free Worlds"
-		fleet "Small Free Worlds"
-		fleet "Large Free Worlds"
-		fleet" Large Free Worlds"
-		fleet" Large Free Worlds"
-		fleet" Large Free Worlds"
+		fleet "Small Free Worlds" 2
+		fleet "Large Free Worlds" 4
 	
 	npc
 		personality heroic

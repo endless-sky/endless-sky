@@ -696,7 +696,7 @@ trade
 		"human kidneys"
 		"human lungs"
 		"endangered animals"
-		"endangered planets"
+		"endangered plants"
 		"enriched uranium"
 		"outlawed pesticides"
 		"plundered artifacts"

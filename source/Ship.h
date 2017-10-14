@@ -120,7 +120,11 @@ public:
 	// Get this ship's cost.
 	int64_t Cost() const;
 	int64_t ChassisCost() const;
+	// Check if this ship is configured in such a way that it would be difficult
+	// or impossible to fly.
+	std::string FlightCheck() const;
 	
+	void SetPosition(Point position);
 	// When creating a new ship, you must set the following:
 	void Place(Point position = Point(), Point velocity = Point(), Angle angle = Angle());
 	void SetName(const std::string &name);
@@ -256,6 +260,7 @@ public:
 	double TurnRate() const;
 	double Acceleration() const;
 	double MaxVelocity() const;
+	double MaxReverseVelocity() const;
 	
 	// This ship just got hit by the given projectile. Take damage according to
 	// what sort of weapon the projectile it. The return value is a ShipEvent

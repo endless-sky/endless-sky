@@ -34,6 +34,7 @@ namespace {
 		{"afterburner heat", 60.},
 		{"cloaking energy", 60.},
 		{"cloaking fuel", 60.},
+		{"cloaking heat", 60.},
 		{"cooling", 60.},
 		{"cooling energy", 60.},
 		{"energy consumption", 60.},
@@ -229,6 +230,13 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		attributesHeight += 20;
 	}
 	
+	if(outfit.FuelDamage() && outfit.Reload())
+	{
+		attributeLabels.push_back("fuel damage / second:");
+		attributeValues.push_back(Format::Number(60. * outfit.FuelDamage() / outfit.Reload()));
+		attributesHeight += 20;
+	}
+	
 	if(outfit.HeatDamage() && outfit.Reload())
 	{
 		attributeLabels.push_back("heat damage / second:");
@@ -337,6 +345,7 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 	static const vector<string> OTHER_NAMES = {
 		"shield damage / shot:",
 		"hull damage / shot:",
+		"fuel damage / shot:",
 		"heat damage / shot:",
 		"ion damage / shot:",
 		"slowing damage / shot:",
@@ -352,6 +361,7 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 	vector<double> values = {
 		outfit.ShieldDamage(),
 		outfit.HullDamage(),
+		outfit.FuelDamage(),
 		outfit.HeatDamage(),
 		outfit.IonDamage() * 100.,
 		outfit.SlowingDamage() * 100.,

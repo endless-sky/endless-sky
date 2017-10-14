@@ -180,7 +180,8 @@ void Dialog::Draw()
 bool Dialog::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 {
 	auto it = KEY_MAP.find(key);
-	if((it != KEY_MAP.end() || (key >= ' ' && key <= '~')) && !isMission && (intFun || stringFun))
+	bool isCloseRequest = key == SDLK_ESCAPE || (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI)));
+	if((it != KEY_MAP.end() || (key >= ' ' && key <= '~')) && !isMission && (intFun || stringFun) && !isCloseRequest)
 	{
 		int ascii = (it != KEY_MAP.end()) ? it->second : key;
 		char c = ((mod & KMOD_SHIFT) ? SHIFT[ascii] : ascii);
@@ -204,12 +205,13 @@ bool Dialog::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 		okIsActive = !canCancel;
 	else if(key == SDLK_RIGHT)
 		okIsActive = true;
-	else if(key == SDLK_RETURN || key == SDLK_KP_ENTER || (isMission && (key == 'a' || key == 'd')))
+	else if(key == SDLK_RETURN || key == SDLK_KP_ENTER || isCloseRequest
+			|| (isMission && (key == 'a' || key == 'd')))
 	{
 		// Shortcuts for "accept" and "decline."
-		if(key == 'a')
+		if(key == 'a' || (!canCancel && isCloseRequest))
 			okIsActive = true;
-		if(key == 'd')
+		if(key == 'd' || (canCancel && isCloseRequest))
 			okIsActive = false;
 		if(okIsActive || isMission)
 			DoCallback();

@@ -167,6 +167,7 @@ mission "Syndicate target practice [0]"
 		random < 20
 		"combat rating" > 5
 		"combat rating" < 50
+		"destroyed Syndicate target ship" < 3
 	npc save disable "scan cargo"
 		government "Test Dummy"
 		personality staying heroic target
@@ -175,6 +176,11 @@ mission "Syndicate target practice [0]"
 		dialog "You scan the disabled craft and take careful measurements of the battle damage. Time to deliver the results on <planet>."
 	on visit
 		dialog "You forgot to either disable or scan the target dummy ship in <system>! You'll need to head back there and do that before you can return here for payment."
+	on fail
+		dialog "The robotic target ship has been destroyed. You are hailed by an angry Syndicate official who fines you <payment> and warns you that further mistakes of this nature may remove you from eligibility for these jobs."
+		"destroyed Syndicate target ship" ++
+		"reputation: Syndicate" --
+		payment -40000
 	on complete
 		payment 20000
 		dialog "You transmit the scan results to a team of eager engineers and collect your payment of <payment>."
@@ -194,6 +200,7 @@ mission "Syndicate target practice [1]"
 		random < 20
 		"combat rating" > 50
 		"combat rating" < 200
+		"destroyed Syndicate target ship" < 3
 	npc save disable "scan cargo"
 		government "Test Dummy"
 		personality staying heroic target
@@ -202,6 +209,11 @@ mission "Syndicate target practice [1]"
 		dialog "You scan the disabled craft and take careful measurements of the battle damage. Time to deliver the results on <planet>."
 	on visit
 		dialog "You forgot to either disable or scan the target dummy ship in <system>! You'll need to head back there and do that before you can return here for payment."
+	on fail
+		dialog "The robotic target ship has been destroyed. You are hailed by an angry Syndicate official who fines you <payment> and warns you that further mistakes of this nature may remove you from eligibility for these jobs."
+		"destroyed Syndicate target ship" ++
+		"reputation: Syndicate" --
+		payment -80000
 	on complete
 		payment 40000
 		dialog "You transmit the scan results to a team of eager engineers and collect your payment of <payment>."
@@ -221,6 +233,7 @@ mission "Syndicate target practice [2]"
 		random < 20
 		"combat rating" > 150
 		"combat rating" < 1000
+		"destroyed Syndicate target ship" < 3
 	npc save disable "scan cargo"
 		government "Test Dummy"
 		personality staying heroic target
@@ -229,6 +242,11 @@ mission "Syndicate target practice [2]"
 		dialog "You scan the disabled craft and take careful measurements of the battle damage. Time to deliver the results on <planet>."
 	on visit
 		dialog "You forgot to either disable or scan the target dummy ship in <system>! You'll need to head back there and do that before you can return here for payment."
+	on fail
+		dialog "The robotic target ship has been destroyed. You are hailed by an angry Syndicate official who fines you <payment> and warns you that further mistakes of this nature may remove you from eligibility for these jobs."
+		"destroyed Syndicate target ship" ++
+		"reputation: Syndicate" --
+		payment -120000
 	on complete
 		payment 60000
 		dialog "You transmit the scan results to a team of eager engineers and collect your payment of <payment>."
@@ -247,6 +265,7 @@ mission "Syndicate target practice [3]"
 	to offer
 		random < 20
 		"combat rating" > 1000
+		"destroyed Syndicate target ship" < 3
 	npc save disable "scan cargo"
 		government "Test Dummy"
 		personality staying heroic target
@@ -255,6 +274,11 @@ mission "Syndicate target practice [3]"
 		dialog "You scan the disabled craft and take careful measurements of the battle damage. Time to deliver the results on <planet>."
 	on visit
 		dialog "You forgot to either disable or scan the target dummy ship in <system>! You'll need to head back there and do that before you can return here for payment."
+	on fail
+		dialog "The robotic target ship has been destroyed. You are hailed by an angry Syndicate official who fines you <payment> and warns you that further mistakes of this nature may remove you from eligibility for these jobs."
+		"destroyed Syndicate target ship" ++
+		"reputation: Syndicate" --
+		payment -200000
 	on complete
 		payment 100000
 		dialog "You transmit the scan results to a team of eager engineers and collect your payment of <payment>."

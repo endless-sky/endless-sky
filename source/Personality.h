@@ -16,8 +16,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Angle.h"
 #include "Point.h"
 
-#include <string>
-
 class DataNode;
 class DataWriter;
 
@@ -80,7 +78,7 @@ public:
 	
 	
 private:
-	void Parse(const std::string &token);
+	void Parse(const DataNode &node, int index, bool remove);
 	
 	
 private:

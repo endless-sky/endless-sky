@@ -49,6 +49,8 @@ private:
 	Date date;
 	ConditionSet conditionsToApply;
 	std::list<DataNode> changes;
+	std::vector<const System *> systemsToVisit;
+	std::vector<const Planet *> planetsToVisit;
 	std::vector<const System *> systemsToUnvisit; 
 	std::vector<const Planet *> planetsToUnvisit; 
 };

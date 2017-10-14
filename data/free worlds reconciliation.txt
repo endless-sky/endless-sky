@@ -564,7 +564,7 @@ mission "FW Reconciliation Break Ends"
 	description "Rejoin Ijs, Katya, and Alondo on <destination>."
 	landing
 	source
-		near "Gamma Corvi" 1 1000
+		near "Gamma Corvi" 1 100
 	destination Bourne
 	to offer
 		has "event: fw reconciliation break"
@@ -1002,16 +1002,8 @@ mission "FW Pug 2"
 		system "Sol"
 		personality heroic uninterested staying
 		government "Republic"
-		fleet "Large Republic"
-		fleet "Large Republic"
-		fleet "Large Republic"
-		fleet "Large Republic"
-		fleet "Large Republic"
-		fleet "Small Republic"
-		fleet "Small Republic"
-		fleet "Small Republic"
-		fleet "Small Republic"
-		fleet "Small Republic"
+		fleet "Large Republic" 5
+		fleet "Small Republic" 5
 
 
 
@@ -1065,16 +1057,8 @@ mission "FW Pug 2A"
 		system "Sol"
 		personality heroic uninterested staying
 		government "Republic"
-		fleet "Large Republic"
-		fleet "Large Republic"
-		fleet "Large Republic"
-		fleet "Large Republic"
-		fleet "Large Republic"
-		fleet "Small Republic"
-		fleet "Small Republic"
-		fleet "Small Republic"
-		fleet "Small Republic"
-		fleet "Small Republic"
+		fleet "Large Republic" 5
+		fleet "Small Republic" 5
 
 
 
@@ -1664,34 +1648,13 @@ mission "FW Pug 4"
 		personality disables staying
 		system "Delta Capricorni"
 		government Pug
-		fleet
+		fleet 2
 			names "pug"
 			variant
 				"Pug Maboro"
 				"Pug Enfolta"
 				"Pug Zibruka" 2
-		fleet
-			names "pug"
-			variant
-				"Pug Maboro"
-				"Pug Enfolta"
-				"Pug Zibruka" 2
-		fleet
-			names "pug"
-			variant
-				"Pug Enfolta"
-				"Pug Zibruka" 2
-		fleet
-			names "pug"
-			variant
-				"Pug Enfolta"
-				"Pug Zibruka" 2
-		fleet
-			names "pug"
-			variant
-				"Pug Enfolta"
-				"Pug Zibruka" 2
-		fleet
+		fleet 4
 			names "pug"
 			variant
 				"Pug Enfolta"
@@ -1757,17 +1720,7 @@ mission "FW Pug 4A"
 				"Pug Maboro"
 				"Pug Enfolta" 
 				"Pug Zibruka" 2
-		fleet
-			names "pug"
-			variant
-				"Pug Enfolta"
-				"Pug Zibruka" 2
-		fleet
-			names "pug"
-			variant
-				"Pug Enfolta"
-				"Pug Zibruka" 2
-		fleet
+		fleet 3
 			names "pug"
 			variant
 				"Pug Enfolta"
@@ -1826,25 +1779,7 @@ mission "FW Pug 4B: Enemies"
 		personality waiting disables
 		system Deneb
 		government Pug
-		fleet
-			names "pug"
-			variant
-				"Pug Maboro"
-				"Pug Enfolta" 
-				"Pug Zibruka" 2
-		fleet
-			names "pug"
-			variant
-				"Pug Maboro"
-				"Pug Enfolta" 
-				"Pug Zibruka" 2
-		fleet
-			names "pug"
-			variant
-				"Pug Maboro"
-				"Pug Enfolta" 
-				"Pug Zibruka" 2
-		fleet
+		fleet 4
 			names "pug"
 			variant
 				"Pug Maboro"
@@ -1934,19 +1869,7 @@ mission "FW Pug 5"
 		personality staying disables
 		system Altair
 		government Pug
-		fleet
-			names "pug"
-			variant
-				"Pug Maboro"
-				"Pug Enfolta" 
-				"Pug Zibruka" 2
-		fleet
-			names "pug"
-			variant
-				"Pug Maboro"
-				"Pug Enfolta" 
-				"Pug Zibruka" 2
-		fleet
+		fleet 3
 			names "pug"
 			variant
 				"Pug Maboro"
@@ -1973,25 +1896,7 @@ mission "FW Pug 5A: Enemies"
 		personality waiting disables
 		system Deneb
 		government Pug
-		fleet
-			names "pug"
-			variant
-				"Pug Maboro"
-				"Pug Enfolta" 
-				"Pug Zibruka" 2
-		fleet
-			names "pug"
-			variant
-				"Pug Maboro"
-				"Pug Enfolta" 
-				"Pug Zibruka" 2
-		fleet
-			names "pug"
-			variant
-				"Pug Maboro"
-				"Pug Enfolta" 
-				"Pug Zibruka" 2
-		fleet
+		fleet 4
 			names "pug"
 			variant
 				"Pug Maboro"
@@ -2066,14 +1971,7 @@ mission "FW Pug 5B"
 	npc
 		government Republic
 		personality escort disables waiting
-		fleet
-			names "republic capital"
-			fighters "republic fighter"
-			variant
-				"Cruiser (Mark II)"
-				"Combat Drone" 4
-				"Frigate (Mark II)" 2
-		fleet
+		fleet 2
 			names "republic capital"
 			fighters "republic fighter"
 			variant
@@ -2093,27 +1991,7 @@ mission "FW Pug 5B"
 		government Pug
 		personality staying disables
 		system Altair
-		fleet
-			names "pug"
-			variant
-				"Pug Maboro"
-				"Pug Enfolta" 2
-		fleet
-			names "pug"
-			variant
-				"Pug Maboro"
-				"Pug Enfolta" 2
-		fleet
-			names "pug"
-			variant
-				"Pug Maboro"
-				"Pug Enfolta" 2
-		fleet
-			names "pug"
-			variant
-				"Pug Maboro"
-				"Pug Enfolta" 2
-		fleet
+		fleet 5
 			names "pug"
 			variant
 				"Pug Maboro"
@@ -2157,29 +2035,14 @@ mission "FW Pug 6"
 	npc
 		government "Navy (Oathkeeper)"
 		personality disables waiting
-		fleet
+		fleet 2
 			names "republic capital"
 			fighters "republic fighter"
 			variant
 				"Cruiser (Mark II)"
 				"Combat Drone" 4
 				"Frigate (Mark II)" 2
-		fleet
-			names "republic capital"
-			fighters "republic fighter"
-			variant
-				"Carrier (Mark II)"
-				"Lance" 4
-				"Combat Drone" 6
-				"Gunboat (Mark II)" 3
-		fleet
-			names "republic capital"
-			fighters "republic fighter"
-			variant
-				"Cruiser (Mark II)"
-				"Combat Drone" 4
-				"Frigate (Mark II)" 2
-		fleet
+		fleet 2
 			names "republic capital"
 			fighters "republic fighter"
 			variant
@@ -2190,29 +2053,14 @@ mission "FW Pug 6"
 	npc
 		government Republic
 		personality disables
-		fleet
+		fleet 2
 			names "republic capital"
 			fighters "republic fighter"
 			variant
 				"Cruiser"
 				"Combat Drone" 4
 				"Frigate" 2
-		fleet
-			names "republic capital"
-			fighters "republic fighter"
-			variant
-				"Carrier"
-				"Lance" 4
-				"Combat Drone" 6
-				"Gunboat" 3
-		fleet
-			names "republic capital"
-			fighters "republic fighter"
-			variant
-				"Cruiser"
-				"Combat Drone" 4
-				"Frigate" 2
-		fleet
+		fleet 2
 			names "republic capital"
 			fighters "republic fighter"
 			variant
@@ -2223,23 +2071,13 @@ mission "FW Pug 6"
 	npc
 		personality disables waiting
 		government Syndicate
-		fleet
+		fleet 2
 			names "syndicate capital"
 			variant
 				"Splinter (Mark II)"
 				"Manta (Mark II)" 2
 				"Quicksilver (Mark II)" 4
-		fleet
-			names "syndicate capital"
-			variant
-				"Protector" 2
-		fleet
-			names "syndicate capital"
-			variant
-				"Splinter (Mark II)"
-				"Manta (Mark II)" 2
-				"Quicksilver (Mark II)" 4
-		fleet
+		fleet 2
 			names "syndicate capital"
 			variant
 				"Protector" 2
@@ -2461,28 +2299,15 @@ mission "FW Syndicate Extremists 1B"
 		government "Syndicate (Extremist)"
 		system Algenib
 		personality staying heroic
-		fleet
+		fleet 3
 			names "syndicate capital"
 			variant
 				"Protector" 2
-		fleet
+		fleet 2
 			names "syndicate capital"
 			variant
 				"Splinter"
 				"Quicksilver" 3
-		fleet
-			names "syndicate capital"
-			variant
-				"Splinter"
-				"Quicksilver" 3
-		fleet
-			names "syndicate capital"
-			variant
-				"Protector" 2
-		fleet
-			names "syndicate capital"
-			variant
-				"Protector" 2
 	
 	npc
 		government "Navy (Oathkeeper)"
@@ -2492,21 +2317,11 @@ mission "FW Syndicate Extremists 1B"
 			names "republic capital"
 			fighters "republic fighter"
 			variant
-				"Carrier (Mark II)"
-				"Lance" 4
-				"Combat Drone" 6
-				"Carrier (Mark II)"
-				"Lance" 4
-				"Combat Drone" 6
-				"Carrier (Mark II)"
-				"Lance" 4
-				"Combat Drone" 6
-				"Cruiser (Mark II)"
-				"Combat Drone" 4
-				"Cruiser (Mark II)"
-				"Combat Drone" 4
-				"Cruiser (Mark II)"
-				"Combat Drone" 4
+				"Carrier (Mark II)" 3
+				"Lance" 12
+				"Combat Drone" 18
+				"Cruiser (Mark II)" 3
+				"Combat Drone" 12
 
 
 
