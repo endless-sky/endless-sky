@@ -796,34 +796,34 @@ mission "bactrian search 3a-1"
 			`	As you land the ship, you step out into the evergreen forest that covers the mountain. You can hear squaks and chittering of the forest as you make your way to the wreckage.`
 			`	On your way to the wreckage you see two medium sized predators, some sort of cross between a porcupine and a tiger, as well as few flocks of iridescent blue birds. The first crack in the hull you find looks to be somewhere near the engine room as one of the enormous exhaust nozzels is laying just off to your right.`
 			choice
-				`	Everyone stay in a group.`
-					goto slowsearch
-				`	Head off towards the bridge while your crew searches the rest of the ship.`
-					goto funsearch
-			label slowsearch
-			`	The ship had been throughly scavenged as you find only a few data hexes throughout the ship. Eventually you reach the bridge.`
-				goto slowsearch2
-			label slowsearch2
-			`	You are waiting for the rest of the search party to arrive when suddenly Leroy Jenkins says "Screw it" and runs onto the bridge. Out of the corner of your eye a large spike tiger flies into Leroy knocking him to the ground and taking a big bite out of this shoulder). immediately everyone starts opening fire and kills the spike tiger.`
-			`	Three of the crew attempt to stabilize Leroy and take him back to the ship. You search the bridge for any data hexes that might have been left over.`
-				goto foundit
-			label funsearch
+				`	Search the engines first.`
+					goto engines
+				`	Head off towards the bridge.`
+					goto bridge
+			label engines
+			`	The ship had been throughly scavenged as you find only a few data hexes throughout the ship.`
+				goto funsearch2
+			label bridge
 			`	After climbing all other the hull you find a hatch. The ship has long since run out of power but you are able to pry the hatch open.`
-			`	You follow the signs on the walls towards the bridge. You duck around a corner as a small blue blur almost hits you in the face. You let out a high pitched girly scream until you realize it was just one of those birds you saw earlier.`
+				goto funsearch2
+			label funsearch2
+			`	You follow the signs on the walls towards the bridge. As you duck around a corner a small blue blur almost hits you in the face. You let out a high pitched girly scream until you realize it was just one of those birds you saw earlier.`
 			choice
 				`	Tell yourself to be a little more cautious.`
-				`	Wait for your crew to catch up with you.`
 					goto slowsearch
+				`	Head to the bridge as fast as you can.`
+					goto fastsearch
+			label fastsearch
+			`	As you jog through the bridge door, the blur of a large spike tiger knocks you to the ground. Big paws are pinning to the ground, you can't reach your gun.`
+				die
+			label slowsearch
 			`	You walk as quiet as you can to the bridge and peer through the door to scan the room. Off to one side are the comms navigation and weapons stations. Then on the back wall you see a large spike tiger sleeping in the corner.`
 			choice
 				`	Unholster your handgun and take a shot.`
-				`	Head back into the hall and wait for your crew.`
-					goto slowsearch2
+				`	Give up and go home.`
+					decline
 			`	You take a few steps into the room and aim...and...miss (you realize that skipping all those practice sessions in the gun range was a really bad idea.)`
-			`	You have to roll to the side to avoid the claws as the big cat comes flying at you.  Backing away you start pulling the trigger as fast as you can. By sheer luck one of your shots hit it in the head and you just sit down trying to catch your breath.`
-			`	A few minutes later your crew shows up and you tell them to start looking for datadisks.`
-				goto foundit
-			label foundit
+			`	You have to roll sideways to avoid the claws as the big cat comes flying at you.  Backing away you start pulling the trigger as fast as you can. By sheer luck one of your shots hit a vital organ. All you can do is sit down and try to catch your breath.`
 			`	You don't find anything useful on the data hexes. But you were able to hook up a generator to the main computer and download the schematics directly from the computer core.`
 			choice
 				`	Look for more treasures on the ship.`
@@ -894,34 +894,34 @@ mission "bactrian search 3a-2"
 			`	As you land the ship, you step out into the evergreen forest that covers the mountain. You can hear squaks and chittering of the forest as you make your way to the wreckage.`
 			`	On your way to the wreckage you see two medium sized predators, some sort of cross between a porcupine and a tiger, as well as few flocks of iridescent blue birds. The first crack in the hull you find looks to be somewhere near the engine room as one of the enormous exhaust nozzels is laying just off to your right.`
 			choice
-				`	Everyone stay in a group.`
-					goto slowsearch
-				`	Head off towards the bridge while your crew searches the rest of the ship.`
-					goto funsearch
-			label slowsearch
-			`	The ship had been throughly scavenged as you find only a few data hexes throughout the ship. Eventually you reach the bridge.`
-				goto slowsearch2
-			label slowsearch2
-			`	You are waiting for the rest of the search party to arrive when suddenly Leroy Jenkins says "Screw it" and runs onto the bridge. Out of the corner of your eye a large spike tiger flies into Leroy knocking him to the ground and taking a big bite out of this shoulder). immediately everyone starts opening fire and kills the spike tiger.`
-			`	Three of the crew attempt to stabilize Leroy and take him back to the ship. You search the bridge for any data hexes that might have been left over.`
-				goto foundit
-			label funsearch
+				`	Search the engines first.`
+					goto engines
+				`	Head off towards the bridge.`
+					goto bridge
+			label engines
+			`	The ship had been throughly scavenged as you find only a few data hexes throughout the ship.`
+				goto funsearch2
+			label bridge
 			`	After climbing all other the hull you find a hatch. The ship has long since run out of power but you are able to pry the hatch open.`
-			`	You follow the signs on the walls towards the bridge. You duck around a corner as a small blue blur almost hits you in the face. You let out a high pitched girly scream until you realize it was just one of those birds you saw earlier.`
+				goto funsearch2
+			label funsearch2
+			`	You follow the signs on the walls towards the bridge. As you duck around a corner a small blue blur almost hits you in the face. You let out a high pitched girly scream until you realize it was just one of those birds you saw earlier.`
 			choice
 				`	Tell yourself to be a little more cautious.`
-				`	Wait for your crew to catch up with you.`
 					goto slowsearch
+				`	Head to the bridge as fast as you can.`
+					goto fastsearch
+			label fastsearch
+			`	As you jog through the bridge door, the blur of a large spike tiger knocks you to the ground. Big paws are pinning to the ground, you can't reach your gun.`
+				die
+			label slowsearch
 			`	You walk as quiet as you can to the bridge and peer through the door to scan the room. Off to one side are the comms navigation and weapons stations. Then on the back wall you see a large spike tiger sleeping in the corner.`
 			choice
 				`	Unholster your handgun and take a shot.`
-				`	Head back into the hall and wait for your crew.`
-					goto slowsearch2
+				`	Give up and go home.`
+					decline
 			`	You take a few steps into the room and aim...and...miss (you realize that skipping all those practice sessions in the gun range was a really bad idea.)`
-			`	You have to roll to the side to avoid the claws as the big cat comes flying at you.  Backing away you start pulling the trigger as fast as you can. By sheer luck one of your shots hit it in the head and you just sit down trying to catch your breath.`
-			`	A few minutes later your crew shows up and you tell them to start looking for datadisks.`
-				goto foundit
-			label foundit
+			`	You have to roll sideways to avoid the claws as the big cat comes flying at you.  Backing away you start pulling the trigger as fast as you can. By sheer luck one of your shots hit a vital organ. All you can do is sit down and try to catch your breath.`
 			`	You don't find anything useful on the data hexes. But you were able to hook up a generator to the main computer and download the schematics directly from the computer core.`
 			choice
 				`	Look for more treasures on the ship.`
@@ -999,34 +999,34 @@ mission "bactrian search 3b-1"
 			`	As you land the ship, you step out into the evergreen forest that covers the mountain. You can hear squaks and chittering of the forest as you make your way to the wreckage.`
 			`	On your way to the wreckage you see two medium sized predators, some sort of cross between a porcupine and a tiger, as well as few flocks of iridescent blue birds. The first crack in the hull you find looks to be somewhere near the engine room as one of the enormous exhaust nozzels is laying just off to your right.`
 			choice
-				`	Everyone stay in a group.`
-					goto slowsearch
-				`	Head off towards the bridge while your crew searches the rest of the ship.`
-					goto funsearch
-			label slowsearch
-			`	The ship had been throughly scavenged as you find only a few data hexes throughout the ship. Eventually you reach the bridge.`
-				goto slowsearch2
-			label slowsearch2
-			`	You are waiting for the rest of the search party to arrive when suddenly Leroy Jenkins says "Screw it" and runs onto the bridge. Out of the corner of your eye a large spike tiger flies into Leroy knocking him to the ground and taking a big bite out of this shoulder). immediately everyone starts opening fire and kills the spike tiger.`
-			`	Three of the crew attempt to stabilize Leroy and take him back to the ship. You search the bridge for any data hexes that might have been left over.`
-				goto foundit
-			label funsearch
+				`	Search the engines first.`
+					goto engines
+				`	Head off towards the bridge.`
+					goto bridge
+			label engines
+			`	The ship had been throughly scavenged as you find only a few data hexes throughout the ship.`
+				goto funsearch2
+			label bridge
 			`	After climbing all other the hull you find a hatch. The ship has long since run out of power but you are able to pry the hatch open.`
-			`	You follow the signs on the walls towards the bridge. You duck around a corner as a small blue blur almost hits you in the face. You let out a high pitched girly scream until you realize it was just one of those birds you saw earlier.`
+				goto funsearch2
+			label funsearch2
+			`	You follow the signs on the walls towards the bridge. As you duck around a corner a small blue blur almost hits you in the face. You let out a high pitched girly scream until you realize it was just one of those birds you saw earlier.`
 			choice
 				`	Tell yourself to be a little more cautious.`
-				`	Wait for your crew to catch up with you.`
 					goto slowsearch
+				`	Head to the bridge as fast as you can.`
+					goto fastsearch
+			label fastsearch
+			`	As you jog through the bridge door, the blur of a large spike tiger knocks you to the ground. Big paws are pinning to the ground, you can't reach your gun.`
+				die
+			label slowsearch
 			`	You walk as quiet as you can to the bridge and peer through the door to scan the room. Off to one side are the comms navigation and weapons stations. Then on the back wall you see a large spike tiger sleeping in the corner.`
 			choice
 				`	Unholster your handgun and take a shot.`
-				`	Head back into the hall and wait for your crew.`
-					goto slowsearch2
+				`	Give up and go home.`
+					decline
 			`	You take a few steps into the room and aim...and...miss (you realize that skipping all those practice sessions in the gun range was a really bad idea.)`
-			`	You have to roll to the side to avoid the claws as the big cat comes flying at you.  Backing away you start pulling the trigger as fast as you can. By sheer luck one of your shots hit it in the head and you just sit down trying to catch your breath.`
-			`	A few minutes later your crew shows up and you tell them to start looking for datadisks.`
-				goto foundit
-			label foundit
+			`	You have to roll sideways to avoid the claws as the big cat comes flying at you.  Backing away you start pulling the trigger as fast as you can. By sheer luck one of your shots hit a vital organ. All you can do is sit down and try to catch your breath.`
 			`	You don't find anything useful on the data hexes. But you were able to hook up a generator to the main computer and download the schematics directly from the computer core.`
 			choice
 				`	Look for more treasures on the ship.`
@@ -1100,34 +1100,34 @@ mission "bactrian search 3b-2"
 			`	As you land the ship, you step out into the evergreen forest that covers the mountain. You can hear squaks and chittering of the forest as you make your way to the wreckage.`
 			`	On your way to the wreckage you see two medium sized predators, some sort of cross between a porcupine and a tiger, as well as few flocks of iridescent blue birds. The first crack in the hull you find looks to be somewhere near the engine room as one of the enormous exhaust nozzels is laying just off to your right.`
 			choice
-				`	Everyone stay in a group.`
-					goto slowsearch
-				`	Head off towards the bridge while your crew searches the rest of the ship.`
-					goto funsearch
-			label slowsearch
-			`	The ship had been throughly scavenged as you find only a few data hexes throughout the ship. Eventually you reach the bridge.`
-				goto slowsearch2
-			label slowsearch2
-			`	You are waiting for the rest of the search party to arrive when suddenly Leroy Jenkins says "Screw it" and runs onto the bridge. Out of the corner of your eye a large spike tiger flies into Leroy knocking him to the ground and taking a big bite out of this shoulder). immediately everyone starts opening fire and kills the spike tiger.`
-			`	Three of the crew attempt to stabilize Leroy and take him back to the ship. You search the bridge for any data hexes that might have been left over.`
-				goto foundit
-			label funsearch
+				`	Search the engines first.`
+					goto engines
+				`	Head off towards the bridge.`
+					goto bridge
+			label engines
+			`	The ship had been throughly scavenged as you find only a few data hexes throughout the ship.`
+				goto funsearch2
+			label bridge
 			`	After climbing all other the hull you find a hatch. The ship has long since run out of power but you are able to pry the hatch open.`
-			`	You follow the signs on the walls towards the bridge. You duck around a corner as a small blue blur almost hits you in the face. You let out a high pitched girly scream until you realize it was just one of those birds you saw earlier.`
+				goto funsearch2
+			label funsearch2
+			`	You follow the signs on the walls towards the bridge. As you duck around a corner a small blue blur almost hits you in the face. You let out a high pitched girly scream until you realize it was just one of those birds you saw earlier.`
 			choice
 				`	Tell yourself to be a little more cautious.`
-				`	Wait for your crew to catch up with you.`
 					goto slowsearch
+				`	Head to the bridge as fast as you can.`
+					goto fastsearch
+			label fastsearch
+			`	As you jog through the bridge door, the blur of a large spike tiger knocks you to the ground. Big paws are pinning to the ground, you can't reach your gun.`
+				die
+			label slowsearch
 			`	You walk as quiet as you can to the bridge and peer through the door to scan the room. Off to one side are the comms navigation and weapons stations. Then on the back wall you see a large spike tiger sleeping in the corner.`
 			choice
 				`	Unholster your handgun and take a shot.`
-				`	Head back into the hall and wait for your crew.`
-					goto slowsearch2
+				`	Give up and go home.`
+					decline
 			`	You take a few steps into the room and aim...and...miss (you realize that skipping all those practice sessions in the gun range was a really bad idea.)`
-			`	You have to roll to the side to avoid the claws as the big cat comes flying at you.  Backing away you start pulling the trigger as fast as you can. By sheer luck one of your shots hit it in the head and you just sit down trying to catch your breath.`
-			`	A few minutes later your crew shows up and you tell them to start looking for datadisks.`
-				goto foundit
-			label foundit
+			`	You have to roll sideways to avoid the claws as the big cat comes flying at you.  Backing away you start pulling the trigger as fast as you can. By sheer luck one of your shots hit a vital organ. All you can do is sit down and try to catch your breath.`
 			`	You don't find anything useful on the data hexes. But you were able to hook up a generator to the main computer and download the schematics directly from the computer core.`
 			choice
 				`	Look for more treasures on the ship.`
