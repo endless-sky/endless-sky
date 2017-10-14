@@ -128,11 +128,11 @@ void NPC::Load(const DataNode &node)
 			}
 			else
 			{
-				string message = "Skipping unsupported use of a ship name and and child nodes: ";
+				string message = "Skipping unsupported use of a ship token and child nodes: ";
 				if(child.Size() >= 3)
-					message += "to refer to a customized ship, create a variant. and reference it here.";
+					message += "to both name and customize a ship, create a variant and then reference it here.";
 				else
-					message += "the \"ship\" token must be accompanied with the name of the base model ship.";
+					message += "the \'ship\' token must be followed by the name of a ship, e.g. ship \"Bulk Freighter\"";
 				child.PrintTrace(message);
 			}
 		}
