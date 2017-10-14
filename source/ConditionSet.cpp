@@ -14,10 +14,13 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "DataNode.h"
 #include "DataWriter.h"
+#include "Files.h"
 #include "Random.h"
 
 #include <algorithm>
 #include <cmath>
+#include <limits>
+#include <set>
 
 using namespace std;
 
@@ -39,14 +42,50 @@ namespace {
 			{"<=", [](int a, int b) -> int { return a <= b; }},
 			{">=", [](int a, int b) -> int { return a >= b; }},
 			{"=", [](int a, int b) { return b; }},
+			{"*=", [](int a, int b) { return a * b; }},
 			{"+=", [](int a, int b) { return a + b; }},
 			{"-=", [](int a, int b) { return a - b; }},
+			{"/=", [](int a, int b) { return b ? a / b : numeric_limits<int>::max(); }},
 			{"<?=", [](int a, int b) { return min(a, b); }},
 			{">?=", [](int a, int b) { return max(a, b); }}
 		};
 		
 		auto it = opMap.find(op);
 		return (it != opMap.end() ? it->second : nullptr);
+	}
+	
+	// Indicate if the operation is a comparison or modifies the condition.
+	bool IsComparison(const string &op)
+	{
+		static const set<string> comparison = {
+			"==", "!=", "<", ">", "<=", ">="
+		};
+		return comparison.count(op);
+	}
+	
+	// Check if the passed token is numeric or a string which has to be replaced, and return the
+	// evaluated value. If the string value is a "created" condition (from TestApply()), use that,
+	// otherwise find the value in the player's conditions.
+	double TokenValue(int numValue, const string &strValue, const map<string, int> &conditions, const map<string, int> &created)
+	{
+		int value = numValue;
+		// Special case: if the string of the token is "random," that means to
+		// generate a random number from 0 to 99 each time it is queried.
+		if(strValue == "random")
+			value = Random::Int(100);
+		else
+		{
+			// Prefer temporary conditions, since they may have the same
+			// name as a condition stored in the player's list.
+			auto temp = created.find(strValue);
+			if(temp != created.end())
+				return temp->second;
+			
+			auto perm = conditions.find(strValue);
+			if(perm != conditions.end())
+				return perm->second;
+		}
+		return value;
 	}
 }
 
@@ -106,22 +145,23 @@ void ConditionSet::Add(const DataNode &node)
 {
 	// Branch based on whether this line has two tokens (a unary operator) or
 	// three tokens (a binary operator).
+	static const string UNRECOGNIZED = "Unrecognized condition expression:";
 	if(node.Size() == 2)
 	{
 		if(!Add(node.Token(0), node.Token(1)))
-			node.PrintTrace("Unrecognized condition expression:");
+			node.PrintTrace(UNRECOGNIZED);
 	}
 	else if(node.Size() == 3)
 	{
 		if(node.IsNumber(2))
 		{
 			if(!Add(node.Token(0), node.Token(1), node.Value(2)))
-				node.PrintTrace("Unrecognized condition expression:");
+				node.PrintTrace(UNRECOGNIZED);
 		}
 		else
 		{
 			if(!Add(node.Token(0), node.Token(1), node.Token(2)))
-				node.PrintTrace("Unrecognized condition expression:");
+				node.PrintTrace(UNRECOGNIZED);
 		}
 	}
 	else if(node.Size() == 1 && node.Token(0) == "never")
@@ -130,9 +170,13 @@ void ConditionSet::Add(const DataNode &node)
 	{
 		// The "and" and "or" keywords introduce a nested condition set.
 		children.emplace_back(node);
+		// If a child node has assignment operators, warn on load since
+		// these will be processed after all non-child expressions.
+		if(children.back().hasAssign)
+			node.PrintTrace("Assignment expressions contained within and/or groups are applied last. This may be unexpected.");
 	}
 	else
-		node.PrintTrace("Unrecognized condition expression:");
+		node.PrintTrace(UNRECOGNIZED);
 }
 
 
@@ -156,6 +200,7 @@ bool ConditionSet::Add(const string &firstToken, const string &secondToken)
 	else
 		return false;
 	
+	hasAssign |= !IsComparison(expressions.back().op);
 	return true;
 }
 
@@ -169,6 +214,7 @@ bool ConditionSet::Add(const string &name, const string &op, int value)
 	if(!fun)
 		return false;
 	
+	hasAssign |= !IsComparison(op);
 	expressions.emplace_back(name, op, value);
 	return true;
 }
@@ -183,6 +229,7 @@ bool ConditionSet::Add(const string &name, const string &op, const string &strVa
 	if(!fun)
 		return false;
 	
+	hasAssign |= !IsComparison(op);
 	expressions.emplace_back(name, op, 0);
 	expressions.back().strValue = strValue;
 	return true;
@@ -190,71 +237,87 @@ bool ConditionSet::Add(const string &name, const string &op, const string &strVa
 
 
 
-// Check if the given condition values satisfy this set of conditions.
-bool ConditionSet::Test(const map<string, int> &conditions) const
+// Check if the given condition values satify this set of conditions. Performs any assignments
+// on a temporary condition map, if this set mixes comparisons and modifications.
+bool ConditionSet::Test(const Conditions &conditions) const
 {
-	for(const Expression &expression : expressions)
-	{
-		int firstValue = TokenValue(0, expression.name, conditions);
-		int secondValue = TokenValue(expression.value, expression.strValue, conditions);
-		bool result = expression.fun(firstValue, secondValue);
-		// If this is a set of "and" conditions, bail out as soon as one of them
-		// returns false. If it is an "or", bail out if anything returns true.
-		if(result == isOr)
-			return result;
-	}
-	for(const ConditionSet &child : children)
-	{
-		bool result = child.Test(conditions);
-		if(result == isOr)
-			return result;
-	}
-	// If this is an "and" condition, we got here because all the above conditions
-	// returned true, so we should return true. If it is an "or," we got here because
-	// no condition returned true, so we should return false.
-	return !isOr;
+	// If this ConditionSet contains any expressions with operators that
+	// modify the condition map, then they must be applied before testing,
+	// to generate any temporary conditions needed.
+	Conditions created;
+	if(hasAssign)
+		TestApply(conditions, created);
+	return TestSet(conditions, created);
 }
 
 
 
 // Modify the given set of conditions.
-void ConditionSet::Apply(map<string, int> &conditions) const
+void ConditionSet::Apply(Conditions &conditions) const
 {
+	Conditions unused;
 	for(const Expression &expression : expressions)
-	{
-		int &c = conditions[expression.name];
-		int value = TokenValue(expression.value, expression.strValue, conditions);
-		c = expression.fun(c, value);
-	}
-	// Note: "and" and "or" make no sense for "Apply()," so a condition set that
-	// is meant to be applied rather than tested should never include them. But
-	// just in case, apply anything included in a nested condition:
+		if(!IsComparison(expression.op))
+		{
+			int &c = conditions[expression.name];
+			int value = TokenValue(expression.value, expression.strValue, conditions, unused);
+			c = expression.fun(c, value);
+		}
+	
 	for(const ConditionSet &child : children)
 		child.Apply(conditions);
 }
 
 
 
-// Check if the passed token is numeric or a string which has to be replaced, and return its value
-double ConditionSet::TokenValue(int numValue, const string &strValue, const map<string, int> &conditions) const
+// Check if this set is satisfied by either the created, temporary conditions, or the given conditions.
+bool ConditionSet::TestSet(const Conditions &conditions, const Conditions &created) const
 {
-	int value = numValue;
-	// Special case: if the string of the token is "random," that means to
-	// generate a random number from 0 to 99 each time it is queried.
-	if(strValue == "random")
-		value = Random::Int(100);
-	else
+	// Not all expressions may be testable: some may have been used to form the "created" condition map.
+	for(const Expression &expression : expressions)
+		if(IsComparison(expression.op))
+		{
+			int firstValue = TokenValue(0, expression.name, conditions, created);
+			int secondValue = TokenValue(expression.value, expression.strValue, conditions, created);
+			bool result = expression.fun(firstValue, secondValue);
+			// If this is a set of "and" conditions, bail out as soon as one of them
+			// returns false. If it is an "or", bail out if anything returns true.
+			if(result == isOr)
+				return result;
+		}
+	
+	for(const ConditionSet &child : children)
 	{
-		auto it = conditions.find(strValue);
-		if(it != conditions.end())
-			value = it->second;
+		bool result = child.TestSet(conditions, created);
+		if(result == isOr)
+			return result;
 	}
-	return value;
+	// If this is an "and" condition, all the above conditions were true, so return
+	// true. If it is an "or," no condition returned true, so return false.
+	return !isOr;
 }
 
 
 
-// Constructor for an expression.
+// Construct new, temporary conditions based on the assignment expressions in
+// this ConditionSet and the values in the player's conditions map.
+void ConditionSet::TestApply(const Conditions &conditions, Conditions &created) const
+{
+	for(const Expression &expression : expressions)
+		if(!IsComparison(expression.op))
+		{
+			int &c = created[expression.name];
+			int value = TokenValue(expression.value, expression.strValue, conditions, created);
+			c = expression.fun(c, value);
+		}
+	
+	for(const ConditionSet &child : children)
+		child.TestApply(conditions, created);
+}
+
+
+
+// Constructor for a simple expression.
 ConditionSet::Expression::Expression(const string &name, const string &op, int value)
 	: name(name), op(op), fun(Op(op)), value(value)
 {

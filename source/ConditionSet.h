@@ -28,11 +28,13 @@ class DataWriter;
 // values.
 class ConditionSet {
 public:
+	using Conditions = std::map<std::string, int>;
 	ConditionSet() = default;
 	// Construct and Load() at the same time.
 	ConditionSet(const DataNode &node);
 	
-	// Load a set of conditions from the children of this node.
+	// Load a set of conditions from the children of this node. Prints a
+	// warning if an and/or node contains assignment expressions.
 	void Load(const DataNode &node);
 	// Save a set of conditions.
 	void Save(DataWriter &out) const;
@@ -46,30 +48,35 @@ public:
 	bool Add(const std::string &name, const std::string &op, int value);
 	bool Add(const std::string &name, const std::string &op, const std::string &strValue);
 	
-	// Check if the given condition values satisfy this set of conditions.
-	bool Test(const std::map<std::string, int> &conditions) const;
-	// Modify the given set of conditions.
-	void Apply(std::map<std::string, int> &conditions) const;
+	// Check if the given condition values satisfy this set of expressions. First applies
+	// all assignment expressions to create any temporary conditions, then evaluates.
+	bool Test(const Conditions &conditions) const;
+	// Modify the given set of conditions with this ConditionSet.
+	// (Order of operations is like the order of specification: all sibling
+	// expressions are applied, then any and/or nodes are applied.)
+	void Apply(Conditions &conditions) const;
 	
 	
 private:
-	// Check if the passed token is numeric or a string which has to be replaced, and return its value
-	double TokenValue(int numValue, const std::string &strValue, const std::map<std::string, int> &conditions) const;
+	// Compare this set's expressions and the union of created and supplied conditions.
+	bool TestSet(const Conditions &conditions, const Conditions &created) const;
+	// Evaluate this set's assignment expressions and store the result in "created" (for use by TestSet).
+	void TestApply(const Conditions &conditions, Conditions &created) const;
 	
 	
 private:
-	// This class represents a single expression involving a condition - either
-	// testing what value it has, or modifying it in some way.
+	// This class represents a single expression involving a condition,
+	// either testing what value it has, or modifying it in some way.
 	class Expression {
 	public:
 		Expression(const std::string &name, const std::string &op, int value);
 		
 		// This is the name of the condition that this entry operates on.
 		std::string name;
-		// This needs to be saved for saving conditions.
+		// String representation of the Expression's binary function.
 		std::string op;
-		// Pointer to a binary function that defines what operation should be
-		// performed on the condition and the constant value.
+		// Pointer to a binary function that defines the assignment or
+		// comparison operation to be performed.
 		int (*fun)(int, int);
 		// Constant value specified in the expression.
 		int value;
@@ -83,6 +90,9 @@ private:
 	// either an "and" grouping (meaning every condition must be true to satisfy
 	// it) or an "or" grouping where only one condition needs to be true.
 	bool isOr = false;
+	// If this set contains assignment expressions. If true, the
+	// Test() method must first apply them before testing any conditions.
+	bool hasAssign = false;
 	// Conditions that this set tests or applies.
 	std::vector<Expression> expressions;
 	// Nested sets of conditions to be tested.
