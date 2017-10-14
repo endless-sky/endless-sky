@@ -18,6 +18,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include <algorithm>
 #include <cmath>
+#include <limits>
 
 using namespace std;
 
@@ -41,6 +42,8 @@ namespace {
 			{"=", [](int a, int b) { return b; }},
 			{"+=", [](int a, int b) { return a + b; }},
 			{"-=", [](int a, int b) { return a - b; }},
+			{"*=", [](int a, int b) { return a * b; }},
+			{"/=", [](int a, int b) { return b ? a / b : numeric_limits<int>::max(); }},
 			{"<?=", [](int a, int b) { return min(a, b); }},
 			{">?=", [](int a, int b) { return max(a, b); }}
 		};
