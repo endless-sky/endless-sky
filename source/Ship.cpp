@@ -81,6 +81,13 @@ void Ship::Load(const DataNode &node)
 	for(const DataNode &child : node)
 	{
 		const string &key = child.Token(0);
+		bool add = (key == "add");
+		if(add && (child.Size() < 2 || child.Token(1) != "attributes"))
+		{
+			child.PrintTrace("Skipping invalid use of 'add' with " + (child.Size() < 2
+					? "no key." : "key: " + child.Token(1)));
+			continue;
+		}
 		if(key == "sprite")
 			LoadSprite(child);
 		else if(key == "name" && child.Size() >= 2)
@@ -91,8 +98,16 @@ void Ship::Load(const DataNode &node)
 			noun = child.Token(1);
 		else if(key == "swizzle" && child.Size() >= 2)
 			customSwizzle = child.Value(1);
-		else if(key == "attributes")
-			baseAttributes.Load(child);
+		else if(key == "attributes" || add)
+		{
+			if(!add)
+				baseAttributes.Load(child);
+			else
+			{
+				addAttributes = true;
+				attributes.Load(child);
+			}
+		}
 		else if(key == "engine" && child.Size() >= 3)
 		{
 			if(!hasEngine)
@@ -332,6 +347,13 @@ void Ship::FinishLoading(bool isNewInstance)
 	baseAttributes.Reset("gun ports", armament.GunCount());
 	baseAttributes.Reset("turret mounts", armament.TurretCount());
 	
+	if(addAttributes)
+	{
+		// Store attributes from an "add attributes" node in the ship's
+		// baseAttributes so they can be written to the save file.
+		baseAttributes.Add(attributes);
+		addAttributes = false;
+	}
 	// Add the attributes of all your outfits to the ship's base attributes.
 	attributes = baseAttributes;
 	for(const auto &it : outfits)

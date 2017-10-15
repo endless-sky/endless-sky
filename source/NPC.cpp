@@ -110,8 +110,10 @@ void NPC::Load(const DataNode &node)
 			stockConversation = GameData::Conversations().Get(child.Token(1));
 		else if(child.Token(0) == "ship")
 		{
-			if(child.HasChildren())
+			if(child.HasChildren() && child.Size() == 2)
 			{
+				// Loading an NPC from a save file, or an entire ship specification.
+				// The latter may result in references to non-instantiated outfits.
 				ships.push_back(make_shared<Ship>());
 				ships.back()->Load(child);
 				for(const DataNode &grand : child)
@@ -120,8 +122,18 @@ void NPC::Load(const DataNode &node)
 			}
 			else if(child.Size() >= 2)
 			{
+				// Loading a ship managed by GameData, i.e. "base models" and variants.
 				stockShips.push_back(GameData::Ships().Get(child.Token(1)));
 				shipNames.push_back(child.Token(1 + (child.Size() > 2)));
+			}
+			else
+			{
+				string message = "Skipping unsupported use of a ship token and child nodes: ";
+				if(child.Size() >= 3)
+					message += "to both name and customize a ship, create a variant and then reference it here.";
+				else
+					message += "the \'ship\' token must be followed by the name of a ship, e.g. ship \"Bulk Freighter\"";
+				child.PrintTrace(message);
 			}
 		}
 		else if(child.Token(0) == "fleet")
