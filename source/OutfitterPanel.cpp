@@ -604,32 +604,48 @@ void OutfitterPanel::DrawKey()
 	Point off = Point(10., -.5 * font.Height());
 	SpriteShader::Draw(box[showForSale], pos);
 	font.Draw("Show outfits for sale", pos + off, color[showForSale]);
-	AddZone(Rectangle(pos + Point(80., 0.), Point(180., 20.)), [this](){ showForSale = !showForSale; });
+	AddZone(Rectangle(pos + Point(80., 0.), Point(180., 20.)), [this](){ ToggleForSale(); });
 	
 	bool showCargo = !playerShip;
 	pos.Y() += 20.;
 	SpriteShader::Draw(box[showCargo], pos);
 	font.Draw("Show outfits in cargo", pos + off, color[showCargo]);
-	AddZone(Rectangle(pos + Point(80., 0.), Point(180., 20.)), [this](){
+	AddZone(Rectangle(pos + Point(80., 0.), Point(180., 20.)), [this](){ ToggleCargo(); });
+}
+
+
+
+void OutfitterPanel::ToggleForSale()
+{
+	showForSale = !showForSale;
+	
+	ShopPanel::ToggleForSale();
+}
+
+
+
+void OutfitterPanel::ToggleCargo()
+{
+	if(playerShip)
+	{
+		previousShip = playerShip;
+		playerShip = nullptr;
+		previousShips = playerShips;
+		playerShips.clear();
+	}
+	else if(previousShip)
+	{
+		playerShip = previousShip;
+		playerShips = previousShips;
+	}
+	else
+	{
+		playerShip = player.Flagship();
 		if(playerShip)
-		{
-			previousShip = playerShip;
-			playerShip = nullptr;
-			previousShips = playerShips;
-			playerShips.clear();
-		}
-		else if(previousShip)
-		{
-			playerShip = previousShip;
-			playerShips = previousShips;
-		}
-		else
-		{
-			playerShip = player.Flagship();
-			if(playerShip)
-				playerShips.insert(playerShip);
-		}
-	});
+			playerShips.insert(playerShip);
+	}
+	
+	ShopPanel::ToggleCargo();
 }
 
 

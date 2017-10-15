@@ -64,6 +64,8 @@ protected:
 	virtual void FailSell(bool toCargo = false) const;
 	virtual bool CanSellMultiple() const;
 	virtual void DrawKey();
+	virtual void ToggleForSale();
+	virtual void ToggleCargo();
 	
 	// Only override the ones you need; the default action is to return false.
 	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command) override;

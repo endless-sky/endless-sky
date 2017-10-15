@@ -140,6 +140,7 @@ void ShopPanel::Draw()
 			Draw();
 		}
 	}
+	mainScroll = min(mainScroll, maxMainScroll);
 }
 
 
@@ -436,7 +437,6 @@ void ShopPanel::DrawMain()
 	// What amount would mainScroll have to equal to make nextY equal the
 	// bottom of the screen? (Also leave space for the "key" at the bottom.)
 	maxMainScroll = max(0., nextY + mainScroll - Screen::Height() / 2 - TILE_SIZE / 2 + 40.);
-	mainScroll = min(mainScroll, maxMainScroll);
 	
 	PointerShader::Draw(Point(Screen::Right() - 10 - SIDE_WIDTH, Screen::Top() + 10),
 		Point(0., -1.), 10., 10., 5., Color(mainScroll > 0 ? .8 : .2, 0.));
@@ -487,6 +487,20 @@ bool ShopPanel::CanSellMultiple() const
 
 void ShopPanel::DrawKey()
 {
+}
+
+
+
+void ShopPanel::ToggleForSale()
+{
+	sameSelectedTopY = true;
+}
+
+
+
+void ShopPanel::ToggleCargo()
+{
+	sameSelectedTopY = true;
 }
 
 
@@ -710,13 +724,7 @@ bool ShopPanel::Click(int x, int y, int clicks)
 			mainScroll = max(0., mainScroll + zone.ScrollY());
 			return true;
 		}
-		
-	// Deselect selected item when you click on other areas of the main panel.
-	if(dragMain)
-	{
-		selectedShip = nullptr;
-		selectedOutfit = nullptr;
-	}
+	
 	return true;
 }
 

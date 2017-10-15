@@ -57,6 +57,8 @@ protected:
 	virtual void Sell(bool toCargo = false) override;
 	virtual void FailSell(bool toCargo = false) const override;
 	virtual void DrawKey() override;
+	virtual void ToggleForSale() override;
+	virtual void ToggleCargo() override;
 	
 	
 private:
