@@ -483,17 +483,9 @@ void Engine::Step(bool isActive)
 	if(flagship && flagship->GetTargetStellar() && !isJumping)
 	{
 		const StellarObject *object = flagship->GetTargetStellar();
-		string navigationMode = flagship->Commands().Has(Command::LAND) ? "Landing on" :
-			object->GetPlanet() && object->GetPlanet()->CanLand(*flagship) ? "Can land" :
-			"Cannot land";
-		if(object->GetPlanet())
-			for(const Mission &mission : player.Missions())
-				if(mission.Destination() == object->GetPlanet())
-				{
-					navigationMode += " (mission)";
-					break;
-				}
-		navigationMode += ":";
+		string navigationMode = flagship->Commands().Has(Command::LAND) ? "Landing on:" :
+			object->GetPlanet() && object->GetPlanet()->CanLand(*flagship) ? "Can land:" :
+			"Cannot land:";
 		info.SetString("navigation mode", navigationMode);
 		const string &name = object->Name();
 		info.SetString("destination", name);
