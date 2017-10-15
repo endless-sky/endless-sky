@@ -65,11 +65,18 @@ void ShopPanel::Step()
 	if(player.Ships().size() > 1)
 		DoHelp("multiple ships");
 	// Perform autoscroll to bring item details into view.
-	if(scrollDetailsIntoView && selectedBottomY > 0.)
+	if(scrollDetailsIntoView && mainDetailHeight > 0)
 	{
-		double offY = Screen::Bottom() - selectedBottomY;
-		if(offY < 0.)
-			DoScroll(max(-30., offY));
+		int mainTopY = Screen::Top();
+		int mainBottomY = Screen::Bottom() - 40;
+		double selectedBottomY = selectedTopY + TileSize() + mainDetailHeight;
+		// Scroll up until the bottoms match.
+		if(selectedBottomY > mainBottomY)
+			DoScroll(max(-30., mainBottomY - selectedBottomY));
+		// Scroll down until the bottoms or the tops match.
+		else if(selectedBottomY < mainBottomY && selectedTopY < mainTopY)
+			DoScroll(min(30., min(mainTopY - selectedTopY, mainBottomY - selectedBottomY)));
+		// Details are in view.
 		else
 			scrollDetailsIntoView = false;
 	}
@@ -79,6 +86,8 @@ void ShopPanel::Step()
 
 void ShopPanel::Draw()
 {
+	const double oldSelectedTopY = selectedTopY;
+	
 	glClear(GL_COLOR_BUFFER_BIT);
 	
 	// Clear the list of clickable zones.
@@ -119,6 +128,17 @@ void ShopPanel::Draw()
 		double scale = ICON_SIZE / max(sprite->Width(), sprite->Height());
 		Point size(sprite->Width() * scale, sprite->Height() * scale);
 		OutlineShader::Draw(sprite, dragPoint, size, selected);
+	}
+
+	if(sameSelectedTopY)
+	{
+		sameSelectedTopY = false;
+		if(selectedTopY != oldSelectedTopY)
+		{
+			// Redraw with the same selected top (item in the same place).
+			mainScroll = max(0., min(maxMainScroll, mainScroll + selectedTopY - oldSelectedTopY));
+			Draw();
+		}
 	}
 }
 
@@ -338,6 +358,12 @@ void ShopPanel::DrawMain()
 		bool isEmpty = true;
 		for(const string &name : it->second)
 		{
+			bool isSelected = (selectedShip && GameData::Ships().Get(name) == selectedShip)
+				|| (selectedOutfit && GameData::Outfits().Get(name) == selectedOutfit);
+			
+			if(isSelected)
+				selectedTopY = point.Y() - TILE_SIZE / 2;
+			
 			if(!HasItem(name))
 				continue;
 			isEmpty = false;
@@ -345,9 +371,6 @@ void ShopPanel::DrawMain()
 				break;
 			
 			DrawItem(name, point, scrollY);
-			
-			bool isSelected = (selectedShip && GameData::Ships().Get(name) == selectedShip)
-				|| (selectedOutfit && GameData::Outfits().Get(name) == selectedOutfit);
 			
 			if(isSelected)
 			{
@@ -372,7 +395,6 @@ void ShopPanel::DrawMain()
 				
 				mainDetailHeight = DrawDetails(center);
 				nextY += mainDetailHeight;
-				selectedBottomY = nextY - TILE_SIZE / 2;
 			}
 			
 			point.X() += columnWidth;
@@ -682,14 +704,19 @@ bool ShopPanel::Click(int x, int y, int clicks)
 			else
 				selectedOutfit = zone.GetOutfit();
 			
+			// Scroll details into view in Step() when the height is known.
 			scrollDetailsIntoView = true;
-			// Reset selectedBottomY so that Step() waits for it to be updated
-			// with the proper value computed in Draw().
-			selectedBottomY = 0.;
+			mainDetailHeight = 0;
 			mainScroll = max(0., mainScroll + zone.ScrollY());
 			return true;
 		}
 		
+	// Deselect selected item when you click on other areas of the main panel.
+	if(dragMain)
+	{
+		selectedShip = nullptr;
+		selectedOutfit = nullptr;
+	}
 	return true;
 }
 
@@ -920,6 +947,7 @@ void ShopPanel::SideSelect(Ship *ship)
 	
 	playerShip = ship;
 	playerShips.insert(playerShip);
+	sameSelectedTopY = true;
 }
 
 
