@@ -205,15 +205,33 @@ void GameData::CheckReferences()
 	for(const auto &it : effects)
 		if(it.second.Name().empty())
 			Files::LogError("Warning: effect \"" + it.first + "\" is referred to, but never defined.");
+	for(const auto &it : events)
+		if(it.second.Name().empty())
+			Files::LogError("Warning: event \"" + it.first + "\" is referred to, but never defined.");
 	for(const auto &it : fleets)
 		if(!it.second.GetGovernment())
 			Files::LogError("Warning: fleet \"" + it.first + "\" is referred to, but never defined.");
 	for(const auto &it : governments)
 		if(it.second.GetName().empty())
 			Files::LogError("Warning: government \"" + it.first + "\" is referred to, but never defined.");
+	for(const auto &it : minables)
+		if(it.second.Name().empty())
+			Files::LogError("Warning: minable \"" + it.first + "\" is referred to, but never defined.");
+	for(const auto &it : missions)
+		if(it.second.Name().empty())
+			Files::LogError("Warning: mission \"" + it.first + "\" is referred to, but never defined.");
 	for(const auto &it : outfits)
 		if(it.second.Name().empty())
 			Files::LogError("Warning: outfit \"" + it.first + "\" is referred to, but never defined.");
+	for(const auto &it : phrases)
+		if(it.second.Name().empty())
+			Files::LogError("Warning: phrase \"" + it.first + "\" is referred to, but never defined.");
+	for(const auto &it : planets)
+		if(it.second.Name().empty())
+			Files::LogError("Warning: planet \"" + it.first + "\" is referred to, but never defined.");
+	for(const auto &it : ships)
+		if(it.second.ModelName().empty())
+			Files::LogError("Warning: ship \"" + it.first + "\" is referred to, but never defined.");
 	for(const auto &it : systems)
 		if(it.second.Name().empty())
 			Files::LogError("Warning: system \"" + it.first + "\" is referred to, but never defined.");

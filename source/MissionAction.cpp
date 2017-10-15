@@ -164,10 +164,15 @@ void MissionAction::Load(const DataNode &node, const string &missionName)
 			int maxDays = (child.Size() >= 4 ? child.Value(3) : minDays);
 			if(maxDays < minDays)
 				swap(minDays, maxDays);
-			events[child.Token(1)] = make_pair(minDays, maxDays);
+			events[GameData::Events().Get(child.Token(1))] = make_pair(minDays, maxDays);
 		}
 		else if(key == "fail")
-			fail.insert(child.Size() >= 2 ? child.Token(1) : missionName);
+		{
+			string toFail = child.Size() >= 2 ? child.Token(1) : missionName;
+			fail.insert(toFail);
+			// Create a GameData reference to this mission name.
+			GameData::Missions().Get(toFail);
+		}
 		else
 			conditions.Add(child);
 	}
@@ -229,9 +234,9 @@ void MissionAction::Save(DataWriter &out) const
 		for(const auto &it : events)
 		{
 			if(it.second.first == it.second.second)
-				out.Write("event", it.first, it.second.first);
+				out.Write("event", it.first->Name(), it.second.first);
 			else
-				out.Write("event", it.first, it.second.first, it.second.second);
+				out.Write("event", it.first->Name(), it.second.first, it.second.second);
 		}
 		for(const auto &name : fail)
 			out.Write("fail", name);
@@ -331,7 +336,7 @@ void MissionAction::Do(PlayerInfo &player, UI *ui, const System *destination) co
 		player.Accounts().AddCredits(payment);
 	
 	for(const auto &it : events)
-		player.AddEvent(*GameData::Events().Get(it.first), player.GetDate() + it.second.first);
+		player.AddEvent(*it.first, player.GetDate() + it.second.first);
 	
 	if(!fail.empty())
 	{

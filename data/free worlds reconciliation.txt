@@ -259,7 +259,7 @@ mission "FW Reconciliation 2"
 
 mission "FW Navy Out Of Rastaban"
 	landing
-	destination Rastaban
+	destination "Dancer"
 	to offer
 		has "FW Reconciliation 2: offered"
 		karma > 0
