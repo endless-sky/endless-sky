@@ -2279,9 +2279,9 @@ void PlayerInfo::CreateMissions()
 				it.second.IsAtLocation(Mission::JOB) ? availableJobs : availableMissions;
 			
 			missions.push_back(it.second.Instantiate(*this));
-			if(missions.back().HasFailed(*this))
-				missions.pop_back();
-			else if(!it.second.IsAtLocation(Mission::JOB))
+			// For the mission to have successfully offered, it must
+			// have already passed its 'to fail' check.
+			if(!it.second.IsAtLocation(Mission::JOB))
 				hasPriorityMissions |= missions.back().HasPriority();
 		}
 	}
