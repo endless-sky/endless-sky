@@ -47,7 +47,11 @@ namespace {
 			{"-=", [](int a, int b) { return a - b; }},
 			{"/=", [](int a, int b) { return b ? a / b : numeric_limits<int>::max(); }},
 			{"<?=", [](int a, int b) { return min(a, b); }},
-			{">?=", [](int a, int b) { return max(a, b); }}
+			{">?=", [](int a, int b) { return max(a, b); }},
+			{"*", [](int a, int b) { return a * b; }},
+			{"+", [](int a, int b) { return a + b; }},
+			{"-", [](int a, int b) { return a - b; }},
+			{"/", [](int a, int b) { return b ? a / b : numeric_limits<int>::max(); }}
 		};
 		
 		auto it = opMap.find(op);
@@ -61,6 +65,47 @@ namespace {
 			"==", "!=", "<", ">", "<=", ">="
 		};
 		return comparison.count(op);
+	}
+	
+	bool IsSimple(const string &op)
+	{
+		static const set<string> simple = {
+			"*", "+", "-", "/", "(", ")"
+		};
+		return simple.count(op);
+	}
+	
+	// Converts the given vector of strings into a vector of ints.
+	vector<int> SubstituteValues(const vector<string> &side, const map<string, int> &conditions, const map<string, int> &created)
+	{
+		vector<int> result;
+		for(const string &str : side)
+		{
+			if(DataNode::IsNumber(str))
+				result.emplace_back(static_cast<int>(DataNode::Value(str)));
+			else if(str == "random")
+				result.emplace_back(Random::Int(100));
+			else
+			{
+				const auto &temp = created.find(str);
+				const auto &perm = conditions.find(str);
+				if(temp != created.end())
+					result.emplace_back(temp->second);
+				else if(perm != conditions.end())
+					result.emplace_back(perm->second);
+				else
+					result.emplace_back(0);
+			}
+		}
+		return result;
+	}
+	
+	void PrintConditionError(const vector<string> &side)
+	{
+		string message = "Error decomposing complex condition expression:\nFound:\t";
+		for(const string &str : side)
+			message += " \"" + str + "\"";
+		Files::LogError(message);
 	}
 	
 	// Check if the passed token is numeric or a string which has to be replaced, and return the
@@ -113,12 +158,8 @@ void ConditionSet::Load(const DataNode &node)
 void ConditionSet::Save(DataWriter &out) const
 {
 	for(const Expression &expression : expressions)
-	{
-		if(!expression.value && !expression.strValue.empty())
-			out.Write(expression.name, expression.op, expression.strValue);
-		else
-			out.Write(expression.name, expression.op, expression.value);
-	}
+		expression.Save(out);
+	
 	for(const ConditionSet &child : children)
 	{
 		out.Write(child.isOr ? "or" : "and");
@@ -200,7 +241,7 @@ bool ConditionSet::Add(const string &firstToken, const string &secondToken)
 	else
 		return false;
 	
-	hasAssign |= !IsComparison(expressions.back().op);
+	hasAssign |= !expressions.back().IsTestable();
 	return true;
 }
 
@@ -257,12 +298,8 @@ void ConditionSet::Apply(Conditions &conditions) const
 {
 	Conditions unused;
 	for(const Expression &expression : expressions)
-		if(!IsComparison(expression.op))
-		{
-			int &c = conditions[expression.name];
-			int value = TokenValue(expression.value, expression.strValue, conditions, unused);
-			c = expression.fun(c, value);
-		}
+		if(!expression.IsTestable())
+			expression.Apply(conditions, unused);
 	
 	for(const ConditionSet &child : children)
 		child.Apply(conditions);
@@ -275,11 +312,9 @@ bool ConditionSet::TestSet(const Conditions &conditions, const Conditions &creat
 {
 	// Not all expressions may be testable: some may have been used to form the "created" condition map.
 	for(const Expression &expression : expressions)
-		if(IsComparison(expression.op))
+		if(expression.IsTestable())
 		{
-			int firstValue = TokenValue(0, expression.name, conditions, created);
-			int secondValue = TokenValue(expression.value, expression.strValue, conditions, created);
-			bool result = expression.fun(firstValue, secondValue);
+			bool result = expression.Test(conditions, created);
 			// If this is a set of "and" conditions, bail out as soon as one of them
 			// returns false. If it is an "or", bail out if anything returns true.
 			if(result == isOr)
@@ -304,12 +339,8 @@ bool ConditionSet::TestSet(const Conditions &conditions, const Conditions &creat
 void ConditionSet::TestApply(const Conditions &conditions, Conditions &created) const
 {
 	for(const Expression &expression : expressions)
-		if(!IsComparison(expression.op))
-		{
-			int &c = created[expression.name];
-			int value = TokenValue(expression.value, expression.strValue, conditions, created);
-			c = expression.fun(c, value);
-		}
+		if(!expression.IsTestable())
+			expression.TestApply(conditions, created);
 	
 	for(const ConditionSet &child : children)
 		child.TestApply(conditions, created);
@@ -320,5 +351,189 @@ void ConditionSet::TestApply(const Conditions &conditions, Conditions &created) 
 // Constructor for a simple expression.
 ConditionSet::Expression::Expression(const string &name, const string &op, int value)
 	: name(name), op(op), fun(Op(op)), value(value)
+{
+}
+
+
+
+void ConditionSet::Expression::Save(DataWriter &out) const
+{
+	out.Write(name, op, (!value && !strValue.empty()) ? strValue : to_string(value));
+}
+
+
+
+// Create a loggable string (for PrintTrace).
+string ConditionSet::Expression::ToString() const
+{
+	return name + " \"" + op + "\" " + ((!value && !strValue.empty()) ? strValue : to_string(value));
+}
+
+
+
+string ConditionSet::Expression::Name() const
+{
+	return name;
+}
+
+
+
+bool ConditionSet::Expression::IsTestable() const
+{
+	return IsComparison(op);
+}
+
+
+
+bool ConditionSet::Expression::Test(const Conditions &conditions, const Conditions &created) const
+{
+	int firstValue = TokenValue(0, Name(), conditions, created);
+	int secondValue = TokenValue(this->value, this->strValue, conditions, created);
+	return fun(firstValue, secondValue);
+}
+
+
+
+// Assign the computed value to the desired condition.
+void ConditionSet::Expression::Apply(Conditions &conditions, Conditions &created) const
+{
+	int &c = conditions[Name()];
+	int value = TokenValue(this->value, this->strValue, conditions, created);
+	c = fun(c, value);
+}
+
+
+
+// Assign the computed value to the desired temporary condition.
+void ConditionSet::Expression::TestApply(const Conditions &conditions, Conditions &created) const
+{
+	int &c = created[Name()];
+	int value = TokenValue(this->value, this->strValue, conditions, created);
+	c = fun(c, value);
+}
+
+
+
+// Constructor for one side of a complex expression (supports multiple simple operators).
+ConditionSet::Expression::SubExpression::SubExpression(const vector<string> &side)
+{
+	if(side.empty())
+		return;
+	
+	ParseSide(side);
+	// Create the sequence vector using operator precedence.
+	GenerateSequence();
+}
+
+
+
+// Convert the tokens and operators back to a string, for use in the save file.
+const string ConditionSet::Expression::SubExpression::ToString() const
+{
+	string out;
+	static const string SPACE = " ";
+	size_t i = 0;
+	for( ; i < operators.size(); ++i)
+	{
+		out += tokens[i];
+		out += SPACE;
+		out += operators[i];
+		out += SPACE;
+	}
+	// The tokens vector may contain more values than the operators vector.
+	for( ; i < tokens.size(); ++i)
+		out += tokens[i];
+	return out;
+}
+
+
+
+// Evaluate the SubExpression using the given condition maps.
+int ConditionSet::Expression::SubExpression::Evaluate(const Conditions &conditions, const Conditions &created) const
+{
+	// Sanity check.
+	if(tokens.empty())
+		return 0;
+	
+	// For SubExpressions with no Operations (i.e. simple conditions), tokens will consist
+	// of only the condition or numeric value to be returned as-is after substitution.
+	vector<int> data(SubstituteValues(tokens, conditions, created));
+	
+	if(!sequence.empty())
+	{
+		// Each Operation adds to the end of the data vector.
+		data.reserve(operatorCount + data.size());
+		for(const Operation &op : sequence)
+			data.emplace_back(op.fun(data[op.a], data[op.b]));
+	}
+	
+	return data.back();
+}
+
+
+
+// Parse the input vector into the tokens and operators vectors. Parentheses are
+// considered simple operators that also cause an empty string insert to tokens.
+void ConditionSet::Expression::SubExpression::ParseSide(const vector<string> &side)
+{
+	static const string EMPTY;
+	int parentheses = 0;
+	// Construct the tokens and operators vectors.
+	for(size_t i = 0; i < side.size(); ++i)
+	{
+		if(side[i] == "(" || side[i] == ")")
+		{
+			// Ensure reconstruction by adding a blank token.
+			tokens.emplace_back(EMPTY);
+			operators.emplace_back(side[i]);
+			++parentheses;
+		}
+		else if(IsSimple(side[i]))
+		{
+			// Normal operators do not need a token insertion.
+			operators.emplace_back(side[i]);
+			++operatorCount;
+		}
+		else
+			tokens.emplace_back(side[i]);
+	}
+	
+	if(tokens.empty() || !operatorCount)
+		operators.clear();
+	else if(parentheses % 2 != 0)
+	{
+		PrintConditionError(side);
+		tokens.clear();
+		operators.clear();
+	}
+	// Remove empty strings that wrap simple conditions.
+	if(operators.empty() && !tokens.empty())
+		for(auto it = tokens.begin(); it != tokens.end();)
+		{
+			if((*it).empty())
+				it = tokens.erase(it);
+			else
+				++it;
+		}
+}
+
+
+
+// Parse the token and operators vectors to make the sequence vector.
+void ConditionSet::Expression::SubExpression::GenerateSequence()
+{
+	// Simple conditions have only a single token and no operators.
+	if(tokens.empty() || operators.empty())
+		return;
+	
+	// TODO: Generate the sequence.
+}
+
+
+
+// Constructor for an operation, indicating the function, the location of its
+// operands, and where the operation will store its result.
+ConditionSet::Expression::SubExpression::Operation::Operation(const string &op, size_t &a, size_t &b)
+	: fun(Op(op)), a(a), b(b)
 {
 }

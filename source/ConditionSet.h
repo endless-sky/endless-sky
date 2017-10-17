@@ -71,17 +71,90 @@ private:
 	public:
 		Expression(const std::string &name, const std::string &op, int value);
 		
-		// This is the name of the condition that this entry operates on.
+		void Save(DataWriter &out) const;
+		// Convert this expression into a string, for traces.
+		std::string ToString() const;
+		
+		// Returns the left side of this Expression.
+		std::string Name() const;
+		// Check if this Expression performs a comparison (is testable)
+		// or if it performs an assignment.
+		bool IsTestable() const;
+		
+		// Functions to use this expression:
+		bool Test(const Conditions &conditions, const Conditions &created) const;
+		void Apply(Conditions &conditions, Conditions &created) const;
+		void TestApply(const Conditions &conditions, Conditions &created) const;
+		
+		
+	private:
+		// A SubExpression results from applying operator-precendence
+		// parsing to one side of an Expression. The operators and
+		// tokens needed to recreate the given side are stored, and can
+		// be interleaved to restore the original string. Based on the
+		// tokens and operators, a sequence of Operations is created.
+		class SubExpression {
+		public:
+			explicit SubExpression(const std::vector<std::string> &side);
+			
+			// Interleave tokens and operators to reproduce the
+			// initial string that created this SubExpression.
+			const std::string ToString() const;
+			// Substitute numbers for any string values (including
+			// "random") and then evaluate the Operations sequence.
+			int Evaluate(const Conditions &conditions, const Conditions &created) const;
+			
+			
+		private:
+			void ParseSide(const std::vector<std::string> &side);
+			void GenerateSequence();
+			
+			
+		private:
+			// A Operation has a pointer to its binary function,
+			// and the data indices for its operands. The result
+			// is always placed on the back of the data vector.
+			class Operation {
+			public:
+				explicit Operation(const std::string &op, size_t &a, size_t &b);
+				
+				int (*fun)(int, int);
+				size_t a;
+				size_t b;
+			};
+			
+			
+		private:
+			// Iteration of the sequence vector yields the result.
+			std::vector<Operation> sequence;
+			// Each token can be converted into a numeric value at the
+			// time of evaluation, with the exception of parentheses.
+			std::vector<std::string> tokens;
+			// Each operator indicates which binary function is to
+			// be applied to the adjacent tokens.
+			std::vector<std::string> operators;
+			// The number of non-parentheses operators, which should equal
+			// the number of sequence operations.
+			int operatorCount = 0;
+		};
+		
+		
+	public:
+		// Constant value specified in the expression.
+		int value;
+		// Allow for dynamic values.
+		std::string strValue;
+		
+		
+	private:
+		// For assignment operations, this is the condition in which the
+		// result will be stored. For comparison operations, this is unused.
 		std::string name;
 		// String representation of the Expression's binary function.
 		std::string op;
 		// Pointer to a binary function that defines the assignment or
 		// comparison operation to be performed.
 		int (*fun)(int, int);
-		// Constant value specified in the expression.
-		int value;
-		// Allow for dynamic values.
-		std::string strValue;
 	};
 	
 	
@@ -90,8 +163,8 @@ private:
 	// either an "and" grouping (meaning every condition must be true to satisfy
 	// it) or an "or" grouping where only one condition needs to be true.
 	bool isOr = false;
-	// If this set contains assignment expressions. If true, the
-	// Test() method must first apply them before testing any conditions.
+	// If this set contains assignment expressions. If true, the Test()
+	// method must first apply them before testing any conditions.
 	bool hasAssign = false;
 	// Conditions that this set tests or applies.
 	std::vector<Expression> expressions;
