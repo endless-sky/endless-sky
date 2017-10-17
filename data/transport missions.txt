@@ -1737,7 +1737,7 @@ mission "Terraforming 3"
 				`	"Are you suggesting melting the ice caps somehow?"`
 					goto melting
 			label rotate
-			`	"Of course not," she says. But what we can do is introduce a sudden variation in the planet's climate that will allow water to be distributed more evenly across the surface again."`
+			`	"Of course not," she says. "But what we can do is introduce a sudden variation in the planet's climate that will allow water to be distributed more evenly across the surface again."`
 				goto danger
 			label melting
 			`	"That would be the traditional terraforming approach," she says, "using orbital mirrors, or geothermal power, or something similar to evaporate the ice caps at a faster rate than new ice is being deposited. That approach would take a century or so."`
