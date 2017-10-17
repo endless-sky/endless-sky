@@ -401,7 +401,7 @@ ship "Solifuge"
 		Hyperdrive
 			
 	engine -28 135.5
-	engine 28 135,5
+	engine 28 135.5
 	gun 0 -140 "Hai Tracker Pod"
 	gun -11.5 -138.5 "Ion Cannon"
 	gun 11.5 -138.5 "Ion Cannon"
