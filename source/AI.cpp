@@ -707,6 +707,23 @@ void AI::Step(const PlayerInfo &player)
 
 
 
+// Get the in-system strength of each government's allies and enemies.
+int64_t AI::AllyStrength(const Government *government)
+{
+	auto it = allyStrength.find(government);
+	return (it == allyStrength.end() ? 0 : it->second);
+}
+
+
+
+int64_t AI::EnemyStrength(const Government *government)
+{
+	auto it = enemyStrength.find(government);
+	return (it == enemyStrength.end() ? 0 : it->second);
+}
+
+
+
 // Check if the ship is being helped, and if not, ask for help.
 void AI::AskForHelp(Ship &ship, bool &isStranded, const Ship *flagship)
 {

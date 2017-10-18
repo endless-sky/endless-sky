@@ -766,7 +766,7 @@ const Command &Ship::Commands() const
 // Move this ship. A ship may create effects as it moves, in particular if
 // it is in the process of blowing up. If this returns false, the ship
 // should be deleted.
-bool Ship::Move(list<Effect> &effects, list<shared_ptr<Flotsam>> &flotsam)
+void Ship::Move(list<Effect> &effects, list<shared_ptr<Flotsam>> &flotsam)
 {
 	// Check if this ship has been in a different system from the player for so
 	// long that it should be "forgotten." Also eliminate ships that have no
@@ -774,7 +774,10 @@ bool Ship::Move(list<Effect> &effects, list<shared_ptr<Flotsam>> &flotsam)
 	forget += !isInSystem;
 	isThrusting = false;
 	if((!isSpecial && forget >= 1000) || !currentSystem)
-		return false;
+	{
+		MarkForRemoval();
+		return;
+	}
 	isInSystem = false;
 	if(!fuel || !(attributes.Get("hyperdrive") || attributes.Get("jump drive")))
 		hyperspaceSystem = nullptr;
@@ -962,7 +965,8 @@ bool Ship::Move(list<Effect> &effects, list<shared_ptr<Flotsam>> &flotsam)
 			heat = 0.;
 			ionization = 0.;
 			fuel = 0.;
-			return false;
+			MarkForRemoval();
+			return;
 		}
 		
 		// If the ship is dead, it first creates explosions at an increasing
@@ -1028,7 +1032,7 @@ bool Ship::Move(list<Effect> &effects, list<shared_ptr<Flotsam>> &flotsam)
 			if(isUsingJumpDrive)
 			{
 				position = target + Angle::Random().Unit() * 300. * (Random::Real() + 1.);
-				return true;
+				return;
 			}
 			
 			// Have all ships exit hyperspace at the same distance so that
@@ -1079,7 +1083,7 @@ bool Ship::Move(list<Effect> &effects, list<shared_ptr<Flotsam>> &flotsam)
 				hyperspaceOffset *= 1000. / length;
 		}
 		
-		return true;
+		return;
 	}
 	else if(landingPlanet || zoom < 1.)
 	{
@@ -1114,7 +1118,10 @@ bool Ship::Move(list<Effect> &effects, list<shared_ptr<Flotsam>> &flotsam)
 					landingPlanet = nullptr;
 				}
 				else if(!isSpecial || personality.IsFleeing())
-					return false;
+				{
+					MarkForRemoval();
+					return;
+				}
 				
 				zoom = 0.;
 			}
@@ -1135,7 +1142,7 @@ bool Ship::Move(list<Effect> &effects, list<shared_ptr<Flotsam>> &flotsam)
 		if(zoom > 0.)
 			position += velocity * zoom;
 		
-		return true;
+		return;
 	}
 	if(isDisabled)
 	{
@@ -1381,8 +1388,6 @@ bool Ship::Move(list<Effect> &effects, list<shared_ptr<Flotsam>> &flotsam)
 	
 	// And finally: move the ship!
 	position += velocity;
-	
-	return true;
 }
 
 

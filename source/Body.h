@@ -71,6 +71,9 @@ public:
 	Point Unit() const;
 	double Zoom() const;
 	
+	// Check if this object is marked for removal from the game.
+	bool ShouldBeRemoved() const;
+	
 	// Store the government here too, so that collision detection that is based
 	// on the Body class can figure out which objects will collide.
 	const Government *GetGovernment() const;
@@ -89,6 +92,8 @@ protected:
 	void SetFrameRate(double framesPerSecond);
 	void AddFrameRate(double framesPerSecond);
 	void PauseAnimation();
+	// Mark this object to be removed from the game.
+	void MarkForRemoval();
 	
 	
 protected:
@@ -126,9 +131,12 @@ private:
 	bool rewind = false;
 	int pause = 0;
 	
+	// Record when this object is marked for removal from the game.
+	bool shouldBeRemoved = false;
+	
 	// Frame info for the current step:
-	mutable int currentStep = -1;
 	mutable bool currentHighDPI = false;
+	mutable int currentStep = -1;
 	mutable Frame frame;
 	mutable int activeIndex = 0;
 };

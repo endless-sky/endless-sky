@@ -81,6 +81,22 @@ private:
 	
 	void ThreadEntryPoint();
 	void CalculateStep();
+	
+	void MoveShip(const std::shared_ptr<Ship> &ship);
+	
+	void SpawnFleets();
+	void SpawnPersons();
+	void SendHails();
+	void HandleMouseClicks();
+	
+	void FillCollisionSets();
+	
+	void DoCollisions(Projectile &projectile);
+	void DoCollection(Flotsam &flotsam);
+	void DoScanning(const std::shared_ptr<Ship> &ship);
+	
+	void FillRadar();
+	
 	void AddSprites(const Ship &ship);
 	
 	void DoGrudge(const std::shared_ptr<Ship> &target, const Government *attacker);
@@ -116,6 +132,15 @@ private:
 	std::list<std::shared_ptr<Flotsam>> flotsam;
 	std::list<Effect> effects;
 	AsteroidField asteroids;
+	
+	// New objects created within the latest step:
+	std::list<std::shared_ptr<Ship>> newShips;
+	std::list<Projectile> newProjectiles;
+	std::list<std::shared_ptr<Flotsam>> newFlotsam;
+	std::list<Effect> newEffects;
+	
+	// Track which ships currently have anti-missiles ready to fire.
+	std::vector<Ship *> hasAntiMissile;
 	
 	AI ai;
 	

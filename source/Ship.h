@@ -153,9 +153,8 @@ public:
 	void SetCommands(const Command &command);
 	const Command &Commands() const;
 	// Move this ship. A ship may create effects as it moves, in particular if
-	// it is in the process of blowing up. If this returns false, the ship
-	// should be deleted.
-	bool Move(std::list<Effect> &effects, std::list<std::shared_ptr<Flotsam>> &flotsam);
+	// it is in the process of blowing up.
+	void Move(std::list<Effect> &effects, std::list<std::shared_ptr<Flotsam>> &flotsam);
 	// Launch any ships that are ready to launch.
 	void Launch(std::list<std::shared_ptr<Ship>> &ships);
 	// Check if this ship is boarding another ship. If it is, it either plunders

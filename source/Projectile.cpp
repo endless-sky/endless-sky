@@ -100,21 +100,26 @@ Projectile::Projectile(Point position, const Outfit *weapon)
 
 
 // This returns false if it is time to delete this projectile.
-bool Projectile::Move(list<Effect> &effects)
+void Projectile::Move(list<Effect> &effects, list<Projectile> &projectiles)
 {
 	if(--lifetime <= 0)
 	{
 		if(lifetime > -100)
 		{
+			// This projectile died a "natural" death. Create any death effects
+			// and submunitions.
 			for(const auto &it : weapon->DieEffects())
 				for(int i = 0; i < it.second; ++i)
 				{
 					effects.push_back(*it.first);
 					effects.back().Place(position, velocity, angle);
 				}
+			for(const auto &it : weapon->Submunitions())
+				for(int i = 0; i < it.second; ++i)
+					projectiles.emplace_back(*this, it.first);
 		}
-		
-		return false;
+		MarkForRemoval();
+		return;
 	}
 	for(const auto &it : weapon->LiveEffects())
 		if(!Random::Int(it.second))
@@ -215,25 +220,10 @@ bool Projectile::Move(list<Effect> &effects)
 	
 	position += velocity;
 	
+	// If this projectile is now within its "split range," it should split into
+	// sub-munitions next turn.
 	if(target && (position - target->Position()).Length() < weapon->SplitRange() && !Random::Int(10))
 		lifetime = 0;
-	
-	return true;
-}
-
-
-
-// This is called when a projectile "dies," either of natural causes or
-// because it hit its target.
-void Projectile::MakeSubmunitions(list<Projectile> &projectiles) const
-{
-	// Only make submunitions if you did *not* hit a target.
-	if(lifetime <= -100)
-		return;
-	
-	for(const auto &it : weapon->Submunitions())
-		for(int i = 0; i < it.second; ++i)
-			projectiles.emplace_back(*this, it.first);
 }
 
 
@@ -242,6 +232,7 @@ void Projectile::MakeSubmunitions(list<Projectile> &projectiles) const
 // marks the projectile as needing deletion.
 void Projectile::Explode(list<Effect> &effects, double intersection, Point hitVelocity)
 {
+	clip = intersection;
 	for(const auto &it : weapon->HitEffects())
 		for(int i = 0; i < it.second; ++i)
 		{
@@ -250,6 +241,14 @@ void Projectile::Explode(list<Effect> &effects, double intersection, Point hitVe
 				position + velocity * intersection, velocity, angle, hitVelocity);
 		}
 	lifetime = -100;
+}
+
+
+
+// Get the amount of clipping that should be applied when drawing this projectile.
+double Projectile::Clip() const
+{
+	return clip;
 }
 
 

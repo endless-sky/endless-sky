@@ -78,13 +78,14 @@ void Effect::Place(Point pos, Point vel, Angle facing, Point hitVelocity)
 
 
 // This returns false if it is time to delete this effect.
-bool Effect::Move()
+void Effect::Move()
 {
 	if(lifetime-- <= 0)
-		return false;
+	{
+		MarkForRemoval();
+		return;
+	}
 	
 	position += velocity;
 	angle += spin;
-	
-	return true;
 }

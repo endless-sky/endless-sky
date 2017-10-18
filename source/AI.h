@@ -62,6 +62,10 @@ template <class Type>
 	// Issue AI commands to all ships for one game step.
 	void Step(const PlayerInfo &player);
 	
+	// Get the in-system strength of each government's allies and enemies.
+	int64_t AllyStrength(const Government *government);
+	int64_t EnemyStrength(const Government *government);
+	
 	
 private:
 	void AskForHelp(Ship &ship, bool &isStranded, const Ship *flagship);

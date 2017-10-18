@@ -164,10 +164,18 @@ Point Body::Unit() const
 
 
 
-// Zoom factor. THis controls how big the sprite should be drawn.
+// Zoom factor. This controls how big the sprite should be drawn.
 double Body::Zoom() const
 {
 	return max(zoom, 0.);
+}
+
+
+
+// Check if this object is marked for removal from the game.
+bool Body::ShouldBeRemoved() const
+{
+	return shouldBeRemoved;
 }
 
 
@@ -283,6 +291,14 @@ void Body::AddFrameRate(double framesPerSecond)
 void Body::PauseAnimation()
 {
 	++pause;
+}
+
+
+
+// Mark this object to be removed from the game.
+void Body::MarkForRemoval()
+{
+	shouldBeRemoved = true;
 }
 
 

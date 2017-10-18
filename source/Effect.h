@@ -44,8 +44,8 @@ public:
 	// but position, velocity, and angle are specific to this new effect.
 	void Place(Point pos, Point vel, Angle facing, Point hitVelocity = Point());
 	
-	// This returns false if it is time to delete this effect.
-	bool Move();
+	// Step the effect forward.
+	void Move();
 	
 	
 private:

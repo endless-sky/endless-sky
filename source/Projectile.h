@@ -49,14 +49,13 @@ public:
 	const Government *GetGovernment() const;
 	*/
 	
-	// This returns false if it is time to delete this projectile.
-	bool Move(std::list<Effect> &effects);
-	// This is called when a projectile "dies," either of natural causes or
-	// because it hit its target.
-	void MakeSubmunitions(std::list<Projectile> &projectiles) const;
+	// Move the projectile. It may create effects or submunitions.
+	void Move(std::list<Effect> &effects, std::list<Projectile> &projectiles);
 	// This projectile hit something. Create the explosion, if any. This also
 	// marks the projectile as needing deletion.
 	void Explode(std::list<Effect> &effects, double intersection, Point hitVelocity = Point());
+	// Get the amount of clipping that should be applied when drawing this projectile.
+	double Clip() const;
 	// This projectile was killed, e.g. by an anti-missile system.
 	void Kill();
 	
@@ -85,6 +84,7 @@ private:
 	const Ship *cachedTarget = nullptr;
 	const Government *targetGovernment = nullptr;
 	
+	double clip = 1.;
 	int lifetime = 0;
 	bool hasLock = true;
 };
