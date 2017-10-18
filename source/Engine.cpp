@@ -1048,7 +1048,13 @@ void Engine::CalculateStep()
 	for(auto it = ships.begin(); it != ships.end(); )
 	{
 		if((*it)->ShouldBeRemoved())
+		{
+			// Send the Destroy event for ships which died via
+			// non-projectile means (e.g. self-destruct).
+			if((*it)->IsDestroyed())
+				eventQueue.emplace_back(nullptr, *it, ShipEvent::DESTROY);
 			it = ships.erase(it);
+		}
 		else
 			++it;
 	}
