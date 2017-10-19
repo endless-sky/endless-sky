@@ -71,9 +71,6 @@ namespace {
 
 
 
-// There is no need to save a location filter, because any mission that is
-// in the saved game will already have "applied" the filter to choose a
-// particular planet or system.
 void LocationFilter::Load(const DataNode &node)
 {
 	for(const DataNode &child : node)
@@ -147,6 +144,10 @@ void LocationFilter::Save(DataWriter &out) const
 		}
 		if(center)
 			out.Write("near", center->Name(), centerMinDistance, centerMaxDistance);
+		// "Enter" actions may define a distance filter, relative to the
+		// system in which the mission was offered.
+		if(originMaxDistance > -1)
+			out.Write("distance", originMinDistance, originMaxDistance);
 	}
 	out.EndChild();
 }

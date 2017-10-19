@@ -15,6 +15,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "ConditionSet.h"
 #include "Conversation.h"
+#include "LocationFilter.h"
 
 #include <map>
 #include <set>
@@ -59,6 +60,8 @@ public:
 private:
 	std::string trigger;
 	std::string system;
+	const System *missionOrigin = nullptr;
+	LocationFilter systemFilter;
 	
 	std::string logText;
 	std::map<std::string, std::map<std::string, std::string>> specialLogText;

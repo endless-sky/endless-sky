@@ -1042,7 +1042,8 @@ Mission Mission::Instantiate(const PlayerInfo &player) const
 void Mission::Enter(const System *system, PlayerInfo &player, UI *ui)
 {
 	auto eit = onEnter.find(system);
-	if(eit != onEnter.end() && !didEnter.count(eit->first))
+	if(eit != onEnter.end() && !didEnter.count(eit->first)
+			&& eit->second.CanBeDone(player))
 	{
 		eit->second.Do(player, ui);
 		didEnter.insert(eit->first);

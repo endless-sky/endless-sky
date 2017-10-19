@@ -23,6 +23,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "PlayerInfo.h"
 #include "Random.h"
 #include "Ship.h"
+#include "System.h"
 #include "UI.h"
 
 #include <cstdlib>
@@ -173,6 +174,15 @@ void MissionAction::Load(const DataNode &node, const string &missionName)
 			// Create a GameData reference to this mission name.
 			GameData::Missions().Get(toFail);
 		}
+		else if(key == "system filter")
+		{
+			if(system.empty() && child.HasChildren())
+				systemFilter.Load(child);
+			else
+				child.PrintTrace("Unsupported use of system filter:");
+		}
+		else if(key == "mission origin" && hasValue)
+			missionOrigin = GameData::Systems().Get(child.Token(1));
 		else
 			conditions.Add(child);
 	}
@@ -190,6 +200,19 @@ void MissionAction::Save(DataWriter &out) const
 		out.Write("on", trigger, system);
 	out.BeginChild();
 	{
+		if(!systemFilter.IsEmpty())
+		{
+			out.Write("system filter");
+			out.BeginChild();
+			{
+				systemFilter.Save(out);
+			}
+			out.EndChild();
+		}
+		// Mission origin is only used for `on enter` MissionActions,
+		// to provide support for `distance` filtering.
+		if(missionOrigin && trigger == "enter")
+			out.Write("mission origin", missionOrigin->Name());
 		if(!logText.empty())
 		{
 			out.Write("log");
@@ -285,6 +308,10 @@ bool MissionAction::CanBeDone(const PlayerInfo &player) const
 		if(available < -it.second + !it.second)
 			return false;
 	}
+	// An `on enter` MissionAction may have defined a LocationFilter that
+	// specifies the systems in which it can occur.
+	if(!systemFilter.IsEmpty() && !systemFilter.Matches(player.GetSystem(), missionOrigin))
+		return false;
 	return true;
 }
 
@@ -361,6 +388,8 @@ MissionAction MissionAction::Instantiate(map<string, string> &subs, int jumps, i
 	MissionAction result;
 	result.trigger = trigger;
 	result.system = system;
+	result.missionOrigin = GameData::Planets().Get(subs["<origin>"])->GetSystem();
+	result.systemFilter = systemFilter;
 	
 	for(const auto &it : events)
 	{
