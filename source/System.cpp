@@ -114,7 +114,7 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 	
 	// For the following keys, if this data node defines a new value for that
 	// key, the old values should be cleared (unless using the "add" keyword).
-	set<string> shouldOverwrite = {"link", "asteroids", "fleet", "object"};
+	set<string> shouldOverwrite = {"asteroids", "attributes", "fleet", "link", "object"};
 	
 	for(const DataNode &child : node)
 	{
@@ -153,6 +153,8 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 				links.clear();
 			else if(key == "asteroids" || key == "minables")
 				asteroids.clear();
+			else if(key == "attributes")
+				baseAttributes.clear();
 			else if(key == "haze")
 				haze = nullptr;
 			else if(key == "trade")
@@ -182,6 +184,15 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 		{
 			child.PrintTrace("Expected key to have a value:");
 			continue;
+		}
+		else if(key == "attributes")
+		{
+			if(remove)
+				for(int i = valueIndex; i < child.Size(); ++i)
+					baseAttributes.erase(child.Token(i));
+			else
+				for(int i = valueIndex; i < child.Size(); ++i)
+					baseAttributes.insert(child.Token(i));
 		}
 		else if(key == "link")
 		{
@@ -260,49 +271,9 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
 	
-	// Set planet messages based on what zone they are in.
-	for(StellarObject &object : objects)
-	{
-		if(object.message || object.planet)
-			continue;
-		
-		const StellarObject *root = &object;
-		while(root->parent >= 0)
-			root = &objects[root->parent];
-		
-		static const string STAR = "You cannot land on a star!";
-		static const string HOTPLANET = "This planet is too hot to land on.";
-		static const string COLDPLANET = "This planet is too cold to land on.";
-		static const string UNINHABITEDPLANET = "This planet is uninhabited.";
-		static const string HOTMOON = "This moon is too hot to land on.";
-		static const string COLDMOON = "This moon is too cold to land on.";
-		static const string UNINHABITEDMOON = "This moon is uninhabited.";
-		static const string STATION = "This station cannot be docked with.";
-		
-		double fraction = root->distance / habitable;
-		if(object.IsStar())
-			object.message = &STAR;
-		else if (object.IsStation())
-			object.message = &STATION;
-		else if (object.IsMoon())
-		{
-			if(fraction < .5)
-				object.message = &HOTMOON;
-			else if(fraction >= 2.)
-				object.message = &COLDMOON;
-			else
-				object.message = &UNINHABITEDMOON;
-		}
-		else
-		{
-			if(fraction < .5)
-				object.message = &HOTPLANET;
-			else if(fraction >= 2.)
-				object.message = &COLDPLANET;
-			else
-				object.message = &UNINHABITEDPLANET;
-		}
-	}
+	UpdateLandingMessages();
+	// Incorporate any changes in this system's attributes.
+	UpdateAutoAttributes();
 }
 
 
@@ -333,6 +304,10 @@ void System::UpdateNeighbors(const Set<System> &systems)
 		solarPower += GameData::SolarPower(object.GetSprite());
 		solarWind += GameData::SolarWind(object.GetSprite());
 	}
+	// Any game change that links or unlinks systems will result in a call
+	// to UpdateNeighbors() after all modifications are complete. Changes
+	// to this system may alter its auto-attributes, so rebuild them too.
+	UpdateAutoAttributes();
 }
 
 
@@ -648,6 +623,153 @@ double System::Danger() const
 		if(fleet.Get()->GetGovernment()->IsEnemy())
 			danger += static_cast<double>(fleet.Get()->Strength()) / fleet.Period();
 	return danger;
+}
+
+
+
+const set<string> &System::Attributes() const
+{
+	return attributes;
+}
+
+
+
+// Planet-based attributes are only returned for planets that are accessible
+// to the ship in question.
+const set<string> System::PlanetAttributes(const Ship *ship) const
+{
+	set<string> planetAttributes;
+	bool isInhabited = false;
+	bool hasWormhole = false;
+	for(const StellarObject &object : objects)
+	{
+		const Planet *planet = object.GetPlanet();
+		if(planet && planet->IsAccessible(ship))
+		{
+			isInhabited |= (!planet->IsWormhole() && planet->IsInhabited());
+			hasWormhole |= planet->IsWormhole();
+			planetAttributes.insert(planet->Attributes().begin(), planet->Attributes().end());
+		}
+	}
+	planetAttributes.emplace(isInhabited ? "inhabited" : "uninhabited");
+	if(hasWormhole)
+		planetAttributes.emplace("wormhole");
+	
+	return planetAttributes;
+}
+
+
+
+// Update the system's automatic attributes following a change to the system.
+// If called from Load(), the game still may be initializing data and so no
+// non-Name object properties should be called.
+void System::UpdateAutoAttributes()
+{
+	// Reinitialize the system's attributes based on those supplied from
+	// text files / game events.
+	attributes = baseAttributes;
+	
+	// Determine the system's object-based attributes
+	int stars = 0;
+	int moons = 0;
+	for(const StellarObject &object : objects)
+	{
+		// Certain sprites are indicative of intriguing galactic phenomena.
+		if(GameData::IsGalacticPhenomenon(object.GetSprite()))
+			attributes.emplace("galactic phenomena");
+		
+		// Update the count of object types in this system.
+		if(object.IsStar())
+			++stars;
+		else if(object.IsMoon())
+			++moons;
+	}
+	
+	// Based on the object counts, set certain attributes of this system.
+	int totalLinks = links.size();
+	if(totalLinks > 5)
+		attributes.emplace("nexus");
+	if(totalLinks > 3)
+		attributes.emplace("crossroads");
+	if(stars > 1)
+		attributes.emplace(stars == 2 ? "binary star" : (stars == 3 ? "ternary star" : "galactic phenomena"));
+	else if(!stars)
+		attributes.emplace("no star");
+	if(moons > 4)
+		attributes.emplace("many moons");
+	
+	int minableCount = 0;
+	int asteroidCount = 0;
+	for(const Asteroid &asteroid : asteroids)
+	{
+		if(asteroid.Type())
+			minableCount += asteroid.Count();
+		else
+			asteroidCount += asteroid.Count();
+	}
+	if(minableCount > 60)
+		attributes.emplace("high minable density");
+	if(asteroidCount + minableCount > 60)
+		attributes.emplace("high asteroid density");
+	if(solarWind > 1.5)
+		attributes.emplace("high solar wind");
+	if(solarPower > 1.5)
+		attributes.emplace("high luminosity");
+}
+
+
+
+void System::UpdateLandingMessages()
+{
+	// Set planet landing messages based on what zone they are in.
+	for(StellarObject &object : objects)
+	{
+		// The object's sprite can associate a default landing message
+		// e.g. gas giants and (inaccessible) wormholes.
+		if(object.message || object.planet)
+			continue;
+		
+		// For objects with other sprites:
+		static const string STAR = "You cannot land on a star!";
+		static const string HOTPLANET = "This planet is too hot to land on.";
+		static const string COLDPLANET = "This planet is too cold to land on.";
+		static const string UNINHABITEDPLANET = "This planet is uninhabited.";
+		static const string HOTMOON = "This moon is too hot to land on.";
+		static const string COLDMOON = "This moon is too cold to land on.";
+		static const string UNINHABITEDMOON = "This moon is uninhabited.";
+		static const string STATION = "This station cannot be docked with.";
+		
+		// Determine this StellarObject's orbit center. Objects that
+		// orbit the system center have a parent index = -1. Set the
+		// default landing message based on the root object's distance.
+		const StellarObject *root = &object;
+		while(root->parent >= 0)
+			root = &objects[root->parent];
+		double fraction = root->distance / habitable;
+		
+		if(object.IsStar())
+			object.message = &STAR;
+		else if(object.IsStation())
+			object.message = &STATION;
+		else if(object.IsMoon())
+		{
+			if(fraction < .5)
+				object.message = &HOTMOON;
+			else if(fraction >= 2.)
+				object.message = &COLDMOON;
+			else
+				object.message = &UNINHABITEDMOON;
+		}
+		else
+		{
+			if(fraction < .5)
+				object.message = &HOTPLANET;
+			else if(fraction >= 2.)
+				object.message = &COLDPLANET;
+			else
+				object.message = &UNINHABITEDPLANET;
+		}
+	}
 }
 
 

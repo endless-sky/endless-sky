@@ -138,9 +138,15 @@ public:
 	// Check how dangerous this system is (credits worth of enemy ships jumping
 	// in per frame).
 	double Danger() const;
+	const std::set<std::string> &Attributes() const;
+	const std::set<std::string> PlanetAttributes(const Ship *ship = nullptr) const;
 	
 	
 private:
+	// After the system's objects are updated via Load(), update system-specific
+	// automatic attributes such as "binary star".
+	void UpdateAutoAttributes();
+	void UpdateLandingMessages();
 	void LoadObject(const DataNode &node, Set<Planet> &planets, int parent = -1);
 	
 	
@@ -183,6 +189,11 @@ private:
 	
 	// Commodity prices.
 	std::map<std::string, Price> trade;
+	// Automatic attributes characteristic of this system and its
+	// StellarObjects. Does not include attributes of planets, e.g. "urban".
+	std::set<std::string> attributes;
+	// User-specified attributes from events or map definitions.
+	std::set<std::string> baseAttributes;
 };
 
 

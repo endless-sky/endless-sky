@@ -58,11 +58,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include <algorithm>
 #include <iostream>
-#include <map>
 #include <utility>
-#include <vector>
 
-class Sprite;
 
 using namespace std;
 
@@ -101,6 +98,7 @@ namespace {
 	Trade trade;
 	map<const System *, map<string, int>> purchases;
 	
+	set<const Sprite *> galacticPhenomena;
 	map<const Sprite *, string> landingMessages;
 	map<const Sprite *, double> solarPower;
 	map<const Sprite *, double> solarWind;
@@ -729,6 +727,13 @@ double GameData::SolarWind(const Sprite *sprite)
 
 
 
+bool GameData::IsGalacticPhenomenon(const Sprite *sprite)
+{
+	return galacticPhenomena.count(sprite);
+}
+
+
+
 // Pick a random news object that applies to the given planet. If there is
 // no applicable news, this returns null.
 const News *GameData::PickNews(const Planet *planet)
@@ -933,6 +938,12 @@ void GameData::LoadFile(const string &path, bool debugMode)
 				else
 					child.PrintTrace("Unrecognized star attribute:");
 			}
+		}
+		else if(key == "phenomena" && node.HasChildren())
+		{
+			galacticPhenomena.clear();
+			for(const DataNode &child : node)
+				galacticPhenomena.emplace(SpriteSet::Get(child.Token(0)));
 		}
 		else if(key == "news" && node.Size() >= 2)
 			news.Get(node.Token(1))->Load(node);
