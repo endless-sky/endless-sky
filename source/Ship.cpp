@@ -342,7 +342,7 @@ void Ship::FinishLoading(bool isNewInstance)
 	
 	// Mark any drone that has no "automaton" value as an automaton, to
 	// grandfather in the drones from before that attribute existed.
-	if(baseAttributes.Category() == "Drone" && !baseAttributes.Attributes().count("automaton"))
+	if(baseAttributes.Category() == "Drone" && !baseAttributes.Get("automaton"))
 		baseAttributes.Add("automaton", 1.);
 	
 	baseAttributes.Reset("gun ports", armament.GunCount());

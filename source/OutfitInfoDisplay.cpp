@@ -174,9 +174,9 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 	map<string, map<string, int>> listing;
 	for(const auto &it : outfit.Attributes())
 	{
-		if(it.first == "outfit space"
-				|| it.first == "weapon capacity" || it.first == "engine capacity"
-				|| it.first == "gun ports" || it.first == "turret mounts")
+		static set<string> SKIP = {
+			"outfit space", "weapon capacity", "engine capacity", "gun ports", "turret mounts"};
+		if(SKIP.count(it.first))
 			continue;
 		
 		string value;
