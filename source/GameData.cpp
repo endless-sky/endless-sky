@@ -227,7 +227,7 @@ void GameData::CheckReferences()
 		if(it.second.Name().empty())
 			Files::LogError("Warning: phrase \"" + it.first + "\" is referred to, but never defined.");
 	for(const auto &it : planets)
-		if(it.second.Name().empty() && !it.second.GetSystem())
+		if(it.second.Name().empty())
 			Files::LogError("Warning: planet \"" + it.first + "\" is referred to, but never defined.");
 	for(const auto &it : ships)
 		if(it.second.ModelName().empty())
