@@ -373,7 +373,7 @@ outfit "Hai Fissure Batteries"
 	"mass" 15
 	"outfit space" -15
 	"energy capacity" 1709
-	description "This battery pack has more than three times the energy capacity of the the Hai Chasm Batteries, allowing their ships to engage in combat for longer periods of time before running out of energy."
+	description "This battery pack has more than three times the energy capacity of the Hai Chasm Batteries, allowing their ships to engage in combat for longer periods of time before running out of energy."
 
 outfit "Hai Gorge Batteries"
 	plural "Hai Gorge Batteries"
