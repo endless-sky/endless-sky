@@ -1237,7 +1237,12 @@ void Engine::MoveShip(const shared_ptr<Ship> &ship)
 	ship->Move(newVisuals, newFlotsam);
 	// Bail out if the ship just died.
 	if(ship->ShouldBeRemoved())
+	{
+		// Make sure this ship's destruction was recorded, even if it died from
+		// self-destruct.
+		eventQueue.emplace_back(nullptr, ship, ShipEvent::DESTROY);
 		return;
+	}
 	
 	// Check if we need to play sounds for a ship jumping in or out of
 	// the system. Make no sound if it entered via wormhole.
