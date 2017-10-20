@@ -27,6 +27,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Rectangle.h"
 #include "Ship.h"
 #include "ShipEvent.h"
+#include "Visual.h"
 
 #include <condition_variable>
 #include <list>
@@ -130,14 +131,14 @@ private:
 	std::list<std::shared_ptr<Ship>> ships;
 	std::vector<Projectile> projectiles;
 	std::list<std::shared_ptr<Flotsam>> flotsam;
-	std::vector<Effect> effects;
+	std::vector<Visual> visuals;
 	AsteroidField asteroids;
 	
 	// New objects created within the latest step:
 	std::list<std::shared_ptr<Ship>> newShips;
 	std::vector<Projectile> newProjectiles;
 	std::list<std::shared_ptr<Flotsam>> newFlotsam;
-	std::vector<Effect> newEffects;
+	std::vector<Visual> newVisuals;
 	
 	// Track which ships currently have anti-missiles ready to fire.
 	std::vector<Ship *> hasAntiMissile;

@@ -167,7 +167,7 @@ Point Body::Unit() const
 // Zoom factor. This controls how big the sprite should be drawn.
 double Body::Zoom() const
 {
-	return max(zoom, 0.);
+	return max(zoom, 0.f);
 }
 
 

@@ -66,7 +66,7 @@ void AsteroidField::Add(const Minable *minable, int count, double energy, double
 
 
 // Move all the asteroids forward one step.
-void AsteroidField::Step(vector<Effect> &effects, list<shared_ptr<Flotsam>> &flotsam)
+void AsteroidField::Step(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 {
 	for(Asteroid &asteroid : asteroids)
 		asteroid.Step();
@@ -76,7 +76,7 @@ void AsteroidField::Step(vector<Effect> &effects, list<shared_ptr<Flotsam>> &flo
 	auto it = minables.begin();
 	while(it != minables.end())
 	{
-		if((*it)->Move(effects, flotsam))
+		if((*it)->Move(visuals, flotsam))
 			++it;
 		else
 			it = minables.erase(it);

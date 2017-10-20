@@ -19,6 +19,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Random.h"
 #include "Ship.h"
 #include "SpriteSet.h"
+#include "Visual.h"
 
 #include <cmath>
 
@@ -91,7 +92,7 @@ void Flotsam::Place(const Body &source, const Point &dv)
 
 
 // Move the object one time-step forward.
-void Flotsam::Move(vector<Effect> &effects)
+void Flotsam::Move(vector<Visual> &visuals)
 {
 	position += velocity;
 	angle += spin;
@@ -103,11 +104,10 @@ void Flotsam::Move(vector<Effect> &effects)
 	const Effect *effect = GameData::Effects().Get("flotsam death");
 	for(int i = 0; i < 3; ++i)
 	{
-		effects.emplace_back(*effect);
-	
 		Angle smokeAngle = Angle::Random();
 		velocity += smokeAngle.Unit() * Random::Real();
-		effects.back().Place(position, velocity, smokeAngle);
+		
+		visuals.emplace_back(*effect, position, velocity, smokeAngle);
 	}
 	MarkForRemoval();
 }

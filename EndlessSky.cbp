@@ -310,6 +310,8 @@
 		<Unit filename="source/TradingPanel.h" />
 		<Unit filename="source/UI.cpp" />
 		<Unit filename="source/UI.h" />
+		<Unit filename="source/Visual.cpp" />
+		<Unit filename="source/Visual.h" />
 		<Unit filename="source/Weapon.cpp" />
 		<Unit filename="source/Weapon.h" />
 		<Unit filename="source/WinApp.rc">

@@ -26,6 +26,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 class DrawList;
 class Projectile;
 class Sprite;
+class Visual;
 
 
 
@@ -45,7 +46,7 @@ public:
 	void Add(const Minable *minable, int count, double energy = 1., double beltRadius = 1500.);
 	
 	// Move all the asteroids forward one time step.
-	void Step(std::vector<Effect> &effects, std::list<std::shared_ptr<Flotsam>> &flotsam);
+	void Step(std::vector<Visual> &visuals, std::list<std::shared_ptr<Flotsam>> &flotsam);
 	// Draw the asteroid field, with the field of view centered on the given point.
 	void Draw(DrawList &draw, const Point &center, double zoom) const;
 	// Check if the given projectile has hit any of the asteroids. The current

@@ -26,6 +26,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Random.h"
 #include "ShipEvent.h"
 #include "System.h"
+#include "Visual.h"
 
 #include <algorithm>
 #include <cmath>
@@ -766,7 +767,7 @@ const Command &Ship::Commands() const
 // Move this ship. A ship may create effects as it moves, in particular if
 // it is in the process of blowing up. If this returns false, the ship
 // should be deleted.
-void Ship::Move(vector<Effect> &effects, list<shared_ptr<Flotsam>> &flotsam)
+void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 {
 	// Check if this ship has been in a different system from the player for so
 	// long that it should be "forgotten." Also eliminate ships that have no
@@ -789,17 +790,17 @@ void Ship::Move(vector<Effect> &effects, list<shared_ptr<Flotsam>> &flotsam)
 	if(ionization)
 	{
 		ionization = max(0., .99 * ionization - attributes.Get("ion resistance"));
-		CreateSparks(effects, "ion spark", ionization * .1);
+		CreateSparks(visuals, "ion spark", ionization * .1);
 	}
 	if(disruption)
 	{
 		disruption = max(0., .99 * disruption - attributes.Get("disruption resistance"));
-		CreateSparks(effects, "disruption spark", disruption * .1);
+		CreateSparks(visuals, "disruption spark", disruption * .1);
 	}
 	if(slowness)
 	{
 		slowness = max(0., .99 * slowness - attributes.Get("slowing resistance"));
-		CreateSparks(effects, "slowing spark", slowness * .1);
+		CreateSparks(visuals, "slowing spark", slowness * .1);
 	}
 	double slowMultiplier = 1. / (1. + slowness * .05);
 	// Jettisoned cargo effects (only for ships in the current system).
@@ -932,21 +933,17 @@ void Ship::Move(vector<Effect> &effects, list<shared_ptr<Flotsam>> &flotsam)
 				int debrisCount = attributes.Get("mass") * .07;
 				for(int i = 0; i < debrisCount; ++i)
 				{
-					effects.emplace_back(*effect);
-					
 					Angle angle = Angle::Random();
 					Point effectVelocity = velocity + angle.Unit() * (scale * Random::Real());
 					Point effectPosition = position + radius * angle.Unit();
-					effects.back().Place(effectPosition, effectVelocity, angle);
+					
+					visuals.emplace_back(*effect, effectPosition, effectVelocity, angle);
 				}
 					
 				for(unsigned i = 0; i < explosionTotal / 2; ++i)
-					CreateExplosion(effects, true);
+					CreateExplosion(visuals, true);
 				for(const auto &it : finalExplosions)
-				{
-					effects.emplace_back(*it.first);
-					effects.back().Place(position, velocity, angle);
-				}
+					visuals.emplace_back(*it.first, position, velocity, angle);
 				// For everything in this ship's cargo hold there is a 25% chance
 				// that it will survive as flotsam.
 				for(const auto &it : cargo.Commodities())
@@ -973,7 +970,7 @@ void Ship::Move(vector<Effect> &effects, list<shared_ptr<Flotsam>> &flotsam)
 		// rate, then disappears in one big explosion.
 		++explosionRate;
 		if(Random::Int(1024) < explosionRate)
-			CreateExplosion(effects);
+			CreateExplosion(visuals);
 	}
 	else if(hyperspaceSystem || hyperspaceCount)
 	{
@@ -992,7 +989,7 @@ void Ship::Move(vector<Effect> &effects, list<shared_ptr<Flotsam>> &flotsam)
 		// Create the particle effects for the jump drive. This may create 100
 		// or more particles per ship per turn at the peak of the jump.
 		if(isUsingJumpDrive && !forget)
-			CreateSparks(effects, "jump drive", hyperspaceCount * Width() * Height() * .000006);
+			CreateSparks(visuals, "jump drive", hyperspaceCount * Width() * Height() * .000006);
 		
 		if(hyperspaceCount == HYPER_C)
 		{
@@ -1246,10 +1243,8 @@ void Ship::Move(vector<Effect> &effects, list<shared_ptr<Flotsam>> &flotsam)
 						Point pos = angle.Rotate(point) * Zoom() + position;
 						for(const auto &it : attributes.AfterburnerEffects())
 							for(int i = 0; i < it.second; ++i)
-							{
-								effects.emplace_back(*it.first);
-								effects.back().Place(pos + velocity, velocity - 6. * angle.Unit(), angle);
-							}
+								visuals.emplace_back(*it.first,
+									pos + velocity, velocity - 6. * angle.Unit(), angle);
 					}
 			}
 		}
@@ -1598,7 +1593,7 @@ double Ship::OutfitScanFraction() const
 // Fire any weapons that are ready to fire. If an anti-missile is ready,
 // instead of firing here this function returns true and it can be fired if
 // collision detection finds a missile in range.
-bool Ship::Fire(vector<Projectile> &projectiles, vector<Effect> &effects)
+bool Ship::Fire(vector<Projectile> &projectiles, vector<Visual> &visuals)
 {
 	isInSystem = true;
 	forget = 0;
@@ -1622,7 +1617,7 @@ bool Ship::Fire(vector<Projectile> &projectiles, vector<Effect> &effects)
 			if(outfit->AntiMissile())
 				antiMissileRange = max(antiMissileRange, outfit->Velocity() + weaponRadius);
 			else if(commands.HasFire(i))
-				armament.Fire(i, *this, projectiles, effects);
+				armament.Fire(i, *this, projectiles, visuals);
 		}
 	}
 	
@@ -1634,7 +1629,7 @@ bool Ship::Fire(vector<Projectile> &projectiles, vector<Effect> &effects)
 
 
 // Fire an anti-missile.
-bool Ship::FireAntiMissile(const Projectile &projectile, vector<Effect> &effects)
+bool Ship::FireAntiMissile(const Projectile &projectile, vector<Visual> &visuals)
 {
 	if(projectile.Position().Distance(position) > antiMissileRange)
 		return false;
@@ -1646,7 +1641,7 @@ bool Ship::FireAntiMissile(const Projectile &projectile, vector<Effect> &effects
 	{
 		const Outfit *outfit = weapons[i].GetOutfit();
 		if(outfit && CanFire(outfit))
-			if(armament.FireAntiMissile(i, *this, projectile, effects))
+			if(armament.FireAntiMissile(i, *this, projectile, visuals))
 				return true;
 	}
 	
@@ -2780,7 +2775,7 @@ double Ship::BestFuel(const string &type, const string &subtype, double defaultF
 
 
 
-void Ship::CreateExplosion(vector<Effect> &effects, bool spread)
+void Ship::CreateExplosion(vector<Visual> &visuals, bool spread)
 {
 	if(!HasSprite() || !GetMask().IsLoaded() || explosionEffects.empty())
 		return;
@@ -2801,14 +2796,13 @@ void Ship::CreateExplosion(vector<Effect> &effects, bool spread)
 				if(type < 0)
 					break;
 			}
-			effects.emplace_back(*it->first);
 			Point effectVelocity = velocity;
 			if(spread)
 			{
 				double scale = .04 * (Width() + Height());
 				effectVelocity += Angle::Random().Unit() * (scale * Random::Real());
 			}
-			effects.back().Place(angle.Rotate(point) + position, effectVelocity, angle);
+			visuals.emplace_back(*it->first, angle.Rotate(point) + position, effectVelocity, angle);
 			++explosionCount;
 			return;
 		}
@@ -2818,7 +2812,7 @@ void Ship::CreateExplosion(vector<Effect> &effects, bool spread)
 
 
 // Place a "spark" effect, like ionization or disruption.
-void Ship::CreateSparks(vector<Effect> &effects, const string &name, double amount)
+void Ship::CreateSparks(vector<Visual> &visuals, const string &name, double amount)
 {
 	if(forget)
 		return;
@@ -2836,9 +2830,6 @@ void Ship::CreateSparks(vector<Effect> &effects, const string &name, double amou
 		Point point((Random::Real() - .5) * Width(),
 			(Random::Real() - .5) * Height());
 		if(GetMask().Contains(point, Angle()))
-		{
-			effects.emplace_back(*effect);
-			effects.back().Place(angle.Rotate(point) + position, velocity, angle);
-		}
+			visuals.emplace_back(*effect, angle.Rotate(point) + position, velocity, angle);
 	}
 }

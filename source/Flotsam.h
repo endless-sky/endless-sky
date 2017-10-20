@@ -23,6 +23,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 class Effect;
 class Outfit;
 class Ship;
+class Visual;
 
 
 
@@ -50,7 +51,7 @@ public:
 	void Place(const Body &source, const Point &dv);
 	
 	// Move the object one time-step forward.
-	void Move(std::vector<Effect> &effects);
+	void Move(std::vector<Visual> &visuals);
 	
 	// This is the one ship that cannot pick up this flotsam.
 	const Ship *Source() const;

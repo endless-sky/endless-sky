@@ -19,11 +19,11 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <vector>
 
 class Command;
-class Effect;
 class Outfit;
 class Point;
 class Projectile;
 class Ship;
+class Visual;
 
 
 
@@ -64,9 +64,9 @@ public:
 	void Aim(const Command &command);
 	// Fire the given weapon, if it is ready. If it did not fire because it is
 	// not ready, return false.
-	void Fire(int index, Ship &ship, std::vector<Projectile> &projectiles, std::vector<Effect> &effects);
+	void Fire(int index, Ship &ship, std::vector<Projectile> &projectiles, std::vector<Visual> &visuals);
 	// Fire the given anti-missile system.
-	bool FireAntiMissile(int index, Ship &ship, const Projectile &projectile, std::vector<Effect> &effects);
+	bool FireAntiMissile(int index, Ship &ship, const Projectile &projectile, std::vector<Visual> &visuals);
 	
 	// Update the reload counters.
 	void Step(const Ship &ship);

@@ -19,6 +19,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Random.h"
 #include "Ship.h"
 #include "Sprite.h"
+#include "Visual.h"
 
 #include <algorithm>
 #include <cmath>
@@ -100,7 +101,7 @@ Projectile::Projectile(Point position, const Outfit *weapon)
 
 
 // This returns false if it is time to delete this projectile.
-void Projectile::Move(vector<Effect> &effects, vector<Projectile> &projectiles)
+void Projectile::Move(vector<Visual> &visuals, vector<Projectile> &projectiles)
 {
 	if(--lifetime <= 0)
 	{
@@ -110,10 +111,8 @@ void Projectile::Move(vector<Effect> &effects, vector<Projectile> &projectiles)
 			// and submunitions.
 			for(const auto &it : weapon->DieEffects())
 				for(int i = 0; i < it.second; ++i)
-				{
-					effects.emplace_back(*it.first);
-					effects.back().Place(position, velocity, angle);
-				}
+					visuals.emplace_back(*it.first, position, velocity, angle);
+			
 			for(const auto &it : weapon->Submunitions())
 				for(int i = 0; i < it.second; ++i)
 					projectiles.emplace_back(*this, it.first);
@@ -123,10 +122,7 @@ void Projectile::Move(vector<Effect> &effects, vector<Projectile> &projectiles)
 	}
 	for(const auto &it : weapon->LiveEffects())
 		if(!Random::Int(it.second))
-		{
-			effects.emplace_back(*it.first);
-			effects.back().Place(position, velocity, angle);
-		}
+			visuals.emplace_back(*it.first, position, velocity, angle);
 	
 	// If the target has left the system, stop following it. Also stop if the
 	// target has been captured by a different government.
@@ -230,15 +226,13 @@ void Projectile::Move(vector<Effect> &effects, vector<Projectile> &projectiles)
 
 // This projectile hit something. Create the explosion, if any. This also
 // marks the projectile as needing deletion.
-void Projectile::Explode(vector<Effect> &effects, double intersection, Point hitVelocity)
+void Projectile::Explode(vector<Visual> &visuals, double intersection, Point hitVelocity)
 {
 	clip = intersection;
 	for(const auto &it : weapon->HitEffects())
 		for(int i = 0; i < it.second; ++i)
 		{
-			effects.emplace_back(*it.first);
-			effects.back().Place(
-				position + velocity * intersection, velocity, angle, hitVelocity);
+			visuals.emplace_back(*it.first, position + velocity * intersection, velocity, angle, hitVelocity);
 		}
 	lifetime = -100;
 }

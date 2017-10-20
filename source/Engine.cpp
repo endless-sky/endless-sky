@@ -994,9 +994,14 @@ void Engine::EnterSystem()
 	}
 	
 	grudge.clear();
+	
 	projectiles.clear();
-	effects.clear();
+	visuals.clear();
 	flotsam.clear();
+	// Cancel any projectiles, visuals, or flotsam created by ships this step.
+	newProjectiles.clear();
+	newVisuals.clear();
+	newFlotsam.clear();
 	
 	// Help message for new players. Show this message for the first four days,
 	// since the new player ships can make at most four jumps before landing.
@@ -1085,24 +1090,24 @@ void Engine::CalculateStep()
 	Prune(ships);
 	
 	// Move the asteroids. This must be done before collision detection. Minables
-	// may create effects or flotsam.
-	asteroids.Step(newEffects, newFlotsam);
+	// may create visuals or flotsam.
+	asteroids.Step(newVisuals, newFlotsam);
 	
 	// Move the flotsam. This must happen after the ships move, because flotsam
 	// checks if any ship has picked it up.
 	for(const shared_ptr<Flotsam> &it : flotsam)
-		it->Move(newEffects);
+		it->Move(newVisuals);
 	Prune(flotsam);
 	
 	// Move the projectiles.
 	for(Projectile &projectile : projectiles)
-		projectile.Move(newEffects, newProjectiles);
+		projectile.Move(newVisuals, newProjectiles);
 	Prune(projectiles);
 	
-	// Move the effects.
-	for(Effect &effect : effects)
-		effect.Move();
-	Prune(effects);
+	// Move the visuals.
+	for(Visual &visual : visuals)
+		visual.Move();
+	Prune(visuals);
 	
 	// Perform various minor actions.
 	SpawnFleets();
@@ -1118,7 +1123,7 @@ void Engine::CalculateStep()
 	ships.splice(ships.end(), newShips);
 	Append(projectiles, newProjectiles);
 	flotsam.splice(flotsam.end(), newFlotsam);
-	Append(effects, newEffects);
+	Append(visuals, newVisuals);
 	
 	// Decrement the count of how long it's been since a ship last asked for help.
 	if(grudgeTime)
@@ -1202,9 +1207,9 @@ void Engine::CalculateStep()
 		Point relativeVelocity = projectile.Velocity() - projectile.Unit() * innateVelocity;
 		draw[calcTickTock].AddProjectile(projectile, relativeVelocity, projectile.Clip());
 	}
-	// Draw the effects.
-	for(const Effect &effect : effects)
-		draw[calcTickTock].AddUnblurred(effect);
+	// Draw the visuals.
+	for(const Visual &visual : visuals)
+		draw[calcTickTock].AddUnblurred(visual);
 	
 	// Keep track of how much of the CPU time we are using.
 	loadSum += loadTimer.Time();
@@ -1227,9 +1232,9 @@ void Engine::MoveShip(const shared_ptr<Ship> &ship)
 	bool isJump = ship->IsUsingJumpDrive();
 	bool wasHere = (flagship && ship->GetSystem() == flagship->GetSystem());
 	bool wasHyperspacing = ship->IsHyperspacing();
-	// Give the ship the list of effects so that it can draw explosions,
+	// Give the ship the list of visuals so that it can draw explosions,
 	// ion sparks, jump drive flashes, etc.
-	ship->Move(newEffects, newFlotsam);
+	ship->Move(newVisuals, newFlotsam);
 	// Bail out if the ship just died.
 	if(ship->ShouldBeRemoved())
 		return;
@@ -1268,7 +1273,7 @@ void Engine::MoveShip(const shared_ptr<Ship> &ship)
 	
 	// Fire weapons. If this returns true the ship has at least one anti-missile
 	// system ready to fire.
-	if(ship->Fire(newProjectiles, newEffects))
+	if(ship->Fire(newProjectiles, newVisuals))
 		hasAntiMissile.push_back(ship.get());
 }
 
@@ -1492,7 +1497,7 @@ void Engine::HandleMouseClicks()
 
 
 // Perform collision detection. Note that unlike the preceding functions, this
-// one adds any effects that are created directly to the main effects list. If
+// one adds any visuals that are created directly to the main visuals list. If
 // this is multi-threaded in the future, that will need to change.
 void Engine::DoCollisions(Projectile &projectile)
 {
@@ -1566,7 +1571,7 @@ void Engine::DoCollisions(Projectile &projectile)
 	{
 		// Create the explosion the given distance along the projectile's
 		// motion path for this step.
-		projectile.Explode(effects, closestHit, hitVelocity);
+		projectile.Explode(visuals, closestHit, hitVelocity);
 		
 		// If this projectile has a blast radius, find all ships within its
 		// radius. Otherwise, only one is damaged.
@@ -1620,7 +1625,7 @@ void Engine::DoCollisions(Projectile &projectile)
 		// a chance to shoot it down.
 		for(Ship *ship : hasAntiMissile)
 			if(ship == projectile.Target() || gov->IsEnemy(ship->GetGovernment()))
-				if(ship->FireAntiMissile(projectile, effects))
+				if(ship->FireAntiMissile(projectile, visuals))
 				{
 					projectile.Kill();
 					break;
