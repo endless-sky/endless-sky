@@ -165,26 +165,38 @@ bool LocationFilter::IsEmpty() const
 // If the player is in the given system, does this filter match?
 bool LocationFilter::Matches(const Planet *planet, const System *origin) const
 {
-	for(const LocationFilter &filter : notFilters)
-		if(filter.Matches(planet, origin))
-			return false;
-	
-	if(!planet)
+	if(!planet || !planet->GetSystem())
 		return false;
 	
 	if(!planets.empty() && !planets.count(planet))
 		return false;
-	for(const set<string> &attr : attributes)
-		if(!SetsIntersect(attr, planet->Attributes()))
-			return false;
+		
 	if(!governments.empty() && !governments.count(planet->GetGovernment()))
 		return false;
 	
-	return Matches(planet->GetSystem(), origin, true);
+	for(const LocationFilter &filter : notFilters)
+		if(filter.Matches(planet, origin))
+			return false;
+	
+	const System *system = planet->GetSystem();
+	if(!attributes.empty())
+	{
+		// Each planet inherits its system's automatic attributes.
+		set<string> planetAttributes = planet->Attributes();
+		planetAttributes.insert(system->Attributes().begin(), system->Attributes().end());
+		for(const set<string> &attr : attributes)
+			if(!SetsIntersect(attr, planetAttributes))
+				return false;
+	}
+	
+	// Check that any distance filters are also met.
+	return Matches(system, origin, true);
 }
 
 
 
+// This overload is called from Mission::PickSystem, NPC::Instantiate, and when
+// deciding if a Person can be spawned.
 bool LocationFilter::Matches(const System *system, const System *origin) const
 {
 	return Matches(system, origin, false);
@@ -194,14 +206,14 @@ bool LocationFilter::Matches(const System *system, const System *origin) const
 
 bool LocationFilter::Matches(const Ship &ship) const
 {
-	for(const LocationFilter &filter : notFilters)
-		if(filter.Matches(ship))
-			return false;
-	
 	if(!systems.empty() && !systems.count(ship.GetSystem()))
 		return false;
 	if(!governments.empty() && !governments.count(ship.GetGovernment()))
 		return false;
+	
+	for(const LocationFilter &filter : notFilters)
+		if(filter.Matches(ship))
+			return false;
 	
 	if(center)
 	{
@@ -283,21 +295,38 @@ void LocationFilter::LoadChild(const DataNode &child)
 
 
 
-bool LocationFilter::Matches(const System *system, const System *origin, bool didPlanet) const
+bool LocationFilter::Matches(const System *system, const System *origin, bool hasMatch) const
 {
-	// Don't check these filters again if they were already checked as a part of
-	// checking if a planet matches.
-	if(!didPlanet)
-		for(const LocationFilter &filter : notFilters)
-			if(filter.Matches(system, origin))
-				return false;
-	
 	if(!system)
 		return false;
 	if(!systems.empty() && !systems.count(system))
 		return false;
-	if(!didPlanet && !governments.empty() && !governments.count(system->GetGovernment()))
-		return false;
+	
+	// This filter may have already been tested and matched to a planet. If
+	// not, check that this system is a valid selection.
+	if(!hasMatch)
+	{
+		if(!governments.empty() && !governments.count(system->GetGovernment()))
+			return false;
+		
+		for(const LocationFilter &filter : notFilters)
+			if(filter.Matches(system, origin))
+				return false;
+		
+		if(!attributes.empty())
+		{
+			// Union the system's automatic attributes and those
+			// of its always-accessible planets.
+			set<string> systemAttributes = system->PlanetAttributes();
+			systemAttributes.insert(system->Attributes().begin(), system->Attributes().end());
+			for(const set<string> &attr : attributes)
+				if(!SetsIntersect(attr, systemAttributes))
+					return false;
+			
+			// A match to the filter's attributes was found.
+			hasMatch = true;
+		}
+	}
 	
 	if(center)
 	{
@@ -316,5 +345,5 @@ bool LocationFilter::Matches(const System *system, const System *origin, bool di
 	
 	// Special case: if this filter specifies planets or attributes, but was
 	// only called on a system, it never matches.
-	return didPlanet || (attributes.empty() && planets.empty());
+	return hasMatch || (attributes.empty() && planets.empty());
 }
