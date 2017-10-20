@@ -100,7 +100,7 @@ Projectile::Projectile(Point position, const Outfit *weapon)
 
 
 // This returns false if it is time to delete this projectile.
-void Projectile::Move(list<Effect> &effects, list<Projectile> &projectiles)
+void Projectile::Move(vector<Effect> &effects, vector<Projectile> &projectiles)
 {
 	if(--lifetime <= 0)
 	{
@@ -111,7 +111,7 @@ void Projectile::Move(list<Effect> &effects, list<Projectile> &projectiles)
 			for(const auto &it : weapon->DieEffects())
 				for(int i = 0; i < it.second; ++i)
 				{
-					effects.push_back(*it.first);
+					effects.emplace_back(*it.first);
 					effects.back().Place(position, velocity, angle);
 				}
 			for(const auto &it : weapon->Submunitions())
@@ -124,7 +124,7 @@ void Projectile::Move(list<Effect> &effects, list<Projectile> &projectiles)
 	for(const auto &it : weapon->LiveEffects())
 		if(!Random::Int(it.second))
 		{
-			effects.push_back(*it.first);
+			effects.emplace_back(*it.first);
 			effects.back().Place(position, velocity, angle);
 		}
 	
@@ -230,13 +230,13 @@ void Projectile::Move(list<Effect> &effects, list<Projectile> &projectiles)
 
 // This projectile hit something. Create the explosion, if any. This also
 // marks the projectile as needing deletion.
-void Projectile::Explode(list<Effect> &effects, double intersection, Point hitVelocity)
+void Projectile::Explode(vector<Effect> &effects, double intersection, Point hitVelocity)
 {
 	clip = intersection;
 	for(const auto &it : weapon->HitEffects())
 		for(int i = 0; i < it.second; ++i)
 		{
-			effects.push_back(*it.first);
+			effects.emplace_back(*it.first);
 			effects.back().Place(
 				position + velocity * intersection, velocity, angle, hitVelocity);
 		}

@@ -29,12 +29,12 @@ using namespace std;
 
 namespace {
 	// Create all the effects in the given list, at the given location, velocity, and angle.
-	void CreateEffects(const map<const Effect *, int> &m, Point pos, Point vel, Angle angle, list<Effect> &effects)
+	void CreateEffects(const map<const Effect *, int> &m, Point pos, Point vel, Angle angle, vector<Effect> &effects)
 	{
 		for(const auto &it : m)
 			for(int i = 0; i < it.second; ++i)
 			{
-				effects.push_back(*it.first);
+				effects.emplace_back(*it.first);
 				effects.back().Place(pos, vel, angle);
 			}
 	}
@@ -185,7 +185,7 @@ void Hardpoint::Aim(double amount)
 // Fire this weapon. If it is a turret, it automatically points toward
 // the given ship's target. If the weapon requires ammunition, it will
 // be subtracted from the given ship.
-void Hardpoint::Fire(Ship &ship, list<Projectile> &projectiles, list<Effect> &effects)
+void Hardpoint::Fire(Ship &ship, vector<Projectile> &projectiles, vector<Effect> &effects)
 {
 	// Since this is only called internally by Armament (no one else has non-
 	// const access), assume Armament checked that this is a valid call.
@@ -213,7 +213,7 @@ void Hardpoint::Fire(Ship &ship, list<Projectile> &projectiles, list<Effect> &ef
 
 
 // Fire an anti-missile. Returns true if the missile should be killed.
-bool Hardpoint::FireAntiMissile(Ship &ship, const Projectile &projectile, list<Effect> &effects)
+bool Hardpoint::FireAntiMissile(Ship &ship, const Projectile &projectile, vector<Effect> &effects)
 {
 	// Make sure this hardpoint really is an anti-missile.
 	int strength = outfit->AntiMissile();

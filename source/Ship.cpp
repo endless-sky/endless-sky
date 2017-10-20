@@ -766,7 +766,7 @@ const Command &Ship::Commands() const
 // Move this ship. A ship may create effects as it moves, in particular if
 // it is in the process of blowing up. If this returns false, the ship
 // should be deleted.
-void Ship::Move(list<Effect> &effects, list<shared_ptr<Flotsam>> &flotsam)
+void Ship::Move(vector<Effect> &effects, list<shared_ptr<Flotsam>> &flotsam)
 {
 	// Check if this ship has been in a different system from the player for so
 	// long that it should be "forgotten." Also eliminate ships that have no
@@ -932,7 +932,7 @@ void Ship::Move(list<Effect> &effects, list<shared_ptr<Flotsam>> &flotsam)
 				int debrisCount = attributes.Get("mass") * .07;
 				for(int i = 0; i < debrisCount; ++i)
 				{
-					effects.push_back(*effect);
+					effects.emplace_back(*effect);
 					
 					Angle angle = Angle::Random();
 					Point effectVelocity = velocity + angle.Unit() * (scale * Random::Real());
@@ -944,7 +944,7 @@ void Ship::Move(list<Effect> &effects, list<shared_ptr<Flotsam>> &flotsam)
 					CreateExplosion(effects, true);
 				for(const auto &it : finalExplosions)
 				{
-					effects.push_back(*it.first);
+					effects.emplace_back(*it.first);
 					effects.back().Place(position, velocity, angle);
 				}
 				// For everything in this ship's cargo hold there is a 25% chance
@@ -1247,7 +1247,7 @@ void Ship::Move(list<Effect> &effects, list<shared_ptr<Flotsam>> &flotsam)
 						for(const auto &it : attributes.AfterburnerEffects())
 							for(int i = 0; i < it.second; ++i)
 							{
-								effects.push_back(*it.first);
+								effects.emplace_back(*it.first);
 								effects.back().Place(pos + velocity, velocity - 6. * angle.Unit(), angle);
 							}
 					}
@@ -1598,7 +1598,7 @@ double Ship::OutfitScanFraction() const
 // Fire any weapons that are ready to fire. If an anti-missile is ready,
 // instead of firing here this function returns true and it can be fired if
 // collision detection finds a missile in range.
-bool Ship::Fire(list<Projectile> &projectiles, list<Effect> &effects)
+bool Ship::Fire(vector<Projectile> &projectiles, vector<Effect> &effects)
 {
 	isInSystem = true;
 	forget = 0;
@@ -1634,7 +1634,7 @@ bool Ship::Fire(list<Projectile> &projectiles, list<Effect> &effects)
 
 
 // Fire an anti-missile.
-bool Ship::FireAntiMissile(const Projectile &projectile, list<Effect> &effects)
+bool Ship::FireAntiMissile(const Projectile &projectile, vector<Effect> &effects)
 {
 	if(projectile.Position().Distance(position) > antiMissileRange)
 		return false;
@@ -2780,7 +2780,7 @@ double Ship::BestFuel(const string &type, const string &subtype, double defaultF
 
 
 
-void Ship::CreateExplosion(list<Effect> &effects, bool spread)
+void Ship::CreateExplosion(vector<Effect> &effects, bool spread)
 {
 	if(!HasSprite() || !GetMask().IsLoaded() || explosionEffects.empty())
 		return;
@@ -2801,7 +2801,7 @@ void Ship::CreateExplosion(list<Effect> &effects, bool spread)
 				if(type < 0)
 					break;
 			}
-			effects.push_back(*it->first);
+			effects.emplace_back(*it->first);
 			Point effectVelocity = velocity;
 			if(spread)
 			{
@@ -2818,7 +2818,7 @@ void Ship::CreateExplosion(list<Effect> &effects, bool spread)
 
 
 // Place a "spark" effect, like ionization or disruption.
-void Ship::CreateSparks(list<Effect> &effects, const string &name, double amount)
+void Ship::CreateSparks(vector<Effect> &effects, const string &name, double amount)
 {
 	if(forget)
 		return;
@@ -2837,7 +2837,7 @@ void Ship::CreateSparks(list<Effect> &effects, const string &name, double amount
 			(Random::Real() - .5) * Height());
 		if(GetMask().Contains(point, Angle()))
 		{
-			effects.push_back(*effect);
+			effects.emplace_back(*effect);
 			effects.back().Place(angle.Rotate(point) + position, velocity, angle);
 		}
 	}

@@ -68,6 +68,44 @@ namespace {
 			return Radar::HOSTILE;
 		return Radar::UNFRIENDLY;
 	}
+	
+	template <class Type>
+	void Prune(vector<Type> &objects)
+	{
+		// First, erase any of the old objects that should be removed.
+		typename vector<Type>::iterator in = objects.begin();
+		while(in != objects.end() && !in->ShouldBeRemoved())
+			++in;
+		
+		typename vector<Type>::iterator out = in;
+		while(in != objects.end())
+		{
+			if(!in->ShouldBeRemoved())
+				*out++ = std::move(*in);
+			++in;
+		}
+		if(out != objects.end())
+			objects.erase(out, objects.end());
+	}
+	
+	template <class Type>
+	void Prune(list<shared_ptr<Type>> &objects)
+	{
+		for(auto it = objects.begin(); it != objects.end(); )
+		{
+			if((*it)->ShouldBeRemoved())
+				it = objects.erase(it);
+			else
+				++it;
+		}
+	}
+	
+	template <class Type>
+	void Append(vector<Type> &objects, vector<Type> &added)
+	{
+		objects.insert(objects.end(), make_move_iterator(added.begin()), make_move_iterator(added.end()));
+		added.clear();
+	}
 }
 
 
@@ -1044,14 +1082,7 @@ void Engine::CalculateStep()
 		player.SetSystem(flagship->GetSystem());
 		EnterSystem();
 	}
-	// Now, go through the ships and delete any that have been destroyed.
-	for(auto it = ships.begin(); it != ships.end(); )
-	{
-		if((*it)->ShouldBeRemoved())
-			it = ships.erase(it);
-		else
-			++it;
-	}
+	Prune(ships);
 	
 	// Move the asteroids. This must be done before collision detection. Minables
 	// may create effects or flotsam.
@@ -1061,37 +1092,17 @@ void Engine::CalculateStep()
 	// checks if any ship has picked it up.
 	for(const shared_ptr<Flotsam> &it : flotsam)
 		it->Move(newEffects);
-	// Now, go through the flotsam and delete any that has been destroyed.
-	for(auto it = flotsam.begin(); it != flotsam.end(); )
-	{
-		if((*it)->ShouldBeRemoved())
-			it = flotsam.erase(it);
-		else
-			++it;
-	}
+	Prune(flotsam);
 	
 	// Move the projectiles.
 	for(Projectile &projectile : projectiles)
 		projectile.Move(newEffects, newProjectiles);
-	// Now, go through and remove any projectiles that have been destroyed.
-	for(auto it = projectiles.begin(); it != projectiles.end(); )
-	{
-		if(it->ShouldBeRemoved())
-			it = projectiles.erase(it);
-		else
-			++it;
-	}
+	Prune(projectiles);
 	
 	// Move the effects.
 	for(Effect &effect : effects)
 		effect.Move();
-	for(auto it = effects.begin(); it != effects.end(); )
-	{
-		if(it->ShouldBeRemoved())
-			it = effects.erase(it);
-		else
-			++it;
-	}
+	Prune(effects);
 	
 	// Perform various minor actions.
 	SpawnFleets();
@@ -1104,12 +1115,10 @@ void Engine::CalculateStep()
 	// be drawn this step (and the projectiles will participate in collision
 	// detection) but they should not be moved, which is why we put off adding
 	// them to the lists until now.
-	// Note: this mkes it so that ships that are spawned this turn are not
-	// included in the collision set, which is suboptimal but reasonable.
 	ships.splice(ships.end(), newShips);
-	projectiles.splice(projectiles.end(), newProjectiles);
+	Append(projectiles, newProjectiles);
 	flotsam.splice(flotsam.end(), newFlotsam);
-	effects.splice(effects.end(), newEffects);
+	Append(effects, newEffects);
 	
 	// Decrement the count of how long it's been since a ship last asked for help.
 	if(grudgeTime)

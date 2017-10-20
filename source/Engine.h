@@ -128,16 +128,16 @@ private:
 	PlayerInfo &player;
 	
 	std::list<std::shared_ptr<Ship>> ships;
-	std::list<Projectile> projectiles;
+	std::vector<Projectile> projectiles;
 	std::list<std::shared_ptr<Flotsam>> flotsam;
-	std::list<Effect> effects;
+	std::vector<Effect> effects;
 	AsteroidField asteroids;
 	
 	// New objects created within the latest step:
 	std::list<std::shared_ptr<Ship>> newShips;
-	std::list<Projectile> newProjectiles;
+	std::vector<Projectile> newProjectiles;
 	std::list<std::shared_ptr<Flotsam>> newFlotsam;
-	std::list<Effect> newEffects;
+	std::vector<Effect> newEffects;
 	
 	// Track which ships currently have anti-missiles ready to fire.
 	std::vector<Ship *> hasAntiMissile;

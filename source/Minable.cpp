@@ -127,7 +127,7 @@ void Minable::Place(double energy, double beltRadius)
 // Move the object forward one step. If it has been reduced to zero hull, it
 // will "explode" instead of moving, creating flotsam and explosion effects.
 // In that case it will return false, meaning it should be deleted.
-bool Minable::Move(list<Effect> &effects, list<shared_ptr<Flotsam>> &flotsam)
+bool Minable::Move(vector<Effect> &effects, list<shared_ptr<Flotsam>> &flotsam)
 {
 	if(hull < 0)
 	{
@@ -140,7 +140,7 @@ bool Minable::Move(list<Effect> &effects, list<shared_ptr<Flotsam>> &flotsam)
 				// Add a random velocity.
 				Point dp = (Random::Real() * scale) * Angle::Random().Unit();
 				
-				effects.push_back(*it.first);
+				effects.emplace_back(*it.first);
 				effects.back().Place(position + 2. * dp, velocity + dp, angle);
 			}
 		}

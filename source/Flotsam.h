@@ -17,8 +17,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Body.h"
 #include "Point.h"
 
-#include <list>
 #include <string>
+#include <vector>
 
 class Effect;
 class Outfit;
@@ -50,7 +50,7 @@ public:
 	void Place(const Body &source, const Point &dv);
 	
 	// Move the object one time-step forward.
-	void Move(std::list<Effect> &effects);
+	void Move(std::vector<Effect> &effects);
 	
 	// This is the one ship that cannot pick up this flotsam.
 	const Ship *Source() const;

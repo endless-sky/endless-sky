@@ -91,7 +91,7 @@ void Flotsam::Place(const Body &source, const Point &dv)
 
 
 // Move the object one time-step forward.
-void Flotsam::Move(list<Effect> &effects)
+void Flotsam::Move(vector<Effect> &effects)
 {
 	position += velocity;
 	angle += spin;
@@ -103,7 +103,7 @@ void Flotsam::Move(list<Effect> &effects)
 	const Effect *effect = GameData::Effects().Get("flotsam death");
 	for(int i = 0; i < 3; ++i)
 	{
-		effects.push_back(*effect);
+		effects.emplace_back(*effect);
 	
 		Angle smokeAngle = Angle::Random();
 		velocity += smokeAngle.Unit() * Random::Real();

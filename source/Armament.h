@@ -15,7 +15,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Hardpoint.h"
 
-#include <list>
 #include <map>
 #include <vector>
 
@@ -65,9 +64,9 @@ public:
 	void Aim(const Command &command);
 	// Fire the given weapon, if it is ready. If it did not fire because it is
 	// not ready, return false.
-	void Fire(int index, Ship &ship, std::list<Projectile> &projectiles, std::list<Effect> &effects);
+	void Fire(int index, Ship &ship, std::vector<Projectile> &projectiles, std::vector<Effect> &effects);
 	// Fire the given anti-missile system.
-	bool FireAntiMissile(int index, Ship &ship, const Projectile &projectile, std::list<Effect> &effects);
+	bool FireAntiMissile(int index, Ship &ship, const Projectile &projectile, std::vector<Effect> &effects);
 	
 	// Update the reload counters.
 	void Step(const Ship &ship);

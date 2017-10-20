@@ -17,8 +17,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Body.h"
 #include "Point.h"
 
-#include <list>
 #include <memory>
+#include <vector>
 
 class Effect;
 class Government;
@@ -50,10 +50,10 @@ public:
 	*/
 	
 	// Move the projectile. It may create effects or submunitions.
-	void Move(std::list<Effect> &effects, std::list<Projectile> &projectiles);
+	void Move(std::vector<Effect> &effects, std::vector<Projectile> &projectiles);
 	// This projectile hit something. Create the explosion, if any. This also
 	// marks the projectile as needing deletion.
-	void Explode(std::list<Effect> &effects, double intersection, Point hitVelocity = Point());
+	void Explode(std::vector<Effect> &effects, double intersection, Point hitVelocity = Point());
 	// Get the amount of clipping that should be applied when drawing this projectile.
 	double Clip() const;
 	// This projectile was killed, e.g. by an anti-missile system.
