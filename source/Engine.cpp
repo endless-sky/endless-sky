@@ -1060,7 +1060,8 @@ void Engine::CalculateStep()
 	// "act" before another does.
 	
 	// The only action stellar objects perform is to launch defense fleets.
-	for(const StellarObject &object : player.GetSystem()->Objects())
+	const System *playerSystem = player.GetSystem();
+	for(const StellarObject &object : playerSystem->Objects())
 		if(object.GetPlanet())
 			object.GetPlanet()->DeployDefense(newShips);
 	
@@ -1074,17 +1075,18 @@ void Engine::CalculateStep()
 	if(!wasHyperspacing && flagship && flagship->IsEnteringHyperspace())
 		Audio::Play(Audio::Get(flagship->IsUsingJumpDrive() ? "jump drive" : "hyperdrive"));
 	// Check if the flagship just entered a new system.
-	if(flagship && player.GetSystem() != flagship->GetSystem())
+	if(flagship && playerSystem != flagship->GetSystem())
 	{
 		// Wormhole travel: mark the wormhole "planet" as visited.
 		if(!wasHyperspacing)
-			for(const auto &it : player.GetSystem()->Objects())
+			for(const auto &it : playerSystem->Objects())
 				if(it.GetPlanet() && it.GetPlanet()->IsWormhole() &&
-						it.GetPlanet()->WormholeDestination(player.GetSystem()) == flagship->GetSystem())
+						it.GetPlanet()->WormholeDestination(playerSystem) == flagship->GetSystem())
 					player.Visit(it.GetPlanet());
 		
 		doFlash = Preferences::Has("Show hyperspace flash");
-		player.SetSystem(flagship->GetSystem());
+		playerSystem = flagship->GetSystem();
+		player.SetSystem(playerSystem);
 		EnterSystem();
 	}
 	Prune(ships);
@@ -1162,7 +1164,7 @@ void Engine::CalculateStep()
 	FillRadar();
 	
 	// Draw the planets.
-	for(const StellarObject &object : player.GetSystem()->Objects())
+	for(const StellarObject &object : playerSystem->Objects())
 		if(object.HasSprite())
 		{
 			// Don't apply motion blur to very large planets and stars.
@@ -1177,18 +1179,25 @@ void Engine::CalculateStep()
 	for(const shared_ptr<Flotsam> &it : flotsam)
 		draw[calcTickTock].Add(*it);
 	// Draw the ships. Skip the flagship, then draw it on top of all the others.
+	bool showFlagship = false;
 	for(const shared_ptr<Ship> &ship : ships)
-		if(ship->GetSystem() == player.GetSystem() && ship->HasSprite() && ship.get() != flagship)
+		if(ship->GetSystem() == playerSystem && ship->HasSprite())
 		{
-			AddSprites(*ship);
-			if(ship->IsThrusting())
+			if(ship.get() != flagship)
 			{
-				for(const auto &it : ship->Attributes().FlareSounds())
-					if(it.second > 0)
-						Audio::Play(it.first, ship->Position());
+				AddSprites(*ship);
+				if(ship->IsThrusting())
+				{
+					for(const auto &it : ship->Attributes().FlareSounds())
+						if(it.second > 0)
+							Audio::Play(it.first, ship->Position());
+				}
 			}
+			else
+				showFlagship = true;
 		}
-	if(flagship && flagship->HasSprite())
+		
+	if(flagship && showFlagship)
 	{
 		AddSprites(*flagship);
 		if(flagship->IsThrusting())
@@ -1240,7 +1249,8 @@ void Engine::MoveShip(const shared_ptr<Ship> &ship)
 	{
 		// Make sure this ship's destruction was recorded, even if it died from
 		// self-destruct.
-		eventQueue.emplace_back(nullptr, ship, ShipEvent::DESTROY);
+		if(ship->IsDestroyed())
+			eventQueue.emplace_back(nullptr, ship, ShipEvent::DESTROY);
 		return;
 	}
 	
@@ -1427,13 +1437,14 @@ void Engine::HandleMouseClicks()
 {
 	// Mouse clicks can't be issued if your flagship is dead.
 	Ship *flagship = player.Flagship();
-	if(!doClick || !player.Flagship())
+	if(!doClick || !flagship)
 		return;
 	
 	// Check for clicks on stellar objects. Only left clicks apply, and the
 	// flagship must not be in the process of landing or taking off.
+	const System *playerSystem = player.GetSystem();
 	if(!isRightClick && flagship->Zoom() == 1.)
-		for(const StellarObject &object : player.GetSystem()->Objects())
+		for(const StellarObject &object : playerSystem->Objects())
 			if(object.HasSprite() && object.GetPlanet())
 			{
 				// If the player clicked to land on a planet,
@@ -1462,7 +1473,7 @@ void Engine::HandleMouseClicks()
 	double clickRange = 50.;
 	shared_ptr<Ship> clickTarget;
 	for(shared_ptr<Ship> &ship : ships)
-		if(ship->GetSystem() == player.GetSystem() && &*ship != player.Flagship() && ship->IsTargetable())
+		if(ship->GetSystem() == playerSystem && &*ship != flagship && ship->IsTargetable())
 		{
 			Point position = ship->Position() - flagship->Position();
 			const Mask &mask = ship->GetMask(step);
@@ -1496,7 +1507,7 @@ void Engine::HandleMouseClicks()
 		}
 	}
 	else if(isRightClick)
-		ai.IssueMoveTarget(player, clickPoint + center, player.GetSystem());
+		ai.IssueMoveTarget(player, clickPoint + center, playerSystem);
 }
 
 
@@ -1590,39 +1601,36 @@ void Engine::DoCollisions(Projectile &projectile)
 			for(Body *body : shipCollisions.Circle(hitPos, blastRadius))
 			{
 				if(isSafe && projectile.Target() != body
-						&& !projectile.GetGovernment()->IsEnemy(body->GetGovernment()))
+						&& !gov->IsEnemy(body->GetGovernment()))
 					continue;
 				
 				shared_ptr<Ship> ship = reinterpret_cast<Ship *>(body)->shared_from_this();
 				int eventType = ship->TakeDamage(projectile, ship != hit);
 				if(eventType)
-					eventQueue.emplace_back(
-						projectile.GetGovernment(), ship, eventType);
+					eventQueue.emplace_back(gov, ship, eventType);
 			}
 			// Cloaked ships can be hit be a blast, too.
 			for(Body *body : cloakedCollisions.Circle(hitPos, blastRadius))
 			{
 				if(isSafe && projectile.Target() != body
-						&& !projectile.GetGovernment()->IsEnemy(body->GetGovernment()))
+						&& !gov->IsEnemy(body->GetGovernment()))
 					continue;
 				
 				shared_ptr<Ship> ship = reinterpret_cast<Ship *>(body)->shared_from_this();
 				int eventType = ship->TakeDamage(projectile, ship != hit);
 				if(eventType)
-					eventQueue.emplace_back(
-						projectile.GetGovernment(), ship, eventType);
+					eventQueue.emplace_back(gov, ship, eventType);
 			}
 		}
 		else if(hit)
 		{
 			int eventType = hit->TakeDamage(projectile);
 			if(eventType)
-				eventQueue.emplace_back(
-					projectile.GetGovernment(), hit, eventType);
+				eventQueue.emplace_back(gov, hit, eventType);
 		}
 		
 		if(hit)
-			DoGrudge(hit, projectile.GetGovernment());
+			DoGrudge(hit, gov);
 	}
 	else if(projectile.MissileStrength())
 	{
@@ -1730,9 +1738,10 @@ void Engine::DoScanning(const shared_ptr<Ship> &ship)
 void Engine::FillRadar()
 {
 	const Ship *flagship = player.Flagship();
+	const System *playerSystem = player.GetSystem();
 	
 	// Add stellar objects.
-	for(const StellarObject &object : player.GetSystem()->Objects())
+	for(const StellarObject &object : playerSystem->Objects())
 		if(object.HasSprite())
 		{
 			double r = max(2., object.Radius() * .03 + .5);
@@ -1744,17 +1753,17 @@ void Engine::FillRadar()
 	{
 		const System *targetSystem = flagship->GetTargetSystem();
 		const set<const System *> &links = (flagship->Attributes().Get("jump drive")) ?
-			player.GetSystem()->Neighbors() : player.GetSystem()->Links();
+			playerSystem->Neighbors() : playerSystem->Links();
 		for(const System *system : links)
 			radar[calcTickTock].AddPointer(
 				(system == targetSystem) ? Radar::SPECIAL : Radar::INACTIVE,
-				system->Position() - player.GetSystem()->Position());
+				system->Position() - playerSystem->Position());
 	}
 	
 	// Add ships. Also check if hostile ships have newly appeared.
 	bool hasHostiles = false;
 	for(shared_ptr<Ship> &ship : ships)
-		if(ship->GetSystem() == player.GetSystem())
+		if(ship->GetSystem() == playerSystem)
 		{
 			// Do not show cloaked ships on the radar, except the player's ships.
 			bool isPlayer = ship->GetGovernment()->IsPlayer();
