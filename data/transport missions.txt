@@ -1955,6 +1955,7 @@ ship "Science Drone"
 
 
 mission "Lost Boy 1"
+	minor
 	name `Rescue Tod`
 	description `Travel to <destination> in search for Tod, the son of a single mother from <origin>.`
 	source "Moonshake"
@@ -2104,6 +2105,7 @@ mission "Lost Boy 3"
 
 
 mission "Paradise Fortune 1"
+	minor
 	landing
 	name `Flee to <planet>`
 	description `Flee from <origin> to <destination> with the girl you let on to your ship.`
