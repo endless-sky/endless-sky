@@ -12,7 +12,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "CollisionSet.h"
 
-#include "Body.h"
+#include "Ship.h"
 #include "Government.h"
 #include "Mask.h"
 #include "Point.h"
@@ -67,13 +67,13 @@ void CollisionSet::Clear(int step)
 
 
 // Add an object to the set.
-void CollisionSet::Add(Body &body)
+void CollisionSet::Add(Ship &ship)
 {
 	// Calculate the range of (x, y) grid coordinates this object covers.
-	int minX = static_cast<int>(body.Position().X() - body.Radius()) >> SHIFT;
-	int minY = static_cast<int>(body.Position().Y() - body.Radius()) >> SHIFT;
-	int maxX = static_cast<int>(body.Position().X() + body.Radius()) >> SHIFT;
-	int maxY = static_cast<int>(body.Position().Y() + body.Radius()) >> SHIFT;
+	int minX = static_cast<int>(ship.Position().X() - ship.Radius()) >> SHIFT;
+	int minY = static_cast<int>(ship.Position().Y() - ship.Radius()) >> SHIFT;
+	int maxX = static_cast<int>(ship.Position().X() + ship.Radius()) >> SHIFT;
+	int maxY = static_cast<int>(ship.Position().Y() + ship.Radius()) >> SHIFT;
 	
 	// Add a pointer to this object in every grid cell it occupies.
 	for(int y = minY; y <= maxY; ++y)
@@ -82,7 +82,7 @@ void CollisionSet::Add(Body &body)
 		for(int x = minX; x <= maxX; ++x)
 		{
 			int gx = x & WRAP_MASK;
-			added.emplace_back(&body, x, y);
+			added.emplace_back(&ship, x, y);
 			++counts[gy * CELLS + gx + 2];
 		}
 	}
@@ -117,7 +117,7 @@ void CollisionSet::Finish()
 
 // Get the first object that collides with the given projectile. If a
 // "closest hit" value is given, update that value.
-Body *CollisionSet::Line(const Projectile &projectile, double *closestHit) const
+Ship *CollisionSet::Line(const Projectile &projectile, double *closestHit) const
 {
 	// What objects the projectile hits depends on its government.
 	const Government *pGov = projectile.GetGovernment();
@@ -138,7 +138,7 @@ Body *CollisionSet::Line(const Projectile &projectile, double *closestHit) const
 	
 	// Keep track of the closest collision found so far.
 	double closest = 1.;
-	Body *result = nullptr;
+	Ship *result = nullptr;
 	
 	// Special case, very common: the projectile is contained in one grid cell.
 	// In this case, all the complicated code below can be skipped.
@@ -157,18 +157,18 @@ Body *CollisionSet::Line(const Projectile &projectile, double *closestHit) const
 			
 			// Check if this projectile can hit this object. If either the
 			// projectile or the object has no government, it will always hit.
-			const Government *iGov = it->body->GetGovernment();
-			if(it->body != projectile.Target() && iGov && pGov && !iGov->IsEnemy(pGov))
+			const Government *iGov = it->ship->GetGovernment();
+			if(it->ship != projectile.Target() && iGov && pGov && !iGov->IsEnemy(pGov))
 				continue;
 			
-			const Mask &mask = it->body->GetMask(step);
-			Point offset = projectile.Position() - it->body->Position();
-			double range = mask.Collide(offset, projectile.Velocity(), it->body->Facing());
+			const Mask &mask = it->ship->GetMask(step);
+			Point offset = projectile.Position() - it->ship->Position();
+			double range = mask.Collide(offset, projectile.Velocity(), it->ship->Facing());
 			
 			if(range < closest)
 			{
 				closest = range;
-				result = it->body;
+				result = it->ship;
 			}
 		}
 		if(closest < 1. && closestHit)
@@ -197,7 +197,7 @@ Body *CollisionSet::Line(const Projectile &projectile, double *closestHit) const
 		ry = full - ry;
 	
 	// Keep track of which objects we've already considered.
-	set<const Body *> seen;
+	set<const Ship *> seen;
 	while(true)
 	{
 		// Examine all objects in the current grid cell.
@@ -211,24 +211,24 @@ Body *CollisionSet::Line(const Projectile &projectile, double *closestHit) const
 			if(it->x != gx || it->y != gy)
 				continue;
 			
-			if(seen.count(it->body))
+			if(seen.count(it->ship))
 				continue;
-			seen.insert(it->body);
+			seen.insert(it->ship);
 			
 			// Check if this projectile can hit this object. If either the
 			// projectile or the object has no government, it will always hit.
-			const Government *iGov = it->body->GetGovernment();
-			if(it->body != projectile.Target() && iGov && pGov && !iGov->IsEnemy(pGov))
+			const Government *iGov = it->ship->GetGovernment();
+			if(it->ship != projectile.Target() && iGov && pGov && !iGov->IsEnemy(pGov))
 				continue;
 			
-			const Mask &mask = it->body->GetMask(step);
-			Point offset = projectile.Position() - it->body->Position();
-			double range = mask.Collide(offset, projectile.Velocity(), it->body->Facing());
+			const Mask &mask = it->ship->GetMask(step);
+			Point offset = projectile.Position() - it->ship->Position();
+			double range = mask.Collide(offset, projectile.Velocity(), it->ship->Facing());
 			
 			if(range < closest)
 			{
 				closest = range;
-				result = it->body;
+				result = it->ship;
 			}
 		}
 		
@@ -277,7 +277,7 @@ Body *CollisionSet::Line(const Projectile &projectile, double *closestHit) const
 
 
 // Get all objects within the given range of the given point.
-const vector<Body *> &CollisionSet::Circle(const Point &center, double radius) const
+const vector<Ship *> &CollisionSet::Circle(const Point &center, double radius) const
 {
 	// Calculate the range of (x, y) grid coordinates this circle covers.
 	int minX = static_cast<int>(center.X() - radius) >> SHIFT;
@@ -286,7 +286,7 @@ const vector<Body *> &CollisionSet::Circle(const Point &center, double radius) c
 	int maxY = static_cast<int>(center.Y() + radius) >> SHIFT;
 	
 	// Keep track of which objects we've already considered.
-	set<const Body *> seen;
+	set<const Ship *> seen;
 	result.clear();
 	for(int y = minY; y <= maxY; ++y)
 	{
@@ -305,14 +305,14 @@ const vector<Body *> &CollisionSet::Circle(const Point &center, double radius) c
 				if(it->x != x || it->y != y)
 					continue;
 				
-				if(seen.count(it->body))
+				if(seen.count(it->ship))
 					continue;
-				seen.insert(it->body);
+				seen.insert(it->ship);
 				
-				const Mask &mask = it->body->GetMask(step);
-				Point offset = center - it->body->Position();
-				if(offset.Length() <= radius || mask.WithinRange(offset, it->body->Facing(), radius))
-					result.push_back(it->body);
+				const Mask &mask = it->ship->GetMask(step);
+				Point offset = center - it->ship->Position();
+				if(offset.Length() <= radius || mask.WithinRange(offset, it->ship->Facing(), radius))
+					result.push_back(it->ship);
 			}
 		}
 	}

@@ -1540,8 +1540,8 @@ void Engine::DoCollisions(Projectile &projectile)
 		double triggerRadius = projectile.GetWeapon().TriggerRadius();
 		if(triggerRadius)
 		{
-			for(const Body *body : shipCollisions.Circle(projectile.Position(), triggerRadius))
-				if(body == projectile.Target() || gov->IsEnemy(body->GetGovernment()))
+			for(const Ship *ship : shipCollisions.Circle(projectile.Position(), triggerRadius))
+				if(ship == projectile.Target() || gov->IsEnemy(ship->GetGovernment()))
 				{
 					closestHit = 0.;
 					break;
@@ -1587,30 +1587,28 @@ void Engine::DoCollisions(Projectile &projectile)
 			// Even friendly ships can be hit by the blast, unless it is a
 			// "safe" weapon.
 			Point hitPos = projectile.Position() + closestHit * projectile.Velocity();
-			for(Body *body : shipCollisions.Circle(hitPos, blastRadius))
+			for(Ship *ship : shipCollisions.Circle(hitPos, blastRadius))
 			{
-				if(isSafe && projectile.Target() != body
-						&& !projectile.GetGovernment()->IsEnemy(body->GetGovernment()))
+				if(isSafe && projectile.Target() != ship
+						&& !projectile.GetGovernment()->IsEnemy(ship->GetGovernment()))
 					continue;
 				
-				shared_ptr<Ship> ship = reinterpret_cast<Ship *>(body)->shared_from_this();
-				int eventType = ship->TakeDamage(projectile, ship != hit);
+				int eventType = ship->TakeDamage(projectile, ship != hit.get());
 				if(eventType)
 					eventQueue.emplace_back(
-						projectile.GetGovernment(), ship, eventType);
+						projectile.GetGovernment(), ship->shared_from_this(), eventType);
 			}
 			// Cloaked ships can be hit be a blast, too.
-			for(Body *body : cloakedCollisions.Circle(hitPos, blastRadius))
+			for(Ship *ship : cloakedCollisions.Circle(hitPos, blastRadius))
 			{
-				if(isSafe && projectile.Target() != body
-						&& !projectile.GetGovernment()->IsEnemy(body->GetGovernment()))
+				if(isSafe && projectile.Target() != ship
+						&& !projectile.GetGovernment()->IsEnemy(ship->GetGovernment()))
 					continue;
 				
-				shared_ptr<Ship> ship = reinterpret_cast<Ship *>(body)->shared_from_this();
-				int eventType = ship->TakeDamage(projectile, ship != hit);
+				int eventType = ship->TakeDamage(projectile, ship != hit.get());
 				if(eventType)
 					eventQueue.emplace_back(
-						projectile.GetGovernment(), ship, eventType);
+						projectile.GetGovernment(), ship->shared_from_this(), eventType);
 			}
 		}
 		else if(hit)
@@ -1645,9 +1643,8 @@ void Engine::DoCollection(Flotsam &flotsam)
 {
 	// Check if any ship can pick up this flotsam.
 	Ship *collector = nullptr;
-	for(Body *body : shipCollisions.Circle(flotsam.Position(), 5.))
+	for(Ship *ship : shipCollisions.Circle(flotsam.Position(), 5.))
 	{
-		Ship *ship = reinterpret_cast<Ship *>(body);
 		if(!ship->CannotAct() && ship != flotsam.Source() && ship->Cargo().Free() >= flotsam.UnitSize())
 		{
 			collector = ship;
