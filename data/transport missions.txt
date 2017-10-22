@@ -1951,3 +1951,381 @@ ship "Science Drone"
 		"heat dissipation" 1
 	explode "tiny explosion" 5
 	explode "small explosion" 2
+
+
+
+mission "Lost Boy 1"
+	name `Rescue Tod`
+	description `Travel to <destination> in search for Tod, the son of a single mother from <origin>.`
+	source "Moonshake"
+	destination "Deadman's Cove"
+	to offer
+		"combat rating" > 100
+	
+	on offer
+		conversation
+			`Wandering around the spaceport to see what it has to offer, you make your way into one of the dimly lit restaurants to avoid the crowded streets and metallic tasting air outside. The restaurant is mostly empty. One of its only inhabitants is a dirty looking woman crying with her head down in one of the booths.`
+			choice
+				`	(Approach the woman and ask why she is crying.)`
+					goto approach
+				`	(Ignore her and order a meal.)`
+				`	(Ignore her and leave the restaurant.)`
+					goto leave
+			
+			`	Your waiter is a cordial young boy who could be no older than sixteen years of age. The restaurant menu selection does not look all that interesting, but you eventually settle on what you will order. Minutes later, the waiter brings you your food, which does not look as appetizing as the pictures on the menu.`
+			`	After finishing and paying for your food, you notice that the woman you saw earlier is still in the booth crying.`
+			choice
+				`	(Leave the restaurant.)`
+					goto leave
+				`	(Approach the woman.)`
+					goto approach
+			
+			label approach
+			`	As you walk close to the woman, she raises her head from her arms and brushes her hair out of her face to look at you. Tears run down her cheeks and her nose is running. "Wh-wh-what do you w-want?" she asks in a quiet voice, trying to speak through sobs.`
+			choice
+				`	"Can I help you?"`
+				`	"Why are you crying?"`
+			
+			`	The woman wipes away the tears (and snot) with the sleeve of her shirt. She takes a few deep breathes to calm down before asking, "Do you really care?"` 
+			`	You nod. "Why else would I ask you?"`
+			`	She has stopped crying now. "It's my son, Tod," she says. "I've raised him by myself his entire life. Having to deal with a child on my own, I could never save up enough money to leave <origin>, so at the first chance of giving him a better life somewhere else I took it. I sent him away to a mining job on Placer, but on the way the ship he was on was attacked and boarded by pirates." She begins to sob again. "I d-don't know if he's d-dead or a slave. I tried t-talking to someone from the Syndicate, but they said that saving him wouldn't be w-worth it. T-that was earlier today."`
+			`	"W-would you be able to help? Please do if you c-can."`
+			choice
+				`	"Alright, I'll help you. Where should I look for him?"`
+					goto accept
+				`	"Sorry, I'm not going to risk my life for someone I don't know."`
+			
+			`	The woman begins crying even louder than she was before. A waiter walks up to you and suggests that you leave before making the situation worse, and one of the few customers in the restaurant gives you a dirty look for making his meal experience even worse.`
+			
+			label leave
+			`	You wait for the streets to become less crowded before leaving the restaurant. As you look back through the windows of the restaurant, you catch a glimpse of the woman still crying in the booth before the crowd blocks your line of sight and you continue walking.`
+				decline
+
+			label accept
+			`	"Thank you s-so much! The closest pirate planet to here is <destination>. If he's still alive then I'm sure he would be there. I can feel it." The woman gives you a description of Tod Copper so that you may find him and thanks you again for agreeing to help her. She asks that if you find him to bring him to a location in the <origin> spaceport where she will be waiting.`
+				accept
+
+
+
+mission "Lost Boy 2"
+	landing
+	name `Rescue Tod`
+	description `Locate the <npc> and board it to rescue Tod, then bring him to <destination> so that he may reunite with his mother.`
+	destination Moonshake
+	to offer
+		has "Lost Boy 1: done"
+	
+	on offer
+		conversation
+			`The air in the <origin> spaceport smells of tobacco and tastes of the salt from the world's vast oceans. You receive sideways looks from rough-looking pirates, but none make a move to cause any trouble. As lawless as pirates can be, they still adhere to a form of honor code when in a planet's main spaceport. At least generally.`
+			`	You ask a bartender for directions to the local slave traders, as that is the likely place that Tod would be if he was taken here. He points you to a slave trader by the name of Cygnet Brig who runs the entire slave trade in the <origin> spaceport.`
+			`	Cygnet owns a large warehouse building located on the edge of the spaceport island where he keeps all his slaves packed together in groups of three in small holding cells. Some slaves are rattling the bars on their cell or screaming in protest, but many have seemed to accept their fate. Cygnet, a tall, thin, mustachioed man, notices you gazing at the cells. "Can't keep 'em too packed together, oth'wise they's get each otha sick," he remarks in a thick accent of unknown origin to you. "What can I get ya?"`
+			choice
+				`	"I'm here to buy a slave."`
+					goto description
+				`	"Do you have a boy by the name of Tod Copper?"`
+			
+			`	Cygnet strokes his mustache. "Tod Copper. Tod Copper. Tell you what, that name doesn' ring a bell. Heck, I don' even keep track of names 'less I get someone impor'ant. If ya lookin' for someone in particular to buy, can I get a description?"`
+			
+			label description
+			`	You provide Cygnet with the description of Tod that his mother gave you, then explain to him that Tod would have been taken from a ship bound for Placer.`
+			`	"Oh yeah, that bugger! That little rebel was causin' me trouble so I sold him off soon as I could. If ya looking for him, then you're gonna need to look for a guy by the name of <npc>. He bought your boy Tod 'bout four days ago. He might be hangin' around a system nearby."`
+			`	You thank Cygnet, who has been surprisingly polite for a slave trader, for the information. "If ya ever need a slave, just come talk to me," he remarks as you walk back to your ship. "I've got the cheapest slave this side of Sol."`
+				accept
+	
+	npc board
+		personality staying nemesis target plunders
+		government "Bounty"
+		system
+			distance 2 4
+		ship "Vanguard (Particle)" "Lord Ligonier"
+		conversation
+			`When you breach the ship's hull, you find the crew of the <npc> more concerned with containing the fires caused by your weapons than they are you walking onto their ship. Almost every one of the crew members is a teenager. One looks at you and the laser pistol in your hand with mortal fear in his eyes.`
+			`	Through the smoke and steam, you see a boy running toward you who fits the description of Tod Copper.`
+			choice
+				`	"Get on my ship!"`
+					goto ship
+				`	"Are you Tod?"`
+			
+			`	"Yeah! Are you here to save me?"`
+			`	"Get on my ship!" you yell, motioning for him to come toward you.`
+			
+			label ship
+			`	The boy runs past you and into your ship. Following closely behind Tod is a large bearded man holding a laser rifle in one hand and a fragmentation grenade in the other.`
+			`	"That's my crew member, you no good piece of sh-"`
+			`	Before the captain is able to finish his sentence, pipes in the wall next to him explode, blasting hot steam all over the right side of his body, causing him to begin rolling on the floor in horrible screeches of pain. Not wanting to stay connected to the ship any longer than you need to be, you run back into your ship and fly away.`
+
+
+
+mission "Lost Boy 3"
+	landing
+	name `Bring Tod to <planet>`
+	description `Now that Tod's mother knows he is safe, bring him to <destination> so that he may start his mining job to support him and his mother.`
+	destination "Placer"
+	to offer
+		has "Lost Boy 2: done"
+	
+	on offer
+		payment 952
+		conversation
+			`Tod's mother almost tears up at the sight of him as you approach. "Oh, my baby boy is alive!" she exclaims, running up and hugging Tod as his face reddens with embarrassment. "Are you hurt? Are you okay? Do you think you'll be fine?" Tod's mother asks, kissing his cheeks in between each question.`
+			`	"I'm fine, mom," Tod says in an annoyed tone of voice. Some things must never change.`
+			`	The mother gives you a handful of credit chips. Upon counting them, you find that they are only worth a total of <payment>. "I know it isn't much for the work you've done, Captain, but it's all I have to give you in return."`
+			choice
+				`	"Don't worry. "`
+				`	"You're lucky I agreed to help you in the first place."`
+					goto money
+			
+			`	"This is just so wonderful. There aren't many people around here who would do such a thing for such little pay."`
+				goto end
+			
+			label money
+			`	"I know, I know, and I'm eternally grateful for that, Captain. There aren't many people around here who would do such a thing for such little pay."`
+			
+			label end
+			`	"Hold on," Tod chimes in. "I still need to get to <planet>."`
+			`	"Of course!" his mother yells out. "Captain, may you please make sure that Tod has a safe passage to <destination>?"`
+			`	"And make sure I don't become a slave this time," Tod quips jokingly.`
+			choice
+				`	"Okay, I'll take Tod to <planet>."`
+					accept
+				`	"Sorry, I'm not headed in that direction."`
+					decline
+	
+	npc
+		government "Pirate"
+		personality staying plunders disables nemesis
+		system "Al Dhanab"
+		ship "Falcon (Heavy)" "Cygnet's Slaver"
+	
+	on complete
+		dialog `You wish Tod Copper the best of luck on <planet>. "Thank you, Captain. Hopefully I can repay you one day. As cliche as it sounds, I owe you my life."`
+
+
+
+mission "Paradise Fortune 1"
+	landing
+	name `Flee to <planet>`
+	description `Flee from <origin> to <destination> with the girl you let on to your ship.`
+	source
+		planet "Follower" "Mainsail"
+	destination
+		distance 1 1
+	passengers 1
+	to offer
+		has "main plot completed"
+		random < 50
+	
+	on offer
+		conversation
+			`You land your ship on an empty landing pad situated within walking distance of the <origin> shipyard. As with all Paradise Worlds, the air is just the right temperature when you step out of your ship, and a light breeze flows through the leaves of the trees planted around the spaceport.`
+			`	While taking a moment to breathe in the fresh air, you hear yelling coming from the entrance to the shipyard. Looking over, you spot a young girl with a backpack running from two spaceport security guards. "Get back here!" they continually yell at the girl, chasing her with no success.`
+			`	"Someone help me!" the girl shrieks out. As she runs, a credit chip falls out of her backpack. `
+			choice
+				`	(Let the girl onto my ship.)`
+					goto continue
+				`	(Ignore the scene.)`
+			
+			`	The girl looks you in the eyes as she approaches, expecting help that will never come. Air rushes past you as the girl and the security guards run by. After a few meters, the security guards catch up to the girl, tackling her to the ground and detaining her as they remove her backpack full of credit chips.`
+					decline
+			
+			label continue
+			`	You open the hatch to your ship and yell "Get on!" as the girl approaches. "Thank you, Captain," she says while getting closer, to much protest from the approaching security guards.`
+			`	As the girl enters your ship, she grabs your arm and pulls you in with her before closing the hatch. "Launch and go to <destination>, now! I'll explain when we get there."`
+				launch
+
+
+
+mission "Paradise Fortune 2"
+	landing
+	name `Escaping Paradise`
+	description `Escape the Paradise Worlds and travel to <destination> where Diana Howl will give over part of her family's fortune to the local government of <planet>.`
+	destination
+		attributes "dirt belt"
+		government Republic
+	passengers 1
+	to offer
+		has "Paradise Fortune 1: done"
+	
+	on offer
+		conversation
+			`"You need to explain what is going on here," you say just after settling your ship down.`
+			`	"Alright, alright, I'll explain." You notice that the girl has a strange mix between a posh Paradise World accent and a Dirt Belt or possibly even Rim accent. "My name is Diana Howl. My father is the CEO of a large marketing firm. And this," Diana opens her backpack, revealing its full contents to you: thousands of credit chips. "This is part of my family fortune, about two billion credits of it. Don't worry, my father should be able to make this back in a few months time."`
+			choice
+				`	"Why have you stolen all this?"`
+					goto story
+				`	"I'm calling the spaceport authorities."`
+			
+			`	"No, wait! Let me explain!" Diana protests.`
+			
+			label story
+			`	"All my life I've been fascinated with the world outside my little bubble of the Paradise Planets. My father met my mother on Heartland in the Cor Caroli system while he was on a business trip, so my mother would often take me on trips to the Dirt Belt. The last time I went was before the war though; my mother didn't want me anywhere near the 'Free Loafers', as she called them. Back then life in the Dirt Belt didn't seem anywhere near comparable to life in the Paradise Worlds, and I can only imagine how much worse it might be after being so close to a war, so I decided that I needed to do something to help.`
+			`	"Now, can you take me to <destination>? I wish to hand this over to the government there to help them. It may not seem like much in the grand scheme of how many credits go into running a planet, but it should be a huge boost to their economy."`
+			choice
+				`	"Alright, I'll help you."`
+					goto accept
+				`	"What makes you think they won't hand it over to your father?"`
+				`	"This is a crime. I don't want to get in trouble helping you."`
+					goto decline
+			
+			`	Diana pauses. "I hadn't thought of that," she says in a downtrodden tone, "but I at least have to try! Please just bring me to <planet>. Please!" Diana looks up at you with puppy dog eyes, quivering her lip with the backpack of credit chips held against her chest.`
+			choice
+				`	"Alright, I'll bring you to <planet>."`
+				`	"Sorry, but I'm not putting myself on the line for this."`
+					goto decline
+			
+			label accept
+			`	"Excellent!" Diana yells out. She drops the bag of credits on the floor and gives you a hug. "We'll have to leave immediately, for I fear that the spaceport authorities here might be searching for us."`
+				launch
+			
+			label decline
+			`	You call the spaceport authorities and tell them that Diana Howl is on your ship. Moments later when they arrive, they take Diana kicking and screaming off of your ship. She yells harsh profanities at you as she is taken away, one among them being "Syndicate lover." As a reward for "catching" Diana, the spaceport authorities transfer <payment> to your account.`
+				decline
+			
+	on decline
+		payment 150000
+
+
+
+mission "Paradise Fortune 3"
+	landing
+	name `Last Hope`
+	description `Escape from the Navy and travel to <destination> where Diana Howl hopes that the Free Worlds will help her.`
+	destination Bourne
+	passengers 1
+	to offer
+		has "Paradise Fortune 2: done"
+	
+	on offer
+		conversation
+			`Diana is eager to get going as soon as you land. "This is going to be great! I'm going to do so much good with this! I can't wait to see the look on their faces when I open up my backpack in front of them!" Diana says rapidly as she bounces up and down with the backpack of credit chips on her back.`
+			`	As you gather a few credits to bring with you in case you see something you want to buy, Diana bounces off the ship. Suddenly, her crazed rambling stops. Diana comes running back onto the ship yelling "We need to go! Fly to <destination>! The Free Worlds should protect me!"`
+			choice
+				`	"What is it? What's happening?"`
+				`	(Launch immediately.)`
+					launch
+			
+			`	"Look outside," Diana says with a ghastly look on her face. You check your ship's external cameras, and roaming around your ship is a group of men in Navy uniforms. One of them raises a megaphone to their mouth.`
+			`	"Hand over the girl and her credits and we can all walk away from this peacefully, Captain."`
+			choice
+				`	"Why do you need her?"`
+				`	"Over my dead body!"`
+					goto launch
+				`	"Alright, I'll bring her out."`
+					goto agree
+			
+			`	"In case you haven't noticed, Captain, that girl is in possession of over two billion stolen credits. She's a criminal, and helping her makes you a criminal too. Given your status, Captain <last>, I'd appreciate it if you didn't make me the officer that put <first> <last> behind bars."`
+			choice
+				`	"I'm sorry officer, but I can't help you."`
+					goto launch
+				`	"Okay, I'll hand her over."`
+			
+			label agree
+			`	Diana looks to you in shock. "You wouldn't!" she screeches. "You can't! Fly me to <planet> right now!"`
+			choice
+				`	"I'm not going to become a criminal to fulfill your crazy dream."`
+				`	"Okay, we'll fly to <planet>."`
+					goto launch
+			
+			`	You allow the Navy officer and his troops onto your ship, where they apprehend Diana and her stolen credits. They take her kicking and screaming off of your ship. She yells harsh profanities at you as she is taken away, one among them being "Syndicate lover."`
+			`	"Thank you for not causing any more trouble, Captain," the officer says to you. He then hands you <payment> for "playing nice" and leaves.`
+				decline
+			
+			label launch
+			`	You activate the repulsor engines on your ship, sending the Navy troops recoiling away from your ship. As you ascend into space, your computers detect multiple ships targeting you.`
+				launch
+			
+	on accept
+		"reputation: Republic" = -10
+	
+	on decline
+		payment 500000
+	
+	npc evade
+		government "Republic"
+		personality heroic
+		fleet "Large Republic"
+
+
+
+mission "Paradise Fortune 4"
+	landing
+	name `Exchange of Goods`
+	description `Travel to <destination> and hand the backpack of credits and Diana Howl's note over to the Navy.`
+	destination "New Boston"
+	to offer
+		has "Paradise Fortune 3: done"
+	
+	on offer
+		"reputation: Republic" = 10
+		conversation
+			`While in flight, Diana tells you the stories that she heard of the war. In the Paradise Planets region, they were told that declaring independence and bombing Geminus and Martini was the Free Worlds' first step in overthrowing the Republic.`
+			`	"We should talk to Alondo," Diana says. "He'll be able to handle this situation."`
+			
+			branch epilogue
+				has "FW Epilogue: Alondo: offered"
+			`	As you're coming in for a landing on Bourne, you receive a message from Alondo. "<first>!" he says. "I just heard that you were in system. Want to meet up for a drink and talk about old times?"`
+			choice
+				`	"I'd be glad to any other time, but I need your help at the moment."`
+					goto conversation
+			
+			label epilogue
+			`	As you're coming in for a landing, you contact Alondo, who is luckily on Bourne. "What have you gotten yourself into?" he responds after you mention that you need his help.`
+			choice
+				`	"I'll explain the situation when we meet."`
+			
+			label conversation
+			`	You meet with Alondo at his office in the Free Worlds Senate building. After he and Diana exchange greetings, you explain the situation to him.`
+			`	"You what?" Alondo responds. "You have to turn her in. The war may be over, Captain, but there is still tension between the Republic and Free Worlds that we can not have a situation like this exacerbating."`
+			`	"You can't do that!" Diana yells in protest. "I thought the Free Worlds was suppose to be all about going against the Republic, but you're just going to give in?"`
+			`	"Look here, kid," Alondo says in a stern tone. "The Free Worlds was never about being against the Republic, it was only ever about being against Parliament. There's a big difference there. What you've done is a crime, even to the Free Worlds. We are not about to gain a reputation of harboring criminals of the Republic."`
+			`	Diana, instead of protesting further, puts her head down. "I'll be in your ship, Captain," she says. Diana storms off, making an effort to create as much noise as possible with the stomps of her feet.`
+			`	"Spoiled kid," Alondo says quietly. "Attitudes like that are why I joined the Southern Defense Pact. Anyway Captain, I suggest you hand her over to the Navy immediately. I'll contact the Republic if you need me to."`
+			choice
+				`	"Alright, I'll hand her over."`
+					goto end
+				`	"Sorry, Alondo, but I agree with her cause."`
+			
+			apply
+				set "navy contacted"
+			`	"I understand. Please, just don't drag the Free Worlds into this."`
+			
+			label end
+			`	You say goodbye to Alondo and return to your ship. When you arrive and look around, Diana is notably absent. In your pilot seat she has left her backpack and a written note with the stains of tears in bottom right corner.`
+			``
+			`Dear <first> <last>,`
+			`	I don't care about the credits anymore, but I can't go back to my family. I'll be too much of a disgrace, and I can't even imagine looking my parents in the eyes after what I've done. I've left the credits with you. You can do with them as you wish.`
+			`	I've taken this chance to escape from my old life. I want to become my own person in the world, and I want to do it on my own. Please don't come looking for me, because wherever I am I'll be happier than when I was with my parents. I've failed myself today, but I'm still going to strive for the betterment of the less fortunate. Thank you for trying to make my dreams come true, even if you couldn't succeed.`
+			`	Sincerely,`
+			`				Diana W. Howl`
+			``
+			`	You stare down at the backpack, stuffed full with over two billion credits.`
+			choice
+				`	(Hand the credits over to the Navy.)`
+				`	(Steal the credits.)`
+					goto steal
+			
+			branch navy
+				has "navy contacted"
+			`	You fold the note and slip it into the backpack so that you can show it to the Navy to explain why Diana is not with you. You contact the Navy's crime report hotline and tell them that you have the stolen credits. A few minutes later, they respond telling you that a fleet is waiting on <destination> to retrieve the credits.`
+				accept
+			
+			label navy
+			apply
+				clear "navy contacted"
+			`	You fold the note and slip it into the backpack so that you can show it to the Navy to explain why Diana is not with you. Alondo sends you a message, telling you that the Navy says they are waiting on <destination> for the credits.`
+				accept
+			
+			label steal
+			`	You rip the note apart and begin counting the credits. In total, the backpack contains <payment>. Over two billion credits richer, you sit down and wonder what you will spend it on.`
+				decline
+	
+	on decline
+		payment 2152894400
+		"reputation: Republic" = -1000
+	
+	on complete
+		payment 1000000
+		conversation
+			`	You spot a fleet of docked Navy ships as you come in for a landing. A small squad of troops gather around your ship after you land. You are greeted by a Navy officer upon exitting your ship and explain to him where Diana is, showing him the note she wrote.`
+			`	"That is unfortunate," she responds with a troubled look on her face. "We'll contact the Howl family about this." Before letting you go, the officer hands you <payment>. "This is the reward that Mr. Howl put out for the return of his credits. Thank you for doing the right thing, Captain."`
