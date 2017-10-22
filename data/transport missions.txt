@@ -2232,7 +2232,7 @@ mission "Paradise Fortune 3"
 				decline
 			
 			label launch
-			`	You activate the repulsor engines on your ship, sending the Navy troops recoiling away from your ship. As you ascend into space, your computers detect multiple ships targeting you.`
+			`	You activate your repulsor engines, sending the Navy troops recoiling away from your ship. As you ascend into space, your computers detect multiple ships targeting you.`
 				launch
 			
 	on accept
