@@ -18,6 +18,9 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Minable.h"
 #include "Point.h"
 
+#include "spatial/idle_box_multimap.hpp"
+
+#include <array>
 #include <list>
 #include <memory>
 #include <string>
@@ -27,6 +30,12 @@ class DrawList;
 class Projectile;
 class Sprite;
 class Visual;
+
+
+
+// Box bounds going from a low corner (x,y) to a high corner (x,y).
+// The default layout is spatial::llhh_layout_tag.
+typedef std::array<double,4> box_bounds_t;
 
 
 
@@ -70,6 +79,7 @@ private:
 		void Step();
 		void Draw(DrawList &draw, const Point &center, double zoom) const;
 		double Collide(const Projectile &projectile, int step) const;
+		const Point &Size() const;
 		
 	private:
 		Angle spin;
@@ -80,6 +90,9 @@ private:
 private:
 	std::vector<Asteroid> asteroids;
 	std::list<std::shared_ptr<Minable>> minables;
+	
+	typedef spatial::idle_box_multimap<4,box_bounds_t,Asteroid*> asteroid_bounds_container_t;
+	asteroid_bounds_container_t asteroidBounds;
 };
 
 
