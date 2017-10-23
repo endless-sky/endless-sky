@@ -2085,7 +2085,7 @@ mission "Lost Boy 3"
 			
 			label end
 			`	"Hold on," Tod chimes in. "I still need to get to <planet>."`
-			`	"Of course!" his mother yells out. "Captain, may you please make sure that Tod has a safe passage to <destination>?"`
+			`	"Of course!" his mother yells out. "Captain, would you please make sure that Tod has a safe passage to <destination>?"`
 			`	"And make sure I don't become a slave this time," Tod quips jokingly.`
 			choice
 				`	"Okay, I'll take Tod to <planet>."`
@@ -2095,7 +2095,7 @@ mission "Lost Boy 3"
 	
 	npc
 		government "Pirate"
-		personality staying plunders disables nemesis
+		personality staying plunders disables
 		system "Al Dhanab"
 		ship "Falcon (Heavy)" "Cygnet's Slaver"
 	
