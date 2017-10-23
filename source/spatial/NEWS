@@ -1,0 +1,15 @@
+Spatial NEWS
+============
+
+2011-03-13  Sylvain Bougerel  <sylvain.bougerel.devel@gmail.com>
+
+	* The new library is out on this very day. A bit of documentation has
+	been done, but there are still some missing unit tests and important
+	parts of the documentation missing. The roadmap for spatial is much more
+	ambitious that the current release: self-balancing trees to complete,
+	adding boxset family of containers, and then turning all this into
+	intrusive containers, plus each time, more documentation and unit
+	tests. New iterators should also appear, mainly to work with boxset
+	family of containers.
+
+
