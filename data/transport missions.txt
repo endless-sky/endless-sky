@@ -2053,7 +2053,7 @@ mission "Lost Boy 2"
 			
 			label ship
 			`	The boy runs past you and into your ship. Following closely behind Tod is a large bearded man holding a laser rifle in one hand and a fragmentation grenade in the other.`
-			`	"That's my crew member, you no good piece of sh-"`
+			`	"That's my crew member, you no-good piece of sh-"`
 			`	Before the captain is able to finish his sentence, pipes in the wall next to him explode, blasting hot steam all over the right side of his body, causing him to begin rolling on the floor in horrible screeches of pain. Not wanting to stay connected to the ship any longer than you need to be, you run back into your ship and fly away.`
 
 
@@ -2069,8 +2069,8 @@ mission "Lost Boy 3"
 	on offer
 		payment 952
 		conversation
-			`Tod's mother almost tears up at the sight of him as you approach. "Oh, my baby boy is alive!" she exclaims, running up and hugging Tod as his face reddens with embarrassment. "Are you hurt? Are you okay? Do you think you'll be fine?" Tod's mother asks, kissing his cheeks in between each question.`
-			`	"I'm fine, mom," Tod says in an annoyed tone of voice. Some things must never change.`
+			`Tod's mother almost tears up at the sight of him as you approach. "Oh, my baby boy is alive!" she exclaims, running up and hugging Tod as his face reddens with embarrassment. "Are you hurt? Are you okay? Do you think you'll be fine?" Tod's mother asks, kissing his cheeks between each question.`
+			`	"I'm fine, Mom," Tod says in an annoyed tone of voice. Some things never change.`
 			`	The mother gives you a handful of credit chips. Upon counting them, you find that they are only worth a total of <payment>. "I know it isn't much for the work you've done, Captain, but it's all I have to give you in return."`
 			choice
 				`	"Don't worry. "`
@@ -2120,20 +2120,20 @@ mission "Paradise Fortune 1"
 	
 	on offer
 		conversation
-			`You land your ship on an empty landing pad situated within walking distance of the <origin> shipyard. As with all Paradise Worlds, the air is just the right temperature when you step out of your ship, and a light breeze flows through the leaves of the trees planted around the spaceport.`
-			`	While taking a moment to breathe in the fresh air, you hear yelling coming from the entrance to the shipyard. Looking over, you spot a young girl with a backpack running from two spaceport security guards. "Get back here!" they continually yell at the girl, chasing her with no success.`
+			`You land your ship on an empty landing pad situated within walking distance of the <origin> shipyard. As with all Paradise Worlds, the air is just the right temperature when you step out of your ship, and a light breeze rustles the leaves of the trees planted around the spaceport.`
+			`	While taking a moment to breathe in the fresh air, you hear yelling coming from the entrance to the shipyard. Looking over, you spot a young girl with a backpack running from two spaceport security guards. "Get back here!" they yell at the girl, chasing her with no success.`
 			`	"Someone help me!" the girl shrieks out. As she runs, a credit chip falls out of her backpack. `
 			choice
-				`	(Let the girl onto my ship.)`
+				`	(Let her onto my ship.)`
 					goto continue
 				`	(Ignore the scene.)`
 			
-			`	The girl looks you in the eyes as she approaches, expecting help that will never come. Air rushes past you as the girl and the security guards run by. After a few meters, the security guards catch up to the girl, tackling her to the ground and detaining her as they remove her backpack full of credit chips.`
+			`	The girl looks you in the eyes as she approaches, expecting help that will never come. Air rushes past you as she and the security guards run by. After a few meters, the security guards catch up to the girl, tackling her to the ground and detaining her as they remove her backpack full of credit chips.`
 					decline
 			
 			label continue
 			`	You open the hatch to your ship and yell "Get on!" as the girl approaches. "Thank you, Captain," she says while getting closer, to much protest from the approaching security guards.`
-			`	As the girl enters your ship, she grabs your arm and pulls you in with her before closing the hatch. "Launch and go to <destination>, now! I'll explain when we get there."`
+			`	As she enters your ship, she grabs your arm and pulls you in with her before closing the hatch. "Launch and go to <destination>, now! I'll explain when we get there."`
 				launch
 
 
@@ -2151,8 +2151,8 @@ mission "Paradise Fortune 2"
 	
 	on offer
 		conversation
-			`"You need to explain what is going on here," you say just after settling your ship down.`
-			`	"Alright, alright, I'll explain." You notice that the girl has a strange mix between a posh Paradise World accent and a Dirt Belt or possibly even Rim accent. "My name is Diana Howl. My father is the CEO of a large marketing firm. And this," Diana opens her backpack, revealing its full contents to you: thousands of credit chips. "This is part of my family fortune, about two billion credits of it. Don't worry, my father should be able to make this back in a few months time."`
+			`"You need to explain what is going on here," you say just after setting your ship down.`
+			`	"Alright, alright, I'll explain." You notice that the girl has a strange mix between a posh Paradise World accent and a Dirt Belt or possibly even Rim accent. "My name is Diana Howl. My father is the CEO of a large marketing firm. And this," Diana opens her backpack, revealing its full contents of thousands of credit chips, "this is part of my family fortune, about two billion credits of it. Don't worry, my father should be able to make this back in a few months time."`
 			choice
 				`	"Why have you stolen all this?"`
 					goto story
@@ -2238,7 +2238,7 @@ mission "Paradise Fortune 3"
 				launch
 			
 	on accept
-		"reputation: Republic" = -10
+		"reputation: Republic" <?= -10
 	
 	on decline
 		payment 500000
@@ -2259,7 +2259,6 @@ mission "Paradise Fortune 4"
 		has "Paradise Fortune 3: done"
 	
 	on offer
-		"reputation: Republic" = 10
 		conversation
 			`While in flight, Diana tells you the stories that she heard of the war. In the Paradise Planets region, they were told that declaring independence and bombing Geminus and Martini was the Free Worlds' first step in overthrowing the Republic.`
 			`	"We should talk to Alondo," Diana says. "He'll be able to handle this situation."`
@@ -2293,7 +2292,7 @@ mission "Paradise Fortune 4"
 			`	"I understand. Please, just don't drag the Free Worlds into this."`
 			
 			label end
-			`	You say goodbye to Alondo and return to your ship. When you arrive and look around, Diana is notably absent. In your pilot seat she has left her backpack and a written note with the stains of tears in bottom right corner.`
+			`	You say goodbye to Alondo and return to your ship. When you arrive and look around, Diana is notably absent. In your pilot's seat she has left her backpack and a written note. The paper has noticable tear stains in one of the corners.`
 			``
 			`Dear <first> <last>,`
 			`	I don't care about the credits anymore, but I can't go back to my family. I'll be too much of a disgrace, and I can't even imagine looking my parents in the eyes after what I've done. I've left the credits with you. You can do with them as you wish.`
@@ -2322,9 +2321,11 @@ mission "Paradise Fortune 4"
 			`	You rip the note apart and begin counting the credits. In total, the backpack contains <payment>. Over two billion credits richer, you sit down and wonder what you will spend it on.`
 				decline
 	
+	on accept
+		"reputation: Republic" = 10
 	on decline
 		payment 2152894400
-		"reputation: Republic" = -1000
+		"reputation: Republic" <?= -1000
 	
 	on complete
 		payment 1000000
