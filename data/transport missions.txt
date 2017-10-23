@@ -2181,7 +2181,7 @@ mission "Paradise Fortune 2"
 				launch
 			
 			label decline
-			`	You call the spaceport authorities and tell them that Diana Howl is on your ship. Moments later when they arrive, they take Diana kicking and screaming off of your ship. She yells harsh profanities at you as she is taken away, one among them being "Syndicate lover." As a reward for "catching" Diana, the spaceport authorities transfer <payment> to your account.`
+			`	You call the spaceport authorities and tell them that Diana Howl is on your ship. Moments later when they arrive, they take Diana kicking and screaming off of your ship. She yells harsh profanities at you as she is taken away, one among them being "Syndicate lover." As a reward for "catching" Diana, the spaceport authorities transfer 150,000 credits to your account.`
 				decline
 			
 	on decline
@@ -2230,7 +2230,7 @@ mission "Paradise Fortune 3"
 					goto launch
 			
 			`	You allow the Navy officer and his troops onto your ship, where they apprehend Diana and her stolen credits. They take her kicking and screaming off of your ship. She yells harsh profanities at you as she is taken away, one among them being "Syndicate lover."`
-			`	"Thank you for not causing any more trouble, Captain," the officer says to you. He then hands you <payment> for "playing nice" and leaves.`
+			`	"Thank you for not causing any more trouble, Captain," the officer says to you. He then hands you 500,000 credits for "playing nice" and leaves.`
 				decline
 			
 			label launch
@@ -2318,7 +2318,7 @@ mission "Paradise Fortune 4"
 				accept
 			
 			label steal
-			`	You rip the note apart and begin counting the credits. In total, the backpack contains <payment>. Over two billion credits richer, you sit down and wonder what you will spend it on.`
+			`	You rip the note apart and begin counting the credits. In total, the backpack contains a whopping 2,152,894,400 credits. Over two billion credits richer, you sit down and wonder what you will spend it on.`
 				decline
 	
 	on accept
