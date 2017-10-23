@@ -2186,7 +2186,7 @@ int Ship::TakeDamage(const Projectile &projectile, bool isBlast)
 {
 	int type = 0;
 	
-	const Outfit &weapon = projectile.GetWeapon();
+	const Weapon &weapon = projectile.GetWeapon();
 	double shieldDamage = weapon.ShieldDamage();
 	double hullDamage = weapon.HullDamage();
 	double hitForce = weapon.HitForce();
