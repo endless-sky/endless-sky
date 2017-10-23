@@ -242,10 +242,9 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		outfit.FiringFuel()
 	};
 	
-	// Add any per-second values to the table. If the outfit reload is 60,
-	// do not print per-second values since they are the per-shot values.
+	// Add any per-second values to the table.
 	double reload = outfit.Reload();
-	if(reload && reload != 60.)
+	if(reload)
 	{
 		static const string PER_SECOND = " / second:";
 		for(unsigned i = 0; i < values.size(); ++i)
