@@ -327,7 +327,7 @@ const Sale<Outfit> &Planet::Outfitter() const
 // Get this planet's government. Most planets follow the government of the system they are in.
 const Government *Planet::GetGovernment() const
 {
-	return government ? government : GetSystem()->GetGovernment();
+	return government ? government : systems.empty() ? nullptr : GetSystem()->GetGovernment();
 }
 
 

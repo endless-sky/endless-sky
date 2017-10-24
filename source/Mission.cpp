@@ -1077,7 +1077,7 @@ const Planet *Mission::PickPlanet(const LocationFilter &filter, const PlayerInfo
 		// Skip entries with incomplete data.
 		if(it.second.Name().empty() || (clearance.empty() && !it.second.CanLand()))
 			continue;
-		if(it.second.IsWormhole() || !it.second.HasSpaceport())
+		if(it.second.IsWormhole() || !it.second.HasSpaceport() || !it.second.GetSystem())
 			continue;
 		if(filter.Matches(&it.second, player.GetSystem()))
 			options.push_back(&it.second);
