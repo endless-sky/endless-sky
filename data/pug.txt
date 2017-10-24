@@ -650,6 +650,8 @@ system "World's End"
 		period 360
 		offset 290
 
+planet "Pug Wormhole"
+
 planet Ruin
 	attributes uninhabited
 	landscape land/hills3
