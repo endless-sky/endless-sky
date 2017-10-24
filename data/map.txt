@@ -24661,11 +24661,14 @@ planet "Elek Kartanu"
 
 planet "Ember Reaches"
 	attributes "requires: quantum keystone"
+	description ""
 
 planet "Ember Threshold"
 	attributes "requires: quantum keystone"
+	description ""
 
 planet "Ember Wormhole"
+	description ""
 
 planet "Esayaku Fen"
 	attributes korath
@@ -26217,6 +26220,7 @@ planet Relic
 
 planet "Remnant Wormhole"
 	attributes "requires: quantum keystone"
+	description ""
 
 planet "Remote Blue"
 	attributes kimek urban
@@ -27208,6 +27212,7 @@ planet Winter
 		fleet "Large Militia" 5
 
 planet "Wormhole Alpha"
+	description ""
 
 planet "Wyvern Station"
 	attributes rim station

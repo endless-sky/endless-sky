@@ -14,7 +14,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Effect.h"
 #include "Mask.h"
-#include "Outfit.h"
+#include "Weapon.h"
 #include "pi.h"
 #include "Random.h"
 #include "Ship.h"
@@ -37,7 +37,7 @@ namespace {
 
 
 
-Projectile::Projectile(const Ship &parent, Point position, Angle angle, const Outfit *weapon)
+Projectile::Projectile(const Ship &parent, Point position, Angle angle, const Weapon *weapon)
 	: Body(weapon->WeaponSprite(), position, parent.Velocity(), angle),
 	weapon(weapon), targetShip(parent.GetTargetShip()), lifetime(weapon->Lifetime())
 {
@@ -63,7 +63,7 @@ Projectile::Projectile(const Ship &parent, Point position, Angle angle, const Ou
 
 
 
-Projectile::Projectile(const Projectile &parent, const Outfit *weapon)
+Projectile::Projectile(const Projectile &parent, const Weapon *weapon)
 	: Body(weapon->WeaponSprite(), parent.position + parent.velocity, parent.velocity, parent.angle),
 	weapon(weapon), targetShip(parent.targetShip), lifetime(weapon->Lifetime())
 {
@@ -92,7 +92,7 @@ Projectile::Projectile(const Projectile &parent, const Outfit *weapon)
 
 
 // Ship explosion.
-Projectile::Projectile(Point position, const Outfit *weapon)
+Projectile::Projectile(Point position, const Weapon *weapon)
 	: weapon(weapon)
 {
 	this->position = position;
@@ -265,7 +265,7 @@ int Projectile::MissileStrength() const
 
 
 // Get information on the weapon that fired this projectile.
-const Outfit &Projectile::GetWeapon() const
+const Weapon &Projectile::GetWeapon() const
 {
 	return *weapon;
 }

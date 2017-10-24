@@ -15,9 +15,9 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include <vector>
 
-class Body;
 class Point;
 class Projectile;
+class Ship;
 
 
 
@@ -34,25 +34,25 @@ public:
 	// know what animation frame each object is on.
 	void Clear(int step);
 	// Add an object to the set.
-	void Add(Body &body);
+	void Add(Ship &ship);
 	// Finish adding objects (and organize them into the final lookup table).
 	void Finish();
 	
 	// Get the first object that collides with the given projectile. If a
 	// "closest hit" value is given, update that value.
-	Body *Line(const Projectile &projectile, double *closestHit = nullptr) const;
+	Ship *Line(const Projectile &projectile, double *closestHit = nullptr) const;
 	
 	// Get all objects within the given range of the given point.
-	const std::vector<Body *> &Circle(const Point &center, double radius) const;
+	const std::vector<Ship *> &Circle(const Point &center, double radius) const;
 	
 	
 private:
 	class Entry {
 	public:
 		Entry() = default;
-		Entry(Body *body, int x, int y) : body(body), x(x), y(y) {}
+		Entry(Ship *ship, int x, int y) : ship(ship), x(x), y(y) {}
 		
-		Body *body;
+		Ship *ship;
 		int x;
 		int y;
 	};
@@ -77,7 +77,7 @@ private:
 	std::vector<int> counts;
 	
 	// Vector for returning the result of a circle query.
-	mutable std::vector<Body *> result;
+	mutable std::vector<Ship *> result;
 };
 
 

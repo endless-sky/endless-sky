@@ -574,6 +574,7 @@ void MapPanel::DrawTravelPlan()
 		bool isWormhole = false;
 		for(const StellarObject &object : previous->Objects())
 			isWormhole |= (object.GetPlanet() && player.HasVisited(object.GetPlanet())
+				&& !object.GetPlanet()->Description().empty()
 				&& player.HasVisited(previous) && player.HasVisited(next)
 				&& object.GetPlanet()->WormholeDestination(previous) == next);
 		
@@ -632,6 +633,10 @@ void MapPanel::DrawWormholes()
 		for(const StellarObject &object : previous->Objects())
 			if(object.GetPlanet() && object.GetPlanet()->IsWormhole() && player.HasVisited(object.GetPlanet()))
 			{
+				// Wormholes with no description should not be drawn.
+				if(object.GetPlanet()->Description().empty())
+					continue;
+				
 				const System *next = object.GetPlanet()->WormholeDestination(previous);
 				// Only draw a wormhole if both systems have been visited.
 				if(!player.HasVisited(previous) || !player.HasVisited(next))

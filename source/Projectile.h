@@ -22,7 +22,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 class Effect;
 class Government;
-class Outfit;
+class Weapon;
 class Ship;
 class Visual;
 
@@ -36,10 +36,10 @@ class Visual;
 // projectiles that may look different or travel in a new direction.
 class Projectile : public Body {
 public:
-	Projectile(const Ship &parent, Point position, Angle angle, const Outfit *weapon);
-	Projectile(const Projectile &parent, const Outfit *weapon);
+	Projectile(const Ship &parent, Point position, Angle angle, const Weapon *weapon);
+	Projectile(const Projectile &parent, const Weapon *weapon);
 	// Ship explosion.
-	Projectile(Point position, const Outfit *weapon);
+	Projectile(Point position, const Weapon *weapon);
 	
 	/* Functions provided by the Body base class:
 	Frame GetFrame(int step = -1) const;
@@ -64,7 +64,7 @@ public:
 	// chance an anti-missile shot has of destroying it).
 	int MissileStrength() const;
 	// Get information on the weapon that fired this projectile.
-	const Outfit &GetWeapon() const;
+	const Weapon &GetWeapon() const;
 	
 	// Find out which ship this projectile is targeting. Note: this pointer is
 	// not guaranteed to be dereferenceable, so only use it for comparing.
@@ -79,7 +79,7 @@ private:
 	
 	
 private:
-	const Outfit *weapon = nullptr;
+	const Weapon *weapon = nullptr;
 	
 	std::weak_ptr<Ship> targetShip;
 	const Ship *cachedTarget = nullptr;
