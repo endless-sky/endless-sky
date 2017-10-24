@@ -1600,8 +1600,7 @@ void Engine::DoCollisions(Projectile &projectile)
 			Point hitPos = projectile.Position() + closestHit * projectile.Velocity();
 			for(Ship *ship : shipCollisions.Circle(hitPos, blastRadius))
 			{
-				if(isSafe && projectile.Target() != body
-						&& !gov->IsEnemy(ship->GetGovernment()))
+				if(isSafe && projectile.Target() != ship && !gov->IsEnemy(ship->GetGovernment()))
 					continue;
 				
 				int eventType = ship->TakeDamage(projectile, ship != hit.get());
@@ -1611,8 +1610,7 @@ void Engine::DoCollisions(Projectile &projectile)
 			// Cloaked ships can be hit be a blast, too.
 			for(Ship *ship : cloakedCollisions.Circle(hitPos, blastRadius))
 			{
-				if(isSafe && projectile.Target() != body
-						&& !gov->IsEnemy(ship->GetGovernment()))
+				if(isSafe && projectile.Target() != ship && !gov->IsEnemy(ship->GetGovernment()))
 					continue;
 				
 				int eventType = ship->TakeDamage(projectile, ship != hit.get());
