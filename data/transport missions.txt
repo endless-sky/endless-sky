@@ -2106,7 +2106,6 @@ mission "Lost Boy 3"
 
 mission "Paradise Fortune 1"
 	minor
-	landing
 	name `Flee to <planet>`
 	description `Flee from <origin> to <destination> with the girl you let on to your ship.`
 	source
@@ -2120,8 +2119,7 @@ mission "Paradise Fortune 1"
 	
 	on offer
 		conversation
-			`You land your ship on an empty landing pad situated within walking distance of the <origin> shipyard. As with all Paradise Worlds, the air is just the right temperature when you step out of your ship, and a light breeze rustles the leaves of the trees planted around the spaceport.`
-			`	While taking a moment to breathe in the fresh air, you hear yelling coming from the entrance to the shipyard. Looking over, you spot a young girl with a backpack running from two spaceport security guards. "Get back here!" they yell at the girl, chasing her with no success.`
+			`As with all Paradise Worlds, the air is just the right temperature when you step out of your ship, and a light breeze rustles the leaves of the trees planted around the spaceport. While taking a moment to breathe in the fresh air, you hear yelling coming from the entrance to the <origin> shipyard. Looking over, you spot a young girl with a backpack running from two spaceport security guards. "Get back here!" they yell at the girl, chasing her with no success.`
 			`	"Someone help me!" the girl shrieks out. As she runs, a credit chip falls out of her backpack. `
 			choice
 				`	(Let her onto my ship.)`
