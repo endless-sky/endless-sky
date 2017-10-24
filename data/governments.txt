@@ -189,6 +189,7 @@ government "human Merchant"
 	"attitude toward"
 		"Pirate" -.2
 		"Korath" -.2
+		"Hai (Unfettered)" -.2
 		"Merchant" .5
 	"bribe" .05
 	"fine" 0
