@@ -125,6 +125,16 @@ Body *CollisionSet::Line(const Projectile &projectile, double *closestHit) const
 	// Convert the start and end coordinates to integers.
 	Point from = projectile.Position();
 	Point to = from + projectile.Velocity();
+	return Line(from, to, closestHit, pGov, projectile.Target());
+}
+
+
+
+// Check for collisions with a line, which may be a projectile's current
+// position or its entire expected trajectory (for the auto-firing AI).
+Body *CollisionSet::Line(const Point &from, const Point &to, double *closestHit,
+		const Government *pGov, const Body *target) const
+{
 	int x = from.X();
 	int y = from.Y();
 	int endX = to.X();
@@ -158,12 +168,12 @@ Body *CollisionSet::Line(const Projectile &projectile, double *closestHit) const
 			// Check if this projectile can hit this object. If either the
 			// projectile or the object has no government, it will always hit.
 			const Government *iGov = it->body->GetGovernment();
-			if(it->body != projectile.Target() && iGov && pGov && !iGov->IsEnemy(pGov))
+			if(it->body != target && iGov && pGov && !iGov->IsEnemy(pGov))
 				continue;
 			
 			const Mask &mask = it->body->GetMask(step);
-			Point offset = projectile.Position() - it->body->Position();
-			double range = mask.Collide(offset, projectile.Velocity(), it->body->Facing());
+			Point offset = from - it->body->Position();
+			double range = mask.Collide(offset, to - from, it->body->Facing());
 			
 			if(range < closest)
 			{
@@ -218,12 +228,12 @@ Body *CollisionSet::Line(const Projectile &projectile, double *closestHit) const
 			// Check if this projectile can hit this object. If either the
 			// projectile or the object has no government, it will always hit.
 			const Government *iGov = it->body->GetGovernment();
-			if(it->body != projectile.Target() && iGov && pGov && !iGov->IsEnemy(pGov))
+			if(it->body != target && iGov && pGov && !iGov->IsEnemy(pGov))
 				continue;
 			
 			const Mask &mask = it->body->GetMask(step);
-			Point offset = projectile.Position() - it->body->Position();
-			double range = mask.Collide(offset, projectile.Velocity(), it->body->Facing());
+			Point offset = from - it->body->Position();
+			double range = mask.Collide(offset, to - from, it->body->Facing());
 			
 			if(range < closest)
 			{
