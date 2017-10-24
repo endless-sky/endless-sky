@@ -793,11 +793,12 @@ void Engine::Draw() const
 	// Draw the faction markers.
 	if(targetSwizzle >= 0 && interfaces[1]->HasPoint("faction markers"))
 	{
-		double width = font.Width(info.GetString("target government"));
+		int width = font.Width(info.GetString("target government"));
 		Point center = interfaces[1]->GetPoint("faction markers");
 		
 		const Sprite *mark[2] = {SpriteSet::Get("ui/faction left"), SpriteSet::Get("ui/faction right")};
-		double dx[2] = {-.5 * (width + mark[0]->Width()), .5 * (width + mark[1]->Width())};
+		// Round the x offsets to whole numbers so the icons are sharp.
+		double dx[2] = {(width + mark[0]->Width() + 1) / -2, (width + mark[1]->Width() + 1) / 2};
 		for(int i = 0; i < 2; ++i)
 			SpriteShader::Draw(mark[i], center + Point(dx[i], 0.), 1., targetSwizzle);
 	}
