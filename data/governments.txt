@@ -189,7 +189,7 @@ government "human Merchant"
 	"attitude toward"
 		"Pirate" -.2
 		"Korath" -.2
-		"Merchant" 1
+		"Merchant" .5
 	"bribe" .05
 	"fine" 0
 	"friendly hail" "friendly civilian"
@@ -202,7 +202,7 @@ government "Merchant"
 	"attitude toward"
 		"Pirate" -.2
 		"Korath" -.2
-		"human Merchant" 1
+		"human Merchant" .5
 	"bribe" .05
 	"fine" 0
 	"friendly hail" "friendly civilian"
