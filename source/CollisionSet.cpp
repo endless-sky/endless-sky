@@ -30,16 +30,41 @@ namespace {
 	// Generate offsets for the line test of infinite collision sets.
 	void InfiniteLineOffsets(vector<Point> &offsets, const Projectile &projectile, const Body *body, double wrapSize)
 	{
-		// Note: this only checks the instance of the body that is closest to
-		// the projectile. If a projectile has a range longer than wrapSize pixels,
-		// it may "pass through" bodies near the end of its range.
-		
 		// Find offset closest to the center of the path.
-		Point halfVelocity = .5 * projectile.Velocity();
+		const Point &velocity = projectile.Velocity();
+		Point halfVelocity = .5 * velocity;
 		Point offset = (projectile.Position() + halfVelocity) - body->Position();
 		offset = Point(remainder(offset.X(), wrapSize), remainder(offset.Y(), wrapSize)) - halfVelocity;
 		
+		// Record relevant offsets.
 		offsets.assign(1, offset);
+		if(abs(velocity.X()) >= wrapSize)
+		{
+			// Extra offsets in the positive X direction.
+			//   offset + N * wrapSize + velocity <= 0.5 * width, N > 0
+			//   N * wrapSize <= 0.5 * width - offset - velocity, N > 0
+			//   N <= (0.5 * width - offset - velocity) / wrapSize, N > 0
+			for(int n = floor((.5 * body->Width() - offset.X() - velocity.X()) / wrapSize); n > 0; --n)
+				offsets.emplace_back(offset.X() + n * wrapSize, offset.Y());
+			// Extra offsets in the negative X direction.
+			//   offset - N * wrapSize + velocity >= -0.5 * width, N > 0
+			//   N * -wrapSize >= -0.5 * width - offset - velocity, N > 0
+			//   N <= (0.5 * width + offset + velocity) / wrapSize, N > 0
+			for(int n = floor((.5 * body->Width() + offset.X() + velocity.X()) / wrapSize); n > 0; --n)
+				offsets.emplace_back(offset.X() - n * wrapSize, offset.Y());
+		}
+		if(abs(velocity.Y()) >= wrapSize)
+		{
+			size_t M = offsets.size();
+			// Extra offsets in the positive Y direction.
+			for(int n = floor((.5 * body->Height() - offset.Y() - velocity.Y()) / wrapSize); n > 0; --n)
+				for(size_t i = 0; i < M; ++i)
+					offsets.emplace_back(offsets[i].X(), offset.Y() + n * wrapSize);
+			// Extra offsets in the negative Y direction.
+			for(int n = floor((.5 * body->Height() + offset.Y() + velocity.Y()) / wrapSize); n > 0; --n)
+				for(size_t i = 0; i < M; ++i)
+					offsets.emplace_back(offsets[i].X(), offset.Y() - n * wrapSize);
+		}
 	}
 }
 
