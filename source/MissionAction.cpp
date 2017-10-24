@@ -23,7 +23,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "PlayerInfo.h"
 #include "Random.h"
 #include "Ship.h"
-#include "System.h"
 #include "UI.h"
 
 #include <cstdlib>
@@ -174,15 +173,13 @@ void MissionAction::Load(const DataNode &node, const string &missionName)
 			// Create a GameData reference to this mission name.
 			GameData::Missions().Get(toFail);
 		}
-		else if(key == "system filter")
+		else if(key == "system")
 		{
 			if(system.empty() && child.HasChildren())
 				systemFilter.Load(child);
 			else
-				child.PrintTrace("Unsupported use of system filter:");
+				child.PrintTrace("Unsupported use of \"system\" LocationFilter:");
 		}
-		else if(key == "mission origin" && hasValue)
-			missionOrigin = GameData::Systems().Get(child.Token(1));
 		else
 			conditions.Add(child);
 	}
@@ -202,17 +199,10 @@ void MissionAction::Save(DataWriter &out) const
 	{
 		if(!systemFilter.IsEmpty())
 		{
-			out.Write("system filter");
-			out.BeginChild();
-			{
-				systemFilter.Save(out);
-			}
-			out.EndChild();
+			out.Write("system");
+			// LocationFilter indentation is handled by its Save method.
+			systemFilter.Save(out);
 		}
-		// Mission origin is only used for `on enter` MissionActions,
-		// to provide support for `distance` filtering.
-		if(missionOrigin && trigger == "enter")
-			out.Write("mission origin", missionOrigin->Name());
 		if(!logText.empty())
 		{
 			out.Write("log");
@@ -310,7 +300,7 @@ bool MissionAction::CanBeDone(const PlayerInfo &player) const
 	}
 	// An `on enter` MissionAction may have defined a LocationFilter that
 	// specifies the systems in which it can occur.
-	if(!systemFilter.IsEmpty() && !systemFilter.Matches(player.GetSystem(), missionOrigin))
+	if(!systemFilter.IsEmpty() && !systemFilter.Matches(player.GetSystem()))
 		return false;
 	return true;
 }
@@ -388,8 +378,8 @@ MissionAction MissionAction::Instantiate(map<string, string> &subs, int jumps, i
 	MissionAction result;
 	result.trigger = trigger;
 	result.system = system;
-	result.missionOrigin = GameData::Planets().Get(subs["<origin>"])->GetSystem();
-	result.systemFilter = systemFilter;
+	// Convert any "distance" specifiers into "near <system>" specifiers.
+	result.systemFilter = systemFilter.DistanceToNear(GameData::Planets().Get(subs["<origin>"])->GetSystem());
 	
 	for(const auto &it : events)
 	{

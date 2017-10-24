@@ -46,6 +46,10 @@ public:
 	bool Matches(const System *system, const System *origin = nullptr) const;
 	bool Matches(const Ship &ship) const;
 	
+	// Return a new LocationFilter with any "distance" conditions converted
+	// into "near" references, relative to the given system.
+	LocationFilter DistanceToNear(const System *origin) const;
+	
 	
 private:
 	// Load one particular line of conditions.

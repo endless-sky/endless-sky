@@ -60,7 +60,6 @@ public:
 private:
 	std::string trigger;
 	std::string system;
-	const System *missionOrigin = nullptr;
 	LocationFilter systemFilter;
 	
 	std::string logText;

@@ -144,10 +144,6 @@ void LocationFilter::Save(DataWriter &out) const
 		}
 		if(center)
 			out.Write("near", center->Name(), centerMinDistance, centerMaxDistance);
-		// "Enter" actions may define a distance filter, relative to the
-		// system in which the mission was offered.
-		if(originMaxDistance > -1)
-			out.Write("distance", originMinDistance, originMaxDistance);
 	}
 	out.EndChild();
 }
@@ -213,6 +209,41 @@ bool LocationFilter::Matches(const Ship &ship) const
 	}
 	return true;
 }
+
+
+
+// Convert a distance filter into a "near" filter.
+LocationFilter LocationFilter::DistanceToNear(const System *origin) const
+{
+	if(IsEmpty() || originMaxDistance < 0)
+		return *this;
+	
+	LocationFilter result;
+	result.planets = planets;
+	result.attributes = attributes;
+	result.systems = systems;
+	result.governments = governments;
+	result.notFilters = notFilters;
+	
+	// If this LocationFilter has already defined a "near <system>" filter, then
+	// do not convert a "distance" filter into a "near" filter.
+	if(!center)
+	{
+		result.center = origin;
+		result.centerMinDistance = originMinDistance;
+		result.centerMaxDistance = originMaxDistance;
+	}
+	else
+	{
+		result.center = center;
+		result.centerMinDistance = centerMinDistance;
+		result.centerMaxDistance = centerMaxDistance;
+		result.originMinDistance = originMinDistance;
+		result.originMaxDistance = originMaxDistance;
+	}
+	return result;
+}
+
 
 
 
