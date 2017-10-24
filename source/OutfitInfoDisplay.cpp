@@ -171,7 +171,7 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 	attributeValues.clear();
 	attributesHeight = 20;
 	
-	for(const pair<string, double> &it : outfit.Attributes())
+	for(const pair<const char *, double> &it : outfit.Attributes())
 	{
 		static const set<string> SKIP = {
 			"outfit space", "weapon capacity", "engine capacity", "gun ports", "turret mounts"
@@ -191,7 +191,7 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		}
 		else
 		{
-			attributeLabels.emplace_back(it.first + ":");
+			attributeLabels.emplace_back(static_cast<string>(it.first) + ":");
 			attributeValues.emplace_back(Format::Number(it.second * scale));
 			attributesHeight += 20;
 		}
