@@ -1059,7 +1059,7 @@ mission "FW Flamethrower 1"
 mission "FW Flamethrower 2"
 	landing
 	name "Weapon Testing"
-	description "A test ship with new weaponry is in orbit around <planet>. Fight and disable it (but do not destroy it!) and then land to give Barmy Edward feedback on its performance."
+	description "A test ship with new weaponry is in orbit around <planet>. Fight and disable it (but do not board or destroy it!) and then land to give Barmy Edward feedback on its performance."
 	source Rust
 	to offer
 		has "FW Flamethrower 1: done"
@@ -1086,7 +1086,7 @@ mission "FW Flamethrower 2"
 	npc save disable
 		personality staying heroic
 		government "Test Dummy"
-		ship "Fury (Flamethrower)" "Doombat"
+		ship "Doombat" "Doombat"
 	
 	on complete
 		event "flamethrower available" 30
@@ -1115,6 +1115,19 @@ mission "FW Flamethrower 2"
 				goto available
 			label available
 			`	"Well, I should have an initial model for sale in a month or so," he says. "I'll be interested to see what uses you or anyone else might find for them. Anyway, thanks for your help." You say goodbye and head back to your ship.`
+
+ship "Fury" "Doombat"
+	add attributes
+		"self destruct" 1
+	outfits
+		"Flamethrower" 4
+		"nGVF-BB Fuel Cell"
+		"Supercapacitor"
+		"D14-RN Shield Generator"
+		"Ramscoop"
+		"X2700 Ion Thruster"
+		"X2200 Ion Steering"
+		"Hyperdrive"
 
 
 
