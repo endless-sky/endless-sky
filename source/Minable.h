@@ -57,10 +57,6 @@ public:
 	// In that case it will return false, meaning it should be deleted.
 	bool Move(std::vector<Visual> &visuals, std::list<std::shared_ptr<Flotsam>> &flotsam);
 	
-	// Check if the given projectile collides with this object. If so, a value
-	// is returned indicating how far along its path the collision occurs.
-	double Collide(const Projectile &projectile, int step) const;
-	
 	// Damage this object (because a projectile collided with it).
 	void TakeDamage(const Projectile &projectile);
 	

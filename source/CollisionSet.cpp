@@ -146,8 +146,10 @@ Body *CollisionSet::Line(const Point &from, const Point &to, double *closestHit,
 	int endGX = endX >> SHIFT;
 	int endGY = endY >> SHIFT;
 	
-	// Keep track of the closest collision found so far.
-	double closest = 1.;
+	// Keep track of the closest collision found so far. If an external "closest
+	// hit" value was given, there is no need to check collisions farther out
+	// than that.
+	double closest = closestHit ? *closestHit : 1.;
 	Body *result = nullptr;
 	
 	// Special case, very common: the projectile is contained in one grid cell.

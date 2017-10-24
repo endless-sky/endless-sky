@@ -176,15 +176,6 @@ bool Minable::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 
 
 
-// Check if the given projectile collides with this object. If so, a value
-// is returned indicating how far along its path the collision occurs.
-double Minable::Collide(const Projectile &projectile, int step) const
-{
-	return GetMask(step).Collide(projectile.Position() - position, projectile.Velocity(), angle);
-}
-
-
-
 // Damage this object (because a projectile collided with it).
 void Minable::TakeDamage(const Projectile &projectile)
 {

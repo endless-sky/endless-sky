@@ -1093,7 +1093,7 @@ void Engine::CalculateStep()
 	
 	// Move the asteroids. This must be done before collision detection. Minables
 	// may create visuals or flotsam.
-	asteroids.Step(newVisuals, newFlotsam);
+	asteroids.Step(newVisuals, newFlotsam, step);
 	
 	// Move the flotsam. This must happen after the ships move, because flotsam
 	// checks if any ship has picked it up.
@@ -1573,11 +1573,11 @@ void Engine::DoCollisions(Projectile &projectile)
 		// ship that they have hit.
 		if(!projectile.GetWeapon().IsPhasing())
 		{
-			double closestAsteroid = asteroids.Collide(projectile, step, closestHit, &hitVelocity);
-			if(closestAsteroid < closestHit)
+			Body *asteroid = asteroids.Collide(projectile, step, &closestHit);
+			if(asteroid)
 			{
-				closestHit = closestAsteroid;
-				hit = nullptr;
+				hitVelocity = asteroid->Velocity();
+				hit.reset();
 			}
 		}
 	}
