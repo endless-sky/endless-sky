@@ -73,7 +73,6 @@ private:
 		
 		void Step();
 		void Draw(DrawList &draw, const Point &center, double zoom) const;
-		double Collide(const Projectile &projectile, int step) const;
 		
 	private:
 		Angle spin;

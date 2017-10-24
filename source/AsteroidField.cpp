@@ -237,22 +237,3 @@ void AsteroidField::Asteroid::Draw(DrawList &draw, const Point &center, double z
 		for(double x = startX; x < bottomRight.X(); x += WRAP)
 			draw.Add(*this, Point(x, y));
 }
-
-
-
-// Check if the given projectile collides with this asteroid. If so, a value
-// less than 1 is returned indicating how far along its path the collision occurs.
-double AsteroidField::Asteroid::Collide(const Projectile &projectile, int step) const
-{
-	// Note: this only checks the instance of the asteroid that is closest to
-	// the projectile. If a projectile has a range longer than 4096 pixels, it
-	// may "pass through" asteroids near the end of its range.
-	
-	// Find the asteroid instance closest to the center of the projectile,
-	// i.e. where it will be when halfway through its path.
-	Point halfVelocity = .5 * projectile.Velocity();
-	Point pos = position - (projectile.Position() + halfVelocity);
-	pos = Point(-remainder(pos.X(), WRAP), -remainder(pos.Y(), WRAP));
-	
-	return GetMask(step).Collide(pos - halfVelocity, projectile.Velocity(), angle);
-}
