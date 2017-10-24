@@ -1,0 +1,65 @@
+Spatial Installation Instruction
+================================
+
+Compilers and Options
+---------------------
+
+There is no compilation options linked with this library at the
+moment. This library is a header-only library and does not require
+compilation.
+
+
+Installation For Linux
+----------------------
+
+Spatial is a header-only library, and all you have to do is to copy
+these headers in the appropriate header directory for your
+project. Generally, you must copy the contents of the 'src' folder in
+a folder named 'spatial' on your computer. You can now use the library
+for your project by including in the source file:
+
+#include "spatial/poinset.hpp"
+
+If you are using the library for several projects and you want the
+library to reside in a different directory from your projects, such as
+'/usr/local/include/', just copy the 'src' folder of the library in
+there and rename it to 'spatial'. You can now use the library for your
+project by including in the source file:
+
+#include <spatial/poinset.hpp>
+
+
+Installation For Visual Studio
+------------------------------
+
+If you are using the library for multiple shared projects and you wish
+to upgrade to subsequent versions of the library, you can copy the
+'src' folder in any directory that you find suitable, rename it to
+'spatial', and add that directory in the 'Additional Include
+Directories' of the 'General', 'C/C++' properties of
+your project.
+
+If you wish to install the library in one of the default include
+directories of Visual Studio, then copy the content of the 'src'
+folder into:
+
+%Visual Studio location%\VC\include\
+
+Rename the folder to 'spatial' and you're good to go.
+
+
+Installation For Other Platforms
+--------------------------------
+
+Copy the directory 'src' and its content to the default C++ header
+location for your compilation environement. Rename it to 'spatial'.
+You can now use the library for your project by including in the
+source file:
+
+#include <spatial/pointset.hpp>
+
+Or copy the directory 'src' and its content to your own project
+and rename it to 'spatial'. You can now use the library by including in
+the source file:
+
+#include "spatial/pointset.hpp"

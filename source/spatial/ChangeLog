@@ -1,0 +1,304 @@
+2016-01-01  Sylvain Bougerel  <sylvain.bougerel.devel@gmail.com>
+
+        * v2.2.0 Removed the container traits information, which was not useful.
+
+        * v2.1.9 Improved performance of equal and region iterators.
+
+2015-12-06  Sylvain Bougerel  <sylvain.bougerel.devel@gmail.com>
+
+        * v2.1.8 Fixed Ticket #5 and Ticket #4 raised by Michał Garapich. Thanks
+        for supporting the library by contributing bugs.
+
+2015-11-29  Sylvain Bougerel  <sylvain.bougerel.devel@gmail.com>
+
+        * v2.1.7 Greatly improves performance of nearest neighbor search and
+        iteration on nearest neighbors; between 5 to 100 times. Moderate
+        improvement on finding equals or simply find() in containers. Minor
+        improvements to mapping iterators too, which improve insertion/removal
+        times in the kd-tree. The improvements were felt significant enough to
+        warrant a specific release of the library, even though no other feature
+        or bug has been fixed in this version.
+
+2014-10-27  Sylvain Bougerel  <sylvain.bougerel.devel@gmail.com>
+
+        * v2.1.6 Ticket #2 (https://sourceforge.net/p/spatial/tickets/2/)
+        reported by Ed Baskerville has been solved. To solve it, C++11 support
+        for compilation has been added to the library for Clang++ and
+        G++. Additionally support for libc++ and Clang++, has also been
+        added. Note that C++11 support only means it compiles when the compiler
+        is set to be compliant with C++11. The library's APIs have yet so
+        support new semantics such as rvalues, initialization lists, etc.
+
+2014-10-22  Sylvain Bougerel  <sylvain.bougerel.devel@gmail.com>
+
+        * v2.1.5 ticket #3 (https://sourceforge.net/p/spatial/tickets/3/)
+        reported by Michał Garapich has been solved. neighbor_iterator can now
+        be used with const containers, as expected.
+
+2014-10-21  Sylvain Bougerel  <sylvain.bougerel.devel@gmail.com>
+
+        * v2.1.4 The mapping iterator is now dissociated from the containers,
+        its header file and definition will not be pulled by default anymore
+        when the containers include file are specified. So its include file
+        "spatial/mapping_iterator" must be specified.
+
+        * Intermediary release of the developments on the feature_4 branch with
+        improvements on the performance of the mapping iterator and the erase
+        function for the idle_* family of containers. Performance improvements
+        between 5% and 50% faster.
+
+2014-03-12  Sylvain Bougerel  <sylvain.bougerel.devel@gmail.com>
+
+        * v2.1.3 ticket #1 including idle_point_multiset.hpp stops project from
+        compiling https://sourceforge.net/p/spatial/tickets/1/ has been fixed.
+
+2013-12-21  Sylvain Bougerel  <sylvain.bougerel.devel@gmail.com>
+
+        * v2.1.2 Added the perfect_balancing policy for Relaxed_kdtree, improved
+        documentation and improve the speed of the reblance() algorithm by 10x.
+
+2013-11-10  Sylvain Bougerel  <sylvain.bougerel.devel@gmail.com>
+
+        * v2.1.1 Fixed a bug on the rebalance() function in the kdtrees. All the
+        unit tests on the tree where not taken into account, now they are.
+
+2013-07-28  Sylvain Bougerel  <sylvain.bougerel.devel@gmail.com>
+
+        * v2.1.0 Added the new equal_iterator optimized for containers with
+        strict invariant trees, such as idle_point_multiset, idle_box_multiset,
+        etc.
+
+2013-07-21  Sylvain Bougerel  <sylvain.bougerel.devel@gmail.com>
+
+        * v2.0.1 Some updates to the documentation.
+
+2013-05-18  Sylvain Bougerel  <sylvain.bougerel.devel@gmail.com>
+
+        * Started to update the documentation, some errors have been found when
+        compiling with SPATIAL_SAFER_ARITHMETICS. They are now fixed on the main
+        branch.
+
+2013-05-12  Sylvain Bougerel  <sylvain.bougerel.devel@gmail.com>
+
+        * Merged task_3432355 into the main branch. This officially results in
+        the library being pushed to version 2.0.0. It now compiles on GCC and
+        Clang, test on Windows under progress. Remain to update the
+        documentation a little.
+
+2013-03-20  Sylvain Bougerel  <sylvain.bougerel.devel@gmail.com>
+
+        * task_3432355 Made access to functors inside iterators and containers
+        more STL-like.
+
+2013-03-16  Sylvain Bougerel  <sylvain.bougerel.devel@gmail.com>
+
+        * task_3432355 Used a new, more common standard to name private or
+        restricted class members (pre-fix _) by opposition to shadowing function
+        parameters (post-fix _).
+
+        * task_3432355 Interface for the neighbor_iterator is finally finalized
+        and now the unit testing of neighbor_iterator can restart.
+
+        * task_3432355 Using ordered_iterator to add the relative operators to
+        all containers.
+
+2012-11-17  Sylvain Bougerel  <sylvain.bougerel.devel@gmail.com>
+
+        * task_3432355 New ordered_iterator finally added with its unit
+        test. New cross-container operators can now be written properly.
+
+2012-09-23  Sylvain Bougerel  <sylvain.bougerel.devel@gmail.com>
+
+        * task_3432355 A new fixture framework has been created in order to make
+        an efficient use of test template and considerably reduce the number of
+        tests required while increasing the portions of code actually tested.
+
+2011-11-08  Sylvain Bougerel  <sylvain.bougerel.devel@gmail.com>
+
+        * task_3432355 Adding more documentation on complexity of mapping function.
+
+        * task_3432355 Rewriting spatial_mapping.hpp is now done.
+        spatial_mapping.tpp is now being adapted to fit the new interface. Other
+        iterator will follow soon. The newer interface is a big departure from
+        the former one, however it provides a much cleaner approach.
+
+        * task_3432355 Rewriting spatial_node.hpp is now done. Fixed constness
+        of Key object in links with pairs of key, value types.
+
+2011-07-27  Sylvain Bougerel  <sylvain.bougerel.devel@gmail.com>
+
+        * Fix an issue with allocator, where the user defined allocator was used
+        instead of a rebind, which can cause significant issues.
+
+2011-07-26  Sylvain Bougerel  <sylvain.bougerel.devel@gmail.com>
+
+        * Revamp large amount of code to add support for pair<key, mapped>
+        values in container, and further down the road, paved the way for
+        intrusive container support. However none of it is documented nor unit
+        tested. So it is still in stage of infancy. At least the rest works. In
+        the process, I rearranged includes and remove some of the files from the
+        index, that have no use now.
+
+2011-07-15  Sylvain Bougerel  <sylvain.bougerel.devel@gmail.com>
+
+        * src/bits/spatial_exceptions.hpp added a new exception check in all
+        runtime containers to make sure that library users do not enter a 0
+        value for the dimension.
+
+2011-07-14  Sylvain Bougerel  <sylvain.bougerel.devel@gmail.com>
+
+        * src/frozen_pointset.hpp forzen_runtime_pointset is now
+        runtime_frozen_pointset, to tally with the include file name. Same for
+        runtime_frozen_boxset.
+
+        * src/boxset.hpp Boxes can be stored in a container now!
+
+        * src/frozen_pointset.hpp cut the pointset file in 2.
+
+        * src/bits/spatial_range.hpp add the helper functions for ranges as
+        well as the view for overlap and enclose ranges.
+
+        * src/pointset.hpp After much of reflexion, I decided that it was
+        unnecessary to restrict use of pointset or boxset to a particular set
+        of range or neighbor iterator. There are some cases were you need such
+        functionality. It's better to allow this rather than have ppl complain
+        for the need of writing adaptors. Also it's true that basic users may
+        make mistakes, if the tutorial is probably written, they shouldn't
+        missuse this or that view. On top of that, it makes design easier.
+
+2011-07-13  Sylvain Bougerel  <sylvain.bougerel.devel@gmail.com>
+
+        * doc/Doxyfile Add grouped distribution of documentation so has to
+        save some documentation hassle.
+
+        * src/bits/spatial_node.hpp removed the @test list documentation
+        marker in this file and other. Test list will be rebuilt if it becomes
+        useful. It is not useful at the moment.
+
+2011-07-12  Sylvain Bougerel  <sylvain.bougerel.devel@gmail.com>
+
+        * doc/Doxyfile Fixed some documentation issues over some LaTeX
+        formulas. Removed custom header and footer for HTML since generated doc
+        may fail between different versions of Doxygen introducing mismatch in
+        stylesheets. And added a LaTeX output to the documentation. All in all,
+        most changes are to make the documentation directory cleaner and more
+        standard with regard to the output generated by Doxygen.
+
+        * src/bits/spatial_range.hpp (spatial): fix compilation issues detected
+        with g++4.5, that went through with MSVC9.0.
+
+        * doc/Doxygen added new documentation variables and documentation
+        aliases to generate concepts lists.
+
+        * src/bits/spatial_range.hpp design of overlap and enclose bounds
+        finalized. Also added new explanation for RangePredicated concept.
+
+        * test/verify.cpp Added tests for the bounds factory and the bounds
+        themselves. The last part must still be implemented.
+
+        * src/bits/spatial_exception.hpp remapped conflicting names in
+        exceptions and added new exceptions for overlap and enclose bounds.
+
+2011-07-08  Sylvain Bougerel  <sylvain.bougerel.devel@gmail.com>
+
+        * Overlap_bound is done. Need to redesign Range_iterators a little bit
+        to accomodate the new iterface for the bounds.
+
+2011-07-07  Sylvain Bougerel  <sylvain.bougerel.devel@gmail.com>
+
+        * Started working on overlap and enclose iterator. It seems overlap are
+        trickier to implement than I suspected.
+
+        * Modified the compilation parameters to make it even more strict. No
+        more shadowing of variables, and not more implicit converstion of
+        types.
+
+2011-06-16  Sylvain Bougerel  <sylvain.bougerel.devel@gmail.com>
+
+        * src/bits/spatial_mapping.tpp fixed an issue with lower_bound and
+        upper_bound functions. Wrong initialization of 'best' pointer. Somehow
+        it has slipt uncaught until now.
+
+2011-06-14  Sylvain Bougerel  <sylvain.bougerel.devel@gmail.com>
+
+        * Added support for Microsoft Visual Studio 9.0. Generation of unit
+        test file is working and fixed most compilation issues (some remain).
+
+        * src/bits/spatial_details.hpp Removed unnecessary match function,
+        acting as an alias for predicate.
+
+2011-06-13  Sylvain Bougerel  <sylvain.bougerel.devel@gmail.com>
+
+        * Added neighbor_iterable capability to *_pointset family of
+        containers.
+
+        * Fixed range_views compilation issues and added unit tests.
+
+        * Changed use of view:: namespace for neighbor view. New type is named
+        neighbor_view to follow the naming convention adopted in Boost.
+
+2011-06-12  Sylvain Bougerel  <sylvain.bougerel.devel@gmail.com>
+
+        * Changed use of view:: namespace for range view. New type is named
+        range_view to follow the naming convention adopted in Boost.
+
+        * Changed use of view:: namespace for mapping view. New type is named
+        mapping_view to follow the naming convention adopted in Boost.
+
+        * Fixed an issue with copy and assignment constructor on
+        Relaxed_kdtree. The weight of the root node was not copied.
+
+        * Added pointset and frozen_pointset family of contaners. Finally
+        reaching point of completion for basic types. Now need to add more
+        examples and documentation to explain how to use them.
+
+        * Fixed test for bulk erase in Relaxed Kdtree.
+
+        * Adding missing test for optimization in Kdtree.
+
+2011-06-11  Sylvain Bougerel  <sylvain.bougerel.devel@gmail.com>
+
+        * Added some missing unit test to check erase in bulk in kdtree. Adding
+        same test for relaxed kdtree soon.
+
+        * Passed all nearest neighbor iterator tests for the relaxed kdtree.
+
+        * Modified the incrementation and decrementation algorithm for the
+        nearest neighbor iterator. The old algorithm would prefer to scan the
+        nodes on one side, and then on the other side. This is not ideal when
+        the closest point is not on the first side being scanned. The new
+        algorithm scans both sides at the same time, alternating between the 2.
+
+        * Passed most mapping tests for the Relaxed K-d tree. Remaining
+        Lower_bound and Upper_bound. Behind schedule. Been playing Halo:Reach
+        too much.
+
+2011-04-07  Sylvain Bougerel  <sylvain.bougerel.devel@gmail.com>
+
+        * Rewriting support for constant and mutable iterators in
+        containers. Now iterators are deterministic (either all constant or all
+        mutable), and it is up to the container to choose which to use. The
+        resulting code is much cleaner.
+
+        * Relaxed_kdtree types of containers now reblance on insertion. I have
+        worked out several progressive version of the algorithm and improved it
+        each time. But I still need to check what it is observed run-time when
+        inserting growing sequential integers series in the tree, to validate
+        that it remains O(log(n)), which is what preliminary tests
+        shows. Nevertheless, finally working out an efficient algorithm that
+        balances the tree completely according to the policy is immensely
+        satisfying.
+
+2011-03-13  Sylvain Bougerel  <sylvain.bougerel.devel@gmail.com>
+
+        * First release with the following features:
+          * multi-dimension template containers with unlimited number of
+            dimensions to store points in space,
+          * dimensions may be of different types,
+          * static or dynamic time determination of the number of dimensions,
+          * O(log(n)) class of complexity on insertion and removal,
+          * use custom predicate to define a range of elements,
+          * STL-compatible iterators that go over that range of elements,
+          * flexible definition of a metric space for elements in the container,
+          * STL-compatible iterators going from the nearest to the furthest
+            neighbr of a point according to the metric space applied.

@@ -1,0 +1,100 @@
+Spatial TODO List
+=================
+
+Minor version updates
+--------------------
+
+1. Relaxed kdtree should insert the new key instead of the candidate
+   because it means less rotations.
+
+2. Algorithms need to be implemented and tested.
+
+3. Make pre-order node iterator the default for trees. Then tracking
+   leftmost in the trees is unnecessary.
+
+4. Change dim for depth in iterators/tree which is less computation
+   intensive.
+
+5. Unroll some loops in euclian implemantation (4?), in particular for
+   Dynamic_rank. Also care to use the Rank itself and not
+   dimension_type for loop unrolling during compilation.
+
+6. Support for C++11 initializer lists
+
+7. Metrics should use template function distance(Rank, Key, Key,
+   Accessor) and partial_distance(Rank, dim, Key, Key, Accessor) as
+   template types, which mean they can be expressed as
+   euclidian<double> only afterwards.
+
+8. Make the code smaller, simpler. Refactor regions? Iterator
+   constness to be deduced from node type?
+
+
+Major version update
+--------------------
+
+1. Support C++11 for loops will require the creation of
+   spatial::range, a very small wrapper returning begin() and end()
+   for each iterator, and nothing more. All *_iterator_pair definition
+   can then be gone.
+
+2. Prompting the user to use Comparator in point_multiset<>,
+   point_multimap<> and other container creates a need to rebind a
+   difference for euclidian, quadrance and manathan metrics. If the
+   user was simply asked for an assessor right from the start, this
+   need would not exists. This will require a redesign and break of
+   interface for the metrics. Metric can then be abbrievated with:
+           neighbor_begin<euclidian<float> >(container, target);
+   Instead of:
+           euclidian_neighbor_begin(container, target);
+   Which does not allow the user to customize the type used to express
+   distance.
+   This would also deprecate all metric specialization of
+   neighbor_begin(), neighbor_lower_bound(), etc. Ultimately, this
+   will resolve into less code and thus simplify support.
+
+3. Modify the interface for box_multiset and box_multimap which does
+   not allow for flexibility with enclosed_region and
+   overlapping_region. This would require a redesign of the
+   box_multiset and box_multimap, to store a pair<key_type> for each
+   box. Defining box_multiset would then be put into
+   question. Ultimately this would result into less code as well.
+
+4. Predicate interface for region_iterator should change. It should be
+   composed of 2 functions "greater_than_upper_bound" and
+   "less_than_lower_bound" which should lower the amount of
+   computation in region_iterator.
+
+5. Create the cache-oblivious point_index and box_index once the above
+   is done. Which would be a real achievement at this point. Index are
+   flat array representation of the tree which maintain perfect
+   balancing. It is also more economical in memory since only 1
+   pointer per node need to be defined (pointer to parent). Finally,
+   it is cache oblivious because for any cache size, there should
+   exist a sub-set of the array that contains a sub-tree that fits
+   entirely in the cache. This container would replace idle_* family
+   of containers.
+
+
+Spatial Miscellanelous
+======================
+
+* Provided VC++ fixes it's issue, use multiple inheritence on several
+  empty bases, in particular for Rank which is defined in the library.
+
+* Complete General doxygen documention with details on container and
+  views, elaboration of how to write geometry, etc.
+
+* Work on adding performance-based tests and comparison with other
+  libraries in the market, not just libkdtree++. Wouldn't it be nice
+  to see how it fares against FLANN or Boost.Rtree?
+
+* In relaxed kdtree, when inserting a point, during rebalancing, if
+  the node to insert is in the interval of the imbalanced node and the
+  candidate found, then the node to insert itself should become the
+  new root. Then only insert the imbalanced node.
+
+* Addition of algorithms. A few come to mind: approximative nearest
+  neighbor search, min/max depth, etc.
+
+* Creating by-project to wrap spatial in python, java, ruby, etc?

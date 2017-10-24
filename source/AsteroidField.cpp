@@ -18,6 +18,9 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Projectile.h"
 #include "Random.h"
 #include "Screen.h"
+#include "Sprite.h"
+
+#include "spatial/bits/spatial_overlap_region.hpp"
 
 #include <cmath>
 #include <cstdlib>
@@ -26,6 +29,102 @@ using namespace std;
 
 namespace {
 	const double WRAP = 4096.;
+	const double BEFORE_WRAP = WRAP - numeric_limits<double>::epsilon();
+	const int LOW_X = 0;
+	const int LOW_Y = 1;
+	const int HIGH_X = 2;
+	const int HIGH_Y = 3;
+
+	// Splits a box into 1 to 4 wrapped boxes.
+	// It assumes the box is overlapping the wrap region.
+	vector<box_bounds_t> SplitBox(const box_bounds_t &base)
+	{
+		vector<box_bounds_t> splits;
+		splits.push_back(base);
+		for(size_t i = 0; i < splits.size(); ++i)
+		{
+			box_bounds_t &box = splits[i];
+			if(box[LOW_X] < 0.)
+			{
+				box_bounds_t split = { box[LOW_X] + WRAP, box[LOW_Y], BEFORE_WRAP, box[HIGH_Y] };
+				splits.push_back(split);
+				box[LOW_X] = 0.;
+			}
+			if(box[LOW_Y] < 0.)
+			{
+				box_bounds_t split = { box[LOW_X], box[LOW_Y] + WRAP, box[HIGH_X], BEFORE_WRAP };
+				splits.push_back(split);
+				box[LOW_Y] = 0.;
+			}
+			if(box[HIGH_X] >= WRAP)
+			{
+				box_bounds_t split = { 0., box[LOW_Y], box[HIGH_X] - WRAP, box[HIGH_Y] };
+				splits.push_back(split);
+				box[HIGH_X] = BEFORE_WRAP;
+			}
+			if(box[HIGH_Y] >= WRAP)
+			{
+				box_bounds_t split = { box[LOW_X], 0., box[HIGH_X], box[HIGH_Y] - WRAP };
+				splits.push_back(split);
+				box[HIGH_Y] = BEFORE_WRAP;
+			}
+		}
+		return splits;
+	}
+	
+	// Box around an asteroid.
+	// It assumes the position is inside the wrap region.
+	box_bounds_t AsteroidBox(const Point &position, const Point &size)
+	{
+		box_bounds_t box = {
+			position.X() - size.X(),
+			position.Y() - size.Y(),
+			position.X() + size.X(),
+			position.Y() + size.Y()
+		};
+		
+		return box;
+	}
+	
+	// Box around the body movement.
+	box_bounds_t MovementBox(const Point &position, const Point &velocity)
+	{
+		box_bounds_t box;
+		
+		// Wrap X
+		if(abs(velocity.X()) < WRAP)
+		{
+			double x = fmod(position.X(), WRAP);
+			if(x < 0.)
+				x += WRAP;
+			box[LOW_X] = x;
+			box[HIGH_X] = x;
+			box[velocity.X() < 0. ? LOW_X : HIGH_X] += velocity.X();
+		}
+		else
+		{
+			box[LOW_X] = 0.;
+			box[HIGH_X] = BEFORE_WRAP;
+		}
+		
+		// Wrap Y
+		if(abs(velocity.Y()) < WRAP)
+		{
+			double y = fmod(position.Y(), WRAP);
+			if(y < 0.)
+				y += WRAP;
+			box[LOW_Y] = y;
+			box[HIGH_Y] = y;
+			box[velocity.Y() < 0. ? LOW_Y : HIGH_Y] += velocity.Y();
+		}
+		else
+		{
+			box[LOW_Y] = 0.;
+			box[HIGH_Y] = BEFORE_WRAP;
+		}
+		
+		return box;
+	}
 }
 
 
@@ -33,6 +132,7 @@ namespace {
 // Clear the list of asteroids.
 void AsteroidField::Clear()
 {
+	asteroidBounds.clear();
 	asteroids.clear();
 	minables.clear();
 }
@@ -68,8 +168,14 @@ void AsteroidField::Add(const Minable *minable, int count, double energy, double
 // Move all the asteroids forward one step.
 void AsteroidField::Step(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 {
+	asteroidBounds.clear();
 	for(Asteroid &asteroid : asteroids)
+	{
 		asteroid.Step();
+		for(box_bounds_t &box : SplitBox(AsteroidBox(asteroid.Position(), asteroid.Size())))
+			asteroidBounds.insert(std::make_pair(box, &asteroid));
+	}
+	asteroidBounds.rebalance();
 	
 	// Step through the minables. Since they are destructible, we may need to
 	// remove them from the list.
@@ -100,16 +206,22 @@ void AsteroidField::Draw(DrawList &draw, const Point &center, double zoom) const
 double AsteroidField::Collide(const Projectile &projectile, int step, double closestHit, Point *hitVelocity)
 {
 	// First, check for collisions with ordinary asteroids.
-	for(const Asteroid &asteroid : asteroids)
+	for(box_bounds_t &overlap : SplitBox(MovementBox(projectile.Position(), projectile.Velocity())))
 	{
-		double thisDistance = asteroid.Collide(projectile, step);
-		if(thisDistance < closestHit)
+		for(auto it = spatial::overlap_region_begin(asteroidBounds, overlap);
+			it != spatial::overlap_region_end(asteroidBounds, overlap); ++it)
 		{
-			closestHit = thisDistance;
-			if(hitVelocity)
-				*hitVelocity = asteroid.Velocity();
+			const Asteroid *asteroid = it->second;
+			double thisDistance = asteroid->Collide(projectile, step);
+			if(thisDistance < closestHit)
+			{
+				closestHit = thisDistance;
+				if(hitVelocity)
+					*hitVelocity = asteroid->Velocity();
+			}
 		}
 	}
+	
 	// Now, check for collisions with minable asteroids. Because this is the
 	// very last collision check to be done, if a minable asteroid is the
 	// closest hit, it really is what the projectile struck - that is, we are
@@ -227,4 +339,11 @@ double AsteroidField::Asteroid::Collide(const Projectile &projectile, int step) 
 	pos = Point(-remainder(pos.X(), WRAP), -remainder(pos.Y(), WRAP));
 	
 	return GetMask(step).Collide(pos - halfVelocity, projectile.Velocity(), angle);
+}
+
+
+
+const Point &AsteroidField::Asteroid::Size() const
+{
+	return size;
 }
