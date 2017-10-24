@@ -1093,7 +1093,7 @@ void Engine::CalculateStep()
 	
 	// Move the asteroids. This must be done before collision detection. Minables
 	// may create visuals or flotsam.
-	asteroids.Step(newVisuals, newFlotsam);
+	asteroids.Step(newVisuals, newFlotsam, step);
 	
 	// Move the flotsam. This must happen after the ships move, because flotsam
 	// checks if any ship has picked it up.

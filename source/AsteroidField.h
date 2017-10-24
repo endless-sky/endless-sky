@@ -15,6 +15,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Angle.h"
 #include "Body.h"
+#include "CollisionSet.h"
 #include "Minable.h"
 #include "Point.h"
 
@@ -40,13 +41,15 @@ class Visual;
 // are hit by a projectile.
 class AsteroidField {
 public:
+	AsteroidField();
+	
 	// Reset the asteroid field (typically because you entered a new system).
 	void Clear();
 	void Add(const std::string &name, int count, double energy = 1.);
 	void Add(const Minable *minable, int count, double energy = 1., double beltRadius = 1500.);
 	
 	// Move all the asteroids forward one time step.
-	void Step(std::vector<Visual> &visuals, std::list<std::shared_ptr<Flotsam>> &flotsam);
+	void Step(std::vector<Visual> &visuals, std::list<std::shared_ptr<Flotsam>> &flotsam, int step);
 	// Draw the asteroid field, with the field of view centered on the given point.
 	void Draw(DrawList &draw, const Point &center, double zoom) const;
 	// Check if the given projectile has hit any of the asteroids. The current
@@ -69,7 +72,6 @@ private:
 		
 		void Step();
 		void Draw(DrawList &draw, const Point &center, double zoom) const;
-		double Collide(const Projectile &projectile, int step) const;
 		
 	private:
 		Angle spin;
@@ -80,6 +82,8 @@ private:
 private:
 	std::vector<Asteroid> asteroids;
 	std::list<std::shared_ptr<Minable>> minables;
+	
+	CollisionSet asteroidCollisions;
 };
 
 
