@@ -1551,8 +1551,8 @@ void Engine::DoCollisions(Projectile &projectile)
 		double triggerRadius = projectile.GetWeapon().TriggerRadius();
 		if(triggerRadius)
 		{
-			for(const Ship *ship : shipCollisions.Circle(projectile.Position(), triggerRadius))
-				if(ship == projectile.Target() || gov->IsEnemy(ship->GetGovernment()))
+			for(const Body *body : shipCollisions.Circle(projectile.Position(), triggerRadius))
+				if(body == projectile.Target() || gov->IsEnemy(body->GetGovernment()))
 				{
 					closestHit = 0.;
 					break;
@@ -1598,8 +1598,9 @@ void Engine::DoCollisions(Projectile &projectile)
 			// Even friendly ships can be hit by the blast, unless it is a
 			// "safe" weapon.
 			Point hitPos = projectile.Position() + closestHit * projectile.Velocity();
-			for(Ship *ship : shipCollisions.Circle(hitPos, blastRadius))
+			for(Body *body : shipCollisions.Circle(hitPos, blastRadius))
 			{
+				Ship *ship = reinterpret_cast<Ship *>(body);
 				if(isSafe && projectile.Target() != ship && !gov->IsEnemy(ship->GetGovernment()))
 					continue;
 				
@@ -1608,8 +1609,9 @@ void Engine::DoCollisions(Projectile &projectile)
 					eventQueue.emplace_back(gov, ship->shared_from_this(), eventType);
 			}
 			// Cloaked ships can be hit be a blast, too.
-			for(Ship *ship : cloakedCollisions.Circle(hitPos, blastRadius))
+			for(Body *body : cloakedCollisions.Circle(hitPos, blastRadius))
 			{
+				Ship *ship = reinterpret_cast<Ship *>(body);
 				if(isSafe && projectile.Target() != ship && !gov->IsEnemy(ship->GetGovernment()))
 					continue;
 				
@@ -1649,8 +1651,9 @@ void Engine::DoCollection(Flotsam &flotsam)
 {
 	// Check if any ship can pick up this flotsam.
 	Ship *collector = nullptr;
-	for(Ship *ship : shipCollisions.Circle(flotsam.Position(), 5.))
+	for(Body *body : shipCollisions.Circle(flotsam.Position(), 5.))
 	{
+		Ship *ship = reinterpret_cast<Ship *>(body);
 		if(!ship->CannotAct() && ship != flotsam.Source() && ship->Cargo().Free() >= flotsam.UnitSize())
 		{
 			collector = ship;
