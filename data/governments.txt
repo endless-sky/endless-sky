@@ -78,7 +78,7 @@ government "Hai"
 	"player reputation" 0
 	"attitude toward"
 		"Hai (Unfettered)" -.5
-		"Merchant" .01
+		"human Merchant" .01
 	"bribe" .02
 	"fine" 0
 	"friendly hail" "friendly hai"
@@ -93,7 +93,7 @@ government "Hai (Unfettered)"
 		"Hai" -.01
 		"Wanderer" -.01
 		"Pug" -.01
-		"Merchant" -.01
+		"human Merchant" -.01
 		"Kor Efret" -.01
 	"bribe" .02
 	"fine" 0
@@ -177,10 +177,23 @@ government "Kor Sestor"
 		"Wanderer" -.01
 		"Republic" -.01
 		"Merchant" -.01
+		"human Merchant" -.01
 		"Navy (Oathkeeper)" -.01
 		"Syndicate" -.01
 	
 	"player reputation" -1000
+
+government "human Merchant"
+	swizzle 5
+
+	"attitude toward"
+		"Pirate" -.2
+		"Korath" -.2
+		"Merchant" 1
+	"bribe" .05
+	"fine" 0
+	"friendly hail" "friendly civilian"
+	"hostile hail" "hostile civilian"
 
 government "Merchant"
 	swizzle 5
@@ -189,6 +202,7 @@ government "Merchant"
 	"attitude toward"
 		"Pirate" -.2
 		"Korath" -.2
+		"human Merchant" 1
 	"bribe" .05
 	"fine" 0
 	"friendly hail" "friendly civilian"
@@ -256,6 +270,7 @@ government "Pirate"
 		"Hai" -.01
 		"Korath" -.01
 		"Merchant" -.1
+		"human Merchant" -.1
 		"Syndicate" -.01
 	"bribe" .05
 	"fine" 0
