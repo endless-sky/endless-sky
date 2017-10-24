@@ -500,7 +500,7 @@ fleet "Large Northern Merchants"
 		"Headhunter" 3
 
 fleet "Small Human Merchants (Hai)"
-	government "Merchant"
+	government "human Merchant"
 	names "civilian"
 	cargo 3
 	personality
@@ -559,7 +559,7 @@ fleet "Small Human Merchants (Hai)"
 		"Aphid"
 
 fleet "Large Human Merchants (Hai)"
-	government "Merchant"
+	government "human Merchant"
 	names "civilian"
 	cargo 4
 	personality
