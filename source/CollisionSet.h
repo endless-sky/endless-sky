@@ -28,7 +28,8 @@ class CollisionSet {
 public:
 	// Initialize a collision set. The cell size and cell count should both be
 	// powers of two; otherwise, they are rounded down to a power of two.
-	CollisionSet(int cellSize, int cellCount);
+	// Infinite sets repeat bodies every wrap size (cells * cell size).
+	CollisionSet(int cellSize, int cellCount, bool isInfinite = false);
 	
 	// Clear all objects in the set. Specify which engine step we are on, so we
 	// know what animation frame each object is on.
@@ -67,6 +68,9 @@ private:
 	// The number of grid cells.
 	int CELLS;
 	int WRAP_MASK;
+	
+	bool isInfinite;
+	int WRAP_SIZE;
 	
 	// The current game engine step.
 	int step;

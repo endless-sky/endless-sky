@@ -26,11 +26,30 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 using namespace std;
 
+namespace {
+	// Generate offsets for the line test of infinite collision sets.
+	void InfiniteLineOffsets(vector<Point> &offsets, const Projectile &projectile, const Body *body, double wrapSize)
+	{
+		// Note: this only checks the instance of the body that is closest to
+		// the projectile. If a projectile has a range longer than wrapSize pixels,
+		// it may "pass through" bodies near the end of its range.
+		
+		// Find offset closest to the center of the path.
+		Point halfVelocity = .5 * projectile.Velocity();
+		Point offset = (projectile.Position() + halfVelocity) - body->Position();
+		offset = Point(remainder(offset.X(), wrapSize), remainder(offset.Y(), wrapSize)) - halfVelocity;
+		
+		offsets.assign(1, offset);
+	}
+}
+
 
 
 // Initialize a collision set. The cell size and cell count should both be
 // powers of two; otherwise, they are rounded down to a power of two.
-CollisionSet::CollisionSet(int cellSize, int cellCount)
+// Infinite sets repeat bodies every wrap size (cells * cell size).
+CollisionSet::CollisionSet(int cellSize, int cellCount, bool isInfinite)
+	: isInfinite(isInfinite)
 {
 	// Right shift amount to convert from (x, y) location to grid (x, y).
 	SHIFT = 0;
@@ -44,6 +63,8 @@ CollisionSet::CollisionSet(int cellSize, int cellCount)
 	while(cellCount >>= 1)
 		CELLS <<= 1;
 	WRAP_MASK = CELLS - 1;
+
+	WRAP_SIZE = CELLS * CELL_SIZE;
 	
 	// Just in case Clear() isn't called before objects are added:
 	Clear(0);
@@ -152,7 +173,7 @@ Body *CollisionSet::Line(const Projectile &projectile, double *closestHit) const
 		{
 			// Skip objects that were put in this same grid cell only because
 			// of the cell coordinates wrapping around.
-			if(it->x != gx || it->y != gy)
+			if(!isInfinite && (it->x != gx || it->y != gy))
 				continue;
 			
 			// Check if this projectile can hit this object. If either the
@@ -162,13 +183,31 @@ Body *CollisionSet::Line(const Projectile &projectile, double *closestHit) const
 				continue;
 			
 			const Mask &mask = it->body->GetMask(step);
-			Point offset = projectile.Position() - it->body->Position();
-			double range = mask.Collide(offset, projectile.Velocity(), it->body->Facing());
-			
-			if(range < closest)
+			if(isInfinite)
 			{
-				closest = range;
-				result = it->body;
+				vector<Point> offsets;
+				InfiniteLineOffsets(offsets, projectile, it->body, WRAP_SIZE);
+				for(Point &offset : offsets)
+				{
+					double range = mask.Collide(offset, projectile.Velocity(), it->body->Facing());
+			
+					if(range < closest)
+					{
+						closest = range;
+						result = it->body;
+					}
+				}
+ 			}
+			else
+			{
+				Point offset = projectile.Position() - it->body->Position();
+				double range = mask.Collide(offset, projectile.Velocity(), it->body->Facing());
+			
+				if(range < closest)
+				{
+					closest = range;
+					result = it->body;
+				}
 			}
 		}
 		if(closest < 1. && closestHit)
@@ -208,7 +247,7 @@ Body *CollisionSet::Line(const Projectile &projectile, double *closestHit) const
 		{
 			// Skip objects that were put in this same grid cell only because
 			// of the cell coordinates wrapping around.
-			if(it->x != gx || it->y != gy)
+			if(!isInfinite && (it->x != gx || it->y != gy))
 				continue;
 			
 			if(seen.count(it->body))
@@ -222,13 +261,31 @@ Body *CollisionSet::Line(const Projectile &projectile, double *closestHit) const
 				continue;
 			
 			const Mask &mask = it->body->GetMask(step);
-			Point offset = projectile.Position() - it->body->Position();
-			double range = mask.Collide(offset, projectile.Velocity(), it->body->Facing());
-			
-			if(range < closest)
+			if(isInfinite)
 			{
-				closest = range;
-				result = it->body;
+				vector<Point> offsets;
+				InfiniteLineOffsets(offsets, projectile, it->body, WRAP_SIZE);
+				for(Point &offset : offsets)
+				{
+					double range = mask.Collide(offset, projectile.Velocity(), it->body->Facing());
+			
+					if(range < closest)
+					{
+						closest = range;
+						result = it->body;
+					}
+				}
+ 			}
+			else
+			{
+				Point offset = projectile.Position() - it->body->Position();
+				double range = mask.Collide(offset, projectile.Velocity(), it->body->Facing());
+			
+				if(range < closest)
+				{
+					closest = range;
+					result = it->body;
+				}
 			}
 		}
 		
@@ -302,15 +359,18 @@ const vector<Body *> &CollisionSet::Circle(const Point &center, double radius) c
 			{
 				// Skip objects that were put in this same grid cell only because
 				// of the cell coordinates wrapping around.
-				if(it->x != x || it->y != y)
+				if(!isInfinite && (it->x != x || it->y != y))
 					continue;
 				
 				if(seen.count(it->body))
 					continue;
 				seen.insert(it->body);
 				
-				const Mask &mask = it->body->GetMask(step);
 				Point offset = center - it->body->Position();
+				if(isInfinite)
+					offset = Point(remainder(offset.X(), WRAP_SIZE), remainder(offset.Y(), WRAP_SIZE));
+				
+				const Mask &mask = it->body->GetMask(step);
 				if(offset.Length() <= radius || mask.WithinRange(offset, it->body->Facing(), radius))
 					result.push_back(it->body);
 			}
