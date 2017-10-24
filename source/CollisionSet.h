@@ -15,9 +15,9 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include <vector>
 
+class Body;
 class Point;
 class Projectile;
-class Ship;
 
 
 
@@ -28,31 +28,32 @@ class CollisionSet {
 public:
 	// Initialize a collision set. The cell size and cell count should both be
 	// powers of two; otherwise, they are rounded down to a power of two.
-	CollisionSet(int cellSize, int cellCount);
+	// Infinite sets repeat bodies every wrap size (cells * cell size).
+	CollisionSet(int cellSize, int cellCount, bool isInfinite = false);
 	
 	// Clear all objects in the set. Specify which engine step we are on, so we
 	// know what animation frame each object is on.
 	void Clear(int step);
 	// Add an object to the set.
-	void Add(Ship &ship);
+	void Add(Body &body);
 	// Finish adding objects (and organize them into the final lookup table).
 	void Finish();
 	
 	// Get the first object that collides with the given projectile. If a
 	// "closest hit" value is given, update that value.
-	Ship *Line(const Projectile &projectile, double *closestHit = nullptr) const;
+	Body *Line(const Projectile &projectile, double *closestHit = nullptr) const;
 	
 	// Get all objects within the given range of the given point.
-	const std::vector<Ship *> &Circle(const Point &center, double radius) const;
+	const std::vector<Body *> &Circle(const Point &center, double radius) const;
 	
 	
 private:
 	class Entry {
 	public:
 		Entry() = default;
-		Entry(Ship *ship, int x, int y) : ship(ship), x(x), y(y) {}
+		Entry(Body *body, int x, int y) : body(body), x(x), y(y) {}
 		
-		Ship *ship;
+		Body *body;
 		int x;
 		int y;
 	};
@@ -68,6 +69,9 @@ private:
 	int CELLS;
 	int WRAP_MASK;
 	
+	bool isInfinite;
+	int WRAP_SIZE;
+	
 	// The current game engine step.
 	int step;
 	
@@ -77,7 +81,7 @@ private:
 	std::vector<int> counts;
 	
 	// Vector for returning the result of a circle query.
-	mutable std::vector<Ship *> result;
+	mutable std::vector<Body *> result;
 };
 
 

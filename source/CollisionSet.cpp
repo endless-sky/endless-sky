@@ -12,7 +12,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "CollisionSet.h"
 
-#include "Ship.h"
+#include "Body.h"
 #include "Government.h"
 #include "Mask.h"
 #include "Point.h"
@@ -26,11 +26,55 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 using namespace std;
 
+namespace {
+	// Generate offsets for the line test of infinite collision sets.
+	void InfiniteLineOffsets(vector<Point> &offsets, const Projectile &projectile, const Body *body, double wrapSize)
+	{
+		// Find offset closest to the center of the path.
+		const Point &velocity = projectile.Velocity();
+		Point halfVelocity = .5 * velocity;
+		Point offset = (projectile.Position() + halfVelocity) - body->Position();
+		offset = Point(remainder(offset.X(), wrapSize), remainder(offset.Y(), wrapSize)) - halfVelocity;
+		
+		// Record relevant offsets.
+		offsets.assign(1, offset);
+		if(abs(velocity.X()) >= wrapSize)
+		{
+			// Extra offsets in the positive X direction.
+			//   offset + N * wrapSize + velocity <= 0.5 * width, N > 0
+			//   N * wrapSize <= 0.5 * width - offset - velocity, N > 0
+			//   N <= (0.5 * width - offset - velocity) / wrapSize, N > 0
+			for(int n = floor((.5 * body->Width() - offset.X() - velocity.X()) / wrapSize); n > 0; --n)
+				offsets.emplace_back(offset.X() + n * wrapSize, offset.Y());
+			// Extra offsets in the negative X direction.
+			//   offset - N * wrapSize + velocity >= -0.5 * width, N > 0
+			//   N * -wrapSize >= -0.5 * width - offset - velocity, N > 0
+			//   N <= (0.5 * width + offset + velocity) / wrapSize, N > 0
+			for(int n = floor((.5 * body->Width() + offset.X() + velocity.X()) / wrapSize); n > 0; --n)
+				offsets.emplace_back(offset.X() - n * wrapSize, offset.Y());
+		}
+		if(abs(velocity.Y()) >= wrapSize)
+		{
+			size_t M = offsets.size();
+			// Extra offsets in the positive Y direction.
+			for(int n = floor((.5 * body->Height() - offset.Y() - velocity.Y()) / wrapSize); n > 0; --n)
+				for(size_t i = 0; i < M; ++i)
+					offsets.emplace_back(offsets[i].X(), offset.Y() + n * wrapSize);
+			// Extra offsets in the negative Y direction.
+			for(int n = floor((.5 * body->Height() + offset.Y() + velocity.Y()) / wrapSize); n > 0; --n)
+				for(size_t i = 0; i < M; ++i)
+					offsets.emplace_back(offsets[i].X(), offset.Y() - n * wrapSize);
+		}
+	}
+}
+
 
 
 // Initialize a collision set. The cell size and cell count should both be
 // powers of two; otherwise, they are rounded down to a power of two.
-CollisionSet::CollisionSet(int cellSize, int cellCount)
+// Infinite sets repeat bodies every wrap size (cells * cell size).
+CollisionSet::CollisionSet(int cellSize, int cellCount, bool isInfinite)
+	: isInfinite(isInfinite)
 {
 	// Right shift amount to convert from (x, y) location to grid (x, y).
 	SHIFT = 0;
@@ -44,6 +88,8 @@ CollisionSet::CollisionSet(int cellSize, int cellCount)
 	while(cellCount >>= 1)
 		CELLS <<= 1;
 	WRAP_MASK = CELLS - 1;
+
+	WRAP_SIZE = CELLS * CELL_SIZE;
 	
 	// Just in case Clear() isn't called before objects are added:
 	Clear(0);
@@ -67,13 +113,13 @@ void CollisionSet::Clear(int step)
 
 
 // Add an object to the set.
-void CollisionSet::Add(Ship &ship)
+void CollisionSet::Add(Body &body)
 {
 	// Calculate the range of (x, y) grid coordinates this object covers.
-	int minX = static_cast<int>(ship.Position().X() - ship.Radius()) >> SHIFT;
-	int minY = static_cast<int>(ship.Position().Y() - ship.Radius()) >> SHIFT;
-	int maxX = static_cast<int>(ship.Position().X() + ship.Radius()) >> SHIFT;
-	int maxY = static_cast<int>(ship.Position().Y() + ship.Radius()) >> SHIFT;
+	int minX = static_cast<int>(body.Position().X() - body.Radius()) >> SHIFT;
+	int minY = static_cast<int>(body.Position().Y() - body.Radius()) >> SHIFT;
+	int maxX = static_cast<int>(body.Position().X() + body.Radius()) >> SHIFT;
+	int maxY = static_cast<int>(body.Position().Y() + body.Radius()) >> SHIFT;
 	
 	// Add a pointer to this object in every grid cell it occupies.
 	for(int y = minY; y <= maxY; ++y)
@@ -82,7 +128,7 @@ void CollisionSet::Add(Ship &ship)
 		for(int x = minX; x <= maxX; ++x)
 		{
 			int gx = x & WRAP_MASK;
-			added.emplace_back(&ship, x, y);
+			added.emplace_back(&body, x, y);
 			++counts[gy * CELLS + gx + 2];
 		}
 	}
@@ -117,7 +163,7 @@ void CollisionSet::Finish()
 
 // Get the first object that collides with the given projectile. If a
 // "closest hit" value is given, update that value.
-Ship *CollisionSet::Line(const Projectile &projectile, double *closestHit) const
+Body *CollisionSet::Line(const Projectile &projectile, double *closestHit) const
 {
 	// What objects the projectile hits depends on its government.
 	const Government *pGov = projectile.GetGovernment();
@@ -138,7 +184,7 @@ Ship *CollisionSet::Line(const Projectile &projectile, double *closestHit) const
 	
 	// Keep track of the closest collision found so far.
 	double closest = 1.;
-	Ship *result = nullptr;
+	Body *result = nullptr;
 	
 	// Special case, very common: the projectile is contained in one grid cell.
 	// In this case, all the complicated code below can be skipped.
@@ -152,23 +198,41 @@ Ship *CollisionSet::Line(const Projectile &projectile, double *closestHit) const
 		{
 			// Skip objects that were put in this same grid cell only because
 			// of the cell coordinates wrapping around.
-			if(it->x != gx || it->y != gy)
+			if(!isInfinite && (it->x != gx || it->y != gy))
 				continue;
 			
 			// Check if this projectile can hit this object. If either the
 			// projectile or the object has no government, it will always hit.
-			const Government *iGov = it->ship->GetGovernment();
-			if(it->ship != projectile.Target() && iGov && pGov && !iGov->IsEnemy(pGov))
+			const Government *iGov = it->body->GetGovernment();
+			if(it->body != projectile.Target() && iGov && pGov && !iGov->IsEnemy(pGov))
 				continue;
 			
-			const Mask &mask = it->ship->GetMask(step);
-			Point offset = projectile.Position() - it->ship->Position();
-			double range = mask.Collide(offset, projectile.Velocity(), it->ship->Facing());
-			
-			if(range < closest)
+			const Mask &mask = it->body->GetMask(step);
+			if(isInfinite)
 			{
-				closest = range;
-				result = it->ship;
+				vector<Point> offsets;
+				InfiniteLineOffsets(offsets, projectile, it->body, WRAP_SIZE);
+				for(Point &offset : offsets)
+				{
+					double range = mask.Collide(offset, projectile.Velocity(), it->body->Facing());
+			
+					if(range < closest)
+					{
+						closest = range;
+						result = it->body;
+					}
+				}
+ 			}
+			else
+			{
+				Point offset = projectile.Position() - it->body->Position();
+				double range = mask.Collide(offset, projectile.Velocity(), it->body->Facing());
+			
+				if(range < closest)
+				{
+					closest = range;
+					result = it->body;
+				}
 			}
 		}
 		if(closest < 1. && closestHit)
@@ -197,7 +261,7 @@ Ship *CollisionSet::Line(const Projectile &projectile, double *closestHit) const
 		ry = full - ry;
 	
 	// Keep track of which objects we've already considered.
-	set<const Ship *> seen;
+	set<const Body *> seen;
 	while(true)
 	{
 		// Examine all objects in the current grid cell.
@@ -208,27 +272,45 @@ Ship *CollisionSet::Line(const Projectile &projectile, double *closestHit) const
 		{
 			// Skip objects that were put in this same grid cell only because
 			// of the cell coordinates wrapping around.
-			if(it->x != gx || it->y != gy)
+			if(!isInfinite && (it->x != gx || it->y != gy))
 				continue;
 			
-			if(seen.count(it->ship))
+			if(seen.count(it->body))
 				continue;
-			seen.insert(it->ship);
+			seen.insert(it->body);
 			
 			// Check if this projectile can hit this object. If either the
 			// projectile or the object has no government, it will always hit.
-			const Government *iGov = it->ship->GetGovernment();
-			if(it->ship != projectile.Target() && iGov && pGov && !iGov->IsEnemy(pGov))
+			const Government *iGov = it->body->GetGovernment();
+			if(it->body != projectile.Target() && iGov && pGov && !iGov->IsEnemy(pGov))
 				continue;
 			
-			const Mask &mask = it->ship->GetMask(step);
-			Point offset = projectile.Position() - it->ship->Position();
-			double range = mask.Collide(offset, projectile.Velocity(), it->ship->Facing());
-			
-			if(range < closest)
+			const Mask &mask = it->body->GetMask(step);
+			if(isInfinite)
 			{
-				closest = range;
-				result = it->ship;
+				vector<Point> offsets;
+				InfiniteLineOffsets(offsets, projectile, it->body, WRAP_SIZE);
+				for(Point &offset : offsets)
+				{
+					double range = mask.Collide(offset, projectile.Velocity(), it->body->Facing());
+			
+					if(range < closest)
+					{
+						closest = range;
+						result = it->body;
+					}
+				}
+ 			}
+			else
+			{
+				Point offset = projectile.Position() - it->body->Position();
+				double range = mask.Collide(offset, projectile.Velocity(), it->body->Facing());
+			
+				if(range < closest)
+				{
+					closest = range;
+					result = it->body;
+				}
 			}
 		}
 		
@@ -277,7 +359,7 @@ Ship *CollisionSet::Line(const Projectile &projectile, double *closestHit) const
 
 
 // Get all objects within the given range of the given point.
-const vector<Ship *> &CollisionSet::Circle(const Point &center, double radius) const
+const vector<Body *> &CollisionSet::Circle(const Point &center, double radius) const
 {
 	// Calculate the range of (x, y) grid coordinates this circle covers.
 	int minX = static_cast<int>(center.X() - radius) >> SHIFT;
@@ -286,7 +368,7 @@ const vector<Ship *> &CollisionSet::Circle(const Point &center, double radius) c
 	int maxY = static_cast<int>(center.Y() + radius) >> SHIFT;
 	
 	// Keep track of which objects we've already considered.
-	set<const Ship *> seen;
+	set<const Body *> seen;
 	result.clear();
 	for(int y = minY; y <= maxY; ++y)
 	{
@@ -302,17 +384,20 @@ const vector<Ship *> &CollisionSet::Circle(const Point &center, double radius) c
 			{
 				// Skip objects that were put in this same grid cell only because
 				// of the cell coordinates wrapping around.
-				if(it->x != x || it->y != y)
+				if(!isInfinite && (it->x != x || it->y != y))
 					continue;
 				
-				if(seen.count(it->ship))
+				if(seen.count(it->body))
 					continue;
-				seen.insert(it->ship);
+				seen.insert(it->body);
 				
-				const Mask &mask = it->ship->GetMask(step);
-				Point offset = center - it->ship->Position();
-				if(offset.Length() <= radius || mask.WithinRange(offset, it->ship->Facing(), radius))
-					result.push_back(it->ship);
+				Point offset = center - it->body->Position();
+				if(isInfinite)
+					offset = Point(remainder(offset.X(), WRAP_SIZE), remainder(offset.Y(), WRAP_SIZE));
+				
+				const Mask &mask = it->body->GetMask(step);
+				if(offset.Length() <= radius || mask.WithinRange(offset, it->body->Facing(), radius))
+					result.push_back(it->body);
 			}
 		}
 	}
