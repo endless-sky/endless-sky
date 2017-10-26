@@ -100,6 +100,44 @@ namespace {
 		return result;
 	}
 	
+	bool UsedAll(vector<bool> &status)
+	{
+		for(const bool &v : status)
+			if(!v)
+				return false;
+		return true;
+	}
+	
+	// Get the operand's index within the data vector during evaluation.
+	size_t LeftOperand(const vector<string> &tokens, const vector<int> &dataDest, const size_t &workingIndex)
+	{
+		// The left operand is at the first non-empty tokens index
+		// if starting from the working index and moving backwards.
+		size_t left = workingIndex;
+		while(tokens.at(left).empty() && left > 0)
+			--left;
+		// Trace any used data to find the latest result.
+		while(dataDest.at(left) > 0)
+			left = dataDest.at(left);
+		
+		return left;
+	}
+	
+	// Get the operand's index within the data vector during evaluation.
+	size_t RightOperand(const vector<string> &tokens, const vector<int> &dataDest, const size_t &workingIndex)
+	{
+		// The right operand is at the first non-empty tokens index
+		// if starting just past the working index and moving forward.
+		size_t right = workingIndex + 1;
+		while(tokens.at(right).empty() && right < tokens.size() - 2)
+			++right;
+		// Trace any used data to find the latest result.
+		while(dataDest.at(right) > 0)
+			right = dataDest.at(right);
+		
+		return right;
+	}
+	
 	void PrintConditionError(const vector<string> &side)
 	{
 		string message = "Error decomposing complex condition expression:\nFound:\t";
@@ -348,9 +386,9 @@ void ConditionSet::TestApply(const Conditions &conditions, Conditions &created) 
 
 
 
-// Constructor for a simple expression.
-ConditionSet::Expression::Expression(const string &name, const string &op, int value)
-	: name(name), op(op), fun(Op(op)), value(value)
+// Constructor for an expression.
+ConditionSet::Expression::Expression(const string &name, const string &op, int value, const vector<string> left, const vector<string> right)
+	: name(name), op(op), fun(Op(op)), value(value), left(left), right(right)
 {
 }
 
@@ -525,14 +563,134 @@ void ConditionSet::Expression::SubExpression::GenerateSequence()
 	// Simple conditions have only a single token and no operators.
 	if(tokens.empty() || operators.empty())
 		return;
-	
-	// TODO: Generate the sequence.
+	static const map<string, int> precedence = {
+		{"(", 0}, {")", 0},
+		{"+", 1}, {"-", 1},
+		{"*", 2}, {"/", 2}
+	};
+	// Use two boolean vectors to indicate when a token or operator has
+	// been used already, and should be ignored when seeking.
+	size_t dest = tokens.size();
+	vector<bool> usedOps(operators.size(), false);
+	// Read the operators vector just once by using a stack.
+	vector<size_t> opStack;
+	// Track where each subexpression places each operator's data. Each
+	// operator generates a new data entry.
+	vector<int> dataDest(dest + operatorCount, -1);
+	int opIndex = 0;
+	while(!UsedAll(usedOps))
+	{
+		while(true)
+		{
+			// Stack ops until one of lower or equal precedence is found, then evaluate the higher one first.
+			if(opStack.empty() || operators.at(opIndex) == "("
+					|| (precedence.at(operators.at(opIndex)) > precedence.at(operators.at(opStack.back()))))
+			{
+				opStack.push_back(opIndex);
+				// Mark this operator as used and advance.
+				usedOps.at(opIndex++) = true;
+				break;
+			}
+			
+			size_t workingIndex = opStack.back();
+			opStack.pop_back();
+			
+			// A left parentheses results in a no-op step.
+			if(operators.at(workingIndex) == "(")
+			{
+				if(operators.at(opIndex) != ")")
+				{
+					Files::LogError("Did not find matched parentheses:");
+					PrintConditionError(operators);
+					tokens.clear();
+					operators.clear();
+					sequence.clear();
+					return;
+				}
+				// "Use" the parentheses and advance operators.
+				usedOps.at(opIndex++) = true;
+				break;
+			}
+			// Otherwise, obtain the operand indices. The operator
+			// is never a parentheses. The working index can never
+			// exceed the size of the tokens vector.
+			else
+			{
+				size_t leftOp = LeftOperand(tokens, dataDest, workingIndex);
+				size_t rightOp = RightOperand(tokens, dataDest, workingIndex);
+				
+				// Bail out if the pointed token is empty string.
+				// Only in-bounds indices might be empty.
+				if((leftOp < tokens.size() && tokens.at(leftOp).empty())
+						|| (rightOp < tokens.size() && tokens.at(rightOp).empty()))
+				{
+					Files::LogError("Unable to obtain valid operand for function \"" + operators.at(workingIndex) + "\" with tokens");
+					PrintConditionError(tokens);
+					tokens.clear();
+					operators.clear();
+					sequence.clear();
+					return;
+				}
+				
+				// Record the use of each operand by writing
+				// where its latest value can be found.
+				dataDest.at(leftOp) = dest;
+				dataDest.at(rightOp) = dest;
+				// Create the Operation.
+				sequence.emplace_back(operators.at(workingIndex), leftOp, rightOp);
+				// Update the operands' destination.
+				++dest;
+			}
+		}
+	}
+	// Handle remaining operators (which cannot be parentheses).
+	while(!opStack.empty())
+	{
+		size_t workingIndex = opStack.back();
+		opStack.pop_back();
+		
+		if(operators.at(workingIndex) == "(" || operators.at(workingIndex) == ")")
+		{
+			Files::LogError("Mismatched parentheses:" + ToString());
+			tokens.clear();
+			operators.clear();
+			sequence.clear();
+			return;
+		}
+		
+		size_t leftOp = LeftOperand(tokens, dataDest, workingIndex);
+		size_t rightOp = RightOperand(tokens, dataDest, workingIndex);
+		
+		// Bail out if the pointed token is empty string.
+		// Only in-bounds indices might be empty.
+		if((leftOp < tokens.size() && tokens.at(leftOp).empty())
+				|| (rightOp < tokens.size() && tokens.at(rightOp).empty()))
+		{
+			Files::LogError("Unable to obtain valid operand for function \"" + operators.at(workingIndex) + "\" with tokens");
+			PrintConditionError(tokens);
+			tokens.clear();
+			operators.clear();
+			sequence.clear();
+			return;
+		}
+		
+		// Record the use of each operand by writing
+		// where its latest value can be found.
+		dataDest.at(leftOp) = dest;
+		dataDest.at(rightOp) = dest;
+		// Create the Operation.
+		sequence.emplace_back(operators.at(workingIndex), leftOp, rightOp);
+		// Update the operands' destination.
+		++dest;
+	}
+	// All operators and tokens should now have been used.
+	Files::LogError("Parsed:" + ToString() + "\nFound: " + to_string(operatorCount) + " true operators and made " + to_string(sequence.size()) + " operations.");
 }
 
 
 
-// Constructor for an operation, indicating the function, the location of its
-// operands, and where the operation will store its result.
+// Constructor for an Operation, indicating the binary function and the
+// indices of its operands within the evaluation-time data vector.
 ConditionSet::Expression::SubExpression::Operation::Operation(const string &op, size_t &a, size_t &b)
 	: fun(Op(op)), a(a), b(b)
 {

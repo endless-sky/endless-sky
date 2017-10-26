@@ -69,7 +69,7 @@ private:
 	// either testing what value it has, or modifying it in some way.
 	class Expression {
 	public:
-		Expression(const std::string &name, const std::string &op, int value);
+		Expression(const std::string &name, const std::string &op, int value, const std::vector<std::string> left = std::vector<std::string>(), const std::vector<std::string> right = std::vector<std::string>());
 		
 		void Save(DataWriter &out) const;
 		// Convert this expression into a string, for traces.
@@ -88,20 +88,17 @@ private:
 		
 		
 	private:
-		// A SubExpression results from applying operator-precendence
-		// parsing to one side of an Expression. The operators and
-		// tokens needed to recreate the given side are stored, and can
-		// be interleaved to restore the original string. Based on the
-		// tokens and operators, a sequence of Operations is created.
+		// A SubExpression results from applying operator-precedence parsing to one side of
+		// an Expression. The operators and tokens needed to recreate the given side are
+		// stored, and can be interleaved to restore the original string. Based on them, a
+		// sequence of Operations is created for runtime evaluation.
 		class SubExpression {
 		public:
 			explicit SubExpression(const std::vector<std::string> &side);
 			
-			// Interleave tokens and operators to reproduce the
-			// initial string that created this SubExpression.
+			// Interleave tokens and operators to reproduce the initial string.
 			const std::string ToString() const;
-			// Substitute numbers for any string values (including
-			// "random") and then evaluate the Operations sequence.
+			// Substitute numbers for any string values and then compute the result.
 			int Evaluate(const Conditions &conditions, const Conditions &created) const;
 			
 			
@@ -111,9 +108,8 @@ private:
 			
 			
 		private:
-			// A Operation has a pointer to its binary function,
-			// and the data indices for its operands. The result
-			// is always placed on the back of the data vector.
+			// An Operation has a pointer to its binary function, and the data indices for
+			// its operands. The result is always placed on the back of the data vector.
 			class Operation {
 			public:
 				explicit Operation(const std::string &op, size_t &a, size_t &b);
@@ -127,14 +123,10 @@ private:
 		private:
 			// Iteration of the sequence vector yields the result.
 			std::vector<Operation> sequence;
-			// Each token can be converted into a numeric value at the
-			// time of evaluation, with the exception of parentheses.
+			// The tokens vector converts into a data vector of numeric values during evalution.
 			std::vector<std::string> tokens;
-			// Each operator indicates which binary function is to
-			// be applied to the adjacent tokens.
 			std::vector<std::string> operators;
-			// The number of non-parentheses operators, which should equal
-			// the number of sequence operations.
+			// The number of true (non-parentheses) operators.
 			int operatorCount = 0;
 		};
 		
@@ -155,6 +147,11 @@ private:
 		// Pointer to a binary function that defines the assignment or
 		// comparison operation to be performed.
 		int (*fun)(int, int);
+		
+		// The left-hand-side of a comparison Expression.
+		SubExpression left;
+		// The right-hand-side of any Expression.
+		SubExpression right;
 	};
 	
 	
