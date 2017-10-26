@@ -43,6 +43,26 @@ using namespace std;
 
 namespace {
 	const int SIDE_WIDTH = 280;
+	
+	// Checks if a missions involves the provided system.
+	bool Involves(const Mission &mission, const System *system)
+	{
+		if(system == nullptr)
+			return false;
+		
+		if(mission.Destination()->IsInSystem(system))
+			return true;
+		
+		for(const System *waypoint : mission.Waypoints())
+			if(waypoint == system)
+				return true;
+		
+		for(const Planet *stopover : mission.Stopovers())
+			if(stopover->IsInSystem(system))
+				return true;
+		
+		return false;
+	}
 }
 
 
@@ -344,9 +364,9 @@ bool MissionPanel::Click(int x, int y, int clicks)
 			if(acceptedIt != accepted.end() && !acceptedIt->IsVisible())
 				continue;
 			
-			if(availableIt != available.end() && availableIt->Destination()->IsInSystem(system))
+			if(availableIt != available.end() && Involves(*availableIt, system))
 				break;
-			if(acceptedIt != accepted.end() && acceptedIt->Destination()->IsInSystem(system))
+			if(acceptedIt != accepted.end() && Involves(*acceptedIt, system))
 				break;
 		}
 		// Make sure invisible missions are never selected, even if there were
