@@ -16,15 +16,13 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 using namespace std;
 
-
-
 namespace {
-	static int RAW_WIDTH = 0;
-	static int RAW_HEIGHT = 0;
-	static int WIDTH = 0;
-	static int HEIGHT = 0;
-	static int ZOOM = 100;
-	static bool HIGH_DPI = false;
+	int RAW_WIDTH = 0;
+	int RAW_HEIGHT = 0;
+	int WIDTH = 0;
+	int HEIGHT = 0;
+	int ZOOM = 100;
+	bool HIGH_DPI = false;
 }
 
 

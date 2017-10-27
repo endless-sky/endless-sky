@@ -724,12 +724,12 @@ ship "Marauder Leviathan"
 		"Ionic Afterburner"
 		"Hyperdrive"
 	
-	engine -25 125
-	engine 25 125
+	engine -25 120
+	engine 25 120
 	gun -38 -34 "Particle Cannon"
 	gun 38 -34 "Particle Cannon"
-	gun -50 -26 "Particle Cannon"
-	gun 50 -26 "Particle Cannon"
+	gun -50 -23 "Particle Cannon"
+	gun 50 -23 "Particle Cannon"
 	turret -15 -50 "Quad Blaster Turret"
 	turret 15 -50 "Quad Blaster Turret"
 	turret -25 10 "Heavy Laser Turret"
@@ -778,14 +778,14 @@ ship "Marauder Leviathan" "Marauder Leviathan (Engines)"
 		"A865 Atomic Steering"
 		"Hyperdrive"
 	
-	engine -27 125
-	engine 27 125
+	engine -25 125
+	engine 25 125
 	gun -38 -34 "Electron Beam"
 	gun 38 -34 "Electron Beam"
 	gun -50 -23 "Electron Beam"
 	gun 50 -23 "Electron Beam"
-	turret -16 -48 "Quad Blaster Turret"
-	turret 16 -48 "Quad Blaster Turret"
+	turret -15 -50 "Quad Blaster Turret"
+	turret 15 -50 "Quad Blaster Turret"
 	turret -25 10 "Quad Blaster Turret"
 	turret 25 10 "Quad Blaster Turret"
 	explode "tiny explosion" 18
@@ -832,12 +832,12 @@ ship "Marauder Leviathan" "Marauder Leviathan (Weapons)"
 		"Ionic Afterburner"
 		"Hyperdrive"
 	
-	engine -25 125
-	engine 25 125
-	gun -39 -52 "Particle Cannon"
-	gun 39 -52 "Particle Cannon"
-	gun -50 -45 "Particle Cannon"
-	gun 50 -45 "Particle Cannon"
+	engine -25 120
+	engine 25 120
+	gun -38 -55 "Particle Cannon"
+	gun 38 -55 "Particle Cannon"
+	gun -50 -44 "Particle Cannon"
+	gun 50 -44 "Particle Cannon"
 	turret -15 -50 "Heavy Laser Turret"
 	turret 15 -50 "Heavy Laser Turret"
 	turret -25 10 "Heavy Laser Turret"

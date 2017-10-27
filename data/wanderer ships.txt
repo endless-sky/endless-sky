@@ -83,6 +83,7 @@ ship "Flycatcher"
 
 
 ship "Summer Leaf"
+	plural "Summer Leaves"
 	sprite "ship/summer leaf"
 	attributes
 		category "Light Warship"
@@ -130,6 +131,7 @@ ship "Summer Leaf"
 
 
 ship "Autumn Leaf"
+	plural "Autumn Leaves"
 	sprite "ship/autumn leaf"
 	attributes
 		category "Light Warship"

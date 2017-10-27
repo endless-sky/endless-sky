@@ -36,7 +36,7 @@ namespace {
 	const double WIDTH = SIDEBAR_WIDTH + TEXT_WIDTH;
 	const double LINE_HEIGHT = 25.;
 	const double GAP = 30.;
-	static const string MONTH[] = {
+	const string MONTH[] = {
 		"  January", "  February", "  March", "  April", "  May", "  June",
 		"  July", "  August", "  September", "  October", "  November", "  December"};
 }
@@ -183,7 +183,7 @@ bool LogbookPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 		{
 			++i;
 			if(i >= contents.size())
-				return true;
+				i = 0;
 		}
 		else if(i)
 		{
@@ -199,6 +199,8 @@ bool LogbookPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 					++i;
 			}
 		}
+		else
+			i = contents.size() - 1;
 		if(contents[i] != selectedName)
 		{
 			selectedDate = dates[i];

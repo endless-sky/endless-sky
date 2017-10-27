@@ -408,7 +408,7 @@ mission "Wanderers: Quarg Assistance 2"
 		has "Wanderers: Quarg Assistance 1: done"
 	on offer
 		log "The Quarg (or possibly, a faction within the Quarg, or even just a group of Quarg acting on their own) have agreed to send three of their warships to help defend the Wanderer settlement in Korath space. (Or maybe they are sending the ships because they view the Wanderers as invaders and want to keep an eye on them. It is not easy to determine their true intentions.)"
-		log "Factions" "Wanderers" `According to the Quarg, the Wanderers are not native to this galaxy, but were brought here from somehwere else (presumably by the Pug).`
+		log "Factions" "Wanderers" `According to the Quarg, the Wanderers are not native to this galaxy, but were brought here from somewhere else (presumably by the Pug).`
 		conversation
 			`The Quarg do not generally share any information on how their leadership hierarchy works, if such a hierarchy even exists, so your best bet to find help for the Wanderers is just to ask around until you find the right person. You flag down the first Quarg who passes you in the hallway. "How can I help you, human?" it asks.`
 			`	"Well," you say, "I'm here on behalf of a species that has recently settled on one of the abandoned Korath worlds. I'm hoping you can help protect them."`
@@ -1431,8 +1431,7 @@ mission "Wanderers: Tour 5"
 		system "Ap'arak"
 		government "Hai (Unfettered)"
 		personality staying heroic
-		fleet "Large Unfettered"
-		fleet "Large Unfettered"
+		fleet "Large Unfettered" 2
 
 
 
@@ -1710,8 +1709,7 @@ mission "Wanderers: Sestor Search"
 		government "Wanderer"
 		personality derelict uninterested
 		fleet "Wanderer Defense"
-		fleet "Wanderer Freight"
-		fleet "Wanderer Freight"
+		fleet "Wanderer Freight" 2
 	npc
 		system "Aya'k'k"
 		government "Kor Sestor"
@@ -2048,8 +2046,7 @@ mission "Wanderers: Sestor: Quarg Help 2"
 		government "Kor Sestor"
 		personality heroic staying
 		system "Alnitak"
-		fleet "Large Kor Sestor"
-		fleet "Large Kor Sestor"
+		fleet "Large Kor Sestor" 2
 
 
 
@@ -2455,6 +2452,104 @@ event "bombed zenith"
 		description `	The settlements here were never more than tenuous villages operating on the brink of starvation as they sought to make a living in this icy wilderness. Now, many of them have collapsed due to massive earthquakes that came after the Oathkeepers had the planet bombed to destroy an Alpha base.`
 		bribe .04
 		"required reputation" 0
+	system Alnilam
+		object
+			sprite star/f5
+			period 10
+		object
+			sprite planet/desert1
+			distance 224.69
+			period 32.5315
+		object
+			sprite planet/gas7
+			distance 966.7
+			period 290.312
+			object
+				sprite planet/miranda
+				distance 220
+				period 10.5884
+			object
+				sprite planet/luna
+				distance 305
+				period 17.2841
+		object Zenith
+			sprite "planet/zenith hot"
+			distance 1776.59
+			period 723.284
+			object
+				sprite planet/ice8
+				distance 136
+				period 16.5247
+		object
+			sprite planet/gas2
+			distance 2758.68
+			period 1399.52
+			object
+				sprite planet/dust1
+				distance 200
+				period 12.5708
+			object
+				sprite planet/lava0
+				distance 330
+				period 26.6433
+			object
+				sprite planet/dust7
+				distance 440
+				period 41.0201
+			object
+				sprite planet/desert4
+				distance 575
+				period 61.2801
+
+event "zenith cooling"
+	system Alnilam
+		object
+			sprite star/f5
+			period 10
+		object
+			sprite planet/desert1
+			distance 224.69
+			period 32.5315
+		object
+			sprite planet/gas7
+			distance 966.7
+			period 290.312
+			object
+				sprite planet/miranda
+				distance 220
+				period 10.5884
+			object
+				sprite planet/luna
+				distance 305
+				period 17.2841
+		object Zenith
+			sprite "planet/zenith cold"
+			distance 1776.59
+			period 723.284
+			object
+				sprite planet/ice8
+				distance 136
+				period 16.5247
+		object
+			sprite planet/gas2
+			distance 2758.68
+			period 1399.52
+			object
+				sprite planet/dust1
+				distance 200
+				period 12.5708
+			object
+				sprite planet/lava0
+				distance 330
+				period 26.6433
+			object
+				sprite planet/dust7
+				distance 440
+				period 41.0201
+			object
+				sprite planet/desert4
+				distance 575
+				period 61.2801
 
 mission "Wanderers: Sestor: Bomb Zenith 2"
 	landing
@@ -2467,6 +2562,7 @@ mission "Wanderers: Sestor: Bomb Zenith 2"
 	on offer
 		log "Dropped some sort of incredibly destructive bomb on the Alpha base on the anarchist world of Zenith. The explosion tore open a hole straight through the planet's crust."
 		event "bombed zenith"
+		event "zenith cooling" 40
 		conversation
 			`You shove Danforth's device out the airlock at the coordinates he gave you, and immediately fire your ship's repulsors full blast to take you back up into orbit...`
 				launch
@@ -2672,7 +2768,7 @@ mission "Wanderers: Sestor Alt: Alnilam 3"
 		has "Wanderers: Sestor Alt: Alnilam 2: done"
 	on offer
 		conversation
-			`	Danforth's troops set up a defensive circle around the entrance to the Alpha base. It appears that they have achieved the element of surprise: the Alphas did not know that the Navy had already located their base, and were probably counting on having a longer time to evacuate. The troop transports were carrying cement mixers and mining drills; apparently their plan is to seal the Alphas underground and then drill down through the ice and bedrock to bomb and collapse the bunker.`
+			`Danforth's troops set up a defensive circle around the entrance to the Alpha base. It appears that they have achieved the element of surprise: the Alphas did not know that the Navy had already located their base, and were probably counting on having a longer time to evacuate. The troop transports were carrying cement mixers and mining drills; apparently their plan is to seal the Alphas underground and then drill down through the ice and bedrock to bomb and collapse the bunker.`
 			`	As the Navy troops begin pouring the cement, the massive gate to the tunnel bursts open and more Alphas than you have ever seen in one place come flooding out, several dozen of them. But even these superhuman soldiers cannot survive the concentrated firepower of hundreds of Navy troops. The air fills with explosions and smoke and powdered snow, but as far as you can tell not one of the Alphas escapes alive.`
 			`	When the battle is over, the Navy troops explore the bunker, hoping to find prisoners, but they find no one alive. They seal up the entrance and collapse the bunker, and prepare to travel back with you to <planet>.`
 				accept
@@ -2851,8 +2947,7 @@ mission "Wanderers: Sestor: Exiles 2"
 		government "Korath"
 		system "Kor Nor'peli"
 		personality heroic staying
-		fleet "Korath Home"
-		fleet "Korath Home"
+		fleet "Korath Home" 2
 		fleet "Korath Raid"
 
 

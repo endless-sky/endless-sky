@@ -186,7 +186,7 @@ mission "Smuggler's Den, Part 2"
 		has "Smuggler's Den, Part 1: done"
 	on offer
 		conversation
-			`	As soon as you have landed, Joe finds a computer terminal and tries to look up his cousin who works here, but with no success. You go with him to the company office, where after a short wait you are ushered in to meet with a foreman. After Joe introduces himself, the man says, "I'm really sorry to tell you this, but Leroy died in a refinery fire several months ago."`
+			`As soon as you have landed, Joe finds a computer terminal and tries to look up his cousin who works here, but with no success. You go with him to the company office, where after a short wait you are ushered in to meet with a foreman. After Joe introduces himself, the man says, "I'm really sorry to tell you this, but Leroy died in a refinery fire several months ago."`
 			`	Joe is crestfallen. After a long silence, you say, "Sir, do you have any work available for Joe? He and his family were hoping to be able to put down roots here."`
 			`	"I'm sorry," says the foreman, "but we've had a ton of immigrants recently. The waiting list for new jobs is about five months long. They could stay here and hope for the best, but if they need work right away, they would be better off going to one of the Syndicate worlds, like <planet>."`
 			choice
@@ -200,7 +200,7 @@ mission "Smuggler's Den, Part 2"
 	on complete
 		event "smuggler's den: payment" 365
 		conversation
-			`	You help Joe and Maria, and their daughter Jesse, to carry their few belongings down to the immigration desk, where a clerk lists the job openings available and asks them each to fill out a skill survey. Maria says, "Captain <last>, I don't know how to thank you, but I promise you that once we've got steady jobs, we'll save up and pay you our fare for transporting us here."`
+			`You help Joe and Maria, and their daughter Jesse, to carry their few belongings down to the immigration desk, where a clerk lists the job openings available and asks them each to fill out a skill survey. Maria says, "Captain <last>, I don't know how to thank you, but I promise you that once we've got steady jobs, we'll save up and pay you our fare for transporting us here."`
 			`	You wish them the best of luck, and return to your ship.`
 
 event "smuggler's den: payment"
@@ -211,6 +211,7 @@ mission "Smuggler's Den: Payment"
 	landing
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
+		near Sol 100
 	to offer
 		has "event: smuggler's den: payment"
 	
@@ -281,11 +282,10 @@ mission "Expedition to Hope 2"
 	landing
 	name "Expedition to Hope"
 	description "Transport the team of scientists home to <destination>."
-	source
-		Hope
+	source Hope
 	destination
 		distance 2 5
-		govenment Republic "Free Worlds" Neutral
+		government Republic "Free Worlds" Neutral
 	to offer
 		has "Expedition to Hope 1: done"
 	passengers 4
@@ -495,7 +495,7 @@ mission "Deep Archaeology 2"
 	
 	on offer
 		conversation
-			`	You drop off the archaeologist (who still has not told you his name) on <origin>. "Remember," he says, "I only need a tiny splinter. Just make sure it really is from the building and not anything more recent."`
+			`You drop off the archaeologist (who still has not told you his name) on <origin>. "Remember," he says, "I only need a tiny splinter. Just make sure it really is from the building and not anything more recent."`
 				accept
 
 
@@ -511,7 +511,7 @@ mission "Deep Archaeology 3"
 	
 	on offer
 		conversation
-			`	Following the map that the archaeologist gave you, you make your way to a small village in the mountains on <origin>, with two envelopes in your pocket for samples. As you approach the church, you break a dead twig off one of the trees along the path, put it into the first envelope, and pocket it. One sample collected, one more to go.`
+			`Following the map that the archaeologist gave you, you make your way to a small village in the mountains on <origin>, with two envelopes in your pocket for samples. As you approach the church, you break a dead twig off one of the trees along the path, put it into the first envelope, and pocket it. One sample collected, one more to go.`
 			`	The church itself is unlike any building you have seen before, clearly very ancient, build of roughly hewn wood, old and weathered. Surprisingly, the front doors are open, and you hear music coming from inside.`
 			choice
 				`	(Walk into the church.)`
@@ -1085,7 +1085,7 @@ mission "Rim Archaeology 3B"
 	cargo "Laser excavation equipment" 17
 	to offer
 		has "Rim Archaeology 3A: done"
-	blocked "You do not have enough cargo space to carry the equipment for Albert Foster's archaeological dig. Return here when you have at least 17 tons of space free."
+	blocked "You do not have enough cargo space to carry the equipment for Albert Foster's archaeological dig. Return here when you have <capacity>."
 	
 	on offer
 		conversation
@@ -1133,7 +1133,7 @@ mission "Rim Archaeology 4B"
 	passengers 2
 	to offer
 		has "Rim Archaeology 4A: done"
-	blocked "You will need two bunks free to transport the xenobiologist that Albert Foster asked you to fetch. Return here when you have space available."
+	blocked "You will need <capacity> to transport the xenobiologist that Albert Foster asked you to fetch. Return here when you have space available."
 	
 	on offer
 		conversation
@@ -1235,6 +1235,8 @@ mission "Rim Archaeology 6"
 	landing
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Independent" "Neutral"
+		near Sol 100
+		attributes spaceport
 	to offer
 		has "event: rim archaeology results"
 	on offer
@@ -1375,6 +1377,7 @@ ship "Hallucination"
 		"jump fuel" 100
 		"jump speed" 1
 		"jump drive" 1
+		"automaton" 1
 		"thrust" 30
 		"turn" 500
 		"energy generation" 1
@@ -1419,6 +1422,7 @@ mission "Rescue Miners 1"
 	destination
 		attributes core
 		attributes mining
+		distance 1 100
 	passengers 15
 	cargo "emergency supplies" 15
 	to offer
@@ -1562,6 +1566,7 @@ mission "Migrant Workers 1"
 	source
 		attributes "dirt belt"
 		attributes "farming"
+		near "Zeta Aquilae" 1 100
 	destination Rand
 	to offer
 		random < 5
@@ -1652,7 +1657,8 @@ mission "Humanitarian 2"
 				`	"Well, it sounds like they're getting exactly what they deserve. And, I have no intention of risking my life to land on a pirate world."`
 					decline
 				`	"Well, even so, no one deserves to starve to death. I'll help them."`
-					accept
+			`	"Thank you," he says. "We'll load the food into your cargo hold immediately. The sooner you can drop it off on <planet>, the better."`
+				accept
 	
 	on complete
 		payment
@@ -1670,9 +1676,15 @@ mission "Terraforming 1"
 	destination Glory
 	passengers 2
 	
+	to offer
+		or
+			has "main plot completed"
+			and
+				not "event: pug invasion"
+				not "event: fwc pug invasion"
 	on offer
 		conversation
-			`	You stop in to the spaceport bar for a drink. The bar seems to be frequented mostly by the managers of the mining corporation; you suspect the workers don't earn enough to visit a bar very frequently. In one corner, two of the managers are having a very animated discussion. When they see you, they say, "Hello there, Captain! Interested in taking us on a business trip?"`
+			`You stop in to the spaceport bar for a drink. The bar seems to be frequented mostly by the managers of the mining corporation; you suspect the workers don't earn enough to visit a bar very frequently. In one corner, two of the managers are having a very animated discussion. When they see you, they say, "Hello there, Captain! Interested in taking us on a business trip?"`
 			choice
 				`	"What sort of trip?"`
 				`	"Sorry, I'm just in here for the drinks."`
@@ -1722,7 +1734,7 @@ mission "Terraforming 2"
 mission "Terraforming 3"
 	name "Terraforming Rand"
 	description "Plant a thruster on an asteroid to guide it into a collision with the northern pole of Rand."
-	blocked "You'll need more cargo space in order to take the next mission from Eric and Alaric. Return here when you have at least <capacity>."
+	blocked "You'll need more cargo space in order to take the next mission from Eric and Alaric. Return here when you have <capacity>."
 	cargo "thruster equipment" 10
 	source Rand
 	to offer
@@ -1740,7 +1752,7 @@ mission "Terraforming 3"
 				`	"Are you suggesting melting the ice caps somehow?"`
 					goto melting
 			label rotate
-			`	"Of course not," she says. But what we can do is introduce a sudden variation in the planet's climate that will allow water to be distributed more evenly across the surface again."`
+			`	"Of course not," she says. "But what we can do is introduce a sudden variation in the planet's climate that will allow water to be distributed more evenly across the surface again."`
 				goto danger
 			label melting
 			`	"That would be the traditional terraforming approach," she says, "using orbital mirrors, or geothermal power, or something similar to evaporate the ice caps at a faster rate than new ice is being deposited. That approach would take a century or so."`
@@ -1764,6 +1776,7 @@ mission "Terraforming 3"
 			sprite "asteroid/medium rock/spin"
 				"frame rate" 10
 			attributes
+				"fuel capacity" 1
 				"hull" 10000
 				"mass" 1000
 				"drag" 10
@@ -1915,8 +1928,7 @@ mission "Terminus exploration"
 		system Terminus
 		government Pirate
 		personality staying
-		fleet "Small Southern Pirates"
-		fleet "Small Southern Pirates"
+		fleet "Small Southern Pirates" 2
 	on complete
 		payment 90000
 		conversation

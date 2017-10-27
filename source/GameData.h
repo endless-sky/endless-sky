@@ -109,8 +109,8 @@ public:
 	static bool HasLandingMessage(const Sprite *sprite);
 	static const std::string &LandingMessage(const Sprite *sprite);
 	
-	// Strings for combat rating levels.
-	static const std::vector<std::string> &CombatRatings();
+	// Strings for combat rating levels, etc.
+	static const std::string &Rating(const std::string &type, int level);
 	
 	static const StarField &Background();
 	static void SetHaze(const Sprite *sprite);

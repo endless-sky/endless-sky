@@ -100,7 +100,7 @@ void Politics::Offend(const Government *gov, int eventType, int count)
 				provoked.insert(other);
 			}
 		}
-		else if(abs(weight) >= .05 && count * weight)
+		else if(count && abs(weight) >= .05)
 		{
 			// Weights less than 5% should never cause permanent reputation
 			// changes. This is to allow two governments to be hostile or
@@ -276,7 +276,7 @@ string Politics::Fine(PlayerInfo &player, const Government *gov, int scan, const
 	else if(maxFine > 0)
 	{
 		// Scale the fine based on how lenient this government is.
-		maxFine = maxFine * gov->GetFineFraction() + .5;
+		maxFine = lround(maxFine * gov->GetFineFraction());
 		reason = "The " + gov->GetName() + " authorities fine you "
 			+ Format::Number(maxFine) + " credits" + reason;
 		player.Accounts().AddFine(maxFine);

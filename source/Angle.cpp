@@ -27,10 +27,10 @@ namespace {
 	// turning 6 degrees per time step. If the Angle lookup is 2^16 steps, then 6
 	// degrees is 1092 steps, and your turn speed is accurate to +- 0.05%. That seems
 	// plenty accurate to me. At that step size, the lookup table is exactly 1 MB.
-	static const int32_t STEPS = 0x10000;
-	static const int32_t MASK = STEPS - 1;
-	double DEG_TO_STEP = STEPS / 360.;
-	double STEP_TO_RAD = PI / (STEPS / 2);
+	const int32_t STEPS = 0x10000;
+	const int32_t MASK = STEPS - 1;
+	const double DEG_TO_STEP = STEPS / 360.;
+	const double STEP_TO_RAD = PI / (STEPS / 2);
 }
 
 
@@ -64,7 +64,7 @@ Angle::Angle()
 
 // Convert an angle in degrees into an Angle object.
 Angle::Angle(double degrees)
-	: angle(static_cast<int64_t>(degrees * DEG_TO_STEP + .5) & MASK)
+	: angle(lround(degrees * DEG_TO_STEP) & MASK)
 {
 }
 

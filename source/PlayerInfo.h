@@ -71,8 +71,6 @@ public:
 	// are multiple pilots with the same name it may have a digit appended.)
 	std::string Identifier() const;
 	
-	// Apply any "changes" saved in this player info to the global game state.
-	void ApplyChanges();
 	// Apply the given changes and store them in the player's saved game file.
 	void AddChanges(std::list<DataNode> &changes);
 	// Add an event that will happen at the given date.
@@ -105,7 +103,7 @@ public:
 	// must leave the planet immediately (without time to do anything else).
 	bool ShouldLaunch() const;
 	
-	// Access the player's accountign information.
+	// Access the player's accounting information.
 	const Account &Accounts() const;
 	Account &Accounts();
 	// Calculate the daily salaries for crew, not counting crew on "parked" ships.
@@ -129,6 +127,8 @@ public:
 	// Change the order of the given ship in the list.
 	void ReorderShip(int fromIndex, int toIndex);
 	int ReorderShips(const std::set<int> &fromIndices, int toIndex);
+	// Get the attraction factors of the player's fleet to raid fleets.
+	std::pair<double, double> RaidFleetFactors() const;
 	
 	// Get cargo information.
 	CargoHold &Cargo();
@@ -244,6 +244,9 @@ private:
 	PlayerInfo(const PlayerInfo &) = default;
 	PlayerInfo &operator=(const PlayerInfo &) = default;
 	
+	// Apply any "changes" saved in this player info to the global game state.
+	void ApplyChanges();
+	
 	// New missions are generated each time you land on a planet.
 	void UpdateAutoConditions();
 	void CreateMissions();
@@ -318,6 +321,7 @@ private:
 	std::map<std::string, std::set<std::string>> collapsed;
 	
 	bool freshlyLoaded = true;
+	int desiredCrew = 0;
 };
 
 

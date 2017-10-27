@@ -32,6 +32,7 @@ class System;
 // distance away from the current system.
 class LocationFilter {
 public:
+	// Examine all the children of the given node and load any that are filters.
 	void Load(const DataNode &node);
 	// This only saves the children. Save the root node separately. It does
 	// handle indenting, however.
@@ -44,6 +45,15 @@ public:
 	bool Matches(const Planet *planet, const System *origin = nullptr) const;
 	bool Matches(const System *system, const System *origin = nullptr) const;
 	bool Matches(const Ship &ship) const;
+	
+	
+private:
+	// Load one particular line of conditions.
+	void LoadChild(const DataNode &child);
+	// Check if the filter matches the given system. If it did not, return true
+	// only if the filter wasn't looking for planet characteristics or if the
+	// didPlanet argument is set (meaning we already checked those).
+	bool Matches(const System *system, const System *origin, bool didPlanet) const;
 	
 	
 private:
@@ -60,6 +70,9 @@ private:
 	int centerMaxDistance = 1;
 	int originMinDistance = 0;
 	int originMaxDistance = -1;
+	
+	// These filters store all the things the planet or system must not be.
+	std::list<LocationFilter> notFilters;
 };
 
 

@@ -30,28 +30,6 @@ outfit "Energy Blaster"
 		"hull damage" 6
 	description "Although not the most accurate or damaging of weapons, the Energy Blaster is popular because it is small enough to be installed on even the tiniest of ships. One blaster is not enough to do appreciable damage to anything larger than a fighter, but a ship equipped with several of them becomes a force to be reckoned with."
 
-outfit "Modified Blaster"
-	category "Guns"
-	cost 35000
-	thumbnail "outfit/mod blaster"
-	"mass" 6
-	"outfit space" -6
-	"weapon capacity" -6
-	"gun ports" -1
-	weapon
-		sprite "projectile/mod blaster"
-		sound "mod blaster"
-		"hit effect" "blaster impact"
-		"inaccuracy" 4
-		"velocity" 7.5
-		"lifetime" 60
-		"reload" 12
-		"firing energy" 16
-		"firing heat" 55
-		"shield damage" 12
-		"hull damage" 8
-	description "This is an Energy Blaster that has been tampered with to increase its power and range slightly, at the cost of a significant increase in its energy requirements. Modified Blasters also produce an extreme amount of heat when firing, increasing the risk that your ship will overheat."
-
 outfit "Blaster Turret"
 	category "Turrets"
 	cost 100000
@@ -77,32 +55,6 @@ outfit "Blaster Turret"
 		"shield damage" 9
 		"hull damage" 6
 	description "A Blaster Turret is a pair of Energy Blasters mounted on a rotating platform, allowing it to fire in any direction. Sophisticated software algorithms allow the turret to correct for a target's motion, making the Blaster Turret effective even against small, quickly moving fighters. Because it needs a special mounting point with a 360 degree field of view, not all ships are capable of being equipped with a turret."
-
-outfit "Modified Blaster Turret"
-	category "Turrets"
-	cost 170000
-	thumbnail "outfit/mod blaster turret"
-	"mass" 18
-	"outfit space" -18
-	"weapon capacity" -18
-	"turret mounts" -1
-	"required crew" 1
-	weapon
-		sprite "projectile/mod blaster"
-		"hardpoint sprite" "hardpoint/mod blaster turret"
-		"hardpoint offset" 9.
-		sound "mod blaster"
-		"hit effect" "blaster impact"
-		"inaccuracy" 4
-		"turret turn" 4
-		"velocity" 7.5
-		"lifetime" 60
-		"reload" 6
-		"firing energy" 16
-		"firing heat" 55
-		"shield damage" 12
-		"hull damage" 8
-	description "This is a turreted version of the Modified Blaster, which is an Energy Blaster modified for greater power at the cost of higher energy consumption and heat. These turrets are popular with pirates and others who are trying to cram as much firepower into their ships as possible."
 
 outfit "Quad Blaster Turret"
 	category "Turrets"
@@ -130,6 +82,64 @@ outfit "Quad Blaster Turret"
 		"hull damage" 6
 	description "A Quad Blaster Turret carries four guns on a single turret mount, doubling the firepower of an ordinary Blaster Turret for ships with enough space to install one and energy to drive it."
 
+effect "blaster impact"
+	sprite "effect/blaster impact"
+		"no repeat"
+		"frame rate" 30
+	"lifetime" 7
+	"random angle" 40
+	"velocity scale" -.05
+
+
+outfit "Modified Blaster"
+	category "Guns"
+	cost 35000
+	thumbnail "outfit/mod blaster"
+	"mass" 6
+	"outfit space" -6
+	"weapon capacity" -6
+	"gun ports" -1
+	weapon
+		sprite "projectile/mod blaster"
+		sound "mod blaster"
+		"hit effect" "blaster impact"
+		"inaccuracy" 4
+		"velocity" 7.5
+		"lifetime" 60
+		"reload" 12
+		"firing energy" 16
+		"firing heat" 55
+		"shield damage" 12
+		"hull damage" 8
+	description "This is an Energy Blaster that has been tampered with to increase its power and range slightly, at the cost of a significant increase in its energy requirements. Modified Blasters also produce an extreme amount of heat when firing, increasing the risk that your ship will overheat."
+
+outfit "Modified Blaster Turret"
+	category "Turrets"
+	cost 170000
+	thumbnail "outfit/mod blaster turret"
+	"mass" 18
+	"outfit space" -18
+	"weapon capacity" -18
+	"turret mounts" -1
+	"required crew" 1
+	weapon
+		sprite "projectile/mod blaster"
+		"hardpoint sprite" "hardpoint/mod blaster turret"
+		"hardpoint offset" 9.
+		sound "mod blaster"
+		"hit effect" "blaster impact"
+		"inaccuracy" 4
+		"turret turn" 4
+		"velocity" 7.5
+		"lifetime" 60
+		"reload" 6
+		"firing energy" 16
+		"firing heat" 55
+		"shield damage" 12
+		"hull damage" 8
+	description "This is a turreted version of the Modified Blaster, which is an Energy Blaster modified for greater power at the cost of higher energy consumption and heat. These turrets are popular with pirates and others who are trying to cram as much firepower into their ships as possible."
+
+
 outfit "Beam Laser"
 	category "Guns"
 	cost 29000
@@ -152,52 +162,6 @@ outfit "Beam Laser"
 		"shield damage" 1
 		"hull damage" 1.3
 	description "In the early part of the space era, the settlements in the region of space known as the Deep developed in relative isolation from the rest of human space. One result of that isolation is that their weapons technology mostly uses beam weapons, instead of the energy projectile weapons that are more common elsewhere. A Beam Laser has a slightly shorter range than an Energy Blaster, but is also much more energy-efficient and does a comparable amount of damage."
-
-outfit "Heavy Laser"
-	category "Guns"
-	cost 60000
-	thumbnail "outfit/heavy laser"
-	"mass" 15
-	"outfit space" -15
-	"weapon capacity" -15
-	"gun ports" -1
-	weapon
-		sprite "projectile/heavy laser"
-			"frame rate" 1
-		sound "heavy laser"
-		"hit effect" "heavy laser impact"
-		"inaccuracy" .4
-		"velocity" 400
-		"lifetime" 1
-		"reload" 1
-		"firing energy" 1
-		"firing heat" 2.2
-		"shield damage" 1.8
-		"hull damage" 2.4
-	description "The Heavy Laser is an upgraded Beam Laser with a significantly longer range and higher power. It is mostly intended for larger ships, where energy and space are plentiful, but some pilots consider a single Heavy Laser to be a worthwhile alternative to a pair of Beam Lasers, because the longer range makes up for the fact that it does not quite deal twice as much damage."
-
-outfit "Electron Beam"
-	category "Guns"
-	cost 170000
-	thumbnail "outfit/electron beam"
-	"mass" 21
-	"outfit space" -21
-	"weapon capacity" -21
-	"gun ports" -1
-	weapon
-		sprite "projectile/electron"
-			"frame rate" 60
-		sound "electron beam"
-		"hit effect" "electron impact"
-		"inaccuracy" .3
-		"velocity" 450
-		"lifetime" 1
-		"reload" 1
-		"firing energy" 1.5
-		"firing heat" 2.6
-		"shield damage" 2.9
-		"hull damage" 3.9
-	description "The Electron Beam is a recent development by the Deep Sky labs, a more powerful weapon with a design similar to their perennially popular laser guns."
 
 outfit "Laser Turret"
 	category "Turrets"
@@ -224,7 +188,40 @@ outfit "Laser Turret"
 		"firing heat" 2.4
 		"shield damage" 2
 		"hull damage" 2.6
-	description "Laser Turrets are hated by fighter pilots because it is entirely impossible to dodge them once you are within their reach. This turret carries a pair of lasers and can swivel instantly to fire on new targets as they approach. Laser Turrets are especially useful when mounted on slow-moving freighters to fend off packs of small pirate vessels."
+	description "Laser Turrets are hated by fighter pilots because it is nearly impossible to dodge them once you are within their reach. This turret carries a pair of lasers and can swivel almost instantly to fire on new targets as they approach. Laser Turrets are especially useful when mounted on slow-moving freighters to fend off packs of small pirate vessels."
+
+effect "beam laser impact"
+	sprite "effect/laser impact"
+		"no repeat"
+		"frame rate" 30
+	"lifetime" 5
+	"random angle" 2
+	"random spin" 1
+	"velocity scale" -.005
+
+
+outfit "Heavy Laser"
+	category "Guns"
+	cost 60000
+	thumbnail "outfit/heavy laser"
+	"mass" 15
+	"outfit space" -15
+	"weapon capacity" -15
+	"gun ports" -1
+	weapon
+		sprite "projectile/heavy laser"
+			"frame rate" 1
+		sound "heavy laser"
+		"hit effect" "heavy laser impact"
+		"inaccuracy" .4
+		"velocity" 400
+		"lifetime" 1
+		"reload" 1
+		"firing energy" 1
+		"firing heat" 2.2
+		"shield damage" 1.8
+		"hull damage" 2.4
+	description "The Heavy Laser is an upgraded Beam Laser with a significantly longer range and higher power. It is mostly intended for larger ships, where energy and space are plentiful, but some pilots consider a single Heavy Laser to be a worthwhile alternative to a pair of Beam Lasers, because the longer range makes up for the fact that it does not quite deal twice as much damage."
 
 outfit "Heavy Laser Turret"
 	category "Turrets"
@@ -253,6 +250,40 @@ outfit "Heavy Laser Turret"
 		"hull damage" 4.8
 	description "For ships with enough space to install one, the Heavy Laser Turret is a powerful weapon, equally useful for driving off fighters and for bombarding larger targets with continuous fire without having to worry about pointing your ship in the right direction."
 
+effect "heavy laser impact"
+	sprite "effect/heavy laser impact"
+		"no repeat"
+		"frame rate" 30
+	"lifetime" 5
+	"random angle" 2
+	"random spin" 1
+	"random velocity" 1
+	"velocity scale" -.007
+
+
+outfit "Electron Beam"
+	category "Guns"
+	cost 170000
+	thumbnail "outfit/electron beam"
+	"mass" 21
+	"outfit space" -21
+	"weapon capacity" -21
+	"gun ports" -1
+	weapon
+		sprite "projectile/electron"
+			"frame rate" 60
+		sound "electron beam"
+		"hit effect" "electron impact"
+		"inaccuracy" .3
+		"velocity" 450
+		"lifetime" 1
+		"reload" 1
+		"firing energy" 1.5
+		"firing heat" 2.6
+		"shield damage" 2.9
+		"hull damage" 3.9
+	description "The Electron Beam is a recent development by the Deep Sky labs, a more powerful weapon with a design similar to their perennially popular laser guns."
+
 outfit "Electron Turret"
 	category "Turrets"
 	cost 720000
@@ -280,6 +311,16 @@ outfit "Electron Turret"
 		"hull damage" 7.8
 	description "This turret places two of Deep Sky's recently developed electron beam weapons onto a rotating turret, providing unsurpassed accuracy and power for shooting down fast-moving targets."
 
+effect "electron impact"
+	sprite "effect/electron impact"
+		"no repeat"
+		"frame rate" 30
+	"lifetime" 5
+	"random angle" 2
+	"random spin" 1
+	"velocity scale" -.003
+
+
 outfit "Anti-Missile Turret"
 	category "Turrets"
 	cost 60000
@@ -300,6 +341,15 @@ outfit "Anti-Missile Turret"
 		"firing heat" 3
 	description "Centuries ago, space battles were fought mostly with missiles, with the outcome dependent only on which ship had more shielding or ammunition. Lovelace Labs was originally founded to remedy that situation by developing a protective system that could shoot missiles out of the air, defending freighter convoys from pirates who could otherwise simply bombard them into submission without ever venturing within range of their guns."
 
+effect "small anti-missile"
+	sprite "effect/small anti missile"
+		"no repeat"
+		"frame rate" 3
+	sound "anti-missile"
+	"lifetime" 21
+	"velocity scale" 1
+
+
 outfit "Heavy Anti-Missile Turret"
 	category "Turrets"
 	cost 150000
@@ -319,6 +369,15 @@ outfit "Heavy Anti-Missile Turret"
 		"firing energy" 10
 		"firing heat" 5
 	description "The Heavy Anti-Missile turret has a longer range, higher power, and shorter reload time than its smaller sibling. The only way to overcome it is by firing missiles in a cluster so that while one is being targeted, the others can get through, and as a result all missile systems on the market now default to firing in clusters if multiple copies of the same launcher are installed, rather than staggering their fire as ordinary guns do."
+
+effect "large anti-missile"
+	sprite "effect/large anti missile"
+		"no repeat"
+		"frame rate" 2
+	sound "heavy anti-missile"
+	"lifetime" 31
+	"velocity scale" 1
+
 
 outfit "Particle Cannon"
 	category "Guns"
@@ -343,6 +402,17 @@ outfit "Particle Cannon"
 		"shield damage" 54
 		"hull damage" 52
 	description "The Particle Cannon works by accelerating a short burst of particles to near-relativistic speeds. When mounted on a ship that can turn fast enough to keep it trained on approaching ships, it becomes a nearly unbeatable weapon, capable of destroying smaller ships before they can even approach close enough for their comparatively short-ranged weapons to be effective."
+
+effect "particle impact"
+	sprite "effect/particle impact"
+		"no repeat"
+		"frame rate" 30
+	sound "explosion small"
+	"lifetime" 35
+	"random angle" 2
+	"velocity scale" -.05
+	"random spin" 10
+
 
 outfit "Proton Gun"
 	category "Guns"
@@ -377,6 +447,15 @@ outfit "Proton Fragment"
 		"hit force" 6
 		"shield damage" 8
 		"hull damage" 6.6
+
+effect "proton impact"
+	sprite "effect/proton impact"
+		"no repeat"
+		"frame rate" 30
+	"lifetime" 20
+	"random angle" 2
+	"velocity scale" -.005
+
 
 outfit "Plasma Cannon"
 	category "Guns"
@@ -432,6 +511,18 @@ outfit "Plasma Turret"
 		"heat damage" 340
 	description "The Plasma Turret is a pair of plasma cannons mounted on a turret so that they can fire in any direction. It is a fearsome weapon, but only the largest of ships have the space and the energy that it requires."
 
+effect "plasma explosion"
+	sprite "effect/plasma explosion"
+		"no repeat"
+		"frame rate" 20
+	sound "explosion tiny"
+	"lifetime" 21
+	"random angle" 360
+	"random velocity" .1
+	"random spin" 4
+	"velocity scale" -.05
+
+
 outfit "Flamethrower"
 	category "Secondary Weapons"
 	cost 190000
@@ -468,6 +559,31 @@ outfit "Flamethrower Projectile"
 		"shield damage" .8
 		"hull damage" .7
 		"heat damage" 200
+
+effect "flamethrower die"
+	sprite "effect/explosion/small"
+		"no repeat"
+		"frame rate" 15
+		"random start frame"
+	"lifetime" 24
+	"random angle" 360
+	"random velocity" .4
+	"random spin" 2
+	"random frame rate" 5
+	"velocity scale" .4
+
+effect "flamethrower hit"
+	sprite "effect/explosion/medium"
+		"no repeat"
+		"frame rate" 15
+		"random start frame"
+	"lifetime" 28
+	"random angle" 360
+	"random velocity" .6
+	"random spin" 3
+	"random frame rate" 5
+	"velocity scale" .4
+
 
 outfit "Meteor Missile"
 	category "Ammunition"
@@ -524,6 +640,14 @@ outfit "Meteor Missile Launcher"
 		"missile strength" 4
 	description "The Meteor Missile is the cheapest and simplest homing weapon available in human space. The tracking system on these missiles is notoriously unreliable, and they are easily destroyed by anti-missile systems, but in large numbers or when fired at a slow-moving target they can be deadly."
 
+effect "meteor fire"
+	sprite "effect/meteor fire"
+		"no repeat"
+		"frame rate" 30
+	"lifetime" 12
+	"random velocity" 10
+
+
 outfit "Sidewinder Missile"
 	category "Ammunition"
 	cost 800
@@ -579,6 +703,14 @@ outfit "Sidewinder Missile Launcher"
 	description "The Sidewinder Missile is designed by Lovelace Labs, which is ironically also the designer of the Anti-Missile Turret. Rumors say that the two engineering teams at Lovelace who make the missiles and the anti-missiles are locked in furious competition with each other: the result has been generation after generation of smarter missiles and then smarter turrets to fend them off."
 	description "	Although not as powerful or cheap as the popular Meteor missiles, Sidewinders have several advantages, including their better tracking systems and protective casings that make them much harder for anti-missile systems to destroy."
 
+effect "sidewinder fire"
+	sprite "effect/sidewinder fire"
+		"no repeat"
+		"frame rate" 30
+	"lifetime" 9
+	"random velocity" 2
+
+
 outfit "Javelin"
 	category "Ammunition"
 	cost 50
@@ -623,6 +755,7 @@ outfit "Javelin Pod"
 		"hit force" 5
 		"missile strength" 2
 	description "The Javelin Pod fires a rapid stream of unguided missiles. A Javelin Pod does far more damage than any gun of a comparable size, and has a longer range as well, but once a ship has fired off all its ammunition it must leave combat and find a planet where it can buy more, which makes Javelins less useful in protracted battles. As a result, they are very popular with pirates as a way to quickly disable a small target."
+
 
 outfit "Torpedo"
 	plural "Torpedoes"
@@ -679,6 +812,13 @@ outfit "Torpedo Launcher"
 		"missile strength" 20
 	description "Torpedoes are the most powerful homing weapon, but they move slowly enough that fast ships can simply outrun them, making them most useful against large targets or against small ships at times when they are too distracted to dodge. Torpedo launchers are also much larger than other missile systems, so they are most often found in capital ships."
 
+effect "torpedo fire"
+	sprite "effect/torpedo fire"
+		"no repeat"
+		"frame rate" 10
+	"lifetime" 15
+
+
 outfit "Typhoon Torpedo"
 	plural "Typhoon Torpedoes"
 	category "Ammunition"
@@ -734,6 +874,13 @@ outfit "Typhoon Launcher"
 		"missile strength" 30
 	description "Typhoon Torpedoes are an improved torpedo technology; they do considerably more damage than ordinary torpedoes. However, they are also much slower, because they are intended mostly for use against large and slow-moving capital ships. As a result, sufficiently skilled pilots can often dodge around them."
 
+effect "typhoon fire"
+	sprite "effect/typhoon fire"
+		"no repeat"
+		"frame rate" 10
+	"lifetime" 15
+
+
 outfit "Heavy Rocket"
 	category "Ammunition"
 	cost 2000
@@ -785,6 +932,19 @@ outfit "Heavy Rocket Launcher"
 		"missile strength" 16
 	description "Heavy Rockets are the most powerful missile weapon available, but at a price: instead of having a homing system, they simply fire straight forward and rely on a proximity trigger to set them off. Once triggered, however, they damage all ships within their blast radius, making them highly effective against clusters of fighters."
 
+effect "heavy rocket hit"
+	sprite "effect/explosion/huge"
+		"no repeat"
+		"frame rate" 15
+	sound "heavy rocket hit"
+	"lifetime" 36
+	"random angle" 360
+	"random velocity" 1
+	"random spin" 5
+	"random frame rate" 5
+	"velocity scale" .4
+
+
 outfit "Nuclear Missile"
 	category "Secondary Weapons"
 	cost 1000000
@@ -825,6 +985,38 @@ outfit "Nuclear Missile"
 		"missile strength" 200
 	description "It has been centuries since the last nuclear war was fought, and until very recently, most people in the galaxy assumed that that era of chaos and destruction was forever behind us..."
 	description "	[Nuclear missiles are a one-shot weapon: each missile occupies a gun slot, and after it is fired, the slot it was in is left empty.]"
+
+effect "nuke explosion"
+	sprite "effect/explosion/nuke"
+		"no repeat"
+		"frame rate" 30
+	sound "explosion nuke"
+	"lifetime" 15
+	"random angle" 360
+	"random velocity" 1
+	"random spin" 5
+	"velocity scale" .4
+
+effect "nuke residue fast"
+	sprite "effect/explosion/huge"
+		"no repeat"
+		"frame rate" 15
+	"lifetime" 36
+	"random angle" 360
+	"random velocity" 8
+	"random spin" 5
+	"velocity scale" 0.1
+
+effect "nuke residue slow"
+	sprite "effect/explosion/huge"
+		"no repeat"
+		"frame rate" 10
+	"lifetime" 60
+	"random angle" 360
+	"random velocity" 5
+	"random spin" 5
+	"velocity scale" 0.1
+
 
 outfit "Gatling Gun Ammo"
 	plural "Gatling Gun Ammo"

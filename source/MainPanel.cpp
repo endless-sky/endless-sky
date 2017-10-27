@@ -37,6 +37,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "System.h"
 #include "UI.h"
 
+#include <cmath>
 #include <sstream>
 #include <string>
 
@@ -150,17 +151,22 @@ void MainPanel::Draw()
 	
 	if(isDragging)
 	{
-		Color color(.2, 1., 0., 0.);
-		LineShader::Draw(dragSource, Point(dragSource.X(), dragPoint.Y()), .8, color);
-		LineShader::Draw(Point(dragSource.X(), dragPoint.Y()), dragPoint, .8, color);
-		LineShader::Draw(dragPoint, Point(dragPoint.X(), dragSource.Y()), .8, color);
-		LineShader::Draw(Point(dragPoint.X(), dragSource.Y()), dragSource, .8, color);
+		if(canDrag)
+		{
+			const Color &dragColor = *GameData::Colors().Get("drag select");
+			LineShader::Draw(dragSource, Point(dragSource.X(), dragPoint.Y()), .8, dragColor);
+			LineShader::Draw(Point(dragSource.X(), dragPoint.Y()), dragPoint, .8, dragColor);
+			LineShader::Draw(dragPoint, Point(dragPoint.X(), dragSource.Y()), .8, dragColor);
+			LineShader::Draw(Point(dragPoint.X(), dragSource.Y()), dragSource, .8, dragColor);
+		}
+		else
+			isDragging = false;
 	}
 	
 	if(Preferences::Has("Show CPU / GPU load"))
 	{
-		string loadString = to_string(static_cast<int>(load * 100. + .5)) + "% GPU";
-		Color color = *GameData::Colors().Get("medium");
+		string loadString = to_string(lround(load * 100.)) + "% GPU";
+		const Color &color = *GameData::Colors().Get("medium");
 		FontSet::Get(14).Draw(loadString, Point(10., Screen::Height() * -.5 + 5.), color);
 	
 		loadSum += loadTimer.Time();
@@ -316,7 +322,7 @@ void MainPanel::ShowScanDialog(const ShipEvent &event)
 				if(it.first->Get("installable") < 0.)
 				{
 					int tons = ceil(it.second * it.first->Get("mass"));
-					out << (tons == 1 ? " ton of " : " tons of ") << Format::LowerCase(it.first->PluralName());
+					out << (tons == 1 ? " ton of " : " tons of ") << Format::LowerCase(it.first->PluralName()) << "\n";
 				}
 				else	
 					out << " " << (it.second == 1 ? it.first->Name(): it.first->PluralName()) << "\n";
@@ -402,12 +408,14 @@ bool MainPanel::ShowHailPanel()
 	else if(flagship->GetTargetStellar())
 	{
 		const Planet *planet = flagship->GetTargetStellar()->GetPlanet();
-		if(planet && planet->IsWormhole())
+		if(!planet)
+			Messages::Add("Unable to send hail.");
+		else if(planet->IsWormhole())
 		{
 			static const Phrase *wormholeHail = GameData::Phrases().Get("wormhole hail");
 			Messages::Add(wormholeHail->Get());
 		}
-		else if(planet && planet->IsInhabited())
+		else if(planet->IsInhabited())
 		{
 			GetUI()->Push(new HailPanel(player, flagship->GetTargetStellar()));
 			return true;

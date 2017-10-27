@@ -345,7 +345,7 @@ mission "Wanderer Invasive Species [0]"
 	name "Quarantine an invasive species"
 	job
 	repeat
-	description `These <bunks> Wanderers need to get to <stopovers> with their <cargo> by <date> to contain an invasive animal species. Return the Wanderers to <origin> with the animals for a payment of <payment>.`
+	description `These <bunks> Wanderers need to get to <stopovers> with their <cargo> to contain an invasive animal species. Return the Wanderers to <origin> with the animals by <date> for a payment of <payment>.`
 	passengers 4 4 .1
 	cargo "containers" 5 2 .1
 	deadline
@@ -368,7 +368,7 @@ mission "Wanderer Invasive Species [1]"
 	name "Quarantine an invasive species"
 	job
 	repeat
-	description `These <bunks> Wanderers need to get to <stopovers> with their <cargo> by <date> to contain an invasive plant species. Return the Wanderers to <origin> with the animals for a payment of <payment>.`
+	description `These <bunks> Wanderers need to get to <stopovers> with their <cargo> to contain an invasive plant species. Return the Wanderers to <origin> with the plants by <date> for a payment of <payment>.`
 	passengers 4 4 .1
 	cargo "containers" 5 2 .1
 	deadline

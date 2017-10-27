@@ -42,7 +42,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 using namespace std;
 
 namespace {
-	static const int SIDE_WIDTH = 280;
+	const int SIDE_WIDTH = 280;
 }
 
 

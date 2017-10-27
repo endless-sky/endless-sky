@@ -101,15 +101,16 @@ void MapPanel::Draw()
 	
 	if(!distance.HasRoute(selectedSystem))
 	{
+		static const string UNAVAILABLE = "You have no available route to this system.";
+		static const string UNKNOWN = "You have not yet mapped a route to this system.";
 		const Font &font = FontSet::Get(18);
-		
-		static const string NO_ROUTE = "You have not yet mapped a route to this system.";
 		Color black(0., 1.);
 		Color red(1., 0., 0., 1.);
-		Point point(-font.Width(NO_ROUTE) / 2, Screen::Top() + 40);
 		
-		font.Draw(NO_ROUTE, point + Point(1, 1), black);
-		font.Draw(NO_ROUTE, point, red);
+		const string &message = player.HasVisited(selectedSystem) ? UNAVAILABLE : UNKNOWN;
+		Point point(-font.Width(message) / 2, Screen::Top() + 40);
+		font.Draw(message, point + Point(1, 1), black);
+		font.Draw(message, point, red);
 	}
 }
 
@@ -518,11 +519,7 @@ bool MapPanel::IsSatisfied(const Mission &mission) const
 
 bool MapPanel::IsSatisfied(const PlayerInfo &player, const Mission &mission)
 {
-	for(const NPC &npc : mission.NPCs())
-		if(!npc.HasSucceeded(player.GetSystem()))
-			return false;
-	
-	return mission.Waypoints().empty() && mission.Stopovers().empty();
+	return mission.IsSatisfied(player) && !mission.HasFailed(player);
 }
 
 
@@ -549,6 +546,8 @@ void MapPanel::DrawTravelPlan()
 	// At each point in the path, we'll keep track of how many ships in the
 	// fleet are able to make it this far.
 	Ship *flagship = player.Flagship();
+	if(!flagship)
+		return;
 	bool stranded = false;
 	bool hasEscort = false;
 	map<const Ship *, double> fuel;
@@ -575,6 +574,7 @@ void MapPanel::DrawTravelPlan()
 		bool isWormhole = false;
 		for(const StellarObject &object : previous->Objects())
 			isWormhole |= (object.GetPlanet() && player.HasVisited(object.GetPlanet())
+				&& !object.GetPlanet()->Description().empty()
 				&& player.HasVisited(previous) && player.HasVisited(next)
 				&& object.GetPlanet()->WormholeDestination(previous) == next);
 		
@@ -633,6 +633,10 @@ void MapPanel::DrawWormholes()
 		for(const StellarObject &object : previous->Objects())
 			if(object.GetPlanet() && object.GetPlanet()->IsWormhole() && player.HasVisited(object.GetPlanet()))
 			{
+				// Wormholes with no description should not be drawn.
+				if(object.GetPlanet()->Description().empty())
+					continue;
+				
 				const System *next = object.GetPlanet()->WormholeDestination(previous);
 				// Only draw a wormhole if both systems have been visited.
 				if(!player.HasVisited(previous) || !player.HasVisited(next))

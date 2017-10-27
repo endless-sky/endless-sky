@@ -25,7 +25,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 using namespace std;
 
 namespace {
-	static const int HOVER_TIME = 60;
+	const int HOVER_TIME = 60;
 }
 
 

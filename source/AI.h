@@ -62,8 +62,15 @@ template <class Type>
 	// Issue AI commands to all ships for one game step.
 	void Step(const PlayerInfo &player);
 	
+	// Get the in-system strength of each government's allies and enemies.
+	int64_t AllyStrength(const Government *government);
+	int64_t EnemyStrength(const Government *government);
+	
 	
 private:
+	void AskForHelp(Ship &ship, bool &isStranded, const Ship *flagship);
+	static bool CanHelp(const Ship &ship, const Ship &helper, const bool needsFuel);
+	bool HasHelper(const Ship &ship, const bool needsFuel);
 	// Pick a new target for the given ship.
 	std::shared_ptr<Ship> FindTarget(const Ship &ship) const;
 	
@@ -85,6 +92,7 @@ private:
 	static void Attack(Ship &ship, Command &command, const Ship &target);
 	static void MoveToAttack(Ship &ship, Command &command, const Body &target);
 	static void PickUp(Ship &ship, Command &command, const Body &target);
+	static bool ShouldUseAfterburner(Ship &ship);
 	void DoSurveillance(Ship &ship, Command &command) const;
 	void DoMining(Ship &ship, Command &command);
 	bool DoHarvesting(Ship &ship, Command &command);
@@ -132,12 +140,14 @@ private:
 		int type = 0;
 		std::weak_ptr<Ship> target;
 		Point point;
-		const System * targetSystem;
+		const System *targetSystem;
 	};
 
 
 private:
 	void IssueOrders(const PlayerInfo &player, const Orders &newOrders, const std::string &description);
+	// Convert order types based on fulfillment status.
+	void UpdateOrders(const Ship &ship);
 	
 	
 private:
@@ -171,7 +181,9 @@ private:
 	std::map<std::weak_ptr<const Ship>, std::map<std::weak_ptr<const Ship>, int, Comp>, Comp> actions;
 	std::map<const Government *, std::map<std::weak_ptr<const Ship>, int, Comp>> governmentActions;
 	std::map<std::weak_ptr<const Ship>, int, Comp> playerActions;
+	std::map<const Ship *, std::weak_ptr<Ship>> helperList;
 	std::map<const Ship *, int> swarmCount;
+	std::map<const Ship *, int> fenceCount;
 	std::map<const Ship *, Angle> miningAngle;
 	std::map<const Ship *, int> miningTime;
 	std::map<const Ship *, double> appeasmentThreshold;

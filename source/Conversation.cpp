@@ -34,14 +34,14 @@ namespace {
 	
 	// Get the index of the given special string. 0 means it is "goto", a number
 	// less than 0 means it is an outcome, and 1 means no match.
-	static int TokenIndex(const string &token)
+	int TokenIndex(const string &token)
 	{
 		auto it = TOKEN_INDEX.find(token);
 		return (it == TOKEN_INDEX.end() ? 0 : it->second);
 	}
 	
 	// Map an index back to a string, for saving the conversation to a file.
-	static string TokenName(int index)
+	string TokenName(int index)
 	{
 		for(const auto &it : TOKEN_INDEX)
 			if(it.second == index)
@@ -51,7 +51,7 @@ namespace {
 	}
 	
 	// Write a "goto" or endpoint.
-	static void WriteToken(int index, DataWriter &out)
+	void WriteToken(int index, DataWriter &out)
 	{
 		out.BeginChild();
 		{

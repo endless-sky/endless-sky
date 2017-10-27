@@ -98,7 +98,7 @@ namespace {
 	map<const System *, map<string, int>> purchases;
 	
 	map<const Sprite *, string> landingMessages;
-	vector<string> ratingLevels;
+	map<string, vector<string>> ratings;
 	
 	StarField background;
 	
@@ -175,9 +175,9 @@ void GameData::BeginLoad(const char * const *argv)
 	UpdateNeighbors();
 	// And, update the ships with the outfits we've now finished loading.
 	for(auto &it : ships)
-		it.second.FinishLoading();
+		it.second.FinishLoading(true);
 	for(const auto &it : persons)
-		it.second.GetShip()->FinishLoading();
+		it.second.GetShip()->FinishLoading(true);
 	
 	// Store the current state, to revert back to later.
 	defaultFleets = fleets;
@@ -205,15 +205,33 @@ void GameData::CheckReferences()
 	for(const auto &it : effects)
 		if(it.second.Name().empty())
 			Files::LogError("Warning: effect \"" + it.first + "\" is referred to, but never defined.");
+	for(const auto &it : events)
+		if(it.second.Name().empty())
+			Files::LogError("Warning: event \"" + it.first + "\" is referred to, but never defined.");
 	for(const auto &it : fleets)
 		if(!it.second.GetGovernment())
 			Files::LogError("Warning: fleet \"" + it.first + "\" is referred to, but never defined.");
 	for(const auto &it : governments)
 		if(it.second.GetName().empty())
 			Files::LogError("Warning: government \"" + it.first + "\" is referred to, but never defined.");
+	for(const auto &it : minables)
+		if(it.second.Name().empty())
+			Files::LogError("Warning: minable \"" + it.first + "\" is referred to, but never defined.");
+	for(const auto &it : missions)
+		if(it.second.Name().empty())
+			Files::LogError("Warning: mission \"" + it.first + "\" is referred to, but never defined.");
 	for(const auto &it : outfits)
 		if(it.second.Name().empty())
 			Files::LogError("Warning: outfit \"" + it.first + "\" is referred to, but never defined.");
+	for(const auto &it : phrases)
+		if(it.second.Name().empty())
+			Files::LogError("Warning: phrase \"" + it.first + "\" is referred to, but never defined.");
+	for(const auto &it : planets)
+		if(it.second.Name().empty())
+			Files::LogError("Warning: planet \"" + it.first + "\" is referred to, but never defined.");
+	for(const auto &it : ships)
+		if(it.second.ModelName().empty())
+			Files::LogError("Warning: ship \"" + it.first + "\" is referred to, but never defined.");
 	for(const auto &it : systems)
 		if(it.second.Name().empty())
 			Files::LogError("Warning: system \"" + it.first + "\" is referred to, but never defined.");
@@ -432,7 +450,7 @@ void GameData::StepEconomy()
 	for(auto &it : systems)
 	{
 		System &system = it.second;
-		if(system.Links().size())
+		if(!system.Links().empty())
 			for(const Trade::Commodity &commodity : trade.Commodities())
 			{
 				double supply = system.Supply(commodity.name);
@@ -661,10 +679,16 @@ const string &GameData::LandingMessage(const Sprite *sprite)
 
 
 
-// Strings for combat rating levels.
-const vector<string> &GameData::CombatRatings()
+// Strings for combat rating levels, etc.
+const string &GameData::Rating(const std::string &type, int level)
 {
-	return ratingLevels;
+	static const string EMPTY;
+	auto it = ratings.find(type);
+	if(it == ratings.end() || it->second.empty())
+		return EMPTY;
+	
+	level = max(0, min<int>(it->second.size() - 1, level));
+	return it->second[level];
 }
 
 
@@ -827,11 +851,12 @@ void GameData::LoadFile(const string &path, bool debugMode)
 			for(const DataNode &child : node)
 				landingMessages[SpriteSet::Get(child.Token(0))] = node.Token(1);
 		}
-		else if(key == "combat ratings")
+		else if(key == "rating" && node.Size() >= 2)
 		{
-			ratingLevels.clear();
+			vector<string> &list = ratings[node.Token(1)];
+			list.clear();
 			for(const DataNode &child : node)
-				ratingLevels.push_back(child.Token(0));
+				list.push_back(child.Token(0));
 		}
 		else if((key == "tip" || key == "help") && node.Size() >= 2)
 		{

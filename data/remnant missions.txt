@@ -14,8 +14,6 @@ mission "First Contact: Remnant"
 	source
 		government "Remnant"
 	on offer
-		log "Factions" "Remnant" `Half a millennium ago, during the Alpha Wars, a group of humans fleeing the conflict and looking for a safer place to live discovered a wormhole into a region of space known as the Ember Waste. They built settlements there, and chose to call themselves the Remnant. Although they no longer fear the Alphas as much as they once did, they still have not rejoined human society.`
-			`Since their colonies were first formed, the Remnant's culture has changed drastically. They communicate in sign language, using their voices only for singing. Their food and architecture and much of their technology is strange, and much of it has been borrowed or stolen from nearby alien species.`
 		conversation
 			`Although they are unusually tall and dark-skinned, the people here appear to be human. You wouldn't know it from the architecture, however: the buildings with their curved, twisted surfaces and ramifying arches look more alien than any human dwelling you have seen before.`
 			`	Stranger still, no one is speaking: the usual background murmur of voices that you would associate with a spaceport is absent here. Instead, the locals are communicating in a rapid and graceful sign language, their hands tracing arcs through the air almost faster than your eyes can follow.`
@@ -57,14 +55,19 @@ mission "First Contact: Remnant"
 				decline
 	on accept
 		"reputation: Remnant" <?= -10
+		log "Discovered a strange, isolated human community in an otherwise uninhabited region of space south of the Core. Angered them by refusing to submit to some sort of blood test."
+		log "Factions" "Remnant" `The Remnant are a group of unusual-looking humans that live in a secluded section of the galaxy. It is unclear how long they have lived apart from the rest of humanity, but they have been free of human influences for long enough that their culture is wildly different from any found in human record. Their buildings seem to be alien in origin, and they communicate amongst each other primarily with sign language. When they do use their voices they sing or chant, rather than speak.`
+	
 	on decline
 		event "ember waste label"
+		log "Discovered a strange, isolated human community in an otherwise uninhabited region of space south of the Core. They call themselves the Remnant."
+		log "Factions" "Remnant" `Half a millennium ago, during the Alpha Wars, a group of humans fleeing the conflict and looking for a safer place to live discovered a wormhole into a region of space known as the Ember Waste. They built settlements there, and chose to call themselves the Remnant. Although they no longer fear the Alphas as much as they once did, they still have not rejoined human society.`
+			`Since their colonies were first formed, the Remnant's culture has changed drastically. They communicate in sign language, using their voices only for singing. Their food and architecture and much of their technology is strange, and much of it has been borrowed or stolen from nearby alien species.`
 	
 	npc kill
 		government "Remnant"
 		personality heroic coward disables plunders
-		fleet "Large Remnant"
-		fleet "Large Remnant"
+		fleet "Large Remnant" 2
 
 event "ember waste label"
 	galaxy "label waste"
@@ -92,18 +95,13 @@ mission "Remnant: Defense 1"
 		set "Remnant defense delay"
 		event "remnant defense timer" 20
 	npc
-		personality staying uninterested disables plunders
 		government "Remnant"
+		personality staying uninterested disables plunders
 		fleet "Large Remnant"
 	npc evade
-		personality heroic target
 		government "Korath"
-		fleet "Korath Raid"
-		fleet "Korath Raid"
-		fleet "Korath Raid"
-		fleet "Korath Raid"
-		fleet "Korath Raid"
-		fleet "Korath Raid"
+		personality heroic plunders harvests target
+		fleet "Korath Raid" 6
 	on visit
 		dialog "There are still Korath raiders circling overhead. You should take off and help the Remnant ships to fight them."
 	on complete
@@ -147,8 +145,8 @@ mission "Remnant: Defense 2"
 			`	"Thank you," she sings. "It keeps jumping between systems in our territory. Maybe its jump drive was damaged or something, and it can't escape. I'll spread news that you've taken on the bounty for hunting it, so others won't risk their lives fighting it."`
 				accept
 	npc kill
-		personality coward target uninterested marked waiting
 		government Korath
+		personality coward target uninterested marked waiting
 		system
 			distance 1 2
 		fleet
@@ -175,8 +173,8 @@ mission "Remnant: Bounty"
 		has "Remnant: Defense 2: done"
 		random < 60
 	npc kill
-		personality coward target uninterested marked waiting
 		government Korath
+		personality coward target uninterested marked waiting
 		system
 			distance 1 2
 		fleet
@@ -215,11 +213,10 @@ mission "Remnant: Defense 3"
 	on accept
 		event "remnant: surveillance begin"
 	npc kill
-		personality heroic nemesis staying
 		government Korath
+		personality heroic nemesis staying
 		system Parca
-		fleet "Korath Raid"
-		fleet "Korath Raid"
+		fleet "Korath Raid" 2
 		dialog "Now that you are alone, you are able to deploy the Remnant surveillance satellite unobserved. Time to report back to <planet>."
 	on complete
 		event "remnant: surveillance end"
@@ -333,7 +330,7 @@ mission "Remnant: Void Sprites 1"
 	
 	npc
 		government "Indigenous Lifeform"
-		personality timid mining harvesting staying
+		personality timid mining harvests staying mute
 		system Nenia
 		fleet
 			cargo 0
@@ -375,7 +372,7 @@ mission "Remnant: Void Sprites 2"
 					accept
 	npc "scan outfits"
 		government "Indigenous Lifeform"
-		personality timid mining harvesting staying
+		personality timid mining harvests staying mute
 		system Nenia
 		fleet
 			cargo 0

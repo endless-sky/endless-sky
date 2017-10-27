@@ -15,7 +15,7 @@ outfit "Inhibitor Cannon"
 	licenses
 		Remnant
 	cost 471000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/inhibitor cannon"
 	"mass" 16
 	"outfit space" -16
 	"weapon capacity" -16
@@ -57,7 +57,7 @@ outfit "Thrasher Cannon"
 	licenses
 		Remnant
 	cost 218000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/thrasher cannon"
 	"mass" 10
 	"outfit space" -10
 	"weapon capacity" -10
@@ -95,7 +95,7 @@ outfit "Thrasher Turret"
 	licenses
 		Remnant
 	cost 980000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/thrasher turret"
 	"mass" 49
 	"outfit space" -49
 	"weapon capacity" -49
@@ -106,6 +106,8 @@ outfit "Thrasher Turret"
 			"frame rate" 10
 			"random start frame"
 			"no repeat"
+		"hardpoint sprite" "hardpoint/thrasher turret"
+		"hardpoint offset" 6.
 		sound "particle"
 		"hit effect" "thrasher impact"
 		"inaccuracy" 6
@@ -125,12 +127,13 @@ outfit "Point Defense Turret"
 	licenses
 		Remnant
 	cost 1120000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/point defense"
 	"mass" 33
 	"outfit space" -33
 	"weapon capacity" -33
 	"turret mounts" -1
 	weapon
+		"hardpoint sprite" "hardpoint/point defense"
 		"fire effect" "point defense fire"
 		"die effect" "point defense hit"
 		"die effect" "point defense die"
@@ -171,23 +174,26 @@ outfit "Crystal Capacitor"
 	category "Power"
 	licenses
 		Remnant
-	cost 280000
-	thumbnail "outfit/unknown"
+	cost 113000
+	thumbnail "outfit/crystal capacitor"
 	"mass" 12
 	"outfit space" -12
 	"energy capacity" 3400
-	description "These crystals, mined on the Remnant planet Viminal, can store a surprising amount of power in a compact form. Crystals pure enough to be used in such a manner are hard to find, however, and therefore rather pricy."
+	"energy consumption" .4
+	"heat generation" .4
+	description "These crystals, mined on the Remnant planet Viminal, can store a surprising amount of power in a compact form. Crystals pure enough to be used in such a manner are hard to find, however."
+	description "	Also, the capacitors tend to leak small amounts of energy, in the form of excess heat."
 
 
 outfit "Millennium Cell"
 	category "Power"
 	licenses
 		Remnant
-	cost 767000
-	thumbnail "outfit/unknown"
+	cost 553000
+	thumbnail "outfit/millennium cell"
 	"mass" 29
 	"outfit space" -29
-	"energy generation" 3.5
+	"energy generation" 3.6
 	"heat generation" 6.0
 	description "This quite compact radiothermal generator uses isotopes so radioactive, and so tightly packed together, that it could almost be classified as a nuclear reactor."
 
@@ -195,11 +201,11 @@ outfit "Epoch Cell"
 	category "Power"
 	licenses
 		Remnant
-	cost 3060000
-	thumbnail "outfit/unknown"
+	cost 2123000
+	thumbnail "outfit/epoch cell"
 	"mass" 98
 	"outfit space" -98
-	"energy generation" 12.2
+	"energy generation" 12.7
 	"heat generation" 19.8
 	description "Efficient Remnant technology ensures that nearly all the heat produced by this generator's radioisotopes is converted into electricity instead of becoming waste heat."
 
@@ -207,11 +213,11 @@ outfit "Aeon Cell"
 	category "Power"
 	licenses
 		Remnant
-	cost 6600000
-	thumbnail "outfit/unknown"
+	cost 4384000
+	thumbnail "outfit/aeon cell"
 	"mass" 160
 	"outfit space" -160
-	"energy generation" 21.1
+	"energy generation" 21.9
 	"heat generation" 31.5
 	description "The early Remnant engineers did not trust the finicky and unpredictable nuclear reactors that were then in use in human space, so they instead focused on perfecting the art of radioisotope thermoelectric power."
 
@@ -220,8 +226,8 @@ outfit "Thermoelectric Cooler"
 	category "Systems"
 	licenses
 		Remnant
-	cost 160000
-	thumbnail "outfit/unknown"
+	cost 100000
+	thumbnail "outfit/thermoelectric cooler"
 	"mass" 4
 	"outfit space" -4
 	"active cooling" 7
@@ -233,7 +239,7 @@ outfit "Emergency Ramscoop"
 	licenses
 		Remnant
 	cost 72000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/emergency ramscoop"
 	"mass" 4
 	"outfit space" -4
 	"ramscoop" 0.5
@@ -260,14 +266,14 @@ outfit "Crucible-Class Thruster"
 	licenses
 		Remnant
 	"cost" 200000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/small remnant thruster"
 	"mass" 20
 	"outfit space" -20
 	"engine capacity" -20
 	"thrust" 18.0
 	"thrusting energy" 2.65
 	"thrusting heat" 2.5
-	"flare sprite" "effect/remnant small flare"
+	"flare sprite" "effect/remnant flare/small"
 		"frame rate" 5
 	"flare sound" "plasma tiny"
 	description "These small but powerful engines are driven by ionized gas propelled at a sizable fraction of the speed of light."
@@ -277,14 +283,14 @@ outfit "Forge-Class Thruster"
 	licenses
 		Remnant
 	"cost" 441000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/medium remnant thruster"
 	"mass" 39
 	"outfit space" -39
 	"engine capacity" -39
 	"thrust" 37.0
 	"thrusting energy" 5.15
 	"thrusting heat" 5.0
-	"flare sprite" "effect/remnant medium flare"
+	"flare sprite" "effect/remnant flare/medium"
 		"frame rate" 4
 	"flare sound" "plasma small"
 	description "The Remnant has taken the basic ion thruster design that has been used by humanity since the dawn of spaceflight and made it significantly more powerful... but also more power-hungry."
@@ -294,14 +300,14 @@ outfit "Smelter-Class Thruster"
 	licenses
 		Remnant
 	"cost" 984000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/large remnant thruster"
 	"mass" 76
 	"outfit space" -76
 	"engine capacity" -76
 	"thrust" 76.8
 	"thrusting energy" 10.10
 	"thrusting heat" 10.2
-	"flare sprite" "effect/remnant large flare"
+	"flare sprite" "effect/remnant flare/large"
 		"frame rate" 3
 	"flare sound" "plasma medium"
 	description "It is not unheard of for a Remnant ship's engines to draw even more power than its weapon systems: an indication, perhaps, of their preference for avoiding battle when possible."
@@ -312,7 +318,7 @@ outfit "Crucible-Class Steering"
 	licenses
 		Remnant
 	"cost" 172000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/small remnant steering"
 	"mass" 14
 	"outfit space" -14
 	"engine capacity" -14
@@ -326,7 +332,7 @@ outfit "Forge-Class Steering"
 	licenses
 		Remnant
 	"cost" 393000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/medium remnant steering"
 	"mass" 28
 	"outfit space" -28
 	"engine capacity" -28
@@ -340,7 +346,7 @@ outfit "Smelter-Class Steering"
 	licenses
 		Remnant
 	"cost" 880000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/large remnant steering"
 	"mass" 55
 	"outfit space" -55
 	"engine capacity" -55

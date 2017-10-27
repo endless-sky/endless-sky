@@ -38,7 +38,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 using namespace std;
 
 namespace {
-	static const double WIDTH = 250.;
+	const double WIDTH = 250.;
 }
 
 
@@ -182,12 +182,12 @@ bool ShipInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 			else if(commodities)
 			{
 				GetUI()->Push(new Dialog(this, &ShipInfoPanel::Dump,
-					"Are you sure you want to jettison all this ship's regular cargo?"));
+					"Are you sure you want to jettison all of this ship's regular cargo?"));
 			}
 			else
 			{
 				GetUI()->Push(new Dialog(this, &ShipInfoPanel::Dump,
-					"Are you sure you want to jettison all this ship's spare outfit cargo?"));
+					"Are you sure you want to jettison all of this ship's cargo?"));
 			}
 		}
 	}
@@ -547,9 +547,15 @@ void ShipInfoPanel::DrawCargo(const Rectangle &bounds)
 			if(it.first == selectedPlunder)
 				table.DrawHighlight(backColor);
 			
+			// For outfits, show how many of them you have and their total mass.
 			bool isSingular = (it.second == 1 || it.first->Get("installable") < 0.);
-			table.Draw(isSingular ? it.first->Name() : it.first->PluralName(), dim);
-			table.Draw(to_string(it.second), bright);
+			string name = (isSingular ? it.first->Name() : it.first->PluralName());
+			if(!isSingular)
+				name += " (" + to_string(it.second) + "x)";
+			table.Draw(name, dim);
+			
+			double mass = it.first->Get("mass") * it.second;
+			table.Draw(Format::Number(mass), bright);
 			
 			// Truncate the list if there is not enough space.
 			if(table.GetRowBounds().Bottom() >= endY)

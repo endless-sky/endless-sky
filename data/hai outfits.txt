@@ -56,6 +56,17 @@ outfit "Pulse Turret"
 		"hull damage" 34
 	description "Pulse Cannons are the primary offensive weapon used by Hai ships. This turret mounts two pulse cannons side by side and allows them to track even the fastest-moving of targets."
 
+effect "pulse impact"
+	sprite "effect/pulse impact"
+		"no repeat"
+		"frame rate" 10
+	"lifetime" 20
+	"random angle" 360
+	"random velocity" .6
+	"random spin" 4
+	"velocity scale" -.1
+
+
 outfit "Ion Cannon"
 	category "Guns"
 	cost 490000
@@ -81,6 +92,18 @@ outfit "Ion Cannon"
 		"hull damage" 60
 		"ion damage" 5
 	description "Ion cannons do not inflict as much damage as some other weapons, but they disrupt the electrical systems on any ship they hit, draining its energy. If a ship has sizable battery reserves, this may not have any effect, but for a ship running at near its energy generation capacity an ion strike can take it out of the battle for a few seconds while it recovers."
+
+effect "ion impact"
+	sprite "effect/ion impact"
+		"no repeat"
+		"frame rate" 30
+	sound "ion impact"
+	"lifetime" 9
+	"random angle" 360
+	"velocity scale" -.05
+	"random spin" 30
+	"random velocity" 2
+
 
 outfit "Railgun Slug"
 	category "Ammunition"
@@ -136,6 +159,25 @@ outfit "rslug"
 		"hit force" 44
 		"missile strength" 14
 		"piercing" .1
+
+effect "bullet impact"
+	sprite "effect/bullet impact"
+		"no repeat"
+		"frame rate" 60
+	"lifetime" 8
+	"random angle" 40
+	"velocity scale" -.05
+
+effect "rail sparks"
+	sprite "effect/railspark"
+		"random start frame"
+		"frame rate" 30
+		"rewind"
+	"lifetime" 6
+	"velocity scale" 1.2
+	"random angle" 360
+	"random spin" 30
+
 
 outfit "Hai Tracker"
 	category "Ammunition"
@@ -193,6 +235,37 @@ outfit "Hai Tracker Pod"
 		"missile strength" 16
 	description "Trackers are fast, powerful, and accurate homing weapons. Their only weakness is their large turning radius: if a Tracker misses its target, it takes a long time to turn around."
 
+effect "tracker fire"
+	sprite "effect/tracker fire"
+		"no repeat"
+		"frame rate" 8
+	"lifetime" 30
+	"random angle" 5
+	"random spin" 4
+	"random velocity" 10
+
+effect "tracker impact"
+	sprite "effect/tracker impact"
+		"no repeat"
+		"frame rate" 20
+	sound "explosion medium"
+	"lifetime" 16
+	"random angle" 360
+	"random velocity" .2
+	"random spin" 10
+	"velocity scale" -.05
+
+effect "tracker cloud"
+	sprite "effect/tracker cloud"
+		"no repeat"
+		"frame rate" 4
+	"lifetime" 60
+	"random angle" 360
+	"random velocity" 1
+	"random spin" 4
+	"velocity scale" -.1
+
+
 outfit "Bullfrog Anti-Missile"
 	category "Turrets"
 	cost 55000
@@ -214,6 +287,7 @@ outfit "Bullfrog Anti-Missile"
 		"stream"
 	description "Centuries ago, the Hai fought with more rudimentary versions of the Tracker, and this was the primary defense against them. In spite of the dated design, it is still effective against small numbers of their latest missile weapons."
 
+
 outfit "Chameleon Anti-Missile"
 	category "Turrets"
 	cost 140000
@@ -234,6 +308,8 @@ outfit "Chameleon Anti-Missile"
 		"firing heat" 6
 		"stream"
 	description "The Chameleon Anti-Missile turret has a longer range, higher power, and shorter reload time than the Bullfrog."
+
+
 
 outfit "Hai Corundum Regenerator"
 	category "Systems"
@@ -297,7 +373,7 @@ outfit "Hai Fissure Batteries"
 	"mass" 15
 	"outfit space" -15
 	"energy capacity" 1709
-	description "This battery pack has more than three times the energy capacity of the the Hai Chasm Batteries, allowing their ships to engage in combat for longer periods of time before running out of energy."
+	description "This battery pack has more than three times the energy capacity of the Hai Chasm Batteries, allowing their ships to engage in combat for longer periods of time before running out of energy."
 
 outfit "Hai Gorge Batteries"
 	plural "Hai Gorge Batteries"

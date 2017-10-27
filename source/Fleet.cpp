@@ -42,12 +42,19 @@ void Fleet::Load(const DataNode &node)
 	
 	for(const DataNode &child : node)
 	{
-		const string &key = child.Token(0);
+		// The "add" and "remove" keywords should never be alone on a line, and
+		// are only valid with "variant" or "personality" definitions.
+		bool add = (child.Token(0) == "add");
+		bool remove = (child.Token(0) == "remove");
 		bool hasValue = (child.Size() >= 2);
-		// Special case: "add/remove variant" means to add or remove a variant without
-		// clearing the rest of the existing definition.
-		bool add = (key == "add" && hasValue && child.Token(1) == "variant");
-		bool remove = (key == "remove" && hasValue && child.Token(1) == "variant");
+		if((add || remove) && (!hasValue || (child.Token(1) != "variant" && child.Token(1) != "personality")))
+		{	
+			child.PrintTrace("Skipping invalid \"" + child.Token(0) + "\" tag:");
+			continue;
+		}
+		
+		// If this line is an add or remove, the key is the token at index 1.
+		const string &key = child.Token(add || remove);
 		
 		if(key == "government" && hasValue)
 			government = GameData::Governments().Get(child.Token(1));
@@ -65,7 +72,7 @@ void Fleet::Load(const DataNode &node)
 		}
 		else if(key == "personality")
 			personality.Load(child);
-		else if(key == "variant" || add)
+		else if(key == "variant" && !remove)
 		{
 			if(resetVariants && !add)
 			{
@@ -76,7 +83,7 @@ void Fleet::Load(const DataNode &node)
 			variants.emplace_back(child);
 			total += variants.back().weight;
 		}
-		else if(remove)
+		else if(key == "variant")
 		{
 			// If given a full ship definition of one of this fleet's variant members, remove the variant.
 			bool didRemove = false;
@@ -443,7 +450,7 @@ void Fleet::SetCargo(Ship *ship) const
 			break;
 		
 		int index = Random::Int(GameData::Commodities().size());
-		if(commodities.size())
+		if(!commodities.empty())
 		{
 			// If a list of possible commodities was given, pick one of them at
 			// random and then double-check that it's a valid commodity name.
