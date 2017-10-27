@@ -15,6 +15,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "ConditionSet.h"
 #include "Date.h"
+#include "MissionAction.h"
 
 #include <list>
 #include <string>
@@ -50,10 +51,13 @@ public:
 private:
 	Date date;
 	std::string name;
-	ConditionSet conditionsToApply;
 	std::list<DataNode> changes;
-	std::string logText;
-	std::map<std::string, std::map<std::string, std::string>> specialLogText;
+	
+	// The MissionAction this game event executes. Contains any direct
+	// interactions with the player, e.g. log entries, outfit gifting.
+	// Without a UI reference, no conversations / dialog can be shown.
+	MissionAction action;
+	
 	std::vector<const System *> systemsToVisit;
 	std::vector<const Planet *> planetsToVisit;
 	std::vector<const System *> systemsToUnvisit;
