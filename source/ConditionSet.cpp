@@ -67,12 +67,92 @@ namespace {
 		return comparison.count(op);
 	}
 	
+	bool IsAssignment(const string &op)
+	{
+		static const set<string> assignment = {
+			"=", "+=", "-=", "*=", "/=", "<?=", ">?="
+		};
+		return assignment.count(op);
+	}
+	
 	bool IsSimple(const string &op)
 	{
 		static const set<string> simple = {
 			"*", "+", "-", "/", "(", ")"
 		};
 		return simple.count(op);
+	}
+	
+	int CountCompares(const vector<string> &tokens)
+	{
+		int compares = 0;
+		for(const string &str : tokens)
+			if(IsComparison(str))
+				++compares;
+		return compares;
+	}
+	
+	int CountAssignment(const vector<string> &tokens)
+	{
+		int assigns = 0;
+		for(const string &str : tokens)
+			if(IsAssignment(str))
+				++assigns;
+		return assigns;
+	}
+	
+	// Test to determine if unsupported operations are requested.
+	bool HasInvalidOperators(const vector<string> &tokens)
+	{
+		static const set<string> invalids = {
+			"{", "}", "[", "]", "|", "^", "&",
+			"||", "&&", "&=", "|=", "<<", ">>"
+		};
+		for(const string &str : tokens)
+			if(invalids.count(str))
+				return true;
+		return false;
+	}
+	
+	// Ensure the ConditionSet line has balanced parentheses on both sides.
+	bool HasUnbalancedParentheses(const vector<string> &tokens)
+	{
+		int parentheses = 0;
+		for(const string &str : tokens)
+		{
+			if(parentheses < 0)
+				return true;
+			else if(parentheses && (IsAssignment(str) || IsComparison(str)))
+				return true;
+			else if(str == "(")
+				++parentheses;
+			else if(str == ")")
+				--parentheses;
+		}
+		return parentheses;
+	}
+	
+	bool IsValidCondition(const DataNode &node)
+	{
+		const vector<string> &tokens = node.Tokens();
+		int assigns = CountAssignment(tokens);
+		int compares = CountCompares(tokens);
+		if(assigns > 1)
+			node.PrintTrace("Only one assignment operation may be performed per expression:");
+		else if(compares > 1)
+			node.PrintTrace("Only one comparison operation may be performed per expression:");
+		else if(assigns && compares)
+			node.PrintTrace("A condition may only perform an assignment or a comparison, not both:");
+		else if(!assigns && !compares)
+			node.PrintTrace("Every condition must either perform a comparison, or an assign a value:");
+		else if(HasInvalidOperators(tokens))
+			node.PrintTrace("Brackets, braces, exponentiation, and boolean/bitwise math are not supported:");
+		else if(HasUnbalancedParentheses(tokens))
+			node.PrintTrace("Unbalanced parentheses in condition expression:");
+		else
+			return true;
+		
+		return false;
 	}
 	
 	// Converts the given vector of strings into a vector of ints.
@@ -145,31 +225,6 @@ namespace {
 			message += " \"" + str + "\"";
 		Files::LogError(message);
 	}
-	
-	// Check if the passed token is numeric or a string which has to be replaced, and return the
-	// evaluated value. If the string value is a "created" condition (from TestApply()), use that,
-	// otherwise find the value in the player's conditions.
-	double TokenValue(int numValue, const string &strValue, const map<string, int> &conditions, const map<string, int> &created)
-	{
-		int value = numValue;
-		// Special case: if the string of the token is "random," that means to
-		// generate a random number from 0 to 99 each time it is queried.
-		if(strValue == "random")
-			value = Random::Int(100);
-		else
-		{
-			// Prefer temporary conditions, since they may have the same
-			// name as a condition stored in the player's list.
-			auto temp = created.find(strValue);
-			if(temp != created.end())
-				return temp->second;
-			
-			auto perm = conditions.find(strValue);
-			if(perm != conditions.end())
-				return perm->second;
-		}
-		return value;
-	}
 }
 
 
@@ -222,29 +277,17 @@ bool ConditionSet::IsEmpty() const
 // Read a single condition from a data node.
 void ConditionSet::Add(const DataNode &node)
 {
-	// Branch based on whether this line has two tokens (a unary operator) or
-	// three tokens (a binary operator).
+	// Special keywords have a node size of 1 (never, and, or), or 2 (unary operators).
+	// Simple conditions have a node size of 3, while complex conditions feature a single
+	// non-simple operator (e.g. <=) and any number of simple operators.
 	static const string UNRECOGNIZED = "Unrecognized condition expression:";
 	if(node.Size() == 2)
 	{
 		if(!Add(node.Token(0), node.Token(1)))
 			node.PrintTrace(UNRECOGNIZED);
 	}
-	else if(node.Size() == 3)
-	{
-		if(node.IsNumber(2))
-		{
-			if(!Add(node.Token(0), node.Token(1), node.Value(2)))
-				node.PrintTrace(UNRECOGNIZED);
-		}
-		else
-		{
-			if(!Add(node.Token(0), node.Token(1), node.Token(2)))
-				node.PrintTrace(UNRECOGNIZED);
-		}
-	}
 	else if(node.Size() == 1 && node.Token(0) == "never")
-		expressions.emplace_back("", "!=", 0);
+		expressions.emplace_back(" ", "!=", "0");
 	else if(node.Size() == 1 && (node.Token(0) == "and" || node.Token(0) == "or"))
 	{
 		// The "and" and "or" keywords introduce a nested condition set.
@@ -254,8 +297,48 @@ void ConditionSet::Add(const DataNode &node)
 		if(children.back().hasAssign)
 			node.PrintTrace("Assignment expressions contained within and/or groups are applied last. This may be unexpected.");
 	}
-	else
-		node.PrintTrace(UNRECOGNIZED);
+	else if(IsValidCondition(node))
+	{
+		// This is a valid condition containing a single assignment or comparison operator.
+		if(node.Size() == 3)
+		{
+			if(!Add(node.Token(0), node.Token(1), node.Token(2)))
+				node.PrintTrace(UNRECOGNIZED);
+		}
+		else
+		{
+			// Split the DataNode into left- and right-hand sides.
+			vector<string> lhs;
+			vector<string> rhs;
+			string op;
+			for(const string &token : node.Tokens())
+			{
+				if(!op.empty())
+					rhs.emplace_back(token);
+				else if(IsComparison(token))
+					op = token;
+				else if(IsAssignment(token))
+				{
+					if(lhs.size() == 1)
+						op = token;
+					else
+					{
+						node.PrintTrace("Assignment operators must be the second token:");
+						return;
+					}
+				}
+				else
+					lhs.emplace_back(token);
+			}
+			if(!Add(lhs, op, rhs))
+				node.PrintTrace(UNRECOGNIZED);
+		}
+	}
+	if(!expressions.empty() && expressions.back().IsEmpty())
+	{
+		node.PrintTrace("Condition parses to an empty set:");
+		expressions.pop_back();
+	}
 }
 
 
@@ -265,17 +348,17 @@ bool ConditionSet::Add(const string &firstToken, const string &secondToken)
 {
 	// Each "unary" operator can be mapped to an equivalent binary expression.
 	if(firstToken == "not")
-		expressions.emplace_back(secondToken, "==", 0);
+		expressions.emplace_back(secondToken, "==", "0");
 	else if(firstToken == "has")
-		expressions.emplace_back(secondToken, "!=", 0);
+		expressions.emplace_back(secondToken, "!=", "0");
 	else if(firstToken == "set")
-		expressions.emplace_back(secondToken, "=", 1);
+		expressions.emplace_back(secondToken, "=", "1");
 	else if(firstToken == "clear")
-		expressions.emplace_back(secondToken, "=", 0);
+		expressions.emplace_back(secondToken, "=", "0");
 	else if(secondToken == "++")
-		expressions.emplace_back(firstToken, "+=", 1);
+		expressions.emplace_back(firstToken, "+=", "1");
 	else if(secondToken == "--")
-		expressions.emplace_back(firstToken, "-=", 1);
+		expressions.emplace_back(firstToken, "-=", "1");
 	else
 		return false;
 	
@@ -285,8 +368,8 @@ bool ConditionSet::Add(const string &firstToken, const string &secondToken)
 
 
 
-// Add a binary operator line to the list of expressions.
-bool ConditionSet::Add(const string &name, const string &op, int value)
+// Add a simple condition expression to the list of expressions.
+bool ConditionSet::Add(const string &name, const string &op, const string &value)
 {
 	// If the operator is recognized, map it to a binary function.
 	BinFun fun = Op(op);
@@ -300,17 +383,15 @@ bool ConditionSet::Add(const string &name, const string &op, int value)
 
 
 
-// Add a binary operator line to the list of expressions with a string as value
-bool ConditionSet::Add(const string &name, const string &op, const string &strValue)
+// Add a complex condition expression to the list of expressions.
+bool ConditionSet::Add(const vector<string> &lhs, const string &op, const vector<string> &rhs)
 {
-	// If the operator is recognized, map it to a binary function.
 	BinFun fun = Op(op);
 	if(!fun)
 		return false;
 	
 	hasAssign |= !IsComparison(op);
-	expressions.emplace_back(name, op, 0);
-	expressions.back().strValue = strValue;
+	expressions.emplace_back(lhs, op, rhs);
 	return true;
 }
 
@@ -386,9 +467,17 @@ void ConditionSet::TestApply(const Conditions &conditions, Conditions &created) 
 
 
 
-// Constructor for an expression.
-ConditionSet::Expression::Expression(const string &name, const string &op, int value, const vector<string> left, const vector<string> right)
-	: name(name), op(op), fun(Op(op)), value(value), left(left), right(right)
+// Constructor for complex expressions.
+ConditionSet::Expression::Expression(const vector<string> &left, const string &op, const vector<string> &right)
+	: op(op), fun(Op(op)), left(left), right(right)
+{
+}
+
+
+
+// Constructor for simple expressions.
+ConditionSet::Expression::Expression(const string &left, const string &op, const string &right)
+	: op(op), fun(Op(op)), left(left), right(right)
 {
 }
 
@@ -396,7 +485,12 @@ ConditionSet::Expression::Expression(const string &name, const string &op, int v
 
 void ConditionSet::Expression::Save(DataWriter &out) const
 {
-	out.Write(name, op, (!value && !strValue.empty()) ? strValue : to_string(value));
+	for(const string &str : left.ToStrings())
+		out.WriteToken(str);
+	out.WriteToken(op);
+	for(const string &str : right.ToStrings())
+		out.WriteToken(str);
+	out.Write();
 }
 
 
@@ -404,18 +498,29 @@ void ConditionSet::Expression::Save(DataWriter &out) const
 // Create a loggable string (for PrintTrace).
 string ConditionSet::Expression::ToString() const
 {
-	return name + " \"" + op + "\" " + ((!value && !strValue.empty()) ? strValue : to_string(value));
+	return left.ToString() + " \"" + op + "\" " + right.ToString();
 }
 
 
 
+// Checks if either side of the expression is tokenless.
+bool ConditionSet::Expression::IsEmpty() const
+{
+	return left.IsEmpty() || right.IsEmpty();
+}
+
+
+
+// Returns everything to the left of the main assignment or comparison operator.
+// In an assignment expression, this should be only a single token.
 string ConditionSet::Expression::Name() const
 {
-	return name;
+	return left.ToString();
 }
 
 
 
+// Returns true if the operator is a comparison and false otherwise.
 bool ConditionSet::Expression::IsTestable() const
 {
 	return IsComparison(op);
@@ -423,11 +528,12 @@ bool ConditionSet::Expression::IsTestable() const
 
 
 
+// Evaluate both the left- and right-hand sides of the expression, then compare the evaluated numeric values.
 bool ConditionSet::Expression::Test(const Conditions &conditions, const Conditions &created) const
 {
-	int firstValue = TokenValue(0, Name(), conditions, created);
-	int secondValue = TokenValue(this->value, this->strValue, conditions, created);
-	return fun(firstValue, secondValue);
+	int lhs = left.Evaluate(conditions, created);
+	int rhs = right.Evaluate(conditions, created);
+	return fun(lhs, rhs);
 }
 
 
@@ -436,7 +542,7 @@ bool ConditionSet::Expression::Test(const Conditions &conditions, const Conditio
 void ConditionSet::Expression::Apply(Conditions &conditions, Conditions &created) const
 {
 	int &c = conditions[Name()];
-	int value = TokenValue(this->value, this->strValue, conditions, created);
+	int value = right.Evaluate(conditions, created);
 	c = fun(c, value);
 }
 
@@ -446,26 +552,33 @@ void ConditionSet::Expression::Apply(Conditions &conditions, Conditions &created
 void ConditionSet::Expression::TestApply(const Conditions &conditions, Conditions &created) const
 {
 	int &c = created[Name()];
-	int value = TokenValue(this->value, this->strValue, conditions, created);
+	int value = right.Evaluate(conditions, created);
 	c = fun(c, value);
 }
 
 
 
-// Constructor for one side of a complex expression (supports multiple simple operators).
+// Constructor for one side of a complex expression (supports multiple simple operators and parentheses).
 ConditionSet::Expression::SubExpression::SubExpression(const vector<string> &side)
 {
 	if(side.empty())
 		return;
 	
 	ParseSide(side);
-	// Create the sequence vector using operator precedence.
 	GenerateSequence();
 }
 
 
 
-// Convert the tokens and operators back to a string, for use in the save file.
+// Simple condition constructor.
+ConditionSet::Expression::SubExpression::SubExpression(const string &side)
+{
+	if(!side.empty())
+		tokens.emplace_back(side);
+}
+
+
+// Convert the tokens and operators back to a string, for use in logging.
 const string ConditionSet::Expression::SubExpression::ToString() const
 {
 	string out;
@@ -473,15 +586,50 @@ const string ConditionSet::Expression::SubExpression::ToString() const
 	size_t i = 0;
 	for( ; i < operators.size(); ++i)
 	{
-		out += tokens[i];
-		out += SPACE;
+		if(!tokens[i].empty())
+		{
+			out += tokens[i];
+			out += SPACE;
+		}
 		out += operators[i];
-		out += SPACE;
+		if(i != operators.size() - 1)
+			out += SPACE;
 	}
-	// The tokens vector may contain more values than the operators vector.
+	// The tokens vector contains more values than the operators vector.
 	for( ; i < tokens.size(); ++i)
+	{
+		if(i != 0)
+			out += SPACE;
 		out += tokens[i];
+	}
 	return out;
+}
+
+
+
+// Interleave the tokens and operators, for use in the save file.
+const vector<string> ConditionSet::Expression::SubExpression::ToStrings() const
+{
+	vector<string> out;
+	out.reserve(tokens.size() + operators.size());
+	size_t i = 0;
+	for( ; i < operators.size(); ++i)
+	{
+		if(!tokens[i].empty())
+			out.emplace_back(tokens[i]);
+		out.emplace_back(operators[i]);
+	}
+	for( ; i < tokens.size(); ++i)
+		if(!tokens[i].empty())
+			out.emplace_back(tokens[i]);
+	return out;
+}
+
+
+// Check if this SubExpression was able to build correctly.
+bool ConditionSet::Expression::SubExpression::IsEmpty() const
+{
+	return tokens.empty();
 }
 
 
@@ -511,7 +659,7 @@ int ConditionSet::Expression::SubExpression::Evaluate(const Conditions &conditio
 
 
 // Parse the input vector into the tokens and operators vectors. Parentheses are
-// considered simple operators that also cause an empty string insert to tokens.
+// considered simple operators, and also insert an empty string into tokens.
 void ConditionSet::Expression::SubExpression::ParseSide(const vector<string> &side)
 {
 	static const string EMPTY;
@@ -540,11 +688,13 @@ void ConditionSet::Expression::SubExpression::ParseSide(const vector<string> &si
 		operators.clear();
 	else if(parentheses % 2 != 0)
 	{
+		// This should have been caught earlier, but just in case.
 		PrintConditionError(side);
 		tokens.clear();
 		operators.clear();
 	}
-	// Remove empty strings that wrap simple conditions.
+	// Remove empty strings that wrap simple conditions, so any token
+	// wrapped by only parentheses simplifies to just the token.
 	if(operators.empty() && !tokens.empty())
 		for(auto it = tokens.begin(); it != tokens.end();)
 		{
@@ -568,16 +718,14 @@ void ConditionSet::Expression::SubExpression::GenerateSequence()
 		{"+", 1}, {"-", 1},
 		{"*", 2}, {"/", 2}
 	};
-	// Use two boolean vectors to indicate when a token or operator has
-	// been used already, and should be ignored when seeking.
-	size_t dest = tokens.size();
+	// Use a boolean vector to indicate when an operator has been used.
 	vector<bool> usedOps(operators.size(), false);
 	// Read the operators vector just once by using a stack.
 	vector<size_t> opStack;
-	// Track where each subexpression places each operator's data. Each
-	// operator generates a new data entry.
+	// Store the data index for each Operation, for use by later Operations.
+	size_t dest = tokens.size();
 	vector<int> dataDest(dest + operatorCount, -1);
-	int opIndex = 0;
+	size_t opIndex = 0;
 	while(!UsedAll(usedOps))
 	{
 		while(true)
@@ -601,7 +749,7 @@ void ConditionSet::Expression::SubExpression::GenerateSequence()
 				if(operators.at(opIndex) != ")")
 				{
 					Files::LogError("Did not find matched parentheses:");
-					PrintConditionError(operators);
+					PrintConditionError(ToStrings());
 					tokens.clear();
 					operators.clear();
 					sequence.clear();
@@ -684,7 +832,6 @@ void ConditionSet::Expression::SubExpression::GenerateSequence()
 		++dest;
 	}
 	// All operators and tokens should now have been used.
-	Files::LogError("Parsed:" + ToString() + "\nFound: " + to_string(operatorCount) + " true operators and made " + to_string(sequence.size()) + " operations.");
 }
 
 

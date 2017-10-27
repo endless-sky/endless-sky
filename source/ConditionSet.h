@@ -45,8 +45,10 @@ public:
 	// Read a single condition from a data node.
 	void Add(const DataNode &node);
 	bool Add(const std::string &firstToken, const std::string &secondToken);
-	bool Add(const std::string &name, const std::string &op, int value);
-	bool Add(const std::string &name, const std::string &op, const std::string &strValue);
+	// Add simple conditions having only a single operator.
+	bool Add(const std::string &name, const std::string &op, const std::string &value);
+	// Add complex conditions having multiple operators, including parentheses.
+	bool Add(const std::vector<std::string> &lhs, const std::string &op, const std::vector<std::string> &rhs);
 	
 	// Check if the given condition values satisfy this set of expressions. First applies
 	// all assignment expressions to create any temporary conditions, then evaluates.
@@ -69,11 +71,15 @@ private:
 	// either testing what value it has, or modifying it in some way.
 	class Expression {
 	public:
-		Expression(const std::string &name, const std::string &op, int value, const std::vector<std::string> left = std::vector<std::string>(), const std::vector<std::string> right = std::vector<std::string>());
+		Expression(const std::vector<std::string> &left, const std::string &op, const std::vector<std::string> &right);
+		Expression(const std::string &left, const std::string &op, const std::string &right);
 		
 		void Save(DataWriter &out) const;
 		// Convert this expression into a string, for traces.
 		std::string ToString() const;
+		
+		// Determine if this Expression instantiated properly.
+		bool IsEmpty() const;
 		
 		// Returns the left side of this Expression.
 		std::string Name() const;
@@ -94,10 +100,16 @@ private:
 		// sequence of Operations is created for runtime evaluation.
 		class SubExpression {
 		public:
-			explicit SubExpression(const std::vector<std::string> &side);
+			SubExpression(const std::vector<std::string> &side);
+			SubExpression(const std::string &side);
 			
 			// Interleave tokens and operators to reproduce the initial string.
 			const std::string ToString() const;
+			// Interleave tokens and operators without combining.
+			const std::vector<std::string> ToStrings() const;
+			
+			bool IsEmpty() const;
+			
 			// Substitute numbers for any string values and then compute the result.
 			int Evaluate(const Conditions &conditions, const Conditions &created) const;
 			
@@ -131,17 +143,7 @@ private:
 		};
 		
 		
-	public:
-		// Constant value specified in the expression.
-		int value;
-		// Allow for dynamic values.
-		std::string strValue;
-		
-		
 	private:
-		// For assignment operations, this is the condition in which the
-		// result will be stored. For comparison operations, this is unused.
-		std::string name;
 		// String representation of the Expression's binary function.
 		std::string op;
 		// Pointer to a binary function that defines the assignment or
