@@ -1254,7 +1254,7 @@ void AI::MoveEscort(Ship &ship, Command &command) const
 			const System *from = ship.GetSystem();
 			
 			// Check how much fuel is required to reach the next refuel system.
-			if(systemHasFuel && hasFuelCapacity && ship.Fuel() < 1.)
+			if(systemHasFuel && ship.Fuel() < 1.)
 			{
 				const System *to = distance.Route(from);
 				while(to && !to->HasFuelFor(ship))
@@ -1301,7 +1301,7 @@ void AI::MoveEscort(Ship &ship, Command &command) const
 			if(!EscortsReadyToJump(ship))
 				command |= Command::WAIT;
 		}
-		else if(hasFuelCapacity && systemHasFuel && ship.Fuel() < 1.)
+		else if(systemHasFuel && ship.Fuel() < 1.)
 			// Refuel so that when the parent returns, this ship is ready to rendezvous with it.
 			Refuel(ship, command);
 		else

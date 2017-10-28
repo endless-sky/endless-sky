@@ -45,7 +45,7 @@ void DataFile::Load(const string &path)
 	if(data.empty() || data.back() != '\n')
 		data.push_back('\n');
 	
-	Load(&*data.begin(), &*data.end());
+	Load(data.data(), data.data() + data.size());
 	
 	// Note what file this node is in, so it will show up in error traces.
 	root.tokens.push_back("file");
@@ -71,7 +71,7 @@ void DataFile::Load(istream &in)
 	if(data.back() != '\n')
 		data.push_back('\n');
 	
-	Load(&*data.begin(), &*data.end());
+	Load(data.data(), data.data() + data.size());
 }
 
 
