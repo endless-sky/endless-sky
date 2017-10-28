@@ -1,5 +1,6 @@
 <img src = 'https://i.imgur.com/ZvnuiXY.jpg'>
 
+## About
 
 Explore other star systems. Earn money by trading, carrying passengers, or completing missions. Use your earnings to buy a better ship or to upgrade the weapons and engines on your current one. Blow up pirates. Take sides in a civil war. Or leave human space behind and hope to find some friendly aliens whose culture is more civilized than your own...
 
