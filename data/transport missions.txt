@@ -1989,7 +1989,7 @@ mission "Lost Boy 1"
 			
 			`	The woman wipes away the tears (and snot) with the sleeve of her shirt. She takes a few deep breathes to calm down before asking, "Do you really care?"` 
 			`	You nod. "Why else would I ask you?"`
-			`	She has stopped crying now. "It's my son, Tod," she says. "I've raised him by myself his entire life. Having to deal with a child on my own, I could never save up enough money to leave <origin>, so at the first chance of giving him a better life somewhere else I took it. I sent him away to a mining job on Placer, but on the way the ship he was on was attacked and boarded by pirates." She begins to sob again. "I d-don't know if he's d-dead or a slave. I tried t-talking to someone from the Syndicate, but they said that saving him wouldn't be w-worth it. T-that was earlier today."`
+			`	She has stopped crying now. "It's my son, Tod," she says. "I've raised him by myself his entire life. Having to deal with a child on my own, I could never save up enough money to leave <origin>, so at the first chance of giving him a better life somewhere else I took it. I sent him away to a mining job on Placer, but on the way the ship he was on was attacked and boarded by pirates." She begins to sob again. "I d-don't know if he's d-dead or a slave. I tried t-talking to someone from the Syndicate, but they said that saving him wouldn't be w-worth it. T-that was earlier today.`
 			`	"W-would you be able to help? Please do if you c-can."`
 			choice
 				`	"Alright, I'll help you. Where should I look for him?"`
@@ -2019,7 +2019,7 @@ mission "Lost Boy 2"
 	on offer
 		conversation
 			`The air in the <origin> spaceport smells of tobacco and tastes of the salt from the world's vast oceans. You receive sideways looks from rough-looking pirates, but none make a move to cause any trouble. As lawless as pirates can be, they still adhere to a form of honor code when in a planet's main spaceport. At least generally.`
-			`	You ask a bartender for directions to the local slave traders, as that is the likely place that Tod would be if he was taken here. He points you to a slave trader by the name of Cygnet Brig who runs the entire slave trade in the <origin> spaceport.`
+			`	You ask a bartender for directions to the local slave traders, as that is the likely place that Tod would be if he was taken here. He points you to a slave trader by the name of Cygnet Brig who "runs the slave trade 'round these parts."`
 			`	Cygnet owns a large warehouse building located on the edge of the spaceport island where he keeps all his slaves packed together in groups of three in small holding cells. Some slaves are rattling the bars on their cell or screaming in protest, but many have seemed to accept their fate. Cygnet, a tall, thin, mustachioed man, notices you gazing at the cells. "Can't keep 'em too packed together, oth'wise they's get each otha sick," he remarks in a thick accent of unknown origin to you. "What can I get ya?"`
 			choice
 				`	"I'm here to buy a slave."`
@@ -2100,7 +2100,7 @@ mission "Lost Boy 3"
 		ship "Falcon (Heavy)" "Cygnet's Slaver"
 	
 	on complete
-		dialog `You wish Tod Copper the best of luck on <planet>. "Thank you, Captain. Hopefully I can repay you one day. As cliche as it sounds, I owe you my life."`
+		dialog `You wish Tod the best of luck on <planet>. "Thank you, Captain. Hopefully I can repay you one day. As cliche as it sounds, I owe you my life."`
 
 
 
