@@ -1,4 +1,4 @@
-<img src= 'https://camo.githubusercontent.com/4f74d02549bd6f37404b1238088e450caba19451/68747470733a2f2f692e696d6775722e636f6d2f5a766e756958592e6a7067'>
+<img src='https://raw.githubusercontent.com/endless-sky/endless-sky.github.io/443535c76ac335f0ddb12bba447d760d22f98f66/header.jpg'>
 
 ## About
 
