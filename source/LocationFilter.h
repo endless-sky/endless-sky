@@ -73,6 +73,8 @@ private:
 	
 	// These filters store all the things the planet or system must not be.
 	std::list<LocationFilter> notFilters;
+	// These filters store all the things the planet or system must border.
+	std::list<LocationFilter> neighborFilters;
 };
 
 

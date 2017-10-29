@@ -78,16 +78,18 @@ void LocationFilter::Load(const DataNode &node)
 {
 	for(const DataNode &child : node)
 	{
-		if(child.Token(0) == "not")
+		// Handle filters that must not match, or must apply to a
+		// neighboring system. If the token is alone on a line, it
+		// introduces many lines of this type of filter. Otherwise, this
+		// child is a normal LocationFilter line.
+		if(child.Token(0) == "not" || child.Token(0) == "neighbor")
 		{
-			// If this line starts with "not", it is a filter or set of filters
-			// that must not match. If the "not" is alone on a line, it is
-			// introducing a set of multiple lines of filters.
-			notFilters.emplace_back();
+			list<LocationFilter> &filters = ((child.Token(0) == "not") ? notFilters : neighborFilters);
+			filters.emplace_back();
 			if(child.Size() == 1)
-				notFilters.back().Load(child);
+				filters.back().Load(child);
 			else
-				notFilters.back().LoadChild(child);
+				filters.back().LoadChild(child);
 		}
 		else
 			LoadChild(child);
@@ -103,6 +105,11 @@ void LocationFilter::Save(DataWriter &out) const
 		for(const LocationFilter &filter : notFilters)
 		{
 			out.Write("not");
+			filter.Save(out);
+		}
+		for(const LocationFilter &filter : neighborFilters)
+		{
+			out.Write("neighbor");
 			filter.Save(out);
 		}
 		if(!planets.empty())
@@ -157,7 +164,7 @@ void LocationFilter::Save(DataWriter &out) const
 bool LocationFilter::IsEmpty() const
 {
 	return planets.empty() && attributes.empty() && systems.empty() && governments.empty()
-		&& !center && originMaxDistance < 0 && notFilters.empty();
+		&& !center && originMaxDistance < 0 && notFilters.empty() && neighborFilters.empty();
 }
 
 
@@ -179,6 +186,19 @@ bool LocationFilter::Matches(const Planet *planet, const System *origin) const
 			return false;
 	if(!governments.empty() && !governments.count(planet->GetGovernment()))
 		return false;
+	
+	for(const LocationFilter &filter : neighborFilters)
+	{
+		bool hasMatch = false;
+		for(const System *neighbor : planet->GetSystem()->Links())
+			if(filter.Matches(neighbor, origin))
+			{
+				hasMatch = true;
+				break;
+			}
+		if(!hasMatch)
+			return false;
+	}
 	
 	return Matches(planet->GetSystem(), origin, true);
 }
@@ -210,6 +230,19 @@ bool LocationFilter::Matches(const Ship &ship) const
 		if(Distance(center, ship.GetSystem(), centerMaxDistance) < centerMinDistance)
 			return false;
 	}
+	
+	for(const LocationFilter &filter : neighborFilters)
+	{
+		bool hasMatch = false;
+		for(const System *neighbor : ship.GetSystem()->Links())
+			if(filter.Matches(neighbor, ship.GetSystem()))
+			{
+				hasMatch = true;
+				break;
+			}
+		if(!hasMatch)
+			return false;
+	}
 	return true;
 }
 
@@ -219,10 +252,12 @@ bool LocationFilter::Matches(const Ship &ship) const
 void LocationFilter::LoadChild(const DataNode &child)
 {
 	bool isNot = (child.Token(0) == "not");
-	const string &key = child.Token(isNot);
+	bool isNeighbor = (child.Token(isNot) == "neighbor");
+	int valueIndex = 1 + isNot + isNeighbor;
+	const string &key = child.Token(valueIndex - 1);
 	if(key == "planet")
 	{
-		for(int i = 1 + isNot; i < child.Size(); ++i)
+		for(int i = valueIndex; i < child.Size(); ++i)
 			planets.insert(GameData::Planets().Get(child.Token(i)));
 		for(const DataNode &grand : child)
 			for(int i = 0; i < grand.Size(); ++i)
@@ -230,7 +265,7 @@ void LocationFilter::LoadChild(const DataNode &child)
 	}
 	else if(key == "system")
 	{
-		for(int i = 1 + isNot; i < child.Size(); ++i)
+		for(int i = valueIndex; i < child.Size(); ++i)
 			systems.insert(GameData::Systems().Get(child.Token(i)));
 		for(const DataNode &grand : child)
 			for(int i = 0; i < grand.Size(); ++i)
@@ -238,7 +273,7 @@ void LocationFilter::LoadChild(const DataNode &child)
 	}
 	else if(key == "government")
 	{
-		for(int i = 1 + isNot; i < child.Size(); ++i)
+		for(int i = valueIndex; i < child.Size(); ++i)
 			governments.insert(GameData::Governments().Get(child.Token(i)));
 		for(const DataNode &grand : child)
 			for(int i = 0; i < grand.Size(); ++i)
@@ -247,7 +282,7 @@ void LocationFilter::LoadChild(const DataNode &child)
 	else if(key == "attributes")
 	{
 		attributes.push_back(set<string>());
-		for(int i = 1 + isNot; i < child.Size(); ++i)
+		for(int i = valueIndex; i < child.Size(); ++i)
 			attributes.back().insert(child.Token(i));
 		for(const DataNode &grand : child)
 			for(int i = 0; i < grand.Size(); ++i)
@@ -256,25 +291,25 @@ void LocationFilter::LoadChild(const DataNode &child)
 		if(attributes.back().empty())
 			attributes.pop_back();
 	}
-	else if(key == "near" && child.Size() >= 2 + isNot)
+	else if(key == "near" && child.Size() >= 1 + valueIndex)
 	{
-		center = GameData::Systems().Get(child.Token(1 + isNot));
-		if(child.Size() == 3 + isNot)
-			centerMaxDistance = child.Value(2 + isNot);
-		else if(child.Size() == 4 + isNot)
+		center = GameData::Systems().Get(child.Token(valueIndex));
+		if(child.Size() == 2 + valueIndex)
+			centerMaxDistance = child.Value(1 + valueIndex);
+		else if(child.Size() == 3 + valueIndex)
 		{
-			centerMinDistance = child.Value(2 + isNot);
-			centerMaxDistance = child.Value(3 + isNot);
+			centerMinDistance = child.Value(1 + valueIndex);
+			centerMaxDistance = child.Value(2 + valueIndex);
 		}
 	}
-	else if(key == "distance" && child.Size() >= 2 + isNot)
+	else if(key == "distance" && child.Size() >= 1 + valueIndex)
 	{
-		if(child.Size() == 2 + isNot)
-			originMaxDistance = child.Value(1 + isNot);
-		else if(child.Size() == 3 + isNot)
+		if(child.Size() == 1 + valueIndex)
+			originMaxDistance = child.Value(valueIndex);
+		else if(child.Size() == 2 + valueIndex)
 		{
-			originMinDistance = child.Value(1 + isNot);
-			originMaxDistance = child.Value(2 + isNot);
+			originMinDistance = child.Value(valueIndex);
+			originMaxDistance = child.Value(1 + valueIndex);
 		}
 	}
 	else
@@ -313,6 +348,20 @@ bool LocationFilter::Matches(const System *system, const System *origin, bool di
 		if(Distance(origin, system, originMaxDistance) < originMinDistance)
 			return false;
 	}
+	
+	if(!didPlanet)
+		for(const LocationFilter &filter : neighborFilters)
+		{
+			bool hasMatch = false;
+			for(const System *neighbor : system->Links())
+				if(filter.Matches(neighbor, origin))
+				{
+					hasMatch = true;
+					break;
+				}
+			if(!hasMatch)
+				return false;
+		}
 	
 	// Special case: if this filter specifies planets or attributes, but was
 	// only called on a system, it never matches.
