@@ -251,11 +251,12 @@ bool LocationFilter::Matches(const Ship &ship) const
 // Load one particular line of conditions.
 void LocationFilter::LoadChild(const DataNode &child)
 {
-	bool isNot = (child.Token(0) == "not");
-	bool isNeighbor = (child.Token(isNot) == "neighbor");
-	int valueIndex = 1 + isNot + isNeighbor;
+	bool isNot = (child.Token(0) == "not" || child.Token(0) == "neighbor");
+	int valueIndex = 1 + isNot;
 	const string &key = child.Token(valueIndex - 1);
-	if(key == "planet")
+	if(key == "not" || key == "neighbor")
+		child.PrintTrace("Skipping unsupported use of 'not' and 'neighbor'. These keywords must be nested if used together.");
+	else if(key == "planet")
 	{
 		for(int i = valueIndex; i < child.Size(); ++i)
 			planets.insert(GameData::Planets().Get(child.Token(i)));
