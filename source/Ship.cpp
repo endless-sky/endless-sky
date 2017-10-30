@@ -399,6 +399,7 @@ void Ship::FinishLoading(bool isNewInstance)
 		}
 	}
 	// Recalculate the "isDisabled" flag based on this ship's hull and crew.
+	isDisabled = true;
 	isDisabled = IsDisabled();
 }
 
@@ -2225,6 +2226,7 @@ int Ship::TakeDamage(const Projectile &projectile, bool isBlast)
 	}
 	
 	// Recalculate the disabled ship check.
+	isDisabled = true;
 	isDisabled = IsDisabled();
 	if(!wasDisabled && isDisabled)
 		type |= ShipEvent::DISABLE;

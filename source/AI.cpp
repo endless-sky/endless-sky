@@ -1254,7 +1254,7 @@ void AI::MoveEscort(Ship &ship, Command &command) const
 			const System *from = ship.GetSystem();
 			
 			// Check how much fuel is required to reach the next refuel system.
-			if(systemHasFuel && ship.Fuel() < 1.)
+			if(systemHasFuel && hasFuelCapacity && ship.Fuel() < 1.)
 			{
 				const System *to = distance.Route(from);
 				while(to && !to->HasFuelFor(ship))

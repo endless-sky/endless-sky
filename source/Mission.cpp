@@ -968,9 +968,7 @@ Mission Mission::Instantiate(const PlayerInfo &player) const
 		destinations.erase(bestIt);
 	}
 	DistanceMap distance(source);
-	if (result.destination) {
-		jumps += distance.Days(result.destination->GetSystem());
-	}
+	jumps += distance.Days(result.destination->GetSystem());
 	int payload = result.cargoSize + 10 * result.passengers;
 	
 	// Set the deadline, if requested.
