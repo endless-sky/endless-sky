@@ -1222,7 +1222,7 @@ mission "FW Katya 7C"
 		conversation
 			`You land some distance from the mining settlement, and Mr. Eyes goes into the airlock in a pressure suit, cycling it to bring in some of the moon's thin atmosphere for him to test. "Firing up my instruments now," he says through the comm link. There is a long pause, and then he starts spouting a long string of creative profanity. Katya runs over to the airlock window to see what is happening.`
 			`	Finally, Eyes calms down enough to say, "It's a match! Not only has there been a recent test here, but the signature matches the one we took on Geminus. This is it."`
-			`	He cycles the airlock and comes back inside. "Let's fly around and see if we can find the site," he says. After a few hours of flying low over the surface and scanning for radiation signatures, you find a spot that looks like all the other meteorite craters but is full of radiation. Katya and Eyes look at the images of the surface almost in disbelief.`
+			`	He cycles the airlock and comes back inside. "Let's fly around and see if we can find the site," he says. After a few hours of flying low over the surface and scanning for radiation signatures, you find a spot that looks like all the other meteorite craters but is emitting tons of radiation. Katya and Eyes look at the images of the surface almost in disbelief.`
 			`	"Based on the isotopic decay rates, this explosion happened in mid-June," says Eyes. "Just before the attacks happened."`
 			`	"It makes no sense," says Katya. "It's a blatant atmospheric test. No way the Navy hasn't found this. The Navy could act on this at any moment. Captain, is the outpost reporting any miner's jobs open?"`
 			choice
