@@ -1116,7 +1116,7 @@ mission "FW Katya 6B"
 		has "chosen sides"
 	on offer
 		conversation
-			`Mr. Eyes fires up his instruments and looks at the results for a few minutes. "Nothing," he says. "Even underground testing would've thrown up a debris plume large enough to measure traces of it. But I'm picking up nothing."`
+			`Mr. Eyes fires up his instruments and looks at the results for a few minutes. "Nothing," he says. "Even underground testing would've released enough trace elements to get a reading. But I'm picking up nothing."`
 			`	"No problem," says Katya, "let's continue to <planet>."`
 				accept
 
