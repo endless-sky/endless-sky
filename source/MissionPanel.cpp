@@ -44,10 +44,10 @@ using namespace std;
 namespace {
 	const int SIDE_WIDTH = 280;
 	
-	// Checks if a missions involves the provided system.
+	// Check if the mission involves the given system,
 	bool Involves(const Mission &mission, const System *system)
 	{
-		if(system == nullptr)
+		if(!system)
 			return false;
 		
 		if(mission.Destination()->IsInSystem(system))
