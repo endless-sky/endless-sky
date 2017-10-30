@@ -355,8 +355,12 @@ private:
 	void RemoveEscort(const Ship &ship);
 	// Get the hull amount at which this ship is disabled.
 	double MinimumHull() const;
-	// Add to this ship's hull or shields, and return the amount added. If the
-	// ship is carrying fighters, add to them as well.
+	// Add to this ship's fuel, hull, or shields, and return the amount
+	// added. If the ship is carrying fighters, add to them as well, in
+	// order of most need (e.g. in parallel).
+	enum SortBy {SHIELDS, HULL, FUEL};
+	std::vector<std::pair<size_t, double>> BayOrder(SortBy reason) const;
+	double AddFuel(double rate);
 	double AddHull(double rate);
 	double AddShields(double rate);
 	// Find out how much fuel is consumed by the hyperdrive of the given type.
