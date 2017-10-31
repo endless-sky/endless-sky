@@ -44,9 +44,9 @@ protected:
 	
 	
 private:
-	void DrawKey();
 	void DrawInfo();
 	void DrawOrbits();
+	void DrawKey() const;
 	
 	// Set the commodity coloring, and update the player info as well.
 	void SetCommodity(int index);

@@ -279,128 +279,6 @@ bool MapDetailPanel::Click(int x, int y, int clicks)
 
 
 
-// Draw the legend, correlating between a system's color and the value of the
-// selected "commodity," which may be reputation level, outfitter size, etc.
-void MapDetailPanel::DrawKey()
-{
-	const Color &dim = *GameData::Colors().Get("dim");
-	const Color &medium = *GameData::Colors().Get("medium");
-	const Font &font = FontSet::Get(14);
-	
-	Point pos = Screen::TopRight() + Point(-110., 310.);
-	Point headerOff(-5., -.5 * font.Height());
-	Point textOff(10., -.5 * font.Height());
-	
-	static const string HEADER[] = {
-		"Trade prices:",
-		"Ships for sale:",
-		"Outfits for sale:",
-		"You have visited:",
-		"", // Special should never be active in this mode.
-		"Government:",
-		"System:"
-	};
-	const string &header = HEADER[-min(0, max(-6, commodity))];
-	font.Draw(header, pos + headerOff, medium);
-	pos.Y() += 20.;
-	
-	if(commodity >= 0)
-	{
-		// Each system is colored by the selected commodity's price. Draw
-		// four distinct colors and the price each color represents.
-		const vector<Trade::Commodity> &commodities = GameData::Commodities();
-		const auto &range = commodities[commodity];
-		if(static_cast<unsigned>(commodity) >= commodities.size())
-			return;
-		
-		for(int i = 0; i <= 3; ++i)
-		{
-			RingShader::Draw(pos, OUTER, INNER, MapColor(i * (2. / 3.) - 1.));
-			int price = range.low + ((range.high - range.low) * i) / 3;
-			font.Draw(Format::Number(price), pos + textOff, dim);
-			pos.Y() += 20.;
-		}
-	}
-	else if(commodity >= SHOW_OUTFITTER)
-	{
-		// Each system is colored by the number of outfits for sale.
-		static const string LABEL[2][4] = {
-			{"None", "1", "5", "10+"},
-			{"None", "1", "30", "60+"}};
-		static const double VALUE[4] = {-1., 0., .5, 1.};
-		
-		for(int i = 0; i < 4; ++i)
-		{
-			RingShader::Draw(pos, OUTER, INNER, MapColor(VALUE[i]));
-			font.Draw(LABEL[commodity == SHOW_OUTFITTER][i], pos + textOff, dim);
-			pos.Y() += 20.;
-		}
-	}
-	else if(commodity == SHOW_VISITED)
-	{
-		static const string LABEL[3] = {
-			"All planets",
-			"Some",
-			"None"
-		};
-		for(int i = 0; i < 3; ++i)
-		{
-			RingShader::Draw(pos, OUTER, INNER, MapColor(1 - i));
-			font.Draw(LABEL[i], pos + textOff, dim);
-			pos.Y() += 20.;
-		}
-	}
-	else if(commodity == SHOW_GOVERNMENT)
-	{
-		// Each system is colored by the government of the system. Only the
-		// four largest visible governments are labeled in the legend.
-		vector<pair<double, const Government *>> distances;
-		for(const auto &it : closeGovernments)
-			distances.emplace_back(it.second, it.first);
-		sort(distances.begin(), distances.end());
-		for(unsigned i = 0; i < 4 && i < distances.size(); ++i)
-		{
-			RingShader::Draw(pos, OUTER, INNER, GovernmentColor(distances[i].second));
-			font.Draw(distances[i].second->GetName(), pos + textOff, dim);
-			pos.Y() += 20.;
-		}
-	}
-	else if(commodity == SHOW_REPUTATION)
-	{
-		// Each system is colored in accordance with the player's reputation
-		// with its owning government. The specific colors associated with a
-		// given reputation (0.1, 100, and 10000) are shown for each sign.
-		RingShader::Draw(pos, OUTER, INNER, ReputationColor(1e-1, true, false));
-		RingShader::Draw(pos + Point(12., 0.), OUTER, INNER, ReputationColor(1e2, true, false));
-		RingShader::Draw(pos + Point(24., 0.), OUTER, INNER, ReputationColor(1e4, true, false));
-		font.Draw("Friendly", pos + textOff + Point(24., 0.), dim);
-		pos.Y() += 20.;
-		
-		RingShader::Draw(pos, OUTER, INNER, ReputationColor(-1e-1, false, false));
-		RingShader::Draw(pos + Point(12., 0.), OUTER, INNER, ReputationColor(-1e2, false, false));
-		RingShader::Draw(pos + Point(24., 0.), OUTER, INNER, ReputationColor(-1e4, false, false));
-		font.Draw("Hostile", pos + textOff + Point(24., 0.), dim);
-		pos.Y() += 20.;
-		
-		RingShader::Draw(pos, OUTER, INNER, ReputationColor(0., false, false));
-		font.Draw("Restricted", pos + textOff, dim);
-		pos.Y() += 20.;
-		
-		RingShader::Draw(pos, OUTER, INNER, ReputationColor(0., false, true));
-		font.Draw("Dominated", pos + textOff, dim);
-		pos.Y() += 20.;
-	}
-	
-	RingShader::Draw(pos, OUTER, INNER, UninhabitedColor());
-	font.Draw("Uninhabited", pos + textOff, dim);
-	pos.Y() += 20.;
-	
-	RingShader::Draw(pos, OUTER, INNER, UnexploredColor());
-	font.Draw("Unexplored", pos + textOff, dim);
-}
-
-
-
 // Draw the various information displays: system name & government, planetary
 // details, trade prices, and details about the selected object.
 void MapDetailPanel::DrawInfo()
@@ -650,6 +528,128 @@ void MapDetailPanel::DrawOrbits()
 	const string &name = selectedPlanet ? selectedPlanet->Name() : selectedSystem->Name();
 	Point namePos(Screen::Right() - .5 * font.Width(name) - 100., Screen::Top() + 7.);
 	font.Draw(name, namePos, *GameData::Colors().Get("medium"));
+}
+
+
+
+// Draw the legend, correlating between a system's color and the value of the
+// selected "commodity," which may be reputation level, outfitter size, etc.
+void MapDetailPanel::DrawKey() const
+{
+	const Color &dim = *GameData::Colors().Get("dim");
+	const Color &medium = *GameData::Colors().Get("medium");
+	const Font &font = FontSet::Get(14);
+	
+	Point pos = Screen::TopRight() + Point(-110., 310.);
+	Point headerOff(-5., -.5 * font.Height());
+	Point textOff(10., -.5 * font.Height());
+	
+	static const string HEADER[] = {
+		"Trade prices:",
+		"Ships for sale:",
+		"Outfits for sale:",
+		"You have visited:",
+		"", // Special should never be active in this mode.
+		"Government:",
+		"System:"
+	};
+	const string &header = HEADER[-min(0, max(-6, commodity))];
+	font.Draw(header, pos + headerOff, medium);
+	pos.Y() += 20.;
+	
+	if(commodity >= 0)
+	{
+		// Each system is colored by the selected commodity's price. Draw
+		// four distinct colors and the price each color represents.
+		const vector<Trade::Commodity> &commodities = GameData::Commodities();
+		const auto &range = commodities[commodity];
+		if(static_cast<unsigned>(commodity) >= commodities.size())
+			return;
+		
+		for(int i = 0; i <= 3; ++i)
+		{
+			RingShader::Draw(pos, OUTER, INNER, MapColor(i * (2. / 3.) - 1.));
+			int price = range.low + ((range.high - range.low) * i) / 3;
+			font.Draw(Format::Number(price), pos + textOff, dim);
+			pos.Y() += 20.;
+		}
+	}
+	else if(commodity >= SHOW_OUTFITTER)
+	{
+		// Each system is colored by the number of outfits for sale.
+		static const string LABEL[2][4] = {
+			{"None", "1", "5", "10+"},
+			{"None", "1", "30", "60+"}};
+		static const double VALUE[4] = {-1., 0., .5, 1.};
+		
+		for(int i = 0; i < 4; ++i)
+		{
+			RingShader::Draw(pos, OUTER, INNER, MapColor(VALUE[i]));
+			font.Draw(LABEL[commodity == SHOW_OUTFITTER][i], pos + textOff, dim);
+			pos.Y() += 20.;
+		}
+	}
+	else if(commodity == SHOW_VISITED)
+	{
+		static const string LABEL[3] = {
+			"All planets",
+			"Some",
+			"None"
+		};
+		for(int i = 0; i < 3; ++i)
+		{
+			RingShader::Draw(pos, OUTER, INNER, MapColor(1 - i));
+			font.Draw(LABEL[i], pos + textOff, dim);
+			pos.Y() += 20.;
+		}
+	}
+	else if(commodity == SHOW_GOVERNMENT)
+	{
+		// Each system is colored by the government of the system. Only label
+		// the four governments with systems closest to the center of the screen.
+		vector<pair<double, const Government *>> distances;
+		for(const auto &it : closeGovernments)
+			distances.emplace_back(it.second, it.first);
+		sort(distances.begin(), distances.end());
+		for(unsigned i = 0; i < 4 && i < distances.size(); ++i)
+		{
+			RingShader::Draw(pos, OUTER, INNER, GovernmentColor(distances[i].second));
+			font.Draw(distances[i].second->GetName(), pos + textOff, dim);
+			pos.Y() += 20.;
+		}
+	}
+	else if(commodity == SHOW_REPUTATION)
+	{
+		// Each system is colored in accordance with the player's reputation
+		// with its owning government. The specific colors associated with a
+		// given reputation (0.1, 100, and 10000) are shown for each sign.
+		RingShader::Draw(pos, OUTER, INNER, ReputationColor(1e-1, true, false));
+		RingShader::Draw(pos + Point(12., 0.), OUTER, INNER, ReputationColor(1e2, true, false));
+		RingShader::Draw(pos + Point(24., 0.), OUTER, INNER, ReputationColor(1e4, true, false));
+		font.Draw("Friendly", pos + textOff + Point(24., 0.), dim);
+		pos.Y() += 20.;
+		
+		RingShader::Draw(pos, OUTER, INNER, ReputationColor(-1e-1, false, false));
+		RingShader::Draw(pos + Point(12., 0.), OUTER, INNER, ReputationColor(-1e2, false, false));
+		RingShader::Draw(pos + Point(24., 0.), OUTER, INNER, ReputationColor(-1e4, false, false));
+		font.Draw("Hostile", pos + textOff + Point(24., 0.), dim);
+		pos.Y() += 20.;
+		
+		RingShader::Draw(pos, OUTER, INNER, ReputationColor(0., false, false));
+		font.Draw("Restricted", pos + textOff, dim);
+		pos.Y() += 20.;
+		
+		RingShader::Draw(pos, OUTER, INNER, ReputationColor(0., false, true));
+		font.Draw("Dominated", pos + textOff, dim);
+		pos.Y() += 20.;
+	}
+	
+	RingShader::Draw(pos, OUTER, INNER, UninhabitedColor());
+	font.Draw("Uninhabited", pos + textOff, dim);
+	pos.Y() += 20.;
+	
+	RingShader::Draw(pos, OUTER, INNER, UnexploredColor());
+	font.Draw("Unexplored", pos + textOff, dim);
 }
 
 
