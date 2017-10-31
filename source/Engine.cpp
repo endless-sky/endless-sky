@@ -1248,6 +1248,10 @@ void Engine::MoveShip(const shared_ptr<Ship> &ship)
 	// Bail out if the ship just died.
 	if(ship->ShouldBeRemoved())
 	{
+		// Regular ships are silent about being removed.
+		if(!ship->IsSpecial())
+			return;
+		
 		// Make sure this ship's destruction was recorded, even if it died from
 		// self-destruct.
 		if(ship->IsDestroyed())
