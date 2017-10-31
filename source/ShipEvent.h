@@ -62,7 +62,9 @@ public:
 		// you had with the given government, first.
 		ATROCITY = (1 << 8),
 		// This ship just jumped into a different system.
-		JUMP = (1 << 9)
+		JUMP = (1 << 9),
+		// The given ship landed on a planet and is being removed.
+		FLEE = (1 << 10)
 	};
 	
 	

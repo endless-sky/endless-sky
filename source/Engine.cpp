@@ -1255,6 +1255,9 @@ void Engine::MoveShip(const shared_ptr<Ship> &ship)
 		// self-destruct.
 		if(ship->IsDestroyed())
 			eventQueue.emplace_back(nullptr, ship, ShipEvent::DESTROY);
+		// Record that the ship was able to flee (by landing).
+		else
+			eventQueue.emplace_back(nullptr, ship, ShipEvent::FLEE);
 		return;
 	}
 	
