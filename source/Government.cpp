@@ -103,6 +103,14 @@ void Government::Load(const DataNode &node)
 			bribe = child.Value(1);
 		else if(child.Token(0) == "fine" && child.Size() >= 2)
 			fine = child.Value(1);
+		else if(child.Token(0) == "enforces" && child.HasChildren())
+		{
+			// Restrict this government's jurisdiction.
+			enforcementZones.emplace_back();
+			enforcementZones.back().Load(child);
+		}
+		else if(child.Token(0) == "enforces" && child.Size() == 2 && child.Token(1) == "all")
+			enforcementZones.clear();
 		else if(child.Token(0) == "death sentence" && child.Size() >= 2)
 			deathSentence = GameData::Conversations().Get(child.Token(1));
 		else if(child.Token(0) == "friendly hail" && child.Size() >= 2)
@@ -202,6 +210,36 @@ double Government::GetBribeFraction() const
 double Government::GetFineFraction() const
 {
 	return fine;
+}
+
+
+
+// Returns true if this government has no enforcement restrictions, or if the
+// indicated system matches at least one enforcement zone.
+bool Government::CanEnforce(const System *system) const
+{
+	if(enforcementZones.empty())
+		return true;
+	else
+		for(const LocationFilter &filter : enforcementZones)
+			if(filter.Matches(system))
+				return true;
+	return false;
+}
+
+
+
+// Returns true if this government has no enforcement restrictions, or if the
+// indicated planet matches at least one enforcement zone.
+bool Government::CanEnforce(const Planet *planet) const
+{
+	if(enforcementZones.empty())
+		return true;
+	else
+		for(const LocationFilter &filter : enforcementZones)
+			if(filter.Matches(planet))
+				return true;
+	return false;
 }
 
 
@@ -332,4 +370,3 @@ double Government::CrewDefense() const
 {
 	return crewDefense;
 }
-
