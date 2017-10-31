@@ -1405,6 +1405,7 @@ void Ship::Launch(list<shared_ptr<Ship>> &ships)
 			bay.ship->Place(position + angle.Rotate(bay.point), v, launchAngle);
 			bay.ship->SetSystem(currentSystem);
 			bay.ship->SetParent(shared_from_this());
+			bay.ship->UnmarkForRemoval();
 			// Fighters in your ship have the same temperature as your ship
 			// itself, so when they launch they should take their share of heat
 			// with them, so that the fighter and the mothership remain at the
