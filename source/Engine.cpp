@@ -1256,9 +1256,14 @@ void Engine::MoveShip(const shared_ptr<Ship> &ship)
 		// self-destruct.
 		if(ship->IsDestroyed())
 			eventQueue.emplace_back(nullptr, ship, ShipEvent::DESTROY);
-		// Record that the ship was able to flee (by landing).
-		else
+		// The ship was able to flee. Carried ships only flee with the parent.
+		else if(!ship->CanBeCarried() || !ship->GetParent() || ship->GetParent()->ShouldBeRemoved())
+		{
 			eventQueue.emplace_back(nullptr, ship, ShipEvent::FLEE);
+			for(auto &bay : ship->Bays())
+				if(bay.ship)
+					eventQueue.emplace_back(nullptr, bay.ship, ShipEvent::FLEE);
+		}
 		return;
 	}
 	
