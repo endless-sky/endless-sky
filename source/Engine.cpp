@@ -352,6 +352,9 @@ void Engine::Step(bool isActive)
 		else if(jumpCount > 0)
 			--jumpCount;
 	}
+	// Player mission npcs can react to events.
+	for(const ShipEvent &event : events)
+		player.HandleEvent(event, nullptr);
 	ai.UpdateEvents(events);
 	ai.UpdateKeys(player, clickCommands, isActive && wasActive);
 	wasActive = isActive;
