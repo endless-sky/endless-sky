@@ -43,9 +43,6 @@ color "flagship highlight" .5 .8 .2 0.
 
 color "drag select" .2 1. 0. 0.
 
-color "outfit installed" 0. .8 0. .8
-color "outfit uninstallable" .8 0. .1 .8
-
 # Colors used for drawing mission or job pointers on the map,
 # to indicate where the player should go.
 color "available job" .9 .6 0. 1.
