@@ -328,7 +328,7 @@ void MapPanel::DrawMiniMap(const PlayerInfo &player, double alpha, const System 
 
 bool MapPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 {
-	if(command.Has(Command::MAP) || key == 'd' || key == SDLK_ESCAPE
+	if(command.Has(Command::MAP) || (key == 'd' && !mod) || key == SDLK_ESCAPE
 			|| (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
 		GetUI()->Pop(this);
 	else if(key == 's' && buttonCondition != "is shipyards")
@@ -336,7 +336,7 @@ bool MapPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 		GetUI()->Pop(this);
 		GetUI()->Push(new MapShipyardPanel(*this));
 	}
-	else if(key == 'o' && buttonCondition != "is outfitters")
+	else if(key == 'o' && !mod && buttonCondition != "is outfitters")
 	{
 		GetUI()->Pop(this);
 		GetUI()->Push(new MapOutfitterPanel(*this));

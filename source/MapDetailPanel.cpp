@@ -14,12 +14,14 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Color.h"
 #include "Command.h"
+#include "Dialog.h"
 #include "Engine.h"
 #include "Font.h"
 #include "FontSet.h"
 #include "Format.h"
 #include "GameData.h"
 #include "Government.h"
+#include "Information.h"
 #include "MapOutfitterPanel.h"
 #include "MapShipyardPanel.h"
 #include "pi.h"
@@ -78,6 +80,7 @@ namespace {
 MapDetailPanel::MapDetailPanel(PlayerInfo &player, const System *system, const list<shared_ptr<Ship>> &allShips)
 	: MapPanel(player, system ? MapPanel::SHOW_REPUTATION : player.MapColoring(), system, allShips)
 {
+	orbits = GameData::Interfaces().Get("map detail panel");
 }
 
 
@@ -87,6 +90,7 @@ MapDetailPanel::MapDetailPanel(const MapPanel &panel)
 {
 	// Use whatever map coloring is specified in the PlayerInfo.
 	commodity = player.MapColoring();
+	orbits = GameData::Interfaces().Get("map detail panel");
 }
 
 
@@ -103,7 +107,15 @@ void MapDetailPanel::Draw()
 {
 	MapPanel::Draw();
 	
-	DrawInfo();
+	// Begin with a blank information object.
+	Information info;
+	// Fill it with the needed data about the selected object.
+	UpdateInfo(info);
+	// Display the data, and draw some of the desired sprites (e.g. backgrounds).
+	orbits->Draw(info, this);
+	DrawInfo(info);
+	// Draw sprites that cannot be drawn inside an interface (e.g. clusters
+	// of sprites, swizzled sprites, or those with custom scaling).
 	DrawOrbits();
 	DrawSelection();
 	DrawKey();
@@ -193,6 +205,23 @@ bool MapDetailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command
 		else
 			SetCommodity(commodity - 1);
 	}
+	else if((key == 'D' || (key == 'd' && (mod & KMOD_SHIFT)))
+			&& selectedShip && player.KnowsDescription(selectedShip))
+	{
+		// Push the selected ship's description in a dialog. This may or may not be the ship's
+		// true description (e.g. instantiated Marauder X vs ship loaded from a save file.
+		const string &message = !selectedShip->Description().empty() ? selectedShip->Description()
+				: GameData::Ships().Get(selectedShip->ModelName())->Description();
+		if(!message.empty())
+			GetUI()->Push(new Dialog(message));
+	}
+	else if((key == 'C' || (key == 'c' && (mod & KMOD_SHIFT)))
+			&& selectedShip && !player.KnownCargo(selectedShip).empty())
+		GetUI()->Push(new Dialog(player.KnownCargo(selectedShip)));
+	else if((key == 'O' || (key == 'o' && (mod & KMOD_SHIFT)))
+			&& selectedShip && !player.KnownOutfits(selectedShip).empty())
+		GetUI()->Push(new Dialog(player.KnownOutfits(selectedShip)));
+	// Attempt to activate the buttons to view Missions, Shipyards, etc.
 	else
 		return MapPanel::KeyDown(key, mod, command);
 	
@@ -305,9 +334,59 @@ bool MapDetailPanel::Click(int x, int y, int clicks)
 
 
 
+// Fill in details for use by the Draw methods.
+void MapDetailPanel::UpdateInfo(Information &info) const
+{
+	// Set the name of the selected system, planet or ship for the scene label.
+	const Font &font = FontSet::Get(14);
+	const string &name = font.TruncateMiddle(selectedShip ? selectedShip->Name()
+			: (selectedPlanet ? selectedPlanet->Name() : selectedSystem->Name()), 190);
+	info.SetString("selected name", name);
+	
+	if(selectedShip)
+	{
+		// Fill in the ship description panel.
+		info.SetCondition("has ship info");
+		const Government *gov = selectedShip->GetGovernment();
+		bool isFoe = (gov->IsEnemy());
+		info.SetString("ship name", selectedShip->ModelName() + ": " + selectedShip->Name());
+		info.SetString("allegiance", selectedShip->IsYours() ? (selectedShip == player.Flagship()
+				? "You are flying this ship." : "This is a member of your fleet.")
+				: "Allegiance: " + gov->GetName() + (isFoe ? " (hostile)" : ""));
+		
+		// Control button visibility.
+		info.SetCondition(player.KnownCargo(selectedShip).empty() ? "unknown cargo" : "has cargo scan");
+		info.SetCondition(player.KnownOutfits(selectedShip).empty() ? "unknown outfits" : "has outfit scan");
+		info.SetCondition(player.KnowsDescription(selectedShip) ?
+				"has ship description" : "unknown description");
+		
+		// Draw the ship's shields and hull rings.
+		if(isFoe)
+		{
+			info.SetCondition("selected foe");
+			info.SetBar("selected shields foe", selectedShip->Shields());
+			info.SetBar("selected hull foe", selectedShip->Hull(), 20);
+		}
+		else
+		{
+			info.SetCondition("selected friendly");
+			info.SetBar("selected shields friendly", selectedShip->Shields());
+			info.SetBar("selected hull friendly", selectedShip->Hull(), 20);
+		}
+	}
+	else if(selectedPlanet && player.HasVisited(selectedPlanet)
+			&& !selectedPlanet->Description().empty() && !selectedPlanet->IsWormhole())
+	{
+		info.SetCondition("has planet info");
+		info.SetString("fill text", selectedPlanet->Description());
+	}
+}
+
+
+
 // Draw the various information displays: system name & government, planetary
 // details, trade prices, and details about the selected object.
-void MapDetailPanel::DrawInfo()
+void MapDetailPanel::DrawInfo(const Information &info)
 {
 	const Color &faint = *GameData::Colors().Get("faint");
 	const Color &dim = *GameData::Colors().Get("dim");
@@ -449,39 +528,18 @@ void MapDetailPanel::DrawInfo()
 		uiPoint.Y() += 20.;
 	}
 	
-	// Display the selected ship or planet's description, if known.
-	string fillText;
-	if(selectedShip)
-	{
-		const Government *gov = selectedShip->GetGovernment();
-		fillText += selectedShip->ModelName() + ": '" + selectedShip->Name() + "'\n";
-		fillText += selectedShip->IsYours() ? (selectedShip == player.Flagship()
-				? "You are flying this ship.\n" : "This is a member of your fleet.\n")
-				: "Allegiance: " + gov->GetName() + (gov->IsEnemy() ? " (hostile)\n" : "\n");
-		fillText += "\n\n";
-		fillText += player.KnownCargo(selectedShip) + "\n";
-		fillText += player.KnownOutfits(selectedShip) + "\n\n";
-		if(player.KnowsDescription(selectedShip))
-			fillText += "\t" + (!selectedShip->Description().empty() ? selectedShip->Description()
-					: GameData::Ships().Get(selectedShip->ModelName())->Description());
-	}
-	else if(selectedPlanet && !selectedPlanet->Description().empty()
-			&& player.HasVisited(selectedPlanet) && !selectedPlanet->IsWormhole())
-		fillText = selectedPlanet->Description();
+	// Draw the information of the selected planet in the description box.
+	const string &fillText = info.GetString("fill text");
 	if(!fillText.empty())
 	{
 		static const int WIDTH = 500;
-		const Sprite *orbitSprite = SpriteSet::Get("ui/orbits select and key");
-		const Sprite *panelSprite = SpriteSet::Get("ui/description panel");
-		Point pos(Screen::Right() - orbitSprite->Width() - .5 * panelSprite->Width(),
-				Screen::Top() + .5 * panelSprite->Height());
-		SpriteShader::Draw(panelSprite, pos);
+		const Rectangle &bounds = orbits->GetBox("planet description");
 		
 		WrappedText text(font);
 		text.SetAlignment(WrappedText::JUSTIFIED);
 		text.SetWrapWidth(WIDTH - 20);
 		text.Wrap(fillText);
-		text.Draw(Point(Screen::Right() - orbitSprite->Width() - WIDTH, Screen::Top() + 20), medium);
+		text.Draw(bounds.TopLeft(), medium);
 	}
 	
 	DrawButtons("is ports");
@@ -492,15 +550,8 @@ void MapDetailPanel::DrawInfo()
 // Draw the planet orbits in the currently selected system, on the current day.
 void MapDetailPanel::DrawOrbits()
 {
-	// Draw the planet orbits in the currently selected system.
-	const Sprite *orbitSprite = SpriteSet::Get("ui/orbits select and key");
-	SpriteShader::Draw(orbitSprite, Screen::TopRight() + .5 * Point(-orbitSprite->Width(), orbitSprite->Height()));
-	Point orbitCenter = Screen::TopRight() + Point(-120., 160.);
-	
 	if(!selectedSystem || !player.HasVisited(selectedSystem))
 		return;
-	
-	const Font &font = FontSet::Get(14);
 	
 	// Figure out what the largest orbit in this system is.
 	double maxDistance = 0.;
@@ -510,9 +561,10 @@ void MapDetailPanel::DrawOrbits()
 	// 2400 -> 120.
 	double scale = .03;
 	maxDistance *= scale;
+	const double ORBIT_RADIUS = orbits->GetValue("orbit radius");
 	
-	if(maxDistance > 115.)
-		scale *= 115. / maxDistance;
+	if(maxDistance > ORBIT_RADIUS)
+		scale *= ORBIT_RADIUS / maxDistance;
 	
 	// Draw the orbits of the system's StellarObjects.
 	static const Color habitColor[7] = {
@@ -524,6 +576,7 @@ void MapDetailPanel::DrawOrbits()
 		Color(.2, .2, .2, 1.),
 		Color(1., 1., 1., 1.)
 	};
+	Point orbitCenter = orbits->GetPoint("orbit scene");
 	for(const StellarObject &object : selectedSystem->Objects())
 	{
 		if(object.Radius() <= 0.)
@@ -562,12 +615,6 @@ void MapDetailPanel::DrawOrbits()
 		RingShader::Draw(pos, object.Radius() * scale + 1., 0., color);
 	}
 	
-	// Draw the name of the selected ship / planet in the orbits scene label.
-	const string &name = font.TruncateMiddle(selectedShip ? selectedShip->Name()
-			: (selectedPlanet ? selectedPlanet->Name() : selectedSystem->Name()), 150);
-	Point namePos(Screen::Right() - .5 * font.Width(name) - 100., Screen::Top() + 7.);
-	font.Draw(name, namePos, *GameData::Colors().Get("medium"));
-	
 	// Draw any known ships in this system.
 	DrawShips(orbitCenter, scale);
 	
@@ -595,6 +642,7 @@ void MapDetailPanel::DrawShips(const Point &center, const double &scale)
 	if(it == shipSystems.end())
 		return;
 	
+	const double ORBIT_RADIUS = orbits->GetValue("orbit radius");
 	for(const shared_ptr<const Ship> &ship : it->second)
 	{
 		if(ship->GetPlanet())
@@ -609,9 +657,9 @@ void MapDetailPanel::DrawShips(const Point &center, const double &scale)
 		// If ships move outside the planetary orbits, draw
 		// the pointers at the edge, dimming with distance.
 		double alpha = 1.;
-		if((pos - center).Length() > 115.)
+		if((pos - center).Length() > ORBIT_RADIUS)
 		{
-			alpha = 115. / (pos - center).Length();
+			alpha = ORBIT_RADIUS / (pos - center).Length();
 			pos = alpha * (pos - center) + center;
 		}
 		// Allow clicking this ship to display its information.
@@ -642,8 +690,11 @@ void MapDetailPanel::DrawShips(const Point &center, const double &scale)
 // system's stars if nothing is selected.
 void MapDetailPanel::DrawSelection() const
 {
-	Point selectionPos = Screen::TopRight() + Point(-75., 365.);
-	static const double MAX_ICON_HEIGHT = 136.;
+	// The Interface class does not allow swizzling or clustering several sprites
+	// on the same point, so the drawing of the selected item cannot be done via
+	// the interface (only here, by referencing a named point).
+	Point selectionPos = orbits->GetPoint("selected scene");
+	const double MAX_ICON_HEIGHT = orbits->GetValue("selected scene height");
 	const StellarObject *planet = !selectedPlanet ? nullptr
 			: selectedPlanet->GetSystem()->FindStellar(selectedPlanet);
 	
@@ -662,17 +713,6 @@ void MapDetailPanel::DrawSelection() const
 					selectionPos + 2 * scale * hardpoint.GetPoint(),
 					scale
 				);
-		
-		// Draw the ship's shields and hull as rings, as the targets interface does in-flight.
-		bool isFoe = selectedShip->GetGovernment()->IsEnemy();
-		static const Color *overlays[4] = {
-			GameData::Colors().Get("overlay friendly shields"),
-			GameData::Colors().Get("overlay hostile shields"),
-			GameData::Colors().Get("overlay friendly hull"),
-			GameData::Colors().Get("overlay hostile hull")
-		};
-		RingShader::Draw(selectionPos, .5 * MAX_ICON_HEIGHT + 3., 1.5, selectedShip->Shields(), *overlays[isFoe], 0.);
-		RingShader::Draw(selectionPos, .5 * MAX_ICON_HEIGHT, 1.5, selectedShip->Hull(), *overlays[2 + isFoe], 20.);
 	}
 	else if(planet && planet->HasSprite())
 	{
@@ -680,7 +720,7 @@ void MapDetailPanel::DrawSelection() const
 		double scale = min(.5, MAX_ICON_HEIGHT / max(iconSprite->Height(), iconSprite->Width()));
 		SpriteShader::Draw(iconSprite, selectionPos, scale);
 	}
-	else if(selectedSystem)
+	else if(selectedSystem && player.HasVisited(selectedSystem))
 	{
 		// Draw the sun(s).
 		map<const StellarObject *, pair<const Sprite *, Point>> drawnStars;
@@ -722,7 +762,7 @@ void MapDetailPanel::DrawKey() const
 	const Color &medium = *GameData::Colors().Get("medium");
 	const Font &font = FontSet::Get(14);
 	
-	Point pos = Screen::TopRight() + Point(-110., 470.);
+	Point pos = orbits->GetBox("map key").TopLeft();
 	Point headerOff(-5., -.5 * font.Height());
 	Point textOff(10., -.5 * font.Height());
 	

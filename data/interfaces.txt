@@ -858,6 +858,112 @@ interface "map buttons" bottom right
 
 
 
+# This interface is responsible for displaying information about the selected
+# system, planet, or ship when the player opens the game map. This includes
+# system orbits, the sprite of the system's star, the sprite and description
+# of the selected planet, or the various known info about the selected ship.
+interface "map detail panel"
+	anchor top right
+	sprite "ui/orbits select and key"
+		align top right
+		from 0 0
+	
+	string "selected name"
+		center -100 15
+		dimensions 200 30
+	
+	point "orbit scene"
+		center -120 160
+	value "orbit radius" 115
+	
+	point "selected scene"
+		center -75 365
+	value "selected scene height" 100
+	
+	box "map key"
+		from -5 470 to -110 620
+	box "planet description"
+		from -260 20 to -740 260
+	
+	visible if "selected friendly"
+	ring "selected hull friendly"
+		center -75 365
+		dimensions 132 132
+		color "overlay friendly hull"
+		size 1.5
+	ring "selected shields friendly"
+		center -75 365
+		dimensions 140 140
+		color "overlay friendly shields"
+		size 1.5
+	
+	visible if "selected foe"
+	ring "selected hull foe"
+		center -75 365
+		dimensions 132 132
+		color "overlay hostile hull"
+		size 1.5
+	ring "selected shields foe"
+		center -75 365
+		dimensions 140 140
+		color "overlay hostile shields"
+		size 1.5
+	visible
+	
+	visible if "has planet info"
+	sprite "ui/description panel"
+		from -240 0
+		align top right
+	
+	visible if "has ship info"
+	sprite "ui/description panel"
+		from -240 0
+		align top right
+	
+	string "ship name"
+		from -750 13 to -550 43
+		align left
+	string "allegiance"
+		from -750 43 to -550 73
+		align left
+	visible if "!has cargo scan"
+	string "needs cargo scan"
+		from -750 100 to -550 130
+		align left
+	visible if "!has outfit scan"
+	string "needs outfit scan"
+		from -750 130 to -550 160
+		align left
+	visible
+
+	visible if "has ship info"
+	active if "has cargo scan"
+	button C "_Cargo Scan Result"
+		dimensions 120 30
+		center -330 28
+		align right
+		hover "bright"
+		color "medium"
+		inactive "dim"
+	active if "has outfit scan"
+	button O "_Outfit Scan Result"
+		dimensions 120 30
+		center -330 58
+		align right
+		hover "bright"
+		color "medium"
+		inactive "dim"
+	active if "has ship description"
+	button D "Ship _Description"
+		dimensions 120 30
+		center -330 88
+		align right
+		hover "bright"
+		color "medium"
+		inactive "dim"
+
+
+
 interface "info panel"
 	sprite "ui/info panel"
 		center 0 -5
