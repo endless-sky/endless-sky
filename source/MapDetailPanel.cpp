@@ -339,9 +339,8 @@ void MapDetailPanel::UpdateInfo(Information &info) const
 {
 	// Set the name of the selected system, planet or ship for the scene label.
 	const Font &font = FontSet::Get(14);
-	const string &name = font.TruncateMiddle(selectedShip ? selectedShip->Name()
-			: (selectedPlanet ? selectedPlanet->Name() : selectedSystem->Name()), 190);
-	info.SetString("selected name", name);
+	info.SetString("selected name", font.TruncateMiddle(selectedShip ? selectedShip->Name()
+			: (selectedPlanet ? selectedPlanet->Name() : selectedSystem->Name()), 190));
 	
 	if(selectedShip)
 	{
@@ -349,10 +348,15 @@ void MapDetailPanel::UpdateInfo(Information &info) const
 		info.SetCondition("has ship info");
 		const Government *gov = selectedShip->GetGovernment();
 		bool isFoe = (gov->IsEnemy());
-		info.SetString("ship name", selectedShip->ModelName() + ": " + selectedShip->Name());
-		info.SetString("allegiance", selectedShip->IsYours() ? (selectedShip == player.Flagship()
-				? "You are flying this ship." : "This is a member of your fleet.")
-				: "Allegiance: " + gov->GetName() + (isFoe ? " (hostile)" : ""));
+		const int TEXT_WIDTH = static_cast<int>(orbits->GetValue("descriptor width"));
+		info.SetString("ship name", font.TruncateMiddle(selectedShip->Name(), TEXT_WIDTH));
+		info.SetString("ship model", font.TruncateMiddle(selectedShip->ModelName(), TEXT_WIDTH));
+		info.SetString("government", font.TruncateMiddle(selectedShip == player.Flagship() ?
+				"Flagship" : gov->GetName(), TEXT_WIDTH));
+		string shipStatus = isFoe ? "Hostile" : "Friendly";
+		if(selectedShip->IsDisabled())
+			shipStatus += " (disabled)";
+		info.SetString("ship status", font.TruncateMiddle(shipStatus, TEXT_WIDTH));
 		
 		// Control button visibility.
 		info.SetCondition(player.KnownCargo(selectedShip).empty() ? "unknown cargo" : "has cargo scan");

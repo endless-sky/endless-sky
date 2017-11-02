@@ -916,51 +916,95 @@ interface "map detail panel"
 		align top right
 	
 	visible if "has ship info"
-	sprite "ui/description panel"
+	sprite "ui/ship description panel"
 		from -240 0
 		align top right
 	
+	value "descriptor width" 160
+	label "ship:"
+		from -489 20 to -455 40
+		align left
+		color "dim"
 	string "ship name"
-		from -750 13 to -550 43
+		from -400 20 to -260 40
 		align left
-	string "allegiance"
-		from -750 43 to -550 73
-		align left
-	visible if "!has cargo scan"
-	string "needs cargo scan"
-		from -750 100 to -550 130
-		align left
-	visible if "!has outfit scan"
-	string "needs outfit scan"
-		from -750 130 to -550 160
-		align left
-	visible
-
-	visible if "has ship info"
-	active if "has cargo scan"
-	button C "_Cargo Scan Result"
-		dimensions 120 30
-		center -330 28
-		align right
-		hover "bright"
 		color "medium"
-		inactive "dim"
-	active if "has outfit scan"
-	button O "_Outfit Scan Result"
-		dimensions 120 30
-		center -330 58
-		align right
-		hover "bright"
+	label "model:"
+		from -489 40 to -443 60
+		align left
+		color "dim"
+	string "ship model"
+		from -400 40 to -260 60
+		align left
 		color "medium"
-		inactive "dim"
+	label "government:"
+		from -489 60 to -405 80
+		align left
+		color "dim"
+	string "government"
+		from -400 60 to -260 80
+		align left
+		color "medium"
+	label "status:"
+		from -489 80 to -440 100
+		align left
+		color "dim"
+	string "ship status"
+		from -400 80 to -260 100
+		align left
+		color "medium"
+	
+	label "Description:"
+		from -489 110 to -260 129
+		align left
+		color "dim"
+	label "Cargo:"
+		from -489 130 to -260 149
+		align left
+		color "dim"
+	label "Outfits:"
+		from -489 150 to -260 169
+		align left
+		color "dim"
+	
+	visible if "unknown description"
+	label "Unknown"
+		from -400 110 to -260 129
+		align left
+		color "dim"
+	visible if "has ship description"
 	active if "has ship description"
-	button D "Ship _Description"
-		dimensions 120 30
-		center -330 88
-		align right
-		hover "bright"
+	button D "Known"
+		from -400 110 to -260 129
+		align left
+		hover "hover"
 		color "medium"
-		inactive "dim"
+	
+	visible if "unknown cargo"
+	label "Not Scanned"
+		from -400 130 to -260 149
+		align left
+		color "dim"
+	visible if "has cargo scan"
+	active if "has cargo scan"
+	button C "Scan Log"
+		from -400 130 to -260 149
+		align left
+		hover "hover"
+		color "medium"
+	
+	visible if "unknown outfits"
+	label "Not Scanned"
+		from -400 150 to -260 169
+		align left
+		color "dim"
+	visible if "has outfit scan"
+	active if "has outfit scan"
+	button O "Scan Log"
+		from -400 150 to -260 169
+		align left
+		hover "hover"
+		color "medium"
 
 
 
