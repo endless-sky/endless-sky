@@ -50,6 +50,7 @@ namespace {
 	const string FRUGAL_ESCORTS = "Escorts use ammo frugally";
 	const string REACTIVATE_HELP = "Reactivate first-time help";
 	const string SCROLL_SPEED = "Scroll speed";
+	const string FIGHTER_REPAIR = "Repair fighters by";
 }
 
 
@@ -277,10 +278,10 @@ void PreferencesPanel::EndEditing()
 
 void PreferencesPanel::DrawControls()
 {
-	Color back = *GameData::Colors().Get("faint");
-	Color dim = *GameData::Colors().Get("dim");
-	Color medium = *GameData::Colors().Get("medium");
-	Color bright = *GameData::Colors().Get("bright");
+	const Color &back = *GameData::Colors().Get("faint");
+	const Color &dim = *GameData::Colors().Get("dim");
+	const Color &medium = *GameData::Colors().Get("medium");
+	const Color &bright = *GameData::Colors().Get("bright");
 	
 	// Check for conflicts.
 	Color red(.3, 0., 0., .3);
@@ -401,10 +402,10 @@ void PreferencesPanel::DrawControls()
 
 void PreferencesPanel::DrawSettings()
 {
-	Color back = *GameData::Colors().Get("faint");
-	Color dim = *GameData::Colors().Get("dim");
-	Color medium = *GameData::Colors().Get("medium");
-	Color bright = *GameData::Colors().Get("bright");
+	const Color &back = *GameData::Colors().Get("faint");
+	const Color &dim = *GameData::Colors().Get("dim");
+	const Color &medium = *GameData::Colors().Get("medium");
+	const Color &bright = *GameData::Colors().Get("bright");
 	
 	Table table;
 	table.AddColumn(-115, Table::LEFT);
@@ -428,15 +429,16 @@ void PreferencesPanel::DrawSettings()
 		"Automatic aiming",
 		"Automatic firing",
 		EXPEND_AMMO,
+		FIGHTER_REPAIR,
 		TURRET_TRACKING,
-		"",
+		"\n",
 		"Performance",
 		"Show CPU / GPU load",
 		"Render motion blur",
 		"Reduce large graphics",
 		"Draw background haze",
 		"Show hyperspace flash",
-		"\n",
+		"",
 		"Other",
 		"Clickable radar display",
 		REACTIVATE_HELP,
@@ -471,7 +473,8 @@ void PreferencesPanel::DrawSettings()
 		// Record where this setting is displayed, so the user can click on it.
 		prefZones.emplace_back(table.GetCenterPoint(), table.GetRowSize(), setting);
 		
-		// Get the "on / off" text for this setting.
+		// Get the "on / off" text for this setting. Setting "isOn"
+		// draws the setting "bright" (i.e. the setting is active).
 		bool isOn = Preferences::Has(setting);
 		string text;
 		if(setting == ZOOM_FACTOR)
@@ -490,6 +493,11 @@ void PreferencesPanel::DrawSettings()
 		{
 			isOn = true;
 			text = Preferences::Has(FOCUS_PREFERENCE) ? "focused" : "opportunistic";
+		}
+		else if(setting == FIGHTER_REPAIR)
+		{
+			isOn = true;
+			text = Preferences::Has(FIGHTER_REPAIR) ? "most need" : "least need";
 		}
 		else if(setting == REACTIVATE_HELP)
 		{
@@ -527,9 +535,9 @@ void PreferencesPanel::DrawSettings()
 
 void PreferencesPanel::DrawPlugins()
 {
-	Color back = *GameData::Colors().Get("faint");
-	Color medium = *GameData::Colors().Get("medium");
-	Color bright = *GameData::Colors().Get("bright");
+	const Color &back = *GameData::Colors().Get("faint");
+	const Color &medium = *GameData::Colors().Get("medium");
+	const Color &bright = *GameData::Colors().Get("bright");
 	
 	Table table;
 	table.AddColumn(-115, Table::LEFT);

@@ -22,6 +22,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Messages.h"
 #include "Phrase.h"
 #include "Planet.h"
+#include "Preferences.h"
 #include "Projectile.h"
 #include "Random.h"
 #include "ShipEvent.h"
@@ -35,6 +36,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 using namespace std;
 
 namespace {
+	const string FIGHTER_REPAIR = "Repair fighters by";
 	const vector<string> BAY_TYPE = {"drone", "fighter"};
 	const vector<string> BAY_SIDE = {"inside", "over", "under"};
 	const vector<string> BAY_FACING = {"forward", "left", "right", "back"};
@@ -2733,12 +2735,18 @@ vector<pair<size_t, double>> Ship::BayOrder(SortBy reason) const
 				result.emplace_back(i,
 					max(0., bays[i].ship->Attributes().Get("fuel capacity") - bays[i].ship->fuel));
 	}
-	// Sort from most to least need.
+	// Sort bays by preference.
 	if(result.size() > 1)
-		sort(result.begin(), result.end(),
-			[] (const pair<size_t, double> &lhs, const pair<size_t, double> &rhs)
+		sort(result.begin(), result.end(), (!isYours || Preferences::Has(FIGHTER_REPAIR))
+			// Default sort is from most-to-least need.
+			? [] (const pair<size_t, double> &lhs, const pair<size_t, double> &rhs)
 			{
 				return lhs.second > rhs.second;
+			}
+			// The player can choose least-to-most need.
+			: [] (const pair<size_t, double> &lhs, const pair<size_t, double> &rhs)
+			{
+				return lhs.second < rhs.second;
 			}
 		);
 	return result;
