@@ -45,8 +45,8 @@ void Preferences::Load()
 	// values for settings that are off by default.
 	settings["Automatic aiming"] = true;
 	settings["Render motion blur"] = true;
-	settings["Escorts use ammo frugally"] = true;
-	settings["Escorts expend ammo"] = true;
+	settings[FRUGAL_ESCORTS] = true;
+	settings[EXPEND_AMMO] = true;
 	settings["Damaged fighters retreat"] = true;
 	settings["Warning siren"] = true;
 	settings["Show escort systems on map"] = true;

@@ -25,6 +25,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Phrase.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
+#include "Preferences.h"
 #include "Projectile.h"
 #include "Random.h"
 #include "ShipEvent.h"
@@ -40,6 +41,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 using namespace std;
 
 namespace {
+	const string FIGHTER_REPAIR = "Repair fighters in";
 	const vector<string> BAY_TYPE = {"drone", "fighter"};
 	const vector<string> BAY_SIDE = {"inside", "over", "under"};
 	const vector<string> BAY_FACING = {"forward", "left", "right", "back"};
@@ -1441,16 +1443,25 @@ void Ship::DoGeneration()
 		if(!bays.empty())
 		{
 			// If this ship is carrying fighters, determine their repair priority.
-			// Sort the ships in the bays so that the most "healthy" one will
-			// be given repairs first. In combat that is the optimal strategy in
-			// order to get fighters back out into battle as soon as possible.
 			vector<pair<double, Ship *>> carried;
 			for(const Bay &bay : bays)
 				if(bay.ship)
 					carried.emplace_back(1. - bay.ship->Health(), bay.ship.get());
+			sort(carried.begin(), carried.end(), (isYours && Preferences::Has(FIGHTER_REPAIR))
+				// Players may use a parallel strategy, to launch fighters in waves.
+				? [] (const pair<double, Ship *> &lhs, const pair<double, Ship *> &rhs)
+				{
+					return lhs.first > rhs.first;
+				}
+				// The default strategy is to prioritize the healthiest ship first, in
+				// order to get fighters back out into the battle as soon as possible.
+				: [] (const pair<double, Ship *> &lhs, const pair<double, Ship *> &rhs)
+				{
+					return lhs.first < rhs.first;
+				}
+			);
 			
 			// Apply shield and hull repair to carried fighters.
-			sort(carried.begin(), carried.end());
 			for(const pair<double, Ship *> &it : carried)
 			{
 				Ship &ship = *it.second;
