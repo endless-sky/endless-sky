@@ -2196,8 +2196,6 @@ void PlayerInfo::ApplyChanges()
 			for(const Planet *planet : mission.Stopovers())
 				planet->Bribe(mission.HasFullClearance());
 		}
-	if(system)
-		GameData::GetPolitics().Bribe(system->GetGovernment());
 	
 	// It is sometimes possible for the player to be landed on a planet where
 	// they do not have access to any services. So, this flag is used to specify
