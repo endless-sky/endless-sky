@@ -62,7 +62,12 @@ fleet "Small Hai"
 	variant 2
 		"Centipede" 2
 		"Water Bug"
-	
+	variant
+		"Centipede"
+		"Lightning Bug" 2
+	variant
+		"Centipede"
+		"Aphid" 5
 
 fleet "Large Hai"
 	government "Hai"
@@ -133,6 +138,14 @@ fleet "Large Hai"
 		"Aphid" 2
 		"Lightning Bug"
 		"Centipede"
+	variant 2
+		"Centipede"
+		"Shield Beetle (Pulse)" 2
+		"Shield Beetle (Tracker)"
+	variant
+		"Centipede" 2
+		"Lightning Bug" 2
+		"Aphid" 3
 
 fleet "Small Unfettered"
 	government "Hai (Unfettered)"
