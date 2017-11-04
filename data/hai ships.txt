@@ -91,6 +91,7 @@ ship "Centipede"
 		"Hai Corundum Regenerator"
 		"Hai Ravine Batteries"
 		"Hai Williwaw Cooling" 3
+		"Quantum Keystone"
 		`"Biroo" Atomic Thruster`
 		`"Biroo" Atomic Steering`
 		`"Basrem" Atomic Steering`
