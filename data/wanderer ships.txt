@@ -728,7 +728,9 @@ ship "Deep River Transport"
 	explode "huge explosion" 20
 	"final explode" "final explosion large"
 	description "This is a Deep River freighter that has been converted into a transport ship for refugees."
-	
+
+
+
 ship "Riptide"
 	sprite "ship/riptide"
 	attributes
