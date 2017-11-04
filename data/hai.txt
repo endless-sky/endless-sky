@@ -69,10 +69,10 @@ fleet "Small Hai"
 		"Centipede"
 		"Aphid" 5
 	variant
-		"Centipede"2
+		"Centipede" 2
 		"Lightning Bug" 2
 	variant
-		"Centipede"2
+		"Centipede" 2
 		"Lightning Bug" 
 
 fleet "Large Hai"
