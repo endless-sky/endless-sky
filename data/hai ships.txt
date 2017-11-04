@@ -58,8 +58,58 @@ ship "Aphid" "Aphid (Anti-Missile)"
 		`"Benga" Atomic Thruster`
 		`"Benga" Atomic Steering`
 		"Hyperdrive"
-
-
+		
+ship "Centipede"
+	sprite "ship/hai centipede"
+	attributes
+		category "Transport"
+		"cost" 6300000
+		"shields" 6600
+		"hull" 2400
+		"required crew" 35
+		"bunks" 131
+		"mass" 128
+		"drag" 3
+		"heat dissipation" .75
+		"fuel capacity" 600
+		"cargo space" 38
+		"outfit space" 375
+		"weapon capacity" 78
+		"engine capacity" 88
+		weapon
+			"blast radius" 60
+			"shield damage" 600
+			"hull damage" 300
+			"hit force" 900
+	outfits
+		"Hai Tracker" 112
+		"Hai Tracker Pod" 2
+		"Bullfrog Anti-Missile" 3
+		"Geode Reactor"
+		"Hai Corundum Regenerator"
+		"Hai Ravine Batteries"
+		"Hai Williwaw Cooling" 3
+		`"Biroo" Atomic Thruster`
+		`"Biroo" Atomic Steering`
+		`"Basrem" Atomic Steering`
+		Hyperdrive
+		
+	engine 0 112 0.8
+	engine -14 112 0.8
+	engine 14 112 0.8
+	engine -41 78.5 0.4
+	engine 41 78.5 0.4
+	gun -10 -116.5
+	gun 10 -116.5
+	turret 0 -14.5
+	turret -36 56.5
+	turret 36 56.5
+	explode "tiny explosion" 10
+	explode "small explosion" 25
+	explode "medium explosion" 25
+	explode "large explosion" 10
+	"final explode" "final explosion medium"
+	description "The Centipede is the Hai's primary transport"
 
 ship "Flea"
 	sprite "ship/hai flea"
@@ -651,56 +701,3 @@ ship "Water Bug" "Water Bug (Jump)"
 		`"Benga" Atomic Thruster`
 		`"Benga" Atomic Steering`
 		"Jump Drive"
-
-ship "Centipede"
-    sprite "ship/hai centipede"
-    attributes
-        category "Transport"
-        "cost" 6300000
-        "shields" 6600
-        "hull" 2400
-        "required crew" 35
-        "bunks" 131
-        "mass" 128
-        "drag" 3
-        "heat dissipation" .75
-        "fuel capacity" 600
-        "cargo space" 38
-        "outfit space" 375
-        "weapon capacity" 78
-        "engine capacity" 88
-        weapon
-            "blast radius" 60
-            "shield damage" 600
-            "hull damage" 300
-            "hit force" 900
-    outfits
-        "Hai Tracker" 112
-        "Hai Tracker Pod" 2
-        "Bullfrog Anti-Missile" 3
-        
-        "Geode Reactor"
-        "Hai Corundum Regenerator"
-        "Hai Ravine Batteries"
-        "Hai Williwaw Cooling" 3
-        
-        `"Biroo" Atomic Thruster`
-        `"Biroo" Atomic Steering`
-        `"Basrem" Atomic Steering`
-        Hyperdrive
-    engine 0 112 0.8
-    engine -14 112 0.8
-    engine 14 112 0.8
-    engine -41 78.5 0.4
-    engine 41 78.5 0.4
-    gun -10 -116.5
-    gun 10 -116.5
-    turret 0 -14.5
-    turret -36 56.5
-    turret 36 56.5
-    explode "tiny explosion" 10
-    explode "small explosion" 25
-    explode "medium explosion" 25
-    explode "large explosion" 10
-    "final explode" "final explosion medium"
-    description "The Centipede is the Hai's primary transport"
