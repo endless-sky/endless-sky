@@ -134,7 +134,6 @@ shipyard "Wanderer Advanced"
 	"Summer Leaf"
 	"Strong Wind"
 	"Deep River"
-	
 
 outfitter "Wanderer Basics"
 	"Thunderhead Missile"
