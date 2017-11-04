@@ -771,9 +771,9 @@ ship "Riptide"
 	engine 36 165 0.7
 	engine -59 165 0.5
 	engine 59 165 0.5
-	turret 0 -68
-	turret -25 34
-	turret 25 34
+	turret 0 -68 "Sunbeam Turret"
+	turret -25 34 "Wanderer Anti-Missile"
+	turret 25 34 "Wanderer Anti-Missile"
 	drone -36 80
 	drone 36 80
 	explode "small explosion" 60
