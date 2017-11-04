@@ -682,7 +682,7 @@ ship "Centipede"
         "Geode Reactor"
         "Hai Corundum Regenerator"
         "Hai Ravine Batteries"
-        "Hai Williwaw Cooling" 2
+        "Hai Williwaw Cooling" 3
         
         `"Biroo" Atomic Thruster`
         `"Biroo" Atomic Steering`
