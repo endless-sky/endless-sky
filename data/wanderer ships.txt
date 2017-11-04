@@ -730,55 +730,55 @@ ship "Deep River Transport"
 	description "This is a Deep River freighter that has been converted into a transport ship for refugees."
 	
 ship "Riptide"
-    sprite "ship/riptide"
-    attributes
-        category "Transport"
-        licenses
-            Wanderer
-        "cost" 21120000
-        "shields" 38600
-        "hull" 22350
-        "required crew" 47
-        "bunks" 233
-        "mass" 350
-        "drag" 5.1
-        "heat dissipation" .7
-        "fuel capacity" 800
-        "cargo space" 164
-        "outfit space" 488
-        "weapon capacity" 98
-        "engine capacity" 186
-        weapon
-            "blast radius" 260
-            "shield damage" 2600
-            "hull damage" 1300
-            "hit force" 3900
-    outfits
-        "Sunbeam Turret"
-        "Wanderer Anti-Missile" 2
+	sprite "ship/riptide"
+	attributes
+		category "Transport
+		licenses
+			Wanderer
+		"cost" 21120000
+		"shields" 38600
+		"hull" 22350
+		"required crew" 47
+		"bunks" 233
+		"mass" 350
+		"drag" 5.1
+		"heat dissipation" .7
+		"fuel capacity" 800
+		"cargo space" 164
+		"outfit space" 488
+		"weapon capacity" 98
+		"engine capacity" 186
+		weapon
+			"blast radius" 260
+			"shield damage" 2600
+			"hull damage" 1300
+			"hit force" 3900
+	 outfits
+		"Sunbeam Turret"
+		"Wanderer Anti-Missile" 2
+		"White Sun Reactor"
+		"Bright Cloud Shielding"
+		"Wanderer Heat Sink"
+		"Wanderer Ramscoop"
         
-        "White Sun Reactor"
-        "Bright Cloud Shielding"
-	"Wanderer Heat Sink"
-        "Wanderer Ramscoop"
-        
-        "Type 4 Radiant Thruster"
-        "Type 2 Radiant Thruster"
-        "Type 4 Radiant Steering" 2
-        "Hyperdrive"
-    engine 0 158 0.9
-    engine -36 165 0.7
-    engine 36 165 0.7
-    engine -59 165 0.5
-    engine 59 165 0.5
-    turret 0 -68
-    turret -25 34
-    turret 25 34
-    drone -36 80
-    drone 36 80
-    explode "small explosion" 60
-    explode "medium explosion" 40
-    explode "large explosion" 20
-    "final explode" "final explosion medium"
-    description "Because of the Unfettered's increasing aggression the riptide was designed to quickly move the remaining Wanderer population beyond The Eye"
+		"Type 4 Radiant Thruster"
+		"Type 2 Radiant Thruster"
+		"Type 4 Radiant Steering" 2
+		"Hyperdrive"
+		
+	engine 0 158 0.9
+	engine -36 165 0.7
+	engine 36 165 0.7
+	engine -59 165 0.5
+	engine 59 165 0.5
+	turret 0 -68
+	turret -25 34
+	turret 25 34
+	drone -36 80
+	drone 36 80
+	explode "small explosion" 60
+	explode "medium explosion" 40
+	explode "large explosion" 20
+	"final explode" "final explosion medium"
+	description "Because of the Unfettered's increasing aggression the riptide was designed to quickly move the remaining Wanderer population beyond The Eye"
     
