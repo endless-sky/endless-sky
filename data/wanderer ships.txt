@@ -743,7 +743,7 @@ ship "Riptide"
 		"required crew" 47
 		"bunks" 233
 		"mass" 350
-		"drag" 5.1
+		"drag" 5.8
 		"heat dissipation" .7
 		"fuel capacity" 800
 		"cargo space" 164
