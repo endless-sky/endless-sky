@@ -191,6 +191,8 @@ private:
 	std::set<const System *> didEnter;
 	std::set<const Planet *> stopovers;
 	std::list<LocationFilter> stopoverFilters;
+	std::set<const Planet *> visitedStopovers;
+	std::set<const System *> visitedWaypoints;
 	
 	// NPCs:
 	std::list<NPC> npcs;
