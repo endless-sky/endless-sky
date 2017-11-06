@@ -250,8 +250,12 @@ private:
 	// New missions are generated each time you land on a planet.
 	void UpdateAutoConditions();
 	void CreateMissions();
+	void StepMissions(UI *ui);
 	void Autosave() const;
 	void Save(const std::string &path) const;
+	
+	// Check for and apply any punitive actions from planetary security.
+	void Fine(UI *ui);
 	
 	// Helper function to update the ship selection.
 	void SelectShip(const std::shared_ptr<Ship> &ship, bool *first);

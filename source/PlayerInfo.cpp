@@ -957,13 +957,6 @@ void PlayerInfo::Land(UI *ui)
 		else
 			++it; 
 	}
-	// Check for NPCs that have been destroyed without their destruction being
-	// registered, e.g. by self-destruct:
-	for(Mission &mission : missions)
-		for(const NPC &npc : mission.NPCs())
-			for(const shared_ptr<Ship> &ship : npc.Ships())
-				if(ship->IsDestroyed())
-					mission.Do(ShipEvent(nullptr, ship, ShipEvent::DESTROY), *this, ui);
 	
 	// "Unload" all fighters, so they will get recharged, etc.
 	for(const shared_ptr<Ship> &ship : ships)
@@ -993,86 +986,17 @@ void PlayerInfo::Land(UI *ui)
 	// Bring auto conditions up-to-date for missions to check your current status.
 	UpdateAutoConditions();
 	
-	// Check for missions that are completed.
-	auto mit = missions.begin();
-	while(mit != missions.end())
-	{
-		Mission &mission = *mit;
-		++mit;
-		
-		// If this is a stopover for the mission, perform the stopover action.
-		mission.Do(Mission::STOPOVER, *this, ui);
-		
-		if(mission.HasFailed(*this))
-			RemoveMission(Mission::FAIL, mission, ui);
-		else if(mission.CanComplete(*this))
-			RemoveMission(Mission::COMPLETE, mission, ui);
-		else if(mission.Destination() == GetPlanet() && !freshlyLoaded)
-			mission.Do(Mission::VISIT, *this, ui);
-	}
-	// One mission's actions may influence another mission, so loop through one
-	// more time to see if any mission is now completed or failed due to a change
-	// that happened in another mission the first time through.
-	mit = missions.begin();
-	while(mit != missions.end())
-	{
-		Mission &mission = *mit;
-		++mit;
-		
-		if(mission.HasFailed(*this))
-			RemoveMission(Mission::FAIL, mission, ui);
-		else if(mission.CanComplete(*this))
-			RemoveMission(Mission::COMPLETE, mission, ui);
-	}
+	// Update missions that are completed, or should be failed.
+	StepMissions(ui);
 	UpdateCargoCapacities();
 	
 	// Create whatever missions this planet has to offer.
 	if(!freshlyLoaded)
 		CreateMissions();
 	
-	// Search for any missions that have failed but for which we are still
-	// holding on to some cargo.
-	set<const Mission *> active;
-	for(const Mission &it : missions)
-		active.insert(&it);
-	
-	vector<const Mission *> missionsToRemove;
-	for(const auto &it : cargo.MissionCargo())
-		if(!active.count(it.first))
-			missionsToRemove.push_back(it.first);
-	for(const auto &it : cargo.PassengerList())
-		if(!active.count(it.first))
-			missionsToRemove.push_back(it.first);
-	for(const Mission *mission : missionsToRemove)
-		cargo.RemoveMissionCargo(mission);
-	
 	// Check if the player is doing anything illegal.
-	const Government *gov = GetPlanet()->GetGovernment();
-	string message;
-	if(!freshlyLoaded && !GameData::GetPolitics().HasDominated(GetPlanet()))
-		message = gov->Fine(*this, 0, nullptr, GetPlanet()->Security());
-	if(!message.empty())
-	{
-		if(message == "atrocity")
-		{
-			const Conversation *conversation = gov->DeathSentence();
-			if(conversation)
-				ui->Push(new ConversationPanel(*this, *conversation));
-			else
-			{
-				message = "Before you can leave your ship, the " + gov->GetName()
-					+ " authorities show up and begin scanning it. They say, \"Captain "
-					+ LastName()
-					+ ", we detect highly illegal material on your ship.\""
-					"\n\tYou are sentenced to lifetime imprisonment on a penal colony."
-					" Your days of traveling the stars have come to an end.";
-				ui->Push(new Dialog(message));
-			}
-			Die();
-		}
-		else
-			ui->Push(new Dialog(message));
-	}
+	if(!freshlyLoaded)
+		Fine(ui);
 	
 	// Hire extra crew back if any were lost in-flight (i.e. boarding) or
 	// some bunks were freed up upon landing (i.e. completed missions).
@@ -1381,8 +1305,8 @@ bool PlayerInfo::HasLogs() const
 
 
 
-// Call this when leaving the outfitter, shipyard, or hiring panel, to update
-// the information on how much space is available.
+// Call this after missions update, or if leaving the outfitter, shipyard, or
+// hiring panel. Updates the information on how much space is available.
 void PlayerInfo::UpdateCargoCapacities()
 {
 	int size = 0;
@@ -2321,6 +2245,68 @@ void PlayerInfo::CreateMissions()
 
 
 
+// Updates each mission upon landing, to perform landing actions (Stopover,
+// Visit, Complete, Fail), and remove now-complete or now-failed missions.
+void PlayerInfo::StepMissions(UI *ui)
+{
+	// Check for NPCs that have been destroyed without their destruction
+	// being registered, e.g. by self-destruct:
+	for(Mission &mission : missions)
+		for(const NPC &npc : mission.NPCs())
+			for(const shared_ptr<Ship> &ship : npc.Ships())
+				if(ship->IsDestroyed())
+					mission.Do(ShipEvent(nullptr, ship, ShipEvent::DESTROY), *this, ui);
+	
+	auto mit = missions.begin();
+	while(mit != missions.end())
+	{
+		Mission &mission = *mit;
+		++mit;
+		
+		// If this is a stopover for the mission, perform the stopover action.
+		mission.Do(Mission::STOPOVER, *this, ui);
+		
+		if(mission.HasFailed(*this))
+			RemoveMission(Mission::FAIL, mission, ui);
+		else if(mission.CanComplete(*this))
+			RemoveMission(Mission::COMPLETE, mission, ui);
+		else if(mission.Destination() == GetPlanet() && !freshlyLoaded)
+			mission.Do(Mission::VISIT, *this, ui);
+	}
+	// One mission's actions may influence another mission, so loop through one
+	// more time to see if any mission is now completed or failed due to a change
+	// that happened in another mission the first time through.
+	mit = missions.begin();
+	while(mit != missions.end())
+	{
+		Mission &mission = *mit;
+		++mit;
+		
+		if(mission.HasFailed(*this))
+			RemoveMission(Mission::FAIL, mission, ui);
+		else if(mission.CanComplete(*this))
+			RemoveMission(Mission::COMPLETE, mission, ui);
+	}
+	
+	// Search for any missions that have failed but for which we are still
+	// holding on to some cargo.
+	set<const Mission *> active;
+	for(const Mission &it : missions)
+		active.insert(&it);
+	
+	vector<const Mission *> missionsToRemove;
+	for(const auto &it : cargo.MissionCargo())
+		if(!active.count(it.first))
+			missionsToRemove.push_back(it.first);
+	for(const auto &it : cargo.PassengerList())
+		if(!active.count(it.first))
+			missionsToRemove.push_back(it.first);
+	for(const Mission *mission : missionsToRemove)
+		cargo.RemoveMissionCargo(mission);
+}
+
+
+
 void PlayerInfo::Autosave() const
 {
 	if(filePath.length() < 4)
@@ -2535,6 +2521,48 @@ void PlayerInfo::Save(const string &path) const
 			out.EndChild();
 		}
 	out.EndChild();
+}
+
+
+
+// Check (and perform) any fines incurred by planetary security. If the player
+// has dominated the planet, or was given clearance to this planet by a mission,
+// planetary security is avoided. Infiltrating implies evasion of security.
+void PlayerInfo::Fine(UI *ui)
+{
+	const Planet *planet = GetPlanet();
+	// Bribing a planet to land does not preclude evasion of security checks,
+	// but dominating a planet does.
+	if(!GameData::GetPolitics().HasDominated(planet))
+		for(const Mission &mission : missions)
+			if(mission.HasClearance(planet) || (!mission.HasFullClearance() &&
+						(mission.Destination() == planet || mission.Stopovers().count(planet))))
+				return;
+	
+	const Government *gov = planet->GetGovernment();
+	string message = gov->Fine(*this, 0, nullptr, planet->Security());
+	if(!message.empty())
+	{
+		if(message == "atrocity")
+		{
+			const Conversation *conversation = gov->DeathSentence();
+			if(conversation)
+				ui->Push(new ConversationPanel(*this, *conversation));
+			else
+			{
+				message = "Before you can leave your ship, the " + gov->GetName()
+					+ " authorities show up and begin scanning it. They say, \"Captain "
+					+ LastName()
+					+ ", we detect highly illegal material on your ship.\""
+					"\n\tYou are sentenced to lifetime imprisonment on a penal colony."
+					" Your days of traveling the stars have come to an end.";
+				ui->Push(new Dialog(message));
+			}
+			Die();
+		}
+		else
+			ui->Push(new Dialog(message));
+	}
 }
 
 
