@@ -26406,7 +26406,7 @@ planet "Secret Sky"
 planet "Sek Alarfarat"
 	attributes korath
 	landscape land/bwerner2
-	description `A hideously powerful weapon tore open scars on this planets surface so deep that the molten rock of the mantle bled out through them. Presumably these wounds were inflicted on the planet by yet another Korath super-weapon devised in the final years of their civil war. A few ruined cities remain, some of which were sliced in two by the trail of weapon fire.`
+	description `A hideously powerful weapon tore open scars on this planet's surface so deep that the rock of the mantle liquified and bled out through them. Presumably these wounds were inflicted on the planet by yet another Korath super-weapon devised in the final years of their civil war. A few ruined cities remain, some of which were sliced in two by the trail of weapon fire.`
 	security 0
 
 planet "Selefkar Refinery"
