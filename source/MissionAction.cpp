@@ -379,7 +379,7 @@ MissionAction MissionAction::Instantiate(map<string, string> &subs, int jumps, i
 	result.trigger = trigger;
 	result.system = system;
 	// Convert any "distance" specifiers into "near <system>" specifiers.
-	result.systemFilter = systemFilter.DistanceToNear(GameData::Planets().Get(subs["<origin>"])->GetSystem());
+	result.systemFilter = systemFilter.SetOrigin(GameData::Planets().Get(subs["<origin>"])->GetSystem());
 	
 	for(const auto &it : events)
 	{

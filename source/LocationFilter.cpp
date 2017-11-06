@@ -213,33 +213,23 @@ bool LocationFilter::Matches(const Ship &ship) const
 
 
 // Convert a distance filter into a "near" filter.
-LocationFilter LocationFilter::DistanceToNear(const System *origin) const
+LocationFilter LocationFilter::SetOrigin(const System *origin) const
 {
 	if(IsEmpty() || originMaxDistance < 0)
 		return *this;
 	
-	LocationFilter result;
-	result.planets = planets;
-	result.attributes = attributes;
-	result.systems = systems;
-	result.governments = governments;
-	result.notFilters = notFilters;
-	
+	// Copy all parts of this instantiated filter into the result.
+	LocationFilter result = *this;
 	// If this LocationFilter has already defined a "near <system>" filter, then
 	// do not convert a "distance" filter into a "near" filter.
-	if(!center)
+	if(!center && originMaxDistance > -1)
 	{
 		result.center = origin;
 		result.centerMinDistance = originMinDistance;
 		result.centerMaxDistance = originMaxDistance;
-	}
-	else
-	{
-		result.center = center;
-		result.centerMinDistance = centerMinDistance;
-		result.centerMaxDistance = centerMaxDistance;
-		result.originMinDistance = originMinDistance;
-		result.originMaxDistance = originMaxDistance;
+		// Revert distance parameters to their default.
+		result.originMinDistance = 0;
+		result.originMaxDistance = -1;
 	}
 	return result;
 }

@@ -48,7 +48,7 @@ public:
 	
 	// Return a new LocationFilter with any "distance" conditions converted
 	// into "near" references, relative to the given system.
-	LocationFilter DistanceToNear(const System *origin) const;
+	LocationFilter SetOrigin(const System *origin) const;
 	
 	
 private:
