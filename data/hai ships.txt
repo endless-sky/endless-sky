@@ -112,7 +112,7 @@ ship "Centipede"
 	explode "medium explosion" 25
 	explode "large explosion" 10
 	"final explode" "final explosion medium"
-	description "The Centipede is the Hai's primary transport"
+	description "The Centipede is the Hai's goto transport and has been used to move vacationing Hai for centries."
 
 
 
