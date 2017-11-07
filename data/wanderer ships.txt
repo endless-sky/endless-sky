@@ -782,5 +782,5 @@ ship "Riptide"
 	explode "medium explosion" 40
 	explode "large explosion" 20
 	"final explode" "final explosion medium"
-	description "Because of the Unfettered's increasing aggression the riptide was designed to quickly move the remaining Wanderer population beyond The Eye"
+	description "Because of the Unfettered's increasing aggression the Riptide was designed to quickly move the remaining Wanderer population beyond The Eye."
     
