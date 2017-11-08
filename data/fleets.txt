@@ -2148,7 +2148,7 @@ fleet "Marauder fleet I"
 		"Marauder Arrow" 2
 		"Marauder Bounder" 2
 	variant 1
-			"Marauder Raven (Weapons)"
+		"Marauder Raven (Weapons)"
 		"Marauder Arrow" 2
 		"Marauder Bounder" 2
 
