@@ -2150,7 +2150,7 @@ mission "Paradise Fortune 2"
 	on offer
 		conversation
 			`"You need to explain what is going on here," you say just after setting your ship down.`
-			`	"Alright, alright, I'll explain." You notice that the girl has a strange mix between a posh Paradise World accent and a Dirt Belt or possibly even Rim accent. "My name is Diana Howl. My father is the CEO of a large marketing firm. And this," Diana opens her backpack, revealing its full contents of thousands of credit chips, "this is part of my family fortune, about two billion credits of it. Don't worry, my father should be able to make this back in a few months time."`
+			`	"Alright, alright, I'll explain." You notice that the girl has a strange mix between a posh Paradise World accent and a Dirt Belt or possibly even Rim accent. "My name is Diana Howl. My father is the CEO of a large marketing firm. And this," Diana opens her backpack, revealing its full contents of thousands of credit chips, "this is part of my family fortune, about half a billion credits of it. Don't worry, my father should be able to make this back in a few months time."`
 			choice
 				`	"Why have you stolen all this?"`
 					goto story
@@ -2214,7 +2214,7 @@ mission "Paradise Fortune 3"
 				`	"Alright, I'll bring her out."`
 					goto agree
 			
-			`	"In case you haven't noticed, Captain, that girl is in possession of over two billion stolen credits. She's a criminal, and helping her makes you a criminal too. Given your status, Captain <last>, I'd appreciate it if you didn't make me the officer that put <first> <last> behind bars."`
+			`	"In case you haven't noticed, Captain, that girl is in possession of over half a billion stolen credits. She's a criminal, and helping her makes you a criminal too. Given your status, Captain <last>, I'd appreciate it if you didn't make me the officer that put <first> <last> behind bars."`
 			choice
 				`	"I'm sorry officer, but I can't help you."`
 					goto launch
@@ -2298,7 +2298,7 @@ mission "Paradise Fortune 4"
 			`	Sincerely,`
 			`				Diana W. Howl`
 			``
-			`	You stare down at the backpack, stuffed full with over two billion credits.`
+			`	You stare down at the backpack, stuffed full with over half a billion credits.`
 			choice
 				`	(Hand the credits over to the Navy.)`
 				`	(Steal the credits.)`
@@ -2316,13 +2316,13 @@ mission "Paradise Fortune 4"
 				accept
 			
 			label steal
-			`	You rip the note apart and begin counting the credits. In total, the backpack contains a whopping 2,152,894,400 credits. Over two billion credits richer, you sit down and wonder what you will spend it on.`
+			`	You rip the note apart and begin counting the credits. In total, the backpack contains a whopping 525,894,400 credits. Over half a billion credits richer, you sit down and wonder what you will spend it on.`
 				decline
 	
 	on accept
 		"reputation: Republic" = 10
 	on decline
-		payment 2152894400
+		payment 525894400
 		"reputation: Republic" <?= -1000
 	
 	on complete
