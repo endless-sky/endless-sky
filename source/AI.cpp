@@ -3000,12 +3000,10 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 		keyStuck.Clear(Command::LAND);
 	if(keyStuck.Has(Command::JUMP) && !(ship.GetTargetSystem() || isWormhole))
 		keyStuck.Clear(Command::JUMP);
-	if(keyStuck.Has(Command::BOARD) && !ship.GetTargetShip())
+	if(keyStuck.Has(Command::BOARD) && !(ship.GetTargetShip() && CanBoard(ship, *ship.GetTargetShip())))
 		keyStuck.Clear(Command::BOARD);
 	
-	if(ship.IsBoarding())
-		keyStuck.Clear();
-	else if(keyStuck.Has(Command::LAND) || (keyStuck.Has(Command::JUMP) && isWormhole))
+	if(keyStuck.Has(Command::LAND) || (keyStuck.Has(Command::JUMP) && isWormhole))
 	{
 		if(ship.GetPlanet())
 			keyStuck.Clear();
