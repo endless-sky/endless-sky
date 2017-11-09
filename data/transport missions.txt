@@ -2010,7 +2010,7 @@ mission "Terraforming 9"
 	on offer
 		conversation
 			`The spaceport is crowded with ships and people when you land. Amy's publication must have stirred up quite the commotion among terraforming scientists.`
-			`	Spaceport security clears a path to your ship for Amy, Nolan, and four others when you land. You notice that some among the crowd of people are holding signs that protest Amy's work, and someone throws a half-eaten sandwich in her path.`
+			`	Spaceport security clears a path to your ship for Amy, Nolan, and four others when you land. You notice that a few among the crowd of people are jeering and holding signs, one reading "Don't asteroid my planet!", and a half-eaten sandwich gets thrown in her path as she approaches.`
 			`	"Not everyone is as happy with the prospect of affordable terraforming as we are," Amy says to you as she boards your ship along with suitcases full of scientific supplies. "But that's no reason to stop, now is it?"`
 			`	Amy introduces you to the four other people that she brought on board. Two of them are terraforming experts who helped Amy and Nolan during their research. The other two are representatives, one sent by the Republic Parliament in order to oversee the project and another from Tundra.`
 			`	"Once you're ready, Captain, please bring us to <destination>. Tundra was a tropical world millions of years ago, but became cold after a cataclysmic event of some sort. There's is a good chance that we may be able to nudge the planet back toward a warmer climate if we do this right."`
