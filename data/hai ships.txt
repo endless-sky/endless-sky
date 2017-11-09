@@ -112,8 +112,8 @@ ship "Centipede"
 	explode "medium explosion" 25
 	explode "large explosion" 10
 	"final explode" "final explosion medium"
-	description "The Centipede is the Hai's goto transport and has been used to move vacationing Hai for centuries."
-
+	description `The introduction of humans to the Hai civilization has lead to many interesting inventions that mix aspects of the different cultures. While some may vehemently argue that pickled acorns have been the greatest invention to come out of this relationship, many more will point to this luxury transport ship as the exemplar of human-Hai cooperation.`
+description `	The Centipede is the newest ship to be sold by the Hai. Designed by a human and built by a Hai shipyard, the Centipede was put on the market around the turn of the 31st century, but has already seen massive use among Hai fleets.`
 
 
 ship "Flea"
