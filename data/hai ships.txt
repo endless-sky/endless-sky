@@ -45,7 +45,7 @@ ship "Aphid"
 	explode "tiny explosion" 10
 	explode "small explosion" 20
 	explode "medium explosion" 15
-	description "The Aphid is the lightest freighter used by the Hai and was for many millennia the backbone of the Hai inter-planetary economy. Because of Hai space being peaceful for much of history, Aphids are only lightly armed and mainly rely on larger Hai ships for protection from piracy."
+	description "The Aphid is the lightest freighter used by the Hai and was for many millennia the backbone of the Hai inter-planetary economy. Because of how peaceful Hai space has been for much of its history, Aphids are only lightly armed and mainly rely on larger Hai ships for protection."
 
 ship "Aphid" "Aphid (Anti-Missile)"
 	outfits
