@@ -48,6 +48,7 @@ namespace {
 			{"/=", [](int a, int b) { return b ? a / b : numeric_limits<int>::max(); }},
 			{"<?=", [](int a, int b) { return min(a, b); }},
 			{">?=", [](int a, int b) { return max(a, b); }},
+			{"%", [](int a, int b) { return (a % b); }},
 			{"*", [](int a, int b) { return a * b; }},
 			{"+", [](int a, int b) { return a + b; }},
 			{"-", [](int a, int b) { return a - b; }},
@@ -78,9 +79,19 @@ namespace {
 	bool IsSimple(const string &op)
 	{
 		static const set<string> simple = {
-			"*", "+", "-", "/", "(", ")"
+			"(", ")", "+", "-", "*", "/", "%"
 		};
 		return simple.count(op);
+	}
+	
+	int Precedence(const string &op)
+	{
+		static const map<string, int> precedence = {
+			{"(", 0}, {")", 0},
+			{"+", 1}, {"-", 1},
+			{"*", 2}, {"/", 2}, {"%", 2}
+		};
+		return precedence.at(op);
 	}
 	
 	int CountCompares(const vector<string> &tokens)
@@ -105,7 +116,7 @@ namespace {
 	bool HasInvalidOperators(const vector<string> &tokens)
 	{
 		static const set<string> invalids = {
-			"{", "}", "[", "]", "|", "^", "&",
+			"{", "}", "[", "]", "|", "^", "&", "!", "~",
 			"||", "&&", "&=", "|=", "<<", ">>"
 		};
 		for(const string &str : tokens)
@@ -188,34 +199,22 @@ namespace {
 		return true;
 	}
 	
-	// Get the operand's index within the data vector during evaluation.
-	size_t LeftOperand(const vector<string> &tokens, const vector<int> &dataDest, const size_t &workingIndex)
+	// Finding the left operand's index if getLeft = true. The operand's index is the first non-empty, non-used index.
+	size_t FindOperandIndex(const vector<string> &tokens, const vector<int> &data, const size_t &opIndex, bool getLeft)
 	{
-		// The left operand is at the first non-empty tokens index
-		// if starting from the working index and moving backwards.
-		size_t left = workingIndex;
-		while(tokens.at(left).empty() && left > 0)
-			--left;
+		// Start at the operator index (left), or just past it (right).
+		size_t index = opIndex + !getLeft;
+		if(getLeft)
+			while(tokens.at(index).empty() && index > 0)
+				--index;
+		else
+			while(tokens.at(index).empty() && index < tokens.size() - 2)
+				++index;
 		// Trace any used data to find the latest result.
-		while(dataDest.at(left) > 0)
-			left = dataDest.at(left);
+		while(data.at(index) > 0)
+			index = data.at(index);
 		
-		return left;
-	}
-	
-	// Get the operand's index within the data vector during evaluation.
-	size_t RightOperand(const vector<string> &tokens, const vector<int> &dataDest, const size_t &workingIndex)
-	{
-		// The right operand is at the first non-empty tokens index
-		// if starting just past the working index and moving forward.
-		size_t right = workingIndex + 1;
-		while(tokens.at(right).empty() && right < tokens.size() - 2)
-			++right;
-		// Trace any used data to find the latest result.
-		while(dataDest.at(right) > 0)
-			right = dataDest.at(right);
-		
-		return right;
+		return index;
 	}
 	
 	void PrintConditionError(const vector<string> &side)
@@ -713,11 +712,6 @@ void ConditionSet::Expression::SubExpression::GenerateSequence()
 	// Simple conditions have only a single token and no operators.
 	if(tokens.empty() || operators.empty())
 		return;
-	static const map<string, int> precedence = {
-		{"(", 0}, {")", 0},
-		{"+", 1}, {"-", 1},
-		{"*", 2}, {"/", 2}
-	};
 	// Use a boolean vector to indicate when an operator has been used.
 	vector<bool> usedOps(operators.size(), false);
 	// Read the operators vector just once by using a stack.
@@ -732,7 +726,7 @@ void ConditionSet::Expression::SubExpression::GenerateSequence()
 		{
 			// Stack ops until one of lower or equal precedence is found, then evaluate the higher one first.
 			if(opStack.empty() || operators.at(opIndex) == "("
-					|| (precedence.at(operators.at(opIndex)) > precedence.at(operators.at(opStack.back()))))
+					|| (Precedence(operators.at(opIndex)) > Precedence(operators.at(opStack.back()))))
 			{
 				opStack.push_back(opIndex);
 				// Mark this operator as used and advance.
@@ -759,36 +753,8 @@ void ConditionSet::Expression::SubExpression::GenerateSequence()
 				usedOps.at(opIndex++) = true;
 				break;
 			}
-			// Otherwise, obtain the operand indices. The operator
-			// is never a parentheses. The working index can never
-			// exceed the size of the tokens vector.
-			else
-			{
-				size_t leftOp = LeftOperand(tokens, dataDest, workingIndex);
-				size_t rightOp = RightOperand(tokens, dataDest, workingIndex);
-				
-				// Bail out if the pointed token is empty string.
-				// Only in-bounds indices might be empty.
-				if((leftOp < tokens.size() && tokens.at(leftOp).empty())
-						|| (rightOp < tokens.size() && tokens.at(rightOp).empty()))
-				{
-					Files::LogError("Unable to obtain valid operand for function \"" + operators.at(workingIndex) + "\" with tokens");
-					PrintConditionError(tokens);
-					tokens.clear();
-					operators.clear();
-					sequence.clear();
-					return;
-				}
-				
-				// Record the use of each operand by writing
-				// where its latest value can be found.
-				dataDest.at(leftOp) = dest;
-				dataDest.at(rightOp) = dest;
-				// Create the Operation.
-				sequence.emplace_back(operators.at(workingIndex), leftOp, rightOp);
-				// Update the operands' destination.
-				++dest;
-			}
+			else if(!AddOperation(dataDest, dest, workingIndex))
+				return;
 		}
 	}
 	// Handle remaining operators (which cannot be parentheses).
@@ -805,33 +771,43 @@ void ConditionSet::Expression::SubExpression::GenerateSequence()
 			sequence.clear();
 			return;
 		}
-		
-		size_t leftOp = LeftOperand(tokens, dataDest, workingIndex);
-		size_t rightOp = RightOperand(tokens, dataDest, workingIndex);
-		
-		// Bail out if the pointed token is empty string.
-		// Only in-bounds indices might be empty.
-		if((leftOp < tokens.size() && tokens.at(leftOp).empty())
-				|| (rightOp < tokens.size() && tokens.at(rightOp).empty()))
-		{
-			Files::LogError("Unable to obtain valid operand for function \"" + operators.at(workingIndex) + "\" with tokens");
-			PrintConditionError(tokens);
-			tokens.clear();
-			operators.clear();
-			sequence.clear();
+		else if(!AddOperation(dataDest, dest, workingIndex))
 			return;
-		}
-		
-		// Record the use of each operand by writing
-		// where its latest value can be found.
-		dataDest.at(leftOp) = dest;
-		dataDest.at(rightOp) = dest;
-		// Create the Operation.
-		sequence.emplace_back(operators.at(workingIndex), leftOp, rightOp);
-		// Update the operands' destination.
-		++dest;
 	}
 	// All operators and tokens should now have been used.
+}
+
+
+
+// Use a valid working index and data pointer vector to create an evaluable Operation.
+bool ConditionSet::Expression::SubExpression::AddOperation(vector<int> &data, size_t &index, const size_t &opIndex)
+{
+	// Obtain the operand indices. The operator is never a parentheses. The
+	// operator index never exceeds the size of the tokens vector.
+	size_t leftIndex = FindOperandIndex(tokens, data, opIndex, true);
+	size_t rightIndex = FindOperandIndex(tokens, data, opIndex, false);
+	
+	// Bail out if the pointed token is in-bounds and empty.
+	if((leftIndex < tokens.size() && tokens.at(leftIndex).empty())
+			|| (rightIndex < tokens.size() && tokens.at(rightIndex).empty()))
+	{
+		Files::LogError("Unable to obtain valid operand for function \"" + operators.at(opIndex) + "\" with tokens:");
+		PrintConditionError(tokens);
+		tokens.clear();
+		operators.clear();
+		sequence.clear();
+		return false;
+	}
+	
+	// Record use of an operand by writing where its latest value is found.
+	data.at(leftIndex) = index;
+	data.at(rightIndex) = index;
+	// Create the Operation.
+	sequence.emplace_back(operators.at(opIndex), leftIndex, rightIndex);
+	// Update the pointed index for the next operation.
+	++index;
+	
+	return true;
 }
 
 

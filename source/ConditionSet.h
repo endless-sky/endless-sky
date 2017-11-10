@@ -83,8 +83,7 @@ private:
 		
 		// Returns the left side of this Expression.
 		std::string Name() const;
-		// Check if this Expression performs a comparison (is testable)
-		// or if it performs an assignment.
+		// True if this Expression performs a comparison and false if it performs an assignment.
 		bool IsTestable() const;
 		
 		// Functions to use this expression:
@@ -97,7 +96,7 @@ private:
 		// A SubExpression results from applying operator-precedence parsing to one side of
 		// an Expression. The operators and tokens needed to recreate the given side are
 		// stored, and can be interleaved to restore the original string. Based on them, a
-		// sequence of Operations is created for runtime evaluation.
+		// sequence of "Operations" is created for runtime evaluation.
 		class SubExpression {
 		public:
 			SubExpression(const std::vector<std::string> &side);
@@ -105,7 +104,7 @@ private:
 			
 			// Interleave tokens and operators to reproduce the initial string.
 			const std::string ToString() const;
-			// Interleave tokens and operators without combining.
+			// Interleave tokens and operators, but do not combine.
 			const std::vector<std::string> ToStrings() const;
 			
 			bool IsEmpty() const;
@@ -117,6 +116,7 @@ private:
 		private:
 			void ParseSide(const std::vector<std::string> &side);
 			void GenerateSequence();
+			bool AddOperation(std::vector<int> &data, size_t &index, const size_t &opIndex);
 			
 			
 		private:
@@ -135,7 +135,7 @@ private:
 		private:
 			// Iteration of the sequence vector yields the result.
 			std::vector<Operation> sequence;
-			// The tokens vector converts into a data vector of numeric values during evalution.
+			// The tokens vector converts into a data vector of numeric values during evaluation.
 			std::vector<std::string> tokens;
 			std::vector<std::string> operators;
 			// The number of true (non-parentheses) operators.
@@ -147,12 +147,11 @@ private:
 		// String representation of the Expression's binary function.
 		std::string op;
 		// Pointer to a binary function that defines the assignment or
-		// comparison operation to be performed.
+		// comparison operation to be performed between SubExpressions.
 		int (*fun)(int, int);
 		
-		// The left-hand-side of a comparison Expression.
+		// SubExpressions contain one or more tokens and any number of simple operators.
 		SubExpression left;
-		// The right-hand-side of any Expression.
 		SubExpression right;
 	};
 	
