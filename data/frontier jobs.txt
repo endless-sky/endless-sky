@@ -97,8 +97,8 @@ mission "Frontier delivery [2]"
 		dialog "You drop off your cargo of <commodity> and collect your payment of <payment>."
 
 
-mission "Frontier Emmigration [0]"
-	name "Emmigration to <planet>"
+mission "Frontier Emigration [0]"
+	name "Emigration to <planet>"
 	job
 	repeat
 	description "These <bunks> passengers have finally saved up enough money to move to a more prosperous world. Bring them to <destination> where they will start their new life. Payment is <payment>."
@@ -107,6 +107,7 @@ mission "Frontier Emmigration [0]"
 		random < 50
 	source
 		attributes "frontier"
+		not planet "Shangri-La"
 	destination
 		distance 2 10
 		not attributes "frontier"
@@ -115,8 +116,8 @@ mission "Frontier Emmigration [0]"
 		dialog "You wish your <passengers> the best of luck on <planet>, and collect your payment of <payment>."
 
 
-mission "Frontier Emmigration [1]"
-	name "Emmigration to <planet>"
+mission "Frontier Emigration [1]"
+	name "Emigration to <planet>"
 	job
 	repeat
 	description "These <bunks> passengers have finally saved up enough money to move to a more prosperous world. Bring them to <destination> where they will start their new life. Payment is <payment>."
@@ -125,6 +126,7 @@ mission "Frontier Emmigration [1]"
 		random < 30
 	source
 		attributes "frontier"
+		not planet "Shangri-La"
 	destination
 		distance 2 10
 		not attributes "frontier"
@@ -133,8 +135,8 @@ mission "Frontier Emmigration [1]"
 		dialog "You wish your <passengers> the best of luck on <planet>, and collect your payment of <payment>."
 
 
-mission "Frontier Emmigration [2]"
-	name "Emmigration to <planet>"
+mission "Frontier Emigration [2]"
+	name "Emigration to <planet>"
 	job
 	repeat
 	description "These <bunks> passengers have finally saved up enough money to move to a more prosperous world. Bring them to <destination> where they will start their new life. Payment is <payment>."
@@ -143,6 +145,7 @@ mission "Frontier Emmigration [2]"
 		random < 10
 	source
 		attributes "frontier"
+		not planet "Shangri-La"
 	destination
 		distance 2 10
 		not attributes "frontier"
@@ -165,6 +168,7 @@ mission "Disaster Relief"
 	destination
 		distance 2 10
 		attributes "frontier"
+		not planet "Shangri-La"
 	on complete
 		payment 10000 160
 		dialog "You drop off your cargo of <commodity> and collect your payment of <payment>. A group of <planet> citizens thank you and bid you farewell."

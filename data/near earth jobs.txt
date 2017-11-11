@@ -160,7 +160,7 @@ mission "Election transportation"
 	deadline
 	to offer
 		random < 40
-		year % 5 == 2
+		year % 5 == 4
 		not "Election transportation: active"
 	source
 		government "Republic" "Syndicate"
