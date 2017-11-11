@@ -1895,9 +1895,9 @@ mission "Terraforming 6"
 	name "Unlawful Use of an Asteroid"
 	description `Travel to <destination> by <date> for questioning on your "unlawful use of an asteroid."`
 	source
-		government Republic
-		not attributes deep
-	destination Earth
+		government "Republic"
+		not attributes "deep"
+	destination "Earth"
 	deadline
 	to offer
 		has "event: terraforming timer"
@@ -1948,7 +1948,7 @@ mission "Terraforming 6"
 mission "Terraforming 7"
 	name "Terraforming Research"
 	description "Bring Amy and Nolan to <destination> where they will research deeper into Amy's terraforming methods."
-	destination Valhalla
+	destination "Valhalla"
 	passengers 2
 	blocked "You need <capacity> in order to take on the next mission. Return here when you have the required space free."
 	to offer
@@ -1967,7 +1967,7 @@ mission "Terraforming 7"
 			`	"Absolutely. It's an extraordinary concept, and no offense to you Amy, but it's spectacular that someone of such little experience would imagine such a method of terraforming."`
 			
 			label next
-			`	"Nolan wants to help pursue research of my terraforming techniques. Would you be able to give us a lift to <destination>? I'll pay you <payment>."`
+			`	Amy continues. "Nolan wants to help pursue research of my terraforming techniques. Would you be able to give us a lift to <destination>? I'll pay you <payment>."`
 			choice
 				`	"Sure, I'd be glad to take you there."`
 					accept
@@ -1987,12 +1987,12 @@ mission "Terraforming 8"
 	landing
 	name "Terraforming Research"
 	description "Meet with Amy and Nolan on <destination> to talk about experimentally terraforming another planet."
-	destination Valhalla
+	destination "Valhalla"
 	to offer
 		has "event: terraforming research"
 	
 	on offer
-		dialog `You receive a message from Amy: "Hello, Captain. I just wanted to tell you that Nolan and I have recently published our work on 'Affordable Terraforming through Equilibrium Mapping', and we've received a grant from the Deep for it! We're going to begin experiment with terraforming on a different world. Don't worry, the Republic has approved our experiment this time, so we won't get dragged off for any more cases of an 'unlawful use of an asteroid.' If you're interested in helping, pick us up on <destination>."`
+		dialog `You receive a message from Amy: "Hello, Captain. I just wanted to tell you that Nolan and I have recently published our work on 'Reduce Terraforming Expenses Through Equilibrium Mapping,' and we've received a grant from the Deep for it! We're going to begin experiment with terraforming on a different world. Don't worry, the Republic has approved our experiment this time, so we won't get dragged off for any more cases of an 'unlawful use of an asteroid.' If you're interested in helping, pick us up on <destination>."`
 
 
 
@@ -2000,7 +2000,7 @@ mission "Terraforming 9"
 	landing
 	name "Terraforming Tundra"
 	description "Travel to <destination> with Amy, Nolan, and four others."
-	destination Tundra
+	destination "Tundra"
 	passengers 6
 	cargo "scientific equipment" 10
 	blocked "You need <capacity> in order to take on the next mission. Return here when you have the required space free."
@@ -2010,7 +2010,7 @@ mission "Terraforming 9"
 	on offer
 		conversation
 			`The spaceport is crowded with ships and people when you land. Amy's publication must have stirred up quite the commotion among terraforming scientists.`
-			`	Spaceport security clears a path to your ship for Amy, Nolan, and four others when you land. You notice that a few among the crowd of people are jeering and holding signs, one reading "Don't asteroid my planet!", and a half-eaten sandwich gets thrown in her path as she approaches.`
+			`	Spaceport security clears a path to your ship for Amy, Nolan, and four others when you land. You notice that a few among the crowd of people are jeering and holding signs, one reading "Don't asteroid my planet!" and a half-eaten sandwich gets thrown in her path as she approaches.`
 			`	"Not everyone is as happy with the prospect of affordable terraforming as we are," Amy says to you as she boards your ship along with suitcases full of scientific supplies. "But that's no reason to stop, now is it?"`
 			`	Amy introduces you to the four other people that she brought on board. Two of them are terraforming experts who helped Amy and Nolan during their research. The other two are representatives, one sent by the Republic Parliament in order to oversee the project and another from Tundra.`
 			`	"Once you're ready, Captain, please bring us to <destination>. Tundra was a tropical world millions of years ago, but became cold after a cataclysmic event of some sort. There's is a good chance that we may be able to nudge the planet back toward a warmer climate if we do this right."`
@@ -2026,7 +2026,7 @@ mission "Terraforming 9"
 mission "Terraforming 10"
 	name "Terraforming Tundra"
 	description "Bring the Republic representative overseeing the terraforming project to <destination> where he will attempt to find an alternative solution to terraforming Tundra that does not involve an asteroid."
-	destination Earth
+	destination "Earth"
 	passengers 1
 	to offer
 		has "Terraforming 9: done"
@@ -2065,7 +2065,7 @@ mission "Terraforming 11"
 	landing
 	name "Terraforming Tundra"
 	description "Return to <destination> with the Republic representative."
-	destination Tundra
+	destination "Tundra"
 	passengers 1
 	to offer
 		has "Terraforming 10: done"
@@ -2075,7 +2075,7 @@ mission "Terraforming 11"
 			`"Wait here," the Republic representative says in a curt tone. Several hours later, he returns, not looking very happy. "What a waste of time. Parliament has declined my request. I don't much agree with this, but you will need to crash an asteroid into Tundra if you wish to achieve your goal." Before you ready for launch, you send a message to Amy and Nolan telling them that an asteroid will be used after all. You don't receive an immediate response.`
 				accept
 	
-	on enter Cebalrai
+	on enter "Cebalrai"
 		dialog
 			`Your ship is targeted by pirate fleets when you enter the system. Before you engage, you receive a message from Amy.`
 			`"Captain, these pirate ships have been occupying the system for days. You must take them out if we are to safely crash an asteroid into Tundra."`
@@ -2106,9 +2106,9 @@ mission "Terraforming 12"
 				accept
 	
 	npc assist
-		government Uninhabited
+		government "Uninhabited"
 		personality derelict fleeing uninterested waiting pacifist mute
-		ship Asteroid "Target Asteroid"
+		ship "Asteroid" "Target Asteroid"
 	
 	on complete
 		payment 200000
@@ -2136,7 +2136,7 @@ mission "Terraforming 12"
 
 
 event "terraforming Tundra"
-	planet Tundra
+	planet "Tundra"
 		description `Millions of years ago, this was a warm world, perhaps even tropical. But some cataclysmic event, perhaps a meteor strike or a massive volcanic eruption, altered the planet's atmosphere enough to turn it into the nearly lifeless, frozen planet it is today. Recent experiments in terraforming the planet have attempted to remedy the climate by causing a supervolcano to prematurely erupt.`
 		description `	The first settlers came here to drill for the oil trapped deep under the surface, a relic of Tundra's former, more lively days. Instead of refining the oil into plastic, which sells relatively cheap in this region, they have developed an industry in synthetic fabrics and clothing.`
 
@@ -2166,11 +2166,11 @@ mission "Terraforming Follow-up"
 
 
 event "terraforming follow-up"
-	planet Rand
+	planet "Rand"
 		add attribute tourism
 		description `Rand is a desert world, too dry for much farming and with gravity low enough to be uncomfortable for most human beings. It is, however, the best source of heavy metals in the galactic south. Aside from the managers of the mining companies, nearly all the people here are migrant workers from elsewhere in the Dirt Belt, who have come to spend a season working for the relatively high wages that uranium mining offers, either to send money off-world or to save it up in order to build a better life for themselves.`
 		description `	Due to the results of recent terraforming experiments, Rand has become a far more habitable place. Fascination of this rapid change in climate has lead to Rand becoming a popular tourist destination of the Dirt Belt.`
-	planet Tundra
+	planet "Tundra"
 		spaceport `The spaceport village consists of several large domes, which keep out the wind and driving snow; ships enter and exit the largest of the domes through a hatch that closes as soon as they have come through. Before the planet was terraformed, enough snow would pile up on top of one of the domes every decade or so that it became a danger of collapsing under its own weight; the locals would simply move out of that dome and build another one higher up on the snowpack, but the changing climate has reduced the amount of snow enough that the locals may never need to build another dome again.`
 
 
