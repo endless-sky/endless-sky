@@ -88,7 +88,7 @@ mission "Han Sizer Month [0]"
 		attributes "rim"
 	on complete
 		payment 10000 170
-		dialog `Your passengers thank you for taking them on a journey around the Rim, and you collect you payment of <payment>.`
+		dialog `Your passengers thank you for taking them on a journey around the Rim, and you collect your payment of <payment>.`
 
 
 mission "Han Sizer Month [1]"
@@ -113,7 +113,7 @@ mission "Han Sizer Month [1]"
 		attributes "rim"
 	on complete
 		payment 15000 170
-		dialog `Your passengers thank you for taking them on a journey around the Rim, and you collect you payment of <payment>.`
+		dialog `Your passengers thank you for taking them on a journey around the Rim, and you collect your payment of <payment>.`
 
 
 mission "Han Sizer Month [2]"
@@ -141,4 +141,4 @@ mission "Han Sizer Month [2]"
 		attributes "rim"
 	on complete
 		payment 20000 170
-		dialog `Your passengers thank you for taking them on a journey around the Rim, and you collect you payment of <payment>.`
+		dialog `Your passengers thank you for taking them on a journey around the Rim, and you collect your payment of <payment>.`
