@@ -974,10 +974,12 @@ phrase "civilian"
 # These are listed twice to increase the frequency; otherwise only 1 in 12 ships
 # got these names - now it's 2 in 13
 phrase "civilian"
-        phrase "standalone civilian ship names"
+	phrase
+		"standalone civilian ship names"
 
 phrase "civilian"
-        phrase "standalone civilian ship names"
+	phrase
+		"standalone civilian ship names"
 
 
 phrase "republic capital"
