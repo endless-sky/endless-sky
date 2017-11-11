@@ -142,7 +142,7 @@ mission "Food Convoy [0]"
 	name `Food convoy to <planet>`
 	job
 	repeat
-	description `The captain of the <npc> will pay you <payment> to escort his convoy of ships carrying food to <destination> by <date>.`
+	description `The captain of the <npc>, leading a small convoy of ships carrying food, will pay you <payment> to escort them to <destination> by <date>.`
 	to offer
 		random < 30
 		"combat rating" > 30
@@ -194,7 +194,7 @@ mission "Food Convoy [1]"
 	name `Food convoy to <planet>`
 	job
 	repeat
-	description `The captain of the <npc> will pay you <payment> to escort his convoy of ships carrying food to <destination> by <date>.`
+	description `The captain of the <npc>, leading a convoy of ships carrying food, will pay you <payment> to escort them to <destination> by <date>.`
 	to offer
 		random < 25
 		"combat rating" > 60
@@ -238,9 +238,9 @@ mission "Food Convoy [2]"
 	name `Food convoy to <planet>`
 	job
 	repeat
-	description `The captain of the <npc> will pay you <payment> to escort his large convoy of ships carrying food to <destination> by <date>.`
+	description `The captain of the <npc>, leading a large convoy of ships carrying food, will pay you <payment> to escort them to <destination> by <date>.`
 	to offer
-		random < 20
+		random < 15
 		"combat rating" > 90
 	source
 		attributes "dirt belt"

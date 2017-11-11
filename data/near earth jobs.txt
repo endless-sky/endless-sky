@@ -8,7 +8,7 @@
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
-mission "Historical trip to <planet>"
+mission "Historical field trip to <planet>"
 	job
 	repeat
 	description `These <bunks> school students need to reach <destination> by <date> for a historical field trip. The school will pay you <payment>.`
@@ -91,6 +91,7 @@ mission "From Earth Day celebration [0]"
 	description `Bring <fare> home to <destination> after the Earth Day celebration. Payment is <payment>.`
 	passengers 4 4 .5
 	to offer
+		random < 70
 		or
 			and
 				month == 4
@@ -149,7 +150,7 @@ mission "Parliament vacation"
 		attribute "paradise"
 	on complete
 		payment 5000 250
-		dialog `A security detail on <planet> escort the Parliament members from your ship, and you collect your payment of <payment>.`
+		dialog `A security detail on <planet> escorts the Parliament members from your ship, and you collect your payment of <payment>.`
 
 
 mission "Election transportation"
@@ -159,7 +160,7 @@ mission "Election transportation"
 	passengers 5 5 .2
 	deadline
 	to offer
-		random < 40
+		random < 25
 		year % 5 == 4
 		not "Election transportation: active"
 	source

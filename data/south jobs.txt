@@ -14,7 +14,7 @@ mission "Pirate Occupation [0]"
 	repeat
 	description `A small band of pirates have been occupying <system>, and the local government has asked for help. Defeat the pirates in the system and land on <planet> when done. Payment is <payment>.`
 	to offer
-		random < 20
+		random < 15
 		"combat rating" > 100
 	source
 		attributes "south" "rim"
@@ -28,16 +28,16 @@ mission "Pirate Occupation [0]"
 		fleet "Small Southern Pirates" 3
 	on complete
 		payment 100000
-		dialog `The government of <planet> thank you for defeating the pirate and pay you <payment>.`
+		dialog `The government of <planet> thanks you for defeating the pirates and pays you <payment>.`
 
 
 mission "Pirate Occupation [1]"
 	name `Pirates occupying <system>`
 	job
 	repeat
-	description `A small band of pirates have been occupying <system>, and the local government has asked for help. Defeat the pirates in the system and land on <planet> when done. Payment is <payment>.`
+	description `A gang of pirates have been occupying <system>, and the local government has asked for help. Defeat the pirates in the system and land on <planet> when done. Payment is <payment>.`
 	to offer
-		random < 15
+		random < 10
 		"combat rating" > 200
 	source
 		attributes "south" "rim"
@@ -52,16 +52,16 @@ mission "Pirate Occupation [1]"
 		fleet "Large Southern Pirates"
 	on complete
 		payment 150000
-		dialog `The government of <planet> thank you for defeating the pirate and pay you <payment>.`
+		dialog `The government of <planet> thanks you for defeating the pirates and pays you <payment>.`
 
 
 mission "Pirate Occupation [2]"
 	name `Pirates occupying <system>`
 	job
 	repeat
-	description `A small band of pirates have been occupying <system>, and the local government has asked for help. Defeat the pirates in the system and land on <planet> when done. Payment is <payment>.`
+	description `A large gang of pirates have been occupying <system>, and the local government has asked for help. Defeat the pirates in the system and land on <planet> when done. Payment is <payment>.`
 	to offer
-		random < 10
+		random < 5
 		"combat rating" > 300
 	source
 		attributes "south" "rim"
@@ -75,7 +75,7 @@ mission "Pirate Occupation [2]"
 		fleet "Large Southern Pirates" 3
 	on complete
 		payment 200000
-		dialog `The government of <planet> thank you for defeating the pirate and pay you <payment>.`
+		dialog `The government of <planet> thanks you for defeating the pirates and pays you <payment>.`
 
 
 mission "Sketchy Cargo [0]"
@@ -85,17 +85,17 @@ mission "Sketchy Cargo [0]"
 	description "Deliver <tons> of cargo to <destination>. Payment is <payment>."
 	cargo "unlabeled cargo" 5 2 .1
 	to offer
-		random < 60
+		random < 15
 	source
 		attributes "south"
 	destination
 		distance 2 10
 		attributes "south"
 	on accept
-		dialog `You follow the directions specified of the job to an abandoned-looking warehouse and find your cargo in unlabeled crates. As you load it on to your ship, you get the feeling that you are being watched.`
+		dialog `You follow the directions specified of the job to an abandoned-looking warehouse and find your cargo in unlabeled crates. As you load it onto your ship, you get the feeling that you are being watched.`
 	on complete
 		payment 0 160
-		dialog "You drop off the unlabeled cargo in a warehouse not too disimilar to the one you picked it up in. A man dressed in a cloak hands you <payment> after the last crate is removed from your ship."
+		dialog "You drop off the unlabeled cargo in a warehouse not too dissimilar to the one you picked it up in. A man dressed in a cloak hands you <payment> after the last crate is removed from your ship."
 
 
 mission "Sketchy Cargo [1]"
@@ -105,17 +105,17 @@ mission "Sketchy Cargo [1]"
 	description "Deliver <tons> of cargo to <destination>. Payment is <payment>."
 	cargo "unlabeled cargo" 25 2 .05
 	to offer
-		random < 20
+		random < 10
 	source
 		attributes "south"
 	destination
 		distance 2 10
 		attributes "south"
 	on accept
-		dialog `You follow the directions specified of the job to an abandoned-looking warehouse and find your cargo in unlabeled crates. As you load it on to your ship, you get the feeling that you are being watched.`
+		dialog `You follow the directions specified of the job to an abandoned-looking warehouse and find your cargo in unlabeled crates. As you load it onto your ship, you get the feeling that you are being watched.`
 	on complete
 		payment 0 160
-		dialog "You drop off the unlabeled cargo in a warehouse not too disimilar to the one you picked it up in. A man dressed in a cloak hands you <payment> after the last crate is removed from your ship."
+		dialog "You drop off the unlabeled cargo in a warehouse not too dissimilar to the one you picked it up in. A man dressed in a cloak hands you <payment> after the last crate is removed from your ship."
 
 
 mission "Sketchy Passenger [0]"
@@ -125,7 +125,7 @@ mission "Sketchy Passenger [0]"
 	description "Bring <fare> to <destination>. Payment is <payment>."
 	passengers 2 10 .9
 	to offer
-		random < 60
+		random < 15
 	source
 		attributes "south"
 	destination
@@ -145,7 +145,7 @@ mission "Sketchy Passenger [1]"
 	description "Bring <fare> to <destination>. Payment is <payment>."
 	passengers 2 10 .7
 	to offer
-		random < 30
+		random < 10
 	source
 		attributes "south"
 	destination

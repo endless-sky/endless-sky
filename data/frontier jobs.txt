@@ -12,10 +12,10 @@ mission "Frontier delivery [0]"
 	name "Frontier delivery to <planet>"
 	job
 	repeat
-	description `Deliver <cargo> to the frontier world of <destination>. Frontier worlds have a high rate of piracy, so a pirate prescense is expected. Payment is <payment>.`
+	description `Deliver <cargo> to the frontier world of <destination>. Frontier worlds have a high rate of piracy, so a pirate presence is expected. Payment is <payment>.`
 	cargo random 5 2 .1
 	to offer
-		random < 60
+		random < 30
 	source
 		not attributes "frontier"
 	destination
@@ -42,10 +42,10 @@ mission "Frontier delivery [1]"
 	name "Frontier delivery to <planet>"
 	job
 	repeat
-	description `Deliver <cargo> to the frontier world of <destination>. Frontier worlds have a high rate of piracy, so a pirate prescense is expected. Payment is <payment>.`
+	description `Deliver <cargo> to the frontier world of <destination>. Frontier worlds have a high rate of piracy, so a pirate presence is expected. Payment is <payment>.`
 	cargo random 25 2 .05
 	to offer
-		random < 40
+		random < 25
 	source
 		not attributes "frontier"
 	destination
@@ -72,7 +72,7 @@ mission "Frontier delivery [2]"
 	name "Frontier delivery to <planet>"
 	job
 	repeat
-	description `Deliver <cargo> to the frontier world of <destination>. Frontier worlds have a high rate of piracy, so a pirate prescense is expected. Payment is <payment>.`
+	description `Deliver <cargo> to the frontier world of <destination>. Frontier worlds have a high rate of piracy, so a pirate presence is expected. Payment is <payment>.`
 	cargo random 40 2 .02
 	to offer
 		random < 20
@@ -101,10 +101,10 @@ mission "Frontier Emigration [0]"
 	name "Emigration to <planet>"
 	job
 	repeat
-	description "These <bunks> passengers have finally saved up enough money to move to a more prosperous world. Bring them to <destination> where they will start their new life. Payment is <payment>."
+	description "These <bunks> passengers have finally saved up enough money to start a new life on <destination>, and are willing to pay you <payment> to transport them."
 	passengers 2 10 .9
 	to offer
-		random < 50
+		random < 30
 	source
 		attributes "frontier"
 		not planet "Shangri-La"
@@ -120,10 +120,10 @@ mission "Frontier Emigration [1]"
 	name "Emigration to <planet>"
 	job
 	repeat
-	description "These <bunks> passengers have finally saved up enough money to move to a more prosperous world. Bring them to <destination> where they will start their new life. Payment is <payment>."
+	description "These <bunks> passengers have finally saved up enough money to start a new life on <destination>, and are willing to pay you <payment> to transport them."
 	passengers 4 10 .8
 	to offer
-		random < 30
+		random < 25
 	source
 		attributes "frontier"
 		not planet "Shangri-La"
@@ -139,10 +139,10 @@ mission "Frontier Emigration [2]"
 	name "Emigration to <planet>"
 	job
 	repeat
-	description "These <bunks> passengers have finally saved up enough money to move to a more prosperous world. Bring them to <destination> where they will start their new life. Payment is <payment>."
+	description "These <bunks> passengers have finally saved up enough money to start a new life on <destination>, and are willing to pay you <payment> to transport them."
 	passengers 6 10 .7
 	to offer
-		random < 10
+		random < 20
 	source
 		attributes "frontier"
 		not planet "Shangri-La"
