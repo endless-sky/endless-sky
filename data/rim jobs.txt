@@ -70,10 +70,10 @@ mission "Kraz Shipment [0]"
 		dialog "You drop off your cargo of <commodity> and collect your payment of <payment>."
 
 mission "Han Sizer Month [0]"
-	name `Han Sizer Celebration`
+	name `Han Sizer celebration`
 	job
 	repeat
-	description `Han Sizer month commemorates the first explorer of the Rim. To celebrate, citizens visit as many planets in the Rim as they can in the month. Bring <fare> to all the marked systems and return to <destination> for <payment>.`
+	description `In celebration of Han Sizer month, bring <fare> to all the marked systems and return to <destination> for <payment>.`
 	passengers 2 10 .9
 	to offer
 		random < 50
@@ -92,13 +92,13 @@ mission "Han Sizer Month [0]"
 
 
 mission "Han Sizer Month [1]"
-	name `Han Sizer Celebration`
+	name `Han Sizer celebration`
 	job
 	repeat
-	description `Han Sizer month commemorates the first explorer of the Rim. To celebrate, citizens visit as many planets in the Rim as they can in the month. Bring <fare> to all the marked systems and return to <destination> for <payment>.`
+	description `In celebration of Han Sizer month, bring <fare> to all the marked systems and return to <destination> for <payment>.`
 	passengers 2 10 .8
 	to offer
-		random < 50
+		random < 40
 		month == 8
 	source
 		attributes "rim"
@@ -117,13 +117,13 @@ mission "Han Sizer Month [1]"
 
 
 mission "Han Sizer Month [2]"
-	name `Han Sizer Celebration`
+	name `Han Sizer celebration`
 	job
 	repeat
-	description `Han Sizer month commemorates the first explorer of the Rim. To celebrate, citizens visit as many planets in the Rim as they can in the month. Bring <fare> to all the marked systems and return to <destination> for <payment>.`
+	description `In celebration of Han Sizer month, bring <fare> to all the marked systems and return to <destination> for <payment>.`
 	passengers 2 10 .7
 	to offer
-		random < 50
+		random < 30
 		month == 8
 	source
 		attributes "rim"
