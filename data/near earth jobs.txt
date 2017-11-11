@@ -1,0 +1,172 @@
+# Copyright (c) 2017 by Michael Zahniser
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+
+mission "Historical trip to <planet>"
+	job
+	repeat
+	description `These <bunks> school students need to reach <destination> by <date> for a historical field trip. The school will pay you <payment>.`
+	passengers 20 100
+	deadline
+	to offer
+		random < 10
+	source
+		attributes "deep" "paradise"
+	destination
+		distance 4 12
+		attributes "near earth"
+	on complete
+		payment
+		payment 10000
+		dialog `The students excitedly rush off your ship, taking pictures of everything they see. The school deposits <payment> into your account.`
+
+
+mission "To Earth Day celebration [0]"
+	name `Earth Day celebration`
+	job
+	repeat
+	description `Bring <fare> to <destination> by <date> for the Earth Day celebration. Payment is <payment>.`
+	passengers 4 4 .5
+	deadline
+	to offer
+		random < 80
+		or
+			and
+				month == 2
+				day >= 6
+			month == 3
+			and
+				month == 4
+				day < 22
+	to fail
+		month == 4
+		day == 22
+	source
+		near Sol 1 15
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+	destination "Earth"
+	on complete
+		payment 1000 180
+		dialog "You wish your <passengers> the best of luck on <planet>. After collecting your payment of <payment>, your <passengers> put on their Earth Day hats and leave with their belongings."
+
+
+mission "To Earth Day celebration [1]"
+	name `Earth Day celebration`
+	job
+	repeat
+	description `Deliver <cargo> to <destination> by <date> in preparation for the Earth Day celebration. Payment is <payment>.`
+	cargo random 5 2 .1
+	deadline
+	to offer
+		random < 80
+		or
+			and
+				month == 2
+				day >= 6
+			month == 3
+			and
+				month == 4
+				day < 22
+	to fail
+		month == 4
+		day == 22
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+	destination "Earth"
+	on complete
+		payment 1000 180
+		dialog `Spaceport workers already festively dressed for Earth Day remove the cargo of <commodity> from your ship and hand you your payment of <payment>.`
+
+
+mission "From Earth Day celebration [0]"
+	name `Return from Earth Day`
+	job
+	repeat
+	description `Bring <fare> home to <destination> after the Earth Day celebration. Payment is <payment>.`
+	passengers 4 4 .5
+	to offer
+		or
+			and
+				month == 4
+				day > 22
+			month == 5
+			and
+				month == 6
+				day =< 22
+	source "Earth"
+	destination
+		distance 1 15
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+	on complete
+		payment
+		payment 1000
+		dialog `Your passengers thank you for returning them to <planet>, and you collect your payment of <payment>.`
+
+
+mission "From Earth Day celebration [1]"
+	name `Return from Earth Day`
+	job
+	repeat
+	description `Bring <fare> home to <destination> after the Earth Day celebration. Payment is <payment>.`
+	passengers 4 4 .3
+	to offer
+		random < 50
+		or
+			and
+				month == 4
+				day > 22
+			month == 5
+			and
+				month == 6
+				day =< 22
+	source "Earth"
+	destination
+		distance 1 15
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+	on complete
+		payment
+		payment 1000
+		dialog `Your passengers thank you for returning them to <planet>, and you collect your payment of <payment>.`
+
+
+mission "Parliament vacation"
+	job
+	repeat
+	description `Bring these <bunks> Parliament members to their vacation retreat on <destination>.`
+	passengers 2 10 .9
+	deadline
+	to offer
+		random < 10
+	source "Earth"
+	destination
+		distance 3 10
+		attribute "paradise"
+	on complete
+		payment 5000 250
+		dialog `A security detail on <planet> escort the Parliament members from your ship, and you collect your payment of <payment>.`
+
+
+mission "Election transportation"
+	job
+	repeat
+	description `Bring <bunks> members of an election campaign to <destination> by <date> for a political event. The campaign will pay you <payment>.`
+	passengers 5 5 .2
+	deadline
+	to offer
+		random < 40
+		year % 5 == 2
+		not "Election transportation: active"
+	source
+		government "Republic" "Syndicate"
+	destination
+		distance 4 20
+		government "Republic" "Syndicate"
+	on complete
+		payment 2500 200
+		dialog `Your passengers exit your ship into a busy spaceport full of sign-holding citizens covered with political slogans, and you collect your payment of <payment>.`

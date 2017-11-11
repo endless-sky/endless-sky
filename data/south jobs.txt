@@ -1,0 +1,158 @@
+# Copyright (c) 2017 by Michael Zahniser
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+
+mission "Pirate Occupation [0]"
+	name `Pirates occupying <system>`
+	job
+	repeat
+	description `A small band of pirates have been occupying <system>, and the local government has asked for help. Defeat the pirates in the system and land on <planet> when done. Payment is <payment>.`
+	to offer
+		random < 20
+		"combat rating" > 100
+	source
+		attributes "south" "rim"
+	destination
+		distance 2 10
+		attributes "south"
+	npc evade
+		government "Pirate"
+		personality heroic staying target harvests plunders
+		system destination
+		fleet "Small Southern Pirates" 3
+	on complete
+		payment 100000
+		dialog `The government of <planet> thank you for defeating the pirate and pay you <payment>.`
+
+
+mission "Pirate Occupation [1]"
+	name `Pirates occupying <system>`
+	job
+	repeat
+	description `A small band of pirates have been occupying <system>, and the local government has asked for help. Defeat the pirates in the system and land on <planet> when done. Payment is <payment>.`
+	to offer
+		random < 15
+		"combat rating" > 200
+	source
+		attributes "south" "rim"
+	destination
+		distance 2 10
+		attributes "south"
+	npc evade
+		government "Pirate"
+		personality heroic staying target harvests plunders
+		system destination
+		fleet "Small Southern Pirates" 2
+		fleet "Large Southern Pirates"
+	on complete
+		payment 150000
+		dialog `The government of <planet> thank you for defeating the pirate and pay you <payment>.`
+
+
+mission "Pirate Occupation [2]"
+	name `Pirates occupying <system>`
+	job
+	repeat
+	description `A small band of pirates have been occupying <system>, and the local government has asked for help. Defeat the pirates in the system and land on <planet> when done. Payment is <payment>.`
+	to offer
+		random < 10
+		"combat rating" > 300
+	source
+		attributes "south" "rim"
+	destination
+		distance 2 10
+		attributes "south"
+	npc evade
+		government "Pirate"
+		personality heroic staying target harvests plunders
+		system destination
+		fleet "Large Southern Pirates" 3
+	on complete
+		payment 200000
+		dialog `The government of <planet> thank you for defeating the pirate and pay you <payment>.`
+
+
+mission "Sketchy Cargo [0]"
+	name "Delivery to <planet>"
+	job
+	repeat
+	description "Deliver <tons> of cargo to <destination>. Payment is <payment>."
+	cargo "unlabeled cargo" 5 2 .1
+	to offer
+		random < 60
+	source
+		attributes "south"
+	destination
+		distance 2 10
+		attributes "south"
+	on accept
+		dialog `You follow the directions specified of the job to an abandoned-looking warehouse and find your cargo in unlabeled crates. As you load it on to your ship, you get the feeling that you are being watched.`
+	on complete
+		payment 0 160
+		dialog "You drop off the unlabeled cargo in a warehouse not too disimilar to the one you picked it up in. A man dressed in a cloak hands you <payment> after the last crate is removed from your ship."
+
+
+mission "Sketchy Cargo [1]"
+	name "Delivery to <planet>"
+	job
+	repeat
+	description "Deliver <tons> of cargo to <destination>. Payment is <payment>."
+	cargo "unlabeled cargo" 25 2 .05
+	to offer
+		random < 20
+	source
+		attributes "south"
+	destination
+		distance 2 10
+		attributes "south"
+	on accept
+		dialog `You follow the directions specified of the job to an abandoned-looking warehouse and find your cargo in unlabeled crates. As you load it on to your ship, you get the feeling that you are being watched.`
+	on complete
+		payment 0 160
+		dialog "You drop off the unlabeled cargo in a warehouse not too disimilar to the one you picked it up in. A man dressed in a cloak hands you <payment> after the last crate is removed from your ship."
+
+
+mission "Sketchy Passenger [0]"
+	name "Passenger transport to <planet>"
+	job
+	repeat
+	description "Bring <fare> to <destination>. Payment is <payment>."
+	passengers 2 10 .9
+	to offer
+		random < 60
+	source
+		attributes "south"
+	destination
+		distance 2 10
+		attributes "south"
+	on accept
+		dialog `You have some difficulty finding your passengers, but after almost an hour of searching you finally find them. As they follow you back to your ship, you hear them whispering to each other, but you can't make out what they're saying.`
+	on complete
+		payment 2000 160
+		dialog "Your passengers ask that you land away from the busy spaceport center. They hand you <payment> and rush out of your ship and away from the spaceport with considerable speed."
+
+
+mission "Sketchy Passenger [1]"
+	name "Passenger transport to <planet>"
+	job
+	repeat
+	description "Bring <fare> to <destination>. Payment is <payment>."
+	passengers 2 10 .7
+	to offer
+		random < 30
+	source
+		attributes "south"
+	destination
+		distance 2 10
+		attributes "south"
+	on accept
+		dialog `You have some difficulty finding your passengers, but after almost an hour of searching you finally find them. As they follow you back to your ship, you hear them whispering to each other, but you can't make out what they're saying.`
+	on complete
+		payment 2000 160
+		dialog "Your passengers ask that you land away from the busy spaceport center. They hand you <payment> and rush out of your ship and away from the spaceport with considerable speed."
