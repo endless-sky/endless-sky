@@ -19,6 +19,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <map>
 #include <set>
 #include <string>
+#include <utility>
 
 class DataNode;
 class DataWriter;
@@ -42,9 +43,6 @@ public:
 	void Save(DataWriter &out) const;
 	
 	int Payment() const;
-	// Tell this object what the default payment for this mission turned out to
-	// be. It will ignore this information if it is not giving default payment.
-	void SetDefaultPayment(int credits);
 	
 	// Check if this action can be completed right now. It cannot be completed
 	// if it takes away money or outfits that the player does not have.
@@ -63,13 +61,14 @@ private:
 	std::string system;
 	
 	std::string logText;
+	std::map<std::string, std::map<std::string, std::string>> specialLogText;
 	
 	std::string dialogText;
 	
 	const Conversation *stockConversation = nullptr;
 	Conversation conversation;
 	
-	std::map<std::string, int> events;
+	std::map<const GameEvent *, std::pair<int, int>> events;
 	std::map<const Outfit *, int> gifts;
 	int64_t payment = 0;
 	int64_t paymentMultiplier = 0;

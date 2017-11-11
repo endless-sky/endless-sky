@@ -187,6 +187,7 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const Depreciation &dep
 	
 	double fullMass = emptyMass + (isGeneric ? attributes.Get("cargo space") : ship.Cargo().Used());
 	isGeneric &= (fullMass != emptyMass);
+	double forwardThrust = attributes.Get("thrust") ? attributes.Get("thrust") : attributes.Get("afterburner thrust");
 	attributeLabels.push_back(string());
 	attributeValues.push_back(string());
 	attributesHeight += 10;
@@ -194,15 +195,15 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const Depreciation &dep
 	attributeValues.push_back(string());
 	attributesHeight += 20;
 	attributeLabels.push_back("max speed:");
-	attributeValues.push_back(Format::Number(60. * attributes.Get("thrust") / attributes.Get("drag")));
+	attributeValues.push_back(Format::Number(60. * forwardThrust / attributes.Get("drag")));
 	attributesHeight += 20;
 	
 	attributeLabels.push_back("acceleration:");
 	if(!isGeneric)
-		attributeValues.push_back(Format::Number(3600. * attributes.Get("thrust") / fullMass));
+		attributeValues.push_back(Format::Number(3600. * forwardThrust / fullMass));
 	else
-		attributeValues.push_back(Format::Number(3600. * attributes.Get("thrust") / fullMass)
-			+ " / " + Format::Number(3600. * attributes.Get("thrust") / emptyMass));
+		attributeValues.push_back(Format::Number(3600. * forwardThrust / fullMass)
+			+ " / " + Format::Number(3600. *forwardThrust / emptyMass));
 	attributesHeight += 20;
 	
 	attributeLabels.push_back("turning:");
@@ -271,13 +272,13 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const Depreciation &dep
 	attributesHeight += 20;
 	tableLabels.push_back("moving:");
 	energyTable.push_back(Format::Number(
-		-60. * (attributes.Get("thrusting energy")
-			+ attributes.Get("reverse thrusting energy")
-			+ attributes.Get("turning energy"))));
+		-60. * (max(attributes.Get("thrusting energy"), attributes.Get("reverse thrusting energy"))
+			+ attributes.Get("turning energy")
+			+ attributes.Get("afterburner energy"))));
 	heatTable.push_back(Format::Number(
-		60. * (attributes.Get("thrusting heat")
-			+ attributes.Get("reverse thrusting heat")
-			+ attributes.Get("turning heat"))));
+		60. * (max(attributes.Get("thrusting heat"), attributes.Get("reverse thrusting heat"))
+			+ attributes.Get("turning heat")
+			+ attributes.Get("afterburner heat"))));
 	attributesHeight += 20;
 	double firingEnergy = 0.;
 	double firingHeat = 0.;
@@ -358,4 +359,3 @@ void ShipInfoDisplay::UpdateOutfits(const Ship &ship, const Depreciation &deprec
 	saleValues.push_back(Format::Number(totalCost - chassisCost));
 	saleHeight += 5;
 }
-

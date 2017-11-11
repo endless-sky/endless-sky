@@ -13,7 +13,7 @@ fleet "Small Hai"
 	names "hai"
 	cargo 3
 	personality
-		disables
+		disables opportunistic
 	variant 3
 		"Water Bug"
 		"Lightning Bug (Pulse)" 2
@@ -55,7 +55,7 @@ fleet "Large Hai"
 	names "hai"
 	cargo 3
 	personality
-		disables
+		disables opportunistic
 	variant 2
 		"Shield Beetle"
 		"Lightning Bug (Pulse)" 2
@@ -170,6 +170,7 @@ fleet "Unfettered Raid"
 	government "Hai (Unfettered)"
 	names "hai"
 	personality
+		disables
 		plunders
 	variant
 		"Shield Beetle (Jump)" 3
@@ -207,6 +208,7 @@ outfitter "Hai Basics"
 	"Supercapacitor"
 	"Cargo Expansion"
 	"Small Bunk Room"
+	"Fuel Pod"
 	"Hai Corundum Regenerator"
 	`"Basrem" Atomic Thruster`
 	`"Basrem" Atomic Steering`
@@ -233,6 +235,7 @@ outfitter "Hai Intermediate"
 	"Cargo Expansion"
 	"Small Bunk Room"
 	"Bunk Room"
+	"Fuel Pod"
 	"Hai Corundum Regenerator"
 	`"Basrem" Atomic Thruster`
 	`"Basrem" Atomic Steering`
@@ -267,6 +270,7 @@ outfitter "Hai Advanced"
 	"Cargo Expansion"
 	"Small Bunk Room"
 	"Bunk Room"
+	"Fuel Pod"
 	"Hai Corundum Regenerator"
 	"Hai Diamond Regenerator"
 	`"Basrem" Atomic Thruster`

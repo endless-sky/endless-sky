@@ -568,16 +568,31 @@ bool Mission::HasSpace(const PlayerInfo &player) const
 
 bool Mission::CanComplete(const PlayerInfo &player) const
 {
-	if(player.GetPlanet() != destination || !waypoints.empty() || !stopovers.empty())
+	if(player.GetPlanet() != destination)
 		return false;
 	
 	if(!toComplete.Test(player.Conditions()))
 		return false;
 	
+	return IsSatisfied(player);
+}
+
+
+
+// This function dictates whether missions on the player's map are shown in
+// bright or dim text colors.
+bool Mission::IsSatisfied(const PlayerInfo &player) const
+{
+	if(!waypoints.empty() || !stopovers.empty())
+		return false;
+	
+	// Determine if any fines or outfits that must be transferred, can.
 	auto it = actions.find(COMPLETE);
 	if(it != actions.end() && !it->second.CanBeDone(player))
 		return false;
 	
+	// NPCs which must be accompanied or evaded must be present (or not),
+	// and any needed scans, boarding, or assisting must also be completed.
 	for(const NPC &npc : npcs)
 		if(!npc.HasSucceeded(player.GetSystem()))
 			return false;
@@ -698,6 +713,11 @@ bool Mission::Do(Trigger trigger, PlayerInfo &player, UI *ui)
 		if(!stopovers.empty())
 			return false;
 	}
+	// Don't update any conditions if this action exists and can't be completed.
+	auto it = actions.find(trigger);
+	if(it != actions.end() && !it->second.CanBeDone(player))
+		return false;
+	
 	if(trigger == ACCEPT)
 	{
 		++player.Conditions()[name + ": offered"];
@@ -718,20 +738,13 @@ bool Mission::Do(Trigger trigger, PlayerInfo &player, UI *ui)
 	if(trigger == OFFER && location == JOB)
 		ui = nullptr;
 	
-	auto it = actions.find(trigger);
-	if(it == actions.end())
-	{
-		// If a mission has no "on offer" field, it is automatically accepted.
-		if(trigger == OFFER && location != JOB)
-			player.MissionCallback(Conversation::ACCEPT);
-		return true;
-	}
-	
-	if(!it->second.CanBeDone(player))
-		return false;
-	
-	// Perform any actions tied to this event.
-	it->second.Do(player, ui, destination ? destination->GetSystem() : nullptr);
+	// If this trigger has actions tied to it, perform them. Otherwise, check
+	// if this is a non-job mission that just got offered and if so,
+	// automatically accept it.
+	if(it != actions.end())
+		it->second.Do(player, ui, destination ? destination->GetSystem() : nullptr);
+	else if(trigger == OFFER && location != JOB)
+		player.MissionCallback(Conversation::ACCEPT);
 	
 	return true;
 }
@@ -751,20 +764,36 @@ const list<NPC> &Mission::NPCs() const
 // about it. This may affect the mission status or display a message.
 void Mission::Do(const ShipEvent &event, PlayerInfo &player, UI *ui)
 {
-	if(event.TargetGovernment()->IsPlayer() && !hasFailed
-			&& (event.Type() & ShipEvent::DESTROY))
+	if(event.TargetGovernment()->IsPlayer() && !hasFailed)
 	{
 		bool failed = false;
-		for(const auto &it : event.Target()->Cargo().MissionCargo())
-			failed |= (it.first == this);
-		for(const auto &it : event.Target()->Cargo().PassengerList())
-			failed |= (it.first == this);
+		string message = "Your ship '" + event.Target()->Name() + "' has been ";
+		if(event.Type() & ShipEvent::DESTROY)
+		{
+			// Destroyed ships carrying mission cargo result in failed missions.
+			for(const auto &it : event.Target()->Cargo().MissionCargo())
+				failed |= (it.first == this);
+			for(const auto &it : event.Target()->Cargo().PassengerList())
+				failed |= (it.first == this);
+			if(failed)
+				message += "lost. ";
+		}
+		else if(event.Type() & ShipEvent::BOARD)
+		{
+			// Fail missions whose cargo or passengers are stolen by a boarding vessel.
+			for(const auto &it : event.Actor()->Cargo().MissionCargo())
+				failed |= (it.first == this);
+			for(const auto &it : event.Actor()->Cargo().PassengerList())
+				failed |= (it.first == this);
+			if(failed)
+				message += "plundered. ";
+		}
 		
 		if(failed)
 		{
 			hasFailed = true;
 			if(isVisible)
-				Messages::Add("Ship lost. Mission failed: \"" + displayName + "\".");
+				Messages::Add(message + "Mission failed: \"" + displayName + "\".");
 		}
 	}
 	
@@ -935,8 +964,8 @@ Mission Mission::Instantiate(const PlayerInfo &player) const
 				bestIt = it;
 		
 		source = *bestIt;
-		destinations.erase(bestIt);
 		jumps += distance.Days(*bestIt);
+		destinations.erase(bestIt);
 	}
 	DistanceMap distance(source);
 	jumps += distance.Days(result.destination->GetSystem());
@@ -1048,7 +1077,7 @@ const Planet *Mission::PickPlanet(const LocationFilter &filter, const PlayerInfo
 		// Skip entries with incomplete data.
 		if(it.second.Name().empty() || (clearance.empty() && !it.second.CanLand()))
 			continue;
-		if(it.second.IsWormhole() || !it.second.HasSpaceport())
+		if(it.second.IsWormhole() || !it.second.HasSpaceport() || !it.second.GetSystem())
 			continue;
 		if(filter.Matches(&it.second, player.GetSystem()))
 			options.push_back(&it.second);

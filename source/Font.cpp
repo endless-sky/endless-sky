@@ -17,6 +17,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Point.h"
 #include "Screen.h"
 
+#include <algorithm>
 #include <cmath>
 #include <cstdlib>
 #include <cstring>
@@ -24,9 +25,9 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 using namespace std;
 
 namespace {
-	static bool showUnderlines = false;
+	bool showUnderlines = false;
 	
-	static const char *vertexCode =
+	const char *vertexCode =
 		// "scale" maps pixel coordinates to GL coordinates (-1 to 1).
 		"uniform vec2 scale;\n"
 		// The (x, y) coordinates of the top left corner of the glyph.
@@ -49,7 +50,7 @@ namespace {
 		"  gl_Position = vec4((aspect * vert.x + position.x) * scale.x, (vert.y + position.y) * scale.y, 0, 1);\n"
 		"}\n";
 	
-	static const char *fragmentCode =
+	const char *fragmentCode =
 		// The user must supply a texture and a color (white by default).
 		"uniform sampler2D tex;\n"
 		"uniform vec4 color = vec4(1, 1, 1, 1);\n"
@@ -65,7 +66,7 @@ namespace {
 		"  finalColor = texture(tex, texCoord).a * color;\n"
 		"}\n";
 	
-	static const int KERN = 2;
+	const int KERN = 2;
 }
 
 
@@ -273,6 +274,46 @@ string Font::TruncateFront(const string &str, int width) const
 		bool nextWorks = (nextWidth <= width);
 		if(prevWorks != nextWorks && abs(nextChars - prevChars) == 1)
 			return "..." + str.substr(str.size() - min(prevChars, nextChars));
+		
+		prevChars = nextChars;
+		prevWidth = nextWidth;
+	}
+	return str;
+}
+
+
+
+string Font::TruncateMiddle(const string &str, int width) const
+{
+	int prevChars = str.size();
+	int prevWidth = Width(str);
+	if(prevWidth <= width)
+		return str;
+	
+	width -= Width("...");
+	// As a safety against infinite loops (even though they won't be possible if
+	// this implementation is correct), limit the number of loops to the number
+	// of characters in the string.
+	for(size_t i = 0; i < str.length(); ++i)
+	{
+		// Loop until the previous width we tried was too long and this one is
+		// too short, or vice versa. Each time, the next string length we try is
+		// interpolated from the previous width.
+		int nextChars = (prevChars * width) / prevWidth;
+		bool isSame = (nextChars == prevChars);
+		bool prevWorks = (prevWidth <= width);
+		nextChars += (prevWorks ? isSame : -isSame);
+		
+		int leftChars = nextChars / 2;
+		int rightChars = nextChars - leftChars;
+		int nextWidth = Width(str.substr(0, leftChars) + str.substr(str.size() - rightChars));
+		bool nextWorks = (nextWidth <= width);
+		if(prevWorks != nextWorks && abs(nextChars - prevChars) == 1)
+		{
+			leftChars = min(prevChars,nextChars) / 2;
+			rightChars = min(prevChars, nextChars) - leftChars;
+			return str.substr(0, leftChars) + "..." + str.substr(str.size() - rightChars);
+		}
 		
 		prevChars = nextChars;
 		prevWidth = nextWidth;

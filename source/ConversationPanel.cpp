@@ -40,9 +40,9 @@ using namespace std;
 
 namespace {
 	// Width of the conversation text.
-	static const int WIDTH = 540;
+	const int WIDTH = 540;
 	// Margin on either side of the text.
-	static const int MARGIN = 20;
+	const int MARGIN = 20;
 }
 
 
@@ -221,7 +221,7 @@ bool ConversationPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comm
 			if(FORBIDDEN.find(c) == string::npos)
 				name += c;
 		}
-		else if((key == SDLK_DELETE || key == SDLK_BACKSPACE) && name.size())
+		else if((key == SDLK_DELETE || key == SDLK_BACKSPACE) && !name.empty())
 			name.erase(name.size() - 1);
 		else if(key == '\t' || ((key == SDLK_RETURN || key == SDLK_KP_ENTER) && otherName.empty()))
 			choice = !choice;

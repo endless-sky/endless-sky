@@ -107,6 +107,17 @@ set<const System *> DistanceMap::Systems() const
 
 
 
+int DistanceMap::RequiredFuel(const System *system1, const System *system2) const
+{
+	auto it1 = route.find(system1);
+	auto it2 = route.find(system2);
+	if(it1 == route.end() || it2 == route.end())
+		return -1;
+	return abs(it1->second.fuel - it2->second.fuel);
+}
+
+
+
 DistanceMap::Edge::Edge(const System *system)
 	: next(system)
 {
@@ -153,9 +164,21 @@ void DistanceMap::Init(const System *center, const Ship *ship)
 		if(hyperspaceFuel == jumpFuel)
 			hyperspaceFuel = 0.;
 		
-		// If this ship has no mode of hyperspace travel, bail out.
-		if(!hyperspaceFuel && !jumpFuel)
-			return;
+		// If this ship has no mode of hyperspace travel, and no local
+		// wormhole to use, bail out.
+		if(!jumpFuel && !hyperspaceFuel)
+		{
+			bool hasWormhole = false;
+			for(const StellarObject &object : ship->GetSystem()->Objects())
+				if(object.GetPlanet() && object.GetPlanet()->IsWormhole())
+				{
+					hasWormhole = true;
+					break;
+				}
+			
+			if(!hasWormhole)
+				return;
+		}
 	}
 	
 	// Find the route with lowest fuel use. If multiple routes use the same fuel,

@@ -38,9 +38,9 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 using namespace std;
 
 namespace {
-	static bool isReady = false;
-	static float alpha = 1.;
-	static const int scrollSpeed = 2;
+	bool isReady = false;
+	float alpha = 1.;
+	const int scrollSpeed = 2;
 }
 
 
@@ -50,17 +50,7 @@ MenuPanel::MenuPanel(PlayerInfo &player, UI &gamePanels)
 {
 	SetIsFullScreen(true);
 	
-	string data = Files::Read(Files::Resources() + "credits.txt");
-	size_t pos = 0;
-	while(pos < data.size())
-	{
-		size_t end = data.find('\n', pos);
-		if(end == string::npos)
-			end = data.size();
-		
-		credits.push_back(data.substr(pos, end - pos));
-		pos = end + 1;
-	}
+	credits = Format::Split(Files::Read(Files::Resources() + "credits.txt"), "\n");
 }
 
 
@@ -191,7 +181,6 @@ bool MenuPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 	else if(key == 'n' && (!player.IsLoaded() || player.IsDead()))
 	{
 		// If no player is loaded, the "Enter Ship" button becomes "New Pilot."
-		GameData::Revert();
 		player.New();
 		
 		ConversationPanel *panel = new ConversationPanel(

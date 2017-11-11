@@ -78,6 +78,7 @@ government "Hai"
 	"player reputation" 0
 	"attitude toward"
 		"Hai (Unfettered)" -.5
+		"Merchant" .01
 	"bribe" .02
 	"fine" 0
 	"friendly hail" "friendly hai"
@@ -251,10 +252,11 @@ government "Pirate"
 	
 	"player reputation" -10
 	"attitude toward"
+		"Author" -.01
+		"Hai" -.01
+		"Korath" -.01
 		"Merchant" -.1
-		"Syndicate" -.1
-		"Korath" -.1
-		"Author" -.1
+		"Syndicate" -.01
 	"bribe" .05
 	"fine" 0
 	"friendly hail" "friendly pirate"
@@ -291,6 +293,8 @@ government "Remnant"
 	color .89 .38 .62
 	
 	"player reputation" 1
+	"attitude toward"
+		"Korath" -.01
 
 government "Republic"
 	swizzle 0
@@ -338,6 +342,8 @@ government "Syndicate (Extremist)"
 government "Test Dummy"
 	swizzle 3
 	"player reputation" -1000
+	"hostile hail" "test dummy"
+	"hostile disabled hail" "disabled test dummy"
 
 government "Uninhabited"
 	color .3 .3 .3

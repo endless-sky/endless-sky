@@ -32,7 +32,7 @@ help "hiring"
 	`Crew members take up space that can otherwise be used for passengers.`
 
 help "jobs"
-	`Taking on jobs is a safe way to earn money. Special missions are offered in the Space Port; more mundane jobs are posted on the Job Board. Most special missions are only offered once: if you turn one down, it will not be offered to you again.`
+	`Taking on jobs is a safe way to earn money. Special missions are offered in the Spaceport; more mundane jobs are posted on the Job Board. Most special missions are only offered once: if you turn one down, it will not be offered to you again.`
 	`The payment for a job depends on how far you must travel and how much you are carrying. Jobs that have a time limit pay extra, but you are paid nothing if you miss the deadline.`
 	`As you gain a combat reputation, new jobs will become available, including escorting convoys and bounty hunting.`
 

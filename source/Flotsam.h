@@ -17,12 +17,13 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Body.h"
 #include "Point.h"
 
-#include <list>
 #include <string>
+#include <vector>
 
 class Effect;
 class Outfit;
 class Ship;
+class Visual;
 
 
 
@@ -50,7 +51,7 @@ public:
 	void Place(const Body &source, const Point &dv);
 	
 	// Move the object one time-step forward.
-	bool Move(std::list<Effect> &effects);
+	void Move(std::vector<Visual> &visuals);
 	
 	// This is the one ship that cannot pick up this flotsam.
 	const Ship *Source() const;
@@ -61,6 +62,15 @@ public:
 	// This is how big one "unit" of the flotsam is (in tons). If a ship has
 	// less than this amount of space, it can't pick up anything here.
 	double UnitSize() const;
+	
+	// Transfer contents to the collector ship. The flotsam velocity is
+	// stabilized in proportion to the amount being transferred.
+	int TransferTo(Ship *collector);
+	
+	
+public:
+	// Amount of tons that is expected per box.
+	static const int TONS_PER_BOX;
 	
 	
 private:

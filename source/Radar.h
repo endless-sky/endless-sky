@@ -32,6 +32,7 @@ public:
 	static const int INACTIVE;
 	static const int SPECIAL;
 	static const int ANOMALOUS;
+	static const int BLINK;
 	
 public:
 	void Clear();

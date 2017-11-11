@@ -17,6 +17,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Dialog.h"
 #include "Font.h"
 #include "FontSet.h"
+#include "Format.h"
 #include "FrameTimer.h"
 #include "GameData.h"
 #include "Government.h"
@@ -24,6 +25,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "LineShader.h"
 #include "MapDetailPanel.h"
 #include "Messages.h"
+#include "Phrase.h"
 #include "Planet.h"
 #include "PlanetPanel.h"
 #include "PlayerInfo.h"
@@ -35,6 +37,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "System.h"
 #include "UI.h"
 
+#include <cmath>
 #include <sstream>
 #include <string>
 
@@ -89,7 +92,7 @@ void MainPanel::Step()
 			isActive = !DoHelp("dead");
 		if(isActive && flagship->IsDisabled())
 			isActive = !DoHelp("disabled");
-		bool canRefuel = player.GetSystem()->IsInhabited(flagship);
+		bool canRefuel = player.GetSystem()->HasFuelFor(*flagship);
 		if(isActive && !flagship->IsHyperspacing() && !flagship->JumpsRemaining() && !canRefuel)
 			isActive = !DoHelp("stranded");
 	}
@@ -148,17 +151,22 @@ void MainPanel::Draw()
 	
 	if(isDragging)
 	{
-		Color color(.2, 1., 0., 0.);
-		LineShader::Draw(dragSource, Point(dragSource.X(), dragPoint.Y()), .8, color);
-		LineShader::Draw(Point(dragSource.X(), dragPoint.Y()), dragPoint, .8, color);
-		LineShader::Draw(dragPoint, Point(dragPoint.X(), dragSource.Y()), .8, color);
-		LineShader::Draw(Point(dragPoint.X(), dragSource.Y()), dragSource, .8, color);
+		if(canDrag)
+		{
+			const Color &dragColor = *GameData::Colors().Get("drag select");
+			LineShader::Draw(dragSource, Point(dragSource.X(), dragPoint.Y()), .8, dragColor);
+			LineShader::Draw(Point(dragSource.X(), dragPoint.Y()), dragPoint, .8, dragColor);
+			LineShader::Draw(dragPoint, Point(dragPoint.X(), dragSource.Y()), .8, dragColor);
+			LineShader::Draw(Point(dragPoint.X(), dragSource.Y()), dragSource, .8, dragColor);
+		}
+		else
+			isDragging = false;
 	}
 	
 	if(Preferences::Has("Show CPU / GPU load"))
 	{
-		string loadString = to_string(static_cast<int>(load * 100. + .5)) + "% GPU";
-		Color color = *GameData::Colors().Get("medium");
+		string loadString = to_string(lround(load * 100.)) + "% GPU";
+		const Color &color = *GameData::Colors().Get("medium");
 		FontSet::Get(14).Draw(loadString, Point(10., Screen::Height() * -.5 + 5.), color);
 	
 		loadSum += loadTimer.Time();
@@ -198,11 +206,11 @@ bool MainPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 		Preferences::ToggleAmmoUsage();
 		Messages::Add("Your escorts will now expend ammo: " + Preferences::AmmoUsage() + ".");
 	}
-	else if(key == '-')
+	else if(key == '-' && !command)
 		Preferences::ZoomViewOut();
-	else if(key == '=')
+	else if(key == '=' && !command)
 		Preferences::ZoomViewIn();
-	else if(key >= '0' && key <= '9')
+	else if(key >= '0' && key <= '9' && !command)
 		engine.SelectGroup(key - '0', mod & KMOD_SHIFT, mod & (KMOD_CTRL | KMOD_GUI));
 	else
 		return false;
@@ -310,8 +318,14 @@ void MainPanel::ShowScanDialog(const ShipEvent &event)
 					out << "This " + target->Noun() + " is carrying:\n";
 				first = false;
 		
-				out << "\t" << it.second << " "
-					<< (it.second == 1 ? it.first->Name(): it.first->PluralName()) << "\n";
+				out << "\t" << it.second;
+				if(it.first->Get("installable") < 0.)
+				{
+					int tons = ceil(it.second * it.first->Get("mass"));
+					out << (tons == 1 ? " ton of " : " tons of ") << Format::LowerCase(it.first->PluralName()) << "\n";
+				}
+				else	
+					out << " " << (it.second == 1 ? it.first->Name(): it.first->PluralName()) << "\n";
 			}
 		if(first)
 			out << "This " + target->Noun() + " is not carrying any cargo.\n";
@@ -394,23 +408,14 @@ bool MainPanel::ShowHailPanel()
 	else if(flagship->GetTargetStellar())
 	{
 		const Planet *planet = flagship->GetTargetStellar()->GetPlanet();
-		if(planet && planet->IsWormhole())
+		if(!planet)
+			Messages::Add("Unable to send hail.");
+		else if(planet->IsWormhole())
 		{
-			static const vector<string> messages = {
-				"The gaping hole in the fabric of the universe does not respond to your hail.",
-				"Wormholes do not understand the language of finite beings like yourself.",
-				"You stare into the swirling abyss, but with appalling bad manners it refuses to stare back.",
-				"All the messages you try to send disappear into the wormhole without a trace.",
-				"The spatial anomaly pointedly ignores your attempts to engage it in conversation.",
-				"Like most wormholes, this one does not appear to be very talkative.",
-				"The wormhole says nothing, but silently beckons you to explore its mysteries.",
-				"You can't talk to wormholes. Maybe you should try landing on it instead.",
-				"Your words cannot travel through wormholes, but maybe your starship can.",
-				"Unable to send hail: this unfathomable void is not inhabited."
-			};
-			Messages::Add(messages[Random::Int(messages.size())]);
+			static const Phrase *wormholeHail = GameData::Phrases().Get("wormhole hail");
+			Messages::Add(wormholeHail->Get());
 		}
-		else if(planet && planet->IsInhabited())
+		else if(planet->IsInhabited())
 		{
 			GetUI()->Push(new HailPanel(player, flagship->GetTargetStellar()));
 			return true;

@@ -12,6 +12,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Radar.h"
 
+#include "GameData.h"
 #include "PointerShader.h"
 #include "RingShader.h"
 
@@ -24,20 +25,7 @@ const int Radar::HOSTILE = 3;
 const int Radar::INACTIVE = 4;
 const int Radar::SPECIAL = 5;
 const int Radar::ANOMALOUS = 6;
-static const int SIZE = 7;
-
-namespace {
-	// Colors.
-	static const Color color[SIZE] = {
-		Color(.2, 1., 0., 0.), // PLAYER: green
-		Color(.4, .6, 1., 0.), // FRIENDLY: blue
-		Color(.8, .8, .4, 0.), // UNFRIENDLY: yellow
-		Color(1., .6, .4, 0.), // HOSTILE: red
-		Color(.4, .4, .4, 0.), // INACTIVE: grey
-		Color(1., 1., 1., 0.),  // SPECIAL: white
-		Color(.7, 0., 1., 0.)  // ANOMALOUS: magenta
-	};
-}
+const int Radar::BLINK = 7;
 
 
 
@@ -60,10 +48,7 @@ void Radar::SetCenter(const Point &center)
 // given position should be in world units (not shrunk to radar units).
 void Radar::Add(int type, Point position, double outer, double inner)
 {
-	if(type < 0 || type >= SIZE)
-		return;
-	
-	objects.emplace_back(color[type].Opaque(), position - center, outer, inner);
+	objects.emplace_back(GetColor(type).Opaque(), position - center, outer, inner);
 }
 
 
@@ -71,10 +56,7 @@ void Radar::Add(int type, Point position, double outer, double inner)
 // Add a pointer, pointing in the direction of the given vector.
 void Radar::AddPointer(int type, const Point &position)
 {
-	if(type < 0 || type >= SIZE)
-		return;
-	
-	pointers.emplace_back(color[type], position.Unit());
+	pointers.emplace_back(GetColor(type), position.Unit());
 }
 
 
@@ -105,7 +87,18 @@ void Radar::Draw(const Point &center, double scale, double radius, double pointe
 
 const Color &Radar::GetColor(int type)
 {
-	if(type < 0 || type >= SIZE)
+	static const vector<Color> color = {
+		*GameData::Colors().Get("radar player"),
+		*GameData::Colors().Get("radar friendly"),
+		*GameData::Colors().Get("radar unfriendly"),
+		*GameData::Colors().Get("radar hostile"),
+		*GameData::Colors().Get("radar inactive"),
+		*GameData::Colors().Get("radar special"),
+		*GameData::Colors().Get("radar anomalous"),
+		*GameData::Colors().Get("radar blink")
+	};
+	
+	if(static_cast<size_t>(type) >= color.size())
 		type = INACTIVE;
 	
 	return color[type];

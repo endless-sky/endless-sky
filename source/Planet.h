@@ -101,7 +101,7 @@ public:
 	
 	// Check if this is a wormhole (that is, it appears in multiple systems).
 	bool IsWormhole() const;
-	const System *WormholeSource(const System *from) const;
+	const System *WormholeSource(const System *to) const;
 	const System *WormholeDestination(const System *from) const;
 	
 	// Check if the given ship has all the attributes necessary to allow it to
@@ -109,6 +109,7 @@ public:
 	bool IsAccessible(const Ship *ship) const;
 	// Below are convenience functions which access the game state in Politics,
 	// but do so with a less convoluted syntax:
+	bool HasFuelFor(const Ship &ship) const;
 	bool CanLand(const Ship &ship) const;
 	bool CanLand() const;
 	bool CanUseServices() const;

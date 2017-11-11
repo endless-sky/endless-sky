@@ -8,8 +8,6 @@
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
-
-
 mission "FWC Scouting 1"
 	landing
 	name "Scout Kaus Borealis"
@@ -23,6 +21,7 @@ mission "FWC Scouting 1"
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
+		log `Drove the Navy out of Delta Sagittarii with the help of the "Wolf Pack," a militia group in favor of more extreme measures who launched a preemptive strike before the main Free Worlds force arrived. The Free Worlds are now committed to fighting the Republic to a standstill rather than proving their innocence; the defector has been recaptured by the Syndicate and whatever information he had to share is now lost.`
 		conversation
 			`It was a close battle, and could have gone very differently if it were not for the Wolf Pack strike that happened before you arrived and that disabled or destroyed the majority of the Navy fleet. You can't help but wonder how the Wolf Pack managed to assemble a large enough fleet to do that sort of damage.`
 			`	"Well," says JJ, "the die is cast. It's too late now to wonder what that business with the Syndicate was about; now we're in a fight to the finish with the Republic. And that means we must strike soon, before they have time to bring in more reinforcements. Captain <last>, I'd like you to perform a scouting mission while I'm working on gathering a new fleet. Our next target has to be the Navy base on New Iceland. If we can drive them out of that system, our position will be much better. So, I'd like you to fly through Kaus Borealis and return here to report on their fleet strength. Understood?"`
@@ -39,11 +38,7 @@ mission "FWC Scouting 1"
 		personality staying heroic
 		system "Kaus Borealis"
 		government "Republic"
-		fleet "Large Republic"
-		fleet "Large Republic"
-		fleet "Large Republic"
-		fleet "Large Republic"
-		fleet "Large Republic"
+		fleet "Large Republic" 5
 
 
 
@@ -124,33 +119,14 @@ mission "FWC Attack Kaus Borealis"
 		personality staying heroic
 		system "Kaus Borealis"
 		government "Republic"
-		fleet
+		fleet 2
 			names "republic capital"
 			fighters "republic fighter"
 			variant
 				"Carrier (Mark II)"
 				"Lance" 4
 				"Combat Drone" 6
-		fleet
-			names "republic capital"
-			fighters "republic fighter"
-			variant
-				"Carrier (Mark II)"
-				"Lance" 4
-				"Combat Drone" 6
-		fleet
-			names "republic capital"
-			fighters "republic fighter"
-			variant
-				"Cruiser (Mark II)"
-				"Combat Drone" 4
-		fleet
-			names "republic capital"
-			fighters "republic fighter"
-			variant
-				"Cruiser (Mark II)"
-				"Combat Drone" 4
-		fleet
+		fleet 3
 			names "republic capital"
 			fighters "republic fighter"
 			variant
@@ -189,6 +165,7 @@ mission "FWC Cebalrai 1"
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
+		log "Captured the Kaus Borealis system from the Navy, even though the locals are still loyal to the Republic. Also, learned that the Wolf Pack ships have been using nuclear missiles, and that is why they were so effective in decimating the Navy fleet."
 		conversation
 			`As you bring your ship in for a landing, it occurs to you that this is the first time that you have fought a battle for a star system that had not voluntarily decided to join the Free Worlds, and you are not sure what to do next. Fortunately, soon more Free Worlds ships begin arriving, and one of them is carrying Alondo. Tomek is with him. "Hi there, <first>," says Tomek. "Bet you didn't expect to see me again, huh?"`
 			`	Alondo says, "<first>, I'll leave you and Tomek to catch up. I should go talk to the governor immediately. There's no way the locals will have failed to notice the nuclear explosions happening in space right over their heads."`
@@ -426,6 +403,7 @@ mission "FWC Nuke Supply 1C"
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
+		log "Delivered a load of enriched uranium to a warlord's fortress on Greenrock, in exchange for warheads for the Free Worlds to use against the Navy. Hopefully forming such a friendly relationship with dangerous criminals will not cause trouble for the Free Worlds in the future."
 		conversation
 			`You land at one of the many private fortresses on Greenrock owned by various competing warlords. Some workers unload the cargo from the Blue Yonder, and load it up with some lead-lined, well-padded crates that must contain nuclear warheads. You're not sure you like being a part of this, but it may be true that this is the only way you will stand a chance against the Navy.`
 				accept
@@ -534,6 +512,8 @@ mission "FWC Diplomacy 1C"
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
+		log "Visited Earth with Alondo to try to pressure Parliament into agreeing to a peace deal. The negotiations failed. Only escaped the planet safely because a Free Worlds ship in orbit threatened to bombard the Parliament building."
+		log "Rescued Katya from the Republic's custody. She is not happy about the extreme measures the Free Worlds are taking to win this war."
 		event "fw safe passage ends" 1
 		conversation
 			`When you land on Earth, the Big Brother flies down to the spaceport with you to see that you arrive safely, then takes off immediately. You and Alondo are escorted to the House of Parliament. As you wait to be called in to speak to Parliament, Alondo seems very nervous, pacing back and forth and fiddling with his watch every few minutes.`
@@ -562,27 +542,14 @@ mission "FWC Diplomacy 1C"
 		personality staying heroic
 		system "Vega"
 		government "Republic"
-		fleet
+		fleet 2
 			names "republic capital"
 			fighters "republic fighter"
 			variant
 				"Carrier (Mark II)"
 				"Lance" 4
 				"Combat Drone" 6
-		fleet
-			names "republic capital"
-			fighters "republic fighter"
-			variant
-				"Carrier (Mark II)"
-				"Lance" 4
-				"Combat Drone" 6
-		fleet
-			names "republic capital"
-			fighters "republic fighter"
-			variant
-				"Cruiser (Mark II)"
-				"Combat Drone" 4
-		fleet
+		fleet 2
 			names "republic capital"
 			fighters "republic fighter"
 			variant
@@ -593,27 +560,14 @@ mission "FWC Diplomacy 1C"
 		personality staying heroic
 		system "Denebola"
 		government "Republic"
-		fleet
+		fleet 2
 			names "republic capital"
 			fighters "republic fighter"
 			variant
 				"Carrier (Mark II)"
 				"Lance" 4
 				"Combat Drone" 6
-		fleet
-			names "republic capital"
-			fighters "republic fighter"
-			variant
-				"Carrier (Mark II)"
-				"Lance" 4
-				"Combat Drone" 6
-		fleet
-			names "republic capital"
-			fighters "republic fighter"
-			variant
-				"Cruiser (Mark II)"
-				"Combat Drone" 4
-		fleet
+		fleet 2
 			names "republic capital"
 			fighters "republic fighter"
 			variant
@@ -685,21 +639,7 @@ mission "FWC Checkmate 1"
 	npc evade
 		personality staying heroic
 		government "Republic"
-		fleet
-			names "republic small"
-			fighters "republic fighter"
-			variant
-				"Frigate (Mark II)"
-				"Gunboat (Mark II)" 2
-				"Rainmaker (Mark II)" 2
-		fleet
-			names "republic small"
-			fighters "republic fighter"
-			variant
-				"Frigate (Mark II)"
-				"Gunboat (Mark II)" 2
-				"Rainmaker (Mark II)" 2
-		fleet
+		fleet 3
 			names "republic small"
 			fighters "republic fighter"
 			variant
@@ -718,13 +658,7 @@ mission "FWC Checkmate 1"
 				"Carrier (Mark II)"
 				"Lance" 4
 				"Combat Drone" 6
-		fleet
-			names "republic capital"
-			fighters "republic fighter"
-			variant
-				"Cruiser (Mark II)"
-				"Combat Drone" 4
-		fleet
+		fleet 2
 			names "republic capital"
 			fighters "republic fighter"
 			variant
@@ -742,19 +676,7 @@ mission "FWC Checkmate 1"
 				"Carrier (Mark II)"
 				"Lance" 4
 				"Combat Drone" 6
-		fleet
-			names "republic capital"
-			fighters "republic fighter"
-			variant
-				"Cruiser (Mark II)"
-				"Combat Drone" 4
-		fleet
-			names "republic capital"
-			fighters "republic fighter"
-			variant
-				"Cruiser (Mark II)"
-				"Combat Drone" 4
-		fleet
+		fleet 3
 			names "republic capital"
 			fighters "republic fighter"
 			variant
@@ -765,27 +687,14 @@ mission "FWC Checkmate 1"
 		personality heroic
 		government "Republic"
 		system Pollux
-		fleet
+		fleet 2
 			names "republic capital"
 			fighters "republic fighter"
 			variant
 				"Carrier (Mark II)"
 				"Lance" 4
 				"Combat Drone" 6
-		fleet
-			names "republic capital"
-			fighters "republic fighter"
-			variant
-				"Cruiser (Mark II)"
-				"Combat Drone" 4
-		fleet
-			names "republic capital"
-			fighters "republic fighter"
-			variant
-				"Carrier (Mark II)"
-				"Lance" 4
-				"Combat Drone" 6
-		fleet
+		fleet 2
 			names "republic capital"
 			fighters "republic fighter"
 			variant
@@ -840,6 +749,7 @@ mission "FWC Checkmate 1"
 				"Osprey (Missile)"
 	
 	on complete
+		log "Defended Tundra against a major Navy counter-offensive. From here, the only recourse available to the Free Worlds seems to be to push deep into Republic territory and capture the Sol system, forcing the Navy to surrender. Nuclear weapons are now for sale on Solace to aid in the final assault."
 		event "fwc defended cebalrai"
 		event "fwc solace has nukes"
 		"salary: Free Worlds" = 6000
@@ -941,32 +851,20 @@ mission "FWC Checkmate 1B"
 		personality heroic staying
 		government "Republic"
 		system Menkent
-		fleet
+		fleet 2
 			names "republic capital"
 			fighters "republic fighter"
 			variant
 				"Carrier (Mark II)"
 				"Lance" 4
 				"Combat Drone" 6
-		fleet
+		fleet 2
 			names "republic capital"
 			fighters "republic fighter"
 			variant
 				"Cruiser (Mark II)"
 				"Combat Drone" 4
-		fleet
-			names "republic capital"
-			fighters "republic fighter"
-			variant
-				"Carrier (Mark II)"
-				"Lance" 4
-				"Combat Drone" 6
-		fleet
-			names "republic capital"
-			fighters "republic fighter"
-			variant
-				"Cruiser (Mark II)"
-				"Combat Drone" 4
+	
 	npc
 		personality derelict
 		government "Republic"
@@ -1016,6 +914,7 @@ mission "FWC Checkmate 1C"
 				accept
 	
 	on complete
+		log "The Free Worlds have captured the Vega system, only one hyperjump away from Earth. Nuclear-armed Wolf Pack ships will be arriving shortly to spearhead the assault, but the Navy fleet defending Earth will be massive. Casualties on both sides are likely to be extremely high."
 		conversation
 			`The Vega system is eerily deserted. You suspect that the Navy must have pulled back all available ships to defend Earth, rather than trying to fight you here. You try not to think about how massive the fleet there must be, and how slim your chances are of destroying it.`
 			`	Katya says, "Well, this is it, the final assault. Meet me in the spaceport when you're ready for the attack on Earth."`
@@ -1119,19 +1018,7 @@ mission "FWC Pug 1"
 				"Clipper"
 				"Clipper (Heavy)"
 				"Clipper (Speedy)"
-		fleet
-			names "free worlds small"
-			variant
-				"Clipper (Nuclear)"
-		fleet
-			names "free worlds small"
-			variant
-				"Clipper (Nuclear)"
-		fleet
-			names "free worlds small"
-			variant
-				"Clipper (Nuclear)"
-		fleet
+		fleet 4
 			names "free worlds small"
 			variant
 				"Clipper (Nuclear)"
@@ -1148,13 +1035,7 @@ mission "FWC Pug 1"
 	npc evade
 		personality staying disables heroic
 		government Pug
-		fleet
-			names "pug"
-			variant
-				"Pug Maboro"
-				"Pug Enfolta"
-				"Pug Zibruka" 2
-		fleet
+		fleet 2
 			names "pug"
 			variant
 				"Pug Maboro"
@@ -1169,29 +1050,13 @@ mission "FWC Pug 1"
 	npc evade
 		personality entering disables heroic
 		government Pug
-		fleet
+		fleet 2
 			names "pug"
 			variant
 				"Pug Maboro"
 				"Pug Enfolta"
 				"Pug Zibruka" 2
-		fleet
-			names "pug"
-			variant
-				"Pug Maboro"
-				"Pug Enfolta"
-				"Pug Zibruka" 2
-		fleet
-			names "pug"
-			variant
-				"Pug Enfolta"
-				"Pug Zibruka" 2
-		fleet
-			names "pug"
-			variant
-				"Pug Enfolta"
-				"Pug Zibruka" 2
-		fleet
+		fleet 3
 			names "pug"
 			variant
 				"Pug Enfolta"
@@ -1201,13 +1066,7 @@ mission "FWC Pug 1"
 		personality disables heroic
 		government Pug
 		system "Delta Capricorni"
-		fleet
-			names "pug"
-			variant
-				"Pug Maboro"
-				"Pug Enfolta"
-				"Pug Zibruka" 2
-		fleet
+		fleet 2
 			names "pug"
 			variant
 				"Pug Maboro"
@@ -1233,6 +1092,7 @@ mission "FWC Pug 1B"
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
+		log "The moment the nuclear-armed Wolf Pack ships arrived in-system to prepare for the assault on Earth, a fleet of alien ships appeared and attacked them. In addition, the aliens somehow cut off the Vega system from the rest of human space."
 		event "fwc pug peaceful"
 		conversation
 			`The spaceport is in chaos. You eventually find Katya and report that the alien invasion fleet has been destroyed, but at a steep cost. "I'm sure we'll come to regret those losses deeply," she says. "The Wolf Pack nukes were all spent to repel that assault. And based on what we've found out here, we aren't going to be receiving reinforcements any time soon. We've somehow been cut off from the rest of human space."`
@@ -1247,7 +1107,7 @@ mission "FWC Pug 1B"
 				goto next
 			
 			label aliens
-			`	"We have no idea," she says. "But, they appear to have the ability to destroy hyperspace links. That's why our communications went dead; it wasn't the relays we lost, it was the pathways themselves. And, they are apparently able to create new links as well." She points to a galactic map that she had been examining when you came in; several links have been scribbled out and new ones have been drawn in. "This is the star we call Deneb," she says, pointing to a star that, until now, had been inaccessible via hyperspace. This must be where they came from."`
+			`	"We have no idea," she says. "But, they appear to have the ability to destroy hyperspace links. That's why our communications went dead; it wasn't the relays we lost, it was the pathways themselves. And, they are apparently able to create new links as well." She points to a galactic map that she had been examining when you came in; several links have been scribbled out and new ones have been drawn in. "This is the star we call Deneb," she says, pointing to a star that, until now, had been inaccessible via hyperspace. "This must be where they came from."`
 				goto next
 			
 			label next
@@ -1269,6 +1129,7 @@ mission "FWC Pug 2"
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
+		log "Found out that the aliens who attacked the Wolf Pack fleet call themselves the Pug. After destroying that fleet, the aliens have not attacked anyone else except a few merchants who tried to resist them. They came from a nearby star system that did not previously have any hyperspace connections to human space, and seem intent on controlling and perhaps enslaving the local human population."
 		conversation
 			`When you land at the spaceport on <origin>, you find no evidence of violent struggle; merchant captains are walking around freely, haggling for commodities, and conversing with each other just like in any other spaceport you have visited. However, the spaceport is also being patrolled by small groups of slender, bipedal, pale-skinned aliens who you assume are the Pug. Each one is holding a metal staff that looks like some sort of weapon, but none of them move to attack you.`
 			`	Soon after you land, you spot a man making his way towards your ship, ducking behind other ships and crates every time a group of Pug look in his direction. If he is some sort of fugitive from them, it might be unwise to throw your lot in with him. On the other hand, he could have valuable information for you.`
@@ -1395,6 +1256,8 @@ mission "FWC Pug 2C"
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
+		log `Visited the homeworld of the Pug, the aliens who have taken over this region of space. They claim that when the Free Worlds fleet was threatening to invade Earth, they had no choice but to interfere to prevent humanity from destroying itself. They say that their plan is to slowly bring more and more human worlds under their "protection," but what they are talking about sounds more like slavery.`
+		log "Factions" "Pug" `The Pug are aliens with barrel-shaped bodies, spindly legs, and milky blue blood. They claim to have intervened in the human civil war purely for the sake of preventing more bloodshed and helping humans to live together in peace.`
 		conversation
 			`This is an entirely alien world. The buildings have strangely flowing, tapered shapes not unlike the Pug starships, and from orbit you count dozens of large cities covering a large portion of the land mass. If this were a human world, you would estimate its population at over a billion. You follow one of the Pug ships that is landing, and discover a large spaceport where a surprising number of human merchant ships are parked, in addition to the aliens.`
 			`	Elsewhere they have mostly ignored you, but here your ship is quickly approached by a small group of the pale-skinned, delicate aliens. The Pug are oddly proportioned, with long arms and legs but short, barrel-shaped torsos and large heads, and although they only have two legs, their gait is vaguely insectoid. "You are the ones who resisted us," one of them says. "You are not pledged to the Protectorate. Do you wish to make your vow of loyalty and peacefulness at this time?"`
@@ -1485,6 +1348,7 @@ mission "FWC Pug 3"
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
+		log "Escaped from the territory captured by the Pug by using a jump drive. Found out that Freya has been captured by the Navy while she was trying to figure out the reason for the hyperspace links disappearing. The Navy thinks that the Free Worlds are behind the hyperspace disruptions. But, making peace with the Navy may be the only way to defeat the Pug."
 		event "fwc peace with the navy"
 		set "event: fw armistice"
 		conversation
@@ -1544,6 +1408,7 @@ mission "FWC Pug 3A"
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
+		log "Convinced the Navy that the disappearing hyperspace links really are an alien attack and not some sort of Free Worlds super-weapon. Freya thinks that she might be able to undo the hyperspace disruption and allow the Navy to enter the captured territory and begin to drive the Pug back."
 		conversation
 			branch know
 				has "FW Alphas 1.1: done"
@@ -1700,6 +1565,7 @@ mission "FWC Pug 3D"
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
+		log "Succeeded in restoring the hyperspace link to the Rasalhague system. With the Navy's help, it might now be possible to turn the tide against the Pug."
 		event "fwc battle for rasalhague"
 		conversation
 			`Although <origin> is now back under Navy control, they gladly allow your ship to land. You help Freya to set up the alien equipment and power it on. Once again you begin to feel dizzy, and the feeling slowly builds in intensity as Freya adjusts the controls. "It's working," she says. "I've got a positive feedback loop. See if you can contact Oblivion."`
@@ -1717,12 +1583,7 @@ mission "FWC Pug 3D"
 				"Pug Maboro"
 				"Pug Enfolta"
 				"Pug Zibruka" 2
-		fleet
-			names "pug"
-			variant
-				"Pug Enfolta"
-				"Pug Zibruka" 2
-		fleet
+		fleet 2
 			names "pug"
 			variant
 				"Pug Enfolta"
@@ -1814,7 +1675,7 @@ mission "FWC Pug 4"
 	
 	on offer
 		conversation
-			`	Your fleet lands on <planet>, and to your surprise the locals say that soon before your fleet arrived, all the Pug who were present on the planet departed; clearly they expected your arrival and had no desire to become your prisoners. You only have a few hours to take stock of the situation before the Navy informs you that they have detected another Pug fleet incoming...`
+			`Your fleet lands on <planet>, and to your surprise the locals say that soon before your fleet arrived, all the Pug who were present on the planet departed; clearly they expected your arrival and had no desire to become your prisoners. You only have a few hours to take stock of the situation before the Navy informs you that they have detected another Pug fleet incoming...`
 				launch
 	
 	on complete
@@ -1830,12 +1691,7 @@ mission "FWC Pug 4"
 				"Pug Maboro"
 				"Pug Enfolta"
 				"Pug Zibruka" 2
-		fleet
-			names "pug"
-			variant
-				"Pug Enfolta"
-				"Pug Zibruka" 2
-		fleet
+		fleet 2
 			names "pug"
 			variant
 				"Pug Enfolta"
@@ -1845,24 +1701,13 @@ mission "FWC Pug 4"
 		personality disables heroic
 		government Pug
 		system Alderamin
-		fleet
+		fleet 2
 			names "pug"
 			variant
 				"Pug Maboro"
 				"Pug Enfolta"
 				"Pug Zibruka" 2
-		fleet
-			names "pug"
-			variant
-				"Pug Maboro"
-				"Pug Enfolta"
-				"Pug Zibruka" 2
-		fleet
-			names "pug"
-			variant
-				"Pug Enfolta"
-				"Pug Zibruka" 2
-		fleet
+		fleet 2
 			names "pug"
 			variant
 				"Pug Enfolta"
@@ -1872,25 +1717,7 @@ mission "FWC Pug 4"
 		personality disables heroic
 		government Pug
 		system Markab
-		fleet
-			names "pug"
-			variant
-				"Pug Maboro"
-				"Pug Enfolta"
-				"Pug Zibruka" 2
-		fleet
-			names "pug"
-			variant
-				"Pug Maboro"
-				"Pug Enfolta"
-				"Pug Zibruka" 2
-		fleet
-			names "pug"
-			variant
-				"Pug Maboro"
-				"Pug Enfolta"
-				"Pug Zibruka" 2
-		fleet
+		fleet 4
 			names "pug"
 			variant
 				"Pug Maboro"
@@ -1901,29 +1728,13 @@ mission "FWC Pug 4"
 		personality disables heroic
 		government Pug
 		system Alpheratz
-		fleet
+		fleet 2
 			names "pug"
 			variant
 				"Pug Maboro"
 				"Pug Enfolta"
 				"Pug Zibruka" 2
-		fleet
-			names "pug"
-			variant
-				"Pug Maboro"
-				"Pug Enfolta"
-				"Pug Zibruka" 2
-		fleet
-			names "pug"
-			variant
-				"Pug Enfolta"
-				"Pug Zibruka" 2
-		fleet
-			names "pug"
-			variant
-				"Pug Enfolta"
-				"Pug Zibruka" 2
-		fleet
+		fleet 3
 			names "pug"
 			variant
 				"Pug Enfolta"
@@ -1945,6 +1756,7 @@ mission "FWC Pug 4A"
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
+		log "Drove off another Pug attack. Fighting side by side together is beginning to build some camaraderie between the Free Worlds and the Navy, even though they were enemies so recently."
 		conversation
 			`When you land on <origin>, the Navy and Free Worlds crews are congratulating each other on having succeeded in resisting the alien attack. Freya says, "I guess nothing creates camaraderie faster than fighting side by side against a common enemy."`
 			choice
@@ -2032,6 +1844,9 @@ mission "FWC Pug 4B: Quarg"
 		has "FWC Pug 5: done"
 	
 	on complete
+		log "Learned from the Quarg that they have long been aware of the presence of the Pug in the Deneb system. Apparently the Pug are from another galaxy and possess such advanced technology that even the Quarg do not dare to interfere with them."
+		log "However, the Pug are known to treat warfare like a game, intentionally using weaker technology when fighting less advanced species in order to give them a fair chance at winning the battle. So, fighting them will not be a lost cause, but the Quarg are unwilling to provide any assistance."
+		log "Factions" "Pug" `The Quarg claim that the Pug are powerful enough that they could defeat the Quarg, or even the Drak, if they chose to. But the Pug treat warfare like a game. When battling another species, the Pug will limit themselves to ships and weapons that are weak enough that the other species has a chance of defeating them.`
 		conversation
 			`You land on the Quarg station, but neither of you knows what to do next. How do you locate a Quarg diplomat? Do they even have such a thing? As you and Freya stand in the hangar looking somewhat lost, one of the Quarg approaches you and says, "These ones have questions?"`
 			`	Freya says, "We've been attacked by aliens who call themselves the Pug. We're wondering what you know about them."`
@@ -2093,6 +1908,7 @@ mission "FWC Pug 4C"
 				accept
 	
 	on complete
+		log "Succeeded in restoring a few more hyperspace connections, and in driving back the Pug (with the help of the Navy). But, Freya thinks it is way too coincidental that the aliens have left behind the exact technology needed to fix the hyperspace disruptions; it feels like the Pug are playing a game rather than fighting a serious war."
 		event "fwc reconnect zeta aquilae"
 		dialog `After a few minutes of scanning the surface of <planet>, Freya locates another transmitter station that matches the one you found on Oblivion. You contact Admiral Danforth to tell him its location, and he dispatches a crew to take control of it. He also reports to you that once again, apparently all the Pug left the planet during the course of the battle. "A pity," he says. "If we had taken prisoners, maybe we could have gotten some answers from them. Anyway, meet me in the spaceport whenever you're ready to help with our next mission."`
 	
@@ -2100,32 +1916,7 @@ mission "FWC Pug 4C"
 		personality disables heroic staying
 		government Pug
 		system "Zeta Aquilae"
-		fleet
-			names "pug"
-			variant
-				"Pug Maboro"
-				"Pug Enfolta" 2
-		fleet
-			names "pug"
-			variant
-				"Pug Maboro"
-				"Pug Enfolta" 2
-		fleet
-			names "pug"
-			variant
-				"Pug Maboro"
-				"Pug Enfolta" 2
-		fleet
-			names "pug"
-			variant
-				"Pug Maboro"
-				"Pug Enfolta" 2
-		fleet
-			names "pug"
-			variant
-				"Pug Maboro"
-				"Pug Enfolta" 2
-		fleet
+		fleet 6
 			names "pug"
 			variant
 				"Pug Maboro"
@@ -2153,7 +1944,7 @@ mission "FWC Pug 4C"
 		government Republic
 		system "Zeta Aquilae"
 		personality heroic staying uninterested
-		fleet
+		fleet 2
 			names "republic capital"
 			fighters "republic fighter"
 			variant
@@ -2167,13 +1958,6 @@ mission "FWC Pug 4C"
 				"Cruiser (Mark II)"
 				"Combat Drone" 4
 				"Gunboat (Mark II)" 2
-		fleet
-			names "republic capital"
-			fighters "republic fighter"
-			variant
-				"Cruiser (Mark II)"
-				"Combat Drone" 4
-				"Frigate (Mark II)" 2
 
 
 
@@ -2217,21 +2001,7 @@ mission "FWC Pug 5"
 	npc
 		government "Navy (Oathkeeper)"
 		personality heroic escort
-		fleet
-			names "republic capital"
-			fighters "republic fighter"
-			variant
-				"Carrier (Jump)"
-				"Combat Drone" 6
-				"Dagger" 4
-		fleet
-			names "republic capital"
-			fighters "republic fighter"
-			variant
-				"Carrier (Jump)"
-				"Combat Drone" 6
-				"Dagger" 4
-		fleet
+		fleet 3
 			names "republic capital"
 			fighters "republic fighter"
 			variant
@@ -2243,22 +2013,12 @@ mission "FWC Pug 5"
 		personality disables heroic staying
 		government Pug
 		system Vega
-		fleet
+		fleet 2
 			names "pug"
 			variant
 				"Pug Enfolta"
 				"Pug Zibruka" 4
-		fleet
-			names "pug"
-			variant
-				"Pug Enfolta"
-				"Pug Zibruka" 3
-		fleet
-			names "pug"
-			variant
-				"Pug Enfolta"
-				"Pug Zibruka" 4
-		fleet
+		fleet 2
 			names "pug"
 			variant
 				"Pug Enfolta"
@@ -2282,6 +2042,7 @@ mission "FWC Pug 5B"
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
+		log "Drove the Pug out of the Vega system with the help of some Navy ships equipped with jump drives. Once again, the Pug somehow managed to evacuate all their people from the planet before the Navy arrived, as if they were already expecting to lose this system."
 		conversation
 			`Once again, the Pug seem to have anticipated your attack and evacuated all their personnel from the planet before your arrival. It's a little disconcerting that they seem to have planned for events to unfold in exactly this way. Once again, you find one of the transmitter stations, abandoned on <origin> but still in working order, and inside the station Freya locates another one of the "reflectors" that she needs in order to complete the link. "I don't get it," she says. "They should've destroyed all this before they left."`
 			choice
@@ -2300,31 +2061,7 @@ mission "FWC Pug 5B"
 		government Republic
 		system Sol
 		personality heroic staying uninterested
-		fleet
-			names "republic capital"
-			fighters "republic fighter"
-			variant
-				"Carrier (Mark II)"
-				"Lance" 4
-				"Combat Drone" 6
-				"Cruiser (Mark II)"
-				"Combat Drone" 4
-				"Frigate (Mark II)" 2
-				"Gunboat (Mark II)" 2
-				"Rainmaker (Mark II)" 2
-		fleet
-			names "republic capital"
-			fighters "republic fighter"
-			variant
-				"Carrier (Mark II)"
-				"Lance" 4
-				"Combat Drone" 6
-				"Cruiser (Mark II)"
-				"Combat Drone" 4
-				"Frigate (Mark II)" 2
-				"Gunboat (Mark II)" 2
-				"Rainmaker (Mark II)" 2
-		fleet
+		fleet 3
 			names "republic capital"
 			fighters "republic fighter"
 			variant
@@ -2364,31 +2101,7 @@ mission "FWC Pug 5C"
 		government Republic
 		system Sol
 		personality heroic waiting
-		fleet
-			names "republic capital"
-			fighters "republic fighter"
-			variant
-				"Carrier (Mark II)"
-				"Lance" 4
-				"Combat Drone" 6
-				"Cruiser (Mark II)"
-				"Combat Drone" 4
-				"Frigate (Mark II)" 2
-				"Gunboat (Mark II)" 2
-				"Rainmaker (Mark II)" 2
-		fleet
-			names "republic capital"
-			fighters "republic fighter"
-			variant
-				"Carrier (Mark II)"
-				"Lance" 4
-				"Combat Drone" 6
-				"Cruiser (Mark II)"
-				"Combat Drone" 4
-				"Frigate (Mark II)" 2
-				"Gunboat (Mark II)" 2
-				"Rainmaker (Mark II)" 2
-		fleet
+		fleet 3
 			names "republic capital"
 			fighters "republic fighter"
 			variant
@@ -2422,6 +2135,7 @@ mission "FWC Pug 6"
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
+		log "Preparing for the final assault on the Pug homeworld. There seems to be no other option but to force them to surrender, but with the help of the Navy that no longer seems like an impossible task."
 		event "pug flee"
 		conversation
 			`The tiny spaceport on Silver is packed with people as more and more Navy ships come in for a landing. The Navy admirals have decided that there is no sense in delaying: you will be launching an attack on the Pug homeworld in the morning. Despite your success so far in battling the Pug, you know that if their entire fleet opposes you, even the Navy may not be strong enough to defeat them. This may be the last time you see many of these officers and crew members alive.`
@@ -2438,31 +2152,7 @@ mission "FWC Pug 6"
 	npc
 		government Republic
 		personality heroic
-		fleet
-			names "republic capital"
-			fighters "republic fighter"
-			variant
-				"Carrier (Mark II)"
-				"Lance" 4
-				"Combat Drone" 6
-				"Cruiser (Mark II)"
-				"Combat Drone" 4
-				"Frigate (Mark II)" 2
-				"Gunboat (Mark II)" 2
-				"Rainmaker (Mark II)" 2
-		fleet
-			names "republic capital"
-			fighters "republic fighter"
-			variant
-				"Carrier (Mark II)"
-				"Lance" 4
-				"Combat Drone" 6
-				"Cruiser (Mark II)"
-				"Combat Drone" 4
-				"Frigate (Mark II)" 2
-				"Gunboat (Mark II)" 2
-				"Rainmaker (Mark II)" 2
-		fleet
+		fleet 3
 			names "republic capital"
 			fighters "republic fighter"
 			variant
@@ -2478,29 +2168,14 @@ mission "FWC Pug 6"
 		government "Navy (Oathkeeper)"
 		personality heroic
 		system Cebalrai
-		fleet
+		fleet 2
 			names "republic capital"
 			fighters "republic fighter"
 			variant
 				"Cruiser (Mark II)"
 				"Combat Drone" 4
 				"Frigate (Mark II)" 2
-		fleet
-			names "republic capital"
-			fighters "republic fighter"
-			variant
-				"Carrier (Mark II)"
-				"Lance" 4
-				"Combat Drone" 6
-				"Gunboat (Mark II)" 3
-		fleet
-			names "republic capital"
-			fighters "republic fighter"
-			variant
-				"Cruiser (Mark II)"
-				"Combat Drone" 4
-				"Frigate (Mark II)" 2
-		fleet
+		fleet 2
 			names "republic capital"
 			fighters "republic fighter"
 			variant
@@ -2541,6 +2216,9 @@ mission "FWC Pug 6"
 				"Argosy (Turret)"
 	
 	on complete
+		log `The Pug have fled, apparently traveling through an artificial wormhole back to whatever galaxy they came from. And, it turns out that many of their cities on "Pugglemug" were only for show: buildings with no inhabitants, and with holograms creating the appearance of a heavily populated world. They left no advanced technology behind, and no sign of what their true intentions were, but it turns out that the fake cities here were designed for human habitation. They must have been planning this departure for a very long time.`
+		log `Now that the Pug are gone, the Navy will be able to use the "graviton reflectors" to repair the broken hyperspace links and to reconnect all of human space.`
+		log "Factions" "Pug" `The Pug disappeared from human space, and left behind more questions than answers. It is possible that the true purpose of their attack was to give human beings a common enemy that would force them to band together and forget their internal struggles.`
 		event "fwc pug defeated"
 		event "fwc link restoration 1" 10
 		event "fwc link restoration 2" 18
@@ -2605,6 +2283,8 @@ mission "FWC End"
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
+		log "Parliament has agreed to a peace treaty, because the threat of alien invasion now seems much more pressing than the civil war with the Free Worlds. Whatever the true intention of the Pug was, the result of their interference is that humanity is at peace once more. There has been great loss of life, but nothing compared to what would have happened if the Free Worlds had tried to conquer Earth."
+		log "It may be a while before members of the Free Worlds manage to re-earn the trust of the rest of humanity, however."
 		"reputation: Republic" += 20
 		conversation
 			`You find Admiral Danforth inspecting the Pug spaceport. "This is all very odd," he says. "I'm glad the aliens appear to have left, but I wish we knew where they came from and whether they're likely to return."`

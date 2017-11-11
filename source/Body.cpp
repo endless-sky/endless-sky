@@ -164,10 +164,18 @@ Point Body::Unit() const
 
 
 
-// Zoom factor. THis controls how big the sprite should be drawn.
+// Zoom factor. This controls how big the sprite should be drawn.
 double Body::Zoom() const
 {
-	return max(zoom, 0.);
+	return max(zoom, 0.f);
+}
+
+
+
+// Check if this object is marked for removal from the game.
+bool Body::ShouldBeRemoved() const
+{
+	return shouldBeRemoved;
 }
 
 
@@ -280,9 +288,36 @@ void Body::AddFrameRate(double framesPerSecond)
 
 
 
+void Body::PauseAnimation()
+{
+	++pause;
+}
+
+
+
+// Mark this object to be removed from the game.
+void Body::MarkForRemoval()
+{
+	shouldBeRemoved = true;
+}
+
+
+
+// Mark this object to not be removed from the game.
+void Body::UnmarkForRemoval()
+{
+	shouldBeRemoved = false;
+}
+
+
+
 // Set the current time step.
 void Body::SetStep(int step, bool isHighDPI) const
 {
+	// If the animation is paused, reduce the step by however many frames it has
+	// been paused for.
+	step -= pause;
+	
 	// If the step is negative or there is no sprite, do nothing. This updates
 	// and caches the mask and the frame so that if further queries are made at
 	// this same time step, we don't need to redo the calculations.

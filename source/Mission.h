@@ -96,6 +96,7 @@ public:
 	bool CanOffer(const PlayerInfo &player) const;
 	bool HasSpace(const PlayerInfo &player) const;
 	bool CanComplete(const PlayerInfo &player) const;
+	bool IsSatisfied(const PlayerInfo &player) const;
 	bool HasFailed(const PlayerInfo &player) const;
 	// Mark a mission failed (e.g. due to a "fail" action in another mission).
 	void Fail();
@@ -137,7 +138,7 @@ public:
 	
 	
 private:
-	void Enter(const System *system, PlayerInfo &player, UI *u);
+	void Enter(const System *system, PlayerInfo &player, UI *ui);
 	const System *PickSystem(const LocationFilter &filter, const PlayerInfo &player) const;
 	const Planet *PickPlanet(const LocationFilter &filter, const PlayerInfo &player) const;
 	

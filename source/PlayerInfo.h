@@ -71,8 +71,6 @@ public:
 	// are multiple pilots with the same name it may have a digit appended.)
 	std::string Identifier() const;
 	
-	// Apply any "changes" saved in this player info to the global game state.
-	void ApplyChanges();
 	// Apply the given changes and store them in the player's saved game file.
 	void AddChanges(std::list<DataNode> &changes);
 	// Add an event that will happen at the given date.
@@ -105,7 +103,7 @@ public:
 	// must leave the planet immediately (without time to do anything else).
 	bool ShouldLaunch() const;
 	
-	// Access the player's accountign information.
+	// Access the player's accounting information.
 	const Account &Accounts() const;
 	Account &Accounts();
 	// Calculate the daily salaries for crew, not counting crew on "parked" ships.
@@ -128,6 +126,9 @@ public:
 	void RenameShip(const Ship *selected, const std::string &name);
 	// Change the order of the given ship in the list.
 	void ReorderShip(int fromIndex, int toIndex);
+	int ReorderShips(const std::set<int> &fromIndices, int toIndex);
+	// Get the attraction factors of the player's fleet to raid fleets.
+	std::pair<double, double> RaidFleetFactors() const;
 	
 	// Get cargo information.
 	CargoHold &Cargo();
@@ -145,6 +146,9 @@ public:
 	// Get the player's logbook.
 	const std::multimap<Date, std::string> &Logbook() const;
 	void AddLogEntry(const std::string &text);
+	const std::map<std::string, std::map<std::string, std::string>> &SpecialLogs() const;
+	void AddSpecialLog(const std::string &type, const std::string &name, const std::string &text);
+	bool HasLogs() const;
 	
 	// Get mission information.
 	const std::list<Mission> &Missions() const;
@@ -209,7 +213,8 @@ public:
 	bool SelectShips(const std::vector<const Ship *> &stack, bool hasShift);
 	void SelectShip(const Ship *ship, bool hasShift);
 	void SelectGroup(int group, bool hasShift);
-	void SetGroup(int group);
+	void SetGroup(int group, const std::set<Ship *> *newShips = nullptr);
+	std::set<Ship *> GetGroup(int group);
 	
 	// Keep track of any outfits that you have sold since landing. These will be
 	// available to buy back until you take off.
@@ -238,6 +243,9 @@ private:
 	// transferred properly.
 	PlayerInfo(const PlayerInfo &) = default;
 	PlayerInfo &operator=(const PlayerInfo &) = default;
+	
+	// Apply any "changes" saved in this player info to the global game state.
+	void ApplyChanges();
 	
 	// New missions are generated each time you land on a planet.
 	void UpdateAutoConditions();
@@ -271,6 +279,7 @@ private:
 	std::map<std::string, int64_t> costBasis;
 	
 	std::multimap<Date, std::string> logbook;
+	std::map<std::string, std::map<std::string, std::string>> specialLogs;
 	
 	std::list<Mission> missions;
 	// These lists are populated when you land on a planet, and saved so that
@@ -312,6 +321,7 @@ private:
 	std::map<std::string, std::set<std::string>> collapsed;
 	
 	bool freshlyLoaded = true;
+	int desiredCrew = 0;
 };
 
 

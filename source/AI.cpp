@@ -36,6 +36,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <cmath>
 #include <limits>
 #include <set>
+#include <vector>
 
 using namespace std;
 
@@ -50,8 +51,8 @@ namespace {
 	
 	bool IsStranded(const Ship &ship)
 	{
-		return ship.GetSystem() && !ship.GetSystem()->HasFuelFor(ship) && ship.JumpFuel()
-			&& ship.Attributes().Get("fuel capacity") && !ship.JumpsRemaining();
+		return ship.GetSystem() && !ship.IsEnteringHyperspace() && !ship.GetSystem()->HasFuelFor(ship)
+			&& ship.JumpFuel() && ship.Attributes().Get("fuel capacity") && !ship.JumpsRemaining();
 	}
 	
 	bool CanBoard(const Ship &ship, const Ship &target)
@@ -71,7 +72,41 @@ namespace {
 		return min(a, 360. - a);
 	}
 	
-	static const double MAX_DISTANCE_FROM_CENTER = 10000.;
+	// Determine if all able, non-carried escorts are ready to jump with this
+	// ship. Carried escorts are waited for in AI::Step.
+	bool EscortsReadyToJump(const Ship &ship)
+	{
+		for(const weak_ptr<Ship> &escort : ship.GetEscorts())
+		{
+			shared_ptr<const Ship> locked = escort.lock();
+			if(locked && !locked->IsDisabled() && !locked->CanBeCarried()
+					&& locked->GetSystem() == ship.GetSystem()
+					&& locked->JumpFuel() && !locked->IsReadyToJump())
+				return false;
+		}
+		return true;
+	}
+	
+	// Determine if the ship has any usable weapons.
+	bool IsArmed(const Ship &ship)
+	{
+		for(const Hardpoint &weapon : ship.Weapons())
+		{
+			const Outfit *outfit = weapon.GetOutfit();
+			if(outfit && !weapon.IsAntiMissile())
+			{
+				if(outfit->Ammo() && !ship.OutfitCount(outfit->Ammo()))
+					continue;
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	const double MAX_DISTANCE_FROM_CENTER = 10000.;
+	// Constance for the invisible fence timer.
+	const int FENCE_DECAY = 4;
+	const int FENCE_MAX = 600;
 }
 
 
@@ -88,7 +123,7 @@ void AI::IssueShipTarget(const PlayerInfo &player, const std::shared_ptr<Ship> &
 {
 	Orders newOrders;
 	bool isEnemy = target->GetGovernment()->IsEnemy();
-	newOrders.type = (!isEnemy ? Orders::GATHER
+	newOrders.type = (!isEnemy ? Orders::KEEP_STATION
 		: target->IsDisabled() ? Orders::FINISH_OFF : Orders::ATTACK); 
 	newOrders.target = target;
 	string description = (isEnemy ? "focusing fire on" : "following") + (" \"" + target->Name() + "\".");
@@ -97,11 +132,12 @@ void AI::IssueShipTarget(const PlayerInfo &player, const std::shared_ptr<Ship> &
 
 
 
-void AI::IssueMoveTarget(const PlayerInfo &player, const Point &target)
+void AI::IssueMoveTarget(const PlayerInfo &player, const Point &target, const System *moveToSystem)
 {
 	Orders newOrders;
 	newOrders.type = Orders::MOVE_TO;
 	newOrders.point = target;
+	newOrders.targetSystem = moveToSystem;
 	IssueOrders(player, newOrders, "moving to the given location.");
 }
 
@@ -184,13 +220,13 @@ void AI::UpdateKeys(PlayerInfo &player, Command &clickCommands, bool isActive)
 		newOrders.target = player.FlagshipPtr();
 		IssueOrders(player, newOrders, "gathering around your flagship.");
 	}
-	// Get rid of any invalid orders.
+	// Get rid of any invalid orders. Carried ships will retain orders in case they are deployed.
 	for(auto it = orders.begin(); it != orders.end(); )
 	{
 		if(it->second.type & Orders::REQUIRES_TARGET)
 		{
 			shared_ptr<Ship> ship = it->second.target.lock();
-			if(!ship || !ship->IsTargetable() || ship->GetSystem() != it->first->GetSystem()
+			if(!ship || !ship->IsTargetable() || (it->first->GetSystem() && ship->GetSystem() != it->first->GetSystem())
 					|| (ship->IsDisabled() && it->second.type == Orders::ATTACK))
 			{
 				it = orders.erase(it);
@@ -264,6 +300,7 @@ void AI::Step(const PlayerInfo &player)
 					}
 			}
 	}
+	
 	for(const auto &it : ships)
 	{
 		const Government *gov = it->GetGovernment();
@@ -281,12 +318,32 @@ void AI::Step(const PlayerInfo &player)
 			if(ogov->AttitudeToward(gov) > 0. && oit->Position().Distance(it->Position()) < 2000.)
 				strength += oit->Cost();
 		}
-	}		
+	}
+	
+	// Update the counts of how long ships have been outside the "invisible fence."
+	// If a ship ceases to exist, this also ensures that it will be removed from
+	// the fence count map after a few seconds.
+	for(auto it = fenceCount.begin(); it != fenceCount.end(); )
+	{
+		it->second -= FENCE_DECAY;
+		if(it->second < 0)
+			it = fenceCount.erase(it);
+		else
+			++it;
+	}
+	for(const auto &it : ships)
+		if(it->Position().Length() >= MAX_DISTANCE_FROM_CENTER)
+		{
+			int &value = fenceCount[&*it];
+			value = min(FENCE_MAX, value + FENCE_DECAY + 1);
+		}
 	
 	const Ship *flagship = player.Flagship();
 	step = (step + 1) & 31;
 	int targetTurn = 0;
 	int minerCount = 0;
+	const int maxMinerCount = minables.empty() ? 0 : 9;
+	bool opportunisticEscorts = !Preferences::Has("Turrets focus fire");
 	for(const auto &it : ships)
 	{
 		// Skip any carried fighters or drones that are somehow in the list.
@@ -300,72 +357,21 @@ void AI::Step(const PlayerInfo &player)
 		}
 		
 		const Government *gov = it->GetGovernment();
+		const Personality &personality = it->GetPersonality();
 		double health = .5 * it->Shields() + it->Hull();
 		bool isPresent = (it->GetSystem() == player.GetSystem());
 		bool isStranded = IsStranded(*it);
 		bool thisIsLaunching = (isLaunching && it->GetSystem() == player.GetSystem());
 		if(isStranded || it->IsDisabled())
 		{
+			// Derelicts never ask for help, to make sure that only the player
+			// will repair them.
 			if(it->IsDestroyed() || it->GetPersonality().IsDerelict())
 				continue;
 			
-			bool hasEnemy = false;
-			Ship *firstAlly = nullptr;
-			bool selectNext = false;
-			Ship *nextAlly = nullptr;
-			for(const auto &ship : ships)
-			{
-				// Never ask yourself for help.
-				if(ship.get() == it.get())
-					continue;
-				if(ship->IsDisabled() || !ship->IsTargetable() || ship->GetSystem() != it->GetSystem())
-					continue;
-				// Fighters and drones can't offer assistance.
-				if(ship->CanBeCarried())
-					continue;
-				
-				const Government *otherGov = ship->GetGovernment();
-				// If any enemies of this ship are in system, it cannot call for help.
-				if(otherGov->IsEnemy(gov) && isPresent)
-				{
-					hasEnemy = true;
-					break;
-				}
-				// Don't ask for help from a ship that is already helping someone.
-				if(ship->GetShipToAssist() && ship->GetShipToAssist().get() != it.get())
-					continue;
-				// Your escorts only help other escorts, and your flagship never helps.
-				if((otherGov->IsPlayer() && !gov->IsPlayer()) || ship.get() == flagship)
-					continue;
-				// Your escorts should not help each other if already under orders.
-				if(otherGov->IsPlayer() && gov->IsPlayer() && orders.count(ship.get()))
-					continue;
-				
-				if(it->IsDisabled() ? (otherGov == gov) : (!otherGov->IsEnemy(gov)))
-				{
-					if(isStranded && !ship->CanRefuel(*it))
-						continue;
-					
-					if(!firstAlly)
-						firstAlly = &*ship;
-					else if(ship == it)
-						selectNext = true;
-					else if(selectNext && !nextAlly)
-						nextAlly = &*ship;
-				}
-			}
+			// Attempt to find a friendly ship to render assistance.
+			AskForHelp(*it, isStranded, flagship);
 			
-			isStranded = false;
-			if(!hasEnemy)
-			{
-				if(!nextAlly)
-					nextAlly = firstAlly;
-				if(nextAlly)
-				{
-					nextAlly->SetShipToAssist(it);
-					isStranded = true;
-				}
-			}
 			if(it->IsDisabled())
 			{
 				// Ships other than escorts should deploy fighters if disabled.
@@ -391,11 +397,96 @@ void AI::Step(const PlayerInfo &player)
 				command |= Command::CLOAK;
 		}
 		
-		const Personality &personality = it->GetPersonality();
 		shared_ptr<Ship> parent = it->GetParent();
-		shared_ptr<const Ship> target = it->GetTargetShip();
+		if(parent && parent->IsDestroyed())
+		{
+			// An NPC that loses its fleet leader should attempt to
+			// follow that leader's parent. For most mission NPCs,
+			// this is the player. Any regular NPCs and mission NPCs
+			// with "personality uninterested" become independent.
+			parent = parent->GetParent();
+			it->SetParent(parent);
+		}
 		
-		if(isPresent && personality.IsSwarming())
+		// Special actions when a ship is near death:
+		if(health < 1.)
+		{
+			if(parent && personality.IsCoward())
+			{
+				// Cowards abandon their fleets.
+				parent.reset();
+				it->SetParent(parent);
+			}
+			if(personality.IsAppeasing() && it->Cargo().Used())
+			{
+				double &threshold = appeasmentThreshold[it.get()];
+				if(1. - health > threshold)
+				{
+					// "Appeasing" ships will dump some fraction of their cargo.
+					int toDump = 11 + (1. - health) * .5 * it->Cargo().Size();
+					for(const auto &commodity : it->Cargo().Commodities())
+					{
+						it->Jettison(commodity.first, min(commodity.second, toDump));
+						toDump -= commodity.second;
+						if(toDump <= 0)
+							break;
+					}
+					Messages::Add(it->GetGovernment()->GetName() + " ship \"" + it->Name()
+						+ "\": Please, just take my cargo and leave me alone.");
+					threshold = (1. - health) + .1;
+				}
+			}
+		}
+		
+		// Pick a target and automatically fire weapons.
+		shared_ptr<const Ship> target = it->GetTargetShip();
+		if(isPresent)
+		{
+			// Each ship only switches targets twice a second, so that it can
+			// focus on damaging one particular ship.
+			targetTurn = (targetTurn + 1) & 31;
+			if(targetTurn == step || !target || !target->IsTargetable() || target->IsDestroyed()
+					|| (target->IsDisabled() && personality.Disables()))
+				it->SetTargetShip(FindTarget(*it));
+			
+			AimTurrets(*it, command, it->IsYours() ? opportunisticEscorts : personality.IsOpportunistic());
+			AutoFire(*it, command);
+		}
+		
+		// If recruited to assist a ship, follow through on the commitment
+		// instead of ignoring it due to other personality traits.
+		shared_ptr<Ship> shipToAssist = it->GetShipToAssist();
+		if(shipToAssist)
+		{
+			if(shipToAssist->IsDestroyed() || shipToAssist->GetSystem() != it->GetSystem()
+					|| shipToAssist->IsLanding() || shipToAssist->IsHyperspacing()
+					|| (!shipToAssist->IsDisabled() && shipToAssist->JumpsRemaining())
+					|| shipToAssist->GetGovernment()->IsEnemy(gov))
+			{
+				shipToAssist.reset();
+				it->SetShipToAssist(shipToAssist);
+			}
+			else if(!it->IsBoarding())
+			{
+				MoveTo(*it, command, shipToAssist->Position(), shipToAssist->Velocity(), 40., .8);
+				command |= Command::BOARD;
+			}
+			
+			if(shipToAssist)
+			{
+				it->SetTargetShip(shipToAssist);
+				it->SetCommands(command);
+				continue;
+			}
+		}
+		
+		double targetDistance = numeric_limits<double>::infinity();
+		target = it->GetTargetShip();
+		if(target)
+			targetDistance = target->Position().Distance(it->Position());
+		
+		// Behave in accordance with personality traits.
+		if(isPresent && personality.IsSwarming() && !isStranded)
 		{
 			parent.reset();
 			it->SetParent(parent);
@@ -430,75 +521,51 @@ void AI::Step(const PlayerInfo &player)
 				Swarm(*it, command, *target);
 			else if(it->Zoom() == 1.)
 				Refuel(*it, command);
+			
 			it->SetCommands(command);
 			continue;
 		}
 		
-		if(isPresent && personality.IsSurveillance())
+		if(isPresent && personality.IsSurveillance() && !isStranded)
 		{
 			DoSurveillance(*it, command);
 			it->SetCommands(command);
 			continue;
 		}
-		// Pick a target and automatically fire weapons.
-		if(isPresent)
-		{
-			// Each ship only switches targets twice a second, so that it can
-			// focus on damaging one particular ship.
-			targetTurn = (targetTurn + 1) & 31;
-			if(targetTurn == step || !target || !target->IsTargetable() || target->IsDestroyed()
-					|| (target->IsDisabled() && personality.Disables()))
-				it->SetTargetShip(FindTarget(*it));
-			
-			command |= AutoFire(*it);
-		}
+		
+		// Ships that harvest flotsam prioritize it over stopping to be refueled.
 		if(isPresent && personality.Harvests() && DoHarvesting(*it, command))
 		{
 			it->SetCommands(command);
 			continue;
 		}
-		if(isPresent && personality.IsMining() && !target
-				&& it->Cargo().Free() >= 5 && ++miningTime[&*it] < 3600 && ++minerCount < 9)
-		{
-			DoMining(*it, command);
-			it->SetCommands(command);
-			continue;
-		}
 		
-		// Special actions when a ship is near death:
-		if(health < 1.)
+		// Attacking a hostile ship and stopping to be refueled are more important than mining.
+		if(isPresent && personality.IsMining() && !target && !isStranded && maxMinerCount)
 		{
-			if(parent && personality.IsCoward())
+			// Miners with free cargo space and available mining time should mine. Mission NPCs
+			// should mine even if there are other miners or they have been mining a while.
+			if(it->Cargo().Free() >= 5 && IsArmed(*it) && (it->IsSpecial()
+					|| (++miningTime[&*it] < 3600 && ++minerCount < maxMinerCount)))
 			{
-				// Cowards abandon their fleets.
-				parent.reset();
-				it->SetParent(parent);
+				if(it->HasBays())
+					command |= Command::DEPLOY;
+				DoMining(*it, command);
+				it->SetCommands(command);
+				continue;
 			}
-			if(personality.IsAppeasing() && it->Cargo().Used())
+			// Fighters and drones should assist their parent's mining operation if they cannot
+			// carry ore, and the asteroid is near enough that the parent can harvest the ore.
+			const shared_ptr<Minable> &minable = parent ? parent->GetTargetAsteroid() : nullptr;
+			if(it->CanBeCarried() && parent && miningTime[&*parent] < 3601 && minable
+					&& minable->Position().Distance(parent->Position()) < 600.)
 			{
-				double &threshold = appeasmentThreshold[it.get()];
-				if(1. - health > threshold)
-				{
-					// "Appeasing" ships will dump some fraction of their cargo.
-					int toDump = 11 + (1. - health) * .5 * it->Cargo().Size();
-					for(const auto &commodity : it->Cargo().Commodities())
-					{
-						it->Jettison(commodity.first, min(commodity.second, toDump));
-						toDump -= commodity.second;
-						if(toDump <= 0)
-							break;
-					}
-					Messages::Add(it->GetGovernment()->GetName() + " ship \"" + it->Name()
-						+ "\": Please, just take my cargo and leave me alone.");
-					threshold = (1. - health) + .1;
-				}
+				MoveToAttack(*it, command, *minable);
+				AutoFire(*it, command, *minable);
+				it->SetCommands(command);
+				continue;
 			}
 		}
-		
-		double targetDistance = numeric_limits<double>::infinity();
-		target = it->GetTargetShip();
-		if(target)
-			targetDistance = target->Position().Distance(it->Position());
 		
 		// Handle fighters:
 		const string &category = it->Attributes().Category();
@@ -511,15 +578,28 @@ void AI::Step(const PlayerInfo &player)
 				// Handle orphaned fighters and drones.
 				parent.reset();
 				it->SetParent(parent);
+				vector<shared_ptr<Ship>> parentChoices;
+				parentChoices.reserve(ships.size() * .1);
 				for(const auto &other : ships)
-					if(other->GetGovernment() == gov && !other->IsDisabled()
-							&& other->GetSystem() == it->GetSystem() && !other->CanBeCarried() && other->CanCarry(*it.get()))
+				{
+					if(other->GetGovernment() == gov && other->GetSystem() == it->GetSystem() && !other->CanBeCarried())
 					{
-						parent = other;
-						it->SetParent(other);
-						if(other->BaysFree(isFighter))
-							break;
+						if(!other->IsDisabled() && other->CanCarry(*it.get()))
+						{
+							parent = other;
+							it->SetParent(other);
+							if(other->BaysFree(isFighter))
+								break;
+						}
+						else
+							parentChoices.emplace_back(other);
 					}
+				}
+				if(!parent && !parentChoices.empty())
+				{
+					parent = parentChoices[Random::Int(parentChoices.size())];
+					it->SetParent(parent);
+				}
 			}
 			else if(parent && !(it->IsYours() ? thisIsLaunching : parent->Commands().Has(Command::DEPLOY)))
 			{
@@ -532,36 +612,22 @@ void AI::Step(const PlayerInfo &player)
 		}
 		bool mustRecall = false;
 		if(it->HasBays() && !(it->IsYours() ? thisIsLaunching : it->Commands().Has(Command::DEPLOY)) && !target)
-			for(const weak_ptr<const Ship> &ptr : it->GetEscorts())
+			for(const weak_ptr<Ship> &ptr : it->GetEscorts())
 			{
 				shared_ptr<const Ship> escort = ptr.lock();
 				if(escort && escort->CanBeCarried() && escort->GetSystem() == it->GetSystem()
 						&& !escort->IsDisabled())
 				{
-					mustRecall = true;
-					break;
+					const string &category = escort->Attributes().Category();
+					if(it->BaysFree(category == "Fighter"))
+					{
+						mustRecall = true;
+						break;
+					}
 				}
 			}
 		
-		shared_ptr<Ship> shipToAssist = it->GetShipToAssist();
-		if(shipToAssist)
-		{
-			it->SetTargetShip(shipToAssist);
-			if(shipToAssist->IsDestroyed() || shipToAssist->GetSystem() != it->GetSystem()
-					|| shipToAssist->IsLanding() || shipToAssist->IsHyperspacing()
-					|| (!shipToAssist->IsDisabled() && shipToAssist->JumpsRemaining())
-					|| shipToAssist->GetGovernment()->IsEnemy(gov))
-				it->SetShipToAssist(shared_ptr<Ship>());
-			else if(!it->IsBoarding())
-			{
-				MoveTo(*it, command, shipToAssist->Position(), shipToAssist->Velocity(), 40., .8);
-				command |= Command::BOARD;
-			}
-			it->SetCommands(command);
-			continue;
-		}
-		
-		bool isPlayerEscort = it->IsYours();
+		// Construct movement / navigation commands as appropriate for the ship.
 		if(mustRecall || isStranded)
 		{
 			// Stopping to let fighters board or to be refueled takes priority
@@ -573,15 +639,16 @@ void AI::Step(const PlayerInfo &player)
 		}
 		else if(FollowOrders(*it, command))
 		{
-			// If this is an escort and it has orders to follow, no need for the
-			// AI to figure out what action it must perform.
+			// If this is an escort and it followed orders, its only final task
+			// is to convert completed MOVE_TO orders into HOLD_POSITION orders.
+			UpdateOrders(*it);
 		}
 		// Hostile "escorts" (i.e. NPCs that are trailing you) only revert to
 		// escort behavior when in a different system from you. Otherwise,
 		// the behavior depends on what the parent is doing, whether there
 		// are hostile targets nearby, and whether the escort has any
 		// immediate needs (like refueling).
-		else if(!parent || parent->IsDestroyed() || (parent->IsDisabled() && !isPlayerEscort))
+		else if(!parent)
 			MoveIndependent(*it, command);
 		else if(parent->GetSystem() != it->GetSystem())
 		{
@@ -591,9 +658,26 @@ void AI::Step(const PlayerInfo &player)
 				MoveEscort(*it, command);
 		}
 		// From here down, we're only dealing with ships that have a "parent"
-		// which is in the same system as them. If you're an enemy of your
-		// "parent," you don't take orders from them.
-		else if(personality.IsStaying() || parent->GetGovernment()->IsEnemy(gov))
+		// which is in the same system as them.
+		else if(parent->GetGovernment()->IsEnemy(gov))
+		{
+			// If your parent is your enemy, move toward them until you have
+			// selected a target to fight. Then, fight it.
+			if(target || !parent->IsTargetable())
+				MoveIndependent(*it, command);
+			else
+				MoveEscort(*it, command);
+		}
+		else if(parent->IsDisabled())
+		{
+			// Your parent is disabled, and is in this system. If you have enemy
+			// targets present, fight them. Otherwise, repair your parent.
+			if(target)
+				MoveIndependent(*it, command);
+			else
+				it->SetShipToAssist(parent);
+		}
+		else if(personality.IsStaying())
 			MoveIndependent(*it, command);
 		// This is a friendly escort. If the parent is getting ready to
 		// jump, always follow.
@@ -609,16 +693,6 @@ void AI::Step(const PlayerInfo &player)
 		else
 			MoveEscort(*it, command);
 		
-		// Apply the afterburner if you're in a heated battle and it will not
-		// use up your last jump worth of fuel.
-		if(it->Attributes().Get("afterburner thrust") && target && !target->IsDisabled()
-				&& target->IsTargetable() && target->GetSystem() == it->GetSystem())
-		{
-			double fuel = it->Fuel() * it->Attributes().Get("fuel capacity");
-			if(fuel - it->Attributes().Get("afterburner fuel") >= it->JumpFuel())
-				if(command.Has(Command::FORWARD) && targetDistance < 1000.)
-					command |= Command::AFTERBURNER;
-		}
 		// Your own ships cloak on your command; all others do it when the
 		// AI considers it appropriate.
 		if(!it->IsYours())
@@ -629,6 +703,128 @@ void AI::Step(const PlayerInfo &player)
 		
 		it->SetCommands(command);
 	}
+}
+
+
+
+// Get the in-system strength of each government's allies and enemies.
+int64_t AI::AllyStrength(const Government *government)
+{
+	auto it = allyStrength.find(government);
+	return (it == allyStrength.end() ? 0 : it->second);
+}
+
+
+
+int64_t AI::EnemyStrength(const Government *government)
+{
+	auto it = enemyStrength.find(government);
+	return (it == enemyStrength.end() ? 0 : it->second);
+}
+
+
+
+// Check if the ship is being helped, and if not, ask for help.
+void AI::AskForHelp(Ship &ship, bool &isStranded, const Ship *flagship)
+{
+	if(HasHelper(ship, isStranded))
+		isStranded = true;
+	else if(!Random::Int(30))
+	{
+		const Government *gov = ship.GetGovernment();
+		bool hasEnemy = false;
+		
+		vector<Ship *> canHelp;
+		canHelp.reserve(ships.size());
+		for(const auto &helper : ships)
+		{
+			// Never ask yourself for help.
+			if(helper.get() == &ship)
+				continue;
+			
+			// If any enemies of this ship are in its system, it cannot call for help.
+			const System *system = ship.GetSystem();
+			const Government *otherGov = helper->GetGovernment();
+			if(otherGov->IsEnemy(gov) && flagship && system == flagship->GetSystem())
+			{
+				hasEnemy |= (system == helper->GetSystem() && !helper->IsDisabled());
+				if(hasEnemy)
+					break;
+			}
+			
+			// Check if this ship is logically able to help.
+			// If the ship is already assisting someone else, it cannot help this ship.
+			if(helper->GetShipToAssist() && helper->GetShipToAssist().get() != &ship)
+				continue;
+			// If the ship is mining or chasing flotsam, it cannot help this ship.
+			if(helper->GetTargetAsteroid() || helper->GetTargetFlotsam())
+				continue;
+			// Your escorts only help other escorts, and your flagship never helps.
+			if((otherGov->IsPlayer() && !gov->IsPlayer()) || helper.get() == flagship)
+				continue;
+			// Your escorts should not help each other if already under orders.
+			if(otherGov->IsPlayer() && gov->IsPlayer() && orders.count(helper.get()))
+				continue;
+			
+			// Check if this ship is physically able to help.
+			if(!CanHelp(ship, *helper, isStranded))
+				continue;
+			
+			// Prefer fast ships over slow ones.
+			canHelp.insert(canHelp.end(), 1 + .3 * helper->MaxVelocity(), helper.get());
+		}
+		
+		if(!hasEnemy && !canHelp.empty())
+		{
+			Ship *helper = canHelp[Random::Int(canHelp.size())];
+			helper->SetShipToAssist((&ship)->shared_from_this());
+			helperList[&ship] = helper->shared_from_this();
+			isStranded = true;
+		}
+		else
+			isStranded = false;
+	}
+	else
+		isStranded = false;
+}
+
+
+
+// Determine if the selected ship is physically able to render assistance.
+bool AI::CanHelp(const Ship &ship, const Ship &helper, const bool needsFuel)
+{
+	// Fighters and drones can't offer assistance.
+	if(helper.IsDisabled() || !helper.IsTargetable() || helper.CanBeCarried()
+			|| helper.GetSystem() != ship.GetSystem())
+		return false;
+	
+	// An enemy cannot provide assistance, and only ships of the same government will repair disabled ships.
+	const Government *helperGov = helper.GetGovernment();
+	if(helperGov->IsEnemy(ship.GetGovernment()) || (ship.IsDisabled() && helperGov != ship.GetGovernment()))
+		return false;
+	
+	// If the helper has insufficient fuel, it cannot help this ship unless this ship is also disabled.
+	if(!ship.IsDisabled() && needsFuel && !helper.CanRefuel(ship))
+		return false;
+	
+	return true;
+}
+
+
+
+bool AI::HasHelper(const Ship &ship, const bool needsFuel)
+{
+	// Do we have an existing ship that was asked to assist?
+	if(helperList.find(&ship) != helperList.end())
+	{
+		shared_ptr<Ship> helper = helperList[&ship].lock();
+		if(helper && helper->GetShipToAssist().get() == &ship && CanHelp(ship, *helper, needsFuel))
+			return true;
+		else
+			helperList.erase(&ship);
+	}
+	
+	return false;
 }
 
 
@@ -695,9 +891,23 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 		if(it->GetSystem() == system && it->IsTargetable() && gov->IsEnemy(it->GetGovernment()))
 		{
 			// If this is a "nemesis" ship and it has found one of the player's
-			// ships to target, it will not go after anything else.
-			if(hasNemesis && !it->GetGovernment()->IsPlayer())
+			// ships to target, it will only consider the player's owned fleet,
+			// or NPCs allied with the player.
+			const bool isPotentialNemesis = person.IsNemesis()
+					&& (it->GetGovernment()->IsPlayer() || it->GetPersonality().IsEscort());
+			if(hasNemesis && !isPotentialNemesis)
 				continue;
+			if(!ship.IsYours() && it->GetPersonality().IsMarked())
+				continue;
+			if(!it->IsYours() && ship.GetPersonality().IsMarked())
+				continue;
+			if(!person.IsUnconstrained())
+			{
+				// Makes sure this ship isn't parked outside the invisible fence.
+				auto fit = fenceCount.find(&*it);
+				if(fit != fenceCount.end() && fit->second == FENCE_MAX)
+					continue;
+			}
 			
 			// Calculate what the range will be a second from now, so that ships
 			// will prefer targets that they are headed toward.
@@ -727,23 +937,14 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 				range += 5000. * it->IsDisabled();
 			else
 			{
-				bool hasBoarded = Has(ship, it, ShipEvent::BOARD);
+				bool hasBoarded = Has(ship, it, ShipEvent::BOARD) || !ship.Cargo().Free();
 				// Don't plunder unless there are no "live" enemies nearby.
 				range += 2000. * (2 * it->IsDisabled() - !hasBoarded);
 			}
-			// Check if this target has any weapons (not counting anti-missiles).
-			bool isArmed = false;
-			for(const auto &ait : it->Weapons())
-				if(ait.GetOutfit() && !ait.GetOutfit()->AntiMissile())
-				{
-					isArmed = true;
-					break;
-				}
-			// Prefer to go after armed targets, expecially if you're not a pirate.
-			range += 1000. * (!isArmed * (1 + !person.Plunders()));
+			// Prefer to go after armed targets, especially if you're not a pirate.
+			range += 1000. * (!IsArmed(*it) * (1 + !person.Plunders()));
 			// Focus on nearly dead ships.
 			range += 500. * (it->Shields() + it->Hull());
-			bool isPotentialNemesis = (person.IsNemesis() && it->GetGovernment()->IsPlayer());
 			if((isPotentialNemesis && !hasNemesis) || range < closest)
 			{
 				closest = range;
@@ -775,7 +976,7 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 	}
 	
 	// Run away if your target is not disabled and you are badly damaged.
-	if(!isDisabled && target && (person.IsFleeing() || 
+	if(!isDisabled && target && !ship.IsYours() && (person.IsFleeing() || 
 			(.5 * ship.Shields() + ship.Hull() < 1.
 				&& !person.IsHeroic() && !person.IsStaying() && !parentIsEnemy)))
 	{
@@ -795,7 +996,7 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 	if(!target && person.IsVindictive())
 	{
 		target = ship.GetTargetShip();
-		if(target && target->Cloaking() == 1.)
+		if(target && (target->Cloaking() == 1. || target->GetSystem() != ship.GetSystem()))
 			target.reset();
 	}
 	
@@ -824,7 +1025,15 @@ bool AI::FollowOrders(Ship &ship, Command &command) const
 	}
 	
 	shared_ptr<Ship> target = it->second.target.lock();
-	if(type == Orders::MOVE_TO && ship.Position().Distance(it->second.point) > 20.)
+	if(type == Orders::MOVE_TO && it->second.targetSystem && ship.GetSystem() != it->second.targetSystem)
+	{
+		// The desired position is in a different system.
+		DistanceMap distance(ship, it->second.targetSystem);
+		const System *to = distance.Route(ship.GetSystem());
+		ship.SetTargetSystem(to);
+		return false;
+	}
+	else if(type == Orders::MOVE_TO && ship.Position().Distance(it->second.point) > 20.)
 		MoveTo(ship, command, it->second.point, Point(), 10., .1);
 	else if(type == Orders::HOLD_POSITION || type == Orders::MOVE_TO)
 	{
@@ -903,16 +1112,9 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 		return;
 	}
 	
-	// If this ship is moving independently because it has a target, not because
-	// it has no parent, don't let it make travel plans.
-	if(ship.GetParent() && !ship.GetPersonality().IsStaying())
-	{
-		if(!ship.JumpsRemaining())
-			Refuel(ship, command);
-		return;
-	}
-	
-	if(!ship.GetTargetSystem() && !ship.GetTargetStellar() && !ship.GetPersonality().IsStaying())
+	const bool shouldStay = ship.GetPersonality().IsStaying()
+			||  (ship.GetParent() && ship.GetParent()->GetGovernment()->IsEnemy(ship.GetGovernment()));
+	if(!ship.GetTargetSystem() && !ship.GetTargetStellar() && !shouldStay)
 	{
 		int jumps = ship.JumpsRemaining();
 		// Each destination system has an average priority of 10.
@@ -991,26 +1193,24 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 	if(ship.GetTargetSystem())
 	{
 		PrepareForHyperspace(ship, command);
-		bool mustWait = false;
-		if(ship.BaysFree(false) || ship.BaysFree(true))
-			for(const weak_ptr<const Ship> &escort : ship.GetEscorts())
-			{
-				shared_ptr<const Ship> locked = escort.lock();
-				mustWait |= locked && locked->CanBeCarried() && !locked->IsDisabled();
-			}
-		
-		if(!mustWait)
-			command |= Command::JUMP;
+		// Issuing the JUMP command prompts the escorts to get ready to jump.
+		command |= Command::JUMP;
+		// Issuing the WAIT command will prevent this parent from jumping.
+		// When all its non-carried, in-system escorts that are not disabled and
+		// have the ability to jump are ready, the WAIT command will be omitted.
+		if(!EscortsReadyToJump(ship))
+			command |= Command::WAIT;
 	}
 	else if(ship.GetTargetStellar())
 	{
 		MoveToPlanet(ship, command);
-		if(!ship.GetPersonality().IsStaying() && ship.Attributes().Get("fuel capacity"))
+		if(!shouldStay && ship.Attributes().Get("fuel capacity")
+				&& ship.GetTargetStellar()->GetPlanet() && ship.GetTargetStellar()->GetPlanet()->CanLand(ship))
 			command |= Command::LAND;
 		else if(ship.Position().Distance(ship.GetTargetStellar()->Position()) < 100.)
 			ship.SetTargetStellar(nullptr);
 	}
-	else if(ship.GetPersonality().IsStaying() && ship.GetSystem()->Objects().size())
+	else if(shouldStay && !ship.GetSystem()->Objects().empty())
 	{
 		unsigned i = Random::Int(ship.GetSystem()->Objects().size());
 		ship.SetTargetStellar(&ship.GetSystem()->Objects()[i]);
@@ -1028,47 +1228,89 @@ void AI::MoveEscort(Ship &ship, Command &command) const
 	// Check if the parent has a target planet that is in the parent's system.
 	const Planet *parentPlanet = (parent.GetTargetStellar() ? parent.GetTargetStellar()->GetPlanet() : nullptr);
 	bool planetIsHere = (parentPlanet && parentPlanet->IsInSystem(parent.GetSystem()));
+	bool systemHasFuel = ship.GetSystem()->HasFuelFor(ship);
 	// If an escort is out of fuel, they should refuel without waiting for the
 	// "parent" to land (because the parent may not be planning on landing).
-	if(hasFuelCapacity && !ship.JumpsRemaining() && ship.GetSystem()->HasFuelFor(ship))
+	if(hasFuelCapacity && systemHasFuel && !ship.JumpsRemaining())
 		Refuel(ship, command);
 	else if(!parentIsHere && !isStaying)
 	{
-		// Check whether the ship has a target system and is able to jump to it.
-		bool hasJump = (ship.GetTargetSystem() && ship.JumpFuel(ship.GetTargetSystem()));
-		if(!hasJump && !ship.GetTargetStellar())
+		if(ship.GetTargetStellar())
 		{
-			// If we're stranded and haven't decided where to go, figure out a
-			// path to the parent ship's system.
+			const Planet *targetPlanet = ship.GetTargetStellar()->GetPlanet();
+			if(!targetPlanet || !targetPlanet->CanLand(ship))
+				ship.SetTargetStellar(nullptr);
+			// If this ship has already refuelled, and its parent has left the
+			// system, no need to land on a planet again.
+			else if(!targetPlanet->IsWormhole() && ship.Fuel() == 1.)
+				ship.SetTargetStellar(nullptr);
+		}
+		
+		if(!ship.GetTargetStellar() && !ship.GetTargetSystem())
+		{
+			// Figure out a path to the parent ship's system and check whether the
+			// ship should refuel, land on a wormhole or jump to the next system.
 			DistanceMap distance(ship, parent.GetSystem());
 			const System *from = ship.GetSystem();
-			const System *to = distance.Route(from);
-			for(const StellarObject &object : from->Objects())
-				if(object.GetPlanet() && object.GetPlanet()->WormholeDestination(from) == to)
+			
+			// Check how much fuel is required to reach the next refuel system.
+			if(systemHasFuel && hasFuelCapacity && ship.Fuel() < 1.)
+			{
+				const System *to = distance.Route(from);
+				while(to && !to->HasFuelFor(ship))
+					to = distance.Route(to);
+				
+				// Refuel.
+				if(!to || ship.Fuel() < distance.RequiredFuel(from, to) / ship.Attributes().Get("fuel capacity"))
+					Refuel(ship, command);
+			}
+			
+			if(!ship.GetTargetStellar())
+			{
+				const System *to = distance.Route(from);
+				
+				// Land on wormhole.
+				for(const StellarObject &object : from->Objects())
 				{
-					ship.SetTargetStellar(&object);
-					break;
+					const Planet *planet = object.GetPlanet();
+					if(planet && planet->IsWormhole() && planet->CanLand(ship) && planet->WormholeDestination(from) == to)
+					{
+						ship.SetTargetStellar(&object);
+						break;
+					}
 				}
-			ship.SetTargetSystem(to);
-			// Check if we need to refuel. Wormhole travel does not require fuel.
-			if(!ship.GetTargetStellar() && (!to || 
-					(from->HasFuelFor(ship) && !to->HasFuelFor(ship) && ship.JumpsRemaining() == 1)))
-				Refuel(ship, command);
+				
+				// Jump to the next system.
+				if(!ship.GetTargetStellar())
+					ship.SetTargetSystem(to);
+			}
 		}
+		
 		// Perform the action that this ship previously decided on.
 		if(ship.GetTargetStellar())
 		{
 			MoveToPlanet(ship, command);
 			command |= Command::LAND;
 		}
-		else if(ship.GetTargetSystem())
+		else if(ship.GetTargetSystem() && ship.JumpsRemaining())
 		{
 			PrepareForHyperspace(ship, command);
 			command |= Command::JUMP;
+			// If this ship is a parent to members of its fleet,
+			// it should wait for them before jumping.
+			if(!EscortsReadyToJump(ship))
+				command |= Command::WAIT;
 		}
+		else if(hasFuelCapacity && systemHasFuel && ship.Fuel() < 1.)
+			// Refuel so that when the parent returns, this ship is ready to rendezvous with it.
+			Refuel(ship, command);
+		else
+			// This ship has no route to the parent's system, so park at the system's center.
+			MoveTo(ship, command, Point(), Point(), 40., 0.1);
 	}
 	else if(parent.Commands().Has(Command::LAND) && parentIsHere && planetIsHere && parentPlanet->CanLand(ship))
 	{
+		ship.SetTargetSystem(nullptr);
 		ship.SetTargetStellar(parent.GetTargetStellar());
 		MoveToPlanet(ship, command);
 		if(parent.IsLanding() || parent.CanLand())
@@ -1081,13 +1323,24 @@ void AI::MoveEscort(Ship &ship, Command &command) const
 		DistanceMap distance(ship, parent.GetTargetSystem());
 		const System *dest = distance.Route(ship.GetSystem());
 		ship.SetTargetSystem(dest);
-		if(!dest || (ship.GetSystem()->HasFuelFor(ship) && !dest->HasFuelFor(ship) && ship.JumpsRemaining() == 1))
+		if(!dest)
+			// This ship has no route to the parent's destination system, so protect it until it jumps away.
+			KeepStation(ship, command, parent);
+		else if(systemHasFuel && !dest->HasFuelFor(ship) && ship.JumpsRemaining() == 1)
 			Refuel(ship, command);
+		else if(!ship.JumpsRemaining())
+			MoveTo(ship, command, Point(), Point(), 40., 0.1);
 		else
 		{
 			PrepareForHyperspace(ship, command);
 			if(parent.IsEnteringHyperspace() || parent.IsReadyToJump())
+			{
 				command |= Command::JUMP;
+				// If this ship is a parent to members of its fleet,
+				// it should wait for them before jumping.
+				if(!EscortsReadyToJump(ship))
+					command |= Command::WAIT;
+			}
 		}
 	}
 	else
@@ -1136,7 +1389,7 @@ bool AI::CanRefuel(const Ship &ship, const StellarObject *target)
 	if(!planet->IsInSystem(ship.GetSystem()))
 		return false;
 	
-	if(!planet->HasSpaceport() || planet->IsWormhole() || !planet->CanLand(ship))
+	if(!planet->HasFuelFor(ship))
 		return false;
 	
 	return true;
@@ -1342,7 +1595,7 @@ void AI::CircleAround(Ship &ship, Command &command, const Ship &target)
 void AI::Swarm(Ship &ship, Command &command, const Ship &target)
 {
 	Point direction = target.Position() - ship.Position();
-	double rendezvousTime = Armament::RendezvousTime(direction, target.Velocity(), ship.MaxVelocity());
+	double rendezvousTime = RendezvousTime(direction, target.Velocity(), ship.MaxVelocity());
 	if(rendezvousTime != rendezvousTime || rendezvousTime > 600.)
 		rendezvousTime = 600.;
 	direction += rendezvousTime * target.Velocity();
@@ -1379,7 +1632,7 @@ void AI::KeepStation(Ship &ship, Command &command, const Ship &target)
 	double velocityWeight = velocitySize / (velocitySize + VELOCITY_DEADBAND);
 	
 	// Time it will take (roughly) to move to the target ship:
-	double positionTime = Armament::RendezvousTime(positionDelta, target.Velocity(), maxV);
+	double positionTime = RendezvousTime(positionDelta, target.Velocity(), maxV);
 	if(positionTime != positionTime || positionTime > MAX_TIME)
 		positionTime = MAX_TIME;
 	Point rendezvous = positionDelta + target.Velocity() * positionTime;
@@ -1473,10 +1726,23 @@ void AI::Attack(Ship &ship, Command &command, const Ship &target)
 	Point d = target.Position() - ship.Position();
 	if(shortestRange > 1000. && d.Length() < .5 * shortestRange)
 	{
-		command.SetTurn(TurnToward(ship, -d));
-		if(ship.Facing().Unit().Dot(d) <= 0.)
-			command |= Command::FORWARD;
-		return;
+		// If this ship can use reverse thrusters, consider doing so.
+		double reverseSpeed = ship.MaxReverseVelocity();
+		if(reverseSpeed && (reverseSpeed >= min(target.MaxVelocity(), ship.MaxVelocity())
+				|| target.Velocity().Dot(-d.Unit()) <= reverseSpeed))
+		{
+			command.SetTurn(TurnToward(ship, d));
+			if(ship.Facing().Unit().Dot(d) >= 0.)
+				command |= Command::BACK;
+			return;
+		}
+		else
+		{
+			command.SetTurn(TurnToward(ship, -d));
+			if(ship.Facing().Unit().Dot(d) <= 0.)
+				command |= Command::FORWARD;
+			return;
+		}
 	}
 	
 	MoveToAttack(ship, command, target);
@@ -1491,7 +1757,7 @@ void AI::MoveToAttack(Ship &ship, Command &command, const Body &target)
 	// First of all, aim in the direction that will hit this target.
 	command.SetTurn(TurnToward(ship, TargetAim(ship, target)));
 	
-	// Calculate this ship's "turning radius; that is, the smallest circle it
+	// Calculate this ship's "turning radius"; that is, the smallest circle it
 	// can make while at full speed.
 	double stepsInFullTurn = 360. / ship.TurnRate();
 	double circumference = stepsInFullTurn * ship.Velocity().Length();
@@ -1501,6 +1767,10 @@ void AI::MoveToAttack(Ship &ship, Command &command, const Body &target)
 	if((ship.Facing().Unit().Dot(d) >= 0. && d.Length() > diameter)
 			|| (ship.Velocity().Dot(d) < 0. && ship.Facing().Unit().Dot(d.Unit()) >= .9))
 		command |= Command::FORWARD;
+	
+	// Use an equipped afterburner if possible.
+	if(command.Has(Command::FORWARD) && d.Length() < 1000. && ShouldUseAfterburner(ship))
+		command |= Command::AFTERBURNER;
 }
 
 
@@ -1513,7 +1783,7 @@ void AI::PickUp(Ship &ship, Command &command, const Body &target)
 	double vMax = ship.MaxVelocity();
 	
 	// Estimate where the target will be by the time we reach it.
-	double time = Armament::RendezvousTime(p, v, vMax);
+	double time = RendezvousTime(p, v, vMax);
 	if(std::isnan(time))
 		time = p.Length() / vMax;
 	double degreesToTurn = TO_DEG * acos(min(1., max(-1., p.Unit().Dot(ship.Facing().Unit()))));
@@ -1522,21 +1792,59 @@ void AI::PickUp(Ship &ship, Command &command, const Body &target)
 	
 	// Move toward the target.
 	command.SetTurn(TurnToward(ship, p));
-	if(p.Unit().Dot(ship.Facing().Unit()) > .7)
+	double dp = p.Unit().Dot(ship.Facing().Unit());
+	if(dp > .7)
 		command |= Command::FORWARD;
+	
+	// Use the afterburner if it will not cause you to miss your target.
+	double squareDistance = p.LengthSquared();
+	if(command.Has(Command::FORWARD) && ShouldUseAfterburner(ship))
+		if(dp > max(.9, min(.9999, 1. - squareDistance / 10000000.)))
+			command |= Command::AFTERBURNER;
+}
+
+
+
+// Determine if using an afterburner does not use up reserve fuel, cause undue
+// energy strain, or undue thermal loads if almost overheated.
+bool AI::ShouldUseAfterburner(Ship &ship)
+{
+	if(!ship.Attributes().Get("afterburner thrust"))
+		return false;
+	
+	double fuel = ship.Fuel() * ship.Attributes().Get("fuel capacity");
+	double neededFuel = ship.Attributes().Get("afterburner fuel");
+	double energy = ship.Energy() * ship.Attributes().Get("energy capacity");
+	double neededEnergy = ship.Attributes().Get("afterburner energy");
+	if(energy == 0.)
+		energy = ship.Attributes().Get("energy generation")
+				+ 0.2 * ship.Attributes().Get("solar collection")
+				- ship.Attributes().Get("energy consumption");
+	double outputHeat = ship.Attributes().Get("afterburner heat") / (100 * ship.Mass());
+	if((!neededFuel || fuel - neededFuel > ship.JumpFuel())
+			&& (!neededEnergy || neededEnergy / energy < 0.25)
+			&& (!outputHeat || ship.Heat() + outputHeat < .9))
+		return true;
+	
+	return false;
 }
 
 
 
 void AI::DoSurveillance(Ship &ship, Command &command) const
 {
-	const shared_ptr<Ship> &target = ship.GetTargetShip();
-	if(target && (!target->IsTargetable() || target->GetSystem() != ship.GetSystem()))
-		ship.SetTargetShip(shared_ptr<Ship>());
+	// Since DoSurveillance is called after target-seeking and firing, if this
+	// ship has a target, that target is guaranteed to be targetable.
+	shared_ptr<Ship> target = ship.GetTargetShip();
+	if(target && (target->GetSystem() != ship.GetSystem() || target->IsEnteringHyperspace()))
+	{
+		target.reset();
+		ship.SetTargetShip(target);
+	}
 	if(target && ship.GetGovernment()->IsEnemy(target->GetGovernment()))
 	{
+		// Automatic aiming and firing already occurred.
 		MoveIndependent(ship, command);
-		command |= AutoFire(ship);
 		return;
 	}
 	
@@ -1562,13 +1870,12 @@ void AI::DoSurveillance(Ship &ship, Command &command) const
 		else
 			command |= Command::LAND;
 	}
-	else if(ship.GetTargetShip() && ship.GetTargetShip()->IsTargetable()
-			&& ship.GetTargetShip()->GetSystem() == ship.GetSystem())
+	else if(target)
 	{
+		// If the pointer to the target ship exists, it is targetable and in-system.
 		bool mustScanCargo = cargoScan && !Has(ship, target, ShipEvent::SCAN_CARGO);
 		bool mustScanOutfits = outfitScan && !Has(ship, target, ShipEvent::SCAN_OUTFITS);
-		bool isInSystem = (ship.GetSystem() == target->GetSystem() && !target->IsEnteringHyperspace());
-		if(!isInSystem || (!mustScanCargo && !mustScanOutfits))
+		if(!mustScanCargo && !mustScanOutfits)
 			ship.SetTargetShip(shared_ptr<Ship>());
 		else
 		{
@@ -1594,9 +1901,10 @@ void AI::DoSurveillance(Ship &ship, Command &command) const
 				if(it->GetGovernment() != ship.GetGovernment() && it->IsTargetable()
 						&& it->GetSystem() == ship.GetSystem())
 				{
-					if(Has(ship, it, ShipEvent::SCAN_CARGO) && Has(ship, it, ShipEvent::SCAN_OUTFITS))
+					if((!cargoScan || Has(ship, it, ShipEvent::SCAN_CARGO))
+							&& (!outfitScan || Has(ship, it, ShipEvent::SCAN_OUTFITS)))
 						continue;
-				
+					
 					targetShips.push_back(it);
 				}
 		
@@ -1605,13 +1913,12 @@ void AI::DoSurveillance(Ship &ship, Command &command) const
 				if(!object.IsStar() && object.Radius() < 130.)
 					targetPlanets.push_back(&object);
 		
-		bool canJump = (ship.JumpsRemaining() != 0);
-		if(jumpDrive && canJump)
-			for(const System *link : ship.GetSystem()->Neighbors())
+		if(ship.JumpsRemaining() && (jumpDrive || hyperdrive))
+		{
+			const set<const System *> &links = jumpDrive ? ship.GetSystem()->Neighbors() : ship.GetSystem()->Links();
+			for(const System *link : links)
 				targetSystems.push_back(link);
-		else if(hyperdrive && canJump)
-			for(const System *link : ship.GetSystem()->Links())
-				targetSystems.push_back(link);
+		}
 		
 		unsigned total = targetShips.size() + targetPlanets.size() + targetSystems.size();
 		if(!total)
@@ -1650,12 +1957,15 @@ void AI::DoMining(Ship &ship, Command &command)
 	double miningRadius = ship.GetSystem()->AsteroidBelt() * pow(2., angle.Unit().X());
 	
 	shared_ptr<Minable> target = ship.GetTargetAsteroid();
-	if(!target)
+	if(!target || target->Velocity().Length() > ship.MaxVelocity())
 	{
 		for(const shared_ptr<Minable> &minable : minables)
 		{
 			Point offset = minable->Position() - ship.Position();
-			if(offset.Length() < 800. && offset.Unit().Dot(ship.Facing().Unit()) > .7)
+			// Target only nearby minables that are within 45deg of the current heading
+			// and not moving faster than the ship can catch.
+			if(offset.Length() < 800. && offset.Unit().Dot(ship.Facing().Unit()) > .7
+					&& minable->Velocity().Dot(offset.Unit()) < ship.MaxVelocity())
 			{
 				target = minable;
 				ship.SetTargetAsteroid(target);
@@ -1665,9 +1975,15 @@ void AI::DoMining(Ship &ship, Command &command)
 	}
 	if(target)
 	{
-		MoveToAttack(ship, command, *target);
-		command |= AutoFire(ship, *target);
-		return;
+		// If the asteroid has moved well out of reach, stop tracking it.
+		if(target->Position().Distance(ship.Position()) > 1600.)
+			ship.SetTargetAsteroid(nullptr);
+		else
+		{
+			MoveToAttack(ship, command, *target);
+			AutoFire(ship, command, *target);
+			return;
+		}
 	}
 	
 	Point heading = Angle(30.).Rotate(ship.Position().Unit() * miningRadius) - ship.Position();
@@ -1683,7 +1999,10 @@ bool AI::DoHarvesting(Ship &ship, Command &command)
 	// If the ship has no target to pick up, do nothing.
 	shared_ptr<Flotsam> target = ship.GetTargetFlotsam();
 	if(target && ship.Cargo().Free() < target->UnitSize())
+	{
 		target.reset();
+		ship.SetTargetFlotsam(target);
+	}
 	if(!target)
 	{
 		// Only check for new targets every 10 frames, on average.
@@ -1705,7 +2024,7 @@ bool AI::DoHarvesting(Ship &ship, Command &command)
 			// Estimate how long it would take to intercept this flotsam.
 			Point v = it->Velocity() - ship.Velocity();
 			double vMax = ship.MaxVelocity();
-			double time = Armament::RendezvousTime(p, v, vMax);
+			double time = RendezvousTime(p, v, vMax);
 			if(std::isnan(time))
 				continue;
 			
@@ -1722,6 +2041,9 @@ bool AI::DoHarvesting(Ship &ship, Command &command)
 		
 		ship.SetTargetFlotsam(target);
 	}
+	// Deploy any carried ships to improve maneuverability.
+	if(ship.HasBays())
+		command |= Command::DEPLOY;
 	
 	PickUp(ship, command, *target);
 	return true;
@@ -1753,7 +2075,7 @@ void AI::DoCloak(Ship &ship, Command &command)
 		
 		// If this ship has started cloaking, it must get at least 40% repaired
 		// or 40% farther away before it begins decloaking again.
-		double hysteresis = ship.Cloaking() ? 1.4 : 1.;
+		double hysteresis = ship.Commands().Has(Command::CLOAK) ? 1.4 : 1.;
 		double cloakIsFree = !ship.Attributes().Get("cloaking fuel");
 		if(ship.Hull() + .5 * ship.Shields() < hysteresis
 				&& (cloakIsFree || nearestEnemy < 2000. * hysteresis))
@@ -1864,7 +2186,7 @@ Point AI::TargetAim(const Ship &ship, const Body &target)
 		Point start = ship.Position() + ship.Facing().Rotate(weapon.GetPoint());
 		Point p = target.Position() - start + ship.GetPersonality().Confusion();
 		Point v = target.Velocity() - ship.Velocity();
-		double steps = Armament::RendezvousTime(p, v, outfit->Velocity() + .5 * outfit->RandomVelocity());
+		double steps = RendezvousTime(p, v, outfit->Velocity() + .5 * outfit->RandomVelocity());
 		if(!(steps == steps))
 			continue;
 		
@@ -1880,16 +2202,150 @@ Point AI::TargetAim(const Ship &ship, const Body &target)
 
 
 
-// Fire whichever of the given ship's weapons can hit a hostile target.
-Command AI::AutoFire(const Ship &ship, bool secondary) const
+// Aim the given ship's turrets.
+void AI::AimTurrets(const Ship &ship, Command &command, bool opportunistic) const
 {
-	Command command;
-	if(ship.GetPersonality().IsPacifist())
-		return command;
+	// First, get the set of potential targets.
+	vector<const Ship *> enemies;
+	const Ship *currentTarget = ship.GetTargetShip().get();
+	// If the ship has a target selected, that ship is always in the running as
+	// something to aim at, even if it is too far away.
+	if(currentTarget && currentTarget->IsTargetable())
+		enemies.push_back(currentTarget);
+	if(opportunistic || !currentTarget)
+	{
+		// Find the maximum range of any of this ship's turrets.
+		double maxRange = 0.;
+		for(const Hardpoint &weapon : ship.Weapons())
+			if(weapon.CanAim())
+				maxRange = max(maxRange, weapon.GetOutfit()->Range());
+		// If this ship has no turrets, bail out.
+		if(!maxRange)
+			return;
+		// Extend the weapon range slightly to account for velocity differences.
+		maxRange *= 1.5;
+		
+		// Now, find all enemy ships within that radius.
+		// TODO: This could use CollisionSet::Circle() for increased efficiency.
+		const Government *gov = ship.GetGovernment();
+		for(const shared_ptr<Ship> &target : ships)
+			if(target->IsTargetable() && gov->IsEnemy(target->GetGovernment())
+					&& !(target->IsHyperspacing() && target->Velocity().Length() > 10.)
+					&& target->GetSystem() == ship.GetSystem()
+					&& target->Position().Distance(ship.Position()) < maxRange
+					&& target.get() != currentTarget
+					&& !target->IsDisabled()
+					&& (ship.IsYours() || !target->GetPersonality().IsMarked())
+					&& (target->IsYours() || !ship.GetPersonality().IsMarked()))
+				enemies.push_back(target.get());
+	}
+	
+	// If there are no enemies to aim at, opportunistic turrets should sweep
+	// back and forth at random, with the sweep centered on the "outward-facing"
+	// angle. Focused turrets should just point forward.
+	if(enemies.empty() && !opportunistic)
+	{
+		for(const Hardpoint &hardpoint : ship.Weapons())
+			if(hardpoint.CanAim())
+			{
+				// Get the index of this weapon.
+				int index = &hardpoint - &ship.Weapons().front();
+				double offset = (hardpoint.HarmonizedAngle() - hardpoint.GetAngle()).Degrees();
+				command.SetAim(index, offset / hardpoint.GetOutfit()->TurretTurn());
+			}
+		return;
+	}
+	if(enemies.empty())
+	{
+		for(const Hardpoint &hardpoint : ship.Weapons())
+			if(hardpoint.CanAim())
+			{
+				// Get the index of this weapon.
+				int index = &hardpoint - &ship.Weapons().front();
+				// First, check if this turret is currently in motion. If not,
+				// it only has a small chance of beginning to move.
+				double previous = ship.Commands().Aim(index);
+				if(!previous && (Random::Int(60)))
+					continue;
+				
+				Angle centerAngle = Angle(hardpoint.GetPoint());
+				double bias = (centerAngle - hardpoint.GetAngle()).Degrees() / 180.;
+				double acceleration = Random::Real() - Random::Real() + bias;
+				command.SetAim(index, previous + .1 * acceleration);
+			}
+		return;
+	}
+	// Each hardpoint should aim at the target that it is "closest" to hitting.
+	for(const Hardpoint &hardpoint : ship.Weapons())
+		if(hardpoint.CanAim())
+		{
+			// This is where this projectile fires from. Add some randomness
+			// based on how skilled the pilot is.
+			Point start = ship.Position() + ship.Facing().Rotate(hardpoint.GetPoint());
+			start += ship.GetPersonality().Confusion();
+			// Get the turret's current facing, in absolute coordinates:
+			Angle aim = ship.Facing() + hardpoint.GetAngle();
+			// Get this projectile's average velocity.
+			const Outfit *outfit = hardpoint.GetOutfit();
+			double vp = outfit->Velocity() + .5 * outfit->RandomVelocity();
+			// Loop through each ship this hardpoint could shoot at. Find the
+			// one that is the "best" in terms of how many frames it will take
+			// to aim at it and for a projectile to hit it.
+			double bestScore = 1000.;
+			double bestAngle = 0.;
+			for(const Ship *target : enemies)
+			{
+				Point p = target->Position() - start;
+				Point v = target->Velocity();
+				// Only take the ship's velocity into account if this weapon
+				// does not have its own acceleration.
+				if(!outfit->Acceleration())
+					v -= ship.Velocity();
+				// By the time this action is performed, the ships will have moved
+				// forward one time step.
+				p += v;
+				
+				// Find out how long it would take for this projectile to reach
+				// the target.
+				double rendezvousTime = RendezvousTime(p, v, vp);
+				// Determine where the target will be at that point.
+				p += v * rendezvousTime;
+				
+				// Determine how much the turret must turn to face that vector.
+				double degrees = (Angle(p) - aim).Degrees();
+				double turnTime = fabs(degrees) / outfit->TurretTurn();
+				// All ships that are within weapons range have the same basic
+				// weight. Outside that range, give them lower priority.
+				rendezvousTime = max(0., rendezvousTime - outfit->TotalLifetime());
+				// Always prefer ships that you are able to hit.
+				double score = turnTime + (180. / outfit->TurretTurn()) * rendezvousTime;
+				if(score < bestScore)
+				{
+					bestScore = score;
+					bestAngle = degrees;
+				}
+			}
+			if(bestAngle)
+			{
+				// Get the index of this weapon.
+				int index = &hardpoint - &ship.Weapons().front();
+				command.SetAim(index, bestAngle / outfit->TurretTurn());
+			}
+		}
+}
+
+
+
+// Fire whichever of the given ship's weapons can hit a hostile target.
+void AI::AutoFire(const Ship &ship, Command &command, bool secondary) const
+{
+	const Personality &person = ship.GetPersonality();
+	if(person.IsPacifist())
+		return;
 	int index = -1;
 	
 	bool beFrugal = (ship.IsYours() && !escortsUseAmmo);
-	if(ship.GetPersonality().IsFrugal() || (ship.IsYours() && escortsAreFrugal && escortsUseAmmo))
+	if(person.IsFrugal() || (ship.IsYours() && escortsAreFrugal && escortsUseAmmo))
 	{
 		// Frugal ships only expend ammunition if they have lost 50% of shields
 		// or hull, or if they are outgunned.
@@ -1924,37 +2380,47 @@ Command AI::AutoFire(const Ship &ship, bool secondary) const
 		currentTarget.reset();
 	
 	// Only fire on disabled targets if you don't want to plunder them.
-	bool spareDisabled = (ship.GetPersonality().Disables() || ship.GetPersonality().Plunders());
+	bool spareDisabled = (person.Disables() || (person.Plunders() && ship.Cargo().Free()));
 	
-	// Find the longest range of any of your non-homing weapons.
+	// Find the longest range of any of your non-homing weapons. Homing weapons
+	// that don't consume ammo may also fire in non-homing mode.
 	double maxRange = 0.;
 	for(const Hardpoint &weapon : ship.Weapons())
-		if(weapon.IsReady() && !weapon.IsHoming() && (secondary || !weapon.GetOutfit()->Icon()))
+		if(weapon.IsReady()
+				&& !(!currentTarget && weapon.IsHoming() && weapon.GetOutfit()->Ammo())
+				&& !(!secondary && weapon.GetOutfit()->Icon())
+				&& !(beFrugal && weapon.GetOutfit()->Ammo()))
 			maxRange = max(maxRange, weapon.GetOutfit()->Range());
 	// Extend the weapon range slightly to account for velocity differences.
 	maxRange *= 1.5;
 	
 	// Find all enemy ships within range of at least one weapon.
 	vector<shared_ptr<const Ship>> enemies;
-	if(currentTarget)
+	if(currentTarget && currentTarget->IsTargetable())
 		enemies.push_back(currentTarget);
-	for(auto target : ships)
+	for(const auto &target : ships)
 		if(target->IsTargetable() && gov->IsEnemy(target->GetGovernment())
 				&& !(target->IsHyperspacing() && target->Velocity().Length() > 10.)
 				&& target->GetSystem() == ship.GetSystem()
 				&& target->Position().Distance(ship.Position()) < maxRange
-				&& target != currentTarget)
+				&& target != currentTarget
+				&& (ship.IsYours() || !target->GetPersonality().IsMarked())
+				&& (target->IsYours() || !person.IsMarked()))
 			enemies.push_back(target);
 	
 	for(const Hardpoint &weapon : ship.Weapons())
 	{
 		++index;
-		// Skip weapons that are not ready to fire. Also skip homing weapons if
-		// no target is selected, and secondary weapons if only firing primaries.
-		if(!weapon.IsReady() || (!currentTarget && weapon.IsHoming()))
+		// Skip weapons that are not ready to fire.
+		if(!weapon.IsReady())
 			continue;
+		// Don't expend ammo for homing weapons that have no target selected.
+		if(!currentTarget && weapon.IsHoming() && weapon.GetOutfit()->Ammo())
+			continue;
+		// Don't fire secondary weapons if told not to.
 		if(!secondary && weapon.GetOutfit()->Icon())
 			continue;
+		// Don't expend ammo if trying to be frugal.
 		if(beFrugal && weapon.GetOutfit()->Ammo())
 			continue;
 		
@@ -1966,57 +2432,53 @@ Command AI::AutoFire(const Ship &ship, bool secondary) const
 			fuel -= weapon.GetOutfit()->FiringFuel();
 			// If the ship is not ever leaving this system, it does not need to
 			// reserve any fuel.
-			bool isStaying = ship.GetPersonality().IsStaying();
+			bool isStaying = person.IsStaying();
 			if(!secondary || fuel < (isStaying ? 0. : ship.JumpFuel()))
 				continue;
 		}
 		// Figure out where this weapon will fire from, but add some randomness
 		// depending on how accurate this ship's pilot is.
 		Point start = ship.Position() + ship.Facing().Rotate(weapon.GetPoint());
-		start += ship.GetPersonality().Confusion();
+		start += person.Confusion();
 		
 		const Outfit *outfit = weapon.GetOutfit();
 		double vp = outfit->Velocity() + .5 * outfit->RandomVelocity();
 		double lifetime = outfit->TotalLifetime();
 		
-		if(currentTarget && (weapon.IsHoming() || weapon.IsTurret()))
+		// Homing weapons revert to "dumb firing" if they have no target.
+		if(weapon.IsHoming() && currentTarget)
 		{
 			bool hasBoarded = Has(ship, currentTarget, ShipEvent::BOARD);
 			if(currentTarget->IsDisabled() && spareDisabled && !hasBoarded && !disabledOverride)
 				continue;
-			// Don't fire turrets at targets that are accelerating or decelerating
-			// rapidly due to hyperspace jumping.
-			if(weapon.IsTurret() && currentTarget->IsHyperspacing() && currentTarget->Velocity().Length() > 10.)
-				continue;
-			// Don't fire secondary weapons as targets that have started jumping.
+			// Don't fire secondary weapons at targets that have started jumping.
 			if(outfit->Icon() && currentTarget->IsEnteringHyperspace())
 				continue;
 			
+			// For homing weapons, don't take the velocity of the ship firing it
+			// into account, because the projectile will settle into a velocity
+			// that depends on its own acceleration and drag.
 			Point p = currentTarget->Position() - start;
-			Point v = currentTarget->Velocity() - ship.Velocity();
+			Point v = currentTarget->Velocity();
 			// By the time this action is performed, the ships will have moved
 			// forward one time step.
 			p += v;
 			
-			if(p.Length() < outfit->BlastRadius())
+			// If this weapon has a blast radius, don't fire it if the target is
+			// so close that you'll be hit by the blast.
+			if(!outfit->IsSafe() && p.Length() < outfit->BlastRadius())
 				continue;
 			
-			// If this is a homing weapon, it is not necessary to take the
-			// velocity of the ship firing it into account.
-			if(weapon.IsHoming())
-				v = currentTarget->Velocity();
 			// Calculate how long it will take the projectile to reach its target.
-			double steps = Armament::RendezvousTime(p, v, vp);
+			double steps = RendezvousTime(p, v, vp);
 			if(steps == steps && steps <= lifetime)
 			{
 				command.SetFire(index);
 				continue;
 			}
-		}
-		// Don't fire homing weapons with no target.
-		if(weapon.IsHoming())
 			continue;
-		
+		}
+		// For non-homing weapons:
 		for(const shared_ptr<const Ship> &target : enemies)
 		{
 			// Don't shoot ships we want to plunder.
@@ -2025,7 +2487,11 @@ Command AI::AutoFire(const Ship &ship, bool secondary) const
 				continue;
 			
 			Point p = target->Position() - start;
-			Point v = target->Velocity() - ship.Velocity();
+			Point v = target->Velocity();
+			// Only take the ship's velocity into account if this weapon
+			// does not have its own acceleration.
+			if(!outfit->Acceleration())
+				v -= ship.Velocity();
 			// By the time this action is performed, the ships will have moved
 			// forward one time step.
 			p += v;
@@ -2043,16 +2509,12 @@ Command AI::AutoFire(const Ship &ship, bool secondary) const
 			}
 		}
 	}
-	
-	return command;
 }
 
 
 
-Command AI::AutoFire(const Ship &ship, const Body &target) const
+void AI::AutoFire(const Ship &ship, Command &command, const Body &target) const
 {
-	Command command;
-	
 	int index = -1;
 	for(const Hardpoint &weapon : ship.Weapons())
 	{
@@ -2067,11 +2529,15 @@ Command AI::AutoFire(const Ship &ship, const Body &target) const
 		start += ship.GetPersonality().Confusion();
 		
 		const Outfit *outfit = weapon.GetOutfit();
-		double vp = outfit->Velocity();
+		double vp = outfit->Velocity() + .5 * outfit->RandomVelocity();
 		double lifetime = outfit->TotalLifetime();
 		
 		Point p = target.Position() - start;
-		Point v = target.Velocity() - ship.Velocity();
+		Point v = target.Velocity();
+		// Only take the ship's velocity into account if this weapon
+		// does not have its own acceleration.
+		if(!outfit->Acceleration())
+			v -= ship.Velocity();
 		// By the time this action is performed, the ships will have moved
 		// forward one time step.
 		p += v;
@@ -2085,7 +2551,44 @@ Command AI::AutoFire(const Ship &ship, const Body &target) const
 		if(mask.Collide(-p, v, target.Facing()) < 1.)
 			command.SetFire(index);
 	}
-	return command;
+}
+
+
+
+// Get the amount of time it would take the given weapon to reach the given
+// target, assuming it can be fired in any direction (i.e. turreted). For
+// non-turreted weapons this can be used to calculate the ideal direction to
+// point the ship in.
+double AI::RendezvousTime(const Point &p, const Point &v, double vp)
+{
+	// How many steps will it take this projectile
+	// to intersect the target?
+	// (p.x + v.x*t)^2 + (p.y + v.y*t)^2 = vp^2*t^2
+	// p.x^2 + 2*p.x*v.x*t + v.x^2*t^2
+	//    + p.y^2 + 2*p.y*v.y*t + v.y^2t^2
+	//    - vp^2*t^2 = 0
+	// (v.x^2 + v.y^2 - vp^2) * t^2
+	//    + (2 * (p.x * v.x + p.y * v.y)) * t
+	//    + (p.x^2 + p.y^2) = 0
+	double a = v.Dot(v) - vp * vp;
+	double b = 2. * p.Dot(v);
+	double c = p.Dot(p);
+	double discriminant = b * b - 4 * a * c;
+	if(discriminant < 0.)
+		return numeric_limits<double>::quiet_NaN();
+
+	discriminant = sqrt(discriminant);
+
+	// The solutions are b +- discriminant.
+	// But it's not a solution if it's negative.
+	double r1 = (-b + discriminant) / (2. * a);
+	double r2 = (-b - discriminant) / (2. * a);
+	if(r1 >= 0. && r2 >= 0.)
+		return min(r1, r2);
+	else if(r1 >= 0. || r2 >= 0.)
+		return max(r1, r2);
+
+	return numeric_limits<double>::quiet_NaN();
 }
 
 
@@ -2099,11 +2602,12 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 	{
 		const System *system = player.TravelPlan().back();
 		for(const StellarObject &object : ship.GetSystem()->Objects())
-			if(object.GetPlanet() && object.GetPlanet()->WormholeDestination(ship.GetSystem()) == system
-				&& player.HasVisited(object.GetPlanet()) && player.HasVisited(system))
+			if(object.GetPlanet() && object.GetPlanet()->IsAccessible(&ship) && player.HasVisited(object.GetPlanet())
+				&& object.GetPlanet()->WormholeDestination(ship.GetSystem()) == system && player.HasVisited(system))
 			{
 				isWormhole = true;
-				ship.SetTargetStellar(&object);
+				if(!ship.GetTargetStellar() || keyStuck.Has(Command::JUMP))
+					ship.SetTargetStellar(&object);
 				break;
 			}
 		if(!isWormhole)
@@ -2123,7 +2627,8 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 			if(!mission.IsVisible())
 				continue;
 			
-			if(mission.Destination() && mission.Destination()->IsInSystem(system))
+			if(mission.Destination() && mission.Destination()->IsInSystem(system)
+					&& mission.Destination()->IsAccessible(&ship))
 			{
 				destinations.insert(mission.Destination());
 				++count;
@@ -2137,7 +2642,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 			}
 			// Also check for stopovers in the destination system.
 			for(const Planet *planet : mission.Stopovers())
-				if(planet->IsInSystem(system))
+				if(planet->IsInSystem(system) && planet->IsAccessible(&ship))
 				{
 					destinations.insert(planet);
 					++count;
@@ -2254,11 +2759,11 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 	}
 	else if(keyDown.Has(Command::LAND))
 	{
-		// If the player is right over an uninhabited planet, display a message
-		// explaining why they cannot land there.
+		// If the player is right over an uninhabited or inaccessible planet, display
+		// the default message explaining why they cannot land there.
 		string message;
 		for(const StellarObject &object : ship.GetSystem()->Objects())
-			if(!object.GetPlanet() && object.HasSprite())
+			if((!object.GetPlanet() || !object.GetPlanet()->IsAccessible(&ship)) && object.HasSprite())
 			{
 				double distance = ship.Position().Distance(object.Position());
 				if(distance < object.Radius())
@@ -2268,7 +2773,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 			Audio::Play(Audio::Get("fail"));
 		
 		const StellarObject *target = ship.GetTargetStellar();
-		if(target && ship.Position().Distance(target->Position()) < target->Radius())
+		if(target && (ship.Position().Distance(target->Position()) < target->Radius() || ship.Zoom() < 1.))
 		{
 			// Special case: if there are two planets in system and you have one
 			// selected, then press "land" again, do not toggle to the other if
@@ -2279,6 +2784,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 			bool found = false;
 			int count = 0;
 			const StellarObject *next = nullptr;
+			// Select the next landable in the list after the currently selected object.
 			for(const StellarObject &object : ship.GetSystem()->Objects())
 				if(object.GetPlanet() && object.GetPlanet()->IsAccessible(&ship))
 				{
@@ -2293,6 +2799,8 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 				}
 			if(!next)
 			{
+				// No landable objects were found after the current object.
+				// Pick the first landable object in the list.
 				for(const StellarObject &object : ship.GetSystem()->Objects())
 					if(object.GetPlanet() && object.GetPlanet()->IsAccessible(&ship))
 					{
@@ -2371,7 +2879,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 	}
 	else if(keyDown.Has(Command::JUMP))
 	{
-		if(!ship.GetTargetSystem())
+		if(!ship.GetTargetSystem() && !isWormhole)
 		{
 			double bestMatch = -2.;
 			const auto &links = (ship.Attributes().Get("jump drive") ?
@@ -2387,7 +2895,13 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 				}
 			}
 		}
-		if(ship.GetTargetSystem())
+		else if(isWormhole)
+		{
+			// The player is guaranteed to have a travel plan for isWormhole to be true.
+			Messages::Add("Landing on a local wormhole to navigate to the "
+					+ player.TravelPlan().back()->Name() + " system.");
+		}
+		if(ship.GetTargetSystem() && !isWormhole)
 		{
 			string name = "selected star";
 			if(player.KnowsName(ship.GetTargetSystem()))
@@ -2399,26 +2913,26 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 	else if(keyHeld.Has(Command::SCAN))
 		command |= Command::SCAN;
 	
-	bool hasGuns = Preferences::Has("Automatic firing") && !ship.IsBoarding()
-		&& !(keyStuck | keyHeld).Has(Command::LAND | Command::JUMP | Command::BOARD)
-		&& (!ship.GetTargetShip() || ship.GetTargetShip()->GetGovernment()->IsEnemy());
-	if(hasGuns)
-		command |= AutoFire(ship, false);
-	hasGuns |= keyHeld.Has(Command::PRIMARY);
+	const shared_ptr<const Ship> target = ship.GetTargetShip();
+	AimTurrets(ship, command, !Preferences::Has("Turrets focus fire"));
+	if(Preferences::Has("Automatic firing") && !ship.IsBoarding()
+			&& !(keyStuck | keyHeld).Has(Command::LAND | Command::JUMP | Command::BOARD)
+			&& (!target || target->GetGovernment()->IsEnemy()))
+		AutoFire(ship, command, false);
 	if(keyHeld)
 	{
+		if(keyHeld.Has(Command::FORWARD))
+			command |= Command::FORWARD;
 		if(keyHeld.Has(Command::RIGHT | Command::LEFT))
 			command.SetTurn(keyHeld.Has(Command::RIGHT) - keyHeld.Has(Command::LEFT));
-		else if(keyHeld.Has(Command::BACK))
+		if(keyHeld.Has(Command::BACK))
 		{
-			if(ship.Attributes().Get("reverse thrust"))
+			if(!keyHeld.Has(Command::FORWARD) && ship.Attributes().Get("reverse thrust"))
 				command |= Command::BACK;
-			else
+			else if(!keyHeld.Has(Command::RIGHT | Command::LEFT))
 				command.SetTurn(TurnBackward(ship));
 		}
 		
-		if(keyHeld.Has(Command::FORWARD))
-			command |= Command::FORWARD;
 		if(keyHeld.Has(Command::PRIMARY))
 		{
 			int index = 0;
@@ -2426,10 +2940,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 			{
 				const Outfit *outfit = weapon.GetOutfit();
 				if(outfit && !outfit->Icon())
-				{
 					command.SetFire(index);
-					hasGuns |= !weapon.IsTurret();
-				}
 				++index;
 			}
 		}
@@ -2450,22 +2961,33 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 		if(keyHeld.Has(AutopilotCancelKeys()))
 			keyStuck = keyHeld;
 	}
-	if(hasGuns && Preferences::Has("Automatic aiming") && !command.Turn()
-			&& ship.GetTargetShip() && ship.GetTargetShip()->GetSystem() == ship.GetSystem()
-			&& ship.GetTargetShip()->IsTargetable()
+	bool shouldAutoAim = false;
+	if(Preferences::Has("Automatic aiming") && !command.Turn() && !ship.IsBoarding()
+			&& (Preferences::Has("Automatic firing") || keyHeld.Has(Command::PRIMARY))
+			&& target && target->GetSystem() == ship.GetSystem() && target->IsTargetable()
 			&& !keyStuck.Has(Command::LAND | Command::JUMP | Command::BOARD))
 	{
-		Point distance = ship.GetTargetShip()->Position() - ship.Position();
+		// Check if this ship has any forward-facing weapons.
+		for(const Hardpoint &weapon : ship.Weapons())
+			if(!weapon.CanAim() && !weapon.IsTurret() && weapon.GetOutfit())
+			{
+				shouldAutoAim = true;
+				break;
+			}
+	}
+	if(shouldAutoAim)
+	{
+		Point distance = target->Position() - ship.Position();
 		if(distance.Unit().Dot(ship.Facing().Unit()) >= .8)
 			command.SetTurn(TurnToward(ship, TargetAim(ship)));
 	}
 	
 	if(keyStuck.Has(Command::JUMP) && !player.HasTravelPlan())
 	{
-		// The player completed their travel plan, which may have indicated a destination within the final system
+		// The player completed their travel plan, which may have indicated a destination within the final system.
 		keyStuck.Clear(Command::JUMP);
 		const Planet *planet = player.TravelDestination();
-		if(planet && planet->IsInSystem(ship.GetSystem()))
+		if(planet && planet->IsInSystem(ship.GetSystem()) && planet->IsAccessible(&ship))
 		{
 			Messages::Add("Autopilot: landing on " + planet->Name() + ".");
 			keyStuck |= Command::LAND;
@@ -2524,7 +3046,6 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 	}
 	else if(keyStuck.Has(Command::BOARD))
 	{
-		shared_ptr<const Ship> target = ship.GetTargetShip();
 		if(!CanBoard(ship, *target))
 			keyStuck.Clear(Command::BOARD);
 		else
@@ -2610,7 +3131,7 @@ void AI::IssueOrders(const PlayerInfo &player, const Orders &newOrders, const st
 	if(isMoveOrder)
 	{
 		for(const Ship *ship : ships)
-			if(ship->GetSystem() == player.GetSystem() && !ship->IsDisabled())
+			if(ship->GetSystem() && !ship->IsDisabled())
 			{
 				centerOfGravity += ship->Position();
 				++squadCount;
@@ -2652,6 +3173,13 @@ void AI::IssueOrders(const PlayerInfo &player, const Orders &newOrders, const st
 				offset = offset.Unit() * maxSquadOffset;
 			existing.point += offset;
 		}
+		else if(existing.type == Orders::HOLD_POSITION)
+		{
+			bool shouldReverse = false;
+			// Set the point this ship will "guard.", so it can return
+			// to it if knocked away by projectiles / explosions.
+			existing.point = StoppingPoint(*ship, Point(), shouldReverse);
+		}
 	}
 	if(!gaveOrder)
 		return;
@@ -2663,5 +3191,31 @@ void AI::IssueOrders(const PlayerInfo &player, const Orders &newOrders, const st
 		Messages::Add(who + "no longer " + description);
 		for(const Ship *ship : ships)
 			orders.erase(ship);
+	}
+}
+
+
+
+// Change the ship's order based on its current fulfillment of the order.
+void AI::UpdateOrders(const Ship &ship)
+{
+	// This should only be called for ships with orders that can be carried out.
+	auto it = orders.find(&ship);
+	if(it == orders.end())
+		return;
+	
+	Orders &order = it->second;
+	if(order.type == Orders::MOVE_TO && ship.GetSystem() == order.targetSystem)
+	{
+		// If nearly stopped on the desired point, switch to a HOLD_POSITION order.
+		if(ship.Position().Distance(order.point) < 20. && ship.Velocity().Length() < .001)
+			order.type = Orders::HOLD_POSITION;
+	}
+	else if(order.type == Orders::HOLD_POSITION && ship.Position().Distance(order.point) > 20.)
+	{
+		// If far from the defined target point, return via a MOVE_TO order.
+		order.type = Orders::MOVE_TO;
+		// Ensure the system reference is maintained.
+		order.targetSystem = ship.GetSystem();
 	}
 }

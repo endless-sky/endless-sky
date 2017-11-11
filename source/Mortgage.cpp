@@ -105,7 +105,7 @@ int64_t Mortgage::MakePayment()
 
 void Mortgage::MissPayment()
 {
-	principal += static_cast<int>(principal * interest + .5);
+	principal += lround(principal * interest);
 }
 
 

@@ -17,6 +17,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Shader.h"
 #include "Sprite.h"
 
+#include <vector>
+
 using namespace std;
 
 namespace {
@@ -31,7 +33,7 @@ namespace {
 	GLuint vao;
 	GLuint vbo;
 
-	static const GLint SWIZZLE[9][4] = {
+	const vector<vector<GLint>> SWIZZLE = {
 		{GL_RED, GL_GREEN, GL_BLUE, GL_ALPHA}, // red + yellow markings (republic)
 		{GL_RED, GL_BLUE, GL_GREEN, GL_ALPHA}, // red + magenta markings
 		{GL_GREEN, GL_RED, GL_BLUE, GL_ALPHA}, // green + yellow (freeholders)
@@ -171,18 +173,23 @@ void SpriteShader::Add(uint32_t tex0, uint32_t tex1, const float position[2], co
 	glUniform2fv(positionI, 1, position);
 	glBindTexture(GL_TEXTURE_2D, tex0);
 	
+	// Bounds check for the swizzle value:
+	if(static_cast<size_t>(swizzle) >= SWIZZLE.size())
+		swizzle = 0;
+	const GLint *swizzleValues = SWIZZLE[swizzle].data();
+	
 	if(fade && tex1)
 	{
 		glActiveTexture(GL_TEXTURE1);
 		glBindTexture(GL_TEXTURE_2D, tex1);
-		glTexParameteriv(GL_TEXTURE_2D, GL_TEXTURE_SWIZZLE_RGBA, SWIZZLE[swizzle]);
+		glTexParameteriv(GL_TEXTURE_2D, GL_TEXTURE_SWIZZLE_RGBA, swizzleValues);
 		glActiveTexture(GL_TEXTURE0);
 	}
 	else
 		fade = 0.f;
 	
 	// Set the color swizzle.
-	glTexParameteriv(GL_TEXTURE_2D, GL_TEXTURE_SWIZZLE_RGBA, SWIZZLE[swizzle]);
+	glTexParameteriv(GL_TEXTURE_2D, GL_TEXTURE_SWIZZLE_RGBA, swizzleValues);
 	
 	// Set the clipping.
 	glUniform1f(clipI, 1.f - clip);

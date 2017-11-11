@@ -54,6 +54,7 @@ private:
 		
 		const Sprite *sprite;
 		bool isHere;
+		bool isHostile;
 		bool notReadyToJump;
 		bool cannotJump;
 		bool isSelected;
@@ -72,7 +73,7 @@ private:
 private:
 	mutable std::list<Icon> icons;
 	mutable std::vector<std::vector<const Ship *>> stacks;
-	mutable std::vector<Point> zones; 
+	mutable std::vector<Point> zones;
 };
 
 

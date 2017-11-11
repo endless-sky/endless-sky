@@ -20,6 +20,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <SDL2/SDL.h>
 
 #include <algorithm>
+#include <cmath>
 #include <map>
 
 using namespace std;
@@ -183,7 +184,7 @@ void Command::SetKey(Command command, int keycode)
 // than one command, an empty string is returned.
 const string &Command::Description() const
 {
-	static const string empty = "";
+	static const string empty;
 	auto it = description.find(*this);
 	return (it == description.end() ? empty : it->second);
 }
@@ -194,7 +195,7 @@ const string &Command::Description() const
 // a combination of more than one command, an empty string is returned.
 const string &Command::KeyName() const
 {
-	static const string empty = "";
+	static const string empty;
 	auto it = keyName.find(*this);
 	return (it == keyName.end() ? empty : it->second);
 }
@@ -273,6 +274,9 @@ double Command::Turn() const
 // Check if this command includes a command to fire the given weapon.
 bool Command::HasFire(int index) const
 {
+	if(index < 0 || index >= 32)
+		return false;
+	
 	return state & ((1ull << 32) << index);
 }
 
@@ -281,6 +285,9 @@ bool Command::HasFire(int index) const
 // Add to this set of commands a command to fire the given weapon.
 void Command::SetFire(int index)
 {
+	if(index < 0 || index >= 32)
+		return;
+	
 	state |= ((1ull << 32) << index);
 }
 
@@ -290,6 +297,28 @@ void Command::SetFire(int index)
 bool Command::IsFiring() const
 {
 	return (state & 0xFFFFFFFF00000000ull);
+}
+
+
+
+// Set the turn rate of the turret with the given weapon index. A value of
+// -1 or 1 means to turn at the full speed the turret is capable of.
+double Command::Aim(int index) const
+{
+	if(index < 0 || index >= 32)
+		return 0;
+	
+	return aim[index] / 127.;
+}
+
+
+
+void Command::SetAim(int index, double amount)
+{
+	if(index < 0 || index >= 32)
+		return;
+	
+	aim[index] = round(127. * max(-1., min(1., amount)));
 }
 
 

@@ -184,6 +184,8 @@ mission "Kestrel: More Shields"
 
 mission "Kestrel Available"
 	landing
+	source
+		near Tarazed 100
 	to offer
 		has "kestrel available"
 	destination Wayfarer

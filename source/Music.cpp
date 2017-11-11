@@ -16,6 +16,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include <mad.h>
 
+#include <algorithm>
 #include <cstring>
 #include <map>
 
@@ -23,12 +24,12 @@ using namespace std;
 
 namespace {
 	// How many bytes to read from the file at a time:
-	static const size_t INPUT_CHUNK = 65536;
+	const size_t INPUT_CHUNK = 65536;
 	// How many samples to put in each output block. Because the output is in
 	// stereo, the duration of the sample is half this amount:
-	static const size_t OUTPUT_CHUNK = 32768;
+	const size_t OUTPUT_CHUNK = 32768;
 	
-	static map<string, string> paths;
+	map<string, string> paths;
 }
 
 

@@ -16,6 +16,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Font.h"
 #include "FontSet.h"
 #include "GameData.h"
+#include "Government.h"
 #include "LineShader.h"
 #include "Point.h"
 #include "OutlineShader.h"
@@ -54,15 +55,17 @@ void EscortDisplay::Draw() const
 	icons.sort();
 	stacks.clear();
 	zones.clear();
+	static const Set<Color> &colors = GameData::Colors();
 	
 	// Draw escort status.
 	const Font &font = FontSet::Get(14);
 	Point pos = Point(Screen::Left() + 20., Screen::Bottom());
-	const Color &elsewhereColor = *GameData::Colors().Get("escort elsewhere");
-	const Color &cannotJumpColor = *GameData::Colors().Get("escort blocked");
-	const Color &notReadyToJumpColor = *GameData::Colors().Get("escort not ready");
-	const Color &selectedColor = *GameData::Colors().Get("escort selected");
-	const Color &hereColor = *GameData::Colors().Get("escort present");
+	const Color &elsewhereColor = *colors.Get("escort elsewhere");
+	const Color &cannotJumpColor = *colors.Get("escort blocked");
+	const Color &notReadyToJumpColor = *colors.Get("escort not ready");
+	const Color &selectedColor = *colors.Get("escort selected");
+	const Color &hereColor = *colors.Get("escort present");
+	const Color &hostileColor = *colors.Get("escort hostile");
 	for(const Icon &escort : icons)
 	{
 		if(!escort.sprite)
@@ -78,7 +81,9 @@ void EscortDisplay::Draw() const
 			font.Draw(escort.system, pos + Point(-10., 10.), elsewhereColor);
 
 		Color color;
-		if(!escort.isHere)
+		if(escort.isHostile)
+			color = hostileColor;
+		else if(!escort.isHere)
 			color = elsewhereColor;
 		else if(escort.cannotJump)
 			color = cannotJumpColor;
@@ -110,12 +115,12 @@ void EscortDisplay::Draw() const
 		
 		// Draw the status bars.
 		static const Color fullColor[5] = {
-			Color(.44, .56, .70, 0), Color(.70, .62, .44, 0),
-			Color(.60, .60, .60, 0), Color(.70, .44, .44, 0), Color(.70, .62, .44, 0)
+			colors.Get("shields")->Additive(1.), colors.Get("hull")->Additive(1.),
+			colors.Get("energy")->Additive(1.), colors.Get("heat")->Additive(1.), colors.Get("fuel")->Additive(1.)
 		};
 		static const Color halfColor[5] = {
-			Color(.22, .28, .35, 0), Color(.35, .31, .22, 0),
-			Color(.30, .30, .30, 0), Color(.35, .22, .22, 0), Color(.35, .31, .22, 0)
+			fullColor[0].Additive(.5), fullColor[1].Additive(.5),
+			fullColor[2].Additive(.5), fullColor[3].Additive(.5), fullColor[4].Additive(.5),
 		};
 		Point from(pos.X() + 15., pos.Y() - 8.5);
 		for(int i = 0; i < 5; ++i)
@@ -165,6 +170,7 @@ const vector<const Ship *> &EscortDisplay::Click(const Point &point) const
 EscortDisplay::Icon::Icon(const Ship &ship, bool isHere, bool fleetIsJumping, bool isSelected)
 	: sprite(ship.GetSprite()),
 	isHere(isHere && !ship.IsDisabled()),
+	isHostile(ship.GetGovernment() && ship.GetGovernment()->IsEnemy()),
 	notReadyToJump(fleetIsJumping && !ship.IsHyperspacing() && !ship.IsReadyToJump()),
 	cannotJump(fleetIsJumping && !ship.IsHyperspacing() && !ship.JumpsRemaining()),
 	isSelected(isSelected),
@@ -196,6 +202,7 @@ int EscortDisplay::Icon::Height() const
 void EscortDisplay::Icon::Merge(const Icon &other)
 {
 	isHere &= other.isHere;
+	isHostile |= other.isHostile;
 	notReadyToJump |= other.notReadyToJump;
 	cannotJump |= other.cannotJump;
 	isSelected |= other.isSelected;
@@ -235,9 +242,9 @@ void EscortDisplay::MergeStacks() const
 		if(height < maxHeight || !cheapest)
 			break;
 		
-		// Merge together each group of escorts that have this icon annd are in
-		// the same system.
-		map<string, Icon *> merged;
+		// Merge together each group of escorts that have this icon and are in
+		// the same system and have the same attitude towards the player.
+		map<const bool, map<string, Icon *>> merged;
 		
 		// The "cheapest" element in the list may be removed to merge it with an
 		// earlier ship of the same type, so store a copy of its sprite pointer:
@@ -253,10 +260,10 @@ void EscortDisplay::MergeStacks() const
 			
 			// If this is the first escort we've seen so far in its system, it
 			// is the one we will merge all others in this system into.
-			auto mit = merged.find(it->system);
-			if(mit == merged.end())
+			auto mit = merged[it->isHostile].find(it->system);
+			if(mit == merged[it->isHostile].end())
 			{
-				merged[it->system] = &*it;
+				merged[it->isHostile][it->system] = &*it;
 				++it;
 			}
 			else
