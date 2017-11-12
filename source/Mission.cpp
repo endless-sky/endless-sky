@@ -123,6 +123,20 @@ void Mission::Load(const DataNode &node)
 				passengerLimit = child.Value(2);
 			if(child.Size() >= 4)
 				passengerProb = child.Value(3);
+			for(const DataNode &grand : child)
+			{
+				if(grand.Token(0) == "illegal" && grand.Size() == 2)
+					illegalCargoFine = grand.Value(1);
+				else if(grand.Token(0) == "illegal" && grand.Size() == 3)
+				{
+					illegalCargoFine = grand.Value(1);
+					illegalCargoMessage = grand.Token(2);
+				}
+				else if(grand.Token(0) == "stealth")
+					failIfDiscovered = true;
+				else
+					grand.PrintTrace("Skipping unrecognized attribute:");
+			}
 		}
 		else if(child.Token(0) == "invisible")
 			isVisible = false;
@@ -260,7 +274,25 @@ void Mission::Save(DataWriter &out, const string &tag) const
 			}
 		}
 		if(passengers)
+		{
 			out.Write("passengers", passengers);
+			if(illegalCargoFine)
+			{
+				out.BeginChild();
+				{
+					out.Write("illegal", illegalCargoFine, illegalCargoMessage);
+				}
+				out.EndChild();
+			}
+			if(failIfDiscovered)
+			{
+				out.BeginChild();
+				{
+					out.Write("stealth");
+				}
+				out.EndChild();
+			}
+		}
 		if(!isVisible)
 			out.Write("invisible");
 		if(hasPriority)

@@ -581,8 +581,16 @@ int CargoHold::IllegalCargoFine() const
 			return fine;
 		worst = max(worst, fine / 2);
 	}
-	
+
 	for(const auto &it : missionCargo)
+	{
+		int fine = it.first->IllegalCargoFine();
+		if(fine < 0)
+			return fine;
+		worst = max(worst, fine);
+	}
+
+	for(const auto &it : passengers)
 	{
 		int fine = it.first->IllegalCargoFine();
 		if(fine < 0)
