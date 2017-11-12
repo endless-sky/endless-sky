@@ -1264,15 +1264,15 @@ mission "Drug Running 1"
 		illegal 40000
 	to offer
 		random < 10
-		"said no to drugs" < 4
+		"rejected illegal jobs" < 4
 	
 	on offer
 		dialog `As you are walking through the spaceport, a man pulls you aside and asks if you would like to help transport some "recreational pharmaceuticals" to <planet>. (This sounds like an illegal mission, so you'll need to avoid getting scanned or landing on planets with high security.)`
 	
 	on accept
-		"said no to drugs" --
+		"rejected illegal jobs" --
 	on decline
-		"said no to drugs" ++
+		"rejected illegal jobs" ++
 	
 	on complete
 		payment
@@ -1409,6 +1409,137 @@ mission "Hallucination"
 		ship "Hallucination" "Peace"
 		ship "Hallucination" "Happy"
 		ship "Hallucination" "Shiny"
+
+
+
+mission "Shady passenger transport 1"
+	name "Shady passenger transport"
+	description "Discreetly transport a passenger to <destination>. If you are caught with him, you may be fined."
+	minor
+	repeat
+	source
+		attributes "near earth" core urban
+	destination
+		attributes frontier "dirt belt" rim north south pirate
+		distance 2 300
+	passengers 1
+		illegal 75000 `Your passenger turns out to be a small-time wanted criminal. As he is hauled off in chains, you vehemently protest that you knew nothing of his shady history. The authorities threaten you with jail time, and you quickly contact a lawyer. You wind up quite a bit poorer through a combination of fines, bribes, and attorney's fees (the breakdown remains somewhat unclear).`
+
+	to offer
+		random < 10
+		"rejected illegal jobs" < 3
+		"rejected illegal jobs" > -4
+
+	on offer
+		dialog `While having a drink at one of one of the spaceport's bars, a somewhat scruffy-looking man in a dark cloak pulls you aside and offers <payment> for discreet, no-questions-asked passage to <destination>, which is quite close by. This could be a quick and lucrative job. (it also sounds illegal, so you'll need to avoid getting scanned or landing on planets with high security.)`
+
+	on accept
+		"rejected illegal jobs" --
+
+	on decline
+		"rejected illegal jobs" ++
+
+	on complete
+		payment 50000
+		dialog `Your mysterious passenger has spoken hardly a word during the entire trip. As soon as you land, he hands you your payment of <payment> and disappears into a crowd, off to do who-knows-what.`
+
+
+
+mission "Shady passenger transport 2"
+	name "Shady passenger transport"
+	description "Discreetly transport two passengers to <destination>. If you are caught with them, you may be fined."
+	minor
+	repeat
+	source
+		attributes "near earth" core urban
+	destination
+		attributes frontier "dirt belt" rim north south pirate
+		distance 3 7
+	passengers 2
+		illegal 150000 `Your passengers turn out to be wanted criminals. As they are hauled off in chains, you vehemently protest that you knew nothing of their shady histories. The authorities threaten you with jail time, and you quickly contact a lawyer. You wind up quite a bit poorer through a combination of fines, bribes, and attorney's fees (the breakdown remains somewhat unclear).`
+		stealth
+
+	to offer
+		random < 8
+		"rejected illegal jobs" < 0
+		has "Shady passenger transport 1: done"
+
+	on offer
+		dialog `As you are walking through the spaceport, two men in nondescript clothing appear out of nowhere and offer <payment> for discreet, no-questions-asked passage to <destination>.`
+
+	on accept
+		dialog `You quickly bundle the men onto your ship before anyone sees them. As you're helping unpack their luggage, one of them casually mentions that they may have attracted the attention of some bounty hunters, and would prefer not to be captured. You should probably avoid being scanned, too."`
+		"rejected illegal jobs" --
+
+	on decline
+		"rejected illegal jobs" ++
+
+	on complete
+		payment 100000
+		dialog `Your passengers depart after paying you the agreed-upon sum of <payment>, off to make new lives for themselves doing who-knows-what.`
+
+	npc
+		government "Bounty Hunter"
+		personality nemesis plunders waiting
+		system
+			distance 6 9
+		fleet "Bounty Hunters"
+
+
+
+mission "Shady passenger transport 3"
+	name "Shady passenger transport"
+	description "Discreetly transport <bunks> passengers to <destination>. If you are caught with them, the legal consequences may be severe."
+	minor
+	repeat
+	source
+		attributes frontier "dirt belt" rim north south pirate
+	destination
+		attributes "near earth" core urban
+		distance 5 10
+	passengers 4 13
+		illegal 400000 `It's rather difficult to feign ignorance of your passengers' background during your questioning. You wind up having to pay a small fortune in bribes to keep yourself from being charged as an accomplice very serious-sounding crimes. Even so, you fear that your legal status may have suffered a blow...`
+		stealth
+
+	to offer
+		random < 5
+		"rejected illegal jobs" < -5
+		has "Shady passenger transport 2: done"
+
+	on offer
+		dialog `A small group of fearsome-looking young men and women brazenly walk up to you in broad daylight, explaining that they're in some legal trouble and need to get to <destination>, offering <payment> to secure discreet passage. You must be getting quite a reputation in certain circles. Transporting them might be very dangerous. On the other hand, they're offering a small fortune...`
+
+	on accept
+		dialog `the mercenaries (or gang members, or fleeing bank robbers, or who knows what else) make themselves at home on your ship, and begin drinking and arguing. You wonder what you've gotten yourself into...`
+		"rejected illegal jobs" --
+
+	on decline
+		"rejected illegal jobs" ++
+
+	on fail
+		"reputation: Republic" = -1
+
+	on complete
+		payment 350000
+		dialog `During the voyage, you've come to understand that your passengers are mercenaries whose latest exploits put them on the wrong side of the law. They pay you the agreed-upon sum of <payment> and disappear into a crowd, no doubt off to cause chaos and mayhem for some unsuspecting victim. Oh well, not your problem...`
+	npc
+		government "Bounty Hunter"
+		personality nemesis plunders waiting
+		system
+			distance 2 3
+		fleet "Bounty Hunters"
+	npc
+		government "Bounty Hunter"
+		personality nemesis plunders waiting
+		system
+			distance 2 3
+		fleet "Bounty Hunters"
+	npc
+		government "Bounty Hunter"
+		personality nemesis plunders waiting
+		system
+			distance 6 9
+		fleet "Bounty Hunters"
 
 
 

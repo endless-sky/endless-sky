@@ -1,0 +1,155 @@
+# Copyright (c) 2017 by Michael Zahniser and Nate Graham
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+
+
+mission "Instruct novice pilot"
+	job
+	repeat
+	description "A novice pilot seeks instruction from an experienced spacer, and requests an escort to <stopovers>. After that, return to <origin> and you will receive payment of <payment>."
+	to offer
+		random < 5
+		"combat rating" > 50
+	source
+		government Republic "Free Worlds" Neutral
+		attributes frontier "dirt belt" rim north south mining farming
+	stopover
+		attributes frontier
+		distance 3 7
+	on stopover
+		dialog "After a smooth landing, you guide your student through an especially rough part of the spaceport, full of trash, homeless drifters, and poorly-lit alleyways. You explain the ins and outs of avoiding pickpockets, keeping out of bar fights, and how to spot a lousy deal at an outfitter's shop. After a few hours in one of the seedier parts of the galaxy, both of you are eager to return to <origin>."
+	on visit
+		dialog "You've returned to <planet>, but forgot to escort the <npc> to <stopovers> first! Better head there first."
+	on complete
+		payment 75000
+		dialog "Your student thanks you for the able tutelage and for providing a guided view of some of the galaxy's rougher areas. You receive your payment of <payment>."
+	npc
+		government Pirate
+		personality nemesis waiting
+		fleet "Small Northern Pirates"
+		system
+			distance 3 7
+	npc accompany save
+		government Merchant
+		personality escort heroic vindictive
+		fleet
+			names "civilian"
+			variant
+				"Sparrow"
+			variant
+				"Star Barge"
+			variant
+				"Shuttle"
+			variant
+				"Heavy Shuttle"
+
+
+
+mission "Small Pirate gambling"
+	description "Survive the pirate attack!"
+	minor
+	repeat
+	to offer
+		"reputation: Pirates" < 0
+		"combat rating" < 10
+		random < 5
+	source
+		attributes "dirt belt" south rim pirate
+	on offer
+		conversation
+			`	You're having a drink in a dimly-lit spaceport bar when you notice a couple of young men in crimson leather outfits gambling in a particularly dark corner. The barman eyes them warily, and you suspect they may be pirates. One of them raises his drink and waves you over, beckoning to join their game.`
+			choice
+				`(Join their game.)`
+					goto gamble
+				`(Ignore them and leave quickly.)`
+					defer
+
+			label gamble
+			`	You saunter confidently over to the table. A closer examination all but confirms your suspicion that they're pirates. Not one of them looks older than 19, and they all sport fearsome tattoos and dangerous-looking sidearms. You put on a brave face and they deal you into their card game. After a few rounds it becomes abundantly obvious that they're cheating, and making little effort to hide this from you.`
+			branch "good luck" "bad luck"
+				random < 30
+
+			label "good luck"
+			`	Fortunately, you're able to outsmart them anyway and win the game, winding up with a sizable pile of credit chips. They glower but do not molest you as you quickly seek the safety of a public place. You thank your lucky stars: you're nearly 25,000 credits richer and still in one piece after a face-to-face encounter with pirates.`
+				accept
+
+			label "bad luck"
+			`	You're starting to bleed money, with more than 10,000 credits in losses already.`
+			choice
+				`(Call them out on their cheating.)`
+					goto call
+				`(Say nothing and continue playing.)`
+					goto lose
+
+			label lose
+			`	You grit your teeth and lose hand after hand before the game finally, mercifully ends. Discretion may be the better part of valor, but it's lost you almost 15,000 credits. The pirates laugh at you and gloat over their "winnings" as you slink away, your pride stung.`
+				decline
+
+			label call
+			`	This is intolerable. You start to raise a stink about their blatant cheating.`
+			`	"We're just playin' a game here, see? You'd better shut your big mouth if you know what's good for you", the meanest-looking one growls at you. "We can make this ugly real fast."`
+			`	The four thugs stare at you menacingly and start to reach for their blasters.`
+			choice
+				`(Shoot first!)`
+					goto shoot
+				`(Grab the pot and run!)`
+					goto run
+				`(Let them fleece you.)`
+					goto lose
+
+			label shoot
+			branch "shoot and die" "shoot and run"
+				random < 30
+
+			label "shoot and die"
+			`	Unfortunately they're faster then you. Your mutilated corpse hits the floor with a wet thump.`
+				die
+
+			label "shoot and run"
+			`	Grateful that you never leave your ship unarmed, your hand fies toward the plaster pistol at your thigh. In one smooth motion you draw the weapon and fire at the pirate who just threatened you. The bolt punches a fist-sized hole in the center of his his chest, severing the spine. He collapses like a sack of potatoes, and an acrid smell begins to fill the air. His shocked comrades fumble in horror for their weapons but you've taken them by surprise and quickly gun down another before deciding it's time to escape. You grab some of the chits in the pile of credits on the way out!`
+			`	Dashing madly towards the hangar bay, you radio the <ship> to start its pre-flight checks remotely. The boarding ramp screeches open and you race inside, blasting off in a hurry. Halfway out of the atmosphere, the comm crackles to life as the remaining two pirates hurl obscenities at you. A proximity alert flashes: looks like they made it to their ships and decided to follow you...`
+				launch
+
+			label run
+			branch "grab and die" "grab and run"
+				random < 30
+
+			label "grab and die"
+			`	You grab the pot and make a break for it! The ruffians howl and draw their guns. Dodging blaster fire, you run towards the door and get halfway there before one of the bolts finds its mark. You fall to the floor in searing pain, watching a pool of your own blood expand around you. You try to struggle to your feet, but the toughest-looking pirate kicks you to the ground with a hobnailed boot. Time slows down as his blaster's muzzle inches ever closer to pointing right at your face. Your vision blurs and the last thing you see is a blinding white flash.`
+				die
+
+			label "grab and run"
+			`	You grab the pot and make a break for it! The ruffians howl and draw their guns. You run towards the door in a zigzag motion, blaster bolts searing the air around you but miraculously none hitting their mark. You glance backwards just in time to see the barkeep reduce one of the ruffians to hamburger meat with a shredder cannon. The remaining three chase after you.`
+			`	Dashing madly towards the hangar bay, you radio the <ship> to start its pre-flight checks remotely. The boarding ramp screeches open and you race inside, blasting off in a hurry. You quickly count your spoils and see that you're nearly 25,000 credits richer! Halfway out of the atmosphere, you receive a message from the port authorities warning you that while they apprehended one of the pirates, the remaining two made it to their ships and are waiting for you in orbit...`
+				launch
+
+	on decline
+		payment -14357
+		fail
+
+	on accept
+		payment 23974
+		fail
+
+	npc
+		personality
+			heroic
+			plunders
+			vindictive
+			confusion 20
+		government "Pirate"
+		fleet
+			names "pirate"
+			variant
+				"Sparrow" 2
+			variant
+				"Wasp" 2
+			variant
+				"Wasp"
+				"Sparrow"
