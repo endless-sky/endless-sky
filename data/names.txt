@@ -244,6 +244,7 @@ phrase "singular nouns"
 		"Cave"
 		"Phoenix"
 		"Soul"
+		"Teacup"
 
 phrase "plural nouns"
 	word
