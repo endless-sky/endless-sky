@@ -273,7 +273,7 @@ ship "Shield Beetle"
 	explode "large explosion" 50
 	explode "huge explosion" 20
 	"final explode" "final explosion large"
-	description "This ship was first built millenia ago, near the end of a more violent time in Hai history. Since then it has served as the only heavy warship at the disposal of the Hai. The Shield Beetle is a versatile warship used by the Hai to guard their merchant convoys, or by the Unfettered to attack those very same convoys."
+	description "This ship was first built millenia ago, near the end of a more violent time in Hai history. Since then, it has served as the only heavy warship at the disposal of the Hai. The Shield Beetle is a versatile warship used by the Hai to guard their merchant convoys, or by the Unfettered to attack those very same convoys."
 
 ship "Shield Beetle" "Shield Beetle (Tracker)"
 	outfits
@@ -620,7 +620,7 @@ ship "Water Bug"
 	explode "large explosion" 20
 	explode "huge explosion" 5
 	"final explode" "final explosion medium"
-	description "The design of the Water Bug is almost as old as the Aphid, but until recently it never saw much use. A spike in aggression from the Unfettered Hai has lead the tougher and more well-defended Water Bug to see an increase in popularity over its little brother, the Aphid. The Water Bug is now the most widely used freighter by the Hai, comprising the bulk of all Hai merchant fleets."
+	description "The design of the Water Bug is almost as old as the Aphid, but until recently it never saw much use. A spike in aggression from the Unfettered Hai has lead the tougher and more well-defended Water Bug to see an increase in popularity over its little brother, the Aphid. The Water Bug is now the most widely used Hai freighter, comprising the bulk of all Hai merchant fleets."
 
 ship "Water Bug" "Water Bug (Pulse)"
 	outfits
