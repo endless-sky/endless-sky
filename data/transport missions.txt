@@ -2117,7 +2117,7 @@ mission "Terraforming 12"
 		conversation
 			`A plume of smoke forms in a mushroom cloud shape above where the asteroid hit. The scientists are viewing their instruments in anticipation for what happens next.`
 			`	Almost an hour after the impact, the ground begins to shake slightly, even though the volcano is located hundreds of kilometers away. "This might be it!" Nolan exclaims as he watches closely at a seismometer receiving readings from near the impact site. Suddenly the seismometer spikes, and another plume of smoke, mucher larger than the asteroid impact, rises from the impact site. Half an hour later, the low sound of the massive eruption can be heard in the spaceport, triggering another burst of cheers from the scientists. "It actually worked!" one of them yells out.`
-			`	You fly the scientists over top of the volcano, allowing them to take readings of the air and surface. "Atmospheric carbon dioxide levels are at 4000 parts per million. methane levels at 20 parts per million. As the smoke disperses across the planet, those levels should drop to a tenth of what they are now, warming the entire planet."`
+			`	You fly the scientists over top of the volcano, allowing them to take readings of the air and surface. "Atmospheric carbon dioxide levels are at 4000 parts per million. Methane levels at 20 parts per million. As the smoke disperses across the planet, those levels should drop to a tenth of what they are now, warming the entire planet."`
 			`	The heat has also formed a huge circle of melted snow around the volcano, revealing the green color of trees and the dull grays and browns of rock.`
 			choice
 				`	"What do we do now?"`
