@@ -907,3 +907,7 @@ event "wanderers: desi seledrak"
 		description `Plumes of soot and ash rise from a cluster of several dozen volcanoes on this planet's main continent, shrouding the planet in a thick layer of clouds and choking out the sunlight. The ruins of several Korath cities and the geometric grids of cleared land surrounding them show that this was once a farming world, but now few plants are able to survive and kilometer-high glaciers have begun creeping down from the poles.`
 		description `	With some help from the Mereti drones, the Wanderers have set up factories here that are pumping out carbon dioxide and methane to warm the atmosphere. In a few decades, the glaciers may start to recede.`
 		spaceport `This odd settlement was built half by the Wanderers and half by the Mereti drones. The layout of the streets is completely chaotic, and they have planted rows of trees and bushes everywhere: some inside greenhouses, and some hardier species out in the open air. The settlement is near the equator, but it is still not particularly warm.`
+
+event "wanderers: riptide mass production"
+	shipyard "Wanderer Advanced"
+		"Riptide"
