@@ -124,6 +124,65 @@ fleet "Wanderer Flycatchers"
 	variant
 		"Flycatcher" 2
 
+fleet "Wanderer Transport"
+	government "Wanderer"
+	names "wanderer"
+	personality
+		timid
+	variant
+		"Riptide"
+		"Flycatcher" 2
+	variant
+		"Riptide" 2
+		"Flycatcher" 4
+	variant
+		"Riptide" 3
+		"Flycatcher" 6
+	variant
+		"Riptide" 2
+		"Flycatcher" 4
+		"Summer Leaf" 3
+	variant
+		"Riptide"
+		"Flycatcher" 2
+		"Summer Leaf" 4
+	variant
+		"Riptide" 2
+		"Flycatcher" 4
+		"Strong Wind" 2
+	variant
+		"Riptide" 
+		"Flycatcher" 2
+		"Strong Wind" 3
+	variant
+		"Riptide" 2
+		"Flycatcher" 4
+		"Strong Wind" 3
+	variant
+		"Riptide" 2
+		"Flycatcher" 4
+		"Tempest" 2
+	variant
+		"Riptide" 
+		"Flycatcher" 2
+		"Tempest" 3
+	variant
+		"Riptide" 2
+		"Flycatcher" 4
+		"Derecho" 2
+	variant
+		"Riptide" 
+		"Flycatcher" 2
+		"Derecho" 3
+	variant
+		"Riptide" 2
+		"Flycatcher" 4
+		"Hurricane" 2
+	variant
+		"Riptide" 1
+		"Flycatcher" 2
+		"Hurricane" 3
+
 
 shipyard "Wanderer Basics"
 	"Earth Shaper"
