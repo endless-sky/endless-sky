@@ -116,6 +116,7 @@ ship "Centipede"
 description `	The Centipede is the newest ship to be sold by the Hai. Designed by a human and built by a Hai shipyard, the Centipede was put on the market around the turn of the 31st century, but has already seen massive use among Hai fleets.`
 
 
+
 ship "Flea"
 	sprite "ship/hai flea"
 	attributes
