@@ -968,5 +968,33 @@ event "wanderers: desi seledrak"
 		spaceport `This odd settlement was built half by the Wanderers and half by the Mereti drones. The layout of the streets is completely chaotic, and they have planted rows of trees and bushes everywhere: some inside greenhouses, and some hardier species out in the open air. The settlement is near the equator, but it is still not particularly warm.`
 
 event "wanderers: riptide mass production"
+	system Sabriset
+		add fleet "Wanderer Transport" 3000
+	system Sepriaptu
+		add fleet "Wanderer Transport" 1500
+	system Kaliptari
+		add fleet "Wanderer Transport" 1500
+	system Solifar
+		add fleet "Wanderer Transport" 1500
+	system Sko'karak
+		add fleet "Wanderer Transport" 3000
+	system Aya'k'k
+		add fleet "Wanderer Transport" 1500
+	system Pik'ro'iyak
+		add fleet "Wanderer Transport" 1500
+	system Es'sprak'i
+		add fleet "Wanderer Transport" 1500
+	system Si'yak'ku
+		add fleet "Wanderer Transport" 1500
+	system Ek'kek'ru
+		add fleet "Wanderer Transport" 1500
+	system Iyech'yek
+		add fleet "Wanderer Transport" 1500
+	system Kiru'kichi
+		add fleet "Wanderer Transport" 1500
+	system Ka'ch'chrai
+		add fleet "Wanderer Transport" 1500
+	system Ap'arak
+		add fleet "Wanderer Transport" 1500
 	shipyard "Wanderer Advanced"
 		"Riptide"
