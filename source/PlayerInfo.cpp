@@ -822,6 +822,10 @@ int PlayerInfo::ReorderShips(const set<int> &fromIndices, int toIndex)
 	if(fromIndices.empty() || static_cast<unsigned>(toIndex) >= ships.size())
 		return -1;
 	
+	// When shifting ships up in the list, move to the desired index. If
+	// moving down, move after the selected index.
+	int direction = (*fromIndices.begin() < toIndex) ? 1 : 0;
+	
 	// Remove the ships from last to first, so that each removal leaves all the
 	// remaining indices in the set still valid.
 	vector<shared_ptr<Ship>> removed;
@@ -842,10 +846,12 @@ int PlayerInfo::ReorderShips(const set<int> &fromIndices, int toIndex)
 		if(*it < toIndex)
 			--toIndex;
 	}
-	ships.insert(ships.begin() + toIndex, removed.begin(), removed.end());
+	vector<shared_ptr<Ship>>::const_iterator insertPos = ships.begin() + toIndex + direction;
+	ships.insert(insertPos > ships.end() ? ships.end() : insertPos,
+			removed.begin(), removed.end());
 	flagship.reset();
 	
-	return toIndex;
+	return toIndex + direction;
 }
 
 
