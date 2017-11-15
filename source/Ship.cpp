@@ -1050,7 +1050,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 				// Exit hyperspace far enough from the planet to be able to land.
 				// This does not take drag into account, so it is always an over-
 				// estimate of how long it will take to stop.
-				// We start deceleration after rotating about 150 degrees (that
+				// We start decelerating after rotating about 150 degrees (that
 				// is, about acos(.8) from the proper angle). So:
 				// Stopping distance = .5*a*(v/a)^2 + (150/turn)*v.
 				// Exit distance = HYPER_D + .25 * v^2 = stopping distance.
