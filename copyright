@@ -246,6 +246,13 @@ Files: images/land/*-spfld*
 Copyright: Eric Denni (spfldsatellite@gmail.com)
 License: CC-BY-SA-4.0
 
+Files: images/land/sivael*
+Copyright: Tymoteusz Kapuściński (Sivael)
+License: CC-BY-SA-4.0
+Comment: Screenshots of environments created with assets purchased by Tymoteusz
+ Kapuściński from the Unity Asset Store. Post-processing applied by Michael
+ Zahniser to make the images look less artificial.
+
 Files:
  images/land/badlands0*
  images/land/badlands1*
