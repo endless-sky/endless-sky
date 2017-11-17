@@ -67,6 +67,25 @@ namespace {
 		int d = distance.Days(system);
 		return (d > maximum) ? -1 : d;
 	}
+	
+	// Check that at least one neighbor of the hub system matches, for each of the neighbor filters.
+	// False if at least one filter fails to match, true if all filters find at least one match.
+	bool MatchesNeighborFilters(const list<LocationFilter> &neighborFilters, const System *hub, const System *origin)
+	{
+		for(const LocationFilter &filter : neighborFilters)
+		{
+			bool hasMatch = false;
+			for(const System *neighbor : hub->Links())
+				if(filter.Matches(neighbor, origin))
+				{
+					hasMatch = true;
+					break;
+				}
+			if(!hasMatch)
+				return false;
+		}
+		return true;
+	}
 }
 
 
@@ -172,12 +191,12 @@ bool LocationFilter::IsEmpty() const
 // If the player is in the given system, does this filter match?
 bool LocationFilter::Matches(const Planet *planet, const System *origin) const
 {
+	if(!planet || !planet->GetSystem())
+		return false;
+	
 	for(const LocationFilter &filter : notFilters)
 		if(filter.Matches(planet, origin))
 			return false;
-	
-	if(!planet)
-		return false;
 	
 	if(!planets.empty() && !planets.count(planet))
 		return false;
@@ -187,18 +206,8 @@ bool LocationFilter::Matches(const Planet *planet, const System *origin) const
 	if(!governments.empty() && !governments.count(planet->GetGovernment()))
 		return false;
 	
-	for(const LocationFilter &filter : neighborFilters)
-	{
-		bool hasMatch = false;
-		for(const System *neighbor : planet->GetSystem()->Links())
-			if(filter.Matches(neighbor, origin))
-			{
-				hasMatch = true;
-				break;
-			}
-		if(!hasMatch)
-			return false;
-	}
+	if(!MatchesNeighborFilters(neighborFilters, planet->GetSystem(), origin))
+		return false;
 	
 	return Matches(planet->GetSystem(), origin, true);
 }
@@ -231,18 +240,9 @@ bool LocationFilter::Matches(const Ship &ship) const
 			return false;
 	}
 	
-	for(const LocationFilter &filter : neighborFilters)
-	{
-		bool hasMatch = false;
-		for(const System *neighbor : ship.GetSystem()->Links())
-			if(filter.Matches(neighbor, ship.GetSystem()))
-			{
-				hasMatch = true;
-				break;
-			}
-		if(!hasMatch)
-			return false;
-	}
+	if(!MatchesNeighborFilters(neighborFilters, ship.GetSystem(), ship.GetSystem()))
+		return false;
+	
 	return true;
 }
 
@@ -321,6 +321,9 @@ void LocationFilter::LoadChild(const DataNode &child)
 
 bool LocationFilter::Matches(const System *system, const System *origin, bool didPlanet) const
 {
+	if(!system)
+		return false;
+	
 	// Don't check these filters again if they were already checked as a part of
 	// checking if a planet matches.
 	if(!didPlanet)
@@ -328,8 +331,6 @@ bool LocationFilter::Matches(const System *system, const System *origin, bool di
 			if(filter.Matches(system, origin))
 				return false;
 	
-	if(!system)
-		return false;
 	if(!systems.empty() && !systems.count(system))
 		return false;
 	if(!didPlanet && !governments.empty() && !governments.count(system->GetGovernment()))
@@ -350,19 +351,8 @@ bool LocationFilter::Matches(const System *system, const System *origin, bool di
 			return false;
 	}
 	
-	if(!didPlanet)
-		for(const LocationFilter &filter : neighborFilters)
-		{
-			bool hasMatch = false;
-			for(const System *neighbor : system->Links())
-				if(filter.Matches(neighbor, origin))
-				{
-					hasMatch = true;
-					break;
-				}
-			if(!hasMatch)
-				return false;
-		}
+	if(!didPlanet && !MatchesNeighborFilters(neighborFilters, system, origin))
+		return false;
 	
 	// Special case: if this filter specifies planets or attributes, but was
 	// only called on a system, it never matches.
