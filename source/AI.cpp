@@ -252,7 +252,10 @@ void AI::UpdateEvents(const list<ShipEvent> &events)
 	for(const ShipEvent &event : events)
 	{
 		if(event.Actor() && event.Target())
+		{
 			actions[event.Actor()][event.Target()] |= event.Type();
+			notoriety[event.Actor()][event.TargetGovernment()] |= event.Type();
+		}
 		if(event.ActorGovernment() && event.Target())
 			governmentActions[event.ActorGovernment()][event.Target()] |= event.Type();
 		if(event.ActorGovernment()->IsPlayer() && event.Target())
@@ -273,6 +276,7 @@ void AI::UpdateEvents(const list<ShipEvent> &events)
 void AI::Clean()
 {
 	actions.clear();
+	notoriety.clear();
 	governmentActions.clear();
 	playerActions.clear();
 	shipStrength.clear();
@@ -997,6 +1001,8 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 			}
 			// Prefer to go after armed targets, especially if you're not a pirate.
 			range += 1000. * (!IsArmed(*it) * (1 + !person.Plunders()));
+			// Targets which have plundered this ship's faction earn extra scorn.
+			range -= 1000 * Has(*it, gov, ShipEvent::BOARD);
 			// Focus on nearly dead ships.
 			range += 500. * (it->Shields() + it->Hull());
 			if((isPotentialNemesis && !hasNemesis) || range < closest)
@@ -1016,8 +1022,9 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 		for(const auto &it : ships)
 			if(it->GetSystem() == system && it->GetGovernment() != gov && it->IsTargetable())
 			{
-				if((cargoScan && !Has(ship.GetGovernment(), it, ShipEvent::SCAN_CARGO))
-						|| (outfitScan && !Has(ship.GetGovernment(), it, ShipEvent::SCAN_OUTFITS)))
+				// Scan friendly ships that are as-yet unscanned by this ship's government.
+				if((cargoScan && !Has(gov, it, ShipEvent::SCAN_CARGO))
+						|| (outfitScan && !Has(gov, it, ShipEvent::SCAN_OUTFITS)))
 				{
 					double range = it->Position().Distance(ship.Position());
 					if(range < closest)
@@ -3201,6 +3208,23 @@ bool AI::Has(const Government *government, const weak_ptr<const Ship> &other, in
 		return false;
 	
 	return (oit->second & type);
+}
+
+
+
+// True if the ship has committed the action against that government. For
+// example, if the player boarded any ship belonging to that government.
+bool AI::Has(const Ship &ship, const Government *government, int type) const
+{
+	auto sit = notoriety.find(ship.shared_from_this());
+	if(sit == notoriety.end())
+		return false;
+	
+	auto git = sit->second.find(government);
+	if(git == sit->second.end())
+		return false;
+	
+	return (git->second & type);
 }
 
 
