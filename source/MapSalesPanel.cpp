@@ -255,19 +255,25 @@ void MapSalesPanel::DrawInfo() const
 {
 	if(selected >= 0)
 	{
+		const Sprite *left = SpriteSet::Get("ui/left edge");
+		const Sprite *bottom = SpriteSet::Get(compare >= 0 ? "ui/bottom edges" : "ui/bottom edge");
+		const Sprite *box = SpriteSet::Get(compare >= 0 ? "ui/thumb boxes" : "ui/thumb box");
+		
 		const ItemInfoDisplay &selectedInfo = SelectedInfo();
 		const ItemInfoDisplay &compareInfo = CompareInfo();
-		int selectedHeight = max(selectedInfo.AttributesHeight(), 120);
-		int compareHeight = (compare >= 0) ? max(compareInfo.AttributesHeight(), 120) : 0;
+		int height = max<int>(selectedInfo.AttributesHeight(), box->Height());
+		int width = selectedInfo.PanelWidth();
+		if(compare >= 0)
+		{
+			height = max(height, compareInfo.AttributesHeight());
+			width += box->Width() + compareInfo.PanelWidth();
+		}
 		
 		Color back(.125, 1.);
-		Point size(selectedInfo.PanelWidth(), selectedHeight + compareHeight);
+		Point size(width, height);
 		Point topLeft(Screen::Right() - size.X(), Screen::Top());
 		FillShader::Fill(topLeft + .5 * size, size, back);
 		
-		const Sprite *left = SpriteSet::Get("ui/left edge");
-		const Sprite *bottom = SpriteSet::Get("ui/bottom edge");
-		const Sprite *box = SpriteSet::Get("ui/thumb box");
 		Point leftPos = topLeft + Point(
 			-.5 * left->Width(),
 			size.Y() - .5 * left->Height());
@@ -279,25 +285,21 @@ void MapSalesPanel::DrawInfo() const
 			.5 * (left->Height() + bottom->Height()));
 		SpriteShader::Draw(bottom, bottomPos);
 		
-		Point iconOffset(-.5 * ICON_HEIGHT, .5 * ICON_HEIGHT);
-		
-		SpriteShader::Draw(box, topLeft + iconOffset + Point(-15., 5.));
-		DrawSprite(topLeft + Point(-ICON_HEIGHT, 5.), SelectedSprite());
-		
-		selectedInfo.DrawAttributes(topLeft);
-		
 		if(compare >= 0)
 		{
-			topLeft.Y() += selectedHeight;
-			
-			SpriteShader::Draw(box, topLeft + iconOffset + Point(-15., 5.));
-			DrawSprite(topLeft + Point(-ICON_HEIGHT, 5.), CompareSprite());
-			
-			Color line(.5);
-			size.Y() = 1.;
-			FillShader::Fill(topLeft + .5 * size - Point(0., 1.), size, line);
 			compareInfo.DrawAttributes(topLeft);
+			topLeft.X() += compareInfo.PanelWidth() + box->Width();
+			
+			SpriteShader::Draw(box, topLeft + Point(-50., 100.));
+			DrawSprite(topLeft + Point(-95., 5.), SelectedSprite());
+			DrawSprite(topLeft + Point(-95., 105.), CompareSprite());
 		}
+		else
+		{
+			SpriteShader::Draw(box, topLeft + Point(-60., 50.));
+			DrawSprite(topLeft + Point(-95., 5.), SelectedSprite());
+		}
+		selectedInfo.DrawAttributes(topLeft);
 	}
 }
 
