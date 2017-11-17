@@ -120,8 +120,12 @@ private:
 	
 	void MovePlayer(Ship &ship, const PlayerInfo &player);
 	
+	// True if the ship performed the indicated event to the other ship.
 	bool Has(const Ship &ship, const std::weak_ptr<const Ship> &other, int type) const;
+	// True if the government performed the indicated event to the other ship.
 	bool Has(const Government *government, const std::weak_ptr<const Ship> &other, int type) const;
+	// True if the ship has performed the indicated event against any member of the government.
+	bool Has(const Ship &ship, const Government *government, int type) const;
 	
 	
 private:
@@ -179,6 +183,7 @@ private:
 	// Records of what various AI ships and factions have done.
 	typedef std::owner_less<std::weak_ptr<const Ship>> Comp;
 	std::map<std::weak_ptr<const Ship>, std::map<std::weak_ptr<const Ship>, int, Comp>, Comp> actions;
+	std::map<std::weak_ptr<const Ship>, std::map<const Government *, int>, Comp> notoriety;
 	std::map<const Government *, std::map<std::weak_ptr<const Ship>, int, Comp>> governmentActions;
 	std::map<std::weak_ptr<const Ship>, int, Comp> playerActions;
 	std::map<const Ship *, std::weak_ptr<Ship>> helperList;
