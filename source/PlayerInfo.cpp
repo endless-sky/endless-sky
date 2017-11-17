@@ -324,8 +324,8 @@ void PlayerInfo::LoadRecent()
 // Save this player. The file name is based on the player's name.
 void PlayerInfo::Save() const
 {
-	// Don't save dead players.
-	if(isDead)
+	// Don't save dead players or players that are not fully created.
+	if(!CanBeSaved())
 		return;
 	
 	// Remember that this was the most recently saved player.
@@ -2323,7 +2323,7 @@ void PlayerInfo::CreateMissions()
 
 void PlayerInfo::Autosave() const
 {
-	if(filePath.length() < 4)
+	if(!CanBeSaved() || filePath.length() < 4)
 		return;
 	
 	string path = filePath.substr(0, filePath.length() - 4) + "~autosave.txt";
@@ -2334,9 +2334,6 @@ void PlayerInfo::Autosave() const
 
 void PlayerInfo::Save(const string &path) const
 {
-	if(!planet || !system)
-		return;
-	
 	DataWriter out(path);
 	
 	
@@ -2558,4 +2555,12 @@ void PlayerInfo::SelectShip(const shared_ptr<Ship> &ship, bool *first)
 			*first = false;
 		}
 	}
+}
+
+
+
+// Check that this player's current state can be saved.
+bool PlayerInfo::CanBeSaved() const
+{
+	return (!isDead && planet && system && !firstName.empty() && !lastName.empty());
 }

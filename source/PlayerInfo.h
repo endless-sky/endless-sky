@@ -256,6 +256,9 @@ private:
 	// Helper function to update the ship selection.
 	void SelectShip(const std::shared_ptr<Ship> &ship, bool *first);
 	
+	// Check that this player's current state can be saved.
+	bool CanBeSaved() const;
+	
 	
 private:
 	std::string firstName;
