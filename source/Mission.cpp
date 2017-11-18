@@ -780,10 +780,8 @@ void Mission::Do(const ShipEvent &event, PlayerInfo &player, UI *ui)
 		}
 		else if(event.Type() & ShipEvent::BOARD)
 		{
-			// Fail missions whose cargo or passengers are stolen by a boarding vessel.
+			// Fail missions whose cargo is stolen by a boarding vessel.
 			for(const auto &it : event.Actor()->Cargo().MissionCargo())
-				failed |= (it.first == this);
-			for(const auto &it : event.Actor()->Cargo().PassengerList())
 				failed |= (it.first == this);
 			if(failed)
 				message += "plundered. ";
