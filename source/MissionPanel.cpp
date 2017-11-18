@@ -590,7 +590,7 @@ void MissionPanel::DrawMissionInfo()
 		info.SetCondition("can abort");
 	
 	info.SetString("cargo free", to_string(player.Cargo().Free()) + " tons");
-	info.SetString("bunks free", to_string(player.Cargo().Bunks()) + " bunks");
+	info.SetString("bunks free", to_string(player.Cargo().BunksFree()) + " bunks");
 	
 	info.SetString("today", player.GetDate().ToString());
 	
@@ -627,7 +627,7 @@ void MissionPanel::Accept()
 		cargoToSell = toAccept.CargoSize() - player.Cargo().Free();
 	int crewToFire = 0;
 	if(toAccept.Passengers())
-		crewToFire = toAccept.Passengers() - player.Cargo().Bunks();
+		crewToFire = toAccept.Passengers() - player.Cargo().BunksFree();
 	if(cargoToSell > 0 || crewToFire > 0)
 	{
 		ostringstream out;
@@ -671,7 +671,7 @@ void MissionPanel::MakeSpaceAndAccept()
 {
 	const Mission &toAccept = *availableIt;
 	int cargoToSell = toAccept.CargoSize() - player.Cargo().Free();
-	int crewToFire = toAccept.Passengers() - player.Cargo().Bunks();
+	int crewToFire = toAccept.Passengers() - player.Cargo().BunksFree();
 	
 	if(crewToFire > 0)
 		player.Flagship()->AddCrew(-crewToFire);

@@ -561,7 +561,7 @@ bool Mission::HasSpace(const PlayerInfo &player) const
 	if(player.Flagship())
 		extraCrew = player.Flagship()->Crew() - player.Flagship()->RequiredCrew();
 	return (cargoSize <= player.Cargo().Free() + player.Cargo().CommoditiesSize()
-		&& passengers <= player.Cargo().Bunks() + extraCrew);
+		&& passengers <= player.Cargo().BunksFree() + extraCrew);
 }
 
 
@@ -644,7 +644,7 @@ string Mission::BlockedMessage(const PlayerInfo &player)
 		extraCrew = player.Flagship()->Crew() - player.Flagship()->RequiredCrew();
 	
 	int cargoNeeded = cargoSize - (player.Cargo().Free() + player.Cargo().CommoditiesSize());
-	int bunksNeeded = passengers - (player.Cargo().Bunks() + extraCrew);
+	int bunksNeeded = passengers - (player.Cargo().BunksFree() + extraCrew);
 	if(cargoNeeded < 0 && bunksNeeded < 0)
 		return "";
 	

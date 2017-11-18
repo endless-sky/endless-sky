@@ -980,7 +980,7 @@ void PlayerInfo::Land(UI *ui)
 			if(ship->GetSystem() == system)
 			{
 				ship->Recharge(hasSpaceport);
-				ship->Cargo().TransferAll(&cargo);
+				ship->Cargo().TransferAll(cargo);
 				ship->SetPlanet(planet);
 			}
 			else
@@ -1166,7 +1166,7 @@ bool PlayerInfo::TakeOff(UI *ui)
 			if(ship != flagship)
 			{
 				ship->Cargo().SetBunks(ship->Attributes().Get("bunks") - ship->RequiredCrew());
-				cargo.TransferAll(&ship->Cargo());
+				cargo.TransferAll(ship->Cargo());
 			}
 			else
 			{
@@ -1174,12 +1174,12 @@ bool PlayerInfo::TakeOff(UI *ui)
 				desiredCrew = ship->Crew();
 				ship->Cargo().SetBunks(ship->Attributes().Get("bunks") - desiredCrew);
 				for(const auto &it : cargo.PassengerList())
-					cargo.TransferPassengers(it.first, it.second, &ship->Cargo());
+					cargo.TransferPassengers(it.first, it.second, ship->Cargo());
 			}
 		}
 	// Load up your flagship last, so that it will have space free for any
 	// plunder that you happen to acquire.
-	cargo.TransferAll(&flagship->Cargo());
+	cargo.TransferAll(flagship->Cargo());
 
 	if(cargo.Passengers())
 	{
@@ -1189,7 +1189,7 @@ bool PlayerInfo::TakeOff(UI *ui)
 			flagship->AddCrew(-extra);
 			Messages::Add("You fired " + to_string(extra) + " crew members to free up bunks for passengers.");
 			flagship->Cargo().SetBunks(flagship->Attributes().Get("bunks") - flagship->Crew());
-			cargo.TransferAll(&flagship->Cargo());
+			cargo.TransferAll(flagship->Cargo());
 		}
 	}
 

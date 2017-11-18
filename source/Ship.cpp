@@ -1466,7 +1466,7 @@ shared_ptr<Ship> Ship::Board(bool autoPlunder)
 	if(autoPlunder)
 	{
 		// Take any commodities that fit.
-		victim->cargo.TransferAll(&cargo);
+		victim->cargo.TransferAll(cargo, false);
 		// Stop targeting this ship.
 		SetTargetShip(shared_ptr<Ship>());
 		

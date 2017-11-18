@@ -318,7 +318,7 @@ void TradingPanel::Buy(int64_t amount)
 		profit += -amount * price + basis;
 		tonsSold += -amount;
 	}
-	amount = player.Cargo().Transfer(type, -amount);
-	player.Accounts().AddCredits(amount * price);
-	GameData::AddPurchase(system, type, -amount);
+	amount = player.Cargo().Add(type, amount);
+	player.Accounts().AddCredits(-amount * price);
+	GameData::AddPurchase(system, type, amount);
 }
