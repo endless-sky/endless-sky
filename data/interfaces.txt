@@ -261,7 +261,10 @@ interface "preferences"
 
 
 
-interface "status" top right
+interface "hud"
+	# Player status.
+	anchor top right
+	
 	sprite "ui/status"
 		from 0 0
 		align top right
@@ -308,9 +311,8 @@ interface "status" top right
 		color "heat"
 		size 2
 
-
-
-interface "targets" top left
+	# Targets.
+	anchor top left
 	sprite "ui/radar"
 		from 0 0
 		align top left

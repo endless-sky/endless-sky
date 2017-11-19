@@ -770,33 +770,28 @@ void Engine::Draw() const
 		}
 	}
 	
-	const Interface *interfaces[2] = {
-		GameData::Interfaces().Get("status"),
-		GameData::Interfaces().Get("targets")
-	};
-	for(const Interface *interface : interfaces)
+	const Interface *interface = GameData::Interfaces().Get("hud");
+	interface->Draw(info);
+	if(interface->HasPoint("radar"))
 	{
-		interface->Draw(info);
-		if(interface->HasPoint("radar"))
-		{
-			radar[drawTickTock].Draw(
-				interface->GetPoint("radar"),
-				RADAR_SCALE,
-				interface->GetValue("radar radius"),
-				interface->GetValue("radar pointer radius"));
-		}
-		if(interface->HasPoint("target") && targetAngle)
-		{
-			Point center = interface->GetPoint("target");
-			double radius = interface->GetValue("target radius");
-			PointerShader::Draw(center, targetAngle, 10., 10., radius, Color(1.));
-		}
+		radar[drawTickTock].Draw(
+			interface->GetPoint("radar"),
+			RADAR_SCALE,
+			interface->GetValue("radar radius"),
+			interface->GetValue("radar pointer radius"));
 	}
+	if(interface->HasPoint("target") && targetAngle)
+	{
+		Point center = interface->GetPoint("target");
+		double radius = interface->GetValue("target radius");
+		PointerShader::Draw(center, targetAngle, 10., 10., radius, Color(1.));
+	}
+	
 	// Draw the faction markers.
-	if(targetSwizzle >= 0 && interfaces[1]->HasPoint("faction markers"))
+	if(targetSwizzle >= 0 && interface->HasPoint("faction markers"))
 	{
 		int width = font.Width(info.GetString("target government"));
-		Point center = interfaces[1]->GetPoint("faction markers");
+		Point center = interface->GetPoint("faction markers");
 		
 		const Sprite *mark[2] = {SpriteSet::Get("ui/faction left"), SpriteSet::Get("ui/faction right")};
 		// Round the x offsets to whole numbers so the icons are sharp.
@@ -860,8 +855,9 @@ void Engine::Click(const Point &from, const Point &to, bool hasShift)
 	isRightClick = false;
 	
 	// Determine if the left-click was within the radar display.
-	Point radarCenter = GameData::Interfaces().Get("targets")->GetPoint("radar");
-	double radarRadius = GameData::Interfaces().Get("targets")->GetValue("radar radius");
+	const Interface *interface = GameData::Interfaces().Get("hud");
+	Point radarCenter = interface->GetPoint("radar");
+	double radarRadius = interface->GetValue("radar radius");
 	if(Preferences::Has("Clickable radar display") && (from - radarCenter).Length() <= radarRadius)
 		isRadarClick = true;
 	else
@@ -885,8 +881,9 @@ void Engine::RClick(const Point &point)
 	isRightClick = true;
 	
 	// Determine if the right-click was within the radar display, and if so, rescale.
-	Point radarCenter = GameData::Interfaces().Get("targets")->GetPoint("radar");
-	double radarRadius = GameData::Interfaces().Get("targets")->GetValue("radar radius");
+	const Interface *interface = GameData::Interfaces().Get("hud");
+	Point radarCenter = interface->GetPoint("radar");
+	double radarRadius = interface->GetValue("radar radius");
 	if(Preferences::Has("Clickable radar display") && (point - radarCenter).Length() <= radarRadius)
 		clickPoint = (point - radarCenter) / RADAR_SCALE;
 	else
