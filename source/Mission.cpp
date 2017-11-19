@@ -68,10 +68,22 @@ namespace {
 // Load a mission, either from the game data or from a saved game.
 void Mission::Load(const DataNode &node)
 {
-	if(node.Size() >= 2)
-		name = node.Token(1);
-	else
-		name = "Unnamed Mission";
+	// All missions need a name.
+	if(node.Size() < 2)
+	{
+		node.PrintTrace("No name specified for mission:");
+		return;
+	}
+	// If a mission object is "loaded" twice, that is most likely an error (e.g.
+	// due to a plugin containing a mission with the same name as the base game
+	// or another plugin). This class is not designed to allow merging or
+	// overriding of mission data from two different definitions.
+	if(!name.empty())
+	{
+		node.PrintTrace("Duplicate definition of mission:");
+		return;
+	}
+	name = node.Token(1);
 	
 	for(const DataNode &child : node)
 	{
