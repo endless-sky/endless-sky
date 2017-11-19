@@ -16,8 +16,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "GameData.h"
 #include "Government.h"
 #include "Ship.h"
-
-#include <iostream>
+#include "System.h"
 
 using namespace std;
 
@@ -53,7 +52,9 @@ void Person::Load(const DataNode &node)
 // person is dead or already active, this will return zero.
 int Person::Frequency(const System *system) const
 {
-	if(!system || !ship || IsDestroyed() || ship->GetSystem())
+	// Because persons always enter a system via one of the regular hyperspace
+	// links, don't create them in systems with no links.
+	if(!system || !ship || IsDestroyed() || ship->GetSystem() || system->Links().empty())
 		return 0;
 	
 	return (location.IsEmpty() || location.Matches(system)) ? frequency : 0;
