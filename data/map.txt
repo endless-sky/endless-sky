@@ -25484,7 +25484,7 @@ planet Longjump
 	attributes rim tourism factory
 	landscape land/city9
 	description `Longjump is a mostly industrial world, with lower than normal gravity that makes it relatively easy to operate and transport heavy equipment. Hang-gliding is also a popular sport here, although for safety reasons it is prohibited anywhere near the spaceport.`
-	description `	Longjump was the first planet discovered in the region of space known today as the Rim. Every year in the month of August, the Rim celebrates Han Sizer month, a whole month of activities commemorating the first explorer of the region. Wealthier citizens of the Rim celebrate by visiting as many Rim worlds as they can in the month, paralleling Han Sizer's month long exploration of the region.`
+	description `	Longjump was the first planet discovered in the region of space known today as the Rim. Every year in the month of August, the Rim celebrates Han Sizer month, a whole month of activities commemorating the first explorer of the region. Wealthier citizens of the Rim celebrate by visiting as many Rim worlds as they can in the month, paralleling Han Sizer's month-long exploration of the region.`
 	spaceport `You can recognize the natives immediately because they are almost all taller than you, a result of growing up in a low-gravity environment. The spaceport consists of four large towers, connected by bridges, with openings for hangars in the sides. The upper stories are for landing ships; business takes place down below, at street level.`
 	outfitter "Basic Outfits"
 	outfitter "Delta V Basics"

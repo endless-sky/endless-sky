@@ -92,7 +92,7 @@ mission "Sketchy Cargo [0]"
 		distance 2 10
 		attributes "south"
 	on accept
-		dialog `You follow the directions specified of the job to an abandoned-looking warehouse and find your cargo in unlabeled crates. As you load it onto your ship, you get the feeling that you are being watched.`
+		dialog `You follow the directions specified in the job to an abandoned-looking warehouse and find your cargo in unlabeled crates. As you load it onto your ship, you get the feeling that you are being watched.`
 	on complete
 		payment 0 160
 		dialog "You drop off the unlabeled cargo in a warehouse not too dissimilar to the one you picked it up in. A man dressed in a cloak hands you <payment> after the last crate is removed from your ship."
@@ -112,7 +112,7 @@ mission "Sketchy Cargo [1]"
 		distance 2 10
 		attributes "south"
 	on accept
-		dialog `You follow the directions specified of the job to an abandoned-looking warehouse and find your cargo in unlabeled crates. As you load it onto your ship, you get the feeling that you are being watched.`
+		dialog `You follow the directions specified in the job to an abandoned-looking warehouse and find your cargo in unlabeled crates. As you load it onto your ship, you get the feeling that you are being watched.`
 	on complete
 		payment 0 160
 		dialog "You drop off the unlabeled cargo in a warehouse not too dissimilar to the one you picked it up in. A man dressed in a cloak hands you <payment> after the last crate is removed from your ship."

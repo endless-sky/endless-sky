@@ -31,17 +31,20 @@ mission "To Earth Day celebration [0]"
 	name `Earth Day celebration`
 	job
 	repeat
-	description `Bring <fare> to <destination> by <date> for the Earth Day celebration. Payment is <payment>.`
+	description `Bring <fare> to <destination> by <date> for the Earth Day celebration on April 22nd. Payment is <payment>.`
 	passengers 4 4 .5
 	deadline
 	to offer
-		random < 80
 		or
 			and
+				random < 60
 				month == 2
 				day >= 6
-			month == 3
 			and
+				random < 80
+				month == 3
+			and
+				random < 20
 				month == 4
 				day < 22
 	to fail
@@ -60,17 +63,20 @@ mission "To Earth Day celebration [1]"
 	name `Earth Day celebration`
 	job
 	repeat
-	description `Deliver <cargo> to <destination> by <date> in preparation for the Earth Day celebration. Payment is <payment>.`
+	description `Deliver <cargo> to <destination> by <date> in preparation for the Earth Day celebration on April 22nd. Payment is <payment>.`
 	cargo random 5 2 .1
 	deadline
 	to offer
-		random < 80
 		or
 			and
+				random < 60
 				month == 2
 				day >= 6
-			month == 3
 			and
+				random < 80
+				month == 3
+			and
+				random < 20
 				month == 4
 				day < 22
 	to fail
@@ -92,13 +98,16 @@ mission "From Earth Day celebration [0]"
 	description `Bring <fare> home to <destination> after the Earth Day celebration. Payment is <payment>.`
 	passengers 4 4 .5
 	to offer
-		random < 70
 		or
 			and
+				random < 70
 				month == 4
 				day > 22
-			month == 5
 			and
+				random < 50
+				month == 5
+			and
+				random < 30
 				month == 6
 				day =< 22
 	source "Earth"
@@ -118,13 +127,15 @@ mission "From Earth Day celebration [1]"
 	description `Bring <fare> home to <destination> after the Earth Day celebration. Payment is <payment>.`
 	passengers 4 4 .3
 	to offer
-		random < 50
-		or
 			and
+				random < 50
 				month == 4
 				day > 22
-			month == 5
 			and
+				random < 30
+				month == 5
+			and
+				random < 10
 				month == 6
 				day =< 22
 	source "Earth"

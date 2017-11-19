@@ -13,12 +13,13 @@ mission "Drought Relief"
 	job
 	repeat
 	description `The farming world of <destination> is currently experiencing a drought. Deliver <cargo> to the planet by <date> for <payment>.`
-	cargo "drought relief" 25 2 .05
+	cargo "drought relief supplies" 25 2 .05
 	deadline
 	to offer
 		random < 10
 	source
 		government "Republic"
+		not attributes "farming"
 	destination
 		distance 3 10
 		attributes "dirt belt"
@@ -32,16 +33,19 @@ mission "To Remembrance Day celebration [0]"
 	name `Remembrance Day celebration`
 	job
 	repeat
-	description `Bring <fare> to <destination> by <date> for the Remembrance Day celebration. Payment is <payment>.`
+	description `Bring <fare> to <destination> by <date> for the Remembrance Day celebration on February 19th. Payment is <payment>.`
 	passengers 4 4 .5
 	to offer
-		random < 60
 		or
 			and
+				random < 40
 				month == 12
 				day >= 21
-			month == 1
 			and
+				random < 60
+				month == 1
+			and
+				random < 20
 				month == 2
 				day < 19
 	to fail
@@ -61,16 +65,19 @@ mission "To Remembrance Day celebration [1]"
 	name `Remembrance Day celebration`
 	job
 	repeat
-	description `Deliver <cargo> to <destination> by <date> in preparation for the Remembrance Day celebration. Payment is <payment>.`
+	description `Deliver <cargo> to <destination> by <date> in preparation for the Remembrance Day celebration on February 19th. Payment is <payment>.`
 	cargo random 5 2 .1
 	to offer
-		random < 60
 		or
 			and
+				random < 40
 				month == 12
 				day >= 21
-			month == 1
 			and
+				random < 60
+				month == 1
+			and
+				random < 20
 				month == 2
 				day < 19
 	to fail
@@ -93,12 +100,16 @@ mission "From Remembrance Day celebration [0]"
 	description `Bring <fare> home to <destination> after the Remembrance Day celebration. Payment is <payment>.`
 	passengers 4 4 .5
 	to offer
-		random < 60
+		or
 			and
+				random < 50
 				month == 2
 				day > 19
-			month == 3
 			and
+				random < 30
+				month == 3
+			and
+				random < 20
 				month == 4
 				day < 20
 	source
@@ -119,12 +130,16 @@ mission "From Remembrance Day celebration [1]"
 	description `Bring <fare> home to <destination> after the Remembrance Day celebration. Payment is <payment>.`
 	passengers 4 4 .3
 	to offer
-		random < 60
+		or
 			and
+				random < 40
 				month == 2
 				day > 19
-			month == 3
 			and
+				random < 20
+				month == 3
+			and
+				random < 10
 				month == 4
 				day < 20
 	source

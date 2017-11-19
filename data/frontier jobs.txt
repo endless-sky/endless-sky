@@ -159,7 +159,7 @@ mission "Disaster Relief"
 	job
 	repeat
 	description "A disaster has occured in a colony on the frontier world of <destination>. Deliver <cargo> to the planet by <date> for <payment>."
-	cargo "disaster relief" 25 2 .05
+	cargo "disaster relief supplies" 25 2 .05
 	deadline
 	to offer
 		random < 10
