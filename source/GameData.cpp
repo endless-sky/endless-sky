@@ -176,8 +176,8 @@ void GameData::BeginLoad(const char * const *argv)
 	// And, update the ships with the outfits we've now finished loading.
 	for(auto &it : ships)
 		it.second.FinishLoading(true);
-	for(const auto &it : persons)
-		it.second.GetShip()->FinishLoading(true);
+	for(auto &it : persons)
+		it.second.FinishLoading();
 	
 	// Store the current state, to revert back to later.
 	defaultFleets = fleets;
@@ -342,7 +342,7 @@ void GameData::Revert()
 	shipSales.Revert(defaultShipSales);
 	outfitSales.Revert(defaultOutfitSales);
 	for(auto &it : persons)
-		it.second.GetShip()->Restore();
+		it.second.Restore();
 	
 	politics.Reset();
 	purchases.clear();
@@ -508,6 +508,25 @@ void GameData::UpdateNeighbors()
 {
 	for(auto &it : systems)
 		it.second.UpdateNeighbors(systems);
+}
+
+
+
+// Re-activate any special persons that were created previously but that are
+// still alive.
+void GameData::ResetPersons()
+{
+	for(auto &it : persons)
+		it.second.ClearPlacement();
+}
+
+
+
+// Mark all persons in the given list as dead.
+void GameData::DestroyPersons(vector<string> &names)
+{
+	for(const string &name : names)
+		persons.Get(name)->Destroy();
 }
 
 

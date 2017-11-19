@@ -1374,15 +1374,26 @@ void Engine::SpawnPersons()
 		sum -= person.Frequency(player.GetSystem());
 		if(sum < 0)
 		{
-			shared_ptr<Ship> ship = person.GetShip();
-			ship->Recharge();
-			ship->SetName(it.first);
-			ship->SetGovernment(person.GetGovernment());
-			ship->SetPersonality(person.GetPersonality());
-			ship->SetHail(person.GetHail());
-			Fleet::Enter(*player.GetSystem(), *ship);
+			const System *source = nullptr;
+			shared_ptr<Ship> parent;
+			for(const shared_ptr<Ship> &ship : person.Ships())
+			{
+				ship->Recharge();
+				if(ship->Name().empty())
+					ship->SetName(it.first);
+				ship->SetGovernment(person.GetGovernment());
+				ship->SetPersonality(person.GetPersonality());
+				ship->SetHail(person.GetHail());
+				if(!parent)
+					parent = ship;
+				else
+					ship->SetParent(parent);
+				// Make sure all ships in a "person" definition enter from the
+				// same source system.
+				source = Fleet::Enter(*player.GetSystem(), *ship, source);
+				newShips.push_back(ship);
+			}
 			
-			newShips.push_back(ship);
 			break;
 		}
 	}

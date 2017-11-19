@@ -222,7 +222,7 @@ void PlayerInfo::Load(const string &path)
 		else if(child.Token(0) == "economy")
 			economy = child;
 		else if(child.Token(0) == "destroyed" && child.Size() >= 2)
-			destroyedPersons.push_back(GameData::Persons().Get(child.Token(1)));
+			destroyedPersons.push_back(child.Token(1));
 		
 		// Records of things you have discovered:
 		else if(child.Token(0) == "visited" && child.Size() >= 2)
@@ -1116,11 +1116,8 @@ bool PlayerInfo::TakeOff(UI *ui)
 	doneMissions.clear();
 	stock.clear();
 	
-	// Special persons who appeared last time you left the planet, can appear
-	// again.
-	for(const auto &it : GameData::Persons())
-		if(!it.second.IsDestroyed())
-			it.second.GetShip()->SetSystem(nullptr);
+	// Special persons who appeared last time you left the planet, can appear again.
+	GameData::ResetPersons();
 	
 	// Store the total cargo counts in case we need to adjust cost bases below.
 	map<string, int> originalTotals = cargo.Commodities();
@@ -2199,12 +2196,8 @@ void PlayerInfo::ApplyChanges()
 	hasFullClearance = false;
 	
 	// Check if any special persons have been destroyed.
-	while(!destroyedPersons.empty())
-	{
-		if(destroyedPersons.back()->GetShip())
-			destroyedPersons.back()->GetShip()->Destroy();
-		destroyedPersons.pop_back();
-	}
+	GameData::DestroyPersons(destroyedPersons);
+	destroyedPersons.clear();
 	
 	// Check which planets you have dominated.
 	static const string prefix = "tribute: ";

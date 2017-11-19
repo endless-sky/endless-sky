@@ -1848,7 +1848,10 @@ void Ship::SelfDestruct()
 
 void Ship::Restore()
 {
-	hull = 0;
+	hull = 0.;
+	explosionCount = 0;
+	explosionRate = 0;
+	UnmarkForRemoval();
 	Recharge(true);
 }
 

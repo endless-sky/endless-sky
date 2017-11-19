@@ -32,7 +32,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 class DataNode;
 class Government;
 class Outfit;
-class Person;
 class Planet;
 class Rectangle;
 class Ship;
@@ -313,7 +312,7 @@ private:
 	std::list<DataNode> dataChanges;
 	DataNode economy;
 	// Persons that have been killed in this player's universe:
-	std::list<const Person *> destroyedPersons;
+	std::vector<std::string> destroyedPersons;
 	// Events that are going to happen some time in the future:
 	std::list<GameEvent> gameEvents;
 	
