@@ -696,6 +696,7 @@ void Engine::Draw() const
 {
 	GameData::Background().Draw(center, centerVelocity, zoom);
 	static const Set<Color> &colors = GameData::Colors();
+	const Interface *interface = GameData::Interfaces().Get("hud");
 	
 	// Draw any active planet labels.
 	for(const PlanetLabel &label : labels)
@@ -737,14 +738,12 @@ void Engine::Draw() const
 	// Draw messages.
 	const Font &font = FontSet::Get(14);
 	const vector<Messages::Entry> &messages = Messages::Get(step);
-	Point messagePoint(
-		Screen::Left() + 120.,
-		Screen::Bottom() - 20. * messages.size());
+	Rectangle messageBox = interface->GetBox("messages");
+	Point messagePoint = Point(messageBox.Left(), messageBox.Bottom() - 20. * messages.size());
 	auto it = messages.begin();
-	double firstY = Screen::Top() - font.Height();
-	if(messagePoint.Y() < firstY)
+	if(messagePoint.Y() < messageBox.Top())
 	{
-		int skip = (firstY - messagePoint.Y()) / 20.;
+		int skip = (messageBox.Top() - messagePoint.Y()) / 20.;
 		it += skip;
 		messagePoint.Y() += 20. * skip;
 	}
@@ -770,7 +769,7 @@ void Engine::Draw() const
 		}
 	}
 	
-	const Interface *interface = GameData::Interfaces().Get("hud");
+	// Draw the heads-up display.
 	interface->Draw(info);
 	if(interface->HasPoint("radar"))
 	{
@@ -803,7 +802,8 @@ void Engine::Draw() const
 		MapPanel::DrawMiniMap(player, .5 * min(1., jumpCount / 30.), jumpInProgress, step);
 	
 	// Draw ammo status.
-	Point pos(Screen::Right() - 80, Screen::Bottom());
+	Rectangle ammoBox = interface->GetBox("ammo");
+	Point pos(ammoBox.Left(), ammoBox.Bottom());
 	const Sprite *selectedSprite = SpriteSet::Get("ui/ammo selected");
 	const Sprite *unselectedSprite = SpriteSet::Get("ui/ammo unselected");
 	Color selectedColor = *colors.Get("bright");
@@ -811,6 +811,8 @@ void Engine::Draw() const
 	for(const pair<const Outfit *, int> &it : ammo)
 	{
 		pos.Y() -= 30.;
+		if(pos.Y() < ammoBox.Top())
+			break;
 		
 		bool isSelected = it.first == player.SelectedWeapon();
 		
@@ -829,7 +831,7 @@ void Engine::Draw() const
 	}
 	
 	// Draw escort status.
-	escorts.Draw();
+	escorts.Draw(interface->GetBox("escorts"));
 	
 	// Upload any preloaded sprites that are now available. This is to avoid
 	// filling the entire backlog of sprites before landing on a planet.

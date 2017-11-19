@@ -369,6 +369,17 @@ interface "hud"
 	string "mission target"
 		center 75 455
 		color "medium"
+	
+	# Other HUD elements:
+	box "escorts"
+		from 0 460 top left
+		to 120 0 bottom left
+	box "messages"
+		from 120 0 bottom left
+		to -80 -200 bottom right
+	box "ammo"
+		from -80 460 top right
+		to 0 0 bottom right
 
 
 

@@ -18,9 +18,9 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "GameData.h"
 #include "Government.h"
 #include "LineShader.h"
-#include "Point.h"
 #include "OutlineShader.h"
-#include "Screen.h"
+#include "Point.h"
+#include "Rectangle.h"
 #include "Ship.h"
 #include "Sprite.h"
 #include "System.h"
@@ -30,6 +30,15 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 using namespace std;
 
+namespace {
+	//  Horizontal layout of each escort icon:
+	// (PAD) ICON (BAR_PAD) BARS (BAR_PAD) (PAD)
+	static const double PAD = 10.;
+	static const double ICON_SIZE = 20.;
+	static const double BAR_PAD = 5.;
+	static const double WIDTH = 120.;
+	static const double BAR_WIDTH = WIDTH - ICON_SIZE - 2. * PAD - 2. * BAR_PAD;
+}
 
 
 
@@ -47,11 +56,12 @@ void EscortDisplay::Add(const Ship &ship, bool isHere, bool fleetIsJumping, bool
 
 
 
-// The display starts in the lower left corner of the screen and takes up
-// all but the top 450 pixels of the screen.
-void EscortDisplay::Draw() const
+// Draw as many escort icons as will fit in the given bounding box.
+void EscortDisplay::Draw(const Rectangle &bounds) const
 {
-	MergeStacks();
+	// Figure out how much space there is for the icons.
+	int maxColumns = max(1., bounds.Width() / WIDTH);
+	MergeStacks(maxColumns * bounds.Height());
 	icons.sort();
 	stacks.clear();
 	zones.clear();
@@ -59,7 +69,8 @@ void EscortDisplay::Draw() const
 	
 	// Draw escort status.
 	const Font &font = FontSet::Get(14);
-	Point pos = Point(Screen::Left() + 20., Screen::Bottom());
+	// Top left corner of the current escort icon.
+	Point corner = Point(bounds.Left(), bounds.Bottom());
 	const Color &elsewhereColor = *colors.Get("escort elsewhere");
 	const Color &cannotJumpColor = *colors.Get("escort blocked");
 	const Color &notReadyToJumpColor = *colors.Get("escort not ready");
@@ -71,10 +82,16 @@ void EscortDisplay::Draw() const
 		if(!escort.sprite)
 			continue;
 		
-		pos.Y() -= escort.Height();
+		corner.Y() -= escort.Height();
 		// Show only as many escorts as we have room for on screen.
-		if(pos.Y() <= Screen::Top() + 450.)
-			break;
+		if(corner.Y() <= bounds.Top())
+		{
+			corner.X() += WIDTH;
+			if(corner.X() + WIDTH > bounds.Right())
+				break;
+			corner.Y() = bounds.Bottom() - escort.Height();
+		}
+		Point pos = corner + Point(PAD + .5 * ICON_SIZE, .5 * ICON_SIZE);
 		
 		// Draw the system name for any escort not in the current system.
 		if(!escort.system.empty())
@@ -95,13 +112,13 @@ void EscortDisplay::Draw() const
 			color = hereColor;
 		
 		// Figure out what scale should be applied to the ship sprite.
-		double scale = min(20. / escort.sprite->Width(), 20. / escort.sprite->Height());
+		double scale = min(ICON_SIZE / escort.sprite->Width(), ICON_SIZE / escort.sprite->Height());
 		Point size(escort.sprite->Width() * scale, escort.sprite->Height() * scale);
 		OutlineShader::Draw(escort.sprite, pos, size, color);
 		zones.push_back(pos);
 		stacks.push_back(escort.ships);
 		// Draw the number of ships in this stack.
-		double width = 70.;
+		double width = BAR_WIDTH;
 		if(escort.ships.size() > 1)
 		{
 			string number = to_string(escort.ships.size());
@@ -122,7 +139,7 @@ void EscortDisplay::Draw() const
 			fullColor[0].Additive(.5), fullColor[1].Additive(.5),
 			fullColor[2].Additive(.5), fullColor[3].Additive(.5), fullColor[4].Additive(.5),
 		};
-		Point from(pos.X() + 15., pos.Y() - 8.5);
+		Point from(pos.X() + .5 * ICON_SIZE + BAR_PAD, pos.Y() - 8.5);
 		for(int i = 0; i < 5; ++i)
 		{
 			// If the low and high levels are different, draw a fully opaque bar up
@@ -219,12 +236,11 @@ void EscortDisplay::Icon::Merge(const Icon &other)
 
 
 
-void EscortDisplay::MergeStacks() const
+void EscortDisplay::MergeStacks(int maxHeight) const
 {
 	if(icons.empty())
 		return;
 	
-	int maxHeight = Screen::Height() - 450;
 	set<const Sprite *> unstackable;
 	while(true)
 	{
