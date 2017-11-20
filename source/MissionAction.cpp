@@ -66,7 +66,7 @@ namespace {
 			player.Cargo().Remove(outfit, moved);
 			didCargo = true;
 		}
-		while(flagship && count)
+		while(count)
 		{
 			int moved = (count > 0) ? 1 : -1;
 			if(flagship->Attributes().CanAdd(*outfit, moved))
@@ -86,7 +86,7 @@ namespace {
 			player.Cargo().Add(outfit, count);
 			player.Cargo().SetSize(size);
 			didCargo = true;
-			if(count > 0 && ui)
+			if(ui)
 			{
 				string special = "The " + nameWas;
 				special += " put in your cargo hold because there is not enough space to install ";

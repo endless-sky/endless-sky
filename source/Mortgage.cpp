@@ -31,7 +31,7 @@ int64_t Mortgage::Maximum(int64_t annualRevenue, int creditScore, int64_t curren
 	if(annualRevenue <= 0)
 		return 0;
 	
-	double interest = (600 - creditScore / 2) * .00001;
+	double interest = (600 - creditScore / 2.0) * .00001;
 	double power = pow(1. + interest, term);
 	double multiplier = interest * term * power / (power - 1.);
 	return static_cast<int64_t>(max(0., annualRevenue / multiplier));
