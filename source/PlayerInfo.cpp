@@ -2231,9 +2231,7 @@ void PlayerInfo::UpdateAutoConditions()
 	static const int64_t limit = 2000000000;
 	conditions["net worth"] = min(limit, max(-limit, accounts.NetWorth()));
 	conditions["credits"] = min(limit, accounts.Credits());
-	conditions["active mortgage count"] = accounts.TypeCount()[0];
 	conditions["unpaid mortgages"] = min(limit, accounts.TypeOwed()[0]);
-	conditions["active fine count"] = accounts.TypeCount()[1];
 	conditions["unpaid fines"] = min(limit, accounts.TypeOwed()[1]);
 	conditions["unpaid salaries"] = min(limit, accounts.SalariesOwed());
 	conditions["credit score"] = accounts.CreditScore();

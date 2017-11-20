@@ -311,19 +311,6 @@ int Account::CreditScore() const
 
 
 
-// Find out how many mortgages and how many fines the player has.
-vector<int> Account::TypeCount() const
-{
-	static const string FINE = "Fine";
-	vector<int> result{0, 0};
-	for(const Mortgage &mortgage : mortgages)
-		++result[mortgage.Type() == FINE];
-	
-	return result;
-}
-
-
-
 vector<int64_t> Account::TypeOwed() const
 {
 	static const string FINE = "Fine";

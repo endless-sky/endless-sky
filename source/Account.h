@@ -57,9 +57,7 @@ public:
 	
 	// Find out the player's credit rating.
 	int CreditScore() const;
-	// Find out how many Mortgages [0] and Fines [1] exist.
-	std::vector<int> TypeCount() const;
-	// Find out the remaining principal of each type.
+	// Find out the remaining principal of Mortgages [0] and Fines [1].
 	std::vector<int64_t> TypeOwed() const;
 	
 	
