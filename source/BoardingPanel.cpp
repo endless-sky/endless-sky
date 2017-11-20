@@ -260,7 +260,7 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 			victim->AddOutfit(outfit, -remaining);
 		}
 		else
-			count = victim->Cargo().Transfer(plunder[selected].Name(), count, &cargo);
+			count = victim->Cargo().Transfer(plunder[selected].Name(), count, cargo);
 		
 		// If all of the plunder of this type was taken, remove it from the list.
 		// Otherwise, just update the count in the list item.

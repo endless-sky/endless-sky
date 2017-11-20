@@ -408,7 +408,7 @@ effect "particle impact"
 		"no repeat"
 		"frame rate" 30
 	sound "explosion small"
-	"lifetime" 35
+	"lifetime" 20
 	"random angle" 2
 	"velocity scale" -.05
 	"random spin" 10

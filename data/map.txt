@@ -24013,7 +24013,7 @@ planet Arabia
 
 planet "Arachne Station"
 	attributes south station
-	landscape land/space1
+	landscape land/sivael0
 	music ambient/machinery
 	description `Arachne Station is privately owned by Tarazed Corporation, and there are no services available here for people who are not Tarazed employees.`
 	"required reputation" 20
@@ -24271,7 +24271,7 @@ planet Canyon
 
 planet "Carbuncle Station"
 	attributes north station research
-	landscape land/space6
+	landscape land/sivael4
 	music ambient/machinery
 	description `Carbuncle is a tiny station owned and operated by Lovelace Labs. You assume that like most such stations, it is primarily a deuterium refinery, but aside from the docking bay the rest of the station is closed off to visitors. Given the reputation of Lovelace Labs for exotic research, there could be almost anything beyond those sealed-off bulkheads.`
 	"required reputation" 100
@@ -24296,7 +24296,7 @@ planet "Celestial Third"
 
 planet "Charon Station"
 	attributes south station
-	landscape land/station3
+	landscape land/sivael6
 	music ambient/machinery
 	description `Charon Station provides hyperspace fuel for much of the southern galactic rim. It is a tiny, cramped, and aging station, with twice as many workers here as it was originally designed for. Centuries ago, before much of the Dirt Belt was settled, this was the first spot below Algorel where merchant caravan fleets from the Deep could stop over on their way to the worlds farther up the Rim.`
 	description `	The close quarters have fostered an extreme scrupulosity about personal space. It is unnerving to walk down a densely crowded hallway and fail to make eye contact with anyone.`
@@ -24308,7 +24308,7 @@ planet "Charon Station"
 
 planet "Charybdis Station"
 	attributes core station
-	landscape land/space0
+	landscape land/sivael8
 	music ambient/machinery
 	description `Charybdis Station is privately owned by the Syndicate. It is a massive deuterium refinery, with harvester drones constantly flying in and out to scoop hydrogen gas out of the upper atmosphere of the planet below. If you need to repair or refuel in this system, you will need to visit the neighboring world of Delve, instead of this station.`
 	"required reputation" 20
@@ -24800,7 +24800,7 @@ planet "Fek Rembatu"
 
 planet "Fenrir Station"
 	attributes deep station
-	landscape land/space5
+	landscape land/sivael1
 	music ambient/machinery
 	description `Fenrir Station is a bustling refinery, and from the way the foremen looked at you when you stepped off your ship, they seem to be eager for new recruits. In addition to harvesting deuterium, this is one of the few refinery stations in human space which also collects helium-3, an isotope with some exotic uses in medical imaging and in energy research.`
 	description `	The diversity of isotopes found here is partly due to the station being a relatively new construction and benefiting from modern technology. But the gas giant which the station harvests from also has a composition unlike any other known planet. One theory is that it is on the cusp of becoming a brown dwarf star, in which case the isotopes now being stirred into the upper atmosphere by convection will eventually be depleted by fusion.`
@@ -25258,7 +25258,7 @@ planet Hopper
 
 planet "Huginn Station"
 	attributes deep station
-	landscape land/station2
+	landscape land/sivael2
 	music ambient/machinery
 	description `Huginn and Muninn stations, together, are the gateway to the Deep, the region of space north of here. The Deep was the first large region of space to have a democratic government, predating the Republic by nearly two centuries.`
 	description `	Huginn Station is a prison station where convicted pirates must work at harvesting and refining deuterium to atone for their crimes against humanity. There are no services available for you here and the security guards, surprised by your visit and wondering at your motives, watch you closely.`
@@ -25283,7 +25283,7 @@ planet Humanika
 
 planet "Hydra Station"
 	attributes "dirt belt" station
-	landscape land/space4
+	landscape land/sivael5
 	music ambient/machinery
 	description `This station is so run down that most of the workers carry oxygen masks in case a meteorite punctures the hull, and a few of them are even dressed in full space suits. The deuterium refinery here is barely operating, the number of workers is minimal, and nearly half of them seem to be busy just welding patches onto the hull to hold the station together. At the moment there are no repair or refueling services available here.`
 	security 0.3
@@ -25409,7 +25409,7 @@ planet "Kort Vek'kri"
 
 planet "Kraken Station"
 	attributes "near earth" station
-	landscape land/station0
+	landscape land/sivael7
 	music ambient/machinery
 	description `Kraken Station is seven centuries old; it was the first space station built outside of the Sol system. The station has been modified and repaired so often since that time that in all likelihood not a single deck panel or bulkhead that was part of the original station remains. Four centuries ago it was nearly destroyed by an asteroid impact, but other than that it has been a working deuterium refinery for its entire lifetime.`
 	spaceport `The main ring of the station consists of three different levels, with living quarters, repair shops, a few small cafeterias, and even a barber. The lower levels also house some of the refinery equipment, but much of the harvesting is done automatically by robotic drones. For a station that is so old, everything feels surprisingly sturdy; the bolts and beams that make up the station are much thicker than they probably need to be.`
@@ -25444,7 +25444,7 @@ planet "Laki Nemparu"
 
 planet "Leviathan Station"
 	attributes deep station
-	landscape land/space2
+	landscape land/sivael3
 	music ambient/machinery
 	description `Leviathan Station is the Deep's most productive deuterium harvesting station. Built nearly four hundred years ago, the station was one of the first to fuel the massive cargo caravans sent out from the Deep back when this was one of the only regions of the galaxy with a prosperous economy and a democratic government. Today it remains under government control, because the citizens of the Deep are wary of any private corporation controlling the industry that makes interstellar travel possible.`
 	spaceport `This is a refinery, not a tourist destination. You were allowed to dock here, and the massive cafeteria used by the local workers is available to you if you want to eat, but beyond that no one seems particularly interested in entertaining you or interacting with you.`
@@ -25722,7 +25722,7 @@ planet Moonshake
 
 planet "Muninn Station"
 	attributes deep station military
-	landscape land/space7
+	landscape land/sivael6
 	music ambient/machinery
 	description `Muninn Station, along with its brother station Huginn, serves as the gateway to the region of space known as the Deep. They both harvest and refine deuterium for use as rocket fuel, and in addition Muninn Station is used as a military base for the local defense fleets.`
 	spaceport `Most of the station is closed off to you, but you are told that if you want you may visit the large military mess hall, where hundreds of Navy members and local militia sit and eat or watch the news videos. You would normally expect a military mess hall to be a noisy, rowdy place, but this one is almost eerily silent, with a few quiet conversations going on in the corners but otherwise no noise except the video screens.`
@@ -26032,7 +26032,7 @@ planet Oasis
 
 planet "Oberon Station"
 	attributes core station
-	landscape land/station1
+	landscape land/sivael9
 	music ambient/machinery
 	description `Oberon Station is a deuterium refinery owned and operated by the Syndicate, and aside from a few docking bays for visiting ships to use in an emergency, the rest of the station is sealed off to non-employees.`
 	"required reputation" 10
@@ -26067,7 +26067,7 @@ planet Pearl
 
 planet "Phoenix Station"
 	attributes deep station
-	landscape land/space1
+	landscape land/sivael4
 	music ambient/machinery
 	description `As with all refineries in the Deep, Phoenix Station is government-owned. You cannot imagine who would want to live here; despite reflective hull plating and active cooling systems, the station is uncomfortably hot. Nearly all the work is done by robots and computers, with only a skeleton crew of people supervising. Every time the station's orbit brings it through the planet's shadow, the temperature drops briefly and the entire station creaks ominously as it cools.`
 	"required reputation" 10
@@ -26406,7 +26406,7 @@ planet "Secret Sky"
 planet "Sek Alarfarat"
 	attributes korath
 	landscape land/bwerner2
-	description `A hideously powerful weapon tore open scars on this planets surface so deep that the molten rock of the mantle bled out through them. Presumably these wounds were inflicted on the planet by yet another Korath super-weapon devised in the final years of their civil war. A few ruined cities remain, some of which were sliced in two by the trail of weapon fire.`
+	description `A hideously powerful weapon tore open scars on this planet's surface so deep that pools of magma bled out through them. Presumably these wounds were inflicted on the planet by yet another Korath super-weapon devised in the final years of their civil war. A few ruined cities remain, some of which were sliced in two by the trail of weapon fire.`
 	security 0
 
 planet "Selefkar Refinery"
@@ -26870,7 +26870,7 @@ planet Trinket
 
 planet "Triton Station"
 	attributes north station military
-	landscape land/space3
+	landscape land/sivael0
 	music ambient/machinery
 	description `Triton Station serves both as a refinery for hyperspace fuel, and as a garrison for ships of the Republic Navy. Patrol ships are constantly landing here and then taking off to scour the surrounding systems for pirates. Since pirates are scarce in this part of space, it seems like a very tedious job.`
 	spaceport `The mess hall is empty except for one table where some Navy officers are playing a card game. They are sitting right under a ventilation duct, and the cards keep blowing off the table; the station's low simulated gravity is not enough to hold them there.`
@@ -26923,7 +26923,7 @@ planet Twinstar
 
 planet "Typhon Station"
 	attributes rim station
-	landscape land/station4
+	landscape land/sivael1
 	music ambient/machinery
 	description `Typhon Station is one of the major fuel refining stations in the galactic Rim. It is privately owned by Southbound Shipyards, and all the fuel produced here is shipped directly to them rather than being made available to visiting ships.`
 	security 0.3
@@ -27216,7 +27216,7 @@ planet "Wormhole Alpha"
 
 planet "Wyvern Station"
 	attributes rim station
-	landscape land/station0
+	landscape land/sivael7
 	music ambient/machinery
 	description `Wyvern Station was once one of the end destinations for the merchant caravans traveling along the Rim, back in the days before the Republic existed when most systems were not policed and the only way to avoid being plundered by pirates was for ships to travel in large convoys. It has also been a continuously operating hyperspace fuel refinery for more than three centuries.`
 	spaceport `This station is old, and some parts are dirty and in need of repair, but it is at least structurally sound, and the workers here seem optimistic and energetic. The cafeteria is loud and raucous, and the repair shop is more than willing to work on starships as a break from the tedium of repairing the harvester drones that dip into the planet's atmosphere to bring back pressurized tanks full of hydrogen gas.`

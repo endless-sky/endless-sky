@@ -117,6 +117,14 @@ phrase "adjectives"
 		"Wise"
 		"Graceful"
 		"Subtle"
+		"Broken"
+		"Mighty"
+		"Precious"
+		"Misty"
+		"Cold"
+		"Stern"
+		"Triumphant"
+		"Steady"
 
 phrase "colors"
 	word
@@ -143,6 +151,7 @@ phrase "colors"
 		"Rainbow"
 		"Emerald"
 		"Sapphire"
+		"Dark"
 
 phrase "cardinal directions"
 	word
@@ -233,6 +242,9 @@ phrase "singular nouns"
 		"Gaze"
 		"Ship"
 		"Cave"
+		"Phoenix"
+		"Soul"
+		"Teacup"
 
 phrase "plural nouns"
 	word
@@ -349,6 +361,8 @@ phrase "nouns of indeterminate quantity"
 		"Contentment"
 		"Strength"
 		"Power"
+		"Salt"
+		"Atlantis"
 
 phrase "the-nouns"
 	word
@@ -469,6 +483,8 @@ phrase "male names"
 		"Martin"
 		"Starbuck"
 		"Xu"
+		"Zeus"
+		"Poseidon"
 
 phrase "female names"
 	word
@@ -610,6 +626,8 @@ phrase "plural quantities"
 		"Many"
 		"Too Many"
 		"No More"
+		"Several"
+		"Numerous"
 
 phrase "classic ship names"
 	word
@@ -668,9 +686,7 @@ phrase "classic ship names"
 		"Cutter"
 		"Cruiser"
 
-
-# Final phrases that make ship names
-phrase "civilian"
+phrase "standalone civilian ship names"
 	word
 		"Horizon"
 		"Enterprise"
@@ -781,6 +797,18 @@ phrase "civilian"
 		"Heliopolis"
 		"Cornwall"
 		"Chichen Itza"
+		"Small Potatoes"
+		"Simon Bolivar"
+		"Spartacus"
+		"Harriet Tubman"
+		"Stonewall Jackson"
+		"Shaka Zulu"
+		"Silk Road"
+		"Good Egg"
+		"Terrible Swift Sword"
+		"Loaves and Fishes"
+
+# Final phrases that make ship names
 
 # e.g.:
 # Five Men
@@ -943,6 +971,16 @@ phrase "civilian"
 	phrase
 		"plural nouns"
 		"nouns of indeterminate quantity"
+
+# These are listed twice to increase the frequency; otherwise only 1 in 12 ships
+# got these names - now it's 2 in 13
+phrase "civilian"
+	phrase
+		"standalone civilian ship names"
+
+phrase "civilian"
+	phrase
+		"standalone civilian ship names"
 
 
 phrase "republic capital"
@@ -1696,6 +1734,9 @@ phrase "pirate adjectives"
 		"Flayed"
 		"Greedy"
 		"Despairing"
+		"Uncontrollable"
+		"Unstoppable"
+		"Violent"
 
 phrase "pirate adjectives that don't work before singular nouns"
 	word
@@ -1704,6 +1745,8 @@ phrase "pirate adjectives that don't work before singular nouns"
 		"Death by"
 		"Screams of"
 		"Cackles of"
+		"Wrath of"
+		"Fist of"
 
 phrase "pirate nouns"
 	word
@@ -1774,6 +1817,10 @@ phrase "pirate nouns"
 		"Raider"
 		"Volcano"
 		"Revenge"
+		"Anger"
+		"Axe"
+		"Dagger"
+		"Skull"
 
 phrase "bad outcomes"
 	word
@@ -1923,6 +1970,7 @@ phrase "pirate"
 		"Festering Wounds"
 		"Horrible Flies"
 		"Death's Head"
+		"Throne of Skulls"
 
 phrase "pirate"
 	phrase

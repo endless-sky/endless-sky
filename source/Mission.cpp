@@ -68,10 +68,22 @@ namespace {
 // Load a mission, either from the game data or from a saved game.
 void Mission::Load(const DataNode &node)
 {
-	if(node.Size() >= 2)
-		name = node.Token(1);
-	else
-		name = "Unnamed Mission";
+	// All missions need a name.
+	if(node.Size() < 2)
+	{
+		node.PrintTrace("No name specified for mission:");
+		return;
+	}
+	// If a mission object is "loaded" twice, that is most likely an error (e.g.
+	// due to a plugin containing a mission with the same name as the base game
+	// or another plugin). This class is not designed to allow merging or
+	// overriding of mission data from two different definitions.
+	if(!name.empty())
+	{
+		node.PrintTrace("Duplicate definition of mission:");
+		return;
+	}
+	name = node.Token(1);
 	
 	for(const DataNode &child : node)
 	{
@@ -102,19 +114,8 @@ void Mission::Load(const DataNode &node)
 				cargoProb = child.Value(4);
 			
 			for(const DataNode &grand : child)
-			{
-				if(grand.Token(0) == "illegal" && grand.Size() == 2)
-					illegalCargoFine = grand.Value(1);
-				else if(grand.Token(0) == "illegal" && grand.Size() == 3)
-				{
-					illegalCargoFine = grand.Value(1);
-					illegalCargoMessage = grand.Token(2);
-				}
-				else if(grand.Token(0) == "stealth")
-					failIfDiscovered = true;
-				else
+				if(!ParseContraband(grand))
 					grand.PrintTrace("Skipping unrecognized attribute:");
-			}
 		}
 		else if(child.Token(0) == "passengers" && child.Size() >= 2)
 		{
@@ -123,6 +124,11 @@ void Mission::Load(const DataNode &node)
 				passengerLimit = child.Value(2);
 			if(child.Size() >= 4)
 				passengerProb = child.Value(3);
+		}
+		else if(ParseContraband(child))
+		{
+			// This was an "illegal" or "stealth" entry. It has already been
+			// parsed, so nothing more needs to be done here.
 		}
 		else if(child.Token(0) == "invisible")
 			isVisible = false;
@@ -240,27 +246,13 @@ void Mission::Save(DataWriter &out, const string &tag) const
 		if(deadline)
 			out.Write("deadline", deadline.Day(), deadline.Month(), deadline.Year());
 		if(cargoSize)
-		{
 			out.Write("cargo", cargo, cargoSize);
-			if(illegalCargoFine)
-			{
-				out.BeginChild();
-				{
-					out.Write("illegal", illegalCargoFine, illegalCargoMessage);
-				}
-				out.EndChild();
-			}
-			if(failIfDiscovered)
-			{
-				out.BeginChild();
-				{
-					out.Write("stealth");
-				}
-				out.EndChild();
-			}
-		}
 		if(passengers)
 			out.Write("passengers", passengers);
+		if(illegalCargoFine)
+			out.Write("illegal", illegalCargoFine, illegalCargoMessage);
+		if(failIfDiscovered)
+			out.Write("stealth");
 		if(!isVisible)
 			out.Write("invisible");
 		if(hasPriority)
@@ -561,7 +553,7 @@ bool Mission::HasSpace(const PlayerInfo &player) const
 	if(player.Flagship())
 		extraCrew = player.Flagship()->Crew() - player.Flagship()->RequiredCrew();
 	return (cargoSize <= player.Cargo().Free() + player.Cargo().CommoditiesSize()
-		&& passengers <= player.Cargo().Bunks() + extraCrew);
+		&& passengers <= player.Cargo().BunksFree() + extraCrew);
 }
 
 
@@ -644,7 +636,7 @@ string Mission::BlockedMessage(const PlayerInfo &player)
 		extraCrew = player.Flagship()->Crew() - player.Flagship()->RequiredCrew();
 	
 	int cargoNeeded = cargoSize - (player.Cargo().Free() + player.Cargo().CommoditiesSize());
-	int bunksNeeded = passengers - (player.Cargo().Bunks() + extraCrew);
+	int bunksNeeded = passengers - (player.Cargo().BunksFree() + extraCrew);
 	if(cargoNeeded < 0 && bunksNeeded < 0)
 		return "";
 	
@@ -780,10 +772,8 @@ void Mission::Do(const ShipEvent &event, PlayerInfo &player, UI *ui)
 		}
 		else if(event.Type() & ShipEvent::BOARD)
 		{
-			// Fail missions whose cargo or passengers are stolen by a boarding vessel.
+			// Fail missions whose cargo is stolen by a boarding vessel.
 			for(const auto &it : event.Actor()->Cargo().MissionCargo())
-				failed |= (it.first == this);
-			for(const auto &it : event.Actor()->Cargo().PassengerList())
 				failed |= (it.first == this);
 			if(failed)
 				message += "plundered. ";
@@ -1083,4 +1073,25 @@ const Planet *Mission::PickPlanet(const LocationFilter &filter, const PlayerInfo
 			options.push_back(&it.second);
 	}
 	return options.empty() ? nullptr : options[Random::Int(options.size())];
+}
+
+
+
+// For legacy code, contraband definitions can be placed in two different
+// locations, so move that parsing out to a helper function.
+bool Mission::ParseContraband(const DataNode &node)
+{
+	if(node.Token(0) == "illegal" && node.Size() == 2)
+		illegalCargoFine = node.Value(1);
+	else if(node.Token(0) == "illegal" && node.Size() == 3)
+	{
+		illegalCargoFine = node.Value(1);
+		illegalCargoMessage = node.Token(2);
+	}
+	else if(node.Token(0) == "stealth")
+		failIfDiscovered = true;
+	else
+		return false;
+	
+	return true;
 }

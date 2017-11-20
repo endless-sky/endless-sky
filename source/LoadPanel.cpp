@@ -53,6 +53,10 @@ namespace {
 #endif
 		return string(buf, strftime(buf, BUF_SIZE, FORMAT, date));
 	}
+	
+	// Only show tooltips if the mouse has hovered in one place for this amount
+	// of time.
+	const int HOVER_TIME = 60;
 }
 
 
@@ -143,7 +147,6 @@ void LoadPanel::Draw()
 			bool isHighlighted = (file == selectedFile || isHovering);
 			if(isHovering)
 			{
-				static const int HOVER_TIME = 60;
 				hoverCount = min(HOVER_TIME, hoverCount + 2);
 				if(hoverCount == HOVER_TIME)
 					hoverText = TimestampString(it.second);
@@ -330,6 +333,11 @@ bool LoadPanel::Hover(int x, int y)
 	
 	hasHover = true;
 	hoverPoint = Point(x, y);
+	// Tooltips should not pop up unless the mouse stays in one place for the
+	// full hover time. Otherwise, every time the user scrubs the mouse over the
+	// list, tooltips will appear after one second.
+	if(hoverCount < HOVER_TIME)
+		hoverCount = 0;
 	
 	return true;
 }
@@ -407,8 +415,12 @@ void LoadPanel::OnCallback(int)
 	gamePanels.Push(new MainPanel(player));
 	// Tell the main panel to re-draw itself (and pop up the planet panel).
 	gamePanels.StepAll();
-	gamePanels.Push(new ShipyardPanel(player));
-	gamePanels.StepAll();
+	// If the starting conditions don't specify any ships, let the player buy one.
+	if(player.Ships().empty())
+	{
+		gamePanels.Push(new ShipyardPanel(player));
+		gamePanels.StepAll();
+	}
 }
 
 

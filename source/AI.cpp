@@ -560,11 +560,14 @@ void AI::Step(const PlayerInfo &player)
 			if(it->CanBeCarried() && parent && miningTime[&*parent] < 3601 && minable
 					&& minable->Position().Distance(parent->Position()) < 600.)
 			{
+				it->SetTargetAsteroid(minable);
 				MoveToAttack(*it, command, *minable);
 				AutoFire(*it, command, *minable);
 				it->SetCommands(command);
 				continue;
 			}
+			else
+				it->SetTargetAsteroid(nullptr);
 		}
 		
 		// Handle fighters:
@@ -1228,10 +1231,10 @@ void AI::MoveEscort(Ship &ship, Command &command) const
 	// Check if the parent has a target planet that is in the parent's system.
 	const Planet *parentPlanet = (parent.GetTargetStellar() ? parent.GetTargetStellar()->GetPlanet() : nullptr);
 	bool planetIsHere = (parentPlanet && parentPlanet->IsInSystem(parent.GetSystem()));
-	bool systemHasFuel = ship.GetSystem()->HasFuelFor(ship);
+	bool systemHasFuel = hasFuelCapacity && ship.GetSystem()->HasFuelFor(ship);
 	// If an escort is out of fuel, they should refuel without waiting for the
 	// "parent" to land (because the parent may not be planning on landing).
-	if(hasFuelCapacity && systemHasFuel && !ship.JumpsRemaining())
+	if(systemHasFuel && !ship.JumpsRemaining())
 		Refuel(ship, command);
 	else if(!parentIsHere && !isStaying)
 	{
@@ -1254,7 +1257,7 @@ void AI::MoveEscort(Ship &ship, Command &command) const
 			const System *from = ship.GetSystem();
 			
 			// Check how much fuel is required to reach the next refuel system.
-			if(systemHasFuel && hasFuelCapacity && ship.Fuel() < 1.)
+			if(systemHasFuel && ship.Fuel() < 1.)
 			{
 				const System *to = distance.Route(from);
 				while(to && !to->HasFuelFor(ship))
@@ -1301,7 +1304,7 @@ void AI::MoveEscort(Ship &ship, Command &command) const
 			if(!EscortsReadyToJump(ship))
 				command |= Command::WAIT;
 		}
-		else if(hasFuelCapacity && systemHasFuel && ship.Fuel() < 1.)
+		else if(systemHasFuel && ship.Fuel() < 1.)
 			// Refuel so that when the parent returns, this ship is ready to rendezvous with it.
 			Refuel(ship, command);
 		else
@@ -2076,7 +2079,7 @@ void AI::DoCloak(Ship &ship, Command &command)
 		// If this ship has started cloaking, it must get at least 40% repaired
 		// or 40% farther away before it begins decloaking again.
 		double hysteresis = ship.Commands().Has(Command::CLOAK) ? 1.4 : 1.;
-		double cloakIsFree = !ship.Attributes().Get("cloaking fuel");
+		bool cloakIsFree = !ship.Attributes().Get("cloaking fuel");
 		if(ship.Hull() + .5 * ship.Shields() < hysteresis
 				&& (cloakIsFree || nearestEnemy < 2000. * hysteresis))
 			command |= Command::CLOAK;
@@ -2206,7 +2209,7 @@ Point AI::TargetAim(const Ship &ship, const Body &target)
 void AI::AimTurrets(const Ship &ship, Command &command, bool opportunistic) const
 {
 	// First, get the set of potential targets.
-	vector<const Ship *> enemies;
+	vector<const Body *> enemies;
 	const Ship *currentTarget = ship.GetTargetShip().get();
 	// If the ship has a target selected, that ship is always in the running as
 	// something to aim at, even if it is too far away.
@@ -2239,6 +2242,9 @@ void AI::AimTurrets(const Ship &ship, Command &command, bool opportunistic) cons
 					&& (target->IsYours() || !ship.GetPersonality().IsMarked()))
 				enemies.push_back(target.get());
 	}
+	// If this ship is mining, its target asteroid counts as an "enemy."
+	if(ship.GetTargetAsteroid())
+		enemies.push_back(ship.GetTargetAsteroid().get());
 	
 	// If there are no enemies to aim at, opportunistic turrets should sweep
 	// back and forth at random, with the sweep centered on the "outward-facing"
@@ -2293,7 +2299,7 @@ void AI::AimTurrets(const Ship &ship, Command &command, bool opportunistic) cons
 			// to aim at it and for a projectile to hit it.
 			double bestScore = 1000.;
 			double bestAngle = 0.;
-			for(const Ship *target : enemies)
+			for(const Body *target : enemies)
 			{
 				Point p = target->Position() - start;
 				Point v = target->Velocity();
@@ -2682,6 +2688,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 	{
 		double closest = numeric_limits<double>::infinity();
 		int closeState = 0;
+		bool found = false;
 		for(const shared_ptr<Ship> &other : ships)
 			if(other.get() != &ship && other->IsTargetable())
 			{
@@ -2704,8 +2711,23 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 					ship.SetTargetShip(other);
 					closest = d;
 					closeState = state;
+					found = true;
 				}
 			}
+		// If no ship was found, look for nearby asteroids.
+		double asteroidRange = 100. * sqrt(ship.Attributes().Get("asteroid scan power"));
+		if(!found && asteroidRange)
+		{
+			for(const shared_ptr<Minable> &asteroid : minables)
+			{
+				double range = ship.Position().Distance(asteroid->Position());
+				if(range < asteroidRange)
+				{
+					ship.SetTargetAsteroid(asteroid);
+					asteroidRange = range;
+				}
+			}
+		}
 	}
 	else if(keyDown.Has(Command::TARGET))
 	{
@@ -3000,12 +3022,10 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 		keyStuck.Clear(Command::LAND);
 	if(keyStuck.Has(Command::JUMP) && !(ship.GetTargetSystem() || isWormhole))
 		keyStuck.Clear(Command::JUMP);
-	if(keyStuck.Has(Command::BOARD) && !ship.GetTargetShip())
+	if(keyStuck.Has(Command::BOARD) && !(ship.GetTargetShip() && CanBoard(ship, *ship.GetTargetShip())))
 		keyStuck.Clear(Command::BOARD);
 	
-	if(ship.IsBoarding())
-		keyStuck.Clear();
-	else if(keyStuck.Has(Command::LAND) || (keyStuck.Has(Command::JUMP) && isWormhole))
+	if(keyStuck.Has(Command::LAND) || (keyStuck.Has(Command::JUMP) && isWormhole))
 	{
 		if(ship.GetPlanet())
 			keyStuck.Clear();

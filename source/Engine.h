@@ -110,6 +110,7 @@ private:
 		Angle angle;
 		double radius;
 		int type;
+		int count;
 	};
 	
 	class Status {

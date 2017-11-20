@@ -324,6 +324,15 @@ void System::UpdateNeighbors(const Set<System> &systems)
 	for(const auto &it : systems)
 		if(&it.second != this && it.second.Position().Distance(position) <= NEIGHBOR_DISTANCE)
 			neighbors.insert(&it.second);
+	
+	// Calculate the solar power and solar wind.
+	solarPower = 0.;
+	solarWind = 0.;
+	for(const StellarObject &object : objects)
+	{
+		solarPower += GameData::SolarPower(object.GetSprite());
+		solarWind += GameData::SolarWind(object.GetSprite());
+	}
 }
 
 
@@ -477,6 +486,21 @@ double System::HabitableZone() const
 double System::AsteroidBelt() const
 {
 	return asteroidBelt;
+}
+
+
+
+// Get the rate of solar collection and ramscoop refueling.
+double System::SolarPower() const
+{
+	return solarPower;
+}
+
+
+
+double System::SolarWind() const
+{
+	return solarWind;
 }
 
 

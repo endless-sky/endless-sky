@@ -254,14 +254,17 @@ interface "preferences"
 		center 195 210
 		dimensions 120 30
 	bar "volume"
-		from 280.5 -85
+		from 280.5 15
 		dimensions 0 -200
 		color "energy"
 		size 3
 
 
 
-interface "status" top right
+interface "hud"
+	# Player status.
+	anchor top right
+	
 	sprite "ui/status"
 		from 0 0
 		align top right
@@ -308,15 +311,15 @@ interface "status" top right
 		color "heat"
 		size 2
 
-
-
-interface "targets" top left
+	# Targets.
+	anchor top left
 	sprite "ui/radar"
 		from 0 0
 		align top left
 	point radar
 		center 128 128
-		dimensions 220 260
+	value "radar radius" 110
+	value "radar pointer radius" 130
 	
 	sprite "ui/navigation"
 		from 200 0
@@ -336,6 +339,7 @@ interface "targets" top left
 	point target
 		center 75 315
 		dimensions 140 140
+	value "target radius" 70
 	outline "target sprite"
 		center 75 315
 		dimensions 70 70
@@ -365,6 +369,17 @@ interface "targets" top left
 	string "mission target"
 		center 75 455
 		color "medium"
+	
+	# Other HUD elements:
+	box "escorts"
+		from 0 460 top left
+		to 120 0 bottom left
+	box "messages"
+		from 120 0 bottom left
+		to -80 -200 bottom right
+	box "ammo"
+		from -80 460 top right
+		to 0 0 bottom right
 
 
 

@@ -258,7 +258,7 @@ void PlanetPanel::TakeOffIfReady()
 	// ship can't hold the required crew, count it as having no fireable
 	// crew rather than a negative number.
 	const CargoHold &cargo = player.Cargo();
-	int overbooked = -cargo.Bunks() - max(0, flagship->Crew() - flagship->RequiredCrew());
+	int overbooked = -cargo.BunksFree() - max(0, flagship->Crew() - flagship->RequiredCrew());
 	int missionCargoToSell = cargo.MissionCargoSize() - cargo.Size();
 	// Will you have to sell something other than regular cargo?
 	int cargoToSell = -(cargo.Free() + cargo.CommoditiesSize());

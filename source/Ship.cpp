@@ -882,9 +882,10 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 		// ship has no ramscoop, it can harvest a tiny bit of fuel by flying
 		// close to the star.
 		double scale = .2 + 1.8 / (.001 * position.Length() + 1);
-		AddFuel(.03 * scale * (sqrt(attributes.Get("ramscoop")) + .05 * scale));
+		double rate = currentSystem->SolarWind() * .03 * scale * (sqrt(attributes.Get("ramscoop")) + .05 * scale);
+		AddFuel(rate);
 		
-		energy += scale * attributes.Get("solar collection");
+		energy += currentSystem->SolarPower() * scale * attributes.Get("solar collection");
 		
 		double coolingEfficiency = CoolingEfficiency();
 		energy += attributes.Get("energy generation") - attributes.Get("energy consumption");
@@ -1084,7 +1085,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 				// Exit hyperspace far enough from the planet to be able to land.
 				// This does not take drag into account, so it is always an over-
 				// estimate of how long it will take to stop.
-				// We start decellerating after rotating about 150 degrees (that
+				// We start decelerating after rotating about 150 degrees (that
 				// is, about acos(.8) from the proper angle). So:
 				// Stopping distance = .5*a*(v/a)^2 + (150/turn)*v.
 				// Exit distance = HYPER_D + .25 * v^2 = stopping distance.
@@ -1316,8 +1317,6 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 	}
 	
 	// Boarding:
-	if(isBoarding && (commands.Has(Command::FORWARD | Command::BACK) || commands.Turn()))
-		isBoarding = false;
 	shared_ptr<const Ship> target = GetTargetShip();
 	// If this is a fighter or drone and it is not assisting someone at the
 	// moment, its boarding target should be its parent ship.
@@ -1329,7 +1328,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 		double distance = dp.Length();
 		Point dv = (target->velocity - velocity);
 		double speed = dv.Length();
-		isBoarding |= (distance < 50. && speed < 1. && commands.Has(Command::BOARD));
+		isBoarding = (distance < 50. && speed < 1. && commands.Has(Command::BOARD));
 		if(isBoarding && !CanBeCarried())
 		{
 			if(!target->IsDisabled() && government->IsEnemy(target->government))
@@ -1421,6 +1420,7 @@ void Ship::Launch(list<shared_ptr<Ship>> &ships)
 			bay.ship->Place(position + angle.Rotate(bay.point), v, launchAngle);
 			bay.ship->SetSystem(currentSystem);
 			bay.ship->SetParent(shared_from_this());
+			bay.ship->UnmarkForRemoval();
 			// Fighters in your ship have the same temperature as your ship
 			// itself, so when they launch they should take their share of heat
 			// with them, so that the fighter and the mothership remain at the
@@ -1483,7 +1483,7 @@ shared_ptr<Ship> Ship::Board(bool autoPlunder)
 	if(autoPlunder)
 	{
 		// Take any commodities that fit.
-		victim->cargo.TransferAll(&cargo);
+		victim->cargo.TransferAll(cargo, false);
 		// Stop targeting this ship.
 		SetTargetShip(shared_ptr<Ship>());
 		
@@ -1865,7 +1865,10 @@ void Ship::SelfDestruct()
 
 void Ship::Restore()
 {
-	hull = 0;
+	hull = 0.;
+	explosionCount = 0;
+	explosionRate = 0;
+	UnmarkForRemoval();
 	Recharge(true);
 }
 

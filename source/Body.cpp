@@ -303,6 +303,14 @@ void Body::MarkForRemoval()
 
 
 
+// Mark this object to not be removed from the game.
+void Body::UnmarkForRemoval()
+{
+	shouldBeRemoved = false;
+}
+
+
+
 // Set the current time step.
 void Body::SetStep(int step, bool isHighDPI) const
 {

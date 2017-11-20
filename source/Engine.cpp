@@ -106,6 +106,8 @@ namespace {
 		objects.insert(objects.end(), make_move_iterator(added.begin()), make_move_iterator(added.end()));
 		added.clear();
 	}
+	
+	const double RADAR_SCALE = .025;
 }
 
 
@@ -530,9 +532,10 @@ void Engine::Step(bool isActive)
 		
 		targets.push_back({
 			object->Position() - center,
-			Angle(45.),
+			object->Facing(),
 			object->Radius(),
-			object->GetPlanet()->CanLand() ? Radar::FRIENDLY : Radar::HOSTILE});
+			object->GetPlanet()->CanLand() ? Radar::FRIENDLY : Radar::HOSTILE,
+			5});
 	}
 	else if(flagship && flagship->GetTargetSystem())
 	{
@@ -550,19 +553,35 @@ void Engine::Step(bool isActive)
 	// Use the radar that was just populated. (The draw tick-tock has not
 	// yet been toggled, but it will be at the end of this function.)
 	shared_ptr<const Ship> target;
+	shared_ptr<const Minable> targetAsteroid;
 	targetAngle = Point();
 	if(flagship)
+	{
 		target = flagship->GetTargetShip();
+		targetAsteroid = flagship->GetTargetAsteroid();
+	}
 	if(!target)
 	{
-		info.SetSprite("target sprite", nullptr);
-		info.SetString("target name", "no target");
 		info.SetString("target type", "");
 		info.SetString("target government", "");
 		info.SetString("mission target", "");
 		info.SetBar("target shields", 0.);
 		info.SetBar("target hull", 0.);
 		targetSwizzle = -1;
+		info.SetOutlineColor(Color(1.));
+	}
+	if(!target && !targetAsteroid)
+	{
+		info.SetSprite("target sprite", nullptr);
+		info.SetString("target name", "no target");
+	}
+	else if(!target)
+	{
+		info.SetSprite("target sprite",
+			targetAsteroid->GetSprite(),
+			targetAsteroid->Facing().Unit(),
+			targetAsteroid->GetFrameIndex(step));
+		info.SetString("target name", Format::Capitalize(targetAsteroid->Name()) + " Asteroid");
 	}
 	else
 	{
@@ -593,7 +612,8 @@ void Engine::Step(bool isActive)
 				target->Position() - center,
 				Angle(45.) + target->Facing(),
 				size,
-				targetType});
+				targetType,
+				4});
 			
 			// Don't show the angle to the target if it is very close.
 			targetAngle = target->Position() - center;
@@ -646,7 +666,7 @@ void Engine::Step(bool isActive)
 			if(!stack.empty())
 				doClick = !player.SelectShips(stack, hasShift);
 			else
-				clickPoint /= isRadarClick ? .025 : zoom;
+				clickPoint /= isRadarClick ? RADAR_SCALE : zoom;
 		}
 	}
 	
@@ -662,9 +682,27 @@ void Engine::Step(bool isActive)
 				ship->Position() - center,
 				Angle(45.) + ship->Facing(),
 				size,
-				Radar::PLAYER});
+				Radar::PLAYER,
+				4});
 		}
 	}
+	
+	// Draw crosshairs on any minables in range of the flagship's scanners.
+	double scanRange = flagship ? 100. * sqrt(flagship->Attributes().Get("asteroid scan power")) : 0.;
+	if(flagship && scanRange)
+		for(const shared_ptr<Minable> &minable : asteroids.Minables())
+		{
+			Point offset = minable->Position() - center;
+			if(offset.Length() > scanRange)
+				continue;
+			
+			targets.push_back({
+				offset,
+				minable->Facing(),
+				.8 * minable->Radius(),
+				minable == flagship->GetTargetAsteroid() ? Radar::SPECIAL : Radar::INACTIVE,
+				3});
+		}
 }
 
 
@@ -694,6 +732,7 @@ void Engine::Draw() const
 {
 	GameData::Background().Draw(center, centerVelocity, zoom);
 	static const Set<Color> &colors = GameData::Colors();
+	const Interface *interface = GameData::Interfaces().Get("hud");
 	
 	// Draw any active planet labels.
 	for(const PlanetLabel &label : labels)
@@ -735,14 +774,12 @@ void Engine::Draw() const
 	// Draw messages.
 	const Font &font = FontSet::Get(14);
 	const vector<Messages::Entry> &messages = Messages::Get(step);
-	Point messagePoint(
-		Screen::Left() + 120.,
-		Screen::Bottom() - 20. * messages.size());
+	Rectangle messageBox = interface->GetBox("messages");
+	Point messagePoint = Point(messageBox.Left(), messageBox.Bottom() - 20. * messages.size());
 	auto it = messages.begin();
-	double firstY = Screen::Top() - font.Height();
-	if(messagePoint.Y() < firstY)
+	if(messagePoint.Y() < messageBox.Top())
 	{
-		int skip = (firstY - messagePoint.Y()) / 20.;
+		int skip = (messageBox.Top() - messagePoint.Y()) / 20.;
 		it += skip;
 		messagePoint.Y() += 20. * skip;
 	}
@@ -758,9 +795,9 @@ void Engine::Draw() const
 	for(const Target &target : targets)
 	{
 		Angle a = target.angle;
-		Angle da(90.);
+		Angle da(360. / target.count);
 		
-		for(int i = 0; i < 4; ++i)
+		for(int i = 0; i < target.count; ++i)
 		{
 			PointerShader::Draw(target.center * zoom, a.Unit(), 12., 14., -target.radius * zoom,
 				Radar::GetColor(target.type));
@@ -768,33 +805,28 @@ void Engine::Draw() const
 		}
 	}
 	
-	const Interface *interfaces[2] = {
-		GameData::Interfaces().Get("status"),
-		GameData::Interfaces().Get("targets")
-	};
-	for(const Interface *interface : interfaces)
+	// Draw the heads-up display.
+	interface->Draw(info);
+	if(interface->HasPoint("radar"))
 	{
-		interface->Draw(info);
-		if(interface->HasPoint("radar"))
-		{
-			radar[drawTickTock].Draw(
-				interface->GetPoint("radar"),
-				.025,
-				.5 * interface->GetSize("radar").X(),
-				.5 * interface->GetSize("radar").Y());
-		}
-		if(interface->HasPoint("target") && targetAngle)
-		{
-			Point center = interface->GetPoint("target");
-			double radius = .5 * interface->GetSize("target").X();
-			PointerShader::Draw(center, targetAngle, 10., 10., radius, Color(1.));
-		}
+		radar[drawTickTock].Draw(
+			interface->GetPoint("radar"),
+			RADAR_SCALE,
+			interface->GetValue("radar radius"),
+			interface->GetValue("radar pointer radius"));
 	}
+	if(interface->HasPoint("target") && targetAngle)
+	{
+		Point center = interface->GetPoint("target");
+		double radius = interface->GetValue("target radius");
+		PointerShader::Draw(center, targetAngle, 10., 10., radius, Color(1.));
+	}
+	
 	// Draw the faction markers.
-	if(targetSwizzle >= 0 && interfaces[1]->HasPoint("faction markers"))
+	if(targetSwizzle >= 0 && interface->HasPoint("faction markers"))
 	{
 		int width = font.Width(info.GetString("target government"));
-		Point center = interfaces[1]->GetPoint("faction markers");
+		Point center = interface->GetPoint("faction markers");
 		
 		const Sprite *mark[2] = {SpriteSet::Get("ui/faction left"), SpriteSet::Get("ui/faction right")};
 		// Round the x offsets to whole numbers so the icons are sharp.
@@ -806,7 +838,8 @@ void Engine::Draw() const
 		MapPanel::DrawMiniMap(player, .5 * min(1., jumpCount / 30.), jumpInProgress, step);
 	
 	// Draw ammo status.
-	Point pos(Screen::Right() - 80, Screen::Bottom());
+	Rectangle ammoBox = interface->GetBox("ammo");
+	Point pos(ammoBox.Left(), ammoBox.Bottom());
 	const Sprite *selectedSprite = SpriteSet::Get("ui/ammo selected");
 	const Sprite *unselectedSprite = SpriteSet::Get("ui/ammo unselected");
 	Color selectedColor = *colors.Get("bright");
@@ -814,6 +847,8 @@ void Engine::Draw() const
 	for(const pair<const Outfit *, int> &it : ammo)
 	{
 		pos.Y() -= 30.;
+		if(pos.Y() < ammoBox.Top())
+			break;
 		
 		bool isSelected = it.first == player.SelectedWeapon();
 		
@@ -832,7 +867,7 @@ void Engine::Draw() const
 	}
 	
 	// Draw escort status.
-	escorts.Draw();
+	escorts.Draw(interface->GetBox("escorts"));
 	
 	// Upload any preloaded sprites that are now available. This is to avoid
 	// filling the entire backlog of sprites before landing on a planet.
@@ -858,16 +893,19 @@ void Engine::Click(const Point &from, const Point &to, bool hasShift)
 	isRightClick = false;
 	
 	// Determine if the left-click was within the radar display.
-	const Point &radarCenter = GameData::Interfaces().Get("targets")->GetPoint("radar");
-	const double &radarDiameter = GameData::Interfaces().Get("targets")->GetSize("radar").Y();
-	if(Preferences::Has("Clickable radar display") && (from - radarCenter).Length() <= .5 * radarDiameter)
+	const Interface *interface = GameData::Interfaces().Get("hud");
+	Point radarCenter = interface->GetPoint("radar");
+	double radarRadius = interface->GetValue("radar radius");
+	if(Preferences::Has("Clickable radar display") && (from - radarCenter).Length() <= radarRadius)
 		isRadarClick = true;
 	else
 		isRadarClick = false;
 	
 	clickPoint = isRadarClick ? from - radarCenter : from;
 	if(isRadarClick)
-		clickBox = Rectangle::WithCorners((from - radarCenter) / .025 + center, (to - radarCenter) / .025  + center);
+		clickBox = Rectangle::WithCorners(
+			(from - radarCenter) / RADAR_SCALE + center,
+			(to - radarCenter) / RADAR_SCALE  + center);
 	else
 		clickBox = Rectangle::WithCorners(from / zoom + center, to / zoom + center);
 }
@@ -881,10 +919,11 @@ void Engine::RClick(const Point &point)
 	isRightClick = true;
 	
 	// Determine if the right-click was within the radar display, and if so, rescale.
-	const Point &radarCenter = GameData::Interfaces().Get("targets")->GetPoint("radar");
-	const double &radarDiameter = GameData::Interfaces().Get("targets")->GetSize("radar").Y();
-	if(Preferences::Has("Clickable radar display") && (point - radarCenter).Length() <= .5 * radarDiameter)
-		clickPoint = (point - radarCenter) / .025;
+	const Interface *interface = GameData::Interfaces().Get("hud");
+	Point radarCenter = interface->GetPoint("radar");
+	double radarRadius = interface->GetValue("radar radius");
+	if(Preferences::Has("Clickable radar display") && (point - radarCenter).Length() <= radarRadius)
+		clickPoint = (point - radarCenter) / RADAR_SCALE;
 	else
 		clickPoint = point / zoom;
 }
@@ -1371,15 +1410,26 @@ void Engine::SpawnPersons()
 		sum -= person.Frequency(player.GetSystem());
 		if(sum < 0)
 		{
-			shared_ptr<Ship> ship = person.GetShip();
-			ship->Recharge();
-			ship->SetName(it.first);
-			ship->SetGovernment(person.GetGovernment());
-			ship->SetPersonality(person.GetPersonality());
-			ship->SetHail(person.GetHail());
-			Fleet::Enter(*player.GetSystem(), *ship);
+			const System *source = nullptr;
+			shared_ptr<Ship> parent;
+			for(const shared_ptr<Ship> &ship : person.Ships())
+			{
+				ship->Recharge();
+				if(ship->Name().empty())
+					ship->SetName(it.first);
+				ship->SetGovernment(person.GetGovernment());
+				ship->SetPersonality(person.GetPersonality());
+				ship->SetHail(person.GetHail());
+				if(!parent)
+					parent = ship;
+				else
+					ship->SetParent(parent);
+				// Make sure all ships in a "person" definition enter from the
+				// same source system.
+				source = Fleet::Enter(*player.GetSystem(), *ship, source);
+				newShips.push_back(ship);
+			}
 			
-			newShips.push_back(ship);
 			break;
 		}
 	}
@@ -1509,6 +1559,24 @@ void Engine::HandleMouseClicks()
 	}
 	else if(isRightClick)
 		ai.IssueMoveTarget(player, clickPoint + center, playerSystem);
+	else if(flagship->Attributes().Get("asteroid scan power"))
+	{
+		// If the click was not on any ship, check if it was on a minable.
+		double scanRange = 100. * sqrt(flagship->Attributes().Get("asteroid scan power"));
+		for(const shared_ptr<Minable> &minable : asteroids.Minables())
+		{
+			Point position = minable->Position() - flagship->Position();
+			if(position.Length() > scanRange)
+				continue;
+			
+			double range = clickPoint.Distance(position) - minable->Radius();
+			if(range <= clickRange)
+			{
+				clickRange = range;
+				flagship->SetTargetAsteroid(minable);
+			}
+		}
+	}
 }
 
 

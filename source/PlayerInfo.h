@@ -32,7 +32,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 class DataNode;
 class Government;
 class Outfit;
-class Person;
 class Planet;
 class Rectangle;
 class Ship;
@@ -256,6 +255,9 @@ private:
 	// Helper function to update the ship selection.
 	void SelectShip(const std::shared_ptr<Ship> &ship, bool *first);
 	
+	// Check that this player's current state can be saved.
+	bool CanBeSaved() const;
+	
 	
 private:
 	std::string firstName;
@@ -310,7 +312,7 @@ private:
 	std::list<DataNode> dataChanges;
 	DataNode economy;
 	// Persons that have been killed in this player's universe:
-	std::list<const Person *> destroyedPersons;
+	std::vector<std::string> destroyedPersons;
 	// Events that are going to happen some time in the future:
 	std::list<GameEvent> gameEvents;
 	
