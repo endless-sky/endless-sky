@@ -112,21 +112,7 @@ void Mission::Load(const DataNode &node)
 				cargoLimit = child.Value(3);
 			if(child.Size() >= 5)
 				cargoProb = child.Value(4);
-			
-			for(const DataNode &grand : child)
-			{
-				if(grand.Token(0) == "illegal" && grand.Size() == 2)
-					illegalCargoFine = grand.Value(1);
-				else if(grand.Token(0) == "illegal" && grand.Size() == 3)
-				{
-					illegalCargoFine = grand.Value(1);
-					illegalCargoMessage = grand.Token(2);
-				}
-				else if(grand.Token(0) == "stealth")
-					failIfDiscovered = true;
-				else
-					grand.PrintTrace("Skipping unrecognized attribute:");
-			}
+			HandleContraband(child);
 		}
 		else if(child.Token(0) == "passengers" && child.Size() >= 2)
 		{
@@ -135,6 +121,7 @@ void Mission::Load(const DataNode &node)
 				passengerLimit = child.Value(2);
 			if(child.Size() >= 4)
 				passengerProb = child.Value(3);
+			HandleContraband(child);
 		}
 		else if(child.Token(0) == "invisible")
 			isVisible = false;
@@ -272,7 +259,25 @@ void Mission::Save(DataWriter &out, const string &tag) const
 			}
 		}
 		if(passengers)
+		{
 			out.Write("passengers", passengers);
+			if(illegalCargoFine)
+			{
+				out.BeginChild();
+				{
+					out.Write("illegal", illegalCargoFine, illegalCargoMessage);
+				}
+				out.EndChild();
+			}
+			if(failIfDiscovered)
+			{
+				out.BeginChild();
+				{
+					out.Write("stealth");
+				}
+				out.EndChild();
+			}
+		}
 		if(!isVisible)
 			out.Write("invisible");
 		if(hasPriority)
@@ -1093,4 +1098,24 @@ const Planet *Mission::PickPlanet(const LocationFilter &filter, const PlayerInfo
 			options.push_back(&it.second);
 	}
 	return options.empty() ? nullptr : options[Random::Int(options.size())];
+}
+
+
+
+void Mission::HandleContraband(const DataNode &child)
+{
+	for(const DataNode &grand : child)
+	{
+		if(grand.Token(0) == "illegal" && grand.Size() == 2)
+			illegalCargoFine = grand.Value(1);
+		else if(grand.Token(0) == "illegal" && grand.Size() == 3)
+		{
+			illegalCargoFine = grand.Value(1);
+			illegalCargoMessage = grand.Token(2);
+		}
+		else if(grand.Token(0) == "stealth")
+			failIfDiscovered = true;
+		else
+			grand.PrintTrace("Skipping unrecognized attribute:");
+	}
 }
