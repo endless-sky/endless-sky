@@ -560,11 +560,14 @@ void AI::Step(const PlayerInfo &player)
 			if(it->CanBeCarried() && parent && miningTime[&*parent] < 3601 && minable
 					&& minable->Position().Distance(parent->Position()) < 600.)
 			{
+				it->SetTargetAsteroid(minable);
 				MoveToAttack(*it, command, *minable);
 				AutoFire(*it, command, *minable);
 				it->SetCommands(command);
 				continue;
 			}
+			else
+				it->SetTargetAsteroid(nullptr);
 		}
 		
 		// Handle fighters:
@@ -2206,7 +2209,7 @@ Point AI::TargetAim(const Ship &ship, const Body &target)
 void AI::AimTurrets(const Ship &ship, Command &command, bool opportunistic) const
 {
 	// First, get the set of potential targets.
-	vector<const Ship *> enemies;
+	vector<const Body *> enemies;
 	const Ship *currentTarget = ship.GetTargetShip().get();
 	// If the ship has a target selected, that ship is always in the running as
 	// something to aim at, even if it is too far away.
@@ -2239,6 +2242,9 @@ void AI::AimTurrets(const Ship &ship, Command &command, bool opportunistic) cons
 					&& (target->IsYours() || !ship.GetPersonality().IsMarked()))
 				enemies.push_back(target.get());
 	}
+	// If this ship is mining, its target asteroid counts as an "enemy."
+	if(ship.GetTargetAsteroid())
+		enemies.push_back(ship.GetTargetAsteroid().get());
 	
 	// If there are no enemies to aim at, opportunistic turrets should sweep
 	// back and forth at random, with the sweep centered on the "outward-facing"
@@ -2293,7 +2299,7 @@ void AI::AimTurrets(const Ship &ship, Command &command, bool opportunistic) cons
 			// to aim at it and for a projectile to hit it.
 			double bestScore = 1000.;
 			double bestAngle = 0.;
-			for(const Ship *target : enemies)
+			for(const Body *target : enemies)
 			{
 				Point p = target->Position() - start;
 				Point v = target->Velocity();
@@ -2682,6 +2688,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 	{
 		double closest = numeric_limits<double>::infinity();
 		int closeState = 0;
+		bool found = false;
 		for(const shared_ptr<Ship> &other : ships)
 			if(other.get() != &ship && other->IsTargetable())
 			{
@@ -2704,8 +2711,23 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 					ship.SetTargetShip(other);
 					closest = d;
 					closeState = state;
+					found = true;
 				}
 			}
+		// If no ship was found, look for nearby asteroids.
+		double asteroidRange = 100. * sqrt(ship.Attributes().Get("asteroid scan power"));
+		if(!found && asteroidRange)
+		{
+			for(const shared_ptr<Minable> &asteroid : minables)
+			{
+				double range = ship.Position().Distance(asteroid->Position());
+				if(range < asteroidRange)
+				{
+					ship.SetTargetAsteroid(asteroid);
+					asteroidRange = range;
+				}
+			}
+		}
 	}
 	else if(keyDown.Has(Command::TARGET))
 	{

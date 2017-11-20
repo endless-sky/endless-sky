@@ -532,9 +532,10 @@ void Engine::Step(bool isActive)
 		
 		targets.push_back({
 			object->Position() - center,
-			Angle(45.),
+			object->Facing(),
 			object->Radius(),
-			object->GetPlanet()->CanLand() ? Radar::FRIENDLY : Radar::HOSTILE});
+			object->GetPlanet()->CanLand() ? Radar::FRIENDLY : Radar::HOSTILE,
+			5});
 	}
 	else if(flagship && flagship->GetTargetSystem())
 	{
@@ -552,19 +553,34 @@ void Engine::Step(bool isActive)
 	// Use the radar that was just populated. (The draw tick-tock has not
 	// yet been toggled, but it will be at the end of this function.)
 	shared_ptr<const Ship> target;
+	shared_ptr<const Minable> targetAsteroid;
 	targetAngle = Point();
 	if(flagship)
+	{
 		target = flagship->GetTargetShip();
+		targetAsteroid = flagship->GetTargetAsteroid();
+	}
 	if(!target)
 	{
-		info.SetSprite("target sprite", nullptr);
-		info.SetString("target name", "no target");
 		info.SetString("target type", "");
 		info.SetString("target government", "");
 		info.SetString("mission target", "");
 		info.SetBar("target shields", 0.);
 		info.SetBar("target hull", 0.);
 		targetSwizzle = -1;
+	}
+	if(!target && !targetAsteroid)
+	{
+		info.SetSprite("target sprite", nullptr);
+		info.SetString("target name", "no target");
+	}
+	else if(!target)
+	{
+		info.SetSprite("target sprite",
+			targetAsteroid->GetSprite(),
+			targetAsteroid->Facing().Unit(),
+			targetAsteroid->GetFrameIndex(step));
+		info.SetString("target name", Format::Capitalize(targetAsteroid->Name()) + " Asteroid");
 	}
 	else
 	{
@@ -595,7 +611,8 @@ void Engine::Step(bool isActive)
 				target->Position() - center,
 				Angle(45.) + target->Facing(),
 				size,
-				targetType});
+				targetType,
+				4});
 			
 			// Don't show the angle to the target if it is very close.
 			targetAngle = target->Position() - center;
@@ -664,9 +681,27 @@ void Engine::Step(bool isActive)
 				ship->Position() - center,
 				Angle(45.) + ship->Facing(),
 				size,
-				Radar::PLAYER});
+				Radar::PLAYER,
+				4});
 		}
 	}
+	
+	// Draw crosshairs on any minables in range of the flagship's scanners.
+	double scanRange = flagship ? 100. * sqrt(flagship->Attributes().Get("asteroid scan power")) : 0.;
+	if(flagship && scanRange)
+		for(const shared_ptr<Minable> &minable : asteroids.Minables())
+		{
+			Point offset = minable->Position() - center;
+			if(offset.Length() > scanRange)
+				continue;
+			
+			targets.push_back({
+				offset,
+				minable->Facing(),
+				.8 * minable->Radius(),
+				minable == flagship->GetTargetAsteroid() ? Radar::SPECIAL : Radar::INACTIVE,
+				3});
+		}
 }
 
 
@@ -759,9 +794,9 @@ void Engine::Draw() const
 	for(const Target &target : targets)
 	{
 		Angle a = target.angle;
-		Angle da(90.);
+		Angle da(360. / target.count);
 		
-		for(int i = 0; i < 4; ++i)
+		for(int i = 0; i < target.count; ++i)
 		{
 			PointerShader::Draw(target.center * zoom, a.Unit(), 12., 14., -target.radius * zoom,
 				Radar::GetColor(target.type));
@@ -1523,6 +1558,24 @@ void Engine::HandleMouseClicks()
 	}
 	else if(isRightClick)
 		ai.IssueMoveTarget(player, clickPoint + center, playerSystem);
+	else if(flagship->Attributes().Get("asteroid scan power"))
+	{
+		// If the click was not on any ship, check if it was on a minable.
+		double scanRange = 100. * sqrt(flagship->Attributes().Get("asteroid scan power"));
+		for(const shared_ptr<Minable> &minable : asteroids.Minables())
+		{
+			Point position = minable->Position() - flagship->Position();
+			if(position.Length() > scanRange)
+				continue;
+			
+			double range = clickPoint.Distance(position) - minable->Radius();
+			if(range <= clickRange)
+			{
+				clickRange = range;
+				flagship->SetTargetAsteroid(minable);
+			}
+		}
+	}
 }
 
 
