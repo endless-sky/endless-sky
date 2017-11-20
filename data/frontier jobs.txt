@@ -17,10 +17,10 @@ mission "Instruct novice pilot"
 		random < 5
 		"combat rating" > 50
 	source
-		government Republic "Free Worlds" Neutral
-		attributes frontier "dirt belt" rim north south mining farming
+		government "Republic" "Free Worlds" "Neutral" "Independent"
+		attributes "frontier" "dirt belt" "rim" "north" "south mining" "farming"
 	stopover
-		attributes frontier
+		attributes "frontier" "outfitter"
 		distance 3 7
 	on stopover
 		dialog "After a smooth landing, you guide your student through an especially rough part of the spaceport, full of trash, homeless drifters, and poorly-lit alleyways. You explain the ins and outs of avoiding pickpockets, keeping out of bar fights, and how to spot a lousy deal at an outfitter's shop. After a few hours in one of the seedier parts of the galaxy, both of you are eager to return to <origin>."
@@ -56,11 +56,12 @@ mission "Small Pirate gambling"
 	minor
 	repeat
 	to offer
+		random < 5
 		"reputation: Pirates" < 0
 		"combat rating" < 10
-		random < 5
+		credits > 14357
 	source
-		attributes "dirt belt" south rim pirate
+		attributes "dirt belt" "south" "rim" "pirate"
 	on offer
 		conversation
 			`	You're having a drink in a dimly-lit spaceport bar when you notice a couple of young men in crimson leather outfits gambling in a particularly dark corner. The barman eyes them warily, and you suspect they may be pirates. One of them raises his drink and waves you over, beckoning to join their game.`
@@ -108,7 +109,7 @@ mission "Small Pirate gambling"
 				random < 30
 
 			label "shoot and die"
-			`	Unfortunately they're faster then you. Your mutilated corpse hits the floor with a wet thump.`
+			`	Unfortunately they're faster than you. Your mutilated corpse hits the floor with a wet thump.`
 				die
 
 			label "shoot and run"
