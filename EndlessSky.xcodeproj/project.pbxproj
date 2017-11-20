@@ -17,11 +17,11 @@
 		A90633FF1EE602FD000DA6C0 /* LogbookPanel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A90633FD1EE602FD000DA6C0 /* LogbookPanel.cpp */; };
 		A90C15D91D5BD55700708F3A /* Minable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A90C15D71D5BD55700708F3A /* Minable.cpp */; };
 		A90C15DC1D5BD56800708F3A /* Rectangle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A90C15DA1D5BD56800708F3A /* Rectangle.cpp */; };
-		A93931F019880EFC00C2A87B /* SDL2.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = A9CC52A01950CA16004E4E22 /* SDL2.framework */; };
+		A93931F019880EFC00C2A87B /* SDL2.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = A9CC52A01950CA16004E4E22 /* SDL2.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		A93931FB1988135200C2A87B /* libturbojpeg.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A93931FA1988135200C2A87B /* libturbojpeg.0.dylib */; };
 		A93931FD1988136B00C2A87B /* libpng14.14.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A93931FC1988136B00C2A87B /* libpng14.14.dylib */; };
-		A93931FE1988136E00C2A87B /* libturbojpeg.0.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = A93931FA1988135200C2A87B /* libturbojpeg.0.dylib */; };
-		A93931FF1988136F00C2A87B /* libpng14.14.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = A93931FC1988136B00C2A87B /* libpng14.14.dylib */; };
+		A93931FE1988136E00C2A87B /* libturbojpeg.0.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = A93931FA1988135200C2A87B /* libturbojpeg.0.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		A93931FF1988136F00C2A87B /* libpng14.14.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = A93931FC1988136B00C2A87B /* libpng14.14.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		A94408A51982F3E600610427 /* endless-sky.iconset in Resources */ = {isa = PBXBuildFile; fileRef = A94408A41982F3E600610427 /* endless-sky.iconset */; };
 		A966A5AB1B964E6300DFF69C /* Person.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A966A5A91B964E6300DFF69C /* Person.cpp */; };
 		A96863A01AE6FD0E004FE1FE /* Account.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A96862CD1AE6FD0A004FE1FE /* Account.cpp */; };
@@ -139,11 +139,14 @@
 		A9B99D051C616AF200BE7C2E /* MapSalesPanel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A9B99D031C616AF200BE7C2E /* MapSalesPanel.cpp */; };
 		A9BDFB541E00B8AA00A6B27E /* Music.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A9BDFB521E00B8AA00A6B27E /* Music.cpp */; };
 		A9BDFB561E00B94700A6B27E /* libmad.0.2.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A9BDFB551E00B94700A6B27E /* libmad.0.2.1.dylib */; };
-		A9BDFB571E00BD6A00A6B27E /* libmad.0.2.1.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = A9BDFB551E00B94700A6B27E /* libmad.0.2.1.dylib */; };
+		A9BDFB571E00BD6A00A6B27E /* libmad.0.2.1.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = A9BDFB551E00B94700A6B27E /* libmad.0.2.1.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		A9C70E101C0E5B51000B3D14 /* File.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A9C70E0E1C0E5B51000B3D14 /* File.cpp */; };
 		A9CC526D1950C9F6004E4E22 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9CC526C1950C9F6004E4E22 /* Cocoa.framework */; };
 		A9CC52A11950CA16004E4E22 /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9CC52A01950CA16004E4E22 /* SDL2.framework */; };
 		A9D40D1A195DFAA60086EE52 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9D40D19195DFAA60086EE52 /* OpenGL.framework */; };
+		DF8D57E11FC25842001525DA /* Dictionary.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DF8D57DF1FC25842001525DA /* Dictionary.cpp */; };
+		DF8D57E51FC25889001525DA /* Visual.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DF8D57E21FC25889001525DA /* Visual.cpp */; };
+		DF8D57E61FC25889001525DA /* WinApp.rc in Resources */ = {isa = PBXBuildFile; fileRef = DF8D57E41FC25889001525DA /* WinApp.rc */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -424,6 +427,11 @@
 		A9CC52711950C9F6004E4E22 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		A9CC52A01950CA16004E4E22 /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = /Library/Frameworks/SDL2.framework; sourceTree = "<absolute>"; };
 		A9D40D19195DFAA60086EE52 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
+		DF8D57DF1FC25842001525DA /* Dictionary.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Dictionary.cpp; path = source/Dictionary.cpp; sourceTree = "<group>"; };
+		DF8D57E01FC25842001525DA /* Dictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Dictionary.h; path = source/Dictionary.h; sourceTree = "<group>"; };
+		DF8D57E21FC25889001525DA /* Visual.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Visual.cpp; path = source/Visual.cpp; sourceTree = "<group>"; };
+		DF8D57E31FC25889001525DA /* Visual.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Visual.h; path = source/Visual.h; sourceTree = "<group>"; };
+		DF8D57E41FC25889001525DA /* WinApp.rc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = WinApp.rc; path = source/WinApp.rc; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -447,6 +455,11 @@
 		654D33611BE92C9200D1E5AB /* source */ = {
 			isa = PBXGroup;
 			children = (
+				DF8D57E21FC25889001525DA /* Visual.cpp */,
+				DF8D57E31FC25889001525DA /* Visual.h */,
+				DF8D57E41FC25889001525DA /* WinApp.rc */,
+				DF8D57DF1FC25842001525DA /* Dictionary.cpp */,
+				DF8D57E01FC25842001525DA /* Dictionary.h */,
 				A96862CD1AE6FD0A004FE1FE /* Account.cpp */,
 				A96862CE1AE6FD0A004FE1FE /* Account.h */,
 				A96862CF1AE6FD0A004FE1FE /* AI.cpp */,
@@ -786,7 +799,7 @@
 		A9CC52611950C9F6004E4E22 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0510;
+				LastUpgradeCheck = 0820;
 			};
 			buildConfigurationList = A9CC52641950C9F6004E4E22 /* Build configuration list for PBXProject "EndlessSky" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -811,6 +824,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DF8D57E61FC25889001525DA /* WinApp.rc in Resources */,
 				A99F7A50195DF3E8002C30B8 /* Images.xcassets in Resources */,
 				A99F7B09195DF44C002C30B8 /* license.txt in Resources */,
 				A9A5297419996C9F002D7C35 /* sounds in Resources */,
@@ -914,6 +928,7 @@
 				A96863CB1AE6FD0E004FE1FE /* Information.cpp in Sources */,
 				A96863F91AE6FD0E004FE1FE /* Sprite.cpp in Sources */,
 				A96863A91AE6FD0E004FE1FE /* BoardingPanel.cpp in Sources */,
+				DF8D57E11FC25842001525DA /* Dictionary.cpp in Sources */,
 				A9B99D051C616AF200BE7C2E /* MapSalesPanel.cpp in Sources */,
 				A96863A01AE6FD0E004FE1FE /* Account.cpp in Sources */,
 				A90C15D91D5BD55700708F3A /* Minable.cpp in Sources */,
@@ -939,6 +954,7 @@
 				6A5716331E25BE6F00585EB2 /* CollisionSet.cpp in Sources */,
 				A96863E11AE6FD0E004FE1FE /* Personality.cpp in Sources */,
 				A96863B41AE6FD0E004FE1FE /* Date.cpp in Sources */,
+				DF8D57E51FC25889001525DA /* Visual.cpp in Sources */,
 				A96863EF1AE6FD0E004FE1FE /* SavedGame.cpp in Sources */,
 				A96863A11AE6FD0E004FE1FE /* AI.cpp in Sources */,
 				A96863F71AE6FD0E004FE1FE /* Sound.cpp in Sources */,
@@ -966,13 +982,19 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -1010,14 +1032,19 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -1060,6 +1087,7 @@
 					/usr/local/lib,
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				PRODUCT_BUNDLE_IDENTIFIER = "${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1090,6 +1118,7 @@
 					/usr/local/lib,
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				PRODUCT_BUNDLE_IDENTIFIER = "${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
