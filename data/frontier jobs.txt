@@ -17,6 +17,7 @@ mission "Frontier delivery [0]"
 	to offer
 		random < 30
 	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
 		not attributes "frontier"
 	destination
 		distance 2 10
@@ -47,6 +48,7 @@ mission "Frontier delivery [1]"
 	to offer
 		random < 25
 	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
 		not attributes "frontier"
 	destination
 		distance 2 10
@@ -77,6 +79,7 @@ mission "Frontier delivery [2]"
 	to offer
 		random < 20
 	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
 		not attributes "frontier"
 	destination
 		distance 2 10
@@ -110,6 +113,7 @@ mission "Frontier Emigration [0]"
 		not planet "Shangri-La"
 	destination
 		distance 2 10
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
 		not attributes "frontier"
 	on complete
 		payment 3000 140
@@ -129,6 +133,7 @@ mission "Frontier Emigration [1]"
 		not planet "Shangri-La"
 	destination
 		distance 2 10
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
 		not attributes "frontier"
 	on complete
 		payment 3000 140
@@ -148,6 +153,7 @@ mission "Frontier Emigration [2]"
 		not planet "Shangri-La"
 	destination
 		distance 2 10
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
 		not attributes "frontier"
 	on complete
 		payment 3000 140
@@ -164,6 +170,7 @@ mission "Disaster Relief"
 	to offer
 		random < 10
 	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
 		not attributes "frontier"
 	destination
 		distance 2 10

@@ -151,7 +151,7 @@ mission "From Earth Day celebration [1]"
 mission "Parliament vacation"
 	job
 	repeat
-	description `Bring these <bunks> Parliament members to their vacation retreat on <destination>.`
+	description `Bring these <bunks> Parliament members to their vacation retreat on <destination> by <date>. Payment is <payment>.`
 	passengers 2 10 .9
 	deadline
 	to offer
