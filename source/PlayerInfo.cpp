@@ -75,18 +75,29 @@ void PlayerInfo::New()
 	// Clear any previously loaded data.
 	Clear();
 	
+	const StartConditions &start = GameData::Start();
+	// Copy any ships in the start conditions.
+	for(const Ship &ship : start.Ships())
+	{
+		ships.emplace_back(new Ship(ship));
+		ships.back()->SetSystem(start.GetSystem());
+		ships.back()->SetPlanet(start.GetPlanet());
+		ships.back()->SetIsSpecial();
+		ships.back()->SetIsYours();
+		ships.back()->SetGovernment(GameData::PlayerGovernment());
+	}
 	// Load starting conditions from a "start" item in the data files. If no
 	// such item exists, StartConditions defines default values.
-	date = GameData::Start().GetDate();
+	date = start.GetDate();
 	GameData::SetDate(date);
 	// Make sure the fleet depreciation object knows it is tracking the player's
 	// fleet, not the planet's stock.
 	depreciation.Init(ships, date.DaysSinceEpoch());
 	
-	SetSystem(GameData::Start().GetSystem());
-	SetPlanet(GameData::Start().GetPlanet());
-	accounts = GameData::Start().GetAccounts();
-	GameData::Start().GetConditions().Apply(conditions);
+	SetSystem(start.GetSystem());
+	SetPlanet(start.GetPlanet());
+	accounts = start.GetAccounts();
+	start.GetConditions().Apply(conditions);
 	UpdateAutoConditions();
 	
 	// Generate missions that will be available on the first day.

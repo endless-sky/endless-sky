@@ -178,6 +178,7 @@ void GameData::BeginLoad(const char * const *argv)
 		it.second.FinishLoading(true);
 	for(auto &it : persons)
 		it.second.FinishLoading();
+	startConditions.FinishLoading();
 	
 	// Store the current state, to revert back to later.
 	defaultFleets = fleets;
