@@ -560,6 +560,8 @@ void AI::Step(const PlayerInfo &player)
 			if(it->CanBeCarried() && parent && miningTime[&*parent] < 3601 && minable
 					&& minable->Position().Distance(parent->Position()) < 600.)
 			{
+				// Set the target asteroid (to enable turret tracking)
+				it->SetTargetAsteroid(minable);
 				MoveToAttack(*it, command, *minable);
 				AutoFire(*it, command, *minable);
 				it->SetCommands(command);
@@ -2240,6 +2242,52 @@ void AI::AimTurrets(const Ship &ship, Command &command, bool opportunistic) cons
 				enemies.push_back(target.get());
 	}
 	
+	// If this ship is mining and has no ships to target, its turrets should assist.
+	if(enemies.empty() && ship.GetTargetAsteroid())
+	{
+		const shared_ptr<Minable> &target = ship.GetTargetAsteroid();
+		// Only aim at the asteroid if it is in front of the ship, and the
+		// ship is moving towards it, to minimize the risk of destroying it
+		// while not positioned to harvest the ore.
+		Point pHat = (target->Position() - ship.Position()).Unit();
+		const Angle &facing = ship.Facing();
+		if(pHat.Dot(facing.Unit()) < .8 || ship.Velocity().Unit().Dot(pHat) < 0.)
+			return;
+		for(const Hardpoint &hardpoint : ship.Weapons())
+			if(hardpoint.CanAim())
+			{
+				// This is where this projectile fires from. Add some randomness
+				// based on how skilled the pilot is.
+				Point start = ship.Position() + facing.Rotate(hardpoint.GetPoint());
+				start += ship.GetPersonality().Confusion();
+				// Get the turret's current facing, in absolute coordinates:
+				Angle aim = facing + hardpoint.GetAngle();
+				// Get this projectile's average velocity.
+				const Outfit *outfit = hardpoint.GetOutfit();
+				double vp = outfit->Velocity() + .5 * outfit->RandomVelocity();
+				
+				Point p = target->Position() - start;
+				Point v = target->Velocity();
+				// Only take the ship's velocity into account if this weapon
+				// does not have its own acceleration.
+				if(!outfit->Acceleration())
+					v -= ship.Velocity();
+				// By the time this action is performed, the bodies will have moved
+				// forward one time step.
+				p += v;
+				
+				// Find out how long it would take for this projectile to reach
+				// the target.
+				double rendezvousTime = RendezvousTime(p, v, vp);
+				p += v * rendezvousTime;
+				
+				// Aim the hardpoint's outfit at the estimated collision position.
+				double degrees = (Angle(p) - aim).Degrees();
+				int index = &hardpoint - &ship.Weapons().front();
+				command.SetAim(index, degrees / outfit->TurretTurn());
+			}
+		return;
+	}
 	// If there are no enemies to aim at, opportunistic turrets should sweep
 	// back and forth at random, with the sweep centered on the "outward-facing"
 	// angle. Focused turrets should just point forward.
