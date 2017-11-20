@@ -98,6 +98,8 @@ namespace {
 	map<const System *, map<string, int>> purchases;
 	
 	map<const Sprite *, string> landingMessages;
+	map<const Sprite *, double> solarPower;
+	map<const Sprite *, double> solarWind;
 	map<string, vector<string>> ratings;
 	
 	StarField background;
@@ -699,6 +701,23 @@ const string &GameData::LandingMessage(const Sprite *sprite)
 
 
 
+// Get the solar power and wind output of the given stellar object sprite.
+double GameData::SolarPower(const Sprite *sprite)
+{
+	auto it = solarPower.find(sprite);
+	return (it == solarPower.end() ? 0. : it->second);
+}
+
+
+
+double GameData::SolarWind(const Sprite *sprite)
+{
+	auto it = solarWind.find(sprite);
+	return (it == solarWind.end() ? 0. : it->second);
+}
+
+
+
 // Strings for combat rating levels, etc.
 const string &GameData::Rating(const std::string &type, int level)
 {
@@ -870,6 +889,19 @@ void GameData::LoadFile(const string &path, bool debugMode)
 		{
 			for(const DataNode &child : node)
 				landingMessages[SpriteSet::Get(child.Token(0))] = node.Token(1);
+		}
+		else if(key == "star" && node.Size() >= 2)
+		{
+			const Sprite *sprite = SpriteSet::Get(node.Token(1));
+			for(const DataNode &child : node)
+			{
+				if(child.Token(0) == "power" && child.Size() >= 2)
+					solarPower[sprite] = child.Value(1);
+				else if(child.Token(0) == "wind" && child.Size() >= 2)
+					solarWind[sprite] = child.Value(1);
+				else
+					child.PrintTrace("Unrecognized star attribute:");
+			}
 		}
 		else if(key == "rating" && node.Size() >= 2)
 		{

@@ -848,9 +848,9 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 		// ship has no ramscoop, it can harvest a tiny bit of fuel by flying
 		// close to the star.
 		double scale = .2 + 1.8 / (.001 * position.Length() + 1);
-		fuel += .03 * scale * (sqrt(attributes.Get("ramscoop")) + .05 * scale);
+		fuel += currentSystem->SolarWind() * .03 * scale * (sqrt(attributes.Get("ramscoop")) + .05 * scale);
 		
-		energy += scale * attributes.Get("solar collection");
+		energy += currentSystem->SolarPower() * scale * attributes.Get("solar collection");
 		
 		double coolingEfficiency = CoolingEfficiency();
 		energy += attributes.Get("energy generation") - attributes.Get("energy consumption");

@@ -107,6 +107,9 @@ public:
 	double HabitableZone() const;
 	// Get the radius of the asteroid belt.
 	double AsteroidBelt() const;
+	// Get the rate of solar collection and ramscoop refueling.
+	double SolarPower() const;
+	double SolarWind() const;
 	// Check if this system is inhabited.
 	bool IsInhabited(const Ship *ship) const;
 	// Check if ships of the given government can refuel in this system.
@@ -175,6 +178,8 @@ private:
 	std::vector<FleetProbability> fleets;
 	double habitable = 1000.;
 	double asteroidBelt = 1500.;
+	double solarPower = 0.;
+	double solarWind = 0.;
 	
 	// Commodity prices.
 	std::map<std::string, Price> trade;
