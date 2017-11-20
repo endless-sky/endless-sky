@@ -1179,13 +1179,7 @@ vector<shared_ptr<Ship>> AI::GetShipsList(const Ship &ship, bool targetEnemies, 
 	if(maxRange < 0.)
 		maxRange = numeric_limits<double>::infinity();
 	
-	// If the ship has a target selected, it should be returned only if it
-	// matches the requested hostility (or is a forced target).
-	shared_ptr<Ship> current = ship.GetTargetShip();
 	const Government *gov = ship.GetGovernment();
-	if(current && !(ship.IsYours() || gov->IsEnemy(current->GetGovernment()) == targetEnemies))
-		current.reset();
-	
 	// The cached list is built each step based on the current ships in the player's system.
 	const vector<shared_ptr<Ship>> &shipList = targetEnemies ? enemyLists.at(gov) : allyLists.at(gov);
 	vector<shared_ptr<Ship>> targets;
@@ -1200,10 +1194,6 @@ vector<shared_ptr<Ship>> AI::GetShipsList(const Ship &ship, bool targetEnemies, 
 				&& (ship.IsYours() || !target->GetPersonality().IsMarked())
 				&& (target->IsYours() || !ship.GetPersonality().IsMarked()))
 			targets.emplace_back(target);
-	
-	if(current && current->IsTargetable()
-			&& find(targets.cbegin(), targets.cend(), current) == targets.cend())
-		targets.emplace_back(current);
 	
 	return targets;
 }
@@ -2713,8 +2703,13 @@ void AI::AutoFire(const Ship &ship, Command &command, bool secondary) const
 	// Extend the weapon range slightly to account for velocity differences.
 	maxRange *= 1.5;
 	
-	// Find all enemy ships within range of at least one weapon (or directly targeted).
-	const vector<shared_ptr<Ship>> enemies = GetShipsList(ship, true, maxRange);
+	// Find all enemy ships within range of at least one weapon.
+	vector<shared_ptr<Ship>> enemies = GetShipsList(ship, true, maxRange);
+	// Consider the current target if it is not already considered (i.e. it
+	// is a friendly ship and this is a player ship ordered to attack it).
+	if(currentTarget && currentTarget->IsTargetable()
+			&& find(enemies.cbegin(), enemies.cend(), currentTarget) == enemies.cend())
+		enemies.push_back(currentTarget);
 	
 	int index = -1;
 	for(const Hardpoint &hardpoint : ship.Weapons())
