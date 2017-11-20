@@ -143,6 +143,7 @@ private:
 	
 	// Functions to classify ships based on government and system.
 	void UpdateStrengths(std::map<const Government *, int64_t> &strength, const System *playerSystem);
+	void CacheShipLists();
 	
 	
 private:
@@ -215,6 +216,8 @@ private:
 	std::map<const Government *, int64_t> enemyStrength;
 	std::map<const Government *, int64_t> allyStrength;
 	std::map<const Government *, std::vector<std::shared_ptr<Ship>>> governmentRosters;
+	std::map<const Government *, std::vector<std::shared_ptr<Ship>>> enemyLists;
+	std::map<const Government *, std::vector<std::shared_ptr<Ship>>> allyLists;
 };
 
 

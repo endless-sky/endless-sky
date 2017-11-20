@@ -430,6 +430,7 @@ void AI::Step(const PlayerInfo &player)
 	const System *playerSystem = player.GetSystem();
 	map<const Government *, int64_t> strength;
 	UpdateStrengths(strength, playerSystem);
+	CacheShipLists();
 	
 	// Update the counts of how long ships have been outside the "invisible fence."
 	// If a ship ceases to exist, this also ensures that it will be removed from
@@ -1178,9 +1179,6 @@ vector<shared_ptr<Ship>> AI::GetShipsList(const Ship &ship, bool targetEnemies, 
 	if(maxRange < 0.)
 		maxRange = numeric_limits<double>::infinity();
 	
-	vector<shared_ptr<Ship>> targets;
-	targets.reserve(ships.size());
-	
 	// If the ship has a target selected, it should be returned only if it
 	// matches the requested hostility (or is a forced target).
 	shared_ptr<Ship> current = ship.GetTargetShip();
@@ -1188,20 +1186,21 @@ vector<shared_ptr<Ship>> AI::GetShipsList(const Ship &ship, bool targetEnemies, 
 	if(current && !(ship.IsYours() || gov->IsEnemy(current->GetGovernment()) == targetEnemies))
 		current.reset();
 	
+	// The cached list is built each step based on the current ships in the player's system.
+	const vector<shared_ptr<Ship>> &shipList = targetEnemies ? enemyLists.at(gov) : allyLists.at(gov);
+	vector<shared_ptr<Ship>> targets;
+	targets.reserve(shipList.size());
+	
 	const System *here = ship.GetSystem();
 	const Point &p = ship.Position();
-	for(const pair<const Government *, vector<shared_ptr<Ship>>> &git : governmentRosters)
-	{
-		if(gov->IsEnemy(git.first) != targetEnemies)
-			continue;
-		for(const shared_ptr<Ship> &target : git.second)
-			if(target->IsTargetable() && target->GetSystem() == here
-					&& !(target->IsHyperspacing() && target->Velocity().Length() > 10.)
-					&& p.Distance(target->Position()) < maxRange
-					&& (ship.IsYours() || !target->GetPersonality().IsMarked())
-					&& (target->IsYours() || !ship.GetPersonality().IsMarked()))
-				targets.emplace_back(target);
-	}
+	for(const shared_ptr<Ship> &target : shipList)
+		if(target->IsTargetable() && target->GetSystem() == here
+				&& !(target->IsHyperspacing() && target->Velocity().Length() > 10.)
+				&& p.Distance(target->Position()) < maxRange
+				&& (ship.IsYours() || !target->GetPersonality().IsMarked())
+				&& (target->IsYours() || !ship.GetPersonality().IsMarked()))
+			targets.emplace_back(target);
+	
 	if(current && current->IsTargetable()
 			&& find(targets.cbegin(), targets.cend(), current) == targets.cend())
 		targets.emplace_back(current);
@@ -3501,6 +3500,28 @@ void AI::UpdateStrengths(map<const Government *, int64_t> &strength, const Syste
 			for(const auto &ally : allies.second)
 				if(!ally->IsDisabled() && ally->Position().Distance(it->Position()) < 2000.)
 					myStrength += ally->Cost();
+		}
+	}
+}
+
+
+
+// Cache various lists of all targetable ships in the player's system for this Step.
+void AI::CacheShipLists()
+{
+	allyLists.clear();
+	enemyLists.clear();
+	for(const pair<const Government *, vector<shared_ptr<Ship>>> &git : governmentRosters)
+	{
+		allyLists.emplace(git.first, vector<shared_ptr<Ship>>());
+		allyLists.at(git.first).reserve(ships.size());
+		enemyLists.emplace(git.first, vector<shared_ptr<Ship>>());
+		enemyLists.at(git.first).reserve(ships.size());
+		for(const pair<const Government *, vector<shared_ptr<Ship>>> &oit : governmentRosters)
+		{
+			vector<shared_ptr<Ship>> &list = git.first->IsEnemy(oit.first)
+					? enemyLists.at(git.first) : allyLists.at(git.first);
+			list.insert(list.end(), oit.second.begin(), oit.second.end());
 		}
 	}
 }
