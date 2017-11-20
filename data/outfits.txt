@@ -217,7 +217,7 @@ outfit "Outfit Scanner"
 outfit "Asteroid Scanner"
 	category "Systems"
 	cost 192000
-	thumbnail "outfit/cargo scanner"
+	thumbnail "outfit/asteroid scanner"
 	"mass" 6
 	"outfit space" -6
 	"asteroid scan power" 40
@@ -226,7 +226,7 @@ outfit "Asteroid Scanner"
 outfit "Surveillance Pod"
 	category "Systems"
 	cost 42000
-	thumbnail "outfit/outfit scanner"
+	thumbnail "outfit/surveillance pod"
 	"mass" 5
 	"outfit space" -5
 	"outfit scan power" 16
@@ -234,7 +234,7 @@ outfit "Surveillance Pod"
 	"cargo scan power" 4
 	"cargo scan speed" 2
 	"atmosphere scan" 100
-	description "This is Republic military technology, a collection of scanners designed to fit perfectly inside one of their surveillance drones. Since the outputs are fairly standard, you could connect it to your own ship's systems if you want. Installing more than one increases the scan range and speed."
+	description "This is Navy technology, a collection of scanners designed to fit perfectly inside one of their surveillance drones. Since the outputs are fairly standard, you could connect it to your own ship's systems if you want. Installing more than one increases the scan range and speed."
 
 
 outfit "Cloaking Device"
