@@ -311,14 +311,15 @@ int Account::CreditScore() const
 
 
 
-vector<int64_t> Account::TypeOwed() const
+// Get the total amount owed for "Mortgage", "Fine", or both.
+int64_t Account::TotalDebt(const string &type) const
 {
-	static const string FINE = "Fine";
-	vector<int64_t> result{0, 0};
+	int64_t total = 0;
 	for(const Mortgage &mortgage : mortgages)
-		result[mortgage.Type() == FINE] += mortgage.Principal();
+		if(type.empty() || mortgage.Type() == type)
+			total += mortgage.Principal();
 	
-	return result;
+	return total;
 }
 
 

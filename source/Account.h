@@ -57,8 +57,8 @@ public:
 	
 	// Find out the player's credit rating.
 	int CreditScore() const;
-	// Find out the remaining principal of Mortgages [0] and Fines [1].
-	std::vector<int64_t> TypeOwed() const;
+	// Get the total amount owed for "Mortgage", "Fine", or both.
+	int64_t TotalDebt(const std::string &type = "") const;
 	
 	
 private:
