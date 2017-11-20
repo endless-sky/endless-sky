@@ -568,6 +568,7 @@ void Engine::Step(bool isActive)
 		info.SetBar("target shields", 0.);
 		info.SetBar("target hull", 0.);
 		targetSwizzle = -1;
+		info.SetOutlineColor(Color(1.));
 	}
 	if(!target && !targetAsteroid)
 	{
