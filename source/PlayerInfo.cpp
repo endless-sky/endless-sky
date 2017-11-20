@@ -857,12 +857,12 @@ int PlayerInfo::ReorderShips(const set<int> &fromIndices, int toIndex)
 		if(*it < toIndex)
 			--toIndex;
 	}
-	vector<shared_ptr<Ship>>::const_iterator insertPos = ships.begin() + toIndex + direction;
-	ships.insert(insertPos > ships.end() ? ships.end() : insertPos,
-			removed.begin(), removed.end());
+	// Make sure the insertion index is within the list.
+	toIndex = min<int>(toIndex + direction, ships.size());
+	ships.insert(ships.begin() + toIndex, removed.begin(), removed.end());
 	flagship.reset();
 	
-	return toIndex + direction;
+	return toIndex;
 }
 
 
