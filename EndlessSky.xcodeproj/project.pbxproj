@@ -146,7 +146,6 @@
 		A9D40D1A195DFAA60086EE52 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9D40D19195DFAA60086EE52 /* OpenGL.framework */; };
 		DF8D57E11FC25842001525DA /* Dictionary.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DF8D57DF1FC25842001525DA /* Dictionary.cpp */; };
 		DF8D57E51FC25889001525DA /* Visual.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DF8D57E21FC25889001525DA /* Visual.cpp */; };
-		DF8D57E61FC25889001525DA /* WinApp.rc in Resources */ = {isa = PBXBuildFile; fileRef = DF8D57E41FC25889001525DA /* WinApp.rc */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -431,7 +430,6 @@
 		DF8D57E01FC25842001525DA /* Dictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Dictionary.h; path = source/Dictionary.h; sourceTree = "<group>"; };
 		DF8D57E21FC25889001525DA /* Visual.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Visual.cpp; path = source/Visual.cpp; sourceTree = "<group>"; };
 		DF8D57E31FC25889001525DA /* Visual.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Visual.h; path = source/Visual.h; sourceTree = "<group>"; };
-		DF8D57E41FC25889001525DA /* WinApp.rc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = WinApp.rc; path = source/WinApp.rc; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -457,7 +455,6 @@
 			children = (
 				DF8D57E21FC25889001525DA /* Visual.cpp */,
 				DF8D57E31FC25889001525DA /* Visual.h */,
-				DF8D57E41FC25889001525DA /* WinApp.rc */,
 				DF8D57DF1FC25842001525DA /* Dictionary.cpp */,
 				DF8D57E01FC25842001525DA /* Dictionary.h */,
 				A96862CD1AE6FD0A004FE1FE /* Account.cpp */,
@@ -824,7 +821,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DF8D57E61FC25889001525DA /* WinApp.rc in Resources */,
 				A99F7A50195DF3E8002C30B8 /* Images.xcassets in Resources */,
 				A99F7B09195DF44C002C30B8 /* license.txt in Resources */,
 				A9A5297419996C9F002D7C35 /* sounds in Resources */,
