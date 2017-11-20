@@ -1228,10 +1228,10 @@ void AI::MoveEscort(Ship &ship, Command &command) const
 	// Check if the parent has a target planet that is in the parent's system.
 	const Planet *parentPlanet = (parent.GetTargetStellar() ? parent.GetTargetStellar()->GetPlanet() : nullptr);
 	bool planetIsHere = (parentPlanet && parentPlanet->IsInSystem(parent.GetSystem()));
-	bool systemHasFuel = ship.GetSystem()->HasFuelFor(ship);
+	bool systemHasFuel = hasFuelCapacity && ship.GetSystem()->HasFuelFor(ship);
 	// If an escort is out of fuel, they should refuel without waiting for the
 	// "parent" to land (because the parent may not be planning on landing).
-	if(hasFuelCapacity && systemHasFuel && !ship.JumpsRemaining())
+	if(systemHasFuel && !ship.JumpsRemaining())
 		Refuel(ship, command);
 	else if(!parentIsHere && !isStaying)
 	{
@@ -1254,7 +1254,7 @@ void AI::MoveEscort(Ship &ship, Command &command) const
 			const System *from = ship.GetSystem();
 			
 			// Check how much fuel is required to reach the next refuel system.
-			if(systemHasFuel && hasFuelCapacity && ship.Fuel() < 1.)
+			if(systemHasFuel && ship.Fuel() < 1.)
 			{
 				const System *to = distance.Route(from);
 				while(to && !to->HasFuelFor(ship))
@@ -1301,7 +1301,7 @@ void AI::MoveEscort(Ship &ship, Command &command) const
 			if(!EscortsReadyToJump(ship))
 				command |= Command::WAIT;
 		}
-		else if(hasFuelCapacity && systemHasFuel && ship.Fuel() < 1.)
+		else if(systemHasFuel && ship.Fuel() < 1.)
 			// Refuel so that when the parent returns, this ship is ready to rendezvous with it.
 			Refuel(ship, command);
 		else
@@ -2076,7 +2076,7 @@ void AI::DoCloak(Ship &ship, Command &command)
 		// If this ship has started cloaking, it must get at least 40% repaired
 		// or 40% farther away before it begins decloaking again.
 		double hysteresis = ship.Commands().Has(Command::CLOAK) ? 1.4 : 1.;
-		double cloakIsFree = !ship.Attributes().Get("cloaking fuel");
+		bool cloakIsFree = !ship.Attributes().Get("cloaking fuel");
 		if(ship.Hull() + .5 * ship.Shields() < hysteresis
 				&& (cloakIsFree || nearestEnemy < 2000. * hysteresis))
 			command |= Command::CLOAK;
