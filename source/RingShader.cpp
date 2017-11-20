@@ -47,8 +47,8 @@ void RingShader::Init()
 		"uniform float radius;\n"
 		"uniform float width;\n"
 		
-		"in vec2 vert;\n"
-		"out vec2 coord;\n"
+		"attribute vec2 vert;\n"
+		"varying vec2 coord;\n"
 		
 		"void main() {\n"
 		"  coord = (radius + width) * vert;\n"
@@ -64,8 +64,7 @@ void RingShader::Init()
 		"uniform float dash;\n"
 		"const float pi = 3.1415926535897932384626433832795;\n"
 		
-		"in vec2 coord;\n"
-		"out vec4 finalColor;\n"
+		"varying vec2 coord;\n"
 		
 		"void main() {\n"
 		"  float arc = mod(atan(coord.x, coord.y) + pi + startAngle, 2 * pi);\n"

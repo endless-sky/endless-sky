@@ -58,8 +58,8 @@ void SpriteShader::Init()
 		"uniform vec2 blur;\n"
 		"uniform float clip;\n"
 		
-		"in vec2 vert;\n"
-		"out vec2 fragTexCoord;\n"
+		"attribute vec2 vert;\n"
+		"varying vec2 fragTexCoord;\n"
 		
 		"void main() {\n"
 		"  vec2 blurOff = 2 * vec2(vert.x * abs(blur.x), vert.y * abs(blur.y));\n"
@@ -75,14 +75,13 @@ void SpriteShader::Init()
 		"uniform vec2 blur;\n"
 		"const int range = 5;\n"
 		
-		"in vec2 fragTexCoord;\n"
-		"out vec4 finalColor;\n"
+		"varying vec2 fragTexCoord;\n"
 		
 		"void main() {\n"
 		"  if(blur.x == 0 && blur.y == 0)\n"
 		"  {\n"
 		"    if(fade != 0)\n"
-		"     finalColor = mix(texture(tex0, fragTexCoord), texture(tex1, fragTexCoord), fade);\n"
+		"      finalColor = mix(texture(tex0, fragTexCoord), texture(tex1, fragTexCoord), fade);\n"
 		"    else\n"
 		"      finalColor = texture(tex0, fragTexCoord);\n"
 		"    return;\n"

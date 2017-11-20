@@ -180,11 +180,11 @@ void StarField::SetUpGraphics()
 		"uniform vec2 scale;\n"
 		"uniform float elongation;\n"
 		
-		"in vec2 offset;\n"
-		"in float size;\n"
-		"in float corner;\n"
-		"out float fragmentAlpha;\n"
-		"out vec2 coord;\n"
+		"attribute vec2 offset;\n"
+		"attribute float size;\n"
+		"attribute float corner;\n"
+		"varying float fragmentAlpha;\n"
+		"varying vec2 coord;\n"
 		
 		"void main() {\n"
 		"  fragmentAlpha = (4. / (4. + elongation)) * size * .2 + .05;\n"
@@ -194,9 +194,8 @@ void StarField::SetUpGraphics()
 		"}\n";
 
 	static const char *fragmentCode =
-		"in float fragmentAlpha;\n"
-		"in vec2 coord;\n"
-		"out vec4 finalColor;\n"
+		"varying float fragmentAlpha;\n"
+		"varying vec2 coord;\n"
 		
 		"void main() {\n"
 		"  float alpha = fragmentAlpha * (1. - abs(coord.x) - abs(coord.y));\n"

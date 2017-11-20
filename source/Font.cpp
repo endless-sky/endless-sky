@@ -38,11 +38,11 @@ namespace {
 		"uniform float aspect = 1.f;\n"
 		
 		// Inputs from the VBO.
-		"in vec2 vert;\n"
-		"in vec2 corner;\n"
+		"attribute vec2 vert;\n"
+		"attribute vec2 corner;\n"
 		
 		// Output to the fragment shader.
-		"out vec2 texCoord;\n"
+		"varying vec2 texCoord;\n"
 		
 		// Pick the proper glyph out of the texture.
 		"void main() {\n"
@@ -56,10 +56,7 @@ namespace {
 		"uniform vec4 color = vec4(1, 1, 1, 1);\n"
 		
 		// This comes from the vertex shader.
-		"in vec2 texCoord;\n"
-		
-		// Output color.
-		"out vec4 finalColor;\n"
+		"varying vec2 texCoord;\n"
 		
 		// Multiply the texture by the user-specified color (including alpha).
 		"void main() {\n"

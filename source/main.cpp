@@ -173,10 +173,39 @@ int main(int argc, char *argv[])
 		if(*glVersion < '3')
 		{
 			ostringstream out;
-			out << "Endless Sky requires OpenGL version 3.0 or higher." << endl;
-			out << "Your OpenGL version is " << glVersion << ", GLSL version " << glslVersion << "." << endl;
-			out << "Please update your graphics drivers.";
-			return DoError(out.str(), window, context);
+			out << "Endless Sky supports OpenGL version 3.0 or higher. However, your OpenGL" << endl;
+			out << "version is " << glVersion << ", GLSL version " << glslVersion << "." << endl << endl;
+			out << "If the game works at all, you may experience poor performance, severe" << endl;
+			out << "graphical glitches, errors, and crashes." << endl << endl;
+			out << "Continue at your own risk." << endl;
+
+			string messageString = out.str();
+
+			SDL_MessageBoxData box;
+			box.flags = SDL_MESSAGEBOX_WARNING;
+			box.window = window;
+			box.title = "Endless Sky: Warning";
+			box.message = messageString.c_str();
+			box.colorScheme = nullptr;
+
+			SDL_MessageBoxButtonData buttons[2];
+			buttons[0].flags = SDL_MESSAGEBOX_BUTTON_ESCAPEKEY_DEFAULT;
+			buttons[0].buttonid = -1;
+			buttons[0].text = "Cancel";
+			buttons[1].flags = SDL_MESSAGEBOX_BUTTON_RETURNKEY_DEFAULT;
+			buttons[1].buttonid = 0;
+			buttons[1].text = "OK";
+			box.numbuttons = 2;
+			box.buttons = buttons;
+
+			int result = 0;
+			SDL_HideWindow(window);
+			if(SDL_ShowMessageBox(&box, &result) < 0 || result < 0) {
+				// The user closed the dialog or hit Cancel
+				Cleanup(window, context);
+				return 1;
+			}
+			SDL_ShowWindow(window);
 		}
 		
 		glClearColor(0.f, 0.f, 0.0f, 1.f);
