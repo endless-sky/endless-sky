@@ -56,7 +56,7 @@ namespace {
 	
 	// Only show tooltips if the mouse has hovered in one place for this amount
 	// of time.
-	static const int HOVER_TIME = 60;
+	const int HOVER_TIME = 60;
 }
 
 

@@ -33,11 +33,11 @@ using namespace std;
 namespace {
 	//  Horizontal layout of each escort icon:
 	// (PAD) ICON (BAR_PAD) BARS (BAR_PAD) (PAD)
-	static const double PAD = 10.;
-	static const double ICON_SIZE = 20.;
-	static const double BAR_PAD = 5.;
-	static const double WIDTH = 120.;
-	static const double BAR_WIDTH = WIDTH - ICON_SIZE - 2. * PAD - 2. * BAR_PAD;
+	const double PAD = 10.;
+	const double ICON_SIZE = 20.;
+	const double BAR_PAD = 5.;
+	const double WIDTH = 120.;
+	const double BAR_WIDTH = WIDTH - ICON_SIZE - 2. * PAD - 2. * BAR_PAD;
 }
 
 
