@@ -30,7 +30,7 @@ mission "Instruct novice pilot"
 		payment 75000
 		dialog "Your student thanks you for the able tutelage and for providing a guided view of some of the galaxy's rougher areas. You receive your payment of <payment>."
 	npc
-		government Pirate
+		government "Pirate"
 		personality nemesis waiting
 		fleet "Small Northern Pirates"
 		system
