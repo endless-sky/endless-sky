@@ -114,19 +114,8 @@ void Mission::Load(const DataNode &node)
 				cargoProb = child.Value(4);
 			
 			for(const DataNode &grand : child)
-			{
-				if(grand.Token(0) == "illegal" && grand.Size() == 2)
-					illegalCargoFine = grand.Value(1);
-				else if(grand.Token(0) == "illegal" && grand.Size() == 3)
-				{
-					illegalCargoFine = grand.Value(1);
-					illegalCargoMessage = grand.Token(2);
-				}
-				else if(grand.Token(0) == "stealth")
-					failIfDiscovered = true;
-				else
+				if(!ParseContraband(grand))
 					grand.PrintTrace("Skipping unrecognized attribute:");
-			}
 		}
 		else if(child.Token(0) == "passengers" && child.Size() >= 2)
 		{
@@ -135,6 +124,11 @@ void Mission::Load(const DataNode &node)
 				passengerLimit = child.Value(2);
 			if(child.Size() >= 4)
 				passengerProb = child.Value(3);
+		}
+		else if(ParseContraband(child))
+		{
+			// This was an "illegal" or "stealth" entry. It has already been
+			// parsed, so nothing more needs to be done here.
 		}
 		else if(child.Token(0) == "invisible")
 			isVisible = false;
@@ -252,27 +246,13 @@ void Mission::Save(DataWriter &out, const string &tag) const
 		if(deadline)
 			out.Write("deadline", deadline.Day(), deadline.Month(), deadline.Year());
 		if(cargoSize)
-		{
 			out.Write("cargo", cargo, cargoSize);
-			if(illegalCargoFine)
-			{
-				out.BeginChild();
-				{
-					out.Write("illegal", illegalCargoFine, illegalCargoMessage);
-				}
-				out.EndChild();
-			}
-			if(failIfDiscovered)
-			{
-				out.BeginChild();
-				{
-					out.Write("stealth");
-				}
-				out.EndChild();
-			}
-		}
 		if(passengers)
 			out.Write("passengers", passengers);
+		if(illegalCargoFine)
+			out.Write("illegal", illegalCargoFine, illegalCargoMessage);
+		if(failIfDiscovered)
+			out.Write("stealth");
 		if(!isVisible)
 			out.Write("invisible");
 		if(hasPriority)
@@ -1093,4 +1073,25 @@ const Planet *Mission::PickPlanet(const LocationFilter &filter, const PlayerInfo
 			options.push_back(&it.second);
 	}
 	return options.empty() ? nullptr : options[Random::Int(options.size())];
+}
+
+
+
+// For legacy code, contraband definitions can be placed in two different
+// locations, so move that parsing out to a helper function.
+bool Mission::ParseContraband(const DataNode &node)
+{
+	if(node.Token(0) == "illegal" && node.Size() == 2)
+		illegalCargoFine = node.Value(1);
+	else if(node.Token(0) == "illegal" && node.Size() == 3)
+	{
+		illegalCargoFine = node.Value(1);
+		illegalCargoMessage = node.Token(2);
+	}
+	else if(node.Token(0) == "stealth")
+		failIfDiscovered = true;
+	else
+		return false;
+	
+	return true;
 }
