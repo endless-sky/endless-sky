@@ -45,7 +45,8 @@ namespace {
 
 const vector<string> Ship::CATEGORIES = {
 	"Transport",
-	"Light Freighter",
+	"Light Freighter",	
+	"Medium Freighter",
 	"Heavy Freighter",
 	"Interceptor",
 	"Light Warship",
