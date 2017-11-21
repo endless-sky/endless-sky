@@ -24,6 +24,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "LogbookPanel.h"
 #include "Messages.h"
 #include "MissionPanel.h"
+#include "OutlineShader.h"
 #include "PlayerInfo.h"
 #include "PlayerInfoPanel.h"
 #include "Rectangle.h"
@@ -412,6 +413,7 @@ void ShipInfoPanel::DrawWeapons(const Rectangle &bounds)
 	
 	// Draw the ship, using the black silhouette swizzle.
 	SpriteShader::Draw(sprite, bounds.Center(), scale, 8);
+	OutlineShader::Draw(sprite, bounds.Center(), scale * Point(sprite->Width(), sprite->Height()), Color(.5));
 	
 	// Figure out how tall each part of the weapon listing will be.
 	int gunRows = max(count[0][0], count[1][0]);

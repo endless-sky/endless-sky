@@ -206,4 +206,10 @@ void SpriteShader::Unbind()
 {
 	glBindVertexArray(0);
 	glUseProgram(0);
+	
+	// Reset the swizzle.
+	glActiveTexture(GL_TEXTURE0);
+	glTexParameteriv(GL_TEXTURE_2D, GL_TEXTURE_SWIZZLE_RGBA, SWIZZLE[0].data());
+	glActiveTexture(GL_TEXTURE1);
+	glTexParameteriv(GL_TEXTURE_2D, GL_TEXTURE_SWIZZLE_RGBA, SWIZZLE[0].data());
 }
