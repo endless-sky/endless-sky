@@ -159,7 +159,7 @@ mission "Parliament vacation"
 	source "Earth"
 	destination
 		distance 3 10
-		attribute "paradise"
+		attributes "paradise"
 	on complete
 		payment 5000 250
 		dialog `A security detail on <planet> escorts the Parliament members from your ship, and you collect your payment of <payment>.`
