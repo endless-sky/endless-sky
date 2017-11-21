@@ -18,7 +18,7 @@ mission "Instruct novice pilot"
 		"combat rating" > 50
 	source
 		government "Republic" "Free Worlds" "Neutral" "Independent"
-		attributes "frontier" "dirt belt" "rim" "north" "south mining" "farming"
+		attributes "frontier" "dirt belt" "rim" "north" "south" "mining" "farming"
 	stopover
 		attributes "frontier" "outfitter"
 		distance 3 7
