@@ -362,11 +362,11 @@ void AI::Step(const PlayerInfo &player)
 		bool isPresent = (it->GetSystem() == player.GetSystem());
 		bool isStranded = IsStranded(*it);
 		bool thisIsLaunching = (isLaunching && it->GetSystem() == player.GetSystem());
-		if(isStranded || it->IsDisabled())
+		if(isStranded || it->IsDisabled() || it->IsOverheated())
 		{
 			// Derelicts never ask for help, to make sure that only the player
-			// will repair them.
-			if(it->IsDestroyed() || it->GetPersonality().IsDerelict())
+			// will repair them. Destroyed / overheated ships cannot be helped.
+			if(it->IsDestroyed() || it->GetPersonality().IsDerelict() || it->IsOverheated())
 				continue;
 			
 			// Attempt to find a friendly ship to render assistance.
@@ -396,6 +396,9 @@ void AI::Step(const PlayerInfo &player)
 			if(isCloaking)
 				command |= Command::CLOAK;
 		}
+		// Cloak if the AI considers it appropriate.
+		else
+			DoCloak(*it, command);
 		
 		shared_ptr<Ship> parent = it->GetParent();
 		if(parent && parent->IsDestroyed())
@@ -451,6 +454,13 @@ void AI::Step(const PlayerInfo &player)
 			
 			AimTurrets(*it, command, it->IsYours() ? opportunisticEscorts : personality.IsOpportunistic());
 			AutoFire(*it, command);
+		}
+		
+		// If this ship is hyperspacing, it can't do anything else.
+		if(it->IsHyperspacing())
+		{
+			it->SetCommands(command);
+			continue;
 		}
 		
 		// If recruited to assist a ship, follow through on the commitment
@@ -696,11 +706,6 @@ void AI::Step(const PlayerInfo &player)
 		else
 			MoveEscort(*it, command);
 		
-		// Your own ships cloak on your command; all others do it when the
-		// AI considers it appropriate.
-		if(!it->IsYours())
-			DoCloak(*it, command);
-		
 		// Force ships that are overlapping each other to "scatter":
 		DoScatter(*it, command);
 		
@@ -796,8 +801,9 @@ void AI::AskForHelp(Ship &ship, bool &isStranded, const Ship *flagship)
 // Determine if the selected ship is physically able to render assistance.
 bool AI::CanHelp(const Ship &ship, const Ship &helper, const bool needsFuel)
 {
-	// Fighters and drones can't offer assistance.
-	if(helper.IsDisabled() || !helper.IsTargetable() || helper.CanBeCarried()
+	// Fighters, drones, and disabled / absent ships can't offer assistance.
+	if(helper.IsDisabled() || helper.IsOverheated() || !helper.IsTargetable()
+			|| helper.CanBeCarried() || helper.IsHyperspacing()
 			|| helper.GetSystem() != ship.GetSystem())
 		return false;
 	
