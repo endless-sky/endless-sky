@@ -234,7 +234,7 @@ outfit "Tactical Scanner"
 
 outfit "Surveillance Pod"
 	category "Systems"
-	cost 42000
+	cost 122500
 	thumbnail "outfit/surveillance pod"
 	"mass" 5
 	"outfit space" -5
@@ -243,6 +243,7 @@ outfit "Surveillance Pod"
 	"cargo scan power" 4
 	"cargo scan speed" 2
 	"atmosphere scan" 100
+	"tactical scan power" 9
 	description "This is Navy technology, a collection of scanners designed to fit perfectly inside one of their surveillance drones. Since the outputs are fairly standard, you could connect it to your own ship's systems if you want. Installing more than one increases the scan range and speed."
 
 
