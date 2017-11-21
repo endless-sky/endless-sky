@@ -144,6 +144,8 @@
 		A9CC526D1950C9F6004E4E22 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9CC526C1950C9F6004E4E22 /* Cocoa.framework */; };
 		A9CC52A11950CA16004E4E22 /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9CC52A01950CA16004E4E22 /* SDL2.framework */; };
 		A9D40D1A195DFAA60086EE52 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9D40D19195DFAA60086EE52 /* OpenGL.framework */; };
+		DF8D57E11FC25842001525DA /* Dictionary.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DF8D57DF1FC25842001525DA /* Dictionary.cpp */; };
+		DF8D57E51FC25889001525DA /* Visual.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DF8D57E21FC25889001525DA /* Visual.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -424,6 +426,10 @@
 		A9CC52711950C9F6004E4E22 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		A9CC52A01950CA16004E4E22 /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = /Library/Frameworks/SDL2.framework; sourceTree = "<absolute>"; };
 		A9D40D19195DFAA60086EE52 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
+		DF8D57DF1FC25842001525DA /* Dictionary.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Dictionary.cpp; path = source/Dictionary.cpp; sourceTree = "<group>"; };
+		DF8D57E01FC25842001525DA /* Dictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Dictionary.h; path = source/Dictionary.h; sourceTree = "<group>"; };
+		DF8D57E21FC25889001525DA /* Visual.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Visual.cpp; path = source/Visual.cpp; sourceTree = "<group>"; };
+		DF8D57E31FC25889001525DA /* Visual.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Visual.h; path = source/Visual.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -494,6 +500,8 @@
 				5155CD721DBB9FF900EF090B /* Depreciation.h */,
 				A96862F81AE6FD0A004FE1FE /* Dialog.cpp */,
 				A96862F91AE6FD0B004FE1FE /* Dialog.h */,
+				DF8D57DF1FC25842001525DA /* Dictionary.cpp */,
+				DF8D57E01FC25842001525DA /* Dictionary.h */,
 				A96862FA1AE6FD0B004FE1FE /* DistanceMap.cpp */,
 				A96862FB1AE6FD0B004FE1FE /* DistanceMap.h */,
 				A96862FE1AE6FD0B004FE1FE /* DrawList.cpp */,
@@ -684,6 +692,8 @@
 				A96863991AE6FD0D004FE1FE /* TradingPanel.h */,
 				A968639A1AE6FD0D004FE1FE /* UI.cpp */,
 				A968639B1AE6FD0D004FE1FE /* UI.h */,
+				DF8D57E21FC25889001525DA /* Visual.cpp */,
+				DF8D57E31FC25889001525DA /* Visual.h */,
 				A968639C1AE6FD0D004FE1FE /* Weapon.cpp */,
 				A968639D1AE6FD0D004FE1FE /* Weapon.h */,
 				A968639E1AE6FD0D004FE1FE /* WrappedText.cpp */,
@@ -914,6 +924,7 @@
 				A96863CB1AE6FD0E004FE1FE /* Information.cpp in Sources */,
 				A96863F91AE6FD0E004FE1FE /* Sprite.cpp in Sources */,
 				A96863A91AE6FD0E004FE1FE /* BoardingPanel.cpp in Sources */,
+				DF8D57E11FC25842001525DA /* Dictionary.cpp in Sources */,
 				A9B99D051C616AF200BE7C2E /* MapSalesPanel.cpp in Sources */,
 				A96863A01AE6FD0E004FE1FE /* Account.cpp in Sources */,
 				A90C15D91D5BD55700708F3A /* Minable.cpp in Sources */,
@@ -939,6 +950,7 @@
 				6A5716331E25BE6F00585EB2 /* CollisionSet.cpp in Sources */,
 				A96863E11AE6FD0E004FE1FE /* Personality.cpp in Sources */,
 				A96863B41AE6FD0E004FE1FE /* Date.cpp in Sources */,
+				DF8D57E51FC25889001525DA /* Visual.cpp in Sources */,
 				A96863EF1AE6FD0E004FE1FE /* SavedGame.cpp in Sources */,
 				A96863A11AE6FD0E004FE1FE /* AI.cpp in Sources */,
 				A96863F71AE6FD0E004FE1FE /* Sound.cpp in Sources */,
