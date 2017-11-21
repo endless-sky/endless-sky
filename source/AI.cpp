@@ -365,14 +365,21 @@ void AI::Step(const PlayerInfo &player)
 		if(isStranded || it->IsDisabled() || it->IsOverheated())
 		{
 			// Derelicts never ask for help, to make sure that only the player
-			// will repair them. Destroyed / overheated ships cannot be helped.
-			if(it->IsDestroyed() || it->GetPersonality().IsDerelict() || it->IsOverheated())
+			// will repair them.
+			if(it->IsDestroyed() || it->GetPersonality().IsDerelict())
+				continue;
+			
+			bool isDisabled = it->IsDisabled();
+			// An overheated ship should only ask for help if it is
+			// also disabled, or in need of fuel. If it's just too
+			// hot, there's nothing for it to do this turn.
+			if(!isStranded && !isDisabled && it->IsOverheated())
 				continue;
 			
 			// Attempt to find a friendly ship to render assistance.
 			AskForHelp(*it, isStranded, flagship);
 			
-			if(it->IsDisabled())
+			if(isDisabled)
 			{
 				// Ships other than escorts should deploy fighters if disabled.
 				if(!it->IsYours() || thisIsLaunching)
