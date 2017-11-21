@@ -383,6 +383,9 @@ void AI::Step(const PlayerInfo &player)
 				continue;
 			}
 		}
+		if(it->IsOverheated())
+			continue;
+		
 		// Special case: if the player's flagship tries to board a ship to
 		// refuel it, that escort should hold position for boarding.
 		isStranded |= (flagship && it == flagship->GetTargetShip() && CanBoard(*flagship, *it)
@@ -396,6 +399,9 @@ void AI::Step(const PlayerInfo &player)
 			if(isCloaking)
 				command |= Command::CLOAK;
 		}
+		// Cloak if the AI considers it appropriate.
+		else
+			DoCloak(*it, command);
 		
 		shared_ptr<Ship> parent = it->GetParent();
 		if(parent && parent->IsDestroyed())
@@ -451,6 +457,13 @@ void AI::Step(const PlayerInfo &player)
 			
 			AimTurrets(*it, command, it->IsYours() ? opportunisticEscorts : personality.IsOpportunistic());
 			AutoFire(*it, command);
+		}
+		
+		// If this ship is hyperspacing, it can't do anything else.
+		if(it->IsHyperspacing())
+		{
+			it->SetCommands(command);
+			continue;
 		}
 		
 		// If recruited to assist a ship, follow through on the commitment
@@ -696,11 +709,6 @@ void AI::Step(const PlayerInfo &player)
 		else
 			MoveEscort(*it, command);
 		
-		// Your own ships cloak on your command; all others do it when the
-		// AI considers it appropriate.
-		if(!it->IsYours())
-			DoCloak(*it, command);
-		
 		// Force ships that are overlapping each other to "scatter":
 		DoScatter(*it, command);
 		
@@ -796,8 +804,9 @@ void AI::AskForHelp(Ship &ship, bool &isStranded, const Ship *flagship)
 // Determine if the selected ship is physically able to render assistance.
 bool AI::CanHelp(const Ship &ship, const Ship &helper, const bool needsFuel)
 {
-	// Fighters and drones can't offer assistance.
-	if(helper.IsDisabled() || !helper.IsTargetable() || helper.CanBeCarried()
+	// Fighters, drones, and disabled / absent ships can't offer assistance.
+	if(helper.IsDisabled() || helper.IsOverheated() || !helper.IsTargetable()
+			|| helper.CanBeCarried() || helper.IsHyperspacing()
 			|| helper.GetSystem() != ship.GetSystem())
 		return false;
 	
