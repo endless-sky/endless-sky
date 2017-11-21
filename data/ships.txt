@@ -66,7 +66,7 @@ ship "Argosy"
 	plural "Argosies"
 	sprite "ship/argosy"
 	attributes
-		category "Light Freighter"
+		category "Medium Freighter"
 		"cost" 1960000
 		"shields" 4200
 		"hull" 2600
@@ -317,12 +317,12 @@ ship "Bastion"
 		"hull" 4200
 		"required crew" 32
 		"bunks" 47
-		"mass" 580
+		"mass" 540
 		"drag" 10.3
 		"heat dissipation" .5
 		"fuel capacity" 500
 		"cargo space" 110
-		"outfit space" 470
+		"outfit space" 450
 		"weapon capacity" 180
 		"engine capacity" 120
 		weapon
@@ -1483,7 +1483,7 @@ ship "Gunboat"
 ship "Hauler"
 	sprite "ship/hauler i"
 	attributes
-		category "Light Freighter"
+		category "Medium Freighter"
 		"cost" 1430000
 		"shields" 2500
 		"hull" 3700
@@ -1537,7 +1537,7 @@ ship "Hauler"
 ship "Hauler II"
 	sprite "ship/hauler ii"
 	attributes
-		category "Heavy Freighter"
+		category "Medium Freighter"
 		"cost" 2340000
 		"shields" 2900
 		"hull" 5200
@@ -1591,7 +1591,7 @@ ship "Hauler II"
 ship "Hauler III"
 	sprite "ship/hauler iii"
 	attributes
-		category "Heavy Freighter"
+		category "Medium Freighter"
 		"cost" 3260000
 		"shields" 3300
 		"hull" 6700
@@ -1923,7 +1923,7 @@ ship "Modified Argosy"
 	plural "Modified Argosies"
 	sprite "ship/modified argosy"
 	attributes
-		category "Light Warship"
+		category "Medium Warship"
 		"cost" 1960000
 		"shields" 4800
 		"hull" 1900
