@@ -50,6 +50,8 @@ government "Deep Security"
 	"attitude toward"
 		"Merchant" .5
 		"Pirate" -.2
+	"friendly hail" "friendly deep"
+	"hostile hail" "hostile deep"
 
 government "Drak"
 	swizzle 5
