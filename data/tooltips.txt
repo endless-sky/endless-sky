@@ -14,6 +14,9 @@ tip "afterburner heat:"
 tip "afterburner thrust:"
 	`Thrust produced by this afterburner.`
 
+tip "asteroid scan power:"
+	`The range of this asteroid scanner is proportional to the square root of this value.`
+
 tip "atmosphere scan:"
 	`This type of scanning cannot be performed by your ship, but this outfit might be useful for certain missions.`
 
