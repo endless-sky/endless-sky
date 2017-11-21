@@ -44,6 +44,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include <algorithm>
 #include <cmath>
+#include <string>
 
 using namespace std;
 
@@ -486,6 +487,8 @@ void Engine::Step(bool isActive)
 	if(flagship && flagship->IsOverheated())
 		Messages::Add("Your ship has overheated.");
 	
+	// Clear the HUD information from the previous frame.
+	info = Information();
 	if(flagship && flagship->Hull())
 	{
 		int frame = flagship->GetFrameIndex(step);
@@ -495,8 +498,6 @@ void Engine::Step(bool isActive)
 		
 		info.SetSprite("player sprite", flagship->GetSprite(), shipFacingUnit, frame);
 	}
-	else
-		info.SetSprite("player sprite", nullptr);
 	if(currentSystem)
 		info.SetString("location", currentSystem->Name());
 	info.SetString("date", player.GetDate().ToString());
@@ -508,14 +509,6 @@ void Engine::Step(bool isActive)
 		info.SetBar("heat", flagship->Heat());
 		info.SetBar("shields", flagship->Shields());
 		info.SetBar("hull", flagship->Hull(), 20.);
-	}
-	else
-	{
-		info.SetBar("fuel", 0.);
-		info.SetBar("energy", 0.);
-		info.SetBar("heat", 0.);
-		info.SetBar("shields", 0.);
-		info.SetBar("hull", 0.);
 	}
 	info.SetString("credits",
 		Format::Number(player.Accounts().Credits()) + " credits");
@@ -561,20 +554,9 @@ void Engine::Step(bool isActive)
 		targetAsteroid = flagship->GetTargetAsteroid();
 	}
 	if(!target)
-	{
-		info.SetString("target type", "");
-		info.SetString("target government", "");
-		info.SetString("mission target", "");
-		info.SetBar("target shields", 0.);
-		info.SetBar("target hull", 0.);
 		targetSwizzle = -1;
-		info.SetOutlineColor(Color(1.));
-	}
 	if(!target && !targetAsteroid)
-	{
-		info.SetSprite("target sprite", nullptr);
 		info.SetString("target name", "no target");
-	}
 	else if(!target)
 	{
 		info.SetSprite("target sprite",
@@ -582,6 +564,13 @@ void Engine::Step(bool isActive)
 			targetAsteroid->Facing().Unit(),
 			targetAsteroid->GetFrameIndex(step));
 		info.SetString("target name", Format::Capitalize(targetAsteroid->Name()) + " Asteroid");
+		
+		if(flagship->Attributes().Get("tactical scan power"))
+		{
+			info.SetCondition("range display");
+			int targetRange = round(targetAsteroid->Position().Distance(flagship->Position()));
+			info.SetString("target range", to_string(targetRange));
+		}
 	}
 	else
 	{
@@ -622,11 +611,26 @@ void Engine::Step(bool isActive)
 				targetAngle /= length;
 			else
 				targetAngle = Point();
-		}
-		else
-		{
-			info.SetBar("target shields", 0.);
-			info.SetBar("target hull", 0.);
+			
+			// Check if the target is close enough to show tactical information.
+			double tacticalRange = 100. * sqrt(flagship->Attributes().Get("tactical scan power"));
+			double targetRange = target->Position().Distance(flagship->Position());
+			if(tacticalRange)
+			{
+				info.SetCondition("range display");
+				info.SetString("target range", to_string(static_cast<int>(round(targetRange))));
+			}
+			if(targetRange <= tacticalRange)
+			{
+				info.SetCondition("tactical display");
+				info.SetString("target crew", to_string(target->Crew()));
+				int fuel = round(target->Fuel() * target->Attributes().Get("fuel capacity"));
+				info.SetString("target fuel", to_string(fuel));
+				int energy = round(target->Energy() * target->Attributes().Get("energy capacity"));
+				info.SetString("target energy", to_string(energy));
+				int heat = round(100. * target->Heat());
+				info.SetString("target heat", to_string(heat) + "%");
+			}
 		}
 	}
 	if(target && target->IsTargetable() && target->GetSystem() == currentSystem

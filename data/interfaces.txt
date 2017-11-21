@@ -355,6 +355,31 @@ interface "hud"
 		color "hull"
 		size 1.5
 	
+	visible if "range display"
+	sprite "ui/range"
+		from 130 263
+		align top left
+	string "target range"
+		from 160 260
+		align top left
+	visible if "tactical display"
+	sprite "ui/tactical"
+		from 130 290
+		align top left
+	string "target crew"
+		from 162 298
+		align top left
+	string "target fuel"
+		from 162 318
+		align top left
+	string "target energy"
+		from 157 338
+		align top left
+	string "target heat"
+		from 147 358
+		align top left
+	visible
+	
 	string "target name"
 		center 75 395
 		color "bright"

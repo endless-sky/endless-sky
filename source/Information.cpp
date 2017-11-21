@@ -85,7 +85,7 @@ double Information::BarValue(const string &name) const
 {
 	auto it = bars.find(name);
 	
-	return (it == bars.end()) ? 1. : it->second;
+	return (it == bars.end()) ? 0. : it->second;
 }
 
 
