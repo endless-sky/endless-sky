@@ -226,7 +226,7 @@ outfit "Asteroid Scanner"
 outfit "Tactical Scanner"
 	category "Systems"
 	cost 144000
-	thumbnail "outfit/surveillance pod"
+	thumbnail "outfit/tactical scanner"
 	"mass" 4
 	"outfit space" -4
 	"tactical scan power" 32
