@@ -242,20 +242,6 @@ void Ship::Load(const DataNode &node)
 		else if(key != "actions")
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
-	
-	// Check that all the "equipped" outfits actually match what your ship has.
-	if(!outfits.empty())
-		for(auto &it : equipped)
-		{
-			int excess = it.second - outfits[it.first];
-			if(excess > 0)
-			{
-				// If there are more hardpoints specifying this outfit than there
-				// are instances of this outfit installed, remove some of them.
-				armament.Add(it.first, -excess);
-				it.second -= excess;
-			}
-		}
 }
 
 
@@ -315,28 +301,56 @@ void Ship::FinishLoading(bool isNewInstance)
 			auto nextTurret = armament.Get().begin();
 			auto end = armament.Get().end();
 			Armament merged;
+			// Reset the "equipped" map to match exactly what the code below
+			// places in the weapon hardpoints.
+			equipped.clear();
 			for( ; bit != bend; ++bit)
 			{
 				if(!bit->IsTurret())
 				{
 					while(nextGun != end && nextGun->IsTurret())
 						++nextGun;
-					merged.AddGunPort(bit->GetPoint() * 2.,
-						(nextGun == end) ? nullptr : nextGun->GetOutfit());
+					const Outfit *outfit = (nextGun == end) ? nullptr : nextGun->GetOutfit();
+					merged.AddGunPort(bit->GetPoint() * 2., outfit);
 					if(nextGun != end)
+					{
+						if(outfit)
+							++equipped[outfit];
 						++nextGun;
+					}
 				}
 				else
 				{
 					while(nextTurret != end && !nextTurret->IsTurret())
 						++nextTurret;
-					merged.AddTurret(bit->GetPoint() * 2.,
-						(nextTurret == end) ? nullptr : nextTurret->GetOutfit());
+					const Outfit *outfit = (nextTurret == end) ? nullptr : nextTurret->GetOutfit();
+					merged.AddTurret(bit->GetPoint() * 2., outfit);
 					if(nextTurret != end)
+					{
+						if(outfit)
+							++equipped[outfit];
 						++nextTurret;
+					}
 				}
 			}
 			armament = merged;
+		}
+	}
+	// Check that all the "equipped" outfits actually match what your ship has.
+	for(auto &it : equipped)
+	{
+		int excess = it.second - outfits[it.first];
+		if(excess > 0)
+		{
+			// If there are more hardpoints specifying this outfit than there
+			// are instances of this outfit installed, remove some of them.
+			armament.Add(it.first, -excess);
+			it.second -= excess;
+			
+			cerr << modelName;
+			if(!name.empty())
+				 cerr << " \"" << name << "\"";
+			cerr << ": outfit \"" << it.first->Name() << "\" equipped but not included in outfit list." << endl;
 		}
 	}
 	
