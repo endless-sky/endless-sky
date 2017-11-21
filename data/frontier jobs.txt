@@ -95,7 +95,7 @@ mission "Small Pirate gambling"
 			label call
 			`	This is intolerable. You start to raise a stink about their blatant cheating.`
 			`	"We're just playin' a game here, see? You'd better shut your big mouth if you know what's good for you", the meanest-looking one growls at you. "We can make this ugly real fast."`
-			`	The four thugs stare at you menacingly and start to reach for their blasters.`
+			`	The four thugs stare at you menacingly and start to reach for their guns.`
 			choice
 				`(Shoot first!)`
 					goto shoot
@@ -113,7 +113,7 @@ mission "Small Pirate gambling"
 				die
 
 			label "shoot and run"
-			`	Grateful that you never leave your ship unarmed, your hand flies toward the blaster pistol at your thigh. In one smooth motion you draw the weapon and fire at the pirate who just threatened you. The bolt punches a fist-sized hole in the center of his chest, and he collapses like a sack of potatoes. His shocked comrades fumble in horror for their weapons but you've taken them by surprise and quickly gun down another before deciding it's time to escape. You grab some of the chits in the pile of credits on the way out!`
+			`	Grateful that you never leave your ship unarmed, your hand flies toward the pistol at your thigh. In one smooth motion you draw the weapon and fire at the pirate who just threatened you. The bolt punches a fist-sized hole in the center of his chest, and he collapses like a sack of potatoes. His shocked comrades fumble in horror for their weapons but you've taken them by surprise and quickly gun down another before deciding it's time to escape. You grab some of the chits in the pile of credits on the way out!`
 			`	Dashing madly towards the hangar bay, you radio the <ship> to start its pre-flight checks remotely. The boarding ramp screeches open and you race inside, blasting off in a hurry. Halfway out of the atmosphere, the comm crackles to life as the remaining two pirates hurl obscenities at you. A proximity alert flashes: looks like they made it to their ships and decided to follow you...`
 				launch
 
@@ -122,11 +122,11 @@ mission "Small Pirate gambling"
 				random < 30
 
 			label "grab and die"
-			`	You grab the pot and make a break for it! The ruffians howl and draw their guns. Dodging blaster fire, you run towards the door and get halfway there before one of the bolts finds its mark. You fall to the floor in searing pain, watching a pool of your own blood expand around you. You try to struggle to your feet, but the toughest-looking pirate kicks you to the ground with a hobnailed boot. Time slows down as his blaster's muzzle inches ever closer to pointing right at your face. Your vision blurs and the last thing you see is a blinding white flash.`
+			`	You grab the pot and make a break for it! The ruffians howl and draw their guns. Dodging gunfire, you run towards the door and get halfway there before one of the slugs finds its mark. You fall to the floor in searing pain, watching a pool of your own blood expand around you. You try to struggle to your feet, but the toughest-looking pirate kicks you to the ground with a hobnailed boot. Time slows down as the weapon's muzzle inches ever closer to pointing right at your face. Your vision blurs and the last thing you see is a blinding white flash.`
 				die
 
 			label "grab and run"
-			`	You grab the pot and make a break for it! The ruffians howl and draw their guns. You run towards the door in a zigzag motion, blaster bolts searing the air around you but miraculously none hitting their mark. You glance backwards just in time to see the barkeep reduce one of the ruffians to hamburger meat with a shredder cannon. The remaining three chase after you.`
+			`	You grab the pot and make a break for it! The ruffians howl and draw their guns. You run towards the door in a zigzag motion as high-caliber slugs saw through the air and punch thumb-sized holes in the walls, but miraculously none hit their mark. You glance backwards just in time to see the barkeep reduce one of the ruffians to hamburger meat with a shredder cannon. The remaining three chase after you.`
 			`	Dashing madly towards the hangar bay, you radio the <ship> to start its pre-flight checks remotely. The boarding ramp screeches open and you race inside, blasting off in a hurry. You quickly count your spoils and see that you're nearly 25,000 credits richer! Halfway out of the atmosphere, you receive a message from the port authorities warning you that while they apprehended one of the pirates, the remaining two made it to their ships and are waiting for you in orbit...`
 				launch
 
