@@ -52,6 +52,8 @@ public:
 	
 	// Get a set containing all the systems.
 	std::set<const System *> Systems() const;
+	// Get the end of the route.
+	const System *End() const;
 	
 	// How much fuel is needed to travel between two systems.
 	int RequiredFuel(const System *system1, const System *system2) const;
@@ -80,7 +82,7 @@ private:
 	// Depending on the capabilities of the given ship, use hyperspace paths,
 	// jump drive paths, or both to find the shortest route. Bail out if the
 	// source system or the maximum count is reached.
-	void Init(const System *center, const Ship *ship = nullptr);
+	void Init(const Ship *ship = nullptr);
 	// Add the given links to the map. Return false if an end condition is hit.
 	bool Propagate(Edge edge, bool useJump);
 	// Check if we already have a better path to the given system.
@@ -100,6 +102,7 @@ private:
 	std::priority_queue<Edge> edges;
 	const PlayerInfo *player = nullptr;
 	const System *source = nullptr;
+	const System *center = nullptr;
 	int maxCount = -1;
 	int maxDistance = -1;
 	// How much fuel is used for travel. If either value is zero, it means that

@@ -125,31 +125,33 @@ namespace {
 	}
 	
 	// Determine if the ship with the given travel plan should refuel in
-	// its current system, or if it should keep travelling.
-	bool ShouldRefuel(const Ship &ship, const DistanceMap &route)
+	// its current system, or if it should keep traveling.
+	bool ShouldRefuel(const Ship &ship, const DistanceMap &route, double fuelCapacity = 0.)
 	{
-		double fuelCapacity = ship.Attributes().Get("fuel capacity");
-		const bool hasFuel = fuelCapacity && ship.JumpFuel();
+		if(!fuelCapacity)
+			fuelCapacity = ship.Attributes().Get("fuel capacity");
 		
 		const System *from = ship.GetSystem();
-		const bool systemHasFuel = from->HasFuelFor(ship);
+		const bool systemHasFuel = from->HasFuelFor(ship) && fuelCapacity;
+		// If there is no fuel capacity in this ship, no fuel in this
+		// system, if it is fully fueled, or its drive doesn't require
+		// fuel, then it should not refuel before traveling.
+		if(!systemHasFuel || ship.Fuel() == 1. || !ship.JumpFuel())
+			return false;
 		
 		// Calculate the fuel needed to reach the next system with fuel.
+		double fuel = fuelCapacity * ship.Fuel();
 		const System *to = route.Route(from);
-		if(systemHasFuel && hasFuel && ship.Fuel() < 1.)
-		{
-			while(to && !to->HasFuelFor(ship))
-				to = route.Route(to);
-			
-			// If the ship cannot route further (!to), or needs more
-			// fuel to reach the next system with fuel, refuel.
-			if(!to || ship.Fuel() * fuelCapacity < route.RequiredFuel(from, to))
-				return true;
-			else
-				return false;
-		}
-		return false;
+		while(to && !to->HasFuelFor(ship))
+			to = route.Route(to);
+		
+		// The returned system from Route is nullptr when the route is
+		// "complete." If 'to' is nullptr here, then there are no fuel
+		// stops between the current system (which has fuel) and the
+		// desired endpoint system - refuel only if needed.
+		return fuel < route.RequiredFuel(from, (to ? to : route.End()));
 	}
+	
 	// Wrapper for ship - target system uses.
 	bool ShouldRefuel(const Ship &ship, const System *to)
 	{
@@ -165,8 +167,7 @@ namespace {
 		{
 			// If no direct jump route, or the target system has no
 			// fuel, perform a more elaborate refueling check.
-			const DistanceMap distance(ship, to);
-			return ShouldRefuel(ship, distance);
+			return ShouldRefuel(ship, DistanceMap(ship, to), fuelCapacity);
 		}
 	}
 	
