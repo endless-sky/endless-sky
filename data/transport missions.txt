@@ -1965,31 +1965,18 @@ mission "Lost Boy 1"
 	
 	on offer
 		conversation
-			`Wandering around the spaceport to see what it has to offer, you make your way into one of the dimly lit restaurants to avoid the crowded streets and metallic tasting air outside. The restaurant is mostly empty. One of its only inhabitants is a dirty looking woman crying with her head down in one of the booths.`
+			`Wandering around the spaceport to see what it has to offer, you make your way into one of the dimly lit restaurants to avoid the crowded streets and metallic-tasting air outside. The restaurant is mostly empty. One of its only inhabitants is a dirty looking woman crying with her head down in one of the booths.`
 			choice
 				`	(Approach the woman and ask why she is crying.)`
-					goto approach
-				`	(Ignore her and order a meal.)`
 				`	(Ignore her and leave the restaurant.)`
 					goto leave
 			
-			`	Your waiter is a cordial young boy who could be no older than sixteen years of age. The restaurant menu selection does not look all that interesting, but you eventually settle on what you will order. Minutes later, the waiter brings you your food, which does not look as appetizing as the pictures on the menu.`
-			`	After finishing and paying for your food, you notice that the woman you saw earlier is still in the booth crying.`
-			choice
-				`	(Leave the restaurant.)`
-					goto leave
-				`	(Approach the woman.)`
-					goto approach
-			
-			label approach
 			`	As you walk close to the woman, she raises her head from her arms and brushes her hair out of her face to look at you. Tears run down her cheeks and her nose is running. "Wh-wh-what do you w-want?" she asks in a quiet voice, trying to speak through sobs.`
 			choice
 				`	"Can I help you?"`
 				`	"Why are you crying?"`
 			
-			`	The woman wipes away the tears (and snot) with the sleeve of her shirt. She takes a few deep breathes to calm down before asking, "Do you really care?"` 
-			`	You nod. "Why else would I ask you?"`
-			`	She has stopped crying now. "It's my son, Tod," she says. "I've raised him by myself his entire life. Having to deal with a child on my own, I could never save up enough money to leave <origin>, so at the first chance of giving him a better life somewhere else I took it. I sent him away to a mining job on Placer, but on the way the ship he was on was attacked and boarded by pirates." She begins to sob again. "I d-don't know if he's d-dead or a slave. I tried t-talking to someone from the Syndicate, but they said that saving him wouldn't be w-worth it. T-that was earlier today.`
+			`	You ask the woman if she needs help. She wipes away the tears with the sleeve of her shirt and tells you that she is looking for her son, Tod. "I sent him away to a mining job on Placer because I don't have the money to support him myself, but on the way the ship he was on was attacked and boarded by pirates." She begins to sob again. "I d-don't know if he's d-dead or a slave. I tried t-talking to someone from the Syndicate, but they said that saving him wouldn't be w-worth it.`
 			`	"W-would you be able to help? Please do if you c-can."`
 			choice
 				`	"Alright, I'll help you. Where should I look for him?"`
