@@ -72,17 +72,30 @@ namespace {
 		return min(a, 360. - a);
 	}
 	
-	// Determine if all able, non-carried escorts are ready to jump with this
-	// ship. Carried escorts are waited for in AI::Step.
-	bool EscortsReadyToJump(const Ship &ship)
+	// Determine if all able, non-carried escorts are ready to jump with
+	// this ship. Undocked carried escorts force a WAIT in AI::Step, but if
+	// skipping the WAIT check in IsReadyToJump (to check if this ship's
+	// escort meets its jump speed criteria) then we need to check if it
+	// has any undocked escorts of its own that can still dock.
+	bool EscortsReadyToJump(const Ship &ship, bool checkWait = true)
 	{
-		for(const weak_ptr<Ship> &escort : ship.GetEscorts())
+		for(const weak_ptr<Ship> &eit : ship.GetEscorts())
 		{
-			shared_ptr<const Ship> locked = escort.lock();
-			if(locked && !locked->IsDisabled() && !locked->CanBeCarried()
-					&& locked->GetSystem() == ship.GetSystem()
-					&& locked->JumpFuel() && !locked->IsReadyToJump())
-				return false;
+			shared_ptr<const Ship> escort = eit.lock();
+			if(escort && !escort->IsDisabled() && !escort->CanBeCarried()
+					&& escort->GetSystem() == ship.GetSystem() && escort->JumpFuel())
+			{
+				if(!escort->IsReadyToJump(checkWait))
+					return false;
+				else if(!checkWait)
+					for(const weak_ptr<Ship> &cit : escort->GetEscorts())
+					{
+						shared_ptr<const Ship> carried = cit.lock();
+						if(carried && carried->GetSystem() == escort->GetSystem()
+								&& !carried->IsDisabled())
+							return false;
+					}
+			}
 		}
 		return true;
 	}
@@ -361,7 +374,7 @@ void AI::Step(const PlayerInfo &player)
 		double health = .5 * it->Shields() + it->Hull();
 		bool isPresent = (it->GetSystem() == player.GetSystem());
 		bool isStranded = IsStranded(*it);
-		bool thisIsLaunching = (isLaunching && it->GetSystem() == player.GetSystem());
+		bool thisIsLaunching = (isLaunching && isPresent);
 		if(isStranded || it->IsDisabled())
 		{
 			// Derelicts never ask for help, to make sure that only the player
@@ -398,6 +411,7 @@ void AI::Step(const PlayerInfo &player)
 		}
 		
 		shared_ptr<Ship> parent = it->GetParent();
+		shared_ptr<const Ship> grandParent;
 		if(parent && parent->IsDestroyed())
 		{
 			// An NPC that loses its fleet leader should attempt to
@@ -407,6 +421,12 @@ void AI::Step(const PlayerInfo &player)
 			parent = parent->GetParent();
 			it->SetParent(parent);
 		}
+		else if(parent && parent->GetParent())
+			grandParent = parent->GetParent();
+		// Ignore JUMP / WAIT commands from a hostile or absent grandparent.
+		if(grandParent && (grandParent->GetGovernment()->IsEnemy(gov)
+				|| grandParent->GetSystem() != it->GetSystem()))
+			grandParent.reset();
 		
 		// Special actions when a ship is near death:
 		if(health < 1.)
@@ -682,9 +702,11 @@ void AI::Step(const PlayerInfo &player)
 		}
 		else if(personality.IsStaying())
 			MoveIndependent(*it, command);
-		// This is a friendly escort. If the parent is getting ready to
-		// jump, always follow.
-		else if(parent->Commands().Has(Command::JUMP) && it->JumpsRemaining())
+		// This is a friendly escort. If the parent or grandparent is
+		// getting ready to jump, always follow.
+		else if((parent->Commands().Has(Command::JUMP | Command::WAIT) || (grandParent
+				&& grandParent->Commands().Has(Command::JUMP | Command::WAIT)))
+				&& it->JumpsRemaining())
 			MoveEscort(*it, command);
 		// Timid ships always stay near their parent.
 		else if(personality.IsTimid() && parent->Position().Distance(it->Position()) > 500.)
@@ -1225,12 +1247,18 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 void AI::MoveEscort(Ship &ship, Command &command) const
 {
 	const Ship &parent = *ship.GetParent();
-	bool hasFuelCapacity = ship.Attributes().Get("fuel capacity") && ship.JumpFuel();
-	bool isStaying = ship.GetPersonality().IsStaying() || !hasFuelCapacity;
 	bool parentIsHere = (ship.GetSystem() == parent.GetSystem());
+	shared_ptr<const Ship> grandParent = parent.GetParent();
+	// If this ship's friendly grandparent and its parent are present, then
+	// pay attention to both for jump instructions.
+	bool followGrand = grandParent && parentIsHere && ship.GetSystem() == grandParent->GetSystem()
+			&& !grandParent->GetGovernment()->IsEnemy(ship.GetGovernment());
 	// Check if the parent has a target planet that is in the parent's system.
 	const Planet *parentPlanet = (parent.GetTargetStellar() ? parent.GetTargetStellar()->GetPlanet() : nullptr);
 	bool planetIsHere = (parentPlanet && parentPlanet->IsInSystem(parent.GetSystem()));
+	
+	bool hasFuelCapacity = ship.Attributes().Get("fuel capacity") && ship.JumpFuel();
+	bool isStaying = ship.GetPersonality().IsStaying() || !hasFuelCapacity;
 	bool systemHasFuel = hasFuelCapacity && ship.GetSystem()->HasFuelFor(ship);
 	// If an escort is out of fuel, they should refuel without waiting for the
 	// "parent" to land (because the parent may not be planning on landing).
@@ -1321,7 +1349,9 @@ void AI::MoveEscort(Ship &ship, Command &command) const
 	}
 	else if(parent.Commands().Has(Command::BOARD) && parent.GetTargetShip().get() == &ship)
 		Stop(ship, command, .2);
-	else if(parent.Commands().Has(Command::JUMP) && parent.GetTargetSystem() && !isStaying)
+	else if((parent.Commands().Has(Command::JUMP | Command::WAIT) || (followGrand
+			&& grandParent->Commands().Has(Command::JUMP | Command::WAIT)))
+			&& parent.GetTargetSystem() && !isStaying)
 	{
 		DistanceMap distance(ship, parent.GetTargetSystem());
 		const System *dest = distance.Route(ship.GetSystem());
@@ -1336,12 +1366,26 @@ void AI::MoveEscort(Ship &ship, Command &command) const
 		else
 		{
 			PrepareForHyperspace(ship, command);
-			if(parent.IsEnteringHyperspace() || parent.IsReadyToJump())
-			{
+			// Player ships cannot have non-carried escorts, and only
+			// follow the player's lead. If this is an NPC flagship,
+			// it is here because the player is in-system and "JUMP"
+			// is being issued (perhaps WAIT, too). Its escorts also
+			// reach this block if they are in-system.
+			// This ship may instead be a "simple" NPC escort with a
+			// pseudo-independent, in-system parent (routing randomly
+			// or to the player). JUMP and/or WAIT should be issued.
+			if(ship.IsYours() && (parent.IsEnteringHyperspace() || parent.IsReadyToJump()))
 				command |= Command::JUMP;
-				// If this ship is a parent to members of its fleet,
-				// it should wait for them before jumping.
-				if(!EscortsReadyToJump(ship))
+			else if(!ship.IsYours())
+			{
+				// If this ship is not positioned to jump, signal
+				// any escorts to prepare with JUMP as it allows
+				// its parent to become ready-to-jump (vs. WAIT).
+				if(!ship.IsReadyToJump(false) || parent.IsEnteringHyperspace())
+					command |= Command::JUMP;
+				// Are all this ship's escorts positioned to jump
+				// and not waiting for their fighters to reboard?
+				if(!EscortsReadyToJump(ship, false))
 					command |= Command::WAIT;
 			}
 		}

@@ -202,8 +202,8 @@ public:
 	bool IsHyperspacing() const;
 	// Check if this ship is hyperspacing, specifically via a jump drive.
 	bool IsUsingJumpDrive() const;
-	// Check if this ship is currently able to enter hyperspace to it target.
-	bool IsReadyToJump() const;
+	// Check if this ship is currently able to enter hyperspace to its target.
+	bool IsReadyToJump(bool checkWait = true) const;
 	// Get this ship's custom swizzle.
 	int CustomSwizzle() const;
 	
