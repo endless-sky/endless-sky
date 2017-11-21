@@ -94,7 +94,7 @@ mission "Small Pirate gambling"
 
 			label call
 			`	This is intolerable. You start to raise a stink about their blatant cheating.`
-			`	"We're just playin' a game here, see? You'd better shut your big mouth if you know what's good for you", the meanest-looking one growls at you. "We can make this ugly real fast."`
+			`	"We're just playin' a game here, see? You'd better shut your big mouth if you know what's good for you," the meanest-looking one growls at you. "We can make this ugly real fast."`
 			`	The four thugs stare at you menacingly and start to reach for their guns.`
 			choice
 				`(Shoot first!)`
