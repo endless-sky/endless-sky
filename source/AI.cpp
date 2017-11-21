@@ -362,24 +362,17 @@ void AI::Step(const PlayerInfo &player)
 		bool isPresent = (it->GetSystem() == player.GetSystem());
 		bool isStranded = IsStranded(*it);
 		bool thisIsLaunching = (isLaunching && it->GetSystem() == player.GetSystem());
-		if(isStranded || it->IsDisabled() || it->IsOverheated())
+		if(isStranded || it->IsDisabled())
 		{
 			// Derelicts never ask for help, to make sure that only the player
 			// will repair them.
 			if(it->IsDestroyed() || it->GetPersonality().IsDerelict())
 				continue;
 			
-			bool isDisabled = it->IsDisabled();
-			// An overheated ship should only ask for help if it is
-			// also disabled, or in need of fuel. If it's just too
-			// hot, there's nothing for it to do this turn.
-			if(!isStranded && !isDisabled && it->IsOverheated())
-				continue;
-			
 			// Attempt to find a friendly ship to render assistance.
 			AskForHelp(*it, isStranded, flagship);
 			
-			if(isDisabled)
+			if(it->IsDisabled())
 			{
 				// Ships other than escorts should deploy fighters if disabled.
 				if(!it->IsYours() || thisIsLaunching)
@@ -390,6 +383,9 @@ void AI::Step(const PlayerInfo &player)
 				continue;
 			}
 		}
+		if(it->IsOverheated())
+			continue;
+		
 		// Special case: if the player's flagship tries to board a ship to
 		// refuel it, that escort should hold position for boarding.
 		isStranded |= (flagship && it == flagship->GetTargetShip() && CanBoard(*flagship, *it)
