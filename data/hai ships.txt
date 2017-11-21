@@ -575,7 +575,7 @@ ship "Violin Spider" "Violin Spider (Pulse)"
 ship "Water Bug"
 	sprite "ship/hai water bug"
 	attributes
-		category "Heavy Freighter"
+		category "Medium Freighter"
 		"cost" 6500000
 		"shields" 7900
 		"hull" 4500
