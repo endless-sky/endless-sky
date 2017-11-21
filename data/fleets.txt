@@ -1051,8 +1051,8 @@ fleet "Navy Surveillance"
 	variant 10
 		"Gunboat" 2
 
-fleet "Small Deep"
-	government "Republic"
+fleet "Small Deep Merchants"
+	government "Merchant"
 	names "deep"
 	fighters "deep fighter"
 	cargo 0
@@ -1061,12 +1061,6 @@ fleet "Small Deep"
 	variant 4
 		"Aerie"
 		"Dagger" 2
-	variant 3
-		"Raven"
-	variant 1
-		"Raven (Heavy)"
-	variant 1
-		"Raven (Afterburner)"
 	variant 6
 		"Mule"
 		"Dagger"
@@ -1083,21 +1077,13 @@ fleet "Small Deep"
 		"Raven (Heavy)"
 	variant 3
 		"Headhunter"
-	variant 2
-		"Headhunter (Particle)"
-	variant 4
-		"Corvette"
-	variant 2
-		"Corvette (Speedy)"
-	variant 2
-		"Corvette (Missile)"
 	variant 3
 		"Flivver"
 	variant 2
 		"Flivver (Racing)"
 
-fleet "Large Deep"
-	government "Republic"
+fleet "Large Deep Merchants"
+	government "Merchant"
 	names "deep"
 	fighters "deep fighter"
 	cargo 0
@@ -1107,51 +1093,15 @@ fleet "Large Deep"
 		"Aerie"
 		"Dagger" 2
 		"Corvette"
-	variant 2
-		"Aerie"
-		"Dagger" 2
-		"Corvette (Missile)"
-	variant 2
-		"Aerie"
-		"Dagger" 2
-		"Corvette (Speedy)"
 	variant 3
 		"Aerie"
 		"Dagger" 2
 		"Raven"
-	variant 1
-		"Aerie"
-		"Dagger" 2
-		"Raven (Heavy)"
-	variant 1
-		"Aerie"
-		"Dagger" 2
-		"Raven (Afterburner)"
-	variant 4
-		"Raven" 2
-	variant 2
-		"Raven (Heavy)" 2
 	variant 3
 		"Headhunter" 2
-	variant 2
-		"Headhunter (Particle)" 2
 	variant 3
 		"Aerie" 2
 		"Dagger" 4
-	variant 8
-		"Corvette"
-		"Raven"
-	variant 4
-		"Corvette (Speedy)"
-		"Raven (Afterburner)"
-	variant 4
-		"Corvette (Missile)"
-		"Raven (Heavy)"
-	variant 5
-		"Corvette" 2
-	variant 3
-		"Corvette (Speedy)"
-		"Corvette (Missile)"
 	variant 8
 		"Bactrian"
 		"Dagger" 3
@@ -1190,8 +1140,8 @@ fleet "Large Deep"
 		"Star Queen"
 		"Raven (Afterburner)" 2
 
-fleet "Small Deep Military"
-	government "Republic"
+fleet "Small Deep Security"
+	government "Deep Security"
 	names "deep"
 	fighters "deep fighter"
 	cargo 0
@@ -1217,8 +1167,8 @@ fleet "Small Deep Military"
 	variant 2
 		"Corvette (Missile)"
 
-fleet "Large Deep Military"
-	government "Republic"
+fleet "Large Deep Security"
+	government "Deep Security"
 	names "deep"
 	fighters "deep fighter"
 	cargo 0
