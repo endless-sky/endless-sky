@@ -322,7 +322,6 @@ phrase "friendly civilian"
 		"some of my friends are"
 		"all the oldsters are"
 		"they said they're"
-		"
 	word
 		" still"
 		" actually"
@@ -1754,6 +1753,8 @@ phrase "friendly pirate"
 phrase "friendly pirate"
 	word
 		"You better watch "
+		"You best watch "
+		"You'd watch "
 	word
 		"who you talk to"
 		"who you look at"
@@ -1763,6 +1764,10 @@ phrase "friendly pirate"
 		"your cargo"
 		"your ship"
 		"your fleet"
+		"your ass"
+		"yourself"
+		"your attitude"
+		"your wallet"
 	word
 		" "
 	word
@@ -1773,6 +1778,13 @@ phrase "friendly pirate"
 		"around me"
 	word
 		"."
+		"."
+		"."
+		"!"
+		", if you don't want any trouble."
+		", if you were smart."
+		", or else."
+		", if you know what's good for you."
 
 phrase "friendly pirate"
 	word
@@ -1809,11 +1821,16 @@ phrase "friendly pirate"
 		"steam"
 		"toad juice"
 		"whale blubber"
+		"conch"
 	word
 		" "
 	word
 		"stuff?"
 		"drug?"
+		"injection?"
+		"shot?"
+		"smoke?"
+		"substance?"
 	word
 		""
 		" It's the best"
@@ -1824,60 +1841,14 @@ phrase "friendly pirate"
 		" I wish I could afford more"
 		" I'm going to need to make money to buy more"
 		" Best experience I've ever had"
+		" It's unreal."
+		" It'll make you forget you're alive."
+		" It'll make you soar."
 	word
 		"!"
 		"."
 
-phrase "friendly pirate"
-	word
-		"Have you "
-	word
-		"tried this"
-		"used this"
-	word
-		" new "
-		" terrible "
-		" horrendous "
-		" atrocious "
-		" horrid "
-		""
-	word
-		"bad blue"
-		"booster"
-		"core"
-		"death stick"
-		"deep"
-		"fire apple"
-		"flavor drop"
-		"good red"
-		"hot wing"
-		"memory chip"
-		"quasar"
-		"red giant"
-		"ringworld shaving"
-		"solaris joyride"
-		"southern snack"
-		"space weed"
-		"stardust"
-		"steam"
-		"toad juice"
-		"whale blubber"
-	word
-		" "
-	word
-		"stuff?"
-		"drug?"
-	word
-		""
-		" I couldn't see for a week"
-		" I couldn't get out of bed for a week"
-		" It felt like I was being eaten alive"
-		" It felt like I had insects crawling under my skin"
-		" I'm never taking that stuff again"
-		" Worst experience I've ever had"
-	word
-		"!"
-		"."
+#duplicate entry removed, see above.	
 
 phrase "friendly pirate"
 	word
