@@ -317,12 +317,12 @@ ship "Bastion"
 		"hull" 4200
 		"required crew" 32
 		"bunks" 47
-		"mass" 540
+		"mass" 580
 		"drag" 10.3
 		"heat dissipation" .5
 		"fuel capacity" 500
 		"cargo space" 110
-		"outfit space" 450
+		"outfit space" 470
 		"weapon capacity" 180
 		"engine capacity" 120
 		weapon
@@ -1923,7 +1923,7 @@ ship "Modified Argosy"
 	plural "Modified Argosies"
 	sprite "ship/modified argosy"
 	attributes
-		category "Medium Warship"
+		category "Light Warship"
 		"cost" 1960000
 		"shields" 4800
 		"hull" 1900
