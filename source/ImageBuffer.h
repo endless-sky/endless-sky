@@ -33,6 +33,8 @@ public:
 	
 	ImageBuffer &operator=(const ImageBuffer &) = delete;
 	
+	// Set the number of frames. This must be called before allocating.
+	void Clear(int frames = 1);
 	// Allocate the internal buffer. This must only be called once for each
 	// image buffer; subsequent calls will be ignored.
 	void Allocate(int width, int height);

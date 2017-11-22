@@ -36,6 +36,12 @@ public:
 	
 	const std::string &Name() const;
 	
+	// Upload the given frames. The given buffer will be cleared afterwards.
+	void AddFrames(ImageBuffer &buffer, bool is2x);
+	// Move the given masks into this sprite's internal storage. The given
+	// vector will be cleared.
+	void AddMasks(std::vector<Mask> &masks);
+	
 	void AddFrame(int frame, ImageBuffer *image, Mask *mask, bool is2x);
 	// Free up all textures loaded for this sprite.
 	void Unload();
@@ -56,8 +62,7 @@ public:
 private:
 	std::string name;
 	
-	std::vector<uint32_t> textures;
-	std::vector<uint32_t> textures2x;
+	std::vector<uint32_t> textures[2];
 	std::vector<Mask> masks;
 	
 	float width;

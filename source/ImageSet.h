@@ -45,13 +45,29 @@ public:
 	static bool IsMasked(const std::string &path);
 	
 	
+public:
+	// Add a single image to this set. Assume the name of the image has already
+	// been checked to make sure it belongs in this set.
+	void Add(const std::string &path);
+	// Check this image set to determine whether any frames are missing. Report
+	// an error for each missing frame. (It will be left uninitialized.)
+	void Check() const;
+	// Load all the frames. This should be called in one of the image-loading
+	// worker threads. This also generates collision masks if needed.
+	void Load();
+	// Create the sprite and upload the image data to the GPU. After this is
+	// called, the internal image buffers and mask vector will be cleared, but
+	// the paths are saved in case the sprite needs to be loaded again.
+	void Upload();
+	
+	
 private:
-	// This is the sprite that will be initialized from this image set.
-	Sprite *sprite = nullptr;
+	// Name of the sprite that will be initialized with these images.
+	std::string name;
 	// Paths to all the images that must be loaded:
 	std::vector<std::string> paths[2];
 	// Data loaded from the images:
-	ImageBuffer buffer;
+	ImageBuffer buffer[2];
 	std::vector<Mask> masks;
 };
 

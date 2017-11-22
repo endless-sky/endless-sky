@@ -147,7 +147,7 @@ void SpriteQueue::operator()()
 			if(!item.is2x && ImageSet::IsMasked(item.name))
 			{
 				item.mask = new Mask;
-				item.mask->Create(item.image);
+				item.mask->Create(*item.image);
 			}
 			
 			// Don't bother to copy the path, now that we've loaded the file.

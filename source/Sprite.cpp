@@ -39,6 +39,65 @@ const string &Sprite::Name() const
 
 
 
+// Upload the given frames. The given buffer will be cleared afterwards.
+void Sprite::AddFrames(ImageBuffer &buffer, bool is2x)
+{
+	// Do nothing if the buffer is empty.
+	if(!buffer.Pixels())
+		return;
+	
+	// If this is the 1x image, its dimensions determine the sprite's size.
+	if(!is2x)
+	{
+		width = buffer.Width();
+		height = buffer.Height();
+	}
+	
+	// Check whether this sprite is large enough to require size reduction.
+	if(Preferences::Has("Reduce large graphics") && buffer.Width() * buffer.Width() >= 1000000)
+		buffer.ShrinkToHalfSize();
+	
+	// Get a pointer to the image data.
+	size_t imageSize = buffer.Width() * buffer.Height();
+	const uint32_t *pixels = buffer.Pixels();
+	
+	// Generate the textures. Assume none of them have been allocated yet, i.e.
+	// that all the textures are being uploaded in a single set here.
+	textures[is2x].resize(buffer.Frames());
+	for(int frame = 0; frame < buffer.Frames(); ++frame, pixels += imageSize)
+	{
+		glGenTextures(1, &textures[is2x][frame]);
+		glBindTexture(GL_TEXTURE_2D, textures[is2x][frame]);
+		
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+		
+		// ImageBuffer always loads images into 32-bit BGRA buffers.
+		// That is supposedly the fastest format to upload.
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, buffer.Width(), buffer.Height(), 0,
+			GL_BGRA, GL_UNSIGNED_BYTE, pixels);
+	}
+	// Unbind the texture.
+	glBindTexture(GL_TEXTURE_2D, 0);
+	
+	// Free the ImageBuffer memory.
+	buffer.Clear();
+}
+
+
+
+// Move the given masks into this sprite's internal storage. The given
+// vector will be cleared.
+void Sprite::AddMasks(std::vector<Mask> &masks)
+{
+	this->masks.swap(masks);
+	masks.clear();
+}
+
+
+
 void Sprite::AddFrame(int frame, ImageBuffer *image, Mask *mask, bool is2x)
 {
 	if(!image || frame < 0)
@@ -49,12 +108,11 @@ void Sprite::AddFrame(int frame, ImageBuffer *image, Mask *mask, bool is2x)
 	width = max<float>(width, image->Width() >> is2x);
 	height = max<float>(height, image->Height() >> is2x);
 	
-	vector<uint32_t> &textureIndex = (is2x ? textures2x : textures);
-	if(textureIndex.size() <= static_cast<unsigned>(frame))
-		textureIndex.resize(frame + 1, 0);
-	if(!textureIndex[frame])
-		glGenTextures(1, &textureIndex[frame]);
-	glBindTexture(GL_TEXTURE_2D, textureIndex[frame]);
+	if(textures[is2x].size() <= static_cast<unsigned>(frame))
+		textures[is2x].resize(frame + 1, 0);
+	if(!textures[is2x][frame])
+		glGenTextures(1, &textures[is2x][frame]);
+	glBindTexture(GL_TEXTURE_2D, textures[is2x][frame]);
 	
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
@@ -86,16 +144,12 @@ void Sprite::AddFrame(int frame, ImageBuffer *image, Mask *mask, bool is2x)
 // Free up all textures loaded for this sprite.
 void Sprite::Unload()
 {
-	if(!textures.empty())
-	{
-		glDeleteTextures(textures.size(), &textures.front());
-		textures.clear();
-	}
-	if(!textures2x.empty())
-	{
-		glDeleteTextures(textures2x.size(), &textures2x.front());
-		textures2x.clear();
-	}
+	for(int i = 0; i < 2; ++i)
+		if(!textures[i].empty())
+		{
+			glDeleteTextures(textures[i].size(), textures[i].data());
+			textures[i].clear();
+		}
 	
 	masks.clear();
 	width = 0.f;
@@ -120,7 +174,7 @@ float Sprite::Height() const
 
 int Sprite::Frames() const
 {
-	return textures.size();
+	return textures[0].size();
 }
 
 
@@ -141,22 +195,23 @@ uint32_t Sprite::Texture(int frame) const
 
 uint32_t Sprite::Texture(int frame, bool isHighDPI) const
 {
-	if(isHighDPI && !textures2x.empty())
-		return textures2x[frame % textures2x.size()];
-	
-	if(textures.empty())
+	if(!Frames() || frame < 0)
 		return 0;
 	
-	return textures[frame % textures.size()];
+	size_t i = frame % Frames();
+	if(isHighDPI && i < textures[1].size())
+		return textures[i][i];
+	
+	return textures[0][i];
 }
 
 
 	
 const Mask &Sprite::GetMask(int frame) const
 {
-	static const Mask empty;
-	if(masks.empty() || masks.size() != textures.size())
-		return empty;
+	static const Mask EMPTY;
+	if(frame < 0 || masks.size() != textures[0].size())
+		return EMPTY;
 	
 	return masks[frame % masks.size()];
 }
