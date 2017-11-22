@@ -239,6 +239,9 @@ phrase "song"
 		"None of Them Knew They Were Humans"
 		"Chains of Ice"
 		"Monkey Butter"
+		"Blinded by the Conch"
+		"Jolly Jelly Bean by the JJBs"
+		"Shadalay"
 	word
 		`"`
 
@@ -386,6 +389,8 @@ phrase "friendly civilian"
 		"hurts everyone's ears"
 		"makes everyone ill"
 		"will surely bring about the end of the galaxy"
+		"gives me a heart attack"
+		"makes me actually cry"
 	word
 		"!"
 
@@ -453,7 +458,7 @@ phrase "friendly civilian"
 		"See you round the 'verse"
 		"Stay safe"
 		"Safe travels"
-		"Watch out for those pirates
+		"Watch out for those pirates"
 	word
 		", "
 	word
@@ -488,7 +493,8 @@ phrase "friendly civilian"
 		"Heaven's blessings"
 		"the Way and the Light"
 		"the immortal Tao"
-		"the great and powerful kek"
+		"the great and powerful Kek"
+		"Kek, the great"
 	word
 		" "
 	word
@@ -674,6 +680,10 @@ phrase "friendly civilian"
 		"demolished the"
 		"smashed the"
 		"walloped the"
+		"lose to the"
+		"get obliterated by"
+		"lose pathetically to the"
+		"have no chance against the"
 	word
 		" "
 	word
@@ -708,6 +718,7 @@ phrase "friendly civilian"
 		"."
 		". You shoulda seen it!"
 		". I wish my feed was clearer."
+		". I ended up watching it twice."
 
 phrase "friendly civilian"
 	word
@@ -737,9 +748,16 @@ phrase "friendly civilian"
 		"rotten fruit"
 		"sludge"
 		"unprocessed sewage"
+		"protest signs"
+		"water"
+		"robots"
+		"holy symbols"
+		"holy books"
+		"memes"
 	word
 		". My"
 		", and now my"
+		", and since my"
 	word
 		" "
 	word
@@ -750,10 +768,13 @@ phrase "friendly civilian"
 		"beautiful ship's "
 		"delicate ship's "
 		"pristine ship's "
+		"old ship's "
 
 	word
 		"hold"
 		"cargo hold"
+		"storage"
+		"storage hold"
 	word
 		" "
 	word
@@ -764,6 +785,7 @@ phrase "friendly civilian"
 		"needs to be hosed down!"
 		"is gonna need one heck of a chemical bath!"
 		"desperately needs a sonic scrubbing!"
+		"is ruined! I knew I should'ved listened to my Magic Conch."
 
 phrase "friendly civilian"
 	word
@@ -792,6 +814,7 @@ phrase "friendly civilian"
 		"scam artists"
 		"raiders"
 		"marauders"
+		"rogue pilots"
 	word
 		" "
 	word
@@ -892,6 +915,8 @@ phrase "friendly civilian"
 		"I wish more people realized"
 		"I wish more people realized that"
 		"My nutty cousin claims that"
+		"Surely"
+		"I don't doubt"
 	word
 		" "
 	word
@@ -948,6 +973,7 @@ phrase "friendly civilian"
 		"are secretly being controlled by the Lizard Illuminati!"
 		"are under the control of a hidden race of chipmunk aliens!"
 		"get together to play foosball every Thursday on Luna!"
+		"only do what the Magic Conch tells them to do."
 
 phrase "friendly civilian"
 	word
@@ -1006,6 +1032,7 @@ phrase "friendly civilian"
 		"been using"
 		"been plying"
 		"stumbled upon"
+		"crossed"
 	word
 		" "
 	word
@@ -1034,6 +1061,7 @@ phrase "friendly civilian"
 	word
 		"trade routes, but I'm not"
 		"trade routes, but there's no way I'm"
+		"trade routes, but I wont be"
 	word
 		" "
 	word
@@ -1041,6 +1069,7 @@ phrase "friendly civilian"
 		"revealing"
 		"telling"
 		"disclosing"
+		"sharing"
 	word
 		" "
 	word
@@ -1081,6 +1110,8 @@ phrase "friendly navy"
 		" "
 	word
 		"and"
+		"as well as"
+		"but also to"
 	word
 		" "
 	word
@@ -1093,6 +1124,9 @@ phrase "friendly navy"
 		" "
 	word
 		"you."
+		"you and your family."
+		"the people."
+		"the civilians."
 
 phrase "friendly navy"
 	word
@@ -1139,6 +1173,11 @@ phrase "friendly navy"
 		"the biggest"
 		"the largest"
 		"the greatest"
+		"the strongest"
+		"the grandest"
+		"the righteous"
+		"the best"
+		"the widest"
 	word
 		" "
 	word
@@ -1152,11 +1191,13 @@ phrase "friendly navy"
 	word
 		"organization"
 		"force"
+		"taskforce"
 	word
 		" "
 	word
 		"in the galaxy"
 		"in the Republic"
+		"in the universe"
 	word
 		"!"
 
@@ -1168,6 +1209,10 @@ phrase "friendly navy"
 		"Answer the call of duty! Join the Navy!"
 		"If you have courage, if you have honor, join the Navy!"
 		"We want YOU for the Navy!"
+		"Defend the galaxy. Join the Navy!"
+		"All citizens are subject to random cargo scans. Comply or face criminal charges."
+		"Cargo scans will be conducted at random intervals by all Navy vessels. Comply or face criminal charges."
+		"You are subject to cargo scans. Comply or face the charge of treason."
 
 phrase "friendly militia"
 	word
@@ -1179,6 +1224,7 @@ phrase "friendly militia"
 		"searching for"
 	word
 		" any "
+		" all "
 		" "
 	word
 		"suspicious"
@@ -1190,6 +1236,7 @@ phrase "friendly militia"
 		"unlawful"
 		"abnormal"
 		"irregular"
+		"abnormal"
 	word
 		" "
 	word
@@ -1198,6 +1245,7 @@ phrase "friendly militia"
 		"activity"
 		"ships"
 		"starships"
+		"entities"
 	word
 		"."
 
@@ -1213,6 +1261,9 @@ phrase "friendly militia"
 		"innocent life"
 		"innocent ship"
 		"inhabitant of this system"
+		"civilian life"
+		"innocent citizen"
+		"innocent person"
 	word
 		" "
 	word
@@ -1228,6 +1279,8 @@ phrase "friendly militia"
 		"while we are still flying"
 		"while we are still breathing"
 		"while we are here"
+		"as long as we are alive"
+		"without going through us first"
 	word
 		"."
 		"!"
@@ -1614,6 +1667,8 @@ phrase "friendly pirate"
 		"Ravaging"
 		"Stealing from"
 		"Waylaying"
+		"Rockin'"
+		"Shooting down"
 	word
 		" "
 	word
@@ -1627,6 +1682,8 @@ phrase "friendly pirate"
 		"weak ships"
 		"wimpy ships"
 		"merchant ships"
+		"punks"
+		"little twerps"
 	word
 		" "
 	word
@@ -1639,6 +1696,7 @@ phrase "friendly pirate"
 		"piling up"
 		"hoarding"
 		"squandering"
+		"rolling in"
 	word
 		" "
 	word
@@ -1648,15 +1706,20 @@ phrase "friendly pirate"
 		"wealth"
 		"plunder"
 		"the booty"
+		"the money"
 	word
 		": I love the pirate's life!"
 		": that's the way to live!"
+		": that's how I choose to live my life!"
 		" is the best way to live!"
 		" is how real anarchists live!"
 
 phrase "friendly pirate"
 	word
 		"We just "
+		"We've just "
+		"Our friends just "
+		"Someone just "
 	word
 		"plundered"
 		"blasted"
@@ -1666,6 +1729,7 @@ phrase "friendly pirate"
 		"crushed"
 		"robbed"
 		"ravaged"
+		"spaced"
 	word
 		" a "
 		" a whole "
@@ -1676,12 +1740,16 @@ phrase "friendly pirate"
 	word
 		"merchant"
 		"law enforcement"
+		"civilian trader"
+		"freelancer"
+		"bounty"
 	word
 		" "
 	word
 		"ship!"
 		"fleet!"
 		"convoy!"
+		"armada!"
 
 phrase "friendly pirate"
 	word
