@@ -49,7 +49,17 @@ void OutlineShader::Init()
 		"  off = vec2(.5 / sqrt(sq[0][0] + sq[0][1]), .5 / sqrt(sq[1][0] + sq[1][1]));\n"
 		"  gl_Position = vec4((transform * vert + position) * scale, 0, 1);\n"
 		"}\n";
-
+	
+	// The outline shader applies a Sobel filter to an image. The alpha channel
+	// (i.e. the silhouette of the sprite) is given the most weight, but some
+	// weight is also given to the RGB values so that there will be some detail
+	// in the interior of the silhouette as well.
+	
+	// To reduce sampling error and bring out fine details, for every output
+	// pixel the Sobel filter is actually applied in a 3x3 neighborhood and
+	// averaged together. That neighborhood's scale is .618034 times the scale
+	// of the Sobel neighborhood (i.e. the golden ratio) to minimize any
+	// aliasing effects between the two.
 	static const char *fragmentCode =
 		"uniform sampler2D tex;\n"
 		"uniform vec4 color = vec4(1, 1, 1, 1);\n"
@@ -58,22 +68,23 @@ void OutlineShader::Init()
 		"out vec4 finalColor;\n"
 		"void main() {\n"
 		"  float sum = 0;\n"
+		"  vec2 d[8];\n"
+		"  d[0] = vec2(-off.x, -off.y);\n" "  d[1] = vec2(0, -off.y);\n" "  d[2] = vec2(off.x, -off.y);\n"
+		"  d[7] = vec2(-off.x, 0);\n"                                    "  d[3] = vec2(off.x, 0);\n"
+		"  d[6] = vec2(-off.x, off.y);\n"  "  d[5] = vec2(0, off.y);\n"  "  d[4] = vec2(off.x, off.y);\n"
+		"  float p[8];\n"
 		"  vec4 weight = vec4(.4, .4, .4, 1.);\n"
 		"  for(int dy = -1; dy <= 1; ++dy)\n"
 		"  {\n"
 		"    for(int dx = -1; dx <= 1; ++dx)\n"
 		"    {\n"
-		"      vec2 d = vec2(.618 * dx * off.x, .618 * dy * off.y);\n"
-		"      float ae = dot(texture(tex, d + vec2(tc.x - off.x, tc.y)), weight);\n"
-		"      float aw = dot(texture(tex, d + vec2(tc.x + off.x, tc.y)), weight);\n"
-		"      float an = dot(texture(tex, d + vec2(tc.x, tc.y - off.y)), weight);\n"
-		"      float as = dot(texture(tex, d + vec2(tc.x, tc.y + off.y)), weight);\n"
-		"      float ane = dot(texture(tex, d + vec2(tc.x - off.x, tc.y - off.y)), weight);\n"
-		"      float anw = dot(texture(tex, d + vec2(tc.x + off.x, tc.y - off.y)), weight);\n"
-		"      float ase = dot(texture(tex, d + vec2(tc.x - off.x, tc.y + off.y)), weight);\n"
-		"      float asw = dot(texture(tex, d + vec2(tc.x + off.x, tc.y + off.y)), weight);\n"
-		"      float h = (ae * 2 + ane + ase) - (aw * 2 + anw + asw);\n"
-		"      float v = (an * 2 + ane + anw) - (as * 2 + ase + asw);\n"
+		"      vec2 center = tc + .618034 * off * vec2(dx, dy);\n"
+		"      for(int i = 0; i < 8; ++i)\n"
+		"      {\n"
+		"        p[i] = dot(texture(tex, center + d[i]), weight);\n"
+		"      }\n"
+		"      float h = (p[6] + 2 * p[7] + p[0]) - (p[2] + 2 * p[3] + p[4]);\n"
+		"      float v = (p[0] + 2 * p[1] + p[2]) - (p[4] + 2 * p[5] + p[6]);\n"
 		"      sum += h * h + v * v;\n"
 		"    }\n"
 		"  }\n"
