@@ -1021,7 +1021,7 @@ effect "nuke residue slow"
 outfit "Gatling Gun Ammo"
 	plural "Gatling Gun Ammo"
 	category "Ammunition"
-	cost 2
+	cost 4
 	thumbnail "outfit/bullet"
 	"mass" .002
 	"gatling round capacity" -1
