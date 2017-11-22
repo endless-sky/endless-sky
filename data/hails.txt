@@ -338,9 +338,8 @@ phrase "friendly civilian"
 		"paying to listen to"
 		"so in love with"
 		"streaming"
-		"on about"
+		"going on about"
 		"obsessed with"
-		"blinded by"
 	word
 		""
 		" that group"
@@ -348,7 +347,7 @@ phrase "friendly civilian"
 		" that band"
 		" that new band"
 		" those hacks"
-		" those crooks"
+		" those weirdos"
 		
 	word
 		" "
@@ -548,7 +547,7 @@ phrase "friendly civilian"
 		"gives you the opportunity to see the whole galaxy"
 		"has been bringing in the money quite well"
 		"makes me really miss home"
-		"has it's ups and downs"
+		"has its ups and downs"
 		"has made me really wonder if this is the life for me"
 		"runs in my family"
 	word
@@ -566,7 +565,7 @@ phrase "friendly civilian"
 		"Want my opinion? You should"
 		"Be like the best ship captains and"
 		"Don't forget to"
-		"Take an old Captain's advice:"
+		"Take an old captain's advice:"
 		"No matter what, do not forget to"
 	word
 		" "
@@ -680,9 +679,9 @@ phrase "friendly civilian"
 		"smashed the"
 		"walloped the"
 		"lose to the"
-		"get obliterated by"
-		"lose pathetically to the"
-		"have no chance against the"
+		"to get obliterated by"
+		"lost pathetically to the"
+		"had no chance against the"
 	word
 		" "
 	word
@@ -747,12 +746,11 @@ phrase "friendly civilian"
 		"rotten fruit"
 		"sludge"
 		"unprocessed sewage"
-		"nuclear waste"
-		#add more smelly stuff
+
 	word
 		". My"
 		", and now my"
-		", and since my"
+		", and since then my"
 	word
 		" "
 	word
@@ -1028,7 +1026,7 @@ phrase "friendly civilian"
 		"been using"
 		"been plying"
 		"stumbled upon"
-		"came acrossed"
+		"come across"
 	word
 		" "
 	word
@@ -1057,7 +1055,7 @@ phrase "friendly civilian"
 	word
 		"trade routes, but I'm not"
 		"trade routes, but there's no way I'm"
-		"trade routes, but I wont be"
+		"trade routes, but I won't be"
 	word
 		" "
 	word
@@ -1120,9 +1118,7 @@ phrase "friendly navy"
 		" "
 	word
 		"you."
-		"you and your family."
 		"the people."
-		"the civilians."
 
 phrase "friendly navy"
 	word
@@ -1171,9 +1167,7 @@ phrase "friendly navy"
 		"the greatest"
 		"the strongest"
 		"the grandest"
-		"big brother's"
 		"the best"
-		"the widest"
 	word
 		" "
 	word
@@ -2677,6 +2671,10 @@ phrase "hostile pirate"
 		"scariest"
 		"nastiest"
 		"most dangerous"
+		"meanest"
+		"most brutal"
+		"wealthiest"
+		"most experienced"
 	word
 		" "
 	word
@@ -2760,16 +2758,19 @@ phrase "hostile pirate"
 
 phrase "hostile pirate"
 	word
-		"You're about to "
-		"Get ready to "
-		"I'm going to make you "
-		"I hope you're ready to "
-		"Unless you pay me a hefty bribe, you're going to "
-		"I'm here to make you "
-		"I'm here to see to it that you "
-		"Pay up or "
-		"Hand over your credits or get ready to "
-		"Gimmie yer money or "
+		"You're about to"
+		"Get ready to"
+		"I'm going to make you"
+		"I hope you're ready to"
+		"Unless you pay me a hefty bribe, you're going to"
+		"I'm here to make you"
+		"I'm here to see to it that you"
+		"Pay up or"
+		"Hand over your credits or get ready to"
+		"Gimmie yer money or"
+		"Drop your cargo or"
+	word
+		" "
 	word
 		"die!"
 		"eat vacuum!"
@@ -2845,6 +2846,10 @@ phrase "hostile bounty"
 		"put me in a grave"
 	word
 		". Ha!"
+		". Lets see you try."
+		". I won't make this easy for you."
+		". You don't stand a chance."
+		". This isn't going to end well for you."
 		
 phrase "hostile bounty"
 	word
@@ -2936,10 +2941,8 @@ phrase "hostile bounty hunter"
 		"I was promised"
 		"I was given"
 		"A little bird gave me"
-		"I was hired for"
 		"My boss has paid me"
 		"My contractor paid me"
-		"You've got someone who has paid me"
 	word
 		" "
 	word
