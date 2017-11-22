@@ -103,7 +103,6 @@ shipyard "Northern Pirates"
 	"Berserker"
 
 shipyard "Luxury Ships"
-	"Shuttle"
 	"Blackbird"
 	"Falcon"
 	"Arrow"
