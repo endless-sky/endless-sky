@@ -307,6 +307,7 @@ phrase "friendly civilian"
 		"It's so weird that"
 		"Nobody can explain to me why"
 		"I can hardly imagine why"
+		"I can't see why"
 	word
 		" "
 	word
@@ -317,8 +318,11 @@ phrase "friendly civilian"
 		"my crew is"
 		"some of my friends are"
 		"all the oldsters are"
+		"they said they're"
+		"
 	word
 		" still"
+		" actually"
 		""
 	word
 		" "
@@ -329,6 +333,10 @@ phrase "friendly civilian"
 		"giving their money to"
 		"paying to listen to"
 		"so in love with"
+		"always streaming"
+		"always chatting about"
+		"obsessed with"
+		"blinded by"
 	word
 		""
 		" that group"
@@ -336,6 +344,8 @@ phrase "friendly civilian"
 		" that band"
 		" that new band"
 		" those hacks"
+		" those crooks"
+		
 	word
 		" "
 	phrase
@@ -344,6 +354,8 @@ phrase "friendly civilian"
 		". "
 	word
 		"Their music"
+		"Their taste"
+		"Their style"
 	word
 		" "
 	word
@@ -371,6 +383,9 @@ phrase "friendly civilian"
 		"ought to be banned"
 		"hurts my ears"
 		"makes me ill"
+		"hurts everyone's ears"
+		"makes everyone ill"
+		"will surely bring about the end of the galaxy"
 	word
 		"!"
 
@@ -408,6 +423,7 @@ phrase "friendly civilian"
 		"is the hit of the year"
 		"is the best thing going"
 		"is the best thing playing right now"
+		"is just so darn catchy"
 	word
 		"!"
 	word
@@ -436,11 +452,13 @@ phrase "friendly civilian"
 		"See you later"
 		"See you round the 'verse"
 		"Stay safe"
+		"Safe travels"
+		"Watch out for those pirates
 	word
 		", "
 	word
-		"fellow captain"
-		"captain"
+		"fellow Captain"
+		"Captain"
 		"friend"
 	word
 		"."
@@ -465,10 +483,12 @@ phrase "friendly civilian"
 		"the best of luck"
 		"fair winds and bright skies"
 		"Allah"
+		"Huitzilopochtli"
 		"the power of Heaven"
 		"Heaven's blessings"
 		"the Way and the Light"
 		"the immortal Tao"
+		"the great and powerful kek"
 	word
 		" "
 	word
@@ -486,12 +506,16 @@ phrase "friendly civilian"
 		"Becoming"
 		"Life as"
 		"The life of"
+		"Living as"
+		"Trying to be"
+		"My experience as"
 	word
 		" "
 	word
 		"a"
 		"an independent"
 		"a free"
+		"a freelance"
 	word
 		" "
 	word
@@ -517,6 +541,11 @@ phrase "friendly civilian"
 		"tops everything"
 		"is a challenge, but ultimately rewarding"
 		"gives you the opportunity to see the whole galaxy"
+		"has been bringing in the money quite well"
+		"makes me really miss home"
+		"has it's ups and downs"
+		"has made me really wonder if this is the life for me"
+		"runs in my family"
 	word
 		"."
 		"!"
@@ -532,6 +561,8 @@ phrase "friendly civilian"
 		"Want my opinion? You should"
 		"Be like the best ship captains and"
 		"Don't forget to"
+		"Take an old Captain's advice:"
+		"No matter what, do not forget to"
 	word
 		" "
 	word
@@ -563,8 +594,11 @@ phrase "friendly civilian"
 		"The preferred"
 		"A good"
 		"A sensible"
+		"The only"
+
 	word
 		" way to "
+		" method to"
 	word
 		"be safe from pirates"
 		"stay safe from pirates"
@@ -587,6 +621,7 @@ phrase "friendly civilian"
 		"fly a multipurpose ship that has room for cargo, shields, and heavy weapons"
 		"equip anti-missile turrets so they can't get you with missiles, and then you can run away"
 		"have a fleet with interceptors to tie them up while the cargo ships can warp to safety"
+		"get some protection! Consider hiring some extra guns"
 	word
 		"."
 		"!"
@@ -622,6 +657,8 @@ phrase "friendly civilian"
 		"Void Dragons"
 		"Goers"
 		"Psyches"
+		"Kekolds"
+		"Crew"
 	word
 		" "
 	word
@@ -1060,6 +1097,8 @@ phrase "friendly navy"
 phrase "friendly navy"
 	word
 		"Join the Navy."
+		"Enlist in the Navy."
+		"Sign up for the Navy."
 	word
 		" "
 	word
@@ -1081,6 +1120,8 @@ phrase "friendly navy"
 		"the South"
 		"the Dirt Belt"
 		"the Deep"
+		"the border worlds"
+		"the front lines"
 	word
 		"!"
 
@@ -2411,7 +2452,6 @@ phrase "hostile navy"
 	word
 		"."
 
-
 phrase "friendly deep"
 	word
 		"We"
@@ -2518,7 +2558,6 @@ phrase "hostile deep"
 		"human society"
 	word
 		"."
-
 
 phrase "hostile pirate"
 	word
@@ -3130,7 +3169,6 @@ phrase "hostile free worlds"
 	word
 		"."
 		"!"
-
 
 # Hails from the robotic Syndicate test dummy ships
 phrase "test dummy"
