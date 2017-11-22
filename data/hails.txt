@@ -457,8 +457,8 @@ phrase "friendly civilian"
 	word
 		", "
 	word
-		"fellow Captain"
-		"Captain"
+		"fellow captain"
+		"captain"
 		"friend"
 	word
 		"."
