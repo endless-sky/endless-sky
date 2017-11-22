@@ -1241,7 +1241,7 @@ phrase "friendly militia"
 		"behavior"
 		"activity"
 		"ships"
-		"starships"I
+		"starships"
 	word
 		"."
 
