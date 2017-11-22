@@ -345,6 +345,7 @@ phrase "friendly civilian"
 		" that new band"
 		" those hacks"
 		" those crooks"
+		
 	word
 		" "
 	phrase
@@ -2840,6 +2841,11 @@ phrase "hostile bounty hunter"
 		"They ponied up"
 		"I was promised"
 		"I was given"
+		"A little bird gave me"
+		"I was hired for"
+		"My boss has paid me"
+		"My contractor paid me"
+		"You've got someone who has paid me"
 	word
 		" "
 	word
@@ -2853,6 +2859,7 @@ phrase "hostile bounty hunter"
 		"a fat purse"
 		"a lifetime of riches"
 		"ten times a king's ransom"
+		"more than you can imagine"
 	word
 		" "
 	word
@@ -2878,6 +2885,12 @@ phrase "hostile bounty hunter"
 		"put an end to your crimes"
 		"give you an early retirement"
 		"put you in a grave"
+		"space you"
+		"take you down"
+		"make you regret causing problems"
+		"pay for what you've done"
+		"make you wish you were never born"
+		"remove you from the playing field"
 	word
 		"."
 		"!"
@@ -2899,6 +2912,7 @@ phrase "hostile bounty hunter"
 		"! Say your prayers,"
 		"! Flee if you can,"
 		"! Face me if you dare,"
+		". You will not leave this system,"
 	word
 		" "
 	word
@@ -2912,6 +2926,7 @@ phrase "hostile bounty hunter"
 		"unlucky sap"
 		"weakling"
 		"worthless wretch"
+		"criminal scum"
 	word
 		"!"
 
@@ -2922,6 +2937,7 @@ phrase "hostile bounty hunter"
 		"Target"
 		"Target ship"
 		"Bounty"
+		"Mark"
 	word
 		" "
 	word
@@ -2948,6 +2964,8 @@ phrase "hostile bounty hunter"
 		"Acquiring target lock"
 		"Accelerating to full speed"
 		"Preparing to open fire"
+		"Mark is within range, preparing to fire"
+		"Engaging"
 	word
 		"."
 		"!"
