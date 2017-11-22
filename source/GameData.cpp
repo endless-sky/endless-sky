@@ -112,7 +112,7 @@ namespace {
 	SpriteQueue spriteQueue;
 	
 	vector<string> sources;
-	map<const Sprite *, vector<string>> deferred;
+	map<const Sprite *, shared_ptr<ImageSet>> deferred;
 	map<const Sprite *, int> preloaded;
 	
 	const Government *playerGovernment = nullptr;
@@ -147,18 +147,22 @@ void GameData::BeginLoad(const char * const *argv)
 	// Now, read all the images in all the path directories. For each unique
 	// name, only remember one instance, letting things on the higher priority
 	// paths override the default images.
-	map<string, string> images;
-	LoadImages(images);
+	map<string, shared_ptr<ImageSet>> images = FindImages();
 	
 	// From the name, strip out any frame number, plus the extension.
 	for(const auto &it : images)
 	{
-		string name = ImageSet::Name(it.first);
+		// This should never happen, but just in case:
+		if(!it.second)
+			continue;
+		
+		// Check that the image set is complete.
+		it.second->Check();
 		// For landscapes, remember all the source files but don't load them yet.
-		if(ImageSet::IsDeferred(name))
-			deferred[SpriteSet::Get(name)].push_back(it.second);
+		if(ImageSet::IsDeferred(it.first))
+			deferred[SpriteSet::Get(it.first)] = it.second;
 		else
-			spriteQueue.Add(name, it.second);
+			spriteQueue.Add(it.second);
 	}
 	
 	// Generate a catalog of music files.
@@ -314,8 +318,7 @@ void GameData::Preload(const Sprite *sprite)
 	
 	// Now, load all the files for this sprite.
 	preloaded[sprite] = 0;
-	for(const string &path : dit->second)
-		spriteQueue.Add(name, path);
+	spriteQueue.Add(dit->second);
 }
 
 
@@ -814,15 +817,21 @@ void GameData::LoadSources()
 		// Load the about text and the icon, if any.
 		plugins[name] = Files::Read(*it + "about.txt");
 		
+		// Create an image set for the plugin icon.
+		shared_ptr<ImageSet> icon(new ImageSet(name));
+		
+		// Try adding all the possible icon variants.
 		if(Files::Exists(*it + "icon.png"))
-			spriteQueue.Add(name, *it + "icon.png");
+			icon->Add(*it + "icon.png");
 		else if(Files::Exists(*it + "icon.jpg"))
-			spriteQueue.Add(name, *it + "icon.jpg");
+			icon->Add(*it + "icon.jpg");
 		
 		if(Files::Exists(*it + "icon@2x.png"))
-			spriteQueue.Add(name, *it + "icon@2x.png");
+			icon->Add(*it + "icon@2x.png");
 		else if(Files::Exists(*it + "icon@2x.jpg"))
-			spriteQueue.Add(name, *it + "icon@2x.jpg");
+			icon->Add(*it + "icon@2x.jpg");
+		
+		spriteQueue.Add(icon);
 	}
 }
 
@@ -933,8 +942,9 @@ void GameData::LoadFile(const string &path, bool debugMode)
 
 
 
-void GameData::LoadImages(map<string, string> &images)
+map<string, shared_ptr<ImageSet>> GameData::FindImages()
 {
+	map<string, shared_ptr<ImageSet>> images;
 	for(const string &source : sources)
 	{
 		// All names will only include the portion of the path that comes after
@@ -945,8 +955,16 @@ void GameData::LoadImages(map<string, string> &images)
 		vector<string> imageFiles = Files::RecursiveList(directoryPath);
 		for(const string &path : imageFiles)
 			if(ImageSet::IsImage(path))
-				images[path.substr(start)] = path;
+			{
+				string name = ImageSet::Name(path.substr(start));
+				
+				shared_ptr<ImageSet> &imageSet = images[name];
+				if(!imageSet)
+					imageSet.reset(new ImageSet(name));
+				imageSet->Add(path);
+			}
 	}
+	return images;
 }
 
 

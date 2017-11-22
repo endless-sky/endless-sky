@@ -17,6 +17,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Trade.h"
 
 #include <map>
+#include <memory>
 #include <string>
 #include <vector>
 
@@ -30,6 +31,7 @@ class Fleet;
 class Galaxy;
 class GameEvent;
 class Government;
+class ImageSet;
 class Interface;
 class Minable;
 class Mission;
@@ -134,7 +136,7 @@ public:
 private:
 	static void LoadSources();
 	static void LoadFile(const std::string &path, bool debugMode);
-	static void LoadImages(std::map<std::string, std::string> &images);
+	static std::map<std::string, std::shared_ptr<ImageSet>> FindImages();
 	
 	static void PrintShipTable();
 	static void PrintWeaponTable();

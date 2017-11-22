@@ -54,7 +54,7 @@ void Sprite::AddFrames(ImageBuffer &buffer, bool is2x)
 	}
 	
 	// Check whether this sprite is large enough to require size reduction.
-	if(Preferences::Has("Reduce large graphics") && buffer.Width() * buffer.Width() >= 1000000)
+	if(Preferences::Has("Reduce large graphics") && buffer.Width() * buffer.Height() >= 1000000)
 		buffer.ShrinkToHalfSize();
 	
 	// Get a pointer to the image data.
@@ -94,49 +94,6 @@ void Sprite::AddMasks(std::vector<Mask> &masks)
 {
 	this->masks.swap(masks);
 	masks.clear();
-}
-
-
-
-void Sprite::AddFrame(int frame, ImageBuffer *image, Mask *mask, bool is2x)
-{
-	if(!image || frame < 0)
-		return;
-	
-	// If this is an @2x buffer, cut its dimensions in half. Then, if the
-	// dimensions are larger than the current sprite dimensions, store them.
-	width = max<float>(width, image->Width() >> is2x);
-	height = max<float>(height, image->Height() >> is2x);
-	
-	if(textures[is2x].size() <= static_cast<unsigned>(frame))
-		textures[is2x].resize(frame + 1, 0);
-	if(!textures[is2x][frame])
-		glGenTextures(1, &textures[is2x][frame]);
-	glBindTexture(GL_TEXTURE_2D, textures[is2x][frame]);
-	
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-	
-	if(Preferences::Has("Reduce large graphics") && image->Width() * image->Height() >= 1000000)
-		image->ShrinkToHalfSize();
-	
-	// ImageBuffer always loads images into 32-bit BGRA buffers.
-	// That is supposedly the fastest format to upload.
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, image->Width(), image->Height(), 0,
-		GL_BGRA, GL_UNSIGNED_BYTE, image->Pixels());
-	
-	glBindTexture(GL_TEXTURE_2D, 0);
-	delete image;
-	
-	if(mask)
-	{
-		if(masks.size() <= static_cast<unsigned>(frame))
-			masks.resize(frame + 1);
-		masks[frame] = move(*mask);
-		delete mask;
-	}
 }
 
 

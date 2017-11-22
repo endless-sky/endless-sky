@@ -46,6 +46,12 @@ public:
 	
 	
 public:
+	// Constructor, optionally specifying the name (for image sets like the
+	// plugin icons, whose name can't be determined from the path names).
+	ImageSet(const std::string &name = "");
+	
+	// Get the name of the sprite for this image set.
+	const std::string &Name() const;
 	// Add a single image to this set. Assume the name of the image has already
 	// been checked to make sure it belongs in this set.
 	void Add(const std::string &path);
@@ -58,7 +64,7 @@ public:
 	// Create the sprite and upload the image data to the GPU. After this is
 	// called, the internal image buffers and mask vector will be cleared, but
 	// the paths are saved in case the sprite needs to be loaded again.
-	void Upload();
+	void Upload(Sprite *sprite);
 	
 	
 private:

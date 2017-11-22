@@ -14,7 +14,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Mask.h"
 #include "Sprite.h"
-#include "SpriteSet.h"
 
 #include <iostream>
 
@@ -28,7 +27,7 @@ namespace {
 	}
 	
 	// Get the character index where the sprite name in the given path ends.
-	size_t NameEnd(const std::string &path)
+	size_t NameEnd(const string &path)
 	{
 		// The path always ends in a three-letter extension, ".png" or ".jpg".
 		// In addition, 3 more characters may be taken up by an @2x label.
@@ -109,7 +108,7 @@ bool ImageSet::Is2x(const string &path)
 
 // Determine whether the given path or name is for a sprite whose loading
 // should be deferred until needed.
-bool ImageSet::IsDeferred(const std::string &path)
+bool ImageSet::IsDeferred(const string &path)
 {
 	if(path.length() >= 5 && !path.compare(0, 5, "land/"))
 		return true;
@@ -121,7 +120,7 @@ bool ImageSet::IsDeferred(const std::string &path)
 
 // Determine whether the given path or name is to a sprite for which a
 // collision mask ought to be generated.
-bool ImageSet::IsMasked(const std::string &path)
+bool ImageSet::IsMasked(const string &path)
 {
 	if(path.length() >= 5 && !path.compare(0, 5, "ship/"))
 		return true;
@@ -133,14 +132,27 @@ bool ImageSet::IsMasked(const std::string &path)
 
 
 
+// Constructor, optionally specifying the name (for image sets like the
+// plugin icons, whose name can't be determined from the path names).
+ImageSet::ImageSet(const string &name)
+	: name(name)
+{
+}
+
+
+
+// Get the name of the sprite for this image set.
+const string &ImageSet::Name() const
+{
+	return name;
+}
+
+
+
 // Add a single image to this set. Assume the name of the image has already
 // been checked to make sure it belongs in this set.
-void ImageSet::Add(const std::string &path)
+void ImageSet::Add(const string &path)
 {
-	// Store the sprite name if this is the first image being added to the set.
-	if(name.empty())
-		name = Name(path);
-	
 	// Determine which frame of the sprite this image will be.
 	bool is2x = Is2x(path);
 	size_t frame = FrameIndex(path);
@@ -194,12 +206,12 @@ void ImageSet::Load()
 	// Load the 1x sprites first, then the 2x sprites, because they are likely
 	// to be in separate locations on the disk. Create masks if needed.
 	for(size_t i = 0; i < frames; ++i)
-		if(buffer[0].Read(paths[0][i]) && makeMasks)
+		if(buffer[0].Read(paths[0][i], i) && makeMasks)
 			masks[i].Create(buffer[0], i);
 	// Now, load the 2x sprites, if they exist. Because the number of 1x frames
 	// is definitive, don't load any frames beyond the size of the 1x list.
 	for(size_t i = 0; i < frames && i < paths[1].size(); ++i)
-		buffer[1].Read(paths[1][i]);
+		buffer[1].Read(paths[1][i], i);
 }
 
 
@@ -207,11 +219,8 @@ void ImageSet::Load()
 // Create the sprite and upload the image data to the GPU. After this is
 // called, the internal image buffers and mask vector will be cleared, but
 // the paths are saved in case the sprite needs to be loaded again.
-void ImageSet::Upload()
+void ImageSet::Upload(Sprite *sprite)
 {
-	// Get the sprite to load.
-	Sprite *sprite = SpriteSet::Modify(name);
-	
 	// Load the frames. This will clear the buffers and the mask vector.
 	sprite->AddFrames(buffer[0], false);
 	sprite->AddFrames(buffer[1], true);

@@ -30,7 +30,6 @@ public:
 private:
 	// Only SpriteQueue is allowed to modify the sprites.
 	friend class SpriteQueue;
-	friend class ImageSet;
 	static Sprite *Modify(const std::string &name);
 };
 

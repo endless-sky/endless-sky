@@ -41,8 +41,6 @@ public:
 	// Move the given masks into this sprite's internal storage. The given
 	// vector will be cleared.
 	void AddMasks(std::vector<Mask> &masks);
-	
-	void AddFrame(int frame, ImageBuffer *image, Mask *mask, bool is2x);
 	// Free up all textures loaded for this sprite.
 	void Unload();
 	
