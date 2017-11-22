@@ -141,10 +141,12 @@ void SpriteQueue::operator()()
 			lock.unlock();
 			
 			// Load the sprite.
-			item.image = ImageBuffer::Read(item.path);
+			item.image = new ImageBuffer;
 			// If sprite loading fails, just skip this sprite.
-			if(!item.image)
+			if(!item.image->Read(item.path))
 			{
+				delete item.image;
+				item.image = nullptr;
 				lock.lock();
 				continue;
 			}

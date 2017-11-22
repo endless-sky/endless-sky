@@ -90,15 +90,13 @@ Font::Font(const string &imagePath)
 void Font::Load(const string &imagePath)
 {
 	// Load the texture.
-	ImageBuffer *image = ImageBuffer::Read(imagePath);
-	if(!image)
+	ImageBuffer image;
+	if(!image.Read(imagePath))
 		return;
 	
 	LoadTexture(image);
 	CalculateAdvances(image);
-	SetUpShader(image->Width() / GLYPHS, image->Height());
-	
-	delete image;
+	SetUpShader(image.Width() / GLYPHS, image.Height());
 }
 
 
@@ -357,7 +355,7 @@ int Font::Glyph(char c, bool isAfterSpace)
 
 
 
-void Font::LoadTexture(ImageBuffer *image)
+void Font::LoadTexture(ImageBuffer &image)
 {
 	glGenTextures(1, &texture);
 	glBindTexture(GL_TEXTURE_2D, texture);
@@ -367,20 +365,20 @@ void Font::LoadTexture(ImageBuffer *image)
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 	
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, image->Width(), image->Height(), 0,
-		GL_BGRA, GL_UNSIGNED_BYTE, image->Pixels());
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, image.Width(), image.Height(), 0,
+		GL_BGRA, GL_UNSIGNED_BYTE, image.Pixels());
 }
 
 
 
-void Font::CalculateAdvances(ImageBuffer *image)
+void Font::CalculateAdvances(ImageBuffer &image)
 {
 	// Get the format and size of the surface.
-	int width = image->Width() / GLYPHS;
-	height = image->Height();
+	int width = image.Width() / GLYPHS;
+	height = image.Height();
 	unsigned mask = 0xFF000000;
 	unsigned half = 0xC0000000;
-	int pitch = image->Width();
+	int pitch = image.Width();
 	
 	// advance[previous * GLYPHS + next] is the x advance for each glyph pair.
 	// There is no advance if the previous value is 0, i.e. we are at the very
@@ -391,7 +389,7 @@ void Font::CalculateAdvances(ImageBuffer *image)
 		{
 			int maxD = 0;
 			int glyphWidth = 0;
-			uint32_t *begin = reinterpret_cast<uint32_t *>(image->Pixels());
+			uint32_t *begin = reinterpret_cast<uint32_t *>(image.Pixels());
 			for(int y = 0; y < height; ++y)
 			{
 				// Find the last non-empty pixel in the previous glyph.
