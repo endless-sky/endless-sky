@@ -345,7 +345,6 @@ phrase "friendly civilian"
 		" that new band"
 		" those hacks"
 		" those crooks"
-		
 	word
 		" "
 	phrase
