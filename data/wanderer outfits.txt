@@ -130,10 +130,10 @@ outfit "Moonbeam"
 		"reload" 1.8
 		"burst count" 25
 		"burst reload" 1
-		"firing energy" 2.7
+		"firing energy" 5.4
 		"firing heat" 1.8
-		"shield damage" 4.2
-		"hull damage" 6.6
+		"shield damage" 4.8
+		"hull damage" 8.4
 	description "Because their Sunbeams are not very effective against the heavy plating of the Korath drones, the Wanderers have developed a new beam weapon that is considerably more effective against hull armor."
 
 effect "moonbeam fleck"
@@ -178,10 +178,10 @@ outfit "Moonbeam Turret"
 		"reload" 1.2
 		"burst count" 30
 		"burst reload" 1
-		"firing energy" 2.7
+		"firing energy" 5.4
 		"firing heat" 1.8
-		"shield damage" 4.2
-		"hull damage" 6.6
+		"shield damage" 4.8
+		"hull damage" 8.4
 	description "This turret only carries a single Moonbeam weapon, but with its duty cycle increased so it can do 50% more damage than the non-turreted version."
 
 outfit "Wanderer Anti-Missile"
