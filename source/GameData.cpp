@@ -28,6 +28,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Galaxy.h"
 #include "GameEvent.h"
 #include "Government.h"
+#include "ImageSet.h"
 #include "Interface.h"
 #include "LineShader.h"
 #include "Minable.h"
@@ -152,9 +153,9 @@ void GameData::BeginLoad(const char * const *argv)
 	// From the name, strip out any frame number, plus the extension.
 	for(const auto &it : images)
 	{
-		string name = Name(it.first);
+		string name = ImageSet::Name(it.first);
 		// For landscapes, remember all the source files but don't load them yet.
-		if(name.substr(0, 5) == "land/")
+		if(ImageSet::IsDeferred(name))
 			deferred[SpriteSet::Get(name)].push_back(it.second);
 		else
 			spriteQueue.Add(name, it.second);
@@ -936,50 +937,16 @@ void GameData::LoadImages(map<string, string> &images)
 {
 	for(const string &source : sources)
 	{
+		// All names will only include the portion of the path that comes after
+		// this directory prefix.
 		string directoryPath = source + "images/";
+		size_t start = directoryPath.size();
+		
 		vector<string> imageFiles = Files::RecursiveList(directoryPath);
 		for(const string &path : imageFiles)
-			LoadImage(path, images, directoryPath.length());
+			if(ImageSet::IsImage(path))
+				images[path.substr(start)] = path;
 	}
-}
-
-
-
-void GameData::LoadImage(const string &path, map<string, string> &images, size_t start)
-{
-	bool isJpg = !path.compare(path.length() - 4, 4, ".jpg");
-	bool isPng = !path.compare(path.length() - 4, 4, ".png");
-	
-	// This is an ordinary file. Check to see if it is an image.
-	if(isJpg || isPng)
-		images[path.substr(start)] = path;
-}
-
-
-
-string GameData::Name(const string &path)
-{
-	// The path always ends in a three-letter extension, ".png" or ".jpg".
-	int end = path.length() - 4;
-	
-	// Check if the name ends in "@2x". If so, that's not part of the name.
-	if(end > 3 && path[end - 3] == '@' && path[end - 2] == '2' && path[end - 1] == 'x')
-		end -= 3;
-	
-	// Skip any numbers at the end of the name.
-	int pos = end;
-	while(pos--)
-		if(path[pos] < '0' || path[pos] > '9')
-			break;
-	
-	// This should never happen, but just in case someone creates a file named
-	// "images/123.jpg" or something:
-	if(pos < 0)
-		pos = end;
-	else if(path[pos] != '-' && path[pos] != '~' && path[pos] != '+' && path[pos] != '=')
-		pos = end;
-	
-	return path.substr(0, pos);
 }
 
 

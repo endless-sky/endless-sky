@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "SpriteQueue.h"
 
 #include "ImageBuffer.h"
+#include "ImageSet.h"
 #include "Mask.h"
 #include "Sprite.h"
 #include "SpriteSet.h"
@@ -21,15 +22,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <functional>
 
 using namespace std;
-
-namespace {
-	// Check if the given image is an @2x image.
-	bool Is2x(const string &path)
-	{
-		size_t len = path.length();
-		return (len > 7 && path[len - 7] == '@' && path[len - 6] == '2' && path[len - 5] == 'x');
-	}
-}
 
 
 
@@ -66,7 +58,7 @@ void SpriteQueue::Add(const string &name, const string &path)
 		if(added < 0)
 			return;
 		
-		bool is2x = Is2x(path);
+		bool is2x = ImageSet::Is2x(path);
 		int &frame = (is2x ? count2x[name] : count[name]);
 		toRead.emplace(sprite, name, path, frame++, is2x);
 		++added;
@@ -152,7 +144,7 @@ void SpriteQueue::operator()()
 			}
 			// Don't ever create masks for @2x sprites; just use the ordinary
 			// sprite masks instead.
-			if(!item.is2x && (!item.name.compare(0, 5, "ship/") || !item.name.compare(0, 9, "asteroid/")))
+			if(!item.is2x && ImageSet::IsMasked(item.name))
 			{
 				item.mask = new Mask;
 				item.mask->Create(item.image);
