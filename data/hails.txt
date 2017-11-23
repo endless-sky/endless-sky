@@ -2997,7 +2997,7 @@ phrase "hostile syndicate"
 	word
 		"like you!"
 
-phrase "hostile Syndicate"
+phrase "hostile syndicate"
 	word
 		"You are attacking the Syndicate; we must defend it."
 		"You have made a bad commercial move."
