@@ -12,10 +12,11 @@ ship "Aerie" "Aerie (Mining)"
 	outfits
 		"Heavy Laser" 2
 		"Heavy Laser Turret" 3
+		"Asteroid Scanner"
 		"LP072a Battery Pack"
 		"Cooling Ducts"
 		Hyperdrive
-		"D23-QP Shield Generator"
+		"D14-RN Shield Generator"
 		"Cargo Expansion"
 		"A255 Atomic Steering"
 		"NT-200 Nucleovoltaic"
@@ -164,7 +165,7 @@ ship "Bactrian" "Bactrian (Harvesting)"
 		"Heavy Laser" 2
 		"Heavy Laser Turret" 4
 		"Anti-Missile Turret" 2
-		"nGVF-BB Fuel Cell"
+		"Asteroid Scanner"
 		Hyperdrive
 		"LP144a Battery Pack"
 		Ramscoop
@@ -210,6 +211,7 @@ ship "Bactrian" "Bactrian (Mining)"
 	outfits
 		"Heavy Laser" 4
 		"Heavy Laser Turret" 6
+		"Asteroid Scanner"
 		Hyperdrive
 		"LP144a Battery Pack"
 		Ramscoop
@@ -217,7 +219,7 @@ ship "Bactrian" "Bactrian (Mining)"
 		"A520 Atomic Thruster"
 		"A865 Atomic Steering"
 		"Fusion Reactor"
-		"Large Radar Jammer"
+		"Small Radar Jammer" 2
 		"Liquid Nitrogen Cooler"
 
 
@@ -236,6 +238,7 @@ ship "Barb" "Barb (Gatling)"
 ship "Barb" "Barb (Harvesting)"
 	outfits
 		"Heavy Laser"
+		"Asteroid Scanner"
 		"nGVF-AA Fuel Cell"
 		"Cargo Expansion"
 		Supercapacitor 2
@@ -410,6 +413,7 @@ ship "Bounder" "Bounder (Hai)"
 
 ship "Boxwing" "Boxwing (Harvesting)"
 	outfits
+		"Asteroid Scanner"
 		"X1700 Ion Thruster"
 		"X1200 Ion Steering"
 		"nGVF-AA Fuel Cell"
@@ -739,7 +743,8 @@ ship "Cruiser" "Cruiser (Mark II)"
 
 ship "Dagger" "Dagger (Harvesting)"
 	outfits
-		"Heavy Laser"
+		"Beam Laser"
+		"Asteroid Scanner"
 		"X1700 Ion Thruster"
 		"X1200 Ion Steering"
 		"nGVF-AA Fuel Cell"
@@ -750,11 +755,11 @@ ship "Dagger" "Dagger (Harvesting)"
 ship "Dagger" "Dagger (Mining)"
 	outfits
 		"Heavy Laser"
+		"Asteroid Scanner"
 		"X1700 Ion Thruster"
 		"X1200 Ion Steering"
 		"LP036a Battery Pack"
 		"nGVF-AA Fuel Cell"
-		"D14-RN Shield Generator"
 
 
 
@@ -822,7 +827,8 @@ ship "Falcon" "Falcon (Plasma)"
 
 ship "Finch" "Finch (Harvesting)"
 	outfits
-		"Heavy Laser"
+		"Beam Laser"
+		"Asteroid Scanner"
 		"LP036a Battery Pack"
 		"nGVF-BB Fuel Cell"
 		"Cargo Expansion"
@@ -833,9 +839,9 @@ ship "Finch" "Finch (Harvesting)"
 ship "Finch" "Finch (Mining)"
 	outfits
 		"Heavy Laser"
+		"Asteroid Scanner"
 		"LP036a Battery Pack"
-		"nGVF-BB Fuel Cell"
-		"D14-RN Shield Generator"
+		"nGVF-CC Fuel Cell"
 		"A120 Atomic Thruster"
 		"Chipmunk Plasma Steering"
 
@@ -1213,10 +1219,10 @@ ship "Lance" "Lance (Gatling)"
 ship "Lance" "Lance (Harvesting)"
 	outfits
 		"Heavy Laser"
-		Supercapacitor
+		"Asteroid Scanner"
+		"LP036a Battery Pack"
 		"nGVF-AA Fuel Cell"
 		"Cargo Expansion"
-		"D14-RN Shield Generator"
 		"X1700 Ion Thruster"
 		"X1200 Ion Steering"
 
@@ -1437,6 +1443,7 @@ ship "Mule" "Mule (Harvesting)"
 		"Heavy Laser" 2
 		"Heavy Laser Turret" 2
 		"Anti-Missile Turret" 2
+		"Asteroid Scanner"
 		"LP072a Battery Pack"
 		Hyperdrive
 		"D41-HY Shield Generator"
@@ -1473,8 +1480,10 @@ ship "Mule" "Mule (Mining)"
 		"Heavy Laser" 2
 		"Heavy Laser Turret" 4
 		"nGVF-AA Fuel Cell"
+		"Asteroid Scanner"
+		"Outfits Expansion"
 		Hyperdrive
-		"Water Coolant System"
+		"Water Coolant System" 2
 		"LP144a Battery Pack"
 		"D41-HY Shield Generator"
 		"Small Radar Jammer" 2
@@ -1490,6 +1499,7 @@ ship "Nest" "Nest (Harvesting)"
 		"Anti-Missile Turret" 2
 		"Meteor Missile" 70
 		"Meteor Missile Launcher" 2
+		"Asteroid Scanner"
 		"LP036a Battery Pack"
 		"LP072a Battery Pack"
 		Hyperdrive
@@ -1701,9 +1711,9 @@ ship "Roost" "Roost (Harvesting)"
 		"Anti-Missile Turret" 2
 		"Meteor Missile" 70
 		"Meteor Missile Launcher" 2
+		"Asteroid Scanner"
 		Hyperdrive
 		"LP144a Battery Pack"
-		"Cargo Expansion"
 		"A250 Atomic Thruster"
 		"D67-TM Shield Generator" 2
 		"Impala Plasma Steering"
