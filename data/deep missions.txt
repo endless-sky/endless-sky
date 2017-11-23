@@ -13,9 +13,9 @@ mission "Deep: Syndicate Convoy"
 	name `Pickup from Hephaestus`
 	description `Escort a convoy of freighters to <stopovers> where they will pick up materials needed for scientific experiments. Return the convoy to <destination> by <date> for payment (<payment>).`
 	source
-		attributes deep
-		near Gomeisa 2
-	stopover Hephaestus
+		attributes "deep"
+		near "Gomeisa" 2
+	stopover "Hephaestus"
 	deadline
 	to offer
 		"combat rating" > 65
@@ -42,49 +42,49 @@ mission "Deep: Syndicate Convoy"
 				accept
 	
 	npc accompany save
-		government Merchant
+		government "Merchant"
 		personality timid escort
 		fleet
-			names civilian
+			names "civilian"
 			variant
 				"Bulk Freighter" 2
 				"Mule"
 	npc
-		government Merchant
+		government "Merchant"
 		personality timid
 		fleet
-			fighters civilian
+			fighters "civilian"
 			variant
 				"Dagger"
 			variant
 				"Boxwing"
 	npc
-		government Pirate
+		government "Pirate"
 		personality nemesis staying
 		system "Alphard"
 		fleet "Large Northern Pirates"
 	npc
-		government Pirate
+		government "Pirate"
 		personality nemesis staying
 		system "Sirius"
 		fleet "Large Northern Pirates"
 	npc
-		government Pirate
+		government "Pirate"
 		personality nemesis staying
 		system "Altair"
 		fleet "Small Northern Pirates"
 	npc
-		government Pirate
+		government "Pirate"
 		personality nemesis
 		system "Castor"
 		fleet "Small Northern Pirates"
 	npc
-		government Pirate
+		government "Pirate"
 		personality nemesis
 		system "Porrima"
 		fleet "Large Northern Pirates"
 	npc
-		government Pirate
+		government "Pirate"
 		personality nemesis staying
 		system destination
 		fleet "Large Northern Pirates"
@@ -104,9 +104,9 @@ mission "Deep: Tarazed Convoy"
 	name `Pickup from Tarazed`
 	description `Escort a convoy of freighters to <stopovers> where they will pick up materials needed for scientific experiments. Return the convoy to <destination> by <date> for payment (<payment>).`
 	source
-		attributes deep
-		near Gomeisa 2
-	stopover Wayfarer
+		attributes "deep"
+		near "Gomeisa" 2
+	stopover "Wayfarer"
 	deadline
 	to offer
 		"combat rating" > 65
@@ -133,18 +133,18 @@ mission "Deep: Tarazed Convoy"
 				accept
 	
 	npc accompany save
-		government Merchant
+		government "Merchant"
 		personality timid escort
 		fleet
-			names civilian
+			names "civilian"
 			variant
 				"Freighter" 3
 				"Mule" 2
 	npc
-		government Merchant
+		government "Merchant"
 		personality timid
 		fleet
-			fighters civilian
+			fighters "civilian"
 			variant
 				"Dagger" 2
 			variant
@@ -153,32 +153,32 @@ mission "Deep: Tarazed Convoy"
 				"Dagger"
 				"Boxwing"
 	npc
-		government Pirate
+		government "Pirate"
 		personality nemesis staying
 		system "Tania Australis"
 		fleet "Large Northern Pirates"
 	npc
-		government Pirate
+		government "Pirate"
 		personality nemesis staying
 		system "Muphrid"
 		fleet "Large Northern Pirates"
 	npc
-		government Pirate
+		government "Pirate"
 		personality nemesis staying
 		system "Ascella"
 		fleet "Small Northern Pirates"
 	npc
-		government Pirate
+		government "Pirate"
 		personality nemesis
 		system "Sirius"
 		fleet "Large Northern Pirates"
 	npc
-		government Pirate
+		government "Pirate"
 		personality nemesis
 		system "Seginus"
 		fleet "Small Northern Pirates"
 	npc
-		government Pirate
+		government "Pirate"
 		personality nemesis staying
 		system destination
 		fleet "Large Northern Pirates"
@@ -198,9 +198,9 @@ mission "Deep: Kraz Convoy"
 	name `Pickup from Kraz`
 	description `Escort a convoy of freighters to <stopovers> where they will pick up materials needed for scientific experiments. Return the convoy to <destination> by <date> for payment (<payment>).`
 	source
-		attributes deep
-		near Gomeisa 2
-	stopover Rust
+		attributes "deep"
+		near "Gomeisa" 2
+	stopover "Rust"
 	deadline
 	to offer
 		"combat rating" > 80
@@ -227,42 +227,42 @@ mission "Deep: Kraz Convoy"
 				accept
 	
 	npc accompany save
-		government Merchant
+		government "Merchant"
 		personality timid escort
 		fleet
-			names civilian
+			names "civilian"
 			variant
 				"Behemoth" 3
 	npc
-		government Pirate
+		government "Pirate"
 		personality nemesis staying
 		system "Algieba"
 		fleet "Large Northern Pirates"
 		fleet "Small Northern Pirates"
 	npc
-		government Pirate
+		government "Pirate"
 		personality nemesis staying
 		system "Cor Caroli"
 		fleet "Large Northern Pirates"
 		fleet "Small Northern Pirates"
 	npc
-		government Pirate
+		government "Pirate"
 		personality nemesis staying
 		system "Wei"
 		fleet "Large Northern Pirates"
 		fleet "Small Northern Pirates"
 	npc
-		government Pirate
+		government "Pirate"
 		personality nemesis
 		system "Rutilicus"
 		fleet "Large Northern Pirates"
 	npc
-		government Pirate
+		government "Pirate"
 		personality nemesis
 		system destination
 		fleet "Large Northern Pirates"
 	npc
-		government Pirate
+		government "Pirate"
 		personality nemesis staying
 		system destination
 		fleet "Large Northern Pirates"
@@ -284,10 +284,10 @@ mission "Deep: Mystery Cubes 0"
 	name `Gaining an Edge`
 	description `Land on the designated systems to place the mysterious cubes that Lieutenant Paris has given you, then return to <destination>.`
 	source
-		attributes deep
-		near Zosma 1 10
-		not attributes station
-	destination Memory
+		attributes "deep"
+		near "Zosma" 1 10
+		not attributes "station"
+	destination "Memory"
 	stopover "New Sahara"
 	stopover "Bounty"
 	stopover "Heartland"
@@ -344,19 +344,19 @@ mission "Deep: Mystery Cubes 0"
 					decline
 	
 	npc
-		government Pirate
+		government "Pirate"
 		personality disables plunders harvests
 		system
 			distance 5 10
 		fleet "Large Northern Pirates"
 	npc
-		government Pirate
+		government "Pirate"
 		personality disables plunders harvests
 		system
 			distance 10 15
 		fleet "Large Northern Pirates"
 	npc
-		government Pirate
+		government "Pirate"
 		personality disables plunders harvests
 		system
 			distance 15 20
@@ -406,8 +406,8 @@ mission "Deep: Mystery Cubes 1"
 	description `Travel to <destination> to learn more about the situation with the warlord Beelzebub.`
 	source
 		government "Republic" "Free Worlds" "Neutral" "Syndicate" "Independent"
-		near Sol 1 100
-	destination Luna
+		near "Sol" 1 100
+	destination "Luna"
 	to offer
 		has "event: deep: warlord detected"
 	
@@ -420,7 +420,7 @@ mission "Deep: Mystery Cubes 2"
 	landing
 	name `Blockading the Devil`
 	description `Travel to <destination> to set up a blockade in homes of capturing the warlord Beelzebub.`
-	destination Maelstrom
+	destination "Maelstrom"
 	deadline
 	to offer
 		has "Deep: Mystery Cubes 1: done"
@@ -465,10 +465,10 @@ mission "Deep: Mystery Cubes 2"
 		dialog `You have reached <planet>, but some of your escorts have not yet reached the system. Wait for all escorts to enter the system before landing.`
 	
 	npc accompany save
-		government Republic
+		government "Deep Security"
 		personality heroic opportunistic escort
 		fleet
-			names deep
+			names "deep"
 			variant
 				"Mule"
 				"Raven" 2
@@ -488,17 +488,17 @@ mission "Deep: Mystery Cubes 3: Escorts"
 	to fail
 		has "Deep: Mystery Cubes 4: done"
 	npc kill
-		government Republic
+		government "Deep Security"
 		personality heroic escort vindictive
 		fleet
-			names deep
+			names "deep"
 			fighters "deep fighter"
 			variant
 				"Mule"
 				"Raven" 2
 				"Dagger"
 	npc kill
-		government Republic
+		government "Republic"
 		personality heroic opportunistic escort vindictive
 		fleet
 			names "republic capital"
@@ -506,7 +506,7 @@ mission "Deep: Mystery Cubes 3: Escorts"
 				"Cruiser"
 				"Gunboat" 2
 	npc kill
-		government Republic
+		government "Republic"
 		personality timid
 		fleet
 			fighters "republic fighter"
@@ -547,10 +547,10 @@ mission "Deep: Mystery Cubes 3"
 				launch
 	
 	npc kill
-		government Pirate
+		government "Pirate"
 		personality staying heroic unconstrained target harvests plunders
 		fleet
-			names pirate
+			names "pirate"
 			variant
 				"Cruiser" 2
 				"Fury (Laser)" 3
@@ -561,7 +561,7 @@ mission "Deep: Mystery Cubes 4"
 	landing
 	name `Rendezvous on <planet>`
 	description `Travel to <destination> with reinforcements for its blockade.`
-	destination Farpoint
+	destination "Farpoint"
 	to offer
 		has "Deep: Mystery Cubes 3: done"
 	
@@ -574,7 +574,7 @@ mission "Deep: Mystery Cubes 4"
 				accept
 	
 	npc
-		government Republic
+		government "Republic"
 		personality heroic opportunistic escort 
 		fleet
 			names "republic capital"
@@ -584,7 +584,7 @@ mission "Deep: Mystery Cubes 4"
 				"Combat Drone" 6
 				"Dagger" 4
 	npc
-		government Merchant
+		government "Merchant"
 		personality staying vindictive
 		system destination
 		fleet
@@ -593,7 +593,7 @@ mission "Deep: Mystery Cubes 4"
 				"Bastion"
 				"Manta" 2
 	npc
-		government Republic
+		government "Republic"
 		personality staying heroic opportunistic vindictive
 		system destination
 		fleet
@@ -603,15 +603,19 @@ mission "Deep: Mystery Cubes 4"
 				"Cruiser"
 				"Combat Drone" 4
 				"Frigate"
+	npc
+		government "Deep Security"
+		personality staying heroic opportunistic vindictive
+		system destination
 		fleet
-			names deep
+			names "deep"
 			fighters "deep fighter"
 			variant
 				"Aerie" 2
 				"Dagger" 4
 				"Corvette (Speedy)"
 	npc
-		government Republic
+		government "Republic"
 		personality heroic opportunistic vindictive
 		system Sol
 		fleet
@@ -624,7 +628,7 @@ mission "Deep: Mystery Cubes 4"
 				"Lance" 4
 				"Frigate" 2
 	npc evade
-		government Pirate
+		government "Pirate"
 		personality staying heroic unconstrained target plunders harvests
 		system destination
 		fleet
@@ -638,11 +642,11 @@ mission "Deep: Mystery Cubes 4"
 				"Marauder Firebird (Weapons)" 2
 				"Corvette (Missile)" 2
 	
-	on enter Alnitak
+	on enter "Alnitak"
 		dialog `Alnitak is in chaos when you enter the system. An outnumbered defense fleet is fighting a group of pirate ships, and among the pirates you spot the three stolen Cruisers.`
 	on visit
 		dialog `You have landed on <planet>, but there are still pirates attacking the system. Defeat all of the pirates in order to complete this mission.`
-	on enter Hassaleh
+	on enter "Hassaleh"
 		set "deep: passed through north"
 	on complete
 		event "assisted the deep" 3 7
@@ -670,9 +674,9 @@ mission "Deep: TMBR 0"
 	name `Find "There Might Be Riots"`
 	description `Find and convince "There Might Be Riots" to throw a concert on <destination>.`
 	source
-		near Aludra 1 100
-		attributes deep
-	destination Midgard
+		near "Aludra" 1 100
+		attributes "deep"
+	destination "Midgard"
 	deadline 120
 	to offer
 		random < 60
@@ -734,7 +738,7 @@ mission "Deep: TMBR: Hint"
 		near "Fah Soom" 1 10
 		government "Hai"
 		attributes "human tourism"
-	destination Greenwater
+	destination "Greenwater"
 	to offer
 		has "Deep: TMBR 0: active"
 		not "Deep: TMBR 1: offered"
@@ -751,8 +755,8 @@ mission "Deep: TMBR 1"
 	landing
 	name `Transport band to <planet>`
 	description `Give the band "There Might Be Riots" a ride to <destination> so that they can perform for the Deep scientists.`
-	source Greenwater
-	destination Midgard
+	source "Greenwater"
+	destination "Midgard"
 	blocked "You have reached <origin>, but you'll need <capacity> to continue this mission. Return here when you have the required space free."
 	cargo "musical equipment" 4
 	passengers 8
@@ -782,8 +786,8 @@ mission "Deep: TMBR 1"
 mission "Deep: Interrogation"
 	landing
 	source
-		attributes deep
-		attributes spaceport
+		attributes "deep"
+		attributes "spaceport"
 	to offer
 		has "Deep Archaeology 5: done"
 	
@@ -947,10 +951,10 @@ mission "Deep: Questions"
 	description `Travel to <destination> to meet the author of an encrypted message.`
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
-		near Zosma 1 100
+		near "Zosma" 1 100
 	destination
-		attributes deep
-		attributes urban
+		attributes "deep"
+		attributes "urban"
 	to offer
 		has "event: assisted the deep"
 		has "Deep: Interrogation: offered"
@@ -1030,13 +1034,13 @@ mission "Deep: Project Hawking"
 	name `Research Supplies`
 	description `Fetch research supplies from <stopovers> and return them to <destination> by <date> for "Project Hawking."`
 	source
-		attributes deep
-		not attributes station
-	destination Midgard
+		attributes "deep"
+		not attributes "station"
+	destination "Midgard"
 	clearance
 	stopover "Carbuncle Station"
-	stopover Prime
-	stopover Vinci
+	stopover "Prime"
+	stopover "Vinci"
 	passengers 4
 	cargo "project supplies" 90
 	deadline
@@ -1086,9 +1090,9 @@ mission "Deep: Project Hawking"
 		dialog `You have arrived on <planet>, but you do not have all the supplies needed for "Project Hawking". Return to <stopovers> to collect all of the required cargo.`
 	
 	npc
-		government Independent
+		government "Independent"
 		personality staying
-		system Naos
+		system "Naos"
 		ship "Marauder Quicksilver (Engines)" "Gusoyn"
 	
 	on complete
@@ -1148,7 +1152,7 @@ mission "Deep: Project Hawking: Carbuncle"
 	to fail
 		has "Deep: Project Hawking: done"
 	npc kill
-		government Independent
+		government "Independent"
 		personality waiting
 		ship "Marauder Splinter (Engines)" "Abaddon"
 	on offer
@@ -1211,26 +1215,19 @@ mission "Deep: Project Hawking: Carbuncle"
 			``
 			`	You signal to your crew and passengers that takeoff is imminent, and obey the wishes of the Lovelace Lab's research station.`
 				launch
-	on accept
-		event "carbuncle mystery"
-
-event "carbuncle mystery"
-	planet "Carbuncle Station"
-		"required reputation" 1e16
-		"bribe" 0
 
 
 
 mission "Deep: Project Hawking: Prime"
 	landing
 	invisible
-	source Prime
+	source "Prime"
 	to offer
 		has "Deep: Project Hawking: active"
 	to fail
 		has "Deep: Project Hawking: done"
 	npc kill
-		government Independent
+		government "Independent"
 		personality waiting
 		ship "Marauder Raven (Engines)" "Krampus"
 	on offer
@@ -1277,13 +1274,13 @@ mission "Deep: Project Hawking: Prime"
 mission "Deep: Project Hawking: Vinci"
 	landing
 	invisible
-	source Vinci
+	source "Vinci"
 	to offer
 		has "Deep: Project Hawking: active"
 	to fail
 		has "Deep: Project Hawking: done"
 	npc kill
-		government Independent
+		government "Independent"
 		personality waiting
 		ship "Marauder Manta (Engines)" "Valac"
 	on offer
@@ -1320,7 +1317,7 @@ mission "Deep: Remnant 0"
 	name `Fetching Keystones`
 	description `Buy 10 Quantum Keystones from Hai space and return them to <destination>, where Ivan and his team will research them and their link to the spatial anomaly in Terminus.`
 	source
-		attributes deep
+		attributes "deep"
 		near "Epsilon Leonis" 1 100
 	to offer
 		random < 40
@@ -1399,7 +1396,7 @@ mission "Deep: Remnant: Keystone Research"
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		near "Epsilon Leonis" 1 100
-	destination Valhalla
+	destination "Valhalla"
 	to offer
 		has "event: deep: keystone research"
 	
@@ -1413,8 +1410,8 @@ mission "Deep: Remnant 1A"
 	landing
 	name `Exploring the Unknown`
 	description `Explore the region of space beyond the Terminus wormhole. Return to <destination> after exploring everything you can reach.`
-	source Valhalla
-	waypoint Terminus
+	source "Valhalla"
+	waypoint "Terminus"
 	to offer
 		has "Deep: Remnant: Keystone Research: done"
 		not "deep: knew of stones before scientists"
@@ -1434,9 +1431,9 @@ mission "Deep: Remnant 1A"
 				accept
 	on accept
 		outfit "Quantum Keystone" 1
-	on enter Arculus
+	on enter "Arculus"
 		dialog `This region of space appears to be inhabited. You should attempt to find out more about the beings living here.`
-	on enter Nenia
+	on enter "Nenia"
 		set "discovered void sprites"
 		dialog
 			`This system is full of strange, space-dwelling creatures that appear to be eating asteroids. The sight of their mouthparts chewing rock into dust is sure to be a recurring nightmare for any captain who visits this system. You make a note to avoid flying too close, in case they mistake your ship for their next meal.`
@@ -1453,8 +1450,8 @@ mission "Deep: Remnant 2A"
 	landing
 	name `Analyze Remnant Ships`
 	description `Scan the outfits of the Remnant ships in Arculus, then return to the scientists on <destination> with the detailed scanner logs.`
-	source Valhalla
-	waypoint Arculus
+	source "Valhalla"
+	waypoint "Arculus"
 	to offer
 		has "Deep: Remnant 1A: done"
 	
@@ -1481,11 +1478,11 @@ mission "Deep: Remnant 2A"
 					decline
 	
 	npc "scan outfits"
-		government Remnant
+		government "Remnant"
 		personality staying uninterested target
-		system Arculus
+		system "Arculus"
 		fleet
-			names remnant
+			names "remnant"
 			variant
 				"Albatross"
 				"Starling"
@@ -1502,8 +1499,8 @@ mission "Deep: Remnant 1B"
 	landing
 	name `Analyze Remnant Ships`
 	description `Scan the outfits of the Remnant ships in Arculus, then return to the scientists on <destination> with the detailed scanner logs.`
-	source Valhalla
-	waypoint Arculus
+	source "Valhalla"
+	waypoint "Arculus"
 	to offer
 		has "Deep: Remnant: Keystone Research: done"
 		has "deep: knew of stones before scientists"
@@ -1521,11 +1518,11 @@ mission "Deep: Remnant 1B"
 					decline
 	
 	npc "scan outfits"
-		government Remnant
+		government "Remnant"
 		personality staying uninterested target
-		system Arculus
+		system "Arculus"
 		fleet
-			names remnant
+			names "remnant"
 			variant
 				"Albatross"
 				"Starling"
@@ -1542,8 +1539,8 @@ mission "Deep: Remnant 1C"
 	landing
 	name `Analyze Remnant Ships`
 	description `Scan the outfits of the Remnant ships in Arculus, then return to the scientists on <destination> with the detailed scanner logs.`
-	source Valhalla
-	waypoint Arculus
+	source "Valhalla"
+	waypoint "Arculus"
 	to offer
 		has "Deep: Remnant: Keystone Research: done"
 		not "deep: knew of stones before scientists"
@@ -1576,11 +1573,11 @@ mission "Deep: Remnant 1C"
 					decline
 	
 	npc "scan outfits"
-		government Remnant
+		government "Remnant"
 		personality staying uninterested target
-		system Arculus
+		system "Arculus"
 		fleet
-			names remnant
+			names "remnant"
 			variant
 				"Albatross"
 				"Starling"
@@ -1604,7 +1601,7 @@ mission "Deep: Remnant Technology"
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		near "Epsilon Leonis" 1 100
-	destination Valhalla
+	destination "Valhalla"
 	to offer
 		has "event: deep: scan log research"
 	
@@ -1622,7 +1619,7 @@ mission "Deep: Remnant: Engines"
 	landing
 	name `Fetching Engines`
 	description `Acquire "Forge-Class" thruster and steering engines from the Remnant and bring them to <destination>.`
-	source Valhalla
+	source "Valhalla"
 	to offer
 		has "Deep: Remnant Technology: done"
 	
@@ -1688,7 +1685,7 @@ mission "Deep: Remnant: Generators"
 	landing
 	name `Fetching a Generator`
 	description `Acquire a Millennium Cell generator from the Remnant and bring it to <destination>.`
-	source Valhalla
+	source "Valhalla"
 	to offer
 		has "Deep: Remnant: Engines: done"
 	
@@ -1719,7 +1716,7 @@ mission "Deep: Remnant: Inhibitor Cannon"
 	landing
 	name `Fetching a Cannon`
 	description `Acquire an Inhibitor Cannon from the Remnant and bring the weapon to <destination>.`
-	source Valhalla
+	source "Valhalla"
 	to offer
 		has "Deep: Remnant: Generators: done"
 	
@@ -1750,10 +1747,10 @@ mission "Deep: Remnant Surveillance"
 	landing
 	name `Remnant Surveillance`
 	description `Land on each of the Remnant worlds (<stopovers>) and place a number of sensor cubes. Then return to <destination> once you are done.`
-	source Valhalla
-	stopover Viminal
-	stopover Aventine
-	stopover Caelian
+	source "Valhalla"
+	stopover "Viminal"
+	stopover "Aventine"
+	stopover "Caelian"
 	to offer
 		has "Deep: Remnant: Inhibitor Cannon: done"
 	
@@ -1794,7 +1791,7 @@ mission "Deep: Remnant Surveillance"
 mission "Deep: Remnant Surveillance - Viminal"
 	landing
 	invisible
-	source Viminal
+	source "Viminal"
 	to offer
 		has "Deep: Remnant Surveillance: active"
 	on offer
@@ -1805,7 +1802,7 @@ mission "Deep: Remnant Surveillance - Viminal"
 mission "Deep: Remnant Surveillance - Caelian"
 	landing
 	invisible
-	source Caelian
+	source "Caelian"
 	to offer
 		has "Deep: Remnant Surveillance: active"
 	on offer
@@ -1816,7 +1813,7 @@ mission "Deep: Remnant Surveillance - Caelian"
 mission "Deep: Remnant Surveillance - Aventine"
 	landing
 	invisible
-	source Aventine
+	source "Aventine"
 	to offer
 		has "Deep: Remnant Surveillance: active"
 	on offer
@@ -1846,10 +1843,10 @@ mission "Deep: Scientist Rescue 0"
 	name "Locate Missing Scientists"
 	description "A Star Queen transporting prominent Deep scientists has gone missing. It was last seen near the Betelgeuse system in the Far North. Find its whereabouts and return it to <destination> if possible."
 	source
-		attributes deep
-		not attributes station
-	destination Valhalla
-	waypoint Betelgeuse
+		attributes "deep"
+		not attributes "station"
+	destination "Valhalla"
+	waypoint "Betelgeuse"
 	to offer
 		has "event: deep: scientist rescue timer"
 	
@@ -1884,7 +1881,7 @@ mission "Deep: Scientist Rescue 0"
 				`	"Sorry, but this doesn't sound worth it to me."`
 					decline
 
-	on enter Arneb
+	on enter "Arneb"
 		set "found star queen"
 		dialog `As you enter Arneb, your scanners pick up the Star Queen landing on Haven. Unfortunately, there are also a large number of pirate vessels headed in your direction. You should report back to Lt. Paris on <destination> for further instruction.`
 	on visit
@@ -1896,7 +1893,7 @@ mission "Deep: Scientist Rescue 0"
 
 mission "Deep: Scientist Rescue 0: Prime"
 	landing
-	source Prime
+	source "Prime"
 	to offer
 		has "Deep: Scientist Rescue 0: active"
 		not "found star queen"
@@ -1910,7 +1907,7 @@ mission "Deep: Scientist Rescue 0: Prime"
 
 mission "Deep: Scientist Rescue 0: Farpoint"
 	landing
-	source Farpoint
+	source "Farpoint"
 	to offer
 		has "Deep: Scientist Rescue 0: active"
 		not "found star queen"
@@ -1927,7 +1924,7 @@ mission "Deep: Scientist Rescue 0: Farpoint"
 mission "Deep: Scientist Rescue 0: Pirates"
 	invisible
 	landing
-	destination Haven
+	destination "Haven"
 	to offer
 		has "Deep: Scientist Rescue 0: active"
 	to fail
@@ -1935,7 +1932,7 @@ mission "Deep: Scientist Rescue 0: Pirates"
 			has "Deep: Scientist Rescue 3A: done"
 			has "Deep: Scientist Rescue 3B: offered"
 	npc kill
-		government Pirate
+		government "Pirate"
 		personality nemesis staying
 		system Arneb
 		ship "Leviathan (Hai Engines)" "Barbas"
@@ -1945,7 +1942,7 @@ mission "Deep: Scientist Rescue 0: Pirates"
 
 mission "Deep: Scientist Rescue 0: Haven"
 	landing
-	source Haven
+	source "Haven"
 	to offer
 		has "Deep: Scientist Rescue 0: active"
 	
@@ -1958,17 +1955,17 @@ mission "Deep: Scientist Rescue 0: Haven"
 
 mission "Deep: Scientist Rescue 0: Haven Pirates Backup"
 	landing
-	source Haven
-	destination Valhalla
+	source "Haven"
+	destination "Valhalla"
 	to offer
 		has "Deep: Scientist Rescue 0: Haven: offered"
 		has "Deep: Scientist Rescue 0: Pirates: done"
 		has "Deep: Scientist Rescue 0: active"
 	npc evade
-		government Pirate
+		government "Pirate"
 		personality staying harvests plunders
 			confusion 20
-		system Arneb
+		system "Arneb"
 		fleet "Large Northern Pirates" 2
 		fleet "Small Northern Pirates"
 
@@ -1978,7 +1975,7 @@ mission "Deep: Scientist Rescue 1"
 	landing
 	name "Secure the Scientists"
 	description "Escort the <npc> to <destination> to retrieve the Star Queen. Escorts will be waiting for you on Memory in the Zosma system and Farpoint in the Alnitak system."
-	destination Haven
+	destination "Haven"
 	clearance
 	to offer
 		has "Deep: Scientist Rescue 0: done"
@@ -2012,7 +2009,7 @@ mission "Deep: Scientist Rescue 1"
 				accept
 	
 	npc save accompany
-		government Republic
+		government "Deep Security"
 		personality escort
 		ship "Mule (Heavy)" "D.S.S. Faraday"
 	
@@ -2024,7 +2021,7 @@ mission "Deep: Scientist Rescue 1"
 		event "battle in arneb end"
 
 event "battle in arneb"
-	system Arneb
+	system "Arneb"
 		remove fleet "Large Northern Pirates"
 		remove fleet "Small northern Pirates"
 		remove fleet "Large Republic"
@@ -2042,9 +2039,9 @@ mission "Deep: Scientist Rescue 1: Pirates"
 			has "Deep: Scientist Rescue 3A: done"
 			has "Deep: Scientist Rescue 3B: offered"
 	npc kill
-		government Pirate
+		government "Pirate"
 		personality nemesis staying
-		system Arneb
+		system "Arneb"
 		ship "Firebird (Hai Shields)" "Murmur"
 		ship "Firebird (Hai Shields)" "Ronove"
 		ship "Headhunter (Hai)" "Naberius"
@@ -2056,8 +2053,8 @@ mission "Deep: Scientist Rescue 1: Recruit Escorts"
 	landing
 	name "Deep Security escorts on <planet>"
 	description "Lieutenant Paris mentioned an escort squadron of Deep Security ships was preparing to join you on your mission. Meet up with them on <destination>, if you want to."
-	source Valhalla
-	destination Memory
+	source "Valhalla"
+	destination "Memory"
 	to offer
 		has "Deep: Scientist Rescue 0: done"
 	to fail
@@ -2068,7 +2065,7 @@ mission "Deep: Scientist Rescue 1: Recruit Escorts"
 mission "Deep: Scientist Rescue 1: Escorts"
 	invisible
 	landing
-	source Memory
+	source "Memory"
 	to offer
 		has "Deep: Scientist Rescue 1: Recruit Escorts: done"
 	to fail
@@ -2081,7 +2078,7 @@ mission "Deep: Scientist Rescue 1: Escorts"
 			`As you land, you notice a group of Deep Security warships - three Aeries and their fighter squadrons - loading munitions just outside of the spaceport. Before you can make it into the spaceport, one of the pilots waves you over for a brief conversation: aside from a few trivial items left on their preflight checklist, the warships are ready to launch and join in on the rescue mission.`
 				accept
 	npc kill
-		government Republic
+		government "Deep Security"
 		personality heroic escort
 		fleet 3
 			names "deep"
@@ -2096,8 +2093,8 @@ mission "Deep: Scientist Rescue 1: Recruit Reinforcements"
 	landing
 	name "Republic Navy escorts on <planet>"
 	description "Lieutenant Paris mentioned that some Navy officers were interested in avenging the loss of their comrades. Meet up with them on <destination>, if you want to."
-	source Valhalla
-	destination Farpoint
+	source "Valhalla"
+	destination "Farpoint"
 	to offer
 		has "Deep: Scientist Rescue 0: done"
 	to fail
@@ -2108,7 +2105,7 @@ mission "Deep: Scientist Rescue 1: Recruit Reinforcements"
 mission "Deep: Scientist Rescue 1: Reinforcements"
 	invisible
 	landing
-	source Farpoint
+	source "Farpoint"
 	to offer
 		has "Deep: Scientist Rescue 1: Recruit Reinforcements: done"
 	to fail
@@ -2121,7 +2118,7 @@ mission "Deep: Scientist Rescue 1: Reinforcements"
 			`While refueling at the Farpoint naval base, you are approached by two Navy officers who recognize you as Captain <last>. They tell you that Lieutenant Paris contacted them a few days ago, indicating that the rescue fleet was en route and would be reaching the Alnitak system shortly. They inform you that they have requisitioned two Cruisers to assist in the Star Queen's retrieval, and depart for their ships.`
 				accept
 	npc kill
-		government Republic
+		government "Republic"
 		personality heroic escort
 		fleet 2
 			names "republic capital"
@@ -2148,7 +2145,7 @@ mission "Deep: Scientist Rescue 2"
 	landing
 	name "Return to <planet>"
 	description "Now that you have secured the Star Queen, escort it safely to <destination>."
-	destination Valhalla
+	destination "Valhalla"
 	to offer
 		has "Deep: Scientist Rescue 1: done"
 	
@@ -2166,7 +2163,7 @@ mission "Deep: Scientist Rescue 2"
 		dialog `	You receive a transmission from Lieutenant Paris. "I have a sneaking suspicion that Beelzebub may be behind this. I suggest we jump out of here immediately and make it back to the Deep alive before taking on that Bactrian."`
 	
 	npc save accompany
-		government Republic
+		government "Deep Security"
 		personality timid escort
 		ship "Star Queen (Unarmed)" "D.S.S. Alcubierre"
 	
@@ -2201,11 +2198,11 @@ ship "Bactrian" "Bactrian (Cosmic Devil)"
 mission "Deep: Scientist Rescue 2: Pirate Bactrian"
 	landing
 	invisible
-	destination Valhalla
+	destination "Valhalla"
 	to offer
 		has "Deep: Scientist Rescue 1: done"
 	npc kill
-		government Pirate
+		government "Pirate"
 		personality staying nemesis
 		ship "Bactrian (Cosmic Devil)" "Cosmic Devil"
 		dialog 
@@ -2225,7 +2222,7 @@ mission "Deep: Scientist Rescue 2: More Pirates"
 			has "Deep: Scientist Rescue 3A: done"
 			has "Deep: Scientist Rescue 3B: offered"
 	npc kill
-		government Pirate
+		government "Pirate"
 		personality staying nemesis
 		ship "Leviathan (Hai Weapons)" "Furfur"
 		ship "Leviathan (Hai Weapons)" "Pithius"
@@ -2236,8 +2233,8 @@ mission "Deep: Scientist Rescue 3A"
 	landing
 	name "Take down the Devil"
 	description "You have returned the scientists, but the pirates still have a Bactrian. Eliminate it and return to <destination>."
-	destination Valhalla
-	waypoint Arneb
+	destination "Valhalla"
+	waypoint "Arneb"
 	to offer
 		has "Deep: Scientist Rescue 2: done"
 		not "Deep: Scientist Rescue: Pirate Bactrian: done"
