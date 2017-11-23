@@ -15,6 +15,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "AI.h"
 #include "AsteroidField.h"
+#include "BatchDrawList.h"
 #include "CollisionSet.h"
 #include "DrawList.h"
 #include "EscortDisplay.h"
@@ -155,6 +156,7 @@ private:
 	bool terminate = false;
 	bool wasActive = false;
 	DrawList draw[2];
+	BatchDrawList batchDraw[2];
 	Radar radar[2];
 	// Viewport position and velocity.
 	Point center;

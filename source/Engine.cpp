@@ -742,6 +742,7 @@ void Engine::Draw() const
 		label.Draw();
 	
 	draw[drawTickTock].Draw();
+	batchDraw[drawTickTock].Draw();
 	
 	for(const auto &it : statuses)
 	{
@@ -1090,6 +1091,7 @@ void Engine::CalculateStep()
 	
 	// Clear the list of objects to draw.
 	draw[calcTickTock].Clear(step, zoom);
+	batchDraw[calcTickTock].Clear(step, zoom);
 	radar[calcTickTock].Clear();
 	
 	if(!player.GetSystem())
@@ -1201,6 +1203,7 @@ void Engine::CalculateStep()
 		newCenterVelocity = flagship->Velocity();
 	}
 	draw[calcTickTock].SetCenter(newCenter, newCenterVelocity);
+	batchDraw[calcTickTock].SetCenter(newCenter);
 	radar[calcTickTock].SetCenter(newCenter);
 	
 	// Populate the radar.
@@ -1252,16 +1255,10 @@ void Engine::CalculateStep()
 	}
 	// Draw the projectiles.
 	for(const Projectile &projectile : projectiles)
-	{
-		// The motion blur should be reduced depending on how much motion blur
-		// is in the sprite itself:
-		double innateVelocity = 2. * projectile.GetWeapon().Velocity();
-		Point relativeVelocity = projectile.Velocity() - projectile.Unit() * innateVelocity;
-		draw[calcTickTock].AddProjectile(projectile, relativeVelocity, projectile.Clip());
-	}
+		batchDraw[calcTickTock].Add(projectile, projectile.Clip());
 	// Draw the visuals.
 	for(const Visual &visual : visuals)
-		draw[calcTickTock].AddUnblurred(visual);
+		batchDraw[calcTickTock].Add(visual);
 	
 	// Keep track of how much of the CPU time we are using.
 	loadSum += loadTimer.Time();

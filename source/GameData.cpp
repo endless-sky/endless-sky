@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "GameData.h"
 
 #include "Audio.h"
+#include "BatchShader.h"
 #include "Color.h"
 #include "Command.h"
 #include "Conversation.h"
@@ -263,6 +264,7 @@ void GameData::LoadShaders()
 	PointerShader::Init();
 	RingShader::Init();
 	SpriteShader::Init();
+	BatchShader::Init();
 	
 	background.Init(16384, 4096);
 }
