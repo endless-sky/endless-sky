@@ -168,7 +168,7 @@ Rectangle Interface::GetBox(const string &name) const
 
 
 // Get a named value.
-double Interface::GetValue(const std::string &name) const
+double Interface::GetValue(const string &name) const
 {
 	auto it = values.find(name);
 	return (it == values.end() ? 0. : it->second);

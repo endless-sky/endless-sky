@@ -120,7 +120,7 @@ void SpriteQueue::operator()()
 				break;
 			
 			// Extract the one item we should work on reading right now.
-			std::shared_ptr<ImageSet> imageSet = toRead.front();
+			shared_ptr<ImageSet> imageSet = toRead.front();
 			toRead.pop();
 			
 			// It's now safe to add to the lists.
@@ -160,7 +160,7 @@ double SpriteQueue::DoLoad(unique_lock<mutex> &lock)
 	for(int i = 0; !toLoad.empty() && i < 100; ++i)
 	{
 		// Extract the one item we should work on uploading right now.
-		std::shared_ptr<ImageSet> imageSet = toLoad.front();
+		shared_ptr<ImageSet> imageSet = toLoad.front();
 		toLoad.pop();
 		
 		// It's now safe to modify the lists.

@@ -725,7 +725,7 @@ double GameData::SolarWind(const Sprite *sprite)
 
 
 // Strings for combat rating levels, etc.
-const string &GameData::Rating(const std::string &type, int level)
+const string &GameData::Rating(const string &type, int level)
 {
 	static const string EMPTY;
 	auto it = ratings.find(type);

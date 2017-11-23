@@ -119,7 +119,7 @@ AI::AI(const List<Ship> &ships, const List<Minable> &minables, const List<Flotsa
 
 	
 // Fleet commands from the player.
-void AI::IssueShipTarget(const PlayerInfo &player, const std::shared_ptr<Ship> &target)
+void AI::IssueShipTarget(const PlayerInfo &player, const shared_ptr<Ship> &target)
 {
 	Orders newOrders;
 	bool isEnemy = target->GetGovernment()->IsEnemy();

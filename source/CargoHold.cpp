@@ -440,7 +440,7 @@ void CargoHold::TransferAll(CargoHold &to, bool transferPassengers)
 		else
 			++mit;
 	}
-	const std::vector<const Outfit *> outfitOrder = OrderOutfitsBySize(outfits);
+	const vector<const Outfit *> outfitOrder = OrderOutfitsBySize(outfits);
 	for(const auto &outfit : outfitOrder)
 		Transfer(outfit, outfits[outfit], to);
 	for(const auto &it : commodities)

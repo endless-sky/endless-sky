@@ -84,7 +84,7 @@ void Sprite::AddFrames(ImageBuffer &buffer, bool is2x)
 
 // Move the given masks into this sprite's internal storage. The given
 // vector will be cleared.
-void Sprite::AddMasks(std::vector<Mask> &masks)
+void Sprite::AddMasks(vector<Mask> &masks)
 {
 	this->masks.swap(masks);
 	masks.clear();

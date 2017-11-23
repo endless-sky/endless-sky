@@ -147,7 +147,7 @@ double Outfit::Get(const char *attribute) const
 
 
 
-double Outfit::Get(const std::string &attribute) const
+double Outfit::Get(const string &attribute) const
 {
 	return Get(attribute.c_str());
 }

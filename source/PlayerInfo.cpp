@@ -1367,7 +1367,7 @@ const multimap<Date, string> &PlayerInfo::Logbook() const
 
 
 
-void PlayerInfo::AddLogEntry(const std::string &text)
+void PlayerInfo::AddLogEntry(const string &text)
 {
 	logbook.emplace(date, text);
 }
