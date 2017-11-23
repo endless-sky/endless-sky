@@ -315,8 +315,8 @@ ship "Bastion"
 		"cost" 3560000
 		"shields" 6700
 		"hull" 4200
-		"required crew" 32
-		"bunks" 47
+		"required crew" 17
+		"bunks" 40
 		"mass" 580
 		"drag" 10.3
 		"heat dissipation" .5
@@ -2602,7 +2602,7 @@ ship "Splinter"
 		"cost" 3100000
 		"shields" 5200
 		"hull" 1700
-		"required crew" 12
+		"required crew" 7
 		"bunks" 21
 		"mass" 250
 		"drag" 4.0
