@@ -2159,7 +2159,7 @@ phrase "pirate"
 		"Bony Fingers"
 		"Yo Ho Ho"
 		"Low Blow"
-		"bilgewater"
+		"Bilgewater"
 
 phrase "pirate"
 	phrase
