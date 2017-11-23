@@ -450,15 +450,15 @@ void Interface::ImageElement::Draw(const Rectangle &rect, const Information &inf
 	if(!sprite || !sprite->Width() || !sprite->Height())
 		return;
 	
+	float frame = info.GetSpriteFrame(name);
 	if(isOutline)
 	{
 		Color color = (isColored ? info.GetOutlineColor() : Color(1., 1.));
 		Point unit = info.GetSpriteUnit(name);
-		int frame = info.GetSpriteFrame(name);
 		OutlineShader::Draw(sprite, rect.Center(), rect.Dimensions(), color, unit, frame);
 	}
 	else
-		SpriteShader::Draw(sprite, rect.Center(), rect.Width() / sprite->Width());
+		SpriteShader::Draw(sprite, rect.Center(), rect.Width() / sprite->Width(), 0, frame);
 }
 
 

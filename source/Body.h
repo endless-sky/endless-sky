@@ -31,17 +31,6 @@ class Sprite;
 // facing direction and usually also has a sprite.
 class Body {
 public:
-	// Class representing the current animation state, which may be halfway in
-	// between two frames.
-	class Frame {
-	public:
-		uint32_t first = 0;
-		uint32_t second = 0;
-		float fade = 0.f;
-	};
-	
-	
-public:
 	// Constructors.
 	Body() = default;
 	Body(const Sprite *sprite, Point position, Point velocity = Point(), Angle facing = Angle(), double zoom = 1.);
@@ -59,9 +48,7 @@ public:
 	// Which color swizzle should be applied to the sprite?
 	int GetSwizzle() const;
 	// Get the sprite and mask for the given time step.
-	Frame GetFrame(int step = -1) const;
-	Frame GetFrame(int step, bool isHighDPI) const;
-	int GetFrameIndex(int step = -1) const;
+	float GetFrame(int step = -1) const;
 	const Mask &GetMask(int step = -1) const;
 	
 	// Positional attributes.
@@ -114,7 +101,7 @@ protected:
 private:
 	// Set what animation step we're on. This affects future calls to GetMask()
 	// and GetFrame().
-	void SetStep(int step, bool isHighDPI) const;
+	void SetStep(int step) const;
 	
 	
 private:
@@ -136,11 +123,10 @@ private:
 	// Record when this object is marked for removal from the game.
 	bool shouldBeRemoved = false;
 	
-	// Frame info for the current step:
-	mutable bool currentHighDPI = false;
+	// Cache the frame calculation so it doesn't have to be repeated if given
+	// the same step over and over again.
 	mutable int currentStep = -1;
-	mutable Frame frame;
-	mutable int activeIndex = 0;
+	mutable float frame = 0.f;
 };
 
 

@@ -25,6 +25,8 @@ namespace {
 	GLint scaleI;
 	GLint transformI;
 	GLint positionI;
+	GLint frameI;
+	GLint frameCountI;
 	GLint colorI;
 	
 	GLuint vao;
@@ -36,15 +38,18 @@ namespace {
 void OutlineShader::Init()
 {
 	static const char *vertexCode =
-		"uniform mat2 transform;\n"
-		"uniform vec2 position;\n"
 		"uniform vec2 scale;\n"
+		"uniform vec2 position;\n"
+		"uniform mat2 transform;\n"
+		
 		"in vec2 vert;\n"
 		"in vec2 vertTexCoord;\n"
-		"out vec2 tc;\n"
+		
+		"out vec2 fragTexCoord;\n"
 		"out vec2 off;\n"
+		
 		"void main() {\n"
-		"  tc = vertTexCoord;\n"
+		"  fragTexCoord = vertTexCoord;\n"
 		"  mat2 sq = matrixCompMult(transform, transform);\n"
 		"  off = vec2(.5 / sqrt(sq[0][0] + sq[0][1]), .5 / sqrt(sq[1][0] + sq[1][1]));\n"
 		"  gl_Position = vec4((transform * vert + position) * scale, 0, 1);\n"
@@ -61,27 +66,39 @@ void OutlineShader::Init()
 	// of the Sobel neighborhood (i.e. the golden ratio) to minimize any
 	// aliasing effects between the two.
 	static const char *fragmentCode =
-		"uniform sampler2D tex;\n"
+		"uniform sampler2DArray tex;\n"
+		"uniform float frame = 0;\n"
+		"uniform float frameCount = 0;\n"
 		"uniform vec4 color = vec4(1, 1, 1, 1);\n"
-		"in vec2 tc;\n"
+		
+		"in vec2 fragTexCoord;\n"
 		"in vec2 off;\n"
+		
 		"out vec4 finalColor;\n"
+		
 		"void main() {\n"
+		"  float first = floor(frame);\n"
+		"  float second = mod(ceil(frame), frameCount);\n"
+		"  float fade = frame - first;\n"
 		"  float sum = 0;\n"
+		
 		"  vec2 d[8];\n"
 		"  d[0] = vec2(-off.x, -off.y);\n" "  d[1] = vec2(0, -off.y);\n" "  d[2] = vec2(off.x, -off.y);\n"
 		"  d[7] = vec2(-off.x, 0);\n"                                    "  d[3] = vec2(off.x, 0);\n"
 		"  d[6] = vec2(-off.x, off.y);\n"  "  d[5] = vec2(0, off.y);\n"  "  d[4] = vec2(off.x, off.y);\n"
 		"  float p[8];\n"
+		
 		"  vec4 weight = vec4(.4, .4, .4, 1.);\n"
 		"  for(int dy = -1; dy <= 1; ++dy)\n"
 		"  {\n"
 		"    for(int dx = -1; dx <= 1; ++dx)\n"
 		"    {\n"
-		"      vec2 center = tc + .618034 * off * vec2(dx, dy);\n"
+		"      vec2 center = fragTexCoord + .618034 * off * vec2(dx, dy);\n"
 		"      for(int i = 0; i < 8; ++i)\n"
 		"      {\n"
-		"        p[i] = dot(texture(tex, center + d[i]), weight);\n"
+		"        p[i] = dot(mix(\n"
+		"          texture(tex, vec3(center + d[i], first)),\n"
+		"          texture(tex, vec3(center + d[i], second)), fade), weight);\n"
 		"      }\n"
 		"      float h = (p[6] + 2 * p[7] + p[0]) - (p[2] + 2 * p[3] + p[4]);\n"
 		"      float v = (p[0] + 2 * p[1] + p[2]) - (p[4] + 2 * p[5] + p[6]);\n"
@@ -95,9 +112,13 @@ void OutlineShader::Init()
 	scaleI = shader.Uniform("scale");
 	transformI = shader.Uniform("transform");
 	positionI = shader.Uniform("position");
+	frameI = shader.Uniform("frame");
+	frameCountI = shader.Uniform("frameCount");
 	colorI = shader.Uniform("color");
 	
+	glUseProgram(shader.Object());
 	glUniform1ui(shader.Uniform("tex"), 0);
+	glUseProgram(0);
 	
 	// Generate the vertex data for drawing sprites.
 	glGenVertexArrays(1, &vao);
@@ -128,14 +149,16 @@ void OutlineShader::Init()
 
 
 
-void OutlineShader::Draw(const Sprite *sprite, const Point &pos, const Point &size, const Color &color, const Point &unit, int frame)
+void OutlineShader::Draw(const Sprite *sprite, const Point &pos, const Point &size, const Color &color, const Point &unit, float frame)
 {
 	glUseProgram(shader.Object());
 	glBindVertexArray(vao);
-	glActiveTexture(GL_TEXTURE0);
 	
 	GLfloat scale[2] = {2.f / Screen::Width(), -2.f / Screen::Height()};
 	glUniform2fv(scaleI, 1, scale);
+	
+	glUniform1f(frameI, frame);
+	glUniform1f(frameCountI, sprite->Frames());
 	
 	Point uw = unit * size.X();
 	Point uh = unit * size.Y();
@@ -153,7 +176,7 @@ void OutlineShader::Draw(const Sprite *sprite, const Point &pos, const Point &si
 	
 	glUniform4fv(colorI, 1, color.Get());
 	
-	glBindTexture(GL_TEXTURE_2D, sprite->Texture(frame));
+	glBindTexture(GL_TEXTURE_2D_ARRAY, sprite->Texture());
 	
 	glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 	

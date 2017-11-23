@@ -173,7 +173,7 @@ private:
 	const System *jumpInProgress[2] = {nullptr, nullptr};
 	const Sprite *highlightSprite = nullptr;
 	Point highlightUnit;
-	int highlightFrame = 0;
+	float highlightFrame = 0.f;
 	
 	int step = 0;
 	

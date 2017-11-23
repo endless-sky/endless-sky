@@ -375,7 +375,7 @@ void Engine::Step(bool isActive)
 	{
 		highlightSprite = flagship->GetSprite();
 		highlightUnit = flagship->Unit() * zoom;
-		highlightFrame = flagship->GetFrameIndex();
+		highlightFrame = flagship->GetFrame();
 	}
 	else
 		highlightSprite = nullptr;
@@ -491,12 +491,11 @@ void Engine::Step(bool isActive)
 	info = Information();
 	if(flagship && flagship->Hull())
 	{
-		int frame = flagship->GetFrameIndex(step);
 		Point shipFacingUnit(0., -1.);
 		if(Preferences::Has("Rotate flagship in HUD"))
 			shipFacingUnit = flagship->Facing().Unit();
 		
-		info.SetSprite("player sprite", flagship->GetSprite(), shipFacingUnit, frame);
+		info.SetSprite("player sprite", flagship->GetSprite(), shipFacingUnit, flagship->GetFrame(step));
 	}
 	if(currentSystem)
 		info.SetString("location", currentSystem->Name());
@@ -562,7 +561,7 @@ void Engine::Step(bool isActive)
 		info.SetSprite("target sprite",
 			targetAsteroid->GetSprite(),
 			targetAsteroid->Facing().Unit(),
-			targetAsteroid->GetFrameIndex(step));
+			targetAsteroid->GetFrame(step));
 		info.SetString("target name", Format::Capitalize(targetAsteroid->Name()) + " Asteroid");
 		
 		if(flagship->Attributes().Get("tactical scan power"))
@@ -577,7 +576,7 @@ void Engine::Step(bool isActive)
 		const Font &font = FontSet::Get(14);
 		if(target->GetSystem() == player.GetSystem() && target->Cloaking() < 1.)
 			targetUnit = target->Facing().Unit();
-		info.SetSprite("target sprite", target->GetSprite(), targetUnit, target->GetFrameIndex(step));
+		info.SetSprite("target sprite", target->GetSprite(), targetUnit, target->GetFrame(step));
 		info.SetString("target name", font.TruncateMiddle(target->Name(), 150));
 		info.SetString("target type", target->ModelName());
 		if(!target->GetGovernment())
