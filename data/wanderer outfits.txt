@@ -123,7 +123,7 @@ outfit "Moonbeam"
 		sound "sunbeam"
 		"fire effect" "moonbeam fleck"
 		"hit effect" "moonbeam impact"
-		"inaccuracy" 2.4
+		"inaccuracy" 2.0
 		"velocity" 490
 		"lifetime" 1
 		# A full cycle is 45 frames. Beam is active 56% of the time.
@@ -170,7 +170,7 @@ outfit "Moonbeam Turret"
 		sound "sunbeam"
 		"fire effect" "moonbeam fleck"
 		"hit effect" "moonbeam impact"
-		"inaccuracy" 2.4
+		"inaccuracy" 2.0
 		"turret turn" 4.5
 		"velocity" 490
 		"lifetime" 1
