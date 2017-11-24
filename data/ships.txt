@@ -1923,7 +1923,7 @@ ship "Modified Argosy"
 	plural "Modified Argosies"
 	sprite "ship/modified argosy"
 	attributes
-		category "Light Warship"
+		category "Medium Warship"
 		"cost" 1960000
 		"shields" 4800
 		"hull" 1900
