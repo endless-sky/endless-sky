@@ -65,7 +65,7 @@ outfit "Sunbeam Turret"
 		sound "sunbeam"
 		"hit effect" "sunbeam impact"
 		"inaccuracy" .2
-		"turret turn" 3
+		"turret turn" 1.8
 		"velocity" 540
 		"lifetime" 1
 		"reload" 1
@@ -96,7 +96,7 @@ outfit "Dual Sunbeam Turret"
 		sound "sunbeam"
 		"hit effect" "sunbeam impact"
 		"inaccuracy" .2
-		"turret turn" 2
+		"turret turn" 0.9
 		"velocity" 540
 		"lifetime" 1
 		"reload" 1
@@ -105,7 +105,7 @@ outfit "Dual Sunbeam Turret"
 		"shield damage" 14.4
 		"hull damage" 6.0
 		"heat damage" 24.2
-	description "This turret carries a pair of Wanderer Sunbeams. For any ship that can support its energy requirements, it is an immensely powerful weapon."
+	description "The Dual Sunbeam Turret's enormous bulk makes it a poor choice against swarms of fast-moving craft, but for any ship that can support its energy requirements, it is a devastatingly powerful weapon once it can bring its guns to bear."
 
 outfit "Moonbeam"
 	category "Guns"
@@ -171,7 +171,7 @@ outfit "Moonbeam Turret"
 		"fire effect" "moonbeam fleck"
 		"hit effect" "moonbeam impact"
 		"inaccuracy" 2.4
-		"turret turn" 4.5
+		"turret turn" 2.2
 		"velocity" 490
 		"lifetime" 1
 		# A full cycle is 36 frames. Beam is active 83% of the time.
