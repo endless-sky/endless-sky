@@ -1779,10 +1779,10 @@ bool Ship::IsUsingJumpDrive() const
 
 
 // Check if this ship is currently able to enter hyperspace to it target.
-bool Ship::IsReadyToJump() const
+bool Ship::IsReadyToJump(bool waitingIsReady) const
 {
 	// You can't jump if you're waiting for someone else or are already jumping.
-	if(IsDisabled() || commands.Has(Command::WAIT) || hyperspaceCount || !targetSystem)
+	if(IsDisabled() || (!waitingIsReady && commands.Has(Command::WAIT)) || hyperspaceCount || !targetSystem)
 		return false;
 	
 	// Check if the target system is valid and there is enough fuel to jump.

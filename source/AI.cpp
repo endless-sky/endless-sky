@@ -81,7 +81,7 @@ namespace {
 			shared_ptr<const Ship> locked = escort.lock();
 			if(locked && !locked->IsDisabled() && !locked->CanBeCarried()
 					&& locked->GetSystem() == ship.GetSystem()
-					&& locked->JumpFuel() && !locked->IsReadyToJump())
+					&& locked->JumpFuel() && !locked->IsReadyToJump(true))
 				return false;
 		}
 		return true;
@@ -1345,14 +1345,9 @@ void AI::MoveEscort(Ship &ship, Command &command) const
 		else
 		{
 			PrepareForHyperspace(ship, command);
-			if(parent.IsEnteringHyperspace() || parent.IsReadyToJump())
-			{
-				command |= Command::JUMP;
-				// If this ship is a parent to members of its fleet,
-				// it should wait for them before jumping.
-				if(!EscortsReadyToJump(ship))
-					command |= Command::WAIT;
-			}
+			command |= Command::JUMP;
+			if(!(parent.IsEnteringHyperspace() || parent.IsReadyToJump()) || !EscortsReadyToJump(ship))
+				command |= Command::WAIT;
 		}
 	}
 	else
