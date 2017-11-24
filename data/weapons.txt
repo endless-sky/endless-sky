@@ -509,7 +509,7 @@ outfit "Plasma Turret"
 		"shield damage" 63
 		"hull damage" 25
 		"heat damage" 340
-	description "The Plasma Turret is a pair of plasma cannons mounted on a turret so that they can fire in any direction. It is a fearsome weapon, but only the largest of ships have the space and the energy that it requires, and its bulk makes it struggle to target fast-moving craft."
+	description "The Plasma Turret is a pair of plasma cannons mounted on a turret so that they can fire in any direction. It is a fearsome weapon, but only the largest of vessels have the space and the energy that it requires, and its low turn rate makes it best suited to targeting large capital ships."
 
 effect "plasma explosion"
 	sprite "effect/plasma explosion"
