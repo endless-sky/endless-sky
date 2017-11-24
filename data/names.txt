@@ -519,6 +519,9 @@ phrase "the-nouns"
 		"the "
 	phrase
 		"singular nouns"
+		"singular nouns"
+		"singular nouns"
+		"singular nouns"
 		"cardinal directions"
 
 phrase "things you can be of"
