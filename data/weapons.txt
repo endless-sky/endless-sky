@@ -72,7 +72,7 @@ outfit "Quad Blaster Turret"
 		sound "blaster"
 		"hit effect" "blaster impact"
 		"inaccuracy" 3
-		"turret turn" 3
+		"turret turn" 4
 		"velocity" 7
 		"lifetime" 60
 		"reload" 3
@@ -129,7 +129,7 @@ outfit "Modified Blaster Turret"
 		sound "mod blaster"
 		"hit effect" "blaster impact"
 		"inaccuracy" 4
-		"turret turn" 4
+		"turret turn" 4.8
 		"velocity" 7.5
 		"lifetime" 60
 		"reload" 6
@@ -240,7 +240,7 @@ outfit "Heavy Laser Turret"
 		sound "heavy laser"
 		"hit effect" "heavy laser impact"
 		"inaccuracy" .4
-		"turret turn" 3.5
+		"turret turn" 3
 		"velocity" 400
 		"lifetime" 1
 		"reload" 1
@@ -301,7 +301,7 @@ outfit "Electron Turret"
 		sound "electron beam"
 		"hit effect" "electron impact"
 		"inaccuracy" .3
-		"turret turn" 2.5
+		"turret turn" 2
 		"velocity" 450
 		"lifetime" 1
 		"reload" 1
@@ -499,7 +499,7 @@ outfit "Plasma Turret"
 		sound "plasma"
 		"hit effect" "plasma explosion"
 		"inaccuracy" 2
-		"turret turn" 2
+		"turret turn" 1.3
 		"velocity" 12
 		"lifetime" 40
 		"reload" 9
@@ -509,7 +509,7 @@ outfit "Plasma Turret"
 		"shield damage" 63
 		"hull damage" 25
 		"heat damage" 340
-	description "The Plasma Turret is a pair of plasma cannons mounted on a turret so that they can fire in any direction. It is a fearsome weapon, but only the largest of ships have the space and the energy that it requires."
+	description "The Plasma Turret is a pair of plasma cannons mounted on a turret so that they can fire in any direction. It is a fearsome weapon, but only the largest of ships have the space and the energy that it requires, and its bulk makes it struggle to target fast-moving craft."
 
 effect "plasma explosion"
 	sprite "effect/plasma explosion"
