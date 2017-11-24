@@ -2176,7 +2176,14 @@ Point AI::StoppingPoint(const Ship &ship, const Point &targetVelocity, bool &sho
 Point AI::TargetAim(const Ship &ship)
 {
 	shared_ptr<const Ship> target = ship.GetTargetShip();
-	return target ? TargetAim(ship, *target) : Point();
+	if(target)
+		return TargetAim(ship, *target);
+	
+	shared_ptr<const Minable> targetAsteroid = ship.GetTargetAsteroid();
+	if(targetAsteroid)
+		return TargetAim(ship, *targetAsteroid);
+	
+	return Point();
 }
 
 
@@ -2990,7 +2997,8 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 	bool shouldAutoAim = false;
 	if(Preferences::Has("Automatic aiming") && !command.Turn() && !ship.IsBoarding()
 			&& (Preferences::Has("Automatic firing") || keyHeld.Has(Command::PRIMARY))
-			&& target && target->GetSystem() == ship.GetSystem() && target->IsTargetable()
+			&& ((target && target->GetSystem() == ship.GetSystem() && target->IsTargetable())
+				|| ship.GetTargetAsteroid())
 			&& !keyStuck.Has(Command::LAND | Command::JUMP | Command::BOARD))
 	{
 		// Check if this ship has any forward-facing weapons.
@@ -3003,8 +3011,8 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 	}
 	if(shouldAutoAim)
 	{
-		Point distance = target->Position() - ship.Position();
-		if(distance.Unit().Dot(ship.Facing().Unit()) >= .8)
+		Point pos = (target ? target->Position() : ship.GetTargetAsteroid()->Position());
+		if((pos - ship.Position()).Unit().Dot(ship.Facing().Unit()) >= .8)
 			command.SetTurn(TurnToward(ship, TargetAim(ship)));
 	}
 	
