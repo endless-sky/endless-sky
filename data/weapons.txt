@@ -638,7 +638,7 @@ outfit "Meteor Missile Launcher"
 		"hull damage" 80
 		"hit force" 30
 		"missile strength" 4
-	description "The Meteor Missile is the cheapest and simplest homing weapon available in human space. The tracking system on these missiles is notoriously unreliable, and they are easily destroyed by anti-missile systems, but in large numbers or when fired at a slow-moving target they can be deadly."
+	description "The Meteor Missile is the cheapest and simplest homing weapon available in human space. The missile's infrared tracking system can lose its lock on ships with a low heat signature, and it is easily destroyed by anti-missile systems. Nevertheless, Meteors can be deadly in large numbers and against poorly-defended targets."
 
 effect "meteor fire"
 	sprite "effect/meteor fire"
