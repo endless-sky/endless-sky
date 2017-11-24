@@ -619,9 +619,9 @@ mission "Coalition: Tourists Home 1"
 		random < 40
 	source
 		government "Coalition"
+		attributes tourism
 	destination
 		government "Coalition"
-		attributes tourism
 		distance 5 20
 	on complete
 		"coalition jobs" ++
@@ -641,9 +641,9 @@ mission "Coalition: Tourists Home 2"
 		random < 30
 	source
 		government "Coalition"
+		attributes tourism
 	destination
 		government "Coalition"
-		attributes tourism
 		distance 5 20
 	on complete
 		"coalition jobs" ++
@@ -663,9 +663,9 @@ mission "Coalition: Tourists Home 3"
 		random < 20
 	source
 		government "Coalition"
+		attributes tourism
 	destination
 		government "Coalition"
-		attributes tourism
 		distance 5 20
 	on complete
 		"coalition jobs" ++
