@@ -55,7 +55,7 @@ ship "Arach Courier"
 ship "Arach Freighter"
 	sprite "ship/arach freighter"
 	attributes
-		category "Light Freighter"
+		category "Medium Freighter"
 		licenses
 			Coalition
 		"cost" 4580000
@@ -157,7 +157,7 @@ ship "Arach Hulk"
 ship "Arach Spindle"
 	sprite "ship/arach spindle"
 	attributes
-		category "Heavy Freighter"
+		category "Medium Freighter"
 		licenses
 			Coalition
 		"cost" 6652000
@@ -208,7 +208,7 @@ ship "Arach Spindle"
 ship "Arach Transport"
 	sprite "ship/arach transport"
 	attributes
-		category "Light Freighter"
+		category "Medium Freighter"
 		licenses
 			Coalition
 		"cost" 2772000
@@ -862,7 +862,7 @@ ship "Saryd Sojourner"
 ship "Saryd Traveler"
 	sprite "ship/saryd traveler"
 	attributes
-		category "Heavy Freighter"
+		category "Medium Freighter"
 		licenses
 			Coalition
 		"cost" 3385000
