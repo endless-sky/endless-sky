@@ -1874,8 +1874,7 @@ mission "Terraforming 5"
 
 event "terraforming Rand"
 	planet Rand
-		description `Rand is a desert world, too dry for much farming and with gravity low enough to be uncomfortable for most human beings. It is, however, the best source of heavy metals in the galactic south. Aside from the managers of the mining companies, nearly all the people here are migrant workers from elsewhere in the Dirt Belt, who have come to spend a season working for the relatively high wages that uranium mining offers, either to send money off-world or to save it up in order to build a better life for themselves.`
-		description `	Recent terraforming experiments have caused an increase in precipitation. Flash floods have scoured the landscape in some areas, but sandstorms are also less frequent, and the locals say the heat is a bit less oppressive than it used to be.`
+		add description `	Recent terraforming experiments have caused an increase in precipitation. Flash floods have scoured the landscape in some areas, but sandstorms are also less frequent, and the locals say the heat is a bit less oppressive than it used to be.`
 
 
 
@@ -1928,9 +1927,10 @@ mission "Terraforming 6"
 		"reputation: Republic" <?= -10
 	on fail
 		"reputation: Republic" <?= -10
+		dialog `You receive a message from the Republic itself. "Captain <last>. You have not arrived on Earth for your trial on the 'unlawful use of an asteroid' in the time provided to you and therefore are now a criminal of the Republic."`
 	on complete
 		conversation
-			`You are quickly escorted from the crowded <planet> spaceport to a court building in a wealthy district of the city and asked multiple questions pertaining to when you crashed an asteroid into Rand. "Why did you purposefully do crash an asteroid into a planet? What did you expect to happen? Do you know how many people could have died?" You answer the questions to the best of your ability, and after roughly an hour of questioning you are transferred to a different room where you find that Eric, Alaric, and Amy are all here as well.`
+			`You are quickly escorted from the crowded <planet> spaceport to a court building in a wealthy district of the city and asked multiple questions pertaining to the events on Rand. "Why did you purposefully do crash an asteroid into a planet? What did you expect to happen? Do you know how many people could have died?" You answer to the best of your ability, and after roughly an hour of questioning you are transferred to a different room where you find Eric, Alaric, and Amy.`
 			choice
 				`	"What are we going to do?"`
 					goto lawyer
@@ -1947,7 +1947,7 @@ mission "Terraforming 6"
 
 mission "Terraforming 7"
 	name "Terraforming Research"
-	description "Bring Amy and Nolan to <destination> where they will research deeper into Amy's terraforming methods."
+	description "Bring Amy and Nolan to <destination>, where they will research and publish Amy's terraforming methods."
 	destination "Valhalla"
 	passengers 2
 	blocked "You need <capacity> in order to take on the next mission. Return here when you have the required space free."
@@ -1956,8 +1956,8 @@ mission "Terraforming 7"
 	
 	on offer
 		conversation
-			`You find Amy in deep discussion with someone about her academy project, "Affordable Terraforming through Equilibrium Mapping." She takes a sip of her drink and invites you to sit down with them.`
-			`	"Hello, Captain! This is Nolan. He works for the Deep, and he contacted me after hearing about how we started terraforming Rand."`
+			`You find Amy in heated discussion with someone about her academy project, "Affordable Terraforming through Equilibrium Mapping." She takes a sip of her drink and invites you to sit down with them.`
+			`	"Hello, Captain! This is Nolan. He works in the Deep's Department of Terraforming Research and Application, and he contacted me after hearing about how we started terraforming Rand."`
 			`	Nolan outstretches his hand to you. "Nice to meet you, Captain."`
 			choice
 				`	"Nice to meet you too."`
@@ -2012,14 +2012,14 @@ mission "Terraforming 9"
 			`The spaceport is crowded with ships and people when you land. Amy's publication must have stirred up quite the commotion among terraforming scientists.`
 			`	Spaceport security clears a path to your ship for Amy, Nolan, and four others when you land. You notice that a few among the crowd of people are jeering and holding signs, one reading "Don't asteroid my planet!" and a half-eaten sandwich gets thrown in her path as she approaches.`
 			`	"Not everyone is as happy with the prospect of affordable terraforming as we are," Amy says to you as she boards your ship along with suitcases full of scientific supplies. "But that's no reason to stop, now is it?"`
-			`	Amy introduces you to the four other people that she brought on board. Two of them are terraforming experts who helped Amy and Nolan during their research. The other two are representatives, one sent by the Republic Parliament in order to oversee the project and another from Tundra.`
-			`	"Once you're ready, Captain, please bring us to <destination>. Tundra was a tropical world millions of years ago, but became cold after a cataclysmic event of some sort. There's is a good chance that we may be able to nudge the planet back toward a warmer climate if we do this right."`
+			`	Amy introduces you to the four other people that she brought on board. Two of them are terraforming experts who helped Amy and Nolan with their research. The other two are representatives: one sent by the Republic Parliament in order to oversee the project, and another from Tundra.`
+			`	"Once you're ready, Captain, please bring us to <destination>. Tundra was a tropical world millions of years ago, but became cold after a cataclysmic event of some sort. There's a good chance that we may be able to nudge the planet back toward a warmer climate if we do this right."`
 					accept
 	
 	on complete
 		dialog 
 			`The journey to Tundra was spent by your passengers discussing the possible methods to terraform the planet. The Republic representative was none too pleased when Nolan, perhaps jokingly, suggested that we crash an asteroid into the planet.` 
-			`	Everyone except for the Tundra native begins to shiver after stepping out of your ship onto the planet, even while inside a protective dome. "Meet us in the spaceport bar in a few hours. We need to finish deciding how we're going to execute this."`
+			`	Everyone except for the Tundra native begins to shiver after stepping out of your ship onto the planet, even while inside a protective dome. "Meet us in the spaceport bar in a few hours. We need to finalize our plans of how we're going to execute this experiment."`
 
 
 
@@ -2036,7 +2036,7 @@ mission "Terraforming 10"
 			`Amy, Nolan, and the other two scientists tell you the known history of Tundra's climate. Millions of years ago, an asteroid impact or large volcanic eruption altered the planet's atmosphere. Now the planet no longer retains enough heat from its host star in order to stay warm.`
 			`	"Tundra's snow covered surface only exacerbates the problem, reflecting most of the star's light back into space." Nolan explains more. "This means that we need to both alter the atmosphere in order for it retain more heat and alter the surface in order for it to reflect less heat."
 			`	Amy rolls out a map of the entire planet onto the table. Different regions of the surface are color coded, and a large red spot in the planet's southern hemisphere sticks out to you.`
-			`	"Tundra has very low volcanic activity, but seismic mapping has lead us to this area." Amy circles the red spot with her finger. "Magma from the planet's mantle is building up under this area of the crust, which lucky for us is considerably thin. It could be another 10,000 years before the magma finally erupts onto the surface in a supereruption, melting the snow around it and releasing carbon dioxide into the atmosphere. Tundra's crust also has an unusually high amount of serpentinite, which could release methane during the eruption and increase the amount of the star's energy that gets trapped in the atmosphere."`
+			`	"Tundra has very low volcanic activity, but seismic mapping has lead us to this area." Amy circles the red spot with her finger. "Magma from the planet's mantle is building up under this area of the crust, which lucky for us is considerably thin. Still, it could be another 10,000 years before the magma finally erupts onto the surface in a supereruption, melting the snow around it and releasing carbon dioxide into the atmosphere. Tundra's crust also has an unusually high amount of serpentinite, which could release methane during the eruption and increase the amount of the star's energy that gets trapped in the atmosphere."`
 			choice
 				`	"So are we going to wait 10,000 years for it to erupt?"`
 				`	"How does this help our situation?"`
@@ -2072,7 +2072,7 @@ mission "Terraforming 11"
 	
 	on offer
 		conversation
-			`"Wait here," the Republic representative says in a curt tone. Several hours later, he returns, not looking very happy. "What a waste of time. Parliament has declined my request. I don't much agree with this, but you will need to crash an asteroid into Tundra if you wish to achieve your goal." Before you ready for launch, you send a message to Amy and Nolan telling them that an asteroid will be used after all. You don't receive an immediate response.`
+			`"Wait here," the Republic representative says curtly. Several hours later, he returns, not looking very happy. "What a waste of time. Parliament has declined my request. I don't much agree with this, but you will need to crash an asteroid into Tundra if you wish to achieve your goal." Before you ready for launch, you send a message to Amy and Nolan telling them that an asteroid will be used after all. You don't receive an immediate response.`
 				accept
 	
 	on enter "Cebalrai"
@@ -2101,7 +2101,7 @@ mission "Terraforming 12"
 		payment 300000
 		conversation
 			`The pirates that occupied the system did not make an effort to land on Tundra, but they did harass any merchant ships that passed through the system. The government of Tundra pays you <payment> for ridding the system of the pirates, a pleasantly unexpected reward.`
-			`	You gather with the scientists in the spaceport bar. The Tundra native informs you that the area around the impact zone has been evacuated. "All we need to do now is find the right asteroid" After only a short time of searching, Amy finds the perfect candidate.`
+			`	You gather with the scientists in the spaceport bar. The Tundra native informs you that all residents close enough to the volcano to be in danger have been evacuated. "All we need to do now is find the right asteroid" After only a short time of searching, Amy finds the perfect candidate.`
 			`	"Just like last time, Captain," she says. Spaceport workers load a small thruster and the equipment you will need to mount it on the asteroid into your ship.`
 				accept
 	
@@ -2117,7 +2117,7 @@ mission "Terraforming 12"
 		conversation
 			`A plume of smoke forms in a mushroom cloud shape above where the asteroid hit. The scientists are viewing their instruments in anticipation for what happens next.`
 			`	Almost an hour after the impact, the ground begins to shake slightly, even though the volcano is located hundreds of kilometers away. "This might be it!" Nolan exclaims as he watches closely at a seismometer receiving readings from near the impact site. Suddenly the seismometer spikes, and another plume of smoke, mucher larger than the asteroid impact, rises from the impact site. Half an hour later, the low sound of the massive eruption can be heard in the spaceport, triggering another burst of cheers from the scientists. "It actually worked!" one of them yells out.`
-			`	You fly the scientists over top of the volcano, allowing them to take readings of the air and surface. "Atmospheric carbon dioxide levels are at 4000 parts per million. Methane levels at 20 parts per million. As the smoke disperses across the planet, those levels should drop to a tenth of what they are now, warming the entire planet."`
+			`	You fly the scientists over top of the volcano, allowing them to take readings of the air and surface. "Atmospheric carbon dioxide levels are at 4000 parts per million. Methane levels at 20 parts per million. As the gasses disperses across the planet they should substantially increase the atmosphere's greenhouse gas levels, warming the entire planet."`
 			`	The heat has also formed a huge circle of melted snow around the volcano, revealing the green color of trees and the dull grays and browns of rock.`
 			choice
 				`	"What do we do now?"`
@@ -2147,9 +2147,10 @@ event "terraforming timer 2"
 
 
 mission "Terraforming Follow-up"
+	landing
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Independent" "Neutral"
-		near Sol 100
+		near "Sol" 100
 		attributes spaceport
 	to offer
 		has "event: terraforming timer 2"
@@ -2167,7 +2168,7 @@ mission "Terraforming Follow-up"
 
 event "terraforming follow-up"
 	planet "Rand"
-		add attribute tourism
+		add attribute "tourism"
 		description `Rand is a desert world, too dry for much farming and with gravity low enough to be uncomfortable for most human beings. It is, however, the best source of heavy metals in the galactic south. Aside from the managers of the mining companies, nearly all the people here are migrant workers from elsewhere in the Dirt Belt, who have come to spend a season working for the relatively high wages that uranium mining offers, either to send money off-world or to save it up in order to build a better life for themselves.`
 		description `	Due to the results of recent terraforming experiments, Rand has become a far more habitable place. Fascination of this rapid change in climate has lead to Rand becoming a popular tourist destination of the Dirt Belt.`
 	planet "Tundra"
