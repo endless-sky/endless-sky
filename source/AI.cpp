@@ -12,12 +12,12 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "AI.h"
 
-#include "Armament.h"
 #include "Audio.h"
 #include "Command.h"
 #include "DistanceMap.h"
 #include "Flotsam.h"
 #include "Government.h"
+#include "Hardpoint.h"
 #include "Mask.h"
 #include "Messages.h"
 #include "Minable.h"
@@ -30,6 +30,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Ship.h"
 #include "ShipEvent.h"
 #include "System.h"
+#include "Weapon.h"
 
 #include <SDL2/SDL.h>
 
@@ -90,12 +91,12 @@ namespace {
 	// Determine if the ship has any usable weapons.
 	bool IsArmed(const Ship &ship)
 	{
-		for(const Hardpoint &weapon : ship.Weapons())
+		for(const Hardpoint &hardpoint : ship.Weapons())
 		{
-			const Outfit *outfit = weapon.GetOutfit();
-			if(outfit && !weapon.IsAntiMissile())
+			const Weapon *weapon = hardpoint.GetOutfit();
+			if(weapon && !hardpoint.IsAntiMissile())
 			{
-				if(outfit->Ammo() && !ship.OutfitCount(outfit->Ammo()))
+				if(weapon->Ammo() && !ship.OutfitCount(weapon->Ammo()))
 					continue;
 				return true;
 			}
@@ -1707,24 +1708,24 @@ void AI::Attack(Ship &ship, Command &command, const Ship &target)
 	bool isArmed = false;
 	bool hasAmmo = false;
 	double minSafeDistance = 0.;
-	for(const Hardpoint &weapon : ship.Weapons())
+	for(const Hardpoint &hardpoint : ship.Weapons())
 	{
-		const Outfit *outfit = weapon.GetOutfit();
-		if(outfit && !weapon.IsAntiMissile())
+		const Weapon *weapon = hardpoint.GetOutfit();
+		if(weapon && !hardpoint.IsAntiMissile())
 		{
 			isArmed = true;
-			bool hasThisAmmo = (!outfit->Ammo() || ship.OutfitCount(outfit->Ammo()));
+			bool hasThisAmmo = (!weapon->Ammo() || ship.OutfitCount(weapon->Ammo()));
 			hasAmmo |= hasThisAmmo;
 			
 			// Exploding weaponry that can damage this ship requires special
 			// consideration (while we have the ammo to use the weapon).
-			if(hasThisAmmo && outfit->BlastRadius() && !outfit->IsSafe())
-				minSafeDistance = max(outfit->BlastRadius() + outfit->TriggerRadius(), minSafeDistance);
+			if(hasThisAmmo && weapon->BlastRadius() && !weapon->IsSafe())
+				minSafeDistance = max(weapon->BlastRadius() + weapon->TriggerRadius(), minSafeDistance);
 			
 			// The missile boat AI should be applied at 1000 pixels range if
 			// all weapons are homing or turrets, and at 2000 if not.
-			double multiplier = (weapon.IsHoming() || weapon.IsTurret()) ? 1. : .5;
-			shortestRange = min(multiplier * outfit->Range(), shortestRange);
+			double multiplier = (hardpoint.IsHoming() || hardpoint.IsTurret()) ? 1. : .5;
+			shortestRange = min(multiplier * weapon->Range(), shortestRange);
 		}
 	}
 	// If this ship was using the missile boat AI to run away and bombard its
@@ -2201,23 +2202,23 @@ Point AI::TargetAim(const Ship &ship)
 Point AI::TargetAim(const Ship &ship, const Body &target)
 {
 	Point result;
-	for(const Hardpoint &weapon : ship.Weapons())
+	for(const Hardpoint &hardpoint : ship.Weapons())
 	{
-		const Outfit *outfit = weapon.GetOutfit();
-		if(!outfit || weapon.IsHoming() || weapon.IsTurret())
+		const Weapon *weapon = hardpoint.GetOutfit();
+		if(!weapon || hardpoint.IsHoming() || hardpoint.IsTurret())
 			continue;
 		
-		Point start = ship.Position() + ship.Facing().Rotate(weapon.GetPoint());
+		Point start = ship.Position() + ship.Facing().Rotate(hardpoint.GetPoint());
 		Point p = target.Position() - start + ship.GetPersonality().Confusion();
 		Point v = target.Velocity() - ship.Velocity();
-		double steps = RendezvousTime(p, v, outfit->Velocity() + .5 * outfit->RandomVelocity());
+		double steps = RendezvousTime(p, v, weapon->Velocity() + .5 * weapon->RandomVelocity());
 		if(!(steps == steps))
 			continue;
 		
-		steps = min(steps, outfit->TotalLifetime());
+		steps = min(steps, weapon->TotalLifetime());
 		p += steps * v;
 		
-		double damage = outfit->ShieldDamage() + outfit->HullDamage();
+		double damage = weapon->ShieldDamage() + weapon->HullDamage();
 		result += p.Unit() * abs(damage);
 	}
 	
@@ -2313,8 +2314,8 @@ void AI::AimTurrets(const Ship &ship, Command &command, bool opportunistic) cons
 			// Get the turret's current facing, in absolute coordinates:
 			Angle aim = ship.Facing() + hardpoint.GetAngle();
 			// Get this projectile's average velocity.
-			const Outfit *outfit = hardpoint.GetOutfit();
-			double vp = outfit->Velocity() + .5 * outfit->RandomVelocity();
+			const Weapon *weapon = hardpoint.GetOutfit();
+			double vp = weapon->Velocity() + .5 * weapon->RandomVelocity();
 			// Loop through each ship this hardpoint could shoot at. Find the
 			// one that is the "best" in terms of how many frames it will take
 			// to aim at it and for a projectile to hit it.
@@ -2326,7 +2327,7 @@ void AI::AimTurrets(const Ship &ship, Command &command, bool opportunistic) cons
 				Point v = target->Velocity();
 				// Only take the ship's velocity into account if this weapon
 				// does not have its own acceleration.
-				if(!outfit->Acceleration())
+				if(!weapon->Acceleration())
 					v -= ship.Velocity();
 				// By the time this action is performed, the ships will have moved
 				// forward one time step.
@@ -2340,12 +2341,12 @@ void AI::AimTurrets(const Ship &ship, Command &command, bool opportunistic) cons
 				
 				// Determine how much the turret must turn to face that vector.
 				double degrees = (Angle(p) - aim).Degrees();
-				double turnTime = fabs(degrees) / outfit->TurretTurn();
+				double turnTime = fabs(degrees) / weapon->TurretTurn();
 				// All ships that are within weapons range have the same basic
 				// weight. Outside that range, give them lower priority.
-				rendezvousTime = max(0., rendezvousTime - outfit->TotalLifetime());
+				rendezvousTime = max(0., rendezvousTime - weapon->TotalLifetime());
 				// Always prefer ships that you are able to hit.
-				double score = turnTime + (180. / outfit->TurretTurn()) * rendezvousTime;
+				double score = turnTime + (180. / weapon->TurretTurn()) * rendezvousTime;
 				if(score < bestScore)
 				{
 					bestScore = score;
@@ -2356,7 +2357,7 @@ void AI::AimTurrets(const Ship &ship, Command &command, bool opportunistic) cons
 			{
 				// Get the index of this weapon.
 				int index = &hardpoint - &ship.Weapons().front();
-				command.SetAim(index, bestAngle / outfit->TurretTurn());
+				command.SetAim(index, bestAngle / weapon->TurretTurn());
 			}
 		}
 }
@@ -2369,7 +2370,6 @@ void AI::AutoFire(const Ship &ship, Command &command, bool secondary) const
 	const Personality &person = ship.GetPersonality();
 	if(person.IsPacifist())
 		return;
-	int index = -1;
 	
 	bool beFrugal = (ship.IsYours() && !escortsUseAmmo);
 	if(person.IsFrugal() || (ship.IsYours() && escortsAreFrugal && escortsUseAmmo))
@@ -2409,6 +2409,9 @@ void AI::AutoFire(const Ship &ship, Command &command, bool secondary) const
 	// Only fire on disabled targets if you don't want to plunder them.
 	bool spareDisabled = (person.Disables() || (person.Plunders() && ship.Cargo().Free()));
 	
+	// Don't use weapons with firing force if you are preparing to jump.
+	bool isWaitingToJump = ship.Commands().Has(Command::JUMP | Command::WAIT);
+	
 	// Find the longest range of any of your non-homing weapons. Homing weapons
 	// that don't consume ammo may also fire in non-homing mode.
 	double maxRange = 0.;
@@ -2416,7 +2419,8 @@ void AI::AutoFire(const Ship &ship, Command &command, bool secondary) const
 		if(weapon.IsReady()
 				&& !(!currentTarget && weapon.IsHoming() && weapon.GetOutfit()->Ammo())
 				&& !(!secondary && weapon.GetOutfit()->Icon())
-				&& !(beFrugal && weapon.GetOutfit()->Ammo()))
+				&& !(beFrugal && weapon.GetOutfit()->Ammo())
+				&& !(isWaitingToJump && weapon.GetOutfit()->FiringForce()))
 			maxRange = max(maxRange, weapon.GetOutfit()->Range());
 	// Extend the weapon range slightly to account for velocity differences.
 	maxRange *= 1.5;
@@ -2435,28 +2439,34 @@ void AI::AutoFire(const Ship &ship, Command &command, bool secondary) const
 				&& (target->IsYours() || !person.IsMarked()))
 			enemies.push_back(target);
 	
-	for(const Hardpoint &weapon : ship.Weapons())
+	int index = -1;
+	for(const Hardpoint &hardpoint : ship.Weapons())
 	{
 		++index;
 		// Skip weapons that are not ready to fire.
-		if(!weapon.IsReady())
+		if(!hardpoint.IsReady())
 			continue;
+		
+		const Weapon *weapon = hardpoint.GetOutfit();
 		// Don't expend ammo for homing weapons that have no target selected.
-		if(!currentTarget && weapon.IsHoming() && weapon.GetOutfit()->Ammo())
+		if(!currentTarget && weapon->Homing() && weapon->Ammo())
 			continue;
 		// Don't fire secondary weapons if told not to.
-		if(!secondary && weapon.GetOutfit()->Icon())
+		if(!secondary && weapon->Icon())
 			continue;
 		// Don't expend ammo if trying to be frugal.
-		if(beFrugal && weapon.GetOutfit()->Ammo())
+		if(beFrugal && weapon->Ammo())
+			continue;
+		// Don't use weapons with firing force if you are preparing to jump.
+		if(isWaitingToJump && weapon->FiringForce())
 			continue;
 		
 		// Special case: if the weapon uses fuel, be careful not to spend so much
 		// fuel that you cannot leave the system if necessary.
-		if(weapon.GetOutfit()->FiringFuel())
+		if(weapon->FiringFuel())
 		{
 			double fuel = ship.Fuel() * ship.Attributes().Get("fuel capacity");
-			fuel -= weapon.GetOutfit()->FiringFuel();
+			fuel -= weapon->FiringFuel();
 			// If the ship is not ever leaving this system, it does not need to
 			// reserve any fuel.
 			bool isStaying = person.IsStaying();
@@ -2465,21 +2475,20 @@ void AI::AutoFire(const Ship &ship, Command &command, bool secondary) const
 		}
 		// Figure out where this weapon will fire from, but add some randomness
 		// depending on how accurate this ship's pilot is.
-		Point start = ship.Position() + ship.Facing().Rotate(weapon.GetPoint());
+		Point start = ship.Position() + ship.Facing().Rotate(hardpoint.GetPoint());
 		start += person.Confusion();
 		
-		const Outfit *outfit = weapon.GetOutfit();
-		double vp = outfit->Velocity() + .5 * outfit->RandomVelocity();
-		double lifetime = outfit->TotalLifetime();
+		double vp = weapon->Velocity() + .5 * weapon->RandomVelocity();
+		double lifetime = weapon->TotalLifetime();
 		
 		// Homing weapons revert to "dumb firing" if they have no target.
-		if(weapon.IsHoming() && currentTarget)
+		if(weapon->Homing() && currentTarget)
 		{
 			bool hasBoarded = Has(ship, currentTarget, ShipEvent::BOARD);
 			if(currentTarget->IsDisabled() && spareDisabled && !hasBoarded && !disabledOverride)
 				continue;
 			// Don't fire secondary weapons at targets that have started jumping.
-			if(outfit->Icon() && currentTarget->IsEnteringHyperspace())
+			if(weapon->Icon() && currentTarget->IsEnteringHyperspace())
 				continue;
 			
 			// For homing weapons, don't take the velocity of the ship firing it
@@ -2494,7 +2503,7 @@ void AI::AutoFire(const Ship &ship, Command &command, bool secondary) const
 			// If this weapon has a blast radius, don't fire it if the target is
 			// so close that you'll be hit by the blast. Weapons using proximity
 			// triggers will explode sooner, so a larger separation is needed.
-			if(!outfit->IsSafe() && p.Length() <= (outfit->BlastRadius() + outfit->TriggerRadius()))
+			if(!weapon->IsSafe() && p.Length() <= (weapon->BlastRadius() + weapon->TriggerRadius()))
 				continue;
 			
 			// Calculate how long it will take the projectile to reach its target.
@@ -2518,7 +2527,7 @@ void AI::AutoFire(const Ship &ship, Command &command, bool secondary) const
 			Point v = target->Velocity();
 			// Only take the ship's velocity into account if this weapon
 			// does not have its own acceleration.
-			if(!outfit->Acceleration())
+			if(!weapon->Acceleration())
 				v -= ship.Velocity();
 			// By the time this action is performed, the ships will have moved
 			// forward one time step.
@@ -2526,11 +2535,11 @@ void AI::AutoFire(const Ship &ship, Command &command, bool secondary) const
 			
 			// Non-homing weapons may have a blast radius or proximity trigger.
 			// Do not fire this weapon if we will be caught in the blast.
-			if(!outfit->IsSafe() && p.Length() <= (outfit->BlastRadius() + outfit->TriggerRadius()))
+			if(!weapon->IsSafe() && p.Length() <= (weapon->BlastRadius() + weapon->TriggerRadius()))
 				continue;
 			
 			// Get the vector the weapon will travel along.
-			v = (ship.Facing() + weapon.GetAngle()).Unit() * vp - v;
+			v = (ship.Facing() + hardpoint.GetAngle()).Unit() * vp - v;
 			// Extrapolate over the lifetime of the projectile.
 			v *= lifetime;
 			
@@ -2549,34 +2558,34 @@ void AI::AutoFire(const Ship &ship, Command &command, bool secondary) const
 void AI::AutoFire(const Ship &ship, Command &command, const Body &target) const
 {
 	int index = -1;
-	for(const Hardpoint &weapon : ship.Weapons())
+	for(const Hardpoint &hardpoint : ship.Weapons())
 	{
 		++index;
 		// Only auto-fire primary weapons that take no ammunition.
-		if(!weapon.IsReady() || weapon.GetOutfit()->Icon() || weapon.GetOutfit()->Ammo())
+		if(!hardpoint.IsReady() || hardpoint.GetOutfit()->Icon() || hardpoint.GetOutfit()->Ammo())
 			continue;
 		
 		// Figure out where this weapon will fire from, but add some randomness
 		// depending on how accurate this ship's pilot is.
-		Point start = ship.Position() + ship.Facing().Rotate(weapon.GetPoint());
+		Point start = ship.Position() + ship.Facing().Rotate(hardpoint.GetPoint());
 		start += ship.GetPersonality().Confusion();
 		
-		const Outfit *outfit = weapon.GetOutfit();
-		double vp = outfit->Velocity() + .5 * outfit->RandomVelocity();
-		double lifetime = outfit->TotalLifetime();
+		const Weapon *weapon = hardpoint.GetOutfit();
+		double vp = weapon->Velocity() + .5 * weapon->RandomVelocity();
+		double lifetime = weapon->TotalLifetime();
 		
 		Point p = target.Position() - start;
 		Point v = target.Velocity();
 		// Only take the ship's velocity into account if this weapon
 		// does not have its own acceleration.
-		if(!outfit->Acceleration())
+		if(!weapon->Acceleration())
 			v -= ship.Velocity();
 		// By the time this action is performed, the ships will have moved
 		// forward one time step.
 		p += v;
 		
 		// Get the vector the weapon will travel along.
-		v = (ship.Facing() + weapon.GetAngle()).Unit() * vp - v;
+		v = (ship.Facing() + hardpoint.GetAngle()).Unit() * vp - v;
 		// Extrapolate over the lifetime of the projectile.
 		v *= lifetime;
 		
@@ -2985,10 +2994,9 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 		if(keyHeld.Has(Command::PRIMARY))
 		{
 			int index = 0;
-			for(const Hardpoint &weapon : ship.Weapons())
+			for(const Hardpoint &hardpoint : ship.Weapons())
 			{
-				const Outfit *outfit = weapon.GetOutfit();
-				if(outfit && !outfit->Icon())
+				if(hardpoint.IsReady() && !hardpoint.GetOutfit()->Icon())
 					command.SetFire(index);
 				++index;
 			}
@@ -2996,10 +3004,9 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 		if(keyHeld.Has(Command::SECONDARY))
 		{
 			int index = 0;
-			for(const Hardpoint &weapon : ship.Weapons())
+			for(const Hardpoint &hardpoint : ship.Weapons())
 			{
-				const Outfit *outfit = weapon.GetOutfit();
-				if(outfit && outfit == player.SelectedWeapon())
+				if(hardpoint.IsReady() && hardpoint.GetOutfit() == player.SelectedWeapon())
 					command.SetFire(index);
 				++index;
 			}
