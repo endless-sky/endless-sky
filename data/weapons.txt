@@ -796,14 +796,14 @@ outfit "Torpedo Launcher"
 		"hit effect" "large explosion"
 		"die effect" "tiny explosion"
 		"inaccuracy" 5
-		"velocity" 7
+		"velocity" 3.5
 		"lifetime" 600
 		"reload" 120
 		"firing energy" 2
 		"firing heat" 45
-		"acceleration" .7
+		"acceleration" .6
 		"drag" .1
-		"turn" 4
+		"turn" 1
 		"homing" 3
 		"optical tracking" .8
 		"shield damage" 450
@@ -858,14 +858,14 @@ outfit "Typhoon Launcher"
 		"hit effect" "large explosion"
 		"die effect" "tiny explosion"
 		"inaccuracy" 5
-		"velocity" 5
+		"velocity" 3
 		"lifetime" 600
 		"reload" 100
 		"firing energy" 4
 		"firing heat" 50
-		"acceleration" .5
+		"acceleration" .4
 		"drag" .1
-		"turn" 6
+		"turn" 1
 		"homing" 4
 		"optical tracking" .9
 		"shield damage" 610
