@@ -89,7 +89,8 @@ ship "Argosy"
 		"Energy Blaster" 2
 		"Meteor Missile Launcher" 2
 		"Meteor Missile" 70
-		"Blaster Turret" 2
+		"Blaster Turret"
+		"Anti-Missile Turret"
 		
 		"RT-I Radiothermal"
 		"LP072a Battery Pack"
@@ -106,7 +107,7 @@ ship "Argosy"
 	gun -23 -37 "Meteor Missile Launcher"
 	gun 23 -37 "Meteor Missile Launcher"
 	turret 0 -12 "Blaster Turret"
-	turret 0 8 "Blaster Turret"
+	turret 0 8 "Anti-Missile Turret"
 	explode "tiny explosion" 10
 	explode "small explosion" 25
 	explode "medium explosion" 25
@@ -334,11 +335,13 @@ ship "Bastion"
 		"Plasma Cannon" 2
 		"Heavy Rocket Launcher" 2
 		"Heavy Rocket" 40
-		"Blaster Turret" 3
+		"Blaster Turret" 2
+		"Anti-Missile Turret"
 		
 		"S3 Thermionic"
 		"LP144a Battery Pack"
 		"nGVF-BB Fuel Cell"
+		"Large Radar Jammer"
 		"D67-TM Shield Generator"
 		"Water Coolant System"
 		
@@ -352,7 +355,7 @@ ship "Bastion"
 	gun 54 -14 "Plasma Cannon"
 	gun -54 -14 "Heavy Rocket Launcher"
 	gun 54 -14 "Heavy Rocket Launcher"
-	turret 0 0 "Blaster Turret"
+	turret 0 0 "Anti-Missile Turret"
 	turret -30 14 "Blaster Turret"
 	turret 30 14 "Blaster Turret"
 	explode "tiny explosion" 5
@@ -487,7 +490,8 @@ ship "Blackbird"
 			"hull damage" 300
 			"hit force" 900
 	outfits
-		"Heavy Laser Turret" 2
+		"Heavy Laser Turret"
+		"Heavy Anti-Missile Turret"
 		
 		"S3 Thermionic"
 		"LP072a Battery Pack"
@@ -501,7 +505,7 @@ ship "Blackbird"
 	engine -40 55
 	engine 40 55
 	turret -18 0 "Heavy Laser Turret"
-	turret 18 0 "Heavy Laser Turret"
+	turret 18 0 "Heavy Anti-Missile Turret"
 	explode "tiny explosion" 15
 	explode "small explosion" 34
 	explode "medium explosion" 18
@@ -534,11 +538,13 @@ ship "Bounder"
 			"hull damage" 150
 			"hit force" 450
 	outfits
-		"Blaster Turret" 2
+		"Blaster Turret"
+		"Anti-Missile Turret"
 		
 		"nGVF-CC Fuel Cell"
 		"LP036a Battery Pack"
 		"D14-RN Shield Generator"
+		"Small Radar Jammer"
 		
 		"X3700 Ion Thruster"
 		"X3200 Ion Steering"
@@ -547,7 +553,7 @@ ship "Bounder"
 	engine -12 44
 	engine 12 44
 	turret -37 4 "Blaster Turret"
-	turret 37 4 "Blaster Turret"
+	turret 37 4 "Anti-Missile Turret"
 	explode "tiny explosion" 10
 	explode "small explosion" 20
 	explode "medium explosion" 15
@@ -811,6 +817,7 @@ ship "Clipper"
 		"nGVF-DD Fuel Cell"
 		"LP072a Battery Pack"
 		"D23-QP Shield Generator"
+		"Small Radar Jammer"
 		
 		"Greyhound Plasma Thruster"
 		"Greyhound Plasma Steering"
@@ -891,7 +898,8 @@ ship "Corvette"
 			"hit force" 1200
 	outfits
 		"Heavy Laser" 4
-		"Heavy Laser Turret" 2
+		"Heavy Laser Turret"
+		"Heavy Anti-Missile Turret"
 		
 		"NT-200 Nucleovoltaic"
 		"LP072a Battery Pack"
@@ -909,7 +917,7 @@ ship "Corvette"
 	gun -14 -60 "Heavy Laser"
 	gun 14 -60 "Heavy Laser"
 	turret 0 -11 "Heavy Laser Turret"
-	turret 0 74 "Heavy Laser Turret"
+	turret 0 74 "Heavy Anti-Missile Turret"
 	explode "tiny explosion" 18
 	explode "small explosion" 36
 	explode "medium explosion" 24
@@ -1051,13 +1059,14 @@ ship "Dreadnought"
 	outfits
 		"Meteor Missile Launcher" 4
 		"Meteor Missile" 140
-		"Plasma Turret" 5
+		"Plasma Turret" 4
+		"Heavy Anti-Missile Turret"
 		
 		"Breeder Reactor"
 		"S3 Thermionic"
 		"LP144a Battery Pack"
 		"D41-HY Shield Generator"
-		"Small Radar Jammer"
+		"Large Radar Jammer"
 		"Liquid Helium Cooler"
 		
 		"Orca Plasma Thruster"
@@ -1070,7 +1079,7 @@ ship "Dreadnought"
 	gun 10 -167 "Meteor Missile Launcher"
 	gun -20 -151 "Meteor Missile Launcher"
 	gun 20 -151 "Meteor Missile Launcher"
-	turret 0 -94 "Plasma Turret"
+	turret 0 -94 "Heavy Anti-Missile Turret"
 	turret -38 -56 "Plasma Turret"
 	turret 38 -56 "Plasma Turret"
 	turret -44 118 "Plasma Turret"
@@ -1111,7 +1120,8 @@ ship "Falcon"
 		"Plasma Cannon" 2
 		"Torpedo Launcher" 2
 		"Torpedo" 60
-		"Quad Blaster Turret" 4
+		"Quad Blaster Turret" 3
+		"Heavy Anti-Missile Turret"
 		
 		"Breeder Reactor"
 		"LP144a Battery Pack"
@@ -1132,7 +1142,7 @@ ship "Falcon"
 	turret -16 -24 "Quad Blaster Turret"
 	turret 16 -24 "Quad Blaster Turret"
 	turret -57 40 "Quad Blaster Turret"
-	turret 57 40 "Quad Blaster Turret"
+	turret 57 40 "Heavy Anti-Missile Turret"
 	explode "tiny explosion" 40
 	explode "small explosion" 55
 	explode "medium explosion" 60
@@ -1169,6 +1179,7 @@ ship "Finch"
 		"nGVF-BB Fuel Cell"
 		"LP036a Battery Pack"
 		"D14-RN Shield Generator"
+		"Small Radar Jammer"
 		
 		"Chipmunk Plasma Thruster"
 		"Chipmunk Plasma Steering"
@@ -1207,7 +1218,8 @@ ship "Firebird"
 			"hit force" 1500
 	outfits
 		"Heavy Laser" 4
-		"Heavy Laser Turret" 2
+		"Heavy Laser Turret" 1
+		"Heavy Anti-Missile Turret"
 		
 		"RT-I Radiothermal"
 		"nGVF-AA Fuel Cell"
@@ -1225,7 +1237,7 @@ ship "Firebird"
 	gun -39 -13 "Heavy Laser"
 	gun 39 -13 "Heavy Laser"
 	turret -5 3 "Heavy Laser Turret"
-	turret 5 3 "Heavy Laser Turret"
+	turret 5 3 "Heavy Anti-Missile Turret"
 	explode "tiny explosion" 18
 	explode "small explosion" 36
 	explode "medium explosion" 24
@@ -1308,6 +1320,7 @@ ship "Freighter"
 		"nGVF-EE Fuel Cell"
 		"LP036a Battery Pack"
 		"D14-RN Shield Generator"
+		"Small Radar Jammer"
 		
 		"X2700 Ion Thruster"
 		"X2200 Ion Steering"
@@ -1355,7 +1368,8 @@ ship "Frigate"
 		"Particle Cannon" 2
 		"Torpedo Launcher" 2
 		"Torpedo" 60
-		"Blaster Turret" 3
+		"Blaster Turret" 2
+		"Anti-Missile Turret"
 		
 		"NT-200 Nucleovoltaic"
 		"LP144a Battery Pack"
@@ -1371,7 +1385,7 @@ ship "Frigate"
 	gun 10 -83 "Particle Cannon"
 	gun -10 -83 "Torpedo Launcher"
 	gun 10 -83 "Torpedo Launcher"
-	turret 0 -37 "Blaster Turret"
+	turret 0 -37 "Anti-Missile Turret"
 	turret -12 -12 "Blaster Turret"
 	turret 12 -12 "Blaster Turret"
 	explode "tiny explosion" 18
@@ -1670,6 +1684,7 @@ ship "Hawk"
 		"nGVF-CC Fuel Cell"
 		"LP036a Battery Pack"
 		"D23-QP Shield Generator"
+		"Small Radar Jammer"
 		
 		"Greyhound Plasma Thruster"
 		"Greyhound Plasma Steering"
@@ -1838,7 +1853,8 @@ ship "Leviathan"
 			"hit force" 1200
 	outfits
 		"Particle Cannon" 4
-		"Quad Blaster Turret" 4
+		"Quad Blaster Turret" 3
+		"Heavy Anti-Missile Turret"
 		
 		"Fusion Reactor"
 		"LP144a Battery Pack"
@@ -1858,7 +1874,7 @@ ship "Leviathan"
 	turret -15 -50 "Quad Blaster Turret"
 	turret 15 -50 "Quad Blaster Turret"
 	turret -25 10 "Quad Blaster Turret"
-	turret 25 10 "Quad Blaster Turret"
+	turret 25 10 "Heavy Anti-Missile Turret"
 	explode "tiny explosion" 18
 	explode "small explosion" 36
 	explode "medium explosion" 24
@@ -1944,7 +1960,8 @@ ship "Modified Argosy"
 			"hit force" 1200
 	outfits
 		"Heavy Laser" 4
-		"Heavy Laser Turret" 2
+		"Heavy Laser Turret"
+		"Heavy Anti-Missile Turret"
 		
 		"NT-200 Nucleovoltaic"
 		"LP072a Battery Pack"
@@ -1962,7 +1979,7 @@ ship "Modified Argosy"
 	gun -23 -37 "Heavy Laser"
 	gun 23 -37 "Heavy Laser"
 	turret 0 -12 "Heavy Laser Turret"
-	turret 0 8 "Heavy Laser Turret"
+	turret 0 8 "Heavy Anti-Missile Turret"
 	explode "tiny explosion" 10
 	explode "small explosion" 25
 	explode "medium explosion" 30
@@ -2107,7 +2124,8 @@ ship "Osprey"
 			"hit force" 1200
 	outfits
 		"Plasma Cannon" 4
-		"Quad Blaster Turret" 2
+		"Quad Blaster Turret"
+		"Heavy Anti-Missile Turret"
 		
 		"Breeder Reactor"
 		"LP072a Battery Pack"
@@ -2126,7 +2144,7 @@ ship "Osprey"
 	gun -26 -53 "Plasma Cannon"
 	gun 26 -53 "Plasma Cannon"
 	turret -16 -16 "Quad Blaster Turret"
-	turret 16 -16 "Quad Blaster Turret"
+	turret 16 -16 "Heavy Anti-Missile Turret"
 	explode "medium explosion" 24
 	explode "large explosion" 16
 	explode "small explosion" 40
@@ -2161,7 +2179,8 @@ ship "Protector"
 	outfits
 		"Torpedo Launcher" 2
 		"Torpedo" 60
-		"Quad Blaster Turret" 6
+		"Quad Blaster Turret" 5
+		"Heavy Anti-Missile Turret"
 		
 		"Fusion Reactor"
 		"LP288a Battery Pack"
@@ -2178,7 +2197,7 @@ ship "Protector"
 	gun -15 -100 "Torpedo Launcher"
 	gun 15 -100 "Torpedo Launcher"
 	turret -54 -54 "Quad Blaster Turret"
-	turret 54 -54 "Quad Blaster Turret"
+	turret 54 -54 "Heavy Anti-Missile Turret"
 	turret -73 0 "Quad Blaster Turret"
 	turret 73 0 "Quad Blaster Turret"
 	turret -54 54 "Quad Blaster Turret"
@@ -2619,7 +2638,8 @@ ship "Splinter"
 			"hit force" 900
 	outfits
 		"Proton Gun" 2
-		"Blaster Turret" 3
+		"Blaster Turret" 2
+		"Anti-Missile Turret"
 		
 		"RT-I Radiothermal"
 		"LP144a Battery Pack"
@@ -2636,7 +2656,7 @@ ship "Splinter"
 	gun -15 -80 "Proton Gun"
 	gun 15 -80 "Proton Gun"
 	turret -17 -28 "Blaster Turret"
-	turret 0 -28 "Blaster Turret"
+	turret 0 -28 "Anti-Missile Turret"
 	turret 17 -28 "Blaster Turret"
 	explode "tiny explosion" 18
 	explode "small explosion" 36
