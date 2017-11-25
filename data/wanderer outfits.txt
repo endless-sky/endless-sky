@@ -220,11 +220,11 @@ outfit "Thunderhead Launcher"
 		"Wanderer Outfits"
 	cost 450000
 	thumbnail "outfit/thunderhead launcher"
-	"mass" 14
-	"outfit space" -26
-	"weapon capacity" -26
+	"mass" 7
+	"outfit space" -13
+	"weapon capacity" -13
 	"gun ports" -1
-	"thunderhead capacity" 40
+	"thunderhead capacity" 5
 	weapon
 		sprite "projectile/thunderhead"
 			"no repeat"
@@ -240,7 +240,7 @@ outfit "Thunderhead Launcher"
 		"inaccuracy" 10
 		"velocity" 4
 		"lifetime" 400
-		"reload" 75
+		"reload" 150
 		"firing energy" 18
 		"firing heat" 36
 		"acceleration" 1.1
@@ -250,15 +250,15 @@ outfit "Thunderhead Launcher"
 		"infrared tracking" .9
 		"radar tracking" .6
 		"missile strength" 12
-	description "A prime example of Wanderer ingenuity, Thunderhead missiles each carry five submunitions that are capable of independent tracking. Even if the target is able to shoot down or evade a few of them, the remaining missile fragments will still find their mark."
+	description "A prime example of Wanderer ingenuity, Thunderhead missiles each carry five submunitions that are capable of independent tracking. Even if the target is able to shoot down or evade a few of them, the remaining missile fragments will still find their mark. Each launcher's internal magazine can hold five missiles."
 
 outfit "Thunderhead Missile"
 	category "Ammunition"
-	cost 1800
+	cost 2880
 	thumbnail "outfit/thunderhead"
 	mass .3
 	"thunderhead capacity" -1
-	description "Thunderhead cluster munitions are long-range Wanderer missiles that split into five fast and agile submunitions when they are close to their target. Each launcher can hold up to 40 of these."
+	description "Thunderhead cluster munitions are long-range Wanderer missiles that split into five fast and agile submunitions when they are close to their target."
 
 outfit "Thunderhead"
 	weapon
@@ -269,16 +269,16 @@ outfit "Thunderhead"
 		"hit effect" "small explosion"
 		"inaccuracy" 90
 		"velocity" 2
-		"lifetime" 400
+		"lifetime" 300
 		"acceleration" 1.4
 		"drag" .1
 		"turn" 3
 		"homing" 4
 		"optical tracking" .9
 		"radar tracking" .6
-		"shield damage" 110
-		"hull damage" 80
-		"hit force" 20
+		"shield damage" 440
+		"hull damage" 320
+		"hit force" 80
 		"missile strength" 3
 
 outfit "Thunderhead Storage Array"
@@ -288,7 +288,7 @@ outfit "Thunderhead Storage Array"
 	cost 36000
 	thumbnail "outfit/thunderhead storage"
 	"mass" 2
-	"outfit space" -8
+	"outfit space" -14
 	"thunderhead capacity" 20
 	ammo "Thunderhead Missile"
 	description "The Thunderhead Storage Array is used to store extra ammunition for Thunderhead Launchers."

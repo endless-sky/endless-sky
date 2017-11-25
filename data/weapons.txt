@@ -587,11 +587,11 @@ effect "flamethrower hit"
 
 outfit "Meteor Missile"
 	category "Ammunition"
-	cost 500
+	cost 800
 	thumbnail "outfit/meteor"
 	"mass" .2
 	"meteor capacity" -1
-	description "A Meteor Missile serves as ammunition for the Meteor Missile Launcher. Each missile launcher has the capacity for 35 missiles; you cannot install missiles if you have not first purchased a launcher to store them in."
+	description "A Meteor Missile serves as ammunition for the Meteor Missile Launcher. You cannot install missiles if you have not first purchased a launcher to fire them."
 
 outfit "Meteor Missile Box"
 	plural "Meteor Missile Boxes"
@@ -599,7 +599,7 @@ outfit "Meteor Missile Box"
 	cost 9000
 	thumbnail "outfit/meteor storage"
 	"mass" 1.4
-	"outfit space" -5
+	"outfit space" -8
 	"meteor capacity" 18
 	ammo "Meteor Missile"
 	description "The Meteor Missile Box is used to store extra ammunition for Meteor Missile Launchers."
@@ -609,10 +609,10 @@ outfit "Meteor Missile Launcher"
 	cost 15000
 	thumbnail "outfit/meteor launcher"
 	"mass" 3
-	"outfit space" -10
-	"weapon capacity" -10
+	"outfit space" -5
+	"weapon capacity" -5
 	"gun ports" -1
-	"meteor capacity" 35
+	"meteor capacity" 4
 	weapon
 		sprite "projectile/meteor"
 			"no repeat"
@@ -625,20 +625,20 @@ outfit "Meteor Missile Launcher"
 		"hit effect" "medium explosion"
 		"inaccuracy" 10
 		"velocity" 9
-		"lifetime" 600
-		"reload" 48
+		"lifetime" 400
+		"reload" 100
 		"firing energy" 1
 		"firing heat" 20
 		"acceleration" .9
 		"drag" .1
-		"turn" 2
-		"homing" 3
-		"infrared tracking" .8
-		"shield damage" 130
-		"hull damage" 80
-		"hit force" 30
+		"turn" 4
+		"homing" 2
+		"infrared tracking" .7
+		"shield damage" 520
+		"hull damage" 320
+		"hit force" 120
 		"missile strength" 4
-	description "The Meteor Missile is the cheapest and simplest homing weapon available in human space. The tracking system on these missiles is notoriously unreliable, and they are easily destroyed by anti-missile systems, but in large numbers or when fired at a slow-moving target they can be deadly."
+	description "The Meteor Missile is the cheapest and simplest homing weapon available in human space. Meteors are quickly destroyed by anti-missile systems, and their infrared tracking systems have trouble homing in on targets with low heat levels. Nevertheless, they do considerable damage and can be deadly in large numbers against poorly-defended targets. Each pf these launchers includes an internal magazine that can hold four missiles. To carry more missiles, you will need to buy Meteor Missile Boxes."
 
 effect "meteor fire"
 	sprite "effect/meteor fire"
@@ -650,18 +650,18 @@ effect "meteor fire"
 
 outfit "Sidewinder Missile"
 	category "Ammunition"
-	cost 800
+	cost 1200
 	thumbnail "outfit/sidewinder"
 	"mass" .2
 	"sidewinder capacity" -1
-	description "The Sidewinder Missile is ammunition for the Sidewinder Missile Launcher; each launcher that you have installed can be armed with up to 50 of them. You cannot install a missile without a launcher to fire it from."
+	description "The Sidewinder Missile is ammunition for the Sidewinder Missile Launcher. You cannot install a missile without a launcher to fire it from."
 
 outfit "Sidewinder Missile Rack"
 	category "Ammunition"
 	cost 20000
 	thumbnail "outfit/sidewinder storage"
 	"mass" 2
-	"outfit space" -7
+	"outfit space" -10
 	"sidewinder capacity" 25
 	ammo "Sidewinder Missile"
 	description "The Sidewinder Missile Rack is used to store extra ammunition for Sidewinder Missile Launchers."
@@ -671,10 +671,10 @@ outfit "Sidewinder Missile Launcher"
 	cost 60000
 	thumbnail "outfit/sidewinder launcher"
 	"mass" 4
-	"outfit space" -14
-	"weapon capacity" -14
+	"outfit space" -7
+	"weapon capacity" -7
 	"gun ports" -1
-	"sidewinder capacity" 50
+	"sidewinder capacity" 5
 	weapon
 		sprite "projectile/sidewinder"
 			"no repeat"
@@ -688,20 +688,20 @@ outfit "Sidewinder Missile Launcher"
 		"inaccuracy" 4
 		"velocity" 11
 		"lifetime" 600
-		"reload" 40
+		"reload" 80
 		"firing energy" 1
 		"firing heat" 15
 		"acceleration" 1.1
 		"drag" .1
-		"turn" 3
+		"turn" 6
 		"homing" 4
 		"radar tracking" .9
-		"shield damage" 100
-		"hull damage" 70
-		"hit force" 25
+		"shield damage" 400
+		"hull damage" 280
+		"hit force" 100
 		"missile strength" 12
 	description "The Sidewinder Missile is designed by Lovelace Labs, which is ironically also the designer of the Anti-Missile Turret. Rumors say that the two engineering teams at Lovelace who make the missiles and the anti-missiles are locked in furious competition with each other: the result has been generation after generation of smarter missiles and then smarter turrets to fend them off."
-	description "	Although not as powerful or cheap as the popular Meteor missiles, Sidewinders have several advantages, including their better tracking systems and protective casings that make them much harder for anti-missile systems to destroy."
+	description "	Although not as powerful or cheap as the popular Meteor missiles, Sidewinders have several advantages, including their better tracking systems and protective casings that make them much harder for anti-missile systems to destroy. Each of these launchers includes a five-round internal magazine."
 
 effect "sidewinder fire"
 	sprite "effect/sidewinder fire"
@@ -713,31 +713,31 @@ effect "sidewinder fire"
 
 outfit "Javelin"
 	category "Ammunition"
-	cost 50
+	cost 75
 	thumbnail "outfit/javelin"
 	"mass" .04
 	"javelin capacity" -1
-	description "A Javelin missile is ammunition for the Javelin Pod; without a Pod to store them in you cannot purchase or use Javelins. Each pod stores up to 200 Javelins."
+	description "A Javelin missile is ammunition for the Javelin Pod; without a Pod to fire them, you cannot purchase or use Javelins."
 
 outfit "Javelin Storage Crate"
 	category "Ammunition"
 	cost 5000
 	thumbnail "outfit/javelin storage"
 	"mass" 2
-	"outfit space" -6
+	"outfit space" -9
 	"javelin capacity" 100
 	ammo "Javelin"
-	description "The Javelin Storage Crate is used to store extra ammunition for Javlein Pods."
+	description "The Javelin Storage Crate is used to store extra ammunition for Javelin Pods."
 
 outfit "Javelin Pod"
 	category "Secondary Weapons"
 	cost 20000
 	thumbnail "outfit/javelin pod"
 	"mass" 4
-	"outfit space" -12
-	"weapon capacity" -12
+	"outfit space" -6
+	"weapon capacity" -6
 	"gun ports" -1
-	"javelin capacity" 200
+	"javelin capacity" 20
 	weapon
 		sprite "projectile/javelin"
 		sound "javelin"
@@ -747,31 +747,31 @@ outfit "Javelin Pod"
 		"inaccuracy" 1
 		"velocity" 10
 		"lifetime" 60
-		"reload" 20
+		"reload" 40
 		"firing energy" .2
 		"firing heat" 12
-		"shield damage" 48
-		"hull damage" 26
-		"hit force" 5
+		"shield damage" 200
+		"hull damage" 100
+		"hit force" 20
 		"missile strength" 2
-	description "The Javelin Pod fires a rapid stream of unguided missiles. A Javelin Pod does far more damage than any gun of a comparable size, and has a longer range as well, but once a ship has fired off all its ammunition it must leave combat and find a planet where it can buy more, which makes Javelins less useful in protracted battles. As a result, they are very popular with pirates as a way to quickly disable a small target."
+	description "The Javelin Pod fires a rapid stream of unguided missiles, fed from a 20-round internal magazine. A Javelin Pod does far more damage than any gun of a comparable size, and has a longer range as well. However, the projectiles can be destroyed by anti-missile systems, and once a ship has expended all its ammunition it must leave combat and find a planet where it can buy more, which makes Javelins less useful in protracted battles. As a result, Javelins are very popular with pirates as a way to quickly disable isolated and poorly-defended vessels."
 
 
 outfit "Torpedo"
 	plural "Torpedoes"
 	category "Ammunition"
-	cost 1400
+	cost 2300
 	thumbnail "outfit/torpedo"
 	"mass" .4
 	"torpedo capacity" -1
-	description "Torpedoes are ammunition for the Torpedo Launcher. Each Torpedo Launcher can hold 30 of them. You cannot install torpedoes unless you have also installed a launcher to fire them from."
+	description "Torpedoes are ammunition for the Torpedo Launcher. You cannot install torpedoes unless you have also installed a launcher to fire them from."
 
 outfit "Torpedo Storage Rack"
 	category "Ammunition"
 	cost 21000
 	thumbnail "outfit/torpedo storage"
 	"mass" 3
-	"outfit space" -9
+	"outfit space" -15
 	"torpedo capacity" 15
 	ammo "Torpedo"
 	description "The Torpedo Storage Rack is used to store extra ammunition for Torpedo Launchers."
@@ -780,11 +780,11 @@ outfit "Torpedo Launcher"
 	category "Secondary Weapons"
 	cost 80000
 	thumbnail "outfit/torpedo launcher"
-	"mass" 13
-	"outfit space" -25
-	"weapon capacity" -25
+	"mass" 7
+	"outfit space" -12
+	"weapon capacity" -12
 	"gun ports" -1
-	"torpedo capacity" 30
+	"torpedo capacity" 3
 	weapon
 		sprite "projectile/torpedo"
 			"frame rate" 2
@@ -796,21 +796,21 @@ outfit "Torpedo Launcher"
 		"hit effect" "large explosion"
 		"die effect" "tiny explosion"
 		"inaccuracy" 5
-		"velocity" 7
+		"velocity" 3.5
 		"lifetime" 600
-		"reload" 120
+		"reload" 240
 		"firing energy" 2
 		"firing heat" 45
-		"acceleration" .7
+		"acceleration" .6
 		"drag" .1
-		"turn" 4
+		"turn" 1
 		"homing" 3
 		"optical tracking" .8
-		"shield damage" 450
-		"hull damage" 450
-		"hit force" 40
-		"missile strength" 20
-	description "Torpedoes are the most powerful homing weapon, but they move slowly enough that fast ships can simply outrun them, making them most useful against large targets or against small ships at times when they are too distracted to dodge. Torpedo launchers are also much larger than other missile systems, so they are most often found in capital ships."
+		"shield damage" 1800
+		"hull damage" 1800
+		"hit force" 160
+		"missile strength" 28
+	description "Torpedoes are the most powerful human homing weapons. A few salvoes can cripple a capital ship, and fighter-sized craft can often be destroyed with a single hit. However, Torpedoes move and turn slowly enough that fast vessels can easily dodge and outrun them. Each launcher can store three Torpedoes in a small internal magazine, but most capital ships have multiple storage racks to feed their launchers during protracted fleet engagements."
 
 effect "torpedo fire"
 	sprite "effect/torpedo fire"
@@ -826,14 +826,14 @@ outfit "Typhoon Torpedo"
 	thumbnail "outfit/typhoon"
 	"mass" .5
 	"typhoon capacity" -1
-	description "Typhoon Torpedoes are ammunition for the Typhoon Launcher. Each launcher can hold 30 of them. You cannot install Typhoon Torpedoes unless you have also installed a launcher to fire them from."
+	description "Typhoon Torpedoes are ammunition for the Typhoon Launcher. You cannot install Typhoon Torpedoes unless you have also installed a launcher to fire them from."
 
 outfit "Typhoon Storage Tube"
 	category "Ammunition"
 	cost 40500
 	thumbnail "outfit/typhoon storage"
 	"mass" 2.5
-	"outfit space" -10
+	"outfit space" -20
 	"typhoon capacity" 15
 	ammo "Typhoon Torpedo"
 	description "The Typhoon Storage Tube is used to store extra ammunition for Typhoon Launchers."
@@ -842,11 +842,11 @@ outfit "Typhoon Launcher"
 	category "Secondary Weapons"
 	cost 260000
 	thumbnail "outfit/typhoon launcher"
-	"mass" 20
-	"outfit space" -35
-	"weapon capacity" -35
+	"mass" 10
+	"outfit space" -18
+	"weapon capacity" -18
 	"gun ports" -1
-	"typhoon capacity" 30
+	"typhoon capacity" 3
 	weapon
 		sprite "projectile/typhoon"
 			"frame rate" 4
@@ -858,21 +858,21 @@ outfit "Typhoon Launcher"
 		"hit effect" "large explosion"
 		"die effect" "tiny explosion"
 		"inaccuracy" 5
-		"velocity" 5
+		"velocity" 3
 		"lifetime" 600
-		"reload" 100
+		"reload" 200
 		"firing energy" 4
 		"firing heat" 50
-		"acceleration" .5
+		"acceleration" .4
 		"drag" .1
-		"turn" 6
+		"turn" 1
 		"homing" 4
 		"optical tracking" .9
-		"shield damage" 610
-		"hull damage" 610
-		"hit force" 70
-		"missile strength" 30
-	description "Typhoon Torpedoes are an improved torpedo technology; they do considerably more damage than ordinary torpedoes. However, they are also much slower, because they are intended mostly for use against large and slow-moving capital ships. As a result, sufficiently skilled pilots can often dodge around them."
+		"shield damage" 2240
+		"hull damage" 2240
+		"hit force" 280
+		"missile strength" 40
+	description "Typhoon Torpedoes are an improved torpedo technology; they do considerably more damage than ordinary torpedoes. However, they are also much slower, because they are intended only for use against large and slow-moving capital ships. As a result, sufficiently skilled pilots can easily dodge around them. Each Typhoon Launcher can hold three torpedoes, but capital ships generally include enough supplementary storage capacity to last whole campaigns."
 
 effect "typhoon fire"
 	sprite "effect/typhoon fire"
@@ -880,34 +880,33 @@ effect "typhoon fire"
 		"frame rate" 10
 	"lifetime" 15
 
-
 outfit "Heavy Rocket"
 	category "Ammunition"
-	cost 2000
+	cost 3200
 	thumbnail "outfit/rocket"
 	"mass" .5
 	"rocket capacity" -1
-	description "Heavy Rockets are ammunition for the Heavy Rocket Launcher. You cannot install one unless you have first installed a launcher to fire it from. Each launcher holds up to 20 rockets."
+	description "Heavy Rockets are ammunition for the Heavy Rocket Launcher. You cannot install one unless you have first installed a launcher to fire it from."
 
 outfit "Heavy Rocket Rack"
 	category "Ammunition"
 	cost 20000
 	thumbnail "outfit/rocket storage"
 	"mass" 2
-	"outfit space" -7
+	"outfit space" -13
 	"rocket capacity" 10
 	ammo "Heavy Rocket"
-	description "The Heavy Rocket Rack is used to store extra ammunition for Heavy Rocket Launchers."
+	description "Without additional storage capacity, the Heavy Rocket launchers is a one-shot-wonder, capable of firing only a single rocket. The Heavy Rocket Rack is used to store more rockets."
 
 outfit "Heavy Rocket Launcher"
 	category "Secondary Weapons"
 	cost 40000
 	thumbnail "outfit/rocket launcher"
-	"mass" 10
-	"outfit space" -20
-	"weapon capacity" -20
+	"mass" 5
+	"outfit space" -10
+	"weapon capacity" -10
 	"gun ports" -1
-	"rocket capacity" 20
+	"rocket capacity" 2
 	weapon
 		sprite "projectile/rocket"
 			"frame rate" 4
@@ -919,18 +918,18 @@ outfit "Heavy Rocket Launcher"
 		"inaccuracy" 1
 		"velocity" 8
 		"lifetime" 100
-		"reload" 200
+		"reload" 300
 		"firing energy" 1
 		"firing heat" 250
 		"acceleration" .8
 		"drag" .1
 		"trigger radius" 30
 		"blast radius" 50
-		"shield damage" 700
-		"hull damage" 600
-		"hit force" 80
+		"shield damage" 2000
+		"hull damage" 2000
+		"hit force" 240
 		"missile strength" 16
-	description "Heavy Rockets are the most powerful missile weapon available, but at a price: instead of having a homing system, they simply fire straight forward and rely on a proximity trigger to set them off. Once triggered, however, they damage all ships within their blast radius, making them highly effective against clusters of fighters."
+	description "Heavy Rockets are the most powerful missile weapon available, but at a price: lacking a homing system, they simply fire straight forward and rely on a proximity trigger to set them off. Once triggered, however, they damage all ships within their blast radius, making them highly effective against clusters of fighters. Each launcher can only hold a single rocket; additional capacity requires storage racks."
 
 effect "heavy rocket hit"
 	sprite "effect/explosion/huge"
@@ -966,12 +965,12 @@ outfit "Nuclear Missile"
 		"hit effect" "nuke residue slow" 10
 		"die effect" "missile death"
 		"inaccuracy" 1
-		"velocity" 6
+		"velocity" 2
 		"lifetime" 800
-		"reload" 400
+		"reload" 1200
 		"firing energy" 10
 		"firing heat" 400
-		"acceleration" .8
+		"acceleration" .25
 		"drag" .1
 		"turn" 4
 		"homing" 4
@@ -979,8 +978,8 @@ outfit "Nuclear Missile"
 		"optical tracking" 1
 		"trigger radius" 30
 		"blast radius" 150
-		"shield damage" 9000
-		"hull damage" 7000
+		"shield damage" 27000
+		"hull damage" 21000
 		"hit force" 4000
 		"missile strength" 200
 	description "It has been centuries since the last nuclear war was fought, and until very recently, most people in the galaxy assumed that that era of chaos and destruction was forever behind us..."

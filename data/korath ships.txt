@@ -311,7 +311,8 @@ ship "Kar Ik Vot 349"
 	outfits
 		"Korath Detainer" 2
 		"Korath Piercer Launcher" 2
-		"Korath Piercer" 62
+		"Korath Piercer Rack" 2
+		"Korath Piercer" 40
 		"Korath Warder" 2
 		"Korath Repeater Turret" 6
 		
@@ -351,7 +352,8 @@ ship "Kar Ik Vot 349"
 ship "Kar Ik Vot 349" "Kar Ik Vot 349 (Offense)"
 	outfits
 		"Korath Piercer Launcher" 4
-		"Korath Piercer" 124
+		"Korath Piercer Rack" 4
+		"Korath Piercer" 80
 		"Korath Repeater Turret" 6
 		"Korath Grab-Strike" 2
 		
@@ -380,7 +382,8 @@ ship "Kar Ik Vot 349" "Kar Ik Vot 349 (Offense)"
 ship "Kar Ik Vot 349" "Kar Ik Vot 349 (Defense)"
 	outfits
 		"Korath Piercer Launcher" 4
-		"Korath Piercer" 124
+		"Korath Piercer Rack" 4
+		"Korath Piercer" 80
 		"Korath Warder" 3
 		"Korath Grab-Strike" 3
 		"Korath Banisher" 2
@@ -465,7 +468,8 @@ ship "Tek Far 71 - Lek"
 	outfits
 		"Korath Detainer"
 		"Korath Piercer Launcher" 2
-		"Korath Piercer" 62
+		"Korath Piercer Rack" 2
+		"Korath Piercer" 40
 		"Korath Banisher"
 		"Korath Warder" 2
 		
@@ -557,7 +561,8 @@ ship "Tek Far 78 - Osk"
 	outfits
 		"Korath Detainer"
 		"Korath Piercer Launcher" 3
-		"Korath Piercer" 93
+		"Korath Piercer Rack" 3
+		"Korath Piercer" 60
 		"Korath Banisher"
 		"Korath Warder" 2
 		
@@ -648,7 +653,8 @@ ship "Tek Far 109"
 	outfits
 		"Korath Detainer"
 		"Korath Piercer Launcher" 2
-		"Korath Piercer" 62
+		"Korath Piercer Rack" 2
+		"Korath Piercer" 40
 		"Korath Banisher" 2
 		
 		"Double Plasma Core"
@@ -753,7 +759,8 @@ ship "Met Par Tek 53" "Met Par Tek 53 (Sniper)"
 	outfits
 		"Korath Detainer"
 		"Korath Piercer Launcher" 2
-		"Korath Piercer" 62
+		"Korath Piercer Rack" 2
+		"Korath Piercer" 40
 		"Korath Grab-Strike"
 		"Korath Warder"
 		
@@ -928,6 +935,7 @@ ship "Model 16"
 			"hit force" 3300
 	outfits
 		"Korath Minelayer"
+		"Korath Mine Rack" 2
 		"Korath Mine" 17
 		"Korath Disruptor"
 		"Korath Slicer Turret"
@@ -980,6 +988,7 @@ ship "Model 32"
 			"hit force" 4800
 	outfits
 		"Korath Minelayer"
+		"Korath Mine Rack" 2
 		"Korath Mine" 17
 		"Korath Disruptor"
 		"Korath Slicer Turret" 2
@@ -1033,6 +1042,7 @@ ship "Model 64"
 			"hit force" 6000
 	outfits
 		"Korath Minelayer"
+		"Korath Mine Rack" 2
 		"Korath Mine" 17
 		"Korath Disruptor" 2
 		"Korath Slicer Turret" 2
@@ -1087,6 +1097,7 @@ ship "Model 128"
 			"hit force" 6900
 	outfits
 		"Korath Minelayer" 2
+		"Korath Mine Rack" 4
 		"Korath Mine" 34
 		"Korath Disruptor" 2
 		"Korath Slicer Turret" 3
@@ -1143,6 +1154,7 @@ ship "Model 256"
 			"hit force" 7800
 	outfits
 		"Korath Minelayer" 2
+		"Korath Mine Rack" 4
 		"Korath Mine" 34
 		"Korath Disruptor" 3
 		"Korath Slicer Turret" 3
@@ -1200,6 +1212,7 @@ ship "Model 512"
 			"hit force" 8400
 	outfits
 		"Korath Minelayer" 2
+		"Korath Mine Rack" 4
 		"Korath Mine" 34
 		"Korath Disruptor" 3
 		"Korath Slicer Turret" 4
