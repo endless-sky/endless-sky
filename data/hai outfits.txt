@@ -181,7 +181,7 @@ effect "rail sparks"
 
 outfit "Hai Tracker"
 	category "Ammunition"
-	cost 1000
+	cost 2000
 	thumbnail "outfit/hai tracker"
 	"mass" .2
 	"tracker capacity" -1
@@ -220,7 +220,7 @@ outfit "Hai Tracker Pod"
 		"inaccuracy" 20
 		"velocity" 14
 		"lifetime" 600
-		"reload" 60
+		"reload" 120
 		"firing energy" 45
 		"firing heat" 5
 		"acceleration" .7
@@ -229,9 +229,9 @@ outfit "Hai Tracker Pod"
 		"homing" 4
 		"optical tracking" .8
 		"infrared tracking" .4
-		"shield damage" 200
-		"hull damage" 160
-		"hit force" 50
+		"shield damage" 800
+		"hull damage" 640
+		"hit force" 200
 		"missile strength" 16
 	description "Trackers are fast, powerful, and accurate homing weapons. Their only weakness is their large turning radius: if a Tracker misses its target, it takes a long time to turn around."
 

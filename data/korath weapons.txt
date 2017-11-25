@@ -226,7 +226,7 @@ outfit "Korath Repeater Turret"
 
 outfit "Korath Piercer"
 	category "Ammunition"
-	cost 3500
+	cost 7000
 	thumbnail "outfit/piercer"
 	"mass" .3
 	"piercer capacity" -1
@@ -266,7 +266,7 @@ outfit "Korath Piercer Launcher"
 		"inaccuracy" 3
 		"velocity" 18
 		"lifetime" 200
-		"reload" 72
+		"reload" 144
 		"firing energy" 29
 		"firing heat" 144
 		"acceleration" .54
@@ -274,10 +274,10 @@ outfit "Korath Piercer Launcher"
 		"turn" 1.6
 		"homing" 4
 		"infrared tracking" .9
-		"shield damage" 290
-		"hull damage" 440
+		"shield damage" 1160
+		"hull damage" 1760
 		"piercing" .2
-		"hit force" 30
+		"hit force" 120
 		"missile strength" 73
 		"stream"
 	description "Korath Piercer missiles carry a pair of warheads. The first, a smaller one in the very tip of the missile, explodes on impact to blast a hole in the ship's shields to allow some of the subsequent, larger explosion to pierce through."

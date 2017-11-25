@@ -102,7 +102,7 @@ outfit "Finisher Pod"
 		"inaccuracy" 5
 		"velocity" 10
 		"lifetime" 60
-		"reload" 80
+		"reload" 160
 		"firing energy" 120
 		"firing heat" 20
 		"acceleration" .8
@@ -130,14 +130,14 @@ outfit "Active Finisher"
 		"radar tracking" .8
 		"optical tracking" .5
 		"missile strength" 50
-		"shield damage" 1500
-		"hull damage" 1900
-		"hit force" 240
+		"shield damage" 6000
+		"hull damage" 7600
+		"hit force" 960
 
 outfit "Finisher Torpedo"
 	plural "Finisher Torpedoes"
 	category "Ammunition"
-	cost 32000
+	cost 64000
 	thumbnail "outfit/finisher"
 	"mass" .5
 	"finisher capacity" -1

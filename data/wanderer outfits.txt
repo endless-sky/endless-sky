@@ -240,7 +240,7 @@ outfit "Thunderhead Launcher"
 		"inaccuracy" 10
 		"velocity" 4
 		"lifetime" 400
-		"reload" 75
+		"reload" 150
 		"firing energy" 18
 		"firing heat" 36
 		"acceleration" 1.1
@@ -254,7 +254,7 @@ outfit "Thunderhead Launcher"
 
 outfit "Thunderhead Missile"
 	category "Ammunition"
-	cost 1800
+	cost 3600
 	thumbnail "outfit/thunderhead"
 	mass .3
 	"thunderhead capacity" -1
@@ -276,9 +276,9 @@ outfit "Thunderhead"
 		"homing" 4
 		"optical tracking" .9
 		"radar tracking" .6
-		"shield damage" 110
-		"hull damage" 80
-		"hit force" 20
+		"shield damage" 440
+		"hull damage" 320
+		"hit force" 80
 		"missile strength" 3
 
 outfit "Thunderhead Storage Array"
