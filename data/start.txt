@@ -13,10 +13,10 @@ start
 	system "Rutilicus"
 	planet "New Boston"
 	account
-		credits 480000
+		credits 600000
 		score 400
 		mortgage Mortgage
-			principal 480000
+			principal 600000
 			interest 0.004
 			term 365
 	set "license: Pilot's"
