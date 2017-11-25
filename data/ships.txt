@@ -88,7 +88,8 @@ ship "Argosy"
 	outfits
 		"Energy Blaster" 2
 		"Meteor Missile Launcher" 2
-		"Meteor Missile" 70
+		"Meteor Missile Box"
+		"Meteor Missile" 40
 		"Blaster Turret" 2
 		
 		"RT-I Radiothermal"
@@ -141,7 +142,8 @@ ship "Arrow"
 			"hit force" 360
 	outfits
 		"Sidewinder Missile Launcher" 2
-		"Sidewinder Missile" 100
+		"Sidewinder Missile Rack"
+		"Sidewinder Missile" 50
 		"Anti-Missile Turret"
 		
 		"Dwarf Core"
@@ -190,7 +192,8 @@ ship "Bactrian"
 			"hit force" 3900
 	outfits
 		"Sidewinder Missile Launcher" 2
-		"Sidewinder Missile" 100
+		"Sidewinder Missile Rack"
+		"Sidewinder Missile" 50
 		"Torpedo Launcher" 2
 		"Torpedo" 60
 		"Heavy Laser Turret" 4
@@ -333,7 +336,8 @@ ship "Bastion"
 	outfits
 		"Plasma Cannon" 2
 		"Heavy Rocket Launcher" 2
-		"Heavy Rocket" 40
+		"Heavy Rocket Rack"
+		"Heavy Rocket" 12
 		"Blaster Turret" 3
 		
 		"S3 Thermionic"
@@ -441,7 +445,9 @@ ship "Berserker"
 			"hull damage" 150
 			"hit force" 450
 	outfits
-		"Beam Laser" 4
+		"Beam Laser" 3
+		"Meteor Missile Launcher"
+		"Meteor Missile" 4
 		
 		"nGVF-CC Fuel Cell"
 		"LP072a Battery Pack"
@@ -453,10 +459,10 @@ ship "Berserker"
 		
 	engine -10 45
 	engine 10 45
-	gun -20 12
-	gun 20 12
-	gun -44 10
-	gun 44 10
+	gun -20 12 "Beam Laser"
+	gun 20 12 "Beam Laser"
+	gun -44 10 "Beam Laser"
+	gun 44 10 "Meteor Missile Launcher"
 	explode "tiny explosion" 10
 	explode "small explosion" 15
 	"final explode" "final explosion small"
@@ -614,7 +620,8 @@ ship "Bulk Freighter"
 			"hit force" 1800
 	outfits
 		"Sidewinder Missile Launcher" 2
-		"Sidewinder Missile" 100
+		"Sidewinder Missile Rack"
+		"Sidewinder Missile" 50
 		"Laser Turret" 3
 		"Heavy Anti-Missile Turret" 2
 		
@@ -672,6 +679,7 @@ ship "Carrier"
 	outfits
 		"Particle Cannon" 4
 		"Meteor Missile Launcher" 4
+		"Meteor Missile Box" 4
 		"Meteor Missile" 140
 		"Heavy Laser Turret" 3
 		"Heavy Anti-Missile Turret"
@@ -806,7 +814,8 @@ ship "Clipper"
 	outfits
 		"Beam Laser" 2
 		"Javelin Pod" 2
-		"Javelin" 400
+		"Javelin Storage Crate" 2
+		"Javelin" 200
 		
 		"nGVF-DD Fuel Cell"
 		"LP072a Battery Pack"
@@ -947,6 +956,7 @@ ship "Cruiser"
 	outfits
 		"Particle Cannon" 4
 		"Sidewinder Missile Launcher" 2
+		"Sidewinder Missile Rack" 2
 		"Sidewinder Missile" 100
 		"Heavy Laser Turret" 3
 		"Heavy Anti-Missile Turret"
@@ -1008,7 +1018,9 @@ ship "Dagger"
 			"hull damage" 60
 			"hit force" 180
 	outfits
-		"Beam Laser" 2
+		"Heavy Laser"
+		"Meteor Missile Launcher"
+		"Meteor Missile" 4
 		
 		"nGVF-BB Fuel Cell"
 		"D14-RN Shield Generator"
@@ -1018,8 +1030,8 @@ ship "Dagger"
 		
 	engine -15 30
 	engine 15 30
-	gun -14 -10 "Beam Laser"
-	gun 14 -10 "Beam Laser"
+	gun -14 -10 "Heavy Laser"
+	gun 14 -10 "Meteor Missile Launcher"
 	explode "tiny explosion" 15
 	explode "small explosion" 5
 	description "The Dagger is a fighter designed by Lionheart Industries, intended to be carried by their Aerie warship, although other ships have been known to carry them, as well. As with many Lionheart ships, its chassis is largely composed of lightweight composite materials, making it considerably faster than other fighters."
@@ -1050,7 +1062,8 @@ ship "Dreadnought"
 			"hit force" 3900
 	outfits
 		"Meteor Missile Launcher" 4
-		"Meteor Missile" 140
+		"Meteor Missile Box" 2
+		"Meteor Missile" 80
 		"Plasma Turret" 5
 		
 		"Breeder Reactor"
@@ -1110,7 +1123,8 @@ ship "Falcon"
 	outfits
 		"Plasma Cannon" 2
 		"Torpedo Launcher" 2
-		"Torpedo" 60
+		"Torpedo Storage Rack"
+		"Torpedo" 20
 		"Quad Blaster Turret" 4
 		
 		"Breeder Reactor"
@@ -1164,7 +1178,9 @@ ship "Finch"
 			"hull damage" 60
 			"hit force" 180
 	outfits
-		"Beam Laser" 2
+		"Beam Laser"
+		"Heavy Rocket Launcher"
+		"Heavy Rocket"
 		
 		"nGVF-BB Fuel Cell"
 		"LP036a Battery Pack"
@@ -1176,7 +1192,7 @@ ship "Finch"
 	engine -5 32
 	engine 5 32
 	gun -7 -14 "Beam Laser"
-	gun 7 -14 "Beam Laser"
+	gun 7 -14 "Heavy Rocket Launcher"
 	explode "tiny explosion" 15
 	explode "small explosion" 5
 	description "When the Free Worlds started requesting a Carrier solution from its local shipyards, Tarazed Shipyards quickly saw that a few modifications could make their entry level interceptor into a top tier fighter. Over 85% of the parts that make up the Finch are shared with the Sparrow assembly line, so it's no surprise that even trimmed down to (barely) fit into a fighter bay, the Finch bears strong resemblance to its hyperspace-faring cousin."
@@ -1259,7 +1275,8 @@ ship "Flivver"
 			"hit force" 240
 	outfits
 		"Meteor Missile Launcher" 2
-		"Meteor Missile" 70
+		"Meteor Missile Box"
+		"Meteor Missile" 40
 		
 		"nGVF-BB Fuel Cell"
 		"LP036a Battery Pack"
@@ -1354,7 +1371,8 @@ ship "Frigate"
 	outfits
 		"Particle Cannon" 2
 		"Torpedo Launcher" 2
-		"Torpedo" 60
+		"Torpedo Storage Rack"
+		"Torpedo" 20
 		"Blaster Turret" 3
 		
 		"NT-200 Nucleovoltaic"
@@ -1407,7 +1425,11 @@ ship "Fury"
 			"hull damage" 120
 			"hit force" 360
 	outfits
-		"Energy Blaster" 4
+		"Energy Blaster" 2
+		"Meteor Missile Launcher"
+		"Meteor Missile" 4
+		"Heavy Rocket Launcher"
+		"Heavy Rocket" 1
 		
 		"nGVF-CC Fuel Cell"
 		"LP036a Battery Pack"
@@ -1419,10 +1441,10 @@ ship "Fury"
 		
 	engine -17 35
 	engine 17 35
-	gun -10 -26
-	gun 10 -26
-	gun -16 -20
-	gun 16 -20
+	gun -10 -26 "Meteor Missile Launcher"
+	gun 10 -26 "Energy Blaster"
+	gun -16 -20 "Energy Blaster"
+	gun 16 -20 "Heavy Rocket Launcher"
 	explode "tiny explosion" 10
 	explode "small explosion" 20
 	description "The Fury is Southbound Shipyard's most popular design of escort ship. They have greater firepower than any other interceptor-class vessel, meaning that any pirate flying solo will think twice before attacking a convoy that is accompanied by a Fury. However, Furies are also much less maneuverable than other small ships."
@@ -1504,7 +1526,8 @@ ship "Hauler"
 			"hit force" 900
 	outfits
 		"Meteor Missile Launcher" 2
-		"Meteor Missile" 70
+		"Meteor Missile Box"
+		"Meteor Missile" 40
 		"Quad Blaster Turret" 2
 		"Heavy Anti-Missile Turret" 2
 		
@@ -1558,7 +1581,8 @@ ship "Hauler II"
 			"hit force" 1200
 	outfits
 		"Meteor Missile Launcher" 2
-		"Meteor Missile" 70
+		"Meteor Missile Box"
+		"Meteor Missile" 40
 		"Quad Blaster Turret" 2
 		"Heavy Anti-Missile Turret" 2
 		
@@ -1612,7 +1636,8 @@ ship "Hauler III"
 			"hit force" 1500
 	outfits
 		"Meteor Missile Launcher" 2
-		"Meteor Missile" 70
+		"Meteor Missile Box"
+		"Meteor Missile" 40
 		"Quad Blaster Turret" 2
 		"Heavy Anti-Missile Turret" 2
 		
@@ -1795,7 +1820,9 @@ ship "Lance"
 			"hull damage" 60
 			"hit force" 180
 	outfits
-		"Beam Laser" 2
+		"Beam Laser"
+		"Sidewinder Missile Launcher"
+		"Sidewinder Missile" 4
 		
 		"nGVF-AA Fuel Cell"
 		"LP036a Battery Pack"
@@ -1807,7 +1834,7 @@ ship "Lance"
 	engine -15 30
 	engine 15 30
 	gun -14 -10 "Beam Laser"
-	gun 14 -10 "Beam Laser"
+	gun 14 -10 "Sidewinder Missile Launcher"
 	explode "tiny explosion" 15
 	explode "small explosion" 5
 	description "The Lance is the primary fighter used by the Republic Navy. As with all fighters, it is weak by itself but very effective as part of a larger squadron."
@@ -1893,7 +1920,8 @@ ship "Manta"
 	outfits
 		"Particle Cannon" 4
 		"Meteor Missile Launcher" 2
-		"Meteor Missile" 70
+		"Meteor Missile Box"
+		"Meteor Missile" 40
 		
 		"RT-I Radiothermal"
 		"LP144a Battery Pack"
@@ -1996,7 +2024,8 @@ ship "Mule"
 			"hit force" 1500
 	outfits
 		"Sidewinder Missile Launcher" 2
-		"Sidewinder Missile" 100
+		"Sidewinder Missile Rack"
+		"Sidewinder Missile" 50
 		"Heavy Laser Turret" 3
 		"Heavy Anti-Missile Turret"
 		
@@ -2051,7 +2080,8 @@ ship "Nest"
 			"hit force" 900
 	outfits
 		"Meteor Missile Launcher" 2
-		"Meteor Missile" 70
+		"Meteor Missile Box"
+		"Meteor Missile" 40
 		"Quad Blaster Turret" 2
 		"Heavy Anti-Missile Turret" 2
 		
@@ -2160,7 +2190,8 @@ ship "Protector"
 			"hit force" 2400
 	outfits
 		"Torpedo Launcher" 2
-		"Torpedo" 60
+		"Torpedo Storage Rack"
+		"Torpedo" 20
 		"Quad Blaster Turret" 6
 		
 		"Fusion Reactor"
@@ -2264,6 +2295,7 @@ ship "Rainmaker"
 	outfits
 		"Energy Blaster" 2
 		"Meteor Missile Launcher" 4
+		"Meteor Missile Box" 4
 		"Meteor Missile" 140
 		
 		"nGVF-CC Fuel Cell"
@@ -2362,7 +2394,8 @@ ship "Roost"
 			"hit force" 1200
 	outfits
 		"Meteor Missile Launcher" 2
-		"Meteor Missile" 70
+		"Meteor Missile Box"
+		"Meteor Missile" 40
 		"Quad Blaster Turret" 2
 		"Heavy Anti-Missile Turret" 2
 		
@@ -2515,7 +2548,8 @@ ship "Skein"
 			"hit force" 1500
 	outfits
 		"Meteor Missile Launcher" 2
-		"Meteor Missile" 70
+		"Meteor Missile Box"
+		"Meteor Missile" 40
 		"Quad Blaster Turret" 2
 		"Heavy Anti-Missile Turret" 2
 		
@@ -2574,7 +2608,9 @@ ship "Sparrow"
 			"hull damage" 80
 			"hit force" 240
 	outfits
-		"Beam Laser" 2
+		"Beam Laser"
+		"Meteor Missile Launcher"
+		"Meteor Missile" 2
 		
 		"nGVF-BB Fuel Cell"
 		"LP036a Battery Pack"
@@ -2586,8 +2622,8 @@ ship "Sparrow"
 		
 	engine -5 35
 	engine 5 35
-	gun -7 -10
-	gun 7 -10
+	gun -7 -10 "Beam Laser"
+	gun 7 -10 "Meteor Missile Launcher"
 	explode "tiny explosion" 15
 	explode "small explosion" 5
 	description "Classified as an interceptor rather than a fighter because it has its own hyperdrive instead of needing to be carried inside a larger ship, the Tarazed Sparrow is the smallest and cheapest combat ship available. Because of its limited cargo and passenger space, the primary way for a Sparrow pilot to pay the bills is by hunting pirates... or by becoming one. In either case, it is a perilous way to earn a living."
@@ -2712,7 +2748,8 @@ ship "Star Queen"
 			"hit force" 900
 	outfits
 		"Sidewinder Missile Launcher" 3
-		"Sidewinder Missile" 150
+		"Sidewinder Missile Rack"
+		"Sidewinder Missile" 60
 		"Heavy Anti-Missile Turret" 2
 		
 		"NT-200 Nucleovoltaic"
@@ -2853,7 +2890,8 @@ ship "Wasp"
 	outfits
 		"Energy Blaster" 2
 		"Javelin Pod"
-		"Javelin" 200
+		"Javelin Storage Crate"
+		"Javelin" 120
 		
 		"nGVF-BB Fuel Cell"
 		"LP036a Battery Pack"

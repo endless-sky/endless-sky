@@ -226,7 +226,7 @@ outfit "Korath Repeater Turret"
 
 outfit "Korath Piercer"
 	category "Ammunition"
-	cost 3500
+	cost 7000
 	thumbnail "outfit/piercer"
 	"mass" .3
 	"piercer capacity" -1
@@ -236,9 +236,9 @@ outfit "Korath Piercer Rack"
 	category "Ammunition"
 	cost 56000
 	thumbnail "outfit/korath piercer storage"
-	"mass" 2.2
-	"outfit space" -7
-	"piercer capacity" 16
+	"mass" 17.5
+	"outfit space" -25
+	"piercer capacity" 23
 	ammo "Korath Piercer"
 	description "The Korath Piercer Rack is used to store extra ammunition for Korath Piercer Launchers."
 
@@ -246,12 +246,12 @@ outfit "Korath Piercer Launcher"
 	category "Secondary Weapons"
 	cost 593000
 	thumbnail "outfit/piercer launcher"
-	"mass" 18
-	"outfit space" -27
-	"weapon capacity" -27
+	"mass" 12.8
+	"outfit space" -14
+	"weapon capacity" -14
 	"energy capacity" 50
 	"gun ports" -1
-	"piercer capacity" 31
+	"piercer capacity" 4
 	weapon
 		sprite "projectile/piercer"
 			"frame rate" 5

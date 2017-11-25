@@ -598,9 +598,9 @@ outfit "Meteor Missile Box"
 	category "Ammunition"
 	cost 9000
 	thumbnail "outfit/meteor storage"
-	"mass" 1.4
-	"outfit space" -5
-	"meteor capacity" 18
+	"mass" 4
+	"outfit space" -10
+	"meteor capacity" 30
 	ammo "Meteor Missile"
 	description "The Meteor Missile Box is used to store extra ammunition for Meteor Missile Launchers."
 
@@ -608,11 +608,11 @@ outfit "Meteor Missile Launcher"
 	category "Secondary Weapons"
 	cost 15000
 	thumbnail "outfit/meteor launcher"
-	"mass" 3
-	"outfit space" -10
-	"weapon capacity" -10
+	"mass" 4
+	"outfit space" -5
+	"weapon capacity" -5
 	"gun ports" -1
-	"meteor capacity" 35
+	"meteor capacity" 5
 	weapon
 		sprite "projectile/meteor"
 			"no repeat"
@@ -660,9 +660,9 @@ outfit "Sidewinder Missile Rack"
 	category "Ammunition"
 	cost 20000
 	thumbnail "outfit/sidewinder storage"
-	"mass" 2
-	"outfit space" -7
-	"sidewinder capacity" 25
+	"mass" 6
+	"outfit space" -15
+	"sidewinder capacity" 45
 	ammo "Sidewinder Missile"
 	description "The Sidewinder Missile Rack is used to store extra ammunition for Sidewinder Missile Launchers."
 
@@ -670,9 +670,9 @@ outfit "Sidewinder Missile Launcher"
 	category "Secondary Weapons"
 	cost 60000
 	thumbnail "outfit/sidewinder launcher"
-	"mass" 4
-	"outfit space" -14
-	"weapon capacity" -14
+	"mass" 6
+	"outfit space" -7
+	"weapon capacity" -7
 	"gun ports" -1
 	"sidewinder capacity" 50
 	weapon
@@ -723,8 +723,8 @@ outfit "Javelin Storage Crate"
 	category "Ammunition"
 	cost 5000
 	thumbnail "outfit/javelin storage"
-	"mass" 2
-	"outfit space" -6
+	"mass" 4
+	"outfit space" -8
 	"javelin capacity" 100
 	ammo "Javelin"
 	description "The Javelin Storage Crate is used to store extra ammunition for Javlein Pods."
@@ -733,11 +733,11 @@ outfit "Javelin Pod"
 	category "Secondary Weapons"
 	cost 20000
 	thumbnail "outfit/javelin pod"
-	"mass" 4
-	"outfit space" -12
-	"weapon capacity" -12
+	"mass" 5.2
+	"outfit space" -6
+	"weapon capacity" -6
 	"gun ports" -1
-	"javelin capacity" 200
+	"javelin capacity" 20
 	weapon
 		sprite "projectile/javelin"
 		sound "javelin"
@@ -770,9 +770,9 @@ outfit "Torpedo Storage Rack"
 	category "Ammunition"
 	cost 21000
 	thumbnail "outfit/torpedo storage"
-	"mass" 3
-	"outfit space" -9
-	"torpedo capacity" 15
+	"mass" 12
+	"outfit space" -20
+	"torpedo capacity" 20
 	ammo "Torpedo"
 	description "The Torpedo Storage Rack is used to store extra ammunition for Torpedo Launchers."
 
@@ -780,11 +780,11 @@ outfit "Torpedo Launcher"
 	category "Secondary Weapons"
 	cost 80000
 	thumbnail "outfit/torpedo launcher"
-	"mass" 13
-	"outfit space" -25
-	"weapon capacity" -25
+	"mass" 13.8
+	"outfit space" -15
+	"weapon capacity" -15
 	"gun ports" -1
-	"torpedo capacity" 30
+	"torpedo capacity" 3
 	weapon
 		sprite "projectile/torpedo"
 			"frame rate" 2
@@ -832,9 +832,9 @@ outfit "Typhoon Storage Tube"
 	category "Ammunition"
 	cost 40500
 	thumbnail "outfit/typhoon storage"
-	"mass" 2.5
-	"outfit space" -10
-	"typhoon capacity" 15
+	"mass" 20
+	"outfit space" -30
+	"typhoon capacity" 20
 	ammo "Typhoon Torpedo"
 	description "The Typhoon Storage Tube is used to store extra ammunition for Typhoon Launchers."
 
@@ -842,11 +842,11 @@ outfit "Typhoon Launcher"
 	category "Secondary Weapons"
 	cost 260000
 	thumbnail "outfit/typhoon launcher"
-	"mass" 20
-	"outfit space" -35
-	"weapon capacity" -35
+	"mass" 28.5
+	"outfit space" -20
+	"weapon capacity" -20
 	"gun ports" -1
-	"typhoon capacity" 30
+	"typhoon capacity" 3
 	weapon
 		sprite "projectile/typhoon"
 			"frame rate" 4
@@ -893,8 +893,8 @@ outfit "Heavy Rocket Rack"
 	category "Ammunition"
 	cost 20000
 	thumbnail "outfit/rocket storage"
-	"mass" 2
-	"outfit space" -7
+	"mass" 11
+	"outfit space" -16
 	"rocket capacity" 10
 	ammo "Heavy Rocket"
 	description "The Heavy Rocket Rack is used to store extra ammunition for Heavy Rocket Launchers."
@@ -903,11 +903,11 @@ outfit "Heavy Rocket Launcher"
 	category "Secondary Weapons"
 	cost 40000
 	thumbnail "outfit/rocket launcher"
-	"mass" 10
-	"outfit space" -20
-	"weapon capacity" -20
+	"mass" 6
+	"outfit space" -12
+	"weapon capacity" -12
 	"gun ports" -1
-	"rocket capacity" 20
+	"rocket capacity" 1
 	weapon
 		sprite "projectile/rocket"
 			"frame rate" 4
@@ -930,7 +930,7 @@ outfit "Heavy Rocket Launcher"
 		"hull damage" 600
 		"hit force" 80
 		"missile strength" 16
-	description "Heavy Rockets are the most powerful missile weapon available, but at a price: instead of having a homing system, they simply fire straight forward and rely on a proximity trigger to set them off. Once triggered, however, they damage all ships within their blast radius, making them highly effective against clusters of fighters."
+	description "Heavy Rockets are the most powerful missile weapon available, but at a price: instead of having a homing system, they simply fire straight forward and rely on a proximity trigger to set them off. Once triggered, however, they damage all ships within their blast radius, making them highly effective against clusters of fighters. Each launcher can only hold a single rocket; additional capacity requires the installation of storage racks."
 
 effect "heavy rocket hit"
 	sprite "effect/explosion/huge"

@@ -191,9 +191,9 @@ outfit "Tracker Storage Pod"
 	category "Ammunition"
 	cost 28000
 	thumbnail "outfit/hai tracker storage"
-	"mass" 4.4
-	"outfit space" -10
-	"tracker capacity" 28
+	"mass" 8
+	"outfit space" -14
+	"tracker capacity" 30
 	ammo "Hai Tracker"
 	description "The Tracker Storage Pod is used to store extra ammunition for Tracker Pods."
 
@@ -201,11 +201,11 @@ outfit "Hai Tracker Pod"
 	category "Secondary Weapons"
 	cost 150000
 	thumbnail "outfit/hai tracker pod"
-	"mass" 8
-	"outfit space" -19
-	"weapon capacity" -19
+	"mass" 8.8
+	"outfit space" -10
+	"weapon capacity" -10
 	"gun ports" -1
-	"tracker capacity" 56
+	"tracker capacity" 6
 	weapon
 		sprite "projectile/tracker"
 			"frame rate" 10

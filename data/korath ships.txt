@@ -311,7 +311,8 @@ ship "Kar Ik Vot 349"
 	outfits
 		"Korath Detainer" 2
 		"Korath Piercer Launcher" 2
-		"Korath Piercer" 62
+		"Korath Piercer Rack"
+		"Korath Piercer" 50
 		"Korath Warder" 2
 		"Korath Repeater Turret" 6
 		
@@ -351,7 +352,8 @@ ship "Kar Ik Vot 349"
 ship "Kar Ik Vot 349" "Kar Ik Vot 349 (Offense)"
 	outfits
 		"Korath Piercer Launcher" 4
-		"Korath Piercer" 124
+		"Korath Piercer Rack" 2
+		"Korath Piercer" 100
 		"Korath Repeater Turret" 6
 		"Korath Grab-Strike" 2
 		
@@ -380,7 +382,8 @@ ship "Kar Ik Vot 349" "Kar Ik Vot 349 (Offense)"
 ship "Kar Ik Vot 349" "Kar Ik Vot 349 (Defense)"
 	outfits
 		"Korath Piercer Launcher" 4
-		"Korath Piercer" 124
+		"Korath Piercer Rack" 2
+		"Korath Piercer" 100
 		"Korath Warder" 3
 		"Korath Grab-Strike" 3
 		"Korath Banisher" 2
@@ -465,7 +468,8 @@ ship "Tek Far 71 - Lek"
 	outfits
 		"Korath Detainer"
 		"Korath Piercer Launcher" 2
-		"Korath Piercer" 62
+		"Korath Piercer Rack"
+		"Korath Piercer" 50
 		"Korath Banisher"
 		"Korath Warder" 2
 		
@@ -557,7 +561,8 @@ ship "Tek Far 78 - Osk"
 	outfits
 		"Korath Detainer"
 		"Korath Piercer Launcher" 3
-		"Korath Piercer" 93
+		"Korath Piercer Rack"
+		"Korath Piercer" 54
 		"Korath Banisher"
 		"Korath Warder" 2
 		
@@ -648,7 +653,8 @@ ship "Tek Far 109"
 	outfits
 		"Korath Detainer"
 		"Korath Piercer Launcher" 2
-		"Korath Piercer" 62
+		"Korath Piercer Rack"
+		"Korath Piercer" 50
 		"Korath Banisher" 2
 		
 		"Double Plasma Core"
@@ -753,7 +759,8 @@ ship "Met Par Tek 53" "Met Par Tek 53 (Sniper)"
 	outfits
 		"Korath Detainer"
 		"Korath Piercer Launcher" 2
-		"Korath Piercer" 62
+		"Korath Piercer Rack"
+		"Korath Piercer" 50
 		"Korath Grab-Strike"
 		"Korath Warder"
 		
