@@ -124,6 +124,65 @@ fleet "Wanderer Flycatchers"
 	variant
 		"Flycatcher" 2
 
+fleet "Wanderer Transport"
+	government "Wanderer"
+	names "wanderer"
+	personality
+		timid
+	variant
+		"Riptide"
+		"Flycatcher" 2
+	variant
+		"Riptide" 2
+		"Flycatcher" 4
+	variant
+		"Riptide" 3
+		"Flycatcher" 6
+	variant
+		"Riptide" 2
+		"Flycatcher" 4
+		"Summer Leaf" 3
+	variant
+		"Riptide"
+		"Flycatcher" 2
+		"Summer Leaf" 4
+	variant
+		"Riptide" 2
+		"Flycatcher" 4
+		"Strong Wind" 2
+	variant
+		"Riptide" 
+		"Flycatcher" 2
+		"Strong Wind" 3
+	variant
+		"Riptide" 2
+		"Flycatcher" 4
+		"Strong Wind" 3
+	variant
+		"Riptide" 2
+		"Flycatcher" 4
+		"Tempest" 2
+	variant
+		"Riptide" 
+		"Flycatcher" 2
+		"Tempest" 3
+	variant
+		"Riptide" 2
+		"Flycatcher" 4
+		"Derecho" 2
+	variant
+		"Riptide" 
+		"Flycatcher" 2
+		"Derecho" 3
+	variant
+		"Riptide" 2
+		"Flycatcher" 4
+		"Hurricane" 2
+	variant
+		"Riptide" 1
+		"Flycatcher" 2
+		"Hurricane" 3
+
 
 shipyard "Wanderer Basics"
 	"Earth Shaper"
@@ -907,3 +966,35 @@ event "wanderers: desi seledrak"
 		description `Plumes of soot and ash rise from a cluster of several dozen volcanoes on this planet's main continent, shrouding the planet in a thick layer of clouds and choking out the sunlight. The ruins of several Korath cities and the geometric grids of cleared land surrounding them show that this was once a farming world, but now few plants are able to survive and kilometer-high glaciers have begun creeping down from the poles.`
 		description `	With some help from the Mereti drones, the Wanderers have set up factories here that are pumping out carbon dioxide and methane to warm the atmosphere. In a few decades, the glaciers may start to recede.`
 		spaceport `This odd settlement was built half by the Wanderers and half by the Mereti drones. The layout of the streets is completely chaotic, and they have planted rows of trees and bushes everywhere: some inside greenhouses, and some hardier species out in the open air. The settlement is near the equator, but it is still not particularly warm.`
+
+event "wanderers: riptide mass production"
+	system Sabriset
+		add fleet "Wanderer Transport" 3000
+	system Sepriaptu
+		add fleet "Wanderer Transport" 1500
+	system Kaliptari
+		add fleet "Wanderer Transport" 1500
+	system Solifar
+		add fleet "Wanderer Transport" 1500
+	system Sko'karak
+		add fleet "Wanderer Transport" 3000
+	system Aya'k'k
+		add fleet "Wanderer Transport" 1500
+	system Pik'ro'iyak
+		add fleet "Wanderer Transport" 1500
+	system Es'sprak'i
+		add fleet "Wanderer Transport" 1500
+	system Si'yak'ku
+		add fleet "Wanderer Transport" 1500
+	system Ek'kek'ru
+		add fleet "Wanderer Transport" 1500
+	system Iyech'yek
+		add fleet "Wanderer Transport" 1500
+	system Kiru'kichi
+		add fleet "Wanderer Transport" 1500
+	system Ka'ch'chrai
+		add fleet "Wanderer Transport" 1500
+	system Ap'arak
+		add fleet "Wanderer Transport" 1500
+	shipyard "Wanderer Advanced"
+		"Riptide"

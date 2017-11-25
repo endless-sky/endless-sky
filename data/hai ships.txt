@@ -60,6 +60,62 @@ ship "Aphid" "Aphid (Anti-Missile)"
 		"Hyperdrive"
 
 
+		
+ship "Centipede"
+	sprite "ship/hai centipede"
+	attributes
+		category "Transport"
+		"cost" 6300000
+		"shields" 6600
+		"hull" 2400
+		"required crew" 35
+		"bunks" 131
+		"mass" 128
+		"drag" 3
+		"heat dissipation" .75
+		"fuel capacity" 600
+		"cargo space" 38
+		"outfit space" 375
+		"weapon capacity" 78
+		"engine capacity" 88
+		weapon
+			"blast radius" 60
+			"shield damage" 600
+			"hull damage" 300
+			"hit force" 900
+	outfits
+		"Hai Tracker" 112
+		"Hai Tracker Pod" 2
+		"Bullfrog Anti-Missile" 3
+		"Geode Reactor"
+		"Hai Corundum Regenerator"
+		"Hai Ravine Batteries"
+		"Hai Williwaw Cooling" 3
+		"Quantum Keystone"
+		`"Biroo" Atomic Thruster`
+		`"Biroo" Atomic Steering`
+		`"Basrem" Atomic Steering`
+		Hyperdrive
+		
+	engine 0 112 0.8
+	engine -14 112 0.8
+	engine 14 112 0.8
+	engine -41 78.5 0.4
+	engine 41 78.5 0.4
+	gun -10 -116.5
+	gun 10 -116.5
+	turret 0 -14.5
+	turret -36 56.5
+	turret 36 56.5
+	explode "tiny explosion" 10
+	explode "small explosion" 25
+	explode "medium explosion" 25
+	explode "large explosion" 10
+	"final explode" "final explosion medium"
+	description `The introduction of humans to the Hai civilization has lead to many interesting inventions that mix aspects of the different cultures. While some may vehemently argue that pickled acorns have been the greatest invention to come out of this relationship, many more will point to this luxury transport ship as the exemplar of human-Hai cooperation.`
+description `	The Centipede is the newest ship to be sold by the Hai. Designed by a human and built by a Hai shipyard, the Centipede was put on the market around the turn of the 31st century, but has already seen massive use among Hai fleets.`
+
+
 
 ship "Flea"
 	sprite "ship/hai flea"
