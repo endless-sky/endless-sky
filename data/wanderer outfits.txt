@@ -236,7 +236,7 @@ outfit "Thunderhead Launcher"
 		"split range" 600
 		"fire effect" "meteor fire"
 		"die effect" "missile death"
-		"hit effect" "medium explosion"
+		"hit effect" "missile hit"
 		"inaccuracy" 10
 		"velocity" 4
 		"lifetime" 400

@@ -793,7 +793,7 @@ outfit "Torpedo Launcher"
 		ammo "Torpedo"
 		icon "icon/torpedo"
 		"fire effect" "torpedo fire"
-		"hit effect" "large explosion"
+		"hit effect" "torpedo hit"
 		"die effect" "tiny explosion"
 		"inaccuracy" 5
 		"velocity" 7
@@ -855,7 +855,7 @@ outfit "Typhoon Launcher"
 		ammo "Typhoon Torpedo"
 		icon "icon/typhoon"
 		"fire effect" "typhoon fire"
-		"hit effect" "large explosion"
+		"hit effect" "torpedo hit"
 		"die effect" "tiny explosion"
 		"inaccuracy" 5
 		"velocity" 5
