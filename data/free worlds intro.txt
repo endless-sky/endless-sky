@@ -654,7 +654,7 @@ mission "FW Katya 1C"
 				goto search
 			
 			label search
-			`	He says, "I'm afraid we're going to have to search these crates." The guards grab a couple of crowbars and begin prying the lids off them. The contents turn out to be relatively innocuous, although one box full of scalpels and other surgical implements gives them pause. As they open crate after crate without finding anything incriminating, you can tell the officer is getting more and more frustrated and uncomfortable. When the last crate turns out to contain nothing but bandages and gauze pads, his frustration turns to embarrassment. They re-pack the crates and nail the lids back on.`
+			`	He says, "I'm afraid we're going to have to search these crates." The guards grab a couple of crowbars and begin prying the lids off of them. The contents turn out to be relatively innocuous, although one box full of scalpels and other surgical implements gives them pause. As they open crate after crate without finding anything incriminating, you can tell the officer is getting more and more frustrated and uncomfortable. When the last crate turns out to contain nothing but bandages and gauze pads, his frustration turns to embarrassment. They re-pack the crates and nail the lids back on.`
 			`	"I'm sorry," says the officer, "we must have been responding to a bad tip. I'm very sorry for this invasion of your privacy, Captain."`
 			choice
 				`	"Never mind, I know you're just doing your job."`
