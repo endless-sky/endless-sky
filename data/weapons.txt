@@ -809,7 +809,7 @@ outfit "Torpedo Launcher"
 		"shield damage" 1800
 		"hull damage" 1800
 		"hit force" 160
-		"missile strength" 28
+		"missile strength" 30
 	description "Torpedoes are the most powerful human homing weapons. A few salvoes can cripple a capital ship, and fighter-sized craft can often be destroyed with a single hit. However, Torpedoes move and turn slowly enough that fast vessels can easily dodge and outrun them. Each launcher can store three Torpedoes in a small internal magazine, but most capital ships have multiple storage racks to feed their launchers during protracted fleet engagements."
 
 effect "torpedo fire"
