@@ -448,7 +448,7 @@ phrase "friendly wanderer"
 		"anybody"
 		"any being"
 		"any lifeform"
-		"any [identity?, consciousness?, entity?]"
+		"any [identity? consciousness? entity?]"
 	word
 		" "
 		" if they are "
