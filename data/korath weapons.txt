@@ -226,7 +226,7 @@ outfit "Korath Repeater Turret"
 
 outfit "Korath Piercer"
 	category "Ammunition"
-	cost 3500
+	cost 5600
 	thumbnail "outfit/piercer"
 	"mass" .3
 	"piercer capacity" -1
@@ -237,7 +237,7 @@ outfit "Korath Piercer Rack"
 	cost 56000
 	thumbnail "outfit/korath piercer storage"
 	"mass" 2.2
-	"outfit space" -7
+	"outfit space" -11
 	"piercer capacity" 16
 	ammo "Korath Piercer"
 	description "The Korath Piercer Rack is used to store extra ammunition for Korath Piercer Launchers."
@@ -246,12 +246,12 @@ outfit "Korath Piercer Launcher"
 	category "Secondary Weapons"
 	cost 593000
 	thumbnail "outfit/piercer launcher"
-	"mass" 18
-	"outfit space" -27
-	"weapon capacity" -27
+	"mass" 9
+	"outfit space" -14
+	"weapon capacity" -14
 	"energy capacity" 50
 	"gun ports" -1
-	"piercer capacity" 31
+	"piercer capacity" 4
 	weapon
 		sprite "projectile/piercer"
 			"frame rate" 5
@@ -266,7 +266,7 @@ outfit "Korath Piercer Launcher"
 		"inaccuracy" 3
 		"velocity" 18
 		"lifetime" 200
-		"reload" 72
+		"reload" 144
 		"firing energy" 29
 		"firing heat" 144
 		"acceleration" .54
@@ -274,13 +274,13 @@ outfit "Korath Piercer Launcher"
 		"turn" 1.6
 		"homing" 4
 		"infrared tracking" .9
-		"shield damage" 290
-		"hull damage" 440
+		"shield damage" 1160
+		"hull damage" 1760
 		"piercing" .2
-		"hit force" 30
+		"hit force" 120
 		"missile strength" 73
 		"stream"
-	description "Korath Piercer missiles carry a pair of warheads. The first, a smaller one in the very tip of the missile, explodes on impact to blast a hole in the ship's shields to allow some of the subsequent, larger explosion to pierce through."
+	description "Korath Piercer missiles carry a pair of warheads. The first, a smaller one in the very tip of the missile, explodes on impact to blast a hole in the ship's shields to allow some of the subsequent, larger explosion to pierce through. Each launcher feeds from an internal four-round magazine."
 
 effect "piercer fire"
 	sprite "effect/piercer fire"
@@ -389,21 +389,20 @@ outfit "Korath Mine Rack"
 	cost 31500
 	thumbnail "outfit/korath mine storage"
 	"mass" 2.7
-	"outfit space" -9
-	"minelayer capacity" 9
+	"outfit space" -12
+	"minelayer capacity" 10
 	ammo "Korath Mine"
-	description "The Korath Mine Rack is used to store extra ammunition for Korath Minelayers."
+	description "The Korath Mine Rack is used to store ammunition for Korath Minelayers."
 
 outfit "Korath Minelayer"
 	category "Secondary Weapons"
 	cost 1073000
 	thumbnail "outfit/korath minelayer"
-	"mass" 36
-	"outfit space" -48
-	"weapon capacity" -48
+	"mass" 18
+	"outfit space" -24
+	"weapon capacity" -24
 	"energy capacity" 50
 	"gun ports" -1
-	"minelayer capacity" 17
 	weapon
 		sprite "projectile/korath minelayer"
 			"frame rate" .6
@@ -431,7 +430,7 @@ outfit "Korath Minelayer"
 		"hull damage" -2400
 		"hit force" -150
 		"stream"
-	description "This launcher fires cluster munitions that split into a cloud of stationary mines that each do a considerable amount of damage if a ship crashes into them. However, if a ship hits the mine before it has a chance to deploy, the damage is considerably reduced."
+	description "This launcher fires cluster munitions that split into a cloud of stationary mines that each do a considerable amount of damage if a ship crashes into them. However, if a ship hits the mine before it has a chance to deploy, the damage is considerably reduced. The launchers themselves have no internal mine capacity and must be fed from Mine Racks."
 
 outfit "Korath Mine Submunition"
 	weapon

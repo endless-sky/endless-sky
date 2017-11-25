@@ -653,9 +653,11 @@ ship "Marauder Fury"
 			"hit force" 520
 	outfits
 		"Hai Tracker Pod" 2
+		"Tracker Storage Pod"
+		"Hai Tracker" 40
 		"Meteor Missile Launcher" 4
-		"Hai Tracker" 112
-		"Meteor Missile" 140
+		"Meteor Missile Box"
+		"Meteor Missile" 44
 		
 		"Pebble Core"
 		"Small Biochemical Cell"
@@ -878,7 +880,8 @@ ship "Marauder Manta"
 		"Plasma Cannon" 2
 		"Particle Cannon" 2
 		"Meteor Missile Launcher" 2
-		"Meteor Missile" 70
+		"Meteor Missile Box"
+		"Meteor Missile" 44
 		"Quad Blaster Turret"
 		
 		"Dwarf Core"
@@ -930,7 +933,8 @@ ship "Marauder Manta" "Marauder Manta (Engines)"
 	outfits
 		"Plasma Cannon" 4
 		"Meteor Missile Launcher" 2
-		"Meteor Missile" 70
+		"Meteor Missile Box" 2
+		"Meteor Missile" 44
 		"Quad Blaster Turret"
 		
 		"Dwarf Core"
@@ -983,7 +987,8 @@ ship "Marauder Manta" "Marauder Manta (Weapons)"
 		"Particle Cannon" 2
 		"Proton Gun" 2
 		"Meteor Missile Launcher" 2
-		"Meteor Missile" 70
+		"Meteor Missile Box" 2
+		"Meteor Missile" 44
 		"Heavy Anti-Missile Turret"
 		
 		"Fission Reactor"
