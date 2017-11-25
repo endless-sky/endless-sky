@@ -232,7 +232,7 @@ outfit "Hai Tracker Pod"
 		"shield damage" 800
 		"hull damage" 640
 		"hit force" 200
-		"missile strength" 16
+		"missile strength" 24
 	description "Trackers are fast, powerful, and accurate homing weapons. Their only weakness is their large turning radius: if a Tracker misses its target, it takes a long time to turn around."
 
 effect "tracker fire"
