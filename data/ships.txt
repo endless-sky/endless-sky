@@ -1147,7 +1147,7 @@ ship "Finch"
 	sprite "ship/finch"
 	attributes
 		category "Fighter"
-		"cost" 126000
+		"cost" 106000
 		"shields" 1100
 		"hull" 200
 		"required crew" 1
@@ -1169,6 +1169,7 @@ ship "Finch"
 		"nGVF-BB Fuel Cell"
 		"LP036a Battery Pack"
 		"D14-RN Shield Generator"
+		"Small Radar Jammer"
 		
 		"Chipmunk Plasma Thruster"
 		"Chipmunk Plasma Steering"
@@ -1737,7 +1738,7 @@ ship "Heavy Shuttle"
 	sprite "ship/heavy shuttle"
 	attributes
 		category "Transport"
-		"cost" 320000
+		"cost" 300000
 		"shields" 700
 		"hull" 700
 		"required crew" 1
@@ -1759,6 +1760,7 @@ ship "Heavy Shuttle"
 		"nGVF-AA Fuel Cell"
 		"LP036a Battery Pack"
 		"D14-RN Shield Generator"
+		"Small Radar Jammer"
 		
 		"X2700 Ion Thruster"
 		"X2200 Ion Steering"
@@ -2452,7 +2454,7 @@ ship "Shuttle"
 		"random start frame"
 	attributes
 		category "Transport"
-		"cost" 180000
+		"cost" 150000
 		"shields" 500
 		"hull" 600
 		"required crew" 1
@@ -2474,6 +2476,7 @@ ship "Shuttle"
 		"nGVF-AA Fuel Cell"
 		"LP036a Battery Pack"
 		"D14-RN Shield Generator"
+		"Small Radar Jammer"
 		
 		"X2700 Ion Thruster"
 		"X2200 Ion Steering"
@@ -2555,7 +2558,7 @@ ship "Sparrow"
 	sprite "ship/sparrow"
 	attributes
 		category "Interceptor"
-		"cost" 225000
+		"cost" 195000
 		"shields" 1200
 		"hull" 300
 		"required crew" 1
@@ -2579,6 +2582,7 @@ ship "Sparrow"
 		"nGVF-BB Fuel Cell"
 		"LP036a Battery Pack"
 		"D14-RN Shield Generator"
+		"Small Radar Jammer"
 		
 		"Chipmunk Plasma Thruster"
 		"Chipmunk Plasma Steering"
@@ -2651,7 +2655,7 @@ ship "Star Barge"
 	sprite "ship/star barge"
 	attributes
 		category "Light Freighter"
-		"cost" 210000
+		"cost" 160000
 		"shields" 600
 		"hull" 1000
 		"required crew" 1
@@ -2673,6 +2677,7 @@ ship "Star Barge"
 		"nGVF-BB Fuel Cell"
 		"LP036a Battery Pack"
 		"D14-RN Shield Generator"
+		"Anti-Missile Turret"
 		
 		"Chipmunk Plasma Thruster"
 		"Chipmunk Plasma Steering"
@@ -2680,7 +2685,7 @@ ship "Star Barge"
 		
 	engine -9 38
 	engine 9 38
-	turret 0 -8
+	turret 0 -8 "Anti-Missile Turret"
 	explode "tiny explosion" 10
 	explode "small explosion" 10
 	description "The Syndicate CT-50 Star Barge is little more than a cluster of cargo containers with an engine at one end and a cockpit on the other. It is a slow and ugly ship, but it can carry enough cargo to earn its captain a steady income even in parts of the galaxy where it is hard to find passengers to carry or courier missions."
