@@ -524,7 +524,7 @@ effect "plasma explosion"
 
 
 outfit "Flamethrower"
-	category "Secondary Weapons"
+	category "Guns"
 	cost 190000
 	thumbnail "outfit/flamethrower"
 	"mass" 9
