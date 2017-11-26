@@ -1977,7 +1977,7 @@ mission "Terraforming 7"
 	on complete
 		payment 50000
 		event "terraforming research" 120 180
-		dialog `The whole journey to <planet>, Amy and Nolan discussed the multiple planets within the Dirt Belt that would be perfect candidates for terraforming. "Nolan and I will spend the next few months here researching my theories on terraforming," Amy says as she steps off of your ship. "I'll make sure to contact once we're ready to try terraforming another planet." She hands you <payment>, then follows Nolan out of the spaceport.`
+		dialog `The whole journey to <planet>, Amy and Nolan discussed the multiple planets within the Dirt Belt that would be perfect candidates for terraforming. "Nolan and I will spend the next few months here researching my theories on terraforming," Amy says as she steps off of your ship. "I'll make sure to contact you once we're ready to try terraforming another planet." She hands you <payment>, then follows Nolan out of the spaceport.`
 
 
 
@@ -2010,7 +2010,7 @@ mission "Terraforming 9"
 	on offer
 		conversation
 			`The spaceport is crowded with ships and people when you land. Amy's publication must have stirred up quite the commotion among terraforming scientists.`
-			`	Spaceport security clears a path to your ship for Amy, Nolan, and four others when you land. You notice that a few among the crowd of people are jeering and holding signs, one reading "Don't asteroid my planet!" and a half-eaten sandwich gets thrown in her path as she approaches.`
+			`	Spaceport security clears a path to your ship for Amy, Nolan, and four others. You notice that a few among the crowd of people are jeering and holding signs, one reading "Don't asteroid my planet!" and a half-eaten sandwich gets thrown in her path as she approaches.`
 			`	"Not everyone is as happy with the prospect of affordable terraforming as we are," Amy says to you as she boards your ship along with suitcases full of scientific supplies. "But that's no reason to stop, now is it?"`
 			`	Amy introduces you to the four other people that she brought on board. Two of them are terraforming experts who helped Amy and Nolan with their research. The other two are representatives: one sent by the Republic Parliament in order to oversee the project, and another from Tundra.`
 			`	"Once you're ready, Captain, please bring us to <destination>. Tundra was a tropical world millions of years ago, but became cold after a cataclysmic event of some sort. There's a good chance that we may be able to nudge the planet back toward a warmer climate if we do this right."`
@@ -2115,8 +2115,8 @@ mission "Terraforming 12"
 		event "terraforming timer 2" 365 730
 		event "terraforming Tundra"
 		conversation
-			`A plume of smoke forms in a mushroom cloud shape above where the asteroid hit. The scientists are viewing their instruments in anticipation for what happens next.`
-			`	Almost an hour after the impact, the ground begins to shake slightly, even though the volcano is located hundreds of kilometers away. "This might be it!" Nolan exclaims as he watches closely at a seismometer receiving readings from near the impact site. Suddenly the seismometer spikes, and another plume of smoke, mucher larger than the asteroid impact, rises from the impact site. Half an hour later, the low sound of the massive eruption can be heard in the spaceport, triggering another burst of cheers from the scientists. "It actually worked!" one of them yells out.`
+			`A plume of debris has formed in a mushroom cloud shape above where the asteroid hit. The scientists are viewing their instruments in anticipation for what happens next.`
+			`	Almost an hour after the impact, the ground begins to shake slightly, even though the volcano is located hundreds of kilometers away. "This might be it!" Nolan exclaims as he watches closely at a seismometer receiving readings from near the impact site. Suddenly the seismometer spikes, and another plume, mucher larger than the asteroid impact, rises from the impact site. Half an hour later, the low sound of the massive eruption can be heard in the spaceport, triggering another burst of cheers from the scientists. "It actually worked!" one of them yells out.`
 			`	You fly the scientists over top of the volcano, allowing them to take readings of the air and surface. "Atmospheric carbon dioxide levels are at 4000 parts per million. Methane levels at 20 parts per million. As the gasses disperses across the planet they should substantially increase the atmosphere's greenhouse gas levels, warming the entire planet."`
 			`	The heat has also formed a huge circle of melted snow around the volcano, revealing the green color of trees and the dull grays and browns of rock.`
 			choice
