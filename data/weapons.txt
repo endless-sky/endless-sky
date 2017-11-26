@@ -624,14 +624,14 @@ outfit "Meteor Missile Launcher"
 		"die effect" "missile death"
 		"hit effect" "medium explosion"
 		"inaccuracy" 10
-		"velocity" 9
-		"lifetime" 480
+		"velocity" 0.1
+		"lifetime" 150
 		"reload" 48
 		"firing energy" 1
 		"firing heat" 20
-		"acceleration" .9
+		"acceleration" 3
 		"drag" .1
-		"turn" 4
+		"turn" 2
 		"homing" 2
 		"infrared tracking" .7
 		"shield damage" 130
@@ -693,7 +693,7 @@ outfit "Sidewinder Missile Launcher"
 		"firing heat" 15
 		"acceleration" 1.1
 		"drag" .1
-		"turn" 6
+		"turn" 5
 		"homing" 4
 		"radar tracking" .9
 		"shield damage" 100
