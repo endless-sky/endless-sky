@@ -450,8 +450,8 @@ phrase "friendly wanderer"
 		"any lifeform"
 		"any [identity? consciousness? entity?]"
 	word
-		" "
-		" if they are "
+		", "
+		", if they are "
 	word
 		"willing"
 		"wishing"
@@ -459,7 +459,7 @@ phrase "friendly wanderer"
 		"intending"
 		"looking"
 		"meaning"
-		"planning "
+		"planning"
 	word
 		" to "
 	word
