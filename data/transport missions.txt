@@ -2017,7 +2017,7 @@ mission "Southern Blockade"
 	
 	on offer
 		conversation
-			`A captain in a Free Worlds uniform enters the spaceport and turns on a megaphone. "Attention! The Free Worlds are in need of a captain able to carry <cargo> to <stopovers> for fortifying the spaceports nearest to the pirate system of Men. Free Worlds ships are currently preoccupied with fighting off a pirate incursion into those systems, and we are unable to spare enough ships for the job. Our hope is that these defenses will deter any future incursions. Payment will be <payment> for the first captain whp accepts." The spaceport falls quiet as captains contemplate this offer.`
+			`A captain in a Free Worlds uniform enters the spaceport and turns on a megaphone. "Attention! The Free Worlds are in need of a captain able to carry <cargo> to <stopovers> for fortifying the spaceports nearest to the pirate system of Men. Free Worlds ships are currently preoccupied with fighting off a pirate incursion into those systems, and we are unable to spare enough ships for the job. Our hope is that these defenses will deter any future incursions. Payment will be <payment> for the first captain who accepts." The spaceport falls quiet as captains contemplate this offer.`
 			choice
 				`	"I'll do it."`
 				`	(Ignore.)`
@@ -2112,7 +2112,7 @@ mission "Core Blockade"
 	on complete
 		payment
 		payment 10000
-		dialog `Multiple bands of pirate each run by a different warlord are waiting in the spaceport when you land. They take the food from your cargo hold like animals, leaving quite the mess behind. When you return to your ship, you find that the Syndicate have deposited <payment> into your account.`
+		dialog `Multiple bands of pirate each run by a different warlord are waiting in the spaceport when you land. They take the food from your cargo hold like animals, leaving quite the mess behind. When you return to your ship, you find that the Syndicate has deposited <payment> into your account.`
 
 
 
@@ -2156,7 +2156,7 @@ mission "Pirate Blockade"
 			
 			label need
 			`	"It isn't what I want, it's what I need," she whispers, putting heavy emphasis on the word "need."`
-			`	"You undoubtedly know about the horrendous slave trade that still exists on pirate worlds today. A slave trade that the Republic doesn't care to abolish, leaving innocent people to waste away like rats in a cage, working for their lives. As if the politicians of the Republic aren't vermin themselves... I'm part of a group of people who have decided to take matters into our own hands. We're mostly people who grew up on pirate worlds, but some of us were born elsewhere."
+			`	"You undoubtedly know about the horrendous slave trade that still exists on pirate worlds today. A slave trade that the Republic doesn't care to abolish, leaving innocent people to waste away like rats in a cage, working for their lives. As if the politicians of the Republic aren't vermin themselves... I'm part of a group of people who have decided to take matters into our own hands. We're mostly people who grew up on pirate worlds, but some of us were born elsewhere."`
 			`	"I assasinated a pirate warlord a couple of days ago and I have been sheltering his slaves ever since. What I need from you is to transport the <bunks> people in my care to <destination>. Another member of my group should be there to pay you <payment> and take the people somewhere far away from here." She cocks her head to the right. "Will you fight for justice and transport these people, Captain?" The look in her eyes suggests that she won't take no for an answer.`
 			choice
 				`	"Anything for the freedom of the innocent."`
@@ -2166,6 +2166,7 @@ mission "Pirate Blockade"
 			`	"Good choice, Captain. We'll wait till the sun has fully set, then I will bring the people to your ship. I'll be traveling in my own ship and launch ahead of you, which should hopefully distract the pirates looking for the killer of their warlord and give you enough room to escape. Wait for me after you land on <planet>."`
 				accept
 			
+			label decline
 			apply
 				set "denied freeing slaves"
 			`	"Poor choice, Captain." The woman pulls a knife from under her cloak and causes the glare of the lamp above her to blind you. You stumble backward in anticipation of an attack, but the woman does not move. "I'll remember this, Captain," she hisses at you. The woman puts her cloak back up and sprints down the alleyway into darkness.`
