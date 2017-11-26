@@ -865,7 +865,7 @@ outfit "Typhoon Launcher"
 		"firing heat" 50
 		"acceleration" .4
 		"drag" .1
-		"turn" 1
+		"turn" 1.2
 		"homing" 4
 		"optical tracking" .9
 		"shield damage" 610
