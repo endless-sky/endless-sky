@@ -452,6 +452,9 @@ phrase "friendly wanderer"
 	word
 		" "
 		", if they are "
+		", so long as they are "
+		", as long as they are "
+		", [providing, given] they are "
 	word
 		"willing"
 		"wishing"
