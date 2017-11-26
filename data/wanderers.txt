@@ -450,7 +450,7 @@ phrase "friendly wanderer"
 		"any lifeform"
 		"any [identity? consciousness? entity?]"
 	word
-		", "
+		" "
 		", if they are "
 	word
 		"willing"
