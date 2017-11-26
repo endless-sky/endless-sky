@@ -1968,7 +1968,7 @@ mission "Northern Blockade"
 	
 	on offer
 		conversation
-			`Your are approached by a Navy officer. "Are you Captain <last>?" You nod. "Would you be able to assist us? A sizeable gang of pirates has occupied <system> and raided the spaceport. A Navy fleet is on its way to eliminating the pirates, but early reports say that the spaceport of <planet> is in dire need of supplies. The pirates badly damaged any building above three stories and everything in the warehouses was either stolen or destroyed. We need a ship to bring <cargo> to them ASAP, but there are no available Navy ships capable of doing the job. Could you deliver the supplies for us, Captain?"`
+			`Your are approached by a Navy officer. "Are you Captain <last>?" You nod. "Would you be able to assist us? A sizable gang of pirates has occupied <system> and raided the spaceport. A Navy fleet is on its way to eliminating the pirates, but early reports say that the spaceport of <planet> is in dire need of supplies. The pirates badly damaged any building above three stories and everything in the warehouses was either stolen or destroyed. We need a ship to bring <cargo> to them ASAP, but there are no available Navy ships capable of doing the job. Could you deliver the supplies for us, Captain?"`
 			choice
 				`	"I'd be glad to help, Officer."`
 					accept
