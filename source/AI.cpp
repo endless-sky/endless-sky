@@ -2482,8 +2482,9 @@ void AI::AutoFire(const Ship &ship, Command &command, bool secondary) const
 			p += v;
 			
 			// If this weapon has a blast radius, don't fire it if the target is
-			// so close that you'll be hit by the blast.
-			if(!outfit->IsSafe() && p.Length() < outfit->BlastRadius())
+			// so close that you'll be hit by the blast. Weapons using proximity
+			// triggers will explode sooner, so a larger separation is needed.
+			if(!outfit->IsSafe() && p.Length() <= (outfit->BlastRadius() + outfit->TriggerRadius()))
 				continue;
 			
 			// Calculate how long it will take the projectile to reach its target.
@@ -2512,6 +2513,11 @@ void AI::AutoFire(const Ship &ship, Command &command, bool secondary) const
 			// By the time this action is performed, the ships will have moved
 			// forward one time step.
 			p += v;
+			
+			// Non-homing weapons may have a blast radius or proximity trigger.
+			// Do not fire this weapon if we will be caught in the blast.
+			if(!outfit->IsSafe() && p.Length() <= (outfit->BlastRadius() + outfit->TriggerRadius()))
+				continue;
 			
 			// Get the vector the weapon will travel along.
 			v = (ship.Facing() + weapon.GetAngle()).Unit() * vp - v;
