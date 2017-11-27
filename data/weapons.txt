@@ -684,7 +684,7 @@ outfit "Sidewinder Missile Launcher"
 		icon "icon/sidewinder"
 		"fire effect" "sidewinder fire"
 		"die effect" "missile death"
-		"hit effect" "medium explosion"
+		"hit effect" "missile hit"
 		"inaccuracy" 4
 		"velocity" 11
 		"lifetime" 600
