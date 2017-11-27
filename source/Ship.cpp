@@ -1526,7 +1526,7 @@ int Ship::Scan()
 		outfitSpeed = 1.;
 	
 	// Check how close this ship is to the target it is trying to scan.
-	double distance = (target->position - position).Length();
+	double distance = GetMask().Range(target->position - position, angle);
 	
 	// Check if either scanner has finished scanning.
 	bool startedScanning = false;
