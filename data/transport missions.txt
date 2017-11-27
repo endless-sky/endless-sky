@@ -1989,7 +1989,7 @@ mission "Northern Blockade"
 	npc
 		government "Pirate"
 		personality nemesis staying harvests plunders
-		system 
+		system "Mirzam"
 		fleet "Large Northern Pirates"
 		fleet "Small Northern Pirates" 3
 	
