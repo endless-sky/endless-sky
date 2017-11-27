@@ -130,8 +130,8 @@ outfit "Modified Blaster Turret"
 		"hit effect" "blaster impact"
 		"inaccuracy" 4
 		"turret turn" 4
-		"velocity" 15
-		"lifetime" 30
+		"velocity" 11.25
+		"lifetime" 40
 		"reload" 6
 		"firing energy" 16
 		"firing heat" 55
