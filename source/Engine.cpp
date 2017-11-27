@@ -568,6 +568,14 @@ void Engine::Step(bool isActive)
 			targetAsteroid->GetFrame(step));
 		info.SetString("target name", Format::Capitalize(targetAsteroid->Name()) + " Asteroid");
 		
+		// Don't show the angle to the asteroid if it is very close.
+		targetAngle = targetAsteroid->Position() - center;
+		double length = targetAngle.Length();
+		if(length > 20.)
+			targetAngle /= length;
+		else
+			targetAngle = Point();
+		
 		if(flagship->Attributes().Get("tactical scan power"))
 		{
 			info.SetCondition("range display");
