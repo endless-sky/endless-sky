@@ -622,7 +622,7 @@ outfit "Meteor Missile Launcher"
 		icon "icon/meteor"
 		"fire effect" "meteor fire"
 		"die effect" "missile death"
-		"hit effect" "medium explosion"
+		"hit effect" "missile hit"
 		"inaccuracy" 10
 		"velocity" 9
 		"lifetime" 600
