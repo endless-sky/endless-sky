@@ -29,6 +29,7 @@ class Point;
 // glyphs for each character in ASCII order (not counting control characters).
 // The kerning between characters is automatically adjusted to look good. At the
 // moment only plain ASCII characters are supported, not Unicode.
+// The encoding of the text is utf8.
 class Font {
 public:
 	Font();
@@ -41,9 +42,9 @@ public:
 	
 	int Width(const std::string &str, char after = ' ') const;
 	int Width(const char *str, char after = ' ') const;
-	std::string Truncate(const std::string &str, int width) const;
-	std::string TruncateFront(const std::string &str, int width) const;
-	std::string TruncateMiddle(const std::string &str, int width) const;
+	std::string Truncate(const std::string &str, int width, bool ellipsis = true) const;
+	std::string TruncateFront(const std::string &str, int width, bool ellipsis = true) const;
+	std::string TruncateMiddle(const std::string &str, int width, bool ellipsis = true) const;
 	
 	int Height() const;
 	
@@ -53,7 +54,7 @@ public:
 	
 	
 private:
-	static int Glyph(char c, bool isAfterSpace);
+	static int Glyph(int c, bool isAfterSpace);
 	void LoadTexture(ImageBuffer &image);
 	void CalculateAdvances(ImageBuffer &image);
 	void SetUpShader(float glyphW, float glyphH);

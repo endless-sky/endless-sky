@@ -67,6 +67,87 @@ namespace {
 		"}\n";
 	
 	const int KERN = 2;
+	
+	// Determines the number of bytes used by the unicode code point in utf8.
+	int CodePointBytes(const char *str)
+	{
+		// end - 00000000
+		if(!str || !*str)
+			return 0;
+		
+		// 1 byte - 0xxxxxxx
+		if((*str & 0x80) == 0)
+			return 1;
+		
+		// invalid - 10?????? or 11?????? invalid
+		if((*str & 0x40) == 0 || (*(str + 1) & 0xc0) != 0x80)
+			return -1;
+		
+		// 2 bytes - 110xxxxx 10xxxxxx
+		if((*str & 0x20) == 0)
+			return 2;
+		
+		// invalid - 111????? 10?????? invalid
+		if((*(str + 2) & 0xc0) != 0x80)
+			return -1;
+		
+		// 3 bytes - 1110xxxx 10xxxxxx 10xxxxxx
+		if((*str & 0x10) == 0)
+			return 3;
+		
+		// invalid - 1111???? 10?????? 10?????? invalid
+		if((*(str + 3) & 0xc0) != 0x80)
+			return -1;
+		
+		// 4 bytes - 11110xxx 10xxxxxx 10xxxxxx 10xxxxxx
+		if((*str & 0x8) == 0)
+			return 4;
+		
+		// not unicode - 11111??? 10?????? 10?????? 10??????
+		return -1;
+	}
+	
+	// Decodes a unicode codepoint in utf8.
+	int DecodeCodePoint(const char *str)
+	{
+		// invalid (-1) or end (0)
+		int bytes = CodePointBytes(str);
+		if(bytes < 1)
+			return bytes;
+		
+		// 1 byte
+		if(bytes == 1)
+			return (*str & 0x7f);
+		
+		// 2-4 bytes
+		int c = (*str & ((1 << (7 - bytes)) - 1));
+		for(int i = 1; i < bytes; ++i)
+			c += (*(str + i) & 0x3f) << (i * 6 + 1 - bytes);
+		return c;
+	}
+	
+	// Skips to the next unicode code point in utf8.
+	const char *NextCodePoint(const char *str)
+	{
+		if(!str || !*str)
+			return str;
+		
+		for(++str; *str; ++str)
+			if((*str & 0x80) == 0 || (*str & 0xc0) == 0xc0)
+				break;
+		return str;
+	}
+	
+	// Returns the start index of the unicode code point of index i in utf8.
+	size_t CodePointStart(const char *str, size_t i)
+	{
+		if(!str || i <= 0)
+			return 0;
+		
+		while(i > 0 && (*(str + i) & 0x80) != 0x00 && (*(str + i) & 0xc0) != 0xc0)
+			--i;
+		return i;
+	}
 }
 
 
@@ -133,8 +214,10 @@ void Font::DrawAliased(const string &str, double x, double y, const Color &color
 	bool underlineChar = false;
 	const int underscoreGlyph = max(0, min(GLYPHS - 1, '_' - 32));
 	
-	for(char c : str)
+	for(const char *s = str.c_str(); *s; s = NextCodePoint(s))
 	{
+		// TODO handle composing codepoints
+		int c = DecodeCodePoint(s);
 		if(c == '_')
 		{
 			underlineChar = showUnderlines;
@@ -189,13 +272,15 @@ int Font::Width(const char *str, char after) const
 	int previous = 0;
 	bool isAfterSpace = true;
 	
-	for( ; *str; ++str)
+	for( ; *str; str = NextCodePoint(str))
 	{
-		if(*str == '_')
+		// TODO handle composing codepoints
+		int c = DecodeCodePoint(str);
+		if(c == '_')
 			continue;
 		
-		int glyph = Glyph(*str, isAfterSpace);
-		if(*str != '"' && *str != '\'')
+		int glyph = Glyph(c, isAfterSpace);
+		if(c != '"' && c != '\'')
 			isAfterSpace = !glyph;
 		if(!glyph)
 			width += space;
@@ -212,110 +297,94 @@ int Font::Width(const char *str, char after) const
 
 
 
-string Font::Truncate(const string &str, int width) const
+string Font::Truncate(const string &str, int width, bool ellipsis) const
 {
-	int prevChars = str.size();
 	int prevWidth = Width(str);
 	if(prevWidth <= width)
 		return str;
 	
-	width -= Width("...");
-	// As a safety against infinite loops (even though they won't be possible if
-	// this implementation is correct) limit the number of loops to the number
-	// of characters in the string.
-	for(size_t i = 0; i < str.length(); ++i)
+	if(ellipsis)
+		width -= Width("...");
+	
+	// Find the last index that fits the width. [good,bad[
+	int len = str.length();
+	int prev = len;
+	int good = 0;
+	int bad = len;
+	int tries = len + 1;
+	const char *s = str.c_str();
+	while(NextCodePoint(s + good) < s + bad && --tries)
 	{
-		// Loop until the previous width we tried was too long and this one is
-		// too short, or vice versa. Each time, the next string length we try is
-		// interpolated from the previous width.
-		int nextChars = (prevChars * width) / prevWidth;
-		bool isSame = (nextChars == prevChars);
-		bool prevWorks = (prevWidth <= width);
-		nextChars += (prevWorks ? isSame : -isSame);
+		// Interpolate next index from the width of the previous index.
+		int next = CodePointStart(s, (prev * width) / prevWidth);
+		if(next <= good)
+			next = NextCodePoint(s + good) - s;
+		else if(next >= bad)
+			next = CodePointStart(s, bad - 1);
 		
-		int nextWidth = Width(str.substr(0, nextChars), '.');
-		bool nextWorks = (nextWidth <= width);
-		if(prevWorks != nextWorks && abs(nextChars - prevChars) == 1)
-			return str.substr(0, min(prevChars, nextChars)) + "...";
-		
-		prevChars = nextChars;
+		int nextWidth = Width(str.substr(0, next));
+		if(nextWidth <= width)
+			good = next;
+		else
+			bad = next;
+		prev = next;
 		prevWidth = nextWidth;
 	}
-	return str;
+	return str.substr(0, good) + (ellipsis ? "..." : "");
 }
 
 
 
-string Font::TruncateFront(const string &str, int width) const
+string Font::TruncateFront(const string &str, int width, bool ellipsis) const
 {
-	int prevChars = str.size();
 	int prevWidth = Width(str);
 	if(prevWidth <= width)
 		return str;
 	
-	width -= Width("...");
-	// As a safety against infinite loops (even though they won't be possible if
-	// this implementation is correct) limit the number of loops to the number
-	// of characters in the string.
-	for(size_t i = 0; i < str.length(); ++i)
+	if(ellipsis)
+		width -= Width("...");
+	
+	// Find the first index that fits the width. ]bad,good]
+	int len = str.length();
+	int prev = 0;
+	int bad = 0;
+	int good = len;
+	int tries = len + 1;
+	const char *s = str.c_str();
+	while(NextCodePoint(s + bad) < s + good && --tries)
 	{
-		// Loop until the previous width we tried was too long and this one is
-		// too short, or vice versa. Each time, the next string length we try is
-		// interpolated from the previous width.
-		int nextChars = (prevChars * width) / prevWidth;
-		bool isSame = (nextChars == prevChars);
-		bool prevWorks = (prevWidth <= width);
-		nextChars += (prevWorks ? isSame : -isSame);
+		// Interpolate next index from the width of the previous index.
+		int next = CodePointStart(s, len - ((len - prev) * width) / prevWidth);
+		if(next <= bad)
+			next = NextCodePoint(s + bad) - s;
+		else if(next >= good)
+			next = CodePointStart(s, good - 1);
 		
-		int nextWidth = Width(str.substr(str.size() - nextChars));
-		bool nextWorks = (nextWidth <= width);
-		if(prevWorks != nextWorks && abs(nextChars - prevChars) == 1)
-			return "..." + str.substr(str.size() - min(prevChars, nextChars));
-		
-		prevChars = nextChars;
+		int nextWidth = Width(str.substr(next));
+		if(nextWidth <= width)
+			good = next;
+		else
+			bad = next;
+		prev = next;
 		prevWidth = nextWidth;
 	}
-	return str;
+	return (ellipsis ? "..." : "") + str.substr(good);
 }
 
 
 
-string Font::TruncateMiddle(const string &str, int width) const
+string Font::TruncateMiddle(const string &str, int width, bool ellipsis) const
 {
-	int prevChars = str.size();
-	int prevWidth = Width(str);
-	if(prevWidth <= width)
+	if(Width(str) <= width)
 		return str;
 	
-	width -= Width("...");
-	// As a safety against infinite loops (even though they won't be possible if
-	// this implementation is correct), limit the number of loops to the number
-	// of characters in the string.
-	for(size_t i = 0; i < str.length(); ++i)
-	{
-		// Loop until the previous width we tried was too long and this one is
-		// too short, or vice versa. Each time, the next string length we try is
-		// interpolated from the previous width.
-		int nextChars = (prevChars * width) / prevWidth;
-		bool isSame = (nextChars == prevChars);
-		bool prevWorks = (prevWidth <= width);
-		nextChars += (prevWorks ? isSame : -isSame);
-		
-		int leftChars = nextChars / 2;
-		int rightChars = nextChars - leftChars;
-		int nextWidth = Width(str.substr(0, leftChars) + str.substr(str.size() - rightChars));
-		bool nextWorks = (nextWidth <= width);
-		if(prevWorks != nextWorks && abs(nextChars - prevChars) == 1)
-		{
-			leftChars = min(prevChars,nextChars) / 2;
-			rightChars = min(prevChars, nextChars) - leftChars;
-			return str.substr(0, leftChars) + "..." + str.substr(str.size() - rightChars);
-		}
-		
-		prevChars = nextChars;
-		prevWidth = nextWidth;
-	}
-	return str;
+	if(ellipsis)
+		width -= Width("...");
+	
+	string right = TruncateFront(str, width / 2, false);
+	width -= Width(right);
+	string left = Truncate(str, width, false);
+	return left + (ellipsis ? "..." : "") + right;
 }
 
 
@@ -341,7 +410,7 @@ void Font::ShowUnderlines(bool show)
 
 
 
-int Font::Glyph(char c, bool isAfterSpace)
+int Font::Glyph(int c, bool isAfterSpace)
 {
 	// Curly quotes.
 	if(c == '\'' && isAfterSpace)
