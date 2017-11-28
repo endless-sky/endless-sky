@@ -1468,7 +1468,7 @@ mission "FWC Pug 3B"
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
-		"reputation: Pug" = -10
+		"reputation: Pug" <?= -10
 		conversation
 			`Flying low over <planet> and hoping the Pug are not tracking you, you contact the resistance group you met earlier. Meanwhile, Freya says, "I've got an energy signal. Looks like the graviton pulses that are disrupting the hyperspace link." She gives you the coordinates, and you forward them to the resistance group. With some help from your ship's weapons, they are able to eliminate the Pug guards that are nearby.`
 			`	You land your ship, meet up with the resistance fighters, and approach the facility cautiously. "That was way too easy," says Freya. "Maybe they just didn't expect anyone to fight back against them?" The building looks vaguely like a radio transmitter, and as you get closer to it the ground seems to roll and pitch beneath your feet like the deck of a boat. "Graviton waves," says Freya. "This is it, all right. Captain, do you think you can hold off the Pug for long enough for me to figure out how this thing works?"`
