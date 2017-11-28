@@ -41,6 +41,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "StarField.h"
 #include "StartConditions.h"
 #include "System.h"
+#include "WrappedText.h"
 
 #include <algorithm>
 #include <cmath>
@@ -779,24 +780,24 @@ void Engine::Draw() const
 	if(flash)
 		FillShader::Fill(Point(), Point(Screen::Width(), Screen::Height()), Color(flash, flash));
 	
-	// Draw messages.
+	// Draw messages. Draw the most recent messages first, as some messages
+	// may be wrapped onto multiple lines.
 	const Font &font = FontSet::Get(14);
 	const vector<Messages::Entry> &messages = Messages::Get(step);
 	Rectangle messageBox = interface->GetBox("messages");
-	Point messagePoint = Point(messageBox.Left(), messageBox.Bottom() - 20. * messages.size());
-	auto it = messages.begin();
-	if(messagePoint.Y() < messageBox.Top())
+	WrappedText messageLine(font);
+	messageLine.SetWrapWidth(messageBox.Width());
+	messageLine.SetParagraphBreak(0.);
+	Point messagePoint = Point(messageBox.Left(), messageBox.Bottom());
+	for(auto it = messages.rbegin(); it != messages.rend(); ++it)
 	{
-		int skip = (messageBox.Top() - messagePoint.Y()) / 20.;
-		it += skip;
-		messagePoint.Y() += 20. * skip;
-	}
-	for( ; it != messages.end(); ++it)
-	{
+		messageLine.Wrap(it->message);
+		messagePoint.Y() -= messageLine.Height();
+		if(messagePoint.Y() < messageBox.Top())
+			break;
 		float alpha = (it->step + 1000 - step) * .001f;
 		Color color(alpha, 0.);
-		font.Draw(it->message, messagePoint, color);
-		messagePoint.Y() += 20.;
+		messageLine.Draw(messagePoint, color);
 	}
 	
 	// Draw crosshairs around anything that is targeted.
