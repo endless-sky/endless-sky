@@ -63,6 +63,64 @@ ship "Aphid" "Aphid (Anti-Missile)"
 
 
 
+Centipede
+ship "Centipede"
+	sprite "ship/hai centipede"
+	attributes
+		category "Transport"
+		"cost" 6300000
+		"shields" 6600
+		"hull" 2400
+		"required crew" 35
+		"bunks" 131
+		"mass" 128
+		"drag" 3
+		"heat dissipation" .75
+		"fuel capacity" 600
+		"cargo space" 38
+		"outfit space" 375
+		"weapon capacity" 78
+		"engine capacity" 88
+		weapon
+			"blast radius" 60
+			"shield damage" 600
+			"hull damage" 300
+			"hit force" 900
+	outfits
+		"Hai Tracker" 112
+		"Hai Tracker Pod" 2
+		"Bullfrog Anti-Missile" 3
+		"Geode Reactor"
+		"Hai Corundum Regenerator"
+		"Hai Ravine Batteries"
+		"Hai Williwaw Cooling" 3
+		"Quantum Keystone"
+		`"Biroo" Atomic Thruster`
+		`"Biroo" Atomic Steering`
+		`"Basrem" Atomic Steering`
+		Hyperdrive
+		
+	engine 0 112 0.8
+	engine -14 112 0.8
+	engine 14 112 0.8
+	engine -41 78.5 0.4
+	engine 41 78.5 0.4
+	gun -10 -116.5
+	gun 10 -116.5
+	turret 0 -14.5
+	turret -36 56.5
+	turret 36 56.5
+	explode "tiny explosion" 10
+	explode "small explosion" 25
+	explode "medium explosion" 25
+	explode "large explosion" 10
+	"final explode" "final explosion medium"
+	description `The introduction of humans to the Hai civilization has lead to many interesting inventions that mix aspects of the different cultures. While some may vehemently argue that pickled acorns have been the greatest invention to come out of this relationship, many more will point to this luxury transport ship as the exemplar of human-Hai cooperation.`
+description `	The Centipede is the newest ship to be sold by the Hai. Designed by a human and built by a Hai shipyard, the Centipede was put on the market around the turn of the 31st century, but has already seen massive use among Hai fleets.`
+
+
+
+
 ship "Flea"
 	sprite "ship/hai flea"
 	thumbnail "thumbnail/hai flea"
@@ -94,6 +152,61 @@ ship "Flea"
 	gun 0 -27 "Railgun"
 	explode "tiny explosion" 15
 	description `This is a combat drone designed to help contain Unfettered aggression with a minimum risk to Hai life.`
+
+
+
+ship "Geocoris"
+	sprite "ship/hai geocoris"
+	attributes
+		category "Heavy Freighter"
+		"cost" 12540000
+		"shields" 13300
+		"hull" 6200
+		"required crew" 15
+		"bunks" 56
+		"mass" 810
+		"drag" 17.1
+		"heat dissipation" 0.45
+		"fuel capacity" 800
+		"cargo space" 761
+		"outfit space" 582
+		"weapon capacity" 172
+		"engine capacity" 94
+		Weapon:
+			Blast Radius: 300
+			Hit Force: 4500
+			Shield damage: 3000
+			Hull damage: 1500
+	outfits
+		Hyperdrive
+		"Hai Williwaw Cooling" 5
+		"Hai Valley Batteries"
+		"Pulse Turret" 2
+		"Pulse Cannon" 2
+		"Bullfrog Anti-Missile" 5
+		"Hai Diamond Regenerator"
+		`"Bondir" Atomic Steering`
+		"Geode Reactor" 2
+		`"Biroo" Atomic Thruster`
+	engine 64 77 1
+	engine -64 77 1
+	turret 47 -73 "Pulse Turret"
+	turret -47 -73 "Pulse Turret"
+	turret 37 6.5 "Bullfrog Anti-Missile"
+	turret -37 6.5 "Bullfrog Anti-Missile"
+	turret 0 63 "Bullfrog Anti-Missile"
+	turret 65 25 "Bullfrog Anti-Missile"
+	turret -65 25 "Bullfrog Anti-Missile"
+	gun 25 -109 "Pulse Cannon"
+	gun -25 -109 "Pulse Cannon"
+	explode "tiny explosion" 50
+	explode "small explosion" 50
+	explode "medium explosion" 50
+	explode "large explosion" 50
+	explode "huge explosion" 20
+	"final explode" "final explosion large"
+	description "Just a few years after the first humans discovered Hai space, the Hai knew they would eventually need a bigger freighter to match the larger human ones. What they did not expect, however, is that the result would surpass anything humanity has to offer, which is why it became such a popular ship amongst Hai and humans alike."
+	description "At first the Geocorsis started as a modified Water Bug, and you're sure you see a vague sign of it somewhere..."
 
 
 
