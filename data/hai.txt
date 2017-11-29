@@ -76,13 +76,13 @@ fleet "Small Hai"
 		"Centipede" 2
 		"Lightning Bug" 
 	variant
-		"Grasshopper"
+		"Grasshopper" 3
 	variant
 		"Grasshopper"
 		"Centipede" 2
 	variant
 		"Grasshopper"
-		"Grasshopper (Pulse)"
+		"Grasshopper (Tracker)"
 		"Centipede" 
 	variant
 		"Lightning Bug" 2
@@ -173,23 +173,29 @@ fleet "Large Hai"
 		"Aphid" 3
 	variant 1
 		"Geocoris"
-		"Shield Beetle (Pulse)" 2
+		"Shield Beetle (Pulse)"
 		"Shield Beetle (Tracker)"
 	variant 1
 		"Geocoris"
-		"Shield Beetle (Pulse)" 2
+		"Shield Beetle (Pulse)"
 		"Grasshopper"
-		"Grasshopper (Pulse)"
+		"Grasshopper (Tracker)"
 	variant 1
 		"Geocoris"
 		"Shield Beetle (Pulse)" 
-		"Shield Beetle (Tracker)"
-		"Grasshopper (Pulse)"
+		"Grasshopper"
 		"Grasshopper (Tracker)"
 	variant 1
-		"Geocoris" 2
-		"Shield Beetle" 1
-		"Aphid" 3
+		"Geocoris (Tracker)"
+		"Shield Beetle"
+		"Aphid (Anti-Missile)" 2
+		"Aphid" 
+	variant
+		"Centipede"
+		"Geocoris (Tracker)"
+		"Lightning Bug"
+		"Water Bug"
+		"Grasshopper (Tracker)"
 
 fleet "Small Unfettered"
 	government "Hai (Unfettered)"

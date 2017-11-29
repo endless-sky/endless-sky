@@ -200,8 +200,8 @@ ship "Geocoris"
 		`"Biroo" Atomic Thruster`
 		`"Bondir" Atomic Steering`
 		Hyperdrive
-	engine -64 77 1
-	engine 64 77 1
+	engine -64 77
+	engine 64 77
 	gun -25 -109 "Pulse Cannon"
 	gun 25 -109 "Pulse Cannon"
 	turret -47 -73 "Pulse Turret"
@@ -217,7 +217,7 @@ ship "Geocoris"
 	explode "large explosion" 50
 	explode "huge explosion" 20
 	"final explode" "final explosion large"
-	description "The introduction of humans to Hai space caused quite a stir among Hai society, especially in the economy where large human freighters were out competing with the smaller native Hai freighters. In order to prevent humans from taking over large parts of the Hai economy, the Geocoris was developed, a heavy freighter that surpassed anything humanity had to offer at the time."
+	description "The introduction of humans to Hai space caused quite a stir among Hai society, especially in the economy where large human freighters were out competing the smaller native Hai freighters. In order to prevent humans from taking over large parts of the Hai economy, the Geocoris was developed, a heavy freighter that surpassed anything humanity had to offer at the time."
 
 ship "Geocoris" "Geocoris (Tracker)"
 	outfits
@@ -262,28 +262,6 @@ ship "Grasshopper"
 			"hull damage" 360
 			"hit force" 540
 	outfits
-		"Pulse Cannon"
-		"Hai Tracker Pod"
-		"Hai Tracker" 56
-		"Pebble Core"
-		"Hai Chasm Batteries"
-		"Hai Corundum Regenerator"
-		"Hai Williwaw Cooling" 2
-		`"Benga" Atomic Thruster`
-		`"Benga" Atomic Steering`
-		Hyperdrive
-	engine -19 33 1
-	engine 19 33 1
-	gun -11 -35 "Pulse Cannon"
-	gun 11 -35 "Hai Tracker Pod"
-	explode "tiny explosion" 10
-	explode "small explosion" 20
-	explode "medium explosion" 5
-	"final explode" "final explosion small"
-	description "Designed by the Hai to serve as a fast reconnaissance craft, the Grasshopper has been adopted by thrill-seekers and miners alike. At the same time, it is often used by Hai captains who are looking for effective protection at a low cost."
-
-ship "Grasshopper" "Grasshopper (Pulse)"
-	outfits
 		"Pulse Cannon" 2
 		"Pebble Core"
 		"Hai Chasm Batteries" 2
@@ -293,6 +271,15 @@ ship "Grasshopper" "Grasshopper (Pulse)"
 		`"Benga" Atomic Thruster`
 		`"Benga" Atomic Steering`
 		Hyperdrive
+	engine -19 33
+	engine 19 33
+	gun -11 -35 "Pulse Cannon"
+	gun 11 -35 "Pulse Cannon"
+	explode "tiny explosion" 10
+	explode "small explosion" 20
+	explode "medium explosion" 5
+	"final explode" "final explosion small"
+	description "Designed by the Hai to serve as a fast reconnaissance craft, the Grasshopper has been adopted by thrill-seekers and miners alike. At the same time, it is often used by Hai captains who are looking for effective protection at a low cost."
 
 ship "Grasshopper" "Grasshopper (Tracker)"
 	outfits
