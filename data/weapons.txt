@@ -457,6 +457,32 @@ effect "proton impact"
 	"velocity scale" -.005
 
 
+outfit "Proton Turret"
+	category "Turrets"
+	cost 260000
+	thumbnail "outfit/proton turret"
+	"mass" 38
+	"outfit space" -36
+	"weapon capacity" -36
+	"turret mounts" -1
+	weapon
+		sprite "projectile/proton"
+		"hardpoint sprite" "hardpoint/proton turret"
+		"hardpoint offset" 14.
+		sound "proton"
+		"hit effect" "proton impact" 3
+		"inaccuracy" 4
+		"turret turn" 2.5
+		"submunition" "Proton Fragment" 3
+		"velocity" 24
+		"lifetime" 2
+		"reload" 8
+		"firing energy" 15
+		"firing force" 2
+		"firing heat" 60
+	description "The Syndicate Proton Turret is a relatively new product designed to compete with Deep Sky's perennially-popular laser turrets for the anti-fighter defense market. Though a cruder weapon than its competition, the Proton Turret maintains a loyal following among captains dissatisfied with laser weapons' short range.
+
+
 outfit "Plasma Cannon"
 	category "Guns"
 	cost 190000
