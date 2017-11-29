@@ -63,7 +63,6 @@ ship "Aphid" "Aphid (Anti-Missile)"
 
 
 
-Centipede
 ship "Centipede"
 	sprite "ship/hai centipede"
 	attributes
@@ -115,7 +114,7 @@ ship "Centipede"
 	explode "medium explosion" 25
 	explode "large explosion" 10
 	"final explode" "final explosion medium"
-	description `The introduction of humans to the Hai civilization has lead to many interesting inventions that mix aspects of the different cultures. While some may vehemently argue that pickled acorns have been the greatest invention to come out of this relationship, many more will point to this luxury transport ship as the exemplar of human-Hai cooperation.`
+	description `The introduction of humans to the Hai civilization has led to many interesting inventions that mix aspects of the different cultures. While some may vehemently argue that pickled acorns have been the greatest invention to come out of this relationship, many more will point to this luxury transport ship as the exemplar of human-Hai cooperation.`
 description `	The Centipede is the newest ship to be sold by the Hai. Designed by a human and built by a Hai shipyard, the Centipede was put on the market around the turn of the 31st century, but has already seen massive use among Hai fleets.`
 
 
@@ -172,21 +171,21 @@ ship "Geocoris"
 		"weapon capacity" 172
 		"engine capacity" 94
 		Weapon:
-			Blast Radius: 300
-			Hit Force: 4500
-			Shield damage: 3000
-			Hull damage: 1500
+			"blast radius" 300
+			"shield damage" 3000
+			"hull damage" 1500
+			"hit force" 4500
 	outfits
-		Hyperdrive
-		"Hai Williwaw Cooling" 5
-		"Hai Valley Batteries"
-		"Pulse Turret" 2
 		"Pulse Cannon" 2
+		"Pulse Turret" 2
 		"Bullfrog Anti-Missile" 5
-		"Hai Diamond Regenerator"
-		`"Bondir" Atomic Steering`
 		"Geode Reactor" 2
+		"Hai Valley Batteries"
+		"Hai Diamond Regenerator"
+		"Hai Williwaw Cooling" 5
 		`"Biroo" Atomic Thruster`
+		`"Bondir" Atomic Steering`
+		Hyperdrive
 	engine 64 77 1
 	engine -64 77 1
 	turret 47 -73 "Pulse Turret"
@@ -204,8 +203,52 @@ ship "Geocoris"
 	explode "large explosion" 50
 	explode "huge explosion" 20
 	"final explode" "final explosion large"
-	description "Just a few years after the first humans discovered Hai space, the Hai knew they would eventually need a bigger freighter to match the larger human ones. What they did not expect, however, is that the result would surpass anything humanity has to offer, which is why it became such a popular ship amongst Hai and humans alike."
-	description "At first the Geocorsis started as a modified Water Bug, and you're sure you see a vague sign of it somewhere..."
+	description "The introduction of humans to Hai space caused quite a stir among Hai society, especially in the economy where large human freighters were out competing with the smaller native Hai freighters. In order to prevent humans from taking over large parts of the Hai economy, the Geocoris was developed, a heavy freighter that surpassed anything humanity had to offer at the time."
+
+
+
+ship "Grasshopper"
+	sprite "ship/hai grasshopper"
+	attributes
+		category "Interceptor"
+		"cost" 684000
+		"shields" 3300
+		"hull" 600
+		"required crew" 1
+		"bunks" 5
+		"mass" 95
+		"drag" 1.5
+		"heat dissipation" .85
+		"fuel capacity" 300
+		"cargo space"  29
+		"outfit space" 169
+		"weapon capacity" 38
+		"engine capacity" 61
+		weapon
+			"blast radius" 36
+			"shield damage" 180
+			"hull damage" 360
+			"hit force" 540
+	outfits
+		"Pulse Cannon"
+		"Hai Tracker Pod"
+		"Hai Tracker" 56
+		"Pebble Core"
+		"Hai Chasm Batteries"
+		"Hai Corundum Regenerator"
+		"Hai Williwaw Cooling" 2
+		`"Benga" Atomic Thruster`
+		`"Benga" Atomic Steering`
+		Hyperdrive
+	engine 19 33 1
+	engine -19 33 1
+	gun 11 -35 "Hai Tracker Pod"
+	gun -11 -35 "Pulse Cannon"
+	explode "tiny explosion" 10
+	explode "small explosion" 20
+	explode "medium explosion" 5
+	"final explode" "final explosion small"
+	description "Designed by the Hai to serve as a fast reconnaissance craft, The Grasshopper has been adopted by thrill-seekers and miners alike. At the same time, it is often used by Hai captains who are looking for effective protection at a low cost."
 
 
 

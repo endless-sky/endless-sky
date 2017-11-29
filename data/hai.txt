@@ -74,6 +74,21 @@ fleet "Small Hai"
 	variant
 		"Centipede" 2
 		"Lightning Bug" 
+	variant
+		"Grasshopper"
+	variant
+		"Grasshopper"
+		"Centipede" 2
+	variant
+		"Grasshopper" 2
+		"Centipede" 
+	variant
+		"Lightning Bug" 2
+		"Grasshopper" 2
+	variant 1
+		"Lightning Bug"
+		"Centipede" 
+		"Grasshopper" 2
 
 fleet "Large Hai"
 	government "Hai"
@@ -151,6 +166,23 @@ fleet "Large Hai"
 	variant
 		"Centipede" 2
 		"Lightning Bug" 2
+		"Aphid" 3
+	variant 1
+		"Geocoris"
+		"Shield Beetle (Pulse)" 2
+		"Shield Beetle (Tracker)"
+	variant 1
+		"Geocoris"
+		"Shield Beetle (Pulse)" 2
+		"Grasshopper" 2
+	variant 1
+		"Geocoris"
+		"Shield Beetle (Pulse)" 
+		"Shield Beetle (Tracker)"
+		"Grasshopper" 2
+	variant 1
+		"Geocoris" 2
+		"Shield Beetle" 1
 		"Aphid" 3
 
 fleet "Small Unfettered"
@@ -235,12 +267,14 @@ shipyard "Hai Basics"
 	"Aphid"
 	"Lightning Bug"
 	"Centipede"
+	"Grasshopper"
 
 shipyard "Hai Intermediate"
 	"Aphid"
 	"Lightning Bug"
 	"Water Bug"
 	"Centipede"
+	"Grasshopper"
 
 shipyard "Hai Advanced"
 	"Aphid"
@@ -249,6 +283,7 @@ shipyard "Hai Advanced"
 	"Shield Beetle"
 	"Centipede"
 	"Geocoris"
+	"Grasshopper"
 
 outfitter "Hai Basics"
 	"Pulse Cannon"
