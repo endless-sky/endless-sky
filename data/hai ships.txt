@@ -86,8 +86,8 @@ ship "Centipede"
 			"hull damage" 300
 			"hit force" 900
 	outfits
-		"Hai Tracker" 112
 		"Hai Tracker Pod" 2
+		"Hai Tracker" 112
 		"Bullfrog Anti-Missile" 3
 		"Geode Reactor"
 		"Hai Corundum Regenerator"
@@ -116,6 +116,20 @@ ship "Centipede"
 	"final explode" "final explosion medium"
 	description `The introduction of humans to the Hai civilization has led to many interesting inventions that mix aspects of the different cultures. While some may vehemently argue that pickled acorns have been the greatest invention to come out of this relationship, many more will point to this luxury transport ship as the exemplar of human-Hai cooperation.`
 description `	The Centipede is the newest ship to be sold by the Hai. Designed by a human and built by a Hai shipyard, the Centipede was put on the market around the turn of the 31st century, but has already seen massive use among Hai fleets.`
+
+ship "Centipede" "Centipede(Pulse)"
+	outfits
+		"Pulse Cannon" 2
+		"Bullfrog Anti-Missile" 3
+		"Boulder Reactor"
+		"Hai Gorge Batteries"
+		"Hai Diamond Regenerator"
+		"Hai Williwaw Cooling" 5
+		"Quantum Keystone"
+		`"Biroo" Atomic Thruster`
+		`"Basrem" Atomic Steering`
+		`"Biroo" Atomic Steering`
+		Hyperdrive
 
 
 
