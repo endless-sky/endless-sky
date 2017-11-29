@@ -1965,10 +1965,11 @@ mission "Northern Blockade"
 	to offer
 		random < 20
 		"combat rating" > 200
+		"reputation: Republic" >= 0
 	
 	on offer
 		conversation
-			`You are approached by a Navy officer. "Are you Captain <last>?" You nod. "Would you be able to assist us? A sizable gang of pirates has occupied <system> and raided the spaceport. A Navy fleet is on its way to eliminating the pirates, but early reports say that the spaceport of <planet> is in dire need of supplies. The pirates badly damaged any building above three stories and everything in the warehouses was either stolen or destroyed. We need a ship to bring <cargo> to them ASAP, but there are no available Navy ships capable of doing the job. Could you deliver the supplies for us, Captain?"`
+			`You are approached by a Navy officer. "Are you Captain <last>?" You nod. "Would you be able to assist us? A sizable gang of pirates has occupied <system> and raided the spaceport. A Navy fleet is on its way to eliminate the pirates, but reports from the planet indicate that the spaceport of <planet> is in dire need of supplies. Any building above three stories was badly damaged and everything in the warehouses was either stolen or destroyed. We need a ship to bring <cargo> to them as soon as possible, but there are no available Navy ships capable of doing the job. Would you deliver the supplies for us, Captain?"`
 			choice
 				`	"I'd be glad to help, Officer."`
 					accept
@@ -1996,7 +1997,7 @@ mission "Northern Blockade"
 	on complete
 		payment
 		payment 7500
-		dialog `The last crate of supplies is loaded off of your ship just as the Navy ships in orbit finish off the pirate fleet. The local authorities thank you for helping, and you are paid <payment>.`
+		dialog `As the last crate of supplies is loaded off of your ship, the Navy ships defending the system land. The local authorities thank you for helping, and you are paid <payment>.`
 
 
 
@@ -2014,16 +2015,18 @@ mission "Southern Blockade"
 	to offer
 		random < 20
 		"combat rating" > 150
+		not "event: Thule becomes independent"
+		"reputation: Free Worlds" >= 0
 	
 	on offer
 		conversation
-			`A captain in a Free Worlds uniform enters the spaceport and turns on a megaphone. "Attention! The Free Worlds are in need of a captain able to carry <cargo> to <stopovers> for fortifying the spaceports nearest to the pirate system of Men. Free Worlds ships are currently preoccupied with fighting off a pirate incursion into those systems, and we are unable to spare enough ships for the job. Our hope is that these defenses will deter any future incursions. Payment will be <payment> for the first captain who accepts." The spaceport falls quiet as captains contemplate this offer.`
+			`A captain in a Free Worlds uniform enters the spaceport and turns on a megaphone. "Attention! The Free Worlds are in need of volunteers able to carry <cargo> to <stopovers> for fortifying the spaceports nearest to the pirate system of Men. Free Worlds ships are currently preoccupied with fighting off a pirate incursion into those systems, and we are unable to spare enough ships for the job. Our hope is that these defenses will deter any future incursions. Payment will be <payment> for the first captain who accepts." The spaceport falls quiet as captains contemplate this offer.`
 			choice
 				`	(Volunteer.)`
 				`	(Ignore.)`
 					decline
 			
-			`	The Free Worlds captain thanks you for offering your help. Spaceport workers load the turrets onto your ship, and the Free Worlds captain tells you to return to <origin> once you have dropped off the turrets for payment.`
+			`	The Free Worlds captain thanks you for offering your help. Spaceport workers load the turrets onto your ship, and the captain tells you to return to <origin> once you have dropped off the turrets for payment.`
 				accept
 	
 	npc
@@ -2068,7 +2071,7 @@ mission "Southern Blockade"
 		system "Pherkad"
 		fleet "Large Free Worlds"
 	on stopover
-		dialog `The last of the defenses are quickly unloaded from your ship, put into place, and activated. One of the pirate ships attacking the system attempts to follow you down to the surface, but the fire coming from the newly installed spaceport turrets forces the pirate to turn away and flee for orbit. Time to return to <destination>.`
+		dialog `The last of the defenses are quickly unloaded from your ship, put into place, and activated. A pirate ship attacking the system attempts to follow you down to the surface, but the fire coming from the newly installed spaceport turrets forces the pirate to turn away and flee for orbit. Time to return to <destination>.`
 	on complete
 		payment
 		payment 5000
@@ -2079,7 +2082,7 @@ mission "Southern Blockade"
 mission "Core Blockade"
 	minor
 	name `Bad Harvest`
-	description `The pirate world of <destination> is experiencing a famine. Warlords of the planet have threatened the Syndicate to give them food, and the Syndicate has agreed to their demands. Deliver <cargo> to the world for <payment>.`
+	description `The pirate world of <destination> is experiencing a famine. Warlords of the planet have threatened the Syndicate into giving them food. Deliver <cargo> to the world for <payment>.`
 	source
 		near "Almach" 2 4
 	destination "Deadman's Cove"
@@ -2134,7 +2137,7 @@ mission "Pirate Blockade"
 					goto confront
 				`	(Stop walking and see if they stop as well.)`
 			
-			`	You stop be the entrance to a store that claims to have "the best Polecats!" and lean against the building, trying not to draw attention to yourself. The figure keeps walking at the same pace, and as they pass you, a soft voice says, "Follow me," from under the cloak. The figure bolts off into a dark alleyway next to the building.`
+			`	You stop by the entrance to a store that claims to have "the best Polecats!" and lean against the building, trying not to draw attention to yourself. The figure keeps walking at the same pace, and as they pass you, a soft voice says, "Follow me," from under the cloak. The figure bolts off into a dark alleyway next to the building.`
 				goto choice
 			
 			label confront
@@ -2146,7 +2149,7 @@ mission "Pirate Blockade"
 				`	(Return to my ship.)`
 					decline
 			
-			`	You step into the alleyway and find the figure standing under a lamp. The figure removes their cloak, revealing the face of a woman with short dark hair and a distinct jagged scar across her right cheek. She begins whispering to you. "You're not from this world. I can tell. You're too clean and unscarred. Would you be able to help me?"`
+			`	You step into the alleyway and find the figure standing under a lamp. The figure removes their cloak, revealing the face of a woman with short dark hair and a distinct, jagged scar across her right cheek. She begins whispering to you. "You're not from this world. I can tell. You're too clean and unscarred. Could you help me?"`
 			choice
 				`	"What do you want?"`
 					goto need
