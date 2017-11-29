@@ -81,11 +81,13 @@ fleet "Small Hai"
 		"Grasshopper"
 		"Centipede" 2
 	variant
-		"Grasshopper" 2
+		"Grasshopper"
+		"Grasshopper (Pulse)"
 		"Centipede" 
 	variant
 		"Lightning Bug" 2
-		"Grasshopper" 2
+		"Grasshopper"
+		"Grasshopper (Tracker)"
 	variant 1
 		"Lightning Bug"
 		"Centipede (Pulse)" 
@@ -176,12 +178,14 @@ fleet "Large Hai"
 	variant 1
 		"Geocoris"
 		"Shield Beetle (Pulse)" 2
-		"Grasshopper" 2
+		"Grasshopper"
+		"Grasshopper (Pulse)"
 	variant 1
 		"Geocoris"
 		"Shield Beetle (Pulse)" 
 		"Shield Beetle (Tracker)"
-		"Grasshopper" 2
+		"Grasshopper (Pulse)"
+		"Grasshopper (Tracker)"
 	variant 1
 		"Geocoris" 2
 		"Shield Beetle" 1

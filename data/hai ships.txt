@@ -99,11 +99,11 @@ ship "Centipede"
 		`"Basrem" Atomic Steering`
 		Hyperdrive
 		
-	engine 0 112 0.8
-	engine -14 112 0.8
-	engine 14 112 0.8
 	engine -41 78.5 0.4
 	engine 41 78.5 0.4
+	engine -14 112 0.8
+	engine 14 112 0.8
+	engine 0 112 0.8
 	gun -10 -116.5
 	gun 10 -116.5
 	turret 0 -14.5
@@ -200,17 +200,17 @@ ship "Geocoris"
 		`"Biroo" Atomic Thruster`
 		`"Bondir" Atomic Steering`
 		Hyperdrive
-	engine 64 77 1
 	engine -64 77 1
-	turret 47 -73 "Pulse Turret"
-	turret -47 -73 "Pulse Turret"
-	turret 37 6.5 "Bullfrog Anti-Missile"
-	turret -37 6.5 "Bullfrog Anti-Missile"
-	turret 0 63 "Bullfrog Anti-Missile"
-	turret 65 25 "Bullfrog Anti-Missile"
-	turret -65 25 "Bullfrog Anti-Missile"
-	gun 25 -109 "Pulse Cannon"
+	engine 64 77 1
 	gun -25 -109 "Pulse Cannon"
+	gun 25 -109 "Pulse Cannon"
+	turret -47 -73 "Pulse Turret"
+	turret 47 -73 "Pulse Turret"
+	turret -37 6.5 "Bullfrog Anti-Missile"
+	turret 37 6.5 "Bullfrog Anti-Missile"
+	turret -65 25 "Bullfrog Anti-Missile"
+	turret 65 25 "Bullfrog Anti-Missile"
+	turret 0 63 "Bullfrog Anti-Missile"
 	explode "tiny explosion" 50
 	explode "small explosion" 50
 	explode "medium explosion" 50
@@ -272,15 +272,40 @@ ship "Grasshopper"
 		`"Benga" Atomic Thruster`
 		`"Benga" Atomic Steering`
 		Hyperdrive
-	engine 19 33 1
 	engine -19 33 1
-	gun 11 -35 "Hai Tracker Pod"
+	engine 19 33 1
 	gun -11 -35 "Pulse Cannon"
+	gun 11 -35 "Hai Tracker Pod"
 	explode "tiny explosion" 10
 	explode "small explosion" 20
 	explode "medium explosion" 5
 	"final explode" "final explosion small"
 	description "Designed by the Hai to serve as a fast reconnaissance craft, the Grasshopper has been adopted by thrill-seekers and miners alike. At the same time, it is often used by Hai captains who are looking for effective protection at a low cost."
+
+ship "Grasshopper" "Grasshopper (Pulse)"
+	outfits
+		"Pulse Cannon" 2
+		"Pebble Core"
+		"Hai Chasm Batteries" 2
+		"Hai Corundum Regenerator"
+		"Hai Williwaw Cooling" 2
+		"Quantum Keystone"
+		`"Benga" Atomic Thruster`
+		`"Benga" Atomic Steering`
+		Hyperdrive
+
+ship "Grasshopper" "Grasshopper (Tracker)"
+	outfits
+		"Hai Tracker Pod" 2
+		"Hai Tracker" 112
+		"Pebble Core"
+		"Hai Fissure Batteries"
+		"Hai Corundum Regenerator"
+		"Hai Williwaw Cooling" 2
+		"Quantum Keystone"
+		`"Basrem" Atomic Thruster`
+		`"Basrem" Atomic Steering`
+		Hyperdrive
 
 
 
