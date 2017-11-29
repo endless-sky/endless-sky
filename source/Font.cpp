@@ -122,7 +122,7 @@ namespace {
 		// 2-4 bytes
 		int c = (*str & ((1 << (7 - bytes)) - 1));
 		for(int i = 1; i < bytes; ++i)
-			c += (*(str + i) & 0x3f) << (i * 6 + 1 - bytes);
+			c = (c << 6) + (*(str + i) & 0x3f);
 		return c;
 	}
 	
