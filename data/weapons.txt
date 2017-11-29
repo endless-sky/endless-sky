@@ -443,10 +443,10 @@ outfit "Proton Fragment"
 			"frame rate" 2
 		"hit effect" "proton impact"
 		"inaccuracy" 2
-		"lifetime" 20
+		"lifetime" 24
 		"hit force" 6
-		"shield damage" 8
-		"hull damage" 6.6
+		"shield damage" 8.4
+		"hull damage" 7
 
 effect "proton impact"
 	sprite "effect/proton impact"
