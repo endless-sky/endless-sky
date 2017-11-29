@@ -117,7 +117,7 @@ ship "Centipede"
 	description `The introduction of humans to the Hai civilization has led to many interesting inventions that mix aspects of the different cultures. While some may vehemently argue that pickled acorns have been the greatest invention to come out of this relationship, many more will point to this luxury transport ship as the exemplar of human-Hai cooperation.`
 description `	The Centipede is the newest ship to be sold by the Hai. Designed by a human and built by a Hai shipyard, the Centipede was put on the market around the turn of the 31st century, but has already seen massive use among Hai fleets.`
 
-ship "Centipede" "Centipede(Pulse)"
+ship "Centipede" "Centipede (Pulse)"
 	outfits
 		"Pulse Cannon" 2
 		"Bullfrog Anti-Missile" 3
@@ -219,6 +219,24 @@ ship "Geocoris"
 	"final explode" "final explosion large"
 	description "The introduction of humans to Hai space caused quite a stir among Hai society, especially in the economy where large human freighters were out competing with the smaller native Hai freighters. In order to prevent humans from taking over large parts of the Hai economy, the Geocoris was developed, a heavy freighter that surpassed anything humanity had to offer at the time."
 
+ship "Geocoris" "Geocoris (Tracker)"
+	outfits
+		"Hai Tracker Pod" 2
+		"Hai Tracker" 196
+		"Pulse Turret" 2
+		"Bullfrog Anti-Missile" 4
+		"Chameleon Anti-Missile"
+		"Boulder Reactor"
+		"Pebble Core"
+		"Hai Ravine Batteries"
+		"Hai Corundum Regenerator" 2
+		"Hai Williwaw Cooling" 7
+		"Tracker Storage Pod" 3
+		"Quantum Keystone"
+		`"Biroo" Atomic Thruster`
+		`"Bondir" Atomic Steering`
+		Hyperdrive
+
 
 
 ship "Grasshopper"
@@ -262,7 +280,7 @@ ship "Grasshopper"
 	explode "small explosion" 20
 	explode "medium explosion" 5
 	"final explode" "final explosion small"
-	description "Designed by the Hai to serve as a fast reconnaissance craft, The Grasshopper has been adopted by thrill-seekers and miners alike. At the same time, it is often used by Hai captains who are looking for effective protection at a low cost."
+	description "Designed by the Hai to serve as a fast reconnaissance craft, the Grasshopper has been adopted by thrill-seekers and miners alike. At the same time, it is often used by Hai captains who are looking for effective protection at a low cost."
 
 
 

@@ -56,7 +56,7 @@ fleet "Small Hai"
 		"Centipede"
 	variant
 		"Centipede" 2
-		"Centipede(Pulse)"
+		"Centipede (Pulse)" 3
 	variant
 		"Centipede" 2
 		"Lightning Bug" 2
@@ -88,7 +88,7 @@ fleet "Small Hai"
 		"Grasshopper" 2
 	variant 1
 		"Lightning Bug"
-		"Centipede(Pulse)" 
+		"Centipede (Pulse)" 
 		"Grasshopper" 2
 
 fleet "Large Hai"
@@ -152,7 +152,7 @@ fleet "Large Hai"
 		"Centipede" 2
 	variant
 		"Centipede" 3
-		"Centipede(Pulse)" 2
+		"Centipede (Pulse)" 2
 	variant 3
 		"Centipede" 2
 		"Lightning Bug" 3
