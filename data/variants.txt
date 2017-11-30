@@ -219,20 +219,6 @@ ship "Argosy" "Argosy (Laser)"
 
 
 
-ship "Argosy" "Argosy (Proton)"
-	outfits
-		"Proton Gun" 2
-		"Proton Turret" 2
-		"NT-200 Nucleovoltaic"
-		"Supercapacitor"
-		"D67-TM Shield Generator"
-		"Outfits Expansion" 2
-		"Greyhound Plasma Thruster"
-		"Impala Plasma Steering"
-		"Hyperdrive"
-
-
-
 ship "Argosy" "Argosy (Missile)"
 	outfits
 		"Meteor Missile Launcher" 4
@@ -248,6 +234,20 @@ ship "Argosy" "Argosy (Missile)"
 		"Hyperdrive"
 	turret "Anti-Missile Turret"
 	turret "Heavy Anti-Missile Turret"
+
+
+
+ship "Argosy" "Argosy (Proton)"
+	outfits
+		"Proton Gun" 2
+		"Proton Turret" 2
+		"NT-200 Nucleovoltaic"
+		"Supercapacitor"
+		"D67-TM Shield Generator"
+		"Outfits Expansion" 2
+		"Greyhound Plasma Thruster"
+		"Impala Plasma Steering"
+		"Hyperdrive"
 
 
 
@@ -279,24 +279,6 @@ ship "Argosy" "Argosy (Blaster)"
 
 
 
-ship "Behemoth" "Behemoth (Speedy)"
-	outfits
-		"Sidewinder Missile Launcher" 2
-		"Sidewinder Missile" 100
-		"Heavy Laser Turret" 6
-		"Breeder Reactor"
-		"LP144a Battery Pack"
-		"D94-YV Shield Generator"
-		"Large Radar Jammer"
-		"Liquid Nitrogen Cooler"
-		"Outfits Expansion" 6
-		"A250 Atomic Thruster"
-		"A125 Atomic Steering"
-		"A375 Atomic Steering"
-		"Scram Drive"
-
-
-
 ship "Behemoth" "Behemoth (Proton)"
 	outfits
 		"Sidewinder Missile Launcher" 2
@@ -322,6 +304,24 @@ ship "Behemoth" "Behemoth (Proton)"
 
 
 
+ship "Behemoth" "Behemoth (Speedy)"
+	outfits
+		"Sidewinder Missile Launcher" 2
+		"Sidewinder Missile" 100
+		"Heavy Laser Turret" 6
+		"Breeder Reactor"
+		"LP144a Battery Pack"
+		"D94-YV Shield Generator"
+		"Large Radar Jammer"
+		"Liquid Nitrogen Cooler"
+		"Outfits Expansion" 6
+		"A250 Atomic Thruster"
+		"A125 Atomic Steering"
+		"A375 Atomic Steering"
+		"Scram Drive"
+
+
+
 ship "Bulk Freighter" "Bulk Freighter (Heavy)"
 	outfits
 		"Laser Turret" 2
@@ -344,22 +344,6 @@ ship "Bulk Freighter" "Bulk Freighter (Heavy)"
 
 
 
-ship "Bulk Freighter" "Bulk Freighter (Proton)"
-	outfits
-		"Proton Turret" 3
-		"Heavy Anti-Missile Turret"
-		"Meteor Missile Launcher" 2
-		"Meteor Missile" 70
-		"Fission Reactor"
-		"LP072a Battery Pack"
-		"D94-YV Shield Generator"
-		"Outfits Expansion"
-		"A250 Atomic Thruster"
-		"A375 Atomic Steering"
-		"Scram Drive"
-
-
-
 ship "Bulk Freighter" "Bulk Freighter (Blaster)"
 	outfits
 		"Quad Blaster Turret" 5
@@ -370,6 +354,22 @@ ship "Bulk Freighter" "Bulk Freighter (Blaster)"
 		"D94-YV Shield Generator"
 		"Water Coolant System"
 		"Outfits Expansion" 2
+		"A250 Atomic Thruster"
+		"A375 Atomic Steering"
+		"Scram Drive"
+
+
+
+ship "Bulk Freighter" "Bulk Freighter (Proton)"
+	outfits
+		"Proton Turret" 3
+		"Heavy Anti-Missile Turret"
+		"Meteor Missile Launcher" 2
+		"Meteor Missile" 70
+		"Fission Reactor"
+		"LP072a Battery Pack"
+		"D94-YV Shield Generator"
+		"Outfits Expansion"
 		"A250 Atomic Thruster"
 		"A375 Atomic Steering"
 		"Scram Drive"
