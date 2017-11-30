@@ -1940,7 +1940,6 @@ mission "Defend Sabik"
 			`	Tomek says, "We can't let them take this system, or they'll have us completely bottled up. This is where it begins. We need to fight. Get to your ships, quickly! But if you can, disable their ships instead of destroying them. These are Navy ships after all, and most of them don't want war any more than we do." You hurry to join all the other ships taking off to defend the system.`
 				launch
 		
-		"reputation: Republic" = -10
 		"salary: Free Worlds" = 300
 		event "start of hostilities"
 		event "joined the free worlds"
