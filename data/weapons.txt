@@ -139,10 +139,10 @@ outfit "Modified Blaster Turret"
 		"hull damage" 8
 	description "This is a turreted version of the Modified Blaster, which is an Energy Blaster modified for greater power at the cost of higher energy consumption and heat. These turrets are popular with pirates and others who are trying to cram as much firepower into their ships as possible."
 
-outfit "Quad Mod Blaster Turret"
+outfit "Quad Modified Blaster Turret"
 	category "Turrets"
 	cost 350000
-	thumbnail "outfit/quad mod blaster turret"
+	thumbnail "outfit/quad modified blaster turret"
 	"mass" 30
 	"outfit space" -30
 	"weapon capacity" -30
@@ -150,7 +150,7 @@ outfit "Quad Mod Blaster Turret"
 	"required crew" 1
 	weapon
 		sprite "projectile/mod blaster"
-		"hardpoint sprite" "hardpoint/quad mod blaster turret"
+		"hardpoint sprite" "hardpoint/quad modified blaster turret"
 		"hardpoint offset" 9.
 		sound "mod blaster"
 		"hit effect" "blaster impact"

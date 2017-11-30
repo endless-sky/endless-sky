@@ -375,7 +375,7 @@ ship "Marauder Falcon" "Marauder Falcon (Engines)"
 		"self destruct" .1
 	outfits
 		"Electron Beam" 4
-		"Quad Mod Blaster Turret" 2
+		"Quad Modified Blaster Turret" 2
 		
 		"Fusion Reactor"
 		"LP144a Battery Pack"
@@ -396,8 +396,8 @@ ship "Marauder Falcon" "Marauder Falcon (Engines)"
 	gun 16 -88 "Electron Beam"
 	gun -16 -88 "Electron Beam"
 	gun 16 -88 "Electron Beam"
-	turret -16 -24 "Quad Mod Blaster Turret"
-	turret 16 -24 "Quad Mod Blaster Turret"
+	turret -16 -24 "Quad Modified Blaster Turret"
+	turret 16 -24 "Quad Modified Blaster Turret"
 	turret -57 32.5
 	turret 57 32.5
 	explode "tiny explosion" 40
@@ -541,7 +541,7 @@ ship "Marauder Firebird" "Marauder Firebird (Engines)"
 		"self destruct" .15
 	outfits
 		"Plasma Cannon" 4
-		"Quad Mod Blaster Turret"
+		"Quad Modified Blaster Turret"
 		"Anti-Missile Turret"
 		
 		"Fusion Reactor"
@@ -564,7 +564,7 @@ ship "Marauder Firebird" "Marauder Firebird (Engines)"
 	gun 26.5 -33 "Plasma Cannon"
 	gun -38 -18 "Plasma Cannon"
 	gun 38 -18 "Plasma Cannon"
-	turret -5 3 "Quad Mod Blaster Turret"
+	turret -5 3 "Quad Modified Blaster Turret"
 	turret 5 3 "Anti-Missile Turret"
 	explode "tiny explosion" 18
 	explode "small explosion" 36
@@ -707,7 +707,7 @@ ship "Marauder Leviathan"
 			"hit force" 1500
 	outfits
 		"Particle Cannon" 4
-		"Quad Mod Blaster Turret" 4
+		"Quad Modified Blaster Turret" 4
 		"Heavy Laser Turret" 2
 		
 		"Fusion Reactor"
@@ -762,7 +762,7 @@ ship "Marauder Leviathan" "Marauder Leviathan (Engines)"
 		"self destruct" .1
 	outfits
 		"Electron Beam" 4
-		"Quad Mod Blaster Turret" 4
+		"Quad Modified Blaster Turret" 4
 		
 		"Fusion Reactor"
 		"LP144a Battery Pack"
@@ -783,10 +783,10 @@ ship "Marauder Leviathan" "Marauder Leviathan (Engines)"
 	gun 38 -34 "Electron Beam"
 	gun -50 -23 "Electron Beam"
 	gun 50 -23 "Electron Beam"
-	turret -15 -50 "Quad Mod Blaster Turret"
-	turret 15 -50 "Quad Mod Blaster Turret"
-	turret -25 10 "Quad Mod Blaster Turret"
-	turret 25 10 "Quad Mod Blaster Turret"
+	turret -15 -50 "Quad Modified Blaster Turret"
+	turret 15 -50 "Quad Modified Blaster Turret"
+	turret -25 10 "Quad Modified Blaster Turret"
+	turret 25 10 "Quad Modified Blaster Turret"
 	explode "tiny explosion" 18
 	explode "small explosion" 36
 	explode "medium explosion" 24
@@ -1434,7 +1434,7 @@ ship "Marauder Splinter" "Marauder Splinter (Weapons)"
 		"self destruct" .15
 	outfits
 		"Plasma Cannon" 4
-		"Quad Mod Blaster Turret" 2
+		"Quad Modified Blaster Turret" 2
 		"Heavy Anti-Missile Turret"
 		
 		"Fusion Reactor"
@@ -1454,9 +1454,9 @@ ship "Marauder Splinter" "Marauder Splinter (Weapons)"
 	gun 7.5 -98 "Plasma Cannon"
 	gun -15 -82 "Plasma Cannon"
 	gun 15 -82 "Plasma Cannon"
-	turret -17 -28 "Quad Mod Blaster Turret"
+	turret -17 -28 "Quad Modified Blaster Turret"
 	turret 0 -28 "Heavy Anti-Missile Turret"
-	turret 17 -28 "Quad Mod Blaster Turret"
+	turret 17 -28 "Quad Modified Blaster Turret"
 	explode "tiny explosion" 18
 	explode "small explosion" 36
 	explode "medium explosion" 24
