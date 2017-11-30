@@ -198,7 +198,7 @@ mission "FW Prisoner Parole"
 				accept
 		"reputation: Republic" = 1
 		event "temporary ceasefire"
-		event "start of hostilities" 7
+		event "start of hostilities" 8
 	
 	on complete
 		dialog `You drop off the Navy prisoners on <planet>. Now, it's time to get back to Deep with your fleet before the ceasefire ends.`
