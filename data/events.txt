@@ -798,7 +798,7 @@ event "start of hostilities"
 	government "Free Worlds"
 		"attitude toward"
 			"Republic" -.2
-	"reputation: Republic" = -10
+	"reputation: Republic" <?= -10
 
 
 
