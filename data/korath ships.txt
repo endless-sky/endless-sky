@@ -40,7 +40,7 @@ ship "Korath Raider"
 		"Large Heat Shunt" 2
 		"Small Heat Shunt"
 		"Ramscoop"
-		"Intrusion Countermeasures" 4
+		"Korath Repeater Rifle" 45
 		
 		"Thruster (Planetary Class)"
 		"Steering (Planetary Class)"
@@ -76,7 +76,7 @@ ship "Korath Raider" "Korath Raider (Hyperdrive)"
 		"Large Heat Shunt" 2
 		"Small Heat Shunt"
 		"Ramscoop"
-		"Intrusion Countermeasures" 4
+		"Korath Repeater Rifle" 45
 		
 		"Thruster (Planetary Class)"
 		"Steering (Planetary Class)"
@@ -116,6 +116,7 @@ ship "Korath Chaser"
 		
 		"Generator (Furnace Class)"
 		"Small Heat Shunt"
+		"Korath Repeater Rifle" 
 		
 		"Thruster (Asteroid Class)"
 		"Steering (Asteroid Class)"
@@ -159,7 +160,7 @@ ship "Korath World-Ship"
 		"Systems Core (Large)"
 		"Large Heat Shunt" 2
 		"Ramscoop"
-		"Intrusion Countermeasures" 6
+		"Korath Repeater Rifle" 66
 		
 		"Thruster (Planetary Class)"
 		"Steering (Planetary Class)"
@@ -216,7 +217,7 @@ ship "Korath World-Ship" "Korath World-Ship A (Jump)"
 		"Systems Core (Large)"
 		"Large Heat Shunt" 2
 		"Ramscoop"
-		"Intrusion Countermeasures" 6
+		"Korath Repeater Rifle" 66
 		
 		"Thruster (Planetary Class)"
 		"Steering (Planetary Class)"
@@ -242,7 +243,7 @@ ship "Korath World-Ship" "Korath World-Ship B (Jump)"
 		"Systems Core (Large)"
 		"Large Heat Shunt" 2
 		"Ramscoop"
-		"Intrusion Countermeasures" 6
+		"Korath Repeater Rifle" 66
 		
 		"Thruster (Planetary Class)"
 		"Steering (Planetary Class)"
@@ -268,7 +269,7 @@ ship "Korath World-Ship" "Korath World-Ship C (Jump)"
 		"Systems Core (Large)"
 		"Large Heat Shunt" 2
 		"Ramscoop"
-		"Intrusion Countermeasures" 6
+		"Korath Repeater Rifle" 66
 		
 		"Thruster (Planetary Class)"
 		"Steering (Planetary Class)"
