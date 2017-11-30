@@ -167,24 +167,24 @@ event "prepare for battle of Kornephoros"
 
 mission "FW Prisoner Parole"
 	name "Prisoner Parole"
-	description "Escort a fleet of transports carrying prisoners of war to <planet>. The temporary ceasefire will end on <date>."
+	description "Escort a fleet of transports carrying prisoners of war to <stopovers>. The temporary ceasefire will end on <date>, so return to <planet> before then."
 	deadline 7
 	source "Deep"
-	destination "New Tibet"
+	stopover "New Tibet"
 	to offer
 		has "Liberate Kornephoros: done"
 	on fail
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	npc accompany save
-		government "Escort"
+		government "Free Worlds"
 		personality timid escort
 		ship "Falcon (Heavy)" "F.S. Starry Warrior"
 		ship "Blackbird" "Flight of Fancy"
 		ship "Blackbird" "Southern Luxury"
 	
 	on visit
-		dialog "You have reached <planet>, but you left part of your convoy behind! Better depart and wait for them to arrive in this star system."
+		dialog "You have returned to <planet>, but have not delivered the prisoners to <stopovers>."
 	
 	on offer
 		conversation
@@ -200,31 +200,8 @@ mission "FW Prisoner Parole"
 		event "temporary ceasefire"
 		event "start of hostilities" 7
 	
-	on complete
+	on stopover
 		dialog `You drop off the Navy prisoners on <planet>. Now, it's time to get back to Deep with your fleet before the ceasefire ends.`
-
-
-
-mission "FW Prisoner Parole 2"
-	landing
-	name "Prisoner Parole"
-	description "Return to Deep before the cease-fire ends."
-	source "New Tibet"
-	destination "Deep"
-	to offer
-		has "FW Prisoner Parole: done"
-	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
-	
-	npc accompany save
-		government "Escort"
-		personality timid escort
-		ship "Falcon (Heavy)" "F.S. Starry Warrior"
-		ship "Blackbird" "Flight of Fancy"
-		ship "Blackbird" "Southern Luxury"
-	
-	on visit
-		dialog "You have reached <planet>, but you left part of your convoy behind! Better depart and wait for them to arrive in this star system."
 	
 	on complete
 		log "Returned some Navy prisoners of war, after they gave their parole and promised not to take part in any future battles against the Free Worlds."
@@ -243,7 +220,7 @@ mission "FW Prisoner Parole 2"
 			
 			label next
 			`	"The Navy has had two crushing defeats," he says. "They will be hesitant to attack again until their numbers are much stronger. That gives us some time for diplomacy, to strengthen our position and look for allies, or at least for sympathizers. Which is where you come in. I'm going to ask you to carry a diplomatic mission to the Syndicate. Meet us in the spaceport when you are ready."`
-		"reputation: Republic" = -1000
+		"reputation: Republic" <?= -1000
 		event "oathkeepers founded" 50
 
 
@@ -272,7 +249,7 @@ mission "FW Syndicate Diplomacy 1"
 	source "Deep"
 	destination "Hephaestus"
 	to offer
-		has "FW Prisoner Parole 2: done"
+		has "FW Prisoner Parole: done"
 	clearance "Alondo has a brief chat with the spaceport controller and manages to get you permission to land."
 		attributes "dirt belt"
 	passengers 1
