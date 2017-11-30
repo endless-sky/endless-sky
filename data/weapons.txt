@@ -142,7 +142,7 @@ outfit "Modified Blaster Turret"
 outfit "Modified Quad Blaster Turret"
 	category "Turrets"
 	cost 350000
-	thumbnail "outfit/modified quad blaster turret"
+	thumbnail "outfit/mod quad blaster turret"
 	"mass" 30
 	"outfit space" -30
 	"weapon capacity" -30
@@ -150,7 +150,7 @@ outfit "Modified Quad Blaster Turret"
 	"required crew" 1
 	weapon
 		sprite "projectile/mod blaster"
-		"hardpoint sprite" "hardpoint/modified quad blaster turret"
+		"hardpoint sprite" "hardpoint/mod quad blaster turret"
 		"hardpoint offset" 9.
 		sound "mod blaster"
 		"hit effect" "blaster impact"
