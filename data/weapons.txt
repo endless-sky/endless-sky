@@ -461,7 +461,7 @@ outfit "Proton Turret"
 	category "Turrets"
 	cost 260000
 	thumbnail "outfit/proton turret"
-	"mass" 38
+	"mass" 36
 	"outfit space" -36
 	"weapon capacity" -36
 	"turret mounts" -1
