@@ -313,10 +313,10 @@ outfit "Steering (Stellar Class)"
 	
 outfit "Korath Repeater Rifle"
 	category "Hand to Hand"
-	cost 220000
+	cost 125000
 	thumbnail "outfit/korath rifle"
 	"capture attack" 3.1
 	"capture defense" 5.4
-	"illegal" 2100000
+	"illegal" 2200000
 	"unplunderable" 1
 	description "The Korath Repeater Rifle, while commonplace among the Korath, is considered highly illegal by everyone but the lawless who see them as trophies of sorts and will pay nicely for it."
