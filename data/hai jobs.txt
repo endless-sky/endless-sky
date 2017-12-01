@@ -224,8 +224,8 @@ mission "Unfettered Aid [0]"
 		has "Ask the Hai about the Unfettered: offered"
 	source
 		government "Hai"
-		near "Wah Yoot" 3 4
 	destination
+		distance 3 4
 		attributes "unfettered"
 	on accept
 		dialog `The Hai dockworkers load the food for the Unfettered onto your ship. One of them says to you, "Thank you. This is far better than watching our kinfolk starve."`
@@ -246,8 +246,8 @@ mission "Unfettered Aid [1]"
 		has "Ask the Hai about the Unfettered: offered"
 	source
 		government "Hai"
-		near "Wah Yoot" 4 5
 	destination
+		distance 4 5
 		attributes "unfettered"
 	on accept
 		dialog `As the Hai load the food onto your ship, one of them says, "Tell our brothers and sisters that if they will only repent, they will be welcome to come home."`
@@ -268,8 +268,8 @@ mission "Unfettered Aid [2]"
 		has "Ask the Hai about the Unfettered: offered"
 	source
 		government "Hai"
-		near "Wah Yoot" 5 6
 	destination
+		distance 5 6
 		attributes "unfettered"
 	on accept
 		dialog `The Hai dockworkers load the food for the Unfettered onto your ship. One of them says to you, "Tell our brothers and sisters that if they will only repent, they will be welcome to come home."`
