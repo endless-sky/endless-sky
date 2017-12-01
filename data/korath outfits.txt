@@ -319,4 +319,4 @@ outfit "Korath Repeater Rifle"
 	"capture defense" 5.4
 	"illegal" 2200000
 	"unplunderable" 1
-	description "The Korath Repeater Rifle, while commonplace among the Korath, is considered highly illegal by everyone but the lawless who see them as trophies of sorts and will pay nicely for it."
+	description "The Korath Repeater Rifle, while commonplace among the Korath, is considered highly illegal by more civilized societies due to the unnecessary suffering its incendiary ammunition may cause to its target."
