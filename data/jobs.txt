@@ -1495,7 +1495,7 @@ mission "Raider Attack 1"
 		government Korath
 		fleet "Korath Raid" 2
 	npc
-		personality heroic staying
+		personality heroic staying vindicitive
 		government Syndicate
 		fleet "Large Syndicate"
 		fleet "Small Syndicate"
@@ -1530,7 +1530,7 @@ mission "Raider Attack 2"
 		fleet "Korath Raid" 3
 		
 	npc
-		personality heroic staying
+		personality heroic staying vindicitive
 		government Syndicate
 		fleet "Large Syndicate" 2
 	on offer
