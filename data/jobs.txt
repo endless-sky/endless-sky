@@ -1478,7 +1478,6 @@ mission "Core Pirate Attack"
 		payment 200000
 		dialog "The government of <planet> pays you <payment> for helping to drive off the pirates."
 		
-
 mission "Raider Attack 1"
 	name "Defend <planet>"
 	description "Defeat an alien raid on <destination>."
@@ -1488,9 +1487,9 @@ mission "Raider Attack 1"
 		"combat rating" > 550
 		random < 7
 	source
-		planet Sheratan
-       		planet Shangri-la
-       		planet Nimbus
+	planet Sheratan
+	planet Shangri-la
+	planet Nimbus
 	npc evade
 		personality timid unconstrained
 		government Korath
@@ -1522,9 +1521,9 @@ mission "Raider Attack 2"
 		"combat rating" > 750
 		random < 5
 	source
-		planet Sheratan
-      		planet Shangri-la
-        	planet Nimbus
+	planet Sheratan
+	planet Shangri-la
+	planet Nimbus
 	npc evade
 		personality timid unconstrained
 		government Korath
