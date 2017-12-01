@@ -163,7 +163,7 @@ outfit "Modified Quad Blaster Turret"
 		"firing heat" 63
 		"shield damage" 14
 		"hull damage" 9.5
-	description "This jury-rigged weapon is a turbocharged version of the Modified Blaster Turret, mounting double the number of guns and fed with an even higher energy input. The crystals glow and crackle with power, and from 20 feet away you can feel the heat they're giving off. Each of these formidable turrets would likely require a dedicated cooling system to prevent their ship from going into thermal shutdown."
+	description "This jury-rigged weapon is a turbocharged version of the Modified Blaster Turret, mounting double the number of guns and fed with an even higher energy input. The crystals glow and crackle with power, and from 20 feet away you can feel the heat they're giving off. Each of these formidable turrets would likely require a dedicated cooling system to prevent its ship from going into thermal shutdown."
 
 
 outfit "Beam Laser"
