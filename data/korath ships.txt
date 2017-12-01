@@ -160,7 +160,7 @@ ship "Korath World-Ship"
 		"Systems Core (Large)"
 		"Large Heat Shunt" 2
 		"Ramscoop"
-		"Korath Repeater Rifle" 101
+		"Korath Repeater Rifle" 66
 		
 		"Thruster (Planetary Class)"
 		"Steering (Planetary Class)"
@@ -217,7 +217,7 @@ ship "Korath World-Ship" "Korath World-Ship A (Jump)"
 		"Systems Core (Large)"
 		"Large Heat Shunt" 2
 		"Ramscoop"
-		"Korath Repeater Rifle" 101
+		"Korath Repeater Rifle" 66
 		
 		"Thruster (Planetary Class)"
 		"Steering (Planetary Class)"
@@ -243,7 +243,7 @@ ship "Korath World-Ship" "Korath World-Ship B (Jump)"
 		"Systems Core (Large)"
 		"Large Heat Shunt" 2
 		"Ramscoop"
-		"Korath Repeater Rifle" 101
+		"Korath Repeater Rifle" 66
 		
 		"Thruster (Planetary Class)"
 		"Steering (Planetary Class)"
@@ -269,7 +269,7 @@ ship "Korath World-Ship" "Korath World-Ship C (Jump)"
 		"Systems Core (Large)"
 		"Large Heat Shunt" 2
 		"Ramscoop"
-		"Korath Repeater Rifle" 101
+		"Korath Repeater Rifle" 66
 		
 		"Thruster (Planetary Class)"
 		"Steering (Planetary Class)"
