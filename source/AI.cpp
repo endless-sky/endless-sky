@@ -2745,7 +2745,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 		{
 			for(const shared_ptr<Minable> &asteroid : minables)
 			{
-				double range = ship.Position().Distance(asteroid->Position());
+				double range = ship.GetMask().Range(asteroid->Position() - ship.Position(), ship.Facing());
 				if(range < asteroidRange)
 				{
 					ship.SetTargetAsteroid(asteroid);

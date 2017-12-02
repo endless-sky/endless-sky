@@ -571,7 +571,7 @@ void Engine::Step(bool isActive)
 		if(flagship->Attributes().Get("tactical scan power"))
 		{
 			info.SetCondition("range display");
-			int targetRange = round(targetAsteroid->Position().Distance(flagship->Position()));
+			int targetRange = round(flagship->GetMask(step).Range(targetAsteroid->Position() - center, flagship->Facing()));
 			info.SetString("target range", to_string(targetRange));
 		}
 	}
@@ -615,9 +615,10 @@ void Engine::Step(bool isActive)
 			else
 				targetAngle = Point();
 			
-			// Check if the target is close enough to show tactical information.
+			// Check if the target is close enough to show tactical information,
+			// measuring from the outside of the flagship rather than its center.
 			double tacticalRange = 100. * sqrt(flagship->Attributes().Get("tactical scan power"));
-			double targetRange = target->Position().Distance(flagship->Position());
+			double targetRange = flagship->GetMask(step).Range(target->Position() - center, flagship->Facing());
 			if(tacticalRange)
 			{
 				info.SetCondition("range display");
@@ -700,7 +701,7 @@ void Engine::Step(bool isActive)
 		for(const shared_ptr<Minable> &minable : asteroids.Minables())
 		{
 			Point offset = minable->Position() - center;
-			if(offset.Length() > scanRange)
+			if(!flagship->GetMask(step).WithinRange(offset, flagship->Facing(), scanRange))
 				continue;
 			
 			targets.push_back({
@@ -1570,7 +1571,7 @@ void Engine::HandleMouseClicks()
 		for(const shared_ptr<Minable> &minable : asteroids.Minables())
 		{
 			Point position = minable->Position() - flagship->Position();
-			if(position.Length() > scanRange)
+			if(!flagship->GetMask(step).WithinRange(position, flagship->Facing(), scanRange))
 				continue;
 			
 			double range = clickPoint.Distance(position) - minable->Radius();
