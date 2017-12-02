@@ -847,23 +847,32 @@ void Engine::Draw() const
 		MapPanel::DrawMiniMap(player, .5 * min(1., jumpCount / 30.), jumpInProgress, step);
 	
 	// Draw ammo status.
+	static const double ICON_SIZE = 30.;
+	static const double AMMO_WIDTH = 80.;
 	Rectangle ammoBox = interface->GetBox("ammo");
-	Point pos(ammoBox.Left(), ammoBox.Bottom());
+	// Pad the ammo list by the same amount on all four sides.
+	double ammoPad = .5 * (ammoBox.Width() - AMMO_WIDTH);
 	const Sprite *selectedSprite = SpriteSet::Get("ui/ammo selected");
 	const Sprite *unselectedSprite = SpriteSet::Get("ui/ammo unselected");
 	Color selectedColor = *colors.Get("bright");
 	Color unselectedColor = *colors.Get("dim");
+	
+	// This is the top left corner of the ammo display.
+	Point pos(ammoBox.Left() + ammoPad, ammoBox.Bottom() - ammoPad);
+	// These offsets are relative to that corner.
+	Point boxOff(AMMO_WIDTH - .5 * selectedSprite->Width(), .5 * ICON_SIZE);
+	Point textOff(AMMO_WIDTH - .5 * ICON_SIZE, .5 * (ICON_SIZE - font.Height()));
+	Point iconOff(.5 * ICON_SIZE, .5 * ICON_SIZE);
 	for(const pair<const Outfit *, int> &it : ammo)
 	{
-		pos.Y() -= 30.;
-		if(pos.Y() < ammoBox.Top())
+		pos.Y() -= ICON_SIZE;
+		if(pos.Y() < ammoBox.Top() + ammoPad)
 			break;
 		
 		bool isSelected = it.first == player.SelectedWeapon();
 		
-		SpriteShader::Draw(it.first->Icon(), pos);
-		SpriteShader::Draw(
-			isSelected ? selectedSprite : unselectedSprite, pos + Point(35., 0.));
+		SpriteShader::Draw(it.first->Icon(), pos + iconOff);
+		SpriteShader::Draw(isSelected ? selectedSprite : unselectedSprite, pos + boxOff);
 		
 		// Some secondary weapons may not have limited ammo. In that case, just
 		// show the icon without a number.
@@ -871,7 +880,7 @@ void Engine::Draw() const
 			continue;
 		
 		string amount = to_string(it.second);
-		Point textPos = pos + Point(55 - font.Width(amount), -(30 - font.Height()) / 2);
+		Point textPos = pos + textOff + Point(-font.Width(amount), 0.);
 		font.Draw(amount, textPos, isSelected ? selectedColor : unselectedColor);
 	}
 	
