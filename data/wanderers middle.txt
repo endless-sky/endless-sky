@@ -1650,7 +1650,7 @@ mission "Wanderers: Sestor Attack"
 		fleet
 			names "kor mereti"
 			variant
-				"Model 512"
+				"Model 256"
 				"Model 128" 2
 				"Model 32" 4
 	npc
