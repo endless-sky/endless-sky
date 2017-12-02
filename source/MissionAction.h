@@ -39,6 +39,12 @@ class UI;
 // special item, modifying condition flags, or queueing an event to occur.
 class MissionAction {
 public:
+	// These are the allowed requests for a random outfit to be gifted, and
+	// match a given text string to a given Outfit::CATEGORIES value.
+	static const std::map<const std::string, const int> OUTFIT_REQUESTS;
+
+	
+public:
 	MissionAction() = default;
 	// Construct and Load() at the same time.
 	MissionAction(const DataNode &node, const std::string &missionName);

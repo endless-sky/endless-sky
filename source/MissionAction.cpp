@@ -16,6 +16,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "DataNode.h"
 #include "DataWriter.h"
 #include "Dialog.h"
+#include "Files.h"
 #include "Format.h"
 #include "GameData.h"
 #include "Messages.h"
@@ -141,9 +142,10 @@ namespace {
 	
 	// Pick a random minable outfit that would make sense to be exported from the first system
 	// to the second. This function only returns nullptr if there are no matching minable outfits.
-	const Outfit *PickMinableOutfit(const System *from, const System *to)
+	const Outfit *PickMinableOutfit(const string &request, const System *from, const System *to)
 	{
 		const set<const Outfit *> minableOutfits = MinableOutfits();
+		const int &category = MissionAction::OUTFIT_REQUESTS.at(request);
 		bool useWeights = (from != to);
 		vector<int> weight;
 		int total = 0;
@@ -151,30 +153,43 @@ namespace {
 		{
 			// Strongly prefer minables in "from" or its neighbors, to reduce the
 			// chance of picking outfits that are not regionally available.
-			int fromCount = 3 * from->MinableCount(outfit) + 1;
-			int toCount = to->MinableCount(outfit);
-			for(const System *linked : from->Links())
-				fromCount *= 1 + linked->MinableCount(outfit);
-			if(useWeights)
-				for(const System *linked : to->Links())
-					toCount += linked->MinableCount(outfit);
-			
-			weight.emplace_back(max(1, useWeights ? fromCount * 3 - toCount : fromCount));
+			if(category < 0 || outfit->Category() == Outfit::CATEGORIES[category])
+			{
+				int fromCount = 3 * from->MinableCount(outfit) + 1;
+				int toCount = to->MinableCount(outfit);
+				for(const System *linked : from->Links())
+					fromCount *= 1 + linked->MinableCount(outfit);
+				if(useWeights)
+					for(const System *linked : to->Links())
+						toCount += linked->MinableCount(outfit);
+				
+				weight.emplace_back(max(1, useWeights ? fromCount * 3 - toCount : fromCount));
+			}
+			else
+				weight.emplace_back(0);
 			total += weight.back();
 		}
 		return BiasedRandomChoice(minableOutfits, weight, total);
 	}
 	
-	// Pick a random outfit that's sold near the destination planet, or the
-	// "from" system. Returns nullptr if "from", the destination planet, and
-	// any of their linked systems have no outfitters.
-	const Outfit *PickOutfit(const System *from, const Planet *destination, bool isDelivery)
+	// Pick a random outfit that's sold near the destination planet, or the "from" system.
+	// Returns nullptr if "from", the destination planet, and any of their linked systems
+	// have no outfitters. The outfit selected is filtered by category, if one is given.
+	const Outfit *PickOutfit(const string &request, const System *from, const Planet *destination, bool isDelivery)
 	{
-		Sale<Outfit> remote = destination->Outfitter();
+		const int &category = MissionAction::OUTFIT_REQUESTS.at(request);
+		Sale<Outfit> remote = (category < 0) ? destination->Outfitter() : Sale<Outfit>();
 		Sale<Outfit> local = remote;
 		for(const StellarObject &object : from->Objects())
 			if(object.GetPlanet() && object.GetPlanet() != destination)
-				local.Add(object.GetPlanet()->Outfitter());
+			{
+				if(category < 0)
+					local.Add(object.GetPlanet()->Outfitter());
+				else
+					for(const Outfit *outfit : object.GetPlanet()->Outfitter())
+						if(outfit->Category() == Outfit::CATEGORIES[category])
+							local.emplace(outfit);
+			}
 		
 		// If neither the origin or destination has outfits for sale,
 		// consider the outfits sold in each's linked systems.
@@ -184,7 +199,14 @@ namespace {
 				for(const System *linked : system->Links())
 					for(const StellarObject &object : linked->Objects())
 						if(object.GetPlanet() && !object.GetPlanet()->Outfitter().empty())
-							available.Add(object.GetPlanet()->Outfitter());
+						{
+							if(category < 0)
+								available.Add(object.GetPlanet()->Outfitter());
+							else
+								for(const Outfit *outfit : object.GetPlanet()->Outfitter())
+									if(outfit->Category() == Outfit::CATEGORIES[category])
+										available.emplace(outfit);
+						}
 		
 		if(!available.empty())
 		{
@@ -210,6 +232,33 @@ namespace {
 		return nullptr;
 	}
 }
+
+// TODO: Automatically build this map using Outfit::CATEGORIES, to account for
+// changes or reordering without needing to also alter this structure.
+// Simple thought: foreach index insert
+// 	{"random " + Format:LowerCase(Outfit::CATEGORIES[index]) + " minable"/" outfit" , index }
+const map<const string, const int> MissionAction::OUTFIT_REQUESTS = {
+	{"random minable", -1},
+	{"random outfit", -1},
+	{"random guns minable", 0},
+	{"random guns outfit", 0},
+	{"random turrets minable", 1},
+	{"random turrets outfit", 1},
+	{"random secondary weapons minable", 2},
+	{"random secondary weapons outfit", 2},
+	{"random ammunition minable", 3},
+	{"random ammunition outfit", 3},
+	{"random systems minable", 4},
+	{"random systems outfit", 4},
+	{"random power minable", 5},
+	{"random power outfit", 5},
+	{"random engines minable", 6},
+	{"random engines outfit", 6},
+	{"random hand to hand minable", 7},
+	{"random hand to hand outfit", 7},
+	{"random special minable", 8},
+	{"random special outfit", 8}
+};
 
 
 
@@ -261,7 +310,7 @@ void MissionAction::Load(const DataNode &node, const string &missionName)
 			const string &value = child.Token(1);
 			int count = (child.Size() < 3) ? 1 : static_cast<int>(child.Value(2));
 			// Is this a known outfit, or one to be picked?
-			if(value == "random outfit" || value == "random minable")
+			if(OUTFIT_REQUESTS.count(value))
 			{
 				// Each type of random request can only be used once in a given action.
 				randomGifts[value] = count;
@@ -581,16 +630,16 @@ MissionAction MissionAction::Instantiate(map<string, string> &subs, const System
 	for(const pair<string, int> &request : randomGifts)
 	{
 		const Outfit *gift = nullptr;
-		if(request.first == "random minable")
+		if(request.first.substr(request.first.length() - 7).compare("minable") == 0)
 		{
 			// If the amount to gift is > 0, swap the system order.
 			if(request.second < 0)
-				gift = PickMinableOutfit(origin, destination->GetSystem());
+				gift = PickMinableOutfit(request.first, origin, destination->GetSystem());
 			else
-				gift = PickMinableOutfit(destination->GetSystem(), origin);
+				gift = PickMinableOutfit(request.first, destination->GetSystem(), origin);
 		}
-		else if(request.first == "random outfit")
-			gift = PickOutfit(origin, destination, request.second < 0);
+		else if(OUTFIT_REQUESTS.count(request.first))
+			gift = PickOutfit(request.first, origin, destination, request.second < 0);
 		
 		if(gift && !gift->Name().empty())
 		{
@@ -605,6 +654,8 @@ MissionAction MissionAction::Instantiate(map<string, string> &subs, const System
 			
 			result.gifts[gift] += request.second;
 		}
+		else
+			Files::LogError("No valid outfit for requested substitution: " + request.first);
 	}
 	// Select a random number of each gift, if requested.
 	if(!result.giftProb.empty() || !result.giftLimit.empty())
