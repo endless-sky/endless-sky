@@ -354,7 +354,7 @@ mission "Delivery to Human Space [0]"
 		government "Hai"
 		near "Heia Due" 2
 	destination
-		attributes north
+		attributes "north"
 	on complete
 		payment 80000
 		dialog "You drop off your cargo of <commodity> and collect your payment of <payment>."
@@ -371,7 +371,7 @@ mission "Delivery to Human Space [1]"
 		government "Hai"
 		near "Heia Due" 2
 	destination
-		attributes north
+		attributes "north"
 	on complete
 		payment 80000
 		dialog "You drop off your cargo of <commodity> and collect your payment of <payment>."
@@ -388,7 +388,7 @@ mission "Delivery to Human Space [2]"
 		government "Hai"
 		near "Heia Due" 2
 	destination
-		attributes north
+		attributes "north"
 	on complete
 		payment 80000
 		dialog "You drop off your cargo of <commodity> and collect your payment of <payment>."
@@ -408,25 +408,25 @@ mission "Escort to Human Space (Small)"
 		government "Hai"
 		near "Heia Due" 2
 	destination
-		attributes north
+		attributes "north"
 	npc
-		government Pirate
+		government "Pirate"
 		personality nemesis waiting harvests plunders
-		system Rajak
+		system "Rajak"
 		fleet "Small Northern Pirates"
 	npc
-		government Pirate
+		government "Pirate"
 		personality nemesis waiting harvests plunders
 		system destination
 		fleet "Small Northern Pirates"
 	npc
-		government Pirate
+		government "Pirate"
 		personality nemesis staying harvests plunders
 		system destination
 		fleet "Small Northern Pirates"
 	
 	npc accompany save
-		government Merchant
+		government "Merchant"
 		personality escort timid
 		fleet
 			names "civilian"
@@ -451,30 +451,30 @@ mission "Escort to Human Space (Medium)"
 		government "Hai"
 		near "Heia Due" 2
 	destination
-		attributes north
+		attributes "north"
 	npc
-		government Pirate
+		government "Pirate"
 		personality nemesis waiting harvests plunders
-		system Cardax
+		system "Cardax"
 		fleet "Small Northern Pirates"
 	npc
-		government Pirate
+		government "Pirate"
 		personality nemesis waiting harvests plunders
-		system Rigel
+		system "Rigel"
 		fleet "Small Northern Pirates"
 	npc
-		government Pirate
+		government "Pirate"
 		personality nemesis waiting harvests plunders
-		system Rajak
+		system "Rajak"
 		fleet "Small Northern Pirates"
 	npc
-		government Pirate
+		government "Pirate"
 		personality nemesis staying harvests plunders
 		system destination
 		fleet "Small Northern Pirates" 2
 	
 	npc accompany save
-		government Merchant
+		government "Merchant"
 		personality escort timid
 		fleet
 			names "civilian"
@@ -499,25 +499,25 @@ mission "Escort to Human Space (Large)"
 		government "Hai"
 		near "Heia Due" 2
 	destination
-		attributes north
+		attributes "north"
 	npc
-		government Pirate
+		government "Pirate"
 		personality nemesis waiting harvests plunders
-		system Rajak
+		system "Rajak"
 		fleet "Large Northern Pirates"
 	npc
-		government Pirate
+		government "Pirate"
 		personality nemesis waiting harvests plunders
 		system destination
 		fleet "Small Northern Pirates"
 	npc
-		government Pirate
+		government "Pirate"
 		personality nemesis staying harvests plunders
 		system destination
 		fleet "Large Northern Pirates"
 	
 	npc accompany save
-		government Merchant
+		government "Merchant"
 		personality escort timid
 		fleet
 			names "civilian"
@@ -542,31 +542,31 @@ mission "Escort to Human Space (Extra Large)"
 		government "Hai"
 		near "Heia Due" 2
 	destination
-		attributes north
+		attributes "north"
 	npc
-		government Pirate
+		government "Pirate"
 		personality nemesis waiting harvests plunders
-		system Rigel
+		system "Rigel"
 		fleet "Small Northern Pirates"
 	npc
-		government Pirate
+		government "Pirate"
 		personality nemesis waiting harvests plunders
-		system Cardax
+		system "Cardax"
 		fleet "Large Northern Pirates"
 	npc
-		government Pirate
+		government "Pirate"
 		personality nemesis waiting harvests plunders
-		system Rajak
+		system "Rajak"
 		fleet "Large Northern Pirates"
 	npc
-		government Pirate
+		government "Pirate"
 		personality nemesis staying harvests plunders
 		system destination
 		fleet "Small Northern Pirates"
 		fleet "Large Northern Pirates"
 	
 	npc accompany save
-		government Merchant
+		government "Merchant"
 		personality escort timid
 		fleet
 			names "civilian"
@@ -786,7 +786,7 @@ mission "Hai Cargo [2]"
 	to offer
 		random < 60
 	source
-		attributes mining textiles factory farming fishing oil
+		attributes "mining" "textiles" "factory" "farming" "fishing" "oil"
 		government "Hai"
 	destination
 		distance 2 7
@@ -804,7 +804,7 @@ mission "Hai Cargo [3]"
 	to offer
 		random < 50
 	source
-		attributes mining textiles factory farming fishing oil
+		attributes "mining" "textiles" "factory" "farming" "fishing" "oil"
 		government "Hai"
 	destination
 		distance 3 7
@@ -823,7 +823,7 @@ mission "Hai Cargo [4]"
 	to offer
 		random < 40
 	source
-		attributes mining textiles factory farming fishing oil
+		attributes "mining" "textiles" "factory" "farming" "fishing" "oil"
 		government "Hai"
 	destination
 		distance 4 7
@@ -877,7 +877,7 @@ mission "Hai Bulk Delivery [2]"
 	to offer
 		random < 50
 	source
-		attributes mining textiles factory farming fishing oil
+		attributes "mining" "textiles" "factory" "farming" "fishing" "oil"
 		government "Hai"
 	destination
 		distance 4 7
@@ -935,7 +935,7 @@ mission "Hai Large Bulk Delivery [2]"
 		random < 40
 		"cargo space" > 160
 	source
-		attributes mining textiles factory farming fishing oil
+		attributes "mining" "textiles" "factory" "farming" "fishing" "oil"
 		government "Hai"
 	destination
 		distance 4 7
@@ -993,7 +993,7 @@ mission "Hai Rush Delivery [2]"
 	to offer
 		random < 50
 	source
-		attributes mining textiles factory farming fishing oil
+		attributes "mining" "textiles" "factory" "farming" "fishing" "oil"
 		government "Hai"
 	destination
 		distance 5 7
@@ -1013,7 +1013,7 @@ mission "Hai Rush Delivery [3]"
 	to offer
 		random < 40
 	source
-		attributes mining textiles factory farming fishing oil
+		attributes "mining" "textiles" "factory" "farming" "fishing" "oil"
 		government "Hai"
 	destination
 		distance 6 7
@@ -1074,7 +1074,7 @@ mission "Hai Large Rush Delivery [2]"
 		random < 40
 		"cargo space" > 80
 	source
-		attributes mining textiles factory farming fishing oil
+		attributes "mining" "textiles" "factory" "farming" "fishing" "oil"
 		government "Hai"
 	destination
 		distance 5 7
@@ -1095,7 +1095,7 @@ mission "Hai Large Rush Delivery [3]"
 		random < 30
 		"cargo space" > 80
 	source
-		attributes mining textiles factory farming fishing oil
+		attributes "mining" "textiles" "factory" "farming" "fishing" "oil"
 		government "Hai"
 	destination
 		distance 6 7
