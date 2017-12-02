@@ -1771,13 +1771,13 @@ event "pug invasion 4"
 
 event "fw syndicate welcoming"
 	"reputation: Syndicate" = 1
-	government Syndicate
+	government "Syndicate"
 		"attitude toward"
 			"Free Worlds" 0
-			Republic 0
+			"Republic" 0
 			"Navy (Oathkeeper)" 0
 		bribe .08
-	system Algenib
+	system "Algenib"
 		government "Syndicate (Extremist)"
 		fleet "Small Core Pirates" 1500
 		fleet "Large Core Pirates" 2000
@@ -1786,10 +1786,12 @@ event "fw syndicate welcoming"
 
 
 event "at war with the pug"
-	"reputation: Pug" = -1000
-	government Pug
+	"reputation: Pug" <?= -1000
+	government "Pug"
 		"attitude toward"
 			"Free Worlds" -.01
+			"Merchant" .01
+			"Pirate" -.01
 			"Republic" -.01
 			"Syndicate" -.01
 			"Syndicate (Extremist)" -.01
@@ -1800,7 +1802,7 @@ event "at war with the pug"
 
 event "battle for delta capricorni"
 	system "Delta Capricorni"
-		government Syndicate
+		government "Syndicate"
 
 
 
@@ -1841,6 +1843,10 @@ event "reconnected altair"
 
 
 event "pug flee"
+	government "Pug"
+		"attitude toward"
+			"Merchant" .1
+			"Pirate" -.1
 	unvisit Deneb
 	system "Zeta Aquilae"
 		fleet "Small Southern Merchants" 1000
@@ -2288,9 +2294,11 @@ event "fwc pug invasion"
 	link "Zeta Aquilae" Deneb
 	link Rasalhague Deneb
 	"reputation: Pug" <?= -1000
-	government Pug
+	government "Pug"
 		"attitude toward"
 			"Free Worlds" -.01
+			"Merchant" .01
+			"Pirate" -.01
 	system "Zeta Aquilae"
 		government Pug
 		fleet "Small Southern Merchants" 1000
@@ -2361,7 +2369,7 @@ event "fwc pug invasion"
 
 event "fwc pug peaceful"
 	"reputation: Pug" = 1
-	government Pug
+	government "Pug"
 		"attitude toward"
 			"Free Worlds" 0
 
