@@ -1643,6 +1643,25 @@ mission "Wanderers: Sestor Attack"
 				"Hurricane (Tough)"
 				"Derecho"
 				"Tempest (Missile)" 2
+	npc
+		government "Kor Mereti"
+		personality heroic
+		system "Korsmanath"
+		fleet
+			names "kor mereti"
+			variant
+				"Model 512"
+				"Model 128" 2
+				"Model 32" 4
+	npc
+		government "Wanderer"
+		personality heroic
+		system "Aya'k'k"
+		fleet
+			names "wanderer"
+			variant
+				"Derecho (Tough)"
+				"Autumn Leaf" 2
 
 
 
