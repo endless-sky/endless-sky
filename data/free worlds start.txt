@@ -198,7 +198,7 @@ mission "FW Prisoner Parole"
 				accept
 		"reputation: Republic" = 1
 		event "temporary ceasefire"
-		event "start of hostilities" 7
+		event "start of hostilities" 8
 	
 	on complete
 		dialog `You drop off the Navy prisoners on <planet>. Now, it's time to get back to Deep with your fleet before the ceasefire ends.`
@@ -243,7 +243,7 @@ mission "FW Prisoner Parole 2"
 			
 			label next
 			`	"The Navy has had two crushing defeats," he says. "They will be hesitant to attack again until their numbers are much stronger. That gives us some time for diplomacy, to strengthen our position and look for allies, or at least for sympathizers. Which is where you come in. I'm going to ask you to carry a diplomatic mission to the Syndicate. Meet us in the spaceport when you are ready."`
-		"reputation: Republic" = -1000
+		"reputation: Republic" <?= -1000
 		event "oathkeepers founded" 50
 
 
