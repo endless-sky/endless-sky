@@ -20,6 +20,7 @@ mission "FW Scout Run [0]"
 		not "event: fw armistice"
 	source
 		government "Free Worlds"
+		attributes "frontline"
 	waypoint
 		distance 1 2
 		government "Republic"
@@ -41,6 +42,7 @@ mission "FW Scout Run [1]"
 		not "event: fw armistice"
 	source
 		government "Free Worlds"
+		attributes "frontline"
 	waypoint
 		distance 2 3
 		government "Republic"
@@ -65,6 +67,7 @@ mission "FW Scout Run [2]"
 		not "event: fw armistice"
 	source
 		government "Free Worlds"
+		attributes "frontline"
 	waypoint
 		distance 2 3
 		government "Republic"
@@ -317,7 +320,7 @@ mission "FW Outfitter Resupply [0]"
 	job
 	repeat
 	name `Resupply <planet>`
-	description `The outfitter on <planet> is running low on supplies and needs resupplied immediately. Deliver <cargo> to <destination> by <date>. Payment is <payment>.`
+	description `The outfitter on <planet> is running low on supplies and needs to be restocked immediately. Deliver <cargo> to <destination> by <date>. Payment is <payment>.`
 	deadline 1 1
 	cargo random 5 2 .1
 	to offer
@@ -338,7 +341,7 @@ mission "FW Outfitter Resupply [1]"
 	job
 	repeat
 	name `Resupply <planet>`
-	description `The outfitter on <planet> is running low on supplies and needs resupplied immediately. Deliver <cargo> to <destination> by <date>. Payment is <payment>.`
+	description `The outfitter on <planet> is running low on supplies and needs to be restocked immediately. Deliver <cargo> to <destination> by <date>. Payment is <payment>.`
 	deadline 1 1
 	cargo random 5 2 .1
 	to offer
@@ -359,7 +362,7 @@ mission "FW Outfitter Resupply [2]"
 	job
 	repeat
 	name `Resupply <planet>`
-	description `The outfitter on <planet> is running low on supplies and needs resupplied immediately. Deliver <cargo> to <destination> by <date>. Payment is <payment>.`
+	description `The outfitter on <planet> is running low on supplies and needs to be restocked immediately. Deliver <cargo> to <destination> by <date>. Payment is <payment>.`
 	deadline 1 1
 	cargo random 5 2 .1
 	to offer
@@ -380,7 +383,7 @@ mission "FW Bulk Outfitter Resupply [0]"
 	job
 	repeat
 	name `Resupply <planet>`
-	description `The outfitter on <planet> is running low on supplies and needs resupplied immediately. Deliver <cargo> to <destination> by <date>. Payment is <payment>.`
+	description `The outfitter on <planet> is running low on supplies and needs to be restocked immediately. Deliver <cargo> to <destination> by <date>. Payment is <payment>.`
 	deadline 1 1
 	cargo random 25 2 .05
 	to offer
@@ -401,7 +404,7 @@ mission "FW Bulk Outfitter Resupply [1]"
 	job
 	repeat
 	name `Resupply <planet>`
-	description `The outfitter on <planet> is running low on supplies and needs resupplied immediately. Deliver <cargo> to <destination> by <date>. Payment is <payment>.`
+	description `The outfitter on <planet> is running low on supplies and needs to be restocked immediately. Deliver <cargo> to <destination> by <date>. Payment is <payment>.`
 	deadline 1 1
 	cargo random 25 2 .05
 	to offer
@@ -422,7 +425,7 @@ mission "FW Bulk Outfitter Resupply [2]"
 	job
 	repeat
 	name `Resupply <planet>`
-	description `The outfitter on <planet> is running low on supplies and needs resupplied immediately. Deliver <cargo> to <destination> by <date>. Payment is <payment>.`
+	description `The outfitter on <planet> is running low on supplies and needs to be restocked immediately. Deliver <cargo> to <destination> by <date>. Payment is <payment>.`
 	deadline 1 1
 	cargo random 25 2 .05
 	to offer
@@ -456,7 +459,7 @@ mission "FW Frontline Resupply [0]"
 	destination
 		distance 2 10
 		government "Free Worlds"
-		ttributes "frontline"
+		attributes "frontline"
 	on complete
 		payment 2000 180
 		dialog `You drop off your cargo of <commodity> and collect your payment of <payment>. The Free Worlds captains stationed on <planet> thank you for delivering the much needed supplies.`
@@ -478,7 +481,7 @@ mission "FW Frontline Resupply [1]"
 	destination
 		distance 2 10
 		government "Free Worlds"
-		ttributes "frontline"
+		attributes "frontline"
 	on complete
 		payment 2000 180
 		dialog `You drop off your cargo of <commodity> and collect your payment of <payment>. The Free Worlds captains stationed on <planet> thank you for delivering the much needed supplies.`
@@ -500,7 +503,7 @@ mission "FW Frontline Resupply [2]"
 	destination
 		distance 2 10
 		government "Free Worlds"
-		ttributes "frontline"
+		attributes "frontline"
 	on complete
 		payment 2000 180
 		dialog `You drop off your cargo of <commodity> and collect your payment of <payment>. The Free Worlds captains stationed on <planet> thank you for delivering the much needed supplies.`
@@ -522,7 +525,7 @@ mission "FW Bulk Frontline Resupply [0]"
 	destination
 		distance 3 12
 		government "Free Worlds"
-		ttributes "frontline"
+		attributes "frontline"
 	on complete
 		payment 5000 180
 		dialog `You drop off your cargo of <commodity> and collect your payment of <payment>. The Free Worlds captains stationed on <planet> thank you for delivering the much needed supplies.`
@@ -544,7 +547,7 @@ mission "FW Bulk Frontline Resupply [1]"
 	destination
 		distance 3 12
 		government "Free Worlds"
-		ttributes "frontline"
+		attributes "frontline"
 	on complete
 		payment 5000 180
 		dialog `You drop off your cargo of <commodity> and collect your payment of <payment>. The Free Worlds captains stationed on <planet> thank you for delivering the much needed supplies.`
