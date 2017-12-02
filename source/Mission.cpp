@@ -988,13 +988,14 @@ Mission Mission::Instantiate(const PlayerInfo &player) const
 	subs["<destination>"] = subs["<planet>"] + " in the " + subs["<system>"] + " system";
 	subs["<date>"] = result.deadline.ToString();
 	subs["<day>"] = result.deadline.LongString();
+	// Stopover and waypoint substitutions: iterate by reference to the
+	// pointers so we can check when we're at the very last one in the set.
+	// Stopovers: "<name> in the <system name> system" with "," and "and".
 	if(!result.stopovers.empty())
 	{
 		string planets;
 		const Planet * const *last = &*--result.stopovers.end();
 		int count = 0;
-		// Iterate by reference to the pointers so we can check when we're at
-		// the very last one in the set.
 		for(const Planet * const &planet : result.stopovers)
 		{
 			if(count++)
@@ -1002,6 +1003,20 @@ Mission Mission::Instantiate(const PlayerInfo &player) const
 			planets += planet->Name() + " in the " + planet->GetSystem()->Name() + " system";
 		}
 		subs["<stopovers>"] = planets;
+	}
+	// Waypoints: "<system name>" with "," and "and".
+	if(!result.waypoints.empty())
+	{
+		string systems;
+		const System * const *last = &*--result.waypoints.end();
+		int count = 0;
+		for(const System * const &system : result.waypoints)
+		{
+			if(count++)
+				systems += (&system != last) ? ", " : (count > 2 ? ", and " : " and ");
+			systems += system->Name();
+		}
+		subs["<waypoints>"] = systems;
 	}
 	
 	// Instantiate the NPCs. This also fills in the "<npc>" substitution.
