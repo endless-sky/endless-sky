@@ -13,8 +13,8 @@ mission "FW Diplomacy 1"
 	name "Free Worlds Diplomacy"
 	description "Travel to <planet> to meet up with Alondo, who will explain more."
 	source
-		near Sabik 1 100
-	destination Longjump
+		near "Sabik" 1 100
+	destination "Longjump"
 	to offer
 		has "event: navy occupying the south"
 	on fail
@@ -38,8 +38,8 @@ mission "FW Diplomacy 1B"
 	name "Free Worlds Diplomacy"
 	description "Bring Alondo to <planet> to meet with Parliament. Your guarantee of safe passage will expire on <day>."
 	autosave
-	source Longjump
-	destination Earth
+	source "Longjump"
+	destination "Earth"
 	deadline 24
 	to offer
 		has "FW Diplomacy 1: done"
@@ -90,7 +90,7 @@ mission "FW Diplomacy 1C"
 	landing
 	name "Free Worlds Diplomacy"
 	description "Bring Alondo to <planet> to meet with the senior Navy officers. Take as direct a route as possible, because your safe passage expires soon."
-	source Earth
+	source "Earth"
 	destination "New Wales"
 	clearance
 	to offer
@@ -153,13 +153,13 @@ mission "FW Diplomacy 1D"
 
 mission "FW Southern Recon 1"
 	name "Reconnaissance"
-	description "Fly through Rastaban, Delta Sagittarii, and Albaldah to get a sense of the Navy's strength in those systems, then report to <destination>."
+	description "Fly through <waypoints> to get a sense of the Navy's strength in those systems, then report to <destination>."
 	autosave
-	source Longjump
-	waypoint Rastaban
+	source "Longjump"
+	waypoint "Rastaban"
 	waypoint "Delta Sagittarii"
-	waypoint Albaldah
-	destination Trinket
+	waypoint "Albaldah"
+	destination "Trinket"
 	to offer
 		has "FW Diplomacy 1D: done"
 	on fail
@@ -179,8 +179,8 @@ mission "FW Southern Recon 1B"
 	name "Electron Beam"
 	description "Steal an Electron Beam from a Navy gunboat and return it to <planet> for Freya to look at. She thought your best bet for finding lone gunboats might be the Wei or Alnasl systems."
 	autosave
-	source Trinket
-	destination Trinket
+	source "Trinket"
+	destination "Trinket"
 	to offer
 		has "FW Southern Recon 1: done"
 	
@@ -439,7 +439,7 @@ mission "FW Southern Battle 3"
 	name "Sweep for Navy Ships"
 	description "Travel through the systems near Rastaban and make sure that the remainder of the Navy occupation fleet is retreating. (If they are fleeing, let them flee.)"
 	autosave
-	source Dancer
+	source "Dancer"
 	to offer
 		has "FW Southern Battle 2: done"
 	waypoint Girtab
@@ -469,17 +469,17 @@ mission "FW Southern Battle 3"
 				accept
 	
 	npc
-		government Republic
+		government "Republic"
 		personality fleeing uninterested
 		system "Delta Sagittarii"
 		fleet "Large Republic" 2
 	npc
-		government Republic
+		government "Republic"
 		personality fleeing uninterested
 		system "Girtab"
 		fleet "Large Republic" 2
 	npc
-		government Republic
+		government "Republic"
 		personality fleeing uninterested
 		system "Albaldah"
 		fleet "Large Republic" 2
@@ -666,12 +666,12 @@ mission "FW Southern Break Ends"
 mission "FW Northern 1"
 	landing
 	name "Northern Expansion"
-	description "Take a fleet to <destination> (visiting Alphecca and Seginus along the way), securing those systems to allow them to defect to the Free Worlds."
+	description "Take a fleet to <destination> (visiting <waypoints> along the way), securing those systems to allow them to defect to the Free Worlds."
 	autosave
-	source Dancer
+	source "Dancer"
 	destination "New Tibet"
-	waypoint Alphecca
-	waypoint Seginus
+	waypoint "Alphecca"
+	waypoint "Seginus"
 	clearance
 	to offer
 		has "event: fw occupying the north"
@@ -685,7 +685,7 @@ mission "FW Northern 1"
 		conversation
 			`When you land on Dancer, the Free Worlds fleet appears to be preparing for another battle: missiles and torpedoes are being loaded onto ships and crew members are running around. You eventually find Freya and Alondo, and ask them what is going on.`
 			`	"Another three worlds have secretly told us they are ready to defect," says Alondo, "and this time around we want to get there before the Navy does."`
-			`	Freya says, "We need you to take Alondo, along with the ships that we've been able to muster, and fly through the Seginus and Alphecca systems, then land on <destination>. If all goes well, you will get through to <planet> before the Republic can muster reinforcements. Drive off any Republic ships you encounter along the way."`
+			`	Freya says, "We need you to take Alondo, along with the ships that we've been able to muster, and fly through the <waypoints> systems, then land on <destination>. If all goes well, you will get through to <planet> before the Republic can muster reinforcements. Drive off any Republic ships you encounter along the way."`
 				accept
 	
 	npc
@@ -693,17 +693,17 @@ mission "FW Northern 1"
 		personality heroic escort
 		fleet "Large Free Worlds" 3
 	npc
-		government Republic
+		government "Republic"
 		personality fleeing uninterested
 		system "Wei"
 		fleet "Large Republic" 2
 	npc
-		government Republic
+		government "Republic"
 		personality fleeing uninterested
 		system "Seginus"
 		fleet "Large Republic" 2
 	npc
-		government Republic
+		government "Republic"
 		personality fleeing uninterested
 		system "Alphecca"
 		fleet "Large Republic" 2

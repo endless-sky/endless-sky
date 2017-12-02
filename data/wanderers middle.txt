@@ -682,7 +682,7 @@ event "wanderers: kashikt battle begins"
 
 event "wanderers: kashikt battle ends"
 	system "Kashikt"
-		fleet Quarg 1000
+		fleet "Quarg" 1000
 		fleet "Large Quarg" 2000
 		fleet "Kor Efret Home" 1000
 
@@ -1789,7 +1789,7 @@ mission "Wanderers: Sestor Search: Human Spaceport"
 	invisible
 	source
 		government Republic "Free Worlds" Syndicate Neutral
-		attributes north
+		attributes "north"
 	to offer
 		has "Wanderers: Sestor Search: active"
 	on offer
@@ -2614,7 +2614,7 @@ mission "Wanderers: Sestor: Kill Southern Remnant"
 
 mission "Wanderers: Sestor: Remnant Visit"
 	landing
-	source Farpoint
+	source "Farpoint"
 	to offer
 		has "Wanderers: Sestor: Kill Southern Remnant: active"
 		not "Wanderers: Sestor: Scattered Remnant: done"
@@ -3246,7 +3246,7 @@ event "wanderers: sabira eseskrai colony"
 	system "Furmeliki"
 		add fleet "Kor Efret Home" 800
 	planet "Sabira Eseskrai"
-		add attributes wanderer
+		add attributes "wanderer"
 		description `Long ago, this planet was home to several Korath oil mining settlements, but now all that remains visible are the tops of a few dozen of the tallest buildings. Everything else has been buried by sandstorms.`
 		description `	Due to a recent shift in climate the deserts have begun shrinking once more, with local vegetation growing to cover more and more land each year. The Wanderers, working together with the Kor Efreti, have founded a settlement here and begun working to accelerate the process of rejuvenating the wastelands.`
 		spaceport `This small settlement is populated by a roughly equal number of Korath and Wanderer settlers. Since most of them do not speak each other's language, the two groups do not mingle much, and communicate mostly via gestures and drawings. It's not much, but it's at least a start for the two species to begin learning from each other.`
