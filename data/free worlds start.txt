@@ -871,7 +871,7 @@ mission "FW Supply Convoy 1"
 
 mission "FW Pirates 1"
 	name "Pirate Reconnaissance"
-	description "Scout out all the pirate systems on the southern fringe of human space, then report back to Tomek on <planet>"
+	description "Scout out all the pirate systems on the southern fringe of human space, then report back to Tomek on <planet>."
 	source Longjump
 	waypoint Men
 	waypoint Antares
