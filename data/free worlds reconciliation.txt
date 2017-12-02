@@ -920,10 +920,10 @@ mission "FW Pug 1"
 			`	"Our fleet is still scattered throughout this quadrant," he says, "and I'll need Katya to command a part of it. Right now I just need you to travel to Rand, if possible, and find out what's going on. It could just be a communications malfunction, but I seriously doubt it. Meanwhile, Katya and Ijs can help me with organizing the fleet."`
 				accept
 	
-	on enter Cebalrai
+	on enter "Cebalrai"
 		dialog
 			`Based on your previous maps of this sector, there should be a hyperspace link from here to the Rasalhague system. But your sensors show nothing. Something has severed the link.`
-	on enter Ascella
+	on enter "Ascella"
 		dialog
 			`The Ascella system used to be linked to Rasalhague and Delta Capricorni, but no longer. Either the Syndicate has discovered the ability to alter hyperspace links, and is using it to block the Free Worlds from interfering with them, or you have a much stranger problem on your hands...`
 
@@ -931,7 +931,7 @@ mission "FW Pug 1"
 
 mission "FW Pug 1 Tundra"
 	landing
-	source Tundra
+	source "Tundra"
 	to offer
 		has "FW Pug 1: active"
 	

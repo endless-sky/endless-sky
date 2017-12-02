@@ -10,14 +10,14 @@
 
 mission "Pact Recon 0"
 	name "Pirate Reconnaissance"
-	description "Fly through the Alniyat, Han, Atria, and Lesath systems, then report to <destination> so the Southern Defense Pact can analyze your logs of pirate activity (if any)."
+	description "Fly through the <waypoints> systems, then report to <destination> so the Southern Defense Pact can analyze your logs of pirate activity (if any)."
 	waypoint "Alniyat"
 	waypoint "Han"
 	waypoint "Atria"
 	waypoint "Lesath"
 	source
-		attributes south
-	destination Glaze
+		attributes "south"
+	destination "Glaze"
 	to offer
 		random < 60
 		not "event: war begins"
@@ -70,14 +70,14 @@ mission "Pact Recon 0"
 mission "Pact Recon 1"
 	landing
 	name "Pirate Reconnaissance"
-	description "Fly through the Wei, Alnasl, Eber, and Alpha Arae systems, then report to <destination> so the Southern Defense Pact can analyze your logs of pirate activity (if any)."
+	description "Fly through the <waypoints> systems, then report to <destination> so the Southern Defense Pact can analyze your logs of pirate activity (if any)."
 	waypoint "Wei"
 	waypoint "Alnasl"
 	waypoint "Eber"
 	waypoint "Alpha Arae"
 	source
-		attributes south "dirt belt" rim "near earth"
-	destination Glaze
+		attributes "south" "dirt belt" "rim" "near earth"
+	destination "Glaze"
 	to offer
 		random < 40
 		not "event: war begins"
@@ -97,14 +97,14 @@ mission "Pact Recon 1"
 mission "Pact Recon 2"
 	landing
 	name "Pirate Reconnaissance"
-	description "Fly through the Men, Antares, Shaula, and Nunki systems, then report to <destination> so the Southern Defense Pact can analyze your logs of pirate activity (if any)."
+	description "Fly through the <waypoints> systems, then report to <destination> so the Southern Defense Pact can analyze your logs of pirate activity (if any)."
 	waypoint "Men"
 	waypoint "Antares"
 	waypoint "Shaula"
 	waypoint "Nunki"
 	source
-		attributes south "dirt belt" rim "near earth"
-	destination Glaze
+		attributes "south" "dirt belt" "rim" "near earth"
+	destination "Glaze"
 	to offer
 		random < 40
 		not "event: war begins"
@@ -124,14 +124,14 @@ mission "Pact Recon 2"
 mission "Pact Recon 3"
 	landing
 	name "Pirate Reconnaissance"
-	description "Fly through the Orvala, Hintar, Naper, and Boral systems, searching for a gathering pirate fleet. Report to the Pact on <destination> when you are done."
+	description "Fly through the <waypoints> systems, searching for a gathering pirate fleet. Report to the Pact on <destination> when you are done."
 	waypoint "Orvala"
 	waypoint "Hintar"
 	waypoint "Naper"
 	waypoint "Boral"
 	source
-		attributes south "dirt belt" rim "near earth"
-	destination Glaze
+		attributes "south" "dirt belt" "rim" "near earth"
+	destination "Glaze"
 	to offer
 		random < 40
 		not "event: war begins"
@@ -142,9 +142,9 @@ mission "Pact Recon 3"
 			`Once again, you receive a message from Freya Winters. "We have another mission for you," she says, "this one a bit more dangerous. We've heard rumors of a pirate fleet massing in one of the seldom-visited systems in the Dirt Belt, and we need to know where they are. Interested in helping to track them down? As before, you don't need to fight them, just observe them."`
 	
 	npc
-		government Pirate
+		government "Pirate"
 		personality staying plunders disables
-		system Naper
+		system "Naper"
 		fleet "Small Southern Pirates" 3
 		fleet "Large Northern Pirates"
 	
@@ -157,8 +157,8 @@ mission "Pact Recon 3"
 
 mission "Pact Questioning"
 	source
-		attributes "near earth" paradise
-		government Republic
+		attributes "near earth" "paradise"
+		government "Republic"
 	to offer
 		not "chosen sides"
 		has "Pact Recon 1: done"
@@ -341,20 +341,20 @@ mission "FW Recon 1"
 
 mission "FW Recon 2"
 	name "Free Worlds Reconnaissance"
-	description "Scan any ships in the Menkent system that are equipped like the combat-ready cruiser you scanned previously, then return to <destination>."
+	description "Scan any ships in the <waypoints> system that are equipped like the combat-ready cruiser you scanned previously, then return to <destination>."
 	source
-		planet Glaze
+		planet "Glaze"
 	to offer
 		has "FW Recon 1: done"
 	to fail
 		has "chosen sides"
-	waypoint Menkent
+	waypoint "Menkent"
 	
 	on offer
 		conversation
 			`You meet up with the militia officer in the spaceport bar. "Glad you showed up," he says, "I'm Jean-Jacques, by the way, but you can call me JJ."`
 			`	You introduce yourself in return, and he continues. "Here's the deal. I'm the commander of the militia on Glaze. So far, we and the Navy are not shooting at each other, because no one wants to fire the first shot. But if they're getting ready to change that, they'll start refitting their cruisers with heavy weaponry instead of surveillance equipment. So, I need to know how many more of their ships are equipped like the one you just scanned."`
-			`	He continues, "I'd like you to go to Menkent, where they're building some sort of secret base. Scan any ships you think match the one we just saw, then bring your scanner logs back here for me to look at."`
+			`	He continues, "I'd like you to go to <waypoints>, where they're building some sort of secret base. Scan any ships you think match the one we just saw, then bring your scanner logs back here for me to look at."`
 			choice
 				`	"Sure, I'd be glad to do that."`
 					accept
@@ -362,9 +362,9 @@ mission "FW Recon 2"
 					decline
 	
 	npc "scan outfits"
-		government Republic
+		government "Republic"
 		personality staying uninterested
-		system Menkent
+		system "Menkent"
 		fleet
 			names "republic capital"
 			fighters "republic fighter"
@@ -1529,24 +1529,24 @@ mission "FW Escort 2B"
 
 mission "FW Escort 3"
 	name "Stranded Freighter"
-	description "Repair the <npc>, which is stranded in the Lesath system, and escort it safely back to <destination>."
+	description "Repair the <npc>, which is stranded in the <waypoints> system, and escort it safely back to <destination>."
 	autosave
-	source Longjump
-	waypoint Lesath
+	source "Longjump"
+	waypoint "Lesath"
 	to offer
 		has "FW Escort 2B: done"
 	to fail
 		has "chosen sides"
 	
 	npc accompany save
-		system Lesath
+		system "Lesath"
 		personality escort derelict timid
 		government "Merchant"
 		ship "Freighter" "F.S. Shackleton"
 	
 	on offer
 		conversation
-			`When you walk into the bar, Voigt looks very glad to see you. "Here's the deal," he says. "One of our freighters, the <npc>, was just disabled in the Lesath system. We need you to fly there immediately, repair it, and bring it back here before it can be captured by the pirates. Do you think you're up to the task?"`
+			`When you walk into the bar, Voigt looks very glad to see you. "Here's the deal," he says. "One of our freighters, the <npc>, was just disabled in the <waypoints> system. We need you to fly there immediately, repair it, and bring it back here before it can be captured by the pirates. Do you think you're up to the task?"`
 			choice
 				`	"Sure!"`
 				`	"Sorry, I'm just a merchant captain. The Free Worlds shouldn't be asking me to do combat missions."`
