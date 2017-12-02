@@ -1491,7 +1491,7 @@ mission "Raider Attack 1"
 		planet Shangri-la
 		planet Nimbus
 	npc evade
-		personality timid unconstrained
+		personality timid unconstrained uninterested
 		government Korath
 		fleet "Korath Raid" 2
 	npc
@@ -1525,7 +1525,7 @@ mission "Raider Attack 2"
 		planet Shangri-la
 		planet Nimbus
 	npc evade
-		personality timid unconstrained
+		personality timid unconstrained uninterested
 		government Korath
 		fleet "Korath Raid" 3
 		
