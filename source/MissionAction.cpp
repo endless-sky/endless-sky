@@ -780,6 +780,13 @@ MissionAction MissionAction::Instantiate(map<string, string> &subs, const System
 			}
 		}
 	}
+	// If the player is delivering gifts in this MissionAction, the player
+	// is compensated for the necessary cargo space upon completion.
+	map<const Outfit *, int> taken = result.OutfitsTaken();
+	if(!taken.empty())
+		for(const auto &transfer : taken)
+			payload += abs(transfer.second * transfer.first->Get("mass"));
+	
 	result.payment = payment + (jumps + 1) * payload * paymentMultiplier;
 	// Fill in the payment amount if this is the "complete" action.
 	string previousPayment = subs["<payment>"];
