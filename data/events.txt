@@ -1131,6 +1131,18 @@ event "navy using mark ii ships"
 			"Frigate (Mark II)"
 			"Rainmaker (Mark II)" 2
 			"Gunboat (Mark II)"
+	
+	fleet "Navy Surveillance"
+		remove variant
+			"Cruiser"
+			"Surveillance Drone" 4
+		remove variant
+			"Gunboat" 2
+		add variant 10
+			"Cruiser (Mark II)"
+			"Surveillance Drone" 4
+		add variant 10
+			"Gunboat (Mark II)" 2
 
 
 
