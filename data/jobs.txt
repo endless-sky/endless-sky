@@ -2226,6 +2226,115 @@ mission "Colonists [1]"
 		payment 10000
 		dialog "The colonists depart your ship after paying you <payment>."
 
+mission "Prisoners [0]"
+	name "Prisoner transport to <planet>"
+	job
+	repeat
+	description "Bring <bunks> petty criminals to <destination>, where they will serve their sentences as mine laborers. Payment is <payment>."
+	passengers 2 10 .9
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+	destination
+		distance 2 10
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		attributes "mining"
+		attributes "north" "south" "rim" "frontier" "core"
+	to offer
+		random < 100
+	on offer
+		require "Brig"
+	on complete
+		payment 5000 165
+		dialog "Your shackled passengers shuffle unhappily out of the ship under the watchful eye of several burly and well-armed guards as they prepare to repay their debts to society as forced laborers in <planet>'s mines. You collect your payment of <payment>."
+
+mission "Prisoners [1]"
+	name "Prisoner transport to <planet>"
+	job
+	repeat
+	description "Transport <bunks> petty criminals to <destination>, where they will serve their sentences as factory laborers. Payment is <payment>."
+	passengers 2 10 .9
+	to offer
+		random < 35
+	on offer
+		require "Brig"
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+	destination
+		distance 2 10
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		attributes "factory"
+		attributes "north" "south" "rim" "frontier" "core"
+	on complete
+		payment 5000 165
+		dialog "Your shackled passengers shuffle unhappily out of the ship under the watchful eye of several burly and well-armed guards as they prepare to repay their debts to society as forced laborers in <planet>'s factories. You collect your payment of <payment>."
+
+mission "Prisoners [2]"
+	name "Prisoner transport to <planet>"
+	job
+	repeat
+	description "Transport <bunks> petty petty criminals to <destination>, where they will serve their sentences as domestic servants. Payment is <payment>."
+	passengers 2 10 .9
+	to offer
+		random < 35
+	on offer
+		require "Brig"
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+	destination
+		distance 2 10
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		attributes "paradise"
+	on complete
+		payment 5000 165
+		dialog "Your shackled passengers shuffle unhappily out of the ship under the watchful eye of several burly and well-armed guards as they prepare to repay their debts to society as domestic servants for <planet>'s wealthy elite. You collect your payment of <payment>."
+
+mission "Prisoners [3]"
+	name "Prisoner transport to <planet>"
+	job
+	repeat
+	description "Transport <bunks> petty criminals to a penal colony on <destination>. Payment is <payment>."
+	passengers 2 15 .9
+	to offer
+		random < 35
+	on offer
+		require "Brig"
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+	destination
+		distance 2 10
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		attributes "frontier" "moon" "military"
+	on complete
+		payment 5000 165
+		dialog "Your shackled passengers shuffle unhappily out of the ship under the watchful eye of several burly and well-armed guards as they prepare to repay their debts to society in a penal colony on this remote world. You collect your payment of <payment>."
+
+mission "Prisoners [4]"
+	name "Prisoner transport to <planet>"
+	job
+	repeat
+	description "Transport <bunks> violent felons to a penal colony on <destination>. Payment is <payment>."
+	passengers 2 10 .9
+	to offer
+		random < 20
+		"combat rating" > 50
+	on offer
+		require "Brig"
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+	destination
+		distance 2 10
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		attributes "frontier" "moon" "military"
+	on complete
+		payment 25000 175
+		dialog "Your shackled passengers offer bitter curses as burly and well-armed guards practically beat them out of your ship, driving them in the direction of a penal colony on this remote world. You collect your payment of <payment>."
+	npc
+		government Pirate
+		personality nemesis waiting plunders
+		system
+			distance 3 4
+		fleet "pirate raid"
+
 mission "Large Bulk Delivery [0]"
 	name "Large bulk delivery to <planet>"
 	job
@@ -2365,119 +2474,6 @@ mission "Large Rush Delivery [3]"
 		payment
 		payment 42000
 		dialog "You drop off your cargo of <commodity> and collect your payment of <payment>."
-
-
-
-mission "Prisoners [0]"
-	name "Prisoner transport to <planet>"
-	job
-	repeat
-	description "Bring <bunks> petty criminals to <destination>, where they will serve their sentences as mine laborers. Payment is <payment>."
-	passengers 2 10 .9
-	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
-	destination
-		distance 2 10
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
-		attributes "mining"
-		attributes "north" "south" "rim" "frontier" "core"
-	to offer
-		random < 100
-	on offer
-		require "Brig"
-	on complete
-		payment 5000 165
-		dialog "Your shackled passengers shuffle unhappily out of the ship under the watchful eye of several burly and well-armed guards as they prepare to repay their debts to society as forced laborers in <planet>'s mines. You collect your payment of <payment>."
-
-mission "Prisoners [1]"
-	name "Prisoner transport to <planet>"
-	job
-	repeat
-	description "Transport <bunks> petty criminals to <destination>, where they will serve their sentences as factory laborers. Payment is <payment>."
-	passengers 2 10 .9
-	to offer
-		random < 35
-	on offer
-		require "Brig"
-	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
-	destination
-		distance 2 10
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
-		attributes "factory"
-		attributes "north" "south" "rim" "frontier" "core"
-	on complete
-		payment 5000 165
-		dialog "Your shackled passengers shuffle unhappily out of the ship under the watchful eye of several burly and well-armed guards as they prepare to repay their debts to society as forced laborers in <planet>'s factories. You collect your payment of <payment>."
-
-mission "Prisoners [2]"
-	name "Prisoner transport to <planet>"
-	job
-	repeat
-	description "Transport <bunks> petty petty criminals to <destination>, where they will serve their sentences as domestic servants. Payment is <payment>."
-	passengers 2 10 .9
-	to offer
-		random < 35
-	on offer
-		require "Brig"
-	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
-	destination
-		distance 2 10
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
-		attributes "paradise"
-	on complete
-		payment 5000 165
-		dialog "Your shackled passengers shuffle unhappily out of the ship under the watchful eye of several burly and well-armed guards as they prepare to repay their debts to society as domestic servants for <planet>'s wealthy elite. You collect your payment of <payment>."
-
-mission "Prisoners [3]"
-	name "Prisoner transport to <planet>"
-	job
-	repeat
-	description "Transport <bunks> petty criminals to a penal colony on <destination>. Payment is <payment>."
-	passengers 2 15 .9
-	to offer
-		random < 35
-	on offer
-		require "Brig"
-	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
-	destination
-		distance 2 10
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
-		attributes "frontier" "moon" "military"
-	on complete
-		payment 5000 165
-		dialog "Your shackled passengers shuffle unhappily out of the ship under the watchful eye of several burly and well-armed guards as they prepare to repay their debts to society in a penal colony on this remote world. You collect your payment of <payment>."
-
-mission "Prisoners [4]"
-	name "Prisoner transport to <planet>"
-	job
-	repeat
-	description "Transport <bunks> violent felons to a penal colony on <destination>. Payment is <payment>."
-	passengers 2 10 .9
-	to offer
-		random < 20
-		"combat rating" > 50
-	on offer
-		require "Brig"
-	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
-	destination
-		distance 2 10
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
-		attributes "frontier" "moon" "military"
-	on complete
-		payment 25000 175
-		dialog "Your shackled passengers offer bitter curses as burly and well-armed guards practically beat them out of your ship, driving them in the direction of a penal colony on this remote world. You collect your payment of <payment>."
-	npc
-		government Pirate
-		personality nemesis waiting plunders
-		system
-			distance 3 4
-		fleet "pirate raid"
-
-
 
 mission "Recycle garbage"
 	name "Recycle garbage"
