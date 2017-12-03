@@ -2312,8 +2312,8 @@ mission "Bounty Hunting (Small)"
 		"combat rating" > 300
 		random < 40
 	source
-		government Republic "Free Worlds" Syndicate Neutral
-		attributes rim south north "dirt belt" core frontier
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 	npc kill
 		government Bounty
 		personality heroic staying nemesis target
@@ -2353,8 +2353,8 @@ mission "Bounty Hunting (Medium)"
 		"combat rating" > 400
 		random < 20
 	source
-		government Republic "Free Worlds" Syndicate Neutral
-		attributes rim south north "dirt belt" core frontier
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 	npc kill
 		government Bounty
 		personality heroic staying nemesis target
@@ -2388,8 +2388,8 @@ mission "Bounty Hunting (Big)"
 		"combat rating" > 500
 		random < 20
 	source
-		government Republic "Free Worlds" Syndicate Neutral
-		attributes rim south north "dirt belt" core frontier
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 	npc kill
 		government Bounty
 		personality heroic staying nemesis target
@@ -2430,10 +2430,10 @@ mission "Bounty Hunting (Small, Boarding, Entering)"
 	on offer
 		require "Brig"
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 	destination
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 		distance 2 6
 	npc board
@@ -2466,10 +2466,10 @@ mission "Bounty Hunting (Medium, Boarding, Entering)"
 	on offer
 		require "Brig"
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 	destination
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 		distance 2 6
 	npc board
