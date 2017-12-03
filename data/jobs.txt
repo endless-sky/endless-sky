@@ -1391,11 +1391,11 @@ mission "Bounty Hunting (Small, boarding, entering)"
 	on offer
 		require "Brig"
 	source
-		government Republic "Free Worlds" Syndicate Neutral
-		attributes rim south north "dirt belt" core frontier
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 	destination
-		government Republic "Free Worlds" Syndicate Neutral
-		attributes rim south north "dirt belt" core frontier
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 		distance 2 6
 	npc board
 		government "Bounty"
@@ -1427,11 +1427,11 @@ mission "Bounty Hunting (Medium, boarding, entering)"
 	on offer
 		require "Brig"
 	source
-		government Republic "Free Worlds" Syndicate Neutral
-		attributes rim south north "dirt belt" core frontier
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 	destination
-		government Republic "Free Worlds" Syndicate Neutral
-		attributes rim south north "dirt belt" core frontier
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 		distance 2 6
 	npc board
 		government "Bounty"
