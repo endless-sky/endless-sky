@@ -82,7 +82,7 @@ mission "FW Diplomacy 1B"
 	
 	on accept
 		event "fw safe passage starts"
-		event "fw safe passage ends" 24
+		event "fw safe passage ends" 25
 
 
 
@@ -520,7 +520,7 @@ mission "FW Southern Prisoners - Release"
 	
 	on accept
 		event "fw safe passage starts"
-		event "fw safe passage ends" 7
+		event "fw safe passage ends" 8
 	
 	npc accompany save
 		government "Escort"
