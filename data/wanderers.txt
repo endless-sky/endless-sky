@@ -308,13 +308,12 @@ phrase "wanderer untranslated"
 
 phrase "friendly wanderer"
 	word
-		"We are "
-		"We are the Wanderers, "
-		"This [space, territory] belongs to "
-		"This [space, territory] belongs to the Wanderers, "
-		"You are a guest of the Wanderers, "
+		"We are"
+		"This [space, territory] belongs to"
+		"You are a guest of"
 	word
-		"the "
+		" the Wanderers, the "
+		" the "
 	word
 		"[repairers, fixers] "
 		"restorers "
@@ -361,10 +360,12 @@ phrase "friendly wanderer"
 		"[visitor, traveller] "
 		"guest "
 	word
-		""
-		"to us"
-		"to our people"
-		"to the Wanderers"
+		"to "
+		"[amongst, with] "
+	word
+		"us"
+		"our people"
+		"the Wanderers"
 	word
 		", "
 		" - "
@@ -405,7 +406,8 @@ phrase "friendly wanderer"
 		"[transform, renew] "
 		"revitalize "
 		"take care of "
-		"breathe [life, hope] "
+		"breathe [life, hope] into "
+		"[cure, remedy] "
 	word
 		"what has been "
 		"what others have "
@@ -425,6 +427,62 @@ phrase "friendly wanderer"
 	word
 		"."
 			
+phrase "friendly wanderer"
+	word
+		"Wanderer "
+		"Our "
+		"These "
+	word
+		"worlds"
+		"planets"
+		"places"
+		"lands"
+		"ecosystems"
+		"biospheres"
+	word
+		" are open to "
+		" are available to "
+		" welcome "
+	word
+		"anyone"
+		"anybody"
+		"any being"
+		"any lifeform"
+		"any [identity? consciousness? entity?]"
+	word
+		" "
+		", if they are "
+		", so long as they are "
+		", as long as they are "
+		", [providing, given] they are "
+	word
+		"willing"
+		"wishing"
+		"wanting"
+		"intending"
+		"looking"
+		"meaning"
+		"planning"
+	word
+		" to help "
+	word
+		"us "
+		"us to "
+		""	
+	word
+		"[repair, fix]"
+		"restore"
+		"heal"
+		"[shape, remake]"
+		"[transform, renew]"
+		"revitalize"
+		"take care of"
+		"breathe [life, hope] into"
+		"[cure, remedy]"
+	word
+		" them."
+		
+		
 phrase "hostile wanderer"
 	word
 		"We do not wish to "
