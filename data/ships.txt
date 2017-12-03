@@ -1421,6 +1421,8 @@ ship "Fury"
 	engine 17 35
 	gun -10 -26
 	gun 10 -26
+	gun -10 -26
+	gun 10 -26
 	gun -16 -20
 	gun 16 -20
 	explode "tiny explosion" 10
@@ -1677,6 +1679,8 @@ ship "Hawk"
 		
 	engine -24 41
 	engine 24 41
+	gun -9 -17
+	gun 9 -17
 	gun -9 -17
 	gun 9 -17
 	explode "tiny explosion" 15
@@ -2588,6 +2592,8 @@ ship "Sparrow"
 	engine 5 35
 	gun -7 -10
 	gun 7 -10
+	gun -7 -10
+	gun 7 -10
 	explode "tiny explosion" 15
 	explode "small explosion" 5
 	description "Classified as an interceptor rather than a fighter because it has its own hyperdrive instead of needing to be carried inside a larger ship, the Tarazed Sparrow is the smallest and cheapest combat ship available. Because of its limited cargo and passenger space, the primary way for a Sparrow pilot to pay the bills is by hunting pirates... or by becoming one. In either case, it is a perilous way to earn a living."
@@ -2868,6 +2874,8 @@ ship "Wasp"
 	gun 0 -38 "Javelin Pod"
 	gun -13 -31 "Energy Blaster"
 	gun 13 -31 "Energy Blaster"
+	gun -13 -31
+	gun 13 -31
 	explode "tiny explosion" 20
 	explode "small explosion" 10
 	description "The wasp is a medium-strength interceptor, designed by Syndicated Shipyards to serve as an escort for cargo vessels. Like most Syndicate ships, it is not particularly pretty, but it at least serves the purpose it was made for."
