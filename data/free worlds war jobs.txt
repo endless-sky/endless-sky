@@ -12,7 +12,7 @@ mission "FW Scout Run [0]"
 	job
 	repeat
 	name `Scouting Run`
-	description `Fly through the designated Republic system and scout it out for Navy activity. Then return to <destination> by <date> where your ship's scanner logs will be analyzed. Payment is <payment>.`
+	description `Fly through the <waypoints> system and scout it out for Navy activity. Then return to <destination> by <date> where your ship's scanner logs will be analyzed. Payment is <payment>.`
 	deadline
 	to offer
 		random < 30
@@ -34,7 +34,7 @@ mission "FW Scout Run [1]"
 	job
 	repeat
 	name `Scouting Run`
-	description `Fly through the designated Republic systems and scout them out for Navy activity. Then return to <destination> by <date> where your ship's scanner logs will be analyzed. Payment is <payment>.`
+	description `Fly through the <waypoints> systems and scout them out for Navy activity. Then return to <destination> by <date> where your ship's scanner logs will be analyzed. Payment is <payment>.`
 	deadline
 	to offer
 		random < 25
@@ -59,7 +59,7 @@ mission "FW Scout Run [2]"
 	job
 	repeat
 	name `Scouting Run`
-	description `Fly through the designated Republic systems and scout them out for Navy activity. Then return to <destination> by <date> where your ship's scanner logs will be analyzed. Payment is <payment>.`
+	description `Fly through the <waypoints> systems and scout them out for Navy activity. Then return to <destination> by <date> where your ship's scanner logs will be analyzed. Payment is <payment>.`
 	deadline
 	to offer
 		random < 20
