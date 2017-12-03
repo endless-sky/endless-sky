@@ -170,6 +170,8 @@ fleet "Small Core Merchants"
 	variant 10
 		"Freighter (Fancy)"
 	variant 10
+		"Freighter (Proton)"
+	variant 10
 		"Freighter"
 		"Wasp"
 	variant 20
@@ -200,6 +202,8 @@ fleet "Small Core Merchants"
 	variant 2
 		"Argosy (Laser)"
 	variant 2
+		"Argosy (Proton)"
+	variant 2
 		"Argosy (Turret)"
 	variant 2
 		"Argosy (Missile)"
@@ -224,6 +228,8 @@ fleet "Large Core Merchants"
 		"Quicksilver" 2
 	variant 10
 		"Freighter (Fancy)" 2
+	variant 10
+		"Freighter (Proton)" 2
 		"Quicksilver" 2
 	variant 50
 		"Bulk Freighter"
@@ -234,12 +240,17 @@ fleet "Large Core Merchants"
 	variant 10
 		"Bulk Freighter (Heavy)"
 		"Wasp (Proton)" 2
+	variant 10
+		"Bulk Freighter (Proton)"
+		"Wasp (Proton)" 2
 	variant 20
 		"Bulk Freighter"
 	variant 10
 		"Bulk Freighter (Blaster)"
 	variant 5
 		"Bulk Freighter (Heavy)"
+	variant 5
+		"Bulk Freighter (Proton)"
 	variant 20
 		"Star Barge (Armed)" 3
 	variant 10
@@ -251,6 +262,11 @@ fleet "Large Core Merchants"
 		"Bulk Freighter (Heavy)"
 		"Quicksilver" 1
 		"Splinter (Laser)" 1
+	variant 4
+		"Bulk Freighter (Blaster)"
+		"Bulk Freighter (Proton)"
+		"Quicksilver" 1
+		"Splinter (Proton)" 1
 	variant 10
 		"Freighter" 4
 		"Quicksilver" 2
@@ -259,12 +275,19 @@ fleet "Large Core Merchants"
 		"Freighter" 4
 		"Quicksilver" 2
 		"Splinter (Laser)" 1
+	variant 3
+		"Freighter" 4
+		"Quicksilver" 2
+		"Splinter (Proton)" 1
 	variant 10
 		"Freighter" 4
 		"Protector" 1
 	variant 2
 		"Freighter" 4
 		"Protector (Laser)" 1
+	variant 2
+		"Freighter" 4
+		"Protector (Proton)" 1
 	variant 10
 		"Bulk Freighter" 2
 		"Protector" 1
@@ -274,6 +297,9 @@ fleet "Large Core Merchants"
 	variant 1
 		"Bulk Freighter (Heavy)" 2
 		"Protector (Laser)" 1
+	variant 1
+		"Bulk Freighter (Proton)" 2
+		"Protector (Proton)" 1
 	variant 1
 		"Bulk Freighter (Heavy)" 2
 		"Vanguard (Particle)" 1
@@ -308,6 +334,8 @@ fleet "Small Northern Merchants"
 		"Freighter"
 	variant 10
 		"Freighter (Fancy)"
+	variant 10
+		"Freighter (Proton)"
 	variant 20
 		"Freighter"
 		"Shuttle" 4
@@ -319,6 +347,9 @@ fleet "Small Northern Merchants"
 		"Berserker (Afterburner)"
 	variant 5
 		"Freighter (Fancy)"
+		"Shuttle" 4
+	variant 5
+		"Freighter (Proton)"
 		"Shuttle" 4
 	variant 10
 		"Freighter" 3
@@ -412,6 +443,8 @@ fleet "Large Northern Merchants"
 	variant 10
 		"Behemoth (Speedy)"
 	variant 10
+		"Behemoth (Proton)"
+	variant 10
 		"Behemoth" 2
 	variant 1
 		"Behemoth (Hai)"
@@ -451,6 +484,10 @@ fleet "Large Northern Merchants"
 		"Firebird" 1
 	variant 3
 		"Freighter (Fancy)" 4
+		"Sparrow" 2
+		"Firebird (Plasma)" 1
+	variant 3
+		"Freighter (Proton)" 4
 		"Sparrow" 2
 		"Firebird (Plasma)" 1
 	variant 1
@@ -1300,6 +1337,8 @@ fleet "Small Syndicate"
 		"Quicksilver" 2
 	variant 1
 		"Splinter (Laser)"
+	variant 1
+		"Splinter (Proton)"
 		"Quicksilver (Proton)" 2
 	variant 1
 		"Manta"
@@ -1318,6 +1357,8 @@ fleet "Large Syndicate"
 		"Quicksilver" 3
 	variant 2
 		"Splinter (Laser)"
+	variant 2
+		"Splinter (Proton)"
 		"Quicksilver" 3
 	variant 1
 		"Splinter" 2
@@ -1325,10 +1366,16 @@ fleet "Large Syndicate"
 		"Splinter"
 		"Splinter (Laser)"
 	variant 1
+		"Splinter"
+		"Splinter (Proton)"
+	variant 1
 		"Splinter" 3
 	variant 1
 		"Splinter"
 		"Splinter (Laser)" 2
+	variant 1
+		"Splinter"
+		"Splinter (Proton)" 2
 	variant 2
 		"Manta" 2
 	variant 1
@@ -1350,10 +1397,15 @@ fleet "Large Syndicate"
 	variant 1
 		"Protector (Laser)"
 	variant 1
+		"Protector (Proton)"
+	variant 1
 		"Protector"
 		"Quicksilver" 2
 	variant 1
 		"Protector (Laser)"
+		"Quicksilver (Proton)" 2
+	variant 1
+		"Protector (Proton)"
 		"Quicksilver (Proton)" 2
 	variant 1
 		"Vanguard (Particle)"
@@ -1669,6 +1721,9 @@ fleet "Large Core Pirates"
 	variant 3
 		"Splinter (Laser)"
 		"Quicksilver"
+	variant 3
+		"Splinter (Proton)"
+		"Quicksilver"
 	variant 4
 		"Manta (Proton)"
 	variant 2
@@ -1677,6 +1732,8 @@ fleet "Large Core Pirates"
 		"Splinter" 2
 	variant 1
 		"Splinter (Laser)" 2
+	variant 1
+		"Splinter (Proton)" 2
 	variant 2
 		"Falcon"
 	variant 1
@@ -1870,6 +1927,9 @@ fleet "pirate raid"
 	variant 3
 		"Splinter (Laser)"
 		"Quicksilver"
+	variant 3
+		"Splinter (Proton)"
+		"Quicksilver"
 	variant 4
 		"Manta (Proton)"
 	variant 2
@@ -1878,6 +1938,8 @@ fleet "pirate raid"
 		"Splinter" 2
 	variant 1
 		"Splinter (Laser)" 2
+	variant 1
+		"Splinter (Proton)" 2
 	variant 2
 		"Firebird"
 	variant 1
@@ -2528,6 +2590,9 @@ fleet "Hired Guns"
 		"Vanguard (Particle)"
 		"Splinter (Laser)"
 	variant 1
+		"Vanguard (Particle)"
+		"Splinter (Proton)"
+	variant 1
 		"Bactrian (Hired Gun)"
 		"Dagger" 3
 		"Modified Argosy" 2
@@ -2543,3 +2608,7 @@ fleet "Hired Guns"
 		"Bactrian (Hired Gun)"
 		"Dagger" 3
 		"Splinter (Laser)"
+	variant 1
+		"Bactrian (Hired Gun)"
+		"Dagger" 3
+		"Splinter (Proton)"
