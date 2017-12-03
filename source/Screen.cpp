@@ -45,7 +45,7 @@ int Screen::Zoom()
 
 void Screen::SetZoom(int percent)
 {
-	ZOOM = max(100, min(200, percent));
+	ZOOM = max(50, min(200, percent));
 	WIDTH = RAW_WIDTH * 100 / ZOOM;
 	HEIGHT = RAW_HEIGHT * 100 / ZOOM;
 }
