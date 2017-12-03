@@ -301,6 +301,15 @@ outfit "Small Bunk Room"
 	unplunderable 1
 	description "Captains who do not care particularly much about the comfort of their passengers or crew can usually find a way to shove a bunk bed in behind the power generator or to hang a few hammocks from the engines as a makeshift way to make space for more people."
 
+outfit "Brig"
+	category "Systems"
+	cost 40000
+	thumbnail "outfit/brig"
+	"mass" 3
+	"outfit space" -3
+	"unplunderable" 1
+	description "With the addition of some reinforced doors, locks, and security systems, any ship's passenger compartment can be turned into a brig, making it suitable for transporting criminals and prisoners... or worse, participating in the highly illegal galactic slave trade. These cells are often found on ships owned by bounty hunters, pirates, and of course, the Republic's interstellar law enforcement."
+
 outfit "Fuel Pod"
 	category "Systems"
 	cost 20000
