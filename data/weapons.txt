@@ -465,6 +465,7 @@ outfit "Proton Turret"
 	"outfit space" -34
 	"weapon capacity" -34
 	"turret mounts" -1
+	"required crew" 1
 	weapon
 		sprite "projectile/proton"
 		"hardpoint sprite" "hardpoint/proton turret"
@@ -480,7 +481,7 @@ outfit "Proton Turret"
 		"firing energy" 15
 		"firing force" 2
 		"firing heat" 60
-	description "The Syndicate Proton Turret is a relatively new product designed to compete with Deep Sky's perennially-popular laser turrets in the anti-fighter defense market. Though cruder than its competition, the Proton Turret maintains a loyal following among captains dissatisfied with laser weapons' short range."
+	description "The Syndicate Proton Turret is a relatively new product designed to compete with Deep Sky's perennially popular laser turrets in the anti-fighter defense market. Though cruder than its competition, the Proton Turret maintains a loyal following among captains dissatisfied with laser weapons' short range."
 
 
 outfit "Plasma Cannon"
