@@ -1263,196 +1263,6 @@ mission "Escort (Extra Large, Southern, Dangerous Origin or Destination)"
 	on visit
 		dialog "You have reached <planet>, but you left the <npc> behind! Better depart and wait for them to arrive in this star system."
 
-
-mission "Bounty Hunting (Big)"
-	name "Hunt down <npc>"
-	description "A pirate vessel named <npc> has been attacking merchants near the <system> system. Destroy it and return to <planet> for payment (<payment>)."
-	repeat
-	job
-	to offer
-		"combat rating" > 500
-		random < 20
-	source
-		government Republic "Free Worlds" Syndicate Neutral
-		attributes rim south north "dirt belt" core frontier
-	npc kill
-		government Bounty
-		personality heroic staying nemesis target
-		system
-			distance 1 2
-		fleet
-			names "pirate"
-			variant
-				"Leviathan"
-			variant
-				"Leviathan (Heavy)"
-			variant
-				"Leviathan (Laser)"
-			variant
-				"Falcon"
-			variant
-				"Falcon (Heavy)"
-			variant
-				"Falcon (Laser)"
-			variant
-				"Vanguard"
-			variant
-				"Vanguard (Particle)"
-		dialog "The <npc> has been eliminated. You can claim the bounty payment by returning to <destination>."
-	on complete
-		payment 250000
-		dialog "The government of <planet> gratefully pays you <payment> for eliminating the <npc>."
-
-mission "Bounty Hunting (Medium)"
-	name "Hunt down <npc>"
-	description "A pirate vessel named <npc> has been attacking merchants near the <system> system. Destroy it and return to <planet> for payment (<payment>)."
-	repeat
-	job
-	to offer
-		"combat rating" > 400
-		random < 20
-	source
-		government Republic "Free Worlds" Syndicate Neutral
-		attributes rim south north "dirt belt" core frontier
-	npc kill
-		government Bounty
-		personality heroic staying nemesis target
-		system
-			distance 1 2
-		fleet
-			names "pirate"
-			variant
-				"Protector"
-			variant
-				"Protector (Laser)"
-			variant
-				"Osprey (Missile)"
-			variant
-				"Bastion (Heavy)"
-			variant
-				"Bastion (Laser)"
-			variant
-				"Firebird (Plasma)"
-		dialog "The <npc> has been eliminated. You can claim the bounty payment by returning to <destination>."
-	on complete
-		payment 200000
-		dialog "The government of <planet> gratefully pays you <payment> for eliminating the <npc>."
-
-mission "Bounty Hunting (Small)"
-	name "Hunt down <npc>"
-	description "A pirate vessel named <npc> has been attacking merchants near the <system> system. Destroy it and return to <planet> for payment (<payment>)."
-	repeat
-	job
-	to offer
-		"combat rating" > 300
-		random < 40
-	source
-		government Republic "Free Worlds" Syndicate Neutral
-		attributes rim south north "dirt belt" core frontier
-	npc kill
-		government Bounty
-		personality heroic staying nemesis target
-		system
-			distance 1 2
-		fleet
-			names "pirate"
-			variant
-				"Firebird"
-			variant
-				"Firebird (Missile)"
-			variant
-				"Splinter"
-			variant
-				"Splinter (Laser)"
-			variant
-				"Osprey"
-			variant
-				"Osprey (Laser)"
-			variant
-				"Bastion"
-			variant
-				"Manta"
-			variant
-				"Manta (Proton)"
-		dialog "The <npc> has been eliminated. You can claim the bounty payment by returning to <destination>."
-	on complete
-		payment 150000
-		dialog "The government of <planet> gratefully pays you <payment> for eliminating the <npc>."
-
-mission "Bounty Hunting (Small, boarding, entering)"
-	name "Board <npc>"
-	description "A wanted criminal is fleeing in a stolen hot rod ship, the <npc>, which is about to enter this system. Disable and board the vessel and bring the criminal to <destination>. Reward for capture: <payment>."
-	passengers 1
-	repeat
-	job
-	to offer
-		"combat rating" > 80
-		random < 15
-	on offer
-		require "Brig"
-	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
-		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
-	destination
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
-		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
-		distance 2 6
-	npc board
-		government "Bounty"
-		personality timid fleeing uninterested entering target
-		fleet
-			names "civilian"
-			variant
-				"Flivver (Racing)"
-			variant
-				"Arrow"
-			variant
-				"Scout (Speedy)"
-			variant
-				"Clipper (Speedy)"
-		dialog "You blast your way onto the ship and confine the fleeing criminal to your ship's brig, then prepare for the trip to <planet>."
-	on complete
-		payment 175000
-		dialog "The government of <planet> gratefully pays you <payment> for apprehending the criminal."
-
-mission "Bounty Hunting (Medium, boarding, entering)"
-	name "Board <npc>"
-	description "A wanted criminal and several accomplices are fleeing in a stolen hot rod ship, the <npc>, which is about to enter this system. Disable and board the vessel and bring the criminals to <destination>. Reward for capture: <payment>."
-	passengers 4
-	repeat
-	job
-	to offer
-		"combat rating" > 200
-		random < 15
-	on offer
-		require "Brig"
-	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
-		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
-	destination
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
-		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
-		distance 2 6
-	npc board
-		government "Bounty"
-		personality timid fleeing uninterested entering target
-		fleet
-			names "civilian"
-			variant
-				"Corvette (Speedy)"
-			variant
-				"Osprey (Missile)"
-			variant
-				"Argosy (Missile)"
-			variant
-				"Modified Argosy (Heavy)"
-			variant
-				"Raven (Heavy)"
-		dialog "You blast your way onto the ship, subdue the the fleeing criminals, confine them to your ship's brig, then prepare for the trip to <planet>."
-	on complete
-		payment 350000
-		dialog "The government of <planet> gratefully pays you <payment> for apprehending the criminal gang."
-
 mission "Southern Pirate Attack"
 	name "Defend <planet>"
 	description "Defeat a pirate raid on <destination>."
@@ -2492,6 +2302,195 @@ mission "Recycle garbage"
 		dialog "You drop off the <commodity> at an especially smelly solid waste recycler and collect your payment of <payment>."
 		payment
 		payment 20000
+
+mission "Bounty Hunting (Small)"
+	name "Hunt down <npc>"
+	description "A pirate vessel named <npc> has been attacking merchants near the <system> system. Destroy it and return to <planet> for payment (<payment>)."
+	repeat
+	job
+	to offer
+		"combat rating" > 300
+		random < 40
+	source
+		government Republic "Free Worlds" Syndicate Neutral
+		attributes rim south north "dirt belt" core frontier
+	npc kill
+		government Bounty
+		personality heroic staying nemesis target
+		system
+			distance 1 2
+		fleet
+			names "pirate"
+			variant
+				"Firebird"
+			variant
+				"Firebird (Missile)"
+			variant
+				"Splinter"
+			variant
+				"Splinter (Laser)"
+			variant
+				"Osprey"
+			variant
+				"Osprey (Laser)"
+			variant
+				"Bastion"
+			variant
+				"Manta"
+			variant
+				"Manta (Proton)"
+		dialog "The <npc> has been eliminated. You can claim the bounty payment by returning to <destination>."
+	on complete
+		payment 150000
+		dialog "The government of <planet> gratefully pays you <payment> for eliminating the <npc>."
+
+mission "Bounty Hunting (Medium)"
+	name "Hunt down <npc>"
+	description "A pirate vessel named <npc> has been attacking merchants near the <system> system. Destroy it and return to <planet> for payment (<payment>)."
+	repeat
+	job
+	to offer
+		"combat rating" > 400
+		random < 20
+	source
+		government Republic "Free Worlds" Syndicate Neutral
+		attributes rim south north "dirt belt" core frontier
+	npc kill
+		government Bounty
+		personality heroic staying nemesis target
+		system
+			distance 1 2
+		fleet
+			names "pirate"
+			variant
+				"Protector"
+			variant
+				"Protector (Laser)"
+			variant
+				"Osprey (Missile)"
+			variant
+				"Bastion (Heavy)"
+			variant
+				"Bastion (Laser)"
+			variant
+				"Firebird (Plasma)"
+		dialog "The <npc> has been eliminated. You can claim the bounty payment by returning to <destination>."
+	on complete
+		payment 200000
+		dialog "The government of <planet> gratefully pays you <payment> for eliminating the <npc>."
+
+mission "Bounty Hunting (Big)"
+	name "Hunt down <npc>"
+	description "A pirate vessel named <npc> has been attacking merchants near the <system> system. Destroy it and return to <planet> for payment (<payment>)."
+	repeat
+	job
+	to offer
+		"combat rating" > 500
+		random < 20
+	source
+		government Republic "Free Worlds" Syndicate Neutral
+		attributes rim south north "dirt belt" core frontier
+	npc kill
+		government Bounty
+		personality heroic staying nemesis target
+		system
+			distance 1 2
+		fleet
+			names "pirate"
+			variant
+				"Leviathan"
+			variant
+				"Leviathan (Heavy)"
+			variant
+				"Leviathan (Laser)"
+			variant
+				"Falcon"
+			variant
+				"Falcon (Heavy)"
+			variant
+				"Falcon (Laser)"
+			variant
+				"Vanguard"
+			variant
+				"Vanguard (Particle)"
+		dialog "The <npc> has been eliminated. You can claim the bounty payment by returning to <destination>."
+	on complete
+		payment 250000
+		dialog "The government of <planet> gratefully pays you <payment> for eliminating the <npc>."
+
+mission "Bounty Hunting (Small, Boarding, Entering)"
+	name "Board <npc>"
+	description "A wanted criminal is fleeing in a stolen hot rod ship, the <npc>, which is about to enter this system. Disable and board the vessel and bring the criminal to <destination>. Reward for capture: <payment>."
+	passengers 1
+	repeat
+	job
+	to offer
+		"combat rating" > 80
+		random < 15
+	on offer
+		require "Brig"
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
+	destination
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
+		distance 2 6
+	npc board
+		government "Bounty"
+		personality timid fleeing uninterested entering target
+		fleet
+			names "civilian"
+			variant
+				"Flivver (Racing)"
+			variant
+				"Arrow"
+			variant
+				"Scout (Speedy)"
+			variant
+				"Clipper (Speedy)"
+		dialog "You blast your way onto the ship and confine the fleeing criminal to your ship's brig, then prepare for the trip to <planet>."
+	on complete
+		payment 175000
+		dialog "The government of <planet> gratefully pays you <payment> for apprehending the criminal."
+
+mission "Bounty Hunting (Medium, Boarding, Entering)"
+	name "Board <npc>"
+	description "A wanted criminal and several accomplices are fleeing in a stolen hot rod ship, the <npc>, which is about to enter this system. Disable and board the vessel and bring the criminals to <destination>. Reward for capture: <payment>."
+	passengers 4
+	repeat
+	job
+	to offer
+		"combat rating" > 200
+		random < 15
+	on offer
+		require "Brig"
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
+	destination
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
+		distance 2 6
+	npc board
+		government "Bounty"
+		personality timid fleeing uninterested entering target
+		fleet
+			names "civilian"
+			variant
+				"Corvette (Speedy)"
+			variant
+				"Osprey (Missile)"
+			variant
+				"Argosy (Missile)"
+			variant
+				"Modified Argosy (Heavy)"
+			variant
+				"Raven (Heavy)"
+		dialog "You blast your way onto the ship, subdue the the fleeing criminals, confine them to your ship's brig, then prepare for the trip to <planet>."
+	on complete
+		payment 350000
+		dialog "The government of <planet> gratefully pays you <payment> for apprehending the criminal gang."
 
 mission "Bounty Hunting (Marauder I)"
 	name "Hunt down <npc>"
