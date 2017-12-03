@@ -464,13 +464,11 @@ phrase "friendly wanderer"
 		"meaning"
 		"planning"
 	word
-		" to "
+		" to help "
 	word
-		"help"
-		"assist"
-	word
-		" us "
-		" "	
+		"us "
+		"us to "
+		""	
 	word
 		"[repair, fix]"
 		"restore"
