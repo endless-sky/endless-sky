@@ -2695,11 +2695,6 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 	}
 	wasHyperspacing = ship.IsEnteringHyperspace();
 	
-	// If the player's targeted asteroid leaves the scannable range, it is no longer targeted.
-	if(ship.GetTargetAsteroid() && ((ship.GetTargetAsteroid()->Position() - ship.Position()).Length()
-			> (100. * sqrt(ship.Attributes().Get("asteroid scan power")))))
-		ship.SetTargetAsteroid(nullptr);
-	
 	if(keyDown.Has(Command::NEAREST))
 	{
 		double closest = numeric_limits<double>::infinity();
