@@ -547,7 +547,7 @@ void Engine::Step(bool isActive)
 	// yet been toggled, but it will be at the end of this function.)
 	shared_ptr<const Ship> target;
 	shared_ptr<const Minable> targetAsteroid;
-	targetAngle = Point();
+	targetVector = Point();
 	if(flagship)
 	{
 		target = flagship->GetTargetShip();
@@ -568,6 +568,8 @@ void Engine::Step(bool isActive)
 			targetAsteroid->Facing().Unit(),
 			targetAsteroid->GetFrame(step));
 		info.SetString("target name", Format::Capitalize(targetAsteroid->Name()) + " Asteroid");
+		
+		targetVector = targetAsteroid->Position() - center;
 		
 		if(flagship->Attributes().Get("tactical scan power"))
 		{
@@ -608,13 +610,7 @@ void Engine::Step(bool isActive)
 				targetType,
 				4});
 			
-			// Don't show the angle to the target if it is very close.
-			targetAngle = target->Position() - center;
-			double length = targetAngle.Length();
-			if(length > 20.)
-				targetAngle /= length;
-			else
-				targetAngle = Point();
+			targetVector = target->Position() - center;
 			
 			// Check if the target is close enough to show tactical information.
 			double tacticalRange = 100. * sqrt(flagship->Attributes().Get("tactical scan power"));
@@ -824,11 +820,11 @@ void Engine::Draw() const
 			interface->GetValue("radar radius"),
 			interface->GetValue("radar pointer radius"));
 	}
-	if(interface->HasPoint("target") && targetAngle)
+	if(interface->HasPoint("target") && targetVector.Length() > 20.)
 	{
 		Point center = interface->GetPoint("target");
 		double radius = interface->GetValue("target radius");
-		PointerShader::Draw(center, targetAngle, 10., 10., radius, Color(1.));
+		PointerShader::Draw(center, targetVector.Unit(), 10., 10., radius, Color(1.));
 	}
 	
 	// Draw the faction markers.
