@@ -1076,7 +1076,7 @@ event "fw safe passage starts"
 
 
 event "fw safe passage ends"
-	"reputation: Republic" = -1000
+	"reputation: Republic" <?= -1000
 
 
 
@@ -1787,7 +1787,7 @@ event "fw syndicate welcoming"
 
 
 event "at war with the pug"
-	"reputation: Pug" = -1000
+	"reputation: Pug" <?= -1000
 	government Pug
 		"attitude toward"
 			"Free Worlds" -.01
