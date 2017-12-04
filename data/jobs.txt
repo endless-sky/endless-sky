@@ -1521,8 +1521,8 @@ mission "Raider Attack 2"
 		"combat rating" > 750
 		random < 5
 	source
-		planet sundive
-		planet Shangri-"La"
+		planet Sundive
+		planet "Shangri-La"
 		planet Nimbus
 	npc evade
 		government Korath
