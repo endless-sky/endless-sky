@@ -288,8 +288,8 @@ void Ship::FinishLoading(bool isNewInstance)
 			description = base->description;
 		
 		bool hasHardpoints = false;
-		for(const Hardpoint &weapon : armament.Get())
-			if(weapon.GetPoint())
+		for(const Hardpoint &hardpoint : armament.Get())
+			if(hardpoint.GetPoint())
 				hasHardpoints = true;
 		
 		if(!hasHardpoints)
@@ -336,7 +336,9 @@ void Ship::FinishLoading(bool isNewInstance)
 			armament = merged;
 		}
 	}
-	// Check that all the "equipped" outfits actually match what your ship has.
+	// Check that all the "equipped" weapons actually match what your ship
+	// has, and that they are truly weapons. Remove any excess weapons and
+	// warn if any non-weapon outfits are "installed" in a hardpoint.
 	for(auto &it : equipped)
 	{
 		int excess = it.second - outfits[it.first];
@@ -349,8 +351,18 @@ void Ship::FinishLoading(bool isNewInstance)
 			
 			cerr << modelName;
 			if(!name.empty())
-				 cerr << " \"" << name << "\"";
+				cerr << " \"" << name << "\"";
 			cerr << ": outfit \"" << it.first->Name() << "\" equipped but not included in outfit list." << endl;
+		}
+		else if(!it.first->IsWeapon())
+		{
+			// This ship was specified with a non-weapon outfit in a
+			// hardpoint. Hardpoint::Install removes it, but issue a
+			// warning so the definition can be fixed.
+			cerr << modelName;
+			if(!name.empty())
+				cerr << " \"" << name << "\"";
+			cerr << ": outfit \"" << it.first->Name() << "\" is not a weapon, but is installed as one." << endl;
 		}
 	}
 	
@@ -379,6 +391,9 @@ void Ship::FinishLoading(bool isNewInstance)
 			continue;
 		}
 		attributes.Add(*it.first, it.second);
+		// Some ship variant definitions do not specify which weapons
+		// are placed in which hardpoint. Add any weapons that are not
+		// yet installed to the ship's armament.
 		if(it.first->IsWeapon())
 		{
 			int count = it.second;
@@ -390,14 +405,33 @@ void Ship::FinishLoading(bool isNewInstance)
 				armament.Add(it.first, count);
 		}
 	}
+	// Inspect the ship's armament to ensure that guns are in gun ports and
+	// turrets are in turret mounts. This can only happen when the armament
+	// is configured incorrectly in a ship or variant definition.
+	for(const Hardpoint &hardpoint : armament.Get())
+	{
+		const Outfit *outfit = hardpoint.GetOutfit();
+		if(outfit && (hardpoint.IsTurret() != (outfit->Get("turret mounts") != 0.)))
+		{
+			bool isTurret = hardpoint.IsTurret();
+			cerr << modelName;
+			if(!name.empty())
+				cerr << " \"" << name << "\"";
+			cerr << ": outfit \"" << outfit->Name() << "\" installed as a ";
+			cerr << (isTurret ? "turret but is a gun." : "gun but is a turret.");
+			cerr << "\n\t" << (isTurret ? "turret " : "gun ");
+			cerr << 2. * hardpoint.GetPoint().X() << " " << 2. * hardpoint.GetPoint().Y();
+			cerr << " \"" << outfit->Name() << "\"" << endl;
+		}
+	}
 	cargo.SetSize(attributes.Get("cargo space"));
 	equipped.clear();
 	armament.FinishLoading();
 	
-	// Figure out how far from center the farthest weapon it.
+	// Figure out how far from center the farthest hardpoint is.
 	weaponRadius = 0.;
-	for(const Hardpoint &weapon : armament.Get())
-		weaponRadius = max(weaponRadius, weapon.GetPoint().Length());
+	for(const Hardpoint &hardpoint : armament.Get())
+		weaponRadius = max(weaponRadius, hardpoint.GetPoint().Length());
 	
 	// If this ship is being instantiated for the first time, make sure its
 	// crew, fuel, etc. are all refilled.
@@ -463,14 +497,14 @@ void Ship::Save(DataWriter &out) const
 		
 		for(const EnginePoint &point : enginePoints)
 			out.Write("engine", 2. * point.X(), 2. * point.Y(), point.Zoom());
-		for(const Hardpoint &weapon : armament.Get())
+		for(const Hardpoint &hardpoint : armament.Get())
 		{
-			const char *type = (weapon.IsTurret() ? "turret" : "gun");
-			if(weapon.GetOutfit())
-				out.Write(type, 2. * weapon.GetPoint().X(), 2. * weapon.GetPoint().Y(),
-					weapon.GetOutfit()->Name());
+			const char *type = (hardpoint.IsTurret() ? "turret" : "gun");
+			if(hardpoint.GetOutfit())
+				out.Write(type, 2. * hardpoint.GetPoint().X(), 2. * hardpoint.GetPoint().Y(),
+					hardpoint.GetOutfit()->Name());
 			else
-				out.Write(type, 2. * weapon.GetPoint().X(), 2. * weapon.GetPoint().Y());
+				out.Write(type, 2. * hardpoint.GetPoint().X(), 2. * hardpoint.GetPoint().Y());
 		}
 		for(const Bay &bay : bays)
 		{
@@ -1612,14 +1646,14 @@ bool Ship::Fire(vector<Projectile> &projectiles, vector<Visual> &visuals)
 	
 	antiMissileRange = 0.;
 	
-	const vector<Hardpoint> &weapons = armament.Get();
-	for(unsigned i = 0; i < weapons.size(); ++i)
+	const vector<Hardpoint> &hardpoints = armament.Get();
+	for(unsigned i = 0; i < hardpoints.size(); ++i)
 	{
-		const Outfit *outfit = weapons[i].GetOutfit();
-		if(outfit && CanFire(outfit))
+		const Weapon *weapon = hardpoints[i].GetOutfit();
+		if(weapon && CanFire(weapon))
 		{
-			if(outfit->AntiMissile())
-				antiMissileRange = max(antiMissileRange, outfit->Velocity() + weaponRadius);
+			if(weapon->AntiMissile())
+				antiMissileRange = max(antiMissileRange, weapon->Velocity() + weaponRadius);
 			else if(commands.HasFire(i))
 				armament.Fire(i, *this, projectiles, visuals);
 		}
@@ -1640,11 +1674,11 @@ bool Ship::FireAntiMissile(const Projectile &projectile, vector<Visual> &visuals
 	if(CannotAct())
 		return false;
 	
-	const vector<Hardpoint> &weapons = armament.Get();
-	for(unsigned i = 0; i < weapons.size(); ++i)
+	const vector<Hardpoint> &hardpoints = armament.Get();
+	for(unsigned i = 0; i < hardpoints.size(); ++i)
 	{
-		const Outfit *outfit = weapons[i].GetOutfit();
-		if(outfit && CanFire(outfit))
+		const Weapon *weapon = hardpoints[i].GetOutfit();
+		if(weapon && CanFire(weapon))
 			if(armament.FireAntiMissile(i, *this, projectile, visuals))
 				return true;
 	}
@@ -2517,21 +2551,21 @@ const vector<Hardpoint> &Ship::Weapons() const
 
 // Check if we are able to fire the given weapon (i.e. there is enough
 // energy, ammo, and fuel to fire it).
-bool Ship::CanFire(const Outfit *outfit) const
+bool Ship::CanFire(const Weapon *weapon) const
 {
-	if(!outfit || !outfit->IsWeapon())
+	if(!weapon)
 		return false;
 	
-	if(outfit->Ammo())
+	if(weapon->Ammo())
 	{
-		auto it = outfits.find(outfit->Ammo());
+		auto it = outfits.find(weapon->Ammo());
 		if(it == outfits.end() || it->second <= 0)
 			return false;
 	}
 	
-	if(energy < outfit->FiringEnergy())
+	if(energy < weapon->FiringEnergy())
 		return false;
-	if(fuel < outfit->FiringFuel())
+	if(fuel < weapon->FiringFuel())
 		return false;
 	
 	return true;
@@ -2541,16 +2575,16 @@ bool Ship::CanFire(const Outfit *outfit) const
 
 // Fire the given weapon (i.e. deduct whatever energy, ammo, or fuel it uses
 // and add whatever heat it generates. Assume that CanFire() is true.
-void Ship::ExpendAmmo(const Outfit *outfit)
+void Ship::ExpendAmmo(const Weapon *weapon)
 {
-	if(!outfit)
+	if(!weapon)
 		return;
-	if(outfit->Ammo())
-		AddOutfit(outfit->Ammo(), -1);
+	if(weapon->Ammo())
+		AddOutfit(weapon->Ammo(), -1);
 	
-	energy -= outfit->FiringEnergy();
-	fuel -= outfit->FiringFuel();
-	heat += outfit->FiringHeat();
+	energy -= weapon->FiringEnergy();
+	fuel -= weapon->FiringFuel();
+	heat += weapon->FiringHeat();
 }
 
 
