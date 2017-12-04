@@ -763,10 +763,12 @@ void Mission::Do(const ShipEvent &event, PlayerInfo &player, UI *ui)
 		if(event.Type() & ShipEvent::DESTROY)
 		{
 			// Destroyed ships carrying mission cargo result in failed missions.
+			// Mission cargo may have a quantity of zero (i.e. 0 mass).
 			for(const auto &it : event.Target()->Cargo().MissionCargo())
 				failed |= (it.first == this);
+			// If any mission passengers were present, this mission is failed.
 			for(const auto &it : event.Target()->Cargo().PassengerList())
-				failed |= (it.first == this);
+				failed |= (it.first == this && it.second);
 			if(failed)
 				message += "lost. ";
 		}
