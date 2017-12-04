@@ -146,6 +146,9 @@
 		A9D40D1A195DFAA60086EE52 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9D40D19195DFAA60086EE52 /* OpenGL.framework */; };
 		DF8D57E11FC25842001525DA /* Dictionary.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DF8D57DF1FC25842001525DA /* Dictionary.cpp */; };
 		DF8D57E51FC25889001525DA /* Visual.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DF8D57E21FC25889001525DA /* Visual.cpp */; };
+		DFAAE2A61FD4A25C0072C0A8 /* BatchDrawList.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DFAAE2A21FD4A25C0072C0A8 /* BatchDrawList.cpp */; };
+		DFAAE2A71FD4A25C0072C0A8 /* BatchShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DFAAE2A41FD4A25C0072C0A8 /* BatchShader.cpp */; };
+		DFAAE2AA1FD4A27B0072C0A8 /* ImageSet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DFAAE2A81FD4A27B0072C0A8 /* ImageSet.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -430,6 +433,12 @@
 		DF8D57E01FC25842001525DA /* Dictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Dictionary.h; path = source/Dictionary.h; sourceTree = "<group>"; };
 		DF8D57E21FC25889001525DA /* Visual.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Visual.cpp; path = source/Visual.cpp; sourceTree = "<group>"; };
 		DF8D57E31FC25889001525DA /* Visual.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Visual.h; path = source/Visual.h; sourceTree = "<group>"; };
+		DFAAE2A21FD4A25C0072C0A8 /* BatchDrawList.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = BatchDrawList.cpp; path = source/BatchDrawList.cpp; sourceTree = "<group>"; };
+		DFAAE2A31FD4A25C0072C0A8 /* BatchDrawList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BatchDrawList.h; path = source/BatchDrawList.h; sourceTree = "<group>"; };
+		DFAAE2A41FD4A25C0072C0A8 /* BatchShader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = BatchShader.cpp; path = source/BatchShader.cpp; sourceTree = "<group>"; };
+		DFAAE2A51FD4A25C0072C0A8 /* BatchShader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BatchShader.h; path = source/BatchShader.h; sourceTree = "<group>"; };
+		DFAAE2A81FD4A27B0072C0A8 /* ImageSet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ImageSet.cpp; path = source/ImageSet.cpp; sourceTree = "<group>"; };
+		DFAAE2A91FD4A27B0072C0A8 /* ImageSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImageSet.h; path = source/ImageSet.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -467,6 +476,10 @@
 				A96862DA1AE6FD0A004FE1FE /* Audio.h */,
 				A96862DB1AE6FD0A004FE1FE /* BankPanel.cpp */,
 				A96862DC1AE6FD0A004FE1FE /* BankPanel.h */,
+				DFAAE2A21FD4A25C0072C0A8 /* BatchDrawList.cpp */,
+				DFAAE2A31FD4A25C0072C0A8 /* BatchDrawList.h */,
+				DFAAE2A41FD4A25C0072C0A8 /* BatchShader.cpp */,
+				DFAAE2A51FD4A25C0072C0A8 /* BatchShader.h */,
 				A96862DF1AE6FD0A004FE1FE /* BoardingPanel.cpp */,
 				A96862E01AE6FD0A004FE1FE /* BoardingPanel.h */,
 				6245F8231D301C7400A7A094 /* Body.cpp */,
@@ -553,6 +566,8 @@
 				A96863261AE6FD0B004FE1FE /* Information.h */,
 				A96863271AE6FD0B004FE1FE /* Interface.cpp */,
 				A96863281AE6FD0B004FE1FE /* Interface.h */,
+				DFAAE2A81FD4A27B0072C0A8 /* ImageSet.cpp */,
+				DFAAE2A91FD4A27B0072C0A8 /* ImageSet.h */,
 				A9B99D001C616AD000BE7C2E /* ItemInfoDisplay.cpp */,
 				A9B99D011C616AD000BE7C2E /* ItemInfoDisplay.h */,
 				A96863291AE6FD0B004FE1FE /* LineShader.cpp */,
@@ -856,6 +871,7 @@
 				A96863E41AE6FD0E004FE1FE /* PlanetPanel.cpp in Sources */,
 				A96863E01AE6FD0E004FE1FE /* Panel.cpp in Sources */,
 				A96863D21AE6FD0E004FE1FE /* MapDetailPanel.cpp in Sources */,
+				DFAAE2AA1FD4A27B0072C0A8 /* ImageSet.cpp in Sources */,
 				A96863D41AE6FD0E004FE1FE /* Mask.cpp in Sources */,
 				A96863E61AE6FD0E004FE1FE /* Point.cpp in Sources */,
 				A96863DE1AE6FD0E004FE1FE /* OutfitterPanel.cpp in Sources */,
@@ -892,6 +908,7 @@
 				A96863E81AE6FD0E004FE1FE /* Politics.cpp in Sources */,
 				A96863E91AE6FD0E004FE1FE /* Preferences.cpp in Sources */,
 				A96863F31AE6FD0E004FE1FE /* ShipEvent.cpp in Sources */,
+				DFAAE2A71FD4A25C0072C0A8 /* BatchShader.cpp in Sources */,
 				A96863D51AE6FD0E004FE1FE /* MenuPanel.cpp in Sources */,
 				A90C15DC1D5BD56800708F3A /* Rectangle.cpp in Sources */,
 				A9B99D021C616AD000BE7C2E /* ItemInfoDisplay.cpp in Sources */,
@@ -919,6 +936,7 @@
 				A96864051AE6FD0E004FE1FE /* Weapon.cpp in Sources */,
 				A96863EC1AE6FD0E004FE1FE /* Radar.cpp in Sources */,
 				A96863F61AE6FD0E004FE1FE /* ShopPanel.cpp in Sources */,
+				DFAAE2A61FD4A25C0072C0A8 /* BatchDrawList.cpp in Sources */,
 				A98150851EA9635D00428AD6 /* PlayerInfoPanel.cpp in Sources */,
 				A96863BC1AE6FD0E004FE1FE /* Files.cpp in Sources */,
 				A96863CB1AE6FD0E004FE1FE /* Information.cpp in Sources */,

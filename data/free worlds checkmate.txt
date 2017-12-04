@@ -11,7 +11,7 @@
 mission "FWC Scouting 1"
 	landing
 	name "Scout Kaus Borealis"
-	description "Travel through the Kaus Borealis system to determine how strong the Navy presence is there, while JJ works to gather a fleet to attack it."
+	description "Travel through the <waypoints> system to determine how strong the Navy presence is there, while JJ works to gather a fleet to attack it."
 	autosave
 	source "New Portland"
 	waypoint "Kaus Borealis"
@@ -155,7 +155,7 @@ mission "FWC Attack Kaus Borealis"
 mission "FWC Cebalrai 1"
 	landing
 	name "Scout out Cebalrai"
-	description "Scout out the Navy presence in the Cebalrai system, then report back to Tomek on <planet>."
+	description "Scout out the Navy presence in the <waypoints> system, then report back to Tomek on <planet>."
 	autosave
 	source "New Iceland"
 	waypoint "Cebalrai"
@@ -196,7 +196,7 @@ mission "FWC Cebalrai 1"
 			`	"Well," he says, "if we can take Cebalrai, our entire territory will be behind just two choke points, which will allow us to defend ourselves against the Navy without spreading the fleet too thin. So next, I'd like you to go scout out the Cebalrai system and report on the Navy's position there."`
 				accept
 	
-	on enter Cebalrai
+	on enter "Cebalrai"
 		dialog
 			`There are a few Navy ships here, but nowhere near as many as were in the Kaus Borealis system before your last attack. Perhaps the Navy has decided to pull back their forces.`
 	

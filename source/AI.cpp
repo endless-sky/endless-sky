@@ -1704,14 +1704,21 @@ void AI::Attack(Ship &ship, Command &command, const Ship &target)
 	double shortestRange = 4000.;
 	bool isArmed = false;
 	bool hasAmmo = false;
+	double minSafeDistance = 0.;
 	for(const Hardpoint &weapon : ship.Weapons())
 	{
 		const Outfit *outfit = weapon.GetOutfit();
 		if(outfit && !weapon.IsAntiMissile())
 		{
 			isArmed = true;
-			if(!outfit->Ammo() || ship.OutfitCount(outfit->Ammo()))
-				hasAmmo = true;
+			bool hasThisAmmo = (!outfit->Ammo() || ship.OutfitCount(outfit->Ammo()));
+			hasAmmo |= hasThisAmmo;
+			
+			// Exploding weaponry that can damage this ship requires special
+			// consideration (while we have the ammo to use the weapon).
+			if(hasThisAmmo && outfit->BlastRadius() && !outfit->IsSafe())
+				minSafeDistance = max(outfit->BlastRadius() + outfit->TriggerRadius(), minSafeDistance);
+			
 			// The missile boat AI should be applied at 1000 pixels range if
 			// all weapons are homing or turrets, and at 2000 if not.
 			double multiplier = (weapon.IsHoming() || weapon.IsTurret()) ? 1. : .5;
@@ -1728,10 +1735,12 @@ void AI::Attack(Ship &ship, Command &command, const Ship &target)
 	// Deploy any fighters you are carrying.
 	if(!ship.IsYours())
 		command |= Command::DEPLOY;
-	// If this ship only has long-range weapons, it should keep its distance
-	// instead of trying to close with the target ship.
-	Point d = target.Position() - ship.Position();
-	if(shortestRange > 1000. && d.Length() < .5 * shortestRange)
+	
+	// If this ship has only long-range weapons, or some weapons have a
+	// blast radius, it should keep some distance instead of closing in.
+	Point d = (target.Position() + target.Velocity()) - (ship.Position() + ship.Velocity());
+	if((minSafeDistance > 0. || shortestRange > 1000.)
+			&& d.Length() < max(1.25 * minSafeDistance, .5 * shortestRange))
 	{
 		// If this ship can use reverse thrusters, consider doing so.
 		double reverseSpeed = ship.MaxReverseVelocity();
@@ -1741,15 +1750,14 @@ void AI::Attack(Ship &ship, Command &command, const Ship &target)
 			command.SetTurn(TurnToward(ship, d));
 			if(ship.Facing().Unit().Dot(d) >= 0.)
 				command |= Command::BACK;
-			return;
 		}
 		else
 		{
 			command.SetTurn(TurnToward(ship, -d));
 			if(ship.Facing().Unit().Dot(d) <= 0.)
 				command |= Command::FORWARD;
-			return;
 		}
+		return;
 	}
 	
 	MoveToAttack(ship, command, target);
@@ -2482,8 +2490,9 @@ void AI::AutoFire(const Ship &ship, Command &command, bool secondary) const
 			p += v;
 			
 			// If this weapon has a blast radius, don't fire it if the target is
-			// so close that you'll be hit by the blast.
-			if(!outfit->IsSafe() && p.Length() < outfit->BlastRadius())
+			// so close that you'll be hit by the blast. Weapons using proximity
+			// triggers will explode sooner, so a larger separation is needed.
+			if(!outfit->IsSafe() && p.Length() <= (outfit->BlastRadius() + outfit->TriggerRadius()))
 				continue;
 			
 			// Calculate how long it will take the projectile to reach its target.
@@ -2512,6 +2521,11 @@ void AI::AutoFire(const Ship &ship, Command &command, bool secondary) const
 			// By the time this action is performed, the ships will have moved
 			// forward one time step.
 			p += v;
+			
+			// Non-homing weapons may have a blast radius or proximity trigger.
+			// Do not fire this weapon if we will be caught in the blast.
+			if(!outfit->IsSafe() && p.Length() <= (outfit->BlastRadius() + outfit->TriggerRadius()))
+				continue;
 			
 			// Get the vector the weapon will travel along.
 			v = (ship.Facing() + weapon.GetAngle()).Unit() * vp - v;

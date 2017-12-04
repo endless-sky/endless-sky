@@ -469,10 +469,10 @@ outfit "Proton Fragment"
 			"frame rate" 2
 		"hit effect" "proton impact"
 		"inaccuracy" 2
-		"lifetime" 20
+		"lifetime" 24
 		"hit force" 6
-		"shield damage" 8
-		"hull damage" 6.6
+		"shield damage" 8.4
+		"hull damage" 7
 
 effect "proton impact"
 	sprite "effect/proton impact"
@@ -481,6 +481,33 @@ effect "proton impact"
 	"lifetime" 20
 	"random angle" 2
 	"velocity scale" -.005
+
+
+outfit "Proton Turret"
+	category "Turrets"
+	cost 260000
+	thumbnail "outfit/proton turret"
+	"mass" 34
+	"outfit space" -34
+	"weapon capacity" -34
+	"turret mounts" -1
+	"required crew" 1
+	weapon
+		sprite "projectile/proton"
+		"hardpoint sprite" "hardpoint/proton turret"
+		"hardpoint offset" 14.
+		sound "proton"
+		"hit effect" "proton impact" 3
+		"inaccuracy" 4
+		"turret turn" 2.5
+		"submunition" "Proton Fragment" 3
+		"velocity" 24
+		"lifetime" 2
+		"reload" 8
+		"firing energy" 15
+		"firing force" 2
+		"firing heat" 60
+	description "The Syndicate Proton Turret is a relatively new product designed to compete with Deep Sky's perennially popular laser turrets in the anti-fighter defense market. Though cruder than its competition, the Proton Turret maintains a loyal following among captains dissatisfied with laser weapons' short range."
 
 
 outfit "Plasma Cannon"

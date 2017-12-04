@@ -1068,7 +1068,7 @@ mission "Wanderers: Alpha Surveillance D"
 
 mission "Wanderers: Alpha Surveillance D (Avalon)"
 	landing
-	source Avalon
+	source "Avalon"
 	to offer
 		has "Wanderers: Alpha Surveillance D: active"
 	on offer
@@ -1548,7 +1548,7 @@ event "capture of ik'kara'ka"
 		fleet "Small Unfettered" 600
 		fleet "Large Unfettered" 400
 	planet "Varu Mer'ek"
-		attributes unfettered factory
+		attributes "unfettered" "factory"
 		description `This Wanderer factory world was recently captured by the Unfettered Hai, who are now busy trying to repurpose the Wanderer factories and equipment that were left behind, to build more ships for their war fleets. The Wanderers did not have time to demolish any of their equipment or to carry it off-world before the planet was lost. As a result, they have given the Unfettered a significant technological advantage here.`
 		spaceport `The Unfettered seem to be quite at home in the tree house dwellings that the Wanderers left behind, and the Unfettered youth living here scramble up trunks and leap from tree to tree with reckless abandon, exulting in this new world they have captured and trying to outdo each other with their daredevil escapades.`
 		shipyard clear
@@ -2059,7 +2059,7 @@ event "battle for sich'ka'ara ends"
 		fleet "Large Unfettered" 600
 		fleet "Small Unfettered" 600
 	planet "Kort Vek'kri"
-		attributes unfettered
+		attributes "unfettered"
 		spaceport `The Unfettered clearly do not know quite what to make of the Wanderer research station here that they have recently captured. Animals that were once part of various experiments are now wandering loose, and the Unfettered are making only sporadic efforts to keep them well-fed. Every once in a while one of them, driven by sheer hunger, tries to smash its way into one of the crates of military rations that the Unfettered have stacked up in the shade near the main landing pad.`
 	fleet "Large Unfettered"
 		add variant 3

@@ -189,6 +189,21 @@ ship "Freighter" "Freighter (Fancy)"
 
 
 
+ship "Freighter" "Freighter (Proton)"
+	outfits
+		"Proton Turret"
+		"Heavy Anti-Missile Turret"
+		"NT-200 Nucleovoltaic"
+		"Supercapacitor"
+		"D14-RN Shield Generator"
+		"Ramscoop"
+		"Outfits Expansion"
+		"Greyhound Plasma Thruster"
+		"X3200 Ion Steering"
+		"Scram Drive"
+
+
+
 ship "Argosy" "Argosy (Laser)"
 	outfits
 		"Beam Laser" 2
@@ -222,6 +237,20 @@ ship "Argosy" "Argosy (Missile)"
 
 
 
+ship "Argosy" "Argosy (Proton)"
+	outfits
+		"Proton Gun" 2
+		"Proton Turret" 2
+		"NT-200 Nucleovoltaic"
+		"Supercapacitor"
+		"D67-TM Shield Generator"
+		"Outfits Expansion" 2
+		"Greyhound Plasma Thruster"
+		"Impala Plasma Steering"
+		"Hyperdrive"
+
+
+
 ship "Argosy" "Argosy (Turret)"
 	outfits
 		"Heavy Laser Turret" 2
@@ -247,6 +276,31 @@ ship "Argosy" "Argosy (Blaster)"
 		"Greyhound Plasma Thruster"
 		"Impala Plasma Steering"
 		"Hyperdrive"
+
+
+
+ship "Behemoth" "Behemoth (Proton)"
+	outfits
+		"Sidewinder Missile Launcher" 2
+		"Sidewinder Missile" 100
+		"Proton Turret" 4
+		"Heavy Anti-Missile Turret" 2
+		"Breeder Reactor"
+		"LP144a Battery Pack"
+		"D94-YV Shield Generator"
+		"Large Radar Jammer"
+		"Liquid Nitrogen Cooler"
+		"Outfits Expansion" 6
+		"A250 Atomic Thruster"
+		"A125 Atomic Steering"
+		"A375 Atomic Steering"
+		"Scram Drive"
+	turret "Proton Turret"
+	turret "Proton Turret"
+	turret "Proton Turret"
+	turret "Proton Turret"
+	turret "Heavy Anti-Missile Turret"
+	turret "Heavy Anti-Missile Turret"
 
 
 
@@ -300,6 +354,22 @@ ship "Bulk Freighter" "Bulk Freighter (Blaster)"
 		"D94-YV Shield Generator"
 		"Water Coolant System"
 		"Outfits Expansion" 2
+		"A250 Atomic Thruster"
+		"A375 Atomic Steering"
+		"Scram Drive"
+
+
+
+ship "Bulk Freighter" "Bulk Freighter (Proton)"
+	outfits
+		"Proton Turret" 3
+		"Heavy Anti-Missile Turret"
+		"Meteor Missile Launcher" 2
+		"Meteor Missile" 70
+		"Fission Reactor"
+		"LP072a Battery Pack"
+		"D94-YV Shield Generator"
+		"Outfits Expansion"
 		"A250 Atomic Thruster"
 		"A375 Atomic Steering"
 		"Scram Drive"
@@ -558,6 +628,23 @@ ship "Splinter" "Splinter (Laser)"
 	turret "Heavy Laser Turret"
 
 
+ship "Splinter" "Splinter (Proton)"
+	outfits
+		"Proton Gun" 2
+		"Proton Turret" 2
+		"Anti-Missile Turret"
+		"Water Coolant System"
+		"Fission Reactor"
+		"LP036a Battery Pack"
+		"D94-YV Shield Generator"
+		"X3700 Ion Thruster"
+		"Impala Plasma Steering"
+		"Hyperdrive"
+	turret "Proton Turret"
+	turret "Anti-Missile Turret"
+	turret "Proton Turret"
+
+
 
 ship "Falcon" "Falcon (Laser)"
 	outfits
@@ -650,6 +737,20 @@ ship "Protector" "Protector (Laser)"
 	turret "Heavy Laser Turret"
 	turret "Heavy Laser Turret"
 	turret "Heavy Laser Turret"
+
+
+
+ship "Protector" "Protector (Proton)"
+	outfits
+		"Proton Turret" 6
+		"Fusion Reactor"
+		"LP036a Battery Pack"
+		"Supercapacitor" 3
+		"D94-YV Shield Generator" 2
+		"Water Coolant System"
+		"A370 Atomic Thruster"
+		"A375 Atomic Steering"
+		"Hyperdrive"
 
 
 

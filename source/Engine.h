@@ -164,7 +164,7 @@ private:
 	// Other information to display.
 	Information info;
 	std::vector<Target> targets;
-	Point targetAngle;
+	Point targetVector;
 	Point targetUnit;
 	int targetSwizzle = -1;
 	EscortDisplay escorts;
