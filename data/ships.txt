@@ -2695,7 +2695,7 @@ ship "Star Queen"
 		"cost" 5500000
 		"shields" 4100
 		"hull" 2200
-		"required crew" 43
+		"required crew" 41
 		"bunks" 112
 		"mass" 230
 		"drag" 5.5
@@ -2716,9 +2716,10 @@ ship "Star Queen"
 		"Heavy Anti-Missile Turret" 2
 		
 		"NT-200 Nucleovoltaic"
-		"LP072a Battery Pack"
+		"LP036a Battery Pack"
 		"D94-YV Shield Generator"
 		"Small Radar Jammer" 3
+		"Luxury Accommodations"
 		
 		"X3700 Ion Thruster"
 		"X3200 Ion Steering"

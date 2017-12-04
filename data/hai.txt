@@ -283,6 +283,7 @@ outfitter "Hai Advanced"
 	`"Bondir" Atomic Steering`
 	`"Bufaer" Atomic Thruster`
 	`"Bufaer" Atomic Steering`
+	"Luxury Accommodations"
 	"Local Map"
 	"Quantum Keystone"
 

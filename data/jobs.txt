@@ -1866,6 +1866,8 @@ mission "Tourists out [0]"
 	passengers 1
 	to offer
 		random < 20
+	on offer
+		require "Luxury Accommodations"
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
 	destination
@@ -1873,8 +1875,7 @@ mission "Tourists out [0]"
 		distance 6 35
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
 	on complete
-		payment
-		payment 6000
+		payment 8000 200
 		dialog "You wish your <passengers> the best of luck on <planet>, and collect your payment of <payment>."
 
 mission "Tourists out [1]"
@@ -1885,6 +1886,8 @@ mission "Tourists out [1]"
 	passengers 2 10 .9
 	to offer
 		random < 50
+	on offer
+		require "Luxury Accommodations"
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
 	destination
@@ -1892,8 +1895,7 @@ mission "Tourists out [1]"
 		distance 2 25
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
 	on complete
-		payment
-		payment 4000
+		payment 6000 200
 		dialog "You wish your <passengers> the best of luck on <planet>, and collect your payment of <payment>."
 
 mission "Tourists out [2]"
@@ -1904,6 +1906,8 @@ mission "Tourists out [2]"
 	passengers 2 10 .9
 	to offer
 		random < 75
+	on offer
+		require "Luxury Accommodations"
 	source
 		attributes "rich" "urban"
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
@@ -1912,8 +1916,7 @@ mission "Tourists out [2]"
 		distance 4 30
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
 	on complete
-		payment
-		payment 8000
+		payment 10000 200
 		dialog "You wish your <passengers> the best of luck on <planet>, and collect your payment of <payment>."
 
 mission "Tourists back [0]"
@@ -1924,6 +1927,8 @@ mission "Tourists back [0]"
 	passengers 1
 	to offer
 		random < 20
+	on offer
+		require "Luxury Accommodations"
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
 		attributes "tourism"
@@ -1931,8 +1936,7 @@ mission "Tourists back [0]"
 		distance 6 35
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
 	on complete
-		payment
-		payment 6000
+		payment 8000 200
 		dialog "You wish your <passengers> the best of luck on <planet>, and collect your payment of <payment>."
 
 mission "Tourists back [1]"
@@ -1943,6 +1947,8 @@ mission "Tourists back [1]"
 	passengers 2 10 .9
 	to offer
 		random < 50
+	on offer
+		require "Luxury Accommodations"
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
 		attributes "tourism"
@@ -1950,8 +1956,7 @@ mission "Tourists back [1]"
 		distance 2 25
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
 	on complete
-		payment
-		payment 4000
+		payment 6000 200
 		dialog "You wish your <passengers> the best of luck on <planet>, and collect your payment of <payment>."
 
 mission "Tourists back [2]"
@@ -1962,6 +1967,8 @@ mission "Tourists back [2]"
 	passengers 2 10 .9
 	to offer
 		random < 75
+	on offer
+		require "Luxury Accommodations"
 	source
 		attributes "tourism"
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
@@ -1970,8 +1977,7 @@ mission "Tourists back [2]"
 		distance 4 30
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
 	on complete
-		payment
-		payment 8000
+		payment 10000 200
 		dialog "You wish your <passengers> the best of luck on <planet>, and collect your payment of <payment>."
 
 mission "Family [0]"

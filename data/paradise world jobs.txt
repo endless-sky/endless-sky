@@ -78,15 +78,16 @@ mission "Newlyweds to <planet>"
 	cargo "wedding gifts" 2 4
 	to offer
 		random < 10
+	on offer
+		require "Luxury Accommodations"
 	source
-		attributes paradise
+		attributes "paradise"
 	destination
 		distance 2 15
-		government Republic "Free Worlds" Syndicate Neutral Quarg
-		attributes paradise rich core "near earth"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Quarg"
+		attributes "paradise" "rich" "core" "near earth"
 	on complete
-		payment
-		payment 8000
+		payment 10000 250
 		dialog "You bid the two lovebirds goodbye on <planet> and collect your payment of <payment>."
 
 
@@ -141,13 +142,15 @@ mission "Transport partiers [1]"
 		stealth
 	to offer
 		random < 10
+	on offer
+		require "Luxury Accommodations"
 	source
-		attributes paradise
+		attributes "paradise"
 	destination
 		distance 4 12
-		attributes tourism
+		attributes "tourism"
 	on complete
-		payment 8000 150
+		payment 10000 200
 		dialog "You're not sorry to say goodbye to the rowdy and uncouth troublemakers you've been transporting. Their parents send you your payment of <payment> with not a word of acknowledgement."
 
 
@@ -160,13 +163,15 @@ mission "Transport partiers [2]"
 	cargo "snacks and school supplies" 2 4
 	to offer
 		random < 10
+	on offer
+		require "Luxury Accommodations"
 	source
-		attributes paradise
+		attributes "paradise"
 	destination
 		distance 4 12
-		attributes tourism
+		attributes "tourism"
 	on complete
-		payment 3000 140
+		payment 5000 190
 		dialog "You bid goodbye to the students, who behaved surprisingly well during the journey - yielding many fascinating conversations on subjects as diverse as philosophy, microfluidics, and intergalactic economics. Their proud parents send you your payment of <payment>."
 
 mission "Food donations to <planet>"
@@ -323,15 +328,16 @@ mission "Transport rich tourists"
 	passengers 8 22
 	to offer
 		random < 10
+	on offer
+		require "Luxury Accommodations"
 	source
-		attributes paradise
+		attributes "paradise"
 	destination
-		attributes religious quarg pirate volcanic frontier
+		attributes "religious" "quarg" "pirate" "volcanic" "frontier"
 		distance 8 20
 	on complete
 		dialog "Your passengers begin to wander off, some of them sporting puzzled looks as the memories of glossy photos in the brochures give way to reality. You collect your payment of <payment>."
-		payment
-		payment 20000
+		payment 25000 220
 
 
 mission "Pleasure cruise security"

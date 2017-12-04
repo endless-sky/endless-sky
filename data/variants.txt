@@ -1653,11 +1653,12 @@ ship "Star Queen" "Star Queen (Hai)"
 		"Hai Tracker" 168
 		"Chameleon Anti-Missile" 2
 		"NT-200 Nucleovoltaic"
-		"Hai Fissure Batteries"
+		"Hai Chasm Batteries"
 		"D94-YV Shield Generator"
 		"Small Radar Jammer"
 		"X3700 Ion Thruster"
 		"A375 Atomic Steering"
+		"Luxury Accommodations"
 		"Hyperdrive"
 
 

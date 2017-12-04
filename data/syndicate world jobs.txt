@@ -17,14 +17,16 @@ mission "Transport executive to <planet>"
 	passengers 1
 	to offer
 		random < 20
+	on offer
+		require "Luxury Accommodations"
 	source
-		government Syndicate
+		government "Syndicate"
 	destination
 		distance 3 15
-		government Republic "Free Worlds" Syndicate Neutral Quarg
-		attributes paradise rich core "near earth"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent" "Quarg"
+		attributes "paradise" "rich" "core" "near earth"
 	on complete
-		payment 1000 170
+		payment 5000 250
 		dialog "The executive rushes off your ship without even a goodbye, fancy briefcase in hand. You collect your payment of <payment>."
 
 
@@ -36,16 +38,18 @@ mission "Corporate retreat from <origin>"
 	passengers 7 18
 	to offer
 		random < 20
+	on offer
+		require "Luxury Accommodations"
 	source
-		government Syndicate
+		government "Syndicate"
 	stopover
-		attributes quarg volcanic frontier north south
+		attributes "quarg" "volcanic" "frontier" "north" "south"
 		distance 3 12
-		government Republic "Free Worlds" Syndicate Neutral Quarg
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent" "Quarg"
 	on stopover
 		dialog "For days your ship has played host to endless discussions about load calculations, tensile strengths, and thermodynamic limits. You're grateful for some peace and quiet as the team of engineers tromps out of the hatch and heads for their exotic corporate retreat. You prepare for the return journey to <origin>."
 	on complete
-		payment 1000 90
+		payment 3000 160
 		dialog "The team's boss thanks you for a smooth trip and authorizes a payment of <payment>."
 
 

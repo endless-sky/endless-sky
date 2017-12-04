@@ -301,6 +301,16 @@ outfit "Small Bunk Room"
 	unplunderable 1
 	description "Captains who do not care particularly much about the comfort of their passengers or crew can usually find a way to shove a bunk bed in behind the power generator or to hang a few hammocks from the engines as a makeshift way to make space for more people."
 
+outfit "Luxury Accommodations"
+	category "Systems"
+	cost 250000
+	thumbnail "outfit/luxury accommodations"
+	"mass" 10
+	"outfit space" -10
+	"required crew" 2
+	"unplunderable" 1
+	description "Most deep space voyages involve a certain amount of passenger discomfort. With the addition of a few extra fresh water tanks, private bathrooms, wooden fixtures, and some hospitality staff, any ship can be made attractive to a significantly higher--and better paying--class of passenger."
+
 outfit "Fuel Pod"
 	category "Systems"
 	cost 20000
