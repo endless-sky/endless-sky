@@ -150,19 +150,18 @@ mission "Transport scientists"
 	repeat
 	to offer
 		random < 15
-	on offer
-		require "Luxury Accommodations"
 	passengers 5 16
 	source
-		attributes "deep"
+		attributes deep
 	stopover
-		attributes "research"
+		attributes research
 		distance 2 50
 	on stopover
 		dialog "The scientists have been giddily discussing the results of their research during the entire trip. You're happy for a bit of peace and quiet as they make tracks for a prominent research lab to have the results analyzed. You prepare for the return journey to <planet>."
 	on complete
 		dialog "You bid goodbye to the scientists and accept your payment of <payment>."
-		payment 35000 200
+		payment
+		payment 30000
 
 
 mission "Escort science vessel"
