@@ -1412,7 +1412,7 @@ ship "Behemoth" "Behemoth (Hai)"
 	outfits
 		"Sidewinder Missile Launcher" 2
 		"Sidewinder Missile" 100
-		"Pulse Turret"
+		"Pulse Turret" 5
 		"Bullfrog Anti-Missile"
 		"Boulder Reactor"
 		"Hai Ravine Batteries"
