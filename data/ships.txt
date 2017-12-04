@@ -1421,10 +1421,10 @@ ship "Fury"
 	engine 17 35
 	gun -10 -26
 	gun 10 -26
-	gun -10 -26
-	gun 10 -26
 	gun -16 -20
 	gun 16 -20
+	gun -36 7
+	gun 36 7
 	explode "tiny explosion" 10
 	explode "small explosion" 20
 	description "The Fury is Southbound Shipyard's most popular design of escort ship. They have greater firepower than any other interceptor-class vessel, meaning that any pirate flying solo will think twice before attacking a convoy that is accompanied by a Fury. However, Furies are also much less maneuverable than other small ships."
@@ -1681,8 +1681,8 @@ ship "Hawk"
 	engine 24 41
 	gun -9 -17
 	gun 9 -17
-	gun -9 -17
-	gun 9 -17
+	gun -15 -17
+	gun 15 -17
 	explode "tiny explosion" 15
 	explode "small explosion" 5
 	"final explode" "final explosion small"
@@ -2592,8 +2592,8 @@ ship "Sparrow"
 	engine 5 35
 	gun -7 -10
 	gun 7 -10
-	gun -7 -10
-	gun 7 -10
+	gun -13 -10
+	gun 13 -10
 	explode "tiny explosion" 15
 	explode "small explosion" 5
 	description "Classified as an interceptor rather than a fighter because it has its own hyperdrive instead of needing to be carried inside a larger ship, the Tarazed Sparrow is the smallest and cheapest combat ship available. Because of its limited cargo and passenger space, the primary way for a Sparrow pilot to pay the bills is by hunting pirates... or by becoming one. In either case, it is a perilous way to earn a living."
@@ -2874,8 +2874,8 @@ ship "Wasp"
 	gun 0 -38 "Javelin Pod"
 	gun -13 -31 "Energy Blaster"
 	gun 13 -31 "Energy Blaster"
-	gun -13 -31
-	gun 13 -31
+	gun -20 -26
+	gun 20 -26
 	explode "tiny explosion" 20
 	explode "small explosion" 10
 	description "The wasp is a medium-strength interceptor, designed by Syndicated Shipyards to serve as an escort for cargo vessels. Like most Syndicate ships, it is not particularly pretty, but it at least serves the purpose it was made for."
