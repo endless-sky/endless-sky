@@ -1701,8 +1701,8 @@ mission "FW Rand 1"
 	name "Occupy Zeta Aquilae"
 	description "Take a Free Worlds fleet to Zeta Aquilae, drive away whatever Navy ships are there, and then land on Rand, which has decided to join the Free Worlds."
 	autosave
-	source Dancer
-	destination Rand
+	source "Dancer"
+	destination "Rand"
 	clearance
 	passengers 2
 	blocked "You need a bunk free for Freya (in addition to JJ) to continue this mission."
@@ -1732,7 +1732,8 @@ mission "FW Rand 1"
 				accept
 	
 	npc
-		personality heroic disables
+		government "Free Worlds"
+		personality heroic disables escort
 		ship "Dreadnought" "F.S. Elder"
 		ship "Falcon (Plasma)" "F.S. Reliant"
 		ship "Falcon (Heavy)" "F.S. Bismark"
@@ -1746,14 +1747,14 @@ mission "FW Rand 1"
 		ship "Hawk (Rocket)" "F.S. Echo"
 		ship "Hawk" "F.S. Shadow"
 	npc
-		personality heroic disables
 		government "Free Worlds"
+		personality heroic disables
 		system "Kochab"
 		ship "Dreadnought" "F.S. Linden"
 	
 	npc evade
+		government "Republic"
 		system "Zeta Aquilae"
-		government Republic
 		personality staying heroic
 		fleet 2
 			names "republic capital"
