@@ -1486,16 +1486,17 @@ mission "Raider Attack 1"
 	to offer
 		"combat rating" > 550
 		random < 7
+		"main plot: completed"
 	source
 		planet "Sundive"
 		planet "Shangri-La"
 		planet "Nimbus"
 	npc evade
-		government Korath
+		government "Korath"
 		personality timid unconstrained uninterested
 		fleet "Korath Raid" 2
 	npc
-		government Syndicate
+		government "Syndicate"
 		personality heroic staying vindictive
 		fleet "Large Syndicate"
 		fleet "Small Syndicate"
@@ -1520,17 +1521,18 @@ mission "Raider Attack 2"
 	to offer
 		"combat rating" > 750
 		random < 5
+		"main plot: completed"
 	source
 		planet "Sundive"
 		planet "Shangri-La"
 		planet "Nimbus"
 	npc evade
-		government Korath
+		government "Korath"
 		personality timid unconstrained uninterested
 		fleet "Korath Raid" 3
 		
 	npc
-		government Syndicate
+		government "Syndicate"
 		personality heroic staying vindictive
 		fleet "Large Syndicate" 2
 	on offer
