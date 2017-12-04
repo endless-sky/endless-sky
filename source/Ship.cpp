@@ -1451,10 +1451,11 @@ shared_ptr<Ship> Ship::Board(bool autoPlunder)
 		return shared_ptr<Ship>();
 	}
 	
-	// Board a ship of your own government to repair/refuel it.
+	// Board a friendly ship, to repair or refuel it.
 	if(!government->IsEnemy(victim->GetGovernment()))
 	{
 		SetShipToAssist(shared_ptr<Ship>());
+		SetTargetShip(shared_ptr<Ship>());
 		bool helped = victim->isDisabled;
 		victim->hull = max(victim->hull, victim->MinimumHull());
 		victim->isDisabled = false;
@@ -1469,7 +1470,7 @@ shared_ptr<Ship> Ship::Board(bool autoPlunder)
 			pilotError = 120;
 			victim->pilotError = 120;
 		}
-		return autoPlunder ? shared_ptr<Ship>() : victim;
+		return victim;
 	}
 	if(!victim->IsDisabled())
 		return shared_ptr<Ship>();
