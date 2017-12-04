@@ -1487,16 +1487,16 @@ mission "Raider Attack 1"
 		"combat rating" > 550
 		random < 7
 	source
-		planet Sheratan
-		planet Shangri-la
+		planet Sundive
+		planet "Shangri-La"
 		planet Nimbus
 	npc evade
-		personality timid unconstrained uninterested
 		government Korath
+		personality timid unconstrained uninterested
 		fleet "Korath Raid" 2
 	npc
-		personality heroic staying vindicitive
 		government Syndicate
+		personality heroic staying vindictive
 		fleet "Large Syndicate"
 		fleet "Small Syndicate"
 	on offer
@@ -1521,17 +1521,17 @@ mission "Raider Attack 2"
 		"combat rating" > 750
 		random < 5
 	source
-		planet Sheratan
-		planet Shangri-la
+		planet sundive
+		planet Shangri-"La"
 		planet Nimbus
 	npc evade
-		personality timid unconstrained uninterested
 		government Korath
+		personality timid unconstrained uninterested
 		fleet "Korath Raid" 3
 		
 	npc
-		personality heroic staying vindicitive
 		government Syndicate
+		personality heroic staying vindictive
 		fleet "Large Syndicate" 2
 	on offer
 		conversation
