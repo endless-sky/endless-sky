@@ -35,8 +35,8 @@ void BatchShader::Init()
 {
 	static const char *vertexCode =
 		"uniform vec2 scale;\n"
-		"attribute vec2 vert;\n"
-		"attribute vec3 texCoord;\n"
+		"in vec2 vert;\n"
+		"in vec3 texCoord;\n"
 		
 		"out vec3 fragTexCoord;\n"
 		
