@@ -1781,8 +1781,9 @@ bool Ship::IsUsingJumpDrive() const
 // Check if this ship is currently able to enter hyperspace to it target.
 bool Ship::IsReadyToJump(bool waitingIsReady) const
 {
-	// You can't jump if you're waiting for someone else or are already jumping.
-	if(IsDisabled() || (!waitingIsReady && commands.Has(Command::WAIT)) || hyperspaceCount || !targetSystem)
+	// Ships can't jump while waiting for someone else, carried, or if already jumping.
+	if(IsDisabled() || (!waitingIsReady && commands.Has(Command::WAIT))
+			|| hyperspaceCount || !targetSystem || !currentSystem)
 		return false;
 	
 	// Check if the target system is valid and there is enough fuel to jump.
@@ -2032,6 +2033,10 @@ int Ship::JumpsRemaining() const
 
 double Ship::JumpFuel(const System *destination) const
 {
+	// A currently-carried ship requires no fuel to jump, because it cannot jump.
+	if(!currentSystem)
+		return 0.;
+	
 	// If no destination is given, return the maximum fuel per jump.
 	if(!destination)
 		return max(JumpDriveFuel(), HyperdriveFuel());
@@ -2337,6 +2342,8 @@ bool Ship::Carry(const shared_ptr<Ship> &ship)
 			bay.ship = ship;
 			ship->SetSystem(nullptr);
 			ship->SetPlanet(nullptr);
+			ship->SetTargetSystem(nullptr);
+			ship->SetTargetStellar(nullptr);
 			ship->SetParent(shared_from_this());
 			ship->isThrusting = false;
 			// When a fighter rejoins its mothership, its mass is added to the
