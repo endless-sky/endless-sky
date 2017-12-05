@@ -57,7 +57,8 @@ void MainPanel::Step()
 {
 	engine.Wait();
 	
-	// Depending on what UI element is on top, the game is "paused."
+	// Depending on what UI element is on top, the game is "paused." This
+	// checks only already-drawn panels.
 	bool isActive = GetUI()->IsTop(this);
 	
 	// Display any requested panels.
@@ -422,7 +423,7 @@ void MainPanel::StepEvents(bool &isActive)
 		if(!handledFront)
 			player.HandleEvent(event, GetUI());
 		handledFront = true;
-		isActive = GetUI()->IsTop(this);
+		isActive = (GetUI()->Top().get() == this);
 		
 		// If we can't safely display a new UI element (i.e. an active
 		// mission created a UI element), then stop processing events
@@ -452,7 +453,7 @@ void MainPanel::StepEvents(bool &isActive)
 				player.HandleBlockedMissions((event.Type() & ShipEvent::BOARD)
 						? Mission::BOARDING : Mission::ASSISTING, GetUI());
 			// Determine if a Dialog or ConversationPanel is being drawn next frame.
-			isActive = GetUI()->IsTop(this);
+			isActive = (GetUI()->Top().get() == this);
 			
 			if(isActive && (event.Type() == ShipEvent::BOARD) && !event.Target()->IsDestroyed())
 			{
