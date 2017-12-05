@@ -1486,14 +1486,14 @@ mission "Raider Attack 1"
 	to offer
 		"combat rating" > 550
 		random < 7
-		has "main plot: completed"
+		has "main plot completed"
 	source
 		planet "Sundive"
 		planet "Shangri-La"
 		planet "Nimbus"
 	npc evade
 		government "Korath"
-		personality timid unconstrained uninterested
+		personality target timid unconstrained uninterested harvests plunders
 		fleet "Korath Raid" 2
 	npc
 		government "Syndicate"
@@ -1521,14 +1521,14 @@ mission "Raider Attack 2"
 	to offer
 		"combat rating" > 750
 		random < 5
-		has "main plot: completed"
+		has "main plot completed"
 	source
 		planet "Sundive"
 		planet "Shangri-La"
 		planet "Nimbus"
 	npc evade
 		government "Korath"
-		personality timid unconstrained uninterested
+		personality target timid unconstrained uninterested harvests plunders
 		fleet "Korath Raid" 3
 		
 	npc
