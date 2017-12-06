@@ -48,8 +48,8 @@ namespace {
 
 
 // Constructor.
-ConversationPanel::ConversationPanel(PlayerInfo &player, const Conversation &conversation, const System *system, const Ship *ship)
-	: player(player), conversation(conversation), scroll(0.), system(system)
+ConversationPanel::ConversationPanel(PlayerInfo &player, const Conversation &conversation, const System *system, const shared_ptr<Ship> ship)
+	: player(player), conversation(conversation), scroll(0.), system(system), ship(ship)
 {
 	// These substitutions need to be applied on the fly as each paragraph of
 	// text is prepared for display.
@@ -346,18 +346,19 @@ void ConversationPanel::Goto(int index, int choice)
 void ConversationPanel::Exit()
 {
 	GetUI()->Pop(this);
-	// If this is a conversation offered from boarding or assisting an NPC,
-	// being forced to leave via LAUNCH, FLEE, or DEPART destroys it. If it
-	// is a hostile NPC and not destroyed, and its mission (e.g. "leave me
-	// alone, here's X as payment") was not accepted, open a BoardingPanel
-	// to allow plundering it - unless you're dead.
-	if(node != Conversation::DIE && player.BoardingShip())
+	// If this is a conversation offered from an NPC, ending it via LAUNCH,
+	// FLEE, or DEPART destroys the NPC. For hostile NPCs that are boarded
+	// and not being destroyed, show the BoardingPanel unless the player is
+	// being killed or the conversation is exiting via ACCEPT.
+	if(node != Conversation::DIE && ship)
 	{
 		if(Conversation::RequiresLaunch(node))
-			player.BoardingShip()->Destroy();
-		else if(player.BoardingShip()->GetGovernment()->IsEnemy()
+			ship->Destroy();
+		// Check that this ship is the player's boarding target, as NPC
+		// completion conversations can result from non-boarding events.
+		else if(ship == player.BoardingShip() && ship->GetGovernment()->IsEnemy()
 				&& node != Conversation::ACCEPT)
-			GetUI()->Push(new BoardingPanel(player, player.BoardingShip()));
+			GetUI()->Push(new BoardingPanel(player, ship));
 	}
 	// Call the exit response (e.g. ACCEPT, DIE) handler, which is usually
 	// PlayerInfo::MissionCallback.

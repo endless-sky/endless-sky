@@ -69,7 +69,7 @@ BoardingPanel::BoardingPanel(PlayerInfo &player, const shared_ptr<Ship> &victim)
 	
 	// You cannot plunder hand to hand weapons, because they are kept in the
 	// crew's quarters, not mounted on the exterior of the ship. Certain other
-	// outfits are also unplunderable, like mass expansions.
+	// outfits are also unplunderable, like outfits expansions.
 	auto sit = victim->Outfits().begin();
 	auto cit = victim->Cargo().Outfits().begin();
 	while(sit != victim->Outfits().end() || cit != victim->Cargo().Outfits().end())

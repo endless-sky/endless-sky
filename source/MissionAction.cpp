@@ -345,7 +345,9 @@ void MissionAction::Do(PlayerInfo &player, UI *ui, const System *destination) co
 	bool isOffer = (trigger == "offer");
 	if(!conversation.IsEmpty() && ui)
 	{
-		ConversationPanel *panel = new ConversationPanel(player, conversation, destination);
+		// If the player is boarding a ship, reference that ship (so it may offer
+		// substitutions and possibly even be destroyed by the player's actions).
+		ConversationPanel *panel = new ConversationPanel(player, conversation, destination, player.BoardingShip());
 		if(isOffer)
 			panel->SetCallback(&player, &PlayerInfo::MissionCallback);
 		// Use a basic callback to handle forced departure outside of `on offer`
