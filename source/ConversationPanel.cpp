@@ -350,7 +350,7 @@ void ConversationPanel::Exit()
 	// FLEE, or DEPART destroys the NPC. For hostile NPCs that are boarded
 	// and not being destroyed, show the BoardingPanel unless the player is
 	// being killed or the conversation is exiting via ACCEPT.
-	if(node != Conversation::DIE && ship)
+	if(node != Conversation::DIE && node != Conversation::EXPLODE && ship)
 	{
 		if(Conversation::RequiresLaunch(node))
 			ship->Destroy();
@@ -361,7 +361,7 @@ void ConversationPanel::Exit()
 			GetUI()->Push(new BoardingPanel(player, ship));
 	}
 	// Call the exit response (e.g. ACCEPT, DIE) handler, which is usually
-	// PlayerInfo::MissionCallback.
+	// PlayerInfo::MissionCallback, but may be PlayerInfo::BasicCallback.
 	if(callback)
 		callback(node);
 }

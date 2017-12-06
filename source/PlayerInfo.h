@@ -156,6 +156,7 @@ public:
 	Mission *MissionToOffer(Mission::Location location);
 	Mission *BoardingMission(const std::shared_ptr<Ship> &ship);
 	const std::shared_ptr<Ship> &BoardingShip() const;
+	void SetBoardingShip(const std::shared_ptr<Ship> &ship);
 	// If one of your missions cannot be offered because you do not have enough
 	// space for it, and it specifies a message to be shown in that situation,
 	// show that message.
@@ -263,6 +264,7 @@ private:
 	
 	// Check that this player's current state can be saved.
 	bool CanBeSaved() const;
+	void Die(int response);
 	
 	
 private:

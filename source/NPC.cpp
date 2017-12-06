@@ -301,7 +301,15 @@ void NPC::Do(const ShipEvent &event, PlayerInfo &player, UI *ui, bool isVisible)
 		// the player can plunder it. (A BoardingPanel will not be shown
 		// unless the player is truly boarding the referenced NPC.)
 		if(!conversation.IsEmpty())
-			ui->Push(new ConversationPanel(player, conversation, nullptr, ship));
+		{
+			if((type & (ShipEvent::BOARD | ShipEvent::ASSIST))
+					&& event.Actor().get() == player.Flagship())
+				player.SetBoardingShip(ship);
+			
+			ConversationPanel *panel = new ConversationPanel(player, conversation, nullptr, ship);
+			panel->SetCallback(&player, &PlayerInfo::BasicCallback);
+			ui->Push(panel);
+		}
 		else if(!dialogText.empty())
 			ui->Push(new Dialog(dialogText));
 	}

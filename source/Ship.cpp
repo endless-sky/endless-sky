@@ -2102,6 +2102,8 @@ double Ship::TransferFuel(double amount, Ship *to)
 
 
 
+// Convert this ship from one government to another, as a result of boarding
+// actions (if the player is capturing) or player death (poor decision-making).
 void Ship::WasCaptured(const shared_ptr<Ship> &capturer)
 {
 	// Repair up to the point where this ship is just barely not disabled.
@@ -2114,11 +2116,11 @@ void Ship::WasCaptured(const shared_ptr<Ship> &capturer)
 	// Transfer some crew over. Only transfer the bare minimum unless even that
 	// is not possible, in which case, share evenly.
 	int totalRequired = capturer->RequiredCrew() + RequiredCrew();
-	int transfer = RequiredCrew();
-	if(transfer)
+	int transfer = RequiredCrew() - crew;
+	if(transfer > 0)
 	{
-		if(totalRequired > capturer->Crew())
-			transfer = max(1, (capturer->Crew() * RequiredCrew()) / totalRequired);
+		if(totalRequired > capturer->Crew() + crew)
+			transfer = max(crew ? 0 : 1, (capturer->Crew() * transfer) / totalRequired);
 		capturer->AddCrew(-transfer);
 		AddCrew(transfer);
 	}

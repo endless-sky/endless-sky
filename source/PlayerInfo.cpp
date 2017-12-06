@@ -1426,6 +1426,16 @@ const shared_ptr<Ship> &PlayerInfo::BoardingShip() const
 
 
 
+// Allow setting the player's boarding ship from outside of BoardingMission,
+// such as when boarding a mission NPC, in order to use it within an NPC's
+// completion conversation. The completion conversation callback will clear it.
+void PlayerInfo::SetBoardingShip(const shared_ptr<Ship> &ship)
+{
+	boardingShip = ship;
+}
+
+
+
 // If one of your missions cannot be offered because you do not have enough
 // space for it, and it specifies a message to be shown in that situation,
 // show that message.
@@ -1453,7 +1463,6 @@ void PlayerInfo::HandleBlockedMissions(Mission::Location location, UI *ui)
 // Callback for accepting or declining whatever mission has been offered.
 void PlayerInfo::MissionCallback(int response)
 {
-	boardingShip.reset();
 	list<Mission> &missionList = availableMissions.empty() ? boardingMissions : availableMissions;
 	if(missionList.empty())
 		return;
@@ -1491,8 +1500,10 @@ void PlayerInfo::MissionCallback(int response)
 		mission.Do(Mission::DEFER, *this);
 		missionList.pop_front();
 	}
-	else if(response == Conversation::DIE)
-		Die(true);
+	else if(response == Conversation::DIE || response == Conversation::EXPLODE)
+		Die(response);
+	
+	boardingShip.reset();
 }
 
 
@@ -1503,6 +1514,15 @@ void PlayerInfo::BasicCallback(int response)
 {
 	// If landed, this conversation may require the player to immediately depart.
 	shouldLaunch |= (GetPlanet() && Conversation::RequiresLaunch(response));
+	
+	// Since no mission is being offered, the difference between accept,
+	// decline, defer and their "forced leave" counterparts launch, flee,
+	// and depart, is whether any NPC associated with the conversation is
+	// killed (by this function's caller) when the conversation ended.
+	if(response == Conversation::DIE || response == Conversation::EXPLODE)
+		Die(response);
+	
+	boardingShip.reset();
 }
 
 
@@ -2617,4 +2637,44 @@ void PlayerInfo::SelectShip(const shared_ptr<Ship> &ship, bool *first)
 bool PlayerInfo::CanBeSaved() const
 {
 	return (!isDead && planet && system && !firstName.empty() && !lastName.empty());
+}
+
+
+
+// Called by conversation callbacks to destroy or capture the player's flagship.
+// Either method results in the death of the player.
+void PlayerInfo::Die(int response)
+{
+	if(GetPlanet() || !flagship)
+		Die(true);
+	else
+	{
+		Die();
+		auto it = find(ships.begin(), ships.end(), flagship);
+		if(response == Conversation::EXPLODE)
+			flagship->Destroy();
+		else
+		{
+			flagship->SetIsYours(false);
+			// If the flagship is boarding an NPC, the player's death results in its
+			// capture. Otherwise, consider the player to have died due to a mutiny.
+			// Change the flagship government to remove it from the EscortDisplay HUD.
+			if(boardingShip)
+				flagship->WasCaptured(boardingShip);
+			else
+				flagship->SetGovernment(GameData::Governments().Get("Independent"));
+			
+			// Remove the now non-player ship from the player's fleet.
+			if(it != ships.end())
+				it = ships.erase(it);
+		}
+		
+		// Let the player's fleet pick a new flagship to follow, if possible.
+		for( ; it != ships.end(); ++it)
+			if((*it)->CanBeFlagship())
+				break;
+		const shared_ptr<Ship> newFlagship = it != ships.end() ? *it : nullptr;
+		for(const shared_ptr<Ship> &escort : ships)
+			escort->SetParent(escort != newFlagship ? newFlagship : nullptr);
+	}
 }
