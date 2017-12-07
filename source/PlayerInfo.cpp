@@ -160,7 +160,6 @@ void PlayerInfo::Load(const string &path)
 			ships.push_back(shared_ptr<Ship>(new Ship()));
 			ships.back()->Load(child);
 			ships.back()->SetIsSpecial();
-			ships.back()->SetGovernment(GameData::PlayerGovernment());
 			ships.back()->FinishLoading(false);
 			ships.back()->SetIsYours();
 		}
