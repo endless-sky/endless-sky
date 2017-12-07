@@ -157,6 +157,7 @@ void TradingPanel::Draw()
 	{
 		y += 20;
 		int price = system.Trade(commodity.name);
+		int hold = player.Cargo().Get(commodity.name);
 		
 		bool isSelected = (i++ == selectedRow);
 		const Color &color = (isSelected ? selected : unselected);
@@ -168,7 +169,7 @@ void TradingPanel::Draw()
 			font.Draw(to_string(price), Point(PRICE_X, y), color);
 		
 			int basis = player.GetBasis(commodity.name);
-			if(basis && basis != price)
+			if(basis && basis != price && hold)
 			{
 				string profit = "(profit: " + to_string(price - basis) + ")";
 				font.Draw(profit, Point(LEVEL_X, y), color);
@@ -194,7 +195,6 @@ void TradingPanel::Draw()
 			font.Draw("(not for sale)", Point(LEVEL_X, y), color);
 		}
 		
-		int hold = player.Cargo().Get(commodity.name);
 		if(hold)
 		{
 			sellOutfits = false;
