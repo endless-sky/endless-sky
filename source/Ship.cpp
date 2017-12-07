@@ -2553,7 +2553,7 @@ const vector<Hardpoint> &Ship::Weapons() const
 // energy, ammo, and fuel to fire it).
 bool Ship::CanFire(const Weapon *weapon) const
 {
-	if(!weapon)
+	if(!weapon || !weapon->IsWeapon())
 		return false;
 	
 	if(weapon->Ammo())
