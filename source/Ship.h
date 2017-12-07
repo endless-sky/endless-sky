@@ -212,7 +212,8 @@ public:
 	// Get the points from which engine flares should be drawn.
 	const std::vector<EnginePoint> &EnginePoints() const;
 	
-	// Mark a ship as destroyed, or bring back a destroyed ship.
+	// Make a ship disabled or destroyed, or bring back a destroyed ship.
+	void Disable();
 	void Destroy();
 	void SelfDestruct();
 	void Restore();
