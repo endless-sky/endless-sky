@@ -416,7 +416,11 @@ NPC NPC::Instantiate(map<string, string> &subs, const System *origin, const Syst
 	
 	// Convert fleets into instances of ships.
 	for(const shared_ptr<Ship> &ship : ships)
+	{
+		// This ship is being defined from scratch.
 		result.ships.push_back(make_shared<Ship>(*ship));
+		result.ships.back()->FinishLoading(true);
+	}
 	auto shipIt = stockShips.begin();
 	auto nameIt = shipNames.begin();
 	for( ; shipIt != stockShips.end() && nameIt != shipNames.end(); ++shipIt, ++nameIt)
@@ -434,7 +438,8 @@ NPC NPC::Instantiate(map<string, string> &subs, const System *origin, const Syst
 		ship->SetGovernment(result.government);
 		ship->SetIsSpecial();
 		ship->SetPersonality(result.personality);
-		ship->FinishLoading(true);
+		if(result.personality.IsDerelict())
+			ship->Disable();
 		
 		if(personality.IsEntering())
 			Fleet::Enter(*result.system, *ship);

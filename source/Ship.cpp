@@ -399,22 +399,12 @@ void Ship::FinishLoading(bool isNewInstance)
 	for(const Hardpoint &weapon : armament.Get())
 		weaponRadius = max(weaponRadius, weapon.GetPoint().Length());
 	
+	// If this ship is being instantiated for the first time, make sure its
+	// crew, fuel, etc. are all refilled.
 	if(isNewInstance)
-	{
-		// This ship is being instantiated for the first time. Make sure its
-		// crew, fuel, etc. are all refilled.
 		Recharge(true);
-		
-		// But, if this is a derelict, it should start out disabled.
-		if(personality.IsDerelict())
-		{
-			shields = 0.;
-			hull = min(hull, .5 * MinimumHull());
-		}
-	}
-	// Recalculate the "isDisabled" flag based on this ship's hull and crew.
-	isDisabled = true;
-	isDisabled = IsDisabled();
+	
+	isDisabled = false;
 }
 
 
@@ -1841,6 +1831,17 @@ bool Ship::IsThrusting() const
 const vector<Ship::EnginePoint> &Ship::EnginePoints() const
 {
 	return enginePoints;
+}
+
+
+
+// Reduce a ship's hull to low enough to disable it. This is so a ship can be
+// created as a derelict.
+void Ship::Disable()
+{
+	shields = 0.;
+	hull = min(hull, .5 * MinimumHull());
+	isDisabled = true;
 }
 
 
