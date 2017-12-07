@@ -347,6 +347,9 @@ const map<const Mission *, int> &CargoHold::PassengerList() const
 // Transfer ordinary commodities from one cargo hold to another.
 int CargoHold::Transfer(const string &commodity, int amount, CargoHold &to)
 {
+	if(!amount)
+		return 0;
+	
 	// Remove up to the specified tons of cargo from this cargo hold, adding
 	// them to the given cargo hold if possible. If not possible, add the
 	// remainder back to this cargo hold, even if there is not space for it.
@@ -362,6 +365,9 @@ int CargoHold::Transfer(const string &commodity, int amount, CargoHold &to)
 // Transfer outfits from one cargo hold to another.
 int CargoHold::Transfer(const Outfit *outfit, int amount, CargoHold &to)
 {
+	if(!amount)
+		return 0;
+	
 	// Remove up to the specified number of items from this cargo hold, adding
 	// them to the given cargo hold if possible. If not possible, add the
 	// remainder back to this cargo hold, even if there is not space for it.
@@ -413,9 +419,11 @@ int CargoHold::TransferPassengers(const Mission *mission, int amount, CargoHold 
 	if(to.bunks >= 0)
 		amount = max(0, min(amount, to.BunksFree()));
 	
-	passengers[mission] -= amount;
-	to.passengers[mission] += amount;
-	
+	if(amount)
+	{
+		passengers[mission] -= amount;
+		to.passengers[mission] += amount;
+	}
 	return amount;
 }
 
