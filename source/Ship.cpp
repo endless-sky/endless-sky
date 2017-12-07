@@ -438,7 +438,10 @@ void Ship::FinishLoading(bool isNewInstance)
 	if(isNewInstance)
 		Recharge(true);
 	
-	isDisabled = false;
+	// Ships read from a save file may have non-default shields or hull.
+	// Perform a full IsDisabled calculation.
+	isDisabled = true;
+	isDisabled = IsDisabled();
 }
 
 
