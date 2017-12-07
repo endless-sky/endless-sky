@@ -690,8 +690,10 @@ void AI::Step(const PlayerInfo &player)
 			// targets present, fight them. Otherwise, repair your parent.
 			if(target)
 				MoveIndependent(*it, command);
-			else
+			else if(!parent->GetPersonality().IsDerelict())
 				it->SetShipToAssist(parent);
+			else
+				CircleAround(*it, command, *parent);
 		}
 		else if(personality.IsStaying())
 			MoveIndependent(*it, command);
