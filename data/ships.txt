@@ -1681,8 +1681,6 @@ ship "Hawk"
 	engine 24 41
 	gun -9 -17
 	gun 9 -17
-	gun -15 -17
-	gun 15 -17
 	explode "tiny explosion" 15
 	explode "small explosion" 5
 	"final explode" "final explosion small"
