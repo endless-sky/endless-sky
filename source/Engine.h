@@ -62,12 +62,13 @@ public:
 	void Wait();
 	// Perform all the work that can only be done while the calculation thread
 	// is paused (for thread safety reasons).
-	void Step(bool isActive);
+	void Step(const bool isActive);
 	// Begin the next step of calculations.
 	void Go();
 	
 	// Get any special events that happened in this step.
-	const std::list<ShipEvent> &Events() const;
+	// MainPanel::Step will clear this list.
+	std::list<ShipEvent> &Events();
 	
 	// Draw a frame.
 	void Draw() const;

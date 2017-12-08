@@ -319,7 +319,7 @@ void Engine::Wait()
 
 
 // Begin the next step of calculations.
-void Engine::Step(bool isActive)
+void Engine::Step(const bool isActive)
 {
 	events.swap(eventQueue);
 	eventQueue.clear();
@@ -724,7 +724,9 @@ void Engine::Go()
 
 
 
-const list<ShipEvent> &Engine::Events() const
+// Pass the list of game events to MainPanel for handling by the player, and any
+// UI element generation.
+list<ShipEvent> &Engine::Events()
 {
 	return events;
 }

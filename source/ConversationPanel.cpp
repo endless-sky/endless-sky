@@ -343,18 +343,21 @@ void ConversationPanel::Goto(int index, int choice)
 void ConversationPanel::Exit()
 {
 	GetUI()->Pop(this);
-	if(player.BoardingShip())
+	// If this is a conversation offered from boarding or assisting an NPC,
+	// being forced to leave via LAUNCH, FLEE, or DEPART destroys it. If it
+	// is a hostile NPC and not destroyed, and its mission (e.g. "leave me
+	// alone, here's X as payment") was not accepted, open a BoardingPanel
+	// to allow plundering it - unless you're dead.
+	if(node != Conversation::DIE && player.BoardingShip())
 	{
-		// If boarding a ship, you may plunder or destroy it depending on the
-		// outcome of the conversation.
 		if(Conversation::RequiresLaunch(node))
 			player.BoardingShip()->Destroy();
-		else if(player.BoardingShip()->GetGovernment()->IsEnemy())
-		{
-			if(node != Conversation::ACCEPT)
-				GetUI()->Push(new BoardingPanel(player, player.BoardingShip()));
-		}
+		else if(player.BoardingShip()->GetGovernment()->IsEnemy()
+				&& node != Conversation::ACCEPT)
+			GetUI()->Push(new BoardingPanel(player, player.BoardingShip()));
 	}
+	// Call the exit response (e.g. ACCEPT, DIE) handler, which is usually
+	// PlayerInfo::MissionCallback.
 	if(callback)
 		callback(node);
 }
