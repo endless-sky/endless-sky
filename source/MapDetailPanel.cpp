@@ -523,7 +523,8 @@ void MapDetailPanel::DrawInfo()
 		uiPoint.Y() += 20.;
 	}
 	
-	if(selectedPlanet && !selectedPlanet->Description().empty() && player.HasVisited(selectedPlanet))
+	if(selectedPlanet && !selectedPlanet->Description().empty()
+			&& player.HasVisited(selectedPlanet) && !selectedPlanet->IsWormhole())
 	{
 		static const int X_OFFSET = 240;
 		static const int WIDTH = 500;
