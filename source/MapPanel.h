@@ -47,6 +47,8 @@ public:
 	
 	static const double OUTER;
 	static const double INNER;
+	static const double LINK_WIDTH;
+	static const double LINK_OFFSET;
 	
 	
 public:

@@ -64,6 +64,15 @@ color "radar blink" 1. 1. 1. 0.
 color "error back" .25 .1 .1 1.
 color "warning back" .21 .18 .08 1.
 
+color "map link" .6, .6, .6, .6
+color "map name" .6, .6, .6, .6
+color "map travel ok fleet" .2, .5, 0., 0.
+color "map travel ok flagship" .5, .4, 0., 0.
+color "map travel ok none" .55, .1, 0., 0.
+color "map used wormhole" .5, .2, .9, 1.
+color "map unused wormhole" .165, .066, .3, .333
+
+
 
 
 interface "menu background"
@@ -316,7 +325,7 @@ interface "hud"
 	sprite "ui/radar"
 		from 0 0
 		align top left
-	point radar
+	point "radar"
 		center 128 128
 	value "radar radius" 110
 	value "radar pointer radius" 130
@@ -336,7 +345,7 @@ interface "hud"
 	sprite "ui/target"
 		from 0 240
 		align top left
-	point target
+	point "target"
 		center 75 315
 		dimensions 140 140
 	value "target radius" 70
@@ -405,6 +414,10 @@ interface "hud"
 	box "ammo"
 		from -110 450 top right
 		to 0 0 bottom right
+	anchor top
+	point "mini-map"
+		center 0 150
+
 
 
 
