@@ -61,6 +61,33 @@ namespace {
 		// Control will never reach here, but to satisfy the compiler:
 		return nullptr;
 	}
+	
+	// This returns the names of the governments within the set, joined as
+	// appropriate with "," and "and".
+	string GovernmentNames(vector<const Government *> &governments)
+	{
+		if(governments.empty())
+			return "";
+		else if(governments.size() == 1)
+			return governments[0]->GetName();
+		else
+		{
+			set<string> sortedNames;
+			for(const Government *gov : governments)
+				sortedNames.insert(gov->GetName());
+			
+			const string *last = &*--sortedNames.end();
+			string names;
+			int count = 0;
+			for(const string &name : sortedNames)
+			{
+				if(count++)
+					names += (&name != last) ? ", " : (count > 2 ? ", and " : " and ");
+				names += name;
+			}
+			return names;
+		}
+	}
 }
 
 
@@ -1019,11 +1046,19 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	subs["<passengers>"] = (result.passengers == 1) ? "passenger" : "passengers";
 	subs["<fare>"] = (result.passengers == 1) ? "a passenger" : (subs["<bunks>"] + " passengers");
 	if(player.GetPlanet())
+	{
 		subs["<origin>"] = player.GetPlanet()->Name();
+		subs["<government: origin>"] = player.GetPlanet()->GetGovernment()->GetName();
+	}
 	else if(boardingShip)
+	{
 		subs["<origin>"] = boardingShip->Name();
-	subs["<planet>"] = result.destination ? result.destination->Name() : "";
-	subs["<system>"] = result.destination ? result.destination->GetSystem()->Name() : "";
+		subs["<government: origin>"] = boardingShip->GetGovernment()->GetName();
+	}
+	// The destination (and its containing system) must exist at this stage.
+	subs["<planet>"] = result.destination->Name();
+	subs["<system>"] = result.destination->GetSystem()->Name();
+	subs["<government: destination>"] = result.destination->GetGovernment()->GetName();
 	subs["<destination>"] = subs["<planet>"] + " in the " + subs["<system>"] + " system";
 	subs["<date>"] = result.deadline.ToString();
 	subs["<day>"] = result.deadline.LongString();
@@ -1033,6 +1068,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	if(!result.stopovers.empty())
 	{
 		string planets;
+		vector<const Government *> stopoverGovernments;
 		const Planet * const *last = &*--result.stopovers.end();
 		int count = 0;
 		for(const Planet * const &planet : result.stopovers)
@@ -1040,13 +1076,19 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 			if(count++)
 				planets += (&planet != last) ? ", " : (count > 2 ? ", and " : " and ");
 			planets += planet->Name() + " in the " + planet->GetSystem()->Name() + " system";
+			stopoverGovernments.emplace_back(planet->GetGovernment());
 		}
 		subs["<stopovers>"] = planets;
+		
+		// Stopover governments: "<government name>" with "," and "and", e.g.
+		// "Free Worlds and Republic", "Free Worlds, Republic, and Syndicate".
+		subs["<government: stopovers>"] = GovernmentNames(stopoverGovernments);
 	}
 	// Waypoints: "<system name>" with "," and "and".
 	if(!result.waypoints.empty())
 	{
 		string systems;
+		vector<const Government *> waypointGovernments;
 		const System * const *last = &*--result.waypoints.end();
 		int count = 0;
 		for(const System * const &system : result.waypoints)
@@ -1054,13 +1096,31 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 			if(count++)
 				systems += (&system != last) ? ", " : (count > 2 ? ", and " : " and ");
 			systems += system->Name();
+			waypointGovernments.emplace_back(system->GetGovernment());
 		}
 		subs["<waypoints>"] = systems;
+		
+		// Waypoint governments are formatted exactly like stopover governments.
+		subs["<government: waypoints>"] = GovernmentNames(waypointGovernments);
 	}
 	
 	// Instantiate the NPCs. This also fills in the "<npc>" substitution.
 	for(const NPC &npc : npcs)
 		result.npcs.push_back(npc.Instantiate(subs, source, result.destination->GetSystem()));
+	// Fill in the NPC government substitutions, "<government: npc>" and
+	// "<government: npcs>". The singular always refers to the first NPC
+	// block, while the plural refers to all of the mission's NPCs.
+	if(!result.npcs.empty())
+	{
+		if(!result.npcs.front().Ships().empty())
+			subs["<government: npc>"] = result.npcs.front().Ships().front()->GetGovernment()->GetName();
+		
+		vector<const Government *> governments;
+		for(const NPC &npc : result.npcs)
+			if(!npc.Ships().empty())
+				governments.emplace_back(npc.Ships().front()->GetGovernment());
+		subs["<government: npcs>"] = GovernmentNames(governments);
+	}
 	
 	// Instantiate the actions. The "complete" action is always first so that
 	// the "<payment>" substitution can be filled in.
