@@ -270,12 +270,6 @@ interface "preferences"
 
 
 
-interface "mini-map" top
-	point "origin"
-		center 0 100
-
-
-
 interface "hud"
 	# Player status.
 	anchor top right
@@ -420,6 +414,10 @@ interface "hud"
 	box "ammo"
 		from -110 450 top right
 		to 0 0 bottom right
+	anchor top
+	point "mini-map"
+		center 0 150
+
 
 
 

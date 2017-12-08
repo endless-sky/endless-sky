@@ -142,7 +142,7 @@ void MapPanel::DrawMiniMap(const PlayerInfo &player, double alpha, const System 
 	const Font &font = FontSet::Get(14);
 	Color lineColor(alpha, 0.);
 	Point center = .5 * (jump[0]->Position() + jump[1]->Position());
-	const Point &drawPos = GameData::Interfaces().Get("mini-map")->GetPoint("origin");
+	const Point &drawPos = GameData::Interfaces().Get("hud")->GetPoint("mini-map");
 	set<const System *> drawnSystems = { jump[0], jump[1] };
 	bool isLink = jump[0]->Links().count(jump[1]);
 	
