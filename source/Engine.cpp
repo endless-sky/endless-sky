@@ -319,7 +319,7 @@ void Engine::Wait()
 
 
 // Begin the next step of calculations.
-void Engine::Step(const bool isActive)
+void Engine::Step(bool isActive)
 {
 	events.swap(eventQueue);
 	eventQueue.clear();

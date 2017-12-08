@@ -62,7 +62,7 @@ public:
 	void Wait();
 	// Perform all the work that can only be done while the calculation thread
 	// is paused (for thread safety reasons).
-	void Step(const bool isActive);
+	void Step(bool isActive);
 	// Begin the next step of calculations.
 	void Go();
 	
