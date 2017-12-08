@@ -35,6 +35,7 @@ color "active mission" .2 .7 1. 1.
 color "active back" 0. .4 .5 .5
 color "blocked mission" 0. .4 .6 1.
 color "blocked back" 0. .15 .2 .5
+color "special mission" 1. 1. 1. 1.
 color "waypoint" .1 .2 .9 1.
 color "waypoint back" 0. .3 .7 .5
 

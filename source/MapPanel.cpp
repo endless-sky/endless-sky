@@ -634,8 +634,9 @@ void MapPanel::DrawTravelPlan()
 
 void MapPanel::DrawWormholes()
 {
-	// Drawlist of links, in "from -> to" order. Track whether the arrow is on one or both ends.
-	map<pair<const System *, const System *>, bool> toDraw;
+	// Keep track of what arrows and links need to be drawn.
+	set<pair<const System *, const System *>> arrowsToDraw;
+	
 	// Avoid iterating each StellarObject in every system by iterating over planets instead. A
 	// system can host more than one set of wormholes (e.g. Cardea), and some wormholes may even
 	// share a link vector. If a wormhole's planet has no description, no link will be drawn.
@@ -645,38 +646,13 @@ void MapPanel::DrawWormholes()
 			continue;
 		
 		const vector<const System *> &waypoints = it.second.WormholeSystems();
-		for(auto it = waypoints.begin(); it != waypoints.end(); )
+		const System *from = waypoints.back();
+		for(const System *to : waypoints)
 		{
-			const System *from = *it++;
-			if(!player.HasVisited(from))
-				continue;
+			if(player.HasVisited(from) && player.HasVisited(to))
+				arrowsToDraw.emplace(from, to);
 			
-			const System *to = it != waypoints.end() ? *it
-					: (waypoints.size() > 2 ? waypoints.front() : nullptr);
-			if(to)
-			{
-				// This link is any part of a one-way wormhole, or the outgoing leg of a
-				// two-way wormhole. It may also be the reverse of an existing, separate
-				// wormhole, in which case that one should be drawn bidirectional.
-				if(player.HasVisited(to))
-				{
-					const pair<const System *, const System *> link = make_pair(to, from);
-					const auto &it = toDraw.find(link);
-					if(it == toDraw.end())
-						toDraw.emplace(make_pair(from, to), false);
-					else
-						it->second = true;
-				}
-			}
-			else
-			{
-				// This is the return leg of a two-way wormhole.
-				// Find and flag the first leg as bidirectional.
-				const pair<const System *, const System *> link = make_pair(waypoints.front(), from);
-				const auto &it = toDraw.find(link);
-				if(it != toDraw.end())
-					it->second = true;
-			}
+			from = to;
 		}
 	}
 	
@@ -688,35 +664,30 @@ void MapPanel::DrawWormholes()
 	static const Angle RIGHT(-30.);
 	const double zoom = Zoom();
 	
-	for(const auto &link : toDraw)
+	for(const pair<const System *, const System *> &link : arrowsToDraw)
 	{
 		// Compute the start and end positions of the wormhole link.
-		Point from = zoom * (link.first.first->Position() + center);
-		Point to = zoom * (link.first.second->Position() + center);
+		Point from = zoom * (link.first->Position() + center);
+		Point to = zoom * (link.second->Position() + center);
 		Point offset = (from - to).Unit() * LINK_OFFSET;
 		from -= offset;
 		to += offset;
+		
+		// If an arrow is being drawn, the link will always be drawn too. Draw
+		// the link only for the first instance of it in this set.
+		if(link.first < link.second || !arrowsToDraw.count(make_pair(link.second, link.first)))
+			LineShader::Draw(from, to, LINK_WIDTH, wormholeDim);
 		
 		// Compute the start and end positions of the arrow edges.
 		Point arrowStem = zoom * ARROW_LENGTH * offset;
 		Point arrowLeft = arrowStem - ARROW_RATIO * LEFT.Rotate(arrowStem);
 		Point arrowRight = arrowStem - ARROW_RATIO * RIGHT.Rotate(arrowStem);
 		
-		// Draw the link.
-		LineShader::Draw(from, to, LINK_WIDTH, wormholeDim);
-		// Draw the from->to arrowhead.
+		// Draw the arrowhead.
 		Point fromTip = from - arrowStem;
 		LineShader::Draw(from, fromTip, LINK_WIDTH, arrowColor);
 		LineShader::Draw(from - arrowLeft, fromTip, LINK_WIDTH, arrowColor);
 		LineShader::Draw(from - arrowRight, fromTip, LINK_WIDTH, arrowColor);
-		if(link.second)
-		{
-			// Draw the to->from arrowhead.
-			Point toTip = to + arrowStem;
-			LineShader::Draw(to, toTip, LINK_WIDTH, arrowColor);
-			LineShader::Draw(to + arrowLeft, toTip, LINK_WIDTH, arrowColor);
-			LineShader::Draw(to + arrowRight, toTip, LINK_WIDTH, arrowColor);
-		}
 	}
 }
 
@@ -909,13 +880,13 @@ void MapPanel::DrawMissions()
 	// Draw a pointer for each active or available mission.
 	map<const System *, Angle> angle;
 	static const Color black(0., 1.);
-	static const Color white(1., 1.);
 	
 	const Set<Color> &colors = GameData::Colors();
 	const Color &availableColor = *colors.Get("available job");
 	const Color &unavailableColor = *colors.Get("unavailable job");
 	const Color &currentColor = *colors.Get("active mission");
 	const Color &blockedColor = *colors.Get("blocked mission");
+	const Color &specialColor = *colors.Get("special mission");
 	const Color &waypointColor = *colors.Get("waypoint");
 	for(const Mission &mission : player.AvailableJobs())
 	{
@@ -949,7 +920,7 @@ void MapPanel::DrawMissions()
 		Angle a = (angle[specialSystem] += Angle(30.));
 		Point pos = Zoom() * (specialSystem->Position() + center);
 		PointerShader::Draw(pos, a.Unit(), 20., 27., -4., black);
-		PointerShader::Draw(pos, a.Unit(), 11.5, 21.5, -6., white);
+		PointerShader::Draw(pos, a.Unit(), 11.5, 21.5, -6., specialColor);
 	}
 }
 
