@@ -684,14 +684,16 @@ void AI::Step(const PlayerInfo &player)
 			else
 				MoveEscort(*it, command);
 		}
-		else if(parent->IsDisabled())
+		else if(parent->IsDisabled() && !it->CanBeCarried())
 		{
 			// Your parent is disabled, and is in this system. If you have enemy
 			// targets present, fight them. Otherwise, repair your parent.
 			if(target)
 				MoveIndependent(*it, command);
-			else
+			else if(!parent->GetPersonality().IsDerelict())
 				it->SetShipToAssist(parent);
+			else
+				CircleAround(*it, command, *parent);
 		}
 		else if(personality.IsStaying())
 			MoveIndependent(*it, command);
