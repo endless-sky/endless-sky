@@ -315,8 +315,8 @@ outfit "Korath Repeater Rifle"
 	category "Hand to Hand"
 	cost 125000
 	thumbnail "outfit/korath rifle"
-	"capture attack" 3.1
-	"capture defense" 5.4
+	"capture attack" 1.6
+	"capture defense" 2.4
 	"illegal" 2200000
 	"unplunderable" 1
 	description "The Korath Repeater Rifle, while commonplace among the Korath, is considered highly illegal by more civilized societies due to the unnecessary suffering its incendiary ammunition may cause to its target."
