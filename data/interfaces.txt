@@ -417,7 +417,7 @@ interface "hud"
 		to 0 0 bottom right
 	anchor top
 	point "mini-map"
-		center 0 150
+		center 0 100
 
 
 
