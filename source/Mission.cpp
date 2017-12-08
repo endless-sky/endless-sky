@@ -171,28 +171,26 @@ void Mission::Load(const DataNode &node)
 		else if(child.Token(0) == "destination")
 			destinationFilter.Load(child);
 		else if(child.Token(0) == "waypoint" && child.Size() >= 2)
-			waypoints.insert(GameData::Systems().Get(child.Token(1)));
-		else if(child.Token(0) == "waypoint")
+		{
+			set<const System *> &set = (child.Size() >= 3 && child.Token(2) == "visited")
+					? visitedWaypoints : waypoints;
+			set.insert(GameData::Systems().Get(child.Token(1)));
+		}
+		else if(child.Token(0) == "waypoint" && child.HasChildren())
 		{
 			waypointFilters.emplace_back();
 			waypointFilters.back().Load(child);
 		}
-		else if(child.Token(0) == "completed waypoints")
-		{
-			for(const DataNode &grand : child)
-				visitedWaypoints.insert(GameData::Systems().Get(grand.Token(0)));
-		}
 		else if(child.Token(0) == "stopover" && child.Size() >= 2)
-			stopovers.insert(GameData::Planets().Get(child.Token(1)));
-		else if(child.Token(0) == "stopover")
+		{
+			set<const Planet *> &set = (child.Size() >= 3 && child.Token(2) == "visited")
+					? visitedStopovers : stopovers;
+			set.insert(GameData::Planets().Get(child.Token(1)));
+		}
+		else if(child.Token(0) == "stopover" && child.HasChildren())
 		{
 			stopoverFilters.emplace_back();
 			stopoverFilters.back().Load(child);
-		}
-		else if(child.Token(0) == "completed stopovers")
-		{
-			for(const DataNode &grand : child)
-				visitedStopovers.insert(GameData::Planets().Get(grand.Token(0)));
 		}
 		else if(child.Token(0) == "npc")
 		{
@@ -330,29 +328,13 @@ void Mission::Save(DataWriter &out, const string &tag) const
 			out.Write("destination", destination->Name());
 		for(const System *system : waypoints)
 			out.Write("waypoint", system->Name());
-		if(!visitedWaypoints.empty())
-		{
-			out.Write("completed waypoints");
-			out.BeginChild();
-			{
-				for(const System *system : visitedWaypoints)
-					out.Write(system->Name());
-			}
-			out.EndChild();
-		}
+		for(const System *system :visitedWaypoints)
+			out.Write("waypoint", system->Name(), "visited");
 		
 		for(const Planet *planet : stopovers)
 			out.Write("stopover", planet->Name());
-		if(!visitedStopovers.empty())
-		{
-			out.Write("completed stopovers");
-			out.BeginChild();
-			{
-				for(const Planet *planet : visitedStopovers)
-					out.Write(planet->Name());
-			}
-			out.EndChild();
-		}
+		for(const Planet *planet : visitedStopovers)
+			out.Write("stopover", planet->Name(), "visited");
 		
 		for(const NPC &npc : npcs)
 			npc.Save(out);
