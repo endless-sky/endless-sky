@@ -1346,7 +1346,6 @@ effect "puff"
 	"velocity scale" -.005
 
 outfit "Imaginary Weapon"
-	category "Missiles"
 	"gun ports" -1
 	weapon
 		sprite "projectile/rainbow"
