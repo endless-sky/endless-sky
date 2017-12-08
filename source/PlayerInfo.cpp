@@ -1552,10 +1552,18 @@ void PlayerInfo::MissionCallback(int response)
 	if(response == Conversation::ACCEPT || response == Conversation::LAUNCH)
 	{
 		bool shouldAutosave = mission.RecommendsAutosave();
-		cargo.AddMissionCargo(&mission);
+		if(planet)
+		{
+			cargo.AddMissionCargo(&mission);
+			UpdateCargoCapacities();
+		}
+		else if(Flagship())
+			flagship->Cargo().AddMissionCargo(&mission);
+		else
+			return;
+		
 		auto spliceIt = mission.IsUnique() ? missions.begin() : missions.end();
 		missions.splice(spliceIt, missionList, missionList.begin());
-		UpdateCargoCapacities();
 		mission.Do(Mission::ACCEPT, *this);
 		if(shouldAutosave)
 			Autosave();

@@ -443,11 +443,13 @@ void MainPanel::StepEvents(bool &isActive)
 		// declined or deferred - an "accept" is assumed to have bought the NPC its life.
 		// 3. Boarding a hostile NPC that does not display a mission UI element will display
 		// the BoardingPanel, allowing the player to plunder it.
+		const Ship *flagship = player.Flagship();
 		if((event.Type() & (ShipEvent::BOARD | ShipEvent::ASSIST)) && actor->IsPlayer()
-				&& !event.Target()->IsDestroyed() && event.Actor().get() == player.Flagship())
+				&& !event.Target()->IsDestroyed() && flagship && event.Actor().get() == flagship)
 		{
 			Mission *mission = player.BoardingMission(event.Target());
-			if(mission && mission->HasSpace(player))
+			const CargoHold &cargo = flagship->Cargo();
+			if(mission && mission->CargoSize() <= cargo.Free() && mission->Passengers() <= cargo.BunksFree())
 				mission->Do(Mission::OFFER, player, GetUI());
 			else if(mission)
 				player.HandleBlockedMissions((event.Type() & ShipEvent::BOARD)
