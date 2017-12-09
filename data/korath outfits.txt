@@ -313,10 +313,9 @@ outfit "Steering (Stellar Class)"
 	
 outfit "Korath Repeater Rifle"
 	category "Hand to Hand"
-	cost 69000
+	cost 73000
 	thumbnail "outfit/korath rifle"
 	"capture attack" 1.6
 	"capture defense" 2.4
-	"illegal" 620000
 	"unplunderable" 1
-	description "The Korath Repeater Rifle, while commonplace among the Korath, is considered highly illegal by more civilized societies due to the unnecessary suffering its incendiary ammunition may cause to its target."
+	description "This rifle is commonplace among Korath ship crews and predates the creation of the Repeater used on Korath ships by at least two centuries. Since it uses superheated plasma instead of a laser it is slow to fire and will sometimes burn the users hands if not careful"
