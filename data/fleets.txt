@@ -343,7 +343,7 @@ fleet "Paradise Merchants"
 		"Wasp (Proton)" 3
 	variant 2
 		"Star Queen"
-		"Quicksilver 2
+		"Quicksilver" 2
 	variant 10
 		"Arrow"
 	variant 5
