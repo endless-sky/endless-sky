@@ -674,7 +674,7 @@ outfit "Sidewinder Missile Launcher"
 	"outfit space" -7
 	"weapon capacity" -7
 	"gun ports" -1
-	"sidewinder capacity" 50
+	"sidewinder capacity" 5
 	weapon
 		sprite "projectile/sidewinder"
 			"no repeat"
