@@ -9,6 +9,7 @@
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 ship "Argosy" "Argosy (Blaster)"
+ description
 	outfits
 		"Energy Blaster" 4
 		"Quad Blaster Turret" 2
@@ -90,6 +91,21 @@ ship "Arrow" "Arrow (Hai)"
 		"Small Radar Jammer"
 		`"Benga" Atomic Thruster`
 		`"Biroo" Atomic Steering`
+		"Hyperdrive"
+
+
+ship "Arrow (Luxury)"
+	outfits
+		"Sidewinder Missile Launcher"
+		"Sidewinder Missile" 50
+		"Anti-Missile Turret"
+		"Dwarf Core"
+		"Supercapacitor"
+		"D14-RN Shield Generator"
+		"Small Radar Jammer"
+		"Luxury Accommodations"
+		"A250 Atomic Thruster"
+		"A255 Atomic Steering"
 		"Hyperdrive"
 
 
@@ -333,6 +349,19 @@ ship "Bounder" "Bounder (Hai)"
 		"Hai Fissure Batteries"
 		"D14-RN Shield Generator"
 		"Hai Williwaw Cooling"
+		"X3700 Ion Thruster"
+		"X3200 Ion Steering"
+		"Hyperdrive"
+
+
+ship "Bounder (Luxury)"
+	outfits
+		"Anti-Missile Turret"
+		"Blaster Turret"
+		"nGVF-CC Fuel Cell"
+		"LP036a Battery Pack"
+		"D14-RN Shield Generator"
+		"Luxury Accommodations"
 		"X3700 Ion Thruster"
 		"X3200 Ion Steering"
 		"Hyperdrive"
@@ -794,6 +823,19 @@ ship "Flivver" "Flivver (Hai)"
 		"Hai Williwaw Cooling"
 		`"Basrem" Atomic Thruster`
 		`"Benga" Atomic Steering`
+		"Hyperdrive"
+
+
+ship "Flivver (Luxury)"
+	outfits
+		"Meteor Missile Launcher"
+		"Meteor Missile" 35
+		"nGVF-BB Fuel Cell"
+		"LP036a Battery Pack"
+		"D14-RN Shield Generator"
+		"Luxury Accommodations"
+		"A120 Atomic Thruster"
+		"X1200 Ion Steering"
 		"Hyperdrive"
 
 

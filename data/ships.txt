@@ -493,6 +493,7 @@ ship "Blackbird"
 		"LP072a Battery Pack"
 		"D23-QP Shield Generator"
 		"Small Radar Jammer"
+		"Luxury Accommodations"
 		
 		"Impala Plasma Thruster"
 		"Impala Plasma Steering"

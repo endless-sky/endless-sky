@@ -181,10 +181,12 @@ fleet "Small Core Merchants"
 		"Freighter"
 		"Shuttle" 2
 		"Quicksilver"
+	variant 20
+		"Arrow (Luxury)"
 	variant 50
 		"Bounder"
 	variant 30
-		"Bounder"
+		"Bounder (Luxury)"
 		"Wasp"
 	variant 10
 		"Freighter"
@@ -212,7 +214,7 @@ fleet "Small Core Merchants"
 	variant 3
 		"Heavy Shuttle (Armed)"
 	variant 1
-		"Flivver"
+		"Flivver (Luxury)"
 	variant 1
 		"Flivver (Racing)"
 
@@ -354,6 +356,10 @@ fleet "Small Northern Merchants"
 	variant 10
 		"Freighter" 3
 		"Sparrow" 1
+	variant 10
+		"Arrow (Luxury)"
+	variant 10
+		"Blackbird"
 	variant 3
 		"Mule"
 		"Dagger"
@@ -362,8 +368,12 @@ fleet "Small Northern Merchants"
 		"Dagger"
 	variant 2
 		"Bounder"
+	variant 2
+		"Bounder (Luxury)"
 	variant 3
 		"Flivver"
+	variant 3
+		"Flivver (Luxury)"
 	variant 2
 		"Flivver (Racing)"
 	variant 4
@@ -454,6 +464,9 @@ fleet "Large Northern Merchants"
 	variant 2
 		"Behemoth"
 		"Headhunter (Particle)" 2
+	variant 4
+		"Blackbird"
+		"Sparrow" 3
 	variant 4
 		"Bulk Freighter"
 		"Headhunter" 2
