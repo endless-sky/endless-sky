@@ -2557,7 +2557,8 @@ void PlayerInfo::Fine(UI *ui)
 					" Your days of traveling the stars have come to an end.";
 				ui->Push(new Dialog(message));
 			}
-			Die();
+			// All ships belonging to the player should be removed.
+			Die(true);
 		}
 		else
 			ui->Push(new Dialog(message));
