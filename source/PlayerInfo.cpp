@@ -405,12 +405,48 @@ void PlayerInfo::AddEvent(const GameEvent &event, const Date &date)
 
 
 
-// Mark this player as dead.
-void PlayerInfo::Die(bool allShipsDie)
+// Mark this player as dead, and handle the changes to the player's fleet.
+void PlayerInfo::Die(int response)
 {
 	isDead = true;
-	if(allShipsDie)
+	// The player loses access to all their ships if they die on a planet.
+	if(GetPlanet() || !flagship)
 		ships.clear();
+	// If the flagship should explode due to choices made in a mission's
+	// conversation, it should still appear in the player's ship list (but
+	// will be red, because it is dead). The player's escorts will scatter
+	// automatically, as they have a now-dead parent.
+	else if(response == Conversation::EXPLODE)
+		flagship->Destroy();
+	// If it died in open combat, it is already marked destroyed.
+	else if(!flagship->IsDestroyed())
+	{
+		// The player died due to the failed capture of an NPC or a
+		// "mutiny". The flagship is either captured or changes government.
+		if(!flagship->IsYours())
+		{
+			// The flagship was already captured, via BoardingPanel,
+			// and its parent-escort relationships were updated in
+			// Ship::WasCaptured().
+		}
+		else if(boardingShip)
+			flagship->WasCaptured(boardingShip);
+		else
+		{
+			// A "mutiny" occurred.
+			flagship->SetIsYours(false);
+			// TODO: perhaps allow missions to set the mutineer's government.
+			flagship->SetGovernment(GameData::Governments().Get("Independent"));
+			// Your escorts do not follow it, nor does it wait for them.
+			for(const shared_ptr<Ship> &ship : ships)
+				if(ship != flagship)
+					ship->SetParent(nullptr);
+		}
+		// Remove the flagship from the player's ship list.
+		auto it = find(ships.begin(), ships.end(), flagship);
+		if(it != ships.end())
+			ships.erase(it);
+	}
 }
 
 
@@ -2601,7 +2637,7 @@ void PlayerInfo::Fine(UI *ui)
 				ui->Push(new Dialog(message));
 			}
 			// All ships belonging to the player should be removed.
-			Die(true);
+			Die();
 		}
 		else
 			ui->Push(new Dialog(message));
@@ -2637,44 +2673,4 @@ void PlayerInfo::SelectShip(const shared_ptr<Ship> &ship, bool *first)
 bool PlayerInfo::CanBeSaved() const
 {
 	return (!isDead && planet && system && !firstName.empty() && !lastName.empty());
-}
-
-
-
-// Called by conversation callbacks to destroy or capture the player's flagship.
-// Either method results in the death of the player.
-void PlayerInfo::Die(int response)
-{
-	if(GetPlanet() || !flagship)
-		Die(true);
-	else
-	{
-		Die();
-		auto it = find(ships.begin(), ships.end(), flagship);
-		if(response == Conversation::EXPLODE)
-			flagship->Destroy();
-		else
-		{
-			flagship->SetIsYours(false);
-			// If the flagship is boarding an NPC, the player's death results in its
-			// capture. Otherwise, consider the player to have died due to a mutiny.
-			// Change the flagship government to remove it from the EscortDisplay HUD.
-			if(boardingShip)
-				flagship->WasCaptured(boardingShip);
-			else
-				flagship->SetGovernment(GameData::Governments().Get("Independent"));
-			
-			// Remove the now non-player ship from the player's fleet.
-			if(it != ships.end())
-				it = ships.erase(it);
-		}
-		
-		// Let the player's fleet pick a new flagship to follow, if possible.
-		for( ; it != ships.end(); ++it)
-			if((*it)->CanBeFlagship())
-				break;
-		const shared_ptr<Ship> newFlagship = it != ships.end() ? *it : nullptr;
-		for(const shared_ptr<Ship> &escort : ships)
-			escort->SetParent(escort != newFlagship ? newFlagship : nullptr);
-	}
 }

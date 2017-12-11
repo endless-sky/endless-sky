@@ -75,7 +75,7 @@ public:
 	void AddEvent(const GameEvent &event, const Date &date);
 	
 	// Mark the player as dead, or check if they have died.
-	void Die(bool allShipsDie = false);
+	void Die(int response = 0);
 	bool IsDead() const;
 	
 	// Get or set the player's name.
@@ -264,7 +264,6 @@ private:
 	
 	// Check that this player's current state can be saved.
 	bool CanBeSaved() const;
-	void Die(int response);
 	
 	
 private:
