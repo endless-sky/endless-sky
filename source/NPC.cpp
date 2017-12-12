@@ -296,20 +296,10 @@ void NPC::Do(const ShipEvent &event, PlayerInfo &player, UI *ui, bool isVisible)
 		Messages::Add("Mission failed.");
 	else if(ui && HasSucceeded(player.GetSystem()) && !hasSucceeded)
 	{
-		// If completing this NPC displays a conversation, reference it.
-		// This allows the target of `npc board` to be destroyed before
-		// the player can plunder it. (A BoardingPanel will not be shown
-		// unless the player is truly boarding the referenced NPC.)
+		// If "completing" this NPC displays a conversation, reference
+		// it, to allow the completing event's target to be destroyed.
 		if(!conversation.IsEmpty())
-		{
-			if((type & (ShipEvent::BOARD | ShipEvent::ASSIST))
-					&& event.Actor().get() == player.Flagship())
-				player.SetBoardingShip(ship);
-			
-			ConversationPanel *panel = new ConversationPanel(player, conversation, nullptr, ship);
-			panel->SetCallback(&player, &PlayerInfo::BasicCallback);
-			ui->Push(panel);
-		}
+			ui->Push(new ConversationPanel(player, conversation, nullptr, ship));
 		else if(!dialogText.empty())
 			ui->Push(new Dialog(dialogText));
 	}

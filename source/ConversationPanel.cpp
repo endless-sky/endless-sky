@@ -48,7 +48,7 @@ namespace {
 
 
 // Constructor.
-ConversationPanel::ConversationPanel(PlayerInfo &player, const Conversation &conversation, const System *system, const shared_ptr<Ship> ship)
+ConversationPanel::ConversationPanel(PlayerInfo &player, const Conversation &conversation, const System *system, const shared_ptr<Ship> &ship)
 	: player(player), conversation(conversation), scroll(0.), system(system), ship(ship)
 {
 	// These substitutions need to be applied on the fly as each paragraph of
@@ -346,22 +346,27 @@ void ConversationPanel::Goto(int index, int choice)
 void ConversationPanel::Exit()
 {
 	GetUI()->Pop(this);
-	// If this is a conversation offered from an NPC, ending it via LAUNCH,
-	// FLEE, or DEPART destroys the NPC. For hostile NPCs that are boarded
-	// and not being destroyed, show the BoardingPanel unless the player is
-	// being killed or the conversation is exiting via ACCEPT.
-	if(node != Conversation::DIE && node != Conversation::EXPLODE && ship)
+	// Some conversations may be offered from an NPC, e.g. an assisting or
+	// boarding mission's `on offer`, or from completing a mission's NPC
+	// block (e.g. scanning or boarding or killing all required targets).
+	if(node == Conversation::DIE || node == Conversation::EXPLODE)
+		player.Die(node, ship);
+	else if(ship)
 	{
+		// A forced-launch ending (LAUNCH, FLEE, or DEPART) destroys any NPC.
 		if(Conversation::RequiresLaunch(node))
+			// TODO: This may need a ShipEvent, but not all instances
+			// are necessarily caused by the player.
 			ship->Destroy();
-		// Check that this ship is the player's boarding target, as NPC
-		// completion conversations can result from non-boarding events.
-		else if(ship == player.BoardingShip() && ship->GetGovernment()->IsEnemy()
+		// Only show the BoardingPanel for a hostile NPC that is being boarded.
+		// (NPC completion conversations can result from non-boarding events.)
+		else if(ship->Position().Distance(player.Flagship()->Position()) <= 1.
+				&& ship->GetGovernment()->IsEnemy()
 				&& node != Conversation::ACCEPT)
 			GetUI()->Push(new BoardingPanel(player, ship));
 	}
-	// Call the exit response (e.g. ACCEPT, DIE) handler, which is usually
-	// PlayerInfo::MissionCallback, but may be PlayerInfo::BasicCallback.
+	// Call the exit response handler (PlayerInfo::MissionCallback)
+	// to manage the conversation's effect on the player's missions.
 	if(callback)
 		callback(node);
 }
