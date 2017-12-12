@@ -754,7 +754,7 @@ outfit "Javelin Storage Crate"
 	"outfit space" -6
 	"javelin capacity" 100
 	ammo "Javelin"
-	description "The Javelin Storage Crate is used to store extra ammunition for Javlein Pods."
+	description "The Javelin Storage Crate is used to store extra ammunition for Javelin Pods."
 
 outfit "Javelin Pod"
 	category "Secondary Weapons"
