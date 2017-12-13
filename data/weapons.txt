@@ -498,7 +498,7 @@ outfit "Plasma Cannon"
 		sound "plasma"
 		"hit effect" "plasma explosion"
 		"inaccuracy" 2
-		"velocity" 12
+		"velocity" 12.5
 		"lifetime" 40
 		"reload" 18
 		"firing energy" 30
@@ -527,7 +527,7 @@ outfit "Plasma Turret"
 		"hit effect" "plasma explosion"
 		"inaccuracy" 2
 		"turret turn" 2
-		"velocity" 12
+		"velocity" 12.5
 		"lifetime" 40
 		"reload" 9
 		"firing energy" 30
