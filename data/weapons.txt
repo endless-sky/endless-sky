@@ -527,7 +527,7 @@ outfit "Plasma Turret"
 		"hit effect" "plasma explosion"
 		"inaccuracy" 2
 		"turret turn" 2
-		"velocity" 12.5
+		"velocity" 12
 		"lifetime" 40
 		"reload" 9
 		"firing energy" 30
