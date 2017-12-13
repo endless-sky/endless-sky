@@ -2002,7 +2002,7 @@ mission "Wanderers Defend Sich'ka'ara"
 			names "hai"
 			variant
 				"Shield Beetle" 2
-				"Shield Beetle (Tracker)" 1
+				"Shield Beetle (Tracker)"
 				"Shield Beetle (Pulse)" 2
 				"Water Bug" 3
 				"Water Bug (Pulse)" 4
@@ -2012,7 +2012,7 @@ mission "Wanderers Defend Sich'ka'ara"
 		fleet
 			names "hai"
 			variant
-				"Shield Beetle" 1
+				"Shield Beetle"
 				"Shield Beetle (Tracker)" 3
 				"Shield Beetle (Pulse)" 2
 				"Water Bug" 7
@@ -2023,9 +2023,10 @@ mission "Wanderers Defend Sich'ka'ara"
 		fleet
 			names "wanderer"
 			variant
+				"Tempest"
 				"Tempest (Missile)" 2
 				"Autumn Leaf" 3
-				"Summer Leaf" 1
+				"Summer Leaf"
 	npc
 		personality heroic staying
 		government "Wanderer"
@@ -2034,7 +2035,7 @@ mission "Wanderers Defend Sich'ka'ara"
 			variant
 				"Tempest (Heavy)"
 				"Tempest"
-				"Strong Wind" 1
+				"Strong Wind"
 				"Autumn Leaf" 2
 				"Summer Leaf" 3
 	on complete
