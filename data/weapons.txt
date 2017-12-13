@@ -21,8 +21,8 @@ outfit "Energy Blaster"
 		sound "blaster"
 		"hit effect" "blaster impact"
 		"inaccuracy" 3
-		"velocity" 7.5
-		"lifetime" 60
+		"velocity" 7
+		"lifetime" 62
 		"reload" 12
 		"firing energy" 10
 		"firing heat" 35
