@@ -16,15 +16,14 @@ mission "Human Vacation [1]"
 	passengers 1
 	to offer
 		random < 50
-	on offer
-		require "Luxury Accommodations"
 	source
 		government "Hai"
 	destination
 		distance 2 7
 		attributes "human tourism"
 	on complete
-		payment 10000 200
+		payment
+		payment 8000
 		dialog "You wish your <passengers> the best of luck on <planet>, and collect your payment of <payment>."
 
 mission "Human Vacation [2]"
@@ -35,15 +34,14 @@ mission "Human Vacation [2]"
 	passengers 2 12 .8
 	to offer
 		random < 20
-	on offer
-		require "Luxury Accommodations"
 	source
 		government "Hai"
 	destination
 		distance 2 7
 		attributes "human tourism"
 	on complete
-		payment 7000 200
+		payment
+		payment 5000
 		dialog "You wish your <passengers> the best of luck on <planet>, and collect your payment of <payment>."
 
 mission "Hai Vacation [1]"
@@ -54,15 +52,14 @@ mission "Hai Vacation [1]"
 	passengers 1
 	to offer
 		random < 70
-	on offer
-		require "Luxury Accommodations"
 	source
 		government "Hai"
 	destination
 		distance 2 7
 		attributes "hai tourism"
 	on complete
-		payment 8000 200
+		payment
+		payment 6000
 		dialog "You wish your <passengers> the best of luck on <planet>, and collect your payment of <payment>."
 
 mission "Hai Vacation [2]"
@@ -73,15 +70,14 @@ mission "Hai Vacation [2]"
 	passengers 2 12 .8
 	to offer
 		random < 50
-	on offer
-		require "Luxury Accommodations"
 	source
 		government "Hai"
 	destination
 		distance 2 7
 		attributes "hai tourism"
 	on complete
-		payment 6000 200
+		payment
+		payment 4000
 		dialog "You wish your <passengers> the best of luck on <planet>, and collect your payment of <payment>."
 
 mission "Hai Vacation [3]"
@@ -92,15 +88,14 @@ mission "Hai Vacation [3]"
 	passengers 2 12 .8
 	to offer
 		random < 30
-	on offer
-		require "Luxury Accommodations"
 	source
 		government "Hai"
 	destination
 		distance 2 7
 		attributes "hai tourism"
 	on complete
-		payment 6000 200
+		payment
+		payment 4000
 		dialog "You wish your <passengers> the best of luck on <planet>, and collect your payment of <payment>."
 
 mission "Hai Vacation [4]"
@@ -111,15 +106,14 @@ mission "Hai Vacation [4]"
 	passengers 2 12 .8
 	to offer
 		random < 20
-	on offer
-		require "Luxury Accommodations"
 	source
 		government "Hai"
 	destination
 		distance 2 7
 		attributes "hai tourism"
 	on complete
-		payment 8000 200
+		payment
+		payment 6000
 		dialog "You wish your <passengers> the best of luck on <planet>, and collect your payment of <payment>."
 
 

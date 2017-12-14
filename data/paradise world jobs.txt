@@ -321,8 +321,8 @@ mission "Waste disposal on <planet>"
 		dialog "You drop off the exceptionally foul shipment of <commodity> on <planet>, already looking forward to the chemical bath your cargo hold is going to receive. You collect your payment of <payment> and hope that somebody around here knows what to do with the unpleasant mess you dropped off."
 
 
-mission "Transport rich tourists"
-	description "Bring <bunks> wealthy tourists on a fabulous journey to the wild and exotic world of <destination>. Payment is <payment>."
+mission "Transport high-class tourists"
+	description "Bring <bunks> outrageously wealthy tourists on a fabulous journey to the wild and exotic world of <destination>. Payment is <payment>."
 	job
 	repeat
 	passengers 8 22
@@ -337,7 +337,7 @@ mission "Transport rich tourists"
 		distance 8 20
 	on complete
 		dialog "Your passengers begin to wander off, some of them sporting puzzled looks as the memories of glossy photos in the brochures give way to reality. You collect your payment of <payment>."
-		payment 25000 220
+		payment 25000 250
 
 
 mission "Pleasure cruise security"

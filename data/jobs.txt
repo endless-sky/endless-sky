@@ -1866,8 +1866,6 @@ mission "Tourists out [0]"
 	passengers 1
 	to offer
 		random < 20
-	on offer
-		require "Luxury Accommodations"
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
 	destination
@@ -1875,7 +1873,8 @@ mission "Tourists out [0]"
 		distance 6 35
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
 	on complete
-		payment 8000 200
+		payment
+		payment 6000
 		dialog "You wish your <passengers> the best of luck on <planet>, and collect your payment of <payment>."
 
 mission "Tourists out [1]"
@@ -1886,8 +1885,6 @@ mission "Tourists out [1]"
 	passengers 2 10 .9
 	to offer
 		random < 50
-	on offer
-		require "Luxury Accommodations"
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
 	destination
@@ -1895,14 +1892,15 @@ mission "Tourists out [1]"
 		distance 2 25
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
 	on complete
-		payment 6000 200
+		payment
+		payment 4000
 		dialog "You wish your <passengers> the best of luck on <planet>, and collect your payment of <payment>."
 
-mission "Tourists out [2]"
-	name "Bring tourists to <planet>"
+mission "Wealthy tourists out"
+	name "Bring wealthy tourists to <planet>"
 	job
 	repeat
-	description "These <bunks> tourists want to see <destination>. They are willing to pay you <payment>."
+	description "These <bunks> wealthy tourists want to see <destination>. They are willing to pay you <payment>."
 	passengers 2 10 .9
 	to offer
 		random < 75
@@ -1927,8 +1925,6 @@ mission "Tourists back [0]"
 	passengers 1
 	to offer
 		random < 20
-	on offer
-		require "Luxury Accommodations"
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
 		attributes "tourism"
@@ -1936,7 +1932,8 @@ mission "Tourists back [0]"
 		distance 6 35
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
 	on complete
-		payment 8000 200
+		payment
+		payment 6000
 		dialog "You wish your <passengers> the best of luck on <planet>, and collect your payment of <payment>."
 
 mission "Tourists back [1]"
@@ -1947,8 +1944,6 @@ mission "Tourists back [1]"
 	passengers 2 10 .9
 	to offer
 		random < 50
-	on offer
-		require "Luxury Accommodations"
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
 		attributes "tourism"
@@ -1956,14 +1951,15 @@ mission "Tourists back [1]"
 		distance 2 25
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
 	on complete
-		payment 6000 200
+		payment
+		payment 4000
 		dialog "You wish your <passengers> the best of luck on <planet>, and collect your payment of <payment>."
 
-mission "Tourists back [2]"
-	name "Bring tourists home to <planet>"
+mission "Wealthy tourists back"
+	name "Bring wealthy tourists home to <planet>"
 	job
 	repeat
-	description "These <bunks> tourists are headed home to <destination>. They are willing to pay you <payment>."
+	description "These <bunks> wealthy tourists are headed home to <destination>. They are willing to pay you <payment>."
 	passengers 2 10 .9
 	to offer
 		random < 75
