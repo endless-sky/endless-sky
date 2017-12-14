@@ -872,8 +872,8 @@ ship "Corvette"
 	attributes
 		category "Medium Warship"
 		"cost" 4400000
-		"shields" 6100
-		"hull" 1200
+		"shields" 6800
+		"hull" 800
 		"required crew" 8
 		"bunks" 32
 		"mass" 150
@@ -895,7 +895,7 @@ ship "Corvette"
 		
 		"NT-200 Nucleovoltaic"
 		"LP072a Battery Pack"
-		"D67-TM Shield Generator"
+		"D94-YV Shield Generator"
 		"Large Radar Jammer"
 		
 		"X3700 Ion Thruster"
@@ -1188,8 +1188,8 @@ ship "Firebird"
 	attributes
 		category "Medium Warship"
 		"cost" 3700000
-		"shields" 6400
-		"hull" 2800
+		"shields" 5800
+		"hull" 3400
 		"required crew" 7
 		"bunks" 22
 		"mass" 290
@@ -1206,8 +1206,8 @@ ship "Firebird"
 			"hull damage" 500
 			"hit force" 1500
 	outfits
-		"Heavy Laser" 4
-		"Heavy Laser Turret" 2
+		"Particle Cannon" 2
+		"Quad Blaster Turret" 2
 		
 		"RT-I Radiothermal"
 		"nGVF-AA Fuel Cell"
@@ -1220,12 +1220,12 @@ ship "Firebird"
 		
 	engine -33 65
 	engine 33 65
-	gun -28 -27 "Heavy Laser"
-	gun 28 -27 "Heavy Laser"
-	gun -39 -13 "Heavy Laser"
-	gun 39 -13 "Heavy Laser"
-	turret -5 3 "Heavy Laser Turret"
-	turret 5 3 "Heavy Laser Turret"
+	gun -28 -27 "Particle Cannon"
+	gun 28 -27 "Particle Cannon"
+	gun -39 -13
+	gun 39 -13
+	turret -5 3 "Quad Blaster Turret"
+	turret 5 3 "Quad Blaster Turret"
 	explode "tiny explosion" 18
 	explode "small explosion" 36
 	explode "medium explosion" 24
