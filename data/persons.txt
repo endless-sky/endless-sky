@@ -364,7 +364,85 @@ person "Power of the People"
 	phrase
 		phrase
 			"friendly author"
-	
+	phrase
+		word
+			"Does it sound like I'm ordering a pizza?"
+			"I've made a lot of special modifications myself."
+			"I take orders from just one person: me."
+			"You've never heard of the Modified Osprey?"
+			"You know, sometimes I amaze even myself."
+			"I expect the best and I give the best. Here's the beer. Here's the entertainment. Now have fun. That's an order!"
+			"Bugs? Why did it have to be bugs?"
+			"Great, kid. Don't get cocky."
+			"I'm just a fly in the ointment. A monkey in the wrench."
+			"I didn't come here to play Pumbaa on the radio."
+			"I signed on to kill toasters, not take naps!"
+			"Sorry to interrupt just as it was getting interesting, but I'm afraid I've got to blow some bad guys into small pieces."
+			"If you think the other guy might have a blaster hidden under the table... bring two blasters."
+			"I'm a team player. As long as the rest of the team stays behind me."
+	phrase
+		word
+			"Take it from me: "
+			"A word of caution: "
+			"A piece of advice: "
+			""
+			""
+		word
+			"If you think the other guy might have a blaster hidden under the table... bring two blasters."
+			"I'm a team player. As long as the rest of the team stays behind me."
+			"We had a slight weapons malfunction, but everything's perfectly alright now."
+			"Hokey religions and ancient weapons are no match for a good blaster at your side."
+			"Keep your distance. But don't look like you're trying to keep your distance."
+			"Only the enemy will tell you where you are weak."
+			"Shoot a nuke down a bug hole, you got a lot of dead bugs."
+			"Your enemy cannot push a button... if you disable his hand."
+			"This isn't a combat probe."
+			"Never tell me the odds."
+			"I dare you."
+			"Be sure to test your commits."
+			"Commit early, and commit often."
+			"Make a new branch if you're changing things."
+			"The wiki is full of useful information."
+			"Be sure the beer is really free."
+			"Location, location, location."
+	phrase
+		word
+			"When asked a tough question"
+			"Before a big battle"
+			"When the Navy scans your ship"
+			"When docking your ship"
+			"If caught"
+			"When caught"
+		word
+			" "
+		word
+			"I like to say"
+			"don't quip"
+			"don't shout"
+			"be sure to say"
+			"people like to hear"
+			"people like to say"
+			"your best bet is to say"
+			"tell the authorities"
+			"tell your partner"
+		word
+			", "
+		word
+			`"I was out of bullets."`
+			`"There's safety in sandwiches."`
+			`"Welcome to the party, pal!"`
+			`"Punch it!"`
+			`"Here's where the fun begins!"`
+			`"I'm just a guy with a starship for hire."`
+			`"I'm going to grow a beard, just in case."`
+			`"Want a breath mint?"`
+			`"Sorry about the mess."`
+			`"I happen to like to shoot first."`
+			`"Laugh it up, fuzzball."`
+			`"This isn't a combat probe."`
+			`"Negative. I am a meat popsicle."`
+			`"How 'bout a bumper sandwich, Boogerlips?"`
+			`"I recommend the lobster."`
 	ship "Modified Osprey"
 		sprite "ship/mosprey"
 		"never disabled"
