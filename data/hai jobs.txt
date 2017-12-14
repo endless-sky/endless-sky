@@ -22,8 +22,7 @@ mission "Human Vacation [1]"
 		distance 2 7
 		attributes "human tourism"
 	on complete
-		payment
-		payment 8000
+		payment 8000 150
 		dialog "You wish your <passengers> the best of luck on <planet>, and collect your payment of <payment>."
 
 mission "Human Vacation [2]"
@@ -40,8 +39,7 @@ mission "Human Vacation [2]"
 		distance 2 7
 		attributes "human tourism"
 	on complete
-		payment
-		payment 5000
+		payment 5000 150
 		dialog "You wish your <passengers> the best of luck on <planet>, and collect your payment of <payment>."
 
 mission "Hai Vacation [1]"
@@ -58,8 +56,7 @@ mission "Hai Vacation [1]"
 		distance 2 7
 		attributes "hai tourism"
 	on complete
-		payment
-		payment 6000
+		payment 6000 150
 		dialog "You wish your <passengers> the best of luck on <planet>, and collect your payment of <payment>."
 
 mission "Hai Vacation [2]"
@@ -76,8 +73,7 @@ mission "Hai Vacation [2]"
 		distance 2 7
 		attributes "hai tourism"
 	on complete
-		payment
-		payment 4000
+		payment 4000 150
 		dialog "You wish your <passengers> the best of luck on <planet>, and collect your payment of <payment>."
 
 mission "Hai Vacation [3]"
@@ -94,8 +90,7 @@ mission "Hai Vacation [3]"
 		distance 2 7
 		attributes "hai tourism"
 	on complete
-		payment
-		payment 4000
+		payment 4000 150
 		dialog "You wish your <passengers> the best of luck on <planet>, and collect your payment of <payment>."
 
 mission "Hai Vacation [4]"
