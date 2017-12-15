@@ -543,7 +543,7 @@ void PreferencesPanel::DrawPlugins()
 	table.Draw("Installed plugins:", bright);
 	table.DrawGap(5);
 	
-	const int MAX_TEXT_WIDTH = 235;
+	const int MAX_TEXT_WIDTH = 230;
 	const Font &font = FontSet::Get(14);
 	for(const pair<string, string> &plugin : GameData::PluginAboutText())
 	{
