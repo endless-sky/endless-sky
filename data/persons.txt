@@ -170,6 +170,9 @@ person "Captain Nate"
 	personality
 		vindictive heroic
 	phrase
+		phrase
+			"friendly author"
+	phrase
 		word
 			"Who is your daddy and what does he DO?"
 			"I'm detective John Kimball!"
