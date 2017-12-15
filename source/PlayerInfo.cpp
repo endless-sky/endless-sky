@@ -2550,13 +2550,15 @@ void PlayerInfo::Save(const string &path) const
 void PlayerInfo::Fine(UI *ui)
 {
 	const Planet *planet = GetPlanet();
-	// Bribing a planet to land does not preclude evasion of security checks,
-	// but dominating a planet does.
-	if(!GameData::GetPolitics().HasDominated(planet))
-		for(const Mission &mission : missions)
-			if(mission.HasClearance(planet) || (!mission.HasFullClearance() &&
-						(mission.Destination() == planet || mission.Stopovers().count(planet))))
-				return;
+	// Dominated planets should never fine you.
+	if(GameData::GetPolitics().HasDominated(planet))
+		return;
+	
+	// Planets should not fine you if you have mission clearance or are infiltrating.
+	for(const Mission &mission : missions)
+		if(mission.HasClearance(planet) || (!mission.HasFullClearance() &&
+					(mission.Destination() == planet || mission.Stopovers().count(planet))))
+			return;
 	
 	const Government *gov = planet->GetGovernment();
 	string message = gov->Fine(*this, 0, nullptr, planet->Security());
