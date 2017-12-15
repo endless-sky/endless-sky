@@ -1207,7 +1207,7 @@ ship "Firebird"
 			"hit force" 1500
 	outfits
 		"Particle Cannon" 2
-		"Quad Blaster Turret" 2
+		"Heavy Laser Turret" 2
 		
 		"RT-I Radiothermal"
 		"nGVF-AA Fuel Cell"
@@ -1224,8 +1224,8 @@ ship "Firebird"
 	gun 28 -27 "Particle Cannon"
 	gun -39 -13
 	gun 39 -13
-	turret -5 3 "Quad Blaster Turret"
-	turret 5 3 "Quad Blaster Turret"
+	turret -5 3 "Heavy Laser Turret"
+	turret 5 3 "Heavy Laser Turret"
 	explode "tiny explosion" 18
 	explode "small explosion" 36
 	explode "medium explosion" 24
