@@ -320,7 +320,7 @@ void Mission::Save(DataWriter &out, const string &tag) const
 			out.Write("destination", destination->Name());
 		for(const System *system : waypoints)
 			out.Write("waypoint", system->Name());
-		for(const System *system :visitedWaypoints)
+		for(const System *system : visitedWaypoints)
 			out.Write("waypoint", system->Name(), "visited");
 		
 		for(const Planet *planet : stopovers)
@@ -808,7 +808,7 @@ void Mission::Do(const ShipEvent &event, PlayerInfo &player, UI *ui)
 	{
 		const System *system = event.Actor()->GetSystem();
 		// If this was a waypoint, clear it.
-		if(waypoints.find(system) != waypoints.end())
+		if(waypoints.count(system))
 		{
 			waypoints.erase(system);
 			visitedWaypoints.insert(system);
@@ -859,7 +859,7 @@ Mission Mission::Instantiate(const PlayerInfo &player) const
 		result.waypoints.insert(system);
 	}
 	// If one of the waypoints is the current system, it is already visited.
-	if(result.waypoints.find(player.GetSystem()) != result.waypoints.end())
+	if(result.waypoints.count(player.GetSystem()))
 	{
 		result.waypoints.erase(player.GetSystem());
 		result.visitedWaypoints.insert(player.GetSystem());
