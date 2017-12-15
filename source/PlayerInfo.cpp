@@ -1548,7 +1548,8 @@ void PlayerInfo::MissionCallback(int response)
 	
 	Mission &mission = missionList.front();
 	
-	shouldLaunch |= Conversation::RequiresLaunch(response);
+	// If landed, this conversation may require the player to immediately depart.
+	shouldLaunch |= (GetPlanet() && Conversation::RequiresLaunch(response));
 	if(response == Conversation::ACCEPT || response == Conversation::LAUNCH)
 	{
 		bool shouldAutosave = mission.RecommendsAutosave();
@@ -1580,6 +1581,16 @@ void PlayerInfo::MissionCallback(int response)
 	}
 	else if(response == Conversation::DIE)
 		Die(true);
+}
+
+
+
+// Basic callback, allowing conversations to force the player to depart from a
+// planet without requiring a mission to offer.
+void PlayerInfo::BasicCallback(int response)
+{
+	// If landed, this conversation may require the player to immediately depart.
+	shouldLaunch |= (GetPlanet() && Conversation::RequiresLaunch(response));
 }
 
 

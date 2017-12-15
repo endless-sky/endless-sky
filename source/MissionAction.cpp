@@ -298,6 +298,10 @@ void MissionAction::Do(PlayerInfo &player, UI *ui, const System *destination) co
 		ConversationPanel *panel = new ConversationPanel(player, conversation, destination);
 		if(isOffer)
 			panel->SetCallback(&player, &PlayerInfo::MissionCallback);
+		// Use a basic callback to handle forced departure outside of `on offer`
+		// conversations.
+		else
+			panel->SetCallback(&player, &PlayerInfo::BasicCallback);
 		ui->Push(panel);
 	}
 	else if(!dialogText.empty() && ui)
