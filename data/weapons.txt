@@ -214,7 +214,7 @@ outfit "Heavy Laser"
 		sound "heavy laser"
 		"hit effect" "heavy laser impact"
 		"inaccuracy" .4
-		"velocity" 400
+		"velocity" 360
 		"lifetime" 1
 		"reload" 1
 		"firing energy" 1
@@ -241,7 +241,7 @@ outfit "Heavy Laser Turret"
 		"hit effect" "heavy laser impact"
 		"inaccuracy" .4
 		"turret turn" 3.5
-		"velocity" 400
+		"velocity" 360
 		"lifetime" 1
 		"reload" 1
 		"firing energy" 2
@@ -275,7 +275,7 @@ outfit "Electron Beam"
 		sound "electron beam"
 		"hit effect" "electron impact"
 		"inaccuracy" .3
-		"velocity" 450
+		"velocity" 420
 		"lifetime" 1
 		"reload" 1
 		"firing energy" 1.5
@@ -302,7 +302,7 @@ outfit "Electron Turret"
 		"hit effect" "electron impact"
 		"inaccuracy" .3
 		"turret turn" 2.5
-		"velocity" 450
+		"velocity" 420
 		"lifetime" 1
 		"reload" 1
 		"firing energy" 3.0
