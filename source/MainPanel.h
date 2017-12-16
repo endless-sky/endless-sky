@@ -17,6 +17,9 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Command.h"
 #include "Engine.h"
+#include "ShipEvent.h"
+
+#include <list>
 
 class PlayerInfo;
 class ShipEvent;
@@ -51,12 +54,17 @@ protected:
 private:
 	void ShowScanDialog(const ShipEvent &event);
 	bool ShowHailPanel();
+	void StepEvents(bool &isActive);
 	
 	
 private:
 	PlayerInfo &player;
 	
 	Engine engine;
+	
+	// These are the pending ShipEvents that have yet to be processed.
+	std::list<ShipEvent> eventQueue;
+	bool handledFront = false;
 	
 	Command show;
 	

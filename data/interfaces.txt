@@ -8,15 +8,31 @@
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
+# Colors used to reflect the active or hovered interface button.
 color "hover" 1. 1. 1. 0.
 color "active" .75 .75 .75 0.
 color "inactive" .25 .25 .25 0.
 
+# Colors generally used for drawing text or lines.
 color "bright" .75 .75 .75 0.
 color "medium" .5 .5 .5 0.
 color "dim" .25 .25 .25 0.
 color "faint" .1 .1 .1 0.
 
+# Colors used for certain UI elements. These elements generally have a variable
+# size (e.g. they may fit to the current screen dimensions).
+color "panel background" .1 .1 .1 1.
+color "dialog backdrop" 0. 0. 0. .7
+color "conversation background" .125 .125 .125 1.
+color "map side panel background" .125 .125 .125 1.
+color "shop side panel background" .2 .2 .2 1.
+color "shop side panel footer" .3 .3 .3 1.
+color "tooltip background" .2 .2 .2 1.
+color "logbook sidebar" .09 .09 .09 1.
+color "logbook background" .125 .125 .125 1.
+color "logbook line" .2 .2 .2 1.
+
+# Colors used to draw certain HUD elements in-flight.
 color "shields" .43 .55 .70 .75
 color "hull" .70 .62 .43 .75
 color "heat" .70 .43 .43 .75
@@ -27,6 +43,8 @@ color "flagship highlight" .5 .8 .2 0.
 
 color "drag select" .2 1. 0. 0.
 
+# Colors used for drawing mission or job pointers on the map,
+# to indicate where the player should go.
 color "available job" .9 .6 0. 1.
 color "available back" .5 .3 0. .5
 color "unavailable job" .5 .3 0. 1.
@@ -35,9 +53,11 @@ color "active mission" .2 .7 1. 1.
 color "active back" 0. .4 .5 .5
 color "blocked mission" 0. .4 .6 1.
 color "blocked back" 0. .15 .2 .5
+color "special mission" 1. 1. 1. 1.
 color "waypoint" .1 .2 .9 1.
 color "waypoint back" 0. .3 .7 .5
 
+# Colors for the Escort HUD that is displayed in-flight.
 color "escort present" .8 .8 .8 1.
 color "escort elsewhere" .4 .4 .6 1.
 color "escort not ready" .9 .8 0. 1.
@@ -45,6 +65,7 @@ color "escort blocked" .9 .2 0. 1.
 color "escort selected" .2 .8 0. 1.
 color "escort hostile" 1. .6 .4 1.
 
+# Colors used when "status overlays" are enabled, and to show scan progress.
 color "overlay friendly shields" 0. .5 0. .25
 color "overlay friendly hull" .45 .5 0. .25
 color "overlay hostile shields" .5 .15 0. .25
@@ -52,6 +73,7 @@ color "overlay hostile hull" .5 .3 0. .25
 color "overlay outfit scan" .5 .5 .5 .25
 color "overlay cargo scan" .7 .7 .7 .25
 
+# Colors used in the radar map while in-flight.
 color "radar player" .2 1. 0. 0.
 color "radar friendly" .4 .6 1. 0.
 color "radar unfriendly" .8 .8 .4 0.
@@ -61,8 +83,20 @@ color "radar special" 1. 1. 1. 0.
 color "radar anomalous" .7 0. 1. 0.
 color "radar blink" 1. 1. 1. 0.
 
+# Colors used for warning and error tooltip backdrops.
 color "error back" .25 .1 .1 1.
 color "warning back" .21 .18 .08 1.
+
+# Colors used when drawing the map (system names, links, and the player's desired route).
+# (The color of the ring that represents a given system is context-sensitive.)
+color "map link" .6, .6, .6, .6
+color "map name" .6, .6, .6, .6
+color "map travel ok fleet" .2, .5, 0., 0.
+color "map travel ok flagship" .5, .4, 0., 0.
+color "map travel ok none" .55, .1, 0., 0.
+color "map used wormhole" .5, .2, .9, 1.
+color "map unused wormhole" .165, .066, .3, .333
+
 
 
 
@@ -316,7 +350,7 @@ interface "hud"
 	sprite "ui/radar"
 		from 0 0
 		align top left
-	point radar
+	point "radar"
 		center 128 128
 	value "radar radius" 110
 	value "radar pointer radius" 130
@@ -336,7 +370,7 @@ interface "hud"
 	sprite "ui/target"
 		from 0 240
 		align top left
-	point target
+	point "target"
 		center 75 315
 		dimensions 140 140
 	value "target radius" 70
@@ -405,6 +439,10 @@ interface "hud"
 	box "ammo"
 		from -110 450 top right
 		to 0 0 bottom right
+	anchor top
+	point "mini-map"
+		center 0 100
+
 
 
 

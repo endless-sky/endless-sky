@@ -69,13 +69,13 @@ void OutlineShader::Init()
 		"uniform float frameCount = 0;\n"
 		"uniform vec4 color = vec4(1, 1, 1, 1);\n"
 		"uniform vec2 off;\n"
+		"const vec4 weight = vec4(.4, .4, .4, 1.);\n"
 		
 		"in vec2 fragTexCoord;\n"
 		
 		"out vec4 finalColor;\n"
 		
 		"float Sobel(float layer) {\n"
-		"  vec4 weight = vec4(.4, .4, .4, 1.);\n"
 		"  float sum = 0;\n"
 		"  for(int dy = -1; dy <= 1; ++dy)\n"
 		"  {\n"
@@ -180,7 +180,7 @@ void OutlineShader::Draw(const Sprite *sprite, const Point &pos, const Point &si
 	
 	glUniform4fv(colorI, 1, color.Get());
 	
-	glBindTexture(GL_TEXTURE_2D_ARRAY, sprite->Texture());
+	glBindTexture(GL_TEXTURE_2D_ARRAY, sprite->Texture(unit.Length() * Screen::Zoom() > 50.));
 	
 	glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 	

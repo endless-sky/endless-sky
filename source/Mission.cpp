@@ -177,15 +177,23 @@ void Mission::Load(const DataNode &node)
 		else if(child.Token(0) == "destination")
 			destinationFilter.Load(child);
 		else if(child.Token(0) == "waypoint" && child.Size() >= 2)
-			waypoints.insert(GameData::Systems().Get(child.Token(1)));
-		else if(child.Token(0) == "waypoint")
+		{
+			set<const System *> &set = (child.Size() >= 3 && child.Token(2) == "visited")
+					? visitedWaypoints : waypoints;
+			set.insert(GameData::Systems().Get(child.Token(1)));
+		}
+		else if(child.Token(0) == "waypoint" && child.HasChildren())
 		{
 			waypointFilters.emplace_back();
 			waypointFilters.back().Load(child);
 		}
 		else if(child.Token(0) == "stopover" && child.Size() >= 2)
-			stopovers.insert(GameData::Planets().Get(child.Token(1)));
-		else if(child.Token(0) == "stopover")
+		{
+			set<const Planet *> &set = (child.Size() >= 3 && child.Token(2) == "visited")
+					? visitedStopovers : stopovers;
+			set.insert(GameData::Planets().Get(child.Token(1)));
+		}
+		else if(child.Token(0) == "stopover" && child.HasChildren())
 		{
 			stopoverFilters.emplace_back();
 			stopoverFilters.back().Load(child);
@@ -312,8 +320,13 @@ void Mission::Save(DataWriter &out, const string &tag) const
 			out.Write("destination", destination->Name());
 		for(const System *system : waypoints)
 			out.Write("waypoint", system->Name());
+		for(const System *system : visitedWaypoints)
+			out.Write("waypoint", system->Name(), "visited");
+		
 		for(const Planet *planet : stopovers)
 			out.Write("stopover", planet->Name());
+		for(const Planet *planet : visitedStopovers)
+			out.Write("stopover", planet->Name(), "visited");
 		
 		for(const NPC &npc : npcs)
 			npc.Save(out);
@@ -472,7 +485,7 @@ bool Mission::HasClearance(const Planet *planet) const
 {
 	if(clearance.empty())
 		return false;
-	if(planet == destination || stopovers.count(planet))
+	if(planet == destination || stopovers.count(planet) || visitedStopovers.count(planet))
 		return true;
 	return (!clearanceFilter.IsEmpty() && clearanceFilter.Matches(planet));
 }
@@ -701,6 +714,7 @@ bool Mission::Do(Trigger trigger, PlayerInfo &player, UI *ui)
 				return false;
 			}
 		
+		visitedStopovers.insert(*it);
 		stopovers.erase(it);
 		if(!stopovers.empty())
 			return false;
@@ -763,10 +777,12 @@ void Mission::Do(const ShipEvent &event, PlayerInfo &player, UI *ui)
 		if(event.Type() & ShipEvent::DESTROY)
 		{
 			// Destroyed ships carrying mission cargo result in failed missions.
+			// Mission cargo may have a quantity of zero (i.e. 0 mass).
 			for(const auto &it : event.Target()->Cargo().MissionCargo())
 				failed |= (it.first == this);
+			// If any mission passengers were present, this mission is failed.
 			for(const auto &it : event.Target()->Cargo().PassengerList())
-				failed |= (it.first == this);
+				failed |= (it.first == this && it.second);
 			if(failed)
 				message += "lost. ";
 		}
@@ -792,7 +808,11 @@ void Mission::Do(const ShipEvent &event, PlayerInfo &player, UI *ui)
 	{
 		const System *system = event.Actor()->GetSystem();
 		// If this was a waypoint, clear it.
-		waypoints.erase(system);
+		if(waypoints.count(system))
+		{
+			waypoints.erase(system);
+			visitedWaypoints.insert(system);
+		}
 		
 		Enter(system, player, ui);
 		// Allow special "on enter" conditions that match any system.
@@ -830,8 +850,6 @@ Mission Mission::Instantiate(const PlayerInfo &player) const
 	result.repeat = repeat;
 	result.name = name;
 	result.waypoints = waypoints;
-	// If one of the waypoints is the current system, it is already visited.
-	result.waypoints.erase(player.GetSystem());
 	// Handle waypoint systems that are chosen randomly.
 	for(const LocationFilter &filter : waypointFilters)
 	{
@@ -839,6 +857,12 @@ Mission Mission::Instantiate(const PlayerInfo &player) const
 		if(!system)
 			return result;
 		result.waypoints.insert(system);
+	}
+	// If one of the waypoints is the current system, it is already visited.
+	if(result.waypoints.count(player.GetSystem()))
+	{
+		result.waypoints.erase(player.GetSystem());
+		result.visitedWaypoints.insert(player.GetSystem());
 	}
 	
 	// Copy the stopover planet list, and populate the list based on the filters

@@ -109,6 +109,44 @@ namespace {
 		added.clear();
 	}
 	
+	bool CanSendHail(const shared_ptr<const Ship> &ship, const System *playerSystem)
+	{
+		if(!ship || !playerSystem)
+			return false;
+		
+		// Make sure this ship is in the same system as the player.
+		if(ship->GetSystem() != playerSystem)
+			return false;
+		
+		// Player ships shouldn't send hails.
+		if(!ship->GetGovernment() || ship->GetGovernment()->IsPlayer())
+			return false;
+		
+		// Make sure this ship is able to send a hail.
+		if(ship->IsDisabled() || !ship->Crew()
+				|| ship->Cloaking() >= 1. || ship->GetPersonality().IsMute())
+			return false;
+		
+		return true;
+	}
+	
+	// Author the given message from the given ship.
+	void SendMessage(const shared_ptr<const Ship> &ship, const string &message)
+	{
+		if(message.empty())
+			return;
+		
+		// If this ship has no name, show its model name instead.
+		string tag;
+		const string &gov = ship->GetGovernment()->GetName();
+		if(!ship->Name().empty())
+			tag = gov + " " + ship->Noun() + " \"" + ship->Name() + "\": ";
+		else
+			tag = ship->ModelName() + " (" + gov + "): ";
+		
+		Messages::Add(tag + message);
+	}
+	
 	const double RADAR_SCALE = .025;
 }
 
@@ -620,7 +658,9 @@ void Engine::Step(bool isActive)
 				info.SetCondition("range display");
 				info.SetString("target range", to_string(static_cast<int>(round(targetRange))));
 			}
-			if(targetRange <= tacticalRange)
+			// Actual tactical information requires a scrutable
+			// target that is within the tactical scanner range.
+			if(targetRange <= tacticalRange && !target->Attributes().Get("inscrutable"))
 			{
 				info.SetCondition("tactical display");
 				info.SetString("target crew", to_string(target->Crew()));
@@ -724,7 +764,9 @@ void Engine::Go()
 
 
 
-const list<ShipEvent> &Engine::Events() const
+// Pass the list of game events to MainPanel for handling by the player, and any
+// UI element generation.
+list<ShipEvent> &Engine::Events()
 {
 	return events;
 }
@@ -1462,32 +1504,11 @@ void Engine::SendHails()
 			break;
 		}
 	
-	// Player ships shouldn't send hails.
-	const Government *government = source->GetGovernment();
-	if(!government || government->IsPlayer())
+	if(!CanSendHail(source, player.GetSystem()))
 		return;
 	
-	// Make sure this ship is in the same system as you.
-	if(source->GetSystem() != player.GetSystem())
-		return;
-	
-	// Make sure this ship is able to send a hail.
-	if(source->IsDisabled() || !source->Crew() || source->Cloaking() >= 1.)
-		return;
-	
-	// Generate a random hail message, and make sure it's not empty.
-	string message = source->GetHail();
-	if(message.empty())
-		return;
-	
-	// If this ship has no name, show its model name instead.
-	string tag;
-	const string &gov = government->GetName();
-	if(!source->Name().empty())
-		tag = gov + " " + source->Noun() + " \"" + source->Name() + "\": ";
-	else
-		tag = source->ModelName() + " (" + gov + "): ";
-	Messages::Add(tag + message);
+	// Generate a random hail message.
+	SendMessage(source, source->GetHail());
 }
 
 
@@ -1749,14 +1770,8 @@ void Engine::DoCollection(Flotsam &flotsam)
 		return;
 	
 	// One of your ships picked up this flotsam. Describe who it was.
-	string name;
-	if(collector->IsYours())
-	{
-		if(collector->GetParent())
-			name = "Your ship \"" + collector->Name() + "\" picked up ";
-		else
-			name = "You picked up ";
-	}
+	string name = (!collector->GetParent() ? "You" :
+			"Your ship \"" + collector->Name() + "\"") + " picked up ";
 	// Describe what they collected from this flotsam.
 	string commodity;
 	string message;
@@ -1947,17 +1962,16 @@ void Engine::AddSprites(const Ship &ship)
 
 
 // If a ship just damaged another ship, update information on who has asked the
-// player for assistance.
+// player for assistance (and ask for assistance if appropriate).
 void Engine::DoGrudge(const shared_ptr<Ship> &target, const Government *attacker)
 {
 	if(attacker->IsPlayer())
 	{
 		shared_ptr<const Ship> previous = grudge[target->GetGovernment()].lock();
-		if(previous && previous->GetSystem() == player.GetSystem() && !previous->IsDisabled())
+		if(CanSendHail(previous, player.GetSystem()))
 		{
 			grudge[target->GetGovernment()].reset();
-			Messages::Add(previous->GetGovernment()->GetName() + " " + previous->Noun() + " \""
-				+ previous->Name() + "\": Thank you for your assistance, Captain "
+			SendMessage(previous, "Thank you for your assistance, Captain "
 				+ player.LastName() + "!");
 		}
 		return;
@@ -1970,27 +1984,27 @@ void Engine::DoGrudge(const shared_ptr<Ship> &target, const Government *attacker
 	if(grudge.count(attacker))
 	{
 		shared_ptr<const Ship> previous = grudge[attacker].lock();
-		if(!previous || (previous->GetSystem() == player.GetSystem() && !previous->IsDisabled()))
+		// If the previous ship is destroyed, or was able to send a
+		// "thank you" already, skip sending a new thanks.
+		if(!previous || CanSendHail(previous, player.GetSystem()))
 			return;
 	}
 	
-	// Do not ask the player's help if they are your enemy or are not an enemy
-	// of the ship that is attacking you.
-	if(target->GetGovernment()->IsPlayer())
+	// If an enemy of the player, or being attacked by those that are
+	// not enemies of the player, do not request help.
+	if(target->GetGovernment()->IsEnemy() || !attacker->IsEnemy())
 		return;
-	if(!attacker->IsEnemy())
+	// Ensure that this attacked ship is able to send hails (e.g. not mute,
+	// a player ship, automaton, etc.)
+	if(!CanSendHail(target, player.GetSystem()))
 		return;
-	if(target->GetGovernment()->IsEnemy())
-		return;
-	if(target->GetPersonality().IsMute())
-		return;
+	// If the hailer has a special language, the player must understand it.
 	if(!target->GetGovernment()->Language().empty())
 		if(!player.GetCondition("language: " + target->GetGovernment()->Language()))
 			return;
 	
 	// No active ship has a grudge already against this government.
 	// Check the relative strength of this ship and its attackers.
-	double targetStrength = (target->Shields() + target->Hull()) * target->Cost();
 	double attackerStrength = 0.;
 	int attackerCount = 0;
 	for(const shared_ptr<Ship> &ship : ships)
@@ -2000,6 +2014,8 @@ void Engine::DoGrudge(const shared_ptr<Ship> &target, const Government *attacker
 			attackerStrength += (ship->Shields() + ship->Hull()) * ship->Cost();
 		}
 	
+	// Only ask for help if outmatched.
+	double targetStrength = (target->Shields() + target->Hull()) * target->Cost();
 	if(attackerStrength <= targetStrength)
 		return;
 	
@@ -2010,24 +2026,24 @@ void Engine::DoGrudge(const shared_ptr<Ship> &target, const Government *attacker
 	
 	grudge[attacker] = target;
 	grudgeTime = 120;
-	string message = target->GetGovernment()->GetName() + " ship \"" + target->Name() + "\": ";
+	string message;
 	if(target->GetPersonality().IsHeroic())
 	{
-		message += "Please assist us in destroying ";
+		message = "Please assist us in destroying ";
 		message += (attackerCount == 1 ? "this " : "these ");
 		message += attacker->GetName();
 		message += (attackerCount == 1 ? " ship." : " ships.");
 	}
 	else
 	{
-		message += "We are under attack by ";
+		message = "We are under attack by ";
 		if(attackerCount == 1)
 			message += "a ";
 		message += attacker->GetName();
 		message += (attackerCount == 1 ? " ship" : " ships");
 		message += ". Please assist us!";
 	}
-	Messages::Add(message);
+	SendMessage(target, message);
 }
 
 

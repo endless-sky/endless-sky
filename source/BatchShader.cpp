@@ -26,6 +26,9 @@ namespace {
 	// Vertex data:
 	GLint vertI;
 	GLint texCoordI;
+	
+	GLuint vao;
+	GLuint vbo;
 }
 
 
@@ -35,8 +38,8 @@ void BatchShader::Init()
 {
 	static const char *vertexCode =
 		"uniform vec2 scale;\n"
-		"attribute vec2 vert;\n"
-		"attribute vec3 texCoord;\n"
+		"in vec2 vert;\n"
+		"in vec3 texCoord;\n"
 		
 		"out vec3 fragTexCoord;\n"
 		
@@ -74,6 +77,24 @@ void BatchShader::Init()
 	glUseProgram(shader.Object());
 	glUniform1i(shader.Uniform("tex"), 0);
 	glUseProgram(0);
+	
+	// Generate the buffer for uploading the batch vertex data.
+	glGenVertexArrays(1, &vao);
+	glBindVertexArray(vao);
+	
+	glGenBuffers(1, &vbo);
+	glBindBuffer(GL_ARRAY_BUFFER, vbo);
+	
+	// In this VAO, enable the two vertex arrays and specify their byte offsets.
+	glEnableVertexAttribArray(vertI);
+	glVertexAttribPointer(vertI, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void *)0);
+	glEnableVertexAttribArray(texCoordI);
+	glVertexAttribPointer(texCoordI, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void *)(2 * sizeof(float)));
+	
+	// Unbind the buffer and the VAO, but leave the vertex attrib arrays enabled
+	// in the VAO so they will be used when it is bound.
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
+	glBindVertexArray(0);
 }
 
 
@@ -81,6 +102,9 @@ void BatchShader::Init()
 void BatchShader::Bind()
 {
 	glUseProgram(shader.Object());
+	glBindVertexArray(vao);
+	// Bind the vertex buffer so we can upload data to it.
+	glBindBuffer(GL_ARRAY_BUFFER, vbo);
 	
 	// Set up the screen scale.
 	GLfloat scale[2] = {2.f / Screen::Width(), -2.f / Screen::Height()};
@@ -91,28 +115,28 @@ void BatchShader::Bind()
 
 void BatchShader::Add(const Sprite *sprite, bool isHighDPI, const vector<float> &data)
 {
+	// Do nothing if there are no sprites to draw.
+	if(data.empty())
+		return;
+	
 	// First, bind the proper texture.
 	glBindTexture(GL_TEXTURE_2D_ARRAY, sprite->Texture(isHighDPI));
 	// The shader also needs to know how many frames the texture has.
 	glUniform1f(frameCountI, sprite->Frames());
 	
-	// Specify the vertex data.
-	glVertexAttribPointer(vertI, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), data.data());
-	glEnableVertexAttribArray(vertI);
-	glVertexAttribPointer(texCoordI, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), data.data() + 2);
-	glEnableVertexAttribArray(texCoordI);
+	// Upload the vertex data.
+	glBufferData(GL_ARRAY_BUFFER, sizeof(float) * data.size(), data.data(), GL_STREAM_DRAW);
 	
 	// Draw all the vertices.
 	glDrawArrays(GL_TRIANGLE_STRIP, 0, data.size() / 5);
-	
-	// Disable the vertex buffers.
-	glDisableVertexAttribArray(texCoordI);
-	glDisableVertexAttribArray(vertI);
 }
 
 
 
 void BatchShader::Unbind()
 {
+	// Unbind everything in reverse order.
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
+	glBindVertexArray(0);
 	glUseProgram(0);
 }

@@ -92,14 +92,14 @@ void TradingPanel::Step()
 
 void TradingPanel::Draw()
 {
-	Color back = *GameData::Colors().Get("faint");
+	const Color &back = *GameData::Colors().Get("faint");
 	int selectedRow = player.MapColoring();
 	if(selectedRow >= 0 && selectedRow < COMMODITY_COUNT)
 		FillShader::Fill(Point(-60., FIRST_Y + 20 * selectedRow + 33), Point(480., 20.), back);
 	
 	const Font &font = FontSet::Get(14);
-	Color unselected = *GameData::Colors().Get("medium");
-	Color selected = *GameData::Colors().Get("bright");
+	const Color &unselected = *GameData::Colors().Get("medium");
+	const Color &selected = *GameData::Colors().Get("bright");
 	
 	int y = FIRST_Y;
 	FillShader::Fill(Point(-60., y + 15.), Point(480., 1.), unselected);
@@ -157,6 +157,7 @@ void TradingPanel::Draw()
 	{
 		y += 20;
 		int price = system.Trade(commodity.name);
+		int hold = player.Cargo().Get(commodity.name);
 		
 		bool isSelected = (i++ == selectedRow);
 		const Color &color = (isSelected ? selected : unselected);
@@ -168,7 +169,7 @@ void TradingPanel::Draw()
 			font.Draw(to_string(price), Point(PRICE_X, y), color);
 		
 			int basis = player.GetBasis(commodity.name);
-			if(basis && basis != price)
+			if(basis && basis != price && hold)
 			{
 				string profit = "(profit: " + to_string(price - basis) + ")";
 				font.Draw(profit, Point(LEVEL_X, y), color);
@@ -194,7 +195,6 @@ void TradingPanel::Draw()
 			font.Draw("(not for sale)", Point(LEVEL_X, y), color);
 		}
 		
-		int hold = player.Cargo().Get(commodity.name);
 		if(hold)
 		{
 			sellOutfits = false;

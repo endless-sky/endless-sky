@@ -269,19 +269,21 @@ void NPC::Do(const ShipEvent &event, PlayerInfo &player, UI *ui, bool isVisible)
 	bool hasSucceeded = HasSucceeded(player.GetSystem());
 	bool hasFailed = HasFailed();
 	
-	// Scan events only count if originated by the player.
+	// If this event was "ASSIST", the ship is now known as not disabled.
+	if(type == ShipEvent::ASSIST)
+		actions[ship.get()] &= ~(ShipEvent::DISABLE);
+	
+	// Certain events only count towards the NPC's status if originated by
+	// the player: scanning, boarding, or assisting.
 	if(!event.ActorGovernment()->IsPlayer())
-		type &= ~(ShipEvent::SCAN_CARGO | ShipEvent::SCAN_OUTFITS);
+		type &= ~(ShipEvent::SCAN_CARGO | ShipEvent::SCAN_OUTFITS
+				| ShipEvent::ASSIST | ShipEvent::BOARD);
 	
 	// Apply this event to the ship and any ships it is carrying.
 	actions[ship.get()] |= type;
 	for(const Ship::Bay &bay : ship->Bays())
 		if(bay.ship)
 			actions[bay.ship.get()] |= type;
-	
-	// If this event was "ASSIST", the ship is now known as not disabled.
-	if(type == ShipEvent::ASSIST)
-		actions[ship.get()] &= ~(ShipEvent::DISABLE);
 	
 	// Check if the success status has changed. If so, display a message.
 	if(HasFailed() && !hasFailed && isVisible)
@@ -414,7 +416,11 @@ NPC NPC::Instantiate(map<string, string> &subs, const System *origin, const Syst
 	
 	// Convert fleets into instances of ships.
 	for(const shared_ptr<Ship> &ship : ships)
+	{
+		// This ship is being defined from scratch.
 		result.ships.push_back(make_shared<Ship>(*ship));
+		result.ships.back()->FinishLoading(true);
+	}
 	auto shipIt = stockShips.begin();
 	auto nameIt = shipNames.begin();
 	for( ; shipIt != stockShips.end() && nameIt != shipNames.end(); ++shipIt, ++nameIt)
@@ -432,7 +438,8 @@ NPC NPC::Instantiate(map<string, string> &subs, const System *origin, const Syst
 		ship->SetGovernment(result.government);
 		ship->SetIsSpecial();
 		ship->SetPersonality(result.personality);
-		ship->FinishLoading(true);
+		if(result.personality.IsDerelict())
+			ship->Disable();
 		
 		if(personality.IsEntering())
 			Fleet::Enter(*result.system, *ship);

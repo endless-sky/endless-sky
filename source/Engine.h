@@ -67,7 +67,8 @@ public:
 	void Go();
 	
 	// Get any special events that happened in this step.
-	const std::list<ShipEvent> &Events() const;
+	// MainPanel::Step will clear this list.
+	std::list<ShipEvent> &Events();
 	
 	// Draw a frame.
 	void Draw() const;

@@ -75,7 +75,7 @@ void ConversationPanel::Draw()
 	// Draw the panel itself, stretching from top to bottom of the screen on
 	// the left side. The edge sprite contains 10 pixels of the margin; the rest
 	// of the margin is included in the filled rectangle drawn here:
-	Color back(0.125, 1.);
+	const Color &back = *GameData::Colors().Get("conversation background");
 	double boxWidth = WIDTH + 2. * MARGIN - 10.;
 	FillShader::Fill(
 		Point(Screen::Left() + .5 * boxWidth, 0.),
@@ -96,10 +96,10 @@ void ConversationPanel::Draw()
 	
 	// Get the font and colors we'll need for drawing everything.
 	const Font &font = FontSet::Get(14);
-	Color selectionColor = *GameData::Colors().Get("faint");
-	Color dim = *GameData::Colors().Get("dim");
-	Color grey = *GameData::Colors().Get("medium");
-	Color bright = *GameData::Colors().Get("bright");
+	const Color &selectionColor = *GameData::Colors().Get("faint");
+	const Color &dim = *GameData::Colors().Get("dim");
+	const Color &grey = *GameData::Colors().Get("medium");
+	const Color &bright = *GameData::Colors().Get("bright");
 	
 	// Figure out where we should start drawing.
 	Point point(
@@ -343,18 +343,21 @@ void ConversationPanel::Goto(int index, int choice)
 void ConversationPanel::Exit()
 {
 	GetUI()->Pop(this);
-	if(player.BoardingShip())
+	// If this is a conversation offered from boarding or assisting an NPC,
+	// being forced to leave via LAUNCH, FLEE, or DEPART destroys it. If it
+	// is a hostile NPC and not destroyed, and its mission (e.g. "leave me
+	// alone, here's X as payment") was not accepted, open a BoardingPanel
+	// to allow plundering it - unless you're dead.
+	if(node != Conversation::DIE && player.BoardingShip())
 	{
-		// If boarding a ship, you may plunder or destroy it depending on the
-		// outcome of the conversation.
 		if(Conversation::RequiresLaunch(node))
 			player.BoardingShip()->Destroy();
-		else if(player.BoardingShip()->GetGovernment()->IsEnemy())
-		{
-			if(node != Conversation::ACCEPT)
-				GetUI()->Push(new BoardingPanel(player, player.BoardingShip()));
-		}
+		else if(player.BoardingShip()->GetGovernment()->IsEnemy()
+				&& node != Conversation::ACCEPT)
+			GetUI()->Push(new BoardingPanel(player, player.BoardingShip()));
 	}
+	// Call the exit response (e.g. ACCEPT, DIE) handler, which is usually
+	// PlayerInfo::MissionCallback.
 	if(callback)
 		callback(node);
 }

@@ -491,7 +491,7 @@ mission "FW Syndicate Diplomacy 1D"
 			
 			`	"My parents said it was because I was so willful and stubborn, too hard to control," she says. "But years later, we began to discover that all of us who were passed over had one thing in common. We were all infertile. Had been already, the day of the Disappearance. Which means that either a bunch of pirates had suddenly decided they wanted to leave behind their lives of crime and settle down and raise families... or those girls were being used as incubators."`
 			`	Alondo says, "I hear that was common during the Alpha wars. Alpha genetics were so unstable, they needed hundreds of test subjects to produce a handful of viable Alpha babies. Those were evil days."`
-			`	"Days that may yet return," she says. "Somewhere, maybe even nearby on Bloodsea or Greenrock or Albatross, the remnants of the Alphas may still be hiding. Creatures bred to be strong and clever and able to kill without a hint of remorse. And now that this sector of space is yours, the duty of defending against them becomes yours, as well. That is why I agree to talk with you: to warn you of that reality."`
+			`	"Days that may yet return," she says. "Somewhere, maybe even nearby on Bloodsea or Greenrock or Albatross, the remnants of the Alphas may still be hiding. Creatures bred to be strong and clever and able to kill without a hint of remorse. And now that this sector of space is yours, the duty of defending against them becomes yours, as well. That is why I agreed to talk with you: to warn you of that reality."`
 			`	You and Alondo return to your ship with one more thing for the fledgling Free Worlds to worry about. "I guess now we should return to <planet> and report to the Council," he says.`
 				accept
 	
