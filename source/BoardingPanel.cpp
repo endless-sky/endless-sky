@@ -118,11 +118,11 @@ void BoardingPanel::Draw()
 	DrawBackdrop();
 	
 	// Draw the list of plunder.
-	Color opaque(.1, 1.);
-	Color back = *GameData::Colors().Get("faint");
-	Color dim = *GameData::Colors().Get("dim");
-	Color medium = *GameData::Colors().Get("medium");
-	Color bright = *GameData::Colors().Get("bright");
+	const Color &opaque = *GameData::Colors().Get("panel background");
+	const Color &back = *GameData::Colors().Get("faint");
+	const Color &dim = *GameData::Colors().Get("dim");
+	const Color &medium = *GameData::Colors().Get("medium");
+	const Color &bright = *GameData::Colors().Get("bright");
 	FillShader::Fill(Point(-155., -60.), Point(360., 250.), opaque);
 	
 	int index = (scroll - 10) / 20;
