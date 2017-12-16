@@ -17,6 +17,7 @@ ship "Star Barge" "Star Barge (Armed)"
 		"Chipmunk Plasma Thruster"
 		"Chipmunk Plasma Steering"
 		"Hyperdrive"
+		"Laser Rifle" 3
 
 
 
@@ -31,6 +32,7 @@ ship "Sparrow" "Sparrow (Patrol)"
 		"Chipmunk Plasma Thruster"
 		"Chipmunk Plasma Steering"
 		"Hyperdrive"
+		"Laser Rifle" 2
 
 
 
@@ -43,6 +45,7 @@ ship "Raven" "Raven (Afterburner)"
 		"X3200 Ion Steering"
 		"Hyperdrive"
 		"Afterburner"
+		"Laser Rifle" 13
 
 
 
@@ -55,6 +58,7 @@ ship "Wasp" "Wasp (Proton)"
 		"X2700 Ion Thruster"
 		"X2200 Ion Steering"
 		"Hyperdrive"
+		"Laser Rifle" 2
 
 
 
@@ -69,6 +73,7 @@ ship "Manta" "Manta (Proton)"
 		"X3700 Ion Thruster"
 		"X3200 Ion Steering"
 		"Hyperdrive"
+		"Laser Rifle" 10
 	gun "Meteor Missile Launcher"
 	gun "Meteor Missile Launcher"
 	gun "Proton Gun"
@@ -88,6 +93,7 @@ ship "Quicksilver" "Quicksilver (Proton)"
 		"Greyhound Plasma Thruster"
 		"Greyhound Plasma Steering"
 		"Hyperdrive"
+		"Laser Rifle" 6
 
 
 
@@ -112,6 +118,7 @@ ship "Cruiser" "Cruiser (Heavy)"
 		"A525 Atomic Steering"
 		"X2200 Ion Steering"
 		"Scram Drive"
+		"Laser Rifle" 136
 	gun "Particle Cannon"
 	gun "Particle Cannon"
 	gun "Particle Cannon"
@@ -140,6 +147,7 @@ ship "Scout" "Scout (Speedy)"
 		"A370 Atomic Thruster"
 		"A255 Atomic Steering"
 		"Hyperdrive"
+		"Laser Rifle" 12
 
 
 
@@ -155,6 +163,7 @@ ship "Clipper" "Clipper (Heavy)"
 		"Greyhound Plasma Thruster"
 		"Impala Plasma Steering"
 		"Scram Drive"
+		"Laser Rifle" 9
 
 
 
@@ -168,6 +177,7 @@ ship "Clipper" "Clipper (Speedy)"
 		"A370 Atomic Thruster"
 		"A255 Atomic Steering"
 		"Hyperdrive"
+		"Laser Rifle" 9
 
 
 
@@ -183,6 +193,7 @@ ship "Freighter" "Freighter (Fancy)"
 		"Greyhound Plasma Thruster"
 		"X3200 Ion Steering"
 		"Scram Drive"
+		"Laser Rifle" 7
 	turret "Laser Turret"
 	turret "Laser Turret"
 	turret "Heavy Anti-Missile Turret"
@@ -201,6 +212,7 @@ ship "Freighter" "Freighter (Proton)"
 		"Greyhound Plasma Thruster"
 		"X3200 Ion Steering"
 		"Scram Drive"
+		"Laser Rifle" 7
 
 
 
@@ -216,6 +228,7 @@ ship "Argosy" "Argosy (Laser)"
 		"Greyhound Plasma Thruster"
 		"Impala Plasma Steering"
 		"Hyperdrive"
+		"Laser Rifle" 14
 
 
 
@@ -232,6 +245,7 @@ ship "Argosy" "Argosy (Missile)"
 		"A370 Atomic Thruster"
 		"A255 Atomic Steering"
 		"Hyperdrive"
+		"Laser Rifle" 14
 	turret "Anti-Missile Turret"
 	turret "Heavy Anti-Missile Turret"
 
@@ -248,6 +262,7 @@ ship "Argosy" "Argosy (Proton)"
 		"Greyhound Plasma Thruster"
 		"Impala Plasma Steering"
 		"Hyperdrive"
+		"Laser Rifle" 14
 
 
 
@@ -262,6 +277,7 @@ ship "Argosy" "Argosy (Turret)"
 		"X3700 Ion Thruster"
 		"Greyhound Plasma Steering"
 		"Hyperdrive"
+		"Laser Rifle" 14
 
 
 
@@ -276,6 +292,7 @@ ship "Argosy" "Argosy (Blaster)"
 		"Greyhound Plasma Thruster"
 		"Impala Plasma Steering"
 		"Hyperdrive"
+		"Laser Rifle" 14
 
 
 
@@ -295,6 +312,7 @@ ship "Behemoth" "Behemoth (Proton)"
 		"A125 Atomic Steering"
 		"A375 Atomic Steering"
 		"Scram Drive"
+		"Laser Rifle" 30
 	turret "Proton Turret"
 	turret "Proton Turret"
 	turret "Proton Turret"
@@ -319,6 +337,7 @@ ship "Behemoth" "Behemoth (Speedy)"
 		"A125 Atomic Steering"
 		"A375 Atomic Steering"
 		"Scram Drive"
+		"Laser Rifle" 30
 
 
 
@@ -336,6 +355,7 @@ ship "Bulk Freighter" "Bulk Freighter (Heavy)"
 		"A250 Atomic Thruster"
 		"A375 Atomic Steering"
 		"Scram Drive"
+		"Laser Rifle" 18
 	turret "Laser Turret"
 	turret "Laser Turret"
 	turret "Heavy Anti-Missile Turret"
@@ -357,6 +377,7 @@ ship "Bulk Freighter" "Bulk Freighter (Blaster)"
 		"A250 Atomic Thruster"
 		"A375 Atomic Steering"
 		"Scram Drive"
+		"Laser Rifle" 18
 
 
 
@@ -373,6 +394,7 @@ ship "Bulk Freighter" "Bulk Freighter (Proton)"
 		"A250 Atomic Thruster"
 		"A375 Atomic Steering"
 		"Scram Drive"
+		"Laser Rifle" 18
 
 
 
@@ -386,6 +408,7 @@ ship "Fury" "Fury (Missile)"
 		"Greyhound Plasma Thruster"
 		"Chipmunk Plasma Steering"
 		"Hyperdrive"
+		"Laser Rifle" 3
 
 
 
@@ -399,6 +422,7 @@ ship "Fury" "Fury (Laser)"
 		"Chipmunk Plasma Thruster"
 		"A125 Atomic Steering"
 		"Hyperdrive"
+		"Laser Rifle" 3
 
 
 
@@ -411,6 +435,7 @@ ship "Hawk" "Hawk (Speedy)"
 		"A250 Atomic Thruster"
 		"A255 Atomic Steering"
 		"Hyperdrive"
+		"Laser Rifle" 4
 
 
 
@@ -424,6 +449,7 @@ ship "Hawk" "Hawk (Rocket)"
 		"Greyhound Plasma Thruster"
 		"Greyhound Plasma Steering"
 		"Hyperdrive"
+		"Laser Rifle" 4
 
 
 
@@ -439,6 +465,7 @@ ship "Bastion" "Bastion (Heavy)"
 		"X3700 Ion Thruster"
 		"Orca Plasma Steering"
 		"Hyperdrive"
+		"Laser Rifle" 40
 
 
 
@@ -456,6 +483,7 @@ ship "Bastion" "Bastion (Laser)"
 		"A370 Atomic Thruster"
 		"A525 Atomic Steering"
 		"Hyperdrive"
+		"Laser Rifle" 40
 	turret "Heavy Anti-Missile Turret"
 	turret "Heavy Laser Turret"
 	turret "Heavy Laser Turret"
@@ -474,6 +502,7 @@ ship "Corvette" "Corvette (Speedy)"
 		"A370 Atomic Thruster"
 		"A375 Atomic Steering"
 		"Hyperdrive"
+		"Laser Rifle" 32
 
 
 
@@ -492,6 +521,7 @@ ship "Corvette" "Corvette (Missile)"
 		"A370 Atomic Thruster"
 		"A375 Atomic Steering"
 		"Hyperdrive"
+		"Laser Rifle" 32
 	gun "Sidewinder Missile Launcher"
 	gun "Sidewinder Missile Launcher"
 	gun "Torpedo Launcher"
@@ -512,6 +542,7 @@ ship "Firebird" "Firebird (Plasma)"
 		"X3700 Ion Thruster"
 		"A375 Atomic Steering"
 		"Hyperdrive"
+		"Laser Rifle" 22
 
 
 
@@ -529,6 +560,7 @@ ship "Firebird" "Firebird (Missile)"
 		"Impala Plasma Thruster"
 		"A375 Atomic Steering"
 		"Hyperdrive"
+		"Laser Rifle" 22
 	gun "Meteor Missile Launcher"
 	gun "Meteor Missile Launcher"
 	gun "Torpedo Launcher"
@@ -551,6 +583,7 @@ ship "Mule" "Mule (Heavy)"
 		"A370 Atomic Thruster"
 		"A375 Atomic Steering"
 		"Hyperdrive"
+		"Laser Rifle" 42
 
 
 
@@ -566,6 +599,7 @@ ship "Osprey" "Osprey (Laser)"
 		"Impala Plasma Thruster"
 		"X4200 Ion Steering"
 		"Hyperdrive"
+		"Laser Rifle" 24
 
 
 
@@ -584,6 +618,7 @@ ship "Osprey" "Osprey (Missile)"
 		"A520 Atomic Thruster"
 		"A375 Atomic Steering"
 		"Hyperdrive"
+		"Laser Rifle" 24
 	gun "Heavy Rocket Launcher"
 	gun "Heavy Rocket Launcher"
 	gun "Torpedo Launcher"
@@ -604,6 +639,7 @@ ship "Raven" "Raven (Heavy)"
 		"A250 Atomic Thruster"
 		"A375 Atomic Steering"
 		"Hyperdrive"
+		"Laser Rifle" 13
 	gun "Particle Cannon"
 	gun "Particle Cannon"
 	gun "Meteor Missile Launcher"
@@ -623,6 +659,7 @@ ship "Splinter" "Splinter (Laser)"
 		"X3700 Ion Thruster"
 		"Impala Plasma Steering"
 		"Hyperdrive"
+		"Laser Rifle" 21
 	turret "Heavy Laser Turret"
 	turret "Heavy Anti-Missile Turret"
 	turret "Heavy Laser Turret"
@@ -640,6 +677,7 @@ ship "Splinter" "Splinter (Proton)"
 		"X3700 Ion Thruster"
 		"Impala Plasma Steering"
 		"Hyperdrive"
+		"Laser Rifle" 21
 	turret "Proton Turret"
 	turret "Anti-Missile Turret"
 	turret "Proton Turret"
@@ -657,6 +695,7 @@ ship "Falcon" "Falcon (Laser)"
 		"Impala Plasma Thruster"
 		"Orca Plasma Steering"
 		"Hyperdrive"
+		"Laser Rifle" 75
 
 
 
@@ -673,6 +712,7 @@ ship "Falcon" "Falcon (Heavy)"
 		"Orca Plasma Thruster"
 		"A375 Atomic Steering"
 		"Hyperdrive"
+		"Laser Rifle" 75
 	gun "Torpedo Launcher"
 	gun "Torpedo Launcher"
 	gun "Meteor Missile Launcher"
@@ -693,6 +733,7 @@ ship "Leviathan" "Leviathan (Laser)"
 		"A370 Atomic Thruster"
 		"A525 Atomic Steering"
 		"Hyperdrive"
+		"Laser Rifle" 64
 
 
 
@@ -712,6 +753,7 @@ ship "Leviathan" "Leviathan (Heavy)"
 		"Afterburner"
 		"Scram Drive"
 		"Ramscoop"
+		"Laser Rifle" 64
 	gun "Meteor Missile Launcher"
 	gun "Meteor Missile Launcher"
 	gun "Torpedo Launcher"
@@ -731,6 +773,7 @@ ship "Protector" "Protector (Laser)"
 		"A370 Atomic Thruster"
 		"A375 Atomic Steering"
 		"Hyperdrive"
+		"Laser Rifle" 69
 	turret "Laser Turret"
 	turret "Laser Turret"
 	turret "Heavy Laser Turret"
@@ -751,6 +794,7 @@ ship "Protector" "Protector (Proton)"
 		"A370 Atomic Thruster"
 		"A375 Atomic Steering"
 		"Hyperdrive"
+		"Laser Rifle" 69
 
 
 
@@ -764,6 +808,7 @@ ship "Vanguard" "Vanguard (Particle)"
 		"X3700 Ion Thruster"
 		"X4200 Ion Steering"
 		"Hyperdrive"
+		"Laser Rifle" 45
 	gun "Particle Cannon"
 	gun "Particle Cannon"
 	gun "Particle Cannon"
@@ -783,6 +828,7 @@ ship "Heavy Shuttle" "Heavy Shuttle (Armed)"
 		"Chipmunk Plasma Thruster"
 		"Chipmunk Plasma Steering"
 		"Hyperdrive"
+		"Laser Rifle" 8
 
 
 
@@ -794,6 +840,7 @@ ship "Flivver" "Flivver (Racing)"
 		"A120 Atomic Thruster"
 		"A125 Atomic Steering"
 		"Hyperdrive"
+		"Laser Rifle" 3
 
 
 
@@ -810,6 +857,7 @@ ship "Berserker" "Berserker (Afterburner)"
 		"Greyhound Plasma Steering"
 		"Afterburner"
 		"Hyperdrive"
+		"Laser Rifle" 2
 
 
 
@@ -822,6 +870,7 @@ ship "Headhunter" "Headhunter (Particle)"
 		"A250 Atomic Thruster"
 		"A375 Atomic Steering"
 		"Hyperdrive"
+		"Laser Rifle" 4
 
 
 
@@ -836,6 +885,7 @@ ship "Modified Argosy" "Modified Argosy (Heavy)"
 		"A250 Atomic Thruster"
 		"A375 Atomic Steering"
 		"Hyperdrive"
+		"Laser Rifle" 12
 
 
 
@@ -851,6 +901,7 @@ ship "Modified Argosy" "Modified Argosy (Blaster)"
 		"Greyhound Plasma Thruster"
 		"X3200 Ion Steering"
 		"Hyperdrive"
+		"Laser Rifle" 12
 
 
 
@@ -868,6 +919,7 @@ ship "Modified Argosy" "Modified Argosy (Missile)"
 		"X3700 Ion Thruster"
 		"Greyhound Plasma Steering"
 		"Hyperdrive"
+		"Laser Rifle" 12
 
 
 
@@ -882,6 +934,7 @@ ship "Falcon" "Falcon (Plasma)"
 		"Impala Plasma Thruster"
 		"Impala Plasma Steering"
 		"Hyperdrive"
+		"Laser Rifle" 75
 
 
 
@@ -895,6 +948,7 @@ ship "Fury" "Fury (Flamethrower)"
 		"X2700 Ion Thruster"
 		"X2200 Ion Steering"
 		"Hyperdrive"
+		"Laser Rifle" 3
 
 
 
@@ -909,6 +963,7 @@ ship "Rainmaker" "Rainmaker (Mark II)"
 		"A120 Atomic Thruster"
 		"A125 Atomic Steering"
 		"Scram Drive"
+		"Laser Rifle" 14
 	gun
 	gun
 	gun "Sidewinder Missile Launcher"
@@ -930,6 +985,7 @@ ship "Gunboat" "Gunboat (Mark II)"
 		"A250 Atomic Thruster"
 		"A255 Atomic Steering"
 		"Hyperdrive"
+		"Laser Rifle" 12
 
 
 
@@ -947,6 +1003,7 @@ ship "Frigate" "Frigate (Mark II)"
 		"X3700 Ion Thruster"
 		"A375 Atomic Steering"
 		"Hyperdrive"
+		"Laser Rifle" 44
 	turret "Anti-Missile Turret"
 	turret "Blaster Turret"
 	turret "Blaster Turret"
@@ -969,6 +1026,7 @@ ship "Cruiser" "Cruiser (Mark II)"
 		"A520 Atomic Thruster"
 		"A525 Atomic Steering"
 		"Hyperdrive"
+		"Laser Rifle" 136
 	gun "Sidewinder Missile Launcher"
 	gun "Sidewinder Missile Launcher"
 	gun "Sidewinder Missile Launcher"
@@ -998,6 +1056,7 @@ ship "Carrier" "Carrier (Mark II)"
 		"A860 Atomic Thruster"
 		"A525 Atomic Steering"
 		"Hyperdrive"
+		"Laser Rifle" 184
 	gun "Particle Cannon"
 	gun "Particle Cannon"
 	gun "Sidewinder Missile Launcher"
@@ -1030,6 +1089,7 @@ ship "Behemoth" "Behemoth (Heavy)"
 		"Greyhound Plasma Thruster"
 		"Impala Plasma Steering"
 		"Hyperdrive"
+		"Laser Rifle" 30
 	turret "Quad Blaster Turret"
 	turret "Quad Blaster Turret"
 	turret "Plasma Turret"
@@ -1052,6 +1112,7 @@ ship "Splinter" "Splinter (Mark II)"
 		"A375 Atomic Steering"
 		"Hyperdrive"
 		"Ionic Afterburner"
+		"Laser Rifle" 21
 
 
 
@@ -1069,6 +1130,7 @@ ship "Manta" "Manta (Mark II)"
 		"A375 Atomic Steering"
 		"Hyperdrive"
 		"Ionic Afterburner"
+		"Laser Rifle" 10
 	gun "Particle Cannon"
 	gun "Particle Cannon"
 	gun "Particle Cannon"
@@ -1088,6 +1150,7 @@ ship "Quicksilver" "Quicksilver (Mark II)"
 		"Greyhound Plasma Thruster"
 		"Greyhound Plasma Steering"
 		"Hyperdrive"
+		"Laser Rifle" 6
 
 
 
@@ -1103,6 +1166,7 @@ ship "Manta" "Manta (Nuclear)"
 		"A250 Atomic Thruster"
 		"A375 Atomic Steering"
 		"Hyperdrive"
+		"Laser Rifle" 10
 	gun "Particle Cannon"
 	gun "Particle Cannon"
 	gun "Particle Cannon"
@@ -1131,6 +1195,7 @@ ship "Cruiser" "Cruiser (Jump)"
 		"A520 Atomic Thruster"
 		"A525 Atomic Steering"
 		"Jump Drive"
+		"Laser Rifle" 136
 	gun "Sidewinder Missile Launcher"
 	gun "Sidewinder Missile Launcher"
 	gun "Typhoon Launcher"
@@ -1162,6 +1227,7 @@ ship "Carrier" "Carrier (Jump)"
 		"A860 Atomic Thruster"
 		"A525 Atomic Steering"
 		"Jump Drive"
+		"Laser Rifle" 184
 	gun "Particle Cannon"
 	gun "Particle Cannon"
 	gun "Sidewinder Missile Launcher"
@@ -1190,6 +1256,7 @@ ship "Dreadnought" "Dreadnought (Jump)"
 		"Orca Plasma Thruster"
 		"Orca Plasma Steering"
 		"Jump Drive"
+		"Laser Rifle" 147
 
 
 
@@ -1204,6 +1271,7 @@ ship "Clipper" "Clipper (Nuclear)"
 		"A255 Atomic Steering"
 		"Hyperdrive"
 		"Afterburner"
+		"Laser Rifle" 9
 
 
 
@@ -1220,6 +1288,7 @@ ship "Osprey" "Osprey (Alien Weapons)"
 		`"Bondir" Atomic Thruster`
 		`"Bondir" Atomic Steering`
 		Hyperdrive
+		"Laser Rifle" 24
 
 
 
@@ -1236,6 +1305,7 @@ ship "Nest" "Nest (Sidewinder)"
 		"A250 Atomic Thruster"
 		"A375 Atomic Steering"
 		Hyperdrive
+		"Laser Rifle" 14
 
 
 
@@ -1252,6 +1322,7 @@ ship "Roost" "Roost (Sidewinder)"
 		"A250 Atomic Thruster"
 		"A375 Atomic Steering"
 		Hyperdrive
+		"Laser Rifle" 16
 
 
 
@@ -1269,6 +1340,7 @@ ship "Skein" "Skein (Sidewinder)"
 		"A250 Atomic Thruster"
 		"A375 Atomic Steering"
 		Hyperdrive
+		"Laser Rifle" 18
 
 
 
@@ -1281,6 +1353,7 @@ ship "Lance" "Lance (Gatling)"
 		"D14-RN Shield Generator"
 		"X1700 Ion Thruster"
 		"X1200 Ion Steering"
+		"Laser Rifle" 1
 
 
 
@@ -1293,6 +1366,7 @@ ship "Barb" "Barb (Gatling)"
 		Supercapacitor 3
 		"D14-RN Shield Generator"
 		"X1050 Ion Engines"
+		"Laser Rifle" 2
 
 
 
@@ -1306,6 +1380,7 @@ ship "Fury" "Fury (Gatling)"
 		"X2700 Ion Thruster"
 		"A125 Atomic Steering"
 		"Hyperdrive"
+		"Laser Rifle" 3
 
 
 
@@ -1319,6 +1394,7 @@ ship "Sparrow" "Sparrow (Gatling)"
 		"Chipmunk Plasma Thruster"
 		"Chipmunk Plasma Steering"
 		"Hyperdrive"
+		"Laser Rifle" 2
 
 
 
@@ -1330,6 +1406,7 @@ ship "Flivver" "Flivver (Hai)"
 		`"Basrem" Atomic Thruster`
 		`"Benga" Atomic Steering`
 		"Hyperdrive"
+		"Laser Rifle" 3
 
 
 
@@ -1345,6 +1422,7 @@ ship "Arrow" "Arrow (Hai)"
 		`"Benga" Atomic Thruster`
 		`"Biroo" Atomic Steering`
 		"Hyperdrive"
+		"Laser Rifle" 5
 
 
 
@@ -1359,6 +1437,7 @@ ship "Bounder" "Bounder (Hai)"
 		"X3700 Ion Thruster"
 		"X3200 Ion Steering"
 		"Hyperdrive"
+		"Laser Rifle" 17
 
 
 
@@ -1374,6 +1453,7 @@ ship "Star Queen" "Star Queen (Hai)"
 		"X3700 Ion Thruster"
 		"A375 Atomic Steering"
 		"Hyperdrive"
+		"Laser Rifle" 112
 
 
 
@@ -1390,6 +1470,7 @@ ship "Freighter" "Freighter (Hai)"
 		"Greyhound Plasma Thruster"
 		"X3200 Ion Steering"
 		"Hyperdrive"
+		"Laser Rifle" 7
 	turret "Pulse Turret"
 	turret "Laser Turret"
 	turret "Bullfrog Anti-Missile"
@@ -1410,6 +1491,7 @@ ship "Hauler" "Hauler (Hai)"
 		"Greyhound Plasma Thruster"
 		"Impala Plasma Steering"
 		"Hyperdrive"
+		"Laser Rifle" 12
 	turret "Quad Blaster Turret"
 	turret "Chameleon Anti-Missile"
 	turret "Chameleon Anti-Missile"
@@ -1431,6 +1513,7 @@ ship "Hauler II" "Hauler II (Hai)"
 		"Greyhound Plasma Thruster"
 		"Impala Plasma Steering"
 		"Hyperdrive"
+		"Laser Rifle" 12
 	turret "Quad Blaster Turret"
 	turret "Chameleon Anti-Missile"
 	turret "Chameleon Anti-Missile"
@@ -1452,6 +1535,7 @@ ship "Hauler III" "Hauler III (Hai)"
 		"Greyhound Plasma Thruster"
 		"Impala Plasma Steering"
 		"Hyperdrive"
+		"Laser Rifle" 12
 	turret "Quad Blaster Turret"
 	turret "Chameleon Anti-Missile"
 	turret "Chameleon Anti-Missile"
@@ -1474,6 +1558,7 @@ ship "Behemoth" "Behemoth (Hai)"
 		`"Biroo" Atomic Steering`
 		`"Benga" Atomic Steering`
 		"Hyperdrive"
+		"Laser Rifle" 30
 
 
 
@@ -1490,6 +1575,7 @@ ship "Bulk Freighter" "Bulk Freighter (Hai)"
 		`"Benga" Atomic Steering`
 		`"Basrem" Atomic Steering`
 		"Scram Drive"
+		"Laser Rifle" 18
 	turret "Pulse Turret"
 	turret "Pulse Turret"
 	turret "Chameleon Anti-Missile"
@@ -1508,6 +1594,7 @@ ship "Headhunter" "Headhunter (Hai)"
 		"A250 Atomic Thruster"
 		"A375 Atomic Steering"
 		"Hyperdrive"
+		"Laser Rifle" 4
 
 
 
@@ -1524,6 +1611,7 @@ ship "Corvette" "Corvette (Hai)"
 		`"Biroo" Atomic Thruster`
 		`"Bondir" Atomic Steering`
 		"Hyperdrive"
+		"Laser Rifle" 32
 
 
 
@@ -1540,6 +1628,7 @@ ship "Firebird" "Firebird (Hai Weapons)"
 		"X3700 Ion Thruster"
 		"X3200 Ion Steering"
 		"Hyperdrive"
+		"Laser Rifle" 22
 
 
 
@@ -1557,6 +1646,7 @@ ship "Firebird" "Firebird (Hai Shields)"
 		"X3700 Ion Thruster"
 		"A375 Atomic Steering"
 		"Hyperdrive"
+		"Laser Rifle" 32
 
 
 
@@ -1578,6 +1668,7 @@ ship "Mule" "Mule (Hai Engines)"
 		`"Biroo" Atomic Steering`
 		`"Basrem" Atomic Steering`
 		"Hyperdrive"
+		"Laser Rifle" 42
 
 
 
@@ -1595,6 +1686,7 @@ ship "Mule" "Mule (Hai Weapons)"
 		"A370 Atomic Thruster"
 		"A375 Atomic Steering"
 		"Hyperdrive"
+		"Laser Rifle" 42
 
 
 
@@ -1610,6 +1702,7 @@ ship "Leviathan" "Leviathan (Hai Engines)"
 		`"Bondir" Atomic Thruster`
 		`"Bondir" Atomic Steering`
 		"Hyperdrive"
+		"Laser Rifle" 64
 
 
 
@@ -1627,6 +1720,7 @@ ship "Leviathan" "Leviathan (Hai Weapons)"
 		"Afterburner"
 		"Scram Drive"
 		"Ramscoop"
+		"Laser Rifle" 64
 
 
 
@@ -1648,6 +1742,7 @@ ship "Bactrian" "Bactrian (Hai Engines)"
 		`"Bufaer" Atomic Thruster`
 		`"Bufaer" Atomic Steering`
 		"Hyperdrive"
+		"Laser Rifle" 245
 
 
 
@@ -1669,6 +1764,7 @@ ship "Bactrian" "Bactrian (Hai Weapons)"
 		"X4700 Ion Thruster"
 		"X5200 Ion Steering"
 		"Hyperdrive"
+		"Laser Rifle" 245
 	gun "Pulse Cannon"
 	gun "Pulse Cannon"
 	gun "Hai Tracker Pod"
@@ -1693,6 +1789,7 @@ ship "Quicksilver" "Quicksilver (Scanner)"
 		"Greyhound Plasma Thruster"
 		"Greyhound Plasma Steering"
 		"Hyperdrive"
+		"Laser Rifle" 6
 
 
 
@@ -1711,6 +1808,7 @@ ship "Bastion" "Bastion (Scanner)"
 		"Impala Plasma Thruster"
 		"Impala Plasma Steering"
 		"Hyperdrive"
+		"Laser Rifle" 40
 
 
 
@@ -1725,6 +1823,7 @@ ship "Freighter" "Freighter (Secret Cargo)"
 		"X2200 Ion Steering"
 		"Scram Drive"
 		"Secret Cargo"
+		"Laser Rifle" 7
 
 
 
@@ -1743,3 +1842,4 @@ ship "Bactrian" "Bactrian (Hired Gun)"
 		"A520 Atomic Thruster"
 		"A525 Atomic Steering"
 		"Hyperdrive"
+		"Laser Rifle" 245
