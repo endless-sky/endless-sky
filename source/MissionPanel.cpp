@@ -506,7 +506,7 @@ void MissionPanel::DrawMissionSystem(const Mission &mission, const Color &color)
 Point MissionPanel::DrawPanel(Point pos, const string &label, int entries) const
 {
 	const Font &font = FontSet::Get(14);
-	const Color &back = *GameData::Colors().Get("map sidepanel background");
+	const Color &back = *GameData::Colors().Get("map side panel background");
 	const Color &unselected = *GameData::Colors().Get("medium");
 	const Color &selected = *GameData::Colors().Get("bright");
 	

@@ -229,7 +229,7 @@ void MapSalesPanel::DrawKey() const
 
 void MapSalesPanel::DrawPanel() const
 {
-	const Color &back = *GameData::Colors().Get("map sidepanel background");
+	const Color &back = *GameData::Colors().Get("map side panel background");
 	FillShader::Fill(
 		Point(Screen::Width() * -.5 + WIDTH * .5, 0.),
 		Point(WIDTH, Screen::Height()), 
@@ -269,7 +269,7 @@ void MapSalesPanel::DrawInfo() const
 			width += box->Width() + compareInfo.PanelWidth();
 		}
 		
-		const Color &back = *GameData::Colors().Get("map sidepanel background");
+		const Color &back = *GameData::Colors().Get("map side panel background");
 		Point size(width, height);
 		Point topLeft(Screen::Right() - size.X(), Screen::Top());
 		FillShader::Fill(topLeft + .5 * size, size, back);

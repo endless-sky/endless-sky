@@ -160,7 +160,7 @@ void ShopPanel::DrawSidebar()
 	FillShader::Fill(
 		Point(Screen::Right() - SIDE_WIDTH, 0.),
 		Point(1, Screen::Height()),
-		*GameData::Colors().Get("shop sidepanel background"));
+		*GameData::Colors().Get("shop side panel background"));
 	
 	// Draw this string, centered in the side panel:
 	static const string YOURS = "Your Ships:";
@@ -262,10 +262,10 @@ void ShopPanel::DrawButtons()
 {
 	// The last 70 pixels on the end of the side panel are for the buttons:
 	Point buttonSize(SIDE_WIDTH, BUTTON_HEIGHT);
-	FillShader::Fill(Screen::BottomRight() - .5 * buttonSize, buttonSize, *GameData::Colors().Get("shop sidepanel background"));
+	FillShader::Fill(Screen::BottomRight() - .5 * buttonSize, buttonSize, *GameData::Colors().Get("shop side panel background"));
 	FillShader::Fill(
 		Point(Screen::Right() - SIDE_WIDTH / 2, Screen::Bottom() - BUTTON_HEIGHT),
-		Point(SIDE_WIDTH, 1), *GameData::Colors().Get("shop sidepanel footer"));
+		Point(SIDE_WIDTH, 1), *GameData::Colors().Get("shop side panel footer"));
 	
 	const Font &font = FontSet::Get(14);
 	const Color &bright = *GameData::Colors().Get("bright");
