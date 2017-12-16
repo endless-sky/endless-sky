@@ -628,7 +628,7 @@ bool ShopPanel::Click(int x, int y, int clicks)
 	// Handle clicks on the buttons.
 	if(x >= Screen::Right() - SIDE_WIDTH && y >= Screen::Bottom() - BUTTON_HEIGHT)
 	{
-		// Make sure the click was actually within the bottons, not the space
+		// Make sure the click was actually within the buttons, not the space
 		// above them that shows your credits or the padding below them.
 		if(y < Screen::Bottom() - 40 || y >= Screen::Bottom() - 10)
 			return true;
