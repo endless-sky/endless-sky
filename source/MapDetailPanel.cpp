@@ -73,6 +73,18 @@ namespace {
 		// Return the angle, plus the length as a tie-breaker.
 		return make_pair(angle, length);
 	}
+	
+	map<string, double> StarProperties()
+	{
+		double maxWind = numeric_limits<double>::min();
+		double maxPower = numeric_limits<double>::min();
+		for(const auto &it : GameData::Systems())
+		{
+			maxPower = max(it.second.SolarPower(), maxPower);
+			maxWind = max(it.second.SolarWind(), maxWind);
+		}
+		return map<string, double> {{"maxWind", maxWind}, {"maxPower", maxPower}};
+	}
 }
 
 
@@ -383,6 +395,19 @@ void MapDetailPanel::UpdateInfo(Information &info) const
 	{
 		info.SetCondition("has planet info");
 		info.SetString("fill text", selectedPlanet->Description());
+	}
+	else if(selectedSystem && player.HasVisited(selectedSystem))
+	{
+		static const map<string, double> stars = StarProperties();
+		double wind = selectedSystem->SolarWind();
+		double power = selectedSystem->SolarPower();
+		// Normalize the raw values into a 0 - 1 range.
+		wind /= stars.at("maxWind");
+		power /= stars.at("maxPower");
+		
+		info.SetCondition("star info");
+		info.SetBar("wind", wind, 10);
+		info.SetBar("luminosity", power, 10);
 	}
 }
 
@@ -749,6 +774,8 @@ void MapDetailPanel::DrawSelection() const
 			}
 			double scale = min(1., MAX_ICON_HEIGHT / max(maxOffset, (*drawnStars.begin()).first->Radius()));
 			
+			// Shift the drawing center down to accomodate the wind and luminosity bars.
+			selectionPos += Point(orbits->GetValue("star x offset"), orbits->GetValue("star y offset"));
 			// Scale the star's position offset and draw the scaled sprite.
 			for(const auto &star : drawnStars)
 				SpriteShader::Draw(star.second.first, selectionPos + scale * star.second.second, scale);

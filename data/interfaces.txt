@@ -885,6 +885,30 @@ interface "map detail panel"
 	box "planet description"
 		from -260 20 to -740 260
 	
+	visible if "star info"
+	sprite "ui/solar rating"
+		from 0 298 to -130 330
+	value "star y offset" 20
+	#value "star x offset" 20
+	bar "luminosity"
+		from -23 305 to -123 305
+		color "energy"
+		size 1
+	bar "wind"
+		from -23 322 to -123 322
+		color "fuel"
+		size 1
+	#sprite "ui/solar rating vertical"
+	#	center -18 365
+	#value "star y offset" 0
+	#value "star x offset" -15
+	#bar "luminosity"
+	#	from -9 410 to -9 308
+	#	color "energy"
+	#bar "wind"
+	#	from -27 410 to -27 308
+	#	color "fuel"
+	
 	visible if "selected friendly"
 	ring "selected hull friendly"
 		center -75 365
