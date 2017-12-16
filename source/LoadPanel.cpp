@@ -163,8 +163,8 @@ void LoadPanel::Draw()
 	{
 		Point boxSize(font.Width(hoverText) + 20., 30.);
 		
-		FillShader::Fill(hoverPoint + .5 * boxSize, boxSize, Color(.3, 1.));
-		font.Draw(hoverText, hoverPoint + Point(10., 10.), Color(.5, 0.));
+		FillShader::Fill(hoverPoint + .5 * boxSize, boxSize, *GameData::Colors().Get("tooltip background"));
+		font.Draw(hoverText, hoverPoint + Point(10., 10.), *GameData::Colors().Get("medium"));
 	}
 }
 
