@@ -157,8 +157,8 @@ outfit "Beam Laser"
 		"velocity" 300
 		"lifetime" 1
 		"reload" 1
-		"firing energy" .6
-		"firing heat" 1.45
+		"firing energy" .5
+		"firing heat" 1.2
 		"shield damage" 0.9
 		"hull damage" 1.15
 	description "In the early part of the space era, the settlements in the region of space known as the Deep developed in relative isolation from the rest of human space. One result of that isolation is that their weapons technology mostly uses beam weapons, instead of the energy projectile weapons that are more common elsewhere. A Beam Laser has a slightly shorter range than an Energy Blaster, but is also much more energy-efficient and does a comparable amount of damage."
@@ -184,8 +184,8 @@ outfit "Laser Turret"
 		"velocity" 300
 		"lifetime" 1
 		"reload" 1
-		"firing energy" 1.2
-		"firing heat" 2.9
+		"firing energy" 1
+		"firing heat" 2.4
 		"shield damage" 1.8
 		"hull damage" 2.3
 	description "Laser Turrets are hated by fighter pilots because it is nearly impossible to dodge them once you are within their reach. This turret carries a pair of lasers and can swivel almost instantly to fire on new targets as they approach. Laser Turrets are especially useful when mounted on slow-moving freighters to fend off packs of small pirate vessels."
@@ -217,8 +217,8 @@ outfit "Heavy Laser"
 		"velocity" 400
 		"lifetime" 1
 		"reload" 1
-		"firing energy" 1.2
-		"firing heat" 2.65
+		"firing energy" 1
+		"firing heat" 2.2
 		"shield damage" 1.6
 		"hull damage" 2.2
 	description "The Heavy Laser is an upgraded Beam Laser with a significantly longer range and higher power. It is mostly intended for larger ships, where energy and space are plentiful, but some pilots consider a single Heavy Laser to be a worthwhile alternative to a pair of Beam Lasers, because the longer range makes up for the fact that it does not quite deal twice as much damage."
@@ -244,8 +244,8 @@ outfit "Heavy Laser Turret"
 		"velocity" 400
 		"lifetime" 1
 		"reload" 1
-		"firing energy" 2.4
-		"firing heat" 5.3
+		"firing energy" 2
+		"firing heat" 4.4
 		"shield damage" 3.2
 		"hull damage" 4.4
 	description "For ships with enough space to install one, the Heavy Laser Turret is a powerful weapon, equally useful for driving off fighters and for bombarding larger targets with continuous fire without having to worry about pointing your ship in the right direction."
@@ -278,8 +278,8 @@ outfit "Electron Beam"
 		"velocity" 450
 		"lifetime" 1
 		"reload" 1
-		"firing energy" 1.8
-		"firing heat" 3.1
+		"firing energy" 1.5
+		"firing heat" 2.6
 		"shield damage" 2.6
 		"hull damage" 3.5
 	description "The Electron Beam is a recent development by the Deep Sky labs, a more powerful weapon with a design similar to their perennially popular laser guns."
@@ -305,8 +305,8 @@ outfit "Electron Turret"
 		"velocity" 450
 		"lifetime" 1
 		"reload" 1
-		"firing energy" 3.6
-		"firing heat" 6.2
+		"firing energy" 3
+		"firing heat" 5.2
 		"shield damage" 5.2
 		"hull damage" 7
 	description "This turret places two of Deep Sky's recently developed electron beam weapons onto a rotating turret, providing unsurpassed accuracy and power for shooting down fast-moving targets."
