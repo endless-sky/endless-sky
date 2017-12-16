@@ -1744,7 +1744,7 @@ ship "Heavy Shuttle"
 		"bunks" 8
 		"mass" 110
 		"drag" 2.1
-		"heat dissipation" 1
+		"heat dissipation" .8
 		"fuel capacity" 500
 		"cargo space" 35
 		"outfit space" 120
