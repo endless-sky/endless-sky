@@ -2673,7 +2673,6 @@ ship "Star Barge"
 		"nGVF-BB Fuel Cell"
 		"LP036a Battery Pack"
 		"D14-RN Shield Generator"
-		"Anti-Missile Turret"
 		
 		"Chipmunk Plasma Thruster"
 		"Chipmunk Plasma Steering"
