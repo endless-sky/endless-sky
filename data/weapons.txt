@@ -109,8 +109,8 @@ outfit "Modified Blaster"
 		"reload" 12
 		"firing energy" 16
 		"firing heat" 32
-		"shield damage" 16
-		"hull damage" 8
+		"shield damage" 14
+		"hull damage" 7
 	description "This is an Energy Blaster that has been tampered with to increase its power and range slightly, at the cost of a significant increase in its energy requirements. Modified Blasters also produce an extreme amount of heat when firing, increasing the risk that your ship will overheat."
 
 outfit "Modified Blaster Turret"
@@ -135,8 +135,8 @@ outfit "Modified Blaster Turret"
 		"reload" 6
 		"firing energy" 16
 		"firing heat" 32
-		"shield damage" 16
-		"hull damage" 8
+		"shield damage" 14
+		"hull damage" 7
 	description "This is a turreted version of the Modified Blaster, which is an Energy Blaster modified for greater power at the cost of higher energy consumption and heat. These turrets are popular with pirates and others who are trying to cram as much firepower into their ships as possible."
 
 
