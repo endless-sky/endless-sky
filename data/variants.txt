@@ -105,7 +105,6 @@ ship "Cruiser" "Cruiser (Heavy)"
 		"Heavy Laser Turret" 2
 		"Heavy Anti-Missile Turret"
 		"Quad Blaster Turret"
-		"Laser Rifle" 20
 		"Fragmentation Grenades" 20
 		"Armageddon Core"
 		"Dwarf Core"
@@ -1079,7 +1078,6 @@ ship "Behemoth" "Behemoth (Heavy)"
 		"Quad Blaster Turret" 2
 		"Plasma Turret" 2
 		"Heavy Anti-Missile Turret" 2
-		"Laser Rifle" 16
 		"Fusion Reactor"
 		"Supercapacitor"
 		"D94-YV Shield Generator"
