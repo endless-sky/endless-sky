@@ -2459,7 +2459,7 @@ ship "Shuttle"
 		"bunks" 6
 		"mass" 70
 		"drag" 1.7
-		"heat dissipation" .7
+		"heat dissipation" .8
 		"fuel capacity" 400
 		"cargo space" 20
 		"outfit space" 120
@@ -2658,7 +2658,7 @@ ship "Star Barge"
 		"bunks" 3
 		"mass" 70
 		"drag" 2.4
-		"heat dissipation" .7
+		"heat dissipation" .8
 		"fuel capacity" 300
 		"cargo space" 50
 		"outfit space" 130
