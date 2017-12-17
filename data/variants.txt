@@ -139,6 +139,7 @@ ship "Scout" "Scout (Speedy)"
 		"Outfits Expansion"
 		"A370 Atomic Thruster"
 		"A255 Atomic Steering"
+		"Small Radar Jammer"
 		"Hyperdrive"
 
 
@@ -154,6 +155,7 @@ ship "Clipper" "Clipper (Heavy)"
 		"D67-TM Shield Generator"
 		"Greyhound Plasma Thruster"
 		"Impala Plasma Steering"
+		"Small Radar Jammer"
 		"Scram Drive"
 
 
@@ -183,6 +185,7 @@ ship "Freighter" "Freighter (Fancy)"
 		"Greyhound Plasma Thruster"
 		"X3200 Ion Steering"
 		"Scram Drive"
+		"Small Radar Jammer"
 	turret "Laser Turret"
 	turret "Laser Turret"
 	turret "Heavy Anti-Missile Turret"
@@ -346,7 +349,8 @@ ship "Bulk Freighter" "Bulk Freighter (Heavy)"
 
 ship "Bulk Freighter" "Bulk Freighter (Blaster)"
 	outfits
-		"Quad Blaster Turret" 5
+		"Quad Blaster Turret" 4
+		"Heavy Anti-Missile Turret"
 		"Meteor Missile Launcher" 2
 		"Meteor Missile" 70
 		"Fusion Reactor"
@@ -357,6 +361,11 @@ ship "Bulk Freighter" "Bulk Freighter (Blaster)"
 		"A250 Atomic Thruster"
 		"A375 Atomic Steering"
 		"Scram Drive"
+	turret "Quad Blaster Turret"
+	turret "Quad Blaster Turret"
+	turret "Heavy Anti-Missile Turret"
+	turret "Quad Blaster Turret"
+	turret "Quad Blaster Turret"
 
 
 
@@ -410,6 +419,7 @@ ship "Hawk" "Hawk (Speedy)"
 		"D41-HY Shield Generator"
 		"A250 Atomic Thruster"
 		"A255 Atomic Steering"
+		"Small Radar Jammer"
 		"Hyperdrive"
 
 
@@ -423,6 +433,7 @@ ship "Hawk" "Hawk (Rocket)"
 		"D41-HY Shield Generator"
 		"Greyhound Plasma Thruster"
 		"Greyhound Plasma Steering"
+		"Small Radar Jammer"
 		"Hyperdrive"
 
 
@@ -430,7 +441,8 @@ ship "Hawk" "Hawk (Rocket)"
 ship "Bastion" "Bastion (Heavy)"
 	outfits
 		"Plasma Cannon" 4
-		"Quad Blaster Turret" 3
+		"Quad Blaster Turret" 2
+		"Heavy Anti-Missile Turret"
 		"Fusion Reactor"
 		"LP072a Battery Pack"
 		"D67-TM Shield Generator"
@@ -439,6 +451,9 @@ ship "Bastion" "Bastion (Heavy)"
 		"X3700 Ion Thruster"
 		"Orca Plasma Steering"
 		"Hyperdrive"
+	turret "Heavy Anti-Missile Turret"
+	turret "Quad Blaster Turret"
+	turret "Quad Blaster Turret"
 
 
 
@@ -502,7 +517,8 @@ ship "Corvette" "Corvette (Missile)"
 ship "Firebird" "Firebird (Plasma)"
 	outfits
 		"Plasma Cannon" 4
-		"Quad Blaster Turret" 2
+		"Quad Blaster Turret"
+		"Heavy Anti-Missile Turret"
 		"Breeder Reactor"
 		"LP072a Battery Pack"
 		"LP036a Battery Pack"
@@ -512,6 +528,8 @@ ship "Firebird" "Firebird (Plasma)"
 		"X3700 Ion Thruster"
 		"A375 Atomic Steering"
 		"Hyperdrive"
+	turret "Quad Blaster Turret"
+	turret "Heavy Anti-Missile Turret"
 
 
 
@@ -521,7 +539,8 @@ ship "Firebird" "Firebird (Missile)"
 		"Meteor Missile" 70
 		"Torpedo Launcher" 2
 		Torpedo 60
-		"Heavy Laser Turret" 2
+		"Heavy Laser Turret"
+		"Heavy Anti-Missile Turret"
 		"Fission Reactor"
 		"LP072a Battery Pack"
 		"D94-YV Shield Generator"
@@ -575,7 +594,8 @@ ship "Osprey" "Osprey (Missile)"
 		"Torpedo" 60
 		"Heavy Rocket Launcher" 2
 		"Heavy Rocket" 40
-		"Heavy Laser Turret" 2
+		"Heavy Laser Turret"
+		"Heavy Anti-Missile Turret"
 		"Breeder Reactor"
 		"LP036a Battery Pack"
 		"Supercapacitor" 3
@@ -588,6 +608,8 @@ ship "Osprey" "Osprey (Missile)"
 	gun "Heavy Rocket Launcher"
 	gun "Torpedo Launcher"
 	gun "Torpedo Launcher"
+	turret "Heavy Laser Turret"
+	turret "Heavy Anti-Missile Turret"
 
 
 
@@ -666,7 +688,8 @@ ship "Falcon" "Falcon (Heavy)"
 		"Torpedo" 60
 		"Meteor Missile Launcher" 2
 		"Meteor Missile" 70
-		"Heavy Laser Turret" 4
+		"Heavy Laser Turret" 3
+		"Heavy Anti-Missile Turret"
 		"Fusion Reactor"
 		"D67-TM Shield Generator"
 		"Small Radar Jammer"
@@ -677,13 +700,18 @@ ship "Falcon" "Falcon (Heavy)"
 	gun "Torpedo Launcher"
 	gun "Meteor Missile Launcher"
 	gun "Meteor Missile Launcher"
+	turret "Heavy Laser Turret"
+	turret "Heavy Laser Turret"
+	turret "Heavy Laser Turret"
+	turret "Heavy Anti-Missile Turret"
 
 
 
 ship "Leviathan" "Leviathan (Laser)"
 	outfits
 		"Heavy Laser" 4
-		"Heavy Laser Turret" 4
+		"Heavy Laser Turret" 3
+		"Heavy Anti-Missile Turret"
 		"Armageddon Core"
 		"LP036a Battery Pack"
 		"Supercapacitor"
@@ -693,6 +721,10 @@ ship "Leviathan" "Leviathan (Laser)"
 		"A370 Atomic Thruster"
 		"A525 Atomic Steering"
 		"Hyperdrive"
+	turret "Heavy Laser Turret"
+	turret "Heavy Laser Turret"
+	turret "Heavy Laser Turret"
+	turret "Heavy Anti-Missile Turret"
 
 
 
@@ -702,7 +734,8 @@ ship "Leviathan" "Leviathan (Heavy)"
 		"Torpedo" 60
 		"Meteor Missile Launcher" 2
 		"Meteor Missile" 70
-		"Heavy Laser Turret" 4
+		"Heavy Laser Turret" 3
+		"Heavy Anti-Missile Turret"
 		"Breeder Reactor"
 		"LP036a Battery Pack"
 		"D94-YV Shield Generator" 2
@@ -716,12 +749,17 @@ ship "Leviathan" "Leviathan (Heavy)"
 	gun "Meteor Missile Launcher"
 	gun "Torpedo Launcher"
 	gun "Torpedo Launcher"
+	turret "Heavy Laser Turret"
+	turret "Heavy Laser Turret"
+	turret "Heavy Laser Turret"
+	turret "Heavy Anti-Missile Turret"
 
 
 
 ship "Protector" "Protector (Laser)"
 	outfits
-		"Laser Turret" 2
+		"Laser Turret"
+		"Anti-Missile Turret"
 		"Heavy Laser Turret" 4
 		"Fusion Reactor"
 		"LP036a Battery Pack"
@@ -732,7 +770,7 @@ ship "Protector" "Protector (Laser)"
 		"A375 Atomic Steering"
 		"Hyperdrive"
 	turret "Laser Turret"
-	turret "Laser Turret"
+	turret "Anti-Missile Turret"
 	turret "Heavy Laser Turret"
 	turret "Heavy Laser Turret"
 	turret "Heavy Laser Turret"
@@ -842,7 +880,8 @@ ship "Modified Argosy" "Modified Argosy (Heavy)"
 ship "Modified Argosy" "Modified Argosy (Blaster)"
 	outfits
 		"Modified Blaster" 4
-		"Quad Blaster Turret" 2
+		"Quad Blaster Turret"
+		"Heavy Anti-Missile Turret"
 		"Fission Reactor"
 		"LP144a Battery Pack"
 		"D67-TM Shield Generator"
@@ -851,6 +890,7 @@ ship "Modified Argosy" "Modified Argosy (Blaster)"
 		"Greyhound Plasma Thruster"
 		"X3200 Ion Steering"
 		"Hyperdrive"
+
 
 
 
@@ -1042,7 +1082,8 @@ ship "Behemoth" "Behemoth (Heavy)"
 ship "Splinter" "Splinter (Mark II)"
 	outfits
 		"Particle Cannon" 2
-		"Quad Blaster Turret" 3
+		"Quad Blaster Turret" 2
+		"Heavy Anti-Missile Turret"
 		"Fusion Reactor"
 		"Supercapacitor"
 		"S-970 Regenerator"
@@ -1052,6 +1093,9 @@ ship "Splinter" "Splinter (Mark II)"
 		"A375 Atomic Steering"
 		"Hyperdrive"
 		"Ionic Afterburner"
+	turret "Quad Blaster Turret"
+	turret "Heavy Anti-Missile Turret"
+	turret "Quad Blaster Turret"
 
 
 
@@ -1181,7 +1225,8 @@ ship "Dreadnought" "Dreadnought (Jump)"
 	outfits
 		"Meteor Missile Launcher" 4
 		"Meteor Missile" 140
-		"Plasma Turret" 5
+		"Plasma Turret" 4
+		"Heavy Anti-Missile Turret"
 		"Stack Core"
 		"LP144a Battery Pack"
 		"D41-HY Shield Generator"
@@ -1190,6 +1235,11 @@ ship "Dreadnought" "Dreadnought (Jump)"
 		"Orca Plasma Thruster"
 		"Orca Plasma Steering"
 		"Jump Drive"
+	turret "Heavy Anti-Missile Turret"
+	turret "Plasma Turret"
+	turret "Plasma Turret"
+	turret "Plasma Turret"
+	turret "Plasma Turret"
 
 
 
@@ -1463,7 +1513,8 @@ ship "Behemoth" "Behemoth (Hai)"
 	outfits
 		"Sidewinder Missile Launcher" 2
 		"Sidewinder Missile" 100
-		"Pulse Turret" 6
+		"Pulse Turret" 5
+		"Bullfrog Anti-Missile"
 		"Boulder Reactor"
 		"Hai Ravine Batteries"
 		"Hai Diamond Regenerator"
