@@ -770,7 +770,7 @@ mission "FW Plasma Testing 1B"
 			
 			label improve
 			choice
-				`	"It seems like the only way to fit a gun this big into most ships is by leaving half the hardpoints empty. It's a bit impractical."`
+				`	"It seems like the only way to fit a turret this big into most ships is by leaving half the hardpoints empty. It's a bit impractical."`
 					goto hardpoints
 				`	"It worked well against a large ship, but I wonder how well the turrets could track fighters."`
 					goto fighters
