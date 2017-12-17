@@ -155,7 +155,7 @@ outfit "Modified Quad Blaster Turret"
 		sound "mod blaster"
 		"hit effect" "blaster impact"
 		"inaccuracy" 7
-		"turret turn" 2
+		"turret turn" 3
 		"velocity" 8
 		"lifetime" 60
 		"reload" 3
