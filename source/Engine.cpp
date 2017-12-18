@@ -929,6 +929,7 @@ void Engine::Draw() const
 	double ammoPad = .5 * (ammoBox.Width() - AMMO_WIDTH);
 	const Sprite *selectedSprite = SpriteSet::Get("ui/ammo selected");
 	const Sprite *unselectedSprite = SpriteSet::Get("ui/ammo unselected");
+	const Sprite *back = SpriteSet::Get("ui/icon back");
 	Color selectedColor = *colors.Get("bright");
 	Color unselectedColor = *colors.Get("dim");
 	
@@ -946,6 +947,7 @@ void Engine::Draw() const
 		
 		bool isSelected = it.first == player.SelectedWeapon();
 		
+		SpriteShader::Draw(back, pos + iconOff);
 		SpriteShader::Draw(it.first->Icon(), pos + iconOff);
 		SpriteShader::Draw(isSelected ? selectedSprite : unselectedSprite, pos + boxOff);
 		
