@@ -44,6 +44,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <utility>
 #include <vector>
 
+
 using namespace std;
 
 namespace {
@@ -94,9 +95,9 @@ void MapDetailPanel::Draw()
 {
 	MapPanel::Draw();
 	
+	DrawKey();
 	DrawInfo();
 	DrawOrbits();
-	DrawKey();
 }
 
 
@@ -233,7 +234,7 @@ bool MapDetailPanel::Click(int x, int y, int clicks)
 				}
 		}
 	}
-	else if(x >= Screen::Right() - 240 && y <= Screen::Top() + 270)
+	else if(x >= Screen::Right() - 240 && y >= Screen::Top() + 280 && y <= Screen::Top() + 520)
 	{
 		Point click = Point(x, y);
 		selectedPlanet = nullptr;
@@ -273,11 +274,14 @@ bool MapDetailPanel::Click(int x, int y, int clicks)
 
 void MapDetailPanel::DrawKey()
 {
+	const Sprite *back = SpriteSet::Get("ui/map key");
+	SpriteShader::Draw(back, Screen::BottomLeft() + .5 * Point(back->Width(), -back->Height()));
+	
 	Color bright(.6, .6);
 	Color dim(.3, .3);
 	const Font &font = FontSet::Get(14);
 	
-	Point pos = Screen::TopRight() + Point(-110., 310.);
+	Point pos(Screen::Left() + 10., Screen::Bottom() - 7. * 20. + 5.);
 	Point headerOff(-5., -.5 * font.Height());
 	Point textOff(10., -.5 * font.Height());
 	
@@ -388,6 +392,8 @@ void MapDetailPanel::DrawInfo()
 	Color dimColor(.1, 0.);
 	Color closeColor(.6, .6);
 	Color farColor(.3, .3);
+    Color highColor(0., 1., 0., 0.);
+    Color lowColor(1., 0., 0., 0.);
 	
 	Point uiPoint(Screen::Left() + 100., Screen::Top() + 45.);
 	
@@ -478,13 +484,40 @@ void MapDetailPanel::DrawInfo()
 	
 	uiPoint.X() -= 90.;
 	uiPoint.Y() -= 97.;
+     
+    
+    // Should save the best and worst prices
+    int bestDeal  = 0;
+    int worstDeal = 0;
+    {
+        for(const Trade::Commodity &commodity : GameData::Commodities())
+        {
+            // I don't actually know how much of this copied code is needed.
+            bool hasVisited = player.HasVisited(selectedSystem);
+            if(hasVisited && selectedSystem->IsInhabited(player.Flagship()))
+            {
+                int value = selectedSystem->Trade(commodity.name);
+                int localValue = (player.GetSystem() ? player.GetSystem()->Trade(commodity.name) : 0);
+                // Don't "compare" prices if the current system is uninhabited and
+                // thus has no prices to compare to.
+                bool noCompare = (!player.GetSystem() || !player.GetSystem()->IsInhabited(player.Flagship()));
+                if(value || (noCompare || player.GetSystem() == selectedSystem || !localValue))
+                {
+                    value -= localValue;
+                    bestDeal = max(value, bestDeal);
+                    worstDeal = min(value, worstDeal);
+                }
+            }
+        }
+    }
+    
 	for(const Trade::Commodity &commodity : GameData::Commodities())
 	{
 		bool isSelected = false;
 		if(static_cast<unsigned>(this->commodity) < GameData::Commodities().size())
 			isSelected = (&commodity == &GameData::Commodities()[this->commodity]);
 		Color &color = isSelected ? closeColor : farColor;
-		
+        
 		font.Draw(commodity.name, uiPoint, color);
 		
 		string price;
@@ -504,11 +537,18 @@ void MapDetailPanel::DrawInfo()
 			else
 			{
 				value -= localValue;
+                if(value==bestDeal) {
+                    font.Draw(commodity.name, uiPoint, highColor);
+                }
+                else if(value==worstDeal) {
+                    font.Draw(commodity.name, uiPoint, lowColor);
+                }
 				price += "(";
 				if(value > 0)
 					price += '+';
 				price += to_string(value);
 				price += ")";
+                //font.Draw(commodity.name, uiPoint, color);
 			}
 		}
 		else
@@ -517,28 +557,25 @@ void MapDetailPanel::DrawInfo()
 		Point pos = uiPoint + Point(140. - font.Width(price), 0.);
 		font.Draw(price, pos, color);
 		
-		if(isSelected)
+		if(isSelected) // Show the selection pointer
 			PointerShader::Draw(uiPoint + Point(0., 7.), Point(1., 0.), 10., 10., 0., color);
-		
+        
 		uiPoint.Y() += 20.;
 	}
 	
-	if(selectedPlanet && !selectedPlanet->Description().empty()
-			&& player.HasVisited(selectedPlanet) && !selectedPlanet->IsWormhole())
+	if(selectedPlanet && !selectedPlanet->Description().empty() && player.HasVisited(selectedPlanet))
 	{
-		static const int X_OFFSET = 240;
-		static const int WIDTH = 500;
 		const Sprite *panelSprite = SpriteSet::Get("ui/description panel");
-		Point pos(Screen::Right() - X_OFFSET - .5 * panelSprite->Width(),
+		Point pos(Screen::Right() - .5 * panelSprite->Width(),
 			Screen::Top() + .5 * panelSprite->Height());
 		SpriteShader::Draw(panelSprite, pos);
 		
 		WrappedText text;
 		text.SetFont(FontSet::Get(14));
 		text.SetAlignment(WrappedText::JUSTIFIED);
-		text.SetWrapWidth(WIDTH - 20);
+		text.SetWrapWidth(480);
 		text.Wrap(selectedPlanet->Description());
-		text.Draw(Point(Screen::Right() - X_OFFSET - WIDTH, Screen::Top() + 20), closeColor);
+		text.Draw(Point(Screen::Right() - 500, Screen::Top() + 20), closeColor);
 	}
 	
 	DrawButtons("is ports");
@@ -549,9 +586,9 @@ void MapDetailPanel::DrawInfo()
 void MapDetailPanel::DrawOrbits()
 {
 	// Draw the planet orbits in the currently selected system.
-	const Sprite *orbitSprite = SpriteSet::Get("ui/orbits and key");
-	SpriteShader::Draw(orbitSprite, Screen::TopRight() + .5 * Point(-orbitSprite->Width(), orbitSprite->Height()));
-	Point orbitCenter = Screen::TopRight() + Point(-120., 160.);
+	const Sprite *orbitSprite = SpriteSet::Get("ui/orbits");
+	Point orbitCenter(Screen::Right() - 120, Screen::Top() + 430);
+	SpriteShader::Draw(orbitSprite, orbitCenter - Point(5., 0.));
 	
 	if(!selectedSystem || !player.HasVisited(selectedSystem))
 		return;
@@ -570,7 +607,6 @@ void MapDetailPanel::DrawOrbits()
 	if(maxDistance > 115.)
 		scale *= 115. / maxDistance;
 	
-	// Draw the orbits.
 	static const Color habitColor[7] = {
 		Color(.4, .2, .2, 1.),
 		Color(.3, .3, 0., 1.),
@@ -599,9 +635,13 @@ void MapDetailPanel::DrawOrbits()
 		RingShader::Draw(orbitCenter + parentPos * scale,
 			radius + .7, radius - .7,
 			habitColor[habit]);
+		
+		if(selectedPlanet && object.GetPlanet() == selectedPlanet)
+			RingShader::Draw(orbitCenter + object.Position() * scale,
+				object.Radius() * scale + 5., object.Radius() * scale + 4.,
+				habitColor[6]);
 	}
 	
-	// Draw the planets themselves.
 	planets.clear();
 	for(const StellarObject &object : selectedSystem->Objects())
 	{
@@ -618,16 +658,11 @@ void MapDetailPanel::DrawOrbits()
 		RingShader::Draw(pos, object.Radius() * scale + 1., 0., color);
 	}
 	
-	// Draw the selection ring on top of everything else.
-	for(const StellarObject &object : selectedSystem->Objects())
-		if(selectedPlanet && object.GetPlanet() == selectedPlanet)
-			RingShader::Draw(orbitCenter + object.Position() * scale,
-				object.Radius() * scale + 5., object.Radius() * scale + 4.,
-				habitColor[6]);
-	
 	// Draw the name of the selected planet.
 	const string &name = selectedPlanet ? selectedPlanet->Name() : selectedSystem->Name();
-	Point namePos(Screen::Right() - .5 * font.Width(name) - 100., Screen::Top() + 7.);
+	int width = font.Width(name);
+	width = (width / 2) + 75;
+	Point namePos(Screen::Right() - width - 5., Screen::Top() + 293.);
 	Color nameColor(.6, .6);
 	font.Draw(name, namePos, nameColor);
 }
