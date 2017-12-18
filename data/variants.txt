@@ -373,10 +373,10 @@ ship "Bulk Freighter" "Bulk Freighter (Blaster)"
 		"D94-YV Shield Generator"
 		"Water Coolant System"
 		"Outfits Expansion" 2
+		"Laser Rifle" 17
 		"A250 Atomic Thruster"
 		"A375 Atomic Steering"
 		"Scram Drive"
-		"Laser Rifle" 6
 
 
 
