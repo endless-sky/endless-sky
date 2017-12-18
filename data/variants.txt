@@ -105,7 +105,6 @@ ship "Cruiser" "Cruiser (Heavy)"
 		"Heavy Laser Turret" 2
 		"Heavy Anti-Missile Turret"
 		"Quad Blaster Turret"
-		"Fragmentation Grenades" 20
 		"Armageddon Core"
 		"Dwarf Core"
 		"Supercapacitor"
@@ -113,6 +112,7 @@ ship "Cruiser" "Cruiser (Heavy)"
 		"Liquid Helium Cooler"
 		"Ramscoop"
 		"Outfits Expansion"
+		"Fragmentation Grenades" 20
 		"Laser Rifle" 128
 		"A520 Atomic Thruster"
 		"A525 Atomic Steering"
@@ -1082,9 +1082,9 @@ ship "Behemoth" "Behemoth (Heavy)"
 		"Supercapacitor"
 		"D94-YV Shield Generator"
 		"Outfits Expansion" 6
-		"Laser Rifle" 3
 		"Liquid Helium Cooler"
 		"Liquid Nitrogen Cooler"
+		"Laser Rifle" 3
 		"Greyhound Plasma Thruster"
 		"Impala Plasma Steering"
 		"Hyperdrive"
