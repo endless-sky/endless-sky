@@ -214,7 +214,7 @@ ship "Unknown Ship Type"
 	sprite ship/kestrel
 	attributes
 		category "Heavy Warship"
-		"cost" 10300000
+		"cost" 13900000
 		"shields" 17400
 		"hull" 6200
 		"required crew" 72
@@ -266,7 +266,7 @@ ship "Kestrel"
 	sprite ship/kestrel
 	attributes
 		category "Heavy Warship"
-		"cost" 10300000
+		"cost" 13900000
 		"shields" 17400
 		"hull" 6200
 		"required crew" 72
@@ -320,7 +320,7 @@ ship "Kestrel"
 ship "Kestrel" "Kestrel (More Weapons)"
 	attributes
 		category "Heavy Warship"
-		"cost" 10300000
+		"cost" 13900000
 		"shields" 17400
 		"hull" 6200
 		"required crew" 72
@@ -339,7 +339,7 @@ ship "Kestrel" "Kestrel (More Weapons)"
 ship "Kestrel" "Kestrel (More Engines)"
 	attributes
 		category "Heavy Warship"
-		"cost" 10300000
+		"cost" 13900000
 		"shields" 17400
 		"hull" 6200
 		"required crew" 72
@@ -358,7 +358,7 @@ ship "Kestrel" "Kestrel (More Engines)"
 ship "Kestrel" "Kestrel (More Shields)"
 	attributes
 		category "Heavy Warship"
-		"cost" 10300000
+		"cost" 13900000
 		"shields" 20100
 		"hull" 7500
 		"required crew" 72
