@@ -1264,6 +1264,60 @@ ship "Modified Argosy" "Modified Argosy (Missile)"
 
 
 
+ship "Mule" "Mule (Hai Engines)"
+	outfits
+		"Sidewinder Missile Launcher" 2
+		"Sidewinder Missile" 100
+		"Heavy Laser Turret" 3
+		"Chameleon Anti-Missile"
+		"Boulder Reactor"
+		"Hai Fissure Batteries"
+		"D41-HY Shield Generator"
+		"Small Radar Jammer" 2
+		"Water Coolant System"
+		"Cooling Ducts"
+		"Outfits Expansion"
+		"Ramscoop"
+		`"Bondir" Atomic Thruster`
+		`"Biroo" Atomic Steering`
+		`"Basrem" Atomic Steering`
+		"Hyperdrive"
+
+
+ship "Mule" "Mule (Hai Weapons)"
+	outfits
+		"Ion Cannon"
+		"Pulse Turret" 4
+		"Geode Reactor"
+		"Hai Ravine Batteries"
+		"Hai Fissure Batteries"
+		"D67-TM Shield Generator"
+		"Water Coolant System"
+		"Outfits Expansion" 3
+		"Ramscoop"
+		"A370 Atomic Thruster"
+		"A375 Atomic Steering"
+		"Hyperdrive"
+
+
+ship "Mule" "Mule (Heavy)"
+	outfits
+		"Heavy Laser Turret" 4
+		"Sidewinder Missile Launcher" 2
+		"Sidewinder Missile" 100
+		"Fission Reactor"
+		"LP072a Battery Pack"
+		"Supercapacitor" 4
+		"D67-TM Shield Generator"
+		"Water Coolant System"
+		"Outfits Expansion"
+		"Ramscoop"
+		"A370 Atomic Thruster"
+		"A375 Atomic Steering"
+		"Hyperdrive"
+
+
+
 ship "Star Barge" "Star Barge (Armed)"
 	outfits
 		"Blaster Turret"
@@ -1341,24 +1395,6 @@ ship "Scout" "Scout (Speedy)"
 		"Outfits Expansion"
 		"A370 Atomic Thruster"
 		"A255 Atomic Steering"
-		"Hyperdrive"
-
-
-
-ship "Mule" "Mule (Heavy)"
-	outfits
-		"Heavy Laser Turret" 4
-		"Sidewinder Missile Launcher" 2
-		"Sidewinder Missile" 100
-		"Fission Reactor"
-		"LP072a Battery Pack"
-		"Supercapacitor" 4
-		"D67-TM Shield Generator"
-		"Water Coolant System"
-		"Outfits Expansion"
-		"Ramscoop"
-		"A370 Atomic Thruster"
-		"A375 Atomic Steering"
 		"Hyperdrive"
 
 
@@ -1647,44 +1683,6 @@ ship "Star Queen" "Star Queen (Hai)"
 		"D94-YV Shield Generator"
 		"Small Radar Jammer"
 		"X3700 Ion Thruster"
-		"A375 Atomic Steering"
-		"Hyperdrive"
-
-
-
-ship "Mule" "Mule (Hai Engines)"
-	outfits
-		"Sidewinder Missile Launcher" 2
-		"Sidewinder Missile" 100
-		"Heavy Laser Turret" 3
-		"Chameleon Anti-Missile"
-		"Boulder Reactor"
-		"Hai Fissure Batteries"
-		"D41-HY Shield Generator"
-		"Small Radar Jammer" 2
-		"Water Coolant System"
-		"Cooling Ducts"
-		"Outfits Expansion"
-		"Ramscoop"
-		`"Bondir" Atomic Thruster`
-		`"Biroo" Atomic Steering`
-		`"Basrem" Atomic Steering`
-		"Hyperdrive"
-
-
-
-ship "Mule" "Mule (Hai Weapons)"
-	outfits
-		"Ion Cannon"
-		"Pulse Turret" 4
-		"Geode Reactor"
-		"Hai Ravine Batteries"
-		"Hai Fissure Batteries"
-		"D67-TM Shield Generator"
-		"Water Coolant System"
-		"Outfits Expansion" 3
-		"Ramscoop"
-		"A370 Atomic Thruster"
 		"A375 Atomic Steering"
 		"Hyperdrive"
 
