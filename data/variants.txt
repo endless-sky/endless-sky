@@ -1620,26 +1620,6 @@ ship "Splinter" "Splinter (Proton)"
 
 
 
-ship "Vanguard" "Vanguard (Particle)"
-	outfits
-		"Particle Cannon" 7
-		"Fusion Reactor"
-		"LP072a Battery Pack"
-		"D67-TM Shield Generator"
-		"Liquid Nitrogen Cooler"
-		"X3700 Ion Thruster"
-		"X4200 Ion Steering"
-		"Hyperdrive"
-	gun "Particle Cannon"
-	gun "Particle Cannon"
-	gun "Particle Cannon"
-	gun "Particle Cannon"
-	gun "Particle Cannon"
-	gun "Particle Cannon"
-	gun "Particle Cannon"
-
-
-
 ship "Splinter" "Splinter (Mark II)"
 	outfits
 		"Particle Cannon" 2
@@ -1680,6 +1660,26 @@ ship "Star Queen" "Star Queen (Hai)"
 		"X3700 Ion Thruster"
 		"A375 Atomic Steering"
 		"Hyperdrive"
+
+
+
+ship "Vanguard" "Vanguard (Particle)"
+	outfits
+		"Particle Cannon" 7
+		"Fusion Reactor"
+		"LP072a Battery Pack"
+		"D67-TM Shield Generator"
+		"Liquid Nitrogen Cooler"
+		"X3700 Ion Thruster"
+		"X4200 Ion Steering"
+		"Hyperdrive"
+	gun "Particle Cannon"
+	gun "Particle Cannon"
+	gun "Particle Cannon"
+	gun "Particle Cannon"
+	gun "Particle Cannon"
+	gun "Particle Cannon"
+	gun "Particle Cannon"
 
 
 
