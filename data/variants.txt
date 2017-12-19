@@ -940,6 +940,21 @@ ship "Fury" "Fury (Missile)"
 
 
 
+ship "Gunboat" "Gunboat (Mark II)"
+	outfits
+		"Electron Beam" 2
+		"Electron Turret"
+		"Fission Reactor"
+		"LP072a Battery Pack"
+		"D41-HY Shield Generator"
+		"Water Coolant System"
+		"Outfits Expansion" 2
+		"A250 Atomic Thruster"
+		"A255 Atomic Steering"
+		"Hyperdrive"
+
+
+
 ship "Star Barge" "Star Barge (Armed)"
 	outfits
 		"Blaster Turret"
@@ -1357,21 +1372,6 @@ ship "Rainmaker" "Rainmaker (Mark II)"
 	gun "Sidewinder Missile Launcher"
 	gun "Sidewinder Missile Launcher"
 	gun "Sidewinder Missile Launcher"
-
-
-
-ship "Gunboat" "Gunboat (Mark II)"
-	outfits
-		"Electron Beam" 2
-		"Electron Turret"
-		"Fission Reactor"
-		"LP072a Battery Pack"
-		"D41-HY Shield Generator"
-		"Water Coolant System"
-		"Outfits Expansion" 2
-		"A250 Atomic Thruster"
-		"A255 Atomic Steering"
-		"Hyperdrive"
 
 
 
