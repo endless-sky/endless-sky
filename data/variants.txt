@@ -1457,6 +1457,26 @@ ship "Quicksilver" "Quicksilver (Scanner)"
 
 
 
+ship "Rainmaker" "Rainmaker (Mark II)"
+	outfits
+		"Sidewinder Missile Launcher" 4
+		"Sidewinder Missile" 200
+		"nGVF-CC Fuel Cell"
+		"LP036a Battery Pack"
+		"D67-TM Shield Generator"
+		"Fuel Pod"
+		"A120 Atomic Thruster"
+		"A125 Atomic Steering"
+		"Scram Drive"
+	gun
+	gun
+	gun "Sidewinder Missile Launcher"
+	gun "Sidewinder Missile Launcher"
+	gun "Sidewinder Missile Launcher"
+	gun "Sidewinder Missile Launcher"
+
+
+
 ship "Star Barge" "Star Barge (Armed)"
 	outfits
 		"Blaster Turret"
@@ -1597,26 +1617,6 @@ ship "Vanguard" "Vanguard (Particle)"
 	gun "Particle Cannon"
 	gun "Particle Cannon"
 	gun "Particle Cannon"
-
-
-
-ship "Rainmaker" "Rainmaker (Mark II)"
-	outfits
-		"Sidewinder Missile Launcher" 4
-		"Sidewinder Missile" 200
-		"nGVF-CC Fuel Cell"
-		"LP036a Battery Pack"
-		"D67-TM Shield Generator"
-		"Fuel Pod"
-		"A120 Atomic Thruster"
-		"A125 Atomic Steering"
-		"Scram Drive"
-	gun
-	gun
-	gun "Sidewinder Missile Launcher"
-	gun "Sidewinder Missile Launcher"
-	gun "Sidewinder Missile Launcher"
-	gun "Sidewinder Missile Launcher"
 
 
 
