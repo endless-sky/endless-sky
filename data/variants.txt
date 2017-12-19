@@ -787,6 +787,27 @@ ship "Firebird" "Firebird (Plasma)"
 
 
 
+ship "Flivver" "Flivver (Hai)"
+	outfits
+		"RT-I Radiothermal"
+		"D14-RN Shield Generator"
+		"Hai Williwaw Cooling"
+		`"Basrem" Atomic Thruster`
+		`"Benga" Atomic Steering`
+		"Hyperdrive"
+
+
+ship "Flivver" "Flivver (Racing)"
+	outfits
+		"RT-I Radiothermal"
+		"D14-RN Shield Generator"
+		"Water Coolant System"
+		"A120 Atomic Thruster"
+		"A125 Atomic Steering"
+		"Hyperdrive"
+
+
+
 ship "Star Barge" "Star Barge (Armed)"
 	outfits
 		"Blaster Turret"
@@ -1188,17 +1209,6 @@ ship "Heavy Shuttle" "Heavy Shuttle (Armed)"
 
 
 
-ship "Flivver" "Flivver (Racing)"
-	outfits
-		"RT-I Radiothermal"
-		"D14-RN Shield Generator"
-		"Water Coolant System"
-		"A120 Atomic Thruster"
-		"A125 Atomic Steering"
-		"Hyperdrive"
-
-
-
 ship "Headhunter" "Headhunter (Particle)"
 	outfits
 		"Particle Cannon" 2
@@ -1497,17 +1507,6 @@ ship "Sparrow" "Sparrow (Gatling)"
 		"D14-RN Shield Generator"
 		"Chipmunk Plasma Thruster"
 		"Chipmunk Plasma Steering"
-		"Hyperdrive"
-
-
-
-ship "Flivver" "Flivver (Hai)"
-	outfits
-		"RT-I Radiothermal"
-		"D14-RN Shield Generator"
-		"Hai Williwaw Cooling"
-		`"Basrem" Atomic Thruster`
-		`"Benga" Atomic Steering`
 		"Hyperdrive"
 
 
