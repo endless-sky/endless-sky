@@ -1477,6 +1477,37 @@ ship "Rainmaker" "Rainmaker (Mark II)"
 
 
 
+ship "Raven" "Raven (Afterburner)"
+	outfits
+		"Heavy Laser" 4
+		"NT-200 Nucleovoltaic"
+		"D41-HY Shield Generator"
+		"X3700 Ion Thruster"
+		"X3200 Ion Steering"
+		"Hyperdrive"
+		"Afterburner"
+
+
+ship "Raven" "Raven (Heavy)"
+	outfits
+		"Particle Cannon" 2
+		"Meteor Missile Launcher" 2
+		"Meteor Missile" 70
+		"Fission Reactor"
+		"Supercapacitor" 3
+		"D23-QP Shield Generator"
+		"Water Coolant System"
+		"Cooling Ducts"
+		"A250 Atomic Thruster"
+		"A375 Atomic Steering"
+		"Hyperdrive"
+	gun "Particle Cannon"
+	gun "Particle Cannon"
+	gun "Meteor Missile Launcher"
+	gun "Meteor Missile Launcher"
+
+
+
 ship "Star Barge" "Star Barge (Armed)"
 	outfits
 		"Blaster Turret"
@@ -1500,18 +1531,6 @@ ship "Sparrow" "Sparrow (Patrol)"
 		"Chipmunk Plasma Thruster"
 		"Chipmunk Plasma Steering"
 		"Hyperdrive"
-
-
-
-ship "Raven" "Raven (Afterburner)"
-	outfits
-		"Heavy Laser" 4
-		"NT-200 Nucleovoltaic"
-		"D41-HY Shield Generator"
-		"X3700 Ion Thruster"
-		"X3200 Ion Steering"
-		"Hyperdrive"
-		"Afterburner"
 
 
 
@@ -1542,26 +1561,6 @@ ship "Scout" "Scout (Speedy)"
 		"A370 Atomic Thruster"
 		"A255 Atomic Steering"
 		"Hyperdrive"
-
-
-
-ship "Raven" "Raven (Heavy)"
-	outfits
-		"Particle Cannon" 2
-		"Meteor Missile Launcher" 2
-		"Meteor Missile" 70
-		"Fission Reactor"
-		"Supercapacitor" 3
-		"D23-QP Shield Generator"
-		"Water Coolant System"
-		"Cooling Ducts"
-		"A250 Atomic Thruster"
-		"A375 Atomic Steering"
-		"Hyperdrive"
-	gun "Particle Cannon"
-	gun "Particle Cannon"
-	gun "Meteor Missile Launcher"
-	gun "Meteor Missile Launcher"
 
 
 
