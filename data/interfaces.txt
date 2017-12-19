@@ -824,6 +824,12 @@ interface "map buttons" bottom right
 	button i "M_issions"
 		from -170 -50 to -80 0
 	
+	active
+	sprite "ui/dialog cancel"
+		from -170 -90 to -80 -40
+	button f "_Find..."
+		from -170 -90 to -80 -40
+	
 	active if "!is ports"
 	sprite "ui/dialog cancel"
 		from -90 -50 to 0 0
