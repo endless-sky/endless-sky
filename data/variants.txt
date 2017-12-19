@@ -1385,6 +1385,40 @@ ship "Osprey" "Osprey (Missile)"
 
 
 
+ship "Protector" "Protector (Laser)"
+	outfits
+		"Laser Turret" 2
+		"Heavy Laser Turret" 4
+		"Fusion Reactor"
+		"LP036a Battery Pack"
+		"Supercapacitor" 3
+		"D94-YV Shield Generator" 2
+		"Water Coolant System"
+		"A370 Atomic Thruster"
+		"A375 Atomic Steering"
+		"Hyperdrive"
+	turret "Laser Turret"
+	turret "Laser Turret"
+	turret "Heavy Laser Turret"
+	turret "Heavy Laser Turret"
+	turret "Heavy Laser Turret"
+	turret "Heavy Laser Turret"
+
+
+ship "Protector" "Protector (Proton)"
+	outfits
+		"Proton Turret" 6
+		"Fusion Reactor"
+		"LP036a Battery Pack"
+		"Supercapacitor" 3
+		"D94-YV Shield Generator" 2
+		"Water Coolant System"
+		"A370 Atomic Thruster"
+		"A375 Atomic Steering"
+		"Hyperdrive"
+
+
+
 ship "Star Barge" "Star Barge (Armed)"
 	outfits
 		"Blaster Turret"
@@ -1518,41 +1552,6 @@ ship "Splinter" "Splinter (Proton)"
 	turret "Proton Turret"
 	turret "Anti-Missile Turret"
 	turret "Proton Turret"
-
-
-
-ship "Protector" "Protector (Laser)"
-	outfits
-		"Laser Turret" 2
-		"Heavy Laser Turret" 4
-		"Fusion Reactor"
-		"LP036a Battery Pack"
-		"Supercapacitor" 3
-		"D94-YV Shield Generator" 2
-		"Water Coolant System"
-		"A370 Atomic Thruster"
-		"A375 Atomic Steering"
-		"Hyperdrive"
-	turret "Laser Turret"
-	turret "Laser Turret"
-	turret "Heavy Laser Turret"
-	turret "Heavy Laser Turret"
-	turret "Heavy Laser Turret"
-	turret "Heavy Laser Turret"
-
-
-
-ship "Protector" "Protector (Proton)"
-	outfits
-		"Proton Turret" 6
-		"Fusion Reactor"
-		"LP036a Battery Pack"
-		"Supercapacitor" 3
-		"D94-YV Shield Generator" 2
-		"Water Coolant System"
-		"A370 Atomic Thruster"
-		"A375 Atomic Steering"
-		"Hyperdrive"
 
 
 
