@@ -1419,6 +1419,44 @@ ship "Protector" "Protector (Proton)"
 
 
 
+ship "Quicksilver" "Quicksilver (Mark II)"
+	outfits
+		"Particle Cannon" 2
+		"RT-I Radiothermal"
+		"LP036a Battery Pack"
+		"D23-QP Shield Generator"
+		"Cooling Ducts"
+		"Greyhound Plasma Thruster"
+		"Greyhound Plasma Steering"
+		"Hyperdrive"
+
+
+ship "Quicksilver" "Quicksilver (Proton)"
+	outfits
+		"Proton Gun" 2
+		"RT-I Radiothermal"
+		"LP036a Battery Pack"
+		"D23-QP Shield Generator"
+		"Cooling Ducts"
+		"Greyhound Plasma Thruster"
+		"Greyhound Plasma Steering"
+		"Hyperdrive"
+
+
+ship "Quicksilver" "Quicksilver (Scanner)"
+	outfits
+		"Particle Cannon" 2
+		"RT-I Radiothermal"
+		"LP036a Battery Pack"
+		"D23-QP Shield Generator"
+		"Cooling Ducts"
+		"Cargo Scanner"
+		"Greyhound Plasma Thruster"
+		"Greyhound Plasma Steering"
+		"Hyperdrive"
+
+
+
 ship "Star Barge" "Star Barge (Armed)"
 	outfits
 		"Blaster Turret"
@@ -1465,19 +1503,6 @@ ship "Wasp" "Wasp (Proton)"
 		"D14-RN Shield Generator"
 		"X2700 Ion Thruster"
 		"X2200 Ion Steering"
-		"Hyperdrive"
-
-
-
-ship "Quicksilver" "Quicksilver (Proton)"
-	outfits
-		"Proton Gun" 2
-		"RT-I Radiothermal"
-		"LP036a Battery Pack"
-		"D23-QP Shield Generator"
-		"Cooling Ducts"
-		"Greyhound Plasma Thruster"
-		"Greyhound Plasma Steering"
 		"Hyperdrive"
 
 
@@ -1611,19 +1636,6 @@ ship "Splinter" "Splinter (Mark II)"
 
 
 
-ship "Quicksilver" "Quicksilver (Mark II)"
-	outfits
-		"Particle Cannon" 2
-		"RT-I Radiothermal"
-		"LP036a Battery Pack"
-		"D23-QP Shield Generator"
-		"Cooling Ducts"
-		"Greyhound Plasma Thruster"
-		"Greyhound Plasma Steering"
-		"Hyperdrive"
-
-
-
 ship "Roost" "Roost (Sidewinder)"
 	outfits
 		"Sidewinder Missile Launcher" 2
@@ -1681,18 +1693,4 @@ ship "Star Queen" "Star Queen (Hai)"
 		"Small Radar Jammer"
 		"X3700 Ion Thruster"
 		"A375 Atomic Steering"
-		"Hyperdrive"
-
-
-
-ship "Quicksilver" "Quicksilver (Scanner)"
-	outfits
-		"Particle Cannon" 2
-		"RT-I Radiothermal"
-		"LP036a Battery Pack"
-		"D23-QP Shield Generator"
-		"Cooling Ducts"
-		"Cargo Scanner"
-		"Greyhound Plasma Thruster"
-		"Greyhound Plasma Steering"
 		"Hyperdrive"
