@@ -496,7 +496,7 @@ ship "Heliarch Punisher"
 	explode "large explosion" 40
 	explode "huge explosion" 20
 	"final explode" "final explosion large" 1
-	description `Although not quite as strong or powerful as the Quarg ships that they are designed to oppose, Heliarch Punishers are versatile and durable ships. Rumors say that the Heliarchs have a small stash of stolen Quarg Skylances with which they can outfit the Punishers in times of war.`
+	description `Although not quite as strong or powerful as the Quarg ships that they are designed to oppose, Heliarch Punishers are versatile and durable ships. Rumors say that the Heliarchs have a small stash of stolen Quarg Skylances that they can outfit the Punishers with in times of war.`
 
 ship "Heliarch Punisher" "Heliarch Punisher (Interdicting)"
 	outfits
