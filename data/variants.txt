@@ -309,6 +309,22 @@ ship "Behemoth" "Behemoth (Speedy)"
 
 
 
+ship "Berserker" "Berserker (Afterburner)"
+	outfits
+		"Energy Blaster" 2
+		"Javelin Pod" 2
+		"Javelin" 400
+		"nGVF-CC Fuel Cell"
+		"LP036a Battery Pack"
+		"D23-QP Shield Generator"
+		"Ramscoop"
+		"Chipmunk Plasma Thruster"
+		"Greyhound Plasma Steering"
+		"Afterburner"
+		"Hyperdrive"
+
+
+
 ship "Star Barge" "Star Barge (Armed)"
 	outfits
 		"Blaster Turret"
@@ -941,22 +957,6 @@ ship "Flivver" "Flivver (Racing)"
 		"Water Coolant System"
 		"A120 Atomic Thruster"
 		"A125 Atomic Steering"
-		"Hyperdrive"
-
-
-
-ship "Berserker" "Berserker (Afterburner)"
-	outfits
-		"Energy Blaster" 2
-		"Javelin Pod" 2
-		"Javelin" 400
-		"nGVF-CC Fuel Cell"
-		"LP036a Battery Pack"
-		"D23-QP Shield Generator"
-		"Ramscoop"
-		"Chipmunk Plasma Thruster"
-		"Greyhound Plasma Steering"
-		"Afterburner"
 		"Hyperdrive"
 
 
