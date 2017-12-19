@@ -8,6 +8,77 @@
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
+ship "Argosy" "Argosy (Blaster)"
+	outfits
+		"Energy Blaster" 4
+		"Quad Blaster Turret" 2
+		"Fission Reactor"
+		"LP072a Battery Pack"
+		"D41-HY Shield Generator"
+		"Outfits Expansion"
+		"Greyhound Plasma Thruster"
+		"Impala Plasma Steering"
+		"Hyperdrive"
+
+
+ship "Argosy" "Argosy (Laser)"
+	outfits
+		"Beam Laser" 2
+		"Heavy Laser" 2
+		"Laser Turret" 2
+		"NT-200 Nucleovoltaic"
+		"Supercapacitor"
+		"D67-TM Shield Generator"
+		"Outfits Expansion" 2
+		"Greyhound Plasma Thruster"
+		"Impala Plasma Steering"
+		"Hyperdrive"
+
+
+ship "Argosy" "Argosy (Missile)"
+	outfits
+		"Meteor Missile Launcher" 4
+		"Meteor Missile" 140
+		"Anti-Missile Turret"
+		"Heavy Anti-Missile Turret"
+		"Fission Reactor"
+		"Supercapacitor"
+		"D41-HY Shield Generator"
+		"Outfits Expansion"
+		"A370 Atomic Thruster"
+		"A255 Atomic Steering"
+		"Hyperdrive"
+	turret "Anti-Missile Turret"
+	turret "Heavy Anti-Missile Turret"
+
+
+ship "Argosy" "Argosy (Proton)"
+	outfits
+		"Proton Gun" 2
+		"Proton Turret" 2
+		"NT-200 Nucleovoltaic"
+		"Supercapacitor"
+		"D67-TM Shield Generator"
+		"Outfits Expansion" 2
+		"Greyhound Plasma Thruster"
+		"Impala Plasma Steering"
+		"Hyperdrive"
+
+
+ship "Argosy" "Argosy (Turret)"
+	outfits
+		"Heavy Laser Turret" 2
+		"S3 Thermionic"
+		"LP072a Battery Pack"
+		"D41-HY Shield Generator"
+		"Small Radar Jammer"
+		"Outfits Expansion"
+		"X3700 Ion Thruster"
+		"Greyhound Plasma Steering"
+		"Hyperdrive"
+
+
+
 ship "Star Barge" "Star Barge (Armed)"
 	outfits
 		"Blaster Turret"
@@ -201,81 +272,6 @@ ship "Freighter" "Freighter (Proton)"
 		"Greyhound Plasma Thruster"
 		"X3200 Ion Steering"
 		"Scram Drive"
-
-
-
-ship "Argosy" "Argosy (Laser)"
-	outfits
-		"Beam Laser" 2
-		"Heavy Laser" 2
-		"Laser Turret" 2
-		"NT-200 Nucleovoltaic"
-		"Supercapacitor"
-		"D67-TM Shield Generator"
-		"Outfits Expansion" 2
-		"Greyhound Plasma Thruster"
-		"Impala Plasma Steering"
-		"Hyperdrive"
-
-
-
-ship "Argosy" "Argosy (Missile)"
-	outfits
-		"Meteor Missile Launcher" 4
-		"Meteor Missile" 140
-		"Anti-Missile Turret"
-		"Heavy Anti-Missile Turret"
-		"Fission Reactor"
-		"Supercapacitor"
-		"D41-HY Shield Generator"
-		"Outfits Expansion"
-		"A370 Atomic Thruster"
-		"A255 Atomic Steering"
-		"Hyperdrive"
-	turret "Anti-Missile Turret"
-	turret "Heavy Anti-Missile Turret"
-
-
-
-ship "Argosy" "Argosy (Proton)"
-	outfits
-		"Proton Gun" 2
-		"Proton Turret" 2
-		"NT-200 Nucleovoltaic"
-		"Supercapacitor"
-		"D67-TM Shield Generator"
-		"Outfits Expansion" 2
-		"Greyhound Plasma Thruster"
-		"Impala Plasma Steering"
-		"Hyperdrive"
-
-
-
-ship "Argosy" "Argosy (Turret)"
-	outfits
-		"Heavy Laser Turret" 2
-		"S3 Thermionic"
-		"LP072a Battery Pack"
-		"D41-HY Shield Generator"
-		"Small Radar Jammer"
-		"Outfits Expansion"
-		"X3700 Ion Thruster"
-		"Greyhound Plasma Steering"
-		"Hyperdrive"
-
-
-
-ship "Argosy" "Argosy (Blaster)"
-	outfits
-		"Energy Blaster" 4
-		"Quad Blaster Turret" 2
-		"Fission Reactor"
-		"LP072a Battery Pack"
-		"D41-HY Shield Generator"
-		"Outfits Expansion"
-		"Greyhound Plasma Thruster"
-		"Impala Plasma Steering"
-		"Hyperdrive"
 
 
 
