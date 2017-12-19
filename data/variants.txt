@@ -871,6 +871,26 @@ ship "Freighter" "Freighter (Secret Cargo)"
 
 
 
+ship "Frigate" "Frigate (Mark II)"
+	outfits
+		"Particle Cannon" 4
+		"Anti-Missile Turret"
+		"Blaster Turret" 2
+		"NT-200 Nucleovoltaic"
+		"Dwarf Core"
+		"LP036a Battery Pack"
+		"D41-HY Shield Generator"
+		"Water Coolant System"
+		"Outfits Expansion"
+		"X3700 Ion Thruster"
+		"A375 Atomic Steering"
+		"Hyperdrive"
+	turret "Anti-Missile Turret"
+	turret "Blaster Turret"
+	turret "Blaster Turret"
+
+
+
 ship "Star Barge" "Star Barge (Armed)"
 	outfits
 		"Blaster Turret"
@@ -1342,26 +1362,6 @@ ship "Gunboat" "Gunboat (Mark II)"
 		"A250 Atomic Thruster"
 		"A255 Atomic Steering"
 		"Hyperdrive"
-
-
-
-ship "Frigate" "Frigate (Mark II)"
-	outfits
-		"Particle Cannon" 4
-		"Anti-Missile Turret"
-		"Blaster Turret" 2
-		"NT-200 Nucleovoltaic"
-		"Dwarf Core"
-		"LP036a Battery Pack"
-		"D41-HY Shield Generator"
-		"Water Coolant System"
-		"Outfits Expansion"
-		"X3700 Ion Thruster"
-		"A375 Atomic Steering"
-		"Hyperdrive"
-	turret "Anti-Missile Turret"
-	turret "Blaster Turret"
-	turret "Blaster Turret"
 
 
 
