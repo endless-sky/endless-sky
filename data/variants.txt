@@ -674,6 +674,52 @@ ship "Dreadnought" "Dreadnought (Jump)"
 
 
 
+ship "Falcon" "Falcon (Heavy)"
+	outfits
+		"Torpedo Launcher" 2
+		"Torpedo" 60
+		"Meteor Missile Launcher" 2
+		"Meteor Missile" 70
+		"Heavy Laser Turret" 4
+		"Fusion Reactor"
+		"D67-TM Shield Generator"
+		"Small Radar Jammer"
+		"Orca Plasma Thruster"
+		"A375 Atomic Steering"
+		"Hyperdrive"
+	gun "Torpedo Launcher"
+	gun "Torpedo Launcher"
+	gun "Meteor Missile Launcher"
+	gun "Meteor Missile Launcher"
+
+
+ship "Falcon" "Falcon (Laser)"
+	outfits
+		"Heavy Laser" 4
+		"Heavy Laser Turret" 4
+		"Breeder Reactor"
+		"LP072a Battery Pack"
+		"D94-YV Shield Generator"
+		"Small Radar Jammer"
+		"Impala Plasma Thruster"
+		"Orca Plasma Steering"
+		"Hyperdrive"
+
+
+ship "Falcon" "Falcon (Plasma)"
+	outfits
+		"Plasma Turret" 4
+		"Breeder Reactor"
+		"LP144a Battery Pack"
+		"D41-HY Shield Generator"
+		"Small Radar Jammer"
+		"Liquid Nitrogen Cooler"
+		"Impala Plasma Thruster"
+		"Impala Plasma Steering"
+		"Hyperdrive"
+
+
+
 ship "Star Barge" "Star Barge (Armed)"
 	outfits
 		"Blaster Turret"
@@ -1006,40 +1052,6 @@ ship "Splinter" "Splinter (Proton)"
 
 
 
-ship "Falcon" "Falcon (Laser)"
-	outfits
-		"Heavy Laser" 4
-		"Heavy Laser Turret" 4
-		"Breeder Reactor"
-		"LP072a Battery Pack"
-		"D94-YV Shield Generator"
-		"Small Radar Jammer"
-		"Impala Plasma Thruster"
-		"Orca Plasma Steering"
-		"Hyperdrive"
-
-
-
-ship "Falcon" "Falcon (Heavy)"
-	outfits
-		"Torpedo Launcher" 2
-		"Torpedo" 60
-		"Meteor Missile Launcher" 2
-		"Meteor Missile" 70
-		"Heavy Laser Turret" 4
-		"Fusion Reactor"
-		"D67-TM Shield Generator"
-		"Small Radar Jammer"
-		"Orca Plasma Thruster"
-		"A375 Atomic Steering"
-		"Hyperdrive"
-	gun "Torpedo Launcher"
-	gun "Torpedo Launcher"
-	gun "Meteor Missile Launcher"
-	gun "Meteor Missile Launcher"
-
-
-
 ship "Leviathan" "Leviathan (Laser)"
 	outfits
 		"Heavy Laser" 4
@@ -1211,20 +1223,6 @@ ship "Modified Argosy" "Modified Argosy (Missile)"
 		"D41-HY Shield Generator"
 		"X3700 Ion Thruster"
 		"Greyhound Plasma Steering"
-		"Hyperdrive"
-
-
-
-ship "Falcon" "Falcon (Plasma)"
-	outfits
-		"Plasma Turret" 4
-		"Breeder Reactor"
-		"LP144a Battery Pack"
-		"D41-HY Shield Generator"
-		"Small Radar Jammer"
-		"Liquid Nitrogen Cooler"
-		"Impala Plasma Thruster"
-		"Impala Plasma Steering"
 		"Hyperdrive"
 
 
