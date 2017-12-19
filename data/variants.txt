@@ -474,6 +474,46 @@ ship "Carrier" "Carrier (Mark II)"
 
 
 
+ship "Clipper" "Clipper (Heavy)"
+	outfits
+		"Heavy Rocket Launcher" 2
+		"Heavy Rocket" 40
+		"Meteor Missile Launcher" 2
+		"Meteor Missile" 70
+		"RT-I Radiothermal"
+		"Supercapacitor"
+		"D67-TM Shield Generator"
+		"Greyhound Plasma Thruster"
+		"Impala Plasma Steering"
+		"Scram Drive"
+
+
+ship "Clipper" "Clipper (Nuclear)"
+	outfits
+		"Nuclear Missile" 4
+		"S3 Thermionic"
+		"Supercapacitor"
+		"D67-TM Shield Generator"
+		"Catalytic Ramscoop"
+		"A250 Atomic Thruster"
+		"A255 Atomic Steering"
+		"Hyperdrive"
+		"Afterburner"
+
+
+ship "Clipper" "Clipper (Speedy)"
+	outfits
+		"Heavy Laser" 4
+		"Fission Reactor"
+		"Supercapacitor"
+		"D41-HY Shield Generator"
+		"Cooling Ducts"
+		"A370 Atomic Thruster"
+		"A255 Atomic Steering"
+		"Hyperdrive"
+
+
+
 ship "Star Barge" "Star Barge (Armed)"
 	outfits
 		"Blaster Turret"
@@ -603,34 +643,6 @@ ship "Scout" "Scout (Speedy)"
 		"D23-QP Shield Generator"
 		"Cooling Ducts"
 		"Outfits Expansion"
-		"A370 Atomic Thruster"
-		"A255 Atomic Steering"
-		"Hyperdrive"
-
-
-
-ship "Clipper" "Clipper (Heavy)"
-	outfits
-		"Heavy Rocket Launcher" 2
-		"Heavy Rocket" 40
-		"Meteor Missile Launcher" 2
-		"Meteor Missile" 70
-		"RT-I Radiothermal"
-		"Supercapacitor"
-		"D67-TM Shield Generator"
-		"Greyhound Plasma Thruster"
-		"Impala Plasma Steering"
-		"Scram Drive"
-
-
-
-ship "Clipper" "Clipper (Speedy)"
-	outfits
-		"Heavy Laser" 4
-		"Fission Reactor"
-		"Supercapacitor"
-		"D41-HY Shield Generator"
-		"Cooling Ducts"
 		"A370 Atomic Thruster"
 		"A255 Atomic Steering"
 		"Hyperdrive"
@@ -1343,20 +1355,6 @@ ship "Dreadnought" "Dreadnought (Jump)"
 		"Orca Plasma Thruster"
 		"Orca Plasma Steering"
 		"Jump Drive"
-
-
-
-ship "Clipper" "Clipper (Nuclear)"
-	outfits
-		"Nuclear Missile" 4
-		"S3 Thermionic"
-		"Supercapacitor"
-		"D67-TM Shield Generator"
-		"Catalytic Ramscoop"
-		"A250 Atomic Thruster"
-		"A255 Atomic Steering"
-		"Hyperdrive"
-		"Afterburner"
 
 
 
