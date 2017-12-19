@@ -1542,6 +1542,23 @@ ship "Scout" "Scout (Speedy)"
 
 
 
+ship "Skein" "Skein (Sidewinder)"
+	outfits
+		"Sidewinder Missile Launcher" 2
+		"Sidewinder Missile" 100
+		"Quad Blaster Turret" 2
+		"Heavy Anti-Missile Turret" 2
+		"LP144a Battery Pack"
+		"Fission Reactor"
+		"D94-YV Shield Generator" 3
+		"Large Radar Jammer"
+		"Outfits Expansion" 2
+		"A250 Atomic Thruster"
+		"A375 Atomic Steering"
+		Hyperdrive
+
+
+
 ship "Star Barge" "Star Barge (Armed)"
 	outfits
 		"Blaster Turret"
@@ -1648,23 +1665,6 @@ ship "Splinter" "Splinter (Mark II)"
 		"A375 Atomic Steering"
 		"Hyperdrive"
 		"Ionic Afterburner"
-
-
-
-ship "Skein" "Skein (Sidewinder)"
-	outfits
-		"Sidewinder Missile Launcher" 2
-		"Sidewinder Missile" 100
-		"Quad Blaster Turret" 2
-		"Heavy Anti-Missile Turret" 2
-		"LP144a Battery Pack"
-		"Fission Reactor"
-		"D94-YV Shield Generator" 3
-		"Large Radar Jammer"
-		"Outfits Expansion" 2
-		"A250 Atomic Thruster"
-		"A375 Atomic Steering"
-		Hyperdrive
 
 
 
