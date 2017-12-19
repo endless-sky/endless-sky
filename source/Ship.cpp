@@ -31,6 +31,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <algorithm>
 #include <cmath>
 #include <iostream>
+#include <limits>
 
 using namespace std;
 
@@ -2147,7 +2148,7 @@ double Ship::IdleHeat() const
 	double production = max(0., attributes.Get("heat generation") - cooling);
 	double dissipation = .001 * attributes.Get("heat dissipation") + activeCooling / (100. * Mass());
 
-	return dissipation != 0. ? production / dissipation : 0.;
+	return dissipation != 0. ? production / dissipation : numeric_limits<double>::infinity();
 }
 
 
