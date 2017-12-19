@@ -1042,6 +1042,30 @@ ship "Hawk" "Hawk (Speedy)"
 
 
 
+ship "Headhunter" "Headhunter (Hai)"
+	outfits
+		"Particle Cannon" 2
+		"Geode Reactor"
+		"Hai Chasm Batteries"
+		"Hai Corundum Regenerator"
+		"Hai Williwaw Cooling"
+		"A250 Atomic Thruster"
+		"A375 Atomic Steering"
+		"Hyperdrive"
+
+
+ship "Headhunter" "Headhunter (Particle)"
+	outfits
+		"Particle Cannon" 2
+		"NT-200 Nucleovoltaic"
+		"LP036a Battery Pack"
+		"D23-QP Shield Generator"
+		"A250 Atomic Thruster"
+		"A375 Atomic Steering"
+		"Hyperdrive"
+
+
+
 ship "Star Barge" "Star Barge (Armed)"
 	outfits
 		"Blaster Turret"
@@ -1359,18 +1383,6 @@ ship "Heavy Shuttle" "Heavy Shuttle (Armed)"
 
 
 
-ship "Headhunter" "Headhunter (Particle)"
-	outfits
-		"Particle Cannon" 2
-		"NT-200 Nucleovoltaic"
-		"LP036a Battery Pack"
-		"D23-QP Shield Generator"
-		"A250 Atomic Thruster"
-		"A375 Atomic Steering"
-		"Hyperdrive"
-
-
-
 ship "Modified Argosy" "Modified Argosy (Heavy)"
 	outfits
 		"Heavy Laser" 4
@@ -1610,19 +1622,6 @@ ship "Star Queen" "Star Queen (Hai)"
 		"D94-YV Shield Generator"
 		"Small Radar Jammer"
 		"X3700 Ion Thruster"
-		"A375 Atomic Steering"
-		"Hyperdrive"
-
-
-
-ship "Headhunter" "Headhunter (Hai)"
-	outfits
-		"Particle Cannon" 2
-		"Geode Reactor"
-		"Hai Chasm Batteries"
-		"Hai Corundum Regenerator"
-		"Hai Williwaw Cooling"
-		"A250 Atomic Thruster"
 		"A375 Atomic Steering"
 		"Hyperdrive"
 
