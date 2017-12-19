@@ -514,6 +514,57 @@ ship "Clipper" "Clipper (Speedy)"
 
 
 
+ship "Corvette" "Corvette (Hai)"
+	outfits
+		"Hai Tracker Pod" 4
+		"Hai Tracker" 224
+		"Heavy Anti-Missile Turret" 2
+		"Fission Reactor"
+		"LP036a Battery Pack"
+		"D94-YV Shield Generator"
+		"Cooling Ducts"
+		"Cargo Expansion"
+		`"Biroo" Atomic Thruster`
+		`"Bondir" Atomic Steering`
+		"Hyperdrive"
+
+
+ship "Corvette" "Corvette (Missile)"
+	outfits
+		"Torpedo Launcher" 2
+		"Torpedo" 60
+		"Sidewinder Missile Launcher" 2
+		"Sidewinder Missile" 100
+		"Heavy Anti-Missile Turret" 2
+		"Fission Reactor"
+		"LP036a Battery Pack"
+		"D94-YV Shield Generator"
+		"Cooling Ducts"
+		"Cargo Expansion"
+		"A370 Atomic Thruster"
+		"A375 Atomic Steering"
+		"Hyperdrive"
+	gun "Sidewinder Missile Launcher"
+	gun "Sidewinder Missile Launcher"
+	gun "Torpedo Launcher"
+	gun "Torpedo Launcher"
+
+
+ship "Corvette" "Corvette (Speedy)"
+	outfits
+		"Particle Cannon" 4
+		"Heavy Anti-Missile Turret"
+		"Fusion Reactor"
+		"Supercapacitor"
+		"D41-HY Shield Generator"
+		"Liquid Nitrogen Cooler"
+		"Cooling Ducts"
+		"A370 Atomic Thruster"
+		"A375 Atomic Steering"
+		"Hyperdrive"
+
+
+
 ship "Star Barge" "Star Barge (Armed)"
 	outfits
 		"Blaster Turret"
@@ -730,43 +781,6 @@ ship "Hawk" "Hawk (Rocket)"
 		"Greyhound Plasma Thruster"
 		"Greyhound Plasma Steering"
 		"Hyperdrive"
-
-
-
-ship "Corvette" "Corvette (Speedy)"
-	outfits
-		"Particle Cannon" 4
-		"Heavy Anti-Missile Turret"
-		"Fusion Reactor"
-		"Supercapacitor"
-		"D41-HY Shield Generator"
-		"Liquid Nitrogen Cooler"
-		"Cooling Ducts"
-		"A370 Atomic Thruster"
-		"A375 Atomic Steering"
-		"Hyperdrive"
-
-
-
-ship "Corvette" "Corvette (Missile)"
-	outfits
-		"Torpedo Launcher" 2
-		"Torpedo" 60
-		"Sidewinder Missile Launcher" 2
-		"Sidewinder Missile" 100
-		"Heavy Anti-Missile Turret" 2
-		"Fission Reactor"
-		"LP036a Battery Pack"
-		"D94-YV Shield Generator"
-		"Cooling Ducts"
-		"Cargo Expansion"
-		"A370 Atomic Thruster"
-		"A375 Atomic Steering"
-		"Hyperdrive"
-	gun "Sidewinder Missile Launcher"
-	gun "Sidewinder Missile Launcher"
-	gun "Torpedo Launcher"
-	gun "Torpedo Launcher"
 
 
 
@@ -1578,22 +1592,6 @@ ship "Headhunter" "Headhunter (Hai)"
 		"Hai Williwaw Cooling"
 		"A250 Atomic Thruster"
 		"A375 Atomic Steering"
-		"Hyperdrive"
-
-
-
-ship "Corvette" "Corvette (Hai)"
-	outfits
-		"Hai Tracker Pod" 4
-		"Hai Tracker" 224
-		"Heavy Anti-Missile Turret" 2
-		"Fission Reactor"
-		"LP036a Battery Pack"
-		"D94-YV Shield Generator"
-		"Cooling Ducts"
-		"Cargo Expansion"
-		`"Biroo" Atomic Thruster`
-		`"Bondir" Atomic Steering`
 		"Hyperdrive"
 
 
