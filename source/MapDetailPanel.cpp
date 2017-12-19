@@ -520,10 +520,10 @@ void MapDetailPanel::DrawInfo()
 			else
 			{
 				value -= localValue;
-				if(value==bestDeal) {
+				if(value == bestDeal) {
 					font.Draw(commodity.name, uiPoint, highColor);
 				}
-				else if(value==worstDeal) {
+				else if(value == worstDeal) {
 					font.Draw(commodity.name, uiPoint, lowColor);
 				}
 				price += "(";
