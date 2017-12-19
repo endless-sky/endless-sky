@@ -225,6 +225,90 @@ ship "Bastion" "Bastion (Scanner)"
 
 
 
+ship "Behemoth" "Behemoth (Hai)"
+	outfits
+		"Sidewinder Missile Launcher" 2
+		"Sidewinder Missile" 100
+		"Pulse Turret" 6
+		"Boulder Reactor"
+		"Hai Ravine Batteries"
+		"Hai Diamond Regenerator"
+		"Large Radar Jammer"
+		"Liquid Nitrogen Cooler"
+		"Outfits Expansion" 6
+		`"Benga" Atomic Thruster`
+		`"Biroo" Atomic Steering`
+		`"Benga" Atomic Steering`
+		"Hyperdrive"
+
+
+ship "Behemoth" "Behemoth (Heavy)"
+	outfits
+		"Torpedo Launcher" 2
+		Torpedo 60
+		"Quad Blaster Turret" 2
+		"Plasma Turret" 2
+		"Heavy Anti-Missile Turret" 2
+		"Laser Rifle" 16
+		"Fusion Reactor"
+		"Supercapacitor"
+		"D94-YV Shield Generator"
+		"Outfits Expansion" 6
+		"Liquid Helium Cooler"
+		"Liquid Nitrogen Cooler"
+		"Greyhound Plasma Thruster"
+		"Impala Plasma Steering"
+		"Hyperdrive"
+	turret "Quad Blaster Turret"
+	turret "Quad Blaster Turret"
+	turret "Plasma Turret"
+	turret "Plasma Turret"
+	turret "Heavy Anti-Missile Turret"
+	turret "Heavy Anti-Missile Turret"
+
+
+ship "Behemoth" "Behemoth (Proton)"
+	outfits
+		"Sidewinder Missile Launcher" 2
+		"Sidewinder Missile" 100
+		"Proton Turret" 4
+		"Heavy Anti-Missile Turret" 2
+		"Breeder Reactor"
+		"LP144a Battery Pack"
+		"D94-YV Shield Generator"
+		"Large Radar Jammer"
+		"Liquid Nitrogen Cooler"
+		"Outfits Expansion" 6
+		"A250 Atomic Thruster"
+		"A125 Atomic Steering"
+		"A375 Atomic Steering"
+		"Scram Drive"
+	turret "Proton Turret"
+	turret "Proton Turret"
+	turret "Proton Turret"
+	turret "Proton Turret"
+	turret "Heavy Anti-Missile Turret"
+	turret "Heavy Anti-Missile Turret"
+
+
+ship "Behemoth" "Behemoth (Speedy)"
+	outfits
+		"Sidewinder Missile Launcher" 2
+		"Sidewinder Missile" 100
+		"Heavy Laser Turret" 6
+		"Breeder Reactor"
+		"LP144a Battery Pack"
+		"D94-YV Shield Generator"
+		"Large Radar Jammer"
+		"Liquid Nitrogen Cooler"
+		"Outfits Expansion" 6
+		"A250 Atomic Thruster"
+		"A125 Atomic Steering"
+		"A375 Atomic Steering"
+		"Scram Drive"
+
+
+
 ship "Star Barge" "Star Barge (Armed)"
 	outfits
 		"Blaster Turret"
@@ -417,49 +501,6 @@ ship "Freighter" "Freighter (Proton)"
 		"Outfits Expansion"
 		"Greyhound Plasma Thruster"
 		"X3200 Ion Steering"
-		"Scram Drive"
-
-
-
-ship "Behemoth" "Behemoth (Proton)"
-	outfits
-		"Sidewinder Missile Launcher" 2
-		"Sidewinder Missile" 100
-		"Proton Turret" 4
-		"Heavy Anti-Missile Turret" 2
-		"Breeder Reactor"
-		"LP144a Battery Pack"
-		"D94-YV Shield Generator"
-		"Large Radar Jammer"
-		"Liquid Nitrogen Cooler"
-		"Outfits Expansion" 6
-		"A250 Atomic Thruster"
-		"A125 Atomic Steering"
-		"A375 Atomic Steering"
-		"Scram Drive"
-	turret "Proton Turret"
-	turret "Proton Turret"
-	turret "Proton Turret"
-	turret "Proton Turret"
-	turret "Heavy Anti-Missile Turret"
-	turret "Heavy Anti-Missile Turret"
-
-
-
-ship "Behemoth" "Behemoth (Speedy)"
-	outfits
-		"Sidewinder Missile Launcher" 2
-		"Sidewinder Missile" 100
-		"Heavy Laser Turret" 6
-		"Breeder Reactor"
-		"LP144a Battery Pack"
-		"D94-YV Shield Generator"
-		"Large Radar Jammer"
-		"Liquid Nitrogen Cooler"
-		"Outfits Expansion" 6
-		"A250 Atomic Thruster"
-		"A125 Atomic Steering"
-		"A375 Atomic Steering"
 		"Scram Drive"
 
 
@@ -1120,32 +1161,6 @@ ship "Carrier" "Carrier (Mark II)"
 
 
 
-ship "Behemoth" "Behemoth (Heavy)"
-	outfits
-		"Torpedo Launcher" 2
-		Torpedo 60
-		"Quad Blaster Turret" 2
-		"Plasma Turret" 2
-		"Heavy Anti-Missile Turret" 2
-		"Laser Rifle" 16
-		"Fusion Reactor"
-		"Supercapacitor"
-		"D94-YV Shield Generator"
-		"Outfits Expansion" 6
-		"Liquid Helium Cooler"
-		"Liquid Nitrogen Cooler"
-		"Greyhound Plasma Thruster"
-		"Impala Plasma Steering"
-		"Hyperdrive"
-	turret "Quad Blaster Turret"
-	turret "Quad Blaster Turret"
-	turret "Plasma Turret"
-	turret "Plasma Turret"
-	turret "Heavy Anti-Missile Turret"
-	turret "Heavy Anti-Missile Turret"
-
-
-
 ship "Splinter" "Splinter (Mark II)"
 	outfits
 		"Particle Cannon" 2
@@ -1536,24 +1551,6 @@ ship "Hauler III" "Hauler III (Hai)"
 	turret "Chameleon Anti-Missile"
 	turret "Chameleon Anti-Missile"
 	turret "Quad Blaster Turret"
-
-
-
-ship "Behemoth" "Behemoth (Hai)"
-	outfits
-		"Sidewinder Missile Launcher" 2
-		"Sidewinder Missile" 100
-		"Pulse Turret" 6
-		"Boulder Reactor"
-		"Hai Ravine Batteries"
-		"Hai Diamond Regenerator"
-		"Large Radar Jammer"
-		"Liquid Nitrogen Cooler"
-		"Outfits Expansion" 6
-		`"Benga" Atomic Thruster`
-		`"Biroo" Atomic Steering`
-		`"Benga" Atomic Steering`
-		"Hyperdrive"
 
 
 
