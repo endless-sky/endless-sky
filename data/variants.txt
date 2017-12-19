@@ -1018,6 +1018,30 @@ ship "Hauler III" "Hauler III (Hai)"
 
 
 
+ship "Hawk" "Hawk (Rocket)"
+	outfits
+		"Heavy Rocket Launcher" 2
+		"Heavy Rocket" 40
+		"RT-I Radiothermal"
+		"Supercapacitor" 2
+		"D41-HY Shield Generator"
+		"Greyhound Plasma Thruster"
+		"Greyhound Plasma Steering"
+		"Hyperdrive"
+
+
+ship "Hawk" "Hawk (Speedy)"
+	outfits
+		"Heavy Laser" 2
+		"S3 Thermionic"
+		"Supercapacitor" 3
+		"D41-HY Shield Generator"
+		"A250 Atomic Thruster"
+		"A255 Atomic Steering"
+		"Hyperdrive"
+
+
+
 ship "Star Barge" "Star Barge (Armed)"
 	outfits
 		"Blaster Turret"
@@ -1115,31 +1139,6 @@ ship "Scout" "Scout (Speedy)"
 		"Outfits Expansion"
 		"A370 Atomic Thruster"
 		"A255 Atomic Steering"
-		"Hyperdrive"
-
-
-
-ship "Hawk" "Hawk (Speedy)"
-	outfits
-		"Heavy Laser" 2
-		"S3 Thermionic"
-		"Supercapacitor" 3
-		"D41-HY Shield Generator"
-		"A250 Atomic Thruster"
-		"A255 Atomic Steering"
-		"Hyperdrive"
-
-
-
-ship "Hawk" "Hawk (Rocket)"
-	outfits
-		"Heavy Rocket Launcher" 2
-		"Heavy Rocket" 40
-		"RT-I Radiothermal"
-		"Supercapacitor" 2
-		"D41-HY Shield Generator"
-		"Greyhound Plasma Thruster"
-		"Greyhound Plasma Steering"
 		"Hyperdrive"
 
 
