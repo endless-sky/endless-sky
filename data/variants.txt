@@ -565,6 +565,99 @@ ship "Corvette" "Corvette (Speedy)"
 
 
 
+ship "Cruiser" "Cruiser (Heavy)"
+	outfits
+		"Heavy Rocket Launcher" 2
+		"Heavy Rocket" 40
+		"Particle Cannon" 4
+		"Heavy Laser Turret" 2
+		"Heavy Anti-Missile Turret"
+		"Quad Blaster Turret"
+		"Laser Rifle" 20
+		"Fragmentation Grenades" 20
+		"Armageddon Core"
+		"Dwarf Core"
+		"Supercapacitor"
+		"D94-YV Shield Generator"
+		"Liquid Helium Cooler"
+		"Ramscoop"
+		"Outfits Expansion"
+		"A520 Atomic Thruster"
+		"A525 Atomic Steering"
+		"X2200 Ion Steering"
+		"Scram Drive"
+	gun "Particle Cannon"
+	gun "Particle Cannon"
+	gun "Particle Cannon"
+	gun "Particle Cannon"
+	gun "Heavy Rocket Launcher"
+	gun "Heavy Rocket Launcher"
+	turret "Quad Blaster Turret"
+	turret "Heavy Laser Turret"
+	turret "Heavy Laser Turret"
+	turret "Heavy Anti-Missile Turret"
+
+
+ship "Cruiser" "Cruiser (Jump)"
+	outfits
+		"Typhoon Launcher" 2
+		"Typhoon Torpedo" 60
+		"Sidewinder Missile Launcher" 4
+		"Sidewinder Missile" 200
+		"Electron Turret" 3
+		"Heavy Anti-Missile Turret"
+		"Armageddon Core"
+		"LP144a Battery Pack"
+		"LP036a Battery Pack"
+		"D94-YV Shield Generator"
+		"Liquid Helium Cooler"
+		"Fuel Pod" 2
+		"Ramscoop"
+		"Outfits Expansion" 2
+		"A520 Atomic Thruster"
+		"A525 Atomic Steering"
+		"Jump Drive"
+	gun "Sidewinder Missile Launcher"
+	gun "Sidewinder Missile Launcher"
+	gun "Typhoon Launcher"
+	gun "Typhoon Launcher"
+	gun "Sidewinder Missile Launcher"
+	gun "Sidewinder Missile Launcher"
+	turret "Electron Turret"
+	turret "Electron Turret"
+	turret "Electron Turret"
+	turret "Heavy Anti-Missile Turret"
+
+
+ship "Cruiser" "Cruiser (Mark II)"
+	outfits
+		"Typhoon Launcher" 2
+		"Typhoon Torpedo" 60
+		"Sidewinder Missile Launcher" 4
+		"Sidewinder Missile" 200
+		"Electron Turret" 3
+		"Heavy Anti-Missile Turret"
+		"Armageddon Core"
+		"LP144a Battery Pack"
+		"D94-YV Shield Generator"
+		"Liquid Helium Cooler"
+		"Fuel Pod"
+		"A520 Atomic Thruster"
+		"A525 Atomic Steering"
+		"Hyperdrive"
+	gun "Sidewinder Missile Launcher"
+	gun "Sidewinder Missile Launcher"
+	gun "Sidewinder Missile Launcher"
+	gun "Sidewinder Missile Launcher"
+	gun "Typhoon Launcher"
+	gun "Typhoon Launcher"
+	turret "Electron Turret"
+	turret "Electron Turret"
+	turret "Electron Turret"
+	turret "Heavy Anti-Missile Turret"
+
+
+
 ship "Star Barge" "Star Barge (Armed)"
 	outfits
 		"Blaster Turret"
@@ -645,40 +738,6 @@ ship "Quicksilver" "Quicksilver (Proton)"
 		"Greyhound Plasma Thruster"
 		"Greyhound Plasma Steering"
 		"Hyperdrive"
-
-
-
-ship "Cruiser" "Cruiser (Heavy)"
-	outfits
-		"Heavy Rocket Launcher" 2
-		"Heavy Rocket" 40
-		"Particle Cannon" 4
-		"Heavy Laser Turret" 2
-		"Heavy Anti-Missile Turret"
-		"Quad Blaster Turret"
-		"Laser Rifle" 20
-		"Fragmentation Grenades" 20
-		"Armageddon Core"
-		"Dwarf Core"
-		"Supercapacitor"
-		"D94-YV Shield Generator"
-		"Liquid Helium Cooler"
-		"Ramscoop"
-		"Outfits Expansion"
-		"A520 Atomic Thruster"
-		"A525 Atomic Steering"
-		"X2200 Ion Steering"
-		"Scram Drive"
-	gun "Particle Cannon"
-	gun "Particle Cannon"
-	gun "Particle Cannon"
-	gun "Particle Cannon"
-	gun "Heavy Rocket Launcher"
-	gun "Heavy Rocket Launcher"
-	turret "Quad Blaster Turret"
-	turret "Heavy Laser Turret"
-	turret "Heavy Laser Turret"
-	turret "Heavy Anti-Missile Turret"
 
 
 
@@ -1222,35 +1281,6 @@ ship "Frigate" "Frigate (Mark II)"
 
 
 
-ship "Cruiser" "Cruiser (Mark II)"
-	outfits
-		"Typhoon Launcher" 2
-		"Typhoon Torpedo" 60
-		"Sidewinder Missile Launcher" 4
-		"Sidewinder Missile" 200
-		"Electron Turret" 3
-		"Heavy Anti-Missile Turret"
-		"Armageddon Core"
-		"LP144a Battery Pack"
-		"D94-YV Shield Generator"
-		"Liquid Helium Cooler"
-		"Fuel Pod"
-		"A520 Atomic Thruster"
-		"A525 Atomic Steering"
-		"Hyperdrive"
-	gun "Sidewinder Missile Launcher"
-	gun "Sidewinder Missile Launcher"
-	gun "Sidewinder Missile Launcher"
-	gun "Sidewinder Missile Launcher"
-	gun "Typhoon Launcher"
-	gun "Typhoon Launcher"
-	turret "Electron Turret"
-	turret "Electron Turret"
-	turret "Electron Turret"
-	turret "Heavy Anti-Missile Turret"
-
-
-
 ship "Splinter" "Splinter (Mark II)"
 	outfits
 		"Particle Cannon" 2
@@ -1321,38 +1351,6 @@ ship "Manta" "Manta (Nuclear)"
 	gun "Particle Cannon"
 	gun "Nuclear Missile"
 	gun "Nuclear Missile"
-
-
-
-ship "Cruiser" "Cruiser (Jump)"
-	outfits
-		"Typhoon Launcher" 2
-		"Typhoon Torpedo" 60
-		"Sidewinder Missile Launcher" 4
-		"Sidewinder Missile" 200
-		"Electron Turret" 3
-		"Heavy Anti-Missile Turret"
-		"Armageddon Core"
-		"LP144a Battery Pack"
-		"LP036a Battery Pack"
-		"D94-YV Shield Generator"
-		"Liquid Helium Cooler"
-		"Fuel Pod" 2
-		"Ramscoop"
-		"Outfits Expansion" 2
-		"A520 Atomic Thruster"
-		"A525 Atomic Steering"
-		"Jump Drive"
-	gun "Sidewinder Missile Launcher"
-	gun "Sidewinder Missile Launcher"
-	gun "Typhoon Launcher"
-	gun "Typhoon Launcher"
-	gun "Sidewinder Missile Launcher"
-	gun "Sidewinder Missile Launcher"
-	turret "Electron Turret"
-	turret "Electron Turret"
-	turret "Electron Turret"
-	turret "Heavy Anti-Missile Turret"
 
 
 
