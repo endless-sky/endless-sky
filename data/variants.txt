@@ -955,6 +955,69 @@ ship "Gunboat" "Gunboat (Mark II)"
 
 
 
+ship "Hauler" "Hauler (Hai)"
+	outfits
+		"Meteor Missile Launcher" 2
+		"Meteor Missile" 70
+		"Quad Blaster Turret" 2
+		"Chameleon Anti-Missile" 2
+		"Geode Reactor"
+		"Hai Gorge Batteries"
+		"Hai Corundum Regenerator"
+		"Hai Williwaw Cooling"
+		"Small Radar Jammer"
+		"Greyhound Plasma Thruster"
+		"Impala Plasma Steering"
+		"Hyperdrive"
+	turret "Quad Blaster Turret"
+	turret "Chameleon Anti-Missile"
+	turret "Chameleon Anti-Missile"
+	turret "Quad Blaster Turret"
+
+
+
+ship "Hauler II" "Hauler II (Hai)"
+	outfits
+		"Meteor Missile Launcher" 2
+		"Meteor Missile" 70
+		"Quad Blaster Turret" 2
+		"Chameleon Anti-Missile" 2
+		"Geode Reactor"
+		"Hai Gorge Batteries"
+		"Hai Corundum Regenerator"
+		"Hai Williwaw Cooling"
+		"Small Radar Jammer"
+		"Greyhound Plasma Thruster"
+		"Impala Plasma Steering"
+		"Hyperdrive"
+	turret "Quad Blaster Turret"
+	turret "Chameleon Anti-Missile"
+	turret "Chameleon Anti-Missile"
+	turret "Quad Blaster Turret"
+
+
+
+ship "Hauler III" "Hauler III (Hai)"
+	outfits
+		"Meteor Missile Launcher" 2
+		"Meteor Missile" 70
+		"Quad Blaster Turret" 2
+		"Chameleon Anti-Missile" 2
+		"Geode Reactor"
+		"Hai Gorge Batteries"
+		"Hai Corundum Regenerator"
+		"Hai Williwaw Cooling"
+		"Small Radar Jammer"
+		"Greyhound Plasma Thruster"
+		"Impala Plasma Steering"
+		"Hyperdrive"
+	turret "Quad Blaster Turret"
+	turret "Chameleon Anti-Missile"
+	turret "Chameleon Anti-Missile"
+	turret "Quad Blaster Turret"
+
+
+
 ship "Star Barge" "Star Barge (Armed)"
 	outfits
 		"Blaster Turret"
@@ -1550,69 +1613,6 @@ ship "Star Queen" "Star Queen (Hai)"
 		"X3700 Ion Thruster"
 		"A375 Atomic Steering"
 		"Hyperdrive"
-
-
-
-ship "Hauler" "Hauler (Hai)"
-	outfits
-		"Meteor Missile Launcher" 2
-		"Meteor Missile" 70
-		"Quad Blaster Turret" 2
-		"Chameleon Anti-Missile" 2
-		"Geode Reactor"
-		"Hai Gorge Batteries"
-		"Hai Corundum Regenerator"
-		"Hai Williwaw Cooling"
-		"Small Radar Jammer"
-		"Greyhound Plasma Thruster"
-		"Impala Plasma Steering"
-		"Hyperdrive"
-	turret "Quad Blaster Turret"
-	turret "Chameleon Anti-Missile"
-	turret "Chameleon Anti-Missile"
-	turret "Quad Blaster Turret"
-
-
-
-ship "Hauler II" "Hauler II (Hai)"
-	outfits
-		"Meteor Missile Launcher" 2
-		"Meteor Missile" 70
-		"Quad Blaster Turret" 2
-		"Chameleon Anti-Missile" 2
-		"Geode Reactor"
-		"Hai Gorge Batteries"
-		"Hai Corundum Regenerator"
-		"Hai Williwaw Cooling"
-		"Small Radar Jammer"
-		"Greyhound Plasma Thruster"
-		"Impala Plasma Steering"
-		"Hyperdrive"
-	turret "Quad Blaster Turret"
-	turret "Chameleon Anti-Missile"
-	turret "Chameleon Anti-Missile"
-	turret "Quad Blaster Turret"
-
-
-
-ship "Hauler III" "Hauler III (Hai)"
-	outfits
-		"Meteor Missile Launcher" 2
-		"Meteor Missile" 70
-		"Quad Blaster Turret" 2
-		"Chameleon Anti-Missile" 2
-		"Geode Reactor"
-		"Hai Gorge Batteries"
-		"Hai Corundum Regenerator"
-		"Hai Williwaw Cooling"
-		"Small Radar Jammer"
-		"Greyhound Plasma Thruster"
-		"Impala Plasma Steering"
-		"Hyperdrive"
-	turret "Quad Blaster Turret"
-	turret "Chameleon Anti-Missile"
-	turret "Chameleon Anti-Missile"
-	turret "Quad Blaster Turret"
 
 
 
