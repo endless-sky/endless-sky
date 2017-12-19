@@ -388,8 +388,8 @@ void MapDetailPanel::DrawInfo()
 	Color dimColor(.1, 0.);
 	Color closeColor(.6, .6);
 	Color farColor(.3, .3);
-    Color highColor(0., 1., 0., 0.);
-    Color lowColor(1., 0., 0., 0.);
+	Color highColor(0., 1., 0., 0.);
+	Color lowColor(1., 0., 0., 0.);
 	
 	Point uiPoint(Screen::Left() + 100., Screen::Top() + 45.);
 	
@@ -480,40 +480,27 @@ void MapDetailPanel::DrawInfo()
 	
 	uiPoint.X() -= 90.;
 	uiPoint.Y() -= 97.;
-     
-    
-    // Should save the best and worst prices
-    int bestDeal  = 0;
-    int worstDeal = 0;
-    {
-        for(const Trade::Commodity &commodity : GameData::Commodities())
-        {
-            // I don't actually know how much of this copied code is needed.
-            bool hasVisited = player.HasVisited(selectedSystem);
-            if(hasVisited && selectedSystem->IsInhabited(player.Flagship()))
-            {
-                int value = selectedSystem->Trade(commodity.name);
-                int localValue = (player.GetSystem() ? player.GetSystem()->Trade(commodity.name) : 0);
-                // Don't "compare" prices if the current system is uninhabited and
-                // thus has no prices to compare to.
-                bool noCompare = (!player.GetSystem() || !player.GetSystem()->IsInhabited(player.Flagship()));
-                if(value || (noCompare || player.GetSystem() == selectedSystem || !localValue))
-                {
-                    value -= localValue;
-                    bestDeal = max(value, bestDeal);
-                    worstDeal = min(value, worstDeal);
-                }
-            }
-        }
-    }
-    
+	 
+	
+	// Should save the best and worst prices
+	int bestDeal  = 0;
+	int worstDeal = 0;
+	for(const Trade::Commodity &commodity : GameData::Commodities())
+	{
+			int value = selectedSystem->Trade(commodity.name);
+			int localValue = (player.GetSystem() ? player.GetSystem()->Trade(commodity.name) : 0);
+			value -= localValue;
+			bestDeal = max(value, bestDeal);
+			worstDeal = min(value, worstDeal);
+	}
+	
 	for(const Trade::Commodity &commodity : GameData::Commodities())
 	{
 		bool isSelected = false;
 		if(static_cast<unsigned>(this->commodity) < GameData::Commodities().size())
 			isSelected = (&commodity == &GameData::Commodities()[this->commodity]);
 		Color &color = isSelected ? closeColor : farColor;
-        
+		
 		font.Draw(commodity.name, uiPoint, color);
 		
 		string price;
@@ -533,12 +520,12 @@ void MapDetailPanel::DrawInfo()
 			else
 			{
 				value -= localValue;
-                if(value==bestDeal) {
-                    font.Draw(commodity.name, uiPoint, highColor);
-                }
-                else if(value==worstDeal) {
-                    font.Draw(commodity.name, uiPoint, lowColor);
-                }
+				if(value==bestDeal) {
+					font.Draw(commodity.name, uiPoint, highColor);
+				}
+				else if(value==worstDeal) {
+					font.Draw(commodity.name, uiPoint, lowColor);
+				}
 				price += "(";
 				if(value > 0)
 					price += '+';
@@ -552,7 +539,8 @@ void MapDetailPanel::DrawInfo()
 		Point pos = uiPoint + Point(140. - font.Width(price), 0.);
 		font.Draw(price, pos, color);
 		
-		if(isSelected) // Show the selection pointer
+		// Show the selection pointer
+		if(isSelected)
 			PointerShader::Draw(uiPoint + Point(0., 7.), Point(1., 0.), 10., 10., 0., color);
 		
 		uiPoint.Y() += 20.;
