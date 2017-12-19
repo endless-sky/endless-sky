@@ -1090,6 +1090,74 @@ ship "Lance" "Lance (Gatling)"
 
 
 
+ship "Leviathan" "Leviathan (Hai Engines)"
+	outfits
+		"Particle Cannon" 4
+		"Quad Blaster Turret" 2
+		"Chameleon Anti-Missile" 2
+		"Boulder Reactor"
+		"Hai Ravine Batteries"
+		"D67-TM Shield Generator"
+		"Liquid Helium Cooler"
+		`"Bondir" Atomic Thruster`
+		`"Bondir" Atomic Steering`
+		"Hyperdrive"
+
+
+ship "Leviathan" "Leviathan (Hai Weapons)"
+	outfits
+		"Hai Tracker Pod" 4
+		"Hai Tracker" 224
+		"Heavy Laser Turret" 4
+		"Boulder Reactor"
+		"Hai Ravine Batteries"
+		"Hai Diamond Regenerator"
+		"Liquid Nitrogen Cooler"
+		"Impala Plasma Thruster"
+		"A375 Atomic Steering"
+		"Afterburner"
+		"Scram Drive"
+		"Ramscoop"
+
+
+ship "Leviathan" "Leviathan (Heavy)"
+	outfits
+		"Torpedo Launcher" 2
+		"Torpedo" 60
+		"Meteor Missile Launcher" 2
+		"Meteor Missile" 70
+		"Heavy Laser Turret" 4
+		"Breeder Reactor"
+		"LP036a Battery Pack"
+		"D94-YV Shield Generator" 2
+		"Liquid Nitrogen Cooler"
+		"Impala Plasma Thruster"
+		"A375 Atomic Steering"
+		"Afterburner"
+		"Scram Drive"
+		"Ramscoop"
+	gun "Meteor Missile Launcher"
+	gun "Meteor Missile Launcher"
+	gun "Torpedo Launcher"
+	gun "Torpedo Launcher"
+
+
+ship "Leviathan" "Leviathan (Laser)"
+	outfits
+		"Heavy Laser" 4
+		"Heavy Laser Turret" 4
+		"Armageddon Core"
+		"LP036a Battery Pack"
+		"Supercapacitor"
+		"D94-YV Shield Generator"
+		"Liquid Helium Cooler"
+		"Ramscoop"
+		"A370 Atomic Thruster"
+		"A525 Atomic Steering"
+		"Hyperdrive"
+
+
+
 ship "Star Barge" "Star Barge (Armed)"
 	outfits
 		"Blaster Turret"
@@ -1298,45 +1366,6 @@ ship "Splinter" "Splinter (Proton)"
 	turret "Proton Turret"
 	turret "Anti-Missile Turret"
 	turret "Proton Turret"
-
-
-
-ship "Leviathan" "Leviathan (Laser)"
-	outfits
-		"Heavy Laser" 4
-		"Heavy Laser Turret" 4
-		"Armageddon Core"
-		"LP036a Battery Pack"
-		"Supercapacitor"
-		"D94-YV Shield Generator"
-		"Liquid Helium Cooler"
-		"Ramscoop"
-		"A370 Atomic Thruster"
-		"A525 Atomic Steering"
-		"Hyperdrive"
-
-
-
-ship "Leviathan" "Leviathan (Heavy)"
-	outfits
-		"Torpedo Launcher" 2
-		"Torpedo" 60
-		"Meteor Missile Launcher" 2
-		"Meteor Missile" 70
-		"Heavy Laser Turret" 4
-		"Breeder Reactor"
-		"LP036a Battery Pack"
-		"D94-YV Shield Generator" 2
-		"Liquid Nitrogen Cooler"
-		"Impala Plasma Thruster"
-		"A375 Atomic Steering"
-		"Afterburner"
-		"Scram Drive"
-		"Ramscoop"
-	gun "Meteor Missile Launcher"
-	gun "Meteor Missile Launcher"
-	gun "Torpedo Launcher"
-	gun "Torpedo Launcher"
 
 
 
@@ -1662,38 +1691,6 @@ ship "Mule" "Mule (Hai Weapons)"
 		"A370 Atomic Thruster"
 		"A375 Atomic Steering"
 		"Hyperdrive"
-
-
-
-ship "Leviathan" "Leviathan (Hai Engines)"
-	outfits
-		"Particle Cannon" 4
-		"Quad Blaster Turret" 2
-		"Chameleon Anti-Missile" 2
-		"Boulder Reactor"
-		"Hai Ravine Batteries"
-		"D67-TM Shield Generator"
-		"Liquid Helium Cooler"
-		`"Bondir" Atomic Thruster`
-		`"Bondir" Atomic Steering`
-		"Hyperdrive"
-
-
-
-ship "Leviathan" "Leviathan (Hai Weapons)"
-	outfits
-		"Hai Tracker Pod" 4
-		"Hai Tracker" 224
-		"Heavy Laser Turret" 4
-		"Boulder Reactor"
-		"Hai Ravine Batteries"
-		"Hai Diamond Regenerator"
-		"Liquid Nitrogen Cooler"
-		"Impala Plasma Thruster"
-		"A375 Atomic Steering"
-		"Afterburner"
-		"Scram Drive"
-		"Ramscoop"
 
 
 
