@@ -1158,6 +1158,68 @@ ship "Leviathan" "Leviathan (Laser)"
 
 
 
+ship "Manta" "Manta (Mark II)"
+	outfits
+		"Particle Cannon" 4
+		"Meteor Missile Launcher" 2
+		"Meteor Missile" 70
+		"Fission Reactor"
+		"LP072a Battery Pack"
+		"S-270 Regenerator"
+		"Water Coolant System"
+		"Outfits Expansion"
+		"A250 Atomic Thruster"
+		"A375 Atomic Steering"
+		"Hyperdrive"
+		"Ionic Afterburner"
+	gun "Particle Cannon"
+	gun "Particle Cannon"
+	gun "Particle Cannon"
+	gun "Particle Cannon"
+	gun "Meteor Missile Launcher"
+	gun "Meteor Missile Launcher"
+
+
+ship "Manta" "Manta (Nuclear)"
+	outfits
+		"Particle Cannon" 4
+		"Nuclear Missile" 2
+		"Fission Reactor"
+		"LP072a Battery Pack"
+		"S-270 Regenerator"
+		"Water Coolant System"
+		"Outfits Expansion"
+		"A250 Atomic Thruster"
+		"A375 Atomic Steering"
+		"Hyperdrive"
+	gun "Particle Cannon"
+	gun "Particle Cannon"
+	gun "Particle Cannon"
+	gun "Particle Cannon"
+	gun "Nuclear Missile"
+	gun "Nuclear Missile"
+
+
+ship "Manta" "Manta (Proton)"
+	outfits
+		"Meteor Missile Launcher" 2
+		"Meteor Missile" 70
+		"Proton Gun" 4
+		"RT-I Radiothermal"
+		"LP144a Battery Pack"
+		"D14-RN Shield Generator"
+		"X3700 Ion Thruster"
+		"X3200 Ion Steering"
+		"Hyperdrive"
+	gun "Meteor Missile Launcher"
+	gun "Meteor Missile Launcher"
+	gun "Proton Gun"
+	gun "Proton Gun"
+	gun "Proton Gun"
+	gun "Proton Gun"
+
+
+
 ship "Star Barge" "Star Barge (Armed)"
 	outfits
 		"Blaster Turret"
@@ -1205,26 +1267,6 @@ ship "Wasp" "Wasp (Proton)"
 		"X2700 Ion Thruster"
 		"X2200 Ion Steering"
 		"Hyperdrive"
-
-
-
-ship "Manta" "Manta (Proton)"
-	outfits
-		"Meteor Missile Launcher" 2
-		"Meteor Missile" 70
-		"Proton Gun" 4
-		"RT-I Radiothermal"
-		"LP144a Battery Pack"
-		"D14-RN Shield Generator"
-		"X3700 Ion Thruster"
-		"X3200 Ion Steering"
-		"Hyperdrive"
-	gun "Meteor Missile Launcher"
-	gun "Meteor Missile Launcher"
-	gun "Proton Gun"
-	gun "Proton Gun"
-	gun "Proton Gun"
-	gun "Proton Gun"
 
 
 
@@ -1506,29 +1548,6 @@ ship "Splinter" "Splinter (Mark II)"
 
 
 
-ship "Manta" "Manta (Mark II)"
-	outfits
-		"Particle Cannon" 4
-		"Meteor Missile Launcher" 2
-		"Meteor Missile" 70
-		"Fission Reactor"
-		"LP072a Battery Pack"
-		"S-270 Regenerator"
-		"Water Coolant System"
-		"Outfits Expansion"
-		"A250 Atomic Thruster"
-		"A375 Atomic Steering"
-		"Hyperdrive"
-		"Ionic Afterburner"
-	gun "Particle Cannon"
-	gun "Particle Cannon"
-	gun "Particle Cannon"
-	gun "Particle Cannon"
-	gun "Meteor Missile Launcher"
-	gun "Meteor Missile Launcher"
-
-
-
 ship "Quicksilver" "Quicksilver (Mark II)"
 	outfits
 		"Particle Cannon" 2
@@ -1539,27 +1558,6 @@ ship "Quicksilver" "Quicksilver (Mark II)"
 		"Greyhound Plasma Thruster"
 		"Greyhound Plasma Steering"
 		"Hyperdrive"
-
-
-
-ship "Manta" "Manta (Nuclear)"
-	outfits
-		"Particle Cannon" 4
-		"Nuclear Missile" 2
-		"Fission Reactor"
-		"LP072a Battery Pack"
-		"S-270 Regenerator"
-		"Water Coolant System"
-		"Outfits Expansion"
-		"A250 Atomic Thruster"
-		"A375 Atomic Steering"
-		"Hyperdrive"
-	gun "Particle Cannon"
-	gun "Particle Cannon"
-	gun "Particle Cannon"
-	gun "Particle Cannon"
-	gun "Nuclear Missile"
-	gun "Nuclear Missile"
 
 
 
