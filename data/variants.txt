@@ -891,6 +891,55 @@ ship "Frigate" "Frigate (Mark II)"
 
 
 
+ship "Fury" "Fury (Flamethrower)"
+	outfits
+		"Flamethrower" 4
+		"nGVF-BB Fuel Cell"
+		"Supercapacitor"
+		"D14-RN Shield Generator"
+		"Ramscoop"
+		"X2700 Ion Thruster"
+		"X2200 Ion Steering"
+		"Hyperdrive"
+
+
+ship "Fury" "Fury (Gatling)"
+	outfits
+		"Gatling Gun" 4
+		"Gatling Gun Ammo" 6000
+		"nGVF-CC Fuel Cell"
+		"Supercapacitor"
+		"D23-QP Shield Generator"
+		"X2700 Ion Thruster"
+		"A125 Atomic Steering"
+		"Hyperdrive"
+
+
+ship "Fury" "Fury (Laser)"
+	outfits
+		"Heavy Laser" 2
+		"RT-I Radiothermal"
+		"Supercapacitor"
+		"D23-QP Shield Generator"
+		"Cooling Ducts"
+		"Chipmunk Plasma Thruster"
+		"A125 Atomic Steering"
+		"Hyperdrive"
+
+
+ship "Fury" "Fury (Missile)"
+	outfits
+		"Meteor Missile Launcher" 4
+		"Meteor Missile" 140
+		"nGVF-BB Fuel Cell"
+		"Supercapacitor" 3
+		"D14-RN Shield Generator"
+		"Greyhound Plasma Thruster"
+		"Chipmunk Plasma Steering"
+		"Hyperdrive"
+
+
+
 ship "Star Barge" "Star Barge (Armed)"
 	outfits
 		"Blaster Turret"
@@ -988,32 +1037,6 @@ ship "Scout" "Scout (Speedy)"
 		"Outfits Expansion"
 		"A370 Atomic Thruster"
 		"A255 Atomic Steering"
-		"Hyperdrive"
-
-
-
-ship "Fury" "Fury (Missile)"
-	outfits
-		"Meteor Missile Launcher" 4
-		"Meteor Missile" 140
-		"nGVF-BB Fuel Cell"
-		"Supercapacitor" 3
-		"D14-RN Shield Generator"
-		"Greyhound Plasma Thruster"
-		"Chipmunk Plasma Steering"
-		"Hyperdrive"
-
-
-
-ship "Fury" "Fury (Laser)"
-	outfits
-		"Heavy Laser" 2
-		"RT-I Radiothermal"
-		"Supercapacitor"
-		"D23-QP Shield Generator"
-		"Cooling Ducts"
-		"Chipmunk Plasma Thruster"
-		"A125 Atomic Steering"
 		"Hyperdrive"
 
 
@@ -1317,19 +1340,6 @@ ship "Modified Argosy" "Modified Argosy (Missile)"
 
 
 
-ship "Fury" "Fury (Flamethrower)"
-	outfits
-		"Flamethrower" 4
-		"nGVF-BB Fuel Cell"
-		"Supercapacitor"
-		"D14-RN Shield Generator"
-		"Ramscoop"
-		"X2700 Ion Thruster"
-		"X2200 Ion Steering"
-		"Hyperdrive"
-
-
-
 ship "Rainmaker" "Rainmaker (Mark II)"
 	outfits
 		"Sidewinder Missile Launcher" 4
@@ -1512,19 +1522,6 @@ ship "Lance" "Lance (Gatling)"
 		"D14-RN Shield Generator"
 		"X1700 Ion Thruster"
 		"X1200 Ion Steering"
-
-
-
-ship "Fury" "Fury (Gatling)"
-	outfits
-		"Gatling Gun" 4
-		"Gatling Gun Ammo" 6000
-		"nGVF-CC Fuel Cell"
-		"Supercapacitor"
-		"D23-QP Shield Generator"
-		"X2700 Ion Thruster"
-		"A125 Atomic Steering"
-		"Hyperdrive"
 
 
 
