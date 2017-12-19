@@ -720,6 +720,73 @@ ship "Falcon" "Falcon (Plasma)"
 
 
 
+ship "Firebird" "Firebird (Hai Shields)"
+	outfits
+		"Plasma Cannon" 4
+		"Bullfrog Anti-Missile" 2
+		"Breeder Reactor"
+		"Hai Fissure Batteries"
+		"Hai Diamond Regenerator"
+		"Hai Corundum Regenerator" 2
+		"Liquid Nitrogen Cooler"
+		"Hai Williwaw Cooling"
+		"Outfits Expansion" 2
+		"X3700 Ion Thruster"
+		"A375 Atomic Steering"
+		"Hyperdrive"
+
+
+ship "Firebird" "Firebird (Hai Weapons)"
+	outfits
+		"Ion Cannon" 2
+		"Pulse Cannon" 2
+		"Chameleon Anti-Missile"
+		"Bullfrog Anti-Missile"
+		"Geode Reactor"
+		"Hai Gorge Batteries"
+		"D41-HY Shield Generator"
+		"Hai Williwaw Cooling" 2
+		"X3700 Ion Thruster"
+		"X3200 Ion Steering"
+		"Hyperdrive"
+
+
+ship "Firebird" "Firebird (Missile)"
+	outfits
+		"Meteor Missile Launcher" 2
+		"Meteor Missile" 70
+		"Torpedo Launcher" 2
+		Torpedo 60
+		"Heavy Laser Turret" 2
+		"Fission Reactor"
+		"LP072a Battery Pack"
+		"D94-YV Shield Generator"
+		"Outfits Expansion"
+		"Impala Plasma Thruster"
+		"A375 Atomic Steering"
+		"Hyperdrive"
+	gun "Meteor Missile Launcher"
+	gun "Meteor Missile Launcher"
+	gun "Torpedo Launcher"
+	gun "Torpedo Launcher"
+
+
+ship "Firebird" "Firebird (Plasma)"
+	outfits
+		"Plasma Cannon" 4
+		"Quad Blaster Turret" 2
+		"Breeder Reactor"
+		"LP072a Battery Pack"
+		"LP036a Battery Pack"
+		"D41-HY Shield Generator"
+		"Liquid Nitrogen Cooler"
+		"Outfits Expansion"
+		"X3700 Ion Thruster"
+		"A375 Atomic Steering"
+		"Hyperdrive"
+
+
+
 ship "Star Barge" "Star Barge (Armed)"
 	outfits
 		"Blaster Turret"
@@ -902,43 +969,6 @@ ship "Hawk" "Hawk (Rocket)"
 		"Greyhound Plasma Thruster"
 		"Greyhound Plasma Steering"
 		"Hyperdrive"
-
-
-
-ship "Firebird" "Firebird (Plasma)"
-	outfits
-		"Plasma Cannon" 4
-		"Quad Blaster Turret" 2
-		"Breeder Reactor"
-		"LP072a Battery Pack"
-		"LP036a Battery Pack"
-		"D41-HY Shield Generator"
-		"Liquid Nitrogen Cooler"
-		"Outfits Expansion"
-		"X3700 Ion Thruster"
-		"A375 Atomic Steering"
-		"Hyperdrive"
-
-
-
-ship "Firebird" "Firebird (Missile)"
-	outfits
-		"Meteor Missile Launcher" 2
-		"Meteor Missile" 70
-		"Torpedo Launcher" 2
-		Torpedo 60
-		"Heavy Laser Turret" 2
-		"Fission Reactor"
-		"LP072a Battery Pack"
-		"D94-YV Shield Generator"
-		"Outfits Expansion"
-		"Impala Plasma Thruster"
-		"A375 Atomic Steering"
-		"Hyperdrive"
-	gun "Meteor Missile Launcher"
-	gun "Meteor Missile Launcher"
-	gun "Torpedo Launcher"
-	gun "Torpedo Launcher"
 
 
 
@@ -1587,39 +1617,6 @@ ship "Headhunter" "Headhunter (Hai)"
 		"Hai Corundum Regenerator"
 		"Hai Williwaw Cooling"
 		"A250 Atomic Thruster"
-		"A375 Atomic Steering"
-		"Hyperdrive"
-
-
-
-ship "Firebird" "Firebird (Hai Weapons)"
-	outfits
-		"Ion Cannon" 2
-		"Pulse Cannon" 2
-		"Chameleon Anti-Missile"
-		"Bullfrog Anti-Missile"
-		"Geode Reactor"
-		"Hai Gorge Batteries"
-		"D41-HY Shield Generator"
-		"Hai Williwaw Cooling" 2
-		"X3700 Ion Thruster"
-		"X3200 Ion Steering"
-		"Hyperdrive"
-
-
-
-ship "Firebird" "Firebird (Hai Shields)"
-	outfits
-		"Plasma Cannon" 4
-		"Bullfrog Anti-Missile" 2
-		"Breeder Reactor"
-		"Hai Fissure Batteries"
-		"Hai Diamond Regenerator"
-		"Hai Corundum Regenerator" 2
-		"Liquid Nitrogen Cooler"
-		"Hai Williwaw Cooling"
-		"Outfits Expansion" 2
-		"X3700 Ion Thruster"
 		"A375 Atomic Steering"
 		"Hyperdrive"
 
