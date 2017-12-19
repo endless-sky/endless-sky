@@ -1066,6 +1066,18 @@ ship "Headhunter" "Headhunter (Particle)"
 
 
 
+ship "Heavy Shuttle" "Heavy Shuttle (Armed)"
+	outfits
+		"Energy Blaster" 2
+		"nGVF-BB Fuel Cell"
+		"LP036a Battery Pack"
+		"D14-RN Shield Generator"
+		"Chipmunk Plasma Thruster"
+		"Chipmunk Plasma Steering"
+		"Hyperdrive"
+
+
+
 ship "Star Barge" "Star Barge (Armed)"
 	outfits
 		"Blaster Turret"
@@ -1368,18 +1380,6 @@ ship "Vanguard" "Vanguard (Particle)"
 	gun "Particle Cannon"
 	gun "Particle Cannon"
 	gun "Particle Cannon"
-
-
-
-ship "Heavy Shuttle" "Heavy Shuttle (Armed)"
-	outfits
-		"Energy Blaster" 2
-		"nGVF-BB Fuel Cell"
-		"LP036a Battery Pack"
-		"D14-RN Shield Generator"
-		"Chipmunk Plasma Thruster"
-		"Chipmunk Plasma Steering"
-		"Hyperdrive"
 
 
 
