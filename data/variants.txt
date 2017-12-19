@@ -808,6 +808,69 @@ ship "Flivver" "Flivver (Racing)"
 
 
 
+ship "Freighter" "Freighter (Fancy)"
+	outfits
+		"Laser Turret" 2
+		"Heavy Anti-Missile Turret"
+		"NT-200 Nucleovoltaic"
+		"Supercapacitor"
+		"D14-RN Shield Generator"
+		"Ramscoop"
+		"Outfits Expansion"
+		"Greyhound Plasma Thruster"
+		"X3200 Ion Steering"
+		"Scram Drive"
+	turret "Laser Turret"
+	turret "Laser Turret"
+	turret "Heavy Anti-Missile Turret"
+
+
+ship "Freighter" "Freighter (Hai)"
+	outfits
+		"Pulse Turret"
+		"Laser Turret"
+		"Bullfrog Anti-Missile"
+		"Geode Reactor"
+		"Hai Chasm Batteries"
+		"D14-RN Shield Generator"
+		"Ramscoop"
+		"Outfits Expansion"
+		"Greyhound Plasma Thruster"
+		"X3200 Ion Steering"
+		"Hyperdrive"
+	turret "Pulse Turret"
+	turret "Laser Turret"
+	turret "Bullfrog Anti-Missile"
+
+
+ship "Freighter" "Freighter (Proton)"
+	outfits
+		"Proton Turret"
+		"Heavy Anti-Missile Turret"
+		"NT-200 Nucleovoltaic"
+		"Supercapacitor"
+		"D14-RN Shield Generator"
+		"Ramscoop"
+		"Outfits Expansion"
+		"Greyhound Plasma Thruster"
+		"X3200 Ion Steering"
+		"Scram Drive"
+
+
+ship "Freighter" "Freighter (Secret Cargo)"
+	outfits
+		"Blaster Turret" 2
+		"Heavy Anti-Missile Turret"
+		"nGVF-EE Fuel Cell"
+		"LP036a Battery Pack"
+		"D14-RN Shield Generator"
+		"X2700 Ion Thruster"
+		"X2200 Ion Steering"
+		"Scram Drive"
+		"Secret Cargo"
+
+
+
 ship "Star Barge" "Star Barge (Armed)"
 	outfits
 		"Blaster Turret"
@@ -906,39 +969,6 @@ ship "Scout" "Scout (Speedy)"
 		"A370 Atomic Thruster"
 		"A255 Atomic Steering"
 		"Hyperdrive"
-
-
-
-ship "Freighter" "Freighter (Fancy)"
-	outfits
-		"Laser Turret" 2
-		"Heavy Anti-Missile Turret"
-		"NT-200 Nucleovoltaic"
-		"Supercapacitor"
-		"D14-RN Shield Generator"
-		"Ramscoop"
-		"Outfits Expansion"
-		"Greyhound Plasma Thruster"
-		"X3200 Ion Steering"
-		"Scram Drive"
-	turret "Laser Turret"
-	turret "Laser Turret"
-	turret "Heavy Anti-Missile Turret"
-
-
-
-ship "Freighter" "Freighter (Proton)"
-	outfits
-		"Proton Turret"
-		"Heavy Anti-Missile Turret"
-		"NT-200 Nucleovoltaic"
-		"Supercapacitor"
-		"D14-RN Shield Generator"
-		"Ramscoop"
-		"Outfits Expansion"
-		"Greyhound Plasma Thruster"
-		"X3200 Ion Steering"
-		"Scram Drive"
 
 
 
@@ -1526,25 +1556,6 @@ ship "Star Queen" "Star Queen (Hai)"
 
 
 
-ship "Freighter" "Freighter (Hai)"
-	outfits
-		"Pulse Turret"
-		"Laser Turret"
-		"Bullfrog Anti-Missile"
-		"Geode Reactor"
-		"Hai Chasm Batteries"
-		"D14-RN Shield Generator"
-		"Ramscoop"
-		"Outfits Expansion"
-		"Greyhound Plasma Thruster"
-		"X3200 Ion Steering"
-		"Hyperdrive"
-	turret "Pulse Turret"
-	turret "Laser Turret"
-	turret "Bullfrog Anti-Missile"
-
-
-
 ship "Hauler" "Hauler (Hai)"
 	outfits
 		"Meteor Missile Launcher" 2
@@ -1702,17 +1713,3 @@ ship "Quicksilver" "Quicksilver (Scanner)"
 		"Greyhound Plasma Thruster"
 		"Greyhound Plasma Steering"
 		"Hyperdrive"
-
-
-
-ship "Freighter" "Freighter (Secret Cargo)"
-	outfits
-		"Blaster Turret" 2
-		"Heavy Anti-Missile Turret"
-		"nGVF-EE Fuel Cell"
-		"LP036a Battery Pack"
-		"D14-RN Shield Generator"
-		"X2700 Ion Thruster"
-		"X2200 Ion Steering"
-		"Scram Drive"
-		"Secret Cargo"
