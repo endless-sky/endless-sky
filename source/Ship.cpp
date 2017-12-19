@@ -2148,7 +2148,9 @@ double Ship::IdleHeat() const
 	double production = max(0., attributes.Get("heat generation") - cooling);
 	double dissipation = .001 * attributes.Get("heat dissipation") + activeCooling / (100. * Mass());
 
-	return dissipation != 0. ? production / dissipation : numeric_limits<double>::infinity();
+	if(dissipation == 0.)
+		return production == 0. ? heat : numeric_limits<double>::infinity();
+	return production / dissipation;
 }
 
 
