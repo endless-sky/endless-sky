@@ -79,6 +79,21 @@ ship "Argosy" "Argosy (Turret)"
 
 
 
+ship "Arrow" "Arrow (Hai)"
+	outfits
+		"Sidewinder Missile Launcher" 2
+		"Sidewinder Missile" 100
+		"Bullfrog Anti-Missile"
+		"Pebble Core"
+		"Supercapacitor" 2
+		"D14-RN Shield Generator"
+		"Small Radar Jammer"
+		`"Benga" Atomic Thruster`
+		`"Biroo" Atomic Steering`
+		"Hyperdrive"
+
+
+
 ship "Star Barge" "Star Barge (Armed)"
 	outfits
 		"Blaster Turret"
@@ -1325,21 +1340,6 @@ ship "Flivver" "Flivver (Hai)"
 		"Hai Williwaw Cooling"
 		`"Basrem" Atomic Thruster`
 		`"Benga" Atomic Steering`
-		"Hyperdrive"
-
-
-
-ship "Arrow" "Arrow (Hai)"
-	outfits
-		"Sidewinder Missile Launcher" 2
-		"Sidewinder Missile" 100
-		"Bullfrog Anti-Missile"
-		"Pebble Core"
-		"Supercapacitor" 2
-		"D14-RN Shield Generator"
-		"Small Radar Jammer"
-		`"Benga" Atomic Thruster`
-		`"Biroo" Atomic Steering`
 		"Hyperdrive"
 
 
