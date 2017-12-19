@@ -1602,6 +1602,21 @@ ship "Splinter" "Splinter (Laser)"
 	turret "Heavy Laser Turret"
 
 
+ship "Splinter" "Splinter (Mark II)"
+	outfits
+		"Particle Cannon" 2
+		"Quad Blaster Turret" 3
+		"Fusion Reactor"
+		"Supercapacitor"
+		"S-970 Regenerator"
+		"Water Coolant System" 4
+		"Outfits Expansion" 2
+		"A250 Atomic Thruster"
+		"A375 Atomic Steering"
+		"Hyperdrive"
+		"Ionic Afterburner"
+
+
 ship "Splinter" "Splinter (Proton)"
 	outfits
 		"Proton Gun" 2
@@ -1617,22 +1632,6 @@ ship "Splinter" "Splinter (Proton)"
 	turret "Proton Turret"
 	turret "Anti-Missile Turret"
 	turret "Proton Turret"
-
-
-
-ship "Splinter" "Splinter (Mark II)"
-	outfits
-		"Particle Cannon" 2
-		"Quad Blaster Turret" 3
-		"Fusion Reactor"
-		"Supercapacitor"
-		"S-970 Regenerator"
-		"Water Coolant System" 4
-		"Outfits Expansion" 2
-		"A250 Atomic Thruster"
-		"A375 Atomic Steering"
-		"Hyperdrive"
-		"Ionic Afterburner"
 
 
 
