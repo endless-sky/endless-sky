@@ -162,6 +162,18 @@ ship "Bactrian" "Bactrian (Hired Gun)"
 
 
 
+ship "Barb" "Barb (Gatling)"
+	outfits
+		"Gatling Gun"
+		"Gatling Gun Ammo" 3000
+		"Anti-Missile Turret"
+		"nGVF-AA Fuel Cell"
+		Supercapacitor 3
+		"D14-RN Shield Generator"
+		"X1050 Ion Engines"
+
+
+
 ship "Star Barge" "Star Barge (Armed)"
 	outfits
 		"Blaster Turret"
@@ -1360,18 +1372,6 @@ ship "Lance" "Lance (Gatling)"
 		"D14-RN Shield Generator"
 		"X1700 Ion Thruster"
 		"X1200 Ion Steering"
-
-
-
-ship "Barb" "Barb (Gatling)"
-	outfits
-		"Gatling Gun"
-		"Gatling Gun Ammo" 3000
-		"Anti-Missile Turret"
-		"nGVF-AA Fuel Cell"
-		Supercapacitor 3
-		"D14-RN Shield Generator"
-		"X1050 Ion Engines"
 
 
 
