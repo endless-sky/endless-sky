@@ -94,6 +94,74 @@ ship "Arrow" "Arrow (Hai)"
 
 
 
+ship "Bactrian" "Bactrian (Hai Engines)"
+	outfits
+		"Sidewinder Missile Launcher" 2
+		"Sidewinder Missile" 100
+		"Torpedo Launcher" 2
+		"Torpedo" 60
+		"Heavy Laser Turret" 4
+		"Heavy Anti-Missile Turret" 2
+		"Fusion Reactor"
+		"Geode Reactor"
+		"Hai Gorge Batteries"
+		"D67-TM Shield Generator"
+		"Hai Williwaw Cooling" 3
+		"Ramscoop"
+		"Outfits Expansion" 2
+		`"Bufaer" Atomic Thruster`
+		`"Bufaer" Atomic Steering`
+		"Hyperdrive"
+
+
+ship "Bactrian" "Bactrian (Hai Weapons)"
+	outfits
+		"Pulse Cannon" 2
+		"Hai Tracker Pod" 2
+		"Hai Tracker" 112
+		"Chameleon Anti-Missile" 2
+		"Pulse Turret" 2
+		"Heavy Laser Turret" 2
+		"Fusion Reactor"
+		"Pebble Core"
+		"Hai Ravine Batteries"
+		"Hai Diamond Regenerator"
+		"Hai Williwaw Cooling" 2
+		"Ramscoop"
+		"Large Radar Jammer"
+		"X4700 Ion Thruster"
+		"X5200 Ion Steering"
+		"Hyperdrive"
+	gun "Pulse Cannon"
+	gun "Pulse Cannon"
+	gun "Hai Tracker Pod"
+	gun "Hai Tracker Pod"
+	turret "Chameleon Anti-Missile"
+	turret "Heavy Laser Turret"
+	turret "Pulse Turret"
+	turret "Pulse Turret"
+	turret "Chameleon Anti-Missile"
+	turret "Heavy Laser Turret"
+
+
+ship "Bactrian" "Bactrian (Hired Gun)"
+	outfits
+		"Heavy Laser" 4
+		"Heavy Laser Turret" 6
+		"Armageddon Core"
+		"LP144a Battery Pack"
+		"D94-YV Shield Generator"
+		"D41-HY Shield Generator"
+		"Liquid Nitrogen Cooler"
+		"Water Coolant System"
+		"Outfits Expansion" 2
+		"Large Radar Jammer"
+		"A520 Atomic Thruster"
+		"A525 Atomic Steering"
+		"Hyperdrive"
+
+
+
 ship "Star Barge" "Star Barge (Armed)"
 	outfits
 		"Blaster Turret"
@@ -1626,58 +1694,6 @@ ship "Leviathan" "Leviathan (Hai Weapons)"
 
 
 
-ship "Bactrian" "Bactrian (Hai Engines)"
-	outfits
-		"Sidewinder Missile Launcher" 2
-		"Sidewinder Missile" 100
-		"Torpedo Launcher" 2
-		"Torpedo" 60
-		"Heavy Laser Turret" 4
-		"Heavy Anti-Missile Turret" 2
-		"Fusion Reactor"
-		"Geode Reactor"
-		"Hai Gorge Batteries"
-		"D67-TM Shield Generator"
-		"Hai Williwaw Cooling" 3
-		"Ramscoop"
-		"Outfits Expansion" 2
-		`"Bufaer" Atomic Thruster`
-		`"Bufaer" Atomic Steering`
-		"Hyperdrive"
-
-
-
-ship "Bactrian" "Bactrian (Hai Weapons)"
-	outfits
-		"Pulse Cannon" 2
-		"Hai Tracker Pod" 2
-		"Hai Tracker" 112
-		"Chameleon Anti-Missile" 2
-		"Pulse Turret" 2
-		"Heavy Laser Turret" 2
-		"Fusion Reactor"
-		"Pebble Core"
-		"Hai Ravine Batteries"
-		"Hai Diamond Regenerator"
-		"Hai Williwaw Cooling" 2
-		"Ramscoop"
-		"Large Radar Jammer"
-		"X4700 Ion Thruster"
-		"X5200 Ion Steering"
-		"Hyperdrive"
-	gun "Pulse Cannon"
-	gun "Pulse Cannon"
-	gun "Hai Tracker Pod"
-	gun "Hai Tracker Pod"
-	turret "Chameleon Anti-Missile"
-	turret "Heavy Laser Turret"
-	turret "Pulse Turret"
-	turret "Pulse Turret"
-	turret "Chameleon Anti-Missile"
-	turret "Heavy Laser Turret"
-
-
-
 ship "Quicksilver" "Quicksilver (Scanner)"
 	outfits
 		"Particle Cannon" 2
@@ -1721,21 +1737,3 @@ ship "Freighter" "Freighter (Secret Cargo)"
 		"X2200 Ion Steering"
 		"Scram Drive"
 		"Secret Cargo"
-
-
-
-ship "Bactrian" "Bactrian (Hired Gun)"
-	outfits
-		"Heavy Laser" 4
-		"Heavy Laser Turret" 6
-		"Armageddon Core"
-		"LP144a Battery Pack"
-		"D94-YV Shield Generator"
-		"D41-HY Shield Generator"
-		"Liquid Nitrogen Cooler"
-		"Water Coolant System"
-		"Outfits Expansion" 2
-		"Large Radar Jammer"
-		"A520 Atomic Thruster"
-		"A525 Atomic Steering"
-		"Hyperdrive"
