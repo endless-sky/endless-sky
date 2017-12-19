@@ -174,6 +174,57 @@ ship "Barb" "Barb (Gatling)"
 
 
 
+ship "Bastion" "Bastion (Heavy)"
+	outfits
+		"Plasma Cannon" 4
+		"Quad Blaster Turret" 3
+		"Fusion Reactor"
+		"LP072a Battery Pack"
+		"D67-TM Shield Generator"
+		"Liquid Nitrogen Cooler"
+		"Outfits Expansion" 2
+		"X3700 Ion Thruster"
+		"Orca Plasma Steering"
+		"Hyperdrive"
+
+
+ship "Bastion" "Bastion (Laser)"
+	outfits
+		"Heavy Laser" 4
+		"Heavy Anti-Missile Turret"
+		"Heavy Laser Turret" 2
+		"Fusion Reactor"
+		"Supercapacitor" 4
+		"D94-YV Shield Generator"
+		"Small Radar Jammer"
+		"Water Coolant System"
+		"Outfits Expansion"
+		"A370 Atomic Thruster"
+		"A525 Atomic Steering"
+		"Hyperdrive"
+	turret "Heavy Anti-Missile Turret"
+	turret "Heavy Laser Turret"
+	turret "Heavy Laser Turret"
+
+
+ship "Bastion" "Bastion (Scanner)"
+	outfits
+		"Plasma Cannon" 2
+		"Heavy Rocket Launcher" 2
+		"Heavy Rocket" 40
+		"Blaster Turret" 3
+		"S3 Thermionic"
+		"LP144a Battery Pack"
+		"nGVF-BB Fuel Cell"
+		"D67-TM Shield Generator"
+		"Water Coolant System"
+		"Cargo Scanner"
+		"Impala Plasma Thruster"
+		"Impala Plasma Steering"
+		"Hyperdrive"
+
+
+
 ship "Star Barge" "Star Barge (Armed)"
 	outfits
 		"Blaster Turret"
@@ -515,41 +566,6 @@ ship "Hawk" "Hawk (Rocket)"
 		"Greyhound Plasma Thruster"
 		"Greyhound Plasma Steering"
 		"Hyperdrive"
-
-
-
-ship "Bastion" "Bastion (Heavy)"
-	outfits
-		"Plasma Cannon" 4
-		"Quad Blaster Turret" 3
-		"Fusion Reactor"
-		"LP072a Battery Pack"
-		"D67-TM Shield Generator"
-		"Liquid Nitrogen Cooler"
-		"Outfits Expansion" 2
-		"X3700 Ion Thruster"
-		"Orca Plasma Steering"
-		"Hyperdrive"
-
-
-
-ship "Bastion" "Bastion (Laser)"
-	outfits
-		"Heavy Laser" 4
-		"Heavy Anti-Missile Turret"
-		"Heavy Laser Turret" 2
-		"Fusion Reactor"
-		"Supercapacitor" 4
-		"D94-YV Shield Generator"
-		"Small Radar Jammer"
-		"Water Coolant System"
-		"Outfits Expansion"
-		"A370 Atomic Thruster"
-		"A525 Atomic Steering"
-		"Hyperdrive"
-	turret "Heavy Anti-Missile Turret"
-	turret "Heavy Laser Turret"
-	turret "Heavy Laser Turret"
 
 
 
@@ -1704,24 +1720,6 @@ ship "Quicksilver" "Quicksilver (Scanner)"
 		"Cargo Scanner"
 		"Greyhound Plasma Thruster"
 		"Greyhound Plasma Steering"
-		"Hyperdrive"
-
-
-
-ship "Bastion" "Bastion (Scanner)"
-	outfits
-		"Plasma Cannon" 2
-		"Heavy Rocket Launcher" 2
-		"Heavy Rocket" 40
-		"Blaster Turret" 3
-		"S3 Thermionic"
-		"LP144a Battery Pack"
-		"nGVF-BB Fuel Cell"
-		"D67-TM Shield Generator"
-		"Water Coolant System"
-		"Cargo Scanner"
-		"Impala Plasma Thruster"
-		"Impala Plasma Steering"
 		"Hyperdrive"
 
 
