@@ -97,10 +97,6 @@ color "map travel ok none" .55, .1, 0., 0.
 color "map used wormhole" .5, .2, .9, 1.
 color "map unused wormhole" .165, .066, .3, .333
 
-# Colors used when drawing map details
-color "close" .6 .6 .6 .6
-color "far" .3 .3 .3 .3
-
 
 
 interface "menu background"
@@ -448,7 +444,6 @@ interface "hud"
 
 
 
-
 interface "planet"
 	image "land"
 		center -60 -140
@@ -761,6 +756,7 @@ interface "trade"
 	button S "Sell Outfits"
 		center 130 355
 		dimensions 90 30
+
 
 
 interface "bank"

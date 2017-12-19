@@ -275,8 +275,8 @@ bool MapDetailPanel::Click(int x, int y, int clicks)
 // selected "commodity," which may be reputation level, outfitter size, etc.
 void MapDetailPanel::DrawKey()
 {
-	const Color &closeColor = *GameData::Colors().Get("close");
-	const Color &farColor = *GameData::Colors().Get("far");
+	const Color &dim = *GameData::Colors().Get("dim");
+	const Color &medium = *GameData::Colors().Get("medium");
 	const Font &font = FontSet::Get(14);
 	
 	Point pos = Screen::TopRight() + Point(-110., 310.);
@@ -293,7 +293,7 @@ void MapDetailPanel::DrawKey()
 		"System:"
 	};
 	const string &header = HEADER[-min(0, max(-6, commodity))];
-	font.Draw(header, pos + headerOff, closeColor);
+	font.Draw(header, pos + headerOff, medium);
 	pos.Y() += 20.;
 	
 	if(commodity >= 0)
@@ -309,7 +309,7 @@ void MapDetailPanel::DrawKey()
 		{
 			RingShader::Draw(pos, OUTER, INNER, MapColor(i * (2. / 3.) - 1.));
 			int price = range.low + ((range.high - range.low) * i) / 3;
-			font.Draw(Format::Number(price), pos + textOff, farColor);
+			font.Draw(Format::Number(price), pos + textOff, dim);
 			pos.Y() += 20.;
 		}
 	}
@@ -324,7 +324,7 @@ void MapDetailPanel::DrawKey()
 		for(int i = 0; i < 4; ++i)
 		{
 			RingShader::Draw(pos, OUTER, INNER, MapColor(VALUE[i]));
-			font.Draw(LABEL[commodity == SHOW_OUTFITTER][i], pos + textOff, farColor);
+			font.Draw(LABEL[commodity == SHOW_OUTFITTER][i], pos + textOff, dim);
 			pos.Y() += 20.;
 		}
 	}
@@ -338,7 +338,7 @@ void MapDetailPanel::DrawKey()
 		for(int i = 0; i < 3; ++i)
 		{
 			RingShader::Draw(pos, OUTER, INNER, MapColor(1 - i));
-			font.Draw(LABEL[i], pos + textOff, farColor);
+			font.Draw(LABEL[i], pos + textOff, dim);
 			pos.Y() += 20.;
 		}
 	}
@@ -353,7 +353,7 @@ void MapDetailPanel::DrawKey()
 		for(unsigned i = 0; i < 4 && i < distances.size(); ++i)
 		{
 			RingShader::Draw(pos, OUTER, INNER, GovernmentColor(distances[i].second));
-			font.Draw(distances[i].second->GetName(), pos + textOff, farColor);
+			font.Draw(distances[i].second->GetName(), pos + textOff, dim);
 			pos.Y() += 20.;
 		}
 	}
@@ -365,30 +365,30 @@ void MapDetailPanel::DrawKey()
 		RingShader::Draw(pos, OUTER, INNER, ReputationColor(1e-1, true, false));
 		RingShader::Draw(pos + Point(12., 0.), OUTER, INNER, ReputationColor(1e2, true, false));
 		RingShader::Draw(pos + Point(24., 0.), OUTER, INNER, ReputationColor(1e4, true, false));
-		font.Draw("Friendly", pos + textOff + Point(24., 0.), farColor);
+		font.Draw("Friendly", pos + textOff + Point(24., 0.), dim);
 		pos.Y() += 20.;
 		
 		RingShader::Draw(pos, OUTER, INNER, ReputationColor(-1e-1, false, false));
 		RingShader::Draw(pos + Point(12., 0.), OUTER, INNER, ReputationColor(-1e2, false, false));
 		RingShader::Draw(pos + Point(24., 0.), OUTER, INNER, ReputationColor(-1e4, false, false));
-		font.Draw("Hostile", pos + textOff + Point(24., 0.), farColor);
+		font.Draw("Hostile", pos + textOff + Point(24., 0.), dim);
 		pos.Y() += 20.;
 		
 		RingShader::Draw(pos, OUTER, INNER, ReputationColor(0., false, false));
-		font.Draw("Restricted", pos + textOff, farColor);
+		font.Draw("Restricted", pos + textOff, dim);
 		pos.Y() += 20.;
 		
 		RingShader::Draw(pos, OUTER, INNER, ReputationColor(0., false, true));
-		font.Draw("Dominated", pos + textOff, farColor);
+		font.Draw("Dominated", pos + textOff, dim);
 		pos.Y() += 20.;
 	}
 	
 	RingShader::Draw(pos, OUTER, INNER, UninhabitedColor());
-	font.Draw("Uninhabited", pos + textOff, farColor);
+	font.Draw("Uninhabited", pos + textOff, dim);
 	pos.Y() += 20.;
 	
 	RingShader::Draw(pos, OUTER, INNER, UnexploredColor());
-	font.Draw("Unexplored", pos + textOff, farColor);
+	font.Draw("Unexplored", pos + textOff, dim);
 }
 
 
@@ -397,9 +397,9 @@ void MapDetailPanel::DrawKey()
 // details, trade prices, and details about the selected object.
 void MapDetailPanel::DrawInfo()
 {
-	const Color &dimColor = *GameData::Colors().Get("faint");
-	const Color &closeColor = *GameData::Colors().Get("close");
-	const Color &farColor = *GameData::Colors().Get("far");
+	const Color &faint = *GameData::Colors().Get("faint");
+	const Color &dim = *GameData::Colors().Get("dim");
+	const Color &medium = *GameData::Colors().Get("medium");
 	
 	Point uiPoint(Screen::Left() + 100., Screen::Top() + 45.);
 	
@@ -410,15 +410,15 @@ void MapDetailPanel::DrawInfo()
 	const Font &font = FontSet::Get(14);
 	string systemName = player.KnowsName(selectedSystem) ?
 		selectedSystem->Name() : "Unexplored System";
-	font.Draw(systemName, uiPoint + Point(-90., -7.), closeColor);
+	font.Draw(systemName, uiPoint + Point(-90., -7.), medium);
 	
 	governmentY = uiPoint.Y() + 10.;
 	string gov = player.HasVisited(selectedSystem) ?
 		selectedSystem->GetGovernment()->GetName() : "Unknown Government";
-	font.Draw(gov, uiPoint + Point(-90., 13.), (commodity == SHOW_GOVERNMENT) ? closeColor : farColor);
+	font.Draw(gov, uiPoint + Point(-90., 13.), (commodity == SHOW_GOVERNMENT) ? medium : dim);
 	if(commodity == SHOW_GOVERNMENT)
 		PointerShader::Draw(uiPoint + Point(-90., 20.), Point(1., 0.),
-			10., 10., 0., closeColor);
+			10., 10., 0., medium);
 	
 	uiPoint.Y() += 115.;
 	
@@ -443,7 +443,7 @@ void MapDetailPanel::DrawInfo()
 			
 				font.Draw(object.Name(),
 					uiPoint + Point(-70., -52.),
-					planet == selectedPlanet ? closeColor : farColor);
+					planet == selectedPlanet ? medium : dim);
 				
 				bool hasSpaceport = planet->HasSpaceport();
 				string reputationLabel = !hasSpaceport ? "No Spaceport" :
@@ -452,32 +452,32 @@ void MapDetailPanel::DrawInfo()
 					planet->CanLand() ? "Friendly" : "Restricted";
 				font.Draw(reputationLabel,
 					uiPoint + Point(-60., -32.),
-					hasSpaceport ? closeColor : dimColor);
+					hasSpaceport ? medium : faint);
 				if(commodity == SHOW_REPUTATION)
 					PointerShader::Draw(uiPoint + Point(-60., -25.), Point(1., 0.),
-						10., 10., 0., closeColor);
+						10., 10., 0., medium);
 				
 				font.Draw("Shipyard",
 					uiPoint + Point(-60., -12.),
-					planet->HasShipyard() ? closeColor : dimColor);
+					planet->HasShipyard() ? medium : faint);
 				if(commodity == SHOW_SHIPYARD)
 					PointerShader::Draw(uiPoint + Point(-60., -5.), Point(1., 0.),
-						10., 10., 0., closeColor);
+						10., 10., 0., medium);
 				
 				font.Draw("Outfitter",
 					uiPoint + Point(-60., 8.),
-					planet->HasOutfitter() ? closeColor : dimColor);
+					planet->HasOutfitter() ? medium : faint);
 				if(commodity == SHOW_OUTFITTER)
 					PointerShader::Draw(uiPoint + Point(-60., 15.), Point(1., 0.),
-						10., 10., 0., closeColor);
+						10., 10., 0., medium);
 				
 				bool hasVisited = player.HasVisited(planet);
 				font.Draw(hasVisited ? "(has been visited)" : "(not yet visited)",
 					uiPoint + Point(-70., 28.),
-					farColor);
+					dim);
 				if(commodity == SHOW_VISITED)
 					PointerShader::Draw(uiPoint + Point(-70., 35.), Point(1., 0.),
-						10., 10., 0., closeColor);
+						10., 10., 0., medium);
 				
 				uiPoint.Y() += 130.;
 			}
@@ -497,7 +497,7 @@ void MapDetailPanel::DrawInfo()
 		bool isSelected = false;
 		if(static_cast<unsigned>(this->commodity) < GameData::Commodities().size())
 			isSelected = (&commodity == &GameData::Commodities()[this->commodity]);
-		const Color &color = isSelected ? closeColor : farColor;
+		const Color &color = isSelected ? medium : dim;
 		
 		font.Draw(commodity.name, uiPoint, color);
 		
@@ -551,7 +551,7 @@ void MapDetailPanel::DrawInfo()
 		text.SetAlignment(WrappedText::JUSTIFIED);
 		text.SetWrapWidth(WIDTH - 20);
 		text.Wrap(selectedPlanet->Description());
-		text.Draw(Point(Screen::Right() - X_OFFSET - WIDTH, Screen::Top() + 20), closeColor);
+		text.Draw(Point(Screen::Right() - X_OFFSET - WIDTH, Screen::Top() + 20), medium);
 	}
 	
 	DrawButtons("is ports");
@@ -641,7 +641,7 @@ void MapDetailPanel::DrawOrbits()
 	// Draw the name of the selected planet.
 	const string &name = selectedPlanet ? selectedPlanet->Name() : selectedSystem->Name();
 	Point namePos(Screen::Right() - .5 * font.Width(name) - 100., Screen::Top() + 7.);
-	font.Draw(name, namePos, *GameData::Colors().Get("close"));
+	font.Draw(name, namePos, *GameData::Colors().Get("medium"));
 }
 
 
