@@ -1334,6 +1334,57 @@ ship "Nest" "Nest (Sidewinder)"
 
 
 
+ship "Osprey" "Osprey (Alien Weapons)"
+	outfits
+		"Ion Cannon" 2
+		"Pulse Cannon" 2
+		"Pulse Turret"
+		"Chameleon Anti-Missile"
+		"Boulder Reactor"
+		"Hai Fissure Batteries"
+		"Hai Corundum Regenerator"
+		"Liquid Nitrogen Cooler"
+		`"Bondir" Atomic Thruster`
+		`"Bondir" Atomic Steering`
+		Hyperdrive
+
+
+ship "Osprey" "Osprey (Laser)"
+	outfits
+		"Heavy Laser" 4
+		"Heavy Laser Turret" 2
+		"Breeder Reactor"
+		"LP036a Battery Pack"
+		"Supercapacitor" 4
+		"D94-YV Shield Generator"
+		"Water Coolant System"
+		"Impala Plasma Thruster"
+		"X4200 Ion Steering"
+		"Hyperdrive"
+
+
+ship "Osprey" "Osprey (Missile)"
+	outfits
+		"Torpedo Launcher" 2
+		"Torpedo" 60
+		"Heavy Rocket Launcher" 2
+		"Heavy Rocket" 40
+		"Heavy Laser Turret" 2
+		"Breeder Reactor"
+		"LP036a Battery Pack"
+		"Supercapacitor" 3
+		"D41-HY Shield Generator"
+		"Water Coolant System"
+		"A520 Atomic Thruster"
+		"A375 Atomic Steering"
+		"Hyperdrive"
+	gun "Heavy Rocket Launcher"
+	gun "Heavy Rocket Launcher"
+	gun "Torpedo Launcher"
+	gun "Torpedo Launcher"
+
+
+
 ship "Star Barge" "Star Barge (Armed)"
 	outfits
 		"Blaster Turret"
@@ -1412,43 +1463,6 @@ ship "Scout" "Scout (Speedy)"
 		"A370 Atomic Thruster"
 		"A255 Atomic Steering"
 		"Hyperdrive"
-
-
-
-ship "Osprey" "Osprey (Laser)"
-	outfits
-		"Heavy Laser" 4
-		"Heavy Laser Turret" 2
-		"Breeder Reactor"
-		"LP036a Battery Pack"
-		"Supercapacitor" 4
-		"D94-YV Shield Generator"
-		"Water Coolant System"
-		"Impala Plasma Thruster"
-		"X4200 Ion Steering"
-		"Hyperdrive"
-
-
-
-ship "Osprey" "Osprey (Missile)"
-	outfits
-		"Torpedo Launcher" 2
-		"Torpedo" 60
-		"Heavy Rocket Launcher" 2
-		"Heavy Rocket" 40
-		"Heavy Laser Turret" 2
-		"Breeder Reactor"
-		"LP036a Battery Pack"
-		"Supercapacitor" 3
-		"D41-HY Shield Generator"
-		"Water Coolant System"
-		"A520 Atomic Thruster"
-		"A375 Atomic Steering"
-		"Hyperdrive"
-	gun "Heavy Rocket Launcher"
-	gun "Heavy Rocket Launcher"
-	gun "Torpedo Launcher"
-	gun "Torpedo Launcher"
 
 
 
@@ -1608,22 +1622,6 @@ ship "Quicksilver" "Quicksilver (Mark II)"
 		"Greyhound Plasma Thruster"
 		"Greyhound Plasma Steering"
 		"Hyperdrive"
-
-
-
-ship "Osprey" "Osprey (Alien Weapons)"
-	outfits
-		"Ion Cannon" 2
-		"Pulse Cannon" 2
-		"Pulse Turret"
-		"Chameleon Anti-Missile"
-		"Boulder Reactor"
-		"Hai Fissure Batteries"
-		"Hai Corundum Regenerator"
-		"Liquid Nitrogen Cooler"
-		`"Bondir" Atomic Thruster`
-		`"Bondir" Atomic Steering`
-		Hyperdrive
 
 
 
