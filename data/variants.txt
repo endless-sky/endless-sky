@@ -1559,16 +1559,16 @@ ship "Skein" "Skein (Sidewinder)"
 
 
 
-ship "Star Barge" "Star Barge (Armed)"
+ship "Sparrow" "Sparrow (Gatling)"
 	outfits
-		"Blaster Turret"
-		"nGVF-BB Fuel Cell"
+		"Gatling Gun" 2
+		"Gatling Gun Ammo" 6000
+		"nGVF-AA Fuel Cell"
 		"LP036a Battery Pack"
 		"D14-RN Shield Generator"
 		"Chipmunk Plasma Thruster"
 		"Chipmunk Plasma Steering"
 		"Hyperdrive"
-
 
 
 ship "Sparrow" "Sparrow (Patrol)"
@@ -1668,11 +1668,10 @@ ship "Splinter" "Splinter (Mark II)"
 
 
 
-ship "Sparrow" "Sparrow (Gatling)"
+ship "Star Barge" "Star Barge (Armed)"
 	outfits
-		"Gatling Gun" 2
-		"Gatling Gun Ammo" 6000
-		"nGVF-AA Fuel Cell"
+		"Blaster Turret"
+		"nGVF-BB Fuel Cell"
 		"LP036a Battery Pack"
 		"D14-RN Shield Generator"
 		"Chipmunk Plasma Thruster"
