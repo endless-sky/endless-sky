@@ -1585,18 +1585,6 @@ ship "Sparrow" "Sparrow (Patrol)"
 
 
 
-ship "Wasp" "Wasp (Proton)"
-	outfits
-		"Proton Gun"
-		"nGVF-BB Fuel Cell"
-		"LP036a Battery Pack"
-		"D14-RN Shield Generator"
-		"X2700 Ion Thruster"
-		"X2200 Ion Steering"
-		"Hyperdrive"
-
-
-
 ship "Splinter" "Splinter (Laser)"
 	outfits
 		"Heavy Laser" 2
@@ -1691,4 +1679,16 @@ ship "Star Queen" "Star Queen (Hai)"
 		"Small Radar Jammer"
 		"X3700 Ion Thruster"
 		"A375 Atomic Steering"
+		"Hyperdrive"
+
+
+
+ship "Wasp" "Wasp (Proton)"
+	outfits
+		"Proton Gun"
+		"nGVF-BB Fuel Cell"
+		"LP036a Battery Pack"
+		"D14-RN Shield Generator"
+		"X2700 Ion Thruster"
+		"X2200 Ion Steering"
 		"Hyperdrive"
