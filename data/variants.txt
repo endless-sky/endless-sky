@@ -1318,6 +1318,22 @@ ship "Mule" "Mule (Heavy)"
 
 
 
+ship "Nest" "Nest (Sidewinder)"
+	outfits
+		"Sidewinder Missile Launcher" 2
+		"Sidewinder Missile" 100
+		"Quad Blaster Turret" 2
+		"Heavy Anti-Missile Turret" 2
+		"S3 Thermionic"
+		"LP144a Battery Pack"
+		"D94-YV Shield Generator"
+		"Large Radar Jammer"
+		"A250 Atomic Thruster"
+		"A375 Atomic Steering"
+		Hyperdrive
+
+
+
 ship "Star Barge" "Star Barge (Armed)"
 	outfits
 		"Blaster Turret"
@@ -1607,22 +1623,6 @@ ship "Osprey" "Osprey (Alien Weapons)"
 		"Liquid Nitrogen Cooler"
 		`"Bondir" Atomic Thruster`
 		`"Bondir" Atomic Steering`
-		Hyperdrive
-
-
-
-ship "Nest" "Nest (Sidewinder)"
-	outfits
-		"Sidewinder Missile Launcher" 2
-		"Sidewinder Missile" 100
-		"Quad Blaster Turret" 2
-		"Heavy Anti-Missile Turret" 2
-		"S3 Thermionic"
-		"LP144a Battery Pack"
-		"D94-YV Shield Generator"
-		"Large Radar Jammer"
-		"A250 Atomic Thruster"
-		"A375 Atomic Steering"
 		Hyperdrive
 
 
