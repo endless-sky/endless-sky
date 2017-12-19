@@ -325,6 +325,20 @@ ship "Berserker" "Berserker (Afterburner)"
 
 
 
+ship "Bounder" "Bounder (Hai)"
+	outfits
+		"Pulse Turret"
+		"Bullfrog Anti-Missile"
+		"Pebble Core"
+		"Hai Fissure Batteries"
+		"D14-RN Shield Generator"
+		"Hai Williwaw Cooling"
+		"X3700 Ion Thruster"
+		"X3200 Ion Steering"
+		"Hyperdrive"
+
+
+
 ship "Star Barge" "Star Barge (Armed)"
 	outfits
 		"Blaster Turret"
@@ -1439,20 +1453,6 @@ ship "Flivver" "Flivver (Hai)"
 		"Hai Williwaw Cooling"
 		`"Basrem" Atomic Thruster`
 		`"Benga" Atomic Steering`
-		"Hyperdrive"
-
-
-
-ship "Bounder" "Bounder (Hai)"
-	outfits
-		"Pulse Turret"
-		"Bullfrog Anti-Missile"
-		"Pebble Core"
-		"Hai Fissure Batteries"
-		"D14-RN Shield Generator"
-		"Hai Williwaw Cooling"
-		"X3700 Ion Thruster"
-		"X3200 Ion Steering"
 		"Hyperdrive"
 
 
