@@ -658,6 +658,22 @@ ship "Cruiser" "Cruiser (Mark II)"
 
 
 
+ship "Dreadnought" "Dreadnought (Jump)"
+	outfits
+		"Meteor Missile Launcher" 4
+		"Meteor Missile" 140
+		"Plasma Turret" 5
+		"Stack Core"
+		"LP144a Battery Pack"
+		"D41-HY Shield Generator"
+		"Small Radar Jammer"
+		"Liquid Helium Cooler"
+		"Orca Plasma Thruster"
+		"Orca Plasma Steering"
+		"Jump Drive"
+
+
+
 ship "Star Barge" "Star Barge (Armed)"
 	outfits
 		"Blaster Turret"
@@ -1351,22 +1367,6 @@ ship "Manta" "Manta (Nuclear)"
 	gun "Particle Cannon"
 	gun "Nuclear Missile"
 	gun "Nuclear Missile"
-
-
-
-ship "Dreadnought" "Dreadnought (Jump)"
-	outfits
-		"Meteor Missile Launcher" 4
-		"Meteor Missile" 140
-		"Plasma Turret" 5
-		"Stack Core"
-		"LP144a Battery Pack"
-		"D41-HY Shield Generator"
-		"Small Radar Jammer"
-		"Liquid Helium Cooler"
-		"Orca Plasma Thruster"
-		"Orca Plasma Steering"
-		"Jump Drive"
 
 
 
