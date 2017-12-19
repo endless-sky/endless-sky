@@ -1508,6 +1508,40 @@ ship "Raven" "Raven (Heavy)"
 
 
 
+ship "Roost" "Roost (Sidewinder)"
+	outfits
+		"Sidewinder Missile Launcher" 2
+		"Sidewinder Missile" 100
+		"Quad Blaster Turret" 2
+		"Heavy Anti-Missile Turret" 2
+		"LP144a Battery Pack"
+		"S3 Thermionic"
+		"D94-YV Shield Generator" 2
+		"Small Radar Jammer"
+		"A250 Atomic Thruster"
+		"A375 Atomic Steering"
+		Hyperdrive
+
+
+
+ship "Scout" "Scout (Speedy)"
+	outfits
+		"Meteor Missile Launcher"
+		"Meteor Missile" 35
+		"Sidewinder Missile Launcher"
+		"Sidewinder Missile" 50
+		"Anti-Missile Turret"
+		"NT-200 Nucleovoltaic"
+		"Supercapacitor"
+		"D23-QP Shield Generator"
+		"Cooling Ducts"
+		"Outfits Expansion"
+		"A370 Atomic Thruster"
+		"A255 Atomic Steering"
+		"Hyperdrive"
+
+
+
 ship "Star Barge" "Star Barge (Armed)"
 	outfits
 		"Blaster Turret"
@@ -1542,24 +1576,6 @@ ship "Wasp" "Wasp (Proton)"
 		"D14-RN Shield Generator"
 		"X2700 Ion Thruster"
 		"X2200 Ion Steering"
-		"Hyperdrive"
-
-
-
-ship "Scout" "Scout (Speedy)"
-	outfits
-		"Meteor Missile Launcher"
-		"Meteor Missile" 35
-		"Sidewinder Missile Launcher"
-		"Sidewinder Missile" 50
-		"Anti-Missile Turret"
-		"NT-200 Nucleovoltaic"
-		"Supercapacitor"
-		"D23-QP Shield Generator"
-		"Cooling Ducts"
-		"Outfits Expansion"
-		"A370 Atomic Thruster"
-		"A255 Atomic Steering"
 		"Hyperdrive"
 
 
@@ -1632,22 +1648,6 @@ ship "Splinter" "Splinter (Mark II)"
 		"A375 Atomic Steering"
 		"Hyperdrive"
 		"Ionic Afterburner"
-
-
-
-ship "Roost" "Roost (Sidewinder)"
-	outfits
-		"Sidewinder Missile Launcher" 2
-		"Sidewinder Missile" 100
-		"Quad Blaster Turret" 2
-		"Heavy Anti-Missile Turret" 2
-		"LP144a Battery Pack"
-		"S3 Thermionic"
-		"D94-YV Shield Generator" 2
-		"Small Radar Jammer"
-		"A250 Atomic Thruster"
-		"A375 Atomic Steering"
-		Hyperdrive
 
 
 
