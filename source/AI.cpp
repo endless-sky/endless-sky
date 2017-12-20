@@ -362,7 +362,7 @@ void AI::Step(const PlayerInfo &player)
 		double health = .5 * it->Shields() + it->Hull();
 		bool isPresent = (it->GetSystem() == player.GetSystem());
 		bool isStranded = IsStranded(*it);
-		bool thisIsLaunching = (isLaunching && it->GetSystem() == player.GetSystem());
+		bool thisIsLaunching = (isLaunching && isPresent);
 		if(isStranded || it->IsDisabled())
 		{
 			// Derelicts never ask for help, to make sure that only the player
@@ -2115,9 +2115,12 @@ void AI::DoScatter(Ship &ship, Command &command)
 	
 	double turnRate = ship.TurnRate();
 	double acceleration = ship.Acceleration();
+	// TODO: If there are many ships, use CollisionSet::Circle or another
+	// suitable method to limit which ships are checked.
 	for(const shared_ptr<Ship> &other : ships)
 	{
-		if(other.get() == &ship)
+		// Do not scatter away from yourself, or ships in other systems.
+		if(other.get() == &ship || other->GetSystem() != ship.GetSystem())
 			continue;
 		
 		// Check for any ships that have nearly the same movement profile as
