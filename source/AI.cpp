@@ -1749,8 +1749,8 @@ void AI::Attack(Ship &ship, Command &command, const Ship &target)
 				if(ait != allyStrength.end() && eit != enemyStrength.end() && ait->second < eit->second)
 					beConserving = false;
 			}
-			if(!beConserving)
-				command |= Command::DEPLOY;
+				if(!beConserving)
+					command |= Command::DEPLOY;
 		}
 	
 	// If this ship has only long-range weapons, or some weapons have a
