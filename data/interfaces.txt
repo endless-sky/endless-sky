@@ -99,7 +99,6 @@ color "map unused wormhole" .165, .066, .3, .333
 
 
 
-
 interface "menu background"
 	sprite "_menu/g0"
 		center 0 -280
@@ -445,7 +444,6 @@ interface "hud"
 
 
 
-
 interface "planet"
 	image "land"
 		center -60 -140
@@ -758,6 +756,7 @@ interface "trade"
 	button S "Sell Outfits"
 		center 130 355
 		dimensions 90 30
+
 
 
 interface "bank"
