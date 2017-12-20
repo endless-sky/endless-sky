@@ -25831,7 +25831,7 @@ planet "New Boston"
 planet "New Britain"
 	attributes "dirt belt" farming factory urban
 	landscape land/city6
-	description `New Britain is one of the few worlds in the Dirt Belt region of the galaxy that is relatively prosperous and has a large population. Although the gravity here is slightly low, it is otherwise a nearly ideal Earth-like world, rich enough in natural resources that all the raw materials for the local industry can come from on-planet.`
+	description `New Britain is one of the few worlds in the Dirt Belt region of the galaxy that is relatively prosperous and has a large population. Although the gravity here is low in comparison to other similarly-populated planets, it is otherwise a nearly ideal Earth-like world, rich enough in natural resources that all the raw materials for the local industry can come from on-planet.`
 	description `	Among the native life forms, the most striking are the many species of large and colorful birds, most of which have learned to give the cities and the spaceport a wide berth.`
 	spaceport `The spaceport is a granite ziggurat, a step pyramid with landing pads and hangars on each level. On the top levels are the dining areas and meeting rooms for corporate visitors; the lower floors provide warehouse and storage space. Compared to the relatively traditional architecture of the city nearby, the spaceport looks out of place, even absurd. But to the locals, it is meant as a clear display to visitors that even though they are in a region of space known for poor and sparsely populated worlds, this particular world is far more developed.`
 	shipyard "Basic Ships"
