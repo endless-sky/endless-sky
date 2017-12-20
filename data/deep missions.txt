@@ -532,7 +532,7 @@ mission "Deep: Mystery Cubes 3"
 				`	(Wander the spaceport.)`
 				`	(Stay near my ship.)`
 					goto ship
-			`	Other than the occasional blaring of a train whistle, the spaceport of <planet> is rather tranquil. You pass the time by talking to a few tourists, most of which are getting ready to go rock climbing. While walking through the restaurant district, the ground begins to shake slightly. Many of the locals don't even react to the earthquake, and eventually it subsides. Once you have walked through the entire spaceport and seen all that it has to offer, you begin to make your way back to your ship.`
+			`	Other than the occasional blaring of a train whistle, the spaceport of <planet> is rather tranquil. You pass the time by talking to a few tourists, most of whom are getting ready to go rock climbing. While walking through the restaurant district, the ground begins to shake slightly. Many of the locals don't even react to the earthquake, and eventually it subsides. Once you have walked through the entire spaceport and seen all that it has to offer, you begin to make your way back to your ship.`
 				goto mirfak
 				
 			label ship
