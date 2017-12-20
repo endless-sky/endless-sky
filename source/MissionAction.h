@@ -42,6 +42,8 @@ public:
 	// a template, so it only has to save a subset of the data.
 	void Save(DataWriter &out) const;
 	
+	bool IsEmpty() const;
+	
 	int Payment() const;
 	
 	// Check if this action can be completed right now. It cannot be completed
@@ -51,13 +53,18 @@ public:
 	// will be highlighted in the map if you bring it up.
 	void Do(PlayerInfo &player, UI *ui = nullptr, const System *destination = nullptr) const;
 	
+	// Add new conditions to this MissionAction's ConditionSet.
+	void AddCondition(const std::string &op, const std::string &condition);
+	void AddCondition(const DataNode &node);
+	
 	// "Instantiate" this action by filling in the wildcard text for the actual
 	// destination, payment, cargo, etc.
 	MissionAction Instantiate(std::map<std::string, std::string> &subs, int jumps, int payload) const;
 	
 	
 private:
-	std::string trigger;
+	// Define a default trigger for non-instantiated MissionActions.
+	std::string trigger = "complete";
 	std::string system;
 	
 	std::string logText;

@@ -248,6 +248,15 @@ void MissionAction::Save(DataWriter &out) const
 
 
 
+bool MissionAction::IsEmpty() const
+{
+	return !payment && conditions.IsEmpty() && events.empty() && fail.empty()
+		&& gifts.empty() && logText.empty() && specialLogText.empty()
+		&& dialogText.empty() && !stockConversation && conversation.IsEmpty();
+}
+
+
+
 int MissionAction::Payment() const
 {
 	return payment;
@@ -352,6 +361,22 @@ void MissionAction::Do(PlayerInfo &player, UI *ui, const System *destination) co
 	player.SetReputationConditions();
 	conditions.Apply(player.Conditions());
 	player.CheckReputationConditions();
+}
+
+
+
+// Add a unary operator condition to this MissionAction's ConditionSet.
+void MissionAction::AddCondition(const string &op, const string &condition)
+{
+	conditions.Add(op, condition);
+}
+
+
+
+// Add an arbitrary condition to this MissionAction's ConditionSet.
+void MissionAction::AddCondition(const DataNode &node)
+{
+	conditions.Add(node);
 }
 
 

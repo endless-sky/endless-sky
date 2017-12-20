@@ -33,7 +33,7 @@ void GameEvent::Load(const DataNode &node)
 	if(node.Size() >= 2)
 	{
 		name = node.Token(1);
-		conditionsToApply.Add("set", "event: " + name);
+		action.AddCondition("set", "event: " + name);
 	}
 	
 	static const set<string> allowedChanges = {
@@ -63,13 +63,16 @@ void GameEvent::Load(const DataNode &node)
 			planetsToVisit.push_back(GameData::Planets().Get(child.Token(1)));
 		else if(allowedChanges.count(key))
 			changes.push_back(child);
+		else if(key == "on" && child.Size() == 2)
+			action.Load(child, "");
 		else
-			conditionsToApply.Add(child);
+			action.AddCondition(child);
 	}
 }
 
 
 
+// Store this pending event in the player's savegame.
 void GameEvent::Save(DataWriter &out) const
 {
 	out.Write("event");
@@ -77,7 +80,6 @@ void GameEvent::Save(DataWriter &out) const
 	{
 		if(date)
 			out.Write("date", date.Day(), date.Month(), date.Year());
-		conditionsToApply.Save(out);
 		
 		for(const System *system : systemsToUnvisit)
 			if(system && !system->Name().empty())
@@ -95,6 +97,9 @@ void GameEvent::Save(DataWriter &out) const
 		
 		for(const DataNode &change : changes)
 			out.Write(change);
+		
+		if(!action.IsEmpty())
+			action.Save(out);
 	}
 	out.EndChild();
 }
@@ -130,7 +135,7 @@ void GameEvent::Apply(PlayerInfo &player)
 		player.Conditions()["reputation: " + it.first] = rep;
 	}
 	
-	conditionsToApply.Apply(player.Conditions());
+	action.Do(player);
 	player.AddChanges(changes);
 	
 	for(const auto &it : GameData::Governments())
