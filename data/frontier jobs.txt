@@ -15,7 +15,7 @@ mission "Instruct novice pilot"
 	description "A novice pilot seeks instruction from an experienced spacer, and requests an escort to <stopovers>. After that, return to <origin> and you will receive payment of <payment>."
 	to offer
 		random < 5
-		"combat rating" > 50
+		"combat rating" > 100
 	source
 		government "Republic" "Free Worlds" "Neutral" "Independent"
 		attributes "frontier" "dirt belt" "rim" "north" "south" "mining" "farming"
@@ -56,7 +56,7 @@ mission "Small Pirate gambling"
 	minor
 	repeat
 	to offer
-		random < 5
+		random < 3
 		"reputation: Pirates" < 0
 		"combat rating" < 10
 		credits > 14357

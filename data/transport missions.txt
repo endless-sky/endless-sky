@@ -1442,7 +1442,7 @@ mission "Shady passenger transport 1"
 		"rejected illegal jobs" ++
 
 	on complete
-		"getaway driver"
+		"getaway driver" ++
 		payment 50000
 		dialog `Your mysterious passenger has spoken hardly a word during the entire trip. As soon as you land, he hands you your payment of <payment> and disappears into a crowd, off to do who-knows-what.`
 
