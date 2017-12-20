@@ -9,7 +9,7 @@
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 
-mission "Instruct novice pilot"
+mission "Instruct Novice Pilot"
 	job
 	repeat
 	description "A novice pilot seeks instruction from an experienced spacer, and requests an escort to <stopovers>. After that, return to <origin> and you will receive payment of <payment>."
@@ -58,7 +58,7 @@ mission "Small Pirate gambling"
 	to offer
 		random < 3
 		"reputation: Pirates" < 0
-		"combat rating" < 10
+		"combat rating" < 200
 		credits > 14357
 	source
 		attributes "dirt belt" "south" "rim" "pirate"
