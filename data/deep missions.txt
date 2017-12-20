@@ -38,7 +38,7 @@ mission "Deep: Syndicate Convoy"
 					decline
 			
 			`	"Good. Before you leave, know that there may be pirate forces waiting for you in Alphard, Sirius, and Altair. You can try to avoid them, but make sure you get the freighters back on time."`
-			`	The Deep Security officer wishes you good luck and walks off, leaving you wonder how he knows where pirate fleets might be waiting for you.`
+			`	The Deep Security officer wishes you good luck and walks off, leaving you to wonder how he knows where pirate fleets might be waiting for you.`
 				accept
 	
 	npc accompany save
@@ -90,12 +90,12 @@ mission "Deep: Syndicate Convoy"
 		fleet "Large Northern Pirates"
 	
 	on stopover
-		dialog `When you arrive at the pickup location it is already night on this side of <planet>. The Syndicate employees who load the freighters do not allow you to see what is inside the cargo, and advise you to leave quickly once the cargo is loaded.`
+		dialog `You arrive at the pickup location on the night side of <planet>. The Syndicate employees who load the freighters do not allow you to see what is inside the cargo, and advise you to leave quickly once the cargo is loaded.`
 	on complete
 		"deep convoy" ++
 		payment 500000
 		conversation
-			`When you return to <planet> with the freighters, you are greeted by a Deep Security officer who hands you <payment> and thanks you for accepting the job on such a short notice. "We'll make sure to contact you in the future should we need your help. If you want to help us further at the moment, I suggest you check the job boards in the Deep for mystery delivery and retrieval jobs."`
+			`A Deep Security office greets you when you return to <planet> with the freighters. The officer hands you <payment> and thanks you for accepting the job on such short notice. "We'll make sure to contact you in the future should we need your help. If you want to help us further at the moment, I suggest you check the job boards in the Deep for mystery delivery and retrieval jobs."`
 
 
 
@@ -122,14 +122,14 @@ mission "Deep: Tarazed Convoy"
 	
 	on offer
 		conversation
-			`As you are walking through the spaceport, a woman in a Deep Security uniform stops you. "You are Captain <last>, correct?" You nod. "Would you be willing to transport a handful of freighters to <stopovers> to pick up some cargo? We'd need them to return them by <day>? Normally this kind of job would be done by Deep Security, but we have no ships to spare at the moment."`
+			`As you are walking through the spaceport, a woman in a Deep Security uniform stops you. "You are Captain <last>, correct?" You nod. "Would you be willing to transport a handful of freighters to <stopovers> to pick up some cargo? We'd need them to return here by <day>. Normally this kind of job would be done by Deep Security, but we have no ships to spare at the moment."`
 			choice
 				`	"Sure, I can do that."`
 				`	"Sorry, but I won't be traveling in that direction any time soon."`
 					decline
 			
 			`	"Thank you, Captain. Before you go, I need to inform you that you may encounter pirate fleets near Tania Australis, Muphrid, and Ascella, and you might not have time to go around these systems."`
-			`	The Deep Security officer wishes you good luck and walks off, leaving you wonder how she knows where pirate fleets might be waiting for you.`
+			`	The Deep Security officer wishes you good luck and walks off, leaving you to wonder how she knows where pirate fleets might be waiting for you.`
 				accept
 	
 	npc accompany save
@@ -189,7 +189,7 @@ mission "Deep: Tarazed Convoy"
 		"deep convoy" ++
 		payment 650000
 		conversation
-			`When you return to <planet> with the freighters, you are greeted by a Deep Security officer who hands you <payment> and thanks you for accepting the job on such a short notice. "We'll make sure to contact you in the future should we need your help. If you want to help us further at the moment, I suggest you check the job boards in the Deep for mystery delivery and retrieval jobs."`
+			`A Deep Security office greets you when you return to <planet> with the freighters. The officer hands you <payment> and thanks you for accepting the job on such short notice. "We'll make sure to contact you in the future should we need your help. If you want to help us further at the moment, I suggest you check the job boards in the Deep for mystery delivery and retrieval jobs."`
 
 
 
@@ -222,8 +222,8 @@ mission "Deep: Kraz Convoy"
 				`	"Sorry, but I won't be traveling in that direction any time soon."`
 					decline
 			
-			`	"Much appreciated, Captain. And for your well being as well as that of the cargo's, you must know that there may be pirates waiting in Algieba, Cor Caroli, and Wei. Behemoths are tough ships so you should be able to travel through those systems and not slow yourself down by taking alternative routes."`
-			`	The Deep Security officer wishes you good luck and walks off, leaving you wonder how she knows where pirate fleets might be waiting for you.`
+			`	"Much appreciated, Captain. And for your well being as well as that of the cargo, you must know that there may be pirates waiting in Algieba, Cor Caroli, and Wei. Behemoths are tough ships, so you should be able to travel through those systems and not slow yourself down by taking alternative routes."`
+			`	The Deep Security officer wishes you good luck and walks off, leaving you to wonder how she knows where pirate fleets might be waiting for you.`
 				accept
 	
 	npc accompany save
@@ -274,8 +274,7 @@ mission "Deep: Kraz Convoy"
 		"deep convoy" ++
 		payment 800000
 		conversation
-			`When you return to <planet> with the freighters, you are greeted by a Deep Security officer who hands you <payment> and thanks you for accepting the job on such a short notice. "We'll make sure to contact you in the future should we need your help. If you want to help us further at the moment, I suggest you check the job boards in the Deep for mystery delivery and retrieval jobs."`
-				decline
+			`A Deep Security office greets you when you return to <planet> with the freighters. The officer hands you <payment> and thanks you for accepting the job on such short notice. "We'll make sure to contact you in the future should we need your help. If you want to help us further at the moment, I suggest you check the job boards in the Deep for mystery delivery and retrieval jobs."`
 
 
 
@@ -326,7 +325,7 @@ mission "Deep: Mystery Cubes 0"
 					decline
 			
 			label situation
-			`	"Excellent. I'm sure that you are aware that much of Deep Security is currently preoccupied, hence why we have been procuring merchants to escort many of the Deep's convoys. The reason this is the case is that we have been attempting to detain a particularly meddlesome pirate warlord who goes by the name of 'Beelzebub'. From what we can ascertain, Beelzebub has extensive knowledge on the inner workings of Deep Security, which is making tracking him down rather difficult, as he seems to know our every move. That is where you and a few other merchants come in."`
+			`	"Excellent. I'm sure that you are aware that much of Deep Security is currently preoccupied, hence why we have been recruiting merchants to escort many of the Deep's convoys. The reason this is the case is that we have been attempting to detain a particularly meddlesome pirate warlord who goes by the name of 'Beelzebub'. From what we can ascertain, Beelzebub has extensive knowledge on the inner workings of Deep Security, which is making tracking him down rather difficult, as he seems to know our every move. That is where you and a few other merchants come in."`
 			`	Paris reaches into his pocket and pulls out a bag which he then hands to you. Inside of the bag are at least two dozen of the mysterious cubes that you have transported in the past, only with one distinct difference: a thick red streak running down the middle of the cube.`
 			`	"The Deep requires that you place these on a number of worlds in the Dirt Belt which I will mark on your map for you. Place at least four of these devices around the spaceport of each marked planet, then come to <destination> where I will collect any remaining cubes that you may have. If a Deep Security ship did this then it would likely catch the attention of any pirates in the system and that information would make its way to Beelzebub, but random merchants should be inconspicuous enough to throw Beelzebub off our trail. Is that clear?"`
 			choice
@@ -427,7 +426,7 @@ mission "Deep: Mystery Cubes 2"
 	
 	on offer
 		conversation
-			`Upon landing, you are escorted by a pair of men in Navy uniforms past the tourist areas of the Moon facility and into the back to an elevator. One of your escorts uses a keycard to open the elevator, ushering you in. The elevator opens up many floors below the spaceport, to an area of the facility that looks far newer than that on the surface.`
+			`A pair of men in Navy uniforms escort you to a restricted area of the Moon facility restricted. One of them uses a keycard to open an elevator and ushers you in. The elevator opens up many floors below the spaceport, to an area of the facility that looks far newer than that on the surface.`
 			`	You are kept in what looks like a waiting room along with five others. After a bit of talking, you find out that these are the other merchant captains who helped place the cubes across different regions of the galaxy.`
 			`	An hour of waiting passes, and Lieutenant Paris walks into the room followed by a Navy admiral. "I hope you are all enjoying your stay," the admiral remarks. "Now. How is it that most of the cubes you placed were mysteriously disabled shortly after pirates entered each system?"`
 			`	The admiral looks to each of the captains in the room, seemingly waiting for a response.`
@@ -696,7 +695,7 @@ mission "Deep: TMBR 0"
 					defer
 					
 			`	You approach the Bounder and count five people dancing in total: three women and two men. One of the women dancing notices you walking over and exclaims, "Looks like someone else is about to join the party!" Her shout is met by a raucous cheer from the rest of the dancers, and they pull you into the fray.`
-			`	After a few minutes of dancing, the music begins to subside. One of the dancers introduces himself to you as Garrison, and lists off the names of his fellow dancers; Pierre, Maria, Hannah, and Laura. As you make your introductions, you learn that everyone here is part of the same research team, working for one of the Deep's many science bureaus, and they are currently wrapping up a short vacation by listening to their favorite band before they travel to Midgard on assignment.`
+			`	After a few minutes of dancing, the music begins to subside. One of the dancers introduces himself to you as Garrison, and lists off the names of his fellow dancers: Pierre, Maria, Hannah, and Laura. As you make your introductions, you learn that everyone here is part of the same research team, working for one of the Deep's many science bureaus, and they are currently wrapping up a short vacation by listening to their favorite band before they travel to Midgard on assignment.`
 			`	"How do you know about 'There Might Be Riots?'" Hannah asks you.`
 			choice
 				`	"I've met them."`
@@ -793,7 +792,7 @@ mission "Deep: Interrogation"
 	
 	on offer
 		conversation
-			`When you land on <origin> and open your ship's main hatch, you find yourself face-to-face with two Deep Security officers, neither of which appear armed. "Hello, Captain <last>. We're going to need to ask you some questions. If you would please step off of your ship and follow us, that would be much appreciated."`
+			`When you land on <origin> and open your ship's main hatch, you find yourself face-to-face with two Deep Security officers, neither of whom appear armed. "Hello, Captain <last>. We're going to need to ask you some questions. If you would please step off of your ship and follow us, that would be much appreciated."`
 			choice
 				`	(Follow their orders.)`
 					goto orders
@@ -832,7 +831,7 @@ mission "Deep: Interrogation"
 					goto clueless
 				`	"I didn't commit any crimes, so you have no right to detain me."`
 			
-			`	"Indeed no crimes were committed during your work for Albert Foster, but we still have the right to detain you to keep the Deep safe. Cause us no trouble during this little meeting, answer my question, and you will be on your way in a few minutes' time.`
+			`	"Indeed, no crimes were committed during your work for Albert Foster, but we still have the right to detain you to keep the Deep safe. Cause us no trouble during this little meeting, answer my questions, and you will be on your way in a few minutes' time.`
 				goto foster
 			
 			label clueless
@@ -924,7 +923,7 @@ mission "Deep: Interrogation"
 				`	"I don't have any questions."`
 					goto none
 				
-			`	"The exact date has been lost to time, but folklore states that the first humans arrived here in the mid-1300s before the time of the 'Black Death' plague on ancient Earth."`
+			`	"The exact date has been lost to time, but folklore states that the first humans arrived here in the mid-1300s, before the time of the 'Black Death' plague on ancient Earth."`
 			choice
 				`	"Were the original humans of the Deep really brought here by aliens?"`
 				`	"I don't have any more questions."`
@@ -937,7 +936,7 @@ mission "Deep: Interrogation"
 				goto next
 				
 			label none
-			`	"If that is all then this meeting is over. You will be escorted back outside momentarily. Enjoy the rest of your day, Captain."`
+			`	"If that is all, then this meeting is over. You will be escorted back outside momentarily. Enjoy the rest of your day, Captain."`
 			
 			label next
 			`	The woman gets up from her chair and stops in the doorway. She turns her head slightly and says in a low voice, "I'll be watching," then leaves. Moments later, the same two men that brought you here step into the room and ask you to follow them. They lead you to an entryway and lock the door as you step out into the spaceport.`
@@ -987,7 +986,7 @@ mission "Deep: Questions"
 				`	"I don't have any questions."`
 					goto none
 				
-			`	"The exact date has been lost to time, but folklore states that the first humans arrived here in the mid-1300s before the time of the 'Black Death' plague on ancient Earth."`
+			`	"The exact date has been lost to time, but folklore states that the first humans arrived here in the mid-1300s, before the time of the 'Black Death' plague on ancient Earth."`
 			choice
 				`	"Were the original humans of the Deep really brought here by aliens?"`
 				`	"I don't have any more questions."`
@@ -1009,7 +1008,7 @@ mission "Deep: Questions"
 				`	"I don't have any more questions."`
 					goto none
 				
-			`	"The exact date has been lost to time, but folklore states that the first humans arrived here in the mid-1300s before the time of the 'Black Death' plague on ancient Earth."`
+			`	"The exact date has been lost to time, but folklore states that the first humans arrived here in the mid-1300s, before the time of the 'Black Death' plague on ancient Earth."`
 			choice
 				`	"Were the original humans of the Deep really brought here by aliens?"`
 				`	"I don't have any more questions."`
@@ -1232,8 +1231,8 @@ mission "Deep: Project Hawking: Prime"
 		ship "Marauder Raven (Engines)" "Krampus"
 	on offer
 		conversation
-			`As you approach the massive <planet> spaceport building, Pierre directs you to park on a landing pad on the third story close to the warehouse section. "There are some alloys used in the creation of ships that we need samples of for testing," Pierre explains.`
-			`	The scientists speak with the spaceport authorities, who begin loading several tons of various alloys into your cargo from an overhead platform. You sit with Pierre as you wait for them to finish.`
+			`As you approach the massive <planet> spaceport building, Pierre directs you to park on a landing pad on the third story close to the warehouse section. "We're picking up various alloys used in the creation of ships that we need samples of for testing," Pierre explains.`
+			`	The scientists speak with the spaceport authorities, who begin loading several tons of alloys into your cargo from an overhead platform. You sit with Pierre as you wait for them to finish.`
 			choice
 				`	"That's a lot of different alloys. What are they going to be used for?"`
 				`	"Why did we need to come all the way to Prime to get these alloys?"`
@@ -1292,7 +1291,7 @@ mission "Deep: Project Hawking: Vinci"
 				`	"You're doing great! Do you play table tennis often?"`
 				`	"You can do it!"`
 				
-			`	Hannah slams the virtual ball with her paddle, causing it to bounce off the table and fly right past her opponent, disintegrating into thin air.`
+			`	Hannah slams the virtual ball with her paddle, causing it to bounce off the table, fly right past her opponent, and disintegrate into thin air.`
 			`	"I did pretty good, didn't I? It's my first time playing table tennis, too."`
 			`	"How did you do that good for your first time?"`
 			`	"I'm just a quick learner. Always have been. In university I would do work for my history courses while sitting through lectures on quantum mechanics. Got straight A's in both classes without a problem."`
@@ -1796,7 +1795,7 @@ mission "Deep: Remnant Surveillance - Viminal"
 		has "Deep: Remnant Surveillance: active"
 	on offer
 		conversation
-			`You try to make an effort of not being seen as you decide where to place the cubes. You place one outside of the spaceport dome, burying it in the snow so it is difficult to find. The other you tuck into a dark corner of the spaceport, and as soon as you let it go it blends in surprisingly well with its surroundings.`
+			`You try to make an effort to not be seen as you decide where to place the cubes. You place one outside of the spaceport dome, burying it in the snow so it is difficult to find. The other you tuck into a dark corner of the spaceport, and as soon as you let it go it blends in surprisingly well with its surroundings.`
 				decline
 
 mission "Deep: Remnant Surveillance - Caelian"
@@ -2159,7 +2158,7 @@ mission "Deep: Scientist Rescue 2"
 				launch
 	
 	on enter
-		dialog "As your repulsor engines roar, you notice a large pirate ship looming over the planet. Even from the underside, it is undeniably a Bactrian, but as to how a pirate could ever attain one is a mystery."
+		dialog "As your repulsor engines roar, you notice a large pirate ship looming over the planet. Even from the underside, it is undeniably a Bactrian, but how a pirate could ever attain one is a mystery."
 		dialog `	You receive a transmission from Lieutenant Paris. "I have a sneaking suspicion that Beelzebub may be behind this. I suggest we jump out of here immediately and make it back to the Deep alive before taking on that Bactrian."`
 	
 	npc save accompany
@@ -2243,7 +2242,7 @@ mission "Deep: Scientist Rescue 3A"
 	on offer
 		payment 2000000
 		conversation
-			`As you land near the Star Queen, you can see the passengers of the ship being escorted off of it. Maria and Hannah come running off the ship in tears over to Garrison, who must have arrived as soon as he heard the news. A medical team is examining each passenger while a Deep Security officer asks questions and jots down the responses. Sadly, you also notice a number of body bags next to the ship, likely from scientists or crew that were found dead on the ship.`
+			`As you land near the Star Queen, you can see its passengers being escorted off. Maria and Hannah come running off the ship in tears over to Garrison, who must have arrived as soon as he heard the news. A medical team is examining each passenger while a Deep Security officer asks questions and jots down the responses. Sadly, you also notice a number of body bags next to the ship, likely from scientists or crew that were found dead on the ship.`
 			`	Lieutenant Paris is waiting for you outside of your ship, and hands you another <payment> when you walk up to him. "Thanks for all the help, Captain <last>. We couldn't have done it without you."`
 			`	Paris looks back to the Star Queen, and you can overhear one of the Deep Security officers listing off names. "Sarah Reevs, Nicole Faye, Pierre Joules, Laura Paris..." the list goes on for slightly over a dozen total names. "The surviving crew tells us that only a few were killed initially, either during boarding or by being thrown out the airlock on the way to Haven. Most of the others were either killed or dragged off after they had reached their destination at a facility of some sort, its purpose unidentifiable to the crew."`
 			`	When you look back to Lieutenant Paris, you notice that he is holding back tears. Laura Paris was one of the scientists who died. You are unsure of the relationship the two had, but they were clearly close.`
@@ -2296,7 +2295,7 @@ mission "Deep: Scientist Rescue 3B"
 		event "battle in arneb end"
 		payment 2000000
 		conversation
-			`As you land near the Star Queen, you can see the passengers of the ship being escorted off of it. Maria and Hannah come running off the ship in tears over to Garrison, who must have arrived as soon as he heard the news. A medical team is examining each passenger while a Deep Security officer asks questions and jots down the responses. Sadly, you also notice a number of body bags next to the ship, likely from scientists or crew that were found dead on the ship.`
+			`As you land near the Star Queen, you can see its passengers being escorted off. Maria and Hannah come running off the ship in tears over to Garrison, who must have arrived as soon as he heard the news. A medical team is examining each passenger while a Deep Security officer asks questions and jots down the responses. Sadly, you also notice a number of body bags next to the ship, likely from scientists or crew that were found dead on the ship.`
 			`	Lieutenant Paris is waiting for you outside of your ship, and hands you another <payment> when you walk up to him. "Thanks for all the help, Captain <last>. We couldn't have done it without you."`
 			`	Paris looks back to the Star Queen, and you can overhear one of the Deep Security officers listing off names. "Sarah Reevs, Nicole Faye, Pierre Joules, Laura Paris..." the list goes on for slightly over a dozen total names. "The surviving crew tells us that only a few were killed initially, either during boarding or by being thrown out the airlock on the way to Haven. Most of the others were either killed or dragged off after they had reached their destination at a facility of some sort, its purpose unidentifiable to the crew."`
 			`	When you look back to Lieutenant Paris, you notice that he is holding back tears. Laura Paris was one of the scientists who died. You are unsure of the relationship the two had, but they were clearly close.`
