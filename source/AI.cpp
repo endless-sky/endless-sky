@@ -1737,21 +1737,21 @@ void AI::Attack(Ship &ship, Command &command, const Ship &target)
 	
 	// Deploy any fighters you are carrying.
 	if(!ship.IsYours())
+	{
+		// Conserving ships only deploy fighters if they have lost 50% of shields
+		// or hull, or if they are outgunned.
+		bool beConserving = false;
+		if(ship.GetPersonality().IsConserving())
 		{
-			// Conserving ships only deploy fighters if they have lost 50% of shields
-			// or hull, or if they are outgunned.
-			bool beConserving = false;
-			if(ship.GetPersonality().IsConserving())
-			{
-				beConserving = (ship.Hull() + ship.Shields() > 1.5);
-				auto ait = allyStrength.find(ship.GetGovernment());
-				auto eit = enemyStrength.find(ship.GetGovernment());
-				if(ait != allyStrength.end() && eit != enemyStrength.end() && ait->second < eit->second)
-					beConserving = false;
-			}
-		if(!beConserving)
-			command |= Command::DEPLOY;
+			beConserving = (ship.Hull() + ship.Shields() > 1.5);
+			auto ait = allyStrength.find(ship.GetGovernment());
+			auto eit = enemyStrength.find(ship.GetGovernment());
+			if(ait != allyStrength.end() && eit != enemyStrength.end() && ait->second < eit->second)
+				beConserving = false;
 		}
+	if(!beConserving)
+		command |= Command::DEPLOY;
+	}
 	
 	// If this ship has only long-range weapons, or some weapons have a
 	// blast radius, it should keep some distance instead of closing in.
