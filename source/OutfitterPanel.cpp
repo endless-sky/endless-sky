@@ -55,6 +55,17 @@ OutfitterPanel::OutfitterPanel(PlayerInfo &player)
 	for(const pair<const string, Outfit> &it : GameData::Outfits())
 		catalog[it.second.Category()].insert(it.first);
 	
+	// Add owned licenses
+	const string PREFIX = "license: ";
+	for(auto &it : player.Conditions())
+		if(it.first.compare(0, PREFIX.length(), PREFIX) == 0 && it.second > 0)
+		{
+			const string name = it.first.substr(PREFIX.length()) + " License";
+			const Outfit *outfit = GameData::Outfits().Get(name);
+			if(outfit)
+				catalog[outfit->Category()].insert(name);
+		}
+	
 	if(player.GetPlanet())
 		outfitter = player.GetPlanet()->Outfitter();
 }
@@ -99,6 +110,9 @@ bool OutfitterPanel::HasItem(const string &name) const
 	for(const Ship *ship : playerShips)
 		if(ship->OutfitCount(outfit))
 			return true;
+	
+	if(showForSale && HasLicense(name))
+		return true;
 	
 	return false;
 }

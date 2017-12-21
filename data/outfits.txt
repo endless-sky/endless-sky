@@ -375,3 +375,8 @@ outfit "Pilot's License"
 	cost 50000
 	thumbnail "outfit/license"
 	description "Without a pilot's license, you cannot purchase a ship on a Republic planet. And if you buy an unlicensed ship on another planet and then bring it into Republic space, you can be fined until you cough up the money for a license. Needless to say, this policy is not terribly popular with freelance merchant captains."
+
+outfit "Militia Carrier License"
+	category "Special"
+	thumbnail "outfit/license"
+	description "Officially joined the Free Worlds. Received permission to purchase their Militia-only carriers."
