@@ -2151,7 +2151,7 @@ void AI::DoScatter(Ship &ship, Command &command)
 }
 
 
-+const bool AI::ShouldActFrugally(const Ship &ship) const
+const bool AI::ShouldActFrugally(const Ship &ship) const
 {
 	auto ait = allyStrength.find(ship.GetGovernment());
 	auto eit = enemyStrength.find(ship.GetGovernment());
