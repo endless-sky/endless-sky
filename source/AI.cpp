@@ -1701,7 +1701,7 @@ void AI::KeepStation(Ship &ship, Command &command, const Ship &target)
 
 
 
-const void AI::Attack(Ship &ship, Command &command, const Ship &target) const
+void AI::Attack(Ship &ship, Command &command, const Ship &target) const
 {
 	// First, figure out what your shortest-range weapon is.
 	double shortestRange = 4000.;
@@ -1736,7 +1736,7 @@ const void AI::Attack(Ship &ship, Command &command, const Ship &target) const
 		shortestRange = 0.;
 	
 	// Deploy any fighters you are carrying.
-	if(!ship.IsYours() && (!(ship.GetPersonality().IsConserving() && ShouldActFrugally(ship))))
+	if(!ship.IsYours() && !(ship.GetPersonality().IsConserving() && ShouldActFrugally(ship)))
 		command |= Command::DEPLOY;
 	
 	// If this ship has only long-range weapons, or some weapons have a
@@ -2137,7 +2137,7 @@ void AI::DoScatter(Ship &ship, Command &command)
 }
 
 
-const bool AI::ShouldActFrugally(const Ship &ship) const
+bool AI::ShouldActFrugally(const Ship &ship) const
 {
 	auto ait = allyStrength.find(ship.GetGovernment());
 	auto eit = enemyStrength.find(ship.GetGovernment());
@@ -2384,9 +2384,7 @@ void AI::AutoFire(const Ship &ship, Command &command, bool secondary) const
 	
 	bool beFrugal = (ship.IsYours() && !escortsUseAmmo);
 	if(person.IsFrugal() || (ship.IsYours() && escortsAreFrugal && escortsUseAmmo))
-	{
 		beFrugal = ShouldActFrugally(ship);
-	}
 	
 	// Special case: your target is not your enemy. Do not fire, because you do
 	// not want to risk damaging that target. The only time a ship other than
