@@ -1701,7 +1701,7 @@ void AI::KeepStation(Ship &ship, Command &command, const Ship &target)
 
 
 
-void AI::Attack(Ship &ship, Command &command, const Ship &target)
+const void AI::Attack(Ship &ship, Command &command, const Ship &target) const
 {
 	// First, figure out what your shortest-range weapon is.
 	double shortestRange = 4000.;
@@ -1736,7 +1736,7 @@ void AI::Attack(Ship &ship, Command &command, const Ship &target)
 		shortestRange = 0.;
 	
 	// Deploy any fighters you are carrying.
-	if(!ship.IsYours())
+	if(!ship.IsYours() && (!(ship.GetPersonality().IsConserving() && ShouldActFrugally(ship))))
 	{
 		// Conserving ships only deploy fighters if they have lost 50% of shields
 		// or hull, or if they are outgunned.
@@ -2151,6 +2151,17 @@ void AI::DoScatter(Ship &ship, Command &command)
 }
 
 
++const bool AI::ShouldActFrugally(const Ship &ship) const
+{
+	auto ait = allyStrength.find(ship.GetGovernment());
+	auto eit = enemyStrength.find(ship.GetGovernment());
+	if((ait != allyStrength.end() && eit != enemyStrength.end() && ait->second < eit->second)
+		|| (ship.Hull() + ship.Shields() <= 1.5))
+		return false;
+	return true;
+}
+
+
 
 // Instead of coming to a full stop, adjust to a target velocity vector
 Point AI::StoppingPoint(const Ship &ship, const Point &targetVelocity, bool &shouldReverse)
@@ -2388,13 +2399,7 @@ void AI::AutoFire(const Ship &ship, Command &command, bool secondary) const
 	bool beFrugal = (ship.IsYours() && !escortsUseAmmo);
 	if(person.IsFrugal() || (ship.IsYours() && escortsAreFrugal && escortsUseAmmo))
 	{
-		// Frugal ships only expend ammunition if they have lost 50% of shields
-		// or hull, or if they are outgunned.
-		beFrugal = (ship.Hull() + ship.Shields() > 1.5);
-		auto ait = allyStrength.find(ship.GetGovernment());
-		auto eit = enemyStrength.find(ship.GetGovernment());
-		if(ait != allyStrength.end() && eit != enemyStrength.end() && ait->second < eit->second)
-			beFrugal = false;
+		beFrugal = ShouldActFrugally(ship);
 	}
 	
 	// Special case: your target is not your enemy. Do not fire, because you do
