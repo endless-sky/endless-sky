@@ -171,6 +171,20 @@ phrase "adjectives"
 		"Icy"
 		"Deep"
 		"Sassy"
+		"Stark"
+		"Windy"
+		"Snowy"
+		"Fair"
+		"Pure"
+		"Loyal"
+		"Inca"
+		"Mayan"
+		"Atlantean"
+		"Roman"
+		"Byzantine"
+		"Zulu"
+		"Maori"
+		"Prussian"
 
 phrase "cardinal directions"
 	word
@@ -343,6 +357,9 @@ phrase "singular nouns"
 		"Crossing"
 		"Chapel"
 		"Echo"
+		"Name"
+		"Bear"
+		"Storm"
 
 phrase "plural nouns"
 	word
@@ -531,6 +548,9 @@ phrase "nouns of indeterminate quantity"
 		"Wine"
 		"Money"
 		"Slate"
+		"Graphite"
+		"Cobalt"
+		"Platinum"
 
 phrase "the-nouns"
 	word
@@ -606,7 +626,6 @@ phrase "male names"
 		"Khufu"
 		"Edward"
 		"Sargon"
-		"Amon"
 		"Cyrus"
 		"Darius"
 		"Vipra"
@@ -806,6 +825,8 @@ phrase "female names"
 		"Vanita"
 		"Yeo"
 		"Yon"
+		"April"
+		"Scarlet"
 
 phrase "one to twelve"
 	word
@@ -850,6 +871,7 @@ phrase "plural quantities"
 		"Numerous"
 		"Infinite"
 		"Enough"
+		"All the"
 
 phrase "sometimes a successor"
 	word
@@ -875,6 +897,15 @@ phrase "sometimes a successor"
 		""
 		" II"
 		" III"
+
+phrase "poetic female name constructions"
+	phrase
+		"female names"
+	word
+		" "
+	phrase
+		"singular nouns"
+		"nouns of indeterminate quantity"
 
 phrase "standalone civilian ship names"
 	word
@@ -1029,6 +1060,19 @@ phrase "standalone civilian ship names"
 		"Tiamat"
 		"Artemis"
 		"Annabel Lee"
+		"Old Ironsides"
+		"20 Chanri"
+		"Purifying Gaze"
+		"Chateau Gaillard"
+		"Sacramento"
+		"Labnathia"
+		"Brick by Brick"
+		"Murano"
+		"Johannesburg"
+		"Stapleton"
+		"Righteous"
+		"Venerable"
+
 
 # Final phrases that make ship names
 
@@ -1055,16 +1099,20 @@ phrase "civilian"
 	phrase
 		"sometimes a successor"
 
-# Doubled up to get more of these
+# e.g.:
+# Falcon Jewel
+# Pyramid Names
+# Cobalt Winds
 phrase "civilian"
 	phrase
 		"adjectives"
+		"singular nouns"
+		"nouns of indeterminate quantity"
 	word
 		" "
 	phrase
 		"singular nouns"
 		"plural nouns"
-		"nouns of indeterminate quantity"
 
 # e.g.:
 # Xu's Flags
@@ -1210,6 +1258,20 @@ phrase "civilian"
 	phrase
 		"sometimes a successor"
 
+# e.g.:
+# Two Katerina Snow
+# Five Tongues
+# Four Devi Ash
+phrase "civilian"
+	phrase
+		"one to twelve"
+	word
+		" "
+	phrase
+		"poetic female name constructions"
+		"plural nouns"
+
+
 # Doubled up to get more of these
 phrase "civilian"
 	phrase
@@ -1308,6 +1370,18 @@ phrase "republic capital"
 		"Washington"
 		"Haleakala"
 		"Nanshan"
+		"Manaslu"
+		"Trivor"
+		"Rimo"
+		"Chongtar"
+		"Karjiang"
+		"Kibo"
+		"Guna"
+		"Sidley"
+		"Foster"
+		"Haddington"
+		"Brewster"
+		"Albaron"
 
 phrase "deep"
 	word
@@ -1466,6 +1540,7 @@ phrase "militia"
 		"Traveler"
 		"Spurge"
 		"Linden"
+		"Cottonwood"
 
 phrase "free worlds capital"
 	word
@@ -1545,6 +1620,7 @@ phrase "free worlds capital"
 		"Traveler"
 		"Spurge"
 		"Linden"
+		"Cottonwood"
 
 phrase "syndicate capital"
 	word
@@ -1705,6 +1781,7 @@ phrase "republic small"
 		Schuylkill
 		Susquehanna
 		Wabash
+		Sangamon
 
 phrase "free worlds small"
 	word
@@ -1917,6 +1994,17 @@ phrase "sinister names"
 		"Herod"
 		"Medusa"
 		"Gorkon"
+		"Naxo"
+		"Abigor"
+		"Seth"
+		"Apep"
+		"Ahriman"
+		"Morfran"
+		"Zagan"
+		"Mara"
+		"Koklir"
+		"Dracula"
+		"Usha"
 
 phrase "pirate adjectives"
 	word
@@ -1990,6 +2078,17 @@ phrase "pirate adjectives"
 		"Furious"
 		"Creaking"
 		"Leaking"
+		"Stained"
+		"Slaughtered"
+		"Hideous"
+		"Hellish"
+		"Profane"
+		"Cold"
+		"Slavering"
+		"Mad"
+		"Ravening"
+		"Cannibal"
+		"Rabid"
 
 phrase "pirate adjectives that don't work before singular nouns"
 	word
@@ -2003,6 +2102,8 @@ phrase "pirate adjectives that don't work before singular nouns"
 		"Hall of"
 		"Pit of"
 		"Teeth of"
+		"Abyss of"
+		"Chains of"
 
 phrase "pirate nouns"
 	word
@@ -2083,6 +2184,16 @@ phrase "pirate nouns"
 		"Rum"
 		"Ritual"
 		"Snakes"
+		"Abbatoir"
+		"Asylum"
+		"Sausage"
+		"Striker"
+		"Sorcerer"
+		"King"
+		"Banshee"
+		"Siren"
+		"Corpse"
+		"Butcher"
 
 phrase "bad outcomes"
 	word
@@ -2128,6 +2239,10 @@ phrase "bad outcomes"
 		"Panic"
 		"Might"
 		"Woe"
+		"Fury"
+		"Rage"
+		"Grief"
+		"Addiction"
 
 phrase "pirate"
 	word
@@ -2140,7 +2255,7 @@ phrase "pirate"
 		"Eurydice"
 		"Valencia"
 		"Octavius"
-		"Jenny"
+		"Red Jenny"
 		"Ourang Medan"
 		"Sea Bird"
 		"Resolute"
@@ -2249,6 +2364,23 @@ phrase "pirate"
 		"Unspeakable Acts"
 		"Vampire"
 		"Werewolf"
+		"Billy the Kid"
+		"Al Capone"
+		"Gorkon Death Sloop"
+		"Zokk Death Sloop"
+		"Cold Winter"
+		"Stilled Voices"
+		"Cacophony"
+		"Into the Maw of Hell"
+		"Slag Heap"
+		"Golden Calf"
+		"Crown of Thorns"
+		"Torquemada"
+		"Death Stare"
+		"Mushroom Cloud"
+		"La Llorona"
+		"Eaten Alive"
+		"Mongol Hordes"
 
 phrase "pirate"
 	phrase
@@ -2288,6 +2420,36 @@ phrase "pirate"
 		"bad outcomes"
 
 phrase "pirate"
+	phrase
+		"bad outcomes"
+		"pirate adjectives"
+	word
+		" "
+	word
+		# Many of these also appear "pirate nouns", but only some of those words work after "bad outcomes", which is why it's a separate list
+		"Barge"
+		"Brig"
+		"Hulk"
+		"Galley"
+		"Lugger"
+		"Pit"
+		"Tower"
+		"Fortress"
+		"Chamber"
+		"Prison"
+		"Monster"
+		"Beast"
+		"Demon"
+		"Ogre"
+		"Corsair"
+		"Volcano"
+		"King"
+		"Blade"
+		"Bell"
+		"Omen"
+		"Trap"
+
+phrase "pirate"
 	word
 		"Blood"
 		"Night"
@@ -2319,6 +2481,7 @@ phrase "pirate"
 		"Worm"
 		"Power"
 		"Shock"
+		"Gore"
 	word
 		"oath"
 		"fire"
@@ -2385,6 +2548,13 @@ phrase "pirate"
 		"finger"
 		"sliver"
 		"splinter"
+		"splitter"
+		"snapper"
+		"flinger"
+		"breaker"
+		"slave"
+		"sucker"
+		"horse"
 
 phrase "pirate"
 	word
@@ -2433,6 +2603,8 @@ phrase "pirate"
 		"Glory"
 		"Victory"
 		"Mother"
+		"Childhood"
+		"Triumph"
 
 
 phrase "bounty hunter"
