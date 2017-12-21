@@ -205,3 +205,8 @@ outfit "Large Steering Module"
 	"turning energy" 1.0
 	"turning heat" 8.2
 	description "By focusing on small, modular engines rather than the massive capital ship drives that most other species develop, the Coalition loses some of the potential efficiency for very large ships, but gains a considerable amount of flexibility."
+
+outfit "Coalition License"
+	category "Special"
+	thumbnail "outfit/license"
+	description "Completed a lot of Coalition jobs and received permission to purchase civilian technology and ships."
