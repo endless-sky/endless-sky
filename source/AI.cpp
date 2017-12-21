@@ -1737,7 +1737,7 @@ const void AI::Attack(Ship &ship, Command &command, const Ship &target) const
 	
 	// Deploy any fighters you are carrying.
 	if(!ship.IsYours() && (!(ship.GetPersonality().IsConserving() && ShouldActFrugally(ship))))
-			command |= Command::DEPLOY;
+		command |= Command::DEPLOY;
 	
 	// If this ship has only long-range weapons, or some weapons have a
 	// blast radius, it should keep some distance instead of closing in.
