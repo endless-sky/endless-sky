@@ -98,7 +98,7 @@ private:
 	bool DoHarvesting(Ship &ship, Command &command);
 	void DoCloak(Ship &ship, Command &command);
 	void DoScatter(Ship &ship, Command &command);
-	const bool ShouldActFrugally(const Ship &ship) const;
+	bool ShouldActFrugally(const Ship &ship) const;
 	
 	static Point StoppingPoint(const Ship &ship, const Point &targetVelocity, bool &shouldReverse);
 	// Get a vector giving the direction this ship should aim in in order to do
