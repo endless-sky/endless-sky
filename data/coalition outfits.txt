@@ -208,5 +208,5 @@ outfit "Large Steering Module"
 
 outfit "Coalition License"
 	category "Special"
-	thumbnail "outfit/license"
+	thumbnail "outfit/coalition license"
 	description "Completed a lot of Coalition jobs and received permission to purchase civilian technology and ships."
