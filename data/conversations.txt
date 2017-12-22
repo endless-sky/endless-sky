@@ -22,17 +22,17 @@ conversation "intro"
 
 conversation "flight check: no energy!"
 	scene "scene/engine2"
-	`You have heard more than enough horror stories about the kinds of accidents that can happen when your starship systems malfunction and demand a non-negotiable pre-flight safety check. As you listen to the complex symphony of hums, rattles, and clicks of "<ship>" warming up, you run through a mental checklist. Computers: check. Life support: check.`
+	`You have heard more than enough horror stories about the kinds of accidents that can happen when your starship systems malfunction and demand of you a non-negotiable pre-flight safety check. As you listen to the complex symphony of hums, rattles, and clicks of "<ship>" warming up, you run through a mental checklist. Computers: check. Life support: check.`
 	`	Everything goes as expected until it comes time to fire up your systems for a test run... and with a metallic whimper you discover that your generator simply cannot power the entirety of your vessel. With a sigh, you weigh your options. You will have to either install some new batteries, or switch to a more powerful generator.`	
 	
 conversation "flight check: no thruster!"
 	scene "scene/engine2"
-	`You have heard more than enough horror stories about the kinds of accidents that can happen when your starship systems malfunction and demand a non-negotiable pre-flight safety check. As you listen to the complex symphony of hums, rattles, and clicks of "<ship>" warming up, you run through a mental checklist. Computers: check. Life support: check.`
+	`You have heard more than enough horror stories about the kinds of accidents that can happen when your starship systems malfunction and demand of you a non-negotiable pre-flight safety check. As you listen to the complex symphony of hums, rattles, and clicks of "<ship>" warming up, you run through a mental checklist. Computers: check. Life support: check.`
 	`	Everything goes as expected until it comes time to fire up the thrusters for a test run... and you realize, with a blush of embarrassment, that you do not have any thrusters installed. A nearby onlooker chuckles and shakes his head. You bashfully try to avoid eye contact as you begin making your way to the nearest outfitter.`
 
 conversation "flight check: no steering!"
 	scene "scene/engine"
-	`You have heard more than enough horror stories about the kinds of accidents that can happen when your starship systems malfunction and demand a non-negotiable pre-flight safety check. As you listen to the complex symphony of hums, rattles, and clicks of "<ship>" warming up, you run through a mental checklist. Computers: check. Life support: check.`
+	`You have heard more than enough horror stories about the kinds of accidents that can happen when your starship systems malfunction and demand of you a non-negotiable pre-flight safety check. As you listen to the complex symphony of hums, rattles, and clicks of "<ship>" warming up, you run through a mental checklist. Computers: check. Life support: check.`
 	`	Everything goes as expected until it comes time to fire up the steering engines for a test run. The on-board diagnostic system gives its response and you do a double take as you check it twice. You realize that you somehow do not have any steering installed. You look around for any witnesses. With a sigh of relief, you take solace in the fact that your embarrassment is a private one as you head to the closest outfitter.`
 	
 conversation "flight check: overheating!"
