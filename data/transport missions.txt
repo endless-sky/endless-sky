@@ -138,7 +138,6 @@ mission "Smuggler's Den, Part 1"
 			label payment
 			`	They are silent for a long moment, looking down at the table. Finally, the boy says, "We're crew on a pirate ship, hardly better than slaves. The captain keeps our wages. We don't get paid anything unless they agree to let us go. But if you help us start a new life, we'll work hard and some day we'll pay you back."`
 			`	The girl adds, "You don't know what it's like for a little girl to grow up on a pirate ship. We want something better than that for our daughter."`
-				goto search
 			
 			label search
 			`	As you are conversing a bearded man and a rough-looking teenage boy enter the bar and begin looking around the room. "That's our captain," she says. "Please, you have to help us. There's a service tunnel that connects to the back entrance of the bar. We can escape through there."`
@@ -155,7 +154,7 @@ mission "Smuggler's Den, Part 1"
 				decline
 			
 			label `tunnel`
-			`	The boy stands up. "Wait ten seconds, then head to the tunnel," he says. He walks into the bathroom, which is right next to back entrance that she pointed out. You wait for a few seconds, then stand up. "Don't run," says the girl. "Walk slowly. Pretend. You've had a bit too much to drink. We're headed out back to find some privacy." You don't dare look behind you to see if the men in the doorway are watching you.`
+			`	The boy stands up. "Wait ten seconds, then head to the tunnel," he says. He walks into the bathroom, which is right next to the back entrance that she pointed out. You wait for a few seconds, then stand up. "Don't run," says the girl. "Walk slowly. Pretend. You've had a bit too much to drink. We're headed out back to find some privacy." You don't dare look behind you to see if the men in the doorway are watching you.`
 			`	Finally, you reach the back entrance, and she spins the wheel to unlock it. The hinges squeal, but it opens enough for you to squeeze through. You find yourselves in a narrow corridor lit only by flickering sodium lamps. In the yellow lamplight her face and hands look pale, jaundiced. The floor of the corridor is littered with beer bottles and discarded hypodermic needles. To one side of the door are several over-stuffed trash cans. As you step into the corridor, a rat scurries away into the darkness.`
 			`	A few second later, watching through the open airlock, you see the boy walk out of the bathroom. He can't help stealing a quick glance towards the men in the doorway, after which he quickly ducks through the airlock and slams the door shut. "Run!" he whispers.`
 			`	You begin running down the corridor, in the direction of your ship. You pass a man, slumped over in a corner; there is no time to see if he is dead, or just sleeping. In places the lights have gone out, and it is so dim that you can barely see the floor beneath you. Your footsteps pounding on the metal decking ring terribly loud up and down the empty hallway.`
