@@ -114,7 +114,9 @@ License: CC-BY-SA-3.0
 Comment: Derived from works by Michael Zahniser <mzahniser@gmail.com> and
  David Monniaux (commons.wikimedia.org/wiki/User:David.Monniaux)
 
-Files: images/outfit/pug*
+Files:
+ images/outfit/pug*
+ images/planet/*-b*
 Copyright: Frederick Goy IV (https://github.com/comnom)
 License: CC-BY-SA-4.0
 
